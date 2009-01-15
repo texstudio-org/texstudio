@@ -327,7 +327,7 @@ void ConfigDialog::shortCutItemChanged ( QTableWidgetItem * item ){
 
     QKeySequence newSeq(item->text());
     if (QKeySequence(item->text()) == QKeySequence()){
-        QMessageBox::warning(this, tr("Texmaker"),
+        QMessageBox::warning(this, tr("TexMakerX"),
                    tr("The shortcut you entered is invalid."),
                    QMessageBox::Ok, QMessageBox::Ok);
         item->setText(item->data(Qt::UserRole).toString());
@@ -339,7 +339,7 @@ void ConfigDialog::shortCutItemChanged ( QTableWidgetItem * item ){
             identicalShortcuts+=ui.shorttableWidget->item(i,0)->text()+"\n";
     if (identicalShortcuts=="") return;
 
-    switch (QMessageBox::warning(this, tr("Texmaker"),
+    switch (QMessageBox::warning(this, tr("TexMakerX"),
                                  tr("The shortcut you entered is the same as the one of this command: \n")+identicalShortcuts+tr("\n Should I delete this other shortcut?"),
                                  QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes))
     {

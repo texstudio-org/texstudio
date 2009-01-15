@@ -295,7 +295,7 @@ setAcceptDrops(true);
 QString Texmaker::findResourceFile(QString fileName){
     QStringList searchFiles;
     #if defined( Q_WS_X11 )
-    searchFiles<<PREFIX"/share/texmaker/"+fileName; //X_11
+    searchFiles<<PREFIX"/share/texmakerx/"+fileName; //X_11
     #endif
     searchFiles<<QCoreApplication::applicationDirPath() + "/../Resources/"+fileName; //macx
     searchFiles<<QCoreApplication::applicationDirPath() + "/"+fileName; //windows old 
@@ -1360,7 +1360,7 @@ viewMenu->addAction(StructureView->toggleViewAction());
 viewMenu->addAction(OutputView->toggleViewAction());
 
 optionsMenu = menuBar()->addMenu(tr("&Options"));
-Act = new QAction(QIcon(":/images/configure.png"), tr("Configure Texmaker"), this);
+Act = new QAction(QIcon(":/images/configure.png"), tr("Configure TexMakerX"), this);
 connect(Act, SIGNAL(triggered()), this, SLOT(GeneralOptions()));
 optionsMenu->addAction(Act);
 optionsMenu->addSeparator();
@@ -1385,7 +1385,7 @@ Act = new QAction(QIcon(":/images/help.png"), tr("User Manual"), this);
 connect(Act, SIGNAL(triggered()), this, SLOT(UserManualHelp()));
 helpMenu->addAction(Act);
 helpMenu->addSeparator();
-Act = new QAction(QIcon(":/images/appicon.png"), tr("About Texmaker"), this);
+Act = new QAction(QIcon(":/images/appicon.png"), tr("About TexMakerX"), this);
 connect(Act, SIGNAL(triggered()), this, SLOT(HelpAbout()));
 helpMenu->addAction(Act);
 
@@ -1699,7 +1699,7 @@ status->addPermanentWidget(pb3,0);
 void Texmaker::UpdateCaption()
 {
 QString title;
-if   ( !currentEditorView() )	{title="Texmaker";}
+if   ( !currentEditorView() )	{title="TexMakerX";}
 else
 	{
 	title="Document : "+getName();
@@ -1914,7 +1914,7 @@ void Texmaker::fileClose()
 if ( !currentEditorView() )	return;
 if (currentEditorView()->editor->isContentModified())
 	{
-	switch(  QMessageBox::warning(this, "Texmaker",
+	switch(  QMessageBox::warning(this, "TexMakerX",
 					tr("The document contains unsaved work. "
 					"Do you want to save it before closing?"),
 					tr("Save and Close"), tr("Don't Save and Close"), tr("Cancel"),
@@ -1951,7 +1951,7 @@ while (currentEditorView() && go)
 	{
 	if (currentEditorView()->editor->isContentModified())
 		{
-		switch(  QMessageBox::warning(this, "Texmaker",
+		switch(  QMessageBox::warning(this, "TexMakerX",
 						tr("The document contains unsaved work. "
 						"Do you want to save it before exiting?"),
 						tr("Save and Close"), tr("Don't Save and Close"), tr("Cancel"),
@@ -1991,7 +1991,7 @@ while (currentEditorView() && accept)
 	{
 	if (currentEditorView()->editor->isContentModified())
 		{
-		switch(  QMessageBox::warning(this, "Texmaker",
+		switch(  QMessageBox::warning(this, "TexMakerX",
 						tr("The document contains unsaved work. "
 						"Do you want to save it before exiting?"),
 						tr("Save and Close"), tr("Don't Save and Close"),tr( "Cancel"),
@@ -2031,7 +2031,7 @@ while (currentEditorView() && accept)
 	{
 	if (currentEditorView()->editor->isContentModified())
 		{
-		switch(  QMessageBox::warning(this, "Texmaker",
+		switch(  QMessageBox::warning(this, "TexMakerX",
 						tr("The document contains unsaved work. "
 						"Do you want to save it before exiting?"),
 						tr("Save and Close"), tr("Don't Save and Close"), tr("Cancel"),
@@ -2213,18 +2213,27 @@ void Texmaker::editSpell()
 /////////////// CONFIG ////////////////////
 void Texmaker::ReadSettings()
 {
+    bool usbMode = QFileInfo(QCoreApplication::applicationDirPath()+"/texmakerx.ini").exists() && QFileInfo(QCoreApplication::applicationDirPath()+"/texmakerx.ini").isWritable();
+    if (!usbMode) 
+        if (QFileInfo(QCoreApplication::applicationDirPath()+"/texmaker.ini").exists() && QFileInfo(QCoreApplication::applicationDirPath()+"/texmaker.ini").isWritable()) {
+            //import texmaker usb settings
+            usbMode=(QFile(QCoreApplication::applicationDirPath()+"/texmaker.ini")).copy(QCoreApplication::applicationDirPath()+"/texmakerx.ini");
+        }
     QSettings *config;
-    if (QFileInfo(QCoreApplication::applicationDirPath()+"/texmaker.ini").exists() && QFileInfo(QCoreApplication::applicationDirPath()+"/texmaker.ini").isWritable())  //usb-stick version
-        config=new QSettings(QCoreApplication::applicationDirPath()+"/texmaker.ini",QSettings::IniFormat);
-    else
-        config=new QSettings(QSettings::IniFormat,QSettings::UserScope,"xm1","texmaker");
+    if (usbMode) {
+        config=new QSettings(QCoreApplication::applicationDirPath()+"/texmakerx.ini",QSettings::IniFormat);
+    } else {
+        config=new QSettings(QSettings::IniFormat,QSettings::UserScope,"benibela","texmakerx");
+        if (config->childGroups().empty()) {
+            //import texmaker global settings
+            QSettings oldconfig (QSettings::IniFormat,QSettings::UserScope,"xm1","texmaker");
+            QStringList keys=oldconfig.allKeys();
+            foreach (QString key, keys) config->setValue(key,oldconfig.value(key,""));
+        }
+    }
     configFileName=config->fileName();
-//for USB-stick version :
-if (!config->contains("IniMode"))
-	{
-	delete config;
-	config=new QSettings("xm1","texmaker");
-	}
+
+
 config->beginGroup( "texmaker" );
 singlemode=true;
 
@@ -2535,15 +2544,10 @@ config->endGroup();
 void Texmaker::SaveSettings()
 {
     QSettings *config;
-    if (QFileInfo(QCoreApplication::applicationDirPath()+"/texmaker.ini").exists() && QFileInfo(QCoreApplication::applicationDirPath()+"/texmaker.ini").isWritable())  //usb-stick version
-        config=new QSettings (QCoreApplication::applicationDirPath()+"/texmaker.ini",QSettings::IniFormat);
-    else
-        config=new QSettings (QSettings::IniFormat,QSettings::UserScope,"xm1","texmaker");   
-//QSettings config("xm1","texmaker");
+    config=new QSettings (configFileName, QSettings::IniFormat);   
 
-//for USB-stick version :
 config->setValue( "IniMode",true);
-config->beginGroup( "texmaker" );
+config->beginGroup( "texmakerx" );
 QList<int> sizes;
 QList<int>::Iterator it;
 
@@ -4350,7 +4354,7 @@ QString name=fi.absoluteFilePath();
 QString ext=fi.suffix();
 QString basename=name.left(name.length()-ext.length()-1);
 QStringList extension=QString(".log,.aux,.dvi,.lof,.lot,.bit,.idx,.glo,.bbl,.ilg,.toc,.ind").split(",");
-int query =QMessageBox::warning(this, "Texmaker", tr("Delete the output files generated by LaTeX ?\n(.log,.aux,.dvi,.lof,.lot,.bit,.idx,.glo,.bbl,.ilg,.toc,.ind)"),tr("Delete Files"), tr("Cancel") );
+int query =QMessageBox::warning(this, "TexMakerX", tr("Delete the output files generated by LaTeX ?\n(.log,.aux,.dvi,.lof,.lot,.bit,.idx,.glo,.bbl,.ilg,.toc,.ind)"),tr("Delete Files"), tr("Cancel") );
 if (query==0)
 	{
 	stat2->setText(QString(" %1 ").arg(tr("Clean")));
@@ -4966,7 +4970,7 @@ if (logpresent && !onlyErrorList.isEmpty())
   	}
 if (logpresent && onlyErrorList.isEmpty())
 	{
-	QMessageBox::information( this,"Texmaker",tr("No LaTeX errors detected !"));
+	QMessageBox::information( this,"TexMakerX",tr("No LaTeX errors detected !"));
 	OutputTextEdit->setCursorPosition(0 , 0);
 	}
 }
@@ -5000,7 +5004,7 @@ if (logpresent && !onlyErrorList.isEmpty())
   	}
 if (logpresent && onlyErrorList.isEmpty())
 	{
-	QMessageBox::information( this,"Texmaker",tr("No LaTeX errors detected !"));
+	QMessageBox::information( this,"TexMakerX",tr("No LaTeX errors detected !"));
 	OutputTextEdit->setCursorPosition(0 , 0);
 	}
 }
@@ -5257,8 +5261,8 @@ void Texmaker::SetInterfaceType()
 {
 #if defined( Q_WS_X11 )
 QStringList styles=QStyleFactory::keys()<<"default";
-x11style = QInputDialog::getItem(this,"Texmaker",tr("Select interface style"),styles,styles.indexOf(x11style));
-if (x11style=="default") QMessageBox::information(this,"Texmaker",tr("Please restart Texmaker to apply the changes"),0);
+x11style = QInputDialog::getItem(this,"TexMakerX",tr("Select interface style"),styles,styles.indexOf(x11style));
+if (x11style=="default") QMessageBox::information(this,"TexMakerX",tr("Please restart TexMakerX to apply the changes"),0);
 else {
     QPalette pal = QApplication::palette();
     QApplication::setStyle(x11style);

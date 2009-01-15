@@ -28,8 +28,8 @@ class DefaultInputBinding: public QEditor::InputBinding{
  //  Q_OBJECT not possible because inputbinding is no qobject
 public:
     DefaultInputBinding():keyToReplace(0),contextMenu(0){}
-	virtual QString id() const{return "TexMaker::DefaultInputBinding";}
-    virtual QString name() const{return "TexMaker::DefaultInputBinding";}
+	virtual QString id() const{return "TexMakerX::DefaultInputBinding";}
+    virtual QString name() const{return "TexMakerX::DefaultInputBinding";}
 
     virtual bool keyPressEvent(QKeyEvent *event, QEditor *editor);
     virtual bool contextMenuEvent(QContextMenuEvent *event, QEditor *editor);

@@ -376,7 +376,7 @@ QString WebPublishDialog::header()
 QString result="<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'> \n";
 result+="<html>\n";
 result+="<head>\n";
-result+="<META NAME='Generator' CONTENT='texmaker (http://www.xm1math.net/)'>\n";
+result+="<META NAME='Generator' CONTENT='texmakerx (http://texmakerx.sourceforge.net/)'>\n";
 result+="<title>"+title+"</title>\n";
 result+="<link rel=StyleSheet href='style.css' type='text/css'>\n";
 result+="</head>\n";
@@ -1088,11 +1088,11 @@ address=settings.value("/address","").toString();
 QString kdesession= ::getenv("KDE_FULL_SESSION");
 if (!kdesession.isEmpty()) browser=settings.value("/browser","konqueror").toString();
 else browser=settings.value("/browser","firefox").toString();
-programdir=PREFIX"/share/texmaker";
+programdir=PREFIX"/share/texmakerx";
 #endif
 #ifdef Q_WS_MACX
 browser=settings.value("/browser","open").toString();
-programdir="/Applications/texmaker.app/Contents/Resources";
+programdir="/Applications/texmakerx.app/Contents/Resources";
 #endif
 #ifdef Q_WS_WIN
 browser=settings.value("/browser","\"C:/Program Files/Internet Explorer/IEXPLORE.EXE\"").toString();
