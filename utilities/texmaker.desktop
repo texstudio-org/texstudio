@@ -1,15 +1,15 @@
 [Desktop Entry]
 Categories=Office;Publishing;Qt;X-SuSE-Core-Office;X-Mandriva-Office-Publishing;X-Misc;
 Encoding=UTF-8
-Exec=texmaker
+Exec=texmakerx
 GenericName=LaTeX Editor
 GenericName[fr]=Editeur LaTeX
 Comment=LaTeX development environment
 Comment[fr]=Environnement de développement LaTeX
 Icon=texmaker
 MimeType=text/x-tex;
-Name=Texmaker
-Name[fr]=Texmaker
+Name=TexMakerX
+Name[fr]=TexMakerX
 StartupNotify=false
 Terminal=false
 Type=Application
