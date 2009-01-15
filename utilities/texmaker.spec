@@ -1,16 +1,16 @@
-Name: texmaker
+Name: texmakerx
 Summary: LaTeX editor
 Version: 1.8
-Release: xm1
+Release: BeniBela
 License: GPL
 Group: Applications/Publishing
-Source: texmaker-%{version}.tar.bz2
-Packager: Pascal Brachet
-Url: http://www.xm1math.net/texmaker/
+Source: http://texmakerx.svn.sourceforge.net/svnroot/texmakerx/trunk
+Packager: Benito van der Zander
+Url: http://texmakerx.sourceforge.net
 #BuildRequires: qt4-devel
 #Requires: tetex-latex
 %description
-Texmaker is a program, that integrates many tools needed to develop 
+TexmakerX is a program based on Texmaker, that integrates many tools needed to develop 
 documents with LaTeX, in just one application.
 
 %prep

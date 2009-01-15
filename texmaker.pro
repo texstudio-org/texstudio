@@ -1,6 +1,6 @@
 TEMPLATE	= app
 LANGUAGE	= C++
-TARGET	 = texmaker
+TARGET	 = texmakerx
 CONFIG	+= qt warn_off release 
 QT += network
 ###############################
@@ -101,6 +101,7 @@ FORMS   += structdialog.ui \
 	letterdialog.ui \
 	addoptiondialog.ui \
 	quickdocumentdialog.ui \
+  userkeyreplacements.ui \
 	usermenudialog.ui \
 	usertooldialog.ui \
 	refdialog.ui \
@@ -126,7 +127,7 @@ INSTALLS = target
 HEADERS	+= x11fontdialog.h
 SOURCES	+= x11fontdialog.cpp
 FORMS += x11fontdialog.ui
-utilities.path = $${PREFIX}/share/texmaker
+utilities.path = $${PREFIX}/share/texmakerx
 utilities.files = utilities/blank.png \
 	utilities/doc1.png \
 	utilities/doc10.png \

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
-<title>Texmaker : user manual</title>
+<title>TexMakerX : user manual</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css"><!--
 a:link { color: #004faf; text-decoration: none }
@@ -10,10 +10,10 @@ body { background: #ffffff; color: black; }
 --></style>
 </head>
 <body>
-<h1 align=center><A NAME="top">Texmaker : User manual</a></h1>
+<h1 align=center><A NAME="top">TexMakerX : User manual</a></h1>
 <h2><a name="sommaire">Contents </a>:</h2>
 <ul>
-<li><a href="#SECTION0">1. Configuring Texmaker</a></li>
+<li><a href="#SECTION0">1. Configuring TexMakerX</a></li>
 	<ul>
 	<li><a href="#SECTION01">1.1 Configuring the editor</a></li>
 	<li><a href="#SECTION02">1.2 Configuring the latex related commands</a></li>
@@ -53,29 +53,29 @@ body { background: #ffffff; color: black; }
 	<li><a href="#SECTION34">4.4 Pstricks support</a></li>
 	<li><a href="#SECTION35">4.5 Metapost support</a></li>
 	<li><a href="#SECTION36">4.6 The "Convert to Html" command</a></li>
-	<li><a href="#SECTION37">4.7 "Forward/Inverse search" with Texmaker</a></li>
-	<li><a href="#SECTION38">4.8 Synopsis of the Texmaker command</a></li>
+	<li><a href="#SECTION37">4.7 "Forward/Inverse search" with TexMakerX</a></li>
+	<li><a href="#SECTION38">4.8 Synopsis of the TexMakerX command</a></li>
 	<li><a href="#SECTION39">4.9 Keyboard shortcuts</a></li>
 	</ul>
 </ul>
 <hr>
-<h1><a name="SECTION0">1. Configuring Texmaker</a></h1>
-Before using Texmaker, you must configure the editor and latex related commands via the "Configure Texmaker" command in the "Options" menu ("Preferences" under macosx).
+<h1><a name="SECTION0">1. Configuring TexMakerXX</a></h1>
+Before using TexMakerX, you must configure the editor and latex related commands via the "Configure TexMakerX" command in the "Options" menu ("Preferences" under macosx).
 <h2><a name="SECTION01">1.1 Configuring the editor</a></h2>
 <p>
-Before compiling your first document, you must set the encoding used by the editor ("Configure Texmaker" -> "Editor" -> "Editor Font Encoding"). Then, you should use the same encoding in the preamble of yours TeX documents (example : \usepackage[latin]{inputenc}, if you use the "ISO-8859-1" encoding for the editor)
+Before compiling your first document, you must set the encoding used by the editor ("Configure TexMakerX" -> "Editor" -> "Editor Font Encoding"). Then, you should use the same encoding in the preamble of yours TeX documents (example : \usepackage[latin]{inputenc}, if you use the "ISO-8859-1" encoding for the editor)
 </p>
 <h2><a name="SECTION02">1.2 Configuring the latex related commands</a></h2>
-<p>Texmaker can't compile yours documents if the paths to the LaTeX related commands are wrong.<br>
-The default settings should work with the recent and standard LaTeX distributions, but you should have to modify them ("Configure Texmaker" -> "Commands"). To change a command, just click on the button at the end of the corresponding line and select the command in the file browser : texmaker will adapt automatically the syntax of the command.<br>
+<p>TexMakerX can't compile yours documents if the paths to the LaTeX related commands are wrong.<br>
+The default settings should work with the recent and standard LaTeX distributions, but you should have to modify them ("Configure TexMakerX" -> "Commands"). To change a command, just click on the button at the end of the corresponding line and select the command in the file browser : TexMakerX will adapt automatically the syntax of the command.<br>
 The <strong>%</strong> character represents the name of the file without the extension and the <strong>@</strong> character will be replaced by the current line number.<br>
 </p>
 <p><IMG src="doc14.png" border="1"></p>
 <h2><a name="SECTION03">1.3 Configuring the spell checker</a></h2>
 <p>
-The spell checker uses the OpenOffice.org dictionaries. Only GPL french and british dictionaries are distributed with Texmaker.<br>
+The spell checker uses the OpenOffice.org dictionaries. Only GPL french and british dictionaries are distributed with TexMakerX.<br>
 Users can download others dictionaries here : <A href="http://wiki.services.openoffice.org/wiki/Dictionaries" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A><br>
-To configure the spell checker : "Configure Texmaker" -> "Editor" -> "Spelling dictionary" -> click on the button at the end of the line to select the dictionary with the file browser.<br>
+To configure the spell checker : "Configure TexMakerX" -> "Editor" -> "Spelling dictionary" -> click on the button at the end of the line to select the dictionary with the file browser.<br>
 <b>Warning : spell checking starts at the cursor position and not at the beginning of the document.</b>
 </p>
 <h1><a name="SECTION1">2. Editing a TeX document</a></h1>
@@ -88,7 +88,7 @@ To configure the spell checker : "Configure Texmaker" -> "Editor" -> "Spelling d
 <p>This dialog allows you to set the main features of your document (class, paper size, encoding...).<br>Note : You can add other options by clicking the "+" buttons. All yours settings are recorded.</p>
 <p>You can also type your own preamble model in the editor : with the "Copy/paste" or "Save As" commands, you can use it for a new document.</p>
 <h2><a name="SECTION13">2.3 Structure of a document</a></h2>
-<p>To define a new part (section,subsection...) in your document with Texmaker, just use this combobox in the toolbar :</p>
+<p>To define a new part (section,subsection...) in your document with TexMakerX, just use this combobox in the toolbar :</p>
 <p><IMG src="doc3.png" border="1"></p>
 <p>This will cause a dialog to pop up which allows you to define the style of the part (section,subsection...).<br>Note : the "Structure View" is automatically updated.</p>
 <p><IMG src="doc4.png" border="1"></p>
@@ -129,7 +129,7 @@ To configure the spell checker : "Configure Texmaker" -> "Editor" -> "Spelling d
 <p><IMG src="doc13.png" border="1"></p>
 <h1><a name="SECTION2">3. Compiling a document</a></h1>
 <h2><a name="SECTION22">3.1 Compiling</a></h2>
-<p>The easiest way to compile a document is to use the "Quick Build" command ("Quick" button - shortcut : F1). You can define the sequence of commands used by the "Quick Build" command via the "Configure Texmaker" dialog.<br>You can also launch each command one by one (shortcuts : F2...F12 - see the "Tools" menu).<br> Note : the "Clean" command in the "Tools menu" allows you to erase the files (dvi, toc, aux...) generated by a LaTeX compilation (except the ps and pdf files).<br>
+<p>The easiest way to compile a document is to use the "Quick Build" command ("Quick" button - shortcut : F1). You can define the sequence of commands used by the "Quick Build" command via the "Configure TexMakerX" dialog.<br>You can also launch each command one by one (shortcuts : F2...F12 - see the "Tools" menu).<br> Note : the "Clean" command in the "Tools menu" allows you to erase the files (dvi, toc, aux...) generated by a LaTeX compilation (except the ps and pdf files).<br>
 <b>Warning : all yours files must have an extension and you can't compile an "untitled" file or a file with a space in his name</b>.</p>
 <h2><a name="SECTION23">3.2 The log files</a></h2>
 <p>With the "Quick Build" command, the log file is automatically displayed in the "Messages / Log file" pannel. While clicking on a number in the "Line" column, the cursor is placed on the corresponding line in the editor and the error is displayed. <br>
@@ -138,14 +138,14 @@ Remark : a summary of the latex errors and warnings is displayed before the full
 <p>The "Next Latex Error"and "Previous LaTeX Error" commands allow to get to the errors detected during compilation.</p>
 <h1><a name="SECTION3">4. Other features</a></h1>
 <h2><a name="SECTION31">4.1 About documents separated in several files</a></h2>
-<p>Texmaker allows you to work onto documents separated in several files.<br>
-To include a TeX file into your document, just use the "\include{file}" command in the "LaTeX" menu. The file will appear in the "Structure View". With a click on his name, Texmaker will open it.</p>
+<p>TexMakerX allows you to work onto documents separated in several files.<br>
+To include a TeX file into your document, just use the "\include{file}" command in the "LaTeX" menu. The file will appear in the "Structure View". With a click on his name, TexMakerX will open it.</p>
 <p>Then, you can define your "master document" with the "Options" menu. All the commands of the "Tools" menu will apply only to this document even when working on the "children" documents (you can even close the "master" document).<br>Note : you can leave the "master" mode with the "Options" menu.</p>
 <h2><a name="SECTION32">4.2 Bibliography</a></h2>
 <p>For the "bib" files , the "Bibliography" menu enables you to directly insert the entries corresponding to the standard types of document.<br>Note: the optional fields can be automatically deleted with the "Clean" command of the "Bibliography" menu.</p>
 <p><IMG src="doc16.png" border="1"></p>
 <h2><a name="SECTION33">4.3 Personals tags ans tools</a></h2>
-<p>Texmaker allows you to insert your own tags (shortcuts : Shift+F1...Shift+F10). These tags are defined with the "User - User Tags" menu.<br>Note : if the code of the menu is "%environment", Texmaker will directly insert:<br>
+<p>TexMakerX allows you to insert your own tags (shortcuts : Shift+F1...Shift+F10). These tags are defined with the "User - User Tags" menu.<br>Note : if the code of the menu is "%environment", TexMakerX will directly insert:<br>
 \begin{environment }<br>
 <br>
 \end{environment }<br>
@@ -167,32 +167,32 @@ Synopsis :<br>
 <b>Warning : </b>You can't use this command with the hyperref package (and some others packages). This command can only be used with the "Convert to html" tool.</p>
 <p><IMG src="doc18.png" border="1"></p>
 <p><IMG src="doc19.png" border="1"></p>
-<h2><a name="SECTION37">4.7 "Forward/Inverse search" with Texmaker</a></h2>
+<h2><a name="SECTION37">4.7 "Forward/Inverse search" with TexMakerX</a></h2>
 <p>
 Some dvi viewers can jump to (and visually highlight) a position in the DVI file that corresponds to a certain line number in the (La)TeX source file.<br>
-To use this feature, you can use the <b>@</b> character in the syntax of the dvi viewer command ("Configure Texmaker" -> "Commands").<br>
+To use this feature, you can use the <b>@</b> character in the syntax of the dvi viewer command ("Configure TexMakerX" -> "Commands").<br>
 Examples ("Forward search"):
 <ul>
-<li>To launch yap from texmaker : "C:/Program Files/MiKTeX 2.7/miktex/bin/yap.exe" -1 -s @%.tex %.dvi</li>
-<li>To launch xdvi from texmaker : xdvi %.dvi  -sourceposition @:%.tex</li>
-<li>To launch kdvi from texmaker : kdvi "file:%.dvi#src:@ %.tex"</li>
+<li>To launch yap from TexMakerX : "C:/Program Files/MiKTeX 2.7/miktex/bin/yap.exe" -1 -s @%.tex %.dvi</li>
+<li>To launch xdvi from TexMakerX : xdvi %.dvi  -sourceposition @:%.tex</li>
+<li>To launch kdvi from TexMakerX : kdvi "file:%.dvi#src:@ %.tex"</li>
 </ul>
 For the opposite operation ("Inverse search") :
 <ul>
-<li>To launch texmaker from yap : "C:\Program Files\Texmaker\texmaker.exe" "%f" -line %l <i>(the program arguments : "%f" -line %l )</i></li>
-<li>To launch texmaker from xdvi : xdvi -editor "texmaker %f -line" %.dvi -sourceposition @:%.tex</li>
+<li>To launch TexMakerX from yap : "C:\Program Files\TexMakerX\TexMakerX.exe" "%f" -line %l <i>(the program arguments : "%f" -line %l )</i></li>
+<li>To launch TexMakerX from xdvi : xdvi -editor "TexMakerX %f -line" %.dvi -sourceposition @:%.tex</li>
 </ul>
-<!--Remark : if you try to use "inverse search" with texmaker (the opposite operation of the "forward search"), a new instance of texmaker will be launched at each time. This operation is not recommended.-->
+<!--Remark : if you try to use "inverse search" with TexMakerX (the opposite operation of the "forward search"), a new instance of TexMakerX will be launched at each time. This operation is not recommended.-->
 </p>
-<h2><a name="SECTION38">4.8 Synopsis of the texmaker command</a></h2>
+<h2><a name="SECTION38">4.8 Synopsis of the TexMakerX command</a></h2>
 <p>
-texmaker file [-master] [-line xx]<br>
+TexMakerX file [-master] [-line xx]<br>
 With the "-master" option, the document will be automatically defined as a "master" document.<br>
-With the "-line xx" option, Texmaker will ask you if you want to jump to the xx line after loading the document.
+With the "-line xx" option, TexMakerX will ask you if you want to jump to the xx line after loading the document.
 </p>
 <h2><a name="SECTION39">4.9 Keyboard shortcuts</a></h2>
 <p>
-Defaults keyboard shorscuts (*:can be modified - "Configure Texmaker" -> "Editor") :
+Defaults keyboard shorscuts (*:can be modified - "Configure TexMakerX" -> "Editor") :
 <ul>
 <li> "File" menu :
 	<ul>

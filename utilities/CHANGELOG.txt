@@ -1,3 +1,7 @@
+version Texmaker 1.8 -> TexMakerX 1.8
+- editor based on qcodeedit (lead to interactive spell checking, code folding, better bookmarks)
+- spell checker based on hunspell-1.2.8 (fixing bug)
+- text analysis
 version 1.7.1 -> 1.8:
 ----------------------
 - texmaker can now be only started once per user : inverse search will no more launch a new instance of texmaker
