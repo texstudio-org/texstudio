@@ -1,7 +1,7 @@
 #ifndef __WCHARHXX__
 #define __WCHARHXX__
 
-#ifdef WIN32
+#ifndef GCC
 typedef struct {
 #else
 typedef struct __attribute__ ((packed)) {

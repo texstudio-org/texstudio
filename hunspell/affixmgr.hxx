@@ -14,6 +14,7 @@ using namespace std;
 #include "baseaffix.hxx"
 #include "hashmgr.hxx"
 #include "phonet.hxx"
+#include "replist.hxx"
 
 // check flag duplication
 #define dupSFX        (1 << 0)
@@ -24,8 +25,8 @@ class AffixMgr
 
   AffEntry *          pStart[SETSIZE];
   AffEntry *          sStart[SETSIZE];
-  AffEntry *          pFlag[CONTSIZE];
-  AffEntry *          sFlag[CONTSIZE];
+  AffEntry *          pFlag[SETSIZE];
+  AffEntry *          sFlag[SETSIZE];
   HashMgr *           pHMgr;
   HashMgr **          alldic;
   int *               maxdic;
@@ -46,18 +47,22 @@ class AffixMgr
   int                 checkcompoundrep;
   int                 checkcompoundcase;
   int                 checkcompoundtriple;
+  int                 simplifiedtriple;
   FLAG                forbiddenword;
   FLAG                nosuggest;
   FLAG                needaffix;
   int                 cpdmin;
   int                 numrep;
   replentry *         reptable;
+  RepList *           iconvtable;
+  RepList *           oconvtable;
   int                 nummap;
   mapentry *          maptable;
   int                 numbreak;
   char **             breaktable;
   int                 numcheckcpd;
-  replentry *         checkcpdtable;
+  patentry *          checkcpdtable;
+  int                 simplifiedcpd;
   int                 numdefcpd;
   flagentry *         defcpdtable;
   phonetable *        phone;
@@ -92,11 +97,11 @@ class AffixMgr
   FLAG                keepcase;
   FLAG                substandard;
   int                 checksharps;
+  int                 fullstrip;
 
   int                 havecontclass; // boolean variable
   char                contclasses[CONTSIZE]; // flags of possible continuing classes (twofold affix)
-  flag                flag_mode;
-  
+
 public:
 
   AffixMgr(const char * affpath, HashMgr** ptr, int * md,
@@ -140,14 +145,15 @@ public:
 
   short       get_syllable (const char * word, int wlen);
   int         cpdrep_check(const char * word, int len);
-  int         cpdpat_check(const char * word, int len);
+  int         cpdpat_check(const char * word, int len, hentry * r1, hentry * r2);
   int         defcpd_check(hentry *** words, short wnum, hentry * rv,
                     hentry ** rwords, char all);
   int         cpdcase_check(const char * word, int len);
   inline int  candidate_check(const char * word, int len);
+  void        setcminmax(int * cmin, int * cmax, const char * word, int len);
   struct hentry * compound_check(const char * word, int len, short wordnum,
             short numsyllable, short maxwordnum, short wnum, hentry ** words,
-            char hu_mov_rule, int * cmpdstemnum, int * cmpdstem, char is_sug);
+            char hu_mov_rule, char is_sug);
 
   int compound_check_morph(const char * word, int len, short wordnum,
             short numsyllable, short maxwordnum, short wnum, hentry ** words,
@@ -156,6 +162,8 @@ public:
   struct hentry * lookup(const char * word);
   int                 get_numrep();
   struct replentry *  get_reptable();
+  RepList *           get_iconvtable();
+  RepList *           get_oconvtable();
   struct phonetable * get_phonetable();
   int                 get_nummap();
   struct mapentry *   get_maptable();
@@ -194,13 +202,15 @@ public:
   FLAG                get_keepcase(void);
   int                 get_checksharps(void);
   char *              encode_flag(unsigned short aflag);
+  int                 get_fullstrip();
 
 private:
   int  parse_file(const char * affpath, const char * key);
-  int  parse_flag(char * line, unsigned short * out, const char * name);
-  int  parse_num(char * line, int * out, const char * name);
-  int  parse_cpdsyllable(char * line);
+  int  parse_flag(char * line, unsigned short * out, FileMgr * af);
+  int  parse_num(char * line, int * out, FileMgr * af);
+  int  parse_cpdsyllable(char * line, FileMgr * af);
   int  parse_reptable(char * line, FileMgr * af);
+  int  parse_convtable(char * line, FileMgr * af, RepList ** rl, const char * keyword);
   int  parse_phonetable(char * line, FileMgr * af);
   int  parse_maptable(char * line, FileMgr * af);
   int  parse_breaktable(char * line, FileMgr * af);
@@ -221,7 +231,7 @@ private:
   int process_pfx_tree_to_list();
   int process_sfx_tree_to_list();
   int redundant_condition(char, char * strip, int stripl,
-      const char * cond, char *);
+      const char * cond, int);
 };
 
 #endif

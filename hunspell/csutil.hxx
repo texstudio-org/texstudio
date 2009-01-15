@@ -72,6 +72,9 @@ void   mychomp(char * s);
 // duplicate string
 char * mystrdup(const char * s);
 
+// strcat for limited length destination string
+char * mystrcat(char * dest, const char * st, int max);
+
 // duplicate reverse of string
 char * myrevstrdup(const char * s);
 
@@ -193,10 +196,10 @@ void remove_ignored_chars_utf(char * word, unsigned short ignored_chars[], int i
 // strip all ignored characters in the string
 void remove_ignored_chars(char * word, char * ignored_chars);
 
-int parse_string(char * line, char ** out, const char * name);
+int parse_string(char * line, char ** out, int ln);
 
-int parse_array(char * line, char ** out,
-        unsigned short ** out_utf16, int * out_utf16_len, const char * name, int utf8);
+int parse_array(char * line, char ** out, unsigned short ** out_utf16,
+    int * out_utf16_len, int utf8, int ln);
 
 int fieldlen(const char * r);
 char * copy_field(char * dest, const char * morph, const char * var);

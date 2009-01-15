@@ -245,7 +245,6 @@ int flag_bsearch(unsigned short flags[], unsigned short flag, int length) {
    return NULL;
  }
 
- 
  // replaces strdup with ansi version
  char * mystrdup(const char * s)
  {
@@ -261,8 +260,19 @@ int flag_bsearch(unsigned short flags[], unsigned short flag, int length) {
    }
    return d;
  }
- 
- 
+
+ // strcat for limited length destination string
+ char * mystrcat(char * dest, const char * st, int max) {
+   int len;
+   int len2;
+   if (dest == NULL || st == NULL) return dest;
+   len = strlen(dest);
+   len2 = strlen(st);
+   if (len + len2 + 1 > max) return dest;
+   strcpy(dest + len, st);
+   return dest;
+ }
+
  // remove cross-platform text line end characters
  void mychomp(char * s)
  {
@@ -664,6 +674,20 @@ void mkallcap_utf(w_char * u, int nc, int langnum) {
    if (*p != '\0') *p = csconv[((unsigned char)*p)].cupper;
  }
 
+ // conversion function for protected memory
+ void store_pointer(char * dest, char * source)
+ {
+    memcpy(dest, &source, sizeof(char *));
+ }
+
+ // conversion function for protected memory
+ char * get_stored_pointer(char * s)
+ {
+    char * p;
+    memcpy(&p, s, sizeof(char *));
+    return p;
+ }
+
 #ifndef MOZILLA_CLIENT
  // convert null terminated string to all caps using encoding
  void enmkallcap(char * d, const char * p, const char * encoding)
@@ -694,20 +718,6 @@ void mkallcap_utf(w_char * u, int nc, int langnum) {
    struct cs_info * csconv = get_current_cs(encoding);
    memcpy(d,p,(strlen(p)+1));
    if (*p != '\0') *d= csconv[((unsigned char)*p)].cupper;
- }
-
- // conversion function for protected memory
- void store_pointer(char * dest, char * source)
- {
-    memcpy(dest, &source, sizeof(char *));
- }
-
- // conversion function for protected memory
- char * get_stored_pointer(char * s)
- {
-    char * p;
-    memcpy(&p, s, sizeof(char *));
-    return p;
  }
 
 // these are simple character mappings for the 
@@ -5477,14 +5487,14 @@ void remove_ignored_chars(char * word, char * ignored_chars)
    *word = '\0';
 }
 
-int parse_string(char * line, char ** out, const char * warnvar)
+int parse_string(char * line, char ** out, int ln)
 {
    char * tp = line;
    char * piece;
    int i = 0;
    int np = 0;
    if (*out) {
-      HUNSPELL_WARNING(stderr, "error: duplicate %s line\n", warnvar);
+      HUNSPELL_WARNING(stderr, "error: line %d: multiple definitions\n", ln);
       return 1;
    }
    piece = mystrsep(&tp, 0);
@@ -5506,15 +5516,15 @@ int parse_string(char * line, char ** out, const char * warnvar)
       piece = mystrsep(&tp, 0);
    }
    if (np != 2) {
-      HUNSPELL_WARNING(stderr, "error: missing %s information\n", warnvar);
+      HUNSPELL_WARNING(stderr, "error: line %d: missing data\n", ln);
       return 1;
    } 
    return 0;
 }
 
-int parse_array(char * line, char ** out,
-        unsigned short ** out_utf16, int * out_utf16_len, const char * name, int utf8) {
-   if (parse_string(line, out, name)) return 1;
+int parse_array(char * line, char ** out, unsigned short ** out_utf16,
+       int * out_utf16_len, int utf8, int ln) {
+   if (parse_string(line, out, ln)) return 1;
    if (utf8) {
         w_char w[MAXWORDLEN];
         int n = u8_u16(w, MAXWORDLEN, *out);

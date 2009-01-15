@@ -1,6 +1,15 @@
-#include <stdio.h>
+#include "license.hunspell"
+#include "license.myspell"
+
+#ifndef MOZILLA_CLIENT
+#include <cstdlib>
+#include <cstring>
+#include <cstdio>
+#else
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
+#endif
 
 #include "filemgr.hxx"
 
@@ -10,6 +19,7 @@ int FileMgr::fail(const char * err, const char * par) {
 }
 
 FileMgr::FileMgr(const char * file, const char * key) {
+    linenum = 0;
     hin = NULL;
     fin = fopen(file, "r");
     if (!fin) {
@@ -32,7 +42,13 @@ FileMgr::~FileMgr()
 
 char * FileMgr::getline() {
     const char * l;
+    linenum++;
     if (fin) return fgets(in, BUFSIZE - 1, fin);
     if (hin && (l = hin->getline())) return strcpy(in, l);
+    linenum--;
     return NULL;
+}
+
+int FileMgr::getlinenum() {
+    return linenum;
 }
