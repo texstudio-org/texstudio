@@ -10,10 +10,12 @@ protected:
     Hunzip * hin;
     char in[BUFSIZE + 50]; // input buffer
     int fail(const char * err, const char * par);
-    
+    int linenum;
+
 public:
     FileMgr(const char * filename, const char * key = NULL);
     ~FileMgr();
     char * getline();
+    int getlinenum();
 };
 #endif

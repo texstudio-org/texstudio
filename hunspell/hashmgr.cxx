@@ -161,7 +161,6 @@ int HashMgr::add_word(const char * word, int wbl, int wcl, unsigned short * aff,
         hp->var = H_OPT;
         if (aliasm) {
             hp->var += H_OPT_ALIASM;
-//            *((char **) (hpw + wbl + 1)) = get_aliasm(atoi(desc));
             store_pointer(hpw + wbl + 1, get_aliasm(atoi(desc)));
         } else {
 	    strcpy(hpw + wbl + 1, desc);
@@ -312,17 +311,10 @@ int HashMgr::remove_forbidden_flag(const char * word) {
 }
 
 // add a custom dic. word to the hash table (public)
-int HashMgr::add(const char * word, char * aff)
+int HashMgr::add(const char * word)
 {
-    unsigned short * flags;
+    unsigned short * flags = NULL;
     int al = 0;
-    if (aff) {
-        al = decode_flags(&flags, aff);
-        flag_qsort(flags, 0, al);
-    } else {
-        flags = NULL;
-    }
-
     if (remove_forbidden_flag(word)) {
         int captype;
         int wbl = strlen(word);
@@ -375,6 +367,7 @@ int HashMgr::load_tables(const char * tpath, const char * key)
   int al;
   char * ap;
   char * dp;
+  char * dp2;
   unsigned short * flags;
   char * ts;
 
@@ -389,16 +382,16 @@ int HashMgr::load_tables(const char * tpath, const char * key)
     return 2;
   }
   mychomp(ts);
-  
+
   /* remove byte order mark */
   if (strncmp(ts,"\xEF\xBB\xBF",3) == 0) {
     memmove(ts, ts+3, strlen(ts+3)+1);
     HUNSPELL_WARNING(stderr, "warning: dic file begins with byte order mark: possible incompatibility with old Hunspell versions\n");
   }
-  
-  if ((*ts < '1') || (*ts > '9')) HUNSPELL_WARNING(stderr, "error - missing word count in dictionary file\n");
+
   tablesize = atoi(ts);
-  if (!tablesize) {
+  if (tablesize == 0) {
+    HUNSPELL_WARNING(stderr, "error: line 1: missing or bad word count in the dic file\n");
     delete dict;
     return 4;
   }
@@ -419,15 +412,26 @@ int HashMgr::load_tables(const char * tpath, const char * key)
   while ((ts = dict->getline())) {
     mychomp(ts);
     // split each line into word and morphological description
-    dp = strchr(ts,'\t');
-    char * dp2 = strchr(ts,' ');
-    if (dp2 && (!dp || (dp2 < dp))) dp = dp2;
+    dp = ts;
+    while ((dp = strchr(dp, ':'))) {
+	if ((dp > ts + 3) && (*(dp - 3) == ' ' || *(dp - 3) == '\t')) {
+	    for (dp -= 4; dp >= ts && (*dp == ' ' || *dp == '\t'); dp--);
+	    if (dp < ts) { // missing word
+		dp = NULL;
+	    } else {
+		*(dp + 1) = '\0';
+		dp = dp + 2;
+	    }
+	    break;
+	}
+	dp++;
+    }
 
-    if (dp) {
-      *dp = '\0';
-      dp++;
-    } else {
-      dp = NULL;
+    // tabulator is the old morphological field separator
+    dp2 = strchr(ts, '\t');
+    if (dp2 && (!dp || dp2 < dp)) {
+	*dp2 = '\0';
+	dp = dp2 + 1;
     }
 
     // split each line into word and affix char strings
@@ -448,13 +452,13 @@ int HashMgr::load_tables(const char * tpath, const char * key)
       *ap = '\0';
       if (aliasf) {
         int index = atoi(ap + 1);
-        al = get_aliasf(index, &flags);
+        al = get_aliasf(index, &flags, dict);
         if (!al) {
-            HUNSPELL_WARNING(stderr, "error - bad flag vector alias: %s\n", ts);
+            HUNSPELL_WARNING(stderr, "error: line %d: bad flag vector alias\n", dict->getlinenum());
             *ap = '\0';
         }
       } else {
-        al = decode_flags(&flags, ap + 1);
+        al = decode_flags(&flags, ap + 1, dict);
         flag_qsort(flags, 0, al);
       }
     } else {
@@ -493,12 +497,12 @@ int HashMgr::hash(const char * word) const
     return (unsigned long) hv % tablesize;
 }
 
-int HashMgr::decode_flags(unsigned short ** result, char * flags) {
+int HashMgr::decode_flags(unsigned short ** result, char * flags, FileMgr * af) {
     int len;
     switch (flag_mode) {
       case FLAG_LONG: { // two-character flags (1x2yZz -> 1x 2y Zz)
         len = strlen(flags);
-        if (len%2 == 1) HUNSPELL_WARNING(stderr, "error: length of FLAG_LONG flagvector is odd: %s\n", flags);
+        if (len%2 == 1) HUNSPELL_WARNING(stderr, "error: line %d: bad flagvector\n", af->getlinenum());
         len /= 2;
         *result = (unsigned short *) malloc(len * sizeof(short));
         if (!*result) return -1;
@@ -508,6 +512,7 @@ int HashMgr::decode_flags(unsigned short ** result, char * flags) {
         break;
       }
       case FLAG_NUM: { // decimal numbers separated by comma (4521,23,233 -> 4521 23 233)
+        int i;
         len = 1;
         char * src = flags; 
         unsigned short * dest;
@@ -520,14 +525,20 @@ int HashMgr::decode_flags(unsigned short ** result, char * flags) {
         dest = *result;
         for (p = flags; *p; p++) {
           if (*p == ',') {
-            *dest = (unsigned short) atoi(src);
-            if (*dest == 0) HUNSPELL_WARNING(stderr, "error: 0 is wrong flag id\n");
+            i = atoi(src);
+            if (i >= DEFAULTFLAGS) HUNSPELL_WARNING(stderr, "error: line %d: flag id %d is too large (max: %d)\n",
+              af->getlinenum(), i, DEFAULTFLAGS - 1);
+            *dest = (unsigned short) i;
+            if (*dest == 0) HUNSPELL_WARNING(stderr, "error: line %d: 0 is wrong flag id\n", af->getlinenum());
             src = p + 1;
             dest++;
           }
         }
-        *dest = (unsigned short) atoi(src);
-        if (*dest == 0) HUNSPELL_WARNING(stderr, "error: 0 is wrong flag id\n");
+        i = atoi(src);
+        if (i >= DEFAULTFLAGS) HUNSPELL_WARNING(stderr, "error: line %d: flag id %d is too large (max: %d)\n",
+          af->getlinenum(), i, DEFAULTFLAGS - 1);
+        *dest = (unsigned short) i;
+        if (*dest == 0) HUNSPELL_WARNING(stderr, "error: line %d: 0 is wrong flag id\n", af->getlinenum());
         break;
       }    
       case FLAG_UNI: { // UTF-8 characters
@@ -549,18 +560,21 @@ int HashMgr::decode_flags(unsigned short ** result, char * flags) {
           dest++;
         }
       }
-    }      
+    }
     return len;
 }
 
 unsigned short HashMgr::decode_flag(const char * f) {
     unsigned short s = 0;
+    int i;
     switch (flag_mode) {
       case FLAG_LONG:
         s = ((unsigned short) f[0] << 8) + (unsigned short) f[1];
         break;
       case FLAG_NUM:
-        s = (unsigned short) atoi(f);
+        i = atoi(f);
+        if (i >= DEFAULTFLAGS) HUNSPELL_WARNING(stderr, "error: flag id %d is too large (max: %d)\n", i, DEFAULTFLAGS - 1);
+        s = (unsigned short) i;
         break;
       case FLAG_UNI:
         u8_u16((w_char *) &s, 1, f);
@@ -568,7 +582,7 @@ unsigned short HashMgr::decode_flag(const char * f) {
       default:
         s = (unsigned short) *((unsigned char *)f);
     }
-    if (!s) HUNSPELL_WARNING(stderr, "error: 0 is wrong flag id\n");
+    if (s == 0) HUNSPELL_WARNING(stderr, "error: 0 is wrong flag id\n");
     return s;
 }
 
@@ -618,18 +632,18 @@ int  HashMgr::load_config(const char * affpath, const char * key)
         /* parse in the try string */
         if ((strncmp(line,"FLAG",4) == 0) && isspace(line[4])) {
             if (flag_mode != FLAG_CHAR) {
-                HUNSPELL_WARNING(stderr, "error: duplicate FLAG parameter\n");
+                HUNSPELL_WARNING(stderr, "error: line %d: multiple definitions of the FLAG affix file parameter\n", afflst->getlinenum());
             }
             if (strstr(line, "long")) flag_mode = FLAG_LONG;
             if (strstr(line, "num")) flag_mode = FLAG_NUM;
             if (strstr(line, "UTF-8")) flag_mode = FLAG_UNI;
             if (flag_mode == FLAG_CHAR) {
-                HUNSPELL_WARNING(stderr, "error: FLAG need `num', `long' or `UTF-8' parameter: %s\n", line);
+                HUNSPELL_WARNING(stderr, "error: line %d: FLAG needs `num', `long' or `UTF-8' parameter\n", afflst->getlinenum());
             }
         }
         if (strncmp(line,"FORBIDDENWORD",13) == 0) {
           char * st = NULL;
-          if (parse_string(line, &st, "FORBIDDENWORD")) {
+          if (parse_string(line, &st, afflst->getlinenum())) {
              delete afflst;
              return 1;
           }
@@ -637,7 +651,7 @@ int  HashMgr::load_config(const char * affpath, const char * key)
           free(st);
         }
         if (strncmp(line, "SET", 3) == 0) {
-    	  if (parse_string(line, &enc, "SET")) {
+    	  if (parse_string(line, &enc, afflst->getlinenum())) {
              delete afflst;
              return 1;
           }    	    
@@ -650,8 +664,8 @@ int  HashMgr::load_config(const char * affpath, const char * key)
 #endif
     	  } else csconv = get_current_cs(enc);
     	}
-        if (strncmp(line, "LANG", 4) == 0) {    	
-    	  if (parse_string(line, &lang, "LANG")) {
+        if (strncmp(line, "LANG", 4) == 0) {
+    	  if (parse_string(line, &lang, afflst->getlinenum())) {
              delete afflst;
              return 1;
           }    	    
@@ -660,7 +674,8 @@ int  HashMgr::load_config(const char * affpath, const char * key)
 
        /* parse in the ignored characters (for example, Arabic optional diacritics characters */
        if (strncmp(line,"IGNORE",6) == 0) {
-          if (parse_array(line, &ignorechars, &ignorechars_utf16, &ignorechars_utf16_len, "IGNORE", utf8)) {
+          if (parse_array(line, &ignorechars, &ignorechars_utf16,
+                 &ignorechars_utf16_len, utf8, afflst->getlinenum())) {
              delete afflst;
              return 1;
           }
@@ -692,7 +707,7 @@ int  HashMgr::load_config(const char * affpath, const char * key)
 int  HashMgr::parse_aliasf(char * line, FileMgr * af)
 {
    if (numaliasf != 0) {
-      HUNSPELL_WARNING(stderr, "error: duplicate AF (alias for flag vector) tables used\n");
+      HUNSPELL_WARNING(stderr, "error: line %d: multiple table definitions\n", af->getlinenum());
       return 1;
    }
    char * tp = line;
@@ -710,7 +725,7 @@ int  HashMgr::parse_aliasf(char * line, FileMgr * af)
                           numaliasf = 0;
                           aliasf = NULL;
                           aliasflen = NULL;
-                          HUNSPELL_WARNING(stderr, "incorrect number of entries in AF table\n");
+                          HUNSPELL_WARNING(stderr, "error: line %d: bad entry number\n", af->getlinenum());
                           return 1;
                        }
                        aliasf = (unsigned short **) malloc(numaliasf * sizeof(unsigned short *));
@@ -738,7 +753,7 @@ int  HashMgr::parse_aliasf(char * line, FileMgr * af)
       free(aliasflen);
       aliasf = NULL;
       aliasflen = NULL;
-      HUNSPELL_WARNING(stderr, "error: missing AF table information\n");
+      HUNSPELL_WARNING(stderr, "error: line %d: missing data\n", af->getlinenum());
       return 1;
    } 
  
@@ -762,13 +777,13 @@ int  HashMgr::parse_aliasf(char * line, FileMgr * af)
                                  free(aliasflen);
                                  aliasf = NULL;
                                  aliasflen = NULL;
-                                 HUNSPELL_WARNING(stderr, "error: AF table is corrupt\n");
+                                 HUNSPELL_WARNING(stderr, "error: line %d: table is corrupt\n", af->getlinenum());
                                  return 1;
                              }
                              break;
                           }
                   case 1: {
-                            aliasflen[j] = (unsigned short) decode_flags(&(aliasf[j]), piece);
+                            aliasflen[j] = (unsigned short) decode_flags(&(aliasf[j]), piece, af);
                             flag_qsort(aliasf[j], 0, aliasflen[j]);
                             break; 
                           }
@@ -784,7 +799,7 @@ int  HashMgr::parse_aliasf(char * line, FileMgr * af)
              aliasf = NULL;
              aliasflen = NULL;
              numaliasf = 0;
-             HUNSPELL_WARNING(stderr, "error: AF table is corrupt\n");
+             HUNSPELL_WARNING(stderr, "error: line %d: table is corrupt\n", af->getlinenum());
              return 1;
         }
    }
@@ -795,12 +810,12 @@ int HashMgr::is_aliasf() {
     return (aliasf != NULL);
 }
 
-int HashMgr::get_aliasf(int index, unsigned short ** fvec) {
+int HashMgr::get_aliasf(int index, unsigned short ** fvec, FileMgr * af) {
     if ((index > 0) && (index <= numaliasf)) {
         *fvec = aliasf[index - 1];
         return aliasflen[index - 1];
     }
-    HUNSPELL_WARNING(stderr, "error: bad flag alias index: %d\n", index);
+    HUNSPELL_WARNING(stderr, "error: line %d: bad flag alias index: %d\n", af->getlinenum(), index);
     *fvec = NULL;
     return 0;
 }
@@ -809,7 +824,7 @@ int HashMgr::get_aliasf(int index, unsigned short ** fvec) {
 int  HashMgr::parse_aliasm(char * line, FileMgr * af)
 {
    if (numaliasm != 0) {
-      HUNSPELL_WARNING(stderr, "error: duplicate AM (aliases for morphological descriptions) tables used\n");
+      HUNSPELL_WARNING(stderr, "error: line %d: multiple table definitions\n", af->getlinenum());
       return 1;
    }
    char * tp = line;
@@ -824,7 +839,7 @@ int  HashMgr::parse_aliasm(char * line, FileMgr * af)
              case 1: { 
                        numaliasm = atoi(piece);
                        if (numaliasm < 1) {
-                          HUNSPELL_WARNING(stderr, "incorrect number of entries in AM table\n");
+                          HUNSPELL_WARNING(stderr, "error: line %d: bad entry number\n", af->getlinenum());
                           return 1;
                        }
                        aliasm = (char **) malloc(numaliasm * sizeof(char *));
@@ -845,7 +860,7 @@ int  HashMgr::parse_aliasm(char * line, FileMgr * af)
       numaliasm = 0;
       free(aliasm);
       aliasm = NULL;
-      HUNSPELL_WARNING(stderr, "error: missing AM alias information\n");
+      HUNSPELL_WARNING(stderr, "error: line %d: missing data\n", af->getlinenum());
       return 1;
    } 
 
@@ -863,7 +878,7 @@ int  HashMgr::parse_aliasm(char * line, FileMgr * af)
                switch(i) {
                   case 0: {
                              if (strncmp(piece,"AM",2) != 0) {
-                                 HUNSPELL_WARNING(stderr, "error: AM table is corrupt\n");
+                                 HUNSPELL_WARNING(stderr, "error: line %d: table is corrupt\n", af->getlinenum());
                                  numaliasm = 0;
                                  free(aliasm);
                                  aliasm = NULL;
@@ -872,7 +887,7 @@ int  HashMgr::parse_aliasm(char * line, FileMgr * af)
                              break;
                           }
                   case 1: {
-                            // add the remaining of the line                  
+                            // add the remaining of the line
                             if (*tp) {
                                 *(tp - 1) = ' ';
                                 tp = tp + strlen(tp);
@@ -886,7 +901,7 @@ int  HashMgr::parse_aliasm(char * line, FileMgr * af)
                                  numaliasm = 0;
                                  free(aliasm);
                                  aliasm = NULL;
-                                 return 1;                            
+                                 return 1;
                             }
                             break; }
                   default: break;
@@ -899,7 +914,7 @@ int  HashMgr::parse_aliasm(char * line, FileMgr * af)
              numaliasm = 0;
              free(aliasm);
              aliasm = NULL;
-             HUNSPELL_WARNING(stderr, "error: map table is corrupt\n");
+             HUNSPELL_WARNING(stderr, "error: line %d: table is corrupt\n", af->getlinenum());
              return 1;
         }
    }

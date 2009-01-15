@@ -7,11 +7,7 @@ extern "C" {
 
 typedef struct Hunhandle Hunhandle;
 
-#ifdef _MSC_VER
-#define DLL __declspec ( dllexport )
-#else
 #define DLL 
-#endif
 
 DLL Hunhandle *Hunspell_create(const char * affpath, const char * dpath);
 

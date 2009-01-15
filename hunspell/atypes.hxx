@@ -87,4 +87,12 @@ struct flagentry {
   int len;
 };
 
+struct patentry {
+  char * pattern;
+  char * pattern2;
+  char * pattern3;
+  FLAG cond;
+  FLAG cond2;
+};
+
 #endif
