@@ -1,0 +1,3628 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+
+<title>Texmaker : LaTex Reference</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+h3.fn,span.fn {font-family:sans-serif; margin-left: 1cm; text-indent: -1cm; }
+a:link {font-family:sans-serif; color: #004faf; text-decoration: none }
+a:visited {font-family:sans-serif; color: #004faf; text-decoration: none }
+body {font-family:sans-serif; background: white; color: black; }
+P        { font-family:sans-serif; }
+OL        { font-family:sans-serif; }
+UL        { font-family:sans-serif; }
+LI       { font-family:sans-serif;  }
+TD        { font-family:sans-serif; }
+DD        { font-family:sans-serif; }
+DL        { font-family:sans-serif; }
+DT        { font-family:sans-serif; }
+H1        { font-family:sans-serif;  }
+H2        { font-family:sans-serif; background:#3f5881;  }
+CODE      { font-family:monospace;  }
+-->
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<h1 align="center"><a name="top">LaTeX Reference</a></h1>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="center"><b><font size="+2" color="white">Alphabetical
+Index</font></b></td>
+</tr>
+<tr bgcolor="#F0F0F0">
+<td align="center" colspan="0"><b>&nbsp;<a href=
+"#index0">#</a>&nbsp; &nbsp;<a href="#indexa">A</a>&nbsp;
+&nbsp;<a href="#indexb">B</a>&nbsp; &nbsp;<a href=
+"#indexc">C</a>&nbsp; &nbsp;<a href="#indexd">D</a>&nbsp;
+&nbsp;<a href="#indexe">E</a>&nbsp; &nbsp;<a href=
+"#indexf">F</a>&nbsp; &nbsp;<a href="#indexh">H</a>&nbsp;
+&nbsp;<a href="#indexi">I</a>&nbsp; &nbsp;<a href=
+"#indexk">K</a>&nbsp; &nbsp;<a href="#indexl">L</a>&nbsp;
+&nbsp;<a href="#indexm">M</a>&nbsp; &nbsp;<a href=
+"#indexn">N</a>&nbsp; &nbsp;<a href="#indexo">O</a>&nbsp;
+&nbsp;<a href="#indexp">P</a>&nbsp; &nbsp;<a href=
+"#indexq">Q</a>&nbsp; &nbsp;<a href="#indexr">R</a>&nbsp;
+&nbsp;<a href="#indexs">S</a>&nbsp; &nbsp;<a href=
+"#indext">T</a>&nbsp; &nbsp;<a href="#indexu">U</a>&nbsp;
+&nbsp;<a href="#indexv">V</a>&nbsp; &nbsp;<a href=
+"#indexw">W</a>&nbsp;</b></td>
+</tr>
+</table>
+<hr>
+<br>
+<br>
+<!-- INDEX BY SUBJECT -->
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="center"><b><font size="+2" color="white">Index by
+subject</font></b></td>
+</tr>
+</table>
+<table>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC3">Counters</a></b></td>
+<td>Internal counters used by LaTeX.</td>
+</tr>
+<tr bgcolor="#F0F0F0">
+<td>
+<ul>
+<li><a name="TOC4" href="#SEC4">\addtocounter</a></li>
+<li><a name="TOC5" href="#SEC5">\alph</a></li>
+<li><a name="TOC6" href="#SEC6">\arabic</a></li>
+<li><a name="TOC7" href="#SEC7">\fnsymbol</a></li>
+<li><a name="TOC8" href="#SEC8">\newcounter</a></li>
+<li><a name="TOC9" href="#SEC9">\refstepcounter</a></li>
+<li><a name="TOC10" href="#SEC10">\roman</a></li>
+<li><a name="TOC11" href="#SEC11">\stepcounter</a></li>
+<li><a name="TOC12" href="#SEC12">\setcounter</a></li>
+<li><a name="TOC13" href="#SEC13">\usecounter</a></li>
+<li><a name="TOC14" href="#SEC14">\value</a></li>
+</ul>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC15">Cross References</a></b></td>
+<td>Automatic referencing.</td>
+</tr>
+<tr bgcolor="#F0F0F0">
+<td>
+<ul>
+<li><a name="TOC16" href="#SEC16">\label</a></li>
+<li><a name="TOC17" href="#SEC17">\pageref</a></li>
+<li><a name="TOC18" href="#SEC18">\ref</a></li>
+</ul>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC19">Definitions</a></b></td>
+<td>Define your own commands etc.</td>
+</tr>
+<tr bgcolor="#F0F0F0">
+<td>
+<ul>
+<li><a name="TOC20" href="#SEC20">\newcommand</a></li>
+<li><a name="TOC21" href="#SEC21">\newenvironment</a></li>
+<li><a name="TOC22" href="#SEC22">\newtheorem</a></li>
+<li><a name="TOC23" href="#SEC23">\newfont</a></li>
+</ul>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC24">Document Classes</a></b></td>
+<td>Some of the various classes available.</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC30">Environments</a></b></td>
+<td>Such as enumerate &amp; itemize.</td>
+</tr>
+<tr bgcolor="#F0F0F0">
+<td>
+<div style="margin-left: 2em">
+<ul>
+<li><a name="TOC31" href="#SEC31">array</a></li>
+<li><a name="TOC32" href="#SEC32">center</a>
+<ul>
+<li><a name="TOC33" href="#SEC33">\centering</a></li>
+</ul>
+</li>
+<li><a name="TOC34" href="#SEC34">description</a></li>
+<li><a name="TOC35" href="#SEC35">enumerate</a></li>
+<li><a name="TOC36" href="#SEC36">eqnarray</a></li>
+<li><a name="TOC37" href="#SEC37">equation</a></li>
+<li><a name="TOC38" href="#SEC38">figure</a></li>
+<li><a name="TOC39" href="#SEC39">flushleft</a>
+<ul>
+<li><a name="TOC40" href="#SEC40">\raggedright</a></li>
+</ul>
+</li>
+<li><a name="TOC41" href="#SEC41">flushright</a>
+<ul>
+<li><a name="TOC42" href="#SEC42">\raggedleft</a></li>
+</ul>
+</li>
+<li><a name="TOC43" href="#SEC43">itemize</a></li>
+<li><a name="TOC44" href="#SEC44">letter</a></li>
+<li><a name="TOC45" href="#SEC45">list</a></li>
+<li><a name="TOC46" href="#SEC46">minipage</a></li>
+<li><a name="TOC47" href="#SEC47">picture</a>
+<ul>
+<li><a name="TOC48" href="#SEC48">\circle</a></li>
+<li><a name="TOC49" href="#SEC49">\dashbox</a></li>
+<li><a name="TOC50" href="#SEC50">\frame</a></li>
+<li><a name="TOC51" href="#SEC51">\framebox</a></li>
+<li><a name="TOC52" href="#SEC52">\line</a></li>
+<li><a name="TOC53" href="#SEC53">\linethickness</a></li>
+<li><a name="TOC54" href="#SEC54">\makebox</a></li>
+<li><a name="TOC55" href="#SEC55">\multiput</a></li>
+<li><a name="TOC56" href="#SEC56">\oval</a></li>
+<li><a name="TOC57" href="#SEC57">\put</a></li>
+<li><a name="TOC58" href="#SEC58">\shortstack</a></li>
+<li><a name="TOC59" href="#SEC59">\vector</a></li>
+</ul>
+</li>
+<li><a name="TOC60" href="#SEC60">quotation</a></li>
+<li><a name="TOC61" href="#SEC61">quote</a></li>
+<li><a name="TOC62" href="#SEC62">tabbing</a></li>
+<li><a name="TOC63" href="#SEC63">table</a></li>
+<li><a name="TOC64" href="#SEC64">tabular</a>
+<ul>
+<li><a name="TOC65" href="#SEC65">\cline</a></li>
+<li><a name="TOC66" href="#SEC66">\hline</a></li>
+<li><a name="TOC67" href="#SEC67">\multicolumn</a></li>
+<li><a name="TOC68" href="#SEC68">\vline</a></li>
+</ul>
+</li>
+<li><a name="TOC69" href="#SEC69">thebibliography</a>
+<ul>
+<li><a name="TOC70" href="#SEC70">\bibitem</a></li>
+<li><a name="TOC71" href="#SEC71">\cite</a></li>
+<li><a name="TOC72" href="#SEC72">\nocite</a></li>
+<li><a name="TOC73" href="#SEC73">Using BibTeX</a></li>
+</ul>
+</li>
+<li><a name="TOC74" href="#SEC74">theorem</a></li>
+<li><a name="TOC75" href="#SEC75">titlepage</a></li>
+<li><a name="TOC76" href="#SEC76">verbatim</a>
+<ul>
+<li><a name="TOC77" href="#SEC77">\verb</a></li>
+</ul>
+</li>
+<li><a name="TOC78" href="#SEC78">verse</a></li>
+</ul>
+</div>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC79">Footnotes</a></b></td>
+<td>How to produce footnotes.</td>
+</tr>
+<tr bgcolor="#F0F0F0">
+<td>
+<ul>
+<li><a name="TOC80" href="#SEC80">\footnote</a></li>
+<li><a name="TOC81" href="#SEC81">\footnotemark</a></li>
+<li><a name="TOC82" href="#SEC82">\footnotetext</a></li>
+</ul>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC25">Layout</a></b></td>
+<td>Controlling the page layout.</td>
+</tr>
+<tr bgcolor="#F0F0F0">
+<td>
+<ul>
+<li><a name="TOC26" href="#SEC26">\flushbottom</a></li>
+<li><a name="TOC27" href="#SEC27">\onecolumn</a></li>
+<li><a name="TOC28" href="#SEC28">\raggedbottom</a></li>
+<li><a name="TOC29" href="#SEC29">\twocolumn</a></li>
+</ul>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC83">Lengths</a></b></td>
+<td>The length commands.</td>
+</tr>
+<tr bgcolor="#F0F0F0">
+<td>
+<ul>
+<li><a name="TOC84" href="#SEC84">\newlength</a></li>
+<li><a name="TOC85" href="#SEC85">\setlength</a></li>
+<li><a name="TOC86" href="#SEC86">\addtolength</a></li>
+<li><a name="TOC87" href="#SEC87">\settodepth</a></li>
+<li><a name="TOC88" href="#SEC88">\settoheight</a></li>
+<li><a name="TOC89" href="#SEC89">\settowidth</a></li>
+<li><a name="TOC90" href="#SEC90">Predefined lengths</a></li>
+</ul>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC91">Letters</a></b></td>
+<td>The letter class.</td>
+</tr>
+<tr bgcolor="#F0F0F0">
+<td>
+<ul>
+<li><a name="TOC92" href="#SEC92">\address</a></li>
+<li><a name="TOC93" href="#SEC93">\cc</a></li>
+<li><a name="TOC94" href="#SEC94">\closing</a></li>
+<li><a name="TOC95" href="#SEC95">\encl</a></li>
+<li><a name="TOC96" href="#SEC96">\location</a></li>
+<li><a name="TOC97" href="#SEC97">\makelabels</a></li>
+<li><a name="TOC98" href="#SEC98">\name</a></li>
+<li><a name="TOC99" href="#SEC99">\opening</a></li>
+<li><a name="TOC100" href="#SEC100">\ps</a></li>
+<li><a name="TOC101" href="#SEC101">\signature</a></li>
+<li><a name="TOC102" href="#SEC102">\startbreaks</a></li>
+<li><a name="TOC103" href="#SEC103">\stopbreaks</a></li>
+<li><a name="TOC104" href="#SEC104">\telephone</a></li>
+</ul>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC105">Line &amp; Page
+Breaking</a></b></td>
+<td>How to insert pagebreaks etc.</td>
+</tr>
+<tr bgcolor="#F0F0F0">
+<td>
+<ul>
+<li><a name="TOC106" href="#SEC106">\\</a></li>
+<li><a name="TOC107" href="#SEC107">\-</a></li>
+<li><a name="TOC108" href="#SEC108">\cleardoublepage</a></li>
+<li><a name="TOC109" href="#SEC109">\clearpage</a></li>
+<li><a name="TOC110" href="#SEC110">\enlargethispage</a></li>
+<li><a name="TOC111" href="#SEC111">\fussy</a></li>
+<li><a name="TOC112" href="#SEC112">\hyphenation</a></li>
+<li><a name="TOC113" href="#SEC113">\linebreak</a></li>
+<li><a name="TOC114" href="#SEC114">\newline</a></li>
+<li><a name="TOC115" href="#SEC115">\newpage</a></li>
+<li><a name="TOC116" href="#SEC116">\nolinebreak</a></li>
+<li><a name="TOC117" href="#SEC117">\nopagebreak</a></li>
+<li><a name="TOC118" href="#SEC118">\pagebreak</a></li>
+<li><a name="TOC119" href="#SEC119">\sloppy</a></li>
+</ul>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC120">Making
+Paragraphs</a></b></td>
+<td>Paragraph commands.</td>
+</tr>
+<tr bgcolor="#F0F0F0">
+<td>
+<ul>
+<li><a name="TOC121" href="#SEC121">\indent</a></li>
+<li><a name="TOC122" href="#SEC122">\noindent</a></li>
+<li><a name="TOC123" href="#SEC123">\par</a></li>
+</ul>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC124">Margin Notes</a></b></td>
+<td>Putting remarks in the margin.</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC125">Math Formulae</a></b></td>
+<td>How to create mathematical formulae.</td>
+</tr>
+<tr bgcolor="#F0F0F0">
+<td>
+<ul>
+<li><a name="TOC126" href="#SEC126">Subscripts &amp;
+Superscripts</a></li>
+<li><a name="TOC127" href="#SEC127">Math Symbols</a></li>
+<li><a name="TOC128" href="#SEC128">Spacing in Math Mode</a></li>
+<li><a name="TOC129" href="#SEC129">Math Miscellany</a></li>
+</ul>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC130">Modes</a></b></td>
+<td>Paragraph, Math or LR modes.</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC131">Page Styles</a></b></td>
+<td>Various styles of page layout.</td>
+</tr>
+<tr bgcolor="#F0F0F0">
+<td>
+<ul>
+<li><a name="TOC132" href="#SEC132">\maketitle</a></li>
+<li><a name="TOC133" href="#SEC133">\author</a></li>
+<li><a name="TOC134" href="#SEC134">\date</a></li>
+<li><a name="TOC135" href="#SEC135">\thanks</a></li>
+<li><a name="TOC136" href="#SEC136">\title</a></li>
+<li><a name="TOC137" href="#SEC137">\pagenumbering</a></li>
+<li><a name="TOC138" href="#SEC138">\pagestyle</a></li>
+<li><a name="TOC139" href="#SEC139">\markboth</a></li>
+<li><a name="TOC140" href="#SEC140">\markright</a></li>
+<li><a name="TOC141" href="#SEC141">\thispagestyle</a></li>
+</ul>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC142">Sectioning</a></b></td>
+<td>How to section properly.</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC143">Spaces &amp;
+Boxes</a></b></td>
+<td>All the associated commands.</td>
+</tr>
+<tr bgcolor="#F0F0F0">
+<td>
+<ul>
+<li><a name="TOC144" href="#SEC144">\dotfill</a></li>
+<li><a name="TOC145" href="#SEC145">\hfill</a></li>
+<li><a name="TOC146" href="#SEC146">\hrulefill</a></li>
+<li><a name="TOC147" href="#SEC147">\hspace</a></li>
+<li><a name="TOC148" href="#SEC148">\addvspace</a></li>
+<li><a name="TOC149" href="#SEC149">\bigskip</a></li>
+<li><a name="TOC150" href="#SEC150">\medskip</a></li>
+<li><a name="TOC151" href="#SEC151">\smallskip</a></li>
+<li><a name="TOC152" href="#SEC152">\vfill</a></li>
+<li><a name="TOC153" href="#SEC153">\vspace</a></li>
+<li><a name="TOC154" href="#SEC154">\fbox</a></li>
+<li><a name="TOC155" href="#SEC155">\framebox</a></li>
+<li><a name="TOC156" href="#SEC156">lrbox</a></li>
+<li><a name="TOC157" href="#SEC157">\makebox</a></li>
+<li><a name="TOC158" href="#SEC158">\mbox</a></li>
+<li><a name="TOC159" href="#SEC159">\newsavebox</a></li>
+<li><a name="TOC160" href="#SEC160">\parbox</a></li>
+<li><a name="TOC161" href="#SEC161">\raisebox</a></li>
+<li><a name="TOC162" href="#SEC162">\rule</a></li>
+<li><a name="TOC163" href="#SEC163">\savebox</a></li>
+<li><a name="TOC164" href="#SEC164">\sbox</a></li>
+<li><a name="TOC165" href="#SEC165">\usebox</a></li>
+</ul>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC166">Special
+Characters</a></b></td>
+<td>Special reserved characters.</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC167">Splitting the
+Input</a></b></td>
+<td>Dealing with big files by splitting.</td>
+</tr>
+<tr bgcolor="#F0F0F0">
+<td>
+<ul>
+<li><a name="TOC168" href="#SEC168">\include</a></li>
+<li><a name="TOC169" href="#SEC169">\includeonly</a></li>
+<li><a name="TOC170" href="#SEC170">\input</a></li>
+</ul>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC171">Starting &amp;
+Ending</a></b></td>
+<td>The formal start &amp; end layouts.</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC172">Table of
+Contents</a></b></td>
+<td>How to create a table of contents.</td>
+</tr>
+<tr bgcolor="#F0F0F0">
+<td>
+<ul>
+<li><a name="TOC173" href="#SEC173">\addcontentsline</a></li>
+<li><a name="TOC174" href="#SEC174">\addtocontents</a></li>
+</ul>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC175">Terminal
+Input/Output</a></b></td>
+<td>User interaction.</td>
+</tr>
+<tr bgcolor="#F0F0F0">
+<td>
+<ul>
+<li><a name="TOC176" href="#SEC176">\typein</a></li>
+<li><a name="TOC177" href="#SEC177">\typeout</a></li>
+</ul>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr bgcolor="#F0F0FA">
+<td align="left"><b><a href="#SEC178">Typefaces</a></b></td>
+<td>Such as bold, italics etc.</td>
+</tr>
+<tr bgcolor="#F0F0F0">
+<td>
+<ul>
+<li><a name="TOC179" href="#SEC179">\Styles</a></li>
+<li><a name="TOC180" href="#SEC180">Sizes</a></li>
+<li><a name="TOC181" href="#SEC181">Low-level font
+commands</a></li>
+</ul>
+</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<!-- ALPHABETICAL INDEX -->
+<hr>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="center"><b><a name="alpha"><font size="+2" color=
+"white">Alphabetical index</font></a></b></td>
+</tr>
+</table>
+<table>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;#&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="index0" href="#IDX259">$</a></li>
+<li><a href="#SEC128">\!</a></li>
+<li><a href="#IDX134">\' (tabbing)</a></li>
+<li><a href="#SEC125">\(</a></li>
+<li><a href="#SEC125">\)</a></li>
+<li><a href="#IDX132">\+</a></li>
+<li><a href="#SEC128">\,</a></li>
+<li><a href="#SEC107">\- (hyphenation)</a></li>
+<li><a href="#IDX133">\- (tabbing)</a></li>
+<li><a href="#SEC128">\;</a></li>
+<li><a href="#IDX131">\&lt;</a></li>
+<li><a href="#IDX129">\=</a></li>
+<li><a href="#IDX130">\&gt;</a></li>
+<li><a href="#SEC125">\[</a></li>
+<li><a href="#SEC106">\\</a></li>
+<li><a href="#SEC125">\]</a></li>
+<li><a href="#IDX135">\` (tabbing)</a></li>
+</ul>
+</td>
+</tr>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;A&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="indexa" href="#IDX139">\a</a></li>
+<li><a href="#SEC173">\addcontentsline</a></li>
+<li><a href="#SEC92">\address</a></li>
+<li><a href="#SEC174">\addtocontents</a></li>
+<li><a href="#SEC4">\addtocounter</a></li>
+<li><a href="#SEC86">\addtolength</a></li>
+<li><a href="#SEC148">\addvspace</a></li>
+<li><a href="#SEC5">\alph</a></li>
+<li><a href="#SEC5">\Alph</a></li>
+<li><a href="#IDX314">\appendix</a></li>
+<li><a href="#SEC6">\arabic</a></li>
+<li><a href="#SEC31">array (environment)</a></li>
+<li><a href="#SEC133">\author</a></li>
+</ul>
+</td>
+</tr>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;B&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="indexb" href="#IDX346">\backslash</a></li>
+<li><a href="#SEC30">\begin</a></li>
+<li><a href="#IDX380">\bfseries</a></li>
+<li><a href="#SEC70">\bibitem</a></li>
+<li><a href="#SEC73">\bibliography</a></li>
+<li><a href="#SEC73">\bibliographystyle</a></li>
+<li><a href="#SEC149">\bigskip</a></li>
+</ul>
+</td>
+</tr>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;C&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="indexc" href="#IDX80">\caption</a></li>
+<li><a href="#SEC93">\cc</a></li>
+<li><a href="#IDX275">\cdots</a></li>
+<li><a href="#SEC32">center</a></li>
+<li><a href="#SEC33">\centering</a></li>
+<li><a href="#SEC142">\chapter</a></li>
+<li><a href="#SEC48">\circle</a></li>
+<li><a href="#SEC71">\cite</a></li>
+<li><a href="#SEC108">\cleardoublepage</a></li>
+<li><a href="#SEC109">\clearpage</a></li>
+<li><a href="#SEC65">\cline</a></li>
+<li><a href="#SEC94">\closing</a></li>
+</ul>
+</td>
+</tr>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;D&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="indexd" href="#SEC49">\dashbox</a></li>
+<li><a href="#SEC134">\date</a></li>
+<li><a href="#IDX276">\ddots</a></li>
+<li><a href="#IDX193">\depth</a></li>
+<li><a href="#SEC34">description</a></li>
+<li><a href="#SEC24">\documentclass</a></li>
+<li><a href="#SEC144">\dotfill</a></li>
+</ul>
+</td>
+</tr>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;E&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="indexe" href="#IDX376">\emph</a></li>
+<li><a href="#SEC95">\encl</a></li>
+<li><a href="#SEC30">\end</a></li>
+<li><a href="#SEC110">\enlargethispage</a></li>
+<li><a href="#SEC35">enumerate</a></li>
+<li><a href="#SEC36">eqnarray</a></li>
+<li><a href="#SEC37">equation</a></li>
+</ul>
+</td>
+</tr>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;F&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="indexf" href="#SEC154">\fbox</a></li>
+<li><a href="#SEC38">figure</a></li>
+<li><a href="#SEC26">\flushbottom</a></li>
+<li><a href="#SEC39">flushleft</a></li>
+<li><a href="#SEC41">flushright</a></li>
+<li><a href="#SEC7">\fnsymbol</a></li>
+<li><a href="#IDX416">\fontencoding</a></li>
+<li><a href="#IDX417">\fontfamily</a></li>
+<li><a href="#IDX418">\fontseries</a></li>
+<li><a href="#IDX419">\fontshape</a></li>
+<li><a href="#IDX420">\fontsize</a></li>
+<li><a href="#SEC80">\footnote</a></li>
+<li><a href="#SEC81">\footnotemark</a></li>
+<li><a href="#IDX406">\footnotesize</a></li>
+<li><a href="#SEC82">\footnotetext</a></li>
+<li><a href="#IDX277">\frac</a></li>
+<li><a href="#SEC50">\frame</a></li>
+<li><a href="#SEC51">\framebox</a></li>
+<li><a href="#SEC111">\fussy</a></li>
+</ul>
+</td>
+</tr>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;H&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="indexh" href="#IDX192">\height</a></li>
+<li><a href="#SEC145">\hfill</a></li>
+<li><a href="#SEC66">\hline</a></li>
+<li><a href="#SEC146">\hrulefill</a></li>
+<li><a href="#SEC147">\hspace</a></li>
+<li><a href="#IDX413">\Huge</a></li>
+<li><a href="#IDX412">\huge</a></li>
+<li><a href="#SEC112">\hyphenation</a></li>
+</ul>
+</td>
+</tr>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;I&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="indexi" href="#SEC168">\include</a></li>
+<li><a href="#SEC169">\includeonly</a></li>
+<li><a href="#SEC121">\indent</a></li>
+<li><a href="#SEC170">\input</a></li>
+<li><a href="#SEC43">\item</a></li>
+<li><a href="#SEC43">itemize</a></li>
+<li><a href="#IDX375">\itshape</a></li>
+</ul>
+</td>
+</tr>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;K&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="indexk" href="#IDX136">\kill</a></li>
+</ul>
+</td>
+</tr>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;L&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="indexl" href="#SEC16">\label</a></li>
+<li><a href="#IDX409">\large</a></li>
+<li><a href="#IDX411">\LARGE</a></li>
+<li><a href="#IDX410">\Large</a></li>
+<li><a href="#IDX278">\ldots</a></li>
+<li><a href="#IDX74">\lefteqn</a></li>
+<li><a href="#SEC44">letter</a></li>
+<li><a href="#SEC52">\line</a></li>
+<li><a href="#SEC113">\linebreak</a></li>
+<li><a href="#SEC53">\linethickness</a></li>
+<li><a href="#SEC45">list</a></li>
+<li><a href="#IDX358">\listoffigures</a></li>
+<li><a href="#IDX359">\listoftables</a></li>
+<li><a href="#IDX204">\location</a></li>
+<li><a href="#SEC156">lrbox</a></li>
+</ul>
+</td>
+</tr>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;M&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="indexm" href="#SEC157">\makebox</a></li>
+<li><a href="#SEC54">\makebox (picture)</a></li>
+<li><a href="#SEC97">\makelabels</a></li>
+<li><a href="#SEC132">\maketitle</a></li>
+<li><a href="#SEC139">\markboth</a></li>
+<li><a href="#SEC140">\markright</a></li>
+<li><a href="#IDX394">\mathbf</a></li>
+<li><a href="#IDX399">\mathcal</a></li>
+<li><a href="#IDX397">\mathit</a></li>
+<li><a href="#IDX398">\mathnormal</a></li>
+<li><a href="#IDX393">\mathrm</a></li>
+<li><a href="#IDX395">\mathsf</a></li>
+<li><a href="#IDX396">\mathtt</a></li>
+<li><a href="#IDX400">\mathversion</a></li>
+<li><a href="#SEC158">\mbox</a></li>
+<li><a href="#IDX378">\mdseries</a></li>
+<li><a href="#SEC150">\medskip</a></li>
+<li><a href="#SEC46">minipage</a></li>
+<li><a href="#SEC67">\multicolumn</a></li>
+<li><a href="#SEC55">\multiput</a></li>
+</ul>
+</td>
+</tr>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;N&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="indexn" href="#SEC98">\name</a></li>
+<li><a href="#SEC20">\newcommand</a></li>
+<li><a href="#SEC8">\newcounter</a></li>
+<li><a href="#SEC21">\newenvironment</a></li>
+<li><a href="#SEC23">\newfont</a></li>
+<li><a href="#SEC84">\newlength</a></li>
+<li><a href="#SEC114">\newline</a></li>
+<li><a href="#SEC115">\newpage</a></li>
+<li><a href="#SEC159">\newsavebox</a></li>
+<li><a href="#SEC22">\newtheorem</a></li>
+<li><a href="#SEC72">\nocite</a></li>
+<li><a href="#IDX360">\nofiles</a></li>
+<li><a href="#SEC122">\noindent</a></li>
+<li><a href="#SEC116">\nolinebreak</a></li>
+<li><a href="#SEC117">\nopagebreak</a></li>
+<li><a href="#IDX392">\normalfont</a></li>
+<li><a href="#IDX408">\normalsize</a></li>
+</ul>
+</td>
+</tr>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;O&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="indexo" href="#SEC27">\onecolumn</a></li>
+<li><a href="#SEC99">\opening</a></li>
+<li><a href="#SEC56">\oval</a></li>
+<li><a href="#IDX279">\overbrace</a></li>
+<li><a href="#IDX280">\overline</a></li>
+</ul>
+</td>
+</tr>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;P&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="indexp" href="#SEC118">\pagebreak</a></li>
+<li><a href="#SEC137">\pagenumbering</a></li>
+<li><a href="#SEC17">\pageref</a></li>
+<li><a href="#SEC138">\pagestyle</a></li>
+<li><a href="#SEC123">\par</a></li>
+<li><a href="#SEC142">\paragraph</a></li>
+<li><a href="#SEC160">\parbox</a></li>
+<li><a href="#SEC47">picture</a></li>
+<li><a href="#SEC100">\ps</a></li>
+<li><a href="#IDX137">\pushtabs</a></li>
+<li><a href="#SEC57">\put</a></li>
+</ul>
+</td>
+</tr>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;Q&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="indexq" href="#SEC60">quotation</a></li>
+<li><a href="#SEC61">quote</a></li>
+</ul>
+</td>
+</tr>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;R&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="indexr" href="#SEC28">\raggedbottom</a></li>
+<li><a href="#SEC42">\raggedleft</a></li>
+<li><a href="#SEC40">\raggedright</a></li>
+<li><a href="#SEC161">\raisebox</a></li>
+<li><a href="#SEC18">\ref</a></li>
+<li><a href="#SEC9">\refstepcounter</a></li>
+<li><a href="#IDX373">\rmfamily</a></li>
+<li><a href="#SEC10">\roman</a></li>
+<li><a href="#SEC10">\Roman</a></li>
+<li><a href="#SEC162">\rule</a></li>
+</ul>
+</td>
+</tr>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;S&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="indexs" href="#SEC163">\savebox</a></li>
+<li><a href="#SEC164">\sbox</a></li>
+<li><a href="#IDX405">\scriptsize</a></li>
+<li><a href="#IDX388">\scshape</a></li>
+<li><a href="#SEC142">\section</a></li>
+<li><a href="#IDX421">\selectfont</a></li>
+<li><a href="#SEC12">\setcounter</a></li>
+<li><a href="#SEC85">\setlength</a></li>
+<li><a href="#SEC87">\settodepth</a></li>
+<li><a href="#SEC88">\settoheight</a></li>
+<li><a href="#SEC89">\settowidth</a></li>
+<li><a href="#IDX386">\sffamily</a></li>
+<li><a href="#SEC58">\shortstack</a></li>
+<li><a href="#SEC101">\signature</a></li>
+<li><a href="#SEC119">\sloppy</a></li>
+<li><a href="#IDX384">\slshape</a></li>
+<li><a href="#IDX407">\small</a></li>
+<li><a href="#SEC151">\smallskip</a></li>
+<li><a href="#IDX281">\sqrt</a></li>
+<li><a href="#SEC102">\startbreaks</a></li>
+<li><a href="#SEC11">\stepcounter</a></li>
+<li><a href="#SEC103">\stopbreaks</a></li>
+<li><a href="#SEC142">\subparagraph</a></li>
+<li><a href="#SEC142">\subsection</a></li>
+<li><a href="#SEC142">\subsubsection</a></li>
+<li><a href="#IDX347">\symbol</a></li>
+</ul>
+</td>
+</tr>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;T&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="indext" href="#SEC62">tabbing</a></li>
+<li><a href="#SEC63">table</a></li>
+<li><a href="#IDX357">\tableofcontents</a></li>
+<li><a href="#SEC64">tabular</a></li>
+<li><a href="#SEC104">\telephone</a></li>
+<li><a href="#IDX380">\textbf</a></li>
+<li><a href="#IDX375">\textit</a></li>
+<li><a href="#IDX378">\textmd</a></li>
+<li><a href="#IDX392">\textnormal</a></li>
+<li><a href="#IDX373">\textrm</a></li>
+<li><a href="#IDX388">\textsc</a></li>
+<li><a href="#IDX386">\textsf</a></li>
+<li><a href="#IDX384">\textsl</a></li>
+<li><a href="#IDX389">\texttt</a></li>
+<li><a href="#IDX381">\textup</a></li>
+<li><a href="#SEC135">\thanks</a></li>
+<li><a href="#SEC69">thebibliography</a></li>
+<li><a href="#SEC74">theorem</a></li>
+<li><a href="#SEC141">\thispagestyle</a></li>
+<li><a href="#IDX404">\tiny</a></li>
+<li><a href="#SEC136">\title</a></li>
+<li><a href="#SEC75">titlepage</a></li>
+<li><a href="#IDX165">\today</a></li>
+<li><a href="#IDX194">\totalheight</a></li>
+<li><a href="#IDX389">\ttfamily</a></li>
+<li><a href="#SEC29">\twocolumn</a></li>
+<li><a href="#SEC176">\typein</a></li>
+<li><a href="#SEC177">\typeout</a></li>
+</ul>
+</td>
+</tr>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;U&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="indexu" href="#IDX282">\underbrace</a></li>
+<li><a href="#IDX283">\underline</a></li>
+<li><a href="#IDX381">\upshape</a></li>
+<li><a href="#SEC165">\usebox</a></li>
+<li><a href="#SEC13">\usecounter</a></li>
+<li><a href="#IDX422">\usefont</a></li>
+<li><a href="#IDX46">\usepackage</a></li>
+</ul>
+</td>
+</tr>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;V&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="indexv" href="#SEC14">\value</a></li>
+<li><a href="#IDX284">\vdots</a></li>
+<li><a href="#SEC59">\vector</a></li>
+<li><a href="#SEC77">\verb</a></li>
+<li><a href="#SEC76">verbatim</a></li>
+<li><a href="#SEC78">verse</a></li>
+<li><a href="#SEC152">\vfill</a></li>
+<li><a href="#SEC68">\vline</a></li>
+<li><a href="#SEC153">\vspace</a></li>
+</ul>
+</td>
+</tr>
+<tr valign="top">
+<td bgcolor="#3F5881"><b><font size="+2" color=
+"white">&nbsp;W&nbsp;</font></b></td>
+<td bgcolor="#F0F0F0">
+<ul>
+<li><a name="indexw" href="#SEC90">\width</a></li>
+</ul>
+</td>
+</tr>
+</table>
+<br>
+<br>
+<hr>
+<!-- HELP CONTENTS -->
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white">&nbsp;<a name=
+"SEC3">Counters</a></font></b></td>
+</tr>
+</table>
+<p>Everything LaTeX numbers for you has a counter associated with
+it. The name of the counter is the same as the name of the
+environment or command that produces the number, except with no
+<code>\</code>. (enumi - enumiv are used for the nested enumerate
+environment.) Below is a list of the counters used in LaTeX's
+standard document classes to control numbering.</p>
+<pre>
+ part            paragraph       figure          enumi
+ chapter         subparagraph    table           enumii
+ section         page            footnote        enumiii
+ subsection      equation        mpfootnote      enumiv
+ subsubsection
+</pre>
+<ul>
+<li><a href="#SEC4">\addtocounter</a>: Add a quantity to a
+counter.</li>
+<li><a href="#SEC5">\alph</a>: Print value of a counter using
+letters.</li>
+<li><a href="#SEC6">\arabic</a>: Print value of a counter using
+numerals.</li>
+<li><a href="#SEC7">\fnsymbol</a>: Print value of a counter using
+symbols.</li>
+<li><a href="#SEC8">\newcounter</a>: Define a new counter.</li>
+<li><a href="#SEC9">\refstepcounter</a>: Add to counter, resetting
+subsidiary counters.</li>
+<li><a href="#SEC10">\roman</a>: Print value of a counter using
+roman numerals.</li>
+<li><a href="#SEC12">\setcounter</a>: Set the value of a
+counter.</li>
+<li><a href="#SEC11">\stepcounter</a>: Add to counter, resetting
+subsidiary counters.</li>
+<li><a href="#SEC13">\usecounter</a>: Use a specified counter in a
+list environment.</li>
+<li><a href="#SEC14">\value</a>: Use the value of a counter in an
+expression.</li>
+</ul>
+<h3><a name="SEC4" href="#TOC4">\addtocounter</a></h3>
+<p><code>\addtocounter{counter}{value}</code></p>
+<p>The <code>\addtocounter</code> command increments the
+<code>counter</code> by the amount specified by the
+<code>value</code> argument. The <code>value</code> argument can be
+negative.</p>
+<h3><a name="SEC5" href="#TOC5">\alph</a></h3>
+<p><code>\alph{counter}</code></p>
+<p>This command causes the value of the <code>counter</code> to be
+printed in alphabetic characters. The <code>\alph</code> command
+uses lower case alphabetic alphabetic characters, i.e., <code>a, b,
+c...</code> while the <code>\Alph</code> command uses upper case
+alphabetic characters, i.e., <code>A, B, C...</code>.</p>
+<h3><a name="SEC6" href="#TOC6">\arabic</a></h3>
+<p><code>\arabic{counter}</code></p>
+<p>The <code>\arabic</code> command causes the value of the
+<code>counter</code> to be printed in Arabic numbers, i.e.,
+<code>3</code>.</p>
+<h3><a name="SEC7" href="#TOC7">\fnsymbol</a></h3>
+<p><code>\fnsymbol{counter}</code></p>
+<p>The <code>\fnsymbol</code> command causes the value of the
+<code>counter</code> to be printed in a specific sequence of nine
+symbols that can be used for numbering footnotes.</p>
+<p>eg. From 1-9:</p>
+<p>NB. <code>counter</code> must have a value between 1 and 9
+inclusive.</p>
+<h3><a name="SEC8" href="#TOC8">\newcounter</a></h3>
+<p><code>\newcounter{foo}[counter]</code></p>
+<p>The <code>\newcounter</code> command defines a new counter named
+<code>foo</code>. The counter is initialized to zero.</p>
+<p>The optional argument <code>[counter]</code> causes the counter
+<code>foo</code> to be reset whenever the counter named in the
+optional argument is incremented.</p>
+<h3><a name="SEC9" href="#TOC9">\refstepcounter</a></h3>
+<p><code>\refstepcounter{counter}</code></p>
+<p>The <code>\refstepcounter</code> command works like
+<code>\stepcounter</code> See section <a href=
+"#SEC11">\stepcounter</a>, except it also defines the current
+<code>\ref</code> value to be the result of
+<code>\thecounter</code>.</p>
+<h3><a name="SEC10" href="#TOC10">\roman</a></h3>
+<p><code>\roman{counter}</code></p>
+<p>This command causes the value of the <code>counter</code> to be
+printed in Roman numerals. The <code>\roman</code> command uses
+lower case Roman numerals, i.e., <code>i, ii, iii...</code>, while
+the <code>\Roman</code> command uses upper case Roman numerals,
+i.e., <code>I, II, III...</code>.</p>
+<h3><a name="SEC11" href="#TOC11">\stepcounter</a></h3>
+<p><code>\stepcounter{counter}</code></p>
+<p>The <code>\stepcounter</code> command adds one to the
+<code>counter</code> and resets all subsidiary counters.</p>
+<h3><a name="SEC12" href="#TOC12">\setcounter</a></h3>
+<p><code>\setcounter{counter}{value}</code></p>
+<p>The <code>\setcounter</code> command sets the value of the
+<code>counter</code> to that specified by the <code>value</code>
+argument.</p>
+<h3><a name="SEC13" href="#TOC13">\usecounter</a></h3>
+<p><code>\usecounter{counter}</code></p>
+<p>The <code>\usecounter</code> command is used in the second
+argument of the <code>list</code> environment to allow the counter
+specified to be used to number the list items.</p>
+<h3><a name="SEC14" href="#TOC14">\value</a></h3>
+<p><code>\value{counter}</code></p>
+<p>The <code>\value</code> command produces the value of the
+<code>counter</code> named in the mandatory argument. It can be
+used where LaTeX expects an integer or number, such as the second
+argument of a <code>\setcounter</code> or
+<code>\addtocounter</code> command, or in:</p>
+<pre>
+        \hspace{\value{foo}\parindent}
+</pre>
+<p>It is useful for doing arithmetic with counters.</p>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC15">Cross References</a></font></b></td>
+</tr>
+</table>
+<p>One reason for numbering things like figures and equations is to
+refer the reader to them, as in "See Figure 3 for more
+details."</p>
+<ul>
+<li><a href="#SEC16">\label</a>: Assign a symbolic name to a piece
+of text.</li>
+<li><a href="#SEC17">\pageref</a>: Refer to a page number.</li>
+<li><a href="#SEC18">\ref</a>: Refer to a section, figure or
+similar.</li>
+</ul>
+<h3><a name="SEC16" href="#TOC16">\label</a></h3>
+<p><code>\label{key}</code></p>
+<p>A <code>\label</code> command appearing in ordinary text assigns
+to the <code>key</code> the number of the current sectional unit;
+one appearing inside a numbered environment assigns that number to
+the <code>key</code>.</p>
+<p>A <code>key</code> can consist of any sequence of letters,
+digits, or punctuation characters. Upper and lowercase letters are
+different.</p>
+<p>To avoid accidentally creating two labels with the same name, it
+is common to use labels consisting of a prefix and a suffix
+separated by a colon. The prefixes conventionally used are</p>
+<ul>
+<li><code>cha</code> for chapters</li>
+<li><code>sec</code> for lower-level sectioning commands</li>
+<li><code>fig</code> for figures</li>
+<li><code>tab</code> for tables</li>
+<li><code>eq</code> for equations</li>
+</ul>
+<p>Thus, a label for a figure would look like
+<code>fig:bandersnatch</code>.</p>
+<h3><a name="SEC17" href="#TOC17">\pageref</a></h3>
+<p><code>\pageref{key}</code></p>
+<p>The <code>\pageref</code> command produces the page number of
+the place in the text where the corresponding <code>\label</code>
+command appears. ie. where <code>\label{key}</code> appears.</p>
+<h3><a name="SEC18" href="#TOC18">\ref</a></h3>
+<p><code>\ref{key}</code></p>
+<p>The <code>\ref</code> command produces the number of the
+sectional unit, equation number, ... of the corresponding
+<code>\label</code> command.</p>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC19">Definitions</a></font></b></td>
+</tr>
+</table>
+<ul>
+<li><a href="#SEC20">\newcommand</a>: Define a new command.</li>
+<li><a href="#SEC21">\newenvironment</a>: Define a new
+environment.</li>
+<li><a href="#SEC22">\newtheorem</a>: Define a new theorem-like
+environment.</li>
+<li><a href="#SEC23">\newfont</a>: Define a new font name.</li>
+</ul>
+<h3><a name="SEC20" href="#TOC20">\newcommand</a></h3>
+<pre>
+ \newcommand{cmd}[args]{definition}
+ \newcommand{cmd}[args][default]{definition}
+ \renewcommand{cmd}[args]{definition}
+ \renewcommand{cmd}[args][default]{definition}
+</pre>
+<p>These commands define (or redefine) a command.</p>
+<dl>
+<dt><code>cmd</code></dt>
+<dd>A command name beginning with a <code>\</code>. For
+<code>\newcommand</code> it must not be already defined and must
+not begin with <code>\end</code>; for <code>\renewcommand</code> it
+must already be defined.</dd>
+<dt><code>args</code></dt>
+<dd>An integer from 1 to 9 denoting the number of arguments of the
+command being defined. The default is for the command to have no
+arguments.</dd>
+<dt><code>def</code></dt>
+<dd>If this optional parameter is present, it means that the
+command's first argument is optional. The default value of the
+optional argument is <code>def</code>.</dd>
+<dt><code>definition</code></dt>
+<dd>The text to be substituted for every occurrence of
+<code>cmd</code>; a parameter of the form <code>#n</code> in
+<code>cmd</code> is replaced by the text of the nth argument when
+this substitution takes place.</dd>
+</dl>
+<h3><a name="SEC21" href="#TOC21">\newenvironment</a></h3>
+<pre>
+ \newenvironment{nam}[args]{begdef}{enddef}
+ \newenvironment{nam}[args][default]{begdef}{enddef}
+ \renewenvironment{nam}[args]{begdef}{enddef}
+</pre>
+<p>These commands define or redefine an environment.</p>
+<dl>
+<dt><code>nam</code></dt>
+<dd>The name of the environment. For <code>\newenvironment</code>
+there must be no currently defined environment by that name, and
+the command <code>\nam</code> must be undefined. For
+<code>\renewenvironment</code> the environment must already be
+defined.</dd>
+<dt><code>args</code></dt>
+<dd>An integer from 1 to 9 denoting the number of arguments of the
+newly-defined environment. The default is no arguments.</dd>
+<dt><code>default</code></dt>
+<dd>If this is specified, the first argument is optional, and
+<code>default</code> gives the default value for that
+argument.</dd>
+<dt><code>begdef</code></dt>
+<dd>The text substituted for every occurrence of
+<code>\begin{nam}</code>; a parameter of the form <code>#n</code>
+in <code>cmd</code> is replaced by the text of the nth argument
+when this substitution takes place.</dd>
+<dt><code>enddef</code></dt>
+<dd>The text substituted for every occurrence of
+<code>\end{nam}</code>. It may not contain any argument
+parameters.</dd>
+</dl>
+<h3><a name="SEC22" href="#TOC22">\newtheorem</a></h3>
+<pre>
+ \newtheorem{env_name}{caption}[within]
+ \newtheorem{env_name}[numbered_like]{caption}
+</pre>
+<p>This command defines a theorem-like environment.</p>
+<dl>
+<dt><code>env_name</code></dt>
+<dd>The name of the environment to be defined. A string of letters.
+It must not be the name of an existing environment or counter.</dd>
+<dt><code>caption</code></dt>
+<dd>The text printed at the beginning of the environment, right
+before the number. This may simply say "Theorem", for example.</dd>
+<dt><code>within</code></dt>
+<dd>The name of an already defined counter, usually of a sectional
+unit. Provides a means of resetting the new theorem counter
+<strong>within</strong> the sectional unit.</dd>
+<dt><code>numbered_like</code></dt>
+<dd>The name of an already defined theorem-like environment.</dd>
+</dl>
+<p>The <code>\newtheorem</code> command may have at most one
+optional argument.</p>
+<h3><a name="SEC23" href="#TOC23">\newfont</a></h3>
+<p><code>\newfont{cmd}{font_name}</code></p>
+<p>Defines the command name <code>cmd</code>, which must not be
+currently defined, to be a declaration that selects the font named
+<code>font_name</code> to be the current font.</p>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC24">Document Classes</a></font></b></td>
+</tr>
+</table>
+<p>Valid LaTeX document classes include:</p>
+<ul>
+<li>article</li>
+<li>report</li>
+<li>letter</li>
+<li>book</li>
+<li>slides</li>
+</ul>
+<p>Other document classes are often available. They are selected
+with the following command:</p>
+<p><code>\documentclass [options] {class}</code></p>
+<p>All the standard classes (except slides) accept the following
+options for selecting the typeface size (10 pt is default):</p>
+<p>10pt, 11pt, 12pt</p>
+<p>All classes accept these options for selecting the paper size
+(default is letter):</p>
+<p>a4paper, a5paper, b5paper, letterpaper, legalpaper,
+executivepaper</p>
+<p>Miscellaneous options:</p>
+<ul>
+<li>landscape -- selects landscape format. Default is
+portrait.</li>
+<li>titlepage, notitlepage -- selects if there should be a separate
+title page.</li>
+<li>leqno -- equation number on left side of equations. Default is
+right side.</li>
+<li>fleqn -- displayed formulas flush left. Default is
+centred.</li>
+<li>openbib -- use "open" bibliography format.</li>
+<li>draft, final -- mark/do not mark overfull boxes with a rule.
+Default is final.</li>
+</ul>
+<p>These options are not available with the slides class:</p>
+<ul>
+<li>oneside, twoside -- selects one- or twosided layout. Default is
+oneside, except for the book class.</li>
+<li>openright, openany -- determines if a chapter should start on a
+right-hand page. Default is openright for book.</li>
+<li>onecolumn, twocolumn -- one or two columns. Defaults to one
+column.</li>
+</ul>
+<p>The slides class offers the option <code>clock</code> for
+printing the time at the bottom of each note.</p>
+<p>If you specify more than one option, they must be separated by a
+comma.</p>
+<p>Additional packages are loaded by a</p>
+<p><code><a name="IDX46">\usepackage[options]{pkg}</a></code></p>
+<p>command. If you specify more than one package, they must be
+separated by a comma.</p>
+<p>Any options given in the <code>\documentclass</code> command
+that are unknown by the selected document class are passed on to
+the packages loaded with <code>\usepackage</code>.</p>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC25">Layout</a></font></b></td>
+</tr>
+</table>
+<p>Miscellaneous commands for controlling the general layout of the
+page.</p>
+<ul>
+<li><a href="#SEC26">\flushbottom</a>: Make all text pages the same
+height.</li>
+<li><a href="#SEC27">\onecolumn</a>: Use one-column layout.</li>
+<li><a href="#SEC28">\raggedbottom</a>: Allow text pages of
+differing height.</li>
+<li><a href="#SEC29">\twocolumn</a>: Use two-column layout.</li>
+</ul>
+<h3><a name="SEC26" href="#TOC26">\flushbottom</a></h3>
+<p>The <code>\flushbottom</code> declaration makes all text pages
+the same height, adding extra vertical space when necessary to fill
+out the page.</p>
+<p>This is the standard if twocolumn mode is selected.</p>
+<h3><a name="SEC27" href="#TOC27">\onecolumn</a></h3>
+<p>The <code>\onecolumn</code> declaration starts a new page and
+produces single-column output.</p>
+<h3><a name="SEC28" href="#TOC28">\raggedbottom</a></h3>
+<p>The <code>\raggedbottom</code> declaration makes all pages the
+height of the text on that page. No extra vertical space is
+added.</p>
+<h3><a name="SEC29" href="#TOC29">\twocolumn</a></h3>
+<p><code>\twocolumn[text]</code></p>
+<p>The <code>\twocolumn</code> declaration starts a new page and
+produces two-column output. If the optional <code>text</code>
+argument is present, it is typeset in one-column mode.</p>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC30">Environments</a></font></b></td>
+</tr>
+</table>
+<p>LaTeX provides a number of different paragraph-making
+environments. Each environment begins and ends in the same
+manner.</p>
+<pre>
+        \begin{environment-name}
+        .
+        .
+        .
+        \end{environment-name}
+</pre>
+<ul>
+<li><a href="#SEC31">array</a>: Math arrays.</li>
+<li><a href="#SEC32">center</a>: Centred lines.</li>
+<li><a href="#SEC34">description</a>: Labelled lists.</li>
+<li><a href="#SEC35">enumerate</a>: Numbered lists.</li>
+<li><a href="#SEC36">eqnarray</a>: Sequences of aligned
+equations.</li>
+<li><a href="#SEC37">equation</a>: Displayed equation.</li>
+<li><a href="#SEC38">figure</a>: Floating figures.</li>
+<li><a href="#SEC39">flushleft</a>: Flushed left lines.</li>
+<li><a href="#SEC41">flushright</a>: Flushed right lines.</li>
+<li><a href="#SEC43">itemize</a>: Bulleted lists.</li>
+<li><a href="#SEC44">letter</a>: Letters.</li>
+<li><a href="#SEC45">list</a>: Generic list environment.</li>
+<li><a href="#SEC46">minipage</a>: Miniature page.</li>
+<li><a href="#SEC47">picture</a>: Picture with text, arrows, lines
+and circles.</li>
+<li><a href="#SEC60">quotation</a>: Indented environment with
+paragraph indentation.</li>
+<li><a href="#SEC61">quote</a>: Indented environment with no
+paragraph indentation.</li>
+<li><a href="#SEC62">tabbing</a>: Align text arbitrarily.</li>
+<li><a href="#SEC63">table</a>: Floating tables.</li>
+<li><a href="#SEC64">tabular</a>: Align text in columns.</li>
+<li><a href="#SEC69">thebibliography</a>: Bibliography or reference
+list.</li>
+<li><a href="#SEC74">theorem</a>: Theorems, lemmas, etc.</li>
+<li><a href="#SEC75">titlepage</a>: For hand crafted title
+pages.</li>
+<li><a href="#SEC76">verbatim</a>: Simulating typed input.</li>
+<li><a href="#SEC78">verse</a>: For poetry and other things.</li>
+</ul>
+<h3><a name="SEC31" href="#TOC31">array</a></h3>
+<pre>
+\begin{array}{col1col2...coln}
+column 1 entry &amp; column 2 entry ... &amp; column n entry \\
+ .
+ .
+ .
+\end{array}
+</pre>
+<p>Math arrays are produced with the array environment. It has a
+single mandatory argument describing the number of columns and the
+alignment within them. Each column, <code>coln</code>, is specified
+by a single letter that tells how items in that row should be
+formatted.</p>
+<ul>
+<li><code>c</code> -- for centred</li>
+<li><code>l</code> -- for flush left</li>
+<li><code>r</code> -- for flush right</li>
+</ul>
+<p>Column entries must be separated by an <code>&amp;</code>.
+Column entries may include other LaTeX commands. Each row of the
+array must be terminated with the string <code>\\</code>.</p>
+<p>Note that the <code>array</code> environment can only be used in
+math mode, so normally it is used inside an <code>equation</code>
+environment.</p>
+<h3><a name="SEC32" href="#TOC32">center</a></h3>
+<pre>
+ \begin{center}
+ Text on line 1 \\
+ Text on line 2 \\
+ .
+ .
+ .
+ \end{center}
+</pre>
+<p>The <code>center</code> environment allows you to create a
+paragraph consisting of lines that are centred within the left and
+right margins on the current page. Each line must be terminated
+with the string <code>\\</code>.</p>
+<ul>
+<li><a href="#SEC33">\centering</a>: The declaration form of the
+<code>center</code> environment.</li>
+</ul>
+<h4><a name="SEC33" href="#TOC33">\centering</a></h4>
+<p>This declaration corresponds to the <code>center</code>
+environment. This declaration can be used inside an environment
+such as <code>quote</code> or in a <code>parbox</code>. The text of
+a figure or table can be centred on the page by putting a
+<code>\centering</code> command at the beginning of the figure or
+table environment.</p>
+<p>Unlike the <code>center</code> environment, the
+<code>\centering</code> command does not start a new paragraph; it
+simply changes how LaTeX formats paragraph units. To affect a
+paragraph unit's format, the scope of the declaration must contain
+the blank line or <code>\end</code> command (of an environment like
+quote) that ends the paragraph unit.</p>
+<h3><a name="SEC34" href="#TOC34">description</a></h3>
+<pre>
+ \begin{description}
+ \item [label] First item
+ \item [label] Second item
+ .
+ .
+ .
+ \end{description}
+</pre>
+<p>The <code>description</code> environment is used to make
+labelled lists. The <code>label</code> is bold face and flushed
+right.</p>
+<h3><a name="SEC35" href="#TOC35">enumerate</a></h3>
+<p><a name="IDX69"></a> <a name="IDX70"></a></p>
+<pre>
+ \begin{enumerate}
+ \item First item
+ \item Second item
+ .
+ .
+ .
+ \end{enumerate}
+</pre>
+<p>The <code>enumerate</code> environment produces a numbered list.
+Enumerations can be nested within one another, up to four levels
+deep. They can also be nested within other paragraph-making
+environments.</p>
+<p>Each item of an enumerated list begins with an
+<code>\item</code> command. There must be at least one
+<code>\item</code> command within the environment.</p>
+<p>The <code>enumerate</code> environment uses the
+<code>enumi</code> through <code>enumiv</code> counters (see
+section <a href="#SEC3">Counters</a>). The type of numbering can be
+changed by redefining <code>\theenumi</code> etc.</p>
+<h3><a name="SEC36" href="#TOC36">eqnarray</a></h3>
+<p><a name="IDX71"></a> <a name="IDX72"></a> <a name=
+"IDX73"></a></p>
+<pre>
+ \begin{eqnarray}
+ math formula 1 \\
+ math formula 2 \\
+ .
+ .
+ .
+ \end{eqnarray}
+</pre>
+<p>The <code>eqnarray</code> environment is used to display a
+sequence of equations or inequalities. It is very much like a
+three-column <code>array</code> environment, with consecutive rows
+separated by <code>\\</code> and consecutive items within a row
+separated by an <code>&amp;</code>.</p>
+<p>An equation number is placed on every line unless that line has
+a <code>\nonumber</code> command.</p>
+<p>The command <code><a name="IDX74">\lefteqn</a></code> is used
+for splitting long formulas across lines. It typesets its argument
+in display style flush left in a box of zero width.</p>
+<h3><a name="SEC37" href="#TOC37">equation</a></h3>
+<p><a name="IDX75"></a> <a name="IDX76"></a> <a name=
+"IDX77"></a></p>
+<pre>
+ \begin{equation}
+  math formula
+ \end{equation}
+</pre>
+<p>The <code>equation</code> environment centres your equation on
+the page and places the equation number in the right margin.</p>
+<h3><a name="SEC38" href="#TOC38">figure</a></h3>
+<p><a name="IDX78"></a> <a name="IDX79"></a></p>
+<pre>
+ \begin{figure}[placement]
+
+  body of the figure
+
+ <a name="IDX80">\caption{figure title}</a>
+ \end{figure}
+</pre>
+<p>Figures are objects that are not part of the normal text, and
+are usually "floated" to a convenient place, like the top of a
+page. Figures will not be split between two pages.</p>
+<p>The optional argument <code>[placement]</code> determines where
+LaTeX will try to place your figure. There are four places where
+LaTeX can possibly put a float:</p>
+<ol>
+<li><code>h</code> (Here) - at the position in the text where the
+figure environment appears.</li>
+<li><code>t</code> (Top) - at the top of a text page.</li>
+<li><code>b</code> (Bottom) - at the bottom of a text page.</li>
+<li><code>p</code> (Page of floats) - on a separate float page,
+which is a page containing no text, only floats.</li>
+</ol>
+<p>The standard report and article classes use the default
+placement <code>tbp</code>.</p>
+<p>The body of the figure is made up of whatever text, LaTeX
+commands, etc. you wish. The <code>\caption</code> command allows
+you to title your figure.</p>
+<h3><a name="SEC39" href="#TOC39">flushleft</a></h3>
+<p><a name="IDX81"></a> <a name="IDX82"></a> <a name=
+"IDX83"></a></p>
+<pre>
+ \begin{flushleft}
+ Text on line 1 \\
+ Text on line 2 \\
+ .
+ .
+ .
+ \end{flushleft}
+</pre>
+<p>The <code>flushleft</code> environment allows you to create a
+paragraph consisting of lines that are flushed left, to the
+left-hand margin. Each line must be terminated with the string
+<code>\\</code>.</p>
+<ul>
+<li><a href="#SEC40">\raggedright</a>: The declaration form of the
+<code>flushleft</code> environment.</li>
+</ul>
+<h4><a name="SEC40" href="#TOC40">\raggedright</a></h4>
+<p><a name="IDX84"></a> <a name="IDX85"></a> <a name="IDX86"></a>
+<a name="IDX87"></a></p>
+<p>This declaration corresponds to the <code>flushleft</code>
+environment. This declaration can be used inside an environment
+such as <code>quote</code> or in a <code>parbox</code>.</p>
+<p>Unlike the <code>flushleft</code> environment, the
+<code>\raggedright</code> command does not start a new paragraph;
+it simply changes how LaTeX formats paragraph units. To affect a
+paragraph unit's format, the scope of the declaration must contain
+the blank line or <code>\end</code> command (of an environment like
+quote) that ends the paragraph unit.</p>
+<h3><a name="SEC41" href="#TOC41">flushright</a></h3>
+<p><a name="IDX88"></a> <a name="IDX89"></a> <a name=
+"IDX90"></a></p>
+<pre>
+ \begin{flushright}
+ Text on line 1 \\
+ Text on line 2 \\
+ .
+ .
+ .
+ \end{flushright}
+</pre>
+<p>The <code>flushright</code> environment allows you to create a
+paragraph consisting of lines that are flushed right, to the
+right-hand margin. Each line must be terminated with the string
+<code>\\</code>.</p>
+<ul>
+<li><a href="#SEC42">\raggedleft</a>: The declaration form of the
+<code>flushright</code> environment.</li>
+</ul>
+<h4><a name="SEC42" href="#TOC42">\raggedleft</a></h4>
+<p><a name="IDX91"></a> <a name="IDX92"></a> <a name="IDX93"></a>
+<a name="IDX94"></a></p>
+<p>This declaration corresponds to the <code>flushright</code>
+environment. This declaration can be used inside an environment
+such as <code>quote</code> or in a <code>parbox</code>.</p>
+<p>Unlike the <code>flushright</code> environment, the
+<code>\raggedleft</code> command does not start a new paragraph; it
+simply changes how LaTeX formats paragraph units. To affect a
+paragraph unit's format, the scope of the declaration must contain
+the blank line or <code>\end</code> command (of an environment like
+quote) that ends the paragraph unit.</p>
+<h3><a name="SEC43" href="#TOC43">itemize</a></h3>
+<p><a name="IDX95"></a> <a name="IDX96"></a> <a name=
+"IDX97"></a></p>
+<pre>
+ \begin{itemize}
+ \item First item
+ \item Second item
+ .
+ .
+ .
+ \end{itemize}
+</pre>
+<p>The <code>itemize</code> environment produces a "bulleted" list.
+Itemizations can be nested within one another, up to four levels
+deep. They can also be nested within other paragraph-making
+environments.</p>
+<p>Each item of an <code>itemized</code> list begins with an
+<code>\item</code> command. There must be at least one
+<code>\item</code> command within the environment.</p>
+<p>The <code>itemize</code> environment uses the <code>itemi</code>
+through <code>itemiv</code> counters (see section <a href=
+"#SEC3">Counters</a>). The type of numbering can be changed by
+redefining <code>\theitemi</code> etc.</p>
+<h3><a name="SEC44" href="#TOC44">letter</a></h3>
+<p><a name="IDX98"></a></p>
+<p>This environment is used for creating letters. See section
+<a href="#SEC91">Letters</a>.</p>
+<h3><a name="SEC45" href="#TOC45">list</a></h3>
+<p><a name="IDX99"></a> <a name="IDX100"></a></p>
+<p>The <code>list</code> environment is a generic environment which
+is used for defining many of the more specific environments. It is
+seldom used in documents, but often in macros.</p>
+<pre>
+ \begin{list}{label}{spacing}
+ \item First item
+ \item Second item
+ .
+ .
+ .
+ \end{list}
+</pre>
+<p>The <code>{label}</code> argument specifies how items should be
+labelled. This argument is a piece of text that is inserted in a
+box to form the label. This argument can and usually does contain
+other LaTeX commands.</p>
+<p>The <code>{spacing}</code> argument contains commands to change
+the spacing parameters for the list. This argument will most often
+be null, i.e., <code>{}</code>. This will select all default
+spacing which should suffice for most cases.</p>
+<h3><a name="SEC46" href="#TOC46">minipage</a></h3>
+<p><a name="IDX101"></a> <a name="IDX102"></a> <a name=
+"IDX103"></a> <a name="IDX104"></a></p>
+<pre>
+ \begin{minipage}[position]{width}
+  text
+ \end{minipage}
+</pre>
+<p>The <code>minipage</code> environment is similar to a
+<code>\parbox</code> command. It takes the same optional
+<code>position</code> argument and mandatory <code>width</code>
+argument. You may use other paragraph-making environments inside a
+minipage.</p>
+<p>Footnotes in a <code>minipage</code> environment are handled in
+a way that is particularly useful for putting footnotes in figures
+or tables. A <code>\footnote</code> or <code>\footnotetext</code>
+command puts the footnote at the bottom of the minipage instead of
+at the bottom of the page, and it uses the <code>mpfootnote</code>
+counter instead of the ordinary <code>footnote</code> counter See
+section <a href="#SEC3">Counters</a>.</p>
+<p>NOTE: Don't put one minipage inside another if you are using
+footnotes; they may wind up at the bottom of the wrong
+minipage.</p>
+<h3><a name="SEC47" href="#TOC47">picture</a></h3>
+<p><a name="IDX105"></a> <a name="IDX106"></a> <a name=
+"IDX107"></a></p>
+<pre>
+ \begin{picture}(width,height)(x offset,y offset)
+  .
+  .
+  picture commands
+  .
+  .
+ \end{picture}
+</pre>
+<p>The <code>picture</code> environment allows you to create just
+about any kind of picture you want containing text, lines, arrows
+and circles. You tell LaTeX where to put things in the picture by
+specifying their coordinates. A coordinate is a number that may
+have a decimal point and a minus sign -- a number like
+<code>5</code>, <code>2.3</code> or <code>-3.1416</code>. A
+coordinate specifies a length in multiples of the unit length
+<code>\unitlength</code>, so if <code>\unitlength</code> has been
+set to <code>1cm</code>, then the coordinate 2.54 specifies a
+length of 2.54 centimetres. You can change the value of
+<code>\unitlength</code> anywhere you want, using the
+<code>\setlength</code> command, but strange things will happen if
+you try changing it inside the picture environment.</p>
+<p>A position is a pair of coordinates, such as
+<code>(2.4,-5)</code>, specifying the point with x-coordinate
+<code>2.4</code> and y-coordinate <code>-5</code>. Coordinates are
+specified in the usual way with respect to an origin, which is
+normally at the lower-left corner of the picture. Note that when a
+position appears as an argument, it is not enclosed in braces; the
+parentheses serve to delimit the argument.</p>
+<p>The <code>picture</code> environment has one mandatory argument,
+which is a <code>position</code>. It specifies the size of the
+picture. The environment produces a rectangular box with width and
+height determined by this argument's x- and y-coordinates.</p>
+<p>The <code>picture</code> environment also has an optional
+<code>position</code> argument, following the <code>size</code>
+argument, that can change the origin. (Unlike ordinary optional
+arguments, this argument is not contained in square brackets.) The
+optional argument gives the coordinates of the point at the
+lower-left corner of the picture (thereby determining the origin).
+For example, if <code>\unitlength</code> has been set to
+<code>1mm</code>, the command</p>
+<pre>
+   \begin{picture}(100,200)(10,20)
+</pre>
+<p>produces a picture of width 100 millimeters and height 200
+millimeters, whose lower-left corner is the point (10,20) and whose
+upper-right corner is therefore the point (110,220). When you first
+draw a picture, you will omit the optional argument, leaving the
+origin at the lower-left corner. If you then want to modify your
+picture by shifting everything, you just add the appropriate
+optional argument.</p>
+<p>The environment's mandatory argument determines the nominal size
+of the picture. This need bear no relation to how large the picture
+really is; LaTeX will happily allow you to put things outside the
+picture, or even off the page. The picture's nominal size is used
+by LaTeX in determining how much room to leave for it.</p>
+<p>Everything that appears in a picture is drawn by the
+<code>\put</code> command. The command</p>
+<pre>
+   \put (11.3,-.3){...}
+</pre>
+<p>puts the object specified by <code>...</code> in the picture,
+with its reference point at coordinates (11.3,-.3). The reference
+points for various objects will be described below.</p>
+<p>The <code>\put</code> command creates an <strong>LR
+box</strong>. You can put anything in the text argument of the
+<code>\put</code> command that you'd put into the argument of an
+<code>\mbox</code> and related commands. When you do this, the
+reference point will be the lower left corner of the box.</p>
+<p>Picture commands:</p>
+<ul>
+<li><a href="#SEC48">\circle</a>: Draw a circle.</li>
+<li><a href="#SEC49">\dashbox</a>: Draw a dashed box.</li>
+<li><a href="#SEC50">\frame</a>: Draw a frame around an
+object.</li>
+<li><a href="#SEC51">\framebox (picture)</a>: Draw a box with a
+frame around it.</li>
+<li><a href="#SEC52">\line</a>: Draw a straight line.</li>
+<li><a href="#SEC53">\linethickness</a>: Set the line
+thickness.</li>
+<li><a href="#SEC54">\makebox (picture)</a>: Draw a box of the
+specified size.</li>
+<li><a href="#SEC55">\multiput</a>: Draw multiple instances of an
+object.</li>
+<li><a href="#SEC56">\oval</a>: Draw an ellipse.</li>
+<li><a href="#SEC57">\put</a>: Place an object at a specified
+place.</li>
+<li><a href="#SEC58">\shortstack</a>: Make a pile of objects.</li>
+<li><a href="#SEC59">\vector</a>: Draw a line with an arrow.</li>
+</ul>
+<h4><a name="SEC48" href="#TOC48">\circle</a></h4>
+<p><a name="IDX108"></a></p>
+<p><code>\circle[*]{diameter}</code></p>
+<p>The <code>\circle</code> command produces a circle with a
+diameter as close to the specified one as possible. If the
+<code>*</code>-form of the command is used, LaTeX draws a solid
+circle.</p>
+<p>Note that only circles up to 40 pt can be drawn.</p>
+<h4><a name="SEC49" href="#TOC49">\dashbox</a></h4>
+<p><a name="IDX109"></a></p>
+<p>Draws a box with a dashed line.</p>
+<p><code>\dashbox{dash_length}(width,height){...}</code></p>
+<p>The <code>\dashbox</code> has an extra argument which specifies
+the width of each dash. A dashed box looks best when the
+<code>width</code> and <code>height</code> are multiples of the
+<code>dash_length</code>.</p>
+<h4><a name="SEC50" href="#TOC50">\frame</a></h4>
+<p><a name="IDX110"></a></p>
+<p><code>\frame{...}</code></p>
+<p>The <code>\frame</code> command puts a rectangular frame around
+the object specified in the argument. The reference point is the
+bottom left corner of the frame. No extra space is put between the
+frame and the object.</p>
+<h4><a name="SEC51" href="#TOC51">\framebox</a></h4>
+<p><a name="IDX111"></a></p>
+<p><code>\framebox(width,height)[position]{...}</code></p>
+<p>The <code>\framebox</code> command is exactly the same as the
+<code>\makebox</code> command, except that it puts a frame around
+the outside of the box that it creates.</p>
+<p>The <code>framebox</code> command produces a rule of thickness
+<code>\fboxrule</code>, and leaves a space <code>\fboxsep</code>
+between the rule and the contents of the box.</p>
+<h4><a name="SEC52" href="#TOC52">\line</a></h4>
+<p><a name="IDX112"></a></p>
+<p><code>\line(x slope,y slope){length}</code></p>
+<p>The <code>\line</code> command draws a line of the specified
+<code>length</code> and <code>slope</code>.</p>
+<p>Note that LaTeX can only draw lines with slope = x/y, where x
+and y have integer values from -6 through 6.</p>
+<h4><a name="SEC53" href="#TOC53">\linethickness</a></h4>
+<p><a name="IDX113"></a></p>
+<p><code>\linethickness{dimension}</code></p>
+<p>Declares the thickness of horizontal and vertical lines in a
+picture environment to be <code>dimension</code>, which must be a
+positive length. It does not affect the thickness of slanted lines
+and circles, or the quarter circles drawn by <code>\oval</code> to
+form the corners of an oval.</p>
+<h4><a name="SEC54" href="#TOC54">\makebox</a></h4>
+<p><a name="IDX114"></a></p>
+<p><code>\makebox(width,height)[position]{...}</code></p>
+<p>The <code>\makebox</code> command for the picture environment is
+similar to the normal <code>\makebox</code> command except that you
+must specify a <code>width</code> and <code>height</code> in
+multiples of <code>\unitlength</code>.</p>
+<p>The optional argument, <code>[position]</code>, specifies the
+quadrant that your text appears in. You may select up to two of the
+following:</p>
+<ul>
+<li><code>t</code> - Moves the item to the top of the
+rectangle</li>
+<li><code>b</code> - Moves the item to the bottom</li>
+<li><code>l</code> - Moves the item to the left</li>
+<li><code>r</code> - Moves the item to the right</li>
+</ul>
+<p>See section <a href="#SEC157">\makebox</a>.</p>
+<h4><a name="SEC55" href="#TOC55">\multiput</a></h4>
+<p><a name="IDX115"></a></p>
+<p><code>\multiput(x coord,y coord)(delta x,delta y){number of
+copies}{object}</code></p>
+<p>The <code>\multiput</code> command can be used when you are
+putting the same object in a regular pattern across a picture.</p>
+<h4><a name="SEC56" href="#TOC56">\oval</a></h4>
+<p><a name="IDX116"></a></p>
+<p><code>\oval(width,height)[portion]</code></p>
+<p>The <code>\oval</code> command produces a rectangle with rounded
+corners. The optional argument, <code>[portion]</code>, allows you
+to select part of the oval.</p>
+<ul>
+<li><code>t</code> - Selects the top portion</li>
+<li><code>b</code> - Selects the bottom portion</li>
+<li><code>r</code> - Selects the right portion</li>
+<li><code>l</code> - Selects the left portion</li>
+</ul>
+<p>Note that the "corners" of the oval are made with quarter
+circles with a maximum radius of 20 pt, so large "ovals" will look
+more like boxes with rounded corners.</p>
+<h4><a name="SEC57" href="#TOC57">\put</a></h4>
+<p><a name="IDX117"></a></p>
+<p><code>\put(x coord,y coord){ ... }</code></p>
+<p>The <code>\put</code> command places the item specified by the
+mandatory argument at the given coordinates.</p>
+<h4><a name="SEC58" href="#TOC58">\shortstack</a></h4>
+<p><a name="IDX118"></a></p>
+<p><code>\shortstack[position]{... \\ ... \\ ...}</code></p>
+<p>The <code>\shortstack</code> command produces a stack of
+objects. The valid positions are:</p>
+<ul>
+<li><code>r</code> - Moves the objects to the right of the
+stack</li>
+<li><code>l</code> - Moves the objects to the left of the
+stack</li>
+<li><code>c</code> - Moves the objects to the center of the stack
+(default)</li>
+</ul>
+<h4><a name="SEC59" href="#TOC59">\vector</a></h4>
+<p><a name="IDX119"></a></p>
+<p><code>\vector(x slope,y slope){length}</code></p>
+<p>The <code>\vector</code> command draws a line with an arrow of
+the specified length and slope. The <code>x</code> and
+<code>y</code> values must lie between -4 and +4, inclusive.</p>
+<h3><a name="SEC60" href="#TOC60">quotation</a></h3>
+<p><a name="IDX120"></a> <a name="IDX121"></a> <a name=
+"IDX122"></a></p>
+<pre>
+ \begin{quotation}
+  text
+ \end{quotation}
+</pre>
+<p>The margins of the <code>quotation</code> environment are
+indented on the left and the right. The text is justified at both
+margins and there is paragraph indentation. Leaving a blank line
+between text produces a new paragraph.</p>
+<h3><a name="SEC61" href="#TOC61">quote</a></h3>
+<p><a name="IDX123"></a> <a name="IDX124"></a> <a name=
+"IDX125"></a></p>
+<pre>
+ \begin{quote}
+  text
+ \end{quote}
+</pre>
+<p>The margins of the <code>quote</code> environment are indented
+on the left and the right. The text is justified at both margins.
+Leaving a blank line between text produces a new paragraph.</p>
+<h3><a name="SEC62" href="#TOC62">tabbing</a></h3>
+<p><a name="IDX126"></a> <a name="IDX127"></a> <a name=
+"IDX128"></a></p>
+<pre>
+ \begin{tabbing}
+ text \= more text \= still more text \= last text \\
+ second row \&gt;  \&gt; more \\
+ .
+ .
+ .
+ \end{tabbing}
+</pre>
+<p>The <code>tabbing</code> environment provides a way to align
+text in columns. It works by setting tab stops and tabbing to them
+much the way you do with an ordinary typewriter.</p>
+<p>It is best suited for cases where the width of each column is
+constant and known in advance.</p>
+<p>This environment can be broken across pages, unlike the
+<code>tabular</code> environment.</p>
+<p>The following commands can be used inside a <code>tabbing</code>
+environment:</p>
+<dl>
+<dt><code><a name="IDX129">\=</a></code></dt>
+<dd>Sets a tab stop at the current position.</dd>
+<dt><code><a name="IDX130">\&gt;</a></code></dt>
+<dd>Advances to the next tab stop.</dd>
+<dt><code><a name="IDX131">\&lt;</a></code></dt>
+<dd>This command allows you to put something to the left of the
+local margin without changing the margin. Can only be used at the
+start of the line.</dd>
+<dt><code><a name="IDX132">\+</a></code></dt>
+<dd>Moves the left margin of the next and all the following
+commands one tab stop to the right.</dd>
+<dt><code><a name="IDX133">\-</a></code></dt>
+<dd>Moves the left margin of the next and all the following
+commands one tab stop to the left.</dd>
+<dt><code><a name="IDX134">\'</a></code></dt>
+<dd>Moves everything that you have typed so far in the current
+column, i.e. everything from the most recent <code>\&gt;</code>,
+<code>\&lt;</code>, <code>\'</code>, <code>\\</code>, or
+<code>\kill</code> command, to the right of the previous column,
+flush against the current column's tab stop.</dd>
+<dt><code><a name="IDX135">\`</a></code></dt>
+<dd>Allows you to put text flush right against any tab stop,
+including tab stop 0. However, it can't move text to the right of
+the last column because there's no tab stop there. The
+<code>\`</code> command moves all the text that follows it, up to
+the <code>\\</code> or <code>\end{tabbing}</code> command that ends
+the line, to the right margin of the tabbing environment. There
+must be no <code>\&gt;</code> or <code>\'</code> command between
+the <code>\`</code> and the command that ends the line.</dd>
+<dt><code><a name="IDX136">\kill</a></code></dt>
+<dd>Sets tab stops without producing text. Works just like
+<code>\\</code> except that it throws away the current line instead
+of producing output for it. The effect of any <code>\=</code>,
+<code>\+</code> or <code>\-</code> commands in that line remain in
+effect.</dd>
+<dt><code><a name="IDX137">\pushtabs</a></code></dt>
+<dd>Saves all current tab stop positions. Useful for temporarily
+changing tab stop positions in the middle of a <code>tabbing</code>
+environment.</dd>
+<dt><code><a name="IDX138">\pushtabs</a></code></dt>
+<dd>Restores the tab stop positions saved by the last
+<code>\pushtabs</code>.</dd>
+<dt><code><a name="IDX139">\a</a></code></dt>
+<dd>In a <code>tabbing</code> environment, the commands
+<code>\=</code>, <code>\'</code> and <code>\`</code> do not produce
+accents as normal. Instead, the commands <code>\a=</code>,
+<code>\a'</code> and <code>\a`</code> are used.</dd>
+</dl>
+<p>This example typesets a Pascal function in a traditional
+format:</p>
+<pre>
+        \begin{tabbing}
+        function \= fact(n : integer) : integer;\\
+                 \&gt; begin \= \+ \\
+                       \&gt; if \= n $&gt;$ 1 then \+ \\
+                                fact := n * fact(n-1) \- \\
+                          else \+ \\
+                                fact := 1; \-\- \\
+                    end;\\
+        \end{tabbing}
+</pre>
+<h3><a name="SEC63" href="#TOC63">table</a></h3>
+<p><a name="IDX140"></a> <a name="IDX141"></a> <a name=
+"IDX142"></a></p>
+<pre>
+ \begin{table}[placement]
+
+  body of the table
+
+ \caption{table title}
+ \end{table}
+</pre>
+<p>Tables are objects that are not part of the normal text, and are
+usually "floated" to a convenient place, like the top of a page.
+Tables will not be split between two pages.</p>
+<p>The optional argument <code>[placement]</code> determines where
+LaTeX will try to place your table. There are four places where
+LaTeX can possibly put a float:</p>
+<ul>
+<li><code>h</code> : Here - at the position in the text where the
+table environment appears.</li>
+<li><code>t</code> : Top - at the top of a text page.</li>
+<li><code>b</code> : Bottom - at the bottom of a text page.</li>
+<li><code>p</code> : Page of floats - on a separate float page,
+which is a page containing no text, only floats.</li>
+</ul>
+<p>The standard <code>report</code> and <code>article</code>
+classes use the default placement <code>[tbp]</code>.</p>
+<p>The body of the table is made up of whatever text, LaTeX
+commands, etc., you wish. The <code>\caption</code> command allows
+you to title your table.</p>
+<h3><a name="SEC64" href="#TOC64">tabular</a></h3>
+<p><a name="IDX143"></a> <a name="IDX144"></a> <a name=
+"IDX145"></a></p>
+<pre>
+ \begin{tabular}[pos]{cols}
+ column 1 entry &amp; column 2 entry ... &amp; column n entry \\
+ .
+ .
+ .
+ \end{tabular}
+</pre>
+<p>or</p>
+<pre>
+ \begin{tabular*}{width}[pos]{cols}
+ column 1 entry &amp; column 2 entry ... &amp; column n entry \\
+ .
+ .
+ .
+ \end{tabular*}
+</pre>
+<p>These environments produce a box consisting of a sequence of
+rows of items, aligned vertically in columns. The mandatory and
+optional arguments consist of:</p>
+<dl>
+<dt><code>width</code></dt>
+<dd>Specifies the width of the <code>tabular*</code> environment.
+There must be rubber space between columns that can stretch to fill
+out the specified width.</dd>
+<dt><code>pos</code></dt>
+<dd>Specifies the vertical position; default is alignment on the
+center of the environment.
+<ul>
+<li><code>t</code> - align on top row</li>
+<li><code>b</code> - align on bottom row</li>
+</ul>
+</dd>
+<dt><code>cols</code></dt>
+<dd>Specifies the column formatting. It consists of a sequence of
+the following specifiers, corresponding to the sequence of columns
+and intercolumn material.
+<ul>
+<li><code>l</code> - A column of left-aligned items.</li>
+<li><code>r</code> - A column of right-aligned items.</li>
+<li><code>c</code> - A column of centred items.</li>
+<li><code>|</code> - A vertical line the full height and depth of
+the environment.</li>
+<li><code>@{text}</code> - This inserts <code>text</code> in every
+row. An @-expression suppresses the intercolumn space normally
+inserted between columns; any desired space between the inserted
+text and the adjacent items must be included in text. An
+<code>\extracolsep{wd}</code> command in an @-expression causes an
+extra space of width <code>wd</code> to appear to the left of all
+subsequent columns, until countermanded by another
+<code>\extracolsep</code> command. Unlike ordinary intercolumn
+space, this extra space is not suppressed by an @-expression. An
+<code>\extracolsep</code> command can be used only in an
+@-expression in the <code>cols</code> argument.</li>
+<li><code>p{wd}</code> - Produces a column with each item typeset
+in a parbox of width <code>wd</code>, as if it were the argument of
+a <code>\parbox[t]{wd}</code> command. However, a <code>\\</code>
+may not appear in the item, except in the following situations:
+<ol>
+<li>inside an environment like <code>minipage</code>,
+<code>array</code>, or <code>tabular</code>.</li>
+<li>inside an explicit <code>\parbox</code>.</li>
+<li>in the scope of a <code>\centering</code>,
+<code>\raggedright</code>, or <code>\raggedleft</code> declaration.
+The latter declarations must appear inside braces or an environment
+when used in a <code>p</code>-column element.</li>
+</ol>
+</li>
+<li><code>*{num}{cols}</code> - Equivalent to <code>num</code>
+copies of <code>cols</code>, where <code>num</code> is any positive
+integer and <code>cols</code> is any list of column-specifiers,
+which may contain another <code>*-expression</code>.</li>
+</ul>
+</dd>
+</dl>
+<p>These commands can be used inside a <code>tabular</code>
+environment:</p>
+<ul>
+<li><a href="#SEC65">\cline</a>: Draw a horizontal line spanning
+some columns.</li>
+<li><a href="#SEC66">\hline</a>: Draw a horizontal line spanning
+all columns.</li>
+<li><a href="#SEC67">\multicolumn</a>: Make an item spanning
+several columns.</li>
+<li><a href="#SEC68">\vline</a>: Draw a vertical line.</li>
+</ul>
+<h4><a name="SEC65" href="#TOC65">\cline</a></h4>
+<p><a name="IDX146"></a></p>
+<p><code>\cline{i-j}</code></p>
+<p>The <code>\cline</code> command draws horizontal lines across
+the columns specified, beginning in column <code>i</code> and
+ending in column <code>j</code>, which are identified in the
+mandatory argument.</p>
+<h4><a name="SEC66" href="#TOC66">\hline</a></h4>
+<p><a name="IDX147"></a></p>
+<p>The <code>\hline</code> command will draw a horizontal line the
+width of the table. It's most commonly used to draw a line at the
+top, bottom, and between the rows of the table.</p>
+<h4><a name="SEC67" href="#TOC67">\multicolumn</a></h4>
+<p><a name="IDX148"></a></p>
+<p><code>\multicolumn{cols}{pos}{text}</code></p>
+<p>The <code>\multicolumn</code> is used to make an entry that
+spans several columns. The first mandatory argument,
+<code>cols</code>, specifies the number of columns to span. The
+second mandatory argument, <code>pos</code>, specifies the
+formatting of the entry; <code>c</code> for centred, <code>l</code>
+for flushleft, <code>r</code> for flushright. The third mandatory
+argument, <code>text</code>, specifies what text is to make up the
+entry.</p>
+<h4><a name="SEC68" href="#TOC68">\vline</a></h4>
+<p><a name="IDX149"></a></p>
+<p>The <code>\vline</code> command will draw a vertical line
+extending the full height and depth of its row. An
+<code>\hfill</code> command can be used to move the line to the
+edge of the column. It can also be used in an @-expression.</p>
+<h3><a name="SEC69" href="#TOC69">thebibliography</a></h3>
+<p><a name="IDX150"></a> <a name="IDX151"></a></p>
+<pre>
+ \begin{thebibliography}{widest-label}
+ \bibitem[label]{cite_key}
+ .
+ .
+ .
+ \end{thebibliography}
+</pre>
+<p>The <code>thebibliography</code> environment produces a
+bibliography or reference list. In the <code>article</code> class,
+this reference list is labelled "References"; in the
+<code>report</code> class, it is labelled "Bibliography".</p>
+<ul>
+<li><code>widest-label</code>: Text that, when printed, is
+approximately as wide as the widest item label produces by the
+<code>\bibitem</code> commands.</li>
+</ul>
+<ul>
+<li><a href="#SEC70">\bibitem</a>: Specify a bibliography
+item.</li>
+<li><a href="#SEC71">\cite</a>: Refer to a bibliography item.</li>
+<li><a href="#SEC72">\nocite</a>: Include an item in the
+bibliography.</li>
+<li><a href="#SEC73">Using BibTeX</a>: Automatic generation of
+bibliographies.</li>
+</ul>
+<h4><a name="SEC70" href="#TOC70">\bibitem</a></h4>
+<p><a name="IDX152"></a></p>
+<p><code>\bibitem[label]{cite_key}</code></p>
+<p>The <code>\bibitem</code> command generates an entry labelled by
+<code>label</code>. If the <code>label</code> argument is missing,
+a number is generated as the <code>label</code>, using the
+<code>enumi</code> counter. The <code>cite_key</code> is any
+sequence of letters, numbers, and punctuation symbols not
+containing a comma. This command writes an entry on the
+<tt>`.aux'</tt> file containing <code>cite_key</code> and the
+item's <code>label</code>. When this <tt>`.aux'</tt> file is read
+by the <code>\begin{document}</code> command, the item's
+<code>label</code> is associated with <code>cite_key</code>,
+causing the reference to <code>cite_key</code> by a
+<code>\cite</code> command to produce the associated
+<code>label</code>.</p>
+<h4><a name="SEC71" href="#TOC71">\cite</a></h4>
+<p><a name="IDX153"></a></p>
+<p><code>\cite[text]{key_list}</code></p>
+<p>The <code>key_list</code> argument is a list of citation keys.
+This command generates an in-text citation to the references
+associated with the keys in <code>key_list</code> by entries on the
+<tt>`.aux'</tt> file read by the <code>\begin{document}</code>
+command.</p>
+<p>The optional <code>text</code> argument will appear after the
+citation, i.e. <code>\cite[p. 2]{knuth}</code> might produce
+`[Knuth, p. 2]'.</p>
+<h4><a name="SEC72" href="#TOC72">\nocite</a></h4>
+<p><a name="IDX154"></a></p>
+<p><code>\nocite{key_list}</code></p>
+<p>The <code>\nocite</code> command produces no text, but writes
+<code>key_list</code>, which is a list of one or more citation
+keys, on the <tt>`.aux'</tt> file.</p>
+<h4><a name="SEC73" href="#TOC73">Using BibTeX</a></h4>
+<p><a name="IDX155"></a> <a name="IDX156"></a> <a name=
+"IDX157"></a> <a name="IDX158"></a> <a name="IDX159"></a></p>
+<p>If you use the BibTeX program by Oren Patashnik (highly
+recommended if you need a bibliography of more than a couple of
+titles) to maintain your bibliography, you don't use the
+<code>thebibliography</code> environment. Instead, you include the
+lines</p>
+<pre>
+        \bibliographystyle{style}
+        \bibliography{bibfile}
+</pre>
+<p>where <code>style</code> refers to a file
+<code>style.bst</code>, which defines how your citations will look.
+The standard styles distributed with BibTeX are:</p>
+<dl>
+<dt><code>alpha</code></dt>
+<dd>Sorted alphabetically. Labels are formed from name of author
+and year of publication.</dd>
+<dt><code>plain</code></dt>
+<dd>Sorted alphabetically. Labels are numeric.</dd>
+<dt><code>unsrt</code></dt>
+<dd>Like <code>plain</code>, but entries are in order of
+citation.</dd>
+<dt><code>abbrv</code></dt>
+<dd>Like <code>plain</code>, but more compact labels.</dd>
+</dl>
+<p>In addition, numerous other BibTeX style files exist tailored to
+the demands of various publications.</p>
+<p>The argument to <code>\bibliography</code> refers to the file
+<code>bibfile.bib</code>, which should contain your database in
+BibTeX format. Only the entries referred to via <code>\cite</code>
+and <code>\nocite</code> will be listed in the bibliography.</p>
+<h3><a name="SEC74" href="#TOC74">theorem</a></h3>
+<p><a name="IDX160"></a> <a name="IDX161"></a></p>
+<pre>
+ \begin{theorem}
+  theorem text
+ \end{theorem}
+</pre>
+<p>The <code>theorem</code> environment produces "Theorem x" in
+boldface followed by your theorem text.</p>
+<h3><a name="SEC75" href="#TOC75">titlepage</a></h3>
+<p><a name="IDX162"></a> <a name="IDX163"></a> <a name=
+"IDX164"></a></p>
+<pre>
+ \begin{titlepage}
+  text
+ \end{titlepage}
+</pre>
+<p>The <code>titlepage</code> environment creates a title page,
+i.e. a page with no printed page number or heading. It also causes
+the following page to be numbered page one. Formatting the title
+page is left to you. The <code><a name="IDX165">\today</a></code>
+command comes in handy for title pages.</p>
+<p>Note that you can use the <code>\maketitle</code> (see section
+<a href="#SEC132">\maketitle</a>) command to produce a standard
+title page.</p>
+<h3><a name="SEC76" href="#TOC76">verbatim</a></h3>
+<p><a name="IDX166"></a> <a name="IDX167"></a> <a name=
+"IDX168"></a> <a name="IDX169"></a> <a name="IDX170"></a></p>
+<pre>
+ \begin{verbatim}
+  text
+ \end{verbatim}
+</pre>
+<p>The <code>verbatim</code> environment is a paragraph-making
+environment that gets LaTeX to print exactly what you type in. It
+turns LaTeX into a typewriter with carriage returns and blanks
+having the same effect that they would on a typewriter.</p>
+<ul>
+<li><a href="#SEC77">\verb</a>: The macro form of the
+<code>verbatim</code> environment.</li>
+</ul>
+<h4><a name="SEC77" href="#TOC77">\verb</a></h4>
+<p><a name="IDX171"></a> <a name="IDX172"></a></p>
+<p><code>\verb char literal_text char</code></p>
+<p><code>\verb*char literal_text char</code></p>
+<p>Typesets <code>literal_text</code> exactly as typed, including
+special characters and spaces, using a typewriter
+(<code>\tt</code>) type style. There may be no space between
+<code>\verb</code> or <code>\verb*</code> and <code>char</code>
+(space is shown here only for clarity). The <code>*-form</code>
+differs only in that spaces are printed as `\verb*| |'.</p>
+<h3><a name="SEC78" href="#TOC78">verse</a></h3>
+<p><a name="IDX173"></a> <a name="IDX174"></a></p>
+<pre>
+ \begin{verse}
+  text
+ \end{verse}
+</pre>
+<p>The <code>verse</code> environment is designed for poetry,
+though you may find other uses for it.</p>
+<p>The margins are indented on the left and the right. Separate the
+lines of each stanza with <code>\\</code>, and use one or more
+blank lines to separate the stanzas.</p>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC79">Footnotes</a></font></b></td>
+</tr>
+</table>
+<p><a name="IDX175"></a></p>
+<p>Footnotes can be produced in one of two ways. They can be
+produced with one command, the <code>\footnote</code> command. They
+can also be produced with two commands, the
+<code>\footnotemark</code> and the <code>\footnotetext</code>
+commands. See the specific command for information on why you would
+use one over the other.</p>
+<ul>
+<li><a href="#SEC80">\footnote</a>: Insert a footnote.</li>
+<li><a href="#SEC81">\footnotemark</a>: Insert footnote mark
+only.</li>
+<li><a href="#SEC82">\footnotetext</a>: Insert footnote text
+only.</li>
+</ul>
+<h3><a name="SEC80" href="#TOC80">\footnote</a></h3>
+<p><a name="IDX176"></a></p>
+<p><code>\footnote[number]{text}</code></p>
+<p>The <code>\footnote</code> command places the numbered footnote
+<code>text</code> at the bottom of the current page. The optional
+argument, <code>number</code>, is used to change the default
+footnote number. This command can only be used in outer paragraph
+mode; i.e., you cannot use it in sectioning commands like
+<code>\chapter</code>, in figures, tables or in a
+<code>tabular</code> environment.</p>
+<h3><a name="SEC81" href="#TOC81">\footnotemark</a></h3>
+<p><a name="IDX177"></a></p>
+<p>The <code>\footnotemark</code> command puts the footnote
+<code>number</code> in the text. This command can be used in inner
+paragraph mode. The text of the footnote is supplied by the
+<code>\footnotetext</code> command.</p>
+<p>This command can be used to produce several consecutive footnote
+markers referring to the same footnote by using</p>
+<p><code>\footnotemark[\value{footnote}]</code></p>
+<p>after the first <code>\footnote</code> command.</p>
+<h3><a name="SEC82" href="#TOC82">\footnotetext</a></h3>
+<p><a name="IDX178"></a></p>
+<p><code>\footnotetext[number]{text}</code></p>
+<p>The <code>\footnotetext</code> command produces the
+<code>text</code> to be placed at the bottom of the page. This
+command can come anywhere after the <code>\footnotemark</code>
+command. The <code>\footnotetext</code> command must appear in
+outer paragraph mode.</p>
+<p>The optional argument, <code>number</code>, is used to change
+the default footnote number.</p>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC83">Lengths</a></font></b></td>
+</tr>
+</table>
+<p><a name="IDX179"></a></p>
+<p>A <code>length</code> is a measure of distance. Many LaTeX
+commands take a length as an argument.</p>
+<ul>
+<li><a href="#SEC84">\newlength</a>: Define a new length.</li>
+<li><a href="#SEC85">\setlength</a>: Set the value of a
+length.</li>
+<li><a href="#SEC86">\addtolength</a>: Add a quantity to a
+length.</li>
+<li><a href="#SEC87">\settodepth</a>: Set a length to the depth of
+something.</li>
+<li><a href="#SEC88">\settoheight</a>: Set a length to the height
+of something.</li>
+<li><a href="#SEC89">\settowidth</a>: Set a length to the width of
+something.</li>
+<li><a href="#SEC90">Predefined lengths</a>: Lengths that are,
+like, predefined.</li>
+</ul>
+<h3><a name="SEC84" href="#TOC84">\newlength</a></h3>
+<p><a name="IDX180"></a> <a name="IDX181"></a></p>
+<p><code>\newlength{\gnat}</code></p>
+<p>The <code>\newlength</code> command defines the mandatory
+argument, <code>\gnat</code>, as a <code>length</code> command with
+a value of <code>0in</code>. An error occurs if a
+<code>\gnat</code> command already exists.</p>
+<h3><a name="SEC85" href="#TOC85">\setlength</a></h3>
+<p><a name="IDX182"></a> <a name="IDX183"></a></p>
+<p><code>\setlength{\gnat}{length}</code></p>
+<p>The <code>\setlength</code> command is used to set the value of
+a <code>length</code> command. The <code>length</code> argument can
+be expressed in any terms of length LaTeX understands, i.e., inches
+(<code>in</code>), millimeters (<code>mm</code>), points
+(<code>pt</code>), etc.</p>
+<h3><a name="SEC86" href="#TOC86">\addtolength</a></h3>
+<p><a name="IDX184"></a> <a name="IDX185"></a></p>
+<p><code>\addtolength{\gnat}{length}</code></p>
+<p>The <code>\addtolength</code> command increments a "length
+command" by the amount specified in the <code>length</code>
+argument. It can be a negative amount.</p>
+<h3><a name="SEC87" href="#TOC87">\settodepth</a></h3>
+<p><a name="IDX186"></a></p>
+<p><code>\settodepth{\gnat}{text}</code></p>
+<p>The <code>\settodepth</code> command sets the value of a
+<code>length</code> command equal to the depth of the
+<code>text</code> argument.</p>
+<h3><a name="SEC88" href="#TOC88">\settoheight</a></h3>
+<p><a name="IDX187"></a></p>
+<p><code>\settoheight{\gnat}{text}</code></p>
+<p>The <code>\settoheight</code> command sets the value of a
+<code>length</code> command equal to the height of the
+<code>text</code> argument.</p>
+<h3><a name="SEC89" href="#TOC89">\settowidth</a></h3>
+<p><a name="IDX188"></a></p>
+<p><code>\settowidth{\gnat}{text}</code></p>
+<p>The <code>\settowidth</code> command sets the value of a
+<code>length</code> command equal to the width of the
+<code>text</code> argument.</p>
+<h3><a name="SEC90" href="#TOC90">Predefined lengths</a></h3>
+<p><a name="IDX189"></a> <a name="IDX190"></a></p>
+<p><code><a name="IDX191">\width</a></code></p>
+<p><code><a name="IDX192">\height</a></code></p>
+<p><code><a name="IDX193">\depth</a></code></p>
+<p><code><a name="IDX194">\totalheight</a></code></p>
+<p>These length parameters can be used in the arguments of the
+box-making commands See section <a href="#SEC143">Spaces &amp;
+Boxes</a>. They specify the natural width etc. of the text in the
+box. <code>\totalheight</code> equals <code>\height</code> +
+<code>\depth</code>. To make a box with the text stretched to
+double the natural size, e.g., say</p>
+<p><code>\makebox[2\width]{Get a stretcher}</code></p>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC91">Letters</a></font></b></td>
+</tr>
+</table>
+<p><a name="IDX195"></a> <a name="IDX196"></a></p>
+<p>You can use LaTeX to typeset letters, both personal and
+business. The <code>letter</code> document class is designed to
+make a number of letters at once, although you can make just one if
+you so desire.</p>
+<p>Your <tt>`.tex'</tt> source file has the same minimum commands
+as the other document classes, i.e., you must have the following
+commands as a minimum:</p>
+<pre>
+ \documentclass{letter}
+ \begin{document}
+  ... letters ...
+ \end{document}
+</pre>
+<p>Each letter is a <code>letter</code> environment, whose argument
+is the name and address of the recipient. For example, you might
+have:</p>
+<pre>
+ \begin{letter}{Mr. Joe Smith\\ 2345 Princess St.
+      \\ Edinburgh, EH1 1AA}
+   ...
+ \end{letter}
+</pre>
+<p>The letter itself begins with the <code>\opening</code> command.
+The text of the letter follows. It is typed as ordinary LaTeX
+input. Commands that make no sense in a letter, like
+<code>\chapter</code>, do not work. The letter closes with a
+<code>\closing</code> command.</p>
+<p>After the <code>closing</code>, you can have additional
+material. The <code>\cc</code> command produces the usual "cc:
+...". There's also a similar <code>\encl</code> command for a list
+of enclosures. With both these commands, use <code>\\</code> to
+separate the items.</p>
+<p>These commands are used with the <code>letter</code> class:</p>
+<ul>
+<li><a href="#SEC92">\address</a>: Your return address.</li>
+<li><a href="#SEC93">\cc</a>: Cc list.</li>
+<li><a href="#SEC94">\closing</a>: Saying goodbye.</li>
+<li><a href="#SEC95">\encl</a>: List of enclosed material.</li>
+<li><a href="#SEC96">\location</a>: Your organization's
+address.</li>
+<li><a href="#SEC97">\makelabels</a>: Making address labels.</li>
+<li><a href="#SEC98">\name</a>: Your name, for the return
+address.</li>
+<li><a href="#SEC99">\opening</a>: Saying hello.</li>
+<li><a href="#SEC100">\ps</a>: Adding a postscript.</li>
+<li><a href="#SEC101">\signature</a>: Your signature.</li>
+<li><a href="#SEC102">\startbreaks</a>: Allow page breaks.</li>
+<li><a href="#SEC103">\stopbreaks</a>: Disallow page breaks.</li>
+<li><a href="#SEC104">\telephone</a>: Your phone number.</li>
+</ul>
+<h3><a name="SEC92" href="#TOC92">\address</a></h3>
+<p><a name="IDX197"></a></p>
+<p><code>\address{Return address}</code></p>
+<p>The return address, as it should appear on the letter and the
+envelope. Separate lines of the address should be separated by
+<code>\\</code> commands. If you do not make an
+<code>\address</code> declaration, then the letter will be
+formatted for copying onto your organization's standard letterhead.
+If you give an <code>\address</code> declaration, then the letter
+will be formatted as a personal letter.</p>
+<h3><a name="SEC93" href="#TOC93">\cc</a></h3>
+<p><a name="IDX198"></a> <a name="IDX199"></a></p>
+<p><code>\cc{Kate Schechter\\Rob McKenna}</code></p>
+<p>Generate a list of other persons the letter was sent to. Each
+name is printed on a separate line.</p>
+<h3><a name="SEC94" href="#TOC94">\closing</a></h3>
+<p><a name="IDX200"></a> <a name="IDX201"></a></p>
+<p><code>\closing{text}</code></p>
+<p>The letter closes with a <code>\closing</code> command,
+i.e.,</p>
+<pre>
+ \closing{Best Regards,}
+</pre>
+<h3><a name="SEC95" href="#TOC95">\encl</a></h3>
+<p><a name="IDX202"></a> <a name="IDX203"></a></p>
+<p><code>\encl{CV\\Certificates}</code></p>
+<p>Generate a list of enclosed material.</p>
+<h3><a name="SEC96" href="#TOC96">\location</a></h3>
+<p><a name="IDX204"></a></p>
+<p><code>\location{address}</code></p>
+<p>This modifies your organization's standard address. This only
+appears if the <code>firstpage</code> pagestyle is selected.</p>
+<h3><a name="SEC97" href="#TOC97">\makelabels</a></h3>
+<p><a name="IDX205"></a></p>
+<p><code>\makelabels{number}</code></p>
+<p>If you issue this command in the preamble, LaTeX will create a
+sheet of address labels. This sheet will be output before the
+letters.</p>
+<h3><a name="SEC98" href="#TOC98">\name</a></h3>
+<p><a name="IDX206"></a></p>
+<p><code>\name{June Davenport}</code></p>
+<p>Your name, used for printing on the envelope together with the
+return address.</p>
+<h3><a name="SEC99" href="#TOC99">\opening</a></h3>
+<p><a name="IDX208"></a></p>
+<p><code>\opening{text}</code></p>
+<p>The letter begins with the <code>\opening</code> command. The
+mandatory argument, <code>text</code>, is whatever text you wish to
+start your letter, i.e.,</p>
+<pre>
+ \opening{Dear Joe,}
+</pre>
+<h3><a name="SEC100" href="#TOC100">\ps</a></h3>
+<p><a name="IDX209"></a></p>
+<p><code>\ps</code></p>
+<p>Use this command before a postscript.</p>
+<h3><a name="SEC101" href="#TOC101">\signature</a></h3>
+<p><a name="IDX210"></a></p>
+<p><code>\signature{Harvey Swick}</code></p>
+<p>Your name, as it should appear at the end of the letter
+underneath the space for your signature. Items that should go on
+separate lines should be separated by <code>\\</code> commands.</p>
+<h3><a name="SEC102" href="#TOC102">\startbreaks</a></h3>
+<p><a name="IDX211"></a></p>
+<p><code>\startbreaks</code></p>
+<p>Used after a <code>\stopbreaks</code> command to allow page
+breaks again.</p>
+<h3><a name="SEC103" href="#TOC103">\stopbreaks</a></h3>
+<p><a name="IDX212"></a></p>
+<p><code>\stopbreaks</code></p>
+<p>Inhibit page breaks until a <code>\startbreaks</code> command
+occurs.</p>
+<h3><a name="SEC104" href="#TOC104">\telephone</a></h3>
+<p><a name="IDX213"></a></p>
+<p><code>\telephone{number}</code></p>
+<p>This is your telephone number. This only appears if the
+<code>firstpage</code> pagestyle is selected.</p>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC105">Line &amp; Page Breaking</a></font></b></td>
+</tr>
+</table>
+<p><a name="IDX214"></a> <a name="IDX215"></a> <a name=
+"IDX216"></a></p>
+<p>The first thing LaTeX does when processing ordinary text is to
+translate your input file into a string of glyphs and spaces. To
+produce a printed document, this string must be broken into lines,
+and these lines must be broken into pages. In some environments,
+you do the line breaking yourself with the <code>\\</code> command,
+but LaTeX usually does it for you.</p>
+<ul>
+<li><a href="#SEC106">\\</a>: Start a new line.</li>
+<li><a href="#SEC107">\- (hyphenation)</a>: Insert explicit
+hyphenation.</li>
+<li><a href="#SEC108">\cleardoublepage</a>: Start a new right-hand
+page.</li>
+<li><a href="#SEC109">\clearpage</a>: Start a new page.</li>
+<li><a href="#SEC110">\enlargethispage</a>: Enlarge the current
+page a bit.</li>
+<li><a href="#SEC111">\fussy</a>: Be fussy about line
+breaking.</li>
+<li><a href="#SEC112">\hyphenation</a>: Tell LaTeX how to hyphenate
+a word.</li>
+<li><a href="#SEC113">\linebreak</a>: Break the line.</li>
+<li><a href="#SEC114">\newline</a>: Break the line
+prematurely.</li>
+<li><a href="#SEC115">\newpage</a>: Start a new page.</li>
+<li><a href="#SEC116">\nolinebreak</a>: Don't break the current
+line.</li>
+<li><a href="#SEC117">\nopagebreak</a>: Don't make a page break
+here.</li>
+<li><a href="#SEC118">\pagebreak</a>: Please make a page break
+here.</li>
+<li><a href="#SEC119">\sloppy</a>: Be sloppy about line
+breaking.</li>
+</ul>
+<h3><a name="SEC106" href="#TOC106">\\</a></h3>
+<p><a name="IDX217"></a> <a name="IDX218"></a></p>
+<p><code>\\[*][extra-space]</code></p>
+<p>The <code>\\</code> command tells LaTeX to start a new line. It
+has an optional argument, <code>extra-space</code>, that specifies
+how much extra vertical space is to be inserted before the next
+line. This can be a negative amount.</p>
+<p>The <code>\\*</code> command is the same as the ordinary
+<code>\\</code> command except that it tells LaTeX not to start a
+new page after the line.</p>
+<h3><a name="SEC107" href="#TOC107">\-</a></h3>
+<p><a name="IDX219"></a> <a name="IDX220"></a></p>
+<p>The <code>\-</code> command tells LaTeX that it may hyphenate
+the word at that point. LaTeX is very good at hyphenating, and it
+will usually find all correct hyphenation points. The
+<code>\-</code> command is used for the exceptional cases.</p>
+<p>Note that when you insert <code>\-</code> commands in a word,
+the word will only be hyphenated at those points and not at any of
+the hyphenation points that LaTeX might otherwise have chosen.</p>
+<h3><a name="SEC108" href="#TOC108">\cleardoublepage</a></h3>
+<p><a name="IDX221"></a> <a name="IDX222"></a></p>
+<p>The <code>\cleardoublepage</code> command ends the current page
+and causes all figures and tables that have so far appeared in the
+input to be printed. In a two-sided printing style, it also makes
+the next page a right-hand (odd-numbered) page, producing a blank
+page if necessary.</p>
+<h3><a name="SEC109" href="#TOC109">\clearpage</a></h3>
+<p><a name="IDX223"></a> <a name="IDX224"></a></p>
+<p>The <code>\clearpage</code> command ends the current page and
+causes all figures and tables that have so far appeared in the
+input to be printed.</p>
+<h3><a name="SEC110" href="#TOC110">\enlargethispage</a></h3>
+<p><a name="IDX225"></a> <a name="IDX226"></a></p>
+<p><code>\enlargethispage{size}</code></p>
+<p><code>\enlargethispage*{size}</code></p>
+<p>Enlarge the <code>\textheight</code> for the current page by the
+specified amount; e.g. <code>\enlargethispage{\baselineskip}</code>
+will allow one additional line.</p>
+<p>The starred form tries to squeeze the material together on the
+page as much as possible. This is normally used together with an
+explicit <code>\pagebreak</code>.</p>
+<h3><a name="SEC111" href="#TOC111">\fussy</a></h3>
+<p><a name="IDX227"></a></p>
+<p><code>\fussy</code></p>
+<p>This declaration (which is the default) makes TeX more fussy
+about line breaking. This can avoids too much space between words,
+but may produce overfull boxes.</p>
+<p>This command cancels the effect of a previous
+<code>\sloppy</code> command. section <a href=
+"#SEC119">\sloppy</a></p>
+<h3><a name="SEC112" href="#TOC112">\hyphenation</a></h3>
+<p><a name="IDX228"></a> <a name="IDX229"></a></p>
+<p><code>\hyphenation{words}</code></p>
+<p>The <code>\hyphenation</code> command declares allowed
+hyphenation points, where <code>words</code> is a list of words,
+separated by spaces, in which each hyphenation point is indicated
+by a <code>-</code> character.</p>
+<h3><a name="SEC113" href="#TOC113">\linebreak</a></h3>
+<p><a name="IDX230"></a> <a name="IDX231"></a></p>
+<p><code>\linebreak[number]</code></p>
+<p>The <code>\linebreak</code> command tells LaTeX to break the
+current line at the point of the command. With the optional
+argument, <code>number</code>, you can convert the
+<code>\linebreak</code> command from a demand to a request. The
+number must be a number from 0 to 4. The higher the number, the
+more insistent the request is.</p>
+<p>The <code>\linebreak</code> command causes LaTeX to stretch the
+line so it extends to the right margin.</p>
+<h3><a name="SEC114" href="#TOC114">\newline</a></h3>
+<p><a name="IDX232"></a> <a name="IDX233"></a></p>
+<p>The <code>\newline</code> command breaks the line right where it
+is. It can only be used in paragraph mode.</p>
+<h3><a name="SEC115" href="#TOC115">\newpage</a></h3>
+<p><a name="IDX234"></a> <a name="IDX235"></a></p>
+<p>The <code>\newpage</code> command ends the current page.</p>
+<h3><a name="SEC116" href="#TOC116">\nolinebreak</a></h3>
+<p><a name="IDX236"></a></p>
+<p><code>\nolinebreak[number]</code></p>
+<p>The <code>\nolinebreak</code> command prevents LaTeX from
+breaking the current line at the point of the command. With the
+optional argument, <code>number</code>, you can convert the
+<code>\nolinebreak</code> command from a demand to a request. The
+number must be a number from 0 to 4. The higher the number, the
+more insistent the request is.</p>
+<h3><a name="SEC117" href="#TOC117">\nopagebreak</a></h3>
+<p><a name="IDX237"></a></p>
+<p><code>\nopagebreak[number]</code></p>
+<p>The <code>\nopagebreak</code> command prevents LaTeX from
+breaking the current page at the point of the command. With the
+optional argument, <code>number</code>, you can convert the
+<code>\nopagebreak</code> command from a demand to a request. The
+number must be a number from 0 to 4. The higher the number, the
+more insistent the request is.</p>
+<h3><a name="SEC118" href="#TOC118">\pagebreak</a></h3>
+<p><a name="IDX238"></a> <a name="IDX239"></a></p>
+<p><code>\pagebreak[number]</code></p>
+<p>The <code>\pagebreak</code> command tells LaTeX to break the
+current page at the point of the command. With the optional
+argument, <code>number</code>, you can convert the
+<code>\pagebreak</code> command from a demand to a request. The
+number must be a number from 0 to 4. The higher the number, the
+more insistent the request is.</p>
+<h3><a name="SEC119" href="#TOC119">\sloppy</a></h3>
+<p><a name="IDX240"></a></p>
+<p><code>\sloppy</code></p>
+<p>This declaration makes TeX less fussy about line breaking. This
+can prevent overfull boxes, but may leave too much space between
+words.</p>
+<p>Lasts until a <code>\fussy</code> command is issued. section
+<a href="#SEC111">\fussy</a>.</p>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC120">Making Paragraphs</a></font></b></td>
+</tr>
+</table>
+<p><a name="IDX241"></a> <a name="IDX242"></a></p>
+<p>A paragraph is ended by one or more completely blank lines --
+lines not containing even a <code>%</code>. A blank line should not
+appear where a new paragraph cannot be started, such as in math
+mode or in the argument of a sectioning command.</p>
+<ul>
+<li><a href="#SEC121">\indent</a>: Indent this paragraph.</li>
+<li><a href="#SEC122">\noindent</a>: Do not indent this
+paragraph.</li>
+<li><a href="#SEC123">\par</a>: Another way of writing a blank
+line.</li>
+</ul>
+<h3><a name="SEC121" href="#TOC121">\indent</a></h3>
+<p><a name="IDX243"></a> <a name="IDX244"></a></p>
+<p><code>\indent</code></p>
+<p>This produces a horizontal space whose width equals the width of
+the paragraph indentation. It is used to add paragraph indentation
+where it would otherwise be suppressed.</p>
+<h3><a name="SEC122" href="#TOC122">\noindent</a></h3>
+<p><a name="IDX245"></a> <a name="IDX246"></a></p>
+<p><code>\noindent</code></p>
+<p>When used at the beginning of the paragraph, it suppresses the
+paragraph indentation. It has no effect when used in the middle of
+a paragraph.</p>
+<h3><a name="SEC123" href="#TOC123">\par</a></h3>
+<p><a name="IDX247"></a> <a name="IDX248"></a></p>
+<p>Equivalent to a blank line; often used to make command or
+environment definitions easier to read.</p>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC124">Margin Notes</a></font></b></td>
+</tr>
+</table>
+<p><a name="IDX249"></a> <a name="IDX250"></a> <a name=
+"IDX251"></a></p>
+<p>The command <code>\marginpar[left]{right}</code> creates a note
+in the margin. The first line will be at the same height as the
+line in the text where the <code>\marginpar</code> occurs.</p>
+<p>When you only specify the mandatory argument <code>right</code>,
+the text will be placed</p>
+<ul>
+<li>in the right margin for one-sided layout</li>
+<li>in the outside margin for two-sided layout</li>
+<li>in the nearest margin for two-column layout.</li>
+</ul>
+<p>By issuing the command <code>\reversemarginpar</code>, you can
+force the marginal notes to go into the opposite (inside)
+margin.</p>
+<p>When you specify both arguments, <code>left</code> is used for
+the left margin, and <code>right</code> is used for the right
+margin.</p>
+<p>The first word will normally not be hyphenated; you can enable
+hyphenation by prefixing the first word with a
+<code>\hspace{0pt}</code> command.</p>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC125">Math Formulae</a></font></b></td>
+</tr>
+</table>
+<p><a name="IDX252"></a> <a name="IDX253"></a> <a name=
+"IDX254"></a> <a name="IDX255"></a> <a name="IDX256"></a> <a name=
+"IDX257"></a> <a name="IDX258"></a> <a name="IDX259"></a></p>
+<p>There are three environments that put LaTeX in math mode:</p>
+<dl>
+<dt><code>math</code></dt>
+<dd>For Formulae that appear right in the text.</dd>
+<dt><code>displaymath</code></dt>
+<dd>For Formulae that appear on their own line.</dd>
+<dt><code>equation</code></dt>
+<dd>The same as the displaymath environment except that it adds an
+equation number in the right margin.</dd>
+</dl>
+<p>The <code>math</code> environment can be used in both paragraph
+and LR mode, but the <code>displaymath</code> and
+<code>equation</code> environments can be used only in paragraph
+mode. The <code>math</code> and <code>displaymath</code>
+environments are used so often that they have the following short
+forms:</p>
+<pre>
+    \(...\)     instead of     \begin{math}...\end{math}
+
+    \[...\]     instead of     \begin{displaymath}...\end{displaymath}
+</pre>
+<p>In fact, the <code>math</code> environment is so common that it
+has an even shorter form:</p>
+<pre>
+    $ ... $     instead of     \(...\)
+</pre>
+<p><a name="IDX260"></a></p>
+<ul>
+<li><a href="#SEC126">Subscripts &amp; Superscripts</a>: Also known
+as exponent or index.</li>
+<li><a href="#SEC127">Math Symbols</a>: Various mathematical
+squiggles.</li>
+<li><a href="#SEC128">Spacing in Math Mode</a>: Thick, medium, thin
+and negative spaces.</li>
+<li><a href="#SEC129">Math Miscellany</a>: Stuff that doesn't fit
+anywhere else.</li>
+</ul>
+<h3><a name="SEC126" href="#TOC126">Subscripts &amp;
+Superscripts</a></h3>
+<p><a name="IDX261"></a> <a name="IDX262"></a> <a name=
+"IDX263"></a> <a name="IDX264"></a></p>
+<p>To get an expression <i>exp</i> to appear as a subscript, you
+just type <code>_{</code><i>exp</i><code>}</code>. To get
+<i>exp</i> to appear as a superscript, you type
+<code>^{</code><i>exp</i><code>}</code>. LaTeX handles
+superscripted superscripts and all of that stuff in the natural
+way. It even does the right thing when something has both a
+subscript and a superscript.</p>
+<h3><a name="SEC127" href="#TOC127">Math Symbols</a></h3>
+<p><a name="IDX265"></a> <a name="IDX266"></a> <a name=
+"IDX267"></a></p>
+<p>LaTeX provides almost any mathematical symbol you're likely to
+need. The commands for generating them can be used only in math
+mode. For example, if you include <code>$\pi$</code> in your
+source, you will get the symbol in your output.</p>
+<h3><a name="SEC128" href="#TOC128">Spacing in Math Mode</a></h3>
+<p><a name="IDX268"></a> <a name="IDX269"></a></p>
+<p>In a <code>math</code> environment, LaTeX ignores the spaces you
+type and puts in the spacing that it thinks is best. LaTeX formats
+mathematics the way it's done in mathematics texts. If you want
+different spacing, LaTeX provides the following four commands for
+use in math mode:</p>
+<p><a name="IDX270"></a> <a name="IDX271"></a> <a name=
+"IDX272"></a> <a name="IDX273"></a></p>
+<ol>
+<li><code>\;</code> - a thick space</li>
+<li><code>\:</code> - a medium space</li>
+<li><code>\,</code> - a thin space</li>
+<li><code>\!</code> - a negative thin space</li>
+</ol>
+<h3><a name="SEC129" href="#TOC129">Math Miscellany</a></h3>
+<p><a name="IDX274"></a></p>
+<dl>
+<dt><code><a name="IDX275">\cdots</a></code></dt>
+<dd>Produces a horizontal ellipsis where the dots are raised to the
+center of the line. eg.</dd>
+<dt><code><a name="IDX276">\ddots</a></code></dt>
+<dd>Produces a diagonal ellipsis. eg.</dd>
+<dt><code><a name="IDX277">\frac{num}{den}</a></code></dt>
+<dd>Produces the fraction <code>num</code> divided by
+<code>den</code>. eg.</dd>
+<dt><code><a name="IDX278">\ldots</a></code></dt>
+<dd>Produces an ellipsis. This command works in any mode, not just
+math mode. eg.</dd>
+<dt><code><a name="IDX279">\overbrace{text}</a></code></dt>
+<dd>Generates a brace over text. eg.</dd>
+<dt><code><a name="IDX280">\overline{text}</a></code></dt>
+<dd>Causes the argument text to be overlined. eg.</dd>
+<dt><code><a name="IDX281">\sqrt[root]{arg}</a></code></dt>
+<dd>Produces the square root of its argument. The optional
+argument, <code>root</code>, determines what root to produce, i.e.,
+the cube root of <code>x+y</code> would be typed as
+<code>$\sqrt[3]{x+y}$</code>. eg.</dd>
+<dt><code><a name="IDX282">\underbrace{text}</a></code></dt>
+<dd>Generates text with a brace underneath. eg.</dd>
+<dt><code><a name="IDX283">\underline{text}</a></code></dt>
+<dd>Causes the argument text to be underlined. This command can
+also be used in paragraph and LR modes. eg.</dd>
+<dt><code><a name="IDX284">\vdots</a></code></dt>
+<dd>Produces a vertical ellipsis. eg.</dd>
+</dl>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC130">Modes</a></font></b></td>
+</tr>
+</table>
+<p><a name="IDX285"></a> <a name="IDX286"></a> <a name=
+"IDX287"></a> <a name="IDX288"></a> <a name="IDX289"></a></p>
+<p>When LaTeX is processing your input text, it is always in one of
+three modes:</p>
+<ul>
+<li>Paragraph mode</li>
+<li>Math mode</li>
+<li>Left-to-right mode, called LR mode for short</li>
+</ul>
+<p>LaTeX changes mode only when it goes up or down a staircase to a
+different level, though not all level changes produce mode changes.
+Mode changes occur only when entering or leaving an environment, or
+when LaTeX is processing the argument of certain text-producing
+commands.</p>
+<p>"Paragraph mode" is the most common; it's the one LaTeX is in
+when processing ordinary text. In that mode, LaTeX breaks your text
+into lines and breaks the lines into pages. LaTeX is in "math mode"
+when it's generating a mathematical formula. In "LR mode", as in
+paragraph mode, LaTeX considers the output that it produces to be a
+string of words with spaces between them. However, unlike paragraph
+mode, LaTeX keeps going from left to right; it never starts a new
+line in LR mode. Even if you put a hundred words into an
+<code>\mbox</code>, LaTeX would keep typesetting them from left to
+right inside a single box, and then complain because the resulting
+box was too wide to fit on the line.</p>
+<p>LaTeX is in LR mode when it starts making a box with an
+<code>\mbox</code> command. You can get it to enter a different
+mode inside the box - for example, you can make it enter math mode
+to put a formula in the box. There are also several text-producing
+commands and environments for making a box that put LaTeX in
+paragraph mode. The box make by one of these commands or
+environments will be called a <code>parbox</code>. When LaTeX is in
+paragraph mode while making a box, it is said to be in "inner
+paragraph mode". Its normal paragraph mode, which it starts out in,
+is called "outer paragraph mode".</p>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC131">Page Styles</a></font></b></td>
+</tr>
+</table>
+<p><a name="IDX290"></a> <a name="IDX291"></a></p>
+<p>The <code>\documentclass</code> command determines the size and
+position of the page's head and foot. The page style determines
+what goes in them.</p>
+<ul>
+<li><a href="#SEC132">\maketitle</a>: Generate a title page.</li>
+<li><a href="#SEC137">\pagenumbering</a>: Set the style used for
+page numbers.</li>
+<li><a href="#SEC138">\pagestyle</a>: Change the headings/footings
+style.</li>
+<li><a href="#SEC141">\thispagestyle</a>: Change the
+headings/footings style for this page.</li>
+</ul>
+<h3><a name="SEC132" href="#TOC132">\maketitle</a></h3>
+<p><a name="IDX292"></a> <a name="IDX293"></a></p>
+<p><code>\maketitle</code></p>
+<p>The <code>\maketitle</code> command generates a title on a
+separate title page - except in the <code>article</code> class,
+where the title normally goes at the top of the first page.
+Information used to produce the title is obtained from the
+following declarations:</p>
+<p>See section <a href="#SEC131">Page Styles</a> for the commands
+to give the information.</p>
+<ul>
+<li><a href="#SEC133">\author</a>: Who wrote this stuff?</li>
+<li><a href="#SEC134">\date</a>: The date the document was
+created.</li>
+<li><a href="#SEC135">\thanks</a>: A special form of footnote.</li>
+<li><a href="#SEC136">\title</a>: How to set the document
+title.</li>
+</ul>
+<h3><a name="SEC133" href="#TOC133">\author</a></h3>
+<p><a name="IDX294"></a> <a name="IDX295"></a></p>
+<p><code>\author{names}</code></p>
+<p>The <code>\author</code> command declares the author(s), where
+<code>names</code> is a list of authors separated by
+<code>\and</code> commands. Use <code>\\</code> to separate lines
+within a single author's entry -- for example, to give the author's
+institution or address.</p>
+<h3><a name="SEC134" href="#TOC134">\date</a></h3>
+<p><a name="IDX296"></a> <a name="IDX297"></a></p>
+<p><code>\date{text}</code></p>
+<p>The <code>\date</code> command declares <i>text</i> to be the
+document's date. With no <code>\date</code> command, the current
+date is used.</p>
+<h3><a name="SEC135" href="#TOC135">\thanks</a></h3>
+<p><a name="IDX298"></a> <a name="IDX299"></a></p>
+<p><code>\thanks{text}</code></p>
+<p>The <code>\thanks</code> command produces a
+<code>\footnote</code> to the title.</p>
+<h3><a name="SEC136" href="#TOC136">\title</a></h3>
+<p><a name="IDX300"></a> <a name="IDX301"></a></p>
+<p><code>\title{text}</code></p>
+<p>The <code>\title</code> command declares <code>text</code> to be
+the title. Use <code>\\</code> to tell LaTeX where to start a new
+line in a long title.</p>
+<h3><a name="SEC137" href="#TOC137">\pagenumbering</a></h3>
+<p><a name="IDX302"></a> <a name="IDX303"></a></p>
+<p><code>\pagenumbering{num_style}</code></p>
+<p>Specifies the style of page numbers. Possible values of
+<code>num_style</code> are:</p>
+<ul>
+<li><code>arabic</code> - Arabic numerals</li>
+<li><code>roman</code> - Lowercase Roman numerals</li>
+<li><code>Roman</code> - Uppercase Roman numerals</li>
+<li><code>alph</code> - Lowercase letters</li>
+<li><code>Alph</code> - Uppercase letters</li>
+</ul>
+<h3><a name="SEC138" href="#TOC138">\pagestyle</a></h3>
+<p><a name="IDX304"></a></p>
+<p><code>\pagestyle{option}</code></p>
+<p>The <code>\pagestyle</code> command changes the style from the
+current page on throughout the remainder of your document.</p>
+<p>The valid options are:</p>
+<ul>
+<li><code>plain</code> - Just a plain page number.</li>
+<li><code>empty</code> - Produces empty heads and feet - no page
+numbers.</li>
+<li><code>headings</code> - Puts running headings on each page. The
+document style specifies what goes in the headings.</li>
+<li><code>myheadings</code> - You specify what is to go in the
+heading with the <code>\markboth</code> or the
+<code>\markright</code> commands.</li>
+</ul>
+<ul>
+<li><a href="#SEC139">\markboth</a>: Set left and right
+headings.</li>
+<li><a href="#SEC140">\markright</a>: Set right heading only.</li>
+</ul>
+<h3><a name="SEC139" href="#TOC139">\markboth</a></h3>
+<p><a name="IDX305"></a></p>
+<pre>
+\markboth{left head}{right head}
+</pre>
+<p>The <code>\markboth</code> command is used in conjunction with
+the page style <code>myheadings</code> for setting both the left
+and the right heading. You should note that a "left-hand heading"
+is generated by the last <code>\markboth</code> command before the
+end of the page, while a "right-hand heading" is generated by the
+first <code>\markboth</code> or <code>\markright</code> that comes
+on the page if there is one, otherwise by the last one before the
+page.</p>
+<h3><a name="SEC140" href="#TOC140">\markright</a></h3>
+<p><a name="IDX306"></a></p>
+<pre>
+\markright{right head}
+</pre>
+<p>The <code>\markright</code> command is used in conjunction with
+the page style <code>myheadings</code> for setting the right
+heading, leaving the left heading unchanged. You should note that a
+"left-hand heading" is generated by the last <code>\markboth</code>
+command before the end of the page, while a "right-hand heading" is
+generated by the first <code>\markboth</code> or
+<code>\markright</code> that comes on the page if there is one,
+otherwise by the last one before the page.</p>
+<h3><a name="SEC141" href="#TOC141">\thispagestyle</a></h3>
+<p><a name="IDX307"></a></p>
+<p><code>\thispagestyle{option}</code></p>
+<p>The <code>\thispagestyle</code> command works in the same manner
+as the <code>\pagestyle</code> command except that it changes the
+style for the current page only.</p>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC142">Sectioning</a></font></b></td>
+</tr>
+</table>
+<p><a name="IDX308"></a> <a name="IDX309"></a> <a name=
+"IDX310"></a> <a name="IDX311"></a> <a name="IDX312"></a> <a name=
+"IDX313"></a></p>
+<p>Sectioning commands provide the means to structure your text
+into units.</p>
+<ul>
+<li><code>\part</code></li>
+<li><code>\chapter</code> (report and book class only)</li>
+<li><code>\section</code></li>
+<li><code>\subsection</code></li>
+<li><code>\subsubsection</code></li>
+<li><code>\paragraph</code></li>
+<li><code>\subparagraph</code></li>
+</ul>
+<p>All sectioning commands take the same general form, i.e.,</p>
+<p><code>\chapter[optional]{title}</code></p>
+<p>In addition to providing the heading in the text, the mandatory
+argument of the sectioning command can appear in two other
+places:</p>
+<ol>
+<li>The table of contents</li>
+<li>The running head at the top of the page</li>
+</ol>
+<p>You may not want the same thing to appear in these other two
+places as appears in the text heading. To handle this situation,
+the sectioning commands have an <code>optional</code> argument that
+provides the text for these other two purposes.</p>
+<p>All sectioning commands have <code>*</code>-forms that print a
+<i>title</i>, but do not include a number and do not make an entry
+in the table of contents.</p>
+<p><a name="IDX315"></a></p>
+<p><code><a name="IDX314">\appendix</a></code></p>
+<p>The <code>\appendix</code> command changes the way sectional
+units are numbered. The <code>\appendix</code> command generates no
+text and does not affect the numbering of parts. The normal use of
+this command is something like</p>
+<pre>
+\chapter{The First Chapter}
+...
+\appendix
+\chapter{The First Appendix}
+</pre>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC143">Spaces &amp; Boxes</a></font></b></td>
+</tr>
+</table>
+<p><a name="IDX316"></a> <a name="IDX317"></a></p>
+<p>All the predefined length parameters See section <a href=
+"#SEC90">Predefined lengths</a> can be used in the arguments of the
+box-making commands.</p>
+<ul>
+<li style="list-style: none">Horizontal space</li>
+<li><a href="#SEC144">\dotfill</a>: Stretchable horizontal
+dots.</li>
+<li><a href="#SEC145">\hfill</a>: Stretchable horizontal
+space.</li>
+<li><a href="#SEC146">\hrulefill</a>: Stretchable horizontal
+rule.</li>
+<li><a href="#SEC147">\hspace</a>: Fixed horizontal space. Vertical
+space</li>
+<li><a href="#SEC148">\addvspace</a>: Fixed vertical space.</li>
+<li><a href="#SEC149">\bigskip</a>: Fixed vertical space.</li>
+<li><a href="#SEC150">\medskip</a>: Fixed vertical space.</li>
+<li><a href="#SEC151">\smallskip</a>: Fixed vertical space.</li>
+<li><a href="#SEC152">\vfill</a>: Stretchable vertical space.</li>
+<li><a href="#SEC153">\vspace</a>: Fixed vertical space. Boxes</li>
+<li><a href="#SEC154">\fbox</a>: Framebox.</li>
+<li><a href="#SEC155">\framebox</a>: Framebox, adjustable
+position.</li>
+<li><a href="#SEC156">lrbox</a>: An environment like \sbox.</li>
+<li><a href="#SEC157">\makebox</a>: Box, adjustable position.</li>
+<li><a href="#SEC158">\mbox</a>: Box.</li>
+<li><a href="#SEC159">\newsavebox</a>: Declare a name for saving a
+box.</li>
+<li><a href="#SEC160">\parbox</a>: Box with text in paragraph
+mode.</li>
+<li><a href="#SEC161">\raisebox</a>: Raise or lower text.</li>
+<li><a href="#SEC162">\rule</a>: Lines and squares.</li>
+<li><a href="#SEC163">\savebox</a>: Like \makebox, but save the
+text for later use.</li>
+<li><a href="#SEC164">\sbox</a>: Like \mbox, but save the text for
+later use.</li>
+<li><a href="#SEC165">\usebox</a>: Print saved text.</li>
+</ul>
+<h3><a name="SEC144" href="#TOC144">\dotfill</a></h3>
+<p><a name="IDX318"></a></p>
+<p>The <code>\dotfill</code> command produces a "rubber length"
+that produces dots instead of just spaces.</p>
+<h3><a name="SEC145" href="#TOC145">\hfill</a></h3>
+<p><a name="IDX319"></a></p>
+<p>The <code>\hfill</code> fill command produces a "rubber length"
+which can stretch or shrink horizontally. It will be filled with
+spaces.</p>
+<h3><a name="SEC146" href="#TOC146">\hrulefill</a></h3>
+<p><a name="IDX320"></a></p>
+<p>The <code>\hrulefill</code> fill command produces a "rubber
+length" which can stretch or shrink horizontally. It will be filled
+with a horizontal rule.</p>
+<h3><a name="SEC147" href="#TOC147">\hspace</a></h3>
+<p><a name="IDX321"></a></p>
+<p><code>\hspace[*]{length}</code></p>
+<p>The <code>\hspace</code> command adds horizontal space. The
+length of the space can be expressed in any terms that LaTeX
+understands, i.e., points, inches, etc. You can add negative as
+well as positive space with an <code>\hspace</code> command. Adding
+negative space is like backspacing.</p>
+<p>LaTeX removes horizontal space that comes at the end of a line.
+If you don't want LaTeX to remove this space, include the optional
+<code>*</code> argument. Then the space is never removed.</p>
+<h3><a name="SEC148" href="#TOC148">\addvspace</a></h3>
+<p><a name="IDX322"></a> <a name="IDX323"></a> <a name=
+"IDX324"></a></p>
+<p><code>\addvspace{length}</code></p>
+<p>The <code>\addvspace</code> command normally adds a vertical
+space of height length. However, if vertical space has already been
+added to the same point in the output by a previous
+<code>\addvspace</code> command, then this command will not add
+more space than needed to make the natural length of the total
+vertical space equal to <code>length</code>.</p>
+<h3><a name="SEC149" href="#TOC149">\bigskip</a></h3>
+<p><a name="IDX325"></a></p>
+<p>The <code>\bigskip</code> command is equivalent to
+<code>\vspace{bigskipamount}</code> where
+<code>bigskipamount</code> is determined by the document class.</p>
+<h3><a name="SEC150" href="#TOC150">\medskip</a></h3>
+<p><a name="IDX326"></a></p>
+<p>The <code>\medskip</code> command is equivalent to
+<code>\vspace{medskipamount}</code> where
+<code>medskipamount</code> is determined by the document class.</p>
+<h3><a name="SEC151" href="#TOC151">\smallskip</a></h3>
+<p><a name="IDX327"></a></p>
+<p><code>\smallskip</code></p>
+<p>The <code>\smallskip</code> command is equivalent to
+<code>\vspace{smallskipamount}</code> where
+<code>smallskipamount</code> is determined by the document
+class.</p>
+<h3><a name="SEC152" href="#TOC152">\vfill</a></h3>
+<p><a name="IDX328"></a></p>
+<p>The <code>\vfill</code> fill command produces a rubber length
+which can stretch or shrink vertically.</p>
+<h3><a name="SEC153" href="#TOC153">\vspace</a></h3>
+<p><a name="IDX329"></a></p>
+<p><code>\vspace[*]{length}</code></p>
+<p>The <code>\vspace</code> command adds vertical space. The length
+of the space can be expressed in any terms that LaTeX understands,
+i.e., points, inches, etc. You can add negative as well as positive
+space with an <code>\vspace</code> command.</p>
+<p>LaTeX removes vertical space that comes at the end of a page. If
+you don't want LaTeX to remove this space, include the optional
+<code>*</code> argument. Then the space is never removed.</p>
+<h3><a name="SEC154" href="#TOC154">\fbox</a></h3>
+<p><a name="IDX330"></a></p>
+<p><code>\fbox{text}</code></p>
+<p>The <code>\fbox</code> command is exactly the same as the
+<code>\mbox</code> command, except that it puts a frame around the
+outside of the box that it creates.</p>
+<h3><a name="SEC155" href="#TOC155">\framebox</a></h3>
+<p><a name="IDX331"></a></p>
+<p><code>\framebox[width][position]{text}</code></p>
+<p>The <code>\framebox</code> command is exactly the same as the
+<code>\makebox</code> command, except that it puts a frame around
+the outside of the box that it creates.</p>
+<p>The framebox command produces a rule of thickness
+<code>\fboxrule</code>, and leaves a space <code>\fboxsep</code>
+between the rule and the contents of the box.</p>
+<h3><a name="SEC156" href="#TOC156">lrbox</a></h3>
+<p><a name="IDX332"></a></p>
+<p><code>\begin{lrbox}{cmd} text \end{lrbox}</code></p>
+<p>This is the environment form of <code>\sbox</code>.</p>
+<p>The text inside the environment is saved in the box
+<code>cmd</code>, which must have been declared with
+<code>\newsavebox</code>.</p>
+<h3><a name="SEC157" href="#TOC157">\makebox</a></h3>
+<p><a name="IDX333"></a></p>
+<p><code>\makebox[width][position]{text}</code></p>
+<p>The <code>\makebox</code> command creates a box just wide enough
+to contain the <code>text</code> specified. The width of the box is
+specified by the optional <code>width</code> argument. The position
+of the text within the box is determined by the optional
+<code>position</code> argument.</p>
+<ul>
+<li><code>c</code> -- centred (default)</li>
+<li><code>l</code> -- flushleft</li>
+<li><code>r</code> -- flushright</li>
+<li><code>s</code> -- stretch from left to right margin. The text
+must contain stretchable space for this to work.</li>
+</ul>
+<p>See section <a href="#SEC54">\makebox</a>.</p>
+<h3><a name="SEC158" href="#TOC158">\mbox</a></h3>
+<p><a name="IDX334"></a></p>
+<p><code>\mbox{text}</code></p>
+<p>The <code>\mbox</code> command creates a box just wide enough to
+hold the text created by its argument.</p>
+<p>Use this command to prevent text from being split across
+lines.</p>
+<h3><a name="SEC159" href="#TOC159">\newsavebox</a></h3>
+<p><a name="IDX335"></a></p>
+<p><code>\newsavebox{cmd}</code></p>
+<p>Declares <code>cmd</code>, which must be a command name that is
+not already defined, to be a bin for saving boxes.</p>
+<h3><a name="SEC160" href="#TOC160">\parbox</a></h3>
+<p><a name="IDX336"></a></p>
+<p>
+<code>\parbox[position][height][inner-pos]{width}{text}</code></p>
+<p>A <code>parbox</code> is a box whose contents are created in
+<code>paragraph</code> mode. The <code>\parbox</code> has two
+mandatory arguments:</p>
+<ul>
+<li><code>width</code> - specifies the width of the parbox,
+and</li>
+<li><code>text</code> - the text that goes inside the parbox.</li>
+</ul>
+<p>LaTeX will position a <code>parbox</code> so its center lines up
+with the center of the text line. The optional <i>position</i>
+argument allows you to line up either the top or bottom line in the
+parbox (default is top).</p>
+<p>If the <i>height</i> argument is not given, the box will have
+the natural height of the text.</p>
+<p>The <i>inner-pos</i> argument controls the placement of the text
+inside the box. If it is not specified, <i>position</i> is
+used.</p>
+<ul>
+<li><code>t</code> -- text is placed at the top of the box.</li>
+<li><code>c</code> -- text is centred in the box.</li>
+<li><code>b</code> -- text is placed at the bottom of the box.</li>
+<li><code>s</code> -- stretch vertically. The text must contain
+vertically stretchable space for this to work.</li>
+</ul>
+<p>A <code>\parbox</code> command is used for a parbox containing a
+small piece of text, with nothing fancy inside. In particular, you
+shouldn't use any of the paragraph-making environments inside a
+<code>\parbox</code> argument. For larger pieces of text, including
+ones containing a paragraph-making environment, you should use a
+<code>minipage</code> environment See section <a href=
+"#SEC46">minipage</a>.</p>
+<h3><a name="SEC161" href="#TOC161">\raisebox</a></h3>
+<p><a name="IDX337"></a></p>
+<p>
+<code>\raisebox{distance}[extend-above][extend-below]{text}</code></p>
+<p>The <code>\raisebox</code> command is used to raise or lower
+text. The first mandatory argument specifies how high the text is
+to be raised (or lowered if it is a negative amount). The text
+itself is processed in <code>LR mode</code>.</p>
+<p>Sometimes it's useful to make LaTeX think something has a
+different size than it really does - or a different size than LaTeX
+would normally think it has. The <code>\raisebox</code> command
+lets you tell LaTeX how tall it is.</p>
+<p>The first optional argument, <code>extend-above</code>, makes
+LaTeX think that the text extends above the line by the amount
+specified. The second optional argument, <code>extend-below</code>,
+makes LaTeX think that the text extends below the line by the
+amount specified.</p>
+<h3><a name="SEC162" href="#TOC162">\rule</a></h3>
+<p><a name="IDX338"></a></p>
+<p><code>\rule[raise-height]{width}{thickness}</code></p>
+<p>The <code>\rule</code> command is used to produce horizontal
+lines. The arguments are defined as follows:</p>
+<ul>
+<li><code>raise-height</code> - specifies how high to raise the
+rule (optional)</li>
+<li><code>width</code> - specifies the length of the rule
+(mandatory)</li>
+<li><code>thickness</code> - specifies the thickness of the rule
+(mandatory)</li>
+</ul>
+<h3><a name="SEC163" href="#TOC163">\savebox</a></h3>
+<p><a name="IDX339"></a></p>
+<pre>
+ \savebox{cmd}[width][pos]{text}
+</pre>
+<p>This command typeset <code>text</code> in a box just as for
+<code>\makebox</code>. However, instead of printing the resulting
+box, it saves it in bin <code>cmd</code>, which must have been
+declared with <code>\newsavebox</code>.</p>
+<h3><a name="SEC164" href="#TOC164">\sbox</a></h3>
+<p><a name="IDX340"></a></p>
+<p><code>\sbox{text}</code></p>
+<p>This commands typeset <code>text</code> in a box just as for
+<code>\mbox</code>. However, instead of printing the resulting box,
+it saves it in bin <code>cmd</code>, which must have been declared
+with <code>\newsavebox</code>.</p>
+<h3><a name="SEC165" href="#TOC165">\usebox</a></h3>
+<p><a name="IDX341"></a></p>
+<p><code>\usebox{cmd}</code></p>
+<p>Prints the box most recently saved in bin <code>cmd</code> by a
+<code>\savebox</code> command.</p>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC166">Special Characters</a></font></b></td>
+</tr>
+</table>
+<p><a name="IDX342"></a> <a name="IDX343"></a> <a name=
+"IDX344"></a> <a name="IDX345"></a></p>
+<p>The following characters play a special role in LaTeX and are
+called "special printing characters", or simply "special
+characters".</p>
+<pre>
+                       # $ % &amp; ~ _ ^ \ { }
+</pre>
+<p>Whenever you put one of these special characters into your file,
+you are doing something special. If you simply want the character
+to be printed just as any other letter, include a <code>\</code> in
+front of the character. For example, <code>\$</code> will produce
+<code>$</code> in your output.</p>
+<p>One exception to this rule is the <code>\</code> itself because
+<code>\\</code> has its own special meaning. A <code>\</code> is
+produced by typing <code><a name="IDX346">$\backslash$</a></code>
+in your file.</p>
+<p>Also, <code>\~</code> means `place a tilde accent over the
+following letter', so you will probably want to use
+<code>\verb</code> instead.</p>
+<p><a name="IDX348"></a></p>
+<p>In addition, you can access any character of a font once you
+know its number by using the <code><a name=
+"IDX347">\symbol</a></code> command. For example, the character
+used for displaying spaces in the <code>\verb*</code> command has
+the code decimal 32, so it can be typed as
+<code>\symbol{32}</code>.</p>
+<p>You can also specify octal numbers with <code>'</code> or
+hexadecimal numbers with <code>"</code>, so the previous example
+could also be written as <code>\symbol{'40}</code> or
+<code>\symbol{"20}</code>.</p>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC167">Splitting the Input</a></font></b></td>
+</tr>
+</table>
+<p><a name="IDX349"></a> <a name="IDX350"></a></p>
+<p>A large document requires a lot of input. Rather than putting
+the whole input in a single large file, it's more efficient to
+split it into several smaller ones. Regardless of how many separate
+files you use, there is one that is the root file; it is the one
+whose name you type when you run LaTeX.</p>
+<ul>
+<li><a href="#SEC168">\include</a>: Conditionally include a
+file.</li>
+<li><a href="#SEC169">\includeonly</a>: Determine which files are
+included.</li>
+<li><a href="#SEC170">\input</a>: Unconditionally include a
+file.</li>
+</ul>
+<h3><a name="SEC168" href="#TOC168">\include</a></h3>
+<p><a name="IDX351"></a></p>
+<p><code>\include{file}</code></p>
+<p>The <code>\include</code> command is used in conjunction with
+the <code>\includeonly</code> command for selective inclusion of
+files. The <code>file</code> argument is the first name of a file,
+denoting <tt>`file.tex'</tt>. If <code>file</code> is one the file
+names in the file list of the <code>\includeonly</code> command or
+if there is no <code>\includeonly</code> command, the
+<code>\include</code> command is equivalent to</p>
+<pre>
+\clearpage \input{file} \clearpage
+</pre>
+<p>except that if the file <tt>`file.tex'</tt> does not exist, then
+a warning message rather than an error is produced. If the file is
+not in the file list, the <code>\include</code> command is
+equivalent to <code>\clearpage</code>.</p>
+<p>The <code>\include</code> command may not appear in the preamble
+or in a file read by another <code>\include</code> command.</p>
+<h3><a name="SEC169" href="#TOC169">\includeonly</a></h3>
+<p><a name="IDX352"></a></p>
+<p><code>\includeonly{</code><i>file_list</i><code>}</code></p>
+<p>The <code>\includeonly</code> command controls which files will
+be read in by an <code>\include</code> command. <i>file_list</i>
+should be a comma-separated list of filenames. Each filename must
+match exactly a filename specified in a <code>\include</code>
+command. This command can only appear in the preamble.</p>
+<h3><a name="SEC170" href="#TOC170">\input</a></h3>
+<p><a name="IDX353"></a></p>
+<p><code>\input{file}</code></p>
+<p>The <code>\input</code> command causes the indicated
+<code>file</code> to be read and processed, exactly as if its
+contents had been inserted in the current file at that point. The
+file name may be a complete file name with extension or just a
+first name, in which case the file <tt>`file.tex'</tt> is used.</p>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC171">Starting &amp; Ending</a></font></b></td>
+</tr>
+</table>
+<p><a name="IDX354"></a> <a name="IDX355"></a></p>
+<p>Your input file must contain the following commands as a
+minimum:</p>
+<pre>
+ \documentclass{class}
+ \begin{document}
+   ... your text goes here ...
+ \end{document}
+</pre>
+<p>where the <code>class</code> selected is one of the valid
+classes for LaTeX. See section <a href="#SEC24">Document
+Classes</a> for details of the various document classes available
+locally.</p>
+<p>You may include other LaTeX commands between the
+<code>\documentclass</code> and the <code>\begin{document}</code>
+commands (i.e., in the `preamble').</p>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC172">Table of Contents</a></font></b></td>
+</tr>
+</table>
+<p><a name="IDX356"></a></p>
+<p>A table of contents is produced with the <code><a name=
+"IDX357">\tableofcontents</a></code> command. You put the command
+right where you want the table of contents to go; LaTeX does the
+rest for you. It produces a heading, but it does not automatically
+start a new page. If you want a new page after the table of
+contents, include a <code>\newpage</code> command after the
+<code>\tableofcontents</code> command.</p>
+<p>There are similar commands <code><a name=
+"IDX358">\listoffigures</a></code> and <code><a name=
+"IDX359">\listoftables</a></code> for producing a list of figures
+and a list of tables, respectively. Everything works exactly the
+same as for the table of contents.</p>
+<p>NOTE: If you want any of these items to be generated, you cannot
+have the <code><a name="IDX360">\nofiles</a></code> command in your
+document.</p>
+<ul>
+<li><a href="#SEC173">\addcontentsline</a>: Add an entry to table
+of contents etc.</li>
+<li><a href="#SEC174">\addtocontents</a>: Add text directly to
+table of contents file etc.</li>
+</ul>
+<h3><a name="SEC173" href="#TOC173">\addcontentsline</a></h3>
+<p><a name="IDX361"></a></p>
+<p><code>\addcontentsline{file}{sec_unit}{entry}</code></p>
+<p>The <code>\addcontentsline</code> command adds an entry to the
+specified list or table where:</p>
+<ul>
+<li><code>file</code> is the extension of the file on which
+information is to be written: <code>toc</code> (table of contents),
+<code>lof</code> (list of figures), or <code>lot</code> (list of
+tables).</li>
+<li><code>sec_unit</code> controls the formatting of the entry. It
+should be one of the following, depending upon the value of the
+file argument:
+<ol>
+<li><code>toc</code> -- the name of the sectional unit, such as
+part or subsection.</li>
+<li><code>lof</code> -- figure</li>
+<li><code>lot</code> -- table</li>
+</ol>
+</li>
+<li><code>entry</code> is the text of the entry.</li>
+</ul>
+<h3><a name="SEC174" href="#TOC174">\addtocontents</a></h3>
+<p><a name="IDX362"></a></p>
+<p><code>\addtocontents{file}{text}</code></p>
+<p>The <code>\addtocontents</code> command adds text (or formatting
+commands) directly to the file that generates the table of contents
+or list of figures or tables.</p>
+<ul>
+<li><code>file</code> is the extension of the file on which
+information is to be written: <code>toc</code> (table of contents),
+<code>lof</code> (list of figures), or <code>lot</code> (list of
+tables).</li>
+<li><code>text</code> is the information to be written.</li>
+</ul>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC175">Terminal Input/Output</a></font></b></td>
+</tr>
+</table>
+<p><a name="IDX363"></a> <a name="IDX364"></a></p>
+<ul>
+<li><a href="#SEC176">\typein</a>: Read text from the
+terminal.</li>
+<li><a href="#SEC177">\typeout</a>: Write text to the
+terminal.</li>
+</ul>
+<h3><a name="SEC176" href="#TOC176">\typein</a></h3>
+<p><a name="IDX365"></a></p>
+<p><code>\typein[cmd]{msg}</code></p>
+<p>Prints <code>msg</code> on the terminal and causes LaTeX to stop
+and wait for you to type a line of input, ending with return. If
+the <code>cmd</code> argument is missing, the typed input is
+processed as if it had been included in the input file in place of
+the <code>\typein</code> command. If the <code>cmd</code> argument
+is present, it must be a command name. This command name is then
+defined or redefined to be the typed input.</p>
+<h3><a name="SEC177" href="#TOC177">\typeout</a></h3>
+<p><a name="IDX366"></a></p>
+<p><code>\typeout{msg}</code></p>
+<p>Prints <code>msg</code> on the terminal and in the
+<code>log</code> file. Commands in <code>msg</code> that are
+defined with <code>\newcommand</code> or <code>\renewcommand</code>
+are replaced by their definitions before being printed.</p>
+<p>LaTeX's usual rules for treating multiple spaces as a single
+space and ignoring spaces after a command name apply to
+<code>msg</code>. A <code>\space</code> command in <code>msg</code>
+causes a single space to be printed. A <code>^^J</code> in
+<code>msg</code> prints a newline.</p>
+<table width="100%">
+<tr bgcolor="#3F5881">
+<td align="left"><b><font size="+2" color="white"> <a name=
+"SEC178">Typefaces</a></font></b></td>
+</tr>
+</table>
+<p><a name="IDX367"></a> <a name="IDX368"></a></p>
+<p>The <code>typeface</code> is specified by giving the "size" and
+"style". A typeface is also called a "font".</p>
+<ul>
+<li><a href="#SEC179">Styles</a>: Select roman, italics etc.</li>
+<li><a href="#SEC180">Sizes</a>: Select point size.</li>
+<li><a href="#SEC181">Low-level font commands</a>: Commands for
+wizards.</li>
+</ul>
+<h3><a name="SEC179" href="#TOC179">\Styles</a></h3>
+<p><a name="IDX369"></a> <a name="IDX370"></a> <a name=
+"IDX371"></a></p>
+<p>The following type style commands are supported by LaTeX.</p>
+<p>These commands are used like <code>\textit{italics text}</code>.
+The corresponding command in parenthesis is the "declaration form",
+which takes no arguments. The scope of the declaration form lasts
+until the next type style command or the end of the current
+group.</p>
+<p>The declaration forms are cumulative; i.e., you can say
+<code>\sffamily\bfseries</code> to get sans serif boldface.</p>
+<p>You can also use the environment form of the declaration forms;
+e.g. <code>\begin{ttfamily}...\end{ttfamily}</code>.</p>
+<dl>
+<dt><code><a name="IDX373">\textrm (\rmfamily)</a></code></dt>
+<dd><a name="IDX372"></a> Roman.</dd>
+<dt><code><a name="IDX375">\textit (\itshape)</a></code></dt>
+<dd><a name="IDX374"></a></dd>
+<dt><code><a name="IDX376">\emph</a></code></dt>
+<dd>Emphasis (toggles between \textit and \textrm).</dd>
+<dt><code><a name="IDX378">\textmd (\mdseries)</a></code></dt>
+<dd><a name="IDX377"></a> Medium weight (default). The opposite of
+boldface.</dd>
+<dt><code><a name="IDX380">\textbf (\bfseries)</a></code></dt>
+<dd><a name="IDX379"></a> Boldface.</dd>
+<dt><code><a name="IDX381">\textup (\upshape)</a></code></dt>
+<dd><a name="IDX382"></a> Upright (default). The opposite of
+slanted.</dd>
+<dt><code><a name="IDX384">\textsl (\slshape)</a></code></dt>
+<dd><a name="IDX383"></a> Slanted.</dd>
+<dt><code><a name="IDX386">\textsf (\sffamily)</a></code></dt>
+<dd><a name="IDX385"></a> Sans serif.</dd>
+<dt><code><a name="IDX388">\textsc (\scshape)</a></code></dt>
+<dd><a name="IDX387"></a> Small caps.</dd>
+<dt><code><a name="IDX389">\texttt (\ttfamily)</a></code></dt>
+<dd><a name="IDX390"></a> Typewriter.</dd>
+<dt><code><a name="IDX392">\textnormal
+(\normalfont)</a></code></dt>
+<dd><a name="IDX391"></a> Main document font.</dd>
+<dt><code><a name="IDX393">\mathrm</a></code></dt>
+<dd>Roman, for use in math mode.</dd>
+<dt><code><a name="IDX394">\mathbf</a></code></dt>
+<dd>Boldface, for use in math mode.</dd>
+<dt><code><a name="IDX395">\mathsf</a></code></dt>
+<dd>Sans serif, for use in math mode.</dd>
+<dt><code><a name="IDX396">\mathtt</a></code></dt>
+<dd>Typewriter, for use in math mode.</dd>
+<dt><code><a name="IDX397">\mathit</a></code></dt>
+<dd>Italics, for use in math mode, e.g. variable names with several
+letters.</dd>
+<dt><code><a name="IDX398">\mathnormal</a></code></dt>
+<dd>For use in math mode, e.g. inside another type style
+declaration.</dd>
+<dt><code><a name="IDX399">\mathcal</a></code></dt>
+<dd>`Calligraphic' letters, for use in math mode.</dd>
+</dl>
+<p>In addition, the command <code><a name=
+"IDX400">\mathversion{bold}</a></code> can be used for switching to
+bold letters and symbols in formulas.
+<code>\mathversion{normal}</code> restores the default.</p>
+<h3><a name="SEC180" href="#TOC180">Sizes</a></h3>
+<p><a name="IDX401"></a> <a name="IDX402"></a> <a name=
+"IDX403"></a></p>
+<p>The following standard type size commands are supported by
+LaTeX.</p>
+<p>The commands as listed here are "declaration forms". The scope
+of the declaration form lasts until the next type style command or
+the end of the current group.</p>
+<p>You can also use the environment form of these commands; e.g.
+<code>\begin{tiny}...\end{tiny}</code>.</p>
+<dl>
+<dt><code><a name="IDX404">\tiny</a></code></dt>
+<dt><code><a name="IDX405">\scriptsize</a></code></dt>
+<dt><code><a name="IDX406">\footnotesize</a></code></dt>
+<dt><code><a name="IDX407">\small</a></code></dt>
+<dt><code><a name="IDX408">\normalsize</a></code></dt>
+<dd>(default)</dd>
+<dt><code><a name="IDX409">\large</a></code></dt>
+<dt><code><a name="IDX410">\Large</a></code></dt>
+<dt><code><a name="IDX411">\LARGE</a></code></dt>
+<dt><code><a name="IDX412">\huge</a></code></dt>
+<dt><code><a name="IDX413">\Huge</a></code></dt>
+</dl>
+<h3><a name="SEC181" href="#TOC181">Low-level font
+commands</a></h3>
+<p><a name="IDX414"></a> <a name="IDX415"></a></p>
+<p>These commands are primarily intended for writers of macros and
+packages. The commands listed here are only a subset of the
+available ones. For full details, you should consult Chapter 7 of
+<cite>The LaTeX Companion</cite>.</p>
+<dl>
+<dt><code><a name="IDX416">\fontencoding{enc}</a></code></dt>
+<dd>Select font encoding. Valid encodings include <code>OT1</code>
+and <code>T1</code>.</dd>
+<dt><code><a name="IDX417">\fontfamily{family}</a></code></dt>
+<dd>Select font family. Valid families include:
+<ul>
+<li><code>cmr</code> for Computer Modern Roman</li>
+<li><code>cmss</code> for Computer Modern Sans Serif</li>
+<li><code>cmtt</code> for Computer Modern Typewriter</li>
+</ul>
+and numerous others.</dd>
+<dt><code><a name="IDX418">\fontseries{series}</a></code></dt>
+<dd>Select font series. Valid series include:
+<ul>
+<li><code>m</code> Medium (normal)</li>
+<li><code>b</code> Bold</li>
+<li><code>c</code> Condensed</li>
+<li><code>bc</code> Bold condensed</li>
+<li><code>bx</code> Bold extended</li>
+</ul>
+and various other combinations.</dd>
+<dt><code><a name="IDX419">\fontshape{shape}</a></code></dt>
+<dd>Select font shape. Valid shapes are:
+<ul>
+<li><code>n</code> Upright (normal)</li>
+<li><code>it</code> Italic</li>
+<li><code>sl</code> Slanted (oblique)</li>
+<li><code>sc</code> Small caps</li>
+<li><code>ui</code> Upright italics</li>
+<li><code>ol</code> Outline</li>
+</ul>
+The two last shapes are not available for most font families.</dd>
+<dt><code><a name="IDX420">\fontsize{size}{skip}</a></code></dt>
+<dd>Set font size. The first parameter is the font size to switch
+to; the second is the <code>\baselineskip</code> to use. The unit
+of both parameters defaults to pt. A rule of thumb is that the
+baselineskip should be 1.2 times the font size.</dd>
+<dt><code><a name="IDX421">\selectfont</a></code></dt>
+<dd>The changes made by calling the four font commands described
+above do not come into effect until <code>\selectfont</code> is
+called.</dd>
+<dt><code><a name=
+"IDX422">\usefont{enc}{family}{series}{shape}</a></code></dt>
+<dd>Equivalent to calling <code>\fontencoding</code>,
+<code>\fontfamily</code>, <code>\fontseries</code> and
+<code>\fontshape</code> with the given parameters, followed by
+<code>\selectfont</code>.</dd>
+</dl>
+<hr>
+<div align="center">
+<table width="100%" cellspacing="0" border="0">
+<tr>
+<td>LaTeX Reference</td>
+<td></td>
+<td align="right">
+<div align="right">Texmaker</div>
+</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

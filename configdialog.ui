@@ -1,0 +1,1133 @@
+<ui version="4.0" >
+ <class>ConfigDialog</class>
+ <widget class="QDialog" name="ConfigDialog" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>751</width>
+    <height>542</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Configure Texmaker</string>
+  </property>
+  <layout class="QGridLayout" >
+   <property name="leftMargin" >
+    <number>9</number>
+   </property>
+   <property name="topMargin" >
+    <number>9</number>
+   </property>
+   <property name="rightMargin" >
+    <number>9</number>
+   </property>
+   <property name="bottomMargin" >
+    <number>9</number>
+   </property>
+   <property name="horizontalSpacing" >
+    <number>6</number>
+   </property>
+   <property name="verticalSpacing" >
+    <number>6</number>
+   </property>
+   <item row="0" column="1" >
+    <widget class="QStackedWidget" name="pagesWidget" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize" >
+      <size>
+       <width>450</width>
+       <height>442</height>
+      </size>
+     </property>
+     <property name="currentIndex" >
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="pt" >
+      <layout class="QVBoxLayout" >
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <property name="leftMargin" >
+        <number>9</number>
+       </property>
+       <property name="topMargin" >
+        <number>9</number>
+       </property>
+       <property name="rightMargin" >
+        <number>9</number>
+       </property>
+       <property name="bottomMargin" >
+        <number>9</number>
+       </property>
+       <item>
+        <widget class="QGroupBox" name="groupBox" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title" >
+          <string>Commands (% : filename without extension - @ : line number)</string>
+         </property>
+         <layout class="QGridLayout" >
+          <property name="leftMargin" >
+           <number>9</number>
+          </property>
+          <property name="topMargin" >
+           <number>9</number>
+          </property>
+          <property name="rightMargin" >
+           <number>9</number>
+          </property>
+          <property name="bottomMargin" >
+           <number>9</number>
+          </property>
+          <property name="horizontalSpacing" >
+           <number>6</number>
+          </property>
+          <property name="verticalSpacing" >
+           <number>6</number>
+          </property>
+          <item row="0" column="0" >
+           <layout class="QGridLayout" >
+            <property name="leftMargin" >
+             <number>0</number>
+            </property>
+            <property name="topMargin" >
+             <number>0</number>
+            </property>
+            <property name="rightMargin" >
+             <number>0</number>
+            </property>
+            <property name="bottomMargin" >
+             <number>0</number>
+            </property>
+            <property name="horizontalSpacing" >
+             <number>6</number>
+            </property>
+            <property name="verticalSpacing" >
+             <number>6</number>
+            </property>
+            <item row="5" column="2" >
+             <widget class="QPushButton" name="pushButtonPsviewer" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="icon" >
+               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+              </property>
+              <property name="iconSize" >
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1" >
+             <widget class="QLineEdit" name="lineEditMakeindex" />
+            </item>
+            <item row="11" column="1" >
+             <widget class="QLineEdit" name="lineEditGhostscript" />
+            </item>
+            <item row="10" column="1" >
+             <widget class="QLineEdit" name="lineEditMetapost" />
+            </item>
+            <item row="9" column="2" >
+             <widget class="QPushButton" name="pushButtonPdfviewer" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="icon" >
+               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+              </property>
+              <property name="iconSize" >
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0" >
+             <widget class="QLabel" name="labelDviview" >
+              <property name="text" >
+               <string>Dvi Viewer</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0" >
+             <widget class="QLabel" name="labelPsview" >
+              <property name="text" >
+               <string>PS Viewer</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1" >
+             <widget class="QLineEdit" name="lineEditDviviewer" />
+            </item>
+            <item row="1" column="2" >
+             <widget class="QPushButton" name="pushButtonDvips" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="icon" >
+               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+              </property>
+              <property name="iconSize" >
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="1" >
+             <widget class="QLineEdit" name="lineEditPdfviewer" />
+            </item>
+            <item row="0" column="2" >
+             <widget class="QPushButton" name="pushButtonLatex" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="icon" >
+               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+              </property>
+              <property name="iconSize" >
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="10" column="2" >
+             <widget class="QPushButton" name="pushButtonMetapost" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="icon" >
+               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+              </property>
+              <property name="iconSize" >
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="1" >
+             <widget class="QLineEdit" name="lineEditPdflatex" />
+            </item>
+            <item row="8" column="1" >
+             <widget class="QLineEdit" name="lineEditPs2pdf" />
+            </item>
+            <item row="3" column="2" >
+             <widget class="QPushButton" name="pushButtonMakeindex" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="icon" >
+               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+              </property>
+              <property name="iconSize" >
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1" >
+             <widget class="QLineEdit" name="lineEditLatex" />
+            </item>
+            <item row="8" column="2" >
+             <widget class="QPushButton" name="pushButtonPs2pdf" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="icon" >
+               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+              </property>
+              <property name="iconSize" >
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2" >
+             <widget class="QPushButton" name="pushButtonBibtex" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="icon" >
+               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+              </property>
+              <property name="iconSize" >
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="11" column="0" >
+             <widget class="QLabel" name="labelGhostscript" >
+              <property name="text" >
+               <string>ghostscript</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="1" >
+             <widget class="QLineEdit" name="lineEditPsviewer" />
+            </item>
+            <item row="2" column="0" >
+             <widget class="QLabel" name="labelBibtex" >
+              <property name="text" >
+               <string>Bibtex</string>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="0" >
+             <widget class="QLabel" name="labelDvipdfm" >
+              <property name="text" >
+               <string>Dvipdfm</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="0" >
+             <widget class="QLabel" name="labelPdflatex" >
+              <property name="text" >
+               <string>PdfLaTeX</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1" >
+             <widget class="QLineEdit" name="lineEditBibtex" />
+            </item>
+            <item row="3" column="0" >
+             <widget class="QLabel" name="labelMakeindex" >
+              <property name="text" >
+               <string>Makeindex</string>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="0" >
+             <widget class="QLabel" name="labelPs2pdf" >
+              <property name="text" >
+               <string>ps2pdf</string>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="2" >
+             <widget class="QPushButton" name="pushButtonDvipdfm" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="icon" >
+               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+              </property>
+              <property name="iconSize" >
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="0" >
+             <widget class="QLabel" name="labelPdfview" >
+              <property name="text" >
+               <string>Pdf Viewer</string>
+              </property>
+             </widget>
+            </item>
+            <item row="10" column="0" >
+             <widget class="QLabel" name="labelMetapost" >
+              <property name="text" >
+               <string>metapost</string>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="1" >
+             <widget class="QLineEdit" name="lineEditDvipdfm" />
+            </item>
+            <item row="0" column="0" >
+             <widget class="QLabel" name="labelLatex" >
+              <property name="text" >
+               <string>LaTeX</string>
+              </property>
+             </widget>
+            </item>
+            <item row="11" column="2" >
+             <widget class="QPushButton" name="pushButtonGhostscript" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="icon" >
+               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+              </property>
+              <property name="iconSize" >
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="2" >
+             <widget class="QPushButton" name="pushButtonDviviewer" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="icon" >
+               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+              </property>
+              <property name="iconSize" >
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0" >
+             <widget class="QLabel" name="labelDvips" >
+              <property name="text" >
+               <string>dvips</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1" >
+             <widget class="QLineEdit" name="lineEditDvips" />
+            </item>
+            <item row="6" column="2" >
+             <widget class="QPushButton" name="pushButtonPdflatex" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="icon" >
+               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+              </property>
+              <property name="iconSize" >
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>401</width>
+           <height>16</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pq" >
+      <layout class="QVBoxLayout" >
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <property name="leftMargin" >
+        <number>9</number>
+       </property>
+       <property name="topMargin" >
+        <number>9</number>
+       </property>
+       <property name="rightMargin" >
+        <number>9</number>
+       </property>
+       <property name="bottomMargin" >
+        <number>9</number>
+       </property>
+       <item>
+        <widget class="QGroupBox" name="groupBox_2" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title" >
+          <string>Quick Build Command</string>
+         </property>
+         <layout class="QGridLayout" >
+          <property name="leftMargin" >
+           <number>9</number>
+          </property>
+          <property name="topMargin" >
+           <number>9</number>
+          </property>
+          <property name="rightMargin" >
+           <number>9</number>
+          </property>
+          <property name="bottomMargin" >
+           <number>9</number>
+          </property>
+          <property name="horizontalSpacing" >
+           <number>6</number>
+          </property>
+          <property name="verticalSpacing" >
+           <number>6</number>
+          </property>
+          <item row="0" column="0" >
+           <layout class="QVBoxLayout" >
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <property name="leftMargin" >
+             <number>0</number>
+            </property>
+            <property name="topMargin" >
+             <number>0</number>
+            </property>
+            <property name="rightMargin" >
+             <number>0</number>
+            </property>
+            <property name="bottomMargin" >
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QRadioButton" name="radioButton1" >
+              <property name="text" >
+               <string>LaTeX + dvips + View PS</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton2" >
+              <property name="text" >
+               <string>LaTeX + View DVI</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton3" >
+              <property name="text" >
+               <string>PdfLaTeX + View PDF</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton4" >
+              <property name="text" >
+               <string>LaTeX + dvipdfm + View PDF</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton5" >
+              <property name="text" >
+               <string>LaTeX + dvips + ps2pdf + View PDF</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton6" >
+              <property name="text" >
+               <string>User : (% : filename without extension)</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lineEditUserquick" />
+            </item>
+            <item>
+             <widget class="QLabel" name="label" >
+              <property name="text" >
+               <string>(the commands must be separated by '|')</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>441</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pe" >
+      <layout class="QGridLayout" >
+       <property name="leftMargin" >
+        <number>9</number>
+       </property>
+       <property name="topMargin" >
+        <number>9</number>
+       </property>
+       <property name="rightMargin" >
+        <number>9</number>
+       </property>
+       <property name="bottomMargin" >
+        <number>9</number>
+       </property>
+       <property name="horizontalSpacing" >
+        <number>6</number>
+       </property>
+       <property name="verticalSpacing" >
+        <number>6</number>
+       </property>
+       <item row="1" column="0" >
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>411</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="0" >
+        <widget class="QGroupBox" name="groupBox_3" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title" >
+          <string>Editor</string>
+         </property>
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
+           <widget class="QLabel" name="labelFamily" >
+            <property name="text" >
+             <string>Editor Font Family</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" colspan="2" >
+           <widget class="QComboBox" name="comboBoxFont" >
+            <property name="editable" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" >
+           <widget class="QLabel" name="labelSize" >
+            <property name="text" >
+             <string>Editor Font Size</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="2" >
+           <widget class="QSpinBox" name="spinBoxSize" >
+            <property name="minimum" >
+             <number>1</number>
+            </property>
+            <property name="value" >
+             <number>12</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" >
+           <widget class="QLabel" name="labelEncoding" >
+            <property name="text" >
+             <string>Editor Font Encoding</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" colspan="2" >
+           <widget class="QComboBox" name="comboBoxEncoding" />
+          </item>
+          <item row="3" column="0" >
+           <widget class="QCheckBox" name="checkBoxWordwrap" >
+            <property name="text" >
+             <string>Word Wrap</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1" >
+           <widget class="QCheckBox" name="checkBoxLinenumber" >
+            <property name="text" >
+             <string>Show Line Numbers</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0" >
+           <widget class="QLabel" name="labelColorMath" >
+            <property name="text" >
+             <string>"Math" color</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1" >
+           <widget class="QPushButton" name="pushButtonColorMath" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize" >
+             <size>
+              <width>22</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="maximumSize" >
+             <size>
+              <width>22</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="toolTip" >
+             <string>Click here to set this color</string>
+            </property>
+            <property name="autoFillBackground" >
+             <bool>true</bool>
+            </property>
+            <property name="text" >
+             <string/>
+            </property>
+            <property name="flat" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2" >
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>241</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="5" column="0" >
+           <widget class="QLabel" name="labelColorCommand" >
+            <property name="text" >
+             <string>"Command" color</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1" >
+           <widget class="QPushButton" name="pushButtonColorCommand" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize" >
+             <size>
+              <width>22</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="maximumSize" >
+             <size>
+              <width>22</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="toolTip" >
+             <string>Click here to set this color</string>
+            </property>
+            <property name="autoFillBackground" >
+             <bool>true</bool>
+            </property>
+            <property name="text" >
+             <string/>
+            </property>
+            <property name="flat" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2" >
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>241</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="6" column="0" >
+           <widget class="QLabel" name="labelColorKeyword" >
+            <property name="text" >
+             <string>"Keyword" color</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1" >
+           <widget class="QPushButton" name="pushButtonColorKeyword" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize" >
+             <size>
+              <width>22</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="maximumSize" >
+             <size>
+              <width>22</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="toolTip" >
+             <string>Click here to set this color</string>
+            </property>
+            <property name="autoFillBackground" >
+             <bool>true</bool>
+            </property>
+            <property name="text" >
+             <string/>
+            </property>
+            <property name="flat" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="2" >
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>241</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="7" column="0" >
+           <widget class="QLabel" name="labelASpellCommand" >
+            <property name="text" >
+             <string>Spelling dictionary</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1" colspan="2" >
+           <layout class="QHBoxLayout" >
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <property name="leftMargin" >
+             <number>0</number>
+            </property>
+            <property name="topMargin" >
+             <number>0</number>
+            </property>
+            <property name="rightMargin" >
+             <number>0</number>
+            </property>
+            <property name="bottomMargin" >
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QLineEdit" name="lineEditAspellCommand" >
+              <property name="minimumSize" >
+               <size>
+                <width>190</width>
+                <height>0</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButtonAspell" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="icon" >
+               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="8" column="1" colspan="2" >
+           <widget class="QLabel" name="labelGetDic" >
+            <property name="text" >
+             <string/>
+            </property>
+            <property name="textFormat" >
+             <enum>Qt::RichText</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="0" >
+           <widget class="QLabel" name="labelshortcut" >
+            <property name="text" >
+             <string>Shortcuts</string>
+            </property>
+           </widget>
+          </item>
+          <item rowspan="2" row="9" column="1" colspan="2" >
+           <widget class="QTableWidget" name="shorttableWidget" >
+            <column>
+             <property name="text" >
+              <string>Action</string>
+             </property>
+            </column>
+            <column>
+             <property name="text" >
+              <string>Shortcut</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+          <item row="10" column="0" >
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>111</width>
+              <height>41</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="3" column="2" >
+           <widget class="QCheckBox" name="checkBoxCompletion" >
+            <property name="text" >
+             <string>Completion</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="1" column="0" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>131</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="1" >
+    <layout class="QHBoxLayout" >
+     <property name="spacing" >
+      <number>6</number>
+     </property>
+     <property name="leftMargin" >
+      <number>0</number>
+     </property>
+     <property name="topMargin" >
+      <number>0</number>
+     </property>
+     <property name="rightMargin" >
+      <number>0</number>
+     </property>
+     <property name="bottomMargin" >
+      <number>0</number>
+     </property>
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>407</width>
+         <height>31</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="okButton" >
+       <property name="text" >
+        <string>OK</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancelButton" >
+       <property name="text" >
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="0" >
+    <widget class="QListWidget" name="contentsWidget" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Expanding" hsizetype="Fixed" >
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize" >
+      <size>
+       <width>150</width>
+       <height>442</height>
+      </size>
+     </property>
+     <property name="maximumSize" >
+      <size>
+       <width>150</width>
+       <height>32000</height>
+      </size>
+     </property>
+     <property name="iconSize" >
+      <size>
+       <width>96</width>
+       <height>96</height>
+      </size>
+     </property>
+     <property name="spacing" >
+      <number>12</number>
+     </property>
+     <property name="viewMode" >
+      <enum>QListView::IconMode</enum>
+     </property>
+     <property name="currentRow" >
+      <number>-1</number>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>lineEditLatex</tabstop>
+  <tabstop>lineEditDvips</tabstop>
+  <tabstop>lineEditBibtex</tabstop>
+  <tabstop>lineEditMakeindex</tabstop>
+  <tabstop>lineEditDviviewer</tabstop>
+  <tabstop>lineEditPsviewer</tabstop>
+  <tabstop>lineEditPdflatex</tabstop>
+  <tabstop>lineEditDvipdfm</tabstop>
+  <tabstop>lineEditPs2pdf</tabstop>
+  <tabstop>lineEditPdfviewer</tabstop>
+  <tabstop>lineEditMetapost</tabstop>
+  <tabstop>lineEditGhostscript</tabstop>
+  <tabstop>radioButton1</tabstop>
+  <tabstop>radioButton2</tabstop>
+  <tabstop>radioButton3</tabstop>
+  <tabstop>radioButton4</tabstop>
+  <tabstop>radioButton5</tabstop>
+  <tabstop>radioButton6</tabstop>
+  <tabstop>lineEditUserquick</tabstop>
+  <tabstop>comboBoxFont</tabstop>
+  <tabstop>spinBoxSize</tabstop>
+  <tabstop>comboBoxEncoding</tabstop>
+  <tabstop>checkBoxWordwrap</tabstop>
+  <tabstop>checkBoxLinenumber</tabstop>
+  <tabstop>checkBoxCompletion</tabstop>
+  <tabstop>pushButtonColorMath</tabstop>
+  <tabstop>pushButtonColorCommand</tabstop>
+  <tabstop>pushButtonColorKeyword</tabstop>
+  <tabstop>lineEditAspellCommand</tabstop>
+  <tabstop>pushButtonLatex</tabstop>
+  <tabstop>pushButtonDvips</tabstop>
+  <tabstop>pushButtonBibtex</tabstop>
+  <tabstop>pushButtonMakeindex</tabstop>
+  <tabstop>pushButtonDviviewer</tabstop>
+  <tabstop>pushButtonPsviewer</tabstop>
+  <tabstop>pushButtonPdflatex</tabstop>
+  <tabstop>pushButtonDvipdfm</tabstop>
+  <tabstop>pushButtonPs2pdf</tabstop>
+  <tabstop>pushButtonPdfviewer</tabstop>
+  <tabstop>pushButtonMetapost</tabstop>
+  <tabstop>pushButtonGhostscript</tabstop>
+  <tabstop>pushButtonAspell</tabstop>
+  <tabstop>shorttableWidget</tabstop>
+  <tabstop>contentsWidget</tabstop>
+  <tabstop>okButton</tabstop>
+  <tabstop>cancelButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>okButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ConfigDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>466</x>
+     <y>470</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>307</x>
+     <y>250</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ConfigDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>557</x>
+     <y>470</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>307</x>
+     <y>250</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
