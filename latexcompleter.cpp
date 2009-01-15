@@ -7,8 +7,8 @@
 class CompleterInputBinding: public QEditor::InputBinding{
 public:
     CompleterInputBinding():active(0){}
-	virtual QString id() const{return "TexMaker::CompleteInputBinding";}
-    virtual QString name() const{return "TexMaker::CompleteInputBinding";}
+	virtual QString id() const{return "TexMakerX::CompleteInputBinding";}
+    virtual QString name() const{return "TexMakerX::CompleteInputBinding";}
 
     virtual bool mousePressEvent(QMouseEvent* mouse, QEditor *editor){
         resetBinding();

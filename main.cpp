@@ -45,7 +45,7 @@ QTranslator* appTranslator=new QTranslator(this);
 QTranslator* basicTranslator=new QTranslator(this);
 QString locale = QString(QLocale::system().name()).left(2);
 if ( locale.length() < 2 ) locale = "en";
-if (appTranslator->load(Texmaker::findResourceFile("texmaker_"+locale+".qm"))) installTranslator(appTranslator);
+if (appTranslator->load(Texmaker::findResourceFile("texmakerx_"+locale+".qm"))) installTranslator(appTranslator);
 if (basicTranslator->load(Texmaker::findResourceFile("qt_"+locale+".qm"))) installTranslator(basicTranslator);
 mw = new Texmaker();
 connect( this, SIGNAL( lastWindowClosed() ), this, SLOT( quit() ) );
@@ -80,7 +80,7 @@ int main( int argc, char ** argv )
 {
 TexmakerApp a( argc, argv ); // This is a dummy constructor so that the programs loads fast.
 
-DSingleApplication instance("TexMaker");
+DSingleApplication instance("TexMakerX");
 if ( instance.isRunning() ) {
     QString msg;
     for(int i=0; i<argc; ++i){
