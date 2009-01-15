@@ -1,0 +1,325 @@
+<ui version="4.0" >
+ <class>EditorConfig</class>
+ <widget class="QWidget" name="EditorConfig" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>575</width>
+    <height>586</height>
+   </rect>
+  </property>
+  <layout class="QVBoxLayout" >
+   <item>
+    <widget class="QGroupBox" name="gbFont" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="title" >
+      <string>Font</string>
+     </property>
+     <layout class="QGridLayout" >
+      <property name="margin" >
+       <number>4</number>
+      </property>
+      <item row="0" column="0" >
+       <widget class="QFontComboBox" name="cbFont" >
+        <property name="font" >
+         <font>
+          <family>Monospace</family>
+         </font>
+        </property>
+        <property name="currentFont" >
+         <font>
+          <family>DejaVu Sans Mono</family>
+         </font>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" >
+       <widget class="QSpinBox" name="spnFontSize" >
+        <property name="buttonSymbols" >
+         <enum>QAbstractSpinBox::UpDownArrows</enum>
+        </property>
+        <property name="minimum" >
+         <number>6</number>
+        </property>
+        <property name="maximum" >
+         <number>50</number>
+        </property>
+        <property name="value" >
+         <number>10</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="3" >
+       <widget class="QLabel" name="lblSampleText" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font" >
+         <font>
+          <family>Monospace</family>
+         </font>
+        </property>
+        <property name="frameShape" >
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow" >
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <property name="text" >
+         <string>text which &lt;i>should&lt;/i> be a &lt;b>fair&lt;/b> test of the font</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="margin" >
+         <number>0</number>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2" >
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0" >
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="gbTabs" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="title" >
+      <string>Tabulators &amp;&amp; Whitespaces</string>
+     </property>
+     <layout class="QVBoxLayout" >
+      <property name="margin" >
+       <number>5</number>
+      </property>
+      <item>
+       <layout class="QHBoxLayout" >
+        <item>
+         <widget class="QLabel" name="lblTabWitdh" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>Tab width</string>
+          </property>
+          <property name="buddy" >
+           <cstring>spnTabWidth</cstring>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="spnTabWidth" >
+          <property name="value" >
+           <number>4</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0" >
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="chkShowLeadingWhitespace" >
+        <property name="text" >
+         <string>Show leading whitespaces</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="chkShowTabsInText" >
+        <property name="text" >
+         <string>Show tabs which are neither leading nor trailing</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="chkShowTrailingWhitespace" >
+        <property name="text" >
+         <string>Show trailing whitespaces</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="chkReplaceTabs" >
+        <property name="text" >
+         <string>Replace tabs by blanks</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="gbEncodings" >
+     <property name="title" >
+      <string>Load &amp;&amp; Save</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout" >
+      <item row="0" column="0" >
+       <widget class="QLabel" name="label" >
+        <property name="text" >
+         <string>Default encoding</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" >
+       <widget class="QComboBox" name="cbEncoding" />
+      </item>
+      <item row="1" column="0" >
+       <widget class="QCheckBox" name="chkDetectLE" >
+        <property name="text" >
+         <string>Preserve line endings</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" >
+       <widget class="QComboBox" name="cbLineEndings" >
+        <property name="enabled" >
+         <bool>false</bool>
+        </property>
+        <item>
+         <property name="text" >
+          <string>Local</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>Unix/Linux</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>DOS/Windows</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>Old Mac</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="2" column="0" >
+       <widget class="QCheckBox" name="chkAutoRemoveTrailingWhitespace" >
+        <property name="text" >
+         <string>Remove trailing spaces</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" >
+       <widget class="QCheckBox" name="chkPreserveTrailingIndent" >
+        <property name="enabled" >
+         <bool>false</bool>
+        </property>
+        <property name="text" >
+         <string>Preserve trailing indent</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::MinimumExpanding</enum>
+     </property>
+     <property name="sizeHint" stdset="0" >
+      <size>
+       <width>492</width>
+       <height>10</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>chkDetectLE</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>cbLineEndings</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>190</x>
+     <y>445</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>279</x>
+     <y>444</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chkAutoRemoveTrailingWhitespace</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>chkPreserveTrailingIndent</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>176</x>
+     <y>475</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>287</x>
+     <y>479</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
