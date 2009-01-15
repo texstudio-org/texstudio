@@ -1,0 +1,76 @@
+<!DOCTYPE QXF>
+<QXF version="1.0" >
+    <format id="comment" >
+        <bold>false</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <foreground>#808080</foreground>
+    </format>
+    <format id="keyword" >
+        <bold>false</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <foreground>#800000</foreground>
+    </format>
+    <format id="extra-keyword" >
+        <bold>true</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <foreground>#0095ff</foreground>
+    </format>
+    <format id="match" >
+        <bold>true</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <foreground>#ff0000</foreground>
+    </format>
+    <format id="search" >
+        <bold>true</bold>
+        <italic>true</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <foreground>#ff0000</foreground>
+    </format>
+    <format id="numbers" >
+        <bold>false</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <foreground>#008000</foreground>
+    </format>
+    <format id="text" >
+        <bold>false</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <foreground>#ff0000</foreground>
+    </format>
+    <format id="spellingMistake" >
+        <bold>false</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>true</waveUnderline>
+        <foreground>#000000</foreground>
+        <linescolor>#000000</linescolor>
+    </format>
+</QXF>

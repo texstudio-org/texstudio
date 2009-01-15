@@ -12,31 +12,31 @@
 #define SPELLERDIALOG_H
 
 #include "ui_spellerdialog.h"
-#include "latexeditor.h"
-#include "hunspell/hunspell.hxx"
+#include "spellerutility.h"
+#include "QCodeEdit/qeditor.h"
+#include "latexeditorview.h"
 
 #include <QTextCursor>
 
 class SpellerDialog : public QDialog  {
    Q_OBJECT
 public:
-	SpellerDialog(QWidget *parent=0,LatexEditor *ed=0, QString SpellDic="", QString ignoredWords="");
+	SpellerDialog(QWidget *parent=0, SpellerUtility *utility=0);
 	~SpellerDialog();
 	Ui::SpellerDialog ui;
-QStringList alwaysignoredwordList;
+    void setEditorView(LatexEditorView *edView);
+    void startSpelling();
 private :
-QString spell_dic, spell_encoding;
-LatexEditor *editor;
-QStringList ignoredwordList;
-int startpos, endpos, deltacol;
-Hunspell * pChecker;
-bool go;
-QTextCursor c;
+SpellerUtility *m_speller;
+QEditor *editor;
+LatexEditorView *editorView;
+int startLine,startIndex,curLine,curIndex, endLine,endIndex;
+QString curWord;
+bool ignoreListChanged;
 protected:
 void closeEvent( QCloseEvent* );
 private slots:
 void accept();
-void spellingInit();
 void slotIgnore();
 void slotAlwaysIgnore();
 void slotReplace();

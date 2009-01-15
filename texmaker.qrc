@@ -1,5 +1,23 @@
 <!DOCTYPE RCC><RCC version="1.0">
     <qresource>
+	<file alias="closeall.png">images/qcodeedit/closeall.png</file>
+	<file alias="down.png">images/qcodeedit/down.png</file>
+	<file alias="up.png">images/qcodeedit/up.png</file>
+	<file alias="reload.png">images/qcodeedit/reload.png</file>
+	<file alias="warning.png">images/qcodeedit/warning.png</file>
+
+	<file>images/lbook0.png</file>
+	<file>images/lbook1.png</file>
+	<file>images/lbook2.png</file>
+	<file>images/lbook3.png</file>
+	<file>images/lbook4.png</file>
+	<file>images/lbook5.png</file>
+	<file>images/lbook6.png</file>
+	<file>images/lbook7.png</file>
+	<file>images/lbook8.png</file>
+	<file>images/lbook9.png</file>
+	
+  
 	<file>images/logo128.png</file>
 	<file>images/pstricks.png</file>
 	<file>images/accent1.png</file>

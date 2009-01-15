@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="texmaker" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Release">
+				<Option output="bin\Release\texmaker" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="aboutdialog.cpp" />
+		<Unit filename="aboutdialog.h" />
+		<Unit filename="addoptiondialog.cpp" />
+		<Unit filename="addoptiondialog.h" />
+		<Unit filename="arraydialog.cpp" />
+		<Unit filename="arraydialog.h" />
+		<Unit filename="configdialog.cpp" />
+		<Unit filename="configdialog.h" />
+		<Unit filename="filechooser.cpp" />
+		<Unit filename="filechooser.h" />
+		<Unit filename="icondelegate.cpp" />
+		<Unit filename="icondelegate.h" />
+		<Unit filename="latexcompleter.cpp" />
+		<Unit filename="latexcompleter.h" />
+		<Unit filename="latexeditorview.cpp" />
+		<Unit filename="latexeditorview.h" />
+		<Unit filename="letterdialog.cpp" />
+		<Unit filename="letterdialog.h" />
+		<Unit filename="logeditor.cpp" />
+		<Unit filename="logeditor.h" />
+		<Unit filename="loghighlighter.cpp" />
+		<Unit filename="loghighlighter.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="metapostlistwidget.cpp" />
+		<Unit filename="metapostlistwidget.h" />
+		<Unit filename="pstrickslistwidget.cpp" />
+		<Unit filename="pstrickslistwidget.h" />
+		<Unit filename="quickdocumentdialog.cpp" />
+		<Unit filename="quickdocumentdialog.h" />
+		<Unit filename="refdialog.cpp" />
+		<Unit filename="refdialog.h" />
+		<Unit filename="spellerdialog.cpp" />
+		<Unit filename="spellerdialog.h" />
+		<Unit filename="spellerutility.cpp" />
+		<Unit filename="spellerutility.h" />
+		<Unit filename="structdialog.cpp" />
+		<Unit filename="structdialog.h" />
+		<Unit filename="symbollistwidget.cpp" />
+		<Unit filename="symbollistwidget.h" />
+		<Unit filename="tabbingdialog.cpp" />
+		<Unit filename="tabbingdialog.h" />
+		<Unit filename="tabdialog.cpp" />
+		<Unit filename="tabdialog.h" />
+		<Unit filename="texmaker.cpp" />
+		<Unit filename="texmaker.h" />
+		<Unit filename="texmaker.pro" />
+		<Unit filename="textanalysis.cpp" />
+		<Unit filename="textanalysis.h" />
+		<Unit filename="ui_aboutdialog.h" />
+		<Unit filename="ui_addoptiondialog.h" />
+		<Unit filename="ui_arraydialog.h" />
+		<Unit filename="ui_configdialog.h" />
+		<Unit filename="ui_filechooser.h" />
+		<Unit filename="ui_letterdialog.h" />
+		<Unit filename="ui_quickdocumentdialog.h" />
+		<Unit filename="ui_refdialog.h" />
+		<Unit filename="ui_spellerdialog.h" />
+		<Unit filename="ui_structdialog.h" />
+		<Unit filename="ui_tabbingdialog.h" />
+		<Unit filename="ui_tabdialog.h" />
+		<Unit filename="ui_usermenudialog.h" />
+		<Unit filename="ui_usertooldialog.h" />
+		<Unit filename="ui_webpublishdialog.h" />
+		<Unit filename="userkeyreplacementsdialog.cpp" />
+		<Unit filename="userkeyreplacementsdialog.h" />
+		<Unit filename="usermenudialog.cpp" />
+		<Unit filename="usermenudialog.h" />
+		<Unit filename="usertooldialog.cpp" />
+		<Unit filename="usertooldialog.h" />
+		<Unit filename="webpublishdialog.cpp" />
+		<Unit filename="webpublishdialog.h" />
+		<Unit filename="x11fontdialog.cpp" />
+		<Unit filename="x11fontdialog.h" />
+		<Extensions>
+			<code_completion>
+				<search_path add="P:\programming\qt\include" />
+			</code_completion>
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

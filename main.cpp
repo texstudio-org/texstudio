@@ -22,8 +22,6 @@
 
 class TexmakerApp : public QApplication
 {
-private:
-    //Texmaker *mw;  // Moved to public
 protected:
     bool event(QEvent *event);
 public:
@@ -39,25 +37,16 @@ TexmakerApp::TexmakerApp( int & argc, char ** argv ) : QApplication ( argc, argv
 }
 
 void TexmakerApp::init( int & argc, char ** argv )
-{
+    {
 QPixmap pixmap(":/images/splash.png");
 QSplashScreen *splash = new QSplashScreen(pixmap);
 splash->show();
 QTranslator* appTranslator=new QTranslator(this);
 QTranslator* basicTranslator=new QTranslator(this);
-#if defined( Q_WS_X11 )
-QString transdir=PREFIX"/share/texmaker";
-#endif
-#if defined( Q_WS_MACX )
-QString transdir=QCoreApplication::applicationDirPath() + "/../Resources";
-#endif
-#if defined(Q_WS_WIN)
-QString transdir=QCoreApplication::applicationDirPath();
-#endif
 QString locale = QString(QLocale::system().name()).left(2);
 if ( locale.length() < 2 ) locale = "en";
-if (appTranslator->load(QString("texmaker_")+locale,transdir)) 	installTranslator(appTranslator);
-if (basicTranslator->load(QString("qt_")+locale,transdir)) installTranslator(basicTranslator);
+if (appTranslator->load(Texmaker::findResourceFile("texmaker_"+locale+".qm"))) installTranslator(appTranslator);
+if (basicTranslator->load(Texmaker::findResourceFile("qt_"+locale+".qm"))) installTranslator(basicTranslator);
 mw = new Texmaker();
 connect( this, SIGNAL( lastWindowClosed() ), this, SLOT( quit() ) );
 splash->finish(mw);
@@ -81,6 +70,8 @@ bool TexmakerApp::event ( QEvent * event )
     if (event->type() == QEvent::FileOpen) {
         QFileOpenEvent *oe = static_cast<QFileOpenEvent *>(event);
         mw->load(oe->file());
+        event->accept();
+        return true;
     }
     return QApplication::event(event);
 }
@@ -102,7 +93,8 @@ if ( instance.isRunning() ) {
 
 a.init(argc,argv); // Initialization takes place only if there is no other instance running.
 
-QObject::connect( &instance, SIGNAL( messageReceived(const QString &) ),                   a.mw,   SLOT( onOtherInstanceMessage(const QString &) ) );
+QObject::connect( &instance, SIGNAL( messageReceived(const QString &) ), 
+                  a.mw,   SLOT( onOtherInstanceMessage(const QString &) ) );
 
 return a.exec();
 }

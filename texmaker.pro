@@ -1,23 +1,18 @@
 TEMPLATE	= app
 LANGUAGE	= C++
 TARGET	 = texmaker
+CONFIG	+= qt warn_off release 
 QT += network
-CONFIG	+= qt warn_off release
 ###############################
 HEADERS	+= texmaker.h \
 	dsingleapplication.h \
 	symbollistwidget.h \
 	icondelegate.h \
-	latexeditor.h \
-	latexhighlighter.h \
+	latexcompleter.h \
 	latexeditorview.h \
-	linenumberwidget.h \
 	logeditor.h \
 	loghighlighter.h \
 	metapostlistwidget.h \
-	findwidget.h \
-	gotolinedialog.h \
-	replacedialog.h \
 	structdialog.h \
 	filechooser.h \
 	tabbingdialog.h \
@@ -27,15 +22,16 @@ HEADERS	+= texmaker.h \
 	addoptiondialog.h \
 	quickdocumentdialog.h \
 	usermenudialog.h \
+	userkeyreplacementsdialog.h \
 	usertooldialog.h \
 	refdialog.h \
 	configdialog.h \
 	aboutdialog.h \
 	webpublishdialog.h \
 	spellerdialog.h \
+	spellerutility.h \
 	pstrickslistwidget.h \
-	blockdata.h \
-	parenmatcher.h \
+	textanalysis.h \
 	hunspell/affentry.hxx \
 	hunspell/affixmgr.hxx \
 	hunspell/atypes.hxx \
@@ -49,6 +45,7 @@ HEADERS	+= texmaker.h \
 	hunspell/langnum.hxx \
 	hunspell/license.hunspell \
 	hunspell/phonet.hxx \
+	hunspell/replist.hxx \
 	hunspell/suggestmgr.hxx \
 	hunspell/license.myspell \
 	hunspell/filemgr.hxx \
@@ -59,16 +56,11 @@ SOURCES	+= main.cpp \
 	texmaker.cpp \
 	symbollistwidget.cpp \
 	icondelegate.cpp \
-	latexeditor.cpp \
-	latexhighlighter.cpp \
+	latexcompleter.cpp \
 	latexeditorview.cpp \
-	linenumberwidget.cpp \
 	logeditor.cpp \
 	loghighlighter.cpp \
 	metapostlistwidget.cpp \
-	findwidget.cpp \
-	gotolinedialog.cpp \
-	replacedialog.cpp \
 	structdialog.cpp \
 	filechooser.cpp \
 	tabbingdialog.cpp \
@@ -78,14 +70,16 @@ SOURCES	+= main.cpp \
 	addoptiondialog.cpp \
 	quickdocumentdialog.cpp \
 	usermenudialog.cpp \
+	userkeyreplacementsdialog.cpp \
 	usertooldialog.cpp \
 	refdialog.cpp \
 	configdialog.cpp \
 	aboutdialog.cpp \
 	webpublishdialog.cpp \
 	spellerdialog.cpp \
+	spellerutility.cpp \
 	pstrickslistwidget.cpp \
-	parenmatcher.cpp \
+  textanalysis.cpp \
 	hunspell/affentry.cxx \
 	hunspell/affixmgr.cxx \
 	hunspell/csutil.cxx \
@@ -93,15 +87,13 @@ SOURCES	+= main.cpp \
 	hunspell/hashmgr.cxx \
 	hunspell/hunspell.cxx \
 	hunspell/phonet.cxx \
+	hunspell/replist.cxx \
 	hunspell/suggestmgr.cxx \
 	hunspell/utf_info.cxx \
 	hunspell/filemgr.cxx \
 	hunspell/hunzip.cxx
 RESOURCES += texmaker.qrc
-FORMS   += findwidget.ui\
-	gotolinedialog.ui \
-	replacedialog.ui \
-	structdialog.ui \
+FORMS   += structdialog.ui \
 	filechooser.ui \
 	tabbingdialog.ui \
 	arraydialog.ui \
@@ -115,8 +107,11 @@ FORMS   += findwidget.ui\
 	aboutdialog.ui \
 	webpublishdialog.ui \
 	configdialog.ui \
-	spellerdialog.ui
+	spellerdialog.ui \
+  textanalysis.ui
 TRANSLATIONS += texmaker_fr.ts
+
+
 ################################
 unix:!macx {
 UI_DIR = .ui
@@ -184,7 +179,12 @@ utilities.files = utilities/blank.png \
 	utilities/texmaker64x64.png \
 	utilities/texmaker128x128.png \
 	utilities/texmaker.desktop \
-	utilities/texmaker.svg
+	utilities/texmaker.svg \
+	utilities/qxs/defaultFormats.qxf \
+	utilities/qxs/marks.qxm \
+	utilities/qxs/bibtex.qnfa \
+	utilities/qxs/tex.qnfa \
+	utilities/qxs/xml.qnfa
 INSTALLS += utilities
 }
 ################################
@@ -254,3 +254,7 @@ INSTALLS += utilities
 ICON = texmaker.icns
 QMAKE_INFO_PLIST =Info.plist
 }
+
+
+LIBS         += -lqcodeedit
+

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   copyright       : (C) 2003-2007 by Pascal Brachet                     *
+ *   copyright       : (C) 2008 by Benito van der Zander                   *
  *   http://www.xm1math.net/texmaker/                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -15,21 +15,77 @@
 #include <qwidget.h>
 #include <qfont.h>
 #include <qcolor.h>
-#include "latexeditor.h"
-#include "linenumberwidget.h"
-#include "findwidget.h"
+
+
+#include "spellerutility.h"
+
+#include "QCodeEdit/qcodeedit.h"
+#include "QCodeEdit/qeditor.h"
+#include "QCodeEdit/qlinemarkpanel.h"
+//#include "QCodeEdit/qpanel.h"
+
+class DefaultInputBinding: public QEditor::InputBinding{
+ //  Q_OBJECT not possible because inputbinding is no qobject
+public:
+    DefaultInputBinding():keyToReplace(0),contextMenu(0){}
+	virtual QString id() const{return "TexMaker::DefaultInputBinding";}
+    virtual QString name() const{return "TexMaker::DefaultInputBinding";}
+
+    virtual bool keyPressEvent(QKeyEvent *event, QEditor *editor);
+    virtual bool contextMenuEvent(QContextMenuEvent *event, QEditor *editor);
+private:
+    friend class LatexEditorView;
+    QVector<QString> *keyToReplace;
+    QVector<QString> *keyReplaceAfterWord;
+    QVector<QString> *keyReplaceBeforeWord;
+    QList<QAction *> baseActions;
+    
+    QMenu* contextMenu;
+    QString lastSpellCheckedWord;
+    
+};
 
 class LatexEditorView : public QWidget  {
    Q_OBJECT
-public: 
-	LatexEditorView(QWidget *parent, QFont & efont,bool line, QColor colMath, QColor colCommand, QColor colKeyword);
+public:
+	LatexEditorView(QWidget *parent);
 	~LatexEditorView();
-  LatexEditor *editor;
-  FindWidget *findwidget;
-  void changeSettings(QFont & new_font,bool line);
+    
+    QCodeEdit *codeeditor;
+    QEditor *editor;
+    
+    
+//  FindWidget *findwidget;
+    void changeSettings(QFont & new_font,bool line,bool fold, bool linestate, bool cursorstate, bool wrap, bool complete);
+
+    void jumpChangePositionBackward();
+    void jumpChangePositionForward();
+    void jumpToBookmark(int bookmarkNumber);
+    void toggleBookmark(int bookmarkNumber);
+    
+    void cleanBib();
+    static void setKeyReplacements(QVector<QString> *UserKeyReplace, QVector<QString> *UserKeyReplaceAfterWord, QVector<QString> *UserKeyReplaceBeforeWord);
+    static void setBaseActions(QList<QAction *> baseActions);
+    static void setSpeller(SpellerUtility* mainSpeller);
+
+    static bool nextWord(QString line,int &index,QString &outWord,int &nextIndex);    
+    static QString latexToPlainWord(QString word);    
 private:
-  LineNumberWidget* m_lineNumberWidget;
-  void setLineNumberWidgetVisible( bool );
+    friend class DefaultInputBinding;
+    QAction *lineNumberPanel, *lineMarkPanelAction, *lineFoldPanel, *lineChangePanel, *statusPanel, *searchReplacePanel;
+    QLineMarkPanel* lineMarkPanel;
+    static int bookMarkId(int bookmarkNumber);
+    
+    static SpellerUtility* speller;
+    QList<QPair<QDocumentLine, int> > changePositions; //line, index
+    int curChangePos;
+public slots:
+    void lineMarkClicked(int line);
+    void documentContentChanged(int linenr, int count);
+    void lineDeleted(QDocumentLineHandle* l);
+    void spellCheckingReplace();
+    void spellCheckingAlwaysIgnore();
+    void dictionaryReloaded();
 };
 
 #endif

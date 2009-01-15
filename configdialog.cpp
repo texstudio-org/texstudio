@@ -16,6 +16,9 @@
 #include <QFileDialog>
 #include <QColorDialog>
 #include <QDir>
+#include <QKeySequence>
+#include <QMessageBox>
+#include <QList>
 
 ConfigDialog::ConfigDialog(QWidget* parent): QDialog( parent)
 {
@@ -31,20 +34,33 @@ QFontDatabase fdb;
 ui.comboBoxFont->addItems( fdb.families() );
 
 ui.comboBoxEncoding->addItem("UTF-8");
-foreach (int mib, QTextCodec::availableMibs()) 
+foreach (int mib, QTextCodec::availableMibs())
 	{
 	QTextCodec *codec = QTextCodec::codecForMib(mib);
 	if (codec->name()!="UTF-8") ui.comboBoxEncoding->addItem(codec->name());
 	}
+	
+	
 connect( ui.pushButtonAspell, SIGNAL(clicked()), this, SLOT(browseAspell()));
+connect( ui.comboBoxStyles, SIGNAL(currentIndexChanged(QString)), this, SLOT(selectStyle(QString)));
+
+connect(ui.lineEditAspellCommand, SIGNAL(textChanged(QString)), this, SLOT(lineEditAspellChanged(QString)));
 
 ui.labelGetDic->setText( tr("Get dictionary at: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>") );
 ui.labelGetDic->setOpenExternalLinks(true);
 
 
-connect( ui.pushButtonColorMath, SIGNAL(clicked()), this, SLOT(configureColorMath()));
-connect( ui.pushButtonColorCommand, SIGNAL(clicked()), this, SLOT(configureColorCommand()));
-connect( ui.pushButtonColorKeyword, SIGNAL(clicked()), this, SLOT(configureColorKeyword()));
+connect( ui.pushButtonColorText, SIGNAL(clicked()), this, SLOT(configureColorText()));
+connect( ui.pushButtonColorDecoration, SIGNAL(clicked()), this, SLOT(configureColorDecoration()));
+
+connect (ui.checkBoxBold,SIGNAL(clicked ()),this,SLOT(textStyleChanged()));
+connect (ui.checkBoxItalic,SIGNAL(clicked ()),this,SLOT(textStyleChanged()));
+connect (ui.checkBoxUnderline,SIGNAL(clicked ()),this,SLOT(textStyleChanged()));
+connect (ui.checkBoxOverline,SIGNAL(clicked ()),this,SLOT(textStyleChanged()));
+connect (ui.checkBoxStrikeout,SIGNAL(clicked ()),this,SLOT(textStyleChanged()));
+connect (ui.checkBoxWaveUnderline,SIGNAL(clicked ()),this,SLOT(textStyleChanged()));
+
+connect( ui.shorttableWidget, SIGNAL(itemChanged(QTableWidgetItem * )), this, SLOT(shortCutItemChanged(QTableWidgetItem * )));
 
 //pagequick
 connect(ui.radioButton6, SIGNAL(toggled(bool)),ui.lineEditUserquick, SLOT(setEnabled(bool)));
@@ -110,49 +126,71 @@ void ConfigDialog::changePage(QListWidgetItem *current, QListWidgetItem *previou
 void ConfigDialog::browseAspell()
 {
 QString location=QFileDialog::getOpenFileName(this,tr("Browse dictionary"),QDir::homePath(),"Dictionary (*.dic)",0,QFileDialog::DontResolveSymlinks);
-if ( !location.isEmpty() ) 
+if ( !location.isEmpty() )
 	{
-	location.replace(QString("\\"),QString("/"));
+ 	location.replace(QString("\\"),QString("/"));
 //	location="\""+location+"\"";
 	ui.lineEditAspellCommand->setText( location );
 	}
 }
-
-void ConfigDialog::configureColorMath()
+void ConfigDialog::selectStyle(QString style){
+    QFormat &format=editorFormats[style];
+    ui.pushButtonColorText->setPalette(QPalette(format.foreground));
+    ui.pushButtonColorDecoration->setPalette(QPalette(format.linescolor));
+    ui.checkBoxBold->setChecked(format.weight==QFont::Bold);
+    ui.checkBoxItalic->setChecked(format.italic);
+    ui.checkBoxUnderline->setChecked(format.underline);
+    ui.checkBoxOverline->setChecked(format.overline);
+    ui.checkBoxStrikeout->setChecked(format.strikeout);
+    ui.checkBoxWaveUnderline->setChecked(format.waveUnderline);
+}
+void ConfigDialog::configureColorText()
 {
-QColor color = QColorDialog::getColor(ui.pushButtonColorMath->palette().background().color(), this);
-if (color.isValid()) 
+QColor color = QColorDialog::getColor(ui.pushButtonColorText->palette().background().color(), this);
+if (color.isValid())
 	{
-	ui.pushButtonColorMath->setPalette(QPalette(color));
-	ui.pushButtonColorMath->setAutoFillBackground(true);
+	ui.pushButtonColorText->setPalette(QPalette(color));
+	ui.pushButtonColorText->setAutoFillBackground(true);
+	textStyleChanged();
 	}
 }
 
-void ConfigDialog::configureColorCommand()
+void ConfigDialog::configureColorDecoration()
 {
-QColor color = QColorDialog::getColor(ui.pushButtonColorCommand->palette().background().color(), this);
-if (color.isValid()) 
+QColor color = QColorDialog::getColor(ui.pushButtonColorDecoration->palette().background().color(), this);
+if (color.isValid())
 	{
-	ui.pushButtonColorCommand->setPalette(QPalette(color));
-	ui.pushButtonColorCommand->setAutoFillBackground(true);
+	ui.pushButtonColorDecoration->setPalette(QPalette(color));
+	ui.pushButtonColorDecoration->setAutoFillBackground(true);
+	textStyleChanged();
 	}
 }
-
-void ConfigDialog::configureColorKeyword()
-{
-QColor color = QColorDialog::getColor(ui.pushButtonColorKeyword->palette().background().color(), this);
-if (color.isValid()) 
-	{
-	ui.pushButtonColorKeyword->setPalette(QPalette(color));
-	ui.pushButtonColorKeyword->setAutoFillBackground(true);
-	}
+void ConfigDialog::textStyleChanged(){
+    QString style=ui.comboBoxStyles->currentText();
+    QFormat format;
+    format.foreground=ui.pushButtonColorText->palette().color(QPalette::Button);
+    format.linescolor=ui.pushButtonColorDecoration->palette().color(QPalette::Button);
+    if (ui.checkBoxBold->isChecked()) format.weight=QFont::Bold;
+    else format.weight=QFont::Normal;
+    format.italic=ui.checkBoxItalic->isChecked();
+    format.underline=ui.checkBoxUnderline->isChecked();
+    format.overline=ui.checkBoxOverline->isChecked();
+    format.strikeout=ui.checkBoxStrikeout->isChecked();
+    format.waveUnderline=ui.checkBoxWaveUnderline->isChecked();
+    editorFormats[style]=format;
 }
-
+void ConfigDialog::lineEditAspellChanged(QString newText)
+{
+    if (QFile(newText).exists()) 
+        ui.labelGetDic->setText( tr("Get dictionary at: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>") );
+    else 
+        ui.labelGetDic->setText( "<font color=\"red\">"+tr("(Dictionary doesn't exists)")+"</font><br>"+tr("Get dictionary at: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>") );
+}
 //pagetools
 void ConfigDialog::browseLatex()
 {
 QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-if ( !location.isEmpty() ) 
+if ( !location.isEmpty() )
 	{
 	location.replace(QString("\\"),QString("/"));
 	location="\""+location+"\" -interaction=nonstopmode %.tex";
@@ -163,7 +201,7 @@ if ( !location.isEmpty() )
 void ConfigDialog::browseDvips()
 {
 QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-if ( !location.isEmpty() ) 
+if ( !location.isEmpty() )
 	{
 	location.replace(QString("\\"),QString("/"));
 	location="\""+location+"\" -o %.ps %.dvi";
@@ -174,7 +212,7 @@ if ( !location.isEmpty() )
 void ConfigDialog::browseBibtex()
 {
 QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-if ( !location.isEmpty() ) 
+if ( !location.isEmpty() )
 	{
 	location.replace(QString("\\"),QString("/"));
 	location="\""+location+"\" %.aux";
@@ -185,7 +223,7 @@ if ( !location.isEmpty() )
 void ConfigDialog::browseMakeindex()
 {
 QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-if ( !location.isEmpty() ) 
+if ( !location.isEmpty() )
 	{
 	location.replace(QString("\\"),QString("/"));
 	location="\""+location+"\" %.idx";
@@ -196,7 +234,7 @@ if ( !location.isEmpty() )
 void ConfigDialog::browseDviviewer()
 {
 QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-if ( !location.isEmpty() ) 
+if ( !location.isEmpty() )
 	{
 	location.replace(QString("\\"),QString("/"));
 	location="\""+location+"\" %.dvi";
@@ -207,7 +245,7 @@ if ( !location.isEmpty() )
 void ConfigDialog::browsePsviewer()
 {
 QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-if ( !location.isEmpty() ) 
+if ( !location.isEmpty() )
 	{
 	location.replace(QString("\\"),QString("/"));
 	location="\""+location+"\" %.ps";
@@ -218,7 +256,7 @@ if ( !location.isEmpty() )
 void ConfigDialog::browsePdflatex()
 {
 QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-if ( !location.isEmpty() ) 
+if ( !location.isEmpty() )
 	{
 	location.replace(QString("\\"),QString("/"));
 	location="\""+location+"\" -interaction=nonstopmode %.tex";
@@ -229,7 +267,7 @@ if ( !location.isEmpty() )
 void ConfigDialog::browseDvipdfm()
 {
 QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-if ( !location.isEmpty() ) 
+if ( !location.isEmpty() )
 	{
 	location.replace(QString("\\"),QString("/"));
 	location="\""+location+"\" %.dvi";
@@ -240,7 +278,7 @@ if ( !location.isEmpty() )
 void ConfigDialog::browsePs2pdf()
 {
 QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-if ( !location.isEmpty() ) 
+if ( !location.isEmpty() )
 	{
 	location.replace(QString("\\"),QString("/"));
 	location="\""+location+"\" %.ps";
@@ -251,7 +289,7 @@ if ( !location.isEmpty() )
 void ConfigDialog::browsePdfviewer()
 {
 QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-if ( !location.isEmpty() ) 
+if ( !location.isEmpty() )
 	{
 	location.replace(QString("\\"),QString("/"));
 	location="\""+location+"\" %.pdf";
@@ -262,7 +300,7 @@ if ( !location.isEmpty() )
 void ConfigDialog::browseMetapost()
 {
 QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-if ( !location.isEmpty() ) 
+if ( !location.isEmpty() )
 	{
 	location.replace(QString("\\"),QString("/"));
 	location="\""+location+"\" --interaction nonstopmode ";
@@ -273,7 +311,7 @@ if ( !location.isEmpty() )
 void ConfigDialog::browseGhostscript()
 {
 QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-if ( !location.isEmpty() ) 
+if ( !location.isEmpty() )
 	{
 	location.replace(QString("\\"),QString("/"));
 	location="\""+location+"\"";
@@ -282,3 +320,33 @@ if ( !location.isEmpty() )
 }
 
 
+void ConfigDialog::shortCutItemChanged ( QTableWidgetItem * item ){
+    if (item==NULL) return;
+    if (QString("none").compare(item->text(),Qt::CaseInsensitive)==0) return;
+    if (ui.shorttableWidget->currentItem ()==NULL) return;
+
+    QKeySequence newSeq(item->text());
+    if (QKeySequence(item->text()) == QKeySequence()){
+        QMessageBox::warning(this, tr("Texmaker"),
+                   tr("The shortcut you entered is invalid."),
+                   QMessageBox::Ok, QMessageBox::Ok);
+        item->setText(item->data(Qt::UserRole).toString());
+        return;
+    }
+    QString identicalShortcuts = "";
+    for (int i=0;i<ui.shorttableWidget->rowCount();i++)
+        if (QKeySequence(ui.shorttableWidget->item(i,1)->text())==newSeq && i!=item->row())
+            identicalShortcuts+=ui.shorttableWidget->item(i,0)->text()+"\n";
+    if (identicalShortcuts=="") return;
+
+    switch (QMessageBox::warning(this, tr("Texmaker"),
+                                 tr("The shortcut you entered is the same as the one of this command: \n")+identicalShortcuts+tr("\n Should I delete this other shortcut?"),
+                                 QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes))
+    {
+        case QMessageBox::Yes:
+            for (int i=0;i<ui.shorttableWidget->rowCount();i++)
+                if (QKeySequence(ui.shorttableWidget->item(i,1)->text())==newSeq && i!=item->row())
+                    ui.shorttableWidget->item(i,1)->setText("none");
+        break;
+    }
+}

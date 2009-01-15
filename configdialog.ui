@@ -6,29 +6,17 @@
     <x>0</x>
     <y>0</y>
     <width>751</width>
-    <height>542</height>
+    <height>649</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>Configure Texmaker</string>
   </property>
   <layout class="QGridLayout" >
-   <property name="leftMargin" >
+   <property name="margin" >
     <number>9</number>
    </property>
-   <property name="topMargin" >
-    <number>9</number>
-   </property>
-   <property name="rightMargin" >
-    <number>9</number>
-   </property>
-   <property name="bottomMargin" >
-    <number>9</number>
-   </property>
-   <property name="horizontalSpacing" >
-    <number>6</number>
-   </property>
-   <property name="verticalSpacing" >
+   <property name="spacing" >
     <number>6</number>
    </property>
    <item row="0" column="1" >
@@ -46,23 +34,14 @@
       </size>
      </property>
      <property name="currentIndex" >
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="pt" >
       <layout class="QVBoxLayout" >
        <property name="spacing" >
         <number>6</number>
        </property>
-       <property name="leftMargin" >
-        <number>9</number>
-       </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
+       <property name="margin" >
         <number>9</number>
        </property>
        <item>
@@ -77,42 +56,18 @@
           <string>Commands (% : filename without extension - @ : line number)</string>
          </property>
          <layout class="QGridLayout" >
-          <property name="leftMargin" >
+          <property name="margin" >
            <number>9</number>
           </property>
-          <property name="topMargin" >
-           <number>9</number>
-          </property>
-          <property name="rightMargin" >
-           <number>9</number>
-          </property>
-          <property name="bottomMargin" >
-           <number>9</number>
-          </property>
-          <property name="horizontalSpacing" >
-           <number>6</number>
-          </property>
-          <property name="verticalSpacing" >
+          <property name="spacing" >
            <number>6</number>
           </property>
           <item row="0" column="0" >
            <layout class="QGridLayout" >
-            <property name="leftMargin" >
+            <property name="margin" >
              <number>0</number>
             </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
-             <number>0</number>
-            </property>
-            <property name="horizontalSpacing" >
-             <number>6</number>
-            </property>
-            <property name="verticalSpacing" >
+            <property name="spacing" >
              <number>6</number>
             </property>
             <item row="5" column="2" >
@@ -121,7 +76,8 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+               <iconset resource="texmaker.qrc" >
+                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
                <size>
@@ -146,7 +102,8 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+               <iconset resource="texmaker.qrc" >
+                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
                <size>
@@ -179,7 +136,8 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+               <iconset resource="texmaker.qrc" >
+                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
                <size>
@@ -198,7 +156,8 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+               <iconset resource="texmaker.qrc" >
+                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
                <size>
@@ -214,7 +173,8 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+               <iconset resource="texmaker.qrc" >
+                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
                <size>
@@ -236,7 +196,8 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+               <iconset resource="texmaker.qrc" >
+                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
                <size>
@@ -255,7 +216,8 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+               <iconset resource="texmaker.qrc" >
+                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
                <size>
@@ -271,7 +233,8 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+               <iconset resource="texmaker.qrc" >
+                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
                <size>
@@ -335,7 +298,8 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+               <iconset resource="texmaker.qrc" >
+                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
                <size>
@@ -375,7 +339,8 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+               <iconset resource="texmaker.qrc" >
+                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
                <size>
@@ -391,7 +356,8 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+               <iconset resource="texmaker.qrc" >
+                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
                <size>
@@ -417,7 +383,8 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+               <iconset resource="texmaker.qrc" >
+                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
                <size>
@@ -437,7 +404,7 @@
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0" >
           <size>
            <width>401</width>
            <height>16</height>
@@ -452,16 +419,7 @@
        <property name="spacing" >
         <number>6</number>
        </property>
-       <property name="leftMargin" >
-        <number>9</number>
-       </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
+       <property name="margin" >
         <number>9</number>
        </property>
        <item>
@@ -476,22 +434,10 @@
           <string>Quick Build Command</string>
          </property>
          <layout class="QGridLayout" >
-          <property name="leftMargin" >
+          <property name="margin" >
            <number>9</number>
           </property>
-          <property name="topMargin" >
-           <number>9</number>
-          </property>
-          <property name="rightMargin" >
-           <number>9</number>
-          </property>
-          <property name="bottomMargin" >
-           <number>9</number>
-          </property>
-          <property name="horizontalSpacing" >
-           <number>6</number>
-          </property>
-          <property name="verticalSpacing" >
+          <property name="spacing" >
            <number>6</number>
           </property>
           <item row="0" column="0" >
@@ -499,16 +445,7 @@
             <property name="spacing" >
              <number>6</number>
             </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
+            <property name="margin" >
              <number>0</number>
             </property>
             <item>
@@ -573,7 +510,7 @@
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0" >
           <size>
            <width>441</width>
            <height>40</height>
@@ -585,30 +522,18 @@
      </widget>
      <widget class="QWidget" name="pe" >
       <layout class="QGridLayout" >
-       <property name="leftMargin" >
+       <property name="margin" >
         <number>9</number>
        </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>9</number>
-       </property>
-       <property name="horizontalSpacing" >
+       <property name="spacing" >
         <number>6</number>
        </property>
-       <property name="verticalSpacing" >
-        <number>6</number>
-       </property>
-       <item row="1" column="0" >
+       <item row="2" column="0" >
         <spacer>
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0" >
           <size>
            <width>411</width>
            <height>40</height>
@@ -616,7 +541,7 @@
          </property>
         </spacer>
        </item>
-       <item row="0" column="0" >
+       <item row="1" column="0" >
         <widget class="QGroupBox" name="groupBox_3" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
@@ -635,7 +560,7 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1" colspan="2" >
+          <item row="0" column="1" colspan="4" >
            <widget class="QComboBox" name="comboBoxFont" >
             <property name="editable" >
              <bool>true</bool>
@@ -649,7 +574,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1" colspan="2" >
+          <item row="1" column="1" colspan="4" >
            <widget class="QSpinBox" name="spinBoxSize" >
             <property name="minimum" >
              <number>1</number>
@@ -666,207 +591,29 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1" colspan="2" >
+          <item row="2" column="1" colspan="4" >
            <widget class="QComboBox" name="comboBoxEncoding" />
           </item>
-          <item row="3" column="0" >
+          <item row="4" column="0" >
            <widget class="QCheckBox" name="checkBoxWordwrap" >
             <property name="text" >
              <string>Word Wrap</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="1" >
-           <widget class="QCheckBox" name="checkBoxLinenumber" >
-            <property name="text" >
-             <string>Show Line Numbers</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0" >
-           <widget class="QLabel" name="labelColorMath" >
-            <property name="text" >
-             <string>"Math" color</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1" >
-           <widget class="QPushButton" name="pushButtonColorMath" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize" >
-             <size>
-              <width>22</width>
-              <height>22</height>
-             </size>
-            </property>
-            <property name="maximumSize" >
-             <size>
-              <width>22</width>
-              <height>22</height>
-             </size>
-            </property>
-            <property name="toolTip" >
-             <string>Click here to set this color</string>
-            </property>
-            <property name="autoFillBackground" >
-             <bool>true</bool>
-            </property>
-            <property name="text" >
-             <string/>
-            </property>
-            <property name="flat" >
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="2" >
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" >
-             <size>
-              <width>241</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="5" column="0" >
-           <widget class="QLabel" name="labelColorCommand" >
-            <property name="text" >
-             <string>"Command" color</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1" >
-           <widget class="QPushButton" name="pushButtonColorCommand" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize" >
-             <size>
-              <width>22</width>
-              <height>22</height>
-             </size>
-            </property>
-            <property name="maximumSize" >
-             <size>
-              <width>22</width>
-              <height>22</height>
-             </size>
-            </property>
-            <property name="toolTip" >
-             <string>Click here to set this color</string>
-            </property>
-            <property name="autoFillBackground" >
-             <bool>true</bool>
-            </property>
-            <property name="text" >
-             <string/>
-            </property>
-            <property name="flat" >
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="2" >
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" >
-             <size>
-              <width>241</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="6" column="0" >
-           <widget class="QLabel" name="labelColorKeyword" >
-            <property name="text" >
-             <string>"Keyword" color</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="1" >
-           <widget class="QPushButton" name="pushButtonColorKeyword" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize" >
-             <size>
-              <width>22</width>
-              <height>22</height>
-             </size>
-            </property>
-            <property name="maximumSize" >
-             <size>
-              <width>22</width>
-              <height>22</height>
-             </size>
-            </property>
-            <property name="toolTip" >
-             <string>Click here to set this color</string>
-            </property>
-            <property name="autoFillBackground" >
-             <bool>true</bool>
-            </property>
-            <property name="text" >
-             <string/>
-            </property>
-            <property name="flat" >
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="2" >
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" >
-             <size>
-              <width>241</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="7" column="0" >
+          <item row="9" column="0" >
            <widget class="QLabel" name="labelASpellCommand" >
             <property name="text" >
              <string>Spelling dictionary</string>
             </property>
            </widget>
           </item>
-          <item row="7" column="1" colspan="2" >
+          <item row="9" column="1" colspan="4" >
            <layout class="QHBoxLayout" >
             <property name="spacing" >
              <number>6</number>
             </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
+            <property name="margin" >
              <number>0</number>
             </property>
             <item>
@@ -885,13 +632,14 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+               <iconset resource="texmaker.qrc" >
+                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
              </widget>
             </item>
            </layout>
           </item>
-          <item row="8" column="1" colspan="2" >
+          <item row="10" column="1" colspan="3" >
            <widget class="QLabel" name="labelGetDic" >
             <property name="text" >
              <string/>
@@ -901,14 +649,14 @@
             </property>
            </widget>
           </item>
-          <item row="9" column="0" >
+          <item row="12" column="0" >
            <widget class="QLabel" name="labelshortcut" >
             <property name="text" >
              <string>Shortcuts</string>
             </property>
            </widget>
           </item>
-          <item rowspan="2" row="9" column="1" colspan="2" >
+          <item rowspan="2" row="12" column="1" colspan="4" >
            <widget class="QTableWidget" name="shorttableWidget" >
             <column>
              <property name="text" >
@@ -922,12 +670,12 @@
             </column>
            </widget>
           </item>
-          <item row="10" column="0" >
+          <item row="13" column="0" >
            <spacer>
             <property name="orientation" >
              <enum>Qt::Vertical</enum>
             </property>
-            <property name="sizeHint" >
+            <property name="sizeHint" stdset="0" >
              <size>
               <width>111</width>
               <height>41</height>
@@ -935,10 +683,153 @@
             </property>
            </spacer>
           </item>
-          <item row="3" column="2" >
+          <item row="3" column="1" colspan="2" >
+           <widget class="QCheckBox" name="checkBoxAutoDetectOnLoad" >
+            <property name="text" >
+             <string>auto detected encoding of loaded files</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0" >
+           <widget class="QLabel" name="label_2" >
+            <property name="text" >
+             <string>Change  style:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1" colspan="4" >
+           <widget class="QComboBox" name="comboBoxStyles" />
+          </item>
+          <item row="5" column="0" >
+           <widget class="QCheckBox" name="checkBoxLinenumber" >
+            <property name="text" >
+             <string>Show Line Numbers</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1" >
+           <widget class="QCheckBox" name="checkBoxLineState" >
+            <property name="text" >
+             <string>Show Line Change State</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1" >
            <widget class="QCheckBox" name="checkBoxCompletion" >
             <property name="text" >
              <string>Completion</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2" >
+           <widget class="QCheckBox" name="checkBoxFolding" >
+            <property name="text" >
+             <string>Folding</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="4" >
+           <widget class="QCheckBox" name="checkBoxRealTimeCheck" >
+            <property name="text" >
+             <string>real time checking</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1" colspan="4" >
+           <widget class="QFrame" name="frame" >
+            <property name="frameShape" >
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow" >
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout" >
+             <property name="horizontalSpacing" >
+              <number>6</number>
+             </property>
+             <item row="0" column="0" >
+              <widget class="QLabel" name="label_3" >
+               <property name="text" >
+                <string>Text color:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1" >
+              <widget class="QPushButton" name="pushButtonColorText" >
+               <property name="text" >
+                <string/>
+               </property>
+               <property name="flat" >
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0" >
+              <widget class="QLabel" name="label_5" >
+               <property name="text" >
+                <string>Decoration color:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1" >
+              <widget class="QPushButton" name="pushButtonColorDecoration" >
+               <property name="text" >
+                <string/>
+               </property>
+               <property name="flat" >
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0" >
+              <widget class="QCheckBox" name="checkBoxBold" >
+               <property name="text" >
+                <string>bold</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="2" >
+              <widget class="QCheckBox" name="checkBoxUnderline" >
+               <property name="text" >
+                <string>underline</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1" >
+              <widget class="QCheckBox" name="checkBoxItalic" >
+               <property name="text" >
+                <string>italic</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0" >
+              <widget class="QCheckBox" name="checkBoxOverline" >
+               <property name="text" >
+                <string>overline</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1" >
+              <widget class="QCheckBox" name="checkBoxStrikeout" >
+               <property name="text" >
+                <string>strikeout</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="2" >
+              <widget class="QCheckBox" name="checkBoxWaveUnderline" >
+               <property name="text" >
+                <string>wave underline</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="5" column="2" >
+           <widget class="QCheckBox" name="checkBoxState" >
+            <property name="text" >
+             <string>Show State Panel</string>
             </property>
            </widget>
           </item>
@@ -954,7 +845,7 @@
      <property name="orientation" >
       <enum>Qt::Vertical</enum>
      </property>
-     <property name="sizeHint" >
+     <property name="sizeHint" stdset="0" >
       <size>
        <width>131</width>
        <height>40</height>
@@ -967,16 +858,7 @@
      <property name="spacing" >
       <number>6</number>
      </property>
-     <property name="leftMargin" >
-      <number>0</number>
-     </property>
-     <property name="topMargin" >
-      <number>0</number>
-     </property>
-     <property name="rightMargin" >
-      <number>0</number>
-     </property>
-     <property name="bottomMargin" >
+     <property name="margin" >
       <number>0</number>
      </property>
      <item>
@@ -984,7 +866,7 @@
        <property name="orientation" >
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0" >
         <size>
          <width>407</width>
          <height>31</height>
@@ -1071,11 +953,6 @@
   <tabstop>spinBoxSize</tabstop>
   <tabstop>comboBoxEncoding</tabstop>
   <tabstop>checkBoxWordwrap</tabstop>
-  <tabstop>checkBoxLinenumber</tabstop>
-  <tabstop>checkBoxCompletion</tabstop>
-  <tabstop>pushButtonColorMath</tabstop>
-  <tabstop>pushButtonColorCommand</tabstop>
-  <tabstop>pushButtonColorKeyword</tabstop>
   <tabstop>lineEditAspellCommand</tabstop>
   <tabstop>pushButtonLatex</tabstop>
   <tabstop>pushButtonDvips</tabstop>
@@ -1095,7 +972,9 @@
   <tabstop>okButton</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="texmaker.qrc" />
+ </resources>
  <connections>
   <connection>
    <sender>okButton</sender>

@@ -23,15 +23,15 @@
 #include <QApplication>
 #include <QCloseEvent>
 #include <QDebug>
+#include <QMessageBox>
 
-WebPublishDialog::WebPublishDialog(QWidget *parent, QString name, QString gs_cd, QString latex_cd, QString dvips_cd, QString input_encoding)
+WebPublishDialog::WebPublishDialog(QWidget *parent, QString name, QString gs_cd, QString latex_cd, QString dvips_cd, QTextCodec *input_codec)
     :QDialog( parent)
 {
 gs_command=gs_cd;
 latex_command=latex_cd;
 dvips_command=dvips_cd;
-codec = QTextCodec::codecForName(input_encoding.toLatin1());
-if(!codec) codec = QTextCodec::codecForLocale();
+codec = input_codec;
 setWindowTitle(name);
 setModal(true);
 ui.setupUi(this);
@@ -129,16 +129,16 @@ if (fi.exists() && fi.isReadable())
 		{
 		HDir.mkdir(htmldir);
 		}
-	copyFile(programdir+"/style.css",htmldir+"/style.css");
-	copyFile(programdir+"/up.gif",htmldir+"/up.gif");
-	copyFile(programdir+"/up_d.gif",htmldir+"/up_d.gif");
-	copyFile(programdir+"/psheader.txt",workdir+"/psheader.txt");
+	copyDataFile("style.css",htmldir+"/style.css");
+	copyDataFile("up.gif",htmldir+"/up.gif");
+	copyDataFile("up_d.gif",htmldir+"/up_d.gif");
+	copyDataFile("psheader.txt",workdir+"/psheader.txt");
 	if (navigation==1) 
 		{
-		copyFile(programdir+"/next.gif",htmldir+"/next.gif");
-		copyFile(programdir+"/next_d.gif",htmldir+"/next_d.gif");
-		copyFile(programdir+"/prev.gif",htmldir+"/prev.gif");
-		copyFile(programdir+"/prev_d.gif",htmldir+"/prev_d.gif");
+		copyDataFile("next.gif",htmldir+"/next.gif");
+		copyDataFile("next_d.gif",htmldir+"/next_d.gif");
+		copyDataFile("prev.gif",htmldir+"/prev.gif");
+		copyDataFile("prev_d.gif",htmldir+"/prev_d.gif");
 		}
 	if (title=="") title=base;
 	if (tocdepth==2) 
@@ -197,8 +197,11 @@ ce->accept();
 //************************************
 void WebPublishDialog::RunCommand(QString comd,bool waitendprocess)
 {
+    ui.messagetextEdit->append("  Running this command: "+comd);
+    curLog="";
 proc = new QProcess( this );
 proc->setWorkingDirectory(workdir);
+connect(proc, SIGNAL(readyReadStandardError()),this, SLOT(readOutputForLog()));
 connect(proc, SIGNAL(finished(int)),this, SLOT(SlotEndProcess(int)));
 proc->start(comd);
 if (!proc->waitForStarted(1000)) 
@@ -221,6 +224,7 @@ void WebPublishDialog::SlotEndProcess(int err)
 if (err) 
 	{
 	ui.messagetextEdit->append("Error : a process has failed");
+	if (curLog!="") ui.messagetextEdit->append(curLog);
 	errprocess=true;
 	}
 procfinished=true;
@@ -228,6 +232,8 @@ procfinished=true;
 
 void WebPublishDialog::bboxProcess()
 {
+    ui.messagetextEdit->append("  Running this command: "+gs_command+" -q -dBATCH -dNOPAUSE -sDEVICE=bbox page.ps");
+    curLog="";
 bboxproc = new QProcess( this );
 bboxproc->setWorkingDirectory(workdir);
 connect(bboxproc, SIGNAL(finished(int)),this, SLOT(SlotEndProcess(int)));
@@ -275,6 +281,8 @@ while ( !bbox.atEnd() )
 
 void WebPublishDialog::imgProcess(QString command)
 {
+    curLog="";
+    ui.messagetextEdit->append("  Running this command: "+command);
 imgproc = new QProcess( this );
 imgproc->setWorkingDirectory(workdir);
 connect(imgproc, SIGNAL(finished(int)),this, SLOT(SlotEndProcess(int)));
@@ -321,6 +329,14 @@ else
 	}
 }
 
+void WebPublishDialog::readOutputForLog()
+{
+    QByteArray result=proc->readAllStandardError();
+    QString t=QString(result);
+    t=t.simplified();
+    if (!t.isEmpty()) curLog.append(t+"\n");
+}
+
 void WebPublishDialog::copyFile(QString from_file, QString to_file)
 {
 if (to_file.isEmpty() || from_file.isEmpty()) return;
@@ -338,6 +354,11 @@ else
 	{
 	fichier_or.copy(to_file);
 	}
+}
+
+void WebPublishDialog::copyDataFile(QString fileNameWithoutDir, QString to_file){
+    copyFile(programdir+"/"+fileNameWithoutDir,to_file);
+    copyFile(programdir+"/data/"+fileNameWithoutDir,to_file);
 }
 
 void WebPublishDialog::removeFile(QString file)
@@ -583,7 +604,7 @@ else
 			}
 		else 
 			{
-				copyFile(programdir+"/blank.png",htmldir+"/"+output+QString::number(id_page)+".png");
+				copyDataFile("blank.png",htmldir+"/"+output+QString::number(id_page)+".png");
 			}
 		removeFile(workdir+"/page.ps");
 		removeFile(workdir+"/tmp.ps");

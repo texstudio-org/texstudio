@@ -15,6 +15,7 @@
 #include "ui_configdialog.h"
 
 #include <QListWidgetItem>
+#include "QCodeEdit/qformat.h"
 
 class ConfigDialog : public QDialog
 {
@@ -25,15 +26,18 @@ public:
 	~ConfigDialog();
 Ui::ConfigDialog ui;
 
+    QMap<QString,QFormat> editorFormats;
 public slots:
     void changePage(QListWidgetItem *current, QListWidgetItem *previous);
 
 private slots:
 void createIcons();
+void lineEditAspellChanged(QString newText);
 void browseAspell();
-void configureColorMath();
-void configureColorCommand();
-void configureColorKeyword();
+void selectStyle(QString style);
+void configureColorText();
+void configureColorDecoration();
+void textStyleChanged();
 void browseLatex();
 void browseDvips();
 void browseBibtex();
@@ -46,6 +50,8 @@ void browsePs2pdf();
 void browsePdfviewer();
 void browseMetapost();
 void browseGhostscript();
+
+void shortCutItemChanged ( QTableWidgetItem * item );
 };
 
 #endif

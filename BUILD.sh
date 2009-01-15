@@ -1,5 +1,6 @@
 #!/bin/sh
 echo "Texmaker compilation :"
+echo "(make sure qcodeedit is installed)"
 echo "----------------------------------------"
 echo "Enter path to QT4 (/usr/lib/qt4 or ...):"
 read QTDIR

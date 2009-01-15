@@ -16,7 +16,7 @@ AboutDialog::AboutDialog(QWidget *parent)
 {
 ui.setupUi(this);
 ui.textBrowser->setOpenExternalLinks(true);
-ui.textBrowser->setHtml(QString::fromUtf8("<b>Texmaker 1.8</b><br><b>Copyright (c) 2004-2008 by Pascal Brachet</b><br><i>with the contribution of Joël Amblard (html conversion).</i><br>Texmaker contains code from the Hunspell program (GPL).<br>Texmaker uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)<br>Thanks to Frederic Devernay, Denis Bitouzé, Jean-Côme Charpentier & Luis Silvestre.<br><br>Project home site : <a href=\"http://www.xm1math.net/texmaker/\">http://www.xm1math.net/texmaker/</a><br><br>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation."));
+ui.textBrowser->setHtml(QString::fromUtf8("<b>TexmakerX 1.8</b><br>Copyright (c) (original TexMaker) 2004-2008 by Pascal Brachet<br>TexMakerX: Benito van der Zander<br>QCodeEdit: Luc Bruant <br>html conversion: Joël Amblard.</i><br>Texmaker contains code from the Hunspell program (GPL).<br>Texmaker uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)<br>Thanks to Frederic Devernay, Denis Bitouzé, Jean-Côme Charpentier & Luis Silvestre.<br><br>Project home site : <a href=\"http://www.xm1math.net/texmaker/\">http://www.xm1math.net/texmaker/</a><br><br>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation."));
 }
 
 AboutDialog::~AboutDialog(){
