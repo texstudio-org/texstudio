@@ -1,0 +1,64 @@
+version 1.7.1 -> 1.8:
+----------------------
+- texmaker can now be only started once per user : inverse search will no more launch a new instance of texmaker
+- the spell checker is now based on hunspell-1.2.4
+- the latex errors detection has been improved
+- the background color of the selected symbol is now always the same (to be sure that the symbol is always visible)
+- parentheses matching is back
+- "\end{...}" is now added automatically after "\begin{...}" while using autocompletion
+version 1.7 -> 1.7.1 :
+--------------------
+Bugs fixed :
+- no more crash with the "Previous LaTeX error" command and the syntax highlighting
+- the "find" command starts at cursor and not at the beginning of the document
+version 1.6 -> 1.7 :
+--------------------
+- New search widget
+- Spell checking is now based on hunspell and uses OpenOffice.org dictionaries.
+- New LaTeX log errors detection
+- Indentation "memory"
+- Code completion
+version 1.5 -> 1.6 :
+--------------------
+- spell checking bug has been fixed (when misspelled and original word has not the same size)
+- some keyboard accelerators has been changed (trouble with non latin1 keyboard configuration). Users can now changed some keyboard shortcuts ("latex" and "math" menus)
+- german, russian and chinese translations has been added
+- external browser is now used for the documentation
+- a "-master" option to the program command line has been added. The new synopsis is :
+texmaker file [-master] [-line xxx] 
+- the documentation has been completed
+- parentheses matching is now disabled
+- the config file is now in the ini format
+version 1.4 -> 1.5 :
+----------------------
+- a "most used symbols" panel has been added
+- the math mode "$$...$$" is replaced by "\[ \]"
+- keyboard accelerators has been added in the "latex" and "math" menus
+- the current line number can be added to the latex related commands
+- the colors for the syntax highlighting can now be modified
+- a summary of the latex errors and warnings is displayed before the full log file
+- compilation trouble with Qt>=4.2 has been fixed
+- support for "QFileOpenEvent" has been added (for macosx)
+- minor bugfixes (dialogs layout, french translation...)
+version 1.3 -> 1.4 :
+----------------------
+- Spell checking has been added (aspell is required)
+- Support for the main pstricks commands has been added
+- The html conversion tool is now available on windows (only ghostscript is required)
+- The editor checks now the braces
+- The syntax highlighter can now detect the math mode "\[ \]"
+- Tex files can now be dragged from a file manager to texmaker
+- minor bugfixes (replace dialog, close event...)
+version 1.2.1 -> 1.3 :
+----------------------
+- Texmaker is now a pure QT4 program (qt >= 4.1 is required). The qt3 support library is no more required. The editor is now based on the qt4 QtextEdit object and the symbols icon view is an qt4 QTableWidget object.
+- For each file, three bookmarks can be used to speed up navigation.
+
+version 1.2 -> 1.2.1 : Bugs fixed
+---------------------------------
+- Don't use anymore double-clic to open a file from the structure view (Qt-4.0.0 bug). A simple clic must be used now.
+- Don't use anymore / to separate commands (quick build and users commands) but | to avoid confusion with the directories separator.
+- A selected icon is no more highlighted (trouble on windows and macosx - the selected icon was masked).
+- Added the option '-line' for the application.
+New synopsis for texmaker : texmaker document.tex [-line xxx]
+Can be used for inverse search.

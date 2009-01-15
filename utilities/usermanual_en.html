@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>Texmaker : user manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css"><!--
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+<h1 align=center><A NAME="top">Texmaker : User manual</a></h1>
+<h2><a name="sommaire">Contents </a>:</h2>
+<ul>
+<li><a href="#SECTION0">1. Configuring Texmaker</a></li>
+	<ul>
+	<li><a href="#SECTION01">1.1 Configuring the editor</a></li>
+	<li><a href="#SECTION02">1.2 Configuring the latex related commands</a></li>
+	<li><a href="#SECTION03">1.3 Configuring the spell checker</a></li>
+	</ul>
+</ul>
+<ul>
+<li><a href="#SECTION1">2. Editing a TeX document</a></li>
+	<ul>
+	<li><a href="#SECTION11">2.1 Usual commands</a></li>
+	<li><a href="#SECTION12">2.2 Setting the preamble of a TeX document</a></li>
+	<li><a href="#SECTION13">2.3 Structure of a document</a></li>
+	<li><a href="#SECTION14">2.4 Browsing your document</a></li>
+	<li><a href="#SECTION15">2.5 Formatting your text</a></li>
+	<li><a href="#SECTION16">2.6 Spacings</a></li>
+	<li><a href="#SECTION17">2.7 Inserting a list</a></li>
+	<li><a href="#SECTION18">2.8 Inserting a table</a></li>
+	<li><a href="#SECTION19">2.9 Inserting a "tabbing" environment</a></li>
+	<li><a href="#SECTION110">2.10 Inserting a picture</a></li>
+	<li><a href="#SECTION111">2.11 Cross References and notes</a></li>
+	<li><a href="#SECTION112">2.12 Inserting math formulae</a></li>
+	</ul>
+</ul>
+<ul>
+<li><a href="#SECTION2">3. Compiling a document</a></li>
+	<ul>
+	<li><a href="#SECTION22">3.1 Compiling</a></li>
+	<li><a href="#SECTION23">3.2 The log files</a></li>
+	</ul>
+</ul>
+<ul>
+<li><a href="#SECTION3">4. Other features</a></li>
+	<ul>
+	<li><a href="#SECTION31">4.1 About documents separated in several files</a></li>
+	<li><a href="#SECTION32">4.2 Bibliography</a></li>
+	<li><a href="#SECTION33">4.3 Personals tags ans tools</a></li>
+	<li><a href="#SECTION34">4.4 Pstricks support</a></li>
+	<li><a href="#SECTION35">4.5 Metapost support</a></li>
+	<li><a href="#SECTION36">4.6 The "Convert to Html" command</a></li>
+	<li><a href="#SECTION37">4.7 "Forward/Inverse search" with Texmaker</a></li>
+	<li><a href="#SECTION38">4.8 Synopsis of the Texmaker command</a></li>
+	<li><a href="#SECTION39">4.9 Keyboard shortcuts</a></li>
+	</ul>
+</ul>
+<hr>
+<h1><a name="SECTION0">1. Configuring Texmaker</a></h1>
+Before using Texmaker, you must configure the editor and latex related commands via the "Configure Texmaker" command in the "Options" menu ("Preferences" under macosx).
+<h2><a name="SECTION01">1.1 Configuring the editor</a></h2>
+<p>
+Before compiling your first document, you must set the encoding used by the editor ("Configure Texmaker" -> "Editor" -> "Editor Font Encoding"). Then, you should use the same encoding in the preamble of yours TeX documents (example : \usepackage[latin]{inputenc}, if you use the "ISO-8859-1" encoding for the editor)
+</p>
+<h2><a name="SECTION02">1.2 Configuring the latex related commands</a></h2>
+<p>Texmaker can't compile yours documents if the paths to the LaTeX related commands are wrong.<br>
+The default settings should work with the recent and standard LaTeX distributions, but you should have to modify them ("Configure Texmaker" -> "Commands"). To change a command, just click on the button at the end of the corresponding line and select the command in the file browser : texmaker will adapt automatically the syntax of the command.<br>
+The <strong>%</strong> character represents the name of the file without the extension and the <strong>@</strong> character will be replaced by the current line number.<br>
+</p>
+<p><IMG src="doc14.png" border="1"></p>
+<h2><a name="SECTION03">1.3 Configuring the spell checker</a></h2>
+<p>
+The spell checker uses the OpenOffice.org dictionaries. Only GPL french and british dictionaries are distributed with Texmaker.<br>
+Users can download others dictionaries here : <A href="http://wiki.services.openoffice.org/wiki/Dictionaries" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A><br>
+To configure the spell checker : "Configure Texmaker" -> "Editor" -> "Spelling dictionary" -> click on the button at the end of the line to select the dictionary with the file browser.<br>
+<b>Warning : spell checking starts at the cursor position and not at the beginning of the document.</b>
+</p>
+<h1><a name="SECTION1">2. Editing a TeX document</a></h1>
+<h2><a name="SECTION11">2.1 Usual commands</a></h2>
+<p>The standard commands (cut, copy, find...) can be launched via the "Edit" menu and the "Edit" toolbar.</p>
+<p><IMG src="doc1.png" border="1"></p>
+<h2><a name="SECTION12">2.2 Setting the preamble of a TeX document</a></h2>
+<p>To define the preamble of your document, you can use the "Quick start" wizard ("Wizard" menu).</p>
+<p><IMG src="doc2.png" border="1"></p>
+<p>This dialog allows you to set the main features of your document (class, paper size, encoding...).<br>Note : You can add other options by clicking the "+" buttons. All yours settings are recorded.</p>
+<p>You can also type your own preamble model in the editor : with the "Copy/paste" or "Save As" commands, you can use it for a new document.</p>
+<h2><a name="SECTION13">2.3 Structure of a document</a></h2>
+<p>To define a new part (section,subsection...) in your document with Texmaker, just use this combobox in the toolbar :</p>
+<p><IMG src="doc3.png" border="1"></p>
+<p>This will cause a dialog to pop up which allows you to define the style of the part (section,subsection...).<br>Note : the "Structure View" is automatically updated.</p>
+<p><IMG src="doc4.png" border="1"></p>
+<h2><a name="SECTION14">2.4 Browsing your document</a></h2>
+<p>The "Structure View" (left panel) lets you quickly reach any part of your document. All you need to do is to click on any item (label, section...) and you will be taken to the beginning of the corresponding area in the editor.</p>
+<p><IMG src="doc5.png" border="1"></p>
+<p>The "Structure View" is automatically updated when you save or compile your document. You can also use the "Refresh Structure" ("Edit" menu) command at any moment.</p>
+<p>For each file, three bookmarks can be used to speed up navigation : just click on a line number to add or remove a bookmark. When you have already defined three bookmarks, you must remove one of them to add a new bookmark. To jump to the line corresponding to a bookmark in the editor, just click on the buttons in the status bar.</p>
+<p><IMG src="doc20.png" border="1"></p>
+<h2><a name="SECTION15">2.5 Formatting your text</a></h2>
+<p>You can quickly set the format of a part of your text with this toolbar :</p>
+<p><IMG src="doc6.png" border="1"></p>
+<p><b>Additional option:</b> a selected text can be directly framed by certain environments. Example: while clicking on the button "Bold" after having selected the word "Hello" , you will obtain the code: \textbf{Hello}.<br>This option is available for all the environments indicated by "[selection]" in the "LaTeX" menu.</p>
+<h2><a name="SECTION16">2.6 Spacings</a></h2>
+<p>The usual "spacing" commands are available in the "LaTeX" and "Math" menus. To insert quickly the "new line" LaTeX command, you can use the corresponding command in the toolbar (shortcut : Ctrl+Alt+return) </p>
+<h2><a name="SECTION17">2.7 Inserting a list</a></h2>
+<p>The usual list environments code can be insert quickly via the "LaTeX-List" menu.<br>Note : the shortcut for the \item command is Ctrl+Alt+H.</p>
+<h2><a name="SECTION18">2.8 Inserting a table</a></h2>
+<p>With the "Tabular" wizard ("Wizard" menu), the LaTeX code for a tabular environment can be quickly inserted :</p>
+<p><IMG src="doc7.png" border="1"></p>
+<p>You can set the main features of your table.<br>Note : this dialog allows you to type directly the code in the cells.<br>The corresponding LaTeX code is automatically inserted in the editor.</p>
+<h2><a name="SECTION19">2.9 Inserting a "tabbing" environment</a></h2>
+<p>To help you to insert a "tabbing" code, you can use the "Tabbing" wizard ("Wizard" menu) :</p>
+<p><IMG src="doc8.png" border="1"></p>
+<h2><a name="SECTION110">2.10 Inserting a picture</a></h2>
+<p>To insert a picture in your document, just use the "\includegraphics" command in the "LaTeX" menu. Then, click on the "browser" button in the dialog to select the graphic file.<br>Note : you can insert a "figure" LaTeX environment ("LaTeX - Environments" menu) before inserting the picture.</p>
+<p><IMG src="doc9.png" border="1"></p>
+<h2><a name="SECTION111">2.11 Cross References and notes</a></h2>
+<p>This toolbox in the toolbar allows you to insert quickly the label, cite, ref, footnote... code.<br>Note : the labels used in your documents are displayed in the "Structure View".</p>
+<p><IMG src="doc10.png" border="1"></p>
+<p><b>Additional option:</b>for the \ref command, a dialog box allows you to select directly the label.</p>
+<h2><a name="SECTION112">2.12 Inserting math formulae</a></h2>
+<p>You can toggle in the "in-line math" environment with the "f(x)" button in the toolbar (shortcut : Ctrl+Alt+M) or with the "Math" menu. The shortcut for the "display math" environment is : Alt+Shift+M.<br> The "Math" toolbar allows you to insert the most currents mathematical forms (frac, sqrt...) like the \left and \right tags.</p>
+<p><IMG src="doc11.png" border="1"></p>
+<p>With the "symbols panels" in the structure view, you can insert the code of 400 mathematical symbols.</p>
+<p><IMG src="doc12.png" border="1"></p>
+<p>You can also define the format of your mathematical text via the "Math" menu.<br>For the "array" environments, a wizard (like the "Tabular" wizard) is available in the "Wizard" menu. With this wizard, you can select the environment : array, matrix, pmatrix.... The cells can be directly completed.</p>
+<p><IMG src="doc13.png" border="1"></p>
+<h1><a name="SECTION2">3. Compiling a document</a></h1>
+<h2><a name="SECTION22">3.1 Compiling</a></h2>
+<p>The easiest way to compile a document is to use the "Quick Build" command ("Quick" button - shortcut : F1). You can define the sequence of commands used by the "Quick Build" command via the "Configure Texmaker" dialog.<br>You can also launch each command one by one (shortcuts : F2...F12 - see the "Tools" menu).<br> Note : the "Clean" command in the "Tools menu" allows you to erase the files (dvi, toc, aux...) generated by a LaTeX compilation (except the ps and pdf files).<br>
+<b>Warning : all yours files must have an extension and you can't compile an "untitled" file or a file with a space in his name</b>.</p>
+<h2><a name="SECTION23">3.2 The log files</a></h2>
+<p>With the "Quick Build" command, the log file is automatically displayed in the "Messages / Log file" pannel. While clicking on a number in the "Line" column, the cursor is placed on the corresponding line in the editor and the error is displayed. <br>
+Remark : a summary of the latex errors and warnings is displayed before the full log file.</p>
+<p><IMG src="doc15.png" border="1"></p>
+<p>The "Next Latex Error"and "Previous LaTeX Error" commands allow to get to the errors detected during compilation.</p>
+<h1><a name="SECTION3">4. Other features</a></h1>
+<h2><a name="SECTION31">4.1 About documents separated in several files</a></h2>
+<p>Texmaker allows you to work onto documents separated in several files.<br>
+To include a TeX file into your document, just use the "\include{file}" command in the "LaTeX" menu. The file will appear in the "Structure View". With a click on his name, Texmaker will open it.</p>
+<p>Then, you can define your "master document" with the "Options" menu. All the commands of the "Tools" menu will apply only to this document even when working on the "children" documents (you can even close the "master" document).<br>Note : you can leave the "master" mode with the "Options" menu.</p>
+<h2><a name="SECTION32">4.2 Bibliography</a></h2>
+<p>For the "bib" files , the "Bibliography" menu enables you to directly insert the entries corresponding to the standard types of document.<br>Note: the optional fields can be automatically deleted with the "Clean" command of the "Bibliography" menu.</p>
+<p><IMG src="doc16.png" border="1"></p>
+<h2><a name="SECTION33">4.3 Personals tags ans tools</a></h2>
+<p>Texmaker allows you to insert your own tags (shortcuts : Shift+F1...Shift+F10). These tags are defined with the "User - User Tags" menu.<br>Note : if the code of the menu is "%environment", Texmaker will directly insert:<br>
+\begin{environment }<br>
+<br>
+\end{environment }<br>
+</p>
+<p><IMG src="doc17.png" border="1"></p>
+<p>You can also launch your own commands (shortcuts : Alt+Shift+F1...Alt+Shift+F5). These commands are defined with the "User - User Commands" menu.</p>
+<h2><a name="SECTION34">4.4 Pstricks support</a></h2>
+<p>The main pstricks commands can be inserted with the "Pstricks" panel in the "Structure View".</p>
+<h2><a name="SECTION35">4.5 Metapost support</a></h2>
+<p>The metapost keywords can be inserted with the "Metapost" panel in the "Structure View" and the "mpost" command can be launched via the "Tools" menu.</p>
+<h2><a name="SECTION36">4.6 The "Convert to Html" command</a></h2>
+<p>This command (from the "Tools" menu ) produces a set of html pages from a LaTeX source file with one image for each html page. Each page in the slide presentation corresponds to one of the postscript pages you would obtain running LaTeX.<br>
+The command also produces an index page corresponding to the table of contents you would obtain with LaTeX. Each item of the index page includes a link to the corresponding html page.</p>
+<p>You can create links in the html pages by using the \ttwplink{}{} command in the tex file.<br>
+Synopsis :<br> 
+\ttwplink{http://www.mylink.com}{my text} (external link)<br>
+\ttwplink{page3.html}{my text} (internal link)<br>
+\ttwplink{name_of_a_label}{my text} (internal link)<br>
+<b>Warning : </b>You can't use this command with the hyperref package (and some others packages). This command can only be used with the "Convert to html" tool.</p>
+<p><IMG src="doc18.png" border="1"></p>
+<p><IMG src="doc19.png" border="1"></p>
+<h2><a name="SECTION37">4.7 "Forward/Inverse search" with Texmaker</a></h2>
+<p>
+Some dvi viewers can jump to (and visually highlight) a position in the DVI file that corresponds to a certain line number in the (La)TeX source file.<br>
+To use this feature, you can use the <b>@</b> character in the syntax of the dvi viewer command ("Configure Texmaker" -> "Commands").<br>
+Examples ("Forward search"):
+<ul>
+<li>To launch yap from texmaker : "C:/Program Files/MiKTeX 2.7/miktex/bin/yap.exe" -1 -s @%.tex %.dvi</li>
+<li>To launch xdvi from texmaker : xdvi %.dvi  -sourceposition @:%.tex</li>
+<li>To launch kdvi from texmaker : kdvi "file:%.dvi#src:@ %.tex"</li>
+</ul>
+For the opposite operation ("Inverse search") :
+<ul>
+<li>To launch texmaker from yap : "C:\Program Files\Texmaker\texmaker.exe" "%f" -line %l <i>(the program arguments : "%f" -line %l )</i></li>
+<li>To launch texmaker from xdvi : xdvi -editor "texmaker %f -line" %.dvi -sourceposition @:%.tex</li>
+</ul>
+<!--Remark : if you try to use "inverse search" with texmaker (the opposite operation of the "forward search"), a new instance of texmaker will be launched at each time. This operation is not recommended.-->
+</p>
+<h2><a name="SECTION38">4.8 Synopsis of the texmaker command</a></h2>
+<p>
+texmaker file [-master] [-line xx]<br>
+With the "-master" option, the document will be automatically defined as a "master" document.<br>
+With the "-line xx" option, Texmaker will ask you if you want to jump to the xx line after loading the document.
+</p>
+<h2><a name="SECTION39">4.9 Keyboard shortcuts</a></h2>
+<p>
+Defaults keyboard shorscuts (*:can be modified - "Configure Texmaker" -> "Editor") :
+<ul>
+<li> "File" menu :
+	<ul>
+	<li>New : Ctrl+N</li>
+	<li>Open : Ctrl+O</li>
+	<li>Save : Ctrl+S</li>
+	<li>Close : Ctrl+W</li>
+	<li>Exit : Ctrl+Q</li>
+	</ul>
+</li>
+<li> "Edit" menu :
+	<ul>
+	<li>Undo : Ctrl+Z</li>
+	<li>Redo : Ctrl+Y</li>
+	<li>Copy : Ctrl+C</li>
+	<li>Cut : Ctrl+X</li>
+	<li>Paste : Ctrl+V</li>
+	<li>Select all : Ctrl+A</li>
+	<li>Comment : Ctrl+T</li>
+	<li>Uncomment : Ctrl+U</li>
+	<li>Find : Ctrl+F</li>
+	<li>Find next : Ctrl+M</li>
+	<li>Replace : CTrl+R</li>
+	<li>Goto line : Ctrl+G</li>
+	<li>Check spelling (from cursor) : Ctrl+Shift+F7</li>
+	</ul>
+</li>
+<li> "Tools" menu :
+	<ul>
+	<li>Quick build : F1</li>
+	<li>Latex : F2</li>
+	<li>View dvi : F3</li>
+	<li>Dvi->PS : F4</li>
+	<li>View PS : F5</li>
+	<li>Pdflatex : F6</li>
+	<li>View Pdf : F7</li>
+	<li>PS->Pdf : F8</li>
+	<li>Dvi->Pdf : F9</li>
+	<li>View log : F10</li>
+	<li>Bibtex : F11</li>
+	<li>Make index : F12</li>
+	</ul>
+</li>
+<li> * "LaTeX" menu :
+	<ul>
+	<li>* item : Ctrl+Shift+I</li>
+	<li>* Italic : Ctrl+I</li>
+	<li>* Slanted : Ctrl+Shift+S</li>
+	<li>* Bold : Ctrl+O</li>
+	<li>* Typewriter : Ctrl+Shift+T</li>
+	<li>* Small caps : Ctrl+Shift+C</li>
+	<li>* Emphasis : Ctrl+Shift+E</li>
+	<li>* New line : Ctrl+Return</li>
+	</ul>
+</li>
+<li> * "Math" menu :
+	<ul>
+	<li>* Inline math mode : Ctrl+Shift+M</li>
+	<li>* Display math mode : Alt+Shift+M</li>
+	<li>* Numbered equations : Ctrl+Shift+N</li>
+	<li>* Subscript : Ctrl+Shift+D</li>
+	<li>* Superscript : CTrl+Shift+U</li>
+	<li>* Frac : Alt+Shift+F</li>
+	<li>* Dfrac : Ctrl+Shift+F</li>
+	<li>* Sqrt : Ctrl+Shift+Q</li>
+	<li>* Left : Ctrl+Shift+L</li>
+	<li>* Right : Ctrl+Shift+R</li>
+	</ul>
+</li>
+<li> "User" menu :
+	<ul>
+	<li>User tags : Shift+F1...Shift+F10</li>
+	<li>User commands : Shift+Alt+F1...Shift+Alt+F10</li>
+	</ul>
+</li>
+</ul>
+</p>
+</body></html>

@@ -1,0 +1,40 @@
+/* ttwp style sheet - modify it as you please */ 
+BODY      { font-family:sans-serif; }
+P        { font-family:sans-serif; }
+OL        { font-family:sans-serif; }
+UL        { font-family:sans-serif; }
+LI       { font-family:sans-serif; }
+TD        { font-family:sans-serif; }
+H1        { font-family:sans-serif; }
+H2        { font-family:sans-serif; }
+H3        { font-family:sans-serif; }
+H4        { font-family:sans-serif; }
+H5        { font-family:sans-serif; }
+H6        { font-family:sans-serif; }
+A:link    { color:#22437f; text-decoration: none;}
+A:visited { color:#22437f; text-decoration: none;}
+A:hover   { color:red; text-decoration: none;}
+#address {
+	text-align: center;
+	font-family : serif;
+	font-style : italic;
+	font-size : small;
+	}
+#navigation { 
+    background-color: #E6E6E6; 
+    font-family : monospace;
+    font-size : small;
+    text-align: center; 
+    border: solid 1px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+#content { 
+    background-color: #FFFFFF; 
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
