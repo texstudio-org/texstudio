@@ -1,0 +1,51 @@
+<!DOCTYPE QNFA>
+<QNFA language="(La-)Tex" extensions="tex" defaultLineMark="">
+	
+  
+	<context id="comment/single" format="comment" stayOnLine="true" >
+		<start>%</start>
+		<stop exclusive="false">\n</stop>
+	</context>
+	
+	<context id="mathmode" format="numbers">
+		<start parenthesis="math:open" fold="1" >$</start>
+		<stop parenthesis="math:close" fold="1" >$</stop>
+	</context>
+
+	<list id="keywords/block" format="extra-keyword">
+		<prefix>\\</prefix>
+		<word>part</word>
+		<word>chapter</word>
+		<word>section</word>
+		<word>subsection</word>
+		<word>subsection*</word>
+		<word>paragraph</word>
+		<word>subparagraph</word>
+	</list>
+	
+  <word id="keywords/single" format="keyword">\\[a-zA-Z]+</word>
+	
+	<sequence parenthesis="round:open">(</sequence>
+	<sequence parenthesis="round:close">)</sequence>
+	<sequence parenthesis="curly:open" indent="1" fold="1">{</sequence>
+	<sequence parenthesis="curly:close" indent="1" fold="1">}</sequence>
+	<sequence parenthesis="square:open">\[</sequence>
+	<sequence parenthesis="square:close">\]</sequence>
+	
+	<word parenthesis="block:open" fold="1" indent="1" format="extra-keyword">\\begin</word>
+	<word parenthesis="block:close" fold="1" indent="1" format="extra-keyword" >\\end</word>
+
+  <!-- uncomment this to activate folding workaround
+  <word format="extra-keyword" parenthesis="ppart:open" fold="1" >\\part</word>
+	<word format="extra-keyword" parenthesis="ppart:close" fold="1">%\\end-part</word>
+  <word format="extra-keyword" parenthesis="pchapter:open" fold="1" >\\chapter</word>
+  <word format="extra-keyword" parenthesis="pchapter:close" fold="1" >%\\end-chapter</word>
+  <word format="extra-keyword" parenthesis="psection:open" fold="1" >\\section</word>
+  <word format="extra-keyword" parenthesis="psection:close" fold="1" >%\\end-section</word>
+  <word format="extra-keyword" parenthesis="psubsection:open" fold="1" >\\subsection</word>
+  <word format="extra-keyword" parenthesis="psubsectoin:close" fold="1" >%\\end-subsection</word>
+  <word format="extra-keyword" parenthesis="pparagraph:open" fold="1" >\\paragraph</word>
+  <word format="extra-keyword" parenthesis="pparagraph:close" fold="1" >%\\end-paragraph</word>
+  -->
+</QNFA>
+

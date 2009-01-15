@@ -1,8 +1,15 @@
+Before compiling texmaker you have to install QCodeEdit,
+call qmake && make && make install in the qcodeedit sub directory.
+
 To compile and install Texmaker (Unix and MacosX) :
 
 sudo sh BUILD.sh
 
 (you must have root password)
+
+On Windows:
+qmake texmaker
+make debug
 
 Requirements : 
 Qt tool kit (www.trolltech.com)

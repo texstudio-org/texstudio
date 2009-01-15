@@ -29,19 +29,23 @@
 #include <QProcess>
 #include <QPushButton>
 #include <QColor>
-#include <QCompleter>
 #include <QTextTable>
 #include <QVBoxLayout>
 #include <QTableWidget>
 
 #include "latexeditorview.h"
+#include "latexcompleter.h"
 #include "symbollistwidget.h"
 #include "metapostlistwidget.h"
 #include "pstrickslistwidget.h"
 #include "logeditor.h"
-#include "gotolinedialog.h"
-#include "replacedialog.h"
+#include "textanalysis.h"
+#include "spellerdialog.h"
 
+
+#include "QCodeEdit/qformatfactory.h"
+#include "QCodeEdit/qlanguagefactory.h"
+#include "QCodeEdit/qlinemarksinfocenter.h"
 
 
 typedef  QMap<LatexEditorView*, QString> FilesMap;
@@ -66,6 +70,7 @@ void setLine( const QString &line );
 void ToggleMode();
 void onOtherInstanceMessage(const QString &);  // For messages for the single instance
 
+static QString findResourceFile(QString fileName);
 private:
 void setupMenus();
 void setupToolBars();
@@ -75,6 +80,12 @@ void closeEvent(QCloseEvent *e);
 
 FilesMap filenames;
 KeysMap shortcuts, actionstext;
+
+QString configFileName;
+QFormatFactory *m_formats;
+QLanguageFactory* m_languages;
+LatexCompleter* completer;
+
 //gui
 QDockWidget *OutputView, *StructureView;
 QTabWidget *EditorView;
@@ -86,6 +97,8 @@ SymbolListWidget *RelationListWidget, *ArrowListWidget, *MiscellaneousListWidget
 QTreeWidget *StructureTreeWidget;
 QVBoxLayout *OutputLayout;
 QTableWidget *OutputTableWidget;
+
+
 //menu-toolbar
 QMenu *fileMenu, *recentMenu, *editMenu, *toolMenu;
 QMenu *latex1Menu, *latex11Menu, *latex12Menu, *latex13Menu, *latex14Menu, *latex15Menu, *latex16Menu, *latex17Menu ;
@@ -108,19 +121,26 @@ QStringList recentFilesList;
 //settings
 int split1_right, split1_left, split2_top, split2_bottom, quickmode;
 bool singlemode, wordwrap, parenmatch, showline, showoutputview, showstructview, ams_packages, makeidx_package, completion;
+bool folding, showlinestate, showcursorstate, realtimespellchecking;
 QString document_class, typeface_size, paper_size, document_encoding, author;
 QString latex_command, viewdvi_command, dvips_command, dvipdf_command, metapost_command;
 QString viewps_command, ps2pdf_command, makeindex_command, bibtex_command, pdflatex_command, viewpdf_command, userquick_command, ghostscript_command;
 QString spell_dic, spell_ignored_words;
-QString lastDocument, input_encoding;
+QString lastDocument;
+QTextCodec* newfile_encoding;
+bool autodetectLoadedFile;
 QString struct_level1, struct_level2, struct_level3, struct_level4, struct_level5;
 QStringList userClassList, userPaperList, userEncodingList, userOptionsList;
 QStringList structlist, labelitem, structitem;
 Userlist UserMenuName, UserMenuTag;
 UserCd UserToolName, UserToolCommand;
+QVector<QString> UserKeyReplace, UserKeyReplaceAfterWord, UserKeyReplaceBeforeWord;
+
+int spellcheckErrorFormat;
+SpellerUtility *mainSpeller;
 //dialogs
-QPointer<ReplaceDialog> replaceDialog;
-QPointer<GotoLineDialog> gotoLineDialog;
+SpellerDialog *spellDlg;
+
 
 //tools
 QProcess *proc;
@@ -139,12 +159,11 @@ int x11fontsize;
 SymbolList symbolScore;
 usercodelist symbolMostused;
 
-QColor colorMath, colorCommand, colorKeyword;
 
-QCompleter *completer;
-
-private slots:
 LatexEditorView *currentEditorView() const;
+void configureNewEditorView(LatexEditorView *edit);
+private slots:
+
 void fileNew();
 void fileOpen();
 void fileSave();
@@ -168,6 +187,8 @@ void editFind();
 void editFindNext();
 void editReplace();
 void editGotoLine();
+void editJumpToLastChange();
+void editJumpToLastChangeForward();
 void editComment();
 void editUncomment();
 void editIndent();
@@ -263,12 +284,15 @@ void UserTool3();
 void UserTool4();
 void UserTool5();
 void EditUserTool();
+void EditUserKeyReplacements();
 
 void WebPublish();
+void AnalyseText();
 
 void ViewLog();
 void ClickedOnOutput(int l);
 void ClickedOnLogLine(QTableWidgetItem *item);
+void OutputViewVisibilityChanged(bool visible);
 void LatexError();
 void DisplayLatexError();
 void NextError();
@@ -288,10 +312,31 @@ void gotoPrevDocument();
 //void ToggleMode();
 
 void SetInterfaceFont();
+void SetInterfaceType();
 
-void gotoBookmark1();
-void gotoBookmark2();
-void gotoBookmark3();
+void gotoBookmark(int id);
+void gotoBookmark0(){gotoBookmark(0);}
+void gotoBookmark1(){gotoBookmark(1);}
+void gotoBookmark2(){gotoBookmark(2);}
+void gotoBookmark3(){gotoBookmark(3);}
+void gotoBookmark4(){gotoBookmark(4);}
+void gotoBookmark5(){gotoBookmark(5);}
+void gotoBookmark6(){gotoBookmark(6);}
+void gotoBookmark7(){gotoBookmark(7);}
+void gotoBookmark8(){gotoBookmark(8);}
+void gotoBookmark9(){gotoBookmark(9);}
+
+void toggleBookmark(int id);
+void toggleBookmark0(){toggleBookmark(0);}
+void toggleBookmark1(){toggleBookmark(1);}
+void toggleBookmark2(){toggleBookmark(2);}
+void toggleBookmark3(){toggleBookmark(3);}
+void toggleBookmark4(){toggleBookmark(4);}
+void toggleBookmark5(){toggleBookmark(5);}
+void toggleBookmark6(){toggleBookmark(6);}
+void toggleBookmark7(){toggleBookmark(7);}
+void toggleBookmark8(){toggleBookmark(8);}
+void toggleBookmark9(){toggleBookmark(9);}
 
 void SetMostUsedSymbols();
 

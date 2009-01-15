@@ -1,0 +1,17 @@
+<!DOCTYPE QNFA>
+<QNFA language="BibTex" extensions="bib" defaultLineMark="">
+	<context id="comment" format="comment" >
+		<start parenthesis="comment:open" fold="1" >@comment$s*{</start>
+		<stop parenthesis="comment:close" fold="1" >}</stop>
+	</context>
+	
+	<word id="keywords/single" format="keyword">@[a-zA-Z]+</word>
+	
+	<sequence parenthesis="curly:open" indent="1" fold="1">{</sequence>
+	<sequence parenthesis="curly:close" indent="1" fold="1">}</sequence>
+	
+	<context id="string" format="text" >
+		<start>&quot;</start>
+		<stop>&quot;</stop>
+	</context>
+</QNFA>

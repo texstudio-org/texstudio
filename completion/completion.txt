@@ -33,6 +33,7 @@
 \begin{Large}
 \begin{large}
 \begin{list}{}{}
+\begin{math}
 \begin{matrix}
 \begin{minipage}[position]{width}
 \begin{minipage}{width}
@@ -124,6 +125,7 @@
 \end{Large}
 \end{large}
 \end{list}
+\end{math}
 \end{matrix}
 \end{minipage}
 \end{normalsize}
