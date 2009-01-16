@@ -15,7 +15,7 @@
 #include "ui_configdialog.h"
 
 #include <QListWidgetItem>
-#include "QCodeEdit/qformat.h"
+#include "qformat.h"
 
 class ConfigDialog : public QDialog
 {

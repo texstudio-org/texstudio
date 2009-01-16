@@ -1,8 +1,8 @@
-TEMPLATE	= app
+TEMPLATE	=  app
 LANGUAGE	= C++
 TARGET	 = texmakerx
 CONFIG	+= qt warn_off release 
-QT += network
+QT += network xml
 ###############################
 HEADERS	+= texmaker.h \
 	dsingleapplication.h \
@@ -257,5 +257,6 @@ QMAKE_INFO_PLIST =Info.plist
 }
 
 
-LIBS         += -lqcodeedit
-
+INCLUDEPATH += qcodeedit/lib qcodeedit/lib/document qcodeedit/lib/widgets
+LIBS        += qcodeedit/libqcodeedit.a
+ 

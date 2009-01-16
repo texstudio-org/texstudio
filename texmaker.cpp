@@ -76,9 +76,9 @@
 #include "aboutdialog.h"
 #include "webpublishdialog.h"
 
-#include "QCodeEdit/qdocument.h"
-#include "QCodeEdit/qdocumentline.h"
-#include "QCodeEdit/qcodecompletionengine.h"
+#include "qdocument.h"
+#include "qdocumentline.h"
+#include "qcodecompletionengine.h"
 
 #if defined( Q_WS_X11 )
 #include "x11fontdialog.h"
@@ -255,7 +255,7 @@ stat2->setText(QString(" %1 ").arg(tr("Ready")));
 setAcceptDrops(true);
 
     mainSpeller=new SpellerUtility();;
-    mainSpeller->loadDictionary(spell_dic,configFileName.replace(QString(".ini"),""));
+    mainSpeller->loadDictionary(spell_dic,configFileNameBase);
     mainSpeller->setActive(realtimespellchecking);
     
     LatexEditorView::setSpeller(mainSpeller);
@@ -263,9 +263,7 @@ setAcceptDrops(true);
     if (QFileInfo(QCoreApplication::applicationDirPath()+"/texmakerFormats.qxf").exists() && QFileInfo(QCoreApplication::applicationDirPath()+"/texmakerFormats.qxf").isWritable()) 
         m_formats = new QFormatFactory(QCoreApplication::applicationDirPath()+"/texmakerFormats.qxf", this);
     else {
-        QString formatFileName; 
-        if (configFileName.endsWith(".ini")) formatFileName=configFileName.replace(QString(".ini"),"Formats.qxf");
-        else formatFileName=configFileName+"Formats.qxf";
+        QString formatFileName=configFileNameBase+"Formats.qxf";
         
         if (!QFileInfo(formatFileName).exists()) 
             QFile::copy(findResourceFile("defaultFormats.qxf"), formatFileName);
@@ -2232,6 +2230,9 @@ void Texmaker::ReadSettings()
         }
     }
     configFileName=config->fileName();
+    configFileNameBase=configFileName;
+    if (configFileNameBase.endsWith(".ini")) configFileNameBase=configFileNameBase.replace(QString(".ini"),"");
+    
 
 
 config->beginGroup( "texmaker" );
@@ -2543,8 +2544,7 @@ config->endGroup();
 
 void Texmaker::SaveSettings()
 {
-    QSettings *config;
-    config=new QSettings (configFileName, QSettings::IniFormat);   
+    QSettings *config=new QSettings (configFileName, QSettings::IniFormat);   
 
 config->setValue( "IniMode",true);
 config->beginGroup( "texmakerx" );

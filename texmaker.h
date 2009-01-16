@@ -45,9 +45,9 @@
 #include "spellerdialog.h"
 
 
-#include "QCodeEdit/qformatfactory.h"
-#include "QCodeEdit/qlanguagefactory.h"
-#include "QCodeEdit/qlinemarksinfocenter.h"
+#include "qformatfactory.h"
+#include "qlanguagefactory.h"
+#include "qlinemarksinfocenter.h"
 
 
 typedef  QMap<LatexEditorView*, QString> FilesMap;
@@ -83,7 +83,7 @@ void closeEvent(QCloseEvent *e);
 FilesMap filenames;
 KeysMap shortcuts, actionstext;
 
-QString configFileName;
+QString configFileName,configFileNameBase;
 QFormatFactory *m_formats;
 QLanguageFactory* m_languages;
 LatexCompleter* completer;

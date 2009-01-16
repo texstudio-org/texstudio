@@ -30,12 +30,12 @@
 #ifdef QCE_EXPORT
 	#error QCE_EXPORT already defined...
 #endif
-
-#ifdef _QCODE_EDIT_BUILD_
+/*#ifdef _QCODE_EDIT_BUILD_
 	#define QCE_EXPORT Q_DECL_EXPORT
 #else
 	#define QCE_EXPORT Q_DECL_IMPORT
-#endif
+#endif*/
+#define QCE_EXPORT  
 
 class QString;
 class QStringList;
