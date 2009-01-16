@@ -14,17 +14,22 @@
 #include <QFileInfo>
 #include <QMessageBox>
 
-SpellerUtility::SpellerUtility(): active(false){
+SpellerUtility::SpellerUtility(): pChecker(0), active(false){
     checkCache.reserve(1020);
 }
 bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix){
     if (dic==currentDic) return true;
     else unload();
-    currentDic=dic;
     QString base = dic.left(dic.length()-4);
+    if (!QFileInfo(base+".dic").exists()) return false;
+    currentDic=dic;
     pChecker = new Hunspell(base.toLatin1()+".aff",base.toLatin1()+".dic");
     spell_encoding=QString(pChecker->get_dic_encoding());
     spellCodec = QTextCodec::codecForName(spell_encoding.toLatin1());
+    if (spellCodec==0) {
+        unload();
+        return false;
+    }
 
     checkCache.clear();
     ignoredWords.clear();
@@ -60,6 +65,10 @@ void SpellerUtility::unload(){
     }
     currentDic="";
     ignoreListFileName="";
+    if (pChecker!=0) {
+        delete pChecker;
+        pChecker=0;
+    }
 }
 void SpellerUtility::addToIgnoreList(QString toIgnore){
     ignoredWords.insert(toIgnore);
@@ -67,9 +76,9 @@ void SpellerUtility::addToIgnoreList(QString toIgnore){
     
 SpellerUtility::~SpellerUtility(){
     unload();
-    delete pChecker;
 }
 bool SpellerUtility::check(QString word){
+    if (currentDic=="" || pChecker==0) return true; //no speller => everything is correct
     if (word.length()<=1) return true;
     if (ignoredWords.contains(word)) return true;
     if (checkCache.contains(word)) return checkCache.value(word);
