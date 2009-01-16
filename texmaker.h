@@ -122,7 +122,8 @@ bool logpresent;
 QStringList recentFilesList;
 //settings
 int split1_right, split1_left, split2_top, split2_bottom, quickmode;
-bool singlemode, wordwrap, parenmatch, showline, showoutputview, showstructview, ams_packages, makeidx_package, completion;
+bool singlemode, wordwrap, parenmatch, showoutputview, showstructview, ams_packages, makeidx_package, completion;
+int showlinemultiples;
 bool folding, showlinestate, showcursorstate, realtimespellchecking;
 QString document_class, typeface_size, paper_size, document_encoding, author;
 QString latex_command, viewdvi_command, dvips_command, dvipdf_command, metapost_command;

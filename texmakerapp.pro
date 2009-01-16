@@ -258,5 +258,13 @@ QMAKE_INFO_PLIST =Info.plist
 
 
 INCLUDEPATH += qcodeedit/lib qcodeedit/lib/document qcodeedit/lib/widgets
-LIBS        += qcodeedit/libqcodeedit.a
+
+!debug {
+  POST_TARGETDEPS += qcodeedit/libqcodeedit.a
+  LIBS       += qcodeedit/libqcodeedit.a
+}
+debug {
+  POST_TARGETDEPS  += qcodeedit/libqcodeeditd.a
+  LIBS        += qcodeedit/libqcodeeditd.a
+}
  
