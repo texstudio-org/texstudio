@@ -1742,7 +1742,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit){
   m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
   edit->editor->setCompletionEngine(completer->clone());
   EditorView->setCurrentIndex(EditorView->indexOf(edit));
-  edit->changeSettings(EditorFont,showline,folding,showlinestate,showcursorstate, wordwrap,completion);
+  edit->changeSettings(EditorFont,showlinemultiples,folding,showlinestate,showcursorstate, wordwrap,completion);
   
   connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(NewDocumentStatus(bool)));
     
@@ -2283,7 +2283,11 @@ EditorFont=F;
 
 wordwrap=config->value( "Editor/WordWrap",true).toBool();
 parenmatch=config->value( "Editor/Parentheses Matching",true).toBool();
-showline=config->value( "Editor/Line Numbers",true).toBool();
+showlinemultiples=config->value( "Editor/Line Number Multiples",-1).toInt();
+if (showlinemultiples==-1) 
+  if (config->value( "Editor/Line Numbers",true).toBool()) showlinemultiples=1; //texmaker import
+  else showlinemultiples=0;
+
 completion=config->value( "Editor/Completion",true).toBool();
 folding=config->value( "Editor/Folding",true).toBool();
 showlinestate=config->value( "Editor/Show Line State",true).toBool();
@@ -2547,7 +2551,7 @@ void Texmaker::SaveSettings()
     QSettings *config=new QSettings (configFileName, QSettings::IniFormat);   
 
 config->setValue( "IniMode",true);
-config->beginGroup( "texmakerx" );
+config->beginGroup( "texmaker" );
 QList<int> sizes;
 QList<int>::Iterator it;
 
@@ -2572,7 +2576,7 @@ config->setValue( "Editor/Font Size",EditorFont.pointSize());
 config->setValue( "Editor/WordWrap",wordwrap);
 
 config->setValue( "Editor/Parentheses Matching",parenmatch);
-config->setValue( "Editor/Line Numbers",showline);
+config->setValue( "Editor/Line Number Multiples",showlinemultiples);
 config->setValue( "Editor/Completion",completion);
 
 config->setValue( "Editor/Folding",folding);
@@ -5060,7 +5064,11 @@ confDlg->ui.checkBoxAutoDetectOnLoad->setChecked(autodetectLoadedFile);
 
 confDlg->ui.spinBoxSize->setValue(EditorFont.pointSize() );
 confDlg->ui.checkBoxWordwrap->setChecked(wordwrap);
-confDlg->ui.checkBoxLinenumber->setChecked(showline);
+switch (showlinemultiples) {
+    case 0: confDlg->ui.comboboxLineNumbers->setCurrentIndex(0); break;
+    case 10: confDlg->ui.comboboxLineNumbers->setCurrentIndex(2); break;
+    default: confDlg->ui.comboboxLineNumbers->setCurrentIndex(1);
+}
 confDlg->ui.checkBoxCompletion->setChecked(completion);
 confDlg->ui.checkBoxFolding->setChecked(folding);
 confDlg->ui.checkBoxLineState->setChecked(showlinestate);
@@ -5151,14 +5159,18 @@ if (confDlg->exec())
 
 	wordwrap=confDlg->ui.checkBoxWordwrap->isChecked();
 	completion=confDlg->ui.checkBoxCompletion->isChecked();
-	showline=confDlg->ui.checkBoxLinenumber->isChecked();
+    switch (confDlg->ui.comboboxLineNumbers->currentIndex()) {
+        case 0: showlinemultiples=0; break;
+        case 2: showlinemultiples=10; break;
+        default: showlinemultiples=1; break;
+    }
 	spell_dic=confDlg->ui.lineEditAspellCommand->text();
     folding=confDlg->ui.checkBoxFolding->isChecked();
     showlinestate=confDlg->ui.checkBoxLineState->isChecked();
     showcursorstate=confDlg->ui.checkBoxState->isChecked();
     realtimespellchecking=confDlg->ui.checkBoxRealTimeCheck->isChecked();
     mainSpeller->setActive(realtimespellchecking);
-    mainSpeller->loadDictionary(spell_dic,configFileName.replace(QString(".ini"),""));
+    mainSpeller->loadDictionary(spell_dic,configFileNameBase);
 
     QMap<QString, QFormat>::const_iterator it = confDlg->editorFormats.constBegin();
     while (it != confDlg->editorFormats.constEnd()) {
@@ -5171,7 +5183,7 @@ if (confDlg->exec())
 		{
             FilesMap::Iterator it;
             for( it = filenames.begin(); it != filenames.end(); ++it )
-                it.key()->changeSettings(EditorFont,showline,folding,showlinestate,showcursorstate, wordwrap,completion);
+                it.key()->changeSettings(EditorFont,showlinemultiples,folding,showlinestate,showcursorstate, wordwrap,completion);
             UpdateCaption();
             OutputTextEdit->clear();
             OutputTableWidget->hide();

@@ -108,7 +108,8 @@ LatexEditorView::LatexEditorView(QWidget *parent) : QWidget(parent),curChangePos
     
     lineMarkPanel=new QLineMarkPanel;
     lineMarkPanelAction=codeeditor->addPanel(lineMarkPanel, QCodeEdit::West, false);
-    lineNumberPanel=codeeditor->addPanel(new QLineNumberPanel, QCodeEdit::West, false);;
+    lineNumberPanel=new QLineNumberPanel;
+    lineNumberPanelAction=codeeditor->addPanel(lineNumberPanel, QCodeEdit::West, false);;
     lineFoldPanel=codeeditor->addPanel(new QFoldPanel, QCodeEdit::West, false);
     lineChangePanel=codeeditor->addPanel(new QLineChangePanel, QCodeEdit::West, false);
     statusPanel=codeeditor->addPanel(new QStatusPanel, QCodeEdit::South, false);
@@ -133,11 +134,12 @@ LatexEditorView::~LatexEditorView()
 {
 }
 
-void LatexEditorView::changeSettings(QFont & new_font,bool line,bool fold, bool linestate, bool cursorstate, bool wrap, bool complete)
+void LatexEditorView::changeSettings(QFont & new_font,int linemultiples,bool fold, bool linestate, bool cursorstate, bool wrap, bool complete)
 {
     editor->setFont(new_font);
-    lineMarkPanelAction->setChecked(line||fold||linestate);
-    lineNumberPanel->setChecked(line);
+    lineMarkPanelAction->setChecked((linemultiples!=0) ||fold||linestate);
+    lineNumberPanelAction->setChecked(linemultiples!=0);
+    lineNumberPanel->setVerboseMode(linemultiples!=10);
     lineFoldPanel->setChecked(fold);
     lineChangePanel->setChecked(linestate);
     statusPanel->setChecked(cursorstate);

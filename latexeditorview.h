@@ -22,6 +22,7 @@
 #include "qcodeedit.h"
 #include "qeditor.h"
 #include "qlinemarkpanel.h"
+#include "qlinenumberpanel.h"
 //#include "qpanel.h"
 
 class DefaultInputBinding: public QEditor::InputBinding{
@@ -56,7 +57,7 @@ public:
     
     
 //  FindWidget *findwidget;
-    void changeSettings(QFont & new_font,bool line,bool fold, bool linestate, bool cursorstate, bool wrap, bool complete);
+    void changeSettings(QFont & new_font,int linemultiples,bool fold, bool linestate, bool cursorstate, bool wrap, bool complete);
 
     void jumpChangePositionBackward();
     void jumpChangePositionForward();
@@ -72,8 +73,9 @@ public:
     static QString latexToPlainWord(QString word);    
 private:
     friend class DefaultInputBinding;
-    QAction *lineNumberPanel, *lineMarkPanelAction, *lineFoldPanel, *lineChangePanel, *statusPanel, *searchReplacePanel;
+    QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanel, *lineChangePanel, *statusPanel, *searchReplacePanel;
     QLineMarkPanel* lineMarkPanel;
+    QLineNumberPanel* lineNumberPanel;
     static int bookMarkId(int bookmarkNumber);
     
     static SpellerUtility* speller;

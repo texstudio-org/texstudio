@@ -76,7 +76,7 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >
+               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
@@ -102,7 +102,7 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >
+               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
@@ -136,7 +136,7 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >
+               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
@@ -156,7 +156,7 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >
+               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
@@ -173,7 +173,7 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >
+               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
@@ -196,7 +196,7 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >
+               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
@@ -216,7 +216,7 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >
+               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
@@ -233,7 +233,7 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >
+               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
@@ -298,7 +298,7 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >
+               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
@@ -339,7 +339,7 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >
+               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
@@ -356,7 +356,7 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >
+               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
@@ -383,7 +383,7 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >
+               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize" >
@@ -632,7 +632,7 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="texmaker.qrc" >
+               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
              </widget>
@@ -700,20 +700,6 @@
           <item row="6" column="1" colspan="4" >
            <widget class="QComboBox" name="comboBoxStyles" />
           </item>
-          <item row="5" column="0" >
-           <widget class="QCheckBox" name="checkBoxLinenumber" >
-            <property name="text" >
-             <string>Show Line Numbers</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1" >
-           <widget class="QCheckBox" name="checkBoxLineState" >
-            <property name="text" >
-             <string>Show Line Change State</string>
-            </property>
-           </widget>
-          </item>
           <item row="4" column="1" >
            <widget class="QCheckBox" name="checkBoxCompletion" >
             <property name="text" >
@@ -751,16 +737,6 @@
               <widget class="QLabel" name="label_3" >
                <property name="text" >
                 <string>Text color:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1" >
-              <widget class="QPushButton" name="pushButtonColorText" >
-               <property name="text" >
-                <string/>
-               </property>
-               <property name="flat" >
-                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -823,14 +799,50 @@
                </property>
               </widget>
              </item>
+             <item row="0" column="1" >
+              <widget class="QPushButton" name="pushButtonColorText" >
+               <property name="text" >
+                <string/>
+               </property>
+               <property name="flat" >
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
             </layout>
            </widget>
           </item>
-          <item row="5" column="2" >
+          <item row="5" column="0" >
            <widget class="QCheckBox" name="checkBoxState" >
             <property name="text" >
              <string>Show State Panel</string>
             </property>
+           </widget>
+          </item>
+          <item row="5" column="1" >
+           <widget class="QCheckBox" name="checkBoxLineState" >
+            <property name="text" >
+             <string>Show Line Change State</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2" colspan="2" >
+           <widget class="QComboBox" name="comboboxLineNumbers" >
+            <item>
+             <property name="text" >
+              <string>No line numbers</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>Show line numbers</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>Show important line numbers</string>
+             </property>
+            </item>
            </widget>
           </item>
          </layout>
@@ -973,7 +985,7 @@
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources>
-  <include location="texmaker.qrc" />
+  <include location="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" />
  </resources>
  <connections>
   <connection>

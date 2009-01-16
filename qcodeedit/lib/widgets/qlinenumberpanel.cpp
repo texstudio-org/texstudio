@@ -201,14 +201,12 @@ void QLineNumberPanel::paint(QPainter *p, QEditor *e)
 			#endif
 		
 			for ( int i = 1; i < line.lineSpan(); ++i )
-			{
-				p->drawText(width() - 2 - sfm.width(txt),
-							posY,
-							txt);
-			
 				p->drawText(width() - 2 - specialSfm.width(wrappingArrow), posY + i * ls, wrappingArrow);
 
-			}
+            #ifdef WIN32
+                if (line.lineSpan()>1) 
+                    p->restore();
+            #endif
 		} else {
 			int yOff = posY - (as + 1) + ls / 2;
 			
@@ -217,12 +215,7 @@ void QLineNumberPanel::paint(QPainter *p, QEditor *e)
 			else
 				p->drawLine(width() - 7, yOff, width() - 2, yOff);
 		}
-		
-		#ifdef WIN32
-            if (line.lineSpan()>1) 
-                p->restore();
-		#endif
-		
+				
 		if ( n == cursorLine )
 		{
 			p->restore();
