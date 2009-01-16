@@ -19,10 +19,10 @@
 
 #include "spellerutility.h"
 
-#include "QCodeEdit/qcodeedit.h"
-#include "QCodeEdit/qeditor.h"
-#include "QCodeEdit/qlinemarkpanel.h"
-//#include "QCodeEdit/qpanel.h"
+#include "qcodeedit.h"
+#include "qeditor.h"
+#include "qlinemarkpanel.h"
+//#include "qpanel.h"
 
 class DefaultInputBinding: public QEditor::InputBinding{
  //  Q_OBJECT not possible because inputbinding is no qobject

@@ -15,18 +15,18 @@
 #include <QKeyEvent>
 #include <QMenu>
 #include <QMessageBox>
-#include "QCodeEdit/qdocumentline.h"
-#include "QCodeEdit/qdocumentcommand.h"
+#include "qdocumentline.h"
+#include "qdocumentcommand.h"
 
-#include "QCodeEdit/qcodecompletionengine.h"
-#include "QCodeEdit/qlinemarksinfocenter.h"
+#include "qcodecompletionengine.h"
+#include "qlinemarksinfocenter.h"
 
-#include "QCodeEdit/qlinemarkpanel.h"
-#include "QCodeEdit/qlinenumberpanel.h"
-#include "QCodeEdit/qfoldpanel.h"
-#include "QCodeEdit/qlinechangepanel.h"
-#include "QCodeEdit/qstatuspanel.h"
-#include "QCodeEdit/qsearchreplacepanel.h"
+#include "qlinemarkpanel.h"
+#include "qlinenumberpanel.h"
+#include "qfoldpanel.h"
+#include "qlinechangepanel.h"
+#include "qstatuspanel.h"
+#include "qsearchreplacepanel.h"
 
 //------------------------------Default Input Binding--------------------------------
 bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)

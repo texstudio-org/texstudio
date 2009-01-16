@@ -13,7 +13,7 @@
 
 #include "ui_spellerdialog.h"
 #include "spellerutility.h"
-#include "QCodeEdit/qeditor.h"
+#include "qeditor.h"
 #include "latexeditorview.h"
 
 #include <QTextCursor>

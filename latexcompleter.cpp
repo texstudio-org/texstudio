@@ -1,5 +1,5 @@
 #include "latexcompleter.h"
-#include "QCodeEdit/qdocumentline.h"
+#include "qdocumentline.h"
 #include <QKeyEvent>
 #include <QMessageBox>
 

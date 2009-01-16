@@ -16,12 +16,12 @@
 #include <qfont.h>
 #include <qcolor.h>
 
-#include "QCodeEdit/qcodeedit.h"
-#include "QCodeEdit/qeditor.h"
-#include "QCodeEdit/qcodecompletionengine.h"
+#include "qcodeedit.h"
+#include "qeditor.h"
+#include "qcodecompletionengine.h"
 
 #include <QListView>
-//#include "QCodeEdit/qpanel.h"
+//#include "qpanel.h"
 
 //class CompleterInputBinding;
 class CompletionListModel : public QAbstractListModel
