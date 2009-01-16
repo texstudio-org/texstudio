@@ -10,7 +10,7 @@
 		<stop parenthesis="xmlcdata:close" indent="1" fold="1">\]\]&gt;</stop>
 	</context>
 	
-	<context id="preprocessor" format="preprocessor" >
+	<context id="preprocessor" format="extra-keyword" >
 		<start parenthesis="xmlpreproc:open" indent="1" fold="1">&lt;\?xml</start>
 		<stop parenthesis="xmlpreproc:close" indent="1" fold="1">\?&gt;</stop>
 	</context>
@@ -27,7 +27,7 @@
 		<start format="keyword" parenthesis="xmltag:close@nomatch" indent="1" fold="1" >&lt;/[$w:]+</start>
 		<stop format="keyword" >&gt;</stop>
 		
-		<word format="preprocessor">[$w:]+=</word>
+		<word format="extra-keyword">[$w:]+=</word>
 		
 		<context id="data/string" format="text" stayOnLine="true" >
 			<start>&quot;</start>

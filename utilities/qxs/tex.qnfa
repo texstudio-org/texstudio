@@ -7,10 +7,47 @@
 		<stop exclusive="false">\n</stop>
 	</context>
 	
-	<context id="mathmode" format="numbers">
+	<context id="mathmode$" format="numbers">
 		<start parenthesis="math:open" fold="1" >$</start>
 		<stop parenthesis="math:close" fold="1" >$</stop>
-	</context>
+
+  	<sequence parenthesis="round:open">(</sequence>
+  	<sequence parenthesis="round:close">)</sequence>
+  	<sequence parenthesis="curly:open" indent="1" fold="1">{</sequence>
+  	<sequence parenthesis="curly:close" indent="1" fold="1">}</sequence>
+  	<sequence parenthesis="square:open">\[</sequence>
+  	<sequence parenthesis="square:close">\]</sequence>
+  </context>
+
+	<context id="mathmodeNormal" format="numbers">
+		<start parenthesis="math:open" fold="1" format="extra-keyword">\\begin{math}</start>
+		<stop parenthesis="math:close" fold="1" format="extra-keyword">\\end{math}</stop>
+		<start parenthesis="math:open" fold="1" >\\\(</start>
+		<stop parenthesis="math:close" fold="1" >\\\)</stop>
+	
+  	<sequence parenthesis="round:open">(</sequence>
+  	<sequence parenthesis="round:close">)</sequence>
+  	<sequence parenthesis="curly:open" indent="1" fold="1">{</sequence>
+  	<sequence parenthesis="curly:close" indent="1" fold="1">}</sequence>
+  	<sequence parenthesis="square:open">\[</sequence>
+  	<sequence parenthesis="square:close">\]</sequence>
+  </context>
+	
+  <context id="mathmodeDisplay" format="numbers">
+		<start parenthesis="math:open" fold="1" format="extra-keyword">\\begin{displaymath}</start>
+		<stop parenthesis="math:close" fold="1" format="extra-keyword">\\end{displaymath}</stop>
+		<start parenthesis="math:open" fold="1" >\\\[</start>
+		<stop parenthesis="math:close" fold="1" >\\\]</stop>
+		<start parenthesis="math:open" fold="1" format="extra-keyword">\\begin{equation}</start>
+		<stop parenthesis="math:close" fold="1" format="extra-keyword">\\end{equation}</stop>
+
+  	<sequence parenthesis="round:open">(</sequence>
+  	<sequence parenthesis="round:close">)</sequence>
+  	<sequence parenthesis="curly:open" indent="1" fold="1">{</sequence>
+  	<sequence parenthesis="curly:close" indent="1" fold="1">}</sequence>
+  	<sequence parenthesis="square:open">\[</sequence>
+  	<sequence parenthesis="square:close">\]</sequence>
+  </context>
 
 	<list id="keywords/block" format="extra-keyword">
 		<prefix>\\</prefix>
@@ -22,9 +59,13 @@
 		<word>paragraph</word>
 		<word>subparagraph</word>
 	</list>
+
+	<word parenthesis="block:open" fold="1" indent="1" format="extra-keyword">\\begin{[^}]*}</word>
+	<word parenthesis="block:close" fold="1" indent="1" format="extra-keyword" >\\end{[^}]*}</word>
 	
   <word id="keywords/single" format="keyword">\\[a-zA-Z]+</word>
 	
+
 	<sequence parenthesis="round:open">(</sequence>
 	<sequence parenthesis="round:close">)</sequence>
 	<sequence parenthesis="curly:open" indent="1" fold="1">{</sequence>
@@ -32,9 +73,6 @@
 	<sequence parenthesis="square:open">\[</sequence>
 	<sequence parenthesis="square:close">\]</sequence>
 	
-	<word parenthesis="block:open" fold="1" indent="1" format="extra-keyword">\\begin</word>
-	<word parenthesis="block:close" fold="1" indent="1" format="extra-keyword" >\\end</word>
-
   <!-- uncomment this to activate folding workaround
   <word format="extra-keyword" parenthesis="ppart:open" fold="1" >\\part</word>
 	<word format="extra-keyword" parenthesis="ppart:close" fold="1">%\\end-part</word>
