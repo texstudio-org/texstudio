@@ -4,17 +4,16 @@
 
 TEMPLATE = lib
 DESTDIR = ..
-CONFIG += staticlib release 
+CONFIG += staticlib debug_and_release build_all
 
-!debug {
-  TARGET = qcodeedit
-  MOC_DIR = .build
-  OBJECTS_DIR = .build
-}
-debug {
+CONFIG(debug, debug|release) {
   TARGET = qcodeeditd
   MOC_DIR = .buildd
   OBJECTS_DIR = .buildd
+} else {
+  TARGET = qcodeedit
+  MOC_DIR = .build
+  OBJECTS_DIR = .build
 }
 
 DEPENDPATH += . document language widgets qnfa

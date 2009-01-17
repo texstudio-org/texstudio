@@ -4,7 +4,9 @@ Word::Word (QString nw, int nc){
   count=nc;
 }
 bool Word::operator<(const  Word &cmpTo) const{
-  return count > cmpTo.count;
+    if (count > cmpTo.count) return true;
+    else if (count < cmpTo.count) return false;
+    else return word.localeAwareCompare(cmpTo.word)<0;
 }
 
 int TextAnalysisModel::rowCount ( const QModelIndex & parent ) const{

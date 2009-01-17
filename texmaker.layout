@@ -11,7 +11,7 @@
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="configdialog.cpp" open="1" top="0" tabpos="13">
-		<Cursor position="846" topLine="0" />
+		<Cursor position="644" topLine="0" />
 	</File>
 	<File name="configdialog.h" open="0" top="0" tabpos="16">
 		<Cursor position="898" topLine="2" />
@@ -29,13 +29,13 @@
 		<Cursor position="6759" topLine="114" />
 	</File>
 	<File name="latexcompleter.h" open="1" top="0" tabpos="5">
-		<Cursor position="2253" topLine="35" />
+		<Cursor position="2239" topLine="35" />
 	</File>
 	<File name="latexeditorview.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="8183" topLine="155" />
+		<Cursor position="6723" topLine="114" />
 	</File>
 	<File name="latexeditorview.h" open="1" top="0" tabpos="2">
-		<Cursor position="3086" topLine="60" />
+		<Cursor position="3002" topLine="62" />
 	</File>
 	<File name="letterdialog.cpp" open="0" top="0" tabpos="12">
 		<Cursor position="0" topLine="0" />
@@ -74,10 +74,10 @@
 		<Cursor position="1855" topLine="22" />
 	</File>
 	<File name="texmaker.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="116017" topLine="2952" />
+		<Cursor position="102485" topLine="2538" />
 	</File>
 	<File name="texmaker.h" open="1" top="0" tabpos="14">
-		<Cursor position="1516" topLine="30" />
+		<Cursor position="3951" topLine="111" />
 	</File>
 	<File name="texmaker.pro" open="0" top="0" tabpos="0">
 		<Cursor position="1706" topLine="51" />

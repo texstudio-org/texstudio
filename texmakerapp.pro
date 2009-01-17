@@ -1,7 +1,7 @@
 TEMPLATE	=  app
 LANGUAGE	= C++
-TARGET	 = texmakerx
-CONFIG	+= qt warn_off release 
+DESTDIR = ./
+CONFIG	+= qt debug_and_release build_all
 QT += network xml
 ###############################
 HEADERS	+= texmaker.h \
@@ -250,6 +250,11 @@ utilities.files = utilities/blank.png \
 	utilities/AUTHORS \
 	utilities/COPYING \
 	utilities/CHANGELOG.txt
+	utilities/qxs/defaultFormats.qxf \
+	utilities/qxs/marks.qxm \
+	utilities/qxs/bibtex.qnfa \
+	utilities/qxs/tex.qnfa \
+	utilities/qxs/xml.qnfa
 QMAKE_BUNDLE_DATA += utilities
 INSTALLS += utilities
 ICON = texmaker.icns
@@ -259,12 +264,13 @@ QMAKE_INFO_PLIST =Info.plist
 
 INCLUDEPATH += qcodeedit/lib qcodeedit/lib/document qcodeedit/lib/widgets
 
-!debug {
-  POST_TARGETDEPS += qcodeedit/libqcodeedit.a
-  LIBS       += qcodeedit/libqcodeedit.a
-}
-debug {
+CONFIG(debug, debug|release) {
   POST_TARGETDEPS  += qcodeedit/libqcodeeditd.a
   LIBS        += qcodeedit/libqcodeeditd.a
+  TARGET	 = texmakerxd
+} else {
+  POST_TARGETDEPS += qcodeedit/libqcodeedit.a
+  LIBS       += qcodeedit/libqcodeedit.a
+  TARGET	 = texmakerx
 }
  
