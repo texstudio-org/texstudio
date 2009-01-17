@@ -52,10 +52,14 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
     contextMenu->clear();
     if (LatexEditorView::speller) {
         LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget()); //a qobject is necessary to retrieve events
-        QDocumentCursor cursor=editor->cursorForPosition(editor->mapToContents(event->pos()));
+        QDocumentCursor cursor;
+        if (event->reason()==QContextMenuEvent::Mouse) cursor=editor->cursorForPosition(editor->mapToContents(event->pos()));
+        else cursor=editor->cursor();
         if (edView && cursor.isValid() && cursor.line().isValid())  {
-            QFormatRange fr = cursor.line().getOverlayAt(cursor.columnNumber(),LatexEditorView::speller->spellcheckErrorFormat);
-            if (fr.length>0) {
+            QFormatRange fr;
+            if (cursor.hasSelection()) fr= cursor.line().getOverlayAt((cursor.columnNumber()+cursor.anchorColumn()) / 2,LatexEditorView::speller->spellcheckErrorFormat);
+            else fr = cursor.line().getOverlayAt(cursor.columnNumber(),LatexEditorView::speller->spellcheckErrorFormat);
+            if (fr.length>0 && fr.format==LatexEditorView::speller->spellcheckErrorFormat) {
                 QString word=cursor.line().text().mid(fr.offset,fr.length);
                 if (!(editor->cursor().hasSelection() && editor->cursor().selectedText().length()>0) || editor->cursor().selectedText()==word 
                     || editor->cursor().selectedText()==lastSpellCheckedWord) {
@@ -86,7 +90,12 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
         }
     }
     contextMenu->addActions(baseActions);
-    contextMenu->exec(event->globalPos());
+    if (event->reason()==QContextMenuEvent::Mouse) contextMenu->exec(event->globalPos());
+    else {
+        QPoint curPoint=editor->cursor().documentPosition();
+        curPoint.ry() += editor->document()->fontMetrics().lineSpacing();
+        contextMenu->exec(editor->mapToGlobal(editor->mapFromContents(curPoint)));
+    }
     return true;
 }
 

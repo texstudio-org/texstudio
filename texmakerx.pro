@@ -1,5 +1,5 @@
 TEMPLATE	= subdirs 
-CONFIG	+= ordered
+CONFIG	+= ordered  debug_and_release build_all
 SUBDIRS += qcodeedit/lib \
            texmakerapp.pro
 
