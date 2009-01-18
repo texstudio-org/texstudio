@@ -1,4 +1,4 @@
-Name "Texmaker"
+Name "TexMakerX"
 OutFile "texmakerwin32_install.exe"
 
 Icon "texmakerwin32\install.ico"
