@@ -5404,13 +5404,11 @@ void Texmaker::updateCompleter()
     }
     for (int i=0; i<labelitem.count();++i)
     {
-        words.append("\\ref{"+labelitem.at(i)+"}");
-        words.append("\\pageref{"+labelitem.at(i)+"}");
+        words.append("\\\\ref{"+labelitem.at(i)+"}");
+        words.append("\\\\pageref{"+labelitem.at(i)+"}");
 	}
     
-    QMultiMap<QString, QString> sortMap;
-    foreach (QString str, words)
-        sortMap.insert(str.toLower(), str);
-    completer->setWords(sortMap.values());
+    
+    completer->setWords(words);
 }
 

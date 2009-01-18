@@ -25,21 +25,19 @@ public:
             QString full=completer->list->model()->data(completer->list->currentIndex(),Qt::DisplayRole).toString();
             for (int i=maxWritten-editor->cursor().columnNumber();i>0;i--)
               editor->cursor().deleteChar();
-            QString addStr=full.mid(editor->cursor().columnNumber()-curStart);
+            int alreadyWrittenLen=editor->cursor().columnNumber()-curStart;
+            QString addStr=full.mid(alreadyWrittenLen);
             editor->cursor().insertText(addStr);
+            CompletionWord cw= completer->wordToCompletionWord(full);
             if (full.startsWith("\\begin")) {
+                int curColumnNumber=editor->cursor().columnNumber();
                 int p=full.indexOf("{");
                 QString indent=editor->cursor().line().indentation();
                 editor->cursor().insertText( "\n"+indent+"\n"+indent+"\\end"+full.mid(p,full.indexOf("}")-p+1));
-                curLine=editor->document()->line(curLine.lineNumber()+1);
-                editor->setCursorPosition(curLine.lineNumber(),curLine.length());
-            } else {
-                int p=addStr.indexOf('[');
-                if (p<0) p =addStr.indexOf('{');
-                else p=addStr.indexOf('{')<p?addStr.indexOf('{'):p;
-                if (p>=0)
-                    editor->setCursorPosition(editor->cursor().lineNumber(),editor->cursor().columnNumber()-(addStr.length()-p-1));
-            }
+                if (cw.cursorPos==-1) editor->setCursorPosition(curLine.lineNumber()+1,curLine.length());
+                else editor->setCursorPosition(curLine.lineNumber(),curColumnNumber-(full.length()-cw.cursorPos));
+            } else if (cw.cursorPos>-1) 
+                editor->setCursorPosition(curLine.lineNumber(),editor->cursor().columnNumber()-(full.length()-cw.cursorPos));
             return true;
         }
         return false;
@@ -237,17 +235,21 @@ QVariant CompletionListModel::headerData(int section, Qt::Orientation orientatio
                      int role) const{
     return QVariant();
 }
- void CompletionListModel::setWords(QStringList baselist, QString word){
+ void CompletionListModel::setWords(const QList<CompletionWord> &baselist, const QString &word){
      if (word==curWord) return;
      words.clear();
-     foreach (QString w, baselist){
-         if (w.startsWith(word,Qt::CaseInsensitive)) words.append(w);
+     for (int i=0;i<baselist.count();i++){
+         if (baselist[i].word.startsWith(word,Qt::CaseInsensitive)) 
+           words.append(baselist[i].word);
      }
      curWord=word;
      reset();
  }
 
 //------------------------------completer-----------------------------------
+QList <CompletionWord> LatexCompleter::words;
+QSet <QChar> LatexCompleter::acceptedChars;
+
 LatexCompleter::LatexCompleter(QObject *p)
  : QCodeCompletionEngine(p)
 {
@@ -256,7 +258,13 @@ LatexCompleter::LatexCompleter(QObject *p)
 }
 
 void LatexCompleter::setWords(const QStringList &newwords){
-    words=newwords;
+    acceptedChars.clear();
+    words.clear();
+    foreach (QString str, newwords){
+        words.append(CompletionWord(str));
+        foreach (QChar c, str) acceptedChars.insert(c);
+    }
+    qSort(words);
 }
 
 void LatexCompleter::complete(const QDocumentCursor& c, const QString& trigger){
@@ -314,5 +322,12 @@ bool LatexCompleter::acceptChar(QChar c,int pos){
         ((c>=QChar('A')) && (c<=QChar('Z'))) ||
         ((c>=QChar('0')) && (c<=QChar('9')))) return true;
     if (pos<=1) return false;
-    return words.join("").contains(c);
+    return acceptedChars.contains(c);
+}
+CompletionWord LatexCompleter::wordToCompletionWord(const QString &str){
+    QString lcomp=str.toLower();
+    for (int i=0; i<words.count();i++)
+        if (words[i].lword==lcomp) 
+          return words[i];
+   return CompletionWord();
 }

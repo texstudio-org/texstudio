@@ -171,7 +171,7 @@ void QLineNumberPanel::paint(QPainter *p, QEditor *e)
 		
 		if ( !m_verbose )
 		{
-			draw = !((n + 1) % 10) || !n;
+			draw = !((n + 1) % 10) || !n || !line.marks().empty();
 		}
 		
 		txt = QString::number(n + 1);
