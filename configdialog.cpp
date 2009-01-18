@@ -340,13 +340,14 @@ void ConfigDialog::shortCutItemChanged ( QTableWidgetItem * item ){
     if (identicalShortcuts=="") return;
 
     switch (QMessageBox::warning(this, tr("TexMakerX"),
-                                 tr("The shortcut you entered is the same as the one of this command: \n")+identicalShortcuts+tr("\n Should I delete this other shortcut?"),
+                                 tr("The shortcut you entered is the same as the one of this command:") +"\n"+identicalShortcuts+"\n"+tr("Should I delete this other shortcut?"),
                                  QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes))
     {
         case QMessageBox::Yes:
             for (int i=0;i<ui.shorttableWidget->rowCount();i++)
                 if (QKeySequence(ui.shorttableWidget->item(i,1)->text())==newSeq && i!=item->row())
                     ui.shorttableWidget->item(i,1)->setText("none");
-        break;
+            break;
+        default:;
     }
 }

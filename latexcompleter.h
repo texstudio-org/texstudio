@@ -22,6 +22,21 @@
 
 #include <QListView>
 //#include "qpanel.h"
+class CompletionWord {
+public:
+    CompletionWord():cursorPos(-1){}
+    CompletionWord(const CompletionWord &cw):word(cw.word),lword(cw.lword),cursorPos(cw.cursorPos){}
+    CompletionWord(const QString newWord){
+        word=newWord;
+        word.replace("\\\\","\\");
+        cursorPos=word.indexOf("\\|");
+        word.replace("\\|","");
+        lword=word.toLower();
+    }
+    bool operator< (const CompletionWord &cw) const {return cw.lword < lword;}
+    QString word,lword;
+    int cursorPos; //-1 => not defined
+};
 
 //class CompleterInputBinding;
 class CompletionListModel : public QAbstractListModel
@@ -39,7 +54,7 @@ class CompletionListModel : public QAbstractListModel
      friend class LatexCompleter;
      QStringList words;
      QString curWord;
-     void setWords(QStringList baselist, QString word);
+     void setWords(const QList<CompletionWord> & baselist, const QString &word);     
 };
 
 
@@ -56,13 +71,17 @@ public:
 	virtual QString language() const;
     virtual QStringList extensions() const;
 
-//public:
-  //friend class CompleterInputBinding;
-    QStringList words;
+private:
+    friend class CompleterInputBinding;
+    static QList<CompletionWord> words;
+    static QSet<QChar> acceptedChars;
     QListView * list;
     QAbstractListModel* listModel;
+    
+    
     void updateList(QString word);
     bool acceptChar(QChar c,int pos);
+    CompletionWord wordToCompletionWord(const QString &str);
 };
 
 #endif

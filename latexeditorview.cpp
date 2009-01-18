@@ -32,7 +32,10 @@
 bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
 {
     if ((event->text()==QString("\\") || (event->key()==Qt::Key_Space && event->modifiers()==Qt::CTRL )) && editor->completionEngine())  { //workaround because trigger doesn't seem work
-        if (event->text()==QString("\\")) editor->cursor().insertText("\\");
+        if (event->text()==QString("\\")) {
+            editor->cursor().removeSelectedText();
+            editor->cursor().insertText("\\");
+        } else editor->cursor().clearSelection();
         editor->completionEngine()->complete();
         return true;
     }
@@ -41,6 +44,7 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
     if ((pos=keyToReplace->indexOf(event->text()))>=0) {
         QString whitespace(" \t\n");
         QChar prev=editor->cursor().getPreviousChar();
+        editor->cursor().removeSelectedText();
         if (whitespace.contains(prev)||prev==QChar(0))  editor->cursor().insertText(keyReplaceBeforeWord->at(pos));
         else editor->cursor().insertText(keyReplaceAfterWord->at(pos));
         return true;
