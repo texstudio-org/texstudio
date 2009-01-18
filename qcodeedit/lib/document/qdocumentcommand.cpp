@@ -330,11 +330,13 @@ void QDocumentCommand::disableAutoUpdate(QDocumentCursorHandle *h)
 void QDocumentCommand::markRedone(QDocumentLineHandle *h)
 {
 	++m_doc->impl()->m_status[h];
+	m_doc->impl()->m_statusEver[h]=true;
 }
 
 void QDocumentCommand::markUndone(QDocumentLineHandle *h)
 {
 	--m_doc->impl()->m_status[h];
+	m_doc->impl()->m_statusEver[h]=true;
 }
 
 ////////////////////////////

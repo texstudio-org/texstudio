@@ -848,7 +848,7 @@ void QEditor::checkClipboard()
 {
 	// LOOKS LIKE THIS FUNCTION NEVER GETS CALLED DESPITE THE CONNECTION...
 	
-	const QMimeData *d = QApplication::clipboard()->mimeData();
+	//const QMimeData *d = QApplication::clipboard()->mimeData();
 	
 	//qDebug("checking clipboard : %s", d);
 	

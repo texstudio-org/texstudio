@@ -154,6 +154,7 @@ class QCE_EXPORT QDocument : public QObject
 		QDocumentLine findLine(int& position) const;
 		
 		bool isLineModified(const QDocumentLine& l) const;
+        bool wasLineModified(const QDocumentLine& l) const;
 		
 		virtual void draw(QPainter *p, PaintContext& cxt);
 		
