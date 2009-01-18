@@ -27,6 +27,15 @@
         <waveUnderline>false</waveUnderline>
         <foreground>#0095ff</foreground>
     </format>
+    <format id="math-keyword" >
+        <bold>false</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <foreground>#808000</foreground>
+    </format>
     <format id="match" >
         <bold>true</bold>
         <italic>false</italic>
