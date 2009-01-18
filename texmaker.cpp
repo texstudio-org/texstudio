@@ -463,7 +463,7 @@ editMenu->addAction(Act);
 
   //bookmarks menus
     //toggle
-QMenu *subMenu=new QMenu("Toggle Bookmark",this);
+QMenu *subMenu=new QMenu(tr("Toggle Bookmark"),this);
 editMenu->addMenu(subMenu);
 Act = new QAction(tr("Bookmark 0"), this);
 Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_0);
@@ -507,7 +507,7 @@ connect(Act, SIGNAL(triggered()), this, SLOT(toggleBookmark9()));
 subMenu->addAction(Act);
 
     //goto
-subMenu=new QMenu("Goto Bookmark",this);
+subMenu=new QMenu(tr("Goto Bookmark"),this);
 editMenu->addMenu(subMenu);
 Act = new QAction(tr("Bookmark 0"), this);
 Act->setShortcut(Qt::CTRL+Qt::Key_0);

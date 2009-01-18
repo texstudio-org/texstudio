@@ -1733,6 +1733,16 @@
         <source>Please restart TexMakerX to apply the changes</source>
         <translation>Démarre TexMakerX pour applique le changement</translation>
     </message>
+    <message>
+        <location filename="texmaker.cpp" line="466"/>
+        <source>Toggle Bookmark</source>
+        <translation>Interrupteur signet</translation>
+    </message>
+    <message>
+        <location filename="texmaker.cpp" line="510"/>
+        <source>Goto Bookmark</source>
+        <translation>Aller signet</translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
