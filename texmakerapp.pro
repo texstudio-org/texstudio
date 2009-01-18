@@ -110,7 +110,7 @@ FORMS   += structdialog.ui \
 	configdialog.ui \
 	spellerdialog.ui \
   textanalysis.ui
-TRANSLATIONS += texmaker_fr.ts
+TRANSLATIONS += texmakerx_fr.ts  texmakerx_de.ts
 
 
 ################################
