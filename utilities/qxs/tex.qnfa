@@ -7,33 +7,23 @@
 		<stop exclusive="false">\n</stop>
 	</context>
 	
-	<context id="mathmode$" format="numbers">
+	<context id="mathmode$" format="numbers" transparency="true">
 		<start parenthesis="math:open" fold="1" >$</start>
 		<stop parenthesis="math:close" fold="1" >$</stop>
-
-  	<sequence parenthesis="round:open">(</sequence>
-  	<sequence parenthesis="round:close">)</sequence>
-  	<sequence parenthesis="curly:open" indent="1" fold="1">{</sequence>
-  	<sequence parenthesis="curly:close" indent="1" fold="1">}</sequence>
-  	<sequence parenthesis="square:open">\[</sequence>
-  	<sequence parenthesis="square:close">\]</sequence>
+    
+    <word id="keywords/single" format="math-keyword">\\[a-zA-Z]+</word>
   </context>
 
-	<context id="mathmodeNormal" format="numbers">
+	<context id="mathmodeNormal" format="numbers" transparency="true">
 		<start parenthesis="math:open" fold="1" format="extra-keyword">\\begin{math}</start>
 		<stop parenthesis="math:close" fold="1" format="extra-keyword">\\end{math}</stop>
 		<start parenthesis="math:open" fold="1" >\\\(</start>
 		<stop parenthesis="math:close" fold="1" >\\\)</stop>
-	
-  	<sequence parenthesis="round:open">(</sequence>
-  	<sequence parenthesis="round:close">)</sequence>
-  	<sequence parenthesis="curly:open" indent="1" fold="1">{</sequence>
-  	<sequence parenthesis="curly:close" indent="1" fold="1">}</sequence>
-  	<sequence parenthesis="square:open">\[</sequence>
-  	<sequence parenthesis="square:close">\]</sequence>
+
+    <word id="keywords/single" format="math-keyword">\\[a-zA-Z]+</word>
   </context>
 	
-  <context id="mathmodeDisplay" format="numbers">
+  <context id="mathmodeDisplay" format="numbers" transparency="true">
 		<start parenthesis="math:open" fold="1" format="extra-keyword">\\begin{displaymath}</start>
 		<stop parenthesis="math:close" fold="1" format="extra-keyword">\\end{displaymath}</stop>
 		<start parenthesis="math:open" fold="1" >\\\[</start>
@@ -41,12 +31,7 @@
 		<start parenthesis="math:open" fold="1" format="extra-keyword">\\begin{equation}</start>
 		<stop parenthesis="math:close" fold="1" format="extra-keyword">\\end{equation}</stop>
 
-  	<sequence parenthesis="round:open">(</sequence>
-  	<sequence parenthesis="round:close">)</sequence>
-  	<sequence parenthesis="curly:open" indent="1" fold="1">{</sequence>
-  	<sequence parenthesis="curly:close" indent="1" fold="1">}</sequence>
-  	<sequence parenthesis="square:open">\[</sequence>
-  	<sequence parenthesis="square:close">\]</sequence>
+    <word id="keywords/single" format="math-keyword">\\[a-zA-Z]+</word>
   </context>
 
 	<list id="keywords/block" format="extra-keyword">
