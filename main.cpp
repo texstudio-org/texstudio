@@ -81,15 +81,22 @@ int main( int argc, char ** argv )
 TexmakerApp a( argc, argv ); // This is a dummy constructor so that the programs loads fast.
 
 DSingleApplication instance("TexMakerX");
-if ( instance.isRunning() ) {
-    QString msg;
-    for(int i=0; i<argc; ++i){
-        msg += argv[i];
-        msg += "#!#";
+
+bool startAlways=false;
+
+for(int i=0; i<argc; ++i)
+    if (!strcmp("--start-always",argv[i])) startAlways=true;
+
+if (!startAlways)
+    if ( instance.isRunning() ) {
+        QString msg;
+        for(int i=0; i<argc; ++i){
+            msg += argv[i];
+            msg += "#!#";
+        }
+        instance.sendMessage( msg );
+        return 0;
     }
-    instance.sendMessage( msg );
-    return 0;
-}
 
 a.init(argc,argv); // Initialization takes place only if there is no other instance running.
 

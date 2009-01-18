@@ -330,6 +330,7 @@ void QDocument::setText(const QString& s)
 	m_impl->m_lines.clear();
 	m_impl->m_marks.clear();
 	m_impl->m_status.clear();
+	m_impl->m_statusEver.clear();
 	m_impl->m_hidden.clear();
 	m_impl->m_matches.clear();
 	m_impl->m_largest.clear();
@@ -426,6 +427,7 @@ void QDocument::startChunkLoading()
 	m_impl->m_lines.clear();
 	m_impl->m_marks.clear();
 	m_impl->m_status.clear();
+	m_impl->m_statusEver.clear();
 	m_impl->m_hidden.clear();
 	m_impl->m_matches.clear();
 	m_impl->m_largest.clear();
@@ -1213,6 +1215,16 @@ bool QDocument::isLineModified(const QDocumentLine& l) const
 				false
 			:
 				m_impl->m_status.value(l.handle())
+			;
+}
+
+bool QDocument::wasLineModified(const QDocumentLine& l) const
+{
+	return (!m_impl || !m_impl->m_statusEver.contains(l.handle()))
+			?
+				false
+			:
+				m_impl->m_statusEver.value(l.handle())
 			;
 }
 

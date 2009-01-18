@@ -104,7 +104,10 @@ void QLineChangePanel::paint(QPainter *p, QEditor *e)
 		
 		if ( d->isLineModified(line) )
 		{
-			p->fillRect(1, posY, 2, ls * span, Qt::red);
+			p->fillRect(1, posY, 2, ls * span, Qt::yellow);
+		} else if ( d->wasLineModified(line) )
+		{
+			p->fillRect(1, posY, 2, ls * span, Qt::green);
 		}
 		
 		posY += ls * span;
