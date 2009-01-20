@@ -248,8 +248,8 @@ void LatexEditorView::lineMarkClicked(int line){
       }
     //add unused mark (1..3) (when possible)
     for (int i=1;i<=3;i++) 
-        if (editor->document()->findNextMark(bookMarkId(i % 10))>=0) {
-            l.addMark(bookMarkId(i% 10));
+        if (editor->document()->findNextMark(bookMarkId(i))<0) {
+            l.addMark(bookMarkId(i));
             return;
         }
     //remove/add used mark
