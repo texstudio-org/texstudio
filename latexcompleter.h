@@ -82,6 +82,9 @@ private:
     void updateList(QString word);
     bool acceptChar(QChar c,int pos);
     CompletionWord wordToCompletionWord(const QString &str);
+    
+private slots:
+    void cursorPositionChanged();
 };
 
 #endif

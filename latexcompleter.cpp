@@ -22,22 +22,30 @@ public:
 
     bool insertCompletedWord(){
         if (completer->list->isVisible() && maxWritten>curStart && completer->list->currentIndex().isValid()) {
+            QDocumentCursor cursor=editor->cursor();
+            cursor.beginEditBlock();
             QString full=completer->list->model()->data(completer->list->currentIndex(),Qt::DisplayRole).toString();
-            for (int i=maxWritten-editor->cursor().columnNumber();i>0;i--)
-              editor->cursor().deleteChar();
-            int alreadyWrittenLen=editor->cursor().columnNumber()-curStart;
-            QString addStr=full.mid(alreadyWrittenLen);
-            editor->cursor().insertText(addStr);
+            int alreadyWrittenLen=editor->cursor().columnNumber()-curStart;            
+            //remove current text for correct case
+            for (int i=maxWritten-cursor.columnNumber();i>0;i--) editor->cursor().deleteChar(); 
+            for (int i=cursor.columnNumber()-curStart;i>0;i--) editor->cursor().deletePreviousChar();
+            cursor.setColumnNumber(curStart);
+            cursor.insertText(full);
+            cursor.endEditBlock();
+            
+            //place cursor/add \end
             CompletionWord cw= completer->wordToCompletionWord(full);
             if (full.startsWith("\\begin")) {
-                int curColumnNumber=editor->cursor().columnNumber();
+                int curColumnNumber=cursor.columnNumber();
+                QString indent=curLine.indentation();
                 int p=full.indexOf("{");
-                QString indent=editor->cursor().line().indentation();
-                editor->cursor().insertText( "\n"+indent+"\n"+indent+"\\end"+full.mid(p,full.indexOf("}")-p+1));
+                cursor.insertText( "\n"+indent+"\n"+indent+"\\end"+full.mid(p,full.indexOf("}")-p+1));
+
                 if (cw.cursorPos==-1) editor->setCursorPosition(curLine.lineNumber()+1,curLine.length());
                 else editor->setCursorPosition(curLine.lineNumber(),curColumnNumber-(full.length()-cw.cursorPos));
             } else if (cw.cursorPos>-1) 
-                editor->setCursorPosition(curLine.lineNumber(),editor->cursor().columnNumber()-(full.length()-cw.cursorPos));
+                editor->setCursorPosition(curLine.lineNumber(),cursor.columnNumber()-(full.length()-cw.cursorPos));
+            else editor->setCursor(cursor); //place after insertion
             return true;
         }
         return false;
@@ -175,10 +183,20 @@ public:
         return handled;
     }
 
+    void cursorPositionChanged(QEditor* edit){
+        if (edit!=editor) return; //should never happen
+        QDocumentCursor c=editor->cursor();
+        if (c.line()!=curLine || c.columnNumber()<curStart) resetBinding();
+    }
+
     void resetBinding(){
         if (!active) return;
         editor->setInputBinding(oldBinding);
-        if (completer) completer->list->hide();
+        editor->setFocus();
+        if (completer) {
+            completer->list->hide();
+            completer->disconnect(editor,SIGNAL(cursorPositionChanged()),completer,SLOT(cursorPositionChanged()));
+        }
         active=false;
     }
     
@@ -201,6 +219,8 @@ public:
         }
     }
 
+
+    bool isActive(){ return active;}
 private:
     bool active;
     bool showAlways;
@@ -239,9 +259,12 @@ QVariant CompletionListModel::headerData(int section, Qt::Orientation orientatio
      if (word==curWord) return;
      words.clear();
      for (int i=0;i<baselist.count();i++){
-         if (baselist[i].word.startsWith(word,Qt::CaseInsensitive)) 
-           words.append(baselist[i].word);
+        if (baselist[i].word.startsWith(word,Qt::CaseInsensitive)) 
+            words.append(baselist[i].word);
      }
+     if (words.size()>2) //prefer matching case
+        if (!words[0].startsWith(word,Qt::CaseSensitive) && words[1].startsWith(word,Qt::CaseSensitive)) 
+            words.swap(0,1);
      curWord=word;
      reset();
  }
@@ -281,6 +304,7 @@ void LatexCompleter::complete(const QDocumentCursor& c, const QString& trigger){
         list->resize(200,100);
         listModel=new CompletionListModel(list);
         list->setModel(listModel);
+        list->setFocusPolicy(Qt::NoFocus);
     }
     list->move(offset);
     //list->show();
@@ -300,6 +324,7 @@ void LatexCompleter::complete(const QDocumentCursor& c, const QString& trigger){
     } else completerInputBinding->bindTo(editor(),this,false,c.columnNumber()-1);
 
     //line.document()->cursor(0,0).insertText(QString::number(offset.x())+":"+QString::number(offset.y()));
+    connect(editor(),SIGNAL(cursorPositionChanged()),this,SLOT(cursorPositionChanged()));
 }
 
 QCodeCompletionEngine* LatexCompleter::clone(){
@@ -315,7 +340,14 @@ QStringList LatexCompleter::extensions() const{
 }
 
 void LatexCompleter::updateList(QString word){
+    QString cur=""; //needed to preserve selection
+    if (list->isVisible() && list->currentIndex().isValid())
+        cur=list->model()->data(list->currentIndex(),Qt::DisplayRole).toString();
     ((CompletionListModel*)(list->model()))->setWords(words,word);
+    if (cur!="") {
+        int p=((CompletionListModel*)(list->model()))->words.indexOf(cur); 
+        if (p>=0) list->setCurrentIndex(list->model()->index(p,0,QModelIndex()));
+    }
 }
 bool LatexCompleter::acceptChar(QChar c,int pos){
     if (((c>=QChar('a')) && (c<=QChar('z'))) ||
@@ -325,9 +357,20 @@ bool LatexCompleter::acceptChar(QChar c,int pos){
     return acceptedChars.contains(c);
 }
 CompletionWord LatexCompleter::wordToCompletionWord(const QString &str){
+    for (int i=0; i<words.count();i++)
+        if (words[i].word==str) 
+          return words[i];
+    //check again in lower case
     QString lcomp=str.toLower();
     for (int i=0; i<words.count();i++)
         if (words[i].lword==lcomp) 
           return words[i];
    return CompletionWord();
+}
+void LatexCompleter::cursorPositionChanged(){
+    if (!completerInputBinding || !completerInputBinding->isActive()) {
+        disconnect(editor(),SIGNAL(cursorPositionChanged()),this,SLOT(cursorPositionChanged()));
+        return;
+    }
+    completerInputBinding->cursorPositionChanged(editor());
 }

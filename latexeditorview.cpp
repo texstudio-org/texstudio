@@ -174,7 +174,8 @@ void LatexEditorView::jumpChangePositionBackward(){
     else if (curChangePos>=0 && curChangePos < changePositions.size()-1) curChangePos++;
     else if (editor->cursor().line()==changePositions.first().first) curChangePos=1;
     else curChangePos=0;
-    editor->setCursorPosition(changePositions[curChangePos].first.lineNumber(),changePositions[curChangePos].second);
+    if (curChangePos>=0 && curChangePos < changePositions.size()) 
+        editor->setCursorPosition(changePositions[curChangePos].first.lineNumber(),changePositions[curChangePos].second);
 }
 void LatexEditorView::jumpChangePositionForward(){
     for (int i=changePositions.size()-1;i>=0;i--)
