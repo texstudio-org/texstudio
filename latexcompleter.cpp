@@ -1,7 +1,50 @@
 #include "latexcompleter.h"
 #include "qdocumentline.h"
+#include <QApplication>
+#include <QItemDelegate>
 #include <QKeyEvent>
+#include <QPainter>
+#include <QStyleOptionViewItem>
+
 #include <QMessageBox>
+CompletionWord::CompletionWord(const QString &newWord){
+    cursorPos=-1;
+    QString visibleWord;
+    visibleWord.reserve(newWord.length());
+    word.reserve(newWord.length());
+    bool escape=false;
+    bool inDescription=false;
+    int formatStart=0;
+    for (int i=0;i<newWord.length();i++)
+        if (!escape) {
+            if (newWord.at(i)==QChar('\\')) escape=true;
+            else {
+                visibleWord+=newWord.at(i);
+                if (!inDescription) word.append(newWord.at(i));
+            }
+        } else {
+            escape=false;
+            switch (newWord.at(i).toAscii()) {
+                case '\\': word+='\\'; visibleWord+='\\'; break;
+                case '|': cursorPos=word.length(); break;
+                case '<': 
+                    inDescription=true; 
+                    formatStart=visibleWord.length(); 
+                    break;
+                case '>': {
+                    inDescription=false;  
+                    descriptiveParts.append(QPair<int, int>(formatStart, visibleWord.length()-formatStart));
+                    break;
+                }
+                default:;
+            }
+        }
+    
+    shownWord=visibleWord;
+    lword=word.toLower();
+}
+
+
 
 //------------------------------Default Input Binding--------------------------------
 class CompleterInputBinding: public QEditor::InputBinding{
@@ -24,17 +67,19 @@ public:
         if (completer->list->isVisible() && maxWritten>curStart && completer->list->currentIndex().isValid()) {
             QDocumentCursor cursor=editor->cursor();
             cursor.beginEditBlock();
-            QString full=completer->list->model()->data(completer->list->currentIndex(),Qt::DisplayRole).toString();
-            int alreadyWrittenLen=editor->cursor().columnNumber()-curStart;            
+            QVariant v=completer->list->model()->data(completer->list->currentIndex(),Qt::DisplayRole);
+            if (!v.isValid() || !v.canConvert<CompletionWord>()) return false;
+            CompletionWord cw= v.value<CompletionWord>();
+            QString full=cw.word;
+            //int alreadyWrittenLen=editor->cursor().columnNumber()-curStart;            
             //remove current text for correct case
-            for (int i=maxWritten-cursor.columnNumber();i>0;i--) editor->cursor().deleteChar(); 
-            for (int i=cursor.columnNumber()-curStart;i>0;i--) editor->cursor().deletePreviousChar();
-            cursor.setColumnNumber(curStart);
+            for (int i=maxWritten-cursor.columnNumber();i>0;i--) cursor.deleteChar(); 
+            for (int i=cursor.columnNumber()-curStart;i>0;i--) cursor.deletePreviousChar();
+          //  cursor.setColumnNumber(curStart);
             cursor.insertText(full);
             cursor.endEditBlock();
             
             //place cursor/add \end
-            CompletionWord cw= completer->wordToCompletionWord(full);
             if (full.startsWith("\\begin")) {
                 int curColumnNumber=cursor.columnNumber();
                 QString indent=curLine.indentation();
@@ -233,6 +278,55 @@ private:
 };
 
 CompleterInputBinding *completerInputBinding = new CompleterInputBinding();
+//------------------------------Item Delegate--------------------------------
+class CompletionItemDelegate: public QItemDelegate
+{
+public:
+    CompletionItemDelegate(QObject* parent = 0): QItemDelegate(parent)
+    {
+    }
+ 
+    void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
+    {
+        QVariant v=index.model()->data(index);
+        if (!v.isValid() || !v.canConvert<CompletionWord>()) return;
+        CompletionWord cw=v.value<CompletionWord>();
+        QFont fNormal=option.font;
+        QFont fItalic=option.font;
+        fItalic.setItalic(true);
+        if ((QStyle::State_HasFocus | QStyle::State_Selected) & option.state) {
+            //painter->setBackground(option.palette.brush(QPalette::Highlight));
+            painter->fillRect(option.rect,option.palette.brush(QPalette::Highlight));
+            painter->setPen(option.palette.color(QPalette::HighlightedText));
+        } else {
+            //painter->setBackground(option.palette.brush(QPalette::Base));
+            painter->fillRect(option.rect,option.palette.brush(QPalette::Base));//doesn't seem to be necessary
+            painter->setPen(option.palette.color(QPalette::Text));
+        }
+        QRect r=option.rect;
+        r.setLeft(r.left()+2);
+        if (cw.descriptiveParts.empty()) 
+            painter->drawText(r,Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, cw.shownWord);
+        else {
+            QFontMetrics fmn(fNormal);
+            QFontMetrics fmi(fItalic);
+            int p=0;
+            for (int i=0;i<cw.descriptiveParts.size();i++) {
+                QString temp=cw.shownWord.mid(p,cw.descriptiveParts[i].first-p);
+                painter->drawText(r,Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, temp);
+                r.setLeft(r.left()+fmn.width(temp));
+                temp=cw.shownWord.mid(cw.descriptiveParts[i].first,cw.descriptiveParts[i].second);
+                painter->setFont(fItalic);
+                painter->drawText(r,Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, temp);
+                r.setLeft(r.left()+fmi.width(temp)+1);
+                p=cw.descriptiveParts[i].first+cw.descriptiveParts[i].second;
+                painter->setFont(fNormal);
+            }
+            painter->drawText(r,Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, cw.shownWord.mid(p));
+        }
+    }
+};
+ 
 
 
 //----------------------------list model------------------------------------
@@ -246,9 +340,11 @@ QVariant CompletionListModel::data(const QModelIndex &index, int role) const{
  if (index.row() >= words.size())
      return QVariant();
 
- if (role == Qt::DisplayRole)
-     return words.at(index.row());
- else
+ if (role == Qt::DisplayRole){
+     QVariant temp;
+     temp.setValue(words.at(index.row()));
+     return temp;
+ } else
      return QVariant();
 }
 QVariant CompletionListModel::headerData(int section, Qt::Orientation orientation,
@@ -260,10 +356,10 @@ QVariant CompletionListModel::headerData(int section, Qt::Orientation orientatio
      words.clear();
      for (int i=0;i<baselist.count();i++){
         if (baselist[i].word.startsWith(word,Qt::CaseInsensitive)) 
-            words.append(baselist[i].word);
+            words.append(baselist[i]);
      }
      if (words.size()>2) //prefer matching case
-        if (!words[0].startsWith(word,Qt::CaseSensitive) && words[1].startsWith(word,Qt::CaseSensitive)) 
+        if (!words[0].word.startsWith(word,Qt::CaseSensitive) && words[1].word.startsWith(word,Qt::CaseSensitive)) 
             words.swap(0,1);
      curWord=word;
      reset();
@@ -272,6 +368,7 @@ QVariant CompletionListModel::headerData(int section, Qt::Orientation orientatio
 //------------------------------completer-----------------------------------
 QList <CompletionWord> LatexCompleter::words;
 QSet <QChar> LatexCompleter::acceptedChars;
+int LatexCompleter::maxWordLen = 0;
 
 LatexCompleter::LatexCompleter(QObject *p)
  : QCodeCompletionEngine(p)
@@ -281,6 +378,7 @@ LatexCompleter::LatexCompleter(QObject *p)
 }
 
 void LatexCompleter::setWords(const QStringList &newwords){
+    
     acceptedChars.clear();
     words.clear();
     foreach (QString str, newwords){
@@ -288,6 +386,18 @@ void LatexCompleter::setWords(const QStringList &newwords){
         foreach (QChar c, str) acceptedChars.insert(c);
     }
     qSort(words);
+    
+    if (maxWordLen==0) {
+        int newWordMax=0;
+        QFont f=QApplication::font();
+        f.setItalic(true);
+        QFontMetrics fm(f);
+        for (int i=0;i<words.size();i++) {
+            int temp=fm.width(words[i].shownWord)+words[i].descriptiveParts.size()+10;
+            if (temp>newWordMax) newWordMax=temp;
+        }
+        maxWordLen=newWordMax;
+    }
 }
 
 void LatexCompleter::complete(const QDocumentCursor& c, const QString& trigger){
@@ -301,10 +411,11 @@ void LatexCompleter::complete(const QDocumentCursor& c, const QString& trigger){
     offset.setX(offset.x()+left);
     if (!list) {
         list=new QListView(editor());;
-        list->resize(200,100);
+        list->resize(200>maxWordLen?200:maxWordLen,100);
         listModel=new CompletionListModel(list);
         list->setModel(listModel);
         list->setFocusPolicy(Qt::NoFocus);
+        list->setItemDelegate(new CompletionItemDelegate(list));
     }
     list->move(offset);
     //list->show();
