@@ -22,22 +22,20 @@
 
 #include <QListView>
 //#include "qpanel.h"
+
 class CompletionWord {
 public:
     CompletionWord():cursorPos(-1){}
-    CompletionWord(const CompletionWord &cw):word(cw.word),lword(cw.lword),cursorPos(cw.cursorPos){}
-    CompletionWord(const QString newWord){
-        word=newWord;
-        word.replace("\\\\","\\");
-        cursorPos=word.indexOf("\\|");
-        word.replace("\\|","");
-        lword=word.toLower();
-    }
-    bool operator< (const CompletionWord &cw) const {return cw.lword < lword;}
-    QString word,lword;
-    int cursorPos; //-1 => not defined
-};
+    CompletionWord(const CompletionWord &cw):word(cw.word),lword(cw.lword),shownWord(cw.shownWord),cursorPos(cw.cursorPos),descriptiveParts(cw.descriptiveParts){}
+    CompletionWord(const QString &newWord);//see cpp
+    bool operator< (const CompletionWord &cw) const {return cw.lword > lword;}
+    bool operator== (const CompletionWord &cw) const {return cw.word == word;}
 
+    QString word,lword,shownWord;
+    int cursorPos; //-1 => not defined
+    QList<QPair<int, int> > descriptiveParts; //used to draw
+};
+Q_DECLARE_METATYPE(CompletionWord)
 //class CompleterInputBinding;
 class CompletionListModel : public QAbstractListModel
  {
@@ -49,10 +47,10 @@ class CompletionListModel : public QAbstractListModel
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
-
+    
  private:
      friend class LatexCompleter;
-     QStringList words;
+     QList<CompletionWord> words;
      QString curWord;
      void setWords(const QList<CompletionWord> & baselist, const QString &word);     
 };
@@ -73,6 +71,7 @@ public:
 
 private:
     friend class CompleterInputBinding;
+    static int maxWordLen;
     static QList<CompletionWord> words;
     static QSet<QChar> acceptedChars;
     QListView * list;
