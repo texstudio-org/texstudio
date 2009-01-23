@@ -298,10 +298,9 @@ QString Texmaker::findResourceFile(QString fileName){
     searchFiles<<QCoreApplication::applicationDirPath() + "/"+fileName; //windows old 
     searchFiles<<QCoreApplication::applicationDirPath() + "/help/"+fileName; //windows new
     searchFiles<<QCoreApplication::applicationDirPath() + "/utilities/"+fileName; //windows new
-    searchFiles<<QCoreApplication::applicationDirPath() + "/utilities/qxs/"+fileName; //windows new
     searchFiles<<QCoreApplication::applicationDirPath() + "/dictionaries/"+fileName; //windows new
     searchFiles<<QCoreApplication::applicationDirPath() + "/translation/"+fileName; //windows new
-    searchFiles<<QCoreApplication::applicationDirPath() + ":/"+fileName; //resource fall back
+    searchFiles<<":/"+fileName; //resource fall back
     
     foreach (QString fn, searchFiles) {
         QFileInfo fic(fn);
@@ -1675,6 +1674,7 @@ QStatusBar * status=statusBar();
 stat1=new QLabel(status);
 stat2=new QLabel( status );
 stat3=new QLabel( status );
+statCursor=new QLabel( status );
 pb1=new QPushButton(QIcon(":/images/bookmark1.png"),"",status);
 pb2=new QPushButton(QIcon(":/images/bookmark2.png"),"",status);
 pb3=new QPushButton(QIcon(":/images/bookmark3.png"),"",status);
@@ -1690,6 +1690,7 @@ pb3->setMaximumSize(20,20);
 pb1->setFlat(true);
 pb2->setFlat(true);
 pb3->setFlat(true);
+status->addPermanentWidget(statCursor,0);
 status->addPermanentWidget(stat3,0);
 status->addPermanentWidget(stat2,0);
 status->addPermanentWidget(stat1,0);
@@ -1786,29 +1787,34 @@ return rep;
 
 void Texmaker::load( const QString &f )
 {
+    QString f_real=f;
+    #ifdef Q_WS_WIN
+        QRegExp regcheck("/([a-zA-Z]:[/\\\\].*)");
+        if (regcheck.exactMatch(f)) f_real=regcheck.cap(1);
+    #endif
 raise();
-if (FileAlreadyOpen(f) || !QFile::exists( f )) return;
+if (FileAlreadyOpen(f_real) || !QFile::exists( f_real )) return;
 LatexEditorView *edit = new LatexEditorView(0);
-EditorView->addTab( edit, QFileInfo( f ).fileName() );
+EditorView->addTab( edit, QFileInfo( f_real ).fileName() );
 configureNewEditorView(edit);
 
-QFile file( f );
+QFile file( f_real );
 if ( !file.open( QIODevice::ReadOnly ) )
 	{
 	QMessageBox::warning( this,tr("Error"), tr("You do not have read permission to this file."));
 	return;
 	}
 
-if (autodetectLoadedFile) edit->editor->load(f,0);
-else edit->editor->load(f,newfile_encoding);
+if (autodetectLoadedFile) edit->editor->load(f_real,0);
+else edit->editor->load(f_real,newfile_encoding);
 
-//filenames.replace( edit, f );
+//filenames.replace( edit, f_real );
 filenames.remove( edit);
-filenames.insert( edit, f );
+filenames.insert( edit, f_real );
 edit->editor->setFocus();
 UpdateCaption();
 NewDocumentStatus(false);
-AddRecentFile(f);
+AddRecentFile(f_real);
 ShowStructure();
 }
 
@@ -4149,7 +4155,7 @@ if (!t.isEmpty()) OutputTextEdit->insertLine(t+"\n");
 void Texmaker::readFromStdoutput()
 {
     QByteArray result=proc->readAllStandardOutput ();
-    QString t=QString(result).simplified();
+    QString t=QString(result).trimmed();
     if (!t.isEmpty()) OutputTextEdit->insertLine(t+"\n");
  }
 
@@ -4506,7 +4512,7 @@ void Texmaker::AnalyseText(){
     if (!currentEditorView()) return;
   TextAnalysisDialog *utDlg = new TextAnalysisDialog(this,tr("Text Analysis"));
   utDlg->data=currentEditorView()->editor->text();
-  int temp;
+  
   utDlg->selectionStart=currentEditorView()->editor->cursor().selectionStart().position();
   utDlg->selectionEnd=currentEditorView()->editor->cursor().selectionEnd().position();
   utDlg->init();
@@ -4673,7 +4679,7 @@ pile.clear();
 
 int j;
 
-int ligne=0;
+
 int par=1;
 int errorpar=1;
 
@@ -5253,7 +5259,7 @@ if (singlemode && currentEditorView())
 	while ( (pos = (int)shortName.indexOf('/')) != -1 ) shortName.remove(0,pos+1);
 	ToggleAct->setText(tr("Normal Mode (current master document :")+shortName+")");
 	singlemode=false;
-	stat1->setText(QString(" %1 ").arg(tr("Master Document :")+shortName));
+	stat1->setText(QString(" %1 ").arg(tr("Master Document")+ ": "+shortName));
 	return;
 	}
 }
@@ -5331,6 +5337,7 @@ QString uri;
 for (int i = 0; i < uris.size(); ++i)
 	{
 	uri=uris.at(i).toString();
+	//QMessageBox::information(0,uri,uri,0);
 	if (rx.exactMatch(uri)) load(rx.cap(1));
 	}
 event->acceptProposedAction();
