@@ -51,13 +51,10 @@ mw = new Texmaker();
 connect( this, SIGNAL( lastWindowClosed() ), this, SLOT( quit() ) );
 splash->finish(mw);
 delete splash;
-for ( int i = 1; i < argc; ++i )
-	{
-	QString arg = argv[ i ];
-	if ( arg[0] != '-' )    mw->load( arg );
-	if ( arg == "-master" ) mw->ToggleMode();
-	if (( arg == "-line" ) && (i<argc-1))  mw->setLine( argv[ ++i ] );
-	}
+
+QStringList cmdLine;
+for ( int i = 1; i < argc; ++i ) cmdLine << argv [i];
+mw->executeCommandLine(cmdLine,true);
 }
 
 TexmakerApp::~TexmakerApp()
