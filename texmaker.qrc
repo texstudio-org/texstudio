@@ -1,5 +1,5 @@
 <!DOCTYPE RCC><RCC version="1.0">
-    <qresource>
+ <qresource>
 	<file alias="closeall.png">images/qcodeedit/closeall.png</file>
 	<file alias="down.png">images/qcodeedit/down.png</file>
 	<file alias="up.png">images/qcodeedit/up.png</file>
@@ -17,7 +17,13 @@
 	<file>images/lbook8.png</file>
 	<file>images/lbook9.png</file>
 	
-  
+	<file alias="qxs/defaultFormats.qxf">utilities/qxs/defaultFormats.qxf</file>
+	<file alias="qxs/marks.qxm">utilities/qxs/marks.qxm</file>
+	<file alias="qxs/bibtex.qnfa">utilities/qxs/bibtex.qnfa</file>
+	<file alias="qxs/tex.qnfa">utilities/qxs/tex.qnfa</file>
+	<file alias="qxs/xml.qnfa">utilities/qxs/xml.qnfa</file>
+ 
+ 
 	<file>images/logo128.png</file>
 	<file>images/pstricks.png</file>
 	<file>images/accent1.png</file>
@@ -522,6 +528,7 @@
         <file>symbols/img98.png</file>
         <file>symbols/img99.png</file>
         <file>symbols/img9greek.png</file>
-	<file>completion/completion.txt</file>
+
+        <file>completion/completion.txt</file>
     </qresource>
 </RCC>
