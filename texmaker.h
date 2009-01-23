@@ -68,8 +68,8 @@ QFont EditorFont;
 QByteArray windowstate;
 public slots:
 void load( const QString &f );
-void setLine( const QString &line );
-void ToggleMode();
+void setLine( int line );//0 based
+void executeCommandLine( const QStringList& args, bool realCmdLine);
 void onOtherInstanceMessage(const QString &);  // For messages for the single instance
 
 static QString findResourceFile(QString fileName);
@@ -113,11 +113,11 @@ QMenu *optionsMenu;
 QMenu *helpMenu;
 
 QToolBar *fileToolBar, *editToolBar, *runToolBar, *formatToolBar, *mathToolBar;
-QAction *recentFileActs[5], *ToggleAct;
+QAction *recentFileActs[5], *ToggleAct, *ToggleRememberAct;
 
 QLabel *stat1, *stat2, *stat3;
 QPushButton *pb1, *pb2, *pb3;
-QString MasterName;
+QString MasterName,persistentMasterFile;
 bool logpresent;
 QStringList recentFilesList;
 //settings
@@ -264,9 +264,9 @@ void QuickTabbing();
 void QuickLetter();
 void QuickDocument();
 
-void RunCommand(QString comd,bool waitendprocess);
+void RunCommand(QString comd,bool waitendprocess,bool showStdout);
 void readFromStderr();
-//void readFromStdoutput();
+void readFromStdoutput();
 void SlotEndProcess(int err);
 void QuickBuild();
 void Latex();
@@ -309,6 +309,8 @@ void UserManualHelp();
 void HelpAbout();
 
 void GeneralOptions();
+void ToggleMode();
+void ToggleMasterRememberMode();
 
 void gotoNextDocument();
 void gotoPrevDocument();

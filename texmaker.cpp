@@ -287,7 +287,6 @@ setAcceptDrops(true);
     
     updateCompleter();
     m_languages->addCompletionEngine(completer);
-
 }
 
 QString Texmaker::findResourceFile(QString fileName){
@@ -1375,6 +1374,10 @@ optionsMenu->addSeparator();
 ToggleAct = new QAction(tr("Define Current Document as 'Master Document'"), this);
 connect(ToggleAct, SIGNAL(triggered()), this, SLOT(ToggleMode()));
 optionsMenu->addAction(ToggleAct);
+ToggleRememberAct = new QAction(tr("Remember 'Master Document' setting"), this);
+ToggleRememberAct->setCheckable(true);
+connect(ToggleRememberAct, SIGNAL(triggered()), this, SLOT(ToggleMasterRememberMode()));
+optionsMenu->addAction(ToggleRememberAct);
 
 helpMenu = menuBar()->addMenu(tr("&Help"));
 Act = new QAction(QIcon(":/images/help.png"), tr("LaTeX Reference"), this);
@@ -1809,13 +1812,10 @@ AddRecentFile(f);
 ShowStructure();
 }
 
-void Texmaker::setLine( const QString &line )
+void Texmaker::setLine( int line )
 {
-bool ok;
-int l=line.toInt(&ok,10);
-if (currentEditorView() && ok)
-	{
-	    currentEditorView()->editor->setCursorPosition(l,1);
+    if (currentEditorView() && line>=0)	{
+	    currentEditorView()->editor->setCursorPosition(line,0);
 	    currentEditorView()->editor->ensureCursorVisible();
 	    currentEditorView()->editor->setFocus();
 	}
@@ -2470,6 +2470,7 @@ userOptionsList=config->value("Tools/User Options").toStringList();
 
 lastDocument=config->value("Files/Last Document","").toString();
 recentFilesList=config->value("Files/Recent Files").toStringList();
+persistentMasterFile=config->value( "Files/PersistentMaster","").toString();
 newfile_encoding=QTextCodec::codecForName(config->value("Files/New File Encoding", "utf-8").toString().toAscii().data());
 autodetectLoadedFile=config->value("Files/Auto Detect Encoding Of Loaded Files", "true").toBool();
 
@@ -2601,7 +2602,7 @@ config->setValue("Shortcuts/shortcut",shortcut);
 
 config->setValue("Show/OutputView",showoutputview);
 
-config->setValue( "Show/Structureview",showstructview);
+config->setValue("Show/Structureview",showstructview);
 
 config->setValue("Tools/Quick Mode",quickmode);
 
@@ -2633,6 +2634,11 @@ if (userOptionsList.count()>0) config->setValue("Tools/User Options",userOptions
 
 config->setValue("Files/Last Document",lastDocument);
 if (recentFilesList.count()>0) config->setValue("Files/Recent Files",recentFilesList);
+
+if (ToggleRememberAct->isChecked() && singlemode) config->setValue( "Files/PersistentMaster","");
+else if (!ToggleRememberAct->isChecked() && !singlemode && persistentMasterFile!="" && QFileInfo(MasterName)==QFileInfo(persistentMasterFile)) config->setValue( "Files/PersistentMaster","");
+else if (ToggleRememberAct->isChecked()) config->setValue( "Files/PersistentMaster",MasterName);
+
 
 config->setValue("Files/New File Encoding", newfile_encoding?newfile_encoding->name():"??");
 config->setValue("Files/Auto Detect Encoding Of Loaded Files", autodetectLoadedFile);
@@ -2699,9 +2705,6 @@ for (int i=0;i<UserKeyReplaceCount;i++) {
 config->setValue("Structure/Structure Level 1",struct_level1);
 config->setValue("Structure/Structure Level 2",struct_level2);
 config->setValue("Structure/Structure Level 3",struct_level3);
-
-
-
 config->setValue("Structure/Structure Level 4",struct_level4);
 config->setValue("Structure/Structure Level 5",struct_level5);
 
@@ -2722,6 +2725,7 @@ for (int i=0; i <412 ; i++)
 	{
 	config->setValue( "Symbols/symbol"+QString::number(i),symbolScore[i]);
 	}
+
 
 
 config->endGroup();
@@ -4087,7 +4091,7 @@ if (text=="right.") InsertTag("\\right. ",8,0);
 }
 
 ///////////////TOOLS////////////////////
-void Texmaker::RunCommand(QString comd,bool waitendprocess)
+void Texmaker::RunCommand(QString comd,bool waitendprocess,bool showStdout)
 {
 
 QString finame;
@@ -4112,7 +4116,7 @@ proc = new QProcess( this );
 proc->setWorkingDirectory(fi.absolutePath());
 
 connect(proc, SIGNAL(readyReadStandardError()),this, SLOT(readFromStderr()));
-//connect(proc, SIGNAL(readyReadStandardOutput()),this, SLOT(readFromStdoutput()));
+if (showStdout) connect(proc, SIGNAL(readyReadStandardOutput()),this, SLOT(readFromStdoutput()));
 connect(proc, SIGNAL(finished(int)),this, SLOT(SlotEndProcess(int)));
 OutputTextEdit->clear();
 OutputTableWidget->hide();
@@ -4138,16 +4142,16 @@ if (waitendprocess)
 void Texmaker::readFromStderr()
 {
 QByteArray result=proc->readAllStandardError();
-QString t=QString(result);
-t=t.simplified();
+QString t=QString(result).simplified();
 if (!t.isEmpty()) OutputTextEdit->insertLine(t+"\n");
 }
 
-// void Texmaker::readFromStdoutput()
-// {
-// QByteArray result=proc->readAllStandardOutput ();
-// OutputTextEdit->insertLine(QString(result)+"\n");
-// }
+void Texmaker::readFromStdoutput()
+{
+    QByteArray result=proc->readAllStandardOutput ();
+    QString t=QString(result).simplified();
+    if (!t.isEmpty()) OutputTextEdit->insertLine(t+"\n");
+ }
 
 void Texmaker::SlotEndProcess(int err)
 {
@@ -4167,7 +4171,7 @@ switch (quickmode)
   case 1:
     {
     stat2->setText(QString(" %1 ").arg("Latex"));
-    RunCommand(latex_command,true);
+    RunCommand(latex_command,true,false);
     if (ERRPROCESS && !LogExists())
         {
 	QMessageBox::warning( this,tr("Error"),tr("Could not start the command."));
@@ -4177,7 +4181,7 @@ switch (quickmode)
     if (NoLatexErrors())
     	{
 	stat2->setText(QString(" %1 ").arg("Dvips"));
-    	if (!ERRPROCESS) RunCommand(dvips_command,true);
+    	if (!ERRPROCESS) RunCommand(dvips_command,true,false);
         else return;
 	if (!ERRPROCESS) ViewPS();
         else return;
@@ -4187,7 +4191,7 @@ switch (quickmode)
   case 2:
     {
     stat2->setText(QString(" %1 ").arg("Latex"));
-    RunCommand(latex_command,true);
+    RunCommand(latex_command,true,false);
     if (ERRPROCESS && !LogExists())
         {
 	QMessageBox::warning( this,tr("Error"),tr("Could not start the command."));
@@ -4204,7 +4208,7 @@ switch (quickmode)
  case 3:
     {
     stat2->setText(QString(" %1 ").arg("Pdf Latex"));
-    RunCommand(pdflatex_command,true);
+    RunCommand(pdflatex_command,true,false);
     if (ERRPROCESS && !LogExists())
         {
 	QMessageBox::warning( this,tr("Error"),tr("Could not start the command."));
@@ -4221,7 +4225,7 @@ switch (quickmode)
  case 4:
     {
     stat2->setText(QString(" %1 ").arg("Latex"));
-    RunCommand(latex_command,true);
+    RunCommand(latex_command,true,false);
     if (ERRPROCESS && !LogExists())
         {
 	QMessageBox::warning( this,tr("Error"),tr("Could not start the command."));
@@ -4231,7 +4235,7 @@ switch (quickmode)
     if (NoLatexErrors())
     	{
 	stat2->setText(QString(" %1 ").arg("Dvi to Pdf"));
-	if (!ERRPROCESS) RunCommand(dvipdf_command,true);
+	if (!ERRPROCESS) RunCommand(dvipdf_command,true,false);
         else return;
 	if (!ERRPROCESS) ViewPDF();
         else return;
@@ -4241,7 +4245,7 @@ switch (quickmode)
  case 5:
     {
     stat2->setText(QString(" %1 ").arg("Latex"));
-    RunCommand(latex_command,true);
+    RunCommand(latex_command,true,false);
     if (ERRPROCESS && !LogExists())
         {
 	QMessageBox::warning( this,tr("Error"),tr("Could not start the command."));
@@ -4251,10 +4255,10 @@ switch (quickmode)
     if (NoLatexErrors())
     	{
 	stat2->setText(QString(" %1 ").arg("Dvips"));
-	if (!ERRPROCESS) RunCommand(dvips_command,true);
+	if (!ERRPROCESS) RunCommand(dvips_command,true,false);
         else return;
 	stat2->setText(QString(" %1 ").arg("Ps to Pdf"));
-	if (!ERRPROCESS) RunCommand(ps2pdf_command,true);
+	if (!ERRPROCESS) RunCommand(ps2pdf_command,true,false);
         else return;
 	if (!ERRPROCESS) ViewPDF();
 	}
@@ -4265,7 +4269,7 @@ switch (quickmode)
     QStringList commandList=userquick_command.split("|");
     for (int i = 0; i < commandList.size(); ++i)
 	{
-	if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) RunCommand(commandList.at(i),true);
+	if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) RunCommand(commandList.at(i),true,true);
         else return;
 	}
     }break;
@@ -4278,61 +4282,61 @@ if (NoLatexErrors()) ViewLog();
 void Texmaker::Latex()
 {
 stat2->setText(QString(" %1 ").arg("Latex"));
-RunCommand(latex_command,false);
+RunCommand(latex_command,false,false);
 }
 
 void Texmaker::ViewDvi()
 {
 stat2->setText(QString(" %1 ").arg(tr("View Dvi file")));
-RunCommand(viewdvi_command,false);
+RunCommand(viewdvi_command,false,false);
 }
 
 void Texmaker::DviToPS()
 {
 stat2->setText(QString(" %1 ").arg("Dvips"));
-RunCommand(dvips_command,false);
+RunCommand(dvips_command,false,false);
 }
 
 void Texmaker::ViewPS()
 {
 stat2->setText(QString(" %1 ").arg(tr("View PS file")));
-RunCommand(viewps_command,false);
+RunCommand(viewps_command,false,false);
 }
 
 void Texmaker::PDFLatex()
 {
 stat2->setText(QString(" %1 ").arg("Pdf Latex"));
-RunCommand(pdflatex_command,false);
+RunCommand(pdflatex_command,false,false);
 }
 
 void Texmaker::ViewPDF()
 {
 stat2->setText(QString(" %1 ").arg(tr("View Pdf file")));
-RunCommand(viewpdf_command,false);
+RunCommand(viewpdf_command,false,false);
 }
 
 void Texmaker::MakeBib()
 {
 stat2->setText(QString(" %1 ").arg("Bibtex"));
-RunCommand(bibtex_command,false);
+RunCommand(bibtex_command,false,false);
 }
 
 void Texmaker::MakeIndex()
 {
 stat2->setText(QString(" %1 ").arg("Make index"));
-RunCommand(makeindex_command,false);
+RunCommand(makeindex_command,false,false);
 }
 
 void Texmaker::PStoPDF()
 {
 stat2->setText(QString(" %1 ").arg("Ps -> Pdf"));
-RunCommand(ps2pdf_command,false);
+RunCommand(ps2pdf_command,false,false);
 }
 
 void Texmaker::DVItoPDF()
 {
 stat2->setText(QString(" %1 ").arg("Dvi -> Pdf"));
-RunCommand(dvipdf_command,false);
+RunCommand(dvipdf_command,false,false);
 }
 
 void Texmaker::MetaPost()
@@ -4340,7 +4344,7 @@ void Texmaker::MetaPost()
 stat2->setText(QString(" %1 ").arg("Mpost"));
 QString finame=getName();
 QFileInfo fi(finame);
-RunCommand(metapost_command+fi.completeBaseName()+"."+fi.suffix(),false);
+RunCommand(metapost_command+fi.completeBaseName()+"."+fi.suffix(),false,false);
 }
 
 void Texmaker::CleanAll()
@@ -4372,7 +4376,7 @@ QStringList commandList=UserToolCommand[0].split("|");
 ERRPROCESS=false;
 for (int i = 0; i < commandList.size(); ++i)
 	{
-	if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) RunCommand(commandList.at(i),true);
+	if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) RunCommand(commandList.at(i),true,true);
         else return;
 	}
 }
@@ -4383,7 +4387,7 @@ QStringList commandList=UserToolCommand[1].split("|");
 ERRPROCESS=false;
 for (int i = 0; i < commandList.size(); ++i)
 	{
-	if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) RunCommand(commandList.at(i),true);
+	if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) RunCommand(commandList.at(i),true,true);
         else return;
 	}
 }
@@ -4394,7 +4398,7 @@ QStringList commandList=UserToolCommand[2].split("|");
 ERRPROCESS=false;
 for (int i = 0; i < commandList.size(); ++i)
 	{
-	if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) RunCommand(commandList.at(i),true);
+	if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) RunCommand(commandList.at(i),true,true);
         else return;
 	}
 }
@@ -4405,7 +4409,7 @@ QStringList commandList=UserToolCommand[3].split("|");
 ERRPROCESS=false;
 for (int i = 0; i < commandList.size(); ++i)
 	{
-	if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) RunCommand(commandList.at(i),true);
+	if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) RunCommand(commandList.at(i),true,true);
         else return;
 	}
 }
@@ -4416,7 +4420,7 @@ QStringList commandList=UserToolCommand[4].split("|");
 ERRPROCESS=false;
 for (int i = 0; i < commandList.size(); ++i)
 	{
-	if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) RunCommand(commandList.at(i),true);
+	if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) RunCommand(commandList.at(i),true,true);
         else return;
 	}
 }
@@ -5181,7 +5185,48 @@ if (confDlg->exec())
 		}
 	}
 }
-
+void Texmaker::executeCommandLine( const QStringList& args, bool realCmdLine){
+    //parsing command line
+    QString fileToLoad;
+    bool activateMasterMode = false;
+    int line=-1;
+    for ( int i = 0; i < args.size(); ++i ){
+        if (args[i]=="") continue;
+        if ( args[i][0] != '-' )  fileToLoad=args[i];
+        if ( args[i] == "-master" ) activateMasterMode=true;
+        if (( args[i] == "-line" ) && (i+1<args.size()))  line=args[++i].toInt()-1;
+    }
+    //executing cmd line (in an sosrted order)
+    QFileInfo ftl(fileToLoad);
+    if (fileToLoad!="" && !ftl.exists()) fileToLoad="";
+    if (fileToLoad!="") load( fileToLoad);
+    else {
+        activateMasterMode=false;
+        line=-1;
+    }
+    if (line!=-1) setLine(line);
+    if (activateMasterMode) {
+        if (singlemode && realCmdLine && persistentMasterFile!="") {
+            if (QFileInfo(persistentMasterFile)==ftl) ToggleRememberAct->setChecked(true);
+            ToggleMode();
+        } else if (singlemode) {
+            ToggleRememberAct->setChecked(false);
+            ToggleMode();
+        } else {
+            ToggleRememberAct->setChecked(false);
+            ToggleMode(); //undefine current master file
+            ToggleMode(); //define current master file
+        }
+    } else if (realCmdLine && persistentMasterFile!="") {
+        ToggleRememberAct->setChecked(true);
+        load(persistentMasterFile);
+        ToggleMode();
+    }
+}
+void Texmaker::onOtherInstanceMessage(const QString &msg)  // Added slot for messages to the single instance
+{
+    executeCommandLine(msg.split("#!#"),false);
+}
 void Texmaker::ToggleMode()
 {
 //QAction *action = qobject_cast<QAction *>(sender());
@@ -5212,18 +5257,8 @@ if (singlemode && currentEditorView())
 	return;
 	}
 }
-
-void Texmaker::onOtherInstanceMessage(const QString &msg)  // Added slot for messages to the single instance
-{
-QStringList argv = msg.split("#!#");
-int argc = argv.size();
-for ( int i = 1; i < argc; ++i )
-	{
-	QString arg = argv[ i ];
-	if ( arg[0] != '-' )    load( arg );
-	if ( arg == "-master" ) ToggleMode();
-	if (( arg == "-line" ) && (i<argc-1))  setLine( argv[ ++i ] );
-	}
+void Texmaker::ToggleMasterRememberMode(){
+    //ToggleRememberAct->setChecked(!ToggleRememberAct->isChecked());
 }
 ////////////////// VIEW ////////////////
 
