@@ -45,6 +45,26 @@
         <waveUnderline>false</waveUnderline>
         <foreground>#ff0000</foreground>
     </format>
+    <format id="braceMatch" >
+        <bold>true</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <background>#ffff00</background>
+        <foreground>#ff0000</foreground>
+    </format>
+    <format id="braceMismatch" >
+        <bold>true</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <background>#ff0000</background>
+        <foreground>#ffff00</foreground>
+    </format>
     <format id="search" >
         <bold>true</bold>
         <italic>true</italic>

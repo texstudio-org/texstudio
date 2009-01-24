@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -76,7 +76,7 @@ class QCE_EXPORT QPanel : public QWidget
 	private:
 		QPointer<QEditor> m_editor;
 		bool m_defaultVisibility, m_shownOnce;
-		static QHash<QString, QPanelCreator*> m_creators;
+		static QHash<QString, QPanelCreator*>& creators();
 };
 
 class QPanelCreator
@@ -88,6 +88,7 @@ class QPanelCreator
 };
 
 #define Q_PANEL(T, SID)									\
+	public:												\
 	class Creator : public QPanelCreator				\
 	{ 													\
 		public: 										\
@@ -112,14 +113,15 @@ class QPanelCreator
 	};													\
 														\
 	QString id() const { return SID; }					\
+														\
+	static void _register()								\
+	{													\
+		QPanel::registerCreator(Creator::instance());	\
+	}													\
 	
 
 #define Q_PANEL_ID(T)									\
 	T::Creator::instance()->id()						\
-	
-
-#define Q_REGISTER_PANEL(T)								\
-	QPanel::registerCreator(T::Creator::instance())		\
 	
 
 #define Q_CREATE_PANEL(T)								\

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -14,6 +14,11 @@
 ****************************************************************************/
 
 #include "qnfa.h"
+
+/*!
+	\file qnfa.cpp
+	\brief Implementation of the core QNFA syntax engine
+*/
 
 #include <QHash>
 #include <QList>
@@ -177,6 +182,7 @@ void match(QNFAMatchContext *lexer, const QChar *d, int length, QNFAMatchNotifie
 			
 			if ( it != lexer->context->tree.constEnd() )
 			{
+				//qDebug("plain on %c", c);
 				do
 				{
 					++di;
@@ -556,7 +562,7 @@ QNFA* context(const QString& start, const QString& stop, const QString&, int act
 
 void addWord(QNFA *lexer, const QString& w, int action, bool cs)
 {
-	if ( !lexer || (lexer->type != ContextBegin) || !lexer->out.branch )
+	if ( !lexer || !(lexer->type & CxtBeg) || !lexer->out.branch )
 		return;
 	
 	// try using the fastest way if possible
@@ -588,8 +594,10 @@ void addWord(QNFA *lexer, const QString& w, int action, bool cs)
 
 void addSequence(QNFA *lexer, const QString& w, int action, bool cs)
 {
-	if ( !lexer || (lexer->type != ContextBegin) || !lexer->out.branch )
+	if ( !lexer || !(lexer->type & CxtBeg) || !lexer->out.branch )
+	{
 		return;
+	}
 	
 	QNFA *seq, *end, *nfa;
 	

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -18,6 +18,11 @@
 
 #include "qce-config.h"
 
+/*!
+	\file qeditorfactory.h
+	\brief Definition of the QEditorFactory class
+*/
+
 #ifdef _QSAFE_SHARED_SETTINGS_
 
 #ifndef _QMDI_
@@ -29,11 +34,6 @@
 	#define Q_EDITOR_FACTORY_BASE qmdiClientFactory
 	#define Q_EDITOR_FACTORY_EMIT(client) emit clientCreated(client);
 #endif
-
-/*!
-	\file qeditorfactory.h
-	\brief Definition of the QEditorFactory class.
-*/
 
 #include "qsettingsclient.h"
 

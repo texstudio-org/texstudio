@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -31,7 +31,6 @@
 
 #include <QScrollBar>
 #include <QPaintEvent>
-
 
 static QString escapeCpp(const QString& s, bool rep)
 {
@@ -70,9 +69,14 @@ static QString escapeCpp(const QString& s, bool rep)
 /*!
 	\ingroup widgets
 	@{
-	
-	\class QSearchReplacePanel
 */
+
+/*!
+	\class QSearchReplacePanel
+	\brief A panel that provide inline search/replace functionalities
+*/
+
+QCE_AUTO_REGISTER(QSearchReplacePanel)
 
 /*!
 	\brief Constructor

@@ -30,6 +30,19 @@
 		
 		QDocumentLine and QDocumentLineHandle => equivalent of QTextBlock
 		QDocumentCursor and QDocumentCursorHandle => equivalent of QTextCursor
+	
+	Note :
+		The KISS principle has been kinda mistreated in the private API due to
+		the addition of some complex features which where not planned to be
+		supported when defining the goals (e.g line wrapping, variable width
+		fonts, ...). Such a compromission is affordable but should be avoided
+		whenever possible in the future. And of course the public API should
+		never suffer from such a thing.
+*/
+
+/*!
+	\ingroup document
+	@{
 */
 
 /*!
@@ -159,6 +172,9 @@ struct InitStruct
 
 static InitStruct init_inst;
 
+/*!
+	\brief ctor
+*/
 QDocument::QDocument(QObject *p)
  : QObject(p), m_impl(new QDocumentPrivate(this))
 {
@@ -187,6 +203,9 @@ QDocument::QDocument(QObject *p)
 			
 }
 
+/*!
+	\brief dtor
+*/
 QDocument::~QDocument()
 {
 	delete m_impl;
@@ -290,7 +309,7 @@ QString QDocument::text(int mode) const
 	}
 	
 	//s.chop(m_impl->m_lineEndingString.count());
-	
+	return s;
 }
 
 /*!
@@ -330,7 +349,6 @@ void QDocument::setText(const QString& s)
 	m_impl->m_lines.clear();
 	m_impl->m_marks.clear();
 	m_impl->m_status.clear();
-	m_impl->m_statusEver.clear();
 	m_impl->m_hidden.clear();
 	m_impl->m_matches.clear();
 	m_impl->m_largest.clear();
@@ -427,7 +445,6 @@ void QDocument::startChunkLoading()
 	m_impl->m_lines.clear();
 	m_impl->m_marks.clear();
 	m_impl->m_status.clear();
-	m_impl->m_statusEver.clear();
 	m_impl->m_hidden.clear();
 	m_impl->m_matches.clear();
 	m_impl->m_largest.clear();
@@ -987,7 +1004,7 @@ QRect QDocument::lineRect(const QDocumentLine& l) const
 }
 
 /*!
-	\
+	\return the line at a given document position
 */
 QDocumentLine QDocument::lineAt(const QPoint& p) const
 {
@@ -997,6 +1014,9 @@ QDocumentLine QDocument::lineAt(const QPoint& p) const
 	return line(lineNumber(p.y()));
 }
 
+/*!
+	\return a document iterator pointing to the first line
+*/
 QDocumentConstIterator QDocument::begin() const
 {
 	Q_ASSERT(m_impl);
@@ -1004,6 +1024,9 @@ QDocumentConstIterator QDocument::begin() const
 	return m_impl->m_lines.constBegin();
 }
 
+/*!
+	\return a document iterator pointing past the last line
+*/
 QDocumentConstIterator QDocument::end() const
 {
 	Q_ASSERT(m_impl);
@@ -1011,6 +1034,9 @@ QDocumentConstIterator QDocument::end() const
 	return m_impl->m_lines.constEnd();
 }
 
+/*!
+	\return a document iterator pointing to a given line
+*/
 QDocumentConstIterator QDocument::iterator(int ln) const
 {
 	Q_ASSERT(m_impl);
@@ -1018,6 +1044,10 @@ QDocumentConstIterator QDocument::iterator(int ln) const
 	return begin() + ln;
 }
 
+/*!
+	\overload
+	\note If you can avoid using this method, do so unless performance really isn't an issue
+*/
 QDocumentConstIterator QDocument::iterator(const QDocumentLine& l) const
 {
 	Q_ASSERT(m_impl);
@@ -1030,6 +1060,12 @@ QDocumentConstIterator QDocument::iterator(const QDocumentLine& l) const
 	return it;
 }
 
+/*!
+	\brief Convert a document (or viewport) (x, y) position to a (line, column) cursor position
+	\param p document position
+	\param line where the line number will be stored
+	\param column where the column (text position within line) will be stored
+*/
 void QDocument::cursorForDocumentPosition(const QPoint& p, int& line, int& column) const
 {
 	if ( !m_impl )
@@ -1045,48 +1081,11 @@ void QDocument::cursorForDocumentPosition(const QPoint& p, int& line, int& colum
 	column = l.documentOffsetToCursor(p.x(), wrap * QDocumentPrivate::m_lineSpacing);
 	
 	//qDebug("(%i, %i) -> (%i [+%i], %i)", p.x(), p.y(), line, wrap, column);
-	
-	/*
-	int x = p.x();
-	const QVector< QPair<int, int> >& front = l.handle()->m_frontiers;
-	
-	if ( front.count() > wrap )
-	{
-		int xoff = front.at(wrap).second;
-		
-		if ( wrap )
-			xoff -= front.at(wrap - 1).second;
-			
-		if ( x >= xoff )
-		{
-			//qDebug("bounding.");
-			column = front.at(wrap).first - 1;
-			return;
-		}
-	}
-	
-	if ( wrap )
-	{
-		int fns = l.firstChar(), off = 0;
-		
-		if ( fns < front.at(0).first )
-		{
-			off = x - l.cursorToX(fns);
-		} else {
-			off = x - QDocumentPrivate::m_leftMargin;
-		}
-		
-		if ( off < 0 )
-			off = 0;
-			
-		x = front.at(wrap - 1).second + off;
-	}
-	
-	column = l.xToCursor(x);
-	*/
-	//QMessageBox::information(0, "", QString("(%1, %2) -> (%3, %4)").arg(p.x()).arg(p.y()).arg(line).arg(column));
 }
 
+/*!
+	\return The cursor nearest to a document (x, y) position
+*/
 QDocumentCursor QDocument::cursorAt(const QPoint& p) const
 {
 	int ln = -1, col = -1;
@@ -1096,11 +1095,19 @@ QDocumentCursor QDocument::cursorAt(const QPoint& p) const
 	return QDocumentCursor(const_cast<QDocument*>(this), ln, col);
 }
 
+/*!
+	\brief Draw the contents of the document
+	\param p painter to use
+	\param cxt paint context (specifies what part of the document to draw, among other things)
+*/
 void QDocument::draw(QPainter *p, PaintContext& cxt)
 {
 	m_impl->draw(p, cxt);
 }
 
+/*!
+	\brief Execute a document command (editing operation)
+*/
 void QDocument::execute(QDocumentCommand *cmd)
 {
 	if ( m_impl && cmd )
@@ -1108,11 +1115,19 @@ void QDocument::execute(QDocumentCommand *cmd)
 		
 }
 
+/*!
+	\return The default line ending policy
+*/
 QDocument::LineEnding QDocument::defaultLineEnding()
 {
 	return QDocumentPrivate::m_defaultLineEnding;
 }
 
+/*!
+	\brief Set the default line ending policy
+	
+	\note The line ending policy of existing documents is changed accordingly
+*/
 void QDocument::setDefaultLineEnding(QDocument::LineEnding le)
 {
 	QDocumentPrivate::m_defaultLineEnding = le;
@@ -1123,31 +1138,53 @@ void QDocument::setDefaultLineEnding(QDocument::LineEnding le)
 	}
 }
 
+/*!
+	\return The default format scheme used to draw document contents
+*/
 QFormatScheme* QDocument::defaultFormatScheme()
 {
 	return QDocumentPrivate::m_defaultFormatScheme;
 }
 
+/*!
+	\brief Set the default format scheme
+	
+	\note Existing documents using the default format scheme will see their format scheme changed
+*/
 void QDocument::setDefaultFormatScheme(QFormatScheme *f)
 {
-	QDocumentPrivate::m_defaultFormatScheme = f;
-	
 	foreach ( QDocumentPrivate *d, QDocumentPrivate::m_documents )
 	{
-		d->setFormatScheme(f);
+		if ( d->m_formatScheme == QDocumentPrivate::m_defaultFormatScheme )
+			d->setFormatScheme(f);
 	}
+	
+	QDocumentPrivate::m_defaultFormatScheme = f;
 }
 
+/*!
+	\deprecated
+	\brief Compatibility alias for defaultFormatScheme()
+*/
 QFormatScheme* QDocument::formatFactory()
 {
 	return defaultFormatScheme();
 }
 
+/*!
+	\deprecated
+	\brief Compatibility alias for setDefaultFormatScheme()
+*/
 void QDocument::setFormatFactory(QFormatScheme *f)
 {
 	setDefaultFormatScheme(f);
 }
 
+/*!
+	\brief Begin a macro
+	
+	Macro in QDocument map directly to macro in the underlying undo stack
+*/
 void QDocument::beginMacro()
 {
 	if ( m_impl )
@@ -1155,6 +1192,9 @@ void QDocument::beginMacro()
 		
 }
 
+/*!
+	\brief End a macro
+*/
 void QDocument::endMacro()
 {
 	if ( m_impl )
@@ -1186,6 +1226,9 @@ void QDocument::addMatch(int line, int pos, int len, int format)
 	}
 }
 
+/*!
+	\
+*/
 void QDocument::flushMatches(int format)
 {
 	if ( m_impl )
@@ -1194,50 +1237,112 @@ void QDocument::flushMatches(int format)
 	}
 }
 
+/*!
+	\return Whether the document is in a clean state
+	
+	This is undo stak terminology. A clean document is one
+	whose undo stack is at the same index it was upon last
+	save/load. In other words : clean = !modified
+*/
 bool QDocument::isClean() const
 {
 	return m_impl ? m_impl->m_commands.isClean() : true;
 }
 
+/*!
+	\brief Set the document to clean state
+	
+	This method does not go back to clean state but tell
+	the stack that the current state is to be considered
+	as the clean state.
+*/
 void QDocument::setClean()
 {
 	if ( m_impl )
 	{
 		m_impl->m_commands.setClean();
-		m_impl->m_status.clear();
+		//m_impl->m_status.clear();
+		
+		QHash<QDocumentLineHandle*, QPair<int, int> >::iterator it = m_impl->m_status.begin();
+		
+		while ( it != m_impl->m_status.end() )
+		{
+			it->second = it->first;
+			++it;
+		}
 	}
 }
 
+/*!
+	\return Whether a given line has been modified since last save/load
+*/
 bool QDocument::isLineModified(const QDocumentLine& l) const
 {
-	return (!m_impl || !m_impl->m_status.contains(l.handle()))
-			?
-				false
-			:
-				m_impl->m_status.value(l.handle())
-			;
+	if ( !m_impl )
+		return false;
+	
+	QHash<QDocumentLineHandle*, QPair<int, int> >::const_iterator it = m_impl->m_status.constFind(l.handle());
+	
+	//if ( it != m_impl->m_status.constEnd() )
+	//	qDebug("%i vs %i", it->first, it->second);
+	
+	return it != m_impl->m_status.constEnd() ? it->first != it->second : false;
 }
 
-bool QDocument::wasLineModified(const QDocumentLine& l) const
+/*!
+	\return Whether a given line has been modified since last load
+*/
+bool QDocument::hasLineEverBeenModified(const QDocumentLine& l) const
 {
-	return (!m_impl || !m_impl->m_statusEver.contains(l.handle()))
-			?
-				false
-			:
-				m_impl->m_statusEver.value(l.handle())
-			;
+	return m_impl ? m_impl->m_status.contains(l.handle()) : false;
 }
 
+/*!
+	\return the maximum number of marks on a single line
+	
+	This is meant for the line mark panel to smartly adapt its size.
+*/
 int QDocument::maxMarksPerLine() const
 {
 	return m_impl ? m_impl->maxMarksPerLine() : 0;
 }
 
+/*!
+	\brief Find the next mark of a given type
+	\return the line on which a mark was found
+	\param id mark identifier to find
+	\param from line from which to start search
+	\param until line until which to search
+	
+	\a from and \a until can be negatives, in which case they
+	indicate positions from the end of the document (i.e -1 is
+	last line, -2 the line before last line and so on).
+	
+	If \a until is inferior to \a from and no matching mark
+	is found in the [from, end] range then the [0, until]
+	range will also be searched.
+*/
 int QDocument::findNextMark(int id, int from, int until) const
 {
 	return m_impl ? m_impl->findNextMark(id, from, until) : -1;
 }
 
+/*!
+	\brief Find the previous mark of a given type
+	\return the line on which a mark was found
+	\param id mark identifier to find
+	\param from line from which to start search
+	\param until line until which to search
+	
+	\a from and \a until can be negatives, in which case they
+	indicate positions from the end of the document (i.e -1 is
+	last line, -2 the line before last line and so on).
+	
+	If \a until is superior to \a from and no matching mark
+	is found in the [0, from] range then the [until, end]
+	range will also be searched (both range being searched backward,
+	of course).
+*/
 int QDocument::findPreviousMark(int id, int from, int until) const
 {
 	return m_impl ? m_impl->findPreviousMark(id, from, until) : -1;
@@ -1248,6 +1353,14 @@ int QDocument::findPreviousMark(int id, int from, int until) const
 /////////////////////////
 //static quint32 q_line_counter = 0;
 
+/*!
+	\class QDocumentLineHandle
+	\brief Private implementation of a document line
+*/
+
+/*!
+	\
+*/
 QDocumentLineHandle::QDocumentLineHandle(QDocument *d)
  : m_doc(d)
 #if QT_VERSION >= 0x040400
@@ -1262,6 +1375,9 @@ QDocumentLineHandle::QDocumentLineHandle(QDocument *d)
 	#endif
 }
 
+/*!
+	\
+*/
 QDocumentLineHandle::QDocumentLineHandle(const QString& s, QDocument *d)
  : m_text(s)
  , m_doc(d)
@@ -2027,6 +2143,42 @@ QFormatRange QDocumentLineHandle::getOverlayAt(int index, int preferredFormat){
     return best;
 }
 
+void QDocumentLineHandle::shiftOverlays(int position, int offset)
+{
+	if ( offset > 0 )
+	{
+		for ( int i = 0; i < m_overlays.count(); ++i )
+		{
+			QFormatRange& r = m_overlays[i];
+			
+			if ( r.offset >= position )
+			{
+				r.offset += offset;
+			} else if ( r.offset + r.length > position ) {
+				m_overlays.removeAt(i);
+				--i;
+			}
+		}
+	} else if ( offset < 0 ) {
+		const int max = position - offset;
+		
+		for ( int i = 0; i < m_overlays.count(); ++i )
+		{
+			QFormatRange& r = m_overlays[i];
+			
+			if ( r.offset >= max )
+			{
+				r.offset += offset;
+			} else if ( r.offset + r.length >= position ) {
+				m_overlays.removeAt(i);
+				--i;
+			}
+		}
+	}
+	
+	setFlag(QDocumentLine::FormatsApplied, false);
+}
+
 void QDocumentLineHandle::setFormats(const QVector<int>& fmts)
 {
 	m_formats = fmts;
@@ -2256,18 +2408,6 @@ void QDocumentLineHandle::layout() const
 	setFlag(QDocumentLine::LayoutDirty, false);
 }
 
-//this allows direct access to the underlaying qt private font api
-class Q_GUI_EXPORT QFontCracker
-{
-    Q_GADGET
-    Q_ENUMS(StyleStrategy)
-    friend class QDocumentLineHandle;
-public:
-private:
-    QFontPrivate *d;
-    uint resolve_mask;
-};
-
 struct RenderRange
 {
 	int position;
@@ -2402,7 +2542,10 @@ void QDocumentLineHandle::draw(	QPainter *p,
 			
 			for ( int i = 0; i < sel.count(); i += 2 )
 			{
-				int max = (i + 1) < sel.count() ? sel[i + 1] : m_text.length();
+				int max = m_text.length();
+				
+				if ( (i + 1) < sel.count() )
+					max = qMin(sel[i + 1], max);
 				
 				for ( int j = sel[i]; j < max; ++j )
 					merged[j] |= 0x8000;
@@ -2488,7 +2631,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				showTrailing = QDocument::showSpaces() & QDocument::ShowTrailing;
 				
 		//const int fns = nextNonSpaceChar(0);
-		int indent = QDocumentPrivate::m_leftMargin;
+		int indent = qMax(m_indent, QDocumentPrivate::m_leftMargin);
 		
 		int cidx = 0;
 		int rngIdx = 0;
@@ -2701,7 +2844,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				
 				if ( leading )
 				{
-					indent = xpos;
+					//indent = xpos;
 					leading = false;
 					pastLead = true;
 				}
@@ -4688,26 +4831,39 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		xOffset = m_leftMargin; // margin
 		
 		// cursor(s) stuff
-		if ( cxt.cursors.count() )
+		cit = cxt.cursors.begin();
+		
+		while ( cit != cxt.cursors.end() )
 		{
-			cit = cxt.cursors.begin();
-			
-			while ( cit != cxt.cursors.end() )
+			if ( (*cit)->lineNumber() == i )
 			{
-				if ( (*cit)->lineNumber() == i )
-				{
-					if ( cxt.blinkingCursor )
-						m_cursorLines.append((*cit)->columnNumber());
-						
-					if ( cxt.fillCursorRect )
-						bg = alternate;
-						
-					cit = cxt.cursors.erase(cit);
-				} else {
-					++cit;
-				}
+				if ( cxt.blinkingCursor )
+					m_cursorLines.append((*cit)->columnNumber());
+				
+				if ( cxt.fillCursorRect )
+					bg = alternate;
+					
+				cit = cxt.cursors.erase(cit);
+			} else {
+				++cit;
 			}
 		}
+		
+		cit = cxt.extra.begin();
+		
+		while ( cit != cxt.extra.end() )
+		{
+			if ( (*cit)->lineNumber() == i )
+			{
+				m_cursorLines.append((*cit)->columnNumber());
+				
+				cit = cxt.extra.erase(cit);
+			} else {
+				++cit;
+			}
+		}
+		
+		qSort(m_cursorLines);
 		
 		QList<int> m = marks(h);
 		
@@ -4759,6 +4915,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			
 			//p->drawRect(cxt.xoffset + 2, pos,
 			//			cxt.width - 4, m_lineSpacing - 1);
+			
 			p->drawRect(m_leftMargin, pos,
 						cxt.width - 4, m_lineSpacing - 1);
 						
@@ -5441,6 +5598,7 @@ void QDocumentPrivate::toggleMark(QDocumentLineHandle *h, int mid)
 		addMark(h, mid);
 	}
 }
+
 void QDocumentPrivate::removeMark(QDocumentLineHandle *h, int mid)
 {
 	QHash<QDocumentLineHandle*, QList<int> >::iterator it = m_marks.find(h);
@@ -5494,14 +5652,14 @@ int QDocumentPrivate::visualLine(int textLine) const
 			
 			if ( hl >= textLine )
 				break;
-				
+			
 			int max = 0;
 			
 			do
 			{
-				max = qMax(max, *hit);
+				max = qMax(max, hit.key() - hl + *hit);
 				++hit;
-			} while ( (hit != he) && (hit.key() == hl) );
+			} while ( (hit != he) && (hit.key() <= hl + max) );
 			
 			hiddenLines += max;
 			
@@ -5566,9 +5724,9 @@ int QDocumentPrivate::textLine(int visualLine, int *wrap) const
 				
 				do
 				{
-					max = qMax(max, *h);
+					max = qMax(max, h.key() - hl + *h);
 					++h;
-				} while ( (h != he) && (h.key() == hl) );
+				} while ( (h != he) && (h.key() <= hl + max) );
 				
 				// very important : do not forget possible wrapping on folded block start
 				if ( w != we && w.key() == hl )
@@ -5650,14 +5808,21 @@ int QDocumentPrivate::textLine(int visualLine, int *wrap) const
 	}
 	
 	//qDebug("[visual:text] : %i : %i", visualLine, visualLine + mess);
+	int off = visualLine + mess - (m_lines.count() - 1);
 	
-	return qMin(visualLine + mess, m_lines.count() - 1);
+	if ( off > 0 )
+	{
+		if ( wrap )
+			*wrap = off;
+		
+		return m_lines.count() - 1;
+	}
+	
+	return visualLine + mess;
 }
 
 void QDocumentPrivate::hideEvent(int line, int count)
 {
-//	qDebug("hiding %i lines from %i", count, line);
-	
 	m_hidden.insertMulti(line, count);
 	
 	setHeight();
@@ -5667,7 +5832,6 @@ void QDocumentPrivate::hideEvent(int line, int count)
 
 void QDocumentPrivate::showEvent(int line, int count)
 {
-//	qDebug("trying to show %i lines from %i", count, line);
 	QMap<int, int>::iterator it = m_hidden.find(line);
 	
 	while ( (it != m_hidden.end()) && (it.key() == line)  )
@@ -5689,15 +5853,15 @@ void QDocumentPrivate::updateHidden(int line, int count)
 {
 	if ( m_hidden.isEmpty() || (line > (m_hidden.constEnd() - 1).key() ) )
 		return;
-		
+	
 	QMap<int, int> prev = m_hidden;
 	m_hidden.clear();
 	
-	QMap<int, int>::iterator it = prev.begin();
+	QMap<int, int>::const_iterator it = prev.constBegin();
 	
 	//qDebug("shifting by %i from %i", count, line);
 	
-	while ( it != prev.end() )
+	while ( it != prev.constEnd() )
 	{
 		if ( it.key() < line )
 		{
@@ -5775,9 +5939,10 @@ void QDocumentPrivate::emitLineDeleted(QDocumentLineHandle *h)
 {
 	if ( !m_deleting )
 	{
-        int idx = m_lines.indexOf(h);
 		m_marks.remove(h);
-				
+		
+		int idx = m_lines.indexOf(h);
+		
 		if ( idx != -1 )
 		{
 			//qDebug("removing line %i", idx);
@@ -5797,7 +5962,6 @@ void QDocumentPrivate::emitLineDeleted(QDocumentLineHandle *h)
 		}
 	}
 	
-	
 	emit m_doc->lineDeleted(h);
 }
 
@@ -5807,5 +5971,5 @@ void QDocumentPrivate::emitMarkChanged(QDocumentLineHandle *l, int m, bool on)
 	emit m_doc->markChanged(l, m, on);
 }
 
-//////////////////
+/*! @} */
 

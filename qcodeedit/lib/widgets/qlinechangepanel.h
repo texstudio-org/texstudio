@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -35,7 +35,7 @@ class QCE_EXPORT QLineChangePanel : public QPanel
 	Q_OBJECT
 	
 	public:
-		Q_PANEL(QLineChangePanel, "Default Line Change Panel")
+		Q_PANEL(QLineChangePanel, "Line Change Panel")
 		
 		QLineChangePanel(QWidget *p = 0);
 		virtual ~QLineChangePanel();

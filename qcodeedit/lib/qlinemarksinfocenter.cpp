@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -27,7 +27,10 @@
 	@{
 	
 	\class QLineMarksInfoCenter
+	\brief A class managing line marks accross all managed editors
 	
+	QLineMarksInfoCenter provides mean to read/write line marks on managed editors
+	but also to serialize and deserialize that data.
 */
 
 #include "qeditor.h"
@@ -72,6 +75,9 @@ QLineMarksInfoCenter::~QLineMarksInfoCenter()
 	
 }
 
+/*!
+	\return the list of line marks set on a given file
+*/
 QLineMarkList QLineMarksInfoCenter::marks(const QString& file)
 {
 	QLineMarkList l;
@@ -86,6 +92,9 @@ QLineMarkList QLineMarksInfoCenter::marks(const QString& file)
 	return l;
 }
 
+/*!
+	\brief Remove all line marks on all files
+*/
 void QLineMarksInfoCenter::clear()
 {
 	foreach ( QLineMarkHandle m, m_lineMarks )
@@ -94,6 +103,9 @@ void QLineMarksInfoCenter::clear()
 	}
 }
 
+/*!
+	\brief Remove all line marks on a given file
+*/
 void QLineMarksInfoCenter::removeMarks(const QString& file)
 {
 	foreach ( QLineMarkHandle m, m_lineMarks )
@@ -102,6 +114,11 @@ void QLineMarksInfoCenter::removeMarks(const QString& file)
 	
 }
 
+/*!
+	\brief Add a line mark
+	
+	If the target file is not found the toggling will be delayed.
+*/
 void QLineMarksInfoCenter::addLineMark(const QLineMark& mark)
 {
 	QEditor *e = QCodeEdit::managed(mark.file);
@@ -121,6 +138,11 @@ void QLineMarksInfoCenter::addLineMark(const QLineMark& mark)
 	l.addMark(mark.mark);
 }
 
+/*!
+	\brief Remove a line mark
+	
+	If the target file is not found the addition will be delayed.
+*/
 void QLineMarksInfoCenter::toggleLineMark(const QLineMark& mark)
 {
 	QEditor *e = QCodeEdit::managed(mark.file);
@@ -140,6 +162,11 @@ void QLineMarksInfoCenter::toggleLineMark(const QLineMark& mark)
 	l.toggleMark(mark.mark);
 }
 
+/*!
+	\brief Toggle a line mark
+	
+	If the target file is not found the removal will be delayed.
+*/
 void QLineMarksInfoCenter::removeLineMark(const QLineMark& mark)
 {
 	QEditor *e = QCodeEdit::managed(mark.file);
@@ -157,6 +184,9 @@ void QLineMarksInfoCenter::removeLineMark(const QLineMark& mark)
 	//e->setCursor(QDocumentCursor(l));
 }
 
+/*!
+	\brief Add a line mark
+*/
 void QLineMarksInfoCenter::addLineMark(const QLineMarkHandle& mark)
 {
 	QDocumentLine l(mark.line);
@@ -166,6 +196,9 @@ void QLineMarksInfoCenter::addLineMark(const QLineMarkHandle& mark)
 	
 }
 
+/*!
+	\brief Toggle a line mark
+*/
 void QLineMarksInfoCenter::toggleLineMark(const QLineMarkHandle& mark)
 {
 	QDocumentLine l(mark.line);
@@ -175,6 +208,9 @@ void QLineMarksInfoCenter::toggleLineMark(const QLineMarkHandle& mark)
 	
 }
 
+/*!
+	\brief Remove a line mark
+*/
 void QLineMarksInfoCenter::removeLineMark(const QLineMarkHandle& mark)
 {
 	QDocumentLine l(mark.line);
@@ -184,6 +220,9 @@ void QLineMarksInfoCenter::removeLineMark(const QLineMarkHandle& mark)
 	
 }
 
+/*!
+	\brief Flush all delayed line marks addition/removal/toggling for a given file
+*/
 void QLineMarksInfoCenter::flush(const QString& file)
 {
 	QLineMarkList::iterator i = m_delayed.begin();
@@ -200,6 +239,9 @@ void QLineMarksInfoCenter::flush(const QString& file)
 	}
 }
 
+/*!
+	\brief Load serialized line marks data from a file
+*/
 void QLineMarksInfoCenter::loadMarks(const QString& f)
 {
 	QFile file(f);
@@ -232,6 +274,9 @@ void QLineMarksInfoCenter::loadMarks(const QString& f)
 	}
 }
 
+/*!
+	\brief Write serialized line marks data to a file
+*/
 void QLineMarksInfoCenter::saveMarks(const QString& f)
 {
 	QFile file(f);
@@ -281,6 +326,9 @@ QDataStream& operator << (QDataStream& d, const QLineMark& m)
 	return d;
 }
 
+/*!
+	\brief Load line marks definition from a file
+*/
 void QLineMarksInfoCenter::loadMarkTypes(const QString& f)
 {
 	QFile file(f);
@@ -369,11 +417,17 @@ void QLineMarksInfoCenter::loadMarkTypes(const QString& f)
 	}
 }
 
+/*!
+	\brief int -> string mark type identifier conversion
+*/
 QString QLineMarksInfoCenter::markTypeId(int id)
 {
 	return ((id >= 0) && (id < m_lineMarkTypes.count())) ? m_lineMarkTypes.at(id).id : QString();
 }
 
+/*!
+	\brief string -> int mark type identifier conversion
+*/
 int QLineMarksInfoCenter::markTypeId(const QString& id)
 {
 	for ( int idx = 0; idx < m_lineMarkTypes.count(); ++idx )
@@ -383,11 +437,17 @@ int QLineMarksInfoCenter::markTypeId(const QString& id)
 	return -1;
 }
 
+/*!
+	\return The mark type definition associated with a given id
+*/
 QLineMarkType QLineMarksInfoCenter::markType(int id)
 {
 	return ((id >= 0) && (id < m_lineMarkTypes.count())) ? m_lineMarkTypes.at(id) : QLineMarkType();
 }
 
+/*!
+	\return the mark type definition associated with a given id
+*/
 QLineMarkType QLineMarksInfoCenter::markType(const QString& id)
 {
 	foreach ( QLineMarkType t, m_lineMarkTypes )
@@ -397,6 +457,10 @@ QLineMarkType QLineMarksInfoCenter::markType(const QString& id)
 	return QLineMarkType();
 }
 
+/*!
+	\return A list of available mark types
+	\param context context filter (no filtering is performed if empty)
+*/
 QStringList QLineMarksInfoCenter::availableMarkTypes(const QString& context)
 {
 	QStringList l;
@@ -432,6 +496,9 @@ QStringList QLineMarksInfoCenter::availableMarkTypes(const QString& context)
 	return l;
 }
 
+/*!
+	\return the mark that has the highest priority among a list of marks
+*/
 int QLineMarksInfoCenter::priority(const QList<int>& marks)
 {
 	int higher = -1;
@@ -449,6 +516,9 @@ int QLineMarksInfoCenter::priority(const QList<int>& marks)
 	return mark;
 }
 
+/*!
+	\return the mark that has the highest priority among a list of marks
+*/
 QString QLineMarksInfoCenter::priority(const QStringList& marks)
 {
 	QString mark;
@@ -466,6 +536,9 @@ QString QLineMarksInfoCenter::priority(const QStringList& marks)
 	return (mark.count() || !marks.count()) ? mark : marks.at(0);
 }
 
+/*!
+	\brief Useless for now
+*/
 QList<QStringList> QLineMarksInfoCenter::marksLayout(const QString& context)
 {
 	QList<QStringList> l;
@@ -486,6 +559,9 @@ QList<QStringList> QLineMarksInfoCenter::marksLayout(const QString& context)
 	return l;
 }
 
+/*!
+	\internal
+*/
 void QLineMarksInfoCenter::cursorMoved(QEditor *e)
 {
 	foreach ( const QLineMarkHandle& lmh, m_lineMarks )
@@ -510,7 +586,10 @@ void QLineMarksInfoCenter::cursorMoved(QEditor *e)
 	}
 }
 
-void QLineMarksInfoCenter::lineDeleted(QDocumentLineHandle* h)
+/*!
+	\internal
+*/
+void QLineMarksInfoCenter::lineDeleted(QDocumentLineHandle *h)
 {
 	QLineMarkHandleList::iterator i = m_lineMarks.begin();
 	
@@ -560,3 +639,4 @@ void QLineMarksInfoCenter::markChanged(const QString& f, QDocumentLineHandle *li
 }
 
 /*! @} */
+

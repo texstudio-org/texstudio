@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -17,7 +17,13 @@
 #define _QDOCUMENT_H_
 
 #include "qce-config.h"
-#include "qdocumentline.h"
+
+/*!
+	\file qdocument.h
+	\brief Definition of the QDocument class
+	
+	\defgroup document Document related classes 
+*/
 
 #include <QList>
 #include <QVector>
@@ -70,6 +76,7 @@ class QCE_EXPORT QDocument : public QObject
 			QPalette palette;
 			bool blinkingCursor;
 			bool fillCursorRect;
+			QList<QDocumentCursorHandle*> extra;
 			QList<QDocumentCursorHandle*> cursors;
 			QList<QDocumentSelection> selections;
 		};
@@ -154,7 +161,7 @@ class QCE_EXPORT QDocument : public QObject
 		QDocumentLine findLine(int& position) const;
 		
 		bool isLineModified(const QDocumentLine& l) const;
-        bool wasLineModified(const QDocumentLine& l) const;
+		bool hasLineEverBeenModified(const QDocumentLine& l) const;
 		
 		virtual void draw(QPainter *p, PaintContext& cxt);
 		

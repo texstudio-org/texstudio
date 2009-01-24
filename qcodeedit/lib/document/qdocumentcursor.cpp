@@ -1,6 +1,6 @@
  /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -13,14 +13,19 @@
 **
 ****************************************************************************/
 
-#include "qdocumentcursor.h"
-
-#include "qdocument_p.h"
-
 /*!
 	\file qdocumentcursor.cpp
 	\brief Implementation of the QDocumentCursor class
 */
+
+#include "qdocumentcursor.h"
+
+/*!
+	\ingroup document
+	@{
+*/
+
+#include "qdocument_p.h"
 
 #include "qdocumentline.h"
 
@@ -426,12 +431,18 @@ void QDocumentCursor::moveTo(const QDocumentLine &l, int column)
 		m_handle->moveTo(l.lineNumber(), column);
 }
 
+/*!
+	\brief Delete the character at the position immediately after the cursor
+*/
 void QDocumentCursor::deleteChar()
 {
 	if ( m_handle )
 		m_handle->deleteChar();
 }
 
+/*!
+	\brief Delete the character at the position immediately before the cursor
+*/
 void QDocumentCursor::deletePreviousChar()
 {
 	if ( m_handle )
@@ -446,62 +457,111 @@ QChar QDocumentCursor::getPreviousChar() const
 }
 
 
+/*!
+	\brief erase the whole line the cursor is on
+*/
 void QDocumentCursor::eraseLine()
 {
 	if ( m_handle )
 		m_handle->eraseLine();
 }
 
+/*!
+	\brief insert a new line at the cursor position
+*/
 void QDocumentCursor::insertLine()
 {
 	if ( m_handle )
 		m_handle->insertText("\n");
 }
 
+/*!
+	\brief insert some text at the cursor position
+*/
 void QDocumentCursor::insertText(const QString& s)
 {
 	if ( m_handle )
 		m_handle->insertText(s);
 }
 
+/*!
+	\return A cursor pointing at the position of the selection start.
+	
+	Selection start is the position of the selection that is nearest to document start.
+	
+	\note an invalid cursor is returned when the cursor does not have a selection
+*/
 QDocumentCursor QDocumentCursor::selectionStart() const
 {
 	return m_handle ? m_handle->selectionStart() : QDocumentCursor();
 }
 
+/*!
+	\return A cursor pointing at the position of the selection end.
+	
+	Selection end is the position of the selection that is nearest to document end.
+	
+	\note an invalid cursor is returned when the cursor does not have a selection
+*/
 QDocumentCursor QDocumentCursor::selectionEnd() const
 {
 	return m_handle ? m_handle->selectionEnd() : QDocumentCursor();
 }
 
+/*!
+	\return The selected text
+*/
 QString QDocumentCursor::selectedText() const
 {
 	return m_handle ? m_handle->selectedText() : QString();
 }
 
+/*!
+	\brief Remove the selected text
+*/
 void QDocumentCursor::removeSelectedText()
 {
 	if ( m_handle )
 		m_handle->removeSelectedText();
 }
 
+/*!
+	\brief Begin an edit block
+	
+	Edit blocks are command groups. All the commands in an edit block
+	are executed in a row when the edit block is ended with endEditBlock().
+	
+	Edit blocks are considered as a single command as far as the undo/redo
+	stack is concerned.
+	
+	Edit blocks can be nested but that isn't of much use
+*/
 void QDocumentCursor::beginEditBlock()
 {
 	if ( m_handle )
 		m_handle->beginEditBlock();
 }
 
+/*!
+	\brief End an edit block
+*/
 void QDocumentCursor::endEditBlock()
 {
 	if ( m_handle )
 		m_handle->endEditBlock();
 }
 
+/*!
+	\return Whether the cursor is silent
+*/
 bool QDocumentCursor::isSilent() const
 {
 	return m_handle ? m_handle->isSilent() : true;
 }
 
+/*!
+	\brief Set whether the cursor is silent
+*/
 void QDocumentCursor::setSilent(bool y)
 {
 	if ( m_handle )
@@ -509,11 +569,30 @@ void QDocumentCursor::setSilent(bool y)
 	
 }
 
+/*!
+	\return whether the cursor is auto updated
+	
+	An auto updated cursor will remain on the actual line it points
+	to when the document is modified.
+	
+	\code
+	QDocumentCursor c1(10, 0, document), c2(10, 0, document), c(5, 0, document);
+	
+	c1.setAutoUpdated(true);
+	
+	c.insertLine();
+	
+	// at this point c2 still points to line 10 whereas c1 points to line 11
+	\endcode
+*/
 bool QDocumentCursor::isAutoUpdated() const
 {
 	return m_handle ? m_handle->isAutoUpdated() : true;
 }
 
+/*!
+	\brief Set whether the cursor is aut updated
+*/
 void QDocumentCursor::setAutoUpdated(bool y)
 {
 	if ( m_handle )
@@ -521,6 +600,14 @@ void QDocumentCursor::setAutoUpdated(bool y)
 	
 }
 
+/*!
+	\brief Refresh the column memory of the cursor
+	
+	This set the current column memory to the current column position.
+	
+	\note It is not recommended to call that yourself. The various
+	movement method should do that perfectly fine.
+*/
 void QDocumentCursor::refreshColumnMemory()
 {
 	if ( m_handle )
@@ -528,11 +615,23 @@ void QDocumentCursor::refreshColumnMemory()
 	
 }
 
+/*!
+	\return Whether the cursor has column memory
+	
+	The column memory is a feature that allow a cursor
+	to remember its biggest column number so that moving
+	back and forth (with movePosition()) on lines of
+	different width does not result in the column to change.
+	
+*/
 bool QDocumentCursor::hasColumnMemory() const
 {
 	return m_handle ? m_handle->hasColumnMemory() : false;
 }
 
+/*!
+	\brief Set whether the cursor use column memory
+*/
 void QDocumentCursor::setColumnMemory(bool y)
 {
 	if ( m_handle )
@@ -540,11 +639,17 @@ void QDocumentCursor::setColumnMemory(bool y)
 	
 }
 
+/*!
+	\return whether the cursor has a selection
+*/
 bool QDocumentCursor::hasSelection() const
 {
 	return m_handle ? m_handle->hasSelection() : false;
 }
 
+/*!
+	\brief clear the selection
+*/
 void QDocumentCursor::clearSelection()
 {
 	if ( m_handle )
@@ -552,6 +657,9 @@ void QDocumentCursor::clearSelection()
 	
 }
 
+/*!
+	\brief Select something
+*/
 void QDocumentCursor::select(SelectionType t)
 {
 	if ( m_handle )
@@ -559,6 +667,9 @@ void QDocumentCursor::select(SelectionType t)
 	
 }
 
+/*!
+	\brief Set the selection boundary
+*/
 void QDocumentCursor::setSelectionBoundary(const QDocumentCursor& c)
 {
 	if ( m_handle )
@@ -566,11 +677,20 @@ void QDocumentCursor::setSelectionBoundary(const QDocumentCursor& c)
 	
 }
 
+/*!
+	\return whether a given cursor is within the selection
+*/
 bool QDocumentCursor::isWithinSelection(const QDocumentCursor& c) const
 {
 	return m_handle ? m_handle->isWithinSelection(c) : false;
 }
 
+/*!
+	\return selection information
+	
+	\note The QDocumentSelection object is not updated if the selection
+	changes later on : use it right away and do not store it.
+*/
 QDocumentSelection QDocumentCursor::selection() const
 {
 	QDocumentSelection s;
@@ -613,3 +733,6 @@ QDocumentSelection QDocumentCursor::selection() const
 	
 	return s;
 }
+
+/*! @} */
+

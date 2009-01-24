@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -15,8 +15,18 @@
 
 #include "qreliablefilewatch.h"
 
+/*!
+	\file qreliablefilewatch.cpp
+	\brief Implementation of the QReliableFileWatch class.
+*/
+
 #include <QFile>
 #include <QTimerEvent>
+
+/*!
+	\class QReliableFileWatch
+	\brief A specialized file monitor that works around some issues in QFileSystemWatcher
+*/
 
 QReliableFileWatch::QReliableFileWatch(QObject *p)
  : QFileSystemWatcher(p)

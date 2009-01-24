@@ -260,13 +260,13 @@ setAcceptDrops(true);
     
     LatexEditorView::setSpeller(mainSpeller);
 
-    if (QFileInfo(QCoreApplication::applicationDirPath()+"/texmakerFormats.qxf").exists() && QFileInfo(QCoreApplication::applicationDirPath()+"/texmakerFormats.qxf").isWritable()) 
-        m_formats = new QFormatFactory(QCoreApplication::applicationDirPath()+"/texmakerFormats.qxf", this);
+    if (QFileInfo(QCoreApplication::applicationDirPath()+"/texmakerxFormats.qxf").exists() && QFileInfo(QCoreApplication::applicationDirPath()+"/texmakerxFormats.qxf").isWritable()) 
+        m_formats = new QFormatFactory(QCoreApplication::applicationDirPath()+"/texmakerxFormats.qxf", this);
     else {
         QString formatFileName=configFileNameBase+"Formats.qxf";
         
         if (!QFileInfo(formatFileName).exists()) 
-            QFile::copy(findResourceFile("defaultFormats.qxf"), formatFileName);
+            QFile::copy(findResourceFile("qxs/defaultFormats.qxf"), formatFileName);
         m_formats = new QFormatFactory(formatFileName, this);
     } 
 
@@ -1674,7 +1674,7 @@ QStatusBar * status=statusBar();
 stat1=new QLabel(status);
 stat2=new QLabel( status );
 stat3=new QLabel( status );
-statCursor=new QLabel( status );
+//statCursor=new QLabel( status );
 pb1=new QPushButton(QIcon(":/images/bookmark1.png"),"",status);
 pb2=new QPushButton(QIcon(":/images/bookmark2.png"),"",status);
 pb3=new QPushButton(QIcon(":/images/bookmark3.png"),"",status);
@@ -1690,7 +1690,7 @@ pb3->setMaximumSize(20,20);
 pb1->setFlat(true);
 pb2->setFlat(true);
 pb3->setFlat(true);
-status->addPermanentWidget(statCursor,0);
+//status->addPermanentWidget(statCursor,0);
 status->addPermanentWidget(stat3,0);
 status->addPermanentWidget(stat2,0);
 status->addPermanentWidget(stat1,0);

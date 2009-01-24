@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -25,6 +25,7 @@
 #include "qdocument.h"
 #include "qdocumentline.h"
 
+#include "qlanguagedefinition.h"
 #include "qlinemarksinfocenter.h"
 
 #include <QIcon>
@@ -37,12 +38,14 @@
 /*!
 	\ingroup widgets
 	@{
-	
-	\class QLineMarkPanel
-	\brief A specific panel in charge of drawing line numbers of an editor
-	
-	\see QEditorInterface
 */
+
+/*!
+	\class QLineMarkPanel
+	\brief A specific panel in charge of drawing line marks of an editor
+*/
+
+QCE_AUTO_REGISTER(QLineMarkPanel)
 
 /*!
 	\brief Constructor
@@ -167,7 +170,7 @@ void QLineMarkPanel::mousePressEvent(QMouseEvent *e)
 */
 void QLineMarkPanel::mouseReleaseEvent(QMouseEvent *e)
 {
-	if ( !editor() || !editor()->document() )
+	if ( !editor() || !editor()->document() || !editor()->languageDefinition() )
 	{
 		QPanel::mouseReleaseEvent(e);
 		return;
@@ -176,6 +179,11 @@ void QLineMarkPanel::mouseReleaseEvent(QMouseEvent *e)
 	//QMessageBox::warning(0, 0, "clik.");
 	
 	QDocumentLine l;
+	QLanguageDefinition *d = editor()->languageDefinition();
+	const int id = QLineMarksInfoCenter::instance()->markTypeId(d->defaultLineMark());
+	
+	if ( id < 0 )
+		return;
 	
 	e->accept();
 
@@ -187,6 +195,7 @@ void QLineMarkPanel::mouseReleaseEvent(QMouseEvent *e)
 		if ( m_rects.at(i).contains(e->pos()) )
 		{
 			l = editor()->document()->line(m_lines.at(i));
+			l.toggleMark(id);
 			//m->toggleDefaultMark(l, -1);
 					
 			break;

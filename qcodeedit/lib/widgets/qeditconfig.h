@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -18,14 +18,14 @@
 
 #include "qce-config.h"
 
-#include "ui_editconfig.h"
-
 /*!
 	\file qeditconfig.h
 	\brief Definition of the QEditConfig widget
 	
 	\see QEditConfig
 */
+
+#include "ui_editconfig.h"
 
 #include <QWidget>
 

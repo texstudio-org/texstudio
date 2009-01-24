@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -27,7 +27,7 @@
 	@{
 	
 	\class QLanguageFactory
-	\brief The "dispatcher" class.
+	\brief A class managing language definitions.
 	
 	It stores language definitions, added programmatically or found in XML files,
 	in specified locations and only if generic components are built-in. From 
@@ -35,9 +35,6 @@
 	highlighters for a text editor, according to a file name.
 	
 	\see QLanguageDefinition
-	\see QMatcher
-	\see QIndenter
-	\see QHighlighter
 */
 
 #include <QDir>

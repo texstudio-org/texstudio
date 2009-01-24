@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -88,6 +88,14 @@ int QLanguageDefinition::tokenize(QDocument *d, int line, int count)
 	\brief Return the string starting a single line comment, if any offered by the language
 */
 QString QLanguageDefinition::singleLineComment() const
+{
+	return QString();
+}
+
+/*!
+	\brief Let language specify which line mark should be toggled by left clicking a line mark panel
+*/
+QString QLanguageDefinition::defaultLineMark() const
 {
 	return QString();
 }

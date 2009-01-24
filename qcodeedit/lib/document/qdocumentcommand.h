@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -17,6 +17,11 @@
 #define _QDOCUMENT_COMMAND_H_
 
 #include "qce-config.h"
+
+/*!
+	\file qdocumentcommand.h
+	\brief Definition of the QDocumentCommand class
+*/
 
 #include <QUndoCommand>
 
@@ -68,11 +73,11 @@ class QCE_EXPORT QDocumentCommand : public QUndoCommand
 		static void disableAutoUpdate(QDocumentCursorHandle *h);
 		
 	protected:
-		bool m_state;
+		bool m_state, m_first;
 		QDocument *m_doc;
 		int m_redoOffset, m_undoOffset;
 		
-		void markRedone(QDocumentLineHandle *h);
+		void markRedone(QDocumentLineHandle *h, bool firstTime);
 		void markUndone(QDocumentLineHandle *h);
 		
 		void updateTarget(int l, int offset);

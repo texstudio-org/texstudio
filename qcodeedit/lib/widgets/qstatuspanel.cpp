@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -36,9 +36,14 @@
 /*!
 	\ingroup widgets
 	@{
-	
-	\class QStatusPanel
 */
+
+/*!
+	\class QStatusPanel
+	\brief A panel that display some status informations 
+*/
+
+QCE_AUTO_REGISTER(QStatusPanel)
 
 /*!
 	\brief Constructor

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -18,7 +18,6 @@
 
 /*!
 	\file qnfadefinition.h
-	
 	\brief Definition of the QNFADefinition class.
 */
 
@@ -75,6 +74,8 @@ class QCE_EXPORT QNFADefinition : public QLanguageDefinition
 		
 		virtual QString singleLineComment() const;
 		
+		virtual QString defaultLineMark() const;
+		
 		virtual void clearMatches(QDocument *d);
 		virtual void match(QDocumentCursor& c);
 		
@@ -106,8 +107,8 @@ class QCE_EXPORT QNFADefinition : public QLanguageDefinition
 		static QHash<QString, int> m_paren;
 		static QHash<QString, QNFA*> m_contexts;
 		
-		int matchOpen(QDocument *d, int& line, QParenthesis p, int& end);
-		int matchClose(QDocument *d, int& line, QParenthesis p, int& beg);
+		int matchOpen(QDocument *d, int& line, QParenthesis& p, int& end, bool *ok = 0);
+		int matchClose(QDocument *d, int& line, QParenthesis& p, int& beg, bool *ok = 0);
 		
 		static void flushEmbedRequests(const QString& lang);
 		

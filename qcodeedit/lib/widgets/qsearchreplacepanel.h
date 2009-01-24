@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -35,7 +35,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel, private Ui::SearchReplace
 	Q_OBJECT
 	
 	public:
-		Q_PANEL(QSearchReplacePanel, "Default FF-like Search Replace Panel")
+		Q_PANEL(QSearchReplacePanel, "Search Replace Panel")
 		
 		QSearchReplacePanel(QWidget *p = 0);
 		virtual ~QSearchReplacePanel();

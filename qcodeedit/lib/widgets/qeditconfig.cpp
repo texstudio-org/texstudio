@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -15,6 +15,13 @@
 
 #include "qeditconfig.h"
 
+/*!
+	\file qeditconfig.cpp
+	\brief Implementation of the QEditConfig class.
+	
+	\see QEditConfig
+*/
+
 #include "qeditor.h"
 #include "qdocument.h"
 #include "qdocument_p.h"
@@ -23,21 +30,12 @@
 #include <QTextCodec>
 
 /*!
-	\file qeditconfig.cpp
-	\brief Implementation of the QEditConfig class.
-	
-	\see QEditConfig
-*/
-
-/*!
 	\ingroup dialogs
 	@{
 	
 	\class QEditConfig
-	\brief A widget for embedding into a larger configuration dialog.
+	\brief A minimalistic, easy to embed, settings widget.
 	
-	The widget's values (that is its subcontrols) are set with setValues.
-	The editted values are read out with extractValues().	
 */
 
 QEditConfig::QEditConfig(QWidget *w)
@@ -58,7 +56,7 @@ QEditConfig::QEditConfig(QWidget *w)
 }
 
 /*!
-
+	\brief run-time translation entry point
 */
 void QEditConfig::retranslate()
 {
@@ -66,7 +64,7 @@ void QEditConfig::retranslate()
 }
 
 /*!
-
+	\return whether user changes are immediately applied
 */
 bool QEditConfig::applyImmediately() const
 {
@@ -74,7 +72,7 @@ bool QEditConfig::applyImmediately() const
 }
 
 /*!
-
+	\brief Set whether user changes are immediately applied
 */
 void QEditConfig::setApplyImmediately(bool y)
 {
@@ -82,7 +80,7 @@ void QEditConfig::setApplyImmediately(bool y)
 }
 
 /*!
-
+	\brief Apply changes
 */
 void QEditConfig::apply()
 {
@@ -130,7 +128,11 @@ void QEditConfig::apply()
 }
 
 /*!
-
+	\brief Reset the subcontrols to reflect the current settings
+	
+	The name can be a bit misleading at first, it has been chosen
+	because it directly maps to the effect a "cancel" button would
+	have on the widget
 */
 void QEditConfig::cancel()
 {
@@ -166,7 +168,9 @@ void QEditConfig::cancel()
 }
 
 /*!
-
+	\brief Restore default values for all subcontrols
+	
+	\note The widgets are changed but these changes are NOT applied.
 */
 void QEditConfig::restore()
 {
@@ -489,3 +493,4 @@ void QEditConfig::on_chkPreserveTrailingIndent_toggled(bool y)
 }
 
 /*! @} */
+

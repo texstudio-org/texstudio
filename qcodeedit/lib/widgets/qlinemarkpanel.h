@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -35,7 +35,7 @@ class QCE_EXPORT QLineMarkPanel : public QPanel
 	Q_OBJECT
 	
 	public:
-		Q_PANEL(QLineMarkPanel, "Default Line Marks Panel")
+		Q_PANEL(QLineMarkPanel, "Line Mark Panel")
 		
 		QLineMarkPanel(QWidget *p = 0);
 		virtual ~QLineMarkPanel();
