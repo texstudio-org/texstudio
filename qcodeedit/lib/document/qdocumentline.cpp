@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -15,7 +15,17 @@
 
 #include "qdocumentline.h"
 
+/*!
+	\file qdocumentline.cpp
+	\brief Implementation of the QDocumentLine class.
+*/
+
 #include "qdocument_p.h"
+
+/*!
+	\ingroup document
+	@{
+*/
 
 /*!
        \class QDocumentLine
@@ -545,3 +555,6 @@ QNFAMatchContext* QDocumentLine::matchContext()
 {
 	return m_handle ? &m_handle->m_context : 0;
 }
+
+/*! @} */
+

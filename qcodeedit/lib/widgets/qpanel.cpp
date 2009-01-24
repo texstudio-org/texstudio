@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -46,19 +46,23 @@
 	
 */
 
-QHash<QString, QPanelCreator*> QPanel::m_creators;
+QHash<QString, QPanelCreator*>& QPanel::creators()
+{
+	static QHash<QString, QPanelCreator*> _c;
+	return _c;
+}
 
 QPanel* QPanel::panel(const QString& id, QWidget *p)
 {
-	if ( !m_creators.contains(id) )
+	if ( !creators().contains(id) )
 		return 0;
 	
-	return m_creators.value(id)->panel(p);
+	return creators().value(id)->panel(p);
 }
 
 void QPanel::registerCreator(QPanelCreator *c)
 {
-	m_creators[c->id()] = c;
+	creators()[c->id()] = c;
 }
 
 static int _panels = 0;

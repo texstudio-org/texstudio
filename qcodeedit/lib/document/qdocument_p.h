@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -17,6 +17,11 @@
 #define _QDOCUMENT_P_H_
 
 #include "qce-config.h"
+
+/*!
+	\file qdocument_p.h
+	\brief Definition of the private document API
+*/
 
 #include "qnfa.h"
 
@@ -106,6 +111,8 @@ class QCE_EXPORT QDocumentLineHandle
 		void addOverlay(const QFormatRange& over);
 		void removeOverlay(const QFormatRange& over);
 		QFormatRange getOverlayAt(int index, int preferredFormat);
+		
+		void shiftOverlays(int position, int offset);
 		
 		void draw(	QPainter *p,
 					int xOffset,
@@ -421,9 +428,8 @@ class QCE_EXPORT QDocumentPrivate
 		static QList<QDocumentPrivate*> m_documents;
 		
 		int m_maxMarksPerLine;
-		QHash<QDocumentLineHandle*, int> m_status;
-		QHash<QDocumentLineHandle*, bool> m_statusEver;
 		QHash<QDocumentLineHandle*, QList<int> > m_marks;
+		QHash<QDocumentLineHandle*, QPair<int, int> > m_status;
 		
 		int _nix, _dos;
 		QString m_lineEndingString;

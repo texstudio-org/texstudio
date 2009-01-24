@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -34,12 +34,16 @@
 /*!
 	\ingroup widgets
 	@{
-	
+*/
+
+/*!
 	\class QLineMarkPanel
 	\brief A specific panel in charge of drawing line numbers of an editor
 	
 	\see QEditorInterface
 */
+
+QCE_AUTO_REGISTER(QLineChangePanel)
 
 /*!
 	\brief Constructor
@@ -105,8 +109,7 @@ void QLineChangePanel::paint(QPainter *p, QEditor *e)
 		if ( d->isLineModified(line) )
 		{
 			p->fillRect(1, posY, 2, ls * span, Qt::yellow);
-		} else if ( d->wasLineModified(line) )
-		{
+		} else if ( d->hasLineEverBeenModified(line) ) {
 			p->fillRect(1, posY, 2, ls * span, Qt::green);
 		}
 		

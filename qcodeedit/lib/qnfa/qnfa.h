@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -15,6 +15,11 @@
 
 #ifndef _Q_NFA_H_
 #define _Q_NFA_H_
+
+/*!
+	\file qnfa.h
+	\brief Definition of the core QNFA syntax engine
+*/
 
 #include <QChar>
 #include <QList>

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -15,6 +15,11 @@
 
 #ifndef _QFORMAT_H_
 #define _QFORMAT_H_
+
+/*!
+	\file qformat.h
+	\brief Definition of the QFormat class
+*/
 
 #include <QFont>
 #include <QColor>

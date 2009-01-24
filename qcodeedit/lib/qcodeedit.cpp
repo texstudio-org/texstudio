@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -15,6 +15,11 @@
 
 #include "qcodeedit.h"
 
+/*!
+	\file qcodeedit.cpp
+	\brief Implementation of the QCodeEdit class
+*/
+
 #include "qpanel.h"
 #include "qeditor.h"
 #include "qpanellayout.h"
@@ -27,6 +32,20 @@
 #include <QStringList>
 #include <QMetaObject>
 
+/*!
+	\class QCodeEdit
+	\brief A thin layer over QEditor
+	
+	The QCodeEdit class provides simple means to associate panels with editors and manage them.
+*/
+
+/*!
+	\internal
+	\class QPanelWatcher
+	
+	A class designed to work around some limitations of the hide/show event system and allow
+	proper setting and conservation of default visibility for panels.
+*/
 class QPanelWatcher : public QObject
 {
 	public:
@@ -63,6 +82,9 @@ class QPanelWatcher : public QObject
 
 QStringList __qce_data_path;
 
+/*!
+	\brief Centralized access point to data fetching
+*/
 QString QCE::fetchDataFile(const QString& file)
 {
 	if ( QFileInfo(file).isAbsolute() )
@@ -79,11 +101,17 @@ QString QCE::fetchDataFile(const QString& file)
 	return file;
 }
 
+/*!
+	\return The list of pathes used by QCE to fetch data
+*/
 QStringList QCE::dataPathes()
 {
 	return __qce_data_path;
 }
 
+/*!
+	\brief Add a path to the list of pathes used to fetch data
+*/
 void QCE::addDataPath(const QString& path)
 {
 	if ( !__qce_data_path.contains(path) )
@@ -92,6 +120,11 @@ void QCE::addDataPath(const QString& path)
 
 QList<QCodeEdit*> QCodeEdit::m_instances;
 
+/*!
+	\brief ctor
+	
+	The created editor object comes with builtin actions.
+*/
 QCodeEdit::QCodeEdit(QWidget *p)
  : m_panelsMenu(0)
 {
@@ -102,6 +135,10 @@ QCodeEdit::QCodeEdit(QWidget *p)
 	m_instances << this;
 }
 
+/*!
+	\brief ctor
+	\param actions whether the QEditor object should create builtin actions
+*/
 QCodeEdit::QCodeEdit(bool actions, QWidget *p)
  : m_panelsMenu(0)
 {
@@ -112,6 +149,12 @@ QCodeEdit::QCodeEdit(bool actions, QWidget *p)
 	m_instances << this;
 }
 
+/*!
+	\brief ctor
+	\param layout structure of the panel layout
+	
+	The created editor object comes with builtin actions.
+*/
 QCodeEdit::QCodeEdit(const QString& layout, QWidget *p)
  : m_panelsMenu(0)
 {
@@ -122,6 +165,11 @@ QCodeEdit::QCodeEdit(const QString& layout, QWidget *p)
 	m_instances << this;
 }
 
+/*!
+	\brief ctor
+	\param layout structure of the panel layout
+	\param actions whether the QEditor object should create builtin actions
+*/
 QCodeEdit::QCodeEdit(const QString& layout, bool actions, QWidget *p)
  : m_panelsMenu(0)
 {
@@ -132,6 +180,11 @@ QCodeEdit::QCodeEdit(const QString& layout, bool actions, QWidget *p)
 	m_instances << this;
 }
 
+/*!
+	\brief ctor
+	\param e editor to manage
+	\param p panel layout to associate with the editor
+*/
 QCodeEdit::QCodeEdit(QEditor *e, QPanelLayout *p)
  : m_panelsMenu(0)
 {
@@ -142,6 +195,11 @@ QCodeEdit::QCodeEdit(QEditor *e, QPanelLayout *p)
 	m_instances << this;
 }
 
+/*!
+	\brief ctor
+	\param e editor to manage
+	\param l structure of the panel layout
+*/
 QCodeEdit::QCodeEdit(QEditor *e, const QString& l)
  : m_panelsMenu(0)
 {
@@ -152,6 +210,11 @@ QCodeEdit::QCodeEdit(QEditor *e, const QString& l)
 	m_instances << this;
 }
 
+/*!
+	\brief dtor
+	
+	\warning Destroyes the editor and the panel layout it manages
+*/
 QCodeEdit::~QCodeEdit()
 {
 	m_instances.removeAll(this);
@@ -161,16 +224,29 @@ QCodeEdit::~QCodeEdit()
 	delete m_layout;
 }
 
+/*!
+	\return the managed editor
+*/
 QEditor* QCodeEdit::editor() const
 {
 	return m_editor;
 }
 
+/*!
+	\return the panel layout associated with the managed editor
+*/
 QPanelLayout* QCodeEdit::panelLayout() const
 {
 	return m_layout;
 }
 
+/*!
+	\brief Add a panel
+	\return Toggle view action for the added panel
+	\param panel panel to add
+	\param pos position of the panel in the layout
+	\param _add whether to add the show action of the panel to the menu of the editor
+*/
 QAction* QCodeEdit::addPanel(QPanel *panel, Position pos, bool _add)
 {
 	panel->attach(m_editor);
@@ -204,6 +280,22 @@ QAction* QCodeEdit::addPanel(QPanel *panel, Position pos, bool _add)
 	return a;
 }
 
+/*!
+	\overload
+	\return Toggle view action for the added panel
+	\param name name of panel to add
+	\param pos position of the panel in the layout
+	\param _add whether to add the show action of the panel to the menu of the editor
+*/
+QAction* QCodeEdit::addPanel(const QString& name, Position pos, bool _add)
+{
+	return addPanel(QPanel::panel(name, m_editor), pos, _add);
+}
+
+/*!
+	\return a list of panels added to the editor
+	\param type Type of panel to look for (no filtering is performed if empty)
+*/
 QList<QPanel*> QCodeEdit::panels(const QString& type) const
 {
 	if ( !m_layout )
@@ -229,12 +321,25 @@ QList<QPanel*> QCodeEdit::panels(const QString& type) const
 	return l;
 }
 
+/*!
+	\return the toggle view action of a given panel
+*/
 QAction* QCodeEdit::toggleViewAction(QPanel *p) const
 {
 	int idx = panels().indexOf(p);
 	return idx == -1 ? 0 : m_actions.at(idx);
 }
 
+/*!
+	\brief Send a command to every panel of a given type
+	\param signature method name suitable for QMetaObject::invokeMethod()
+	\param args list of arguments suitable for QMetaObject::invokeMethod()
+	
+	Example use :
+	\code
+	sendPanelCommand("Status", "setVisible" Q_COMMAND << Q_ARG(bool, false));
+	\endcode
+*/
 void QCodeEdit::sendPanelCommand(	const QString& type,
 									const char *signature,
 									const QList<QGenericArgument>& args)
@@ -341,6 +446,9 @@ void QCodeEdit::sendPanelCommand(	const QString& type,
 	}
 }
 
+/*!
+	\return The QCodeEdit object managing a given editor or a null point if the given editor is unmanaged
+*/
 QCodeEdit* QCodeEdit::manager(QEditor *e)
 {
 	foreach ( QCodeEdit *m, m_instances )
@@ -350,6 +458,9 @@ QCodeEdit* QCodeEdit::manager(QEditor *e)
 	return 0;
 }
 
+/*!
+	\brief The (first) managed editor editing a given file or a null pointer if none found
+*/
 QEditor* QCodeEdit::managed(const QString& f)
 {
 	foreach ( QCodeEdit *m, m_instances )
@@ -358,3 +469,4 @@ QEditor* QCodeEdit::managed(const QString& f)
 	
 	return 0;
 }
+

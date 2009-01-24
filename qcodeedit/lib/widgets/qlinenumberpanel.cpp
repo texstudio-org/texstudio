@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -34,18 +34,20 @@
 /*!
 	\ingroup widgets
 	@{
-	
+*/
+
+/*!
 	\class QLineNumberPanel
 	\brief A specific panel in charge of drawing line numbers of an editor
-	
-	\see QEditorInterface
 */
+
+QCE_AUTO_REGISTER(QLineNumberPanel)
 
 /*!
 	\brief Constructor
 */
 QLineNumberPanel::QLineNumberPanel(QWidget *p)
- : QPanel(p), m_verbose(true)
+ : QPanel(p), m_verbose(false)
 {
 	setFixedWidth(20);
 }

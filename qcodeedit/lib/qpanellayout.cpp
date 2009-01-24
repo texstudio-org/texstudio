@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -15,22 +15,51 @@
 
 #include "qpanellayout.h"
 
+/*!
+	\file qpanellayout.cpp
+	\brief Implementation of the QPanelLayout class.
+*/
+
 #include "qpanel.h"
 #include "qeditor.h"
 
 #include <QWidget>
 #include <QScrollBar>
 
+
+/*!
+	\class QPanelLayout
+	\brief A specialized layout taking care of panel display
+	
+	The panel layout is specialized in several ways :
+	<ul>
+	<li>It only operates on specific widgets (which inherit QPanel)</li>
+	<li>It can only layout widgets in the viewport margins of a QEditor (could work with
+	any QAbstractScrollArea if a single method was made public instead of protected...)
+	so it does not qualify as a "real" layout  (contrary to grid/box layouts)</li>
+	<li>It positions widgets on the border of the editor in the same way the Border Layout
+	example does (most of the layout code actually comes from there).</li>
+	<li>It provides serialization/deserialization of its layout structure</li>
+	</ul>
+*/
+
 /*
 	The layouting code is inspired from a Qt4 example : Border Layout
 */
 
+/*!
+	\brief ctor
+*/
 QPanelLayout::QPanelLayout(QEditor *p)
  : QLayout(p), m_parent(p)
 {
 	setSpacing(0);
 }
 
+/*!
+	\brief ctor
+	\param layout structure to deserailize
+*/
 QPanelLayout::QPanelLayout(const QString& layout, QEditor *p)
  : QLayout(p), m_parent(p)
 {
@@ -38,6 +67,9 @@ QPanelLayout::QPanelLayout(const QString& layout, QEditor *p)
 	addSerialized(layout);
 }
 
+/*!
+	\brief dtor
+*/
 QPanelLayout::~QPanelLayout()
 {
 	QLayoutItem *l;
@@ -46,6 +78,9 @@ QPanelLayout::~QPanelLayout()
 		delete l;
 }
 
+/*!
+	\return A serialized layout strucure
+*/
 QString QPanelLayout::serialized() const
 {
 	/*
@@ -79,6 +114,9 @@ QString QPanelLayout::serialized() const
 	return QStringList(posMap.values()).join("");
 }
 
+/*!
+	\brief Add the content of a serialized layout structure
+*/
 void QPanelLayout::addSerialized(const QString& layout)
 {
 	//qDebug("layout : %s", qPrintable(layout));
@@ -123,6 +161,9 @@ void QPanelLayout::addSerialized(const QString& layout)
 	update();
 }
 
+/*!
+	\return the list of panels managed by the layout
+*/
 QList<QPanel*> QPanelLayout::panels() const
 {
 	QList<QPanel*> l;
@@ -138,41 +179,65 @@ QList<QPanel*> QPanelLayout::panels() const
 	return l;
 }
 
+/*!
+	\return the count of managed panels
+*/
 int QPanelLayout::count() const
 {
 	return m_list.count();
 }
 
+/*!
+	\internal
+*/
 bool QPanelLayout::hasHeightForWidth() const
 {
 	return false;
 }
 
+/*!
+	\internal
+*/
 Qt::Orientations QPanelLayout::expandingDirections() const
 {
 	return Qt::Horizontal | Qt::Vertical;
 }
 
+/*!
+	\internal
+*/
 QSize QPanelLayout::sizeHint() const
 {
 	return calculateSize(SizeHint);
 }
 
+/*!
+	\internal
+*/
 QSize QPanelLayout::minimumSize() const
 {
 	return calculateSize(MinimumSize);
 }
 
+/*!
+	\internal
+*/
 void QPanelLayout::addItem(QLayoutItem *item)
 {
 	add(item, West);
 }
 
+/*!
+	\brief Add a panel at a given position
+*/
 void QPanelLayout::addWidget(QWidget *widget, Position position)
 {
 	add(new QWidgetItem(widget), position);
 }
 
+/*!
+	\internal
+*/
 QLayoutItem* QPanelLayout::itemAt(int idx) const
 {
 	PanelWrapper *wrapper = m_list.value(idx);
@@ -184,6 +249,9 @@ QLayoutItem* QPanelLayout::itemAt(int idx) const
 	
 }
 
+/*!
+	\internal
+*/
 QLayoutItem* QPanelLayout::takeAt(int idx)
 {
 	if ( (idx >= 0) && (idx < m_list.size()) )
@@ -195,16 +263,19 @@ QLayoutItem* QPanelLayout::takeAt(int idx)
 	return 0;
 }
 
+/*!
+	\internal
+*/
 void QPanelLayout::setGeometry(const QRect &r)
 {
 	//qDebug("laying out %i panels", count());
-	#if 0
+	#if QT_VERSION <= 0x040400
 	QScrollBar *vb = m_parent->verticalScrollBar(),
 			*hb = m_parent->horizontalScrollBar();
 	
 	QRect rect(	r.x(), r.y(),
-				r.width() - (vb->isVisible() ? vb->width() : 0),
-				r.height() - (hb->isVisible() ? hb->height() : 0)
+				r.width() - (vb->isVisibleTo(m_parent) ? vb->width() : 0),
+				r.height() - (hb->isVisibleTo(m_parent) ? hb->height() : 0)
 				);
 	#else
 	QRect rect(	r.x(), r.y(),
@@ -313,6 +384,9 @@ void QPanelLayout::setGeometry(const QRect &r)
 	m_parent->setPanelMargins(westWidth, northHeight, eastWidth, southHeight);
 }
 
+/*!
+	\internal
+*/
 void QPanelLayout::add(QLayoutItem *item, Position position)
 {
 	QPanel *p;
@@ -326,6 +400,9 @@ void QPanelLayout::add(QLayoutItem *item, Position position)
 	m_list.append(new PanelWrapper(item, position));
 }
 
+/*!
+	\internal
+*/
 QSize QPanelLayout::calculateSize(SizeType sizeType) const
 {
 	QSize totalSize;

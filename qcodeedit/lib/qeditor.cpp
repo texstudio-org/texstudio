@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -14,6 +14,11 @@
 ****************************************************************************/
 
 #include "qeditor.h"
+
+/*!
+	\file qeditor.cpp
+	\brief Implementation of the QEditor class
+*/
 
 #include "qdocument.h"
 #include "qdocument_p.h"
@@ -77,7 +82,72 @@
 #define QCE_ACTION(name, action) { QAction *_a_ = m_actions.value(name); if ( _a_ ) _a_ action; }
 #define QCE_TR_ACTION(name, label) { QAction *_a_ = m_actions.value(name); if ( _a_ ) _a_->setText(label); }
 #define QCE_ENABLE_ACTION(name, yes) { QAction *_a_ = m_actions.value(name); if ( _a_ ) _a_->setEnabled(yes); }
-		
+
+/*!
+	\ingroup editor
+	@{
+	
+	\class QEditor
+	\brief A text editing widget
+	
+	QEditor is the central widget in QCE. It allows user to view and edit a
+	document.
+	
+	QEditor has an API similar to that of QTextEdit and it behaves in a very
+	similar way.
+	
+	Notable differences are :
+	<ul>
+	<li>QEditor can be given an InputBinding which can change the way it
+	handle user inputs which enables such things as implementing emacs-like
+	or Vi-like editing (almost) effortlessly.</li>
+	<li>QEditor has actions instead of hard coded shortcuts and expose them
+	so that, among other things, they can be easily added to menus/toolbars
+	and their shortcuts can be changed</li>
+	<li>QEditor brings the notion of cursor mirrors. Column selection and
+	column editing are just a special use case of cursor mirrors.</li>
+	<li>QEditor allows easy encodings management</li>
+	</ul>
+	
+	QEditor can gain features when it is managed by a QCodeEdit class which
+	is responsible for panels management.
+*/
+
+
+/*!
+	\enum QEditor::CodecUpdatePolicy
+	\brief Specify the actions to take when changing the default codec
+	
+*/
+
+
+/*!
+	\enum QEditor::EditFlag
+	\brief Flag holding information about the state of an editor
+	
+	Some of these are public and can be modified freely and some
+	others are only meant to be used internally though they can
+	still be read.
+	
+*/
+
+
+/*!
+	\class QEditor::InputBinding
+	\brief A class designed to allow extending user input in a transparent way
+	
+	An input binding, when set to an editor, can intercept all the events the
+	editor receive and radically change the behavior.
+	
+	The main purpose of this class is twofold :
+	<ul>
+	<li>Allow vi-like (or emacs-like, ...) editing to be implemented with little extra work.
+	And allow the user to easily switch between input modes</li>
+	<li>Allow applications using QCE to easily add extra features (e.g extended code
+	navigation within projects, jump to documentation, ...) with little extra work</li>
+	</ul>
+*/
+
 ////////////////////////////////////////////////////////////////////////
 //	Bindings handling
 ////////////////////////////////////////////////////////////////////////
@@ -86,16 +156,28 @@ QList<QEditor*> QEditor::m_editors;
 QEditor::InputBinding* QEditor::m_defaultBinding = 0;
 QHash<QString, QEditor::InputBinding*> QEditor::m_bindings;
 
+/*!
+	\return A list of available input bindings
+*/
 QStringList QEditor::inputBindings()
 {
 	return m_bindings.keys();
 }
 
+/*!
+	\return the name of the default input binding
+	
+	\note The "Default" name (or its translation, obtained via QEditor::tr())
+	is used to indicate that no default input binding has been set.
+*/
 QString QEditor::defaultInputBinding()
 {
 	return m_defaultBinding ? m_defaultBinding->name() : tr("Default");
 }
 
+/*!
+	\brief Add an input binding to make it available for all editors
+*/
 void QEditor::addInputBinding(QEditor::InputBinding *b)
 {
 	m_bindings[b->id()] = b;
@@ -105,6 +187,9 @@ void QEditor::addInputBinding(QEditor::InputBinding *b)
 	
 }
 
+/*!
+	\brief Remove an input binding from the pool of publicly available ones
+*/
 void QEditor::removeInputBinding(QEditor::InputBinding *b)
 {
 	m_bindings.remove(b->id());
@@ -114,17 +199,37 @@ void QEditor::removeInputBinding(QEditor::InputBinding *b)
 	
 }
 
+/*!
+	\brief Set the default input binding
+	
+	\note This does not change the current input binding of existing editors
+*/
 void QEditor::setDefaultInputBinding(QEditor::InputBinding *b)
 {
 	m_defaultBinding = b;
 }
 
+/*!
+	\brief Set the default input binding
+	
+	\note If no binding of the given name is available the default (null)
+	binding will be set back as default binding.
+	
+	\note This does not change the current input binding of existing editors
+*/
 void QEditor::setDefaultInputBinding(const QString& b)
 {
 	m_defaultBinding = m_bindings.value(b);
 }
 ////////////////////////////////////////////////////////////////////////
 
+/*!
+	\return A pointer to the global "reliable" file monitor used by QEditor to avoid file conflicts
+	
+	The point of using a custom file watcher is to work around a bug (limitation) of QFileSystemWatcher
+	which sometimes emit multiple signals for a single file save. It also enables to use a single
+	object shared by all QEditor instances and reduce memory footprint.
+*/
 QReliableFileWatch* QEditor::watcher()
 {
 	static QPointer<QReliableFileWatch> _qce_shared;
@@ -141,7 +246,8 @@ int QEditor::m_defaultFlags = 0;
 QTextCodec* QEditor::m_defaultCodec = 0;
 
 /*!
-	\overload
+	\return The default flags set to every QEditor upon construction
+	\note the default flags are a configuration-oriented feature which only expose "user" flags
 */
 int QEditor::defaultFlags()
 {
@@ -149,7 +255,12 @@ int QEditor::defaultFlags()
 }
 
 /*!
-	\overload
+	\brief Set the default editor flags
+	
+	Setting editor flags result in them being applied to ALL existing editors
+	and editors to be created later on.
+	
+	These can of course be modified on a per-editor basis later on.
 */
 void QEditor::setDefaultFlags(int flags)
 {
@@ -163,7 +274,9 @@ void QEditor::setDefaultFlags(int flags)
 }
 
 /*!
-	\overload
+	\return The default text codec used to load and save document contents
+	
+	\note a null pointer indicates that local 8 bit encoding is used.
 */
 QTextCodec* QEditor::defaultCodec()
 {
@@ -172,6 +285,8 @@ QTextCodec* QEditor::defaultCodec()
 
 /*!
 	\overload
+	\param mib codec identifier
+	\param update Update policy
 */
 void QEditor::setDefaultCodec(int mib, int update)
 {
@@ -180,6 +295,8 @@ void QEditor::setDefaultCodec(int mib, int update)
 
 /*!
 	\overload
+	\param name name of the codec to use
+	\param update Update policy
 */
 void QEditor::setDefaultCodec(const char *name, int update)
 {
@@ -188,6 +305,8 @@ void QEditor::setDefaultCodec(const char *name, int update)
 
 /*!
 	\overload
+	\param name name of the codec to use
+	\param update Update policy
 */
 void QEditor::setDefaultCodec(const QByteArray& name, int update)
 {
@@ -196,7 +315,11 @@ void QEditor::setDefaultCodec(const QByteArray& name, int update)
 
 /*!
 	\brief Set the default text codec
+	\param c codec to use
+	\param update Update policy
 	
+	The update policy determines whether existing editors are
+	affected by the change of the default codec.
 */
 void QEditor::setDefaultCodec(QTextCodec *c, int update)
 {
@@ -808,6 +931,12 @@ void QEditor::save()
 	update();
 }
 
+/*!
+	\brief Save the content of the editor to a file
+	
+	\note This method renames the editor, stop monitoring the old
+	file and monitor the new one
+*/
 void QEditor::save(const QString& fn)
 {
 	if ( fileName().count() )
@@ -977,9 +1106,7 @@ void QEditor::setFileEncoding(int mib){
 }
 
 /*!
-	\brief Print the text
-	
-	\note Experimental
+	\brief Print the content of the editor
 */
 void QEditor::print()
 {
@@ -1569,7 +1696,7 @@ void QEditor::getCursorPosition(int &line, int &index)
 }
 
 /*!
-	\return the code completino engine set to this editor, if any
+	\return the code completion engine set to this editor, if any
 */
 QCodeCompletionEngine* QEditor::completionEngine() const
 {
@@ -1631,11 +1758,17 @@ void QEditor::setLanguageDefinition(QLanguageDefinition *d)
 	}
 }
 
+/*!
+	\return the line at a given viewport position
+*/
 QDocumentLine QEditor::lineAtPosition(const QPoint& p) const
 {
 	return m_doc ? m_doc->lineAt(p) : QDocumentLine();
 }
 
+/*!
+	\return The cursor object nearest to the given viewport position
+*/
 QDocumentCursor QEditor::cursorForPosition(const QPoint& p) const
 {
 	//qDebug("cursor for : (%i, %i)", p.x(), p.y());
@@ -1643,6 +1776,9 @@ QDocumentCursor QEditor::cursorForPosition(const QPoint& p) const
 	return m_doc ? m_doc->cursorAt(p) : QDocumentCursor();
 }
 
+/*!
+	\brief Set the cursor to that nearest to a given viewport position
+*/
 void QEditor::setCursorPosition(const QPoint& p)
 {
 	//qDebug("cursor for : (%i, %i)", p.x(), p.y());
@@ -1655,6 +1791,9 @@ void QEditor::setCursorPosition(const QPoint& p)
 	}
 }
 
+/*!
+	\brief Emitted whenever the position of the cursor changes
+*/
 void QEditor::emitCursorPositionChanged()
 {
 	emit cursorPositionChanged();
@@ -2059,7 +2198,8 @@ void QEditor::paintEvent(QPaintEvent *e)
 	// cursor mirrors :D
 	foreach ( const QDocumentCursor& m, m_mirrors )
 	{
-		ctx.cursors << m.handle();
+		if ( ctx.blinkingCursor )
+			ctx.extra << m.handle();
 		
 		if ( m.hasSelection() )
 		{
@@ -2067,6 +2207,11 @@ void QEditor::paintEvent(QPaintEvent *e)
 			
 			ctx.selections << s;
 		}
+	}
+	
+	if ( m_dragAndDrop.isValid() )
+	{
+		ctx.extra << m_dragAndDrop.handle();
 	}
 	
 	p.save();
@@ -2284,6 +2429,9 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 		m_binding->postKeyPressEvent(e, this);
 }
 
+/*!
+	\internal
+*/
 void QEditor::inputMethodEvent(QInputMethodEvent* e)
 {
 	if ( m_binding )
@@ -2314,6 +2462,9 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
 		m_binding->postInputMethodEvent(e, this);
 }
 
+/*!
+	\internal
+*/
 void QEditor::mouseMoveEvent(QMouseEvent *e)
 {
 	if ( m_binding )
@@ -2368,35 +2519,33 @@ void QEditor::mouseMoveEvent(QMouseEvent *e)
 		} else if ( e->modifiers() & Qt::ControlModifier ) {
 			
 			// get column number for column selection
-			int col = newCursor.columnNumber();
-			
-			newCursor.setColumnNumber(m_cursor.anchorColumn());
+			int org = m_cursor.anchorColumn();
+			int dst = newCursor.columnNumber();
+			// TODO : adapt to line wrapping...
 			
 			clearCursorMirrors();
-			m_cursor.clearSelection();
+			//m_cursor.clearSelection();
+			int min = qMin(m_cursor.lineNumber(), newCursor.lineNumber());
+			int max = qMax(m_cursor.lineNumber(), newCursor.lineNumber());
 			
-			if ( newCursor != m_cursor )
+			if ( min != max )
 			{
-				QDocumentCursor fake(m_cursor);
-				fake.setSelectionBoundary(newCursor);
-				
-				QDocumentSelection sel = fake.selection();
-				
-				for ( int l = sel.startLine; l <= sel.endLine; ++l )
+				for ( int l = min; l <= max; ++l )
 				{
 					if ( l != m_cursor.lineNumber() )
-						addCursorMirror(QDocumentCursor(m_doc, l,
-										m_cursor.anchorColumn()));
+						addCursorMirror(QDocumentCursor(m_doc, l, org));
 					
 				}
 				
 				if ( e->modifiers() & Qt::ShiftModifier )
 				{
-					m_cursor.setColumnNumber(col, QDocumentCursor::KeepAnchor);
+					m_cursor.setColumnNumber(dst, QDocumentCursor::KeepAnchor);
 					
 					for ( int i = 0; i < m_mirrors.count(); ++i )
-						m_mirrors[i].setColumnNumber(col, QDocumentCursor::KeepAnchor);
+						m_mirrors[i].setColumnNumber(dst, QDocumentCursor::KeepAnchor);
 				}
+			} else {
+				m_cursor.setSelectionBoundary(newCursor);
 			}
 		} else {
 			m_cursor.setSelectionBoundary(newCursor);
@@ -2416,6 +2565,9 @@ void QEditor::mouseMoveEvent(QMouseEvent *e)
 		m_binding->postMouseMoveEvent(e, this);
 }
 
+/*!
+	\internal
+*/
 void QEditor::mousePressEvent(QMouseEvent *e)
 {
 	if ( m_binding )
@@ -2464,33 +2616,34 @@ void QEditor::mousePressEvent(QMouseEvent *e)
 				//m_mirrors << cursor;
 				if ( e->modifiers() & Qt::ShiftModifier )
 				{
-					int col = cursor.columnNumber();
-					
-					cursor.setColumnNumber(m_cursor.anchorColumn());
+					// get column number for column selection
+					int org = m_cursor.anchorColumn();
+					int dst = cursor.columnNumber();
+					// TODO : fix and adapt to line wrapping...
 					
 					clearCursorMirrors();
-					m_cursor.clearSelection();
+					//m_cursor.clearSelection();
+					int min = qMin(m_cursor.lineNumber(), cursor.lineNumber());
+					int max = qMax(m_cursor.lineNumber(), cursor.lineNumber());
 					
-					if ( cursor != m_cursor )
+					if ( min != max )
 					{
-						QDocumentCursor fake(m_cursor);
-						fake.setSelectionBoundary(cursor);
-						
-						QDocumentSelection sel = fake.selection();
-						
-						for ( int l = sel.startLine; l <= sel.endLine; ++l )
+						for ( int l = min; l <= max; ++l )
 						{
 							if ( l != m_cursor.lineNumber() )
-								addCursorMirror(QDocumentCursor(m_doc, l,
-												m_cursor.anchorColumn()));
+								addCursorMirror(QDocumentCursor(m_doc, l, org));
 							
 						}
 						
-						m_cursor.setColumnNumber(col, QDocumentCursor::KeepAnchor);
-						
-						for ( int i = 0; i < m_mirrors.count(); ++i )
-							m_mirrors[i].setColumnNumber(col, QDocumentCursor::KeepAnchor);
-						
+						if ( e->modifiers() & Qt::ShiftModifier )
+						{
+							m_cursor.setColumnNumber(dst, QDocumentCursor::KeepAnchor);
+							
+							for ( int i = 0; i < m_mirrors.count(); ++i )
+								m_mirrors[i].setColumnNumber(dst, QDocumentCursor::KeepAnchor);
+						}
+					} else {
+						m_cursor.setSelectionBoundary(cursor);
 					}
 				} else if ( (e->modifiers() & Qt::AltModifier) ) {
 					addCursorMirror(cursor);
@@ -2545,6 +2698,9 @@ void QEditor::mousePressEvent(QMouseEvent *e)
 		m_binding->postMousePressEvent(e, this);
 }
 
+/*!
+	\internal
+*/
 void QEditor::mouseReleaseEvent(QMouseEvent *e)
 {
 	if ( m_binding )
@@ -2600,6 +2756,9 @@ void QEditor::mouseReleaseEvent(QMouseEvent *e)
 		m_binding->postMouseReleaseEvent(e, this);
 }
 
+/*!
+	\internal
+*/
 void QEditor::mouseDoubleClickEvent(QMouseEvent *e)
 {
 	if ( m_binding )
@@ -2655,6 +2814,9 @@ void QEditor::mouseDoubleClickEvent(QMouseEvent *e)
 		m_binding->postMouseDoubleClickEvent(e, this);
 }
 
+/*!
+	\internal
+*/
 void QEditor::dragEnterEvent(QDragEnterEvent *e)
 {
 	if (
@@ -2677,6 +2839,9 @@ void QEditor::dragEnterEvent(QDragEnterEvent *e)
 	m_dragAndDrop = QDocumentCursor();
 }
 
+/*!
+	\internal
+*/
 void QEditor::dragLeaveEvent(QDragLeaveEvent *)
 {
 	const QRect crect = cursorRect(m_dragAndDrop);
@@ -2687,6 +2852,9 @@ void QEditor::dragLeaveEvent(QDragLeaveEvent *)
 	
 }
 
+/*!
+	\internal
+*/
 void QEditor::dragMoveEvent(QDragMoveEvent *e)
 {
 	if (
@@ -2724,6 +2892,9 @@ void QEditor::dragMoveEvent(QDragMoveEvent *e)
 	//e->acceptProposedAction();
 }
 
+/*!
+	\internal
+*/
 void QEditor::dropEvent(QDropEvent *e)
 {
 	m_dragAndDrop = QDocumentCursor();
@@ -2789,6 +2960,9 @@ void QEditor::dropEvent(QDropEvent *e)
 	selectionChange();
 }
 
+/*!
+	\internal
+*/
 void QEditor::changeEvent(QEvent *e)
 {
 	QAbstractScrollArea::changeEvent(e);
@@ -2811,6 +2985,9 @@ void QEditor::changeEvent(QEvent *e)
 	}
 }
 
+/*!
+	\internal
+*/
 void QEditor::showEvent(QShowEvent *e)
 {
 	QAbstractScrollArea::showEvent(e);
@@ -2832,6 +3009,10 @@ void QEditor::showEvent(QShowEvent *e)
 	}
 }
 
+/*!
+	\internal
+	\brief Zoom in/out upon ctrl+wheel
+*/
 void QEditor::wheelEvent(QWheelEvent *e)
 {
 	if ( e->modifiers() & Qt::ControlModifier )
@@ -2853,6 +3034,9 @@ void QEditor::wheelEvent(QWheelEvent *e)
 	//viewport()->update();
 }
 
+/*!
+	\internal
+*/
 void QEditor::resizeEvent(QResizeEvent *)
 {
 	const QSize viewportSize = viewport()->size();
@@ -2874,6 +3058,9 @@ void QEditor::resizeEvent(QResizeEvent *)
 		ensureCursorVisible();
 }
 
+/*!
+	\internal
+*/
 void QEditor::focusInEvent(QFocusEvent *e)
 {
 	setFlag(CursorOn, true);
@@ -2883,6 +3070,9 @@ void QEditor::focusInEvent(QFocusEvent *e)
 	QAbstractScrollArea::focusInEvent(e);
 }
 
+/*!
+	\internal
+*/
 void QEditor::focusOutEvent(QFocusEvent *e)
 {
 	setFlag(CursorOn, false);
@@ -2891,6 +3081,11 @@ void QEditor::focusOutEvent(QFocusEvent *e)
 	QAbstractScrollArea::focusOutEvent(e);
 }
 
+/*!
+	\brief Context menu event
+	
+	All the (managed) actions added to the editor are showed in it by default.
+*/
 void QEditor::contextMenuEvent(QContextMenuEvent *e)
 {
 	if ( m_binding )
@@ -2911,6 +3106,13 @@ void QEditor::contextMenuEvent(QContextMenuEvent *e)
 	pMenu->exec(e->globalPos());
 }
 
+/*!
+	\brief Close event
+	
+	When build with qmdilib support (e.g in Edyuk) this check for
+	modifications and a dialog pops up to offer various options
+	(like saving, discarding or canceling)
+*/
 void QEditor::closeEvent(QCloseEvent *e)
 {
 	#ifdef _QMDI_
@@ -2932,17 +3134,30 @@ void QEditor::closeEvent(QCloseEvent *e)
 }
 
 #ifndef _QMDI_
+/*!
+	\return Whether the document has been modified.
+*/
 bool QEditor::isContentModified() const
 {
 	return m_doc ? !m_doc->isClean() : false;
 }
 #endif
 
+/*!
+	\brief Notify that the content is clean (modifications undone or document saved)
+	
+	\note Don't mess with this. The document knows better.
+*/
 void QEditor::setContentClean(bool y)
 {
 	setContentModified(!y);
 }
 
+/*!
+	\brief Notify that the content has been modified
+	
+	\note Don't mess with this. The document knows better.
+*/
 void QEditor::setContentModified(bool y)
 {
 	#ifdef _QMDI_
@@ -2953,6 +3168,11 @@ void QEditor::setContentModified(bool y)
 	emit contentModified(y);
 }
 
+/*!
+	\brief Changes the file name
+	
+	This method does not affect files on disk (no save/load/move occurs)
+*/
 void QEditor::setFileName(const QString& f)
 {
 	QString prev = fileName();
@@ -2984,6 +3204,12 @@ void QEditor::setFileName(const QString& f)
 	setTitle(name());
 }
 
+/*!
+	\brief Set the title of the widget
+	
+	Take care of adding a "[*]" prefix so that document changes are visible
+	on title bars.
+*/
 void QEditor::setTitle(const QString& title)
 {
 	QString s(title);
@@ -2996,17 +3222,26 @@ void QEditor::setTitle(const QString& title)
 }
 
 #ifndef _QMDI_
+/*!
+	\return The name of the file being edited (without its path)
+*/
 QString QEditor::name() const
 {
 	return m_name;
 }
 
+/*!
+	\return The full filename of the file being edited
+*/
 QString QEditor::fileName() const
 {
 	return m_fileName;
 }
 #endif
 
+/*!
+	\brief Prevent tab key press to be considered as widget navigation
+*/
 bool QEditor::focusNextPrevChild(bool)
 {
 	// make sure we catch tabs :)
@@ -3014,6 +3249,9 @@ bool QEditor::focusNextPrevChild(bool)
 	return false;
 }
 
+/*!
+	\brief Start a drag and drop operation using the current selection
+*/
 void QEditor::startDrag()
 {
 	setFlag(MousePressed, false);
@@ -3034,6 +3272,9 @@ void QEditor::startDrag()
 	}
 }
 
+/*!
+	\brief Handle cursor movements upon key event
+*/
 bool QEditor::moveKeyEvent(QDocumentCursor& cursor, QKeyEvent *e, bool *leave)
 {
 	QDocumentCursor::MoveMode mode = e->modifiers() & Qt::ShiftModifier
@@ -3253,6 +3494,11 @@ bool QEditor::moveKeyEvent(QDocumentCursor& cursor, QKeyEvent *e, bool *leave)
 	return true;
 }
 
+/*!
+	\brief Go up by one page
+	
+	\note This method clears all cursor mirrors.
+*/
 void QEditor::pageUp(QDocumentCursor::MoveMode moveMode)
 {
 	clearCursorMirrors();
@@ -3270,6 +3516,11 @@ void QEditor::pageUp(QDocumentCursor::MoveMode moveMode)
 	//updateMicroFocus();
 }
 
+/*!
+	\brief Go down by one page
+	
+	\note This method clears all cursor mirrors.
+*/
 void QEditor::pageDown(QDocumentCursor::MoveMode moveMode)
 {
 	clearCursorMirrors();
@@ -3286,6 +3537,9 @@ void QEditor::pageDown(QDocumentCursor::MoveMode moveMode)
 	emitCursorPositionChanged();
 }
 
+/*!
+	\brief Determine whether a given key event is an editing operation
+*/
 bool QEditor::isProcessingKeyEvent(QKeyEvent *e)
 {
 	if ( flag(FoldedCursor) )
@@ -3313,6 +3567,12 @@ bool QEditor::isProcessingKeyEvent(QKeyEvent *e)
 	return true;
 }
 
+/*!
+	\internal
+	\brief Process a key event for a given cursor
+	
+	This method only take care of editing operations, not movements.
+*/
 bool QEditor::processCursor(QDocumentCursor& c, QKeyEvent *e, bool& b)
 {
 	if ( !b )
@@ -3418,6 +3678,11 @@ bool QEditor::processCursor(QDocumentCursor& c, QKeyEvent *e, bool& b)
 	return true;
 }
 
+/*!
+	\brief Insert some text at a given cursor position
+	
+	This function is provided to keep indenting/outdenting working when editing
+*/
 void QEditor::insertText(QDocumentCursor& c, const QString& text)
 {
 	bool hasSelection = c.hasSelection();
@@ -3500,6 +3765,13 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	}
 }
 
+/*!
+	\brief Write some text at the current cursor position
+	
+	This function is provided to make editing operations easier
+	from the outside and to keep them compatible with cursor
+	mirrors.
+*/
 void QEditor::write(const QString& s)
 {
 	m_doc->beginMacro();
@@ -3518,6 +3790,14 @@ void QEditor::write(const QString& s)
 	selectionChange();
 }
 
+/*!
+	\brief Zoom
+	\param n relative zoom factor
+	
+	Zooming is achieved by changing the point size of the font as follow :
+	
+	fontPointSize += \a n
+*/
 void QEditor::zoom(int n)
 {
 	if ( !m_doc )
@@ -3528,11 +3808,25 @@ void QEditor::zoom(int n)
 	m_doc->setFont(f);
 }
 
+/*!
+	\brief Obtain the value of panel margins
+	\param l left margin
+	\param t top margin
+	\param r right margin
+	\param b bottom margin
+*/
 void QEditor::getPanelMargins(int *l, int *t, int *r, int *b) const
 {
 	m_margins.getCoords(l, t, r, b);
 }
 
+/*!
+	\brief Change the viewport margins to make room for panels
+	\param l left margin
+	\param t top margin
+	\param r right margin
+	\param b bottom margin
+*/
 void QEditor::setPanelMargins(int l, int t, int r, int b)
 {
 	m_margins.setCoords(l, t, r, b);
@@ -3546,6 +3840,10 @@ void QEditor::setPanelMargins(int l, int t, int r, int b)
 	}
 }
 
+/*!
+	\deprecated
+	\brief Does not do anything anymore...
+*/
 void QEditor::selectionChange(bool force)
 {
 	return;
@@ -3562,6 +3860,9 @@ void QEditor::selectionChange(bool force)
 	m_selection = m_cursor.hasSelection();
 }
 
+/*!
+	\brief Request repaint (using QWidget::update()) for the region occupied by the cursor
+*/
 void QEditor::repaintCursor()
 {
 	if ( m_mirrors.count() )
@@ -3579,6 +3880,9 @@ void QEditor::repaintCursor()
 	}
 }
 
+/*!
+	\return whether the cursor is currently visible
+*/
 bool QEditor::isCursorVisible() const
 {
 	QPoint pos = m_cursor.documentPosition();
@@ -3591,6 +3895,9 @@ bool QEditor::isCursorVisible() const
 	return display.contains(pos); //cursor);
 }
 
+/*!
+	\brief Ensure that the current cursor is visible
+*/
 void QEditor::ensureCursorVisible()
 {
 	QPoint pos = m_cursor.documentPosition();
@@ -3620,6 +3927,9 @@ void QEditor::ensureCursorVisible()
 	}
 }
 
+/*!
+	\brief ensure that a given line is visible by updating scrollbars if needed
+*/
 void QEditor::ensureVisible(int line)
 {
 	if ( !m_doc )
@@ -3637,6 +3947,9 @@ void QEditor::ensureVisible(int line)
 	
 }
 
+/*!
+	\brief Ensure that a given rect is visible by updating scrollbars if needed
+*/
 void QEditor::ensureVisible(const QRect &rect)
 {
 	if ( !m_doc )
@@ -3655,11 +3968,34 @@ void QEditor::ensureVisible(const QRect &rect)
 	//verticalScrollBar()->setValue(rect.y());
 }
 
+/*!
+	\return the rectangle occupied by the current cursor
+	
+	This will either return a cursorRect for the current cursor or
+	the selectionRect() if the cursor has a selection.
+	
+	The cursor position, which would be the top left corner of the actual
+	rectangle occupied by the cursor can be obtained using QDocumentCursor::documentPosition()
+	
+	The behavior of this method may surprise newcomers but it is actually quite sensible
+	as this rectangle is mainly used to specify the update rect of the widget and the whole
+	line needs to be updated to properly update the line background whenever the cursor move
+	from a line to another.
+*/
 QRect QEditor::cursorRect() const
 {
 	return m_cursor.hasSelection() ? selectionRect() : cursorRect(m_cursor);
 }
 
+/*!
+	\return the rectangle occupied by the selection in viewport coordinates
+	
+	If the current cursor does not have a selection, its cursorRect() is returned.
+	
+	The returned rectangle will always be bigger than the actual selection has
+	it is actually the union of all the rectangles occupied by all lines the selection
+	spans over.
+*/
 QRect QEditor::selectionRect() const
 {
 	if ( !m_cursor.hasSelection() )
@@ -3679,6 +4015,11 @@ QRect QEditor::selectionRect() const
 	return r;
 }
 
+/*!
+	\return the rectangle occupied by the given line, in viewport coordinates
+	
+	The width of the returned rectangle will always be the viewport width.
+*/
 QRect QEditor::lineRect(int line) const
 {
 	if ( !m_doc )
@@ -3691,6 +4032,13 @@ QRect QEditor::lineRect(int line) const
 	return r;
 }
 
+/*!
+	\overload
+	
+	\note This function relies on QDocumentLine::lineNumber() so avoid
+	it whenever possible as it is much slower than providing a line number
+	directly.
+*/
 QRect QEditor::lineRect(const QDocumentLine& l) const
 {
 	//qFatal("bad practice...");
@@ -3705,6 +4053,9 @@ QRect QEditor::lineRect(const QDocumentLine& l) const
 	return r;
 }
 
+/*!
+	\return The line rect of the given cursor
+*/
 QRect QEditor::cursorRect(const QDocumentCursor& c) const
 {
 	return lineRect(c.lineNumber());
@@ -3826,6 +4177,9 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 	}
 }
 
+/*!
+	\brief Removes all cursor mirrors
+*/
 void QEditor::clearCursorMirrors()
 {
 	for ( int i = 0; i < m_mirrors.count(); ++i )
@@ -3836,6 +4190,9 @@ void QEditor::clearCursorMirrors()
 	m_mirrors.clear();
 }
 
+/*!
+	\brief Add a cursor mirror
+*/
 void QEditor::addCursorMirror(const QDocumentCursor& c)
 {
 	if ( c.isNull() || (c == m_cursor) || m_mirrors.contains(c) )
@@ -3848,6 +4205,10 @@ void QEditor::addCursorMirror(const QDocumentCursor& c)
 	m_mirrors.last().setAutoUpdated(true);
 }
 
+/*!
+	\internal
+	\brief Copy the selection to the clipboard
+*/
 void QEditor::setClipboardSelection()
 {
 	QClipboard *clipboard = QApplication::clipboard();
@@ -3864,6 +4225,12 @@ void QEditor::setClipboardSelection()
 	clipboard->setMimeData(data, QClipboard::Selection);
 }
 
+/*!
+	\internal
+	\brief Scroll contents
+	
+	Refer to QAbstractScrollArea doc for more info.
+*/
 void QEditor::scrollContentsBy(int dx, int dy)
 {
 	#ifdef Q_GL_EDITOR
@@ -3873,6 +4240,14 @@ void QEditor::scrollContentsBy(int dx, int dy)
 	#endif
 }
 
+/*!
+	\internal
+	\brief Slot called whenever document width changes
+	
+	Horizontal scrollbar is updated here.
+	
+	\note ensureCursorVisible() is NOT called.
+*/
 void QEditor::documentWidthChanged(int newWidth)
 {
 	if ( flag(LineWrap) )
@@ -3888,12 +4263,25 @@ void QEditor::documentWidthChanged(int newWidth)
 	//ensureCursorVisible();
 }
 
+/*!
+	\internal
+	\brief Slot called whenever document height changes
+	
+	Vertical scrollbar is updated here (maximum is changed
+	and value is modified if needed to ensure that the cursor is visible)
+*/
 void QEditor::documentHeightChanged(int newHeight)
 {
 	verticalScrollBar()->setMaximum(qMax(0, newHeight - viewport()->height()));
 	ensureCursorVisible();
 }
 
+/*!
+	\internal
+	\brief Request paint event upon modification
+	\param i first modified line
+	\param n number of modified lines
+*/
 void QEditor::repaintContent(int i, int n)
 {
 	if ( !m_doc )
@@ -3943,6 +4331,20 @@ void QEditor::repaintContent(int i, int n)
 	#endif
 }
 
+/*!
+	\internal
+	\brief Update function called upon editing action
+	\param i First modified line
+	\param n Number of modified lines
+	
+	If more than one line has been modified this function
+	causes a repaint from the first visible line to the end
+	of the viewport due to the way QAbstractScrollArea
+	handles scrolling.
+	
+	\note This function used to update formatting but
+	the highlighting has been moved to QDocument recently
+*/
 void QEditor::updateContent (int i, int n)
 {
 	if ( !m_doc )
@@ -3955,8 +4357,13 @@ void QEditor::updateContent (int i, int n)
 	repaintContent(i, cont ? -1 : n);
 }
 
+/*!
+	\internal
+*/
 void QEditor::markChanged(QDocumentLineHandle *l, int mark, bool on)
 {
 	emit markChanged(fileName(), l, mark, on);
 }
+
+/*! @} */
 

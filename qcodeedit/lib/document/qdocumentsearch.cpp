@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -15,11 +15,15 @@
 
 /*!
 	\file qdocumentsearch.cpp
-	
 	\brief Implementation of QDocumentSearch
 */
 
 #include "qdocumentsearch.h"
+
+/*!
+	\ingroup document
+	@{
+*/
 
 #include "qeditor.h"
 #include "qdocument.h"
@@ -29,8 +33,15 @@
 
 #include <QMessageBox>
 
+/*!
+	\class QDocumentSearch
+	\brief An helper class to perform search in document
+	
+	QDocumentSearch offer means to perform complex search in documents.
+*/
+
 QDocumentSearch::QDocumentSearch(QEditor *e, const QString& f, Options opt, const QString& r)
-	: m_option(opt), m_string(f), m_replace(r), m_editor(e)
+ : m_option(opt), m_string(f), m_replace(r), m_editor(e)
 {
 	
 }
@@ -40,6 +51,12 @@ QDocumentSearch::~QDocumentSearch()
 	clearMatches();
 }
 
+/*!
+	\brief Clear matches
+	
+	This function should be called anytime you perform a search with the HighlightAll option,
+	once you're done iterating over the matches.
+*/
 void QDocumentSearch::clearMatches()
 {
 	if ( !(m_editor && m_editor->document()) )
@@ -64,11 +81,17 @@ void QDocumentSearch::clearMatches()
 	m_highlight.clear();
 }
 
+/*!
+	\return The search pattern
+*/
 QString QDocumentSearch::searchText() const
 {
 	return m_string;
 }
 
+/*!
+	\brief Set the search pattern
+*/
 void QDocumentSearch::setSearchText(const QString& f)
 {
 	m_string = f;
@@ -84,11 +107,19 @@ void QDocumentSearch::setSearchText(const QString& f)
 	}
 }
 
+/*!
+	\brief Test whether a given option is enabled
+*/
 bool QDocumentSearch::hasOption(Option opt) const
 {
 	return m_option & opt;
 }
 
+/*!
+	\brief Set a search option
+	\param opt option to set
+	\param on whether to enable the option
+*/
 void QDocumentSearch::setOption(Option opt, bool on)
 {
 	if ( on )
@@ -97,31 +128,59 @@ void QDocumentSearch::setOption(Option opt, bool on)
 		m_option &= ~opt;
 }
 
+/*!
+	\return the replacement text
+*/
 QString QDocumentSearch::replaceText() const
 {
 	return m_replace;
 }
 
+/*!
+	\brief Set the replacement text
+*/
 void QDocumentSearch::setReplaceText(const QString& r)
 {
 	m_replace = r;
 }
 
+/*!
+	\return The current cursor position
+	
+	This is useful to examine matches after performing a search.
+*/
 QDocumentCursor QDocumentSearch::cursor() const
 {
 	return m_cursor;
 }
 
+/*!
+	\brief Set the cursor
+	
+	If the related option is set, search will start from that cursor position
+*/
 void QDocumentSearch::setCursor(const QDocumentCursor& c)
 {
 	m_cursor = c;
 }
 
+/*!
+	\return The scope of the search
+	
+	An invalid cursor indicate that the scope is the whole document, otherwise
+	the scope is the selection of the returned cursor.
+*/
 QDocumentCursor QDocumentSearch::scope() const
 {
 	return m_scope;
 }
 
+/*!
+	\brief Set the search scope
+	
+	If the given cursor has no selection (a fortiori if it is invalid) then
+	the scope is the whole document.
+*/
 void QDocumentSearch::setScope(const QDocumentCursor& c)
 {
 	if ( c.hasSelection() )
@@ -130,6 +189,9 @@ void QDocumentSearch::setScope(const QDocumentCursor& c)
 		m_scope = QDocumentCursor();
 }
 
+/*!
+	\brief Test whether the end of the search scope has been reached
+*/
 bool QDocumentSearch::end(bool backward) const
 {
 	bool absEnd = backward ? m_cursor.atStart() : m_cursor.atEnd();
@@ -155,9 +217,17 @@ bool QDocumentSearch::end(bool backward) const
 	return absEnd;
 }
 
+/*!
+	\brief Perform a search
+	\param backward whether to go backward or forward
+	\param all if true, the whole document will be searched first, all matches recorded and available for further navigation
+	
+	\note Technically speaking the all parameter make search behave similarly to the HighlightAll option, except that the former
+	option does not alter the formatting of the document.
+*/
 void QDocumentSearch::next(bool backward, bool all)
 {
-	if ( !hasOption(Replace) && hasOption(HighlightAll) && m_highlight.count() )
+	if ( !hasOption(Replace) && (all || hasOption(HighlightAll)) && m_highlight.count() )
 	{
 		m_index = m_index + (backward ? -1 : 1);
 		
@@ -387,17 +457,22 @@ void QDocumentSearch::next(bool backward, bool all)
 				} else {
 					//qDebug("no rep");
 				}
-			} else if ( hasOption(HighlightAll) ) {
-				QFormatRange r(
+			} else if ( all || hasOption(HighlightAll) ) {
+				
+				if ( hasOption(HighlightAll) )
+				{
+					QFormatRange r(
 								m_cursor.anchorColumn(),
 								m_cursor.columnNumber() - m_cursor.anchorColumn(),
 								m_editor->document()->formatFactory()->id("search")
 							);
-				
-				//qDebug("(%i, %i, %i)", r.offset, r.length, r.format);
-				m_cursor.line().addOverlay(r);
+					
+					//qDebug("(%i, %i, %i)", r.offset, r.length, r.format);
+					m_cursor.line().addOverlay(r);
+				}
 				
 				m_highlight << m_cursor;
+				m_highlight.last().setAutoUpdated(true);
 				
 			} else {
 				// regression fix : here is how we clear the selection without moving back to the anchor column...
@@ -449,3 +524,6 @@ void QDocumentSearch::next(bool backward, bool all)
 			next(backward);
 	}
 }
+
+/*! @} */
+

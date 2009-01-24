@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -30,7 +30,7 @@ class QCE_EXPORT QLineNumberPanel : public QPanel
 	Q_OBJECT
 	
 	public:
-		Q_PANEL(QLineNumberPanel, "Default Line Numbering Panel")
+		Q_PANEL(QLineNumberPanel, "Line Number Panel")
 		
 		QLineNumberPanel(QWidget *p = 0);
 		virtual ~QLineNumberPanel();

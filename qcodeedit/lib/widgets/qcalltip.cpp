@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -15,8 +15,18 @@
 
 #include "qcalltip.h"
 
+/*!
+	\file qcalltip.cpp
+	\brief Implementation of the QCallTip class
+*/
+
 #include <QPainter>
 #include <QMouseEvent>
+
+/*!
+	\class QCallTip
+	\brief A widget dedicated to calltips display
+*/
 
 QCallTip::QCallTip(QWidget *p)
  : QWidget(p), m_index(0)

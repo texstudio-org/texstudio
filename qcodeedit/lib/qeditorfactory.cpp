@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -58,7 +58,6 @@
 	QString representing a panel id. Each panel id is associated to a
 	serialized panel layout (\see QPanelLayout::serialized() ).
 	
-	
 	\see QCodeEdit
 	\see QLanguageFactory
 	\see QFormatScheme
@@ -76,26 +75,7 @@ QEditorFactory::QEditorFactory(QSettingsServer *s)
 #endif
 	QSettingsClient(s, "editor")
 {
-	//Q_REGISTER_DEFAULT_ID
-	Q_REGISTER_PANEL(QFoldPanel);
-	Q_REGISTER_PANEL(QLineMarkPanel);
-	Q_REGISTER_PANEL(QLineNumberPanel);
-	Q_REGISTER_PANEL(QLineChangePanel);
-	
-	Q_REGISTER_PANEL(QStatusPanel);
-	Q_REGISTER_PANEL(QSearchReplacePanel);
-	
 	m_defaultScheme = new QFormatScheme(QCE::fetchDataFile("formats.qxf"), this);
-	
-	/*
-	qDebug("format file : %s", qPrintable(
-						QApplication::applicationDirPath()
-						+ QDir::separator()
-						+ "qxs"
-						+ QDir::separator()
-						+ "formats.qxf")
-						);
-	*/
 	
 	QDocument::setFormatFactory(m_defaultScheme);
 	
@@ -106,8 +86,10 @@ QEditorFactory::QEditorFactory(QSettingsServer *s)
 		m_languageFactory->addDefinitionPath(dp);
 	}
 	
-	if ( childGroups().isEmpty() )
+	if ( value("version").toInt() != 3 )
 	{
+		setValue("version", 3);
+		
 		// setup default layouts...
 		beginGroup("layouts");
 		
@@ -116,12 +98,12 @@ QEditorFactory::QEditorFactory(QSettingsServer *s)
 		beginGroup("availables");
 		
 		beginGroup("empty");
-		setValue("id", QString());
+		setValue("struct", QString());
 		setValue("name", "No panels");
 		endGroup();
 		
 		beginGroup("default");
-		setValue("id",
+		setValue("struct",
 				QString::number(QCodeEdit::West)
 				+ "{"
 				+ Q_PANEL_ID(QLineMarkPanel)
@@ -145,7 +127,7 @@ QEditorFactory::QEditorFactory(QSettingsServer *s)
 		endGroup();
 		
 		beginGroup("simple");
-		setValue("id",
+		setValue("struct",
 				QString::number(QCodeEdit::West)
 				+ "{"
 				+ Q_PANEL_ID(QLineNumberPanel)
@@ -189,7 +171,9 @@ qmdiClient* QEditorFactory::createClient(const QString& filename) const
 }
 
 /*!
-
+	\brief Create a managed editor
+	\param f file to load
+	\param layout panel layout to use
 */
 QCodeEdit* QEditorFactory::editor(const QString& f, const QString& layout) const
 {
@@ -222,7 +206,12 @@ QCodeEdit* QEditorFactory::editor(const QString& f, const QString& layout) const
 }
 
 /*!
-
+	\overload
+	\param f file to load
+	\param l language definition to use
+	\param s format scheme to use
+	\param en code completion engine to use
+	\param layout panel layout to use
 */
 QCodeEdit* QEditorFactory::editor(	const QString& f,
 									QLanguageDefinition *l,
@@ -261,6 +250,12 @@ QCodeEdit* QEditorFactory::editor(	const QString& f,
 	return e;
 }
 
+/*!
+	\brief Called whenever a managed editor save its content
+	
+	Update the language definition/code completion engine if needed
+	and emits the fileSaved signal
+*/
 void QEditorFactory::saved(QEditor *e, const QString& f)
 {
 	if ( !e || !e->document() )
@@ -270,6 +265,9 @@ void QEditorFactory::saved(QEditor *e, const QString& f)
 	emit fileSaved(f);
 }
 
+/*!
+	\brief Placeholder
+*/
 void QEditorFactory::loaded(QEditor *e, const QString& f)
 {
 	Q_UNUSED(f)
@@ -279,6 +277,9 @@ void QEditorFactory::loaded(QEditor *e, const QString& f)
 	
 }
 
+/*!
+	\return The default panel layout
+*/
 QString QEditorFactory::defaultLayout() const
 {
 	QSettingsClient c(*this);
@@ -300,28 +301,40 @@ QString QEditorFactory::defaultLayout() const
 	return layout(a);
 }
 
+/*!
+	\return The layout structure associated with a given layout alias
+*/
 QString QEditorFactory::layout(const QString& alias) const
 {
-	return value("layouts/availables/" + alias + "/id").toString();
+	return value("layouts/availables/" + alias + "/struct").toString();
 }
 
+/*!
+	\brief Register a layout
+	\param a layout alias
+	\param layout layout structure
+*/
 void QEditorFactory::registerLayout(const QString& a, const QString& layout)
 {
 	beginGroup("layouts");
 	beginGroup("availables");
 	beginGroup(a);
-	setValue("id", layout);
+	setValue("struct", layout);
 	setValue("name", a);
 	endGroup();
 	endGroup();
 	endGroup();
 }
 
+/*!
+	\return an accessor to the settings associated with a given layout alias
+*/
 QSettingsClient QEditorFactory::settings(const QString& alias)
 {
-	return QSettingsClient(*this, alias);
+	return QSettingsClient(*this, "layouts/availables/" + alias);
 }
 
 /*! @} */
 
 #endif
+

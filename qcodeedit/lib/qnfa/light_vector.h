@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -17,6 +17,11 @@
 #define _LIGHT_VECTOR_H_
 
 #include <qglobal.h>
+
+/*!
+	\file light_vector.h
+	\brief Definition of the light_vector class
+*/
 
 template <typename T>
 class light_vector

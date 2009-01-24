@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -32,7 +32,7 @@ class QCE_EXPORT QFoldPanel : public QPanel
 	Q_OBJECT
 	
 	public:
-		Q_PANEL(QFoldPanel, "Default Fold Panel")
+		Q_PANEL(QFoldPanel, "Fold Panel")
 		
 		QFoldPanel(QWidget *p = 0);
 		virtual ~QFoldPanel();

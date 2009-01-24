@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -17,6 +17,11 @@
 #define _QRELIABLE_FILE_WATCH_H_
 
 #include "qce-config.h"
+
+/*!
+	\file qreliablefilewatch.h
+	\brief Definition of the QReliableFileWatch class
+*/
 
 #include <QHash>
 #include <QTimer>
@@ -56,7 +61,7 @@ class QCE_EXPORT QReliableFileWatch : protected QFileSystemWatcher
 			char state;
 			quint64 size;
 			quint16 checksum;
-			QList<QObject*> recipients;
+			QList< QPointer<QObject> > recipients;
 		};
 		
 		QBasicTimer m_timer;

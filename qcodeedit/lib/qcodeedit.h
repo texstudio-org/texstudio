@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -17,6 +17,11 @@
 #define _QCODE_EDIT_H_
 
 #include "qce-config.h"
+
+/*!
+	\file qcodeedit.h
+	\brief Definition of the QCodeEdit class
+*/
 
 #include <QList>
 #include <QPointer>
@@ -56,6 +61,7 @@ class QCE_EXPORT QCodeEdit
 		QPanelLayout* panelLayout() const;
 		
 		QAction* addPanel(QPanel *panel, Position pos, bool _add = false);
+		QAction* addPanel(const QString& name, Position pos, bool _add = false); 
 		
 		QList<QPanel*> panels(const QString& type = QString()) const;
 		

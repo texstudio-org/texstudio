@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -12,6 +12,11 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 **
 ****************************************************************************/
+
+/*!
+	\file xml2qnfa.cpp
+	\brief Implementation of the QNFA builder (fetch syntax engine data from XML files)
+*/
 
 #include "qnfa.h"
 #include "qnfadefinition.h"
@@ -217,9 +222,9 @@ void addToContext(	QNFA *cxt, QDomElement c, int fid,
 			}
 		}
 	} else if ( tag == "sequence" ) {
-		//qDebug("adding sequence");
 		const QString value = c.firstChild().toText().data();
 		
+		//qDebug("adding sequence : %s [0x%x]", qPrintable(value), cxt);
 		if ( pref.isEmpty() && suff.isEmpty() )
 		{
 			addSequence(cxt, value, fid, cs);
@@ -371,16 +376,24 @@ void addToContext(	QNFA *cxt, QDomElement c, int fid,
 		
 		if ( hstart )
 		{
+			//qDebug("starting cxt %s:0x%x [0x%x]", qPrintable(c.attribute("id")), cstart, cxt);
+			
 			foreach ( escape, lEscape )
 			{
 				//cstart->type |= Escaped;
 				addNFA(cstart, escape);
 			}
 			
+			//qDebug("after esc : %i", cstart->out.branch->count());
+			
 			foreach ( stop, lStop )
 				addNFA(cstart, stop);
 			
+			//qDebug("after stop : %i", cstart->out.branch->count());
+			
 			fillContext(cstart, c, f, pids, cs);
+			
+			//qDebug("after sub : %i", cstart->out.branch->count());
 			
 			if ( trans )
 			{
@@ -403,7 +416,7 @@ void addToContext(	QNFA *cxt, QDomElement c, int fid,
 			} else {
 				//qDebug("unregistered context");
 			}
-			
+			//qDebug("ending cxt");
 		}
 		
 		//fillContext(subcxt, c, f, pids);

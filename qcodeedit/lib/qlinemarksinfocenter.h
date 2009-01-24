@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -28,7 +28,6 @@
 */
 
 #include "qce-config.h"
-#include "qdocumentline.h"
 
 #include <QColor>
 #include <QPixmap>
@@ -170,7 +169,7 @@ class QCE_EXPORT QLineMarksInfoCenter : public QObject
 		
 	protected slots:
 		void cursorMoved(QEditor *e);
-		void lineDeleted(QDocumentLineHandle* h);
+		void lineDeleted(QDocumentLineHandle *h);
 		void markChanged(const QString& f, QDocumentLineHandle *h, int mark, bool on);
 		
 	private:

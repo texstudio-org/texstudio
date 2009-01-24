@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2008 fullmetalcoder <fullmetalcoder@hotmail.fr>
+** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
 ** 
@@ -59,6 +59,8 @@ class QCE_EXPORT QLanguageDefinition
 		virtual int tokenize(QDocument *d, int line, int count);
 		
 		virtual QString singleLineComment() const;
+		
+		virtual QString defaultLineMark() const;
 		
 		virtual void match(QDocumentCursor& c);
 		virtual void clearMatches(QDocument *d);
