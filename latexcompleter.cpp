@@ -10,6 +10,7 @@
 #include <QMessageBox>
 CompletionWord::CompletionWord(const QString &newWord){
     cursorPos=-1;
+    anchorPos=-1;
     QString visibleWord;
     visibleWord.reserve(newWord.length());
     word.reserve(newWord.length());
@@ -18,7 +19,7 @@ CompletionWord::CompletionWord(const QString &newWord){
     int formatStart=0;
     for (int i=0;i<newWord.length();i++)
         if (!escape) {
-            if (newWord.at(i)==QChar('\\')) escape=true;
+            if (newWord.at(i)==QChar('%')) escape=true;
             else {
                 visibleWord+=newWord.at(i);
                 if (!inDescription) word.append(newWord.at(i));
@@ -26,8 +27,8 @@ CompletionWord::CompletionWord(const QString &newWord){
         } else {
             escape=false;
             switch (newWord.at(i).toAscii()) {
-                case '\\': word+='\\'; visibleWord+='\\'; break;
-                case '|': cursorPos=word.length(); break;
+                case '%': word+='%'; visibleWord+='%'; break;
+                case '|': anchorPos=cursorPos; cursorPos=visibleWord.length(); break;
                 case '<': 
                     inDescription=true; 
                     formatStart=visibleWord.length(); 
@@ -40,7 +41,7 @@ CompletionWord::CompletionWord(const QString &newWord){
                 default:;
             }
         }
-    
+    if (anchorPos==-1) anchorPos=cursorPos;
     shownWord=visibleWord;
     lword=word.toLower();
 }
@@ -85,17 +86,39 @@ public:
                     curLine.addOverlay(QFormatRange(cw.descriptiveParts[i].first+curStart,cw.descriptiveParts[i].second,QDocument::formatFactory()->id("temporaryCodeCompletion")));
             
             //place cursor/add \end
+            int selectFrom=-1;
+            int selectTo=-1;
+            int deltaLine=0;
             if (full.startsWith("\\begin")) {
-                int curColumnNumber=cursor.columnNumber();
+                //int curColumnNumber=cursor.columnNumber();
                 QString indent=curLine.indentation();
                 int p=full.indexOf("{");
-                cursor.insertText( "\n"+indent+"\n"+indent+"\\end"+full.mid(p,full.indexOf("}")-p+1));
+                QString content="content...";
+                cursor.insertText( "\n"+indent+content+"\n"+indent+"\\end"+full.mid(p,full.indexOf("}")-p+1));
+                if (QDocument::formatFactory()) 
+                    for (int i=0;i<cw.descriptiveParts.size();i++) 
+                        curLine.next().addOverlay(QFormatRange(indent.size(),content.size(),QDocument::formatFactory()->id("temporaryCodeCompletion")));
 
-                if (cw.cursorPos==-1) editor->setCursorPosition(curLine.lineNumber()+1,curLine.length());
-                else editor->setCursorPosition(curLine.lineNumber(),curColumnNumber-(full.length()-cw.cursorPos));
-            } else if (cw.cursorPos>-1) 
-                editor->setCursorPosition(curLine.lineNumber(),cursor.columnNumber()-(full.length()-cw.cursorPos));
-            else editor->setCursor(cursor); //place after insertion
+                if (cw.cursorPos==-1) {
+                    deltaLine=1;
+                    selectFrom=indent.length();
+                    selectTo=indent.length()+content.size();
+                } else {
+                    selectFrom=cw.anchorPos+curStart;
+                    selectTo=cw.cursorPos+curStart;
+                }
+            } else if (cw.cursorPos>-1) {
+                    selectFrom=cw.anchorPos+curStart;
+                    selectTo=cw.cursorPos+curStart;
+            } else editor->setCursor(cursor); //place after insertion
+            if (selectFrom!=-1){
+                QDocumentCursor selector=editor->cursor();
+                if (deltaLine>0) selector.movePosition(deltaLine,QDocumentCursor::Down,QDocumentCursor::MoveAnchor);
+                selector.setColumnNumber(selectFrom);
+                if (selectTo>selectFrom) selector.movePosition(selectTo-selectFrom,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+                else if (selectTo<selectFrom) selector.movePosition(selectFrom-selectTo,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+                editor->setCursor(selector);
+            }
             return true;
         }
         return false;
