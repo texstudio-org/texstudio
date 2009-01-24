@@ -20,6 +20,7 @@
 
 #include "qcodecompletionengine.h"
 #include "qlinemarksinfocenter.h"
+#include "qformatfactory.h"
 
 #include "qlinemarkpanel.h"
 #include "qlinenumberpanel.h"
@@ -38,6 +39,25 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
         } else editor->cursor().clearSelection();
         editor->completionEngine()->complete();
         return true;
+    }
+    if (event->key()==Qt::Key_Tab || event->key()==Qt::Key_Backtab){
+        int tccFormat=QDocument::formatFactory()->id("temporaryCodeCompletion");
+        if (editor->cursor().line().hasOverlay(tccFormat)) {
+            int cn=editor->cursor().columnNumber();
+            int an=editor->cursor().anchorColumn();
+            QFormatRange fr (0,0,0);
+            if (event->key()==Qt::Key_Tab) 
+                fr = editor->cursor().line().getFirstOverlayBetween((an>cn?an:cn)+1,editor->cursor().line().length(),tccFormat);
+            else 
+                fr = editor->cursor().line().getLastOverlayBetween(0,(an<cn?an:cn)-1,tccFormat);
+            if (fr.length!=0) {
+                QDocumentCursor selector=editor->cursor();
+                selector.setColumnNumber(fr.offset);
+                selector.movePosition(fr.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+                editor->setCursor(selector);
+            }
+            return true;
+        }
     }
     if (!keyToReplace) return false;
     int pos;
@@ -352,11 +372,11 @@ void LatexEditorView::documentContentChanged(int linenr, int count){
         }   
     }
     
-    if (!speller) return;
-  
+    if (!speller || !QDocument::formatFactory()) return;
+    int tccFormat=QDocument::formatFactory()->id("temporaryCodeCompletion");
     for (int i=linenr;i<linenr+count;i++){
         QDocumentLine line = editor->document()->line(i);
-        if (!line.isValid()) continue;
+        if (!line.isValid() || line.hasOverlay(tccFormat)) continue;
         line.clearOverlays();
         if (line.length()<=3) continue;
         if (!speller->isActive()) continue;

@@ -60,7 +60,7 @@ class LatexCompleter : public QCodeCompletionEngine  {
    Q_OBJECT
 public:
 	LatexCompleter(QObject *p = 0);
-	//virtual ~LatexCompleter();
+	virtual ~LatexCompleter();
   
     void complete(const QDocumentCursor& c, const QString& trigger);
     void setWords(const QStringList &newwords);

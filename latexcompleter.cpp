@@ -1,5 +1,6 @@
 #include "latexcompleter.h"
 #include "qdocumentline.h"
+#include "qformatfactory.h"
 #include <QApplication>
 #include <QItemDelegate>
 #include <QKeyEvent>
@@ -70,7 +71,7 @@ public:
             QVariant v=completer->list->model()->data(completer->list->currentIndex(),Qt::DisplayRole);
             if (!v.isValid() || !v.canConvert<CompletionWord>()) return false;
             CompletionWord cw= v.value<CompletionWord>();
-            QString full=cw.word;
+            QString full=cw.shownWord;
             //int alreadyWrittenLen=editor->cursor().columnNumber()-curStart;            
             //remove current text for correct case
             for (int i=maxWritten-cursor.columnNumber();i>0;i--) cursor.deleteChar(); 
@@ -78,6 +79,10 @@ public:
           //  cursor.setColumnNumber(curStart);
             cursor.insertText(full);
             cursor.endEditBlock();
+            
+            if (QDocument::formatFactory()) 
+                for (int i=0;i<cw.descriptiveParts.size();i++) 
+                    curLine.addOverlay(QFormatRange(cw.descriptiveParts[i].first+curStart,cw.descriptiveParts[i].second,QDocument::formatFactory()->id("temporaryCodeCompletion")));
             
             //place cursor/add \end
             if (full.startsWith("\\begin")) {
@@ -376,7 +381,9 @@ LatexCompleter::LatexCompleter(QObject *p)
  //   addTrigger("\\");
     list=0;
 }
-
+LatexCompleter::~LatexCompleter(){
+//    delete list;
+}
 void LatexCompleter::setWords(const QStringList &newwords){
     
     acceptedChars.clear();
@@ -416,6 +423,9 @@ void LatexCompleter::complete(const QDocumentCursor& c, const QString& trigger){
         list->setModel(listModel);
         list->setFocusPolicy(Qt::NoFocus);
         list->setItemDelegate(new CompletionItemDelegate(list));
+    }
+    if (offset.y()+list->height()>editor()->height()) {
+        offset.setY(offset.y()-line.document()->fontMetrics().lineSpacing()-list->height());
     }
     list->move(offset);
     //list->show();

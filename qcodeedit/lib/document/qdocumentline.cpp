@@ -516,12 +516,31 @@ void QDocumentLine::removeOverlay(const QFormatRange& over)
 	m_handle->removeOverlay(over);
 }
 
+bool QDocumentLine::hasOverlay(int id){
+    if ( !m_handle ) return false;
+    return m_handle->hasOverlay(id);
+}
+
 QFormatRange QDocumentLine::getOverlayAt(int index, int preferredFormat){
 	if ( !m_handle )
 		return QFormatRange(0,0,0);
 	
 	return m_handle->getOverlayAt(index,preferredFormat);
 }
+
+QFormatRange QDocumentLine::getFirstOverlayBetween(int start, int end, int preferredFormat){
+	if ( !m_handle )
+		return QFormatRange(0,0,0);
+	
+	return m_handle->getFirstOverlayBetween(start,end,preferredFormat);
+}
+QFormatRange QDocumentLine::getLastOverlayBetween(int start, int end, int preferredFormat){
+	if ( !m_handle )
+		return QFormatRange(0,0,0);
+	
+	return m_handle->getLastOverlayBetween(start,end,preferredFormat);
+}
+
 
 /*!
 	\return the list of parentheses present on the line

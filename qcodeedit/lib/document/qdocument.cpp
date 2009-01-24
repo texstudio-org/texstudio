@@ -2131,15 +2131,32 @@ void QDocumentLineHandle::removeOverlay(const QFormatRange& over)
 	//applyOverlays();
 }
 
+bool QDocumentLineHandle::hasOverlay(int id){
+    for (int i =0; i<m_overlays.size();i++)
+        if (m_overlays[i].format==id) return true;
+    return false;
+}
+
 QFormatRange QDocumentLineHandle::getOverlayAt(int index, int preferredFormat){
     QFormatRange best(0,0,0);
-    foreach (QFormatRange fr, m_overlays) {
-        if (fr.offset<=index && fr.offset+fr.length>=index) 
-            if (best.length==0) best=fr;
-            else if (best.format==preferredFormat) {
-                if (fr.format == preferredFormat || best.length>fr.length) best=fr;
-            } else if (best.length>fr.length) best=fr;
-    }
+    foreach (QFormatRange fr, m_overlays) 
+        if (fr.offset<=index && fr.offset+fr.length>=index && (fr.format==preferredFormat || (preferredFormat==-1))) 
+            if (best.length>fr.length) best=fr;
+    return best;
+}
+
+QFormatRange QDocumentLineHandle::getFirstOverlayBetween(int start, int end, int preferredFormat){
+    QFormatRange best(0,0,0);
+    foreach (QFormatRange fr, m_overlays) 
+        if (fr.offset<=end && fr.offset+fr.length>=start && (fr.format==preferredFormat || (preferredFormat==-1))) 
+            if (fr.offset<best.offset || best.length==0) best=fr;
+    return best;
+}
+QFormatRange QDocumentLineHandle::getLastOverlayBetween(int start, int end, int preferredFormat){
+    QFormatRange best(0,0,0);
+    foreach (QFormatRange fr, m_overlays) 
+        if (fr.offset<=end && fr.offset+fr.length>=start && (fr.format==preferredFormat || (preferredFormat==-1))) 
+            if (fr.offset>best.offset|| best.length==0) best=fr;
     return best;
 }
 
