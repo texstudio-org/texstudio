@@ -25,14 +25,15 @@
 
 class CompletionWord {
 public:
-    CompletionWord():cursorPos(-1){}
-    CompletionWord(const CompletionWord &cw):word(cw.word),lword(cw.lword),shownWord(cw.shownWord),cursorPos(cw.cursorPos),descriptiveParts(cw.descriptiveParts){}
+    CompletionWord():cursorPos(-1),anchorPos(-1){}
+    CompletionWord(const CompletionWord &cw):word(cw.word),lword(cw.lword),shownWord(cw.shownWord),cursorPos(cw.cursorPos),anchorPos(cw.anchorPos),descriptiveParts(cw.descriptiveParts){}
     CompletionWord(const QString &newWord);//see cpp
     bool operator< (const CompletionWord &cw) const {return cw.lword > lword;}
     bool operator== (const CompletionWord &cw) const {return cw.word == word;}
 
     QString word,lword,shownWord;
     int cursorPos; //-1 => not defined
+    int anchorPos; 
     QList<QPair<int, int> > descriptiveParts; //used to draw
 };
 Q_DECLARE_METATYPE(CompletionWord)
