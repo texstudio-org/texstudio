@@ -161,7 +161,10 @@ class QCE_EXPORT QDocumentLine
 		void clearOverlays();
 		void addOverlay(const QFormatRange& over);
 		void removeOverlay(const QFormatRange& over);
+		bool hasOverlay(int id);
 		QFormatRange getOverlayAt(int index, int preferredFormat = -1);
+		QFormatRange getFirstOverlayBetween(int start, int end, int preferredFormat = -1);
+		QFormatRange getLastOverlayBetween(int start, int end, int preferredFormat = -1);
 		
 		void setFormats(const QVector<int>& formats);
 		

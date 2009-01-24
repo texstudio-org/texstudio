@@ -93,13 +93,11 @@
         <foreground>#ff0000</foreground>
     </format>
     <format id="spellingMistake" >
-        <bold>false</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
         <waveUnderline>true</waveUnderline>
-        <foreground>#000000</foreground>
-        <linescolor>#000000</linescolor>
+        <linescolor>#FF0000</linescolor>
+    </format>
+    <format id="temporaryCodeCompletion" >
+        <italic>true</italic>
+        <foreground>#0000FF</foreground>
     </format>
 </QXF>
