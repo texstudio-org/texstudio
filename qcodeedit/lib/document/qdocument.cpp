@@ -2141,7 +2141,7 @@ QFormatRange QDocumentLineHandle::getOverlayAt(int index, int preferredFormat){
     QFormatRange best(0,0,0);
     foreach (QFormatRange fr, m_overlays) 
         if (fr.offset<=index && fr.offset+fr.length>=index && (fr.format==preferredFormat || (preferredFormat==-1))) 
-            if (best.length>fr.length) best=fr;
+            if (best.length<fr.length) best=fr;
     return best;
 }
 
