@@ -1,4 +1,7 @@
 #include "textanalysis.h"
+#include "qdocumentline.h"
+#include "latexeditorview.h"
+//#include <QMessageBox>
 Word::Word (QString nw, int nc){
   word=nw;
   count=nc;
@@ -65,12 +68,20 @@ ui.setupUi(this);
 ui.resultView->setWordWrap (false);
 //connect(ui.comboBox, SIGNAL(activated(int)),this,SLOT(change(int)));
 
+
+document=0;
+
   connect(ui.countButton, SIGNAL(clicked()), SLOT(slotCount()) );
   connect(ui.closeButton, SIGNAL(clicked()), SLOT(slotClose()) );
 }
 
 TextAnalysisDialog::~TextAnalysisDialog()
 {
+}
+
+void TextAnalysisDialog::setData(const QDocument* doc, const QDocumentCursor &cur){
+    document=doc;
+    cursor=cur;
 }
 
 void TextAnalysisDialog::interpretStructureTree(QTreeWidgetItem *item){
@@ -89,67 +100,80 @@ void TextAnalysisDialog::init()
 
 void TextAnalysisDialog::needCount(){
     if (alreadyCount) return;
+    int totalLines=document->lines();
+    int textLines=0;
+    int commentLines=0;
     mapText.resize(2+chapters.size());
     mapComment.resize(2+chapters.size());
     mapCommand.resize(2+chapters.size());
-    QString eow="~!@#$%^&*()_+{}|:\"<>?,./;'[]-= \n\r`+´";
-    QString curWord = "";
-    bool inComment = false;
-    int totalLines=0;
-    int textLines=0;
-    int commentLines=0;
-    bool lineCounted=false;
-    int selectionState=0;
-    int extraMap=0;//map for chapters
-    int nextChapter=0;
-    for (int i=0; i<data.size(); i++){
-        if (eow.indexOf(data.at(i))>-1 || ((curWord.size()>1) && (data.at(i) == QChar('\\')))) {
-            curWord=curWord.toLower();
-            if (curWord.size()>0)
-                if (curWord.at(0) == QChar('\\') && !inComment) {
-                    mapCommand[0][curWord]=mapCommand[0][curWord]+1;
-                    if (selectionState==1) mapCommand[1][curWord]=mapCommand[1][curWord]+1;
-                    if (extraMap!=0) mapCommand[extraMap][curWord]=mapCommand[extraMap][curWord]+1;
-                } else if (curWord.at(0) != QChar('\\')) {
-                   if (inComment) {
-                        mapComment[0][curWord]=mapComment[0][curWord]+1;
-                        if (selectionState==1) mapComment[1][curWord]=mapComment[1][curWord]+1;
-                        if (extraMap!=0) mapComment[extraMap][curWord]=mapComment[extraMap][curWord]+1;
-                        if (!lineCounted) commentLines++;
-                   } else {
-                        mapText[0][curWord]=mapText[0][curWord]+1;
-                        if (selectionState==1) mapText[1][curWord]=mapText[1][curWord]+1;
-                        if (extraMap!=0) mapText[extraMap][curWord]=mapText[extraMap][curWord]+1;
-                        if (!lineCounted) textLines++;
-                   }
-                   if (!lineCounted) lineCounted=true;
-                }
 
-            curWord.clear();
-            if (selectionState==0 && i>selectionStart) selectionState=1;
-            else if (selectionState==1 && i>selectionEnd) selectionState=2;
-            if (data.at(i) == QChar('%')) {
-                inComment=true;
-                lineCounted=false;
-            }
-            if (data.at(i) == QChar('\n')){// || data.at(i) == QChar('\r') || data.at(i) == QChar('\u2029')) {
-                inComment=false;
-                lineCounted=false;
-                totalLines++;
-                if (nextChapter<chapters.size() && totalLines>=chapters[nextChapter].second) {
-                    nextChapter++;
-                    if (extraMap==0) extraMap=2;
-                    else {
-                      extraMap++;
-                      if (extraMap>=mapText.size()) {
-                          extraMap=0;
-                          nextChapter=chapters.size();
-                      }
-                    }
+    int selectionStartLine=-1;
+    int selectionEndLine=-1;
+    int selectionStartIndex;
+    int selectionEndIndex;
+    if (cursor.hasSelection()){
+        QDocumentSelection sel = cursor.selection();
+        selectionStartLine=sel.startLine;
+        selectionEndLine=sel.endLine;
+        selectionStartIndex=sel.start;
+        selectionEndIndex=sel.end;
+        if (selectionStartLine>selectionEndLine) {
+            int temp=selectionStartLine;selectionStartLine=selectionEndLine;selectionEndLine=temp;
+            temp=selectionStartIndex;selectionStartIndex=selectionEndIndex;selectionEndIndex=temp;
+        } else if (selectionStartLine == selectionEndLine && selectionStartIndex>selectionEndIndex) {
+            int temp=selectionStartIndex;selectionStartIndex=selectionEndIndex;selectionEndIndex=temp;
+        }
+    }
+
+    int nextChapter=0;
+    int extraMap=0;
+    for (int l=0;l<document->lines();l++){
+        if (nextChapter<chapters.size() && l+1>=chapters[nextChapter].second) {
+            if (nextChapter==0) extraMap=2;
+            else extraMap++;
+            nextChapter++;
+            if (extraMap>=mapText.size()) extraMap=0;
+        }
+        QString line=document->line(l).text();
+        bool commentReached=false;
+        int nextIndex=0;
+        int wordStartIndex;
+        bool lineCountedAsText=false;        
+        QString curWord;
+        int state;
+        while ((state=LatexEditorView::nextWord(line,nextIndex,curWord,wordStartIndex,LatexEditorView::NW_TEXT|LatexEditorView::NW_COMMENT|LatexEditorView::NW_COMMAND))!=LatexEditorView::NW_NOTHING){
+            bool inSelection;
+            if (selectionStartLine!=selectionEndLine) 
+                inSelection=((l<selectionEndLine) && (l>selectionStartLine)) ||
+                            ((l==selectionStartLine) && (nextIndex>selectionStartIndex)) ||
+                            ((l==selectionEndLine) && (wordStartIndex<=selectionEndIndex));
+             else 
+                inSelection=(l==selectionStartLine) && (nextIndex>selectionStartIndex) && (wordStartIndex<=selectionEndIndex);
+            curWord=curWord.toLower();
+            if (state & LatexEditorView::NW_COMMENT || commentReached) {
+                mapComment[0][curWord]=mapComment[0][curWord]+1;
+                if (inSelection) mapComment[1][curWord]=mapComment[1][curWord]+1;
+                if (extraMap!=0) mapComment[extraMap][curWord]=mapComment[extraMap][curWord]+1;
+                if (!commentReached){
+                    commentReached=true;
+                    commentLines++;
+                }
+            } else if (state&LatexEditorView::NW_COMMAND) {
+                mapCommand[0][curWord]=mapCommand[0][curWord]+1;
+                if (inSelection) mapCommand[1][curWord]=mapCommand[1][curWord]+1;
+                if (extraMap!=0) mapCommand[extraMap][curWord]=mapCommand[extraMap][curWord]+1;
+            } else if (state&LatexEditorView::NW_TEXT){
+                mapText[0][curWord]=mapText[0][curWord]+1;
+                if (inSelection) mapText[1][curWord]=mapText[1][curWord]+1;
+                if (extraMap!=0) mapText[extraMap][curWord]=mapText[extraMap][curWord]+1;
+                if (!lineCountedAsText) {
+                    textLines++;
+                    lineCountedAsText=true;
                 }
             }
-        } else curWord+=data.at(i);
+        };
     }
+    
     alreadyCount=true;
 
     ui.totalLinesLabel->setText(QString::number(totalLines));

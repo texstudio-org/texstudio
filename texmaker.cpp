@@ -77,6 +77,7 @@
 #include "webpublishdialog.h"
 
 #include "qdocument.h"
+#include "qdocumentcursor.h"
 #include "qdocumentline.h"
 #include "qcodecompletionengine.h"
 
@@ -4511,10 +4512,7 @@ delete ttwpDlg;
 void Texmaker::AnalyseText(){
     if (!currentEditorView()) return;
   TextAnalysisDialog *utDlg = new TextAnalysisDialog(this,tr("Text Analysis"));
-  utDlg->data=currentEditorView()->editor->text();
-  
-  utDlg->selectionStart=currentEditorView()->editor->cursor().selectionStart().position();
-  utDlg->selectionEnd=currentEditorView()->editor->cursor().selectionEnd().position();
+  utDlg->setData(currentEditorView()->editor->document(), currentEditorView()->editor->cursor());
   utDlg->init();
   for (int i=0;i<StructureTreeWidget->topLevelItemCount ();i++)
       //if (StructureTreeWidget->topLevelItem(i)->text(0)==MasterName)
