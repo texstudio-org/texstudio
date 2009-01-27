@@ -4,7 +4,8 @@
 #include <QString>
 #include "ui_textanalysis.h"
 #include <QTreeWidgetItem>
-
+#include "qdocument.h"
+#include "qdocumentcursor.h"
 class Word{
 public:
     QString word;
@@ -42,6 +43,8 @@ class TextAnalysisDialog : public QDialog
     QVector<QMap<QString,int> > mapComment;
 
     TextAnalysisModel displayed;
+    const QDocument *document;
+    QDocumentCursor cursor;
     bool alreadyCount;
     void needCount();
     void insertDisplayData(const QMap<QString,int> & map);
@@ -50,8 +53,7 @@ public:
     ~TextAnalysisDialog();
     Ui::TextAnalysisDialog ui;
 
-    QString data;
-    int selectionStart,selectionEnd;
+    void setData(const QDocument* doc, const QDocumentCursor &cur);
     void interpretStructureTree(QTreeWidgetItem *item);
 private slots:
     void slotCount();

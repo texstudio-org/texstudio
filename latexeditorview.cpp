@@ -289,10 +289,18 @@ void LatexEditorView::lineMarkClicked(int line){
 }
 
 
-//searches the next word in the line line after the index index+outWord.length()
-//index returns the word start index, outWord the word and the function if it exists
+//searches the next word in the line line after the index index
+//index returns the index of the first character after the word
+//outWord the word (normalized, stripped latex special chars)
+//wordStartIndex the starting index of the word
+//return: if there is really a word
 bool LatexEditorView::nextWord(QString line,int &index,QString &outWord,int &wordStartIndex){
+    return nextWord(line,index,outWord,wordStartIndex,NW_TEXT)!=NW_NOTHING;
+}
+
+int LatexEditorView::nextWord(QString line,int &index,QString &outWord,int &wordStartIndex, int flags){
     //todo: latex akzents
+    int result=NW_NOTHING;
     bool inWord=false;
     bool inCmd=false;
     bool reparse=false;
@@ -302,8 +310,19 @@ bool LatexEditorView::nextWord(QString line,int &index,QString &outWord,int &wor
     int i=index;
     for (i=(i>0?i:0);i<line.size();i++){
         QChar cur = line.at(i);
-        if (inCmd) inCmd=(eow.indexOf(cur)<0);
-        else if (inWord) {
+        if (inCmd) {
+            if (cur=='%') {
+                if (i-start>1) {
+                    if (NW_COMMAND & flags) break; //output command
+                    if (!(NW_COMMENT & flags)) return NW_NOTHING;
+                    inCmd=false;
+                    result|=NW_COMMENT;  //comment, no more words
+                }
+            } else if (eow.indexOf(cur)>=0) {
+                if (NW_COMMAND & flags) break; //output command
+                else inCmd=false;
+            }
+        } else if (inWord) {
             if (cur=='\\') {
                 if (i+1<line.size() && line.at(i+1)=='-')  {
                     i++;//ignore word separation marker
@@ -315,32 +334,48 @@ bool LatexEditorView::nextWord(QString line,int &index,QString &outWord,int &wor
             } else if (cur=='\'') { //
                 if (singleQuoteChar) inWord=false; //no word's with two ''
                 else singleQuoteChar=true;         //but accept one                
+            } else if (cur=='%'){
+                if (NW_TEXT & flags) break; //output command
+                if (!(NW_COMMENT & flags)) return NW_NOTHING;
+                inWord=false;
+                result|=NW_COMMENT;  //comment, no more words
             } else if (eow.indexOf(cur)>=0) inWord=false;
             
-            if (!inWord/* && i-start>2*/) {
-                wordStartIndex=start;
-                index=i;
-                outWord=line.mid(start,i-start);
-                if (reparse) outWord=latexToPlainWord(outWord);
-                if (outWord.at(outWord.length()-1)==QChar('\'')) outWord=outWord.left(outWord.length()-1);
-                return true;
+            if (!inWord/* && i-start>2*/ && (NW_TEXT & flags)) {
+                inWord=true;
+                break; //output
             }
-        } 
-        else if (cur=='\\') inCmd=true;
-        else if (eow.indexOf(cur)<0 && cur!='\'') {
+            //if (inCmd) start=i; //only necessary if flags&text==0, but then it won't be called
+        } else if (cur=='\\') {
+            start=i;
+            inCmd=true;
+        } else if (eow.indexOf(cur)<0 && cur!='\'') {
             start=i;    
             inWord=true;
-        } else if (cur=='%') return false; //comment, no more words
+        } else if (cur=='%') 
+            if (NW_COMMENT & flags) result|=NW_COMMENT;  
+            else return NW_NOTHING; 
     }
-    if (inWord) {
+    if (inWord && (NW_TEXT & flags)) {
         wordStartIndex=start;
-        index=line.length();
-        outWord=line.mid(start,line.length()-start);
+        index=i;
+        outWord=line.mid(start,i-start);
+        if (outWord.at(outWord.length()-1)==QChar('\'')) {
+            outWord=outWord.left(outWord.length()-1);
+            index--;
+        }
         if (reparse) outWord=latexToPlainWord(outWord);
-        if (!outWord.isEmpty() && outWord.at(outWord.length()-1)==QChar('\'')) outWord=outWord.left(outWord.length()-1);
-        return true;
+        if (outWord.isEmpty()) return NW_NOTHING;
+        if (outWord.at(outWord.length()-1)==QChar('\'')) outWord=outWord.left(outWord.length()-1);
+        return NW_TEXT|result;
     }
-    return false;
+    if (inCmd && (NW_COMMAND & flags)) {
+        wordStartIndex=start;
+        index=i;
+        outWord=line.mid(start,i-start);
+        return NW_COMMAND|result;
+    }
+    return NW_NOTHING;
 }
 
 QString LatexEditorView::latexToPlainWord(QString word){
