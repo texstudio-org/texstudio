@@ -176,6 +176,9 @@ void QLineMarkPanel::mouseReleaseEvent(QMouseEvent *e)
 		return;
 	}
 	
+    int line=editor()->document()->lineNumber(editor()->verticalScrollBar()->value()+e->y());
+    if (line>-1) emit lineClicked(line);
+
 	//QMessageBox::warning(0, 0, "clik.");
 	
 	QDocumentLine l;
@@ -187,8 +190,6 @@ void QLineMarkPanel::mouseReleaseEvent(QMouseEvent *e)
 	
 	e->accept();
 
-    int line=editor()->document()->lineNumber(editor()->verticalScrollBar()->value()+e->y());
-    if (line>-1) emit lineClicked(line);
 	
 	for ( int i = 0; i < m_rects.count(); ++i )
 	{
