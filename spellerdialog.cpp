@@ -9,6 +9,7 @@
  ***************************************************************************/
 
 #include "spellerdialog.h"
+#include "qdocumentline.h"
 
 #include <QCloseEvent>
 
@@ -67,6 +68,13 @@ void SpellerDialog::startSpelling(){
         editor->getCursorPosition(startLine,startIndex);
         endLine=editor->document()->lines()-1;
         endIndex=editor->text(endLine).length();
+        QString curLine=editor->document()->line(startLine).text();
+        int nextIndex=0;
+        int wordStartIndex=0;
+        QString tempWord;
+        while (nextIndex<startIndex && LatexEditorView::nextWord(curLine,nextIndex,tempWord,wordStartIndex)) 
+            ; //next
+        startIndex=wordStartIndex;
 	}
     curLine=startLine;
     curIndex=startIndex;
