@@ -2209,10 +2209,8 @@ currentEditorView()->editor->unindentSelection();
 void Texmaker::editSpell()
 {
     if (!currentEditorView()) return;
-    if (!spellDlg) {
-        spellDlg=new SpellerDialog(this,mainSpeller);
-        spellDlg->setEditorView(currentEditorView());
-    }
+    if (!spellDlg) spellDlg=new SpellerDialog(this,mainSpeller);
+    spellDlg->setEditorView(currentEditorView());
     spellDlg->startSpelling();
 }
 
