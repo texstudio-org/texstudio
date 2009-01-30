@@ -34,7 +34,7 @@
       </size>
      </property>
      <property name="currentIndex" >
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pt" >
       <layout class="QVBoxLayout" >
@@ -53,7 +53,7 @@
           </sizepolicy>
          </property>
          <property name="title" >
-          <string>Commands (% : filename without extension - @ : line number)</string>
+          <string>Commands (%: filename without extension - @: line number - ?: extended filename options)</string>
          </property>
          <layout class="QGridLayout" >
           <property name="margin" >
@@ -397,6 +397,19 @@
            </layout>
           </item>
          </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_4" >
+         <property name="text" >
+          <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-weight:600; text-decoration: underline;">Special chars&lt;/span>: &lt;span style=" font-weight:600;">%&lt;/span>: filename without extension &lt;span style=" font-weight:600;">@&lt;/span>: line number &lt;br />&lt;span style=" font-weight:600;">?&lt;/span> followed by &lt;span style=" font-style:italic;">a&lt;/span>,&lt;span style=" font-style:italic;">r&lt;/span>,&lt;span style=" font-style:italic;">m&lt;/span>,&lt;span style=" font-style:italic;">e&lt;/span>,&lt;span style=" font-style:italic;">"&lt;/span>, ,&lt;span style=" font-style:italic;">)&lt;/span>: extended filename&lt;br />      &lt;span style=" font-style:italic;">a&lt;/span>: absolute path, &lt;!--&lt;span style=" font-style:italic;">r&lt;/span>: relative path, -->&lt;span style=" font-style:italic;">m&lt;/span>: basefile name without extension,&lt;span style=" font-style:italic;">e&lt;/span>: extension&lt;br />      &lt;span style=" font-style:italic;">"&lt;/span>: enclose with "..", (space): ends placeholder and add a space, &lt;span style=" font-style:italic;">)&lt;/span>: ends placeholder &lt;br />      examples: ?ame": complete absolute filename enclosed in ", ?e) just the extension (without leading point), &lt;br />            ?m" (filename without extension, identical to %) ?me (filename with extension like example.tex)&lt;br />
+ %%, @@ or ?? become: %, @ or ?
+ &lt;/p>&lt;/body>&lt;/html></string>
+         </property>
         </widget>
        </item>
        <item>

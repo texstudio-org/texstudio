@@ -14,7 +14,7 @@ then
 echo "Enter PREFIX (/usr , /usr/local or /opt) :"
 read PREFIX
 qmake -unix PREFIX=$PREFIX texmakerx.pro
-make release
+make
 make install
 echo "Compilation and installation done"
 echo "Icons and desktop file can be found in the $PREFIX/share/texmakerx directory"
@@ -25,7 +25,7 @@ fi
 if [ "$SYSTEM" = 2 ] 
 then
 qmake -macx -spec macx-g++ texmakerx.pro
-make release
+make
 make install
 echo "Compilation and installation done"
 exit 0

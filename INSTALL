@@ -1,14 +1,17 @@
 
-To compile and install Texmaker (Unix and MacosX) :
+To compile and install Texmaker, write:
+qmake texmakerx.pro
+make
+make install
 
+
+On Unix and MacosX you can also use:
 sudo sh BUILD.sh
 
 (you must have root password)
 
-On Windows:
-qmake texmakerx.pro
-make release
+
 
 Requirements : 
-Qt tool kit (www.trolltech.com)
+Qt tool kit (www.trolltech.com) (4.4.3 recommended)
 Ghostscript for the LaTeX to html conversion command.

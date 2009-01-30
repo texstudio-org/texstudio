@@ -1,10 +1,13 @@
 TEMPLATE	=  app
 LANGUAGE	= C++
 DESTDIR = ./
-CONFIG	+= qt debug_and_release build_all
+CONFIG = $$unique(CONFIG)
+CONFIG -= debug debug_and_release release
+CONFIG	+= qt debug_and_release
 QT += network xml
 ###############################
 HEADERS	+= texmaker.h \
+	buildmanager.h \
 	dsingleapplication.h \
 	symbollistwidget.h \
 	icondelegate.h \
@@ -52,6 +55,7 @@ HEADERS	+= texmaker.h \
 	hunspell/hunzip.hxx \
 	hunspell/w_char.hxx
 SOURCES	+= main.cpp \
+	buildmanager.cpp \
 	dsingleapplication.cpp \
 	texmaker.cpp \
 	symbollistwidget.cpp \
@@ -180,12 +184,7 @@ utilities.files = utilities/blank.png \
 	utilities/texmaker64x64.png \
 	utilities/texmaker128x128.png \
 	utilities/texmaker.desktop \
-	utilities/texmaker.svg \
-	utilities/qxs/defaultFormats.qxf \
-	utilities/qxs/marks.qxm \
-	utilities/qxs/bibtex.qnfa \
-	utilities/qxs/tex.qnfa \
-	utilities/qxs/xml.qnfa
+	utilities/texmaker.svg 
 INSTALLS += utilities
 }
 ################################
@@ -250,11 +249,6 @@ utilities.files = utilities/blank.png \
 	utilities/AUTHORS \
 	utilities/COPYING \
 	utilities/CHANGELOG.txt
-	utilities/qxs/defaultFormats.qxf \
-	utilities/qxs/marks.qxm \
-	utilities/qxs/bibtex.qnfa \
-	utilities/qxs/tex.qnfa \
-	utilities/qxs/xml.qnfa
 QMAKE_BUNDLE_DATA += utilities
 INSTALLS += utilities
 ICON = texmaker.icns
