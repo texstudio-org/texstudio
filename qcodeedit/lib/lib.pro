@@ -4,7 +4,9 @@
 
 TEMPLATE = lib
 DESTDIR = ..
-CONFIG += staticlib debug_and_release build_all
+CONFIG = $$unique(CONFIG)
+CONFIG -= debug debug_and_release release
+CONFIG += staticlib debug_and_release
 
 CONFIG(debug, debug|release) {
   TARGET = qcodeeditd

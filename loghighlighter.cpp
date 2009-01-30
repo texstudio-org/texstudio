@@ -36,7 +36,7 @@ else if ((rxBadBox.indexIn(text)!=-1) || (rxWarning.indexIn(text)!=-1))
 	{
 	setFormat(0, text.length(),ColorWarning);
 	}
-else if (text.indexOf(".tex",0)!=-1) 
+else if (text.indexOf(".tex",0)!=-1 && !text.startsWith("Error:")) 
 	{
 	setFormat(0, text.length(),ColorFile);
 	}

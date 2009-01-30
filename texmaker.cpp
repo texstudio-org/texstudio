@@ -61,6 +61,8 @@
 #include "texmaker.h"
 #include "latexeditorview.h"
 
+#include "buildmanager.h"
+
 #include "structdialog.h"
 #include "filechooser.h"
 #include "tabdialog.h"
@@ -2316,42 +2318,20 @@ showoutputview=config->value("Show/OutputView",true).toBool();
 showstructview=config->value( "Show/Structureview",true).toBool();
 
 quickmode=config->value( "Tools/Quick Mode",1).toInt();
-#ifdef Q_WS_MACX
-// /usr/local/teTeX/bin/i386-apple-darwin-current
-// /usr/local/teTeX/bin/powerpc-apple-darwin-current
-// /usr/texbin MACTEX/TEXLIVE2007
-latex_command=config->value("Tools/Latex","\"/usr/texbin/latex\" -interaction=nonstopmode %.tex").toString();
-dvips_command=config->value("Tools/Dvips","\"/usr/texbin/dvips\" -o %.ps %.dvi").toString();
-ps2pdf_command=config->value("Tools/Ps2pdf","\"/usr/local/bin/ps2pdf\" %.ps").toString();
-makeindex_command=config->value("Tools/Makeindex","\"/usr/texbin/makeindex\" %.idx").toString();
-bibtex_command=config->value("Tools/Bibtex","\"/usr/texbin/bibtex\" %.aux").toString();
-pdflatex_command=config->value("Tools/Pdflatex","\"/usr/texbin/pdflatex\" -interaction=nonstopmode %.tex").toString();
-dvipdf_command=config->value("Tools/Dvipdf","\"/usr/texbin/dvipdfm\" %.dvi").toString();
-metapost_command=config->value("Tools/Metapost","\"/usr/texbin/mpost\" --interaction nonstopmode ").toString();
-viewdvi_command=config->value("Tools/Dvi","open %.dvi").toString();
-viewps_command=config->value("Tools/Ps","open %.ps").toString();
-viewpdf_command=config->value("Tools/Pdf","open %.pdf").toString();
-ghostscript_command=config->value("Tools/Ghostscript","/usr/local/bin/gs").toString();
-#endif
-#ifdef Q_WS_WIN
-latex_command=config->value("Tools/Latex","latex -interaction=nonstopmode %.tex").toString();
-dvips_command=config->value("Tools/Dvips","dvips -o %.ps %.dvi").toString();
-ps2pdf_command=config->value("Tools/Ps2pdf","ps2pdf %.ps").toString();
-makeindex_command=config->value("Tools/Makeindex","makeindex %.idx").toString();
-bibtex_command=config->value("Tools/Bibtex","bibtex %").toString();
-//bibtex %.aux
-pdflatex_command=config->value("Tools/Pdflatex","pdflatex -interaction=nonstopmode %.tex").toString();
-dvipdf_command=config->value("Tools/Dvipdf","dvipdfm %.dvi").toString();
-metapost_command=config->value("Tools/Metapost","mpost --interaction nonstopmode ").toString();
-viewdvi_command=config->value("Tools/Dvi","\"C:/Program Files/MiKTeX 2.7/miktex/bin/yap.exe\" %.dvi").toString();
-//C:/texmf/miktex/bin/yap.exe
-//\"C:/Program Files/MiKTeX 2.5/miktex/bin/yap.exe\" -1 -s @%.tex %.dvi
-viewps_command=config->value("Tools/Ps","\"C:/Program Files/Ghostgum/gsview/gsview32.exe\" %.ps").toString();
-viewpdf_command=config->value("Tools/Pdf","\"C:/Program Files/Adobe/Reader 9.0/Reader/AcroRd32.exe\" %.pdf").toString();
-//viewpdf_command=config->value("Tools/Pdf","\"C:/Program Files/Adobe/Reader 8.0/Reader/AcroRd32.exe\" %.pdf").toString();
-ghostscript_command=config->value("Tools/Ghostscript","\"C:/Program Files/gs/gs8.63/bin/gswin32c.exe\"").toString();
-//ghostscript_command=config->value("Tools/Ghostscript","\"C:/Program Files/gs/gs8.61/bin/gswin32c.exe\"").toString();
-#endif
+
+latex_command=BuildManager::lazyDefaultRead(*config,"Tools/Latex",BuildManager::CMD_LATEX);
+dvips_command=BuildManager::lazyDefaultRead(*config,"Tools/Dvips",BuildManager::CMD_DVIPS);
+ps2pdf_command=BuildManager::lazyDefaultRead(*config,"Tools/Ps2pdf",BuildManager::CMD_PS2PDF);
+makeindex_command=BuildManager::lazyDefaultRead(*config,"Tools/Makeindex",BuildManager::CMD_MAKEINDEX);
+bibtex_command=BuildManager::lazyDefaultRead(*config,"Tools/Bibtex",BuildManager::CMD_BIBTEX);
+pdflatex_command=BuildManager::lazyDefaultRead(*config,"Tools/Pdflatex",BuildManager::CMD_PDFLATEX);
+dvipdf_command=BuildManager::lazyDefaultRead(*config,"Tools/Dvipdf",BuildManager::CMD_DVIPDF);
+metapost_command=BuildManager::lazyDefaultRead(*config,"Tools/Metapost",BuildManager::CMD_METAPOST);
+viewdvi_command=BuildManager::lazyDefaultRead(*config,"Tools/Dvi",BuildManager::CMD_VIEWDVI);
+viewps_command=BuildManager::lazyDefaultRead(*config,"Tools/Ps",BuildManager::CMD_VIEWPS);
+viewpdf_command=BuildManager::lazyDefaultRead(*config,"Tools/Pdf",BuildManager::CMD_VIEWPDF);
+ghostscript_command=BuildManager::lazyDefaultRead(*config,"Tools/Ghostscript",BuildManager::CMD_GHOSTSCRIPT);
+
 #ifdef Q_WS_X11
 int desktop_env=1; // 1 : no kde ; 2: kde ; 3 : kde4 ;
 QStringList styles = QStyleFactory::keys();
@@ -2359,42 +2339,6 @@ QString kdesession= ::getenv("KDE_FULL_SESSION");
 QString kdeversion= ::getenv("KDE_SESSION_VERSION");
 if (!kdesession.isEmpty()) desktop_env=2;
 if (!kdeversion.isEmpty()) desktop_env=3;
-
-latex_command=config->value("Tools/Latex","latex -interaction=nonstopmode %.tex").toString();
-dvips_command=config->value("Tools/Dvips","dvips -o %.ps %.dvi").toString();
-ps2pdf_command=config->value("Tools/Ps2pdf","ps2pdf %.ps").toString();
-makeindex_command=config->value("Tools/Makeindex","makeindex %.idx").toString();
-bibtex_command=config->value("Tools/Bibtex","bibtex %.aux").toString();
-pdflatex_command=config->value("Tools/Pdflatex","pdflatex -interaction=nonstopmode %.tex").toString();
-dvipdf_command=config->value("Tools/Dvipdf","dvipdfm %.dvi").toString();
-metapost_command=config->value("Tools/Metapost","mpost --interaction nonstopmode ").toString();
-// xdvi %.dvi  -sourceposition @:%.tex
-// kdvi "file:%.dvi#src:@ %.tex"
-switch (desktop_env)
-	{
-	case 1:
-		{
-		viewdvi_command=config->value("Tools/Dvi","evince %.dvi").toString();
-		viewps_command=config->value("Tools/Ps","evince %.ps").toString();
-		viewpdf_command=config->value("Tools/Pdf","evince %.pdf").toString();
-		}break;
-	case 2:
-		{
-		viewdvi_command=config->value("Tools/Dvi","kdvi %.dvi").toString();
-		viewps_command=config->value("Tools/Ps","kghostview %.ps").toString();
-		viewpdf_command=config->value("Tools/Pdf","kpdf %.pdf").toString();
-		}break;
-	case 3:
-		{
-		viewdvi_command=config->value("Tools/Dvi","okular %.dvi").toString();
-		viewps_command=config->value("Tools/Ps","okular %.ps").toString();
-		viewpdf_command=config->value("Tools/Pdf","okular %.pdf").toString();
-		}break;
-	}
-
-
-
-ghostscript_command=config->value("Tools/Ghostscript","gs").toString();
 
 x11style=config->value( "X11/Style","Plastique").toString();
 if (xf.contains("DejaVu Sans",Qt::CaseInsensitive)) deft="DejaVu Sans";
@@ -4109,14 +4053,17 @@ if ((singlemode && !currentEditorView()) || finame=="untitled" || finame=="")
 	QMessageBox::warning( this,tr("Error"),tr("Can't detect the file name"));
 	return;
 	}
-fileSave();
+fileSaveAll();
+
 QFileInfo fi(finame);
-QString basename=fi.completeBaseName();
-commandline.replace("%","\""+basename+"\"");
-//commandline.replace("%",basename);
-int temp;int currentline;
-currentEditorView()->editor->getCursorPosition(currentline,temp);
-commandline.replace("@",QString::number(currentline));
+commandline=BuildManager::parseExtendedCommandLine(commandline,fi,currentEditorView()->editor->cursor().lineNumber()+1);
+if (commandline.trimmed().isEmpty())
+	{
+	ERRPROCESS=true;
+	OutputTextEdit->insertLine("Error : no command given \n");
+	return;
+	}
+
 proc = new QProcess( this );
 proc->setWorkingDirectory(fi.absolutePath());
 
@@ -4130,10 +4077,10 @@ proc->start(commandline);
 if (!proc->waitForStarted(1000))
 	{
 	ERRPROCESS=true;
-	OutputTextEdit->insertLine("Error : could not start the command\n");
+	OutputTextEdit->insertLine("Error: "+tr("could not start the command:")+" "+commandline+"\n");
 	return;
 	}
-else OutputTextEdit->insertLine("Process started\n");
+else OutputTextEdit->insertLine(tr("Process started")+"\n");
 FINPROCESS=false;
 if (waitendprocess)
 	{
