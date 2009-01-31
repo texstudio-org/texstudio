@@ -50,7 +50,7 @@ QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mai
     return result;
 }
 
-int x11desktop_env(){
+int BuildManager::x11desktop_env(){
      // 0 : no kde ; 3: kde ; 4 : kde4 ;
     QString kdesession= ::getenv("KDE_FULL_SESSION");
     QString kdeversion= ::getenv("KDE_SESSION_VERSION");
