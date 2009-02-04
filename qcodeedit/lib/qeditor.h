@@ -310,8 +310,6 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void addAction(QAction *a, const QString& menu, const QString& toolbar = QString());
 		void removeAction(QAction *a, const QString& menu, const QString& toolbar = QString());
 		
-        void load(const QString& file, char* encodingName);
-        void load(const QString& file, int encodingMib);
 		void load(const QString& file, QTextCodec* codec= QTextCodec::codecForLocale());
 		
 		void setText(const QString& s);

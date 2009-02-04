@@ -1333,16 +1333,6 @@ bool isProbablyUTF8String(char* str, int size){
 }
 
 
-void QEditor::load(const QString& file, char* encodingName)
-{
-    //qDebug("test");
-    load(file,QTextCodec::codecForName(encodingName));
-}
-void QEditor::load(const QString& file, int encodingMib)
-{
-    //qDebug("testa");
-    load(file,encodingMib==0?0:QTextCodec::codecForMib(encodingMib));
-}
 void QEditor::load(const QString& file, QTextCodec* codec)
 {
 
