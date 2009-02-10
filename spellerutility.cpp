@@ -55,8 +55,8 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix){
 }
 void SpellerUtility::unload(){
     if (ignoreListFileName!="" && ignoredWords.count()>0) { 
-        QFile f(ignoreListFileName);
-		if ( f.open(QFile::WriteOnly) )
+	QFile f(ignoreListFileName);
+	if ( f.open(QFile::WriteOnly) )
         {
             QTextCodec* utf8=QTextCodec::codecForName("UTF-8");
             f.write(utf8->fromUnicode("%Ignored-Words;encoding:utf-8;version:TexMakerX:1.8\n"));

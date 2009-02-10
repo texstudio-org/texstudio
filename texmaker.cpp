@@ -2029,7 +2029,13 @@ while (currentEditorView() && accept)
 		delete currentEditorView();
 		}
 	}
-if (accept) qApp->quit();
+if (accept) {
+    if (mainSpeller) {
+      delete mainSpeller; //this saves the ignore list
+      mainSpeller=0;
+    }
+   qApp->quit();
+}
 }
 
 void Texmaker::closeEvent(QCloseEvent *e)
@@ -2069,8 +2075,11 @@ while (currentEditorView() && accept)
 		}
 	}
 if (accept)  {
+    if (mainSpeller) {
+      delete mainSpeller; //this saves the ignore list
+      mainSpeller=0;
+    }
     e->accept();
-    delete mainSpeller; //this saves the ignore list
 } else e->ignore();
 }
 

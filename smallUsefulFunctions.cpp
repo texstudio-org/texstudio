@@ -1,6 +1,7 @@
 #include "smallUsefulFunctions.h"
 #include <QFile>
 #include <QFileInfo>
+#include <QMessageBox>
 bool isFileRealWritable(QString filename){
     #ifdef Q_WS_WIN
         //thanks to Vistas virtual folders trying to open an unaccessable file can create it somewhere else
@@ -10,7 +11,7 @@ bool isFileRealWritable(QString filename){
     bool result=false;
     if (fi.exists()) result=fi.open(QIODevice::ReadWrite);
     else {
-        result=fi.open(QIODevice::ReadWrite);
+        result=fi.open(QIODevice::WriteOnly);
         fi.remove();
     }
     return result;
