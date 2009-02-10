@@ -62,6 +62,7 @@
 #include "latexeditorview.h"
 
 #include "buildmanager.h"
+#include "smallUsefulFunctions.h"
 
 #include "structdialog.h"
 #include "filechooser.h"
@@ -263,7 +264,7 @@ setAcceptDrops(true);
     
     LatexEditorView::setSpeller(mainSpeller);
 
-    if (QFileInfo(QCoreApplication::applicationDirPath()+"/texmakerxFormats.qxf").exists() && QFileInfo(QCoreApplication::applicationDirPath()+"/texmakerxFormats.qxf").isWritable()) 
+    if (isExistingFileRealWritable(QCoreApplication::applicationDirPath()+"/texmakerxFormats.qxf")) 
         m_formats = new QFormatFactory(QCoreApplication::applicationDirPath()+"/texmakerxFormats.qxf", this);
     else {
         QString formatFileName=configFileNameBase+"Formats.qxf";
@@ -2219,9 +2220,9 @@ void Texmaker::editSpell()
 /////////////// CONFIG ////////////////////
 void Texmaker::ReadSettings()
 {
-    bool usbMode = QFileInfo(QCoreApplication::applicationDirPath()+"/texmakerx.ini").exists() && QFileInfo(QCoreApplication::applicationDirPath()+"/texmakerx.ini").isWritable();
+    bool usbMode = isExistingFileRealWritable(QCoreApplication::applicationDirPath()+"/texmakerx.ini");
     if (!usbMode) 
-        if (QFileInfo(QCoreApplication::applicationDirPath()+"/texmaker.ini").exists() && QFileInfo(QCoreApplication::applicationDirPath()+"/texmaker.ini").isWritable()) {
+        if (isExistingFileRealWritable(QCoreApplication::applicationDirPath()+"/texmaker.ini")) {
             //import texmaker usb settings
             usbMode=(QFile(QCoreApplication::applicationDirPath()+"/texmaker.ini")).copy(QCoreApplication::applicationDirPath()+"/texmakerx.ini");
         }
