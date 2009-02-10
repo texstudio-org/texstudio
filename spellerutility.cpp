@@ -10,9 +10,11 @@
  ***************************************************************************/
 
 #include "spellerutility.h"
+#include "smallUsefulFunctions.h"
 #include <QTextCodec>
 #include <QFileInfo>
 #include <QMessageBox>
+
 
 SpellerUtility::SpellerUtility(): pChecker(0), active(false){
     checkCache.reserve(1020);
@@ -34,9 +36,9 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix){
     checkCache.clear();
     ignoredWords.clear();
     ignoreListFileName=base+".ign";
-    if (!QFileInfo(ignoreListFileName).isWritable())  
+    if (!isFileRealWritable(ignoreListFileName))  
         ignoreListFileName=ignoreFilePrefix+QFileInfo(dic).baseName()+".ign";
-    if (!QFileInfo(ignoreListFileName).isWritable()) {
+    if (!isFileRealWritable(ignoreListFileName)) {
         ignoreListFileName="";
         emit reloadDictionary();
         return true;

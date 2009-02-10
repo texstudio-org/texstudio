@@ -16,6 +16,7 @@ HEADERS	+= texmaker.h \
 	logeditor.h \
 	loghighlighter.h \
 	metapostlistwidget.h \
+	smallUsefulFunctions.h \
 	structdialog.h \
 	filechooser.h \
 	tabbingdialog.h \
@@ -65,6 +66,7 @@ SOURCES	+= main.cpp \
 	logeditor.cpp \
 	loghighlighter.cpp \
 	metapostlistwidget.cpp \
+	smallUsefulFunctions.cpp \
 	structdialog.cpp \
 	filechooser.cpp \
 	tabbingdialog.cpp \
