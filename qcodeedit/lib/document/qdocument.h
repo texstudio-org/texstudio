@@ -132,6 +132,9 @@ class QCE_EXPORT QDocument : public QObject
 		int lines() const;
 		int visualLines() const;
 		
+		int visualLineNumber(int textLineNumber) const;
+		int textLineNumber(int visualLineNumber) const;
+		
 		int y(int line) const;
 		int lineNumber(int ypos, int *wrap = 0) const;
 		int y(const QDocumentLine& l) const;
@@ -218,6 +221,8 @@ class QCE_EXPORT QDocument : public QObject
 		void redo();
 		
 		void setClean();
+		
+		void highlight();
 		
 		void print(QPrinter *p);
 		

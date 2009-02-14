@@ -25,6 +25,9 @@
 
 class QPoint;
 class QString;
+class QPolygon;
+
+class QString;
 class QChar;
 
 class QDocument;
@@ -121,14 +124,25 @@ class QCE_EXPORT QDocumentCursor
 		int position() const;
 		
 		int lineNumber() const;
-		int anchorColumn() const;
-		int visualColumn() const;
 		int columnNumber() const;
+		
+		int anchorLineNumber() const;
+		int anchorColumnNumber() const;
+		
+		int visualColumnNumber() const;
+		
 		void setColumnNumber(int c, MoveMode m = MoveAnchor);
 		
+		int wrappedLineOffset() const;
+		int anchorWrappedLineOffset() const;
+		
 		QPoint documentPosition() const;
+		QPoint anchorDocumentPosition() const;
+		
+		QPolygon documentRegion() const;
 		
 		QDocumentLine line() const;
+		QDocumentLine anchorLine() const;
 		
 		void shift(int offset);
 		void setPosition(int pos, MoveMode m = MoveAnchor);

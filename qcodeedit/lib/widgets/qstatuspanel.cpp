@@ -112,7 +112,7 @@ void QStatusPanel::paint(QPainter *p, QEditor *e)
 	
 	s = tr("Line : %1 Visual column : %2 Text column : %3")
 			.arg(c.lineNumber() + 1)
-			.arg(c.visualColumn())
+			.arg(c.visualColumnNumber())
 			.arg(c.columnNumber());
 	
 	p->drawText(xpos, ascent, s);

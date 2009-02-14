@@ -29,6 +29,7 @@
 
 #include "qlanguagedefinition.h"
 
+#include <QStack>
 #include <QBitmap>
 #include <QPainter>
 #include <QScrollBar>
@@ -159,73 +160,52 @@ void QFoldPanel::paint(QPainter *p, QEditor *e)
 		
 		int len = ls * block.lineSpan();
 		int flags = def->blockFlags(doc, n, depth);
+		short open = QCE_FOLD_OPEN_COUNT(flags);
+		short close = QCE_FOLD_CLOSE_COUNT(flags);
 		
 		bVisible = ((pos + len) >= 0);
 		
-		int off = flags & QLanguageDefinition::DataMask;
+		int oldDepth = depth;
 		
-		if ( flags & QLanguageDefinition::Closure )
+		depth -= close;
+		
+		if ( depth < 0 )
+			depth = 0;
+		
+		depth += open;
+		
+		if ( open )
 		{
-			int mid = pos + len - ls / 4;
-			
-			// in case of mixup be smart...
-			if ( flags & QLanguageDefinition::Collapsible )
+			if ( flags & QLanguageDefinition::Collapsed )
 			{
-				// special mixup handling...
-				//if ( block.hasFlag(QDocumentLine::CollapsedBlockEnd) )
-				//	--off;
-				
-				depth += off;
-				
-				if ( !bVisible )
-				{
-					pos += len;
-					continue;
-				}
-				
-				// draw icon
 				int bound = (ls - 8) / 2;
+				int mid = pos + len - ls / 6;
 				
-				if ( depth > off && bound > 0 )
-					p->drawLine(7, pos, 7, pos + bound);
-				
-				m_lines << n;
-				m_rects << drawIcon(p, e, 3, pos + bound, false);
-				
-				if ( bound > 0 )
-					p->drawLine(7, pos + 8 + bound, 7, pos + len);
-				
-			} else if ( flags & QLanguageDefinition::Collapsed ) {
-				// special mixup handling...
-				
-				--depth;
-				
-				//depth += off - 1;
-				
-				int bound = (ls - 8) / 2;
+				// outermost block folded : none of the opening is actually opened
+				depth -= open;
 				
 				if ( bVisible )
 				{
 					// draw icon
 					
-					if ( bound > 0 )
+					if ( bound > 0 && oldDepth > 0 )
 					{
-						if ( depth >= 0 )
-						{
-							p->drawLine(7, pos, 7, pos + bound);
-							
-							if ( depth > 0 )
-								p->drawLine(7, pos + 8 + bound, 7, pos + len);
-						} else if ( 0 ) { // off ) {
-							p->drawLine(7, pos + 8 + bound, 7, pos + len);
-						}
+						p->drawLine(7, pos, 7, pos + bound);
+					}
+					
+					if ( close )
+					{
+						p->drawLine(7, pos + 8 + bound, 7, mid);
+						p->drawLine(7, mid, 12, mid);
 					}
 					
 					m_lines << n;
 					m_rects << drawIcon(p, e, 3, pos + bound, true);
 				}
 				
-				int sub = off - 1;
+				int sub = open;
+				
+				//qDebug("%i : +%i", n, open);
 				
 				while ( sub > 0 && ((n + 1) < max) )
 				{
@@ -234,9 +214,6 @@ void QFoldPanel::paint(QPainter *p, QEditor *e)
 					
 					if ( !block.isHidden() )
 					{
-						// special handling when mixed closure/opening on the same line
-						++depth;
-						
 						if ( bVisible )
 							p->drawLine(7, pos + 8 + bound, 7, pos + len);
 						
@@ -244,129 +221,60 @@ void QFoldPanel::paint(QPainter *p, QEditor *e)
 						break;
 					}
 					
-					flags = def->blockFlags(doc, n, depth + 1);
+					int sflags = def->blockFlags(doc, n, depth + 1);
+					short sopen = QCE_FOLD_OPEN_COUNT(sflags);
+					short sclose = QCE_FOLD_CLOSE_COUNT(sflags);
 					
-					int soff = flags & QLanguageDefinition::DataMask;
+					sub -= sclose;
 					
-					if ( flags & (QLanguageDefinition::Collapsible | QLanguageDefinition::Collapsed) )
-						sub += soff;
-					else if ( flags & (QLanguageDefinition::Closure) )
-						sub -= soff;
+					if ( sub <= 0 )
+						break;
 					
+					sub += sopen;
 				}
 				
-				if ( sub < 0 )
+				depth += sub;
+				
+				if ( bVisible && depth > 0 )
 				{
-					depth += sub;
-					
-					//p->drawLine(7, pos + 8 + bound, 7, pos + ls);
-					if ( bVisible && (depth > 0) )
-						p->drawLine(7, pos + len, 12, pos + len);
+					if ( close )
+						p->drawLine(7, mid, 7, pos + len);
+					else
+						p->drawLine(7, pos + 8 + bound, 7, pos + len);
 				}
 			} else {
-				if ( depth > 0 )
-					depth -= off;
-				
-				if ( !bVisible )
+				if ( bVisible )
 				{
-					pos += len;
-					continue;
+					int bound = (ls - 8) / 2;
+					
+					if ( oldDepth > 0 && bound > 0 )
+						p->drawLine(7, pos, 7, pos + bound);
+					
+					m_lines << n;
+					m_rects << drawIcon(p, e, 3, pos + bound, false);
+					
+					int mid = pos + len - ls / 6;
+					
+					if ( close )
+						p->drawLine(7, mid, 12, mid);
+					
+					if ( bound > 0 )
+						p->drawLine(7, pos + 8 + bound, 7, pos + len);
 				}
+			}
+		} else if ( (oldDepth > 0) && bVisible ) {
+			if ( close )
+			{
+				int mid = pos + len - ls / 6;
 				
 				p->drawLine(7, pos, 7, mid);
 				p->drawLine(7, mid, 12, mid);
 				
 				if ( depth > 0 )
 					p->drawLine(7, pos, 7, pos + len);
-				
+			} else  {
+				p->drawLine(7, pos, 7, pos + len);
 			}
-			
-		} else if ( flags & QLanguageDefinition::Collapsed ) {
-			//no depth change : always fold outermost block when several start on the same line
-			//depth += off - 1;
-			
-			int bound = (ls - 8) / 2;
-			
-			if ( bVisible )
-			{
-				// draw icon
-				
-				if ( bound > 0 )
-				{
-					if ( depth > 0 )
-					{
-						p->drawLine(7, pos, 7, pos + bound);
-						p->drawLine(7, pos + 8 + bound, 7, pos + len);
-					} else if ( 0 ) { // off ) {
-						p->drawLine(7, pos + 8 + bound, 7, pos + len);
-					}
-				}
-				
-				m_lines << n;
-				m_rects << drawIcon(p, e, 3, pos + bound, true);
-			}
-			
-			int sub = off;
-			
-			while ( sub > 0 && ((n + 1) < max) )
-			{
-				++n;
-				block = doc->line(n);
-				
-				if ( !block.isHidden() )
-				{
-					// special handling when mixed closure/opening on the same line
-					++depth;
-					
-					if ( bVisible )
-						p->drawLine(7, pos + 8 + bound, 7, pos + len);
-					
-					--n;
-					break;
-				}
-				
-				flags = def->blockFlags(doc, n, depth + 1);
-				
-				int soff = flags & QLanguageDefinition::DataMask;
-				
-				if ( flags & (QLanguageDefinition::Collapsible | QLanguageDefinition::Collapsed) )
-					sub += soff;
-				else if ( flags & (QLanguageDefinition::Closure) )
-					sub -= soff;
-				
-			}
-			
-			if ( sub < 0 )
-			{
-				depth += sub;
-				
-				//p->drawLine(7, pos + 8 + bound, 7, pos + ls);
-				if ( bVisible && (depth > 0) )
-					p->drawLine(7, pos + len, 12, pos + len);
-			}
-		} else if ( flags & QLanguageDefinition::Collapsible ) {
-			depth += off;
-			
-			if ( !bVisible )
-			{
-				pos += len;
-				continue;
-			}
-			
-			// draw icon
-			int bound = (ls - 8) / 2;
-			
-			if ( depth > off && bound > 0 )
-				p->drawLine(7, pos, 7, pos + bound);
-			
-			m_lines << n;
-			m_rects << drawIcon(p, e, 3, pos + bound, false);
-			
-			if ( bound > 0 )
-				p->drawLine(7, pos + 8 + bound, 7, pos + len);
-			
-		} else if ( bVisible && (depth > 0) ) {
-			p->drawLine(7, pos, 7, pos + len);
 		}
 		
 		pos += len;

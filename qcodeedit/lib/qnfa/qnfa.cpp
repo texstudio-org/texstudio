@@ -168,6 +168,8 @@ void match(QNFAMatchContext *lexer, const QChar *d, int length, QNFAMatchNotifie
 		c = di->unicode();
 		
 		wCur = isWord(*di);
+
+		int plainIndex = -1, plainMatch, plainLength;
 		
 		// try fast plain matching
 		if ( !(wPrev && wCur) )
@@ -205,11 +207,19 @@ void match(QNFAMatchContext *lexer, const QChar *d, int length, QNFAMatchNotifie
 						{
 							//word boundary found
 							// corresponding token end found
-							notify(index, idx - index, match->value.action);
+							wPrev = isWord(*(di - 1));
 							bFound = true;
-							//index += len;
-							index = idx;
-							
+							if ( match->value.action & 0x40000000 )
+							{
+								// try regexps before notifying
+								plainIndex = index;
+								plainLength = idx - index;
+								plainMatch = match->value.action;
+								//qDebug("ambiguity.");
+							} else {
+								notify(index, idx - index, match->value.action);
+								index = idx;
+							}
 							//qDebug("next step : %c", d[index].toLatin1());
 							//bMonitor = true;
 						}
@@ -221,10 +231,14 @@ void match(QNFAMatchContext *lexer, const QChar *d, int length, QNFAMatchNotifie
 				if ( bFound )
 				{
 					bEscape = false;
-					continue;
-				} else {
-					di -= idx - index;
+
+					if ( plainIndex == -1 )
+						continue;
+					
+					bFound = false;
 				}
+
+				di -= idx - index;
 			}
 		}
 		
@@ -256,6 +270,8 @@ void match(QNFAMatchContext *lexer, const QChar *d, int length, QNFAMatchNotifie
 								(idx < length)
 							&&
 								isWord(*di)
+							&&
+								isWord(*(di - 1))
 							)
 						{
 							//qDebug("end assertion failed...");
@@ -270,13 +286,20 @@ void match(QNFAMatchContext *lexer, const QChar *d, int length, QNFAMatchNotifie
 							
 							++nlvls;
 							
+							bool notifySub = notify.bufferLevel();
+							
+							if ( notifySub )
+							{
+								// pop one message buffer
+								notify.stopBuffering();
+							}
+							
 							// notify content of previous context until nest
 							notify(lastCxt, index - lastCxt, lexer->context->actionid | 0x80000000);
 							
-							if ( notify.bufferLevel() )
+							if ( notifySub )
 							{
 								// notify sub matches so far to avoid tricky handling later on
-								notify.stopBuffering();
 								notify.flush();
 								
 								//notify.startBuffering();
@@ -353,6 +376,11 @@ void match(QNFAMatchContext *lexer, const QChar *d, int length, QNFAMatchNotifie
 							bEscape = !bEscape;
 						} else {
 							//qDebug("matched %s", qPrintable(QString(d + index, len)));
+							
+							if ( plainIndex != -1 && plainLength >= len )
+							{
+								break;
+							}
 							
 							notify(index, len, chain->actionid);
 							bEscape = false;
@@ -448,6 +476,14 @@ void match(QNFAMatchContext *lexer, const QChar *d, int length, QNFAMatchNotifie
 		
 		if ( !bFound )
 		{
+			if ( plainIndex != -1 )
+			{
+				notify(plainIndex, plainLength, plainMatch);
+				index = plainIndex + plainLength;
+				di += plainLength;
+				continue;
+			}
+
 			bEscape = false;
 			//++index;
 			wPrev = wCur;

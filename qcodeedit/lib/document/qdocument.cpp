@@ -344,12 +344,18 @@ void QDocument::setText(const QString& s)
 	
 	//qDeleteAll(m_impl->m_lines);
 	foreach ( QDocumentLineHandle *h, m_impl->m_lines )
+	{
+		h->m_doc = 0;
 		h->deref();
+	}
+	
+	QDocumentCommand::discardHandlesFromDocument(this);
 	
 	m_impl->m_lines.clear();
 	m_impl->m_marks.clear();
 	m_impl->m_status.clear();
 	m_impl->m_hidden.clear();
+	m_impl->m_wrapped.clear();
 	m_impl->m_matches.clear();
 	m_impl->m_largest.clear();
 	m_impl->m_commands.clear();
@@ -440,12 +446,16 @@ void QDocument::startChunkLoading()
 	
 	//qDeleteAll(m_impl->m_lines);
 	foreach ( QDocumentLineHandle *h, m_impl->m_lines )
+	{
+		h->m_doc = 0;
 		h->deref();
+	}
 	
 	m_impl->m_lines.clear();
 	m_impl->m_marks.clear();
 	m_impl->m_status.clear();
 	m_impl->m_hidden.clear();
+	m_impl->m_wrapped.clear();
 	m_impl->m_matches.clear();
 	m_impl->m_largest.clear();
 	m_impl->m_commands.clear();
@@ -521,6 +531,18 @@ void QDocument::setLanguageDefinition(QLanguageDefinition *f)
 {
 	if ( m_impl )
 		m_impl->m_language = f;
+}
+
+/*!
+	\brief Update the formatting of the whole document
+	This function is only useful when changing the language definition
+	of a non-empty document. Make sure you do not call it more often
+	than needed.
+*/
+void QDocument::highlight()
+{
+	if ( m_impl )
+		m_impl->emitContentsChange(0, lines());
 }
 
 /*!
@@ -870,6 +892,26 @@ int QDocument::lines() const
 int QDocument::visualLines() const
 {
 	return m_impl ? m_impl->visualLine(m_impl->m_lines.count() - 1) : 0;
+}
+
+/*!
+	\brief Convert a text (logical) line number int a visual line number
+	
+	\note this is not a 1:1 mapping as logical lines can span over several visual lines
+*/
+int QDocument::visualLineNumber(int textLineNumber) const
+{
+	return m_impl ? m_impl->visualLine(textLineNumber) : -1;
+}
+
+/*!
+	\brief Convert a visual line number int a text (logical) line number
+	
+	\note this is not a 1:1 mapping as logical lines can span over several visual lines
+*/
+int QDocument::textLineNumber(int visualLineNumber) const
+{
+	return m_impl ? m_impl->textLine(visualLineNumber) : -1;
 }
 
 /*!
@@ -1497,7 +1539,7 @@ void QDocumentLineHandle::updateWrap() const
 	{
 		if ( m_layout )
 			setFlag(QDocumentLine::LayoutDirty, true);
-			
+		
 		return;
 	}
 	
@@ -1863,6 +1905,22 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 	}
 }
 
+int QDocumentLineHandle::wrappedLineForCursor(int cpos) const
+{
+	int wrap = m_frontiers.count();
+	
+	for ( int i = 0; i < m_frontiers.count(); ++i )
+	{
+		if ( m_frontiers.at(i).first > cpos )
+		{
+			wrap = i;
+			break;
+		}
+	}
+	
+	return wrap;
+}
+
 int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 {
 	int wrap = y / QDocumentPrivate::m_lineSpacing;
@@ -1979,16 +2037,7 @@ void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
 		cpos = 0;
 		
 	int idx = 0;
-	int wrap = m_frontiers.count();
-	
-	for ( int i = 0; i < m_frontiers.count(); ++i )
-	{
-		if ( m_frontiers.at(i).first > cpos )
-		{
-			wrap = i;
-			break;
-		}
-	}
+	int wrap = wrappedLineForCursor(cpos);
 	
 	x = QDocumentPrivate::m_leftMargin;
 	y = wrap * QDocumentPrivate::m_lineSpacing;
@@ -2420,6 +2469,7 @@ void QDocumentLineHandle::layout() const
 			delete m_layout;
 			
 		m_layout = 0;
+		//updateWrap();
 	}
 	
 	setFlag(QDocumentLine::LayoutDirty, false);
@@ -3311,6 +3361,8 @@ QDocumentCursorHandle* QDocumentCursorHandle::clone() const
 	QDocumentCursorHandle *c = new QDocumentCursorHandle(m_doc);
 	c->copy(this);
 	
+	c->setAutoUpdated(isAutoUpdated());
+	
 	return c;
 }
 
@@ -3420,12 +3472,25 @@ QDocumentLine QDocumentCursorHandle::line() const
 	return m_doc->line(m_begLine);
 }
 
+QDocumentLine QDocumentCursorHandle::anchorLine() const
+{
+	if ( !m_doc )
+		return QDocumentLine();
+		
+	return m_endLine != -1 ? m_doc->line(m_endLine) : line();
+}
+
 int QDocumentCursorHandle::lineNumber() const
 {
 	return m_begLine;
 }
 
-int QDocumentCursorHandle::anchorColumn() const
+int QDocumentCursorHandle::anchorLineNumber() const
+{
+	return m_endLine != -1 ? m_endLine : m_begLine;
+}
+
+int QDocumentCursorHandle::anchorColumnNumber() const
 {
 	if ( !m_doc )
 		return -1;
@@ -3433,7 +3498,7 @@ int QDocumentCursorHandle::anchorColumn() const
 	return m_doc->line(m_endLine).isValid() ? m_endOffset : m_begOffset;
 }
 
-int QDocumentCursorHandle::visualColumn() const
+int QDocumentCursorHandle::visualColumnNumber() const
 {
 	return QDocument::screenLength(
 						line().text().constData(),
@@ -3463,11 +3528,11 @@ void QDocumentCursorHandle::setColumnNumber(int c, QDocumentCursor::MoveMode m)
 			m_endOffset = m_begOffset;
 		}
 		
-		m_begOffset = qBound(0, c, l1.length());
+		m_begOffset = c; //qBound(0, c, l1.length());
 	} else {
 		m_endLine = -1;
 		m_endOffset = 0;
-		m_begOffset = qBound(0, c, l1.length());
+		m_begOffset = c; //qBound(0, c, l1.length());
 	}
 	
 	refreshColumnMemory();
@@ -3477,8 +3542,76 @@ QPoint QDocumentCursorHandle::documentPosition() const
 {
 	if ( !m_doc )
 		return QPoint();
-		
+	
 	return QPoint(0, m_doc->y(m_begLine)) + m_doc->line(m_begLine).cursorToDocumentOffset(m_begOffset);
+}
+
+QPoint QDocumentCursorHandle::anchorDocumentPosition() const
+{
+	if ( !m_doc )
+		return QPoint();
+	
+	if ( m_endLine < 0 || m_endOffset < 0 )
+		return documentPosition();
+	
+	return QPoint(0, m_doc->y(m_endLine)) + m_doc->line(m_endLine).cursorToDocumentOffset(m_endOffset);
+}
+
+QPolygon QDocumentCursorHandle::documentRegion() const
+{
+	QPolygon poly;
+	QPoint p = documentPosition(), ap = anchorDocumentPosition();
+	
+	int w = m_doc->width();
+	const int lm = m_doc->impl()->m_leftMargin;
+	const int ls = m_doc->impl()->m_lineSpacing;
+	
+	if ( p == ap )
+	{
+		poly
+			<< p
+			<< QPoint(p.x() + 1, p.y())
+			<< QPoint(p.x() + 1, p.y() + ls)
+			<< QPoint(p.x(), p.y() + ls);
+	} else if ( p.y() == ap.y() ) {
+		poly
+			<< p
+			<< ap
+			<< QPoint(ap.x(), ap.y() + ls)
+			<< QPoint(p.x(), p.y() + ls);
+	} else if ( p.y() < ap.y() ) {
+		poly
+			<< p
+			<< QPoint(w, p.y());
+		
+		if ( ap.x() < w )
+			poly << QPoint(w, ap.y()) << ap;
+		
+		poly
+			<< QPoint(ap.x(), ap.y() + ls)
+			<< QPoint(lm, ap.y() + ls)
+			<< QPoint(lm, p.y() + ls);
+		
+		if ( p.x() > lm )
+			poly << QPoint(p.x(), p.y() + ls);
+	} else {
+		poly
+			<< ap
+			<< QPoint(w, ap.y());
+		
+		if ( p.x() < w )
+			poly << QPoint(w, p.y()) << p;
+		
+		poly
+			<< QPoint(p.x(), p.y() + ls)
+			<< QPoint(lm, p.y() + ls)
+			<< QPoint(lm, ap.y() + ls);
+		
+		if ( ap.x() > lm )
+			poly << QPoint(ap.x(), ap.y() + ls);
+	}
+	
+	return poly;
 }
 
 int QDocumentCursorHandle::position() const
@@ -4453,7 +4586,7 @@ void QDocumentCursorHandle::setSelectionBoundary(const QDocumentCursor& c)
 	m_begOffset = c.columnNumber();
 }
 
-bool QDocumentCursorHandle::isWithinSelection(const QDocumentCursor& c)
+bool QDocumentCursorHandle::isWithinSelection(const QDocumentCursor& c) const
 {
 	if ( !hasSelection() ) //|| c.hasSelection() )
 		return false;
@@ -4506,6 +4639,232 @@ bool QDocumentCursorHandle::isWithinSelection(const QDocumentCursor& c)
 			)
 		;
 		
+}
+
+void QDocumentCursorHandle::boundaries(int& begline, int& begcol, int& endline, int& endcol) const
+{
+	if ( m_begLine == m_endLine )
+	{
+		begline = m_begLine;
+		endline = m_endLine;
+		if ( m_begOffset < m_endOffset )
+		{
+			begcol = m_begOffset;
+			endcol = m_endOffset;
+		} else {
+			endcol = m_begOffset;
+			begcol = m_endOffset;
+		}
+	} else if ( m_begLine < m_endLine ) {
+		begline = m_begLine;
+		endline = m_endLine;
+		begcol = m_begOffset;
+		endcol = m_endOffset;
+	} else {
+		endline = m_begLine;
+		begline = m_endLine;
+		endcol = m_begOffset;
+		begcol = m_endOffset;
+	}
+}
+
+void QDocumentCursorHandle::substractBoundaries(int lbeg, int cbeg, int lend, int cend)
+{
+	int tlmin, tlmax, tcmin, tcmax;
+	
+	boundaries(tlmin, tcmin, tlmax, tcmax);
+
+	bool begFirst = tlmin == m_begLine && tcmin == m_begOffset;
+	
+	if ( tlmax < lbeg || tlmin > lend || (tlmax == lbeg && tcmax < cbeg) || (tlmin == lend && tcmin > cend) )
+	{
+		// no intersection
+		return;
+	}
+	
+	int numLines = lend - lbeg;
+	bool beyondBeg = (tlmin > lbeg || (tlmin == lbeg && tcmin >= cbeg));
+	bool beyondEnd = (tlmax < lend || (tlmax == lend && tcmax <= cend));
+	
+	if ( beyondBeg && beyondEnd )
+	{
+		//qDebug("(%i, %i : %i, %i) erased as in (%i, %i : %i, %i)", tlmin, tcmin, tlmax, tcmax, lbeg, cbeg, lend, cend);
+		// cursor erased...
+		m_begLine = m_endLine = lbeg;
+		m_begOffset = m_endOffset = cbeg;
+	} else if ( beyondEnd ) {
+		//qDebug("beyond end");
+		if ( begFirst )
+		{
+			m_endLine = lbeg;
+			m_endOffset = cbeg;
+		} else {
+			m_begLine = lbeg;
+			m_begOffset = cbeg;
+		}
+	} else if ( beyondBeg ) {
+		//qDebug("beyond beg");
+		if ( begFirst )
+		{
+			m_begLine = lend;
+			m_begOffset = cend;
+			if ( numLines )
+			{
+				m_begLine -= numLines;
+				m_endLine -= numLines;
+			} else {
+				m_begOffset = cbeg;
+			}
+			if ( m_begLine == m_endLine )
+				m_endOffset -= (cend - cbeg);
+		} else {
+			m_endLine = lend;
+			m_endOffset = cend;
+			if ( numLines )
+			{
+				m_endLine -= numLines;
+				m_begLine -= numLines;
+			} else {
+				m_endOffset = cbeg;
+			}
+			if ( m_begLine == m_endLine )
+				m_begOffset -= (cend - cbeg);
+		}
+	} else {
+		int off = cend - cbeg;
+		
+		//qDebug("correcting by %i", off);
+		
+		if ( begFirst )
+		{
+			m_endLine -= numLines;
+			if ( tlmax == lend )
+			{
+				m_endOffset -= off;
+			}
+		} else {
+			m_begLine -= numLines;
+			if ( tlmax == lend )
+			{
+				m_begOffset -= off;
+			}
+		}
+	}
+	
+	//qDebug("(%i, %i : %i, %i) corrected to (%i, %i : %i, %i)", tlmin, tcmin, tlmax, tcmax, m_begLine, m_begOffset, m_endLine, m_endOffset);
+}
+
+void QDocumentCursorHandle::intersectBoundaries(int& lbeg, int& cbeg, int& lend, int& cend) const
+{
+	int tlmin, tlmax, tcmin, tcmax, clmin, clmax, ccmin, ccmax;
+	
+	boundaries(tlmin, tcmin, tlmax, tcmax);
+	clmin = lbeg;
+	clmax = lend;
+	ccmin = cbeg;
+	ccmax = cend;
+	
+	if ( tlmax < clmin || tlmin > clmax || (tlmax == clmin && tcmax < ccmin) || (tlmin == clmax && tcmin > ccmax) )
+	{
+		lbeg = cbeg = lend = cend = -1;
+		return;
+	}
+	
+	if ( tlmin == clmin )
+	{
+		lbeg = tlmin;
+		cbeg = qMax(tcmin, ccmin);
+	} else if ( tlmin < clmin ) {
+		lbeg = clmin;
+		cbeg = ccmin;
+	} else {
+		lbeg = tlmin;
+		cbeg = tcmin;
+	}
+
+	if ( tlmax == clmax )
+	{
+		lend = tlmax;
+		cend = qMin(tcmax, ccmax);
+	} else if ( tlmax < clmax ) {
+		lend = tlmax;
+		cend = tcmax;
+	} else {
+		lend = clmax;
+		cend = ccmax;
+	}
+}
+
+void QDocumentCursorHandle::intersectBoundaries(QDocumentCursorHandle *h, int& lbeg, int& cbeg, int& lend, int& cend) const
+{
+	int tlmin, tlmax, tcmin, tcmax, clmin, clmax, ccmin, ccmax;
+	
+	boundaries(tlmin, tcmin, tlmax, tcmax);
+	h->boundaries(clmin, ccmin, clmax, ccmax);
+	
+	if ( tlmax < clmin || tlmin > clmax || (tlmax == clmin && tcmax < ccmin) || (tlmin == clmax && tcmin > ccmax) )
+	{
+		lbeg = cbeg = lend = cend = -1;
+		return;
+	}
+	
+	if ( tlmin == clmin )
+	{
+		lbeg = tlmin;
+		cbeg = qMax(tcmin, ccmin);
+	} else if ( tlmin < clmin ) {
+		lbeg = clmin;
+		cbeg = ccmin;
+	} else {
+		lbeg = tlmin;
+		cbeg = tcmin;
+	}
+
+	if ( tlmax == clmax )
+	{
+		lend = tlmax;
+		cend = qMin(tcmax, ccmax);
+	} else if ( tlmax < clmax ) {
+		lend = tlmax;
+		cend = tcmax;
+	} else {
+		lend = clmax;
+		cend = ccmax;
+	}
+}
+
+QDocumentCursor QDocumentCursorHandle::intersect(const QDocumentCursor& c) const
+{
+	if ( !hasSelection() )
+	{
+		//if ( c.hasSelection() && c.isWithinSelection(QDocumentCursor(this)) )
+		//	return QDocumentCursor(clone());
+		
+	} else if ( !c.hasSelection() ) {
+		
+		if ( isWithinSelection(c) )
+			return c;
+		
+	} else {
+		QDocumentCursorHandle *h = c.handle();
+
+		int lbeg, lend, cbeg, cend;
+		intersectBoundaries(h, lbeg, cbeg, lend, cend);
+		
+		if ( lbeg != -1 )
+		{
+			QDocumentCursor c(m_doc, lbeg, cbeg);
+			
+			if ( lend != -1 && (lbeg != lend || cbeg != cend) )
+			{
+				c.setSelectionBoundary(QDocumentCursor(m_doc, lend, cend));
+			}
+			
+			return c;
+		}
+	}
+	
+	return QDocumentCursor();
 }
 
 void QDocumentCursorHandle::removeSelectedText()
@@ -4786,6 +5145,10 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		
 		h = m_lines.at(i);
 		
+		// ugly workaround...
+		if( !m_fixedPitch )
+			adjustWidth(i);
+		
 		const int wrap = h->m_frontiers.count();
 		const bool wrapped = wrap;
 		
@@ -4998,10 +5361,12 @@ void QDocumentPrivate::setWidth(int width)
 			
 			while ( it != m_wrapped.end() )
 			{
-				QDocumentLineHandle *h = m_lines.at(it.key());
+				QDocumentLineHandle *h = it.key() < m_lines.count() ? m_lines.at(it.key()) : 0;
 				
-				h->updateWrap();
-				int sz = h->m_frontiers.count();
+				if ( h )
+					h->updateWrap();
+				
+				int sz = h ? h->m_frontiers.count() : 0;
 				
 				if ( sz )
 				{
@@ -5708,6 +6073,8 @@ int QDocumentPrivate::visualLine(int textLine) const
 			++wit;
 		}
 	}
+	
+	//qDebug("translating %i => %i", textLine, textLine - hiddenLines + wrappedLines);
 	
 	return textLine - hiddenLines + wrappedLines;
 }

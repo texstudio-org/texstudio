@@ -62,7 +62,7 @@ void QDocumentSearch::clearMatches()
 	if ( !(m_editor && m_editor->document()) )
 		return;
 	
-	QFormatScheme *f = m_editor->document()->formatFactory();
+	QFormatScheme *f = m_editor->document()->formatScheme();
 	
 	if ( !f )
 		return;
@@ -71,7 +71,7 @@ void QDocumentSearch::clearMatches()
 	
 	foreach ( const QDocumentCursor& c, m_highlight )
 	{
-		QFormatRange r(c.anchorColumn(), c.columnNumber() - c.anchorColumn(), sid);
+		QFormatRange r(c.anchorColumnNumber(), c.columnNumber() - c.anchorColumnNumber(), sid);
 		
 		c.line().removeOverlay(r);
 		
@@ -203,7 +203,7 @@ bool QDocumentSearch::end(bool backward) const
 		qDebug(
 				"(%i, %i, %i) %s in {(%i, %i), (%i, %i)}",
 				m_cursor.lineNumber(),
-				m_cursor.anchorColumn(),
+				m_cursor.anchorColumnNumber(),
 				m_cursor.columnNumber(),
 				absEnd ? "is not" : "is",
 				m_scope.selectionStart().lineNumber(),
@@ -462,8 +462,8 @@ void QDocumentSearch::next(bool backward, bool all)
 				if ( hasOption(HighlightAll) )
 				{
 					QFormatRange r(
-								m_cursor.anchorColumn(),
-								m_cursor.columnNumber() - m_cursor.anchorColumn(),
+								m_cursor.anchorColumnNumber(),
+								m_cursor.columnNumber() - m_cursor.anchorColumnNumber(),
 								m_editor->document()->formatFactory()->id("search")
 							);
 					

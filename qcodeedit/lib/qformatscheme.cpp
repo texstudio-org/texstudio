@@ -40,11 +40,17 @@
 
 #include <QFile>
 #include <QDomText>
+#include <QSettings>
 #include <QStringList>
 #include <QDomElement>
 #include <QDomDocument>
 
 #define QFORMAT_VERSION "1.0"
+
+static bool bool_cast(const QString& s)
+{
+	return !QString::compare(s, QLatin1String("true")) || s.toUInt() == 1;
+}
 
 /*!
 	\brief Constructor
@@ -73,6 +79,20 @@ QFormatScheme::~QFormatScheme()
 }
 
 /*!
+	\brief Re-initialize the format scheme
+	
+	Calling this method leaves the format scheme with only one
+	format : the "normal" one, set to a default-constructed QFormat
+*/
+void QFormatScheme::clear()
+{
+	m_formatKeys.clear();
+	m_formatValues.clear();
+	
+	setFormat("normal", QFormat());
+}
+
+/*!
 	\brief Load format settings from a file
 	\param f file to load data from
 
@@ -82,72 +102,17 @@ QFormatScheme::~QFormatScheme()
 */
 void QFormatScheme::load(const QString& f)
 {
+	clear();
 	m_settings = f;
-	m_formatKeys.clear();
-	m_formatValues.clear();
 
 	QFile settings(f);
-	
-	setFormat("normal", QFormat());
 	
 	if ( settings.open(QFile::ReadOnly | QFile::Text) )
 	{
 		QDomDocument doc;
 		doc.setContent(&settings);
 		
-		if ( doc.documentElement().attribute("version") < QFORMAT_VERSION )
-		{
-			qWarning("Format encoding version mismatch : [found]%s != [expected]%s",
-					qPrintable(doc.documentElement().attribute("version")),
-					QFORMAT_VERSION);
-			
-			return;
-		}
-		
-		QDomElement e, c;
-		QDomNodeList l, f = doc.documentElement().elementsByTagName("format");
-		
-		for ( int i = 0; i < f.count(); i++ )
-		{
-			e = f.at(i).toElement();
-			l = e.childNodes();
-			
-			QFormat fmt;
-			
-			for ( int i = 0; i < l.count(); i++ )
-			{
-				c = l.at(i).toElement();
-				
-				if ( c.isNull() )
-					continue;
-				
-				QString field = c.tagName(),
-						value = c.firstChild().toText().data();
-				
-				if ( field == "bold" )
-					fmt.weight = ((value == "true") || (value.toUInt() == 1))
-										? QFont::Bold : QFont::Normal;
-				else if ( field == "italic" )
-					fmt.italic = ((value == "true") || (value.toUInt() == 1));
-				else if ( field == "overline" )
-					fmt.overline = ((value == "true") || (value.toUInt() == 1));
-				else if ( field == "underline" )
-					fmt.underline = ((value == "true") || (value.toUInt() == 1));
-				else if ( field == "strikeout" )
-					fmt.strikeout = ((value == "true") || (value.toUInt() == 1));
-				else if ( field == "waveUnderline" )
-					fmt.waveUnderline = ((value == "true") || (value.toUInt() == 1));
-				else if ( field == "color" || field == "foreground" )
-					fmt.foreground = QColor(value);
-				else if ( field == "background" )
-					fmt.background = QColor(value);
-				else if ( field == "linescolor" )
-					fmt.linescolor = QColor(value);
-				
-			}
-			
-			setFormat(e.attribute("id"), fmt);
-		}
+		load(doc.documentElement());
 	}
 }
 
@@ -157,87 +122,276 @@ void QFormatScheme::load(const QString& f)
 
 	The default implementation saves data in QXF format (XML-based)
 */
-void QFormatScheme::save(const QString& f)
+void QFormatScheme::save(const QString& f) const
 {
 	QFile settings(f.count() ? f : m_settings);
 	
 	if ( settings.open(QFile::WriteOnly | QFile::Text) )
 	{
 		QDomDocument doc("QXF");
-		
 		QDomElement root = doc.createElement("QXF");
-		root.setAttribute("version", QFORMAT_VERSION);
-		
-		for ( int i = 1; i < m_formatKeys.count(); i++ )
-		{
-			QDomText t;
-			QDomElement f, c = doc.createElement("format");
-			
-			c.setAttribute("id", m_formatKeys.at(i));
-			
-			const QFormat& fmt = m_formatValues.at(i);
-			
-			f = doc.createElement("bold");
-			t = doc.createTextNode((fmt.weight == QFont::Bold) ? "true" : "false");
-			f.appendChild(t);
-			c.appendChild(f);
-			
-			f = doc.createElement("italic");
-			t = doc.createTextNode(fmt.italic ? "true" : "false");
-			f.appendChild(t);
-			c.appendChild(f);
-			
-			f = doc.createElement("overline");
-			t = doc.createTextNode(fmt.overline ? "true" : "false");
-			f.appendChild(t);
-			c.appendChild(f);
-			
-			f = doc.createElement("underline");
-			t = doc.createTextNode(fmt.underline ? "true" : "false");
-			f.appendChild(t);
-			c.appendChild(f);
-			
-			f = doc.createElement("strikeout");
-			t = doc.createTextNode(fmt.strikeout ? "true" : "false");
-			f.appendChild(t);
-			c.appendChild(f);
-			
-			f = doc.createElement("waveUnderline");
-			t = doc.createTextNode(fmt.waveUnderline ? "true" : "false");
-			f.appendChild(t);
-			c.appendChild(f);
-			
-			if ( fmt.foreground.isValid() )
-			{
-				f = doc.createElement("foreground");
-				t = doc.createTextNode(fmt.foreground.name());
-				f.appendChild(t);
-				c.appendChild(f);
-			}
-			
-			if ( fmt.background.isValid() )
-			{
-				f = doc.createElement("background");
-				t = doc.createTextNode(fmt.background.name());
-				f.appendChild(t);
-				c.appendChild(f);
-			}
-			
-			if ( fmt.linescolor.isValid() )
-			{
-				f = doc.createElement("linescolor");
-				t = doc.createTextNode(fmt.linescolor.name());
-				f.appendChild(t);
-				c.appendChild(f);
-			}
-			
-			root.appendChild(c);
-		}
-		
+		save(root);
 		doc.appendChild(root);
-		
 		settings.write(doc.toByteArray(4));
 	}
+}
+
+/*!
+	\overload
+	\param elem Source element to scan
+	\param ignoreNewIds whether unknown format identifiers should be ignored
+	
+	The given dom element must contain a proper version attribute and format
+	data as child elements (&lt;format&gt; tags)
+	
+	\note Previous content is not discarded
+*/
+void QFormatScheme::load(const QDomElement& elem, bool ignoreNewIds)
+{
+	if ( elem.attribute("version") < QFORMAT_VERSION )
+	{
+		qWarning("Format encoding version mismatch : [found]%s != [expected]%s",
+				qPrintable(elem.attribute("version")),
+				QFORMAT_VERSION);
+		
+		return;
+	}
+	
+	QDomElement e, c;
+	QDomNodeList l, f = elem.elementsByTagName("format");
+	
+	for ( int i = 0; i < f.count(); i++ )
+	{
+		e = f.at(i).toElement();
+		
+		if ( ignoreNewIds && !m_formatKeys.contains(e.attribute("id")) )
+			continue;
+		
+		l = e.childNodes();
+		
+		QFormat fmt;
+		
+		for ( int i = 0; i < l.count(); i++ )
+		{
+			c = l.at(i).toElement();
+			
+			if ( c.isNull() )
+				continue;
+			
+			QString field = c.tagName(),
+					value = c.firstChild().toText().data();
+			
+			if ( field == "bold" )
+				fmt.weight = bool_cast(value) ? QFont::Bold : QFont::Normal;
+			else if ( field == "italic" )
+				fmt.italic = bool_cast(value);
+			else if ( field == "overline" )
+				fmt.overline = bool_cast(value);
+			else if ( field == "underline" )
+				fmt.underline = bool_cast(value);
+			else if ( field == "strikeout" )
+				fmt.strikeout = bool_cast(value);
+			else if ( field == "waveUnderline" )
+				fmt.waveUnderline = bool_cast(value);
+			else if ( field == "color" || field == "foreground" )
+				fmt.foreground = QColor(value);
+			else if ( field == "background" )
+				fmt.background = QColor(value);
+			else if ( field == "linescolor" )
+				fmt.linescolor = QColor(value);
+			
+		}
+		
+		setFormat(e.attribute("id"), fmt);
+	}
+}
+
+/*!
+	\overload
+*/
+void QFormatScheme::save(QDomElement& elem) const
+{
+	QDomDocument doc = elem.ownerDocument();
+	elem.setAttribute("version", QFORMAT_VERSION);
+	
+	for ( int i = 1; i < m_formatKeys.count(); i++ )
+	{
+		QDomText t;
+		QDomElement f, c = doc.createElement("format");
+		
+		c.setAttribute("id", m_formatKeys.at(i));
+		
+		const QFormat& fmt = m_formatValues.at(i);
+		
+		f = doc.createElement("bold");
+		t = doc.createTextNode((fmt.weight == QFont::Bold) ? "true" : "false");
+		f.appendChild(t);
+		c.appendChild(f);
+		
+		f = doc.createElement("italic");
+		t = doc.createTextNode(fmt.italic ? "true" : "false");
+		f.appendChild(t);
+		c.appendChild(f);
+		
+		f = doc.createElement("overline");
+		t = doc.createTextNode(fmt.overline ? "true" : "false");
+		f.appendChild(t);
+		c.appendChild(f);
+		
+		f = doc.createElement("underline");
+		t = doc.createTextNode(fmt.underline ? "true" : "false");
+		f.appendChild(t);
+		c.appendChild(f);
+		
+		f = doc.createElement("strikeout");
+		t = doc.createTextNode(fmt.strikeout ? "true" : "false");
+		f.appendChild(t);
+		c.appendChild(f);
+		
+		f = doc.createElement("waveUnderline");
+		t = doc.createTextNode(fmt.waveUnderline ? "true" : "false");
+		f.appendChild(t);
+		c.appendChild(f);
+		
+		if ( fmt.foreground.isValid() )
+		{
+			f = doc.createElement("foreground");
+			t = doc.createTextNode(fmt.foreground.name());
+			f.appendChild(t);
+			c.appendChild(f);
+		}
+		
+		if ( fmt.background.isValid() )
+		{
+			f = doc.createElement("background");
+			t = doc.createTextNode(fmt.background.name());
+			f.appendChild(t);
+			c.appendChild(f);
+		}
+		
+		if ( fmt.linescolor.isValid() )
+		{
+			f = doc.createElement("linescolor");
+			t = doc.createTextNode(fmt.linescolor.name());
+			f.appendChild(t);
+			c.appendChild(f);
+		}
+		
+		elem.appendChild(c);
+	}
+}
+
+/*!
+	\overload
+	\brief Load format data from a QSettings object
+	\param s QSettings object from which data will be fetched
+	\param ignoreNewIds whether unknown format identifiers should be ignored
+	
+	The QSettings object is assumed to be initialized properly and to
+	point to a correct location.
+	
+	\note Previous content is not discarded
+*/
+void QFormatScheme::load(QSettings& s, bool ignoreNewIds)
+{
+	QString version = s.value("version").toString();
+	
+	if ( version < QFORMAT_VERSION )
+	{
+		qWarning("Format encoding version mismatch : [found]%s != [expected]%s",
+				qPrintable(version),
+				QFORMAT_VERSION);
+		
+		return;
+	}
+	
+	s.beginGroup("data");
+	
+	QStringList l = s.childGroups();
+	
+	foreach ( QString id, l )
+	{
+		if ( ignoreNewIds && !m_formatKeys.contains(id) )
+			continue;
+		
+		s.beginGroup(id);
+		
+		QFormat fmt;
+		QStringList fields = s.childKeys();
+		
+		foreach ( QString field, fields )
+		{
+			QString value = s.value(field).toString();
+			
+			if ( field == "bold" )
+				fmt.weight = bool_cast(value) ? QFont::Bold : QFont::Normal;
+			else if ( field == "italic" )
+				fmt.italic = bool_cast(value);
+			else if ( field == "overline" )
+				fmt.overline = bool_cast(value);
+			else if ( field == "underline" )
+				fmt.underline = bool_cast(value);
+			else if ( field == "strikeout" )
+				fmt.strikeout = bool_cast(value);
+			else if ( field == "waveUnderline" )
+				fmt.waveUnderline = bool_cast(value);
+			else if ( field == "color" || field == "foreground" )
+				fmt.foreground = QColor(value);
+			else if ( field == "background" )
+				fmt.background = QColor(value);
+			else if ( field == "linescolor" )
+				fmt.linescolor = QColor(value);
+			
+		}
+		
+		setFormat(id, fmt);
+		s.endGroup();
+	}
+	
+	s.endGroup();
+}
+
+/*!
+	\overload
+*/
+void QFormatScheme::save(QSettings& s) const
+{
+	s.setValue("version", QFORMAT_VERSION);
+	
+	s.beginGroup("data");
+	
+	for ( int i = 1; i < m_formatKeys.count(); i++ )
+	{
+		s.beginGroup(m_formatKeys.at(i));
+		
+		const QFormat& fmt = m_formatValues.at(i);
+		
+		s.setValue("bold", (fmt.weight == QFont::Bold) ? "true" : "false");
+		s.setValue("italic", fmt.italic ? "true" : "false");
+		s.setValue("overline", fmt.overline ? "true" : "false");
+		s.setValue("underline", fmt.underline ? "true" : "false");
+		s.setValue("strikeout", fmt.strikeout ? "true" : "false");
+		s.setValue("waveUnderline", fmt.waveUnderline ? "true" : "false");
+		
+		if ( fmt.foreground.isValid() )
+		{
+			s.setValue("foreground", fmt.foreground.name());
+		}
+		
+		if ( fmt.background.isValid() )
+		{
+			s.setValue("background", fmt.background.name());
+		}
+		
+		if ( fmt.linescolor.isValid() )
+		{
+			s.setValue("linescolor", fmt.linescolor.name());
+		}
+		
+		s.endGroup();
+	}
+	
+	s.endGroup();
 }
 
 /*!

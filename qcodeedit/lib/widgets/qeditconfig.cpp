@@ -113,16 +113,22 @@ void QEditConfig::apply()
 	else
 		QEditor::setDefaultCodec(cbEncoding->currentText().toLatin1(), QEditor::UpdateAll);
 	
-	int flags = 0;
+	int flags = QEditor::defaultFlags();
 	
 	if ( chkReplaceTabs->isChecked() )
 		flags |= QEditor::ReplaceTabs;
+	else
+		flags &= ~QEditor::ReplaceTabs;
 	
 	if ( chkAutoRemoveTrailingWhitespace->isChecked() )
 		flags |= QEditor::RemoveTrailing;
+	else
+		flags &= ~QEditor::RemoveTrailing;
 	
 	if ( chkPreserveTrailingIndent->isChecked() )
 		flags |= QEditor::PreserveTrailingIndent;
+	else
+		flags &= ~QEditor::PreserveTrailingIndent;
 	
 	QEditor::setDefaultFlags(flags);
 }

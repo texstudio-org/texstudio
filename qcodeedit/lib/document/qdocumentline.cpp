@@ -383,6 +383,15 @@ int QDocumentLine::xToCursor(int xpos) const
 }
 
 /*!
+	\return The wrapped line (i.e "subline") to which a given cursor position resides
+	\param cpos cursor position, as a text column
+*/
+int QDocumentLine::wrappedLineForCursor(int cpos) const
+{
+	return m_handle ? m_handle->wrappedLineForCursor(cpos) : -1;
+}
+
+/*!
 	\brief Converts a document offset (viewport) to a cursor position (character / text column)
 	
 	The (x, y) coordinates given by this function are relative to the absolute

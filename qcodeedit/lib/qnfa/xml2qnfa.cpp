@@ -72,17 +72,16 @@ int pid(const QString& s, QHash<QString, int>& pids)
 	if ( pids.contains(s) )
 		return pids.value(s);
 	
-	int id = 0x0100 * (pids.count() + 1);
+	int id = (pids.count() + 1) << 12;
 	
 	pids[s] = id;
 	
 	return id;
 }
 
-int action(QDomElement c, QFormatScheme *f, QHash<QString, int>& pids)
+int action(QDomElement c, QFormatScheme *f, QHash<QString, int>& pids, int fid = 0)
 {
-	int fid = 0;
-	QString paren, spid, spt, sfid, indent, fold;
+	QString paren, spid, spt, sfid;
 	
 	sfid = c.attribute("format");
 	
@@ -112,8 +111,14 @@ int action(QDomElement c, QFormatScheme *f, QHash<QString, int>& pids)
 					(spt == "open" ? QNFAAction::ParenOpen : QNFAAction::ParenClose) | pid(spid, pids));
 			*/
 			
-			fid |= (spt == "open" ? QNFAAction::ParenOpen : QNFAAction::ParenClose)
-				| QNFAAction::parenthesis(pid(spid, pids));
+			if ( spt == "open" )
+				fid |= QNFAAction::ParenOpen;
+			else if ( spt == "close" )
+				fid |= QNFAAction::ParenClose;
+			else if ( spt == "boundary" )
+				fid |= QNFAAction::ParenOpen | QNFAAction::ParenClose;
+
+			fid |= QNFAAction::parenthesis(pid(spid, pids));
 			
 			/*
 			qDebug("paren : [%s|%s] => 0x%x",
@@ -123,15 +128,15 @@ int action(QDomElement c, QFormatScheme *f, QHash<QString, int>& pids)
 		}
 	}
 	
-	indent = c.attribute("indent");
-	
-	if ( indent.count() && ((indent == "true") || (indent == "1")) )
+	if ( stringToBool(c.attribute("indent"), false) )
 		fid |= QNFAAction::Indent;
 	
-	fold = c.attribute("fold");
-	
-	if ( fold.count() && ((fold == "true") || (fold == "1")) )
+	if ( stringToBool(c.attribute("fold"), false) )
 		fid |= QNFAAction::Fold;
+	
+	// TODO : determine ambiguity automatically
+	if ( stringToBool(c.attribute("ambiguous"), false) )
+		fid |= QNFAAction::Ambiguous;
 	
 	return fid;
 }
@@ -267,7 +272,7 @@ void addToContext(	QNFA *cxt, QDomElement c, int fid,
 			else if ( role == "suffix" )
 				suffixes << value;
 			else
-				addToContext(cxt, cc, fid, f, pids, prefixes, suffixes, cs);
+				addToContext(cxt, cc, action(cc, f, pids, fid), f, pids, prefixes, suffixes, cs);
 		}
 		//qDebug("ending list");
 		
@@ -397,8 +402,8 @@ void addToContext(	QNFA *cxt, QDomElement c, int fid,
 			
 			if ( trans )
 			{
+				QNFADefinition::shareEmbedRequests(cxt, cstart, cstart->out.branch->count());
 				embed(cxt, cstart, cstart->out.branch->count());
-				QNFADefinition::shareEmbedRequests(cxt, cstart);
 			}
 			
 			foreach ( start, lStart )
