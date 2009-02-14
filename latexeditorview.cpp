@@ -17,7 +17,7 @@
 #include <QMessageBox>
 #include "qdocumentline.h"
 #include "qdocumentcommand.h"
-
+ 
 #include "qcodecompletionengine.h"
 #include "qlinemarksinfocenter.h"
 #include "qformatfactory.h"
@@ -44,7 +44,7 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
         int tccFormat=QDocument::formatFactory()->id("temporaryCodeCompletion");
         if (editor->cursor().line().hasOverlay(tccFormat) || editor->cursor().line().next().hasOverlay(tccFormat) || editor->cursor().line().previous().hasOverlay(tccFormat)) {
             int cn=editor->cursor().columnNumber();
-            int an=editor->cursor().anchorColumn();
+            int an=editor->cursor().anchorColumnNumber();
             QFormatRange fr (0,0,0);
             QDocumentCursor selector=editor->cursor();
             if (event->key()==Qt::Key_Tab) {
@@ -91,7 +91,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
         else cursor=editor->cursor();
         if (edView && cursor.isValid() && cursor.line().isValid())  {
             QFormatRange fr;
-            if (cursor.hasSelection()) fr= cursor.line().getOverlayAt((cursor.columnNumber()+cursor.anchorColumn()) / 2,LatexEditorView::speller->spellcheckErrorFormat);
+            if (cursor.hasSelection()) fr= cursor.line().getOverlayAt((cursor.columnNumber()+cursor.anchorColumnNumber()) / 2,LatexEditorView::speller->spellcheckErrorFormat);
             else fr = cursor.line().getOverlayAt(cursor.columnNumber(),LatexEditorView::speller->spellcheckErrorFormat);
             if (fr.length>0 && fr.format==LatexEditorView::speller->spellcheckErrorFormat) {
                 QString word=cursor.line().text().mid(fr.offset,fr.length);

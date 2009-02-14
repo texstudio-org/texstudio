@@ -109,7 +109,8 @@ class QNFANotifier : public QNFAMatchHandler
 				
 				if ( action & QNFAAction::ParenOpen )
 					par.role |= QParenthesis::Open;
-				else if ( action & QNFAAction::ParenClose )
+				
+				if ( action & QNFAAction::ParenClose )
 					par.role |= QParenthesis::Close;
 				
 				if ( action & QNFAAction::MatchParen )
@@ -984,48 +985,53 @@ void QNFADefinition::match(QDocumentCursor& c)
 	
 	//qDebug("matching on line %i (fid is %i)", c.lineNumber(), fid);
 	
+	
 	foreach ( p, m_parens )
 	{
 		if ( (pos != p.offset) && (pos != (p.offset + p.length)) )
 			continue;
 		
-		bool ok = false;
-		int line = c.lineNumber(),
-			beg = -1,
-			end = -1,
-			beglen = 0,
-			endlen = 0;
+		if ( !(p.role & QParenthesis::Match) )
+			continue;
 		
-		if (
-				(p.role & QParenthesis::Open)
-			&&
-				(p.role & QParenthesis::Match)
-			)
+		PMatch m;
+		m.line[0] = c.lineNumber();
+		m.column[0] = p.offset;
+		m.length[0] = p.length;
+		
+		if ( (p.role & QParenthesis::Open) && (p.role & QParenthesis::Close) )
 		{
-			endlen = matchOpen(d, line, p, end, &ok);
-			beg = p.offset;
-			beglen = p.length;
+			matchOpen(d, m);
 			
-			if ( endlen )
+			if ( m.type == PMatch::Match )
 			{
-				d->addMatch(c.lineNumber(), beg, beglen, ok ? matchFID : mismatchFID);
-				d->addMatch(line, end, endlen, ok ? matchFID : mismatchFID);
+				d->addMatch(m.line[0], m.column[0], m.length[0], matchFID);
+				d->addMatch(m.line[1], m.column[1], m.length[1], matchFID);
 			}
-		} else if (
-						(p.role & QParenthesis::Close)
-					&&
-						(p.role & QParenthesis::Match)
-					)
+			
+			m.line[0] = c.lineNumber();
+			m.column[0] = p.offset;
+			m.length[0] = p.length;
+
+			matchClose(d, m);
+			
+			if ( m.type == PMatch::Match )
+			{
+				d->addMatch(m.line[0], m.column[0], m.length[0], matchFID);
+				d->addMatch(m.line[1], m.column[1], m.length[1], matchFID);
+			}
+			
+			continue;
+		} else if ( p.role & QParenthesis::Open ) {
+			matchOpen(d, m);
+		} else if ( p.role & QParenthesis::Close ) {
+			matchClose(d, m);
+		}
+		
+		if ( m.type != PMatch::Invalid )
 		{
-			beglen = matchClose(d, line, p, beg, &ok);
-			end = p.offset;
-			endlen = p.length;
-			
-			if ( beglen )
-			{
-				d->addMatch(line, beg, beglen, ok ? matchFID : mismatchFID);
-				d->addMatch(c.lineNumber(), end, endlen, ok ? matchFID : mismatchFID);
-			}
+			d->addMatch(m.line[0], m.column[0], m.length[0], m.type == PMatch::Match ? matchFID : mismatchFID);
+			d->addMatch(m.line[1], m.column[1], m.length[1], m.type == PMatch::Match ? matchFID : mismatchFID);
 		}
 	}
 	
@@ -1033,13 +1039,15 @@ void QNFADefinition::match(QDocumentCursor& c)
 	d->flushMatches(matchFID);
 }
 
-int QNFADefinition::matchOpen(QDocument *d, int& line, QParenthesis& p, int& end, bool *ok)
+void QNFADefinition::matchOpen(QDocument *d, PMatch& m)
 {
-	int pos = p.offset;
+	int line = m.line[0];
+	int pos = m.column[0];
 	QVector<QParenthesis> m_parens = d->line(line).parentheses();
 	
 	bool bMatch = false;
 	QParenthesis par;
+	QStack<int> lines;
 	QStack<QParenthesis> parens;
 	
 	forever
@@ -1049,8 +1057,63 @@ int QNFADefinition::matchOpen(QDocument *d, int& line, QParenthesis& p, int& end
 			if ( par.offset < pos )
 				continue;
 			
-			if ( par.role & QParenthesis::Open )
+			if ( (par.role & QParenthesis::Open) && (par.role & QParenthesis::Close) )
 			{
+				bool bInsert = true;
+
+				if (  parens.count() )
+				{
+					if ( ::match(par, parens.top()) )
+					{
+						//qDebug("submatch at %i", line);
+						parens.pop();
+						lines.pop();
+						
+						if ( parens.isEmpty() )
+						{
+							bMatch = true;
+							//qDebug("match at %i", line);
+							m.type = PMatch::Match;
+							
+							break;
+						}
+					} else {
+						bInsert = false;
+
+						do
+						{
+							QParenthesis tp = parens.top();
+							
+							if ( (tp.role & QParenthesis::Open) && (tp.role & QParenthesis::Close) )
+							{
+								if ( par.id < tp.id )
+								{
+									parens.pop();
+								} else {
+									break;
+								}
+							} else {
+								break;
+							}
+							
+						} while ( parens.count() );
+
+						if ( parens.isEmpty() )
+						{
+							bMatch = true;
+							m.type = PMatch::Mismatch;
+							break;
+						}
+					}
+				}
+				
+				if ( bInsert )
+				{
+					parens.push(par);
+					lines.push(line);
+				}
+			} else if ( par.role & QParenthesis::Open ) {
+				lines.push(line);
 				parens.push(par);
 			} else if ( par.role & QParenthesis::Close ) {
 				if ( (bMatch = ::match(parens.top(), par)) )
@@ -1059,20 +1122,24 @@ int QNFADefinition::matchOpen(QDocument *d, int& line, QParenthesis& p, int& end
 					
 					if ( bMatch )
 					{
-						if ( ok )
-							*ok = true;
+						m.type = PMatch::Match;
 						
 						break;
-					} else if ( parens.count() )
+					} else if ( parens.count() ) {
 						parens.pop();
-					else
+						lines.pop();
+					} else
 						qWarning("bad paren nesting...");
 				} else {
 					bMatch = true;
-					p = parens.top();
 					
-					if ( ok )
-						*ok = false;
+					QParenthesis p = parens.pop();
+					
+					m.line[0] = lines.pop();
+					m.column[0] = p.offset;
+					m.length[0] = p.length;
+					
+					m.type = PMatch::Mismatch;
 					
 					break;
 				}
@@ -1088,23 +1155,28 @@ int QNFADefinition::matchOpen(QDocument *d, int& line, QParenthesis& p, int& end
 		QDocumentLine b = d->line(line);
 		
 		if ( !b.isValid() )
-			return 0;
+		{
+			m.type = PMatch::Invalid;
+			return;
+		}
 		
 		m_parens = b.parentheses();
 	}
 	
-	end = par.offset;
-	
-	return par.length;
+	m.line[1] = line;
+	m.column[1] = par.offset;
+	m.length[1] = par.length;
 }
 
-int QNFADefinition::matchClose(QDocument *d, int& line, QParenthesis& p, int& beg, bool *ok)
+void QNFADefinition::matchClose(QDocument *d, PMatch& m)
 {
-	int pos = p.offset;
+	int line = m.line[0];
+	int pos = m.column[0];
 	QVector<QParenthesis> m_parens = d->line(line).parentheses();
 	
-	QParenthesis par;
 	bool bMatch = false;
+	QParenthesis par;
+	QStack<int> lines;
 	QStack<QParenthesis> parens;
 	
 	forever
@@ -1116,30 +1188,88 @@ int QNFADefinition::matchClose(QDocument *d, int& line, QParenthesis& p, int& be
 			if ( par.offset > pos )
 				continue;
 			
-			if ( par.role & QParenthesis::Close )
+			if ( (par.role & QParenthesis::Open) && (par.role & QParenthesis::Close) )
 			{
-				parens.push(par);
-			} else if ( par.role & QParenthesis::Open ) {
-				if ( (bMatch = ::match(par, parens.top())) )
+				bool bInsert = true;
+
+				if (  parens.count() )
 				{
-					bMatch &= parens.count() == 1;
+					if ( ::match(par, parens.top()) )
+					{
+						//qDebug("submatch at %i", line);
+						parens.pop();
+						lines.pop();
+						
+						if ( parens.isEmpty() )
+						{
+							//qDebug("match at %i", line);
+							bMatch = true;
+							m.type = PMatch::Match;
+							
+							break;
+						}
+					} else {
+						bInsert = false;
+						do
+						{
+							QParenthesis tp = parens.top();
+							
+							if ( (tp.role & QParenthesis::Open) && (tp.role & QParenthesis::Close) )
+							{
+								if ( par.id < tp.id )
+								{
+									parens.pop();
+								} else {
+									break;
+								}
+							} else {
+								break;
+							}
+							
+						} while ( parens.count() );
+						
+						if ( parens.isEmpty() )
+						{
+							bMatch = true;
+							m.type = PMatch::Mismatch;
+							break;
+						}
+					}
+				}
+				
+				if ( bInsert )
+				{
+					parens.push(par);
+					lines.push(line);
+				}
+			} else if ( par.role & QParenthesis::Close ) {
+				parens.push(par);
+				lines.push(line);
+			} else if ( par.role & QParenthesis::Open ) {
+				if ( ::match(par, parens.top()) )
+				{
+					bMatch = parens.count() == 1;
 					
 					if ( bMatch )
 					{
-						if ( ok )
-							*ok = true;
+						m.type = PMatch::Match;
 						
 						break;
-					} else if ( parens.count() )
+					} else if ( parens.count() ) {
 						parens.pop();
-					else
+						lines.pop();
+					} else
 						qWarning("bad paren nesting...");
 				} else {
 					bMatch = true;
-					p = parens.top();
 					
-					if ( ok )
-						*ok = false;
+					QParenthesis p = parens.pop();
+					
+					m.line[0] = lines.pop();
+					m.column[0] = p.offset;
+					m.length[0] = p.length;
+					
+					m.type = PMatch::Mismatch;
 					
 					break;
 				}
@@ -1155,14 +1285,17 @@ int QNFADefinition::matchClose(QDocument *d, int& line, QParenthesis& p, int& be
 		pos = b.length();
 		
 		if ( !b.isValid() )
-			return 0;
+		{
+			m.type = PMatch::Invalid;
+			return;
+		}
 		
 		m_parens = b.parentheses();
 	}
 	
-	beg = par.offset;
-	
-	return par.length;
+	m.line[1] = line;
+	m.column[1] = par.offset;
+	m.length[1] = par.length;
 }
 
 /*!
@@ -1188,23 +1321,19 @@ QString QNFADefinition::indent(const QDocumentCursor& c)
 	bool open = false;
 	QString spaces = s.left(pos);
 	
-	//qDebug("spaces : \"%s\"", qPrintable(spaces));
-	
 	foreach ( QParenthesis p, b.parentheses() )
 	{
-		if  ( p.offset >= max )
-		{
+		if ( p.offset >= max )
 			break;
-		} else if ( !(p.role & QParenthesis::Indent) ) {
-			open = true;
-		} else if ( p.role & QParenthesis::Close ) {
-			
-			if ( open )
-				--indent;
-			
-		} else { //if ( p.role & QParenthesis::Open ) {
-			open = true;
+		
+		if ( !(p.role & QParenthesis::Indent) )
+			continue;
+		
+		if ( p.role & QParenthesis::Open )
+		{
 			++indent;
+		} else if ( p.role & QParenthesis::Close ) {
+			--indent;
 		}
 	}
 	
@@ -1278,6 +1407,71 @@ bool QNFADefinition::unindent (const QDocumentCursor& c, QKeyEvent *k)
 	
 }
 
+int QNFADefinition::findBlockEnd(QDocument *d, int line, bool *open)
+{
+	QDocumentLine b = d->line(line);
+	
+	if ( !b.isValid() )
+		return -1;
+	
+	QVector<QParenthesis> vp, lp = b.parentheses();
+	
+	while ( lp.count() )
+	{
+		QParenthesis p = lp.first();
+		lp.pop_front();
+		
+		if ( !(p.role & QParenthesis::Fold) )
+			continue;
+		
+		if ( p.role & QParenthesis::Close && vp.count() )
+			vp.pop_back();
+
+		if ( p.role & QParenthesis::Open )
+			vp << p;
+		
+	}
+	
+	if ( vp.count() )
+	{
+		QParenthesis p = vp.first();
+		
+		PMatch m;
+		m.line[0] = line;
+		m.column[0] = p.offset;
+		m.length[0] = p.length;
+		
+		matchOpen(d, m);
+		
+		if (
+				(m.type == PMatch::Match)
+			||
+				(
+					(m.type == PMatch::Mismatch)
+				&&
+					(m.line[0] == line)
+				&&
+					(m.column[0] == p.offset)
+				)
+			)
+		{
+			if ( open )
+			{
+				int flags = blockFlags(d, m.line[1], 0);
+
+				*open = QCE_FOLD_OPEN_COUNT(flags) | (m.type == PMatch::Mismatch);
+			}
+
+			return m.line[1];
+		} else if ( m.type == PMatch::Invalid ) {
+			return d->lines() - 1;
+		}
+	}
+
+	return -1;
+}
+
+
 /*!
 	\brief Expand a collapsed block at a given line
 */
@@ -1288,58 +1482,57 @@ void QNFADefinition::expand(QDocument *d, int line)
 	if ( !b.isValid() || !b.hasFlag(QDocumentLine::CollapsedBlockStart) )
 		return;
 	
+	bool open = false;
+	int end = findBlockEnd(d, line, &open);
+	
 	int depth = 1,
-		count = 1; //,
-	//	indent = b.firstChar() / m_indentGuess.value(d, 1);
+		count = end - line;
 	
-	QDocumentLine l = d->line(line + count);
+	if ( open )
+		--count;
 	
-	while ( l.isValid() )
+	if ( count <= 0 )
+		return;
+	
+	b.setFlag(QDocumentLine::CollapsedBlockStart, false);
+	
+	bool shared = false;
+	int i = line + 1;
+	
+	while ( i < end )
 	{
-		bool unhide = depth == 1;
-		
+		QDocumentLine l = d->line(i);
+		l.setFlag(QDocumentLine::Hidden, false);
+		//qDebug("+%i", i);
 		if ( l.hasFlag(QDocumentLine::CollapsedBlockStart) )
 		{
-			++depth;
-		} else if ( l.hasFlag(QDocumentLine::CollapsedBlockEnd) ) {
-			int flags = blockFlags(d, line + count, depth + 1); //indent);
-			int doff = qMax(1, flags & DataMask);
+			bool bopen = false;
+			int bend = findBlockEnd(d, i, &bopen);
 			
-			if ( depth <= doff )
-				l.setFlag(QDocumentLine::CollapsedBlockEnd, false);
+			i = bend;
+
+			if ( !bopen )
+				++i;
 			
-			if ( !l.hasFlag(QDocumentLine::Hidden) )
+			if ( bend == end )
 			{
-				--count;
-				break;
+				shared = true;
 			}
-			
-			depth -= doff;
-			
-			//qDebug("depth offset = %i > depth = %i", doff, depth);
+		} else {
+			++i;
 		}
-		
-		if ( unhide )
-		{
-			l.setFlag(QDocumentLine::Hidden, false);
-		}
-		
-		if ( depth <= 0 )
-			break;
-		
-		++count;
-		l = d->line(line + count);
 	}
 	
-	if ( !l.isValid() )
+	if ( !shared )
+		d->line(end).setFlag(QDocumentLine::CollapsedBlockEnd);
+	
+	if ( !open && !shared )
 	{
-		--count;
-		l = d->line(line + count);
-		l.setFlag(QDocumentLine::CollapsedBlockEnd, false);
+		//qDebug("+%i", end);
+		d->line(end).setFlag(QDocumentLine::Hidden, false);
 	}
 	
 	//qDebug("expanding %i lines from %i", count, line);
-	b.setFlag(QDocumentLine::CollapsedBlockStart, false);
 	d->impl()->showEvent(line, count);
 }
 
@@ -1355,92 +1548,42 @@ void QNFADefinition::collapse(QDocument *d, int line)
 	
 	//qDebug("collapse line %i", line);
 	
-	int count = 1,
+	bool open = false;
+	int end = findBlockEnd(d, line, &open);
+	
+	int count = end - line,
 		indent = 0;
 	
-	QVector<QParenthesis> vp, lp = b.parentheses();
+	if ( open )
+		--count;
 	
-	while ( lp.count() )
-	{
-		QParenthesis p = lp.first();
-		lp.pop_front();
-		
-		if ( !(p.role & QParenthesis::Fold) )
-			continue;
-		
-		if ( p.role & QParenthesis::Open )
-			vp << p;
-		else if ( vp.count() )
-			vp.pop_back();
-	}
+	if ( count <= 0 )
+		return;
 	
-	if ( vp.count() )
+	b.setFlag(QDocumentLine::CollapsedBlockStart);
+	
+	for ( int i = line + 1; i < end; ++i )
 	{
-		QParenthesis par;
-		QParenthesis p = vp.first();
-		int depth = vp.count(), cd = 0;
-		QDocumentLine block = d->line(line + count);
-		
-		if ( !b.isValid() )
-			return;
-		
-		int state = 0;
-		
-		while ( block.isValid() )
+		if ( !d->line(i).hasFlag(QDocumentLine::Hidden) )
 		{
-			state = blockFlags(d, line + count, depth);
-			
-			if ( state & (Collapsible | Collapsed) )
-			{
-				if ( state & Closure && depth == 1 )
-				{
-					break;
-				}
-				
-				depth += state & DataMask;
-			} else if ( state & Closure ) {
-				depth -= state & DataMask;
-				
-				if ( depth <= 0 )
-				{
-					break;
-				}
-			}
-			
-			++count;
-			block = d->line(line + count);
-		}
-		
-		if ( !block.isValid() || (state & (Collapsible | Collapsed)) )
-		{
-			// fold to END for malformed blocks or syntax that allow it
-			
-			if ( count > 1 && (state & (Collapsible | Collapsed)) )
-				block.setFlag(QDocumentLine::CollapsedBlockEnd);
-			
-			--count;
-			block = d->line(line + count);
-		}
-		
-		if ( !count )
-			return;
-
-		b.setFlag(QDocumentLine::CollapsedBlockStart);
-		
-		for ( int i = line + 1; i <= line + count; ++i )
-		{
+			//qDebug("-%i", i);
 			d->line(i).setFlag(QDocumentLine::Hidden);
 		}
-		
-		block.setFlag(QDocumentLine::Hidden);
-		
-		if ( !(state & (Collapsible | Collapsed)) )
-			block.setFlag(QDocumentLine::CollapsedBlockEnd);
-		
-		//qDebug("collapsing %i lines from %i", count, line);
-		d->impl()->hideEvent(line, count);
-		return;
 	}
+	
+	d->line(end).setFlag(QDocumentLine::CollapsedBlockEnd);
+	
+	if ( !open )
+	{
+		if ( !d->line(end).hasFlag(QDocumentLine::Hidden) )
+		{
+			//qDebug("-%i", end);
+			d->line(end).setFlag(QDocumentLine::Hidden);
+		}
+	}
+	
+	//qDebug("collapsing %i lines from %i", count, line);
+	d->impl()->hideEvent(line, count);
 	
 	#if 0
 	if ( !m_indentFold )
@@ -1497,35 +1640,41 @@ int QNFADefinition::blockFlags(QDocument *d, int line, int depth) const
 	if ( !b.isValid() )
 		return None;
 	
-	short open = 0;
 	int ret = None;
+	short open = 0, close = 0;
 	
 	foreach ( QParenthesis p, b.parentheses() )
 	{
 		if ( !(p.role & QParenthesis::Fold) )
 			continue;
 		
+		if ( p.role & QParenthesis::Close )
+		{
+			if ( open )
+				--open;
+			else
+				++close;
+			
+		}
+		
 		if ( p.role & QParenthesis::Open )
 		{
 			++open;
-		} else {
-			if ( !open )
-				ret |= Closure;
-			
-			--open;
 		}
 	}
 	
 	if ( b.hasFlag(QDocumentLine::CollapsedBlockStart) )
-		ret |= Collapsed | open;
-	else if ( open > 0 )
-		ret |= Collapsible | open;
-	else if ( open < 0 )
-		ret |= Closure | DataSign | (-open);
+		ret = Collapsed;
+	
+	if ( open )
+		ret |= Collapsible;
+	
+	if ( close )
+		ret |= Closure;
 	
 	//qDebug("%i : ret : %i (%i, %i)", line, ret, ret & 0xffff0000, short(((short)0) | (ret & 0xffff)));
 	
-	return ret;
+	return QCE_FOLD_FLAGS(ret, open, close);
 }
 
 void QNFADefinition::addContext(const QString& id, QNFA *nfa)
@@ -1591,7 +1740,7 @@ void QNFADefinition::addEmbedRequest(const QString& cxt, QNFA *dest)
 	}
 }
 
-void QNFADefinition::shareEmbedRequests(QNFA *src, QNFA *dest)
+void QNFADefinition::shareEmbedRequests(QNFA *src, QNFA *dest, int offset)
 {
 	QHash<QString, EmbedRequestList>::iterator it = m_pendingEmbeds.begin();
 	
@@ -1601,8 +1750,8 @@ void QNFADefinition::shareEmbedRequests(QNFA *src, QNFA *dest)
 		{
 			if ( request.target == src )
 			{
-				it->append(EmbedRequest(dest, dest->out.branch->count()));
-				break;
+				//qDebug("sharing one embed request between 0x%x and 0x%x at %i + %i", src, dest, offset, request.index);
+				it->append(EmbedRequest(dest, request.index + offset));
 			}
 		}
 		

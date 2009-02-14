@@ -87,6 +87,8 @@ class QCE_EXPORT QDocumentLineHandle
 		int xToCursor(int x) const;
 		int cursorToX(int i) const;
 		
+		int wrappedLineForCursor(int cpos) const;
+		
 		int documentOffsetToCursor(int x, int y) const;
 		void cursorToDocumentOffset(int cpos, int& x, int& y) const;
 		
@@ -196,15 +198,23 @@ class QCE_EXPORT QDocumentCursorHandle
 		void setAutoUpdated(bool y);
 		
 		QDocumentLine line() const;
+		QDocumentLine anchorLine() const;
 		
 		int lineNumber() const;
-		int anchorColumn() const;
-		int visualColumn() const;
 		int columnNumber() const;
+		
+		int anchorLineNumber() const;
+		int anchorColumnNumber() const;
+		
+		int visualColumnNumber() const;
+		
 		void setColumnNumber(int c, QDocumentCursor::MoveMode m =
 									QDocumentCursor::MoveAnchor);
 		
 		QPoint documentPosition() const;
+		QPoint anchorDocumentPosition() const;
+		
+		QPolygon documentRegion() const;
 		
 		int position() const;
 		
@@ -234,7 +244,13 @@ class QCE_EXPORT QDocumentCursorHandle
 		void select(QDocumentCursor::SelectionType t);
 		void setSelectionBoundary(const QDocumentCursor& c);
 		
-		bool isWithinSelection(const QDocumentCursor& c);
+		bool isWithinSelection(const QDocumentCursor& c) const;
+		QDocumentCursor intersect(const QDocumentCursor& c) const;
+		
+		void substractBoundaries(int lbeg, int cbeg, int lend, int cend);
+		void boundaries(int& begline, int& begcol, int& endline, int& endcol) const;
+		void intersectBoundaries(int& lbeg, int& cbeg, int& lend, int& cend) const;
+		void intersectBoundaries(QDocumentCursorHandle *h, int& lbeg, int& cbeg, int& lend, int& cend) const;
 		
 		void beginEditBlock();
 		void endEditBlock();

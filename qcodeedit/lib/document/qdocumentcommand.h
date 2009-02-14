@@ -71,6 +71,7 @@ class QCE_EXPORT QDocumentCommand : public QUndoCommand
 		static bool isAutoUpdated(const QDocumentCursorHandle *h);
 		static void enableAutoUpdate(QDocumentCursorHandle *h);
 		static void disableAutoUpdate(QDocumentCursorHandle *h);
+		static void discardHandlesFromDocument(QDocument *d);
 		
 	protected:
 		bool m_state, m_first;
@@ -87,6 +88,9 @@ class QCE_EXPORT QDocumentCommand : public QUndoCommand
 		
 		void insertLines(int after, const QList<QDocumentLineHandle*>& l);
 		void removeLines(int after, int n);
+		
+		void updateCursorsOnInsertion(int line, int column, int prefixLength, int numLines, int suffixLength);
+		void updateCursorsOnDeletion(int line, int column, int prefixLength, int numLines, int suffixLength);
 		
 	private:
 		bool m_silent;
@@ -136,7 +140,7 @@ class QCE_EXPORT QDocumentEraseCommand : public QDocumentCommand
 		TextCommandData m_data;
 };
 
-class QDocumentCommandBlock : public QDocumentCommand
+class QCE_EXPORT QDocumentCommandBlock : public QDocumentCommand
 {
 	public:
 		QDocumentCommandBlock(QDocument *d);
@@ -148,8 +152,8 @@ class QDocumentCommandBlock : public QDocumentCommand
 		void setWeakLock(bool l);
 		bool isWeakLocked() const;
 		
-		void addCommand(QDocumentCommand *c);
-		void removeCommand(QDocumentCommand *c);
+		virtual void addCommand(QDocumentCommand *c);
+		virtual void removeCommand(QDocumentCommand *c);
 		
 	private:
 		bool m_weakLocked;

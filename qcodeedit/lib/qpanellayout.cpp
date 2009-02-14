@@ -26,6 +26,10 @@
 #include <QWidget>
 #include <QScrollBar>
 
+#ifdef Q_WS_WIN
+// panel position fix required on some systems to work around a bug in QAbstractScrollArea
+#define _PANEL_POSITION_FIX_
+#endif
 
 /*!
 	\class QPanelLayout
@@ -269,7 +273,7 @@ QLayoutItem* QPanelLayout::takeAt(int idx)
 void QPanelLayout::setGeometry(const QRect &r)
 {
 	//qDebug("laying out %i panels", count());
-	#if QT_VERSION <= 0x040400
+	#ifdef _PANEL_POSITION_FIX_
 	QScrollBar *vb = m_parent->verticalScrollBar(),
 			*hb = m_parent->horizontalScrollBar();
 	

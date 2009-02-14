@@ -59,7 +59,7 @@ class light_vector
 			size += n;
 			m_data = !m_data ? (T*)malloc(size * sizeof(T)) : (T*)realloc(m_data, size * sizeof(T));
 			
-			for ( int i = size - 1; (i > pos) && ((i - (int)n) >= 0); --i )
+			for ( int i = size - 1; (i > pos) && (i >= (int)n); --i )
 				m_data[i] = m_data[i - n];
 			
 			//for ( int i = pos; (i < (pos + n)) && ((i + n) < size); ++i )
@@ -74,7 +74,7 @@ class light_vector
 		
 		void insert(int i, const T& v)
 		{
-			i = qBound(0, i, size - 1);
+			i = qBound(0, i, (int)size);
 			
 			alloc(i, 1);
 			m_data[i] = v;

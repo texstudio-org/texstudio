@@ -48,6 +48,36 @@
 	case, they delimit a selection. The first position set (before
 	selecting) is referred to as the "anchor" and the other (if it
 	is different from the anchor) is the actual cursor position.
+	
+	When the cursor does not have a selection, querying informations about
+	the anchor has the same result as querying informations about the cursor
+	position.
+	
+	Informations you can get about both the anchor and the posiotion :
+	<ul>
+	<li>the line number : the logical line to which the cursor position points inside the document
+	<li>the column number : the logical text column to which the cursor position points to, inside the pointed line.
+	<li>the wrapped line offset : when a cursor resides on a wrapped line, this indicates in which part of
+	the wrapped line it does
+	<li>the document position : document (x, y) coordinates corresponding to the place the cursor is drawn
+	</ul>
+	
+	The visual line to which a given cursor resides can be obtained as follows :
+	
+	\code
+	int visual_line = cursor.document()->visualLine(cursor.lineNumber()) + cursor.wrappedLineOffset();
+	\endcode
+	
+	\note The line and column numbers passed to/returned by a cursor method
+	always start at zero.
+
+	\note Quick overview of the various coordinate systems :
+	<ul>
+		<li>document coordinates aka viewport coordinates : (x, y) coords, in pixels, origin at the top left corner of
+		the rectangle occupied by the very first line of the document
+		<li>text coordinates : (line, column) in logical units (number of lines, number of characters)
+		<li>visual text coordinates : (line, column) in logical units but with a different mapping
+	</ul>
 */
 
 QDocumentCursor::QDocumentCursor(QDocument *doc)
@@ -198,7 +228,7 @@ bool QDocumentCursor::operator <= (const QDocumentCursor& c) const
 	if ( !m_handle || !c.m_handle )
 		return false;
 	
-	return m_handle->gt(c.m_handle) || m_handle->eq(c.m_handle);
+	return m_handle->lt(c.m_handle) || m_handle->eq(c.m_handle);
 }
 
 /*!
@@ -211,7 +241,7 @@ bool QDocumentCursor::operator >= (const QDocumentCursor& c) const
 	if ( !m_handle || !c.m_handle )
 		return false;
 	
-	return m_handle->lt(c.m_handle) || m_handle->eq(c.m_handle);
+	return m_handle->gt(c.m_handle) || m_handle->eq(c.m_handle);
 }
 
 /*!
@@ -219,7 +249,7 @@ bool QDocumentCursor::operator >= (const QDocumentCursor& c) const
 */
 bool QDocumentCursor::isNull() const
 {
-	return !m_handle || !m_handle->document();
+	return !m_handle || !m_handle->document() || !line().isValid();
 }
 
 /*!
@@ -227,7 +257,7 @@ bool QDocumentCursor::isNull() const
 */
 bool QDocumentCursor::isValid() const
 {
-	return m_handle && m_handle->document();
+	return m_handle && m_handle->document() && line().isValid();
 }
 
 /*!
@@ -303,9 +333,9 @@ int QDocumentCursor::position() const
 /*!
 	\return the text column of the anchor
 */
-int QDocumentCursor::anchorColumn() const
+int QDocumentCursor::anchorColumnNumber() const
 {
-	return m_handle ? m_handle->anchorColumn() : -1;
+	return m_handle ? m_handle->anchorColumnNumber() : -1;
 }
 
 /*!
@@ -313,9 +343,9 @@ int QDocumentCursor::anchorColumn() const
 	
 	\note this may only differ from columnNumber() when there are tabs on the line
 */
-int QDocumentCursor::visualColumn() const
+int QDocumentCursor::visualColumnNumber() const
 {
-	return m_handle ? m_handle->visualColumn() : -1;
+	return m_handle ? m_handle->visualColumnNumber() : -1;
 }
 
 /*!
@@ -346,6 +376,32 @@ int QDocumentCursor::lineNumber() const
 }
 
 /*!
+	\return The line number to which the cursor points
+*/
+int QDocumentCursor::anchorLineNumber() const
+{
+	return m_handle ? m_handle->anchorLineNumber() : -1;
+}
+
+/*!
+	\return The wrapped line on which the cursor resides
+	
+	Wrapped line are "sublines" of logical lines.
+*/
+int QDocumentCursor::wrappedLineOffset() const
+{
+	return line().wrappedLineForCursor(columnNumber());
+}
+
+/*!
+	\return The line number on which the anchor resides
+*/
+int QDocumentCursor::anchorWrappedLineOffset() const
+{
+	return anchorLine().wrappedLineForCursor(anchorColumnNumber());
+}
+
+/*!
 	\return the document position at which the cursor is
 	
 	Document position and viewport position are two terms used interchangeably.
@@ -358,11 +414,32 @@ QPoint QDocumentCursor::documentPosition() const
 }
 
 /*!
-	\return The line object at which this cursor points
+	\return the document position of the anchor
+*/
+QPoint QDocumentCursor::anchorDocumentPosition() const
+{
+	return m_handle ? m_handle->anchorDocumentPosition() : QPoint();
+}
+
+QPolygon QDocumentCursor::documentRegion() const
+{
+	return m_handle ? m_handle->documentRegion() : QPolygon();
+}
+
+/*!
+	\return The line object on which the cursor resides
 */
 QDocumentLine QDocumentCursor::line() const
 {
 	return m_handle ? m_handle->line() : QDocumentLine();
+}
+
+/*!
+	\return The line object on which the anchor resides
+*/
+QDocumentLine QDocumentCursor::anchorLine() const
+{
+	return m_handle ? m_handle->anchorLine() : QDocumentLine();
 }
 
 /*!
@@ -458,7 +535,7 @@ QChar QDocumentCursor::getPreviousChar() const
 
 
 /*!
-	\brief erase the whole line the cursor is on
+	\brief erase the whole line the cursor is on, newline included
 */
 void QDocumentCursor::eraseLine()
 {

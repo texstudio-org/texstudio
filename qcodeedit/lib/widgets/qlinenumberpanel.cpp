@@ -117,18 +117,21 @@ void QLineNumberPanel::paint(QPainter *p, QEditor *e)
 			0x21B3
 			0x2937
 	*/
+	
 	QFont f(font());
 	f.setWeight(QFont::Bold);
 	const QFontMetrics sfm(f);
+	
 	#ifndef WIN32
-        static const QChar wrappingArrow(0x2937);
-        const QFontMetrics specialSfm(sfm);
+	static const QChar wrappingArrow(0x2937);
+	const QFontMetrics specialSfm(sfm);
 	#else
-        static const QChar wrappingArrow('Ä');
-        QFont specialFont(font());
-        specialFont.setRawName("Wingdings");
-        const QFontMetrics specialSfm(specialFont);
+	static const QChar wrappingArrow('Ä');
+	QFont specialFont(font());
+	specialFont.setRawName("Wingdings");
+	const QFontMetrics specialSfm(specialFont);
 	#endif
+	
 	const int max = e->document()->lines();
 	const int panelWidth = sfm.width(QString::number(max)) + 5;
 	setFixedWidth(panelWidth);
@@ -161,13 +164,6 @@ void QLineNumberPanel::paint(QPainter *p, QEditor *e)
 		
 		if ( line.isHidden() )
 			continue;
-		
-		/*
-		int vl = d->impl()->visualLine(n);
-		int tl = d->impl()->textLine(vl);
-		
-		txt = QString::number(vl) + ":" + QString::number(tl);
-		*/
 		
 		bool draw = true;
 		

@@ -33,6 +33,10 @@ class QKeyEvent;
 class QDocument;
 class QDocumentCursor;
 
+#define QCE_FOLD_FLAGS(flags, open, close) ((flags) | (open & QLanguageDefinition::OpenMask) | ((close << 12) & QLanguageDefinition::CloseMask))
+#define QCE_FOLD_OPEN_COUNT(flags) ((flags) & QLanguageDefinition::OpenMask)
+#define QCE_FOLD_CLOSE_COUNT(flags) (((flags) & QLanguageDefinition::CloseMask) >> 12)
+
 class QCE_EXPORT QLanguageDefinition
 {
 	public:
@@ -40,12 +44,12 @@ class QCE_EXPORT QLanguageDefinition
 		enum CollapseFlag
 		{
 			None		= 0x00000000,		///< The line cannot be collapsed nor expanded
-			Collapsible	= 0x01000000,		///< The line is expanded and can thus be collapsed
-			Collapsed	= 0x02000000,		///< The line is collapsed and can thus be expanded
-			Closure		= 0x04000000,		///< The line is expanded and mark the end of a block
+			Collapsible	= 0x10000000,		///< The line is expanded and can thus be collapsed
+			Collapsed	= 0x20000000,		///< The line is collapsed and can thus be expanded
+			Closure		= 0x40000000,		///< The line is expanded and mark the end of a block
 			
-			DataSign	= 0x08000000,
-			DataMask	= 0x00ffffff
+			CloseMask	= 0x00fff000,		///< Number of actual closing fold mark
+			OpenMask	= 0x00000fff		///< Number of actual open fold mark
 		};
 		
 		Q_DECLARE_FLAGS(CollapseState, CollapseFlag);

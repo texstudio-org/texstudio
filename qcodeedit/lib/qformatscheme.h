@@ -34,7 +34,9 @@
 
 struct QFormat;
 class QString;
+class QSettings;
 class QStringList;
+class QDomElement;
 
 class QCE_EXPORT QFormatScheme : public QObject
 {
@@ -45,8 +47,16 @@ class QCE_EXPORT QFormatScheme : public QObject
 		QFormatScheme(const QString& f, QObject *p = 0);
 		virtual ~QFormatScheme();
 		
-		virtual void load(const QString& f);
-		virtual void save(const QString& f = QString());
+		void clear();
+		
+		virtual void load(const QString& filename);
+		virtual void save(const QString& filename = QString()) const;
+		
+		virtual void load(const QDomElement& doc, bool ignoreNewIds = false);
+		virtual void save(QDomElement& elem) const;
+		
+		virtual void load(QSettings& s, bool ignoreNewIds = false);
+		virtual void save(QSettings& s) const;
 		
 		int formatCount() const;
 		QStringList formats() const;
