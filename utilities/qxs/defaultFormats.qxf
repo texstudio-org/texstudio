@@ -36,6 +36,9 @@
         <waveUnderline>false</waveUnderline>
         <foreground>#808000</foreground>
     </format>
+    <format id="verbatim" >
+        <foreground>#008080</foreground>
+    </format>
     <format id="match" >
         <bold>true</bold>
         <italic>false</italic>

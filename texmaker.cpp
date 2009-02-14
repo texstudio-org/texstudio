@@ -264,15 +264,6 @@ setAcceptDrops(true);
     
     LatexEditorView::setSpeller(mainSpeller);
 
-    if (isExistingFileRealWritable(QCoreApplication::applicationDirPath()+"/texmakerxFormats.qxf")) 
-        m_formats = new QFormatFactory(QCoreApplication::applicationDirPath()+"/texmakerxFormats.qxf", this);
-    else {
-        QString formatFileName=configFileNameBase+"Formats.qxf";
-        
-        if (!QFileInfo(formatFileName).exists()) 
-            QFile::copy(findResourceFile("qxs/defaultFormats.qxf"), formatFileName);
-        m_formats = new QFormatFactory(formatFileName, this);
-    } 
 
         
     QDocument::setFormatFactory(m_formats);
@@ -2505,6 +2496,13 @@ for (int i=0; i <412 ; i++)
 
 
 config->endGroup();
+
+config->beginGroup("formats");
+m_formats = new QFormatFactory(":/qxs/defaultFormats.qxf", this); //load default formats from resource file
+m_formats->load(*config,true); //load customized formats
+config->endGroup();
+
+delete config;
 }
 
 void Texmaker::SaveSettings()
@@ -2688,6 +2686,11 @@ for (int i=0; i <412 ; i++)
 
 
 config->endGroup();
+
+config->beginGroup("formats");
+m_formats->save(*config); 
+config->endGroup();
+
 delete config;
 }
 

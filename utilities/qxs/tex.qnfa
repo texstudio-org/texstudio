@@ -1,6 +1,60 @@
 <!DOCTYPE QNFA>
 <QNFA language="(La-)Tex" extensions="tex" defaultLineMark="">
 	
+	<context id="verbatim" format="verbatim">
+		<start parenthesis="verbatim:open" fold="true" format="extra-keyword">\\begin{verbatim}</start>
+		<stop parenthesis="verbatim:close" fold="true" format="extra-keyword">\\end{verbatim}</stop>
+	</context>
+
+	<context id="verbatimS" format="verbatim">
+		<start parenthesis="verbatimS:open" fold="true" format="extra-keyword">\\begin{verbatim*}</start>
+		<stop parenthesis="verbatimS:close" fold="true" format="extra-keyword">\\end{verbatim*}</stop>
+	</context>
+
+  <context id="verb$" format="verbatim">
+		<start parenthesis="verb$:open" format="keyword">\\verb$</start>
+		<stop parenthesis="verb$:close" format="keyword">$</stop>
+	</context>
+  <context id="verb+" format="verbatim">
+		<start parenthesis="verb+:open" format="keyword">\\verb\+</start>
+		<stop parenthesis="verb+:close" format="keyword">\+</stop>
+	</context>
+  <context id="verb1" format="verbatim">
+		<start parenthesis="verb1:open" format="keyword">\\verb1</start>
+		<stop parenthesis="verb1:close" format="keyword">1</stop>
+	</context>
+  <context id="verb!" format="verbatim">
+		<start parenthesis="verb!:open" format="keyword">\\verb!</start>
+		<stop parenthesis="verb!:close" format="keyword">!</stop>
+	</context>
+  <context id="verb." format="verbatim">
+		<start parenthesis="verb.:open" format="keyword">\\verb\.</start>
+		<stop parenthesis="verb.:close" format="keyword">\.</stop>
+	</context>
+  <context id="verb@" format="verbatim">
+		<start parenthesis="verb@:open" format="keyword">\\verb@</start>
+		<stop parenthesis="verb@:close" format="keyword">@</stop>
+	</context>
+  <context id="verb#" format="verbatim">
+		<start parenthesis="verb#:open" format="keyword">\\verb#</start>
+		<stop parenthesis="verb#:close" format="keyword">#</stop>
+	</context>
+  <context id="verb|" format="verbatim">
+		<start parenthesis="verb|:open" format="keyword">\\verb\|</start>
+		<stop parenthesis="verb|:close" format="keyword">\|</stop>
+	</context>
+  <context id="verb/" format="verbatim">
+		<start parenthesis="verb/:open" format="keyword">\\verb/</start>
+		<stop parenthesis="verb/:close" format="keyword">/</stop>
+	</context>
+  <context id="verb\" format="verbatim">
+		<start parenthesis="verb\:open" format="keyword">\\verb\\</start>
+		<stop parenthesis="verb\:close" format="keyword">\\</stop>
+	</context>
+  <context id="verb_" format="verbatim">
+		<start parenthesis="verb_:open" format="keyword">\\verb_</start>
+		<stop parenthesis="verb_:close" format="keyword">_</stop>
+	</context>
   
 	<context id="comment/single" format="comment" stayOnLine="true" >
 		<start>%</start>
@@ -34,20 +88,19 @@
     <word id="keywords/single" format="math-keyword">\\[a-zA-Z]+</word>
   </context>
 
-	<list id="keywords/block" format="extra-keyword">
-		<prefix>\\</prefix>
-		<word>part</word>
-		<word>chapter</word>
-		<word>section</word>
-		<word>subsection</word>
-		<word>subsection*</word>
-		<word>paragraph</word>
-		<word>subparagraph</word>
-	</list>
-
 	<word parenthesis="block:open" fold="1" indent="1" format="extra-keyword">\\begin{[^}]*}</word>
 	<word parenthesis="block:close" fold="1" indent="1" format="extra-keyword" >\\end{[^}]*}</word>
+
+	<list id="keywords/block" format="extra-keyword">
+		<word parenthesis="part:boundary@nomatch" fold="true">\\part</word>
+		<word parenthesis="chapter:boundary@nomatch" fold="true">\\chapter</word>
+		<word parenthesis="section:boundary@nomatch" fold="true">\\section</word>
+		<word parenthesis="subsection:boundary@nomatch" fold="true">\\subsection</word>
+		<word parenthesis="paragraph:boundary@nomatch" fold="true" >\\paragraph</word>
+		<word parenthesis="subparagraph:boundary@nomatch" fold="true" >\\subparagraph</word>
+	</list>
 	
+  <word id="keywords/single" format="keyword">\\[\\%]</word>
   <word id="keywords/single" format="keyword">\\[a-zA-Z]+</word>
 	
 
@@ -57,18 +110,5 @@
 	<sequence parenthesis="curly:close" indent="1" fold="1">}</sequence>
 	<sequence parenthesis="square:open">\[</sequence>
 	<sequence parenthesis="square:close">\]</sequence>
-	
-  <!-- uncomment this to activate folding workaround
-  <word format="extra-keyword" parenthesis="ppart:open" fold="1" >\\part</word>
-	<word format="extra-keyword" parenthesis="ppart:close" fold="1">%\\end-part</word>
-  <word format="extra-keyword" parenthesis="pchapter:open" fold="1" >\\chapter</word>
-  <word format="extra-keyword" parenthesis="pchapter:close" fold="1" >%\\end-chapter</word>
-  <word format="extra-keyword" parenthesis="psection:open" fold="1" >\\section</word>
-  <word format="extra-keyword" parenthesis="psection:close" fold="1" >%\\end-section</word>
-  <word format="extra-keyword" parenthesis="psubsection:open" fold="1" >\\subsection</word>
-  <word format="extra-keyword" parenthesis="psubsectoin:close" fold="1" >%\\end-subsection</word>
-  <word format="extra-keyword" parenthesis="pparagraph:open" fold="1" >\\paragraph</word>
-  <word format="extra-keyword" parenthesis="pparagraph:close" fold="1" >%\\end-paragraph</word>
-  -->
 </QNFA>
 
