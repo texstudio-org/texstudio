@@ -27,6 +27,7 @@
 #include <QPointer>
 #include <QScrollBar>
 #include <QBasicTimer>
+#include <QFontMetrics>
 #include <QAbstractScrollArea>
 #include <QTextCodec>
  
@@ -275,7 +276,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		inline int horizontalOffset() const
 		{ return horizontalScrollBar()->isVisible() ? horizontalScrollBar()->value() : 0; }
 		inline int verticalOffset() const
-		{ return verticalScrollBar()->isVisible() ? verticalScrollBar()->value() : 0; }
+		{ return verticalScrollBar()->isVisible() ? verticalScrollBar()->value() * m_doc->fontMetrics().lineSpacing() : 0; }
 		
 		inline QPoint mapToContents(const QPoint &point) const
 		{

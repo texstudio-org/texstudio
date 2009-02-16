@@ -89,6 +89,7 @@
 #include <QLine>
 #include <QPainter>
 #include <QPrinter>
+#include <QTextStream>
 #include <QTextLayout>
 #include <QApplication>
 #include <QVarLengthArray>
@@ -1120,6 +1121,7 @@ void QDocument::cursorForDocumentPosition(const QPoint& p, int& line, int& colum
 	if ( !l.isValid() )
 		return;
 	
+	//qDebug("%i %i", line, wrap);
 	column = l.documentOffsetToCursor(p.x(), wrap * QDocumentPrivate::m_lineSpacing);
 	
 	//qDebug("(%i, %i) -> (%i [+%i], %i)", p.x(), p.y(), line, wrap, column);
@@ -1245,13 +1247,27 @@ void QDocument::endMacro()
 }
 
 /*!
+	\brief Get an available group id for matches
+*/
+int QDocument::getNextGroupId()
+{
+	return m_impl ? m_impl->getNextGroupId() : -1;
+}
+
+void QDocument::releaseGroupId(int groupId)
+{
+	if ( m_impl )
+		m_impl->releaseGroupId(groupId);
+}
+
+/*!
 	\brief Clear matches
 */
-void QDocument::clearMatches(int format)
+void QDocument::clearMatches(int gid)
 {
 	if ( m_impl )
 	{
-		m_impl->clearMatches(format);
+		m_impl->clearMatches(gid);
 	}
 }
 
@@ -1260,22 +1276,22 @@ void QDocument::clearMatches(int format)
 	
 	\note Both position are BEFORE the matched characters (cursor position).
 */
-void QDocument::addMatch(int line, int pos, int len, int format)
+void QDocument::addMatch(int gid, int line, int pos, int len, int format)
 {
 	if ( m_impl )
 	{
-		m_impl->addMatch(line, pos, len, format);
+		m_impl->addMatch(gid, line, pos, len, format);
 	}
 }
 
 /*!
 	\
 */
-void QDocument::flushMatches(int format)
+void QDocument::flushMatches(int gid)
 {
 	if ( m_impl )
 	{
-		m_impl->flushMatches(format);
+		m_impl->flushMatches(gid);
 	}
 }
 
@@ -1928,22 +1944,26 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 	if ( wrap > m_frontiers.count() )
 	{
 		// return an invalid value instead?
-		//qDebug("a bit too far...");
+		//qDebug("a bit too far : (%i, %i)", x, y);
 		//wrap = m_frontiers.count();
 		
 		return m_text.length();
 	}
 	
+	if ( m_frontiers.count() )
+	{
+		//qDebug("(%i, %i) : %i", x, y, wrap);
+		x = qMin(x, m_doc->widthConstraint());
+	}
+	
 	int cpos = 0;
 	int max = m_text.length();
 	
-	if ( wrap )
-	{
+	if ( wrap < m_frontiers.count() )
+		max = m_frontiers.at(wrap).first - 1;
+	
+	if ( wrap > 0 )
 		cpos = m_frontiers.at(wrap - 1).first;
-		
-		if ( wrap < m_frontiers.count() )
-			max = m_frontiers.at(wrap).first;
-	}
 	
 	x -= QDocumentPrivate::m_leftMargin;
 	
@@ -1957,7 +1977,7 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 		if ( wrap )
 			x -= m_indent;
 			
-		while ( idx < max && x )
+		while ( (idx < max) && (x > 0) )
 		{
 			bool tab = m_text.at(idx).unicode() == '\t';
 			int cwidth = QDocumentPrivate::m_spaceWidth;
@@ -1990,7 +2010,7 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 			
 		const QVector<QFont>& fonts = m_doc->impl()->m_fonts;
 		
-		while ( idx < max && x )
+		while ( (idx < max) && (x > 0) )
 		{
 			int fid = idx < m_cache.count() ? m_cache[idx] : 0;
 			
@@ -2961,9 +2981,9 @@ void QDocumentLineHandle::draw(	QPainter *p,
 			if ( format.linescolor.isValid() )
 				p->setPen(format.linescolor);
 				
-			const int ydo = baseline + p->fontMetrics().underlinePos();
+			const int ydo = qMin(baseline + p->fontMetrics().underlinePos(), ypos + QDocumentPrivate::m_lineSpacing - 1);
 			const int yin = baseline - p->fontMetrics().strikeOutPos();
-			const int yup = baseline - p->fontMetrics().overlinePos();
+			const int yup = qMax(baseline - p->fontMetrics().overlinePos() + 1, ypos);
 			
 			if ( format.overline )
 			{
@@ -2982,43 +3002,64 @@ void QDocumentLineHandle::draw(	QPainter *p,
 			
 			if ( format.waveUnderline )
  			{
+				/*
+				those goddamn font makers take liberties with common sense
+				and make it so damn harder to figure proper y offset for wave
+				underline (keeping the regular underline pos make it look
+				weird or even invisible on some fonts... reference rendering
+				with DejaVu Sans Mono)
+				*/
+				
+				// we used fixed wave amplitude of 3 (well strictly speaking
+				// amplitude would be 1.5 but let's forget about waves and
+				// focus on getting that code to work...
+				
+				// gotta center things
+				const int ycenter = ypos + QDocumentPrivate::m_lineSpacing - 3; 
+									/*
+									qMin(
+										ypos + (QDocumentPrivate::m_ascent + QDocumentPrivate::m_lineSpacing) / 2,
+										ypos + QDocumentPrivate::m_lineSpacing - 3
+									);*/
+				
 				//if (format.waveUnderlineForeground.isValid())
 				//	p->setPen(format.waveUnderlineForeground);
-					
- 				int xlpos = xspos;
+				
 				int cp = 0;
+				brokenWave = false;
 				
 				while ( cp < rwidth )
  				{
-					brokenWave = false;
-					
 					if ( !cp && !continuingWave )
 					{
-						p->drawLine(xspos, ydo + 2, xspos + 1, ydo + 3);
+						dir = 0;
+						p->drawLine(xspos, ycenter, xspos + 1, ycenter + 1);
 						++cp;
 					} else if ( !cp && brokenWave ) {
-						
 						if ( !dir )
-							p->drawLine(xspos + cp, ydo + 2, xspos + cp + 1, ydo + 3);
+							p->drawLine(xspos, ycenter, xspos + 1, ycenter + 1);
 						else
-							p->drawLine(xspos + cp, ydo + 2, xspos + cp + 1, ydo + 1);
-							
+							p->drawLine(xspos, ycenter, xspos + 1, ycenter - 1);
+						
 					} else {
 						if ( cp + 2 > rwidth)
 						{
 							if ( !dir )
-								p->drawLine(xspos + cp, ydo + 1, xspos + cp + 1, ydo + 2);
+								p->drawLine(xspos + cp, ycenter - 1, xspos + cp + 1, ycenter);
 							else
-								p->drawLine(xspos + cp, ydo + 3, xspos + cp + 1, ydo + 2);
-								
+								p->drawLine(xspos + cp, ycenter + 1, xspos + cp + 1, ycenter);
+							
+							// trick to keep current direction
+							dir ^= 1;
+							
 							brokenWave = true;
 							++cp;
 						} else {
 							if ( !dir )
-								p->drawLine(xspos + cp, ydo + 1, xspos + cp + 2, ydo + 3);
+								p->drawLine(xspos + cp, ycenter - 1, xspos + cp + 2, ycenter + 1);
 							else
-								p->drawLine(xspos + cp, ydo + 3, xspos + cp + 2, ydo + 1);
-								
+								p->drawLine(xspos + cp, ycenter + 1, xspos + cp + 2, ycenter - 1);
+							
 							cp += 2;
 						}
 					}
@@ -3687,7 +3728,7 @@ bool QDocumentCursorHandle::movePosition(int count, QDocumentCursor::MoveOperati
 {
 	if ( !m_doc )
 		return false;
-		
+	
 	QDocumentLine l, l1 = m_doc->line(m_begLine), l2 = m_doc->line(m_endLine);
 	
 	int &line = m_begLine;
@@ -3780,19 +3821,22 @@ bool QDocumentCursorHandle::movePosition(int count, QDocumentCursor::MoveOperati
 		{
 			if ( atStart() )
 				return false;
-				
+			
+			//qDebug("%i, %i  : up", line, offset);
+			
 			if ( m & QDocumentCursor::ThroughWrap )
 			{
 				QPoint p = documentPosition();
 				
 				if ( hasColumnMemory() )
 					p.rx() = qMax(p.x(), m_max);
-					
+				
 				p.ry() -= QDocumentPrivate::m_lineSpacing * count;
 				
 				if ( p.y() >= 0 )
+				{
 					m_doc->cursorForDocumentPosition(p, line, offset);
-				else {
+				} else {
 					line = 0;
 					offset = 0;
 				}
@@ -3847,7 +3891,10 @@ bool QDocumentCursorHandle::movePosition(int count, QDocumentCursor::MoveOperati
 					
 				p.ry() += QDocumentPrivate::m_lineSpacing * count;
 				
+				int oldLine = line, oldCol = offset;
 				m_doc->cursorForDocumentPosition(p, line, offset);
+				if ( oldLine == line && oldCol == offset )
+					offset = m_doc->line(line).length();
 				return true;
 			}
 			
@@ -4956,6 +5003,7 @@ int QDocumentPrivate::m_wrapMargin = 15;
 QDocumentPrivate::QDocumentPrivate(QDocument *d)
  : 	m_doc(d),
 	m_editCursor(0),
+	m_lastGroupId(-1),
 	m_constrained(false),
 	m_width(0),
 	m_height(0),
@@ -5840,11 +5888,39 @@ void QDocumentPrivate::endChangeBlock()
 }
 
 /*!
+	\brief Acquire group id
+*/
+int QDocumentPrivate::getNextGroupId()
+{
+	if ( m_freeGroupIds.count() )
+		return m_freeGroupIds.takeFirst();
+	
+	return ++m_lastGroupId;
+}
+
+/*!
+	\brief Relase group id
+*/
+void QDocumentPrivate::releaseGroupId(int groupId)
+{
+	if ( groupId == m_lastGroupId )
+	{
+		--m_lastGroupId;
+		while ( m_freeGroupIds.removeAll(m_lastGroupId) )
+		{
+			--m_lastGroupId;
+		}
+	} else {
+		m_freeGroupIds << groupId;
+	}
+}
+
+/*!
 	\brief Clear matches
 */
-void QDocumentPrivate::clearMatches(int format)
+void QDocumentPrivate::clearMatches(int groupId)
 {
-	QHash<int, MatchList>::iterator mit = m_matches.find(format);
+	QHash<int, MatchList>::iterator mit = m_matches.find(groupId);
 	
 	if ( mit == m_matches.end() )
 	{
@@ -5866,7 +5942,7 @@ void QDocumentPrivate::clearMatches(int format)
 	
 	\note Both position are BEFORE the matched characters (cursor position).
 */
-void QDocumentPrivate::addMatch(int line, int pos, int len, int format)
+void QDocumentPrivate::addMatch(int groupId, int line, int pos, int len, int format)
 {
 	//qDebug("match (%i, %i, %i)", line, pos, len);
 	
@@ -5874,14 +5950,14 @@ void QDocumentPrivate::addMatch(int line, int pos, int len, int format)
 	m.line = line;
 	m.h = at(line);
 	m.range = QFormatRange(pos, len, format);
-	m_matches[format] << m;
+	m_matches[groupId] << m;
 	
 	m.h->addOverlay(m.range);
 }
 
-void QDocumentPrivate::flushMatches(int format)
+void QDocumentPrivate::flushMatches(int groupId)
 {
-	QHash<int, MatchList>::iterator mit = m_matches.find(format);
+	QHash<int, MatchList>::iterator mit = m_matches.find(groupId);
 	
 	if ( mit == m_matches.end() )
 	{
@@ -5950,6 +6026,13 @@ void QDocumentPrivate::flushMatches(int format)
 		++it;
 	}
 	
+	// update storage "meta-data"
+	if ( matches.isEmpty() )
+	{
+		m_matches.remove(groupId);
+		
+		releaseGroupId(groupId);
+	}
 	//qDebug("done with matches");
 }
 
@@ -6197,7 +6280,7 @@ int QDocumentPrivate::textLine(int visualLine, int *wrap) const
 	if ( off > 0 )
 	{
 		if ( wrap )
-			*wrap = off;
+			*wrap = m_lines.last()->m_frontiers.count();
 		
 		return m_lines.count() - 1;
 	}

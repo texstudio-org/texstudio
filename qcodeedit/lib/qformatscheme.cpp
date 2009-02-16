@@ -214,7 +214,7 @@ void QFormatScheme::save(QDomElement& elem) const
 	QDomDocument doc = elem.ownerDocument();
 	elem.setAttribute("version", QFORMAT_VERSION);
 	
-	for ( int i = 1; i < m_formatKeys.count(); i++ )
+	for ( int i = 0; i < m_formatKeys.count(); ++i )
 	{
 		QDomText t;
 		QDomElement f, c = doc.createElement("format");
@@ -360,7 +360,7 @@ void QFormatScheme::save(QSettings& s) const
 	
 	s.beginGroup("data");
 	
-	for ( int i = 1; i < m_formatKeys.count(); i++ )
+	for ( int i = 0; i < m_formatKeys.count(); ++i )
 	{
 		s.beginGroup(m_formatKeys.at(i));
 		

@@ -70,7 +70,7 @@ class QCE_EXPORT QLanguageDefinition
 		virtual void clearMatches(QDocument *d);
 		
 		virtual QString indent(const QDocumentCursor& c);
-		virtual bool unindent (const QDocumentCursor& c, QKeyEvent *k);
+		virtual bool unindent (const QDocumentCursor& c, const QString& ktxt);
 		
 		virtual void expand(QDocument *d, int line);
 		virtual void collapse(QDocument *d, int line);

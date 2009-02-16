@@ -1,6 +1,6 @@
 DEFINES += _QCODE_EDIT_BUILD_
 
-CONFIG *= qnfa
+CONFIG *= qnfa console
 
 QT *= xml
 

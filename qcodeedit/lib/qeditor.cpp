@@ -483,7 +483,7 @@ void QEditor::init(bool actions)
 	//viewport()->setAttribute(Qt::WA_OpaquePaintEvent, true);
 	viewport()->setAttribute(Qt::WA_InputMethodEnabled, true);
 	
-	verticalScrollBar()->setSingleStep(20);
+	verticalScrollBar()->setSingleStep(1);
 	horizontalScrollBar()->setSingleStep(20);
 	
 	setAcceptDrops(true);
@@ -1689,7 +1689,9 @@ void QEditor::lineEndingChanged(int lineEnding)
 */
 QDocumentCursor QEditor::cursor() const
 {
-	return m_cursor;
+	QDocumentCursor copy = m_cursor;
+	copy.setAutoUpdated(false);
+	return copy;
 }
 
 /*!
@@ -2475,6 +2477,33 @@ static int min(const QList<QDocumentCursor>& l)
 	return ln;
 }
 
+static bool protectedCursor(const QDocumentCursor& c)
+{
+	QDocumentLine l = c.line();
+	
+	bool prot = 
+			l.hasFlag(QDocumentLine::Hidden)
+		||
+			l.hasFlag(QDocumentLine::CollapsedBlockStart)
+		||
+			l.hasFlag(QDocumentLine::CollapsedBlockEnd)
+		;
+	
+	if ( c.hasSelection() && !prot )
+	{
+		l = c.anchorLine();
+		prot = 
+				l.hasFlag(QDocumentLine::Hidden)
+			||
+				l.hasFlag(QDocumentLine::CollapsedBlockStart)
+			||
+				l.hasFlag(QDocumentLine::CollapsedBlockEnd)
+			;
+	}
+	
+	return prot;
+}
+
 /*!
 	\internal
 */
@@ -2579,8 +2608,12 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 		{
 			int offset = 0;
 			bool pke = isProcessingKeyEvent(e, &offset);
+			bool prot = protectedCursor(m_cursor);
 			
-			if ( !pke )
+			foreach ( const QDocumentCursor& c, m_mirrors )
+				prot |= protectedCursor(c);
+			
+			if ( !pke || prot )
 			{
 				bHandled = false;
 			} else {
@@ -3251,7 +3284,8 @@ void QEditor::resizeEvent(QResizeEvent *)
 		horizontalScrollBar()->setMaximum(qMax(0, m_doc->width() - viewportSize.width()));
 		horizontalScrollBar()->setPageStep(viewportSize.width());
 		
-		verticalScrollBar()->setMaximum(qMax(0, m_doc->height() - viewportSize.height()));
+		const int ls = m_doc->fontMetrics().lineSpacing();
+		verticalScrollBar()->setMaximum(qMax(0, 1 + (m_doc->height() - viewportSize.height()) / ls));
 		verticalScrollBar()->setPageStep(viewportSize.height());
 	}
 	
@@ -3919,9 +3953,19 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	if ( hasSelection )
 		c.removeSelectedText();
 	
-	QKeyEvent fake(QEvent::KeyPress, 0, Qt::NoModifier, text);
+	QStringList lines = text.split('\n', QString::KeepEmptyParts);
 	
-	if ( flag(AutoIndent) && (m_curPlaceHolder == -1) && c.columnNumber() && m_definition && m_definition->unindent(c, &fake) )
+	if (
+			flag(AutoIndent)
+		&&
+			(m_curPlaceHolder == -1)
+		&&
+			c.columnNumber()
+		&&
+			m_definition
+		&&
+			m_definition->unindent(c, lines.at(0))
+		)
 	{
 		int firstNS = 0;
 		QString txt = c.line().text();
@@ -3956,8 +4000,6 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	if ( !hasSelection && flag(Overwrite) )
 		c.deleteChar();
 	
-	QStringList lines = text.split('\n', QString::KeepEmptyParts);
-	
 	if ( lines.count() == 1 )
 	{
 		c.insertText(text);
@@ -3965,7 +4007,8 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		for ( int i = 0; i < lines.count(); ++i )
 		{
 			QString indent;
-			
+			// TODO : adjust indent based on indent around insertion spot
+			/*
 			if ( flag(AutoIndent) && (m_curPlaceHolder == -1) )
 			{
 				if ( m_definition )
@@ -3983,6 +4026,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 					
 				}
 			}
+			*/
 			
 			if ( indent.count() )
 			{
@@ -3992,7 +4036,8 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 				c.insertLine();
 			}
 			
-			c.insertText(lines.at(i));
+			insertText(c, lines.at(i));
+			//c.insertText(lines.at(i));
 		}
 	}
 }
@@ -4134,15 +4179,17 @@ void QEditor::ensureCursorVisible()
 {
 	QPoint pos = m_cursor.documentPosition();
 	
+	const int ls = QDocument::fontMetrics().lineSpacing();
+	
 	int ypos = pos.y(),
 		yval = verticalOffset(),
 		ylen = viewport()->height(),
-		yend = ypos + QDocument::fontMetrics().lineSpacing();
+		yend = ypos + ls;
 	
 	if ( ypos < yval )
-		verticalScrollBar()->setValue(ypos);
+		verticalScrollBar()->setValue(ypos / ls);
 	else if ( yend > (yval + ylen) )
-		verticalScrollBar()->setValue(yend - ylen);
+		verticalScrollBar()->setValue(1 + (yend - ylen) / ls);
 	
 	int xval = horizontalOffset(),
 		xlen = viewport()->width(),
@@ -4167,15 +4214,16 @@ void QEditor::ensureVisible(int line)
 	if ( !m_doc )
 		return;
 	
+	const int ls = QDocument::fontMetrics().lineSpacing();
 	int ypos = m_doc->y(line),
 		yval = verticalOffset(),
 		ylen = viewport()->height(),
-		yend = ypos + QDocument::fontMetrics().lineSpacing();
+		yend = ypos + ls;
 	
 	if ( ypos < yval )
-		verticalScrollBar()->setValue(ypos);
+		verticalScrollBar()->setValue(ypos / ls);
 	else if ( yend > (yval + ylen) )
-		verticalScrollBar()->setValue(yend - ylen);
+		verticalScrollBar()->setValue(1 + (yend - ylen) / ls);
 	
 }
 
@@ -4187,15 +4235,16 @@ void QEditor::ensureVisible(const QRect &rect)
 	if ( !m_doc )
 		return;
 	
+	const int ls = QDocument::fontMetrics().lineSpacing();
 	int ypos = rect.y(),
 		yval = verticalOffset(),
 		ylen = viewport()->height(),
 		yend = ypos + rect.height();
 	
 	if ( ypos < yval )
-		verticalScrollBar()->setValue(ypos);
+		verticalScrollBar()->setValue(ypos / ls);
 	else if ( yend > (yval + ylen) )
-		verticalScrollBar()->setValue(yend - ylen);
+		verticalScrollBar()->setValue(1 + (yend - ylen) / ls);
 	
 	//verticalScrollBar()->setValue(rect.y());
 }
@@ -4352,8 +4401,8 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 				m_cursor.removeSelectedText();
 			
 			int col = m_cursor.columnNumber();
-			m_cursor.insertText(columns.takeFirst());
-			
+			//m_cursor.insertText(columns.takeFirst());
+			insertText(m_cursor, columns.takeFirst());
 			QDocumentCursor c = m_cursor;
 			
 			while ( columns.count() )
@@ -4370,8 +4419,8 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 				c.setColumnNumber(qMin(col, c.line().length()));
 				
 				// copy content of clipboard
-				c.insertText(columns.takeFirst());
-				
+				//c.insertText(columns.takeFirst());
+				insertText(c, columns.takeFirst());
 				addCursorMirror(c);
 			}
 			
@@ -4380,10 +4429,10 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 		} else {
 			m_doc->beginMacro();
 			
-			if ( s )
-			{
-				m_cursor.removeSelectedText();
-			}
+			//if ( s )
+			//{
+			//	m_cursor.removeSelectedText();
+			//}
 			
 			QString txt;
 			
@@ -4392,11 +4441,11 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 			else if ( d->hasFormat("text/html") )
 				txt = d->html();
 			
-			m_cursor.insertText(txt);
+			insertText(m_cursor, txt);
 			
 			for ( int i = 0; i < m_mirrors.count(); ++i )
 			{
-				m_mirrors[i].insertText(txt);
+				insertText(m_mirrors[i], txt);
 			}
 			
 			m_doc->endMacro();
@@ -4471,7 +4520,8 @@ void QEditor::scrollContentsBy(int dx, int dy)
 	#ifdef Q_GL_EDITOR
 	viewport()->update();
 	#else
-	viewport()->scroll(dx, dy);
+	const int ls = m_doc->fontMetrics().lineSpacing();
+	viewport()->scroll(dx * ls, dy * ls);
 	#endif
 }
 
@@ -4525,8 +4575,9 @@ void QEditor::documentHeightChanged(int newHeight)
 	{
 		m_doc->setWidthConstraint(wrapWidth());
 	}
-	verticalScrollBar()->setMaximum(qMax(0, newHeight - viewport()->height()));
-	ensureCursorVisible();
+	const int ls = m_doc->fontMetrics().lineSpacing();
+	verticalScrollBar()->setMaximum(qMax(0, 1 + (newHeight - viewport()->height()) / ls));
+	//ensureCursorVisible();
 }
 
 /*!
@@ -4629,4 +4680,3 @@ void QEditor::markChanged(QDocumentLineHandle *l, int mark, bool on)
 }
 
 /*! @} */
-

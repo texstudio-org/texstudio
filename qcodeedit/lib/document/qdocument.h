@@ -184,9 +184,11 @@ class QCE_EXPORT QDocument : public QObject
 		QFormatScheme* formatScheme() const;
 		void setFormatScheme(QFormatScheme *f);
 		
-		void clearMatches(int format);
-		void flushMatches(int format);
-		void addMatch(int line, int pos, int len, int format);
+		int getNextGroupId();
+		void releaseGroupId(int groupId);
+		void clearMatches(int groupId);
+		void flushMatches(int groupId);
+		void addMatch(int groupId, int line, int pos, int len, int format);
 		
 		static QFont font();
 		static void setFont(const QFont& f);

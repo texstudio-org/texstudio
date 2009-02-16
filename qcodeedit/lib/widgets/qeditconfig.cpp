@@ -267,28 +267,37 @@ void QEditConfig::loadKeys(const QMap<QString, QVariant>& keys)
 			
 		} else if ( it.key() == "tab_width" ) {
 			spnTabWidth->setValue(it->toInt());
-			//on_spnTabWidth_valueChanged(it->toInt());
+			
+			if ( m_direct )
+				on_spnTabWidth_valueChanged(it->toInt());
 		} else if ( it.key() == "replace_tabs" ) {
 			chkReplaceTabs->setChecked(it->toBool());
-			//on_chkReplaceTabs_toggled(it->toBool());
+			if ( m_direct )
+				on_chkReplaceTabs_toggled(it->toBool());
 		} else if ( it.key() == "remove_trailing" ) {
 			chkAutoRemoveTrailingWhitespace->setChecked(it->toBool());
-			//on_chkAutoRemoveTrailingWhitespace_toggled(it->toBool());
+			if ( m_direct )
+				on_chkAutoRemoveTrailingWhitespace_toggled(it->toBool());
 		} else if ( it.key() == "preserve_trailing_indent" ) {
 			chkPreserveTrailingIndent->setChecked(it->toBool());
-			//on_chkPreserveTrailingIndent_toggled(it->toBool());
+			if ( m_direct )
+				on_chkPreserveTrailingIndent_toggled(it->toBool());
 		} else if ( it.key() == "show_tabs_in_text" ) {
 			chkShowTabsInText->setChecked(it->toBool());
-			//on_chkShowTabsInText_toggled(it->toBool());
+			if ( m_direct )
+				on_chkShowTabsInText_toggled(it->toBool());
 		} else if ( it.key() == "show_leading_whitespace" ) {
 			chkShowLeadingWhitespace->setChecked(it->toBool());
-			//on_chkShowLeadingWhitespace_toggled(it->toBool());
+			if ( m_direct )
+				on_chkShowLeadingWhitespace_toggled(it->toBool());
 		} else if ( it.key() == "show_trailing_whitespace" ) {
 			chkShowTrailingWhitespace->setChecked(it->toBool());
-			//on_chkShowTrailingWhitespace_toggled(it->toBool());
+			if ( m_direct )
+				on_chkShowTrailingWhitespace_toggled(it->toBool());
 		} else if ( it.key() == "encoding" ) {
 			cbEncoding->setCurrentIndex(cbEncoding->findText(it->toString()));
-			//on_cbEncoding_indexChanged(it->toString());
+			if ( m_direct )
+				on_cbEncoding_currentIndexChanged(it->toString());
 		} else if ( it.key() == "line_endings" ) {
 			int le = it->toInt();
 			
@@ -306,7 +315,6 @@ void QEditConfig::loadKeys(const QMap<QString, QVariant>& keys)
 					qPrintable(it.key())
 					);
 			*/
-			
 		}
 		
 		++it;
