@@ -101,8 +101,6 @@ QSearchReplacePanel::~QSearchReplacePanel()
 {
 	if ( m_search )
 		delete m_search;
-	
-	m_search = 0;
 }
 
 /*!
@@ -192,7 +190,7 @@ void QSearchReplacePanel::find(int backward)
 	
 	m_search->next(backward, replaceAll);
 	
-	if ( !leFind->hasFocus() && !leReplace->hasFocus() )
+	if (isVisible() && !leFind->hasFocus() && !leReplace->hasFocus() )
 		leFind->setFocus();
 }
 
@@ -265,10 +263,22 @@ bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
 }
 
 void QSearchReplacePanel::on_leFind_textEdited(const QString& text)
-{
-	if ( m_search )
-		m_search->setSearchText(text);
-	
+{	
+	if (!text.isEmpty()) {
+	    if (m_search!=0) {
+            m_search->setOption(QDocumentSearch::Silent,true);
+            if (lastDirection==0) 
+                m_search->next(true,false);//switch to backward mode
+            m_search->setSearchText(text);
+            if (m_search->next(false,false)) { //does it exists
+                m_search->setOption(QDocumentSearch::Silent,false);
+                m_search->next(true,false);         
+                m_search->next(false,false); //selecting match
+            } else m_search->setOption(QDocumentSearch::Silent,false);
+            lastDirection=0;
+	    } else find(0);
+	}	else if ( m_search ) 
+        m_search->setSearchText(text);
 }
 
 void QSearchReplacePanel::on_leFind_returnPressed(bool backward)
@@ -283,8 +293,7 @@ void QSearchReplacePanel::on_leFind_returnPressed(bool backward)
 void QSearchReplacePanel::on_leReplace_textEdited(const QString& text)
 {
 	if ( m_search )
-		m_search->setReplaceText(text);
-	
+		m_search->setReplaceText(text);		
 }
 
 void QSearchReplacePanel::on_cbReplace_toggled(bool on)
@@ -323,15 +332,23 @@ void QSearchReplacePanel::on_cbCase_toggled(bool on)
 void QSearchReplacePanel::on_cbCursor_toggled(bool on)
 {
 	if ( m_search )
-		m_search->setCursor(on ? editor()->cursor() : QDocumentCursor());
+		m_search->setOrigin(on ? editor()->cursor() : QDocumentCursor());
 	
 	leFind->setFocus();
 }
 
 void QSearchReplacePanel::on_cbHighlight_toggled(bool on)
 {
+	if ( !m_search )
+		init();
+	
 	if ( m_search )
+	{
 		m_search->setOption(QDocumentSearch::HighlightAll, on);
+		
+		if ( on && !m_search->indexedMatchCount() )
+			m_search->next(false);
+	}
 	
 	leFind->setFocus();
 }

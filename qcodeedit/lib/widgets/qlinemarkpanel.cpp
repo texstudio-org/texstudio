@@ -95,7 +95,7 @@ void QLineMarkPanel::paint(QPainter *p, QEditor *e)
 		as = fm.ascent(),
 		ls = fm.lineSpacing(),
 		pageBottom = e->viewport()->height(),
-		contentsY = e->verticalScrollBar()->value();
+		contentsY = e->verticalOffset();
 	
 	QString txt;
 	const QFontMetrics sfm(fontMetrics());

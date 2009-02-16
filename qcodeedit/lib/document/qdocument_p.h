@@ -350,9 +350,11 @@ class QCE_EXPORT QDocumentPrivate
 		int findNextMark(int id, int from = 0, int until = -1);
 		int findPreviousMark(int id, int from = -1, int until = 0);
 		
-		void clearMatches(int format);
-		void flushMatches(int format);
-		void addMatch(int line, int pos, int len, int format);
+		int getNextGroupId();
+		void releaseGroupId(int groupId);
+		void clearMatches(int gid);
+		void flushMatches(int gid);
+		void addMatch(int gid, int line, int pos, int len, int format);
 		
 		void emitFormatsChange (int line, int lines);
 		void emitContentsChange(int line, int lines);
@@ -416,6 +418,8 @@ class QCE_EXPORT QDocumentPrivate
 			int index;
 		};
 		
+		int m_lastGroupId;
+		QList<int> m_freeGroupIds;
 		QHash<int, MatchList> m_matches;
 		
 		bool m_constrained;

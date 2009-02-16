@@ -129,10 +129,10 @@ QString QLanguageDefinition::indent(const QDocumentCursor& c)
 /*!
 	\brief Determines whether the given key event at the given position should cause unindent to happen
 */
-bool QLanguageDefinition::unindent (const QDocumentCursor& c, QKeyEvent *k)
+bool QLanguageDefinition::unindent (const QDocumentCursor& c, const QString& ktxt)
 {
 	Q_UNUSED(c)
-	Q_UNUSED(k)
+	Q_UNUSED(ktxt)
 	
 	return false;
 }

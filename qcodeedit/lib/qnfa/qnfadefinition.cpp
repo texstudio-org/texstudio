@@ -38,6 +38,8 @@
 #include <QDomElement>
 #include <QDomDocument>
 
+uint qHash(const QPointer<QDocument>& p) { return qHash((QDocument*)(p)); }
+
 class QNFANotifier : public QNFAMatchHandler
 {
 	public:
@@ -958,17 +960,30 @@ void QNFADefinition::match(QDocumentCursor& c)
 		return;
 	}
 	
+	int gid = 0;
+	QHash<QPointer<QDocument>, int>::iterator it = m_matchGroups.find(d);
+	
+	if ( it != m_matchGroups.end() )
+	{
+		d->clearMatches(*it);
+		d->flushMatches(*it);
+		*it = gid = d->getNextGroupId();
+	} else {
+		gid = d->getNextGroupId();
+		m_matchGroups[d] = gid;
+	}
+	
 	QFormatScheme *s = d->formatScheme();
 	
 	if ( !s )
 	{
 		qDebug("no fmt");
+		d->releaseGroupId(gid);
+		m_matchGroups.remove(d);
 		return;
 	}
 	
 	int matchFID = s->id("braceMatch"), mismatchFID = s->id("braceMismatch");
-	d->clearMatches(matchFID);
-	d->clearMatches(mismatchFID);
 	
 	int pos = c.columnNumber();
 	const QVector<QParenthesis>& m_parens = b.parentheses();
@@ -976,8 +991,8 @@ void QNFADefinition::match(QDocumentCursor& c)
 	if ( m_parens.isEmpty() )
 	{
 		// required to properly update display
-		d->flushMatches(matchFID);
-		d->flushMatches(mismatchFID);
+		d->releaseGroupId(gid);
+		m_matchGroups.remove(d);
 		return;
 	}
 	
@@ -985,7 +1000,7 @@ void QNFADefinition::match(QDocumentCursor& c)
 	
 	//qDebug("matching on line %i (fid is %i)", c.lineNumber(), fid);
 	
-	
+	int matchCount = 0;
 	foreach ( p, m_parens )
 	{
 		if ( (pos != p.offset) && (pos != (p.offset + p.length)) )
@@ -1005,8 +1020,10 @@ void QNFADefinition::match(QDocumentCursor& c)
 			
 			if ( m.type == PMatch::Match )
 			{
-				d->addMatch(m.line[0], m.column[0], m.length[0], matchFID);
-				d->addMatch(m.line[1], m.column[1], m.length[1], matchFID);
+				++matchCount;
+				
+				d->addMatch(gid, m.line[0], m.column[0], m.length[0], matchFID);
+				d->addMatch(gid, m.line[1], m.column[1], m.length[1], matchFID);
 			}
 			
 			m.line[0] = c.lineNumber();
@@ -1017,8 +1034,10 @@ void QNFADefinition::match(QDocumentCursor& c)
 			
 			if ( m.type == PMatch::Match )
 			{
-				d->addMatch(m.line[0], m.column[0], m.length[0], matchFID);
-				d->addMatch(m.line[1], m.column[1], m.length[1], matchFID);
+				++matchCount;
+				
+				d->addMatch(gid, m.line[0], m.column[0], m.length[0], matchFID);
+				d->addMatch(gid, m.line[1], m.column[1], m.length[1], matchFID);
 			}
 			
 			continue;
@@ -1030,13 +1049,21 @@ void QNFADefinition::match(QDocumentCursor& c)
 		
 		if ( m.type != PMatch::Invalid )
 		{
-			d->addMatch(m.line[0], m.column[0], m.length[0], m.type == PMatch::Match ? matchFID : mismatchFID);
-			d->addMatch(m.line[1], m.column[1], m.length[1], m.type == PMatch::Match ? matchFID : mismatchFID);
+			++matchCount;
+			
+			int mfid = m.type == PMatch::Match ? matchFID : mismatchFID;
+			d->addMatch(gid, m.line[0], m.column[0], m.length[0], mfid);
+			d->addMatch(gid, m.line[1], m.column[1], m.length[1], mfid);
 		}
 	}
 	
-	d->flushMatches(mismatchFID);
-	d->flushMatches(matchFID);
+	if ( matchCount )
+	{
+		d->flushMatches(gid);
+	} else {
+		d->releaseGroupId(gid);
+		m_matchGroups.remove(d);
+	}
 }
 
 void QNFADefinition::matchOpen(QDocument *d, PMatch& m)
@@ -1348,34 +1375,31 @@ QString QNFADefinition::indent(const QDocumentCursor& c)
 /*!
 	\brief Determines whether the given key event at the given position should cause unindent to happen
 */
-bool QNFADefinition::unindent (const QDocumentCursor& c, QKeyEvent *k)
+bool QNFADefinition::unindent (const QDocumentCursor& c, const QString& ktxt)
 {
-	if ( c.isNull() || c.line().isNull() )
+	if ( c.isNull() || c.line().isNull() || ktxt.isEmpty() )
 		return false;
 	
 	QDocumentLine b = c.line();
 	int pos, max = qMin(c.columnNumber(), b.text().size());
 	
-	QString ktxt = k->text(),
-			s = b.text().left(max);
+	QString s = b.text();
+	s.insert(max, ktxt);
 	
-	if ( ktxt.isEmpty() )
-		return false;
-	
-	for ( pos = 0; pos < max; pos++ ) 
+	//qDebug("outdenting %s", qPrintable(s));
+	for ( pos = 0; pos < max; ++pos ) 
 		if ( !s.at(pos).isSpace() )
 			break;
 	
-	QString spaces = s.left(pos),
-			text = s.mid(pos) + ktxt;
-	
-	if ( spaces.isEmpty() || text.isEmpty() )
+	if ( !pos || pos >= c.columnNumber() + ktxt.length() )
 		return false;
+	
+	QString text = s.mid(pos);
 	
 	QNFAMatchContext cxt;
 	QNFANotifier notify(text);
 	
-	QDocumentLine prev = b.previous();
+	QDocumentLine prev = c.document()->line(c.lineNumber() - 1);
 	
 	if ( prev.isValid() )
 	{
@@ -1393,7 +1417,10 @@ bool QNFADefinition::unindent (const QDocumentCursor& c, QKeyEvent *k)
 	if ( parens.isEmpty() )
 		return false;
 	
-	QParenthesis p = parens.last();
+	//qDebug("%i parentheses", parens.count());
+	QParenthesis p = parens.first();
+	
+	//qDebug("%i, %i, %i", p.offset, p.length, c.columnNumber());
 	
 	return (
 				(p.role & QParenthesis::Close)
@@ -1402,7 +1429,7 @@ bool QNFADefinition::unindent (const QDocumentCursor& c, QKeyEvent *k)
 			&&
 				(p.offset == 0)
 			&&
-				(p.length == text.count())
+				(p.offset + p.length > c.columnNumber() - pos)
 			);
 	
 }

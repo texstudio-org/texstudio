@@ -140,7 +140,7 @@ void QFoldPanel::paint(QPainter *p, QEditor *e)
 		h = fm.height(),
 		ls = fm.lineSpacing(),
 		pageBottom = e->viewport()->height(),
-		contentsY = e->verticalScrollBar()->value();
+		contentsY = e->verticalOffset();
 	
 	pos = - contentsY;
 	

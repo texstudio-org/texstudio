@@ -25,6 +25,7 @@
 #include "qlanguagedefinition.h"
 
 #include <QHash>
+#include <QPointer>
 #include <QStringList>
 
 struct QNFA;
@@ -82,7 +83,7 @@ class QCE_EXPORT QNFADefinition : public QLanguageDefinition
 		virtual void match(QDocumentCursor& c);
 		
 		virtual QString indent(const QDocumentCursor& c);
-		virtual bool unindent (const QDocumentCursor& c, QKeyEvent *k);
+		virtual bool unindent (const QDocumentCursor& c, const QString& ktxt);
 		
 		virtual void expand(QDocument *d, int line);
 		virtual void collapse(QDocument *d, int line);
@@ -105,6 +106,8 @@ class QCE_EXPORT QNFADefinition : public QLanguageDefinition
 		QStringList m_extensions;
 		
 		QNFA *m_root;
+		
+		QHash<QPointer<QDocument>, int> m_matchGroups;
 		
 		static QHash<QString, int> m_paren;
 		static QHash<QString, QNFA*> m_contexts;
