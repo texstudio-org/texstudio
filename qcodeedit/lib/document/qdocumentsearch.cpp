@@ -157,6 +157,10 @@ void QDocumentSearch::setOption(Option opt, bool on)
 	}
 }
 
+QDocumentSearch::Options QDocumentSearch::options() const{
+    return m_option;
+}
+
 /*!
 	\return the replacement text
 */
@@ -594,6 +598,6 @@ bool QDocumentSearch::next(bool backward, bool all)
 		if ( ret == QMessageBox::Yes )
 			return next(backward);
 	}
-	return false;
+	return found;
 }
 /*! @} */

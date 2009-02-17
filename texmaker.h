@@ -122,7 +122,7 @@ bool logpresent;
 QStringList recentFilesList;
 //settings
 int split1_right, split1_left, split2_top, split2_bottom, quickmode;
-bool singlemode, wordwrap, parenmatch, showoutputview, showstructview, ams_packages, makeidx_package, completion;
+bool singlemode, wordwrap, parenmatch, showoutputview, showstructview, ams_packages, makeidx_package, completion, autoindent;
 int showlinemultiples;
 bool folding, showlinestate, showcursorstate, realtimespellchecking;
 QString document_class, typeface_size, paper_size, document_encoding, author;
@@ -165,6 +165,7 @@ usercodelist symbolMostused;
 
 LatexEditorView *currentEditorView() const;
 void configureNewEditorView(LatexEditorView *edit);
+void updateEditorSetting(LatexEditorView *edit);
 private slots:
 
 void fileNew();

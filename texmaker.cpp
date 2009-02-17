@@ -1742,13 +1742,23 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit){
   m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
   edit->editor->setCompletionEngine(completer->clone());
   EditorView->setCurrentIndex(EditorView->indexOf(edit));
-  edit->changeSettings(EditorFont,showlinemultiples,folding,showlinestate,showcursorstate, wordwrap,completion);
   
   connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(NewDocumentStatus(bool)));
-    
+ 
+  updateEditorSetting(edit);
 //connect(edit->editor, SIGNAL(spellme()), this, SLOT(editSpell())); todo:benibela
 }
-
+void Texmaker::updateEditorSetting(LatexEditorView *edit){
+  edit->editor->setFont(EditorFont);
+  edit->editor->setLineWrapping(wordwrap);
+  edit->editor->setFlag(QEditor::AutoIndent,autoindent);
+  edit->lineMarkPanelAction->setChecked((showlinemultiples!=0) ||folding||showlinestate);
+  edit->lineNumberPanelAction->setChecked(showlinemultiples!=0);
+  edit->lineNumberPanel->setVerboseMode(showlinemultiples!=10);
+  edit->lineFoldPanel->setChecked(folding);
+  edit->lineChangePanel->setChecked(showlinestate);
+  edit->statusPanel->setChecked(showcursorstate);
+}
 QString Texmaker::getName()
 {
 QString title;
@@ -2298,6 +2308,7 @@ if (showlinemultiples==-1)
   else showlinemultiples=0;
 
 completion=config->value( "Editor/Completion",true).toBool();
+autoindent=config->value( "Editor/Auto Indent",true).toBool();
 folding=config->value( "Editor/Folding",true).toBool();
 showlinestate=config->value( "Editor/Show Line State",true).toBool();
 showcursorstate=config->value( "Editor/Show Cursor State",true).toBool();
@@ -2537,6 +2548,7 @@ config->setValue( "Editor/WordWrap",wordwrap);
 config->setValue( "Editor/Parentheses Matching",parenmatch);
 config->setValue( "Editor/Line Number Multiples",showlinemultiples);
 config->setValue( "Editor/Completion",completion);
+config->setValue( "Editor/Auto Indent",autoindent);
 
 config->setValue( "Editor/Folding",folding);
 config->setValue( "Editor/Show Line State",showlinestate);
@@ -5025,6 +5037,7 @@ switch (showlinemultiples) {
     case 10: confDlg->ui.comboboxLineNumbers->setCurrentIndex(2); break;
     default: confDlg->ui.comboboxLineNumbers->setCurrentIndex(1);
 }
+confDlg->ui.checkBoxAutoIndent->setChecked(autoindent);
 confDlg->ui.checkBoxCompletion->setChecked(completion);
 confDlg->ui.checkBoxFolding->setChecked(folding);
 confDlg->ui.checkBoxLineState->setChecked(showlinestate);
@@ -5115,6 +5128,7 @@ if (confDlg->exec())
 
 	wordwrap=confDlg->ui.checkBoxWordwrap->isChecked();
 	completion=confDlg->ui.checkBoxCompletion->isChecked();
+    autoindent=confDlg->ui.checkBoxAutoIndent->isChecked();
     switch (confDlg->ui.comboboxLineNumbers->currentIndex()) {
         case 0: showlinemultiples=0; break;
         case 2: showlinemultiples=10; break;
@@ -5139,7 +5153,7 @@ if (confDlg->exec())
 		{
             FilesMap::Iterator it;
             for( it = filenames.begin(); it != filenames.end(); ++it )
-                it.key()->changeSettings(EditorFont,showlinemultiples,folding,showlinestate,showcursorstate, wordwrap,completion);
+                updateEditorSetting(it.key());
             UpdateCaption();
             OutputTextEdit->clear();
             OutputTableWidget->hide();

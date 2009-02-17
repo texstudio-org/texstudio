@@ -64,7 +64,6 @@ public:
     
     
 //  FindWidget *findwidget;
-    void changeSettings(QFont & new_font,int linemultiples,bool fold, bool linestate, bool cursorstate, bool wrap, bool complete);
 
     void jumpChangePositionBackward();
     void jumpChangePositionForward();
@@ -79,11 +78,12 @@ public:
     static bool nextWord(QString line,int &index,QString &outWord,int &wordStartIndex);    
     static int nextWord(QString line,int &index,QString &outWord,int &wordStartIndex, int flags);    
     static QString latexToPlainWord(QString word);    
-private:
-    friend class DefaultInputBinding;
+
     QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanel, *lineChangePanel, *statusPanel, *searchReplacePanel;
     QLineMarkPanel* lineMarkPanel;
     QLineNumberPanel* lineNumberPanel;
+private:
+    friend class DefaultInputBinding;
     static int bookMarkId(int bookmarkNumber);
     
     static SpellerUtility* speller;

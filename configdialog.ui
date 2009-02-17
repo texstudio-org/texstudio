@@ -34,7 +34,7 @@
       </size>
      </property>
      <property name="currentIndex" >
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="pt" >
       <layout class="QVBoxLayout" >
@@ -856,6 +856,13 @@ p, li { white-space: pre-wrap; }
               <string>Show important line numbers</string>
              </property>
             </item>
+           </widget>
+          </item>
+          <item row="4" column="3" >
+           <widget class="QCheckBox" name="checkBoxAutoIndent" >
+            <property name="text" >
+             <string>Autoindent</string>
+            </property>
            </widget>
           </item>
          </layout>

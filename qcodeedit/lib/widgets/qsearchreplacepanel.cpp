@@ -264,21 +264,20 @@ bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
 
 void QSearchReplacePanel::on_leFind_textEdited(const QString& text)
 {	
-	if (!text.isEmpty()) {
-	    if (m_search!=0) {
-            m_search->setOption(QDocumentSearch::Silent,true);
-            if (lastDirection==0) 
-                m_search->next(true,false);//switch to backward mode
-            m_search->setSearchText(text);
-            if (m_search->next(false,false)) { //does it exists
-                m_search->setOption(QDocumentSearch::Silent,false);
-                m_search->next(true,false);         
-                m_search->next(false,false); //selecting match
-            } else m_search->setOption(QDocumentSearch::Silent,false);
-            lastDirection=0;
-	    } else find(0);
-	}	else if ( m_search ) 
-        m_search->setSearchText(text);
+	if ( m_search ) {
+	    /*if (lastDirection==1) { //switch to forward mode
+	        m_search->next(false,false);
+	        lastDirection=0;
+	    }*/
+        QDocumentCursor cur=m_search->cursor();
+        cur.setColumnNumber(cur.anchorColumnNumber());//remove selection
+		m_search->setSearchText(text);
+        m_search->setCursor(cur);
+        QDocumentSearch tempSearch=*m_search;
+        tempSearch.setOption(QDocumentSearch::Silent,true);
+        if (!tempSearch.next(false,false) && !tempSearch.next(true,false)) return; 
+	}
+	find(0);
 }
 
 void QSearchReplacePanel::on_leFind_returnPressed(bool backward)

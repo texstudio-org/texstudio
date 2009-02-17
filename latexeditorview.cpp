@@ -177,21 +177,6 @@ LatexEditorView::~LatexEditorView()
 {
 }
 
-void LatexEditorView::changeSettings(QFont & new_font,int linemultiples,bool fold, bool linestate, bool cursorstate, bool wrap, bool complete)
-{
-    editor->setFont(new_font);
-    lineMarkPanelAction->setChecked((linemultiples!=0) ||fold||linestate);
-    lineNumberPanelAction->setChecked(linemultiples!=0);
-    lineNumberPanel->setVerboseMode(linemultiples!=10);
-    lineFoldPanel->setChecked(fold);
-    lineChangePanel->setChecked(linestate);
-    statusPanel->setChecked(cursorstate);
-    
-    //if (editor->lexer()) editor->lexer()->setFont(new_font,-1);
-
-//  editor->setFlag(QEditor::complete,wrap);
-    editor->setLineWrapping(wrap);
-}
 
 void LatexEditorView::jumpChangePositionBackward(){
     if (changePositions.size()==0) return;
