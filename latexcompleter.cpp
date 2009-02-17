@@ -86,6 +86,7 @@ public:
                     curLine.addOverlay(QFormatRange(cw.descriptiveParts[i].first+curStart,cw.descriptiveParts[i].second,QDocument::formatFactory()->id("temporaryCodeCompletion")));
             
             //place cursor/add \end
+            QDocumentCursor selector=editor->cursor();
             int selectFrom=-1;
             int selectTo=-1;
             int deltaLine=0;
@@ -94,10 +95,15 @@ public:
                 QString indent=curLine.indentation();
                 int p=full.indexOf("{");
                 QString content="content...";
-                cursor.insertText( "\n"+indent+content+"\n"+indent+"\\end"+full.mid(p,full.indexOf("}")-p+1));
+                if (editor->flag(QEditor::AutoIndent)){
+                    cursor.insertText( "\n"+indent+"\t"+content+"\n"+indent+"\\end"+full.mid(p,full.indexOf("}")-p+1));
+                    indent+="\t";
+                } else
+                    cursor.insertText( "\n"+indent+content+"\n"+indent+"\\end"+full.mid(p,full.indexOf("}")-p+1));
                 if (QDocument::formatFactory()) 
                     for (int i=0;i<cw.descriptiveParts.size();i++) 
                         curLine.next().addOverlay(QFormatRange(indent.size(),content.size(),QDocument::formatFactory()->id("temporaryCodeCompletion")));
+                
 
                 if (cw.cursorPos==-1) {
                     deltaLine=1;
@@ -112,7 +118,6 @@ public:
                     selectTo=cw.cursorPos+curStart;
             } else editor->setCursor(cursor); //place after insertion
             if (selectFrom!=-1){
-                QDocumentCursor selector=editor->cursor();
                 if (deltaLine>0) selector.movePosition(deltaLine,QDocumentCursor::Down,QDocumentCursor::MoveAnchor);
                 selector.setColumnNumber(selectFrom);
                 if (selectTo>selectFrom) selector.movePosition(selectTo-selectFrom,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
