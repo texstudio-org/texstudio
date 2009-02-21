@@ -68,7 +68,7 @@ QFont EditorFont;
 QByteArray windowstate;
 public slots:
 void load( const QString &f );
-void setLine( int line );//0 based
+void gotoLine( int line );//0 based
 void executeCommandLine( const QStringList& args, bool realCmdLine);
 void onOtherInstanceMessage(const QString &);  // For messages for the single instance
 
@@ -294,7 +294,6 @@ void WebPublish();
 void AnalyseText();
 
 void ViewLog();
-void ClickedOnOutput(int l);
 void ClickedOnLogLine(QTableWidgetItem *item);
 void OutputViewVisibilityChanged(bool visible);
 void LatexError();

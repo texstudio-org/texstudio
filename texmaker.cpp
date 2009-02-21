@@ -211,7 +211,7 @@ OutputTextEdit = new LogEditor(Outputframe);
 OutputTextEdit->setFocusPolicy(Qt::ClickFocus);
 OutputTextEdit->setMinimumHeight(3*(fm.lineSpacing()+4));
 OutputTextEdit->setReadOnly(true);
-connect(OutputTextEdit, SIGNAL(clickonline(int )),this,SLOT(ClickedOnOutput(int )));
+connect(OutputTextEdit, SIGNAL(clickonline(int )),this,SLOT(gotoLine(int )));
 
 OutputLayout->addWidget(OutputTextEdit);
 
@@ -545,6 +545,17 @@ connect(Act, SIGNAL(triggered()), this, SLOT(gotoBookmark9()));
 subMenu->addAction(Act);
 
 editMenu->addSeparator();
+Act = new QAction(QIcon(":/images/errorprev.png"),tr("Previous LaTeX Error"), this);
+Act->setShortcut(Qt::CTRL+Qt::Key_Up);
+connect(Act, SIGNAL(triggered()), this, SLOT(PreviousError()));
+editMenu->addAction(Act);
+Act = new QAction(QIcon(":/images/errornext.png"),tr("Next LaTeX Error"), this);
+Act->setShortcut(Qt::CTRL+Qt::Key_Down);
+connect(Act, SIGNAL(triggered()), this, SLOT(NextError()));
+editMenu->addAction(Act);
+
+
+editMenu->addSeparator();
 
 Act = new QAction(tr("Check Spelling"), this);
 Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
@@ -626,10 +637,6 @@ connect(Act, SIGNAL(triggered()), this, SLOT(AnalyseText()));
 toolMenu->addAction(Act);
 
 
-Act = new QAction(QIcon(":/images/errorprev.png"),tr("Previous LaTeX Error"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(PreviousError()));
-Act = new QAction(QIcon(":/images/errornext.png"),tr("Next LaTeX Error"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(NextError()));
 
 latex1Menu = menuBar()->addMenu(tr("&LaTeX"));
 Act = new QAction("\\documentclass", this);
@@ -1823,7 +1830,7 @@ AddRecentFile(f_real);
 ShowStructure();
 }
 
-void Texmaker::setLine( int line )
+void Texmaker::gotoLine( int line )
 {
     if (currentEditorView() && line>=0)	{
 	    currentEditorView()->editor->setCursorPosition(line,0);
@@ -4553,13 +4560,6 @@ if (fic.exists() && fic.isReadable() )
 else {QMessageBox::warning( this,tr("Error"),tr("Log File not found !"));}
 }
 
-void Texmaker::ClickedOnOutput(int l)
-{
-if ( !currentEditorView() ) return;
-currentEditorView()->editor->setCursorPosition(l-1,0);
-currentEditorView()->editor->setFocus();
-}
-
 void Texmaker::ClickedOnLogLine(QTableWidgetItem *item)
 {
 if ( !currentEditorView() ) return;
@@ -4935,7 +4935,7 @@ if (logpresent && !onlyErrorList.isEmpty())
 		Item = new QTableWidgetItem(">");
 		OutputTableWidget->setItem(errorIndex,0, Item);
 		OutputTableWidget->scrollToItem(Item,QAbstractItemView::PositionAtCenter);
-		ClickedOnOutput(line-1);
+		gotoLine(line-1);
 		int logline=errorLogList.at(onlyErrorList.at(errorIndex)).toInt()-1;
 		OutputTextEdit->setCursorPosition(logline , 0);
 		}
@@ -4969,7 +4969,7 @@ if (logpresent && !onlyErrorList.isEmpty())
 		Item = new QTableWidgetItem(">");
 		OutputTableWidget->setItem(errorIndex,0, Item);
 		OutputTableWidget->scrollToItem(Item,QAbstractItemView::PositionAtCenter);
-		ClickedOnOutput(line-1);
+		gotoLine(line-1);
 		int logline=errorLogList.at(onlyErrorList.at(errorIndex)).toInt()-1;
 		OutputTextEdit->setCursorPosition(logline , 0);
 		}
@@ -5180,7 +5180,7 @@ void Texmaker::executeCommandLine( const QStringList& args, bool realCmdLine){
         activateMasterMode=false;
         line=-1;
     }
-    if (line!=-1) setLine(line);
+    if (line!=-1) gotoLine(line);
     if (activateMasterMode) {
         if (singlemode && realCmdLine && persistentMasterFile!="") {
             if (QFileInfo(persistentMasterFile)==ftl) ToggleRememberAct->setChecked(true);

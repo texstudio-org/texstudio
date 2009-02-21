@@ -60,23 +60,26 @@ body { background: #ffffff; color: black; }
 </ul>
 <hr>
 <h1><a name="SECTION0">1. Configuring TexMakerXX</a></h1>
-Before using TexMakerX, you must configure the editor and latex related commands via the "Configure TexMakerX" command in the "Options" menu ("Preferences" under macosx).
+Before using TexMakerX, you should configure the editor and latex related commands via the "Configure TexMakerX" command in the "Options" menu ("Preferences" under macosx).
 <h2><a name="SECTION01">1.1 Configuring the editor</a></h2>
 <p>
-Before compiling your first document, you must set the encoding used by the editor ("Configure TexMakerX" -> "Editor" -> "Editor Font Encoding"). Then, you should use the same encoding in the preamble of yours TeX documents (example : \usepackage[latin]{inputenc}, if you use the "ISO-8859-1" encoding for the editor)
+You can should set the default encoding for new files ("Configure TexMakerX" -> "Editor" -> "Editor Font Encoding") if you don't want utf8 as encoding. Don't forget to set the same encoding in the preamble of your documents. (e.g. \usepackage[utf8]{inputenc}, if you use utf-8).<br>
+TexMakerX can auto detect utf-8 and latin1 encoded files, but if you use a different encoding in your existing documents you have to specify it in the configuration dialog before opening them. (and then you also have to disable the autodetection)
 </p>
 <h2><a name="SECTION02">1.2 Configuring the latex related commands</a></h2>
 <p>TexMakerX can't compile yours documents if the paths to the LaTeX related commands are wrong.<br>
-The default settings should work with the recent and standard LaTeX distributions, but you should have to modify them ("Configure TexMakerX" -> "Commands"). To change a command, just click on the button at the end of the corresponding line and select the command in the file browser : TexMakerX will adapt automatically the syntax of the command.<br>
-The <strong>%</strong> character represents the name of the file without the extension and the <strong>@</strong> character will be replaced by the current line number.<br>
+The default settings should work with the recent and standard LaTeX distributions, but you could have to modify them ("Configure TexMakerX" -> "Commands"). To change a command, just click on the button at the end of the corresponding line and select the command in the file browser : TexMakerX will adapt automatically the syntax of the command.<br>
+The <strong>%</strong> character represents the name of the file without the extension and the <strong>@</strong> character will be replaced by the current line number. If you need more options (e.g. absolute paths) use ? and  look at the instruction on the bottom of the configuration dialog.<br>
 </p>
 <p><IMG src="doc14.png" border="1"></p>
 <h2><a name="SECTION03">1.3 Configuring the spell checker</a></h2>
 <p>
 The spell checker uses the OpenOffice.org dictionaries. Only GPL french and british dictionaries are distributed with TexMakerX.<br>
 Users can download others dictionaries here : <A href="http://wiki.services.openoffice.org/wiki/Dictionaries" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A><br>
-To configure the spell checker : "Configure TexMakerX" -> "Editor" -> "Spelling dictionary" -> click on the button at the end of the line to select the dictionary with the file browser.<br>
-<b>Warning : spell checking starts at the cursor position and not at the beginning of the document.</b>
+To configure the spell checker : "Configure TexMakerX" -> "Editor" -> "Spelling dictionary" -> click on the button at the end of the line to select the dictionary with the file browser. If you specify a non existing file the edit gets red.<br>
+Warning : spell checking with Ctrl+Shift+F7 starts at the cursor position and not at the beginning of the document.<br><br>
+If the interactive spell checker is enabled (default), any wrong spelled word is underlined with a red wave. Click on it with the right mouse to open an menu with a list of possible corrections. There you can also move it to the ignore list.<br><br>
+The ignore list is normally saved in the same directory as the dictionary with the extension .ign. If this isn't possible (e.g. missing access) the list is stored in the user configuration directory.
 </p>
 <h1><a name="SECTION1">2. Editing a TeX document</a></h1>
 <h2><a name="SECTION11">2.1 Usual commands</a></h2>
@@ -186,13 +189,14 @@ For the opposite operation ("Inverse search") :
 </p>
 <h2><a name="SECTION38">4.8 Synopsis of the TexMakerX command</a></h2>
 <p>
-TexMakerX file [-master] [-line xx]<br>
+TexMakerX file [-master] [-line xx] [--start-always]<br>
 With the "-master" option, the document will be automatically defined as a "master" document.<br>
-With the "-line xx" option, TexMakerX will ask you if you want to jump to the xx line after loading the document.
+With the "-line xx" option, TexMakerX will ask you if you want to jump to the xx line after loading the document.<br>
+With the "--start-always" option, TexMakerX will start, even if another instance of it is already running
 </p>
 <h2><a name="SECTION39">4.9 Keyboard shortcuts</a></h2>
 <p>
-Defaults keyboard shorscuts (*:can be modified - "Configure TexMakerX" -> "Editor") :
+Defaults keyboard shorscuts <!--(*:can be modified - "Configure TexMakerX" -> "Editor") -->:
 <ul>
 <li> "File" menu :
 	<ul>
@@ -217,6 +221,12 @@ Defaults keyboard shorscuts (*:can be modified - "Configure TexMakerX" -> "Edito
 	<li>Find next : Ctrl+M</li>
 	<li>Replace : CTrl+R</li>
 	<li>Goto line : Ctrl+G</li>
+	<li>Jump to last change: Ctrl+H</li>
+	<li>Jump to previous change: Ctrl+Shift+H</li>
+	<li>Set Bookmark 0..9: Ctrl+Shift+0..9</li>
+	<li>Jump to Bookmark 0..9: Ctrl+0..9</li>
+	<li>Next Latex Error: Ctrl+Down</li>
+	<li>Previous Latex Error: Ctrl+Up</li>
 	<li>Check spelling (from cursor) : Ctrl+Shift+F7</li>
 	</ul>
 </li>

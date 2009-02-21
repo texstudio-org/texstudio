@@ -35,7 +35,7 @@ protected:
     virtual void mousePressEvent(QMouseEvent *e);
     void paintEvent(QPaintEvent *event);
 signals:
-    void clickonline(int l);
+    void clickonline(int l); //0 based
 private:
   LogHighlighter *highlighter;
 };
