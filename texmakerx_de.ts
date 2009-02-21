@@ -1435,7 +1435,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="texmaker.cpp" line="4105"/>
         <source>could not start the command:</source>
-        <translation>Befehl konnte nicht gespeichert werden:</translation>
+        <translation>Befehl konnte nicht gestartet werden:</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="4108"/>

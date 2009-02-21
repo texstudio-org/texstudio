@@ -181,10 +181,13 @@ void ConfigDialog::textStyleChanged(){
 }
 void ConfigDialog::lineEditAspellChanged(QString newText)
 {
-    if (QFile(newText).exists()) 
+    if (QFile(newText).exists()) {
+        ui.lineEditAspellCommand->setStyleSheet(QString());
         ui.labelGetDic->setText( tr("Get dictionary at: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>") );
-    else 
+    } else {
+        ui.lineEditAspellCommand->setStyleSheet(QString("QLineEdit {background: red}"));
         ui.labelGetDic->setText( "<font color=\"red\">"+tr("(Dictionary doesn't exists)")+"</font><br>"+tr("Get dictionary at: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>") );
+    }
 }
 //pagetools
 void ConfigDialog::browseLatex()
