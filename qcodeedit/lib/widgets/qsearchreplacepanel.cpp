@@ -267,6 +267,9 @@ void QSearchReplacePanel::on_leFind_textEdited(const QString& text)
 	bool hadSearch = m_search;
 	QDocumentCursor cur = editor()->cursor();
 	
+	if (text.isEmpty()) 
+        leFind->setStyleSheet(QString());	
+	
 	if ( m_search ) 
 	{
 		cur = m_search->cursor();
@@ -276,9 +279,10 @@ void QSearchReplacePanel::on_leFind_textEdited(const QString& text)
 		if ( cbCursor->isChecked() )
 		{
 			QDocumentCursor c = cur;
-			c.setColumnNumber(c.anchorColumnNumber());
+			c.setColumnNumber(qMin(c.anchorColumnNumber(),c.columnNumber()));
 			
 			m_search->setCursor(c);
+			lastDirection=0;
 		}
 	} else {
 		// TODO : make incremental search optional
@@ -289,16 +293,24 @@ void QSearchReplacePanel::on_leFind_textEdited(const QString& text)
 	
 	find(0);
 	
-	m_search->setOption(QDocumentSearch::Silent, false);
-	
 	if ( m_search->cursor().isNull() )
 	{
 		leFind->setStyleSheet("QLineEdit { background: red; }");
 		
-		if ( hadSearch )
+		if ( hadSearch ) {
 			m_search->setCursor(cur);
-		 
+			QDocumentSearch temp(editor(),text,m_search->options());
+			temp.setCursor(cur);
+			if (temp.next(true,false)) {
+			    leFind->setStyleSheet("QLineEdit { background: yellow; }");
+			    m_search->setCursor(cur.document()->cursor(0,0));
+			    find(0);
+			    editor()->setCursor(m_search->cursor());
+			}
+		}
+        m_search->setOption(QDocumentSearch::Silent, false);
 	} else {
+	    m_search->setOption(QDocumentSearch::Silent, false);
 		leFind->setStyleSheet(QString());
 		editor()->setCursor(m_search->cursor());
 	}
