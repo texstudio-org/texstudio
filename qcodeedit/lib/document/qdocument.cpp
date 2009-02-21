@@ -2757,7 +2757,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				ypos += QDocumentPrivate::m_lineSpacing;
 				xpos = indent;
 				
-				if ( fmt & 0x8000 )
+				if ( r.format & 0x8000 )
 				{
 					// finish selection
 					p->fillRect(
@@ -4291,7 +4291,15 @@ void QDocumentCursorHandle::insertText(const QString& s)
 {
 	if ( !m_doc || s.isEmpty() || m_doc->line(m_begLine).isNull() )
 		return;
-		
+	
+	bool sel = hasSelection();
+	
+	if ( sel )
+	{
+		beginEditBlock();
+		removeSelectedText();
+	}
+	
 	QDocumentCommand *command = new QDocumentInsertCommand(
 										m_begLine,
 										m_begOffset,
@@ -4301,6 +4309,9 @@ void QDocumentCursorHandle::insertText(const QString& s)
 									
 	command->setTargetCursor(this);
 	execute(command);
+	
+	if ( sel )
+		endEditBlock();
 }
 
 void QDocumentCursorHandle::eraseLine()
@@ -4551,12 +4562,12 @@ QString QDocumentCursorHandle::selectedText() const
 		
 		while ( ++it < m_endLine )
 		{
-			s += "\n";
+			s += '\n';
 			s += m_doc->line(it).text();
 		}
 		
-		s += "\n" + l2.text().left(m_endOffset);
-		
+		s += '\n';
+		s += l2.text().left(m_endOffset);
 	} else {
 		s = l2.text().mid(m_endOffset);
 		
@@ -4565,15 +4576,14 @@ QString QDocumentCursorHandle::selectedText() const
 		
 		while ( ++it < m_begLine )
 		{
-			s += "\n";
+			s += '\n';
 			s += m_doc->line(it).text();
 		}
 		
-		s += "\n" + l1.text().left(m_begOffset);
-		
+		s += '\n';
+		s += l1.text().left(m_begOffset);
 	}
 	
-	//qDebug("selected text : \"%s\"", qPrintable(s));
 	return s;
 }
 
