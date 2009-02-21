@@ -50,6 +50,11 @@
 template <typename T, int x>
 class QVarLengthArray;
 
+// TODO : create buffer class for (fragmented) doc data storage
+// -> reduce memory usage for large files
+// -> speed up loading by avoiding many reallocs
+// -> speed up editing by huges mem moves
+
 //typedef QVarLengthArray<int, 10> QSmallArray;
 //typedef QVarLengthArray<quint8, 100> QMediumArray;
 

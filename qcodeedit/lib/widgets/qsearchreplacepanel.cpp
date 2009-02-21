@@ -263,25 +263,51 @@ bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
 }
 
 void QSearchReplacePanel::on_leFind_textEdited(const QString& text)
-{	
-	if ( m_search ) {
-	    /*if (lastDirection==1) { //switch to forward mode
-	        m_search->next(false,false);
-	        lastDirection=0;
-	    }*/
-        QDocumentCursor cur=m_search->cursor();
-        cur.setColumnNumber(cur.anchorColumnNumber());//remove selection
+{
+	bool hadSearch = m_search;
+	QDocumentCursor cur = editor()->cursor();
+	
+	if ( m_search ) 
+	{
+		cur = m_search->cursor();
+		
 		m_search->setSearchText(text);
-        m_search->setCursor(cur);
-        QDocumentSearch tempSearch=*m_search;
-        tempSearch.setOption(QDocumentSearch::Silent,true);
-        if (!tempSearch.next(false,false) && !tempSearch.next(true,false)) return; 
+		
+		if ( cbCursor->isChecked() )
+		{
+			QDocumentCursor c = cur;
+			c.setColumnNumber(c.anchorColumnNumber());
+			
+			m_search->setCursor(c);
+		}
+	} else {
+		// TODO : make incremental search optional
+		init();
 	}
+	
+	m_search->setOption(QDocumentSearch::Silent, true);
+	
 	find(0);
+	
+	m_search->setOption(QDocumentSearch::Silent, false);
+	
+	if ( m_search->cursor().isNull() )
+	{
+		leFind->setStyleSheet("QLineEdit { background: red; }");
+		
+		if ( hadSearch )
+			m_search->setCursor(cur);
+		 
+	} else {
+		leFind->setStyleSheet(QString());
+		editor()->setCursor(m_search->cursor());
+	}
 }
 
 void QSearchReplacePanel::on_leFind_returnPressed(bool backward)
 {
+	leFind->setStyleSheet(QString());
+	
 	if ( backward )
 		find(1);
 	else
@@ -292,7 +318,8 @@ void QSearchReplacePanel::on_leFind_returnPressed(bool backward)
 void QSearchReplacePanel::on_leReplace_textEdited(const QString& text)
 {
 	if ( m_search )
-		m_search->setReplaceText(text);		
+		m_search->setReplaceText(text);
+	
 }
 
 void QSearchReplacePanel::on_cbReplace_toggled(bool on)
@@ -331,7 +358,12 @@ void QSearchReplacePanel::on_cbCase_toggled(bool on)
 void QSearchReplacePanel::on_cbCursor_toggled(bool on)
 {
 	if ( m_search )
+	{
 		m_search->setOrigin(on ? editor()->cursor() : QDocumentCursor());
+		
+		if ( cbHighlight->isChecked() )
+			m_search->next(false);
+	}
 	
 	leFind->setFocus();
 }
@@ -379,6 +411,7 @@ void QSearchReplacePanel::on_bNext_clicked()
 	if ( !m_search )
 		init();
 	
+	leFind->setStyleSheet(QString());
 	find(0);
 }
 
@@ -387,6 +420,7 @@ void QSearchReplacePanel::on_bPrevious_clicked()
 	if ( !m_search )
 		init();
 	
+	leFind->setStyleSheet(QString());
 	find(1);
 }
 
@@ -446,6 +480,12 @@ void QSearchReplacePanel::cursorPositionChanged()
 {
 	if ( m_search )
 	{
+		if ( editor()->cursor() == m_search->cursor() || cbHighlight->isChecked() )
+			return;
+		
+		if ( cbCursor->isChecked() )
+			m_search->setOrigin(editor()->cursor());
+		
 		m_search->setCursor(editor()->cursor());
 	}
 }

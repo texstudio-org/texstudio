@@ -790,6 +790,8 @@ void QEditor::setFlag(EditFlag f, bool b)
 			if ( isVisible() )
 				m_doc->setWidthConstraint(wrapWidth());
 			
+			m_cursor.refreshColumnMemory();
+			
 			QAction *a = m_actions.value("wrap");
 			
 			if ( a && !a->isChecked() )
@@ -802,6 +804,8 @@ void QEditor::setFlag(EditFlag f, bool b)
 		{
 			if ( isVisible() )
 				m_doc->clearWidthConstraint();
+			
+			m_cursor.refreshColumnMemory();
 			
 			QAction *a = m_actions.value("wrap");
 			
@@ -2329,6 +2333,9 @@ bool QEditor::event(QEvent *e)
 {
 	bool r = QAbstractScrollArea::event(e);
 	
+	if ( (e->type() == QEvent::Resize || e->type() == QEvent::Show) && m_doc )
+		verticalScrollBar()->setMaximum(qMax(0, 1 + (m_doc->height() - viewport()->height()) / m_doc->fontMetrics().lineSpacing()));
+	
 	if ( e->type() == QEvent::Resize && flag(LineWrap) )
 	{
 		//qDebug("resize adjust (1) : wrapping to %i", viewport()->width());
@@ -2683,9 +2690,6 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
 	*/
 	
 	m_cursor.beginEditBlock();
-	
-	if ( m_cursor.hasSelection() )
-		m_cursor.removeSelectedText();
 	
 	if ( e->commitString().count() )
 		m_cursor.insertText(e->commitString());
@@ -3890,7 +3894,7 @@ bool QEditor::processCursor(QDocumentCursor& c, QKeyEvent *e, bool& b)
 				} else {
 					// default : keep leading ws from previous line...
 					QDocumentLine l = c.line();
-					const int idx = l.firstChar();
+					const int idx = qMin(l.firstChar(), c.columnNumber());
 					
 					indent = l.text();
 					
@@ -4000,10 +4004,11 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	if ( !hasSelection && flag(Overwrite) )
 		c.deleteChar();
 	
-	if ( lines.count() == 1 )
+	if ( true ) //lines.count() == 1 )
 	{
 		c.insertText(text);
 	} else {
+		#if 0
 		for ( int i = 0; i < lines.count(); ++i )
 		{
 			QString indent;
@@ -4039,6 +4044,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 			insertText(c, lines.at(i));
 			//c.insertText(lines.at(i));
 		}
+		#endif
 	}
 }
 
