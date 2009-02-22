@@ -40,14 +40,14 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
         editor->completionEngine()->complete();
         return true;
     }
-    if (event->key()==Qt::Key_Tab || event->key()==Qt::Key_Backtab){
+    if (event->modifiers()==Qt::ControlModifier && (event->key()==Qt::Key_Left || event->key()==Qt::Key_Right)){
         int tccFormat=QDocument::formatFactory()->id("temporaryCodeCompletion");
         if (editor->cursor().line().hasOverlay(tccFormat) || editor->cursor().line().next().hasOverlay(tccFormat) || editor->cursor().line().previous().hasOverlay(tccFormat)) {
             int cn=editor->cursor().columnNumber();
             int an=editor->cursor().anchorColumnNumber();
             QFormatRange fr (0,0,0);
             QDocumentCursor selector=editor->cursor();
-            if (event->key()==Qt::Key_Tab) {
+            if (event->key()==Qt::Key_Right) {
                 fr = selector.line().getFirstOverlayBetween((an>cn?an:cn)+1,editor->cursor().line().length(),tccFormat);
                 if (fr.length==0 && selector.line().next().isValid()) {
                     selector.movePosition(1,QDocumentCursor::Down,QDocumentCursor::MoveAnchor);
@@ -140,7 +140,7 @@ DefaultInputBinding *defaultInputBinding = new DefaultInputBinding();
 //----------------------------------LatexEditorView-----------------------------------
 SpellerUtility* LatexEditorView::speller=0;
 
-LatexEditorView::LatexEditorView(QWidget *parent) : QWidget(parent),curChangePos(-1)
+LatexEditorView::LatexEditorView(QWidget *parent) : QWidget(parent),curChangePos(-1),lastSetBookmark(0)
 {
     QVBoxLayout* mainlay = new QVBoxLayout( this );
     mainlay->setSpacing(0);
@@ -220,6 +220,7 @@ void LatexEditorView::toggleBookmark(int bookmarkNumber){
     for (int i=0;i<10;i++) editor->cursor().line().removeMark(bookMarkId(i));
     editor->cursor().line().addMark(rmid);
     editor->ensureCursorVisible();
+    if (bookmarkNumber>=1 && bookmarkNumber<=3) lastSetBookmark=bookmarkNumber;
 }
 
 void LatexEditorView::cleanBib(){
@@ -269,8 +270,10 @@ void LatexEditorView::lineMarkClicked(int line){
             return;
         }
     //remove/add used mark
-    editor->document()->line(editor->document()->findNextMark(bookMarkId(1))).removeMark(bookMarkId(1));
-    l.addMark(bookMarkId(1));
+    lastSetBookmark++;
+    if (lastSetBookmark<1 || lastSetBookmark>3) lastSetBookmark=1;
+    editor->document()->line(editor->document()->findNextMark(bookMarkId(lastSetBookmark))).removeMark(bookMarkId(lastSetBookmark));
+    l.addMark(bookMarkId(lastSetBookmark));
 }
 
 

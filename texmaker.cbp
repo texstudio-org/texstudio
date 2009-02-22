@@ -28,8 +28,12 @@
 		<Unit filename="addoptiondialog.h" />
 		<Unit filename="arraydialog.cpp" />
 		<Unit filename="arraydialog.h" />
+		<Unit filename="buildmanager.cpp" />
+		<Unit filename="buildmanager.h" />
 		<Unit filename="configdialog.cpp" />
 		<Unit filename="configdialog.h" />
+		<Unit filename="dsingleapplication.cpp" />
+		<Unit filename="dsingleapplication.h" />
 		<Unit filename="filechooser.cpp" />
 		<Unit filename="filechooser.h" />
 		<Unit filename="icondelegate.cpp" />
@@ -53,6 +57,8 @@
 		<Unit filename="quickdocumentdialog.h" />
 		<Unit filename="refdialog.cpp" />
 		<Unit filename="refdialog.h" />
+		<Unit filename="smallUsefulFunctions.cpp" />
+		<Unit filename="smallUsefulFunctions.h" />
 		<Unit filename="spellerdialog.cpp" />
 		<Unit filename="spellerdialog.h" />
 		<Unit filename="spellerutility.cpp" />

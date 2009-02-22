@@ -176,7 +176,7 @@ void QLineMarkPanel::mouseReleaseEvent(QMouseEvent *e)
 		return;
 	}
 	
-    int line=editor()->document()->lineNumber(editor()->verticalScrollBar()->value()+e->y());
+    int line=editor()->document()->lineNumber(editor()->verticalOffset()+e->y());
     if (line>-1) emit lineClicked(line);
 
 	//QMessageBox::warning(0, 0, "clik.");

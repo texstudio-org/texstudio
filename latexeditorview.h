@@ -89,6 +89,7 @@ private:
     static SpellerUtility* speller;
     QList<QPair<QDocumentLine, int> > changePositions; //line, index
     int curChangePos;
+    int lastSetBookmark; //only looks at 1..3 (mouse range)
 public slots:
     void lineMarkClicked(int line);
     void documentContentChanged(int linenr, int count);
