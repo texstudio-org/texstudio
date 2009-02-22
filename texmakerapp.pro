@@ -134,8 +134,7 @@ HEADERS	+= x11fontdialog.h
 SOURCES	+= x11fontdialog.cpp
 FORMS += x11fontdialog.ui
 utilities.path = $${PREFIX}/share/texmakerx
-utilities.files = utilities/blank.png \
-	utilities/doc1.png \
+utilities.files = utilities/doc1.png \
 	utilities/doc10.png \
 	utilities/doc11.png \
 	utilities/doc12.png \
@@ -156,20 +155,10 @@ utilities.files = utilities/blank.png \
 	utilities/doc8.png \
 	utilities/doc9.png \
 	utilities/latexhelp.html \
-	utilities/next.gif \
-	utilities/next_d.gif \
-	utilities/prev.gif \
-	utilities/prev_d.gif \
-	utilities/psheader.txt \
-	utilities/style.css \
 	utilities/texmaker_fr.qm \
 	utilities/texmaker_de.qm \
-	utilities/texmaker_zh.qm \
 	utilities/qt_fr.qm \
 	utilities/qt_de.qm \
-	utilities/qt_zh.qm \
-	utilities/up.gif \
-	utilities/up_d.gif \
 	utilities/usermanual_en.html \
 	utilities/usermanual_fr.html \
 	utilities/en_GB.aff \
@@ -206,8 +195,7 @@ QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.4
 target.path = /Applications
 INSTALLS = target
 utilities.path = Contents/Resources
-utilities.files = utilities/blank.png \
-	utilities/doc1.png \
+utilities.files = utilities/doc1.png \
 	utilities/doc10.png \
 	utilities/doc11.png \
 	utilities/doc12.png \
@@ -228,20 +216,10 @@ utilities.files = utilities/blank.png \
 	utilities/doc8.png \
 	utilities/doc9.png \
 	utilities/latexhelp.html \
-	utilities/next.gif \
-	utilities/next_d.gif \
-	utilities/prev.gif \
-	utilities/prev_d.gif \
-	utilities/psheader.txt \
-	utilities/style.css \
 	utilities/texmaker_fr.qm \
 	utilities/texmaker_de.qm \
-	utilities/texmaker_zh.qm \
 	utilities/qt_fr.qm \
 	utilities/qt_de.qm \
-	utilities/qt_zh.qm \
-	utilities/up.gif \
-	utilities/up_d.gif \
 	utilities/usermanual_en.html \
 	utilities/usermanual_fr.html \
 	utilities/en_GB.aff \
