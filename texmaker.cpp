@@ -284,29 +284,6 @@ setAcceptDrops(true);
     m_languages->addCompletionEngine(completer);
 }
 
-QString Texmaker::findResourceFile(QString fileName){
-    QStringList searchFiles;
-    #if defined( Q_WS_X11 )
-    searchFiles<<PREFIX"/share/texmakerx/"+fileName; //X_11
-    #endif
-    searchFiles<<QCoreApplication::applicationDirPath() + "/../Resources/"+fileName; //macx
-    searchFiles<<QCoreApplication::applicationDirPath() + "/"+fileName; //windows old 
-    searchFiles<<QCoreApplication::applicationDirPath() + "/help/"+fileName; //windows new
-    searchFiles<<QCoreApplication::applicationDirPath() + "/utilities/"+fileName; //windows new
-    searchFiles<<QCoreApplication::applicationDirPath() + "/dictionaries/"+fileName; //windows new
-    searchFiles<<QCoreApplication::applicationDirPath() + "/translation/"+fileName; //windows new
-    searchFiles<<":/"+fileName; //resource fall back
-    
-    foreach (QString fn, searchFiles) {
-        QFileInfo fic(fn);
-        if (fic.exists() && fic.isReadable() ) 
-        {
-            return fn;
-            break;
-        }
-    }
-    return "";
-}
 void Texmaker::setupMenus()
 {
 QAction *Act;
@@ -5207,6 +5184,8 @@ void Texmaker::executeCommandLine( const QStringList& args, bool realCmdLine){
 }
 void Texmaker::onOtherInstanceMessage(const QString &msg)  // Added slot for messages to the single instance
 {
+    show();
+    activateWindow();
     executeCommandLine(msg.split("#!#"),false);
 }
 void Texmaker::ToggleMode()

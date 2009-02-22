@@ -1,5 +1,11 @@
 <!DOCTYPE QNFA>
 <QNFA language="(La-)Tex" extensions="tex" defaultLineMark="">
+	<sequence parenthesis="round:open">(</sequence>
+	<sequence parenthesis="round:close">)</sequence>
+	<sequence parenthesis="curly:open" indent="1" fold="1">{</sequence>
+	<sequence parenthesis="curly:close" indent="1" fold="1">}</sequence>
+	<sequence parenthesis="square:open">\[</sequence>
+	<sequence parenthesis="square:close">\]</sequence>
 	
 	<context id="verbatim" format="verbatim">
 		<start parenthesis="verbatim:open" fold="true" format="extra-keyword">\\begin{verbatim}</start>
@@ -102,13 +108,5 @@
 	
   <sequence id="keywords/single" format="keyword">\\[\\%]</sequence>
   <sequence id="keywords/single" format="keyword">\\[a-zA-Z]+</sequence>
-	
-
-	<sequence parenthesis="round:open">(</sequence>
-	<sequence parenthesis="round:close">)</sequence>
-	<sequence parenthesis="curly:open" indent="1" fold="1">{</sequence>
-	<sequence parenthesis="curly:close" indent="1" fold="1">}</sequence>
-	<sequence parenthesis="square:open">\[</sequence>
-	<sequence parenthesis="square:close">\]</sequence>
 </QNFA>
 
