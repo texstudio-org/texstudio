@@ -1,7 +1,12 @@
 version Texmaker 1.8 -> TexMakerX 1.8
-- editor based on qcodeedit (lead to interactive spell checking, code folding, better bookmarks)
-- spell checker based on hunspell-1.2.8 (fixing bug)
+- editor based on qcodeedit (code folding, better bookmarks, incremental search, ...)
+- interactive spell checking, spell checker based on hunspell-1.2.8 (fixing bug)
+- code completion adding descriptive texts
+- automatical detection of file encoding
+- --start-always command line option added 
+- stdout is now listed in the list
 - text analysis
+- maintaining author changed, new name, new howepage: texmakerx.sourceforge.net
 version 1.7.1 -> 1.8:
 ----------------------
 - texmaker can now be only started once per user : inverse search will no more launch a new instance of texmaker
