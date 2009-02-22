@@ -41,6 +41,8 @@ void TexmakerApp::init( int & argc, char ** argv )
 QPixmap pixmap(":/images/splash.png");
 QSplashScreen *splash = new QSplashScreen(pixmap);
 splash->show();
+processEvents();
+
 QTranslator* appTranslator=new QTranslator(this);
 QTranslator* basicTranslator=new QTranslator(this);
 QString locale = QString(QLocale::system().name()).left(2);

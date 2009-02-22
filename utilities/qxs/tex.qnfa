@@ -100,8 +100,8 @@
 		<word parenthesis="subparagraph:boundary@nomatch" fold="true" >\\subparagraph</word>
 	</list>
 	
-  <word id="keywords/single" format="keyword">\\[\\%]</word>
-  <word id="keywords/single" format="keyword">\\[a-zA-Z]+</word>
+  <sequence id="keywords/single" format="keyword">\\[\\%]</sequence>
+  <sequence id="keywords/single" format="keyword">\\[a-zA-Z]+</sequence>
 	
 
 	<sequence parenthesis="round:open">(</sequence>

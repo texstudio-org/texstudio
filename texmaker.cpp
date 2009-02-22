@@ -546,11 +546,11 @@ subMenu->addAction(Act);
 
 editMenu->addSeparator();
 Act = new QAction(QIcon(":/images/errorprev.png"),tr("Previous LaTeX Error"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_Up);
+Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_Up);
 connect(Act, SIGNAL(triggered()), this, SLOT(PreviousError()));
 editMenu->addAction(Act);
 Act = new QAction(QIcon(":/images/errornext.png"),tr("Next LaTeX Error"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_Down);
+Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_Down);
 connect(Act, SIGNAL(triggered()), this, SLOT(NextError()));
 editMenu->addAction(Act);
 
@@ -3317,7 +3317,10 @@ if ( tabDlg->exec() )
 
 void Texmaker::QuickLetter()
 {
-if ( !currentEditorView() )	return;
+if ( !currentEditorView() ) {
+    fileNew();
+    if (!currentEditorView()) return;
+}
 QString tag=QString("\\documentclass[");
 LetterDialog *ltDlg = new LetterDialog(this,"Letter");
 if ( ltDlg->exec() )
@@ -3351,7 +3354,10 @@ void Texmaker::QuickDocument()
 QString opt="";
 int li=3;
 int f;
-if ( !currentEditorView() ) return;
+if ( !currentEditorView() ) {
+    fileNew();
+    if (!currentEditorView()) return;
+}
 QString tag=QString("\\documentclass[");
 QuickDocumentDialog *startDlg = new QuickDocumentDialog(this,"Quick Start");
 startDlg->otherClassList=userClassList;
@@ -3384,7 +3390,7 @@ if ( startDlg->exec() )
 	tag+=QString("\n");
 	if (startDlg->ui.comboBoxEncoding->currentText()!="NONE") tag+=QString("\\usepackage[")+startDlg->ui.comboBoxEncoding->currentText()+QString("]{inputenc}");
 	tag+=QString("\n");
-	if (startDlg->ui.comboBoxEncoding->currentText().startsWith("utf8"))
+	if (startDlg->ui.comboBoxEncoding->currentText().startsWith("utf8x"))
 		{
 		tag+=QString("\\usepackage{ucs}\n");
 		li=li+1;
