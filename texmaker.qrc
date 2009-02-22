@@ -27,15 +27,15 @@
 	<file>images/lbook9.png</file>
 
   <!--html converter-->
-  <file alias="blank.png">utilities\blank.png</file>
-  <file alias="next.gif">utilities\next.gif</file>
-  <file alias="next_d.gif">utilities\next_d.gif</file>
-  <file alias="prev.gif">utilities\prev.gif</file>
-  <file alias="prev_d.gif">utilities\prev_d.gif</file>
-  <file alias="psheader.txt">utilities\psheader.txt</file>
-  <file alias="style.css">utilities\style.css</file>
-  <file alias="up.gif">utilities\up.gif</file>
-  <file alias="up_d.gif">utilities\up_d.gif</file>
+  <file alias="blank.png">utilities/blank.png</file>
+  <file alias="next.gif">utilities/next.gif</file>
+  <file alias="next_d.gif">utilities/next_d.gif</file>
+  <file alias="prev.gif">utilities/prev.gif</file>
+  <file alias="prev_d.gif">utilities/prev_d.gif</file>
+  <file alias="psheader.txt">utilities/psheader.txt</file>
+  <file alias="style.css">utilities/style.css</file>
+  <file alias="up.gif">utilities/up.gif</file>
+  <file alias="up_d.gif">utilities/up_d.gif</file>
  
 	<file>images/logo128.png</file>
 	<file>images/pstricks.png</file>
