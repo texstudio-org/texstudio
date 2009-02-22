@@ -19,7 +19,12 @@
 #include <QDir>
 #include <QFileOpenEvent>
 #include "texmaker.h"
-
+#include "smallUsefulFunctions.h"
+#ifdef Q_WS_WIN
+#include <QMessageBox>
+#include "windows.h"
+typedef BOOL (*AllowSetForegroundWindowFunc) (DWORD);
+#endif
 class TexmakerApp : public QApplication
 {
 protected:
@@ -47,8 +52,8 @@ QTranslator* appTranslator=new QTranslator(this);
 QTranslator* basicTranslator=new QTranslator(this);
 QString locale = QString(QLocale::system().name()).left(2);
 if ( locale.length() < 2 ) locale = "en";
-if (appTranslator->load(Texmaker::findResourceFile("texmakerx_"+locale+".qm"))) installTranslator(appTranslator);
-if (basicTranslator->load(Texmaker::findResourceFile("qt_"+locale+".qm"))) installTranslator(basicTranslator);
+if (appTranslator->load(findResourceFile("texmakerx_"+locale+".qm"))) installTranslator(appTranslator);
+if (basicTranslator->load(findResourceFile("qt_"+locale+".qm"))) installTranslator(basicTranslator);
 mw = new Texmaker();
 connect( this, SIGNAL( lastWindowClosed() ), this, SLOT( quit() ) );
 splash->finish(mw);
@@ -88,6 +93,11 @@ for(int i=0; i<argc; ++i)
 
 if (!startAlways)
     if ( instance.isRunning() ) {
+        #ifdef Q_WS_WIN
+        AllowSetForegroundWindowFunc asfw = (AllowSetForegroundWindowFunc)GetProcAddress(GetModuleHandleA("user32.dll"),"AllowSetForegroundWindow");
+        if (asfw) asfw(/*ASFW_ANY*/(DWORD)(-1));
+        
+        #endif
         QString msg;
         for(int i=0; i<argc; ++i){
             msg += argv[i];

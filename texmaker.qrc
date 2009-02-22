@@ -1,11 +1,20 @@
 <!DOCTYPE RCC><RCC version="1.0">
  <qresource>
+
+  <!--qce data-->	
+	<file alias="qxs/defaultFormats.qxf">utilities/qxs/defaultFormats.qxf</file>
+	<file alias="qxs/marks.qxm">utilities/qxs/marks.qxm</file>
+	<file alias="qxs/bibtex.qnfa">utilities/qxs/bibtex.qnfa</file>
+	<file alias="qxs/tex.qnfa">utilities/qxs/tex.qnfa</file>
+	<file alias="qxs/xml.qnfa">utilities/qxs/xml.qnfa</file>
+
 	<file alias="closeall.png">images/qcodeedit/closeall.png</file>
 	<file alias="down.png">images/qcodeedit/down.png</file>
 	<file alias="up.png">images/qcodeedit/up.png</file>
 	<file alias="reload.png">images/qcodeedit/reload.png</file>
 	<file alias="warning.png">images/qcodeedit/warning.png</file>
-
+  
+  <!--bookmarks-->
 	<file>images/lbook0.png</file>
 	<file>images/lbook1.png</file>
 	<file>images/lbook2.png</file>
@@ -16,13 +25,17 @@
 	<file>images/lbook7.png</file>
 	<file>images/lbook8.png</file>
 	<file>images/lbook9.png</file>
-	
-	<file alias="qxs/defaultFormats.qxf">utilities/qxs/defaultFormats.qxf</file>
-	<file alias="qxs/marks.qxm">utilities/qxs/marks.qxm</file>
-	<file alias="qxs/bibtex.qnfa">utilities/qxs/bibtex.qnfa</file>
-	<file alias="qxs/tex.qnfa">utilities/qxs/tex.qnfa</file>
-	<file alias="qxs/xml.qnfa">utilities/qxs/xml.qnfa</file>
- 
+
+  <!--html converter-->
+  <file alias="blank.png">utilities\blank.png</file>
+  <file alias="next.gif">utilities\next.gif</file>
+  <file alias="next_d.gif">utilities\next_d.gif</file>
+  <file alias="prev.gif">utilities\prev.gif</file>
+  <file alias="prev_d.gif">utilities\prev_d.gif</file>
+  <file alias="psheader.txt">utilities\psheader.txt</file>
+  <file alias="style.css">utilities\style.css</file>
+  <file alias="up.gif">utilities\up.gif</file>
+  <file alias="up_d.gif">utilities\up_d.gif</file>
  
 	<file>images/logo128.png</file>
 	<file>images/pstricks.png</file>

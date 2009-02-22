@@ -15,5 +15,5 @@
 //(QFileInfo.isWritable works in different ways on Windows and Linux)
 bool isFileRealWritable(QString filename); 
 bool isExistingFileRealWritable(QString filename); 
-
+QString findResourceFile(QString fileName);
 #endif

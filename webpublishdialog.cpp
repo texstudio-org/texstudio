@@ -24,6 +24,7 @@
 #include <QCloseEvent>
 #include <QDebug>
 #include <QMessageBox>
+#include "smallUsefulFunctions.h"
 
 WebPublishDialog::WebPublishDialog(QWidget *parent, QString name, QString gs_cd, QString latex_cd, QString dvips_cd, QTextCodec *input_codec)
     :QDialog( parent)
@@ -337,28 +338,11 @@ void WebPublishDialog::readOutputForLog()
     if (!t.isEmpty()) curLog.append(t+"\n");
 }
 
-void WebPublishDialog::copyFile(QString from_file, QString to_file)
-{
-if (to_file.isEmpty() || from_file.isEmpty()) return;
-QFileInfo fi_or(from_file);
-if (!fi_or.exists()) return;
-QFile fichier_or(from_file);
-QFileInfo fi_dest(to_file);
-if (fi_dest.exists())
-	{
-	QFile fichier_dest(to_file);
-	fichier_dest.remove();
-	fichier_or.copy(to_file);
-	}
-else
-	{
-	fichier_or.copy(to_file);
-	}
-}
-
 void WebPublishDialog::copyDataFile(QString fileNameWithoutDir, QString to_file){
-    copyFile(programdir+"/"+fileNameWithoutDir,to_file);
-    copyFile(programdir+"/data/"+fileNameWithoutDir,to_file);
+    QString fiName=findResourceFile(fileNameWithoutDir);
+    if (fiName=="") return;
+    QFile::remove(to_file);
+    QFile::copy(fiName,to_file);
 }
 
 void WebPublishDialog::removeFile(QString file)

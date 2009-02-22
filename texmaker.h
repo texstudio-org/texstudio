@@ -72,7 +72,6 @@ void gotoLine( int line );//0 based
 void executeCommandLine( const QStringList& args, bool realCmdLine);
 void onOtherInstanceMessage(const QString &);  // For messages for the single instance
 
-static QString findResourceFile(QString fileName);
 private:
 void setupMenus();
 void setupToolBars();

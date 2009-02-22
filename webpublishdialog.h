@@ -40,7 +40,6 @@ void init();
 void convert( const QString &fileName );
 void RunCommand(QString comd,bool waitendprocess);
 void SlotEndProcess(int err);
-void copyFile(QString from_file, QString to_file);
 void copyDataFile(QString fileNameWithoutDir, QString to_file);
 void removeFile(QString file);
 void ps2gif(QString input,QString output,int id_page,int w,int h,int maxw);
