@@ -529,7 +529,12 @@ bool QDocumentLine::hasOverlay(int id){
     if ( !m_handle ) return false;
     return m_handle->hasOverlay(id);
 }
-
+QList<QFormatRange> QDocumentLine::getOverlays(int preferredFormat){
+	if ( !m_handle )
+		return QList<QFormatRange>();
+	
+	return m_handle->getOverlays(preferredFormat);
+}
 QFormatRange QDocumentLine::getOverlayAt(int index, int preferredFormat){
 	if ( !m_handle )
 		return QFormatRange(0,0,0);
