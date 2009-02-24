@@ -2206,6 +2206,14 @@ bool QDocumentLineHandle::hasOverlay(int id){
     return false;
 }
 
+QList<QFormatRange> QDocumentLineHandle::getOverlays(int preferredFormat){
+    if (preferredFormat==-1) return m_overlays;
+    QList<QFormatRange> result=m_overlays;
+    for (int i=result.size()-1;i>=0;i--)
+        if (result[i].format!=preferredFormat) result.removeAt(i);
+    return result;
+}
+
 QFormatRange QDocumentLineHandle::getOverlayAt(int index, int preferredFormat){
     QFormatRange best(0,0,0);
     foreach (QFormatRange fr, m_overlays) 

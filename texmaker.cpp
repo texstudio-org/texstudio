@@ -88,6 +88,7 @@
 #include "x11fontdialog.h"
 #endif
 
+#include "windows.h"
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
     : QMainWindow(parent, flags)
 {
@@ -2450,14 +2451,32 @@ UserToolCommand[3]=config->value("User/Tool4","").toString();
 UserToolName[4]=config->value("User/ToolName5","").toString();
 UserToolCommand[4]=config->value("User/Tool5","").toString();
 
-int UserKeyReplaceCount = config->value("User/KeyReplaceCount",2).toInt();
 UserKeyReplace.clear();
 UserKeyReplaceAfterWord.clear();
 UserKeyReplaceBeforeWord.clear();
-for (int i=0;i<UserKeyReplaceCount;i++) {
+int UserKeyReplaceCount = config->value("User/KeyReplaceCount",-1).toInt();
+if (UserKeyReplaceCount ==-1) {
+    //default
+    UserKeyReplace.append("\"");
+    QString loc=QString(QLocale::system().name()).left(2);
+    if (loc=="de") {
+        UserKeyReplaceBeforeWord.append("\">");
+        UserKeyReplaceAfterWord.append("\"<");
+
+        UserKeyReplace.append("'");
+        UserKeyReplaceBeforeWord.append("''");
+        UserKeyReplaceAfterWord.append("``");
+    } else {
+        UserKeyReplaceBeforeWord.append("''");
+        UserKeyReplaceAfterWord.append("``");
+    }
+    UserKeyReplace.append("%");
+    UserKeyReplaceBeforeWord.append("%");
+    UserKeyReplaceAfterWord.append(" %");
+} else for (int i=0;i<UserKeyReplaceCount;i++) {
   UserKeyReplace.append(config->value("User/KeyReplace"+QVariant(i).toString(),i!=0?"'":"\"").toString());
-  UserKeyReplaceAfterWord.append(config->value("User/KeyReplaceAfterWord"+QVariant(i).toString(),i!=0?"''":"\"<").toString());
-  UserKeyReplaceBeforeWord.append(config->value("User/KeyReplaceBeforeWord"+QVariant(i).toString(),i!=0?"``":"\">").toString());
+  UserKeyReplaceAfterWord.append(config->value("User/KeyReplaceAfterWord"+QVariant(i).toString(),i!=0?"":"").toString());
+  UserKeyReplaceBeforeWord.append(config->value("User/KeyReplaceBeforeWord"+QVariant(i).toString(),i!=0?"":"\">").toString());
 }
 LatexEditorView::setKeyReplacements(&UserKeyReplace,&UserKeyReplaceAfterWord,&UserKeyReplaceBeforeWord);
 
@@ -5215,6 +5234,7 @@ if (singlemode && currentEditorView())
 	ToggleAct->setText(tr("Normal Mode (current master document :")+shortName+")");
 	singlemode=false;
 	stat1->setText(QString(" %1 ").arg(tr("Master Document")+ ": "+shortName));
+	ToggleRememberAct->setChecked(true);
 	return;
 	}
 }
