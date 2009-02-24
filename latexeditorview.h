@@ -96,6 +96,7 @@ public slots:
     void lineDeleted(QDocumentLineHandle* l);
     void spellCheckingReplace();
     void spellCheckingAlwaysIgnore();
+    void spellCheckingListSuggestions();
     void dictionaryReloaded();
 };
 

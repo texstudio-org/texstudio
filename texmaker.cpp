@@ -88,7 +88,6 @@
 #include "x11fontdialog.h"
 #endif
 
-#include "windows.h"
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
     : QMainWindow(parent, flags)
 {

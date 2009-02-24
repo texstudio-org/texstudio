@@ -103,16 +103,11 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
                     wordSelection.movePosition(fr.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
                     editor->setCursor(wordSelection);
 
-                    QStringList suggestions= LatexEditorView::speller->suggest(word);
-                    if (!suggestions.empty()) {
-                        QFont correctionFont;correctionFont.setBold(true);
-                        foreach (QString s, suggestions) {
-                            QAction* aReplacement=new QAction(s,contextMenu);
-                            aReplacement->setFont(correctionFont);
-                            edView->connect(aReplacement,SIGNAL(triggered()),edView,SLOT(spellCheckingReplace()));
-                            contextMenu->addAction(aReplacement);
-                        }
-                    }
+                    if (event->modifiers() & Qt::ShiftModifier) {
+                        QAction* aReplacement=new QAction(edView->tr("shift pressed => suggestions hidden"),contextMenu);
+                        edView->connect(aReplacement,SIGNAL(triggered()),edView,SLOT(spellCheckingListSuggestions()));
+                        contextMenu->addAction(aReplacement);
+                    } else edView->spellCheckingListSuggestions();
                     QFont ignoreFont; ignoreFont.setItalic(true);
                     QAction* act=new QAction (LatexEditorView::tr("always ignore"),contextMenu);
                     act->setFont(ignoreFont);
@@ -442,8 +437,42 @@ void LatexEditorView::spellCheckingReplace(){
 }
 void LatexEditorView::spellCheckingAlwaysIgnore(){
     if (speller && editor && editor->cursor().hasSelection() && (editor->cursor().selectedText()==defaultInputBinding->lastSpellCheckedWord)) {
-        speller->addToIgnoreList(editor->cursor().selectedText());
-        documentContentChanged(editor->cursor().lineNumber(),1);
+        QString newToIgnore = editor->cursor().selectedText();
+        speller->addToIgnoreList(newToIgnore);
+        //documentContentChanged(editor->cursor().lineNumber(),1);
+        for (int i=0;i<editor->document()->lines();i++){
+            QList<QFormatRange> li=editor->document()->line(i).getOverlays();
+            QString curLineText=editor->document()->line(i).text();
+            for (int j=0;j<li.size();j++) 
+                if (curLineText.mid(li[j].offset,li[j].length)==newToIgnore) 
+                    editor->document()->line(i).removeOverlay(li[j]);
+        }
+        editor->viewport()->update();
+    }
+}
+void LatexEditorView::spellCheckingListSuggestions(){
+    QMenu* contextMenu = defaultInputBinding->contextMenu;
+    if (!contextMenu) return;
+    bool repopup=false;
+    if (!contextMenu->actions().isEmpty() && contextMenu->actions()[0]->text()==tr("shift pressed => suggestions hidden")) {
+        contextMenu->removeAction(contextMenu->actions()[0]);
+        repopup=true;
+    }
+    QAction* before=0;
+    if (!contextMenu->actions().isEmpty()) before=contextMenu->actions()[0];
+    QStringList suggestions= LatexEditorView::speller->suggest(defaultInputBinding->lastSpellCheckedWord);
+    if (!suggestions.empty()) {
+        QFont correctionFont;correctionFont.setBold(true);
+        for (int i=0;i<suggestions.size();i++) {
+            QAction* aReplacement=new QAction(suggestions[i],contextMenu);
+            aReplacement->setFont(correctionFont);
+            connect(aReplacement,SIGNAL(triggered()),this,SLOT(spellCheckingReplace()));
+            contextMenu->insertAction(before,aReplacement);
+        }
+    }
+    if (repopup) {
+    //    contextMenu->close();
+        contextMenu->exec();
     }
 }
 void LatexEditorView::dictionaryReloaded(){
