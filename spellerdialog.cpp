@@ -9,10 +9,12 @@
  ***************************************************************************/
 
 #include "spellerdialog.h"
+
 #include "qdocumentline.h"
 
 #include <QCloseEvent>
 
+#include "smallUsefulFunctions.h"
 
 SpellerDialog::SpellerDialog(QWidget *parent,SpellerUtility *utility)
     :QDialog( parent)
@@ -72,7 +74,7 @@ void SpellerDialog::startSpelling(){
         int nextIndex=0;
         int wordStartIndex=0;
         QString tempWord;
-        while (nextIndex<startIndex && LatexEditorView::nextWord(curLine,nextIndex,tempWord,wordStartIndex)) 
+        while (nextIndex<startIndex && nextWord(curLine,nextIndex,tempWord,wordStartIndex)) 
             ; //next
         startIndex=wordStartIndex;
 	}
@@ -149,7 +151,7 @@ void SpellerDialog::SpellingNextWord()
     if (!editor) return;
     for (;curLine<=endLine;curLine++) {
         int wordStartIndex;
-        while (LatexEditorView::nextWord(editor->text(curLine),curIndex,curWord,wordStartIndex)) {
+        while (nextWord(editor->text(curLine),curIndex,curWord,wordStartIndex)) {
             if (curLine==endLine && curIndex>endIndex) 
               break; //not in checked range
             if (m_speller->check(curWord)) continue;

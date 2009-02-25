@@ -104,6 +104,11 @@
 		<Extensions>
 			<code_completion>
 				<search_path add="P:\programming\qt\include" />
+				<search_path add="P:\text\texmaker\texmakerXsvn\" />
+				<search_path add="qcodeedit\lib" />
+				<search_path add="qcodeedit\lib\document" />
+				<search_path add="qcodeedit\lib\widgets" />
+				<search_path add="qcodeedit\lib\qnfa" />
 			</code_completion>
 			<envvars />
 			<debugger />

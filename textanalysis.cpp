@@ -1,6 +1,7 @@
 #include "textanalysis.h"
 #include "qdocumentline.h"
-#include "latexeditorview.h"
+#include "smallUsefulFunctions.h"
+//#include "latexeditorview.h"
 //#include <QMessageBox>
 Word::Word (QString nw, int nc){
   word=nw;
@@ -38,9 +39,10 @@ QVariant TextAnalysisModel::headerData(int section, Qt::Orientation orientation,
          return QVariant();
 
     if (orientation != Qt::Horizontal) return QString::number(section);
-    else if (section == 0) return QString("word");
-    else if (section == 1) return QString("count");
-    else if (section == 2) return QString("count relative");
+    else if (section == 0) return QString(TextAnalysisDialog::tr("word/phrase"));
+    else if (section == 1) return QString(TextAnalysisDialog::tr("count"));
+    else if (section == 2) return QString(TextAnalysisDialog::tr("count relative"));
+    else return QVariant();
 }
 int TextAnalysisModel::columnCount ( const QModelIndex & parent) const {
   return 3;
@@ -59,7 +61,7 @@ void TextAnalysisModel::updateAll(){
 }
 
 TextAnalysisDialog::TextAnalysisDialog( QWidget* parent,  QString name)
-    : QDialog( parent)
+    : QDialog( parent), document(0), lastSentenceLength(-1), lastParsedMinWordLength(-1)
 {
 setWindowTitle(name);
 setModal(true);
@@ -68,8 +70,6 @@ ui.setupUi(this);
 ui.resultView->setWordWrap (false);
 //connect(ui.comboBox, SIGNAL(activated(int)),this,SLOT(change(int)));
 
-
-document=0;
 
   connect(ui.countButton, SIGNAL(clicked()), SLOT(slotCount()) );
   connect(ui.closeButton, SIGNAL(clicked()), SLOT(slotClose()) );
@@ -99,18 +99,24 @@ void TextAnalysisDialog::init()
 }
 
 void TextAnalysisDialog::needCount(){
-    if (alreadyCount) return;
+    if (alreadyCount && lastSentenceLength==ui.sentenceLengthSpin->value() &&
+        lastParsedMinWordLength==(ui.minimumLengthMeaning->currentIndex()==4?ui.minimumLengthSpin->value():0)) return; 
+    lastSentenceLength=ui.sentenceLengthSpin->value();
+    int minimumWordLength=0;
+    if (ui.minimumLengthMeaning->currentIndex()==4) minimumWordLength=ui.minimumLengthSpin->value();
+    lastParsedMinWordLength=minimumWordLength;
     int totalLines=document->lines();
     int textLines=0;
     int commentLines=0;
-    mapText.resize(2+chapters.size());
-    mapComment.resize(2+chapters.size());
-    mapCommand.resize(2+chapters.size());
-
+    for (int i=0;i<3;i++) {
+        maps[i].resize(2+chapters.size());
+        for (int j=0;j<maps[i].size();j++) 
+            maps[i][j].clear();
+    }
     int selectionStartLine=-1;
     int selectionEndLine=-1;
-    int selectionStartIndex;
-    int selectionEndIndex;
+    int selectionStartIndex=-1;
+    int selectionEndIndex=-1;
     if (cursor.hasSelection()){
         QDocumentSelection sel = cursor.selection();
         selectionStartLine=sel.startLine;
@@ -127,12 +133,14 @@ void TextAnalysisDialog::needCount(){
 
     int nextChapter=0;
     int extraMap=0;
+    QList<QString> lastWords[3];
+    int sentenceLengths[3] = {0,0,0};
     for (int l=0;l<document->lines();l++){
         if (nextChapter<chapters.size() && l+1>=chapters[nextChapter].second) {
             if (nextChapter==0) extraMap=2;
             else extraMap++;
             nextChapter++;
-            if (extraMap>=mapText.size()) extraMap=0;
+            if (extraMap>=maps[0].size()) extraMap=0;
         }
         QString line=document->line(l).text();
         bool commentReached=false;
@@ -141,7 +149,7 @@ void TextAnalysisDialog::needCount(){
         bool lineCountedAsText=false;        
         QString curWord;
         int state;
-        while ((state=LatexEditorView::nextWord(line,nextIndex,curWord,wordStartIndex,LatexEditorView::NW_TEXT|LatexEditorView::NW_COMMENT|LatexEditorView::NW_COMMAND))!=LatexEditorView::NW_NOTHING){
+        while ((state=nextWord(line,nextIndex,curWord,wordStartIndex,NW_TEXT|NW_COMMENT|NW_COMMAND))!=NW_NOTHING){
             bool inSelection;
             if (selectionStartLine!=selectionEndLine) 
                 inSelection=((l<selectionEndLine) && (l>selectionStartLine)) ||
@@ -150,26 +158,38 @@ void TextAnalysisDialog::needCount(){
              else 
                 inSelection=(l==selectionStartLine) && (nextIndex>selectionStartIndex) && (wordStartIndex<=selectionEndIndex);
             curWord=curWord.toLower();
-            if (state & LatexEditorView::NW_COMMENT || commentReached) {
-                mapComment[0][curWord]=mapComment[0][curWord]+1;
-                if (inSelection) mapComment[1][curWord]=mapComment[1][curWord]+1;
-                if (extraMap!=0) mapComment[extraMap][curWord]=mapComment[extraMap][curWord]+1;
+            int curType=-1;
+            if (state & NW_COMMENT || commentReached) {
+                curType=2;
                 if (!commentReached){
                     commentReached=true;
                     commentLines++;
                 }
-            } else if (state&LatexEditorView::NW_COMMAND) {
-                mapCommand[0][curWord]=mapCommand[0][curWord]+1;
-                if (inSelection) mapCommand[1][curWord]=mapCommand[1][curWord]+1;
-                if (extraMap!=0) mapCommand[extraMap][curWord]=mapCommand[extraMap][curWord]+1;
-            } else if (state&LatexEditorView::NW_TEXT){
-                mapText[0][curWord]=mapText[0][curWord]+1;
-                if (inSelection) mapText[1][curWord]=mapText[1][curWord]+1;
-                if (extraMap!=0) mapText[extraMap][curWord]=mapText[extraMap][curWord]+1;
+            } else if (state&NW_COMMAND) {
+                curType=1;
+            } else if (state&NW_TEXT){
+                curType=0;
                 if (!lineCountedAsText) {
                     textLines++;
                     lineCountedAsText=true;
                 }
+            }
+            if (curType!=-1 && curWord.size()>=minimumWordLength) {
+                //if (lastSentenceLength>1) {
+                lastWords[curType].append(curWord);
+                sentenceLengths[curType]+=curWord.size()+1;
+                if (lastWords[curType].size()>lastSentenceLength) {
+                    sentenceLengths[curType]-=lastWords[curType].first().size()+1;
+                    lastWords[curType].removeFirst();
+                }
+                curWord="";
+                curWord.reserve(sentenceLengths[curType]);
+                foreach (QString s, lastWords[curType])
+                    curWord+=s+" ";
+                curWord.truncate(curWord.size()-1);
+                maps[curType][0][curWord]=maps[curType][0][curWord]+1;
+                if (inSelection) maps[curType][1][curWord]=maps[curType][1][curWord]+1;
+                if (extraMap!=0) maps[curType][extraMap][curWord]=maps[curType][extraMap][curWord]+1;
             }
         };
     }
@@ -183,18 +203,57 @@ void TextAnalysisDialog::needCount(){
 
 void TextAnalysisDialog::insertDisplayData(const QMap<QString,int> & map){
     int minLen=0;
-    if (ui.minWordLenCheck->isChecked()) minLen=ui.smallWordsSpin->value()+1;
-    for(QMap<QString, int>::const_iterator it = map.constBegin(); it!=map.constEnd(); ++it)
-        if (it.key().size()>=minLen)
-            displayed.words.append(Word(it.key(),it.value()));
+    int minCount=ui.minimumCountSpin->value();
+    int phraseLength=ui.sentenceLengthSpin->value();
+    switch (ui.minimumLengthMeaning->currentIndex()) {
+        case 2: //at least one word must have min length, all shorter with space: (min-1 +1)*phraseLength-1
+            minLen=ui.minimumLengthSpin->value(); //no break!
+            for(QMap<QString, int>::const_iterator it = map.constBegin(); it!=map.constEnd(); ++it)
+                if (it.value()>=minCount)
+                    if (it.key().size()>=minLen*phraseLength) displayed.words.append(Word(it.key(),it.value()));
+                    else {
+                        QString t=it.key();
+                        int last=0;
+                        int i=0;
+                        for (;i<t.size();i++) 
+                            if (t.at(i)==' ') 
+                                if (i-last>=minLen) {
+                                    displayed.words.append(Word(it.key(),it.value()));
+                                    break;
+                                } else last=i+1;
+                        if (i==t.size() && i-last>=minLen) displayed.words.append(Word(it.key(),it.value()));
+                    }
+            break;
+        case 3: //all words must have min len, (min +1)*phraseLength-1
+            minLen=ui.minimumLengthSpin->value(); 
+            for(QMap<QString, int>::const_iterator it = map.constBegin(); it!=map.constEnd(); ++it)
+                if (it.value()>=minCount && it.key().size()>=minLen) { //not minLen*phraseCount because there can be less words in a phrase
+                    QString t=it.key();
+                    int last=0; 
+                    bool ok=true;                  
+                    for (int i=0;i<t.size();i++) 
+                        if (t.at(i)==' ') 
+                            if (i-last<minLen) {
+                                ok=false;
+                                break;
+                            } else last=i+1;
+                    if (ok && t.size()-last>=minLen) displayed.words.append(Word(it.key(),it.value()));
+                }
+            break;
+        case 1: minLen=ui.minimumLengthSpin->value();  //no break!
+        default: 
+            for(QMap<QString, int>::const_iterator it = map.constBegin(); it!=map.constEnd(); ++it)
+                if (it.value()>=minCount && it.key().size()>=minLen)
+                    displayed.words.append(Word(it.key(),it.value()));
+    }
 }
 void TextAnalysisDialog::slotCount()
 {
     needCount();
     displayed.words.clear(); //insert into map to sort
-    if (ui.normalTextCheck->isChecked()) insertDisplayData(mapText[ui.comboBox->currentIndex()]);
-    if (ui.commandsCheck->isChecked()) insertDisplayData(mapCommand[ui.comboBox->currentIndex()]);
-    if (ui.commentsCheck->isChecked()) insertDisplayData(mapComment[ui.comboBox->currentIndex()]);
+    if (ui.normalTextCheck->isChecked()) insertDisplayData(maps[0][ui.comboBox->currentIndex()]);
+    if (ui.commandsCheck->isChecked()) insertDisplayData(maps[1][ui.comboBox->currentIndex()]);
+    if (ui.commentsCheck->isChecked()) insertDisplayData(maps[2][ui.comboBox->currentIndex()]);
 
     displayed.updateAll();
 

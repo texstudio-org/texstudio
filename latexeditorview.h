@@ -49,12 +49,6 @@ private:
 class LatexEditorView : public QWidget  {
    Q_OBJECT
 public:
-    enum NextWordFlags{
-        NW_NOTHING=0,
-        NW_TEXT=1,
-        NW_COMMAND=2,
-        NW_COMMENT=4
-    };
 
 	LatexEditorView(QWidget *parent);
 	~LatexEditorView();
@@ -74,10 +68,6 @@ public:
     static void setKeyReplacements(QVector<QString> *UserKeyReplace, QVector<QString> *UserKeyReplaceAfterWord, QVector<QString> *UserKeyReplaceBeforeWord);
     static void setBaseActions(QList<QAction *> baseActions);
     static void setSpeller(SpellerUtility* mainSpeller);
-
-    static bool nextWord(QString line,int &index,QString &outWord,int &wordStartIndex);    
-    static int nextWord(QString line,int &index,QString &outWord,int &wordStartIndex, int flags);    
-    static QString latexToPlainWord(QString word);    
 
     QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanel, *lineChangePanel, *statusPanel, *searchReplacePanel;
     QLineMarkPanel* lineMarkPanel;
