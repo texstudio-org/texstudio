@@ -38,14 +38,13 @@ class TextAnalysisDialog : public QDialog
     Q_OBJECT
 
     QVector<QPair<QString,int> > chapters;
-    QVector<QMap<QString,int> > mapText;
-    QVector<QMap<QString,int> > mapCommand;
-    QVector<QMap<QString,int> > mapComment;
+    QVector<QMap<QString,int> > maps[3]; //texts, commands, comments
 
     TextAnalysisModel displayed;
     const QDocument *document;
     QDocumentCursor cursor;
     bool alreadyCount;
+    int lastSentenceLength,lastParsedMinWordLength;
     void needCount();
     void insertDisplayData(const QMap<QString,int> & map);
 public:

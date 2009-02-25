@@ -15,6 +15,9 @@
 #include <QKeyEvent>
 #include <QMenu>
 #include <QMessageBox>
+
+#include "smallUsefulFunctions.h"
+
 #include "qdocumentline.h"
 #include "qdocumentcommand.h"
  
@@ -98,7 +101,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
                 if (!(editor->cursor().hasSelection() && editor->cursor().selectedText().length()>0) || editor->cursor().selectedText()==word 
                     || editor->cursor().selectedText()==lastSpellCheckedWord) {
                     lastSpellCheckedWord=word;
-                    word=LatexEditorView::latexToPlainWord(word);
+                    word=latexToPlainWord(word);
                     QDocumentCursor wordSelection(editor->document(),cursor.lineNumber(),fr.offset);
                     wordSelection.movePosition(fr.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
                     editor->setCursor(wordSelection);
@@ -272,99 +275,6 @@ void LatexEditorView::lineMarkClicked(int line){
 }
 
 
-//searches the next word in the line line after the index index
-//index returns the index of the first character after the word
-//outWord the word (normalized, stripped latex special chars)
-//wordStartIndex the starting index of the word
-//return: if there is really a word
-bool LatexEditorView::nextWord(QString line,int &index,QString &outWord,int &wordStartIndex){
-    return nextWord(line,index,outWord,wordStartIndex,NW_TEXT)!=NW_NOTHING;
-}
-
-int LatexEditorView::nextWord(QString line,int &index,QString &outWord,int &wordStartIndex, int flags){
-    //todo: latex akzents
-    int result=NW_NOTHING;
-    bool inWord=false;
-    bool inCmd=false;
-    bool reparse=false;
-    bool singleQuoteChar=false;
-    QString eow="~!@#$%^&*()_+{}|:\"<>?,./;[]-= \n\r\t`+´"; //cann't need a ' 
-    int start=0;
-    int i=index;
-    for (i=(i>0?i:0);i<line.size();i++){
-        QChar cur = line.at(i);
-        if (inCmd) {
-            if (cur=='%') {
-                if (i-start>1) {
-                    if (NW_COMMAND & flags) break; //output command
-                    if (!(NW_COMMENT & flags)) return NW_NOTHING;
-                    inCmd=false;
-                    result|=NW_COMMENT;  //comment, no more words
-                }
-            } else if (eow.indexOf(cur)>=0) {
-                if (NW_COMMAND & flags) break; //output command
-                else inCmd=false;
-            }
-        } else if (inWord) {
-            if (cur=='\\') {
-                if (i+1<line.size() && line.at(i+1)=='-')  {
-                    i++;//ignore word separation marker
-                    reparse=true;
-                } else {
-                    inWord=false;
-                    inCmd=true;
-                }
-            } else if (cur=='\'') { //
-                if (singleQuoteChar) inWord=false; //no word's with two ''
-                else singleQuoteChar=true;         //but accept one                
-            } else if (cur=='%'){
-                if (NW_TEXT & flags) break; //output command
-                if (!(NW_COMMENT & flags)) return NW_NOTHING;
-                inWord=false;
-                result|=NW_COMMENT;  //comment, no more words
-            } else if (eow.indexOf(cur)>=0) inWord=false;
-            
-            if (!inWord/* && i-start>2*/ && (NW_TEXT & flags)) {
-                inWord=true;
-                break; //output
-            }
-            //if (inCmd) start=i; //only necessary if flags&text==0, but then it won't be called
-        } else if (cur=='\\') {
-            start=i;
-            inCmd=true;
-        } else if (eow.indexOf(cur)<0 && cur!='\'') {
-            start=i;    
-            inWord=true;
-        } else if (cur=='%') 
-            if (NW_COMMENT & flags) result|=NW_COMMENT;  
-            else return NW_NOTHING; 
-    }
-    if (inWord && (NW_TEXT & flags)) {
-        wordStartIndex=start;
-        index=i;
-        outWord=line.mid(start,i-start);
-        if (outWord.at(outWord.length()-1)==QChar('\'')) {
-            outWord=outWord.left(outWord.length()-1);
-            index--;
-        }
-        if (reparse) outWord=latexToPlainWord(outWord);
-        if (outWord.isEmpty()) return NW_NOTHING;
-        if (outWord.at(outWord.length()-1)==QChar('\'')) outWord=outWord.left(outWord.length()-1);
-        return NW_TEXT|result;
-    }
-    if (inCmd && (NW_COMMAND & flags)) {
-        wordStartIndex=start;
-        index=i;
-        outWord=line.mid(start,i-start);
-        return NW_COMMAND|result;
-    }
-    return NW_NOTHING;
-}
-
-QString LatexEditorView::latexToPlainWord(QString word){
-    word.replace(QString("\\-"),"",Qt::CaseInsensitive);
-    return word;
-}
 
 void LatexEditorView::documentContentChanged(int linenr, int count){
     QDocumentLine startline=editor->document()->line(linenr);
