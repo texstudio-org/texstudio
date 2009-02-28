@@ -141,6 +141,7 @@ QVector<QString> UserKeyReplace, UserKeyReplaceAfterWord, UserKeyReplaceBeforeWo
 int spellcheckErrorFormat;
 SpellerUtility *mainSpeller;
 //dialogs
+TextAnalysisDialog *textAnalysisDlg;
 SpellerDialog *spellDlg;
 
 
@@ -291,6 +292,8 @@ void EditUserKeyReplacements();
 
 void WebPublish();
 void AnalyseText();
+void AnalyseTextFormDestroyed();
+
 
 void ViewLog();
 void ClickedOnLogLine(QTableWidgetItem *item);

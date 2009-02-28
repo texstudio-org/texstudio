@@ -194,6 +194,20 @@ void QSearchReplacePanel::find(int backward)
 		leFind->setFocus();
 }
 
+void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool regex){
+    if (!isVisible()) display(1,false);
+    if (m_search && m_search->searchText()!=text) {
+        delete m_search;
+        m_search=0;
+    }
+    if (!m_search) editor()->setCursorPosition(0,0);
+    lastDirection=backward?1:0;
+    leFind->setText(text);
+    cbHighlight->setChecked(highlight);
+    cbRegExp->setChecked(regex);
+    find (backward?1:0);
+}
+
 /*!
 
 */
@@ -351,7 +365,7 @@ void QSearchReplacePanel::on_cbWords_toggled(bool on)
 	leFind->setFocus();
 }
 
-void QSearchReplacePanel::on_cbRegExp_toggled(bool on)
+void QSearchReplacePanel::on_cbRegExp_clicked(bool on)
 {
 	if ( m_search )
 		m_search->setOption(QDocumentSearch::RegExp, on);
@@ -367,7 +381,7 @@ void QSearchReplacePanel::on_cbCase_toggled(bool on)
 	leFind->setFocus();
 }
 
-void QSearchReplacePanel::on_cbCursor_toggled(bool on)
+void QSearchReplacePanel::on_cbCursor_clicked(bool on)
 {
 	if ( m_search )
 	{
@@ -380,7 +394,7 @@ void QSearchReplacePanel::on_cbCursor_toggled(bool on)
 	leFind->setFocus();
 }
 
-void QSearchReplacePanel::on_cbHighlight_toggled(bool on)
+void QSearchReplacePanel::on_cbHighlight_clicked(bool on)
 {
 	if ( !m_search )
 		init();

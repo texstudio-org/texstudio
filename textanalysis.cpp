@@ -61,10 +61,10 @@ void TextAnalysisModel::updateAll(){
 }
 
 TextAnalysisDialog::TextAnalysisDialog( QWidget* parent,  QString name)
-    : QDialog( parent), document(0), lastSentenceLength(-1), lastParsedMinWordLength(-1)
+    : QDialog( parent), document(0), editor(0), lastSentenceLength(-1), lastMinSentenceLength(-1), lastParsedMinWordLength(-1)
 {
-setWindowTitle(name);
-setModal(true);
+    setWindowTitle(name);
+    setAttribute(Qt::WA_DeleteOnClose);
 ui.setupUi(this);
 
 ui.resultView->setWordWrap (false);
@@ -73,15 +73,27 @@ ui.resultView->setWordWrap (false);
 
   connect(ui.countButton, SIGNAL(clicked()), SLOT(slotCount()) );
   connect(ui.closeButton, SIGNAL(clicked()), SLOT(slotClose()) );
+  connect(ui.searchSelectionButton, SIGNAL(clicked()), SLOT(slotSelectionButton()) );
+  connect(ui.resultView, SIGNAL(doubleClicked (const QModelIndex & )), SLOT(slotSelectionButton()) );
+  
 }
 
 TextAnalysisDialog::~TextAnalysisDialog()
 {
 }
 
-void TextAnalysisDialog::setData(const QDocument* doc, const QDocumentCursor &cur){
-    document=doc;
-    cursor=cur;
+void TextAnalysisDialog::setEditor(QEditor* aeditor){
+    if (editor) disconnect(editor,0,this,0);
+    if (aeditor) {
+        editor=aeditor;
+        document=aeditor->document();
+        cursor=aeditor->cursor();
+        connect(editor,SIGNAL(destroyed()),this,SLOT(editorDestroyed()));
+    } else {
+        document=0;
+        cursor=0;
+        editor=0;
+    }
 }
 
 void TextAnalysisDialog::interpretStructureTree(QTreeWidgetItem *item){
@@ -100,11 +112,16 @@ void TextAnalysisDialog::init()
 
 void TextAnalysisDialog::needCount(){
     if (alreadyCount && lastSentenceLength==ui.sentenceLengthSpin->value() &&
-        lastParsedMinWordLength==(ui.minimumLengthMeaning->currentIndex()==4?ui.minimumLengthSpin->value():0)) return; 
+        lastParsedMinWordLength==(ui.minimumLengthMeaning->currentIndex()==4?ui.minimumLengthSpin->value():0) &&
+        lastEndCharacters==(ui.respectEndCharsCheck->isChecked()?ui.sentenceEndChars->text():"") &&
+        lastMinSentenceLength == (ui.wordsPerPhraseMeaning->currentIndex()==1?ui.sentenceLengthSpin->value():0) ) return; 
     lastSentenceLength=ui.sentenceLengthSpin->value();
+    lastMinSentenceLength = (ui.wordsPerPhraseMeaning->currentIndex()==1?ui.sentenceLengthSpin->value():0);
     int minimumWordLength=0;
     if (ui.minimumLengthMeaning->currentIndex()==4) minimumWordLength=ui.minimumLengthSpin->value();
     lastParsedMinWordLength=minimumWordLength;
+    bool respectSentenceEnd = ui.respectEndCharsCheck->isChecked();
+    lastEndCharacters=respectSentenceEnd?ui.sentenceEndChars->text():"";
     int totalLines=document->lines();
     int textLines=0;
     int commentLines=0;
@@ -149,6 +166,7 @@ void TextAnalysisDialog::needCount(){
         bool lineCountedAsText=false;        
         QString curWord;
         int state;
+        int lastIndex=0;
         while ((state=nextWord(line,nextIndex,curWord,wordStartIndex,NW_TEXT|NW_COMMENT|NW_COMMAND))!=NW_NOTHING){
             bool inSelection;
             if (selectionStartLine!=selectionEndLine) 
@@ -164,7 +182,22 @@ void TextAnalysisDialog::needCount(){
                 if (!commentReached){
                     commentReached=true;
                     commentLines++;
-                }
+                    if (respectSentenceEnd) for (int i=lastIndex;i<wordStartIndex;i++)
+                        if (line.at(i)==QChar('%') && (i==0 || line.at(i-1)!=QChar('\%'))) {
+                            lastIndex=i;
+                            break;
+                        } else if (lastEndCharacters.contains(line.at(i))) {
+                            sentenceLengths[0]=0;
+                            lastWords[0].clear();
+                            break;
+                        }
+                } 
+                if (respectSentenceEnd) for (int i=lastIndex;i<wordStartIndex;i++)
+                    if (lastEndCharacters.contains(line.at(i))) {
+                        sentenceLengths[2]=0;
+                        lastWords[2].clear();
+                        break;
+                    }
             } else if (state&NW_COMMAND) {
                 curType=1;
             } else if (state&NW_TEXT){
@@ -174,6 +207,14 @@ void TextAnalysisDialog::needCount(){
                     lineCountedAsText=true;
                 }
             }
+            if (respectSentenceEnd && !commentReached) 
+                for (int i=lastIndex;i<wordStartIndex;i++)
+                    if (lastEndCharacters.contains(line.at(i))) {
+                        sentenceLengths[0]=0;
+                        lastWords[0].clear();
+                        break;
+                    }
+            lastIndex=nextIndex;
             if (curType!=-1 && curWord.size()>=minimumWordLength) {
                 //if (lastSentenceLength>1) {
                 lastWords[curType].append(curWord);
@@ -182,16 +223,26 @@ void TextAnalysisDialog::needCount(){
                     sentenceLengths[curType]-=lastWords[curType].first().size()+1;
                     lastWords[curType].removeFirst();
                 }
-                curWord="";
-                curWord.reserve(sentenceLengths[curType]);
-                foreach (QString s, lastWords[curType])
-                    curWord+=s+" ";
-                curWord.truncate(curWord.size()-1);
-                maps[curType][0][curWord]=maps[curType][0][curWord]+1;
-                if (inSelection) maps[curType][1][curWord]=maps[curType][1][curWord]+1;
-                if (extraMap!=0) maps[curType][extraMap][curWord]=maps[curType][extraMap][curWord]+1;
+                if (lastWords[curType].size()>=lastMinSentenceLength) {
+                    curWord="";
+                    curWord.reserve(sentenceLengths[curType]);
+                    foreach (QString s, lastWords[curType])
+                        curWord+=s+" ";
+                    curWord.truncate(curWord.size()-1);
+                    maps[curType][0][curWord]=maps[curType][0][curWord]+1;
+                    if (inSelection) maps[curType][1][curWord]=maps[curType][1][curWord]+1;
+                    if (extraMap!=0) maps[curType][extraMap][curWord]=maps[curType][extraMap][curWord]+1;
+                }
             }
         };
+        if (respectSentenceEnd) //it makes sense to ignore in something like .%. the sentence end after the % (and is less work)
+            for (int i=lastIndex;i<line.size();i++)
+                if (lastEndCharacters.contains(line.at(i))) {
+                    sentenceLengths[commentReached?2:0]=0;
+                    lastWords[commentReached?2:0].clear();
+                    break;
+                }
+
     }
     
     alreadyCount=true;
@@ -269,7 +320,24 @@ void TextAnalysisDialog::slotCount()
     ui.characterInWordsLabel->setText(QString::number(displayed.characterInWords));
 }
 
+void TextAnalysisDialog::editorDestroyed(){
+    setEditor(0);
+}
+
+void TextAnalysisDialog::slotSelectionButton(){
+    if (!editor) return;
+    int s=ui.resultView->currentIndex().row();
+    if (s<0 || s>=displayed.words.size()) return;
+    QString selected=displayed.words[s].word;
+    if (selected=="") return;
+    if (lastSentenceLength>1 && selected.contains(' ')) {
+        selected.replace(" ","\\W+");
+        editor->find(selected,true,true);
+    } else editor->find(selected,true,false);
+    
+}
+
 void TextAnalysisDialog::slotClose(){
-    reject();
+    close();
 }
 
