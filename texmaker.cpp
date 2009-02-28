@@ -3153,7 +3153,7 @@ if (sfDlg->exec() )
 	{
 	QString fn=sfDlg->fileName();
 	QFileInfo fi(fn);
-	InsertTag("\\includegraphics[scale=1]{"+fi.completeBaseName()+"."+fi.suffix()+"} ",26,0);
+	InsertTag("\\includegraphics[scale=1]{"+getRelativePath(currentDir, fn)+fi.fileName()+"} ",26,0);
 	}
 }
 
@@ -3173,7 +3173,7 @@ if (sfDlg->exec() )
 	{
 	QString fn=sfDlg->fileName();
 	QFileInfo fi(fn);
-	InsertTag("\\include{"+fi.completeBaseName()+"}",9,0);
+	InsertTag("\\include{"+getRelativePath(currentDir, fn)+fi.completeBaseName()+"}",9,0);
 	}
 UpdateStructure();
 }
@@ -3194,7 +3194,7 @@ if (sfDlg->exec() )
 	{
 	QString fn=sfDlg->fileName();
 	QFileInfo fi(fn);
-	InsertTag("\\input{"+fi.completeBaseName()+"}",7,0);
+	InsertTag("\\input{"+getRelativePath(currentDir, fn)+fi.completeBaseName()+"}",7,0);
 	}
 UpdateStructure();
 }
