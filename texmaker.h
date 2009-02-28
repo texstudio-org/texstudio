@@ -73,6 +73,12 @@ void executeCommandLine( const QStringList& args, bool realCmdLine);
 void onOtherInstanceMessage(const QString &);  // For messages for the single instance
 
 private:
+QMenu* newManagedMenu(const QString &id,const QString &text);
+QMenu* newManagedMenu(QMenu* menu, const QString &id,const QString &text);
+QAction* newManagedAction(QMenu* menu, const QString &id,const QString &text, const char* slotName, const QKeySequence &shortCut=0, const QString & iconFile="");
+QAction* newManagedAction(QMenu* menu, const QString &id, QAction* act);
+QAction* getManagedAction(QString id);
+
 void setupMenus();
 void setupToolBars();
 void createStatusBar();
@@ -101,18 +107,13 @@ QTableWidget *OutputTableWidget;
 
 
 //menu-toolbar
-QMenu *fileMenu, *recentMenu, *editMenu, *toolMenu;
+QMenu* bibMenu;
 QMenu *latex1Menu, *latex11Menu, *latex12Menu, *latex13Menu, *latex14Menu, *latex15Menu, *latex16Menu, *latex17Menu ;
 QMenu *math1Menu, *math11Menu, *math12Menu, *math13Menu, *math14Menu;
-QMenu *wizardMenu;
-QMenu *bibMenu;
 QMenu *user1Menu, *user11Menu, *user12Menu;
-QMenu *viewMenu;
-QMenu *optionsMenu;
-QMenu *helpMenu;
-
+//
 QToolBar *fileToolBar, *editToolBar, *runToolBar, *formatToolBar, *mathToolBar;
-QAction *recentFileActs[5], *ToggleAct, *ToggleRememberAct;
+QAction *ToggleAct, *ToggleRememberAct;
 
 QLabel *stat1, *stat2, *stat3;
 QPushButton *pb1, *pb2, *pb3;
