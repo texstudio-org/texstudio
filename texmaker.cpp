@@ -284,339 +284,160 @@ setAcceptDrops(true);
     m_languages->addCompletionEngine(completer);
 }
 
+QMenu* Texmaker::newManagedMenu(const QString &id,const QString &text){
+    QMenu* menu=menuBar()->addMenu(text);
+    menu->setObjectName(id);
+    return menu;
+}
+QMenu* Texmaker::newManagedMenu(QMenu* menu, const QString &id,const QString &text){
+    QMenu* subMenu=menu->addMenu(text);
+    subMenu->setObjectName( menu->objectName()+"/"+ id);
+    return subMenu;
+}
+QAction* Texmaker::newManagedAction(QMenu* menu, const QString &id,const QString &text, const char* slotName, const QKeySequence &shortCut, const QString & iconFile){
+    QAction *act;
+    if (iconFile.isEmpty()) act=new QAction(text, this);
+    else act=new QAction (QIcon(iconFile), text, this);
+    act->setShortcut(shortCut);
+    connect(act, SIGNAL(triggered()), this, slotName);
+    act->setObjectName(menu->objectName()+"/"+id);
+    menu->addAction(act);
+    return act;
+}
+QAction* Texmaker::newManagedAction(QMenu* menu, const QString &id, QAction* act){
+    act->setObjectName(menu->objectName()+"/"+id);
+    menu->addAction(act);
+    return act;
+}
+QAction* Texmaker::getManagedAction(QString id){
+    QAction* act=findChild<QAction*>(id);
+    if (act==0) QMessageBox::warning(0,"TexMakerX","Can't find internal action "+id);
+    return act;
+}
+
 void Texmaker::setupMenus()
 {
-QAction *Act;
 //file
-fileMenu = menuBar()->addMenu(tr("&File"));
-Act = new QAction(QIcon(":/images/filenew.png"), tr("New"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_N);
-connect(Act, SIGNAL(triggered()), this, SLOT(fileNew()));
-fileMenu->addAction(Act);
+    QMenu *menu=newManagedMenu("main/file",tr("&File"));
+    newManagedAction(menu, "new",tr("New"), SLOT(fileNew()), Qt::CTRL+Qt::Key_N, ":/images/filenew.png");
+    newManagedAction(menu, "open",tr("Open"), SLOT(fileOpen()), Qt::CTRL+Qt::Key_O, ":/images/fileopen.png");
+    
+    QMenu *subMenu=newManagedMenu(menu, "openrecent",tr("Open Recent"));
+    for (int i = 0; i < 5; ++i)
+        newManagedAction(subMenu, QString::number(i), QString("Recent File %1").arg(i), SLOT(fileOpenRecent()))->setVisible(false);
 
-Act = new QAction(QIcon(":/images/fileopen.png"), tr("Open"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_O);
-connect(Act, SIGNAL(triggered()), this, SLOT(fileOpen()));
-fileMenu->addAction(Act);
+    menu->addSeparator();
+    newManagedAction(menu,"save",tr("Save"), SLOT(fileSave()), Qt::CTRL+Qt::Key_S, ":/images/filesave.png");
+    newManagedAction(menu,"saveas",tr("Save As"), SLOT(fileSaveAs()), Qt::CTRL+Qt::ALT+Qt::Key_S);
+    newManagedAction(menu,"saveall",tr("Save All"), SLOT(fileSaveAll()), Qt::CTRL+Qt::SHIFT+Qt::Key_S);
 
-recentMenu=fileMenu->addMenu(tr("Open Recent"));
-for (int i = 0; i < 5; ++i)
-	{
-	recentFileActs[i] = new QAction(this);
-	recentFileActs[i]->setVisible(false);
-	connect(recentFileActs[i], SIGNAL(triggered()),this, SLOT(fileOpenRecent()));
-	recentMenu->addAction(recentFileActs[i]);
-	}
+    menu->addSeparator();
+    newManagedAction(menu,"close",tr("Close"), SLOT(fileClose()), Qt::CTRL+Qt::Key_W, ":/images/fileclose.png");
+    newManagedAction(menu,"closeall",tr("Close All"), SLOT(fileCloseAll()));
 
-Act = new QAction(QIcon(":/images/filesave.png"), tr("Save"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_S);
-connect(Act, SIGNAL(triggered()), this, SLOT(fileSave()));
-fileMenu->addSeparator();
-fileMenu->addAction(Act);
+    menu->addSeparator();
+    newManagedAction(menu, "print",tr("Print"), SLOT(filePrint()), Qt::CTRL+Qt::Key_P);
 
-Act = new QAction(tr("Save As"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(fileSaveAs()));
-fileMenu->addAction(Act);
+    menu->addSeparator();
+    newManagedAction(menu,"exit",tr("Exit"), SLOT(fileExit()), Qt::CTRL+Qt::Key_Q);
 
-Act = new QAction(tr("Save All"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(fileSaveAll()));
-fileMenu->addAction(Act);
+//edit
 
-Act = new QAction(QIcon(":/images/fileclose.png"), tr("Close"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_W);
-connect(Act, SIGNAL(triggered()), this, SLOT(fileClose()));
-fileMenu->addSeparator();
-fileMenu->addAction(Act);
+    menu=newManagedMenu("main/edit",tr("&Edit"));
+    newManagedAction(menu, "undo",tr("Undo"), SLOT(editUndo()), Qt::CTRL+Qt::Key_Z, ":/images/undo.png");
+    newManagedAction(menu, "redo",tr("Redo"), SLOT(editRedo()), Qt::CTRL+Qt::Key_Y, ":/images/redo.png");
 
-Act = new QAction(tr("Close All"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(fileCloseAll()));
-fileMenu->addAction(Act);
+    menu->addSeparator();
+    newManagedAction(menu,"copy",tr("Copy"), SLOT(editCopy()), Qt::CTRL+Qt::Key_C, ":/images/editcopy.png");
+    newManagedAction(menu,"cut",tr("Cut"), SLOT(editCut()), Qt::CTRL+Qt::Key_X, ":/images/editcut.png");
+    newManagedAction(menu,"paste",tr("Paste"), SLOT(editPaste()), Qt::CTRL+Qt::Key_V, ":/images/editpaste.png");
+    newManagedAction(menu,"selectall",tr("Select All"), SLOT(editSelectAll()), Qt::CTRL+Qt::Key_A);
 
-Act = new QAction(tr("Print"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_P);
-connect(Act, SIGNAL(triggered()), this, SLOT(filePrint()));
-fileMenu->addSeparator();
-fileMenu->addAction(Act);
+    LatexEditorView::setBaseActions(menu->actions());
 
-Act = new QAction(QIcon(":/images/exit.png"), tr("Exit"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_Q);
-connect(Act, SIGNAL(triggered()), this, SLOT(fileExit()));
-fileMenu->addSeparator();
-fileMenu->addAction(Act);
+    menu->addSeparator();
+    newManagedAction(menu,"comment", tr("Comment"), SLOT(editComment()));
+    newManagedAction(menu,"uncomment",tr("Uncomment"), SLOT(editUncomment()));
+    newManagedAction(menu,"indent",tr("Indent"), SLOT(editIndent()));
+    newManagedAction(menu,"unindent",tr("Unindent"), SLOT(editUnindent()));
 
-editMenu = menuBar()->addMenu(tr("&Edit"));
-Act = new QAction(QIcon(":/images/undo.png"), tr("Undo"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_Z);
-connect(Act, SIGNAL(triggered()), this, SLOT(editUndo()));
-editMenu->addAction(Act);
+    menu->addSeparator();
+    newManagedAction(menu,"find", tr("Find"), SLOT(editFind()), Qt::CTRL+Qt::Key_F);
+    newManagedAction(menu,"findnext",tr("Find Next"), SLOT(editFindNext()), Qt::CTRL+Qt::Key_M);
+    newManagedAction(menu,"replace",tr("Replace"), SLOT(editReplace()), Qt::CTRL+Qt::Key_R);
 
-Act = new QAction(QIcon(":/images/redo.png"), tr("Redo"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_Y);
-connect(Act, SIGNAL(triggered()), this, SLOT(editRedo()));
-editMenu->addAction(Act);
-editMenu->addSeparator();
+    menu->addSeparator();
+    newManagedAction(menu,"goto", tr("Goto Line"), SLOT(editGotoLine()), Qt::CTRL+Qt::Key_G, ":/images/goto.png");
+    newManagedAction(menu,"jumptolastchange",tr("Jump to last change"), SLOT(editJumpToLastChange()), Qt::CTRL+Qt::Key_H);
+    newManagedAction(menu,"jumptonextchange",tr("Jump forward"), SLOT(editJumpToLastChangeForward()), Qt::CTRL+Qt::SHIFT+Qt::Key_H);
 
-Act = new QAction(QIcon(":/images/editcopy.png"), tr("Copy"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_C);
-connect(Act, SIGNAL(triggered()), this, SLOT(editCopy()));
-editMenu->addAction(Act);
+    subMenu=newManagedMenu(menu, "toggleBookmark",tr("Toggle Bookmark"));
+    newManagedAction(subMenu,"bookmark0",tr("Bookmark 0"),SLOT(toggleBookmark0()),Qt::CTRL+Qt::SHIFT+Qt::Key_0);
+    newManagedAction(subMenu,"bookmark1",tr("Bookmark 1"),SLOT(toggleBookmark1()),Qt::CTRL+Qt::SHIFT+Qt::Key_1);
+    newManagedAction(subMenu,"bookmark2",tr("Bookmark 2"),SLOT(toggleBookmark2()),Qt::CTRL+Qt::SHIFT+Qt::Key_2);
+    newManagedAction(subMenu,"bookmark3",tr("Bookmark 3"),SLOT(toggleBookmark3()),Qt::CTRL+Qt::SHIFT+Qt::Key_3);
+    newManagedAction(subMenu,"bookmark4",tr("Bookmark 4"),SLOT(toggleBookmark4()),Qt::CTRL+Qt::SHIFT+Qt::Key_4);
+    newManagedAction(subMenu,"bookmark5",tr("Bookmark 5"),SLOT(toggleBookmark5()),Qt::CTRL+Qt::SHIFT+Qt::Key_5);
+    newManagedAction(subMenu,"bookmark6",tr("Bookmark 6"),SLOT(toggleBookmark6()),Qt::CTRL+Qt::SHIFT+Qt::Key_6);
+    newManagedAction(subMenu,"bookmark7",tr("Bookmark 7"),SLOT(toggleBookmark7()),Qt::CTRL+Qt::SHIFT+Qt::Key_7);
+    newManagedAction(subMenu,"bookmark8",tr("Bookmark 8"),SLOT(toggleBookmark8()),Qt::CTRL+Qt::SHIFT+Qt::Key_8);
+    newManagedAction(subMenu,"bookmark9",tr("Bookmark 9"),SLOT(toggleBookmark9()),Qt::CTRL+Qt::SHIFT+Qt::Key_9);
 
+    subMenu=newManagedMenu(menu, "gotoBookmark",tr("Goto Bookmark"));
+    newManagedAction(subMenu,"bookmark0",tr("Bookmark 0"),SLOT(gotoBookmark0()),Qt::CTRL+Qt::Key_0);
+    newManagedAction(subMenu,"bookmark1",tr("Bookmark 1"),SLOT(gotoBookmark1()),Qt::CTRL+Qt::Key_1);
+    newManagedAction(subMenu,"bookmark2",tr("Bookmark 2"),SLOT(gotoBookmark2()),Qt::CTRL+Qt::Key_2);
+    newManagedAction(subMenu,"bookmark3",tr("Bookmark 3"),SLOT(gotoBookmark3()),Qt::CTRL+Qt::Key_3);
+    newManagedAction(subMenu,"bookmark4",tr("Bookmark 4"),SLOT(gotoBookmark4()),Qt::CTRL+Qt::Key_4);
+    newManagedAction(subMenu,"bookmark5",tr("Bookmark 5"),SLOT(gotoBookmark5()),Qt::CTRL+Qt::Key_5);
+    newManagedAction(subMenu,"bookmark6",tr("Bookmark 6"),SLOT(gotoBookmark6()),Qt::CTRL+Qt::Key_6);
+    newManagedAction(subMenu,"bookmark7",tr("Bookmark 7"),SLOT(gotoBookmark7()),Qt::CTRL+Qt::Key_7);
+    newManagedAction(subMenu,"bookmark8",tr("Bookmark 8"),SLOT(gotoBookmark8()),Qt::CTRL+Qt::Key_8);
+    newManagedAction(subMenu,"bookmark9",tr("Bookmark 9"),SLOT(gotoBookmark9()),Qt::CTRL+Qt::Key_9);
 
-Act = new QAction(QIcon(":/images/editcut.png"), tr("Cut"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_X);
-connect(Act, SIGNAL(triggered()), this, SLOT(editCut()));
-editMenu->addAction(Act);
+    menu->addSeparator();
+    newManagedAction(menu,"errorprev",tr("Previous LaTeX Error"),SLOT(PreviousError()),Qt::CTRL+Qt::SHIFT+Qt::Key_Up, ":/images/errorprev.png");
+    newManagedAction(menu,"errornext",tr("Next LaTeX Error"),SLOT(NextError()),Qt::CTRL+Qt::SHIFT+Qt::Key_Down, ":/images/errornext.png");
 
-Act = new QAction(QIcon(":/images/editpaste.png"), tr("Paste"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_V);
-connect(Act, SIGNAL(triggered()), this, SLOT(editPaste()));
-editMenu->addAction(Act);
+    menu->addSeparator();
+    newManagedAction(menu,"spelling",tr("Check Spelling"),SLOT(editSpell()),Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
 
-Act = new QAction( tr("Select All"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_A);
-connect(Act, SIGNAL(triggered()), this, SLOT(editSelectAll()));
-editMenu->addAction(Act);
-editMenu->addSeparator();
-
-LatexEditorView::setBaseActions(editMenu->actions());
+    menu->addSeparator();
+    newManagedAction(menu,"reparse",tr("Refresh Structure"),SLOT(UpdateStructure()));
 
 
-Act = new QAction( tr("Comment"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_T);
-connect(Act, SIGNAL(triggered()), this, SLOT(editComment()));
-editMenu->addAction(Act);
+//tools
 
-Act = new QAction( tr("Uncomment"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_U);
-connect(Act, SIGNAL(triggered()), this, SLOT(editUncomment()));
-editMenu->addAction(Act);
+    menu=newManagedMenu("main/tools",tr("&Tools"));
+    newManagedAction(menu, "quickbuild",tr("Quick Build"), SLOT(QuickBuild()), Qt::Key_F1, ":/images/quick.png");
 
-Act = new QAction( tr("Indent"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(editIndent()));
-editMenu->addAction(Act);
+    menu->addSeparator();
+    newManagedAction(menu, "latex",tr("LaTeX"), SLOT(Latex()), Qt::Key_F2, ":/images/latex.png");
+    newManagedAction(menu, "viewdvi",tr("View Dvi"), SLOT(ViewDvi()), Qt::Key_F3, ":/images/viewdvi.png");
+    newManagedAction(menu, "dvi2ps",tr("Dvi->PS"), SLOT(DviToPS()), Qt::Key_F4, ":/images/dvips.png");
+    newManagedAction(menu, "viewps",tr("View PS"), SLOT(ViewPS()), Qt::Key_F5, ":/images/viewps.png");
+    newManagedAction(menu, "pdflatex",tr("PDFLaTeX"), SLOT(PDFLatex()), Qt::Key_F6, ":/images/pdflatex.png");
+    newManagedAction(menu, "viewpdf",tr("View PDF"), SLOT(ViewPDF()), Qt::Key_F7, ":/images/viewpdf.png");
+    newManagedAction(menu, "ps2pdf",tr("PS->PDF"), SLOT(PStoPDF()), Qt::Key_F8, ":/images/ps2pdf.png");
+    newManagedAction(menu, "dvipdf",tr("DVI->PDF"), SLOT(DVItoPDF()), Qt::Key_F9, ":/images/dvipdf.png");
+    newManagedAction(menu, "viewlog",tr("View Log"), SLOT(ViewLog()), Qt::Key_F10, ":/images/viewlog.png");
+    newManagedAction(menu, "bibtex",tr("BibTeX"), SLOT(MakeBib()), Qt::Key_F11);
+    newManagedAction(menu, "makeindex",tr("MakeIndex"), SLOT(MakeIndex()), Qt::Key_F12);
 
-Act = new QAction( tr("Unindent"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(editUnindent()));
-editMenu->addAction(Act);
-editMenu->addSeparator();
+    menu->addSeparator();
+    newManagedAction(menu, "metapost",tr("MetaPost"), SLOT(MetaPost()));
+    menu->addSeparator();
+    newManagedAction(menu, "clean",tr("Clean"), SLOT(CleanAll()));
+    menu->addSeparator();
+    newManagedAction(menu, "htmlexport",tr("Convert to Html"), SLOT(WebPublish()));
+    menu->addSeparator();
+    newManagedAction(menu, "analysetext",tr("Analyse Text"), SLOT(AnalyseText()));
 
-Act = new QAction( tr("Find"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_F);
-connect(Act, SIGNAL(triggered()), this, SLOT(editFind()));
-editMenu->addAction(Act);
-
-Act = new QAction( tr("FindNext"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_M);
-connect(Act, SIGNAL(triggered()), this, SLOT(editFindNext()));
-editMenu->addAction(Act);
-
-Act = new QAction( tr("Replace"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_R);
-connect(Act, SIGNAL(triggered()), this, SLOT(editReplace()));
-editMenu->addAction(Act);
-
-editMenu->addSeparator();
-
-Act = new QAction(QIcon(":/images/goto.png"), tr("Goto Line"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_G);
-connect(Act, SIGNAL(triggered()), this, SLOT(editGotoLine()));
-editMenu->addAction(Act);
-
-Act = new QAction(tr("Jump to last change"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_H);
-connect(Act, SIGNAL(triggered()), this, SLOT(editJumpToLastChange()));
-editMenu->addAction(Act);
-
-Act = new QAction(tr("Jump forward"), this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_H);
-connect(Act, SIGNAL(triggered()), this, SLOT(editJumpToLastChangeForward()));
-editMenu->addAction(Act);
-
-  //bookmarks menus
-    //toggle
-QMenu *subMenu=new QMenu(tr("Toggle Bookmark"),this);
-editMenu->addMenu(subMenu);
-Act = new QAction(tr("Bookmark 0"), this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_0);
-connect(Act, SIGNAL(triggered()), this, SLOT(toggleBookmark0()));
-subMenu->addAction(Act);
-Act = new QAction(tr("Bookmark 1"), this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_1);
-connect(Act, SIGNAL(triggered()), this, SLOT(toggleBookmark1()));
-subMenu->addAction(Act);
-Act = new QAction(tr("Bookmark 2"), this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_2);
-connect(Act, SIGNAL(triggered()), this, SLOT(toggleBookmark2()));
-subMenu->addAction(Act);
-Act = new QAction(tr("Bookmark 3"), this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_3);
-connect(Act, SIGNAL(triggered()), this, SLOT(toggleBookmark3()));
-subMenu->addAction(Act);
-Act = new QAction(tr("Bookmark 4"), this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_4);
-connect(Act, SIGNAL(triggered()), this, SLOT(toggleBookmark4()));
-subMenu->addAction(Act);
-Act = new QAction(tr("Bookmark 5"), this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_5);
-connect(Act, SIGNAL(triggered()), this, SLOT(toggleBookmark5()));
-subMenu->addAction(Act);
-Act = new QAction(tr("Bookmark 6"), this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_6);
-connect(Act, SIGNAL(triggered()), this, SLOT(toggleBookmark6()));
-subMenu->addAction(Act);
-Act = new QAction(tr("Bookmark 7"), this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_7);
-connect(Act, SIGNAL(triggered()), this, SLOT(toggleBookmark7()));
-subMenu->addAction(Act);
-Act = new QAction(tr("Bookmark 8"), this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_8);
-connect(Act, SIGNAL(triggered()), this, SLOT(toggleBookmark8()));
-subMenu->addAction(Act);
-Act = new QAction(tr("Bookmark 9"), this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_9);
-connect(Act, SIGNAL(triggered()), this, SLOT(toggleBookmark9()));
-subMenu->addAction(Act);
-
-    //goto
-subMenu=new QMenu(tr("Goto Bookmark"),this);
-editMenu->addMenu(subMenu);
-Act = new QAction(tr("Bookmark 0"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_0);
-connect(Act, SIGNAL(triggered()), this, SLOT(gotoBookmark0()));
-subMenu->addAction(Act);
-Act = new QAction(tr("Bookmark 1"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_1);
-connect(Act, SIGNAL(triggered()), this, SLOT(gotoBookmark1()));
-subMenu->addAction(Act);
-Act = new QAction(tr("Bookmark 2"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_2);
-connect(Act, SIGNAL(triggered()), this, SLOT(gotoBookmark2()));
-subMenu->addAction(Act);
-Act = new QAction(tr("Bookmark 3"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_3);
-connect(Act, SIGNAL(triggered()), this, SLOT(gotoBookmark3()));
-subMenu->addAction(Act);
-Act = new QAction(tr("Bookmark 4"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_4);
-connect(Act, SIGNAL(triggered()), this, SLOT(gotoBookmark4()));
-subMenu->addAction(Act);
-Act = new QAction(tr("Bookmark 5"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_5);
-connect(Act, SIGNAL(triggered()), this, SLOT(gotoBookmark5()));
-subMenu->addAction(Act);
-Act = new QAction(tr("Bookmark 6"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_6);
-connect(Act, SIGNAL(triggered()), this, SLOT(gotoBookmark6()));
-subMenu->addAction(Act);
-Act = new QAction(tr("Bookmark 7"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_7);
-connect(Act, SIGNAL(triggered()), this, SLOT(gotoBookmark7()));
-subMenu->addAction(Act);
-Act = new QAction(tr("Bookmark 8"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_8);
-connect(Act, SIGNAL(triggered()), this, SLOT(gotoBookmark8()));
-subMenu->addAction(Act);
-Act = new QAction(tr("Bookmark 9"), this);
-Act->setShortcut(Qt::CTRL+Qt::Key_9);
-connect(Act, SIGNAL(triggered()), this, SLOT(gotoBookmark9()));
-subMenu->addAction(Act);
-
-editMenu->addSeparator();
-Act = new QAction(QIcon(":/images/errorprev.png"),tr("Previous LaTeX Error"), this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_Up);
-connect(Act, SIGNAL(triggered()), this, SLOT(PreviousError()));
-editMenu->addAction(Act);
-Act = new QAction(QIcon(":/images/errornext.png"),tr("Next LaTeX Error"), this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_Down);
-connect(Act, SIGNAL(triggered()), this, SLOT(NextError()));
-editMenu->addAction(Act);
-
-
-editMenu->addSeparator();
-
-Act = new QAction(tr("Check Spelling"), this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
-connect(Act, SIGNAL(triggered()), this, SLOT(editSpell()));
-editMenu->addAction(Act);
-editMenu->addSeparator();
-
-Act = new QAction(tr("Refresh Structure"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(UpdateStructure()));
-editMenu->addAction(Act);
-
-toolMenu = menuBar()->addMenu(tr("&Tools"));
-Act = new QAction(QIcon(":/images/quick.png"),tr("Quick Build"), this);
-Act->setShortcut(Qt::Key_F1);
-connect(Act, SIGNAL(triggered()), this, SLOT(QuickBuild()));
-toolMenu->addAction(Act);
-toolMenu->addSeparator();
-Act = new QAction(QIcon(":/images/latex.png"),"LaTeX", this);
-Act->setShortcut(Qt::Key_F2);
-connect(Act, SIGNAL(triggered()), this, SLOT(Latex()));
-toolMenu->addAction(Act);
-Act = new QAction(QIcon(":/images/viewdvi.png"),tr("View Dvi"), this);
-Act->setShortcut(Qt::Key_F3);
-connect(Act, SIGNAL(triggered()), this, SLOT(ViewDvi()));
-toolMenu->addAction(Act);
-Act = new QAction(QIcon(":/images/dvips.png"),"Dvi->PS", this);
-Act->setShortcut(Qt::Key_F4);
-connect(Act, SIGNAL(triggered()), this, SLOT(DviToPS()));
-toolMenu->addAction(Act);
-Act = new QAction(QIcon(":/images/viewps.png"),tr("View PS"), this);
-Act->setShortcut(Qt::Key_F5);
-connect(Act, SIGNAL(triggered()), this, SLOT(ViewPS()));
-toolMenu->addAction(Act);
-Act = new QAction(QIcon(":/images/pdflatex.png"),"PDFLaTeX", this);
-Act->setShortcut(Qt::Key_F6);
-connect(Act, SIGNAL(triggered()), this, SLOT(PDFLatex()));
-toolMenu->addAction(Act);
-Act = new QAction(QIcon(":/images/viewpdf.png"),tr("View PDF"), this);
-Act->setShortcut(Qt::Key_F7);
-connect(Act, SIGNAL(triggered()), this, SLOT(ViewPDF()));
-toolMenu->addAction(Act);
-Act = new QAction(QIcon(":/images/ps2pdf.png"),"PS->PDF", this);
-Act->setShortcut(Qt::Key_F8);
-connect(Act, SIGNAL(triggered()), this, SLOT(PStoPDF()));
-toolMenu->addAction(Act);
-Act = new QAction(QIcon(":/images/dvipdf.png"),"DVI->PDF", this);
-Act->setShortcut(Qt::Key_F9);
-connect(Act, SIGNAL(triggered()), this, SLOT(DVItoPDF()));
-toolMenu->addAction(Act);
-Act = new QAction(QIcon(":/images/viewlog.png"),tr("View Log"), this);
-Act->setShortcut(Qt::Key_F10);
-connect(Act, SIGNAL(triggered()), this, SLOT(ViewLog()));
-toolMenu->addAction(Act);
-Act = new QAction("BibTeX", this);
-Act->setShortcut(Qt::Key_F11);
-connect(Act, SIGNAL(triggered()), this, SLOT(MakeBib()));
-toolMenu->addAction(Act);
-Act = new QAction("MakeIndex", this);
-Act->setShortcut(Qt::Key_F12);
-connect(Act, SIGNAL(triggered()), this, SLOT(MakeIndex()));
-toolMenu->addAction(Act);
-toolMenu->addSeparator();
-Act = new QAction("MPost", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(MetaPost()));
-toolMenu->addAction(Act);
-toolMenu->addSeparator();
-Act = new QAction(tr("Clean"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(CleanAll()));
-toolMenu->addAction(Act);
-
-toolMenu->addSeparator();
-Act = new QAction(tr("Convert to Html"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(WebPublish()));
-toolMenu->addAction(Act);
-
-toolMenu->addSeparator();
-Act = new QAction(tr("Text Analysis"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(AnalyseText()));
-toolMenu->addAction(Act);
-
+//    TODO TODO
 
 
 latex1Menu = menuBar()->addMenu(tr("&LaTeX"));
-Act = new QAction("\\documentclass", this);
+QAction* Act = new QAction("\\documentclass", this);
 Act->setData("\\documentclass[10pt]{}/21/0/\\documentclass[options]{class}");
 connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
 latex1Menu->addAction(Act);
@@ -1183,23 +1004,16 @@ Act->setData("\\qquad/6/0/ ");
 connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
 math13Menu->addAction(Act);
 
-wizardMenu = menuBar()->addMenu(tr("&Wizard"));
-Act = new QAction(tr("Quick Start"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(QuickDocument()));
-wizardMenu->addAction(Act);
-Act = new QAction(tr("Quick Letter"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(QuickLetter()));
-wizardMenu->addAction(Act);
-wizardMenu->addSeparator();
-Act = new QAction(tr("Quick Tabular"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(QuickTabular()));
-wizardMenu->addAction(Act);
-Act = new QAction(tr("Quick Tabbing"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(QuickTabbing()));
-wizardMenu->addAction(Act);
-Act = new QAction(tr("Quick Array"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(QuickArray()));
-wizardMenu->addAction(Act);
+//wizards
+
+    menu=newManagedMenu("main/wizards",tr("&Wizards"));
+    newManagedAction(menu, "start",tr("Quick Start"), SLOT(QuickDocument()));
+    newManagedAction(menu, "letter",tr("Quick Letter"), SLOT(QuickLetter()));
+
+    menu->addSeparator();
+    newManagedAction(menu, "tabular",tr("Quick Tabular"), SLOT(QuickTabular()));
+    newManagedAction(menu, "tabbing",tr("Quick Tabbing"), SLOT(QuickTabbing()));
+    newManagedAction(menu, "array",tr("Quick Array"), SLOT(QuickArray()));
 
 bibMenu = menuBar()->addMenu(tr("&Bibliography"));
 Act = new QAction("Article in Journal", this);
@@ -1322,52 +1136,36 @@ connect(Act, SIGNAL(triggered()), this, SLOT(EditUserKeyReplacements()));
 user1Menu->addAction(Act);
 
 
-viewMenu = menuBar()->addMenu(tr("&View"));
-Act = new QAction(tr("Next Document"), this);
-Act->setShortcut(Qt::ALT+Qt::Key_PageUp);
-connect(Act, SIGNAL(triggered()), this, SLOT(gotoNextDocument()));
-viewMenu->addAction(Act);
-Act = new QAction(tr("Previous Document"), this);
-Act->setShortcut(Qt::ALT+Qt::Key_PageDown);
-connect(Act, SIGNAL(triggered()), this, SLOT(gotoPrevDocument()));
-viewMenu->addAction(Act);
-viewMenu->addSeparator();
-viewMenu->addAction(StructureView->toggleViewAction());
-viewMenu->addAction(OutputView->toggleViewAction());
+//---view---
+    menu=newManagedMenu("main/view",tr("&View"));
+    newManagedAction(menu, "nextdocument",tr("Next Document"), SLOT(gotoNextDocument()), Qt::ALT+Qt::Key_PageUp);
+    newManagedAction(menu, "prevdocument",tr("Previous Document"), SLOT(gotoPrevDocument()), Qt::ALT+Qt::Key_PageDown);
 
-optionsMenu = menuBar()->addMenu(tr("&Options"));
-Act = new QAction(QIcon(":/images/configure.png"), tr("Configure TexMakerX"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(GeneralOptions()));
-optionsMenu->addAction(Act);
-optionsMenu->addSeparator();
-#if defined( Q_WS_X11 )
-Act = new QAction(QIcon(":/images/configure.png"), tr("Change Interface Font"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(SetInterfaceFont()));
-optionsMenu->addAction(Act);
-Act = new QAction(QIcon(":/images/configure.png"), tr("Change Interface Type"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(SetInterfaceType()));
-optionsMenu->addAction(Act);
-optionsMenu->addSeparator();
-#endif
-ToggleAct = new QAction(tr("Define Current Document as 'Master Document'"), this);
-connect(ToggleAct, SIGNAL(triggered()), this, SLOT(ToggleMode()));
-optionsMenu->addAction(ToggleAct);
-ToggleRememberAct = new QAction(tr("Remember 'Master Document' setting"), this);
-ToggleRememberAct->setCheckable(true);
-connect(ToggleRememberAct, SIGNAL(triggered()), this, SLOT(ToggleMasterRememberMode()));
-optionsMenu->addAction(ToggleRememberAct);
+    menu->addSeparator();
+    newManagedAction(menu, "structureview",StructureView->toggleViewAction());
+    newManagedAction(menu, "outputview",OutputView->toggleViewAction());
 
-helpMenu = menuBar()->addMenu(tr("&Help"));
-Act = new QAction(QIcon(":/images/help.png"), tr("LaTeX Reference"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(LatexHelp()));
-helpMenu->addAction(Act);
-Act = new QAction(QIcon(":/images/help.png"), tr("User Manual"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(UserManualHelp()));
-helpMenu->addAction(Act);
-helpMenu->addSeparator();
-Act = new QAction(QIcon(":/images/appicon.png"), tr("About TexMakerX"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(HelpAbout()));
-helpMenu->addAction(Act);
+//---options---
+    menu=newManagedMenu("main/options",tr("&Options"));
+    newManagedAction(menu, "config",tr("Configure TexMakerX"), SLOT(GeneralOptions()), 0,":/images/configure.png");
+
+//#if defined( Q_WS_X11 )
+    menu->addSeparator();
+    newManagedAction(menu, "changeinterfacefont",tr("Change Interface Font"), SLOT(SetInterfaceFont()));
+    newManagedAction(menu, "changeinterfacetype",tr("Change Interface Type"), SLOT(SetInterfaceType()));
+//#endif
+
+    menu->addSeparator();
+    ToggleAct=newManagedAction(menu, "masterdocument",tr("Define Current Document as 'Master Document'"), SLOT(ToggleMode()));
+    ToggleRememberAct=newManagedAction(menu, "remembermasterdocument",tr("Remember 'Master Document' setting"), SLOT(ToggleMasterRememberMode()));
+
+//---help---
+    menu=newManagedMenu("main/help",tr("&Help"));
+    newManagedAction(menu, "latexreference",tr("LaTeX Reference"), SLOT(LatexHelp()), 0,":/images/help.png");
+    newManagedAction(menu, "usermanual",tr("User Manual"), SLOT(UserManualHelp()), 0,":/images/help.png");
+
+    menu->addSeparator();
+    newManagedAction(menu, "appinfo",tr("About TexMakerX"), SLOT(HelpAbout()), 0,":/images/appicon.png");
 
 QList<QAction *> listaction;
 if (shortcuts.isEmpty())
@@ -1408,90 +1206,39 @@ QStringList list;
 fileToolBar = addToolBar("File");
 fileToolBar->setObjectName("File");
 
-Act = new QAction(QIcon(":/images/filenew.png"), tr("New"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(fileNew()));
-fileToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/fileopen.png"), tr("Open"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(fileOpen()));
-fileToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/filesave.png"), tr("Save"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(fileSave()));
-fileToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/fileclose.png"), tr("Close"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(fileClose()));
-fileToolBar->addAction(Act);
+fileToolBar->addAction(getManagedAction("main/file/new"));
+fileToolBar->addAction(getManagedAction("main/file/open"));
+fileToolBar->addAction(getManagedAction("main/file/save"));
+fileToolBar->addAction(getManagedAction("main/file/close"));
 
 //edit
 editToolBar = addToolBar("Edit");
 editToolBar->setObjectName("Edit");
 
-Act = new QAction(QIcon(":/images/undo.png"), tr("Undo"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(editUndo()));
-editToolBar->addAction(Act);
+editToolBar->addAction(getManagedAction("main/edit/undo"));
+editToolBar->addAction(getManagedAction("main/edit/redo"));
+editToolBar->addAction(getManagedAction("main/edit/copy"));
+editToolBar->addAction(getManagedAction("main/edit/cut"));
+editToolBar->addAction(getManagedAction("main/edit/paste"));
+editToolBar->addAction(getManagedAction("main/edit/undo"));
 
-Act = new QAction(QIcon(":/images/redo.png"), tr("Redo"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(editRedo()));
-editToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/editcopy.png"), tr("Copy"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(editCopy()));
-editToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/editcut.png"), tr("Cut"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(editCut()));
-editToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/editpaste.png"), tr("Paste"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(editPaste()));
-editToolBar->addAction(Act);
 
 //tools
 runToolBar = addToolBar("Tools");
 runToolBar->setObjectName("Tools");
 
-Act = new QAction(QIcon(":/images/viewlog.png"),tr("View Log"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(ViewLog()));
-runToolBar->addAction(Act);
+runToolBar->addAction(getManagedAction("main/tools/viewlog"));
+runToolBar->addAction(getManagedAction("main/edit/errorprev"));
+runToolBar->addAction(getManagedAction("main/edit/errornext"));
 
-Act = new QAction(QIcon(":/images/errorprev.png"),tr("Previous LaTeX Error"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(PreviousError()));
-runToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/errornext.png"),tr("Next LaTeX Error"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(NextError()));
-runToolBar->addAction(Act);
 runToolBar->addSeparator();
-
-Act = new QAction(QIcon(":/images/quick.png"),tr("Quick Build"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(QuickBuild()));
-runToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/latex.png"),"LaTeX", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(Latex()));
-runToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/viewdvi.png"),tr("View Dvi"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(ViewDvi()));
-runToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/dvips.png"),"Dvi->PS", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(DviToPS()));
-runToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/viewps.png"),tr("View PS"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(ViewPS()));
-runToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/pdflatex.png"),"PDFLaTeX", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(PDFLatex()));
-runToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/viewpdf.png"),tr("View PDF"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(ViewPDF()));
-runToolBar->addAction(Act);
+runToolBar->addAction(getManagedAction("main/tools/quickbuild"));
+runToolBar->addAction(getManagedAction("main/tools/latex"));
+runToolBar->addAction(getManagedAction("main/tools/viewdvi"));
+runToolBar->addAction(getManagedAction("main/tools/dvi2ps"));
+runToolBar->addAction(getManagedAction("main/tools/viewps"));
+runToolBar->addAction(getManagedAction("main/tools/pdflatex"));
+runToolBar->addAction(getManagedAction("main/tools/viewpdf"));
 
 //format
 formatToolBar = addToolBar("Format");
@@ -2090,13 +1837,18 @@ UpdateRecentFile();
 
 void Texmaker::UpdateRecentFile()
 {
-for (int i=0; i < recentFilesList.count(); i++)
-	{
-        recentFileActs[i]->setText(recentFilesList.at(i));
-        recentFileActs[i]->setData(recentFilesList.at(i));
-        recentFileActs[i]->setVisible(true);
+    for (int i=0; i < recentFilesList.count(); i++)	{
+	    QAction* act = getManagedAction(QString("main/file/openrecent/%1").arg(i));
+	    if (act) {
+            act->setText(recentFilesList.at(i));
+            act->setData(recentFilesList.at(i));
+            act->setVisible(true);
+	    }
 	}
-for (int j = recentFilesList.count(); j < 5; ++j) recentFileActs[j]->setVisible(false);
+    for (int i = recentFilesList.count(); i < 5; ++i) {
+	    QAction* act = getManagedAction(QString("main/file/openrecent/%1").arg(i));
+	    if (act) act->setVisible(false);
+    }
 }
 
 void Texmaker::filePrint()

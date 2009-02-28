@@ -107,7 +107,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
                     editor->setCursor(wordSelection);
 
                     if (event->modifiers() & Qt::ShiftModifier) {
-                        QAction* aReplacement=new QAction(edView->tr("shift pressed => suggestions hidden"),contextMenu);
+                        QAction* aReplacement=new QAction(LatexEditorView::tr("shift pressed => suggestions hidden"),contextMenu);
                         edView->connect(aReplacement,SIGNAL(triggered()),edView,SLOT(spellCheckingListSuggestions()));
                         contextMenu->addAction(aReplacement);
                     } else edView->spellCheckingListSuggestions();
