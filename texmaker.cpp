@@ -89,7 +89,7 @@
 #endif
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
-    : QMainWindow(parent, flags)
+    : QMainWindow(parent, flags), textAnalysisDlg(0)
 {
 ReadSettings();
 setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
@@ -2205,7 +2205,10 @@ currentEditorView()->editor->unindentSelection();
 
 void Texmaker::editSpell()
 {
-    if (!currentEditorView()) return;
+    if (!currentEditorView()) {
+        QMessageBox::information(this,"TexMakerX",tr("No document open"),0);
+        return;
+    }
     if (!spellDlg) spellDlg=new SpellerDialog(this,mainSpeller);
     spellDlg->setEditorView(currentEditorView());
     spellDlg->startSpelling();
@@ -4472,7 +4475,10 @@ if ( utDlg->exec() ) {
 
 void Texmaker::WebPublish()
 {
-    if (!currentEditorView()) return;
+    if (!currentEditorView()) {
+        QMessageBox::information(this,"TexMakerX",tr("No document open"),0);
+        return;
+    }
     if (!currentEditorView()->editor->getFileEncoding()) return;
 QString finame;
 fileSave();
@@ -4488,16 +4494,27 @@ delete ttwpDlg;
 
 
 void Texmaker::AnalyseText(){
-    if (!currentEditorView()) return;
-  TextAnalysisDialog *utDlg = new TextAnalysisDialog(this,tr("Text Analysis"));
-  utDlg->setData(currentEditorView()->editor->document(), currentEditorView()->editor->cursor());
-  utDlg->init();
-  for (int i=0;i<StructureTreeWidget->topLevelItemCount ();i++)
+    if (!currentEditorView()) {
+        QMessageBox::information(this,"TexMakerX",tr("No document open"),0);
+        return;
+    }
+    if (!textAnalysisDlg) {
+        textAnalysisDlg = new TextAnalysisDialog(this,tr("Text Analysis"));
+        connect(textAnalysisDlg,SIGNAL(destroyed()),this,SLOT(AnalyseTextFormDestroyed()));
+    }
+    if (!textAnalysisDlg) return;
+    textAnalysisDlg->setEditor(currentEditorView()->editor);//->document(), currentEditorView()->editor->cursor());
+    textAnalysisDlg->init();
+    for (int i=0;i<StructureTreeWidget->topLevelItemCount ();i++)
       //if (StructureTreeWidget->topLevelItem(i)->text(0)==MasterName)
-        utDlg->interpretStructureTree(StructureTreeWidget->topLevelItem(i));
+        textAnalysisDlg->interpretStructureTree(StructureTreeWidget->topLevelItem(i));
 
-  utDlg->exec();
-  delete utDlg;
+    textAnalysisDlg->show();
+    textAnalysisDlg->raise(); //not really necessary, since the dlg is always on top
+    textAnalysisDlg->activateWindow();
+}
+void Texmaker::AnalyseTextFormDestroyed(){
+    textAnalysisDlg=0;
 }
 //////////////// MESSAGES - LOG FILE///////////////////////
 bool Texmaker::LogExists()

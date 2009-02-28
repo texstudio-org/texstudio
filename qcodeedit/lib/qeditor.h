@@ -317,6 +317,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
         void selectNothing();
 		
 		void find();
+		void find(QString text, bool highlight, bool regex);
 		void findNext();
 		void replace();
 		

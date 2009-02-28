@@ -1206,6 +1206,24 @@ void QEditor::findNext()
 	}
 }
 
+void QEditor::find(QString text, bool highlight, bool regex){
+	QCodeEdit *m = QCodeEdit::manager(this);
+	
+	if ( m )
+	{
+		m->sendPanelCommand("Search",
+							"find",
+							Q_COMMAND
+								<< Q_ARG(QString, text)
+								<< Q_ARG(bool, false)
+								<< Q_ARG(bool, highlight)
+								<< Q_ARG(bool, regex)
+							);
+		
+	} else {
+		qDebug("Unmanaged QEditor");
+	}
+}
 /*!
 	\brief Show the search/replace panel, if any
 */
