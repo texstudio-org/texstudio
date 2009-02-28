@@ -85,7 +85,7 @@ QString getRelativePath(const QString basepath, const QString & file)
 		path = fi.path();
 	}
 
-    if (!path.endsWith("\\")) path+="\\"; //necessary if basepath isn't given
+    if (!path.endsWith("/") && !path.endsWith("\\")) path+="/"; //necessary if basepath isn't given
 
 	return path;
 }
