@@ -33,6 +33,7 @@
 #include <QLineEdit>
 #include <QProcess>
 #include <QComboBox>
+#include <QDomNode>
 #include <QSpinBox>
 #include <QTableWidget>
 #include <QTableWidgetItem>
@@ -84,9 +85,9 @@
 #include "qdocumentline.h"
 #include "qcodecompletionengine.h"
 
-#if defined( Q_WS_X11 )
+//#if defined( Q_WS_X11 )
 #include "x11fontdialog.h"
-#endif
+//#endif
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
     : QMainWindow(parent, flags), textAnalysisDlg(0)
@@ -290,6 +291,7 @@ QMenu* Texmaker::newManagedMenu(const QString &id,const QString &text){
     return menu;
 }
 QMenu* Texmaker::newManagedMenu(QMenu* menu, const QString &id,const QString &text){
+    if (!menu) return newManagedMenu(id,text);
     QMenu* subMenu=menu->addMenu(text);
     subMenu->setObjectName( menu->objectName()+"/"+ id);
     return subMenu;
@@ -299,7 +301,7 @@ QAction* Texmaker::newManagedAction(QMenu* menu, const QString &id,const QString
     if (iconFile.isEmpty()) act=new QAction(text, this);
     else act=new QAction (QIcon(iconFile), text, this);
     act->setShortcut(shortCut);
-    connect(act, SIGNAL(triggered()), this, slotName);
+    if (slotName) connect(act, SIGNAL(triggered()), this, slotName);
     act->setObjectName(menu->objectName()+"/"+id);
     menu->addAction(act);
     return act;
@@ -313,6 +315,43 @@ QAction* Texmaker::getManagedAction(QString id){
     QAction* act=findChild<QAction*>(id);
     if (act==0) QMessageBox::warning(0,"TexMakerX","Can't find internal action "+id);
     return act;
+}
+void Texmaker::loadManagedMenu(QMenu* parent,const QDomElement &f){
+    QMenu *menu = newManagedMenu(parent,f.attributes().namedItem("id").nodeValue(),f.attributes().namedItem("text").nodeValue());
+    QDomNodeList children = f.childNodes();
+    for ( int i = 0; i < children.count(); i++ ) {
+        QDomElement c = children.at(i).toElement();
+        if (c.nodeName()=="menu") loadManagedMenu(menu,c);
+        else if (c.nodeName()=="insert" || c.nodeName()=="action") {
+            QDomNamedNodeMap  att=c.attributes();
+            QByteArray ba;
+            char* slotfunc;
+            if (c.nodeName()=="insert") slotfunc=SLOT(InsertFromAction());
+            else {
+                ba=att.namedItem("slot").nodeValue().toLocal8Bit();
+                slotfunc=ba.data();
+            }
+            QAction * act=newManagedAction(menu,att.namedItem("id").nodeValue(),att.namedItem("text").nodeValue(),slotfunc,
+                                  att.namedItem("shortcut").nodeValue(),att.namedItem("icon").nodeValue());
+            act->setWhatsThis(att.namedItem("info").nodeValue());
+            act->setData(att.namedItem("insert").nodeValue());
+        } else if (c.nodeName()=="separator") menu->addSeparator(); 
+    }
+}
+void Texmaker::loadManagedMenus(const QString &f){
+	QFile settings(f);
+	
+	if ( settings.open(QFile::ReadOnly | QFile::Text) )
+	{
+		QDomDocument doc;
+		doc.setContent(&settings);
+    
+        QDomNodeList f = doc.documentElement().childNodes();
+	
+        for ( int i = 0; i < f.count(); i++ )
+            if (f.at(i).nodeName()=="menu") 
+                loadManagedMenu(0,f.at(i).toElement());
+	}
 }
 
 void Texmaker::setupMenus()
@@ -434,635 +473,12 @@ void Texmaker::setupMenus()
     newManagedAction(menu, "analysetext",tr("Analyse Text"), SLOT(AnalyseText()));
 
 //    TODO TODO
+    loadManagedMenus(":/uiconfig.xml");
 
-
-latex1Menu = menuBar()->addMenu(tr("&LaTeX"));
-QAction* Act = new QAction("\\documentclass", this);
-Act->setData("\\documentclass[10pt]{}/21/0/\\documentclass[options]{class}");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex1Menu->addAction(Act);
-Act = new QAction("\\usepackage{}", this);
-Act->setData("\\usepackage{} /12/0/\\usepackage[options]{pkg}");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex1Menu->addAction(Act);
-Act = new QAction("AMS packages", this);
-Act->setData("\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}\n/0/3/The main American Mathematical Society packages");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex1Menu->addAction(Act);
-Act = new QAction("\\begin{document}", this);
-Act->setData("\\begin{document}\n\n\\end{document}/0/1/Text is allowed only between \\begin{document} and \\end{document}.");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex1Menu->addAction(Act);
-Act = new QAction("\\author{}", this);
-Act->setData("\\author{}/8/0/\\author{names}\nThe \\author command declares the author(s), where names is a list of authors separated by \\and commands.");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex1Menu->addAction(Act);
-Act = new QAction("\\title{}", this);
-Act->setData("\\title{}/7/0/\\title{text}\nThe \\title command declares text to be the title.");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex1Menu->addAction(Act);
-Act = new QAction("\\maketitle", this);
-Act->setData("\\maketitle/10/0/This command generates a title on a separate title page\n- except in the article class, where the title normally goes at the top of the first page.");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex1Menu->addAction(Act);
-Act = new QAction("\\tableofcontents", this);
-Act->setData("\\tableofcontents/16/0/Put this command where you want the table of contents to go");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex1Menu->addAction(Act);
-
-latex11Menu=latex1Menu->addMenu(tr("&Sectioning"));
-Act = new QAction("\\part", this);
-Act->setData("\\part");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertStruct()));
-latex11Menu->addAction(Act);
-Act = new QAction("\\chapter", this);
-Act->setData("\\chapter");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertStruct()));
-latex11Menu->addAction(Act);
-Act = new QAction("\\section", this);
-Act->setData("\\section");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertStruct()));
-latex11Menu->addAction(Act);
-Act = new QAction("\\subsection", this);
-Act->setData("\\subsection");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertStruct()));
-latex11Menu->addAction(Act);
-Act = new QAction("\\subsubsection", this);
-Act->setData("\\subsubsection");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertStruct()));
-latex11Menu->addAction(Act);
-Act = new QAction("\\paragraph", this);
-Act->setData("\\paragraph");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertStruct()));
-latex11Menu->addAction(Act);
-Act = new QAction("\\subparagraph", this);
-Act->setData("\\subparagraph");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertStruct()));
-latex11Menu->addAction(Act);
-
-latex12Menu=latex1Menu->addMenu(tr("&Environment"));
-Act = new QAction(QIcon(":/images/text_center.png"),"\\begin{center} [selection]", this);
-Act->setData("\\begin{center}\n/\n\\end{center}/0/1");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-latex12Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/text_left.png"),"\\begin{flushleft} [selection]", this);
-Act->setData("\\begin{flushleft}\n/\n\\end{flushleft}/0/1");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-latex12Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/text_right.png"),"\\begin{flushright}  [selection]", this);
-Act->setData("\\begin{flushright}\n/\n\\end{flushright}/0/1");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-latex12Menu->addAction(Act);
-Act = new QAction("\\begin{quote}  [selection]", this);
-Act->setData("\\begin{quote}\n/\n\\end{quote}/0/1");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-latex12Menu->addAction(Act);
-Act = new QAction("\\begin{quotation}  [selection]", this);
-Act->setData("\\begin{quotation}\n/\n\\end{quotation}/0/1");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-latex12Menu->addAction(Act);
-Act = new QAction("\\begin{verse}  [selection]", this);
-Act->setData("\\begin{verse}\n/\n\\end{verse}/0/1");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-latex12Menu->addAction(Act);
-Act = new QAction("\\begin{verbatim}  [selection]", this);
-Act->setData("\\begin{verbatim}\n/\n\\end{verbatim}/0/1");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-latex12Menu->addAction(Act);
-Act = new QAction("\\begin{table}  [selection]", this);
-Act->setData("\\begin{table}\n/\n\\caption{}\n\\end{table}/0/1");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-latex12Menu->addAction(Act);
-Act = new QAction("\\begin{figure}  [selection]", this);
-Act->setData("\\begin{figure}\n/\n\\caption{}\n\\end{figure}/0/1");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-latex12Menu->addAction(Act);
-Act = new QAction("\\begin{titlepage}  [selection]", this);
-Act->setData("\\begin{titlepage}\n/\n\\end{titlepage}/0/1");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-latex12Menu->addAction(Act);
-
-latex13Menu=latex1Menu->addMenu(tr("&List Environment"));
-Act = new QAction(QIcon(":/images/itemize.png"),"\\begin{itemize}", this);
-Act->setData("\\begin{itemize}\n\\item \n\\end{itemize}/6/1/The itemize environment produces a 'bulleted' list.\nEach item of an itemized list begins with an \\item command.");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex13Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/enumerate.png"),"\\begin{enumerate}", this);
-Act->setData("\\begin{enumerate}\n\\item \n\\end{enumerate}/6/1/The enumerate environment produces a numbered list.\nEach item of an enumerated list begins with an \\item command.");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex13Menu->addAction(Act);
-Act = new QAction("\\begin{description}", this);
-Act->setData("\\begin{description}\n\\item[]\n\\end{description}/6/1/The description environment is used to make labelled lists.\nEach item of the list begins with an \\item[label] command.\n");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex13Menu->addAction(Act);
-Act = new QAction("\\begin{list}", this);
-Act->setData("\\begin{list}{}{}\n\\item \n\\end{list}/13/0/\\begin{list}{label}{spacing}\nThe {label} argument is a piece of text that is inserted in a box to form the label.\nThe {spacing} argument contains commands to change the spacing parameters for the list.\nEach item of the list begins with an \\item command.");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex13Menu->addAction(Act);
-
-Act = new QAction(QIcon(":/images/item.png"),"\\item", this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_I);
-Act->setData("\\item/5/0/\\item[label] Hello");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex13Menu->addAction(Act);
-
-latex14Menu=latex1Menu->addMenu(tr("Font St&yles"));
-Act = new QAction(QIcon(":/images/text_italic.png"),"\\textit - Italics  [selection]", this);
-Act->setShortcut(Qt::CTRL+Qt::Key_I);
-Act->setData("\\textit{/}/8/0");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-latex14Menu->addAction(Act);
-Act = new QAction("\\textsl - Slanted  [selection]", this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_S);
-Act->setData("\\textsl{/}/8/0");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-latex14Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/text_bold.png"),"\\textbf - Boldface  [selection]", this);
-Act->setShortcut(Qt::CTRL+Qt::Key_B);
-Act->setData("\\textbf{/}/8/0");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-latex14Menu->addAction(Act);
-Act = new QAction("\\texttt - Typewriter  [selection]", this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_T);
-Act->setData("\\texttt{/}/8/0");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-latex14Menu->addAction(Act);
-Act = new QAction("\\textsc - Small caps  [selection]", this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_C);
-Act->setData("\\textsc{/}/8/0");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-latex14Menu->addAction(Act);
-Act = new QAction("\\emph - Emphasis  [selection]", this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_E);
-Act->setData("\\emph{/}/6/0");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-latex14Menu->addAction(Act);
-
-latex15Menu=latex1Menu->addMenu(tr("&Tabular Environment"));
-Act = new QAction("\\begin{tabbing}", this);
-Act->setData("\\begin{tabbing}\n\n\\end{tabbing}/0/1/\\begin{tabbing}\ntext \\= more text \\= still more text \\= last text \\\\\nsecond row \\>  \\> more \\\\\n\\end{tabbing}");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex15Menu->addAction(Act);
-Act = new QAction("\\begin{tabular}", this);
-Act->setData("\\begin{tabular}{}\n\n\\end{tabular}/16/0/\\begin{tabular}[pos]{cols}\ncolumn 1 entry & column 2 entry ... & column n entry \\\\\n...\n\\end{tabular}");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex15Menu->addAction(Act);
-Act = new QAction("\\multicolumn", this);
-Act->setData("\\multicolumn{}{}{} /13/0/\\multicolumn{cols}{pos}{text}\ncol, specifies the number of columns to span.\npos specifies the formatting of the entry: c for centred, l for flushleft, r for flushright.\ntext specifies what text is to make up the entry.");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex15Menu->addAction(Act);
-Act = new QAction("\\hline", this);
-Act->setData("\\hline /7/0/The \\hline command draws a horizontal line the width of the table.");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex15Menu->addAction(Act);
-Act = new QAction("\\vline", this);
-Act->setData("\\vline /7/0/The \\vline command draws a vertical line extending the full height and depth of its row.");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex15Menu->addAction(Act);
-Act = new QAction("\\cline", this);
-Act->setData("\\cline{-} /7/0/The \\cline{i-j} command draws horizontal lines across the columns specified, beginning in column i and ending in column j");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex15Menu->addAction(Act);
-
-latex16Menu=latex1Menu->addMenu(tr("S&pacing"));
-Act = new QAction("\\newpage", this);
-Act->setData("\\newpage /9/0/The \\newpage command ends the current page");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex16Menu->addAction(Act);
-Act = new QAction("\\linebreak", this);
-Act->setData("\\linebreak /11/0/The \\linebreak command tells LaTeX to break the current line at the point of the command.");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex16Menu->addAction(Act);
-Act = new QAction("\\pagebreak", this);
-Act->setData("\\pagebreak /11/0/The \\pagebreak command tells LaTeX to break the current page at the point of the command.");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex16Menu->addAction(Act);
-Act = new QAction("\\bigskip", this);
-Act->setData("\\bigskip /9/0/The \\bigskip command adds a 'big' vertical space.");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex16Menu->addAction(Act);
-Act = new QAction("\\medskip", this);
-Act->setData("\\medskip /9/0/The \\medskip command adds a 'medium' vertical space.");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex16Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/newline.png"),"New line", this);
-Act->setData("\\\\\n/0/1/The \\newline command breaks the line right where it is.");
-Act->setShortcut(Qt::CTRL+Qt::Key_Return);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex16Menu->addAction(Act);
-
-latex17Menu=latex1Menu->addMenu(tr("International &Accents"));
-Act = new QAction(QIcon(":/images/accent1.png"),"\\'{}", this);
-Act->setData("\\'{}/3/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex17Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/accent2.png"),"\\`{}", this);
-Act->setData("\\`{}/3/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex17Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/accent3.png"),"\\^{}", this);
-Act->setData("\\^{}/3/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex17Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/accent4.png"),"\\\"{}", this);
-Act->setData("\\\"{}/3/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex17Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/accent5.png"),"\\~{}", this);
-Act->setData("\\~{}/3/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex17Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/accent6.png"),"\\={}", this);
-Act->setData("\\={}/3/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex17Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/accent7.png"),"\\.{}", this);
-Act->setData("\\.{}/3/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex17Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/accent8.png"),"\\v{}", this);
-Act->setData("\\v{}/3/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex17Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/accent9.png"),"\\u{}", this);
-Act->setData("\\u{}/3/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex17Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/accent10.png"),"\\H{}", this);
-Act->setData("\\H{}/3/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex17Menu->addAction(Act);
-
-Act = new QAction("\\includegraphics{file}", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertImage()));
-latex1Menu->addAction(Act);
-Act = new QAction("\\include{file}", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertInclude()));
-latex1Menu->addAction(Act);
-Act = new QAction("\\input{file}", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertInput()));
-latex1Menu->addAction(Act);
-latex1Menu->addSeparator();
-
-Act = new QAction("\\label{}", this);
-Act->setData("\\label{} /7/0/\\label{key}");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex1Menu->addAction(Act);
-Act = new QAction("\\cite{}", this);
-Act->setData("\\cite{} /6/0/\\cite{ref} :\nThis command generates an in-text citation to the reference associated with the ref entry in the bib file");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex1Menu->addAction(Act);
-Act = new QAction("\\footnote{}", this);
-Act->setData("\\footnote{} /10/0/\\footnote[number]{text}\nThe \\footnote command places the numbered footnote text at the bottom of the current page.");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex1Menu->addAction(Act);
-Act = new QAction("\\bibliographystyle{}", this);
-Act->setData("\\bibliographystyle{} /19/0/The argument to \\bibliographystyle refers to a file style.bst, which defines how your citations will look");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-latex1Menu->addAction(Act);
-Act = new QAction("\\bibliography{}", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertBib()));
-latex1Menu->addAction(Act);
-
-math1Menu = menuBar()->addMenu(tr("&Math"));
-Act = new QAction(QIcon(":/images/mathmode.png"),tr("Inline math mode $...$"), this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_M);
-Act->setData("$  $/2/0/The math environment can be used in both paragraph and LR mode");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math1Menu->addAction(Act);
-Act = new QAction(tr("Display math mode \\[...\\]"), this);
-Act->setShortcut(Qt::ALT+Qt::SHIFT+Qt::Key_M);
-Act->setData("\\[  \\]/3/0/The displaymath environment can be used only in paragraph mode");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math1Menu->addAction(Act);
-Act = new QAction(tr("Numbered equations \\begin{equation}"), this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_N);
-Act->setData("\\begin{equation}\n\n\\end{equation}/0/1/The equation environment centres your equation on the page and places the equation number in the right margin.");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math1Menu->addAction(Act);
-Act = new QAction("\\begin{eqnarray}", this);
-Act->setData("\\begin{eqnarray}\n\n\\end{eqnarray}/0/1/\\begin{eqnarray}\nmath formula 1 \\\\\n\\end{eqnarray}\nThe eqnarray environment is used to display a sequence of equations or inequalities.");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math1Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/indice.png"),"_{} - subscript", this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_D);
-Act->setData("_{}/2/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math1Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/puissance.png"),"^{} - superscript", this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_U);
-Act->setData("^{}/2/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math1Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/smallfrac.png"),"\\frac{}{}", this);
-Act->setShortcut(Qt::ALT+Qt::SHIFT+Qt::Key_F);
-Act->setData("\\frac{}{}/6/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math1Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/dfrac.png"),"\\dfrac{}{}", this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_F);
-Act->setData("\\dfrac{}{}/7/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math1Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/racine.png"),"\\sqrt{}", this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_Q); //setShortcut(Qt::CTRL+Qt::ALT+Qt::Key_Q);
-Act->setData("\\sqrt{}/6/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math1Menu->addAction(Act);
-Act = new QAction("\\left", this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_L);
-Act->setData("\\left /6/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math1Menu->addAction(Act);
-Act = new QAction("\\right", this);
-Act->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_R);
-Act->setData("\\right /7/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math1Menu->addAction(Act);
-Act = new QAction("\\begin{array}", this);
-Act->setData("\\begin{array}{}\n\n\\end{array}/14/0/\\begin{array}{col1col2...coln}\ncolumn 1 entry & column 2 entry ... & column n entry \\\\\n...\n\\end{array}");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math1Menu->addAction(Act);
-
-math14Menu=math1Menu->addMenu(tr("Math &Functions"));
-Act = new QAction("\\arccos", this);
-Act->setData("\\arccos /8/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\arcsin", this);
-Act->setData("\\arcsin /8/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\arctan", this);
-Act->setData("\\arctan /8/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\cos", this);
-Act->setData("\\cos /5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\cosh", this);
-Act->setData("\\cosh /6/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\cot", this);
-Act->setData("\\cot /5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\coth", this);
-Act->setData("\\coth /6/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\csc", this);
-Act->setData("\\csc /5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\deg", this);
-Act->setData("\\deg /5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\det", this);
-Act->setData("\\det /5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\dim", this);
-Act->setData("\\dim /5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\exp", this);
-Act->setData("\\exp /5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\gcd", this);
-Act->setData("\\gcd /5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\hom", this);
-Act->setData("\\hom /5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\inf", this);
-Act->setData("\\inf /5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\ker", this);
-Act->setData("\\ker /5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\lg", this);
-Act->setData("\\lg /4/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\lim", this);
-Act->setData("\\lim /5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\liminf", this);
-Act->setData("\\liminf /8/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\limsup", this);
-Act->setData("\\limsup /8/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\ln", this);
-Act->setData("\\ln /4/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\log", this);
-Act->setData("\\log /5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\max", this);
-Act->setData("\\max /5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\min", this);
-Act->setData("\\min /5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\sec", this);
-Act->setData("\\sec /5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\sin", this);
-Act->setData("\\sin /5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\sinh", this);
-Act->setData("\\sinh /6/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\sup", this);
-Act->setData("\\sup /5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\tan", this);
-Act->setData("\\tan /5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-Act = new QAction("\\tanh", this);
-Act->setData("\\tanh /6/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math14Menu->addAction(Act);
-
-math11Menu=math1Menu->addMenu(tr("Math Font St&yles"));
-Act = new QAction("\\mathrm{}  [selection]", this);
-Act->setData("\\mathrm{/}/8/0");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-math11Menu->addAction(Act);
-Act = new QAction("\\mathit{}  [selection]", this);
-Act->setData("\\mathit{/}/8/0");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-math11Menu->addAction(Act);
-Act = new QAction("\\mathbf{}  [selection]", this);
-Act->setData("\\mathbf{/}/8/0");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-math11Menu->addAction(Act);
-Act = new QAction("\\mathsf{}  [selection]", this);
-Act->setData("\\mathsf{/}/8/0");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-math11Menu->addAction(Act);
-Act = new QAction("\\mathtt{}  [selection]", this);
-Act->setData("\\mathtt{/}/8/0");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-math11Menu->addAction(Act);
-Act = new QAction("\\mathcal{}  [selection]", this);
-Act->setData("\\mathcal{/}/9/0");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-math11Menu->addAction(Act);
-Act = new QAction("\\mathbb{}  [selection]", this);
-Act->setData("\\mathbb{/}/8/0");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-math11Menu->addAction(Act);
-Act = new QAction("\\mathfrak{}  [selection]", this);
-Act->setData("\\mathfrak{/}/10/0");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-math11Menu->addAction(Act);
-
-math12Menu=math1Menu->addMenu(tr("Math &Accents"));
-Act = new QAction(QIcon(":/images/acute.png"),"\\acute{}", this);
-Act->setData("\\acute{}/7/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math12Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/grave.png"),"\\grave{}", this);
-Act->setData("\\grave{}/7/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math12Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/tilde.png"),"\\tilde{}", this);
-Act->setData("\\tilde{}/7/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math12Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/bar.png"),"\\bar{}", this);
-Act->setData("\\bar{}/5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math12Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/vec.png"),"\\vec{}", this);
-Act->setData("\\vec{}/5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math12Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/hat.png"),"\\hat{}", this);
-Act->setData("\\hat{}/5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math12Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/check.png"),"\\check{}", this);
-Act->setData("\\check{}/7/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math12Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/breve.png"),"\\breve{}", this);
-Act->setData("\\breve{}/7/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math12Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/dot.png"),"\\dot{}", this);
-Act->setData("\\dot{}/5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math12Menu->addAction(Act);
-Act = new QAction(QIcon(":/images/ddtot.png"),"\\ddot{}", this);
-Act->setData("\\ddot{}/6/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math12Menu->addAction(Act);
-
-math13Menu=math1Menu->addMenu(tr("Math S&paces"));
-Act = new QAction("small", this);
-Act->setData("\\,/2/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math13Menu->addAction(Act);
-Act = new QAction("medium", this);
-Act->setData("\\:/2/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math13Menu->addAction(Act);
-Act = new QAction("large", this);
-Act->setData("\\;/2/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math13Menu->addAction(Act);
-Act = new QAction("\\quad", this);
-Act->setData("\\quad/5/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math13Menu->addAction(Act);
-Act = new QAction("\\qquad", this);
-Act->setData("\\qquad/6/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-math13Menu->addAction(Act);
-
-//wizards
-
-    menu=newManagedMenu("main/wizards",tr("&Wizards"));
-    newManagedAction(menu, "start",tr("Quick Start"), SLOT(QuickDocument()));
-    newManagedAction(menu, "letter",tr("Quick Letter"), SLOT(QuickLetter()));
-
-    menu->addSeparator();
-    newManagedAction(menu, "tabular",tr("Quick Tabular"), SLOT(QuickTabular()));
-    newManagedAction(menu, "tabbing",tr("Quick Tabbing"), SLOT(QuickTabbing()));
-    newManagedAction(menu, "array",tr("Quick Array"), SLOT(QuickArray()));
-
-bibMenu = menuBar()->addMenu(tr("&Bibliography"));
-Act = new QAction("Article in Journal", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertBib1()));
-bibMenu->addAction(Act);
-Act = new QAction("Article in Conference Proceedings", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertBib2()));
-bibMenu->addAction(Act);
-Act = new QAction("Article in a collection", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertBib3()));
-bibMenu->addAction(Act);
-Act = new QAction("Chapter or Pages in a Book", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertBib4()));
-bibMenu->addAction(Act);
-Act = new QAction("Conference Proceedings", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertBib5()));
-bibMenu->addAction(Act);
-Act = new QAction("Book", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertBib6()));
-bibMenu->addAction(Act);
-Act = new QAction("Booklet", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertBib7()));
-bibMenu->addAction(Act);
-Act = new QAction("PhD. Thesis", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertBib8()));
-bibMenu->addAction(Act);
-Act = new QAction("Master's Thesis", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertBib9()));
-bibMenu->addAction(Act);
-Act = new QAction("Technical Report", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertBib10()));
-bibMenu->addAction(Act);
-Act = new QAction("Technical Manual", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertBib11()));
-bibMenu->addAction(Act);
-Act = new QAction("Unpublished", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertBib12()));
-bibMenu->addAction(Act);
-Act = new QAction("Miscellaneous", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertBib13()));
-bibMenu->addAction(Act);
-bibMenu->addSeparator();
-Act = new QAction(tr("Clean"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(CleanBib()));
-bibMenu->addAction(Act);
 
 user1Menu = menuBar()->addMenu(tr("&User"));
 user11Menu=user1Menu->addMenu(tr("User &Tags"));
-Act = new QAction("1: "+UserMenuName[0], this);
+QAction* Act = new QAction("1: "+UserMenuName[0], this);
 Act->setShortcut(Qt::SHIFT+Qt::Key_F1);
 connect(Act, SIGNAL(triggered()), this, SLOT(InsertUserTag1()));
 user11Menu->addAction(Act);
@@ -1166,36 +582,8 @@ user1Menu->addAction(Act);
 
     menu->addSeparator();
     newManagedAction(menu, "appinfo",tr("About TexMakerX"), SLOT(HelpAbout()), 0,":/images/appicon.png");
-
-QList<QAction *> listaction;
-if (shortcuts.isEmpty())
-	{
-	actionstext.clear();
-	listaction << latex11Menu->actions();
-	listaction << latex12Menu->actions();
-	listaction << latex13Menu->actions();
-	listaction << latex14Menu->actions();
-	listaction << latex15Menu->actions();
-	listaction << latex16Menu->actions();
-	listaction << latex17Menu->actions();
-	listaction << math1Menu->actions();
-	listaction << math11Menu->actions();
-	listaction << math12Menu->actions();
-	listaction << math13Menu->actions();
-	listaction << math14Menu->actions();
-	QListIterator<QAction*> iterator(listaction);
-	while ( iterator.hasNext() )
-		{
-		QAction *action = iterator.next();
-		if (action && (!action->menu()) && (!action->data().toString().isEmpty()))
-			{
-			if (action->shortcut().isEmpty()) shortcuts.insert(action->data().toString(),"none");
-			else shortcuts.insert(action->data().toString(),action->shortcut());
-			actionstext.insert(action->data().toString(),action->text());
-			}
-		}
-	}
-else ModifyShortcuts();
+    
+    ModifyShortcuts();
 }
 
 void Texmaker::setupToolBars()
@@ -2761,17 +2149,15 @@ if (item  && !item->font().bold())
 
 void Texmaker::InsertFromAction()
 {
+if ( !currentEditorView() )	return;
 bool ok;
 QString actData;
 QStringList tagList;
 QAction *action = qobject_cast<QAction *>(sender());
-if ( !currentEditorView() )	return;
 if (action)
 	{
-	actData=action->data().toString();
-	tagList= actData.split("/");
-	InsertTag(tagList.at(0),tagList.at(1).toInt(&ok, 10),tagList.at(2).toInt(&ok, 10));
-	OutputTextEdit->insertLine(tagList.at(3));
+	CompletionWord(action->data().toString()).insertAt(currentEditorView()->editor,currentEditorView()->editor->cursor());
+	OutputTextEdit->setText(CompletionWord(action->whatsThis()).shownWord);
 	}
 }
 
@@ -5029,7 +4415,7 @@ else EditorView->setCurrentIndex( cPage );
 
 void Texmaker::SetInterfaceFont()
 {
-#if defined( Q_WS_X11 )
+//#if defined( Q_WS_X11 )
 X11FontDialog *xfdlg = new X11FontDialog(this);
 int ft=xfdlg->ui.comboBoxFont->findText (x11fontfamily , Qt::MatchExactly);
 xfdlg->ui.comboBoxFont->setCurrentIndex(ft);
@@ -5041,11 +4427,11 @@ if (xfdlg->exec())
 	QFont x11Font (x11fontfamily,x11fontsize);
 	QApplication::setFont(x11Font);
 	}
-#endif
+//#endif
 }
 void Texmaker::SetInterfaceType()
 {
-#if defined( Q_WS_X11 )
+//#if defined( Q_WS_X11 )
 QStringList styles=QStyleFactory::keys()<<"default";
 x11style = QInputDialog::getItem(this,"TexMakerX",tr("Select interface style"),styles,styles.indexOf(x11style));
 if (x11style=="default") QMessageBox::information(this,"TexMakerX",tr("Please restart TexMakerX to apply the changes"),0);
@@ -5054,7 +4440,7 @@ else {
     QApplication::setStyle(x11style);
     QApplication::setPalette(pal);
 	}
-#endif
+//#endif
 }
 
 void Texmaker::gotoBookmark(int id){
@@ -5120,24 +4506,7 @@ MostUsedListWidget->SetUserPage(symbolMostused);
 }
 
 void Texmaker::ModifyShortcuts()
-{
-KeysMap::Iterator its;
-QString d,f,s;
-QList<QAction *> listaction;
-listaction << latex11Menu->actions();
-listaction << latex12Menu->actions();
-listaction << latex13Menu->actions();
-listaction << latex14Menu->actions();
-listaction << latex15Menu->actions();
-listaction << latex16Menu->actions();
-listaction << latex17Menu->actions();
-listaction << math1Menu->actions();
-listaction << math11Menu->actions();
-listaction << math12Menu->actions();
-listaction << math13Menu->actions();
-listaction << math14Menu->actions();
-QListIterator<QAction*> iterator(listaction);
-actionstext.clear();
+{/*
 while ( iterator.hasNext() )
 	{
 	QAction *action=iterator.next();
@@ -5151,16 +4520,8 @@ while ( iterator.hasNext() )
 			s=its.value();
 			if (f==d && s!="none" && !s.isEmpty()) action->setShortcut(s);
 			}
-// 		its=shortcuts.find(action->data().toString());
-// 		if (its!=shortcuts.end())
-// 			{
-// 			s=*its;
-// 			if (s!="none" && !s.isEmpty()) action->setShortcut(s);
-// 			}
-		//QString s=*shortcuts.find(action->data().toString());
-		//if (s!="none" && !s.isEmpty()) action->setShortcut(s);
 		}
-	}
+	}*/
 }
 
 void Texmaker::updateCompleter()

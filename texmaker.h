@@ -75,10 +75,12 @@ void onOtherInstanceMessage(const QString &);  // For messages for the single in
 private:
 QMenu* newManagedMenu(const QString &id,const QString &text);
 QMenu* newManagedMenu(QMenu* menu, const QString &id,const QString &text);
-QAction* newManagedAction(QMenu* menu, const QString &id,const QString &text, const char* slotName, const QKeySequence &shortCut=0, const QString & iconFile="");
+QAction* newManagedAction(QMenu* menu, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="");
 QAction* newManagedAction(QMenu* menu, const QString &id, QAction* act);
 QAction* getManagedAction(QString id);
-
+void loadManagedMenu(QMenu* parent,const QDomElement &f);
+void loadManagedMenus(const QString &f);
+    
 void setupMenus();
 void setupToolBars();
 void createStatusBar();
@@ -107,9 +109,6 @@ QTableWidget *OutputTableWidget;
 
 
 //menu-toolbar
-QMenu* bibMenu;
-QMenu *latex1Menu, *latex11Menu, *latex12Menu, *latex13Menu, *latex14Menu, *latex15Menu, *latex16Menu, *latex17Menu ;
-QMenu *math1Menu, *math11Menu, *math12Menu, *math13Menu, *math14Menu;
 QMenu *user1Menu, *user11Menu, *user12Menu;
 //
 QToolBar *fileToolBar, *editToolBar, *runToolBar, *formatToolBar, *mathToolBar;
@@ -155,11 +154,11 @@ QList<int> onlyErrorList;
 int errorIndex;
 
 //X11
-#if defined( Q_WS_X11 )
+//#if defined( Q_WS_X11 )
 QString x11style;
 QString x11fontfamily;
 int x11fontsize;
-#endif
+//#endif
 SymbolList symbolScore;
 usercodelist symbolMostused;
 

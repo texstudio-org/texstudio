@@ -1,6 +1,8 @@
 <!DOCTYPE RCC><RCC version="1.0">
  <qresource>
-
+  <!--config-->
+  <file>uiconfig.xml</file>
+ 
   <!--qce data-->	
 	<file alias="qxs/defaultFormats.qxf">utilities/qxs/defaultFormats.qxf</file>
 	<file alias="qxs/marks.qxm">utilities/qxs/marks.qxm</file>
@@ -37,6 +39,7 @@
   <file alias="up.gif">utilities/up.gif</file>
   <file alias="up_d.gif">utilities/up_d.gif</file>
  
+  
 	<file>images/logo128.png</file>
 	<file>images/pstricks.png</file>
 	<file>images/accent1.png</file>
