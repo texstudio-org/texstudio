@@ -161,11 +161,7 @@
       <item row="0" column="0" >
        <widget class="QCheckBox" name="normalTextCheck" >
         <property name="toolTip" >
-         <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
-&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
-p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:8pt;">If this is enabled, words/phrases in the normal text (which aren't in comments) are counted&lt;/span>&lt;/p>&lt;/body>&lt;/html></string>
+         <string>If this is enabled, words/phrases in the normal text (which aren't in comments) are counted</string>
         </property>
         <property name="text" >
          <string>analyse normal text</string>
@@ -178,11 +174,7 @@ p, li { white-space: pre-wrap; }
       <item row="1" column="0" >
        <widget class="QCheckBox" name="commentsCheck" >
         <property name="toolTip" >
-         <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
-&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
-p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">If this is enabled, words/phrases in the comments are counted.&lt;/p>&lt;/body>&lt;/html></string>
+         <string>If this is enabled, words/phrases in the comments are counted.</string>
         </property>
         <property name="text" >
          <string>analyse comments</string>
@@ -208,16 +200,12 @@ p, li { white-space: pre-wrap; }
          </sizepolicy>
         </property>
         <property name="toolTip" >
-         <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
-&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
-p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">If "show all" is selected, all phrases are shown.&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">If "minimum phrase length" is selected, a phrase is only shown if it has at least so many characters. (e.g. "a test" has 6 characters)&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">If "minimum word length (one)" is selected, a phrase is only shown if a word of it has at least so many characters. (e.g. "a test" has 4 characters)&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">If "minimum word length (all)" is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. "a test" has 1 character)&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">If "completely ignore" is selected, shorter words are completely ignore.&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">(e.g. with length 3, the sentence "this is a test" is equally to "this test", while the other options would separate it in "this is", "is a", "a test", even if non of this phrases would be shown)&lt;/p>&lt;/body>&lt;/html></string>
+         <string>If "show all" is selected, all phrases are shown.
+If "minimum phrase length" is selected, a phrase is only shown if it has at least so many characters. (e.g. "a test" has 6 characters)
+If "minimum word length (one)" is selected, a phrase is only shown if a word of it has at least so many characters. (e.g. "a test" has 4 characters)
+If "minimum word length (all)" is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. "a test" has 1 character)
+If "completely ignore" is selected, shorter words are completely ignore.
+(e.g. with length 3, the sentence "this is a test" is equally to "this test", while the other options would separate it in "this is", "is a", "a test", even if non of this phrases would be shown)</string>
         </property>
         <property name="currentIndex" >
          <number>1</number>
@@ -264,16 +252,12 @@ p, li { white-space: pre-wrap; }
          </size>
         </property>
         <property name="toolTip" >
-         <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
-&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
-p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">If "show all" is selected, all phrases are shown.&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">If "minimum phrase length" is selected, a phrase is only shown if it has at least so many characters. (e.g. "a test" has 6 characters)&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">If "minimum word length (one)" is selected, a phrase is only shown if a word of it has at least so many characters. (e.g. "a test" has 4 characters)&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">If "minimum word length (all)" is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. "a test" has 1 character)&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">If "completely ignore" is selected, shorter words are completely ignore.&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">(e.g. with length 3, the sentence "this is a test" is equally to "this test", while the other options would separate it in "this is", "is a", "a test", even if non of this phrases would be shown)&lt;/p>&lt;/body>&lt;/html></string>
+         <string>If "show all" is selected, all phrases are shown.
+If "minimum phrase length" is selected, a phrase is only shown if it has at least so many characters. (e.g. "a test" has 6 characters)
+If "minimum word length (one)" is selected, a phrase is only shown if a word of it has at least so many characters. (e.g. "a test" has 4 characters)
+If "minimum word length (all)" is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. "a test" has 1 character)
+If "completely ignore" is selected, shorter words are completely ignore.
+(e.g. with length 3, the sentence "this is a test" is equally to "this test", while the other options would separate it in "this is", "is a", "a test", even if non of this phrases would be shown)</string>
         </property>
         <property name="value" >
          <number>4</number>
@@ -321,13 +305,9 @@ p, li { white-space: pre-wrap; }
          </size>
         </property>
         <property name="toolTip" >
-         <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
-&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
-p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:8pt;">The controls in this row determine how many consecuting words are treated as a single phrase.&lt;/span>&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: "the controls", "controls in",...)&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">If only maximum is selected, words at the beginning are also taken. (e.g.  "the", "the controls", "controls in",...)&lt;/p>&lt;/body>&lt;/html></string>
+         <string>The controls in this row determine how many consecuting words are treated as a single phrase.
+If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: "the controls", "controls in",...)
+If only maximum is selected, words at the beginning are also taken. (e.g.  "the", "the controls", "controls in",...)</string>
         </property>
         <property name="minimum" >
          <number>1</number>
@@ -407,13 +387,9 @@ If not, end characters are ignored.</string>
       <item row="5" column="0" >
        <widget class="QComboBox" name="wordsPerPhraseMeaning" >
         <property name="toolTip" >
-         <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
-&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
-p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:8pt;">The controls in this row determine how many consecuting words are treated as a single phrase.&lt;/span>&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: "the controls", "controls in",...)&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">If only maximum is selected, words at the beginning are also taken. (e.g.  "the", "the controls", "controls in",...)&lt;/p>&lt;/body>&lt;/html></string>
+         <string>The controls in this row determine how many consecuting words are treated as a single phrase.
+If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: "the controls", "controls in",...)
+If only maximum is selected, words at the beginning are also taken. (e.g.  "the", "the controls", "controls in",...)</string>
         </property>
         <item>
          <property name="text" >

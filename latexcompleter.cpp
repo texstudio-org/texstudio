@@ -28,7 +28,11 @@ CompletionWord::CompletionWord(const QString &newWord){
             escape=false;
             switch (newWord.at(i).toAscii()) {
                 case '%': word+='%'; visibleWord+='%'; break;
-                case '|': anchorPos=cursorPos; cursorPos=visibleWord.length(); break;
+                case '|': 
+                    if (inDescription && cursorPos==-1) anchorPos=formatStart;
+                    else anchorPos=cursorPos; 
+                    cursorPos=visibleWord.length(); 
+                    break;
                 case '<': 
                     inDescription=true; 
                     formatStart=visibleWord.length(); 
@@ -36,6 +40,9 @@ CompletionWord::CompletionWord(const QString &newWord){
                 case '>': {
                     inDescription=false;  
                     descriptiveParts.append(QPair<int, int>(formatStart, visibleWord.length()-formatStart));
+                    break;
+                case 'n': 
+                    visibleWord+="\n";
                     break;
                 }
                 default:;
@@ -46,7 +53,94 @@ CompletionWord::CompletionWord(const QString &newWord){
     lword=word.toLower();
 }
 
+void CompletionWord::insertAt(QEditor* editor, QDocumentCursor cursor){
+    QString savedSelection;
+    int multilines=shownWord.count('\n');
+    QVector<QDocumentLine> documentlines;
+    
+    if (cursor.hasSelection()) {
+        savedSelection=cursor.selectedText(); 
+        cursor.removeSelectedText();
+    }
+    QDocumentCursor selector=cursor;
+    int curStart=cursor.columnNumber();
+    QDocumentLine curLine=cursor.line();
 
+    cursor.insertText(shownWord);
+
+    if (multilines) {
+        documentlines.resize(multilines+1);
+        documentlines[0]=curLine;
+        for (int i=1;i<documentlines.count()-1;i++) documentlines[i]=documentlines[i-1].next(); //todo: optimize
+    }
+
+    if (QDocument::formatFactory()) 
+        for (int i=0;i<descriptiveParts.size();i++) {
+            QFormatRange fr(descriptiveParts[i].first+curStart,descriptiveParts[i].second,QDocument::formatFactory()->id("temporaryCodeCompletion"));
+            if (multilines) {
+                QString temp= shownWord;
+                temp.truncate(descriptiveParts[i].first);
+                int linetoadd=temp.count('\n');
+                if (linetoadd==0) curLine.addOverlay(fr);
+                else if (linetoadd<documentlines.size()) {
+                    fr.offset=temp.size()-temp.lastIndexOf('\n')-1;
+                    documentlines[linetoadd].addOverlay(fr);
+                }
+            } else curLine.addOverlay(fr);
+        }
+            
+    //place cursor/add \end
+    int selectFrom=-1;
+    int selectTo=-1;
+    int deltaLine=0;
+    if (shownWord.startsWith("\\begin")&&!multilines) {
+        //int curColumnNumber=cursor.columnNumber();
+        QString indent=curLine.indentation();
+        int p=shownWord.indexOf("{");
+        QString content="content...";
+        if (editor->flag(QEditor::AutoIndent)){
+            cursor.insertText( "\n"+indent+"\t"+content+"\n"+indent+"\\end"+shownWord.mid(p,shownWord.indexOf("}")-p+1));
+            indent+="\t";
+        } else
+            cursor.insertText( "\n"+indent+content+"\n"+indent+"\\end"+shownWord.mid(p,shownWord.indexOf("}")-p+1));
+        if (QDocument::formatFactory()) 
+            for (int i=0;i<descriptiveParts.size();i++) 
+                curLine.next().addOverlay(QFormatRange(indent.size(),content.size(),QDocument::formatFactory()->id("temporaryCodeCompletion")));
+        
+        if (cursorPos==-1) {
+            deltaLine=1;
+            selectFrom=indent.length();
+            selectTo=indent.length()+content.size();
+        } else {
+            selectFrom=anchorPos+curStart;
+            selectTo=cursorPos+curStart;
+        }
+    } else if (cursorPos>-1) {
+        if (multilines) { //todo: add support for selected multilines 
+            QString temp= shownWord;
+            temp.truncate(cursorPos);
+            deltaLine=temp.count('\n');
+            if (!deltaLine) {
+                selectFrom=anchorPos+curStart;
+                selectTo=cursorPos+curStart;
+            } else {
+                selectTo=temp.size()-temp.lastIndexOf('\n')-1;
+                selectFrom=anchorPos-cursorPos+selectTo;
+            }
+        } else {
+            selectFrom=anchorPos+curStart;
+            selectTo=cursorPos+curStart;
+        }
+    } else editor->setCursor(cursor); //place after insertion
+    if (selectFrom!=-1){
+        if (deltaLine>0) selector.movePosition(deltaLine,QDocumentCursor::Down,QDocumentCursor::MoveAnchor);
+        selector.setColumnNumber(selectFrom);
+        if (selectTo>selectFrom) selector.movePosition(selectTo-selectFrom,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+        else if (selectTo<selectFrom) selector.movePosition(selectFrom-selectTo,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+        editor->setCursor(selector);
+    }
+    if (!savedSelection.isEmpty() && cursorPos>0) editor->cursor().insertText(savedSelection);
+}
 
 //------------------------------Default Input Binding--------------------------------
 class CompleterInputBinding: public QEditor::InputBinding{
@@ -78,52 +172,10 @@ public:
             for (int i=maxWritten-cursor.columnNumber();i>0;i--) cursor.deleteChar(); 
             for (int i=cursor.columnNumber()-curStart;i>0;i--) cursor.deletePreviousChar();
           //  cursor.setColumnNumber(curStart);
-            cursor.insertText(full);
+            cw.insertAt(editor,cursor);
+            
             cursor.endEditBlock();
             
-            if (QDocument::formatFactory()) 
-                for (int i=0;i<cw.descriptiveParts.size();i++) 
-                    curLine.addOverlay(QFormatRange(cw.descriptiveParts[i].first+curStart,cw.descriptiveParts[i].second,QDocument::formatFactory()->id("temporaryCodeCompletion")));
-            
-            //place cursor/add \end
-            QDocumentCursor selector=editor->cursor();
-            int selectFrom=-1;
-            int selectTo=-1;
-            int deltaLine=0;
-            if (full.startsWith("\\begin")) {
-                //int curColumnNumber=cursor.columnNumber();
-                QString indent=curLine.indentation();
-                int p=full.indexOf("{");
-                QString content="content...";
-                if (editor->flag(QEditor::AutoIndent)){
-                    cursor.insertText( "\n"+indent+"\t"+content+"\n"+indent+"\\end"+full.mid(p,full.indexOf("}")-p+1));
-                    indent+="\t";
-                } else
-                    cursor.insertText( "\n"+indent+content+"\n"+indent+"\\end"+full.mid(p,full.indexOf("}")-p+1));
-                if (QDocument::formatFactory()) 
-                    for (int i=0;i<cw.descriptiveParts.size();i++) 
-                        curLine.next().addOverlay(QFormatRange(indent.size(),content.size(),QDocument::formatFactory()->id("temporaryCodeCompletion")));
-                
-
-                if (cw.cursorPos==-1) {
-                    deltaLine=1;
-                    selectFrom=indent.length();
-                    selectTo=indent.length()+content.size();
-                } else {
-                    selectFrom=cw.anchorPos+curStart;
-                    selectTo=cw.cursorPos+curStart;
-                }
-            } else if (cw.cursorPos>-1) {
-                    selectFrom=cw.anchorPos+curStart;
-                    selectTo=cw.cursorPos+curStart;
-            } else editor->setCursor(cursor); //place after insertion
-            if (selectFrom!=-1){
-                if (deltaLine>0) selector.movePosition(deltaLine,QDocumentCursor::Down,QDocumentCursor::MoveAnchor);
-                selector.setColumnNumber(selectFrom);
-                if (selectTo>selectFrom) selector.movePosition(selectTo-selectFrom,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
-                else if (selectTo<selectFrom) selector.movePosition(selectFrom-selectTo,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
-                editor->setCursor(selector);
-            }
             return true;
         }
         return false;

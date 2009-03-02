@@ -130,9 +130,6 @@ isEmpty( PREFIX ) {
 DEFINES += PREFIX=\\\"$${PREFIX}\\\"
 target.path = $${PREFIX}/bin
 INSTALLS = target
-HEADERS	+= x11fontdialog.h
-SOURCES	+= x11fontdialog.cpp
-FORMS += x11fontdialog.ui
 utilities.path = $${PREFIX}/share/texmakerx
 utilities.files = utilities/doc1.png \
 	utilities/doc10.png \
@@ -235,6 +232,9 @@ ICON = texmaker.icns
 QMAKE_INFO_PLIST =Info.plist
 }
 
+HEADERS	+= x11fontdialog.h
+SOURCES	+= x11fontdialog.cpp
+FORMS += x11fontdialog.ui
 
 INCLUDEPATH += qcodeedit/lib qcodeedit/lib/document qcodeedit/lib/widgets
 
