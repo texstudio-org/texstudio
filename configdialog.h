@@ -14,8 +14,29 @@
 
 #include "ui_configdialog.h"
 
+ #include <QItemDelegate>
 #include <QListWidgetItem>
 #include "qformat.h"
+
+ class ShortcutDelegate : public QItemDelegate
+ {
+     Q_OBJECT
+
+ public:
+     ShortcutDelegate(QObject *parent = 0);
+
+     QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option,
+                           const QModelIndex &index) const;
+
+     void setEditorData(QWidget *editor, const QModelIndex &index) const;
+     void setModelData(QWidget *editor, QAbstractItemModel *model,
+                       const QModelIndex &index) const;
+
+     void updateEditorGeometry(QWidget *editor,
+         const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    
+    QTreeWidget * treeWidget; //tree widget to remove duplicates from, not necessary
+ };
 
 class ConfigDialog : public QDialog
 {
@@ -51,7 +72,6 @@ void browsePdfviewer();
 void browseMetapost();
 void browseGhostscript();
 
-void shortCutItemChanged ( QTableWidgetItem * item );
 };
 
 #endif

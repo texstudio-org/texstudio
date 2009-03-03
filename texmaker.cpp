@@ -288,6 +288,7 @@ setAcceptDrops(true);
 QMenu* Texmaker::newManagedMenu(const QString &id,const QString &text){
     QMenu* menu=menuBar()->addMenu(text);
     menu->setObjectName(id);
+    managedMenus.append(menu);
     return menu;
 }
 QMenu* Texmaker::newManagedMenu(QMenu* menu, const QString &id,const QString &text){
@@ -304,11 +305,13 @@ QAction* Texmaker::newManagedAction(QMenu* menu, const QString &id,const QString
     if (slotName) connect(act, SIGNAL(triggered()), this, slotName);
     act->setObjectName(menu->objectName()+"/"+id);
     menu->addAction(act);
+    managedMenuShortcuts.insert(act->objectName(),shortCut);
     return act;
 }
 QAction* Texmaker::newManagedAction(QMenu* menu, const QString &id, QAction* act){
     act->setObjectName(menu->objectName()+"/"+id);
     menu->addAction(act);
+    managedMenuShortcuts.insert(act->objectName(),act->shortcut());
     return act;
 }
 QAction* Texmaker::getManagedAction(QString id){
@@ -354,6 +357,38 @@ void Texmaker::loadManagedMenus(const QString &f){
 	}
 }
 
+void Texmaker::managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu) {
+    if (!menu) return;
+    QTreeWidgetItem* menuitem= new QTreeWidgetItem(parent, QStringList(menu->title().replace("&","")));
+    if (menu->objectName().count("/")<=2) menuitem->setExpanded(true);
+    QList<QAction *> acts=menu->actions();
+    for (int i=0;i<acts.size();i++) 
+        if (acts[i]->menu()) managedMenuToTreeWidget(menuitem, acts[i]->menu());
+        else {
+            QTreeWidgetItem* twi=new QTreeWidgetItem(menuitem, QStringList() << acts[i]->text() 
+                                                         << managedMenuShortcuts[acts[i]->objectName()]
+                                                         << acts[i]->shortcut().toString(QKeySequence::NativeText));
+            twi->setIcon(0,acts[i]->icon());
+            if (!acts[i]->isSeparator()) twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
+            twi->setData(0,Qt::UserRole,acts[i]->objectName());
+        }
+    
+    
+}
+void Texmaker::treeWidgetToManagedMenuTo(QTreeWidgetItem* item){
+    if (item->text(2)!="") {
+        QString id=item->data(0,Qt::UserRole).toString();
+        if (id=="") return;
+        QAction * act=getManagedAction(id);
+        if (act) {
+            QKeySequence sc(item->text(2));
+            act->setShortcut(sc);
+            if (sc!=managedMenuShortcuts[act->objectName()]) managedMenuNewShortcuts.append(QPair<QString, QString> (id, item->text(2)));
+        }
+    }
+    for (int i=0;i< item->childCount (); i++)
+        treeWidgetToManagedMenuTo(item->child(i));
+}
 void Texmaker::setupMenus()
 {
 //file
@@ -472,85 +507,28 @@ void Texmaker::setupMenus()
     menu->addSeparator();
     newManagedAction(menu, "analysetext",tr("Analyse Text"), SLOT(AnalyseText()));
 
-//    TODO TODO
+//  Latex/Math external
     loadManagedMenus(":/uiconfig.xml");
 
+//  User    
+    menu=newManagedMenu("main/user",tr("&User"));
+    subMenu=newManagedMenu(menu,"tags",tr("User &Tags"));
+    for (int i=0;i<10;i++) {
+        QString temp=QString("1InsertUserTag%1()").arg(i+1);
+        newManagedAction(subMenu, QString("tag%1").arg(i),QString("%1: %2").arg(i+1).arg(UserMenuName[i]), temp.toLocal8Bit().data(), Qt::SHIFT+Qt::Key_F1+i);
+    }
+    subMenu->addSeparator();
+    newManagedAction(subMenu, QString("manage"),tr("Edit User &Tags"), SLOT(EditUserMenu()));
 
-user1Menu = menuBar()->addMenu(tr("&User"));
-user11Menu=user1Menu->addMenu(tr("User &Tags"));
-QAction* Act = new QAction("1: "+UserMenuName[0], this);
-Act->setShortcut(Qt::SHIFT+Qt::Key_F1);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertUserTag1()));
-user11Menu->addAction(Act);
-Act = new QAction("2: "+UserMenuName[1], this);
-Act->setShortcut(Qt::SHIFT+Qt::Key_F2);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertUserTag2()));
-user11Menu->addAction(Act);
-Act = new QAction("3: "+UserMenuName[2], this);
-Act->setShortcut(Qt::SHIFT+Qt::Key_F3);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertUserTag3()));
-user11Menu->addAction(Act);
-Act = new QAction("4: "+UserMenuName[3], this);
-Act->setShortcut(Qt::SHIFT+Qt::Key_F4);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertUserTag4()));
-user11Menu->addAction(Act);
-Act = new QAction("5: "+UserMenuName[4], this);
-Act->setShortcut(Qt::SHIFT+Qt::Key_F5);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertUserTag5()));
-user11Menu->addAction(Act);
-Act = new QAction("6: "+UserMenuName[5], this);
-Act->setShortcut(Qt::SHIFT+Qt::Key_F6);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertUserTag6()));
-user11Menu->addAction(Act);
-Act = new QAction("7: "+UserMenuName[6], this);
-Act->setShortcut(Qt::SHIFT+Qt::Key_F7);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertUserTag7()));
-user11Menu->addAction(Act);
-Act = new QAction("8: "+UserMenuName[7], this);
-Act->setShortcut(Qt::SHIFT+Qt::Key_F8);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertUserTag8()));
-user11Menu->addAction(Act);
-Act = new QAction("9: "+UserMenuName[8], this);
-Act->setShortcut(Qt::SHIFT+Qt::Key_F9);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertUserTag9()));
-user11Menu->addAction(Act);
-Act = new QAction("10: "+UserMenuName[9], this);
-Act->setShortcut(Qt::SHIFT+Qt::Key_F10);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertUserTag10()));
-user11Menu->addAction(Act);
-user11Menu->addSeparator();
-Act = new QAction(tr("Edit User &Tags"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(EditUserMenu()));
-user11Menu->addAction(Act);
-user12Menu=user1Menu->addMenu(tr("User &Commands"));
-Act = new QAction("1: "+UserToolName[0], this);
-Act->setShortcut(Qt::SHIFT+Qt::ALT+Qt::Key_F1);
-connect(Act, SIGNAL(triggered()), this, SLOT(UserTool1()));
-user12Menu->addAction(Act);
-Act = new QAction("2: "+UserToolName[1], this);
-Act->setShortcut(Qt::SHIFT+Qt::ALT+Qt::Key_F2);
-connect(Act, SIGNAL(triggered()), this, SLOT(UserTool2()));
-user12Menu->addAction(Act);
-Act = new QAction("3: "+UserToolName[2], this);
-Act->setShortcut(Qt::SHIFT+Qt::ALT+Qt::Key_F3);
-connect(Act, SIGNAL(triggered()), this, SLOT(UserTool3()));
-user12Menu->addAction(Act);
-Act = new QAction("4: "+UserToolName[3], this);
-Act->setShortcut(Qt::SHIFT+Qt::ALT+Qt::Key_F4);
-connect(Act, SIGNAL(triggered()), this, SLOT(UserTool4()));
-user12Menu->addAction(Act);
-Act = new QAction("5: "+UserToolName[4], this);
-Act->setShortcut(Qt::SHIFT+Qt::ALT+Qt::Key_F5);
-connect(Act, SIGNAL(triggered()), this, SLOT(UserTool5()));
-user12Menu->addAction(Act);
-user12Menu->addSeparator();
-Act = new QAction(tr("Edit User &Commands"), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(EditUserTool()));
-user12Menu->addAction(Act);
-Act = new QAction(tr("Edit User &Key Replacements..."), this);
-connect(Act, SIGNAL(triggered()), this, SLOT(EditUserKeyReplacements()));
-user1Menu->addAction(Act);
+    subMenu=newManagedMenu(menu,"commands",tr("User &Commands"));
+    for (int i=0;i<5;i++) {
+        QString temp=QString("1UserTool%1()").arg(i+1);
+        newManagedAction(subMenu, QString("cmd%1").arg(i),QString("%1: %2").arg(i+1).arg(UserToolName[i]), temp.toLocal8Bit().data(), Qt::SHIFT+Qt::ALT+Qt::Key_F1+i);
+    }
+    subMenu->addSeparator();
+    newManagedAction(subMenu, QString("manage"),tr("Edit User &Commands"), SLOT(EditUserTool()));
 
+    newManagedAction(menu, QString("keyreplacements"),tr("Edit User &Key Replacements..."), SLOT(EditUserKeyReplacements()));
 
 //---view---
     menu=newManagedMenu("main/view",tr("&View"));
@@ -583,12 +561,15 @@ user1Menu->addAction(Act);
     menu->addSeparator();
     newManagedAction(menu, "appinfo",tr("About TexMakerX"), SLOT(HelpAbout()), 0,":/images/appicon.png");
     
-    ModifyShortcuts();
+    //modify shortcuts
+    for (int i=0;i< managedMenuNewShortcuts.size();i++) {
+        QAction * act= getManagedAction(managedMenuNewShortcuts[i].first);
+        if (act) act->setShortcut(QKeySequence(managedMenuNewShortcuts[i].second));
+    }    
 }
 
 void Texmaker::setupToolBars()
 {
-QAction *Act;
 QStringList list;
 //file
 fileToolBar = addToolBar("File");
@@ -608,7 +589,6 @@ editToolBar->addAction(getManagedAction("main/edit/redo"));
 editToolBar->addAction(getManagedAction("main/edit/copy"));
 editToolBar->addAction(getManagedAction("main/edit/cut"));
 editToolBar->addAction(getManagedAction("main/edit/paste"));
-editToolBar->addAction(getManagedAction("main/edit/undo"));
 
 
 //tools
@@ -677,75 +657,26 @@ connect(combo3, SIGNAL(activated(const QString&)),this,SLOT(SizeCommand(const QS
 formatToolBar->addWidget(combo3);
 formatToolBar->addSeparator();
 
-Act = new QAction(QIcon(":/images/text_bold.png"),tr("Bold"), this);
-Act->setData("\\textbf{/}/8/0");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-formatToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/text_italic.png"),tr("Italic"), this);
-Act->setData("\\textit{/}/8/0");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-formatToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/text_under.png"),tr("Underline"), this);
-Act->setData("\\underline{/}/11/0");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-formatToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/text_left.png"),tr("Left"), this);
-Act->setData("\\begin{flushleft}\n/\n\\end{flushleft}/0/1");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-formatToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/text_center.png"),tr("Center"), this);
-Act->setData("\\begin{center}\n/\n\\end{center}/0/1");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-formatToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/text_right.png"),tr("Right"), this);
-Act->setData("\\begin{flushright}\n/\n\\end{flushright}/0/1");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertWithSelectionFromAction()));
-formatToolBar->addAction(Act);
+formatToolBar->addAction(getManagedAction("main/latex/fontstyles/textbf"));
+formatToolBar->addAction(getManagedAction("main/latex/fontstyles/textit"));
+formatToolBar->addAction(getManagedAction("main/latex/fontstyles/underline"));
+formatToolBar->addAction(getManagedAction("main/latex/environment/flushleft"));
+formatToolBar->addAction(getManagedAction("main/latex/environment/center"));
+formatToolBar->addAction(getManagedAction("main/latex/environment/flushright"));
 formatToolBar->addSeparator();
-
-Act = new QAction(QIcon(":/images/newline.png"),tr("New line"), this);
-Act->setData("\\\\\n/0/1/The \\newline command breaks the line right where it is. It can only be used in paragraph mode.");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-formatToolBar->addAction(Act);
+formatToolBar->addAction(getManagedAction("main/latex/spacing/newline"));
 
 //math
 mathToolBar = addToolBar("Math");
 mathToolBar->setObjectName("Math");
 
-Act = new QAction(QIcon(":/images/mathmode.png"),"$...$", this);
-Act->setData("$  $/2/0/The math environment can be used in both paragraph and LR mode");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-mathToolBar->addAction(Act);
+mathToolBar->addAction(getManagedAction("main/math/mathmode"));
+mathToolBar->addAction(getManagedAction("main/math/subscript"));
+mathToolBar->addAction(getManagedAction("main/math/superscript"));
+mathToolBar->addAction(getManagedAction("main/math/frac"));
+mathToolBar->addAction(getManagedAction("main/math/dfrac"));
+mathToolBar->addAction(getManagedAction("main/math/sqrt"));
 
-Act = new QAction(QIcon(":/images/indice.png"),"_{} - subscript", this);
-Act->setData("_{}/2/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-mathToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/puissance.png"),"^{} - superscript", this);
-Act->setData("^{}/2/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-mathToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/smallfrac.png"),"\\frac{}{}", this);
-Act->setData("\\frac{}{}/6/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-mathToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/dfrac.png"),"\\dfrac{}{}", this);
-Act->setData("\\dfrac{}{}/7/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-mathToolBar->addAction(Act);
-
-Act = new QAction(QIcon(":/images/racine.png"),"\\sqrt{}", this);
-Act->setData("\\sqrt{}/6/0/ ");
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertFromAction()));
-mathToolBar->addAction(Act);
 mathToolBar->addSeparator();
 
 list.clear();
@@ -1441,17 +1372,13 @@ showlinestate=config->value( "Editor/Show Line State",true).toBool();
 showcursorstate=config->value( "Editor/Show Cursor State",true).toBool();
 realtimespellchecking=config->value( "Editor/Real-Time Spellchecking",true).toBool();
 
-shortcuts.clear();
-QStringList data,shortcut;
-data=config->value("Shortcuts/data").toStringList();
-shortcut=config->value("Shortcuts/shortcut").toStringList();
-QStringListIterator dataiterator(data);
-QStringListIterator shortcutiterator(shortcut);
-while ( dataiterator.hasNext() && shortcutiterator.hasNext())
-	{
-	QString d=dataiterator.next();
-	if (!d.isEmpty()) shortcuts.insert(d,shortcutiterator.next());
-	}
+
+ int size = config->beginReadArray("keysetting");
+ for (int i = 0; i < size; ++i) {
+     config->setArrayIndex(i);
+     managedMenuNewShortcuts.append(QPair<QString, QString> (config->value("id").toString(), config->value("key").toString()));
+ }
+ config->endArray();
 
 showoutputview=config->value("Show/OutputView",true).toBool();
 showstructview=config->value( "Show/Structureview",true).toBool();
@@ -1700,19 +1627,13 @@ config->setValue( "Editor/Show Line State",showlinestate);
 config->setValue( "Editor/Show Cursor State",showcursorstate);
 config->setValue( "Editor/Real-Time Spellchecking",realtimespellchecking);
 
-
-QStringList data,shortcut;
-// data.clear();
-// shortcut.clear();
-KeysMap::Iterator its;
-for( its = shortcuts.begin(); its != shortcuts.end(); ++its )
-	{
-	data.append(its.key());
-	shortcut.append(its.value());
-	}
-config->setValue("Shortcuts/data",data);
-
-config->setValue("Shortcuts/shortcut",shortcut);
+config->beginWriteArray("keysetting");
+for (int i = 0; i < managedMenuNewShortcuts.size(); ++i) {
+ config->setArrayIndex(i);
+ config->setValue("id", managedMenuNewShortcuts[i].first);
+ config->setValue("key", managedMenuNewShortcuts[i].second);
+}
+config->endArray();
 
 config->setValue("Show/OutputView",showoutputview);
 
@@ -2149,42 +2070,12 @@ if (item  && !item->font().bold())
 
 void Texmaker::InsertFromAction()
 {
-if ( !currentEditorView() )	return;
-bool ok;
-QString actData;
-QStringList tagList;
-QAction *action = qobject_cast<QAction *>(sender());
-if (action)
-	{
-	CompletionWord(action->data().toString()).insertAt(currentEditorView()->editor,currentEditorView()->editor->cursor());
-	OutputTextEdit->setText(CompletionWord(action->whatsThis()).shownWord);
-	}
-}
-
-void Texmaker::InsertWithSelectionFromAction()
-{
-bool ok;
-QString actData;
-QStringList tagList;
-QAction *action = qobject_cast<QAction *>(sender());
-if ( !currentEditorView() )	return;
-if (action)
-	{
-	actData=action->data().toString();
-	tagList= actData.split("/");
-	if (!currentEditorView()->editor->cursor().hasSelection())
-		{
-		OutputTextEdit->insertLine("You can select a text before using this environment.");
-		InsertTag(tagList.at(0)+tagList.at(1),tagList.at(2).toInt(&ok, 10),tagList.at(3).toInt(&ok, 10));
-		}
-	else
-		{
-		currentEditorView()->editor->cut();
-		InsertTag(tagList.at(0),tagList.at(2).toInt(&ok, 10),tagList.at(3).toInt(&ok, 10));
-		currentEditorView()->editor->paste();
-		InsertTag(tagList.at(1),0,0);
-		}
-	}
+    if ( !currentEditorView() )	return;
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (action)	{
+        CompletionWord(action->data().toString()).insertAt(currentEditorView()->editor,currentEditorView()->editor->cursor());
+        OutputTextEdit->setText(CompletionWord(action->whatsThis()).shownWord);
+    }
 }
 
 void Texmaker::InsertWithSelectionFromString(const QString& text)
@@ -2998,7 +2889,6 @@ else
 
 void Texmaker::EditUserMenu()
 {
-QAction *Act;
 UserMenuDialog *umDlg = new UserMenuDialog(this,tr("Edit User &Tags"));
 for ( int i = 0; i <= 9; i++ )
     {
@@ -3007,58 +2897,12 @@ for ( int i = 0; i <= 9; i++ )
     umDlg->init();
     }
 if ( umDlg->exec() )
-	{
-	for ( int i = 0; i <= 9; i++ )
-		{
+	for ( int i = 0; i <= 9; i++ ) {
 		UserMenuName[i]=umDlg->Name[i];
 		UserMenuTag[i]=umDlg->Tag[i];
-		}
-	user11Menu->clear();
-	Act = new QAction("1: "+UserMenuName[0], this);
-	Act->setShortcut(Qt::SHIFT+Qt::Key_F1);
-	connect(Act, SIGNAL(triggered()), this, SLOT(InsertUserTag1()));
-	user11Menu->addAction(Act);
-	Act = new QAction("2: "+UserMenuName[1], this);
-	Act->setShortcut(Qt::SHIFT+Qt::Key_F2);
-	connect(Act, SIGNAL(triggered()), this, SLOT(InsertUserTag2()));
-	user11Menu->addAction(Act);
-	Act = new QAction("3: "+UserMenuName[2], this);
-	Act->setShortcut(Qt::SHIFT+Qt::Key_F3);
-	connect(Act, SIGNAL(triggered()), this, SLOT(InsertUserTag3()));
-	user11Menu->addAction(Act);
-	Act = new QAction("4: "+UserMenuName[3], this);
-	Act->setShortcut(Qt::SHIFT+Qt::Key_F4);
-	connect(Act, SIGNAL(triggered()), this, SLOT(InsertUserTag4()));
-	user11Menu->addAction(Act);
-	Act = new QAction("5: "+UserMenuName[4], this);
-	Act->setShortcut(Qt::SHIFT+Qt::Key_F5);
-	connect(Act, SIGNAL(triggered()), this, SLOT(InsertUserTag5()));
-	user11Menu->addAction(Act);
-	Act = new QAction("6: "+UserMenuName[5], this);
-	Act->setShortcut(Qt::SHIFT+Qt::Key_F6);
-	connect(Act, SIGNAL(triggered()), this, SLOT(InsertUserTag6()));
-	user11Menu->addAction(Act);
-	Act = new QAction("7: "+UserMenuName[6], this);
-	Act->setShortcut(Qt::SHIFT+Qt::Key_F7);
-	connect(Act, SIGNAL(triggered()), this, SLOT(InsertUserTag7()));
-	user11Menu->addAction(Act);
-	Act = new QAction("8: "+UserMenuName[7], this);
-	Act->setShortcut(Qt::SHIFT+Qt::Key_F8);
-	connect(Act, SIGNAL(triggered()), this, SLOT(InsertUserTag8()));
-	user11Menu->addAction(Act);
-	Act = new QAction("9: "+UserMenuName[8], this);
-	Act->setShortcut(Qt::SHIFT+Qt::Key_F9);
-	connect(Act, SIGNAL(triggered()), this, SLOT(InsertUserTag9()));
-	user11Menu->addAction(Act);
-	Act = new QAction("10: "+UserMenuName[9], this);
-	Act->setShortcut(Qt::SHIFT+Qt::Key_F10);
-	connect(Act, SIGNAL(triggered()), this, SLOT(InsertUserTag10()));
-	user11Menu->addAction(Act);
-	user11Menu->addSeparator();
-	Act = new QAction(tr("Edit User &Tags"), this);
-	connect(Act, SIGNAL(triggered()), this, SLOT(EditUserMenu()));
-	user11Menu->addAction(Act);
-	}
+		QAction * act=getManagedAction("main/user/tags/tag"+QString::number(i));
+		if (act) act->setText(QString::number(i+1)+": "+UserMenuName[i]);
+    }
 }
 
 void Texmaker::SectionCommand(const QString& text)
@@ -3553,7 +3397,6 @@ for (int i = 0; i < commandList.size(); ++i)
 
 void Texmaker::EditUserTool()
 {
-QAction *Act;
 UserToolDialog *utDlg = new UserToolDialog(this,tr("Edit User &Commands"));
 for ( int i = 0; i <= 4; i++ )
 	{
@@ -3562,38 +3405,12 @@ for ( int i = 0; i <= 4; i++ )
 	utDlg->init();
 	}
 if ( utDlg->exec() )
-	{
-	for ( int i = 0; i <= 4; i++ )
-		{
+	for ( int i = 0; i <= 4; i++ ) {
 		UserToolName[i]=utDlg->Name[i];
 		UserToolCommand[i]=utDlg->Tool[i];
-		}
-	user12Menu->clear();
-	Act = new QAction("1: "+UserToolName[0], this);
-	Act->setShortcut(Qt::SHIFT+Qt::ALT+Qt::Key_F1);
-	connect(Act, SIGNAL(triggered()), this, SLOT(UserTool1()));
-	user12Menu->addAction(Act);
-	Act = new QAction("2: "+UserToolName[1], this);
-	Act->setShortcut(Qt::SHIFT+Qt::ALT+Qt::Key_F2);
-	connect(Act, SIGNAL(triggered()), this, SLOT(UserTool2()));
-	user12Menu->addAction(Act);
-	Act = new QAction("3: "+UserToolName[2], this);
-	Act->setShortcut(Qt::SHIFT+Qt::ALT+Qt::Key_F3);
-	connect(Act, SIGNAL(triggered()), this, SLOT(UserTool3()));
-	user12Menu->addAction(Act);
-	Act = new QAction("4: "+UserToolName[3], this);
-	Act->setShortcut(Qt::SHIFT+Qt::ALT+Qt::Key_F4);
-	connect(Act, SIGNAL(triggered()), this, SLOT(UserTool4()));
-	user12Menu->addAction(Act);
-	Act = new QAction("5: "+UserToolName[4], this);
-	Act->setShortcut(Qt::SHIFT+Qt::ALT+Qt::Key_F5);
-	connect(Act, SIGNAL(triggered()), this, SLOT(UserTool5()));
-	user12Menu->addAction(Act);
-	user12Menu->addSeparator();
-	Act = new QAction(tr("Edit User &Commands"), this);
-	connect(Act, SIGNAL(triggered()), this, SLOT(EditUserTool()));
-	user12Menu->addAction(Act);
-	}
+		QAction * act=getManagedAction("main/user/tools/tool"+QString::number(i));
+		if (act) act->setText(QString::number(i+1)+": "+UserToolName[i]);
+    }
 }
 
 void Texmaker::EditUserKeyReplacements()
@@ -4214,44 +4031,19 @@ if (quickmode==5)  {confDlg->ui.radioButton5->setChecked(true); confDlg->ui.line
 if (quickmode==6)  {confDlg->ui.radioButton6->setChecked(true); confDlg->ui.lineEditUserquick->setEnabled(true);}
 confDlg->ui.lineEditUserquick->setText(userquick_command);
 
-int row=0;
-KeysMap::Iterator its, iter;
-QString d,f;
-for( its = shortcuts.begin(); its != shortcuts.end(); ++its )
-	{
-	d=its.key().section("/",0,0);
-	for( iter = actionstext.begin(); iter != actionstext.end(); ++iter )
-		{
-		f=iter.key().section("/",0,0);
-		if (d==f)
-			{
-			QTableWidgetItem *newItem = new QTableWidgetItem(iter.value());
-			//QTableWidgetItem *newItem = new QTableWidgetItem(*actionstext.find(its.key()));
-			newItem->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
-			newItem->setData(Qt::UserRole, its.key());
-			confDlg->ui.shorttableWidget->setRowCount(row+1);
-			confDlg->ui.shorttableWidget->setItem(row, 0, newItem);
-			newItem = new QTableWidgetItem(its.value());
-			newItem->setData(Qt::UserRole,its.value());//to revert the shortcut
-			confDlg->ui.shorttableWidget->setItem(row, 1, newItem);
-			row++;
-			}
-		}
-	}
-confDlg->ui.shorttableWidget->horizontalHeader()->resizeSection( 0, 250 );
-confDlg->ui.shorttableWidget->verticalHeader()->hide();
+QTreeWidgetItem * mainItem=new QTreeWidgetItem((QTreeWidget*)0, QStringList() << QString(tr("Menus")));
+foreach (QMenu* menu, managedMenus)
+    managedMenuToTreeWidget(mainItem,menu);      
+confDlg->ui.shortcutTree->addTopLevelItem(mainItem);
+mainItem->setExpanded(true);
+ShortcutDelegate delegate;
+delegate.treeWidget=confDlg->ui.shortcutTree;
+confDlg->ui.shortcutTree->setItemDelegate(&delegate); //setting in the config dialog doesn't work 
 
 if (confDlg->exec())
 	{
-	for(int row=0; row<confDlg->ui.shorttableWidget->rowCount(); row++ )
-	{
-		QString itemtext = confDlg->ui.shorttableWidget->item(row, 0)->text();
-		QString itemshortcut = confDlg->ui.shorttableWidget->item(row, 1)->text();
-		QString itemdata=confDlg->ui.shorttableWidget->item(row, 0)->data(Qt::UserRole).toString();
-		shortcuts.remove(itemdata);
-		shortcuts.insert(itemdata,itemshortcut);
-	}
-	ModifyShortcuts();
+	    managedMenuNewShortcuts.clear();
+	    treeWidgetToManagedMenuTo(mainItem);
 
 	if (confDlg->ui.radioButton1->isChecked()) quickmode=1;
 	if (confDlg->ui.radioButton2->isChecked()) quickmode=2;
@@ -4505,24 +4297,6 @@ for ( int i = 0; i <=11; ++i )
 MostUsedListWidget->SetUserPage(symbolMostused);
 }
 
-void Texmaker::ModifyShortcuts()
-{/*
-while ( iterator.hasNext() )
-	{
-	QAction *action=iterator.next();
-        if (action && (!action->menu())  && (!action->data().toString().isEmpty()))
-		{
-		actionstext.insert(action->data().toString(),action->text());
-		d=action->data().toString().section("/",0,0);
-		for( its = shortcuts.begin(); its != shortcuts.end(); ++its )
-			{
-			f=its.key().section("/",0,0);
-			s=its.value();
-			if (f==d && s!="none" && !s.isEmpty()) action->setShortcut(s);
-			}
-		}
-	}*/
-}
 
 void Texmaker::updateCompleter()
 {

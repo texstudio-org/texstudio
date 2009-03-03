@@ -22,7 +22,7 @@
 
   <menu id="environment" text="&amp;Environments">
     <insert id="center" text="\begin{center} [selection]" insert="\begin{center}%n%|%n\end{center}" icon=":/images/text_center.png"/>
-    <insert id="flushlegt" text="\begin{flushleft} [selection]" insert="\begin{flushleft}%n%|%n\end{flushleft}" icon=":/images/text_left.png"/>
+    <insert id="flushleft" text="\begin{flushleft} [selection]" insert="\begin{flushleft}%n%|%n\end{flushleft}" icon=":/images/text_left.png"/>
     <insert id="flushright" text="\begin{flushright}  [selection]" insert="\begin{flushright}%n%|%n\end{flushright}" icon=":/images/text_right.png"/>
     <insert id="quote" text="\begin{quote}  [selection]" insert="\begin{quote}%n%|%n\end{quote}"/>
     <insert id="quotation" text="\begin{quotation}  [selection]" insert="\begin{quotation}%n%|%n\end{quotation}"/>
@@ -48,8 +48,8 @@
     <insert id="textbf" text="\textbf - Boldface  [selection]" insert="\textbf{%|}" icon=":/images/text_bold.png" shortcut="Ctrl+B"/>
     <insert id="texttt" text="\texttt - Typewriter  [selection]" insert="\texttt{%|}" shortcut="Ctrl+Shift+T"/>
     <insert id="textsc" text="\textsc - Small caps  [selection]" insert="\textsc{%|}" shortcut="Ctrl+Shift+C"/>
+    <insert id="underline" text="\underline" insert="\underline{%|}" icon=":/images/text_under.png"/>
   </menu>
-
   
   <menu id="tabular" text="&amp;Tabular Environment">
     <insert id="tabbing" text="\begin{tabbing}" insert="\begin{tabbing}%n%|%n\end{tabbing}" info="\begin{tabbing}%ntext \= more text \= still more text \= last text \\%nsecond row \>  \> more \\%n\end{tabbing}"/>
@@ -81,17 +81,6 @@
     <insert id="9" text="\u{}" insert="\u{}" icon=":/images/accent9.png"/>
     <insert id="10" text="\H{}" insert="\H{}" icon=":/images/accent10.png"/>
   </menu>
-
-Act = new QAction("\includegraphics{file}", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertImage()));
-latex1Menu->addAction(Act);
-Act = new QAction("\include{file}", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertInclude()));
-latex1Menu->addAction(Act);
-Act = new QAction("\input{file}", this);
-connect(Act, SIGNAL(triggered()), this, SLOT(InsertInput()));
-latex1Menu->addAction(Act);
-latex1Menu->addSeparator();
 
   <action id="includegraphics" text="\includegraphics{file}" slot="1InsertImage()"/>
   <action id="include" text="\include{file}" slot="1InsertInclude()"/>

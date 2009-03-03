@@ -80,7 +80,8 @@ QAction* newManagedAction(QMenu* menu, const QString &id, QAction* act);
 QAction* getManagedAction(QString id);
 void loadManagedMenu(QMenu* parent,const QDomElement &f);
 void loadManagedMenus(const QString &f);
-    
+void managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu);    
+void treeWidgetToManagedMenuTo(QTreeWidgetItem* item);
 void setupMenus();
 void setupToolBars();
 void createStatusBar();
@@ -88,7 +89,7 @@ bool FileAlreadyOpen(QString f);
 void closeEvent(QCloseEvent *e);
 
 FilesMap filenames;
-KeysMap shortcuts, actionstext;
+KeysMap actionstext;
 
 QString configFileName,configFileNameBase;
 QFormatFactory *m_formats;
@@ -109,7 +110,9 @@ QTableWidget *OutputTableWidget;
 
 
 //menu-toolbar
-QMenu *user1Menu, *user11Menu, *user12Menu;
+QList<QMenu*> managedMenus;
+QHash<QString,QKeySequence> managedMenuShortcuts;
+QList<QPair<QString,QString> > managedMenuNewShortcuts;
 //
 QToolBar *fileToolBar, *editToolBar, *runToolBar, *formatToolBar, *mathToolBar;
 QAction *ToggleAct, *ToggleRememberAct;
@@ -214,7 +217,6 @@ void InsertSymbol(QTableWidgetItem *item);
 void InsertMetaPost(QListWidgetItem *item);
 void InsertPstricks(QListWidgetItem *item);
 void InsertFromAction();
-void InsertWithSelectionFromAction();
 void InsertWithSelectionFromString(const QString& text);
 void InsertFromString(const QString& text);
 void InsertBib();
@@ -346,8 +348,6 @@ void toggleBookmark8(){toggleBookmark(8);}
 void toggleBookmark9(){toggleBookmark(9);}
 
 void SetMostUsedSymbols();
-
-void ModifyShortcuts();
 
 void updateCompleter();
 

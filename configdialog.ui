@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>827</width>
-    <height>693</height>
+    <height>618</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -34,7 +34,7 @@
       </size>
      </property>
      <property name="currentIndex" >
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pt" >
       <layout class="QVBoxLayout" >
@@ -533,6 +533,39 @@ p, li { white-space: pre-wrap; }
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="Seite" >
+      <layout class="QVBoxLayout" name="verticalLayout" >
+       <item>
+        <widget class="QLabel" name="label_6" >
+         <property name="text" >
+          <string>Shortcuts</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTreeWidget" name="shortcutTree" >
+         <property name="columnCount" >
+          <number>3</number>
+         </property>
+         <column>
+          <property name="text" >
+           <string>1</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>2</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>3</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="pe" >
       <layout class="QGridLayout" >
        <property name="margin" >
@@ -541,19 +574,6 @@ p, li { white-space: pre-wrap; }
        <property name="spacing" >
         <number>6</number>
        </property>
-       <item row="2" column="0" >
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0" >
-          <size>
-           <width>411</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
        <item row="1" column="0" >
         <widget class="QGroupBox" name="groupBox_3" >
          <property name="sizePolicy" >
@@ -663,27 +683,6 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="12" column="0" >
-           <widget class="QLabel" name="labelshortcut" >
-            <property name="text" >
-             <string>Shortcuts</string>
-            </property>
-           </widget>
-          </item>
-          <item rowspan="2" row="12" column="1" colspan="4" >
-           <widget class="QTableWidget" name="shorttableWidget" >
-            <column>
-             <property name="text" >
-              <string>Action</string>
-             </property>
-            </column>
-            <column>
-             <property name="text" >
-              <string>Shortcut</string>
-             </property>
-            </column>
-           </widget>
-          </item>
-          <item row="13" column="0" >
            <spacer>
             <property name="orientation" >
              <enum>Qt::Vertical</enum>
@@ -999,7 +998,6 @@ p, li { white-space: pre-wrap; }
   <tabstop>pushButtonMetapost</tabstop>
   <tabstop>pushButtonGhostscript</tabstop>
   <tabstop>pushButtonAspell</tabstop>
-  <tabstop>shorttableWidget</tabstop>
   <tabstop>contentsWidget</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>cancelButton</tabstop>
