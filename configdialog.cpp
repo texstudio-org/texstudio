@@ -19,6 +19,90 @@
 #include <QKeySequence>
 #include <QMessageBox>
 #include <QList>
+ShortcutDelegate::ShortcutDelegate(QObject *parent): treeWidget(0){
+}
+QWidget *ShortcutDelegate::createEditor(QWidget *parent,
+     const QStyleOptionViewItem & option ,
+     const QModelIndex & index ) const
+{
+    if (index.column()!=2) return 0;
+    QComboBox *editor = new QComboBox(parent);
+    for (int k=Qt::Key_F1;k<=Qt::Key_F12;k++)
+        editor->addItem(QKeySequence(k).toString(QKeySequence::NativeText));
+    for (int c=0;c<=1;c++)
+        for (int s=0;s<=1;s++)  
+            for (int a=0;a<=1;a++){
+                if (!c && !s && !a) continue;
+                for (int k=Qt::Key_F1;k<=Qt::Key_F12;k++)
+                    editor->addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
+                for (int k=Qt::Key_0;k<=Qt::Key_9;k++)
+                    editor->addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
+                for (int k=Qt::Key_A;k<=Qt::Key_Z;k++)
+                    editor->addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
+            }
+    editor->setEditable(true);
+
+    return editor;
+}
+
+ void ShortcutDelegate::setEditorData(QWidget *editor,
+                                     const QModelIndex &index) const
+ {
+    QString value = index.model()->data(index, Qt::EditRole).toString();
+    QComboBox *box = static_cast<QComboBox*>(editor);
+    QString normalized=QKeySequence(value).toString(QKeySequence::NativeText);
+    int pos=box->findText(normalized);
+    if (pos==-1) box->setEditText(value);
+    else box->setCurrentIndex(pos);
+ }
+  void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
+                                    const QModelIndex &index) const
+ {
+    if (index.column()!=2) return;
+    QComboBox *box = qobject_cast<QComboBox*>(editor);
+    if (!box) return;
+    QString value=box->currentText();
+    if (value=="" || value=="none") value="";
+    else {
+        value=QKeySequence(box->currentText()).toString(QKeySequence::NativeText);
+        if (value=="" || (value.endsWith("+") && !value.endsWith("++"))) { //Alt+wrong=>Alt+
+            QMessageBox::warning(editor, ConfigDialog::tr("TexMakerX"),
+                ConfigDialog::tr("The shortcut you entered is invalid."),
+                QMessageBox::Ok, QMessageBox::Ok);
+                return;
+        }
+        
+        /*int r=-1;
+        for (int i=0;i<model->rowCount();i++)
+            if (model->data(model->index(i,2))==value) {
+                r=i;
+                break;
+                }*/
+        if (treeWidget) {
+            QList<QTreeWidgetItem *> li=treeWidget->findItems ( value, Qt::MatchRecursive |Qt::MatchFixedString, 2);
+            if (!li.empty() && li[0]->text(0) == model->data(model->index(index.row(),0,index.parent()))) li.removeFirst();
+            if (!li.empty()) {
+                QString duplicate=li[0]->text(0);//model->data(model->index(mil[0].row(),0,mil[0].parent()),Qt::DisplayRole).toString();
+                switch (QMessageBox::warning(editor, ConfigDialog::tr("TexMakerX"),
+                                             ConfigDialog::tr("The shortcut you entered is the same as the one of this command:") +"\n"+duplicate+"\n"+ConfigDialog::tr("Should I delete this other shortcut?"),
+                                             QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes))
+                {
+                    case QMessageBox::Yes:
+                        //model->setData(mil[0],"",Qt::DisplayRole);
+                        li[0]->setText(2,"");
+                        break;
+                    default:;
+                }
+            }
+        }
+    }
+    model->setData(index, value, Qt::EditRole);
+}
+ void ShortcutDelegate ::updateEditorGeometry(QWidget *editor,
+     const QStyleOptionViewItem &option, const QModelIndex &/* index */) const
+ {
+     editor->setGeometry(option.rect);
+ }
 
 ConfigDialog::ConfigDialog(QWidget* parent): QDialog( parent)
 {
@@ -60,8 +144,6 @@ connect (ui.checkBoxOverline,SIGNAL(clicked ()),this,SLOT(textStyleChanged()));
 connect (ui.checkBoxStrikeout,SIGNAL(clicked ()),this,SLOT(textStyleChanged()));
 connect (ui.checkBoxWaveUnderline,SIGNAL(clicked ()),this,SLOT(textStyleChanged()));
 
-connect( ui.shorttableWidget, SIGNAL(itemChanged(QTableWidgetItem * )), this, SLOT(shortCutItemChanged(QTableWidgetItem * )));
-
 //pagequick
 connect(ui.radioButton6, SIGNAL(toggled(bool)),ui.lineEditUserquick, SLOT(setEnabled(bool)));
 
@@ -83,7 +165,8 @@ connect( ui.pushButtonGhostscript, SIGNAL(clicked()), this, SLOT(browseGhostscri
 createIcons();
 ui.contentsWidget->setCurrentRow(0);
 
-
+ui.shortcutTree->setHeaderLabels(QStringList()<<tr("Command")<<tr("Default Shortcut")<<tr("Current Shortcut"));
+ui.shortcutTree->setColumnWidth(0,200);
 }
 
 ConfigDialog::~ConfigDialog(){
@@ -102,6 +185,12 @@ quickButton->setIcon(QIcon(":/images/configquick.png"));
 quickButton->setText(tr("Quick Build"));
 quickButton->setTextAlignment(Qt::AlignHCenter);
 quickButton->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+
+QListWidgetItem *keysButton = new QListWidgetItem(ui.contentsWidget);
+keysButton->setIcon(QIcon(":/images/configkeys.png"));
+keysButton->setText(tr("Shortcuts"));
+keysButton->setTextAlignment(Qt::AlignHCenter);
+keysButton->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
 QListWidgetItem *editorButton = new QListWidgetItem(ui.contentsWidget);
 editorButton->setIcon(QIcon(":/images/configeditor.png"));
@@ -323,34 +412,3 @@ if ( !location.isEmpty() )
 }
 
 
-void ConfigDialog::shortCutItemChanged ( QTableWidgetItem * item ){
-    if (item==NULL) return;
-    if (QString("none").compare(item->text(),Qt::CaseInsensitive)==0) return;
-    if (ui.shorttableWidget->currentItem ()==NULL) return;
-
-    QKeySequence newSeq(item->text());
-    if (QKeySequence(item->text()) == QKeySequence()){
-        QMessageBox::warning(this, tr("TexMakerX"),
-                   tr("The shortcut you entered is invalid."),
-                   QMessageBox::Ok, QMessageBox::Ok);
-        item->setText(item->data(Qt::UserRole).toString());
-        return;
-    }
-    QString identicalShortcuts = "";
-    for (int i=0;i<ui.shorttableWidget->rowCount();i++)
-        if (QKeySequence(ui.shorttableWidget->item(i,1)->text())==newSeq && i!=item->row())
-            identicalShortcuts+=ui.shorttableWidget->item(i,0)->text()+"\n";
-    if (identicalShortcuts=="") return;
-
-    switch (QMessageBox::warning(this, tr("TexMakerX"),
-                                 tr("The shortcut you entered is the same as the one of this command:") +"\n"+identicalShortcuts+"\n"+tr("Should I delete this other shortcut?"),
-                                 QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes))
-    {
-        case QMessageBox::Yes:
-            for (int i=0;i<ui.shorttableWidget->rowCount();i++)
-                if (QKeySequence(ui.shorttableWidget->item(i,1)->text())==newSeq && i!=item->row())
-                    ui.shorttableWidget->item(i,1)->setText("none");
-            break;
-        default:;
-    }
-}
