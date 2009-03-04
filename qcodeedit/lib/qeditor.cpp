@@ -481,6 +481,7 @@ void QEditor::init(bool actions)
 	viewport()->setCursor(Qt::IBeamCursor);
 	viewport()->setBackgroundRole(QPalette::Base);
 	//viewport()->setAttribute(Qt::WA_OpaquePaintEvent, true);
+	viewport()->setAttribute(Qt::WA_KeyCompression, true);
 	viewport()->setAttribute(Qt::WA_InputMethodEnabled, true);
 	
 	verticalScrollBar()->setSingleStep(1);
@@ -490,7 +491,8 @@ void QEditor::init(bool actions)
 	//setDragEnabled(true);
 	setFrameShadow(QFrame::Plain);
 	setFocusPolicy(Qt::WheelFocus);
-	setAttribute(Qt::WA_KeyCompression);
+	setAttribute(Qt::WA_KeyCompression, true);
+	setAttribute(Qt::WA_InputMethodEnabled, true);
 	
 	connect(this							,
 			SIGNAL( markChanged(QString, QDocumentLineHandle*, int, bool) ),
@@ -2526,6 +2528,15 @@ static bool protectedCursor(const QDocumentCursor& c)
 			;
 	}
 	
+	/*
+	if ( prot )
+		qDebug("line %i is protected (%i, %i, %i)", c.lineNumber(), 
+			l.hasFlag(QDocumentLine::Hidden),
+			l.hasFlag(QDocumentLine::CollapsedBlockStart),
+			l.hasFlag(QDocumentLine::CollapsedBlockEnd)
+		);
+	*/
+	
 	return prot;
 }
 
@@ -2642,6 +2653,11 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 			{
 				bHandled = false;
 			} else {
+				
+				// clear matches to avoid offsetting and subsequent remanence of matches
+				if ( m_definition )
+					m_definition->clearMatches(m_doc);
+				
 				if ( m_mirrors.isEmpty() )
 				{
 					bHandled = processCursor(m_cursor, e, bOk);
@@ -3305,14 +3321,16 @@ void QEditor::resizeEvent(QResizeEvent *)
 	} else {
 		horizontalScrollBar()->setMaximum(qMax(0, m_doc->width() - viewportSize.width()));
 		horizontalScrollBar()->setPageStep(viewportSize.width());
-		
-		const int ls = m_doc->fontMetrics().lineSpacing();
-		verticalScrollBar()->setMaximum(qMax(0, 1 + (m_doc->height() - viewportSize.height()) / ls));
-		verticalScrollBar()->setPageStep(viewportSize.height());
 	}
 	
-	//if ( isCursorVisible() )
-		ensureCursorVisible();
+	const int ls = m_doc->fontMetrics().lineSpacing();
+	verticalScrollBar()->setMaximum(qMax(0, 1 + (m_doc->height() - viewportSize.height()) / ls));
+	verticalScrollBar()->setPageStep(viewportSize.height() / ls);
+	
+	//qDebug("page step : %i", viewportSize.height() / ls);
+	
+	//if ( isCursorVisible() && flag(LineWrap) )
+	//	ensureCursorVisible();
 }
 
 /*!
@@ -4545,7 +4563,7 @@ void QEditor::scrollContentsBy(int dx, int dy)
 	viewport()->update();
 	#else
 	const int ls = m_doc->fontMetrics().lineSpacing();
-	viewport()->scroll(dx * ls, dy * ls);
+	viewport()->scroll(dx, dy * ls);
 	#endif
 }
 

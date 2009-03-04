@@ -33,6 +33,8 @@ HEADERS += qce-config.h \
 	widgets/qsearchreplacepanel.h \
 	widgets/qgotolinedialog.h \
 	widgets/qeditconfig.h \
+	widgets/qformatconfig.h \
+	widgets/qsimplecolorpicker.h \
 	widgets/qcalltip.h
 
 SOURCES += qeditor.cpp \
@@ -59,11 +61,14 @@ SOURCES += qeditor.cpp \
 	widgets/qsearchreplacepanel.cpp \
 	widgets/qgotolinedialog.cpp \
 	widgets/qeditconfig.cpp \
+	widgets/qformatconfig.cpp \
+	widgets/qsimplecolorpicker.cpp \
 	widgets/qcalltip.cpp
 
 FORMS += widgets/searchreplace.ui \
 	widgets/gotoline.ui \
-	widgets/editconfig.ui
+	widgets/editconfig.ui \
+	widgets/formatconfig.ui
 
 qnfa {
 	DEFINES += QNFA_BUILD
