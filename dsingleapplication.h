@@ -106,7 +106,7 @@ public:
   PortStatus status() const;
   void check( int port );
   QTcpSocket* transferSocketOwnership();
-
+  void endChecks(); //important, this deletes the socket
 protected:
   void run();
 
