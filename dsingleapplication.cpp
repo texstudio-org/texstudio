@@ -90,6 +90,8 @@ void DSingleApplication::init() {
     ++port;
   } // while
 
+  checker.endChecks();
+  
   port = ports.firstFreePort();
 
   // other instance is not running in the range and there's available port
@@ -142,7 +144,7 @@ DPortChecker::DPortChecker( const QString &id, int port, QObject *parent )
 }
 
 DPortChecker::~DPortChecker() {
-  if (tcpSocket != NULL) delete tcpSocket;
+ // don't delete socket here, leads to crash since it must be deleted in the thread which created it
 }
 
 DPortChecker::PortStatus DPortChecker::status() const {
@@ -154,7 +156,16 @@ void DPortChecker::check( int port ) {
   start();
 }
 
+void DPortChecker::endChecks(){
+  port=-2;
+  start();
+}
+
 void DPortChecker::run() {
+  if (port==-2) {
+    if (tcpSocket != NULL) delete tcpSocket;
+    return;
+  }
   result = DPortChecker::free;
 
   if (tcpSocket == NULL) 
