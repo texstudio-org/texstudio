@@ -51,6 +51,11 @@ QDocumentSearch::~QDocumentSearch()
 	clearMatches();
 }
 
+QDocumentSearch::Options QDocumentSearch::options() const
+{
+	return m_option;
+}
+
 /*!
 	\brief Position of the current match among the indexed matches
 */
@@ -200,10 +205,6 @@ void QDocumentSearch::setOption(Option opt, bool on)
 		clearMatches();
 		next(false);
 	}
-}
-
-QDocumentSearch::Options QDocumentSearch::options() const{
-    return m_option;
 }
 
 /*!

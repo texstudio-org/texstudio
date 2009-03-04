@@ -60,9 +60,9 @@ class QCE_EXPORT QDocumentSearch
 		QString searchText() const;
 		void setSearchText(const QString& f);
 		
+		Options options() const;
 		bool hasOption(Option opt) const;
 		void setOption(Option opt, bool on);
-		Options options() const;
 		
 		QString replaceText() const;
 		void setReplaceText(const QString& r);

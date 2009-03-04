@@ -943,7 +943,16 @@ QString QNFADefinition::defaultLineMark() const
 */
 void QNFADefinition::clearMatches(QDocument *d)
 {
+	QHash<QPointer<QDocument>, int>::iterator it = m_matchGroups.find(d);
 	
+	if ( it != m_matchGroups.end() )
+	{
+		d->clearMatches(*it);
+		d->flushMatches(*it);
+		
+		// erase?
+		//m_matchGroups.erase(it);
+	}
 }
 
 /*!
@@ -1551,7 +1560,9 @@ void QNFADefinition::expand(QDocument *d, int line)
 	}
 	
 	if ( !shared )
-		d->line(end).setFlag(QDocumentLine::CollapsedBlockEnd);
+	{
+		d->line(end).setFlag(QDocumentLine::CollapsedBlockEnd, false);
+	}
 	
 	if ( !open && !shared )
 	{

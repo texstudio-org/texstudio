@@ -1523,12 +1523,12 @@ QDocument* QDocumentLineHandle::document() const
 	return m_doc;
 }
 
-bool QDocumentLineHandle::hasFlag(QDocumentLine::State s) const
+bool QDocumentLineHandle::hasFlag(int s) const
 {
 	return m_state & s;
 }
 
-void QDocumentLineHandle::setFlag(QDocumentLine::State s, bool y) const
+void QDocumentLineHandle::setFlag(int s, bool y) const
 {
 	if ( y )
 		m_state |= s;
@@ -3562,7 +3562,7 @@ int QDocumentCursorHandle::columnNumber() const
 	return m_begOffset;
 }
 
-void QDocumentCursorHandle::setColumnNumber(int c, QDocumentCursor::MoveMode m)
+void QDocumentCursorHandle::setColumnNumber(int c, int m)
 {
 	if ( !m_doc )
 		return;
@@ -3706,7 +3706,7 @@ void QDocumentCursorHandle::setColumnMemory(bool y)
 		clearFlag(ColumnMemory);
 }
 
-void QDocumentCursorHandle::setPosition(int pos, QDocumentCursor::MoveMode m)
+void QDocumentCursorHandle::setPosition(int pos, int m)
 {
 	Q_UNUSED(pos)
 	Q_UNUSED(m)
@@ -3731,8 +3731,7 @@ void QDocumentCursorHandle::setPosition(int pos, QDocumentCursor::MoveMode m)
 	*/
 }
 
-bool QDocumentCursorHandle::movePosition(int count, QDocumentCursor::MoveOperation op,
-										QDocumentCursor::MoveMode m)
+bool QDocumentCursorHandle::movePosition(int count, int op, int m)
 {
 	if ( !m_doc )
 		return false;
@@ -5363,7 +5362,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			//			cxt.width - 4, m_lineSpacing - 1);
 			
 			p->drawRect(m_leftMargin, pos,
-						cxt.width - 4, m_lineSpacing - 1);
+						cxt.width - 4, m_lineSpacing * (wrap + 1) - 1);
 						
 		}
 		
@@ -6156,14 +6155,14 @@ int QDocumentPrivate::visualLine(int textLine) const
 			{
 				if ( wit.key() > hl + max )
 					break;
-					
+				
 				++wit;
 			}
 			
 		} else {
 			if ( wit.key() >= textLine )
 				break;
-				
+			
 			if ( m_lines.at(wit.key())->hasFlag(QDocumentLine::Hidden) )
 			{
 				++wit;
@@ -6204,7 +6203,21 @@ int QDocumentPrivate::textLine(int visualLine, int *wrap) const
 			{
 				if ( visualLine + mess <= hl )
 					break;
-					
+				
+				if ( w != we && w.key() == hl )
+				{
+					//qDebug("trying to solve : h=(%i, %i), w=(%i, %i)", hl, *h, w.key(), *w);
+					const int off = (visualLine + mess) - hl;
+					if ( off <= *w )
+					{
+						//qDebug("%i -> %i + %i", visualLine, hl, off);
+						if ( wrap )
+							*wrap = off;
+						
+						return hl;
+					}
+				}
+				
 				int max = 0;
 				
 				do
@@ -6224,7 +6237,7 @@ int QDocumentPrivate::textLine(int visualLine, int *wrap) const
 				{
 					if ( w.key() > txt + max )
 						break;
-						
+					
 					++w;
 				}
 				
@@ -6241,7 +6254,7 @@ int QDocumentPrivate::textLine(int visualLine, int *wrap) const
 				
 				if ( visualLine + mess < txt )
 					break;
-					
+				
 				wrappedLines += *w;
 				++w;
 			}
@@ -6256,7 +6269,7 @@ int QDocumentPrivate::textLine(int visualLine, int *wrap) const
 			
 			if ( visualLine + mess < txt )
 				break;
-				
+			
 			wrappedLines += *w;
 			++w;
 		} else {
@@ -6286,7 +6299,7 @@ int QDocumentPrivate::textLine(int visualLine, int *wrap) const
 				
 				if ( wrap )
 					*wrap = visualLine - base;
-					
+				
 				return wl;
 			}
 		}
