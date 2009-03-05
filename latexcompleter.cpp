@@ -512,7 +512,7 @@ void LatexCompleter::complete(const QDocumentCursor& c, const QString& trigger){
     
     if (c.getPreviousChar()!='\\') {
         int start=c.columnNumber()-1;
-        QString eow="~!@#$%^&*()_+{}|:\"<>?,./;[]-= \n\r`+´";
+        QString eow="~!@#$%^&*()_+}|:\"<>?,./;[]-= \n\r`+´";
         QString lineText=c.line().text();
         for (int i=c.columnNumber()-1;i>=0;i--){
             if (lineText.at(i)==QChar('\\')) {

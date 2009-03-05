@@ -4347,8 +4347,8 @@ void Texmaker::updateCompleter()
     }
     for (int i=0; i<labelitem.count();++i)
     {
-        words.append("\\\\ref{"+labelitem.at(i)+"}");
-        words.append("\\\\pageref{"+labelitem.at(i)+"}");
+        words.append("\\ref{"+labelitem.at(i)+"}");
+        words.append("\\pageref{"+labelitem.at(i)+"}");
 	}
     
     
