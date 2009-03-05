@@ -283,6 +283,14 @@ setAcceptDrops(true);
     
     updateCompleter();
     m_languages->addCompletionEngine(completer);
+    
+    if (!sessionFilesToRestore.empty()){
+        for (int i=0;i<sessionFilesToRestore.size();i++)
+            load (sessionFilesToRestore[i], sessionFilesToRestore[i]==sessionMaster);
+        FileAlreadyOpen(sessionCurrent);
+        sessionFilesToRestore.clear(); //save memory ;-)
+        ToggleRememberAct->setChecked(true);
+    }
 }
 
 QMenu* Texmaker::newManagedMenu(const QString &id,const QString &text){
@@ -397,6 +405,9 @@ void Texmaker::setupMenus()
     newManagedAction(menu, "open",tr("Open"), SLOT(fileOpen()), Qt::CTRL+Qt::Key_O, ":/images/fileopen.png");
     
     QMenu *subMenu=newManagedMenu(menu, "openrecent",tr("Open Recent"));
+    for (int i = 0; i < 3; ++i)
+        newManagedAction(subMenu, "p"+QString::number(i), QString("Recent 'Master Document' %1").arg(i), SLOT(fileOpenRecentProject()))->setVisible(false);
+    subMenu->addSeparator();
     for (int i = 0; i < 5; ++i)
         newManagedAction(subMenu, QString::number(i), QString("Recent File %1").arg(i), SLOT(fileOpenRecent()))->setVisible(false);
 
@@ -551,7 +562,8 @@ void Texmaker::setupMenus()
 
     menu->addSeparator();
     ToggleAct=newManagedAction(menu, "masterdocument",tr("Define Current Document as 'Master Document'"), SLOT(ToggleMode()));
-    ToggleRememberAct=newManagedAction(menu, "remembermasterdocument",tr("Remember 'Master Document' setting"), SLOT(ToggleMasterRememberMode()));
+    ToggleRememberAct=newManagedAction(menu, "remembersession",tr("Remember session when closing"));
+    ToggleRememberAct->setCheckable(true);
 
 //---help---
     menu=newManagedMenu("main/help",tr("&Help"));
@@ -819,7 +831,6 @@ return title;
 
 bool Texmaker::FileAlreadyOpen(QString f)
 {
-bool rep=false;
 FilesMap::Iterator it;
 QString fw32,funix,forig;
 for( it = filenames.begin(); it != filenames.end(); ++it )
@@ -832,23 +843,31 @@ for( it = filenames.begin(); it != filenames.end(); ++it )
 	if ( (forig==f) || (fw32==f) || (funix==f)) 
 		{
 		EditorView->setCurrentIndex(EditorView->indexOf(it.key()));
-		rep=true;
+		return true;
 		}
 	}
-return rep;
+return false;
 }
 ///////////////////FILE//////////////////////////////////////
 
 
-void Texmaker::load( const QString &f )
+void Texmaker::load( const QString &f , bool asProject)
 {
     QString f_real=f;
     #ifdef Q_WS_WIN
         QRegExp regcheck("/([a-zA-Z]:[/\\\\].*)");
         if (regcheck.exactMatch(f)) f_real=regcheck.cap(1);
     #endif
-raise();
-if (FileAlreadyOpen(f_real) || !QFile::exists( f_real )) return;
+    raise();
+    if (FileAlreadyOpen(f_real)) {
+        if (singlemode) ToggleMode();
+        else if (!singlemode && MasterName != f_real) {
+            ToggleMode();
+            ToggleMode();
+        } 
+        return;
+    }
+    if (!QFile::exists( f_real )) return;
 LatexEditorView *edit = new LatexEditorView(0);
 EditorView->addTab( edit, QFileInfo( f_real ).fileName() );
 configureNewEditorView(edit);
@@ -871,6 +890,12 @@ UpdateCaption();
 NewDocumentStatus(false);
 AddRecentFile(f_real);
 ShowStructure();
+if (asProject) 
+    if (singlemode) ToggleMode();
+    else if (!singlemode && MasterName != f_real) {
+        ToggleMode();
+        ToggleMode();
+    } 
 }
 
 void Texmaker::gotoLine( int line )
@@ -1141,32 +1166,51 @@ QAction *action = qobject_cast<QAction *>(sender());
 if (action) load(action->data().toString());
 }
 
-void Texmaker::AddRecentFile(const QString &f)
-{
-if (recentFilesList.contains(f)) return;
+void Texmaker::fileOpenRecentProject(){
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (action) {
+        ToggleMode();
+        load(action->data().toString());
+        ToggleMode();
+    }
+}
 
-if (recentFilesList.count() < 5) recentFilesList.prepend(f);
-else
-	{
-	recentFilesList.removeLast();
-	recentFilesList.prepend(f);
-	}
-UpdateRecentFile();
+void Texmaker::AddRecentFile(const QString &f, bool asMaster)
+{
+    int p=recentFilesList.indexOf(f);
+    bool changed=p!=0;
+    if (p>0) recentFilesList.removeAt(p);
+    if (changed) recentFilesList.prepend(f);
+    if (recentFilesList.count()>5) recentFilesList.removeLast();
+    
+    if (!singlemode && MasterName==f) {
+        p=recentProjectList.indexOf(f);
+        changed|=p!=0;
+        if (p>0) recentProjectList.removeAt(p);
+        if (p!=0) recentProjectList.prepend(f);
+        if (recentProjectList.count()>3) recentProjectList.removeLast();
+    }
+    
+	if (changed) UpdateRecentFile();
 }
 
 void Texmaker::UpdateRecentFile()
 {
-    for (int i=0; i < recentFilesList.count(); i++)	{
-	    QAction* act = getManagedAction(QString("main/file/openrecent/%1").arg(i));
-	    if (act) {
+    for (int i=0; i < 3; i++) {
+        QAction* act = getManagedAction(QString("main/file/openrecent/p%1").arg(i));
+        if (i<recentProjectList.count()) {
+            act->setVisible(true);
+            act->setText(tr("Master Document: ")+recentProjectList.at(i));
+            act->setData(recentProjectList.at(i));
+        } else act->setVisible(false);
+    }
+    for (int i=0; i < 5; i++) {
+        QAction* act = getManagedAction(QString("main/file/openrecent/%1").arg(i));
+        if (i<recentFilesList.count()) {
+            act->setVisible(true);
             act->setText(recentFilesList.at(i));
             act->setData(recentFilesList.at(i));
-            act->setVisible(true);
-	    }
-	}
-    for (int i = recentFilesList.count(); i < 5; ++i) {
-	    QAction* act = getManagedAction(QString("main/file/openrecent/%1").arg(i));
-	    if (act) act->setVisible(false);
+        } else act->setVisible(false);
     }
 }
 
@@ -1485,7 +1529,12 @@ userOptionsList=config->value("Tools/User Options").toStringList();
 
 lastDocument=config->value("Files/Last Document","").toString();
 recentFilesList=config->value("Files/Recent Files").toStringList();
-persistentMasterFile=config->value( "Files/PersistentMaster","").toString();
+recentProjectList=config->value("Files/Recent Project Files").toStringList();
+if (config->value("Files/RestoreSession",false).toBool()) {
+    sessionFilesToRestore=config->value("Files/Session/Files").toStringList();
+    sessionCurrent=config->value("Files/Session/CurrentFile","").toString();
+    sessionMaster=config->value("Files/Session/MasterFile","").toString();
+}
 newfile_encoding=QTextCodec::codecForName(config->value("Files/New File Encoding", "utf-8").toString().toAscii().data());
 autodetectLoadedFile=config->value("Files/Auto Detect Encoding Of Loaded Files", "true").toBool();
 
@@ -1669,11 +1718,19 @@ if (userOptionsList.count()>0) config->setValue("Tools/User Options",userOptions
 
 config->setValue("Files/Last Document",lastDocument);
 if (recentFilesList.count()>0) config->setValue("Files/Recent Files",recentFilesList);
+if (recentProjectList.count()>0) config->setValue("Files/Recent Project Files",recentProjectList);
 
-if (ToggleRememberAct->isChecked() && singlemode) config->setValue( "Files/PersistentMaster","");
-else if (!ToggleRememberAct->isChecked() && !singlemode && persistentMasterFile!="" && QFileInfo(MasterName)==QFileInfo(persistentMasterFile)) config->setValue( "Files/PersistentMaster","");
-else if (ToggleRememberAct->isChecked()) config->setValue( "Files/PersistentMaster",MasterName);
-
+if (ToggleRememberAct->isChecked()) {
+    config->setValue("Files/RestoreSession",true);
+    QStringList curFiles;//store in order
+    for (int i=0;i<EditorView->count();i++) { 
+        LatexEditorView *ed=qobject_cast<LatexEditorView *>(EditorView->widget(i));
+        if (ed) curFiles.append(filenames[ed]);
+    }
+    config->setValue("Files/Session/Files",curFiles);
+    config->setValue("Files/Session/CurrentFile",currentEditorView()?filenames[currentEditorView()]:"");
+    config->setValue("Files/Session/MasterFile",singlemode?"":MasterName);
+} else config->setValue("Files/RestoreSession",false);
 
 config->setValue("Files/New File Encoding", newfile_encoding?newfile_encoding->name():"??");
 config->setValue("Files/Auto Detect Encoding Of Loaded Files", autodetectLoadedFile);
@@ -4123,29 +4180,8 @@ void Texmaker::executeCommandLine( const QStringList& args, bool realCmdLine){
     //executing cmd line (in an sosrted order)
     QFileInfo ftl(fileToLoad);
     if (fileToLoad!="" && !ftl.exists()) fileToLoad="";
-    if (fileToLoad!="") load( fileToLoad);
-    else {
-        activateMasterMode=false;
-        line=-1;
-    }
+    if (fileToLoad!="") load( fileToLoad, activateMasterMode);
     if (line!=-1) gotoLine(line);
-    if (activateMasterMode) {
-        if (singlemode && realCmdLine && persistentMasterFile!="") {
-            if (QFileInfo(persistentMasterFile)==ftl) ToggleRememberAct->setChecked(true);
-            ToggleMode();
-        } else if (singlemode) {
-            ToggleRememberAct->setChecked(false);
-            ToggleMode();
-        } else {
-            ToggleRememberAct->setChecked(false);
-            ToggleMode(); //undefine current master file
-            ToggleMode(); //define current master file
-        }
-    } else if (realCmdLine && persistentMasterFile!="") {
-        ToggleRememberAct->setChecked(true);
-        load(persistentMasterFile);
-        ToggleMode();
-    }
 }
 void Texmaker::onOtherInstanceMessage(const QString &msg)  // Added slot for messages to the single instance
 {
@@ -4180,12 +4216,9 @@ if (singlemode && currentEditorView())
 	ToggleAct->setText(tr("Normal Mode (current master document :")+shortName+")");
 	singlemode=false;
 	stat1->setText(QString(" %1 ").arg(tr("Master Document")+ ": "+shortName));
-	ToggleRememberAct->setChecked(true);
+	AddRecentFile(MasterName, true);
 	return;
 	}
-}
-void Texmaker::ToggleMasterRememberMode(){
-    //ToggleRememberAct->setChecked(!ToggleRememberAct->isChecked());
 }
 ////////////////// VIEW ////////////////
 

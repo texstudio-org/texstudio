@@ -51,7 +51,6 @@
 
 
 typedef  QMap<LatexEditorView*, QString> FilesMap;
-typedef  QMap<QString,QString> KeysMap;
 typedef  QString Userlist[10];
 typedef  QString UserCd[5];
 typedef int SymbolList[412];
@@ -67,7 +66,7 @@ QString getName();
 QFont EditorFont;
 QByteArray windowstate;
 public slots:
-void load( const QString &f );
+void load( const QString &f , bool asProject = false);
 void gotoLine( int line );//0 based
 void executeCommandLine( const QStringList& args, bool realCmdLine);
 void onOtherInstanceMessage(const QString &);  // For messages for the single instance
@@ -89,7 +88,6 @@ bool FileAlreadyOpen(QString f);
 void closeEvent(QCloseEvent *e);
 
 FilesMap filenames;
-KeysMap actionstext;
 
 QString configFileName,configFileNameBase;
 QFormatFactory *m_formats;
@@ -121,7 +119,11 @@ QLabel *stat1, *stat2, *stat3;
 QPushButton *pb1, *pb2, *pb3;
 QString MasterName,persistentMasterFile;
 bool logpresent;
-QStringList recentFilesList;
+QStringList recentFilesList, recentProjectList;
+QStringList sessionFilesToRestore; 
+QString sessionMaster;
+QString sessionCurrent;
+
 //settings
 int split1_right, split1_left, split2_top, split2_bottom, quickmode;
 bool singlemode, wordwrap, parenmatch, showoutputview, showstructview, ams_packages, makeidx_package, completion, autoindent;
@@ -180,7 +182,8 @@ void fileClose();
 void fileCloseAll();
 void fileExit();
 void fileOpenRecent();
-void AddRecentFile(const QString &f);
+void fileOpenRecentProject();
+void AddRecentFile(const QString &f, bool asMaster=false);
 void UpdateRecentFile();
 void filePrint();
 
@@ -314,7 +317,6 @@ void HelpAbout();
 
 void GeneralOptions();
 void ToggleMode();
-void ToggleMasterRememberMode();
 
 void gotoNextDocument();
 void gotoPrevDocument();

@@ -109,6 +109,8 @@
 		<Unit filename="lib\widgets\qeditconfig.h" />
 		<Unit filename="lib\widgets\qfoldpanel.cpp" />
 		<Unit filename="lib\widgets\qfoldpanel.h" />
+		<Unit filename="lib\widgets\qformatconfig.cpp" />
+		<Unit filename="lib\widgets\qformatconfig.h" />
 		<Unit filename="lib\widgets\qgotolinedialog.cpp" />
 		<Unit filename="lib\widgets\qgotolinedialog.h" />
 		<Unit filename="lib\widgets\qlinechangepanel.cpp" />
@@ -121,6 +123,8 @@
 		<Unit filename="lib\widgets\qpanel.h" />
 		<Unit filename="lib\widgets\qsearchreplacepanel.cpp" />
 		<Unit filename="lib\widgets\qsearchreplacepanel.h" />
+		<Unit filename="lib\widgets\qsimplecolorpicker.cpp" />
+		<Unit filename="lib\widgets\qsimplecolorpicker.h" />
 		<Unit filename="lib\widgets\qstatuspanel.cpp" />
 		<Unit filename="lib\widgets\qstatuspanel.h" />
 		<Extensions>
