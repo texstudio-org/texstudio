@@ -16,6 +16,16 @@
 	<file alias="reload.png">images/qcodeedit/reload.png</file>
 	<file alias="warning.png">images/qcodeedit/warning.png</file>
   
+	<file>images/qcodeedit/bold.png</file>
+	<file>images/qcodeedit/italic.png</file>
+	<file>images/qcodeedit/underline.png</file>
+	<file>images/qcodeedit/overline.png</file>
+	<file>images/qcodeedit/strikeout.png</file>
+	<file>images/qcodeedit/waveUnderline.png</file>
+	<file>images/qcodeedit/textcolor.png</file>
+	<file>images/qcodeedit/fillcolor.png</file>
+	<file>images/qcodeedit/strokecolor.png</file>
+  
   <!--bookmarks-->
 	<file>images/lbook0.png</file>
 	<file>images/lbook1.png</file>

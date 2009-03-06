@@ -116,7 +116,6 @@ QToolBar *fileToolBar, *editToolBar, *runToolBar, *formatToolBar, *mathToolBar;
 QAction *ToggleAct, *ToggleRememberAct;
 
 QLabel *stat1, *stat2, *stat3;
-QPushButton *pb1, *pb2, *pb3;
 QString MasterName,persistentMasterFile;
 bool logpresent;
 QStringList recentFilesList, recentProjectList;
@@ -279,11 +278,7 @@ void MakeIndex();
 void PStoPDF();
 void DVItoPDF();
 void MetaPost();
-void UserTool1();
-void UserTool2();
-void UserTool3();
-void UserTool4();
-void UserTool5();
+void UserTool();
 void EditUserTool();
 void EditUserKeyReplacements();
 
@@ -317,29 +312,8 @@ void gotoPrevDocument();
 void SetInterfaceFont();
 void SetInterfaceType();
 
-void gotoBookmark(int id);
-void gotoBookmark0(){gotoBookmark(0);}
-void gotoBookmark1(){gotoBookmark(1);}
-void gotoBookmark2(){gotoBookmark(2);}
-void gotoBookmark3(){gotoBookmark(3);}
-void gotoBookmark4(){gotoBookmark(4);}
-void gotoBookmark5(){gotoBookmark(5);}
-void gotoBookmark6(){gotoBookmark(6);}
-void gotoBookmark7(){gotoBookmark(7);}
-void gotoBookmark8(){gotoBookmark(8);}
-void gotoBookmark9(){gotoBookmark(9);}
-
-void toggleBookmark(int id);
-void toggleBookmark0(){toggleBookmark(0);}
-void toggleBookmark1(){toggleBookmark(1);}
-void toggleBookmark2(){toggleBookmark(2);}
-void toggleBookmark3(){toggleBookmark(3);}
-void toggleBookmark4(){toggleBookmark(4);}
-void toggleBookmark5(){toggleBookmark(5);}
-void toggleBookmark6(){toggleBookmark(6);}
-void toggleBookmark7(){toggleBookmark(7);}
-void toggleBookmark8(){toggleBookmark(8);}
-void toggleBookmark9(){toggleBookmark(9);}
+void gotoBookmark();
+void toggleBookmark();
 
 void SetMostUsedSymbols();
 

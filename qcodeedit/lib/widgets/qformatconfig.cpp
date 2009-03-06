@@ -49,15 +49,15 @@ QFormatConfig::QFormatConfig(QWidget *w)
 	
 	m_table->verticalHeader()->hide();
 	
-	m_table->horizontalHeaderItem(1)->setIcon(QIcon(":/bold.png"));
-	m_table->horizontalHeaderItem(2)->setIcon(QIcon(":/italic.png"));
-	m_table->horizontalHeaderItem(3)->setIcon(QIcon(":/underline.png"));
-	//m_table->horizontalHeaderItem(4)->setIcon(QIcon(":/overline.png"));
-	m_table->horizontalHeaderItem(5)->setIcon(QIcon(":/strikeout.png"));
-	//m_table->horizontalHeaderItem(6)->setIcon(QIcon(":/waveUnderline.png"));
-	m_table->horizontalHeaderItem(7)->setIcon(QIcon(":/textcolor.png"));
-	m_table->horizontalHeaderItem(8)->setIcon(QIcon(":/fillcolor.png"));
-	m_table->horizontalHeaderItem(9)->setIcon(QIcon(":/strokecolor.png"));
+	m_table->horizontalHeaderItem(1)->setIcon(QIcon(":/images/qcodeedit/bold.png"));
+	m_table->horizontalHeaderItem(2)->setIcon(QIcon(":/images/qcodeedit/italic.png"));
+	m_table->horizontalHeaderItem(3)->setIcon(QIcon(":/images/qcodeedit/underline.png"));
+	m_table->horizontalHeaderItem(4)->setIcon(QIcon(":/images/qcodeedit/overline.png"));
+	m_table->horizontalHeaderItem(5)->setIcon(QIcon(":/images/qcodeedit/strikeout.png"));
+	m_table->horizontalHeaderItem(6)->setIcon(QIcon(":/images/qcodeedit/waveUnderline.png"));
+	m_table->horizontalHeaderItem(7)->setIcon(QIcon(":/images/qcodeedit/textcolor.png"));
+	m_table->horizontalHeaderItem(8)->setIcon(QIcon(":/images/qcodeedit/fillcolor.png"));
+	m_table->horizontalHeaderItem(9)->setIcon(QIcon(":/images/qcodeedit/strokecolor.png"));
 }
 
 /*!

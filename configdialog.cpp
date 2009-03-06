@@ -19,6 +19,9 @@
 #include <QKeySequence>
 #include <QMessageBox>
 #include <QList>
+
+#include "qdocument.h"
+
 ShortcutDelegate::ShortcutDelegate(QObject *parent): treeWidget(0){
 }
 QWidget *ShortcutDelegate::createEditor(QWidget *parent,
@@ -126,23 +129,10 @@ foreach (int mib, QTextCodec::availableMibs())
 	
 	
 connect( ui.pushButtonAspell, SIGNAL(clicked()), this, SLOT(browseAspell()));
-connect( ui.comboBoxStyles, SIGNAL(currentIndexChanged(QString)), this, SLOT(selectStyle(QString)));
-
 connect(ui.lineEditAspellCommand, SIGNAL(textChanged(QString)), this, SLOT(lineEditAspellChanged(QString)));
 
 ui.labelGetDic->setText( tr("Get dictionary at: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>") );
 ui.labelGetDic->setOpenExternalLinks(true);
-
-
-connect( ui.pushButtonColorText, SIGNAL(clicked()), this, SLOT(configureColorText()));
-connect( ui.pushButtonColorDecoration, SIGNAL(clicked()), this, SLOT(configureColorDecoration()));
-
-connect (ui.checkBoxBold,SIGNAL(clicked ()),this,SLOT(textStyleChanged()));
-connect (ui.checkBoxItalic,SIGNAL(clicked ()),this,SLOT(textStyleChanged()));
-connect (ui.checkBoxUnderline,SIGNAL(clicked ()),this,SLOT(textStyleChanged()));
-connect (ui.checkBoxOverline,SIGNAL(clicked ()),this,SLOT(textStyleChanged()));
-connect (ui.checkBoxStrikeout,SIGNAL(clicked ()),this,SLOT(textStyleChanged()));
-connect (ui.checkBoxWaveUnderline,SIGNAL(clicked ()),this,SLOT(textStyleChanged()));
 
 //pagequick
 connect(ui.radioButton6, SIGNAL(toggled(bool)),ui.lineEditUserquick, SLOT(setEnabled(bool)));
@@ -161,6 +151,12 @@ connect( ui.pushButtonPdfviewer, SIGNAL(clicked()), this, SLOT(browsePdfviewer()
 connect( ui.pushButtonMetapost, SIGNAL(clicked()), this, SLOT(browseMetapost()));
 connect( ui.pushButtonGhostscript, SIGNAL(clicked()), this, SLOT(browseGhostscript()));
 
+
+fmConfig=new QFormatConfig(ui.formatConfigBox);
+fmConfig->addScheme("",QDocument::formatFactory());
+//fmConfig->setMaximumSize(490,300);
+//fmConfig->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Ignored);
+(new QBoxLayout(QBoxLayout::TopToBottom, ui.formatConfigBox))->insertWidget(0,fmConfig);
 
 createIcons();
 ui.contentsWidget->setCurrentRow(0);
@@ -221,52 +217,6 @@ if ( !location.isEmpty() )
 //	location="\""+location+"\"";
 	ui.lineEditAspellCommand->setText( location );
 	}
-}
-void ConfigDialog::selectStyle(QString style){
-    QFormat &format=editorFormats[style];
-    ui.pushButtonColorText->setPalette(QPalette(format.foreground));
-    ui.pushButtonColorDecoration->setPalette(QPalette(format.linescolor));
-    ui.checkBoxBold->setChecked(format.weight==QFont::Bold);
-    ui.checkBoxItalic->setChecked(format.italic);
-    ui.checkBoxUnderline->setChecked(format.underline);
-    ui.checkBoxOverline->setChecked(format.overline);
-    ui.checkBoxStrikeout->setChecked(format.strikeout);
-    ui.checkBoxWaveUnderline->setChecked(format.waveUnderline);
-}
-void ConfigDialog::configureColorText()
-{
-QColor color = QColorDialog::getColor(ui.pushButtonColorText->palette().background().color(), this);
-if (color.isValid())
-	{
-	ui.pushButtonColorText->setPalette(QPalette(color));
-	ui.pushButtonColorText->setAutoFillBackground(true);
-	textStyleChanged();
-	}
-}
-
-void ConfigDialog::configureColorDecoration()
-{
-QColor color = QColorDialog::getColor(ui.pushButtonColorDecoration->palette().background().color(), this);
-if (color.isValid())
-	{
-	ui.pushButtonColorDecoration->setPalette(QPalette(color));
-	ui.pushButtonColorDecoration->setAutoFillBackground(true);
-	textStyleChanged();
-	}
-}
-void ConfigDialog::textStyleChanged(){
-    QString style=ui.comboBoxStyles->currentText();
-    QFormat format;
-    format.foreground=ui.pushButtonColorText->palette().color(QPalette::Button);
-    format.linescolor=ui.pushButtonColorDecoration->palette().color(QPalette::Button);
-    if (ui.checkBoxBold->isChecked()) format.weight=QFont::Bold;
-    else format.weight=QFont::Normal;
-    format.italic=ui.checkBoxItalic->isChecked();
-    format.underline=ui.checkBoxUnderline->isChecked();
-    format.overline=ui.checkBoxOverline->isChecked();
-    format.strikeout=ui.checkBoxStrikeout->isChecked();
-    format.waveUnderline=ui.checkBoxWaveUnderline->isChecked();
-    editorFormats[style]=format;
 }
 void ConfigDialog::lineEditAspellChanged(QString newText)
 {
