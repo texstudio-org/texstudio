@@ -4,6 +4,10 @@
 #include <QFileInfo>
 #include <QMessageBox>
 
+QString getCommonEOW(){
+    return "~!@#$%^&*()_+{}|:\"<>?,./;[]-= \n\r`+´";
+} 
+
 QString findResourceFile(QString fileName){
     QStringList searchFiles;
     #if defined( Q_WS_X11 )

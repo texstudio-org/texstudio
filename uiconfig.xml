@@ -40,6 +40,8 @@
     <insert id="list" text="\begin{list}" insert="\begin{list}{%&lt;label%>}{%&lt;spacing%>}%n\item %|%n\end{list}" info="The {label} argument is a piece of text that is inserted in a box to form the label.%nThe {spacing} argument contains commands to change the spacing parameters for the list.%nEach item of the list begins with an \item command."/>
     <insert id="item" text="\item" insert="\item" info="\item[label] Hello" icon=":/images/item.png" shortcut="Ctrl+Shift+I"/>
   </menu>
+  
+  <action id="environmentcompletion" text="\begin{ completion" slot="1InsertEnvironmentCompletion()" shortcut="Ctrl+Alt+Space"/>
 
   <menu id="fontstyles" text="Font St&amp;yles">
     <insert id="emph" text="\emph - Emphasis  [selection]" insert="\emph{%|}" shortcut="Ctrl+Shift+E"/>

@@ -524,10 +524,9 @@ void Texmaker::setupMenus()
 //  User    
     menu=newManagedMenu("main/user",tr("&User"));
     subMenu=newManagedMenu(menu,"tags",tr("User &Tags"));
-    for (int i=0;i<10;i++) {
-        QString temp=QString("1InsertUserTag%1()").arg(i+1);
-        newManagedAction(subMenu, QString("tag%1").arg(i),QString("%1: %2").arg(i+1).arg(UserMenuName[i]), temp.toLocal8Bit().data(), Qt::SHIFT+Qt::Key_F1+i);
-    }
+    for (int i=0;i<10;i++) 
+        newManagedAction(subMenu, QString("tag%1").arg(i),QString("%1: %2").arg(i+1).arg(UserMenuName[i]), SLOT(InsertUserTag()), Qt::SHIFT+Qt::Key_F1+i)
+        ->setData(i);
     subMenu->addSeparator();
     newManagedAction(subMenu, QString("manage"),tr("Edit User &Tags"), SLOT(EditUserMenu()));
 
@@ -2074,6 +2073,19 @@ if ((item) && (!structlist.isEmpty()))
 }
 
 //////////TAGS////////////////
+void Texmaker::InsertEnvironmentCompletion(){
+    if ( !currentEditorView() )	return;
+    QDocumentCursor c = currentEditorView()->editor->cursor();
+    QString eow=getCommonEOW();
+    while (c.columnNumber()>0 && !eow.contains(c.getPreviousChar())) c.movePosition(1,QDocumentCursor::PreviousCharacter);
+    c.insertText("\\begin{");//remaining part is up to the completion engine
+    c=currentEditorView()->editor->cursor();
+    //c.movePosition(QString("\\begin{)").length(), QDocumentCursor::NextCharacter);
+    //currentEditorView()->editor->setCursor(c);
+    if (currentEditorView()->editor->completionEngine())
+        currentEditorView()->editor->completionEngine()->complete();
+    currentEditorView()->editor->setFocus();
+}
 void Texmaker::InsertTag(QString Entity, int dx, int dy)
 {
     if ( !currentEditorView() )	return;
@@ -2784,164 +2796,18 @@ void Texmaker::CleanBib()
     currentEditorView()->cleanBib();
 }
 
-void Texmaker::InsertUserTag1()
+void Texmaker::InsertUserTag()
 {
-if (UserMenuTag[0].left(1)=="%")
-	{
-	QString t=UserMenuTag[0];
-	t=t.remove(0,1);
-	QString s="\\begin{"+t+"}\n\n\\end{"+t+"}\n";
-	InsertTag(s,0,1);
-	}
-else
-	{
-	if (!UserMenuTag[0].contains(QRegExp("\n"))) InsertTag(UserMenuTag[0]+" ",UserMenuTag[0].length()+1,0);
-	else InsertTag(UserMenuTag[0],0,0);
-	}
-}
-
-void Texmaker::InsertUserTag2()
-{
-if (UserMenuTag[1].left(1)=="%")
-	{
-	QString t=UserMenuTag[1];
-	t=t.remove(0,1);
-	QString s="\\begin{"+t+"}\n\n\\end{"+t+"}\n";
-	InsertTag(s,0,1);
-	}
-else
-	{
-	if (!UserMenuTag[1].contains(QRegExp("\n"))) InsertTag(UserMenuTag[1]+" ",UserMenuTag[1].length()+1,0);
-	else InsertTag(UserMenuTag[1],0,0);
-	}
-}
-
-void Texmaker::InsertUserTag3()
-{
-if (UserMenuTag[2].left(1)=="%")
-	{
-	QString t=UserMenuTag[2];
-	t=t.remove(0,1);
-	QString s="\\begin{"+t+"}\n\n\\end{"+t+"}\n";
-	InsertTag(s,0,1);
-	}
-else
-	{
-	if (!UserMenuTag[2].contains(QRegExp("\n"))) InsertTag(UserMenuTag[2]+" ",UserMenuTag[2].length()+1,0);
-	else InsertTag(UserMenuTag[2],0,0);
-	}
-}
-
-void Texmaker::InsertUserTag4()
-{
-if (UserMenuTag[3].left(1)=="%")
-	{
-	QString t=UserMenuTag[3];
-	t=t.remove(0,1);
-	QString s="\\begin{"+t+"}\n\n\\end{"+t+"}\n";
-	InsertTag(s,0,1);
-	}
-else
-	{
-	if (!UserMenuTag[3].contains(QRegExp("\n"))) InsertTag(UserMenuTag[3]+" ",UserMenuTag[3].length()+1,0);
-	else InsertTag(UserMenuTag[3],0,0);
-	}
-}
-
-void Texmaker::InsertUserTag5()
-{
-if (UserMenuTag[4].left(1)=="%")
-	{
-	QString t=UserMenuTag[4];
-	t=t.remove(0,1);
-	QString s="\\begin{"+t+"}\n\n\\end{"+t+"}\n";
-	InsertTag(s,0,1);
-	}
-else
-	{
-	if (!UserMenuTag[4].contains(QRegExp("\n"))) InsertTag(UserMenuTag[4]+" ",UserMenuTag[4].length()+1,0);
-	else InsertTag(UserMenuTag[4],0,0);
-	}
-}
-
-void Texmaker::InsertUserTag6()
-{
-if (UserMenuTag[5].left(1)=="%")
-	{
-	QString t=UserMenuTag[5];
-	t=t.remove(0,1);
-	QString s="\\begin{"+t+"}\n\n\\end{"+t+"}\n";
-	InsertTag(s,0,1);
-	}
-else
-	{
-	if (!UserMenuTag[5].contains(QRegExp("\n"))) InsertTag(UserMenuTag[5]+" ",UserMenuTag[5].length()+1,0);
-	else InsertTag(UserMenuTag[5],0,0);
-	}
-}
-
-void Texmaker::InsertUserTag7()
-{
-if (UserMenuTag[6].left(1)=="%")
-	{
-	QString t=UserMenuTag[6];
-	t=t.remove(0,1);
-	QString s="\\begin{"+t+"}\n\n\\end{"+t+"}\n";
-	InsertTag(s,0,1);
-	}
-else
-	{
-	if (!UserMenuTag[6].contains(QRegExp("\n"))) InsertTag(UserMenuTag[6]+" ",UserMenuTag[6].length()+1,0);
-	else InsertTag(UserMenuTag[6],0,0);
-	}
-}
-
-void Texmaker::InsertUserTag8()
-{
-if (UserMenuTag[7].left(1)=="%")
-	{
-	QString t=UserMenuTag[7];
-	t=t.remove(0,1);
-	QString s="\\begin{"+t+"}\n\n\\end{"+t+"}\n";
-	InsertTag(s,0,1);
-	}
-else
-	{
-	if (!UserMenuTag[7].contains(QRegExp("\n"))) InsertTag(UserMenuTag[7]+" ",UserMenuTag[7].length()+1,0);
-	else InsertTag(UserMenuTag[7],0,0);
-	}
-}
-
-void Texmaker::InsertUserTag9()
-{
-if (UserMenuTag[8].left(1)=="%")
-	{
-	QString t=UserMenuTag[8];
-	t=t.remove(0,1);
-	QString s="\\begin{"+t+"}\n\n\\end{"+t+"}\n";
-	InsertTag(s,0,1);
-	}
-else
-	{
-	if (!UserMenuTag[8].contains(QRegExp("\n"))) InsertTag(UserMenuTag[8]+" ",UserMenuTag[8].length()+1,0);
-	else InsertTag(UserMenuTag[8],0,0);
-	}
-}
-
-void Texmaker::InsertUserTag10()
-{
-if (UserMenuTag[9].left(1)=="%")
-	{
-	QString t=UserMenuTag[9];
-	t=t.remove(0,1);
-	QString s="\\begin{"+t+"}\n\n\\end{"+t+"}\n";
-	InsertTag(s,0,1);
-	}
-else
-	{
-	if (!UserMenuTag[9].contains(QRegExp("\n"))) InsertTag(UserMenuTag[9]+" ",UserMenuTag[9].length()+1,0);
-	else InsertTag(UserMenuTag[9],0,0);
-	}
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    int id = action->data().toInt();
+    if (id<0 || id>=10) return;
+    QString userTag=UserMenuTag[id];
+    if (userTag.left(1)=="%") {
+        userTag=userTag.remove(0,1);
+        QString s="\\begin{"+userTag+"}\n\n\\end{"+userTag+"}\n";
+        InsertTag(s,0,1);
+	} else CompletionWord(userTag).insertAt(currentEditorView()->editor,currentEditorView()->editor->cursor());
 }
 
 void Texmaker::EditUserMenu()
