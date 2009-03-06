@@ -17,6 +17,7 @@
  #include <QItemDelegate>
 #include <QListWidgetItem>
 #include "qformat.h"
+#include "qformatconfig.h"
 
  class ShortcutDelegate : public QItemDelegate
  {
@@ -48,6 +49,7 @@ public:
 Ui::ConfigDialog ui;
 
     QMap<QString,QFormat> editorFormats;
+    QFormatConfig * fmConfig;
 public slots:
     void changePage(QListWidgetItem *current, QListWidgetItem *previous);
 
@@ -55,10 +57,6 @@ private slots:
 void createIcons();
 void lineEditAspellChanged(QString newText);
 void browseAspell();
-void selectStyle(QString style);
-void configureColorText();
-void configureColorDecoration();
-void textStyleChanged();
 void browseLatex();
 void browseDvips();
 void browseBibtex();

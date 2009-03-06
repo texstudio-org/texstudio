@@ -457,28 +457,14 @@ void Texmaker::setupMenus()
     newManagedAction(menu,"jumptonextchange",tr("Jump forward"), SLOT(editJumpToLastChangeForward()), Qt::CTRL+Qt::SHIFT+Qt::Key_H);
 
     subMenu=newManagedMenu(menu, "toggleBookmark",tr("Toggle Bookmark"));
-    newManagedAction(subMenu,"bookmark0",tr("Bookmark 0"),SLOT(toggleBookmark0()),Qt::CTRL+Qt::SHIFT+Qt::Key_0);
-    newManagedAction(subMenu,"bookmark1",tr("Bookmark 1"),SLOT(toggleBookmark1()),Qt::CTRL+Qt::SHIFT+Qt::Key_1);
-    newManagedAction(subMenu,"bookmark2",tr("Bookmark 2"),SLOT(toggleBookmark2()),Qt::CTRL+Qt::SHIFT+Qt::Key_2);
-    newManagedAction(subMenu,"bookmark3",tr("Bookmark 3"),SLOT(toggleBookmark3()),Qt::CTRL+Qt::SHIFT+Qt::Key_3);
-    newManagedAction(subMenu,"bookmark4",tr("Bookmark 4"),SLOT(toggleBookmark4()),Qt::CTRL+Qt::SHIFT+Qt::Key_4);
-    newManagedAction(subMenu,"bookmark5",tr("Bookmark 5"),SLOT(toggleBookmark5()),Qt::CTRL+Qt::SHIFT+Qt::Key_5);
-    newManagedAction(subMenu,"bookmark6",tr("Bookmark 6"),SLOT(toggleBookmark6()),Qt::CTRL+Qt::SHIFT+Qt::Key_6);
-    newManagedAction(subMenu,"bookmark7",tr("Bookmark 7"),SLOT(toggleBookmark7()),Qt::CTRL+Qt::SHIFT+Qt::Key_7);
-    newManagedAction(subMenu,"bookmark8",tr("Bookmark 8"),SLOT(toggleBookmark8()),Qt::CTRL+Qt::SHIFT+Qt::Key_8);
-    newManagedAction(subMenu,"bookmark9",tr("Bookmark 9"),SLOT(toggleBookmark9()),Qt::CTRL+Qt::SHIFT+Qt::Key_9);
+    for (int i=0;i<=9;i++) 
+        newManagedAction(subMenu,QString("bookmark%1").arg(i),tr("Bookmark %1").arg(i),SLOT(toggleBookmark()),Qt::CTRL+Qt::SHIFT+Qt::Key_0+i)
+        ->setData(i);
 
     subMenu=newManagedMenu(menu, "gotoBookmark",tr("Goto Bookmark"));
-    newManagedAction(subMenu,"bookmark0",tr("Bookmark 0"),SLOT(gotoBookmark0()),Qt::CTRL+Qt::Key_0);
-    newManagedAction(subMenu,"bookmark1",tr("Bookmark 1"),SLOT(gotoBookmark1()),Qt::CTRL+Qt::Key_1);
-    newManagedAction(subMenu,"bookmark2",tr("Bookmark 2"),SLOT(gotoBookmark2()),Qt::CTRL+Qt::Key_2);
-    newManagedAction(subMenu,"bookmark3",tr("Bookmark 3"),SLOT(gotoBookmark3()),Qt::CTRL+Qt::Key_3);
-    newManagedAction(subMenu,"bookmark4",tr("Bookmark 4"),SLOT(gotoBookmark4()),Qt::CTRL+Qt::Key_4);
-    newManagedAction(subMenu,"bookmark5",tr("Bookmark 5"),SLOT(gotoBookmark5()),Qt::CTRL+Qt::Key_5);
-    newManagedAction(subMenu,"bookmark6",tr("Bookmark 6"),SLOT(gotoBookmark6()),Qt::CTRL+Qt::Key_6);
-    newManagedAction(subMenu,"bookmark7",tr("Bookmark 7"),SLOT(gotoBookmark7()),Qt::CTRL+Qt::Key_7);
-    newManagedAction(subMenu,"bookmark8",tr("Bookmark 8"),SLOT(gotoBookmark8()),Qt::CTRL+Qt::Key_8);
-    newManagedAction(subMenu,"bookmark9",tr("Bookmark 9"),SLOT(gotoBookmark9()),Qt::CTRL+Qt::Key_9);
+    for (int i=0;i<=9;i++) 
+        newManagedAction(subMenu,QString("bookmark%1").arg(i),tr("Bookmark %1").arg(i),SLOT(gotoBookmark()),Qt::CTRL+Qt::Key_0+i)
+        ->setData(i);
 
     menu->addSeparator();
     newManagedAction(menu,"errorprev",tr("Previous LaTeX Error"),SLOT(PreviousError()),Qt::CTRL+Qt::SHIFT+Qt::Key_Up, ":/images/errorprev.png");
@@ -531,10 +517,9 @@ void Texmaker::setupMenus()
     newManagedAction(subMenu, QString("manage"),tr("Edit User &Tags"), SLOT(EditUserMenu()));
 
     subMenu=newManagedMenu(menu,"commands",tr("User &Commands"));
-    for (int i=0;i<5;i++) {
-        QString temp=QString("1UserTool%1()").arg(i+1);
-        newManagedAction(subMenu, QString("cmd%1").arg(i),QString("%1: %2").arg(i+1).arg(UserToolName[i]), temp.toLocal8Bit().data(), Qt::SHIFT+Qt::ALT+Qt::Key_F1+i);
-    }
+    for (int i=0;i<5;i++) 
+        newManagedAction(subMenu, QString("cmd%1").arg(i),QString("%1: %2").arg(i+1).arg(UserToolName[i]), SLOT(UserTool()), Qt::SHIFT+Qt::ALT+Qt::Key_F1+i)
+        ->setData(i);
     subMenu->addSeparator();
     newManagedAction(subMenu, QString("manage"),tr("Edit User &Commands"), SLOT(EditUserTool()));
 
@@ -730,29 +715,18 @@ QStatusBar * status=statusBar();
 stat1=new QLabel(status);
 stat2=new QLabel( status );
 stat3=new QLabel( status );
-//statCursor=new QLabel( status );
-pb1=new QPushButton(QIcon(":/images/bookmark1.png"),"",status);
-pb2=new QPushButton(QIcon(":/images/bookmark2.png"),"",status);
-pb3=new QPushButton(QIcon(":/images/bookmark3.png"),"",status);
-pb1->setToolTip(tr("Click to jump to the bookmark"));
-pb2->setToolTip(tr("Click to jump to the bookmark"));
-pb3->setToolTip(tr("Click to jump to the bookmark"));
-connect (pb1,SIGNAL(clicked()),this,SLOT(gotoBookmark1()));
-connect (pb2,SIGNAL(clicked()),this,SLOT(gotoBookmark2()));
-connect (pb3,SIGNAL(clicked()),this,SLOT(gotoBookmark3()));
-pb1->setMaximumSize(20,20);
-pb2->setMaximumSize(20,20);
-pb3->setMaximumSize(20,20);
-pb1->setFlat(true);
-pb2->setFlat(true);
-pb3->setFlat(true);
-//status->addPermanentWidget(statCursor,0);
 status->addPermanentWidget(stat3,0);
 status->addPermanentWidget(stat2,0);
 status->addPermanentWidget(stat1,0);
-status->addPermanentWidget(pb1,0);
-status->addPermanentWidget(pb2,0);
-status->addPermanentWidget(pb3,0);
+//statCursor=new QLabel( status );
+for (int i=1;i<=3;i++) {
+    QPushButton* pb=new QPushButton(QIcon(QString(":/images/bookmark%1.png").arg(i)),"",status);
+    pb->setToolTip(tr("Click to jump to the bookmark"));
+    connect (pb,SIGNAL(clicked()),getManagedAction(QString("main/edit/gotoBookmark/bookmark%1").arg(i)),SIGNAL(triggered()));
+    pb->setMaximumSize(20,20);
+    pb->setFlat(true);
+    status->addPermanentWidget(pb,0);
+}
 }
 
 void Texmaker::UpdateCaption()
@@ -1537,36 +1511,14 @@ if (config->value("Files/RestoreSession",false).toBool()) {
 newfile_encoding=QTextCodec::codecForName(config->value("Files/New File Encoding", "utf-8").toString().toAscii().data());
 autodetectLoadedFile=config->value("Files/Auto Detect Encoding Of Loaded Files", "true").toBool();
 
-UserMenuName[0]=config->value("User/Menu1","").toString();
-UserMenuTag[0]=config->value("User/Tag1","").toString();
-UserMenuName[1]=config->value("User/Menu2","").toString();
-UserMenuTag[1]=config->value("User/Tag2","").toString();
-UserMenuName[2]=config->value("User/Menu3","").toString();
-UserMenuTag[2]=config->value("User/Tag3","").toString();
-UserMenuName[3]=config->value("User/Menu4","").toString();
-UserMenuTag[3]=config->value("User/Tag4","").toString();
-UserMenuName[4]=config->value("User/Menu5","").toString();
-UserMenuTag[4]=config->value("User/Tag5","").toString();
-UserMenuName[5]=config->value("User/Menu6","").toString();
-UserMenuTag[5]=config->value("User/Tag6","").toString();
-UserMenuName[6]=config->value("User/Menu7","").toString();
-UserMenuTag[6]=config->value("User/Tag7","").toString();
-UserMenuName[7]=config->value("User/Menu8","").toString();
-UserMenuTag[7]=config->value("User/Tag8","").toString();
-UserMenuName[8]=config->value("User/Menu9","").toString();
-UserMenuTag[8]=config->value("User/Tag9","").toString();
-UserMenuName[9]=config->value("User/Menu10","").toString();
-UserMenuTag[9]=config->value("User/Tag10","").toString();
-UserToolName[0]=config->value("User/ToolName1","").toString();
-UserToolCommand[0]=config->value("User/Tool1","").toString();
-UserToolName[1]=config->value("User/ToolName2","").toString();
-UserToolCommand[1]=config->value("User/Tool2","").toString();
-UserToolName[2]=config->value("User/ToolName3","").toString();
-UserToolCommand[2]=config->value("User/Tool3","").toString();
-UserToolName[3]=config->value("User/ToolName4","").toString();
-UserToolCommand[3]=config->value("User/Tool4","").toString();
-UserToolName[4]=config->value("User/ToolName5","").toString();
-UserToolCommand[4]=config->value("User/Tool5","").toString();
+for (int i=0;i<=9;i++) {
+    UserMenuName[i]=config->value(QString("User/Menu%1").arg(i+1),"").toString();
+    UserMenuTag[i]=config->value(QString("User/Tag%1").arg(i+1),"").toString();
+}
+for (int i=0;i<=4;i++) {
+    UserToolName[i]=config->value(QString("User/ToolName%1").arg(i+1),"").toString();
+    UserToolCommand[i]=config->value(QString("User/Tool%1").arg(i+1),"").toString();
+}
 
 UserKeyReplace.clear();
 UserKeyReplaceAfterWord.clear();
@@ -1734,61 +1686,21 @@ if (ToggleRememberAct->isChecked()) {
 config->setValue("Files/New File Encoding", newfile_encoding?newfile_encoding->name():"??");
 config->setValue("Files/Auto Detect Encoding Of Loaded Files", autodetectLoadedFile);
 
-
-
-config->setValue("User/Menu1",UserMenuName[0]);
-config->setValue("User/Tag1",UserMenuTag[0]);
-config->setValue("User/Menu2",UserMenuName[1]);
-config->setValue("User/Tag2",UserMenuTag[1]);
-config->setValue("User/Menu3",UserMenuName[2]);
-
-
-
-config->setValue("User/Tag3",UserMenuTag[2]);
-config->setValue("User/Menu4",UserMenuName[3]);
-
-config->setValue("User/Tag4",UserMenuTag[3]);
-config->setValue("User/Menu5",UserMenuName[4]);
-config->setValue("User/Tag5",UserMenuTag[4]);
-config->setValue("User/Menu6",UserMenuName[5]);
-
-config->setValue("User/Tag6",UserMenuTag[5]);
-config->setValue("User/Menu7",UserMenuName[6]);
-config->setValue("User/Tag7",UserMenuTag[6]);
-
-config->setValue("User/Menu8",UserMenuName[7]);
-config->setValue("User/Tag8",UserMenuTag[7]);
-config->setValue("User/Menu9",UserMenuName[8]);
-
-config->setValue("User/Tag9",UserMenuTag[8]);
-config->setValue("User/Menu10",UserMenuName[9]);
-
-config->setValue("User/Tag10",UserMenuTag[9]);
-config->setValue("User/ToolName1",UserToolName[0]);
-
-config->setValue("User/Tool1",UserToolCommand[0]);
-config->setValue("User/ToolName2",UserToolName[1]);
-config->setValue("User/Tool2",UserToolCommand[1]);
-
-config->setValue("User/ToolName3",UserToolName[2]);
-config->setValue("User/Tool3",UserToolCommand[2]);
-
-config->setValue("User/ToolName4",UserToolName[3]);
-config->setValue("User/Tool4",UserToolCommand[3]);
-config->setValue("User/ToolName5",UserToolName[4]);
-config->setValue("User/Tool5",UserToolCommand[4]);
+for (int i=0;i<=9;i++) {
+    config->setValue(QString("User/Menu%1").arg(i+1),UserMenuName[i]);
+    config->setValue(QString("User/Tag%1").arg(i+1),UserMenuTag[i]);
+}
+for (int i=0;i<=4;i++) {
+    config->setValue(QString("User/ToolName%1").arg(i+1),UserToolName[i]);
+    config->setValue(QString("User/Tool%1").arg(i+1),UserToolCommand[i]);
+}
 
 int UserKeyReplaceCount = UserKeyReplace.count();
 
 config->setValue("User/KeyReplaceCount",UserKeyReplaceCount);
 for (int i=0;i<UserKeyReplaceCount;i++) {
-  
-  
-  
-  
   config->setValue("User/KeyReplace"+QVariant(i).toString(),UserKeyReplace[i]);
   config->setValue("User/KeyReplaceAfterWord"+QVariant(i).toString(),UserKeyReplaceAfterWord[i]);
-  
   config->setValue("User/KeyReplaceBeforeWord"+QVariant(i).toString(),UserKeyReplaceBeforeWord[i]);
 }
 
@@ -3263,60 +3175,20 @@ void Texmaker::CleanAll()
     }
 }
 
-void Texmaker::UserTool1()
+void Texmaker::UserTool()
 {
-QStringList commandList=UserToolCommand[0].split("|");
-ERRPROCESS=false;
-for (int i = 0; i < commandList.size(); ++i)
-	{
-	if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) RunCommand(commandList.at(i),true,true);
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    if (action->data().toInt()<0 || action->data().toInt()>=5) return;
+    QString cmd=UserToolCommand[action->data().toInt()];
+    if (cmd.isEmpty()) return;
+    QStringList commandList=cmd.split("|");
+    ERRPROCESS=false;
+    for (int i = 0; i < commandList.size(); ++i)
+        if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) RunCommand(commandList.at(i),true,true);
         else return;
-	}
 }
 
-void Texmaker::UserTool2()
-{
-QStringList commandList=UserToolCommand[1].split("|");
-ERRPROCESS=false;
-for (int i = 0; i < commandList.size(); ++i)
-	{
-	if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) RunCommand(commandList.at(i),true,true);
-        else return;
-	}
-}
-
-void Texmaker::UserTool3()
-{
-QStringList commandList=UserToolCommand[2].split("|");
-ERRPROCESS=false;
-for (int i = 0; i < commandList.size(); ++i)
-	{
-	if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) RunCommand(commandList.at(i),true,true);
-        else return;
-	}
-}
-
-void Texmaker::UserTool4()
-{
-QStringList commandList=UserToolCommand[3].split("|");
-ERRPROCESS=false;
-for (int i = 0; i < commandList.size(); ++i)
-	{
-	if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) RunCommand(commandList.at(i),true,true);
-        else return;
-	}
-}
-
-void Texmaker::UserTool5()
-{
-QStringList commandList=UserToolCommand[4].split("|");
-ERRPROCESS=false;
-for (int i = 0; i < commandList.size(); ++i)
-	{
-	if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) RunCommand(commandList.at(i),true,true);
-        else return;
-	}
-}
 
 void Texmaker::EditUserTool()
 {
@@ -3917,10 +3789,6 @@ confDlg->ui.lineEditPdfviewer->setText(viewpdf_command);
 confDlg->ui.lineEditMetapost->setText(metapost_command);
 confDlg->ui.lineEditGhostscript->setText(ghostscript_command);
 
-foreach (QString formatName, m_formats->formats()){
-    confDlg->editorFormats.insert(formatName,m_formats->format(formatName));
-    confDlg->ui.comboBoxStyles->addItem(formatName);
-}
 confDlg->ui.comboBoxFont->lineEdit()->setText(EditorFont.family() );
 if (newfile_encoding)
   confDlg->ui.comboBoxEncoding->setCurrentIndex(confDlg->ui.comboBoxEncoding->findText(newfile_encoding->name(), Qt::MatchExactly));
@@ -3941,10 +3809,6 @@ confDlg->ui.checkBoxState->setChecked(showcursorstate);
 confDlg->ui.checkBoxRealTimeCheck->setChecked(realtimespellchecking);
 
 confDlg->ui.lineEditAspellCommand->setText(spell_dic);
-
-
-confDlg->ui.pushButtonColorDecoration->setAutoFillBackground(true);
-confDlg->ui.pushButtonColorText->setAutoFillBackground(true);
 
 if (quickmode==1) {confDlg->ui.radioButton1->setChecked(true); confDlg->ui.lineEditUserquick->setEnabled(false);}
 if (quickmode==2) {confDlg->ui.radioButton2->setChecked(true); confDlg->ui.lineEditUserquick->setEnabled(false);}
@@ -4013,13 +3877,7 @@ if (confDlg->exec())
     mainSpeller->setActive(realtimespellchecking);
     mainSpeller->loadDictionary(spell_dic,configFileNameBase);
 
-    QMap<QString, QFormat>::const_iterator it = confDlg->editorFormats.constBegin();
-    while (it != confDlg->editorFormats.constEnd()) {
-        m_formats->setFormat(it.key(),it.value());
-        ++it;
-    }    
-    QDocument::setFormatFactory(m_formats);
-
+    confDlg->fmConfig->apply();
 	if (currentEditorView())
 		{
             FilesMap::Iterator it;
@@ -4134,13 +3992,17 @@ else {
 //#endif
 }
 
-void Texmaker::gotoBookmark(int id){
+void Texmaker::gotoBookmark(){
     if ( !currentEditorView() ) return;
-    currentEditorView()->jumpToBookmark(id);
+    QAction *action = qobject_cast<QAction *>(sender());    
+    if (!action) return;
+    currentEditorView()->jumpToBookmark(action->data().toInt());
 }
-void Texmaker::toggleBookmark(int id){
+void Texmaker::toggleBookmark(){
     if ( !currentEditorView() ) return;
-    currentEditorView()->toggleBookmark(id);
+    QAction *action = qobject_cast<QAction*>(sender());    
+    if (!action) return;
+    currentEditorView()->toggleBookmark(action->data().toInt());
 }
 
 //*********************************
