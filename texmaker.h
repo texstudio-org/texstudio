@@ -215,6 +215,7 @@ void UpdateStructure();
 void ShowStructure();
 void ClickedOnStructure(QTreeWidgetItem *item,int);
 
+void InsertEnvironmentCompletion();
 void InsertTag(QString Entity, int dx, int dy);
 void InsertSymbol(QTableWidgetItem *item);
 void InsertMetaPost(QListWidgetItem *item);
@@ -244,16 +245,7 @@ void InsertBib12();
 void InsertBib13();
 void CleanBib();
 
-void InsertUserTag1();
-void InsertUserTag2();
-void InsertUserTag3();
-void InsertUserTag4();
-void InsertUserTag5();
-void InsertUserTag6();
-void InsertUserTag7();
-void InsertUserTag8();
-void InsertUserTag9();
-void InsertUserTag10();
+void InsertUserTag();
 void EditUserMenu();
 
 void SectionCommand(const QString& text);
