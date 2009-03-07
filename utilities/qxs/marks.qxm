@@ -6,32 +6,12 @@
         <rule>#in</rule>
     </mark>
     <mark>
-        <id>breakpoint</id>
-        <color>#FF504A</color>
-        <icon>:/break.png</icon>
-        <user>true</user>
-        <focus>false</focus>
-        <priority>1</priority>
-        <persistency>2</persistency>
-        <rule>#in</rule>
-    </mark>
-    <mark>
-        <id>active-breakpoint</id>
-        <color>#FFFF56</color>
-        <icon>:/debug-resume.png</icon>
+        <id>error</id>
+        <color>red</color>
+        <icon>:/images/error.png</icon>
         <user>false</user>
         <focus>true</focus>
         <priority>2</priority>
-        <persistency>2</persistency>
-        <rule>#in</rule>
-    </mark>
-    <mark>
-        <id>error</id>
-        <color>red</color>
-        <icon>:/error.png</icon>
-        <user>false</user>
-        <focus>true</focus>
-        <priority>1</priority>
         <persistency>0</persistency>
         <rule>#in</rule>
     </mark>
