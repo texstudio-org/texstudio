@@ -43,21 +43,13 @@
 #include <QStyleFactory>
 #include <QStyle>
 #include <QFontDatabase>
-#include <QTextDocument>
-#include <QTextCursor>
-#include <QTextEdit>
 #include <QTextBlock>
 #include <QDebug>
 #include <QDesktopServices>
 #include <QAbstractItemModel>
-#include <QTextCharFormat>
-#include <QTextTableFormat>
-#include <QTextLength>
 #include <QFrame>
 #include <QFontMetrics>
 #include <QCloseEvent>
-#include <QPrinter>
-#include <QPrintDialog>
 
 #include "texmaker.h"
 #include "latexeditorview.h"
@@ -1190,11 +1182,8 @@ void Texmaker::UpdateRecentFile()
 void Texmaker::filePrint()
 {
 if ( !currentEditorView() ) return;
-QTextDocument *document = new QTextDocument(currentEditorView()->editor->text());
-QPrinter printer;
-QPrintDialog *dlg = new QPrintDialog(&printer, this);
-if (dlg->exec() != QDialog::Accepted) return;
-document->print(&printer);
+currentEditorView()->editor->print();
+
 }
 //////////////////////////// EDIT ///////////////////////
 void Texmaker::editUndo()
