@@ -17,8 +17,8 @@
     </mark>
     <mark>
         <id>warning</id>
-        <color>#FF504A</color>
-        <icon>:/break.png</icon>
+        <color>#FFDF00</color>
+        <icon>:/images/warning.png</icon>
         <user>true</user>
         <focus>false</focus>
         <priority>1</priority>

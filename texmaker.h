@@ -156,6 +156,7 @@ bool FINPROCESS, ERRPROCESS;
 QStringList errorFileList, errorTypeList, errorLineList, errorMessageList, errorLogList;
 int errorIndex;
 bool latexErrorsFound;
+bool latexWarningsFound;
 
 //X11
 //#if defined( Q_WS_X11 )
@@ -292,8 +293,11 @@ void ClickedOnLogLine(QTableWidgetItem *item);
 void OutputViewVisibilityChanged(bool visible);
 void LatexError();
 void DisplayLatexError();
+void ErrorLogSelectOldAndNewLine(int newLine);
 void NextError();
 void PreviousError();
+void NextWarning();
+void PreviousWarning();
 bool NoLatexErrors();
 bool LogExists();
 

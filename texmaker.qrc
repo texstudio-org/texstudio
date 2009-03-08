@@ -27,7 +27,10 @@
 	<file>images/qcodeedit/strokecolor.png</file>
   
 
+	<file>images/warning.png</file>
 	<file>images/error.png</file>
+
+
   <!--bookmarks-->
 	<file>images/lbook0.png</file>
 	<file>images/lbook1.png</file>
