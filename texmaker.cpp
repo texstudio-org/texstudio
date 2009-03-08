@@ -220,7 +220,6 @@ errorTypeList.clear();
 errorLineList.clear();
 errorMessageList.clear();
 errorLogList.clear();
-onlyErrorList.clear();
 errorIndex=-1;
 
 
@@ -3394,7 +3393,6 @@ errorTypeList.clear();
 errorLineList.clear();
 errorMessageList.clear();
 errorLogList.clear();
-onlyErrorList.clear();
 errorIndex=-1;
 
 QString mot,suivant,lettre,expression,warning,latexerror,badbox;
@@ -3578,6 +3576,12 @@ DisplayLatexError();
 
 void Texmaker::DisplayLatexError()
 {
+    int errorMarkID = QLineMarksInfoCenter::instance()->markTypeId("error");
+    for (int i=0;i<EditorView->count();i++) { 
+        LatexEditorView *ed=qobject_cast<LatexEditorView *>(EditorView->widget(i));
+        if (ed) ed->editor->document()->removeMarks(errorMarkID);
+    }
+    latexErrorsFound=false;
 OutputTableWidget->clearContents();
 QFontMetrics fm(qApp->font());
 int rowheight=fm.lineSpacing()+4;
@@ -3590,6 +3594,11 @@ if (errorFileList.count()>0)
 		{
 		if (errorTypeList.at(i)=="Error")
 			{
+			    latexErrorsFound=true;
+			    for (FilesMap::iterator it=filenames.begin(); it!=filenames.end(); ++it)
+                    if (it.value().endsWith(errorFileList.at(i))) 
+                        it.key()->editor->document()->line(errorLineList.at(i).toInt()-1).addMark(errorMarkID);
+			    
 			QTableWidgetItem *ItemFile = new QTableWidgetItem(errorFileList.at(i));
 			ItemFile->setData(Qt::UserRole,errorLogList.at(i));
 			ItemFile->setForeground(QBrush(QColor(Qt::red)));
@@ -3613,7 +3622,6 @@ if (errorFileList.count()>0)
 			ItemMessage->setForeground(QBrush(QColor(Qt::red)));
 			OutputTableWidget->setItem(row,4, ItemMessage);
 
-			onlyErrorList.append(i);
 			row++;
 			}
 		}
@@ -3668,7 +3676,7 @@ if (errorTypeList.contains("Error")) {
 
 bool Texmaker::NoLatexErrors()
 {
-return onlyErrorList.isEmpty();
+return !latexErrorsFound;
 }
 
 void Texmaker::NextError()
@@ -3676,8 +3684,11 @@ void Texmaker::NextError()
 int line=0;
 QTableWidgetItem *Item;
 if (!logpresent) {ViewLog();}
-if (logpresent && !onlyErrorList.isEmpty())
-  	{
+if (logpresent && latexErrorsFound) {
+    int errorLine = currentEditorView()->editor->document()->findNextMark(QLineMarksInfoCenter::instance()->markTypeId("error"), currentEditorView()->editor->cursor().lineNumber()+1);
+    if (errorLine>0) currentEditorView()->editor->setCursorPosition(errorLine, 0);
+}
+  	/*{
 	if (errorIndex<onlyErrorList.size()-1) errorIndex=errorIndex+1;
 	if (errorIndex<0) errorIndex=0;
 	if (errorIndex>=onlyErrorList.count()) errorIndex=onlyErrorList.count()-1;
@@ -3696,8 +3707,8 @@ if (logpresent && !onlyErrorList.isEmpty())
 		int logline=errorLogList.at(onlyErrorList.at(errorIndex)).toInt()-1;
 		OutputTextEdit->setCursorPosition(logline , 0);
 		}
-  	}
-if (logpresent && onlyErrorList.isEmpty())
+  	}*/
+if (logpresent && !latexErrorsFound)
 	{
 	QMessageBox::information( this,"TexMakerX",tr("No LaTeX errors detected !"));
 	OutputTextEdit->setCursorPosition(0 , 0);
@@ -3709,7 +3720,11 @@ void Texmaker::PreviousError()
 int line=0;
 QTableWidgetItem *Item;
 if (!logpresent) {ViewLog();}
-
+if (logpresent && latexErrorsFound) {
+    int errorLine = currentEditorView()->editor->document()->findPreviousMark(QLineMarksInfoCenter::instance()->markTypeId("error"), currentEditorView()->editor->cursor().lineNumber()-1);
+    if (errorLine>0) currentEditorView()->editor->setCursorPosition(errorLine, 0);
+}
+/*
 if (logpresent && !onlyErrorList.isEmpty())
   	{
 	if (errorIndex>0) errorIndex=errorIndex-1;
@@ -3730,8 +3745,8 @@ if (logpresent && !onlyErrorList.isEmpty())
 		int logline=errorLogList.at(onlyErrorList.at(errorIndex)).toInt()-1;
 		OutputTextEdit->setCursorPosition(logline , 0);
 		}
-  	}
-if (logpresent && onlyErrorList.isEmpty())
+  	*/
+if (logpresent && NoLatexErrors())
 	{
 	QMessageBox::information( this,"TexMakerX",tr("No LaTeX errors detected !"));
 	OutputTextEdit->setCursorPosition(0 , 0);

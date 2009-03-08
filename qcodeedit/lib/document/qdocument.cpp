@@ -1406,6 +1406,10 @@ int QDocument::findPreviousMark(int id, int from, int until) const
 	return m_impl ? m_impl->findPreviousMark(id, from, until) : -1;
 }
 
+void QDocument::removeMarks(int id){
+    if (m_impl) m_impl->removeMarks(id);
+}
+
 /////////////////////////
 //	QDocumentLineHandle
 /////////////////////////
@@ -5058,8 +5062,11 @@ QDocumentPrivate::~QDocumentPrivate()
 
 int QDocumentPrivate::findNextMark(int id, int from, int until)
 {
-	if ( from < 0 )
+	if ( from < 0 ) {
 		from += m_lines.count();
+		if (from < 0) from=m_lines.count()-1;
+	} else if (from >= m_lines.count()) 
+        from=m_lines.count()-1;
 		
 	QHash<QDocumentLineHandle*, QList<int> >::const_iterator e = m_marks.constEnd();
 	
@@ -5100,8 +5107,11 @@ int QDocumentPrivate::findNextMark(int id, int from, int until)
 
 int QDocumentPrivate::findPreviousMark(int id, int from, int until)
 {
-	if ( from < 0 )
+	if ( from < 0 ) {
 		from += m_lines.count();
+		if (from < 0) from = m_lines.count() - 1;
+	} else if (from >= m_lines.count()) 
+        from = m_lines.count()-1;
 		
 	if ( until < 0 )
 	{
@@ -5143,6 +5153,29 @@ int QDocumentPrivate::findPreviousMark(int id, int from, int until)
 	}
 	
 	return -1;
+}
+
+void QDocumentPrivate::removeMarks(int id){
+    QList<QDocumentLineHandle*> changed;
+    
+    QHash<QDocumentLineHandle*, QList<int> >::iterator 
+        it = m_marks.begin(),
+        end = m_marks.end();
+    //change all silently
+    m_maxMarksPerLine = 0;
+    while (it!=end) {
+        int n = it->removeAll(id);
+        if (n) changed << it.key();
+        if ( it->isEmpty() ) it=m_marks.erase(it);
+        else {
+            if (it->count() > m_maxMarksPerLine) m_maxMarksPerLine = it->count();
+            ++it;
+        }
+    }
+	
+	//then notify
+	for (int i=0; i<changed.size();i++)
+        emitMarkChanged(changed[i], id, false);
 }
 
 void QDocumentPrivate::execute(QDocumentCommand *cmd)

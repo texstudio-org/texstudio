@@ -106,6 +106,8 @@ class QCE_EXPORT QDocumentPrivate
 		
 		int findNextMark(int id, int from = 0, int until = -1);
 		int findPreviousMark(int id, int from = -1, int until = 0);
+		void removeMarks(int id);
+		
 		
 		int getNextGroupId();
 		void releaseGroupId(int groupId);

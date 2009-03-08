@@ -154,8 +154,8 @@ QProcess *proc;
 bool FINPROCESS, ERRPROCESS;
 //latex errors
 QStringList errorFileList, errorTypeList, errorLineList, errorMessageList, errorLogList;
-QList<int> onlyErrorList;
 int errorIndex;
+bool latexErrorsFound;
 
 //X11
 //#if defined( Q_WS_X11 )

@@ -12,7 +12,7 @@
         <user>false</user>
         <focus>true</focus>
         <priority>2</priority>
-        <persistency>0</persistency>
+        <persistency>2</persistency>
         <rule>#in</rule>
     </mark>
     <mark>
