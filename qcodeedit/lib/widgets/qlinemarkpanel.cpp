@@ -84,7 +84,7 @@ void QLineMarkPanel::paint(QPainter *p, QEditor *e)
 	m_lines.clear();
 	QDocument *d = e->document();
 	
-	int maxMarksPerLine = d->maxMarksPerLine();
+	int maxMarksPerLine = 1;//d->maxMarksPerLine();
 	
 	setFixedWidth(maxMarksPerLine ? maxMarksPerLine * 16 + 2 : 18);
 	
@@ -140,7 +140,7 @@ void QLineMarkPanel::paint(QPainter *p, QEditor *e)
 				
 				p->drawPixmap(x, y, w, h, pix);
 				
-				count += 16;
+				//count += 16;
 			}
 		}
 
