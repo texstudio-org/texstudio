@@ -72,6 +72,8 @@ public:
     QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanel, *lineChangePanel, *statusPanel, *searchReplacePanel;
     QLineMarkPanel* lineMarkPanel;
     QLineNumberPanel* lineNumberPanel;
+
+    QHash<QDocumentLineHandle*, int> oldLineNumbers;
 private:
     friend class DefaultInputBinding;
     static int bookMarkId(int bookmarkNumber);

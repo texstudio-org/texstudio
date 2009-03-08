@@ -458,8 +458,10 @@ void Texmaker::setupMenus()
         ->setData(i);
 
     menu->addSeparator();
-    newManagedAction(menu,"errorprev",tr("Previous LaTeX Error"),SLOT(PreviousError()),Qt::CTRL+Qt::SHIFT+Qt::Key_Up, ":/images/errorprev.png");
-    newManagedAction(menu,"errornext",tr("Next LaTeX Error"),SLOT(NextError()),Qt::CTRL+Qt::SHIFT+Qt::Key_Down, ":/images/errornext.png");
+    newManagedAction(menu,"errorprev",tr("Previous LaTeX error"),SLOT(PreviousError()),Qt::CTRL+Qt::SHIFT+Qt::Key_Up, ":/images/errorprev.png");
+    newManagedAction(menu,"errornext",tr("Next LaTeX error"),SLOT(NextError()),Qt::CTRL+Qt::SHIFT+Qt::Key_Down, ":/images/errornext.png");
+    newManagedAction(menu,"errorprev",tr("Previous LaTeX warning"),SLOT(PreviousWarning()),Qt::CTRL+Qt::ALT+Qt::Key_Up);//, ":/images/errorprev.png");
+    newManagedAction(menu,"errornext",tr("Next LaTeX warning"),SLOT(NextWarning()),Qt::CTRL+Qt::ALT+Qt::Key_Down);//, ":/images/errornext.png");
 
     menu->addSeparator();
     newManagedAction(menu,"spelling",tr("Check Spelling"),SLOT(editSpell()),Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
@@ -3311,7 +3313,7 @@ if (fic.exists() && fic.isReadable() )
 		}
 		f.close();
 	LatexError();
-	logpresent=true;
+	
 	}
 else {QMessageBox::warning( this,tr("Error"),tr("Log File not found !"));}
 }
@@ -3577,88 +3579,69 @@ DisplayLatexError();
 void Texmaker::DisplayLatexError()
 {
     int errorMarkID = QLineMarksInfoCenter::instance()->markTypeId("error");
+    int warningMarkID = QLineMarksInfoCenter::instance()->markTypeId("warning");
     for (int i=0;i<EditorView->count();i++) { 
         LatexEditorView *ed=qobject_cast<LatexEditorView *>(EditorView->widget(i));
-        if (ed) ed->editor->document()->removeMarks(errorMarkID);
+        if (ed) {
+            ed->editor->document()->removeMarks(errorMarkID);
+            ed->editor->document()->removeMarks(warningMarkID);
+            ed->oldLineNumbers.clear();
+        }
     }
     latexErrorsFound=false;
 OutputTableWidget->clearContents();
 QFontMetrics fm(qApp->font());
 int rowheight=fm.lineSpacing()+4;
 int maxwidth=0;
-int row=0;
 if (errorFileList.count()>0)
 	{
 	OutputTableWidget->setRowCount(errorFileList.count());
-	for ( int i = 0; i <errorFileList.count(); i++ )
-		{
-		if (errorTypeList.at(i)=="Error")
-			{
-			    latexErrorsFound=true;
-			    for (FilesMap::iterator it=filenames.begin(); it!=filenames.end(); ++it)
-                    if (it.value().endsWith(errorFileList.at(i))) 
-                        it.key()->editor->document()->line(errorLineList.at(i).toInt()-1).addMark(errorMarkID);
-			    
-			QTableWidgetItem *ItemFile = new QTableWidgetItem(errorFileList.at(i));
-			ItemFile->setData(Qt::UserRole,errorLogList.at(i));
-			ItemFile->setForeground(QBrush(QColor(Qt::red)));
-			ItemFile->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-			OutputTableWidget->setItem(row,1, ItemFile);
-			QTableWidgetItem *ItemType = new QTableWidgetItem(errorTypeList.at(i));
-			ItemType->setData(Qt::UserRole,errorLogList.at(i));
-			ItemType->setForeground(QBrush(QColor(Qt::red)));
-			ItemType->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-			OutputTableWidget->setItem(row,2, ItemType);
-			QTableWidgetItem *ItemLine = new QTableWidgetItem("line "+errorLineList.at(i));
-			ItemLine->setData(Qt::UserRole,errorLogList.at(i));
-			ItemLine->setForeground(QBrush(QColor(Qt::red)));
-			ItemLine->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-			ItemLine->setToolTip(tr("Click to jump to the line"));
-			OutputTableWidget->setItem(row,3, ItemLine);
-			QTableWidgetItem *ItemMessage = new QTableWidgetItem(errorMessageList.at(i));
-			if (fm.width(errorMessageList.at(i))>maxwidth) maxwidth=fm.width(errorMessageList.at(i));
-			ItemMessage->setData(Qt::UserRole,errorLogList.at(i));
-			ItemMessage->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-			ItemMessage->setForeground(QBrush(QColor(Qt::red)));
-			OutputTableWidget->setItem(row,4, ItemMessage);
+	QList<int> sortedPos;
+	for ( int i = 0; i <errorFileList.count(); i++ ) 
+        if (errorTypeList.at(i)=="Error") sortedPos<<i;
+    latexErrorsFound=!sortedPos.empty();
+    latexWarningsFound=false;
+	for ( int i = 0; i <errorFileList.count(); i++ ) 
+        if (errorTypeList.at(i)!="Error") {
+            if (errorTypeList.at(i)=="Warning") latexWarningsFound=true;
+            sortedPos<<i;
+        }
+    QList <QTableWidgetItem *> items ;
+	for ( int i = 0; i <sortedPos.count(); i++ ) {
+	    int curPos=sortedPos[i];
+	    QString curFileName=errorFileList.at(curPos);
+	    QString curLine=errorLineList.at(curPos);
+	    QString curType=errorTypeList.at(curPos);
+        for (FilesMap::iterator it=filenames.begin(); it!=filenames.end(); ++it)
+            if (it.value().endsWith(curFileName)) {
+                QDocumentLine l=it.key()->editor->document()->line(curLine.toInt()-1);
+                if (curType=="Error") l.addMark(errorMarkID);
+                else if (curType=="Warning") l.addMark(warningMarkID);
+                it.key()->oldLineNumbers[l.handle()]=curLine.toInt()-1;
+                break;
+            }
 
-			row++;
-			}
-		}
-	for ( int i = 0; i <errorFileList.count(); i++ )
-		{
-		if (errorTypeList.at(i)!="Error")
-			{
-			QTableWidgetItem *ItemFile = new QTableWidgetItem(errorFileList.at(i));
-			ItemFile->setData(Qt::UserRole,errorLogList.at(i));
-			ItemFile->setForeground(QBrush(QColor(Qt::blue)));
-			ItemFile->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-			OutputTableWidget->setItem(row,1, ItemFile);
-			QTableWidgetItem *ItemType = new QTableWidgetItem(errorTypeList.at(i));
-			ItemType->setData(Qt::UserRole,errorLogList.at(i));
-			ItemType->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-			ItemType->setForeground(QBrush(QColor(Qt::blue)));
-			OutputTableWidget->setItem(row,2, ItemType);
-			QTableWidgetItem *ItemLine = new QTableWidgetItem("line "+errorLineList.at(i));
-			ItemLine->setData(Qt::UserRole,errorLogList.at(i));
-			ItemLine->setForeground(QBrush(QColor(Qt::blue)));
-			ItemLine->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-			ItemLine->setToolTip(tr("Click to jump to the line"));
-			OutputTableWidget->setItem(row,3, ItemLine);
-			QTableWidgetItem *ItemMessage = new QTableWidgetItem(errorMessageList.at(i));
-			if (fm.width(errorMessageList.at(i))>maxwidth) maxwidth=fm.width(errorMessageList.at(i));
-			ItemMessage->setData(Qt::UserRole,errorLogList.at(i));
-			ItemMessage->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-			ItemMessage->setForeground(QBrush(QColor(Qt::blue)));
-			OutputTableWidget->setItem(row,4, ItemMessage);
-			row++;
-			}
-		}
+            items.clear();
+            items << new QTableWidgetItem(curFileName)
+                  << new QTableWidgetItem(curType)
+                  << new QTableWidgetItem("line "+curLine)
+                  << new QTableWidgetItem(errorMessageList.at(curPos));
+            for (int j=0;j<items.count();j++) {
+                QTableWidgetItem * item = items[j];
+                item->setData(Qt::UserRole,errorLogList.at(curPos));
+                item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+                item->setToolTip(tr("Click to jump to the line"));
+                if (curType=="Error") item->setForeground(QBrush(QColor(Qt::red)));
+                else item->setForeground(QBrush(QColor(Qt::blue)));
+                OutputTableWidget->setItem(i,j+1, item);
+            }
+			if (fm.width(errorMessageList.at(curPos))>maxwidth) maxwidth=fm.width(errorMessageList.at(curPos));
+	}
+
+
 	OutputTableWidget->setColumnWidth(4,maxwidth);
 	for ( int i = 0; i<OutputTableWidget->rowCount(); ++i )
-		{
 		OutputTableWidget->setRowHeight(i,rowheight);
-		}
 	}
 else
 	{
@@ -3668,9 +3651,10 @@ else
 	}
 OutputTableWidget->show();
 OutputTextEdit->setCursorPosition(0 , 0);
-if (errorTypeList.contains("Error")) {
+logpresent=true;
+if (latexErrorsFound) {
      OutputView->show();    //show log when error
-     OutputTableWidget->setFocus();
+     NextError();
 }
 }
 
@@ -3679,80 +3663,79 @@ bool Texmaker::NoLatexErrors()
 return !latexErrorsFound;
 }
 
+void Texmaker::ErrorLogSelectOldAndNewLine(int newLine){
+    if (newLine<0) return;
+    currentEditorView()->editor->setCursorPosition(newLine, 0);
+    QDocumentLineHandle* lh=currentEditorView()->editor->document()->line(newLine).handle();
+    int oldLine=currentEditorView()->oldLineNumbers.value(lh);
+    QString lineName="line "+QString::number(oldLine);
+    for ( int i = 0; i <OutputTableWidget->rowCount (); i++ )
+        if (OutputTableWidget->item(i,0) && OutputTableWidget->item(i,0)->text()==">") {
+             OutputTableWidget->setItem(i,0, new QTableWidgetItem(" "));
+             break;
+        }
+    for ( int i = 0; i <OutputTableWidget->rowCount (); i++ )
+        if (OutputTableWidget->item(i,3)->text()==lineName) {
+            QTableWidgetItem * twi =new QTableWidgetItem(">");
+            OutputTableWidget->setItem(i,0, twi);
+            OutputTableWidget->scrollToItem(twi,QAbstractItemView::PositionAtCenter);
+            int logline=OutputTableWidget->item(i,3)->data(Qt::UserRole).toInt()-1;
+            OutputTextEdit->setCursorPosition(logline , 0);
+            break;
+        }
+}
+
 void Texmaker::NextError()
 {
-int line=0;
-QTableWidgetItem *Item;
-if (!logpresent) {ViewLog();}
-if (logpresent && latexErrorsFound) {
-    int errorLine = currentEditorView()->editor->document()->findNextMark(QLineMarksInfoCenter::instance()->markTypeId("error"), currentEditorView()->editor->cursor().lineNumber()+1);
-    if (errorLine>0) currentEditorView()->editor->setCursorPosition(errorLine, 0);
-}
-  	/*{
-	if (errorIndex<onlyErrorList.size()-1) errorIndex=errorIndex+1;
-	if (errorIndex<0) errorIndex=0;
-	if (errorIndex>=onlyErrorList.count()) errorIndex=onlyErrorList.count()-1;
-	if (singlemode)// && onlyErrorList.at(errorIndex)!=0)
-		{
-		line=errorLineList.at(onlyErrorList.at(errorIndex)).toInt();
-		for ( int i = 0; i <errorFileList.count(); i++ )
-			{
-			Item = new QTableWidgetItem(" ");
-			OutputTableWidget->setItem(i,0, Item);
-			}
-		Item = new QTableWidgetItem(">");
-		OutputTableWidget->setItem(errorIndex,0, Item);
-		OutputTableWidget->scrollToItem(Item,QAbstractItemView::PositionAtCenter);
-		gotoLine(line-1);
-		int logline=errorLogList.at(onlyErrorList.at(errorIndex)).toInt()-1;
-		OutputTextEdit->setCursorPosition(logline , 0);
-		}
-  	}*/
-if (logpresent && !latexErrorsFound)
-	{
-	QMessageBox::information( this,"TexMakerX",tr("No LaTeX errors detected !"));
-	OutputTextEdit->setCursorPosition(0 , 0);
-	}
+    if (!logpresent) {ViewLog();}
+    if (logpresent)
+        if (latexErrorsFound) 
+            ErrorLogSelectOldAndNewLine(currentEditorView()->editor->document()->findNextMark(QLineMarksInfoCenter::instance()->markTypeId("error"), 
+                                        currentEditorView()->editor->cursor().lineNumber()+1));
+        else {
+        QMessageBox::information( this,"TexMakerX",tr("No LaTeX errors detected !"));
+        OutputTextEdit->setCursorPosition(0 , 0);
+        }
 }
 
 void Texmaker::PreviousError()
 {
-int line=0;
-QTableWidgetItem *Item;
-if (!logpresent) {ViewLog();}
-if (logpresent && latexErrorsFound) {
-    int errorLine = currentEditorView()->editor->document()->findPreviousMark(QLineMarksInfoCenter::instance()->markTypeId("error"), currentEditorView()->editor->cursor().lineNumber()-1);
-    if (errorLine>0) currentEditorView()->editor->setCursorPosition(errorLine, 0);
-}
-/*
-if (logpresent && !onlyErrorList.isEmpty())
-  	{
-	if (errorIndex>0) errorIndex=errorIndex-1;
-	if (errorIndex<0) errorIndex=0;
-	if (errorIndex>=onlyErrorList.count()) errorIndex=onlyErrorList.count()-1;
-	if (singlemode)// && onlyErrorList.at(errorIndex)!=0)
-		{
-		line=errorLineList.at(onlyErrorList.at(errorIndex)).toInt();
-		for ( int i = 0; i <errorFileList.count(); i++ )
-			{
-			Item = new QTableWidgetItem(" ");
-			OutputTableWidget->setItem(i,0, Item);
-			}
-		Item = new QTableWidgetItem(">");
-		OutputTableWidget->setItem(errorIndex,0, Item);
-		OutputTableWidget->scrollToItem(Item,QAbstractItemView::PositionAtCenter);
-		gotoLine(line-1);
-		int logline=errorLogList.at(onlyErrorList.at(errorIndex)).toInt()-1;
-		OutputTextEdit->setCursorPosition(logline , 0);
-		}
-  	*/
-if (logpresent && NoLatexErrors())
-	{
-	QMessageBox::information( this,"TexMakerX",tr("No LaTeX errors detected !"));
-	OutputTextEdit->setCursorPosition(0 , 0);
-	}
+    if (!logpresent) {ViewLog();}
+    if (logpresent) 
+        if (latexErrorsFound) 
+            ErrorLogSelectOldAndNewLine(currentEditorView()->editor->document()->findPreviousMark(QLineMarksInfoCenter::instance()->markTypeId("error"), 
+                                        currentEditorView()->editor->cursor().lineNumber()-1));
+        else {
+            QMessageBox::information( this,"TexMakerX",tr("No LaTeX errors detected !"));
+            OutputTextEdit->setCursorPosition(0 , 0);
+        }
 }
 
+void Texmaker::NextWarning()
+{
+    if (!logpresent) {ViewLog();}
+    if (logpresent)
+        if (latexWarningsFound) 
+            ErrorLogSelectOldAndNewLine(currentEditorView()->editor->document()->findNextMark(QLineMarksInfoCenter::instance()->markTypeId("warning"), 
+                                        currentEditorView()->editor->cursor().lineNumber()+1));
+        else {
+        QMessageBox::information( this,"TexMakerX",tr("No LaTeX warnings detected !"));
+        OutputTextEdit->setCursorPosition(0 , 0);
+        }
+}
+
+void Texmaker::PreviousWarning()
+{
+    if (!logpresent) {ViewLog();}
+    if (logpresent) 
+        if (latexWarningsFound) 
+            ErrorLogSelectOldAndNewLine(currentEditorView()->editor->document()->findPreviousMark(QLineMarksInfoCenter::instance()->markTypeId("warning"), 
+                                        currentEditorView()->editor->cursor().lineNumber()-1));
+        else {
+            QMessageBox::information( this,"TexMakerX",tr("No LaTeX warnings detected !"));
+            OutputTextEdit->setCursorPosition(0 , 0);
+        }
+}
 //////////////// HELP /////////////////
 void Texmaker::LatexHelp()
 {

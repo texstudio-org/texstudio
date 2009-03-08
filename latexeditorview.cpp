@@ -328,6 +328,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count){
     }
 }
 void LatexEditorView::lineDeleted(QDocumentLineHandle* l ){
+    oldLineNumbers.remove(l);
+    
     QPair<int, int> p;
     //QMessageBox::information(0,QString::number(nr),"",0);
     for (int i=0;i<changePositions.size();i++) 
