@@ -90,8 +90,6 @@ void DSingleApplication::init() {
     ++port;
   } // while
 
-  checker.endChecks();
-  
   port = ports.firstFreePort();
 
   // other instance is not running in the range and there's available port
@@ -141,10 +139,11 @@ DPortChecker::DPortChecker( const QString &id, int port, QObject *parent )
   this->port = port;
   app_id = id;
   result = DPortChecker::free;
+  tcpSocket = new QTcpSocket();
 }
 
 DPortChecker::~DPortChecker() {
- // don't delete socket here, leads to crash since it must be deleted in the thread which created it
+  if (tcpSocket != NULL) delete tcpSocket;
 }
 
 DPortChecker::PortStatus DPortChecker::status() const {
@@ -156,20 +155,10 @@ void DPortChecker::check( int port ) {
   start();
 }
 
-void DPortChecker::endChecks(){
-  port=-2;
-  start();
-}
-
 void DPortChecker::run() {
-  if (port==-2) {
-    if (tcpSocket != NULL) delete tcpSocket;
-    return;
-  }
   result = DPortChecker::free;
 
-  if (tcpSocket == NULL) 
-    tcpSocket = new QTcpSocket();
+  if (tcpSocket == NULL) return;
 
   tcpSocket->connectToHost( QHostAddress(QHostAddress::LocalHost), port );
   if (!tcpSocket->waitForConnected(d_timeout_try_connect)) { tcpSocket->abort(); return; }
@@ -203,7 +192,7 @@ QTcpSocket* DPortChecker::transferSocketOwnership() {
 //******************************************************************************
 
 DTalker::DTalker(const QString &id, QObject *parent)
-: app_id(id), QTcpServer(parent)
+: QTcpServer(parent), app_id(id)
 {
 
 }
@@ -227,7 +216,7 @@ void DTalker::onClientMessage( const QString & message ) {
 //******************************************************************************
 
 DListner::DListner( const QString &id, int socketDescriptor, QObject *parent ) 
-  : socketDescriptor(socketDescriptor), app_id(id), QThread(parent)
+  : QThread(parent),  socketDescriptor(socketDescriptor), app_id(id)
 {
   blockSize = 0;
 }
