@@ -220,7 +220,6 @@ errorTypeList.clear();
 errorLineList.clear();
 errorMessageList.clear();
 errorLogList.clear();
-errorIndex=-1;
 
 
 // TAB WIDGET EDITEUR
@@ -3373,10 +3372,12 @@ if (Start!=-1)
 	
 int l=line.toInt(&ok,10)-1;
 if (ok)
-	{
-	currentEditorView()->editor->setCursorPosition(l,0);
-	currentEditorView()->editor->setFocus();
-	}
+    for (QHash<QDocumentLineHandle *, int>::iterator it=currentEditorView()->oldLineNumbers.begin(); 
+        it!=currentEditorView()->oldLineNumbers.end();  ++it) 
+        if (it.value()==l) {
+            ErrorLogSelectOldAndNewLine(QDocumentLine(it.key()).lineNumber());
+            return;
+        }
 QString ll=item->data(Qt::UserRole).toString();
 int logline=ll.toInt(&ok,10)-1;
 OutputTextEdit->setCursorPosition(logline , 0);
@@ -3395,7 +3396,6 @@ errorTypeList.clear();
 errorLineList.clear();
 errorMessageList.clear();
 errorLogList.clear();
-errorIndex=-1;
 
 QString mot,suivant,lettre,expression,warning,latexerror,badbox;
 QStringList pile,filestack;
@@ -3668,7 +3668,7 @@ void Texmaker::ErrorLogSelectOldAndNewLine(int newLine){
     currentEditorView()->editor->setCursorPosition(newLine, 0);
     QDocumentLineHandle* lh=currentEditorView()->editor->document()->line(newLine).handle();
     int oldLine=currentEditorView()->oldLineNumbers.value(lh);
-    QString lineName="line "+QString::number(oldLine);
+    QString lineName="line "+QString::number(oldLine+1);
     for ( int i = 0; i <OutputTableWidget->rowCount (); i++ )
         if (OutputTableWidget->item(i,0) && OutputTableWidget->item(i,0)->text()==">") {
              OutputTableWidget->setItem(i,0, new QTableWidgetItem(" "));
@@ -3683,6 +3683,7 @@ void Texmaker::ErrorLogSelectOldAndNewLine(int newLine){
             OutputTextEdit->setCursorPosition(logline , 0);
             break;
         }
+    currentEditorView()->setFocus();
 }
 
 void Texmaker::NextError()

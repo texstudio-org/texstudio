@@ -153,8 +153,15 @@ SpellerDialog *spellDlg;
 QProcess *proc;
 bool FINPROCESS, ERRPROCESS;
 //latex errors
+/*TODO: 
+struct LatexLogEntry {
+    enum Type {LT_ERROR, LT_WARNING, LT_BADBOX};
+    QString file;
+    int oldline, logline;
+    QString message;
+    QDocumentLineHandle* realLine;
+};*/
 QStringList errorFileList, errorTypeList, errorLineList, errorMessageList, errorLogList;
-int errorIndex;
 bool latexErrorsFound;
 bool latexWarningsFound;
 

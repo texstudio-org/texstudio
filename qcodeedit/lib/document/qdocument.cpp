@@ -6097,7 +6097,17 @@ void QDocumentPrivate::addMark(QDocumentLineHandle *h, int mid)
 {
 	QList<int>& l = m_marks[h];
 	
-	l << mid;
+	if (l.empty()) l << mid;
+	else {
+        int p=QLineMarksInfoCenter::instance()->priority(mid);
+        int i;
+        for (i=0;i<l.size();i++)
+            if (QLineMarksInfoCenter::instance()->priority(l[i])>=p) {
+                l.insert(i,mid);
+                break;
+            }
+        if (i==l.size()) l << mid;
+	}
 	
 	m_maxMarksPerLine = qMax(l.count(), m_maxMarksPerLine);
 	
