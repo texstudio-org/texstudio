@@ -496,6 +496,10 @@ QStringList QLineMarksInfoCenter::availableMarkTypes(const QString& context)
 	return l;
 }
 
+int QLineMarksInfoCenter::priority(int id){
+    return id>=0 &&  id<m_lineMarkTypes.size()?m_lineMarkTypes[id].priority : 0;
+}
+
 /*!
 	\return the mark that has the highest priority among a list of marks
 */

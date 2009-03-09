@@ -132,8 +132,9 @@ class QCE_EXPORT QLineMarksInfoCenter : public QObject
 		
 		QLineMarkType markType(int id);
 		QLineMarkType markType(const QString& id);
-		
-		int priority(const QList<int>& marks);
+
+        int priority(int id);
+        int priority(const QList<int>& marks);
 		QString priority(const QStringList& marks);
 		
 		QStringList availableMarkTypes(const QString& context = QString());
