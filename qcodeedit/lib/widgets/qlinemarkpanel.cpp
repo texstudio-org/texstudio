@@ -32,6 +32,7 @@
 #include <QMenu>
 #include <QPainter>
 #include <QScrollBar>
+#include <QToolTip>
 #include <QMessageBox>
 #include <QContextMenuEvent>
 
@@ -53,7 +54,9 @@ QCE_AUTO_REGISTER(QLineMarkPanel)
 QLineMarkPanel::QLineMarkPanel(QWidget *p)
  : QPanel(p)
 {
-	setFixedWidth(18);
+    minMarksPerLine=1;
+    maxMarksPerLine=1;
+	setFixedWidth(minMarksPerLine*16+2);
 }
 
 /*!
@@ -72,9 +75,43 @@ QString QLineMarkPanel::type() const
 	return "Line marks";
 }
 
+void QLineMarkPanel::setToolTipForTouchedMark(QString text){
+    markToolTip=text;
+}
+
 /*!
 	\internal
 */
+bool QLineMarkPanel::event(QEvent *e) {    
+     if (e->type() == QEvent::ToolTip) {
+        QHelpEvent *helpEvent = static_cast<QHelpEvent *>(e);
+        int linen=editor()->document()->lineNumber(editor()->verticalOffset()+helpEvent->y());
+        markToolTip="";
+        if (linen>-1 && linen<editor()->document()->lines()) {
+            QDocumentLine line = editor()->document()->line(linen);
+			QList<int> lm = line.marks();
+			int count = 1;
+			int bestMark = -1;
+			QLineMarksInfoCenter *mic = QLineMarksInfoCenter::instance();
+			foreach ( int id, lm )
+			{
+			    if (mic->markType(id).icon.isNull())
+                    continue;
+                if (helpEvent->x()>count && helpEvent->x()<count+16) 
+                    bestMark = id; //no break do to overdraw
+				if (count < 16*(maxMarksPerLine-1)) {
+                    count += 16;
+                    if (bestMark!=-1) break;
+				}
+			}
+			if (bestMark!=-1) 
+                emit toolTipRequested(linen,bestMark);
+        }
+        if (markToolTip.isEmpty()) QToolTip::hideText();
+        else QToolTip::showText(helpEvent->globalPos(), markToolTip);
+    }
+    return QWidget::event(e);
+}
 void QLineMarkPanel::paint(QPainter *p, QEditor *e)
 {
 	if ( !e || !e->document() )
@@ -84,9 +121,11 @@ void QLineMarkPanel::paint(QPainter *p, QEditor *e)
 	m_lines.clear();
 	QDocument *d = e->document();
 	
-	int maxMarksPerLine = 1;//d->maxMarksPerLine();
-	
-	setFixedWidth(maxMarksPerLine ? maxMarksPerLine * 16 + 2 : 18);
+	int realMarksPerLine = d->maxMarksPerLine();
+	int marksPerLine = realMarksPerLine;
+	if (marksPerLine<minMarksPerLine) marksPerLine=minMarksPerLine;
+	if (marksPerLine>maxMarksPerLine) marksPerLine=maxMarksPerLine;
+	setFixedWidth(marksPerLine ? marksPerLine * 16 + 2 : 18);
 	
 	const QFontMetrics fm( d->font() );
 	
@@ -121,7 +160,7 @@ void QLineMarkPanel::paint(QPainter *p, QEditor *e)
 		m_lines << n;
 		m_rects << QRect(0, posY, width(), ls);
 		
-		if ( maxMarksPerLine )
+		if ( realMarksPerLine )
 		{
 			int count = 1;
 			QList<int> lm = line.marks();
@@ -140,7 +179,8 @@ void QLineMarkPanel::paint(QPainter *p, QEditor *e)
 				
 				p->drawPixmap(x, y, w, h, pix);
 				
-				//count += 16;
+				if (count < 16*(maxMarksPerLine-1)) 
+                    count += 16;
 			}
 		}
 
