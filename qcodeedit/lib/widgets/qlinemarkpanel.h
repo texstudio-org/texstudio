@@ -41,11 +41,13 @@ class QCE_EXPORT QLineMarkPanel : public QPanel
 		virtual ~QLineMarkPanel();
 		
 		virtual QString type() const;
-    
+		void setToolTipForTouchedMark(QString text);
     signals:
+        void toolTipRequested(int line, int markID);
         void lineClicked(int line);
-		
+        
 	protected:
+        virtual bool event(QEvent *e);
 		virtual void paint(QPainter *p, QEditor *e);
 		virtual void mousePressEvent(QMouseEvent *e);
 		virtual void mouseReleaseEvent(QMouseEvent *e);
@@ -54,6 +56,9 @@ class QCE_EXPORT QLineMarkPanel : public QPanel
 	private:
 		QList<QRect> m_rects;
 		QList<int> m_lines;
+		int minMarksPerLine;
+		int maxMarksPerLine;
+		QString markToolTip;
 };
 
 #endif // _QLINE_MARK_PANEL_H_
