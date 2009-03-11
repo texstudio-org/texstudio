@@ -158,6 +158,7 @@ LatexEditorView::LatexEditorView(QWidget *parent) : QWidget(parent),curChangePos
 
     
     connect(lineMarkPanel,SIGNAL(lineClicked(int)),this,SLOT(lineMarkClicked(int)));
+    connect(lineMarkPanel,SIGNAL(toolTipRequested(int,int)),this,SLOT(lineMarkToolTip(int,int)));
     connect(editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
     connect(editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),this,SLOT(lineDeleted(QDocumentLineHandle*)));
 
@@ -274,7 +275,9 @@ void LatexEditorView::lineMarkClicked(int line){
     l.addMark(bookMarkId(lastSetBookmark));
 }
 
-
+void LatexEditorView::lineMarkToolTip(int line, int mark){
+    lineMarkPanel->setToolTipForTouchedMark(QString("%1: %2").arg(line).arg(mark));
+}
 
 void LatexEditorView::documentContentChanged(int linenr, int count){
     QDocumentLine startline=editor->document()->line(linenr);
@@ -328,7 +331,12 @@ void LatexEditorView::documentContentChanged(int linenr, int count){
     }
 }
 void LatexEditorView::lineDeleted(QDocumentLineHandle* l ){
-    oldLineNumbers.remove(l);
+    QHash<QDocumentLineHandle*, int>::iterator it=lineToLogEntry.find(l);
+    if (it!=lineToLogEntry.end()) {
+        logEntryToLine.remove(it.value());        
+        lineToLogEntry.erase(it);
+    }
+    
     
     QPair<int, int> p;
     //QMessageBox::information(0,QString::number(nr),"",0);
