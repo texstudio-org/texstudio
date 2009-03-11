@@ -73,7 +73,8 @@ public:
     QLineMarkPanel* lineMarkPanel;
     QLineNumberPanel* lineNumberPanel;
 
-    QHash<QDocumentLineHandle*, int> oldLineNumbers;
+    QHash<QDocumentLineHandle*, int> lineToLogEntry;
+    QHash<int, QDocumentLineHandle*> logEntryToLine;
 private:
     friend class DefaultInputBinding;
     static int bookMarkId(int bookmarkNumber);
@@ -84,6 +85,7 @@ private:
     int lastSetBookmark; //only looks at 1..3 (mouse range)
 public slots:
     void lineMarkClicked(int line);
+    void lineMarkToolTip(int line, int mark);
     void documentContentChanged(int linenr, int count);
     void lineDeleted(QDocumentLineHandle* l);
     void spellCheckingReplace();

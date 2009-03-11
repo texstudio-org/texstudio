@@ -170,34 +170,23 @@ OutputLayout= new QVBoxLayout(Outputframe);
 OutputLayout->setSpacing(0);
 OutputLayout->setMargin(0);
 
-OutputTableWidget= new QTableWidget (1,5,Outputframe);
-QTableWidgetItem *HeaderItem = new QTableWidgetItem(" ");
-HeaderItem->setTextAlignment(Qt::AlignLeft);
-OutputTableWidget->setHorizontalHeaderItem(0,HeaderItem);
-HeaderItem = new QTableWidgetItem("File");
-HeaderItem->setTextAlignment(Qt::AlignLeft);
-OutputTableWidget->setHorizontalHeaderItem(1,HeaderItem);
-HeaderItem = new QTableWidgetItem("Type");
-HeaderItem->setTextAlignment(Qt::AlignLeft);
-OutputTableWidget->setHorizontalHeaderItem(2,HeaderItem);
-HeaderItem = new QTableWidgetItem("Line");
-HeaderItem->setTextAlignment(Qt::AlignLeft);
-OutputTableWidget->setHorizontalHeaderItem(3,HeaderItem);
-HeaderItem = new QTableWidgetItem("Message");
-HeaderItem->setTextAlignment(Qt::AlignLeft);
-OutputTableWidget->setHorizontalHeaderItem(4,HeaderItem);
+logModel = new LatexLogModel(this);
+
+OutputTable= new QTableView (Outputframe);
+OutputTable->setModel(logModel);
 
 //OutputTableWidget->setWordWrap(true);
-OutputTableWidget->setSelectionMode (QAbstractItemView::SingleSelection);
+OutputTable->setSelectionBehavior (QAbstractItemView::SelectRows);
+OutputTable->setSelectionMode (QAbstractItemView::SingleSelection);
 QFontMetrics fm(qApp->font());
-OutputTableWidget->setColumnWidth(0,fm.width("> "));
-OutputTableWidget->setColumnWidth(1,20*fm.width("w"));
-OutputTableWidget->setColumnWidth(2,fm.width("WarningW"));
-OutputTableWidget->setColumnWidth(3,fm.width("Line WWWWW"));
-OutputTableWidget->setColumnWidth(4,20*fm.width("w"));
-connect(OutputTableWidget, SIGNAL(itemClicked ( QTableWidgetItem*)), this, SLOT(ClickedOnLogLine(QTableWidgetItem*)));
-OutputLayout->addWidget(OutputTableWidget);
-OutputTableWidget->setMinimumHeight(5*(fm.lineSpacing()+4));
+OutputTable->setColumnWidth(0,fm.width("> "));
+OutputTable->setColumnWidth(1,20*fm.width("w"));
+OutputTable->setColumnWidth(2,fm.width("WarningW"));
+OutputTable->setColumnWidth(3,fm.width("Line WWWWW"));
+OutputTable->setColumnWidth(4,20*fm.width("w"));
+connect(OutputTable, SIGNAL(clicked (const QModelIndex &)), this, SLOT(ClickedOnLogLine(const QModelIndex &)));
+OutputLayout->addWidget(OutputTable);
+OutputTable->setMinimumHeight(5*(fm.lineSpacing()+4));
 
 
 OutputTextEdit = new LogEditor(Outputframe);
@@ -209,18 +198,9 @@ connect(OutputTextEdit, SIGNAL(clickonline(int )),this,SLOT(gotoLine(int )));
 OutputLayout->addWidget(OutputTextEdit);
 
 OutputView->setWidget(Outputframe);
-OutputTableWidget->hide();
-
+OutputTable->hide();
 
 logpresent=false;
-
-//
-errorFileList.clear();
-errorTypeList.clear();
-errorLineList.clear();
-errorMessageList.clear();
-errorLogList.clear();
-
 
 // TAB WIDGET EDITEUR
 EditorView=new QTabWidget(this);
@@ -737,7 +717,7 @@ UpdateStructure();
 if (singlemode)
 	{
 	OutputTextEdit->clear();
-	OutputTableWidget->hide();
+	OutputTable->hide();
 	logpresent=false;
 	}
 QString finame=getName();
@@ -816,7 +796,7 @@ return false;
 ///////////////////FILE//////////////////////////////////////
 
 
-void Texmaker::load( const QString &f , bool asProject)
+LatexEditorView* Texmaker::load( const QString &f , bool asProject)
 {
     QString f_real=f;
     #ifdef Q_WS_WIN
@@ -830,9 +810,9 @@ void Texmaker::load( const QString &f , bool asProject)
             ToggleMode();
             ToggleMode();
         } 
-        return;
+        return 0;
     }
-    if (!QFile::exists( f_real )) return;
+    if (!QFile::exists( f_real )) return 0;
 LatexEditorView *edit = new LatexEditorView(0);
 EditorView->addTab( edit, QFileInfo( f_real ).fileName() );
 configureNewEditorView(edit);
@@ -841,7 +821,7 @@ QFile file( f_real );
 if ( !file.open( QIODevice::ReadOnly ) )
 	{
 	QMessageBox::warning( this,tr("Error"), tr("You do not have read permission to this file."));
-	return;
+	return 0;
 	}
 
 if (autodetectLoadedFile) edit->editor->load(f_real,0);
@@ -861,6 +841,7 @@ if (asProject)
         ToggleMode();
         ToggleMode();
     } 
+    return edit;
 }
 
 void Texmaker::gotoLine( int line )
@@ -1998,7 +1979,7 @@ void Texmaker::InsertTag(QString Entity, int dx, int dy)
     else currentEditorView()->editor->setCursorPosition(curline+dy,curindex+dx);
     currentEditorView()->editor->setFocus();
     OutputTextEdit->clear();
-    OutputTableWidget->hide();
+    OutputTable->hide();
     logpresent=false;
 }
 
@@ -2087,7 +2068,7 @@ tag +=fi.completeBaseName();
 tag +=QString("}\n");
 InsertTag(tag,0,1);
 OutputTextEdit->clear();
-OutputTableWidget->hide();
+OutputTable->hide();
 OutputTextEdit->insertLine("The argument to \\bibliography refers to the bib file (without extension)");
 OutputTextEdit->insertLine("which should contain your database in BibTeX format.");
 OutputTextEdit->insertLine("Texmaker inserts automatically the base name of the TeX file");
@@ -2913,7 +2894,7 @@ connect(proc, SIGNAL(readyReadStandardError()),this, SLOT(readFromStderr()));
 if (showStdout) connect(proc, SIGNAL(readyReadStandardOutput()),this, SLOT(readFromStdoutput()));
 connect(proc, SIGNAL(finished(int)),this, SLOT(SlotEndProcess(int)));
 OutputTextEdit->clear();
-OutputTableWidget->hide();
+OutputTable->hide();
 //OutputTextEdit->insertLine(commandline+"\n");
 proc->start(commandline);
 if (!proc->waitForStarted(1000))
@@ -3317,9 +3298,10 @@ if (fic.exists() && fic.isReadable() )
 else {QMessageBox::warning( this,tr("Error"),tr("Log File not found !"));}
 }
 
-void Texmaker::ClickedOnLogLine(QTableWidgetItem *item)
+void Texmaker::ClickedOnLogLine(const QModelIndex & index)
 {
 if ( !currentEditorView() ) return;
+/*
 QTableWidget *container=item->tableWidget();
 item=container->item(item->row(),3);
 QString content=item->text();
@@ -3369,7 +3351,8 @@ if (Start!=-1)
 	else
 	line=s.mid(0,s.length());
 	};
-	
+*/	
+GoToLogEntry(index.row());/*
 int l=line.toInt(&ok,10)-1;
 if (ok)
     for (QHash<QDocumentLineHandle *, int>::iterator it=currentEditorView()->oldLineNumbers.begin(); 
@@ -3381,7 +3364,7 @@ if (ok)
 QString ll=item->data(Qt::UserRole).toString();
 int logline=ll.toInt(&ok,10)-1;
 OutputTextEdit->setCursorPosition(logline , 0);
-
+*/
 }
 void Texmaker::OutputViewVisibilityChanged(bool visible){
     if (visible) OutputView->toggleViewAction()->setShortcut(Qt::Key_Escape);
@@ -3391,12 +3374,9 @@ void Texmaker::OutputViewVisibilityChanged(bool visible){
 ////////////////////////// ERRORS /////////////////////////////
 void Texmaker::LatexError()
 {
-errorFileList.clear();
-errorTypeList.clear();
-errorLineList.clear();
-errorMessageList.clear();
-errorLogList.clear();
-
+    QStringList errorFileList, errorLineList, errorMessageList;
+    QList<LogType> errorTypeList;
+    QList<int> errorLogList;
 QString mot,suivant,lettre,expression,warning,latexerror,badbox;
 QStringList pile,filestack;
 filestack.clear();
@@ -3405,8 +3385,8 @@ pile.clear();
 int j;
 
 
-int par=1;
-int errorpar=1;
+int par=0;
+int errorpar=0;
 
 QRegExp rxWarning1("Warning: (.*) on.*line *(\\d+)");
 QRegExp rxWarning2("Warning: (.*)");
@@ -3470,28 +3450,28 @@ while (tb.isValid())
 			{
 			if (!filestack.isEmpty()) errorFileList.append(filestack.last());
 			else errorFileList.append("");
-			errorTypeList.append("Warning");
+			errorTypeList.append(LT_WARNING);
 			errorLineList.append(rxWarning1.cap(2));
 			errorMessageList.append(rxWarning1.cap(1).replace("*",""));
-			errorLogList.append(QString::number(errorpar));
+			errorLogList<<errorpar;
 			}
 		else if ( rxWarning2.indexIn(warning) != -1 )
 			{
 			if (!filestack.isEmpty()) errorFileList.append(filestack.last());
 			else errorFileList.append("");
-			errorTypeList.append("Warning");
+			errorTypeList.append(LT_WARNING);
 			errorLineList.append("1");
 			errorMessageList.append(rxWarning2.cap(1).replace("*",""));
-			errorLogList.append(QString::number(errorpar));
+			errorLogList<<errorpar;
 			}
 		else
 			{
 			if (!filestack.isEmpty()) errorFileList.append(filestack.last());
 			else errorFileList.append("");
-			errorTypeList.append("Warning");
+			errorTypeList.append(LT_WARNING);
 			errorLineList.append("1");
 			errorMessageList.append(warning.replace("*",""));
-			errorLogList.append(QString::number(errorpar));
+			errorLogList<<errorpar;
  			}
 		errorpar=par;
 		}
@@ -3526,20 +3506,20 @@ while (tb.isValid())
 			//qDebug() << "Error";
 			if (!filestack.isEmpty()) errorFileList.append(filestack.last());
 			else errorFileList.append("");
-			errorTypeList.append("Error");
+			errorTypeList.append(LT_ERROR);
 			errorLineList.append(rxLineError.cap(1));
 			errorMessageList.append(latexerror.remove(rxLineError).replace("*",""));
-			errorLogList.append(QString::number(errorpar));
+			errorLogList<<errorpar;
 			}
 		else 
 			{
 			//qDebug() << "Error";
 			if (!filestack.isEmpty()) errorFileList.append(filestack.last());
 			else errorFileList.append("");
-			errorTypeList.append("Error");
+			errorTypeList.append(LT_ERROR);
 			errorLineList.append("1");
 			errorMessageList.append(latexerror.replace("*",""));
-			errorLogList.append(QString::number(errorpar));
+			errorLogList<<errorpar;
 			}
 		errorpar=par;
 		}
@@ -3560,10 +3540,10 @@ while (tb.isValid())
 			{
 			if (!filestack.isEmpty()) errorFileList.append(filestack.last());
 			else errorFileList.append("");
-			errorTypeList.append("Badbox");
+			errorTypeList.append(LT_BADBOX);
 			errorLineList.append(rxBadBox.cap(2));
 			errorMessageList.append(badbox.replace("*",""));
-			errorLogList.append(QString::number(errorpar));
+			errorLogList<<errorpar;
 			}
 		errorpar=par;
 		}
@@ -3573,7 +3553,33 @@ while (tb.isValid())
 		tb = tb.next();
 		}
 	}
-DisplayLatexError();
+	
+	latexErrorsFound = false;
+	latexWarningsFound = false;
+	QList<int> errorPos, otherPos;
+	for ( int i = 0; i <errorFileList.count(); i++ ) 
+        switch (errorTypeList.at(i)) {
+            case LT_ERROR: errorPos << i; latexErrorsFound=true; break;
+            case LT_WARNING: otherPos << i; latexWarningsFound=true; break;
+            case LT_BADBOX: otherPos << i; break;
+            default: otherPos << i;
+        }
+    errorPos << otherPos;
+    
+    logModel->clear();
+    for (int i = 0; i < errorPos.count(); i++) {
+        int cur=errorPos[i];
+        logModel->append(errorFileList[cur], errorTypeList[cur],errorLineList[cur], errorLogList[cur], errorMessageList[cur]);
+    }
+
+    logpresent=true;
+    
+    //display latex errors in table
+    logModel->reset();
+    OutputTable->resizeColumnsToContents();
+    OutputTable->resizeRowsToContents();
+    //display errors in editor
+    DisplayLatexError();
 }
 
 void Texmaker::DisplayLatexError()
@@ -3585,59 +3591,28 @@ void Texmaker::DisplayLatexError()
         if (ed) {
             ed->editor->document()->removeMarks(errorMarkID);
             ed->editor->document()->removeMarks(warningMarkID);
-            ed->oldLineNumbers.clear();
+            ed->logEntryToLine.clear();
+            ed->lineToLogEntry.clear();
         }
     }
-    latexErrorsFound=false;
-OutputTableWidget->clearContents();
+	for ( int i = 0; i <logModel->count(); i++ ) 
+        if (logModel->at(i).oldLineNumber!=-1)
+            for (FilesMap::iterator it=filenames.begin(); it!=filenames.end(); ++it)
+                if (it.value().endsWith(logModel->at(i).file)) {
+                    QDocumentLine l=it.key()->editor->document()->line(logModel->at(i).oldLineNumber);
+                    if (logModel->at(i).type==LT_ERROR) l.addMark(errorMarkID);
+                    else if (logModel->at(i).type==LT_WARNING) l.addMark(warningMarkID);
+                    it.key()->lineToLogEntry[l.handle()]=i;
+                    it.key()->logEntryToLine[i]=l.handle();
+                    break;
+                }
+
+/*
 QFontMetrics fm(qApp->font());
 int rowheight=fm.lineSpacing()+4;
 int maxwidth=0;
 if (errorFileList.count()>0)
 	{
-	OutputTableWidget->setRowCount(errorFileList.count());
-	QList<int> sortedPos;
-	for ( int i = 0; i <errorFileList.count(); i++ ) 
-        if (errorTypeList.at(i)=="Error") sortedPos<<i;
-    latexErrorsFound=!sortedPos.empty();
-    latexWarningsFound=false;
-	for ( int i = 0; i <errorFileList.count(); i++ ) 
-        if (errorTypeList.at(i)!="Error") {
-            if (errorTypeList.at(i)=="Warning") latexWarningsFound=true;
-            sortedPos<<i;
-        }
-    QList <QTableWidgetItem *> items ;
-	for ( int i = 0; i <sortedPos.count(); i++ ) {
-	    int curPos=sortedPos[i];
-	    QString curFileName=errorFileList.at(curPos);
-	    QString curLine=errorLineList.at(curPos);
-	    QString curType=errorTypeList.at(curPos);
-        for (FilesMap::iterator it=filenames.begin(); it!=filenames.end(); ++it)
-            if (it.value().endsWith(curFileName)) {
-                QDocumentLine l=it.key()->editor->document()->line(curLine.toInt()-1);
-                if (curType=="Error") l.addMark(errorMarkID);
-                else if (curType=="Warning") l.addMark(warningMarkID);
-                it.key()->oldLineNumbers[l.handle()]=curLine.toInt()-1;
-                break;
-            }
-
-            items.clear();
-            items << new QTableWidgetItem(curFileName)
-                  << new QTableWidgetItem(curType)
-                  << new QTableWidgetItem("line "+curLine)
-                  << new QTableWidgetItem(errorMessageList.at(curPos));
-            for (int j=0;j<items.count();j++) {
-                QTableWidgetItem * item = items[j];
-                item->setData(Qt::UserRole,errorLogList.at(curPos));
-                item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-                item->setToolTip(tr("Click to jump to the line"));
-                if (curType=="Error") item->setForeground(QBrush(QColor(Qt::red)));
-                else item->setForeground(QBrush(QColor(Qt::blue)));
-                OutputTableWidget->setItem(i,j+1, item);
-            }
-			if (fm.width(errorMessageList.at(curPos))>maxwidth) maxwidth=fm.width(errorMessageList.at(curPos));
-	}
-
 
 	OutputTableWidget->setColumnWidth(4,maxwidth);
 	for ( int i = 0; i<OutputTableWidget->rowCount(); ++i )
@@ -3648,14 +3623,14 @@ else
 	OutputTableWidget->setRowCount(1);
 	OutputTableWidget->setRowHeight(0,rowheight);
 	OutputTableWidget->clearContents();
-	}
-OutputTableWidget->show();
-OutputTextEdit->setCursorPosition(0 , 0);
-logpresent=true;
-if (latexErrorsFound) {
-     OutputView->show();    //show log when error
-     NextError();
-}
+	}*/
+    OutputTable->show();
+    OutputTextEdit->setCursorPosition(0 , 0);
+
+    if (latexErrorsFound) {
+        OutputView->show();    //show log when error
+        NextError();
+    }
 }
 
 bool Texmaker::NoLatexErrors()
@@ -3663,27 +3638,41 @@ bool Texmaker::NoLatexErrors()
 return !latexErrorsFound;
 }
 
-void Texmaker::ErrorLogSelectOldAndNewLine(int newLine){
-    if (newLine<0) return;
-    currentEditorView()->editor->setCursorPosition(newLine, 0);
-    QDocumentLineHandle* lh=currentEditorView()->editor->document()->line(newLine).handle();
-    int oldLine=currentEditorView()->oldLineNumbers.value(lh);
-    QString lineName="line "+QString::number(oldLine+1);
-    for ( int i = 0; i <OutputTableWidget->rowCount (); i++ )
-        if (OutputTableWidget->item(i,0) && OutputTableWidget->item(i,0)->text()==">") {
-             OutputTableWidget->setItem(i,0, new QTableWidgetItem(" "));
-             break;
-        }
-    for ( int i = 0; i <OutputTableWidget->rowCount (); i++ )
-        if (OutputTableWidget->item(i,3)->text()==lineName) {
-            QTableWidgetItem * twi =new QTableWidgetItem(">");
-            OutputTableWidget->setItem(i,0, twi);
-            OutputTableWidget->scrollToItem(twi,QAbstractItemView::PositionAtCenter);
-            int logline=OutputTableWidget->item(i,3)->data(Qt::UserRole).toInt()-1;
-            OutputTextEdit->setCursorPosition(logline , 0);
+void Texmaker::GoToLogEntry(int logEntryNumber){
+    if (logEntryNumber<0 || logEntryNumber>=logModel->count()) return;
+    //select entry in table view/log
+    OutputTable->scrollTo(logModel->index(logEntryNumber,1),QAbstractItemView::PositionAtCenter);
+    OutputTextEdit->setCursorPosition(logModel->at(logEntryNumber).logline, 0);
+    //get editor containing log entry
+    LatexEditorView* edView=0;
+    for (FilesMap::iterator it=filenames.begin(); it!=filenames.end(); ++it)
+        if (it.value().endsWith(logModel->at(logEntryNumber).file)) {
+            edView=it.key();
             break;
         }
-    currentEditorView()->setFocus();
+    if (!edView) {
+        edView=load(logModel->at(logEntryNumber).file);
+        if (!edView) return;
+        DisplayLatexError(); //set marks
+    }
+    //get line
+    QDocumentLineHandle* lh = edView->logEntryToLine.value(logEntryNumber, 0);
+    if (!lh) return;
+    //goto line
+    gotoLine(QDocumentLine(lh).lineNumber());
+}
+
+void Texmaker::GoToLogEntryAt(int newLineNumber){
+    //goto line
+    if (newLineNumber<0) return;
+    gotoLine(newLineNumber);
+    //find error number
+    QDocumentLineHandle* lh=currentEditorView()->editor->document()->line(newLineNumber).handle();
+    int logEntryNumber=currentEditorView()->lineToLogEntry.value(lh);
+    //goto log entry
+    OutputTable->scrollTo(logModel->index(logEntryNumber,1),QAbstractItemView::PositionAtCenter);
+    OutputTable->selectRow(logEntryNumber);
+    OutputTextEdit->setCursorPosition(logModel->at(logEntryNumber).logline, 0);
 }
 
 void Texmaker::NextError()
@@ -3691,8 +3680,8 @@ void Texmaker::NextError()
     if (!logpresent) {ViewLog();}
     if (logpresent)
         if (latexErrorsFound) 
-            ErrorLogSelectOldAndNewLine(currentEditorView()->editor->document()->findNextMark(QLineMarksInfoCenter::instance()->markTypeId("error"), 
-                                        currentEditorView()->editor->cursor().lineNumber()+1));
+            GoToLogEntryAt(currentEditorView()->editor->document()->findNextMark(QLineMarksInfoCenter::instance()->markTypeId("error"), 
+                                    currentEditorView()->editor->cursor().lineNumber()+1));
         else {
         QMessageBox::information( this,"TexMakerX",tr("No LaTeX errors detected !"));
         OutputTextEdit->setCursorPosition(0 , 0);
@@ -3704,8 +3693,8 @@ void Texmaker::PreviousError()
     if (!logpresent) {ViewLog();}
     if (logpresent) 
         if (latexErrorsFound) 
-            ErrorLogSelectOldAndNewLine(currentEditorView()->editor->document()->findPreviousMark(QLineMarksInfoCenter::instance()->markTypeId("error"), 
-                                        currentEditorView()->editor->cursor().lineNumber()-1));
+            GoToLogEntryAt(currentEditorView()->editor->document()->findPreviousMark(QLineMarksInfoCenter::instance()->markTypeId("error"), 
+                                            currentEditorView()->editor->cursor().lineNumber()-1));
         else {
             QMessageBox::information( this,"TexMakerX",tr("No LaTeX errors detected !"));
             OutputTextEdit->setCursorPosition(0 , 0);
@@ -3717,7 +3706,7 @@ void Texmaker::NextWarning()
     if (!logpresent) {ViewLog();}
     if (logpresent)
         if (latexWarningsFound) 
-            ErrorLogSelectOldAndNewLine(currentEditorView()->editor->document()->findNextMark(QLineMarksInfoCenter::instance()->markTypeId("warning"), 
+            GoToLogEntryAt(currentEditorView()->editor->document()->findNextMark(QLineMarksInfoCenter::instance()->markTypeId("warning"), 
                                         currentEditorView()->editor->cursor().lineNumber()+1));
         else {
         QMessageBox::information( this,"TexMakerX",tr("No LaTeX warnings detected !"));
@@ -3730,7 +3719,7 @@ void Texmaker::PreviousWarning()
     if (!logpresent) {ViewLog();}
     if (logpresent) 
         if (latexWarningsFound) 
-            ErrorLogSelectOldAndNewLine(currentEditorView()->editor->document()->findPreviousMark(QLineMarksInfoCenter::instance()->markTypeId("warning"), 
+            GoToLogEntryAt(currentEditorView()->editor->document()->findPreviousMark(QLineMarksInfoCenter::instance()->markTypeId("warning"), 
                                         currentEditorView()->editor->cursor().lineNumber()-1));
         else {
             QMessageBox::information( this,"TexMakerX",tr("No LaTeX warnings detected !"));
@@ -3873,7 +3862,7 @@ if (confDlg->exec())
                 updateEditorSetting(it.key());
             UpdateCaption();
             OutputTextEdit->clear();
-            OutputTableWidget->hide();
+            OutputTable->hide();
             //OutputTextEdit->insertLine("Editor settings apply only to new loaded document.");
 		}
 	}
@@ -3908,7 +3897,7 @@ if (!singlemode)
 	{
 	ToggleAct->setText(tr("Define Current Document as 'Master Document'"));
 	OutputTextEdit->clear();
-	OutputTableWidget->hide();
+	OutputTable->hide();
 	logpresent=false;
 	singlemode=true;
 	stat1->setText(QString(" %1 ").arg(tr("Normal Mode")));
