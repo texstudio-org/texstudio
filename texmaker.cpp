@@ -724,6 +724,17 @@ QString finame=getName();
 if (finame!="untitled" && finame!="") lastDocument=finame;
 }
 
+void Texmaker::lineMarkToolTip(int line, int mark){
+    if ( !currentEditorView() )	return;
+    if (line < 0 || line>=currentEditorView()->editor->document()->lines()) return;
+    int errorMarkID = QLineMarksInfoCenter::instance()->markTypeId("error");
+    int warningMarkID = QLineMarksInfoCenter::instance()->markTypeId("warning");
+    if (mark != errorMarkID && mark != warningMarkID) return;
+    int error = currentEditorView()->lineToLogEntry.value(currentEditorView()->editor->document()->line(line).handle(),-1);
+    if (error<0 || error >= logModel->count()) return;
+    currentEditorView()->lineMarkPanel->setToolTipForTouchedMark(logModel->at(error).message);
+}
+
 void Texmaker::NewDocumentStatus(bool m)
 {
 if ( !currentEditorView() )	return;
@@ -746,32 +757,32 @@ return 0;
 }
 
 void Texmaker::configureNewEditorView(LatexEditorView *edit){
-  m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
-  edit->editor->setCompletionEngine(completer->clone());
-  EditorView->setCurrentIndex(EditorView->indexOf(edit));
+    m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
+    edit->editor->setCompletionEngine(completer->clone());
+    EditorView->setCurrentIndex(EditorView->indexOf(edit));
   
-  connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(NewDocumentStatus(bool)));
- 
-  updateEditorSetting(edit);
-//connect(edit->editor, SIGNAL(spellme()), this, SLOT(editSpell())); todo:benibela
+    connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(NewDocumentStatus(bool)));
+    connect(edit->lineMarkPanel, SIGNAL(toolTipRequested(int,int)),this,SLOT(lineMarkToolTip(int,int)));
+
+    updateEditorSetting(edit);
 }
 void Texmaker::updateEditorSetting(LatexEditorView *edit){
-  edit->editor->setFont(EditorFont);
-  edit->editor->setLineWrapping(wordwrap);
-  edit->editor->setFlag(QEditor::AutoIndent,autoindent);
-  edit->lineMarkPanelAction->setChecked((showlinemultiples!=0) ||folding||showlinestate);
-  edit->lineNumberPanelAction->setChecked(showlinemultiples!=0);
-  edit->lineNumberPanel->setVerboseMode(showlinemultiples!=10);
-  edit->lineFoldPanel->setChecked(folding);
-  edit->lineChangePanel->setChecked(showlinestate);
-  edit->statusPanel->setChecked(showcursorstate);
+    edit->editor->setFont(EditorFont);
+    edit->editor->setLineWrapping(wordwrap);
+    edit->editor->setFlag(QEditor::AutoIndent,autoindent);
+    edit->lineMarkPanelAction->setChecked((showlinemultiples!=0) ||folding||showlinestate);
+    edit->lineNumberPanelAction->setChecked(showlinemultiples!=0);
+    edit->lineNumberPanel->setVerboseMode(showlinemultiples!=10);
+    edit->lineFoldPanel->setChecked(folding);
+    edit->lineChangePanel->setChecked(showlinestate);
+    edit->statusPanel->setChecked(showcursorstate);
 }
 QString Texmaker::getName()
 {
-QString title;
-if ( !currentEditorView() )	{title="";}
-else {title=filenames[currentEditorView()];}
-return title;
+    QString title;
+    if ( !currentEditorView() )	{title="";}
+    else {title=filenames[currentEditorView()];}
+    return title;
 }
 
 bool Texmaker::FileAlreadyOpen(QString f)
@@ -3374,208 +3385,10 @@ void Texmaker::OutputViewVisibilityChanged(bool visible){
 ////////////////////////// ERRORS /////////////////////////////
 void Texmaker::LatexError()
 {
-    QStringList errorFileList, errorLineList, errorMessageList;
-    QList<LogType> errorTypeList;
-    QList<int> errorLogList;
-QString mot,suivant,lettre,expression,warning,latexerror,badbox;
-QStringList pile,filestack;
-filestack.clear();
-pile.clear();
-
-int j;
-
-
-int par=0;
-int errorpar=0;
-
-QRegExp rxWarning1("Warning: (.*) on.*line *(\\d+)");
-QRegExp rxWarning2("Warning: (.*)");
-QRegExp rxLatexError("(! )*(LaTeX Error:)* *(.*)\\.l\\.(\\d+) *(.*)");
-QRegExp rxLineError("l\\.(\\d+)");
-QRegExp rxBadBox("at (line|lines) ([0-9]+)");
-
-
-QTextBlock tb = OutputTextEdit->document()->begin();
-while (tb.isValid())
- 	{
-	errorpar=par;
-	expression=tb.text();
-	j=0;
-	pile.clear();
-	while (j<expression.length())
-		{
-		lettre=expression.mid(j,1);
-		if (lettre=="(" || lettre==")")
-			{
-			pile.prepend(lettre);
-			j+=1;
-			}
-		else
-			{
-			mot="";
-			while (j<expression.length() && (expression.mid(j,1)!="(" && expression.mid(j,1)!=")"))
-				{
-				mot+=expression.mid(j,1);
-				j+=1;
-				}
-			pile.prepend(mot);
-			}
-		}
-	while (pile.count()>0)
-		{
-		mot=pile.last();
-		pile.removeLast();
-		if (mot=="(" && pile.count()>0)
-			{
-			suivant=pile.last();
-			pile.removeLast();
-			filestack.append(suivant.remove("./"));
-			}
-		else if (mot==")" && filestack.count()>0) filestack.removeLast();
-		}
-	if (expression.contains("Warning"))
-		{
-		warning=expression.trimmed();
-		while (tb.isValid() && !expression.contains(QRegExp("\\.$")))
-			{
-			par++;
-			tb=tb.next();
-			if (tb.isValid())
-				{
-				expression=tb.text();
-				warning+=expression.trimmed();
-				}
-			}
-		if ( rxWarning1.indexIn(warning) != -1 )
-			{
-			if (!filestack.isEmpty()) errorFileList.append(filestack.last());
-			else errorFileList.append("");
-			errorTypeList.append(LT_WARNING);
-			errorLineList.append(rxWarning1.cap(2));
-			errorMessageList.append(rxWarning1.cap(1).replace("*",""));
-			errorLogList<<errorpar;
-			}
-		else if ( rxWarning2.indexIn(warning) != -1 )
-			{
-			if (!filestack.isEmpty()) errorFileList.append(filestack.last());
-			else errorFileList.append("");
-			errorTypeList.append(LT_WARNING);
-			errorLineList.append("1");
-			errorMessageList.append(rxWarning2.cap(1).replace("*",""));
-			errorLogList<<errorpar;
-			}
-		else
-			{
-			if (!filestack.isEmpty()) errorFileList.append(filestack.last());
-			else errorFileList.append("");
-			errorTypeList.append(LT_WARNING);
-			errorLineList.append("1");
-			errorMessageList.append(warning.replace("*",""));
-			errorLogList<<errorpar;
- 			}
-		errorpar=par;
-		}
-	else if (expression.contains(QRegExp("^!")))
-		{
-		latexerror=expression.trimmed();
-		while (tb.isValid() && !expression.contains(rxLineError))
-			{
-			par++;
-			tb=tb.next();
-			if (tb.isValid())
-				{
-				expression=tb.text();
-				latexerror+=expression.trimmed();
-				}
-			}
-		//qDebug() << latexerror;
-// 		if ( rxLatexError.indexIn(latexerror) != -1 )
-// 			{
-// 			qDebug() << rxLatexError.cap(1);
-// 			qDebug() << rxLatexError.cap(2);
-// 			qDebug() << rxLatexError.cap(3);
-// 			qDebug() << rxLatexError.cap(4);
-// 			qDebug() << rxLatexError.cap(5);
-// 			errorFileList.append(filestack.last());
-// 			errorTypeList.append("Error");
-// 			errorLineList.append(rxLatexError.cap(1));
-// 			errorMessageList.append(rxLatexError.cap(3)+" :"+rxLatexError.cap(5));
-// 			}
-		if ( rxLineError.indexIn(latexerror) != -1 )
-			{
-			//qDebug() << "Error";
-			if (!filestack.isEmpty()) errorFileList.append(filestack.last());
-			else errorFileList.append("");
-			errorTypeList.append(LT_ERROR);
-			errorLineList.append(rxLineError.cap(1));
-			errorMessageList.append(latexerror.remove(rxLineError).replace("*",""));
-			errorLogList<<errorpar;
-			}
-		else 
-			{
-			//qDebug() << "Error";
-			if (!filestack.isEmpty()) errorFileList.append(filestack.last());
-			else errorFileList.append("");
-			errorTypeList.append(LT_ERROR);
-			errorLineList.append("1");
-			errorMessageList.append(latexerror.replace("*",""));
-			errorLogList<<errorpar;
-			}
-		errorpar=par;
-		}
-	else if (expression.contains(QRegExp("^(Over|Under)(full \\\\[hv]box .*)")))
-		{
-		badbox=expression.trimmed();
-		while (tb.isValid() && !expression.contains(QRegExp("(.*) at line")))
-			{
-			par++;
-			tb=tb.next();
-			if (tb.isValid())
-				{
-				expression=tb.text();
-				badbox+=expression.trimmed();
-				}
-			}
-		if ( rxBadBox.indexIn(badbox) != -1 )
-			{
-			if (!filestack.isEmpty()) errorFileList.append(filestack.last());
-			else errorFileList.append("");
-			errorTypeList.append(LT_BADBOX);
-			errorLineList.append(rxBadBox.cap(2));
-			errorMessageList.append(badbox.replace("*",""));
-			errorLogList<<errorpar;
-			}
-		errorpar=par;
-		}
-	if (tb.isValid())
-		{
-		par++;
-		tb = tb.next();
-		}
-	}
-	
-	latexErrorsFound = false;
-	latexWarningsFound = false;
-	QList<int> errorPos, otherPos;
-	for ( int i = 0; i <errorFileList.count(); i++ ) 
-        switch (errorTypeList.at(i)) {
-            case LT_ERROR: errorPos << i; latexErrorsFound=true; break;
-            case LT_WARNING: otherPos << i; latexWarningsFound=true; break;
-            case LT_BADBOX: otherPos << i; break;
-            default: otherPos << i;
-        }
-    errorPos << otherPos;
-    
-    logModel->clear();
-    for (int i = 0; i < errorPos.count(); i++) {
-        int cur=errorPos[i];
-        logModel->append(errorFileList[cur], errorTypeList[cur],errorLineList[cur], errorLogList[cur], errorMessageList[cur]);
-    }
-
+    logModel->parseLogDocument(OutputTextEdit->document());
     logpresent=true;
     
     //display latex errors in table
-    logModel->reset();
     OutputTable->resizeColumnsToContents();
     OutputTable->resizeRowsToContents();
     //display errors in editor
@@ -3627,7 +3440,7 @@ else
     OutputTable->show();
     OutputTextEdit->setCursorPosition(0 , 0);
 
-    if (latexErrorsFound) {
+    if (logModel->latexErrorsFound()) {
         OutputView->show();    //show log when error
         NextError();
     }
@@ -3635,7 +3448,7 @@ else
 
 bool Texmaker::NoLatexErrors()
 {
-return !latexErrorsFound;
+return !logModel->latexErrorsFound();
 }
 
 void Texmaker::GoToLogEntry(int logEntryNumber){
@@ -3679,7 +3492,7 @@ void Texmaker::NextError()
 {
     if (!logpresent) {ViewLog();}
     if (logpresent)
-        if (latexErrorsFound) 
+        if (logModel->latexErrorsFound()) 
             GoToLogEntryAt(currentEditorView()->editor->document()->findNextMark(QLineMarksInfoCenter::instance()->markTypeId("error"), 
                                     currentEditorView()->editor->cursor().lineNumber()+1));
         else {
@@ -3692,7 +3505,7 @@ void Texmaker::PreviousError()
 {
     if (!logpresent) {ViewLog();}
     if (logpresent) 
-        if (latexErrorsFound) 
+        if (logModel->latexErrorsFound()) 
             GoToLogEntryAt(currentEditorView()->editor->document()->findPreviousMark(QLineMarksInfoCenter::instance()->markTypeId("error"), 
                                             currentEditorView()->editor->cursor().lineNumber()-1));
         else {
@@ -3705,7 +3518,7 @@ void Texmaker::NextWarning()
 {
     if (!logpresent) {ViewLog();}
     if (logpresent)
-        if (latexWarningsFound) 
+        if (logModel->latexWarningsFound()) 
             GoToLogEntryAt(currentEditorView()->editor->document()->findNextMark(QLineMarksInfoCenter::instance()->markTypeId("warning"), 
                                         currentEditorView()->editor->cursor().lineNumber()+1));
         else {
@@ -3718,7 +3531,7 @@ void Texmaker::PreviousWarning()
 {
     if (!logpresent) {ViewLog();}
     if (logpresent) 
-        if (latexWarningsFound) 
+        if (logModel->latexWarningsFound()) 
             GoToLogEntryAt(currentEditorView()->editor->document()->findPreviousMark(QLineMarksInfoCenter::instance()->markTypeId("warning"), 
                                         currentEditorView()->editor->cursor().lineNumber()-1));
         else {

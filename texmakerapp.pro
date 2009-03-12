@@ -13,6 +13,7 @@ HEADERS	+= texmaker.h \
 	icondelegate.h \
 	latexcompleter.h \
 	latexeditorview.h \
+	latexlog.h \
 	logeditor.h \
 	loghighlighter.h \
 	metapostlistwidget.h \
@@ -63,6 +64,7 @@ SOURCES	+= main.cpp \
 	icondelegate.cpp \
 	latexcompleter.cpp \
 	latexeditorview.cpp \
+	latexlog.cpp \
 	logeditor.cpp \
 	loghighlighter.cpp \
 	metapostlistwidget.cpp \

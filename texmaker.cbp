@@ -42,6 +42,8 @@
 		<Unit filename="latexcompleter.h" />
 		<Unit filename="latexeditorview.cpp" />
 		<Unit filename="latexeditorview.h" />
+		<Unit filename="latexlog.cpp" />
+		<Unit filename="latexlog.h" />
 		<Unit filename="letterdialog.cpp" />
 		<Unit filename="letterdialog.h" />
 		<Unit filename="logeditor.cpp" />
@@ -74,6 +76,8 @@
 		<Unit filename="texmaker.cpp" />
 		<Unit filename="texmaker.h" />
 		<Unit filename="texmaker.pro" />
+		<Unit filename="texmakerapp.pro" />
+		<Unit filename="texmakerx.pro" />
 		<Unit filename="textanalysis.cpp" />
 		<Unit filename="textanalysis.h" />
 		<Unit filename="ui_aboutdialog.h" />

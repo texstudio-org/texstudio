@@ -34,6 +34,7 @@
 #include <QVBoxLayout>
 #include <QTableView>
 
+#include "latexlog.h"
 #include "latexeditorview.h"
 #include "latexcompleter.h"
 #include "symbollistwidget.h"
@@ -54,75 +55,6 @@ typedef  QString Userlist[10];
 typedef  QString UserCd[5];
 typedef int SymbolList[412];
 
-enum LogType {LT_ERROR, LT_WARNING, LT_BADBOX};
-struct LatexLogEntry {
-    QString file;
-    LogType type;
-    QString oldline;
-    int oldLineNumber;
-    int logline;
-    QString message;
-    LatexLogEntry (QString aFile, LogType aType, QString aOldline, int aLogline, QString aMessage)
-    : file(aFile), type(aType), oldline(aOldline), logline (aLogline), message(aMessage){
-        bool ok;
-        oldLineNumber=oldline.toInt(&ok,10)-1;
-        if (!ok) oldLineNumber=-1;
-    };
-};
-class LatexLogModel: public QAbstractTableModel{
-private:
-    QList<LatexLogEntry> log;
-public:
-    LatexLogModel (QObject * parent = 0): QAbstractTableModel(parent){};
-    int columnCount(const QModelIndex & parent) const
-    {
-        return parent.isValid()?0:4;
-    }
-    int rowCount(const QModelIndex &parent) const {
-        return parent.isValid()?0:log.count();
-    }
-    QVariant data(const QModelIndex &index, int role) const
-    {
-        if (!index.isValid()) return QVariant();
-        if (index.row() >= log.count() || index.row() < 0) return QVariant();
-        if (role == Qt::ToolTipRole) return tr("Click to jump to the line");
-        if (role == Qt::ForegroundRole) return log.at(index.row()).type==LT_ERROR?QBrush(QColor(Qt::red)):QBrush(QColor(Qt::blue));
-        if (role != Qt::DisplayRole) return QVariant();
-        switch (index.column()) {
-            case 0: return log.at(index.row()).file;
-            case 1: switch (log.at(index.row()).type) {
-                case LT_ERROR: return tr("error");
-                case LT_WARNING: return tr("warning");
-                case LT_BADBOX: return tr("bad box");
-                default:  return QVariant(); //return Texmaker::tr("unknown");
-            }
-            case 2: return tr("line")+ QString(" %1").arg(log.at(index.row()).oldline);
-            case 3: return log.at(index.row()).message;
-            default: return QVariant();
-        }
-    }    
-    QVariant headerData(int section, Qt::Orientation orientation, int role) const
-    {
-        if (role != Qt::DisplayRole) return QVariant();
-        if (orientation != Qt::Horizontal) return QVariant();
-        switch (section) {
-            case 0: return tr("File");
-            case 1: return tr("Type");
-            case 2: return tr("Line");
-            case 3: return tr("Message");
-            default: return QVariant();
-        }
-    }   
-
-    void reset(){QAbstractTableModel::reset();}
-    
-    int count(){return log.count();}    
-    void clear(){log.clear();}
-    const LatexLogEntry& at(int i){return log.at(i);}
-    void append(QString aFile, LogType aType, QString aOldline, int aLogline, QString aMessage){
-        log.append(LatexLogEntry(aFile, aType, aOldline, aLogline, aMessage));
-    }
-};
 
 
 class Texmaker : public QMainWindow
@@ -223,8 +155,6 @@ SpellerDialog *spellDlg;
 QProcess *proc;
 bool FINPROCESS, ERRPROCESS;
 //latex errors
-bool latexErrorsFound;
-bool latexWarningsFound;
 LatexLogModel * logModel;
 
 //X11
@@ -276,6 +206,7 @@ void editSpell();
 void ReadSettings();
 void SaveSettings();
 
+void lineMarkToolTip(int line, int mark);
 void NewDocumentStatus(bool m);
 void UpdateCaption();
 
