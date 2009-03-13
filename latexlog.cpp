@@ -1,6 +1,6 @@
 #include "latexlog.h"
 #include <QTextBlock>
-
+#include "qlinemarksinfocenter.h"
 LatexLogEntry::LatexLogEntry (QString aFile, LogType aType, QString aOldline, int aLogline, QString aMessage)
     : file(aFile), type(aType), oldline(aOldline), logline (aLogline), message(aMessage){
     bool ok;
@@ -8,6 +8,12 @@ LatexLogEntry::LatexLogEntry (QString aFile, LogType aType, QString aOldline, in
     if (!ok) oldLineNumber=-1;
 };
 
+
+LatexLogModel::LatexLogModel (QObject * parent): QAbstractTableModel(parent){
+    markIDs[0]=QLineMarksInfoCenter::instance()->markTypeId("error");
+    markIDs[1]=QLineMarksInfoCenter::instance()->markTypeId("warning");
+    markIDs[2]=QLineMarksInfoCenter::instance()->markTypeId("badbox");
+}
 
 int LatexLogModel::columnCount(const QModelIndex & parent) const
 {
@@ -242,14 +248,13 @@ while (tb.isValid())
 		}
 	}
 	
-	latexErrors = false;
-	latexWarnings = false;
+	foundType[0]=false;foundType[1]=false;foundType[2]=false;
 	QList<int> errorPos, otherPos;
 	for ( int i = 0; i <errorFileList.count(); i++ ) 
         switch (errorTypeList.at(i)) {
-            case LT_ERROR: errorPos << i; latexErrors=true; break;
-            case LT_WARNING: otherPos << i; latexWarnings=true; break;
-            case LT_BADBOX: otherPos << i; break;
+            case LT_ERROR: errorPos << i; foundType[0]=true; break;
+            case LT_WARNING: otherPos << i; foundType[1]=true; break;
+            case LT_BADBOX: otherPos << i; foundType[2]=true; break;
             default: otherPos << i;
         }
     errorPos << otherPos;
@@ -263,9 +268,9 @@ while (tb.isValid())
     reset(); //show changes
 }
 
-bool LatexLogModel::latexErrorsFound() {
-    return latexErrors;
+bool LatexLogModel::found(LogType lt){
+    return foundType[lt];
 }
-bool LatexLogModel::latexWarningsFound (){
-    return latexWarnings;
+int LatexLogModel::markID(LogType lt){
+    return markIDs[lt];
 }
