@@ -752,8 +752,7 @@ else
 
 LatexEditorView *Texmaker::currentEditorView() const
 {
-if ( EditorView->currentWidget() && EditorView->currentWidget()->inherits( "LatexEditorView" ) ) return (LatexEditorView*)EditorView->currentWidget();
-return 0;
+    return qobject_cast<LatexEditorView *>(EditorView->currentWidget());
 }
 
 void Texmaker::configureNewEditorView(LatexEditorView *edit){
@@ -899,12 +898,12 @@ QString fn;
 if ( getName()=="untitled" ) {fileSaveAs();}
 else
 	{
-	QFile file( *filenames.find( currentEditorView() ) );
+	/*QFile file( *filenames.find( currentEditorView() ) );
 	if ( !file.open( QIODevice::WriteOnly ) )
 		{
 		QMessageBox::warning( this,tr("Error"),tr("The file could not be saved. Please check if you have write permission."));
 		return;
-		}
+		}*/
     currentEditorView()->editor->save();
 	//currentEditorView()->editor->setModified(false);
 	fn=getName();
@@ -3311,71 +3310,7 @@ else {QMessageBox::warning( this,tr("Error"),tr("Log File not found !"));}
 
 void Texmaker::ClickedOnLogLine(const QModelIndex & index)
 {
-if ( !currentEditorView() ) return;
-/*
-QTableWidget *container=item->tableWidget();
-item=container->item(item->row(),3);
-QString content=item->text();
-int Start, End;
-bool ok;
-QString s;
-QString line="";
-//// l. ///
-s = content;
-Start=End=0;
-Start=s.indexOf(QRegExp("l.[0-9]"), End);
-if (Start!=-1)
-	{
-	Start=Start+2;
-	s=s.mid(Start,s.length());
-	End=s.indexOf(QRegExp("[ a-zA-Z.\\-]"),0);
-	if (End!=-1)
-	line=s.mid(0,End);
-	else
-	line=s.mid(0,s.length());
-	};
-//// line ///
-s = content;
-Start=End=0;
-Start=s.indexOf(QRegExp("line [0-9]"), End);
-if (Start!=-1)
-	{
-	Start=Start+5;
-	s=s.mid(Start,s.length());
-	End=s.indexOf(QRegExp("[ a-zA-Z.\\-]"),0);
-	if (End!=-1)
-	line=s.mid(0,End);
-	else
-	line=s.mid(0,s.length());
-	};
-//// lines ///
-s = content;
-Start=End=0;
-Start=s.indexOf(QRegExp("lines [0-9]"), End);
-if (Start!=-1)
-	{
-	Start=Start+6;
-	s=s.mid(Start,s.length());
-	End=s.indexOf(QRegExp("[ a-zA-Z.\\-]"),0);
-	if (End!=-1)
-	line=s.mid(0,End);
-	else
-	line=s.mid(0,s.length());
-	};
-*/	
-GoToLogEntry(index.row());/*
-int l=line.toInt(&ok,10)-1;
-if (ok)
-    for (QHash<QDocumentLineHandle *, int>::iterator it=currentEditorView()->oldLineNumbers.begin(); 
-        it!=currentEditorView()->oldLineNumbers.end();  ++it) 
-        if (it.value()==l) {
-            ErrorLogSelectOldAndNewLine(QDocumentLine(it.key()).lineNumber());
-            return;
-        }
-QString ll=item->data(Qt::UserRole).toString();
-int logline=ll.toInt(&ok,10)-1;
-OutputTextEdit->setCursorPosition(logline , 0);
-*/
+    GoToLogEntry(index.row());
 }
 void Texmaker::OutputViewVisibilityChanged(bool visible){
     if (visible) OutputView->toggleViewAction()->setShortcut(Qt::Key_Escape);
@@ -3468,6 +3403,7 @@ void Texmaker::GoToLogEntry(int logEntryNumber){
         if (!edView) return;
         DisplayLatexError(); //set marks
     }
+    if (edView != currentEditorView()) EditorView->setCurrentWidget(edView);
     //get line
     QDocumentLineHandle* lh = edView->logEntryToLine.value(logEntryNumber, 0);
     if (!lh) return;
