@@ -294,10 +294,16 @@ void LatexError();
 void DisplayLatexError();
 void GoToLogEntry(int logEntryNumber);
 void GoToLogEntryAt(int newLineNumber);
+void Texmaker::GoToMark(bool backward, int id);
+void NextMark();
+void PreviousMark();
+void gotoNearLogEntry(LogType lt, bool backward, QString notFoundMessage);
 void NextError();
 void PreviousError();
 void NextWarning();
 void PreviousWarning();
+void NextBadBox();
+void PreviousBadBox();
 bool NoLatexErrors();
 bool LogExists();
 

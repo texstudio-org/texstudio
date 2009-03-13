@@ -5083,7 +5083,7 @@ int QDocumentPrivate::findNextMark(int id, int from, int until)
 		
 		QHash<QDocumentLineHandle*, QList<int> >::const_iterator it = m_marks.constFind(h);
 		
-		if ( it != e && it->contains(id) )
+		if ( it != e && !it->isEmpty() && (id==-1 || it->contains(id))  )
 			return i;
 			
 	}
@@ -5096,7 +5096,7 @@ int QDocumentPrivate::findNextMark(int id, int from, int until)
 			
 			QHash<QDocumentLineHandle*, QList<int> >::const_iterator it = m_marks.constFind(h);
 			
-			if ( it != e && it->contains(id) )
+			if ( it != e && !it->isEmpty() && (id==-1 || it->contains(id))  )
 				return i;
 				
 		}
@@ -5133,7 +5133,7 @@ int QDocumentPrivate::findPreviousMark(int id, int from, int until)
 		
 		QHash<QDocumentLineHandle*, QList<int> >::const_iterator it = m_marks.constFind(h);
 		
-		if ( it != e && it->contains(id) )
+		if ( it != e && !it->isEmpty() && (id==-1 || it->contains(id)))
 			return i;
 			
 	}
@@ -5146,7 +5146,7 @@ int QDocumentPrivate::findPreviousMark(int id, int from, int until)
 			
 			QHash<QDocumentLineHandle*, QList<int> >::const_iterator it = m_marks.constFind(h);
 			
-			if ( it != e && it->contains(id) )
+			if ( it != e && !it->isEmpty() && (id==-1 || it->contains(id)))
 				return i;
 				
 		}

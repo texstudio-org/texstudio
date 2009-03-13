@@ -3,7 +3,7 @@
 #include <QAbstractTableModel>
 #include <QTextDocument>
 #include <QVariant>
-enum LogType {LT_ERROR, LT_WARNING, LT_BADBOX};
+enum LogType {LT_ERROR=0, LT_WARNING=1, LT_BADBOX=2};
 struct LatexLogEntry {
     QString file;
     LogType type;
@@ -16,10 +16,11 @@ struct LatexLogEntry {
 class LatexLogModel: public QAbstractTableModel{
 private:
     QList<LatexLogEntry> log;
-    bool latexErrors;
-    bool latexWarnings;
+    bool foundType[3];
+    int markIDs[3];
 public:
-    LatexLogModel (QObject * parent = 0): QAbstractTableModel(parent){};
+    LatexLogModel (QObject * parent = 0);
+    
     int columnCount(const QModelIndex & parent) const;
     int rowCount(const QModelIndex &parent) const;
     QVariant data(const QModelIndex &index, int role) const;
@@ -34,8 +35,8 @@ public:
     
     void parseLogDocument(QTextDocument* doc);
 
-    bool latexErrorsFound();
-    bool latexWarningsFound();
+    bool found(LogType lt);
+    int markID(LogType lt);
 };
 
 #endif

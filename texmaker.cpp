@@ -151,6 +151,26 @@ MpListWidget=new MetapostListWidget(StructureToolbox);
 connect(MpListWidget, SIGNAL(itemClicked ( QListWidgetItem*)), this, SLOT(InsertMetaPost(QListWidgetItem*)));
 StructureToolbox->addItem(MpListWidget,QIcon(":/images/metapost.png"),tr("MetaPost Commands"));
 
+    mainSpeller=new SpellerUtility();;
+    mainSpeller->loadDictionary(spell_dic,configFileNameBase);
+    mainSpeller->setActive(realtimespellchecking);
+    
+    LatexEditorView::setSpeller(mainSpeller);
+
+
+        
+    QDocument::setFormatFactory(m_formats);
+    mainSpeller->spellcheckErrorFormat=m_formats->id("spellingMistake");
+
+    QDocument::setShowSpaces(QDocument::ShowTrailing | QDocument::ShowLeading | QDocument::ShowTabs);
+
+
+    QString qxsPath=QFileInfo(findResourceFile("qxs/tex.qnfa")).path();   
+    m_languages = new QLanguageFactory(m_formats, this);
+    m_languages->addDefinitionPath(qxsPath);
+    QLineMarksInfoCenter::instance()->loadMarkTypes(qxsPath+"/marks.qxm");
+
+
 // OUTPUT WIDGETS
 OutputView = new QDockWidget(this);
 OutputView->setObjectName("OutputView");
@@ -170,7 +190,7 @@ OutputLayout= new QVBoxLayout(Outputframe);
 OutputLayout->setSpacing(0);
 OutputLayout->setMargin(0);
 
-logModel = new LatexLogModel(this);
+logModel = new LatexLogModel(this);//needs loaded line marks
 
 OutputTable= new QTableView (Outputframe);
 OutputTable->setModel(logModel);
@@ -229,28 +249,8 @@ stat2->setText(QString(" %1 ").arg(tr("Ready")));
 
 setAcceptDrops(true);
 
-    mainSpeller=new SpellerUtility();;
-    mainSpeller->loadDictionary(spell_dic,configFileNameBase);
-    mainSpeller->setActive(realtimespellchecking);
-    
-    LatexEditorView::setSpeller(mainSpeller);
-
-
-        
-    QDocument::setFormatFactory(m_formats);
-    mainSpeller->spellcheckErrorFormat=m_formats->id("spellingMistake");
-
-    QDocument::setShowSpaces(QDocument::ShowTrailing | QDocument::ShowLeading | QDocument::ShowTabs);
-
-
-    QString qxsPath=QFileInfo(findResourceFile("qxs/tex.qnfa")).path();   
-    m_languages = new QLanguageFactory(m_formats, this);
-    m_languages->addDefinitionPath(qxsPath);
-    QLineMarksInfoCenter::instance()->loadMarkTypes(qxsPath+"/marks.qxm");
 
     completer=new LatexCompleter(this);
-    
-    
     updateCompleter();
     m_languages->addCompletionEngine(completer);
     
@@ -437,10 +437,14 @@ void Texmaker::setupMenus()
         ->setData(i);
 
     menu->addSeparator();
-    newManagedAction(menu,"errorprev",tr("Previous LaTeX error"),SLOT(PreviousError()),Qt::CTRL+Qt::SHIFT+Qt::Key_Up, ":/images/errorprev.png");
-    newManagedAction(menu,"errornext",tr("Next LaTeX error"),SLOT(NextError()),Qt::CTRL+Qt::SHIFT+Qt::Key_Down, ":/images/errornext.png");
-    newManagedAction(menu,"errorprev",tr("Previous LaTeX warning"),SLOT(PreviousWarning()),Qt::CTRL+Qt::ALT+Qt::Key_Up);//, ":/images/errorprev.png");
-    newManagedAction(menu,"errornext",tr("Next LaTeX warning"),SLOT(NextWarning()),Qt::CTRL+Qt::ALT+Qt::Key_Down);//, ":/images/errornext.png");
+    newManagedAction(menu,"markprev",tr("Previous mark"),SLOT(PreviousMark()),Qt::CTRL+Qt::Key_Up);//, ":/images/errorprev.png");
+    newManagedAction(menu,"marknext",tr("Next mark"),SLOT(NextMark()),Qt::CTRL+Qt::Key_Down);//, ":/images/errornext.png");
+    newManagedAction(menu,"errorprev",tr("Previous error"),SLOT(PreviousError()),Qt::CTRL+Qt::SHIFT+Qt::Key_Up, ":/images/errorprev.png");
+    newManagedAction(menu,"errornext",tr("Next error"),SLOT(NextError()),Qt::CTRL+Qt::SHIFT+Qt::Key_Down, ":/images/errornext.png");
+    newManagedAction(menu,"warningprev",tr("Previous warning"),SLOT(PreviousWarning()),Qt::CTRL+Qt::ALT+Qt::Key_Up);//, ":/images/errorprev.png");
+    newManagedAction(menu,"warningnext",tr("Next warning"),SLOT(NextWarning()),Qt::CTRL+Qt::ALT+Qt::Key_Down);//, ":/images/errornext.png");
+    newManagedAction(menu,"badboxprev",tr("Previous bad box"),SLOT(PreviousBadBox()),Qt::SHIFT+Qt::ALT+Qt::Key_Up);//, ":/images/errorprev.png");
+    newManagedAction(menu,"badboxnext",tr("Next bad box"),SLOT(NextBadBox()),Qt::SHIFT+Qt::ALT+Qt::Key_Down);//, ":/images/errornext.png");
 
     menu->addSeparator();
     newManagedAction(menu,"spelling",tr("Check Spelling"),SLOT(editSpell()),Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
@@ -729,10 +733,17 @@ void Texmaker::lineMarkToolTip(int line, int mark){
     if (line < 0 || line>=currentEditorView()->editor->document()->lines()) return;
     int errorMarkID = QLineMarksInfoCenter::instance()->markTypeId("error");
     int warningMarkID = QLineMarksInfoCenter::instance()->markTypeId("warning");
-    if (mark != errorMarkID && mark != warningMarkID) return;
+    int badboxMarkID = QLineMarksInfoCenter::instance()->markTypeId("badbox");
+    if (mark != errorMarkID && mark != warningMarkID && mark != badboxMarkID) return;
     int error = currentEditorView()->lineToLogEntry.value(currentEditorView()->editor->document()->line(line).handle(),-1);
     if (error<0 || error >= logModel->count()) return;
-    currentEditorView()->lineMarkPanel->setToolTipForTouchedMark(logModel->at(error).message);
+    QString pre="";
+    switch (logModel->at(error).type) {
+        case LT_BADBOX: pre=tr("BadBox: ");break;
+        case LT_WARNING: pre=tr("Warning: ");break;
+        case LT_ERROR: pre=tr("Error: ");break;
+    }
+    currentEditorView()->lineMarkPanel->setToolTipForTouchedMark(pre+logModel->at(error).message);
 }
 
 void Texmaker::NewDocumentStatus(bool m)
@@ -3334,11 +3345,13 @@ void Texmaker::DisplayLatexError()
 {
     int errorMarkID = QLineMarksInfoCenter::instance()->markTypeId("error");
     int warningMarkID = QLineMarksInfoCenter::instance()->markTypeId("warning");
+    int badboxMarkID = QLineMarksInfoCenter::instance()->markTypeId("badbox");
     for (int i=0;i<EditorView->count();i++) { 
         LatexEditorView *ed=qobject_cast<LatexEditorView *>(EditorView->widget(i));
         if (ed) {
             ed->editor->document()->removeMarks(errorMarkID);
             ed->editor->document()->removeMarks(warningMarkID);
+            ed->editor->document()->removeMarks(badboxMarkID);
             ed->logEntryToLine.clear();
             ed->lineToLogEntry.clear();
         }
@@ -3350,6 +3363,7 @@ void Texmaker::DisplayLatexError()
                     QDocumentLine l=it.key()->editor->document()->line(logModel->at(i).oldLineNumber);
                     if (logModel->at(i).type==LT_ERROR) l.addMark(errorMarkID);
                     else if (logModel->at(i).type==LT_WARNING) l.addMark(warningMarkID);
+                    else if (logModel->at(i).type==LT_BADBOX) l.addMark(badboxMarkID);
                     it.key()->lineToLogEntry[l.handle()]=i;
                     it.key()->logEntryToLine[i]=l.handle();
                     break;
@@ -3375,7 +3389,7 @@ else
     OutputTable->show();
     OutputTextEdit->setCursorPosition(0 , 0);
 
-    if (logModel->latexErrorsFound()) {
+    if (logModel->found(LT_ERROR)) {
         OutputView->show();    //show log when error
         NextError();
     }
@@ -3383,7 +3397,7 @@ else
 
 bool Texmaker::NoLatexErrors()
 {
-return !logModel->latexErrorsFound();
+return !logModel->found(LT_ERROR);
 }
 
 void Texmaker::GoToLogEntry(int logEntryNumber){
@@ -3417,63 +3431,67 @@ void Texmaker::GoToLogEntryAt(int newLineNumber){
     gotoLine(newLineNumber);
     //find error number
     QDocumentLineHandle* lh=currentEditorView()->editor->document()->line(newLineNumber).handle();
-    int logEntryNumber=currentEditorView()->lineToLogEntry.value(lh);
+    int logEntryNumber=currentEditorView()->lineToLogEntry.value(lh,-1);
+    if (logEntryNumber==-1) return;
     //goto log entry
     OutputTable->scrollTo(logModel->index(logEntryNumber,1),QAbstractItemView::PositionAtCenter);
     OutputTable->selectRow(logEntryNumber);
     OutputTextEdit->setCursorPosition(logModel->at(logEntryNumber).logline, 0);
 }
 
-void Texmaker::NextError()
-{
+void Texmaker::GoToMark(bool backward, int id){
+    if (backward)
+        GoToLogEntryAt(currentEditorView()->editor->document()->findPreviousMark(id,currentEditorView()->editor->cursor().lineNumber()-1));
+    else
+        GoToLogEntryAt(currentEditorView()->editor->document()->findNextMark(id,currentEditorView()->editor->cursor().lineNumber()+1));
+}
+
+void Texmaker::NextMark(){
+    if (!currentEditorView()) return;
+    GoToMark(false,-1);
+}
+void Texmaker::PreviousMark(){
+    if (!currentEditorView()) return;
+    GoToMark(true,-1);
+}
+
+
+void Texmaker::gotoNearLogEntry(LogType lt, bool backward, QString notFoundMessage){
     if (!logpresent) {ViewLog();}
     if (logpresent)
-        if (logModel->latexErrorsFound()) 
-            GoToLogEntryAt(currentEditorView()->editor->document()->findNextMark(QLineMarksInfoCenter::instance()->markTypeId("error"), 
-                                    currentEditorView()->editor->cursor().lineNumber()+1));
+        if (logModel->found(lt)) 
+            GoToMark(backward, logModel->markID(lt));
         else {
-        QMessageBox::information( this,"TexMakerX",tr("No LaTeX errors detected !"));
-        OutputTextEdit->setCursorPosition(0 , 0);
+            QMessageBox::information( this,"TexMakerX",notFoundMessage);
+            OutputTextEdit->setCursorPosition(0 , 0);
         }
+}
+void Texmaker::NextError()
+{
+    gotoNearLogEntry(LT_ERROR,false,tr("No LaTeX errors detected !"));
 }
 
 void Texmaker::PreviousError()
 {
-    if (!logpresent) {ViewLog();}
-    if (logpresent) 
-        if (logModel->latexErrorsFound()) 
-            GoToLogEntryAt(currentEditorView()->editor->document()->findPreviousMark(QLineMarksInfoCenter::instance()->markTypeId("error"), 
-                                            currentEditorView()->editor->cursor().lineNumber()-1));
-        else {
-            QMessageBox::information( this,"TexMakerX",tr("No LaTeX errors detected !"));
-            OutputTextEdit->setCursorPosition(0 , 0);
-        }
+    gotoNearLogEntry(LT_ERROR,true,tr("No LaTeX errors detected !"));
 }
 
 void Texmaker::NextWarning()
 {
-    if (!logpresent) {ViewLog();}
-    if (logpresent)
-        if (logModel->latexWarningsFound()) 
-            GoToLogEntryAt(currentEditorView()->editor->document()->findNextMark(QLineMarksInfoCenter::instance()->markTypeId("warning"), 
-                                        currentEditorView()->editor->cursor().lineNumber()+1));
-        else {
-        QMessageBox::information( this,"TexMakerX",tr("No LaTeX warnings detected !"));
-        OutputTextEdit->setCursorPosition(0 , 0);
-        }
+    gotoNearLogEntry(LT_WARNING,false,tr("No LaTeX warnings detected !"));
 }
-
 void Texmaker::PreviousWarning()
 {
-    if (!logpresent) {ViewLog();}
-    if (logpresent) 
-        if (logModel->latexWarningsFound()) 
-            GoToLogEntryAt(currentEditorView()->editor->document()->findPreviousMark(QLineMarksInfoCenter::instance()->markTypeId("warning"), 
-                                        currentEditorView()->editor->cursor().lineNumber()-1));
-        else {
-            QMessageBox::information( this,"TexMakerX",tr("No LaTeX warnings detected !"));
-            OutputTextEdit->setCursorPosition(0 , 0);
-        }
+    gotoNearLogEntry(LT_WARNING,true,tr("No LaTeX warnings detected !"));
+}
+
+void Texmaker::NextBadBox()
+{
+    gotoNearLogEntry(LT_BADBOX,false,tr("No bad boxes detected !"));
+}
+void Texmaker::PreviousBadBox()
+{
+    gotoNearLogEntry(LT_BADBOX,true,tr("No bad boxes detected !"));
 }
 //////////////// HELP /////////////////
 void Texmaker::LatexHelp()
