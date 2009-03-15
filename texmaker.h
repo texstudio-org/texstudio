@@ -214,6 +214,7 @@ void UpdateStructure();
 void ShowStructure();
 void ClickedOnStructure(QTreeWidgetItem *item,int);
 
+void NormalCompletion();
 void InsertEnvironmentCompletion();
 void InsertTag(QString Entity, int dx, int dy);
 void InsertSymbol(QTableWidgetItem *item);

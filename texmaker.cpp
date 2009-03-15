@@ -271,9 +271,9 @@ QMenu* Texmaker::newManagedMenu(const QString &id,const QString &text){
 }
 QMenu* Texmaker::newManagedMenu(QMenu* menu, const QString &id,const QString &text){
     if (!menu) return newManagedMenu(id,text);
-    QMenu* subMenu=menu->addMenu(text);
-    subMenu->setObjectName( menu->objectName()+"/"+ id);
-    return subMenu;
+    QMenu* submenu=menu->addMenu(text);
+    submenu->setObjectName( menu->objectName()+"/"+ id);
+    return submenu;
 }
 QAction* Texmaker::newManagedAction(QMenu* menu, const QString &id,const QString &text, const char* slotName, const QKeySequence &shortCut, const QString & iconFile){
     QAction *act;
@@ -374,12 +374,12 @@ void Texmaker::setupMenus()
     newManagedAction(menu, "new",tr("New"), SLOT(fileNew()), Qt::CTRL+Qt::Key_N, ":/images/filenew.png");
     newManagedAction(menu, "open",tr("Open"), SLOT(fileOpen()), Qt::CTRL+Qt::Key_O, ":/images/fileopen.png");
     
-    QMenu *subMenu=newManagedMenu(menu, "openrecent",tr("Open Recent"));
+    QMenu *submenu=newManagedMenu(menu, "openrecent",tr("Open Recent"));
     for (int i = 0; i < 3; ++i)
-        newManagedAction(subMenu, "p"+QString::number(i), QString("Recent 'Master Document' %1").arg(i), SLOT(fileOpenRecentProject()))->setVisible(false);
-    subMenu->addSeparator();
+        newManagedAction(submenu, "p"+QString::number(i), QString("Recent 'Master Document' %1").arg(i), SLOT(fileOpenRecentProject()))->setVisible(false);
+    submenu->addSeparator();
     for (int i = 0; i < 5; ++i)
-        newManagedAction(subMenu, QString::number(i), QString("Recent File %1").arg(i), SLOT(fileOpenRecent()))->setVisible(false);
+        newManagedAction(submenu, QString::number(i), QString("Recent File %1").arg(i), SLOT(fileOpenRecent()))->setVisible(false);
 
     menu->addSeparator();
     newManagedAction(menu,"save",tr("Save"), SLOT(fileSave()), Qt::CTRL+Qt::Key_S, ":/images/filesave.png");
@@ -422,29 +422,36 @@ void Texmaker::setupMenus()
     newManagedAction(menu,"replace",tr("Replace"), SLOT(editReplace()), Qt::CTRL+Qt::Key_R);
 
     menu->addSeparator();
-    newManagedAction(menu,"goto", tr("Goto Line"), SLOT(editGotoLine()), Qt::CTRL+Qt::Key_G, ":/images/goto.png");
-    newManagedAction(menu,"jumptolastchange",tr("Jump to last change"), SLOT(editJumpToLastChange()), Qt::CTRL+Qt::Key_H);
-    newManagedAction(menu,"jumptonextchange",tr("Jump forward"), SLOT(editJumpToLastChangeForward()), Qt::CTRL+Qt::SHIFT+Qt::Key_H);
+    submenu=newManagedMenu(menu, "goto",tr("Go to"));
+    newManagedAction(submenu,"line", tr("Line"), SLOT(editGotoLine()), Qt::CTRL+Qt::Key_G, ":/images/goto.png");
+    newManagedAction(submenu,"lastchange",tr("last change"), SLOT(editJumpToLastChange()), Qt::CTRL+Qt::Key_H);
+    newManagedAction(submenu,"nextchange",tr("\"next\" change"), SLOT(editJumpToLastChangeForward()), Qt::CTRL+Qt::SHIFT+Qt::Key_H);
+    submenu->addSeparator();
+    newManagedAction(submenu,"markprev",tr("Previous mark"),SLOT(PreviousMark()),Qt::CTRL+Qt::Key_Up);//, ":/images/errorprev.png");
+    newManagedAction(submenu,"marknext",tr("Next mark"),SLOT(NextMark()),Qt::CTRL+Qt::Key_Down);//, ":/images/errornext.png");
+    submenu->addSeparator();
+    newManagedAction(submenu,"errorprev",tr("Previous error"),SLOT(PreviousError()),Qt::CTRL+Qt::SHIFT+Qt::Key_Up, ":/images/errorprev.png");
+    newManagedAction(submenu,"errornext",tr("Next error"),SLOT(NextError()),Qt::CTRL+Qt::SHIFT+Qt::Key_Down, ":/images/errornext.png");
+    newManagedAction(submenu,"warningprev",tr("Previous warning"),SLOT(PreviousWarning()),Qt::CTRL+Qt::ALT+Qt::Key_Up);//, ":/images/errorprev.png");
+    newManagedAction(submenu,"warningnext",tr("Next warning"),SLOT(NextWarning()),Qt::CTRL+Qt::ALT+Qt::Key_Down);//, ":/images/errornext.png");
+    newManagedAction(submenu,"badboxprev",tr("Previous bad box"),SLOT(PreviousBadBox()),Qt::SHIFT+Qt::ALT+Qt::Key_Up);//, ":/images/errorprev.png");
+    newManagedAction(submenu,"badboxnext",tr("Next bad box"),SLOT(NextBadBox()),Qt::SHIFT+Qt::ALT+Qt::Key_Down);//, ":/images/errornext.png");
 
-    subMenu=newManagedMenu(menu, "toggleBookmark",tr("Toggle Bookmark"));
+    submenu=newManagedMenu(menu, "gotoBookmark",tr("Goto Bookmark"));
     for (int i=0;i<=9;i++) 
-        newManagedAction(subMenu,QString("bookmark%1").arg(i),tr("Bookmark %1").arg(i),SLOT(toggleBookmark()),Qt::CTRL+Qt::SHIFT+Qt::Key_0+i)
+        newManagedAction(submenu,QString("bookmark%1").arg(i),tr("Bookmark %1").arg(i),SLOT(gotoBookmark()),Qt::CTRL+Qt::Key_0+i)
         ->setData(i);
 
-    subMenu=newManagedMenu(menu, "gotoBookmark",tr("Goto Bookmark"));
+    submenu=newManagedMenu(menu, "toggleBookmark",tr("Toggle Bookmark"));
+    newManagedAction(submenu,QString("bookmark"),tr("unnamed bookmark"),SLOT(toggleBookmark()),Qt::CTRL+Qt::SHIFT+Qt::Key_B)
+        ->setData(-1);
     for (int i=0;i<=9;i++) 
-        newManagedAction(subMenu,QString("bookmark%1").arg(i),tr("Bookmark %1").arg(i),SLOT(gotoBookmark()),Qt::CTRL+Qt::Key_0+i)
+        newManagedAction(submenu,QString("bookmark%1").arg(i),tr("Bookmark %1").arg(i),SLOT(toggleBookmark()),Qt::CTRL+Qt::SHIFT+Qt::Key_0+i)
         ->setData(i);
 
-    menu->addSeparator();
-    newManagedAction(menu,"markprev",tr("Previous mark"),SLOT(PreviousMark()),Qt::CTRL+Qt::Key_Up);//, ":/images/errorprev.png");
-    newManagedAction(menu,"marknext",tr("Next mark"),SLOT(NextMark()),Qt::CTRL+Qt::Key_Down);//, ":/images/errornext.png");
-    newManagedAction(menu,"errorprev",tr("Previous error"),SLOT(PreviousError()),Qt::CTRL+Qt::SHIFT+Qt::Key_Up, ":/images/errorprev.png");
-    newManagedAction(menu,"errornext",tr("Next error"),SLOT(NextError()),Qt::CTRL+Qt::SHIFT+Qt::Key_Down, ":/images/errornext.png");
-    newManagedAction(menu,"warningprev",tr("Previous warning"),SLOT(PreviousWarning()),Qt::CTRL+Qt::ALT+Qt::Key_Up);//, ":/images/errorprev.png");
-    newManagedAction(menu,"warningnext",tr("Next warning"),SLOT(NextWarning()),Qt::CTRL+Qt::ALT+Qt::Key_Down);//, ":/images/errornext.png");
-    newManagedAction(menu,"badboxprev",tr("Previous bad box"),SLOT(PreviousBadBox()),Qt::SHIFT+Qt::ALT+Qt::Key_Up);//, ":/images/errorprev.png");
-    newManagedAction(menu,"badboxnext",tr("Next bad box"),SLOT(NextBadBox()),Qt::SHIFT+Qt::ALT+Qt::Key_Down);//, ":/images/errornext.png");
+    submenu=newManagedMenu(menu, "complete",tr("Complete"));
+    newManagedAction(submenu, "normal", tr("normal"), SLOT(NormalCompletion()),Qt::CTRL+Qt::Key_Space);
+    newManagedAction(submenu, "environment", tr("\\begin{ completion"), SLOT(InsertEnvironmentCompletion()),Qt::CTRL+Qt::ALT+Qt::Key_Space);
 
     menu->addSeparator();
     newManagedAction(menu,"spelling",tr("Check Spelling"),SLOT(editSpell()),Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
@@ -485,19 +492,19 @@ void Texmaker::setupMenus()
 
 //  User    
     menu=newManagedMenu("main/user",tr("&User"));
-    subMenu=newManagedMenu(menu,"tags",tr("User &Tags"));
+    submenu=newManagedMenu(menu,"tags",tr("User &Tags"));
     for (int i=0;i<10;i++) 
-        newManagedAction(subMenu, QString("tag%1").arg(i),QString("%1: %2").arg(i+1).arg(UserMenuName[i]), SLOT(InsertUserTag()), Qt::SHIFT+Qt::Key_F1+i)
+        newManagedAction(submenu, QString("tag%1").arg(i),QString("%1: %2").arg(i+1).arg(UserMenuName[i]), SLOT(InsertUserTag()), Qt::SHIFT+Qt::Key_F1+i)
         ->setData(i);
-    subMenu->addSeparator();
-    newManagedAction(subMenu, QString("manage"),tr("Edit User &Tags"), SLOT(EditUserMenu()));
+    submenu->addSeparator();
+    newManagedAction(submenu, QString("manage"),tr("Edit User &Tags"), SLOT(EditUserMenu()));
 
-    subMenu=newManagedMenu(menu,"commands",tr("User &Commands"));
+    submenu=newManagedMenu(menu,"commands",tr("User &Commands"));
     for (int i=0;i<5;i++) 
-        newManagedAction(subMenu, QString("cmd%1").arg(i),QString("%1: %2").arg(i+1).arg(UserToolName[i]), SLOT(UserTool()), Qt::SHIFT+Qt::ALT+Qt::Key_F1+i)
+        newManagedAction(submenu, QString("cmd%1").arg(i),QString("%1: %2").arg(i+1).arg(UserToolName[i]), SLOT(UserTool()), Qt::SHIFT+Qt::ALT+Qt::Key_F1+i)
         ->setData(i);
-    subMenu->addSeparator();
-    newManagedAction(subMenu, QString("manage"),tr("Edit User &Commands"), SLOT(EditUserTool()));
+    submenu->addSeparator();
+    newManagedAction(submenu, QString("manage"),tr("Edit User &Commands"), SLOT(EditUserTool()));
 
     newManagedAction(menu, QString("keyreplacements"),tr("Edit User &Key Replacements..."), SLOT(EditUserKeyReplacements()));
 
@@ -568,8 +575,8 @@ runToolBar = addToolBar("Tools");
 runToolBar->setObjectName("Tools");
 
 runToolBar->addAction(getManagedAction("main/tools/viewlog"));
-runToolBar->addAction(getManagedAction("main/edit/errorprev"));
-runToolBar->addAction(getManagedAction("main/edit/errornext"));
+runToolBar->addAction(getManagedAction("main/edit/goto/errorprev"));
+runToolBar->addAction(getManagedAction("main/edit/goto/errornext"));
 
 runToolBar->addSeparator();
 runToolBar->addAction(getManagedAction("main/tools/quickbuild"));
@@ -1976,18 +1983,22 @@ if ((item) && (!structlist.isEmpty()))
 }
 
 //////////TAGS////////////////
+void Texmaker::NormalCompletion(){
+    if ( !currentEditorView() )	return;
+    currentEditorView()->complete();
+}
 void Texmaker::InsertEnvironmentCompletion(){
     if ( !currentEditorView() )	return;
     QDocumentCursor c = currentEditorView()->editor->cursor();
     QString eow=getCommonEOW();
     while (c.columnNumber()>0 && !eow.contains(c.getPreviousChar())) c.movePosition(1,QDocumentCursor::PreviousCharacter);
     c.insertText("\\begin{");//remaining part is up to the completion engine
-    c=currentEditorView()->editor->cursor();
+    //c=currentEditorView()->editor->cursor();
     //c.movePosition(QString("\\begin{)").length(), QDocumentCursor::NextCharacter);
     //currentEditorView()->editor->setCursor(c);
-    if (currentEditorView()->editor->completionEngine())
-        currentEditorView()->editor->completionEngine()->complete();
-    currentEditorView()->editor->setFocus();
+    //if (currentEditorView()->editor->completionEngine())
+    //    currentEditorView()->editor->completionEngine()->complete();
+    currentEditorView()->complete();
 }
 void Texmaker::InsertTag(QString Entity, int dx, int dy)
 {
@@ -3740,13 +3751,13 @@ void Texmaker::gotoBookmark(){
     if ( !currentEditorView() ) return;
     QAction *action = qobject_cast<QAction *>(sender());    
     if (!action) return;
-    currentEditorView()->jumpToBookmark(action->data().toInt());
+    currentEditorView()->jumpToBookmark(action->data().toInt()); 
 }
 void Texmaker::toggleBookmark(){
     if ( !currentEditorView() ) return;
     QAction *action = qobject_cast<QAction*>(sender());    
     if (!action) return;
-    currentEditorView()->toggleBookmark(action->data().toInt());
+    currentEditorView()->toggleBookmark(action->data().toInt()); //-1 is unnamed bookmark
 }
 
 //*********************************

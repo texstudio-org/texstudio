@@ -58,7 +58,7 @@ public:
     
     
 //  FindWidget *findwidget;
-
+    void complete();
     void jumpChangePositionBackward();
     void jumpChangePositionForward();
     void jumpToBookmark(int bookmarkNumber);

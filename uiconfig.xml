@@ -41,7 +41,6 @@
     <insert id="item" text="\item" insert="\item" info="\item[label] Hello" icon=":/images/item.png" shortcut="Ctrl+Shift+I"/>
   </menu>
   
-  <action id="environmentcompletion" text="\begin{ completion" slot="1InsertEnvironmentCompletion()" shortcut="Ctrl+Alt+Space"/>
 
   <menu id="fontstyles" text="Font St&amp;yles">
     <insert id="emph" text="\emph - Emphasis  [selection]" insert="\emph{%|}" shortcut="Ctrl+Shift+E"/>
