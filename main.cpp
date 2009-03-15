@@ -99,7 +99,7 @@ if (!startAlways)
         
         #endif
         QString msg;
-        for(int i=0; i<argc; ++i){
+        for(int i=1; i<argc; ++i){
             msg += argv[i];
             msg += "#!#";
         }

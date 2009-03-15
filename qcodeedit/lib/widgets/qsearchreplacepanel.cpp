@@ -278,6 +278,13 @@ bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
 
 void QSearchReplacePanel::on_leFind_textEdited(const QString& text)
 {
+    bool incrementalSearch = !cbReplace->isChecked();
+    if (!incrementalSearch) {
+        if ( m_search ) 
+            m_search->setSearchText(text);
+        leFind->setStyleSheet(QString());
+        return;
+    }
 	bool hadSearch = m_search;
 	QDocumentCursor cur = editor()->cursor();
 	
