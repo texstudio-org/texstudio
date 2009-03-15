@@ -35,11 +35,9 @@
 //------------------------------Default Input Binding--------------------------------
 bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
 {
-    if ((event->text()==QString("\\") || (event->key()==Qt::Key_Space && event->modifiers()==Qt::CTRL )) && editor->completionEngine())  { //workaround because trigger doesn't seem work
-        if (event->text()==QString("\\")) {
-            editor->cursor().removeSelectedText();
-            editor->cursor().insertText("\\");
-        } else editor->cursor().clearSelection();
+    if (event->text()==QString("\\") && editor->completionEngine())  { //workaround because trigger doesn't seem work
+        editor->cursor().removeSelectedText();
+        editor->cursor().insertText("\\");
         editor->completionEngine()->complete();
         return true;
     }
@@ -175,7 +173,16 @@ LatexEditorView::~LatexEditorView()
 {
 }
 
-
+void LatexEditorView::complete(){
+    if (!editor->completionEngine()) return;
+    QDocumentCursor c=editor->cursor();
+    if (c.hasSelection()) {
+        c.setColumnNumber(qMax(c.columnNumber(),c.anchorColumnNumber()));
+        editor->setCursor(c);
+    }
+    setFocus();
+    editor->completionEngine()->complete();
+}
 void LatexEditorView::jumpChangePositionBackward(){
     if (changePositions.size()==0) return;
     for (int i=changePositions.size()-1;i>=0;i--)
@@ -215,7 +222,7 @@ void LatexEditorView::toggleBookmark(int bookmarkNumber){
         return;
     }
     if (bookmarkNumber>=0) editor->document()->line(editor->document()->findNextMark(rmid)).removeMark(rmid);
-    for (int i=0;i<10;i++) editor->cursor().line().removeMark(bookMarkId(i));
+    for (int i=-1;i<10;i++) editor->cursor().line().removeMark(bookMarkId(i));
     editor->cursor().line().addMark(rmid);
     editor->ensureCursorVisible();
     if (bookmarkNumber>=1 && bookmarkNumber<=3) lastSetBookmark=bookmarkNumber;

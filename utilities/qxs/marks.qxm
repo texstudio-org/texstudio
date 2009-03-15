@@ -38,7 +38,7 @@
     <mark>
         <id>bookmark</id>
         <color>#D6DDFF</color>
-        <icon>:/book.png</icon>
+        <icon>:/images/lbook.png</icon>
         <user>true</user>
         <focus>false</focus>
         <priority>0</priority>
