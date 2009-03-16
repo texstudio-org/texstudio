@@ -35,8 +35,15 @@
 
      void updateEditorGeometry(QWidget *editor,
          const QStyleOptionViewItem &option, const QModelIndex &index) const;
+
+    void drawDisplay ( QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QString & text ) const;
     
     QTreeWidget * treeWidget; //tree widget to remove duplicates from, not necessary
+
+    static const QString deleteRowButton;
+    static const QString addRowButton;
+public slots:
+  void treeWidgetItemClicked ( QTreeWidgetItem * item, int column );
  };
 
 class ConfigDialog : public QDialog

@@ -240,7 +240,7 @@ void LatexEditorView::cleanBib(){
 
 
 
-void LatexEditorView::setKeyReplacements(QVector<QString> *UserKeyReplace, QVector<QString> *UserKeyReplaceAfterWord, QVector<QString> *UserKeyReplaceBeforeWord){
+void LatexEditorView::setKeyReplacements(QStringList *UserKeyReplace, QStringList *UserKeyReplaceAfterWord, QStringList *UserKeyReplaceBeforeWord){
     if (!defaultInputBinding) return;
     defaultInputBinding->keyToReplace=UserKeyReplace;
     defaultInputBinding->keyReplaceAfterWord=UserKeyReplaceAfterWord;

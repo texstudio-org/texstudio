@@ -27,9 +27,9 @@ HEADERS	+= texmaker.h \
 	addoptiondialog.h \
 	quickdocumentdialog.h \
 	usermenudialog.h \
-	userkeyreplacementsdialog.h \
 	usertooldialog.h \
 	refdialog.h \
+	configmanager.h \
 	configdialog.h \
 	aboutdialog.h \
 	webpublishdialog.h \
@@ -78,9 +78,9 @@ SOURCES	+= main.cpp \
 	addoptiondialog.cpp \
 	quickdocumentdialog.cpp \
 	usermenudialog.cpp \
-	userkeyreplacementsdialog.cpp \
 	usertooldialog.cpp \
 	refdialog.cpp \
+	configmanager.cpp \
 	configdialog.cpp \
 	aboutdialog.cpp \
 	webpublishdialog.cpp \
@@ -109,8 +109,7 @@ FORMS   += structdialog.ui \
 	letterdialog.ui \
 	addoptiondialog.ui \
 	quickdocumentdialog.ui \
-  userkeyreplacements.ui \
-	usermenudialog.ui \
+    usermenudialog.ui \
 	usertooldialog.ui \
 	refdialog.ui \
 	aboutdialog.ui \
