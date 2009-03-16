@@ -28,7 +28,7 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
      const QStyleOptionViewItem & option ,
      const QModelIndex & index ) const
 {
-    if (index.column()!=2) return 0;
+    if (index.column()!=2 && index.column()!=3) return 0;
     QComboBox *editor = new QComboBox(parent);
     for (int k=Qt::Key_F1;k<=Qt::Key_F12;k++)
         editor->addItem(QKeySequence(k).toString(QKeySequence::NativeText));
@@ -61,7 +61,7 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
   void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
                                     const QModelIndex &index) const
  {
-    if (index.column()!=2) return;
+    if (index.column()!=2 && index.column()!=3) return;
     QComboBox *box = qobject_cast<QComboBox*>(editor);
     if (!box) return;
     QString value=box->currentText();
@@ -84,6 +84,9 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
         if (treeWidget) {
             QList<QTreeWidgetItem *> li=treeWidget->findItems ( value, Qt::MatchRecursive |Qt::MatchFixedString, 2);
             if (!li.empty() && li[0]->text(0) == model->data(model->index(index.row(),0,index.parent()))) li.removeFirst();
+            QList<QTreeWidgetItem *> li2=treeWidget->findItems ( value, Qt::MatchRecursive |Qt::MatchFixedString, 3);
+            if (!li2.empty() && li2[0]->text(0) == model->data(model->index(index.row(),0,index.parent()))) li2.removeFirst();
+            li << li2;
             if (!li.empty()) {
                 QString duplicate=li[0]->text(0);//model->data(model->index(mil[0].row(),0,mil[0].parent()),Qt::DisplayRole).toString();
                 switch (QMessageBox::warning(editor, ConfigDialog::tr("TexMakerX"),
@@ -92,7 +95,8 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
                 {
                     case QMessageBox::Yes:
                         //model->setData(mil[0],"",Qt::DisplayRole);
-                        li[0]->setText(2,"");
+                        if (li[0]->text(2) == value)  li[0]->setText(2,"");
+                        else if (li[0]->text(3) == value)  li[0]->setText(3,"");
                         break;
                     default:;
                 }
@@ -161,7 +165,7 @@ fmConfig->addScheme("",QDocument::formatFactory());
 createIcons();
 ui.contentsWidget->setCurrentRow(0);
 
-ui.shortcutTree->setHeaderLabels(QStringList()<<tr("Command")<<tr("Default Shortcut")<<tr("Current Shortcut"));
+ui.shortcutTree->setHeaderLabels(QStringList()<<tr("Command")<<tr("Default Shortcut")<<tr("Current Shortcut")<<tr("Additional Shortcut"));
 ui.shortcutTree->setColumnWidth(0,200);
 }
 

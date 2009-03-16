@@ -34,7 +34,7 @@
       </size>
      </property>
      <property name="currentIndex" >
-      <number>3</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="pt" >
       <layout class="QVBoxLayout" >
@@ -545,7 +545,7 @@ p, li { white-space: pre-wrap; }
        <item>
         <widget class="QTreeWidget" name="shortcutTree" >
          <property name="columnCount" >
-          <number>3</number>
+          <number>4</number>
          </property>
          <column>
           <property name="text" >
@@ -560,6 +560,11 @@ p, li { white-space: pre-wrap; }
          <column>
           <property name="text" >
            <string>3</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>4</string>
           </property>
          </column>
         </widget>

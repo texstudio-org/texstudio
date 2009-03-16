@@ -276,14 +276,18 @@ QMenu* Texmaker::newManagedMenu(QMenu* menu, const QString &id,const QString &te
     return submenu;
 }
 QAction* Texmaker::newManagedAction(QMenu* menu, const QString &id,const QString &text, const char* slotName, const QKeySequence &shortCut, const QString & iconFile){
+    return newManagedAction(menu,id,text,slotName,QList<QKeySequence>() << shortCut, iconFile);
+}
+QAction* Texmaker::newManagedAction(QMenu* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile){
     QAction *act;
     if (iconFile.isEmpty()) act=new QAction(text, this);
     else act=new QAction (QIcon(iconFile), text, this);
-    act->setShortcut(shortCut);
+    act->setShortcuts(shortCuts);
     if (slotName) connect(act, SIGNAL(triggered()), this, slotName);
     act->setObjectName(menu->objectName()+"/"+id);
     menu->addAction(act);
-    managedMenuShortcuts.insert(act->objectName(),shortCut);
+    for (int i=0;i<shortCuts.size();i++)
+        managedMenuShortcuts.insert(act->objectName()+QString::number(i),shortCuts[i]);
     return act;
 }
 QAction* Texmaker::newManagedAction(QMenu* menu, const QString &id, QAction* act){
@@ -349,6 +353,7 @@ void Texmaker::managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu) {
             twi->setIcon(0,acts[i]->icon());
             if (!acts[i]->isSeparator()) twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
             twi->setData(0,Qt::UserRole,acts[i]->objectName());
+            if (acts[i]->shortcuts().size()>1) twi->setText(3,acts[i]->shortcuts()[1].toString(QKeySequence::NativeText));
         }
     
     
@@ -361,7 +366,14 @@ void Texmaker::treeWidgetToManagedMenuTo(QTreeWidgetItem* item){
         if (act) {
             QKeySequence sc(item->text(2));
             act->setShortcut(sc);
-            if (sc!=managedMenuShortcuts[act->objectName()]) managedMenuNewShortcuts.append(QPair<QString, QString> (id, item->text(2)));
+            if (sc!=managedMenuShortcuts.value(act->objectName()+"0",QKeySequence())) 
+                managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~0", item->text(2)));
+            if (item->text(3)!="") {
+                sc=QKeySequence (item->text(3));
+                act->setShortcuts((QList<QKeySequence>()<<act->shortcut()) << sc);
+                if (sc!=managedMenuShortcuts.value(act->objectName()+"1",QKeySequence())) 
+                    managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~1", item->text(3)));
+            }
         }
     }
     for (int i=0;i< item->childCount (); i++)
@@ -403,9 +415,9 @@ void Texmaker::setupMenus()
     newManagedAction(menu, "redo",tr("Redo"), SLOT(editRedo()), Qt::CTRL+Qt::Key_Y, ":/images/redo.png");
 
     menu->addSeparator();
-    newManagedAction(menu,"copy",tr("Copy"), SLOT(editCopy()), Qt::CTRL+Qt::Key_C, ":/images/editcopy.png");
-    newManagedAction(menu,"cut",tr("Cut"), SLOT(editCut()), Qt::CTRL+Qt::Key_X, ":/images/editcut.png");
-    newManagedAction(menu,"paste",tr("Paste"), SLOT(editPaste()), Qt::CTRL+Qt::Key_V, ":/images/editpaste.png");
+    newManagedAction(menu,"copy",tr("Copy"), SLOT(editCopy()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_C)<<Qt::CTRL+Qt::Key_Insert, ":/images/editcopy.png");
+    newManagedAction(menu,"cut",tr("Cut"), SLOT(editCut()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_X)<<Qt::SHIFT+Qt::Key_Delete, ":/images/editcut.png");
+    newManagedAction(menu,"paste",tr("Paste"), SLOT(editPaste()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::SHIFT+Qt::Key_Insert, ":/images/editpaste.png");
     newManagedAction(menu,"selectall",tr("Select All"), SLOT(editSelectAll()), Qt::CTRL+Qt::Key_A);
 
     LatexEditorView::setBaseActions(menu->actions());
@@ -542,8 +554,17 @@ void Texmaker::setupMenus()
     
     //modify shortcuts
     for (int i=0;i< managedMenuNewShortcuts.size();i++) {
-        QAction * act= getManagedAction(managedMenuNewShortcuts[i].first);
-        if (act) act->setShortcut(QKeySequence(managedMenuNewShortcuts[i].second));
+        QString id=managedMenuNewShortcuts[i].first;
+        int num=-1;
+        if (managedMenuNewShortcuts[i].first.endsWith("~0")) num=0;
+        else if (managedMenuNewShortcuts[i].first.endsWith("~1")) num=1;
+        else ; //backward compatibility
+        if (num!=-1) id.chop(2);
+        QAction * act= getManagedAction(id);
+        if (act) {
+            if (num!=1) act->setShortcut(QKeySequence(managedMenuNewShortcuts[i].second));
+            else act->setShortcuts((QList<QKeySequence>()<<act->shortcut())<<managedMenuNewShortcuts[i].second);
+        }
     }    
 }
 

@@ -77,6 +77,7 @@ private:
 QMenu* newManagedMenu(const QString &id,const QString &text);
 QMenu* newManagedMenu(QMenu* menu, const QString &id,const QString &text);
 QAction* newManagedAction(QMenu* menu, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="");
+QAction* newManagedAction(QMenu* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile="");
 QAction* newManagedAction(QMenu* menu, const QString &id, QAction* act);
 QAction* getManagedAction(QString id);
 void loadManagedMenu(QMenu* parent,const QDomElement &f);
