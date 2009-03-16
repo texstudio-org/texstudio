@@ -36,9 +36,9 @@ public:
     virtual bool contextMenuEvent(QContextMenuEvent *event, QEditor *editor);
 private:
     friend class LatexEditorView;
-    QVector<QString> *keyToReplace;
-    QVector<QString> *keyReplaceAfterWord;
-    QVector<QString> *keyReplaceBeforeWord;
+    QStringList *keyToReplace;
+    QStringList *keyReplaceAfterWord;
+    QStringList *keyReplaceBeforeWord;
     QList<QAction *> baseActions;
     
     QMenu* contextMenu;
@@ -65,7 +65,7 @@ public:
     void toggleBookmark(int bookmarkNumber);
     
     void cleanBib();
-    static void setKeyReplacements(QVector<QString> *UserKeyReplace, QVector<QString> *UserKeyReplaceAfterWord, QVector<QString> *UserKeyReplaceBeforeWord);
+    static void setKeyReplacements(QStringList *UserKeyReplace, QStringList *UserKeyReplaceAfterWord, QStringList *UserKeyReplaceBeforeWord);
     static void setBaseActions(QList<QAction *> baseActions);
     static void setSpeller(SpellerUtility* mainSpeller);
 

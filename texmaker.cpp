@@ -65,7 +65,6 @@
 #include "letterdialog.h"
 #include "quickdocumentdialog.h"
 #include "usermenudialog.h"
-#include "userkeyreplacementsdialog.h"
 #include "usertooldialog.h"
 #include "refdialog.h"
 #include "configdialog.h"
@@ -152,7 +151,7 @@ connect(MpListWidget, SIGNAL(itemClicked ( QListWidgetItem*)), this, SLOT(Insert
 StructureToolbox->addItem(MpListWidget,QIcon(":/images/metapost.png"),tr("MetaPost Commands"));
 
     mainSpeller=new SpellerUtility();;
-    mainSpeller->loadDictionary(spell_dic,configFileNameBase);
+    mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);
     mainSpeller->setActive(realtimespellchecking);
     
     LatexEditorView::setSpeller(mainSpeller);
@@ -293,7 +292,7 @@ QAction* Texmaker::newManagedAction(QMenu* menu, const QString &id,const QString
 QAction* Texmaker::newManagedAction(QMenu* menu, const QString &id, QAction* act){
     act->setObjectName(menu->objectName()+"/"+id);
     menu->addAction(act);
-    managedMenuShortcuts.insert(act->objectName(),act->shortcut());
+    managedMenuShortcuts.insert(act->objectName()+"0",act->shortcut());
     return act;
 }
 QAction* Texmaker::getManagedAction(QString id){
@@ -348,7 +347,7 @@ void Texmaker::managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu) {
         if (acts[i]->menu()) managedMenuToTreeWidget(menuitem, acts[i]->menu());
         else {
             QTreeWidgetItem* twi=new QTreeWidgetItem(menuitem, QStringList() << acts[i]->text() 
-                                                         << managedMenuShortcuts[acts[i]->objectName()]
+                                                         << managedMenuShortcuts[acts[i]->objectName()+"0"]
                                                          << acts[i]->shortcut().toString(QKeySequence::NativeText));
             twi->setIcon(0,acts[i]->icon());
             if (!acts[i]->isSeparator()) twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
@@ -517,8 +516,6 @@ void Texmaker::setupMenus()
         ->setData(i);
     submenu->addSeparator();
     newManagedAction(submenu, QString("manage"),tr("Edit User &Commands"), SLOT(EditUserTool()));
-
-    newManagedAction(menu, QString("keyreplacements"),tr("Edit User &Key Replacements..."), SLOT(EditUserKeyReplacements()));
 
 //---view---
     menu=newManagedMenu("main/view",tr("&View"));
@@ -1324,30 +1321,8 @@ void Texmaker::editSpell()
 /////////////// CONFIG ////////////////////
 void Texmaker::ReadSettings()
 {
-    bool usbMode = isExistingFileRealWritable(QCoreApplication::applicationDirPath()+"/texmakerx.ini");
-    if (!usbMode) 
-        if (isExistingFileRealWritable(QCoreApplication::applicationDirPath()+"/texmaker.ini")) {
-            //import texmaker usb settings
-            usbMode=(QFile(QCoreApplication::applicationDirPath()+"/texmaker.ini")).copy(QCoreApplication::applicationDirPath()+"/texmakerx.ini");
-        }
-    QSettings *config;
-    if (usbMode) {
-        config=new QSettings(QCoreApplication::applicationDirPath()+"/texmakerx.ini",QSettings::IniFormat);
-    } else {
-        config=new QSettings(QSettings::IniFormat,QSettings::UserScope,"benibela","texmakerx");
-        if (config->childGroups().empty()) {
-            //import texmaker global settings
-            QSettings oldconfig (QSettings::IniFormat,QSettings::UserScope,"xm1","texmaker");
-            QStringList keys=oldconfig.allKeys();
-            foreach (QString key, keys) config->setValue(key,oldconfig.value(key,""));
-        }
-    }
-    configFileName=config->fileName();
-    configFileNameBase=configFileName;
-    if (configFileNameBase.endsWith(".ini")) configFileNameBase=configFileNameBase.replace(QString(".ini"),"");
+    QSettings *config=configManager.readSettings();
     
-
-
 config->beginGroup( "texmaker" );
 singlemode=true;
 
@@ -1539,34 +1514,6 @@ for (int i=0;i<=4;i++) {
     UserToolCommand[i]=config->value(QString("User/Tool%1").arg(i+1),"").toString();
 }
 
-UserKeyReplace.clear();
-UserKeyReplaceAfterWord.clear();
-UserKeyReplaceBeforeWord.clear();
-int UserKeyReplaceCount = config->value("User/KeyReplaceCount",-1).toInt();
-if (UserKeyReplaceCount ==-1) {
-    //default
-    UserKeyReplace.append("\"");
-    QString loc=QString(QLocale::system().name()).left(2);
-    if (loc=="de") {
-        UserKeyReplaceBeforeWord.append("\">");
-        UserKeyReplaceAfterWord.append("\"<");
-
-        UserKeyReplace.append("'");
-        UserKeyReplaceBeforeWord.append("''");
-        UserKeyReplaceAfterWord.append("``");
-    } else {
-        UserKeyReplaceBeforeWord.append("''");
-        UserKeyReplaceAfterWord.append("``");
-    }
-    UserKeyReplace.append("%");
-    UserKeyReplaceBeforeWord.append("%");
-    UserKeyReplaceAfterWord.append(" %");
-} else for (int i=0;i<UserKeyReplaceCount;i++) {
-  UserKeyReplace.append(config->value("User/KeyReplace"+QVariant(i).toString(),i!=0?"'":"\"").toString());
-  UserKeyReplaceAfterWord.append(config->value("User/KeyReplaceAfterWord"+QVariant(i).toString(),i!=0?"":"").toString());
-  UserKeyReplaceBeforeWord.append(config->value("User/KeyReplaceBeforeWord"+QVariant(i).toString(),i!=0?"":"\">").toString());
-}
-LatexEditorView::setKeyReplacements(&UserKeyReplace,&UserKeyReplaceAfterWord,&UserKeyReplaceBeforeWord);
 
 struct_level1=config->value("Structure/Structure Level 1","part").toString();
 struct_level2=config->value("Structure/Structure Level 2","chapter").toString();
@@ -1609,9 +1556,8 @@ delete config;
 
 void Texmaker::SaveSettings()
 {
-    QSettings *config=new QSettings (configFileName, QSettings::IniFormat);   
+    QSettings *config=configManager.saveSettings();   
 
-config->setValue( "IniMode",true);
 config->beginGroup( "texmaker" );
 QList<int> sizes;
 QList<int>::Iterator it;
@@ -1713,16 +1659,6 @@ for (int i=0;i<=4;i++) {
     config->setValue(QString("User/ToolName%1").arg(i+1),UserToolName[i]);
     config->setValue(QString("User/Tool%1").arg(i+1),UserToolCommand[i]);
 }
-
-int UserKeyReplaceCount = UserKeyReplace.count();
-
-config->setValue("User/KeyReplaceCount",UserKeyReplaceCount);
-for (int i=0;i<UserKeyReplaceCount;i++) {
-  config->setValue("User/KeyReplace"+QVariant(i).toString(),UserKeyReplace[i]);
-  config->setValue("User/KeyReplaceAfterWord"+QVariant(i).toString(),UserKeyReplaceAfterWord[i]);
-  config->setValue("User/KeyReplaceBeforeWord"+QVariant(i).toString(),UserKeyReplaceBeforeWord[i]);
-}
-
 
 config->setValue("Structure/Structure Level 1",struct_level1);
 config->setValue("Structure/Structure Level 2",struct_level2);
@@ -3231,21 +3167,6 @@ if ( utDlg->exec() )
     }
 }
 
-void Texmaker::EditUserKeyReplacements()
-{
-UserKeyReplacementsDialog *utDlg = new UserKeyReplacementsDialog(this,tr("Edit &Key Replacements"));
-utDlg->UserKeyReplace=UserKeyReplace;
-utDlg->UserKeyReplaceAfterWord=UserKeyReplaceAfterWord;
-utDlg->UserKeyReplaceBeforeWord=UserKeyReplaceBeforeWord;
-utDlg->init();
-if ( utDlg->exec() ) {
-    UserKeyReplace=utDlg->UserKeyReplace;
-    UserKeyReplaceAfterWord=utDlg->UserKeyReplaceAfterWord;
-    UserKeyReplaceBeforeWord=utDlg->UserKeyReplaceBeforeWord;
-}
-}
-
-
 void Texmaker::WebPublish()
 {
     if (!currentEditorView()) {
@@ -3550,7 +3471,7 @@ abDlg->exec();
 ////////////// OPTIONS //////////////////////////////////////
 void Texmaker::GeneralOptions()
 {
-ConfigDialog *confDlg = new ConfigDialog(this);
+ConfigDialog *confDlg = configManager.createConfigDialog(this);
 
 confDlg->ui.lineEditLatex->setText(latex_command);
 confDlg->ui.lineEditPdflatex->setText(pdflatex_command);
@@ -3594,16 +3515,14 @@ if (quickmode==5)  {confDlg->ui.radioButton5->setChecked(true); confDlg->ui.line
 if (quickmode==6)  {confDlg->ui.radioButton6->setChecked(true); confDlg->ui.lineEditUserquick->setEnabled(true);}
 confDlg->ui.lineEditUserquick->setText(userquick_command);
 
-QTreeWidgetItem * mainItem=new QTreeWidgetItem((QTreeWidget*)0, QStringList() << QString(tr("Menus")));
-foreach (QMenu* menu, managedMenus)
-    managedMenuToTreeWidget(mainItem,menu);      
-confDlg->ui.shortcutTree->addTopLevelItem(mainItem);
-mainItem->setExpanded(true);
-ShortcutDelegate delegate;
-delegate.treeWidget=confDlg->ui.shortcutTree;
-confDlg->ui.shortcutTree->setItemDelegate(&delegate); //setting in the config dialog doesn't work 
+    QTreeWidgetItem * mainItem=new QTreeWidgetItem((QTreeWidget*)0, QStringList() << QString(tr("Menus")));
+    foreach (QMenu* menu, managedMenus)
+        managedMenuToTreeWidget(mainItem,menu);      
+    confDlg->ui.shortcutTree->addTopLevelItem(mainItem);
+    mainItem->setExpanded(true);
 
-if (confDlg->exec())
+
+if (configManager.execConfigDialog(confDlg))
 	{
 	    managedMenuNewShortcuts.clear();
 	    treeWidgetToManagedMenuTo(mainItem);
@@ -3651,9 +3570,8 @@ if (confDlg->exec())
     showcursorstate=confDlg->ui.checkBoxState->isChecked();
     realtimespellchecking=confDlg->ui.checkBoxRealTimeCheck->isChecked();
     mainSpeller->setActive(realtimespellchecking);
-    mainSpeller->loadDictionary(spell_dic,configFileNameBase);
+    mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);
 
-    confDlg->fmConfig->apply();
 	if (currentEditorView())
 		{
             FilesMap::Iterator it;
@@ -3665,6 +3583,7 @@ if (confDlg->exec())
             //OutputTextEdit->insertLine("Editor settings apply only to new loaded document.");
 		}
 	}
+	delete confDlg;
 }
 void Texmaker::executeCommandLine( const QStringList& args, bool realCmdLine){
     //parsing command line

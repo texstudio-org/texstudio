@@ -19,8 +19,11 @@
 #include <QKeySequence>
 #include <QMessageBox>
 #include <QList>
+#include <QPainter>
 
 #include "qdocument.h"
+const QString ShortcutDelegate::addRowButton="<internal: add row>";
+const QString ShortcutDelegate::deleteRowButton="<internal: delete row>";
 
 ShortcutDelegate::ShortcutDelegate(QObject *parent): treeWidget(0){
 }
@@ -28,6 +31,14 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
      const QStyleOptionViewItem & option ,
      const QModelIndex & index ) const
 {
+    if (!index.isValid()) return 0;
+    const QAbstractItemModel *model = index.model();
+    if (model->index(index.row(),0,index.parent()).isValid() && model->data(model->index(index.row(),0,index.parent()),Qt::DisplayRole) == deleteRowButton) {
+        //editor key replacement 
+        if (index.column()==0) return 0;
+        return new QLineEdit(parent);
+    }
+    //menu shortcut key 
     if (index.column()!=2 && index.column()!=3) return 0;
     QComboBox *editor = new QComboBox(parent);
     for (int k=Qt::Key_F1;k<=Qt::Key_F12;k++)
@@ -52,15 +63,35 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
                                      const QModelIndex &index) const
  {
     QString value = index.model()->data(index, Qt::EditRole).toString();
-    QComboBox *box = static_cast<QComboBox*>(editor);
-    QString normalized=QKeySequence(value).toString(QKeySequence::NativeText);
-    int pos=box->findText(normalized);
-    if (pos==-1) box->setEditText(value);
-    else box->setCurrentIndex(pos);
+    //menu shortcut key 
+    QComboBox *box = qobject_cast<QComboBox*>(editor);
+    if (box) {
+        QString normalized=QKeySequence(value).toString(QKeySequence::NativeText);
+        int pos=box->findText(normalized);
+        if (pos==-1) box->setEditText(value);
+        else box->setCurrentIndex(pos);
+        return;
+    } 
+    //editor key replacement 
+    QLineEdit *le = qobject_cast<QLineEdit*>(editor);
+    if (le) {
+        le->setText(value);
+    }
  }
   void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
                                     const QModelIndex &index) const
  {
+    //editor key replacement 
+    QLineEdit *le = qobject_cast<QLineEdit*>(editor);
+    if (le) {
+        if (le->text().size()!=1 && index.column()==1) {
+            QMessageBox::warning(editor,"TexMakerX",tr("Only single characters are allowed as key"),QMessageBox::Ok);
+            return;
+        }
+        model->setData(index, le->text(), Qt::EditRole);
+        return;
+    }
+    //menu shortcut key 
     if (index.column()!=2 && index.column()!=3) return;
     QComboBox *box = qobject_cast<QComboBox*>(editor);
     if (!box) return;
@@ -110,6 +141,54 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
  {
      editor->setGeometry(option.rect);
  }
+
+void ShortcutDelegate::drawDisplay ( QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QString & text ) const
+{
+    QStyle *style = QApplication::style ();
+    if (!style) QItemDelegate::drawDisplay (painter, option, rect, text);
+    else if (text=="<internal: delete row>") {
+       QStyleOptionButton sob;
+       sob.text = tr("delete row");
+       sob.state = QStyle::State_Enabled;
+       sob.rect = rect;
+       style->drawControl(QStyle::CE_PushButton, &sob, painter);
+    } else if (text=="<internal: add row>"){
+       QStyleOptionButton sob;
+       sob.text = tr("add row");
+       sob.state = QStyle::State_Enabled;
+       sob.rect = rect;
+       style->drawControl(QStyle::CE_PushButton, &  sob, painter);
+    } else QItemDelegate::drawDisplay (painter, option, rect, text);
+}
+
+void ShortcutDelegate::treeWidgetItemClicked ( QTreeWidgetItem * item, int column ){
+    if (column!=0) return;
+    /*QStyle *style = QApplication::style ();
+    QPainter p(item->treeWidget ());
+    QStyleOptionButton sob;
+    sob.rect=item->treeWidget ()->visualItemRect(item);
+    sob.state = QStyle::State_Enabled|QStyle::State_Sunken;
+    if (style) 
+        if (item->text(0)=="<internal: delete row>") {
+           sob.text = tr("delete row");
+           style->drawControl(QStyle::CE_PushButton, &sob, &p);
+        } else if (item->text(0)=="<internal: add row>"){
+           sob.text = tr("add row");
+           style->drawControl(QStyle::CE_PushButton, &  sob, &p);
+        }*/
+    if (item->text(0)==deleteRowButton) {
+        switch (QMessageBox::question(item->treeWidget(), ConfigDialog::tr("TexMakerX"),
+                                             ConfigDialog::tr("Do you really want to delete this row?"),
+                                             QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes))
+                {
+                    case QMessageBox::Yes:
+                        item->parent()->removeChild(item);
+                        break;
+                    default:;
+                }
+    }else if (item->text(0)==addRowButton)
+        item->parent()->insertChild(item->parent()->childCount()-1, new QTreeWidgetItem((QTreeWidgetItem*)0,QStringList() << "<internal: delete row>"));
+}
 
 ConfigDialog::ConfigDialog(QWidget* parent): QDialog( parent)
 {

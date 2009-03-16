@@ -34,6 +34,7 @@
 #include <QVBoxLayout>
 #include <QTableView>
 
+#include "configmanager.h"
 #include "latexlog.h"
 #include "latexeditorview.h"
 #include "latexcompleter.h"
@@ -92,7 +93,7 @@ void closeEvent(QCloseEvent *e);
 
 FilesMap filenames;
 
-QString configFileName,configFileNameBase;
+
 QFormatFactory *m_formats;
 QLanguageFactory* m_languages;
 LatexCompleter* completer;
@@ -127,6 +128,7 @@ QString sessionMaster;
 QString sessionCurrent;
 
 //settings
+ConfigManager configManager;
 int split1_right, split1_left, split2_top, split2_bottom, quickmode;
 bool singlemode, wordwrap, parenmatch, showoutputview, showstructview, ams_packages, makeidx_package, completion, autoindent;
 int showlinemultiples;
@@ -143,7 +145,6 @@ QStringList userClassList, userPaperList, userEncodingList, userOptionsList;
 QStringList structlist, labelitem, structitem;
 Userlist UserMenuName, UserMenuTag;
 UserCd UserToolName, UserToolCommand;
-QVector<QString> UserKeyReplace, UserKeyReplaceAfterWord, UserKeyReplaceBeforeWord;
 
 int spellcheckErrorFormat;
 SpellerUtility *mainSpeller;
@@ -282,7 +283,6 @@ void DVItoPDF();
 void MetaPost();
 void UserTool();
 void EditUserTool();
-void EditUserKeyReplacements();
 
 void WebPublish();
 void AnalyseText();
