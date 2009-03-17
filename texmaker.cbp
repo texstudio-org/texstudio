@@ -32,6 +32,8 @@
 		<Unit filename="buildmanager.h" />
 		<Unit filename="configdialog.cpp" />
 		<Unit filename="configdialog.h" />
+		<Unit filename="configmanager.cpp" />
+		<Unit filename="configmanager.h" />
 		<Unit filename="dsingleapplication.cpp" />
 		<Unit filename="dsingleapplication.h" />
 		<Unit filename="filechooser.cpp" />
@@ -95,8 +97,6 @@
 		<Unit filename="ui_usermenudialog.h" />
 		<Unit filename="ui_usertooldialog.h" />
 		<Unit filename="ui_webpublishdialog.h" />
-		<Unit filename="userkeyreplacementsdialog.cpp" />
-		<Unit filename="userkeyreplacementsdialog.h" />
 		<Unit filename="usermenudialog.cpp" />
 		<Unit filename="usermenudialog.h" />
 		<Unit filename="usertooldialog.cpp" />

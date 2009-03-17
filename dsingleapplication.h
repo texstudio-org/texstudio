@@ -94,7 +94,7 @@ private:
 // This class is used to check specific port if it has an instance of this app
 //******************************************************************************
 
-class DPortChecker : public QThread {
+class DPortChecker : public QObject {
   Q_OBJECT
 
 public:
@@ -106,8 +106,6 @@ public:
   PortStatus status() const;
   void check( int port );
   QTcpSocket* transferSocketOwnership();
-protected:
-  void run();
 
 private:
   PortStatus result; 
