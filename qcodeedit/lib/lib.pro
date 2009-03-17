@@ -27,6 +27,7 @@ QT += xml
 
 UI_DIR = 
 
+TRANSLATIONS = ../qcodeedit_de.ts ../qcodeedit_fr.ts
 
 # Input
 include(lib.pri)

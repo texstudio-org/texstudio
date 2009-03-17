@@ -75,7 +75,7 @@ void DSingleApplication::init() {
 
     // here check if the stuff running on port is our instance if not procede
     checker.check( port );
-    checker.wait();
+   // checker.wait();
     DPortChecker::PortStatus port_status = checker.status();
 
     if (port_status == DPortChecker::us) {
@@ -133,7 +133,7 @@ void DSingleApplication::onClientMessage( const QString & message ) {
 //******************************************************************************
 
 DPortChecker::DPortChecker( const QString &id, int port, QObject *parent ) 
-: QThread(parent)
+: QObject(parent)
 {
   tcpSocket = NULL;
   this->port = port;
@@ -152,10 +152,6 @@ DPortChecker::PortStatus DPortChecker::status() const {
 
 void DPortChecker::check( int port ) {
   this->port = port;
-  start();
-}
-
-void DPortChecker::run() {
   result = DPortChecker::free;
 
   if (tcpSocket == NULL) return;
