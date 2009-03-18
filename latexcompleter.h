@@ -72,21 +72,27 @@ public:
 	virtual QString language() const;
     virtual QStringList extensions() const;
 
+    static void parseHelpfile(QString text);
+    static bool hasHelpfile();
 private:
     friend class CompleterInputBinding;
     static int maxWordLen;
     static QList<CompletionWord> words;
     static QSet<QChar> acceptedChars;
     QListView * list;
-    QAbstractListModel* listModel;
+    CompletionListModel* listModel;
     
     
     void updateList(QString word);
     bool acceptChar(QChar c,int pos);
     CompletionWord wordToCompletionWord(const QString &str);
-    
+
+    static QString helpFile;
+    static QHash<QString, QString> helpIndices;
+    static QHash<QString, int> helpIndicesCache;
 private slots:
     void cursorPositionChanged();
+    void selectionChanged ( const QModelIndex & index );
 };
 
 #endif

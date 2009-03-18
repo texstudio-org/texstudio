@@ -18,7 +18,7 @@ QString findResourceFile(QString fileName){
     searchFiles<<QCoreApplication::applicationDirPath() + "/dictionaries/"+fileName; //windows new
     searchFiles<<QCoreApplication::applicationDirPath() + "/translation/"+fileName; //windows new
     searchFiles<<QCoreApplication::applicationDirPath() + "/help/"+fileName; //windows new
-    searchFiles<<QCoreApplication::applicationDirPath() + "/data/"+fileName; //windows new
+   // searchFiles<<QCoreApplication::applicationDirPath() + "/data/"+fileName; //windows new
     searchFiles<<":/"+fileName; //resource fall back
     
     foreach (QString fn, searchFiles) {

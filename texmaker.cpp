@@ -3776,5 +3776,11 @@ void Texmaker::updateCompleter()
     
     
     completer->setWords(words);
+    
+    if (!LatexCompleter::hasHelpfile()) {
+        QFile f(findResourceFile("latexhelp.html"));
+        if (!f.open(QIODevice::ReadOnly| QIODevice::Text))  LatexCompleter::parseHelpfile("<missing>");
+        else LatexCompleter::parseHelpfile(QTextStream(&f).readAll());
+    }
 }
 
