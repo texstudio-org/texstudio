@@ -6,6 +6,7 @@
 #include <QKeyEvent>
 #include <QPainter>
 #include <QStyleOptionViewItem>
+#include <QToolTip>
 
 #include <QMessageBox>
 CompletionWord::CompletionWord(const QString &newWord){
@@ -181,6 +182,11 @@ public:
         return false;
     }
 
+    void select(const QModelIndex &ind){
+        completer->list->setCurrentIndex(ind);
+        completer->selectionChanged(ind);
+    }
+
     virtual bool keyPressEvent(QKeyEvent *event, QEditor *editor)
     {
         if (event->key()==Qt::Key_Shift || event->key()==Qt::Key_Alt || event->key()==Qt::Key_Control) 
@@ -224,7 +230,7 @@ public:
                 return false;
             }
             QModelIndex ind=completer->list->model()->index(completer->list->currentIndex().row()-1,0,QModelIndex());
-            if (ind.isValid()) completer->list->setCurrentIndex(ind);
+            if (ind.isValid()) select(ind);
             return true;
         } else if (event->key()==Qt::Key_Down) { 
             if (!completer->list->isVisible()) {
@@ -232,7 +238,7 @@ public:
                 return false;
             }
             QModelIndex ind=completer->list->model()->index(completer->list->currentIndex().row()+1,0,QModelIndex());
-            if (ind.isValid()) completer->list->setCurrentIndex(ind);
+            if (ind.isValid()) select(ind);
             return true;
         } else if (event->key()==Qt::Key_PageUp) { 
             if (!completer->list->isVisible()) {
@@ -241,7 +247,7 @@ public:
             }
             QModelIndex ind=completer->list->model()->index(completer->list->currentIndex().row()-5,0,QModelIndex());
             if (!ind.isValid()) ind=completer->list->model()->index(0,0,QModelIndex());
-            if (ind.isValid()) completer->list->setCurrentIndex(ind);
+            if (ind.isValid()) select(ind);
             return true;
         } else if (event->key()==Qt::Key_PageDown) { 
             if (!completer->list->isVisible()) {
@@ -250,7 +256,7 @@ public:
             }
             QModelIndex ind=completer->list->model()->index(completer->list->currentIndex().row()+5,0,QModelIndex());
             if (!ind.isValid()) ind=completer->list->model()->index(completer->list->model()->rowCount()-1,0,QModelIndex());
-            if (ind.isValid()) completer->list->setCurrentIndex(ind);
+            if (ind.isValid()) select(ind);
             return true;
         } else if (event->key()==Qt::Key_Home) { 
             if (!completer->list->isVisible()) {
@@ -258,7 +264,7 @@ public:
                 return false;
             }
             QModelIndex ind=completer->list->model()->index(0,0,QModelIndex());
-            if (ind.isValid()) completer->list->setCurrentIndex(ind);
+            if (ind.isValid()) select(ind);
             return true;
         } else if (event->key()==Qt::Key_End) { 
             if (!completer->list->isVisible()) {
@@ -266,7 +272,7 @@ public:
                 return false;
             }
             QModelIndex ind=completer->list->model()->index(completer->list->model()->rowCount()-1,0,QModelIndex());
-            if (ind.isValid()) completer->list->setCurrentIndex(ind);
+            if (ind.isValid()) select(ind);
             return true;
         } else if (event->key()==Qt::Key_Return || event->key()==Qt::Key_Enter) { 
             if (!insertCompletedWord()) {
@@ -309,7 +315,7 @@ public:
         }
         completer->updateList(getCurWord());
         if (!completer->list->currentIndex().isValid()) 
-            completer->list->setCurrentIndex(completer->list->model()->index(0,0,QModelIndex()));
+            select(completer->list->model()->index(0,0,QModelIndex()));
         return handled;
     }
 
@@ -321,6 +327,7 @@ public:
 
     void resetBinding(){
         if (!active) return;
+        QToolTip::hideText();
         editor->setInputBinding(oldBinding);
         editor->setFocus();
         if (completer) {
@@ -345,7 +352,7 @@ public:
         if (showAlways) {
             completer->updateList(getCurWord());
             completer->list->show();
-            completer->list->setCurrentIndex(completer->list->model()->index(0,0,QModelIndex()));
+            select(completer->list->model()->index(0,0,QModelIndex()));
         }
     }
 
@@ -454,6 +461,9 @@ QVariant CompletionListModel::headerData(int section, Qt::Orientation orientatio
 QList <CompletionWord> LatexCompleter::words;
 QSet <QChar> LatexCompleter::acceptedChars;
 int LatexCompleter::maxWordLen = 0;
+QString LatexCompleter::helpFile;
+QHash<QString, QString> LatexCompleter::helpIndices;
+QHash<QString, int> LatexCompleter::helpIndicesCache;
 
 LatexCompleter::LatexCompleter(QObject *p)
  : QCodeCompletionEngine(p)
@@ -500,6 +510,7 @@ void LatexCompleter::complete(const QDocumentCursor& c, const QString& trigger){
         list=new QListView(editor());;
         list->resize(200>maxWordLen?200:maxWordLen,100);
         listModel=new CompletionListModel(list);
+        connect(list, SIGNAL(clicked( const QModelIndex & )) , this, SLOT(selectionChanged( const QModelIndex & ) ));
         list->setModel(listModel);
         list->setFocusPolicy(Qt::NoFocus);
         list->setItemDelegate(new CompletionItemDelegate(list));
@@ -540,6 +551,37 @@ QStringList LatexCompleter::extensions() const{
     return QStringList() << ".tex";
 }
 
+void LatexCompleter::parseHelpfile(QString text){
+    helpFile="<invalid>";
+    //search alpabetical index label and remove everything before the next tabel
+    int start=text.indexOf("<a name=\"alpha\">");
+    if (start==-1) return;
+    text=text.remove(0,start);
+    text=text.remove(0,text.indexOf("<table>")-1);
+    //split into index and remaining teext
+    int end=text.indexOf("</table>"); 
+    if (end==-1) return; //no remaining text
+    QString index=text.left(end);
+    helpFile=text.mid(end);
+    //read index, searching for <li><a href="#SEC128">\!</a></li>
+    QRegExp rx ("<li><a\\s+(name=\"index.\")?\\s*href=\"#([^\"]+)\">([^> ]+)[^>]*</a></li>");
+    int pos = 0;    // where we are in the string
+    while (pos >= 0) {
+        pos = rx.indexIn(index, pos);
+        if (pos >= 0) {
+            QString id=rx.cap(3);
+            if (!id.startsWith("\\")) id="\\begin{"+id;
+            helpIndices.insert(id.toLower(),rx.cap(2));
+            pos += rx.matchedLength();
+        }
+    }   
+//    QMessageBox::information(0,QString::number(helpIndices.size()),"",0);
+}
+bool LatexCompleter::hasHelpfile(){
+    return !helpFile.isEmpty();
+}
+
+
 void LatexCompleter::updateList(QString word){
     QString cur=""; //needed to preserve selection
     if (list->isVisible() && list->currentIndex().isValid())
@@ -574,4 +616,40 @@ void LatexCompleter::cursorPositionChanged(){
         return;
     }
     completerInputBinding->cursorPositionChanged(editor());
+}
+void LatexCompleter::selectionChanged ( const QModelIndex & index ){
+    if (helpIndices.empty()) return;
+    QToolTip::hideText();
+    if (!index.isValid()) return;
+    if (index.row()>=listModel->words.size()) return;
+    QRegExp wordrx ("^\\\\([^ {*]+|begin\\{[^ {}]+)");
+    if (wordrx.indexIn(listModel->words[index.row()].lword)==-1) return;
+    QString id=helpIndices.value(wordrx.cap(0),"");
+    if (id=="") return;
+    QString aim="<a name=\""+id;
+    int pos=helpIndicesCache.value(wordrx.cap(0),-2);
+    if (pos==-2) {
+        //search id in help file
+        //QRegExp aim ("<a\\s+name=\""+id);
+        pos=helpFile.indexOf(aim);// aim.indexIn(helpFile);
+        helpIndicesCache.insert(wordrx.cap(0),pos);
+    }
+    if (pos==-1) return;
+    //get whole topic of the line
+    int opos=pos;
+    while (pos>=1 && helpFile.at(pos)!=QChar('\n')) pos--;
+    QString topic=helpFile.mid(pos);
+    if (topic.left(opos-pos).contains("<dt>")) topic=topic.left(topic.indexOf("</dd>"));
+    else {
+        QRegExp anotherLink ("<a\\s+name=\"[^\"]*\"(\\s+href=\"[^\"]*\")?>\\s*[^< ][^<]*</a>");
+        int nextpos=anotherLink.indexIn(topic,opos-pos+aim.length());
+        topic=topic.left(nextpos);
+    }
+    QRect r = list->visualRect (index);
+    //QRect screen = QApplication.desktop()->availableGeometry ();
+    QPoint tt=list->mapToGlobal(QPoint(list->width(), r.top()));
+    //if (screen.width()-100>=tt.x()) 
+    QToolTip::showText(tt, topic, list);
+    //else {QPoint tt=list->mapToGlobal(QPoint(-150, r.top()));     
+    
 }
