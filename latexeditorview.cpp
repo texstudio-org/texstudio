@@ -21,7 +21,7 @@
 #include "qdocumentline.h"
 #include "qdocumentcommand.h"
  
-#include "qcodecompletionengine.h"
+
 #include "qlinemarksinfocenter.h"
 #include "qformatfactory.h"
 
@@ -35,10 +35,10 @@
 //------------------------------Default Input Binding--------------------------------
 bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
 {
-    if (event->text()==QString("\\") && editor->completionEngine())  { //workaround because trigger doesn't seem work
+    if (event->text()==QString("\\") && LatexEditorView::completer)  { //workaround because trigger doesn't seem work
         editor->cursor().removeSelectedText();
         editor->cursor().insertText("\\");
-        editor->completionEngine()->complete();
+        LatexEditorView::completer->complete(editor);
         return true;
     }
     if (event->modifiers()==Qt::ControlModifier && (event->key()==Qt::Key_Left || event->key()==Qt::Key_Right)){
@@ -135,6 +135,7 @@ DefaultInputBinding *defaultInputBinding = new DefaultInputBinding();
 
 //----------------------------------LatexEditorView-----------------------------------
 SpellerUtility* LatexEditorView::speller=0;
+LatexCompleter* LatexEditorView::completer=0;
 
 LatexEditorView::LatexEditorView(QWidget *parent) : QWidget(parent),curChangePos(-1),lastSetBookmark(0)
 {
@@ -174,14 +175,14 @@ LatexEditorView::~LatexEditorView()
 }
 
 void LatexEditorView::complete(){
-    if (!editor->completionEngine()) return;
+    if (!LatexEditorView::completer) return;
     QDocumentCursor c=editor->cursor();
     if (c.hasSelection()) {
         c.setColumnNumber(qMax(c.columnNumber(),c.anchorColumnNumber()));
         editor->setCursor(c);
     }
     setFocus();
-    editor->completionEngine()->complete();
+    LatexEditorView::completer->complete(editor);
 }
 void LatexEditorView::jumpChangePositionBackward(){
     if (changePositions.size()==0) return;
@@ -253,7 +254,9 @@ void LatexEditorView::setBaseActions(QList<QAction *> baseActions){
 void LatexEditorView::setSpeller(SpellerUtility* speller){
     LatexEditorView::speller=speller;
 }
-
+void LatexEditorView::setCompleter(LatexCompleter* newCompleter){
+    LatexEditorView::completer=newCompleter;
+}
 int LatexEditorView::bookMarkId(int bookmarkNumber){
     if (bookmarkNumber==-1) return  QLineMarksInfoCenter::instance()->markTypeId("bookmark"); //unnumbered mark
     else return QLineMarksInfoCenter::instance()->markTypeId("bookmark"+QString::number(bookmarkNumber));

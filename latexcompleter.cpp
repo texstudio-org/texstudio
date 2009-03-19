@@ -2,6 +2,7 @@
 #include "qdocumentline.h"
 #include "qformatfactory.h"
 #include <QApplication>
+#include <QDesktopWidget>
 #include <QItemDelegate>
 #include <QKeyEvent>
 #include <QPainter>
@@ -183,6 +184,7 @@ public:
     }
 
     void select(const QModelIndex &ind){
+        if (!completer || !completer->list) return;
         completer->list->setCurrentIndex(ind);
         completer->selectionChanged(ind);
     }
@@ -335,6 +337,7 @@ public:
             completer->disconnect(editor,SIGNAL(cursorPositionChanged()),completer,SLOT(cursorPositionChanged()));
         }
         active=false;
+        curLine=QDocumentLine(); //prevent crash if the editor is destroyed
     }
     
     void bindTo(QEditor * edit, LatexCompleter* caller, bool forced, int start){
@@ -465,14 +468,23 @@ QString LatexCompleter::helpFile;
 QHash<QString, QString> LatexCompleter::helpIndices;
 QHash<QString, int> LatexCompleter::helpIndicesCache;
 
-LatexCompleter::LatexCompleter(QObject *p)
- : QCodeCompletionEngine(p)
+LatexCompleter::LatexCompleter(QObject *p): QObject(p)
 {
  //   addTrigger("\\");
-    list=0;
+    if (!qobject_cast<QWidget*>(parent()))  
+        QMessageBox::critical(0,"Serious PROBLEM", QString("The completer has been created without a parent widget. This is impossible!\n")+
+                                                   QString("Please report it ASAP to the bug tracker on texmakerx.sf.net and check if your computer is going to explode!\n")+
+                                                   QString("(please report the bug *before* going to a safe place, you could rescue others)"),QMessageBox::Ok);
+    list=new QListView(qobject_cast<QWidget*>(parent()));
+    listModel=new CompletionListModel(list);
+    connect(list, SIGNAL(clicked( const QModelIndex & )) , this, SLOT(selectionChanged( const QModelIndex & ) ));
+    list->setModel(listModel);
+    list->setFocusPolicy(Qt::NoFocus);
+    list->setItemDelegate(new CompletionItemDelegate(list));
+    editor=0;
 }
 LatexCompleter::~LatexCompleter(){
-//    delete list;
+    //delete list;
 }
 void LatexCompleter::setWords(const QStringList &newwords){
     
@@ -494,31 +506,31 @@ void LatexCompleter::setWords(const QStringList &newwords){
             if (temp>newWordMax) newWordMax=temp;
         }
         maxWordLen=newWordMax;
+        list->resize(200>maxWordLen?200:maxWordLen,100);
     }
 }
 
-void LatexCompleter::complete(const QDocumentCursor& c, const QString& trigger){
-    if (!editor()) return;
+void LatexCompleter::complete(QEditor *newEditor){
+    if (editor != newEditor) {
+        if (editor) disconnect(editor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
+        if (newEditor) connect(newEditor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
+        editor=newEditor;   
+    }
+    if (!editor) return;
+    QDocumentCursor c=editor->cursor();
     QDocumentLine line=c.line();
     QPoint offset=line.cursorToDocumentOffset(c.columnNumber()-1);
     offset.setY(offset.y()+line.document()->y(line)+line.document()->fontMetrics().lineSpacing());
-    offset=editor()->mapFromContents(offset);
+    offset=editor->mapFromContents(offset);
     int left;int temp;
-    editor()->getPanelMargins(&left,&temp,&temp,&temp);
+    editor->getPanelMargins(&left,&temp,&temp,&temp);
     offset.setX(offset.x()+left);
-    if (!list) {
-        list=new QListView(editor());;
-        list->resize(200>maxWordLen?200:maxWordLen,100);
-        listModel=new CompletionListModel(list);
-        connect(list, SIGNAL(clicked( const QModelIndex & )) , this, SLOT(selectionChanged( const QModelIndex & ) ));
-        list->setModel(listModel);
-        list->setFocusPolicy(Qt::NoFocus);
-        list->setItemDelegate(new CompletionItemDelegate(list));
-    }
-    if (offset.y()+list->height()>editor()->height()) {
+    //list->resize(200>maxWordLen?200:maxWordLen,100);
+    //list->setParent(editor);
+    if (offset.y()+list->height()>editor->height()) {
         offset.setY(offset.y()-line.document()->fontMetrics().lineSpacing()-list->height());
     }
-    list->move(offset);
+    list->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
     //list->show();
     
     if (c.getPreviousChar()!='\\') {
@@ -532,23 +544,11 @@ void LatexCompleter::complete(const QDocumentCursor& c, const QString& trigger){
             } else if (eow.contains(lineText.at(i))) 
                 break;
         }
-        completerInputBinding->bindTo(editor(),this,true,start);
-    } else completerInputBinding->bindTo(editor(),this,false,c.columnNumber()-1);
+        completerInputBinding->bindTo(editor,this,true,start);
+    } else completerInputBinding->bindTo(editor,this,false,c.columnNumber()-1);
 
     //line.document()->cursor(0,0).insertText(QString::number(offset.x())+":"+QString::number(offset.y()));
-    connect(editor(),SIGNAL(cursorPositionChanged()),this,SLOT(cursorPositionChanged()));
-}
-
-QCodeCompletionEngine* LatexCompleter::clone(){
-    LatexCompleter* temp =new LatexCompleter(this);
-    temp->words=words;
-    return temp;
-}
-QString LatexCompleter::language() const{
-    return "Latex";
-}
-QStringList LatexCompleter::extensions() const{
-    return QStringList() << ".tex";
+    connect(editor,SIGNAL(cursorPositionChanged()),this,SLOT(cursorPositionChanged()));
 }
 
 void LatexCompleter::parseHelpfile(QString text){
@@ -612,17 +612,18 @@ CompletionWord LatexCompleter::wordToCompletionWord(const QString &str){
 }
 void LatexCompleter::cursorPositionChanged(){
     if (!completerInputBinding || !completerInputBinding->isActive()) {
-        disconnect(editor(),SIGNAL(cursorPositionChanged()),this,SLOT(cursorPositionChanged()));
+        disconnect(editor,SIGNAL(cursorPositionChanged()),this,SLOT(cursorPositionChanged()));
         return;
     }
-    completerInputBinding->cursorPositionChanged(editor());
+    completerInputBinding->cursorPositionChanged(editor);
 }
+//called when item is clicked, more important: normal (not signal/slot) called when completerbinding change selection
 void LatexCompleter::selectionChanged ( const QModelIndex & index ){
-    if (helpIndices.empty()) return;
+    if (helpIndices.empty() || !listModel) return;
     QToolTip::hideText();
     if (!index.isValid()) return;
-    if (index.row()>=listModel->words.size()) return;
-    QRegExp wordrx ("^\\\\([^ {*]+|begin\\{[^ {}]+)");
+    if (index.row() < 0 || index.row()>=listModel->words.size()) return;
+    QRegExp wordrx ("^\\\\([^ {[*]+|begin\\{[^ {}]+)");
     if (wordrx.indexIn(listModel->words[index.row()].lword)==-1) return;
     QString id=helpIndices.value(wordrx.cap(0),"");
     if (id=="") return;
@@ -634,22 +635,27 @@ void LatexCompleter::selectionChanged ( const QModelIndex & index ){
         pos=helpFile.indexOf(aim);// aim.indexIn(helpFile);
         helpIndicesCache.insert(wordrx.cap(0),pos);
     }
-    if (pos==-1) return;
+    if (pos<0) return;
     //get whole topic of the line
     int opos=pos;
     while (pos>=1 && helpFile.at(pos)!=QChar('\n')) pos--;
     QString topic=helpFile.mid(pos);
     if (topic.left(opos-pos).contains("<dt>")) topic=topic.left(topic.indexOf("</dd>"));
     else {
-        QRegExp anotherLink ("<a\\s+name=\"[^\"]*\"(\\s+href=\"[^\"]*\")?>\\s*[^< ][^<]*</a>");
+        QRegExp anotherLink ("<a\\s+name=\\s*\"[^\"]*\"(\\s+href=\\s*\"[^\"]*\")?>\\s*[^< ][^<]*</a>");
         int nextpos=anotherLink.indexIn(topic,opos-pos+aim.length());
         topic=topic.left(nextpos);
     }
     QRect r = list->visualRect (index);
-    //QRect screen = QApplication.desktop()->availableGeometry ();
+    QRect screen = QApplication::desktop()->availableGeometry ();
     QPoint tt=list->mapToGlobal(QPoint(list->width(), r.top()));
-    //if (screen.width()-100>=tt.x()) 
-    QToolTip::showText(tt, topic, list);
-    //else {QPoint tt=list->mapToGlobal(QPoint(-150, r.top()));     
-    
+    if (screen.width()-90>=tt.x()) QToolTip::showText(tt, topic, list);
+    else {
+        //list->mapToGlobal
+        QPoint tt=list->mapToGlobal(QPoint(0, r.top()));     
+        QToolTip::showText(tt, topic, list,QRect (-300,-200,300,600));
+    }
+}
+void LatexCompleter::editorDestroyed(){
+    editor=0;
 }

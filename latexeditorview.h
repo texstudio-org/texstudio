@@ -12,10 +12,7 @@
 #ifndef LATEXEDITORVIEW_H
 #define LATEXEDITORVIEW_H
 
-#include <qwidget.h>
-#include <qfont.h>
-#include <qcolor.h>
-
+#include "latexcompleter.h"
 
 #include "spellerutility.h"
 
@@ -23,6 +20,13 @@
 #include "qeditor.h"
 #include "qlinemarkpanel.h"
 #include "qlinenumberpanel.h"
+
+#include <qwidget.h>
+#include <qfont.h>
+#include <qcolor.h>
+
+
+
 //#include "qpanel.h"
 
 class DefaultInputBinding: public QEditor::InputBinding{
@@ -68,6 +72,7 @@ public:
     static void setKeyReplacements(QStringList *UserKeyReplace, QStringList *UserKeyReplaceAfterWord, QStringList *UserKeyReplaceBeforeWord);
     static void setBaseActions(QList<QAction *> baseActions);
     static void setSpeller(SpellerUtility* mainSpeller);
+    static void setCompleter(LatexCompleter* newCompleter);
 
     QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanel, *lineChangePanel, *statusPanel, *searchReplacePanel;
     QLineMarkPanel* lineMarkPanel;
@@ -80,6 +85,7 @@ private:
     static int bookMarkId(int bookmarkNumber);
     
     static SpellerUtility* speller;
+    static LatexCompleter* completer;
     QList<QPair<QDocumentLine, int> > changePositions; //line, index
     int curChangePos;
     int lastSetBookmark; //only looks at 1..3 (mouse range)
