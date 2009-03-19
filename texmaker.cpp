@@ -74,7 +74,6 @@
 #include "qdocument.h"
 #include "qdocumentcursor.h"
 #include "qdocumentline.h"
-#include "qcodecompletionengine.h"
 
 //#if defined( Q_WS_X11 )
 #include "x11fontdialog.h"
@@ -251,7 +250,7 @@ setAcceptDrops(true);
 
     completer=new LatexCompleter(this);
     updateCompleter();
-    m_languages->addCompletionEngine(completer);
+    LatexEditorView::setCompleter(completer);
     
     if (!sessionFilesToRestore.empty()){
         for (int i=0;i<sessionFilesToRestore.size();i++)
@@ -793,7 +792,6 @@ LatexEditorView *Texmaker::currentEditorView() const
 
 void Texmaker::configureNewEditorView(LatexEditorView *edit){
     m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
-    edit->editor->setCompletionEngine(completer->clone());
     EditorView->setCurrentIndex(EditorView->indexOf(edit));
   
     connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(NewDocumentStatus(bool)));

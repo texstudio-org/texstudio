@@ -18,7 +18,6 @@
 
 #include "qcodeedit.h"
 #include "qeditor.h"
-#include "qcodecompletionengine.h"
 
 #include <QListView>
 //#include "qpanel.h"
@@ -59,18 +58,14 @@ class CompletionListModel : public QAbstractListModel
 };
 
 
-class LatexCompleter : public QCodeCompletionEngine  {
+class LatexCompleter : public QObject  {
    Q_OBJECT
 public:
 	LatexCompleter(QObject *p = 0);
 	virtual ~LatexCompleter();
   
-    void complete(const QDocumentCursor& c, const QString& trigger);
+    void complete(QEditor *newEditor);
     void setWords(const QStringList &newwords);
-
-	virtual QCodeCompletionEngine* clone();
-	virtual QString language() const;
-    virtual QStringList extensions() const;
 
     static void parseHelpfile(QString text);
     static bool hasHelpfile();
@@ -81,7 +76,7 @@ private:
     static QSet<QChar> acceptedChars;
     QListView * list;
     CompletionListModel* listModel;
-    
+    QEditor *editor;
     
     void updateList(QString word);
     bool acceptChar(QChar c,int pos);
@@ -93,6 +88,7 @@ private:
 private slots:
     void cursorPositionChanged();
     void selectionChanged ( const QModelIndex & index );
+    void editorDestroyed();
 };
 
 #endif
