@@ -296,7 +296,7 @@ void LatexError();
 void DisplayLatexError();
 void GoToLogEntry(int logEntryNumber);
 void GoToLogEntryAt(int newLineNumber);
-void Texmaker::GoToMark(bool backward, int id);
+void GoToMark(bool backward, int id);
 void NextMark();
 void PreviousMark();
 void gotoNearLogEntry(LogType lt, bool backward, QString notFoundMessage);
