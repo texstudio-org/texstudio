@@ -500,6 +500,35 @@ void Texmaker::setupMenus()
 //  Latex/Math external
     loadManagedMenus(":/uiconfig.xml");
 
+//wizards
+
+    menu=newManagedMenu("main/wizards",tr("&Wizards"));
+    newManagedAction(menu, "start",tr("Quick Start"), SLOT(QuickDocument()));
+    newManagedAction(menu, "letter",tr("Quick Letter"), SLOT(QuickLetter()));
+
+    menu->addSeparator();
+    newManagedAction(menu, "tabular",tr("Quick Tabular"), SLOT(QuickTabular()));
+    newManagedAction(menu, "tabbing",tr("Quick Tabbing"), SLOT(QuickTabbing()));
+    newManagedAction(menu, "array",tr("Quick Array"), SLOT(QuickArray()));
+
+    menu=newManagedMenu("main/bibtex",tr("&Bibliography"));
+    newManagedAction(menu, "jourarticle", tr("Article in Journal"), SLOT(InsertBib1()));
+    newManagedAction(menu, "confarticle", tr("Article in Conference Proceedings"), SLOT(InsertBib2()));
+    newManagedAction(menu, "collarticle", tr("Article in a collection"), SLOT(InsertBib3()));
+    newManagedAction(menu, "bookpage", tr("Chapter or Pages in a Book"), SLOT(InsertBib4()));
+    newManagedAction(menu, "conference", tr("Conference Proceedings"), SLOT(InsertBib5()));
+    newManagedAction(menu, "book", tr("Book"), SLOT(InsertBib6()));
+    newManagedAction(menu, "booklet", tr("Booklet"), SLOT(InsertBib7()));
+    newManagedAction(menu, "phdthesis", tr("PhD. Thesis"), SLOT(InsertBib8()));
+    newManagedAction(menu, "masterthesis", tr("Master's Thesis"), SLOT(InsertBib9()));
+    newManagedAction(menu, "report", tr("Technical Report"), SLOT(InsertBib10()));
+    newManagedAction(menu, "manual", tr("Technical Manual"), SLOT(InsertBib11()));
+    newManagedAction(menu, "unpublished", tr("Unpublished"), SLOT(InsertBib12()));
+    newManagedAction(menu, "misc", tr("Miscellaneous"), SLOT(InsertBib13()));
+    menu->addSeparator();
+    newManagedAction(menu, "clean", tr("Clean"), SLOT(CleanBib()));
+
+
 //  User    
     menu=newManagedMenu("main/user",tr("&User"));
     submenu=newManagedMenu(menu,"tags",tr("User &Tags"));
