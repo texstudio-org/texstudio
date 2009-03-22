@@ -510,7 +510,7 @@ void LatexCompleter::setWords(const QStringList &newwords){
     }
 }
 
-void LatexCompleter::complete(QEditor *newEditor){
+void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList){
     if (editor != newEditor) {
         if (editor) disconnect(editor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
         if (newEditor) connect(newEditor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
@@ -518,6 +518,10 @@ void LatexCompleter::complete(QEditor *newEditor){
     }
     if (!editor) return;
     QDocumentCursor c=editor->cursor();
+    if (c.hasSelection()) {
+        c.setColumnNumber(qMax(c.columnNumber(),c.anchorColumnNumber()));
+        editor->setCursor(c);
+    }
     QDocumentLine line=c.line();
     QPoint offset=line.cursorToDocumentOffset(c.columnNumber()-1);
     offset.setY(offset.y()+line.document()->y(line)+line.document()->fontMetrics().lineSpacing());
@@ -533,7 +537,7 @@ void LatexCompleter::complete(QEditor *newEditor){
     list->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
     //list->show();
     
-    if (c.getPreviousChar()!='\\') {
+    if (c.getPreviousChar()!='\\' || forceVisibleList) {
         int start=c.columnNumber()-1;
         QString eow="~!@#$%^&*()_+}|:\"<>?,./;[]-= \n\r`+´";
         QString lineText=c.line().text();

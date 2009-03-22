@@ -186,8 +186,11 @@ void ShortcutDelegate::treeWidgetItemClicked ( QTreeWidgetItem * item, int colum
                         break;
                     default:;
                 }
-    }else if (item->text(0)==addRowButton)
-        item->parent()->insertChild(item->parent()->childCount()-1, new QTreeWidgetItem((QTreeWidgetItem*)0,QStringList() << "<internal: delete row>"));
+    } else if (item->text(0)==addRowButton) {
+        QTreeWidgetItem *twi = new QTreeWidgetItem((QTreeWidgetItem*)0,QStringList() << "<internal: delete row>");
+        twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
+        item->parent()->insertChild(item->parent()->childCount()-1, twi);
+    }
 }
 
 ConfigDialog::ConfigDialog(QWidget* parent): QDialog( parent)

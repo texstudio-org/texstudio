@@ -1969,7 +1969,7 @@ if ((item) && (!structlist.isEmpty()))
 //////////TAGS////////////////
 void Texmaker::NormalCompletion(){
     if ( !currentEditorView() )	return;
-    currentEditorView()->complete();
+    currentEditorView()->complete(true);
 }
 void Texmaker::InsertEnvironmentCompletion(){
     if ( !currentEditorView() )	return;
@@ -1982,7 +1982,7 @@ void Texmaker::InsertEnvironmentCompletion(){
     //currentEditorView()->editor->setCursor(c);
     //if (currentEditorView()->editor->completionEngine())
     //    currentEditorView()->editor->completionEngine()->complete();
-    currentEditorView()->complete();
+    currentEditorView()->complete(true);
 }
 void Texmaker::InsertTag(QString Entity, int dx, int dy)
 {
