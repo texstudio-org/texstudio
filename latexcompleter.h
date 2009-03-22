@@ -64,7 +64,7 @@ public:
 	LatexCompleter(QObject *p = 0);
 	virtual ~LatexCompleter();
   
-    void complete(QEditor *newEditor);
+    void complete(QEditor *newEditor, bool forceVisibleList);
     void setWords(const QStringList &newwords);
 
     static void parseHelpfile(QString text);

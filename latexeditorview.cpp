@@ -38,7 +38,7 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
     if (event->text()==QString("\\") && LatexEditorView::completer)  { //workaround because trigger doesn't seem work
         editor->cursor().removeSelectedText();
         editor->cursor().insertText("\\");
-        LatexEditorView::completer->complete(editor);
+        LatexEditorView::completer->complete(editor,false);
         return true;
     }
     if (event->modifiers()==Qt::ControlModifier && (event->key()==Qt::Key_Left || event->key()==Qt::Key_Right)){
@@ -174,15 +174,10 @@ LatexEditorView::~LatexEditorView()
 {
 }
 
-void LatexEditorView::complete(){
+void LatexEditorView::complete(bool forceVisibleList){
     if (!LatexEditorView::completer) return;
-    QDocumentCursor c=editor->cursor();
-    if (c.hasSelection()) {
-        c.setColumnNumber(qMax(c.columnNumber(),c.anchorColumnNumber()));
-        editor->setCursor(c);
-    }
     setFocus();
-    LatexEditorView::completer->complete(editor);
+    LatexEditorView::completer->complete(editor,forceVisibleList);
 }
 void LatexEditorView::jumpChangePositionBackward(){
     if (changePositions.size()==0) return;
