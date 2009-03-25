@@ -34,7 +34,7 @@
       </size>
      </property>
      <property name="currentIndex" >
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="pt" >
       <layout class="QVBoxLayout" >
@@ -514,6 +514,42 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
            </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_4" >
+         <property name="title" >
+          <string>More</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout" >
+          <item>
+           <widget class="QLabel" name="label_2" >
+            <property name="text" >
+             <string>Execute before compiling:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEditExecuteBeforeCompiling" />
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonExecuteBeforeCompiling" >
+            <property name="text" >
+             <string/>
+            </property>
+            <property name="icon" >
+             <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
+              <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+            </property>
+            <property name="iconSize" >
+             <size>
+              <width>16</width>
+              <height>16</height>
+             </size>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>

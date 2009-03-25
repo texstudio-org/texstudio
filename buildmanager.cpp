@@ -1,7 +1,24 @@
+#include "buildmanager.h"
 #include <QChar>
+#include <QCoreApplication>
 #include <QDir>
 #include <QMessageBox>
-#include "buildmanager.h"
+
+#ifdef Q_WS_WIN
+#include "windows.h"
+#endif
+
+BuildManager::BuildManager()
+    #ifdef Q_WS_WIN       
+    :pidInst(0)
+    #endif
+{
+    ;
+}
+BuildManager::~BuildManager(){
+    if (pidInst) DdeUninitialize(pidInst);
+}
+
 QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mainFile,int currentline){
     str=str+" ";
     QString result;
@@ -152,3 +169,68 @@ QString BuildManager::lazyDefaultRead(const QSettings &settings, QString name, L
     if (value=="<default>") value=guessCommandName(cmd);
     return value;
 }
+
+#ifdef Q_WS_WIN
+#include "windows.h"
+bool BuildManager::executeDDE(QString ddePseudoURL){
+    //parse URL
+    if (!ddePseudoURL.startsWith("dde://")) return false;
+    ddePseudoURL.remove(0,6);
+    int slash=ddePseudoURL.indexOf("/");
+    if (slash==-1) return false;
+    QString service = ddePseudoURL.left(slash);
+    ddePseudoURL.remove(0,slash+1);
+    slash=ddePseudoURL.indexOf("/");
+    if (slash==-1) return false;
+    QString topic = ddePseudoURL.left(slash);
+    ddePseudoURL.remove(0,slash+1);
+    QStringList commands = ddePseudoURL.split("[",QString::SkipEmptyParts);
+    if (commands.isEmpty()) return false;
+
+    
+    //connect to server/topic
+    
+    if (pidInst==0)
+        if(DdeInitializeA(&pidInst, NULL, APPCLASS_STANDARD | APPCMD_CLIENTONLY, 0L) != DMLERR_NO_ERROR)
+			return false;
+
+    QCoreApplication::processEvents();
+
+	HSZ hszService = DdeCreateStringHandleA(pidInst, service.toLocal8Bit().data() , CP_WINANSI);
+	if (!hszService) return false;
+	HSZ hszTopic = DdeCreateStringHandleA(pidInst, topic.toLocal8Bit().data(), CP_WINANSI);
+	if (!hszTopic) {
+	    DdeFreeStringHandle(pidInst, hszService);
+	    return false;
+	}
+	HCONV hConv = DdeConnect(pidInst, hszService, hszTopic, NULL);
+
+    QCoreApplication::processEvents();
+
+	DdeFreeStringHandle(pidInst, hszService);
+	DdeFreeStringHandle(pidInst, hszTopic);
+    if (!hConv) return false;
+    
+    //execute requests
+    foreach (QString s, commands) {
+        QString temp=("["+s.trimmed());
+        QByteArray ba= temp.toLocal8Bit();
+        HDDEDATA req= DdeCreateDataHandle(pidInst, (LPBYTE) ba.data(), ba.size()+1, 0, 0, CF_TEXT, NULL);
+        if (req) {
+            HDDEDATA recData=DdeClientTransaction((BYTE*)req, (DWORD)-1, hConv, 0, 0, XTYP_EXECUTE, 1000, 0);
+            DdeFreeDataHandle(req);
+            if (recData) DdeFreeDataHandle(recData);
+        }
+        //else QMessageBox::information(0,"TexMakerX",QObject::tr("DDE command %1 failed").arg("["+s),0); //break; send all commands
+    }
+
+    QCoreApplication::processEvents();
+        
+    //disconnect
+	DdeDisconnect(hConv);
+
+    QCoreApplication::processEvents();
+
+    return true;
+}
+#endif
