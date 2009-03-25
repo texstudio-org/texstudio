@@ -76,7 +76,7 @@ void browsePs2pdf();
 void browsePdfviewer();
 void browseMetapost();
 void browseGhostscript();
-
+void browsePrecompiling();
 };
 
 #endif

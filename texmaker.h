@@ -34,6 +34,7 @@
 #include <QVBoxLayout>
 #include <QTableView>
 
+#include "buildmanager.h"
 #include "configmanager.h"
 #include "latexlog.h"
 #include "latexeditorview.h"
@@ -129,13 +130,14 @@ QString sessionCurrent;
 
 //settings
 ConfigManager configManager;
+BuildManager buildManager;
 int split1_right, split1_left, split2_top, split2_bottom, quickmode;
 bool singlemode, wordwrap, parenmatch, showoutputview, showstructview, ams_packages, makeidx_package, completion, autoindent;
 int showlinemultiples;
 bool folding, showlinestate, showcursorstate, realtimespellchecking;
 QString document_class, typeface_size, paper_size, document_encoding, author;
 QString latex_command, viewdvi_command, dvips_command, dvipdf_command, metapost_command;
-QString viewps_command, ps2pdf_command, makeindex_command, bibtex_command, pdflatex_command, viewpdf_command, userquick_command, ghostscript_command;
+QString precompile_command, viewps_command, ps2pdf_command, makeindex_command, bibtex_command, pdflatex_command, viewpdf_command, userquick_command, ghostscript_command;
 QString spell_dic, spell_ignored_words;
 QString lastDocument;
 QTextCodec* newfile_encoding;
@@ -265,6 +267,7 @@ void QuickLetter();
 void QuickDocument();
 
 void RunCommand(QString comd,bool waitendprocess,bool showStdout);
+void RunPreCompileCommand();
 void readFromStderr();
 void readFromStdoutput();
 void SlotEndProcess(int err);

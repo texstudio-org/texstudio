@@ -54,7 +54,6 @@
 #include "texmaker.h"
 #include "latexeditorview.h"
 
-#include "buildmanager.h"
 #include "smallUsefulFunctions.h"
 
 #include "structdialog.h"
@@ -1435,6 +1434,7 @@ viewdvi_command=BuildManager::lazyDefaultRead(*config,"Tools/Dvi",BuildManager::
 viewps_command=BuildManager::lazyDefaultRead(*config,"Tools/Ps",BuildManager::CMD_VIEWPS);
 viewpdf_command=BuildManager::lazyDefaultRead(*config,"Tools/Pdf",BuildManager::CMD_VIEWPDF);
 ghostscript_command=BuildManager::lazyDefaultRead(*config,"Tools/Ghostscript",BuildManager::CMD_GHOSTSCRIPT);
+precompile_command=config->value("Tools/Precompile","").toString();
 
 #ifdef Q_WS_X11
 int desktop_env=1; // 1 : no kde ; 2: kde ; 3 : kde4 ;
@@ -1652,6 +1652,8 @@ config->setValue("Tools/Metapost",metapost_command);
 
 config->setValue("Tools/Ghostscript",ghostscript_command);
 config->setValue("Tools/Userquick",userquick_command);
+config->setValue("Tools/Precompile",precompile_command);
+
 if (userClassList.count()>0) 
 config->setValue("Tools/User Class",userClassList);
 if (userPaperList.count()>0) config->setValue("Tools/User Paper",userPaperList);
@@ -2902,7 +2904,12 @@ if (commandline.trimmed().isEmpty())
 	OutputTextEdit->insertLine("Error : no command given \n");
 	return;
 	}
-
+#ifdef Q_WS_WIN
+if (commandline.startsWith("dde://")) {
+    buildManager.executeDDE(commandline);
+    return;
+}
+#endif
 proc = new QProcess( this );
 proc->setWorkingDirectory(fi.absolutePath());
 
@@ -2930,6 +2937,11 @@ if (waitendprocess)
 	}
 }
 
+void Texmaker::RunPreCompileCommand(){
+    if (precompile_command.isEmpty()) return;
+    RunCommand(precompile_command,true,false);
+}
+
 void Texmaker::readFromStderr()
 {
 QByteArray result=proc->readAllStandardError();
@@ -2955,6 +2967,7 @@ stat2->setText(QString(" %1 ").arg(tr("Ready")));
 
 void Texmaker::QuickBuild()
 {
+    RunPreCompileCommand();
 stat2->setText(QString(" %1 ").arg(tr("Quick Build")));
 ERRPROCESS=false;
 switch (quickmode)
@@ -3072,6 +3085,7 @@ if (NoLatexErrors()) ViewLog();
 
 void Texmaker::Latex()
 {
+    RunPreCompileCommand();
 stat2->setText(QString(" %1 ").arg("Latex"));
 RunCommand(latex_command,false,false);
 }
@@ -3096,6 +3110,7 @@ RunCommand(viewps_command,false,false);
 
 void Texmaker::PDFLatex()
 {
+    RunPreCompileCommand();
 stat2->setText(QString(" %1 ").arg("Pdf Latex"));
 RunCommand(pdflatex_command,false,false);
 }
@@ -3189,7 +3204,7 @@ if ( utDlg->exec() )
 	for ( int i = 0; i <= 4; i++ ) {
 		UserToolName[i]=utDlg->Name[i];
 		UserToolCommand[i]=utDlg->Tool[i];
-		QAction * act=getManagedAction("main/user/tools/tool"+QString::number(i));
+		QAction * act=getManagedAction("main/user/commands/cmd"+QString::number(i));
 		if (act) act->setText(QString::number(i+1)+": "+UserToolName[i]);
     }
 }
@@ -3512,6 +3527,7 @@ confDlg->ui.lineEditMakeindex->setText(makeindex_command);
 confDlg->ui.lineEditPdfviewer->setText(viewpdf_command);
 confDlg->ui.lineEditMetapost->setText(metapost_command);
 confDlg->ui.lineEditGhostscript->setText(ghostscript_command);
+confDlg->ui.lineEditExecuteBeforeCompiling->setText(precompile_command);
 
 confDlg->ui.comboBoxFont->lineEdit()->setText(EditorFont.family() );
 if (newfile_encoding)
@@ -3574,6 +3590,7 @@ if (configManager.execConfigDialog(confDlg))
 	viewpdf_command=confDlg->ui.lineEditPdfviewer->text();
 	metapost_command=confDlg->ui.lineEditMetapost->text();
 	ghostscript_command=confDlg->ui.lineEditGhostscript->text();
+    precompile_command=confDlg->ui.lineEditExecuteBeforeCompiling->text();
 
 	QString fam=confDlg->ui.comboBoxFont->lineEdit()->text();
 	int si=confDlg->ui.spinBoxSize->value();

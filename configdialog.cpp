@@ -236,6 +236,7 @@ connect( ui.pushButtonPs2pdf, SIGNAL(clicked()), this, SLOT(browsePs2pdf()));
 connect( ui.pushButtonPdfviewer, SIGNAL(clicked()), this, SLOT(browsePdfviewer()));
 connect( ui.pushButtonMetapost, SIGNAL(clicked()), this, SLOT(browseMetapost()));
 connect( ui.pushButtonGhostscript, SIGNAL(clicked()), this, SLOT(browseGhostscript()));
+connect( ui.pushButtonExecuteBeforeCompiling, SIGNAL(clicked()), this, SLOT(browsePrecompiling()));
 
 
 fmConfig=new QFormatConfig(ui.formatConfigBox);
@@ -446,5 +447,13 @@ if ( !location.isEmpty() )
 	ui.lineEditGhostscript->setText( location );
 	}
 }
-
+void ConfigDialog::browsePrecompiling(){
+QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
+if ( !location.isEmpty() )
+	{
+	location.replace(QString("\\"),QString("/"));
+	location="\""+location+"\"";
+	ui.lineEditExecuteBeforeCompiling->setText( location );
+	}
+}
 
