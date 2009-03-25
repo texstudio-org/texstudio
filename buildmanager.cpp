@@ -191,7 +191,7 @@ bool BuildManager::executeDDE(QString ddePseudoURL){
     //connect to server/topic
     
     if (pidInst==0)
-        if(DdeInitializeA(&pidInst, NULL, APPCLASS_STANDARD | APPCMD_CLIENTONLY, 0L) != DMLERR_NO_ERROR)
+        if(DdeInitializeA(&pidInst, NULL, APPCLASS_STANDARD | APPCMD_CLIENTONLY | CBF_SKIP_ALLNOTIFICATIONS, 0L) != DMLERR_NO_ERROR)
 			return false;
 
     QCoreApplication::processEvents();
