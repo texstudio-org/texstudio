@@ -80,6 +80,8 @@ public:
 
     QHash<QDocumentLineHandle*, int> lineToLogEntry;
     QHash<int, QDocumentLineHandle*> logEntryToLine;
+    
+    static int hideTooltipWhenLeavingLine;
 private:
     friend class DefaultInputBinding;
     static int bookMarkId(int bookmarkNumber);

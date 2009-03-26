@@ -8,6 +8,15 @@ LatexLogEntry::LatexLogEntry (QString aFile, LogType aType, QString aOldline, in
     if (!ok) oldLineNumber=-1;
 };
 
+QString LatexLogEntry::niceMessage() const{
+    QString pre="";
+    switch (type) {
+        case LT_BADBOX: pre=LatexLogModel::tr("BadBox: ");break;
+        case LT_WARNING: pre=LatexLogModel::tr("Warning: ");break;
+        case LT_ERROR: pre=LatexLogModel::tr("Error: ");break;
+    }
+    return pre+message;
+}
 
 LatexLogModel::LatexLogModel (QObject * parent): QAbstractTableModel(parent){
     markIDs[0]=QLineMarksInfoCenter::instance()->markTypeId("error");
