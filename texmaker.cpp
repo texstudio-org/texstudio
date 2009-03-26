@@ -40,6 +40,7 @@
 #include <QCheckBox>
 #include <QLocale>
 #include <QTabWidget>
+#include <QToolTip>
 #include <QStyleFactory>
 #include <QStyle>
 #include <QFontDatabase>
@@ -789,13 +790,7 @@ void Texmaker::lineMarkToolTip(int line, int mark){
     if (mark != errorMarkID && mark != warningMarkID && mark != badboxMarkID) return;
     int error = currentEditorView()->lineToLogEntry.value(currentEditorView()->editor->document()->line(line).handle(),-1);
     if (error<0 || error >= logModel->count()) return;
-    QString pre="";
-    switch (logModel->at(error).type) {
-        case LT_BADBOX: pre=tr("BadBox: ");break;
-        case LT_WARNING: pre=tr("Warning: ");break;
-        case LT_ERROR: pre=tr("Error: ");break;
-    }
-    currentEditorView()->lineMarkPanel->setToolTipForTouchedMark(pre+logModel->at(error).message);
+    currentEditorView()->lineMarkPanel->setToolTipForTouchedMark(logModel->at(error).niceMessage());
 }
 
 void Texmaker::NewDocumentStatus(bool m)
@@ -3432,6 +3427,11 @@ void Texmaker::GoToLogEntryAt(int newLineNumber){
     OutputTable->scrollTo(logModel->index(logEntryNumber,1),QAbstractItemView::PositionAtCenter);
     OutputTable->selectRow(logEntryNumber);
     OutputTextEdit->setCursorPosition(logModel->at(logEntryNumber).logline, 0);
+    
+    QPoint p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
+  //  p.ry()+=2*currentEditorView()->editor->document()->fontMetrics().lineSpacing();
+    QToolTip::showText(p, logModel->at(logEntryNumber).niceMessage(), 0);
+    LatexEditorView::hideTooltipWhenLeavingLine=newLineNumber;
 }
 
 void Texmaker::GoToMark(bool backward, int id){

@@ -12,6 +12,7 @@ struct LatexLogEntry {
     int logline;
     QString message;
     LatexLogEntry (QString aFile, LogType aType, QString aOldline, int aLogline, QString aMessage);
+    QString niceMessage() const; 
 };
 class LatexLogModel: public QAbstractTableModel{
 private:

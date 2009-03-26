@@ -10,11 +10,6 @@
  ***************************************************************************/
 
 #include "latexeditorview.h"
-#include <QVBoxLayout>
-#include <QFrame>
-#include <QKeyEvent>
-#include <QMenu>
-#include <QMessageBox>
 
 #include "smallUsefulFunctions.h"
 
@@ -31,6 +26,13 @@
 #include "qlinechangepanel.h"
 #include "qstatuspanel.h"
 #include "qsearchreplacepanel.h"
+
+#include <QVBoxLayout>
+#include <QFrame>
+#include <QKeyEvent>
+#include <QMenu>
+#include <QMessageBox>
+#include <QToolTip>
 
 //------------------------------Default Input Binding--------------------------------
 bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
@@ -79,6 +81,10 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
         if (whitespace.contains(prev)||prev==QChar(0))  editor->cursor().insertText(keyReplaceBeforeWord->at(pos));
         else editor->cursor().insertText(keyReplaceAfterWord->at(pos));
         return true;
+    }
+    if (LatexEditorView::hideTooltipWhenLeavingLine!=-1 && editor->cursor().lineNumber()!=LatexEditorView::hideTooltipWhenLeavingLine) {
+        LatexEditorView::hideTooltipWhenLeavingLine=-1;
+        QToolTip::hideText();
     }
     return false;
 }
@@ -136,6 +142,7 @@ DefaultInputBinding *defaultInputBinding = new DefaultInputBinding();
 //----------------------------------LatexEditorView-----------------------------------
 SpellerUtility* LatexEditorView::speller=0;
 LatexCompleter* LatexEditorView::completer=0;
+int LatexEditorView::hideTooltipWhenLeavingLine = -1;
 
 LatexEditorView::LatexEditorView(QWidget *parent) : QWidget(parent),curChangePos(-1),lastSetBookmark(0)
 {
