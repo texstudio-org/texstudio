@@ -76,7 +76,7 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
     int pos;
     if ((pos=keyToReplace->indexOf(event->text()))>=0) {
         QString whitespace(" \t\n");
-        QChar prev=editor->cursor().getPreviousChar();
+        QChar prev=editor->cursor().previousChar();
         editor->cursor().removeSelectedText();
         if (whitespace.contains(prev)||prev==QChar(0))  editor->cursor().insertText(keyReplaceBeforeWord->at(pos));
         else editor->cursor().insertText(keyReplaceAfterWord->at(pos));
@@ -268,7 +268,7 @@ void LatexEditorView::lineMarkClicked(int line){
     QDocumentLine l=editor->document()->line(line);
     if (!l.isValid()) return;
     //remove old mark (when possible)
-    for (int i=0;i<10;i++)
+    for (int i=-1;i<10;i++)
       if (l.hasMark(bookMarkId(i))) {
         l.removeMark(bookMarkId(i));
         return;

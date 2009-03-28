@@ -1972,7 +1972,7 @@ void Texmaker::InsertEnvironmentCompletion(){
     if ( !currentEditorView() )	return;
     QDocumentCursor c = currentEditorView()->editor->cursor();
     QString eow=getCommonEOW();
-    while (c.columnNumber()>0 && !eow.contains(c.getPreviousChar())) c.movePosition(1,QDocumentCursor::PreviousCharacter);
+    while (c.columnNumber()>0 && !eow.contains(c.previousChar())) c.movePosition(1,QDocumentCursor::PreviousCharacter);
     c.insertText("\\begin{");//remaining part is up to the completion engine
     //c=currentEditorView()->editor->cursor();
     //c.movePosition(QString("\\begin{)").length(), QDocumentCursor::NextCharacter);
@@ -3350,6 +3350,8 @@ void Texmaker::DisplayLatexError()
         if (logModel->at(i).oldLineNumber!=-1)
             for (FilesMap::iterator it=filenames.begin(); it!=filenames.end(); ++it)
                 if (it.value().endsWith(logModel->at(i).file)) {
+                    //int old=it.key()->lineToLogEntry.value(l.handle(),-1);
+                    //if (old==-
                     QDocumentLine l=it.key()->editor->document()->line(logModel->at(i).oldLineNumber);
                     if (logModel->at(i).type==LT_ERROR) l.addMark(errorMarkID);
                     else if (logModel->at(i).type==LT_WARNING) l.addMark(warningMarkID);

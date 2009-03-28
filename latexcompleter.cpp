@@ -537,7 +537,7 @@ void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList){
     list->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
     //list->show();
     
-    if (c.getPreviousChar()!='\\' || forceVisibleList) {
+    if (c.previousChar()!='\\' || forceVisibleList) {
         int start=c.columnNumber()-1;
         QString eow="~!@#$%^&*()_+}|:\"<>?,./;[]-= \n\r`+´";
         QString lineText=c.line().text();
