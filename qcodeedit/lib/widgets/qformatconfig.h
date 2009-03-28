@@ -38,6 +38,10 @@ class QCE_EXPORT QFormatConfig : public QWidget, private Ui::FormatConfig
 	public:
 		QFormatConfig(QWidget *w = 0);
 		
+		bool isAutonomous() const;
+		
+		bool hasUnsavedChanges() const;
+		
 		QList<QFormatScheme*> schemes() const;
 		
 	public slots:
@@ -47,15 +51,23 @@ class QCE_EXPORT QFormatConfig : public QWidget, private Ui::FormatConfig
 		void cancel();
 		void restore();
 		
+		void setAutonomous(bool y);
+		
 		void addScheme(const QString& name, QFormatScheme *scheme);
 		void removeScheme(QFormatScheme *scheme);
 		
 		void setCurrentScheme(QFormatScheme *scheme);
 		
+	protected:
+		virtual void hideEvent(QHideEvent *e);
+		
 	private slots:
 		void on_m_selector_currentIndexChanged(int idx);
 		
 	private:
+		QList<int> modifiedFormats() const;
+		
+		bool m_autonomous;
 		QFormatScheme *m_currentScheme;
 		QList<QFormatScheme*> m_schemes;
 };

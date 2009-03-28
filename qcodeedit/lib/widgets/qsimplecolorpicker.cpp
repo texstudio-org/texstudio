@@ -57,6 +57,17 @@ void QSimpleColorPicker::setColor(const QColor& c)
 void QSimpleColorPicker::resizeEvent(QResizeEvent *e)
 {
 	updateIcon(e->size());
+	
+	QToolButton::resizeEvent(e);
+}
+
+void QSimpleColorPicker::contextMenuEvent(QContextMenuEvent *e)
+{
+	setColor(QColor());
+	
+	e->accept();
+	
+	QToolButton::contextMenuEvent(e);
 }
 
 void QSimpleColorPicker::updateIcon(const QSize& sz)
@@ -67,11 +78,11 @@ void QSimpleColorPicker::updateIcon(const QSize& sz)
 	if ( m_color.isValid() )
 	{
 		p.fillRect(0, 0, px.width(), px.height(), m_color);
+		setIcon(QIcon(px));
 	} else {
-		p.fillRect(0, 0, px.width(), px.height(), palette().base());
+		//p.fillRect(0, 0, px.width(), px.height(), palette().window());
+		setIcon(QIcon());
 	}
-	
-	setIcon(QIcon(px));
 }
 
 void QSimpleColorPicker::clicked()

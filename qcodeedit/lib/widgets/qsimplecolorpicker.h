@@ -39,6 +39,7 @@ class QCE_EXPORT QSimpleColorPicker : public QToolButton
 		
 	protected:
 		void resizeEvent(QResizeEvent *e);
+		void contextMenuEvent(QContextMenuEvent *e);
 		
 	public slots:
 		void setColor(const QColor& c);

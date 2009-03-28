@@ -2780,13 +2780,17 @@ void QDocumentLineHandle::draw(	QPainter *p,
 								
 				}
 			}
-			
-			pastLead = false;
+			if ( leading && !(r.format & 0x4000) )
+			{
+				//indent = xpos;
+				leading = false;
+				pastLead = true;
+			}
 			
 			// TODO : clip more accurately (i.e inside ranges)
 			if ( xpos > maxWidth )
 				break;
-				
+			
 			if ( r.format != fmt )
 			{
 				d->tunePainter(p, r.format & 0x0fff);
@@ -2795,11 +2799,11 @@ void QDocumentLineHandle::draw(	QPainter *p,
 			}
 			
 			int rwidth = 0;
+			int tcol = column;
 			const QString rng = m_text.mid(r.position, r.length);
 			
 			if ( r.format & 0x4000 )
 			{
-				int tcol = column;
 				foreach ( QChar c, rng )
 				{
 					if ( c.unicode() == '\t' )
@@ -2809,6 +2813,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 						tcol += toff;
 					} else {
 						rwidth += QDocumentPrivate::m_spaceWidth;
+						++tcol;
 					}
 				}
 			} else {
@@ -2823,6 +2828,10 @@ void QDocumentLineHandle::draw(	QPainter *p,
 			if ( (xpos + rwidth) <= xOffset )
 			{
 				xpos += rwidth;
+				
+				if ( r.format & 0x4000 )
+					column = tcol;
+				
 				continue;
 			}
 			
@@ -2833,7 +2842,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 			
 			if ( d->m_formatScheme )
 				format = d->m_formatScheme->format(fmt & 0x0fff);
-				
+			
 			if ( fullSel || (fmt & 0x8000) )
 			{
 				p->setPen(ht);
@@ -2841,7 +2850,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				p->fillRect(xpos, ypos,
 							rwidth, QDocumentPrivate::m_lineSpacing,
 							pal.highlight());
-							
+				
 			} else {
 				if ( format.foreground.isValid() )
 				{
@@ -2890,7 +2899,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 						int toff = ts - (column % ts);
 						column += toff;
 						int xoff = toff * QDocumentPrivate::m_spaceWidth;
-						
+						/*
 						if ( r.format & 0x8000 )
 						{
 							p->fillRect(xpos, ypos,
@@ -2898,7 +2907,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 										pal.highlight());
 										
 						}
-						
+						*/
 						if ( showTabs )
 						{
 							p->translate(xpos - m_spaceSignOffset, ypos + QDocumentPrivate::m_ascent);
@@ -2909,7 +2918,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 						xpos += xoff;
 					} else {
 						++column;
-						
+						/*
 						if ( r.format & 0x8000 )
 						{
 							p->fillRect(xpos, ypos,
@@ -2917,7 +2926,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 										pal.highlight());
 										
 						}
-						
+						*/
 						if (
 								(
 									leading
@@ -2941,12 +2950,14 @@ void QDocumentLineHandle::draw(	QPainter *p,
 					}
 				}
 				
+				/*
 				if ( leading )
 				{
 					//indent = xpos;
 					leading = false;
 					pastLead = true;
 				}
+				*/
 				
 			} else {
 				p->drawText(xpos, baseline, rng);
@@ -2992,7 +3003,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 			
 			if ( format.linescolor.isValid() )
 				p->setPen(format.linescolor);
-				
+			
 			const int ydo = qMin(baseline + p->fontMetrics().underlinePos(), ypos + QDocumentPrivate::m_lineSpacing - 1);
 			const int yin = baseline - p->fontMetrics().strikeOutPos();
 			const int yup = qMax(baseline - p->fontMetrics().overlinePos() + 1, ypos);
@@ -3094,7 +3105,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 							maxWidth - xpos, QDocumentPrivate::m_lineSpacing,
 							pal.highlight()
 						);
-						
+		
 	} else {
 		QChar c;
 		
@@ -4355,6 +4366,32 @@ void QDocumentCursorHandle::eraseLine()
 	execute(command);
 }
 
+QChar QDocumentCursorHandle::nextChar() const
+{
+	if ( !m_doc )
+		return QChar();
+	
+	QDocumentLine l = m_doc->line(m_begLine);
+	
+	if ( !l.isValid() )
+		return QChar();
+	
+	return m_begOffset < l.length() ? l.text().at(m_begOffset) : QLatin1Char('\n');
+}
+
+QChar QDocumentCursorHandle::previousChar() const
+{
+	if ( !m_doc || (m_begLine <= 0 && m_begOffset <= 0) )
+		return QChar();
+	
+	QDocumentLine l = m_doc->line(m_begLine);
+	
+	if ( !l.isValid() || m_begOffset > l.length() )
+		return QChar();
+	
+	return m_begOffset ? l.text().at(m_begOffset - 1) : QLatin1Char('\n');
+}
+
 void QDocumentCursorHandle::deleteChar()
 {
 	if ( !m_doc )
@@ -4432,12 +4469,6 @@ void QDocumentCursorHandle::deletePreviousChar()
 	
 	command->setTargetCursor(this);
 	execute(command);
-}
-
-QChar QDocumentCursorHandle::getPreviousChar(){
-    if (atStart()) return QChar(0);
-    if (atLineStart()) return QChar('\n'); //standard line ending
-    return line().text().at(columnNumber()-1);
 }
 
 void QDocumentCursorHandle::execute(QDocumentCommand *c)
@@ -5669,9 +5700,9 @@ void QDocumentPrivate::setFont(const QFont& f)
 	
 	foreach ( QDocumentPrivate *d, m_documents )
 	{
+		d->updateFormatCache();
 		d->setWidth();
 		d->setHeight();
-		d->updateFormatCache();
 	}
 }
 

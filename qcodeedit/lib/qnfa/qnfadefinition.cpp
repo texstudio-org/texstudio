@@ -1435,8 +1435,8 @@ bool QNFADefinition::unindent (const QDocumentCursor& c, const QString& ktxt)
 				(p.role & QParenthesis::Close)
 			&&
 				(p.role & QParenthesis::Indent)
-			//&&
-			//	(p.offset == 0)
+			&&
+				(p.offset <= c.columnNumber() - pos)
 			&&
 				(p.offset + p.length > c.columnNumber() - pos)
 			);
