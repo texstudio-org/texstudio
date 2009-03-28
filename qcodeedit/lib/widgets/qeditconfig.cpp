@@ -64,6 +64,108 @@ void QEditConfig::retranslate()
 }
 
 /*!
+	\brief
+*/
+bool QEditConfig::hasUnsavedChanges() const
+{
+	if ( m_direct )
+		return false;
+	
+	QFont font = cbFont->currentFont();
+	//font.setPointSize(spnFontSize->value());
+	
+	const QFont& docFont = QDocument::font();
+	
+	if ( font.family() != docFont.family() || spnFontSize->value() != docFont.pointSize() )
+	{
+		//qDebug("font!");
+		return true;
+	}
+	
+	if ( spnTabWidth->value() != QDocument::tabStop() )
+	{
+		//qDebug("tab stop!");
+		return true;
+	}
+	
+	QDocument::LineEnding le = QDocument::defaultLineEnding();
+	
+	if ( chkDetectLE->isChecked() )
+	{
+		if ( le != QDocument::Conservative )
+		{
+			//qDebug("conservative line endings! : %i", le);
+			return true;
+		}
+	} else {
+		if ( le != QDocument::LineEnding(cbLineEndings->currentIndex() + 1) )
+		{
+			//qDebug("line endings!");
+			return true;
+		}
+	}
+	
+	QDocument::WhiteSpaceMode ws = QDocument::ShowNone;
+	
+	if ( chkShowLeadingWhitespace->isChecked() )
+		ws |= QDocument::ShowLeading;
+	
+	if ( chkShowTrailingWhitespace->isChecked() )
+		ws |= QDocument::ShowTrailing;
+	
+	if ( chkShowTabsInText->isChecked() )
+		ws |= QDocument::ShowTabs;
+	
+	if ( ws != QDocument::showSpaces() )
+	{
+		//qDebug("spaces!");
+		return true;
+	}
+	
+	QTextCodec *c = QEditor::defaultCodec();
+	
+	if ( cbEncoding->currentText() == "System" )
+	{
+		if ( c && c->name() != "System" )
+		{
+			//qDebug("system codec!");
+			return true;
+		}
+	} else {
+		if ( !c || c->name() != cbEncoding->currentText().toLatin1() )
+		{
+			//qDebug("codec!");
+			return true;
+		}
+	}
+	
+	int flags = QEditor::defaultFlags();
+	
+	if ( chkReplaceTabs->isChecked() )
+		flags |= QEditor::ReplaceTabs;
+	else
+		flags &= ~QEditor::ReplaceTabs;
+	
+	if ( chkAutoRemoveTrailingWhitespace->isChecked() )
+		flags |= QEditor::RemoveTrailing;
+	else
+		flags &= ~QEditor::RemoveTrailing;
+	
+	if ( chkPreserveTrailingIndent->isChecked() )
+		flags |= QEditor::PreserveTrailingIndent;
+	else
+		flags &= ~QEditor::PreserveTrailingIndent;
+	
+	if ( flags != QEditor::defaultFlags() )
+	{
+		//qDebug("flags!");
+		return true;
+	}
+	
+	return false;
+}
+
+/*!
 	\return whether user changes are immediately applied
 */
 bool QEditConfig::applyImmediately() const
@@ -159,7 +261,7 @@ void QEditConfig::cancel()
 	chkShowTrailingWhitespace->setChecked(ws & QDocument::ShowTrailing);
 	
 	QDocument::LineEnding le = QDocument::defaultLineEnding();
-	chkDetectLE->setChecked(le);
+	chkDetectLE->setChecked(le == QDocument::Conservative);
 	cbLineEndings->setCurrentIndex(le ? le - 1 : 0);
 	
 	int flags = QEditor::defaultFlags();
@@ -262,7 +364,9 @@ void QEditConfig::loadKeys(const QMap<QString, QVariant>& keys)
 			cbFont->setCurrentFont(f);
 			spnFontSize->setValue(f.pointSize());
 			
-			QDocument::setFont(f);
+			if ( m_direct )
+				QDocument::setFont(f);
+			
 			lblSampleText->setFont(f);
 			
 		} else if ( it.key() == "tab_width" ) {

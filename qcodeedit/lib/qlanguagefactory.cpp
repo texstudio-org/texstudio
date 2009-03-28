@@ -296,8 +296,18 @@ void QLanguageFactory::addDefinitionPath(const QString& path)
 		if ( f.endsWith(".qnfa") )
 		{
 			//qDebug("loading file %s", qPrintable(f));
+			QFileInfo info(d.filePath(f));
+			QString specificFormatScheme = QDir(info.path()).filePath(info.baseName() + ".qxf");
+			
+			QFormatScheme *scheme = m_defaultFormatScheme;
+			
+			if ( QFile::exists(specificFormatScheme) )
+			{
+				scheme = new QFormatScheme(specificFormatScheme);
+			}
+			
 			LangData data;
-			QNFADefinition::load(d.filePath(f), &data, m_defaultFormatScheme);
+			QNFADefinition::load(d.filePath(f), &data, scheme);
 			
 			//qDebug("%s : (%s | %s)", qPrintable(data.lang), qPrintable(data.mime), qPrintable(data.extensions.join(", ")));
 			addLanguage(data);

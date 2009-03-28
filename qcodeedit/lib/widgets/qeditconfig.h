@@ -36,6 +36,8 @@ class QCE_EXPORT QEditConfig : public QWidget, private Ui::EditorConfig
 	public:
 		QEditConfig(QWidget *w = 0);
 		
+		bool hasUnsavedChanges() const;
+		
 		bool applyImmediately() const;
 		
 		QMap<QString, QVariant> dumpKeys() const;

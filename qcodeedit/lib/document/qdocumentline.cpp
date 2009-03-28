@@ -91,6 +91,7 @@ bool QDocumentLine::operator == (const QDocumentLine& l) const
 	return m_handle == l.m_handle;
 	//return lineNumber() == l.lineNumber();
 }
+
 /*!
 	\brief Comparision operator
 */
@@ -486,6 +487,32 @@ void QDocumentLine::setFormats(const QVector<int>& formats)
 		return;
 	
 	m_handle->setFormats(formats);
+}
+
+/*!
+	\return whether the line has at least one overlay of a given format id
+*/
+bool QDocumentLine::hasOverlay(int fid) const
+{
+	if ( !m_handle )
+		return false;
+	
+	foreach ( const QFormatRange& r, m_handle->m_overlays )
+		if ( r.format == fid )
+			return true;
+	
+	return false;
+}
+
+/*!
+	\brief Clear all overlays applied to the line
+*/
+QList<QFormatRange> QDocumentLine::overlays() const
+{
+	if ( !m_handle )
+		return QList<QFormatRange>();
+	
+	return m_handle->m_overlays;
 }
 
 /*!

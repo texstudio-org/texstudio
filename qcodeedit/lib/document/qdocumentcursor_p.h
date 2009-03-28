@@ -101,10 +101,12 @@ class QCE_EXPORT QDocumentCursorHandle
 		
 		void insertText(const QString& s);
 		
+		QChar nextChar() const;
+		QChar previousChar() const;
+		
 		void eraseLine();
 		void deleteChar();
 		void deletePreviousChar();
-		QChar getPreviousChar();
 		
 		QDocumentCursor selectionStart() const;
 		QDocumentCursor selectionEnd() const;

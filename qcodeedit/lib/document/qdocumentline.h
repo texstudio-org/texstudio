@@ -160,6 +160,9 @@ class QCE_EXPORT QDocumentLine
 		QList<int> marks() const;
 		bool hasMark(int id) const;
 		
+		bool hasOverlay(int fid) const;
+		QList<QFormatRange> overlays() const;
+		
 		void clearOverlays();
 		void addOverlay(const QFormatRange& over);
 		void removeOverlay(const QFormatRange& over);

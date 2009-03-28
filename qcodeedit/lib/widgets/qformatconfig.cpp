@@ -25,10 +25,14 @@
 #include "qformat.h"
 #include "qformatscheme.h"
 
+#include "qeditor.h"
+#include "qdocument.h"
+
 #include "qsimplecolorpicker.h"
 
 #include <QHeaderView>
 #include <QVBoxLayout>
+#include <QMessageBox>
 #include <QTableWidget>
 
 /*!
@@ -41,7 +45,7 @@
 */
 
 QFormatConfig::QFormatConfig(QWidget *w)
- : QWidget(w), m_currentScheme(0)
+ : QWidget(w), m_autonomous(false), m_currentScheme(0)
 {
 	setupUi(this);
 	
@@ -58,6 +62,10 @@ QFormatConfig::QFormatConfig(QWidget *w)
 	m_table->horizontalHeaderItem(7)->setIcon(QIcon(":/images/qcodeedit/textcolor.png"));
 	m_table->horizontalHeaderItem(8)->setIcon(QIcon(":/images/qcodeedit/fillcolor.png"));
 	m_table->horizontalHeaderItem(9)->setIcon(QIcon(":/images/qcodeedit/strokecolor.png"));
+	
+	connect(m_table, SIGNAL( itemSelectionChanged() ),
+			m_table, SLOT  ( clearSelection() ) );
+	
 }
 
 /*!
@@ -69,7 +77,35 @@ void QFormatConfig::retranslate()
 }
 
 /*!
-	\brief
+	\return Whether the format config widget is in "autonomous" mode
+*/
+bool QFormatConfig::isAutonomous() const
+{
+	return m_autonomous;
+}
+
+/*!
+	\brief Turn on "autonomous" mode
+	
+	When the format config widget is autonomous it will automatically
+	check for changes upon hide event and ask the user whether he wishes
+	to commit them.
+*/
+void QFormatConfig::setAutonomous(bool y)
+{
+	m_autonomous = y;
+}
+
+/*!
+	\brief Check whether there are unsaved in the widget
+*/
+bool QFormatConfig::hasUnsavedChanges() const
+{
+	return modifiedFormats().count();
+}
+
+/*!
+	\return the list of format schemes this config widget "manages"
 */
 QList<QFormatScheme*> QFormatConfig::schemes() const
 {
@@ -77,7 +113,10 @@ QList<QFormatScheme*> QFormatConfig::schemes() const
 }
 
 /*!
-	\brief
+	\brief Add a format scheme to the config widget
+	
+	Users will be able to edit that scheme (switching among schemes using
+	a combobox if several schemes are added to the widget)
 */
 void QFormatConfig::addScheme(const QString& name, QFormatScheme *scheme)
 {
@@ -96,7 +135,9 @@ void QFormatConfig::addScheme(const QString& name, QFormatScheme *scheme)
 }
 
 /*!
-	\brief
+	\brief Remove a scheme from the config widget
+	
+	\note No attempt is made to commit unsaved changes
 */
 void QFormatConfig::removeScheme(QFormatScheme *s)
 {
@@ -122,7 +163,10 @@ void QFormatConfig::removeScheme(QFormatScheme *s)
 }
 
 /*!
-	\brief
+	\brief Enforce the currently edited scheme
+	
+	\note It is possible to pass a scheme not previously added to the widget,
+	but it really isn't recommended.
 */
 void QFormatConfig::setCurrentScheme(QFormatScheme *s)
 {
@@ -140,7 +184,7 @@ void QFormatConfig::setCurrentScheme(QFormatScheme *s)
 }
 
 /*!
-	\brief Apply changes
+	\brief Apply changes made to the currently edited scheme, if any
 */
 void QFormatConfig::apply()
 {
@@ -156,9 +200,6 @@ void QFormatConfig::apply()
 			QFormat& fmt = m_currentScheme->formatRef(i);
 			
 			QTableWidgetItem *item;
-			
-			item = new QTableWidgetItem(fid);
-			m_table->setItem(i, 0, item);
 			
 			item = m_table->item(i, 1);
 			fmt.weight = item->checkState() == Qt::Checked ? QFont::Bold : QFont::Normal;
@@ -198,11 +239,22 @@ void QFormatConfig::apply()
 		
 		// this will only save schemes loaded from an existing file
 		m_currentScheme->save();
+		
+		if ( m_autonomous )
+		{
+			QList<QEditor*> editors = QEditor::editors();
+			
+			foreach ( QEditor *e, editors )
+			{
+				if ( e->document()->formatScheme() == m_currentScheme )
+					e->viewport()->update();
+			}
+		}
 	}
 }
 
 /*!
-	\brief Reset the subcontrols to reflect the current settings
+	\brief Reset the subcontrols to reflect the data of the format scheme being edited
 	
 	The name can be a bit misleading at first, it has been chosen
 	because it directly maps to the effect a "cancel" button would
@@ -232,40 +284,49 @@ void QFormatConfig::cancel()
 			item = new QTableWidgetItem;
 			item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
 			item->setCheckState(fmt.weight == QFont::Bold ? Qt::Checked : Qt::Unchecked);
+			item->setToolTip(tr("Bold"));
 			m_table->setItem(i, 1, item);
 			
 			item = new QTableWidgetItem;
 			item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
 			item->setCheckState(fmt.italic ? Qt::Checked : Qt::Unchecked);
+			item->setToolTip(tr("Italic"));
 			m_table->setItem(i, 2, item);
 			
 			item = new QTableWidgetItem;
 			item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
 			item->setCheckState(fmt.underline ? Qt::Checked : Qt::Unchecked);
+			item->setToolTip(tr("Underline"));
 			m_table->setItem(i, 3, item);
 			
 			item = new QTableWidgetItem;
 			item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
 			item->setCheckState(fmt.overline ? Qt::Checked : Qt::Unchecked);
+			item->setToolTip(tr("Overline"));
 			m_table->setItem(i, 4, item);
 			
 			item = new QTableWidgetItem;
 			item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
 			item->setCheckState(fmt.strikeout ? Qt::Checked : Qt::Unchecked);
+			item->setToolTip(tr("Strikeout"));
 			m_table->setItem(i, 5, item);
 			
 			item = new QTableWidgetItem;
 			item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
 			item->setCheckState(fmt.waveUnderline ? Qt::Checked : Qt::Unchecked);
+			item->setToolTip(tr("Wave underline"));
 			m_table->setItem(i, 6, item);
 			
 			m_table->setCellWidget(i, 7, new QSimpleColorPicker(fmt.foreground));
+			m_table->cellWidget(i, 7)->setToolTip(tr("Text color (aka foreground)"));
 			//m_table->cellWidget(i, 7)->setMaximumSize(22, 22);
 			
 			m_table->setCellWidget(i, 8, new QSimpleColorPicker(fmt.background));
+			m_table->cellWidget(i, 8)->setToolTip(tr("Background color"));
 			//m_table->cellWidget(i, 8)->setMaximumSize(22, 22);
 			
 			m_table->setCellWidget(i, 9, new QSimpleColorPicker(fmt.linescolor));
+			m_table->cellWidget(i, 9)->setToolTip(tr("Lines color (used by all lines formatting : underline, overline, ...)"));
 			//m_table->cellWidget(i, 9)->setMaximumSize(22, 22);
 		}
 	}
@@ -285,9 +346,140 @@ void QFormatConfig::restore()
 	// thing to do on format schemes
 }
 
+QList<int> QFormatConfig::modifiedFormats() const
+{
+	QList<int> hasModif;
+	
+	if ( m_currentScheme )
+	{
+		const int n = m_currentScheme->formatCount();
+		
+		m_table->setRowCount(n);
+		
+		for ( int i = 0 ; i < n; ++i )
+		{
+			QString fid = m_currentScheme->id(i);
+			QFormat& fmt = m_currentScheme->formatRef(i);
+			
+			QTableWidgetItem *item;
+			
+			item = m_table->item(i, 1);
+			if ( fmt.weight != (item->checkState() == Qt::Checked ? QFont::Bold : QFont::Normal) )
+			{
+				hasModif << i;
+				continue;
+			}
+			
+			item = m_table->item(i, 2);
+			if ( fmt.italic != (item->checkState() == Qt::Checked) )
+			{
+				hasModif << i;
+				continue;
+			}
+			
+			item = m_table->item(i, 3);
+			if ( fmt.underline != (item->checkState() == Qt::Checked) )
+			{
+				hasModif << i;
+				continue;
+			}
+			
+			item = m_table->item(i, 4);
+			if ( fmt.overline != (item->checkState() == Qt::Checked) )
+			{
+				hasModif << i;
+				continue;
+			}
+			
+			item = m_table->item(i, 5);
+			if ( fmt.strikeout != (item->checkState() == Qt::Checked) )
+			{
+				hasModif << i;
+				continue;
+			}
+			
+			item = m_table->item(i, 6);
+			if ( fmt.waveUnderline != (item->checkState() == Qt::Checked) )
+			{
+				hasModif << i;
+				continue;
+			}
+			
+			QSimpleColorPicker *cp;
+			
+			cp = qobject_cast<QSimpleColorPicker*>(m_table->cellWidget(i, 7));
+			if ( cp && fmt.foreground != cp->color() )
+			{
+				hasModif << i;
+				continue;
+			}
+			
+			cp = qobject_cast<QSimpleColorPicker*>(m_table->cellWidget(i, 8));
+			if ( cp && fmt.background != cp->color() )
+			{
+				hasModif << i;
+				continue;
+			}
+			
+			cp = qobject_cast<QSimpleColorPicker*>(m_table->cellWidget(i, 9));
+			if ( cp && fmt.linescolor != cp->color() )
+			{
+				hasModif << i;
+				continue;
+			}
+		}
+	}
+	
+	return hasModif;
+}
+
+void QFormatConfig::hideEvent(QHideEvent *e)
+{
+	if ( !m_autonomous )
+		return;
+	
+	QList<int> hasModif = modifiedFormats();
+	
+	if ( hasModif.count() )
+	{
+		// TODO : provide custom widget to allow user to select which items should be saved?
+		int ret = QMessageBox::warning(
+									0, 
+									tr("Unsaved changes"),
+									tr("There are unsaved changes in this format scheme.\nDo you want them to be saved?"),
+									QMessageBox::Save | QMessageBox::Discard
+								);
+		
+		if ( ret == QMessageBox::Save )
+		{
+			apply();
+		} else {
+			cancel();
+		}
+	}
+}
+
 void QFormatConfig::on_m_selector_currentIndexChanged(int idx)
 {
-	// TODO : warn about unsaved changes?
+	QList<int> hasModif = modifiedFormats();
+	
+	if ( hasModif.count() )
+	{
+		// TODO : provide custom widget to allow user to select which items should be saved?
+		int ret = QMessageBox::warning(
+									0, 
+									tr("Unsaved changes"),
+									tr("There are unsaved changes in this format scheme.\nDo you want them to be saved?"),
+									QMessageBox::Save | QMessageBox::Discard
+								);
+		
+		if ( ret == QMessageBox::Save )
+		{
+			apply();
+		} else {
+			cancel();
+		}
+	}
 	
 	m_currentScheme = idx >= 0 && idx < m_schemes.count() ? m_schemes.at(idx) : 0;
 	

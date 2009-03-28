@@ -509,6 +509,22 @@ void QDocumentCursor::moveTo(const QDocumentLine &l, int column)
 }
 
 /*!
+	\return the character at the position immediately after the cursor
+*/
+QChar QDocumentCursor::nextChar() const
+{
+	return m_handle ? m_handle->nextChar() : QChar();
+}
+
+/*!
+	\return the character at the position immediately before the cursor
+*/
+QChar QDocumentCursor::previousChar() const
+{
+	return m_handle ? m_handle->previousChar() : QChar();
+}
+
+/*!
 	\brief Delete the character at the position immediately after the cursor
 */
 void QDocumentCursor::deleteChar()
@@ -525,14 +541,6 @@ void QDocumentCursor::deletePreviousChar()
 	if ( m_handle )
 		m_handle->deletePreviousChar();
 }
-
-
-QChar QDocumentCursor::getPreviousChar() const
-{
-    return m_handle ? m_handle->getPreviousChar() : QChar(0);
-
-}
-
 
 /*!
 	\brief erase the whole line the cursor is on, newline included

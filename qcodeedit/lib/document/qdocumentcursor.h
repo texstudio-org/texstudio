@@ -23,6 +23,7 @@
 	\brief Definition of the QDocumentCursor class
 */
 
+class QChar;
 class QPoint;
 class QString;
 class QPolygon;
@@ -169,9 +170,11 @@ class QCE_EXPORT QDocumentCursor
 		
 		bool isWithinSelection(const QDocumentCursor& c) const;
 		
+		QChar nextChar() const;
+		QChar previousChar() const;
+		
 		void deleteChar();
 		void deletePreviousChar();
-		QChar getPreviousChar() const;
 		
 		void beginEditBlock();
 		void endEditBlock();

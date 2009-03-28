@@ -3744,13 +3744,16 @@ bool QEditor::moveKeyEvent(QDocumentCursor& cursor, QKeyEvent *e, bool *leave)
 			return true;
 			
 		case Qt::Key_Insert :
-			if ( leave ) *leave = false;
-			setFlag(Overwrite, !flag(Overwrite));
-			
-			// hack to make sure status panel gets updated...
-			// TODO : emit signals on flag change?
-			emitCursorPositionChanged();
-			return false;
+			if ( !e->modifiers() )
+			{
+				if ( leave ) *leave = false;
+				setFlag(Overwrite, !flag(Overwrite));
+				
+				// hack to make sure status panel gets updated...
+				// TODO : emit signals on flag change?
+				emitCursorPositionChanged();
+				return false;
+			}
 			
 		default:
 			return false;
