@@ -16,7 +16,9 @@ BuildManager::BuildManager()
     ;
 }
 BuildManager::~BuildManager(){
+    #ifdef Q_WS_WIN
     if (pidInst) DdeUninitialize(pidInst);
+    #endif
 }
 
 QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mainFile,int currentline){
