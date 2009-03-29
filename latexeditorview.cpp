@@ -338,13 +338,12 @@ void LatexEditorView::documentContentChanged(int linenr, int count){
     }
 }
 void LatexEditorView::lineDeleted(QDocumentLineHandle* l ){
-    QHash<QDocumentLineHandle*, int>::iterator it=lineToLogEntry.find(l);
-    if (it!=lineToLogEntry.end()) {
+    QHash<QDocumentLineHandle*, int>::iterator it;
+    while ((it=lineToLogEntries.find(l))!=lineToLogEntries.end()) {
         logEntryToLine.remove(it.value());        
-        lineToLogEntry.erase(it);
+        lineToLogEntries.erase(it);
     }
-    
-    
+        
     QPair<int, int> p;
     //QMessageBox::information(0,QString::number(nr),"",0);
     for (int i=0;i<changePositions.size();i++) 

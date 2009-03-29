@@ -788,7 +788,7 @@ void Texmaker::lineMarkToolTip(int line, int mark){
     int warningMarkID = QLineMarksInfoCenter::instance()->markTypeId("warning");
     int badboxMarkID = QLineMarksInfoCenter::instance()->markTypeId("badbox");
     if (mark != errorMarkID && mark != warningMarkID && mark != badboxMarkID) return;
-    int error = currentEditorView()->lineToLogEntry.value(currentEditorView()->editor->document()->line(line).handle(),-1);
+    int error = currentEditorView()->lineToLogEntries.value(currentEditorView()->editor->document()->line(line).handle(),-1);
     if (error<0 || error >= logModel->count()) return;
     currentEditorView()->lineMarkPanel->setToolTipForTouchedMark(logModel->at(error).niceMessage());
 }
@@ -3343,41 +3343,24 @@ void Texmaker::DisplayLatexError()
             ed->editor->document()->removeMarks(warningMarkID);
             ed->editor->document()->removeMarks(badboxMarkID);
             ed->logEntryToLine.clear();
-            ed->lineToLogEntry.clear();
+            ed->lineToLogEntries.clear();
         }
     }
-	for ( int i = 0; i <logModel->count(); i++ ) 
+    //backward, so the more important marks (with lower indices) will be inserted last and 
+    //returned first be QMultiHash.value
+	for ( int i = logModel->count()-1; i >= 0; i--) 
         if (logModel->at(i).oldLineNumber!=-1)
             for (FilesMap::iterator it=filenames.begin(); it!=filenames.end(); ++it)
                 if (it.value().endsWith(logModel->at(i).file)) {
-                    //int old=it.key()->lineToLogEntry.value(l.handle(),-1);
-                    //if (old==-
                     QDocumentLine l=it.key()->editor->document()->line(logModel->at(i).oldLineNumber);
                     if (logModel->at(i).type==LT_ERROR) l.addMark(errorMarkID);
                     else if (logModel->at(i).type==LT_WARNING) l.addMark(warningMarkID);
                     else if (logModel->at(i).type==LT_BADBOX) l.addMark(badboxMarkID);
-                    it.key()->lineToLogEntry[l.handle()]=i;
+                    it.key()->lineToLogEntries.insert(l.handle(),i);
                     it.key()->logEntryToLine[i]=l.handle();
                     break;
                 }
 
-/*
-QFontMetrics fm(qApp->font());
-int rowheight=fm.lineSpacing()+4;
-int maxwidth=0;
-if (errorFileList.count()>0)
-	{
-
-	OutputTableWidget->setColumnWidth(4,maxwidth);
-	for ( int i = 0; i<OutputTableWidget->rowCount(); ++i )
-		OutputTableWidget->setRowHeight(i,rowheight);
-	}
-else
-	{
-	OutputTableWidget->setRowCount(1);
-	OutputTableWidget->setRowHeight(0,rowheight);
-	OutputTableWidget->clearContents();
-	}*/
     OutputTable->show();
     OutputTextEdit->setCursorPosition(0 , 0);
 
@@ -3423,7 +3406,7 @@ void Texmaker::GoToLogEntryAt(int newLineNumber){
     gotoLine(newLineNumber);
     //find error number
     QDocumentLineHandle* lh=currentEditorView()->editor->document()->line(newLineNumber).handle();
-    int logEntryNumber=currentEditorView()->lineToLogEntry.value(lh,-1);
+    int logEntryNumber=currentEditorView()->lineToLogEntries.value(lh,-1);
     if (logEntryNumber==-1) return;
     //goto log entry
     OutputTable->scrollTo(logModel->index(logEntryNumber,1),QAbstractItemView::PositionAtCenter);

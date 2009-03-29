@@ -78,7 +78,7 @@ public:
     QLineMarkPanel* lineMarkPanel;
     QLineNumberPanel* lineNumberPanel;
 
-    QHash<QDocumentLineHandle*, int> lineToLogEntry;
+    QMultiHash<QDocumentLineHandle*, int> lineToLogEntries;
     QHash<int, QDocumentLineHandle*> logEntryToLine;
     
     static int hideTooltipWhenLeavingLine;
