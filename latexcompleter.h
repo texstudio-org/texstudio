@@ -64,8 +64,8 @@ public:
 	LatexCompleter(QObject *p = 0);
 	virtual ~LatexCompleter();
   
-    void complete(QEditor *newEditor, bool forceVisibleList);
-    void setWords(const QStringList &newwords);
+    void complete(QEditor *newEditor, bool forceVisibleList, bool normalText=false);
+    void setWords(const QStringList &newwords, bool normalTextList=false);
 
     static void parseHelpfile(QString text);
     static bool hasHelpfile();
@@ -73,6 +73,7 @@ private:
     friend class CompleterInputBinding;
     static int maxWordLen;
     static QList<CompletionWord> words;
+    static QList<CompletionWord> wordsText, wordsCommands;
     static QSet<QChar> acceptedChars;
     QListView * list;
     CompletionListModel* listModel;
