@@ -140,8 +140,6 @@ QString latex_command, viewdvi_command, dvips_command, dvipdf_command, metapost_
 QString precompile_command, viewps_command, ps2pdf_command, makeindex_command, bibtex_command, pdflatex_command, viewpdf_command, userquick_command, ghostscript_command;
 QString spell_dic, spell_ignored_words;
 QString lastDocument;
-QTextCodec* newfile_encoding;
-bool autodetectLoadedFile;
 QString struct_level1, struct_level2, struct_level3, struct_level4, struct_level5;
 QStringList userClassList, userPaperList, userEncodingList, userOptionsList;
 QStringList structlist, labelitem, structitem;

@@ -891,8 +891,8 @@ if ( !file.open( QIODevice::ReadOnly ) )
 	return 0;
 	}
 
-if (autodetectLoadedFile) edit->editor->load(f_real,0);
-else edit->editor->load(f_real,newfile_encoding);
+if (configManager.autodetectLoadedFile) edit->editor->load(f_real,0);
+else edit->editor->load(f_real,configManager.newfile_encoding);
 
 //filenames.replace( edit, f_real );
 filenames.remove( edit);
@@ -924,7 +924,7 @@ void Texmaker::gotoLine( int line )
 void Texmaker::fileNew()
 {
 LatexEditorView *edit = new LatexEditorView(0);
-if (newfile_encoding) edit->editor->setFileEncoding(newfile_encoding);
+if (configManager.newfile_encoding) edit->editor->setFileEncoding(configManager.newfile_encoding);
 else edit->editor->setFileEncoding(QTextCodec::codecForName("utf-8"));
 EditorView->addTab( edit, "untitled");
 configureNewEditorView(edit);
@@ -1524,8 +1524,6 @@ if (config->value("Files/RestoreSession",false).toBool()) {
     sessionCurrent=config->value("Files/Session/CurrentFile","").toString();
     sessionMaster=config->value("Files/Session/MasterFile","").toString();
 }
-newfile_encoding=QTextCodec::codecForName(config->value("Files/New File Encoding", "utf-8").toString().toAscii().data());
-autodetectLoadedFile=config->value("Files/Auto Detect Encoding Of Loaded Files", "true").toBool();
 
 for (int i=0;i<=9;i++) {
     UserMenuName[i]=config->value(QString("User/Menu%1").arg(i+1),"").toString();
@@ -1671,9 +1669,6 @@ if (ToggleRememberAct->isChecked()) {
     config->setValue("Files/Session/CurrentFile",currentEditorView()?filenames[currentEditorView()]:"");
     config->setValue("Files/Session/MasterFile",singlemode?"":MasterName);
 } else config->setValue("Files/RestoreSession",false);
-
-config->setValue("Files/New File Encoding", newfile_encoding?newfile_encoding->name():"??");
-config->setValue("Files/Auto Detect Encoding Of Loaded Files", autodetectLoadedFile);
 
 for (int i=0;i<=9;i++) {
     config->setValue(QString("User/Menu%1").arg(i+1),UserMenuName[i]);
@@ -3514,11 +3509,7 @@ confDlg->ui.lineEditMetapost->setText(metapost_command);
 confDlg->ui.lineEditGhostscript->setText(ghostscript_command);
 confDlg->ui.lineEditExecuteBeforeCompiling->setText(precompile_command);
 
-confDlg->ui.comboBoxFont->lineEdit()->setText(EditorFont.family() );
-if (newfile_encoding)
-  confDlg->ui.comboBoxEncoding->setCurrentIndex(confDlg->ui.comboBoxEncoding->findText(newfile_encoding->name(), Qt::MatchExactly));
-confDlg->ui.checkBoxAutoDetectOnLoad->setChecked(autodetectLoadedFile);
-
+confDlg->ui.comboBoxFont->lineEdit()->setText(EditorFont.family() );    
 confDlg->ui.spinBoxSize->setValue(EditorFont.pointSize() );
 confDlg->ui.checkBoxWordwrap->setChecked(wordwrap);
 switch (showlinemultiples) {
@@ -3581,9 +3572,6 @@ if (configManager.execConfigDialog(confDlg))
 	int si=confDlg->ui.spinBoxSize->value();
 	QFont F(fam,si);
 	EditorFont=F;
-
-    newfile_encoding=QTextCodec::codecForName(confDlg->ui.comboBoxEncoding->currentText().toAscii().data());
-    autodetectLoadedFile=confDlg->ui.checkBoxAutoDetectOnLoad;
 
 	wordwrap=confDlg->ui.checkBoxWordwrap->isChecked();
 	completion=confDlg->ui.checkBoxCompletion->isChecked();
