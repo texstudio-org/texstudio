@@ -31,6 +31,9 @@ QSettings* ConfigManager::readSettings(){
 
     config->beginGroup( "texmaker" );
 
+    newfile_encoding=QTextCodec::codecForName(config->value("Files/New File Encoding", "utf-8").toString().toAscii().data());
+    autodetectLoadedFile=config->value("Files/Auto Detect Encoding Of Loaded Files", "true").toBool();
+
     //read user key replacements
     keyReplace.clear();
     keyReplaceAfterWord.clear();
@@ -71,6 +74,10 @@ QSettings* ConfigManager::saveSettings(){
 
     config->beginGroup( "texmaker" );
 
+    config->setValue("Files/New File Encoding", newfile_encoding?newfile_encoding->name():"??");
+    config->setValue("Files/Auto Detect Encoding Of Loaded Files", autodetectLoadedFile);
+
+
     int keyReplaceCount = keyReplace.count();
     config->setValue("User/KeyReplaceCount",keyReplaceCount);
     for (int i=0;i<keyReplaceCount;i++) {
@@ -110,8 +117,17 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg){
     confDlg->ui.shortcutTree->setItemDelegate(&delegate); //setting in the config dialog doesn't work 
     delegate.connect(confDlg->ui.shortcutTree,SIGNAL(itemClicked (QTreeWidgetItem *, int)),&delegate,SLOT(treeWidgetItemClicked(QTreeWidgetItem * , int)));
 
+    //editor
+    if (newfile_encoding)
+        confDlg->ui.comboBoxEncoding->setCurrentIndex(confDlg->ui.comboBoxEncoding->findText(newfile_encoding->name(), Qt::MatchExactly));
+    confDlg->ui.checkBoxAutoDetectOnLoad->setChecked(autodetectLoadedFile);
+    
+
     bool executed = confDlg->exec();
     if (executed) {
+        newfile_encoding=QTextCodec::codecForName(confDlg->ui.comboBoxEncoding->currentText().toAscii().data());
+        autodetectLoadedFile=confDlg->ui.checkBoxAutoDetectOnLoad->isChecked();
+
         keyReplace.clear();
         keyReplaceBeforeWord.clear();
         keyReplaceAfterWord.clear();

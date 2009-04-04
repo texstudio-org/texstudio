@@ -12,6 +12,10 @@ public:
     bool execConfigDialog(ConfigDialog* confDlg);
     
 //public configuration
+
+    QTextCodec* newfile_encoding;
+    bool autodetectLoadedFile;
+
     
     QStringList keyReplace, keyReplaceAfterWord, keyReplaceBeforeWord;
 
