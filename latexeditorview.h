@@ -62,7 +62,7 @@ public:
     
     
 //  FindWidget *findwidget;
-    void complete(bool forceVisibleList);
+    void complete(bool forceVisibleList, bool normalText=false);
     void jumpChangePositionBackward();
     void jumpChangePositionForward();
     void jumpToBookmark(int bookmarkNumber);

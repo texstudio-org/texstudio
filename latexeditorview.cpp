@@ -181,10 +181,10 @@ LatexEditorView::~LatexEditorView()
 {
 }
 
-void LatexEditorView::complete(bool forceVisibleList){
+void LatexEditorView::complete(bool forceVisibleList, bool normalText){
     if (!LatexEditorView::completer) return;
     setFocus();
-    LatexEditorView::completer->complete(editor,forceVisibleList);
+    LatexEditorView::completer->complete(editor,forceVisibleList,normalText);
 }
 void LatexEditorView::jumpChangePositionBackward(){
     if (changePositions.size()==0) return;

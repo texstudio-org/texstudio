@@ -462,6 +462,8 @@ QVariant CompletionListModel::headerData(int section, Qt::Orientation orientatio
 
 //------------------------------completer-----------------------------------
 QList <CompletionWord> LatexCompleter::words;
+QList <CompletionWord> LatexCompleter::wordsText;
+QList <CompletionWord> LatexCompleter::wordsCommands;
 QSet <QChar> LatexCompleter::acceptedChars;
 int LatexCompleter::maxWordLen = 0;
 QString LatexCompleter::helpFile;
@@ -486,31 +488,36 @@ LatexCompleter::LatexCompleter(QObject *p): QObject(p)
 LatexCompleter::~LatexCompleter(){
     //delete list;
 }
-void LatexCompleter::setWords(const QStringList &newwords){
-    
+void LatexCompleter::setWords(const QStringList &newwords, bool normalTextList){
+    QList<CompletionWord> newWordList;
     acceptedChars.clear();
-    words.clear();
+    newWordList.clear();
     foreach (QString str, newwords){
-        words.append(CompletionWord(str));
+        newWordList.append(CompletionWord(str));
         foreach (QChar c, str) acceptedChars.insert(c);
     }
-    qSort(words);
+    qSort(newWordList);
     
-    if (maxWordLen==0) {
-        int newWordMax=0;
-        QFont f=QApplication::font();
-        f.setItalic(true);
-        QFontMetrics fm(f);
-        for (int i=0;i<words.size();i++) {
-            int temp=fm.width(words[i].shownWord)+words[i].descriptiveParts.size()+10;
-            if (temp>newWordMax) newWordMax=temp;
+    words=newWordList;
+    if (normalTextList) wordsText=newWordList;
+    else {
+        wordsCommands=newWordList;
+        if (maxWordLen==0) {
+            int newWordMax=0;
+            QFont f=QApplication::font();
+            f.setItalic(true);
+            QFontMetrics fm(f);
+            for (int i=0;i<newWordList.size();i++) {
+                int temp=fm.width(newWordList[i].shownWord)+newWordList[i].descriptiveParts.size()+10;
+                if (temp>newWordMax) newWordMax=temp;
+            }
+            maxWordLen=newWordMax;
+            list->resize(200>maxWordLen?200:maxWordLen,100);
         }
-        maxWordLen=newWordMax;
-        list->resize(200>maxWordLen?200:maxWordLen,100);
     }
 }
 
-void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList){
+void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool normalText){
     if (editor != newEditor) {
         if (editor) disconnect(editor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
         if (newEditor) connect(newEditor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
@@ -536,17 +543,21 @@ void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList){
     }
     list->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
     //list->show();
-    
+    if (normalText) words=wordsText;
+    else words=wordsCommands;
     if (c.previousChar()!='\\' || forceVisibleList) {
         int start=c.columnNumber()-1;
+        if (normalText) start=0;
         QString eow="~!@#$%^&*()_+}|:\"<>?,./;[]-= \n\r`+´";
         QString lineText=c.line().text();
         for (int i=c.columnNumber()-1;i>=0;i--){
             if (lineText.at(i)==QChar('\\')) {
                 start=i;
                 break;
-            } else if (eow.contains(lineText.at(i))) 
+            } else if (eow.contains(lineText.at(i))) {
+                if (normalText) start=i+1;
                 break;
+            }
         }
         completerInputBinding->bindTo(editor,this,true,start);
     } else completerInputBinding->bindTo(editor,this,false,c.columnNumber()-1);

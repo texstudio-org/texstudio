@@ -462,6 +462,7 @@ void Texmaker::setupMenus()
     submenu=newManagedMenu(menu, "complete",tr("Complete"));
     newManagedAction(submenu, "normal", tr("normal"), SLOT(NormalCompletion()),Qt::CTRL+Qt::Key_Space);
     newManagedAction(submenu, "environment", tr("\\begin{ completion"), SLOT(InsertEnvironmentCompletion()),Qt::CTRL+Qt::ALT+Qt::Key_Space);
+    newManagedAction(submenu, "text", tr("normal text"), SLOT(InsertTextCompletion()),Qt::SHIFT+Qt::ALT+Qt::Key_Space);
 
     menu->addSeparator();
     newManagedAction(menu,"spelling",tr("Check Spelling"),SLOT(editSpell()),Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
@@ -1759,7 +1760,7 @@ for (int i=0;i<currentEditorView()->editor->document()->lines();i++)
 			s=s.mid(0,tagStart);
 			labelitem.append(s);
 			structlist.append(QString::number(i));
-			s=s+" (line "+QString::number(i+1)+")";
+			s=s+" ("+tr("line")+" "+QString::number(i+1)+")";
 			structitem.append(s);
 			Child = new QTreeWidgetItem(toplabel);
 			Child->setText(0,s);
@@ -1811,11 +1812,13 @@ for (int i=0;i<currentEditorView()->editor->document()->lines();i++)
 		structlist.append(QString::number(i));
 		tagStart=s.indexOf(struct_level1, tagEnd);
 		s=s.mid(tagStart+struct_level1.length(),s.length());
-		s=s+" (line "+QString::number(i+1)+")";
+		s=extractSectionName(s);
+		s=s+" ("+tr("line")+" "+QString::number(i+1)+")";
 		structitem.append(s);
 		parent_level[0] = new QTreeWidgetItem(top);
 		parent_level[0]->setText(0,s);
 		parent_level[0]->setIcon(0,QIcon(":/images/part.png"));
+		parent_level[0]->setToolTip ( 0, s );
 		parent_level[1]=parent_level[2]=parent_level[3]=parent_level[4]=parent_level[0];
 		};
 	//// chapter ////
@@ -1827,13 +1830,15 @@ for (int i=0;i<currentEditorView()->editor->document()->lines();i++)
 		structlist.append(QString::number(i));
 		tagStart=s.indexOf(struct_level2, tagEnd);
 		s=s.mid(tagStart+struct_level2.length(),s.length());
-		s=s+" (line "+QString::number(i+1)+")";
+		s=extractSectionName(s);
+		s=s+" ("+tr("line")+" "+QString::number(i+1)+")";
 		structitem.append(s);
 		parent_level[1] = new QTreeWidgetItem(parent_level[0]);
 		parent_level[1]->setText(0,s);
 		parent_level[1]->setIcon(0,QIcon(":/images/chapter.png"));
 		parent_level[1]->setText(1,"chapter"); //this is intern (at least from textanalyse) needed to recognize chapter items!
 		parent_level[1]->setText(3,QString::number(i+1)); //this is intern (at least from textanalyse) needed to recognize chapter items! (2 would be name)
+		parent_level[1]->setToolTip ( 0, s );
 		parent_level[2]=parent_level[3]=parent_level[4]=parent_level[1];
 		};
 	//// section ////
@@ -1845,11 +1850,13 @@ for (int i=0;i<currentEditorView()->editor->document()->lines();i++)
 		structlist.append(QString::number(i));
 		tagStart=s.indexOf(struct_level3, tagEnd);
 		s=s.mid(tagStart+struct_level3.length(),s.length());
-		s=s+" (line "+QString::number(i+1)+")";
+		s=extractSectionName(s);
+		s=s+" ("+tr("line")+" "+QString::number(i+1)+")";
 		structitem.append(s);
 		parent_level[2] = new QTreeWidgetItem(parent_level[1]);
 		parent_level[2]->setText(0,s);
 		parent_level[2]->setIcon(0,QIcon(":/images/section.png"));
+		parent_level[2]->setToolTip ( 0, s );
 		parent_level[3]=parent_level[4]=parent_level[2];
 		};
 	//// subsection ////
@@ -1861,11 +1868,13 @@ for (int i=0;i<currentEditorView()->editor->document()->lines();i++)
 		structlist.append(QString::number(i));
 		tagStart=s.indexOf(struct_level4, tagEnd);
 		s=s.mid(tagStart+struct_level4.length(),s.length());
-		s=s+" (line "+QString::number(i+1)+")";
+		s=extractSectionName(s);
+		s=s+" ("+tr("line")+" "+QString::number(i+1)+")";
 		structitem.append(s);
 		parent_level[3] = new QTreeWidgetItem(parent_level[2]);
 		parent_level[3]->setText(0,s);
 		parent_level[3]->setIcon(0,QIcon(":/images/subsection.png"));
+		parent_level[4]->setToolTip ( 0, s );
 		parent_level[4]=parent_level[3];
 		};
 	//// subsubsection ////
@@ -1877,11 +1886,13 @@ for (int i=0;i<currentEditorView()->editor->document()->lines();i++)
 		structlist.append(QString::number(i));
 		tagStart=s.indexOf(struct_level5, tagEnd);
 		s=s.mid(tagStart+struct_level5.length(),s.length());
-		s=s+" (line "+QString::number(i+1)+")";
+		s=extractSectionName(s);
+		s=s+" ("+tr("line")+" "+QString::number(i+1)+")";
 		structitem.append(s);
 		parent_level[4] = new QTreeWidgetItem(parent_level[3]);
 		parent_level[4]->setText(0,s);
 		parent_level[4]->setIcon(0,QIcon(":/images/subsubsection.png"));
+		parent_level[4]->setToolTip ( 0, s );
 		};
 	}
 if (!current.isEmpty())
@@ -1972,6 +1983,55 @@ void Texmaker::InsertEnvironmentCompletion(){
     //    currentEditorView()->editor->completionEngine()->complete();
     currentEditorView()->complete(true);
 }
+// tries to complete normal text
+// only starts up if already 2 characters have been typed in
+void Texmaker::InsertTextCompletion(){
+    if ( !currentEditorView() )    return;
+    QDocumentCursor c = currentEditorView()->editor->cursor();
+    QString eow=getCommonEOW();
+    int i=0;
+    int col=c.columnNumber();
+    QString word=c.line().text();
+    while (c.columnNumber()>0 && !eow.contains(c.previousChar())){
+        c.movePosition(1,QDocumentCursor::PreviousCharacter);
+        i++;
+    }
+    if (i>1){
+        QString my_text=currentEditorView()->editor->text();
+        int end=0;
+        int k=0; // number of occurences of search word.
+        word=word.mid(col-i,i);
+        //TODO: Boundary needs to specified more exactly
+        //TODO: type in text needs to be excluded, if not already present
+        QString wrd;
+        QStringList words;
+        while((i=my_text.indexOf(QRegExp("\\b"+word),end))>0){
+            end=my_text.indexOf(QRegExp("\\b"),i+1);
+            if(end>i){
+                if(word==my_text.mid(i,end-i)){
+                    k=k+1;
+                    if(k==2) words << my_text.mid(i,end-i);
+                } else {
+                    if(!words.contains(my_text.mid(i,end-i)))
+                        words << my_text.mid(i,end-i);
+                }
+            } else
+            {
+                if(word==my_text.mid(i,end-i)){
+                    k=k+1;
+                    if(k==2) words << my_text.mid(i,end-i);
+                } else {
+                    if(!words.contains(my_text.mid(i,end-i)))
+                        words << my_text.mid(i,my_text.length()-i);
+                }
+            }
+        }
+
+        completer->setWords(words, true);
+        currentEditorView()->complete(true,true);
+    }
+}
+
 void Texmaker::InsertTag(QString Entity, int dx, int dy)
 {
     if ( !currentEditorView() )	return;

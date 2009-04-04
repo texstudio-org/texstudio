@@ -218,6 +218,7 @@ void ClickedOnStructure(QTreeWidgetItem *item,int);
 
 void NormalCompletion();
 void InsertEnvironmentCompletion();
+void InsertTextCompletion();
 void InsertTag(QString Entity, int dx, int dy);
 void InsertSymbol(QTableWidgetItem *item);
 void InsertMetaPost(QListWidgetItem *item);

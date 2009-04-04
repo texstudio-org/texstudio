@@ -187,3 +187,18 @@ QString latexToPlainWord(QString word){
     //german-babel-package: "- (\- but also normal break),  "= ( like - but also normal break), "" (umbruch ohne bindestrich)
     return word;
 }
+
+QString extractSectionName(QString word){
+    int i=0;
+    int start=word.indexOf("{",i);
+    i=start;
+    int stop=word.indexOf("}",i);
+    i=word.indexOf("{",i+1);
+    while(i>0 && stop>0 && i<stop){
+        stop=word.indexOf("}",stop+1);
+        i=word.indexOf("{",i+1);
+    }
+    if (stop<0) stop=word.length();
+    word=word.mid(start+1,stop-start-1);
+    return word;
+}
