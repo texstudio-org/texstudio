@@ -1,5 +1,7 @@
 <!DOCTYPE QNFA>
 <QNFA language="(La-)Tex" extensions="tex" defaultLineMark="">
+    <word id="keywords/single" ambiguous="true" format="keyword">\\[\\%\$]</word>
+
 	<sequence parenthesis="round:open">(</sequence>
 	<sequence parenthesis="round:close">)</sequence>
 	<sequence parenthesis="curly:open" indent="1" fold="1">{</sequence>
@@ -94,7 +96,7 @@
     <word id="keywords/single" format="math-keyword">\\[a-zA-Z]+</word>
   </context>
 
-	<word parenthesis="block:open" fold="1" indent="1" format="extra-keyword">\\begin{[^}]*}</word>
+	<word parenthesis="block:open" fold="1" indent="1" ambiguous="true" format="extra-keyword">\\begin{[^}]*}</word>
 	<word parenthesis="block:close" fold="1" indent="1" format="extra-keyword" >\\end{[^}]*}</word>
 
 	<list id="keywords/block" format="extra-keyword">
@@ -106,7 +108,6 @@
 		<word parenthesis="subparagraph:boundary@nomatch" fold="true" >\\subparagraph</word>
 	</list>
 	
-  <sequence id="keywords/single" format="keyword">\\[\\%]</sequence>
-  <sequence id="keywords/single" format="keyword">\\[a-zA-Z]+</sequence>
+  <sequence id="keywords/single" ambiguous="true" format="keyword">\\[a-zA-Z]+</sequence>
 </QNFA>
 
