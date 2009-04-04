@@ -1175,17 +1175,13 @@ if (accept)  {
 
 void Texmaker::fileOpenRecent()
 {
-QAction *action = qobject_cast<QAction *>(sender());
-if (action) load(action->data().toString());
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (action) load(action->data().toString());
 }
 
 void Texmaker::fileOpenRecentProject(){
     QAction *action = qobject_cast<QAction *>(sender());
-    if (action) {
-        ToggleMode();
-        load(action->data().toString());
-        ToggleMode();
-    }
+    if (action) load(action->data().toString(),true);
 }
 
 void Texmaker::AddRecentFile(const QString &f, bool asMaster)
