@@ -2,6 +2,7 @@
 #include <QCoreApplication>
 #include <QFile>
 #include <QFileInfo>
+#include <QMap>
 #include <QMessageBox>
 
 QString getCommonEOW(){
@@ -62,7 +63,7 @@ QString getRelativePath(const QString basepath, const QString & file)
 	//QStringList basedirs = QStringList::split("/", basepath, false);
 	//QStringList dirs = QStringList::split("/", path, false);
 
-	uint nDirs = dirs.count();
+	int nDirs = dirs.count();
 
 	while ( dirs.count() > 0 && basedirs.count() > 0 &&  dirs[0] == basedirs[0] )
 	{
@@ -76,7 +77,7 @@ QString getRelativePath(const QString basepath, const QString & file)
 
 		if (basedirs.count() > 0)
 		{
-			for (uint j=0; j < basedirs.count(); ++j)
+			for (int j=0; j < basedirs.count(); ++j)
 			{
 				path = "../" + path;
 			}
@@ -201,4 +202,23 @@ QString extractSectionName(QString word){
     if (stop<0) stop=word.length();
     word=word.mid(start+1,stop-start-1);
     return word;
+}
+
+QString textToLatex(QString text){
+    QList<QPair<QString,QString> > replaceList;
+    replaceList.append(QPair<QString, QString> ("\\","\\verb+\\+"));
+    replaceList.append(QPair<QString, QString> ("{","\\{"));
+    replaceList.append(QPair<QString, QString> ("}","\\}"));
+    replaceList.append(QPair<QString, QString> ("#","\\#"));
+    replaceList.append(QPair<QString, QString> ("$","\\$"));
+    replaceList.append(QPair<QString, QString> ("%","\\%"));
+    replaceList.append(QPair<QString, QString> ("&","\\&"));
+    replaceList.append(QPair<QString, QString> ("~","\\~{}"));
+    replaceList.append(QPair<QString, QString> ("_","\\_"));
+    replaceList.append(QPair<QString, QString> ("^","\\^"));
+
+    for (QList<QPair<QString,QString> >::iterator it=replaceList.begin(); it!=replaceList.end();++it)
+        text.replace(it->first,it->second);
+    
+    return text;
 }
