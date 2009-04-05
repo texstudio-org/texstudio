@@ -192,6 +192,8 @@ void editRedo();
 void editCut();
 void editCopy();
 void editPaste();
+void editPasteLatex();
+void convertToLatex();
 void editSelectAll();
 void editFind();
 void editFindNext();

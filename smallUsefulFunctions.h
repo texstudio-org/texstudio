@@ -42,4 +42,6 @@ int nextWord(QString line,int &index,QString &outWord,int &wordStartIndex, int f
 QString latexToPlainWord(QString word);    
 //extracts the section name after \section is removed (brackets removal)
 QString extractSectionName(QString word);
+//replaces character with corresponding LaTeX commands
+QString textToLatex(QString text);
 #endif

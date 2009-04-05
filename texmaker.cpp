@@ -15,6 +15,7 @@
 #include <QMenuBar>
 #include <QToolBar>
 #include <QAction>
+#include <QClipBoard>
 #include <QStatusBar>
 #include <QSettings>
 #include <QApplication>
@@ -308,7 +309,7 @@ void Texmaker::loadManagedMenu(QMenu* parent,const QDomElement &f){
         else if (c.nodeName()=="insert" || c.nodeName()=="action") {
             QDomNamedNodeMap  att=c.attributes();
             QByteArray ba;
-            char* slotfunc;
+            const char* slotfunc;
             if (c.nodeName()=="insert") slotfunc=SLOT(InsertFromAction());
             else {
                 ba=att.namedItem("slot").nodeValue().toLocal8Bit();
@@ -417,6 +418,10 @@ void Texmaker::setupMenus()
     newManagedAction(menu,"cut",tr("Cut"), SLOT(editCut()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_X)<<Qt::SHIFT+Qt::Key_Delete, ":/images/editcut.png");
     newManagedAction(menu,"paste",tr("Paste"), SLOT(editPaste()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::SHIFT+Qt::Key_Insert, ":/images/editpaste.png");
     newManagedAction(menu,"selectall",tr("Select All"), SLOT(editSelectAll()), Qt::CTRL+Qt::Key_A);
+
+    menu->addSeparator();
+    newManagedAction(menu,"pasteAsLatex",tr("Paste as Latex"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, ":/images/editpaste.png");
+    newManagedAction(menu,"convertToLatex",tr("Convert to Latex"), SLOT(convertToLatex()));
 
     LatexEditorView::setBaseActions(menu->actions());
 
@@ -1261,6 +1266,29 @@ if ( !currentEditorView() ) return;
 currentEditorView()->editor->paste();
 }
 
+void Texmaker::editPasteLatex()
+{
+if ( !currentEditorView() ) return;
+// manipulate clipboard text
+ QClipboard *clipboard = QApplication::clipboard();
+ QString originalText = clipboard->text();
+ QString newText=textToLatex(originalText);
+ clipboard->setText(newText);
+// insert
+currentEditorView()->editor->paste();
+}
+
+void Texmaker::convertToLatex()
+{
+if ( !currentEditorView() ) return;
+// get selection and change it
+QDocumentCursor c = currentEditorView()->editor->cursor();
+QString originalText = c.selectedText();
+QString newText=textToLatex(originalText);
+// insert
+c.insertText(newText);
+}
+
 void Texmaker::editSelectAll()
 {
 if ( !currentEditorView() ) return;
@@ -1874,7 +1902,7 @@ for (int i=0;i<currentEditorView()->editor->document()->lines();i++)
 		parent_level[3] = new QTreeWidgetItem(parent_level[2]);
 		parent_level[3]->setText(0,s);
 		parent_level[3]->setIcon(0,QIcon(":/images/subsection.png"));
-		parent_level[4]->setToolTip ( 0, s );
+		parent_level[3]->setToolTip ( 0, s );
 		parent_level[4]=parent_level[3];
 		};
 	//// subsubsection ////
