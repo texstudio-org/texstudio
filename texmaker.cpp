@@ -3500,7 +3500,7 @@ void Texmaker::GoToLogEntryAt(int newLineNumber){
 
 void Texmaker::GoToMark(bool backward, int id){
     if (backward)
-        GoToLogEntryAt(currentEditorView()->editor->document()->findPreviousMark(id,currentEditorView()->editor->cursor().lineNumber()-1));
+        GoToLogEntryAt(currentEditorView()->editor->document()->findPreviousMark(id,qMax(0,currentEditorView()->editor->cursor().lineNumber()-1),0));
     else
         GoToLogEntryAt(currentEditorView()->editor->document()->findNextMark(id,currentEditorView()->editor->cursor().lineNumber()+1));
 }

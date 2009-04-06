@@ -25,12 +25,12 @@
 class CompletionWord {
 public:
     CompletionWord():cursorPos(-1),anchorPos(-1){}
-    CompletionWord(const CompletionWord &cw):word(cw.word),lword(cw.lword),shownWord(cw.shownWord),cursorPos(cw.cursorPos),anchorPos(cw.anchorPos),descriptiveParts(cw.descriptiveParts){}
+    CompletionWord(const CompletionWord &cw):word(cw.word),sortWord(cw.sortWord),shownWord(cw.shownWord),cursorPos(cw.cursorPos),anchorPos(cw.anchorPos),descriptiveParts(cw.descriptiveParts){}
     CompletionWord(const QString &newWord);//see cpp
-    bool operator< (const CompletionWord &cw) const {return cw.lword > lword;}
+    bool operator< (const CompletionWord &cw) const {return cw.sortWord > sortWord;}
     bool operator== (const CompletionWord &cw) const {return cw.word == word;}
 
-    QString word,lword,shownWord;
+    QString word,sortWord,shownWord;
     int cursorPos; //-1 => not defined
     int anchorPos; 
     QList<QPair<int, int> > descriptiveParts; //used to draw
@@ -81,7 +81,6 @@ private:
     
     void updateList(QString word);
     bool acceptChar(QChar c,int pos);
-    CompletionWord wordToCompletionWord(const QString &str);
 
     static QString helpFile;
     static QHash<QString, QString> helpIndices;
