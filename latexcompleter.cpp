@@ -52,7 +52,8 @@ CompletionWord::CompletionWord(const QString &newWord){
         }
     if (anchorPos==-1) anchorPos=cursorPos;
     shownWord=visibleWord;
-    lword=word.toLower();
+    sortWord=word.toLower();
+    sortWord.replace("*","~");//star commands to the end, ~ is 126 (highest printable ascii character)
 }
 
 void CompletionWord::insertAt(QEditor* editor, QDocumentCursor cursor){
@@ -488,6 +489,8 @@ LatexCompleter::LatexCompleter(QObject *p): QObject(p)
 LatexCompleter::~LatexCompleter(){
     //delete list;
 }
+
+
 void LatexCompleter::setWords(const QStringList &newwords, bool normalTextList){
     QList<CompletionWord> newWordList;
     acceptedChars.clear();
@@ -614,17 +617,7 @@ bool LatexCompleter::acceptChar(QChar c,int pos){
     if (pos<=1) return false;
     return acceptedChars.contains(c);
 }
-CompletionWord LatexCompleter::wordToCompletionWord(const QString &str){
-    for (int i=0; i<words.count();i++)
-        if (words[i].word==str) 
-          return words[i];
-    //check again in lower case
-    QString lcomp=str.toLower();
-    for (int i=0; i<words.count();i++)
-        if (words[i].lword==lcomp) 
-          return words[i];
-   return CompletionWord();
-}
+
 void LatexCompleter::cursorPositionChanged(){
     if (!completerInputBinding || !completerInputBinding->isActive()) {
         disconnect(editor,SIGNAL(cursorPositionChanged()),this,SLOT(cursorPositionChanged()));
@@ -639,7 +632,7 @@ void LatexCompleter::selectionChanged ( const QModelIndex & index ){
     if (!index.isValid()) return;
     if (index.row() < 0 || index.row()>=listModel->words.size()) return;
     QRegExp wordrx ("^\\\\([^ {[*]+|begin\\{[^ {}]+)");
-    if (wordrx.indexIn(listModel->words[index.row()].lword)==-1) return;
+    if (wordrx.indexIn(listModel->words[index.row()].word)==-1) return;
     QString id=helpIndices.value(wordrx.cap(0),"");
     if (id=="") return;
     QString aim="<a name=\""+id;
