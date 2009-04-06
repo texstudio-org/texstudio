@@ -453,7 +453,7 @@ QVariant CompletionListModel::headerData(int section, Qt::Orientation orientatio
         if (baselist[i].word.startsWith(word,Qt::CaseInsensitive)) 
             words.append(baselist[i]);
      }
-     if (words.size()>2) //prefer matching case
+     if (words.size()>=2) //prefer matching case
         if (!words[0].word.startsWith(word,Qt::CaseSensitive) && words[1].word.startsWith(word,Qt::CaseSensitive)) 
             words.swap(0,1);
      curWord=word;
@@ -496,7 +496,7 @@ void LatexCompleter::setWords(const QStringList &newwords, bool normalTextList){
         newWordList.append(CompletionWord(str));
         foreach (QChar c, str) acceptedChars.insert(c);
     }
-    qSort(newWordList);
+    qSort(newWordList.begin(), newWordList.end());
     
     words=newWordList;
     if (normalTextList) wordsText=newWordList;
