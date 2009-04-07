@@ -15,7 +15,7 @@
 #include <QMenuBar>
 #include <QToolBar>
 #include <QAction>
-#include <QClipBoard>
+#include <QClipboard>
 #include <QStatusBar>
 #include <QSettings>
 #include <QApplication>
