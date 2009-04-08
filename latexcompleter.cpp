@@ -184,6 +184,13 @@ public:
         return false;
     }
 
+    void removeRightWordPart(){
+        QDocumentCursor cursor=editor->cursor();
+        for (int i=maxWritten-cursor.columnNumber();i>0;i--) cursor.deleteChar(); 
+        maxWritten=cursor.columnNumber();
+        editor->setCursor(cursor);//necessary to keep the cursor at the same place (but why???)
+    }
+
     void select(const QModelIndex &ind){
         if (!completer || !completer->list) return;
         completer->list->setCurrentIndex(ind);
@@ -277,6 +284,45 @@ public:
             QModelIndex ind=completer->list->model()->index(completer->list->model()->rowCount()-1,0,QModelIndex());
             if (ind.isValid()) select(ind);
             return true;
+        }  else if (event->key()==Qt::Key_Tab) {
+            if (!completer->list->isVisible()) {
+                resetBinding();
+                return false;
+            }
+            // get list of most recent choices
+            QStringList my_words;
+            QList<CompletionWord> words=completer->getWords();
+            QString my_curWord=getCurWord();
+            for (int i=0;i<words.count();i++){
+                if (words[i].word.startsWith(my_curWord,Qt::CaseInsensitive))
+                    my_words.append(words[i].word);
+            }
+            // filter list for longest common characters
+            QString myResult=my_words[0];
+            int my_start=my_curWord.length();
+            if(my_words.count()>1){
+                for (int i=1;i<my_words.count();i++){
+                    my_curWord=my_words[i];
+                    qDebug(qPrintable(my_curWord));
+                    for(int j=my_start;(j<my_curWord.length()&&j<myResult.length());j++){
+                        if(myResult[j]!=my_curWord[j]){
+                            myResult=myResult.left(j);
+
+                        }
+                    }
+                }
+                qDebug("Tab:\n");
+                qDebug(qPrintable(myResult));
+    
+                removeRightWordPart();
+                editor->cursor().insertText(myResult.right(myResult.length()-my_start));
+                maxWritten+=myResult.length()-my_start;
+                handled=true;
+            } else {
+                insertCompletedWord();
+                resetBinding();
+                return true;
+            }
         } else if (event->key()==Qt::Key_Return || event->key()==Qt::Key_Enter) { 
             if (!insertCompletedWord()) {
                 editor->cursor().insertText("\n");

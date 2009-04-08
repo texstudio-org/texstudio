@@ -66,7 +66,8 @@ public:
   
     void complete(QEditor *newEditor, bool forceVisibleList, bool normalText=false);
     void setWords(const QStringList &newwords, bool normalTextList=false);
-
+    QList<CompletionWord> getWords() const {return words;}
+        
     static void parseHelpfile(QString text);
     static bool hasHelpfile();
 private:
