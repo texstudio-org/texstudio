@@ -135,6 +135,27 @@ QString searchBaseCommand(QString cmd, QString options, bool mustExist=false){
     if (mustExist) return "";
     return cmd+options;
 }
+QString findGhostscriptDLL(){
+    //registry
+    for (int type=0;type<=1;type++)
+        for (int pos=0;pos<=1;pos++){
+            QString regBase=QString(pos==0?"HKEY_CURRENT_USER":"HKEY_LOCAL_MACHINE")+"\\Software\\"+QString(type==0?"GPL":"AFPL")+" Ghostscript";
+            QSettings reg(regBase, QSettings::NativeFormat);
+            QStringList version=reg.childGroups();
+            if (version.empty()) continue;
+            version.sort();
+            for (int i=version.size()-1;i>=0;i--) {
+                QString dll=reg.value(version[i]+"/GS_DLL","").toString();
+                if (!dll.isEmpty()) return dll;
+            }
+        }
+    //environment
+    QStringList env= QProcess::systemEnvironment();    //QMessageBox::information(0,env.join("  \n"),env.join("  \n"),0);
+    int i=env.indexOf(QRegExp("^GS_DLL=.*", Qt::CaseInsensitive));
+    if (i==-1) return ""; //not found
+    QString dll=env[i].mid(7); //skip gs_dll=
+    return dll;
+}
 #endif
 
 QString BuildManager::guessCommandName(LatexCommand cmd){
@@ -206,12 +227,15 @@ QString BuildManager::guessCommandName(LatexCommand cmd){
                 return "\"C:/Program Files/Adobe/Reader 8.0/Reader/AcroRd32.exe\" \"?am.pdf\"";
             else break;
         }
-        case CMD_GHOSTSCRIPT: 
-            if (QFileInfo("C:/Program Files/gs/gs8.63/bin/gswin32c.exe").exists()) 
+        case CMD_GHOSTSCRIPT: {
+            QString dll=findGhostscriptDLL().replace("gsdll32.dll","gswin32c.exe",Qt::CaseInsensitive);
+            if (dll.endsWith("gswin32c.exe")) return dll;
+            else if (QFileInfo("C:/Program Files/gs/gs8.63/bin/gswin32c.exe").exists())  //old behaviour
                 return "\"C:/Program Files/gs/gs8.63/bin/gswin32c.exe\"";
             else if (QFileInfo("C:/Program Files/gs/gs8.61/bin/gswin32c.exe").exists()) 
                 return "\"C:/Program Files/gs/gs8.61/bin/gswin32c.exe\"";
             else break;
+        }
     }
 #endif
 #ifdef Q_WS_X11
