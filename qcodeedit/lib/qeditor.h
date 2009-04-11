@@ -270,6 +270,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void setFileEncoding(QTextCodec* codec);
 		void setFileEncoding(char* name);
 		void setFileEncoding(int mib);
+        void viewAsEncoding(QTextCodec* codec);
 		
 		int wrapWidth() const;
 		
