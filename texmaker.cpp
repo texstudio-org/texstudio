@@ -1407,6 +1407,7 @@ QString fam=config->value("Editor/Font Family",deft).toString();
 int si=config->value( "Editor/Font Size",10).toInt();
 #else
 if (xf.contains("DejaVu Sans Mono",Qt::CaseInsensitive)) deft="DejaVu Sans Mono";
+//else if (xf.contains("Lucida Sans Unicode",Qt::CaseInsensitive)) deft="Lucida Sans Unicode";
 else if (xf.contains("Lucida Sans Typewriter",Qt::CaseInsensitive)) deft="Lucida Sans Typewriter";
 else deft=qApp->font().family();
 QString fam=config->value("Editor/Font Family",deft).toString();
