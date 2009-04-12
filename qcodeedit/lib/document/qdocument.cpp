@@ -368,30 +368,30 @@ void QDocument::setText(const QString& s)
 	
 	m_impl->_nix = 0;
 	m_impl->_dos = 0;
+	m_impl->_mac = 0;
 	
 	while ( idx < s.length() )
 	{
-		if ( s.at(idx) == '\n' )
-		{
-			if ( (idx > 0) && (s.at(idx - 1) == '\r') )
-			{
-				++(m_impl->_dos);
+		if ( s.at(idx) == '\r') {
+            m_impl->m_lines << new QDocumentLineHandle(
+                                    s.mid(last, idx - last),
+                                    this
+                                );
+            ++idx;
+		    if (idx < s.length() && s.at(idx) == '\n') {
+                ++(m_impl->_dos);
+                ++idx;
+		    } else ++(m_impl->_mac);
+			last = idx;
+		} else if ( s.at(idx) == '\n') { 
+            ++(m_impl->_nix);
 				
-				m_impl->m_lines << new QDocumentLineHandle(
-										s.mid(last, idx - last - 1),
-										this
-									);
-			} else {
-				++(m_impl->_nix);
-				
-				m_impl->m_lines << new QDocumentLineHandle(
+            m_impl->m_lines << new QDocumentLineHandle(
 										s.mid(last, idx - last),
 										this
-									);
-			}
-			
+                                );
 			last = ++idx;
-		} else {
+        } else {
 			++idx;
 		}
 	}
@@ -465,6 +465,7 @@ void QDocument::startChunkLoading()
 	
 	m_impl->_nix = 0;
 	m_impl->_dos = 0;
+	m_impl->_mac = 0;
 	
 	m_leftOver.clear();
 }
@@ -559,31 +560,30 @@ void QDocument::addChunk(const QString& txt)
 	
 	while ( idx < m_leftOver.length() )
 	{
-		if ( m_leftOver.at(idx) == '\n' )
-		{
-			if ( (idx > 0) && (m_leftOver.at(idx - 1) == '\r') )
-			{
-				++(m_impl->_dos);
+		if ( m_leftOver.at(idx) == '\r') {
+            m_impl->m_lines << new QDocumentLineHandle(
+                                    m_leftOver.mid(last, idx - last),
+                                    this
+                                );
+            ++idx;
+		    if (idx < m_leftOver.length() && m_leftOver.at(idx) == '\n') {
+                ++(m_impl->_dos);
+                ++idx;
+		    } else ++(m_impl->_mac);
+			last = idx;
+		} else if ( m_leftOver.at(idx) == '\n') { 
+            ++(m_impl->_nix);
 				
-				m_impl->m_lines << new QDocumentLineHandle(
-										m_leftOver.mid(last, idx - last - 1),
-										this
-									);
-			} else {
-				++(m_impl->_nix);
-				
-				m_impl->m_lines << new QDocumentLineHandle(
+            m_impl->m_lines << new QDocumentLineHandle(
 										m_leftOver.mid(last, idx - last),
 										this
-									);
-			}
-			
+                                );
 			last = ++idx;
-		} else {
+        } else {
 			++idx;
 		}
 	}
-	
+
 	if ( idx != last )
 		m_leftOver = m_leftOver.mid(last);
 	else
@@ -682,7 +682,11 @@ QDocument::LineEnding QDocument::lineEnding() const
 */
 QDocument::LineEnding QDocument::originalLineEnding() const
 {
-	return m_impl ? (m_impl->_dos > m_impl->_nix ? Windows : m_impl->_nix ? Unix : Local) : Local;
+    if (!m_impl) return Local;
+    if (m_impl->_dos > m_impl->_nix  && m_impl->_dos > m_impl->_mac) return Windows; 
+    if (m_impl->_nix > m_impl->_dos  && m_impl->_nix > m_impl->_mac) return Unix;
+    if (m_impl->_mac > m_impl->_dos  && m_impl->_mac > m_impl->_nix) return Mac;
+	return Local;
 }
 
 /*!
@@ -700,18 +704,19 @@ void QDocument::setLineEnding(LineEnding le)
 	{
 		case Conservative :
 			
-			if ( m_impl->_dos > m_impl->_nix )
-				les = "\r\n";
-			else
-				les = "\n";
+			switch (originalLineEnding()) {
+			    case Windows: les = "\r\n"; break;
+			    case Mac: les = "\r"; break;
+			    default: les = "\n";
+			}
 			
 			break;
 			
 		case Local :
 			#ifdef Q_OS_WIN
 			les = "\r\n";
-			//#elif defined(Q_OS_MAC)
-			//les = "\r";
+			#elif defined(Q_OS_MAC)
+			les = "\r";
 			#else
 			les = "\n";
 			#endif
@@ -723,7 +728,7 @@ void QDocument::setLineEnding(LineEnding le)
 			
 		case Mac :
 			//les = "\r";
-			les = "\n";
+			les = "\r";
 			break;
 			
 		case Windows :
@@ -5065,6 +5070,7 @@ QDocumentPrivate::QDocumentPrivate(QDocument *d)
 	m_maxMarksPerLine(0),
 	_nix(0),
 	_dos(0),
+	_mac(0),
 	m_lineEnding(m_defaultLineEnding)
 {
 	m_documents << this;
