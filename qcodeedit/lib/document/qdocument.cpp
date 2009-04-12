@@ -186,7 +186,7 @@ QDocument::QDocument(QObject *p)
 	}
 	
 	setText(QString());
-	setLineEnding(QDocument::Local);
+	setLineEnding(QDocument::Conservative);
 	
 	connect(&(m_impl->m_commands)	, SIGNAL( cleanChanged(bool) ),
 			this					, SIGNAL( cleanChanged(bool) ) );
@@ -727,7 +727,6 @@ void QDocument::setLineEnding(LineEnding le)
 			break;
 			
 		case Mac :
-			//les = "\r";
 			les = "\r";
 			break;
 			
