@@ -57,15 +57,13 @@ typedef  QString Userlist[10];
 typedef  QString UserCd[5];
 typedef int SymbolList[412];
 
-
-
 class Texmaker : public QMainWindow
 {
     Q_OBJECT
 
 public:
     Texmaker(QWidget *parent = 0, Qt::WFlags flags = 0);
-
+    
 QString getName();
 QFont EditorFont;
 QByteArray windowstate;

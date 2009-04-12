@@ -21,7 +21,6 @@
 #include "texmaker.h"
 #include "smallUsefulFunctions.h"
 #ifdef Q_WS_WIN
-#include <QMessageBox>
 #include "windows.h"
 typedef BOOL (*AllowSetForegroundWindowFunc) (DWORD);
 #endif
@@ -30,6 +29,8 @@ class TexmakerApp : public QApplication
 protected:
     bool event(QEvent *event);
 public:
+    bool initialized;
+    QString delayedFileLoad;
     Texmaker *mw;  // Moved from private:
     TexmakerApp( int & argc, char ** argv );
     ~TexmakerApp();
@@ -39,6 +40,7 @@ public:
 TexmakerApp::TexmakerApp( int & argc, char ** argv ) : QApplication ( argc, argv )
 {
     mw = 0;
+    initialized=false;
 }
 
 void TexmakerApp::init( int & argc, char ** argv )
@@ -59,8 +61,11 @@ connect( this, SIGNAL( lastWindowClosed() ), this, SLOT( quit() ) );
 splash->finish(mw);
 delete splash;
 
+initialized = true;
+
 QStringList cmdLine;
 for ( int i = 1; i < argc; ++i ) cmdLine << argv [i];
+if (!delayedFileLoad.isEmpty()) cmdLine << delayedFileLoad;
 mw->executeCommandLine(cmdLine,true);
 }
 
@@ -72,8 +77,9 @@ TexmakerApp::~TexmakerApp()
 bool TexmakerApp::event ( QEvent * event )
 {
     if (event->type() == QEvent::FileOpen) {
-        QFileOpenEvent *oe = static_cast<QFileOpenEvent *>(event);
-        mw->load(oe->file());
+        QFileOpenEvent *oe = static_cast<QFileOpenEvent *>(event);    
+        if (initialized) mw->load(oe->file());
+        else delayedFileLoad = oe->file();
         event->accept();
         return true;
     }
