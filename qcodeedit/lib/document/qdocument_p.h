@@ -213,7 +213,7 @@ class QCE_EXPORT QDocumentPrivate
 		QHash<QDocumentLineHandle*, QList<int> > m_marks;
 		QHash<QDocumentLineHandle*, QPair<int, int> > m_status;
 		
-		int _nix, _dos;
+		int _nix, _dos, _mac;
 		QString m_lineEndingString;
 		QDocument::LineEnding m_lineEnding;
 		
