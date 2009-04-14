@@ -16,16 +16,23 @@
 #include <QMessageBox>
 
 
-SpellerUtility::SpellerUtility(): pChecker(0), active(false){
+SpellerUtility::SpellerUtility(): pChecker(0), active(false), currentDic(""){
     checkCache.reserve(1020);
 }
 bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix){
     if (dic==currentDic) return true;
     else unload();
     QString base = dic.left(dic.length()-4);
-    if (!QFileInfo(base+".dic").exists()) return false;
+    QString dicFile = base+".dic";
+    QString affFile = base+".aff";
+    if (!QFileInfo(dicFile).exists()) return false;
+    if (!QFileInfo(affFile).exists()) return false;
     currentDic=dic;
-    pChecker = new Hunspell(base.toLatin1()+".aff",base.toLatin1()+".dic");
+    pChecker = new Hunspell(affFile.toLocal8Bit(),dicFile.toLocal8Bit());
+    if (!pChecker) {
+	currentDic="";
+	ignoreListFileName="";
+    }
     spell_encoding=QString(pChecker->get_dic_encoding());
     spellCodec = QTextCodec::codecForName(spell_encoding.toLatin1());
     if (spellCodec==0) {
