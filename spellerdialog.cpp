@@ -17,7 +17,7 @@
 #include "smallUsefulFunctions.h"
 
 SpellerDialog::SpellerDialog(QWidget *parent,SpellerUtility *utility)
-    :QDialog( parent)
+    :QDialog( parent),m_speller(utility),editor(0),editorView(0)
 {
 ui.setupUi(this);
 setModal(true);
@@ -45,7 +45,7 @@ SpellerDialog::~SpellerDialog(){
 }
 
 void SpellerDialog::setEditorView(LatexEditorView *edView){
-  editor=edView->editor;
+  editor=edView?edView->editor:0;
   editorView=edView;
 }
 
@@ -148,7 +148,7 @@ void SpellerDialog::slotReplace()
 
 void SpellerDialog::SpellingNextWord()
 {
-    if (!editor) return;
+    if (!editor || !m_speller) return;
     for (;curLine<=endLine;curLine++) {
         int wordStartIndex;
         while (nextWord(editor->text(curLine),curIndex,curWord,wordStartIndex)) {

@@ -163,6 +163,7 @@ int nextWord(QString line,int &index,QString &outWord,int &wordStartIndex, int f
         wordStartIndex=start;
         index=i;
         outWord=line.mid(start,i-start);
+	if (outWord.isEmpty()) return NW_NOTHING;
         if (outWord.at(outWord.length()-1)==QChar('\'')) {
             outWord=outWord.left(outWord.length()-1);
             index--;
