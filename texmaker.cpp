@@ -81,7 +81,7 @@
 //#endif
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
-    : QMainWindow(parent, flags), textAnalysisDlg(0)
+    : QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0)
 {
 ReadSettings();
 setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
