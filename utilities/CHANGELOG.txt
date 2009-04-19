@@ -1,3 +1,12 @@
+TexmakerX 1.8 -> TexMakerX 1.8.1
+- added Windows DDE support
+- added free menu key board mapping (also shift+insert key bindings)
+- added word completion
+- added error highlighting
+- improved text analysis (phrases), recent file menu
+- fixed MAC support (compiling, line endings)
+- fixed possible crash with multiple instances and spellchecking
+- more bug fixes
 version Texmaker 1.8 -> TexMakerX 1.8
 - editor based on qcodeedit (code folding, better bookmarks, incremental search, ...)
 - interactive spell checking, spell checker based on hunspell-1.2.8 (fixing bug)
