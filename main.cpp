@@ -34,7 +34,7 @@ public:
     Texmaker *mw;  // Moved from private:
     TexmakerApp( int & argc, char ** argv );
     ~TexmakerApp();
-    void init( int & argc, char ** argv );  // This function does all the initialization instead of the constructor.
+    void init( QStringList &cmdLine);  // This function does all the initialization instead of the constructor.
 };
 
 TexmakerApp::TexmakerApp( int & argc, char ** argv ) : QApplication ( argc, argv )
@@ -43,7 +43,7 @@ TexmakerApp::TexmakerApp( int & argc, char ** argv ) : QApplication ( argc, argv
     initialized=false;
 }
 
-void TexmakerApp::init( int & argc, char ** argv )
+void TexmakerApp::init(QStringList &cmdLine)
     {
 QPixmap pixmap(":/images/splash.png");
 QSplashScreen *splash = new QSplashScreen(pixmap);
@@ -63,8 +63,6 @@ delete splash;
 
 initialized = true;
 
-QStringList cmdLine;
-for ( int i = 1; i < argc; ++i ) cmdLine << argv [i];
 if (!delayedFileLoad.isEmpty()) cmdLine << delayedFileLoad;
 mw->executeCommandLine(cmdLine,true);
 }
@@ -97,23 +95,24 @@ bool startAlways=false;
 for(int i=0; i<argc; ++i)
     if (!strcmp("--start-always",argv[i])) startAlways=true;
 
+QStringList cmdLine;
+for ( int i = 1; i < argc; ++i ) cmdLine << QString::fromLocal8Bit(argv [i]);
+
 if (!startAlways)
     if ( instance.isRunning() ) {
         #ifdef Q_WS_WIN
         AllowSetForegroundWindowFunc asfw = (AllowSetForegroundWindowFunc)GetProcAddress(GetModuleHandleA("user32.dll"),"AllowSetForegroundWindow");
         if (asfw) asfw(/*ASFW_ANY*/(DWORD)(-1));
-        
         #endif
-        QString msg;
-        for(int i=1; i<argc; ++i){
-            msg += argv[i];
-            msg += "#!#";
-        }
-        instance.sendMessage( msg );
+        //fix relative path (current directory unknown to other instance)
+        for (int i=0;i<cmdLine.size();i++) 
+            if (cmdLine[i]!="" && cmdLine[i].at(0)!='-' && QFileInfo(cmdLine[i]).isRelative() && QFileInfo(cmdLine[i]).exists()) 
+                cmdLine[i]=QFileInfo(cmdLine[i]).absoluteFilePath();
+        instance.sendMessage(cmdLine.join("#!#")+"#!#");
         return 0;
     }
 
-a.init(argc,argv); // Initialization takes place only if there is no other instance running.
+a.init(cmdLine); // Initialization takes place only if there is no other instance running.
 
 QObject::connect( &instance, SIGNAL( messageReceived(const QString &) ), 
                   a.mw,   SLOT( onOtherInstanceMessage(const QString &) ) );
