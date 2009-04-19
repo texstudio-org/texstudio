@@ -204,6 +204,9 @@ void editUncomment();
 void editIndent();
 void editUnindent();
 void editSpell();
+void editChangeLineEnding();
+void editSetupEncoding();
+
 
 void ReadSettings();
 void SaveSettings();

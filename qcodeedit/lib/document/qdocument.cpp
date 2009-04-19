@@ -689,6 +689,10 @@ QDocument::LineEnding QDocument::originalLineEnding() const
 	return Local;
 }
 
+QString QDocument::lineEndingString() const{
+	return m_impl?m_impl->m_lineEndingString:"\n";
+}
+
 /*!
 	\brief Set the line ending policy of the document
 */
@@ -715,8 +719,8 @@ void QDocument::setLineEnding(LineEnding le)
 		case Local :
 			#ifdef Q_OS_WIN
 			les = "\r\n";
-			#elif defined(Q_OS_MAC)
-			les = "\r";
+			//#elif defined(Q_OS_MAC)
+			//les = "\r";
 			#else
 			les = "\n";
 			#endif

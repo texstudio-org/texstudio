@@ -120,6 +120,7 @@ class QCE_EXPORT QDocument : public QObject
 		
 		LineEnding lineEnding() const;
 		LineEnding originalLineEnding() const;
+		QString lineEndingString() const;
 		void setLineEnding(LineEnding le);
 		
 		bool canUndo() const;
