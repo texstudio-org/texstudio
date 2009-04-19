@@ -68,8 +68,9 @@
 #include "usermenudialog.h"
 #include "usertooldialog.h"
 #include "refdialog.h"
-#include "configdialog.h"
 #include "aboutdialog.h"
+#include "configdialog.h"
+#include "encodingdialog.h"
 #include "webpublishdialog.h"
 
 #include "qdocument.h"
@@ -470,6 +471,26 @@ void Texmaker::setupMenus()
     newManagedAction(submenu, "text", tr("normal text"), SLOT(InsertTextCompletion()),Qt::SHIFT+Qt::ALT+Qt::Key_Space);
 
     menu->addSeparator();
+    submenu=newManagedMenu(menu,"lineend",tr("Line Ending"));
+	QActionGroup *lineEndingGroup=new QActionGroup(this);
+    QAction* act=newManagedAction(submenu, "crlf", tr("DOS/Windows (CR LF)"), SLOT(editChangeLineEnding()));
+	act->setData(QDocument::Windows);
+	act->setCheckable(true);
+	lineEndingGroup->addAction(act);
+    act=newManagedAction(submenu, "lf", tr("Unix (LF)"), SLOT(editChangeLineEnding()));
+	act->setData(QDocument::Unix);
+	act->setCheckable(true);
+	lineEndingGroup->addAction(act);
+    act=newManagedAction(submenu, "cr", tr("Old Mac (CR)"), SLOT(editChangeLineEnding()));
+	act->setData(QDocument::Mac);
+	act->setCheckable(true);
+	lineEndingGroup->addAction(act);
+    
+	
+	newManagedAction(menu,"encoding",tr("Setup Encoding"),SLOT(editSetupEncoding()));
+
+
+    menu->addSeparator();
     newManagedAction(menu,"spelling",tr("Check Spelling"),SLOT(editSpell()),Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
 
     menu->addSeparator();
@@ -768,13 +789,24 @@ void Texmaker::UpdateCaption()
 {
 QString title;
 if   ( !currentEditorView() )	{title="TexMakerX";}
-else
-	{
+else {
 	title="Document : "+getName();
-	if (currentEditorView()->editor && currentEditorView()->editor->getFileEncoding()) stat3->setText(currentEditorView()->editor->getFileEncoding()->name());
-	else stat3->setText("unknown");
-	//input_encoding=currentEditorView()->editor->getEncoding();
+	if (currentEditorView()->editor) {
+	    if (currentEditorView()->editor->getFileEncoding()) stat3->setText(currentEditorView()->editor->getFileEncoding()->name());
+	    else stat3->setText("unknown");
+		QDocument::LineEnding le = currentEditorView()->editor->document()->lineEnding();
+		if (le==QDocument::Conservative) le= currentEditorView()->editor->document()->originalLineEnding();
+		switch (le) {
+			#ifdef Q_WS_WIN
+			case QDocument::Local:
+			#endif
+			case QDocument::Windows: getManagedAction("main/edit/lineend/crlf")->setChecked(true); break;
+			case QDocument::Mac: getManagedAction("main/edit/lineend/cr")->setChecked(true); break;
+			default: getManagedAction("main/edit/lineend/lf")->setChecked(true);
+		}
+	//input_encoding=current	EditorView()->editor->getEncoding();
 	}
+}
 setWindowTitle(title);
 UpdateStructure();
 if (singlemode)
@@ -820,6 +852,7 @@ LatexEditorView *Texmaker::currentEditorView() const
 }
 
 void Texmaker::configureNewEditorView(LatexEditorView *edit){
+	edit->editor->document()->setLineEnding(QDocument::Local);
     m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
     EditorView->setCurrentIndex(EditorView->indexOf(edit));
   
@@ -899,6 +932,7 @@ if ( !file.open( QIODevice::ReadOnly ) )
 
 if (configManager.autodetectLoadedFile) edit->editor->load(f_real,0);
 else edit->editor->load(f_real,configManager.newfile_encoding);
+edit->editor->document()->setLineEnding(edit->editor->document()->originalLineEnding());
 
 //filenames.replace( edit, f_real );
 filenames.remove( edit);
@@ -1362,6 +1396,20 @@ void Texmaker::editSpell()
     if (!spellDlg) spellDlg=new SpellerDialog(this,mainSpeller);
     spellDlg->setEditorView(currentEditorView());
     spellDlg->startSpelling();
+}
+
+void Texmaker::editChangeLineEnding(){
+    if (!currentEditorView()) return;
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    currentEditorView()->editor->document()->setLineEnding(QDocument::LineEnding(action->data().toInt()));
+    UpdateCaption();
+}
+void Texmaker::editSetupEncoding(){
+    if (!currentEditorView()) return;
+	EncodingDialog enc(this,currentEditorView()->editor);
+	enc.exec();
+    UpdateCaption();
 }
 
 /////////////// CONFIG ////////////////////

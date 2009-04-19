@@ -1139,7 +1139,7 @@ QTextCodec* QEditor::getFileEncoding() const
 void QEditor::setFileEncoding(QTextCodec* codec){
     if (codec==0 || codec==m_codec) return;
     m_codec=codec; //standard encoding in memory, file encoding set when saving
-    setContentModified(true);
+   // setContentModified(true);
 }
 void QEditor::setFileEncoding(char* name){
     setFileEncoding(QTextCodec::codecForName(name));
