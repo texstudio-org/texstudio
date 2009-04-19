@@ -144,6 +144,8 @@ If a tag has different options, a short descriptive text is inserted into your t
 Remark : a summary of the latex errors and warnings is displayed before the full log file.</p>
 <p><IMG src="doc15.png" border="1"></p>
 <p>The "Next Latex Error"and "Previous LaTeX Error" commands allow to get to the errors detected during compilation.</p>
+<p>Lines with errors, warnings, bad boxes will be highlighted with red, yellow or blue background and you can jump between them using Ctrl+Up/Down. (Ctrl+Shift for errors only, Ctrl+Alt for warnings only, Alt+Shift for bad boxes only)<br>
+A tool tip will show more details of the mistake if you jump to a line (it is also shown if you move the mouse over the mark left from the line numbers).</p>
 <h1><a name="SECTION3">4. Other features</a></h1>
 <h2><a name="SECTION31">4.1 About documents separated in several files</a></h2>
 <p>TexMakerX allows you to work onto documents separated in several files.<br>
@@ -157,6 +159,9 @@ To include a TeX file into your document, just use the "\include{file}" command 
 \begin{environment }<br>
 <br>
 \end{environment }<br>
+<br>
+If you write %| somewhere the cursor will be placed at that place in the inserted text. (A second %| will select everything between them).<br>
+Write %&lt;something%&gt; to mark it as descriptive text which can be selected by Ctrl+Left/Right.
 </p>
 <p><IMG src="doc17.png" border="1"></p>
 <p>You can also launch your own commands (shortcuts : Alt+Shift+F1...Alt+Shift+F5). These commands are defined with the "User - User Commands" menu.</p>
@@ -175,6 +180,8 @@ Synopsis :<br>
 <b>Warning : </b>You can't use this command with the hyperref package (and some others packages). This command can only be used with the "Convert to html" tool.</p>
 <p><IMG src="doc18.png" border="1"></p>
 <p><IMG src="doc19.png" border="1"></p>
+
+
 <h2><a name="SECTION37">4.7 "Forward/Inverse search" with TexMakerX</a></h2>
 <p>
 Some dvi viewers can jump to (and visually highlight) a position in the DVI file that corresponds to a certain line number in the (La)TeX source file.<br>
@@ -191,8 +198,10 @@ For the opposite operation ("Inverse search") :
 <ul>
 <li>To launch TexMakerX from yap : "C:\Program Files\TexMakerX\TexMakerX.exe" "%f" -line %l <i>(the program arguments : "%f" -line %l )</i></li>
 <li>To launch TexMakerX from xdvi : xdvi -editor "TexMakerX %f -line" %.dvi -sourceposition @:%.tex</li>
+<li>To launch TexMakerX from skim : <i>Command:</i> /applications/texmakerx.app/contents/macos/texmakerx <br>
+    <i>Parameters:</i>"%file" -line %line</li>
 </ul>
-<!--Remark : if you try to use "inverse search" with TexMakerX (the opposite operation of the "forward search"), a new instance of TexMakerX will be launched at each time. This operation is not recommended.-->
+
 </p>
 <h2><a name="SECTION38">4.8 Synopsis of the TexMakerX command</a></h2>
 <p>
