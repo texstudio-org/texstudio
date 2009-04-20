@@ -40,6 +40,8 @@ class QCE_EXPORT QReliableFileWatch : protected QFileSystemWatcher
 		
 	public slots:
 		void addWatch(const QString& file, QObject *recipient);
+		
+		void removeWatch(QObject *recipient);
 		void removeWatch(const QString& file, QObject *recipient);
 		
 	protected:
