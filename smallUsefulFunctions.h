@@ -38,10 +38,15 @@ enum NextWordFlags{
 bool nextWord(QString line,int &index,QString &outWord,int &wordStartIndex);    
 //similar, but can also search commands/comments
 int nextWord(QString line,int &index,QString &outWord,int &wordStartIndex, int flags);    
+
 //removes special latex characters 
 QString latexToPlainWord(QString word);    
 //extracts the section name after \section is removed (brackets removal)
 QString extractSectionName(QString word);
 //replaces character with corresponding LaTeX commands
 QString textToLatex(QString text);
+
+//compares two strings local aware
+bool localAwareLessThan(const QString &s1, const QString &s2);
+
 #endif

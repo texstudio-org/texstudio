@@ -223,3 +223,8 @@ QString textToLatex(QString text){
     
     return text;
 }
+
+bool localAwareLessThan(const QString &s1, const QString &s2)
+{
+	return QString::localeAwareCompare(s1,s2)<0;
+}

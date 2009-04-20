@@ -24,10 +24,13 @@ setModal(true);
 
 m_speller=utility;
 
+connect(ui.pushButtonIgnoreList, SIGNAL(clicked()), this, SLOT(toggleIgnoreList()));
+connect(ui.pushButtonAddRemove, SIGNAL(clicked()), this, SLOT(addRemoveIgnoredWord()));
 connect(ui.pushButtonIgnore, SIGNAL(clicked()), this, SLOT(slotIgnore()));
 connect(ui.pushButtonAlwaysIgnore, SIGNAL(clicked()), this, SLOT(slotAlwaysIgnore()));
 connect(ui.pushButtonReplace, SIGNAL(clicked()), this, SLOT(slotReplace()));
 connect(ui.listWidget, SIGNAL(itemSelectionChanged()),this, SLOT(updateItem()));
+connect(ui.ignoreListView, SIGNAL(clicked(QModelIndex)),this, SLOT(ignoreListClicked(QModelIndex)));
 
 ui.listWidget->setEnabled(false);
 ui.lineEditNew->setEnabled(false);
@@ -35,6 +38,8 @@ ui.pushButtonIgnore->setEnabled(false);
 ui.pushButtonAlwaysIgnore->setEnabled(false);
 ui.pushButtonReplace->setEnabled(false);
 ui.lineEditOriginal->setEnabled(false);
+resize(size().width(),height()-ui.ignoreListFrame->height());
+ui.ignoreListFrame->hide();
 }
 
 SpellerDialog::~SpellerDialog(){
@@ -192,4 +197,30 @@ void SpellerDialog::SpellingNextWord()
     ui.listWidget->clear();
     ui.lineEditNew->clear();
     ui.labelMessage->setText("<b>"+tr("No more misspelled words")+"</b>");
+}
+
+void SpellerDialog::toggleIgnoreList(){
+	if (ui.ignoreListFrame->isVisible()) {
+		ui.ignoreListFrame->hide();
+		ui.pushButtonIgnoreList->setText(tr("Show Ignore List \\/"));
+		resize(size().width(),height()-ui.ignoreListFrame->height());
+	} else{
+		resize(size().width(),height()+ui.ignoreListFrame->height());
+		ui.pushButtonIgnoreList->setText(tr("Hide Ignore List /\\"));
+		if (m_speller && !ui.ignoreListView->model())
+			ui.ignoreListView->setModel(m_speller->ignoreListModel());
+		ui.ignoreListFrame->show();
+	}
+}
+
+void SpellerDialog::addRemoveIgnoredWord(){
+	if (!m_speller) return;
+	QString word=ui.lineEditIgnoredWord->text();
+	if (m_speller->ignoreListModel()->stringList().contains(word)) m_speller->removeFromIgnoreList(word);
+	else m_speller->addToIgnoreList(word);
+}
+
+void SpellerDialog::ignoreListClicked(const QModelIndex &mod){
+	if (!ui.ignoreListView->model()) return;
+	ui.lineEditIgnoredWord->setText(ui.ignoreListView->model()->data(ui.ignoreListView->currentIndex(),Qt::DisplayRole).toString());
 }

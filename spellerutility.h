@@ -15,7 +15,8 @@
 #include "QHash"
 #include "QLinkedList"
 #include "QSet"
-
+#include "QStringList"
+#include "QStringListModel"
 class SpellerUtility: public QObject {
    Q_OBJECT
 public:
@@ -24,7 +25,9 @@ public:
     bool loadDictionary(QString dic,QString ignoreFilePrefix);
     void unload();
     void addToIgnoreList(QString toIgnore);
-    
+	void removeFromIgnoreList(QString toIgnore);
+    QStringListModel* ignoreListModel();
+	
     bool check(QString word);
     QStringList suggest(QString word);
     
@@ -40,6 +43,8 @@ private:
     QHash<QString, bool> checkCache;
     QLinkedList<QString> checkCacheInsertion;
     QSet<QString> ignoredWords;
+	QStringList ignoredWordList;
+	QStringListModel ignoredWordsModel;
     bool active;
 };
 
