@@ -42,6 +42,9 @@ void slotAlwaysIgnore();
 void slotReplace();
 void updateItem();
 void SpellingNextWord();
+void toggleIgnoreList();
+void addRemoveIgnoredWord();
+void ignoreListClicked(const QModelIndex &mod);
 };
 
 

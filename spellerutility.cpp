@@ -14,9 +14,11 @@
 #include <QTextCodec>
 #include <QFileInfo>
 #include <QMessageBox>
+#include <QStringListModel>
 
 
-SpellerUtility::SpellerUtility(): pChecker(0), active(false), currentDic(""){
+
+SpellerUtility::SpellerUtility(): currentDic(""), pChecker(0),active(false){
     checkCache.reserve(1020);
 }
 bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix){
@@ -42,6 +44,8 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix){
 
     checkCache.clear();
     ignoredWords.clear();
+	ignoredWordList.clear();
+	ignoredWordsModel.setStringList(QStringList());
     ignoreListFileName=base+".ign";
     if (!isFileRealWritable(ignoreListFileName))  
         ignoreListFileName=ignoreFilePrefix+QFileInfo(dic).baseName()+".ign";
@@ -55,7 +59,11 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix){
         emit reloadDictionary();
         return true;
     }
-    ignoredWords=QTextCodec::codecForName("UTF-8")->toUnicode(f.readAll()).split("\n",QString::SkipEmptyParts).toSet();
+    ignoredWordList=QTextCodec::codecForName("UTF-8")->toUnicode(f.readAll()).split("\n",QString::SkipEmptyParts);
+	qSort(ignoredWordList.begin(),ignoredWordList.end(),localAwareLessThan);
+	while (!ignoredWordList.empty() && ignoredWordList.first().startsWith("%")) ignoredWordList.removeFirst();
+	ignoredWordsModel.setStringList(ignoredWordList);
+	ignoredWords=ignoredWordList.toSet();
     emit reloadDictionary();
     return true;
 
@@ -67,7 +75,7 @@ void SpellerUtility::unload(){
         {
             QTextCodec* utf8=QTextCodec::codecForName("UTF-8");
             f.write(utf8->fromUnicode("%Ignored-Words;encoding:utf-8;version:TexMakerX:1.8\n"));
-            foreach (QString str, ignoredWords) 
+            foreach (QString str, ignoredWordList) 
                 if (!str.startsWith("%")) 
                     f.write(utf8->fromUnicode(str+"\n"));
         }
@@ -81,6 +89,17 @@ void SpellerUtility::unload(){
 }
 void SpellerUtility::addToIgnoreList(QString toIgnore){
     ignoredWords.insert(toIgnore);
+	if (!ignoredWordList.contains(toIgnore))
+		ignoredWordList.insert(qLowerBound(ignoredWordList.begin(),ignoredWordList.end(), toIgnore, localAwareLessThan), toIgnore);
+	ignoredWordsModel.setStringList(ignoredWordList);
+}
+void SpellerUtility::removeFromIgnoreList(QString toIgnore){
+	ignoredWords.remove(toIgnore);
+	while (ignoredWordList.contains(toIgnore)) ignoredWordList.removeOne(toIgnore);
+	ignoredWordsModel.setStringList(ignoredWordList);
+}
+QStringListModel* SpellerUtility::ignoreListModel(){
+	return &ignoredWordsModel;
 }
     
 SpellerUtility::~SpellerUtility(){
