@@ -466,6 +466,8 @@ QEditor::~QEditor()
 	if ( m_editors.isEmpty() )
 	{
 		delete watcher();
+	} else {
+		watcher()->removeWatch(this);
 	}
 }
 

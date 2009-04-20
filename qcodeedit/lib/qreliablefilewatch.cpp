@@ -62,6 +62,11 @@ void QReliableFileWatch::addWatch(const QString& file, QObject *recipient)
 	}
 }
 
+void QReliableFileWatch::removeWatch(QObject *recipient)
+{
+	removeWatch(QString(), recipient);
+}
+
 void QReliableFileWatch::removeWatch(const QString& file, QObject *recipient)
 {
 	QHash<QString, Watch>::iterator it = m_targets.find(file);
@@ -135,6 +140,8 @@ void QReliableFileWatch::timerEvent(QTimerEvent *e)
 			}
 			
 			//qDebug("%s emission.", qPrintable(it.key()));
+			
+			it->recipients.removeAll(0);
 			
 			foreach ( QObject *r, it->recipients )
 				QMetaObject::invokeMethod(r, "fileChanged", Q_ARG(QString, it.key()));
