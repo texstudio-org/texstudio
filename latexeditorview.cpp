@@ -77,9 +77,11 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
     if ((pos=keyToReplace->indexOf(event->text()))>=0) {
         QString whitespace(" \t\n");
         QChar prev=editor->cursor().previousChar();
-        editor->cursor().removeSelectedText();
-        if (whitespace.contains(prev)||prev==QChar(0))  editor->cursor().insertText(keyReplaceBeforeWord->at(pos));
-        else editor->cursor().insertText(keyReplaceAfterWord->at(pos));
+		QDocumentCursor c=editor->cursor();
+		c.removeSelectedText();
+        if (whitespace.contains(prev)||prev==QChar(0))  c.insertText(keyReplaceBeforeWord->at(pos));
+        else c.insertText(keyReplaceAfterWord->at(pos));
+		editor->setCursor(c); //to remove selection range
         return true;
     }
     if (LatexEditorView::hideTooltipWhenLeavingLine!=-1 && editor->cursor().lineNumber()!=LatexEditorView::hideTooltipWhenLeavingLine) {
@@ -357,8 +359,10 @@ void LatexEditorView::lineDeleted(QDocumentLineHandle* l ){
 void LatexEditorView::spellCheckingReplace(){
     QAction* action = qobject_cast<QAction*>(QObject::sender());
     if (editor && action) {
-        editor->cursor().removeSelectedText();
-        editor->cursor().insertText(action->text());
+		QDocumentCursor c=editor->cursor();
+		c.removeSelectedText();
+        c.insertText(action->text());
+		editor->setCursor(c); //to remove selection range
     }
 }
 void LatexEditorView::spellCheckingAlwaysIgnore(){
