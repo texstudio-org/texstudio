@@ -19,6 +19,7 @@
 
 #include "qlinemarksinfocenter.h"
 #include "qformatfactory.h"
+#include "qlanguagedefinition.h"
 
 #include "qlinemarkpanel.h"
 #include "qlinenumberpanel.h"
@@ -232,6 +233,66 @@ void LatexEditorView::toggleBookmark(int bookmarkNumber){
     editor->ensureCursorVisible();
     if (bookmarkNumber>=1 && bookmarkNumber<=3) lastSetBookmark=bookmarkNumber;
 }
+
+//collapse/expand every possible line
+void LatexEditorView::foldEverything(bool unFold){
+	QDocument* doc = editor->document();
+	QLanguageDefinition* ld = doc->languageDefinition();
+	if (unFold) {
+		for (int i=0;i<doc->lines();i++) ld->expand(doc,i);
+	} else {
+		for (int i=0;i<doc->lines();i++) ld->collapse(doc,i);
+	}
+}
+//collapse/expand lines at the top level
+void LatexEditorView::foldLevel(bool unFold, int level){
+	QDocument* doc = editor->document();
+	QLanguageDefinition* ld = doc->languageDefinition();
+	int depth=0;
+	for ( int n = 0; n < doc->lines(); ++n ) {
+		QDocumentLine b=doc->line(n);
+		if (b.isHidden()) continue;
+		
+		int flags = ld->blockFlags(doc, n, depth);
+		short open = QCE_FOLD_OPEN_COUNT(flags);
+		short close = QCE_FOLD_CLOSE_COUNT(flags);
+		
+		depth -= close;
+		
+		if ( depth < 0 )
+			depth = 0;
+		
+		depth += open;
+		
+		if (depth==level) {
+			if (unFold && (flags & QLanguageDefinition::Collapsed))
+				ld->expand(doc,n);
+			else if (!unFold && (flags & QLanguageDefinition::Collapsible))
+				ld->collapse(doc,n);
+		}
+		if ( ld->blockFlags(doc, n, depth) & QLanguageDefinition::Collapsed )
+			depth -= open; // outermost block folded : none of the opening is actually opened		
+	}
+}
+//Collapse at the first possible point before/at line
+void LatexEditorView::foldBlockAt(bool unFold, int line){
+	QDocument* doc = editor->document();
+	QLanguageDefinition* ld = doc->languageDefinition();
+	while (line>=0) {
+		QDocumentLine b=doc->line(line);
+		if (!b.isHidden()) 
+			if (unFold && (ld->blockFlags(doc,line) & QLanguageDefinition::Collapsed)){
+				ld->expand(doc,line);
+				break;
+			} else if (!unFold && (ld->blockFlags(doc,line) & QLanguageDefinition::Collapsible) && !(ld->blockFlags(doc,line) & QLanguageDefinition::Collapsed)){
+				ld->collapse(doc,line);
+				break;
+			}
+		line--;
+	}
+}
+
+
 
 void LatexEditorView::cleanBib(){
     QDocument* doc = editor->document();
