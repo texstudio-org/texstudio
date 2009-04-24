@@ -581,6 +581,18 @@ void Texmaker::setupMenus()
     newManagedAction(menu, "structureview",StructureView->toggleViewAction());
     newManagedAction(menu, "outputview",OutputView->toggleViewAction());
 
+    menu->addSeparator();
+    submenu=newManagedMenu(menu, "collapse", tr("Collapse") );
+	newManagedAction(submenu, "all", tr("Everything"), SLOT(viewCollapseEverything()));
+	newManagedAction(submenu, "block", tr("Nearest block"), SLOT(viewCollapseBlock()));
+	for (int i=1;i<=4;i++) 
+		newManagedAction(submenu, QString::number(i), tr("Level %1").arg(i), SLOT(viewCollapseLevel()))->setData(i);
+	submenu=newManagedMenu(menu, "expand", tr("Expand"));
+	newManagedAction(submenu, "all", tr("Everything"), SLOT(viewExpandEverything()));
+	newManagedAction(submenu, "block", tr("Nearest block"), SLOT(viewExpandBlock()));
+	for (int i=1;i<=4;i++) 
+		newManagedAction(submenu, QString::number(i), tr("Level %1").arg(i), SLOT(viewExpandLevel()))->setData(i);
+	
 //---options---
     menu=newManagedMenu("main/options",tr("&Options"));
     newManagedAction(menu, "config",tr("Configure TexMakerX"), SLOT(GeneralOptions()), 0,":/images/configure.png");
@@ -3809,7 +3821,6 @@ else EditorView->setCurrentIndex( cPage );
 
 void Texmaker::SetInterfaceFont()
 {
-//#if defined( Q_WS_X11 )
 X11FontDialog *xfdlg = new X11FontDialog(this);
 int ft=xfdlg->ui.comboBoxFont->findText (x11fontfamily , Qt::MatchExactly);
 xfdlg->ui.comboBoxFont->setCurrentIndex(ft);
@@ -3821,11 +3832,40 @@ if (xfdlg->exec())
 	QFont x11Font (x11fontfamily,x11fontsize);
 	QApplication::setFont(x11Font);
 	}
-//#endif
 }
+
+void Texmaker::viewCollapseEverything(){
+	if (!currentEditorView()) return;
+	currentEditorView()->foldEverything(false);
+}
+void Texmaker::viewCollapseLevel(){
+	if (!currentEditorView()) return;
+	QAction *action = qobject_cast<QAction *>(sender());    
+    if (!action) return;
+	currentEditorView()->foldLevel(false,action->data().toInt());
+}
+void Texmaker::viewCollapseBlock(){
+	if (!currentEditorView()) return;
+	currentEditorView()->foldBlockAt(false,currentEditorView()->editor->cursor().lineNumber());
+}
+void Texmaker::viewExpandEverything(){
+	if (!currentEditorView()) return;
+	currentEditorView()->foldEverything(true);
+}
+void Texmaker::viewExpandLevel(){
+	if (!currentEditorView()) return;
+	QAction *action = qobject_cast<QAction *>(sender());    
+    if (!action) return;
+	currentEditorView()->foldLevel(true,action->data().toInt());
+}
+void Texmaker::viewExpandBlock(){
+	if (!currentEditorView()) return;
+	currentEditorView()->foldBlockAt(true,currentEditorView()->editor->cursor().lineNumber());
+}
+
+
 void Texmaker::SetInterfaceType()
 {
-//#if defined( Q_WS_X11 )
 QStringList styles=QStyleFactory::keys()<<"default";
 x11style = QInputDialog::getItem(this,"TexMakerX",tr("Select interface style"),styles,styles.indexOf(x11style));
 if (x11style=="default") QMessageBox::information(this,"TexMakerX",tr("Please restart TexMakerX to apply the changes"),0);
@@ -3834,7 +3874,6 @@ else {
     QApplication::setStyle(x11style);
     QApplication::setPalette(pal);
 	}
-//#endif
 }
 
 void Texmaker::gotoBookmark(){

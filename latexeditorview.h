@@ -62,12 +62,18 @@ public:
     
     
 //  FindWidget *findwidget;
+	//Functions affecting the editor  
+	
     void complete(bool forceVisibleList, bool normalText=false);
     void jumpChangePositionBackward();
     void jumpChangePositionForward();
     void jumpToBookmark(int bookmarkNumber);
     void toggleBookmark(int bookmarkNumber);
     
+	void foldEverything(bool unFold);
+	void foldLevel(bool unFold, int level);
+	void foldBlockAt(bool unFold, int line);
+	
     void cleanBib();
     static void setKeyReplacements(QStringList *UserKeyReplace, QStringList *UserKeyReplaceAfterWord, QStringList *UserKeyReplaceBeforeWord);
     static void setBaseActions(QList<QAction *> baseActions);

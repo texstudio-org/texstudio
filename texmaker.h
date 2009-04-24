@@ -324,6 +324,14 @@ void ToggleMode();
 
 void gotoNextDocument();
 void gotoPrevDocument();
+
+void viewCollapseEverything();
+void viewCollapseLevel();
+void viewCollapseBlock();
+void viewExpandEverything();
+void viewExpandLevel();
+void viewExpandBlock();
+
 //void ToggleMode();
 
 void SetInterfaceFont();
