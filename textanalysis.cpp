@@ -256,13 +256,23 @@ void TextAnalysisDialog::insertDisplayData(const QMap<QString,int> & map){
     int minLen=0;
     int minCount=ui.minimumCountSpin->value();
     int phraseLength=ui.sentenceLengthSpin->value();
+	QRegExp wordFilter;
+	bool filtered=ui.filter->currentIndex()!=0;
+	QString curFilter=ui.filter->currentText();
+	if (ui.filter->currentIndex()==-1 ||
+		curFilter != ui.filter->itemText(ui.filter->currentIndex())) wordFilter=QRegExp(curFilter);
+	else wordFilter=QRegExp(curFilter.mid(curFilter.indexOf("(")));
+	
     switch (ui.minimumLengthMeaning->currentIndex()) {
         case 2: //at least one word must have min length, all shorter with space: (min-1 +1)*phraseLength-1
             minLen=ui.minimumLengthSpin->value(); //no break!
             for(QMap<QString, int>::const_iterator it = map.constBegin(); it!=map.constEnd(); ++it)
                 if (it.value()>=minCount)
-                    if (it.key().size()>=minLen*phraseLength) displayed.words.append(Word(it.key(),it.value()));
-                    else {
+                    if (it.key().size()>=minLen*phraseLength) {
+						if (filtered || wordFilter.exactMatch(it.key()))  
+							displayed.words.append(Word(it.key(),it.value()));
+					} else {
+						if (filtered && !wordFilter.exactMatch(it.key())) continue;
                         QString t=it.key();
                         int last=0;
                         int i=0;
@@ -279,6 +289,7 @@ void TextAnalysisDialog::insertDisplayData(const QMap<QString,int> & map){
             minLen=ui.minimumLengthSpin->value(); 
             for(QMap<QString, int>::const_iterator it = map.constBegin(); it!=map.constEnd(); ++it)
                 if (it.value()>=minCount && it.key().size()>=minLen) { //not minLen*phraseCount because there can be less words in a phrase
+					if (filtered && !wordFilter.exactMatch(it.key())) continue;
                     QString t=it.key();
                     int last=0; 
                     bool ok=true;                  
@@ -288,14 +299,21 @@ void TextAnalysisDialog::insertDisplayData(const QMap<QString,int> & map){
                                 ok=false;
                                 break;
                             } else last=i+1;
-                    if (ok && t.size()-last>=minLen) displayed.words.append(Word(it.key(),it.value()));
+                    if (ok && t.size()-last>=minLen)
+						displayed.words.append(Word(it.key(),it.value()));
                 }
             break;
         case 1: minLen=ui.minimumLengthSpin->value();  //no break!
         default: 
-            for(QMap<QString, int>::const_iterator it = map.constBegin(); it!=map.constEnd(); ++it)
-                if (it.value()>=minCount && it.key().size()>=minLen)
-                    displayed.words.append(Word(it.key(),it.value()));
+			if (filtered){
+				for(QMap<QString, int>::const_iterator it = map.constBegin(); it!=map.constEnd(); ++it)
+				    if (it.value()>=minCount && it.key().size()>=minLen && wordFilter.exactMatch(it.key()))
+				        displayed.words.append(Word(it.key(),it.value()));
+			} else {
+			    for(QMap<QString, int>::const_iterator it = map.constBegin(); it!=map.constEnd(); ++it)
+			        if (it.value()>=minCount && it.key().size()>=minLen)
+			            displayed.words.append(Word(it.key(),it.value()));
+			}
     }
 }
 void TextAnalysisDialog::slotCount()

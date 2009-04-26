@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>TextAnalysisDialog</class>
- <widget class="QDialog" name="TextAnalysisDialog" >
-  <property name="geometry" >
+ <widget class="QDialog" name="TextAnalysisDialog">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,33 +10,33 @@
     <height>558</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Text Analysis</string>
   </property>
-  <layout class="QGridLayout" >
-   <item row="2" column="0" >
-    <widget class="QGroupBox" name="groupBox" >
-     <property name="title" >
+  <layout class="QGridLayout">
+   <item row="2" column="0">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
       <string>actions</string>
      </property>
-     <layout class="QVBoxLayout" >
+     <layout class="QVBoxLayout">
       <item>
-       <widget class="QPushButton" name="countButton" >
-        <property name="text" >
+       <widget class="QPushButton" name="countButton">
+        <property name="text">
          <string>count</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="searchSelectionButton" >
-        <property name="text" >
+       <widget class="QPushButton" name="searchSelectionButton">
+        <property name="text">
          <string>search selection in the document</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="closeButton" >
-        <property name="text" >
+       <widget class="QPushButton" name="closeButton">
+        <property name="text">
          <string>close</string>
         </property>
        </widget>
@@ -43,99 +44,99 @@
      </layout>
     </widget>
    </item>
-   <item row="1" column="0" >
-    <widget class="QGroupBox" name="groupBox_3" >
-     <property name="title" >
+   <item row="1" column="0">
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="title">
       <string>info</string>
      </property>
-     <layout class="QGridLayout" >
-      <item row="0" column="0" >
-       <widget class="QLabel" name="label_2" >
-        <property name="text" >
+     <layout class="QGridLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
          <string>total lines</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1" >
-       <widget class="QLabel" name="totalLinesLabel" >
-        <property name="text" >
+      <item row="0" column="1">
+       <widget class="QLabel" name="totalLinesLabel">
+        <property name="text">
          <string>?</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0" >
-       <widget class="QLabel" name="label_3" >
-        <property name="text" >
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
          <string>text lines</string>
         </property>
        </widget>
       </item>
-      <item row="4" column="0" >
-       <widget class="QLabel" name="label_4" >
-        <property name="text" >
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
          <string>total shown phrases</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="0" >
-       <widget class="QLabel" name="label_5" >
-        <property name="text" >
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
          <string>comment lines</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="1" >
-       <widget class="QLabel" name="textLinesLabel" >
-        <property name="text" >
+      <item row="1" column="1">
+       <widget class="QLabel" name="textLinesLabel">
+        <property name="text">
          <string>?</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="1" >
-       <widget class="QLabel" name="commentLinesLabel" >
-        <property name="text" >
+      <item row="2" column="1">
+       <widget class="QLabel" name="commentLinesLabel">
+        <property name="text">
          <string>?</string>
         </property>
        </widget>
       </item>
-      <item row="4" column="1" >
-       <widget class="QLabel" name="displayedWordLabel" >
-        <property name="text" >
+      <item row="4" column="1">
+       <widget class="QLabel" name="displayedWordLabel">
+        <property name="text">
          <string>?</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="0" >
-       <widget class="QLabel" name="label" >
-        <property name="text" >
+      <item row="5" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
          <string>different phrases</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="1" >
-       <widget class="QLabel" name="differentWordLabel" >
-        <property name="text" >
+      <item row="5" column="1">
+       <widget class="QLabel" name="differentWordLabel">
+        <property name="text">
          <string>?</string>
         </property>
        </widget>
       </item>
-      <item row="6" column="0" >
-       <widget class="QLabel" name="label_6" >
-        <property name="text" >
+      <item row="6" column="0">
+       <widget class="QLabel" name="label_6">
+        <property name="text">
          <string>characters in phrases</string>
         </property>
        </widget>
       </item>
-      <item row="6" column="1" >
-       <widget class="QLabel" name="characterInWordsLabel" >
-        <property name="text" >
+      <item row="6" column="1">
+       <widget class="QLabel" name="characterInWordsLabel">
+        <property name="text">
          <string>?</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="0" >
-       <widget class="Line" name="line" >
-        <property name="orientation" >
+      <item row="3" column="0">
+       <widget class="Line" name="line">
+        <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
        </widget>
@@ -143,262 +144,294 @@
      </layout>
     </widget>
    </item>
-   <item rowspan="3" row="0" column="1" colspan="3" >
-    <widget class="QTableView" name="resultView" />
+   <item row="0" column="1" rowspan="3" colspan="3">
+    <widget class="QTableView" name="resultView"/>
    </item>
-   <item row="0" column="0" >
-    <widget class="QGroupBox" name="groupBox_2" >
-     <property name="sizePolicy" >
-      <sizepolicy vsizetype="Maximum" hsizetype="Maximum" >
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="title" >
+     <property name="title">
       <string>options</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout" >
-      <item row="0" column="0" >
-       <widget class="QCheckBox" name="normalTextCheck" >
-        <property name="toolTip" >
+     <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0">
+      <item row="0" column="0" colspan="2">
+       <widget class="QCheckBox" name="normalTextCheck">
+        <property name="toolTip">
          <string>If this is enabled, words/phrases in the normal text (which aren't in comments) are counted</string>
         </property>
-        <property name="text" >
+        <property name="text">
          <string>analyse normal text</string>
         </property>
-        <property name="checked" >
+        <property name="checked">
          <bool>true</bool>
         </property>
        </widget>
       </item>
-      <item row="1" column="0" >
-       <widget class="QCheckBox" name="commentsCheck" >
-        <property name="toolTip" >
+      <item row="1" column="0" colspan="2">
+       <widget class="QCheckBox" name="commentsCheck">
+        <property name="toolTip">
          <string>If this is enabled, words/phrases in the comments are counted.</string>
         </property>
-        <property name="text" >
+        <property name="text">
          <string>analyse comments</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="0" >
-       <widget class="QCheckBox" name="commandsCheck" >
-        <property name="toolTip" >
+      <item row="2" column="0" colspan="2">
+       <widget class="QCheckBox" name="commandsCheck">
+        <property name="toolTip">
          <string>If this is enabled, \commands are counted.</string>
         </property>
-        <property name="text" >
+        <property name="text">
          <string>analyse commands</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="0" >
-       <widget class="QComboBox" name="minimumLengthMeaning" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+      <item row="3" column="0" colspan="2">
+       <widget class="QComboBox" name="minimumLengthMeaning">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="toolTip" >
-         <string>If "show all" is selected, all phrases are shown.
-If "minimum phrase length" is selected, a phrase is only shown if it has at least so many characters. (e.g. "a test" has 6 characters)
-If "minimum word length (one)" is selected, a phrase is only shown if a word of it has at least so many characters. (e.g. "a test" has 4 characters)
-If "minimum word length (all)" is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. "a test" has 1 character)
-If "completely ignore" is selected, shorter words are completely ignore.
-(e.g. with length 3, the sentence "this is a test" is equally to "this test", while the other options would separate it in "this is", "is a", "a test", even if non of this phrases would be shown)</string>
+        <property name="toolTip">
+         <string>If &quot;show all&quot; is selected, all phrases are shown.
+If &quot;minimum phrase length&quot; is selected, a phrase is only shown if it has at least so many characters. (e.g. &quot;a test&quot; has 6 characters)
+If &quot;minimum word length (one)&quot; is selected, a phrase is only shown if a word of it has at least so many characters. (e.g. &quot;a test&quot; has 4 characters)
+If &quot;minimum word length (all)&quot; is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. &quot;a test&quot; has 1 character)
+If &quot;completely ignore&quot; is selected, shorter words are completely ignore.
+(e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown)</string>
         </property>
-        <property name="currentIndex" >
+        <property name="currentIndex">
          <number>1</number>
         </property>
         <item>
-         <property name="text" >
+         <property name="text">
           <string>show all phrases</string>
          </property>
         </item>
         <item>
-         <property name="text" >
+         <property name="text">
           <string>minimum phrase length:</string>
          </property>
         </item>
         <item>
-         <property name="text" >
+         <property name="text">
           <string>minimum word length (one):</string>
          </property>
         </item>
         <item>
-         <property name="text" >
+         <property name="text">
           <string>minimum word length (all):</string>
          </property>
         </item>
         <item>
-         <property name="text" >
+         <property name="text">
           <string>fully ignore shorter words:</string>
          </property>
         </item>
        </widget>
       </item>
-      <item row="3" column="1" >
-       <widget class="QSpinBox" name="minimumLengthSpin" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+      <item row="3" column="2">
+       <widget class="QSpinBox" name="minimumLengthSpin">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="minimumSize" >
+        <property name="minimumSize">
          <size>
           <width>40</width>
           <height>0</height>
          </size>
         </property>
-        <property name="toolTip" >
-         <string>If "show all" is selected, all phrases are shown.
-If "minimum phrase length" is selected, a phrase is only shown if it has at least so many characters. (e.g. "a test" has 6 characters)
-If "minimum word length (one)" is selected, a phrase is only shown if a word of it has at least so many characters. (e.g. "a test" has 4 characters)
-If "minimum word length (all)" is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. "a test" has 1 character)
-If "completely ignore" is selected, shorter words are completely ignore.
-(e.g. with length 3, the sentence "this is a test" is equally to "this test", while the other options would separate it in "this is", "is a", "a test", even if non of this phrases would be shown)</string>
+        <property name="toolTip">
+         <string>If &quot;show all&quot; is selected, all phrases are shown.
+If &quot;minimum phrase length&quot; is selected, a phrase is only shown if it has at least so many characters. (e.g. &quot;a test&quot; has 6 characters)
+If &quot;minimum word length (one)&quot; is selected, a phrase is only shown if a word of it has at least so many characters. (e.g. &quot;a test&quot; has 4 characters)
+If &quot;minimum word length (all)&quot; is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. &quot;a test&quot; has 1 character)
+If &quot;completely ignore&quot; is selected, shorter words are completely ignore.
+(e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown)</string>
         </property>
-        <property name="value" >
+        <property name="value">
          <number>4</number>
         </property>
        </widget>
       </item>
-      <item row="4" column="0" >
-       <widget class="QLabel" name="label_9" >
-        <property name="text" >
+      <item row="4" column="0" colspan="2">
+       <widget class="QLabel" name="label_9">
+        <property name="text">
          <string>minimum occurence count:</string>
         </property>
        </widget>
       </item>
-      <item row="4" column="1" >
-       <widget class="QSpinBox" name="minimumCountSpin" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+      <item row="4" column="2">
+       <widget class="QSpinBox" name="minimumCountSpin">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="minimumSize" >
+        <property name="minimumSize">
          <size>
           <width>40</width>
           <height>0</height>
          </size>
         </property>
-        <property name="toolTip" >
+        <property name="toolTip">
          <string>Only phrase are shown which appears at least so many times in the document.</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="1" >
-       <widget class="QSpinBox" name="sentenceLengthSpin" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+      <item row="5" column="2">
+       <widget class="QSpinBox" name="sentenceLengthSpin">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="minimumSize" >
+        <property name="minimumSize">
          <size>
           <width>40</width>
           <height>0</height>
          </size>
         </property>
-        <property name="toolTip" >
+        <property name="toolTip">
          <string>The controls in this row determine how many consecuting words are treated as a single phrase.
-If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: "the controls", "controls in",...)
-If only maximum is selected, words at the beginning are also taken. (e.g.  "the", "the controls", "controls in",...)</string>
+If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
+If only maximum is selected, words at the beginning are also taken. (e.g.  &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</string>
         </property>
-        <property name="minimum" >
+        <property name="minimum">
          <number>1</number>
         </property>
-        <property name="value" >
+        <property name="value">
          <number>1</number>
         </property>
        </widget>
       </item>
-      <item row="7" column="0" >
-       <widget class="QLabel" name="label_7" >
-        <property name="text" >
+      <item row="8" column="0">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
          <string>source:</string>
         </property>
        </widget>
       </item>
-      <item row="8" column="0" colspan="2" >
-       <widget class="QComboBox" name="comboBox" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+      <item row="6" column="2">
+       <widget class="QLineEdit" name="sentenceEndChars">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="toolTip" >
-         <string>Determines of the whole document, only the selection, or only a certain chapter are analysed.</string>
-        </property>
-        <property name="layoutDirection" >
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <item>
-         <property name="text" >
-          <string>whole document</string>
-         </property>
-        </item>
-        <item>
-         <property name="text" >
-          <string>selection</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="6" column="1" >
-       <widget class="QLineEdit" name="sentenceEndChars" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Ignored" >
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize" >
+        <property name="minimumSize">
          <size>
           <width>40</width>
           <height>0</height>
          </size>
         </property>
-        <property name="toolTip" >
-         <string>If "respect phrase end chars" is checked, words before and after a given character are always treated at words of different phrases.
+        <property name="toolTip">
+         <string>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated at words of different phrases.
 If not, end characters are ignored.</string>
         </property>
-        <property name="text" >
+        <property name="text">
          <string>.;:?!</string>
         </property>
        </widget>
       </item>
-      <item row="6" column="0" >
-       <widget class="QCheckBox" name="respectEndCharsCheck" >
-        <property name="toolTip" >
-         <string>If "respect phrase end chars" is checked, words before and after a given character are always treated at words of different phrases.
+      <item row="6" column="0" colspan="2">
+       <widget class="QCheckBox" name="respectEndCharsCheck">
+        <property name="toolTip">
+         <string>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated at words of different phrases.
 If not, end characters are ignored.</string>
         </property>
-        <property name="text" >
+        <property name="text">
          <string>respect phrase end chars:</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="0" >
-       <widget class="QComboBox" name="wordsPerPhraseMeaning" >
-        <property name="toolTip" >
+      <item row="5" column="0" colspan="2">
+       <widget class="QComboBox" name="wordsPerPhraseMeaning">
+        <property name="toolTip">
          <string>The controls in this row determine how many consecuting words are treated as a single phrase.
-If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: "the controls", "controls in",...)
-If only maximum is selected, words at the beginning are also taken. (e.g.  "the", "the controls", "controls in",...)</string>
+If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
+If only maximum is selected, words at the beginning are also taken. (e.g.  &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</string>
         </property>
         <item>
-         <property name="text" >
+         <property name="text">
           <string>maximum words per phrase:</string>
          </property>
         </item>
         <item>
-         <property name="text" >
+         <property name="text">
           <string>min&amp;max words per phrase:</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="7" column="1" colspan="2">
+       <widget class="QComboBox" name="filter">
+        <property name="editable">
+         <bool>true</bool>
+        </property>
+        <property name="insertPolicy">
+         <enum>QComboBox::NoInsert</enum>
+        </property>
+        <item>
+         <property name="text">
+          <string>None (.*)</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>No Numbers (.*[^0-9].*)</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>No Digits ([^0-9]*)</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="label_8">
+        <property name="text">
+         <string>Filter</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="1" colspan="2">
+       <widget class="QComboBox" name="comboBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>Determines of the whole document, only the selection, or only a certain chapter are analysed.</string>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <item>
+         <property name="text">
+          <string>whole document</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>selection</string>
          </property>
         </item>
        </widget>
