@@ -75,7 +75,7 @@ TexmakerApp::~TexmakerApp()
 bool TexmakerApp::event ( QEvent * event )
 {
     if (event->type() == QEvent::FileOpen) {
-        QFileOpenEvent *oe = static_cast<QFileOpenEvent *>(event);    
+        QFileOpenEvent *oe = static_cast<QFileOpenEvent *>(event);
         if (initialized) mw->load(oe->file());
         else delayedFileLoad = oe->file();
         event->accept();
@@ -105,16 +105,16 @@ if (!startAlways)
         if (asfw) asfw(/*ASFW_ANY*/(DWORD)(-1));
         #endif
         //fix relative path (current directory unknown to other instance)
-        for (int i=0;i<cmdLine.size();i++) 
-            if (cmdLine[i]!="" && cmdLine[i].at(0)!='-' && QFileInfo(cmdLine[i]).isRelative() && QFileInfo(cmdLine[i]).exists()) 
+        for (int i=0;i<cmdLine.size();i++)
+            if (cmdLine[i]!="" && cmdLine[i].at(0)!='-' && QFileInfo(cmdLine[i]).isRelative() && QFileInfo(cmdLine[i]).exists())
                 cmdLine[i]=QFileInfo(cmdLine[i]).absoluteFilePath();
-        instance.sendMessage(cmdLine.join("#!#")+"#!#");
+        instance.sendMessage(cmdLine.join("#!#"));
         return 0;
     }
 
 a.init(cmdLine); // Initialization takes place only if there is no other instance running.
 
-QObject::connect( &instance, SIGNAL( messageReceived(const QString &) ), 
+QObject::connect( &instance, SIGNAL( messageReceived(const QString &) ),
                   a.mw,   SLOT( onOtherInstanceMessage(const QString &) ) );
 
 return a.exec();
