@@ -214,6 +214,7 @@ void SaveSettings();
 void lineMarkToolTip(int line, int mark);
 void NewDocumentStatus(bool m);
 void UpdateCaption();
+void CloseEditorTab(int tab);
 
 void UpdateStructure();
 void ShowStructure();
