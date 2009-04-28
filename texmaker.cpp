@@ -227,6 +227,10 @@ EditorView=new QTabWidget(this);
 EditorView->setFocusPolicy(Qt::ClickFocus);
 EditorView->setFocus();
 connect(EditorView, SIGNAL( currentChanged( QWidget * ) ), this, SLOT(UpdateCaption()) );
+#if QT_VERSION >= 0x040500
+EditorView->setTabsClosable(true);
+connect(EditorView, SIGNAL( tabCloseRequested ( int ) ), this, SLOT(CloseEditorTab(int)) );
+#endif
 setCentralWidget(EditorView);
 setupMenus();
 setupToolBars();
@@ -829,6 +833,16 @@ if (singlemode)
 	}
 QString finame=getName();
 if (finame!="untitled" && finame!="") lastDocument=finame;
+}
+
+void Texmaker::CloseEditorTab(int tab){
+	int cur=EditorView->currentIndex();
+	int total=EditorView->count();
+	EditorView->setCurrentIndex(tab);
+	fileClose();
+	if (cur>tab) cur--;//removing moves to left
+	if (total!=EditorView->count() && cur!=tab)//if user clicks cancel stay in clicked editor 
+		EditorView->setCurrentIndex(cur);
 }
 
 void Texmaker::lineMarkToolTip(int line, int mark){

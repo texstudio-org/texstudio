@@ -560,12 +560,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="232"/>
         <source>Local</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Systemstandard</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="237"/>
         <source>Unix/Linux</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Unix/Linux</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="242"/>
@@ -608,8 +608,8 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <location filename="encodingdialog.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <source>Setup Encoding</source>
+        <translation>Zeichenkodierung festlegen</translation>
     </message>
     <message>
         <location filename="encodingdialog.ui" line="20"/>
@@ -705,13 +705,13 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
 <context>
     <name>LatexEditorView</name>
     <message>
-        <location filename="latexeditorview.cpp" line="121"/>
+        <location filename="latexeditorview.cpp" line="122"/>
         <source>always ignore</source>
         <translation>immer ignorieren</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="116"/>
-        <location filename="latexeditorview.cpp" line="387"/>
+        <location filename="latexeditorview.cpp" line="117"/>
+        <location filename="latexeditorview.cpp" line="448"/>
         <source>shift pressed =&gt; suggestions hidden</source>
         <translation>shift gedrückt =&gt; keine Vorschläge</translation>
     </message>
@@ -1607,14 +1607,14 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="245"/>
-        <location filename="texmaker.cpp" line="3771"/>
+        <location filename="texmaker.cpp" line="3783"/>
         <source>Normal Mode</source>
         <translation>Normaler Modus</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="246"/>
-        <location filename="texmaker.cpp" line="3088"/>
-        <location filename="texmaker.cpp" line="3298"/>
+        <location filename="texmaker.cpp" line="3100"/>
+        <location filename="texmaker.cpp" line="3310"/>
         <source>Ready</source>
         <translation>Fertig</translation>
     </message>
@@ -1645,7 +1645,7 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="398"/>
-        <location filename="texmaker.cpp" line="1021"/>
+        <location filename="texmaker.cpp" line="1033"/>
         <source>Save As</source>
         <translation>Speichern unter</translation>
     </message>
@@ -1822,7 +1822,7 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="503"/>
-        <location filename="texmaker.cpp" line="3094"/>
+        <location filename="texmaker.cpp" line="3106"/>
         <source>Quick Build</source>
         <translation>Schnelles Erzeugen</translation>
     </message>
@@ -1849,18 +1849,18 @@ Wollen Sie es speichern?</translation>
     <message>
         <location filename="texmaker.cpp" line="521"/>
         <location filename="texmaker.cpp" line="556"/>
-        <location filename="texmaker.cpp" line="3295"/>
+        <location filename="texmaker.cpp" line="3307"/>
         <source>Clean</source>
         <translation>Aufräumen</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="523"/>
-        <location filename="texmaker.cpp" line="3347"/>
+        <location filename="texmaker.cpp" line="3359"/>
         <source>Convert to Html</source>
         <translation>Als HTML exportieren</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3361"/>
+        <location filename="texmaker.cpp" line="3373"/>
         <source>Text Analysis</source>
         <translation>Textanalyse</translation>
     </message>
@@ -1982,7 +1982,7 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="566"/>
-        <location filename="texmaker.cpp" line="2838"/>
+        <location filename="texmaker.cpp" line="2850"/>
         <source>Edit User &amp;Tags</source>
         <translation>Benutzer Makros ändern...</translation>
     </message>
@@ -1993,7 +1993,7 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="573"/>
-        <location filename="texmaker.cpp" line="3319"/>
+        <location filename="texmaker.cpp" line="3331"/>
         <source>Edit User &amp;Commands</source>
         <translation>Benutzerbefehle ändern</translation>
     </message>
@@ -2017,48 +2017,48 @@ Wollen Sie es speichern?</translation>
         <translation>Vorheriges Dokument</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="585"/>
+        <location filename="texmaker.cpp" line="597"/>
         <source>&amp;Options</source>
         <translation>&amp;Optionen</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="586"/>
+        <location filename="texmaker.cpp" line="598"/>
         <source>Configure TexMakerX</source>
         <translation>TexMakerX einrichten</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="590"/>
+        <location filename="texmaker.cpp" line="602"/>
         <source>Change Interface Font</source>
         <translation>Interfaceschrift ändern</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="591"/>
+        <location filename="texmaker.cpp" line="603"/>
         <source>Change Interface Type</source>
         <translation>Interfaceart ändern</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="595"/>
-        <location filename="texmaker.cpp" line="3766"/>
+        <location filename="texmaker.cpp" line="607"/>
+        <location filename="texmaker.cpp" line="3778"/>
         <source>Define Current Document as &apos;Master Document&apos;</source>
         <translation>Aktuelle Datei zur &apos;Masterdatei&apos; erklären</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="600"/>
+        <location filename="texmaker.cpp" line="612"/>
         <source>&amp;Help</source>
         <translation>&amp;Hilfe</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="601"/>
+        <location filename="texmaker.cpp" line="613"/>
         <source>LaTeX Reference</source>
         <translation>Latexreferenz</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="602"/>
+        <location filename="texmaker.cpp" line="614"/>
         <source>User Manual</source>
         <translation>Benutzerhandbuch</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="605"/>
+        <location filename="texmaker.cpp" line="617"/>
         <source>About TexMakerX</source>
         <translation>Über TexMakerX</translation>
     </message>
@@ -2091,34 +2091,34 @@ Wollen Sie es speichern?</translation>
         <translation type="obsolete">Neue Zeile</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="780"/>
+        <location filename="texmaker.cpp" line="792"/>
         <source>Click to jump to the bookmark</source>
         <translation>Klicken um zum Lesezeichen zu springen</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="929"/>
-        <location filename="texmaker.cpp" line="3017"/>
-        <location filename="texmaker.cpp" line="3104"/>
-        <location filename="texmaker.cpp" line="3124"/>
-        <location filename="texmaker.cpp" line="3141"/>
-        <location filename="texmaker.cpp" line="3158"/>
-        <location filename="texmaker.cpp" line="3178"/>
-        <location filename="texmaker.cpp" line="3285"/>
-        <location filename="texmaker.cpp" line="3407"/>
-        <location filename="texmaker.cpp" line="3437"/>
-        <location filename="texmaker.cpp" line="3609"/>
-        <location filename="texmaker.cpp" line="3618"/>
-        <location filename="texmaker.cpp" line="3779"/>
+        <location filename="texmaker.cpp" line="941"/>
+        <location filename="texmaker.cpp" line="3029"/>
+        <location filename="texmaker.cpp" line="3116"/>
+        <location filename="texmaker.cpp" line="3136"/>
+        <location filename="texmaker.cpp" line="3153"/>
+        <location filename="texmaker.cpp" line="3170"/>
+        <location filename="texmaker.cpp" line="3190"/>
+        <location filename="texmaker.cpp" line="3297"/>
+        <location filename="texmaker.cpp" line="3419"/>
+        <location filename="texmaker.cpp" line="3449"/>
+        <location filename="texmaker.cpp" line="3621"/>
+        <location filename="texmaker.cpp" line="3630"/>
+        <location filename="texmaker.cpp" line="3791"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="929"/>
+        <location filename="texmaker.cpp" line="941"/>
         <source>You do not have read permission to this file.</source>
         <translation>Dir fehlen die nötigen Rechte um die Datei zu lesen</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="987"/>
+        <location filename="texmaker.cpp" line="999"/>
         <source>Open File</source>
         <translation>Datei öffnen</translation>
     </message>
@@ -2127,92 +2127,92 @@ Wollen Sie es speichern?</translation>
         <translation type="obsolete">Die Datei konnte nicht abgespeichert werden. Bitte überprüfe, ob Sie die nötzigen Schreibrechte haben.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1056"/>
+        <location filename="texmaker.cpp" line="1068"/>
         <source>The document contains unsaved work. Do you want to save it before closing?</source>
         <translation>Das Dokument ist verändert worden. Wollen Sie es vor dem Schließen speichern?</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1058"/>
-        <location filename="texmaker.cpp" line="1095"/>
-        <location filename="texmaker.cpp" line="1135"/>
-        <location filename="texmaker.cpp" line="1181"/>
+        <location filename="texmaker.cpp" line="1070"/>
+        <location filename="texmaker.cpp" line="1107"/>
+        <location filename="texmaker.cpp" line="1147"/>
+        <location filename="texmaker.cpp" line="1193"/>
         <source>Save and Close</source>
         <translation>Speichern und schließen</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1058"/>
-        <location filename="texmaker.cpp" line="1095"/>
-        <location filename="texmaker.cpp" line="1135"/>
-        <location filename="texmaker.cpp" line="1181"/>
+        <location filename="texmaker.cpp" line="1070"/>
+        <location filename="texmaker.cpp" line="1107"/>
+        <location filename="texmaker.cpp" line="1147"/>
+        <location filename="texmaker.cpp" line="1193"/>
         <source>Don&apos;t Save and Close</source>
         <translation>Verlassen ohne speichern</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1058"/>
-        <location filename="texmaker.cpp" line="1095"/>
-        <location filename="texmaker.cpp" line="1135"/>
-        <location filename="texmaker.cpp" line="1181"/>
-        <location filename="texmaker.cpp" line="3289"/>
+        <location filename="texmaker.cpp" line="1070"/>
+        <location filename="texmaker.cpp" line="1107"/>
+        <location filename="texmaker.cpp" line="1147"/>
+        <location filename="texmaker.cpp" line="1193"/>
+        <location filename="texmaker.cpp" line="3301"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1093"/>
-        <location filename="texmaker.cpp" line="1133"/>
-        <location filename="texmaker.cpp" line="1179"/>
+        <location filename="texmaker.cpp" line="1105"/>
+        <location filename="texmaker.cpp" line="1145"/>
+        <location filename="texmaker.cpp" line="1191"/>
         <source>The document contains unsaved work. Do you want to save it before exiting?</source>
         <translation>Das Dokument ist verändert worden. Wollen Sie es vor dem Beenden speichern?</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1840"/>
-        <location filename="texmaker.cpp" line="1893"/>
-        <location filename="texmaker.cpp" line="1911"/>
-        <location filename="texmaker.cpp" line="1931"/>
-        <location filename="texmaker.cpp" line="1949"/>
-        <location filename="texmaker.cpp" line="1967"/>
+        <location filename="texmaker.cpp" line="1852"/>
+        <location filename="texmaker.cpp" line="1905"/>
+        <location filename="texmaker.cpp" line="1923"/>
+        <location filename="texmaker.cpp" line="1943"/>
+        <location filename="texmaker.cpp" line="1961"/>
+        <location filename="texmaker.cpp" line="1979"/>
         <source>line</source>
         <translation>Zeile</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2270"/>
+        <location filename="texmaker.cpp" line="2282"/>
         <source>Select an image File</source>
         <translation>Wähle eine Bilddatei</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2290"/>
-        <location filename="texmaker.cpp" line="2311"/>
+        <location filename="texmaker.cpp" line="2302"/>
+        <location filename="texmaker.cpp" line="2323"/>
         <source>Select a File</source>
         <translation>Wähle eine Datei</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3017"/>
-        <location filename="texmaker.cpp" line="3285"/>
+        <location filename="texmaker.cpp" line="3029"/>
+        <location filename="texmaker.cpp" line="3297"/>
         <source>Can&apos;t detect the file name</source>
         <translation>Kann den Dateinamen nicht erkennen</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3104"/>
-        <location filename="texmaker.cpp" line="3124"/>
-        <location filename="texmaker.cpp" line="3141"/>
-        <location filename="texmaker.cpp" line="3158"/>
-        <location filename="texmaker.cpp" line="3178"/>
-        <location filename="texmaker.cpp" line="3407"/>
-        <location filename="texmaker.cpp" line="3779"/>
+        <location filename="texmaker.cpp" line="3116"/>
+        <location filename="texmaker.cpp" line="3136"/>
+        <location filename="texmaker.cpp" line="3153"/>
+        <location filename="texmaker.cpp" line="3170"/>
+        <location filename="texmaker.cpp" line="3190"/>
+        <location filename="texmaker.cpp" line="3419"/>
+        <location filename="texmaker.cpp" line="3791"/>
         <source>Could not start the command.</source>
         <translation>Programm konnte nicht gestartet werden</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3218"/>
+        <location filename="texmaker.cpp" line="3230"/>
         <source>View Dvi file</source>
         <translation>Zeige Dvi-Datei</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3230"/>
+        <location filename="texmaker.cpp" line="3242"/>
         <source>View PS file</source>
         <translation>Zeige PS-Datei</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3243"/>
+        <location filename="texmaker.cpp" line="3255"/>
         <source>View Pdf file</source>
         <translation>Zeige Pdf-Datei</translation>
     </message>
@@ -2222,7 +2222,7 @@ Wollen Sie es speichern?</translation>
         <translation type="obsolete">Sollen die Ausgabedateien von LaTeX gelöscht werden?(.log,.aux,.dvi,.lof,.lot,.bit,.idx,.glo,.bbl,.ilg,.toc,.ind)</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3289"/>
+        <location filename="texmaker.cpp" line="3301"/>
         <source>Delete Files</source>
         <translation>Dateien löschen</translation>
     </message>
@@ -2231,7 +2231,7 @@ Wollen Sie es speichern?</translation>
         <translation type="obsolete">Tastenersetzungen ändern</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3437"/>
+        <location filename="texmaker.cpp" line="3449"/>
         <source>Log File not found !</source>
         <translation>Logdatei nicht gefunden!</translation>
     </message>
@@ -2240,19 +2240,19 @@ Wollen Sie es speichern?</translation>
         <translation type="obsolete">Klicken um zur Zeile zu springen</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3579"/>
-        <location filename="texmaker.cpp" line="3584"/>
+        <location filename="texmaker.cpp" line="3591"/>
+        <location filename="texmaker.cpp" line="3596"/>
         <source>No LaTeX errors detected !</source>
         <translation>Keine LaTeX-Fehler gefunden!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3609"/>
-        <location filename="texmaker.cpp" line="3618"/>
+        <location filename="texmaker.cpp" line="3621"/>
+        <location filename="texmaker.cpp" line="3630"/>
         <source>File not found</source>
         <translation>Datei nicht gefunden</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3785"/>
+        <location filename="texmaker.cpp" line="3797"/>
         <source>Normal Mode (current master document :</source>
         <translation>Normaler Modus (aktuelles Masterdokument:</translation>
     </message>
@@ -2261,12 +2261,12 @@ Wollen Sie es speichern?</translation>
         <translation type="obsolete">Masterdokument</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3830"/>
+        <location filename="texmaker.cpp" line="3870"/>
         <source>Select interface style</source>
         <translation>Wähle Interfaceart:</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3831"/>
+        <location filename="texmaker.cpp" line="3871"/>
         <source>Please restart TexMakerX to apply the changes</source>
         <translation>Bitte starte TexMakerX neu, um die Änderung anzuzeigen</translation>
     </message>
@@ -2285,39 +2285,39 @@ Wollen Sie es speichern?</translation>
         <translation type="obsolete">Speichere &apos;Masterdatei&apos;-Einstellungen</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3049"/>
+        <location filename="texmaker.cpp" line="3061"/>
         <source>could not start the command:</source>
         <translation>Befehl konnte nicht gestartet werden:</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3052"/>
+        <location filename="texmaker.cpp" line="3064"/>
         <source>Process started</source>
         <translation>Prozeß gestartet</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3289"/>
+        <location filename="texmaker.cpp" line="3301"/>
         <source>Delete the output files generated by LaTeX?</source>
         <translation>Sollen die von Latex erzeugten Dateien gelöscht werden?</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3589"/>
-        <location filename="texmaker.cpp" line="3593"/>
+        <location filename="texmaker.cpp" line="3601"/>
+        <location filename="texmaker.cpp" line="3605"/>
         <source>No LaTeX warnings detected !</source>
         <translation>Keine LaTeX-Warnungen gefunden!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3598"/>
-        <location filename="texmaker.cpp" line="3602"/>
+        <location filename="texmaker.cpp" line="3610"/>
+        <location filename="texmaker.cpp" line="3614"/>
         <source>No bad boxes detected !</source>
         <translation>Keine Bad Boxes gefunden!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3670"/>
+        <location filename="texmaker.cpp" line="3682"/>
         <source>Menus</source>
         <translation>Menüs</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3787"/>
+        <location filename="texmaker.cpp" line="3799"/>
         <source>Master Document</source>
         <translation>Masterdatei</translation>
     </message>
@@ -2558,19 +2558,47 @@ Wollen Sie es speichern?</translation>
         <translation>Sonstiges</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="596"/>
+        <location filename="texmaker.cpp" line="585"/>
+        <source>Collapse</source>
+        <translation>Ausblenden</translation>
+    </message>
+    <message>
+        <location filename="texmaker.cpp" line="586"/>
+        <location filename="texmaker.cpp" line="591"/>
+        <source>Everything</source>
+        <translation>Alles</translation>
+    </message>
+    <message>
+        <location filename="texmaker.cpp" line="587"/>
+        <location filename="texmaker.cpp" line="592"/>
+        <source>Nearest block</source>
+        <translation>Vorherigen Block</translation>
+    </message>
+    <message>
+        <location filename="texmaker.cpp" line="589"/>
+        <location filename="texmaker.cpp" line="594"/>
+        <source>Level %1</source>
+        <translation>Level %1</translation>
+    </message>
+    <message>
+        <location filename="texmaker.cpp" line="590"/>
+        <source>Expand</source>
+        <translation>Einblenden</translation>
+    </message>
+    <message>
+        <location filename="texmaker.cpp" line="608"/>
         <source>Remember session when closing</source>
         <translation>Geöffnete Dateien wiederherstellen</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1252"/>
+        <location filename="texmaker.cpp" line="1264"/>
         <source>Master Document: </source>
         <translation>Masterdokument:</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1393"/>
-        <location filename="texmaker.cpp" line="3338"/>
-        <location filename="texmaker.cpp" line="3357"/>
+        <location filename="texmaker.cpp" line="1405"/>
+        <location filename="texmaker.cpp" line="3350"/>
+        <location filename="texmaker.cpp" line="3369"/>
         <source>No document open</source>
         <translation>Kein Dokument geöffnet</translation>
     </message>
@@ -2578,12 +2606,12 @@ Wollen Sie es speichern?</translation>
 <context>
     <name>TextAnalysisDialog</name>
     <message>
-        <location filename="textanalysis.ui" line="13"/>
+        <location filename="textanalysis.ui" line="14"/>
         <source>Text Analysis</source>
         <translation>Textanalyse</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="158"/>
+        <location filename="textanalysis.ui" line="159"/>
         <source>options</source>
         <translation>Optionen</translation>
     </message>
@@ -2604,58 +2632,58 @@ Wollen Sie es speichern?</translation>
         <translation type="obsolete">kurze Worte ignorieren:</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="323"/>
+        <location filename="textanalysis.ui" line="324"/>
         <source>source:</source>
         <translation>Quelle:</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="343"/>
+        <location filename="textanalysis.ui" line="429"/>
         <source>whole document</source>
         <translation>gesamtes Dokument</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="348"/>
+        <location filename="textanalysis.ui" line="434"/>
         <source>selection</source>
         <translation>Auswahl</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="19"/>
+        <location filename="textanalysis.ui" line="20"/>
         <source>actions</source>
         <translation>Aktionen</translation>
     </message>
     <message>
         <location filename="textanalysis.cpp" line="43"/>
-        <location filename="textanalysis.ui" line="25"/>
+        <location filename="textanalysis.ui" line="26"/>
         <source>count</source>
         <translation>zählen</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="39"/>
+        <location filename="textanalysis.ui" line="40"/>
         <source>close</source>
         <translation>schließen</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="49"/>
+        <location filename="textanalysis.ui" line="50"/>
         <source>info</source>
         <translation>Info</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="55"/>
+        <location filename="textanalysis.ui" line="56"/>
         <source>total lines</source>
         <translation>Zeilen insgesamt</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="62"/>
-        <location filename="textanalysis.ui" line="90"/>
-        <location filename="textanalysis.ui" line="97"/>
-        <location filename="textanalysis.ui" line="104"/>
-        <location filename="textanalysis.ui" line="118"/>
-        <location filename="textanalysis.ui" line="132"/>
+        <location filename="textanalysis.ui" line="63"/>
+        <location filename="textanalysis.ui" line="91"/>
+        <location filename="textanalysis.ui" line="98"/>
+        <location filename="textanalysis.ui" line="105"/>
+        <location filename="textanalysis.ui" line="119"/>
+        <location filename="textanalysis.ui" line="133"/>
         <source>?</source>
         <translation>?</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="69"/>
+        <location filename="textanalysis.ui" line="70"/>
         <source>text lines</source>
         <translation>Zeilen mit Text</translation>
     </message>
@@ -2664,7 +2692,7 @@ Wollen Sie es speichern?</translation>
         <translation type="obsolete">Zahl der Wörter</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="83"/>
+        <location filename="textanalysis.ui" line="84"/>
         <source>comment lines</source>
         <translation>Zeilen mit Kommentaren</translation>
     </message>
@@ -2687,125 +2715,145 @@ Wollen Sie es speichern?</translation>
         <translation>relative Anzahl</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="32"/>
+        <location filename="textanalysis.ui" line="33"/>
         <source>search selection in the document</source>
         <translation>Suche die ausgewählte Phrase</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="76"/>
+        <location filename="textanalysis.ui" line="77"/>
         <source>total shown phrases</source>
         <translation>Gesamtzahl der Phrasen</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="111"/>
+        <location filename="textanalysis.ui" line="112"/>
         <source>different phrases</source>
         <translation>Unterschiedliche Phrasen</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="125"/>
+        <location filename="textanalysis.ui" line="126"/>
         <source>characters in phrases</source>
         <translation>Zeichen in den Phrasen</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="167"/>
+        <location filename="textanalysis.ui" line="168"/>
         <source>analyse normal text</source>
         <translation>Analysiere normalen Text</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="180"/>
+        <location filename="textanalysis.ui" line="181"/>
         <source>analyse comments</source>
         <translation>Analysiere Kommentare</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="187"/>
+        <location filename="textanalysis.ui" line="188"/>
         <source>If this is enabled, \commands are counted.</source>
         <translation>Nur wenn dies ausgewählt ist, werden \LaTeX \Befehle beachtet</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="190"/>
+        <location filename="textanalysis.ui" line="191"/>
         <source>analyse commands</source>
         <translation>Analysiere LaTeX Befehle</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="215"/>
+        <location filename="textanalysis.ui" line="216"/>
         <source>show all phrases</source>
         <translation>Zeige alle Phrasen</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="220"/>
+        <location filename="textanalysis.ui" line="221"/>
         <source>minimum phrase length:</source>
         <translation>Minimale Phrasenlänge:</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="225"/>
+        <location filename="textanalysis.ui" line="226"/>
         <source>minimum word length (one):</source>
         <translation>Minimale Wordlänge (für eins):</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="230"/>
+        <location filename="textanalysis.ui" line="231"/>
         <source>minimum word length (all):</source>
         <translation>Minimale Wordlänge (für alle):</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="235"/>
+        <location filename="textanalysis.ui" line="236"/>
         <source>fully ignore shorter words:</source>
         <translation>Ignoriere kürzere Worte:</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="270"/>
+        <location filename="textanalysis.ui" line="271"/>
         <source>minimum occurence count:</source>
         <translation>Minimale Anzahl:</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="289"/>
+        <location filename="textanalysis.ui" line="290"/>
         <source>Only phrase are shown which appears at least so many times in the document.</source>
         <translation>Nur Phrasen anzeigen, die mindestens so oft existieren.</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="336"/>
+        <location filename="textanalysis.ui" line="391"/>
+        <source>None (.*)</source>
+        <translation>Keiner (.*)</translation>
+    </message>
+    <message>
+        <location filename="textanalysis.ui" line="396"/>
+        <source>No Numbers (.*[^0-9].*)</source>
+        <translation>Keine Zahlen (.*[^0-9].*)</translation>
+    </message>
+    <message>
+        <location filename="textanalysis.ui" line="401"/>
+        <source>No Digits ([^0-9]*)</source>
+        <translation>Keine Ziffern ([^0-9]*)</translation>
+    </message>
+    <message>
+        <location filename="textanalysis.ui" line="409"/>
+        <source>Filter</source>
+        <translation>Filter:</translation>
+    </message>
+    <message>
+        <location filename="textanalysis.ui" line="422"/>
         <source>Determines of the whole document, only the selection, or only a certain chapter are analysed.</source>
         <translation>Gibt an, ob das gesamte Dokument, die Markierung oder nur bestimmte Kapitel analysiert werden sollen</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="368"/>
-        <location filename="textanalysis.ui" line="379"/>
+        <location filename="textanalysis.ui" line="343"/>
+        <location filename="textanalysis.ui" line="354"/>
         <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated at words of different phrases.
 If not, end characters are ignored.</source>
         <translation>Wenn &quot;Beachte Satzzeichen&quot; markiert ist, wird keine Phrase beachtet, die ein solches Zeichen enthält.Ansonsten werden Satzzeichen als Leerzeichen betrachtet.</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="372"/>
+        <location filename="textanalysis.ui" line="347"/>
         <source>.;:?!</source>
         <translation>.;:?!</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="383"/>
+        <location filename="textanalysis.ui" line="358"/>
         <source>respect phrase end chars:</source>
         <translation>Beachte Satzzeichen:</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="396"/>
+        <location filename="textanalysis.ui" line="371"/>
         <source>maximum words per phrase:</source>
         <translation>Maximale Wortzahl pro Phrase:</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="401"/>
+        <location filename="textanalysis.ui" line="376"/>
         <source>min&amp;max words per phrase:</source>
         <translation>Min&amp;Max Wortzahl pro Phrase:</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="164"/>
+        <location filename="textanalysis.ui" line="165"/>
         <source>If this is enabled, words/phrases in the normal text (which aren&apos;t in comments) are counted</source>
         <translation>Ist dies aktiviert, werden Worte/Phrasen im normalen Text gezählt (also die Worte, welche nicht in Kommentaren stehen)</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="177"/>
+        <location filename="textanalysis.ui" line="178"/>
         <source>If this is enabled, words/phrases in the comments are counted.</source>
         <translation>Ist dies aktiviert, werden Worte/Phrasen in Kommentaren gezählt</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="203"/>
-        <location filename="textanalysis.ui" line="255"/>
+        <location filename="textanalysis.ui" line="204"/>
+        <location filename="textanalysis.ui" line="256"/>
         <source>If &quot;show all&quot; is selected, all phrases are shown.
 If &quot;minimum phrase length&quot; is selected, a phrase is only shown if it has at least so many characters. (e.g. &quot;a test&quot; has 6 characters)
 If &quot;minimum word length (one)&quot; is selected, a phrase is only shown if a word of it has at least so many characters. (e.g. &quot;a test&quot; has 4 characters)
@@ -2815,8 +2863,8 @@ If &quot;completely ignore&quot; is selected, shorter words are completely ignor
         <translation>Ist &quot;Zeige alle Phrasen&quot; ausgewählt, werden alle angezeigt.Ist &quot;Minimale Phrasenlänge:&quot; ausgewählt, werden nur Phrasen mit mindestens so vielen Zeichen angezeigt (z.B.: &quot;ein Test&quot; hat 8 Zeichen)Ist &quot;Minimale Wordlänge (für eins):&quot; gewählt, werden nur Phrasen angezeigt, bei denen ein Wort so viele Zeichen hat (&quot;ein Test&quot; hätte also 3 Zeichen)Bei &quot;Minimale Wordlänge (für alle):&quot;, werden nur Phrasen angezeigt, bei denen jedes Wort so viele Zeichen hat (&quot;ein Test&quot; hätte also 4)Bei &quot;Ignoriere kürzere Worte:&quot;, werden kürzere Worte vollständig ignoriert. Also &quot;Dies ist ein Test&quot; wird bei Mindestlänge 4 als &quot;Dies Test&quot; betrachtet.</translation>
     </message>
     <message>
-        <location filename="textanalysis.ui" line="308"/>
-        <location filename="textanalysis.ui" line="390"/>
+        <location filename="textanalysis.ui" line="309"/>
+        <location filename="textanalysis.ui" line="365"/>
         <source>The controls in this row determine how many consecuting words are treated as a single phrase.
 If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
 If only maximum is selected, words at the beginning are also taken. (e.g.  &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
