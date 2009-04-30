@@ -999,6 +999,13 @@ QDocumentLine QDocument::findLine(int& position) const
 	return QDocumentLine(m_impl->lineForPosition(position));
 }
 
+int QDocument::findLineContaining(const QString &searchText,  const int& startLine, const Qt::CaseSensitivity cs) const{
+	for (int i=startLine;i<lines();i++)
+		if(text(i).contains(searchText,cs))  
+			return i;
+	return -1;
+}
+
 /*!
 	\return The Y document coordinate of a given line
 	\param ln textual line number

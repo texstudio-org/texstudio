@@ -76,9 +76,9 @@ void onOtherInstanceMessage(const QString &);  // For messages for the single in
 private:
 QMenu* newManagedMenu(const QString &id,const QString &text);
 QMenu* newManagedMenu(QMenu* menu, const QString &id,const QString &text);
-QAction* newManagedAction(QMenu* menu, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="");
-QAction* newManagedAction(QMenu* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile="");
-QAction* newManagedAction(QMenu* menu, const QString &id, QAction* act);
+QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="");
+QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile="");
+QAction* newManagedAction(QWidget* menu, const QString &id, QAction* act);
 QAction* getManagedAction(QString id);
 void loadManagedMenu(QMenu* parent,const QDomElement &f);
 void loadManagedMenus(const QString &f);
@@ -190,8 +190,18 @@ void editRedo();
 void editCut();
 void editCopy();
 void editPaste();
+void editSectionCopy();
+void editSectionCopy(int startingLine, int endLine);
+void editSectionCut();
+void editSectionCut(int startingLine, int endLine);
+void editSectionPasteAfter();
+void editSectionPasteAfter(int line);
+void editSectionPasteBefore();
+void editSectionPasteBefore(int line);
 void editPasteLatex();
 void convertToLatex();
+void editIndentSection();
+void editUnIndentSection();
 void editSelectAll();
 void editFind();
 void editFindNext();
@@ -346,6 +356,7 @@ void SetMostUsedSymbols();
 void updateCompleter();
 
 protected:
+QPoint sectionSelection(QTreeWidgetItem* m_item);
 void dragEnterEvent(QDragEnterEvent *event);
 void dropEvent(QDropEvent *event);
 };

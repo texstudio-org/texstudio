@@ -303,7 +303,7 @@ public:
             if(my_words.count()>1){
                 for (int i=1;i<my_words.count();i++){
                     my_curWord=my_words[i];
-                    qDebug(qPrintable(my_curWord));
+                    
                     for(int j=my_start;(j<my_curWord.length()&&j<myResult.length());j++){
                         if(myResult[j]!=my_curWord[j]){
                             myResult=myResult.left(j);
@@ -311,9 +311,7 @@ public:
                         }
                     }
                 }
-                qDebug("Tab:\n");
-                qDebug(qPrintable(myResult));
-    
+                   
                 removeRightWordPart();
                 editor->cursor().insertText(myResult.right(myResult.length()-my_start));
                 maxWritten+=myResult.length()-my_start;

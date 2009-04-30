@@ -164,6 +164,7 @@ class QCE_EXPORT QDocument : public QObject
 		QDocumentCursor cursor(int line, int column = 0) const;
 		
 		QDocumentLine findLine(int& position) const;
+		int findLineContaining(const QString &searchText,  const int& startLine=0, const Qt::CaseSensitivity cs = Qt::CaseSensitive) const;
 		
 		bool isLineModified(const QDocumentLine& l) const;
 		bool hasLineEverBeenModified(const QDocumentLine& l) const;
