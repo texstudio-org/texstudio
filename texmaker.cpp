@@ -279,10 +279,10 @@ QMenu* Texmaker::newManagedMenu(QMenu* menu, const QString &id,const QString &te
     submenu->setObjectName( menu->objectName()+"/"+ id);
     return submenu;
 }
-QAction* Texmaker::newManagedAction(QMenu* menu, const QString &id,const QString &text, const char* slotName, const QKeySequence &shortCut, const QString & iconFile){
+QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QKeySequence &shortCut, const QString & iconFile){
     return newManagedAction(menu,id,text,slotName,QList<QKeySequence>() << shortCut, iconFile);
 }
-QAction* Texmaker::newManagedAction(QMenu* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile){
+QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile){
     QAction *act;
     if (iconFile.isEmpty()) act=new QAction(text, this);
     else act=new QAction (QIcon(iconFile), text, this);
@@ -294,7 +294,7 @@ QAction* Texmaker::newManagedAction(QMenu* menu, const QString &id,const QString
         managedMenuShortcuts.insert(act->objectName()+QString::number(i),shortCuts[i]);
     return act;
 }
-QAction* Texmaker::newManagedAction(QMenu* menu, const QString &id, QAction* act){
+QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id, QAction* act){
     act->setObjectName(menu->objectName()+"/"+id);
     menu->addAction(act);
     managedMenuShortcuts.insert(act->objectName()+"0",act->shortcut());
@@ -620,7 +620,21 @@ void Texmaker::setupMenus()
     menu->addSeparator();
     newManagedAction(menu, "appinfo",tr("About TexMakerX"), SLOT(HelpAbout()), 0,":/images/appicon.png");
     
-    //modify shortcuts
+//-----context menus-----
+	StructureTreeWidget->setObjectName("StructureTree");
+	StructureTreeWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
+    newManagedAction(StructureTreeWidget,"CopySection",tr("Copy"), SLOT(editSectionCopy()));
+    newManagedAction(StructureTreeWidget,"CutSection",tr("Cut"), SLOT(editSectionCut()));
+    newManagedAction(StructureTreeWidget,"PasteBefore",tr("Paste before"), SLOT(editSectionPasteBefore()));
+    newManagedAction(StructureTreeWidget,"PasteAfter",tr("Paste after"), SLOT(editSectionPasteAfter()));
+	QAction* sep = new QAction(StructureTreeWidget);
+	sep->setSeparator(true);
+    StructureTreeWidget->addAction(sep);
+    newManagedAction(StructureTreeWidget,"IndentSection",tr("Indent Section"), SLOT(editIndentSection()));
+    newManagedAction(StructureTreeWidget,"UnIndentSection",tr("Unindent Section"), SLOT(editUnIndentSection()));
+
+	
+	//modify shortcuts
     for (int i=0;i< managedMenuNewShortcuts.size();i++) {
         QString id=managedMenuNewShortcuts[i].first;
         int num=-1;
@@ -1438,6 +1452,180 @@ void Texmaker::editSetupEncoding(){
     UpdateCaption();
 }
 
+QPoint Texmaker::sectionSelection(QTreeWidgetItem* m_item)
+{
+    // called by action
+    QString m_text=m_item->text(2);
+    bool okay;
+    int l=m_text.toInt(&okay,10);
+    // find next section or higher
+    QTreeWidgetItem* m_parent;
+    int m_index;
+    do{
+        m_parent=m_item->parent();
+        if(m_parent){
+          m_index=m_parent->indexOfChild(m_item);
+          m_item=m_parent;
+        }
+        else m_index=-1;
+    }
+    while((m_index>=0)&&(m_index>=m_parent->childCount()-1)&&(m_parent->text(1)!="part"));
+    if(m_index>=0&&m_index<m_parent->childCount()-1){
+        m_item=m_parent->child(m_index+1);
+        m_text=m_item->text(2);
+        bool okay;
+        int m_endingLine=m_text.toInt(&okay,10);
+        return QPoint(l,m_endingLine-1);
+    }else {
+		if (!currentEditorView()) return QPoint();
+        // no ending section but end of document
+        int m_endingLine=currentEditorView()->editor->document()->findLineContaining("\\end{document}",l,Qt::CaseInsensitive);
+        if(m_endingLine<0) m_endingLine=currentEditorView()->editor->document()->lines();
+        return QPoint(l,m_endingLine);
+    }
+}
+
+void Texmaker::editIndentSection()
+{
+    if ( !currentEditorView() ) return;
+    // replace list
+    QStringList m_replace;
+    m_replace << "\\subparagraph" << "\\paragraph" << "\\subsubsection" << "\\subsection" << "\\section" << "\\chapter";
+    // replace sections
+    QPoint m_point=sectionSelection(StructureTreeWidget->currentItem());
+    QString m_line;
+    QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
+    for(int l=m_point.x();l<=m_point.y();l++)
+    {
+        currentEditorView()->editor->setCursorPosition(l-1,0);
+        m_cursor=currentEditorView()->editor->cursor();
+        m_line=currentEditorView()->editor->cursor().line().text();
+        QString m_old="";
+        foreach(QString elem,m_replace)
+        {
+            if(m_old!="") m_line.replace(elem,m_old);
+            m_old=elem;
+        }
+
+        m_cursor.movePosition(1,QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
+        currentEditorView()->editor->setCursor(m_cursor);
+        currentEditorView()->editor->cursor().insertText(m_line);
+    }
+
+}
+
+void Texmaker::editUnIndentSection()
+{
+    if ( !currentEditorView() ) return;
+
+    QStringList m_replace;
+
+    m_replace << "\\chapter" << "\\section" << "\\subsection" << "\\subsubsection" << "\\paragraph" << "\\subparagraph" ;
+
+    // replace sections
+    QPoint m_point=sectionSelection(StructureTreeWidget->currentItem());
+    QString m_line;
+    QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
+    for(int l=m_point.x();l<=m_point.y();l++)
+    {
+        currentEditorView()->editor->setCursorPosition(l-1,0);
+        m_cursor=currentEditorView()->editor->cursor();
+        m_line=currentEditorView()->editor->cursor().line().text();
+        QString m_old="";
+        foreach(QString elem,m_replace)
+        {
+            if(m_old!="") m_line.replace(elem,m_old);
+            m_old=elem;
+        }
+
+        m_cursor.movePosition(1,QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
+        currentEditorView()->editor->setCursor(m_cursor);
+        currentEditorView()->editor->cursor().insertText(m_line);
+    }
+
+}
+
+void Texmaker::editSectionCopy()
+{
+    // called by action
+    QPoint m_point=sectionSelection(StructureTreeWidget->currentItem());
+    editSectionCopy(m_point.x(),m_point.y());
+}
+
+void Texmaker::editSectionCut()
+{
+    // called by action
+    QPoint m_point=sectionSelection(StructureTreeWidget->currentItem());
+    editSectionCut(m_point.x(),m_point.y());
+	//UpdateStructure();
+}
+
+void Texmaker::editSectionCopy(int startingLine, int endLine)
+{
+    if ( !currentEditorView() ) return;
+
+    currentEditorView()->editor->setCursorPosition(startingLine-1,0);
+    QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
+    //m_cursor.movePosition(1, QDocumentCursor::NextLine, QDocumentCursor::KeepAnchor);
+    m_cursor.setSilent(true);
+    m_cursor.movePosition(endLine-startingLine, QDocumentCursor::NextLine, QDocumentCursor::KeepAnchor);
+    m_cursor.movePosition(0,QDocumentCursor::EndOfLine,QDocumentCursor::KeepAnchor);
+    currentEditorView()->editor->setCursor(m_cursor);
+    currentEditorView()->editor->copy();
+}
+
+void Texmaker::editSectionCut(int startingLine, int endLine)
+{
+    if ( !currentEditorView() ) return;
+    currentEditorView()->editor->setCursorPosition(startingLine-1,0);
+    QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
+    m_cursor.setSilent(true);
+    m_cursor.movePosition(endLine-startingLine, QDocumentCursor::NextLine, QDocumentCursor::KeepAnchor);
+    m_cursor.movePosition(0,QDocumentCursor::EndOfLine,QDocumentCursor::KeepAnchor);
+    currentEditorView()->editor->setCursor(m_cursor);
+    currentEditorView()->editor->cut();
+}
+
+void Texmaker::editSectionPasteAfter()
+{
+    if ( !currentEditorView() ) return;
+
+    QPoint m_point=sectionSelection(StructureTreeWidget->currentItem());
+    editSectionPasteAfter(m_point.y());
+	//UpdateStructure();
+}
+
+void Texmaker::editSectionPasteBefore()
+{
+    if ( !currentEditorView() ) return;
+
+    QString m_text=StructureTreeWidget->currentItem()->text(2);
+    bool okay;
+    int l=m_text.toInt(&okay,10);
+
+    editSectionPasteBefore(l-1);
+	//UpdateStructure();
+}
+
+void Texmaker::editSectionPasteAfter(int line)
+{
+    currentEditorView()->editor->setCursorPosition(line,0);
+    currentEditorView()->editor->cursor().insertText("\n");
+    currentEditorView()->editor->setCursorPosition(line,0);
+    editPaste();
+	//UpdateStructure();
+}
+
+void Texmaker::editSectionPasteBefore(int line)
+{
+    currentEditorView()->editor->setCursorPosition(line,0);
+    currentEditorView()->editor->cursor().insertText("\n");
+    currentEditorView()->editor->setCursorPosition(line,0);
+    editPaste();
+	//UpdateStructure();
+}
+
+
 /////////////// CONFIG ////////////////////
 void Texmaker::ReadSettings()
 {
@@ -1921,6 +2109,8 @@ for (int i=0;i<currentEditorView()->editor->document()->lines();i++)
 		parent_level[0] = new QTreeWidgetItem(top);
 		parent_level[0]->setText(0,s);
 		parent_level[0]->setIcon(0,QIcon(":/images/part.png"));
+		parent_level[0]->setText(1,"part");
+		parent_level[0]->setText(2,QString::number(i+1));
 		parent_level[0]->setToolTip ( 0, s );
 		parent_level[1]=parent_level[2]=parent_level[3]=parent_level[4]=parent_level[0];
 		};
@@ -1940,6 +2130,7 @@ for (int i=0;i<currentEditorView()->editor->document()->lines();i++)
 		parent_level[1]->setText(0,s);
 		parent_level[1]->setIcon(0,QIcon(":/images/chapter.png"));
 		parent_level[1]->setText(1,"chapter"); //this is intern (at least from textanalyse) needed to recognize chapter items!
+		parent_level[1]->setText(2,QString::number(i+1));
 		parent_level[1]->setText(3,QString::number(i+1)); //this is intern (at least from textanalyse) needed to recognize chapter items! (2 would be name)
 		parent_level[1]->setToolTip ( 0, s );
 		parent_level[2]=parent_level[3]=parent_level[4]=parent_level[1];
@@ -1959,6 +2150,8 @@ for (int i=0;i<currentEditorView()->editor->document()->lines();i++)
 		parent_level[2] = new QTreeWidgetItem(parent_level[1]);
 		parent_level[2]->setText(0,s);
 		parent_level[2]->setIcon(0,QIcon(":/images/section.png"));
+		parent_level[2]->setText(1,"section");
+		parent_level[2]->setText(2,QString::number(i+1));
 		parent_level[2]->setToolTip ( 0, s );
 		parent_level[3]=parent_level[4]=parent_level[2];
 		};
@@ -1976,6 +2169,8 @@ for (int i=0;i<currentEditorView()->editor->document()->lines();i++)
 		structitem.append(s);
 		parent_level[3] = new QTreeWidgetItem(parent_level[2]);
 		parent_level[3]->setText(0,s);
+		parent_level[3]->setText(1,"subsection");
+		parent_level[3]->setText(2,QString::number(i+1));
 		parent_level[3]->setIcon(0,QIcon(":/images/subsection.png"));
 		parent_level[3]->setToolTip ( 0, s );
 		parent_level[4]=parent_level[3];
@@ -1995,6 +2190,8 @@ for (int i=0;i<currentEditorView()->editor->document()->lines();i++)
 		parent_level[4] = new QTreeWidgetItem(parent_level[3]);
 		parent_level[4]->setText(0,s);
 		parent_level[4]->setIcon(0,QIcon(":/images/subsubsection.png"));
+		parent_level[4]->setText(1,"subsubsection");
+		parent_level[4]->setText(2,QString::number(i+1));
 		parent_level[4]->setToolTip ( 0, s );
 		};
 	}
