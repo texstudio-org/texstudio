@@ -1609,9 +1609,18 @@ void Texmaker::editSectionPasteBefore()
 
 void Texmaker::editSectionPasteAfter(int line)
 {
-    currentEditorView()->editor->setCursorPosition(line,0);
-    currentEditorView()->editor->cursor().insertText("\n");
-    currentEditorView()->editor->setCursorPosition(line,0);
+    if(line>=currentEditorView()->editor->document()->lines())
+    {
+        currentEditorView()->editor->setCursorPosition(line-1,0);
+        QDocumentCursor c=currentEditorView()->editor->cursor();
+        c.movePosition(1,QDocumentCursor::End,QDocumentCursor::MoveAnchor);
+        currentEditorView()->editor->setCursor(c);
+        currentEditorView()->editor->cursor().insertText("\n");
+    } else {
+        currentEditorView()->editor->setCursorPosition(line,0);
+        currentEditorView()->editor->cursor().insertText("\n");
+        currentEditorView()->editor->setCursorPosition(line,0);
+    }
     editPaste();
 	//UpdateStructure();
 }
