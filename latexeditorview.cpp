@@ -463,7 +463,7 @@ void LatexEditorView::spellCheckingListSuggestions(){
     }
     if (repopup) {
     //    contextMenu->close();
-        contextMenu->exec();
+        contextMenu->show();
     }
 }
 void LatexEditorView::dictionaryReloaded(){
