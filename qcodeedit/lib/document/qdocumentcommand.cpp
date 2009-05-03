@@ -863,6 +863,10 @@ QDocumentEraseCommand::QDocumentEraseCommand(	int bl, int bo,
 												QDocumentCommand *p)
  : QDocumentCommand(Erase, doc, p)
 {
+	if (el>m_doc->lines()-1) {
+		el=m_doc->lines()-1;
+		eo=m_doc->impl()->at(el)->text().length();
+	}	
 	QDocumentLineHandle *start = m_doc->impl()->at(bl),
 						*end = m_doc->impl()->at(el);
 	

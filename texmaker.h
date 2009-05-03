@@ -203,6 +203,7 @@ void convertToLatex();
 void editIndentSection();
 void editUnIndentSection();
 void editSelectAll();
+void editEraseLine();
 void editFind();
 void editFindNext();
 void editReplace();

@@ -423,7 +423,7 @@ void Texmaker::setupMenus()
     newManagedAction(menu,"cut",tr("Cut"), SLOT(editCut()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_X)<<Qt::SHIFT+Qt::Key_Delete, ":/images/editcut.png");
     newManagedAction(menu,"paste",tr("Paste"), SLOT(editPaste()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::SHIFT+Qt::Key_Insert, ":/images/editpaste.png");
     newManagedAction(menu,"selectall",tr("Select All"), SLOT(editSelectAll()), Qt::CTRL+Qt::Key_A);
-
+    newManagedAction(menu,"eraseLine",tr("Erase Line"), SLOT(editEraseLine()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_K));
     menu->addSeparator();
     newManagedAction(menu,"pasteAsLatex",tr("Paste as Latex"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, ":/images/editpaste.png");
     newManagedAction(menu,"convertToLatex",tr("Convert to Latex"), SLOT(convertToLatex()));
@@ -1367,6 +1367,13 @@ void Texmaker::editSelectAll()
 {
 if ( !currentEditorView() ) return;
 currentEditorView()->editor->selectAll();
+}
+
+void Texmaker::editEraseLine()
+{
+	if ( !currentEditorView() ) return;
+	QDocumentCursor c = currentEditorView()->editor->cursor();
+	c.eraseLine();
 }
 
 void Texmaker::editFind()
