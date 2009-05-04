@@ -46,7 +46,7 @@ SpellerDialog::~SpellerDialog(){
     ui.lineEditOriginal->clear();
     ui.listWidget->clear();
     ui.lineEditNew->clear();
-    
+
 }
 
 void SpellerDialog::setEditorView(LatexEditorView *edView){
@@ -57,7 +57,7 @@ void SpellerDialog::setEditorView(LatexEditorView *edView){
 void SpellerDialog::startSpelling(){
     if (!editor) return;
     ignoreListChanged=false;
-    if (editor->cursor().hasSelection())    
+    if (editor->cursor().hasSelection())
     {
         ui.labelMessage->setText(tr("Check spelling selection..."));
         //endpos=c.selectionEnd();
@@ -79,7 +79,7 @@ void SpellerDialog::startSpelling(){
         int nextIndex=0;
         int wordStartIndex=0;
         QString tempWord;
-        while (nextIndex<startIndex && nextWord(curLine,nextIndex,tempWord,wordStartIndex)) 
+        while (nextIndex<startIndex && nextWord(curLine,nextIndex,tempWord,wordStartIndex))
             ; //next
         startIndex=wordStartIndex;
 	}
@@ -157,15 +157,15 @@ void SpellerDialog::SpellingNextWord()
     for (;curLine<=endLine;curLine++) {
         int wordStartIndex;
         while (nextWord(editor->text(curLine),curIndex,curWord,wordStartIndex)) {
-            if (curLine==endLine && curIndex>endIndex) 
+            if (curLine==endLine && curIndex>endIndex)
               break; //not in checked range
             if (m_speller->check(curWord)) continue;
             QStringList suggWords=m_speller->suggest(curWord);
-            
+
             QDocumentCursor wordSelection(editor->document(),curLine,wordStartIndex);
             wordSelection.movePosition(curIndex-wordStartIndex,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
             editor->setCursor(wordSelection);
-            
+
             ui.listWidget->setEnabled(true);
             ui.lineEditNew->setEnabled(true);
             ui.pushButtonIgnore->setEnabled(true);
@@ -185,7 +185,7 @@ void SpellerDialog::SpellingNextWord()
         curIndex=0;
         curWord="";
     }
-    
+
     //no word found
     ui.listWidget->setEnabled(false);
     ui.lineEditNew->setEnabled(false);
@@ -221,6 +221,9 @@ void SpellerDialog::addRemoveIgnoredWord(){
 }
 
 void SpellerDialog::ignoreListClicked(const QModelIndex &mod){
+	// remove unused argument warning
+	(void) mod;
+
 	if (!ui.ignoreListView->model()) return;
 	ui.lineEditIgnoredWord->setText(ui.ignoreListView->model()->data(ui.ignoreListView->currentIndex(),Qt::DisplayRole).toString());
 }

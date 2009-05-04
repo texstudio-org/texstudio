@@ -30,20 +30,20 @@ CompletionWord::CompletionWord(const QString &newWord){
             escape=false;
             switch (newWord.at(i).toAscii()) {
                 case '%': word+='%'; visibleWord+='%'; break;
-                case '|': 
+                case '|':
                     if (inDescription && cursorPos==-1) anchorPos=formatStart;
-                    else anchorPos=cursorPos; 
-                    cursorPos=visibleWord.length(); 
+                    else anchorPos=cursorPos;
+                    cursorPos=visibleWord.length();
                     break;
-                case '<': 
-                    inDescription=true; 
-                    formatStart=visibleWord.length(); 
+                case '<':
+                    inDescription=true;
+                    formatStart=visibleWord.length();
                     break;
                 case '>': {
-                    inDescription=false;  
+                    inDescription=false;
                     descriptiveParts.append(QPair<int, int>(formatStart, visibleWord.length()-formatStart));
                     break;
-                case 'n': 
+                case 'n':
                     visibleWord+="\n";
                     break;
                 }
@@ -60,9 +60,9 @@ void CompletionWord::insertAt(QEditor* editor, QDocumentCursor cursor){
     QString savedSelection;
     int multilines=shownWord.count('\n');
     QVector<QDocumentLine> documentlines;
-    
+
     if (cursor.hasSelection()) {
-        savedSelection=cursor.selectedText(); 
+        savedSelection=cursor.selectedText();
         cursor.removeSelectedText();
     }
     QDocumentCursor selector=cursor;
@@ -77,7 +77,7 @@ void CompletionWord::insertAt(QEditor* editor, QDocumentCursor cursor){
         for (int i=1;i<documentlines.count()-1;i++) documentlines[i]=documentlines[i-1].next(); //todo: optimize
     }
 
-    if (QDocument::formatFactory()) 
+    if (QDocument::formatFactory())
         for (int i=0;i<descriptiveParts.size();i++) {
             QFormatRange fr(descriptiveParts[i].first+curStart,descriptiveParts[i].second,QDocument::formatFactory()->id("temporaryCodeCompletion"));
             if (multilines) {
@@ -91,7 +91,7 @@ void CompletionWord::insertAt(QEditor* editor, QDocumentCursor cursor){
                 }
             } else curLine.addOverlay(fr);
         }
-            
+
     //place cursor/add \end
     int selectFrom=-1;
     int selectTo=-1;
@@ -106,10 +106,10 @@ void CompletionWord::insertAt(QEditor* editor, QDocumentCursor cursor){
             indent+="\t";
         } else
             cursor.insertText( "\n"+indent+content+"\n"+indent+"\\end"+shownWord.mid(p,shownWord.indexOf("}")-p+1));
-        if (QDocument::formatFactory()) 
-            for (int i=0;i<descriptiveParts.size();i++) 
+        if (QDocument::formatFactory())
+            for (int i=0;i<descriptiveParts.size();i++)
                 curLine.next().addOverlay(QFormatRange(indent.size(),content.size(),QDocument::formatFactory()->id("temporaryCodeCompletion")));
-        
+
         if (cursorPos==-1) {
             deltaLine=1;
             selectFrom=indent.length();
@@ -119,7 +119,7 @@ void CompletionWord::insertAt(QEditor* editor, QDocumentCursor cursor){
             selectTo=cursorPos+curStart;
         }
     } else if (cursorPos>-1) {
-        if (multilines) { //todo: add support for selected multilines 
+        if (multilines) { //todo: add support for selected multilines
             QString temp= shownWord;
             temp.truncate(cursorPos);
             deltaLine=temp.count('\n');
@@ -153,7 +153,11 @@ public:
     virtual QString name() const{return "TexMakerX::CompleteInputBinding";}
 
     virtual bool mousePressEvent(QMouseEvent* mouse, QEditor *editor){
-        resetBinding();
+        // remove unused argument warnings
+    	(void) mouse;
+    	(void) editor;
+
+    	resetBinding();
         return false;
     }
 
@@ -170,15 +174,15 @@ public:
             if (!v.isValid() || !v.canConvert<CompletionWord>()) return false;
             CompletionWord cw= v.value<CompletionWord>();
             QString full=cw.shownWord;
-            //int alreadyWrittenLen=editor->cursor().columnNumber()-curStart;            
+            //int alreadyWrittenLen=editor->cursor().columnNumber()-curStart;
             //remove current text for correct case
-            for (int i=maxWritten-cursor.columnNumber();i>0;i--) cursor.deleteChar(); 
+            for (int i=maxWritten-cursor.columnNumber();i>0;i--) cursor.deleteChar();
             for (int i=cursor.columnNumber()-curStart;i>0;i--) cursor.deletePreviousChar();
           //  cursor.setColumnNumber(curStart);
             cw.insertAt(editor,cursor);
-            
+
             cursor.endEditBlock();
-            
+
             return true;
         }
         return false;
@@ -186,7 +190,7 @@ public:
 
     void removeRightWordPart(){
         QDocumentCursor cursor=editor->cursor();
-        for (int i=maxWritten-cursor.columnNumber();i>0;i--) cursor.deleteChar(); 
+        for (int i=maxWritten-cursor.columnNumber();i>0;i--) cursor.deleteChar();
         maxWritten=cursor.columnNumber();
         editor->setCursor(cursor);//necessary to keep the cursor at the same place (but why???)
     }
@@ -199,7 +203,7 @@ public:
 
     virtual bool keyPressEvent(QKeyEvent *event, QEditor *editor)
     {
-        if (event->key()==Qt::Key_Shift || event->key()==Qt::Key_Alt || event->key()==Qt::Key_Control) 
+        if (event->key()==Qt::Key_Shift || event->key()==Qt::Key_Alt || event->key()==Qt::Key_Control)
             return false;
         if (!active) return false; //we should never have been called
         bool handled=false;
@@ -226,7 +230,7 @@ public:
             editor->setCursorPosition(curLine.lineNumber(),editor->cursor().columnNumber()-1);
             if (editor->cursor().columnNumber()<=curStart) resetBinding();
             handled=true;
-        } else if (event->key()==Qt::Key_Right) { 
+        } else if (event->key()==Qt::Key_Right) {
             if (event->modifiers()) {
                 resetBinding();
                 return false;
@@ -234,7 +238,7 @@ public:
             editor->setCursorPosition(curLine.lineNumber(),editor->cursor().columnNumber()+1);
             if (editor->cursor().columnNumber()>maxWritten) resetBinding();
             handled=true;
-        } else if (event->key()==Qt::Key_Up) { 
+        } else if (event->key()==Qt::Key_Up) {
             if (!completer->list->isVisible()) {
                 resetBinding();
                 return false;
@@ -242,7 +246,7 @@ public:
             QModelIndex ind=completer->list->model()->index(completer->list->currentIndex().row()-1,0,QModelIndex());
             if (ind.isValid()) select(ind);
             return true;
-        } else if (event->key()==Qt::Key_Down) { 
+        } else if (event->key()==Qt::Key_Down) {
             if (!completer->list->isVisible()) {
                 resetBinding();
                 return false;
@@ -250,7 +254,7 @@ public:
             QModelIndex ind=completer->list->model()->index(completer->list->currentIndex().row()+1,0,QModelIndex());
             if (ind.isValid()) select(ind);
             return true;
-        } else if (event->key()==Qt::Key_PageUp) { 
+        } else if (event->key()==Qt::Key_PageUp) {
             if (!completer->list->isVisible()) {
                 resetBinding();
                 return false;
@@ -259,7 +263,7 @@ public:
             if (!ind.isValid()) ind=completer->list->model()->index(0,0,QModelIndex());
             if (ind.isValid()) select(ind);
             return true;
-        } else if (event->key()==Qt::Key_PageDown) { 
+        } else if (event->key()==Qt::Key_PageDown) {
             if (!completer->list->isVisible()) {
                 resetBinding();
                 return false;
@@ -268,7 +272,7 @@ public:
             if (!ind.isValid()) ind=completer->list->model()->index(completer->list->model()->rowCount()-1,0,QModelIndex());
             if (ind.isValid()) select(ind);
             return true;
-        } else if (event->key()==Qt::Key_Home) { 
+        } else if (event->key()==Qt::Key_Home) {
             if (!completer->list->isVisible()) {
                 resetBinding();
                 return false;
@@ -276,7 +280,7 @@ public:
             QModelIndex ind=completer->list->model()->index(0,0,QModelIndex());
             if (ind.isValid()) select(ind);
             return true;
-        } else if (event->key()==Qt::Key_End) { 
+        } else if (event->key()==Qt::Key_End) {
             if (!completer->list->isVisible()) {
                 resetBinding();
                 return false;
@@ -303,7 +307,7 @@ public:
             if(my_words.count()>1){
                 for (int i=1;i<my_words.count();i++){
                     my_curWord=my_words[i];
-                    
+
                     for(int j=my_start;(j<my_curWord.length()&&j<myResult.length());j++){
                         if(myResult[j]!=my_curWord[j]){
                             myResult=myResult.left(j);
@@ -311,7 +315,7 @@ public:
                         }
                     }
                 }
-                   
+
                 removeRightWordPart();
                 editor->cursor().insertText(myResult.right(myResult.length()-my_start));
                 maxWritten+=myResult.length()-my_start;
@@ -321,7 +325,7 @@ public:
                 resetBinding();
                 return true;
             }
-        } else if (event->key()==Qt::Key_Return || event->key()==Qt::Key_Enter) { 
+        } else if (event->key()==Qt::Key_Return || event->key()==Qt::Key_Enter) {
             if (!insertCompletedWord()) {
                 editor->cursor().insertText("\n");
                 curLine=editor->document()->line(curLine.lineNumber()+1);
@@ -333,8 +337,8 @@ public:
             if (event->text().length()!=1 || event->text()==" ") {
                 resetBinding();
                 return false;
-            } 
-        
+            }
+
             QChar written=event->text().at(0);
             if (written=='\\') {
                 if (getCurWord()=="\\") {
@@ -349,10 +353,10 @@ public:
                 }
                 editor->cursor().insertText(written);
                 handled=true;
-            } else if (completer->acceptChar(written,editor->cursor().columnNumber()-curStart)) { 
+            } else if (completer->acceptChar(written,editor->cursor().columnNumber()-curStart)) {
                 maxWritten++;
                 editor->cursor().insertText(written);
-                if (editor->cursor().columnNumber()+1>curStart)  
+                if (editor->cursor().columnNumber()+1>curStart)
                     completer->list->show();
                 handled=true;
             } else {
@@ -361,7 +365,7 @@ public:
             }
         }
         completer->updateList(getCurWord());
-        if (!completer->list->currentIndex().isValid()) 
+        if (!completer->list->currentIndex().isValid())
             select(completer->list->model()->index(0,0,QModelIndex()));
         return handled;
     }
@@ -384,14 +388,14 @@ public:
         active=false;
         curLine=QDocumentLine(); //prevent crash if the editor is destroyed
     }
-    
+
     void bindTo(QEditor * edit, LatexCompleter* caller, bool forced, int start){
         if (active) resetBinding();
         active=true;
         completer=caller;
         editor=edit;
         oldBinding=editor->inputBinding();
-        editor->setInputBinding(this);        
+        editor->setInputBinding(this);
         curStart=start>0?start:0;
         maxWritten=editor->cursor().columnNumber();
         if (maxWritten<start) maxWritten=start;
@@ -425,7 +429,7 @@ public:
     CompletionItemDelegate(QObject* parent = 0): QItemDelegate(parent)
     {
     }
- 
+
     void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
     {
         QVariant v=index.model()->data(index);
@@ -445,7 +449,7 @@ public:
         }
         QRect r=option.rect;
         r.setLeft(r.left()+2);
-        if (cw.descriptiveParts.empty()) 
+        if (cw.descriptiveParts.empty())
             painter->drawText(r,Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, cw.shownWord);
         else {
             QFontMetrics fmn(fNormal);
@@ -466,11 +470,14 @@ public:
         }
     }
 };
- 
+
 
 
 //----------------------------list model------------------------------------
 int CompletionListModel::rowCount(const QModelIndex &parent) const{
+	// remove unused argument warning
+	(void) parent;
+
     return words.count();
 }
 QVariant CompletionListModel::data(const QModelIndex &index, int role) const{
@@ -489,17 +496,22 @@ QVariant CompletionListModel::data(const QModelIndex &index, int role) const{
 }
 QVariant CompletionListModel::headerData(int section, Qt::Orientation orientation,
                      int role) const{
+	// remove unused argument warnings
+	(void) role;
+	(void) orientation;
+	(void) section;
+
     return QVariant();
 }
  void CompletionListModel::setWords(const QList<CompletionWord> &baselist, const QString &word){
      if (word==curWord) return;
      words.clear();
      for (int i=0;i<baselist.count();i++){
-        if (baselist[i].word.startsWith(word,Qt::CaseInsensitive)) 
+        if (baselist[i].word.startsWith(word,Qt::CaseInsensitive))
             words.append(baselist[i]);
      }
      if (words.size()>=2) //prefer matching case
-        if (!words[0].word.startsWith(word,Qt::CaseSensitive) && words[1].word.startsWith(word,Qt::CaseSensitive)) 
+        if (!words[0].word.startsWith(word,Qt::CaseSensitive) && words[1].word.startsWith(word,Qt::CaseSensitive))
             words.swap(0,1);
      curWord=word;
      reset();
@@ -518,7 +530,7 @@ QHash<QString, int> LatexCompleter::helpIndicesCache;
 LatexCompleter::LatexCompleter(QObject *p): QObject(p)
 {
  //   addTrigger("\\");
-    if (!qobject_cast<QWidget*>(parent()))  
+    if (!qobject_cast<QWidget*>(parent()))
         QMessageBox::critical(0,"Serious PROBLEM", QString("The completer has been created without a parent widget. This is impossible!\n")+
                                                    QString("Please report it ASAP to the bug tracker on texmakerx.sf.net and check if your computer is going to explode!\n")+
                                                    QString("(please report the bug *before* going to a safe place, you could rescue others)"),QMessageBox::Ok);
@@ -544,7 +556,7 @@ void LatexCompleter::setWords(const QStringList &newwords, bool normalTextList){
         foreach (QChar c, str) acceptedChars.insert(c);
     }
     qSort(newWordList.begin(), newWordList.end());
-    
+
     words=newWordList;
     if (normalTextList) wordsText=newWordList;
     else {
@@ -568,7 +580,7 @@ void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool nor
     if (editor != newEditor) {
         if (editor) disconnect(editor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
         if (newEditor) connect(newEditor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
-        editor=newEditor;   
+        editor=newEditor;
     }
     if (!editor) return;
     QDocumentCursor c=editor->cursor();
@@ -595,7 +607,7 @@ void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool nor
     if (c.previousChar()!='\\' || forceVisibleList) {
         int start=c.columnNumber()-1;
         if (normalText) start=0;
-        QString eow="~!@#$%^&*()_+}|:\"<>?,./;[]-= \n\r`+´";
+        QString eow="~!@#$%^&*()_+}|:\"<>?,./;[]-= \n\r`+ï¿½";
         QString lineText=c.line().text();
         for (int i=c.columnNumber()-1;i>=0;i--){
             if (lineText.at(i)==QChar('\\')) {
@@ -621,7 +633,7 @@ void LatexCompleter::parseHelpfile(QString text){
     text=text.remove(0,start);
     text=text.remove(0,text.indexOf("<table>")-1);
     //split into index and remaining teext
-    int end=text.indexOf("</table>"); 
+    int end=text.indexOf("</table>");
     if (end==-1) return; //no remaining text
     QString index=text.left(end);
     helpFile=text.mid(end);
@@ -636,7 +648,7 @@ void LatexCompleter::parseHelpfile(QString text){
             helpIndices.insert(id.toLower(),rx.cap(2));
             pos += rx.matchedLength();
         }
-    }   
+    }
 //    QMessageBox::information(0,QString::number(helpIndices.size()),"",0);
 }
 bool LatexCompleter::hasHelpfile(){
@@ -650,7 +662,7 @@ void LatexCompleter::updateList(QString word){
         cur=list->model()->data(list->currentIndex(),Qt::DisplayRole).toString();
     ((CompletionListModel*)(list->model()))->setWords(words,word);
     if (cur!="") {
-        int p=((CompletionListModel*)(list->model()))->words.indexOf(cur); 
+        int p=((CompletionListModel*)(list->model()))->words.indexOf(cur);
         if (p>=0) list->setCurrentIndex(list->model()->index(p,0,QModelIndex()));
     }
 }
@@ -704,7 +716,7 @@ void LatexCompleter::selectionChanged ( const QModelIndex & index ){
     if (screen.width()-90>=tt.x()) QToolTip::showText(tt, topic, list);
     else {
         //list->mapToGlobal
-        QPoint tt=list->mapToGlobal(QPoint(0, r.top()));     
+        QPoint tt=list->mapToGlobal(QPoint(0, r.top()));
         QToolTip::showText(tt, topic, list,QRect (-300,-200,300,600));
     }
 }

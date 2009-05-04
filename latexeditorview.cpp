@@ -15,7 +15,7 @@
 
 #include "qdocumentline.h"
 #include "qdocumentcommand.h"
- 
+
 
 #include "qlinemarksinfocenter.h"
 #include "qformatfactory.h"
@@ -105,7 +105,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
             else fr = cursor.line().getOverlayAt(cursor.columnNumber(),LatexEditorView::speller->spellcheckErrorFormat);
             if (fr.length>0 && fr.format==LatexEditorView::speller->spellcheckErrorFormat) {
                 QString word=cursor.line().text().mid(fr.offset,fr.length);
-                if (!(editor->cursor().hasSelection() && editor->cursor().selectedText().length()>0) || editor->cursor().selectedText()==word 
+                if (!(editor->cursor().hasSelection() && editor->cursor().selectedText().length()>0) || editor->cursor().selectedText()==word
                     || editor->cursor().selectedText()==lastSpellCheckedWord) {
                     lastSpellCheckedWord=word;
                     word=latexToPlainWord(word);
@@ -155,7 +155,7 @@ LatexEditorView::LatexEditorView(QWidget *parent) : QWidget(parent),curChangePos
 
 	codeeditor = new QCodeEdit(false,this);
     editor=codeeditor->editor();
-    
+
     lineMarkPanel=new QLineMarkPanel;
     lineMarkPanelAction=codeeditor->addPanel(lineMarkPanel, QCodeEdit::West, false);
     lineNumberPanel=new QLineNumberPanel;
@@ -165,7 +165,7 @@ LatexEditorView::LatexEditorView(QWidget *parent) : QWidget(parent),curChangePos
     statusPanel=codeeditor->addPanel(new QStatusPanel, QCodeEdit::South, false);
 	searchReplacePanel=codeeditor->addPanel(new QSearchReplacePanel, QCodeEdit::South,false);
 
-    
+
     connect(lineMarkPanel,SIGNAL(lineClicked(int)),this,SLOT(lineMarkClicked(int)));
     connect(editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
     connect(editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),this,SLOT(lineDeleted(QDocumentLineHandle*)));
@@ -173,7 +173,7 @@ LatexEditorView::LatexEditorView(QWidget *parent) : QWidget(parent),curChangePos
     connect(LatexEditorView::speller,SIGNAL(reloadDictionary()),this,SLOT(dictionaryReloaded()));
 
     //editor->setFlag(QEditor::CursorJumpPastWrap,false);
-        
+
     editor->setInputBinding(defaultInputBinding);
     mainlay->addWidget(editor);
 
@@ -200,7 +200,7 @@ void LatexEditorView::jumpChangePositionBackward(){
     else if (curChangePos>=0 && curChangePos < changePositions.size()-1) curChangePos++;
     else if (editor->cursor().line()==changePositions.first().first) curChangePos=1;
     else curChangePos=0;
-    if (curChangePos>=0 && curChangePos < changePositions.size()) 
+    if (curChangePos>=0 && curChangePos < changePositions.size())
         editor->setCursorPosition(changePositions[curChangePos].first.lineNumber(),changePositions[curChangePos].second);
 }
 void LatexEditorView::jumpChangePositionForward(){
@@ -212,7 +212,7 @@ void LatexEditorView::jumpChangePositionForward(){
     if (curChangePos>0) {
         curChangePos--;
         editor->setCursorPosition(changePositions[curChangePos].first.lineNumber(),changePositions[curChangePos].second);
-    }    
+    }
 }
 void LatexEditorView::jumpToBookmark(int bookmarkNumber){
     int markLine=editor->document()->findNextMark(bookMarkId(bookmarkNumber),editor->cursor().line().lineNumber(),editor->cursor().line().lineNumber()-1);
@@ -252,18 +252,18 @@ void LatexEditorView::foldLevel(bool unFold, int level){
 	for ( int n = 0; n < doc->lines(); ++n ) {
 		QDocumentLine b=doc->line(n);
 		if (b.isHidden()) continue;
-		
+
 		int flags = ld->blockFlags(doc, n, depth);
 		short open = QCE_FOLD_OPEN_COUNT(flags);
 		short close = QCE_FOLD_CLOSE_COUNT(flags);
-		
+
 		depth -= close;
-		
+
 		if ( depth < 0 )
 			depth = 0;
-		
+
 		depth += open;
-		
+
 		if (depth==level) {
 			if (unFold && (flags & QLanguageDefinition::Collapsed))
 				ld->expand(doc,n);
@@ -271,7 +271,7 @@ void LatexEditorView::foldLevel(bool unFold, int level){
 				ld->collapse(doc,n);
 		}
 		if ( ld->blockFlags(doc, n, depth) & QLanguageDefinition::Collapsed )
-			depth -= open; // outermost block folded : none of the opening is actually opened		
+			depth -= open; // outermost block folded : none of the opening is actually opened
 	}
 }
 //Collapse at the first possible point before/at line
@@ -280,7 +280,7 @@ void LatexEditorView::foldBlockAt(bool unFold, int line){
 	QLanguageDefinition* ld = doc->languageDefinition();
 	while (line>=0) {
 		QDocumentLine b=doc->line(line);
-		if (!b.isHidden()) 
+		if (!b.isHidden()) {
 			if (unFold && (ld->blockFlags(doc,line) & QLanguageDefinition::Collapsed)){
 				ld->expand(doc,line);
 				break;
@@ -288,6 +288,7 @@ void LatexEditorView::foldBlockAt(bool unFold, int line){
 				ld->collapse(doc,line);
 				break;
 			}
+		}
 		line--;
 	}
 }
@@ -298,7 +299,7 @@ void LatexEditorView::cleanBib(){
     QDocument* doc = editor->document();
     for (int i=doc->lines()-1;i>=0;i--){
         QString trimLine=doc->line(i).text().trimmed();
-        if (trimLine.startsWith("OPT") || trimLine.startsWith("ALT")) 
+        if (trimLine.startsWith("OPT") || trimLine.startsWith("ALT"))
            doc->execute(new QDocumentEraseCommand(i,0,i+1,0,doc));
         }
     setFocus();
@@ -337,7 +338,7 @@ void LatexEditorView::lineMarkClicked(int line){
         return;
       }
     //add unused mark (1..3) (when possible)
-    for (int i=1;i<=3;i++) 
+    for (int i=1;i<=3;i++)
         if (editor->document()->findNextMark(bookMarkId(i))<0) {
             l.addMark(bookMarkId(i));
             return;
@@ -355,24 +356,24 @@ void LatexEditorView::documentContentChanged(int linenr, int count){
           !editor->cursor().atLineStart() && editor->cursor().line().text().trimmed().length()>0 &&
           startline.isValid()) {
         /*if (curChangePos<1) {
-            if (changePositions.size()==0 || changePositions.first.first<>linenr) 
+            if (changePositions.size()==0 || changePositions.first.first<>linenr)
                 changePositions.insert(0,QPair<linenr,editor->cursor().columnNumber());
         } else if (curChangePos==changePositions.size()-1) {
-            if (changePositions[curChangePos].first!=linenr) 
+            if (changePositions[curChangePos].first!=linenr)
                 changePositions.append(QPair<linenr,editor->cursor().columnNumber());
         } else {
-            if (changePositions[curChangePos].first!=linenr && changePositions[curChangePos+1].first!=linenr) 
+            if (changePositions[curChangePos].first!=linenr && changePositions[curChangePos+1].first!=linenr)
                 changePositions.insert(curChangePos,QPair<linenr,editor->cursor().columnNumber());
         }*/
 
         bool add=false;
         if (changePositions.size()<=0) add=true;
-        else if (curChangePos<1) {            
+        else if (curChangePos<1) {
             if (changePositions.first().first!=startline) add=true;
-            else changePositions.first().second=editor->cursor().columnNumber();               
+            else changePositions.first().second=editor->cursor().columnNumber();
         } else if (curChangePos>=changePositions.size()-1) {
             if (changePositions.last().first!=startline) add=true;
-            else changePositions.last().second=editor->cursor().columnNumber();                
+            else changePositions.last().second=editor->cursor().columnNumber();
         }  else if (changePositions[curChangePos].first==startline) changePositions[curChangePos].second=editor->cursor().columnNumber();
         else if(changePositions[curChangePos+1].first==startline) changePositions[curChangePos+1].second=editor->cursor().columnNumber();
         else add=true;
@@ -380,9 +381,9 @@ void LatexEditorView::documentContentChanged(int linenr, int count){
             curChangePos=-1;
             changePositions.insert(0,QPair<QDocumentLine,int>(startline,editor->cursor().columnNumber()));
             if (changePositions.size()>20) changePositions.removeLast();
-        }   
+        }
     }
-    
+
     if (!speller || !QDocument::formatFactory()) return;
     int tccFormat=QDocument::formatFactory()->id("temporaryCodeCompletion");
     for (int i=linenr;i<linenr+count;i++){
@@ -391,25 +392,25 @@ void LatexEditorView::documentContentChanged(int linenr, int count){
         line.clearOverlays();
         if (line.length()<=3) continue;
         if (!speller->isActive()) continue;
-        
+
         QString lineText = line.text();
         QString word;
         int start=0;int wordstart;
         while (nextWord(lineText,start,word,wordstart))
-            if (word.length()>=3 && !speller->check(word)) 
+            if (word.length()>=3 && !speller->check(word))
                 line.addOverlay(QFormatRange(wordstart,start-wordstart,speller->spellcheckErrorFormat));
     }
 }
 void LatexEditorView::lineDeleted(QDocumentLineHandle* l ){
     QHash<QDocumentLineHandle*, int>::iterator it;
     while ((it=lineToLogEntries.find(l))!=lineToLogEntries.end()) {
-        logEntryToLine.remove(it.value());        
+        logEntryToLine.remove(it.value());
         lineToLogEntries.erase(it);
     }
-        
+
     QPair<int, int> p;
     //QMessageBox::information(0,QString::number(nr),"",0);
-    for (int i=0;i<changePositions.size();i++) 
+    for (int i=0;i<changePositions.size();i++)
       if (changePositions[i].first==l) {
           if (changePositions[i].first.previous().isValid()) changePositions[i].first=changePositions[i].first.previous();
           else if (changePositions[i].first.next().isValid()) changePositions[i].first=changePositions[i].first.next();
@@ -434,8 +435,8 @@ void LatexEditorView::spellCheckingAlwaysIgnore(){
         for (int i=0;i<editor->document()->lines();i++){
             QList<QFormatRange> li=editor->document()->line(i).getOverlays();
             QString curLineText=editor->document()->line(i).text();
-            for (int j=0;j<li.size();j++) 
-                if (curLineText.mid(li[j].offset,li[j].length)==newToIgnore) 
+            for (int j=0;j<li.size();j++)
+                if (curLineText.mid(li[j].offset,li[j].length)==newToIgnore)
                     editor->document()->line(i).removeOverlay(li[j]);
         }
         editor->viewport()->update();

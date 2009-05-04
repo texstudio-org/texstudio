@@ -45,6 +45,9 @@ QVariant TextAnalysisModel::headerData(int section, Qt::Orientation orientation,
     else return QVariant();
 }
 int TextAnalysisModel::columnCount ( const QModelIndex & parent) const {
+	// remove unused argument warning
+	(void) parent;
+
   return 3;
 }
 void TextAnalysisModel::updateAll(){
@@ -75,7 +78,7 @@ ui.resultView->setWordWrap (false);
   connect(ui.closeButton, SIGNAL(clicked()), SLOT(slotClose()) );
   connect(ui.searchSelectionButton, SIGNAL(clicked()), SLOT(slotSelectionButton()) );
   connect(ui.resultView, SIGNAL(doubleClicked (const QModelIndex & )), SLOT(slotSelectionButton()) );
-  
+
 }
 
 TextAnalysisDialog::~TextAnalysisDialog()
@@ -114,7 +117,7 @@ void TextAnalysisDialog::needCount(){
     if (alreadyCount && lastSentenceLength==ui.sentenceLengthSpin->value() &&
         lastParsedMinWordLength==(ui.minimumLengthMeaning->currentIndex()==4?ui.minimumLengthSpin->value():0) &&
         lastEndCharacters==(ui.respectEndCharsCheck->isChecked()?ui.sentenceEndChars->text():"") &&
-        lastMinSentenceLength == (ui.wordsPerPhraseMeaning->currentIndex()==1?ui.sentenceLengthSpin->value():0) ) return; 
+        lastMinSentenceLength == (ui.wordsPerPhraseMeaning->currentIndex()==1?ui.sentenceLengthSpin->value():0) ) return;
     lastSentenceLength=ui.sentenceLengthSpin->value();
     lastMinSentenceLength = (ui.wordsPerPhraseMeaning->currentIndex()==1?ui.sentenceLengthSpin->value():0);
     int minimumWordLength=0;
@@ -127,7 +130,7 @@ void TextAnalysisDialog::needCount(){
     int commentLines=0;
     for (int i=0;i<3;i++) {
         maps[i].resize(2+chapters.size());
-        for (int j=0;j<maps[i].size();j++) 
+        for (int j=0;j<maps[i].size();j++)
             maps[i][j].clear();
     }
     int selectionStartLine=-1;
@@ -163,17 +166,17 @@ void TextAnalysisDialog::needCount(){
         bool commentReached=false;
         int nextIndex=0;
         int wordStartIndex;
-        bool lineCountedAsText=false;        
+        bool lineCountedAsText=false;
         QString curWord;
         int state;
         int lastIndex=0;
         while ((state=nextWord(line,nextIndex,curWord,wordStartIndex,NW_TEXT|NW_COMMENT|NW_COMMAND))!=NW_NOTHING){
             bool inSelection;
-            if (selectionStartLine!=selectionEndLine) 
+            if (selectionStartLine!=selectionEndLine)
                 inSelection=((l<selectionEndLine) && (l>selectionStartLine)) ||
                             ((l==selectionStartLine) && (nextIndex>selectionStartIndex)) ||
                             ((l==selectionEndLine) && (wordStartIndex<=selectionEndIndex));
-             else 
+             else
                 inSelection=(l==selectionStartLine) && (nextIndex>selectionStartIndex) && (wordStartIndex<=selectionEndIndex);
             curWord=curWord.toLower();
             int curType=-1;
@@ -191,7 +194,7 @@ void TextAnalysisDialog::needCount(){
                             lastWords[0].clear();
                             break;
                         }
-                } 
+                }
                 if (respectSentenceEnd) for (int i=lastIndex;i<wordStartIndex;i++)
                     if (lastEndCharacters.contains(line.at(i))) {
                         sentenceLengths[2]=0;
@@ -207,7 +210,7 @@ void TextAnalysisDialog::needCount(){
                     lineCountedAsText=true;
                 }
             }
-            if (respectSentenceEnd && !commentReached) 
+            if (respectSentenceEnd && !commentReached)
                 for (int i=lastIndex;i<wordStartIndex;i++)
                     if (lastEndCharacters.contains(line.at(i))) {
                         sentenceLengths[0]=0;
@@ -244,7 +247,7 @@ void TextAnalysisDialog::needCount(){
                 }
 
     }
-    
+
     alreadyCount=true;
 
     ui.totalLinesLabel->setText(QString::number(totalLines));
@@ -262,49 +265,52 @@ void TextAnalysisDialog::insertDisplayData(const QMap<QString,int> & map){
 	if (ui.filter->currentIndex()==-1 ||
 		curFilter != ui.filter->itemText(ui.filter->currentIndex())) wordFilter=QRegExp(curFilter);
 	else wordFilter=QRegExp(curFilter.mid(curFilter.indexOf("(")));
-	
+
     switch (ui.minimumLengthMeaning->currentIndex()) {
         case 2: //at least one word must have min length, all shorter with space: (min-1 +1)*phraseLength-1
             minLen=ui.minimumLengthSpin->value(); //no break!
             for(QMap<QString, int>::const_iterator it = map.constBegin(); it!=map.constEnd(); ++it)
-                if (it.value()>=minCount)
+                if (it.value()>=minCount) {
                     if (it.key().size()>=minLen*phraseLength) {
-						if (filtered || wordFilter.exactMatch(it.key()))  
+						if (filtered || wordFilter.exactMatch(it.key()))
 							displayed.words.append(Word(it.key(),it.value()));
 					} else {
 						if (filtered && !wordFilter.exactMatch(it.key())) continue;
                         QString t=it.key();
                         int last=0;
                         int i=0;
-                        for (;i<t.size();i++) 
-                            if (t.at(i)==' ') 
+                        for (;i<t.size();i++)
+                            if (t.at(i)==' ') {
                                 if (i-last>=minLen) {
                                     displayed.words.append(Word(it.key(),it.value()));
                                     break;
                                 } else last=i+1;
+                            }
                         if (i==t.size() && i-last>=minLen) displayed.words.append(Word(it.key(),it.value()));
                     }
+                }
             break;
         case 3: //all words must have min len, (min +1)*phraseLength-1
-            minLen=ui.minimumLengthSpin->value(); 
+            minLen=ui.minimumLengthSpin->value();
             for(QMap<QString, int>::const_iterator it = map.constBegin(); it!=map.constEnd(); ++it)
                 if (it.value()>=minCount && it.key().size()>=minLen) { //not minLen*phraseCount because there can be less words in a phrase
 					if (filtered && !wordFilter.exactMatch(it.key())) continue;
                     QString t=it.key();
-                    int last=0; 
-                    bool ok=true;                  
-                    for (int i=0;i<t.size();i++) 
-                        if (t.at(i)==' ') 
+                    int last=0;
+                    bool ok=true;
+                    for (int i=0;i<t.size();i++)
+                        if (t.at(i)==' ') {
                             if (i-last<minLen) {
                                 ok=false;
                                 break;
                             } else last=i+1;
+                        }
                     if (ok && t.size()-last>=minLen)
 						displayed.words.append(Word(it.key(),it.value()));
                 }
             break;
         case 1: minLen=ui.minimumLengthSpin->value();  //no break!
-        default: 
+        default:
 			if (filtered){
 				for(QMap<QString, int>::const_iterator it = map.constBegin(); it!=map.constEnd(); ++it)
 				    if (it.value()>=minCount && it.key().size()>=minLen && wordFilter.exactMatch(it.key()))
@@ -352,7 +358,7 @@ void TextAnalysisDialog::slotSelectionButton(){
         selected.replace(" ","\\W+");
         editor->find(selected,true,true);
     } else editor->find(selected,true,false);
-    
+
 }
 
 void TextAnalysisDialog::slotClose(){

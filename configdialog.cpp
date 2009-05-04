@@ -26,25 +26,30 @@ const QString ShortcutDelegate::addRowButton="<internal: add row>";
 const QString ShortcutDelegate::deleteRowButton="<internal: delete row>";
 
 ShortcutDelegate::ShortcutDelegate(QObject *parent): treeWidget(0){
+	// remove unused argument warning
+	(void) parent;
 }
 QWidget *ShortcutDelegate::createEditor(QWidget *parent,
      const QStyleOptionViewItem & option ,
      const QModelIndex & index ) const
 {
+	// remove unused argument warning
+	(void) option;
+
     if (!index.isValid()) return 0;
     const QAbstractItemModel *model = index.model();
     if (model->index(index.row(),0,index.parent()).isValid() && model->data(model->index(index.row(),0,index.parent()),Qt::DisplayRole) == deleteRowButton) {
-        //editor key replacement 
+        //editor key replacement
         if (index.column()==0) return 0;
         return new QLineEdit(parent);
     }
-    //menu shortcut key 
+    //menu shortcut key
     if (index.column()!=2 && index.column()!=3) return 0;
     QComboBox *editor = new QComboBox(parent);
     for (int k=Qt::Key_F1;k<=Qt::Key_F12;k++)
         editor->addItem(QKeySequence(k).toString(QKeySequence::NativeText));
     for (int c=0;c<=1;c++)
-        for (int s=0;s<=1;s++)  
+        for (int s=0;s<=1;s++)
             for (int a=0;a<=1;a++){
                 if (!c && !s && !a) continue;
                 for (int k=Qt::Key_F1;k<=Qt::Key_F12;k++)
@@ -63,7 +68,7 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
                                      const QModelIndex &index) const
  {
     QString value = index.model()->data(index, Qt::EditRole).toString();
-    //menu shortcut key 
+    //menu shortcut key
     QComboBox *box = qobject_cast<QComboBox*>(editor);
     if (box) {
         QString normalized=QKeySequence(value).toString(QKeySequence::NativeText);
@@ -71,8 +76,8 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
         if (pos==-1) box->setEditText(value);
         else box->setCurrentIndex(pos);
         return;
-    } 
-    //editor key replacement 
+    }
+    //editor key replacement
     QLineEdit *le = qobject_cast<QLineEdit*>(editor);
     if (le) {
         le->setText(value);
@@ -81,7 +86,7 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
   void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
                                     const QModelIndex &index) const
  {
-    //editor key replacement 
+    //editor key replacement
     QLineEdit *le = qobject_cast<QLineEdit*>(editor);
     if (le) {
         if (le->text().size()!=1 && index.column()==1) {
@@ -91,7 +96,7 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
         model->setData(index, le->text(), Qt::EditRole);
         return;
     }
-    //menu shortcut key 
+    //menu shortcut key
     if (index.column()!=2 && index.column()!=3) return;
     QComboBox *box = qobject_cast<QComboBox*>(editor);
     if (!box) return;
@@ -105,7 +110,7 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
                 QMessageBox::Ok, QMessageBox::Ok);
                 return;
         }
-        
+
         /*int r=-1;
         for (int i=0;i<model->rowCount();i++)
             if (model->data(model->index(i,2))==value) {
@@ -168,7 +173,7 @@ void ShortcutDelegate::treeWidgetItemClicked ( QTreeWidgetItem * item, int colum
     QStyleOptionButton sob;
     sob.rect=item->treeWidget ()->visualItemRect(item);
     sob.state = QStyle::State_Enabled|QStyle::State_Sunken;
-    if (style) 
+    if (style)
         if (item->text(0)=="<internal: delete row>") {
            sob.text = tr("delete row");
            style->drawControl(QStyle::CE_PushButton, &sob, &p);
@@ -212,8 +217,8 @@ foreach (int mib, QTextCodec::availableMibs())
 	QTextCodec *codec = QTextCodec::codecForMib(mib);
 	if (codec->name()!="UTF-8") ui.comboBoxEncoding->addItem(codec->name());
 	}
-	
-	
+
+
 connect( ui.pushButtonAspell, SIGNAL(clicked()), this, SLOT(browseAspell()));
 connect(ui.lineEditAspellCommand, SIGNAL(textChanged(QString)), this, SLOT(lineEditAspellChanged(QString)));
 
