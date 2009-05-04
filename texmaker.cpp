@@ -154,18 +154,18 @@ StructureToolbox->addItem(MpListWidget,QIcon(":/images/metapost.png"),tr("MetaPo
     mainSpeller=new SpellerUtility();;
     mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);
     mainSpeller->setActive(realtimespellchecking);
-    
+
     LatexEditorView::setSpeller(mainSpeller);
 
 
-        
+
     QDocument::setFormatFactory(m_formats);
     mainSpeller->spellcheckErrorFormat=m_formats->id("spellingMistake");
 
     QDocument::setShowSpaces(QDocument::ShowTrailing | QDocument::ShowLeading | QDocument::ShowTabs);
 
 
-    QString qxsPath=QFileInfo(findResourceFile("qxs/tex.qnfa")).path();   
+    QString qxsPath=QFileInfo(findResourceFile("qxs/tex.qnfa")).path();
     m_languages = new QLanguageFactory(m_formats, this);
     m_languages->addDefinitionPath(qxsPath);
     QLineMarksInfoCenter::instance()->loadMarkTypes(qxsPath+"/marks.qxm");
@@ -257,7 +257,7 @@ setAcceptDrops(true);
     completer=new LatexCompleter(this);
     updateCompleter();
     LatexEditorView::setCompleter(completer);
-    
+
     if (!sessionFilesToRestore.empty()){
         for (int i=0;i<sessionFilesToRestore.size();i++)
             load (sessionFilesToRestore[i], sessionFilesToRestore[i]==sessionMaster);
@@ -324,21 +324,21 @@ void Texmaker::loadManagedMenu(QMenu* parent,const QDomElement &f){
                                   att.namedItem("shortcut").nodeValue(),att.namedItem("icon").nodeValue());
             act->setWhatsThis(att.namedItem("info").nodeValue());
             act->setData(att.namedItem("insert").nodeValue());
-        } else if (c.nodeName()=="separator") menu->addSeparator(); 
+        } else if (c.nodeName()=="separator") menu->addSeparator();
     }
 }
 void Texmaker::loadManagedMenus(const QString &f){
 	QFile settings(f);
-	
+
 	if ( settings.open(QFile::ReadOnly | QFile::Text) )
 	{
 		QDomDocument doc;
 		doc.setContent(&settings);
-    
+
         QDomNodeList f = doc.documentElement().childNodes();
-	
+
         for ( int i = 0; i < f.count(); i++ )
-            if (f.at(i).nodeName()=="menu") 
+            if (f.at(i).nodeName()=="menu")
                 loadManagedMenu(0,f.at(i).toElement());
 	}
 }
@@ -348,10 +348,10 @@ void Texmaker::managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu) {
     QTreeWidgetItem* menuitem= new QTreeWidgetItem(parent, QStringList(menu->title().replace("&","")));
     if (menu->objectName().count("/")<=2) menuitem->setExpanded(true);
     QList<QAction *> acts=menu->actions();
-    for (int i=0;i<acts.size();i++) 
+    for (int i=0;i<acts.size();i++)
         if (acts[i]->menu()) managedMenuToTreeWidget(menuitem, acts[i]->menu());
         else {
-            QTreeWidgetItem* twi=new QTreeWidgetItem(menuitem, QStringList() << acts[i]->text() 
+            QTreeWidgetItem* twi=new QTreeWidgetItem(menuitem, QStringList() << acts[i]->text()
                                                          << managedMenuShortcuts[acts[i]->objectName()+"0"]
                                                          << acts[i]->shortcut().toString(QKeySequence::NativeText));
             twi->setIcon(0,acts[i]->icon());
@@ -359,8 +359,8 @@ void Texmaker::managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu) {
             twi->setData(0,Qt::UserRole,acts[i]->objectName());
             if (acts[i]->shortcuts().size()>1) twi->setText(3,acts[i]->shortcuts()[1].toString(QKeySequence::NativeText));
         }
-    
-    
+
+
 }
 void Texmaker::treeWidgetToManagedMenuTo(QTreeWidgetItem* item){
     if (item->text(2)!="") {
@@ -370,12 +370,12 @@ void Texmaker::treeWidgetToManagedMenuTo(QTreeWidgetItem* item){
         if (act) {
             QKeySequence sc(item->text(2));
             act->setShortcut(sc);
-            if (sc!=managedMenuShortcuts.value(act->objectName()+"0",QKeySequence())) 
+            if (sc!=managedMenuShortcuts.value(act->objectName()+"0",QKeySequence()))
                 managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~0", item->text(2)));
             if (item->text(3)!="") {
                 sc=QKeySequence (item->text(3));
                 act->setShortcuts((QList<QKeySequence>()<<act->shortcut()) << sc);
-                if (sc!=managedMenuShortcuts.value(act->objectName()+"1",QKeySequence())) 
+                if (sc!=managedMenuShortcuts.value(act->objectName()+"1",QKeySequence()))
                     managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~1", item->text(3)));
             }
         }
@@ -389,7 +389,7 @@ void Texmaker::setupMenus()
     QMenu *menu=newManagedMenu("main/file",tr("&File"));
     newManagedAction(menu, "new",tr("New"), SLOT(fileNew()), Qt::CTRL+Qt::Key_N, ":/images/filenew.png");
     newManagedAction(menu, "open",tr("Open"), SLOT(fileOpen()), Qt::CTRL+Qt::Key_O, ":/images/fileopen.png");
-    
+
     QMenu *submenu=newManagedMenu(menu, "openrecent",tr("Open Recent"));
     for (int i = 0; i < 3; ++i)
         newManagedAction(submenu, "p"+QString::number(i), QString("Recent 'Master Document' %1").arg(i), SLOT(fileOpenRecentProject()))->setVisible(false);
@@ -458,14 +458,14 @@ void Texmaker::setupMenus()
     newManagedAction(submenu,"badboxnext",tr("Next bad box"),SLOT(NextBadBox()),Qt::SHIFT+Qt::ALT+Qt::Key_Down);//, ":/images/errornext.png");
 
     submenu=newManagedMenu(menu, "gotoBookmark",tr("Goto Bookmark"));
-    for (int i=0;i<=9;i++) 
+    for (int i=0;i<=9;i++)
         newManagedAction(submenu,QString("bookmark%1").arg(i),tr("Bookmark %1").arg(i),SLOT(gotoBookmark()),Qt::CTRL+Qt::Key_0+i)
         ->setData(i);
 
     submenu=newManagedMenu(menu, "toggleBookmark",tr("Toggle Bookmark"));
     newManagedAction(submenu,QString("bookmark"),tr("unnamed bookmark"),SLOT(toggleBookmark()),Qt::CTRL+Qt::SHIFT+Qt::Key_B)
         ->setData(-1);
-    for (int i=0;i<=9;i++) 
+    for (int i=0;i<=9;i++)
         newManagedAction(submenu,QString("bookmark%1").arg(i),tr("Bookmark %1").arg(i),SLOT(toggleBookmark()),Qt::CTRL+Qt::SHIFT+Qt::Key_0+i)
         ->setData(i);
 
@@ -489,8 +489,8 @@ void Texmaker::setupMenus()
 	act->setData(QDocument::Mac);
 	act->setCheckable(true);
 	lineEndingGroup->addAction(act);
-    
-	
+
+
 	newManagedAction(menu,"encoding",tr("Setup Encoding"),SLOT(editSetupEncoding()));
 
 
@@ -560,17 +560,17 @@ void Texmaker::setupMenus()
     newManagedAction(menu, "clean", tr("Clean"), SLOT(CleanBib()));
 
 
-//  User    
+//  User
     menu=newManagedMenu("main/user",tr("&User"));
     submenu=newManagedMenu(menu,"tags",tr("User &Tags"));
-    for (int i=0;i<10;i++) 
+    for (int i=0;i<10;i++)
         newManagedAction(submenu, QString("tag%1").arg(i),QString("%1: %2").arg(i+1).arg(UserMenuName[i]), SLOT(InsertUserTag()), Qt::SHIFT+Qt::Key_F1+i)
         ->setData(i);
     submenu->addSeparator();
     newManagedAction(submenu, QString("manage"),tr("Edit User &Tags"), SLOT(EditUserMenu()));
 
     submenu=newManagedMenu(menu,"commands",tr("User &Commands"));
-    for (int i=0;i<5;i++) 
+    for (int i=0;i<5;i++)
         newManagedAction(submenu, QString("cmd%1").arg(i),QString("%1: %2").arg(i+1).arg(UserToolName[i]), SLOT(UserTool()), Qt::SHIFT+Qt::ALT+Qt::Key_F1+i)
         ->setData(i);
     submenu->addSeparator();
@@ -589,14 +589,14 @@ void Texmaker::setupMenus()
     submenu=newManagedMenu(menu, "collapse", tr("Collapse") );
 	newManagedAction(submenu, "all", tr("Everything"), SLOT(viewCollapseEverything()));
 	newManagedAction(submenu, "block", tr("Nearest block"), SLOT(viewCollapseBlock()));
-	for (int i=1;i<=4;i++) 
+	for (int i=1;i<=4;i++)
 		newManagedAction(submenu, QString::number(i), tr("Level %1").arg(i), SLOT(viewCollapseLevel()))->setData(i);
 	submenu=newManagedMenu(menu, "expand", tr("Expand"));
 	newManagedAction(submenu, "all", tr("Everything"), SLOT(viewExpandEverything()));
 	newManagedAction(submenu, "block", tr("Nearest block"), SLOT(viewExpandBlock()));
-	for (int i=1;i<=4;i++) 
+	for (int i=1;i<=4;i++)
 		newManagedAction(submenu, QString::number(i), tr("Level %1").arg(i), SLOT(viewExpandLevel()))->setData(i);
-	
+
 //---options---
     menu=newManagedMenu("main/options",tr("&Options"));
     newManagedAction(menu, "config",tr("Configure TexMakerX"), SLOT(GeneralOptions()), 0,":/images/configure.png");
@@ -619,7 +619,7 @@ void Texmaker::setupMenus()
 
     menu->addSeparator();
     newManagedAction(menu, "appinfo",tr("About TexMakerX"), SLOT(HelpAbout()), 0,":/images/appicon.png");
-    
+
 //-----context menus-----
 	StructureTreeWidget->setObjectName("StructureTree");
 	StructureTreeWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
@@ -633,21 +633,21 @@ void Texmaker::setupMenus()
     newManagedAction(StructureTreeWidget,"IndentSection",tr("Indent Section"), SLOT(editIndentSection()));
     newManagedAction(StructureTreeWidget,"UnIndentSection",tr("Unindent Section"), SLOT(editUnIndentSection()));
 
-	
+
 	//modify shortcuts
     for (int i=0;i< managedMenuNewShortcuts.size();i++) {
         QString id=managedMenuNewShortcuts[i].first;
         int num=-1;
         if (managedMenuNewShortcuts[i].first.endsWith("~0")) num=0;
         else if (managedMenuNewShortcuts[i].first.endsWith("~1")) num=1;
-        else ; //backward compatibility
+        else { } //backward compatibility
         if (num!=-1) id.chop(2);
         QAction * act= getManagedAction(id);
         if (act) {
             if (num!=1) act->setShortcut(QKeySequence(managedMenuNewShortcuts[i].second));
             else act->setShortcuts((QList<QKeySequence>()<<act->shortcut())<<managedMenuNewShortcuts[i].second);
         }
-    }    
+    }
 }
 
 void Texmaker::setupToolBars()
@@ -855,7 +855,7 @@ void Texmaker::CloseEditorTab(int tab){
 	EditorView->setCurrentIndex(tab);
 	fileClose();
 	if (cur>tab) cur--;//removing moves to left
-	if (total!=EditorView->count() && cur!=tab)//if user clicks cancel stay in clicked editor 
+	if (total!=EditorView->count() && cur!=tab)//if user clicks cancel stay in clicked editor
 		EditorView->setCurrentIndex(cur);
 }
 
@@ -895,7 +895,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit){
 	edit->editor->document()->setLineEnding(QDocument::Local);
     m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
     EditorView->setCurrentIndex(EditorView->indexOf(edit));
-  
+
     connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(NewDocumentStatus(bool)));
     connect(edit->lineMarkPanel, SIGNAL(toolTipRequested(int,int)),this,SLOT(lineMarkToolTip(int,int)));
 
@@ -931,7 +931,7 @@ for( it = filenames.begin(); it != filenames.end(); ++it )
 	funix=filenames[it.key()];
 	fw32.replace(QString("\\"),QString("/"));
 	funix.replace(QString("/"),QString("\\"));
-	if ( (forig==f) || (fw32==f) || (funix==f)) 
+	if ( (forig==f) || (fw32==f) || (funix==f))
 		{
 		EditorView->setCurrentIndex(EditorView->indexOf(it.key()));
 		return true;
@@ -955,7 +955,7 @@ LatexEditorView* Texmaker::load( const QString &f , bool asProject)
         else if (!singlemode && MasterName != f_real) {
             ToggleMode();
             ToggleMode();
-        } 
+        }
         return 0;
     }
     if (!QFile::exists( f_real )) return 0;
@@ -982,13 +982,14 @@ UpdateCaption();
 NewDocumentStatus(false);
 AddRecentFile(f_real);
 ShowStructure();
-if (asProject) 
+if (asProject) {
     if (singlemode) ToggleMode();
     else if (!singlemode && MasterName != f_real) {
         ToggleMode();
         ToggleMode();
-    } 
-    return edit;
+    }
+}
+return edit;
 }
 
 void Texmaker::gotoLine( int line )
@@ -1266,12 +1267,15 @@ void Texmaker::fileOpenRecentProject(){
 
 void Texmaker::AddRecentFile(const QString &f, bool asMaster)
 {
-    int p=recentFilesList.indexOf(f);
+    // remove unused argument warning
+	(void) asMaster;
+
+	int p=recentFilesList.indexOf(f);
     bool changed=p!=0;
     if (p>0) recentFilesList.removeAt(p);
     if (changed) recentFilesList.prepend(f);
     if (recentFilesList.count()>5) recentFilesList.removeLast();
-    
+
     if (!singlemode && MasterName==f) {
         p=recentProjectList.indexOf(f);
         changed|=p!=0;
@@ -1279,7 +1283,7 @@ void Texmaker::AddRecentFile(const QString &f, bool asMaster)
         if (p!=0) recentProjectList.prepend(f);
         if (recentProjectList.count()>3) recentProjectList.removeLast();
     }
-    
+
 	if (changed) UpdateRecentFile();
 }
 
@@ -1646,7 +1650,7 @@ void Texmaker::editSectionPasteBefore(int line)
 void Texmaker::ReadSettings()
 {
     QSettings *config=configManager.readSettings();
-    
+
 config->beginGroup( "texmaker" );
 singlemode=true;
 
@@ -1697,9 +1701,10 @@ EditorFont=F;
 wordwrap=config->value( "Editor/WordWrap",true).toBool();
 parenmatch=config->value( "Editor/Parentheses Matching",true).toBool();
 showlinemultiples=config->value( "Editor/Line Number Multiples",-1).toInt();
-if (showlinemultiples==-1) 
+if (showlinemultiples==-1) {
   if (config->value( "Editor/Line Numbers",true).toBool()) showlinemultiples=1; //texmaker import
   else showlinemultiples=0;
+}
 
 completion=config->value( "Editor/Completion",true).toBool();
 autoindent=config->value( "Editor/Auto Indent",true).toBool();
@@ -1880,7 +1885,7 @@ delete config;
 
 void Texmaker::SaveSettings()
 {
-    QSettings *config=configManager.saveSettings();   
+    QSettings *config=configManager.saveSettings();
 
 config->beginGroup( "texmaker" );
 QList<int> sizes;
@@ -1951,7 +1956,7 @@ config->setValue("Tools/Ghostscript",ghostscript_command);
 config->setValue("Tools/Userquick",userquick_command);
 config->setValue("Tools/Precompile",precompile_command);
 
-if (userClassList.count()>0) 
+if (userClassList.count()>0)
 config->setValue("Tools/User Class",userClassList);
 if (userPaperList.count()>0) config->setValue("Tools/User Paper",userPaperList);
 if (userEncodingList.count()>0) config->setValue("Tools/User Encoding",userEncodingList);
@@ -1965,7 +1970,7 @@ if (recentProjectList.count()>0) config->setValue("Files/Recent Project Files",r
 if (ToggleRememberAct->isChecked()) {
     config->setValue("Files/RestoreSession",true);
     QStringList curFiles;//store in order
-    for (int i=0;i<EditorView->count();i++) { 
+    for (int i=0;i<EditorView->count();i++) {
         LatexEditorView *ed=qobject_cast<LatexEditorView *>(EditorView->widget(i));
         if (ed) curFiles.append(filenames[ed]);
     }
@@ -2012,7 +2017,7 @@ for (int i=0; i <412 ; i++)
 config->endGroup();
 
 config->beginGroup("formats");
-m_formats->save(*config); 
+m_formats->save(*config);
 config->endGroup();
 
 delete config;
@@ -3671,7 +3676,7 @@ if (fic.exists() && fic.isReadable() )
 		}
 		f.close();
 	LatexError();
-	
+
 	}
 else {QMessageBox::warning( this,tr("Error"),tr("Log File not found !"));}
 }
@@ -3690,7 +3695,7 @@ void Texmaker::LatexError()
 {
     logModel->parseLogDocument(OutputTextEdit->document());
     logpresent=true;
-    
+
     //display latex errors in table
     OutputTable->resizeColumnsToContents();
     OutputTable->resizeRowsToContents();
@@ -3703,7 +3708,7 @@ void Texmaker::DisplayLatexError()
     int errorMarkID = QLineMarksInfoCenter::instance()->markTypeId("error");
     int warningMarkID = QLineMarksInfoCenter::instance()->markTypeId("warning");
     int badboxMarkID = QLineMarksInfoCenter::instance()->markTypeId("badbox");
-    for (int i=0;i<EditorView->count();i++) { 
+    for (int i=0;i<EditorView->count();i++) {
         LatexEditorView *ed=qobject_cast<LatexEditorView *>(EditorView->widget(i));
         if (ed) {
             ed->editor->document()->removeMarks(errorMarkID);
@@ -3713,9 +3718,9 @@ void Texmaker::DisplayLatexError()
             ed->lineToLogEntries.clear();
         }
     }
-    //backward, so the more important marks (with lower indices) will be inserted last and 
+    //backward, so the more important marks (with lower indices) will be inserted last and
     //returned first be QMultiHash.value
-	for ( int i = logModel->count()-1; i >= 0; i--) 
+	for ( int i = logModel->count()-1; i >= 0; i--)
         if (logModel->at(i).oldLineNumber!=-1)
             for (FilesMap::iterator it=filenames.begin(); it!=filenames.end(); ++it)
                 if (it.value().endsWith(logModel->at(i).file)) {
@@ -3779,7 +3784,7 @@ void Texmaker::GoToLogEntryAt(int newLineNumber){
     OutputTable->scrollTo(logModel->index(logEntryNumber,1),QAbstractItemView::PositionAtCenter);
     OutputTable->selectRow(logEntryNumber);
     OutputTextEdit->setCursorPosition(logModel->at(logEntryNumber).logline, 0);
-    
+
     QPoint p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
   //  p.ry()+=2*currentEditorView()->editor->document()->fontMetrics().lineSpacing();
     QToolTip::showText(p, logModel->at(logEntryNumber).niceMessage(), 0);
@@ -3805,13 +3810,14 @@ void Texmaker::PreviousMark(){
 
 void Texmaker::gotoNearLogEntry(LogType lt, bool backward, QString notFoundMessage){
     if (!logpresent) {ViewLog();}
-    if (logpresent)
-        if (logModel->found(lt)) 
+    if (logpresent) {
+        if (logModel->found(lt))
             GoToMark(backward, logModel->markID(lt));
         else {
             QMessageBox::information( this,"TexMakerX",notFoundMessage);
             OutputTextEdit->setCursorPosition(0 , 0);
         }
+    }
 }
 void Texmaker::NextError()
 {
@@ -3881,7 +3887,7 @@ confDlg->ui.lineEditMetapost->setText(metapost_command);
 confDlg->ui.lineEditGhostscript->setText(ghostscript_command);
 confDlg->ui.lineEditExecuteBeforeCompiling->setText(precompile_command);
 
-confDlg->ui.comboBoxFont->lineEdit()->setText(EditorFont.family() );    
+confDlg->ui.comboBoxFont->lineEdit()->setText(EditorFont.family() );
 confDlg->ui.spinBoxSize->setValue(EditorFont.pointSize() );
 confDlg->ui.checkBoxWordwrap->setChecked(wordwrap);
 switch (showlinemultiples) {
@@ -3908,7 +3914,7 @@ confDlg->ui.lineEditUserquick->setText(userquick_command);
 
     QTreeWidgetItem * mainItem=new QTreeWidgetItem((QTreeWidget*)0, QStringList() << QString(tr("Menus")));
     foreach (QMenu* menu, managedMenus)
-        managedMenuToTreeWidget(mainItem,menu);      
+        managedMenuToTreeWidget(mainItem,menu);
     confDlg->ui.shortcutTree->addTopLevelItem(mainItem);
     mainItem->setExpanded(true);
 
@@ -3975,6 +3981,9 @@ if (configManager.execConfigDialog(confDlg))
 	delete confDlg;
 }
 void Texmaker::executeCommandLine( const QStringList& args, bool realCmdLine){
+	// remove unused argument warning
+	(void) realCmdLine;
+
     //parsing command line
     QString fileToLoad;
     bool activateMasterMode = false;
@@ -3985,7 +3994,7 @@ void Texmaker::executeCommandLine( const QStringList& args, bool realCmdLine){
         if ( args[i] == "-master" ) activateMasterMode=true;
         if (( args[i] == "-line" ) && (i+1<args.size()))  line=args[++i].toInt()-1;
     }
-    //executing cmd line (in an sosrted order)
+    //executing cmd line (in an sorted order)
     QFileInfo ftl(fileToLoad);
     if (fileToLoad!="" && !ftl.exists()) fileToLoad="";
     if (fileToLoad!="") load( fileToLoad, activateMasterMode);
@@ -4067,7 +4076,7 @@ void Texmaker::viewCollapseEverything(){
 }
 void Texmaker::viewCollapseLevel(){
 	if (!currentEditorView()) return;
-	QAction *action = qobject_cast<QAction *>(sender());    
+	QAction *action = qobject_cast<QAction *>(sender());
     if (!action) return;
 	currentEditorView()->foldLevel(false,action->data().toInt());
 }
@@ -4081,7 +4090,7 @@ void Texmaker::viewExpandEverything(){
 }
 void Texmaker::viewExpandLevel(){
 	if (!currentEditorView()) return;
-	QAction *action = qobject_cast<QAction *>(sender());    
+	QAction *action = qobject_cast<QAction *>(sender());
     if (!action) return;
 	currentEditorView()->foldLevel(true,action->data().toInt());
 }
@@ -4105,13 +4114,13 @@ else {
 
 void Texmaker::gotoBookmark(){
     if ( !currentEditorView() ) return;
-    QAction *action = qobject_cast<QAction *>(sender());    
+    QAction *action = qobject_cast<QAction *>(sender());
     if (!action) return;
-    currentEditorView()->jumpToBookmark(action->data().toInt()); 
+    currentEditorView()->jumpToBookmark(action->data().toInt());
 }
 void Texmaker::toggleBookmark(){
     if ( !currentEditorView() ) return;
-    QAction *action = qobject_cast<QAction*>(sender());    
+    QAction *action = qobject_cast<QAction*>(sender());
     if (!action) return;
     currentEditorView()->toggleBookmark(action->data().toInt()); //-1 is unnamed bookmark
 }
@@ -4189,10 +4198,10 @@ void Texmaker::updateCompleter()
         words.append("\\ref{"+labelitem.at(i)+"}");
         words.append("\\pageref{"+labelitem.at(i)+"}");
 	}
-    
-    
+
+
     completer->setWords(words);
-    
+
     if (!LatexCompleter::hasHelpfile()) {
         QFile f(findResourceFile("latexhelp.html"));
         if (!f.open(QIODevice::ReadOnly| QIODevice::Text))  LatexCompleter::parseHelpfile("<missing>");

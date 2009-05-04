@@ -52,14 +52,14 @@ void IconDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
 
     value = model->data(index, Qt::CheckStateRole);
     QRect checkRect = check(opt, opt.rect, value);
-    Qt::CheckState checkState = static_cast<Qt::CheckState>(value.toInt());
+    // Qt::CheckState checkState = static_cast<Qt::CheckState>(value.toInt());
 
     doLayout(opt, &checkRect, &pixmapRect, &textRect, false);
 
     // draw the background color
     if (option.showDecorationSelected && (option.state & QStyle::State_Selected)) {
-        QPalette::ColorGroup cg = option.state & QStyle::State_Enabled
-                                  ? QPalette::Normal : QPalette::Disabled;
+        /* QPalette::ColorGroup cg = option.state & QStyle::State_Enabled
+                                  ? QPalette::Normal : QPalette::Disabled; */
         //painter->fillRect(option.rect, option.palette.brush(cg, QPalette::Highlight));
 //painter->fillRect(option.rect,QColor("#78A9dc"));
 painter->fillRect(option.rect,QColor("#cdd2d8"));
@@ -99,7 +99,7 @@ QSize IconDelegate::sizeHint(const QStyleOptionViewItem &option,
 
     return (pixmapRect|textRect|checkRect).size();
 }
- 
+
 
 /*!
     Renders the decoration \a pixmap within the rectangle specified by
@@ -295,7 +295,7 @@ QPixmap *IconDelegate::selected(const QPixmap &pixmap, const QPalette &palette, 
         QImage img = pixmap.toImage().convertToFormat(QImage::Format_ARGB32_Premultiplied);
 
         QColor color = palette.color(enabled ? QPalette::Normal : QPalette::Disabled,QPalette::Highlight);
-        
+
         color.setAlphaF(0.3);
 
         QPainter painter(&img);

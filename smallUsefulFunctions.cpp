@@ -6,8 +6,8 @@
 #include <QMessageBox>
 
 QString getCommonEOW(){
-    return "~!@#$%^&*()_+{}|:\"<>?,./;[]-= \n\r`+´";
-} 
+    return "~!@#$%^&*()_+{}|:\"<>?,./;[]-= \n\r`+ï¿½";
+}
 
 QString findResourceFile(QString fileName){
     QStringList searchFiles;
@@ -15,16 +15,16 @@ QString findResourceFile(QString fileName){
     searchFiles<<PREFIX"/share/texmakerx/"+fileName; //X_11
     #endif
     searchFiles<<QCoreApplication::applicationDirPath() + "/../Resources/"+fileName; //macx
-    searchFiles<<QCoreApplication::applicationDirPath() + "/"+fileName; //windows old 
+    searchFiles<<QCoreApplication::applicationDirPath() + "/"+fileName; //windows old
     searchFiles<<QCoreApplication::applicationDirPath() + "/dictionaries/"+fileName; //windows new
     searchFiles<<QCoreApplication::applicationDirPath() + "/translation/"+fileName; //windows new
     searchFiles<<QCoreApplication::applicationDirPath() + "/help/"+fileName; //windows new
    // searchFiles<<QCoreApplication::applicationDirPath() + "/data/"+fileName; //windows new
     searchFiles<<":/"+fileName; //resource fall back
-    
+
     foreach (QString fn, searchFiles) {
         QFileInfo fic(fn);
-        if (fic.exists() && fic.isReadable() ) 
+        if (fic.exists() && fic.isReadable() )
         {
             return fn;
             break;
@@ -108,7 +108,7 @@ int nextWord(QString line,int &index,QString &outWord,int &wordStartIndex, int f
     bool inCmd=false;
     bool reparse=false;
     bool singleQuoteChar=false;
-    QString eow="~!@#$%^&*()_+{}|:\"<>?,./;[]-= \n\r\t`+´"; //cann't need a ' 
+    QString eow="~!@#$%^&*()_+{}|:\"<>?,./;[]-= \n\r\t`+ï¿½"; //cann't need a '
     int start=0;
     int i=index;
     for (i=(i>0?i:0);i<line.size();i++){
@@ -136,14 +136,14 @@ int nextWord(QString line,int &index,QString &outWord,int &wordStartIndex, int f
                 }
             } else if (cur=='\'') { //
                 if (singleQuoteChar) inWord=false; //no word's with two ''
-                else singleQuoteChar=true;         //but accept one                
+                else singleQuoteChar=true;         //but accept one
             } else if (cur=='%'){
                 if (NW_TEXT & flags) break; //output command
                 if (!(NW_COMMENT & flags)) return NW_NOTHING;
                 inWord=false;
                 result|=NW_COMMENT;  //comment, no more words
             } else if (eow.indexOf(cur)>=0) inWord=false;
-            
+
             if (!inWord/* && i-start>2*/ && (NW_TEXT & flags)) {
                 inWord=true;
                 break; //output
@@ -153,11 +153,12 @@ int nextWord(QString line,int &index,QString &outWord,int &wordStartIndex, int f
             start=i;
             inCmd=true;
         } else if (eow.indexOf(cur)<0 && cur!='\'') {
-            start=i;    
+            start=i;
             inWord=true;
-        } else if (cur=='%') 
-            if (NW_COMMENT & flags) result|=NW_COMMENT;  
-            else return NW_NOTHING; 
+        } else if (cur=='%') {
+            if (NW_COMMENT & flags) result|=NW_COMMENT;
+            else return NW_NOTHING;
+        }
     }
     if (inWord && (NW_TEXT & flags)) {
         wordStartIndex=start;
@@ -220,7 +221,7 @@ QString textToLatex(QString text){
 
     for (QList<QPair<QString,QString> >::iterator it=replaceList.begin(); it!=replaceList.end();++it)
         text.replace(it->first,it->second);
-    
+
     return text;
 }
 
