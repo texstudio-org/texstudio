@@ -192,7 +192,7 @@ public:
   const char *        get_suffix();
   const char *        get_derived();
   const char *        get_version();
-  const int           have_contclass();
+  int		          have_contclass();
   int                 get_utf8();
   int                 get_complexprefixes();
   char *              get_suffixed(char );

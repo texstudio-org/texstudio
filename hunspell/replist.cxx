@@ -79,7 +79,7 @@ int RepList::conv(const char * word, char * dest) {
     int stl = 0;
     int change = 0;
 //    for (int i = 0; i < pos; i++) fprintf(stderr, "%d. %s\n", i, dat[i]->pattern);
-    for (int i = 0; i < strlen(word); i++) {
+    for (unsigned int i = 0; i < strlen(word); i++) {
         int n = near(word + i);
         int l = match(word + i, n);
         if (l) {

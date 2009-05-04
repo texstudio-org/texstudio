@@ -69,7 +69,7 @@ char * PfxEntry::add(const char * word, int len)
 {
     char tword[MAXWORDUTF8LEN + 4];
 
-    if ((len > stripl || (len == 0 && pmyMgr->get_fullstrip())) && 
+    if ((len > stripl || (len == 0 && pmyMgr->get_fullstrip())) &&
        (len >= numconds) && test_condition(word) &&
        (!stripl || (strncmp(word, strip, stripl) == 0)) &&
        ((MAXWORDUTF8LEN + 4) > (len + appndl - stripl))) {
@@ -108,26 +108,26 @@ inline int PfxEntry::test_condition(const char * st)
     while (1) {
       switch (*p) {
         case '\0': return 1;
-        case '[': { 
+        case '[': {
                 neg = false;
                 ingroup = false;
                 p = nextchar(p);
                 pos = st; break;
             }
         case '^': { p = nextchar(p); neg = true; break; }
-        case ']': { 
+        case ']': {
                 if ((neg && ingroup) || (!neg && !ingroup)) return 0;
                 pos = NULL;
                 p = nextchar(p);
                 // skip the next character
-                if (!ingroup) for (st++; (opts & aeUTF8) && (*st & 0xc0) == 0x80; st++);
+                if (!ingroup) for (st++; (opts & aeUTF8) && (*st & 0xc0) == 0x80; st++) ;
                 if (*st == '\0' && p) return 0; // word <= condition
                 break;
             }
          case '.': if (!pos) { // dots are not metacharacters in groups: [.]
                 p = nextchar(p);
                 // skip the next character
-                for (st++; (opts & aeUTF8) && (*st & 0xc0) == 0x80; st++);
+                for (st++; (opts & aeUTF8) && (*st & 0xc0) == 0x80; st++) ;
                 if (*st == '\0' && p) return 0; // word <= condition
                 break;
             }
@@ -147,11 +147,11 @@ inline int PfxEntry::test_condition(const char * st)
                         }
                         if (pos && st != pos) {
                             ingroup = true;
-                            while (p && *p != ']' && (p = nextchar(p)));
+                            while (p && *p != ']' && (p = nextchar(p))) ;
                         }
                     } else if (pos) {
                         ingroup = true;
-                        while (p && *p != ']' && (p = nextchar(p)));
+                        while (p && *p != ']' && (p = nextchar(p))) ;
                     }
                 } else if (pos) { // group
                     p = nextchar(p);
@@ -403,7 +403,7 @@ char * PfxEntry::check_morph(const char * word, int len, char in_compound, const
                 }
             }
      }
-    
+
     if (*result) return mystrdup(result);
     return NULL;
 }
@@ -502,9 +502,9 @@ inline int SfxEntry::test_condition(const char * st, const char * beg)
                 i++;
                 // skip the next character
                 if (!ingroup) {
-                    for (; (opts & aeUTF8) && (st >= beg) && (*st & 0xc0) == 0x80; st--);
+                    for (; (opts & aeUTF8) && (st >= beg) && (*st & 0xc0) == 0x80; st--) ;
                     st--;
-                }                    
+                }
                 pos = NULL;
                 neg = false;
                 ingroup = false;
@@ -515,7 +515,7 @@ inline int SfxEntry::test_condition(const char * st, const char * beg)
         case '.': if (!pos) { // dots are not metacharacters in groups: [.]
                 p = nextchar(p);
                 // skip the next character
-                for (st--; (opts & aeUTF8) && (st >= beg) && (*st & 0xc0) == 0x80; st--);
+                for (st--; (opts & aeUTF8) && (st >= beg) && (*st & 0xc0) == 0x80; st--) ;
                 if (st < beg) { // word <= condition
 		    if (p) return 0; else return 1;
 		}
@@ -547,7 +547,7 @@ inline int SfxEntry::test_condition(const char * st, const char * beg)
                             if (neg) return 0;
                             else if (i == numconds) return 1;
                             ingroup = true;
-                            while (p && *p != ']' && (p = nextchar(p)));
+                            while (p && *p != ']' && (p = nextchar(p))) ;
 			    st--;
                         }
                         if (p && *p != ']') p = nextchar(p);
@@ -555,7 +555,7 @@ inline int SfxEntry::test_condition(const char * st, const char * beg)
                         if (neg) return 0;
                         else if (i == numconds) return 1;
                         ingroup = true;
-			while (p && *p != ']' && (p = nextchar(p)));
+			while (p && *p != ']' && (p = nextchar(p))) ;
 //			if (p && *p != ']') p = nextchar(p);
                         st--;
                     }
@@ -857,12 +857,12 @@ struct hentry * SfxEntry::get_next_homonym(struct hentry * he, int optflags, Aff
 Appendix:  Understanding Affix Code
 
 
-An affix is either a  prefix or a suffix attached to root words to make 
+An affix is either a  prefix or a suffix attached to root words to make
 other words.
 
 Basically a Prefix or a Suffix is set of AffEntry objects
-which store information about the prefix or suffix along 
-with supporting routines to check if a word has a particular 
+which store information about the prefix or suffix along
+with supporting routines to check if a word has a particular
 prefix or suffix or a combination.
 
 The structure affentry is defined as follows:
@@ -875,15 +875,15 @@ struct affentry
    unsigned char stripl;    // length of the strip string
    unsigned char appndl;    // length of the affix string
    char numconds;           // the number of conditions that must be met
-   char opts;               // flag: aeXPRODUCT- combine both prefix and suffix 
+   char opts;               // flag: aeXPRODUCT- combine both prefix and suffix
    char   conds[SETSIZE];   // array which encodes the conditions to be met
 };
 
 
-Here is a suffix borrowed from the en_US.aff file.  This file 
+Here is a suffix borrowed from the en_US.aff file.  This file
 is whitespace delimited.
 
-SFX D Y 4 
+SFX D Y 4
 SFX D   0     e          d
 SFX D   y     ied        [^aeiou]y
 SFX D   0     ed         [^ey]
@@ -901,7 +901,7 @@ Field
 4     4   - indicates that sequence of 4 affentry structures are needed to
                properly store the affix information
 
-The remaining lines describe the unique information for the 4 SfxEntry 
+The remaining lines describe the unique information for the 4 SfxEntry
 objects that make up this affix.  Each line can be interpreted
 as follows: (note fields 1 and 2 are as a check against line 1 info)
 
@@ -916,57 +916,57 @@ Field
                     can be applied
 
 Field 5 is interesting.  Since this is a suffix, field 5 tells us that
-there are 2 conditions that must be met.  The first condition is that 
-the next to the last character in the word must *NOT* be any of the 
+there are 2 conditions that must be met.  The first condition is that
+the next to the last character in the word must *NOT* be any of the
 following "a", "e", "i", "o" or "u".  The second condition is that
 the last character of the word must end in "y".
 
-So how can we encode this information concisely and be able to 
+So how can we encode this information concisely and be able to
 test for both conditions in a fast manner?  The answer is found
-but studying the wonderful ispell code of Geoff Kuenning, et.al. 
+but studying the wonderful ispell code of Geoff Kuenning, et.al.
 (now available under a normal BSD license).
 
 If we set up a conds array of 256 bytes indexed (0 to 255) and access it
 using a character (cast to an unsigned char) of a string, we have 8 bits
 of information we can store about that character.  Specifically we
-could use each bit to say if that character is allowed in any of the 
+could use each bit to say if that character is allowed in any of the
 last (or first for prefixes) 8 characters of the word.
 
-Basically, each character at one end of the word (up to the number 
-of conditions) is used to index into the conds array and the resulting 
-value found there says whether the that character is valid for a 
-specific character position in the word.  
+Basically, each character at one end of the word (up to the number
+of conditions) is used to index into the conds array and the resulting
+value found there says whether the that character is valid for a
+specific character position in the word.
 
-For prefixes, it does this by setting bit 0 if that char is valid 
-in the first position, bit 1 if valid in the second position, and so on. 
+For prefixes, it does this by setting bit 0 if that char is valid
+in the first position, bit 1 if valid in the second position, and so on.
 
 If a bit is not set, then that char is not valid for that postion in the
 word.
 
-If working with suffixes bit 0 is used for the character closest 
-to the front, bit 1 for the next character towards the end, ..., 
-with bit numconds-1 representing the last char at the end of the string. 
+If working with suffixes bit 0 is used for the character closest
+to the front, bit 1 for the next character towards the end, ...,
+with bit numconds-1 representing the last char at the end of the string.
 
-Note: since entries in the conds[] are 8 bits, only 8 conditions 
+Note: since entries in the conds[] are 8 bits, only 8 conditions
 (read that only 8 character positions) can be examined at one
 end of a word (the beginning for prefixes and the end for suffixes.
 
-So to make this clearer, lets encode the conds array values for the 
+So to make this clearer, lets encode the conds array values for the
 first two affentries for the suffix D described earlier.
 
 
-  For the first affentry:    
+  For the first affentry:
      numconds = 1             (only examine the last character)
 
      conds['e'] =  (1 << 0)   (the word must end in an E)
      all others are all 0
 
   For the second affentry:
-     numconds = 2             (only examine the last two characters)     
+     numconds = 2             (only examine the last two characters)
 
      conds[X] = conds[X] | (1 << 0)     (aeiou are not allowed)
          where X is all characters *but* a, e, i, o, or u
-         
+
 
      conds['y'] = (1 << 1)     (the last char must be a y)
      all other bits for all other entries in the conds array are zero
