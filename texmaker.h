@@ -63,7 +63,7 @@ class Texmaker : public QMainWindow
 
 public:
     Texmaker(QWidget *parent = 0, Qt::WFlags flags = 0);
-    
+
 QString getName();
 QFont EditorFont;
 QByteArray windowstate;
@@ -82,7 +82,7 @@ QAction* newManagedAction(QWidget* menu, const QString &id, QAction* act);
 QAction* getManagedAction(QString id);
 void loadManagedMenu(QMenu* parent,const QDomElement &f);
 void loadManagedMenus(const QString &f);
-void managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu);    
+void managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu);
 void treeWidgetToManagedMenuTo(QTreeWidgetItem* item);
 void setupMenus();
 void setupToolBars();
@@ -122,7 +122,7 @@ QLabel *stat1, *stat2, *stat3;
 QString MasterName,persistentMasterFile;
 bool logpresent;
 QStringList recentFilesList, recentProjectList;
-QStringList sessionFilesToRestore; 
+QStringList sessionFilesToRestore;
 QString sessionMaster;
 QString sessionCurrent;
 
@@ -171,7 +171,7 @@ void configureNewEditorView(LatexEditorView *edit);
 void updateEditorSetting(LatexEditorView *edit);
 private slots:
 
-void fileNew();
+void fileNew(QString fileName="untitled");
 void fileOpen();
 void fileSave();
 void fileSaveAll();
