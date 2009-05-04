@@ -91,12 +91,20 @@ TexmakerApp a( argc, argv ); // This is a dummy constructor so that the programs
 DSingleApplication instance("TexMakerX");
 
 bool startAlways=false;
-
 for(int i=0; i<argc; ++i)
     if (!strcmp("--start-always",argv[i])) startAlways=true;
 
 QStringList cmdLine;
-for ( int i = 1; i < argc; ++i ) cmdLine << QString::fromLocal8Bit(argv [i]);
+QString cmdArgument;
+for ( int i = 1; i < argc; ++i ) {
+	cmdArgument =  QString::fromLocal8Bit(argv [i]);
+
+	// translate file arguments to absolute path
+	if (cmdArgument!="" && cmdArgument.at(0)!='-' && QFileInfo(cmdArgument).isRelative() && QFileInfo(cmdArgument).exists())
+    	cmdLine << QFileInfo(cmdArgument).absoluteFilePath();
+    else
+    	cmdLine << cmdArgument;
+}
 
 if (!startAlways)
     if ( instance.isRunning() ) {
@@ -104,10 +112,7 @@ if (!startAlways)
         AllowSetForegroundWindowFunc asfw = (AllowSetForegroundWindowFunc)GetProcAddress(GetModuleHandleA("user32.dll"),"AllowSetForegroundWindow");
         if (asfw) asfw(/*ASFW_ANY*/(DWORD)(-1));
         #endif
-        //fix relative path (current directory unknown to other instance)
-        for (int i=0;i<cmdLine.size();i++)
-            if (cmdLine[i]!="" && cmdLine[i].at(0)!='-' && QFileInfo(cmdLine[i]).isRelative() && QFileInfo(cmdLine[i]).exists())
-                cmdLine[i]=QFileInfo(cmdLine[i]).absoluteFilePath();
+
         instance.sendMessage(cmdLine.join("#!#"));
         return 0;
     }
