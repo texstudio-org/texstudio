@@ -3,7 +3,7 @@
 ** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
-** 
+**
 ** This file may be used under the terms of the GNU General Public License
 ** version 3 as published by the Free Software Foundation and appearing in the
 ** file GPL.txt included in the packaging of this file.
@@ -18,22 +18,22 @@
 /*!
 	\file qlanguagefactory.cpp
 	\brief Implementation of QLanguageFactory
-	
+
 	\see QLanguageFactory
 */
 
 /*!
 	\ingroup language
 	@{
-	
+
 	\class QLanguageFactory
 	\brief A class managing language definitions.
-	
+
 	It stores language definitions, added programmatically or found in XML files,
-	in specified locations and only if generic components are built-in. From 
+	in specified locations and only if generic components are built-in. From
 	these definitions, QLanguageFactory generates matchers, indenters and
 	highlighters for a text editor, according to a file name.
-	
+
 	\see QLanguageDefinition
 */
 
@@ -61,7 +61,7 @@
 QLanguageFactory::QLanguageFactory(QFormatScheme *fmt, QObject *p)
  : QObject(p), m_defaultFormatScheme(fmt)
 {
-	
+
 }
 
 /*!
@@ -72,10 +72,10 @@ QLanguageFactory::~QLanguageFactory()
 	foreach ( QString l, m_languages )
 	{
 		const LangData& d = m_data[l];
-		
+
 		if ( d.s != m_defaultFormatScheme )
 			delete d.s;
-		
+
 		delete d.d;
 		//delete d.e;
 	}
@@ -91,36 +91,36 @@ QStringList QLanguageFactory::languages() const
 
 /*!
 	\return a list of file filters supported by this factory
-	
+
 	\note This list is NEVER empty and the last item is always "All files (*)"
 */
 QStringList QLanguageFactory::fileFilters() const
 {
 	QStringList l;
-	
+
 	foreach ( QString lng, m_languages )
 		l << tr("%1 files (*.%2)").arg(lng).arg(m_data[lng].extensions.join(" *."));
-	
+
 	l << tr("All files (*)");
-	
+
 	return l;
 }
 
 /*!
 	\param e target editor
 	\param file filename displayed by the editor
-	
+
 	The \a file parameter may actuall be either a filename, an extension or the name of the language,
 	checked in that order.
-	
+
 	If it is a filename, complete extension as higher priority than simple extension
 	(see QFileInfo suffix() and completeSuffix()).
-	
-	Matches are first done case-sensitively. 
-	
+
+	Matches are first done case-sensitively.
+
 	If no matching language definition is found for all three possible interpretations of the \a file
 	parameter, the same search is done case-insensitively.
-	
+
 	If no matching language is found the previous language definition/completion engine of the editor
 	are removed, leaving it blank, and the format scheme of the document is set to the defaultFormatScheme()
 */
@@ -130,45 +130,45 @@ void QLanguageFactory::setLanguage(QEditor *e, const QString& file)
 	QFileInfo inf(file);
 	const QString ext = inf.suffix(),
 				cext = inf.completeSuffix();
-	
+
 	//qDebug("suff:%s; compSuff:%s", qPrintable(ext), qPrintable(cext));
-	
+
 	QLanguageDefinition *oldLang = e->languageDefinition();
-	
+
 	if ( file.count() )
 	{
 		QList<Qt::CaseSensitivity> lcs;
 		lcs << Qt::CaseSensitive << Qt::CaseInsensitive;
-		
+
 		foreach ( Qt::CaseSensitivity cs, lcs )
 		{
 			int n = 0, idx = -1;
 			QStringList ext_langs, cext_langs, fcext_langs;
-			
+
 			foreach ( QString lang, m_languages )
 			{
 				const QStringList& exts = m_data[lang].extensions;
-				
+
 				//qDebug("%s in (%s) ?", qPrintable(ext), qPrintable(exts.join(" ")));
-				
+
 				foreach ( QString x, exts )
 				{
 					if ( !x.compare(ext, cs) )
 						ext_langs << lang;
-					
+
 					if ( !x.compare(cext, cs) )
 						cext_langs << lang;
-					
+
 					if ( !x.compare(file, cs) )
 						fcext_langs << lang;
 				}
-				
+
 				if ( !lang.compare(file, cs) )
 					idx = n;
-				
+
 				++n;
 			}
-			
+
 			if ( cext_langs.count() )
 			{
 				// TODO : use MIME types to resolve ambiguity
@@ -182,30 +182,30 @@ void QLanguageFactory::setLanguage(QEditor *e, const QString& file)
 			} else if ( idx != -1 ) {
 				lang = m_languages.at(idx);
 			}
-			
+
 			if ( lang.count() )
 				break;
 		}
 	}
-	
+
 	if ( lang.isEmpty() )
 	{
 		//qDebug("no lang match for %s", qPrintable(file));
 		e->setLanguageDefinition(0);
 		e->setCompletionEngine(0);
 		e->document()->setFormatScheme(m_defaultFormatScheme);
-		
+
 		if ( oldLang )
 			e->highlight();
-		
+
 	} else {
 		//qDebug("lang match for %s : %s", qPrintable(file), qPrintable(lang));
 		const LangData& data = m_data[lang];
-		
+
 		e->setLanguageDefinition(data.d);
 		e->setCompletionEngine(data.e ? data.e->clone() : 0);
 		e->document()->setFormatScheme(data.s ? data.s : m_defaultFormatScheme);
-		
+
 		if ( oldLang != data.d )
 			e->highlight();
 	}
@@ -213,15 +213,15 @@ void QLanguageFactory::setLanguage(QEditor *e, const QString& file)
 
 /*!
 	\brief Adds a language to the factory
-	
+
 	\param d language data
-	
+
 	\note The language data will overwrite any existing one for the same language
 */
 void QLanguageFactory::addLanguage(const QLanguageFactory::LangData& d)
 {
 	m_data[d.lang] = d;
-	
+
 	if ( !d.e )
 	{
 		foreach ( QCodeCompletionEngine *e, m_unusedEngines )
@@ -233,18 +233,18 @@ void QLanguageFactory::addLanguage(const QLanguageFactory::LangData& d)
 			}
 		}
 	}
-	
+
 	if ( !m_languages.contains(d.lang) )
 		m_languages << d.lang;
 }
 
 /*!
 	\brief Lookup language data for a matching language
-	
+
 	The primary purpose of this function is to make it easy to create configuration dialogs (mainly for
 	format schemes). Beware though : some language may use the default format scheme. It is recommended
 	to check for that before modifying a format scheme or users might be surprised...
-	
+
 	\warning This function will lead to crashes if you pass it a language name not contained in languages().
 */
 const QLanguageFactory::LangData& QLanguageFactory::languageData(const QString& lang)
@@ -254,18 +254,21 @@ const QLanguageFactory::LangData& QLanguageFactory::languageData(const QString& 
 
 /*!
 	\brief Registers a new completion engine
-	
+
 	\note This engine will NOT be used if there are no language definition for the
 	language it supports...
 */
 void QLanguageFactory::addLanguageDefinition(QLanguageDefinition *l)
 {
+	// remove unused argument warning
+	(void) l;
+
 	qWarning("New design does not allow this sorry...");
 }
 
 /*!
 	\brief Registers a new completion engine
-	
+
 	\note This engine will NOT be used if there are no language definition for the
 	language it supports...
 */
@@ -279,7 +282,7 @@ void QLanguageFactory::addCompletionEngine(QCodeCompletionEngine *e)
 			return;
 		}
 	}
-	
+
 	m_unusedEngines << e;
 }
 
@@ -289,7 +292,7 @@ void QLanguageFactory::addCompletionEngine(QCodeCompletionEngine *e)
 void QLanguageFactory::addDefinitionPath(const QString& path)
 {
 	QDir d(path);
-	
+
 	foreach ( QString f, d.entryList(QDir::Files | QDir::Readable) )
 	{
 		#ifdef QNFA_BUILD
@@ -298,17 +301,17 @@ void QLanguageFactory::addDefinitionPath(const QString& path)
 			//qDebug("loading file %s", qPrintable(f));
 			QFileInfo info(d.filePath(f));
 			QString specificFormatScheme = QDir(info.path()).filePath(info.baseName() + ".qxf");
-			
+
 			QFormatScheme *scheme = m_defaultFormatScheme;
-			
+
 			if ( QFile::exists(specificFormatScheme) )
 			{
 				scheme = new QFormatScheme(specificFormatScheme);
 			}
-			
+
 			LangData data;
 			QNFADefinition::load(d.filePath(f), &data, scheme);
-			
+
 			//qDebug("%s : (%s | %s)", qPrintable(data.lang), qPrintable(data.mime), qPrintable(data.extensions.join(", ")));
 			addLanguage(data);
 			//addLanguageDefinition(new QNFADefinition(d.filePath(f), this));

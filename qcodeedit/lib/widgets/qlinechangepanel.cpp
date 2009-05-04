@@ -3,7 +3,7 @@
 ** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
-** 
+**
 ** This file may be used under the terms of the GNU General Public License
 ** version 3 as published by the Free Software Foundation and appearing in the
 ** file GPL.txt included in the packaging of this file.
@@ -39,7 +39,7 @@
 /*!
 	\class QLineMarkPanel
 	\brief A specific panel in charge of drawing line numbers of an editor
-	
+
 	\see QEditorInterface
 */
 
@@ -59,7 +59,7 @@ QLineChangePanel::QLineChangePanel(QWidget *p)
 */
 QLineChangePanel::~QLineChangePanel()
 {
-	
+
 }
 
 /*!
@@ -77,42 +77,42 @@ void QLineChangePanel::paint(QPainter *p, QEditor *e)
 {
 	if ( !e || !e->document() )
 		return;
-	
+
 	const QFontMetrics fm( e->document()->font() );
-	
+
 	int n, posY,
-		maxCount = 0,
+//		maxCount = 0,
 		as = fm.ascent(),
 		ls = fm.lineSpacing(),
 		pageBottom = e->viewport()->height(),
 		contentsY = e->verticalOffset();
-	
+
 	QString txt;
-	
+
 	QDocument *d = e->document();
 	n = d->lineNumber(contentsY);
 	posY = 2 + d->y(n) - contentsY;
-	
+
 	for ( ; ; ++n )
 	{
 		//qDebug("n = %i; pos = %i", n, posY);
 		QDocumentLine line = d->line(n);
-		
+
 		if ( line.isNull() || ((posY - as) > pageBottom) )
 			break;
-		
+
 		if ( line.isHidden() )
 			continue;
-		
+
 		int span = line.lineSpan();
-		
+
 		if ( d->isLineModified(line) )
 		{
 			p->fillRect(1, posY, 2, ls * span, Qt::yellow);
 		} else if ( d->hasLineEverBeenModified(line) ) {
 			p->fillRect(1, posY, 2, ls * span, Qt::green);
 		}
-		
+
 		posY += ls * span;
 	}
 }
