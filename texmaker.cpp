@@ -950,6 +950,7 @@ LatexEditorView* Texmaker::load( const QString &f , bool asProject)
         if (regcheck.exactMatch(f)) f_real=regcheck.cap(1);
     #endif
     raise();
+
     if (FileAlreadyOpen(f_real)) {
         if (singlemode) ToggleMode();
         else if (!singlemode && MasterName != f_real) {
@@ -958,6 +959,7 @@ LatexEditorView* Texmaker::load( const QString &f , bool asProject)
         }
         return 0;
     }
+
     if (!QFile::exists( f_real )) return 0;
 LatexEditorView *edit = new LatexEditorView(0);
 EditorView->addTab( edit, QFileInfo( f_real ).fileName() );
@@ -1002,19 +1004,24 @@ void Texmaker::gotoLine( int line )
 }
 
 
-void Texmaker::fileNew()
+void Texmaker::fileNew(QString fileName)
 {
-LatexEditorView *edit = new LatexEditorView(0);
-if (configManager.newfile_encoding) edit->editor->setFileEncoding(configManager.newfile_encoding);
-else edit->editor->setFileEncoding(QTextCodec::codecForName("utf-8"));
-EditorView->addTab( edit, "untitled");
-configureNewEditorView(edit);
-//filenames.replace( edit, "untitled" );
-filenames.remove( edit);
-filenames.insert( edit, "untitled" );
-UpdateCaption();
-NewDocumentStatus(false);
-edit->editor->setFocus();
+	LatexEditorView *edit = new LatexEditorView(0);
+	if (configManager.newfile_encoding)
+		edit->editor->setFileEncoding(configManager.newfile_encoding);
+	else
+		edit->editor->setFileEncoding(QTextCodec::codecForName("utf-8"));
+
+	EditorView->addTab( edit, fileName);
+	configureNewEditorView(edit);
+
+	filenames.remove( edit);
+	filenames.insert( edit, fileName );
+
+	UpdateCaption();
+	NewDocumentStatus(false);
+
+	edit->editor->setFocus();
 }
 
 void Texmaker::fileOpen()
@@ -3994,11 +4001,16 @@ void Texmaker::executeCommandLine( const QStringList& args, bool realCmdLine){
         if ( args[i] == "-master" ) activateMasterMode=true;
         if (( args[i] == "-line" ) && (i+1<args.size()))  line=args[++i].toInt()-1;
     }
-    //executing cmd line (in an sorted order)
+
+    //execute command line
     QFileInfo ftl(fileToLoad);
-    if (fileToLoad!="" && !ftl.exists()) fileToLoad="";
-    if (fileToLoad!="") load( fileToLoad, activateMasterMode);
-    if (line!=-1) gotoLine(line);
+    if ( fileToLoad != "" ) {
+    	if (ftl.exists()) {
+    		load( fileToLoad, activateMasterMode);
+    	    if (line!=-1)
+    	    	gotoLine(line);
+    	}
+    }
 }
 void Texmaker::onOtherInstanceMessage(const QString &msg)  // Added slot for messages to the single instance
 {
