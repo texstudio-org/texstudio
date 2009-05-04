@@ -3,7 +3,7 @@
 ** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
-** 
+**
 ** This file may be used under the terms of the GNU General Public License
 ** version 3 as published by the Free Software Foundation and appearing in the
 ** file GPL.txt included in the packaging of this file.
@@ -18,24 +18,24 @@
 /*!
 	\file qlanguagedefinition.cpp
 	\brief Implementation of QLanguageDefinition
-	
+
 	\see QLanguageDefinition
 */
 
 /*!
 	\ingroup language
 	@{
-	
+
 	\class QLanguageDefinition
 	\brief Interface for language definition.
-	
+
 	This class is meant to be subclassed, see \see QGenericDefinition for more
 	informations, and added to a QLanguageFactory.
-	
+
 	A language definition is a wrapper that creates interfaces for a given file
-	extension from internally handled data (XML files in the case of 
+	extension from internally handled data (XML files in the case of
 	QGenericDefinition)
-	
+
 	\see QLanguageFactory
 */
 
@@ -62,16 +62,16 @@ QLanguageDefinition::~QLanguageDefinition()
 }
 
 /*!
-	\fn QLanguageDefinition::language() 
-	
+	\fn QLanguageDefinition::language()
+
 	\return The language supported by this definition
 */
 
 /*!
 	\fn QLanguageDefinition::extensions()
-	
+
 	\return the file extensions corrseponding to the supported language
-	
+
 	\see language()
 	\see QFileInfo::completeSuffix()
 */
@@ -81,6 +81,10 @@ QLanguageDefinition::~QLanguageDefinition()
 */
 int QLanguageDefinition::tokenize(QDocument *d, int line, int count)
 {
+	//remove unused argument warning
+	(void) d;
+	(void) line;
+
 	return count;
 }
 
@@ -122,7 +126,7 @@ void QLanguageDefinition::match(QDocumentCursor& c)
 QString QLanguageDefinition::indent(const QDocumentCursor& c)
 {
 	Q_UNUSED(c)
-	
+
 	return QString();
 }
 
@@ -133,7 +137,7 @@ bool QLanguageDefinition::unindent (const QDocumentCursor& c, const QString& ktx
 {
 	Q_UNUSED(c)
 	Q_UNUSED(ktxt)
-	
+
 	return false;
 }
 
@@ -163,7 +167,7 @@ int QLanguageDefinition::blockFlags(QDocument *d, int line, int depth) const
 	Q_UNUSED(d)
 	Q_UNUSED(line)
 	Q_UNUSED(depth)
-	
+
 	return 0;
 }
 
