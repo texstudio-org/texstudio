@@ -53,7 +53,9 @@ CompletionWord::CompletionWord(const QString &newWord){
     if (anchorPos==-1) anchorPos=cursorPos;
     shownWord=visibleWord;
     sortWord=word.toLower();
-    sortWord.replace("*","~");//star commands to the end, ~ is 126 (highest printable ascii character)
+    sortWord.replace("{","!");//js: still using dirty hack, however order should be ' '{[* abcde...
+    sortWord.replace("[","\"");//(first is a space->) !"# follow directly in the ascii table
+    sortWord.replace("*","#");
 }
 
 void CompletionWord::insertAt(QEditor* editor, QDocumentCursor cursor){
