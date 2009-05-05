@@ -4010,7 +4010,8 @@ void Texmaker::executeCommandLine( const QStringList& args, bool realCmdLine){
     	    if (line!=-1)
     	    	gotoLine(line);
     	}
-    }
+    } else if (line!=-1)
+	    gotoLine(line);
 }
 void Texmaker::onOtherInstanceMessage(const QString &msg)  // Added slot for messages to the single instance
 {
