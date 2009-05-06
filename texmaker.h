@@ -175,7 +175,7 @@ void fileNew(QString fileName="untitled");
 void fileOpen();
 void fileSave();
 void fileSaveAll();
-void fileSaveAs();
+void fileSaveAs(QString fileName = "");
 void fileClose();
 void fileCloseAll();
 void fileExit();
