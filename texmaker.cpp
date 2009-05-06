@@ -1038,46 +1038,64 @@ if ( !fn.isEmpty() ) load( fn );
 
 void Texmaker::fileSave()
 {
-if ( !currentEditorView() )	return;
-QString fn;
-if ( getName()=="untitled" ) {fileSaveAs();}
-else
-	{
-	/*QFile file( *filenames.find( currentEditorView() ) );
-	if ( !file.open( QIODevice::WriteOnly ) )
-		{
-		QMessageBox::warning( this,tr("Error"),tr("The file could not be saved. Please check if you have write permission."));
+	if ( !currentEditorView() )
 		return;
-		}*/
-    currentEditorView()->editor->save();
-	//currentEditorView()->editor->setModified(false);
-	fn=getName();
-	AddRecentFile(fn);
+
+	QString fn=getName();
+	if ( fn == "untitled" )
+		fileSaveAs();
+	else if ( ! QFile::exists( fn ) )
+		fileSaveAs( getName() );
+	else {
+		/*QFile file( *filenames.find( currentEditorView() ) );
+		if ( !file.open( QIODevice::WriteOnly ) )
+			{
+			QMessageBox::warning( this,tr("Error"),tr("The file could not be saved. Please check if you have write permission."));
+			return;
+			}*/
+		currentEditorView()->editor->save();
+		//currentEditorView()->editor->setModified(false);
+		fn=getName();
+		AddRecentFile( fn );
 	}
-UpdateCaption();
+	UpdateCaption();
 }
 
-void Texmaker::fileSaveAs()
+void Texmaker::fileSaveAs(QString fileName)
 {
-if ( !currentEditorView() ) 	return;
-QString currentDir=QDir::homePath();
-if (!lastDocument.isEmpty())
-	{
-	QFileInfo fi(lastDocument);
-	if (fi.exists() && fi.isReadable()) currentDir=fi.absolutePath();
+	if ( !currentEditorView() )
+		return;
+
+	// select a directory/filepath
+	QString currentDir=QDir::homePath();
+	if (fileName.isEmpty()) {
+		if (!lastDocument.isEmpty()) {
+			QFileInfo fi(lastDocument);
+			if (fi.exists() && fi.isReadable())
+				currentDir=fi.absolutePath();
+		}
+	} else {
+		QFileInfo currentFile(fileName);
+		if (currentFile.absoluteDir().exists())
+			currentDir = fileName;
 	}
-QString fn = QFileDialog::getSaveFileName(this,tr("Save As"),currentDir,"TeX files (*.tex *.bib *.sty *.cls *.mp);;All files (*.*)");
-if ( !fn.isEmpty() )
-	{
-	QFileInfo fic(fn);
-	currentEditorView()->editor->setFileName(fn);
-	filenames.remove(currentEditorView());
-	filenames.insert(currentEditorView(), fn );
-	//filenames.replace( currentEditorView(), fn );
-	fileSave();
-	EditorView->setTabText(EditorView->indexOf(currentEditorView()),fic.fileName());
+
+	// get a file name
+	QString fn = QFileDialog::getSaveFileName(this,tr("Save As"),currentDir,"TeX files (*.tex *.bib *.sty *.cls *.mp);;All files (*.*)");
+	if ( !fn.isEmpty() ) {
+		QFileInfo fic(fn);
+		currentEditorView()->editor->setFileName(fn);
+		filenames.remove(currentEditorView());
+		filenames.insert(currentEditorView(), fn );
+
+		// save file
+	    currentEditorView()->editor->save();
+		AddRecentFile(getName());
+
+		EditorView->setTabText(EditorView->indexOf(currentEditorView()),fic.fileName());
 	}
-UpdateCaption();
+
+	UpdateCaption();
 }
 
 void Texmaker::fileSaveAll()
@@ -3991,7 +4009,7 @@ void Texmaker::executeCommandLine( const QStringList& args, bool realCmdLine){
 	// remove unused argument warning
 	(void) realCmdLine;
 
-    //parsing command line
+    // parse command line
     QString fileToLoad;
     bool activateMasterMode = false;
     int line=-1;
@@ -4002,13 +4020,17 @@ void Texmaker::executeCommandLine( const QStringList& args, bool realCmdLine){
         if (( args[i] == "-line" ) && (i+1<args.size()))  line=args[++i].toInt()-1;
     }
 
-    //execute command line
+    // execute command line
     QFileInfo ftl(fileToLoad);
     if ( fileToLoad != "" ) {
     	if (ftl.exists()) {
+    		// open existing file and go to specified line
     		load( fileToLoad, activateMasterMode);
     	    if (line!=-1)
     	    	gotoLine(line);
+    	} else if( ftl.absoluteDir().exists() ) {
+    		// open a new file with the name specified
+    		fileNew( ftl.absoluteFilePath() );
     	}
     } else if (line!=-1)
 	    gotoLine(line);
