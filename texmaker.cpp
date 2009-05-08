@@ -4023,16 +4023,15 @@ void Texmaker::executeCommandLine( const QStringList& args, bool realCmdLine){
     // execute command line
     QFileInfo ftl(fileToLoad);
     if ( fileToLoad != "" ) {
-    	if (ftl.exists()) {
-    		// open existing file and go to specified line
+    	if (ftl.exists())
     		load( fileToLoad, activateMasterMode);
-    	    if (line!=-1)
-    	    	gotoLine(line);
-    	} else if( ftl.absoluteDir().exists() ) {
-    		// open a new file with the name specified
+    	else if( ftl.absoluteDir().exists() ) {
     		fileNew( ftl.absoluteFilePath() );
+    		return ;
     	}
-    } else if (line!=-1)
+    }
+
+    if (line!=-1)
 	    gotoLine(line);
 }
 void Texmaker::onOtherInstanceMessage(const QString &msg)  // Added slot for messages to the single instance

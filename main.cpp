@@ -86,24 +86,27 @@ bool TexmakerApp::event ( QEvent * event )
 
 int main( int argc, char ** argv )
 {
-TexmakerApp a( argc, argv ); // This is a dummy constructor so that the programs loads fast.
-
+ // This is a dummy constructor so that the programs loads fast.
+TexmakerApp a( argc, argv );
 DSingleApplication instance("TexMakerX");
 
 bool startAlways=false;
-for(int i=0; i<argc; ++i)
-    if (!strcmp("--start-always",argv[i])) startAlways=true;
-
 QStringList cmdLine;
 QString cmdArgument;
 for ( int i = 1; i < argc; ++i ) {
 	cmdArgument =  QString::fromLocal8Bit(argv [i]);
 
-	// translate file arguments to absolute path
-	if (cmdArgument!="" && cmdArgument.at(0)!='-' && QFileInfo(cmdArgument).isRelative() && QFileInfo(cmdArgument).exists())
-    	cmdLine << QFileInfo(cmdArgument).absoluteFilePath();
-    else
-    	cmdLine << cmdArgument;
+	if (cmdArgument.startsWith('-')) {
+		// various commands
+		if (cmdArgument == "--start-always")
+			startAlways = true;
+		else if (cmdArgument == "-master")
+			cmdLine << cmdArgument;
+		else if ((cmdArgument == "-line") && (i+1 < argc))
+			cmdLine << cmdArgument << QString::fromLocal8Bit(argv [++i]);
+	}
+	else
+		cmdLine << QFileInfo(cmdArgument).absoluteFilePath();
 }
 
 if (!startAlways)
