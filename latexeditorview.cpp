@@ -178,6 +178,8 @@ LatexEditorView::LatexEditorView(QWidget *parent) : QWidget(parent),curChangePos
     mainlay->addWidget(editor);
 
     setFocusProxy( editor );
+
+    environmentFormat=0;
 }
 
 LatexEditorView::~LatexEditorView()
@@ -396,8 +398,13 @@ void LatexEditorView::documentContentChanged(int linenr, int count){
         QString lineText = line.text();
         QString word;
         int start=0;int wordstart;
-        while (nextWord(lineText,start,word,wordstart))
-            if (word.length()>=3 && !speller->check(word))
+        int status;
+        while (status=nextWord(lineText,start,word,wordstart,false))
+            // hack to color the environment given in \begin{environment}...
+            if (status==NW_ENVIRONMENT){
+                line.addOverlay(QFormatRange(wordstart,start-wordstart,environmentFormat));
+            } else if (status==NW_COMMENT) break;
+			else if (word.length()>=3 && !speller->check(word))
                 line.addOverlay(QFormatRange(wordstart,start-wordstart,speller->spellcheckErrorFormat));
     }
 }

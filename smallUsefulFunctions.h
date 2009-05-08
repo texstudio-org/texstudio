@@ -24,20 +24,25 @@ bool isExistingFileRealWritable(QString filename);
 QString getRelativePath(const QString basepath, const QString & file);
 
 
-enum NextWordFlags{
+//searches the next token in the line line after/at the index index
+//there are three possible kind of tokens % (which starts a comment), { or } (as parantheses), \.* (command) or .* (text)
+//index returns the index of the first character after the word
+//return: start index of the token (or -1 if last)
+int nextToken(const QString &line,int &index);    
+
+
+enum NextWordFlag{
     NW_NOTHING=0,
     NW_TEXT=1,
     NW_COMMAND=2,
-    NW_COMMENT=4
+    NW_COMMENT=3,
+	NW_ENVIRONMENT=4
 };
-//searches the next word in the line line after the index index
-//index returns the index of the first character after the word
-//outWord the word (normalized, stripped latex special chars)
-//wordStartIndex the starting index of the word
-//return: true if there is really a word
-bool nextWord(QString line,int &index,QString &outWord,int &wordStartIndex);    
-//similar, but can also search commands/comments
-int nextWord(QString line,int &index,QString &outWord,int &wordStartIndex, int flags);    
+NextWordFlag nextWord(const QString & line, int &index, QString &outWord, int &wordStartIndex, bool returnCommands);
+
+//searches the next text words and ignores command options, environments or comments
+//returns false if none is found 
+bool nextTextWord(const QString & line, int &index, QString &outWord, int &wordStartIndex);
 
 //removes special latex characters 
 QString latexToPlainWord(QString word);    

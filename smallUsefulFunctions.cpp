@@ -5,8 +5,10 @@
 #include <QMap>
 #include <QMessageBox>
 
+const QString CommonEOW="~!@#$%^&*()_+{}|:\"<>?,./;[]-= \t\n\r`+�";
+
 QString getCommonEOW(){
-    return "~!@#$%^&*()_+{}|:\"<>?,./;[]-= \n\r`+�";
+    return CommonEOW;
 }
 
 QString findResourceFile(QString fileName){
@@ -96,93 +98,6 @@ QString getRelativePath(const QString basepath, const QString & file)
 }
 
 
-
-bool nextWord(QString line,int &index,QString &outWord,int &wordStartIndex){
-    return nextWord(line,index,outWord,wordStartIndex,NW_TEXT)!=NW_NOTHING;
-}
-
-int nextWord(QString line,int &index,QString &outWord,int &wordStartIndex, int flags){
-    //todo: latex akzents
-    int result=NW_NOTHING;
-    bool inWord=false;
-    bool inCmd=false;
-    bool reparse=false;
-    bool singleQuoteChar=false;
-    QString eow="~!@#$%^&*()_+{}|:\"<>?,./;[]-= \n\r\t`+�"; //cann't need a '
-    int start=0;
-    int i=index;
-    for (i=(i>0?i:0);i<line.size();i++){
-        QChar cur = line.at(i);
-        if (inCmd) {
-            if (cur=='%') {
-                if (i-start>1) {
-                    if (NW_COMMAND & flags) break; //output command
-                    if (!(NW_COMMENT & flags)) return NW_NOTHING;
-                    inCmd=false;
-                    result|=NW_COMMENT;  //comment, no more words
-                }
-            } else if (eow.indexOf(cur)>=0) {
-                if (NW_COMMAND & flags) break; //output command
-                else inCmd=false;
-            }
-        } else if (inWord) {
-            if (cur=='\\') {
-                if (i+1<line.size() && line.at(i+1)=='-')  {
-                    i++;//ignore word separation marker
-                    reparse=true;
-                } else {
-                    inWord=false;
-                    inCmd=true;
-                }
-            } else if (cur=='\'') { //
-                if (singleQuoteChar) inWord=false; //no word's with two ''
-                else singleQuoteChar=true;         //but accept one
-            } else if (cur=='%'){
-                if (NW_TEXT & flags) break; //output command
-                if (!(NW_COMMENT & flags)) return NW_NOTHING;
-                inWord=false;
-                result|=NW_COMMENT;  //comment, no more words
-            } else if (eow.indexOf(cur)>=0) inWord=false;
-
-            if (!inWord/* && i-start>2*/ && (NW_TEXT & flags)) {
-                inWord=true;
-                break; //output
-            }
-            //if (inCmd) start=i; //only necessary if flags&text==0, but then it won't be called
-        } else if (cur=='\\') {
-            start=i;
-            inCmd=true;
-        } else if (eow.indexOf(cur)<0 && cur!='\'') {
-            start=i;
-            inWord=true;
-        } else if (cur=='%') {
-            if (NW_COMMENT & flags) result|=NW_COMMENT;
-            else return NW_NOTHING;
-        }
-    }
-    if (inWord && (NW_TEXT & flags)) {
-        wordStartIndex=start;
-        index=i;
-        outWord=line.mid(start,i-start);
-	if (outWord.isEmpty()) return NW_NOTHING;
-        if (outWord.at(outWord.length()-1)==QChar('\'')) {
-            outWord=outWord.left(outWord.length()-1);
-            index--;
-        }
-        if (reparse) outWord=latexToPlainWord(outWord);
-        if (outWord.isEmpty()) return NW_NOTHING;
-        if (outWord.at(outWord.length()-1)==QChar('\'')) outWord=outWord.left(outWord.length()-1);
-        return NW_TEXT|result;
-    }
-    if (inCmd && (NW_COMMAND & flags)) {
-        wordStartIndex=start;
-        index=i;
-        outWord=line.mid(start,i-start);
-        return NW_COMMAND|result;
-    }
-    return NW_NOTHING;
-}
-
 QString latexToPlainWord(QString word){
     word.replace(QString("\\-"),"",Qt::CaseInsensitive); //Trennung [separation] (german-babel-package also: \")
     word.replace(QString("\\/"),"",Qt::CaseInsensitive); //ligatur preventing (german-package also: "|)
@@ -228,4 +143,85 @@ QString textToLatex(QString text){
 bool localAwareLessThan(const QString &s1, const QString &s2)
 {
 	return QString::localeAwareCompare(s1,s2)<0;
+}
+
+	
+int nextToken(const QString &line,int &index)
+{
+	bool inWord=false;
+	bool inCmd=false;
+	//bool reparse=false;
+    bool singleQuoteChar=false;
+    int start=-1;
+	int i=index;
+    for (i=(i>0?i:0);i<line.size();i++){
+        QChar cur = line.at(i);
+        if (inCmd) {
+            if (CommonEOW.indexOf(cur)>=0) break; 
+        } else if (inWord) {
+            if (cur=='\\') {
+                if (i+1<line.size() && line.at(i+1)=='-')  {
+                    i++;//ignore word separation marker
+                    //reparse=true;
+                } else break;
+            } else if (cur=='\'') { 
+                if (singleQuoteChar) break;	 //no word's with two '' => output
+                else singleQuoteChar=true;   //but accept one
+            } else if (CommonEOW.indexOf(cur)>=0) break;
+        } else if (cur=='\\') {
+            start=i;
+            inCmd=true;
+        } else if (cur=='{' || cur=='}' || cur=='%') {
+			index=i+1;
+			return i;
+        } else if (cur=='\\') {
+            start=i;
+            inCmd=true;
+        } else if (CommonEOW.indexOf(cur)<0 && cur!='\'') {
+            start=i;
+            inWord=true;
+        }
+    }
+    index=i;
+    return start;
+}
+
+
+NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordStartIndex, bool returnCommands){
+	static const QStringList optionCommands = QStringList() << "\\ref" << "\\label"  << "\\includegraphics";
+	static const QStringList environmentCommands = QStringList() << "\\begin" << "\\end" 
+													<< "\\newenvironment" << "\\renewenvironment";
+
+	QString lastCommand="";
+	while ((wordStartIndex = nextToken(line, index))!=-1){
+		outWord=line.mid(wordStartIndex,index-wordStartIndex);
+		if (outWord.length()==0) return NW_NOTHING; //should never happen
+		switch (outWord.at(0).toAscii()) {
+			case '%': return NW_COMMENT; //return comment start
+			case '\\': 
+				if (returnCommands) return NW_COMMAND;
+				lastCommand=outWord;
+				break;
+			case '{': break; //ignore
+			case '}': lastCommand=""; break;//command doesn't matter anymore
+			default:
+				if (outWord.contains("\\")) 
+					outWord=latexToPlainWord(outWord); //remove special chars
+				if (optionCommands.contains(lastCommand)) 
+					; //ignore command options
+				else if (environmentCommands.contains(lastCommand)) 
+					return NW_ENVIRONMENT;
+				else return NW_TEXT;
+		}
+	}
+	return NW_NOTHING;
+}
+
+bool nextTextWord(const QString & line, int &index, QString &outWord, int &wordStartIndex){
+	NextWordFlag flag;
+	//flag can be nothing, text, comment, environment
+	//text/comment returns false, text returns true, environment is ignored
+	while ((flag=nextWord(line,index,outWord,wordStartIndex,false))==NW_ENVIRONMENT) 
+		;
+	return flag==NW_TEXT; 
 }

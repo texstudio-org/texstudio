@@ -170,7 +170,7 @@ void TextAnalysisDialog::needCount(){
         QString curWord;
         int state;
         int lastIndex=0;
-        while ((state=nextWord(line,nextIndex,curWord,wordStartIndex,NW_TEXT|NW_COMMENT|NW_COMMAND))!=NW_NOTHING){
+        while ((state=nextWord(line,nextIndex,curWord,wordStartIndex,true))!=NW_NOTHING){
             bool inSelection;
             if (selectionStartLine!=selectionEndLine)
                 inSelection=((l<selectionEndLine) && (l>selectionStartLine)) ||
@@ -180,11 +180,21 @@ void TextAnalysisDialog::needCount(){
                 inSelection=(l==selectionStartLine) && (nextIndex>selectionStartIndex) && (wordStartIndex<=selectionEndIndex);
             curWord=curWord.toLower();
             int curType=-1;
-            if (state & NW_COMMENT || commentReached) {
+            if (commentReached) {
+                if (respectSentenceEnd) for (int i=lastIndex;i<wordStartIndex;i++)
+                    if (lastEndCharacters.contains(line.at(i))) {
+                        sentenceLengths[2]=0;
+                        lastWords[2].clear();
+                        break;
+                    }
+				curType=2;
+            } else if (state == NW_COMMENT) {
+				//comment is only % character
                 curType=2;
                 if (!commentReached){
                     commentReached=true;
                     commentLines++;
+					//find sentence end characters which belong to the words before the comment start
                     if (respectSentenceEnd) for (int i=lastIndex;i<wordStartIndex;i++)
                         if (line.at(i)==QChar('%') && (i==0 || line.at(i-1)!=QChar('\%'))) {
                             lastIndex=i;
@@ -195,15 +205,9 @@ void TextAnalysisDialog::needCount(){
                             break;
                         }
                 }
-                if (respectSentenceEnd) for (int i=lastIndex;i<wordStartIndex;i++)
-                    if (lastEndCharacters.contains(line.at(i))) {
-                        sentenceLengths[2]=0;
-                        lastWords[2].clear();
-                        break;
-                    }
-            } else if (state&NW_COMMAND) {
+			} else if (state==NW_COMMAND) {
                 curType=1;
-            } else if (state&NW_TEXT){
+            } else if (state==NW_TEXT){
                 curType=0;
                 if (!lineCountedAsText) {
                     textLines++;

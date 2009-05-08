@@ -196,9 +196,7 @@ macx {
     OBJECTS_DIR = .obj
     
     # #universal tiger
-    CONFIG += link_prl \
-        x86 \
-        ppc
+    CONFIG += link_prl x86 ppc
     QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
     QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.4
     target.path = /Applications
@@ -332,3 +330,4 @@ SOURCES += qcodeedit/lib/qnfa/qnfa.cpp \
     qcodeedit/lib/qnfa/xml2qnfa.cpp
 CONFIG(debug, debug|release):TARGET = texmakerxd
 else:TARGET = texmakerx
+

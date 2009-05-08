@@ -896,6 +896,8 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit){
     m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
     EditorView->setCurrentIndex(EditorView->indexOf(edit));
 
+	edit->environmentFormat=m_formats->id("environment");
+	
     connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(NewDocumentStatus(bool)));
     connect(edit->lineMarkPanel, SIGNAL(toolTipRequested(int,int)),this,SLOT(lineMarkToolTip(int,int)));
 
