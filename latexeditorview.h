@@ -88,6 +88,8 @@ public:
     QHash<int, QDocumentLineHandle*> logEntryToLine;
     
     static int hideTooltipWhenLeavingLine;
+
+    int environmentFormat;
 private:
     friend class DefaultInputBinding;
     static int bookMarkId(int bookmarkNumber);

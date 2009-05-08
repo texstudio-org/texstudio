@@ -103,4 +103,13 @@
         <italic>true</italic>
         <foreground>#0000FF</foreground>
     </format>
+   <format id="environment" >
+        <bold>false</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <foreground>#000080</foreground>
+    </format>
 </QXF>
