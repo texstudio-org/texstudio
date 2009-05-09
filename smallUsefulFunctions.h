@@ -14,6 +14,7 @@
 
 QString getCommonEOW(); 
 
+QStringList findResourceFiles(QString dirName, QString filter);
 //returns the real name of a resource file (allowing the user to override resource files with local files)
 QString findResourceFile(QString fileName);
 //returns if the file is writable (QFileInfo.isWritable works in different ways on Windows and Linux)
