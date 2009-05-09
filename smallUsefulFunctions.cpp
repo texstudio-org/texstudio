@@ -211,7 +211,7 @@ int nextToken(const QString &line,int &index)
 
 
 NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordStartIndex, bool returnCommands){
-        static const QStringList optionCommands = QStringList() << "\\ref" << "\\label"  << "\\includegraphics" << "\\usepackage" << "\\documentclass";
+        static const QStringList optionCommands = QStringList() << "\\ref" << "\\label"  << "\\includegraphics" << "\\usepackage" << "\\documentclass" << "\\include" << "\\input";
 	static const QStringList environmentCommands = QStringList() << "\\begin" << "\\end" 
 													<< "\\newenvironment" << "\\renewenvironment";
 
