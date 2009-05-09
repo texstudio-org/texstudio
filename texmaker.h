@@ -150,6 +150,9 @@ SpellerUtility *mainSpeller;
 TextAnalysisDialog *textAnalysisDlg;
 SpellerDialog *spellDlg;
 
+QStringList completerWords;
+QStringList completerFiles;
+QStringList userCommandList;
 
 //tools
 QProcess *proc;
@@ -354,6 +357,7 @@ void toggleBookmark();
 
 void SetMostUsedSymbols();
 
+void readCompletionList(const QStringList &files);
 void updateCompleter();
 
 protected:

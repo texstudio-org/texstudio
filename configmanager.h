@@ -18,6 +18,7 @@ public:
 
     
     QStringList keyReplace, keyReplaceAfterWord, keyReplaceBeforeWord;
+    QStringList words;
 
 //private:
     QString configFileName,configFileNameBase;

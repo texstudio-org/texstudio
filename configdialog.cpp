@@ -286,6 +286,12 @@ editorButton->setText(tr("Editor"));
 editorButton->setTextAlignment(Qt::AlignHCenter);
 editorButton->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
+QListWidgetItem *completerButton = new QListWidgetItem(ui.contentsWidget);
+completerButton->setIcon(QIcon(":/images/configeditor.png"));
+completerButton->setText(tr("Completion"));
+completerButton->setTextAlignment(Qt::AlignHCenter);
+completerButton->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+
 connect(ui.contentsWidget,
 	SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
 	this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
