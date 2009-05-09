@@ -206,6 +206,7 @@ OutputTable->setColumnWidth(3,fm.width("Line WWWWW"));
 OutputTable->setColumnWidth(4,20*fm.width("w"));
 connect(OutputTable, SIGNAL(clicked (const QModelIndex &)), this, SLOT(ClickedOnLogLine(const QModelIndex &)));
 OutputLayout->addWidget(OutputTable);
+OutputTable->horizontalHeader()->setStretchLastSection(true);
 OutputTable->setMinimumHeight(5*(fm.lineSpacing()+4));
 
 
