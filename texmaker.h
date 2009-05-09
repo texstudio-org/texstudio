@@ -309,6 +309,7 @@ void AnalyseText();
 void AnalyseTextFormDestroyed();
 
 
+void RealViewLog();
 void ViewLog();
 void ClickedOnLogLine(const QModelIndex &);
 void OutputViewVisibilityChanged(bool visible);

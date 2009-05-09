@@ -26,7 +26,7 @@ QString getRelativePath(const QString basepath, const QString & file);
 
 
 //searches the next token in the line line after/at the index index
-//there are three possible kind of tokens % (which starts a comment), { or } (as parantheses), \.* (command) or .* (text)
+//there are these possible kind of tokens % (which starts a comment), { or } (as parantheses), \.* (command) or .* (text)
 //index returns the index of the first character after the word
 //return: start index of the token (or -1 if last)
 int nextToken(const QString &line,int &index);    
@@ -37,8 +37,17 @@ enum NextWordFlag{
     NW_TEXT=1,
     NW_COMMAND=2,
     NW_COMMENT=3,
-	NW_ENVIRONMENT=4
+	NW_ENVIRONMENT=4 //environment name, e.g. in \begin or \newenvironment
 };
+//Returns the next word (giving meaning to the nextToken tokens)
+//line: line to be examined
+//index: start index as input and returns the first character after the found word
+//outWord: found word (length can differ from index - wordStartIndex for text words)
+//wordStartIndex: start of the word
+//returnCommands: if this is true it returns \commands (NW_COMMAND), "normal" "text"  NW_TEXT and % (NW_COMMENT)  [or NW_NOTHING at the end]
+//                "    "  is false it only returns normal text (NW_TEXT, without things like filenames after \include), environment names 
+//                          (NW_ENVIRONMENT, they are treated as text in the other mode) and % (NW_COMMENT)       [or NW_NOTHING at the end]
+//returns the type of outWord
 NextWordFlag nextWord(const QString & line, int &index, QString &outWord, int &wordStartIndex, bool returnCommands);
 
 //searches the next text words and ignores command options, environments or comments

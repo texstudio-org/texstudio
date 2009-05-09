@@ -526,7 +526,7 @@ void Texmaker::setupMenus()
     newManagedAction(menu, "viewpdf",tr("View PDF"), SLOT(ViewPDF()), Qt::Key_F7, ":/images/viewpdf.png");
     newManagedAction(menu, "ps2pdf",tr("PS->PDF"), SLOT(PStoPDF()), Qt::Key_F8, ":/images/ps2pdf.png");
     newManagedAction(menu, "dvipdf",tr("DVI->PDF"), SLOT(DVItoPDF()), Qt::Key_F9, ":/images/dvipdf.png");
-    newManagedAction(menu, "viewlog",tr("View Log"), SLOT(ViewLog()), Qt::Key_F10, ":/images/viewlog.png");
+    newManagedAction(menu, "viewlog",tr("View Log"), SLOT(RealViewLog()), Qt::Key_F10, ":/images/viewlog.png");
     newManagedAction(menu, "bibtex",tr("BibTeX"), SLOT(MakeBib()), Qt::Key_F11);
     newManagedAction(menu, "makeindex",tr("MakeIndex"), SLOT(MakeIndex()), Qt::Key_F12);
 
@@ -3722,6 +3722,13 @@ if (fic.exists() && fic.isReadable()) return true;
 else return false;
 }
 
+//shows the log (even if it is empty)
+void Texmaker::RealViewLog(){
+	ViewLog();
+	if(!OutputView->isVisible()) OutputView->show();
+}
+
+//shows the log if there are errors
 void Texmaker::ViewLog()
 {
 OutputTextEdit->clear();
@@ -3743,8 +3750,7 @@ QString logname=basename+".log";
 QString line;
 QFileInfo fic(logname);
 if (fic.exists() && fic.isReadable() )
-	{
-        if(!OutputView->isVisible()) OutputView->show();
+	{        
 	OutputTextEdit->insertLine("LOG FILE :");
 	QFile f(logname);
 	if ( f.open(QIODevice::ReadOnly) )
