@@ -1,6 +1,7 @@
 #include "smallUsefulFunctions.h"
 #include <QCoreApplication>
 #include <QFile>
+#include <QDir>
 #include <QFileInfo>
 #include <QMap>
 #include <QMessageBox>
@@ -9,6 +10,26 @@ const QString CommonEOW="~!@#$%^&*()_+{}|:\"<>?,./;[]-= \t\n\r`+�";
 
 QString getCommonEOW(){
     return CommonEOW;
+}
+
+QStringList findResourceFiles(QString dirName, QString filter){
+    QStringList searchFiles;
+    #if defined( Q_WS_X11 )
+    searchFiles<<PREFIX"/share/texmakerx/"+dirName; //X_11
+    #endif
+    searchFiles<<QCoreApplication::applicationDirPath() + "/"+dirName; //windows new
+   // searchFiles<<QCoreApplication::applicationDirPath() + "/data/"+fileName; //windows new
+    searchFiles<<":/"+dirName; //resource fall back
+
+    foreach (QString fn, searchFiles) {
+        QDir fic(fn);
+        if (fic.exists() && fic.isReadable() )
+        {
+            return fic.entryList(QStringList(filter),QDir::Files,QDir::Name);
+            break;
+        }
+    }
+    return QStringList();
 }
 
 QString findResourceFile(QString fileName){
@@ -21,6 +42,8 @@ QString findResourceFile(QString fileName){
     searchFiles<<QCoreApplication::applicationDirPath() + "/dictionaries/"+fileName; //windows new
     searchFiles<<QCoreApplication::applicationDirPath() + "/translation/"+fileName; //windows new
     searchFiles<<QCoreApplication::applicationDirPath() + "/help/"+fileName; //windows new
+    searchFiles<<QCoreApplication::applicationDirPath() + "/utilities/"+fileName; //windows new
+    searchFiles<<QCoreApplication::applicationDirPath() + "/completion/"+fileName; //windows new
    // searchFiles<<QCoreApplication::applicationDirPath() + "/data/"+fileName; //windows new
     searchFiles<<":/"+fileName; //resource fall back
 
@@ -188,7 +211,7 @@ int nextToken(const QString &line,int &index)
 
 
 NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordStartIndex, bool returnCommands){
-	static const QStringList optionCommands = QStringList() << "\\ref" << "\\label"  << "\\includegraphics";
+        static const QStringList optionCommands = QStringList() << "\\ref" << "\\label"  << "\\includegraphics" << "\\usepackage" << "\\documentclass";
 	static const QStringList environmentCommands = QStringList() << "\\begin" << "\\end" 
 													<< "\\newenvironment" << "\\renewenvironment";
 
@@ -200,7 +223,7 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 			case '%': return NW_COMMENT; //return comment start
 			case '\\': 
 				if (returnCommands) return NW_COMMAND;
-				lastCommand=outWord;
+                                if(!optionCommands.contains(lastCommand)) lastCommand=outWord;
 				break;
 			case '{': break; //ignore
 			case '}': lastCommand=""; break;//command doesn't matter anymore
