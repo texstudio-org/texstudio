@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>ConfigDialog</class>
- <widget class="QDialog" name="ConfigDialog" >
-  <property name="geometry" >
+ <widget class="QDialog" name="ConfigDialog">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,77 +10,77 @@
     <height>638</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Configure Texmaker</string>
   </property>
-  <layout class="QGridLayout" >
-   <property name="margin" >
+  <layout class="QGridLayout">
+   <property name="margin">
     <number>9</number>
    </property>
-   <property name="spacing" >
+   <property name="spacing">
     <number>6</number>
    </property>
-   <item row="0" column="1" >
-    <widget class="QStackedWidget" name="pagesWidget" >
-     <property name="sizePolicy" >
-      <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+   <item row="0" column="1">
+    <widget class="QStackedWidget" name="pagesWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="minimumSize" >
+     <property name="minimumSize">
       <size>
        <width>450</width>
        <height>442</height>
       </size>
      </property>
-     <property name="currentIndex" >
-      <number>1</number>
+     <property name="currentIndex">
+      <number>4</number>
      </property>
-     <widget class="QWidget" name="pt" >
-      <layout class="QVBoxLayout" >
-       <property name="spacing" >
+     <widget class="QWidget" name="pt">
+      <layout class="QVBoxLayout">
+       <property name="spacing">
         <number>6</number>
        </property>
-       <property name="margin" >
+       <property name="margin">
         <number>9</number>
        </property>
        <item>
-        <widget class="QGroupBox" name="groupBox" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+        <widget class="QGroupBox" name="groupBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="title" >
+         <property name="title">
           <string>Commands (%: filename without extension - @: line number - ?: extended filename options)</string>
          </property>
-         <layout class="QGridLayout" >
-          <property name="margin" >
+         <layout class="QGridLayout">
+          <property name="margin">
            <number>9</number>
           </property>
-          <property name="spacing" >
+          <property name="spacing">
            <number>6</number>
           </property>
-          <item row="0" column="0" >
-           <layout class="QGridLayout" >
-            <property name="margin" >
+          <item row="0" column="0">
+           <layout class="QGridLayout">
+            <property name="margin">
              <number>0</number>
             </property>
-            <property name="spacing" >
+            <property name="spacing">
              <number>6</number>
             </property>
-            <item row="5" column="2" >
-             <widget class="QPushButton" name="pushButtonPsviewer" >
-              <property name="text" >
+            <item row="5" column="2">
+             <widget class="QPushButton" name="pushButtonPsviewer">
+              <property name="text">
                <string/>
               </property>
-              <property name="icon" >
-               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
+              <property name="icon">
+               <iconset resource="texmaker.qrc">
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
-              <property name="iconSize" >
+              <property name="iconSize">
                <size>
                 <width>16</width>
                 <height>16</height>
@@ -87,25 +88,25 @@
               </property>
              </widget>
             </item>
-            <item row="3" column="1" >
-             <widget class="QLineEdit" name="lineEditMakeindex" />
+            <item row="3" column="1">
+             <widget class="QLineEdit" name="lineEditMakeindex"/>
             </item>
-            <item row="11" column="1" >
-             <widget class="QLineEdit" name="lineEditGhostscript" />
+            <item row="11" column="1">
+             <widget class="QLineEdit" name="lineEditGhostscript"/>
             </item>
-            <item row="10" column="1" >
-             <widget class="QLineEdit" name="lineEditMetapost" />
+            <item row="10" column="1">
+             <widget class="QLineEdit" name="lineEditMetapost"/>
             </item>
-            <item row="9" column="2" >
-             <widget class="QPushButton" name="pushButtonPdfviewer" >
-              <property name="text" >
+            <item row="9" column="2">
+             <widget class="QPushButton" name="pushButtonPdfviewer">
+              <property name="text">
                <string/>
               </property>
-              <property name="icon" >
-               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
+              <property name="icon">
+               <iconset resource="texmaker.qrc">
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
-              <property name="iconSize" >
+              <property name="iconSize">
                <size>
                 <width>16</width>
                 <height>16</height>
@@ -113,33 +114,33 @@
               </property>
              </widget>
             </item>
-            <item row="4" column="0" >
-             <widget class="QLabel" name="labelDviview" >
-              <property name="text" >
+            <item row="4" column="0">
+             <widget class="QLabel" name="labelDviview">
+              <property name="text">
                <string>Dvi Viewer</string>
               </property>
              </widget>
             </item>
-            <item row="5" column="0" >
-             <widget class="QLabel" name="labelPsview" >
-              <property name="text" >
+            <item row="5" column="0">
+             <widget class="QLabel" name="labelPsview">
+              <property name="text">
                <string>PS Viewer</string>
               </property>
              </widget>
             </item>
-            <item row="4" column="1" >
-             <widget class="QLineEdit" name="lineEditDviviewer" />
+            <item row="4" column="1">
+             <widget class="QLineEdit" name="lineEditDviviewer"/>
             </item>
-            <item row="1" column="2" >
-             <widget class="QPushButton" name="pushButtonDvips" >
-              <property name="text" >
+            <item row="1" column="2">
+             <widget class="QPushButton" name="pushButtonDvips">
+              <property name="text">
                <string/>
               </property>
-              <property name="icon" >
-               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
+              <property name="icon">
+               <iconset resource="texmaker.qrc">
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
-              <property name="iconSize" >
+              <property name="iconSize">
                <size>
                 <width>16</width>
                 <height>16</height>
@@ -147,19 +148,19 @@
               </property>
              </widget>
             </item>
-            <item row="9" column="1" >
-             <widget class="QLineEdit" name="lineEditPdfviewer" />
+            <item row="9" column="1">
+             <widget class="QLineEdit" name="lineEditPdfviewer"/>
             </item>
-            <item row="0" column="2" >
-             <widget class="QPushButton" name="pushButtonLatex" >
-              <property name="text" >
+            <item row="0" column="2">
+             <widget class="QPushButton" name="pushButtonLatex">
+              <property name="text">
                <string/>
               </property>
-              <property name="icon" >
-               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
+              <property name="icon">
+               <iconset resource="texmaker.qrc">
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
-              <property name="iconSize" >
+              <property name="iconSize">
                <size>
                 <width>16</width>
                 <height>16</height>
@@ -167,16 +168,16 @@
               </property>
              </widget>
             </item>
-            <item row="10" column="2" >
-             <widget class="QPushButton" name="pushButtonMetapost" >
-              <property name="text" >
+            <item row="10" column="2">
+             <widget class="QPushButton" name="pushButtonMetapost">
+              <property name="text">
                <string/>
               </property>
-              <property name="icon" >
-               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
+              <property name="icon">
+               <iconset resource="texmaker.qrc">
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
-              <property name="iconSize" >
+              <property name="iconSize">
                <size>
                 <width>16</width>
                 <height>16</height>
@@ -184,22 +185,22 @@
               </property>
              </widget>
             </item>
-            <item row="6" column="1" >
-             <widget class="QLineEdit" name="lineEditPdflatex" />
+            <item row="6" column="1">
+             <widget class="QLineEdit" name="lineEditPdflatex"/>
             </item>
-            <item row="8" column="1" >
-             <widget class="QLineEdit" name="lineEditPs2pdf" />
+            <item row="8" column="1">
+             <widget class="QLineEdit" name="lineEditPs2pdf"/>
             </item>
-            <item row="3" column="2" >
-             <widget class="QPushButton" name="pushButtonMakeindex" >
-              <property name="text" >
+            <item row="3" column="2">
+             <widget class="QPushButton" name="pushButtonMakeindex">
+              <property name="text">
                <string/>
               </property>
-              <property name="icon" >
-               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
+              <property name="icon">
+               <iconset resource="texmaker.qrc">
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
-              <property name="iconSize" >
+              <property name="iconSize">
                <size>
                 <width>16</width>
                 <height>16</height>
@@ -207,19 +208,19 @@
               </property>
              </widget>
             </item>
-            <item row="0" column="1" >
-             <widget class="QLineEdit" name="lineEditLatex" />
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="lineEditLatex"/>
             </item>
-            <item row="8" column="2" >
-             <widget class="QPushButton" name="pushButtonPs2pdf" >
-              <property name="text" >
+            <item row="8" column="2">
+             <widget class="QPushButton" name="pushButtonPs2pdf">
+              <property name="text">
                <string/>
               </property>
-              <property name="icon" >
-               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
+              <property name="icon">
+               <iconset resource="texmaker.qrc">
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
-              <property name="iconSize" >
+              <property name="iconSize">
                <size>
                 <width>16</width>
                 <height>16</height>
@@ -227,16 +228,16 @@
               </property>
              </widget>
             </item>
-            <item row="2" column="2" >
-             <widget class="QPushButton" name="pushButtonBibtex" >
-              <property name="text" >
+            <item row="2" column="2">
+             <widget class="QPushButton" name="pushButtonBibtex">
+              <property name="text">
                <string/>
               </property>
-              <property name="icon" >
-               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
+              <property name="icon">
+               <iconset resource="texmaker.qrc">
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
-              <property name="iconSize" >
+              <property name="iconSize">
                <size>
                 <width>16</width>
                 <height>16</height>
@@ -244,64 +245,64 @@
               </property>
              </widget>
             </item>
-            <item row="11" column="0" >
-             <widget class="QLabel" name="labelGhostscript" >
-              <property name="text" >
+            <item row="11" column="0">
+             <widget class="QLabel" name="labelGhostscript">
+              <property name="text">
                <string>ghostscript</string>
               </property>
              </widget>
             </item>
-            <item row="5" column="1" >
-             <widget class="QLineEdit" name="lineEditPsviewer" />
+            <item row="5" column="1">
+             <widget class="QLineEdit" name="lineEditPsviewer"/>
             </item>
-            <item row="2" column="0" >
-             <widget class="QLabel" name="labelBibtex" >
-              <property name="text" >
+            <item row="2" column="0">
+             <widget class="QLabel" name="labelBibtex">
+              <property name="text">
                <string>Bibtex</string>
               </property>
              </widget>
             </item>
-            <item row="7" column="0" >
-             <widget class="QLabel" name="labelDvipdfm" >
-              <property name="text" >
+            <item row="7" column="0">
+             <widget class="QLabel" name="labelDvipdfm">
+              <property name="text">
                <string>Dvipdfm</string>
               </property>
              </widget>
             </item>
-            <item row="6" column="0" >
-             <widget class="QLabel" name="labelPdflatex" >
-              <property name="text" >
+            <item row="6" column="0">
+             <widget class="QLabel" name="labelPdflatex">
+              <property name="text">
                <string>PdfLaTeX</string>
               </property>
              </widget>
             </item>
-            <item row="2" column="1" >
-             <widget class="QLineEdit" name="lineEditBibtex" />
+            <item row="2" column="1">
+             <widget class="QLineEdit" name="lineEditBibtex"/>
             </item>
-            <item row="3" column="0" >
-             <widget class="QLabel" name="labelMakeindex" >
-              <property name="text" >
+            <item row="3" column="0">
+             <widget class="QLabel" name="labelMakeindex">
+              <property name="text">
                <string>Makeindex</string>
               </property>
              </widget>
             </item>
-            <item row="8" column="0" >
-             <widget class="QLabel" name="labelPs2pdf" >
-              <property name="text" >
+            <item row="8" column="0">
+             <widget class="QLabel" name="labelPs2pdf">
+              <property name="text">
                <string>ps2pdf</string>
               </property>
              </widget>
             </item>
-            <item row="7" column="2" >
-             <widget class="QPushButton" name="pushButtonDvipdfm" >
-              <property name="text" >
+            <item row="7" column="2">
+             <widget class="QPushButton" name="pushButtonDvipdfm">
+              <property name="text">
                <string/>
               </property>
-              <property name="icon" >
-               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
+              <property name="icon">
+               <iconset resource="texmaker.qrc">
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
-              <property name="iconSize" >
+              <property name="iconSize">
                <size>
                 <width>16</width>
                 <height>16</height>
@@ -309,40 +310,40 @@
               </property>
              </widget>
             </item>
-            <item row="9" column="0" >
-             <widget class="QLabel" name="labelPdfview" >
-              <property name="text" >
+            <item row="9" column="0">
+             <widget class="QLabel" name="labelPdfview">
+              <property name="text">
                <string>Pdf Viewer</string>
               </property>
              </widget>
             </item>
-            <item row="10" column="0" >
-             <widget class="QLabel" name="labelMetapost" >
-              <property name="text" >
+            <item row="10" column="0">
+             <widget class="QLabel" name="labelMetapost">
+              <property name="text">
                <string>metapost</string>
               </property>
              </widget>
             </item>
-            <item row="7" column="1" >
-             <widget class="QLineEdit" name="lineEditDvipdfm" />
+            <item row="7" column="1">
+             <widget class="QLineEdit" name="lineEditDvipdfm"/>
             </item>
-            <item row="0" column="0" >
-             <widget class="QLabel" name="labelLatex" >
-              <property name="text" >
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelLatex">
+              <property name="text">
                <string>LaTeX</string>
               </property>
              </widget>
             </item>
-            <item row="11" column="2" >
-             <widget class="QPushButton" name="pushButtonGhostscript" >
-              <property name="text" >
+            <item row="11" column="2">
+             <widget class="QPushButton" name="pushButtonGhostscript">
+              <property name="text">
                <string/>
               </property>
-              <property name="icon" >
-               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
+              <property name="icon">
+               <iconset resource="texmaker.qrc">
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
-              <property name="iconSize" >
+              <property name="iconSize">
                <size>
                 <width>16</width>
                 <height>16</height>
@@ -350,16 +351,16 @@
               </property>
              </widget>
             </item>
-            <item row="4" column="2" >
-             <widget class="QPushButton" name="pushButtonDviviewer" >
-              <property name="text" >
+            <item row="4" column="2">
+             <widget class="QPushButton" name="pushButtonDviviewer">
+              <property name="text">
                <string/>
               </property>
-              <property name="icon" >
-               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
+              <property name="icon">
+               <iconset resource="texmaker.qrc">
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
-              <property name="iconSize" >
+              <property name="iconSize">
                <size>
                 <width>16</width>
                 <height>16</height>
@@ -367,26 +368,26 @@
               </property>
              </widget>
             </item>
-            <item row="1" column="0" >
-             <widget class="QLabel" name="labelDvips" >
-              <property name="text" >
+            <item row="1" column="0">
+             <widget class="QLabel" name="labelDvips">
+              <property name="text">
                <string>dvips</string>
               </property>
              </widget>
             </item>
-            <item row="1" column="1" >
-             <widget class="QLineEdit" name="lineEditDvips" />
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="lineEditDvips"/>
             </item>
-            <item row="6" column="2" >
-             <widget class="QPushButton" name="pushButtonPdflatex" >
-              <property name="text" >
+            <item row="6" column="2">
+             <widget class="QPushButton" name="pushButtonPdflatex">
+              <property name="text">
                <string/>
               </property>
-              <property name="icon" >
-               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
+              <property name="icon">
+               <iconset resource="texmaker.qrc">
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
-              <property name="iconSize" >
+              <property name="iconSize">
                <size>
                 <width>16</width>
                 <height>16</height>
@@ -400,24 +401,24 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_4" >
-         <property name="text" >
-          <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
-&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-weight:600; text-decoration: underline;">Special chars&lt;/span>: &lt;span style=" font-weight:600;">%&lt;/span>: filename without extension &lt;span style=" font-weight:600;">@&lt;/span>: line number &lt;br />&lt;span style=" font-weight:600;">?&lt;/span> followed by &lt;span style=" font-style:italic;">a&lt;/span>,&lt;span style=" font-style:italic;">r&lt;/span>,&lt;span style=" font-style:italic;">m&lt;/span>,&lt;span style=" font-style:italic;">e&lt;/span>,&lt;span style=" font-style:italic;">"&lt;/span>, ,&lt;span style=" font-style:italic;">)&lt;/span>: extended filename&lt;br />      &lt;span style=" font-style:italic;">a&lt;/span>: absolute path, &lt;!--&lt;span style=" font-style:italic;">r&lt;/span>: relative path, -->&lt;span style=" font-style:italic;">m&lt;/span>: basefile name without extension,&lt;span style=" font-style:italic;">e&lt;/span>: extension&lt;br />      &lt;span style=" font-style:italic;">"&lt;/span>: enclose with "..", (space): ends placeholder and add a space, &lt;span style=" font-style:italic;">)&lt;/span>: ends placeholder &lt;br />      examples: ?ame": complete absolute filename enclosed in ", ?e) just the extension (without leading point), &lt;br />            ?m" (filename without extension, identical to %) ?me (filename with extension like example.tex)&lt;br />
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;: &lt;span style=&quot; font-weight:600;&quot;&gt;%&lt;/span&gt;: filename without extension &lt;span style=&quot; font-weight:600;&quot;&gt;@&lt;/span&gt;: line number &lt;br /&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;?&lt;/span&gt; followed by &lt;span style=&quot; font-style:italic;&quot;&gt;a&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;r&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;m&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;e&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;&quot;&lt;/span&gt;, ,&lt;span style=&quot; font-style:italic;&quot;&gt;)&lt;/span&gt;: extended filename&lt;br /&gt;      &lt;span style=&quot; font-style:italic;&quot;&gt;a&lt;/span&gt;: absolute path, &lt;!--&lt;span style=&quot; font-style:italic;&quot;&gt;r&lt;/span&gt;: relative path, --&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;m&lt;/span&gt;: basefile name without extension,&lt;span style=&quot; font-style:italic;&quot;&gt;e&lt;/span&gt;: extension&lt;br /&gt;      &lt;span style=&quot; font-style:italic;&quot;&gt;&quot;&lt;/span&gt;: enclose with &quot;..&quot;, (space): ends placeholder and add a space, &lt;span style=&quot; font-style:italic;&quot;&gt;)&lt;/span&gt;: ends placeholder &lt;br /&gt;      examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just the extension (without leading point), &lt;br /&gt;            ?m&quot; (filename without extension, identical to %) ?me (filename with extension like example.tex)&lt;br /&gt;
  %%, @@ or ?? become: %, @ or ?
- &lt;/p>&lt;/body>&lt;/html></string>
+ &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
        <item>
         <spacer>
-         <property name="orientation" >
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>401</width>
            <height>16</height>
@@ -427,88 +428,88 @@ p, li { white-space: pre-wrap; }
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="pq" >
-      <layout class="QVBoxLayout" >
-       <property name="spacing" >
+     <widget class="QWidget" name="pq">
+      <layout class="QVBoxLayout">
+       <property name="spacing">
         <number>6</number>
        </property>
-       <property name="margin" >
+       <property name="margin">
         <number>9</number>
        </property>
        <item>
-        <widget class="QGroupBox" name="groupBox_2" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="title" >
+         <property name="title">
           <string>Quick Build Command</string>
          </property>
-         <layout class="QGridLayout" >
-          <property name="margin" >
+         <layout class="QGridLayout">
+          <property name="margin">
            <number>9</number>
           </property>
-          <property name="spacing" >
+          <property name="spacing">
            <number>6</number>
           </property>
-          <item row="0" column="0" >
-           <layout class="QVBoxLayout" >
-            <property name="spacing" >
+          <item row="0" column="0">
+           <layout class="QVBoxLayout">
+            <property name="spacing">
              <number>6</number>
             </property>
-            <property name="margin" >
+            <property name="margin">
              <number>0</number>
             </property>
             <item>
-             <widget class="QRadioButton" name="radioButton1" >
-              <property name="text" >
+             <widget class="QRadioButton" name="radioButton1">
+              <property name="text">
                <string>LaTeX + dvips + View PS</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton2" >
-              <property name="text" >
+             <widget class="QRadioButton" name="radioButton2">
+              <property name="text">
                <string>LaTeX + View DVI</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton3" >
-              <property name="text" >
+             <widget class="QRadioButton" name="radioButton3">
+              <property name="text">
                <string>PdfLaTeX + View PDF</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton4" >
-              <property name="text" >
+             <widget class="QRadioButton" name="radioButton4">
+              <property name="text">
                <string>LaTeX + dvipdfm + View PDF</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton5" >
-              <property name="text" >
+             <widget class="QRadioButton" name="radioButton5">
+              <property name="text">
                <string>LaTeX + dvips + ps2pdf + View PDF</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton6" >
-              <property name="text" >
+             <widget class="QRadioButton" name="radioButton6">
+              <property name="text">
                <string>User : (% : filename without extension)</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEditUserquick" />
+             <widget class="QLineEdit" name="lineEditUserquick"/>
             </item>
             <item>
-             <widget class="QLabel" name="label" >
-              <property name="text" >
+             <widget class="QLabel" name="label">
+              <property name="text">
                <string>(the commands must be separated by '|')</string>
               </property>
              </widget>
@@ -519,31 +520,31 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox_4" >
-         <property name="title" >
+        <widget class="QGroupBox" name="groupBox_4">
+         <property name="title">
           <string>More</string>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout" >
+         <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QLabel" name="label_2" >
-            <property name="text" >
+           <widget class="QLabel" name="label_2">
+            <property name="text">
              <string>Execute before compiling:</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEditExecuteBeforeCompiling" />
+           <widget class="QLineEdit" name="lineEditExecuteBeforeCompiling"/>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButtonExecuteBeforeCompiling" >
-            <property name="text" >
+           <widget class="QPushButton" name="pushButtonExecuteBeforeCompiling">
+            <property name="text">
              <string/>
             </property>
-            <property name="icon" >
-             <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
+            <property name="icon">
+             <iconset resource="texmaker.qrc">
               <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
             </property>
-            <property name="iconSize" >
+            <property name="iconSize">
              <size>
               <width>16</width>
               <height>16</height>
@@ -556,10 +557,10 @@ p, li { white-space: pre-wrap; }
        </item>
        <item>
         <spacer>
-         <property name="orientation" >
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>441</width>
            <height>40</height>
@@ -569,37 +570,37 @@ p, li { white-space: pre-wrap; }
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="Seite" >
-      <layout class="QVBoxLayout" name="verticalLayout" >
+     <widget class="QWidget" name="Seite">
+      <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QLabel" name="label_6" >
-         <property name="text" >
+        <widget class="QLabel" name="label_6">
+         <property name="text">
           <string>Shortcuts</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QTreeWidget" name="shortcutTree" >
-         <property name="columnCount" >
+        <widget class="QTreeWidget" name="shortcutTree">
+         <property name="columnCount">
           <number>4</number>
          </property>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>1</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>2</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>3</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>4</string>
           </property>
          </column>
@@ -607,92 +608,92 @@ p, li { white-space: pre-wrap; }
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="pe" >
-      <layout class="QGridLayout" >
-       <property name="margin" >
+     <widget class="QWidget" name="pe">
+      <layout class="QGridLayout">
+       <property name="margin">
         <number>9</number>
        </property>
-       <property name="spacing" >
+       <property name="spacing">
         <number>6</number>
        </property>
-       <item row="1" column="0" >
-        <widget class="QGroupBox" name="groupBox_3" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="title" >
+         <property name="title">
           <string>Editor</string>
          </property>
-         <layout class="QGridLayout" >
-          <item row="0" column="0" >
-           <widget class="QLabel" name="labelFamily" >
-            <property name="text" >
+         <layout class="QGridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelFamily">
+            <property name="text">
              <string>Editor Font Family</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" colspan="4" >
-           <widget class="QComboBox" name="comboBoxFont" >
-            <property name="editable" >
+          <item row="0" column="1" colspan="4">
+           <widget class="QComboBox" name="comboBoxFont">
+            <property name="editable">
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" >
-           <widget class="QLabel" name="labelSize" >
-            <property name="text" >
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelSize">
+            <property name="text">
              <string>Editor Font Size</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1" colspan="4" >
-           <widget class="QSpinBox" name="spinBoxSize" >
-            <property name="minimum" >
+          <item row="1" column="1" colspan="4">
+           <widget class="QSpinBox" name="spinBoxSize">
+            <property name="minimum">
              <number>1</number>
             </property>
-            <property name="value" >
+            <property name="value">
              <number>12</number>
             </property>
            </widget>
           </item>
-          <item row="2" column="0" >
-           <widget class="QLabel" name="labelEncoding" >
-            <property name="text" >
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelEncoding">
+            <property name="text">
              <string>Editor Font Encoding</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1" colspan="4" >
-           <widget class="QComboBox" name="comboBoxEncoding" />
+          <item row="2" column="1" colspan="4">
+           <widget class="QComboBox" name="comboBoxEncoding"/>
           </item>
-          <item row="4" column="0" >
-           <widget class="QCheckBox" name="checkBoxWordwrap" >
-            <property name="text" >
+          <item row="4" column="0">
+           <widget class="QCheckBox" name="checkBoxWordwrap">
+            <property name="text">
              <string>Word Wrap</string>
             </property>
            </widget>
           </item>
-          <item row="7" column="0" >
-           <widget class="QLabel" name="labelASpellCommand" >
-            <property name="text" >
+          <item row="7" column="0">
+           <widget class="QLabel" name="labelASpellCommand">
+            <property name="text">
              <string>Spelling dictionary</string>
             </property>
            </widget>
           </item>
-          <item row="7" column="1" colspan="4" >
-           <layout class="QHBoxLayout" >
-            <property name="spacing" >
+          <item row="7" column="1" colspan="4">
+           <layout class="QHBoxLayout">
+            <property name="spacing">
              <number>6</number>
             </property>
-            <property name="margin" >
+            <property name="margin">
              <number>0</number>
             </property>
             <item>
-             <widget class="QLineEdit" name="lineEditAspellCommand" >
-              <property name="minimumSize" >
+             <widget class="QLineEdit" name="lineEditAspellCommand">
+              <property name="minimumSize">
                <size>
                 <width>190</width>
                 <height>0</height>
@@ -701,117 +702,117 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButtonAspell" >
-              <property name="text" >
+             <widget class="QPushButton" name="pushButtonAspell">
+              <property name="text">
                <string/>
               </property>
-              <property name="icon" >
-               <iconset resource="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" >
+              <property name="icon">
+               <iconset resource="texmaker.qrc">
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
              </widget>
             </item>
            </layout>
           </item>
-          <item row="8" column="1" colspan="3" >
-           <widget class="QLabel" name="labelGetDic" >
-            <property name="text" >
+          <item row="8" column="1" colspan="3">
+           <widget class="QLabel" name="labelGetDic">
+            <property name="text">
              <string/>
             </property>
-            <property name="textFormat" >
+            <property name="textFormat">
              <enum>Qt::RichText</enum>
             </property>
            </widget>
           </item>
-          <item row="3" column="1" colspan="2" >
-           <widget class="QCheckBox" name="checkBoxAutoDetectOnLoad" >
-            <property name="text" >
+          <item row="3" column="1" colspan="2">
+           <widget class="QCheckBox" name="checkBoxAutoDetectOnLoad">
+            <property name="text">
              <string>auto detect encoding of loaded files</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="1" >
-           <widget class="QCheckBox" name="checkBoxCompletion" >
-            <property name="text" >
+          <item row="4" column="1">
+           <widget class="QCheckBox" name="checkBoxCompletion">
+            <property name="text">
              <string>Completion</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="2" >
-           <widget class="QCheckBox" name="checkBoxFolding" >
-            <property name="text" >
+          <item row="4" column="2">
+           <widget class="QCheckBox" name="checkBoxFolding">
+            <property name="text">
              <string>Folding</string>
             </property>
            </widget>
           </item>
-          <item row="8" column="4" >
-           <widget class="QCheckBox" name="checkBoxRealTimeCheck" >
-            <property name="text" >
+          <item row="8" column="4">
+           <widget class="QCheckBox" name="checkBoxRealTimeCheck">
+            <property name="text">
              <string>real time checking</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="0" >
-           <widget class="QCheckBox" name="checkBoxState" >
-            <property name="text" >
+          <item row="5" column="0">
+           <widget class="QCheckBox" name="checkBoxState">
+            <property name="text">
              <string>Show State Panel</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="1" >
-           <widget class="QCheckBox" name="checkBoxLineState" >
-            <property name="text" >
+          <item row="5" column="1">
+           <widget class="QCheckBox" name="checkBoxLineState">
+            <property name="text">
              <string>Show Line Change State</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="2" colspan="2" >
-           <widget class="QComboBox" name="comboboxLineNumbers" >
+          <item row="5" column="2" colspan="2">
+           <widget class="QComboBox" name="comboboxLineNumbers">
             <item>
-             <property name="text" >
+             <property name="text">
               <string>No line numbers</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>Show line numbers</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>Show important line numbers</string>
              </property>
             </item>
            </widget>
           </item>
-          <item row="4" column="3" >
-           <widget class="QCheckBox" name="checkBoxAutoIndent" >
-            <property name="text" >
+          <item row="4" column="3">
+           <widget class="QCheckBox" name="checkBoxAutoIndent">
+            <property name="text">
              <string>Autoindent</string>
             </property>
            </widget>
           </item>
-          <item row="6" column="1" colspan="4" >
-           <widget class="QGroupBox" name="formatConfigBox" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="MinimumExpanding" hsizetype="Preferred" >
+          <item row="6" column="1" colspan="4">
+           <widget class="QGroupBox" name="formatConfigBox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="minimumSize" >
+            <property name="minimumSize">
              <size>
               <width>0</width>
               <height>0</height>
              </size>
             </property>
-            <property name="baseSize" >
+            <property name="baseSize">
              <size>
               <width>0</width>
               <height>0</height>
              </size>
             </property>
-            <property name="title" >
+            <property name="title">
              <string>Formats</string>
             </property>
            </widget>
@@ -821,14 +822,29 @@ p, li { white-space: pre-wrap; }
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="page">
+      <widget class="QListWidget" name="completeListWidget">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>20</y>
+         <width>591</width>
+         <height>511</height>
+        </rect>
+       </property>
+       <property name="sortingEnabled">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
     </widget>
    </item>
-   <item row="1" column="0" >
+   <item row="1" column="0">
     <spacer>
-     <property name="orientation" >
+     <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <property name="sizeHint" stdset="0" >
+     <property name="sizeHint" stdset="0">
       <size>
        <width>131</width>
        <height>40</height>
@@ -836,20 +852,20 @@ p, li { white-space: pre-wrap; }
      </property>
     </spacer>
    </item>
-   <item row="1" column="1" >
-    <layout class="QHBoxLayout" >
-     <property name="spacing" >
+   <item row="1" column="1">
+    <layout class="QHBoxLayout">
+     <property name="spacing">
       <number>6</number>
      </property>
-     <property name="margin" >
+     <property name="margin">
       <number>0</number>
      </property>
      <item>
       <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" stdset="0" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>407</width>
          <height>31</height>
@@ -858,54 +874,54 @@ p, li { white-space: pre-wrap; }
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="okButton" >
-       <property name="text" >
+      <widget class="QPushButton" name="okButton">
+       <property name="text">
         <string>OK</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="cancelButton" >
-       <property name="text" >
+      <widget class="QPushButton" name="cancelButton">
+       <property name="text">
         <string>Cancel</string>
        </property>
       </widget>
      </item>
     </layout>
    </item>
-   <item row="0" column="0" >
-    <widget class="QListWidget" name="contentsWidget" >
-     <property name="sizePolicy" >
-      <sizepolicy vsizetype="Expanding" hsizetype="Fixed" >
+   <item row="0" column="0">
+    <widget class="QListWidget" name="contentsWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="minimumSize" >
+     <property name="minimumSize">
       <size>
        <width>150</width>
        <height>442</height>
       </size>
      </property>
-     <property name="maximumSize" >
+     <property name="maximumSize">
       <size>
        <width>150</width>
        <height>32000</height>
       </size>
      </property>
-     <property name="iconSize" >
+     <property name="iconSize">
       <size>
        <width>96</width>
        <height>96</height>
       </size>
      </property>
-     <property name="spacing" >
+     <property name="spacing">
       <number>12</number>
      </property>
-     <property name="viewMode" >
+     <property name="viewMode">
       <enum>QListView::IconMode</enum>
      </property>
-     <property name="currentRow" >
+     <property name="currentRow">
       <number>-1</number>
      </property>
     </widget>
@@ -955,7 +971,7 @@ p, li { white-space: pre-wrap; }
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources>
-  <include location="../source/texmaker-1.7/texmaker-1.7/texmaker.qrc" />
+  <include location="texmaker.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -964,11 +980,11 @@ p, li { white-space: pre-wrap; }
    <receiver>ConfigDialog</receiver>
    <slot>accept()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>466</x>
      <y>470</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>307</x>
      <y>250</y>
     </hint>
@@ -980,11 +996,11 @@ p, li { white-space: pre-wrap; }
    <receiver>ConfigDialog</receiver>
    <slot>reject()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>557</x>
      <y>470</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>307</x>
      <y>250</y>
     </hint>

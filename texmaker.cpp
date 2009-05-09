@@ -379,9 +379,19 @@ void Texmaker::treeWidgetToManagedMenuTo(QTreeWidgetItem* item){
                     managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~1", item->text(3)));
             }
         }
+    } else {
+        if( item->childCount() > 0){
+            for (int i=0;i< item->childCount (); i++)
+                treeWidgetToManagedMenuTo(item->child(i));
+        } else {
+            QString id=item->data(0,Qt::UserRole).toString();
+            if (id=="") return;
+            QAction * act=getManagedAction(id);
+            if (act) {
+                act->setShortcut(QKeySequence());
+            }
+        }
     }
-    for (int i=0;i< item->childCount (); i++)
-        treeWidgetToManagedMenuTo(item->child(i));
 }
 void Texmaker::setupMenus()
 {
@@ -1900,11 +1910,18 @@ for (int i=0; i <412 ; i++)
 	symbolScore[i]=config->value( "Symbols/symbol"+QString::number(i),0).toInt();
 
 
+
+
 config->endGroup();
 
 config->beginGroup("formats");
 m_formats = new QFormatFactory(":/qxs/defaultFormats.qxf", this); //load default formats from resource file
 m_formats->load(*config,true); //load customized formats
+config->endGroup();
+
+config->beginGroup("completionFile");
+completerFiles=config->value( "Completion/complitionFiles",QStringList("completion/completion.txt")).toStringList();
+readCompletionList(completerFiles);
 config->endGroup();
 
 delete config;
@@ -2047,6 +2064,12 @@ config->beginGroup("formats");
 m_formats->save(*config);
 config->endGroup();
 
+if(!completerFiles.isEmpty()){
+    config->beginGroup("completionFile");
+    config->setValue( "Completion/complitionFiles",completerFiles);
+    config->endGroup();
+}
+
 delete config;
 }
 
@@ -2059,6 +2082,11 @@ StructureToolbox->setCurrentIndex(StructureToolbox->indexOf(StructureTreeWidget)
 
 void Texmaker::UpdateStructure()
 {
+// collect user define tex commands for completer
+// initialize List
+userCommandList.clear();
+
+//
 QTreeWidgetItem *Child,*parent_level[5], *theitem;
 QString current;
 if (StructureTreeWidget->currentItem()) current=StructureTreeWidget->currentItem()->text(0);
@@ -2086,6 +2114,33 @@ QString s;
 for (int i=0;i<currentEditorView()->editor->document()->lines();i++)
 	{
 	int tagStart, tagEnd;
+        //// newcommand ////
+        tagStart=tagEnd=0;
+        s=currentEditorView()->editor->text(i);
+        tagStart=s.indexOf("\\newcommand{", tagEnd);
+        if (tagStart!=-1)
+                {
+                s=s.mid(tagStart+12,s.length());
+                tagStart=s.indexOf("}", tagEnd);
+                if (tagStart!=-1)
+                        {
+                        int optionStart=s.indexOf("[", tagEnd);
+                        int options=0;
+                        if(optionStart!=-1){
+                            int optionEnd=s.indexOf("]", tagEnd);
+                            QString zw=s.mid(optionStart+1,optionEnd-optionStart-1);
+                            bool ok;
+                            options=zw.toInt(&ok,10);
+                            if(!ok) options=0;
+                        }
+                        s=s.mid(0,tagStart);
+                        for(int i=0;i<options;i++){
+                            if(i==0) s.append("{%|}");
+                            else s.append("{}");
+                        }
+                        userCommandList.append(s);
+                        }
+                };
 	//// label ////
 	tagStart=tagEnd=0;
 	s=currentEditorView()->editor->text(i);
@@ -3688,6 +3743,7 @@ QString line;
 QFileInfo fic(logname);
 if (fic.exists() && fic.isReadable() )
 	{
+        if(!OutputView->isVisible()) OutputView->show();
 	OutputTextEdit->insertLine("LOG FILE :");
 	QFile f(logname);
 	if ( f.open(QIODevice::ReadOnly) )
@@ -3945,6 +4001,9 @@ confDlg->ui.lineEditUserquick->setText(userquick_command);
     confDlg->ui.shortcutTree->addTopLevelItem(mainItem);
     mainItem->setExpanded(true);
 
+    //completion words
+    configManager.words=completerFiles;
+
 
 if (configManager.execConfigDialog(confDlg))
 	{
@@ -3971,7 +4030,7 @@ if (configManager.execConfigDialog(confDlg))
 	viewpdf_command=confDlg->ui.lineEditPdfviewer->text();
 	metapost_command=confDlg->ui.lineEditMetapost->text();
 	ghostscript_command=confDlg->ui.lineEditGhostscript->text();
-    precompile_command=confDlg->ui.lineEditExecuteBeforeCompiling->text();
+        precompile_command=confDlg->ui.lineEditExecuteBeforeCompiling->text();
 
 	QString fam=confDlg->ui.comboBoxFont->lineEdit()->text();
 	int si=confDlg->ui.spinBoxSize->value();
@@ -4004,6 +4063,10 @@ if (configManager.execConfigDialog(confDlg))
             OutputTable->hide();
             //OutputTextEdit->insertLine("Editor settings apply only to new loaded document.");
 		}
+        //completion words
+        readCompletionList(configManager.words);
+        completerFiles=configManager.words;
+        updateCompleter();
 	}
 	delete confDlg;
 }
@@ -4214,11 +4277,32 @@ for ( int i = 0; i <=11; ++i )
 MostUsedListWidget->SetUserPage(symbolMostused);
 }
 
+void Texmaker::readCompletionList(const QStringList &files)
+{
+    completerWords.clear();
+    QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+    foreach(QString file, files)
+    {
+        QString fn=findResourceFile(file);
+        QFile tagsfile(fn);
+        if (tagsfile.open(QFile::ReadOnly)) {
+            QString line;
+            while (!tagsfile.atEnd())
+            {
+                line = tagsfile.readLine();
+                if (!line.isEmpty() && !line.startsWith("#") && !line.startsWith(" ")) completerWords.append(line.trimmed());
+            }
+        }
+    }
+    QApplication::restoreOverrideCursor();
+    //updateCompleter();
+}
+
 
 void Texmaker::updateCompleter()
 {
     QStringList words;
-    QFile tagsfile(":/completion/completion.txt");
+    /*QFile tagsfile(":/completion/completion.txt");
     if (tagsfile.open(QFile::ReadOnly)) {
         QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
         QString line;
@@ -4228,12 +4312,14 @@ void Texmaker::updateCompleter()
             if (!line.isEmpty()) words.append(line.trimmed());
         }
         QApplication::restoreOverrideCursor();
-    }
+    }*/
+    words=completerWords;
+    words.append(userCommandList);
     for (int i=0; i<labelitem.count();++i)
     {
         words.append("\\ref{"+labelitem.at(i)+"}");
         words.append("\\pageref{"+labelitem.at(i)+"}");
-	}
+    }
 
 
     completer->setWords(words);
@@ -4244,4 +4330,3 @@ void Texmaker::updateCompleter()
         else LatexCompleter::parseHelpfile(QTextStream(&f).readAll());
     }
 }
-

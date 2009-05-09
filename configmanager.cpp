@@ -122,6 +122,18 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg){
         confDlg->ui.comboBoxEncoding->setCurrentIndex(confDlg->ui.comboBoxEncoding->findText(newfile_encoding->name(), Qt::MatchExactly));
     confDlg->ui.checkBoxAutoDetectOnLoad->setChecked(autodetectLoadedFile);
     
+    //completion lists
+    QStringList files=findResourceFiles("completion","*.cwl");
+    QListWidgetItem *item;
+    foreach(QString elem,files)
+    {
+        item=new QListWidgetItem(elem,confDlg->ui.completeListWidget);
+        item->setFlags(Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
+        if(words.contains(elem)) item->setCheckState(Qt::Checked);
+        else  item->setCheckState(Qt::Unchecked);
+    }
+
+
 
     bool executed = confDlg->exec();
     if (executed) {
@@ -137,6 +149,14 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg){
             keyReplaceAfterWord << keyReplacements->child(i)->text(3);
         }
         confDlg->fmConfig->apply();
+
+        words.clear();
+        QListWidgetItem *elem;
+        for(int i=0;i<confDlg->ui.completeListWidget->count();i++)
+        {
+            elem=confDlg->ui.completeListWidget->item(i);
+            if(elem->checkState()==Qt::Checked) words.append(elem->text());
+        }
     }
     return executed;
 }
