@@ -194,6 +194,27 @@ void QSearchReplacePanel::find(int backward)
 		leFind->setFocus();
 }
 
+void QSearchReplacePanel::replace()
+{
+        if ( !m_search )
+        {
+                if ( !isVisible() )
+                {
+                        display(1, false);
+                        return;
+                } else {
+                        init();
+                }
+
+        }
+        bool res=m_search->cursor().hasSelection();
+        if(res) m_search->next(0,false,true);
+        m_search->next(lastDirection);
+
+        if (isVisible() && !leFind->hasFocus() && !leReplace->hasFocus() )
+                leFind->setFocus();
+}
+
 void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool regex){
     if (!isVisible()) display(1,false);
     if (m_search && m_search->searchText()!=text) {
@@ -480,6 +501,15 @@ void QSearchReplacePanel::on_bPrevious_clicked()
 void QSearchReplacePanel::on_bRefresh_clicked()
 {
 	init();
+}
+
+void QSearchReplacePanel::on_bReplace_clicked()
+{
+        if ( !m_search )
+                init();
+
+        leFind->setStyleSheet(QString());
+        replace();
 }
 
 void QSearchReplacePanel::init()
