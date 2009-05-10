@@ -47,7 +47,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel, private Ui::SearchReplace
 		
 		void find(int backward = -1);
 		void find(QString text, bool backward, bool highlight, bool regex);
-                void replace();
+                void replace(bool replaceAll = false);
 		
 	protected:
 		virtual void editorChange(QEditor *e);
@@ -78,6 +78,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel, private Ui::SearchReplace
 		void on_bPrevious_clicked();
 
                 void on_bReplace_clicked();
+                void on_bReplaceAll_clicked();
 		
 		void cursorPositionChanged();
 		

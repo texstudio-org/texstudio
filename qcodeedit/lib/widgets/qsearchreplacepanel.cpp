@@ -176,7 +176,7 @@ void QSearchReplacePanel::find(int backward)
 			lastDirection = backward;
 	}
 
-	bool replaceAll = cbReplace->isChecked() && cbReplaceAll->isChecked();
+        bool replaceAll = false;
 
 	if ( backward == -1 )
 	{
@@ -194,7 +194,7 @@ void QSearchReplacePanel::find(int backward)
 		leFind->setFocus();
 }
 
-void QSearchReplacePanel::replace()
+void QSearchReplacePanel::replace(bool replaceAll)
 {
         if ( !m_search )
         {
@@ -208,8 +208,8 @@ void QSearchReplacePanel::replace()
 
         }
         bool res=m_search->cursor().hasSelection();
-        if(res) m_search->next(0,false,true);
-        m_search->next(lastDirection);
+        if(res||replaceAll) m_search->next(0,replaceAll,true);
+        if(!replaceAll) m_search->next(lastDirection);
 
         if (isVisible() && !leFind->hasFocus() && !leReplace->hasFocus() )
                 leFind->setFocus();
@@ -512,6 +512,15 @@ void QSearchReplacePanel::on_bReplace_clicked()
         replace();
 }
 
+void QSearchReplacePanel::on_bReplaceAll_clicked()
+{
+        if ( !m_search )
+                init();
+
+        leFind->setStyleSheet(QString());
+        replace(true);
+}
+
 void QSearchReplacePanel::init()
 {
 	if ( m_search )
@@ -537,8 +546,7 @@ void QSearchReplacePanel::init()
 	if ( cbReplace->isChecked() && cbReplace->isVisible() )
 		opt |= QDocumentSearch::Replace;
 
-	if ( cbPrompt->isChecked() )
-		opt |= QDocumentSearch::Prompt;
+        opt |= QDocumentSearch::Prompt;
 
 	m_search = new QDocumentSearch(	editor(),
 									leFind->text(),
