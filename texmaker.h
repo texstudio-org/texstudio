@@ -100,15 +100,19 @@ LatexCompleter* completer;
 //gui
 QDockWidget *OutputView, *StructureView;
 QTabWidget *EditorView;
-LogEditor* OutputTextEdit;
+LogEditor *OutputTextEdit,*OutputLogTextEdit;
 QToolBox *StructureToolbox;
 MetapostListWidget *MpListWidget;
 PstricksListWidget *PsListWidget;
 SymbolListWidget *RelationListWidget, *ArrowListWidget, *MiscellaneousListWidget, *DelimitersListWidget, *GreekListWidget, *MostUsedListWidget;
 QTreeWidget *StructureTreeWidget;
-QVBoxLayout *OutputLayout;
-QTableView *OutputTable;
+QStackedWidget *OutputLayout;
+QVBoxLayout *OutputVLayout;
+QWidget *OutputVWidget;
+QTableView *OutputTable, *OutputTable2;
+QTabBar *logViewerTabBar;
 
+bool tabbedLogView;
 
 //menu-toolbar
 QList<QMenu*> managedMenus;
