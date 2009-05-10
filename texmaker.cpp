@@ -273,6 +273,10 @@ if(tabbedLogView){
 connect(logViewerTabBar, SIGNAL(currentChanged(int)),
              OutputLayout, SLOT(setCurrentIndex(int)));
 
+connect(logViewerTabBar, SIGNAL(currentChanged(int)),
+             this, SLOT(tabChanged(int)));
+
+
 //logViewerTabBar->setCurrentIndex(1);
 //OutputLayout->setCurrentIndex(1);
 
@@ -3791,7 +3795,7 @@ else return false;
 void Texmaker::RealViewLog(){
 	ViewLog();
 	if(!OutputView->isVisible()) OutputView->show();
-        logViewerTabBar->setCurrentIndex(1);
+        if(OutputLayout->currentIndex()==0) logViewerTabBar->setCurrentIndex(1);
 }
 
 //shows the log if there are errors
@@ -4418,4 +4422,8 @@ void Texmaker::updateCompleter()
         if (!f.open(QIODevice::ReadOnly| QIODevice::Text))  LatexCompleter::parseHelpfile("<missing>");
         else LatexCompleter::parseHelpfile(QTextStream(&f).readAll());
     }
+}
+
+void Texmaker::tabChanged(int i){
+    if(i>0) RealViewLog();
 }

@@ -365,6 +365,8 @@ void SetMostUsedSymbols();
 void readCompletionList(const QStringList &files);
 void updateCompleter();
 
+void tabChanged(int i);
+
 protected:
 QPoint sectionSelection(QTreeWidgetItem* m_item);
 void dragEnterEvent(QDragEnterEvent *event);
