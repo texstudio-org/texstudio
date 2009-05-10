@@ -181,18 +181,23 @@ addDockWidget(Qt::BottomDockWidgetArea,OutputView);
 connect(OutputView,SIGNAL(visibilityChanged ( bool )),this,SLOT(OutputViewVisibilityChanged(bool)));
 
 
-QFrame *Outputframe=new QFrame(OutputView);
+/*QFrame *Outputframe=new QFrame(OutputView);
 Outputframe->setLineWidth(1);
 Outputframe->setFrameShape(QFrame::StyledPanel);
 Outputframe->setFrameShadow(QFrame::Sunken);
+*/
 
-OutputLayout= new QVBoxLayout(Outputframe);
-OutputLayout->setSpacing(0);
-OutputLayout->setMargin(0);
+logViewerTabBar=new QTabBar(this);
+//OutputLayout= new QTabWidget(OutputView);
+
+OutputLayout= new QStackedWidget;
+OutputVLayout= new QVBoxLayout;
+OutputVLayout->setSpacing(0);
+OutputVLayout->setMargin(0);
 
 logModel = new LatexLogModel(this);//needs loaded line marks
 
-OutputTable= new QTableView (Outputframe);
+OutputTable= new QTableView (this);
 OutputTable->setModel(logModel);
 
 //OutputTableWidget->setWordWrap(true);
@@ -205,21 +210,73 @@ OutputTable->setColumnWidth(2,fm.width("WarningW"));
 OutputTable->setColumnWidth(3,fm.width("Line WWWWW"));
 OutputTable->setColumnWidth(4,20*fm.width("w"));
 connect(OutputTable, SIGNAL(clicked (const QModelIndex &)), this, SLOT(ClickedOnLogLine(const QModelIndex &)));
-OutputLayout->addWidget(OutputTable);
+
 OutputTable->horizontalHeader()->setStretchLastSection(true);
 OutputTable->setMinimumHeight(5*(fm.lineSpacing()+4));
 
+// second table view for tab log view
+OutputTable2= new QTableView (this);
+OutputTable2->setModel(logModel);
 
-OutputTextEdit = new LogEditor(Outputframe);
+//OutputTableWidget->setWordWrap(true);
+OutputTable2->setSelectionBehavior (QAbstractItemView::SelectRows);
+OutputTable2->setSelectionMode (QAbstractItemView::SingleSelection);
+OutputTable2->setColumnWidth(0,fm.width("> "));
+OutputTable2->setColumnWidth(1,20*fm.width("w"));
+OutputTable2->setColumnWidth(2,fm.width("WarningW"));
+OutputTable2->setColumnWidth(3,fm.width("Line WWWWW"));
+OutputTable2->setColumnWidth(4,20*fm.width("w"));
+connect(OutputTable2, SIGNAL(clicked (const QModelIndex &)), this, SLOT(ClickedOnLogLine(const QModelIndex &)));
+
+OutputTable2->horizontalHeader()->setStretchLastSection(true);
+OutputTable2->setMinimumHeight(5*(fm.lineSpacing()+4));
+
+
+OutputTextEdit = new LogEditor(this);
 OutputTextEdit->setFocusPolicy(Qt::ClickFocus);
 OutputTextEdit->setMinimumHeight(3*(fm.lineSpacing()+4));
 OutputTextEdit->setReadOnly(true);
 connect(OutputTextEdit, SIGNAL(clickonline(int )),this,SLOT(gotoLine(int )));
 
+
+OutputLogTextEdit = new LogEditor(this);
+OutputLogTextEdit->setFocusPolicy(Qt::ClickFocus);
+OutputLogTextEdit->setMinimumHeight(3*(fm.lineSpacing()+4));
+OutputLogTextEdit->setReadOnly(true);
+connect(OutputLogTextEdit, SIGNAL(clickonline(int )),this,SLOT(gotoLine(int )));
+
+// add widget to log view
 OutputLayout->addWidget(OutputTextEdit);
 
-OutputView->setWidget(Outputframe);
-OutputTable->hide();
+OutputVLayout->addWidget(OutputTable);
+OutputVLayout->addWidget(OutputLogTextEdit);
+OutputVWidget=new QWidget;
+OutputVWidget->setLayout(OutputVLayout);
+OutputLayout->addWidget(OutputVWidget);
+
+if(tabbedLogView){
+    OutputTable->hide();
+}
+OutputLayout->addWidget(OutputTable2);
+
+// order for tabbar
+logViewerTabBar->addTab("messages");
+logViewerTabBar->addTab("log file");
+logViewerTabBar->addTab("errors");
+
+OutputView->setWidget(OutputLayout);
+
+if(tabbedLogView){
+    OutputView->setTitleBarWidget(logViewerTabBar);
+}
+
+connect(logViewerTabBar, SIGNAL(currentChanged(int)),
+             OutputLayout, SLOT(setCurrentIndex(int)));
+
+//logViewerTabBar->setCurrentIndex(1);
+//OutputLayout->setCurrentIndex(1);
+
+//OutputTable->hide();
 
 logpresent=false;
 
@@ -853,7 +910,8 @@ UpdateStructure();
 if (singlemode)
 	{
 	OutputTextEdit->clear();
-	OutputTable->hide();
+        logViewerTabBar->setCurrentIndex(0);
+        //OutputTable->hide();
 	logpresent=false;
 	}
 QString finame=getName();
@@ -1925,6 +1983,8 @@ completerFiles=config->value( "Completion/complitionFiles",QStringList("completi
 readCompletionList(completerFiles);
 config->endGroup();
 
+tabbedLogView=config->value("LogView/Tabbed","false").toBool();
+
 delete config;
 }
 
@@ -2064,6 +2124,8 @@ config->endGroup();
 config->beginGroup("formats");
 m_formats->save(*config);
 config->endGroup();
+
+config->setValue("LogView/Tabbed",tabbedLogView);
 
 if(!completerFiles.isEmpty()){
     config->beginGroup("completionFile");
@@ -2447,7 +2509,8 @@ void Texmaker::InsertTag(QString Entity, int dx, int dy)
     else currentEditorView()->editor->setCursorPosition(curline+dy,curindex+dx);
     currentEditorView()->editor->setFocus();
     OutputTextEdit->clear();
-    OutputTable->hide();
+    logViewerTabBar->setCurrentIndex(0);
+    //OutputTable->hide();
     logpresent=false;
 }
 
@@ -2536,7 +2599,8 @@ tag +=fi.completeBaseName();
 tag +=QString("}\n");
 InsertTag(tag,0,1);
 OutputTextEdit->clear();
-OutputTable->hide();
+logViewerTabBar->setCurrentIndex(0);
+//OutputTable->hide();
 OutputTextEdit->insertLine("The argument to \\bibliography refers to the bib file (without extension)");
 OutputTextEdit->insertLine("which should contain your database in BibTeX format.");
 OutputTextEdit->insertLine("Texmaker inserts automatically the base name of the TeX file");
@@ -3367,7 +3431,8 @@ connect(proc, SIGNAL(readyReadStandardError()),this, SLOT(readFromStderr()));
 if (showStdout) connect(proc, SIGNAL(readyReadStandardOutput()),this, SLOT(readFromStdoutput()));
 connect(proc, SIGNAL(finished(int)),this, SLOT(SlotEndProcess(int)));
 OutputTextEdit->clear();
-OutputTable->hide();
+logViewerTabBar->setCurrentIndex(0);
+//OutputTable->hide();
 //OutputTextEdit->insertLine(commandline+"\n");
 proc->start(commandline);
 if (!proc->waitForStarted(1000))
@@ -3726,12 +3791,13 @@ else return false;
 void Texmaker::RealViewLog(){
 	ViewLog();
 	if(!OutputView->isVisible()) OutputView->show();
+        logViewerTabBar->setCurrentIndex(1);
 }
 
 //shows the log if there are errors
 void Texmaker::ViewLog()
 {
-OutputTextEdit->clear();
+OutputLogTextEdit->clear();
 logpresent=false;
 QString finame;
 if (singlemode) {finame=getName();}
@@ -3751,7 +3817,7 @@ QString line;
 QFileInfo fic(logname);
 if (fic.exists() && fic.isReadable() )
 	{        
-	OutputTextEdit->insertLine("LOG FILE :");
+        //OutputLogTextEdit->insertLine("LOG FILE :");
 	QFile f(logname);
 	if ( f.open(QIODevice::ReadOnly) )
 		{
@@ -3761,7 +3827,7 @@ if (fic.exists() && fic.isReadable() )
 			{
 			line=t.readLine();
 			line=line.simplified();
-			if (!line.isEmpty()) OutputTextEdit->append(line);
+                        if (!line.isEmpty()) OutputLogTextEdit->append(line);
 			}
 		}
 		f.close();
@@ -3783,12 +3849,14 @@ void Texmaker::OutputViewVisibilityChanged(bool visible){
 ////////////////////////// ERRORS /////////////////////////////
 void Texmaker::LatexError()
 {
-    logModel->parseLogDocument(OutputTextEdit->document());
+    logModel->parseLogDocument(OutputLogTextEdit->document());
     logpresent=true;
 
     //display latex errors in table
     OutputTable->resizeColumnsToContents();
     OutputTable->resizeRowsToContents();
+    OutputTable2->resizeColumnsToContents();
+    OutputTable2->resizeRowsToContents();
     //display errors in editor
     DisplayLatexError();
 }
@@ -3823,8 +3891,8 @@ void Texmaker::DisplayLatexError()
                     break;
                 }
 
-    OutputTable->show();
-    OutputTextEdit->setCursorPosition(0 , 0);
+    //OutputTable->show();
+    OutputLogTextEdit->setCursorPosition(0 , 0);
 
     if (logModel->found(LT_ERROR)) {
         OutputView->show();    //show log when error
@@ -3841,7 +3909,7 @@ void Texmaker::GoToLogEntry(int logEntryNumber){
     if (logEntryNumber<0 || logEntryNumber>=logModel->count()) return;
     //select entry in table view/log
     OutputTable->scrollTo(logModel->index(logEntryNumber,1),QAbstractItemView::PositionAtCenter);
-    OutputTextEdit->setCursorPosition(logModel->at(logEntryNumber).logline, 0);
+    OutputLogTextEdit->setCursorPosition(logModel->at(logEntryNumber).logline, 0);
     //get editor containing log entry
     LatexEditorView* edView=0;
     for (FilesMap::iterator it=filenames.begin(); it!=filenames.end(); ++it)
@@ -3873,7 +3941,7 @@ void Texmaker::GoToLogEntryAt(int newLineNumber){
     //goto log entry
     OutputTable->scrollTo(logModel->index(logEntryNumber,1),QAbstractItemView::PositionAtCenter);
     OutputTable->selectRow(logEntryNumber);
-    OutputTextEdit->setCursorPosition(logModel->at(logEntryNumber).logline, 0);
+    OutputLogTextEdit->setCursorPosition(logModel->at(logEntryNumber).logline, 0);
 
     QPoint p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
   //  p.ry()+=2*currentEditorView()->editor->document()->fontMetrics().lineSpacing();
@@ -3980,6 +4048,7 @@ confDlg->ui.lineEditExecuteBeforeCompiling->setText(precompile_command);
 confDlg->ui.comboBoxFont->lineEdit()->setText(EditorFont.family() );
 confDlg->ui.spinBoxSize->setValue(EditorFont.pointSize() );
 confDlg->ui.checkBoxWordwrap->setChecked(wordwrap);
+confDlg->ui.checkBoxTabbedLogView->setChecked(tabbedLogView);
 switch (showlinemultiples) {
     case 0: confDlg->ui.comboboxLineNumbers->setCurrentIndex(0); break;
     case 10: confDlg->ui.comboboxLineNumbers->setCurrentIndex(2); break;
@@ -4046,19 +4115,30 @@ if (configManager.execConfigDialog(confDlg))
 
 	wordwrap=confDlg->ui.checkBoxWordwrap->isChecked();
 	completion=confDlg->ui.checkBoxCompletion->isChecked();
-    autoindent=confDlg->ui.checkBoxAutoIndent->isChecked();
-    switch (confDlg->ui.comboboxLineNumbers->currentIndex()) {
-        case 0: showlinemultiples=0; break;
-        case 2: showlinemultiples=10; break;
-        default: showlinemultiples=1; break;
-    }
-	spell_dic=confDlg->ui.lineEditAspellCommand->text();
-    folding=confDlg->ui.checkBoxFolding->isChecked();
-    showlinestate=confDlg->ui.checkBoxLineState->isChecked();
-    showcursorstate=confDlg->ui.checkBoxState->isChecked();
-    realtimespellchecking=confDlg->ui.checkBoxRealTimeCheck->isChecked();
-    mainSpeller->setActive(realtimespellchecking);
-    mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);
+        autoindent=confDlg->ui.checkBoxAutoIndent->isChecked();
+        switch (confDlg->ui.comboboxLineNumbers->currentIndex()) {
+            case 0: showlinemultiples=0; break;
+            case 2: showlinemultiples=10; break;
+            default: showlinemultiples=1; break;
+        }
+        spell_dic=confDlg->ui.lineEditAspellCommand->text();
+        folding=confDlg->ui.checkBoxFolding->isChecked();
+        showlinestate=confDlg->ui.checkBoxLineState->isChecked();
+        showcursorstate=confDlg->ui.checkBoxState->isChecked();
+        realtimespellchecking=confDlg->ui.checkBoxRealTimeCheck->isChecked();
+
+        // read checkbox and set logViewer accordingly
+        tabbedLogView=confDlg->ui.checkBoxTabbedLogView->isChecked();
+        if(tabbedLogView){
+            OutputView->setTitleBarWidget(logViewerTabBar);
+            OutputTable->hide();
+        } else {
+            OutputView->setTitleBarWidget(0);
+            OutputTable->show();
+        }
+
+        mainSpeller->setActive(realtimespellchecking);
+        mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);
 
 	if (currentEditorView())
 		{
@@ -4067,7 +4147,8 @@ if (configManager.execConfigDialog(confDlg))
                 updateEditorSetting(it.key());
             UpdateCaption();
             OutputTextEdit->clear();
-            OutputTable->hide();
+            logViewerTabBar->setCurrentIndex(0);
+            //OutputTable->hide();
             //OutputTextEdit->insertLine("Editor settings apply only to new loaded document.");
 		}
         //completion words
@@ -4119,7 +4200,8 @@ if (!singlemode)
 	{
 	ToggleAct->setText(tr("Define Current Document as 'Master Document'"));
 	OutputTextEdit->clear();
-	OutputTable->hide();
+        logViewerTabBar->setCurrentIndex(0);
+        //OutputTable->hide();
 	logpresent=false;
 	singlemode=true;
 	stat1->setText(QString(" %1 ").arg(tr("Normal Mode")));
