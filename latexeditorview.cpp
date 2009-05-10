@@ -339,6 +339,19 @@ void LatexEditorView::lineMarkClicked(int line){
         l.removeMark(bookMarkId(i));
         return;
       }
+    // remove error marks
+    if (l.hasMark(QLineMarksInfoCenter::instance()->markTypeId("error"))) {
+        l.removeMark(QLineMarksInfoCenter::instance()->markTypeId("error"));
+        return;
+    }
+    if (l.hasMark(QLineMarksInfoCenter::instance()->markTypeId("warning"))) {
+        l.removeMark(QLineMarksInfoCenter::instance()->markTypeId("warning"));
+        return;
+    }
+    if (l.hasMark(QLineMarksInfoCenter::instance()->markTypeId("badbox"))) {
+        l.removeMark(QLineMarksInfoCenter::instance()->markTypeId("badbox"));
+        return;
+    }
     //add unused mark (1..3) (when possible)
     for (int i=1;i<=3;i++)
         if (editor->document()->findNextMark(bookMarkId(i))<0) {
