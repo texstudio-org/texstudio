@@ -439,6 +439,8 @@ void Texmaker::treeWidgetToManagedMenuTo(QTreeWidgetItem* item){
                 act->setShortcuts((QList<QKeySequence>()<<act->shortcut()) << sc);
                 if (sc!=managedMenuShortcuts.value(act->objectName()+"1",QKeySequence()))
                     managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~1", item->text(3)));
+            } else {
+                if(managedMenuShortcuts.value(act->objectName()+"1",QKeySequence())!=QKeySequence()) managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~1", item->text(3)));
             }
         }
     } else {
@@ -450,7 +452,10 @@ void Texmaker::treeWidgetToManagedMenuTo(QTreeWidgetItem* item){
             if (id=="") return;
             QAction * act=getManagedAction(id);
             if (act) {
-                act->setShortcut(QKeySequence());
+                QKeySequence sc=QKeySequence();
+                act->setShortcut(sc);
+                if (sc!=managedMenuShortcuts.value(act->objectName()+"0",QKeySequence()))
+                managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~0", item->text(2)));
             }
         }
     }
