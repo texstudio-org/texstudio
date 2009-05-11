@@ -192,11 +192,12 @@ Examples ("Forward search"):
 <li>To launch xdvi from TexMakerX : xdvi %.dvi  -sourceposition @:%.tex</li>
 <li>To launch kdvi from TexMakerX : kdvi "file:%.dvi#src:@ %.tex"</li>
 <li>To jump to a position in a running Acrobat Reader (Windows only): dde://acroview/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocGotoNameDest("?am.pdf","jump-position")]<i>jump-position can be defined with the hyperref package</i></li>
+<li>To jump to a line in a running Sumatra (Windows only): dde://SUMATRA/control/[ForwardSearch("?m.pdf","?m.tex",@,0,0,1)]</li>
 </ul>
  
 For the opposite operation ("Inverse search") :
 <ul>
-<li>To launch TexMakerX from yap : "C:\Program Files\TexMakerX\TexMakerX.exe" "%f" -line %l <i>(the program arguments : "%f" -line %l )</i></li>
+<li>To launch TexMakerX from yap or Sumatra: "C:\Program Files\TexMakerX\TexMakerX.exe" "%f" -line %l <i>(the program arguments : "%f" -line %l )</i></li>
 <li>To launch TexMakerX from xdvi : xdvi -editor "TexMakerX %f -line" %.dvi -sourceposition @:%.tex</li>
 <li>To launch TexMakerX from skim : <i>Command:</i> /applications/texmakerx.app/contents/macos/texmakerx <br>
     <i>Parameters:</i>"%file" -line %line</li>
