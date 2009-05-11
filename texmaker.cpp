@@ -4391,7 +4391,27 @@ void Texmaker::readCompletionList(const QStringList &files)
             while (!tagsfile.atEnd())
             {
                 line = tagsfile.readLine();
-                if (!line.isEmpty() && !line.startsWith("#") && !line.startsWith(" ")) completerWords.append(line.trimmed());
+                if (!line.isEmpty() && !line.startsWith("#") && !line.startsWith(" ")) {
+                    if(line.startsWith("\\pageref")||line.startsWith("\\ref")) continue;
+                    line.replace("{","{%<");
+                    line.replace("}","%>}");
+                    line.replace("(","(%<");
+                    line.replace(")","%>)");
+                    line.replace("[","[%<");
+                    line.replace("]","%>]");
+                    int i;
+                    if(line.startsWith("\\begin")||line.startsWith("\\begin")){
+                        i=line.indexOf("%<",0);
+                        line.replace(i,2,"");
+                        i=line.indexOf("%>",0);
+                        line.replace(i,2,"");
+                    }
+                    i=line.indexOf("%<",0);
+                    line.replace(i,2,"%|%<");
+                    i=line.indexOf("%>",0);
+                    line.replace(i,2,"%>%|");
+                    completerWords.append(line.trimmed());
+                }
             }
         }
     }
