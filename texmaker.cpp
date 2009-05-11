@@ -1027,11 +1027,12 @@ LatexEditorView* Texmaker::load( const QString &f , bool asProject)
     raise();
 
     if (FileAlreadyOpen(f_real)) {
-        if (singlemode) ToggleMode();
-        else if (!singlemode && MasterName != f_real) {
-            ToggleMode();
-            ToggleMode();
-        }
+		if (asProject)
+			if (singlemode) ToggleMode();
+			else if (!singlemode && MasterName != f_real) {
+				ToggleMode();
+				ToggleMode();
+			}
         return 0;
     }
 
@@ -4164,7 +4165,7 @@ if (configManager.execConfigDialog(confDlg))
 }
 void Texmaker::executeCommandLine( const QStringList& args, bool realCmdLine){
 	// remove unused argument warning
-	(void) realCmdLine;
+	Q_UNUSED(realCmdLine);
 
     // parse command line
     QString fileToLoad;
@@ -4184,6 +4185,13 @@ void Texmaker::executeCommandLine( const QStringList& args, bool realCmdLine){
     		load( fileToLoad, activateMasterMode);
     	else if( ftl.absoluteDir().exists() ) {
     		fileNew( ftl.absoluteFilePath() );
+			if (activateMasterMode) {
+				if (singlemode) ToggleMode();
+				else {
+					ToggleMode();
+					ToggleMode();
+				}
+			}
     		return ;
     	}
     }
