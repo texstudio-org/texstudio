@@ -425,38 +425,22 @@ void Texmaker::managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu) {
 
 }
 void Texmaker::treeWidgetToManagedMenuTo(QTreeWidgetItem* item){
-    if (item->text(2)!="") {
+    if( item->childCount() > 0){
+        for (int i=0;i< item->childCount (); i++)
+            treeWidgetToManagedMenuTo(item->child(i));
+    } else {
         QString id=item->data(0,Qt::UserRole).toString();
         if (id=="") return;
         QAction * act=getManagedAction(id);
         if (act) {
-            QKeySequence sc(item->text(2));
+            QKeySequence sc=QKeySequence(item->text(2));
             act->setShortcut(sc);
             if (sc!=managedMenuShortcuts.value(act->objectName()+"0",QKeySequence()))
                 managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~0", item->text(2)));
-            if (item->text(3)!="") {
-                sc=QKeySequence (item->text(3));
-                act->setShortcuts((QList<QKeySequence>()<<act->shortcut()) << sc);
-                if (sc!=managedMenuShortcuts.value(act->objectName()+"1",QKeySequence()))
+            sc=QKeySequence (item->text(3));
+            if(item->text(3)!="") act->setShortcuts((QList<QKeySequence>()<<act->shortcut()) << sc);
+            if (sc!=managedMenuShortcuts.value(act->objectName()+"1",QKeySequence()))
                     managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~1", item->text(3)));
-            } else {
-                if(managedMenuShortcuts.value(act->objectName()+"1",QKeySequence())!=QKeySequence()) managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~1", item->text(3)));
-            }
-        }
-    } else {
-        if( item->childCount() > 0){
-            for (int i=0;i< item->childCount (); i++)
-                treeWidgetToManagedMenuTo(item->child(i));
-        } else {
-            QString id=item->data(0,Qt::UserRole).toString();
-            if (id=="") return;
-            QAction * act=getManagedAction(id);
-            if (act) {
-                QKeySequence sc=QKeySequence();
-                act->setShortcut(sc);
-                if (sc!=managedMenuShortcuts.value(act->objectName()+"0",QKeySequence()))
-                managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~0", item->text(2)));
-            }
         }
     }
 }
