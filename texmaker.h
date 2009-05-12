@@ -207,6 +207,7 @@ void editSectionPasteBefore();
 void editSectionPasteBefore(int line);
 void editPasteLatex();
 void convertToLatex();
+void editPasteRef();
 void editIndentSection();
 void editUnIndentSection();
 void editSelectAll();
@@ -225,6 +226,7 @@ void editSpell();
 void editChangeLineEnding();
 void editSetupEncoding();
 
+void StructureContextMenu(QPoint point);
 
 void ReadSettings();
 void SaveSettings();
