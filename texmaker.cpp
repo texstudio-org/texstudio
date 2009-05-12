@@ -4389,11 +4389,14 @@ void Texmaker::readCompletionList(const QStringList &files)
                     line.replace("[","[%<");
                     line.replace("]","%>]");
                     int i;
-                    if(line.startsWith("\\begin")||line.startsWith("\\begin")){
+					if(line.startsWith("\\begin")||line.startsWith("\\end")){
                         i=line.indexOf("%<",0);
                         line.replace(i,2,"");
                         i=line.indexOf("%>",0);
                         line.replace(i,2,"");
+						if(line.endsWith("\\item\n")){
+							line.chop(6);
+						}
                     }
                     i=line.indexOf("%<",0);
                     line.replace(i,2,"%|%<");
