@@ -512,9 +512,9 @@ QVariant CompletionListModel::headerData(int section, Qt::Orientation orientatio
         if (baselist[i].word.startsWith(word,Qt::CaseInsensitive))
             words.append(baselist[i]);
      }
-     if (words.size()>=2) //prefer matching case
+	 /*if (words.size()>=2) //prefer matching case
         if (!words[0].word.startsWith(word,Qt::CaseSensitive) && words[1].word.startsWith(word,Qt::CaseSensitive))
-            words.swap(0,1);
+			words.swap(0,1);*/
      curWord=word;
      reset();
  }
@@ -559,7 +559,6 @@ void LatexCompleter::setWords(const QStringList &newwords, bool normalTextList){
     }
     qSort(newWordList.begin(), newWordList.end());
 
-    words=newWordList;
     if (normalTextList) wordsText=newWordList;
     else {
         wordsCommands=newWordList;
