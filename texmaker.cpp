@@ -114,7 +114,7 @@ StructureTreeWidget->setColumnCount(1);
 StructureTreeWidget->header()->hide();
 StructureTreeWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 //StructureTreeWidget->setToolTip(tr("Click to jump to the line"));
-connect( StructureTreeWidget, SIGNAL(itemClicked(QTreeWidgetItem *,int )), SLOT(ClickedOnStructure(QTreeWidgetItem *,int)));
+connect( StructureTreeWidget, SIGNAL(itemPressed(QTreeWidgetItem *,int )), SLOT(ClickedOnStructure(QTreeWidgetItem *,int)));
 // connect( StructureTreeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem *,int )), SLOT(DoubleClickedOnStructure(QTreeWidgetItem *,int))); // qt4 bugs - don't use it
 StructureToolbox->addItem(StructureTreeWidget,QIcon(":/images/structure.png"),tr("Structure"));
 
@@ -683,7 +683,8 @@ void Texmaker::setupMenus()
 
 //-----context menus-----
 	StructureTreeWidget->setObjectName("StructureTree");
-	StructureTreeWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
+	//StructureTreeWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
+	StructureTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     newManagedAction(StructureTreeWidget,"CopySection",tr("Copy"), SLOT(editSectionCopy()));
     newManagedAction(StructureTreeWidget,"CutSection",tr("Cut"), SLOT(editSectionCut()));
     newManagedAction(StructureTreeWidget,"PasteBefore",tr("Paste before"), SLOT(editSectionPasteBefore()));
@@ -693,7 +694,7 @@ void Texmaker::setupMenus()
     StructureTreeWidget->addAction(sep);
     newManagedAction(StructureTreeWidget,"IndentSection",tr("Indent Section"), SLOT(editIndentSection()));
     newManagedAction(StructureTreeWidget,"UnIndentSection",tr("Unindent Section"), SLOT(editUnIndentSection()));
-
+	connect(StructureTreeWidget,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(StructureContextMenu(QPoint)));
 
 	//modify shortcuts
     for (int i=0;i< managedMenuNewShortcuts.size();i++) {
@@ -2211,9 +2212,12 @@ for (int i=0;i<currentEditorView()->editor->document()->lines();i++)
 			s=s.mid(0,tagStart);
 			labelitem.append(s);
 			structlist.append(QString::number(i));
+			Child = new QTreeWidgetItem(toplabel);
+			Child->setText(1,s);
+			Child->setText(2,QString::number(i+1));
 			s=s+" ("+tr("line")+" "+QString::number(i+1)+")";
 			structitem.append(s);
-			Child = new QTreeWidgetItem(toplabel);
+
 			Child->setText(0,s);
 			}
 		};
@@ -2375,6 +2379,9 @@ updateCompleter();
 
 void Texmaker::ClickedOnStructure(QTreeWidgetItem *item,int col)
 {
+Qt::MouseButtons mb=QApplication::mouseButtons();
+if(QApplication::mouseButtons()==Qt::RightButton) return; // avoid jumping to line if contextmenu is called
+
 QString finame;
 if (singlemode) {finame=getName();}
 else {finame=MasterName;}
@@ -4446,4 +4453,43 @@ void Texmaker::updateCompleter()
 
 void Texmaker::tabChanged(int i){
     if(i>0) RealViewLog();
+}
+
+void Texmaker::StructureContextMenu(QPoint point){
+	QTreeWidgetItem* item=StructureTreeWidget->currentItem();
+	if(item->parent()->text(0)=="LABELS") {
+		QMenu menu;
+		menu.addAction(tr("Insert"),this, SLOT(editPasteRef()));
+		menu.addAction(tr("Insert as %1").arg("\\ref{...}"),this, SLOT(editPasteRef()));
+		menu.addAction(tr("Insert as %1").arg("\\pageref{...}"),this, SLOT(editPasteRef()));
+		menu.exec(StructureTreeWidget->mapToGlobal(point));
+	} else {
+		QMenu menu(this);
+		menu.addAction(tr("Copy"),this, SLOT(editSectionCopy()));
+		menu.addAction(tr("Cut"),this, SLOT(editSectionCut()));
+		menu.addAction(tr("Paste before"),this, SLOT(editSectionPasteBefore()));
+		menu.addAction(tr("Paste after"),this, SLOT(editSectionPasteAfter()));
+		menu.addSeparator();
+		menu.addAction(tr("Indent Section"),this, SLOT(editIndentSection()));
+		menu.addAction(tr("Unindent Section"),this, SLOT(editUnIndentSection()));
+		menu.exec(StructureTreeWidget->mapToGlobal(point));
+	}
+}
+
+void Texmaker::editPasteRef(){
+	if ( !currentEditorView() ) return;
+
+	QAction *action = qobject_cast<QAction *>(sender());
+	QString name=action->text();
+	if(name==tr("Insert")){
+		QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
+		QTreeWidgetItem* item=StructureTreeWidget->currentItem();
+		m_cursor.insertText(item->text(1));
+	} else {
+		name.remove(0,name.indexOf("\\"));
+		name.chop(name.length()-name.indexOf("{"));
+		QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
+		QTreeWidgetItem* item=StructureTreeWidget->currentItem();
+		m_cursor.insertText(name+"{"+item->text(1)+"}");
+	}
 }
