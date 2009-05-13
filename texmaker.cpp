@@ -2120,11 +2120,11 @@ void Texmaker::UpdateStructure() {
 				labelitem.append(s);
 				structlist.append(QString::number(i));
 				Child = new QTreeWidgetItem(toplabel);
-				Child->setText(1,s);
+				Child->setText(3,s);
 				Child->setText(2,QString::number(i+1));
 				s=s+" ("+tr("line")+" "+QString::number(i+1)+")";
 				structitem.append(s);
-
+				Child->setText(1,"label");
 				Child->setText(0,s);
 			}
 		};
@@ -2143,6 +2143,7 @@ void Texmaker::UpdateStructure() {
 				Child = new QTreeWidgetItem(top);
 				Child->setText(0,s);
 				Child->setIcon(0,QIcon(":/images/include.png"));
+				Child->setText(1,"include");
 			}
 		};
 		//// input ////
@@ -2159,6 +2160,7 @@ void Texmaker::UpdateStructure() {
 				Child = new QTreeWidgetItem(top);
 				Child->setText(0,s);
 				Child->setIcon(0,QIcon(":/images/include.png"));
+				Child->setText(1,"input");
 			}
 		};
 		//// part ////
@@ -4243,22 +4245,24 @@ void Texmaker::tabChanged(int i) {
 
 void Texmaker::StructureContextMenu(QPoint point) {
 	QTreeWidgetItem* item=StructureTreeWidget->currentItem();
-	if (item->parent()->text(0)=="LABELS") {
-		QMenu menu;
-		menu.addAction(tr("Insert"),this, SLOT(editPasteRef()));
-		menu.addAction(tr("Insert as %1").arg("\\ref{...}"),this, SLOT(editPasteRef()));
-		menu.addAction(tr("Insert as %1").arg("\\pageref{...}"),this, SLOT(editPasteRef()));
-		menu.exec(StructureTreeWidget->mapToGlobal(point));
-	} else {
-		QMenu menu(this);
-		menu.addAction(tr("Copy"),this, SLOT(editSectionCopy()));
-		menu.addAction(tr("Cut"),this, SLOT(editSectionCut()));
-		menu.addAction(tr("Paste before"),this, SLOT(editSectionPasteBefore()));
-		menu.addAction(tr("Paste after"),this, SLOT(editSectionPasteAfter()));
-		menu.addSeparator();
-		menu.addAction(tr("Indent Section"),this, SLOT(editIndentSection()));
-		menu.addAction(tr("Unindent Section"),this, SLOT(editUnIndentSection()));
-		menu.exec(StructureTreeWidget->mapToGlobal(point));
+	if(item->parent()&&item->text(0)!="LABELS"){
+		if (item->parent()->text(0)=="LABELS") {
+			QMenu menu;
+			menu.addAction(tr("Insert"),this, SLOT(editPasteRef()));
+			menu.addAction(tr("Insert as %1").arg("\\ref{...}"),this, SLOT(editPasteRef()));
+			menu.addAction(tr("Insert as %1").arg("\\pageref{...}"),this, SLOT(editPasteRef()));
+			menu.exec(StructureTreeWidget->mapToGlobal(point));
+		} else {
+			QMenu menu(this);
+			menu.addAction(tr("Copy"),this, SLOT(editSectionCopy()));
+			menu.addAction(tr("Cut"),this, SLOT(editSectionCut()));
+			menu.addAction(tr("Paste before"),this, SLOT(editSectionPasteBefore()));
+			menu.addAction(tr("Paste after"),this, SLOT(editSectionPasteAfter()));
+			menu.addSeparator();
+			menu.addAction(tr("Indent Section"),this, SLOT(editIndentSection()));
+			menu.addAction(tr("Unindent Section"),this, SLOT(editUnIndentSection()));
+			menu.exec(StructureTreeWidget->mapToGlobal(point));
+		}
 	}
 }
 
@@ -4270,12 +4274,12 @@ void Texmaker::editPasteRef() {
 	if (name==tr("Insert")) {
 		QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
 		QTreeWidgetItem* item=StructureTreeWidget->currentItem();
-		m_cursor.insertText(item->text(1));
+		m_cursor.insertText(item->text(3));
 	} else {
 		name.remove(0,name.indexOf("\\"));
 		name.chop(name.length()-name.indexOf("{"));
 		QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
 		QTreeWidgetItem* item=StructureTreeWidget->currentItem();
-		m_cursor.insertText(name+"{"+item->text(1)+"}");
+		m_cursor.insertText(name+"{"+item->text(3)+"}");
 	}
 }
