@@ -15,7 +15,7 @@
 #include "ui_x11fontdialog.h"
 
 class X11FontDialog : public QDialog  {
-   Q_OBJECT
+	Q_OBJECT
 public:
 	X11FontDialog(QWidget *parent=0);
 	~X11FontDialog();

@@ -19,32 +19,32 @@
 #include <QTextCursor>
 
 class SpellerDialog : public QDialog  {
-   Q_OBJECT
+	Q_OBJECT
 public:
 	SpellerDialog(QWidget *parent=0, SpellerUtility *utility=0);
 	~SpellerDialog();
 	Ui::SpellerDialog ui;
-    void setEditorView(LatexEditorView *edView);
-    void startSpelling();
+	void setEditorView(LatexEditorView *edView);
+	void startSpelling();
 private :
-SpellerUtility *m_speller;
-QEditor *editor;
-LatexEditorView *editorView;
-int startLine,startIndex,curLine,curIndex, endLine,endIndex;
-QString curWord;
-bool ignoreListChanged;
+	SpellerUtility *m_speller;
+	QEditor *editor;
+	LatexEditorView *editorView;
+	int startLine,startIndex,curLine,curIndex, endLine,endIndex;
+	QString curWord;
+	bool ignoreListChanged;
 protected:
-void closeEvent( QCloseEvent* );
+	void closeEvent(QCloseEvent*);
 private slots:
-void accept();
-void slotIgnore();
-void slotAlwaysIgnore();
-void slotReplace();
-void updateItem();
-void SpellingNextWord();
-void toggleIgnoreList();
-void addRemoveIgnoredWord();
-void ignoreListClicked(const QModelIndex &mod);
+	void accept();
+	void slotIgnore();
+	void slotAlwaysIgnore();
+	void slotReplace();
+	void updateItem();
+	void SpellingNextWord();
+	void toggleIgnoreList();
+	void addRemoveIgnoredWord();
+	void ignoreListClicked(const QModelIndex &mod);
 };
 
 

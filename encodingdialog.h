@@ -6,16 +6,16 @@
 #include "qeditor.h"
 
 class EncodingDialog : public QDialog, private Ui::EncodingDialog {
-    Q_OBJECT
-    Q_DISABLE_COPY(EncodingDialog)
+	Q_OBJECT
+	Q_DISABLE_COPY(EncodingDialog)
 public:
-    explicit EncodingDialog(QWidget *parent = 0, QEditor *editor=0);
+	explicit EncodingDialog(QWidget *parent = 0, QEditor *editor=0);
 
 private:
 	QEditor *edit;
 
 protected:
-    virtual void changeEvent(QEvent *e);
+	virtual void changeEvent(QEvent *e);
 
 private slots:
 	void on_view_clicked();

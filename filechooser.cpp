@@ -8,43 +8,37 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
- 
+
 #include "filechooser.h"
 #include <QFileDialog>
 
-FileChooser::FileChooser( QWidget *parent, QString name)
-    : QDialog( parent)
-{
-setWindowTitle(name);
-setModal(true);
-ui.setupUi(this);
-connect(ui.lineEdit, SIGNAL(textChanged( const QString & ) ), this, SIGNAL( fileNameChanged( const QString & ) ) );
-connect(ui.pushButton, SIGNAL( clicked() ), this, SLOT( chooseFile() ) );
-setWindowTitle(name);
+FileChooser::FileChooser(QWidget *parent, QString name)
+		: QDialog(parent) {
+	setWindowTitle(name);
+	setModal(true);
+	ui.setupUi(this);
+	connect(ui.lineEdit, SIGNAL(textChanged(const QString &)), this, SIGNAL(fileNameChanged(const QString &)));
+	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(chooseFile()));
+	setWindowTitle(name);
 }
 
-void FileChooser::setDir( const QString &di )
-{
-dir=di;
+void FileChooser::setDir(const QString &di) {
+	dir=di;
 }
 
-void FileChooser::setFilter( const QString &fil )
-{
-filter=fil;
+void FileChooser::setFilter(const QString &fil) {
+	filter=fil;
 }
-QString FileChooser::fileName() const
-{
-return ui.lineEdit->text();
+QString FileChooser::fileName() const {
+	return ui.lineEdit->text();
 }
 
-void FileChooser::chooseFile()
-{
-QString fn;
-fn =QFileDialog::getOpenFileName(this,tr("Select a File"),dir,filter);
-if ( !fn.isEmpty() )
-	{
-	ui.lineEdit->setText( fn );
-	emit fileNameChanged( fn );
+void FileChooser::chooseFile() {
+	QString fn;
+	fn =QFileDialog::getOpenFileName(this,tr("Select a File"),dir,filter);
+	if (!fn.isEmpty()) {
+		ui.lineEdit->setText(fn);
+		emit fileNameChanged(fn);
 	}
 }
 

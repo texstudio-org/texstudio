@@ -19,23 +19,23 @@ typedef QString userCd[5];
 
 
 class UserToolDialog : public QDialog  {
-   Q_OBJECT
-public: 
+	Q_OBJECT
+public:
 	UserToolDialog(QWidget *parent=0, QString name="");
 	~UserToolDialog();
 	Ui::UserToolDialog ui;
 
-      userCd Name,Tool;
+	userCd Name,Tool;
 
 private:
-    int previous_index;
+	int previous_index;
 
 public slots:
-    void init();
+	void init();
 
 private slots:
-    void change(int index);
-    void slotOk();  
+	void change(int index);
+	void slotOk();
 };
 
 #endif
