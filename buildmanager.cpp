@@ -90,15 +90,6 @@ QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mai
 	return result;
 }
 
-int BuildManager::x11desktop_env() {
-	// 0 : no kde ; 3: kde ; 4 : kde4 ;
-	QString kdesession= ::getenv("KDE_FULL_SESSION");
-	QString kdeversion= ::getenv("KDE_SESSION_VERSION");
-	if (!kdeversion.isEmpty()) return 4;
-	if (!kdesession.isEmpty()) return 3;
-	return 0;
-}
-
 #ifdef Q_WS_WIN
 typedef BOOL (* AssocQueryStringAFunc)(DWORD, DWORD, char*, char*, char*, DWORD*);
 QString W32_FileAssociation(QString ext) {

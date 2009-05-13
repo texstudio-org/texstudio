@@ -77,10 +77,6 @@
 #include "qdocumentcursor.h"
 #include "qdocumentline.h"
 
-//#if defined( Q_WS_X11 )
-#include "x11fontdialog.h"
-//#endif
-
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 		: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0) {
 	ReadSettings();
@@ -658,13 +654,7 @@ void Texmaker::setupMenus() {
 //---options---
 	menu=newManagedMenu("main/options",tr("&Options"));
 	newManagedAction(menu, "config",tr("Configure TexMakerX"), SLOT(GeneralOptions()), 0,":/images/configure.png");
-
-//#if defined( Q_WS_X11 )
-	menu->addSeparator();
-	newManagedAction(menu, "changeinterfacefont",tr("Change Interface Font"), SLOT(SetInterfaceFont()));
-	newManagedAction(menu, "changeinterfacetype",tr("Change Interface Type"), SLOT(SetInterfaceType()));
-//#endif
-
+	
 	menu->addSeparator();
 	ToggleAct=newManagedAction(menu, "masterdocument",tr("Define Current Document as 'Master Document'"), SLOT(ToggleMode()));
 	ToggleRememberAct=newManagedAction(menu, "remembersession",tr("Remember session when closing"));
@@ -961,7 +951,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	updateEditorSetting(edit);
 }
 void Texmaker::updateEditorSetting(LatexEditorView *edit) {
-	edit->editor->setFont(EditorFont);
+	edit->editor->setFont(configManager.editorFont);
 	edit->editor->setLineWrapping(wordwrap);
 	edit->editor->setFlag(QEditor::AutoIndent,autoindent);
 	edit->lineMarkPanelAction->setChecked((showlinemultiples!=0) ||folding||showlinestate);
@@ -1664,26 +1654,6 @@ void Texmaker::ReadSettings() {
 	config->beginGroup("texmaker");
 	singlemode=true;
 
-	QFontDatabase fdb;
-	QStringList xf = fdb.families();
-	QString deft;
-// #ifdef Q_WS_X11
-// x11style=config->value( "X11/Style","plastique").toString();
-// if (xf.contains("DejaVu Sans",Qt::CaseInsensitive)) deft="DejaVu Sans";
-// else if (xf.contains("Bitstream Vera Sans",Qt::CaseInsensitive)) deft="Bitstream Vera Sans";
-// else if (xf.contains("Luxi Sans",Qt::CaseInsensitive)) deft="Luxi Sans";
-// else deft=qApp->font().family();
-// x11fontfamily=config->value("X11/Font Family",deft).toString();
-// x11fontsize=config->value( "X11/Font Size","10").toInt();
-//
-// QStringList styles = QStyleFactory::keys();
-// if (styles.contains("oxygen")) QApplication::setStyle(QStyleFactory::create("oxygen"));
-// else QApplication::setStyle(QStyleFactory::create(x11style));
-// // QApplication::setPalette(QApplication::style()->standardPalette());
-// QFont x11Font (x11fontfamily,x11fontsize);
-// QApplication::setFont(x11Font);
-// #endif
-
 	QRect screen = QApplication::desktop()->screenGeometry();
 	int w= config->value("Geometries/MainwindowWidth",screen.width()-100).toInt();
 	int h= config->value("Geometries/MainwindowHeight",screen.height()-100).toInt() ;
@@ -1692,21 +1662,6 @@ void Texmaker::ReadSettings() {
 	resize(w,h);
 	move(x,y);
 	windowstate=config->value("MainWindowState").toByteArray();
-#ifdef Q_WS_WIN
-	if (xf.contains("Courier New",Qt::CaseInsensitive)) deft="Courier New";
-	else deft=qApp->font().family();
-	QString fam=config->value("Editor/Font Family",deft).toString();
-	int si=config->value("Editor/Font Size",10).toInt();
-#else
-	if (xf.contains("DejaVu Sans Mono",Qt::CaseInsensitive)) deft="DejaVu Sans Mono";
-//else if (xf.contains("Lucida Sans Unicode",Qt::CaseInsensitive)) deft="Lucida Sans Unicode";
-	else if (xf.contains("Lucida Sans Typewriter",Qt::CaseInsensitive)) deft="Lucida Sans Typewriter";
-	else deft=qApp->font().family();
-	QString fam=config->value("Editor/Font Family",deft).toString();
-	int si=config->value("Editor/Font Size",qApp->font().pointSize()).toInt();
-#endif
-	QFont F(fam,si);
-	EditorFont=F;
 
 	wordwrap=config->value("Editor/WordWrap",true).toBool();
 	parenmatch=config->value("Editor/Parentheses Matching",true).toBool();
@@ -1750,82 +1705,6 @@ void Texmaker::ReadSettings() {
 	ghostscript_command=BuildManager::lazyDefaultRead(*config,"Tools/Ghostscript",BuildManager::CMD_GHOSTSCRIPT);
 	precompile_command=config->value("Tools/Precompile","").toString();
 
-#ifdef Q_WS_X11
-	int desktop_env=1; // 1 : no kde ; 2: kde ; 3 : kde4 ;
-	QStringList styles = QStyleFactory::keys();
-	QString kdesession= ::getenv("KDE_FULL_SESSION");
-	QString kdeversion= ::getenv("KDE_SESSION_VERSION");
-	if (!kdesession.isEmpty()) desktop_env=2;
-	if (!kdeversion.isEmpty()) desktop_env=3;
-
-	x11style=config->value("X11/Style","Plastique").toString();
-	if (xf.contains("DejaVu Sans",Qt::CaseInsensitive)) deft="DejaVu Sans";
-	else if (xf.contains("DejaVu Sans LGC",Qt::CaseInsensitive)) deft="DejaVu Sans LGC";
-	else if (xf.contains("Bitstream Vera Sans",Qt::CaseInsensitive)) deft="Bitstream Vera Sans";
-	else if (xf.contains("Luxi Sans",Qt::CaseInsensitive)) deft="Luxi Sans";
-	else deft=qApp->font().family();
-	x11fontfamily=config->value("X11/Font Family",deft).toString();
-	x11fontsize=config->value("X11/Font Size","10").toInt();
-	if (x11style!="default")
-		if ((desktop_env !=3) || (!styles.contains("Oxygen"))) QApplication::setStyle(x11style); //plastique style if not kde4
-//if (desktop_env !=3) QApplication::setStyle(QStyleFactory::create(x11style));
-// QApplication::setPalette(QApplication::style()->standardPalette());
-	QFont x11Font(x11fontfamily,x11fontsize);
-	QApplication::setFont(x11Font);
-	QPalette pal = QApplication::palette();
-	pal.setColor(QPalette::Active, QPalette::Highlight, QColor("#4490d8"));
-	pal.setColor(QPalette::Inactive, QPalette::Highlight, QColor("#4490d8"));
-	pal.setColor(QPalette::Disabled, QPalette::Highlight, QColor("#4490d8"));
-
-//pal.setColor( QPalette::Active, QPalette::Highlight, QColor("#5689be") );
-//pal.setColor( QPalette::Inactive, QPalette::Highlight, QColor("#5689be") );
-//pal.setColor( QPalette::Disabled, QPalette::Highlight, QColor("#5689be") );
-
-	pal.setColor(QPalette::Active, QPalette::HighlightedText, QColor("#ffffff"));
-	pal.setColor(QPalette::Inactive, QPalette::HighlightedText, QColor("#ffffff"));
-	pal.setColor(QPalette::Disabled, QPalette::HighlightedText, QColor("#ffffff"));
-
-	pal.setColor(QPalette::Active, QPalette::Base, QColor("#ffffff"));
-	pal.setColor(QPalette::Inactive, QPalette::Base, QColor("#ffffff"));
-	pal.setColor(QPalette::Disabled, QPalette::Base, QColor("#ffffff"));
-
-	pal.setColor(QPalette::Active, QPalette::WindowText, QColor("#000000"));
-	pal.setColor(QPalette::Inactive, QPalette::WindowText, QColor("#000000"));
-	pal.setColor(QPalette::Disabled, QPalette::WindowText, QColor("#000000"));
-
-	pal.setColor(QPalette::Active, QPalette::ButtonText, QColor("#000000"));
-	pal.setColor(QPalette::Inactive, QPalette::ButtonText, QColor("#000000"));
-	pal.setColor(QPalette::Disabled, QPalette::ButtonText, QColor("#000000"));
-
-	if (desktop_env ==3) {
-		pal.setColor(QPalette::Active, QPalette::Window, QColor("#eae9e9"));
-		pal.setColor(QPalette::Inactive, QPalette::Window, QColor("#eae9e9"));
-		pal.setColor(QPalette::Disabled, QPalette::Window, QColor("#eae9e9"));
-
-		pal.setColor(QPalette::Active, QPalette::Button, QColor("#eae9e9"));
-		pal.setColor(QPalette::Inactive, QPalette::Button, QColor("#eae9e9"));
-		pal.setColor(QPalette::Disabled, QPalette::Button, QColor("#eae9e9"));
-	} else {
-		/*
-			pal.setColor( QPalette::Active, QPalette::Window, QColor("#f1f1f1") );
-			pal.setColor( QPalette::Inactive, QPalette::Window, QColor("#f1f1f1") );
-			pal.setColor( QPalette::Disabled, QPalette::Window, QColor("#f1f1f1") );
-
-			pal.setColor( QPalette::Active, QPalette::Button, QColor("#f1f1f1") );
-			pal.setColor( QPalette::Inactive, QPalette::Button, QColor("#f1f1f1") );
-			pal.setColor( QPalette::Disabled, QPalette::Button, QColor("#f1f1f1") );
-		*/
-		pal.setColor(QPalette::Active, QPalette::Window, QColor("#fbf8f1"));
-		pal.setColor(QPalette::Inactive, QPalette::Window, QColor("#fbf8f1"));
-		pal.setColor(QPalette::Disabled, QPalette::Window, QColor("#fbf8f1"));
-
-		pal.setColor(QPalette::Active, QPalette::Button, QColor("#fbf8f1"));
-		pal.setColor(QPalette::Inactive, QPalette::Button, QColor("#fbf8f1"));
-		pal.setColor(QPalette::Disabled, QPalette::Button, QColor("#fbf8f1"));
-	}
-
-	QApplication::setPalette(pal);
-#endif
 	userquick_command=config->value("Tools/Userquick","latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex|xdvi %.dvi").toString();
 	userClassList=config->value("Tools/User Class").toStringList();
 	userPaperList=config->value("Tools/User Paper").toStringList();
@@ -1906,12 +1785,6 @@ void Texmaker::SaveSettings() {
 	QList<int> sizes;
 	QList<int>::Iterator it;
 
-#if defined( Q_WS_X11 )
-	config->setValue("X11/Style",x11style);
-	config->setValue("X11/Font Family",x11fontfamily);
-
-	config->setValue("X11/Font Size",x11fontsize);
-#endif
 
 	config->setValue("MainWindowState",saveState(0));
 	config->setValue("Geometries/MainwindowWidth", width());
@@ -1920,10 +1793,6 @@ void Texmaker::SaveSettings() {
 	config->setValue("Geometries/MainwindowX", x());
 	config->setValue("Geometries/MainwindowY", y());
 
-
-
-	config->setValue("Editor/Font Family",EditorFont.family());
-	config->setValue("Editor/Font Size",EditorFont.pointSize());
 	config->setValue("Editor/WordWrap",wordwrap);
 
 	config->setValue("Editor/Parentheses Matching",parenmatch);
@@ -3770,8 +3639,6 @@ void Texmaker::GeneralOptions() {
 	confDlg->ui.lineEditGhostscript->setText(ghostscript_command);
 	confDlg->ui.lineEditExecuteBeforeCompiling->setText(precompile_command);
 
-	confDlg->ui.comboBoxFont->lineEdit()->setText(EditorFont.family());
-	confDlg->ui.spinBoxSize->setValue(EditorFont.pointSize());
 	confDlg->ui.checkBoxWordwrap->setChecked(wordwrap);
 	confDlg->ui.checkBoxTabbedLogView->setChecked(tabbedLogView);
 	switch (showlinemultiples) {
@@ -3854,11 +3721,6 @@ void Texmaker::GeneralOptions() {
 		metapost_command=confDlg->ui.lineEditMetapost->text();
 		ghostscript_command=confDlg->ui.lineEditGhostscript->text();
 		precompile_command=confDlg->ui.lineEditExecuteBeforeCompiling->text();
-
-		QString fam=confDlg->ui.comboBoxFont->lineEdit()->text();
-		int si=confDlg->ui.spinBoxSize->value();
-		QFont F(fam,si);
-		EditorFont=F;
 
 		wordwrap=confDlg->ui.checkBoxWordwrap->isChecked();
 		completion=confDlg->ui.checkBoxCompletion->isChecked();
@@ -3995,19 +3857,6 @@ void Texmaker::gotoPrevDocument() {
 	else EditorView->setCurrentIndex(cPage);
 }
 
-void Texmaker::SetInterfaceFont() {
-	X11FontDialog *xfdlg = new X11FontDialog(this);
-	int ft=xfdlg->ui.comboBoxFont->findText(x11fontfamily , Qt::MatchExactly);
-	xfdlg->ui.comboBoxFont->setCurrentIndex(ft);
-	xfdlg->ui.spinBoxSize->setValue(x11fontsize);
-	if (xfdlg->exec()) {
-		x11fontfamily=xfdlg->ui.comboBoxFont->currentText();
-		x11fontsize=xfdlg->ui.spinBoxSize->value();
-		QFont x11Font(x11fontfamily,x11fontsize);
-		QApplication::setFont(x11Font);
-	}
-}
-
 void Texmaker::viewCollapseEverything() {
 	if (!currentEditorView()) return;
 	currentEditorView()->foldEverything(false);
@@ -4037,17 +3886,6 @@ void Texmaker::viewExpandBlock() {
 	currentEditorView()->foldBlockAt(true,currentEditorView()->editor->cursor().lineNumber());
 }
 
-
-void Texmaker::SetInterfaceType() {
-	QStringList styles=QStyleFactory::keys()<<"default";
-	x11style = QInputDialog::getItem(this,"TexMakerX",tr("Select interface style"),styles,styles.indexOf(x11style));
-	if (x11style=="default") QMessageBox::information(this,"TexMakerX",tr("Please restart TexMakerX to apply the changes"),0);
-	else {
-		QPalette pal = QApplication::palette();
-		QApplication::setStyle(x11style);
-		QApplication::setPalette(pal);
-	}
-}
 
 void Texmaker::gotoBookmark() {
 	if (!currentEditorView()) return;

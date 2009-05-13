@@ -5,6 +5,11 @@
 #include "smallUsefulFunctions.h"
 
 #include <QFile>
+#include <QStyleFactory>
+
+ConfigManager::ConfigManager(QObject *parent): QObject (parent){
+}
+
 QSettings* ConfigManager::readSettings() {
 	//load config
 	bool usbMode = isExistingFileRealWritable(QCoreApplication::applicationDirPath()+"/texmakerx.ini");
@@ -64,6 +69,96 @@ QSettings* ConfigManager::readSettings() {
 		}
 	LatexEditorView::setKeyReplacements(&keyReplace,&keyReplaceAfterWord,&keyReplaceBeforeWord);
 
+	
+	//--------------------appearance------------------------------------
+	QFontDatabase fdb;
+	QStringList xf = fdb.families();
+	QString deft;
+	//editor
+#ifdef Q_WS_WIN
+	if (xf.contains("Courier New",Qt::CaseInsensitive)) deft="Courier New";
+	else deft=qApp->font().family();
+	QString fam=config->value("Editor/Font Family",deft).toString();
+	int si=config->value("Editor/Font Size",10).toInt();
+#else
+	if (xf.contains("DejaVu Sans Mono",Qt::CaseInsensitive)) deft="DejaVu Sans Mono";
+//else if (xf.contains("Lucida Sans Unicode",Qt::CaseInsensitive)) deft="Lucida Sans Unicode";
+	else if (xf.contains("Lucida Sans Typewriter",Qt::CaseInsensitive)) deft="Lucida Sans Typewriter";
+	else deft=qApp->font().family();
+	QString fam=config->value("Editor/Font Family",deft).toString();
+	int si=config->value("Editor/Font Size",qApp->font().pointSize()).toInt();
+#endif
+	editorFont=QFont(fam,si);
+	
+	//interface
+#ifdef Q_WS_X11
+	if ((x11desktop_env() != 4) || (!QStyleFactory::keys().contains("Oxygen")))
+		interfaceStyle="Plastique"; //plastique style if not kde4
+	else
+		interfaceStyle="";
+		
+	if (xf.contains("DejaVu Sans",Qt::CaseInsensitive)) interfaceFontFamily="DejaVu Sans";
+	else if (xf.contains("DejaVu Sans LGC",Qt::CaseInsensitive)) interfaceFontFamily="DejaVu Sans LGC";
+	else if (xf.contains("Bitstream Vera Sans",Qt::CaseInsensitive)) interfaceFontFamily="Bitstream Vera Sans";
+	else if (xf.contains("Luxi Sans",Qt::CaseInsensitive)) interfaceFontFamily="Luxi Sans";
+	else interfaceFontFamily=QApplication::font().family();
+#else
+	interfaceStyle="";
+	interfaceFontFamily=QApplication::font().family();
+#endif
+		
+	interfaceStyle=config->value("X11/Style",interfaceStyle).toString(); //named X11 for backward compatibility
+	defaultStyle=QApplication::style();
+	if (interfaceStyle!="") QApplication::setStyle(interfaceStyle); 
+
+	interfaceFontFamily = config->value("X11/Font Family",QApplication::font().family()).toString();
+	interfaceFontSize = config->value("X11/Font Size",QApplication::font().pointSize()).toInt();		
+	QApplication::setFont(QFont(interfaceFontFamily, interfaceFontSize));
+	
+#ifdef Q_WS_X11
+	QPalette pal = QApplication::palette();
+	pal.setColor(QPalette::Active, QPalette::Highlight, QColor("#4490d8"));
+	pal.setColor(QPalette::Inactive, QPalette::Highlight, QColor("#4490d8"));
+	pal.setColor(QPalette::Disabled, QPalette::Highlight, QColor("#4490d8"));
+
+	pal.setColor(QPalette::Active, QPalette::HighlightedText, QColor("#ffffff"));
+	pal.setColor(QPalette::Inactive, QPalette::HighlightedText, QColor("#ffffff"));
+	pal.setColor(QPalette::Disabled, QPalette::HighlightedText, QColor("#ffffff"));
+
+	pal.setColor(QPalette::Active, QPalette::Base, QColor("#ffffff"));
+	pal.setColor(QPalette::Inactive, QPalette::Base, QColor("#ffffff"));
+	pal.setColor(QPalette::Disabled, QPalette::Base, QColor("#ffffff"));
+
+	pal.setColor(QPalette::Active, QPalette::WindowText, QColor("#000000"));
+	pal.setColor(QPalette::Inactive, QPalette::WindowText, QColor("#000000"));
+	pal.setColor(QPalette::Disabled, QPalette::WindowText, QColor("#000000"));
+
+	pal.setColor(QPalette::Active, QPalette::ButtonText, QColor("#000000"));
+	pal.setColor(QPalette::Inactive, QPalette::ButtonText, QColor("#000000"));
+	pal.setColor(QPalette::Disabled, QPalette::ButtonText, QColor("#000000"));
+
+	if (x11desktop_env() ==4) {
+		pal.setColor(QPalette::Active, QPalette::Window, QColor("#eae9e9"));
+		pal.setColor(QPalette::Inactive, QPalette::Window, QColor("#eae9e9"));
+		pal.setColor(QPalette::Disabled, QPalette::Window, QColor("#eae9e9"));
+
+		pal.setColor(QPalette::Active, QPalette::Button, QColor("#eae9e9"));
+		pal.setColor(QPalette::Inactive, QPalette::Button, QColor("#eae9e9"));
+		pal.setColor(QPalette::Disabled, QPalette::Button, QColor("#eae9e9"));
+	} else {
+		pal.setColor(QPalette::Active, QPalette::Window, QColor("#fbf8f1"));
+		pal.setColor(QPalette::Inactive, QPalette::Window, QColor("#fbf8f1"));
+		pal.setColor(QPalette::Disabled, QPalette::Window, QColor("#fbf8f1"));
+
+		pal.setColor(QPalette::Active, QPalette::Button, QColor("#fbf8f1"));
+		pal.setColor(QPalette::Inactive, QPalette::Button, QColor("#fbf8f1"));
+		pal.setColor(QPalette::Disabled, QPalette::Button, QColor("#fbf8f1"));
+	}
+
+	QApplication::setPalette(pal);
+#endif
+	
+	
 	config->endGroup();
 
 	return config;
@@ -74,10 +169,11 @@ QSettings* ConfigManager::saveSettings() {
 
 	config->beginGroup("texmaker");
 
+	//-----------------------files------------------------
 	config->setValue("Files/New File Encoding", newfile_encoding?newfile_encoding->name():"??");
 	config->setValue("Files/Auto Detect Encoding Of Loaded Files", autodetectLoadedFile);
 
-
+	//-------------------key replacements-----------------
 	int keyReplaceCount = keyReplace.count();
 	config->setValue("User/KeyReplaceCount",keyReplaceCount);
 	for (int i=0; i<keyReplaceCount; i++) {
@@ -86,6 +182,15 @@ QSettings* ConfigManager::saveSettings() {
 		config->setValue("User/KeyReplaceBeforeWord"+QVariant(i).toString(),keyReplaceBeforeWord[i]);
 	}
 
+	//------------------appearance---------------------
+	config->setValue("X11/Style",interfaceStyle); //named X11/ for backward compatibility
+	config->setValue("X11/Font Family",interfaceFontFamily);
+	config->setValue("X11/Font Size",interfaceFontSize);
+
+	//editor
+	config->setValue("Editor/Font Family",editorFont.family());
+	config->setValue("Editor/Font Size",editorFont.pointSize());
+	
 	config->endGroup();
 
 	return config;
@@ -135,9 +240,25 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		else  item->setCheckState(Qt::Unchecked);
 	}
 
+	//appearance
+	confDlg->ui.comboBoxInterfaceStyle->clear();
+	confDlg->ui.comboBoxInterfaceStyle->addItems(QStyleFactory::keys()<<tr("default"));
+	if (interfaceStyle=="") //default
+		confDlg->ui.comboBoxInterfaceStyle->setCurrentIndex(confDlg->ui.comboBoxInterfaceStyle->count()-1);
+	else 
+		confDlg->ui.comboBoxInterfaceStyle->setCurrentIndex(QStyleFactory::keys().indexOf(interfaceStyle));
+	confDlg->ui.comboBoxInterfaceStyle->setEditText(interfaceStyle);
+	confDlg->ui.comboBoxInterfaceFont->setCurrentFont(QFont(interfaceFontFamily));
+	confDlg->ui.spinBoxInterfaceFontSize->setValue(interfaceFontSize);
 
-
+	//editor font
+	confDlg->ui.comboBoxFont->lineEdit()->setText(editorFont.family());
+	confDlg->ui.spinBoxSize->setValue(editorFont.pointSize());
+	
+	
+	//EXECUTE IT
 	bool executed = confDlg->exec();
+	//handle changes
 	if (executed) {
 		newfile_encoding=QTextCodec::codecForName(confDlg->ui.comboBoxEncoding->currentText().toAscii().data());
 		autodetectLoadedFile=confDlg->ui.checkBoxAutoDetectOnLoad->isChecked();
@@ -158,6 +279,28 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 			elem=confDlg->ui.completeListWidget->item(i);
 			if (elem->checkState()==Qt::Checked) words.append(elem->text());
 		}
+		
+		//appearance
+		//  interface
+		if (confDlg->ui.comboBoxInterfaceFont->currentFont().family()!=interfaceFontFamily ||
+			confDlg->ui.spinBoxInterfaceFontSize->value()!=interfaceFontSize) {
+			interfaceFontSize=confDlg->ui.spinBoxInterfaceFontSize->value();
+			interfaceFontFamily=confDlg->ui.comboBoxInterfaceFont->currentFont().family();
+			QApplication::setFont(QFont(interfaceFontFamily, interfaceFontSize));
+		}
+		if (confDlg->ui.comboBoxInterfaceStyle->currentText()!=interfaceStyle){
+			interfaceStyle=confDlg->ui.comboBoxInterfaceStyle->currentText();
+			if (interfaceStyle==tr("default")) interfaceStyle="";
+			QPalette pal = QApplication::palette();
+			if (interfaceStyle=="") QApplication::setStyle(defaultStyle);
+			else QApplication::setStyle(interfaceStyle);
+			QApplication::setPalette(pal);
+		}
+		
+		//  editor font
+		QString fam=confDlg->ui.comboBoxFont->lineEdit()->text();
+		int si=confDlg->ui.spinBoxSize->value();
+		editorFont=QFont (fam,si);		
 	}
 	return executed;
 }

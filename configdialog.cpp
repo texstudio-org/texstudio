@@ -243,50 +243,34 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 //fmConfig->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Ignored);
 	(new QBoxLayout(QBoxLayout::TopToBottom, ui.formatConfigBox))->insertWidget(0,fmConfig);
 
-	createIcons();
-	ui.contentsWidget->setCurrentRow(0);
 
 	ui.shortcutTree->setHeaderLabels(QStringList()<<tr("Command")<<tr("Default Shortcut")<<tr("Current Shortcut")<<tr("Additional Shortcut"));
 	ui.shortcutTree->setColumnWidth(0,200);
+
+	//create icons
+	createIcon(tr("General"),QIcon(":/images/configeditor.png"));
+	createIcon(tr("Commands"),QIcon(":/images/configtools.png"));
+	createIcon(tr("Quick Build"),QIcon(":/images/configquick.png"));
+	createIcon(tr("Shortcuts"),QIcon(":/images/configkeys.png"));
+	createIcon(tr("Editor"),QIcon(":/images/configeditor.png"));
+	createIcon(tr("Completion"),QIcon(":/images/configeditor.png"));
+
+	connect(ui.contentsWidget,
+	        SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
+	        this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
+	ui.contentsWidget->setCurrentRow(0);
 }
 
 ConfigDialog::~ConfigDialog() {
 }
 
-void ConfigDialog::createIcons() {
-	QListWidgetItem *commandButton = new QListWidgetItem(ui.contentsWidget);
-	commandButton->setIcon(QIcon(":/images/configtools.png"));
-	commandButton->setText(tr("Commands"));
-	commandButton->setTextAlignment(Qt::AlignHCenter);
-	commandButton->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-
-	QListWidgetItem *quickButton = new QListWidgetItem(ui.contentsWidget);
-	quickButton->setIcon(QIcon(":/images/configquick.png"));
-	quickButton->setText(tr("Quick Build"));
-	quickButton->setTextAlignment(Qt::AlignHCenter);
-	quickButton->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-
-	QListWidgetItem *keysButton = new QListWidgetItem(ui.contentsWidget);
-	keysButton->setIcon(QIcon(":/images/configkeys.png"));
-	keysButton->setText(tr("Shortcuts"));
-	keysButton->setTextAlignment(Qt::AlignHCenter);
-	keysButton->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-
-	QListWidgetItem *editorButton = new QListWidgetItem(ui.contentsWidget);
-	editorButton->setIcon(QIcon(":/images/configeditor.png"));
-	editorButton->setText(tr("Editor"));
-	editorButton->setTextAlignment(Qt::AlignHCenter);
-	editorButton->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-
-	QListWidgetItem *completerButton = new QListWidgetItem(ui.contentsWidget);
-	completerButton->setIcon(QIcon(":/images/configeditor.png"));
-	completerButton->setText(tr("Completion"));
-	completerButton->setTextAlignment(Qt::AlignHCenter);
-	completerButton->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-
-	connect(ui.contentsWidget,
-	        SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
-	        this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
+QListWidgetItem * ConfigDialog::createIcon(const QString &caption, const QIcon &icon){
+	QListWidgetItem * button=new QListWidgetItem(ui.contentsWidget);;
+	button->setIcon(icon);
+	button->setText(caption);
+	button->setTextAlignment(Qt::AlignHCenter);
+	button->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+	return button;
 }
 
 void ConfigDialog::changePage(QListWidgetItem *current, QListWidgetItem *previous) {

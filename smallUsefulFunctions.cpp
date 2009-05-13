@@ -111,6 +111,15 @@ QString getRelativePath(const QString basepath, const QString & file) {
 	return path;
 }
 
+int x11desktop_env() {
+	// 0 : no kde ; 3: kde ; 4 : kde4 ;
+	QString kdesession= ::getenv("KDE_FULL_SESSION");
+	QString kdeversion= ::getenv("KDE_SESSION_VERSION");
+	if (!kdeversion.isEmpty()) return 4;
+	if (!kdesession.isEmpty()) return 3;
+	return 0;
+}
+
 
 QString latexToPlainWord(QString word) {
 	word.replace(QString("\\-"),"",Qt::CaseInsensitive); //Trennung [separation] (german-babel-package also: \")

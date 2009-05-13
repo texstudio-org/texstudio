@@ -25,7 +25,6 @@ public:
 		CMD_GHOSTSCRIPT
 	};
 	static QString parseExtendedCommandLine(QString str, const QFileInfo &mainFile,int currentline);
-	static int x11desktop_env();//returns kde version 0,3,4
 	static QString guessCommandName(LatexCommand cmd);
 	static QString lazyDefaultRead(const QSettings &settings, QString name, LatexCommand cmd);
 #ifdef Q_WS_WIN

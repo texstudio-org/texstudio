@@ -24,6 +24,9 @@ bool isExistingFileRealWritable(QString filename);
 //get relative path for a given file
 QString getRelativePath(const QString basepath, const QString & file);
 
+//returns kde version 0,3,4
+int x11desktop_env();
+
 
 //searches the next token in the line line after/at the index index
 //there are these possible kind of tokens % (which starts a comment), { or } (as parantheses), \.* (command) or .* (text)

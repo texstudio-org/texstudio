@@ -3,8 +3,13 @@
 
 #include "configdialog.h"
 #include <QSettings>
-class ConfigManager {
+#include <QStyle>
+
+class ConfigManager: public QObject {
+	Q_OBJECT
 public:
+	ConfigManager(QObject *parent=0);
+	
 	QSettings* readSettings();
 	QSettings* saveSettings();
 
@@ -20,7 +25,15 @@ public:
 	QStringList keyReplace, keyReplaceAfterWord, keyReplaceBeforeWord;
 	QStringList words;
 
+	//appearance 
+	QString interfaceStyle;
+	QString interfaceFontFamily;
+	int interfaceFontSize;
+	
+	QFont editorFont;
+	
 //private:
 	QString configFileName,configFileNameBase;
+	QStyle* defaultStyle;
 };
 #endif
