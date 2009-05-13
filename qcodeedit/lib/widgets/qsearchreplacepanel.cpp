@@ -463,14 +463,6 @@ void QSearchReplacePanel::on_cbSelection_toggled(bool on)
 	leFind->setFocus();
 }
 
-void QSearchReplacePanel::on_cbPrompt_toggled(bool on)
-{
-	if ( m_search )
-		m_search->setOption(QDocumentSearch::Prompt, on);
-
-	leFind->setFocus();
-}
-
 void QSearchReplacePanel::on_cbEscapeSeq_toggled(bool on)
 {
 	// remove unused argument warning
