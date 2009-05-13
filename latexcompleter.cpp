@@ -58,6 +58,7 @@ CompletionWord::CompletionWord(const QString &newWord) {
 	shownWord=visibleWord;
 	sortWord=word.toLower();
 	sortWord.replace("{","!");//js: still using dirty hack, however order should be ' '{[* abcde...
+	sortWord.replace("}","!");// needs to be replaced as well for sorting \bgein{abc*} after \bgein{abc}
 	sortWord.replace("[","\"");//(first is a space->) !"# follow directly in the ascii table
 	sortWord.replace("*","#");
 }
