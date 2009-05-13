@@ -16,7 +16,7 @@
 
 
 class PstricksListWidget : public QListWidget  {
-  Q_OBJECT
+	Q_OBJECT
 public:
 	PstricksListWidget(QWidget *parent=0);
 	~PstricksListWidget();

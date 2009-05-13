@@ -14,25 +14,24 @@
 
 #include "ui_filechooser.h"
 
-class FileChooser : public QDialog
-{
-    Q_OBJECT
+class FileChooser : public QDialog {
+	Q_OBJECT
 
- public:
-    FileChooser( QWidget *parent = 0, QString name="");
-    Ui::FileChooser ui;
-    QString fileName() const;
-    QString filter,dir;
+public:
+	FileChooser(QWidget *parent = 0, QString name="");
+	Ui::FileChooser ui;
+	QString fileName() const;
+	QString filter,dir;
 
 public slots:
-    void setDir( const QString &di );
-    void setFilter( const QString &fil );
+	void setDir(const QString &di);
+	void setFilter(const QString &fil);
 
 signals:
-    void fileNameChanged( const QString & );
+	void fileNameChanged(const QString &);
 
 private slots:
-    void chooseFile();
+	void chooseFile();
 
 };
 

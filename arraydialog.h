@@ -15,15 +15,15 @@
 #include "ui_arraydialog.h"
 
 class ArrayDialog : public QDialog  {
-   Q_OBJECT
+	Q_OBJECT
 public:
 	ArrayDialog(QWidget *parent=0, const char *name=0);
 	~ArrayDialog();
 	Ui::ArrayDialog ui;
 
 protected slots:
-  void NewRows(int num);
-  void NewColumns(int num);
+	void NewRows(int num);
+	void NewColumns(int num);
 };
 
 

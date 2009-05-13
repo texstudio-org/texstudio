@@ -21,33 +21,32 @@ class QAbstractItemModel;
 class QObject;
 class QPainter;
 
-class IconDelegate : public QAbstractItemDelegate
-{
-    Q_OBJECT
+class IconDelegate : public QAbstractItemDelegate {
+	Q_OBJECT
 
 public:
-    IconDelegate(QObject *parent = 0)
-        : QAbstractItemDelegate(parent) {}
+	IconDelegate(QObject *parent = 0)
+			: QAbstractItemDelegate(parent) {}
 
-    void paint(QPainter *painter, const QStyleOptionViewItem &option,
-               const QModelIndex &index) const;
+	void paint(QPainter *painter, const QStyleOptionViewItem &option,
+	           const QModelIndex &index) const;
 
-    QSize sizeHint(const QStyleOptionViewItem &option,
-                   const QModelIndex &index ) const;
+	QSize sizeHint(const QStyleOptionViewItem &option,
+	               const QModelIndex &index) const;
 protected:
-    virtual void drawDecoration(QPainter *painter, const QStyleOptionViewItem &option,
-                                const QRect &rect, const QPixmap &pixmap) const;
-    virtual void drawFocus(QPainter *painter, const QStyleOptionViewItem &option,
-                           const QRect &rect) const;
-    virtual void drawCheck(QPainter *painter, const QStyleOptionViewItem &option,
-                           const QRect &rect, Qt::CheckState state) const;
+	virtual void drawDecoration(QPainter *painter, const QStyleOptionViewItem &option,
+	                            const QRect &rect, const QPixmap &pixmap) const;
+	virtual void drawFocus(QPainter *painter, const QStyleOptionViewItem &option,
+	                       const QRect &rect) const;
+	virtual void drawCheck(QPainter *painter, const QStyleOptionViewItem &option,
+	                       const QRect &rect, Qt::CheckState state) const;
 
-    void doLayout(const QStyleOptionViewItem &option,
-                  QRect *checkRect, QRect *iconRect, QRect *textRect, bool hint) const;
-    QPixmap decoration(const QStyleOptionViewItem &option, const QVariant &variant) const;
-    QPixmap *selected(const QPixmap &pixmap, const QPalette &palette, bool enabled) const;
-    QRect check(const QStyleOptionViewItem &option, const QRect &bounding,
-                const QVariant &variant) const;
+	void doLayout(const QStyleOptionViewItem &option,
+	              QRect *checkRect, QRect *iconRect, QRect *textRect, bool hint) const;
+	QPixmap decoration(const QStyleOptionViewItem &option, const QVariant &variant) const;
+	QPixmap *selected(const QPixmap &pixmap, const QPalette &palette, bool enabled) const;
+	QRect check(const QStyleOptionViewItem &option, const QRect &bounding,
+	            const QVariant &variant) const;
 };
 
 #endif

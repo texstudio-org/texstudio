@@ -18,34 +18,34 @@
 #include "QStringList"
 #include "QStringListModel"
 class SpellerUtility: public QObject {
-   Q_OBJECT
+	Q_OBJECT
 public:
-    SpellerUtility();
-    ~SpellerUtility();
-    bool loadDictionary(QString dic,QString ignoreFilePrefix);
-    void unload();
-    void addToIgnoreList(QString toIgnore);
+	SpellerUtility();
+	~SpellerUtility();
+	bool loadDictionary(QString dic,QString ignoreFilePrefix);
+	void unload();
+	void addToIgnoreList(QString toIgnore);
 	void removeFromIgnoreList(QString toIgnore);
-    QStringListModel* ignoreListModel();
-	
-    bool check(QString word);
-    QStringList suggest(QString word);
-    
-    int spellcheckErrorFormat;
-    bool isActive(); //interactive spelling only
-    void setActive(bool a);
+	QStringListModel* ignoreListModel();
+
+	bool check(QString word);
+	QStringList suggest(QString word);
+
+	int spellcheckErrorFormat;
+	bool isActive(); //interactive spelling only
+	void setActive(bool a);
 signals:
-    void reloadDictionary();
+	void reloadDictionary();
 private:
-    QString currentDic, ignoreListFileName, spell_encoding;
-    Hunspell * pChecker;
-    QTextCodec *spellCodec;
-    QHash<QString, bool> checkCache;
-    QLinkedList<QString> checkCacheInsertion;
-    QSet<QString> ignoredWords;
+	QString currentDic, ignoreListFileName, spell_encoding;
+	Hunspell * pChecker;
+	QTextCodec *spellCodec;
+	QHash<QString, bool> checkCache;
+	QLinkedList<QString> checkCacheInsertion;
+	QSet<QString> ignoredWords;
 	QStringList ignoredWordList;
 	QStringListModel ignoredWordsModel;
-    bool active;
+	bool active;
 };
 
 #endif

@@ -12,14 +12,13 @@
 #include "structdialog.h"
 
 StructDialog::StructDialog(QWidget *parent, QString name)
-    : QDialog(parent)
-{
-setModal(true);
-ui.setupUi(this);
-setWindowTitle(name);
+		: QDialog(parent) {
+	setModal(true);
+	ui.setupUi(this);
+	setWindowTitle(name);
 }
 
-StructDialog::~StructDialog(){
+StructDialog::~StructDialog() {
 }
 
 

@@ -16,15 +16,15 @@
 
 
 class TabDialog : public QDialog  {
-   Q_OBJECT
+	Q_OBJECT
 public:
 	TabDialog(QWidget *parent=0, const char *name=0);
 	~TabDialog();
 	Ui::TabDialog ui;
 
 protected slots:
-  void NewRows(int num);
-  void NewColumns(int num);
+	void NewRows(int num);
+	void NewColumns(int num);
 };
 
 

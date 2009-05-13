@@ -14,13 +14,12 @@
 #include <QFontDatabase>
 
 X11FontDialog::X11FontDialog(QWidget *parent)
-    :QDialog( parent)
-{
-setModal(true);
-ui.setupUi(this);
-QFontDatabase fdb;
-ui.comboBoxFont->addItems( fdb.families() );
+		:QDialog(parent) {
+	setModal(true);
+	ui.setupUi(this);
+	QFontDatabase fdb;
+	ui.comboBoxFont->addItems(fdb.families());
 }
 
-X11FontDialog::~X11FontDialog(){
+X11FontDialog::~X11FontDialog() {
 }

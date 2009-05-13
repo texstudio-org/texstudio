@@ -15,7 +15,7 @@
 #include "ui_refdialog.h"
 
 class RefDialog : public QDialog  {
-   Q_OBJECT
+	Q_OBJECT
 public:
 	RefDialog(QWidget *parent=0, const char *name=0);
 	~RefDialog();

@@ -16,7 +16,7 @@
 
 
 class MetapostListWidget : public QListWidget  {
-  Q_OBJECT
+	Q_OBJECT
 public:
 	MetapostListWidget(QWidget *parent=0);
 	~MetapostListWidget();

@@ -21,16 +21,15 @@
 
 class QTextDocument;
 
-class LogHighlighter : public QSyntaxHighlighter
-{
-    Q_OBJECT
+class LogHighlighter : public QSyntaxHighlighter {
+	Q_OBJECT
 
 public:
-    LogHighlighter(QTextDocument *parent = 0);
-    QColor ColorStandard, ColorFile, ColorError, ColorWarning;
+	LogHighlighter(QTextDocument *parent = 0);
+	QColor ColorStandard, ColorFile, ColorError, ColorWarning;
 
 protected:
-    void highlightBlock(const QString &text);
+	void highlightBlock(const QString &text);
 };
 
 
