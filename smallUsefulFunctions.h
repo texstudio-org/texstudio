@@ -64,4 +64,8 @@ QString textToLatex(QString text);
 //compares two strings local aware
 bool localAwareLessThan(const QString &s1, const QString &s2);
 
+// find token (e.g. \label \input \section and return content (\section{content})
+QString findToken(const QString line,const QString token);
+QString findToken(const QString line,const QRegExp token);
+
 #endif

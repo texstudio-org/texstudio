@@ -2071,15 +2071,9 @@ void Texmaker::UpdateStructure() {
 	top->setIcon(0,QIcon(":/images/doc.png"));
 	top->setText(0,shortName);
 	Child=parent_level[0]=parent_level[1]=parent_level[2]=parent_level[3]=parent_level[4]=top;
-	structlist.clear();
-	structitem.clear();
 	labelitem.clear();
-	structlist.append(QString::number(0));
-	structitem.append(shortName);
 	QTreeWidgetItem *toplabel = new QTreeWidgetItem(top);
 	toplabel->setText(0,"LABELS");
-	structlist.append(QString::number(0));
-	structitem.append("LABELS");
 	QString s;
 	for (int i=0; i<currentEditorView()->editor->document()->lines(); i++) {
 		int tagStart, tagEnd;
@@ -2109,71 +2103,42 @@ void Texmaker::UpdateStructure() {
 			}
 		};
 		//// label ////
-		tagStart=tagEnd=0;
 		s=currentEditorView()->editor->text(i);
-		tagStart=s.indexOf("\\label{", tagEnd);
-		if (tagStart!=-1) {
-			s=s.mid(tagStart+7,s.length());
-			tagStart=s.indexOf("}", tagEnd);
-			if (tagStart!=-1) {
-				s=s.mid(0,tagStart);
-				labelitem.append(s);
-				structlist.append(QString::number(i));
-				Child = new QTreeWidgetItem(toplabel);
-				Child->setText(3,s);
-				Child->setText(2,QString::number(i+1));
-				s=s+" ("+tr("line")+" "+QString::number(i+1)+")";
-				structitem.append(s);
-				Child->setText(1,"label");
-				Child->setText(0,s);
-			}
-		};
+		s=findToken(s,"\\label{");
+		if (s!="") {
+			labelitem.append(s);
+			Child = new QTreeWidgetItem(toplabel);
+			Child->setText(3,s);
+			Child->setText(2,QString::number(i+1));
+			s=s+" ("+tr("line")+" "+QString::number(i+1)+")";
+			Child->setText(1,"label");
+			Child->setText(0,s);
+		}
 
 		//// include ////
-		tagStart=tagEnd=0;
 		s=currentEditorView()->editor->text(i);
-		tagStart=s.indexOf("\\include{", tagEnd);
-		if (tagStart!=-1) {
-			s=s.mid(tagStart+8,s.length());
-			tagStart=s.indexOf("}", tagEnd);
-			if (tagStart!=-1) {
-				s=s.mid(0,tagStart+1);
-				structlist.append("include");
-				structitem.append(s);
-				Child = new QTreeWidgetItem(top);
-				Child->setText(0,s);
-				Child->setIcon(0,QIcon(":/images/include.png"));
-				Child->setText(1,"include");
-			}
+		s=findToken(s,"\\include{");
+		if (s!="") {
+			Child = new QTreeWidgetItem(top);
+			Child->setText(0,s);
+			Child->setIcon(0,QIcon(":/images/include.png"));
+			Child->setText(1,"include");
 		};
 		//// input ////
-		tagStart=tagEnd=0;
 		s=currentEditorView()->editor->text(i);
-		tagStart=s.indexOf("\\input{", tagEnd);
-		if (tagStart!=-1) {
-			s=s.mid(tagStart+6,s.length());
-			tagStart=s.indexOf("}", tagEnd);
-			if (tagStart!=-1) {
-				s=s.mid(0,tagStart+1);
-				structlist.append("input");
-				structitem.append(s);
-				Child = new QTreeWidgetItem(top);
-				Child->setText(0,s);
-				Child->setIcon(0,QIcon(":/images/include.png"));
-				Child->setText(1,"input");
-			}
+		s=findToken(s,"\\input{");
+		if (s!="") {
+			Child = new QTreeWidgetItem(top);
+			Child->setText(0,s);
+			Child->setIcon(0,QIcon(":/images/include.png"));
+			Child->setText(1,"input");
 		};
 		//// part ////
-		tagStart=tagEnd=0;
 		s=currentEditorView()->editor->text(i);
-		tagStart=s.indexOf(QRegExp("\\\\"+struct_level1+"\\*?[\\{\\[]"), tagEnd);
-		if (tagStart!=-1) {
-			structlist.append(QString::number(i));
-			tagStart=s.indexOf(struct_level1, tagEnd);
-			s=s.mid(tagStart+struct_level1.length(),s.length());
+		s=findToken(s,QRegExp("\\\\"+struct_level1+"\\*?[\\{\\[]"));
+		if (s!="") {
 			s=extractSectionName(s);
 			s=s+" ("+tr("line")+" "+QString::number(i+1)+")";
-			structitem.append(s);
 			parent_level[0] = new QTreeWidgetItem(top);
 			parent_level[0]->setText(0,s);
 			parent_level[0]->setIcon(0,QIcon(":/images/part.png"));
@@ -2183,16 +2148,11 @@ void Texmaker::UpdateStructure() {
 			parent_level[1]=parent_level[2]=parent_level[3]=parent_level[4]=parent_level[0];
 		};
 		//// chapter ////
-		tagStart=tagEnd=0;
 		s=currentEditorView()->editor->text(i);
-		tagStart=s.indexOf(QRegExp("\\\\"+struct_level2+"\\*?[\\{\\[]"), tagEnd);
-		if (tagStart!=-1) {
-			structlist.append(QString::number(i));
-			tagStart=s.indexOf(struct_level2, tagEnd);
-			s=s.mid(tagStart+struct_level2.length(),s.length());
+		s=findToken(s,QRegExp("\\\\"+struct_level2+"\\*?[\\{\\[]"));
+		if (s!="") {
 			s=extractSectionName(s);
 			s=s+" ("+tr("line")+" "+QString::number(i+1)+")";
-			structitem.append(s);
 			parent_level[1] = new QTreeWidgetItem(parent_level[0]);
 			parent_level[1]->setText(0,s);
 			parent_level[1]->setIcon(0,QIcon(":/images/chapter.png"));
@@ -2203,16 +2163,11 @@ void Texmaker::UpdateStructure() {
 			parent_level[2]=parent_level[3]=parent_level[4]=parent_level[1];
 		};
 		//// section ////
-		tagStart=tagEnd=0;
 		s=currentEditorView()->editor->text(i);
-		tagStart=s.indexOf(QRegExp("\\\\"+struct_level3+"\\*?[\\{\\[]"), tagEnd);
-		if (tagStart!=-1) {
-			structlist.append(QString::number(i));
-			tagStart=s.indexOf(struct_level3, tagEnd);
-			s=s.mid(tagStart+struct_level3.length(),s.length());
+		s=findToken(s,QRegExp("\\\\"+struct_level3+"\\*?[\\{\\[]"));
+		if (s!="") {
 			s=extractSectionName(s);
 			s=s+" ("+tr("line")+" "+QString::number(i+1)+")";
-			structitem.append(s);
 			parent_level[2] = new QTreeWidgetItem(parent_level[1]);
 			parent_level[2]->setText(0,s);
 			parent_level[2]->setIcon(0,QIcon(":/images/section.png"));
@@ -2222,16 +2177,11 @@ void Texmaker::UpdateStructure() {
 			parent_level[3]=parent_level[4]=parent_level[2];
 		};
 		//// subsection ////
-		tagStart=tagEnd=0;
 		s=currentEditorView()->editor->text(i);
-		tagStart=s.indexOf(QRegExp("\\\\"+struct_level4+"\\*?[\\{\\[]"), tagEnd);
-		if (tagStart!=-1) {
-			structlist.append(QString::number(i));
-			tagStart=s.indexOf(struct_level4, tagEnd);
-			s=s.mid(tagStart+struct_level4.length(),s.length());
+		s=findToken(s,QRegExp("\\\\"+struct_level4+"\\*?[\\{\\[]"));
+		if (s!="") {
 			s=extractSectionName(s);
 			s=s+" ("+tr("line")+" "+QString::number(i+1)+")";
-			structitem.append(s);
 			parent_level[3] = new QTreeWidgetItem(parent_level[2]);
 			parent_level[3]->setText(0,s);
 			parent_level[3]->setText(1,"subsection");
@@ -2241,16 +2191,11 @@ void Texmaker::UpdateStructure() {
 			parent_level[4]=parent_level[3];
 		};
 		//// subsubsection ////
-		tagStart=tagEnd=0;
 		s=currentEditorView()->editor->text(i);
-		tagStart=s.indexOf(QRegExp("\\\\"+struct_level5+"\\*?[\\{\\[]"), tagEnd);
-		if (tagStart!=-1) {
-			structlist.append(QString::number(i));
-			tagStart=s.indexOf(struct_level5, tagEnd);
-			s=s.mid(tagStart+struct_level5.length(),s.length());
+		s=findToken(s,QRegExp("\\\\"+struct_level5+"\\*?[\\{\\[]"));
+		if (s!="") {
 			s=extractSectionName(s);
 			s=s+" ("+tr("line")+" "+QString::number(i+1)+")";
-			structitem.append(s);
 			parent_level[4] = new QTreeWidgetItem(parent_level[3]);
 			parent_level[4]->setText(0,s);
 			parent_level[4]->setIcon(0,QIcon(":/images/subsubsection.png"));
@@ -2291,29 +2236,23 @@ void Texmaker::ClickedOnStructure(QTreeWidgetItem *item,int col) {
 	QString name=fi.absoluteFilePath();
 	QString flname=fi.fileName();
 	QString basename=name.left(name.length()-flname.length());
-	if ((item) && (!structlist.isEmpty())) {
-		QStringList::ConstIterator it1 = structitem.begin();
-		QStringList::ConstIterator it2 = structlist.begin();
-		for (; it1 !=structitem.end(); ++it1) {
-			if (*it1==item->text(col)) break;
-			++it2;
-		}
-		QString s=*it2;
+	if (item)  {
+		QString s=item->text(1);
 		if (s=="include") {
-			QString fname=*it1;
-			if (fname.right(5)==".tex}") fname=basename+fname.mid(1,fname.length()-2);
-			else fname=basename+fname.mid(1,fname.length()-2)+".tex";
+			QString fname=item->text(0);
+			if (fname.right(4)==".tex") fname=basename+fname;
+			else fname=basename+fname+".tex";
 			QFileInfo fi(fname);
 			if (fi.exists() && fi.isReadable()) load(fname);
 		} else if (s=="input") {
-			QString fname=*it1;
-			if (fname.right(5)==".tex}") fname=basename+fname.mid(1,fname.length()-2);
-			else fname=basename+fname.mid(1,fname.length()-2)+".tex";
+			QString fname=item->text(0);
+			if (fname.right(4)==".tex") fname=basename+fname;
+			else fname=basename+fname+".tex";
 			QFileInfo fi(fname);
 			if (fi.exists() && fi.isReadable()) load(fname);
 		} else {
 			bool ok;
-			int l=s.toInt(&ok,10);
+			int l=item->text(2).toInt(&ok,10)-1;
 			if (ok) {
 				currentEditorView()->editor->setCursorPosition(l,1);
 				currentEditorView()->editor->setFocus();

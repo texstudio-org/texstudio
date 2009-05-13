@@ -143,7 +143,7 @@ private:
 	QString lastDocument;
 	QString struct_level1, struct_level2, struct_level3, struct_level4, struct_level5;
 	QStringList userClassList, userPaperList, userEncodingList, userOptionsList;
-	QStringList structlist, labelitem, structitem;
+	QStringList labelitem;
 	Userlist UserMenuName, UserMenuTag;
 	UserCd UserToolName, UserToolCommand;
 
