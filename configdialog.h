@@ -59,7 +59,7 @@ public slots:
 	void changePage(QListWidgetItem *current, QListWidgetItem *previous);
 
 private slots:
-	void createIcons();
+	QListWidgetItem * createIcon(const QString &caption, const QIcon &icon);
 	void lineEditAspellChanged(QString newText);
 	void browseAspell();
 	void browseLatex();

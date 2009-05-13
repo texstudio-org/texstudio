@@ -243,9 +243,9 @@ macx {
     ICON = texmaker.icns
     QMAKE_INFO_PLIST = Info.plist
 }
-HEADERS += x11fontdialog.h
-SOURCES += x11fontdialog.cpp
-FORMS += x11fontdialog.ui
+HEADERS += 
+SOURCES += 
+FORMS += 
 
 # ##########QCODEEDIT###############
 DEFINES += _QCODE_EDIT_BUILD_

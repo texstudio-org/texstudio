@@ -64,7 +64,6 @@ public:
 	Texmaker(QWidget *parent = 0, Qt::WFlags flags = 0);
 
 	QString getName();
-	QFont EditorFont;
 	QByteArray windowstate;
 public slots:
 	LatexEditorView* load(const QString &f , bool asProject = false);
@@ -163,12 +162,6 @@ private:
 //latex errors
 	LatexLogModel * logModel;
 
-//X11
-//#if defined( Q_WS_X11 )
-	QString x11style;
-	QString x11fontfamily;
-	int x11fontsize;
-//#endif
 	SymbolList symbolScore;
 	usercodelist symbolMostused;
 
@@ -354,9 +347,6 @@ private slots:
 	void viewExpandBlock();
 
 //void ToggleMode();
-
-	void SetInterfaceFont();
-	void SetInterfaceType();
 
 	void gotoBookmark();
 	void toggleBookmark();
