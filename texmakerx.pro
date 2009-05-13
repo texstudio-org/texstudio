@@ -159,8 +159,8 @@ unix:!macx {
         utilities/doc8.png \
         utilities/doc9.png \
         utilities/latexhelp.html \
-        utilities/texmaker_fr.qm \
-        utilities/texmaker_de.qm \
+        texmakerx_fr.qm \
+        texmakerx_de.qm \
         utilities/qt_fr.qm \
         utilities/qt_de.qm \
         utilities/usermanual_en.html \
@@ -225,8 +225,8 @@ macx {
         utilities/doc8.png \
         utilities/doc9.png \
         utilities/latexhelp.html \
-        utilities/texmaker_fr.qm \
-        utilities/texmaker_de.qm \
+        texmakerx_fr.qm \
+        texmakerx_de.qm \
         utilities/qt_fr.qm \
         utilities/qt_de.qm \
         utilities/usermanual_en.html \
