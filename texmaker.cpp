@@ -4022,7 +4022,7 @@ void Texmaker::tabChanged(int i) {
 
 void Texmaker::StructureContextMenu(QPoint point) {
 	QTreeWidgetItem* item=StructureTreeWidget->currentItem();
-	if(item->parent()&&item->text(0)!="LABELS"){
+	if(item->parent()&&item->text(0)!="LABELS"&&item->text(1)!="include"&&item->text(1)!="input"){
 		if (item->parent()->text(0)=="LABELS") {
 			QMenu menu;
 			menu.addAction(tr("Insert"),this, SLOT(editPasteRef()));
