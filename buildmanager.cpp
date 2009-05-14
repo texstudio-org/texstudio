@@ -5,6 +5,8 @@
 #include <QMessageBox>
 #include <QProcess>
 
+#include "smallUsefulFunctions.h"
+
 #ifdef Q_WS_WIN
 #include "windows.h"
 #endif
