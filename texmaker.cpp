@@ -289,13 +289,14 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	connect(EditorView, SIGNAL(tabCloseRequested(int)), this, SLOT(CloseEditorTab(int)));
 #endif
 	setCentralWidget(EditorView);
+	
 	setupMenus();
+	configManager.updateRecentFiles(true);
 	setupToolBars();
 
 	restoreState(windowstate, 0);
 
 
-	UpdateRecentFile();
 	createStatusBar();
 	UpdateCaption();
 	singlemode=true;
@@ -315,142 +316,45 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	updateCompleter();
 	LatexEditorView::setCompleter(completer);
 
-	if (!sessionFilesToRestore.empty()) {
-		for (int i=0; i<sessionFilesToRestore.size(); i++)
-			load(sessionFilesToRestore[i], sessionFilesToRestore[i]==sessionMaster);
-		FileAlreadyOpen(sessionCurrent);
-		sessionFilesToRestore.clear(); //save memory ;-)
+	if (!configManager.sessionFilesToRestore.empty()) {
+		for (int i=0; i<configManager.sessionFilesToRestore.size(); i++)
+			load(configManager.sessionFilesToRestore[i], configManager.sessionFilesToRestore[i]==configManager.sessionMaster);
+		FileAlreadyOpen(configManager.sessionCurrent);
+		configManager.sessionFilesToRestore.clear(); //save memory ;-)
 		ToggleRememberAct->setChecked(true);
 	}
 }
 
-QMenu* Texmaker::newManagedMenu(const QString &id,const QString &text) {
-	QMenu* menu=menuBar()->addMenu(text);
-	menu->setObjectName(id);
-	managedMenus.append(menu);
-	return menu;
-}
-QMenu* Texmaker::newManagedMenu(QMenu* menu, const QString &id,const QString &text) {
-	if (!menu) return newManagedMenu(id,text);
-	QMenu* submenu=menu->addMenu(text);
-	submenu->setObjectName(menu->objectName()+"/"+ id);
-	return submenu;
+QMenu* Texmaker::newManagedMenu(QMenu* menu, const QString &id,const QString &text){
+	return configManager.newManagedMenu(menu,id,text);
 }
 QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QKeySequence &shortCut, const QString & iconFile) {
-	return newManagedAction(menu,id,text,slotName,QList<QKeySequence>() << shortCut, iconFile);
+	return configManager.newManagedAction(menu,id,text,slotName,QList<QKeySequence>() << shortCut, iconFile);
 }
 QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile) {
-	QAction *act;
-	if (iconFile.isEmpty()) act=new QAction(text, this);
-	else act=new QAction(QIcon(iconFile), text, this);
-	act->setShortcuts(shortCuts);
-	if (slotName) connect(act, SIGNAL(triggered()), this, slotName);
-	act->setObjectName(menu->objectName()+"/"+id);
-	menu->addAction(act);
-	for (int i=0; i<shortCuts.size(); i++)
-		managedMenuShortcuts.insert(act->objectName()+QString::number(i),shortCuts[i]);
-	return act;
+	return configManager.newManagedAction(menu,id,text,slotName,shortCuts, iconFile);
 }
-QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id, QAction* act) {
-	act->setObjectName(menu->objectName()+"/"+id);
-	menu->addAction(act);
-	managedMenuShortcuts.insert(act->objectName()+"0",act->shortcut());
-	return act;
+QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id, QAction* act){
+	return configManager.newManagedAction(menu,id,act);
 }
 QAction* Texmaker::getManagedAction(QString id) {
-	QAction* act=findChild<QAction*>(id);
-	if (act==0) QMessageBox::warning(0,"TexMakerX","Can't find internal action "+id);
-	return act;
+	return configManager.getManagedAction(id);
 }
-void Texmaker::loadManagedMenu(QMenu* parent,const QDomElement &f) {
-	QMenu *menu = newManagedMenu(parent,f.attributes().namedItem("id").nodeValue(),f.attributes().namedItem("text").nodeValue());
-	QDomNodeList children = f.childNodes();
-	for (int i = 0; i < children.count(); i++) {
-		QDomElement c = children.at(i).toElement();
-		if (c.nodeName()=="menu") loadManagedMenu(menu,c);
-		else if (c.nodeName()=="insert" || c.nodeName()=="action") {
-			QDomNamedNodeMap  att=c.attributes();
-			QByteArray ba;
-			const char* slotfunc;
-			if (c.nodeName()=="insert") slotfunc=SLOT(InsertFromAction());
-			else {
-				ba=att.namedItem("slot").nodeValue().toLocal8Bit();
-				slotfunc=ba.data();
-			}
-			QAction * act=newManagedAction(menu,att.namedItem("id").nodeValue(),att.namedItem("text").nodeValue(),slotfunc,
-			                               att.namedItem("shortcut").nodeValue(),att.namedItem("icon").nodeValue());
-			act->setWhatsThis(att.namedItem("info").nodeValue());
-			act->setData(att.namedItem("insert").nodeValue());
-		} else if (c.nodeName()=="separator") menu->addSeparator();
-	}
-}
-void Texmaker::loadManagedMenus(const QString &f) {
-	QFile settings(f);
-
-	if (settings.open(QFile::ReadOnly | QFile::Text)) {
-		QDomDocument doc;
-		doc.setContent(&settings);
-
-		QDomNodeList f = doc.documentElement().childNodes();
-
-		for (int i = 0; i < f.count(); i++)
-			if (f.at(i).nodeName()=="menu")
-				loadManagedMenu(0,f.at(i).toElement());
-	}
+QMenu* Texmaker::newManagedMenu(const QString &id,const QString &text){
+	return configManager.newManagedMenu(id,text);
 }
 
-void Texmaker::managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu) {
-	if (!menu) return;
-	QTreeWidgetItem* menuitem= new QTreeWidgetItem(parent, QStringList(menu->title().replace("&","")));
-	if (menu->objectName().count("/")<=2) menuitem->setExpanded(true);
-	QList<QAction *> acts=menu->actions();
-	for (int i=0; i<acts.size(); i++)
-		if (acts[i]->menu()) managedMenuToTreeWidget(menuitem, acts[i]->menu());
-		else {
-			QTreeWidgetItem* twi=new QTreeWidgetItem(menuitem, QStringList() << acts[i]->text()
-			        << managedMenuShortcuts[acts[i]->objectName()+"0"]
-			        << acts[i]->shortcut().toString(QKeySequence::NativeText));
-			twi->setIcon(0,acts[i]->icon());
-			if (!acts[i]->isSeparator()) twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
-			twi->setData(0,Qt::UserRole,acts[i]->objectName());
-			if (acts[i]->shortcuts().size()>1) twi->setText(3,acts[i]->shortcuts()[1].toString(QKeySequence::NativeText));
-		}
-
-
-}
-void Texmaker::treeWidgetToManagedMenuTo(QTreeWidgetItem* item) {
-	if (item->childCount() > 0) {
-		for (int i=0; i< item->childCount(); i++)
-			treeWidgetToManagedMenuTo(item->child(i));
-	} else {
-		QString id=item->data(0,Qt::UserRole).toString();
-		if (id=="") return;
-		QAction * act=getManagedAction(id);
-		if (act) {
-			QKeySequence sc=QKeySequence(item->text(2));
-			act->setShortcut(sc);
-			if (sc!=managedMenuShortcuts.value(act->objectName()+"0",QKeySequence()))
-				managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~0", item->text(2)));
-			sc=QKeySequence(item->text(3));
-			if (item->text(3)!="") act->setShortcuts((QList<QKeySequence>()<<act->shortcut()) << sc);
-			if (sc!=managedMenuShortcuts.value(act->objectName()+"1",QKeySequence()))
-				managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~1", item->text(3)));
-		}
-	}
-}
 void Texmaker::setupMenus() {
+	configManager.menuParent=this;
+	configManager.menuParentsBar=menuBar();
+	
 //file
 	QMenu *menu=newManagedMenu("main/file",tr("&File"));
 	newManagedAction(menu, "new",tr("New"), SLOT(fileNew()), Qt::CTRL+Qt::Key_N, ":/images/filenew.png");
 	newManagedAction(menu, "open",tr("Open"), SLOT(fileOpen()), Qt::CTRL+Qt::Key_O, ":/images/fileopen.png");
 
-	QMenu *submenu=newManagedMenu(menu, "openrecent",tr("Open Recent"));
-	for (int i = 0; i < 3; ++i)
-		newManagedAction(submenu, "p"+QString::number(i), QString("Recent 'Master Document' %1").arg(i), SLOT(fileOpenRecentProject()))->setVisible(false);
-	submenu->addSeparator();
-	for (int i = 0; i < 5; ++i)
-		newManagedAction(submenu, QString::number(i), QString("Recent File %1").arg(i), SLOT(fileOpenRecent()))->setVisible(false);
-
+	QMenu *submenu=newManagedMenu(menu, "openrecent",tr("Open Recent")); //only create the menu here, actions are created by config manager
+	
 	menu->addSeparator();
 	newManagedAction(menu,"save",tr("Save"), SLOT(fileSave()), Qt::CTRL+Qt::Key_S, ":/images/filesave.png");
 	newManagedAction(menu,"saveas",tr("Save As"), SLOT(fileSaveAs()), Qt::CTRL+Qt::ALT+Qt::Key_S);
@@ -583,7 +487,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "analysetext",tr("Analyse Text"), SLOT(AnalyseText()));
 
 //  Latex/Math external
-	loadManagedMenus(":/uiconfig.xml");
+	configManager.loadManagedMenus(":/uiconfig.xml");
 
 //wizards
 
@@ -683,20 +587,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(StructureTreeWidget,"UnIndentSection",tr("Unindent Section"), SLOT(editUnIndentSection()));
 	connect(StructureTreeWidget,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(StructureContextMenu(QPoint)));
 
-	//modify shortcuts
-	for (int i=0; i< managedMenuNewShortcuts.size(); i++) {
-		QString id=managedMenuNewShortcuts[i].first;
-		int num=-1;
-		if (managedMenuNewShortcuts[i].first.endsWith("~0")) num=0;
-		else if (managedMenuNewShortcuts[i].first.endsWith("~1")) num=1;
-		else { } //backward compatibility
-		if (num!=-1) id.chop(2);
-		QAction * act= getManagedAction(id);
-		if (act) {
-			if (num!=1) act->setShortcut(QKeySequence(managedMenuNewShortcuts[i].second));
-			else act->setShortcuts((QList<QKeySequence>()<<act->shortcut())<<managedMenuNewShortcuts[i].second);
-		}
-	}
+	configManager.modifyManagedShortcuts();
 }
 
 void Texmaker::setupToolBars() {
@@ -898,7 +789,7 @@ void Texmaker::UpdateCaption() {
 		logpresent=false;
 	}
 	QString finame=getName();
-	if (finame!="untitled" && finame!="") lastDocument=finame;
+	if (finame!="untitled" && finame!="") configManager.lastDocument=finame;
 }
 
 void Texmaker::CloseEditorTab(int tab) {
@@ -970,7 +861,10 @@ QString Texmaker::getName() {
 	}
 	return title;
 }
-
+QString Texmaker::getCurrentFileName() {
+	if (!currentEditorView()) return "";
+	return filenames[currentEditorView()];
+}
 bool Texmaker::FileAlreadyOpen(QString f) {
 	FilesMap::Iterator it;
 	QString fw32,funix,forig;
@@ -1029,7 +923,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	edit->editor->setFocus();
 	UpdateCaption();
 	NewDocumentStatus(false);
-	AddRecentFile(f_real);
+	MarkCurrentFileAsRecent();
 	ShowStructure();
 	if (asProject) {
 		if (singlemode) ToggleMode();
@@ -1071,8 +965,8 @@ void Texmaker::fileNew(QString fileName) {
 
 void Texmaker::fileOpen() {
 	QString currentDir=QDir::homePath();
-	if (!lastDocument.isEmpty()) {
-		QFileInfo fi(lastDocument);
+	if (!configManager.lastDocument.isEmpty()) {
+		QFileInfo fi(configManager.lastDocument);
 		if (fi.exists() && fi.isReadable()) currentDir=fi.absolutePath();
 	}
 	QString fn = QFileDialog::getOpenFileName(this,tr("Open File"),currentDir,"TeX files (*.tex *.bib *.sty *.cls *.mp);;All files (*.*)");
@@ -1098,7 +992,7 @@ void Texmaker::fileSave() {
 		currentEditorView()->editor->save();
 		//currentEditorView()->editor->setModified(false);
 		fn=getName();
-		AddRecentFile(fn);
+		MarkCurrentFileAsRecent();
 	}
 	UpdateCaption();
 }
@@ -1110,8 +1004,8 @@ void Texmaker::fileSaveAs(QString fileName) {
 	// select a directory/filepath
 	QString currentDir=QDir::homePath();
 	if (fileName.isEmpty()) {
-		if (!lastDocument.isEmpty()) {
-			QFileInfo fi(lastDocument);
+		if (!configManager.lastDocument.isEmpty()) {
+			QFileInfo fi(configManager.lastDocument);
 			if (fi.exists() && fi.isReadable())
 				currentDir=fi.absolutePath();
 		}
@@ -1131,7 +1025,7 @@ void Texmaker::fileSaveAs(QString fileName) {
 
 		// save file
 		currentEditorView()->editor->save();
-		AddRecentFile(getName());
+		MarkCurrentFileAsRecent();
 
 		EditorView->setTabText(EditorView->indexOf(currentEditorView()),fic.fileName());
 	}
@@ -1305,44 +1199,8 @@ void Texmaker::fileOpenRecentProject() {
 	if (action) load(action->data().toString(),true);
 }
 
-void Texmaker::AddRecentFile(const QString &f, bool asMaster) {
-	// remove unused argument warning
-	(void) asMaster;
-
-	int p=recentFilesList.indexOf(f);
-	bool changed=p!=0;
-	if (p>0) recentFilesList.removeAt(p);
-	if (changed) recentFilesList.prepend(f);
-	if (recentFilesList.count()>5) recentFilesList.removeLast();
-
-	if (!singlemode && MasterName==f) {
-		p=recentProjectList.indexOf(f);
-		changed|=p!=0;
-		if (p>0) recentProjectList.removeAt(p);
-		if (p!=0) recentProjectList.prepend(f);
-		if (recentProjectList.count()>3) recentProjectList.removeLast();
-	}
-
-	if (changed) UpdateRecentFile();
-}
-
-void Texmaker::UpdateRecentFile() {
-	for (int i=0; i < 3; i++) {
-		QAction* act = getManagedAction(QString("main/file/openrecent/p%1").arg(i));
-		if (i<recentProjectList.count()) {
-			act->setVisible(true);
-			act->setText(tr("Master Document: ")+recentProjectList.at(i));
-			act->setData(recentProjectList.at(i));
-		} else act->setVisible(false);
-	}
-	for (int i=0; i < 5; i++) {
-		QAction* act = getManagedAction(QString("main/file/openrecent/%1").arg(i));
-		if (i<recentFilesList.count()) {
-			act->setVisible(true);
-			act->setText(recentFilesList.at(i));
-			act->setData(recentFilesList.at(i));
-		} else act->setVisible(false);
-	}
+void Texmaker::MarkCurrentFileAsRecent(){
+	configManager.addRecentFile(getCurrentFileName(),!singlemode && MasterName==getCurrentFileName());
 }
 
 void Texmaker::filePrint() {
@@ -1679,12 +1537,6 @@ void Texmaker::ReadSettings() {
 	realtimespellchecking=config->value("Editor/Real-Time Spellchecking",true).toBool();
 
 
-	int size = config->beginReadArray("keysetting");
-	for (int i = 0; i < size; ++i) {
-		config->setArrayIndex(i);
-		managedMenuNewShortcuts.append(QPair<QString, QString> (config->value("id").toString(), config->value("key").toString()));
-	}
-	config->endArray();
 
 	showoutputview=config->value("Show/OutputView",true).toBool();
 	showstructview=config->value("Show/Structureview",true).toBool();
@@ -1710,15 +1562,6 @@ void Texmaker::ReadSettings() {
 	userPaperList=config->value("Tools/User Paper").toStringList();
 	userEncodingList=config->value("Tools/User Encoding").toStringList();
 	userOptionsList=config->value("Tools/User Options").toStringList();
-
-	lastDocument=config->value("Files/Last Document","").toString();
-	recentFilesList=config->value("Files/Recent Files").toStringList();
-	recentProjectList=config->value("Files/Recent Project Files").toStringList();
-	if (config->value("Files/RestoreSession",false).toBool()) {
-		sessionFilesToRestore=config->value("Files/Session/Files").toStringList();
-		sessionCurrent=config->value("Files/Session/CurrentFile","").toString();
-		sessionMaster=config->value("Files/Session/MasterFile","").toString();
-	}
 
 	for (int i=0; i<=9; i++) {
 		UserMenuName[i]=config->value(QString("User/Menu%1").arg(i+1),"").toString();
@@ -1769,7 +1612,7 @@ void Texmaker::ReadSettings() {
 	config->endGroup();
 
 	config->beginGroup("completionFile");
-	completerFiles=config->value("Completion/complitionFiles",QStringList("completion/completion.txt")).toStringList();
+	completerFiles=config->value("Completion/completionFiles",QStringList("completion/completion.txt")).toStringList();
 	readCompletionList(completerFiles);
 	config->endGroup();
 
@@ -1805,14 +1648,6 @@ void Texmaker::SaveSettings() {
 	config->setValue("Editor/Show Cursor State",showcursorstate);
 	config->setValue("Editor/Real-Time Spellchecking",realtimespellchecking);
 
-	config->beginWriteArray("keysetting");
-	for (int i = 0; i < managedMenuNewShortcuts.size(); ++i) {
-		config->setArrayIndex(i);
-		config->setValue("id", managedMenuNewShortcuts[i].first);
-		config->setValue("key", managedMenuNewShortcuts[i].second);
-	}
-	config->endArray();
-
 	config->setValue("Show/OutputView",showoutputview);
 
 	config->setValue("Show/Structureview",showstructview);
@@ -1845,11 +1680,6 @@ void Texmaker::SaveSettings() {
 	if (userPaperList.count()>0) config->setValue("Tools/User Paper",userPaperList);
 	if (userEncodingList.count()>0) config->setValue("Tools/User Encoding",userEncodingList);
 	if (userOptionsList.count()>0) config->setValue("Tools/User Options",userOptionsList);
-
-
-	config->setValue("Files/Last Document",lastDocument);
-	if (recentFilesList.count()>0) config->setValue("Files/Recent Files",recentFilesList);
-	if (recentProjectList.count()>0) config->setValue("Files/Recent Project Files",recentProjectList);
 
 	if (ToggleRememberAct->isChecked()) {
 		config->setValue("Files/RestoreSession",true);
@@ -1907,7 +1737,7 @@ void Texmaker::SaveSettings() {
 
 	if (!completerFiles.isEmpty()) {
 		config->beginGroup("completionFile");
-		config->setValue("Completion/complitionFiles",completerFiles);
+		config->setValue("Completion/completionFiles",completerFiles);
 		config->endGroup();
 	}
 
@@ -3686,20 +3516,12 @@ void Texmaker::GeneralOptions() {
 	}
 	confDlg->ui.lineEditUserquick->setText(userquick_command);
 
-	QTreeWidgetItem * mainItem=new QTreeWidgetItem((QTreeWidget*)0, QStringList() << QString(tr("Menus")));
-	foreach(QMenu* menu, managedMenus)
-	managedMenuToTreeWidget(mainItem,menu);
-	confDlg->ui.shortcutTree->addTopLevelItem(mainItem);
-	mainItem->setExpanded(true);
 
 	//completion words
 	configManager.words=completerFiles;
 
 
 	if (configManager.execConfigDialog(confDlg)) {
-		managedMenuNewShortcuts.clear();
-		treeWidgetToManagedMenuTo(mainItem);
-
 		if (confDlg->ui.radioButton1->isChecked()) quickmode=1;
 		if (confDlg->ui.radioButton2->isChecked()) quickmode=2;
 		if (confDlg->ui.radioButton3->isChecked()) quickmode=3;
@@ -3837,7 +3659,7 @@ void Texmaker::ToggleMode() {
 		ToggleAct->setText(tr("Normal Mode (current master document :")+shortName+")");
 		singlemode=false;
 		stat1->setText(QString(" %1 ").arg(tr("Master Document")+ ": "+shortName));
-		AddRecentFile(MasterName, true);
+		MarkCurrentFileAsRecent();
 		return;
 	}
 }

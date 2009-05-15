@@ -7,7 +7,7 @@
 #include <QFile>
 #include <QStyleFactory>
 
-ConfigManager::ConfigManager(QObject *parent): QObject (parent){
+ConfigManager::ConfigManager(QObject *parent): QObject (parent), menuParent(0), menuParentsBar(0){
 }
 
 QSettings* ConfigManager::readSettings() {
@@ -36,9 +36,24 @@ QSettings* ConfigManager::readSettings() {
 
 	config->beginGroup("texmaker");
 
+	//-----------------------files---------------------------
+	//editor
 	newfile_encoding=QTextCodec::codecForName(config->value("Files/New File Encoding", "utf-8").toString().toAscii().data());
 	autodetectLoadedFile=config->value("Files/Auto Detect Encoding Of Loaded Files", "true").toBool();
 
+	//recent files
+	maxRecentFiles=config->value("Files/Max Recent Files", 5).toInt();
+	maxRecentProjects=config->value("Files/Max Recent Projects", 3).toInt();
+	recentFilesList=config->value("Files/Recent Files").toStringList();
+	recentProjectList=config->value("Files/Recent Project Files").toStringList();
+	if (config->value("Files/RestoreSession",false).toBool()) {
+		sessionFilesToRestore=config->value("Files/Session/Files").toStringList();
+		sessionCurrent=config->value("Files/Session/CurrentFile","").toString();
+		sessionMaster=config->value("Files/Session/MasterFile","").toString();
+	}
+	lastDocument=config->value("Files/Last Document","").toString();
+	
+	
 	//read user key replacements
 	keyReplace.clear();
 	keyReplaceAfterWord.clear();
@@ -69,6 +84,14 @@ QSettings* ConfigManager::readSettings() {
 		}
 	LatexEditorView::setKeyReplacements(&keyReplace,&keyReplaceAfterWord,&keyReplaceBeforeWord);
 
+	//menu shortcuts
+	int size = config->beginReadArray("keysetting");
+	for (int i = 0; i < size; ++i) {
+		config->setArrayIndex(i);
+		managedMenuNewShortcuts.append(QPair<QString, QString> (config->value("id").toString(), config->value("key").toString()));
+	}
+	config->endArray();
+	
 	
 	//--------------------appearance------------------------------------
 	QFontDatabase fdb;
@@ -170,9 +193,18 @@ QSettings* ConfigManager::saveSettings() {
 	config->beginGroup("texmaker");
 
 	//-----------------------files------------------------
+	//editor
 	config->setValue("Files/New File Encoding", newfile_encoding?newfile_encoding->name():"??");
 	config->setValue("Files/Auto Detect Encoding Of Loaded Files", autodetectLoadedFile);
-
+	
+	//recent files
+	config->setValue("Files/Max Recent Files", maxRecentFiles);
+	config->setValue("Files/Max Recent Projects", maxRecentProjects);
+	if (recentFilesList.count()>0) config->setValue("Files/Recent Files",recentFilesList);
+	if (recentProjectList.count()>0) config->setValue("Files/Recent Project Files",recentProjectList);
+	//session is saved by main class (because we don't know the active files here)
+	config->setValue("Files/Last Document",lastDocument);
+	
 	//-------------------key replacements-----------------
 	int keyReplaceCount = keyReplace.count();
 	config->setValue("User/KeyReplaceCount",keyReplaceCount);
@@ -182,7 +214,18 @@ QSettings* ConfigManager::saveSettings() {
 		config->setValue("User/KeyReplaceBeforeWord"+QVariant(i).toString(),keyReplaceBeforeWord[i]);
 	}
 
+	//menu shortcuts
+	config->beginWriteArray("keysetting");
+	for (int i = 0; i < managedMenuNewShortcuts.size(); ++i) {
+		config->setArrayIndex(i);
+		config->setValue("id", managedMenuNewShortcuts[i].first);
+		config->setValue("key", managedMenuNewShortcuts[i].second);
+	}
+	config->endArray();
+
 	//------------------appearance---------------------
+	//config->setValue("Interface/Language",language); //named X11/ for backward compatibility
+
 	config->setValue("X11/Style",interfaceStyle); //named X11/ for backward compatibility
 	config->setValue("X11/Font Family",interfaceFontFamily);
 	config->setValue("X11/Font Size",interfaceFontSize);
@@ -202,9 +245,35 @@ ConfigDialog* ConfigManager::createConfigDialog(QWidget* parent) {
 	return confDlg;
 }
 bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
-	QTreeWidgetItem * mainItem=new QTreeWidgetItem((QTreeWidget*)0, QStringList() << ConfigDialog::tr("Editor"));
+
+	//files
+	if (newfile_encoding)
+		confDlg->ui.comboBoxEncoding->setCurrentIndex(confDlg->ui.comboBoxEncoding->findText(newfile_encoding->name(), Qt::MatchExactly));
+	confDlg->ui.checkBoxAutoDetectOnLoad->setChecked(autodetectLoadedFile);
+
+	confDlg->ui.spinBoxMaxRecentFiles->setValue(maxRecentFiles);
+	confDlg->ui.spinBoxMaxRecentProjects->setValue(maxRecentProjects);
+	
+	//completion lists
+	QStringList files=findResourceFiles("completion","*.cwl");
+	QListWidgetItem *item;
+	foreach(QString elem,files) {
+		item=new QListWidgetItem(elem,confDlg->ui.completeListWidget);
+		item->setFlags(Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
+		if (words.contains(elem)) item->setCheckState(Qt::Checked);
+		else  item->setCheckState(Qt::Unchecked);
+	}
+
+	//menu shortcuts
+	QTreeWidgetItem * menuShortcuts=new QTreeWidgetItem((QTreeWidget*)0, QStringList() << QString(tr("Menus")));
+	foreach(QMenu* menu, managedMenus)
+	managedMenuToTreeWidget(menuShortcuts,menu);
+	confDlg->ui.shortcutTree->addTopLevelItem(menuShortcuts);
+	menuShortcuts->setExpanded(true);
+
+	QTreeWidgetItem * editorItem=new QTreeWidgetItem((QTreeWidget*)0, QStringList() << ConfigDialog::tr("Editor"));
 	//add special key replacements
-	QTreeWidgetItem * keyReplacements = new QTreeWidgetItem(mainItem, QStringList() << ConfigDialog::tr("Special Key Replacement"));
+	QTreeWidgetItem * keyReplacements = new QTreeWidgetItem(editorItem, QStringList() << ConfigDialog::tr("Special Key Replacement"));
 	QTreeWidgetItem * columnItem=new QTreeWidgetItem(keyReplacements, QStringList() << ConfigDialog::tr("New column meaning:") << ConfigDialog::tr("Key to replace") << ConfigDialog::tr("Text to insert before word") << ConfigDialog::tr("Text to insert after word"));
 	QFont f;
 	f.setUnderline(true);
@@ -217,28 +286,13 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		(new QTreeWidgetItem(keyReplacements, QStringList() << ShortcutDelegate::deleteRowButton << keyReplace[i] << keyReplaceBeforeWord[i] << keyReplaceAfterWord[i]))
 		->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
 	new QTreeWidgetItem(keyReplacements, QStringList() << ShortcutDelegate::addRowButton);
-	confDlg->ui.shortcutTree->addTopLevelItem(mainItem);
-	mainItem->setExpanded(true);
+	confDlg->ui.shortcutTree->addTopLevelItem(editorItem);
+	editorItem->setExpanded(true);
 
 	ShortcutDelegate delegate;
 	delegate.treeWidget=confDlg->ui.shortcutTree;
 	confDlg->ui.shortcutTree->setItemDelegate(&delegate); //setting in the config dialog doesn't work
 	delegate.connect(confDlg->ui.shortcutTree,SIGNAL(itemClicked(QTreeWidgetItem *, int)),&delegate,SLOT(treeWidgetItemClicked(QTreeWidgetItem * , int)));
-
-	//editor
-	if (newfile_encoding)
-		confDlg->ui.comboBoxEncoding->setCurrentIndex(confDlg->ui.comboBoxEncoding->findText(newfile_encoding->name(), Qt::MatchExactly));
-	confDlg->ui.checkBoxAutoDetectOnLoad->setChecked(autodetectLoadedFile);
-
-	//completion lists
-	QStringList files=findResourceFiles("completion","*.cwl");
-	QListWidgetItem *item;
-	foreach(QString elem,files) {
-		item=new QListWidgetItem(elem,confDlg->ui.completeListWidget);
-		item->setFlags(Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
-		if (words.contains(elem)) item->setCheckState(Qt::Checked);
-		else  item->setCheckState(Qt::Unchecked);
-	}
 
 	//appearance
 	confDlg->ui.comboBoxInterfaceStyle->clear();
@@ -260,9 +314,18 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	bool executed = confDlg->exec();
 	//handle changes
 	if (executed) {
+		//files
 		newfile_encoding=QTextCodec::codecForName(confDlg->ui.comboBoxEncoding->currentText().toAscii().data());
 		autodetectLoadedFile=confDlg->ui.checkBoxAutoDetectOnLoad->isChecked();
 
+		if (maxRecentFiles!=confDlg->ui.spinBoxMaxRecentFiles->value() ||
+		   maxRecentProjects != confDlg->ui.spinBoxMaxRecentProjects->value()){
+			maxRecentFiles=confDlg->ui.spinBoxMaxRecentFiles->value();
+			maxRecentProjects=confDlg->ui.spinBoxMaxRecentProjects->value();
+			updateRecentFiles(true);
+		}
+
+		//key replacements
 		keyReplace.clear();
 		keyReplaceBeforeWord.clear();
 		keyReplaceAfterWord.clear();
@@ -280,6 +343,10 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 			if (elem->checkState()==Qt::Checked) words.append(elem->text());
 		}
 		
+		//menus
+		managedMenuNewShortcuts.clear();
+		treeWidgetToManagedMenuTo(menuShortcuts);
+				
 		//appearance
 		//  interface
 		if (confDlg->ui.comboBoxInterfaceFont->currentFont().family()!=interfaceFontFamily ||
@@ -303,5 +370,204 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		editorFont=QFont (fam,si);		
 	}
 	return executed;
+}
+
+
+bool ConfigManager::addRecentFile(const QString & fileName, bool asMaster){ 
+	int p=recentFilesList.indexOf(fileName);
+	bool changed=p!=0;
+	if (p>0) recentFilesList.removeAt(p);
+	if (changed) recentFilesList.prepend(fileName);
+	if (recentFilesList.count()>maxRecentFiles) recentFilesList.removeLast();
+
+	if (asMaster) {
+		p=recentProjectList.indexOf(fileName);
+		changed|=p!=0;
+		if (p>0) recentProjectList.removeAt(p);
+		if (p!=0) recentProjectList.prepend(fileName);
+		if (recentProjectList.count()>maxRecentProjects) recentProjectList.removeLast();
+	}
+
+	if (changed) updateRecentFiles();
+	
+	return changed;
+}
+
+void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
+	QMenu* recentMenu = getManagedMenu("main/file/openrecent");
+	if (alwaysRecreateMenuItems || (recentMenu->actions().count()!=maxRecentFiles+maxRecentProjects+1)) {
+		QList<QAction*> actions=recentMenu->actions(); //recentMenu->clear() doesn't seem to delete the actions (why?)
+		for (int i = 0; i< actions.count(); i++)
+			recentMenu->removeAction(actions[i]); //neccessary or it crashes
+		for (int i = 0; i < maxRecentProjects; ++i) {
+			QAction* old=menuParent->findChild<QAction*>("main/file/openrecent/p"+QString::number(i));
+			if (old!=NULL) recentMenu->addAction(old);
+			else newManagedAction(recentMenu, "p"+QString::number(i), tr("Recent 'Master Document' %1").arg(i), SLOT(fileOpenRecentProject()))->setVisible(false);
+		}
+		recentMenu->addSeparator();
+		for (int i = 0; i < maxRecentFiles; ++i){
+			QAction* old=menuParent->findChild<QAction*>("main/file/openrecent/"+QString::number(i));
+			if (old!=NULL) recentMenu->addAction(old);
+			else newManagedAction(recentMenu, QString::number(i), tr("Recent File %1").arg(i), SLOT(fileOpenRecent()))->setVisible(false);		
+		}
+	}
+
+	for (int i=0; i < maxRecentProjects; i++) {
+		QAction* act = getManagedAction(QString("main/file/openrecent/p%1").arg(i));
+		if (i<recentProjectList.count()) {
+			act->setVisible(true);
+			act->setText(tr("Master Document: ")+recentProjectList.at(i));
+			act->setData(recentProjectList.at(i));
+		} else act->setVisible(false);
+	}
+	for (int i=0; i < maxRecentFiles; i++) {
+		QAction* act = getManagedAction(QString("main/file/openrecent/%1").arg(i));
+		if (i<recentFilesList.count()) {
+			act->setVisible(true);
+			act->setText(recentFilesList.at(i));
+			act->setData(recentFilesList.at(i));
+		} else act->setVisible(false);
+	}
+}
+
+
+QMenu* ConfigManager::newManagedMenu(const QString &id,const QString &text) {
+	if (!menuParentsBar) qFatal("No menu parent bar!");
+	QMenu* menu=menuParentsBar->addMenu(text);
+	menu->setObjectName(id);
+	managedMenus.append(menu);
+	return menu;
+}
+QMenu* ConfigManager::newManagedMenu(QMenu* menu, const QString &id,const QString &text) {
+	if (!menu) return newManagedMenu(id,text);
+	QMenu* submenu=menu->addMenu(text);
+	submenu->setObjectName(menu->objectName()+"/"+ id);
+	return submenu;
+}
+QAction* ConfigManager::newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile) {
+	if (!menuParent) qFatal("No menu parent!");
+	QAction *act;
+	if (iconFile.isEmpty()) act=new QAction(text, menuParent);
+	else act=new QAction(QIcon(iconFile), text, menuParent);
+	act->setShortcuts(shortCuts);
+	if (slotName) connect(act, SIGNAL(triggered()), menuParent, slotName);
+	act->setObjectName(menu->objectName()+"/"+id);
+	menu->addAction(act);
+	for (int i=0; i<shortCuts.size(); i++)
+		managedMenuShortcuts.insert(act->objectName()+QString::number(i),shortCuts[i]);
+	return act;
+}
+QAction* ConfigManager::newManagedAction(QWidget* menu, const QString &id, QAction* act) {
+	act->setObjectName(menu->objectName()+"/"+id);
+	menu->addAction(act);
+	managedMenuShortcuts.insert(act->objectName()+"0",act->shortcut());
+	return act;
+}
+QAction* ConfigManager::getManagedAction(QString id) {
+	QAction* act=0;
+	if (menuParent) act=menuParent->findChild<QAction*>(id);
+	if (act==0) qWarning("Can't find internal menu %s",id.toAscii().data());
+	return act;
+}
+QMenu* ConfigManager::getManagedMenu(QString id) {
+	QMenu* menu=0;
+	if (menuParent) menu=menuParent->findChild<QMenu*>(id);
+	if (menu==0) qWarning("Can't find internal menu %s",id.toAscii().data());
+	return menu;
+}
+void ConfigManager::modifyManagedShortcuts(){
+	//modify shortcuts
+	for (int i=0; i< managedMenuNewShortcuts.size(); i++) {
+		QString id=managedMenuNewShortcuts[i].first;
+		int num=-1;
+		if (managedMenuNewShortcuts[i].first.endsWith("~0")) num=0;
+		else if (managedMenuNewShortcuts[i].first.endsWith("~1")) num=1;
+		else { } //backward compatibility
+		if (num!=-1) id.chop(2);
+		QAction * act= getManagedAction(id);
+		if (act) {
+			if (num!=1) act->setShortcut(QKeySequence(managedMenuNewShortcuts[i].second));
+			else act->setShortcuts((QList<QKeySequence>()<<act->shortcut())<<managedMenuNewShortcuts[i].second);
+		}
+	}
+}
+void ConfigManager::loadManagedMenu(QMenu* parent,const QDomElement &f) {
+	QMenu *menu = newManagedMenu(parent,f.attributes().namedItem("id").nodeValue(),f.attributes().namedItem("text").nodeValue());
+	QDomNodeList children = f.childNodes();
+	for (int i = 0; i < children.count(); i++) {
+		QDomElement c = children.at(i).toElement();
+		if (c.nodeName()=="menu") loadManagedMenu(menu,c);
+		else if (c.nodeName()=="insert" || c.nodeName()=="action") {
+			QDomNamedNodeMap  att=c.attributes();
+			QByteArray ba;
+			const char* slotfunc;
+			if (c.nodeName()=="insert") slotfunc=SLOT(InsertFromAction());
+			else {
+				ba=att.namedItem("slot").nodeValue().toLocal8Bit();
+				slotfunc=ba.data();
+			}
+			QAction * act=newManagedAction(menu,
+			                               att.namedItem("id").nodeValue(),
+			                               att.namedItem("text").nodeValue(),slotfunc,
+			                               QList<QKeySequence>()<<  QKeySequence(att.namedItem("shortcut").nodeValue()),
+										   att.namedItem("icon").nodeValue());
+			act->setWhatsThis(att.namedItem("info").nodeValue());
+			act->setData(att.namedItem("insert").nodeValue());
+		} else if (c.nodeName()=="separator") menu->addSeparator();
+	}
+}
+void ConfigManager::loadManagedMenus(const QString &f) {
+	QFile settings(f);
+
+	if (settings.open(QFile::ReadOnly | QFile::Text)) {
+		QDomDocument doc;
+		doc.setContent(&settings);
+
+		QDomNodeList f = doc.documentElement().childNodes();
+
+		for (int i = 0; i < f.count(); i++)
+			if (f.at(i).nodeName()=="menu")
+				loadManagedMenu(0,f.at(i).toElement());
+	}
+}
+
+void ConfigManager::managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu) {
+	if (!menu) return;
+	QTreeWidgetItem* menuitem= new QTreeWidgetItem(parent, QStringList(menu->title().replace("&","")));
+	if (menu->objectName().count("/")<=2) menuitem->setExpanded(true);
+	QList<QAction *> acts=menu->actions();
+	for (int i=0; i<acts.size(); i++)
+		if (acts[i]->menu()) managedMenuToTreeWidget(menuitem, acts[i]->menu());
+		else {
+			QTreeWidgetItem* twi=new QTreeWidgetItem(menuitem, QStringList() << acts[i]->text()
+			        << managedMenuShortcuts[acts[i]->objectName()+"0"]
+			        << acts[i]->shortcut().toString(QKeySequence::NativeText));
+			twi->setIcon(0,acts[i]->icon());
+			if (!acts[i]->isSeparator()) twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
+			twi->setData(0,Qt::UserRole,acts[i]->objectName());
+			if (acts[i]->shortcuts().size()>1) twi->setText(3,acts[i]->shortcuts()[1].toString(QKeySequence::NativeText));
+		}
+
+
+}
+void ConfigManager::treeWidgetToManagedMenuTo(QTreeWidgetItem* item) {
+	if (item->childCount() > 0) {
+		for (int i=0; i< item->childCount(); i++)
+			treeWidgetToManagedMenuTo(item->child(i));
+	} else {
+		QString id=item->data(0,Qt::UserRole).toString();
+		if (id=="") return;
+		QAction * act=getManagedAction(id);
+		if (act) {
+			QKeySequence sc=QKeySequence(item->text(2));
+			act->setShortcut(sc);
+			if (sc!=managedMenuShortcuts.value(act->objectName()+"0",QKeySequence()))
+				managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~0", item->text(2)));
+			sc=QKeySequence(item->text(3));
+			if (item->text(3)!="") act->setShortcuts((QList<QKeySequence>()<<act->shortcut()) << sc);
+			if (sc!=managedMenuShortcuts.value(act->objectName()+"1",QKeySequence()))
+				managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~1", item->text(3)));
+		}
+	}
 }
 

@@ -64,6 +64,7 @@ public:
 	Texmaker(QWidget *parent = 0, Qt::WFlags flags = 0);
 
 	QString getName();
+	QString getCurrentFileName();
 	QByteArray windowstate;
 public slots:
 	LatexEditorView* load(const QString &f , bool asProject = false);
@@ -72,16 +73,14 @@ public slots:
 	void onOtherInstanceMessage(const QString &);  // For messages for the single instance
 
 private:
-	QMenu* newManagedMenu(const QString &id,const QString &text);
-	QMenu* newManagedMenu(QMenu* menu, const QString &id,const QString &text);
-	QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="");
-	QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile="");
-	QAction* newManagedAction(QWidget* menu, const QString &id, QAction* act);
-	QAction* getManagedAction(QString id);
-	void loadManagedMenu(QMenu* parent,const QDomElement &f);
-	void loadManagedMenus(const QString &f);
-	void managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu);
-	void treeWidgetToManagedMenuTo(QTreeWidgetItem* item);
+	//these are just wrappers around configManager so we don't have to type so much (todo??? move them to configmanager.h and use a singleton design???)
+	inline QMenu* newManagedMenu(const QString &id,const QString &text);
+	inline QMenu* newManagedMenu(QMenu* menu, const QString &id,const QString &text);
+	inline QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="");
+	inline QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile="");
+	inline QAction* newManagedAction(QWidget* menu, const QString &id, QAction* act);
+	inline QAction* getManagedAction(QString id);
+	
 	void setupMenus();
 	void setupToolBars();
 	void createStatusBar();
@@ -112,10 +111,7 @@ private:
 
 	bool tabbedLogView;
 
-//menu-toolbar
-	QList<QMenu*> managedMenus;
-	QHash<QString,QKeySequence> managedMenuShortcuts;
-	QList<QPair<QString,QString> > managedMenuNewShortcuts;
+//toolbars
 //
 	QToolBar *fileToolBar, *editToolBar, *runToolBar, *formatToolBar, *mathToolBar;
 	QAction *ToggleAct, *ToggleRememberAct;
@@ -123,10 +119,6 @@ private:
 	QLabel *stat1, *stat2, *stat3;
 	QString MasterName,persistentMasterFile;
 	bool logpresent;
-	QStringList recentFilesList, recentProjectList;
-	QStringList sessionFilesToRestore;
-	QString sessionMaster;
-	QString sessionCurrent;
 
 //settings
 	ConfigManager configManager;
@@ -139,7 +131,6 @@ private:
 	QString latex_command, viewdvi_command, dvips_command, dvipdf_command, metapost_command;
 	QString precompile_command, viewps_command, ps2pdf_command, makeindex_command, bibtex_command, pdflatex_command, viewpdf_command, userquick_command, ghostscript_command;
 	QString spell_dic, spell_ignored_words;
-	QString lastDocument;
 	QString struct_level1, struct_level2, struct_level3, struct_level4, struct_level5;
 	QStringList userClassList, userPaperList, userEncodingList, userOptionsList;
 	QStringList labelitem;
@@ -180,8 +171,7 @@ private slots:
 	void fileExit();
 	void fileOpenRecent();
 	void fileOpenRecentProject();
-	void AddRecentFile(const QString &f, bool asMaster=false);
-	void UpdateRecentFile();
+	void MarkCurrentFileAsRecent();
 	void filePrint();
 
 	void editUndo();
