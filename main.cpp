@@ -85,19 +85,19 @@ int main(int argc, char ** argv) {
 	DSingleApplication instance("TexMakerX");
 
 	bool startAlways=false;
+	QStringList args = QCoreApplication::arguments();
 	QStringList cmdLine;
-	QString cmdArgument;
-	for (int i = 1; i < argc; ++i) {
-		cmdArgument =  QString::fromLocal8Bit(argv [i]);
+	for (int i = 1; i < args.count(); ++i) {
+		QString cmdArgument =  args[i];
 
 		if (cmdArgument.startsWith('-')) {
 			// various commands
 			if (cmdArgument == "--start-always")
 				startAlways = true;
-			else if (cmdArgument == "-master")
-				cmdLine << cmdArgument;
-			else if ((cmdArgument == "-line") && (i+1 < argc))
-				cmdLine << cmdArgument << QString::fromLocal8Bit(argv [++i]);
+			else if (cmdArgument == "-master" || cmdArgument == "--master")
+				cmdLine << "--master"; //-master is only for backward compatibility
+			else if ((cmdArgument == "-line" || cmdArgument == "--line") && (++i < args.count()))
+				cmdLine << "--line" << args[i];
 		} else
 			cmdLine << QFileInfo(cmdArgument).absoluteFilePath();
 	}

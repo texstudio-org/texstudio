@@ -3605,8 +3605,9 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	for (int i = 0; i < args.size(); ++i) {
 		if (args[i]=="") continue;
 		if (args[i][0] != '-')  fileToLoad=args[i];
-		if (args[i] == "-master") activateMasterMode=true;
-		if ((args[i] == "-line") && (i+1<args.size()))  line=args[++i].toInt()-1;
+		//-form is for backward compatibility
+		if (args[i] == "--master") activateMasterMode=true;
+		if (args[i] == "--line" && i+1<args.size())  line=args[++i].toInt()-1;
 	}
 
 	// execute command line
@@ -3627,8 +3628,10 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 		}
 	}
 
-	if (line!=-1)
+	if (line!=-1){
+		QApplication::processEvents();
 		gotoLine(line);
+	}
 }
 void Texmaker::onOtherInstanceMessage(const QString &msg) { // Added slot for messages to the single instance
 	show();
