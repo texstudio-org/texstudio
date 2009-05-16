@@ -176,56 +176,27 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	connect(OutputView,SIGNAL(visibilityChanged(bool)),this,SLOT(OutputViewVisibilityChanged(bool)));
 
 
-	/*QFrame *Outputframe=new QFrame(OutputView);
-	Outputframe->setLineWidth(1);
-	Outputframe->setFrameShape(QFrame::StyledPanel);
-	Outputframe->setFrameShadow(QFrame::Sunken);
-	*/
-
-	logViewerTabBar=new QTabBar(this);
-//OutputLayout= new QTabWidget(OutputView);
-
-	OutputLayout= new QStackedWidget;
-	OutputVLayout= new QVBoxLayout;
-	OutputVLayout->setSpacing(0);
-	OutputVLayout->setMargin(0);
-
 	logModel = new LatexLogModel(this);//needs loaded line marks
 
 	OutputTable= new QTableView(this);
-	OutputTable->setModel(logModel);
-
-//OutputTableWidget->setWordWrap(true);
-	OutputTable->setSelectionBehavior(QAbstractItemView::SelectRows);
-	OutputTable->setSelectionMode(QAbstractItemView::SingleSelection);
+	OutputTable2= new QTableView(this); // second table view for tab log view
 	QFontMetrics fm(qApp->font());
-	OutputTable->setColumnWidth(0,fm.width("> "));
-	OutputTable->setColumnWidth(1,20*fm.width("w"));
-	OutputTable->setColumnWidth(2,fm.width("WarningW"));
-	OutputTable->setColumnWidth(3,fm.width("Line WWWWW"));
-	OutputTable->setColumnWidth(4,20*fm.width("w"));
-	connect(OutputTable, SIGNAL(clicked(const QModelIndex &)), this, SLOT(ClickedOnLogLine(const QModelIndex &)));
+	for (int i=0;i<2;i++){ //setup tables
+		QTableView* table=(i==0)?OutputTable:OutputTable2;
+		table->setModel(logModel);
 
-	OutputTable->horizontalHeader()->setStretchLastSection(true);
-	OutputTable->setMinimumHeight(5*(fm.lineSpacing()+4));
-
-// second table view for tab log view
-	OutputTable2= new QTableView(this);
-	OutputTable2->setModel(logModel);
-
-//OutputTableWidget->setWordWrap(true);
-	OutputTable2->setSelectionBehavior(QAbstractItemView::SelectRows);
-	OutputTable2->setSelectionMode(QAbstractItemView::SingleSelection);
-	OutputTable2->setColumnWidth(0,fm.width("> "));
-	OutputTable2->setColumnWidth(1,20*fm.width("w"));
-	OutputTable2->setColumnWidth(2,fm.width("WarningW"));
-	OutputTable2->setColumnWidth(3,fm.width("Line WWWWW"));
-	OutputTable2->setColumnWidth(4,20*fm.width("w"));
-	connect(OutputTable2, SIGNAL(clicked(const QModelIndex &)), this, SLOT(ClickedOnLogLine(const QModelIndex &)));
-
-	OutputTable2->horizontalHeader()->setStretchLastSection(true);
-	OutputTable2->setMinimumHeight(5*(fm.lineSpacing()+4));
-
+		table->setSelectionBehavior(QAbstractItemView::SelectRows);
+		table->setSelectionMode(QAbstractItemView::SingleSelection);
+		table->setColumnWidth(0,fm.width("> "));
+		table->setColumnWidth(1,20*fm.width("w"));
+		table->setColumnWidth(2,fm.width("WarningW"));
+		table->setColumnWidth(3,fm.width("Line WWWWW"));
+		table->setColumnWidth(4,20*fm.width("w"));
+		connect(table, SIGNAL(clicked(const QModelIndex &)), this, SLOT(ClickedOnLogLine(const QModelIndex &)));
+	
+		table->horizontalHeader()->setStretchLastSection(true);
+		table->setMinimumHeight(5*(fm.lineSpacing()+4));
+	}
 
 	OutputTextEdit = new LogEditor(this);
 	OutputTextEdit->setFocusPolicy(Qt::ClickFocus);
@@ -233,31 +204,37 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	OutputTextEdit->setReadOnly(true);
 	connect(OutputTextEdit, SIGNAL(clickonline(int)),this,SLOT(gotoLine(int)));
 
-
 	OutputLogTextEdit = new LogEditor(this);
 	OutputLogTextEdit->setFocusPolicy(Qt::ClickFocus);
 	OutputLogTextEdit->setMinimumHeight(3*(fm.lineSpacing()+4));
 	OutputLogTextEdit->setReadOnly(true);
 	connect(OutputLogTextEdit, SIGNAL(clickonline(int)),this,SLOT(gotoLine(int)));
 
-// add widget to log view
+	OutputLayout= new QStackedWidget;
+
+	QVBoxLayout* OutputVLayout= new QVBoxLayout; //contains the widgets for the normal mode (OutputTable + OutputLogTextEdit)
+	OutputVLayout->setSpacing(0);
+	OutputVLayout->setMargin(0);
+
+	// add widget to log view
 	OutputLayout->addWidget(OutputTextEdit);
 
 	OutputVLayout->addWidget(OutputTable);
 	OutputVLayout->addWidget(OutputLogTextEdit);
-	OutputVWidget=new QWidget;
-	OutputVWidget->setLayout(OutputVLayout);
-	OutputLayout->addWidget(OutputVWidget);
+	QWidget* tempWidget=new QWidget (this);
+	tempWidget->setLayout(OutputVLayout);
+	OutputLayout->addWidget(tempWidget);
 
 	if (tabbedLogView) {
 		OutputTable->hide();
 	}
 	OutputLayout->addWidget(OutputTable2);
 
-// order for tabbar
-	logViewerTabBar->addTab("messages");
-	logViewerTabBar->addTab("log file");
-	logViewerTabBar->addTab("errors");
+	// order for tabbar
+	logViewerTabBar=new QTabBar(this);
+	logViewerTabBar->addTab(tr("messages"));
+	logViewerTabBar->addTab(tr("log file"));
+	logViewerTabBar->addTab(tr("errors"));
 
 	OutputView->setWidget(OutputLayout);
 
@@ -270,12 +247,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 	connect(logViewerTabBar, SIGNAL(currentChanged(int)),
 	        this, SLOT(tabChanged(int)));
-
-
-//logViewerTabBar->setCurrentIndex(1);
-//OutputLayout->setCurrentIndex(1);
-
-//OutputTable->hide();
 
 	logpresent=false;
 
@@ -784,7 +755,7 @@ void Texmaker::UpdateCaption() {
 	UpdateStructure();
 	if (singlemode) {
 		OutputTextEdit->clear();
-		logViewerTabBar->setCurrentIndex(0);
+		//logViewerTabBar->setCurrentIndex(0);
 		//OutputTable->hide();
 		logpresent=false;
 	}
@@ -2036,9 +2007,9 @@ void Texmaker::InsertTag(QString Entity, int dx, int dy) {
 	else currentEditorView()->editor->setCursorPosition(curline+dy,curindex+dx);
 	currentEditorView()->editor->setFocus();
 	OutputTextEdit->clear();
-	logViewerTabBar->setCurrentIndex(0);
+	//logViewerTabBar->setCurrentIndex(0);
 	//OutputTable->hide();
-	logpresent=false;
+	//logpresent=false;
 }
 
 void Texmaker::InsertSymbol(QTableWidgetItem *item) {
@@ -2910,6 +2881,7 @@ void Texmaker::RunCommand(QString comd,bool waitendprocess,bool showStdout) {
 }
 
 void Texmaker::RunPreCompileCommand() {
+	logpresent=false;//log to old (whenever latex is called)
 	if (precompile_command.isEmpty()) return;
 	RunCommand(precompile_command,true,false);
 }
@@ -2955,6 +2927,7 @@ void Texmaker::QuickBuild() {
 			else return;
 		} else {
 			NextError();
+			SwitchToErrorList();
 		}
 	}
 	break;
@@ -2971,6 +2944,7 @@ void Texmaker::QuickBuild() {
 			else return;
 		} else {
 			NextError();
+			SwitchToErrorList();
 		}
 	}
 	break;
@@ -2987,6 +2961,7 @@ void Texmaker::QuickBuild() {
 			else return;
 		} else {
 			NextError();
+			SwitchToErrorList();
 		}
 	}
 	break;
@@ -3006,6 +2981,7 @@ void Texmaker::QuickBuild() {
 			else return;
 		} else {
 			NextError();
+			SwitchToErrorList();	
 		}
 	}
 	break;
@@ -3027,6 +3003,7 @@ void Texmaker::QuickBuild() {
 			if (!ERRPROCESS) ViewPDF();
 		} else {
 			NextError();
+			SwitchToErrorList();
 		}
 	}
 	break;
@@ -3224,6 +3201,13 @@ bool Texmaker::LogExists() {
 	else return false;
 }
 
+void Texmaker::SwitchToErrorList(){
+	if (tabbedLogView) logViewerTabBar->setCurrentIndex(2);
+	else {
+		logViewerTabBar->setCurrentIndex(1);
+	}
+}
+
 //shows the log (even if it is empty)
 void Texmaker::RealViewLog() {
 	ViewLog();
@@ -3330,6 +3314,8 @@ void Texmaker::DisplayLatexError() {
 	if (logModel->found(LT_ERROR)) {
 		OutputView->show();    //show log when error
 		NextError();
+		if (OutputLayout->currentIndex()==0) 
+			logViewerTabBar->setCurrentIndex(2);
 	}
 }
 
@@ -3416,7 +3402,7 @@ void Texmaker::NextError() {
 }
 
 void Texmaker::PreviousError() {
-	gotoNearLogEntry(LT_ERROR,true,tr("No LaTeX errors detected !"));
+	gotoNearLogEntry(LT_ERROR,true,tr("No LaTeX errors detected !"));	
 }
 
 void Texmaker::NextWarning() {
@@ -3842,7 +3828,7 @@ void Texmaker::updateCompleter() {
 }
 
 void Texmaker::tabChanged(int i) {
-	if (i>0) RealViewLog();
+	if (i>0 && !logpresent) RealViewLog();
 }
 
 void Texmaker::StructureContextMenu(QPoint point) {

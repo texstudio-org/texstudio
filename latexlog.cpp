@@ -254,23 +254,24 @@ void LatexLogModel::parseLogDocument(QTextDocument* doc) {
 	foundType[1]=false;
 	foundType[2]=false;
 	QList<int> errorPos, otherPos;
-	for (int i = 0; i <errorFileList.count(); i++)
-		switch (errorTypeList.at(i)) {
-		case LT_ERROR:
-			errorPos << i;
-			foundType[0]=true;
-			break;
-		case LT_WARNING:
-			otherPos << i;
-			foundType[1]=true;
-			break;
-		case LT_BADBOX:
-			otherPos << i;
-			foundType[2]=true;
-			break;
-		default:
-			otherPos << i;
+	for (int i = 0; i <errorFileList.count(); i++) {
+		int type = errorTypeList.at(i);
+		switch (type) {
+			case LT_ERROR:
+				errorPos << i;
+				break;
+			case LT_WARNING:
+				otherPos << i;
+				break;
+			case LT_BADBOX:
+				otherPos << i;
+				break;
+			default:
+				otherPos << i;
+				type=LT_WARNING;
 		}
+		foundType[type]=true;
+	}
 	errorPos << otherPos;
 
 	clear();

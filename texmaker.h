@@ -95,19 +95,19 @@ private:
 	LatexCompleter* completer;
 
 //gui
-	QDockWidget *OutputView, *StructureView;
+	QDockWidget *StructureView;
 	QTabWidget *EditorView;
-	LogEditor *OutputTextEdit,*OutputLogTextEdit;
 	QToolBox *StructureToolbox;
 	MetapostListWidget *MpListWidget;
 	PstricksListWidget *PsListWidget;
 	SymbolListWidget *RelationListWidget, *ArrowListWidget, *MiscellaneousListWidget, *DelimitersListWidget, *GreekListWidget, *MostUsedListWidget;
 	QTreeWidget *StructureTreeWidget;
-	QStackedWidget *OutputLayout;
-	QVBoxLayout *OutputVLayout;
-	QWidget *OutputVWidget;
+
+	QDockWidget *OutputView; //contains output widgets (over OutputLayout)
+	QTabBar *logViewerTabBar; //header to select outp (if tabbedLogView, then it is OutputView's TitleBarWidget)
+	QStackedWidget *OutputLayout; //only widget of OutputView, contains the others (OutputTextEdit, OutputVLayout, OutputTable2), only one of them is visible at the same time
 	QTableView *OutputTable, *OutputTable2;
-	QTabBar *logViewerTabBar;
+	LogEditor *OutputTextEdit,*OutputLogTextEdit;
 
 	bool tabbedLogView;
 
@@ -296,7 +296,7 @@ private slots:
 	void AnalyseText();
 	void AnalyseTextFormDestroyed();
 
-
+	void SwitchToErrorList();
 	void RealViewLog();
 	void ViewLog();
 	void ClickedOnLogLine(const QModelIndex &);
