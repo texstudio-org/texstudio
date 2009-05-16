@@ -44,7 +44,7 @@ QVariant LatexLogModel::data(const QModelIndex &index, int role) const {
 	if (role != Qt::DisplayRole) return QVariant();
 	switch (index.column()) {
 	case 0:
-		return log.at(index.row()).file;
+		return log.at(index.row()).file.mid(log.at(index.row()).file.lastIndexOf("/")+1); //show relative names
 	case 1:
 		switch (log.at(index.row()).type) {
 		case LT_ERROR:
@@ -99,7 +99,16 @@ void LatexLogModel::append(QString aFile, LogType aType, QString aOldline, int a
 }
 
 
-void LatexLogModel::parseLogDocument(QTextDocument* doc) {
+//Parse a latex log file to find errors, warnings, bad boxes...
+
+//However, there is a big problem with latex log files, when there are ( ) paranthesis in the document it
+//is impossible to reliably determine the file which contains the error. (when there are \includes)
+//Therefore it is necessary to guess the file, but the texmaker heuristic isn't great (KILE seems to be a better)
+//TODO: improve this heuristic
+//Workaround: Normally the error appears in the same document you edit, so if overrideFileName is != "", 
+//the filename is just set to overrideFileName (=the current document). That's ugly, but still works better 
+//than this reading of the log
+void LatexLogModel::parseLogDocument(QTextDocument* doc, QString overrideFileName) {
 	QStringList errorFileList, errorLineList, errorMessageList;
 	QList<LogType> errorTypeList;
 	QList<int> errorLogList;
@@ -277,7 +286,9 @@ void LatexLogModel::parseLogDocument(QTextDocument* doc) {
 	clear();
 	for (int i = 0; i < errorPos.count(); i++) {
 		int cur=errorPos[i];
-		append(errorFileList[cur], errorTypeList[cur],errorLineList[cur], errorLogList[cur], errorMessageList[cur]);
+		append((overrideFileName!="")?overrideFileName:errorFileList[cur], 
+			errorTypeList[cur],	errorLineList[cur], 
+			errorLogList[cur], errorMessageList[cur]);
 	}
 
 	reset(); //show changes

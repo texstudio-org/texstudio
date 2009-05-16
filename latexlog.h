@@ -34,7 +34,7 @@ public:
 	const LatexLogEntry& at(int i);
 	void append(QString aFile, LogType aType, QString aOldline, int aLogline, QString aMessage);
 
-	void parseLogDocument(QTextDocument* doc);
+	void parseLogDocument(QTextDocument* doc, QString overrideFileName);
 
 	bool found(LogType lt);
 	int markID(LogType lt);

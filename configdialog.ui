@@ -35,7 +35,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -179,7 +179,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="texmaker.qrc">
+               <iconset>
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize">
@@ -205,7 +205,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="texmaker.qrc">
+               <iconset>
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize">
@@ -239,7 +239,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="texmaker.qrc">
+               <iconset>
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize">
@@ -259,7 +259,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="texmaker.qrc">
+               <iconset>
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize">
@@ -276,7 +276,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="texmaker.qrc">
+               <iconset>
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize">
@@ -299,7 +299,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="texmaker.qrc">
+               <iconset>
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize">
@@ -319,7 +319,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="texmaker.qrc">
+               <iconset>
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize">
@@ -336,7 +336,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="texmaker.qrc">
+               <iconset>
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize">
@@ -401,7 +401,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="texmaker.qrc">
+               <iconset>
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize">
@@ -442,7 +442,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="texmaker.qrc">
+               <iconset>
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize">
@@ -459,7 +459,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="texmaker.qrc">
+               <iconset>
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize">
@@ -486,7 +486,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="texmaker.qrc">
+               <iconset>
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
               <property name="iconSize">
@@ -626,24 +626,24 @@ p, li { white-space: pre-wrap; }
          <property name="title">
           <string>More</string>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
            <widget class="QLabel" name="label_2">
             <property name="text">
              <string>Execute before compiling:</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item row="0" column="1" colspan="3">
            <widget class="QLineEdit" name="lineEditExecuteBeforeCompiling"/>
           </item>
-          <item>
+          <item row="0" column="4">
            <widget class="QPushButton" name="pushButtonExecuteBeforeCompiling">
             <property name="text">
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="texmaker.qrc">
+             <iconset>
               <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
             </property>
             <property name="iconSize">
@@ -652,6 +652,32 @@ p, li { white-space: pre-wrap; }
               <height>16</height>
              </size>
             </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>Assume that every error is in the current document:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2" colspan="2">
+           <widget class="QComboBox" name="comboBoxIgnoreLogFileNames">
+            <item>
+             <property name="text">
+              <string>Never (only use the file names in the log)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Only when there is no master document</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Always (ignore file names in the log)</string>
+             </property>
+            </item>
            </widget>
           </item>
          </layout>
@@ -809,7 +835,7 @@ p, li { white-space: pre-wrap; }
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="texmaker.qrc">
+               <iconset>
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
              </widget>
@@ -1072,9 +1098,7 @@ p, li { white-space: pre-wrap; }
   <tabstop>okButton</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>
- <resources>
-  <include location="texmaker.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>okButton</sender>
