@@ -3267,7 +3267,10 @@ void Texmaker::OutputViewVisibilityChanged(bool visible) {
 
 ////////////////////////// ERRORS /////////////////////////////
 void Texmaker::LatexError() {
-	logModel->parseLogDocument(OutputLogTextEdit->document());
+	QString overrideFileName=""; //workaround, see parseLogDocument for reason
+	if (configManager.ignoreLogFileNames==2 ||
+		(configManager.ignoreLogFileNames==1 && singlemode)) overrideFileName=getCurrentFileName();
+	logModel->parseLogDocument(OutputLogTextEdit->document(), overrideFileName);
 	logpresent=true;
 
 	//display latex errors in table

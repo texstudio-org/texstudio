@@ -41,6 +41,8 @@ QSettings* ConfigManager::readSettings() {
 	newfile_encoding=QTextCodec::codecForName(config->value("Files/New File Encoding", "utf-8").toString().toAscii().data());
 	autodetectLoadedFile=config->value("Files/Auto Detect Encoding Of Loaded Files", "true").toBool();
 
+	ignoreLogFileNames=config->value("Files/Ignore Log File Names",1).toInt(); //default only ignore in single mode
+	
 	//recent files
 	maxRecentFiles=config->value("Files/Max Recent Files", 5).toInt();
 	maxRecentProjects=config->value("Files/Max Recent Projects", 3).toInt();
@@ -197,6 +199,8 @@ QSettings* ConfigManager::saveSettings() {
 	config->setValue("Files/New File Encoding", newfile_encoding?newfile_encoding->name():"??");
 	config->setValue("Files/Auto Detect Encoding Of Loaded Files", autodetectLoadedFile);
 	
+	config->setValue("Files/Ignore Log File Names",ignoreLogFileNames);
+	
 	//recent files
 	config->setValue("Files/Max Recent Files", maxRecentFiles);
 	config->setValue("Files/Max Recent Projects", maxRecentProjects);
@@ -250,7 +254,8 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	if (newfile_encoding)
 		confDlg->ui.comboBoxEncoding->setCurrentIndex(confDlg->ui.comboBoxEncoding->findText(newfile_encoding->name(), Qt::MatchExactly));
 	confDlg->ui.checkBoxAutoDetectOnLoad->setChecked(autodetectLoadedFile);
-
+	confDlg->ui.comboBoxIgnoreLogFileNames->setCurrentIndex(ignoreLogFileNames);
+	
 	confDlg->ui.spinBoxMaxRecentFiles->setValue(maxRecentFiles);
 	confDlg->ui.spinBoxMaxRecentProjects->setValue(maxRecentProjects);
 	
@@ -317,7 +322,8 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		//files
 		newfile_encoding=QTextCodec::codecForName(confDlg->ui.comboBoxEncoding->currentText().toAscii().data());
 		autodetectLoadedFile=confDlg->ui.checkBoxAutoDetectOnLoad->isChecked();
-
+		ignoreLogFileNames=confDlg->ui.comboBoxIgnoreLogFileNames->currentIndex();
+		
 		if (maxRecentFiles!=confDlg->ui.spinBoxMaxRecentFiles->value() ||
 		   maxRecentProjects != confDlg->ui.spinBoxMaxRecentProjects->value()){
 			maxRecentFiles=confDlg->ui.spinBoxMaxRecentFiles->value();
