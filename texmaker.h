@@ -131,7 +131,7 @@ private:
 	QString latex_command, viewdvi_command, dvips_command, dvipdf_command, metapost_command;
 	QString precompile_command, viewps_command, ps2pdf_command, makeindex_command, bibtex_command, pdflatex_command, viewpdf_command, userquick_command, ghostscript_command;
 	QString spell_dic, spell_ignored_words;
-	QString struct_level1, struct_level2, struct_level3, struct_level4, struct_level5;
+        QStringList struct_level;
 	QStringList userClassList, userPaperList, userEncodingList, userOptionsList;
 	QStringList labelitem;
 	Userlist UserMenuName, UserMenuTag;
