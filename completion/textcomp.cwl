@@ -95,7 +95,6 @@
 \textservicemark
 \textlquill
 \textrquill
-\textcent
 \textsterling
 \textcurrency
 \textyen
