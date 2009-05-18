@@ -1587,7 +1587,7 @@ void Texmaker::ReadSettings() {
 	config->endGroup();
 
 	config->beginGroup("completionFile");
-	completerFiles=config->value("Completion/completionFiles",QStringList("completion/completion.txt")).toStringList();
+	completerFiles=config->value("Completion/completionFiles",QStringList("completion/texmakerx.cwl")).toStringList();
 	readCompletionList(completerFiles);
 	config->endGroup();
 
@@ -3719,26 +3719,28 @@ void Texmaker::readCompletionList(const QStringList &files) {
 				line = tagsfile.readLine();
 				if (!line.isEmpty() && !line.startsWith("#") && !line.startsWith(" ")) {
 					if (line.startsWith("\\pageref")||line.startsWith("\\ref")) continue;
-					line.replace("{","{%<");
-					line.replace("}","%>}");
-					line.replace("(","(%<");
-					line.replace(")","%>)");
-					line.replace("[","[%<");
-					line.replace("]","%>]");
-					int i;
-					if (line.startsWith("\\begin")||line.startsWith("\\end")) {
-						i=line.indexOf("%<",0);
-						line.replace(i,2,"");
-						i=line.indexOf("%>",0);
-						line.replace(i,2,"");
-						if (line.endsWith("\\item\n")) {
-							line.chop(6);
+					if (!line.contains("%")){
+						line.replace("{","{%<");
+						line.replace("}","%>}");
+						line.replace("(","(%<");
+						line.replace(")","%>)");
+						line.replace("[","[%<");
+						line.replace("]","%>]");
+						int i;
+						if (line.startsWith("\\begin")||line.startsWith("\\end")) {
+							i=line.indexOf("%<",0);
+							line.replace(i,2,"");
+							i=line.indexOf("%>",0);
+							line.replace(i,2,"");
+							if (line.endsWith("\\item\n")) {
+								line.chop(6);
+							}
 						}
+						i=line.indexOf("%<",0);
+						line.replace(i,2,"%|%<");
+						i=line.indexOf("%>",0);
+						line.replace(i,2,"%>%|");
 					}
-					i=line.indexOf("%<",0);
-					line.replace(i,2,"%|%<");
-					i=line.indexOf("%>",0);
-					line.replace(i,2,"%>%|");
 					completerWords.append(line.trimmed());
 				}
 			}
@@ -3751,17 +3753,7 @@ void Texmaker::readCompletionList(const QStringList &files) {
 
 void Texmaker::updateCompleter() {
 	QStringList words;
-	/*QFile tagsfile(":/completion/completion.txt");
-	if (tagsfile.open(QFile::ReadOnly)) {
-	    QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-	    QString line;
-	    while (!tagsfile.atEnd())
-	    {
-	        line = tagsfile.readLine();
-	        if (!line.isEmpty()) words.append(line.trimmed());
-	    }
-	    QApplication::restoreOverrideCursor();
-	}*/
+
 	words=completerWords;
 	words.append(userCommandList);
 	for (int i=0; i<labelitem.count(); ++i) {
