@@ -1789,41 +1789,36 @@ void Texmaker::UpdateStructure() {
 			Child->setText(0,s);
 		}
 
-		//// include ////
-		s=currentEditorView()->editor->text(i);
-		s=findToken(s,"\\include{");
-		if (s!="") {
-			Child = new QTreeWidgetItem(top);
-			Child->setText(0,s);
-			Child->setIcon(0,QIcon(":/images/include.png"));
-			Child->setText(1,"include");
-		};
-		//// input ////
-		s=currentEditorView()->editor->text(i);
-		s=findToken(s,"\\input{");
-		if (s!="") {
-			Child = new QTreeWidgetItem(top);
-			Child->setText(0,s);
-			Child->setIcon(0,QIcon(":/images/include.png"));
-			Child->setText(1,"input");
-		};
-                //// all sections ////
-                for(int header=0;header<struct_level.length();header++){
-                    s=currentEditorView()->editor->text(i);
-                    s=findToken(s,QRegExp("\\\\"+struct_level[header]+"\\*?[\\{\\[]"));
-                    if (s!="") {
-                            s=extractSectionName(s);
-                            s=s+" ("+tr("line")+" "+QString::number(i+1)+")";
-                            parent_level[header] = header==0 ? new QTreeWidgetItem(top) : new QTreeWidgetItem(parent_level[header-1]);
-                            parent_level[header]->setText(0,s);
-                            parent_level[header]->setIcon(0,QIcon(":/images/"+struct_level[header]+".png"));
-                            parent_level[header]->setText(1,struct_level[header]);
-                            parent_level[header]->setText(2,QString::number(i+1));
-                            parent_level[header]->setToolTip(0, s);
-                            for(int j=header+1;j<parent_level.size();j++)
-                                parent_level[j]=parent_level[header];
-                    };
-                }
+		//// include,input ////
+		QStringList inputTokens;
+		inputTokens << "input" << "include";
+		for(int header=0;header<inputTokens.length();header++){
+			s=currentEditorView()->editor->text(i);
+			s=findToken(s,"\\"+inputTokens.at(header)+"{");
+			if (s!="") {
+				Child = new QTreeWidgetItem(top);
+				Child->setText(0,s);
+				Child->setIcon(0,QIcon(":/images/include.png"));
+				Child->setText(1,inputTokens.at(header));
+			};
+		}//for
+		//// all sections ////
+		for(int header=0;header<struct_level.length();header++){
+			s=currentEditorView()->editor->text(i);
+			s=findToken(s,QRegExp("\\\\"+struct_level[header]+"\\*?[\\{\\[]"));
+			if (s!="") {
+				s=extractSectionName(s);
+				s=s+" ("+tr("line")+" "+QString::number(i+1)+")";
+				parent_level[header] = header==0 ? new QTreeWidgetItem(top) : new QTreeWidgetItem(parent_level[header-1]);
+				parent_level[header]->setText(0,s);
+				parent_level[header]->setIcon(0,QIcon(":/images/"+struct_level[header]+".png"));
+				parent_level[header]->setText(1,struct_level[header]);
+				parent_level[header]->setText(2,QString::number(i+1));
+				parent_level[header]->setToolTip(0, s);
+				for(int j=header+1;j<parent_level.size();j++)
+					parent_level[j]=parent_level[header];
+			};
+		}
 	}
 	if (!current.isEmpty()) {
 		QList<QTreeWidgetItem *> fItems=StructureTreeWidget->findItems(current,Qt::MatchRecursive,0);
