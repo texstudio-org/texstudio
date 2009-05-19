@@ -1,75 +1,61 @@
-<!DOCTYPE RCC><RCC version="1.0">
- <qresource>
-  <!--config-->
-  <file>uiconfig.xml</file>
- 
-  <!--qce data-->	
-	<file alias="qxs/defaultFormats.qxf">utilities/qxs/defaultFormats.qxf</file>
-	<file alias="qxs/marks.qxm">utilities/qxs/marks.qxm</file>
-	<file alias="qxs/bibtex.qnfa">utilities/qxs/bibtex.qnfa</file>
-	<file alias="qxs/tex.qnfa">utilities/qxs/tex.qnfa</file>
-	<file alias="qxs/xml.qnfa">utilities/qxs/xml.qnfa</file>
-
-	<file alias="closeall.png">images/qcodeedit/closeall.png</file>
-	<file alias="down.png">images/qcodeedit/down.png</file>
-	<file alias="up.png">images/qcodeedit/up.png</file>
-	<file alias="reload.png">images/qcodeedit/reload.png</file>
-	<file alias="warning.png">images/qcodeedit/warning.png</file>
-  
-	<file>images/qcodeedit/bold.png</file>
-	<file>images/qcodeedit/italic.png</file>
-	<file>images/qcodeedit/underline.png</file>
-	<file>images/qcodeedit/overline.png</file>
-	<file>images/qcodeedit/strikeout.png</file>
-	<file>images/qcodeedit/waveUnderline.png</file>
-	<file>images/qcodeedit/textcolor.png</file>
-	<file>images/qcodeedit/fillcolor.png</file>
-	<file>images/qcodeedit/strokecolor.png</file>
-  
-
-	<file>images/warning.png</file>
-	<file>images/error.png</file>
-	<file>images/badbox.png</file>
-
-
-  <!--bookmarks-->
-	<file>images/lbook.png</file>
-	<file>images/lbook0.png</file>
-	<file>images/lbook1.png</file>
-	<file>images/lbook2.png</file>
-	<file>images/lbook3.png</file>
-	<file>images/lbook4.png</file>
-	<file>images/lbook5.png</file>
-	<file>images/lbook6.png</file>
-	<file>images/lbook7.png</file>
-	<file>images/lbook8.png</file>
-	<file>images/lbook9.png</file>
-
-  <!--html converter-->
-  <file alias="blank.png">utilities/blank.png</file>
-  <file alias="next.gif">utilities/next.gif</file>
-  <file alias="next_d.gif">utilities/next_d.gif</file>
-  <file alias="prev.gif">utilities/prev.gif</file>
-  <file alias="prev_d.gif">utilities/prev_d.gif</file>
-  <file alias="psheader.txt">utilities/psheader.txt</file>
-  <file alias="style.css">utilities/style.css</file>
-  <file alias="up.gif">utilities/up.gif</file>
-  <file alias="up_d.gif">utilities/up_d.gif</file>
- 
-  
-	<file>images/logo128.png</file>
-	<file>images/pstricks.png</file>
-	<file>images/accent1.png</file>
-	<file>images/accent2.png</file>
-	<file>images/accent3.png</file>
-	<file>images/accent4.png</file>
-	<file>images/accent5.png</file>
-	<file>images/accent6.png</file>
-	<file>images/accent7.png</file>
-	<file>images/accent8.png</file>
-	<file>images/accent9.png</file>
-	<file>images/accent10.png</file>
-	<file>images/webpublish.png</file>
+<RCC>
+    <qresource prefix="/" >
+        <file>uiconfig.xml</file>
+        <file alias="qxs/defaultFormats.qxf" >utilities/qxs/defaultFormats.qxf</file>
+        <file alias="qxs/marks.qxm" >utilities/qxs/marks.qxm</file>
+        <file alias="qxs/bibtex.qnfa" >utilities/qxs/bibtex.qnfa</file>
+        <file alias="qxs/tex.qnfa" >utilities/qxs/tex.qnfa</file>
+        <file alias="qxs/xml.qnfa" >utilities/qxs/xml.qnfa</file>
+        <file alias="closeall.png" >images/qcodeedit/closeall.png</file>
+        <file alias="down.png" >images/qcodeedit/down.png</file>
+        <file alias="up.png" >images/qcodeedit/up.png</file>
+        <file alias="reload.png" >images/qcodeedit/reload.png</file>
+        <file alias="warning.png" >images/qcodeedit/warning.png</file>
+        <file>images/qcodeedit/bold.png</file>
+        <file>images/qcodeedit/italic.png</file>
+        <file>images/qcodeedit/underline.png</file>
+        <file>images/qcodeedit/overline.png</file>
+        <file>images/qcodeedit/strikeout.png</file>
+        <file>images/qcodeedit/waveUnderline.png</file>
+        <file>images/qcodeedit/textcolor.png</file>
+        <file>images/qcodeedit/fillcolor.png</file>
+        <file>images/qcodeedit/strokecolor.png</file>
+        <file>images/warning.png</file>
+        <file>images/error.png</file>
+        <file>images/badbox.png</file>
+        <file>images/lbook.png</file>
+        <file>images/lbook0.png</file>
+        <file>images/lbook1.png</file>
+        <file>images/lbook2.png</file>
+        <file>images/lbook3.png</file>
+        <file>images/lbook4.png</file>
+        <file>images/lbook5.png</file>
+        <file>images/lbook6.png</file>
+        <file>images/lbook7.png</file>
+        <file>images/lbook8.png</file>
+        <file>images/lbook9.png</file>
+        <file alias="blank.png" >utilities/blank.png</file>
+        <file alias="next.gif" >utilities/next.gif</file>
+        <file alias="next_d.gif" >utilities/next_d.gif</file>
+        <file alias="prev.gif" >utilities/prev.gif</file>
+        <file alias="prev_d.gif" >utilities/prev_d.gif</file>
+        <file alias="psheader.txt" >utilities/psheader.txt</file>
+        <file alias="style.css" >utilities/style.css</file>
+        <file alias="up.gif" >utilities/up.gif</file>
+        <file alias="up_d.gif" >utilities/up_d.gif</file>
+        <file>images/logo128.png</file>
+        <file>images/pstricks.png</file>
+        <file>images/accent1.png</file>
+        <file>images/accent2.png</file>
+        <file>images/accent3.png</file>
+        <file>images/accent4.png</file>
+        <file>images/accent5.png</file>
+        <file>images/accent6.png</file>
+        <file>images/accent7.png</file>
+        <file>images/accent8.png</file>
+        <file>images/accent9.png</file>
+        <file>images/accent10.png</file>
+        <file>images/webpublish.png</file>
         <file>images/back.png</file>
         <file>images/forward.png</file>
         <file>images/home.png</file>
@@ -562,7 +548,109 @@
         <file>symbols/img98.png</file>
         <file>symbols/img99.png</file>
         <file>symbols/img9greek.png</file>
-
-        <file>completion/completion.txt</file>
+        <file>completion/yfonts.cwl</file>
+        <file>completion/acronym.cwl</file>
+        <file>completion/afterpage.cwl</file>
+        <file>completion/allrunes.cwl</file>
+        <file>completion/amsbsy.cwl</file>
+        <file>completion/amsfonts.cwl</file>
+        <file>completion/amsmath.cwl</file>
+        <file>completion/amsopn.cwl</file>
+        <file>completion/amssymb.cwl</file>
+        <file>completion/amsthm.cwl</file>
+        <file>completion/array.cwl</file>
+        <file>completion/attachfile.cwl</file>
+        <file>completion/babel.cwl</file>
+        <file>completion/beamerfoils.cwl</file>
+        <file>completion/beamerprosper.cwl</file>
+        <file>completion/beamerseminar.cwl</file>
+        <file>completion/beamertexpower.cwl</file>
+        <file>completion/bm.cwl</file>
+        <file>completion/booktabs.cwl</file>
+        <file>completion/braket.cwl</file>
+        <file>completion/calc.cwl</file>
+        <file>completion/class-beamer.cwl</file>
+        <file>completion/class-letter.cwl</file>
+        <file>completion/class-scrartcl,scrreprt,scrbook.cwl</file>
+        <file>completion/class-scrlttr2.cwl</file>
+        <file>completion/color.cwl</file>
+        <file>completion/colortbl.cwl</file>
+        <file>completion/coordsys.cwl</file>
+        <file>completion/currvita.cwl</file>
+        <file>completion/cyrillic.cwl</file>
+        <file>completion/diagxy.cwl</file>
+        <file>completion/doi.cwl</file>
+        <file>completion/enumerate.cwl</file>
+        <file>completion/fancybox.cwl</file>
+        <file>completion/fancyhdr.cwl</file>
+        <file>completion/fancyunits_big-fractions.cwl</file>
+        <file>completion/fancyunits_medium-fractions.cwl</file>
+        <file>completion/fancyunits_small-fractions.cwl</file>
+        <file>completion/fancyunits-base.cwl</file>
+        <file>completion/fancyunits-np.cwl</file>
+        <file>completion/fancyunits-per.cwl</file>
+        <file>completion/fancyvrb.cwl</file>
+        <file>completion/float.cwl</file>
+        <file>completion/fontspec.cwl</file>
+        <file>completion/glosstex.cwl</file>
+        <file>completion/graphicx.cwl</file>
+        <file>completion/hyperref.cwl</file>
+        <file>completion/ifthen.cwl</file>
+        <file>completion/import.cwl</file>
+        <file>completion/jurabib.cwl</file>
+        <file>completion/latex-209.cwl</file>
+        <file>completion/latex-dev.cwl</file>
+        <file>completion/latex-document.cwl</file>
+        <file>completion/latex-l2tabu.cwl</file>
+        <file>completion/latex-mathsymbols.cwl</file>
+        <file>completion/layout.cwl</file>
+        <file>completion/listings.cwl</file>
+        <file>completion/logsys.cwl</file>
+        <file>completion/longtable.cwl</file>
+        <file>completion/lscape.cwl</file>
+        <file>completion/manyfoot.cwl</file>
+        <file>completion/mdwlist.cwl</file>
+        <file>completion/metatag.xml</file>
+        <file>completion/multicol.cwl</file>
+        <file>completion/multido.cwl</file>
+        <file>completion/nicefrac.cwl</file>
+        <file>completion/pdfpages.cwl</file>
+        <file>completion/psfrag.cwl</file>
+        <file>completion/pst-3d.cwl</file>
+        <file>completion/pst-blur.cwl</file>
+        <file>completion/pst-char.cwl</file>
+        <file>completion/pst-coil.cwl</file>
+        <file>completion/pst-eps.cwl</file>
+        <file>completion/pst-fill.cwl</file>
+        <file>completion/pst-node.cwl</file>
+        <file>completion/pst-plot.cwl</file>
+        <file>completion/pstricks.cwl</file>
+        <file>completion/pst-text.cwl</file>
+        <file>completion/pst-tree.cwl</file>
+        <file>completion/rotating.cwl</file>
+        <file>completion/scraddr.cwl</file>
+        <file>completion/scrdate.cwl</file>
+        <file>completion/scrlfile.cwl</file>
+        <file>completion/scrpage2.cwl</file>
+        <file>completion/scrtime.cwl</file>
+        <file>completion/setspace.cwl</file>
+        <file>completion/siunitx.cwl</file>
+        <file>completion/siunitx-special.cwl</file>
+        <file>completion/subfig.cwl</file>
+        <file>completion/supertabular.cwl</file>
+        <file>completion/svninfo.cwl</file>
+        <file>completion/svn-multi.cwl</file>
+        <file>completion/tabularx.cwl</file>
+        <file>completion/tex.cwl</file>
+        <file>completion/texmakerx.cwl</file>
+        <file>completion/textcomp.cwl</file>
+        <file>completion/todonotes.cwl</file>
+        <file>completion/url.cwl</file>
+        <file>completion/varioref.cwl</file>
+        <file>completion/verse.cwl</file>
+        <file>completion/virginialake.cwl</file>
+        <file>completion/xifthen.cwl</file>
+        <file>completion/xltxtra.cwl</file>
+        <file>completion/xtab.cwl</file>
     </qresource>
 </RCC>

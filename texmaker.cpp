@@ -1587,7 +1587,7 @@ void Texmaker::ReadSettings() {
 	config->endGroup();
 
 	config->beginGroup("completionFile");
-	completerFiles=config->value("Completion/completionFiles",QStringList("completion/texmakerx.cwl")).toStringList();
+	completerFiles=config->value("Completion/completionFiles",QStringList("texmakerx.cwl")).toStringList();
 	readCompletionList(completerFiles);
 	config->endGroup();
 
@@ -3711,7 +3711,7 @@ void Texmaker::readCompletionList(const QStringList &files) {
 	completerWords.clear();
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	foreach(QString file, files) {
-		QString fn=findResourceFile(file);
+		QString fn=findResourceFile("completion/"+file);
 		QFile tagsfile(fn);
 		if (tagsfile.open(QFile::ReadOnly)) {
 			QString line;
@@ -3720,12 +3720,18 @@ void Texmaker::readCompletionList(const QStringList &files) {
 				if (!line.isEmpty() && !line.startsWith("#") && !line.startsWith(" ")) {
 					if (line.startsWith("\\pageref")||line.startsWith("\\ref")) continue;
 					if (!line.contains("%")){
-						line.replace("{","{%<");
-						line.replace("}","%>}");
-						line.replace("(","(%<");
-						line.replace(")","%>)");
-						line.replace("[","[%<");
-						line.replace("]","%>]");
+						if (line.contains("{")) {
+							line.replace("{","{%<");
+							line.replace("}","%>}");
+						}
+						if (line.contains("(")) {
+							line.replace("(","(%<");
+							line.replace(")","%>)");
+						}
+						if (line.contains("[")) {
+							line.replace("[","[%<");
+							line.replace("]","%>]");
+						}
 						int i;
 						if (line.startsWith("\\begin")||line.startsWith("\\end")) {
 							i=line.indexOf("%<",0);
