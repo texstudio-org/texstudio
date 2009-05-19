@@ -240,6 +240,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 	if (tabbedLogView) {
 		OutputView->setTitleBarWidget(logViewerTabBar);
+	} else {
+		logViewerTabBar->hide();
 	}
 
 	connect(logViewerTabBar, SIGNAL(currentChanged(int)),
@@ -1591,7 +1593,7 @@ void Texmaker::ReadSettings() {
 	readCompletionList(completerFiles);
 	config->endGroup();
 
-	tabbedLogView=config->value("LogView/Tabbed","false").toBool();
+	tabbedLogView=config->value("LogView/Tabbed","true").toBool();
 
 	delete config;
 }
