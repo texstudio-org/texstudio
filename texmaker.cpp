@@ -1748,6 +1748,9 @@ void Texmaker::UpdateStructure() {
 	labelitem.clear();
 	QTreeWidgetItem *toplabel = new QTreeWidgetItem(top);
 	toplabel->setText(0,"LABELS");
+	QTreeWidgetItem *toptodo = new QTreeWidgetItem(top);
+	toptodo->setText(0,"TODO");
+	toptodo->setHidden(true);
 	QString s;
 	for (int i=0; i<currentEditorView()->editor->document()->lines(); i++) {
 		int tagStart, tagEnd;
@@ -1788,7 +1791,19 @@ void Texmaker::UpdateStructure() {
 			Child->setText(1,"label");
 			Child->setText(0,s);
 		}
-
+		//// TODO marker
+		s=currentEditorView()->editor->text(i);
+		int l=s.indexOf("\%TODO");
+		if (l>=0) {
+			s=s.mid(l+6,s.length());
+			Child = new QTreeWidgetItem(toptodo);
+			Child->setText(3,s);
+			Child->setText(2,QString::number(i+1));
+			s=s+" ("+tr("line")+" "+QString::number(i+1)+")";
+			Child->setText(1,"todo");
+			Child->setText(0,s);
+			toptodo->setHidden(false);
+		}
 		//// include,input ////
 		QStringList inputTokens;
 		inputTokens << "input" << "include";
