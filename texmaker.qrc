@@ -610,7 +610,6 @@
         <file>completion/lscape.cwl</file>
         <file>completion/manyfoot.cwl</file>
         <file>completion/mdwlist.cwl</file>
-        <file>completion/metatag.xml</file>
         <file>completion/multicol.cwl</file>
         <file>completion/multido.cwl</file>
         <file>completion/nicefrac.cwl</file>
