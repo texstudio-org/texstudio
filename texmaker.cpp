@@ -838,6 +838,10 @@ QString Texmaker::getCurrentFileName() {
 	if (!currentEditorView()) return "";
 	return filenames[currentEditorView()];
 }
+QString Texmaker::getCompileFileName(){
+	if (singlemode) return getCurrentFileName();
+	else return MasterName;
+}
 bool Texmaker::FileAlreadyOpen(QString f) {
 	FilesMap::Iterator it;
 	QString fw32,funix,forig;
@@ -2790,14 +2794,9 @@ void Texmaker::RightDelimiter(const QString& text) {
 ///////////////TOOLS////////////////////
 void Texmaker::RunCommand(QString comd,bool waitendprocess,bool showStdout) {
 
-	QString finame;
+	QString finame=getCompileFileName();
 	QString commandline=comd;
 	QByteArray result;
-	if (singlemode) {
-		finame=getName();
-	} else {
-		finame=MasterName;
-	}
 	if ((singlemode && !currentEditorView()) || finame=="untitled" || finame=="") {
 		QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name"));
 		return;
@@ -3164,9 +3163,7 @@ bool Texmaker::LogExists() {
 
 void Texmaker::SwitchToErrorList(){
 	if (tabbedLogView) logViewerTabBar->setCurrentIndex(2);
-	else {
-		logViewerTabBar->setCurrentIndex(1);
-	}
+	else logViewerTabBar->setCurrentIndex(1);
 }
 
 //shows the log (even if it is empty)
@@ -3231,7 +3228,7 @@ void Texmaker::LatexError() {
 	QString overrideFileName=""; //workaround, see parseLogDocument for reason
 	if (configManager.ignoreLogFileNames==2 ||
 		(configManager.ignoreLogFileNames==1 && singlemode)) overrideFileName=getCurrentFileName();
-	logModel->parseLogDocument(OutputLogTextEdit->document(), overrideFileName);
+	logModel->parseLogDocument(OutputLogTextEdit->document(), getCompileFileName(), overrideFileName);
 	logpresent=true;
 
 	//display latex errors in table
@@ -3241,6 +3238,12 @@ void Texmaker::LatexError() {
 	OutputTable2->resizeRowsToContents();
 	//display errors in editor
 	DisplayLatexError();
+	if (logModel->found(LT_ERROR)) {
+		OutputView->show();    //show log when error
+		NextError();
+		if (OutputLayout->currentIndex()==0) 
+			SwitchToErrorList();
+	}
 }
 
 void Texmaker::DisplayLatexError() {
@@ -3260,10 +3263,10 @@ void Texmaker::DisplayLatexError() {
 	//backward, so the more important marks (with lower indices) will be inserted last and
 	//returned first be QMultiHash.value
 	for (int i = logModel->count()-1; i >= 0; i--)
-		if (logModel->at(i).oldLineNumber!=-1)
+		if (logModel->at(i).oldline!=-1)
 			for (FilesMap::iterator it=filenames.begin(); it!=filenames.end(); ++it)
 				if (it.value().endsWith(logModel->at(i).file)) {
-					QDocumentLine l=it.key()->editor->document()->line(logModel->at(i).oldLineNumber);
+					QDocumentLine l=it.key()->editor->document()->line(logModel->at(i).oldline);
 					if (logModel->at(i).type==LT_ERROR) l.addMark(errorMarkID);
 					else if (logModel->at(i).type==LT_WARNING) l.addMark(warningMarkID);
 					else if (logModel->at(i).type==LT_BADBOX) l.addMark(badboxMarkID);
@@ -3274,13 +3277,6 @@ void Texmaker::DisplayLatexError() {
 
 	//OutputTable->show();
 	OutputLogTextEdit->setCursorPosition(0 , 0);
-
-	if (logModel->found(LT_ERROR)) {
-		OutputView->show();    //show log when error
-		NextError();
-		if (OutputLayout->currentIndex()==0) 
-			logViewerTabBar->setCurrentIndex(2);
-	}
 }
 
 bool Texmaker::NoLatexErrors() {
@@ -3301,7 +3297,10 @@ void Texmaker::GoToLogEntry(int logEntryNumber) {
 		}
 	if (!edView) {
 		edView=load(logModel->at(logEntryNumber).file);
-		if (!edView) return;
+		if (!edView) {
+			QMessageBox::warning(0,"TexMakerX",tr("Couldn't open file %1").arg(logModel->at(logEntryNumber).file));
+			return;
+		}
 		DisplayLatexError(); //set marks
 	}
 	if (edView != currentEditorView()) EditorView->setCurrentWidget(edView);
