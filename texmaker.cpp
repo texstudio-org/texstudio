@@ -1794,6 +1794,8 @@ void Texmaker::UpdateStructure() {
 			s=s+" ("+tr("line")+" "+QString::number(i+1)+")";
 			Child->setText(1,"label");
 			Child->setText(0,s);
+			int l=int(currentEditorView()->editor->document()->line(i).handle());
+			Child->setText(4,QString::number(l));
 		}
 		//// TODO marker
 		s=currentEditorView()->editor->text(i);
@@ -1807,6 +1809,8 @@ void Texmaker::UpdateStructure() {
 			Child->setText(1,"todo");
 			Child->setText(0,s);
 			toptodo->setHidden(false);
+			int l=int(currentEditorView()->editor->document()->line(i).handle());
+			Child->setText(4,QString::number(l));
 		}
 		//// include,input ////
 		QStringList inputTokens;
@@ -1819,6 +1823,8 @@ void Texmaker::UpdateStructure() {
 				Child->setText(0,s);
 				Child->setIcon(0,QIcon(":/images/include.png"));
 				Child->setText(1,inputTokens.at(header));
+				int l=int(currentEditorView()->editor->document()->line(i).handle());
+				Child->setText(4,QString::number(l));
 			};
 		}//for
 		//// all sections ////
@@ -1834,6 +1840,8 @@ void Texmaker::UpdateStructure() {
 				parent_level[header]->setText(1,struct_level[header]);
 				parent_level[header]->setText(2,QString::number(i+1));
 				parent_level[header]->setToolTip(0, s);
+				int l=int(currentEditorView()->editor->document()->line(i).handle());
+				parent_level[header]->setText(4,QString::number(l));
 				for(int j=header+1;j<parent_level.size();j++)
 					parent_level[j]=parent_level[header];
 			};
@@ -3266,7 +3274,7 @@ void Texmaker::DisplayLatexError() {
 		if (logModel->at(i).oldline!=-1)
 			for (FilesMap::iterator it=filenames.begin(); it!=filenames.end(); ++it)
 				if (it.value().endsWith(logModel->at(i).file)) {
-					QDocumentLine l=it.key()->editor->document()->line(logModel->at(i).oldline);
+					QDocumentLine l=it.key()->editor->document()->line(logModel->at(i).oldline-1);
 					if (logModel->at(i).type==LT_ERROR) l.addMark(errorMarkID);
 					else if (logModel->at(i).type==LT_WARNING) l.addMark(warningMarkID);
 					else if (logModel->at(i).type==LT_BADBOX) l.addMark(badboxMarkID);
