@@ -125,6 +125,15 @@ QString latexToPlainWord(QString word) {
 	word.replace(QString("\\/"),"",Qt::CaseInsensitive); //ligatur preventing (german-package also: "|)
 	word.replace(QString("\"~"),"-",Qt::CaseInsensitive); //- ohne Trennung (without separation)
 	//german-babel-package: "- (\- but also normal break),  "= ( like - but also normal break), "" (umbruch ohne bindestrich)
+	word.replace(QString("\"-"),"",Qt::CaseInsensitive);
+	word.replace(QString("\"a"),"ä",Qt::CaseSensitive);
+	word.replace(QString("\"o"),"ö",Qt::CaseSensitive);
+	word.replace(QString("\"u"),"ü",Qt::CaseSensitive);
+	word.replace(QString("\"A"),"Ä",Qt::CaseSensitive);
+	word.replace(QString("\"O"),"Ö",Qt::CaseSensitive);
+	word.replace(QString("\"U"),"Ü",Qt::CaseSensitive);
+	word.replace(QString("\""),"",Qt::CaseInsensitive);
+	word.replace(QString("\\"),"",Qt::CaseInsensitive);
 	return word;
 }
 
@@ -184,6 +193,8 @@ int nextToken(const QString &line,int &index) {
 					i++;//ignore word separation marker
 					//reparse=true;
 				} else break;
+			} else if (cur=='"') {  //ignore "  "- "a
+				if (i+1<line.size() && line.at(i+1)=='-')  i++;
 			} else if (cur=='\'') {
 				if (singleQuoteChar) break;	 //no word's with two '' => output
 				else singleQuoteChar=true;   //but accept one
@@ -229,7 +240,7 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 			lastCommand="";
 			break;//command doesn't matter anymore
 		default:
-			if (outWord.contains("\\"))
+			if (outWord.contains("\\")||outWord.contains("\""))
 				outWord=latexToPlainWord(outWord); //remove special chars
 			if (optionCommands.contains(lastCommand))
 				; //ignore command options
