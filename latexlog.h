@@ -3,17 +3,7 @@
 #include <QAbstractTableModel>
 #include <QTextDocument>
 #include <QVariant>
-enum LogType {LT_ERROR=0, LT_WARNING=1, LT_BADBOX=2};
-struct LatexLogEntry {
-	QString file;
-	LogType type;
-	QString oldline;
-	int oldLineNumber;
-	int logline;
-	QString message;
-	LatexLogEntry(QString aFile, LogType aType, QString aOldline, int aLogline, QString aMessage);
-	QString niceMessage() const;
-};
+#include "latexoutputfilter.h"
 class LatexLogModel: public QAbstractTableModel {
 private:
 	QList<LatexLogEntry> log;
@@ -32,9 +22,9 @@ public:
 	int count();
 	void clear();
 	const LatexLogEntry& at(int i);
-	void append(QString aFile, LogType aType, QString aOldline, int aLogline, QString aMessage);
+	//	void append(QString aFile, LogType aType, QString aOldline, int aLogline, QString aMessage);
 
-	void parseLogDocument(QTextDocument* doc, QString overrideFileName);
+	void parseLogDocument(QTextDocument* doc, QString baseFileName, QString overrideFileName);
 
 	bool found(LogType lt);
 	int markID(LogType lt);

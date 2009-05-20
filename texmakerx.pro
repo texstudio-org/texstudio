@@ -61,7 +61,8 @@ HEADERS += texmaker.h \
     hunspell/filemgr.hxx \
     hunspell/hunzip.hxx \
     hunspell/w_char.hxx \
-    encodingdialog.h
+    encodingdialog.h \
+    latexoutputfilter.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -106,7 +107,8 @@ SOURCES += main.cpp \
     hunspell/utf_info.cxx \
     hunspell/filemgr.cxx \
     hunspell/hunzip.cxx \
-    encodingdialog.cpp
+    encodingdialog.cpp \
+    latexoutputfilter.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \

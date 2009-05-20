@@ -64,7 +64,8 @@ public:
 	Texmaker(QWidget *parent = 0, Qt::WFlags flags = 0);
 
 	QString getName();
-	QString getCurrentFileName();
+	QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opened
+	QString getCompileFileName(); //returns the absolute file name of the file to be compiled (master or current)  TODO: test if it is always absolute (it depends on MasterFile and filenames)
 	QByteArray windowstate;
 public slots:
 	LatexEditorView* load(const QString &f , bool asProject = false);
