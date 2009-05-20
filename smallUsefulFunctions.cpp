@@ -121,19 +121,24 @@ int x11desktop_env() {
 
 
 QString latexToPlainWord(QString word) {
-	word.replace(QString("\\-"),"",Qt::CaseInsensitive); //Trennung [separation] (german-babel-package also: \")
-	word.replace(QString("\\/"),"",Qt::CaseInsensitive); //ligatur preventing (german-package also: "|)
-	word.replace(QString("\"~"),"-",Qt::CaseInsensitive); //- ohne Trennung (without separation)
+	QList<QPair<QString,QString> > replaceList;
+	replaceList.append(QPair<QString, QString> ("\\-","")); //Trennung [separation] (german-babel-package also: \")
+	replaceList.append(QPair<QString, QString> ("\\/","")); //ligatur preventing (german-package also: "|)
+	replaceList.append(QPair<QString, QString> ("\"~","-")); //- ohne Trennung (without separation)
 	//german-babel-package: "- (\- but also normal break),  "= ( like - but also normal break), "" (umbruch ohne bindestrich)
-	word.replace(QString("\"-"),"",Qt::CaseInsensitive);
-	word.replace(QString("\"a"),"ä",Qt::CaseSensitive);
-	word.replace(QString("\"o"),"ö",Qt::CaseSensitive);
-	word.replace(QString("\"u"),"ü",Qt::CaseSensitive);
-	word.replace(QString("\"A"),"Ä",Qt::CaseSensitive);
-	word.replace(QString("\"O"),"Ö",Qt::CaseSensitive);
-	word.replace(QString("\"U"),"Ü",Qt::CaseSensitive);
-	word.replace(QString("\""),"",Qt::CaseInsensitive);
-	word.replace(QString("\\"),"",Qt::CaseInsensitive);
+	replaceList.append(QPair<QString, QString> ("\"-",""));
+	replaceList.append(QPair<QString, QString> ("\"a","ä"));
+	replaceList.append(QPair<QString, QString> ("\"o","ö"));
+	replaceList.append(QPair<QString, QString> ("\"u","ü"));
+	replaceList.append(QPair<QString, QString> ("\"A","Ä"));
+	replaceList.append(QPair<QString, QString> ("\"O","Ö"));
+	replaceList.append(QPair<QString, QString> ("\"U","Ü"));
+	replaceList.append(QPair<QString, QString> ("\"",""));
+	replaceList.append(QPair<QString, QString> ("\\","")); // eliminating backslash which might remain from accents like \"a ...
+
+	for (QList<QPair<QString,QString> >::const_iterator it=replaceList.begin(); it!=replaceList.end(); ++it)
+		word.replace(it->first,it->second);
+
 	return word;
 }
 
@@ -165,7 +170,7 @@ QString textToLatex(QString text) {
 	replaceList.append(QPair<QString, QString> ("_","\\_"));
 	replaceList.append(QPair<QString, QString> ("^","\\^"));
 
-	for (QList<QPair<QString,QString> >::iterator it=replaceList.begin(); it!=replaceList.end(); ++it)
+	for (QList<QPair<QString,QString> >::const_iterator it=replaceList.begin(); it!=replaceList.end(); ++it)
 		text.replace(it->first,it->second);
 
 	return text;
