@@ -1320,9 +1320,10 @@ void Texmaker::editSetupEncoding() {
 
 QPoint Texmaker::sectionSelection(QTreeWidgetItem* m_item) {
 	// called by action
-	QString m_text=m_item->text(2);
-	bool okay;
-	int l=m_text.toInt(&okay,10);
+        bool ok;
+        int l=m_item->text(4).toInt(&ok,10);
+        QDocumentLine mLine(reinterpret_cast<QDocumentLineHandle*>(l));
+        l=mLine.lineNumber()+1;
 	// find next section or higher
 	QTreeWidgetItem* m_parent;
 	int m_index;
@@ -1335,10 +1336,11 @@ QPoint Texmaker::sectionSelection(QTreeWidgetItem* m_item) {
 	} while ((m_index>=0)&&(m_index>=m_parent->childCount()-1)&&(m_parent->text(1)!="part"));
 	if (m_index>=0&&m_index<m_parent->childCount()-1) {
 		m_item=m_parent->child(m_index+1);
-		m_text=m_item->text(2);
-		bool okay;
-		int m_endingLine=m_text.toInt(&okay,10);
-		return QPoint(l,m_endingLine-1);
+                bool ok;
+                int ml=m_item->text(4).toInt(&ok,10);
+                QDocumentLine mLine(reinterpret_cast<QDocumentLineHandle*>(ml));
+                int m_endingLine=mLine.lineNumber();
+                return QPoint(l,m_endingLine);
 	} else {
 		if (!currentEditorView()) return QPoint();
 		// no ending section but end of document
