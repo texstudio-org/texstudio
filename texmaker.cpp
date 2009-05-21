@@ -76,6 +76,7 @@
 #include "qdocument.h"
 #include "qdocumentcursor.h"
 #include "qdocumentline.h"
+#include "qdocumentline_p.h"
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 		: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0) {
@@ -1895,9 +1896,12 @@ void Texmaker::ClickedOnStructure(QTreeWidgetItem *item,int col) {
 			if (fi.exists() && fi.isReadable()) load(fname);
 		} else {
 			bool ok;
-			int l=item->text(2).toInt(&ok,10)-1;
+                        int l=item->text(4).toInt(&ok,10);
 			if (ok) {
-				currentEditorView()->editor->setCursorPosition(l,1);
+                                QDocumentLine mLine(reinterpret_cast<QDocumentLineHandle*>(l));
+                                l=mLine.lineNumber();
+                                if(l<0) return;
+                                currentEditorView()->editor->setCursorPosition(l,1);
 				currentEditorView()->editor->setFocus();
 			}
 		}
