@@ -111,6 +111,8 @@ public slots:
 	void spellCheckingAlwaysIgnore();
 	void spellCheckingListSuggestions();
 	void dictionaryReloaded();
+signals:
+	void lineHandleDeleted(QDocumentLineHandle* l);
 };
 
 #endif

@@ -2091,7 +2091,7 @@ void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
 
 	if ( m_layout )
 	{
-		x += m_layout->lineAt(wrap).cursorToX(cpos);
+		x += int(m_layout->lineAt(wrap).cursorToX(cpos));
 	} else if ( QDocumentPrivate::m_fixedPitch ) {
 		if ( wrap )
 			x += m_indent;

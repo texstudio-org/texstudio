@@ -349,10 +349,15 @@ private slots:
 
 	void tabChanged(int i);
 
+	void lineHandleDeleted(QDocumentLineHandle* l);
 protected:
 	QPoint sectionSelection(QTreeWidgetItem* m_item);
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
+
+
+public:
+	static const int structureTreeLineColumn;
 };
 
 #endif

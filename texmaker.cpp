@@ -78,6 +78,8 @@
 #include "qdocumentline.h"
 #include "qdocumentline_p.h"
 
+const int Texmaker::structureTreeLineColumn=4;
+
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 		: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0) {
 	ReadSettings();
@@ -871,12 +873,13 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	raise();
 
 	if (FileAlreadyOpen(f_real)) {
-		if (asProject)
+		if (asProject) {
 			if (singlemode) ToggleMode();
 			else if (!singlemode && MasterName != f_real) {
 				ToggleMode();
 				ToggleMode();
 			}
+		}
 		return 0;
 	}
 
@@ -1320,10 +1323,8 @@ void Texmaker::editSetupEncoding() {
 
 QPoint Texmaker::sectionSelection(QTreeWidgetItem* m_item) {
 	// called by action
-        bool ok;
-        int l=m_item->text(4).toInt(&ok,10);
-        QDocumentLine mLine(reinterpret_cast<QDocumentLineHandle*>(l));
-        l=mLine.lineNumber()+1;
+        QDocumentLine mLine(m_item->data(structureTreeLineColumn,Qt::UserRole).value<QDocumentLineHandle*>());
+        int l=mLine.lineNumber()+1;
 	// find next section or higher
 	QTreeWidgetItem* m_parent;
 	int m_index;
@@ -1336,9 +1337,7 @@ QPoint Texmaker::sectionSelection(QTreeWidgetItem* m_item) {
 	} while ((m_index>=0)&&(m_index>=m_parent->childCount()-1)&&(m_parent->text(1)!="part"));
 	if (m_index>=0&&m_index<m_parent->childCount()-1) {
 		m_item=m_parent->child(m_index+1);
-                bool ok;
-                int ml=m_item->text(4).toInt(&ok,10);
-                QDocumentLine mLine(reinterpret_cast<QDocumentLineHandle*>(ml));
+                QDocumentLine mLine(m_item->data(structureTreeLineColumn,Qt::UserRole).value<QDocumentLineHandle*>());
                 int m_endingLine=mLine.lineNumber();
                 return QPoint(l,m_endingLine);
 	} else {
@@ -1797,8 +1796,7 @@ void Texmaker::UpdateStructure() {
 			s=s+" ("+tr("line")+" "+QString::number(i+1)+")";
 			Child->setText(1,"label");
 			Child->setText(0,s);
-			int l=int(currentEditorView()->editor->document()->line(i).handle());
-			Child->setText(4,QString::number(l));
+			Child->setData(structureTreeLineColumn,Qt::UserRole,QVariant::fromValue(currentEditorView()->editor->document()->line(i).handle()));
 		}
 		//// TODO marker
 		s=currentEditorView()->editor->text(i);
@@ -1812,8 +1810,7 @@ void Texmaker::UpdateStructure() {
 			Child->setText(1,"todo");
 			Child->setText(0,s);
 			toptodo->setHidden(false);
-			int l=int(currentEditorView()->editor->document()->line(i).handle());
-			Child->setText(4,QString::number(l));
+			Child->setData(structureTreeLineColumn,Qt::UserRole,QVariant::fromValue(currentEditorView()->editor->document()->line(i).handle()));
 		}
 		//// include,input ////
 		QStringList inputTokens;
@@ -1826,8 +1823,7 @@ void Texmaker::UpdateStructure() {
 				Child->setText(0,s);
 				Child->setIcon(0,QIcon(":/images/include.png"));
 				Child->setText(1,inputTokens.at(header));
-				int l=int(currentEditorView()->editor->document()->line(i).handle());
-				Child->setText(4,QString::number(l));
+				Child->setData(structureTreeLineColumn,Qt::UserRole,QVariant::fromValue(currentEditorView()->editor->document()->line(i).handle()));
 			};
 		}//for
 		//// all sections ////
@@ -1843,8 +1839,7 @@ void Texmaker::UpdateStructure() {
 				parent_level[header]->setText(1,struct_level[header]);
 				parent_level[header]->setText(2,QString::number(i+1));
 				parent_level[header]->setToolTip(0, s);
-				int l=int(currentEditorView()->editor->document()->line(i).handle());
-				parent_level[header]->setText(4,QString::number(l));
+				parent_level[header]->setData(structureTreeLineColumn,Qt::UserRole,QVariant::fromValue(currentEditorView()->editor->document()->line(i).handle()));
 				for(int j=header+1;j<parent_level.size();j++)
 					parent_level[j]=parent_level[header];
 			};
@@ -1897,15 +1892,11 @@ void Texmaker::ClickedOnStructure(QTreeWidgetItem *item,int col) {
 			QFileInfo fi(fname);
 			if (fi.exists() && fi.isReadable()) load(fname);
 		} else {
-			bool ok;
-                        int l=item->text(4).toInt(&ok,10);
-			if (ok) {
-                                QDocumentLine mLine(reinterpret_cast<QDocumentLineHandle*>(l));
-                                l=mLine.lineNumber();
-                                if(l<0) return;
-                                currentEditorView()->editor->setCursorPosition(l,1);
-				currentEditorView()->editor->setFocus();
-			}
+			QDocumentLine mLine(item->data(structureTreeLineColumn,Qt::UserRole).value<QDocumentLineHandle*>());
+			int l=mLine.lineNumber();
+			if(l<0) return;
+            currentEditorView()->editor->setCursorPosition(l,1);
+			currentEditorView()->editor->setFocus();
 		}
 	}
 }
@@ -3845,4 +3836,16 @@ void Texmaker::editPasteRef() {
 		QTreeWidgetItem* item=StructureTreeWidget->currentItem();
 		m_cursor.insertText(name+"{"+item->text(3)+"}");
 	}
+}
+
+void removeDeletedLineHandle(QTreeWidgetItem* item, QDocumentLineHandle* l){
+	for (int i=0; i< item->childCount(); i++)
+		removeDeletedLineHandle(item,l);
+	if (item->data(Texmaker::structureTreeLineColumn,Qt::UserRole).value<QDocumentLineHandle*>() == l) 
+		item->setData(Texmaker::structureTreeLineColumn,Qt::UserRole,QVariant());
+}
+
+void Texmaker::lineHandleDeleted(QDocumentLineHandle* l){
+	for (int i=0;i<StructureTreeWidget->topLevelItemCount();i++)
+		removeDeletedLineHandle(StructureTreeWidget->topLevelItem(i),l);
 }

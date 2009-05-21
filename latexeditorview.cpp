@@ -436,6 +436,7 @@ void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {
 			else changePositions.removeAt(i);
 			//    QMessageBox::information(0,"trig",0);
 		}
+	emit lineHandleDeleted(l);
 }
 void LatexEditorView::spellCheckingReplace() {
 	QAction* action = qobject_cast<QAction*>(QObject::sender());

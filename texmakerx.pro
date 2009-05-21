@@ -62,7 +62,9 @@ HEADERS += texmaker.h \
     hunspell/hunzip.hxx \
     hunspell/w_char.hxx \
     encodingdialog.h \
-    latexoutputfilter.h
+    latexoutputfilter.h \
+    qcodeedit/lib/document/qdocumentline_p.h \
+    qcodeedit/lib/document/qdocumentcursor_p.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
