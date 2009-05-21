@@ -152,5 +152,7 @@ class QCE_EXPORT QDocumentLineHandle
 };
 
 Q_DECLARE_TYPEINFO(QDocumentLineHandle*, Q_PRIMITIVE_TYPE);
+Q_DECLARE_METATYPE(QDocumentLineHandle*)
+
 
 #endif // !_QDOCUMENT_LINE_P_H_
