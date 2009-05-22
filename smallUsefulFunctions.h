@@ -11,6 +11,7 @@
 #ifndef SMALLUSEFULFUNCTIONS_H
 #define SMALLUSEFULFUNCTIONS_H
 #include <QString>
+#include <QToolButton>
 
 QString getCommonEOW();
 
@@ -70,5 +71,8 @@ bool localAwareLessThan(const QString &s1, const QString &s2);
 // find token (e.g. \label \input \section and return content (\section{content})
 QString findToken(const QString line,const QString token);
 QString findToken(const QString line,const QRegExp token);
+
+//setup toolbutton as substitute for const combobox
+QToolButton* createComboToolButton(QWidget *parent,QStringList list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member);
 
 #endif

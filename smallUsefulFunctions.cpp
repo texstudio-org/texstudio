@@ -5,6 +5,8 @@
 #include <QFileInfo>
 #include <QMap>
 #include <QMessageBox>
+#include <QAction>
+#include <QMenu>
 
 const QString CommonEOW="~!@#$%^&*()_+{}|:\"<>?,./;[]-= \t\n\r`+�";
 
@@ -296,4 +298,23 @@ QString findToken(const QString line,QRegExp token){
 		return s;
 	}
 	return "";
+}
+
+QToolButton* createComboToolButton(QWidget *parent,QStringList list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member){
+	QToolButton *combo=new QToolButton(parent);
+	combo->setPopupMode(QToolButton::MenuButtonPopup);
+	combo->setMinimumHeight(height);
+
+	QAction *mAction=new QAction(list[0],parent);
+	QObject::connect(mAction, SIGNAL(triggered()),receiver,member);
+	combo->setDefaultAction(mAction);
+	QMenu *mMenu=new QMenu(parent);
+	int max=0;
+	foreach(QString elem,list){
+		mMenu->addAction(elem,receiver,member);
+		max=qMax(max,fm.width(elem+"        "));
+	}
+	combo->setMinimumWidth(max);
+	combo->setMenu(mMenu);
+	return combo;
 }

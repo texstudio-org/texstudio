@@ -14,6 +14,7 @@
 #include <QMainWindow>
 #include <QMenuBar>
 #include <QToolBar>
+#include <QToolButton>
 #include <QAction>
 #include <QClipboard>
 #include <QStatusBar>
@@ -618,9 +619,8 @@ void Texmaker::setupToolBars() {
 	list.append("subsubsection");
 	list.append("paragraph");
 	list.append("subparagraph");
-	QComboBox* combo1 = new QComboBox(formatToolBar);
-	combo1->addItems(list);
-	connect(combo1, SIGNAL(activated(const QString&)),this,SLOT(SectionCommand(const QString&)));
+	QFontMetrics fontMetrics(runToolBar->font());
+	combo1=createComboToolButton(formatToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(SectionCommand()));
 	formatToolBar->addWidget(combo1);
 	formatToolBar->addSeparator();
 
@@ -631,9 +631,7 @@ void Texmaker::setupToolBars() {
 	list.append("index");
 	list.append("cite");
 	list.append("footnote");
-	QComboBox* combo2 = new QComboBox(formatToolBar);
-	combo2->addItems(list);
-	connect(combo2, SIGNAL(activated(const QString&)),this,SLOT(OtherCommand(const QString&)));
+	combo2=createComboToolButton(formatToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(OtherCommand()));
 	formatToolBar->addWidget(combo2);
 	formatToolBar->addSeparator();
 
@@ -648,9 +646,7 @@ void Texmaker::setupToolBars() {
 	list.append("LARGE");
 	list.append("huge");
 	list.append("Huge");
-	QComboBox* combo3 = new QComboBox(formatToolBar);
-	combo3->addItems(list);
-	connect(combo3, SIGNAL(activated(const QString&)),this,SLOT(SizeCommand(const QString&)));
+	combo3=createComboToolButton(formatToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(SizeCommand()));
 	formatToolBar->addWidget(combo3);
 	formatToolBar->addSeparator();
 
@@ -686,9 +682,7 @@ void Texmaker::setupToolBars() {
 	list.append("left }");
 	list.append("left >");
 	list.append("left.");
-	QComboBox* combo4 = new QComboBox(mathToolBar);
-	combo4->addItems(list);
-	connect(combo4, SIGNAL(activated(const QString&)),this,SLOT(LeftDelimiter(const QString&)));
+	combo4=createComboToolButton(mathToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(LeftDelimiter()));
 	mathToolBar->addWidget(combo4);
 	mathToolBar->addSeparator();
 
@@ -702,9 +696,7 @@ void Texmaker::setupToolBars() {
 	list.append("right {");
 	list.append("right <");
 	list.append("right.");
-	QComboBox* combo5 = new QComboBox(mathToolBar);
-	combo5->addItems(list);
-	connect(combo5, SIGNAL(activated(const QString&)),this,SLOT(RightDelimiter(const QString&)));
+	combo5=createComboToolButton(mathToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(RightDelimiter()));
 	mathToolBar->addWidget(combo5);
 
 }
@@ -2671,13 +2663,22 @@ void Texmaker::EditUserMenu() {
 		}
 }
 
-void Texmaker::SectionCommand(const QString& text) {
+void Texmaker::SectionCommand() {
+	QAction *action = qobject_cast<QAction *>(sender());
+	if (!action) return;
 	if (!currentEditorView()) return;
-	InsertStructFromString("\\"+text);
+	InsertStructFromString("\\"+action->text());
+	combo1->defaultAction()->setText(action->text());
 }
 
-void Texmaker::OtherCommand(const QString& text) {
+void Texmaker::OtherCommand() {
+	QAction *action = qobject_cast<QAction *>(sender());
+	if (!action) return;
 	if (!currentEditorView()) return;
+
+	QString text=action->text();
+	combo2->defaultAction()->setText(text);
+
 	if (text=="label") {
 		InsertFromString("\\label{} /7/0");
 		return;
@@ -2728,8 +2729,15 @@ void Texmaker::InsertPageRef() {
 	OutputTextEdit->insertLine("\\pageref{key}");
 }
 
-void Texmaker::SizeCommand(const QString& text) {
+void Texmaker::SizeCommand() {
+	QAction *action = qobject_cast<QAction *>(sender());
+	if (!action) return;
+
 	if (!currentEditorView()) return;
+
+	QString text=action->text();
+	combo3->defaultAction()->setText(text);
+
 	if (text=="tiny") {
 		InsertWithSelectionFromString("\\begin{tiny}/\\end{tiny}/12/0");
 		return;
@@ -2772,7 +2780,13 @@ void Texmaker::SizeCommand(const QString& text) {
 	}
 }
 
-void Texmaker::LeftDelimiter(const QString& text) {
+void Texmaker::LeftDelimiter() {
+	QAction *action = qobject_cast<QAction *>(sender());
+	if (!action) return;
+	if (!currentEditorView()) return;
+	QString text=action->text();
+	combo4->defaultAction()->setText(text);
+
 	if (text=="left (") InsertTag("\\left( ",7,0);
 	if (text=="left [") InsertTag("\\left[ ",7,0);
 	if (text=="left {") InsertTag("\\left\\lbrace ",13,0);
@@ -2784,7 +2798,13 @@ void Texmaker::LeftDelimiter(const QString& text) {
 	if (text=="left.") InsertTag("\\left. ",7,0);
 }
 
-void Texmaker::RightDelimiter(const QString& text) {
+void Texmaker::RightDelimiter() {
+	QAction *action = qobject_cast<QAction *>(sender());
+	if (!action) return;
+	if (!currentEditorView()) return;
+	QString text=action->text();
+	combo5->defaultAction()->setText(text);
+
 	if (text=="right (") InsertTag("\\right( ",8,0);
 	if (text=="right [") InsertTag("\\right[ ",8,0);
 	if (text=="right {") InsertTag("\\right\\lbrace ",14,0);
