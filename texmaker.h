@@ -121,6 +121,8 @@ private:
 	QString MasterName,persistentMasterFile;
 	bool logpresent;
 
+	QToolButton *combo1,*combo2,*combo3,*combo4,*combo5;
+
 //settings
 	ConfigManager configManager;
 	BuildManager buildManager;
@@ -258,13 +260,13 @@ private slots:
 	void InsertUserTag();
 	void EditUserMenu();
 
-	void SectionCommand(const QString& text);
-	void OtherCommand(const QString& text);
+	void SectionCommand();
+	void OtherCommand();
 	void InsertRef();
 	void InsertPageRef();
-	void SizeCommand(const QString& text);
-	void LeftDelimiter(const QString& text);
-	void RightDelimiter(const QString& text);
+	void SizeCommand();
+	void LeftDelimiter();
+	void RightDelimiter();
 
 	void QuickTabular();
 	void QuickArray();
