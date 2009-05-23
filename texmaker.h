@@ -109,6 +109,7 @@ private:
 	QStackedWidget *OutputLayout; //only widget of OutputView, contains the others (OutputTextEdit, OutputVLayout, OutputTable2), only one of them is visible at the same time
 	QTableView *OutputTable, *OutputTable2;
 	LogEditor *OutputTextEdit,*OutputLogTextEdit;
+	QLabel *preViewer;
 
 	bool tabbedLogView;
 
@@ -274,7 +275,7 @@ private slots:
 	void QuickLetter();
 	void QuickDocument();
 
-	void RunCommand(QString comd,bool waitendprocess,bool showStdout);
+	void RunCommand(QString comd,bool waitendprocess,bool showStdout,QString fn="");
 	void RunPreCompileCommand();
 	void readFromStderr();
 	void readFromStdoutput();
@@ -352,6 +353,8 @@ private slots:
 	void tabChanged(int i);
 
 	void lineHandleDeleted(QDocumentLineHandle* l);
+
+        void previewLatex();
 protected:
 	QPoint sectionSelection(QTreeWidgetItem* m_item);
 	void dragEnterEvent(QDragEnterEvent *event);
