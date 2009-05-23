@@ -359,9 +359,6 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 	return "";
 }
 
-#ifdef Q_WS_WIN
-#include "windows.h"
-
 void BuildManager::readSettings(const QSettings &settings){
 	for (LatexCommand i=CMD_LATEX; i < CMD_MAXIMUM_COMMAND_VALUE;++i)
 		setLatexCommand(i,settings.value(cmdToConfigString(i), "<default>").toString());
@@ -427,7 +424,8 @@ void BuildManager::latexPreviewCompleted(int status){
 void BuildManager::conversionPreviewCompleted(int status){
 }
 
-
+#ifdef Q_WS_WIN
+#include "windows.h"
 bool BuildManager::executeDDE(QString ddePseudoURL) {
 	//parse URL
 	if (!ddePseudoURL.startsWith("dde://")) return false;
@@ -490,8 +488,6 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 	return true;
 }
 #endif
-
-
 
 ProcessX::ProcessX(BuildManager* parent, const QString &assignedCommand, const QString& fileToCompile):
 		QProcess(parent), cmd(assignedCommand), file(fileToCompile), started(false) {
