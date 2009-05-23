@@ -420,11 +420,11 @@ void BuildManager::preview(const QString &preamble, const QString &text){
 	
 }
 
-void BuildManager::latexPreviewCompleted(int){
+void BuildManager::latexPreviewCompleted(int status){
 //	ProcessX* proc=qobject_cast<ProcessX*>(sender());
 	
 }
-void BuildManager::conversionPreviewCompleted(int){
+void BuildManager::conversionPreviewCompleted(int status){
 }
 
 
