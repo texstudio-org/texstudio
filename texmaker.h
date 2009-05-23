@@ -20,6 +20,7 @@
 #include <QToolBar>
 #include <QListWidget>
 #include <QToolBox>
+#include <QToolButton>
 #include <QTabWidget>
 #include <QTreeWidget>
 #include <QLabel>
@@ -135,8 +136,6 @@ private:
 	int showlinemultiples;
 	bool folding, showlinestate, showcursorstate, realtimespellchecking;
 	QString document_class, typeface_size, paper_size, document_encoding, author;
-	QString latex_command, viewdvi_command, dvips_command, dvipdf_command, metapost_command;
-	QString precompile_command, viewps_command, ps2pdf_command, makeindex_command, bibtex_command, pdflatex_command, viewpdf_command, userquick_command, ghostscript_command;
 	QString spell_dic, spell_ignored_words;
         QStringList struct_level;
 	QStringList userClassList, userPaperList, userEncodingList, userOptionsList;
@@ -155,7 +154,7 @@ private:
 	QStringList userCommandList;
 
 //tools
-	QProcess *proc;
+	ProcessX *procX;
 	bool FINPROCESS, ERRPROCESS;
 //latex errors
 	LatexLogModel * logModel;
@@ -281,24 +280,15 @@ private slots:
 	void QuickLetter();
 	void QuickDocument();
 
-	void RunCommand(QString comd,bool waitendprocess,bool showStdout,QString fn="");
+	void runCommand(QString comd,bool waitendprocess,bool showStdout,QString fn="");
+	void runCommand(BuildManager::LatexCommand cmd,bool waitendprocess,bool showStdout,QString fn="");
 	void RunPreCompileCommand();
 	void readFromStderr();
 	void readFromStdoutput();
 	void SlotEndProcess(int err);
 	void QuickBuild();
-	void Latex();
-	void ViewDvi();
-	void DviToPS();
-	void ViewPS();
-	void PDFLatex();
-	void ViewPDF();
 	void CleanAll();
-	void MakeBib();
-	void MakeIndex();
-	void PStoPDF();
-	void DVItoPDF();
-	void MetaPost();
+	void commandFromAction();  //calls a command given by sender.data, doesn't wait
 	void UserTool();
 	void EditUserTool();
 

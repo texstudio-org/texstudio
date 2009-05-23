@@ -4,6 +4,7 @@
 #include <QDir>
 #include <QMessageBox>
 #include <QProcess>
+#include <QTemporaryFile>
 
 #include "smallUsefulFunctions.h"
 
@@ -17,12 +18,32 @@ BuildManager::BuildManager()
 		pidInst(0)
 #endif
 {
-	;
 }
 BuildManager::~BuildManager() {
 #ifdef Q_WS_WIN
 	if (pidInst) DdeUninitialize(pidInst);
 #endif
+}
+
+QString BuildManager::cmdToConfigString(LatexCommand cmd){
+	switch (cmd) {
+		case CMD_LATEX: return "Tools/Latex";
+		case CMD_DVIPS: return "Tools/Dvips";
+		case CMD_PS2PDF: return "Tools/Ps2pdf";
+		case CMD_MAKEINDEX: return "Tools/Makeindex";
+		case CMD_BIBTEX: return "Tools/Bibtex";
+		case CMD_PDFLATEX: return "Tools/Pdflatex";
+		case CMD_DVIPDF: return "Tools/Dvipdf";
+		case CMD_DVIPNG: return "Tools/Dvipng";
+		case CMD_METAPOST: return "Tools/Metapost";
+		case CMD_VIEWDVI: return "Tools/Dvi";
+		case CMD_VIEWPS: return "Tools/Ps";
+		case CMD_VIEWPDF: return "Tools/Pdf";
+		case CMD_GHOSTSCRIPT: return "Tools/Ghostscript";
+		case CMD_USER_PRECOMPILE: return "Tools/Precompile";
+		case CMD_USER_QUICK: return "Tools/Userquick";
+		default: return QString("_unknown_cmd_%1").arg((int)cmd);
+	}
 }
 
 QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mainFile,int currentline) {
@@ -139,7 +160,7 @@ QString searchBaseCommand(QString cmd, QString options, bool mustExist=false) {
 	QString fileName=cmd+".exe";
 	if (findFileInPath(fileName).isEmpty()) {
 		QString mikPath=getMiKTeXBinPath();
-		QMessageBox::information(0,mikPath,mikPath,0);
+		//QMessageBox::information(0,mikPath,mikPath,0);
 		if (!mikPath.isEmpty() && QFileInfo(mikPath+fileName).exists())
 			return mikPath+fileName+options;
 	} else return cmd+options;
@@ -189,6 +210,8 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 		return "\"/usr/texbin/pdflatex\" -interaction=nonstopmode %.tex";
 	case CMD_DVIPDF:
 		return "\"/usr/texbin/dvipdfm\" %.dvi";
+	case CMD_DVIPNG:
+		return "\"/usr/texbin/dvipng\" -o %.png %.dvi";
 	case CMD_METAPOST:
 		return "\"/usr/texbin/mpost\" --interaction nonstopmode ";
 	case CMD_VIEWDVI:
@@ -199,6 +222,9 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 		return "open %.pdf";
 	case CMD_GHOSTSCRIPT:
 		return "/usr/local/bin/gs";
+	case CMD_USER_QUICK: return "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex|xdvi %.dvi";
+	case CMD_USER_PRECOMPILE: return "";
+	case CMD_MAXIMUM_COMMAND_VALUE: return "";
 	}
 #endif
 #ifdef Q_WS_WIN
@@ -217,6 +243,8 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 		return searchBaseCommand("pdflatex"," -interaction=nonstopmode %.tex");
 	case CMD_DVIPDF:
 		return searchBaseCommand("dvipdfm"," %.dvi");
+	case CMD_DVIPNG:
+		return searchBaseCommand("dvipng","-o %.png %.dvi");
 	case CMD_METAPOST:
 		return searchBaseCommand("mpost"," --interaction nonstopmode ");
 	case CMD_VIEWDVI: {
@@ -267,6 +295,9 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 			return "\"C:/Program Files/gs/gs8.61/bin/gswin32c.exe\"";
 		else break;
 	}
+	case CMD_USER_QUICK: return "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex|xdvi %.dvi";
+	case CMD_USER_PRECOMPILE: return "";
+	case CMD_MAXIMUM_COMMAND_VALUE: return "";
 	}
 #endif
 #ifdef Q_WS_X11
@@ -287,6 +318,8 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 		return "pdflatex -interaction=nonstopmode %.tex";
 	case CMD_DVIPDF:
 		return "dvipdfm %.dvi";
+	case CMD_DVIPDF:
+		return "dvipng -o %.png %.dvi";
 	case CMD_METAPOST:
 		return "mpost --interaction nonstopmode ";
 	case CMD_VIEWDVI:
@@ -318,18 +351,83 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 		};
 	case CMD_GHOSTSCRIPT:
 		return "gs";
+	case CMD_USER_QUICK: return "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex|xdvi %.dvi";
+	case CMD_USER_PRECOMPILE: return "";
+	case CMD_MAXIMUM_COMMAND_VALUE: return "";
 	}
 #endif
-	return "<unknown>";
-}
-QString BuildManager::lazyDefaultRead(const QSettings &settings, QString name, LatexCommand cmd) {
-	QString value=settings.value(name, "<default>").toString();
-	if (value=="<default>") value=guessCommandName(cmd);
-	return value;
+	return "";
 }
 
 #ifdef Q_WS_WIN
 #include "windows.h"
+
+void BuildManager::readSettings(const QSettings &settings){
+	for (LatexCommand i=CMD_LATEX; i < CMD_MAXIMUM_COMMAND_VALUE;++i)
+		setLatexCommand(i,settings.value(cmdToConfigString(i), "<default>").toString());
+}
+void BuildManager::saveSettings(QSettings &settings){
+	for (LatexCommand i=CMD_LATEX; i < CMD_MAXIMUM_COMMAND_VALUE;++i)
+		settings.setValue(cmdToConfigString(i),commands[i]);
+}
+
+void BuildManager::setLatexCommand(LatexCommand cmd, const QString &cmdString){
+	if (cmdString=="<default>") commands[cmd]=guessCommandName(cmd);
+	else if (cmdString==tr("<unknown>")) commands[cmd]="";
+	else commands[cmd] = cmdString;
+}
+
+QString BuildManager::getLatexCommand(LatexCommand cmd){
+	return commands[cmd];
+}
+QString BuildManager::getLatexCommandForDisplay(LatexCommand cmd){
+	if (commands[cmd] == "") return tr("<unknown>");
+	else return commands[cmd];
+}
+
+ProcessX* BuildManager::newProcess(LatexCommand cmd, const QString &fileToCompile, int currentLine){
+	return newProcess(getLatexCommand(cmd), fileToCompile, currentLine);
+}
+ProcessX* BuildManager::newProcess(const QString &unparsedCommandLine, const QString &fileToCompile, int currentLine){
+	QFileInfo fi(fileToCompile);
+	QString cmd=BuildManager::parseExtendedCommandLine(unparsedCommandLine,fi,currentLine);	
+	ProcessX* proc = new ProcessX(this, cmd, fileToCompile);
+	connect(proc, SIGNAL(finished(int)),proc, SLOT(deleteLater())); //will free proc after the process has ended
+	proc->setWorkingDirectory(fi.absolutePath());
+	return proc;
+}
+
+QTemporaryFile* BuildManager::temporaryTexFile(){
+	QTemporaryFile *temp=new QTemporaryFile(QDir::tempPath ()+"/texmakerx_XXXXXX.tex");
+	temp->open();
+	temp->setAutoRemove(false);
+	return temp;
+}
+
+//the preview works in 3 steps.
+//First latex is called
+//Then dvips to convert it to ps
+//Then ghostscript to convert it to 
+void BuildManager::preview(const QString &preamble, const QString &text){
+	if (getLatexCommand(CMD_LATEX)=="" || getLatexCommand(CMD_GHOSTSCRIPT)=="") 
+		return;  //they are needed for preview
+	QTemporaryFile *file = temporaryTexFile();
+	//file.
+	ProcessX * proc = newProcess(CMD_LATEX,file->fileName());
+	delete file; //don't deletes the file
+	connect(proc,SIGNAL(finished(int)),this, SLOT(latexPreviewCompleted(int)));
+	proc->startCommand();
+	
+}
+
+void BuildManager::latexPreviewCompleted(int){
+//	ProcessX* proc=qobject_cast<ProcessX*>(sender());
+	
+}
+void BuildManager::conversionPreviewCompleted(int){
+}
+
+
 bool BuildManager::executeDDE(QString ddePseudoURL) {
 	//parse URL
 	if (!ddePseudoURL.startsWith("dde://")) return false;
@@ -392,3 +490,27 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 	return true;
 }
 #endif
+
+
+
+ProcessX::ProcessX(BuildManager* parent, const QString &assignedCommand, const QString& fileToCompile):
+		QProcess(parent), cmd(assignedCommand), file(fileToCompile), started(false) {
+}
+void ProcessX::startCommand() {
+	#ifdef Q_WS_WIN
+	if (cmd.startsWith("dde://")) {
+		started=true;
+		BuildManager* manager = qobject_cast<BuildManager*>(parent());
+		if (!manager) return;
+		bool ok = manager->executeDDE(cmd);
+		emit finished(ok?0:1, NormalExit);
+		return;
+	}
+	#endif
+		
+	QProcess::start(cmd);
+}
+bool ProcessX::waitForStarted(int timeOut){
+	if (started) return true;
+	return QProcess::waitForStarted(timeOut);
+}
