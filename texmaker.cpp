@@ -53,6 +53,8 @@
 #include <QFrame>
 #include <QFontMetrics>
 #include <QCloseEvent>
+#include <QTemporaryFile>
+#include <QScrollArea>
 
 #include "texmaker.h"
 #include "latexeditorview.h"
@@ -234,11 +236,23 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	}
 	OutputLayout->addWidget(OutputTable2);
 
+	// previewer
+	preViewer = new QLabel(this);
+	preViewer->setBackgroundRole(QPalette::Base);
+	preViewer->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+	preViewer->setScaledContents(true);
+
+	QScrollArea *scrollArea = new QScrollArea(this);
+	scrollArea->setBackgroundRole(QPalette::Dark);
+	scrollArea->setWidget(preViewer);
+	OutputLayout->addWidget(scrollArea);
+
 	// order for tabbar
 	logViewerTabBar=new QTabBar(this);
 	logViewerTabBar->addTab(tr("messages"));
 	logViewerTabBar->addTab(tr("log file"));
 	logViewerTabBar->addTab(tr("errors"));
+	logViewerTabBar->addTab(tr("preview"));
 
 	OutputView->setWidget(OutputLayout);
 
@@ -362,6 +376,7 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	newManagedAction(menu,"pasteAsLatex",tr("Paste as Latex"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, ":/images/editpaste.png");
 	newManagedAction(menu,"convertToLatex",tr("Convert to Latex"), SLOT(convertToLatex()));
+        newManagedAction(menu,"previewLatex",tr("Preview Selection"), SLOT(previewLatex()));
 
 	LatexEditorView::setBaseActions(menu->actions());
 
@@ -2817,9 +2832,11 @@ void Texmaker::RightDelimiter() {
 }
 
 ///////////////TOOLS////////////////////
-void Texmaker::RunCommand(QString comd,bool waitendprocess,bool showStdout) {
+void Texmaker::RunCommand(QString comd,bool waitendprocess,bool showStdout,QString fn) {
 
-	QString finame=getCompileFileName();
+	QString finame;
+	if(fn.isEmpty()) finame=getCompileFileName();
+	else finame=fn;
 	QString commandline=comd;
 	QByteArray result;
 	if ((singlemode && !currentEditorView()) || finame=="untitled" || finame=="") {
@@ -3814,7 +3831,7 @@ void Texmaker::updateCompleter() {
 }
 
 void Texmaker::tabChanged(int i) {
-	if (i>0 && !logpresent) RealViewLog();
+	if (i>0 && i<3 && !logpresent) RealViewLog();
 }
 
 void Texmaker::StructureContextMenu(QPoint point) {
@@ -3868,4 +3885,52 @@ void removeDeletedLineHandle(QTreeWidgetItem* item, QDocumentLineHandle* l){
 void Texmaker::lineHandleDeleted(QDocumentLineHandle* l){
 	for (int i=0;i<StructureTreeWidget->topLevelItemCount();i++)
 		removeDeletedLineHandle(StructureTreeWidget->topLevelItem(i),l);
+}
+
+void Texmaker::previewLatex(){
+    if (!currentEditorView()) return;
+    // get selection
+    QDocumentCursor c = currentEditorView()->editor->cursor();
+    QString originalText = c.selectedText();
+    // get document definitions
+    //preliminary code ...
+    QStringList header;
+    int m_endingLine=currentEditorView()->editor->document()->findLineContaining("\\begin{document}",0,Qt::CaseSensitive);
+    if (m_endingLine<0) return; // can't create header
+    QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
+	for (int l=0; l<m_endingLine; l++) {
+        currentEditorView()->editor->setCursorPosition(l,0);
+        m_cursor=currentEditorView()->editor->cursor();
+        QString m_line=currentEditorView()->editor->cursor().line().text();
+        header << m_line;
+    }
+	header << "\\pagestyle{empty}" << "\\begin{document}";
+    // write to temp file
+	QTemporaryFile *tf=new QTemporaryFile(QDir::tempPath()+"/XXXXXX.tex");
+	tf->open();
+	QTextStream out(tf);
+    foreach(QString elem,header){
+        out  << elem  << "\n";
+    }
+    out << originalText << "\n\\end{document}\n";
+	tf->close();
+	// prepare commands/filenames
+	QString cmd="latex -interaction=nonstopmode %.tex";
+	QString ffn=QFileInfo(*tf).absoluteFilePath();
+	QString fn=QFileInfo(*tf).completeBaseName();
+	tf->setAutoRemove(false);
+	delete tf; // tex file needs to be freed
+	// start conversion
+	// preliminary code
+	// tex -> dvi
+	RunCommand(cmd,true,true,ffn);
+	// dvi -> png
+	RunCommand("dvipng -T tight -x 12000 %.dvi",true,true,ffn);
+	// put image in preview
+	QFile file(QDir::tempPath()+"/"+fn+"1.png");
+    if(file.exists()){
+		preViewer->setPixmap(QPixmap(QDir::tempPath()+"/"+fn+"1.png"));
+		preViewer->adjustSize();
+		logViewerTabBar->setCurrentIndex(3);
+    }
 }

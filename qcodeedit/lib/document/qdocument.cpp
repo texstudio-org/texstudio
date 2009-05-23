@@ -1001,7 +1001,7 @@ QDocumentLine QDocument::findLine(int& position) const
 
 int QDocument::findLineContaining(const QString &searchText,  const int& startLine, const Qt::CaseSensitivity cs) const{
 	for (int i=startLine;i<lines();i++)
-		if(text(i).contains(searchText,cs))
+                if(line(i).text().contains(searchText,cs))
 			return i;
 	return -1;
 }
