@@ -166,6 +166,9 @@ private:
 	LatexEditorView *currentEditorView() const;
 	void configureNewEditorView(LatexEditorView *edit);
 	void updateEditorSetting(LatexEditorView *edit);
+
+// collect generated filenames
+	QStringList previewFileNames;
 private slots:
 
 	void fileNew(QString fileName="untitled");

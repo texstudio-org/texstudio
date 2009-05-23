@@ -248,6 +248,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	scrollArea->setWidget(preViewer);
 	OutputLayout->addWidget(scrollArea);
 
+	previewFileNames.clear(); // clear list of preview filenames
+
 	// order for tabbar
 	logViewerTabBar=new QTabBar(this);
 	logViewerTabBar->addTab(tr("messages"));
@@ -1134,6 +1136,7 @@ void Texmaker::fileExit() {
 			delete mainSpeller; //this saves the ignore list
 			mainSpeller=0;
 		}
+		removeTempFiles(previewFileNames);
 		qApp->quit();
 	}
 }
@@ -3918,6 +3921,7 @@ void Texmaker::previewLatex(){
 	// prepare commands/filenames
 	QString cmd="latex -interaction=nonstopmode %.tex";
 	QString ffn=QFileInfo(*tf).absoluteFilePath();
+	previewFileNames.append(ffn);
 	QString fn=QFileInfo(*tf).completeBaseName();
 	tf->setAutoRemove(false);
 	delete tf; // tex file needs to be freed
@@ -3949,6 +3953,7 @@ void Texmaker::scaleImage(double factor)
 }
 
 void Texmaker::fitImage(){
+	// needs to be improved
 	scrollArea->setWidgetResizable(true);
 }
 
