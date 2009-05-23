@@ -320,7 +320,18 @@ QToolButton* createComboToolButton(QWidget *parent,QStringList list,const int he
 }
 
 void adjustScrollBar(QScrollBar *scrollBar, double factor)
- {
-	 scrollBar->setValue(int(factor * scrollBar->value()
-							 + ((factor - 1) * scrollBar->pageStep()/2)));
- }
+{
+	scrollBar->setValue(int(factor * scrollBar->value()
+							+ ((factor - 1) * scrollBar->pageStep()/2)));
+}
+
+void removeTempFiles(QStringList previewFileNames){
+	foreach(QString elem,previewFileNames){
+		QDir currentDir(QFileInfo(elem).absoluteDir());
+		elem=QFileInfo(elem).completeBaseName();
+		QStringList files;
+		files = currentDir.entryList(QStringList(elem+"*"),
+								  QDir::Files | QDir::NoSymLinks);
+		foreach(QString file,files) QFile::remove(currentDir.absolutePath()+"/"+file);
+	}
+}
