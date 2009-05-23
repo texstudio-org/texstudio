@@ -54,7 +54,6 @@
 #include <QFontMetrics>
 #include <QCloseEvent>
 #include <QTemporaryFile>
-#include <QScrollArea>
 
 #include "texmaker.h"
 #include "latexeditorview.h"
@@ -241,8 +240,10 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	preViewer->setBackgroundRole(QPalette::Base);
 	preViewer->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 	preViewer->setScaledContents(true);
+	preViewer->setContextMenuPolicy(Qt::CustomContextMenu);
+	connect(preViewer,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(PreviewContextMenu(QPoint)));
 
-	QScrollArea *scrollArea = new QScrollArea(this);
+	scrollArea = new QScrollArea(this);
 	scrollArea->setBackgroundRole(QPalette::Dark);
 	scrollArea->setWidget(preViewer);
 	OutputLayout->addWidget(scrollArea);
@@ -3931,6 +3932,38 @@ void Texmaker::previewLatex(){
     if(file.exists()){
 		preViewer->setPixmap(QPixmap(QDir::tempPath()+"/"+fn+"1.png"));
 		preViewer->adjustSize();
+		pvscaleFactor=1.0;
 		logViewerTabBar->setCurrentIndex(3);
     }
+}
+
+void Texmaker::scaleImage(double factor)
+{
+	Q_ASSERT(preViewer->pixmap());
+	pvscaleFactor *= factor;
+	preViewer->resize(pvscaleFactor * preViewer->pixmap()->size());
+
+	adjustScrollBar(scrollArea->horizontalScrollBar(), factor);
+	adjustScrollBar(scrollArea->verticalScrollBar(), factor);
+
+}
+
+void Texmaker::fitImage(){
+	scrollArea->setWidgetResizable(true);
+}
+
+void Texmaker::zoomOut(){
+	scaleImage(0.8);
+}
+
+void Texmaker::zoomIn(){
+	scaleImage(1.2);
+}
+
+void Texmaker::PreviewContextMenu(QPoint point) {
+	QMenu menu;
+	menu.addAction(tr("zoom in "),this, SLOT(zoomIn()));
+	menu.addAction(tr("zoom out"),this, SLOT(zoomOut()));
+	menu.addAction(tr("fit"),this, SLOT(fitImage()));
+	menu.exec(preViewer->mapToGlobal(point));
 }
