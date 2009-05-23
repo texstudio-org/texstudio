@@ -2824,7 +2824,7 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,QStri
 		return;
 	}
 
-	ProcessX* procX = buildManager.newProcess(comd,finame,currentEditorView()->editor->cursor().lineNumber()+1);
+	procX = buildManager.newProcess(commandline,finame,currentEditorView()->editor->cursor().lineNumber()+1);
 	
 	connect(procX, SIGNAL(readyReadStandardError()),this, SLOT(readFromStderr()));
 	if (showStdout) connect(procX, SIGNAL(readyReadStandardOutput()),this, SLOT(readFromStdoutput()));
@@ -3816,9 +3816,9 @@ void Texmaker::previewLatex(){
 	// start conversion
 	// preliminary code
 	// tex -> dvi
-	RunCommand(cmd,true,true,ffn);
+	runCommand(cmd,true,false,ffn);
 	// dvi -> png
-	RunCommand("dvipng -T tight -x 12000 %.dvi",true,true,ffn);
+	runCommand("dvipng -T tight -x 12000 %.dvi",true,false,ffn);
 	// put image in preview
 	QFile file(QDir::tempPath()+"/"+fn+"1.png");
     if(file.exists()){

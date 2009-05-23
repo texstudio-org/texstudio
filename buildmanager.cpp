@@ -200,6 +200,8 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 		return "\"/usr/texbin/latex\" -interaction=nonstopmode %.tex";
 	case CMD_DVIPS:
 		return "\"/usr/texbin/dvips\" -o %.ps %.dvi";
+	case CMD_DVIPNG:
+		return "\"/usr/texbin/dvipng\" -T tight -x 12000 %.dvi";
 	case CMD_PS2PDF:
 		return "\"/usr/local/bin/ps2pdf\" %.ps";
 	case CMD_MAKEINDEX:
@@ -233,6 +235,8 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 		return searchBaseCommand("latex"," -interaction=nonstopmode %.tex");
 	case CMD_DVIPS:
 		return searchBaseCommand("dvips"," -o %.ps %.dvi");
+	case CMD_DVIPNG:
+		return searchBaseCommand("dvipng"," -T tight -x 12000 %.dvi");
 	case CMD_PS2PDF:
 		return searchBaseCommand("ps2pdf"," %.ps");
 	case CMD_MAKEINDEX:
@@ -243,8 +247,6 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 		return searchBaseCommand("pdflatex"," -interaction=nonstopmode %.tex");
 	case CMD_DVIPDF:
 		return searchBaseCommand("dvipdfm"," %.dvi");
-	case CMD_DVIPNG:
-		return searchBaseCommand("dvipng","-o %.png %.dvi");
 	case CMD_METAPOST:
 		return searchBaseCommand("mpost"," --interaction nonstopmode ");
 	case CMD_VIEWDVI: {
@@ -308,6 +310,8 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 		return "latex -interaction=nonstopmode %.tex";
 	case CMD_DVIPS:
 		return "dvips -o %.ps %.dvi";
+	case CMD_DVIPNG:
+		return "dvipng -T tight -x 12000 %.dvi";
 	case CMD_PS2PDF:
 		return "ps2pdf %.ps";
 	case CMD_MAKEINDEX:
