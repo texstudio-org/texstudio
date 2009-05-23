@@ -54,8 +54,8 @@ public:
 	void preview(const QString &preamble, const QString &text);
 
 private slots:	
-	void latexPreviewCompleted(int);
-	void conversionPreviewCompleted(int);
+	void latexPreviewCompleted(int status);
+	void conversionPreviewCompleted(int status);
 	
 private:
 	friend class ProcessX;
