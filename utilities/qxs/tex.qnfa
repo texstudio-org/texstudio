@@ -6,6 +6,8 @@
 	<sequence parenthesis="round:close">)</sequence>
 	<sequence parenthesis="curly:open" indent="1" fold="1">{</sequence>
 	<sequence parenthesis="curly:close" indent="1" fold="1">}</sequence>
+	<sequence parenthesis="texcurly:open">\\{</sequence>
+	<sequence parenthesis="texcurly:close">\\}</sequence>
 	<sequence parenthesis="square:open">\[</sequence>
 	<sequence parenthesis="square:close">\]</sequence>
 	
