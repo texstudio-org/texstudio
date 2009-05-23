@@ -2824,7 +2824,7 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,QStri
 		return;
 	}
 
-	procX = buildManager.newProcess(commandline,finame,currentEditorView()->editor->cursor().lineNumber()+1);
+	ProcessX* procX = buildManager.newProcess(comd,finame,currentEditorView()->editor->cursor().lineNumber()+1);
 	
 	connect(procX, SIGNAL(readyReadStandardError()),this, SLOT(readFromStderr()));
 	if (showStdout) connect(procX, SIGNAL(readyReadStandardOutput()),this, SLOT(readFromStdoutput()));
@@ -2859,12 +2859,16 @@ void Texmaker::RunPreCompileCommand() {
 }
 
 void Texmaker::readFromStderr() {
+	ProcessX* procX = qobject_cast<ProcessX*> (sender());
+	if (!procX) return;
 	QByteArray result=procX->readAllStandardError();
 	QString t=QString(result).simplified();
 	if (!t.isEmpty()) OutputTextEdit->insertLine(t+"\n");
 }
 
 void Texmaker::readFromStdoutput() {
+	ProcessX* procX = qobject_cast<ProcessX*> (sender());
+	if (!procX) return;
 	QByteArray result=procX->readAllStandardOutput();
 	QString t=QString(result).trimmed();
 	if (!t.isEmpty()) OutputTextEdit->insertLine(t+"\n");
