@@ -154,7 +154,6 @@ private:
 	QStringList userCommandList;
 
 //tools
-	ProcessX *procX;
 	bool FINPROCESS, ERRPROCESS;
 //latex errors
 	LatexLogModel * logModel;

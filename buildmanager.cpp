@@ -212,10 +212,8 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 		return "\"/usr/texbin/pdflatex\" -interaction=nonstopmode %.tex";
 	case CMD_DVIPDF:
 		return "\"/usr/texbin/dvipdfm\" %.dvi";
-	case CMD_DVIPNG:
-		return "\"/usr/texbin/dvipng\" -o %.png %.dvi";
 	case CMD_METAPOST:
-		return "\"/usr/texbin/mpost\" --interaction nonstopmode ";
+		return "\"/usr/texbin/mpost\" --interaction nonstopmode ?me)";
 	case CMD_VIEWDVI:
 		return "open %.dvi";
 	case CMD_VIEWPS:
@@ -248,7 +246,7 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 	case CMD_DVIPDF:
 		return searchBaseCommand("dvipdfm"," %.dvi");
 	case CMD_METAPOST:
-		return searchBaseCommand("mpost"," --interaction nonstopmode ");
+		return searchBaseCommand("mpost"," --interaction nonstopmode ?me)");
 	case CMD_VIEWDVI: {
 		const QString yapOptions = " -1 -s @?ame \"?am.dvi\"";
 		QString def=W32_FileAssociation(".dvi");
@@ -322,10 +320,8 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 		return "pdflatex -interaction=nonstopmode %.tex";
 	case CMD_DVIPDF:
 		return "dvipdfm %.dvi";
-	case CMD_DVIPDF:
-		return "dvipng -o %.png %.dvi";
 	case CMD_METAPOST:
-		return "mpost --interaction nonstopmode ";
+		return "mpost --interaction nonstopmode ?me)";
 	case CMD_VIEWDVI:
 		switch (x11desktop_env()) {
 		case 3:
