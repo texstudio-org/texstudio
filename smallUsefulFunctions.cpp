@@ -318,3 +318,9 @@ QToolButton* createComboToolButton(QWidget *parent,QStringList list,const int he
 	combo->setMenu(mMenu);
 	return combo;
 }
+
+void adjustScrollBar(QScrollBar *scrollBar, double factor)
+ {
+	 scrollBar->setValue(int(factor * scrollBar->value()
+							 + ((factor - 1) * scrollBar->pageStep()/2)));
+ }

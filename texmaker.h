@@ -33,6 +33,7 @@
 #include <QTextTable>
 #include <QVBoxLayout>
 #include <QTableView>
+#include <QScrollArea>
 
 #include "buildmanager.h"
 #include "configmanager.h"
@@ -110,6 +111,8 @@ private:
 	QTableView *OutputTable, *OutputTable2;
 	LogEditor *OutputTextEdit,*OutputLogTextEdit;
 	QLabel *preViewer;
+	QScrollArea *scrollArea;
+	double pvscaleFactor;
 
 	bool tabbedLogView;
 
@@ -354,7 +357,13 @@ private slots:
 
 	void lineHandleDeleted(QDocumentLineHandle* l);
 
-        void previewLatex();
+	void previewLatex();
+	void fitImage();
+	void scaleImage(double factor);
+	void zoomOut();
+	void zoomIn();
+	void PreviewContextMenu(QPoint point);
+
 protected:
 	QPoint sectionSelection(QTreeWidgetItem* m_item);
 	void dragEnterEvent(QDragEnterEvent *event);
