@@ -1,7 +1,10 @@
 #ifndef CONFIGMANAGER_H
 #define CONFIGMANAGER_H
 
+#include "buildmanager.h"
+
 #include "configdialog.h"
+
 #include <QDomElement>
 #include <QMenuBar>
 #include <QSettings>
@@ -28,6 +31,9 @@ public:
 	QStringList keyReplace, keyReplaceAfterWord, keyReplaceBeforeWord;
 	QStringList words;
 
+	//build
+	BuildManager* buildManager; 
+		
 	//appearance 
 	QString interfaceStyle;
 	QString interfaceFontFamily;
@@ -58,6 +64,7 @@ public:
 	QAction* newManagedAction(QWidget* menu, const QString &id, QAction* act);
 	QAction* getManagedAction(QString id);
 	QMenu* getManagedMenu(QString id);
+	void triggerManagedAction(QString id);
 
 	void modifyManagedShortcuts();
 	void loadManagedMenu(QMenu* parent,const QDomElement &f);

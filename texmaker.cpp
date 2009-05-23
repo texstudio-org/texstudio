@@ -460,20 +460,20 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "quickbuild",tr("Quick Build"), SLOT(QuickBuild()), Qt::Key_F1, ":/images/quick.png");
 
 	menu->addSeparator();
-	newManagedAction(menu, "latex",tr("LaTeX"), SLOT(Latex()), Qt::Key_F2, ":/images/latex.png");
-	newManagedAction(menu, "viewdvi",tr("View Dvi"), SLOT(ViewDvi()), Qt::Key_F3, ":/images/viewdvi.png");
-	newManagedAction(menu, "dvi2ps",tr("Dvi->PS"), SLOT(DviToPS()), Qt::Key_F4, ":/images/dvips.png");
-	newManagedAction(menu, "viewps",tr("View PS"), SLOT(ViewPS()), Qt::Key_F5, ":/images/viewps.png");
-	newManagedAction(menu, "pdflatex",tr("PDFLaTeX"), SLOT(PDFLatex()), Qt::Key_F6, ":/images/pdflatex.png");
-	newManagedAction(menu, "viewpdf",tr("View PDF"), SLOT(ViewPDF()), Qt::Key_F7, ":/images/viewpdf.png");
-	newManagedAction(menu, "ps2pdf",tr("PS->PDF"), SLOT(PStoPDF()), Qt::Key_F8, ":/images/ps2pdf.png");
-	newManagedAction(menu, "dvipdf",tr("DVI->PDF"), SLOT(DVItoPDF()), Qt::Key_F9, ":/images/dvipdf.png");
+	newManagedAction(menu, "latex",tr("LaTeX"), SLOT(commandFromAction()), Qt::Key_F2, ":/images/latex.png")->setData(BuildManager::CMD_LATEX);
+	newManagedAction(menu, "viewdvi",tr("View Dvi"), SLOT(commandFromAction()), Qt::Key_F3, ":/images/viewdvi.png")->setData(BuildManager::CMD_VIEWDVI);
+	newManagedAction(menu, "dvi2ps",tr("Dvi->PS"), SLOT(commandFromAction()), Qt::Key_F4, ":/images/dvips.png")->setData(BuildManager::CMD_DVIPS);
+	newManagedAction(menu, "viewps",tr("View PS"), SLOT(commandFromAction()), Qt::Key_F5, ":/images/viewps.png")->setData(BuildManager::CMD_VIEWPS);
+	newManagedAction(menu, "pdflatex",tr("PDFLaTeX"), SLOT(commandFromAction()), Qt::Key_F6, ":/images/pdflatex.png")->setData(BuildManager::CMD_PDFLATEX);
+	newManagedAction(menu, "viewpdf",tr("View PDF"), SLOT(commandFromAction()), Qt::Key_F7, ":/images/viewpdf.png")->setData(BuildManager::CMD_VIEWPDF);
+	newManagedAction(menu, "ps2pdf",tr("PS->PDF"), SLOT(commandFromAction()), Qt::Key_F8, ":/images/ps2pdf.png")->setData(BuildManager::CMD_PS2PDF);
+	newManagedAction(menu, "dvipdf",tr("DVI->PDF"), SLOT(commandFromAction()), Qt::Key_F9, ":/images/dvipdf.png")->setData(BuildManager::CMD_DVIPDF);
 	newManagedAction(menu, "viewlog",tr("View Log"), SLOT(RealViewLog()), Qt::Key_F10, ":/images/viewlog.png");
-	newManagedAction(menu, "bibtex",tr("BibTeX"), SLOT(MakeBib()), Qt::Key_F11);
-	newManagedAction(menu, "makeindex",tr("MakeIndex"), SLOT(MakeIndex()), Qt::Key_F12);
+	newManagedAction(menu, "bibtex",tr("BibTeX"), SLOT(commandFromAction()), Qt::Key_F11)->setData(BuildManager::CMD_BIBTEX);
+	newManagedAction(menu, "makeindex",tr("MakeIndex"), SLOT(commandFromAction()), Qt::Key_F12)->setData(BuildManager::CMD_MAKEINDEX);
 
 	menu->addSeparator();
-	newManagedAction(menu, "metapost",tr("MetaPost"), SLOT(MetaPost()));
+	newManagedAction(menu, "metapost",tr("MetaPost"), SLOT(commandFromAction()))->setData(BuildManager::CMD_METAPOST);
 	menu->addSeparator();
 	newManagedAction(menu, "clean",tr("Clean"), SLOT(CleanAll()));
 	menu->addSeparator();
@@ -1497,6 +1497,7 @@ void Texmaker::editSectionPasteBefore(int line) {
 
 /////////////// CONFIG ////////////////////
 void Texmaker::ReadSettings() {
+	configManager.buildManager=&buildManager;
 	QSettings *config=configManager.readSettings();
 
 	config->beginGroup("texmaker");
@@ -1533,21 +1534,6 @@ void Texmaker::ReadSettings() {
 
 	quickmode=config->value("Tools/Quick Mode",1).toInt();
 
-	latex_command=BuildManager::lazyDefaultRead(*config,"Tools/Latex",BuildManager::CMD_LATEX);
-	dvips_command=BuildManager::lazyDefaultRead(*config,"Tools/Dvips",BuildManager::CMD_DVIPS);
-	ps2pdf_command=BuildManager::lazyDefaultRead(*config,"Tools/Ps2pdf",BuildManager::CMD_PS2PDF);
-	makeindex_command=BuildManager::lazyDefaultRead(*config,"Tools/Makeindex",BuildManager::CMD_MAKEINDEX);
-	bibtex_command=BuildManager::lazyDefaultRead(*config,"Tools/Bibtex",BuildManager::CMD_BIBTEX);
-	pdflatex_command=BuildManager::lazyDefaultRead(*config,"Tools/Pdflatex",BuildManager::CMD_PDFLATEX);
-	dvipdf_command=BuildManager::lazyDefaultRead(*config,"Tools/Dvipdf",BuildManager::CMD_DVIPDF);
-	metapost_command=BuildManager::lazyDefaultRead(*config,"Tools/Metapost",BuildManager::CMD_METAPOST);
-	viewdvi_command=BuildManager::lazyDefaultRead(*config,"Tools/Dvi",BuildManager::CMD_VIEWDVI);
-	viewps_command=BuildManager::lazyDefaultRead(*config,"Tools/Ps",BuildManager::CMD_VIEWPS);
-	viewpdf_command=BuildManager::lazyDefaultRead(*config,"Tools/Pdf",BuildManager::CMD_VIEWPDF);
-	ghostscript_command=BuildManager::lazyDefaultRead(*config,"Tools/Ghostscript",BuildManager::CMD_GHOSTSCRIPT);
-	precompile_command=config->value("Tools/Precompile","").toString();
-
-	userquick_command=config->value("Tools/Userquick","latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex|xdvi %.dvi").toString();
 	userClassList=config->value("Tools/User Class").toStringList();
 	userPaperList=config->value("Tools/User Paper").toStringList();
 	userEncodingList=config->value("Tools/User Encoding").toStringList();
@@ -1648,27 +1634,7 @@ void Texmaker::SaveSettings() {
 
 	config->setValue("Tools/Quick Mode",quickmode);
 
-	config->setValue("Tools/Latex",latex_command);
-	config->setValue("Tools/Dvi",viewdvi_command);
-	config->setValue("Tools/Dvips",dvips_command);
-	config->setValue("Tools/Ps",viewps_command);
-
-
-	config->setValue("Tools/Ps2pdf",ps2pdf_command);
-
-	config->setValue("Tools/Makeindex",makeindex_command);
-
-	config->setValue("Tools/Bibtex",bibtex_command);
-	config->setValue("Tools/Pdflatex",pdflatex_command);
-	config->setValue("Tools/Pdf",viewpdf_command);
-
-	config->setValue("Tools/Dvipdf",dvipdf_command);
-	config->setValue("Tools/Metapost",metapost_command);
-
-	config->setValue("Tools/Ghostscript",ghostscript_command);
-	config->setValue("Tools/Userquick",userquick_command);
-	config->setValue("Tools/Precompile",precompile_command);
-
+	
 	if (userClassList.count()>0)
 		config->setValue("Tools/User Class",userClassList);
 	if (userPaperList.count()>0) config->setValue("Tools/User Paper",userPaperList);
@@ -2836,7 +2802,10 @@ void Texmaker::RightDelimiter() {
 }
 
 ///////////////TOOLS////////////////////
-void Texmaker::RunCommand(QString comd,bool waitendprocess,bool showStdout,QString fn) {
+void Texmaker::runCommand(BuildManager::LatexCommand cmd,bool waitendprocess,bool showStdout,QString fn){
+	runCommand(buildManager.getLatexCommand(cmd),waitendprocess,showStdout,fn);
+}
+void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,QString fn) {
 
 	QString finame;
 	if(fn.isEmpty()) finame=getCompileFileName();
@@ -2849,57 +2818,54 @@ void Texmaker::RunCommand(QString comd,bool waitendprocess,bool showStdout,QStri
 	}
 	fileSaveAll();
 
-	QFileInfo fi(finame);
-	commandline=BuildManager::parseExtendedCommandLine(commandline,fi,currentEditorView()->editor->cursor().lineNumber()+1);
 	if (commandline.trimmed().isEmpty()) {
 		ERRPROCESS=true;
 		OutputTextEdit->insertLine("Error : no command given \n");
 		return;
 	}
-#ifdef Q_WS_WIN
-	if (commandline.startsWith("dde://")) {
-		buildManager.executeDDE(commandline);
-		return;
-	}
-#endif
-	proc = new QProcess(this);
-	proc->setWorkingDirectory(fi.absolutePath());
 
-	connect(proc, SIGNAL(readyReadStandardError()),this, SLOT(readFromStderr()));
-	if (showStdout) connect(proc, SIGNAL(readyReadStandardOutput()),this, SLOT(readFromStdoutput()));
-	connect(proc, SIGNAL(finished(int)),this, SLOT(SlotEndProcess(int)));
+	ProcessX* procX = buildManager.newProcess(comd,finame,currentEditorView()->editor->cursor().lineNumber()+1);
+	
+	connect(procX, SIGNAL(readyReadStandardError()),this, SLOT(readFromStderr()));
+	if (showStdout) connect(procX, SIGNAL(readyReadStandardOutput()),this, SLOT(readFromStdoutput()));
+	connect(procX, SIGNAL(finished(int)),this, SLOT(SlotEndProcess(int)));
+
+
 	OutputTextEdit->clear();
 	logViewerTabBar->setCurrentIndex(0);
 //OutputTable->hide();
 //OutputTextEdit->insertLine(commandline+"\n");
-	proc->start(commandline);
-	if (!proc->waitForStarted(1000)) {
+	FINPROCESS = false;
+	procX->startCommand();
+	if (!procX->waitForStarted(1000)) {
 		ERRPROCESS=true;
 		OutputTextEdit->insertLine("Error: "+tr("could not start the command:")+" "+commandline+"\n");
 		return;
 	} else OutputTextEdit->insertLine(tr("Process started")+"\n");
-	FINPROCESS=false;
+
 	if (waitendprocess) {
+		QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 		while (!FINPROCESS) {
 			qApp->instance()->processEvents(QEventLoop::ExcludeUserInputEvents);
 		}
+		QApplication::restoreOverrideCursor();
 	}
 }
 
 void Texmaker::RunPreCompileCommand() {
 	logpresent=false;//log to old (whenever latex is called)
-	if (precompile_command.isEmpty()) return;
-	RunCommand(precompile_command,true,false);
+	if (buildManager.getLatexCommand(BuildManager::CMD_USER_PRECOMPILE).isEmpty()) return;
+	runCommand(BuildManager::CMD_USER_PRECOMPILE,true,false);
 }
 
 void Texmaker::readFromStderr() {
-	QByteArray result=proc->readAllStandardError();
+	QByteArray result=procX->readAllStandardError();
 	QString t=QString(result).simplified();
 	if (!t.isEmpty()) OutputTextEdit->insertLine(t+"\n");
 }
 
 void Texmaker::readFromStdoutput() {
-	QByteArray result=proc->readAllStandardOutput();
+	QByteArray result=procX->readAllStandardOutput();
 	QString t=QString(result).trimmed();
 	if (!t.isEmpty()) OutputTextEdit->insertLine(t+"\n");
 }
@@ -2919,7 +2885,7 @@ void Texmaker::QuickBuild() {
 	switch (quickmode) {
 	case 1: {
 		stat2->setText(QString(" %1 ").arg("Latex"));
-		RunCommand(latex_command,true,false);
+		runCommand(BuildManager::CMD_LATEX,true,false);
 		if (ERRPROCESS && !LogExists()) {
 			QMessageBox::warning(this,tr("Error"),tr("Could not start the command."));
 			return;
@@ -2927,9 +2893,9 @@ void Texmaker::QuickBuild() {
 		ViewLog();
 		if (NoLatexErrors()) {
 			stat2->setText(QString(" %1 ").arg("Dvips"));
-			if (!ERRPROCESS) RunCommand(dvips_command,true,false);
+			if (!ERRPROCESS) runCommand(BuildManager::CMD_DVIPS,true,false);
 			else return;
-			if (!ERRPROCESS) ViewPS();
+			if (!ERRPROCESS) configManager.triggerManagedAction("main/tools/viewps");
 			else return;
 		} else {
 			NextError();
@@ -2939,14 +2905,14 @@ void Texmaker::QuickBuild() {
 	break;
 	case 2: {
 		stat2->setText(QString(" %1 ").arg("Latex"));
-		RunCommand(latex_command,true,false);
+		runCommand(BuildManager::CMD_LATEX,true,false);
 		if (ERRPROCESS && !LogExists()) {
 			QMessageBox::warning(this,tr("Error"),tr("Could not start the command."));
 			return;
 		}
 		ViewLog();
 		if (NoLatexErrors()) {
-			if (!ERRPROCESS) ViewDvi();
+			if (!ERRPROCESS) configManager.triggerManagedAction("main/tools/viewdvi");
 			else return;
 		} else {
 			NextError();
@@ -2956,14 +2922,14 @@ void Texmaker::QuickBuild() {
 	break;
 	case 3: {
 		stat2->setText(QString(" %1 ").arg("Pdf Latex"));
-		RunCommand(pdflatex_command,true,false);
+		runCommand(BuildManager::CMD_PDFLATEX,true,false);
 		if (ERRPROCESS && !LogExists()) {
 			QMessageBox::warning(this,tr("Error"),tr("Could not start the command."));
 			return;
 		}
 		ViewLog();
 		if (NoLatexErrors()) {
-			if (!ERRPROCESS) ViewPDF();
+			if (!ERRPROCESS) configManager.triggerManagedAction("main/tools/viewpdf");
 			else return;
 		} else {
 			NextError();
@@ -2973,7 +2939,7 @@ void Texmaker::QuickBuild() {
 	break;
 	case 4: {
 		stat2->setText(QString(" %1 ").arg("Latex"));
-		RunCommand(latex_command,true,false);
+		runCommand(BuildManager::CMD_LATEX,true,false);
 		if (ERRPROCESS && !LogExists()) {
 			QMessageBox::warning(this,tr("Error"),tr("Could not start the command."));
 			return;
@@ -2981,9 +2947,9 @@ void Texmaker::QuickBuild() {
 		ViewLog();
 		if (NoLatexErrors()) {
 			stat2->setText(QString(" %1 ").arg("Dvi to Pdf"));
-			if (!ERRPROCESS) RunCommand(dvipdf_command,true,false);
+			if (!ERRPROCESS) runCommand(BuildManager::CMD_DVIPDF,true,false);
 			else return;
-			if (!ERRPROCESS) ViewPDF();
+			if (!ERRPROCESS) configManager.triggerManagedAction("main/tools/viewpdf");
 			else return;
 		} else {
 			NextError();
@@ -2993,7 +2959,7 @@ void Texmaker::QuickBuild() {
 	break;
 	case 5: {
 		stat2->setText(QString(" %1 ").arg("Latex"));
-		RunCommand(latex_command,true,false);
+		runCommand(BuildManager::CMD_LATEX,true,false);
 		if (ERRPROCESS && !LogExists()) {
 			QMessageBox::warning(this,tr("Error"),tr("Could not start the command."));
 			return;
@@ -3001,12 +2967,12 @@ void Texmaker::QuickBuild() {
 		ViewLog();
 		if (NoLatexErrors()) {
 			stat2->setText(QString(" %1 ").arg("Dvips"));
-			if (!ERRPROCESS) RunCommand(dvips_command,true,false);
+			if (!ERRPROCESS) runCommand(BuildManager::CMD_DVIPS,true,false);
 			else return;
 			stat2->setText(QString(" %1 ").arg("Ps to Pdf"));
-			if (!ERRPROCESS) RunCommand(ps2pdf_command,true,false);
+			if (!ERRPROCESS) runCommand(BuildManager::CMD_PS2PDF,true,false);
 			else return;
-			if (!ERRPROCESS) ViewPDF();
+			if (!ERRPROCESS) configManager.triggerManagedAction("main/tools/viewpdf");
 		} else {
 			NextError();
 			SwitchToErrorList();
@@ -3014,9 +2980,9 @@ void Texmaker::QuickBuild() {
 	}
 	break;
 	case 6: {
-		QStringList commandList=userquick_command.split("|");
+		QStringList commandList=buildManager.getLatexCommand(BuildManager::CMD_USER_QUICK).split("|");
 		for (int i = 0; i < commandList.size(); ++i) {
-			if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) RunCommand(commandList.at(i),true,true);
+			if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) runCommand(commandList.at(i),true,true);
 			else return;
 		}
 	}
@@ -3027,63 +2993,13 @@ void Texmaker::QuickBuild() {
 //DisplayLatexError();
 }
 
-void Texmaker::Latex() {
-	RunPreCompileCommand();
-	stat2->setText(QString(" %1 ").arg("Latex"));
-	RunCommand(latex_command,false,false);
-}
-
-void Texmaker::ViewDvi() {
-	stat2->setText(QString(" %1 ").arg(tr("View Dvi file")));
-	RunCommand(viewdvi_command,false,false);
-}
-
-void Texmaker::DviToPS() {
-	stat2->setText(QString(" %1 ").arg("Dvips"));
-	RunCommand(dvips_command,false,false);
-}
-
-void Texmaker::ViewPS() {
-	stat2->setText(QString(" %1 ").arg(tr("View PS file")));
-	RunCommand(viewps_command,false,false);
-}
-
-void Texmaker::PDFLatex() {
-	RunPreCompileCommand();
-	stat2->setText(QString(" %1 ").arg("Pdf Latex"));
-	RunCommand(pdflatex_command,false,false);
-}
-
-void Texmaker::ViewPDF() {
-	stat2->setText(QString(" %1 ").arg(tr("View Pdf file")));
-	RunCommand(viewpdf_command,false,false);
-}
-
-void Texmaker::MakeBib() {
-	stat2->setText(QString(" %1 ").arg("Bibtex"));
-	RunCommand(bibtex_command,false,false);
-}
-
-void Texmaker::MakeIndex() {
-	stat2->setText(QString(" %1 ").arg("Make index"));
-	RunCommand(makeindex_command,false,false);
-}
-
-void Texmaker::PStoPDF() {
-	stat2->setText(QString(" %1 ").arg("Ps -> Pdf"));
-	RunCommand(ps2pdf_command,false,false);
-}
-
-void Texmaker::DVItoPDF() {
-	stat2->setText(QString(" %1 ").arg("Dvi -> Pdf"));
-	RunCommand(dvipdf_command,false,false);
-}
-
-void Texmaker::MetaPost() {
-	stat2->setText(QString(" %1 ").arg("Mpost"));
-	QString finame=getName();
-	QFileInfo fi(finame);
-	RunCommand(metapost_command+fi.completeBaseName()+"."+fi.suffix(),false,false);
+void Texmaker::commandFromAction(){
+	QAction* act = qobject_cast<QAction*>(sender());
+	if (!act) return;
+	stat2->setText(QString(" %1 ").arg(act->text()));
+	BuildManager::LatexCommand cmd=(BuildManager::LatexCommand) act->data().toInt();
+	if (cmd==BuildManager::CMD_LATEX || cmd==BuildManager::CMD_PDFLATEX) RunPreCompileCommand();
+	runCommand(cmd, false, false);
 }
 
 void Texmaker::CleanAll() {
@@ -3120,7 +3036,7 @@ void Texmaker::UserTool() {
 	QStringList commandList=cmd.split("|");
 	ERRPROCESS=false;
 	for (int i = 0; i < commandList.size(); ++i)
-		if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) RunCommand(commandList.at(i),true,true);
+		if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) runCommand(commandList.at(i),true,true);
 		else return;
 }
 
@@ -3155,7 +3071,8 @@ void Texmaker::WebPublish() {
 		finame=MasterName;
 	}
 	if (finame=="untitled") finame="";
-	WebPublishDialog *ttwpDlg = new WebPublishDialog(this,tr("Convert to Html"),ghostscript_command,latex_command,dvips_command,
+	//TODO: check if it really uses the correct commands
+	WebPublishDialog *ttwpDlg = new WebPublishDialog(this,tr("Convert to Html"),buildManager.getLatexCommand(BuildManager::CMD_GHOSTSCRIPT),buildManager.getLatexCommand(BuildManager::CMD_LATEX),buildManager.getLatexCommand(BuildManager::CMD_DVIPS),
 	        currentEditorView()->editor->getFileEncoding());
 	ttwpDlg->ui.inputfileEdit->setText(finame);
 	ttwpDlg->exec();
@@ -3450,19 +3367,6 @@ void Texmaker::HelpAbout() {
 void Texmaker::GeneralOptions() {
 	ConfigDialog *confDlg = configManager.createConfigDialog(this);
 
-	confDlg->ui.lineEditLatex->setText(latex_command);
-	confDlg->ui.lineEditPdflatex->setText(pdflatex_command);
-	confDlg->ui.lineEditDvips->setText(dvips_command);
-	confDlg->ui.lineEditDviviewer->setText(viewdvi_command);
-	confDlg->ui.lineEditPsviewer->setText(viewps_command);
-	confDlg->ui.lineEditDvipdfm->setText(dvipdf_command);
-	confDlg->ui.lineEditPs2pdf->setText(ps2pdf_command);
-	confDlg->ui.lineEditBibtex->setText(bibtex_command);
-	confDlg->ui.lineEditMakeindex->setText(makeindex_command);
-	confDlg->ui.lineEditPdfviewer->setText(viewpdf_command);
-	confDlg->ui.lineEditMetapost->setText(metapost_command);
-	confDlg->ui.lineEditGhostscript->setText(ghostscript_command);
-	confDlg->ui.lineEditExecuteBeforeCompiling->setText(precompile_command);
 
 	confDlg->ui.checkBoxWordwrap->setChecked(wordwrap);
 	confDlg->ui.checkBoxTabbedLogView->setChecked(tabbedLogView);
@@ -3509,7 +3413,6 @@ void Texmaker::GeneralOptions() {
 		confDlg->ui.radioButton6->setChecked(true);
 		confDlg->ui.lineEditUserquick->setEnabled(true);
 	}
-	confDlg->ui.lineEditUserquick->setText(userquick_command);
 
 
 	//completion words
@@ -3523,21 +3426,6 @@ void Texmaker::GeneralOptions() {
 		if (confDlg->ui.radioButton4->isChecked()) quickmode=4;
 		if (confDlg->ui.radioButton5->isChecked()) quickmode=5;
 		if (confDlg->ui.radioButton6->isChecked()) quickmode=6;
-		userquick_command=confDlg->ui.lineEditUserquick->text();
-
-		latex_command=confDlg->ui.lineEditLatex->text();
-		pdflatex_command=confDlg->ui.lineEditPdflatex->text();
-		dvips_command=confDlg->ui.lineEditDvips->text();
-		viewdvi_command=confDlg->ui.lineEditDviviewer->text();
-		viewps_command=confDlg->ui.lineEditPsviewer->text();
-		dvipdf_command=confDlg->ui.lineEditDvipdfm->text();
-		ps2pdf_command=confDlg->ui.lineEditPs2pdf->text();
-		bibtex_command=confDlg->ui.lineEditBibtex->text();
-		makeindex_command=confDlg->ui.lineEditMakeindex->text();
-		viewpdf_command=confDlg->ui.lineEditPdfviewer->text();
-		metapost_command=confDlg->ui.lineEditMetapost->text();
-		ghostscript_command=confDlg->ui.lineEditGhostscript->text();
-		precompile_command=confDlg->ui.lineEditExecuteBeforeCompiling->text();
 
 		wordwrap=confDlg->ui.checkBoxWordwrap->isChecked();
 		completion=confDlg->ui.checkBoxCompletion->isChecked();

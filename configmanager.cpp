@@ -5,9 +5,10 @@
 #include "smallUsefulFunctions.h"
 
 #include <QFile>
+#include <QMessageBox>
 #include <QStyleFactory>
 
-ConfigManager::ConfigManager(QObject *parent): QObject (parent), menuParent(0), menuParentsBar(0){
+ConfigManager::ConfigManager(QObject *parent): QObject (parent),buildManager(0),menuParent(0), menuParentsBar(0){
 }
 
 QSettings* ConfigManager::readSettings() {
@@ -54,7 +55,10 @@ QSettings* ConfigManager::readSettings() {
 		sessionMaster=config->value("Files/Session/MasterFile","").toString();
 	}
 	lastDocument=config->value("Files/Last Document","").toString();
-	
+
+	//build commands
+	if (!buildManager) QMessageBox::critical(0,"TexMakerX","No build Manager created! => crash",QMessageBox::Ok);
+	buildManager->readSettings(*config);
 	
 	//read user key replacements
 	keyReplace.clear();
@@ -209,6 +213,9 @@ QSettings* ConfigManager::saveSettings() {
 	//session is saved by main class (because we don't know the active files here)
 	config->setValue("Files/Last Document",lastDocument);
 	
+	//---------------------build commands----------------
+	buildManager->saveSettings(*config);
+	
 	//-------------------key replacements-----------------
 	int keyReplaceCount = keyReplace.count();
 	config->setValue("User/KeyReplaceCount",keyReplaceCount);
@@ -258,6 +265,22 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	
 	confDlg->ui.spinBoxMaxRecentFiles->setValue(maxRecentFiles);
 	confDlg->ui.spinBoxMaxRecentProjects->setValue(maxRecentProjects);
+	
+	//build things
+	confDlg->ui.lineEditLatex->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_LATEX));
+	confDlg->ui.lineEditPdflatex->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_PDFLATEX));
+	confDlg->ui.lineEditDvips->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_DVIPS));
+	confDlg->ui.lineEditDviviewer->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_VIEWDVI));
+	confDlg->ui.lineEditPsviewer->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_VIEWPS));
+	confDlg->ui.lineEditDvipdfm->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_DVIPDF));
+	confDlg->ui.lineEditPs2pdf->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_PS2PDF));
+	confDlg->ui.lineEditBibtex->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_BIBTEX));
+	confDlg->ui.lineEditMakeindex->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_MAKEINDEX));
+	confDlg->ui.lineEditPdfviewer->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_VIEWPDF));
+	confDlg->ui.lineEditMetapost->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_METAPOST));
+	confDlg->ui.lineEditGhostscript->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_GHOSTSCRIPT));
+	confDlg->ui.lineEditExecuteBeforeCompiling->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_PRECOMPILE));
+	confDlg->ui.lineEditUserquick->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_QUICK));
 	
 	//completion lists
 	QStringList files=findResourceFiles("completion","*.cwl");
@@ -330,6 +353,22 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 			maxRecentProjects=confDlg->ui.spinBoxMaxRecentProjects->value();
 			updateRecentFiles(true);
 		}
+
+		//build things
+		buildManager->setLatexCommand(BuildManager::CMD_LATEX,confDlg->ui.lineEditLatex->text());
+		buildManager->setLatexCommand(BuildManager::CMD_PDFLATEX,confDlg->ui.lineEditPdflatex->text());
+		buildManager->setLatexCommand(BuildManager::CMD_DVIPS,confDlg->ui.lineEditDvips->text());
+		buildManager->setLatexCommand(BuildManager::CMD_VIEWDVI,confDlg->ui.lineEditDviviewer->text());
+		buildManager->setLatexCommand(BuildManager::CMD_VIEWPS,confDlg->ui.lineEditPsviewer->text());
+		buildManager->setLatexCommand(BuildManager::CMD_DVIPDF,confDlg->ui.lineEditDvipdfm->text());
+		buildManager->setLatexCommand(BuildManager::CMD_PS2PDF,confDlg->ui.lineEditPs2pdf->text());
+		buildManager->setLatexCommand(BuildManager::CMD_BIBTEX,confDlg->ui.lineEditBibtex->text());
+		buildManager->setLatexCommand(BuildManager::CMD_MAKEINDEX,confDlg->ui.lineEditMakeindex->text());
+		buildManager->setLatexCommand(BuildManager::CMD_VIEWPDF,confDlg->ui.lineEditPdfviewer->text());
+		buildManager->setLatexCommand(BuildManager::CMD_METAPOST,confDlg->ui.lineEditMetapost->text());
+		buildManager->setLatexCommand(BuildManager::CMD_GHOSTSCRIPT,confDlg->ui.lineEditGhostscript->text());
+		buildManager->setLatexCommand(BuildManager::CMD_USER_PRECOMPILE,confDlg->ui.lineEditExecuteBeforeCompiling->text());
+		buildManager->setLatexCommand(BuildManager::CMD_USER_QUICK,confDlg->ui.lineEditUserquick->text());
 
 		//key replacements
 		keyReplace.clear();
@@ -480,6 +519,10 @@ QMenu* ConfigManager::getManagedMenu(QString id) {
 	if (menuParent) menu=menuParent->findChild<QMenu*>(id);
 	if (menu==0) qWarning("Can't find internal menu %s",id.toAscii().data());
 	return menu;
+}
+void ConfigManager::triggerManagedAction(QString id){
+	QAction* act = getManagedAction(id);
+	if (act) act->trigger();
 }
 void ConfigManager::modifyManagedShortcuts(){
 	//modify shortcuts
