@@ -4000,9 +4000,9 @@ bool QEditor::processCursor(QDocumentCursor& c, QKeyEvent *e, bool& b)
 				text.replace("\t", QString(m_doc->tabStop(), ' '));
 			}
 
-			c.beginEditBlock();
+			//c.beginEditBlock(); //sdm
 			insertText(c, text);
-			c.endEditBlock();
+			//c.endEditBlock();
 
 			break;
 		}

@@ -71,7 +71,7 @@ int QDocumentCommand::id() const
 
 	Command merging is not implemented.
 */
-bool QDocumentCommand::mergeWith(const QUndoCommand *)
+bool QDocumentCommand::mergeWith(const QUndoCommand *command)
 {
 	return false;
 }
@@ -762,8 +762,15 @@ QDocumentInsertCommand::~QDocumentInsertCommand()
 
 }
 
-bool QDocumentInsertCommand::mergeWith(const QUndoCommand *)
+bool QDocumentInsertCommand::mergeWith(const QUndoCommand *command)
 {
+	int new_line=static_cast<const QDocumentInsertCommand*>(command)->m_data.lineNumber;
+	int new_startOffset=static_cast<const QDocumentInsertCommand*>(command)->m_data.startOffset;
+	int myLenght=m_data.begin.length();
+	if(new_line==m_data.lineNumber && new_startOffset==m_data.startOffset+myLenght){
+		m_data.begin+=static_cast<const QDocumentInsertCommand*>(command)->m_data.begin;
+		return true;
+	}
 	return false;
 }
 
