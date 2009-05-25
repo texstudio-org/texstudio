@@ -63,20 +63,20 @@ CompletionWord::CompletionWord(const QString &newWord) {
 	sortWord.replace("*","#");
 }
 
-void CompletionWord::insertAt(QEditor* editor, QDocumentCursor cursor) {
+void CompletionWord::insertAt(QEditor* editor, QDocumentCursor* cursor) {
 	QString savedSelection;
 	int multilines=shownWord.count('\n');
 	QVector<QDocumentLine> documentlines;
 
-	if (cursor.hasSelection()) {
-		savedSelection=cursor.selectedText();
-		cursor.removeSelectedText();
+	if (cursor->hasSelection()) {
+		savedSelection=cursor->selectedText();
+		cursor->removeSelectedText();
 	}
-	QDocumentCursor selector=cursor;
-	int curStart=cursor.columnNumber();
-	QDocumentLine curLine=cursor.line();
+	QDocumentCursor selector=*cursor;
+	int curStart=cursor->columnNumber();
+	QDocumentLine curLine=cursor->line();
 
-	cursor.insertText(shownWord);
+	cursor->insertText(shownWord);
 
 	if (multilines) {
 		documentlines.resize(multilines+1);
@@ -109,10 +109,10 @@ void CompletionWord::insertAt(QEditor* editor, QDocumentCursor cursor) {
 		int p=shownWord.indexOf("{");
 		QString content="content...";
 		if (editor->flag(QEditor::AutoIndent)) {
-			cursor.insertText("\n"+indent+"\t"+content+"\n"+indent+"\\end"+shownWord.mid(p,shownWord.indexOf("}")-p+1));
+			cursor->insertText("\n"+indent+"\t"+content+"\n"+indent+"\\end"+shownWord.mid(p,shownWord.indexOf("}")-p+1));
 			indent+="\t";
 		} else
-			cursor.insertText("\n"+indent+content+"\n"+indent+"\\end"+shownWord.mid(p,shownWord.indexOf("}")-p+1));
+			cursor->insertText("\n"+indent+content+"\n"+indent+"\\end"+shownWord.mid(p,shownWord.indexOf("}")-p+1));
 		if (QDocument::formatFactory())
 			for (int i=0; i<descriptiveParts.size(); i++)
 				curLine.next().addOverlay(QFormatRange(indent.size(),content.size(),QDocument::formatFactory()->id("temporaryCodeCompletion")));
@@ -141,7 +141,7 @@ void CompletionWord::insertAt(QEditor* editor, QDocumentCursor cursor) {
 			selectFrom=anchorPos+curStart;
 			selectTo=cursorPos+curStart;
 		}
-	} else editor->setCursor(cursor); //place after insertion
+	} else editor->setCursor(*cursor); //place after insertion
 	if (selectFrom!=-1) {
 		if (deltaLine>0) selector.movePosition(deltaLine,QDocumentCursor::Down,QDocumentCursor::MoveAnchor);
 		selector.setColumnNumber(selectFrom);
@@ -190,7 +190,7 @@ public:
 			for (int i=maxWritten-cursor.columnNumber(); i>0; i--) cursor.deleteChar();
 			for (int i=cursor.columnNumber()-curStart; i>0; i--) cursor.deletePreviousChar();
 			//  cursor.setColumnNumber(curStart);
-			cw.insertAt(editor,cursor);
+			cw.insertAt(editor,&cursor);
 
 			cursor.endEditBlock();
 

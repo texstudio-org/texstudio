@@ -39,7 +39,7 @@ public:
 	int anchorPos;
 	QList<QPair<int, int> > descriptiveParts; //used to draw
 
-	void insertAt(QEditor* editor, QDocumentCursor cursor);
+	void insertAt(QEditor* editor, QDocumentCursor* cursor);
 };
 Q_DECLARE_METATYPE(CompletionWord)
 //class CompleterInputBinding;
