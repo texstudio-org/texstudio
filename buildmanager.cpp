@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QProcess>
 #include <QTemporaryFile>
+#include <QTextStream>
 
 #include "smallUsefulFunctions.h"
 
@@ -20,6 +21,15 @@ BuildManager::BuildManager()
 {
 }
 BuildManager::~BuildManager() {
+	//remove preview file names
+	foreach(QString elem,previewFileNames){
+		QDir currentDir(QFileInfo(elem).absoluteDir());
+		elem=QFileInfo(elem).completeBaseName();
+		QStringList files;
+		files = currentDir.entryList(QStringList(elem+"*"),
+								  QDir::Files | QDir::NoSymLinks);
+		foreach(QString file,files) QFile::remove(currentDir.absolutePath()+"/"+file);
+	}
 #ifdef Q_WS_WIN
 	if (pidInst) DdeUninitialize(pidInst);
 #endif
@@ -406,16 +416,49 @@ QTemporaryFile* BuildManager::temporaryTexFile(){
 //Then dvips to convert it to ps
 //Then ghostscript to convert it to 
 void BuildManager::preview(const QString &preamble, const QString &text){
-	if (getLatexCommand(CMD_LATEX)=="" || getLatexCommand(CMD_GHOSTSCRIPT)=="") 
+/*	if (getLatexCommand(CMD_LATEX)=="" || getLatexCommand(CMD_GHOSTSCRIPT)=="") 
 		return;  //they are needed for preview
 	QTemporaryFile *file = temporaryTexFile();
 	//file.
 	ProcessX * proc = newProcess(CMD_LATEX,file->fileName());
 	delete file; //don't deletes the file
 	connect(proc,SIGNAL(finished(int)),this, SLOT(latexPreviewCompleted(int)));
-	proc->startCommand();
-	
+	proc->startCommand();*/
+
+	//header << "\\pagestyle{empty}" << "\\begin{document}";
+    // write to temp file
+	QTemporaryFile *tf=new QTemporaryFile(QDir::tempPath()+"/XXXXXX.tex");
+	tf->open();
+	QTextStream out(tf);
+	out << preamble 
+		<< "\n\\begin{document}\n" 
+		<< text
+		<< "\n\\end{document}\n";
+	tf->close();
+	// prepare commands/filenames
+	QString cmd="latex -interaction=nonstopmode %.tex";
+	QString ffn=QFileInfo(*tf).absoluteFilePath();
+	previewFileNames.append(ffn);
+	QString fn=QFileInfo(*tf).completeBaseName();
+	tf->setAutoRemove(false);
+	delete tf; // tex file needs to be freed
+	// start conversion
+	// preliminary code
+	// tex -> dvi
+	ProcessX *p1 = newProcess(cmd,ffn); //no delete! goes automatically
+	p1->startCommand();
+	p1->waitForFinished();
+	// dvi -> png
+	ProcessX *p2 = newProcess("dvipng -T tight -x 12000 %.dvi",ffn);
+	p2->startCommand();
+	p2->waitForFinished();
+	// put image in preview
+	QFile file(QDir::tempPath()+"/"+fn+"1.png");
+    if(file.exists()){
+		emit previewAvailable(QPixmap(QDir::tempPath()+"/"+fn+"1.png"),text);
+    }
 }
+
 
 void BuildManager::latexPreviewCompleted(int status){
 //	ProcessX* proc=qobject_cast<ProcessX*>(sender());

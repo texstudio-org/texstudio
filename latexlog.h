@@ -28,6 +28,7 @@ public:
 
 	bool found(LogType lt);
 	int markID(LogType lt);
+	int logLineNumberToLogEntryNumber(int logLine); //returns the last entry with has a logline number <= logLine, or -1 if none exist
 };
 
 #endif

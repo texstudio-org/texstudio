@@ -114,3 +114,11 @@ bool LatexLogModel::found(LogType lt) {
 int LatexLogModel::markID(LogType lt) {
 	return markIDs[lt];
 }
+int LatexLogModel::logLineNumberToLogEntryNumber(int logLine){
+	int res=-1;
+	for (int i=0; i<log.count();i++)
+		if (log.at(i).logline<=logLine) 
+			if (res==-1 || log.at(i).logline > log.at(res).logline) 
+				res=i;
+	return res;
+}

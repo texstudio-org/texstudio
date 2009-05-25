@@ -172,107 +172,18 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 
 // OUTPUT WIDGETS
-	OutputView = new QDockWidget(this);
-	OutputView->setObjectName("OutputView");
-	OutputView->setAllowedAreas(Qt::AllDockWidgetAreas);
-	OutputView->setFeatures(QDockWidget::DockWidgetClosable);
-	OutputView->setWindowTitle(tr("Messages / Log File"));
-	addDockWidget(Qt::BottomDockWidgetArea,OutputView);
-	connect(OutputView,SIGNAL(visibilityChanged(bool)),this,SLOT(OutputViewVisibilityChanged(bool)));
-
-
-	logModel = new LatexLogModel(this);//needs loaded line marks
-
-	OutputTable= new QTableView(this);
-	OutputTable2= new QTableView(this); // second table view for tab log view
-	QFontMetrics fm(qApp->font());
-	for (int i=0;i<2;i++){ //setup tables
-		QTableView* table=(i==0)?OutputTable:OutputTable2;
-		table->setModel(logModel);
-
-		table->setSelectionBehavior(QAbstractItemView::SelectRows);
-		table->setSelectionMode(QAbstractItemView::SingleSelection);
-		table->setColumnWidth(0,fm.width("> "));
-		table->setColumnWidth(1,20*fm.width("w"));
-		table->setColumnWidth(2,fm.width("WarningW"));
-		table->setColumnWidth(3,fm.width("Line WWWWW"));
-		table->setColumnWidth(4,20*fm.width("w"));
-		connect(table, SIGNAL(clicked(const QModelIndex &)), this, SLOT(ClickedOnLogLine(const QModelIndex &)));
-	
-		table->horizontalHeader()->setStretchLastSection(true);
-		table->setMinimumHeight(5*(fm.lineSpacing()+4));
-	}
-
-	OutputTextEdit = new LogEditor(this);
-	OutputTextEdit->setFocusPolicy(Qt::ClickFocus);
-	OutputTextEdit->setMinimumHeight(3*(fm.lineSpacing()+4));
-	OutputTextEdit->setReadOnly(true);
-	connect(OutputTextEdit, SIGNAL(clickonline(int)),this,SLOT(gotoLine(int)));
-
-	OutputLogTextEdit = new LogEditor(this);
-	OutputLogTextEdit->setFocusPolicy(Qt::ClickFocus);
-	OutputLogTextEdit->setMinimumHeight(3*(fm.lineSpacing()+4));
-	OutputLogTextEdit->setReadOnly(true);
-	connect(OutputLogTextEdit, SIGNAL(clickonline(int)),this,SLOT(gotoLine(int)));
-
-	OutputLayout= new QStackedWidget;
-
-	QVBoxLayout* OutputVLayout= new QVBoxLayout; //contains the widgets for the normal mode (OutputTable + OutputLogTextEdit)
-	OutputVLayout->setSpacing(0);
-	OutputVLayout->setMargin(0);
-
-	// add widget to log view
-	OutputLayout->addWidget(OutputTextEdit);
-
-	OutputVLayout->addWidget(OutputTable);
-	OutputVLayout->addWidget(OutputLogTextEdit);
-	QWidget* tempWidget=new QWidget (this);
-	tempWidget->setLayout(OutputVLayout);
-	OutputLayout->addWidget(tempWidget);
-
-	if (tabbedLogView) {
-		OutputTable->hide();
-	}
-	OutputLayout->addWidget(OutputTable2);
-
-	// previewer
-	preViewer = new QLabel(this);
-	preViewer->setBackgroundRole(QPalette::Base);
-	preViewer->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-	preViewer->setScaledContents(true);
-	preViewer->setContextMenuPolicy(Qt::CustomContextMenu);
-	connect(preViewer,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(PreviewContextMenu(QPoint)));
-
-	scrollArea = new QScrollArea(this);
-	scrollArea->setBackgroundRole(QPalette::Dark);
-	scrollArea->setWidget(preViewer);
-	OutputLayout->addWidget(scrollArea);
-
-	previewFileNames.clear(); // clear list of preview filenames
-
-	// order for tabbar
-	logViewerTabBar=new QTabBar(this);
-	logViewerTabBar->addTab(tr("messages"));
-	logViewerTabBar->addTab(tr("log file"));
-	logViewerTabBar->addTab(tr("errors"));
-	logViewerTabBar->addTab(tr("preview"));
-
-	OutputView->setWidget(OutputLayout);
-
-	if (tabbedLogView) {
-		OutputView->setTitleBarWidget(logViewerTabBar);
-	} else {
-		logViewerTabBar->hide();
-	}
-
-	connect(logViewerTabBar, SIGNAL(currentChanged(int)),
-	        OutputLayout, SLOT(setCurrentIndex(int)));
-
-	connect(logViewerTabBar, SIGNAL(currentChanged(int)),
-	        this, SLOT(tabChanged(int)));
-
-	logpresent=false;
-
+	outputView = new OutputViewWidget(this);
+	outputView->setObjectName("OutputView");
+	outputView->setAllowedAreas(Qt::AllDockWidgetAreas);
+	outputView->setFeatures(QDockWidget::DockWidgetClosable);
+	outputView->setWindowTitle(tr("Messages / Log File"));
+	outputView->setTabbedLogView(configManager.tabbedLogView);
+	addDockWidget(Qt::BottomDockWidgetArea,outputView);
+	connect(outputView,SIGNAL(visibilityChanged(bool)),this,SLOT(OutputViewVisibilityChanged(bool)));
+	connect(outputView,SIGNAL(locationActivated(int,const QString&)),this,SLOT(gotoLocation(int,const QString&)));
+	connect(outputView,SIGNAL(logEntryActivated(int)),this,SLOT(gotoLogEntryEditorOnly(int)));
+	connect(&configManager,SIGNAL(tabbedLogViewChanged(bool)),outputView,SLOT(setTabbedLogView(bool)));
+	connect(&buildManager,SIGNAL(previewAvailable(const QPixmap&, const QString&)),outputView,SLOT(previewLatex(const QPixmap&)));
 // TAB WIDGET EDITEUR
 	EditorView=new QTabWidget(this);
 	EditorView->setFocusPolicy(Qt::ClickFocus);
@@ -379,7 +290,7 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	newManagedAction(menu,"pasteAsLatex",tr("Paste as Latex"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, ":/images/editpaste.png");
 	newManagedAction(menu,"convertToLatex",tr("Convert to Latex"), SLOT(convertToLatex()));
-        newManagedAction(menu,"previewLatex",tr("Preview Selection"), SLOT(previewLatex()));
+        newManagedAction(menu,"previewLatex",tr("Preview Selection/Parantheses"), SLOT(previewLatex()));
 
 	LatexEditorView::setBaseActions(menu->actions());
 
@@ -536,7 +447,7 @@ void Texmaker::setupMenus() {
 
 	menu->addSeparator();
 	newManagedAction(menu, "structureview",StructureView->toggleViewAction());
-	newManagedAction(menu, "outputview",OutputView->toggleViewAction());
+	newManagedAction(menu, "outputview",outputView->toggleViewAction());
 
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "collapse", tr("Collapse"));
@@ -769,10 +680,7 @@ void Texmaker::UpdateCaption() {
 	setWindowTitle(title);
 	UpdateStructure();
 	if (singlemode) {
-		OutputTextEdit->clear();
-		//logViewerTabBar->setCurrentIndex(0);
-		//OutputTable->hide();
-		logpresent=false;
+		outputView->resetMessagesAndLog();
 	}
 	QString finame=getName();
 	if (finame!="untitled" && finame!="") configManager.lastDocument=finame;
@@ -796,8 +704,8 @@ void Texmaker::lineMarkToolTip(int line, int mark) {
 	int badboxMarkID = QLineMarksInfoCenter::instance()->markTypeId("badbox");
 	if (mark != errorMarkID && mark != warningMarkID && mark != badboxMarkID) return;
 	int error = currentEditorView()->lineToLogEntries.value(currentEditorView()->editor->document()->line(line).handle(),-1);
-	if (error<0 || error >= logModel->count()) return;
-	currentEditorView()->lineMarkPanel->setToolTipForTouchedMark(logModel->at(error).niceMessage());
+	if (error<0 || error >= outputView->getLogModel()->count()) return;
+	currentEditorView()->lineMarkPanel->setToolTipForTouchedMark(outputView->getLogModel()->at(error).niceMessage());
 }
 
 void Texmaker::NewDocumentStatus(bool m) {
@@ -838,6 +746,24 @@ void Texmaker::updateEditorSetting(LatexEditorView *edit) {
 	edit->lineChangePanel->setChecked(showlinestate);
 	edit->statusPanel->setChecked(showcursorstate);
 }
+
+LatexEditorView* Texmaker::getEditorFromFileName(const QString &fileName){
+	//TODO: normalize file names
+	for (FilesMap::const_iterator it=filenames.constBegin(); it!=filenames.constEnd(); ++it){
+		if (it.value()==fileName) return it.key();
+		if (QString(it.value()).replace("\\","/") == fileName)  return it.key();
+		if (QString(it.value()).replace("/","\\") == fileName)  return it.key();
+	}
+	if (fileName.contains("/") || fileName.contains("\\")) return 0;
+	//try relative file names
+	QString slashFileName="/"+fileName;
+	for (FilesMap::const_iterator it=filenames.constBegin(); it!=filenames.constEnd(); ++it){
+		if (it.value().endsWith(slashFileName)) return it.key();
+		if (QString(it.value()).replace("\\","/").endsWith(slashFileName))  return it.key();
+	}	
+	return 0;
+}
+
 QString Texmaker::getName() {
 	QString title;
 	if (!currentEditorView())	{
@@ -856,20 +782,10 @@ QString Texmaker::getCompileFileName(){
 	else return MasterName;
 }
 bool Texmaker::FileAlreadyOpen(QString f) {
-	FilesMap::Iterator it;
-	QString fw32,funix,forig;
-	for (it = filenames.begin(); it != filenames.end(); ++it) {
-		forig=filenames[it.key()];
-		fw32=filenames[it.key()];
-		funix=filenames[it.key()];
-		fw32.replace(QString("\\"),QString("/"));
-		funix.replace(QString("/"),QString("\\"));
-		if ((forig==f) || (fw32==f) || (funix==f)) {
-			EditorView->setCurrentIndex(EditorView->indexOf(it.key()));
-			return true;
-		}
-	}
-	return false;
+	LatexEditorView* edView = getEditorFromFileName(f);
+	if (!edView) return false;
+	EditorView->setCurrentWidget(edView);
+	return true;
 }
 ///////////////////FILE//////////////////////////////////////
 
@@ -890,7 +806,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 				ToggleMode();
 			}
 		}
-		return 0;
+		return currentEditorView();
 	}
 
 	if (!QFile::exists(f_real)) return 0;
@@ -923,17 +839,9 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 			ToggleMode();
 		}
 	}
+	if (outputView->logPresent()) DisplayLatexError(); //show marks
 	return edit;
 }
-
-void Texmaker::gotoLine(int line) {
-	if (currentEditorView() && line>=0)	{
-		currentEditorView()->editor->setCursorPosition(line,0);
-		currentEditorView()->editor->ensureCursorVisible();
-		currentEditorView()->editor->setFocus();
-	}
-}
-
 
 void Texmaker::fileNew(QString fileName) {
 	LatexEditorView *edit = new LatexEditorView(0);
@@ -1136,7 +1044,7 @@ void Texmaker::fileExit() {
 			delete mainSpeller; //this saves the ignore list
 			mainSpeller=0;
 		}
-		removeTempFiles(previewFileNames);
+		
 		qApp->quit();
 	}
 }
@@ -1596,7 +1504,7 @@ void Texmaker::ReadSettings() {
 	readCompletionList(completerFiles);
 	config->endGroup();
 
-	tabbedLogView=config->value("LogView/Tabbed","true").toBool();
+	
 
 	delete config;
 }
@@ -1689,8 +1597,6 @@ void Texmaker::SaveSettings() {
 	config->beginGroup("formats");
 	m_formats->save(*config);
 	config->endGroup();
-
-	config->setValue("LogView/Tabbed",tabbedLogView);
 
 	if (!completerFiles.isEmpty()) {
 		config->beginGroup("completionFile");
@@ -1953,7 +1859,7 @@ void Texmaker::InsertTag(QString Entity, int dx, int dy) {
 	else if (dx==0) currentEditorView()->editor->setCursorPosition(curline+dy,0);
 	else currentEditorView()->editor->setCursorPosition(curline+dy,curindex+dx);
 	currentEditorView()->editor->setFocus();
-	OutputTextEdit->clear();
+//	outputView->setMessage("");
 	//logViewerTabBar->setCurrentIndex(0);
 	//OutputTable->hide();
 	//logpresent=false;
@@ -1994,7 +1900,7 @@ void Texmaker::InsertFromAction() {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (action)	{
 		CompletionWord(action->data().toString()).insertAt(currentEditorView()->editor,currentEditorView()->editor->cursor());
-		OutputTextEdit->setText(CompletionWord(action->whatsThis()).shownWord);
+		outputView->setMessage(CompletionWord(action->whatsThis()).shownWord);
 	}
 }
 
@@ -2030,12 +1936,9 @@ void Texmaker::InsertBib() {
 	tag +=fi.completeBaseName();
 	tag +=QString("}\n");
 	InsertTag(tag,0,1);
-	OutputTextEdit->clear();
-	logViewerTabBar->setCurrentIndex(0);
-//OutputTable->hide();
-	OutputTextEdit->insertLine("The argument to \\bibliography refers to the bib file (without extension)");
-	OutputTextEdit->insertLine("which should contain your database in BibTeX format.");
-	OutputTextEdit->insertLine("Texmaker inserts automatically the base name of the TeX file");
+	outputView->setMessage(QString("The argument to \\bibliography refers to the bib file (without extension)\n")+
+	                                "which should contain your database in BibTeX format.\n"+
+	                                "Texmaker inserts automatically the base name of the TeX file");
 }
 
 void Texmaker::InsertStruct() {
@@ -2379,8 +2282,7 @@ void Texmaker::InsertBib1() {
 	tag+="OPTannote = {}\n";
 	tag+="}\n";
 	InsertTag(tag,9,0);
-	OutputTextEdit->insertLine("Bib fields - Article in Journal");
-	OutputTextEdit->insertLine("OPT.... : optionnal fields (use the 'Clean' command to remove them)");
+	outputView->setMessage("Bib fields - Article in Journal \n OPT.... : optionnal fields (use the 'Clean' command to remove them)");
 }
 void Texmaker::InsertBib2() {
 	QString tag = QString("@InProceedings{,\n");
@@ -2403,8 +2305,7 @@ void Texmaker::InsertBib2() {
 	tag+="OPTannote = {}\n";
 	tag+="}\n";
 	InsertTag(tag,15,0);
-	OutputTextEdit->insertLine("Bib fields - Article in Conference Proceedings");
-	OutputTextEdit->insertLine("OPT.... : optionnal fields (use the 'Clean' command to remove them)");
+	outputView->setMessage("Bib fields - Article in Conference Proceedings\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
 }
 void Texmaker::InsertBib3() {
 	QString tag = QString("@InCollection{,\n");
@@ -2429,8 +2330,7 @@ void Texmaker::InsertBib3() {
 	tag+="OPTannote = {}\n";
 	tag+="}\n";
 	InsertTag(tag,14,0);
-	OutputTextEdit->insertLine("Bib fields - Article in a Collection");
-	OutputTextEdit->insertLine("OPT.... : optionnal fields (use the 'Clean' command to remove them)");
+	outputView->setMessage("Bib fields - Article in a Collection\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
 }
 void Texmaker::InsertBib4() {
 	QString tag = QString("@InBook{,\n");
@@ -2453,9 +2353,7 @@ void Texmaker::InsertBib4() {
 	tag+="OPTannote = {}\n";
 	tag+="}\n";
 	InsertTag(tag,8,0);
-	OutputTextEdit->insertLine("Bib fields - Chapter or Pages in a Book");
-	OutputTextEdit->insertLine("ALT.... : you have the choice between these two fields");
-	OutputTextEdit->insertLine("OPT.... : optionnal fields (use the 'Clean' command to remove them)");
+	outputView->setMessage("Bib fields - Chapter or Pages in a Book\nALT.... : you have the choice between these two fields\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
 }
 void Texmaker::InsertBib5() {
 	QString tag = QString("@Proceedings{,\n");
@@ -2474,8 +2372,7 @@ void Texmaker::InsertBib5() {
 	tag+="OPTannote = {}\n";
 	tag+="}\n";
 	InsertTag(tag,13,0);
-	OutputTextEdit->insertLine("Bib fields - Conference Proceedings");
-	OutputTextEdit->insertLine("OPT.... : optionnal fields (use the 'Clean' command to remove them)");
+	outputView->setMessage("Bib fields - Conference Proceedings\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
 }
 void Texmaker::InsertBib6() {
 	QString tag = QString("@Book{,\n");
@@ -2495,9 +2392,7 @@ void Texmaker::InsertBib6() {
 	tag+="OPTannote = {}\n";
 	tag+="}\n";
 	InsertTag(tag,6,0);
-	OutputTextEdit->insertLine("Bib fields - Book");
-	OutputTextEdit->insertLine("ALT.... : you have the choice between these two fields");
-	OutputTextEdit->insertLine("OPT.... : optionnal fields (use the 'Clean' command to remove them)");
+	outputView->setMessage("Bib fields - Book\nALT.... : you have the choice between these two fields\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
 }
 void Texmaker::InsertBib7() {
 	QString tag = QString("@Booklet{,\n");
@@ -2512,8 +2407,7 @@ void Texmaker::InsertBib7() {
 	tag+="OPTannote = {}\n";
 	tag+="}\n";
 	InsertTag(tag,9,0);
-	OutputTextEdit->insertLine("Bib fields - Booklet");
-	OutputTextEdit->insertLine("OPT.... : optionnal fields (use the 'Clean' command to remove them)");
+	outputView->setMessage("Bib fields - Booklet\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
 }
 void Texmaker::InsertBib8() {
 	QString tag = QString("@PhdThesis{,\n");
@@ -2529,8 +2423,7 @@ void Texmaker::InsertBib8() {
 	tag+="OPTannote = {}\n";
 	tag+="}\n";
 	InsertTag(tag,11,0);
-	OutputTextEdit->insertLine("Bib fields - PhD. Thesis");
-	OutputTextEdit->insertLine("OPT.... : optionnal fields (use the 'Clean' command to remove them)");
+	outputView->setMessage("Bib fields - PhD. Thesis\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
 }
 void Texmaker::InsertBib9() {
 	QString tag = QString("@MastersThesis{,\n");
@@ -2546,8 +2439,7 @@ void Texmaker::InsertBib9() {
 	tag+="OPTannote = {}\n";
 	tag+="}\n";
 	InsertTag(tag,15,0);
-	OutputTextEdit->insertLine("Bib fields - Master's Thesis");
-	OutputTextEdit->insertLine("OPT.... : optionnal fields (use the 'Clean' command to remove them)");
+	outputView->setMessage("Bib fields - Master's Thesis\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
 }
 void Texmaker::InsertBib10() {
 	QString tag = QString("@TechReport{,\n");
@@ -2564,8 +2456,7 @@ void Texmaker::InsertBib10() {
 	tag+="OPTannote = {}\n";
 	tag+="}\n";
 	InsertTag(tag,12,0);
-	OutputTextEdit->insertLine("Bib fields - Technical Report");
-	OutputTextEdit->insertLine("OPT.... : optionnal fields (use the 'Clean' command to remove them)");
+	outputView->setMessage("Bib fields - Technical Report\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
 }
 void Texmaker::InsertBib11() {
 	QString tag = QString("@Manual{,\n");
@@ -2581,8 +2472,7 @@ void Texmaker::InsertBib11() {
 	tag+="OPTannote = {}\n";
 	tag+="}\n";
 	InsertTag(tag,8,0);
-	OutputTextEdit->insertLine("Bib fields - Technical Manual");
-	OutputTextEdit->insertLine("OPT.... : optionnal fields (use the 'Clean' command to remove them)");
+	outputView->setMessage("Bib fields - Technical Manual\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
 }
 void Texmaker::InsertBib12() {
 	QString tag = QString("@Unpublished{,\n");
@@ -2595,8 +2485,7 @@ void Texmaker::InsertBib12() {
 	tag+="OPTannote = {}\n";
 	tag+="}\n";
 	InsertTag(tag,13,0);
-	OutputTextEdit->insertLine("Bib fields - Unpublished");
-	OutputTextEdit->insertLine("OPT.... : optionnal fields (use the 'Clean' command to remove them)");
+	outputView->setMessage("Bib fields - Unpublished\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
 }
 void Texmaker::InsertBib13() {
 	QString tag = QString("@Misc{,\n");
@@ -2610,8 +2499,7 @@ void Texmaker::InsertBib13() {
 	tag+="OPTannote = {}\n";
 	tag+="}\n";
 	InsertTag(tag,6,0);
-	OutputTextEdit->insertLine("Bib fields - Miscellaneous");
-	OutputTextEdit->insertLine("OPT.... : optionnal fields (use the 'Clean' command to remove them)");
+	outputView->setMessage("Bib fields - Miscellaneous\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
 }
 
 void Texmaker::CleanBib() {
@@ -2699,7 +2587,7 @@ void Texmaker::InsertRef() {
 		tag="\\ref{"+refDlg->ui.comboBox->currentText()+"}";
 		InsertTag(tag,tag.length(),0);
 	} else InsertTag("\\ref{}",5,0);
-	OutputTextEdit->insertLine("\\ref{key}");
+	outputView->setMessage("\\ref{key}");
 }
 
 void Texmaker::InsertPageRef() {
@@ -2711,7 +2599,7 @@ void Texmaker::InsertPageRef() {
 		tag="\\pageref{"+refDlg->ui.comboBox->currentText()+"}";
 		InsertTag(tag,tag.length(),0);
 	} else InsertTag("\\pageref{}",9,0);
-	OutputTextEdit->insertLine("\\pageref{key}");
+	outputView->setMessage("\\pageref{key}");
 }
 
 void Texmaker::SizeCommand() {
@@ -2820,7 +2708,7 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,QStri
 
 	if (commandline.trimmed().isEmpty()) {
 		ERRPROCESS=true;
-		OutputTextEdit->insertLine("Error : no command given \n");
+		outputView->insertMessageLine("Error : no command given \n");
 		return;
 	}
 
@@ -2831,17 +2719,16 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,QStri
 	connect(procX, SIGNAL(finished(int)),this, SLOT(SlotEndProcess(int)));
 
 
-	OutputTextEdit->clear();
-	logViewerTabBar->setCurrentIndex(0);
-//OutputTable->hide();
-//OutputTextEdit->insertLine(commandline+"\n");
+	outputView->resetMessages();
+
+	//OutputTextEdit->insertLine(commandline+"\n");
 	FINPROCESS = false;
 	procX->startCommand();
 	if (!procX->waitForStarted(1000)) {
 		ERRPROCESS=true;
-		OutputTextEdit->insertLine("Error: "+tr("could not start the command:")+" "+commandline+"\n");
+		outputView->insertMessageLine("Error: "+tr("could not start the command:")+" "+commandline+"\n");
 		return;
-	} else OutputTextEdit->insertLine(tr("Process started")+"\n");
+	} else outputView->insertMessageLine(tr("Process started")+"\n");
 
 	if (waitendprocess) {
 		QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
@@ -2853,7 +2740,7 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,QStri
 }
 
 void Texmaker::RunPreCompileCommand() {
-	logpresent=false;//log to old (whenever latex is called)
+	outputView->resetMessagesAndLog();//log to old (whenever latex is called)
 	if (buildManager.getLatexCommand(BuildManager::CMD_USER_PRECOMPILE).isEmpty()) return;
 	runCommand(BuildManager::CMD_USER_PRECOMPILE,true,false);
 }
@@ -2863,7 +2750,7 @@ void Texmaker::readFromStderr() {
 	if (!procX) return;
 	QByteArray result=procX->readAllStandardError();
 	QString t=QString(result).simplified();
-	if (!t.isEmpty()) OutputTextEdit->insertLine(t+"\n");
+	if (!t.isEmpty()) outputView->insertMessageLine(t+"\n");
 }
 
 void Texmaker::readFromStdoutput() {
@@ -2871,14 +2758,14 @@ void Texmaker::readFromStdoutput() {
 	if (!procX) return;
 	QByteArray result=procX->readAllStandardOutput();
 	QString t=QString(result).trimmed();
-	if (!t.isEmpty()) OutputTextEdit->insertLine(t+"\n");
+	if (!t.isEmpty()) outputView->insertMessageLine(t+"\n");
 }
 
 void Texmaker::SlotEndProcess(int err) {
 	FINPROCESS=true;
 	QString result=((err) ? "Process exited with error(s)" : "Process exited normally");
 	if (err) ERRPROCESS=true;
-	OutputTextEdit->insertLine(result);
+	outputView->insertMessageLine(result);
 	stat2->setText(QString(" %1 ").arg(tr("Ready")));
 }
 
@@ -2903,7 +2790,7 @@ void Texmaker::QuickBuild() {
 			else return;
 		} else {
 			NextError();
-			SwitchToErrorList();
+			outputView->showErrorListOrLog();
 		}
 	}
 	break;
@@ -2920,7 +2807,7 @@ void Texmaker::QuickBuild() {
 			else return;
 		} else {
 			NextError();
-			SwitchToErrorList();
+			outputView->showErrorListOrLog();
 		}
 	}
 	break;
@@ -2937,7 +2824,7 @@ void Texmaker::QuickBuild() {
 			else return;
 		} else {
 			NextError();
-			SwitchToErrorList();
+			outputView->showErrorListOrLog();
 		}
 	}
 	break;
@@ -2957,7 +2844,7 @@ void Texmaker::QuickBuild() {
 			else return;
 		} else {
 			NextError();
-			SwitchToErrorList();	
+			outputView->showErrorListOrLog();
 		}
 	}
 	break;
@@ -2979,7 +2866,7 @@ void Texmaker::QuickBuild() {
 			if (!ERRPROCESS) configManager.triggerManagedAction("main/tools/viewpdf");
 		} else {
 			NextError();
-			SwitchToErrorList();
+			outputView->showErrorListOrLog();
 		}
 	}
 	break;
@@ -3128,22 +3015,16 @@ bool Texmaker::LogExists() {
 	else return false;
 }
 
-void Texmaker::SwitchToErrorList(){
-	if (tabbedLogView) logViewerTabBar->setCurrentIndex(2);
-	else logViewerTabBar->setCurrentIndex(1);
-}
 
 //shows the log (even if it is empty)
 void Texmaker::RealViewLog() {
 	ViewLog();
-	if (!OutputView->isVisible()) OutputView->show();
-	if (OutputLayout->currentIndex()==0) logViewerTabBar->setCurrentIndex(1);
+	outputView->showLogOrErrorList();
 }
 
 //shows the log if there are errors
 void Texmaker::ViewLog() {
-	OutputLogTextEdit->clear();
-	logpresent=false;
+	outputView->resetMessagesAndLog();
 	QString finame;
 	if (singlemode) {
 		finame=getName();
@@ -3164,55 +3045,27 @@ void Texmaker::ViewLog() {
 	QFileInfo fic(logname);
 	if (fic.exists() && fic.isReadable()) {
 		//OutputLogTextEdit->insertLine("LOG FILE :");
-		QFile f(logname);
-		if (f.open(QIODevice::ReadOnly)) {
-			QTextStream t(&f);
-//		OutputTextEdit->setPlainText( t.readAll() );
-			while (!t.atEnd()) {
-				line=t.readLine();
-				line=line.simplified();
-				if (!line.isEmpty()) OutputLogTextEdit->append(line);
-			}
-		}
-		f.close();
-		LatexError();
+		QString overrideFileName=""; //workaround, see parseLogDocument for reason
+		if (configManager.ignoreLogFileNames==2 ||
+			(configManager.ignoreLogFileNames==1 && singlemode)) overrideFileName=getCurrentFileName();
+		outputView->loadLogFile(logname,getCompileFileName(),overrideFileName);
+		//display errors in editor
+		DisplayLatexError();
+		if (outputView->getLogModel()->found(LT_ERROR)) 
+			NextError();
 
 	} else {
 		QMessageBox::warning(this,tr("Error"),tr("Log File not found !"));
 	}
 }
 
-void Texmaker::ClickedOnLogLine(const QModelIndex & index) {
-	GoToLogEntry(index.row());
-}
+
 void Texmaker::OutputViewVisibilityChanged(bool visible) {
-	if (visible) OutputView->toggleViewAction()->setShortcut(Qt::Key_Escape);
-	else OutputView->toggleViewAction()->setShortcut(QKeySequence());
+	if (visible) outputView->toggleViewAction()->setShortcut(Qt::Key_Escape);
+	else outputView->toggleViewAction()->setShortcut(QKeySequence());
 }
 
 ////////////////////////// ERRORS /////////////////////////////
-void Texmaker::LatexError() {
-	QString overrideFileName=""; //workaround, see parseLogDocument for reason
-	if (configManager.ignoreLogFileNames==2 ||
-		(configManager.ignoreLogFileNames==1 && singlemode)) overrideFileName=getCurrentFileName();
-	logModel->parseLogDocument(OutputLogTextEdit->document(), getCompileFileName(), overrideFileName);
-	logpresent=true;
-
-	//display latex errors in table
-	OutputTable->resizeColumnsToContents();
-	OutputTable->resizeRowsToContents();
-	OutputTable2->resizeColumnsToContents();
-	OutputTable2->resizeRowsToContents();
-	//display errors in editor
-	DisplayLatexError();
-	if (logModel->found(LT_ERROR)) {
-		OutputView->show();    //show log when error
-		NextError();
-		if (OutputLayout->currentIndex()==0) 
-			SwitchToErrorList();
-	}
-}
-
 void Texmaker::DisplayLatexError() {
 	int errorMarkID = QLineMarksInfoCenter::instance()->markTypeId("error");
 	int warningMarkID = QLineMarksInfoCenter::instance()->markTypeId("warning");
@@ -3229,7 +3082,8 @@ void Texmaker::DisplayLatexError() {
 	}
 	//backward, so the more important marks (with lower indices) will be inserted last and
 	//returned first be QMultiHash.value
-	for (int i = logModel->count()-1; i >= 0; i--)
+	LatexLogModel* logModel = outputView->getLogModel();
+	for (int i = logModel->count()-1; i >= 0; i--) //TODO call getFileName..
 		if (logModel->at(i).oldline!=-1)
 			for (FilesMap::iterator it=filenames.begin(); it!=filenames.end(); ++it)
 				if (it.value().endsWith(logModel->at(i).file)) {
@@ -3241,90 +3095,33 @@ void Texmaker::DisplayLatexError() {
 					it.key()->logEntryToLine[i]=l.handle();
 					break;
 				}
-
-	//OutputTable->show();
-	OutputLogTextEdit->setCursorPosition(0 , 0);
 }
 
 bool Texmaker::NoLatexErrors() {
-	return !logModel->found(LT_ERROR);
-}
-
-void Texmaker::GoToLogEntry(int logEntryNumber) {
-	if (logEntryNumber<0 || logEntryNumber>=logModel->count()) return;
-	//select entry in table view/log
-	OutputTable->scrollTo(logModel->index(logEntryNumber,1),QAbstractItemView::PositionAtCenter);
-	OutputLogTextEdit->setCursorPosition(logModel->at(logEntryNumber).logline, 0);
-	//get editor containing log entry
-	LatexEditorView* edView=0;
-	for (FilesMap::iterator it=filenames.begin(); it!=filenames.end(); ++it)
-		if (it.value().endsWith(logModel->at(logEntryNumber).file)) {
-			edView=it.key();
-			break;
-		}
-	if (!edView) {
-		edView=load(logModel->at(logEntryNumber).file);
-		if (!edView) {
-			QMessageBox::warning(0,"TexMakerX",tr("Couldn't open file %1").arg(logModel->at(logEntryNumber).file));
-			return;
-		}
-		DisplayLatexError(); //set marks
-	}
-	if (edView != currentEditorView()) EditorView->setCurrentWidget(edView);
-	//get line
-	QDocumentLineHandle* lh = edView->logEntryToLine.value(logEntryNumber, 0);
-	if (!lh) return;
-	//goto line
-	gotoLine(QDocumentLine(lh).lineNumber());
-}
-
-void Texmaker::GoToLogEntryAt(int newLineNumber) {
-	//goto line
-	if (newLineNumber<0) return;
-	gotoLine(newLineNumber);
-	//find error number
-	QDocumentLineHandle* lh=currentEditorView()->editor->document()->line(newLineNumber).handle();
-	int logEntryNumber=currentEditorView()->lineToLogEntries.value(lh,-1);
-	if (logEntryNumber==-1) return;
-	//goto log entry
-	OutputTable->scrollTo(logModel->index(logEntryNumber,1),QAbstractItemView::PositionAtCenter);
-	OutputTable->selectRow(logEntryNumber);
-	OutputLogTextEdit->setCursorPosition(logModel->at(logEntryNumber).logline, 0);
-
-	QPoint p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
-	//  p.ry()+=2*currentEditorView()->editor->document()->fontMetrics().lineSpacing();
-	QToolTip::showText(p, logModel->at(logEntryNumber).niceMessage(), 0);
-	LatexEditorView::hideTooltipWhenLeavingLine=newLineNumber;
-}
-
-void Texmaker::GoToMark(bool backward, int id) {
-	if (backward)
-		GoToLogEntryAt(currentEditorView()->editor->document()->findPreviousMark(id,qMax(0,currentEditorView()->editor->cursor().lineNumber()-1),0));
-	else
-		GoToLogEntryAt(currentEditorView()->editor->document()->findNextMark(id,currentEditorView()->editor->cursor().lineNumber()+1));
+	return !outputView->getLogModel()->found(LT_ERROR);
 }
 
 void Texmaker::NextMark() {
 	if (!currentEditorView()) return;
-	GoToMark(false,-1);
+	gotoMark(false,-1);
 }
 void Texmaker::PreviousMark() {
 	if (!currentEditorView()) return;
-	GoToMark(true,-1);
+	gotoMark(true,-1);
 }
 
 
 void Texmaker::gotoNearLogEntry(LogType lt, bool backward, QString notFoundMessage) {
-	if (!logpresent) {
+	if (!outputView->logPresent()) {
 		ViewLog();
 	}
-	if (logpresent) {
-		if (logModel->found(lt))
-			GoToMark(backward, logModel->markID(lt));
+	if (outputView->logPresent()) {
+		if (outputView->getLogModel()->found(lt))
+			gotoMark(backward, outputView->getLogModel()->markID(lt));
 		else {
 			QMessageBox::information(this,"TexMakerX",notFoundMessage);
-			OutputTextEdit->setCursorPosition(0 , 0);
-		}
+			//OutputTextEdit->setCursorPosition(0 , 0);
+		}	
 	}
 }
 void Texmaker::NextError() {
@@ -3373,7 +3170,7 @@ void Texmaker::GeneralOptions() {
 
 
 	confDlg->ui.checkBoxWordwrap->setChecked(wordwrap);
-	confDlg->ui.checkBoxTabbedLogView->setChecked(tabbedLogView);
+	
 	switch (showlinemultiples) {
 	case 0:
 		confDlg->ui.comboboxLineNumbers->setCurrentIndex(0);
@@ -3451,15 +3248,6 @@ void Texmaker::GeneralOptions() {
 		showcursorstate=confDlg->ui.checkBoxState->isChecked();
 		realtimespellchecking=confDlg->ui.checkBoxRealTimeCheck->isChecked();
 
-		// read checkbox and set logViewer accordingly
-		tabbedLogView=confDlg->ui.checkBoxTabbedLogView->isChecked();
-		if (tabbedLogView) {
-			OutputView->setTitleBarWidget(logViewerTabBar);
-			OutputTable->hide();
-		} else {
-			OutputView->setTitleBarWidget(0);
-			OutputTable->show();
-		}
 
 		mainSpeller->setActive(realtimespellchecking);
 		mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);
@@ -3469,10 +3257,6 @@ void Texmaker::GeneralOptions() {
 			for (it = filenames.begin(); it != filenames.end(); ++it)
 				updateEditorSetting(it.key());
 			UpdateCaption();
-			OutputTextEdit->clear();
-			logViewerTabBar->setCurrentIndex(0);
-			//OutputTable->hide();
-			//OutputTextEdit->insertLine("Editor settings apply only to new loaded document.");
 		}
 		//completion words
 		readCompletionList(configManager.words);
@@ -3529,10 +3313,7 @@ void Texmaker::ToggleMode() {
 //QAction *action = qobject_cast<QAction *>(sender());
 	if (!singlemode) {
 		ToggleAct->setText(tr("Define Current Document as 'Master Document'"));
-		OutputTextEdit->clear();
-		logViewerTabBar->setCurrentIndex(0);
-		//OutputTable->hide();
-		logpresent=false;
+		outputView->resetMessagesAndLog();
 		singlemode=true;
 		stat1->setText(QString(" %1 ").arg(tr("Normal Mode")));
 		return;
@@ -3727,7 +3508,53 @@ void Texmaker::updateCompleter() {
 }
 
 void Texmaker::tabChanged(int i) {
-	if (i>0 && i<3 && !logpresent) RealViewLog();
+	if (i>0 && i<3 && !outputView->logPresent()) RealViewLog();
+}
+
+void Texmaker::gotoLine(int line) {
+	if (currentEditorView() && line>=0)	{
+		currentEditorView()->editor->setCursorPosition(line,0);
+		currentEditorView()->editor->ensureCursorVisible();
+		currentEditorView()->editor->setFocus();
+	}
+}
+void Texmaker::gotoLocation(int line, const QString &fileName){
+	if (!load(fileName)) return;
+	gotoLine(line);
+}
+
+void Texmaker::gotoLogEntryEditorOnly(int logEntryNumber) {
+	if (logEntryNumber<0 || logEntryNumber>=outputView->getLogModel()->count()) return;
+	if (!load(outputView->getLogModel()->at(logEntryNumber).file)) return;
+	//get line
+	QDocumentLineHandle* lh = currentEditorView()->logEntryToLine.value(logEntryNumber, 0);
+	if (!lh) return;
+	//goto
+	gotoLine(QDocumentLine(lh).lineNumber());
+}
+
+void Texmaker::gotoLogEntryAt(int newLineNumber) {
+	//goto line
+	if (newLineNumber<0) return;
+	gotoLine(newLineNumber);
+	//find error number
+	QDocumentLineHandle* lh=currentEditorView()->editor->document()->line(newLineNumber).handle();
+	int logEntryNumber=currentEditorView()->lineToLogEntries.value(lh,-1);
+	if (logEntryNumber==-1) return;
+	//goto log entry
+	outputView->selectLogEntry(logEntryNumber);
+
+	QPoint p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
+	//  p.ry()+=2*currentEditorView()->editor->document()->fontMetrics().lineSpacing();
+	QToolTip::showText(p, outputView->getLogModel()->at(logEntryNumber).niceMessage(), 0);
+	LatexEditorView::hideTooltipWhenLeavingLine=newLineNumber;
+}
+
+void Texmaker::gotoMark(bool backward, int id) {
+	if (backward)
+		gotoLogEntryAt(currentEditorView()->editor->document()->findPreviousMark(id,qMax(0,currentEditorView()->editor->cursor().lineNumber()-1),0));
+	else
+		gotoLogEntryAt(currentEditorView()->editor->document()->findNextMark(id,currentEditorView()->editor->cursor().lineNumber()+1));
 }
 
 void Texmaker::StructureContextMenu(QPoint point) {
@@ -3790,77 +3617,11 @@ void Texmaker::previewLatex(){
     QString originalText = c.selectedText();
     // get document definitions
     //preliminary code ...
-    QStringList header;
     int m_endingLine=currentEditorView()->editor->document()->findLineContaining("\\begin{document}",0,Qt::CaseSensitive);
     if (m_endingLine<0) return; // can't create header
-    QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
-	for (int l=0; l<m_endingLine; l++) {
-        currentEditorView()->editor->setCursorPosition(l,0);
-        m_cursor=currentEditorView()->editor->cursor();
-        QString m_line=currentEditorView()->editor->cursor().line().text();
-        header << m_line;
-    }
-	header << "\\pagestyle{empty}" << "\\begin{document}";
-    // write to temp file
-	QTemporaryFile *tf=new QTemporaryFile(QDir::tempPath()+"/XXXXXX.tex");
-	tf->open();
-	QTextStream out(tf);
-    foreach(QString elem,header){
-        out  << elem  << "\n";
-    }
-    out << originalText << "\n\\end{document}\n";
-	tf->close();
-	// prepare commands/filenames
-	QString cmd="latex -interaction=nonstopmode %.tex";
-	QString ffn=QFileInfo(*tf).absoluteFilePath();
-	previewFileNames.append(ffn);
-	QString fn=QFileInfo(*tf).completeBaseName();
-	tf->setAutoRemove(false);
-	delete tf; // tex file needs to be freed
-	// start conversion
-	// preliminary code
-	// tex -> dvi
-	runCommand(cmd,true,false,ffn);
-	// dvi -> png
-	runCommand("dvipng -T tight -x 12000 %.dvi",true,false,ffn);
-	// put image in preview
-	QFile file(QDir::tempPath()+"/"+fn+"1.png");
-    if(file.exists()){
-		preViewer->setPixmap(QPixmap(QDir::tempPath()+"/"+fn+"1.png"));
-		preViewer->adjustSize();
-		pvscaleFactor=1.0;
-		logViewerTabBar->setCurrentIndex(3);
-    }
-}
-
-void Texmaker::scaleImage(double factor)
-{
-	Q_ASSERT(preViewer->pixmap());
-	pvscaleFactor *= factor;
-	preViewer->resize(pvscaleFactor * preViewer->pixmap()->size());
-
-	adjustScrollBar(scrollArea->horizontalScrollBar(), factor);
-	adjustScrollBar(scrollArea->verticalScrollBar(), factor);
-
-}
-
-void Texmaker::fitImage(){
-	// needs to be improved
-	scrollArea->setWidgetResizable(true);
-}
-
-void Texmaker::zoomOut(){
-	scaleImage(0.8);
-}
-
-void Texmaker::zoomIn(){
-	scaleImage(1.2);
-}
-
-void Texmaker::PreviewContextMenu(QPoint point) {
-	QMenu menu;
-	menu.addAction(tr("zoom in "),this, SLOT(zoomIn()));
-	menu.addAction(tr("zoom out"),this, SLOT(zoomOut()));
-	menu.addAction(tr("fit"),this, SLOT(fitImage()));
-	menu.exec(preViewer->mapToGlobal(point));
+    QStringList header;
+	for (int l=0; l<m_endingLine; l++) 
+		header << currentEditorView()->editor->document()->line(l).text();
+	header << "\\pagestyle{empty}";// << "\\begin{document}";
+	buildManager.preview(header.join("\\n"), originalText);
 }

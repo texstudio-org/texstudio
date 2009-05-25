@@ -38,6 +38,7 @@ public:
 	QString interfaceStyle;
 	QString interfaceFontFamily;
 	int interfaceFontSize;
+	bool tabbedLogView;
 	
 	QFont editorFont;
 
@@ -71,7 +72,10 @@ public:
 	void loadManagedMenus(const QString &f);
 	void managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu);
 	void treeWidgetToManagedMenuTo(QTreeWidgetItem* item);
-	
+
+signals:
+	void tabbedLogViewChanged(bool changed);
+public:
 //private:
 	QString configFileName,configFileNameBase;
 	QStyle* defaultStyle;
