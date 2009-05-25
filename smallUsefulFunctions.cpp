@@ -201,7 +201,12 @@ int nextToken(const QString &line,int &index) {
 					//reparse=true;
 				} else break;
 			} else if (cur=='"') {  //ignore "  "- "a
-				if (i+1<line.size() && line.at(i+1)=='-')  i++;
+				if (i+1<line.size()){
+					QChar nextChar=line.at(i+1);
+					if(nextChar=='-')  i++;
+					else if(!nextChar.isLetterOrNumber()) break;
+				}
+				else break;
 			} else if (cur=='\'') {
 				if (singleQuoteChar) break;	 //no word's with two '' => output
 				else singleQuoteChar=true;   //but accept one
