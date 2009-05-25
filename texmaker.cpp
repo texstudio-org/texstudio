@@ -1899,7 +1899,7 @@ void Texmaker::InsertFromAction() {
 	if (!currentEditorView())	return;
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (action)	{
-		CompletionWord(action->data().toString()).insertAt(currentEditorView()->editor,currentEditorView()->editor->cursor());
+		CompletionWord(action->data().toString()).insertAt(currentEditorView()->editor,&currentEditorView()->editor->cursor());
 		outputView->setMessage(CompletionWord(action->whatsThis()).shownWord);
 	}
 }
@@ -2517,7 +2517,7 @@ void Texmaker::InsertUserTag() {
 		userTag=userTag.remove(0,1);
 		QString s="\\begin{"+userTag+"}\n\n\\end{"+userTag+"}\n";
 		InsertTag(s,0,1);
-	} else CompletionWord(userTag).insertAt(currentEditorView()->editor,currentEditorView()->editor->cursor());
+	} else CompletionWord(userTag).insertAt(currentEditorView()->editor,&currentEditorView()->editor->cursor());
 }
 
 void Texmaker::EditUserMenu() {
