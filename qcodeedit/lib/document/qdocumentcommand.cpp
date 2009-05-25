@@ -915,8 +915,23 @@ QDocumentEraseCommand::~QDocumentEraseCommand()
 	//qDeleteAll(m_data.handles);
 }
 
-bool QDocumentEraseCommand::mergeWith(const QUndoCommand *)
+bool QDocumentEraseCommand::mergeWith(const QUndoCommand *command)
 {
+	int new_line=static_cast<const QDocumentEraseCommand*>(command)->m_data.lineNumber;
+	int new_startOffset=static_cast<const QDocumentEraseCommand*>(command)->m_data.startOffset;
+	int myLenght=static_cast<const QDocumentEraseCommand*>(command)->m_data.begin.length();
+	if(new_line==m_data.lineNumber && new_startOffset+myLenght==m_data.startOffset){ //backspace
+		m_data.begin=static_cast<const QDocumentEraseCommand*>(command)->m_data.begin+m_data.begin;
+		m_data.startOffset=new_startOffset;
+		m_undoOffset+=static_cast<const QDocumentEraseCommand*>(command)->m_undoOffset;
+		return true;
+	}
+	if(new_line==m_data.lineNumber && new_startOffset==m_data.startOffset){ //backspace
+		m_data.begin+=static_cast<const QDocumentEraseCommand*>(command)->m_data.begin;
+		m_undoOffset+=static_cast<const QDocumentEraseCommand*>(command)->m_undoOffset;
+		//m_data.startOffset=new_startOffset;
+		return true;
+	}
 	return false;
 }
 
