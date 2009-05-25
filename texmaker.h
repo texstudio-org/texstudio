@@ -34,7 +34,6 @@
 #include <QTextTable>
 #include <QVBoxLayout>
 #include <QTableView>
-#include <QScrollArea>
 
 #include "buildmanager.h"
 #include "configmanager.h"
@@ -44,9 +43,9 @@
 #include "symbollistwidget.h"
 #include "metapostlistwidget.h"
 #include "pstrickslistwidget.h"
-#include "logeditor.h"
-#include "textanalysis.h"
 #include "spellerdialog.h"
+#include "textanalysis.h"
+#include "toolwidgets.h"
 
 
 #include "qformatfactory.h"
@@ -71,7 +70,6 @@ public:
 	QByteArray windowstate;
 public slots:
 	LatexEditorView* load(const QString &f , bool asProject = false);
-	void gotoLine(int line);  //0 based
 	void executeCommandLine(const QStringList& args, bool realCmdLine);
 	void onOtherInstanceMessage(const QString &);  // For messages for the single instance
 
@@ -106,16 +104,8 @@ private:
 	SymbolListWidget *RelationListWidget, *ArrowListWidget, *MiscellaneousListWidget, *DelimitersListWidget, *GreekListWidget, *MostUsedListWidget;
 	QTreeWidget *StructureTreeWidget;
 
-	QDockWidget *OutputView; //contains output widgets (over OutputLayout)
-	QTabBar *logViewerTabBar; //header to select outp (if tabbedLogView, then it is OutputView's TitleBarWidget)
-	QStackedWidget *OutputLayout; //only widget of OutputView, contains the others (OutputTextEdit, OutputVLayout, OutputTable2), only one of them is visible at the same time
-	QTableView *OutputTable, *OutputTable2;
-	LogEditor *OutputTextEdit,*OutputLogTextEdit;
-	QLabel *preViewer;
-	QScrollArea *scrollArea;
-	double pvscaleFactor;
-
-	bool tabbedLogView;
+	OutputViewWidget *outputView; //contains output widgets (over OutputLayout)
+	
 
 //toolbars
 //
@@ -124,7 +114,6 @@ private:
 
 	QLabel *stat1, *stat2, *stat3;
 	QString MasterName,persistentMasterFile;
-	bool logpresent;
 
 	QToolButton *combo1,*combo2,*combo3,*combo4,*combo5;
 
@@ -155,8 +144,6 @@ private:
 
 //tools
 	bool FINPROCESS, ERRPROCESS;
-//latex errors
-	LatexLogModel * logModel;
 
 	SymbolList symbolScore;
 	usercodelist symbolMostused;
@@ -164,9 +151,10 @@ private:
 	LatexEditorView *currentEditorView() const;
 	void configureNewEditorView(LatexEditorView *edit);
 	void updateEditorSetting(LatexEditorView *edit);
-
+	LatexEditorView* getEditorFromFileName(const QString &fileName);
+	
 // collect generated filenames
-	QStringList previewFileNames;
+	
 private slots:
 
 	void fileNew(QString fileName="untitled");
@@ -294,17 +282,11 @@ private slots:
 	void WebPublish();
 	void AnalyseText();
 	void AnalyseTextFormDestroyed();
-
-	void SwitchToErrorList();
+	
 	void RealViewLog();
 	void ViewLog();
-	void ClickedOnLogLine(const QModelIndex &);
 	void OutputViewVisibilityChanged(bool visible);
-	void LatexError();
 	void DisplayLatexError();
-	void GoToLogEntry(int logEntryNumber);
-	void GoToLogEntryAt(int newLineNumber);
-	void GoToMark(bool backward, int id);
 	void NextMark();
 	void PreviousMark();
 	void gotoNearLogEntry(LogType lt, bool backward, QString notFoundMessage);
@@ -316,7 +298,6 @@ private slots:
 	void PreviousBadBox();
 	bool NoLatexErrors();
 	bool LogExists();
-
 /////
 	void LatexHelp();
 	void UserManualHelp();
@@ -327,7 +308,7 @@ private slots:
 
 	void gotoNextDocument();
 	void gotoPrevDocument();
-
+	
 	void viewCollapseEverything();
 	void viewCollapseLevel();
 	void viewCollapseBlock();
@@ -347,15 +328,15 @@ private slots:
 
 	void tabChanged(int i);
 
+	void gotoLine(int line);  //0 based
+	void gotoLocation(int line, const QString &fileName);  //0 based, absolute file name
+	void gotoLogEntryEditorOnly(int logEntryNumber);
+	void gotoLogEntryAt(int newLineNumber);
+	void gotoMark(bool backward, int id);
+
 	void lineHandleDeleted(QDocumentLineHandle* l);
-
+	
 	void previewLatex();
-	void fitImage();
-	void scaleImage(double factor);
-	void zoomOut();
-	void zoomIn();
-	void PreviewContextMenu(QPoint point);
-
 protected:
 	QPoint sectionSelection(QTreeWidgetItem* m_item);
 	void dragEnterEvent(QDragEnterEvent *event);

@@ -186,6 +186,8 @@ QSettings* ConfigManager::readSettings() {
 
 	QApplication::setPalette(pal);
 #endif
+
+	tabbedLogView=config->value("LogView/Tabbed","true").toBool();
 	
 	
 	config->endGroup();
@@ -241,6 +243,8 @@ QSettings* ConfigManager::saveSettings() {
 	config->setValue("X11/Font Family",interfaceFontFamily);
 	config->setValue("X11/Font Size",interfaceFontSize);
 
+	config->setValue("LogView/Tabbed",tabbedLogView);
+	
 	//editor
 	config->setValue("Editor/Font Family",editorFont.family());
 	config->setValue("Editor/Font Size",editorFont.pointSize());
@@ -333,6 +337,8 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	confDlg->ui.comboBoxInterfaceFont->setCurrentFont(QFont(interfaceFontFamily));
 	confDlg->ui.spinBoxInterfaceFontSize->setValue(interfaceFontSize);
 
+	confDlg->ui.checkBoxTabbedLogView->setChecked(tabbedLogView);
+	
 	//editor font
 	confDlg->ui.comboBoxFont->lineEdit()->setText(editorFont.family());
 	confDlg->ui.spinBoxSize->setValue(editorFont.pointSize());
@@ -408,6 +414,11 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 			else QApplication::setStyle(interfaceStyle);
 			QApplication::setPalette(pal);
 		}
+	
+		// read checkbox and set logViewer accordingly
+		if (tabbedLogView!=confDlg->ui.checkBoxTabbedLogView->isChecked()) 
+			emit tabbedLogViewChanged(confDlg->ui.checkBoxTabbedLogView->isChecked());
+		tabbedLogView=confDlg->ui.checkBoxTabbedLogView->isChecked();
 		
 		//  editor font
 		QString fam=confDlg->ui.comboBoxFont->lineEdit()->text();

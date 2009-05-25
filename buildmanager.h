@@ -57,8 +57,11 @@ private slots:
 	void latexPreviewCompleted(int status);
 	void conversionPreviewCompleted(int status);
 	
+signals:
+	void previewAvailable(const QPixmap& pixmap, const QString& text);
 private:
 	friend class ProcessX;
+	QStringList previewFileNames;
 	QHash<LatexCommand, QString> commands;
 #ifdef Q_WS_WIN
 	unsigned long int pidInst;

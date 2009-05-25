@@ -41,8 +41,9 @@ void LogEditor::setCursorPosition(int para, int index) {
 	ensureCursorVisible();
 }
 
-void LogEditor::mousePressEvent(QMouseEvent *e) {
-	QTextEdit::mousePressEvent(e);
+void LogEditor::mouseDoubleClickEvent(QMouseEvent *e) {
+	emit clickOnLogLine(textCursor().blockNumber());
+	/*QTextEdit::mousePressEvent(e);
 	QString content=textCursor().block().text();
 	int Start, End;
 	bool ok;
@@ -91,7 +92,7 @@ void LogEditor::mousePressEvent(QMouseEvent *e) {
 	if (ok) {
 		emit clickonline(l);
 	}
-
+*/
 }
 
 void LogEditor::paintEvent(QPaintEvent *event) {

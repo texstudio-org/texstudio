@@ -32,10 +32,10 @@ public slots:
 	void insertLine(QString l);
 	void setCursorPosition(int parag, int index);
 protected:
-	virtual void mousePressEvent(QMouseEvent *e);
+	virtual void mouseDoubleClickEvent(QMouseEvent *e);
 	void paintEvent(QPaintEvent *event);
 signals:
-	void clickonline(int l); //0 based
+	void clickOnLogLine(int l); //0 based
 private:
 	LogHighlighter *highlighter;
 };

@@ -75,6 +75,4 @@ QString findToken(const QString line,const QRegExp token);
 
 //setup toolbutton as substitute for const combobox
 QToolButton* createComboToolButton(QWidget *parent,QStringList list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member);
-void adjustScrollBar(QScrollBar *scrollBar, double factor);
-void removeTempFiles(QStringList previewFileNames);
 #endif
