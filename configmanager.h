@@ -42,6 +42,11 @@ public:
 	
 	QFont editorFont;
 
+	//preview
+	bool previewShownInOutputView;
+	bool previewShownInTooltip;
+	
+	//files
 	QString lastDocument; //last opened document, for file open directory
 	QStringList recentFilesList, recentProjectList;
 	int maxRecentFiles, maxRecentProjects;

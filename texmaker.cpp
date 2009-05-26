@@ -183,7 +183,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	connect(outputView,SIGNAL(locationActivated(int,const QString&)),this,SLOT(gotoLocation(int,const QString&)));
 	connect(outputView,SIGNAL(logEntryActivated(int)),this,SLOT(gotoLogEntryEditorOnly(int)));
 	connect(&configManager,SIGNAL(tabbedLogViewChanged(bool)),outputView,SLOT(setTabbedLogView(bool)));
-	connect(&buildManager,SIGNAL(previewAvailable(const QPixmap&, const QString&)),outputView,SLOT(previewLatex(const QPixmap&)));
+	connect(&buildManager,SIGNAL(previewAvailable(const QString&, const QString&)),this,SLOT(previewAvailable	(const QString&,const QString&)));
 // TAB WIDGET EDITEUR
 	EditorView=new QTabWidget(this);
 	EditorView->setFocusPolicy(Qt::ClickFocus);
@@ -290,7 +290,7 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	newManagedAction(menu,"pasteAsLatex",tr("Paste as Latex"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, ":/images/editpaste.png");
 	newManagedAction(menu,"convertToLatex",tr("Convert to Latex"), SLOT(convertToLatex()));
-        newManagedAction(menu,"previewLatex",tr("Preview Selection/Parantheses"), SLOT(previewLatex()));
+        newManagedAction(menu,"previewLatex",tr("Preview Selection/Parantheses"), SLOT(previewLatex()),Qt::ALT+Qt::Key_P);
 
 	LatexEditorView::setBaseActions(menu->actions());
 
@@ -1899,7 +1899,8 @@ void Texmaker::InsertFromAction() {
 	if (!currentEditorView())	return;
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (action)	{
-		CompletionWord(action->data().toString()).insertAt(currentEditorView()->editor,&currentEditorView()->editor->cursor());
+		QDocumentCursor c = currentEditorView()->editor->cursor();
+		CompletionWord(action->data().toString()).insertAt(currentEditorView()->editor,&c);
 		outputView->setMessage(CompletionWord(action->whatsThis()).shownWord);
 	}
 }
@@ -2517,7 +2518,10 @@ void Texmaker::InsertUserTag() {
 		userTag=userTag.remove(0,1);
 		QString s="\\begin{"+userTag+"}\n\n\\end{"+userTag+"}\n";
 		InsertTag(s,0,1);
-	} else CompletionWord(userTag).insertAt(currentEditorView()->editor,&currentEditorView()->editor->cursor());
+	} else {
+		QDocumentCursor c = currentEditorView()->editor->cursor();
+		CompletionWord(userTag).insertAt(currentEditorView()->editor,&c);
+	}
 }
 
 void Texmaker::EditUserMenu() {
@@ -3613,15 +3617,56 @@ void Texmaker::lineHandleDeleted(QDocumentLineHandle* l){
 void Texmaker::previewLatex(){
     if (!currentEditorView()) return;
     // get selection
-    QDocumentCursor c = currentEditorView()->editor->cursor();
-    QString originalText = c.selectedText();
+	QDocumentCursor c = currentEditorView()->editor->cursor();
+    QString originalText="";
+	if (c.hasSelection()) {
+		originalText = c.selectedText();
+	} else {
+		//search matching parantheses 
+		//it will just get the ones with the greatest distance to each other
+		//=>problem if multiple matches appear (e.g ()|$...$)
+		//TODO: it doesn't work if the match is in another line
+		QDocumentLine l = c.line();
+		int matchFormat=m_formats->id("braceMatch");
+		QFormatRange first= l.getFirstOverlayBetween(0,l.length(),matchFormat);
+		QFormatRange last=l.getLastOverlayBetween(0,l.length(),matchFormat);
+		//QMessageBox::information(0,originalText,QString("%1 %2:%3 %4 %5").arg(first.offset).arg(first.length).arg(last.offset).arg(last.length).arg(last.format),0);
+		if (first.length==0 || last.length==0) return;
+		//const QVector<QParenthesis>& parens = l.parentheses();
+		//int first=l.length();
+		//int last=-1;
+		/*for (int i=0;i< parens.count();i++)
+			if (parens[i].role & QParenthesis::Match){
+				if (parens[i].offset<first) first=parens[i].offset;
+				else if (parens[i].offset+parens[i].length>last) first=parens[i].offset+parens[i].length;
+			}*/
+		//if (first==l.length() || last==-1) return;
+		//originalText=l.text().mid(first,last-first);
+		originalText=l.text().mid(first.offset,last.offset+last.length-first.offset);
+		//QMessageBox::information(0,originalText,originalText,0);
+	}
+	if (originalText=="") return;
     // get document definitions
     //preliminary code ...
-    int m_endingLine=currentEditorView()->editor->document()->findLineContaining("\\begin{document}",0,Qt::CaseSensitive);
+	LatexEditorView* edView=getEditorFromFileName(getCompileFileName());
+	if (!edView) return;
+    int m_endingLine=edView->editor->document()->findLineContaining("\\begin{document}",0,Qt::CaseSensitive);
     if (m_endingLine<0) return; // can't create header
     QStringList header;
 	for (int l=0; l<m_endingLine; l++) 
-		header << currentEditorView()->editor->document()->line(l).text();
+		header << edView->editor->document()->line(l).text();
 	header << "\\pagestyle{empty}";// << "\\begin{document}";
 	buildManager.preview(header.join("\n"), originalText);
+}
+void Texmaker::previewAvailable(const QString& imageFile, const QString& text){
+	if (configManager.previewShownInOutputView) {
+		outputView->showPreview();
+		outputView->previewLatex(QPixmap(imageFile));
+	}
+	if (configManager.previewShownInTooltip) {
+		QPoint p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
+		QToolTip::showText(p, "<img src=\""+imageFile+"\"/>", 0);
+		LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
+		
+	}
 }
