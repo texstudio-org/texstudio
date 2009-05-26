@@ -74,7 +74,7 @@ const int LAYOUT_PAGE_MESSAGES=0;
 const int LAYOUT_PAGE_LOG=1;
 const int LAYOUT_PAGE_ERRORS=2;
 const int LAYOUT_PAGE_PREVIEW=3;
-
+	
 OutputViewWidget::OutputViewWidget(QWidget * parent): QDockWidget(parent), logModel(0), logpresent(false), tabbedLogView(false){
 	logModel = new LatexLogModel(this);//needs loaded line marks
 
@@ -160,7 +160,7 @@ void OutputViewWidget::setTabbedLogView(bool tabbed){
 }
 void OutputViewWidget::previewLatex(const QPixmap& pixmap){
 	previewWidget->previewLatex(pixmap);
-	showPreview();	
+	//showPreview();	
 }
 LatexLogModel* OutputViewWidget::getLogModel(){
 	return logModel;
@@ -230,6 +230,7 @@ void OutputViewWidget::showErrorListOrLog(){
 	} else logViewerTabBar->setCurrentIndex(LAYOUT_PAGE_LOG);
 }
 void OutputViewWidget::showPreview(){
+	if (!isVisible()) show();
 	logViewerTabBar->setCurrentIndex(LAYOUT_PAGE_PREVIEW);
 }
 void OutputViewWidget::gotoLogEntry(int logEntryNumber) {

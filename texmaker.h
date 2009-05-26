@@ -337,6 +337,7 @@ private slots:
 	void lineHandleDeleted(QDocumentLineHandle* l);
 	
 	void previewLatex();
+	void previewAvailable(const QString& imageFile, const QString& text);
 protected:
 	QPoint sectionSelection(QTreeWidgetItem* m_item);
 	void dragEnterEvent(QDragEnterEvent *event);

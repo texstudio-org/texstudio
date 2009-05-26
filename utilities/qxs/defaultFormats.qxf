@@ -39,7 +39,7 @@
     <format id="verbatim" >
         <foreground>#008080</foreground>
     </format>
-    <format id="match" >
+<!--    <format id="match" >
         <bold>true</bold>
         <italic>false</italic>
         <overline>false</overline>
@@ -47,7 +47,7 @@
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
         <foreground>#ff0000</foreground>
-    </format>
+    </format>-->
     <format id="braceMatch" >
         <bold>true</bold>
         <italic>false</italic>

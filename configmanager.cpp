@@ -43,7 +43,12 @@ QSettings* ConfigManager::readSettings() {
 	autodetectLoadedFile=config->value("Files/Auto Detect Encoding Of Loaded Files", "true").toBool();
 
 	ignoreLogFileNames=config->value("Files/Ignore Log File Names",1).toInt(); //default only ignore in single mode
-	
+
+	//preview
+	//todo...
+	previewShownInOutputView=true;
+	previewShownInTooltip=true;
+
 	//recent files
 	maxRecentFiles=config->value("Files/Max Recent Files", 5).toInt();
 	maxRecentProjects=config->value("Files/Max Recent Projects", 3).toInt();
@@ -424,6 +429,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		QString fam=confDlg->ui.comboBoxFont->lineEdit()->text();
 		int si=confDlg->ui.spinBoxSize->value();
 		editorFont=QFont (fam,si);		
+		
 	}
 	return executed;
 }

@@ -416,16 +416,6 @@ QTemporaryFile* BuildManager::temporaryTexFile(){
 //Then dvips to convert it to ps
 //Then ghostscript to convert it to 
 void BuildManager::preview(const QString &preamble, const QString &text){
-/*	if (getLatexCommand(CMD_LATEX)=="" || getLatexCommand(CMD_GHOSTSCRIPT)=="") 
-		return;  //they are needed for preview
-	QTemporaryFile *file = temporaryTexFile();
-	//file.
-	ProcessX * proc = newProcess(CMD_LATEX,file->fileName());
-	delete file; //don't deletes the file
-	connect(proc,SIGNAL(finished(int)),this, SLOT(latexPreviewCompleted(int)));
-	proc->startCommand();*/
-
-	//header << "\\pagestyle{empty}" << "\\begin{document}";
     // write to temp file
 	QTemporaryFile *tf=new QTemporaryFile(QDir::tempPath()+"/XXXXXX.tex");
 	tf->open();
@@ -439,32 +429,35 @@ void BuildManager::preview(const QString &preamble, const QString &text){
 	QString cmd="latex -interaction=nonstopmode %.tex";
 	QString ffn=QFileInfo(*tf).absoluteFilePath();
 	previewFileNames.append(ffn);
-	QString fn=QFileInfo(*tf).completeBaseName();
+	previewFileNameToText.insert(ffn,text);
 	tf->setAutoRemove(false);
 	delete tf; // tex file needs to be freed
 	// start conversion
 	// preliminary code
 	// tex -> dvi
 	ProcessX *p1 = newProcess(cmd,ffn); //no delete! goes automatically
+	connect(p1,SIGNAL(finished(int)),this,SLOT(latexPreviewCompleted(int)));
 	p1->startCommand();
-	p1->waitForFinished();
-	// dvi -> png
-	ProcessX *p2 = newProcess("dvipng -T tight -x 12000 %.dvi",ffn);
-	p2->startCommand();
-	p2->waitForFinished();
-	// put image in preview
-	QFile file(QDir::tempPath()+"/"+fn+"1.png");
-    if(file.exists()){
-		emit previewAvailable(QPixmap(QDir::tempPath()+"/"+fn+"1.png"),text);
-    }
 }
 
 
 void BuildManager::latexPreviewCompleted(int status){
-//	ProcessX* proc=qobject_cast<ProcessX*>(sender());
-	
+	ProcessX* p1=qobject_cast<ProcessX*> (sender());
+	if (!p1) return;
+	// dvi -> png
+	ProcessX *p2 = newProcess("dvipng -T tight -x 12000 %.dvi",p1->getFile());
+	connect(p2,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
+	p2->startCommand();	
 }
 void BuildManager::conversionPreviewCompleted(int status){
+	ProcessX* p2=qobject_cast<ProcessX*> (sender());
+	if (!p2) return;
+	// put image in preview
+	QString fn=QFileInfo(p2->getFile()).completeBaseName();
+	QFile file(QDir::tempPath()+"/"+fn+"1.png");
+    if(file.exists()){
+		emit previewAvailable(QDir::tempPath()+"/"+fn+"1.png",previewFileNameToText[p2->getFile()]);
+    }
 }
 
 #ifdef Q_WS_WIN
@@ -552,4 +545,7 @@ void ProcessX::startCommand() {
 bool ProcessX::waitForStarted(int timeOut){
 	if (started) return true;
 	return QProcess::waitForStarted(timeOut);
+}
+const QString& ProcessX::getFile(){
+	return file;
 }

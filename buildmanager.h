@@ -58,10 +58,11 @@ private slots:
 	void conversionPreviewCompleted(int status);
 	
 signals:
-	void previewAvailable(const QPixmap& pixmap, const QString& text);
+	void previewAvailable(const QString& filename, const QString& text);
 private:
 	friend class ProcessX;
 	QStringList previewFileNames;
+	QMap<QString, QString> previewFileNameToText;
 	QHash<LatexCommand, QString> commands;
 #ifdef Q_WS_WIN
 	unsigned long int pidInst;
@@ -80,6 +81,7 @@ public:
 	ProcessX(BuildManager* parent=0, const QString &assignedCommand="", const QString& fileToCompile="");
 	void startCommand();
 	bool waitForStarted(int timeOut=30000);
+	const QString& getFile();
 private:
 	QString cmd;
 	QString file;
