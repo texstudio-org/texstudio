@@ -442,7 +442,7 @@ void LatexEditorView::spellCheckingReplace() {
 	QAction* action = qobject_cast<QAction*>(QObject::sender());
 	if (editor && action) {
 		QDocumentCursor c=editor->cursor();
-		c.removeSelectedText();
+		//c.removeSelectedText();
 		c.insertText(action->text());
 		editor->setCursor(c); //to remove selection range
 	}
