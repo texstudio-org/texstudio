@@ -222,7 +222,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	connect(ui.radioButton6, SIGNAL(toggled(bool)),ui.lineEditUserquick, SLOT(setEnabled(bool)));
 
 //pagetools
-	connect(ui.pushButtonLatex, SIGNAL(clicked()), this, SLOT(browseLatex()));
+/*	connect(ui.pushButtonLatex, SIGNAL(clicked()), this, SLOT(browseLatex()));
 	connect(ui.pushButtonDvips, SIGNAL(clicked()), this, SLOT(browseDvips()));
 	connect(ui.pushButtonBibtex, SIGNAL(clicked()), this, SLOT(browseBibtex()));
 	connect(ui.pushButtonMakeindex, SIGNAL(clicked()), this, SLOT(browseMakeindex()));
@@ -233,7 +233,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	connect(ui.pushButtonPs2pdf, SIGNAL(clicked()), this, SLOT(browsePs2pdf()));
 	connect(ui.pushButtonPdfviewer, SIGNAL(clicked()), this, SLOT(browsePdfviewer()));
 	connect(ui.pushButtonMetapost, SIGNAL(clicked()), this, SLOT(browseMetapost()));
-	connect(ui.pushButtonGhostscript, SIGNAL(clicked()), this, SLOT(browseGhostscript()));
+	connect(ui.pushButtonGhostscript, SIGNAL(clicked()), this, SLOT(browseGhostscript()));*/
 	connect(ui.pushButtonExecuteBeforeCompiling, SIGNAL(clicked()), this, SLOT(browsePrecompiling()));
 
 
@@ -298,6 +298,7 @@ void ConfigDialog::lineEditAspellChanged(QString newText) {
 		ui.labelGetDic->setText("<font color=\"red\">"+tr("(Dictionary doesn't exists)")+"</font><br>"+tr("Get dictionary at: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>"));
 	}
 }
+/*
 //pagetools
 void ConfigDialog::browseLatex() {
 	QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
@@ -405,7 +406,7 @@ void ConfigDialog::browseGhostscript() {
 		location="\""+location+"\"";
 		ui.lineEditGhostscript->setText(location);
 	}
-}
+}*/
 void ConfigDialog::browsePrecompiling() {
 	QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
 	if (!location.isEmpty()) {

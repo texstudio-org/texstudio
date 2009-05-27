@@ -43,8 +43,8 @@ public:
 	QFont editorFont;
 
 	//preview
-	bool previewShownInOutputView;
-	bool previewShownInTooltip;
+	enum PreviewMode {PM_TOOLTIP_AS_FALLBACK=0, PM_PANEL,PM_TOOLTIP,PM_BOTH};
+	PreviewMode previewMode; 
 	
 	//files
 	QString lastDocument; //last opened document, for file open directory
@@ -84,5 +84,9 @@ public:
 //private:
 	QString configFileName,configFileNameBase;
 	QStyle* defaultStyle;
+	QMap<QPushButton*, BuildManager::LatexCommand> buttonsToCommands;
+	QMap<BuildManager::LatexCommand, QLineEdit*> commandsToEdits;
+private slots:
+	void browseCommand();
 };
 #endif

@@ -62,7 +62,7 @@ private slots:
 	QListWidgetItem * createIcon(const QString &caption, const QIcon &icon);
 	void lineEditAspellChanged(QString newText);
 	void browseAspell();
-	void browseLatex();
+	/*void browseLatex();
 	void browseDvips();
 	void browseBibtex();
 	void browseMakeindex();
@@ -73,7 +73,7 @@ private slots:
 	void browsePs2pdf();
 	void browsePdfviewer();
 	void browseMetapost();
-	void browseGhostscript();
+	void browseGhostscript();*/
 	void browsePrecompiling();
 };
 

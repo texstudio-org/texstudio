@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>827</width>
-    <height>638</height>
+    <width>876</width>
+    <height>517</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,100 @@
    <property name="spacing">
     <number>6</number>
    </property>
-   <item row="0" column="1">
+   <item row="2" column="0">
+    <spacer>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Minimum</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>131</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="2">
+    <layout class="QHBoxLayout">
+     <property name="spacing">
+      <number>6</number>
+     </property>
+     <property name="margin">
+      <number>0</number>
+     </property>
+     <item>
+      <spacer>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Minimum</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>407</width>
+         <height>31</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="okButton">
+       <property name="text">
+        <string>OK</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancelButton">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="0" rowspan="2">
+    <widget class="QListWidget" name="contentsWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>150</width>
+       <height>442</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>150</width>
+       <height>32000</height>
+      </size>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>96</width>
+       <height>96</height>
+      </size>
+     </property>
+     <property name="spacing">
+      <number>12</number>
+     </property>
+     <property name="viewMode">
+      <enum>QListView::IconMode</enum>
+     </property>
+     <property name="currentRow">
+      <number>-1</number>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1" rowspan="2" colspan="2">
     <widget class="QStackedWidget" name="pagesWidget">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -35,7 +128,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -148,7 +241,7 @@
         <number>9</number>
        </property>
        <item>
-        <widget class="QGroupBox" name="groupBox">
+        <widget class="QGroupBox" name="groupBoxCommands">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -158,348 +251,6 @@
          <property name="title">
           <string>Commands (%: filename without extension - @: line number - ?: extended filename options)</string>
          </property>
-         <layout class="QGridLayout">
-          <property name="margin">
-           <number>9</number>
-          </property>
-          <property name="spacing">
-           <number>6</number>
-          </property>
-          <item row="0" column="0">
-           <layout class="QGridLayout">
-            <property name="margin">
-             <number>0</number>
-            </property>
-            <property name="spacing">
-             <number>6</number>
-            </property>
-            <item row="5" column="2">
-             <widget class="QPushButton" name="pushButtonPsviewer">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>16</width>
-                <height>16</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QLineEdit" name="lineEditMakeindex"/>
-            </item>
-            <item row="11" column="1">
-             <widget class="QLineEdit" name="lineEditGhostscript"/>
-            </item>
-            <item row="10" column="1">
-             <widget class="QLineEdit" name="lineEditMetapost"/>
-            </item>
-            <item row="9" column="2">
-             <widget class="QPushButton" name="pushButtonPdfviewer">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>16</width>
-                <height>16</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="labelDviview">
-              <property name="text">
-               <string>Dvi Viewer</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0">
-             <widget class="QLabel" name="labelPsview">
-              <property name="text">
-               <string>PS Viewer</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1">
-             <widget class="QLineEdit" name="lineEditDviviewer"/>
-            </item>
-            <item row="1" column="2">
-             <widget class="QPushButton" name="pushButtonDvips">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>16</width>
-                <height>16</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="9" column="1">
-             <widget class="QLineEdit" name="lineEditPdfviewer"/>
-            </item>
-            <item row="0" column="2">
-             <widget class="QPushButton" name="pushButtonLatex">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>16</width>
-                <height>16</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="10" column="2">
-             <widget class="QPushButton" name="pushButtonMetapost">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>16</width>
-                <height>16</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="1">
-             <widget class="QLineEdit" name="lineEditPdflatex"/>
-            </item>
-            <item row="8" column="1">
-             <widget class="QLineEdit" name="lineEditPs2pdf"/>
-            </item>
-            <item row="3" column="2">
-             <widget class="QPushButton" name="pushButtonMakeindex">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>16</width>
-                <height>16</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLineEdit" name="lineEditLatex"/>
-            </item>
-            <item row="8" column="2">
-             <widget class="QPushButton" name="pushButtonPs2pdf">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>16</width>
-                <height>16</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="2">
-             <widget class="QPushButton" name="pushButtonBibtex">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>16</width>
-                <height>16</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="11" column="0">
-             <widget class="QLabel" name="labelGhostscript">
-              <property name="text">
-               <string>ghostscript</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="1">
-             <widget class="QLineEdit" name="lineEditPsviewer"/>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="labelBibtex">
-              <property name="text">
-               <string>Bibtex</string>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="0">
-             <widget class="QLabel" name="labelDvipdfm">
-              <property name="text">
-               <string>Dvipdfm</string>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="0">
-             <widget class="QLabel" name="labelPdflatex">
-              <property name="text">
-               <string>PdfLaTeX</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLineEdit" name="lineEditBibtex"/>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="labelMakeindex">
-              <property name="text">
-               <string>Makeindex</string>
-              </property>
-             </widget>
-            </item>
-            <item row="8" column="0">
-             <widget class="QLabel" name="labelPs2pdf">
-              <property name="text">
-               <string>ps2pdf</string>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="2">
-             <widget class="QPushButton" name="pushButtonDvipdfm">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>16</width>
-                <height>16</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="9" column="0">
-             <widget class="QLabel" name="labelPdfview">
-              <property name="text">
-               <string>Pdf Viewer</string>
-              </property>
-             </widget>
-            </item>
-            <item row="10" column="0">
-             <widget class="QLabel" name="labelMetapost">
-              <property name="text">
-               <string>metapost</string>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="1">
-             <widget class="QLineEdit" name="lineEditDvipdfm"/>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="labelLatex">
-              <property name="text">
-               <string>LaTeX</string>
-              </property>
-             </widget>
-            </item>
-            <item row="11" column="2">
-             <widget class="QPushButton" name="pushButtonGhostscript">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>16</width>
-                <height>16</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="2">
-             <widget class="QPushButton" name="pushButtonDviviewer">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>16</width>
-                <height>16</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="labelDvips">
-              <property name="text">
-               <string>dvips</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLineEdit" name="lineEditDvips"/>
-            </item>
-            <item row="6" column="2">
-             <widget class="QPushButton" name="pushButtonPdflatex">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>16</width>
-                <height>16</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
         </widget>
        </item>
        <item>
@@ -643,7 +394,7 @@ p, li { white-space: pre-wrap; }
              <string/>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="texmaker.qrc">
               <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
             </property>
             <property name="iconSize">
@@ -763,7 +514,7 @@ p, li { white-space: pre-wrap; }
             </property>
            </widget>
           </item>
-          <item row="0" column="1" colspan="4">
+          <item row="0" column="1" colspan="3">
            <widget class="QComboBox" name="comboBoxFont">
             <property name="editable">
              <bool>true</bool>
@@ -777,7 +528,7 @@ p, li { white-space: pre-wrap; }
             </property>
            </widget>
           </item>
-          <item row="1" column="1" colspan="4">
+          <item row="1" column="1" colspan="3">
            <widget class="QSpinBox" name="spinBoxSize">
             <property name="minimum">
              <number>1</number>
@@ -794,24 +545,17 @@ p, li { white-space: pre-wrap; }
             </property>
            </widget>
           </item>
-          <item row="2" column="1" colspan="4">
+          <item row="2" column="1" colspan="2">
            <widget class="QComboBox" name="comboBoxEncoding"/>
           </item>
-          <item row="4" column="0">
-           <widget class="QCheckBox" name="checkBoxWordwrap">
-            <property name="text">
-             <string>Word Wrap</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0">
+          <item row="8" column="0">
            <widget class="QLabel" name="labelASpellCommand">
             <property name="text">
              <string>Spelling dictionary</string>
             </property>
            </widget>
           </item>
-          <item row="7" column="1" colspan="4">
+          <item row="8" column="1" colspan="4">
            <layout class="QHBoxLayout">
             <property name="spacing">
              <number>6</number>
@@ -835,14 +579,14 @@ p, li { white-space: pre-wrap; }
                <string/>
               </property>
               <property name="icon">
-               <iconset>
+               <iconset resource="texmaker.qrc">
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
              </widget>
             </item>
            </layout>
           </item>
-          <item row="8" column="1" colspan="3">
+          <item row="9" column="1" colspan="3">
            <widget class="QLabel" name="labelGetDic">
             <property name="text">
              <string/>
@@ -852,28 +596,7 @@ p, li { white-space: pre-wrap; }
             </property>
            </widget>
           </item>
-          <item row="3" column="1" colspan="4">
-           <widget class="QCheckBox" name="checkBoxAutoDetectOnLoad">
-            <property name="text">
-             <string>auto detect encoding of loaded files</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QCheckBox" name="checkBoxCompletion">
-            <property name="text">
-             <string>Completion</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="2">
-           <widget class="QCheckBox" name="checkBoxFolding">
-            <property name="text">
-             <string>Folding</string>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="4">
+          <item row="9" column="4">
            <widget class="QCheckBox" name="checkBoxRealTimeCheck">
             <property name="text">
              <string>real time checking</string>
@@ -894,33 +617,7 @@ p, li { white-space: pre-wrap; }
             </property>
            </widget>
           </item>
-          <item row="5" column="2" colspan="2">
-           <widget class="QComboBox" name="comboboxLineNumbers">
-            <item>
-             <property name="text">
-              <string>No line numbers</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Show line numbers</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Show important line numbers</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="4" column="3" colspan="2">
-           <widget class="QCheckBox" name="checkBoxAutoIndent">
-            <property name="text">
-             <string>Autoindent</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="1" colspan="4">
+          <item row="7" column="1" colspan="4">
            <widget class="QGroupBox" name="formatConfigBox">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
@@ -945,130 +642,112 @@ p, li { white-space: pre-wrap; }
             </property>
            </widget>
           </item>
+          <item row="2" column="3" colspan="2">
+           <widget class="QCheckBox" name="checkBoxAutoDetectOnLoad">
+            <property name="text">
+             <string>auto detect encoding of loaded files</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QCheckBox" name="checkBoxAutoIndent">
+            <property name="text">
+             <string>Autoindent</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QCheckBox" name="checkBoxWordwrap">
+            <property name="text">
+             <string>Word Wrap</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4">
+           <widget class="QCheckBox" name="checkBoxFolding">
+            <property name="text">
+             <string>Folding</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2" colspan="2">
+           <widget class="QComboBox" name="comboBoxPreviewMode">
+            <item>
+             <property name="text">
+              <string>show preview as tool tip if panel is hidden</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>always show preview in preview panel</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>always show preview as tool tip</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>always show both</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="4" column="2" colspan="2">
+           <widget class="QComboBox" name="comboboxLineNumbers">
+            <item>
+             <property name="text">
+              <string>No line numbers</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Show line numbers</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Show important line numbers</string>
+             </property>
+            </item>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
       </layout>
      </widget>
      <widget class="QWidget" name="page">
-      <widget class="QListWidget" name="completeListWidget">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>20</y>
-         <width>591</width>
-         <height>511</height>
-        </rect>
-       </property>
-       <property name="sortingEnabled">
-        <bool>true</bool>
-       </property>
-      </widget>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QCheckBox" name="checkBoxCompletion">
+         <property name="text">
+          <string>Completion Enabled</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_12">
+         <property name="text">
+          <string>Use following completion files:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QListWidget" name="completeListWidget">
+         <property name="sortingEnabled">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <spacer>
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>131</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="1" column="1">
-    <layout class="QHBoxLayout">
-     <property name="spacing">
-      <number>6</number>
-     </property>
-     <property name="margin">
-      <number>0</number>
-     </property>
-     <item>
-      <spacer>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>407</width>
-         <height>31</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="okButton">
-       <property name="text">
-        <string>OK</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="cancelButton">
-       <property name="text">
-        <string>Cancel</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="0" column="0">
-    <widget class="QListWidget" name="contentsWidget">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>150</width>
-       <height>442</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>150</width>
-       <height>32000</height>
-      </size>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>96</width>
-       <height>96</height>
-      </size>
-     </property>
-     <property name="spacing">
-      <number>12</number>
-     </property>
-     <property name="viewMode">
-      <enum>QListView::IconMode</enum>
-     </property>
-     <property name="currentRow">
-      <number>-1</number>
-     </property>
     </widget>
    </item>
   </layout>
  </widget>
  <tabstops>
-  <tabstop>lineEditLatex</tabstop>
-  <tabstop>lineEditDvips</tabstop>
-  <tabstop>lineEditBibtex</tabstop>
-  <tabstop>lineEditMakeindex</tabstop>
-  <tabstop>lineEditDviviewer</tabstop>
-  <tabstop>lineEditPsviewer</tabstop>
-  <tabstop>lineEditPdflatex</tabstop>
-  <tabstop>lineEditDvipdfm</tabstop>
-  <tabstop>lineEditPs2pdf</tabstop>
-  <tabstop>lineEditPdfviewer</tabstop>
-  <tabstop>lineEditMetapost</tabstop>
-  <tabstop>lineEditGhostscript</tabstop>
   <tabstop>radioButton1</tabstop>
   <tabstop>radioButton2</tabstop>
   <tabstop>radioButton3</tabstop>
@@ -1079,26 +758,15 @@ p, li { white-space: pre-wrap; }
   <tabstop>comboBoxFont</tabstop>
   <tabstop>spinBoxSize</tabstop>
   <tabstop>comboBoxEncoding</tabstop>
-  <tabstop>checkBoxWordwrap</tabstop>
   <tabstop>lineEditAspellCommand</tabstop>
-  <tabstop>pushButtonLatex</tabstop>
-  <tabstop>pushButtonDvips</tabstop>
-  <tabstop>pushButtonBibtex</tabstop>
-  <tabstop>pushButtonMakeindex</tabstop>
-  <tabstop>pushButtonDviviewer</tabstop>
-  <tabstop>pushButtonPsviewer</tabstop>
-  <tabstop>pushButtonPdflatex</tabstop>
-  <tabstop>pushButtonDvipdfm</tabstop>
-  <tabstop>pushButtonPs2pdf</tabstop>
-  <tabstop>pushButtonPdfviewer</tabstop>
-  <tabstop>pushButtonMetapost</tabstop>
-  <tabstop>pushButtonGhostscript</tabstop>
   <tabstop>pushButtonAspell</tabstop>
   <tabstop>contentsWidget</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="texmaker.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>okButton</sender>

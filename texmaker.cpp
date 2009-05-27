@@ -3659,11 +3659,15 @@ void Texmaker::previewLatex(){
 	buildManager.preview(header.join("\n"), originalText);
 }
 void Texmaker::previewAvailable(const QString& imageFile, const QString& text){
-	if (configManager.previewShownInOutputView) {
+	if (configManager.previewMode == ConfigManager::PM_BOTH || 
+		configManager.previewMode == ConfigManager::PM_PANEL|| 
+		(configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && outputView->isPreviewPanelVisible())) {
 		outputView->showPreview();
 		outputView->previewLatex(QPixmap(imageFile));
 	}
-	if (configManager.previewShownInTooltip) {
+	if (configManager.previewMode == ConfigManager::PM_BOTH || 
+		configManager.previewMode == ConfigManager::PM_TOOLTIP|| 
+		(configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && !outputView->isPreviewPanelVisible())) {
 		QPoint p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
 		QToolTip::showText(p, "<img src=\""+imageFile+"\"/>", 0);
 		LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();

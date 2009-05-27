@@ -41,6 +41,7 @@ public:
 	LatexLogModel* getLogModel();
 	void loadLogFile(const QString &logname, const QString & compiledFileName, const QString & overrideFileMName);
 	bool logPresent();
+	bool isPreviewPanelVisible();
 	void setMessage(const QString &message); //set the message text (don't change page and no auto-show)
 	void insertMessageLine(const QString &message); //inserts the message text (don't change page and no auto-show)
 public slots:
