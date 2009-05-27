@@ -5,7 +5,11 @@
 #include "smallUsefulFunctions.h"
 
 #include <QFile>
+#include <QFileDialog>
+#include <QLabel>
+#include <QLineEdit>
 #include <QMessageBox>
+#include <QPushButton>
 #include <QStyleFactory>
 
 ConfigManager::ConfigManager(QObject *parent): QObject (parent),buildManager(0),menuParent(0), menuParentsBar(0){
@@ -44,11 +48,6 @@ QSettings* ConfigManager::readSettings() {
 
 	ignoreLogFileNames=config->value("Files/Ignore Log File Names",1).toInt(); //default only ignore in single mode
 
-	//preview
-	//todo...
-	previewShownInOutputView=true;
-	previewShownInTooltip=true;
-
 	//recent files
 	maxRecentFiles=config->value("Files/Max Recent Files", 5).toInt();
 	maxRecentProjects=config->value("Files/Max Recent Projects", 3).toInt();
@@ -60,6 +59,9 @@ QSettings* ConfigManager::readSettings() {
 		sessionMaster=config->value("Files/Session/MasterFile","").toString();
 	}
 	lastDocument=config->value("Files/Last Document","").toString();
+
+	//preview
+	previewMode=(PreviewMode) config->value("Preview/Mode",0).toInt();
 
 	//build commands
 	if (!buildManager) QMessageBox::critical(0,"TexMakerX","No build Manager created! => crash",QMessageBox::Ok);
@@ -220,6 +222,9 @@ QSettings* ConfigManager::saveSettings() {
 	//session is saved by main class (because we don't know the active files here)
 	config->setValue("Files/Last Document",lastDocument);
 	
+	//preview
+	config->setValue("Preview/Mode",previewMode);
+	
 	//---------------------build commands----------------
 	buildManager->saveSettings(*config);
 	
@@ -274,20 +279,27 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	
 	confDlg->ui.spinBoxMaxRecentFiles->setValue(maxRecentFiles);
 	confDlg->ui.spinBoxMaxRecentProjects->setValue(maxRecentProjects);
+
+	//preview
+	confDlg->ui.comboBoxPreviewMode->setCurrentIndex(previewMode);
 	
 	//build things
-	confDlg->ui.lineEditLatex->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_LATEX));
-	confDlg->ui.lineEditPdflatex->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_PDFLATEX));
-	confDlg->ui.lineEditDvips->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_DVIPS));
-	confDlg->ui.lineEditDviviewer->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_VIEWDVI));
-	confDlg->ui.lineEditPsviewer->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_VIEWPS));
-	confDlg->ui.lineEditDvipdfm->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_DVIPDF));
-	confDlg->ui.lineEditPs2pdf->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_PS2PDF));
-	confDlg->ui.lineEditBibtex->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_BIBTEX));
-	confDlg->ui.lineEditMakeindex->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_MAKEINDEX));
-	confDlg->ui.lineEditPdfviewer->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_VIEWPDF));
-	confDlg->ui.lineEditMetapost->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_METAPOST));
-	confDlg->ui.lineEditGhostscript->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_GHOSTSCRIPT));
+	QGridLayout* gl=new QGridLayout(confDlg->ui.groupBoxCommands);
+	confDlg->ui.groupBoxCommands->setLayout(gl);
+	for (BuildManager::LatexCommand cmd=BuildManager::CMD_LATEX; cmd <= BuildManager::CMD_GHOSTSCRIPT; ++cmd){
+		QLabel *l = new QLabel(confDlg);
+		l->setText(BuildManager::commandDisplayName(cmd));
+		QLineEdit *e = new QLineEdit(confDlg);
+		e->setText(buildManager->getLatexCommandForDisplay(cmd));
+		QPushButton *b = new QPushButton(confDlg);
+		b->setIcon(QIcon(":/images/fileopen.png"));
+		connect(b,SIGNAL(clicked()),this,SLOT(browseCommand()));
+ 		gl->addWidget(l,(int)cmd,0);
+		gl->addWidget(e,(int)cmd,1);
+		gl->addWidget(b,(int)cmd,2);
+		buttonsToCommands.insert(b,cmd);
+		commandsToEdits.insert(cmd,e);
+	}
 	confDlg->ui.lineEditExecuteBeforeCompiling->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_PRECOMPILE));
 	confDlg->ui.lineEditUserquick->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_QUICK));
 	
@@ -365,19 +377,15 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 			updateRecentFiles(true);
 		}
 
+		//preview
+		previewMode=(PreviewMode) confDlg->ui.comboBoxPreviewMode->currentIndex();
+		
 		//build things
-		buildManager->setLatexCommand(BuildManager::CMD_LATEX,confDlg->ui.lineEditLatex->text());
-		buildManager->setLatexCommand(BuildManager::CMD_PDFLATEX,confDlg->ui.lineEditPdflatex->text());
-		buildManager->setLatexCommand(BuildManager::CMD_DVIPS,confDlg->ui.lineEditDvips->text());
-		buildManager->setLatexCommand(BuildManager::CMD_VIEWDVI,confDlg->ui.lineEditDviviewer->text());
-		buildManager->setLatexCommand(BuildManager::CMD_VIEWPS,confDlg->ui.lineEditPsviewer->text());
-		buildManager->setLatexCommand(BuildManager::CMD_DVIPDF,confDlg->ui.lineEditDvipdfm->text());
-		buildManager->setLatexCommand(BuildManager::CMD_PS2PDF,confDlg->ui.lineEditPs2pdf->text());
-		buildManager->setLatexCommand(BuildManager::CMD_BIBTEX,confDlg->ui.lineEditBibtex->text());
-		buildManager->setLatexCommand(BuildManager::CMD_MAKEINDEX,confDlg->ui.lineEditMakeindex->text());
-		buildManager->setLatexCommand(BuildManager::CMD_VIEWPDF,confDlg->ui.lineEditPdfviewer->text());
-		buildManager->setLatexCommand(BuildManager::CMD_METAPOST,confDlg->ui.lineEditMetapost->text());
-		buildManager->setLatexCommand(BuildManager::CMD_GHOSTSCRIPT,confDlg->ui.lineEditGhostscript->text());
+		for (BuildManager::LatexCommand cmd=BuildManager::CMD_LATEX; cmd <= BuildManager::CMD_GHOSTSCRIPT; ++cmd){
+			if (!commandsToEdits.value(cmd)) continue;
+			buildManager->setLatexCommand(cmd,commandsToEdits.value(cmd)->text());;
+		}
+		
 		buildManager->setLatexCommand(BuildManager::CMD_USER_PRECOMPILE,confDlg->ui.lineEditExecuteBeforeCompiling->text());
 		buildManager->setLatexCommand(BuildManager::CMD_USER_QUICK,confDlg->ui.lineEditUserquick->text());
 
@@ -637,3 +645,16 @@ void ConfigManager::treeWidgetToManagedMenuTo(QTreeWidgetItem* item) {
 	}
 }
 
+void ConfigManager::browseCommand(){
+	QPushButton *pb = qobject_cast<QPushButton*> (sender());
+	if (!buttonsToCommands.contains(pb)) return;
+	BuildManager::LatexCommand cmd=buttonsToCommands.value(pb);
+	QLineEdit* ed = commandsToEdits.value(cmd);
+	if (!ed) return;
+	QString location=QFileDialog::getOpenFileName(0,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
+	if (!location.isEmpty()) {
+		location.replace(QString("\\"),QString("/"));
+		location="\""+location+"\" "+BuildManager::defaultCommandOptions(cmd);
+		ed->setText(location);
+	}
+}

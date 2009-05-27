@@ -201,6 +201,7 @@ QString findGhostscriptDLL() {
 #endif
 
 QString BuildManager::guessCommandName(LatexCommand cmd) {
+	//todo: remove default options and call defaultCommandOptions instead
 #ifdef Q_WS_MACX
 	// /usr/local/teTeX/bin/i386-apple-darwin-current
 	// /usr/local/teTeX/bin/powerpc-apple-darwin-current
@@ -211,7 +212,7 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 	case CMD_DVIPS:
 		return "\"/usr/texbin/dvips\" -o %.ps %.dvi";
 	case CMD_DVIPNG:
-		return "\"/usr/texbin/dvipng\" -T tight -x 12000 %.dvi";
+		return "\"/usr/texbin/dvipng\" -T tight -x 1200 %.dvi";
 	case CMD_PS2PDF:
 		return "\"/usr/local/bin/ps2pdf\" %.ps";
 	case CMD_MAKEINDEX:
@@ -244,7 +245,7 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 	case CMD_DVIPS:
 		return searchBaseCommand("dvips"," -o %.ps %.dvi");
 	case CMD_DVIPNG:
-		return searchBaseCommand("dvipng"," -T tight -x 12000 %.dvi");
+		return searchBaseCommand("dvipng"," -T tight -x 1200 %.dvi");
 	case CMD_PS2PDF:
 		return searchBaseCommand("ps2pdf"," %.ps");
 	case CMD_MAKEINDEX:
@@ -319,7 +320,7 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 	case CMD_DVIPS:
 		return "dvips -o %.ps %.dvi";
 	case CMD_DVIPNG:
-		return "dvipng -T tight -x 12000 %.dvi";
+		return "dvipng -T tight -x 1200 %.dvi";
 	case CMD_PS2PDF:
 		return "ps2pdf %.ps";
 	case CMD_MAKEINDEX:
@@ -368,7 +369,41 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 #endif
 	return "";
 }
-
+QString BuildManager::defaultCommandOptions(LatexCommand cmd){
+	switch (cmd){
+		case CMD_LATEX: return "-interaction=nonstopmode %.tex";
+		case CMD_DVIPS: return "-o %.ps %.dvi";
+		case CMD_DVIPNG: return "-T tight -x 1200 %.dvi";
+		case CMD_PS2PDF: return "%.ps";
+		case CMD_MAKEINDEX: return "%.idx";
+		case CMD_BIBTEX: return "%.aux";
+		case CMD_PDFLATEX: return "-interaction=nonstopmode %.tex";
+		case CMD_DVIPDF: return "%.dvi";
+		case CMD_METAPOST: return "--interaction nonstopmode ?me)";
+		case CMD_VIEWDVI: return "%.dvi";
+		case CMD_VIEWPS: return "%.ps";
+		case CMD_VIEWPDF: return "%.pdf";
+		default: return "";
+	}
+}
+QString BuildManager::commandDisplayName(LatexCommand cmd){
+	switch (cmd){
+		case CMD_LATEX: return "LaTeX";
+		case CMD_DVIPS: return "DviPs";
+		case CMD_DVIPNG: return "DviPng";
+		case CMD_PS2PDF: return "Ps2Pdf";
+		case CMD_MAKEINDEX: return "Makeindex";
+		case CMD_BIBTEX: return "Bibtex";
+		case CMD_PDFLATEX: return "PdfLaTeX";
+		case CMD_DVIPDF: return "DviPdf";
+		case CMD_METAPOST: return "Metapost";
+		case CMD_VIEWDVI: return tr("Dvi Viewer");
+		case CMD_VIEWPS: return tr("Ps Viewer");
+		case CMD_VIEWPDF: return tr("Pdf Viewer");
+		case CMD_GHOSTSCRIPT: return "Ghostscript";
+		default: return "";
+	}
+}
 void BuildManager::readSettings(const QSettings &settings){
 	for (LatexCommand i=CMD_LATEX; i < CMD_MAXIMUM_COMMAND_VALUE;++i)
 		setLatexCommand(i,settings.value(cmdToConfigString(i), "<default>").toString());
@@ -426,7 +461,6 @@ void BuildManager::preview(const QString &preamble, const QString &text){
 		<< "\n\\end{document}\n";
 	tf->close();
 	// prepare commands/filenames
-	QString cmd="latex -interaction=nonstopmode %.tex";
 	QString ffn=QFileInfo(*tf).absoluteFilePath();
 	previewFileNames.append(ffn);
 	previewFileNameToText.insert(ffn,text);
@@ -435,7 +469,7 @@ void BuildManager::preview(const QString &preamble, const QString &text){
 	// start conversion
 	// preliminary code
 	// tex -> dvi
-	ProcessX *p1 = newProcess(cmd,ffn); //no delete! goes automatically
+	ProcessX *p1 = newProcess(CMD_LATEX,ffn); //no delete! goes automatically
 	connect(p1,SIGNAL(finished(int)),this,SLOT(latexPreviewCompleted(int)));
 	p1->startCommand();
 }
@@ -445,7 +479,7 @@ void BuildManager::latexPreviewCompleted(int status){
 	ProcessX* p1=qobject_cast<ProcessX*> (sender());
 	if (!p1) return;
 	// dvi -> png
-	ProcessX *p2 = newProcess("dvipng -T tight -x 12000 %.dvi",p1->getFile());
+	ProcessX *p2 = newProcess(CMD_DVIPNG,p1->getFile());
 	connect(p2,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
 	p2->startCommand();	
 }

@@ -193,6 +193,10 @@ void OutputViewWidget::loadLogFile(const QString &logname, const QString & compi
 bool OutputViewWidget::logPresent(){
 	return logpresent;
 }
+bool OutputViewWidget::isPreviewPanelVisible(){
+	if (!isVisible()) return false;
+	return !tabbedLogView || logViewerTabBar->currentIndex()==LAYOUT_PAGE_PREVIEW;
+}
 void OutputViewWidget::setMessage(const QString &message){
 	logViewerTabBar->setCurrentIndex(0);
 	OutputTextEdit->setText(message);

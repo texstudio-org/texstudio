@@ -38,6 +38,8 @@ public:
 	static QString cmdToConfigString(LatexCommand cmd);
 	static QString parseExtendedCommandLine(QString str, const QFileInfo &mainFile,int currentline);
 	static QString guessCommandName(LatexCommand cmd);
+	static QString defaultCommandOptions(LatexCommand cmd);
+	static QString commandDisplayName(LatexCommand cmd);
 
 	void readSettings(const QSettings &settings);
 	void saveSettings(QSettings &settings);
