@@ -29,8 +29,7 @@ public:
 	int ignoreLogFileNames; //0: never, 1: in single mode, 2: always | see LatexLog::parseDocument for reason
 
 	QStringList keyReplace, keyReplaceAfterWord, keyReplaceBeforeWord;
-	QStringList words;
-
+	
 	//build
 	BuildManager* buildManager; 
 		
@@ -42,6 +41,17 @@ public:
 	
 	QFont editorFont;
 
+	//editor 
+	//completion
+	bool completion;
+	enum CompletionCaseSensitive {CCS_CASE_INSENSITIVE, CCS_CASE_SENSITIVE, CCS_FIRST_CHARACTER_CASE_SENSITIVE};
+	CompletionCaseSensitive completionCaseSensitive; 
+	bool completionCommonPrefix; //auto tab press
+	
+	QStringList completerWords;
+	QStringList completerFiles;
+	void readCompletionList(const QStringList &files);
+	
 	//preview
 	enum PreviewMode {PM_TOOLTIP_AS_FALLBACK=0, PM_PANEL,PM_TOOLTIP,PM_BOTH};
 	PreviewMode previewMode; 

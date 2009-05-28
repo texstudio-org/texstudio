@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>876</width>
-    <height>517</height>
+    <width>921</width>
+    <height>610</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,7 +26,7 @@
       <enum>Qt::Vertical</enum>
      </property>
      <property name="sizeType">
-      <enum>QSizePolicy::Minimum</enum>
+      <enum>QSizePolicy::Maximum</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -41,6 +41,9 @@
      <property name="spacing">
       <number>6</number>
      </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMinimumSize</enum>
+     </property>
      <property name="margin">
       <number>0</number>
      </property>
@@ -50,7 +53,7 @@
         <enum>Qt::Horizontal</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Minimum</enum>
+        <enum>QSizePolicy::Expanding</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -79,7 +82,7 @@
    <item row="0" column="0" rowspan="2">
     <widget class="QListWidget" name="contentsWidget">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -116,7 +119,7 @@
    <item row="0" column="1" rowspan="2" colspan="2">
     <widget class="QStackedWidget" name="pagesWidget">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -128,7 +131,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>5</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -221,6 +224,9 @@
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::MinimumExpanding</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -394,7 +400,7 @@ p, li { white-space: pre-wrap; }
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="texmaker.qrc">
+             <iconset>
               <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
             </property>
             <property name="iconSize">
@@ -579,7 +585,7 @@ p, li { white-space: pre-wrap; }
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="texmaker.qrc">
+               <iconset>
                 <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
               </property>
              </widget>
@@ -728,6 +734,60 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="checkBoxCaseSensitive">
+         <property name="text">
+          <string>Case Sensitive</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Minimum</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBoxCaseSensitiveInFirstCharacter">
+           <property name="text">
+            <string>In first character</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBoxCompletePrefix">
+         <property name="text">
+          <string>Auto Complete Common Prefix</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QLabel" name="label_12">
          <property name="text">
           <string>Use following completion files:</string>
@@ -764,9 +824,7 @@ p, li { white-space: pre-wrap; }
   <tabstop>okButton</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>
- <resources>
-  <include location="texmaker.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>okButton</sender>
@@ -775,8 +833,8 @@ p, li { white-space: pre-wrap; }
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>466</x>
-     <y>470</y>
+     <x>827</x>
+     <y>592</y>
     </hint>
     <hint type="destinationlabel">
      <x>307</x>
@@ -791,12 +849,28 @@ p, li { white-space: pre-wrap; }
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>557</x>
-     <y>470</y>
+     <x>910</x>
+     <y>592</y>
     </hint>
     <hint type="destinationlabel">
      <x>307</x>
      <y>250</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxCaseSensitive</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxCaseSensitiveInFirstCharacter</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>222</x>
+     <y>46</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>298</x>
+     <y>73</y>
     </hint>
    </hints>
   </connection>

@@ -121,7 +121,7 @@ private:
 	ConfigManager configManager;
 	BuildManager buildManager;
 	int split1_right, split1_left, split2_top, split2_bottom, quickmode;
-	bool singlemode, wordwrap, parenmatch, showoutputview, showstructview, ams_packages, makeidx_package, completion, autoindent;
+	bool singlemode, wordwrap, parenmatch, showoutputview, showstructview, ams_packages, makeidx_package, autoindent;
 	int showlinemultiples;
 	bool folding, showlinestate, showcursorstate, realtimespellchecking;
 	QString document_class, typeface_size, paper_size, document_encoding, author;
@@ -138,8 +138,6 @@ private:
 	TextAnalysisDialog *textAnalysisDlg;
 	SpellerDialog *spellDlg;
 
-	QStringList completerWords;
-	QStringList completerFiles;
 	QStringList userCommandList;
 
 //tools
@@ -323,7 +321,7 @@ private slots:
 
 	void SetMostUsedSymbols();
 
-	void readCompletionList(const QStringList &files);
+	
 	void updateCompleter();
 
 	void tabChanged(int i);

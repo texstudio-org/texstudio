@@ -212,6 +212,51 @@ public:
 		completer->selectionChanged(ind);
 	}
 
+	bool completeCommonPrefix(){
+		QString my_curWord=getCurWord();
+		if (my_curWord.isEmpty()) return false;
+		if (!completer) return false;
+		if (!completer->listModel) return false;
+		/*if (!completer->list->isVisible()) {
+			resetBinding();
+			return false;
+		}*/
+		// get list of most recent choices
+		QStringList my_words;
+		const QList<CompletionWord> &words=completer->listModel->getWords();
+		for (int i=0; i<words.count(); i++) {
+			if (words[i].word.startsWith(my_curWord,Qt::CaseInsensitive))
+				my_words.append(words[i].word);
+		}
+		// filter list for longest common characters
+		QString myResult=my_words[0];
+		int my_start=my_curWord.length();
+		if (my_words.count()>1) {
+			for (int i=1; i<my_words.count(); i++) {
+				my_curWord=my_words[i];
+
+				for (int j=my_start; (j<my_curWord.length()&&j<myResult.length()); j++) {
+					if (myResult[j]!=my_curWord[j]) {
+						myResult=myResult.left(j);
+
+					}
+				}
+			}
+
+			removeRightWordPart();
+			editor->cursor().insertText(myResult.right(myResult.length()-my_start));
+			maxWritten+=myResult.length()-my_start;
+			completer->updateList(getCurWord());
+			if (!completer->list->currentIndex().isValid())
+				select(completer->list->model()->index(0,0,QModelIndex()));
+			return true;
+		} else {
+			insertCompletedWord();
+			resetBinding();
+			return true;
+		}
+	}	
+	
 	virtual bool keyPressEvent(QKeyEvent *event, QEditor *editor) {
 		if (event->key()==Qt::Key_Shift || event->key()==Qt::Key_Alt || event->key()==Qt::Key_Control)
 			return false;
@@ -299,42 +344,7 @@ public:
 			if (ind.isValid()) select(ind);
 			return true;
 		}  else if (event->key()==Qt::Key_Tab) {
-			if (!completer->list->isVisible()) {
-				resetBinding();
-				return false;
-			}
-			// get list of most recent choices
-			QStringList my_words;
-			QList<CompletionWord> words=completer->getWords();
-			QString my_curWord=getCurWord();
-			for (int i=0; i<words.count(); i++) {
-				if (words[i].word.startsWith(my_curWord,Qt::CaseInsensitive))
-					my_words.append(words[i].word);
-			}
-			// filter list for longest common characters
-			QString myResult=my_words[0];
-			int my_start=my_curWord.length();
-			if (my_words.count()>1) {
-				for (int i=1; i<my_words.count(); i++) {
-					my_curWord=my_words[i];
-
-					for (int j=my_start; (j<my_curWord.length()&&j<myResult.length()); j++) {
-						if (myResult[j]!=my_curWord[j]) {
-							myResult=myResult.left(j);
-
-						}
-					}
-				}
-
-				removeRightWordPart();
-				editor->cursor().insertText(myResult.right(myResult.length()-my_start));
-				maxWritten+=myResult.length()-my_start;
-				handled=true;
-			} else {
-				insertCompletedWord();
-				resetBinding();
-				return true;
-			}
+			return completeCommonPrefix();
 		} else if (event->key()==Qt::Key_Return || event->key()==Qt::Key_Enter) {
 			if (!insertCompletedWord()) {
 				editor->cursor().insertText("\n");
@@ -411,8 +421,8 @@ public:
 		if (maxWritten<start) maxWritten=start;
 		curLine=editor->cursor().line();
 		showAlways=forced;//curWord!="\\";
+		completer->updateList(getCurWord());
 		if (showAlways) {
-			completer->updateList(getCurWord());
 			completer->list->show();
 			select(completer->list->model()->index(0,0,QModelIndex()));
 		}
@@ -515,8 +525,17 @@ QVariant CompletionListModel::headerData(int section, Qt::Orientation orientatio
 void CompletionListModel::setWords(const QList<CompletionWord> &baselist, const QString &word) {
 	if (word==curWord) return;
 	words.clear();
+	Qt::CaseSensitivity cs = Qt::CaseInsensitive;
+	bool checkFirstChar=false;
+	if (LatexCompleter::configManager){
+		if (LatexCompleter::configManager->completionCaseSensitive==ConfigManager::CCS_CASE_SENSITIVE)
+			cs=Qt::CaseSensitive;
+		checkFirstChar=LatexCompleter::configManager->completionCaseSensitive==ConfigManager::CCS_FIRST_CHARACTER_CASE_SENSITIVE && word.length()>1;
+	}
 	for (int i=0; i<baselist.count(); i++) {
-		if (baselist[i].word.startsWith(word,Qt::CaseInsensitive))
+		if (baselist[i].word.isEmpty()) continue;
+		if (baselist[i].word.startsWith(word,cs) &&
+			(!checkFirstChar || baselist[i].word[1] == word[1]) )
 			words.append(baselist[i]);
 	}
 	/*if (words.size()>=2) //prefer matching case
@@ -535,6 +554,7 @@ int LatexCompleter::maxWordLen = 0;
 QString LatexCompleter::helpFile;
 QHash<QString, QString> LatexCompleter::helpIndices;
 QHash<QString, int> LatexCompleter::helpIndicesCache;
+const ConfigManager* LatexCompleter::configManager=0;
 
 LatexCompleter::LatexCompleter(QObject *p): QObject(p) {
 //   addTrigger("\\");
@@ -631,6 +651,8 @@ void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool nor
 
 	//line.document()->cursor(0,0).insertText(QString::number(offset.x())+":"+QString::number(offset.y()));
 	connect(editor,SIGNAL(cursorPositionChanged()),this,SLOT(cursorPositionChanged()));
+	
+	if (configManager->completionCommonPrefix) completerInputBinding->completeCommonPrefix();
 }
 
 void LatexCompleter::parseHelpfile(QString text) {
@@ -662,7 +684,9 @@ void LatexCompleter::parseHelpfile(QString text) {
 bool LatexCompleter::hasHelpfile() {
 	return !helpFile.isEmpty();
 }
-
+void LatexCompleter::setConfigManager(const ConfigManager* config){
+	configManager=config;
+}
 
 void LatexCompleter::updateList(QString word) {
 	QString cur=""; //needed to preserve selection
