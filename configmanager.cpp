@@ -60,6 +60,15 @@ QSettings* ConfigManager::readSettings() {
 	}
 	lastDocument=config->value("Files/Last Document","").toString();
 
+	//completion
+	completion=config->value("Editor/Completion",true).toBool();
+	completionCaseSensitive=(CompletionCaseSensitive) config->value("Editor/Completion Case Sensitive",2).toInt();
+	completionCommonPrefix=config->value("Editor/Completion Complete Common Prefix",true).toBool();
+	config->beginGroup("completionFile");
+	completerFiles=config->value("Completion/completionFiles",QStringList("texmakerx.cwl")).toStringList();
+	readCompletionList(completerFiles);
+	config->endGroup();
+	
 	//preview
 	previewMode=(PreviewMode) config->value("Preview/Mode",0).toInt();
 
@@ -221,7 +230,17 @@ QSettings* ConfigManager::saveSettings() {
 	if (recentProjectList.count()>0) config->setValue("Files/Recent Project Files",recentProjectList);
 	//session is saved by main class (because we don't know the active files here)
 	config->setValue("Files/Last Document",lastDocument);
-	
+
+	//completion
+	config->setValue("Editor/Completion",completion);
+	config->setValue("Editor/Completion Case Sensitive",completionCaseSensitive);
+	config->setValue("Editor/Completion Complete Common Prefix",completionCommonPrefix);
+	if (!completerFiles.isEmpty()) {
+		config->beginGroup("completionFile");
+		config->setValue("Completion/completionFiles",completerFiles);
+		config->endGroup();
+	}
+
 	//preview
 	config->setValue("Preview/Mode",previewMode);
 	
@@ -280,6 +299,22 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	confDlg->ui.spinBoxMaxRecentFiles->setValue(maxRecentFiles);
 	confDlg->ui.spinBoxMaxRecentProjects->setValue(maxRecentProjects);
 
+	//completion
+	confDlg->ui.checkBoxCompletion->setChecked(completion);
+	confDlg->ui.checkBoxCaseSensitive->setChecked(completionCaseSensitive!=CCS_CASE_INSENSITIVE);
+	confDlg->ui.checkBoxCaseSensitiveInFirstCharacter->setChecked(completionCaseSensitive==CCS_FIRST_CHARACTER_CASE_SENSITIVE);
+	confDlg->ui.checkBoxCompletePrefix->setChecked(completionCommonPrefix);
+
+	
+	QStringList files=findResourceFiles("completion","*.cwl");
+	QListWidgetItem *item;
+	foreach(QString elem,files) {
+		item=new QListWidgetItem(elem,confDlg->ui.completeListWidget);
+		item->setFlags(Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
+		if (completerFiles.contains(elem)) item->setCheckState(Qt::Checked);
+		else  item->setCheckState(Qt::Unchecked);
+	}
+	
 	//preview
 	confDlg->ui.comboBoxPreviewMode->setCurrentIndex(previewMode);
 	
@@ -303,16 +338,6 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	confDlg->ui.lineEditExecuteBeforeCompiling->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_PRECOMPILE));
 	confDlg->ui.lineEditUserquick->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_QUICK));
 	
-	//completion lists
-	QStringList files=findResourceFiles("completion","*.cwl");
-	QListWidgetItem *item;
-	foreach(QString elem,files) {
-		item=new QListWidgetItem(elem,confDlg->ui.completeListWidget);
-		item->setFlags(Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
-		if (words.contains(elem)) item->setCheckState(Qt::Checked);
-		else  item->setCheckState(Qt::Unchecked);
-	}
-
 	//menu shortcuts
 	QTreeWidgetItem * menuShortcuts=new QTreeWidgetItem((QTreeWidget*)0, QStringList() << QString(tr("Menus")));
 	foreach(QMenu* menu, managedMenus)
@@ -377,6 +402,14 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 			updateRecentFiles(true);
 		}
 
+		//completion
+		completion=confDlg->ui.checkBoxCompletion->isChecked();
+		if (!confDlg->ui.checkBoxCaseSensitive->isChecked()) completionCaseSensitive=CCS_CASE_INSENSITIVE;
+		else if (confDlg->ui.checkBoxCaseSensitiveInFirstCharacter->isChecked()) completionCaseSensitive=CCS_FIRST_CHARACTER_CASE_SENSITIVE;
+		else completionCaseSensitive=CCS_CASE_SENSITIVE;
+		completionCommonPrefix=confDlg->ui.checkBoxCompletePrefix->isChecked();
+		readCompletionList(completerFiles);
+		
 		//preview
 		previewMode=(PreviewMode) confDlg->ui.comboBoxPreviewMode->currentIndex();
 		
@@ -400,11 +433,11 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		}
 		confDlg->fmConfig->apply();
 
-		words.clear();
+		completerFiles.clear();
 		QListWidgetItem *elem;
 		for (int i=0; i<confDlg->ui.completeListWidget->count(); i++) {
 			elem=confDlg->ui.completeListWidget->item(i);
-			if (elem->checkState()==Qt::Checked) words.append(elem->text());
+			if (elem->checkState()==Qt::Checked) completerFiles.append(elem->text());
 		}
 		
 		//menus
@@ -442,6 +475,54 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	return executed;
 }
 
+void ConfigManager::readCompletionList(const QStringList &files) {
+	completerWords.clear();
+	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+	foreach(QString file, files) {
+		QString fn=findResourceFile("completion/"+file);
+		QFile tagsfile(fn);
+		if (tagsfile.open(QFile::ReadOnly)) {
+			QString line;
+			while (!tagsfile.atEnd()) {
+				line = tagsfile.readLine();
+				if (!line.isEmpty() && !line.startsWith("#") && !line.startsWith(" ")) {
+					if (line.startsWith("\\pageref")||line.startsWith("\\ref")) continue;
+					if (!line.contains("%")){
+						if (line.contains("{")) {
+							line.replace("{","{%<");
+							line.replace("}","%>}");
+						}
+						if (line.contains("(")) {
+							line.replace("(","(%<");
+							line.replace(")","%>)");
+						}
+						if (line.contains("[")) {
+							line.replace("[","[%<");
+							line.replace("]","%>]");
+						}
+						int i;
+						if (line.startsWith("\\begin")||line.startsWith("\\end")) {
+							i=line.indexOf("%<",0);
+							line.replace(i,2,"");
+							i=line.indexOf("%>",0);
+							line.replace(i,2,"");
+							if (line.endsWith("\\item\n")) {
+								line.chop(6);
+							}
+						}
+						i=line.indexOf("%<",0);
+						line.replace(i,2,"%|%<");
+						i=line.indexOf("%>",0);
+						line.replace(i,2,"%>%|");
+					}
+					completerWords.append(line.trimmed());
+				}
+			}
+		}
+	}
+	QApplication::restoreOverrideCursor();
+	//updateCompleter();
+}
 
 bool ConfigManager::addRecentFile(const QString & fileName, bool asMaster){ 
 	int p=recentFilesList.indexOf(fileName);

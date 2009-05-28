@@ -218,6 +218,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 
 	completer=new LatexCompleter(this);
+	completer->setConfigManager(&configManager);
 	updateCompleter();
 	LatexEditorView::setCompleter(completer);
 
@@ -1428,7 +1429,6 @@ void Texmaker::ReadSettings() {
 		else showlinemultiples=0;
 	}
 
-	completion=config->value("Editor/Completion",true).toBool();
 	autoindent=config->value("Editor/Auto Indent",true).toBool();
 	folding=config->value("Editor/Folding",true).toBool();
 	showlinestate=config->value("Editor/Show Line State",true).toBool();
@@ -1497,14 +1497,7 @@ void Texmaker::ReadSettings() {
 	config->beginGroup("formats");
 	m_formats = new QFormatFactory(":/qxs/defaultFormats.qxf", this); //load default formats from resource file
 	m_formats->load(*config,true); //load customized formats
-	config->endGroup();
-
-	config->beginGroup("completionFile");
-	completerFiles=config->value("Completion/completionFiles",QStringList("texmakerx.cwl")).toStringList();
-	readCompletionList(completerFiles);
-	config->endGroup();
-
-	
+	config->endGroup();	
 
 	delete config;
 }
@@ -1528,7 +1521,6 @@ void Texmaker::SaveSettings() {
 
 	config->setValue("Editor/Parentheses Matching",parenmatch);
 	config->setValue("Editor/Line Number Multiples",showlinemultiples);
-	config->setValue("Editor/Completion",completion);
 	config->setValue("Editor/Auto Indent",autoindent);
 
 	config->setValue("Editor/Folding",folding);
@@ -1597,12 +1589,6 @@ void Texmaker::SaveSettings() {
 	config->beginGroup("formats");
 	m_formats->save(*config);
 	config->endGroup();
-
-	if (!completerFiles.isEmpty()) {
-		config->beginGroup("completionFile");
-		config->setValue("Completion/completionFiles",completerFiles);
-		config->endGroup();
-	}
 
 	delete config;
 }
@@ -3186,7 +3172,6 @@ void Texmaker::GeneralOptions() {
 		confDlg->ui.comboboxLineNumbers->setCurrentIndex(1);
 	}
 	confDlg->ui.checkBoxAutoIndent->setChecked(autoindent);
-	confDlg->ui.checkBoxCompletion->setChecked(completion);
 	confDlg->ui.checkBoxFolding->setChecked(folding);
 	confDlg->ui.checkBoxLineState->setChecked(showlinestate);
 	confDlg->ui.checkBoxState->setChecked(showcursorstate);
@@ -3219,11 +3204,6 @@ void Texmaker::GeneralOptions() {
 		confDlg->ui.lineEditUserquick->setEnabled(true);
 	}
 
-
-	//completion words
-	configManager.words=completerFiles;
-
-
 	if (configManager.execConfigDialog(confDlg)) {
 		if (confDlg->ui.radioButton1->isChecked()) quickmode=1;
 		if (confDlg->ui.radioButton2->isChecked()) quickmode=2;
@@ -3233,7 +3213,6 @@ void Texmaker::GeneralOptions() {
 		if (confDlg->ui.radioButton6->isChecked()) quickmode=6;
 
 		wordwrap=confDlg->ui.checkBoxWordwrap->isChecked();
-		completion=confDlg->ui.checkBoxCompletion->isChecked();
 		autoindent=confDlg->ui.checkBoxAutoIndent->isChecked();
 		switch (confDlg->ui.comboboxLineNumbers->currentIndex()) {
 		case 0:
@@ -3262,9 +3241,8 @@ void Texmaker::GeneralOptions() {
 				updateEditorSetting(it.key());
 			UpdateCaption();
 		}
-		//completion words
-		readCompletionList(configManager.words);
-		completerFiles=configManager.words;
+		
+		//completion
 		updateCompleter();
 	}
 	delete confDlg;
@@ -3441,60 +3419,12 @@ void Texmaker::SetMostUsedSymbols() {
 	MostUsedListWidget->SetUserPage(symbolMostused);
 }
 
-void Texmaker::readCompletionList(const QStringList &files) {
-	completerWords.clear();
-	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-	foreach(QString file, files) {
-		QString fn=findResourceFile("completion/"+file);
-		QFile tagsfile(fn);
-		if (tagsfile.open(QFile::ReadOnly)) {
-			QString line;
-			while (!tagsfile.atEnd()) {
-				line = tagsfile.readLine();
-				if (!line.isEmpty() && !line.startsWith("#") && !line.startsWith(" ")) {
-					if (line.startsWith("\\pageref")||line.startsWith("\\ref")) continue;
-					if (!line.contains("%")){
-						if (line.contains("{")) {
-							line.replace("{","{%<");
-							line.replace("}","%>}");
-						}
-						if (line.contains("(")) {
-							line.replace("(","(%<");
-							line.replace(")","%>)");
-						}
-						if (line.contains("[")) {
-							line.replace("[","[%<");
-							line.replace("]","%>]");
-						}
-						int i;
-						if (line.startsWith("\\begin")||line.startsWith("\\end")) {
-							i=line.indexOf("%<",0);
-							line.replace(i,2,"");
-							i=line.indexOf("%>",0);
-							line.replace(i,2,"");
-							if (line.endsWith("\\item\n")) {
-								line.chop(6);
-							}
-						}
-						i=line.indexOf("%<",0);
-						line.replace(i,2,"%|%<");
-						i=line.indexOf("%>",0);
-						line.replace(i,2,"%>%|");
-					}
-					completerWords.append(line.trimmed());
-				}
-			}
-		}
-	}
-	QApplication::restoreOverrideCursor();
-	//updateCompleter();
-}
 
 
 void Texmaker::updateCompleter() {
 	QStringList words;
 
-	words=completerWords;
+	words=configManager.completerWords;
 	words.append(userCommandList);
 	for (int i=0; i<labelitem.count(); ++i) {
 		words.append("\\ref{"+labelitem.at(i)+"}");

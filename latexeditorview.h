@@ -83,7 +83,7 @@ public:
 	static void setBaseActions(QList<QAction *> baseActions);
 	static void setSpeller(SpellerUtility* mainSpeller);
 	static void setCompleter(LatexCompleter* newCompleter);
-
+	
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanel, *lineChangePanel, *statusPanel, *searchReplacePanel;
 	QLineMarkPanel* lineMarkPanel;
 	QLineNumberPanel* lineNumberPanel;
@@ -91,6 +91,8 @@ public:
 	QMultiHash<QDocumentLineHandle*, int> lineToLogEntries;
 	QHash<int, QDocumentLineHandle*> logEntryToLine;
 
+	
+	
 	static int hideTooltipWhenLeavingLine;
 
 	int environmentFormat;

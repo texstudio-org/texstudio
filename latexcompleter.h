@@ -12,6 +12,8 @@
 #ifndef LATEXCOMPLETER_H
 #define LATEXCOMPLETER_H
 
+#include "configManager.h"
+
 #include <qwidget.h>
 #include <qfont.h>
 #include <qcolor.h>
@@ -53,6 +55,9 @@ public:
 	QVariant data(const QModelIndex &index, int role) const;
 	QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
 
+	const QList<CompletionWord> & getWords(){
+		return words;
+	}
 private:
 	friend class LatexCompleter;
 	QList<CompletionWord> words;
@@ -75,12 +80,16 @@ public:
 
 	static void parseHelpfile(QString text);
 	static bool hasHelpfile();
+	
+	void setConfigManager(const ConfigManager* config);
 private:
 	friend class CompleterInputBinding;
+	friend class CompletionListModel;
 	static int maxWordLen;
 	static QList<CompletionWord> words;
 	static QList<CompletionWord> wordsText, wordsCommands;
 	static QSet<QChar> acceptedChars;
+	static const ConfigManager* configManager;
 	QListView * list;
 	CompletionListModel* listModel;
 	QEditor *editor;
