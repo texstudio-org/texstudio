@@ -12,7 +12,7 @@
 #ifndef LATEXCOMPLETER_H
 #define LATEXCOMPLETER_H
 
-#include "configManager.h"
+#include "configmanager.h"
 
 #include <qwidget.h>
 #include <qfont.h>
