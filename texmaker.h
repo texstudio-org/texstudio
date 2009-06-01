@@ -342,6 +342,7 @@ protected:
 	QPoint sectionSelection(QTreeWidgetItem* m_item);
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
+	bool eventFilter(QObject *obj, QEvent *event);
 
 public:
 	static const int structureTreeLineColumn;

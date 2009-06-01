@@ -273,6 +273,9 @@ public:
 				return true;
 			}
 			handled=true;
+		} else if (event->key()==Qt::Key_Escape) {
+			resetBinding();
+			return true;
 		} else if (event->key()==Qt::Key_Delete) {
 			if (editor->cursor().columnNumber()<maxWritten) maxWritten--;
 			editor->cursor().deleteChar();
