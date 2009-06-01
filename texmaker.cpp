@@ -220,6 +220,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	}
 
 	setAcceptDrops(true);
+	installEventFilter(this);
 
 
 	completer=new LatexCompleter(this);
@@ -455,6 +456,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "structureview",StructureView->toggleViewAction());
 	outputViewAction=newManagedAction(menu, "outputview",tr("Messages / Log File"), SLOT(escAction()),Qt::Key_Escape);
 	outputViewAction->setCheckable(true);
+	outputViewAction->setShortcutContext(Qt::WidgetShortcut);
 
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "collapse", tr("Collapse"));
@@ -3619,3 +3621,22 @@ void Texmaker::escAction(){
 	}
 	if(!mVis) currentEditorView()->setFocus(Qt::TabFocusReason);
 }
+
+ bool Texmaker::eventFilter(QObject *obj, QEvent *event)
+ {
+	 if (event->type() == QEvent::KeyPress) {
+		 QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+		 if(keyEvent->key()==Qt::Key_Escape){
+			 if(outputViewAction->shortcut()==QKeySequence(Qt::Key_Escape))
+			 {
+
+				 escAction();
+			 }
+			 return true;
+		 }
+		 else return QMainWindow::eventFilter(obj, event);
+	 } else {
+		 // standard event processing
+		 return QMainWindow::eventFilter(obj, event);
+	 }
+ }
