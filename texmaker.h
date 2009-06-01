@@ -82,6 +82,8 @@ private:
 	inline QAction* newManagedAction(QWidget* menu, const QString &id, QAction* act);
 	inline QAction* getManagedAction(QString id);
 	
+	void addSymbolList(SymbolListWidget** list, int index, const char* slot, const QString& iconName, const QString& text);
+	void setupDockWidgets();
 	void setupMenus();
 	void setupToolBars();
 	void createStatusBar();
@@ -152,8 +154,6 @@ private:
 	LatexEditorView* getEditorFromFileName(const QString &fileName);
 	
 	QAction* outputViewAction;
-// collect generated filenames
-	
 private slots:
 
 	void fileNew(QString fileName="untitled");
@@ -343,7 +343,7 @@ protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
 	bool eventFilter(QObject *obj, QEvent *event);
-
+	virtual void changeEvent(QEvent *e);
 public:
 	static const int structureTreeLineColumn;
 };

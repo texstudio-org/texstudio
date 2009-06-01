@@ -83,7 +83,8 @@
  const int Texmaker::structureTreeLineColumn=4;
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
-		: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0) {
+		: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0){
+	
 	ReadSettings();
 	setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
 	setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
@@ -98,58 +99,18 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 	setIconSize(QSize(22,22));
 
-
-// PANNEAU STRUCTURE
-	StructureView = new QDockWidget(this);
-	StructureView->setObjectName("StructureView");
-	StructureView->setAllowedAreas(Qt::AllDockWidgetAreas);
-	StructureView->setFeatures(QDockWidget::DockWidgetClosable);
-	StructureView->setWindowTitle(tr("Structure"));
-	addDockWidget(Qt::LeftDockWidgetArea, StructureView);
-	StructureToolbox=new QToolBox(StructureView);
-	StructureView->setWidget(StructureToolbox);
-
-	StructureTreeWidget=new QTreeWidget(StructureToolbox);
-	StructureTreeWidget->setColumnCount(1);
-	StructureTreeWidget->header()->hide();
-	StructureTreeWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-//StructureTreeWidget->setToolTip(tr("Click to jump to the line"));
-	connect(StructureTreeWidget, SIGNAL(itemPressed(QTreeWidgetItem *,int)), SLOT(ClickedOnStructure(QTreeWidgetItem *,int)));
-// connect( StructureTreeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem *,int )), SLOT(DoubleClickedOnStructure(QTreeWidgetItem *,int))); // qt4 bugs - don't use it
-	StructureToolbox->addItem(StructureTreeWidget,QIcon(":/images/structure.png"),tr("Structure"));
-
-	RelationListWidget=new SymbolListWidget(StructureToolbox,0);
-	connect(RelationListWidget, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
-	StructureToolbox->addItem(RelationListWidget,QIcon(":/images/math1.png"),tr("Relation symbols"));
-
-	ArrowListWidget=new SymbolListWidget(StructureToolbox,1);
-	connect(ArrowListWidget, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
-	StructureToolbox->addItem(ArrowListWidget,QIcon(":/images/math2.png"),tr("Arrow symbols"));
-
-	MiscellaneousListWidget=new SymbolListWidget(StructureToolbox,2);
-	connect(MiscellaneousListWidget, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
-	StructureToolbox->addItem(MiscellaneousListWidget,QIcon(":/images/math3.png"),tr("Miscellaneous symbols"));
-
-	DelimitersListWidget=new SymbolListWidget(StructureToolbox,3);
-	connect(DelimitersListWidget, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
-	StructureToolbox->addItem(DelimitersListWidget,QIcon(":/images/math4.png"),tr("Delimiters"));
-
-	GreekListWidget=new SymbolListWidget(StructureToolbox,4);
-	connect(GreekListWidget, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
-	StructureToolbox->addItem(GreekListWidget,QIcon(":/images/math5.png"),tr("Greek letters"));
-
-	MostUsedListWidget=new SymbolListWidget(StructureToolbox,5);
-	connect(MostUsedListWidget, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
-	StructureToolbox->addItem(MostUsedListWidget,QIcon(":/images/math6.png"),tr("Most used symbols"));
-	SetMostUsedSymbols();
-
-	PsListWidget=new PstricksListWidget(StructureToolbox);
-	connect(PsListWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(InsertPstricks(QListWidgetItem*)));
-	StructureToolbox->addItem(PsListWidget,QIcon(":/images/pstricks.png"),tr("Pstricks Commands"));
-
-	MpListWidget=new MetapostListWidget(StructureToolbox);
-	connect(MpListWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(InsertMetaPost(QListWidgetItem*)));
-	StructureToolbox->addItem(MpListWidget,QIcon(":/images/metapost.png"),tr("MetaPost Commands"));
+	StructureView=0;
+	StructureTreeWidget=0;
+	
+	RelationListWidget=0;
+	ArrowListWidget=0;
+	MiscellaneousListWidget=0;
+	DelimitersListWidget=0;
+	GreekListWidget=0;
+	MostUsedListWidget=0;
+	PsListWidget=0;
+	MpListWidget=0;
+	outputView=0;
 
 	mainSpeller=new SpellerUtility();;
 	mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);
@@ -169,20 +130,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	m_languages = new QLanguageFactory(m_formats, this);
 	m_languages->addDefinitionPath(qxsPath);
 	QLineMarksInfoCenter::instance()->loadMarkTypes(qxsPath+"/marks.qxm");
-
-
-// OUTPUT WIDGETS
-	outputView = new OutputViewWidget(this);
-	outputView->setObjectName("OutputView");
-	outputView->setAllowedAreas(Qt::AllDockWidgetAreas);
-	outputView->setFeatures(QDockWidget::DockWidgetClosable);
-	outputView->setWindowTitle(tr("Messages / Log File"));
-	outputView->setTabbedLogView(configManager.tabbedLogView);
-	addDockWidget(Qt::BottomDockWidgetArea,outputView);
-	connect(outputView,SIGNAL(locationActivated(int,const QString&)),this,SLOT(gotoLocation(int,const QString&)));
-	connect(outputView,SIGNAL(logEntryActivated(int)),this,SLOT(gotoLogEntryEditorOnly(int)));
-	connect(&configManager,SIGNAL(tabbedLogViewChanged(bool)),outputView,SLOT(setTabbedLogView(bool)));
-	connect(&buildManager,SIGNAL(previewAvailable(const QString&, const QString&)),this,SLOT(previewAvailable	(const QString&,const QString&)));
+	
+	
 // TAB WIDGET EDITEUR
 	EditorView=new QTabWidget(this);
 	EditorView->setFocusPolicy(Qt::ClickFocus);
@@ -194,6 +143,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 #endif
 	setCentralWidget(EditorView);
 	
+	setupDockWidgets();
+	SetMostUsedSymbols();
 	setupMenus();
 	configManager.updateRecentFiles(true);
 	setupToolBars();
@@ -256,7 +207,83 @@ QMenu* Texmaker::newManagedMenu(const QString &id,const QString &text){
 	return configManager.newManagedMenu(id,text);
 }
 
+void Texmaker::addSymbolList(SymbolListWidget** list, int index, const char* slot, const QString& iconName, const QString& text){
+	if (!*list) {
+		(*list)=new SymbolListWidget(StructureToolbox,index);
+		connect(*list, SIGNAL(itemClicked(QTableWidgetItem*)), this, slot);
+		StructureToolbox->addItem(*list,QIcon(iconName),text);
+	} else StructureToolbox->setItemText(StructureToolbox->indexOf(*list),text);
+}
+
+void Texmaker::setupDockWidgets(){
+//to allow retranslate this function must be able to be called multiple times
+
+	//Structure panel
+	if (!StructureView) {
+		StructureView = new QDockWidget(this);
+		StructureView->setObjectName("StructureView");
+		StructureView->setAllowedAreas(Qt::AllDockWidgetAreas);
+		StructureView->setFeatures(QDockWidget::DockWidgetClosable);
+		addDockWidget(Qt::LeftDockWidgetArea, StructureView);
+		StructureToolbox=new QToolBox(StructureView);
+		StructureView->setWidget(StructureToolbox);
+	}
+	StructureView->setWindowTitle(tr("Structure"));
+
+	if (!StructureTreeWidget) {
+		StructureTreeWidget=new QTreeWidget(StructureToolbox);
+		StructureTreeWidget->setColumnCount(1);
+		StructureTreeWidget->header()->hide();
+		StructureTreeWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+//StructureTreeWidget->setToolTip(tr("Click to jump to the line"));
+		connect(StructureTreeWidget, SIGNAL(itemPressed(QTreeWidgetItem *,int)), SLOT(ClickedOnStructure(QTreeWidgetItem *,int)));
+// connect( StructureTreeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem *,int )), SLOT(DoubleClickedOnStructure(QTreeWidgetItem *,int))); // qt4 bugs - don't use it
+		StructureToolbox->addItem(StructureTreeWidget,QIcon(":/images/structure.png"),tr("Structure"));
+	} else StructureToolbox->setItemText(StructureToolbox->indexOf(StructureTreeWidget),tr("Structure"));
+	
+	addSymbolList(&RelationListWidget,0, SLOT(InsertSymbol(QTableWidgetItem*)),":/images/math1.png",tr("Relation symbols"));
+	addSymbolList(&ArrowListWidget,1,SLOT(InsertSymbol(QTableWidgetItem*)),":/images/math2.png",tr("Arrow symbols"));
+	addSymbolList(&MiscellaneousListWidget,2,SLOT(InsertSymbol(QTableWidgetItem*)),":/images/math3.png",tr("Miscellaneous symbols"));
+	addSymbolList(&DelimitersListWidget,3,SLOT(InsertSymbol(QTableWidgetItem*)),":/images/math4.png",tr("Delimiters"));
+	addSymbolList(&GreekListWidget,4,SLOT(InsertSymbol(QTableWidgetItem*)),":/images/math5.png",tr("Greek letters"));
+	addSymbolList(&MostUsedListWidget,5,SLOT(InsertSymbol(QTableWidgetItem*)),":/images/math6.png",tr("Most used symbols"));
+
+	if (!PsListWidget){
+		PsListWidget=new PstricksListWidget(StructureToolbox);
+		connect(PsListWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(InsertPstricks(QListWidgetItem*)));
+		StructureToolbox->addItem(PsListWidget,QIcon(":/images/pstricks.png"),tr("Pstricks Commands"));
+	} else StructureToolbox->setItemText(StructureToolbox->indexOf(PsListWidget),tr("Pstricks Commands"));
+	
+	if (!MpListWidget){
+		MpListWidget=new MetapostListWidget(StructureToolbox);
+		connect(MpListWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(InsertMetaPost(QListWidgetItem*)));
+		StructureToolbox->addItem(MpListWidget,QIcon(":/images/metapost.png"),tr("MetaPost Commands"));
+	} else StructureToolbox->setItemText(StructureToolbox->indexOf(MpListWidget),tr("MetaPost Commands"));
+
+// OUTPUT WIDGETS
+	if (!outputView) {
+		outputView = new OutputViewWidget(this);
+		outputView->setObjectName("OutputView");
+		outputView->setAllowedAreas(Qt::AllDockWidgetAreas);
+		outputView->setFeatures(QDockWidget::DockWidgetClosable);
+		outputView->setTabbedLogView(configManager.tabbedLogView);
+		addDockWidget(Qt::BottomDockWidgetArea,outputView);
+		connect(outputView,SIGNAL(locationActivated(int,const QString&)),this,SLOT(gotoLocation(int,const QString&)));
+		connect(outputView,SIGNAL(logEntryActivated(int)),this,SLOT(gotoLogEntryEditorOnly(int)));
+		connect(&configManager,SIGNAL(tabbedLogViewChanged(bool)),outputView,SLOT(setTabbedLogView(bool)));
+		connect(&buildManager,SIGNAL(previewAvailable(const QString&, const QString&)),this,SLOT(previewAvailable	(const QString&,const QString&)));
+	}
+	outputView->setWindowTitle(tr("Messages / Log File"));
+}
+
 void Texmaker::setupMenus() {
+	//This function is called whenever the menu changes (= start and retranslation)
+	//This means if you call it repeatedly with the same language setting it should not change anything 
+	//Currently this is not true, because it adds additional separator, which are invisible
+	//creates new action groups and new context menu, although all invisible, they are a memory leak
+	//But not a bad one, because no one is expected to change the language multiple times
+	//TODO: correct somewhen
+	
 	configManager.menuParent=this;
 	configManager.menuParentsBar=menuBar();
 	
@@ -299,7 +326,8 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"convertToLatex",tr("Convert to Latex"), SLOT(convertToLatex()));
         newManagedAction(menu,"previewLatex",tr("Preview Selection/Parantheses"), SLOT(previewLatex()),Qt::ALT+Qt::Key_P);
 
-	LatexEditorView::setBaseActions(menu->actions());
+	if (LatexEditorView::getBaseActions().empty()) //only called at first menu created
+		LatexEditorView::setBaseActions(menu->actions());
 
 	menu->addSeparator();
 	newManagedAction(menu,"comment", tr("Comment"), SLOT(editComment()));
@@ -3438,6 +3466,20 @@ void Texmaker::dropEvent(QDropEvent *event) {
 		if (rx.exactMatch(uri)) load(rx.cap(1));
 	}
 	event->acceptProposedAction();
+}
+
+void Texmaker::changeEvent(QEvent *e) {
+	switch (e->type()) {
+	case QEvent::LanguageChange:
+		if (configManager.lastLanguage==configManager.language) return; //don't update if config not changed
+		//QMessageBox::information(0,"rt","retranslate",0);
+		setupMenus();
+		setupDockWidgets();
+		UpdateCaption();
+		break;
+	default:
+		break;
+	}
 }
 
 //***********************************
