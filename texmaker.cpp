@@ -849,8 +849,6 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 		}
 	}
 	if (outputView->logPresent()) DisplayLatexError(); //show marks
-	//edit->setFocus(Qt::TabFocusReason);
-	//edit->setFocusPolicy(Qt::StrongFocus);
 	return edit;
 }
 
@@ -1783,7 +1781,52 @@ void Texmaker::ClickedOnStructure(QTreeWidgetItem *item,int col) {
 //////////TAGS////////////////
 void Texmaker::NormalCompletion() {
 	if (!currentEditorView())	return;
-	currentEditorView()->complete(true);
+	// complete text if no command is present
+	QDocumentCursor c = currentEditorView()->editor->cursor();
+	QString eow=getCommonEOW();
+	int i=0;
+	int col=c.columnNumber();
+	QString word=c.line().text();
+	while (c.columnNumber()>0 && !eow.contains(c.previousChar())) {
+		c.movePosition(1,QDocumentCursor::PreviousCharacter);
+		i++;
+	}
+	if(c.nextChar()==QChar('\\')) currentEditorView()->complete(true);
+	else {
+		if (i>1) {
+			QString my_text=currentEditorView()->editor->text();
+			int end=0;
+			int k=0; // number of occurences of search word.
+			word=word.mid(col-i,i);
+			//TODO: Boundary needs to specified more exactly
+			//TODO: type in text needs to be excluded, if not already present
+			QString wrd;
+			QStringList words;
+			while ((i=my_text.indexOf(QRegExp("\\b"+word),end))>0) {
+				end=my_text.indexOf(QRegExp("\\b"),i+1);
+				if (end>i) {
+					if (word==my_text.mid(i,end-i)) {
+						k=k+1;
+						if (k==2) words << my_text.mid(i,end-i);
+					} else {
+						if (!words.contains(my_text.mid(i,end-i)))
+							words << my_text.mid(i,end-i);
+					}
+				} else {
+					if (word==my_text.mid(i,end-i)) {
+						k=k+1;
+						if (k==2) words << my_text.mid(i,end-i);
+					} else {
+						if (!words.contains(my_text.mid(i,end-i)))
+							words << my_text.mid(i,my_text.length()-i);
+					}
+				}
+			}
+
+			completer->setWords(words, true);
+			currentEditorView()->complete(true,true);
+		}
+	}
 }
 void Texmaker::InsertEnvironmentCompletion() {
 	if (!currentEditorView())	return;
@@ -3619,7 +3662,6 @@ void Texmaker::escAction(){
 			if (!mVis) outputViewAction->setShortcut(Qt::Key_Escape);
 			else outputViewAction->setShortcut(QKeySequence());
 	}
-	if(!mVis) currentEditorView()->setFocus(Qt::TabFocusReason);
 }
 
  bool Texmaker::eventFilter(QObject *obj, QEvent *event)
@@ -3629,7 +3671,6 @@ void Texmaker::escAction(){
 		 if(keyEvent->key()==Qt::Key_Escape){
 			 if(outputViewAction->shortcut()==QKeySequence(Qt::Key_Escape))
 			 {
-
 				 escAction();
 			 }
 			 return true;
