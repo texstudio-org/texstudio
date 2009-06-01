@@ -47,12 +47,6 @@ void TexmakerApp::init(QStringList &cmdLine) {
 	splash->show();
 	processEvents();
 
-	QTranslator* appTranslator=new QTranslator(this);
-	QTranslator* basicTranslator=new QTranslator(this);
-	QString locale = QString(QLocale::system().name()).left(2);
-	if (locale.length() < 2) locale = "en";
-	if (appTranslator->load(findResourceFile("texmakerx_"+locale+".qm"))) installTranslator(appTranslator);
-	if (basicTranslator->load(findResourceFile("qt_"+locale+".qm"))) installTranslator(basicTranslator);
 	mw = new Texmaker();
 	connect(this, SIGNAL(lastWindowClosed()), this, SLOT(quit()));
 	splash->finish(mw);

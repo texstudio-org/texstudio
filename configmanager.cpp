@@ -205,6 +205,16 @@ QSettings* ConfigManager::readSettings() {
 
 	tabbedLogView=config->value("LogView/Tabbed","true").toBool();
 	
+	//language
+	language=config->value("Interface/Language","").toString();
+	lastLanguage=language;
+	QString locale=language;
+	appTranslator=new QTranslator(this);
+	basicTranslator=new QTranslator(this);
+	loadTranslations(language);
+	QCoreApplication::installTranslator(appTranslator);
+	QCoreApplication::installTranslator(basicTranslator);
+
 	
 	config->endGroup();
 
@@ -265,14 +275,14 @@ QSettings* ConfigManager::saveSettings() {
 	}
 	config->endArray();
 
-	//------------------appearance---------------------
-	//config->setValue("Interface/Language",language); //named X11/ for backward compatibility
-
+	//------------------appearance--------------------
 	config->setValue("X11/Style",interfaceStyle); //named X11/ for backward compatibility
 	config->setValue("X11/Font Family",interfaceFontFamily);
 	config->setValue("X11/Font Size",interfaceFontSize);
 
 	config->setValue("LogView/Tabbed",tabbedLogView);
+	
+	config->setValue("Interface/Language",language); 
 	
 	//editor
 	config->setValue("Editor/Font Family",editorFont.family());
@@ -305,6 +315,23 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	confDlg->ui.checkBoxCaseSensitiveInFirstCharacter->setChecked(completionCaseSensitive==CCS_FIRST_CHARACTER_CASE_SENSITIVE);
 	confDlg->ui.checkBoxCompletePrefix->setChecked(completionCommonPrefix);
 
+	QStringList languageFiles=findResourceFiles("translations","texmakerx_*.qm") 
+							<< findResourceFiles("","texmakerx_*.qm");
+	int langId=-1;
+	for (int i=0;i<languageFiles.count();i++){
+		//_gettext. 
+		QString cur=languageFiles[i].mid(languageFiles[i].lastIndexOf("_")+1);
+		cur.truncate(cur.indexOf("."));
+		confDlg->ui.comboBoxLanguage->addItem(cur);
+		if (cur == language) langId=i;
+	}
+	confDlg->ui.comboBoxLanguage->addItem("en");
+	confDlg->ui.comboBoxLanguage->addItem(tr("default"));
+	if (language=="") confDlg->ui.comboBoxLanguage->setEditText(tr("default"));
+	else confDlg->ui.comboBoxLanguage->setEditText(language);
+	if (langId!=-1) confDlg->ui.comboBoxLanguage->setCurrentIndex(langId);
+	else if (language=="en") confDlg->ui.comboBoxLanguage->setCurrentIndex(confDlg->ui.comboBoxLanguage->count()-2);
+	else confDlg->ui.comboBoxLanguage->setCurrentIndex(confDlg->ui.comboBoxLanguage->count()-1);
 	
 	QStringList files=findResourceFiles("completion","*.cwl");
 	QListWidgetItem *item;
@@ -465,6 +492,12 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		if (tabbedLogView!=confDlg->ui.checkBoxTabbedLogView->isChecked()) 
 			emit tabbedLogViewChanged(confDlg->ui.checkBoxTabbedLogView->isChecked());
 		tabbedLogView=confDlg->ui.checkBoxTabbedLogView->isChecked();
+
+		//language
+		lastLanguage=language;
+		language = confDlg->ui.comboBoxLanguage->currentText();
+		if (language == tr("default")) language="";
+		if (language!=lastLanguage) loadTranslations(language);
 		
 		//  editor font
 		QString fam=confDlg->ui.comboBoxFont->lineEdit()->text();
@@ -584,32 +617,66 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 
 QMenu* ConfigManager::newManagedMenu(const QString &id,const QString &text) {
 	if (!menuParentsBar) qFatal("No menu parent bar!");
-	QMenu* menu=menuParentsBar->addMenu(text);
+	if (!menuParent) qFatal("No menu parent!");
+	//check if an old menu with this id exists and update it (for retranslation)
+	QMenu *old=menuParent->findChild<QMenu*>(id);
+	if (old) {
+		old->setTitle(text);
+		return old;
+	}
+	//create new
+	QMenu* menu = new QMenu(qobject_cast<QWidget*>(menuParent));
+	menuParentsBar->addMenu(menu);
+	menu->setTitle(text);
 	menu->setObjectName(id);
 	managedMenus.append(menu);
 	return menu;
 }
 QMenu* ConfigManager::newManagedMenu(QMenu* menu, const QString &id,const QString &text) {
 	if (!menu) return newManagedMenu(id,text);
+	QString completeId=menu->objectName()+"/"+ id;
+	//check if an old menu with this id exists and update it (for retranslation)
+	QMenu *old=menuParent->findChild<QMenu*>(completeId);
+	if (old) {
+		old->setTitle(text);
+		return old;
+	}
+	//create new
 	QMenu* submenu=menu->addMenu(text);
-	submenu->setObjectName(menu->objectName()+"/"+ id);
+	submenu->setObjectName(completeId);
 	return submenu;
 }
 QAction* ConfigManager::newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile) {
 	if (!menuParent) qFatal("No menu parent!");
+	QString completeId=menu->objectName()+"/"+ id;
+
+	QAction *old=menuParent->findChild<QAction*>(completeId);
+	if (old) {
+		old->setText(text);
+		return old;
+	}
+
 	QAction *act;
 	if (iconFile.isEmpty()) act=new QAction(text, menuParent);
 	else act=new QAction(QIcon(iconFile), text, menuParent);
+	act->setObjectName(completeId);
 	act->setShortcuts(shortCuts);
 	if (slotName) connect(act, SIGNAL(triggered()), menuParent, slotName);
-	act->setObjectName(menu->objectName()+"/"+id);
 	menu->addAction(act);
 	for (int i=0; i<shortCuts.size(); i++)
 		managedMenuShortcuts.insert(act->objectName()+QString::number(i),shortCuts[i]);
 	return act;
 }
 QAction* ConfigManager::newManagedAction(QWidget* menu, const QString &id, QAction* act) {
-	act->setObjectName(menu->objectName()+"/"+id);
+	if (!menuParent) qFatal("No menu parent!");
+	QString completeId = menu->objectName()+"/"+id;
+	
+	QAction *old=menuParent->findChild<QAction*>(completeId);
+	if (old) 
+		return old;
+
+
+	act->setObjectName(completeId);
 	menu->addAction(act);
 	managedMenuShortcuts.insert(act->objectName()+"0",act->shortcut());
 	return act;
@@ -625,6 +692,13 @@ QMenu* ConfigManager::getManagedMenu(QString id) {
 	if (menuParent) menu=menuParent->findChild<QMenu*>(id);
 	if (menu==0) qWarning("Can't find internal menu %s",id.toAscii().data());
 	return menu;
+}
+void ConfigManager::removeManagedMenus(){
+	/*foreach (QMenu* menu, managedMenus){
+		menu->clear();
+		delete menu;
+	}
+	menuParentsBar->clear();*/
 }
 void ConfigManager::triggerManagedAction(QString id){
 	QAction* act = getManagedAction(id);
@@ -717,13 +791,25 @@ void ConfigManager::treeWidgetToManagedMenuTo(QTreeWidgetItem* item) {
 			QKeySequence sc=QKeySequence(item->text(2));
 			act->setShortcut(sc);
 			if (sc!=managedMenuShortcuts.value(act->objectName()+"0",QKeySequence()))
-				managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~0", item->text(2)));
+				managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~0", sc.toString(QKeySequence ::PortableText)));
 			sc=QKeySequence(item->text(3));
 			if (item->text(3)!="") act->setShortcuts((QList<QKeySequence>()<<act->shortcut()) << sc);
 			if (sc!=managedMenuShortcuts.value(act->objectName()+"1",QKeySequence()))
-				managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~1", item->text(3)));
+				managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~1", sc.toString(QKeySequence ::PortableText)));
 		}
 	}
+
+}
+void ConfigManager::loadTranslations(QString locale){
+	if (locale=="") {
+		locale = QString(QLocale::system().name()).left(2);
+		if (locale.length() < 2) locale = "en";
+	}
+	QString tmxTranslationFile=findResourceFile("texmakerx_"+locale+".qm");
+	//if (tmxTranslationFile!="") {
+		appTranslator->load(tmxTranslationFile);
+		basicTranslator->load(findResourceFile("qt_"+locale+".qm"));
+	//}
 }
 
 void ConfigManager::browseCommand(){

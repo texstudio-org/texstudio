@@ -41,7 +41,7 @@ QString findResourceFile(QString fileName) {
 	searchFiles<<QCoreApplication::applicationDirPath() + "/../Resources/"+fileName; //macx
 	searchFiles<<QCoreApplication::applicationDirPath() + "/"+fileName; //windows old
 	searchFiles<<QCoreApplication::applicationDirPath() + "/dictionaries/"+fileName; //windows new
-	searchFiles<<QCoreApplication::applicationDirPath() + "/translation/"+fileName; //windows new
+	searchFiles<<QCoreApplication::applicationDirPath() + "/translations/"+fileName; //windows new
 	searchFiles<<QCoreApplication::applicationDirPath() + "/help/"+fileName; //windows new
 	searchFiles<<QCoreApplication::applicationDirPath() + "/utilities/"+fileName; //windows new
 	// searchFiles<<QCoreApplication::applicationDirPath() + "/data/"+fileName; //windows new

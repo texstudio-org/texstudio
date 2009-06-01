@@ -9,6 +9,7 @@
 #include <QMenuBar>
 #include <QSettings>
 #include <QStyle>
+#include <QTranslator>
 #include <QTreeWidgetItem>
 
 class ConfigManager: public QObject {
@@ -41,6 +42,13 @@ public:
 	
 	QFont editorFont;
 
+	//language
+	QString lastLanguage;
+	QString language;
+	QTranslator* appTranslator;
+	QTranslator* basicTranslator;	
+	
+	
 	//editor 
 	//completion
 	bool completion;
@@ -80,8 +88,9 @@ public:
 	QAction* newManagedAction(QWidget* menu, const QString &id, QAction* act);
 	QAction* getManagedAction(QString id);
 	QMenu* getManagedMenu(QString id);
+	void removeManagedMenus();
 	void triggerManagedAction(QString id);
-
+	
 	void modifyManagedShortcuts();
 	void loadManagedMenu(QMenu* parent,const QDomElement &f);
 	void loadManagedMenus(const QString &f);
@@ -96,6 +105,7 @@ public:
 	QStyle* defaultStyle;
 	QMap<QPushButton*, BuildManager::LatexCommand> buttonsToCommands;
 	QMap<BuildManager::LatexCommand, QLineEdit*> commandsToEdits;
+	void loadTranslations(QString locale);
 private slots:
 	void browseCommand();
 };

@@ -313,6 +313,10 @@ void LatexEditorView::setKeyReplacements(QStringList *UserKeyReplace, QStringLis
 	defaultInputBinding->keyReplaceAfterWord=UserKeyReplaceAfterWord;
 	defaultInputBinding->keyReplaceBeforeWord=UserKeyReplaceBeforeWord;
 }
+ QList<QAction *> LatexEditorView::getBaseActions(){
+	if (!defaultInputBinding) return QList<QAction *>(); 
+	return defaultInputBinding->baseActions;
+}
 void LatexEditorView::setBaseActions(QList<QAction *> baseActions) {
 	if (!defaultInputBinding) return;
 	defaultInputBinding->baseActions=baseActions;
