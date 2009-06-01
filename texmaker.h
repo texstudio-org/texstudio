@@ -151,6 +151,7 @@ private:
 	void updateEditorSetting(LatexEditorView *edit);
 	LatexEditorView* getEditorFromFileName(const QString &fileName);
 	
+	QAction* outputViewAction;
 // collect generated filenames
 	
 private slots:
@@ -283,7 +284,6 @@ private slots:
 	
 	void RealViewLog();
 	void ViewLog();
-	void OutputViewVisibilityChanged(bool visible);
 	void DisplayLatexError();
 	void NextMark();
 	void PreviousMark();
@@ -336,11 +336,12 @@ private slots:
 	
 	void previewLatex();
 	void previewAvailable(const QString& imageFile, const QString& text);
+
+	void escAction();
 protected:
 	QPoint sectionSelection(QTreeWidgetItem* m_item);
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
-
 
 public:
 	static const int structureTreeLineColumn;
