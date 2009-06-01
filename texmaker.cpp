@@ -80,7 +80,7 @@
 #include "qdocumentline.h"
 #include "qdocumentline_p.h"
 
-const int Texmaker::structureTreeLineColumn=4;
+ const int Texmaker::structureTreeLineColumn=4;
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 		: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0) {
@@ -179,7 +179,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	outputView->setWindowTitle(tr("Messages / Log File"));
 	outputView->setTabbedLogView(configManager.tabbedLogView);
 	addDockWidget(Qt::BottomDockWidgetArea,outputView);
-	connect(outputView,SIGNAL(visibilityChanged(bool)),this,SLOT(OutputViewVisibilityChanged(bool)));
 	connect(outputView,SIGNAL(locationActivated(int,const QString&)),this,SLOT(gotoLocation(int,const QString&)));
 	connect(outputView,SIGNAL(logEntryActivated(int)),this,SLOT(gotoLogEntryEditorOnly(int)));
 	connect(&configManager,SIGNAL(tabbedLogViewChanged(bool)),outputView,SLOT(setTabbedLogView(bool)));
@@ -201,7 +200,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 	restoreState(windowstate, 0);
 
-
 	createStatusBar();
 	UpdateCaption();
 	singlemode=true;
@@ -212,7 +210,14 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	stat1->setText(QString(" %1 ").arg(tr("Normal Mode")));
 	stat2->setText(QString(" %1 ").arg(tr("Ready")));
 //connect(stat3, SIGNAL(itemClicked ( QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
-
+	// adapt menu output view visible;
+	bool mVis=outputView->isVisible();
+	outputViewAction->setChecked(mVis);
+	if(outputViewAction->shortcuts().isEmpty()||outputViewAction->shortcut()==QKeySequence(Qt::Key_Escape))
+	{
+			if (mVis) outputViewAction->setShortcut(Qt::Key_Escape);
+			else outputViewAction->setShortcut(QKeySequence());
+	}
 
 	setAcceptDrops(true);
 
@@ -448,7 +453,8 @@ void Texmaker::setupMenus() {
 
 	menu->addSeparator();
 	newManagedAction(menu, "structureview",StructureView->toggleViewAction());
-	newManagedAction(menu, "outputview",outputView->toggleViewAction());
+	outputViewAction=newManagedAction(menu, "outputview",tr("Messages / Log File"), SLOT(escAction()),Qt::Key_Escape);
+	outputViewAction->setCheckable(true);
 
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "collapse", tr("Collapse"));
@@ -841,6 +847,8 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 		}
 	}
 	if (outputView->logPresent()) DisplayLatexError(); //show marks
+	//edit->setFocus(Qt::TabFocusReason);
+	//edit->setFocusPolicy(Qt::StrongFocus);
 	return edit;
 }
 
@@ -3050,11 +3058,6 @@ void Texmaker::ViewLog() {
 }
 
 
-void Texmaker::OutputViewVisibilityChanged(bool visible) {
-	if (visible) outputView->toggleViewAction()->setShortcut(Qt::Key_Escape);
-	else outputView->toggleViewAction()->setShortcut(QKeySequence());
-}
-
 ////////////////////////// ERRORS /////////////////////////////
 void Texmaker::DisplayLatexError() {
 	int errorMarkID = QLineMarksInfoCenter::instance()->markTypeId("error");
@@ -3603,4 +3606,16 @@ void Texmaker::previewAvailable(const QString& imageFile, const QString& text){
 		LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
 		
 	}
+}
+
+void Texmaker::escAction(){
+	bool mVis=outputView->isVisible();
+	outputView->setVisible(!mVis);
+	outputViewAction->setChecked(!mVis);
+	if(outputViewAction->shortcuts().isEmpty()||outputViewAction->shortcut()==QKeySequence(Qt::Key_Escape))
+	{
+			if (!mVis) outputViewAction->setShortcut(Qt::Key_Escape);
+			else outputViewAction->setShortcut(QKeySequence());
+	}
+	if(!mVis) currentEditorView()->setFocus(Qt::TabFocusReason);
 }
