@@ -484,7 +484,6 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "structureview",StructureView->toggleViewAction());
 	outputViewAction=newManagedAction(menu, "outputview",tr("Messages / Log File"), SLOT(escAction()),Qt::Key_Escape);
 	outputViewAction->setCheckable(true);
-	outputViewAction->setShortcutContext(Qt::WidgetShortcut);
 
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "collapse", tr("Collapse"));
@@ -531,6 +530,8 @@ void Texmaker::setupMenus() {
 	connect(StructureTreeWidget,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(StructureContextMenu(QPoint)));
 
 	configManager.modifyManagedShortcuts();
+	if(outputViewAction->shortcuts().isEmpty()||outputViewAction->shortcut()==QKeySequence(Qt::Key_Escape)) outputViewAction->setShortcutContext(Qt::WidgetShortcut);
+	else outputViewAction->setShortcutContext(Qt::WindowShortcut);
 }
 
 void Texmaker::setupToolBars() {
