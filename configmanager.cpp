@@ -744,6 +744,10 @@ void ConfigManager::treeWidgetToManagedMenuTo(QTreeWidgetItem* item) {
 			if (item->text(3)!="") act->setShortcuts((QList<QKeySequence>()<<act->shortcut()) << sc);
 			if (sc!=managedMenuShortcuts.value(act->objectName()+"1",QKeySequence()))
 				managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~1", sc.toString(QKeySequence ::PortableText)));
+			if(id=="main/view/outputview"){  // special handling for outputview because of "esc"-key
+				if((item->text(2).toUpper()=="ESC"||item->text(2).isEmpty())) act->setShortcutContext(Qt::WidgetShortcut);
+				else act->setShortcutContext(Qt::WindowShortcut);
+			}
 		}
 	}
 
