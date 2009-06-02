@@ -3,14 +3,17 @@
 
 #include "buildmanager.h"
 
-#include "configdialog.h"
+#include "latexcompleter_config.h"
 
 #include <QDomElement>
 #include <QMenuBar>
+#include <QPushButton>
 #include <QSettings>
 #include <QStyle>
 #include <QTranslator>
 #include <QTreeWidgetItem>
+
+class ConfigDialog;
 
 class ConfigManager: public QObject {
 	Q_OBJECT
@@ -51,14 +54,7 @@ public:
 	
 	//editor 
 	//completion
-	bool completion;
-	enum CompletionCaseSensitive {CCS_CASE_INSENSITIVE, CCS_CASE_SENSITIVE, CCS_FIRST_CHARACTER_CASE_SENSITIVE};
-	CompletionCaseSensitive completionCaseSensitive; 
-	bool completionCommonPrefix; //auto tab press
-	
-	QStringList completerWords;
-	QStringList completerFiles;
-	void readCompletionList(const QStringList &files);
+	LatexCompleterConfig completerConfig;
 	
 	//preview
 	enum PreviewMode {PM_TOOLTIP_AS_FALLBACK=0, PM_PANEL,PM_TOOLTIP,PM_BOTH};

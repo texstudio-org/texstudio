@@ -36,6 +36,7 @@
 #include <QTableView>
 
 #include "buildmanager.h"
+#include "codesnippet.h"
 #include "configmanager.h"
 #include "latexlog.h"
 #include "latexeditorview.h"

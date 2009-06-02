@@ -12,8 +12,6 @@
 #ifndef LATEXEDITORVIEW_H
 #define LATEXEDITORVIEW_H
 
-#include "latexcompleter.h"
-
 #include "spellerutility.h"
 
 #include "qcodeedit.h"
@@ -54,6 +52,7 @@ private:
 
 };
 
+class LatexCompleter;
 class LatexEditorView : public QWidget  {
 	Q_OBJECT
 public:

@@ -1,8 +1,14 @@
 #include "latexcompleter.h"
+#include "latexcompleter_p.h"
+
+#include "smallUsefulFunctions.h"
+
+
 #include "qdocumentline.h"
 #include "qformatfactory.h"
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QFile>
 #include <QItemDelegate>
 #include <QKeyEvent>
 #include <QPainter>
@@ -216,7 +222,6 @@ public:
 		QString my_curWord=getCurWord();
 		if (my_curWord.isEmpty()) return false;
 		if (!completer) return false;
-		if (!completer->listModel) return false;
 		/*if (!completer->list->isVisible()) {
 			resetBinding();
 			return false;
@@ -229,9 +234,9 @@ public:
 				my_words.append(words[i].word);
 		}
 		// filter list for longest common characters
-		QString myResult=my_words[0];
-		int my_start=my_curWord.length();
 		if (my_words.count()>1) {
+			QString myResult=my_words[0];
+			int my_start=my_curWord.length();
 			for (int i=1; i<my_words.count(); i++) {
 				my_curWord=my_words[i];
 
@@ -246,7 +251,7 @@ public:
 			removeRightWordPart();
 			editor->cursor().insertText(myResult.right(myResult.length()-my_start));
 			maxWritten+=myResult.length()-my_start;
-			completer->updateList(getCurWord());
+			completer->filterList(getCurWord());
 			if (!completer->list->currentIndex().isValid())
 				select(completer->list->model()->index(0,0,QModelIndex()));
 			return true;
@@ -387,7 +392,7 @@ public:
 				return false;
 			}
 		}
-		completer->updateList(getCurWord());
+		completer->filterList(getCurWord());
 		if (!completer->list->currentIndex().isValid())
 			select(completer->list->model()->index(0,0,QModelIndex()));
 		return handled;
@@ -424,7 +429,7 @@ public:
 		if (maxWritten<start) maxWritten=start;
 		curLine=editor->cursor().line();
 		showAlways=forced;//curWord!="\\";
-		completer->updateList(getCurWord());
+		completer->filterList(getCurWord());
 		if (showAlways) {
 			completer->list->show();
 			select(completer->list->model()->index(0,0,QModelIndex()));
@@ -525,15 +530,15 @@ QVariant CompletionListModel::headerData(int section, Qt::Orientation orientatio
 
 	return QVariant();
 }
-void CompletionListModel::setWords(const QList<CompletionWord> &baselist, const QString &word) {
+void CompletionListModel::filterList(const QString &word) {
 	if (word==curWord) return;
 	words.clear();
 	Qt::CaseSensitivity cs = Qt::CaseInsensitive;
 	bool checkFirstChar=false;
-	if (LatexCompleter::configManager){
-		if (LatexCompleter::configManager->completionCaseSensitive==ConfigManager::CCS_CASE_SENSITIVE)
+	if (LatexCompleter::config){
+		if (LatexCompleter::config->caseSensitive==LatexCompleterConfig::CCS_CASE_SENSITIVE)
 			cs=Qt::CaseSensitive;
-		checkFirstChar=LatexCompleter::configManager->completionCaseSensitive==ConfigManager::CCS_FIRST_CHARACTER_CASE_SENSITIVE && word.length()>1;
+		checkFirstChar=LatexCompleter::config->caseSensitive==LatexCompleterConfig::CCS_FIRST_CHARACTER_CASE_SENSITIVE && word.length()>1;
 	}
 	for (int i=0; i<baselist.count(); i++) {
 		if (baselist[i].word.isEmpty()) continue;
@@ -547,19 +552,28 @@ void CompletionListModel::setWords(const QList<CompletionWord> &baselist, const 
 	curWord=word;
 	reset();
 }
+void CompletionListModel::setBaseWords(const QStringList &newwords, bool normalTextList) {
+	QList<CompletionWord> newWordList;
+	acceptedChars.clear();
+	newWordList.clear();
+	foreach(QString str, newwords) {
+		newWordList.append(CompletionWord(str));
+		foreach(QChar c, str) acceptedChars.insert(c);
+	}
+	qSort(newWordList.begin(), newWordList.end());
+
+	if (normalTextList) wordsText=newWordList;
+	else wordsCommands=newWordList;
+	baselist=wordsCommands;
+}
 
 //------------------------------completer-----------------------------------
-QList <CompletionWord> LatexCompleter::words;
-QList <CompletionWord> LatexCompleter::wordsText;
-QList <CompletionWord> LatexCompleter::wordsCommands;
-QSet <QChar> LatexCompleter::acceptedChars;
-int LatexCompleter::maxWordLen = 0;
 QString LatexCompleter::helpFile;
 QHash<QString, QString> LatexCompleter::helpIndices;
 QHash<QString, int> LatexCompleter::helpIndicesCache;
-const ConfigManager* LatexCompleter::configManager=0;
+const LatexCompleterConfig* LatexCompleter::config=0;
 
-LatexCompleter::LatexCompleter(QObject *p): QObject(p) {
+LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0) {
 //   addTrigger("\\");
 	if (!qobject_cast<QWidget*>(parent()))
 		QMessageBox::critical(0,"Serious PROBLEM", QString("The completer has been created without a parent widget. This is impossible!\n")+
@@ -579,30 +593,19 @@ LatexCompleter::~LatexCompleter() {
 
 
 void LatexCompleter::setWords(const QStringList &newwords, bool normalTextList) {
-	QList<CompletionWord> newWordList;
-	acceptedChars.clear();
-	newWordList.clear();
-	foreach(QString str, newwords) {
-		newWordList.append(CompletionWord(str));
-		foreach(QChar c, str) acceptedChars.insert(c);
-	}
-	qSort(newWordList.begin(), newWordList.end());
-
-	if (normalTextList) wordsText=newWordList;
-	else {
-		wordsCommands=newWordList;
-		if (maxWordLen==0) {
-			int newWordMax=0;
-			QFont f=QApplication::font();
-			f.setItalic(true);
-			QFontMetrics fm(f);
-			for (int i=0; i<newWordList.size(); i++) {
-				int temp=fm.width(newWordList[i].shownWord)+newWordList[i].descriptiveParts.size()+10;
-				if (temp>newWordMax) newWordMax=temp;
-			}
-			maxWordLen=newWordMax;
-			list->resize(200>maxWordLen?200:maxWordLen,100);
+	listModel->setBaseWords(newwords,normalTextList);
+	if (maxWordLen==0 && !normalTextList) {
+		int newWordMax=0;
+		QFont f=QApplication::font();
+		f.setItalic(true);
+		QFontMetrics fm(f);
+		const QList<CompletionWord> & words=listModel->getWords();
+		for (int i=0; i<words.size(); i++) {
+			int temp=fm.width(words[i].shownWord)+words[i].descriptiveParts.size()+10;
+			if (temp>newWordMax) newWordMax=temp;
 		}
+		maxWordLen=newWordMax;
+		list->resize(200>maxWordLen?200:maxWordLen,100);
 	}
 }
 
@@ -633,8 +636,8 @@ void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool nor
 	}
 	list->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
 	//list->show();
-	if (normalText) words=wordsText;
-	else words=wordsCommands;
+	if (normalText) listModel->baselist=listModel->wordsText;
+	else listModel->baselist=listModel->wordsCommands;
 	if (c.previousChar()!='\\' || forceVisibleList) {
 		int start=c.columnNumber()-1;
 		if (normalText) start=0;
@@ -655,7 +658,7 @@ void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool nor
 	//line.document()->cursor(0,0).insertText(QString::number(offset.x())+":"+QString::number(offset.y()));
 	connect(editor,SIGNAL(cursorPositionChanged()),this,SLOT(cursorPositionChanged()));
 	
-	if (configManager->completionCommonPrefix) completerInputBinding->completeCommonPrefix();
+	if (config && config->completeCommonPrefix) completerInputBinding->completeCommonPrefix();
 }
 
 void LatexCompleter::parseHelpfile(QString text) {
@@ -687,17 +690,20 @@ void LatexCompleter::parseHelpfile(QString text) {
 bool LatexCompleter::hasHelpfile() {
 	return !helpFile.isEmpty();
 }
-void LatexCompleter::setConfigManager(const ConfigManager* config){
-	configManager=config;
+bool LatexCompleter::acceptTriggerString(const QString& trigger){
+	return trigger=="\\" && (!config || config->enabled);;
+}
+void LatexCompleter::setConfig(const LatexCompleterConfig* config){
+	this->config=config;
 }
 
-void LatexCompleter::updateList(QString word) {
+void LatexCompleter::filterList(QString word) {
 	QString cur=""; //needed to preserve selection
 	if (list->isVisible() && list->currentIndex().isValid())
 		cur=list->model()->data(list->currentIndex(),Qt::DisplayRole).toString();
-	((CompletionListModel*)(list->model()))->setWords(words,word);
+	listModel->filterList(word);
 	if (cur!="") {
-		int p=((CompletionListModel*)(list->model()))->words.indexOf(cur);
+		int p=listModel->getWords().indexOf(cur);
 		if (p>=0) list->setCurrentIndex(list->model()->index(p,0,QModelIndex()));
 	}
 }
@@ -706,7 +712,7 @@ bool LatexCompleter::acceptChar(QChar c,int pos) {
 	        ((c>=QChar('A')) && (c<=QChar('Z'))) ||
 	        ((c>=QChar('0')) && (c<=QChar('9')))) return true;
 	if (pos<=1) return false;
-	return acceptedChars.contains(c);
+	return listModel->getAcceptedChars().contains(c);
 }
 
 void LatexCompleter::cursorPositionChanged() {
@@ -718,7 +724,7 @@ void LatexCompleter::cursorPositionChanged() {
 }
 //called when item is clicked, more important: normal (not signal/slot) called when completerbinding change selection
 void LatexCompleter::selectionChanged(const QModelIndex & index) {
-	if (helpIndices.empty() || !listModel) return;
+	if (helpIndices.empty()) return;
 	QToolTip::hideText();
 	if (!index.isValid()) return;
 	if (index.row() < 0 || index.row()>=listModel->words.size()) return;
@@ -757,4 +763,64 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 }
 void LatexCompleter::editorDestroyed() {
 	editor=0;
+}
+
+
+
+
+
+
+
+
+void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
+	files=newFiles;
+	words.clear();
+	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+	foreach(QString file, files) {
+		QString fn=findResourceFile("completion/"+file);
+		QFile tagsfile(fn);
+		if (tagsfile.open(QFile::ReadOnly)) {
+			QString line;
+			while (!tagsfile.atEnd()) {
+				line = tagsfile.readLine();
+				if (!line.isEmpty() && !line.startsWith("#") && !line.startsWith(" ")) {
+					if (line.startsWith("\\pageref")||line.startsWith("\\ref")) continue;
+					if (!line.contains("%")){
+						if (line.contains("{")) {
+							line.replace("{","{%<");
+							line.replace("}","%>}");
+						}
+						if (line.contains("(")) {
+							line.replace("(","(%<");
+							line.replace(")","%>)");
+						}
+						if (line.contains("[")) {
+							line.replace("[","[%<");
+							line.replace("]","%>]");
+						}
+						int i;
+						if (line.startsWith("\\begin")||line.startsWith("\\end")) {
+							i=line.indexOf("%<",0);
+							line.replace(i,2,"");
+							i=line.indexOf("%>",0);
+							line.replace(i,2,"");
+							if (line.endsWith("\\item\n")) {
+								line.chop(6);
+							}
+						}
+						i=line.indexOf("%<",0);
+						line.replace(i,2,"%|%<");
+						i=line.indexOf("%>",0);
+						line.replace(i,2,"%>%|");
+					}
+					words.append(line.trimmed());
+				}
+			}
+		}
+	}
+	QApplication::restoreOverrideCursor();
+}
+
+const QStringList& LatexCompleterConfig::getLoadedFiles(){
+	return files;
 }

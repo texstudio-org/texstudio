@@ -11,6 +11,7 @@
 
 #include "latexeditorview.h"
 
+#include "latexcompleter.h"
 #include "smallUsefulFunctions.h"
 
 #include "qdocumentline.h"
@@ -37,9 +38,9 @@
 
 //------------------------------Default Input Binding--------------------------------
 bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
-	if (event->text()==QString("\\") && LatexEditorView::completer)  { //workaround because trigger doesn't seem work
+	if (LatexEditorView::completer && LatexEditorView::completer->acceptTriggerString(event->text()))  {
 		editor->cursor().removeSelectedText();
-		editor->cursor().insertText("\\");
+		editor->cursor().insertText(event->text());
 		LatexEditorView::completer->complete(editor,false);
 		return true;
 	}

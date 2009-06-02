@@ -65,7 +65,10 @@ HEADERS += texmaker.h \
     latexoutputfilter.h \
     qcodeedit/lib/document/qdocumentline_p.h \
     qcodeedit/lib/document/qdocumentcursor_p.h \
-    toolwidgets.h
+    toolwidgets.h \
+    latexcompleter_config.h \
+    latexcompleter_p.h \
+    codesnippet.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -112,7 +115,8 @@ SOURCES += main.cpp \
     hunspell/hunzip.cxx \
     encodingdialog.cpp \
     latexoutputfilter.cpp \
-    toolwidgets.cpp
+    toolwidgets.cpp \
+    codesnippet.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
