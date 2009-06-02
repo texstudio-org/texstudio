@@ -12,8 +12,6 @@
 #ifndef LATEXCOMPLETER_H
 #define LATEXCOMPLETER_H
 
-#include "configmanager.h"
-
 #include <qwidget.h>
 #include <qfont.h>
 #include <qcolor.h>
@@ -24,46 +22,11 @@
 #include <QListView>
 //#include "qpanel.h"
 
-class CompletionWord {
-public:
-	CompletionWord():cursorPos(-1),anchorPos(-1) {}
-	CompletionWord(const CompletionWord &cw):word(cw.word),sortWord(cw.sortWord),shownWord(cw.shownWord),cursorPos(cw.cursorPos),anchorPos(cw.anchorPos),descriptiveParts(cw.descriptiveParts) {}
-	CompletionWord(const QString &newWord);//see cpp
-	bool operator< (const CompletionWord &cw) const {
-		return cw.sortWord > sortWord;
-	}
-	bool operator== (const CompletionWord &cw) const {
-		return cw.word == word;
-	}
+#include "latexcompleter_config.h"
 
-	QString word,sortWord,shownWord;
-	int cursorPos; //-1 => not defined
-	int anchorPos;
-	QList<QPair<int, int> > descriptiveParts; //used to draw
+#include "codesnippet.h"
 
-	void insertAt(QEditor* editor, QDocumentCursor* cursor);
-};
-Q_DECLARE_METATYPE(CompletionWord)
-//class CompleterInputBinding;
-class CompletionListModel : public QAbstractListModel {
-	Q_OBJECT
-
-public:
-	CompletionListModel(QObject *parent = 0): QAbstractListModel(parent) {}
-
-	int rowCount(const QModelIndex &parent = QModelIndex()) const;
-	QVariant data(const QModelIndex &index, int role) const;
-	QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
-
-	const QList<CompletionWord> & getWords(){
-		return words;
-	}
-private:
-	friend class LatexCompleter;
-	QList<CompletionWord> words;
-	QString curWord;
-	void setWords(const QList<CompletionWord> & baselist, const QString &word);
-};
+class CompletionListModel;
 
 
 class LatexCompleter : public QObject  {
@@ -74,27 +37,23 @@ public:
 
 	void complete(QEditor *newEditor, bool forceVisibleList, bool normalText=false);
 	void setWords(const QStringList &newwords, bool normalTextList=false);
-	QList<CompletionWord> getWords() const {
-		return words;
-	}
 
 	static void parseHelpfile(QString text);
 	static bool hasHelpfile();
 	
-	void setConfigManager(const ConfigManager* config);
+	bool acceptTriggerString(const QString& trigger);
+	
+	void setConfig(const LatexCompleterConfig* config);
 private:
 	friend class CompleterInputBinding;
 	friend class CompletionListModel;
-	static int maxWordLen;
-	static QList<CompletionWord> words;
-	static QList<CompletionWord> wordsText, wordsCommands;
-	static QSet<QChar> acceptedChars;
-	static const ConfigManager* configManager;
+	static const LatexCompleterConfig* config;
+	int maxWordLen;
 	QListView * list;
 	CompletionListModel* listModel;
 	QEditor *editor;
 
-	void updateList(QString word);
+	void filterList(QString word);
 	bool acceptChar(QChar c,int pos);
 
 	static QString helpFile;

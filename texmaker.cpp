@@ -175,7 +175,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 
 	completer=new LatexCompleter(this);
-	completer->setConfigManager(&configManager);
+	completer->setConfig(&configManager.completerConfig);
 	updateCompleter();
 	LatexEditorView::setCompleter(completer);
 
@@ -3514,7 +3514,7 @@ void Texmaker::SetMostUsedSymbols() {
 void Texmaker::updateCompleter() {
 	QStringList words;
 
-	words=configManager.completerWords;
+	words=configManager.completerConfig.words;
 	words.append(userCommandList);
 	for (int i=0; i<labelitem.count(); ++i) {
 		words.append("\\ref{"+labelitem.at(i)+"}");
