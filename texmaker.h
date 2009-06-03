@@ -14,6 +14,25 @@
 #ifndef TEXMAKER_H
 #define TEXMAKER_H
 
+
+#include "buildmanager.h"
+#include "codesnippet.h"
+#include "configmanager.h"
+#include "latexlog.h"
+#include "latexeditorview.h"
+#include "latexcompleter.h"
+#include "symbollistwidget.h"
+#include "metapostlistwidget.h"
+#include "pstrickslistwidget.h"
+#include "spellerdialog.h"
+#include "textanalysis.h"
+#include "toolwidgets.h"
+
+
+#include "qformatfactory.h"
+#include "qlanguagefactory.h"
+#include "qlinemarksinfocenter.h"
+
 #include <QMainWindow>
 #include <QDockWidget>
 #include <QMenuBar>
@@ -34,24 +53,6 @@
 #include <QTextTable>
 #include <QVBoxLayout>
 #include <QTableView>
-
-#include "buildmanager.h"
-#include "codesnippet.h"
-#include "configmanager.h"
-#include "latexlog.h"
-#include "latexeditorview.h"
-#include "latexcompleter.h"
-#include "symbollistwidget.h"
-#include "metapostlistwidget.h"
-#include "pstrickslistwidget.h"
-#include "spellerdialog.h"
-#include "textanalysis.h"
-#include "toolwidgets.h"
-
-
-#include "qformatfactory.h"
-#include "qlanguagefactory.h"
-#include "qlinemarksinfocenter.h"
 
 
 typedef  QMap<LatexEditorView*, QString> FilesMap;

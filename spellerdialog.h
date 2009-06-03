@@ -11,12 +11,12 @@
 #ifndef SPELLERDIALOG_H
 #define SPELLERDIALOG_H
 
-#include "ui_spellerdialog.h"
-#include "spellerutility.h"
-#include "qeditor.h"
 #include "latexeditorview.h"
+#include "spellerutility.h"
 
-#include <QTextCursor>
+#include "ui_spellerdialog.h"
+
+#include "qeditor.h"
 
 class SpellerDialog : public QDialog  {
 	Q_OBJECT
