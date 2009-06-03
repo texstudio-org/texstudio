@@ -10,11 +10,12 @@
 
 #include "spellerdialog.h"
 
+#include "smallUsefulFunctions.h"
+
 #include "qdocumentline.h"
 
 #include <QCloseEvent>
 
-#include "smallUsefulFunctions.h"
 
 SpellerDialog::SpellerDialog(QWidget *parent,SpellerUtility *utility)
 		:QDialog(parent),m_speller(utility),editor(0),editorView(0) {

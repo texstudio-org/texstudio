@@ -1599,7 +1599,7 @@ void Texmaker::SaveSettings() {
 		config->setValue(QString("User/Tool%1").arg(i+1),UserToolCommand[i]);
 	}
 
-        for(int i=0;i<struct_level.length();i++)
+        for(int i=0;i<struct_level.count();i++)
             config->setValue("Structure/Structure Level "+QString::number(i+1),struct_level[i]);
 
 	config->setValue("Quick/Class",document_class);
@@ -1643,7 +1643,7 @@ void Texmaker::UpdateStructure() {
 
 //
         QTreeWidgetItem *Child, *theitem;
-        QVector<QTreeWidgetItem *> parent_level(struct_level.length());
+        QVector<QTreeWidgetItem *> parent_level(struct_level.count());
 	QString current;
 	if (StructureTreeWidget->currentItem()) current=StructureTreeWidget->currentItem()->text(0);
 	StructureTreeWidget->clear();
@@ -1721,7 +1721,7 @@ void Texmaker::UpdateStructure() {
 		//// include,input ////
 		QStringList inputTokens;
 		inputTokens << "input" << "include";
-		for(int header=0;header<inputTokens.length();header++){
+		for(int header=0;header<inputTokens.count();header++){
 			s=currentEditorView()->editor->text(i);
 			s=findToken(s,"\\"+inputTokens.at(header)+"{");
 			if (s!="") {
@@ -1733,7 +1733,7 @@ void Texmaker::UpdateStructure() {
 			};
 		}//for
 		//// all sections ////
-		for(int header=0;header<struct_level.length();header++){
+		for(int header=0;header<struct_level.count();header++){
 			s=currentEditorView()->editor->text(i);
 			s=findToken(s,QRegExp("\\\\"+struct_level[header]+"\\*?[\\{\\[]"));
 			if (s!="") {
@@ -3516,7 +3516,7 @@ void Texmaker::updateCompleter() {
 	QStringList words;
 
 	words=configManager.completerConfig.words;
-	words.append(userCommandList);
+	words << userCommandList;
 	for (int i=0; i<labelitem.count(); ++i) {
 		words.append("\\ref{"+labelitem.at(i)+"}");
 		words.append("\\pageref{"+labelitem.at(i)+"}");

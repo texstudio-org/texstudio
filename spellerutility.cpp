@@ -94,7 +94,7 @@ void SpellerUtility::addToIgnoreList(QString toIgnore) {
 }
 void SpellerUtility::removeFromIgnoreList(QString toIgnore) {
 	ignoredWords.remove(toIgnore);
-	while (ignoredWordList.contains(toIgnore)) ignoredWordList.removeOne(toIgnore);
+	ignoredWordList.removeAll(toIgnore);
 	ignoredWordsModel.setStringList(ignoredWordList);
 }
 QStringListModel* SpellerUtility::ignoreListModel() {

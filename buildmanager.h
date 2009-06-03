@@ -1,6 +1,7 @@
 #ifndef BUILDMANAGER_H
 #define BUILDMANAGER_H
 
+#include <QHash>
 #include <QString>
 #include <QFileInfo>
 #include <QPixmap>
