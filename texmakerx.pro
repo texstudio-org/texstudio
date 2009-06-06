@@ -24,6 +24,7 @@ HEADERS += texmaker.h \
     metapostlistwidget.h \
     smallUsefulFunctions.h \
     structdialog.h \
+    encodingdialog.h \
     filechooser.h \
     tabbingdialog.h \
     arraydialog.h \
@@ -42,6 +43,12 @@ HEADERS += texmaker.h \
     spellerutility.h \
     pstrickslistwidget.h \
     textanalysis.h \
+    toolwidgets.h \
+    latexoutputfilter.h \
+    latexcompleter_config.h \
+    latexcompleter_p.h \
+    codesnippet.h \
+	thesaurusdialog.h \
     hunspell/affentry.hxx \
     hunspell/affixmgr.hxx \
     hunspell/atypes.hxx \
@@ -60,15 +67,7 @@ HEADERS += texmaker.h \
     hunspell/license.myspell \
     hunspell/filemgr.hxx \
     hunspell/hunzip.hxx \
-    hunspell/w_char.hxx \
-    encodingdialog.h \
-    latexoutputfilter.h \
-    qcodeedit/lib/document/qdocumentline_p.h \
-    qcodeedit/lib/document/qdocumentcursor_p.h \
-    toolwidgets.h \
-    latexcompleter_config.h \
-    latexcompleter_p.h \
-    codesnippet.h
+    hunspell/w_char.hxx 
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -101,6 +100,10 @@ SOURCES += main.cpp \
     spellerutility.cpp \
     pstrickslistwidget.cpp \
     textanalysis.cpp \
+    latexoutputfilter.cpp \
+    toolwidgets.cpp \
+    codesnippet.cpp \
+	thesaurusdialog.cpp \
     hunspell/affentry.cxx \
     hunspell/affixmgr.cxx \
     hunspell/csutil.cxx \
@@ -113,10 +116,7 @@ SOURCES += main.cpp \
     hunspell/utf_info.cxx \
     hunspell/filemgr.cxx \
     hunspell/hunzip.cxx \
-    encodingdialog.cpp \
-    latexoutputfilter.cpp \
-    toolwidgets.cpp \
-    codesnippet.cpp
+    encodingdialog.cpp 
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
@@ -312,7 +312,9 @@ SOURCES += qcodeedit/lib/qeditor.cpp \
     qcodeedit/lib/document/qdocument.cpp \
     qcodeedit/lib/document/qdocumentcommand.cpp \
     qcodeedit/lib/document/qdocumentcursor.cpp \
+    qcodeedit/lib/document/qdocumentcursor_p.h \
     qcodeedit/lib/document/qdocumentline.cpp \
+    qcodeedit/lib/document/qdocumentline_p.h \
     qcodeedit/lib/document/qdocumentsearch.cpp \
     qcodeedit/lib/qcodecompletionengine.cpp \
     qcodeedit/lib/qlanguagedefinition.cpp \

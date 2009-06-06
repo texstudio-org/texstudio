@@ -141,7 +141,7 @@ private:
 	int spellcheckErrorFormat;
 	SpellerUtility *mainSpeller;
 
-	thesaurusdialog *m_thesaurusdialog;
+	ThesaurusDialog *thesaurusDialog;
 //dialogs
 	TextAnalysisDialog *textAnalysisDlg;
 	SpellerDialog *spellDlg;

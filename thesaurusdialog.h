@@ -7,13 +7,13 @@
 #include <QListWidget>
 #include <QGridLayout>
 
-class thesaurusdialog : public QDialog
+class ThesaurusDialog: public QDialog
 {
 	Q_OBJECT
 
 public:
-	thesaurusdialog(QWidget *parent = 0);
-	~thesaurusdialog(){};
+	ThesaurusDialog(QWidget *parent = 0);
+	~ThesaurusDialog(){};
 	QString getReplaceWord();
 	void setSearchWord(const QString word);
 	void readDatabase(const QString filename);
