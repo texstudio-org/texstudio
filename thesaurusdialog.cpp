@@ -1,10 +1,10 @@
-#include "thesaurusdialog.h"
+#include "ThesaurusDialog.h"
 
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
 
-thesaurusdialog::thesaurusdialog(QWidget *parent)
+ThesaurusDialog::ThesaurusDialog(QWidget *parent)
 	:QDialog(parent)
 {
 	replaceBt=new QPushButton(tr("replace"),this);
@@ -39,7 +39,7 @@ thesaurusdialog::thesaurusdialog(QWidget *parent)
 	Thesaurus.clear();
 }
 
-void thesaurusdialog::setSearchWord(const QString word)
+void ThesaurusDialog::setSearchWord(const QString word)
 {
 	searchWrdLe->setText(word);
 	replaceWrdLe->setText("");
@@ -59,12 +59,12 @@ void thesaurusdialog::setSearchWord(const QString word)
 	classClicked(classlistWidget->item(0));
 }
 
-QString thesaurusdialog::getReplaceWord()
+QString ThesaurusDialog::getReplaceWord()
 {
 	return replaceWrdLe->text();
 }
 
-void thesaurusdialog::readDatabase(const QString filename)
+void ThesaurusDialog::readDatabase(const QString filename)
 {
 	if (!QFile::exists(filename)) return;
 
@@ -95,7 +95,7 @@ void thesaurusdialog::readDatabase(const QString filename)
 	} while (!line.isNull());
 }
 
-void thesaurusdialog::classClicked(QListWidgetItem *item)
+void ThesaurusDialog::classClicked(QListWidgetItem *item)
 {
 	if(!item) return;
 	int row=classlistWidget->row(item);
@@ -105,12 +105,12 @@ void thesaurusdialog::classClicked(QListWidgetItem *item)
 	replacelistWidget->addItems(result[row]);
 }
 
-void thesaurusdialog::wordClicked(QListWidgetItem *item)
+void ThesaurusDialog::wordClicked(QListWidgetItem *item)
 {
 	replaceWrdLe->setText(item->text());
 }
 
-void thesaurusdialog::lookupClicked()
+void ThesaurusDialog::lookupClicked()
 {
 	QString word=replaceWrdLe->text();
 	word.replace(QRegExp(" \\(.*"), "");

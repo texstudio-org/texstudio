@@ -111,7 +111,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	PsListWidget=0;
 	MpListWidget=0;
 	outputView=0;
-	m_thesaurusdialog=0;
+	thesaurusDialog=0;
 
 	mainSpeller=new SpellerUtility();;
 	mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);
@@ -1272,8 +1272,8 @@ void Texmaker::editThesaurus() {
 		return;
 	}
 	QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
-	if(m_thesaurusdialog==0) m_thesaurusdialog=new thesaurusdialog(this);
-	m_thesaurusdialog->readDatabase(thesaurus_database);
+	if(thesaurusDialog==0) thesaurusDialog=new ThesaurusDialog(this);
+	thesaurusDialog->readDatabase(thesaurus_database);
 	QString word;
 	if(m_cursor.hasSelection()){
 		word=m_cursor.selectedText();
@@ -1283,9 +1283,9 @@ void Texmaker::editThesaurus() {
 	}
 	if(word.isEmpty()) return;
 	word=latexToPlainWord(word);
-	m_thesaurusdialog->setSearchWord(word);
-	if(m_thesaurusdialog->exec()){
-		QString replace=m_thesaurusdialog->getReplaceWord();
+	thesaurusDialog->setSearchWord(word);
+	if(thesaurusDialog->exec()){
+		QString replace=thesaurusDialog->getReplaceWord();
 		m_cursor.insertText(replace);
 	}
 }
@@ -3346,7 +3346,7 @@ void Texmaker::GeneralOptions() {
 		showcursorstate=confDlg->ui.checkBoxState->isChecked();
 		realtimespellchecking=confDlg->ui.checkBoxRealTimeCheck->isChecked();
 
-		if(m_thesaurusdialog) m_thesaurusdialog->readDatabase(thesaurus_database);
+		if(thesaurusDialog) thesaurusDialog->readDatabase(thesaurus_database);
 
 		mainSpeller->setActive(realtimespellchecking);
 		mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);
