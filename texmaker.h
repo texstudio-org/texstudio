@@ -27,6 +27,7 @@
 #include "spellerdialog.h"
 #include "textanalysis.h"
 #include "toolwidgets.h"
+#include "thesaurusdialog.h"
 
 
 #include "qformatfactory.h"
@@ -130,7 +131,8 @@ private:
 	bool folding, showlinestate, showcursorstate, realtimespellchecking;
 	QString document_class, typeface_size, paper_size, document_encoding, author;
 	QString spell_dic, spell_ignored_words;
-        QStringList struct_level;
+	QStringList struct_level;
+	QString thesaurus_database;
 	QStringList userClassList, userPaperList, userEncodingList, userOptionsList;
 	QStringList labelitem;
 	Userlist UserMenuName, UserMenuTag;
@@ -138,6 +140,8 @@ private:
 
 	int spellcheckErrorFormat;
 	SpellerUtility *mainSpeller;
+
+	thesaurusdialog *m_thesaurusdialog;
 //dialogs
 	TextAnalysisDialog *textAnalysisDlg;
 	SpellerDialog *spellDlg;
@@ -202,6 +206,7 @@ private slots:
 	void editIndent();
 	void editUnindent();
 	void editSpell();
+	void editThesaurus();
 	void editChangeLineEnding();
 	void editSetupEncoding();
 

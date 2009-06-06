@@ -213,6 +213,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 
 
 	connect(ui.pushButtonAspell, SIGNAL(clicked()), this, SLOT(browseAspell()));
+	connect(ui.btSelectThesaurusFileName, SIGNAL(clicked()), this, SLOT(browseThesaurus()));
 	connect(ui.lineEditAspellCommand, SIGNAL(textChanged(QString)), this, SLOT(lineEditAspellChanged(QString)));
 
 	ui.labelGetDic->setText(tr("Get dictionary at: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>"));
@@ -296,6 +297,15 @@ void ConfigDialog::lineEditAspellChanged(QString newText) {
 	} else {
 		ui.lineEditAspellCommand->setStyleSheet(QString("QLineEdit {background: red}"));
 		ui.labelGetDic->setText("<font color=\"red\">"+tr("(Dictionary doesn't exists)")+"</font><br>"+tr("Get dictionary at: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>"));
+	}
+}
+
+void ConfigDialog::browseThesaurus() {
+	QString location=QFileDialog::getOpenFileName(this,tr("Browse thesaurus database"),QDir::homePath(),"Database (*.dat)",0,QFileDialog::DontResolveSymlinks);
+	if (!location.isEmpty()) {
+		location.replace(QString("\\"),QString("/"));
+//	location="\""+location+"\"";
+		ui.thesaurusFileName->setText(location);
 	}
 }
 /*
