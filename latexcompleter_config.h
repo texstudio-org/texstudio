@@ -8,11 +8,13 @@
 class LatexCompleterConfig
 {
 public:
-	bool enabled;
+	bool enabled; //auto completion enabled (manual completion e.g ctrl+space can always be used)
 	enum CaseSensitive {CCS_CASE_INSENSITIVE, CCS_CASE_SENSITIVE, CCS_FIRST_CHARACTER_CASE_SENSITIVE};
 	CaseSensitive caseSensitive; 
 	bool completeCommonPrefix; //auto tab press	
+	bool eowCompletes; //if a EOW character key is pressed, the current word is completed and the character added
 	QStringList words;
+	
 	void loadFiles(const QStringList & newFiles);
 	const QStringList& getLoadedFiles();
 private:

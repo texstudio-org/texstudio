@@ -3,8 +3,6 @@
 
 #include "buildmanager.h"
 
-#include "latexcompleter_config.h"
-
 #include <QDomElement>
 #include <QMenuBar>
 #include <QPushButton>
@@ -14,6 +12,7 @@
 #include <QTreeWidgetItem>
 
 class ConfigDialog;
+class LatexCompleterConfig;
 
 class ConfigManager: public QObject {
 	Q_OBJECT
@@ -54,7 +53,7 @@ public:
 	
 	//editor 
 	//completion
-	LatexCompleterConfig completerConfig;
+	LatexCompleterConfig * const completerConfig;
 	
 	//preview
 	enum PreviewMode {PM_TOOLTIP_AS_FALLBACK=0, PM_PANEL,PM_TOOLTIP,PM_BOTH};

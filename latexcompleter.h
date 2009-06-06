@@ -12,22 +12,19 @@
 #ifndef LATEXCOMPLETER_H
 #define LATEXCOMPLETER_H
 
-#include <qwidget.h>
-#include <qfont.h>
-#include <qcolor.h>
+#include "codesnippet.h"
 
 #include "qcodeedit.h"
 #include "qeditor.h"
 
+#include <qwidget.h>
+#include <qfont.h>
+#include <qcolor.h>
 #include <QListView>
-//#include "qpanel.h"
 
-#include "latexcompleter_config.h"
-
-#include "codesnippet.h"
 
 class CompletionListModel;
-
+class LatexCompleterConfig;
 
 class LatexCompleter : public QObject  {
 	Q_OBJECT
@@ -36,7 +33,7 @@ public:
 	virtual ~LatexCompleter();
 
 	void complete(QEditor *newEditor, bool forceVisibleList, bool normalText=false);
-	void setWords(const QStringList &newwords, bool normalTextList=false);
+	void setAdditionalWords(const QStringList &newwords, bool normalTextList=false);
 
 	static void parseHelpfile(QString text);
 	static bool hasHelpfile();

@@ -3,6 +3,7 @@
 
 #include "configdialog.h"
 #include "latexeditorview.h"
+#include "latexcompleter_config.h"
 #include "smallUsefulFunctions.h"
 
 #include <QFile>
@@ -13,7 +14,8 @@
 #include <QPushButton>
 #include <QStyleFactory>
 
-ConfigManager::ConfigManager(QObject *parent): QObject (parent),buildManager(0),menuParent(0), menuParentsBar(0){
+ConfigManager::ConfigManager(QObject *parent): QObject (parent),
+	buildManager(0),completerConfig (new LatexCompleterConfig), menuParent(0), menuParentsBar(0){
 }
 
 QSettings* ConfigManager::readSettings() {
@@ -62,10 +64,11 @@ QSettings* ConfigManager::readSettings() {
 	lastDocument=config->value("Files/Last Document","").toString();
 
 	//completion
-	completerConfig.enabled=config->value("Editor/Completion",true).toBool();
-	completerConfig.caseSensitive=(LatexCompleterConfig::CaseSensitive) config->value("Editor/Completion Case Sensitive",2).toInt();
-	completerConfig.completeCommonPrefix=config->value("Editor/Completion Complete Common Prefix",true).toBool();
-	completerConfig.loadFiles(config->value("Editor/Completion Files",QStringList("texmakerx.cwl")).toStringList());
+	completerConfig->enabled=config->value("Editor/Completion",true).toBool();
+	completerConfig->caseSensitive=(LatexCompleterConfig::CaseSensitive) config->value("Editor/Completion Case Sensitive",2).toInt();
+	completerConfig->completeCommonPrefix=config->value("Editor/Completion Complete Common Prefix",true).toBool();
+	completerConfig->eowCompletes=config->value("Editor/Completion EOW Completes", true).toBool();
+	completerConfig->loadFiles(config->value("Editor/Completion Files",QStringList("texmakerx.cwl")).toStringList());
 	
 	//preview
 	previewMode=(PreviewMode) config->value("Preview/Mode",0).toInt();
@@ -240,11 +243,12 @@ QSettings* ConfigManager::saveSettings() {
 	config->setValue("Files/Last Document",lastDocument);
 
 	//completion
-	config->setValue("Editor/Completion",completerConfig.enabled);
-	config->setValue("Editor/Completion Case Sensitive",completerConfig.caseSensitive);
-	config->setValue("Editor/Completion Complete Common Prefix",completerConfig.completeCommonPrefix);
-	if (!completerConfig.getLoadedFiles().isEmpty())
-		config->setValue("Editor/Completion Files",completerConfig.getLoadedFiles());
+	config->setValue("Editor/Completion",completerConfig->enabled);
+	config->setValue("Editor/Completion Case Sensitive",completerConfig->caseSensitive);
+	config->setValue("Editor/Completion Complete Common Prefix",completerConfig->completeCommonPrefix);
+	config->setValue("Editor/Completion EOW Completes", completerConfig->eowCompletes);
+	if (!completerConfig->getLoadedFiles().isEmpty())
+		config->setValue("Editor/Completion Files",completerConfig->getLoadedFiles());
 
 	//preview
 	config->setValue("Preview/Mode",previewMode);
@@ -305,11 +309,12 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	confDlg->ui.spinBoxMaxRecentProjects->setValue(maxRecentProjects);
 
 	//completion
-	confDlg->ui.checkBoxCompletion->setChecked(completerConfig.enabled);
-	confDlg->ui.checkBoxCaseSensitive->setChecked(completerConfig.caseSensitive!=LatexCompleterConfig::CCS_CASE_INSENSITIVE);
-	confDlg->ui.checkBoxCaseSensitiveInFirstCharacter->setChecked(completerConfig.caseSensitive==LatexCompleterConfig::CCS_FIRST_CHARACTER_CASE_SENSITIVE);
-	confDlg->ui.checkBoxCompletePrefix->setChecked(completerConfig.completeCommonPrefix);
-
+	confDlg->ui.checkBoxCompletion->setChecked(completerConfig->enabled);
+	confDlg->ui.checkBoxCaseSensitive->setChecked(completerConfig->caseSensitive!=LatexCompleterConfig::CCS_CASE_INSENSITIVE);
+	confDlg->ui.checkBoxCaseSensitiveInFirstCharacter->setChecked(completerConfig->caseSensitive==LatexCompleterConfig::CCS_FIRST_CHARACTER_CASE_SENSITIVE);
+	confDlg->ui.checkBoxCompletePrefix->setChecked(completerConfig->completeCommonPrefix);
+	confDlg->ui.checkBoxEOWCompletes->setChecked(completerConfig->eowCompletes);
+	
 	QStringList languageFiles=findResourceFiles("translations","texmakerx_*.qm") 
 							<< findResourceFiles("","texmakerx_*.qm");
 	int langId=-1;
@@ -330,7 +335,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	
 	QStringList files=findResourceFiles("completion","*.cwl");
 	QListWidgetItem *item;
-	const QStringList& loadedFiles = completerConfig.getLoadedFiles();
+	const QStringList& loadedFiles = completerConfig->getLoadedFiles();
 	foreach(QString elem,files) {
 		item=new QListWidgetItem(elem,confDlg->ui.completeListWidget);
 		item->setFlags(Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
@@ -426,18 +431,19 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		}
 
 		//completion
-		completerConfig.enabled=confDlg->ui.checkBoxCompletion->isChecked();
-		if (!confDlg->ui.checkBoxCaseSensitive->isChecked()) completerConfig.caseSensitive=LatexCompleterConfig::CCS_CASE_INSENSITIVE;
-		else if (confDlg->ui.checkBoxCaseSensitiveInFirstCharacter->isChecked()) completerConfig.caseSensitive=LatexCompleterConfig::CCS_FIRST_CHARACTER_CASE_SENSITIVE;
-		else completerConfig.caseSensitive=LatexCompleterConfig::CCS_CASE_SENSITIVE;
-		completerConfig.completeCommonPrefix=confDlg->ui.checkBoxCompletePrefix->isChecked();
+		completerConfig->enabled=confDlg->ui.checkBoxCompletion->isChecked();
+		if (!confDlg->ui.checkBoxCaseSensitive->isChecked()) completerConfig->caseSensitive=LatexCompleterConfig::CCS_CASE_INSENSITIVE;
+		else if (confDlg->ui.checkBoxCaseSensitiveInFirstCharacter->isChecked()) completerConfig->caseSensitive=LatexCompleterConfig::CCS_FIRST_CHARACTER_CASE_SENSITIVE;
+		else completerConfig->caseSensitive=LatexCompleterConfig::CCS_CASE_SENSITIVE;
+		completerConfig->completeCommonPrefix=confDlg->ui.checkBoxCompletePrefix->isChecked();
+		completerConfig->eowCompletes=confDlg->ui.checkBoxEOWCompletes->isChecked();
 		QStringList newFiles;
 		QListWidgetItem *elem;
 		for (int i=0; i<confDlg->ui.completeListWidget->count(); i++) {
 			elem=confDlg->ui.completeListWidget->item(i);
 			if (elem->checkState()==Qt::Checked) newFiles.append(elem->text());
 		}
-		completerConfig.loadFiles(newFiles);
+		completerConfig->loadFiles(newFiles);
 		
 		//preview
 		previewMode=(PreviewMode) confDlg->ui.comboBoxPreviewMode->currentIndex();
