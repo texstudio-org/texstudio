@@ -1,8 +1,8 @@
 #include "latexcompleter.h"
 #include "latexcompleter_p.h"
+#include "latexcompleter_config.h"
 
 #include "smallUsefulFunctions.h"
-
 
 #include "qdocumentline.h"
 #include "qformatfactory.h"
@@ -361,6 +361,11 @@ public:
 			}
 			resetBinding();
 			return true;
+		} else if (LatexCompleter::config && LatexCompleter::config->eowCompletes && 
+		           event->text().length()==1 && getCommonEOW().contains(event->text().at(0))) {
+			insertCompletedWord();
+			resetBinding();
+			return false; //return false to let the default implementation handle it and insert the new character
 		} else {
 			if (event->text().length()!=1 || event->text()==" ") {
 				resetBinding();
@@ -592,8 +597,10 @@ LatexCompleter::~LatexCompleter() {
 }
 
 
-void LatexCompleter::setWords(const QStringList &newwords, bool normalTextList) {
-	listModel->setBaseWords(newwords,normalTextList);
+void LatexCompleter::setAdditionalWords(const QStringList &newwords, bool normalTextList) {
+	QStringList concated = newwords;
+	if (config && !normalTextList) concated << config->words;
+	listModel->setBaseWords(concated,normalTextList);
 	if (maxWordLen==0 && !normalTextList) {
 		int newWordMax=0;
 		QFont f=QApplication::font();

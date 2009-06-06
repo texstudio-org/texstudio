@@ -176,7 +176,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 
 	completer=new LatexCompleter(this);
-	completer->setConfig(&configManager.completerConfig);
+	completer->setConfig(configManager.completerConfig);
 	updateCompleter();
 	LatexEditorView::setCompleter(completer);
 
@@ -1888,7 +1888,7 @@ void Texmaker::NormalCompletion() {
 				}
 			}
 
-			completer->setWords(words, true);
+			completer->setAdditionalWords(words, true);
 			currentEditorView()->complete(true,true);
 		}
 	}
@@ -1949,7 +1949,7 @@ void Texmaker::InsertTextCompletion() {
 			}
 		}
 
-		completer->setWords(words, true);
+		completer->setAdditionalWords(words, true);
 		currentEditorView()->complete(true,true);
 	}
 }
@@ -3554,7 +3554,6 @@ void Texmaker::SetMostUsedSymbols() {
 void Texmaker::updateCompleter() {
 	QStringList words;
 
-	words=configManager.completerConfig.words;
 	words << userCommandList;
 	for (int i=0; i<labelitem.count(); ++i) {
 		words.append("\\ref{"+labelitem.at(i)+"}");
@@ -3562,7 +3561,7 @@ void Texmaker::updateCompleter() {
 	}
 
 
-	completer->setWords(words);
+	completer->setAdditionalWords(words);
 
 	if (!LatexCompleter::hasHelpfile()) {
 		QFile f(findResourceFile("latexhelp.html"));

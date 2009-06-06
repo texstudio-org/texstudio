@@ -131,7 +131,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>5</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -143,36 +143,81 @@
          <layout class="QGridLayout">
           <item row="0" column="0">
            <widget class="QLabel" name="label_3">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Style</string>
             </property>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QComboBox" name="comboBoxInterfaceStyle"/>
+           <widget class="QComboBox" name="comboBoxInterfaceStyle">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="label_5">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Font</string>
             </property>
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QFontComboBox" name="comboBoxInterfaceFont"/>
+           <widget class="QFontComboBox" name="comboBoxInterfaceFont">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="label_7">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Font Size</string>
             </property>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QSpinBox" name="spinBoxInterfaceFontSize"/>
+           <widget class="QSpinBox" name="spinBoxInterfaceFontSize">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
           </item>
           <item row="3" column="1">
            <widget class="QCheckBox" name="checkBoxTabbedLogView">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Tabbed Log Viewer</string>
             </property>
@@ -180,13 +225,26 @@
           </item>
           <item row="4" column="0">
            <widget class="QLabel" name="label_9">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Language</string>
             </property>
            </widget>
           </item>
           <item row="4" column="1">
-           <widget class="QComboBox" name="comboBoxLanguage"/>
+           <widget class="QComboBox" name="comboBoxLanguage">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -199,23 +257,49 @@
          <layout class="QGridLayout">
           <item row="0" column="0">
            <widget class="QLabel" name="label_8">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Max. Recent Documents</string>
             </property>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QSpinBox" name="spinBoxMaxRecentFiles"/>
+           <widget class="QSpinBox" name="spinBoxMaxRecentFiles">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="label_10">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Max. Recent Master Documents</string>
             </property>
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QSpinBox" name="spinBoxMaxRecentProjects"/>
+           <widget class="QSpinBox" name="spinBoxMaxRecentProjects">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -238,8 +322,18 @@
           </item>
           <item row="0" column="2">
            <widget class="QPushButton" name="btSelectThesaurusFileName">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
-             <string>...</string>
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>../../../../../../:/images/fileopen.png</normaloff>../../../../../../:/images/fileopen.png</iconset>
             </property>
            </widget>
           </item>
@@ -418,10 +512,23 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="0" column="1" colspan="3">
-           <widget class="QLineEdit" name="lineEditExecuteBeforeCompiling"/>
+           <widget class="QLineEdit" name="lineEditExecuteBeforeCompiling">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
           </item>
           <item row="0" column="4">
            <widget class="QPushButton" name="pushButtonExecuteBeforeCompiling">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string/>
             </property>
@@ -446,6 +553,12 @@ p, li { white-space: pre-wrap; }
           </item>
           <item row="1" column="2" colspan="2">
            <widget class="QComboBox" name="comboBoxIgnoreLogFileNames">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <item>
              <property name="text">
               <string>Never (only use the file names in the log)</string>
@@ -810,6 +923,13 @@ p, li { white-space: pre-wrap; }
         <widget class="QCheckBox" name="checkBoxCompletePrefix">
          <property name="text">
           <string>Auto Complete Common Prefix</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBoxEOWCompletes">
+         <property name="text">
+          <string>Complete selected text when non-word character is pressed</string>
          </property>
         </widget>
        </item>
