@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>ConfigDialog</class>
- <widget class="QDialog" name="ConfigDialog" >
-  <property name="geometry" >
+ <widget class="QDialog" name="ConfigDialog">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,37 +10,25 @@
     <height>610</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Configure Texmaker</string>
   </property>
-  <layout class="QGridLayout" >
-   <property name="leftMargin" >
+  <layout class="QGridLayout">
+   <property name="margin">
     <number>9</number>
    </property>
-   <property name="topMargin" >
-    <number>9</number>
-   </property>
-   <property name="rightMargin" >
-    <number>9</number>
-   </property>
-   <property name="bottomMargin" >
-    <number>9</number>
-   </property>
-   <property name="horizontalSpacing" >
+   <property name="spacing">
     <number>6</number>
    </property>
-   <property name="verticalSpacing" >
-    <number>6</number>
-   </property>
-   <item row="2" column="0" >
+   <item row="2" column="0">
     <spacer>
-     <property name="orientation" >
+     <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <property name="sizeType" >
+     <property name="sizeType">
       <enum>QSizePolicy::Maximum</enum>
      </property>
-     <property name="sizeHint" >
+     <property name="sizeHint" stdset="0">
       <size>
        <width>131</width>
        <height>40</height>
@@ -47,35 +36,26 @@
      </property>
     </spacer>
    </item>
-   <item row="2" column="2" >
-    <layout class="QHBoxLayout" >
-     <property name="spacing" >
+   <item row="2" column="2">
+    <layout class="QHBoxLayout">
+     <property name="spacing">
       <number>6</number>
      </property>
-     <property name="sizeConstraint" >
+     <property name="sizeConstraint">
       <enum>QLayout::SetMinimumSize</enum>
      </property>
-     <property name="leftMargin" >
-      <number>0</number>
-     </property>
-     <property name="topMargin" >
-      <number>0</number>
-     </property>
-     <property name="rightMargin" >
-      <number>0</number>
-     </property>
-     <property name="bottomMargin" >
+     <property name="margin">
       <number>0</number>
      </property>
      <item>
       <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeType" >
+       <property name="sizeType">
         <enum>QSizePolicy::Expanding</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>407</width>
          <height>31</height>
@@ -84,171 +64,197 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="okButton" >
-       <property name="text" >
+      <widget class="QPushButton" name="okButton">
+       <property name="text">
         <string>OK</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="cancelButton" >
-       <property name="text" >
+      <widget class="QPushButton" name="cancelButton">
+       <property name="text">
         <string>Cancel</string>
        </property>
       </widget>
      </item>
     </layout>
    </item>
-   <item rowspan="2" row="0" column="0" >
-    <widget class="QListWidget" name="contentsWidget" >
-     <property name="sizePolicy" >
-      <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+   <item row="0" column="0" rowspan="2">
+    <widget class="QListWidget" name="contentsWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="minimumSize" >
+     <property name="minimumSize">
       <size>
        <width>150</width>
        <height>442</height>
       </size>
      </property>
-     <property name="maximumSize" >
+     <property name="maximumSize">
       <size>
        <width>150</width>
        <height>32000</height>
       </size>
      </property>
-     <property name="iconSize" >
+     <property name="iconSize">
       <size>
        <width>96</width>
        <height>96</height>
       </size>
      </property>
-     <property name="spacing" >
+     <property name="spacing">
       <number>12</number>
      </property>
-     <property name="viewMode" >
+     <property name="viewMode">
       <enum>QListView::IconMode</enum>
      </property>
-     <property name="currentRow" >
+     <property name="currentRow">
       <number>-1</number>
      </property>
     </widget>
    </item>
-   <item rowspan="2" row="0" column="1" colspan="2" >
-    <widget class="QStackedWidget" name="pagesWidget" >
-     <property name="sizePolicy" >
-      <sizepolicy vsizetype="MinimumExpanding" hsizetype="Expanding" >
+   <item row="0" column="1" rowspan="2" colspan="2">
+    <widget class="QStackedWidget" name="pagesWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="minimumSize" >
+     <property name="minimumSize">
       <size>
        <width>450</width>
        <height>442</height>
       </size>
      </property>
-     <property name="currentIndex" >
+     <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="page_2" >
-      <layout class="QVBoxLayout" >
+     <widget class="QWidget" name="page_2">
+      <layout class="QVBoxLayout">
        <item>
-        <widget class="QGroupBox" name="groupBox_6" >
-         <property name="title" >
+        <widget class="QGroupBox" name="groupBox_6">
+         <property name="title">
           <string>Appearance</string>
          </property>
-         <layout class="QGridLayout" >
-          <item row="0" column="0" >
-           <widget class="QLabel" name="label_3" >
-            <property name="text" >
+         <layout class="QGridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
              <string>Style</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" >
-           <widget class="QComboBox" name="comboBoxInterfaceStyle" />
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxInterfaceStyle"/>
           </item>
-          <item row="1" column="0" >
-           <widget class="QLabel" name="label_5" >
-            <property name="text" >
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="text">
              <string>Font</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1" >
-           <widget class="QFontComboBox" name="comboBoxInterfaceFont" />
+          <item row="1" column="1">
+           <widget class="QFontComboBox" name="comboBoxInterfaceFont"/>
           </item>
-          <item row="2" column="0" >
-           <widget class="QLabel" name="label_7" >
-            <property name="text" >
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
              <string>Font Size</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1" >
-           <widget class="QSpinBox" name="spinBoxInterfaceFontSize" />
+          <item row="2" column="1">
+           <widget class="QSpinBox" name="spinBoxInterfaceFontSize"/>
           </item>
-          <item row="3" column="1" >
-           <widget class="QCheckBox" name="checkBoxTabbedLogView" >
-            <property name="text" >
+          <item row="3" column="1">
+           <widget class="QCheckBox" name="checkBoxTabbedLogView">
+            <property name="text">
              <string>Tabbed Log Viewer</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="0" >
-           <widget class="QLabel" name="label_9" >
-            <property name="text" >
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_9">
+            <property name="text">
              <string>Language</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="1" >
-           <widget class="QComboBox" name="comboBoxLanguage" />
+          <item row="4" column="1">
+           <widget class="QComboBox" name="comboBoxLanguage"/>
           </item>
          </layout>
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox_7" >
-         <property name="title" >
+        <widget class="QGroupBox" name="groupBox_7">
+         <property name="title">
           <string>Files</string>
          </property>
-         <layout class="QGridLayout" >
-          <item row="0" column="0" >
-           <widget class="QLabel" name="label_8" >
-            <property name="text" >
+         <layout class="QGridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_8">
+            <property name="text">
              <string>Max. Recent Documents</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" >
-           <widget class="QSpinBox" name="spinBoxMaxRecentFiles" />
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBoxMaxRecentFiles"/>
           </item>
-          <item row="1" column="0" >
-           <widget class="QLabel" name="label_10" >
-            <property name="text" >
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_10">
+            <property name="text">
              <string>Max. Recent Master Documents</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1" >
-           <widget class="QSpinBox" name="spinBoxMaxRecentProjects" />
+          <item row="1" column="1">
+           <widget class="QSpinBox" name="spinBoxMaxRecentProjects"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Thesaurus</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_13">
+            <property name="text">
+             <string>Thesaurus Database</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="thesaurusFileName"/>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="btSelectThesaurusFileName">
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
        </item>
        <item>
         <spacer>
-         <property name="orientation" >
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeType" >
+         <property name="sizeType">
           <enum>QSizePolicy::MinimumExpanding</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>40</height>
@@ -258,55 +264,46 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="pt" >
-      <layout class="QVBoxLayout" >
-       <property name="spacing" >
+     <widget class="QWidget" name="pt">
+      <layout class="QVBoxLayout">
+       <property name="spacing">
         <number>6</number>
        </property>
-       <property name="leftMargin" >
-        <number>9</number>
-       </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
+       <property name="margin">
         <number>9</number>
        </property>
        <item>
-        <widget class="QGroupBox" name="groupBoxCommands" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+        <widget class="QGroupBox" name="groupBoxCommands">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="title" >
+         <property name="title">
           <string>Commands (%: filename without extension - @: line number - ?: extended filename options)</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_4" >
-         <property name="text" >
-          <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">&#xd;
-&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">&#xd;
-p, li { white-space: pre-wrap; }&#xd;
-&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">&#xd;
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-weight:600; text-decoration: underline;">Special chars&lt;/span>: &lt;span style=" font-weight:600;">%&lt;/span>: filename without extension &lt;span style=" font-weight:600;">@&lt;/span>: line number &lt;br />&lt;span style=" font-weight:600;">?&lt;/span> followed by &lt;span style=" font-style:italic;">a&lt;/span>,&lt;span style=" font-style:italic;">r&lt;/span>,&lt;span style=" font-style:italic;">m&lt;/span>,&lt;span style=" font-style:italic;">e&lt;/span>,&lt;span style=" font-style:italic;">"&lt;/span>, ,&lt;span style=" font-style:italic;">)&lt;/span>: extended filename&lt;br />      &lt;span style=" font-style:italic;">a&lt;/span>: absolute path, &lt;!--&lt;span style=" font-style:italic;">r&lt;/span>: relative path, -->&lt;span style=" font-style:italic;">m&lt;/span>: basefile name without extension,&lt;span style=" font-style:italic;">e&lt;/span>: extension&lt;br />      &lt;span style=" font-style:italic;">"&lt;/span>: enclose with "..", (space): ends placeholder and add a space, &lt;span style=" font-style:italic;">)&lt;/span>: ends placeholder &lt;br />      examples: ?ame": complete absolute filename enclosed in ", ?e) just the extension (without leading point), &lt;br />            ?m" (filename without extension, identical to %) ?me (filename with extension like example.tex)&lt;br />&#xd;
- %%, @@ or ?? become: %, @ or ?&#xd;
- &lt;/p>&lt;/body>&lt;/html></string>
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;: &lt;span style=&quot; font-weight:600;&quot;&gt;%&lt;/span&gt;: filename without extension &lt;span style=&quot; font-weight:600;&quot;&gt;@&lt;/span&gt;: line number &lt;br /&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;?&lt;/span&gt; followed by &lt;span style=&quot; font-style:italic;&quot;&gt;a&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;r&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;m&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;e&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;&quot;&lt;/span&gt;, ,&lt;span style=&quot; font-style:italic;&quot;&gt;)&lt;/span&gt;: extended filename&lt;br /&gt;      &lt;span style=&quot; font-style:italic;&quot;&gt;a&lt;/span&gt;: absolute path, &lt;!--&lt;span style=&quot; font-style:italic;&quot;&gt;r&lt;/span&gt;: relative path, --&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;m&lt;/span&gt;: basefile name without extension,&lt;span style=&quot; font-style:italic;&quot;&gt;e&lt;/span&gt;: extension&lt;br /&gt;      &lt;span style=&quot; font-style:italic;&quot;&gt;&quot;&lt;/span&gt;: enclose with &quot;..&quot;, (space): ends placeholder and add a space, &lt;span style=&quot; font-style:italic;&quot;&gt;)&lt;/span&gt;: ends placeholder &lt;br /&gt;      examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just the extension (without leading point), &lt;br /&gt;            ?m&quot; (filename without extension, identical to %) ?me (filename with extension like example.tex)&lt;br /&gt;
+ %%, @@ or ?? become: %, @ or ?
+ &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
        <item>
         <spacer>
-         <property name="orientation" >
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>401</width>
            <height>16</height>
@@ -316,118 +313,88 @@ p, li { white-space: pre-wrap; }&#xd;
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="pq" >
-      <layout class="QVBoxLayout" >
-       <property name="spacing" >
+     <widget class="QWidget" name="pq">
+      <layout class="QVBoxLayout">
+       <property name="spacing">
         <number>6</number>
        </property>
-       <property name="leftMargin" >
-        <number>9</number>
-       </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
+       <property name="margin">
         <number>9</number>
        </property>
        <item>
-        <widget class="QGroupBox" name="groupBox_2" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="title" >
+         <property name="title">
           <string>Quick Build Command</string>
          </property>
-         <layout class="QGridLayout" >
-          <property name="leftMargin" >
+         <layout class="QGridLayout">
+          <property name="margin">
            <number>9</number>
           </property>
-          <property name="topMargin" >
-           <number>9</number>
-          </property>
-          <property name="rightMargin" >
-           <number>9</number>
-          </property>
-          <property name="bottomMargin" >
-           <number>9</number>
-          </property>
-          <property name="horizontalSpacing" >
+          <property name="spacing">
            <number>6</number>
           </property>
-          <property name="verticalSpacing" >
-           <number>6</number>
-          </property>
-          <item row="0" column="0" >
-           <layout class="QVBoxLayout" >
-            <property name="spacing" >
+          <item row="0" column="0">
+           <layout class="QVBoxLayout">
+            <property name="spacing">
              <number>6</number>
             </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
+            <property name="margin">
              <number>0</number>
             </property>
             <item>
-             <widget class="QRadioButton" name="radioButton1" >
-              <property name="text" >
+             <widget class="QRadioButton" name="radioButton1">
+              <property name="text">
                <string>LaTeX + dvips + View PS</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton2" >
-              <property name="text" >
+             <widget class="QRadioButton" name="radioButton2">
+              <property name="text">
                <string>LaTeX + View DVI</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton3" >
-              <property name="text" >
+             <widget class="QRadioButton" name="radioButton3">
+              <property name="text">
                <string>PdfLaTeX + View PDF</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton4" >
-              <property name="text" >
+             <widget class="QRadioButton" name="radioButton4">
+              <property name="text">
                <string>LaTeX + dvipdfm + View PDF</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton5" >
-              <property name="text" >
+             <widget class="QRadioButton" name="radioButton5">
+              <property name="text">
                <string>LaTeX + dvips + ps2pdf + View PDF</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton6" >
-              <property name="text" >
+             <widget class="QRadioButton" name="radioButton6">
+              <property name="text">
                <string>User : (% : filename without extension)</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEditUserquick" />
+             <widget class="QLineEdit" name="lineEditUserquick"/>
             </item>
             <item>
-             <widget class="QLabel" name="label" >
-              <property name="text" >
+             <widget class="QLabel" name="label">
+              <property name="text">
                <string>(the commands must be separated by '|')</string>
               </property>
              </widget>
@@ -438,30 +405,31 @@ p, li { white-space: pre-wrap; }&#xd;
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox_4" >
-         <property name="title" >
+        <widget class="QGroupBox" name="groupBox_4">
+         <property name="title">
           <string>More</string>
          </property>
-         <layout class="QGridLayout" >
-          <item row="0" column="0" >
-           <widget class="QLabel" name="label_2" >
-            <property name="text" >
+         <layout class="QGridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
              <string>Execute before compiling:</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" colspan="3" >
-           <widget class="QLineEdit" name="lineEditExecuteBeforeCompiling" />
+          <item row="0" column="1" colspan="3">
+           <widget class="QLineEdit" name="lineEditExecuteBeforeCompiling"/>
           </item>
-          <item row="0" column="4" >
-           <widget class="QPushButton" name="pushButtonExecuteBeforeCompiling" >
-            <property name="text" >
+          <item row="0" column="4">
+           <widget class="QPushButton" name="pushButtonExecuteBeforeCompiling">
+            <property name="text">
              <string/>
             </property>
-            <property name="icon" >
-             <iconset>../../../../../../:/images/fileopen.png</iconset>
+            <property name="icon">
+             <iconset>
+              <normaloff>../../../../../../:/images/fileopen.png</normaloff>../../../../../../:/images/fileopen.png</iconset>
             </property>
-            <property name="iconSize" >
+            <property name="iconSize">
              <size>
               <width>16</width>
               <height>16</height>
@@ -469,27 +437,27 @@ p, li { white-space: pre-wrap; }&#xd;
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="2" >
-           <widget class="QLabel" name="label_11" >
-            <property name="text" >
+          <item row="1" column="0" colspan="2">
+           <widget class="QLabel" name="label_11">
+            <property name="text">
              <string>Assume that every error is in the current document:</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="2" colspan="2" >
-           <widget class="QComboBox" name="comboBoxIgnoreLogFileNames" >
+          <item row="1" column="2" colspan="2">
+           <widget class="QComboBox" name="comboBoxIgnoreLogFileNames">
             <item>
-             <property name="text" >
+             <property name="text">
               <string>Never (only use the file names in the log)</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>Only when there is no master document</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>Always (ignore file names in the log)</string>
              </property>
             </item>
@@ -500,10 +468,10 @@ p, li { white-space: pre-wrap; }&#xd;
        </item>
        <item>
         <spacer>
-         <property name="orientation" >
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>441</width>
            <height>40</height>
@@ -513,37 +481,37 @@ p, li { white-space: pre-wrap; }&#xd;
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="Seite" >
-      <layout class="QVBoxLayout" >
+     <widget class="QWidget" name="Seite">
+      <layout class="QVBoxLayout">
        <item>
-        <widget class="QLabel" name="label_6" >
-         <property name="text" >
+        <widget class="QLabel" name="label_6">
+         <property name="text">
           <string>Shortcuts</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QTreeWidget" name="shortcutTree" >
-         <property name="columnCount" >
+        <widget class="QTreeWidget" name="shortcutTree">
+         <property name="columnCount">
           <number>4</number>
          </property>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>1</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>2</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>3</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>4</string>
           </property>
          </column>
@@ -551,106 +519,85 @@ p, li { white-space: pre-wrap; }&#xd;
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="pe" >
-      <layout class="QGridLayout" >
-       <property name="leftMargin" >
+     <widget class="QWidget" name="pe">
+      <layout class="QGridLayout">
+       <property name="margin">
         <number>9</number>
        </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>9</number>
-       </property>
-       <property name="horizontalSpacing" >
+       <property name="spacing">
         <number>6</number>
        </property>
-       <property name="verticalSpacing" >
-        <number>6</number>
-       </property>
-       <item row="1" column="0" >
-        <widget class="QGroupBox" name="groupBox_3" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="title" >
+         <property name="title">
           <string>Editor</string>
          </property>
-         <layout class="QGridLayout" >
-          <item row="0" column="0" >
-           <widget class="QLabel" name="labelFamily" >
-            <property name="text" >
+         <layout class="QGridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelFamily">
+            <property name="text">
              <string>Editor Font Family</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" colspan="3" >
-           <widget class="QComboBox" name="comboBoxFont" >
-            <property name="editable" >
+          <item row="0" column="1" colspan="3">
+           <widget class="QComboBox" name="comboBoxFont">
+            <property name="editable">
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" >
-           <widget class="QLabel" name="labelSize" >
-            <property name="text" >
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelSize">
+            <property name="text">
              <string>Editor Font Size</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1" colspan="3" >
-           <widget class="QSpinBox" name="spinBoxSize" >
-            <property name="minimum" >
+          <item row="1" column="1" colspan="3">
+           <widget class="QSpinBox" name="spinBoxSize">
+            <property name="minimum">
              <number>1</number>
             </property>
-            <property name="value" >
+            <property name="value">
              <number>12</number>
             </property>
            </widget>
           </item>
-          <item row="2" column="0" >
-           <widget class="QLabel" name="labelEncoding" >
-            <property name="text" >
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelEncoding">
+            <property name="text">
              <string>Editor Font Encoding</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1" colspan="2" >
-           <widget class="QComboBox" name="comboBoxEncoding" />
+          <item row="2" column="1" colspan="2">
+           <widget class="QComboBox" name="comboBoxEncoding"/>
           </item>
-          <item row="8" column="0" >
-           <widget class="QLabel" name="labelASpellCommand" >
-            <property name="text" >
+          <item row="8" column="0">
+           <widget class="QLabel" name="labelASpellCommand">
+            <property name="text">
              <string>Spelling dictionary</string>
             </property>
            </widget>
           </item>
-          <item row="8" column="1" colspan="4" >
-           <layout class="QHBoxLayout" >
-            <property name="spacing" >
+          <item row="8" column="1" colspan="4">
+           <layout class="QHBoxLayout">
+            <property name="spacing">
              <number>6</number>
             </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
+            <property name="margin">
              <number>0</number>
             </property>
             <item>
-             <widget class="QLineEdit" name="lineEditAspellCommand" >
-              <property name="minimumSize" >
+             <widget class="QLineEdit" name="lineEditAspellCommand">
+              <property name="minimumSize">
                <size>
                 <width>190</width>
                 <height>0</height>
@@ -659,139 +606,140 @@ p, li { white-space: pre-wrap; }&#xd;
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButtonAspell" >
-              <property name="text" >
+             <widget class="QPushButton" name="pushButtonAspell">
+              <property name="text">
                <string/>
               </property>
-              <property name="icon" >
-               <iconset>../../../../../../:/images/fileopen.png</iconset>
+              <property name="icon">
+               <iconset>
+                <normaloff>../../../../../../:/images/fileopen.png</normaloff>../../../../../../:/images/fileopen.png</iconset>
               </property>
              </widget>
             </item>
            </layout>
           </item>
-          <item row="9" column="1" colspan="3" >
-           <widget class="QLabel" name="labelGetDic" >
-            <property name="text" >
+          <item row="9" column="1" colspan="3">
+           <widget class="QLabel" name="labelGetDic">
+            <property name="text">
              <string/>
             </property>
-            <property name="textFormat" >
+            <property name="textFormat">
              <enum>Qt::RichText</enum>
             </property>
            </widget>
           </item>
-          <item row="9" column="4" >
-           <widget class="QCheckBox" name="checkBoxRealTimeCheck" >
-            <property name="text" >
+          <item row="9" column="4">
+           <widget class="QCheckBox" name="checkBoxRealTimeCheck">
+            <property name="text">
              <string>real time checking</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="0" >
-           <widget class="QCheckBox" name="checkBoxState" >
-            <property name="text" >
+          <item row="5" column="0">
+           <widget class="QCheckBox" name="checkBoxState">
+            <property name="text">
              <string>Show State Panel</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="1" >
-           <widget class="QCheckBox" name="checkBoxLineState" >
-            <property name="text" >
+          <item row="5" column="1">
+           <widget class="QCheckBox" name="checkBoxLineState">
+            <property name="text">
              <string>Show Line Change State</string>
             </property>
            </widget>
           </item>
-          <item row="7" column="1" colspan="4" >
-           <widget class="QGroupBox" name="formatConfigBox" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="MinimumExpanding" hsizetype="Preferred" >
+          <item row="7" column="1" colspan="4">
+           <widget class="QGroupBox" name="formatConfigBox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="minimumSize" >
+            <property name="minimumSize">
              <size>
               <width>0</width>
               <height>0</height>
              </size>
             </property>
-            <property name="baseSize" >
+            <property name="baseSize">
              <size>
               <width>0</width>
               <height>0</height>
              </size>
             </property>
-            <property name="title" >
+            <property name="title">
              <string>Formats</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="3" colspan="2" >
-           <widget class="QCheckBox" name="checkBoxAutoDetectOnLoad" >
-            <property name="text" >
+          <item row="2" column="3" colspan="2">
+           <widget class="QCheckBox" name="checkBoxAutoDetectOnLoad">
+            <property name="text">
              <string>auto detect encoding of loaded files</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="1" >
-           <widget class="QCheckBox" name="checkBoxAutoIndent" >
-            <property name="text" >
+          <item row="4" column="1">
+           <widget class="QCheckBox" name="checkBoxAutoIndent">
+            <property name="text">
              <string>Autoindent</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="4" >
-           <widget class="QCheckBox" name="checkBoxWordwrap" >
-            <property name="text" >
+          <item row="0" column="4">
+           <widget class="QCheckBox" name="checkBoxWordwrap">
+            <property name="text">
              <string>Word Wrap</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="4" >
-           <widget class="QCheckBox" name="checkBoxFolding" >
-            <property name="text" >
+          <item row="1" column="4">
+           <widget class="QCheckBox" name="checkBoxFolding">
+            <property name="text">
              <string>Folding</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="2" colspan="2" >
-           <widget class="QComboBox" name="comboBoxPreviewMode" >
+          <item row="5" column="2" colspan="2">
+           <widget class="QComboBox" name="comboBoxPreviewMode">
             <item>
-             <property name="text" >
+             <property name="text">
               <string>show preview as tool tip if panel is hidden</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>always show preview in preview panel</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>always show preview as tool tip</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>always show both</string>
              </property>
             </item>
            </widget>
           </item>
-          <item row="4" column="2" colspan="2" >
-           <widget class="QComboBox" name="comboboxLineNumbers" >
+          <item row="4" column="2" colspan="2">
+           <widget class="QComboBox" name="comboboxLineNumbers">
             <item>
-             <property name="text" >
+             <property name="text">
               <string>No line numbers</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>Show line numbers</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>Show important line numbers</string>
              </property>
             </item>
@@ -802,33 +750,33 @@ p, li { white-space: pre-wrap; }&#xd;
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="page" >
-      <layout class="QVBoxLayout" >
+     <widget class="QWidget" name="page">
+      <layout class="QVBoxLayout">
        <item>
-        <widget class="QCheckBox" name="checkBoxCompletion" >
-         <property name="text" >
+        <widget class="QCheckBox" name="checkBoxCompletion">
+         <property name="text">
           <string>Completion Enabled</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBoxCaseSensitive" >
-         <property name="text" >
+        <widget class="QCheckBox" name="checkBoxCaseSensitive">
+         <property name="text">
           <string>Case Sensitive</string>
          </property>
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" >
+        <layout class="QHBoxLayout">
          <item>
           <spacer>
-           <property name="orientation" >
+           <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeType" >
+           <property name="sizeType">
             <enum>QSizePolicy::Minimum</enum>
            </property>
-           <property name="sizeHint" >
+           <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
              <height>20</height>
@@ -837,18 +785,18 @@ p, li { white-space: pre-wrap; }&#xd;
           </spacer>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBoxCaseSensitiveInFirstCharacter" >
-           <property name="text" >
+          <widget class="QCheckBox" name="checkBoxCaseSensitiveInFirstCharacter">
+           <property name="text">
             <string>In first character</string>
            </property>
           </widget>
          </item>
          <item>
           <spacer>
-           <property name="orientation" >
+           <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeHint" >
+           <property name="sizeHint" stdset="0">
             <size>
              <width>40</width>
              <height>20</height>
@@ -859,22 +807,22 @@ p, li { white-space: pre-wrap; }&#xd;
         </layout>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBoxCompletePrefix" >
-         <property name="text" >
+        <widget class="QCheckBox" name="checkBoxCompletePrefix">
+         <property name="text">
           <string>Auto Complete Common Prefix</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_12" >
-         <property name="text" >
+        <widget class="QLabel" name="label_12">
+         <property name="text">
           <string>Use following completion files:</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QListWidget" name="completeListWidget" >
-         <property name="sortingEnabled" >
+        <widget class="QListWidget" name="completeListWidget">
+         <property name="sortingEnabled">
           <bool>true</bool>
          </property>
         </widget>
@@ -910,11 +858,11 @@ p, li { white-space: pre-wrap; }&#xd;
    <receiver>ConfigDialog</receiver>
    <slot>accept()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>827</x>
      <y>592</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>307</x>
      <y>250</y>
     </hint>
@@ -926,11 +874,11 @@ p, li { white-space: pre-wrap; }&#xd;
    <receiver>ConfigDialog</receiver>
    <slot>reject()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>910</x>
      <y>592</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>307</x>
      <y>250</y>
     </hint>
@@ -942,11 +890,11 @@ p, li { white-space: pre-wrap; }&#xd;
    <receiver>checkBoxCaseSensitiveInFirstCharacter</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>222</x>
      <y>46</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>298</x>
      <y>73</y>
     </hint>

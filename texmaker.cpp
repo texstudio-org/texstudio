@@ -111,6 +111,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	PsListWidget=0;
 	MpListWidget=0;
 	outputView=0;
+	m_thesaurusdialog=0;
 
 	mainSpeller=new SpellerUtility();;
 	mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);
@@ -395,6 +396,7 @@ void Texmaker::setupMenus() {
 
 	menu->addSeparator();
 	newManagedAction(menu,"spelling",tr("Check Spelling"),SLOT(editSpell()),Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
+	newManagedAction(menu,"thesaurus",tr("Thesaurus"),SLOT(editThesaurus()));
 
 	menu->addSeparator();
 	newManagedAction(menu,"reparse",tr("Refresh Structure"),SLOT(UpdateStructure()));
@@ -1264,6 +1266,30 @@ void Texmaker::editSpell() {
 	spellDlg->startSpelling();
 }
 
+void Texmaker::editThesaurus() {
+	if (!currentEditorView()) {
+		QMessageBox::information(this,"TexMakerX",tr("No document open"),0);
+		return;
+	}
+	QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
+	if(m_thesaurusdialog==0) m_thesaurusdialog=new thesaurusdialog(this);
+	m_thesaurusdialog->readDatabase(thesaurus_database);
+	QString word;
+	if(m_cursor.hasSelection()){
+		word=m_cursor.selectedText();
+	} else {
+		m_cursor.select(QDocumentCursor::WordUnderCursor);
+		word=m_cursor.selectedText();
+	}
+	if(word.isEmpty()) return;
+	word=latexToPlainWord(word);
+	m_thesaurusdialog->setSearchWord(word);
+	if(m_thesaurusdialog->exec()){
+		QString replace=m_thesaurusdialog->getReplaceWord();
+		m_cursor.insertText(replace);
+	}
+}
+
 void Texmaker::editChangeLineEnding() {
 	if (!currentEditorView()) return;
 	QAction *action = qobject_cast<QAction *>(sender());
@@ -1523,6 +1549,15 @@ void Texmaker::ReadSettings() {
 		if (spell_dic=="") spell_dic=findResourceFile("de_DE.dic");
 	}
 
+	thesaurus_database=config->value("Thesaurus/Database","<dic not found>").toString();
+	if (thesaurus_database=="<dic not found>"||thesaurus_database=="") {
+		thesaurus_database=findResourceFile("th_"+QString(QLocale::system().name())+"_v2.dat");
+		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_en_US_v2.dat");
+		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_en_GB_v2.dat");
+		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_fr_FR_v2.dat");
+		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_de_DE_v2.dat");
+	}
+
 	for (int i=0; i <412 ; i++)
 		symbolScore[i]=config->value("Symbols/symbol"+QString::number(i),0).toInt();
 
@@ -1614,6 +1649,7 @@ void Texmaker::SaveSettings() {
 
 
 	config->setValue("Spell/Dic",spell_dic);
+	config->setValue("Thesaurus/Database",thesaurus_database);
 
 	for (int i=0; i <412 ; i++) {
 		config->setValue("Symbols/symbol"+QString::number(i),symbolScore[i]);
@@ -3255,6 +3291,7 @@ void Texmaker::GeneralOptions() {
 	confDlg->ui.checkBoxRealTimeCheck->setChecked(realtimespellchecking);
 
 	confDlg->ui.lineEditAspellCommand->setText(spell_dic);
+	confDlg->ui.thesaurusFileName->setText(thesaurus_database);
 
 	if (quickmode==1) {
 		confDlg->ui.radioButton1->setChecked(true);
@@ -3303,11 +3340,13 @@ void Texmaker::GeneralOptions() {
 			break;
 		}
 		spell_dic=confDlg->ui.lineEditAspellCommand->text();
+		thesaurus_database=confDlg->ui.thesaurusFileName->text();
 		folding=confDlg->ui.checkBoxFolding->isChecked();
 		showlinestate=confDlg->ui.checkBoxLineState->isChecked();
 		showcursorstate=confDlg->ui.checkBoxState->isChecked();
 		realtimespellchecking=confDlg->ui.checkBoxRealTimeCheck->isChecked();
 
+		if(m_thesaurusdialog) m_thesaurusdialog->readDatabase(thesaurus_database);
 
 		mainSpeller->setActive(realtimespellchecking);
 		mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);

@@ -62,6 +62,7 @@ private slots:
 	QListWidgetItem * createIcon(const QString &caption, const QIcon &icon);
 	void lineEditAspellChanged(QString newText);
 	void browseAspell();
+	void browseThesaurus();
 	/*void browseLatex();
 	void browseDvips();
 	void browseBibtex();
