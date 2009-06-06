@@ -17,7 +17,7 @@ void adjustScrollBar(QScrollBar *scrollBar, double factor)
 
 
 PreviewWidget::PreviewWidget(QWidget * parent): QScrollArea(parent){
-	setBackgroundRole(QPalette::Dark);
+	setBackgroundRole(QPalette::Base);
 
 	preViewer = new QLabel(this);
 	preViewer->setBackgroundRole(QPalette::Base);
@@ -48,7 +48,20 @@ void PreviewWidget::previewLatex(const QPixmap& previewImage){
 
 void PreviewWidget::fitImage(){
 	// needs to be improved
-	setWidgetResizable(true);
+	QSize m_size=size()-QSize(2,2);
+	QSize m_labelSize=preViewer->size();
+	qreal ratio=1.0*m_labelSize.height()/m_labelSize.width();
+	qreal ratioPreviewer=1.0*m_size.height()/m_size.width();
+	int h,w;
+	if(ratioPreviewer>ratio){
+		h=qRound(ratio*m_size.width());
+		w=m_size.width();
+	} else {
+		h=m_size.height();
+		w=qRound(m_size.height()/ratio);
+	}
+	preViewer->resize(w,h);
+	//setWidgetResizable(true);
 }
 
 void PreviewWidget::zoomOut(){
