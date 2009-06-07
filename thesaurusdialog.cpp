@@ -1,4 +1,4 @@
-#include "ThesaurusDialog.h"
+#include "thesaurusdialog.h"
 
 #include <QFile>
 #include <QTextStream>
