@@ -451,12 +451,11 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		virtual void startDrag();
 		virtual QMimeData* createMimeDataFromSelection() const;
-		virtual void insertFromMimeData(const QMimeData *d);
 		
 		virtual void scrollContentsBy(int dx, int dy);
-		
-		// got to make it public for bindings
 	public:
+		virtual void insertFromMimeData(const QMimeData *d);
+
 		void setFlag(EditFlag f, bool b);
 		
 		void pageUp(QDocumentCursor::MoveMode moveMode);
