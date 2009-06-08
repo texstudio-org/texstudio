@@ -4023,8 +4023,8 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 {
 	bool hasSelection = c.hasSelection();
 
-	if ( hasSelection )
-		c.removeSelectedText();
+	//if ( hasSelection )
+	//	c.removeSelectedText();
 
 	QStringList lines = text.split('\n', QString::KeepEmptyParts);
 
@@ -4070,8 +4070,9 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 
 	}
 
-	if ( !hasSelection && flag(Overwrite) && !c.atBlockEnd() )
-		c.deleteChar();
+	if ( !hasSelection && flag(Overwrite) && !c.atBlockEnd() ){
+		c.movePosition(1, QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor); // better for undo operation
+	}
 
 	if ( true ) //lines.count() == 1 )
 	{
