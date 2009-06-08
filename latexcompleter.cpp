@@ -363,7 +363,7 @@ public:
 			return true;
 		} else if (LatexCompleter::config && LatexCompleter::config->eowCompletes && 
 		           event->text().length()==1 && getCommonEOW().contains(event->text().at(0))) {
-			insertCompletedWord();
+			//insertCompletedWord();
 			resetBinding();
 			return false; //return false to let the default implementation handle it and insert the new character
 		} else {
