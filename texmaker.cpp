@@ -1180,9 +1180,12 @@ void Texmaker::editPasteLatex() {
 	QClipboard *clipboard = QApplication::clipboard();
 	QString originalText = clipboard->text();
 	QString newText=textToLatex(originalText);
-	clipboard->setText(newText);
+	//clipboard->setText(newText);
 // insert
-	currentEditorView()->editor->paste();
+	//currentEditorView()->editor->paste();
+	QMimeData md;
+	md.setText(newText);
+	currentEditorView()->editor->insertFromMimeData(&md);
 }
 
 void Texmaker::convertToLatex() {
