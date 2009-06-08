@@ -125,7 +125,7 @@ OutputViewWidget::OutputViewWidget(QWidget * parent): QDockWidget(parent), logMo
 
 	OutputLayout= new QStackedWidget(this);
 
-	QVBoxLayout* OutputVLayout= new QVBoxLayout(this); //contains the widgets for the normal mode (OutputTable + OutputLogTextEdit)
+	QVBoxLayout* OutputVLayout= new QVBoxLayout(); //contains the widgets for the normal mode (OutputTable + OutputLogTextEdit)
 	OutputVLayout->setSpacing(0);
 	OutputVLayout->setMargin(0);
 
