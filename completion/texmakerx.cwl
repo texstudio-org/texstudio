@@ -167,6 +167,7 @@
 \hrulefill
 \hspace{%|}
 \hspace*{%|}
+\in
 \include{%|%<file%>%|}
 \includegraphics[scale=%|%<1%>%|]{%<file%>}
 \index{%|}
@@ -232,6 +233,7 @@
 \medskip
 \min
 \multicolumn{%|%<count%>%|}{%<format%>}{%<text%>}
+\ne
 \neq
 \newcommand{%|%<name%>%|}{%<command%>}
 \newcommand{%|%<name%>%|}[%<args%>]{%<command%>}
@@ -239,8 +241,10 @@
 \newenvironment{%|%<name%>%|}[%<args%>]{%<begin%>}{%<end%>}
 \newpage
 \nexists
+\ni
 \nolinebreak
 \nopagebreak
+\notin
 \oint
 \oint
 \Omega
@@ -309,12 +313,14 @@
 \subsection{%|}
 \subsection*{%|}
 \subset
+\subseteq
 \subsubsection{%|}
 \subsubsection*{%|}
 \sum
 \sum\limits_{%|%<min%>}^{%<max%>}
 \sup
 \supset
+\supseteq
 \tableofcontents
 \tan
 \tanh
