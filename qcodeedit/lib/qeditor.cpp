@@ -3949,8 +3949,9 @@ bool QEditor::processCursor(QDocumentCursor& c, QKeyEvent *e, bool& b)
 
 			if ( hasSelection )
 				c.removeSelectedText();
-			else if ( flag(Overwrite) )
-				c.deleteChar();
+			/* else if ( flag(Overwrite) )
+				c.deleteChar();  very unusual behaviour
+			*/
 
 			QString indent;
 
@@ -4069,7 +4070,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 
 	}
 
-	if ( !hasSelection && flag(Overwrite) )
+	if ( !hasSelection && flag(Overwrite) && !c.atBlockEnd() )
 		c.deleteChar();
 
 	if ( true ) //lines.count() == 1 )
