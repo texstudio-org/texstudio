@@ -78,7 +78,7 @@ int main(int argc, char ** argv) {
 // This is a dummy constructor so that the programs loads fast.
 	TexmakerApp a(argc, argv);
 	QStringList environment = QProcess::systemEnvironment();
-	QString user=environment.filter(QRegExp("^USERNAME=|^USER="),Qt::CaseInsensitive).first();
+	QString user=environment.filter(QRegExp("^USERNAME=|^USER=",Qt::CaseInsensitive)).first();
 	if(!user.isEmpty()){
 		int l=user.indexOf("=",0);
 		user="_"+user.right(user.length()-l-1);
