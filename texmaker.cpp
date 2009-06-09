@@ -396,7 +396,7 @@ void Texmaker::setupMenus() {
 
 	menu->addSeparator();
 	newManagedAction(menu,"spelling",tr("Check Spelling"),SLOT(editSpell()),Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
-	newManagedAction(menu,"thesaurus",tr("Thesaurus"),SLOT(editThesaurus()));
+	newManagedAction(menu,"thesaurus",tr("Thesaurus"),SLOT(editThesaurus()),Qt::CTRL+Qt::SHIFT+Qt::Key_F8);
 
 	menu->addSeparator();
 	newManagedAction(menu,"reparse",tr("Refresh Structure"),SLOT(UpdateStructure()));

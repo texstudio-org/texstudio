@@ -33,6 +33,7 @@ protected:
 	QListWidget *replacelistWidget;
 
 	QMultiMap<QString,QStringList> Thesaurus;
+	QString thesaurusFileName;
 };
 
 #endif // THESAURUSDIALOG_H
