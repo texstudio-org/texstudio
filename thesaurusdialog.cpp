@@ -71,9 +71,13 @@ void ThesaurusDialog::readDatabase(const QString filename)
 	QFile file(filename);
 	if (!file.open(QIODevice::ReadOnly)) {
 		QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
+		thesaurusFileName="";
 		return;
 	}
 
+	if (thesaurusFileName==filename) return;
+	thesaurusFileName=filename;
+	
 	Thesaurus.clear();
 	// read in file
 	QTextStream stream(&file);
