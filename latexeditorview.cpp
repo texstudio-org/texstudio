@@ -167,6 +167,7 @@ LatexEditorView::LatexEditorView(QWidget *parent) : QWidget(parent),curChangePos
 
 
 	connect(lineMarkPanel,SIGNAL(lineClicked(int)),this,SLOT(lineMarkClicked(int)));
+	connect(editor,SIGNAL(hovered(QPoint)),this,SLOT(mouseHovered(QPoint)));
 	connect(editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
 	connect(editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),this,SLOT(lineDeleted(QDocumentLineHandle*)));
 
@@ -496,4 +497,39 @@ void LatexEditorView::spellCheckingListSuggestions() {
 void LatexEditorView::dictionaryReloaded() {
 	//   QMessageBox::information(0,"trig","",0);
 	documentContentChanged(0,editor->document()->lines());
+}
+
+void LatexEditorView::mouseHovered(QPoint pos){
+	// reimplement to what is necessary
+
+	//qDebug("Hovered: %d %d",pos.x(),pos.y());
+	//QToolTip::showText(editor->mapToGlobal(pos), "oh my");
+	QDocumentCursor cursor;
+	cursor=editor->cursorForPosition(editor->mapToContents(pos));
+	QString line=cursor.line().text();
+	int col=cursor.columnNumber();
+	int context=findContext(line,col);
+
+	switch(context){
+		case 1: //command
+			//QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), line);
+			//whatever you want to do with it (help generation ?)
+			break;
+		case 2: // ref
+			int l=line.indexOf("{");
+			QString ref=line.mid(l+1,line.length());
+			QString command=line.left(l);
+			if(command=="\\ref"){
+				l=editor->document()->findLineContaining("\\label{"+ref+"}",0,Qt::CaseSensitive);
+				QString mText="";
+				for(int i=qMax(0,l-2);i<qMin(editor->document()->lines(),l+3);i++){
+					mText+=editor->document()->line(i).text();
+					if(i<l+2) mText+="\n";
+				}
+				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), mText);
+			}
+			break;
+
+	}
+	//QToolTip::showText(editor->mapToGlobal(pos), line);
 }

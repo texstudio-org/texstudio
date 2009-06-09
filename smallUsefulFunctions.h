@@ -75,4 +75,7 @@ QString findToken(const QString line,const QRegExp token);
 
 //setup toolbutton as substitute for const combobox
 QToolButton* createComboToolButton(QWidget *parent,QStringList list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member);
+
+// realizes whether col is in a reference or in a command
+int findContext(QString &line,int col);
 #endif
