@@ -1523,7 +1523,7 @@ void Texmaker::ReadSettings() {
 	}
 
         struct_level.clear();
-        if(config->value("Structure/Structure Level 1","").toString()!=""){
+        if(config->value("Structure/Structure Level 1","").toString()==""){
             struct_level << "part" << "chapter" << "section" << "subsection" << "subsubsection";
         }else{
             int i=0;
