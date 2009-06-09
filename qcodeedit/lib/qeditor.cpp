@@ -47,6 +47,8 @@
 #include <QKeyEvent>
 #include <QMimeData>
 #include <QFileInfo>
+#include <QToolTip>
+#include <QHelpEvent>
 #include <QClipboard>
 #include <QScrollBar>
 #include <QTextCodec>
@@ -389,6 +391,7 @@ QEditor::QEditor(QWidget *p)
 	m_saveState = Undefined;
 
 	init();
+	setToolTip("Test");
 }
 
 /*!
@@ -406,7 +409,9 @@ QEditor::QEditor(bool actions, QWidget *p)
 	m_saveState = Undefined;
 
 	init(actions);
+	setToolTip("Test");
 }
+
 
 /*!
 	\brief ctor
@@ -427,6 +432,7 @@ QEditor::QEditor(const QString& s, QWidget *p)
 	init();
 
 	setText(s);
+	setToolTip("Test");
 }
 
 /*!
@@ -448,6 +454,7 @@ QEditor::QEditor(const QString& s, bool actions, QWidget *p)
 	init(actions);
 
 	setText(s);
+	setToolTip("Test");
 }
 
 /*!
@@ -2380,6 +2387,15 @@ void QEditor::selectNothing(){
 */
 bool QEditor::event(QEvent *e)
 {
+	// preparations for tooltips
+
+	if (e->type() == QEvent::ToolTip) {
+		QHelpEvent *helpEvent = static_cast<QHelpEvent *>(e);
+		emit hovered(helpEvent->pos()-QPoint(m_margins.left(),m_margins.top()));
+		return true;
+	}
+
+	// qcodedit ...
 	bool r = QAbstractScrollArea::event(e);
 
 	if ( (e->type() == QEvent::Resize || e->type() == QEvent::Show) && m_doc )

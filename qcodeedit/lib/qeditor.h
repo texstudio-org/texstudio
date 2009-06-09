@@ -291,6 +291,12 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 							point.y() - verticalOffset() );
 		}
 		
+		inline QPoint mapFromFrame(const QPoint &point) const
+		{
+			return QPoint(	point.x() + m_margins.left(),
+							point.y() + m_margins.top() );
+		}
+
 		static int defaultFlags();
 		static void setDefaultFlags(int f);
 		
@@ -400,6 +406,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void redoAvailable(bool y);
 		
 		void markChanged(const QString& f, QDocumentLineHandle *l, int mark, bool on);
+
+		void hovered(QPoint pos);
 		
 	public slots:
 		void checkClipboard();

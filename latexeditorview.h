@@ -113,6 +113,7 @@ public slots:
 	void spellCheckingAlwaysIgnore();
 	void spellCheckingListSuggestions();
 	void dictionaryReloaded();
+	void mouseHovered(QPoint pos);
 signals:
 	void lineHandleDeleted(QDocumentLineHandle* l);
 };

@@ -324,3 +324,25 @@ QToolButton* createComboToolButton(QWidget *parent,QStringList list,const int he
 	return combo;
 }
 
+int findContext(QString &line,int col){
+	int start_command=col;
+	int start_ref=col;
+	int start_close=col;
+	int stop=col;
+	QString helper=line.mid(0,col);
+	start_command=helper.lastIndexOf("\\");
+	start_ref=helper.lastIndexOf("{");
+	start_close=helper.lastIndexOf("}");
+	helper=line.mid(col,line.length());
+	if((start_command>start_ref)&&(start_command>start_close)){
+		stop=helper.indexOf("{")+col;
+		line=line.mid(start_command,stop-start_command);
+		return 1;
+	}
+	if((start_ref>start_command)&&(start_command>start_close)){
+		stop=helper.indexOf("}")+col;
+		line=line.mid(start_command,stop-start_command);
+		return 2;
+	}
+	return 0;
+}
