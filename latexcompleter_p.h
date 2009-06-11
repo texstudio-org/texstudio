@@ -21,6 +21,7 @@ public:
 
 	const QList<CompletionWord> & getWords(){return words;}
 	const QSet<QChar>& getAcceptedChars(){return acceptedChars;}
+	bool isNextCharPossible(const QChar &c); //does this character lead to a new possible word
 	void filterList(const QString &word);
 	void setBaseWords(const QStringList &newwords, bool normalTextList);
 private:
