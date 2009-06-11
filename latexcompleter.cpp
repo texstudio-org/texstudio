@@ -361,11 +361,6 @@ public:
 			}
 			resetBinding();
 			return true;
-		} else if (LatexCompleter::config && LatexCompleter::config->eowCompletes && 
-		           event->text().length()==1 && getCommonEOW().contains(event->text().at(0))) {
-			insertCompletedWord();
-			resetBinding();
-			return false; //return false to let the default implementation handle it and insert the new character
 		} else {
 			if (event->text().length()!=1 || event->text()==" ") {
 				resetBinding();
@@ -392,6 +387,11 @@ public:
 				if (editor->cursor().columnNumber()+1>curStart)
 					completer->list->show();
 				handled=true;
+			} else if (LatexCompleter::config && LatexCompleter::config->eowCompletes && 
+		           event->text().length()==1 && getCommonEOW().contains(event->text().at(0))) {
+				insertCompletedWord();
+				resetBinding();
+				return false; //return false to let the default implementation handle it and insert the new character
 			} else {
 				resetBinding();
 				return false;
@@ -534,6 +534,18 @@ QVariant CompletionListModel::headerData(int section, Qt::Orientation orientatio
 	(void) section;
 
 	return QVariant();
+}
+bool CompletionListModel::isNextCharPossible(const QChar &c){
+	if (words.count()>100) //probable that every char is there (especially since acceptedChars is already checked)
+		return true; 
+	Qt::CaseSensitivity cs = Qt::CaseInsensitive;
+	if (LatexCompleter::config && 
+		LatexCompleter::config->caseSensitive==LatexCompleterConfig::CCS_CASE_SENSITIVE)
+		cs=Qt::CaseSensitive;
+	QString extension=curWord+c;
+	foreach (const CompletionWord & cw, words)
+		if (cw.word.startsWith(extension,cs)) return true;
+	return false;
 }
 void CompletionListModel::filterList(const QString &word) {
 	if (word==curWord) return;
@@ -715,11 +727,16 @@ void LatexCompleter::filterList(QString word) {
 	}
 }
 bool LatexCompleter::acceptChar(QChar c,int pos) {
+	//always accept alpha numerical characters
 	if (((c>=QChar('a')) && (c<=QChar('z'))) ||
 	        ((c>=QChar('A')) && (c<=QChar('Z'))) ||
 	        ((c>=QChar('0')) && (c<=QChar('9')))) return true;
 	if (pos<=1) return false;
-	return listModel->getAcceptedChars().contains(c);
+	if (!listModel->getAcceptedChars().contains(c)) 
+		return false; //if no word contains the character don't accept it
+	if (listModel->isNextCharPossible(c)) 
+		return true; //only accept non standard character, if one of the current words contains it
+	return false;
 }
 
 void LatexCompleter::cursorPositionChanged() {
