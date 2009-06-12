@@ -36,6 +36,7 @@ public:
 		CMD_USER_PRECOMPILE,
 		CMD_MAXIMUM_COMMAND_VALUE
 	};
+	static QString findFileInPath(QString fileName);
 	static QString cmdToConfigString(LatexCommand cmd);
 	static QString parseExtendedCommandLine(QString str, const QFileInfo &mainFile,int currentline);
 	static QString guessCommandName(LatexCommand cmd);

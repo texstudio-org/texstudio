@@ -103,5 +103,6 @@ public:
 	void loadTranslations(QString locale);
 private slots:
 	void browseCommand();
+	void undoCommand();
 };
 #endif

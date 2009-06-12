@@ -357,10 +357,15 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		QPushButton *b = new QPushButton(confDlg);
 		b->setIcon(QIcon(":/images/fileopen.png"));
 		connect(b,SIGNAL(clicked()),this,SLOT(browseCommand()));
+		QPushButton *bdefault = new QPushButton(confDlg);
+		bdefault->setIcon(QIcon(":/images/undo.png"));
+		connect(bdefault,SIGNAL(clicked()),this,SLOT(undoCommand()));
  		gl->addWidget(l,(int)cmd,0);
 		gl->addWidget(e,(int)cmd,1);
 		gl->addWidget(b,(int)cmd,2);
+		gl->addWidget(bdefault,(int)cmd,3);
 		buttonsToCommands.insert(b,cmd);
+		buttonsToCommands.insert(bdefault,cmd);
 		commandsToEdits.insert(cmd,e);
 	}
 	confDlg->ui.lineEditExecuteBeforeCompiling->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_PRECOMPILE));
@@ -776,10 +781,29 @@ void ConfigManager::browseCommand(){
 	BuildManager::LatexCommand cmd=buttonsToCommands.value(pb);
 	QLineEdit* ed = commandsToEdits.value(cmd);
 	if (!ed) return;
-	QString location=QFileDialog::getOpenFileName(0,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
+	QString path = ed->text();
+	if (path.contains(' ')) path.truncate(path.indexOf(' '));
+	if (!path.contains('/') && !path.contains('\\')) {//no absolute path
+		path=BuildManager::findFileInPath(path);
+		if (path=="") path=QDir::rootPath(); //command not found, where could it be?
+	} else {
+		//opendialog doesn't like quotation like "C:\program files\..."
+		if (path.startsWith('"')) path=path.remove(0,1);
+		if (path.endsWith('"')) path.chop(1);
+	}
+	QString location=QFileDialog::getOpenFileName(0,tr("Browse program"),path,"Program (*)",0,QFileDialog::DontResolveSymlinks);
 	if (!location.isEmpty()) {
 		location.replace(QString("\\"),QString("/"));
 		location="\""+location+"\" "+BuildManager::defaultCommandOptions(cmd);
 		ed->setText(location);
 	}
 }
+void ConfigManager::undoCommand(){
+	QPushButton *pb = qobject_cast<QPushButton*> (sender());
+	if (!buttonsToCommands.contains(pb)) return;
+	BuildManager::LatexCommand cmd=buttonsToCommands.value(pb);
+	QLineEdit* ed = commandsToEdits.value(cmd);
+	if (!ed) return;
+	ed->setText(BuildManager::guessCommandName(cmd));
+}
+
