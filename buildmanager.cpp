@@ -123,6 +123,24 @@ QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mai
 	return result;
 }
 
+QString BuildManager::findFileInPath(QString fileName) {
+	QStringList env= QProcess::systemEnvironment();    //QMessageBox::information(0,env.join("  \n"),env.join("  \n"),0);
+	int i=env.indexOf(QRegExp("^PATH=.*", Qt::CaseInsensitive));
+	if (i==-1) return "";
+	QString path=env[i].mid(5); //skip path=
+	#ifdef Q_WS_WIN
+	if (!fileName.contains('.')) fileName+=".exe"; 
+	QStringList paths=path.split(";"); //windows
+	#else
+	QStringList paths=path.split(":"); //linux
+	#endif
+	foreach(QString p, paths)
+		if (p.endsWith("/") && QFileInfo(p+fileName).exists()) return (p+fileName);
+		else if (p.endsWith("\\") && QFileInfo(p+fileName).exists()) return (p+fileName);
+		else if (QFileInfo(p+"/"+fileName).exists()) return (p+"\\"+fileName);
+	return "";
+}
+
 #ifdef Q_WS_WIN
 typedef BOOL (* AssocQueryStringAFunc)(DWORD, DWORD, char*, char*, char*, DWORD*);
 QString W32_FileAssociation(QString ext) {
@@ -146,18 +164,6 @@ QString W32_FileAssociation(QString ext) {
 	FreeLibrary(mod);
 	return result;
 }
-QString findFileInPath(QString fileName) {
-	QStringList env= QProcess::systemEnvironment();    //QMessageBox::information(0,env.join("  \n"),env.join("  \n"),0);
-	int i=env.indexOf(QRegExp("^PATH=.*", Qt::CaseInsensitive));
-	if (i==-1) return "";
-	QString path=env[i].mid(5); //skip path=
-	QStringList paths=path.split(";"); //windows
-	foreach(QString p, paths)
-	if (p.endsWith("/") && QFileInfo(p+fileName).exists()) return (p+fileName);
-	else if (p.endsWith("\\") && QFileInfo(p+fileName).exists()) return (p+fileName);
-	else if (QFileInfo(p+"\\"+fileName).exists()) return (p+"\\"+fileName);
-	return "";
-}
 QString getMiKTeXBinPath() {
 	QSettings reg("HKEY_CURRENT_USER\\Software", QSettings::NativeFormat);
 	QString mikPath = reg.value("MiK/MikTeX/CurrentVersion/MiKTeX/Install Root", "").toString();
@@ -168,7 +174,7 @@ QString getMiKTeXBinPath() {
 }
 QString searchBaseCommand(QString cmd, QString options, bool mustExist=false) {
 	QString fileName=cmd+".exe";
-	if (findFileInPath(fileName).isEmpty()) {
+	if (BuildManager::findFileInPath(fileName).isEmpty()) {
 		QString mikPath=getMiKTeXBinPath();
 		//QMessageBox::information(0,mikPath,mikPath,0);
 		if (!mikPath.isEmpty() && QFileInfo(mikPath+fileName).exists())

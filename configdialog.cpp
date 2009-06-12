@@ -13,6 +13,8 @@
 
 #include <QFontDatabase>
 #include <QTextCodec>
+#include <QCompleter>
+#include <QDirModel>
 #include <QFileDialog>
 #include <QColorDialog>
 #include <QDir>
@@ -216,25 +218,26 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	connect(ui.btSelectThesaurusFileName, SIGNAL(clicked()), this, SLOT(browseThesaurus()));
 	connect(ui.lineEditAspellCommand, SIGNAL(textChanged(QString)), this, SLOT(lineEditAspellChanged(QString)));
 
+	QCompleter* dictionaryCompleter = new QCompleter(this);
+	QDirModel * ddm =new QDirModel(QStringList()<<"*.dic",QDir::AllDirs | QDir::Files,QDir::Name | QDir::IgnoreCase | QDir::DirsFirst, dictionaryCompleter);
+	ddm->setReadOnly(true);
+	ddm->setLazyChildCount(true);
+	dictionaryCompleter->setModel(ddm);
+	ui.lineEditAspellCommand->setCompleter(dictionaryCompleter);
+	
+	QCompleter* thesaurusCompleter = new QCompleter(this);
+	QDirModel * tdm =new QDirModel(QStringList()<<"*.dat",QDir::AllDirs | QDir::Files,QDir::Name | QDir::IgnoreCase | QDir::DirsFirst, thesaurusCompleter);
+	tdm->setReadOnly(true);
+	tdm->setLazyChildCount(true);
+	thesaurusCompleter->setModel(tdm);
+	ui.thesaurusFileName->setCompleter(thesaurusCompleter);
+
 	ui.labelGetDic->setText(tr("Get dictionary at: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>"));
 	ui.labelGetDic->setOpenExternalLinks(true);
 
 //pagequick
 	connect(ui.radioButton6, SIGNAL(toggled(bool)),ui.lineEditUserquick, SLOT(setEnabled(bool)));
 
-//pagetools
-/*	connect(ui.pushButtonLatex, SIGNAL(clicked()), this, SLOT(browseLatex()));
-	connect(ui.pushButtonDvips, SIGNAL(clicked()), this, SLOT(browseDvips()));
-	connect(ui.pushButtonBibtex, SIGNAL(clicked()), this, SLOT(browseBibtex()));
-	connect(ui.pushButtonMakeindex, SIGNAL(clicked()), this, SLOT(browseMakeindex()));
-	connect(ui.pushButtonDviviewer, SIGNAL(clicked()), this, SLOT(browseDviviewer()));
-	connect(ui.pushButtonPsviewer, SIGNAL(clicked()), this, SLOT(browsePsviewer()));
-	connect(ui.pushButtonPdflatex, SIGNAL(clicked()), this, SLOT(browsePdflatex()));
-	connect(ui.pushButtonDvipdfm, SIGNAL(clicked()), this, SLOT(browseDvipdfm()));
-	connect(ui.pushButtonPs2pdf, SIGNAL(clicked()), this, SLOT(browsePs2pdf()));
-	connect(ui.pushButtonPdfviewer, SIGNAL(clicked()), this, SLOT(browsePdfviewer()));
-	connect(ui.pushButtonMetapost, SIGNAL(clicked()), this, SLOT(browseMetapost()));
-	connect(ui.pushButtonGhostscript, SIGNAL(clicked()), this, SLOT(browseGhostscript()));*/
 	connect(ui.pushButtonExecuteBeforeCompiling, SIGNAL(clicked()), this, SLOT(browsePrecompiling()));
 
 
@@ -266,7 +269,7 @@ ConfigDialog::~ConfigDialog() {
 }
 
 QListWidgetItem * ConfigDialog::createIcon(const QString &caption, const QIcon &icon){
-	QListWidgetItem * button=new QListWidgetItem(ui.contentsWidget);;
+	QListWidgetItem * button=new QListWidgetItem(ui.contentsWidget);
 	button->setIcon(icon);
 	button->setText(caption);
 	button->setTextAlignment(Qt::AlignHCenter);
@@ -283,7 +286,9 @@ void ConfigDialog::changePage(QListWidgetItem *current, QListWidgetItem *previou
 
 //pageditor
 void ConfigDialog::browseAspell() {
-	QString location=QFileDialog::getOpenFileName(this,tr("Browse dictionary"),QDir::homePath(),"Dictionary (*.dic)",0,QFileDialog::DontResolveSymlinks);
+	QString path=ui.lineEditAspellCommand->text();
+	if (path.isEmpty()) path=QDir::homePath();
+	QString location=QFileDialog::getOpenFileName(this,tr("Browse dictionary"),path,"Dictionary (*.dic)",0,QFileDialog::DontResolveSymlinks);
 	if (!location.isEmpty()) {
 		location.replace(QString("\\"),QString("/"));
 //	location="\""+location+"\"";
@@ -301,124 +306,22 @@ void ConfigDialog::lineEditAspellChanged(QString newText) {
 }
 
 void ConfigDialog::browseThesaurus() {
-	QString location=QFileDialog::getOpenFileName(this,tr("Browse thesaurus database"),QDir::homePath(),"Database (*.dat)",0,QFileDialog::DontResolveSymlinks);
+	QString path=ui.thesaurusFileName->text();
+	if (path.isEmpty()) path=QDir::homePath();
+	QString location=QFileDialog::getOpenFileName(this,tr("Browse thesaurus database"),path,"Database (*.dat)",0,QFileDialog::DontResolveSymlinks);
 	if (!location.isEmpty()) {
 		location.replace(QString("\\"),QString("/"));
 //	location="\""+location+"\"";
 		ui.thesaurusFileName->setText(location);
 	}
 }
-/*
-//pagetools
-void ConfigDialog::browseLatex() {
-	QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-	if (!location.isEmpty()) {
-		location.replace(QString("\\"),QString("/"));
-		location="\""+location+"\" -interaction=nonstopmode %.tex";
-		ui.lineEditLatex->setText(location);
-	}
-}
 
-void ConfigDialog::browseDvips() {
-	QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-	if (!location.isEmpty()) {
-		location.replace(QString("\\"),QString("/"));
-		location="\""+location+"\" -o %.ps %.dvi";
-		ui.lineEditDvips->setText(location);
-	}
-}
-
-void ConfigDialog::browseBibtex() {
-	QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-	if (!location.isEmpty()) {
-		location.replace(QString("\\"),QString("/"));
-		location="\""+location+"\" %.aux";
-		ui.lineEditBibtex->setText(location);
-	}
-}
-
-void ConfigDialog::browseMakeindex() {
-	QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-	if (!location.isEmpty()) {
-		location.replace(QString("\\"),QString("/"));
-		location="\""+location+"\" %.idx";
-		ui.lineEditMakeindex->setText(location);
-	}
-}
-
-void ConfigDialog::browseDviviewer() {
-	QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-	if (!location.isEmpty()) {
-		location.replace(QString("\\"),QString("/"));
-		location="\""+location+"\" %.dvi";
-		ui.lineEditDviviewer->setText(location);
-	}
-}
-
-void ConfigDialog::browsePsviewer() {
-	QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-	if (!location.isEmpty()) {
-		location.replace(QString("\\"),QString("/"));
-		location="\""+location+"\" %.ps";
-		ui.lineEditPsviewer->setText(location);
-	}
-}
-
-void ConfigDialog::browsePdflatex() {
-	QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-	if (!location.isEmpty()) {
-		location.replace(QString("\\"),QString("/"));
-		location="\""+location+"\" -interaction=nonstopmode %.tex";
-		ui.lineEditPdflatex->setText(location);
-	}
-}
-
-void ConfigDialog::browseDvipdfm() {
-	QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-	if (!location.isEmpty()) {
-		location.replace(QString("\\"),QString("/"));
-		location="\""+location+"\" %.dvi";
-		ui.lineEditDvipdfm->setText(location);
-	}
-}
-
-void ConfigDialog::browsePs2pdf() {
-	QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-	if (!location.isEmpty()) {
-		location.replace(QString("\\"),QString("/"));
-		location="\""+location+"\" %.ps";
-		ui.lineEditPs2pdf->setText(location);
-	}
-}
-
-void ConfigDialog::browsePdfviewer() {
-	QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-	if (!location.isEmpty()) {
-		location.replace(QString("\\"),QString("/"));
-		location="\""+location+"\" %.pdf";
-		ui.lineEditPdfviewer->setText(location);
-	}
-}
-
-void ConfigDialog::browseMetapost() {
-	QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-	if (!location.isEmpty()) {
-		location.replace(QString("\\"),QString("/"));
-		location="\""+location+"\" --interaction nonstopmode ";
-		ui.lineEditMetapost->setText(location);
-	}
-}
-
-void ConfigDialog::browseGhostscript() {
-	QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
-	if (!location.isEmpty()) {
-		location.replace(QString("\\"),QString("/"));
-		location="\""+location+"\"";
-		ui.lineEditGhostscript->setText(location);
-	}
-}*/
 void ConfigDialog::browsePrecompiling() {
-	QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),QDir::rootPath(),"Program (*)",0,QFileDialog::DontResolveSymlinks);
+	QString path=ui.lineEditExecuteBeforeCompiling->text();
+	if (path.startsWith('"')) path.remove(0,1);
+	if (path.endsWith('"')) path.chop(1);
+	if (path.isEmpty()) path=QDir::rootPath();
+	QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),path,"Program (*)",0,QFileDialog::DontResolveSymlinks);
 	if (!location.isEmpty()) {
 		location.replace(QString("\\"),QString("/"));
 		location="\""+location+"\"";
