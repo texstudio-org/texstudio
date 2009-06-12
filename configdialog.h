@@ -19,6 +19,16 @@
 #include "qformat.h"
 #include "qformatconfig.h"
 
+#if QT_VERSION >= 0x040400
+#include <QCompleter>
+class FileSystemCompleter: public QCompleter{
+public:
+	FileSystemCompleter(QObject *p=0);
+    virtual QString pathFromIndex(const QModelIndex &index) const;
+    virtual QStringList splitPath(const QString &path) const;
+};
+#endif
+
 class ShortcutDelegate : public QItemDelegate {
 	Q_OBJECT
 
@@ -57,24 +67,11 @@ public:
 	QFormatConfig * fmConfig;
 public slots:
 	void changePage(QListWidgetItem *current, QListWidgetItem *previous);
-
 private slots:
 	QListWidgetItem * createIcon(const QString &caption, const QIcon &icon);
 	void lineEditAspellChanged(QString newText);
 	void browseAspell();
 	void browseThesaurus();
-	/*void browseLatex();
-	void browseDvips();
-	void browseBibtex();
-	void browseMakeindex();
-	void browseDviviewer();
-	void browsePsviewer();
-	void browsePdflatex();
-	void browseDvipdfm();
-	void browsePs2pdf();
-	void browsePdfviewer();
-	void browseMetapost();
-	void browseGhostscript();*/
 	void browsePrecompiling();
 };
 
