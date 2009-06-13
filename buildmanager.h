@@ -51,6 +51,7 @@ public:
 	QString getLatexCommandForDisplay(LatexCommand cmd);
 	
 	ProcessX* newProcess(LatexCommand cmd, const QString &fileToCompile, int currentLine=0);
+	ProcessX* newProcess(LatexCommand cmd, const QString &additionalParameters, const QString &fileToCompile, int currentLine=0);
 	ProcessX* newProcess(const QString &unparsedCommandLine, const QString &fileToCompile, int currentLine=0);
 	
 	static QTemporaryFile* temporaryTexFile(); //don't forget to remove the file!

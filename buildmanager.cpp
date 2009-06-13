@@ -218,7 +218,7 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 	case CMD_DVIPS:
 		return "\"/usr/texbin/dvips\" -o %.ps %.dvi";
 	case CMD_DVIPNG:
-		return "\"/usr/texbin/dvipng\" -T tight -x 1200 %.dvi";
+		return "\"/usr/texbin/dvipng\" -T tight -D 120 %.dvi";
 	case CMD_PS2PDF:
 		return "\"/usr/local/bin/ps2pdf\" %.ps";
 	case CMD_MAKEINDEX:
@@ -251,7 +251,7 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 	case CMD_DVIPS:
 		return searchBaseCommand("dvips"," -o %.ps %.dvi");
 	case CMD_DVIPNG:
-		return searchBaseCommand("dvipng"," -T tight -x 1200 %.dvi");
+		return searchBaseCommand("dvipng"," -T tight -D 120 %.dvi");
 	case CMD_PS2PDF:
 		return searchBaseCommand("ps2pdf"," %.ps");
 	case CMD_MAKEINDEX:
@@ -326,7 +326,7 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 	case CMD_DVIPS:
 		return "dvips -o %.ps %.dvi";
 	case CMD_DVIPNG:
-		return "dvipng -T tight -x 1200 %.dvi";
+		return "dvipng -T tight -D 120 %.dvi";
 	case CMD_PS2PDF:
 		return "ps2pdf %.ps";
 	case CMD_MAKEINDEX:
@@ -379,7 +379,7 @@ QString BuildManager::defaultCommandOptions(LatexCommand cmd){
 	switch (cmd){
 		case CMD_LATEX: return "-interaction=nonstopmode %.tex";
 		case CMD_DVIPS: return "-o %.ps %.dvi";
-		case CMD_DVIPNG: return "-T tight -x 1200 %.dvi";
+		case CMD_DVIPNG: return "-T tight -D 120 %.dvi";
 		case CMD_PS2PDF: return "%.ps";
 		case CMD_MAKEINDEX: return "%.idx";
 		case CMD_BIBTEX: return "%.aux";
@@ -436,6 +436,16 @@ QString BuildManager::getLatexCommandForDisplay(LatexCommand cmd){
 ProcessX* BuildManager::newProcess(LatexCommand cmd, const QString &fileToCompile, int currentLine){
 	return newProcess(getLatexCommand(cmd), fileToCompile, currentLine);
 }
+ProcessX* BuildManager::newProcess(LatexCommand cmd, const QString &additionalParameters, const QString &fileToCompile, int currentLine){
+	QString cmdStr = getLatexCommand(cmd).trimmed();
+	int p=-1;
+	if (cmdStr.startsWith('"')) p = cmdStr.indexOf('"',1)+1;
+	else if (cmdStr.contains(' ')) p = cmdStr.indexOf(' ')+1;
+	if (p==-1) p = cmdStr.length(); //indexOf failed if it returns -1
+	cmdStr.insert(p," "+additionalParameters+" ");
+	return newProcess(cmdStr, fileToCompile, currentLine);
+}
+
 ProcessX* BuildManager::newProcess(const QString &unparsedCommandLine, const QString &fileToCompile, int currentLine){
 	QFileInfo fi(fileToCompile);
 	QString cmd=BuildManager::parseExtendedCommandLine(unparsedCommandLine,fi,currentLine);	
@@ -478,16 +488,24 @@ void BuildManager::preview(const QString &preamble, const QString &text){
 	ProcessX *p1 = newProcess(CMD_LATEX,ffn); //no delete! goes automatically
 	connect(p1,SIGNAL(finished(int)),this,SLOT(latexPreviewCompleted(int)));
 	p1->startCommand();
+	
+	
+	p1->waitForStarted();
+	// dvi -> png
+	//follow mode is a tricky features which allows dvipng to run while tex isn't finished
+	ProcessX *p2 = newProcess(CMD_DVIPNG,"--follow", ffn);
+	connect(p2,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
+	p2->startCommand();		
 }
 
 
 void BuildManager::latexPreviewCompleted(int status){
-	ProcessX* p1=qobject_cast<ProcessX*> (sender());
+	/*ProcessX* p1=qobject_cast<ProcessX*> (sender());
 	if (!p1) return;
 	// dvi -> png
 	ProcessX *p2 = newProcess(CMD_DVIPNG,p1->getFile());
 	connect(p2,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
-	p2->startCommand();	
+	p2->startCommand();	*/
 }
 void BuildManager::conversionPreviewCompleted(int status){
 	ProcessX* p2=qobject_cast<ProcessX*> (sender());
