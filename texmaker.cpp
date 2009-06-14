@@ -399,7 +399,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"thesaurus",tr("Thesaurus"),SLOT(editThesaurus()),Qt::CTRL+Qt::SHIFT+Qt::Key_F8);
 
 	menu->addSeparator();
-	newManagedAction(menu,"reparse",tr("Refresh Structure"),SLOT(UpdateStructure()));
+	newManagedAction(menu,"reparse",tr("Refresh Structure"),SLOT(updateStructure()));
 
 
 //tools
@@ -718,7 +718,7 @@ void Texmaker::UpdateCaption() {
 		}
 	}
 	setWindowTitle(title);
-	UpdateStructure();
+	updateStructure();
 	if (singlemode) {
 		outputView->resetMessagesAndLog();
 	}
@@ -1307,7 +1307,18 @@ void Texmaker::editSetupEncoding() {
 	UpdateCaption();
 }
 
+LatexEditorView* Texmaker::getEditorFromStructureItem(QTreeWidgetItem* m_item){
+	if (!m_item) return 0;
+	QTreeWidgetItem* parent=m_item->parent();
+	while (parent!=0) {
+		m_item=parent;
+		parent=parent->parent();
+	}
+	return getEditorFromFileName(m_item->text(0));
+}
+
 QPoint Texmaker::sectionSelection(QTreeWidgetItem* m_item) {
+	EditorView->setCurrentWidget(getEditorFromStructureItem(m_item));
 	// called by action
         QDocumentLine mLine(m_item->data(structureTreeLineColumn,Qt::UserRole).value<QDocumentLineHandle*>());
         int l=mLine.lineNumber()+1;
@@ -1336,7 +1347,12 @@ QPoint Texmaker::sectionSelection(QTreeWidgetItem* m_item) {
 }
 
 void Texmaker::editIndentSection() {
-	if (!currentEditorView()) return;
+	QTreeWidgetItem* twi=StructureTreeWidget->currentItem();
+	if (!twi) return;
+	LatexEditorView *edView=getEditorFromStructureItem(twi);
+	if (!edView) return;
+	EditorView->setCurrentWidget(edView);
+
 	// replace list
 	QStringList m_replace;
 	m_replace << "\\subparagraph" << "\\paragraph" << "\\subsubsection" << "\\subsection" << "\\section" << "\\chapter";
@@ -1362,7 +1378,11 @@ void Texmaker::editIndentSection() {
 }
 
 void Texmaker::editUnIndentSection() {
-	if (!currentEditorView()) return;
+	QTreeWidgetItem* twi=StructureTreeWidget->currentItem();
+	if (!twi) return;
+	LatexEditorView *edView=getEditorFromStructureItem(twi);
+	if (!edView) return;
+	EditorView->setCurrentWidget(edView);
 
 	QStringList m_replace;
 
@@ -1427,17 +1447,20 @@ void Texmaker::editSectionCut(int startingLine, int endLine) {
 }
 
 void Texmaker::editSectionPasteAfter() {
-	if (!currentEditorView()) return;
-
-	QPoint m_point=sectionSelection(StructureTreeWidget->currentItem());
+	QTreeWidgetItem* twi=StructureTreeWidget->currentItem();
+	if (!twi) return;
+	QPoint m_point=sectionSelection(twi);
 	editSectionPasteAfter(m_point.y());
 	//UpdateStructure();
 }
 
 void Texmaker::editSectionPasteBefore() {
-	if (!currentEditorView()) return;
-
-	QString m_text=StructureTreeWidget->currentItem()->text(2);
+	QTreeWidgetItem* twi=StructureTreeWidget->currentItem();
+	if (!twi) return;
+	LatexEditorView *edView=getEditorFromStructureItem(twi);
+	if (!edView) return;
+	EditorView->setCurrentWidget(edView);
+	QString m_text=twi->text(2);
 	bool okay;
 	int l=m_text.toInt(&okay,10);
 
@@ -1675,20 +1698,42 @@ void Texmaker::ShowStructure() {
 	StructureToolbox->setCurrentIndex(StructureToolbox->indexOf(StructureTreeWidget));
 }
 
-void Texmaker::UpdateStructure() {
+void Texmaker::updateStructure() {
 // collect user define tex commands for completer
 // initialize List
 	userCommandList.clear();
 
-//
-        QTreeWidgetItem *Child, *theitem;
-        QVector<QTreeWidgetItem *> parent_level(struct_level.count());
+
 	QString current;
 	if (StructureTreeWidget->currentItem()) current=StructureTreeWidget->currentItem()->text(0);
 	StructureTreeWidget->clear();
 	if (!currentEditorView()) return;
-	QString shortName = getName();
+	//TODO: cache structures of not changed files, perhaps show all included structures at the same time
+	updateStructureForFile(getCompileFileName());
+	if (!singlemode && getCompileFileName()!=getCurrentFileName()) updateStructureForFile(getCurrentFileName());
+	if (!current.isEmpty()) {
+		QList<QTreeWidgetItem *> fItems=StructureTreeWidget->findItems(current,Qt::MatchRecursive,0);
+		if ((fItems.size()>0) && (fItems.at(0))) {
+			StructureTreeWidget->setCurrentItem(fItems.at(0));
+			QTreeWidgetItem *theitem=fItems.at(0)->parent();
+			while (theitem) {
+				StructureTreeWidget->setItemExpanded(theitem,true);
+				theitem=theitem->parent();
+			}
+		}
+	}
+	updateCompleter();
+}
+void Texmaker::updateStructureForFile(const QString& fileName){
+    QTreeWidgetItem *Child;
+    QVector<QTreeWidgetItem *> parent_level(struct_level.count());
+
+	QString shortName = QFileInfo(fileName).fileName(); //remove path
 	if ((shortName.right(4)!=".tex") && (shortName!="untitled"))  return;
+	
+	LatexEditorView* edView=getEditorFromFileName(fileName);
+	if (!edView)return;
+	
 	int pos;
 	while ((pos = (int)shortName.indexOf('/')) != -1)
 		shortName.remove(0,pos+1);
@@ -1703,11 +1748,11 @@ void Texmaker::UpdateStructure() {
 	toptodo->setText(0,"TODO");
 	toptodo->setHidden(true);
 	QString s;
-	for (int i=0; i<currentEditorView()->editor->document()->lines(); i++) {
+	for (int i=0; i<edView->editor->document()->lines(); i++) {
 		int tagStart, tagEnd;
 		//// newcommand ////
 		tagStart=tagEnd=0;
-		s=currentEditorView()->editor->text(i);
+		s=edView->editor->text(i);
 		tagStart=s.indexOf("\\newcommand{", tagEnd);
 		if (tagStart!=-1) {
 			s=s.mid(tagStart+12,s.length());
@@ -1731,7 +1776,7 @@ void Texmaker::UpdateStructure() {
 			}
 		};
 		//// label ////
-		s=currentEditorView()->editor->text(i);
+		s=edView->editor->text(i);
 		s=findToken(s,"\\label{");
 		if (s!="") {
 			labelitem.append(s);
@@ -1741,10 +1786,10 @@ void Texmaker::UpdateStructure() {
 			s=s+" ("+tr("line")+" "+QString::number(i+1)+")";
 			Child->setText(1,"label");
 			Child->setText(0,s);
-			Child->setData(structureTreeLineColumn,Qt::UserRole,QVariant::fromValue(currentEditorView()->editor->document()->line(i).handle()));
+			Child->setData(structureTreeLineColumn,Qt::UserRole,QVariant::fromValue(edView->editor->document()->line(i).handle()));
 		}
 		//// TODO marker
-		s=currentEditorView()->editor->text(i);
+		s=edView->editor->text(i);
 		int l=s.indexOf("\%TODO");
 		if (l>=0) {
 			s=s.mid(l+6,s.length());
@@ -1755,25 +1800,25 @@ void Texmaker::UpdateStructure() {
 			Child->setText(1,"todo");
 			Child->setText(0,s);
 			toptodo->setHidden(false);
-			Child->setData(structureTreeLineColumn,Qt::UserRole,QVariant::fromValue(currentEditorView()->editor->document()->line(i).handle()));
+			Child->setData(structureTreeLineColumn,Qt::UserRole,QVariant::fromValue(edView->editor->document()->line(i).handle()));
 		}
 		//// include,input ////
 		QStringList inputTokens;
 		inputTokens << "input" << "include";
 		for(int header=0;header<inputTokens.count();header++){
-			s=currentEditorView()->editor->text(i);
+			s=edView->editor->text(i);
 			s=findToken(s,"\\"+inputTokens.at(header)+"{");
 			if (s!="") {
 				Child = new QTreeWidgetItem(top);
 				Child->setText(0,s);
 				Child->setIcon(0,QIcon(":/images/include.png"));
 				Child->setText(1,inputTokens.at(header));
-				Child->setData(structureTreeLineColumn,Qt::UserRole,QVariant::fromValue(currentEditorView()->editor->document()->line(i).handle()));
-			};
+				Child->setData(structureTreeLineColumn,Qt::UserRole,QVariant::fromValue(edView->editor->document()->line(i).handle()));
+			}
 		}//for
 		//// all sections ////
 		for(int header=0;header<struct_level.count();header++){
-			s=currentEditorView()->editor->text(i);
+			s=edView->editor->text(i);
 			s=findToken(s,QRegExp("\\\\"+struct_level[header]+"\\*?[\\{\\[]"));
 			if (s!="") {
 				s=extractSectionName(s);
@@ -1784,65 +1829,63 @@ void Texmaker::UpdateStructure() {
 				parent_level[header]->setText(1,struct_level[header]);
 				parent_level[header]->setText(2,QString::number(i+1));
 				parent_level[header]->setToolTip(0, s);
-				parent_level[header]->setData(structureTreeLineColumn,Qt::UserRole,QVariant::fromValue(currentEditorView()->editor->document()->line(i).handle()));
+				parent_level[header]->setData(structureTreeLineColumn,Qt::UserRole,QVariant::fromValue(edView->editor->document()->line(i).handle()));
 				for(int j=header+1;j<parent_level.size();j++)
 					parent_level[j]=parent_level[header];
-			};
-		}
-	}
-	if (!current.isEmpty()) {
-		QList<QTreeWidgetItem *> fItems=StructureTreeWidget->findItems(current,Qt::MatchRecursive,0);
-		if ((fItems.size()>0) && (fItems.at(0))) {
-			StructureTreeWidget->setCurrentItem(fItems.at(0));
-			theitem=fItems.at(0)->parent();
-			while ((theitem) && (theitem!=top)) {
-				StructureTreeWidget->setItemExpanded(theitem,true);
-				theitem=theitem->parent();
 			}
 		}
 	}
 	StructureTreeWidget->setItemExpanded(top,true);
-	updateCompleter();
 }
 
 void Texmaker::ClickedOnStructure(QTreeWidgetItem *item,int col) {
+	if (!item) return;
 	Qt::MouseButtons mb=QApplication::mouseButtons();
 	if (QApplication::mouseButtons()==Qt::RightButton) return; // avoid jumping to line if contextmenu is called
 
-	QString finame;
-	if (singlemode) {
-		finame=getName();
-	} else {
-		finame=MasterName;
-	}
-	if ((singlemode && !currentEditorView()) || finame=="untitled" || finame=="") {
+	QTreeWidgetItem* parent=item->parent();
+	if (!parent) {
+		//top level item, is file name
+		EditorView->setCurrentWidget(getEditorFromFileName(item->text(0)));
 		return;
 	}
+	QTreeWidgetItem* tempItem=item;
+	while (parent) {
+		tempItem=parent;
+		parent=parent->parent();
+	}
+	if (!tempItem) return;
+	LatexEditorView *edView=getEditorFromStructureItem(tempItem);
+	if (!edView) return;
+	QString finame=filenames.value(edView);
+	if (finame=="untitled" || finame=="") return;
 	QFileInfo fi(finame);
 	QString name=fi.absoluteFilePath();
 	QString flname=fi.fileName();
 	QString basename=name.left(name.length()-flname.length());
-	if (item)  {
-		QString s=item->text(1);
-		if (s=="include") {
-			QString fname=item->text(0);
-			if (fname.right(4)==".tex") fname=basename+fname;
-			else fname=basename+fname+".tex";
-			QFileInfo fi(fname);
-			if (fi.exists() && fi.isReadable()) load(fname);
-		} else if (s=="input") {
-			QString fname=item->text(0);
-			if (fname.right(4)==".tex") fname=basename+fname;
-			else fname=basename+fname+".tex";
-			QFileInfo fi(fname);
-			if (fi.exists() && fi.isReadable()) load(fname);
-		} else {
-			QDocumentLine mLine(item->data(structureTreeLineColumn,Qt::UserRole).value<QDocumentLineHandle*>());
-			int l=mLine.lineNumber();
-			if(l<0) return;
-            currentEditorView()->editor->setCursorPosition(l,1);
-			currentEditorView()->editor->setFocus();
-		}
+	QString s=item->text(1);
+	if (s=="include") {
+		QString fname=item->text(0);
+		if (fname.right(4)==".tex") fname=basename+fname;
+		else fname=basename+fname+".tex";
+		QFileInfo fi(fname);
+		if (fi.exists() && fi.isReadable()) load(fname);
+	} else if (s=="input") {
+		QString fname=item->text(0);
+		if (fname.right(4)==".tex") fname=basename+fname;
+		else fname=basename+fname+".tex";
+		QFileInfo fi(fname);
+		if (fi.exists() && fi.isReadable()) load(fname);
+	} else {
+		QDocumentLineHandle *dlh = item->data(structureTreeLineColumn,Qt::UserRole).value<QDocumentLineHandle*>();
+		if (!dlh) return;
+		QDocumentLine mLine(dlh);
+		int l=mLine.lineNumber();
+		if(l<0) return;
+		if (edView != currentEditorView()) 
+			EditorView->setCurrentWidget(edView);//change to editor, now item is deleted!
+		edView->editor->setFocus();
+		edView->editor->setCursorPosition(l,1);
 	}
 }
 
@@ -2066,7 +2109,7 @@ void Texmaker::InsertStruct() {
 			tag +=stDlg->ui.TitlelineEdit->text();
 			tag +=QString("}\n");
 			InsertTag(tag,0,1);
-			UpdateStructure();
+			updateStructure();
 		}
 	}
 }
@@ -2085,7 +2128,7 @@ void Texmaker::InsertStructFromString(const QString& text) {
 		tag +=stDlg->ui.TitlelineEdit->text();
 		tag +=QString("}\n");
 		InsertTag(tag,0,1);
-		UpdateStructure();
+		updateStructure();
 	}
 }
 
@@ -2129,7 +2172,7 @@ void Texmaker::InsertInclude() {
 		QFileInfo fi(fn);
 		InsertTag("\\include{"+getRelativePath(currentDir, fn)+fi.completeBaseName()+"}",9,0);
 	}
-	UpdateStructure();
+	updateStructure();
 }
 
 void Texmaker::InsertInput() {
@@ -2151,7 +2194,7 @@ void Texmaker::InsertInput() {
 		QFileInfo fi(fn);
 		InsertTag("\\input{"+getRelativePath(currentDir, fn)+fi.completeBaseName()+"}",7,0);
 	}
-	UpdateStructure();
+	updateStructure();
 }
 
 void Texmaker::QuickTabular() {
@@ -2690,7 +2733,7 @@ void Texmaker::OtherCommand() {
 }
 
 void Texmaker::InsertRef() {
-	UpdateStructure();
+	updateStructure();
 	QString tag="";
 	RefDialog *refDlg = new RefDialog(this,"Labels");
 	refDlg->ui.comboBox->addItems(labelitem);
@@ -2702,7 +2745,7 @@ void Texmaker::InsertRef() {
 }
 
 void Texmaker::InsertPageRef() {
-	UpdateStructure();
+	updateStructure();
 	QString tag="";
 	RefDialog *refDlg = new RefDialog(this,"Labels");
 	refDlg->ui.comboBox->addItems(labelitem);

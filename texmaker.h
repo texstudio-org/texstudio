@@ -220,7 +220,8 @@ private slots:
 	void UpdateCaption();
 	void CloseEditorTab(int tab);
 
-	void UpdateStructure();
+	void updateStructure();
+	void updateStructureForFile(const QString& fileName);
 	void ShowStructure();
 	void ClickedOnStructure(QTreeWidgetItem *item,int);
 
@@ -346,6 +347,7 @@ private slots:
 
 	void escAction();
 protected:
+	LatexEditorView* getEditorFromStructureItem(QTreeWidgetItem* m_item);
 	QPoint sectionSelection(QTreeWidgetItem* m_item);
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
