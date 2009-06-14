@@ -51,6 +51,7 @@
 #include <QProcess>
 #include <QPushButton>
 #include <QColor>
+#include <QDateTime>
 #include <QTextTable>
 #include <QVBoxLayout>
 #include <QTableView>
@@ -61,6 +62,12 @@ typedef  QString Userlist[10];
 typedef  QString UserCd[5];
 typedef int SymbolList[412];
 
+struct BibTeXFileInfo{
+	QDateTime lastModified;
+	QStringList ids;
+	QString linksTo;
+};
+
 class Texmaker : public QMainWindow {
 	Q_OBJECT
 
@@ -70,6 +77,7 @@ public:
 	QString getName();
 	QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opened
 	QString getCompileFileName(); //returns the absolute file name of the file to be compiled (master or current)  TODO: test if it is always absolute (it depends on MasterFile and filenames)
+	QString getAbsoluteFileName(const QString & relName, const QString &extension=""); //treats the path relative to the compiled .tex file
 	QByteArray windowstate;
 public slots:
 	LatexEditorView* load(const QString &f , bool asProject = false);
@@ -94,7 +102,8 @@ private:
 	void closeEvent(QCloseEvent *e);
 
 	FilesMap filenames;
-
+	QMap<QString, BibTeXFileInfo> bibTeXFiles; //bibtex files loaded by tmx
+	QStringList mentionedBibTeXFiles; //bibtex files imported in the tex file
 
 	QFormatFactory *m_formats;
 	QLanguageFactory* m_languages;
@@ -119,7 +128,7 @@ private:
 
 	QLabel *stat1, *stat2, *stat3;
 	QString MasterName,persistentMasterFile;
-
+	
 	QToolButton *combo1,*combo2,*combo3,*combo4,*combo5;
 
 //settings
@@ -329,7 +338,7 @@ private slots:
 
 	void SetMostUsedSymbols();
 
-	
+	void updateBibFiles();
 	void updateCompleter();
 
 	void tabChanged(int i);

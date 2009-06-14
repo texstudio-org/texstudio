@@ -66,7 +66,8 @@ public:
 	QStringList sessionFilesToRestore;
 	QString sessionMaster;
 	QString sessionCurrent;
-
+	bool parseBibTeX;
+	
 	bool addRecentFile(const QString & fileName, bool asMaster); //adds a recent file
 	void updateRecentFiles(bool alwaysRecreateMenuItems=false);
 	

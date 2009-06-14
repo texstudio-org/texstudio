@@ -62,7 +62,8 @@ QSettings* ConfigManager::readSettings() {
 		sessionMaster=config->value("Files/Session/MasterFile","").toString();
 	}
 	lastDocument=config->value("Files/Last Document","").toString();
-
+	parseBibTeX=config->value("Files/Parse BibTeX",true).toBool();
+	
 	//completion
 	completerConfig->enabled=config->value("Editor/Completion",true).toBool();
 	completerConfig->caseSensitive=(LatexCompleterConfig::CaseSensitive) config->value("Editor/Completion Case Sensitive",2).toInt();
@@ -241,6 +242,7 @@ QSettings* ConfigManager::saveSettings() {
 	if (recentProjectList.count()>0) config->setValue("Files/Recent Project Files",recentProjectList);
 	//session is saved by main class (because we don't know the active files here)
 	config->setValue("Files/Last Document",lastDocument);
+	config->setValue("Files/Parse BibTeX",parseBibTeX);
 
 	//completion
 	config->setValue("Editor/Completion",completerConfig->enabled);
@@ -307,7 +309,8 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	
 	confDlg->ui.spinBoxMaxRecentFiles->setValue(maxRecentFiles);
 	confDlg->ui.spinBoxMaxRecentProjects->setValue(maxRecentProjects);
-
+	confDlg->ui.checkBoxParseBibTeX->setChecked(parseBibTeX);
+	
 	//completion
 	confDlg->ui.checkBoxCompletion->setChecked(completerConfig->enabled);
 	confDlg->ui.checkBoxCaseSensitive->setChecked(completerConfig->caseSensitive!=LatexCompleterConfig::CCS_CASE_INSENSITIVE);
@@ -434,7 +437,8 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 			maxRecentProjects=confDlg->ui.spinBoxMaxRecentProjects->value();
 			updateRecentFiles(true);
 		}
-
+		parseBibTeX=confDlg->ui.checkBoxParseBibTeX->isChecked();
+		
 		//completion
 		completerConfig->enabled=confDlg->ui.checkBoxCompletion->isChecked();
 		if (!confDlg->ui.checkBoxCaseSensitive->isChecked()) completerConfig->caseSensitive=LatexCompleterConfig::CCS_CASE_INSENSITIVE;
