@@ -275,15 +275,13 @@ bool nextTextWord(const QString & line, int &index, QString &outWord, int &wordS
 
 QString findToken(const QString line,const QString token){
 	int tagStart=0;
-	int tagEnd=0;
 	QString s=line;
-	tagStart=s.indexOf(token, tagEnd);
+	tagStart=s.indexOf(token);
 	if (tagStart!=-1) {
 		s=s.mid(tagStart+token.length(),s.length());
-		tagStart=s.indexOf("}", tagEnd);
-		if (tagStart!=-1) {
+		tagStart=s.indexOf("}");
+		if (tagStart!=-1) 
 			s=s.mid(0,tagStart);
-		}
 		return s;
 	}
 	return "";
@@ -291,15 +289,10 @@ QString findToken(const QString line,const QString token){
 
 QString findToken(const QString line,QRegExp token){
 	int tagStart=0;
-	int tagEnd=0;
 	QString s=line;
-	tagStart=token.indexIn(line, tagEnd);
+	tagStart=token.indexIn(line);
 	if (tagStart!=-1) {
 		s=s.mid(tagStart+token.cap(0).length(),s.length());
-		//tagStart=s.indexOf("}", tagEnd);
-		//if (tagStart!=-1) {
-		//	s=s.mid(0,tagStart);
-		//}
 		return s;
 	}
 	return "";

@@ -821,6 +821,18 @@ QString Texmaker::getCompileFileName(){
 	if (singlemode) return getCurrentFileName();
 	else return MasterName;
 }
+QString Texmaker::getAbsoluteFileName(const QString & relName, const QString &extension){
+	QString s=relName;
+	if (!s.endsWith(extension,Qt::CaseInsensitive)) s+=extension;
+	QFileInfo fi(s);
+	if (!fi.isRelative()) return s;
+	QString compileFileName=getCompileFileName();
+	if (compileFileName.isEmpty()) return s; //what else can we do?
+	QString compilePath=QFileInfo(compileFileName).absolutePath();
+	if (!compilePath.endsWith("\\") && !compilePath.endsWith("/")) 
+		compilePath+=QDir::separator();
+	return  compilePath+s;
+}
 bool Texmaker::FileAlreadyOpen(QString f) {
 	LatexEditorView* edView = getEditorFromFileName(f);
 	if (!edView) return false;
@@ -1702,7 +1714,7 @@ void Texmaker::updateStructure() {
 // collect user define tex commands for completer
 // initialize List
 	userCommandList.clear();
-
+	mentionedBibTeXFiles.clear();
 
 	QString current;
 	if (StructureTreeWidget->currentItem()) current=StructureTreeWidget->currentItem()->text(0);
@@ -1711,6 +1723,7 @@ void Texmaker::updateStructure() {
 	//TODO: cache structures of not changed files, perhaps show all included structures at the same time
 	updateStructureForFile(getCompileFileName());
 	if (!singlemode && getCompileFileName()!=getCurrentFileName()) updateStructureForFile(getCurrentFileName());
+
 	if (!current.isEmpty()) {
 		QList<QTreeWidgetItem *> fItems=StructureTreeWidget->findItems(current,Qt::MatchRecursive,0);
 		if ((fItems.size()>0) && (fItems.at(0))) {
@@ -1722,6 +1735,8 @@ void Texmaker::updateStructure() {
 			}
 		}
 	}
+	
+	if (configManager.parseBibTeX) updateBibFiles();
 	updateCompleter();
 }
 void Texmaker::updateStructureForFile(const QString& fileName){
@@ -1747,6 +1762,9 @@ void Texmaker::updateStructureForFile(const QString& fileName){
 	QTreeWidgetItem *toptodo = new QTreeWidgetItem(top);
 	toptodo->setText(0,"TODO");
 	toptodo->setHidden(true);
+	QTreeWidgetItem *topbib = new QTreeWidgetItem(top);
+	topbib->setText(0,"BIBTEX");
+	topbib->setHidden(true);
 	QString s;
 	for (int i=0; i<edView->editor->document()->lines(); i++) {
 		int tagStart, tagEnd;
@@ -1775,6 +1793,21 @@ void Texmaker::updateStructureForFile(const QString& fileName){
 				userCommandList.append(s);
 			}
 		};
+		//// bibliography ////
+		s=edView->editor->text(i);
+		s=findToken(s,"bibliography{");
+		if (s!="") {
+			QStringList bibs=s.split(',',QString::SkipEmptyParts); 
+			mentionedBibTeXFiles<<bibs;
+			topbib->setHidden(false);
+			foreach (const QString& bibFile, bibs) {
+				Child = new QTreeWidgetItem(topbib);
+				Child->setText(0,bibFile);
+				Child->setIcon(0,QIcon(":/images/bibtex.png"));
+				Child->setText(1,"bibtex");
+				Child->setData(structureTreeLineColumn,Qt::UserRole,QVariant::fromValue(edView->editor->document()->line(i).handle()));
+			}
+		}
 		//// label ////
 		s=edView->editor->text(i);
 		s=findToken(s,"\\label{");
@@ -1864,16 +1897,16 @@ void Texmaker::ClickedOnStructure(QTreeWidgetItem *item,int col) {
 	QString flname=fi.fileName();
 	QString basename=name.left(name.length()-flname.length());
 	QString s=item->text(1);
-	if (s=="include") {
+	if (s=="include" || s=="input") {
 		QString fname=item->text(0);
 		if (fname.right(4)==".tex") fname=basename+fname;
 		else fname=basename+fname+".tex";
 		QFileInfo fi(fname);
 		if (fi.exists() && fi.isReadable()) load(fname);
-	} else if (s=="input") {
+	} else if (s=="bibtex") {
 		QString fname=item->text(0);
-		if (fname.right(4)==".tex") fname=basename+fname;
-		else fname=basename+fname+".tex";
+		if (fname.right(4)==".bib") fname=basename+fname;
+		else fname=basename+fname+".bib";
 		QFileInfo fi(fname);
 		if (fi.exists() && fi.isReadable()) load(fname);
 	} else {
@@ -3596,7 +3629,90 @@ void Texmaker::SetMostUsedSymbols() {
 }
 
 
-
+void Texmaker::updateBibFiles(){
+	//mentionedBibTeXFiles is set by updateStructure (which calls this)
+	for (int i=0; i<mentionedBibTeXFiles.count()-1;i++){
+		mentionedBibTeXFiles[i]=getAbsoluteFileName(mentionedBibTeXFiles[i],".bib"); //store absolute 
+		QString &fileName=mentionedBibTeXFiles[i];
+		QFileInfo fi(fileName);
+		if (!fi.isReadable()) continue; //ups...
+		if (!bibTeXFiles.contains(fileName))
+		QString s;	bibTeXFiles.insert(fileName,BibTeXFileInfo());
+		BibTeXFileInfo& bibTex=bibTeXFiles[mentionedBibTeXFiles[i]];
+		QDateTime lastModified = fi.lastModified();
+		if (bibTex.lastModified!=lastModified) { //load BibTeX iff modified
+			bibTex.lastModified=lastModified;
+			bibTex.ids.clear();
+			bibTex.linksTo.clear();
+			QFile f(fileName);
+			if (!f.open(QFile::ReadOnly)) continue; //ups...
+			QByteArray data=f.readAll().trimmed();
+			if (data.startsWith("link ")) {
+				//handle obscure bib tex feature, a just line containing "link fileName"
+				bibTex.linksTo  = QString::fromAscii(data.constData(),data.count()).mid(5).trimmed();
+			} else {
+				enum BibTeXState {BTS_IN_SPACE,  //searches the first @, ignore everything before it
+								  BTS_IN_TYPE,   //read until bracket ( or { e.g in @article{, reset if @comment
+								  BTS_IN_ID,     //read everything until bracket close or , and ignore whitespace, reset when = or "
+								  BTS_IN_ENTRY}; //read balanced bracket until all are closed, then reset
+				enum BibTeXState state=BTS_IN_SPACE;
+				const char* comment="comment\0"; const char* COMMENT="COMMENT\0";
+				int typeLen;
+				bool commentPossible;
+				int bracketBalance;
+				char bracketOpen;
+				char bracketClose;
+				QString curID;
+				for (int j=0; j<data.count(); j++){
+					char c = data.at(j);
+					switch (state) {
+						case BTS_IN_SPACE: 
+							if (c=='@') {
+								state=BTS_IN_TYPE;
+								commentPossible=true;
+								typeLen=0;
+							}
+							break;
+						case BTS_IN_TYPE: 
+							if (c=='(' || c=='{') {
+								bracketOpen=c;
+								if (c=='(') bracketClose=')';
+								if (c=='{') bracketClose='}';
+								bracketBalance=1;
+								curID="";
+								state=BTS_IN_ID;
+							} else if (commentPossible && (comment[typeLen]==c || COMMENT[typeLen]==c)) {
+								if (comment[typeLen+1]=='\0') state=BTS_IN_SPACE; //comment found
+							} else commentPossible=false;
+							typeLen++;
+							break;
+						case BTS_IN_ID:
+							if (c!=' '&& c!='\t' && c!='\n' && c!='\r') {
+								if (c==',' || c==bracketClose) {
+									if (!curID.isEmpty()) 
+										bibTex.ids.append(curID); //found id
+									state=BTS_IN_ENTRY;
+								} else if (c=='=' || c=='"') 
+									state=BTS_IN_ENTRY; //@string or @preamble (don't cite that)
+								else curID+=c;
+							}
+							break;
+						case BTS_IN_ENTRY:
+							if (c==bracketOpen) bracketBalance++;
+							else if (c==bracketClose) {
+								bracketBalance--;
+								if (bracketBalance<=0) state=BTS_IN_SPACE;
+							}
+							break;
+					}
+				}
+			}
+		}
+		if (bibTex.ids.empty() && !bibTex.linksTo.isEmpty()) 
+			//handle obscure bib tex feature, a just line containing "link fileName"
+			mentionedBibTeXFiles.append(bibTex.linksTo);
+	}
+}
 void Texmaker::updateCompleter() {
 	QStringList words;
 
@@ -3606,7 +3722,15 @@ void Texmaker::updateCompleter() {
 		words.append("\\pageref{"+labelitem.at(i)+"}");
 	}
 
-
+	if (configManager.parseBibTeX)
+		for (int i=0; i<mentionedBibTeXFiles.count()-1;i++){
+			if (!bibTeXFiles.contains(mentionedBibTeXFiles[i]))
+				continue; //wtf?
+			BibTeXFileInfo& bibTex=bibTeXFiles[mentionedBibTeXFiles[i]];
+			for (int i=0; i<bibTex.ids.count();i++)
+				words.append("\\cite{"+bibTex.ids[i]+"}");
+		}
+	
 	completer->setAdditionalWords(words);
 
 	if (!LatexCompleter::hasHelpfile()) {

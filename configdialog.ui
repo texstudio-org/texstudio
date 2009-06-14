@@ -301,6 +301,13 @@
             </property>
            </widget>
           </item>
+          <item row="2" column="0">
+           <widget class="QCheckBox" name="checkBoxParseBibTeX">
+            <property name="text">
+             <string>Parse BibTeX</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
