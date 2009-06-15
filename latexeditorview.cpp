@@ -511,9 +511,13 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	int context=findContext(line,col);
 
 	switch(context){
+		case 0:
+			QToolTip::hideText();
+			break;
 		case 1: //command
 			//QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), line);
 			//whatever you want to do with it (help generation ?)
+			QToolTip::hideText();
 			break;
 		case 2: // ref
 			int l=line.indexOf("{");
@@ -527,9 +531,13 @@ void LatexEditorView::mouseHovered(QPoint pos){
 					if(i<l+2) mText+="\n";
 				}
 				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), mText);
+			}else{
+				QToolTip::hideText();
 			}
 			break;
-
+		/*default:
+			QToolTip::hideText();
+			break;*/
 	}
 	//QToolTip::showText(editor->mapToGlobal(pos), line);
 }
