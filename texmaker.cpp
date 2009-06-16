@@ -1766,36 +1766,52 @@ void Texmaker::updateStructureForFile(const QString& fileName){
 	topbib->setText(0,"BIBTEX");
 	topbib->setHidden(true);
 	QString s;
+	//TODO: Don't use qtreewidget, qtreeview is a lot faster
+	//TODO: Use a cache to prevent reparsing (especially important for mastermode, where more structures are shown) (perhaps it makes sense to show the structure of every open file)
+	//TODO: This assumes one command per line, which is not necessary true
+	//TODO: Move this in a latex parser class
 	for (int i=0; i<edView->editor->document()->lines(); i++) {
-		int tagStart, tagEnd;
+		const QString curLine = edView->editor->text(i); //TODO: use this instead of s
 		//// newcommand ////
-		tagStart=tagEnd=0;
-		s=edView->editor->text(i);
-		tagStart=s.indexOf("\\newcommand{", tagEnd);
-		if (tagStart!=-1) {
-			s=s.mid(tagStart+12,s.length());
-			tagStart=s.indexOf("}", tagEnd);
-			if (tagStart!=-1) {
-				int optionStart=s.indexOf("[", tagEnd);
-				int options=0;
-				if (optionStart!=-1) {
-					int optionEnd=s.indexOf("]", tagEnd);
-					QString zw=s.mid(optionStart+1,optionEnd-optionStart-1);
-					bool ok;
-					options=zw.toInt(&ok,10);
-					if (!ok) options=0;
+		//TODO: handle optional arguments
+		static const QStringList commandTokens = QStringList() << "\\newcommand{" << "\\renewcommand{" << "\\providecommand{{";
+		for (int j=0; j< commandTokens.size();j++){
+			QString name;
+			QString arg;
+			if (findTokenWithArg(curLine,commandTokens[j],name,arg)) {
+				int options=arg.toInt(); //returns 0 if conversion fails
+				for (int j=0; j<options; j++) {
+					if (j==0) name.append("{%<1%|%>}");
+					else name.append(QString("{%<%1%>}").arg(j+1));
 				}
-				s=s.mid(0,tagStart);
-				for (int i=0; i<options; i++) {
-					if (i==0) s.append("{%|}");
-					else s.append("{}");
-				}
-				userCommandList.append(s);
+				userCommandList.append(name);
 			}
-		};
+		}
+		//// newenvironment ////
+		static const QStringList envTokens = QStringList() << "\\newenvironment{" << "\\renewenvironment{";
+		for (int j=0; j< envTokens.size();j++){
+			QString name;
+			QString arg;
+			if (findTokenWithArg(curLine,envTokens[j],name,arg)) {
+				int options=arg.toInt(); //returns 0 if conversion fails
+				name.append("}");
+				userCommandList.append("\\end{"+name);
+				for (int j=0; j<options; j++) {
+					if (j==0) name.append("{%<1%|%>}");
+					else name.append(QString("{%<%1%>}").arg(j+1));
+				}
+				userCommandList.append(name);
+				userCommandList.append("\\begin{"+name);
+			}
+		}
+		//// newtheorem ////
+		s=findToken(curLine,"\\newtheorem{");
+		if (s!="") {
+			userCommandList.append("\\begin{"+s+"}");
+			userCommandList.append("\\end{"+s+"}");
+		}
 		//// bibliography ////
-		s=edView->editor->text(i);
-		s=findToken(s,"bibliography{");
+		s=findToken(curLine,"\\bibliography{");
 		if (s!="") {
 			QStringList bibs=s.split(',',QString::SkipEmptyParts); 
 			mentionedBibTeXFiles<<bibs;
@@ -1823,7 +1839,7 @@ void Texmaker::updateStructureForFile(const QString& fileName){
 		}
 		//// TODO marker
 		s=edView->editor->text(i);
-		int l=s.indexOf("\%TODO");
+		int l=s.indexOf("%TODO");
 		if (l>=0) {
 			s=s.mid(l+6,s.length());
 			Child = new QTreeWidgetItem(toptodo);
@@ -1836,11 +1852,10 @@ void Texmaker::updateStructureForFile(const QString& fileName){
 			Child->setData(structureTreeLineColumn,Qt::UserRole,QVariant::fromValue(edView->editor->document()->line(i).handle()));
 		}
 		//// include,input ////
-		QStringList inputTokens;
-		inputTokens << "input" << "include";
+		static const QStringList inputTokens = QStringList() << "\\input{" << "\\include{";
 		for(int header=0;header<inputTokens.count();header++){
 			s=edView->editor->text(i);
-			s=findToken(s,"\\"+inputTokens.at(header)+"{");
+			s=findToken(s,inputTokens.at(header));
 			if (s!="") {
 				Child = new QTreeWidgetItem(top);
 				Child->setText(0,s);
