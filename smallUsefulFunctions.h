@@ -70,8 +70,10 @@ QString textToLatex(QString text);
 bool localAwareLessThan(const QString &s1, const QString &s2);
 
 // find token (e.g. \label \input \section and return content (\section{content})
-QString findToken(const QString line,const QString token);
-QString findToken(const QString line,const QRegExp token);
+QString findToken(const QString &line,const QString &token);
+QString findToken(const QString &line,const QRegExp &token);
+// find token (e.g. \label \input \section and return content (\newcommand{name}[arg]), returns true if outName!=""
+bool findTokenWithArg(const QString &line,const QString &token, QString &outName, QString &outArg);
 
 //setup toolbutton as substitute for const combobox
 QToolButton* createComboToolButton(QWidget *parent,QStringList list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member);

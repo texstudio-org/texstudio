@@ -273,21 +273,18 @@ bool nextTextWord(const QString & line, int &index, QString &outWord, int &wordS
 	return flag==NW_TEXT;
 }
 
-QString findToken(const QString line,const QString token){
-	int tagStart=0;
-	QString s=line;
-	tagStart=s.indexOf(token);
+QString findToken(const QString &line,const QString &token){
+	int tagStart=line.indexOf(token);
 	if (tagStart!=-1) {
-		s=s.mid(tagStart+token.length(),s.length());
-		tagStart=s.indexOf("}");
-		if (tagStart!=-1) 
-			s=s.mid(0,tagStart);
-		return s;
+		tagStart+=token.length();
+		int tagEnd=line.indexOf("}",tagStart);
+		if (tagEnd!=-1) return line.mid(tagStart,tagEnd-tagStart);
+		else return line.mid(tagStart); //return everything after line if there is no }
 	}
 	return "";
 }
 
-QString findToken(const QString line,QRegExp token){
+QString findToken(const QString &line,const QRegExp &token){
 	int tagStart=0;
 	QString s=line;
 	tagStart=token.indexIn(line);
@@ -297,6 +294,29 @@ QString findToken(const QString line,QRegExp token){
 	}
 	return "";
 }
+bool findTokenWithArg(const QString &line,const QString &token, QString &outName, QString &outArg){
+	outName="";
+	outArg="";
+	int tagStart=line.indexOf(token);
+	if (tagStart!=-1) {
+		tagStart+=token.length();
+		int tagEnd=line.indexOf("}",tagStart);
+		if (tagEnd!=-1) {
+			outName=line.mid(tagStart,tagEnd-tagStart);
+			int curlyOpen=line.indexOf("{",tagEnd);
+			int optionStart=line.indexOf("[",tagEnd);
+			if (optionStart<curlyOpen || (curlyOpen==-1 && optionStart!=-1)) {
+				int optionEnd=line.indexOf("]",optionStart);
+				if (optionEnd!=-1) outArg=line.mid(optionStart+1,optionEnd-optionStart-1);
+				else outArg=line.mid(optionStart+1);
+			}
+		} else outName=line.mid(tagStart); //return everything after line if there is no }
+		return true;
+	}
+	return false;
+	
+}
+
 
 QToolButton* createComboToolButton(QWidget *parent,QStringList list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member){
 	QToolButton *combo=new QToolButton(parent);
