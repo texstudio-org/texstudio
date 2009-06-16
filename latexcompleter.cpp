@@ -14,6 +14,7 @@
 #include <QPainter>
 #include <QStyleOptionViewItem>
 #include <QToolTip>
+#include <QLabel>
 
 #include <QMessageBox>
 CompletionWord::CompletionWord(const QString &newWord) {
@@ -778,10 +779,30 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 	QRect r = list->visualRect(index);
 	QRect screen = QApplication::desktop()->availableGeometry();
 	QPoint tt=list->mapToGlobal(QPoint(list->width(), r.top()));
-	if (screen.width()-90>=tt.x()) QToolTip::showText(tt, topic, list);
+	// estimate width of coming tooltip
+	// rather dirty code
+	QLabel lLabel(0,Qt::ToolTip);
+	lLabel.setForegroundRole(QPalette::ToolTipText);
+	lLabel.setBackgroundRole(QPalette::ToolTipBase);
+	lLabel.setPalette(QToolTip::palette());
+	lLabel.setMargin(1 + lLabel.style()->pixelMetric(QStyle::PM_ToolTipLabelFrameWidth, 0, &lLabel));
+	lLabel.setFrameStyle(QFrame::StyledPanel);
+	lLabel.setAlignment(Qt::AlignLeft);
+	lLabel.setIndent(1);
+	lLabel.setWordWrap(true);
+	lLabel.ensurePolished();
+	lLabel.setText(topic);
+	lLabel.adjustSize();
+
+
+	int textWidthInPixels = lLabel.width()+10; // +10 good guess
+	// int textHeightInPixels = lLabel.height()+10; // +10 good guess
+
+	qDebug("width: %d",textWidthInPixels);
+	if (screen.width()-textWidthInPixels>=tt.x()) QToolTip::showText(tt, topic, list);//-90
 	else {
 		//list->mapToGlobal
-		QPoint tt=list->mapToGlobal(QPoint(0, r.top()));
+		QPoint tt=list->mapToGlobal(QPoint(-textWidthInPixels, r.top()));
 		QToolTip::showText(tt, topic, list,QRect(-300,-200,300,600));
 	}
 }
