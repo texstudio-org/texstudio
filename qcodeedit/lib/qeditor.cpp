@@ -4190,7 +4190,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	
 	QStringList lines = text.split('\n', QString::KeepEmptyParts);
 	
-	if ( (lines.count() == 1) || !flag(AdjustIndent) )
+	if ( (lines.count() == 1) || !flag(AdjustIndent)  || !flag(AutoIndent))
 	{
 		preInsert(c, lines.first());
 		
