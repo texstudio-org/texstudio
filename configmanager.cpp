@@ -69,6 +69,7 @@ QSettings* ConfigManager::readSettings() {
 	completerConfig->caseSensitive=(LatexCompleterConfig::CaseSensitive) config->value("Editor/Completion Case Sensitive",2).toInt();
 	completerConfig->completeCommonPrefix=config->value("Editor/Completion Complete Common Prefix",true).toBool();
 	completerConfig->eowCompletes=config->value("Editor/Completion EOW Completes", true).toBool();
+	completerConfig->tooltipHelp=config->value("Editor/Completion Enable Tooltip Help", true).toBool();
 	completerConfig->loadFiles(config->value("Editor/Completion Files",QStringList("texmakerx.cwl")).toStringList());
 	
 	//preview
@@ -249,6 +250,7 @@ QSettings* ConfigManager::saveSettings() {
 	config->setValue("Editor/Completion Case Sensitive",completerConfig->caseSensitive);
 	config->setValue("Editor/Completion Complete Common Prefix",completerConfig->completeCommonPrefix);
 	config->setValue("Editor/Completion EOW Completes", completerConfig->eowCompletes);
+	config->setValue("Editor/Completion Enable Tooltip Help", completerConfig->tooltipHelp);
 	if (!completerConfig->getLoadedFiles().isEmpty())
 		config->setValue("Editor/Completion Files",completerConfig->getLoadedFiles());
 
@@ -317,6 +319,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	confDlg->ui.checkBoxCaseSensitiveInFirstCharacter->setChecked(completerConfig->caseSensitive==LatexCompleterConfig::CCS_FIRST_CHARACTER_CASE_SENSITIVE);
 	confDlg->ui.checkBoxCompletePrefix->setChecked(completerConfig->completeCommonPrefix);
 	confDlg->ui.checkBoxEOWCompletes->setChecked(completerConfig->eowCompletes);
+	confDlg->ui.checkBoxToolTipHelp->setChecked(completerConfig->tooltipHelp);
 	
 	QStringList languageFiles=findResourceFiles("translations","texmakerx_*.qm") 
 							<< findResourceFiles("","texmakerx_*.qm");
@@ -446,6 +449,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		else completerConfig->caseSensitive=LatexCompleterConfig::CCS_CASE_SENSITIVE;
 		completerConfig->completeCommonPrefix=confDlg->ui.checkBoxCompletePrefix->isChecked();
 		completerConfig->eowCompletes=confDlg->ui.checkBoxEOWCompletes->isChecked();
+		completerConfig->tooltipHelp=confDlg->ui.checkBoxToolTipHelp->isChecked();
 		QStringList newFiles;
 		QListWidgetItem *elem;
 		for (int i=0; i<confDlg->ui.completeListWidget->count(); i++) {

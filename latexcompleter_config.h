@@ -13,6 +13,7 @@ public:
 	CaseSensitive caseSensitive; 
 	bool completeCommonPrefix; //auto tab press	
 	bool eowCompletes; //if a EOW character key is pressed, the current word is completed and the character added
+	bool tooltipHelp; // enable ToolTip-Help during completion
 	QStringList words;
 	
 	void loadFiles(const QStringList & newFiles);

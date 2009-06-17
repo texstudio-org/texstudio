@@ -753,6 +753,7 @@ void LatexCompleter::cursorPositionChanged() {
 void LatexCompleter::selectionChanged(const QModelIndex & index) {
 	if (helpIndices.empty()) return;
 	QToolTip::hideText();
+	if (!config->tooltipHelp) return;
 	if (!index.isValid()) return;
 	if (index.row() < 0 || index.row()>=listModel->words.size()) return;
 	QRegExp wordrx("^\\\\([^ {[*]+|begin\\{[^ {}]+)");
@@ -800,7 +801,6 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 	int textWidthInPixels = lLabel.width()+10; // +10 good guess
 	// int textHeightInPixels = lLabel.height()+10; // +10 good guess
 
-	qDebug("width: %d",textWidthInPixels);
 	if (screen.width()-textWidthInPixels>=tt.x()) QToolTip::showText(tt, topic, list);//-90
 	else {
 		//list->mapToGlobal
