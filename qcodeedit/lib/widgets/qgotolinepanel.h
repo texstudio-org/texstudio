@@ -13,41 +13,51 @@
 **
 ****************************************************************************/
 
-#ifndef _QLINE_NUMBER_PANEL_H_
-#define _QLINE_NUMBER_PANEL_H_
-
-/*!
-	\file qlinenumberpanel.h
-	\brief Definition of the QLineNumberPanel class
-	
-	\see QLineNumberPanel
-*/
+#ifndef _QGOTO_LINE_PANEL_H_
+#define _QGOTO_LINE_PANEL_H_
 
 #include "qpanel.h"
 
-class QCE_EXPORT QLineNumberPanel : public QPanel
+/*!
+	\file qgotolinepanel.h
+	\brief Definition of the QGotoLinePanel class.
+	
+	\see QGotoLinePanel
+*/
+
+#include "ui_gotoline.h"
+
+class QCE_EXPORT QGotoLinePanel : public QPanel, private Ui::GotoLine
 {
 	Q_OBJECT
 	
 	public:
-		Q_PANEL(QLineNumberPanel, "Line Number Panel")
+		Q_PANEL(QGotoLinePanel, "Goto Line Panel")
 		
-		QLineNumberPanel(QWidget *p = 0);
-		virtual ~QLineNumberPanel();
-		
-		bool isVerboseMode() const;
+		QGotoLinePanel(QWidget *p = 0);
+		virtual ~QGotoLinePanel();
 		
 		virtual QString type() const;
 		
 	public slots:
-		void setVerboseMode(bool y);
+		
 		
 	protected:
+		virtual bool forward(QMouseEvent *e);
 		virtual void editorChange(QEditor *e);
-		virtual bool paint(QPainter *p, QEditor *e);
+		virtual void showEvent(QShowEvent *e);
+		virtual void keyPressEvent(QKeyEvent *e);
 		
-		bool m_verbose;
+	private slots:
+		void on_bClose_clicked();
+		
+		void on_bGo_clicked();
+		
+		void on_spLine_valueChanged(int v);
+		void on_slLine_valueChanged(int v);
+		
+		void lineCountChanged(int n);
+		void cursorPositionChanged();
 };
 
-#endif // _QLINE_NUMBER_PANEL_H_
-
+#endif // _QGOTO_LINE_PANEL_H_

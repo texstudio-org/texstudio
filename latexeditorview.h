@@ -16,6 +16,7 @@
 
 #include "qcodeedit.h"
 #include "qeditor.h"
+#include "qeditorinputbinding.h"
 #include "qlinemarkpanel.h"
 #include "qlinenumberpanel.h"
 
@@ -27,7 +28,7 @@
 
 //#include "qpanel.h"
 
-class DefaultInputBinding: public QEditor::InputBinding {
+class DefaultInputBinding: public QEditorInputBinding {
 //  Q_OBJECT not possible because inputbinding is no qobject
 public:
 	DefaultInputBinding():keyToReplace(0),contextMenu(0) {}
@@ -84,7 +85,8 @@ public:
 	static void setSpeller(SpellerUtility* mainSpeller);
 	static void setCompleter(LatexCompleter* newCompleter);
 	
-	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanel, *lineChangePanel, *statusPanel, *searchReplacePanel;
+	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanel, *lineChangePanel, 
+	*statusPanel, *searchReplacePanel, *gotoLinePanelAction;
 	QLineMarkPanel* lineMarkPanel;
 	QLineNumberPanel* lineNumberPanel;
 

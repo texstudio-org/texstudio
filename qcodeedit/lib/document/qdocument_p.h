@@ -31,6 +31,7 @@
 #include <QFont>
 #include <QStack>
 #include <QQueue>
+#include <QDateTime>
 #include <QUndoStack>
 #include <QStringList>
 #include <QFontMetrics>
@@ -216,6 +217,8 @@ class QCE_EXPORT QDocumentPrivate
 		int _nix, _dos, _mac;
 		QString m_lineEndingString;
 		QDocument::LineEnding m_lineEnding;
+		
+		QDateTime m_lastModified;
 		
 		QDocumentBuffer *m_buffer;
 		QVector<QDocumentLineHandle*> m_lines;

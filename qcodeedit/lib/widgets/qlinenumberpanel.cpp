@@ -110,7 +110,7 @@ void QLineNumberPanel::editorChange(QEditor *e)
 /*!
 
 */
-void QLineNumberPanel::paint(QPainter *p, QEditor *e)
+bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
 {
 	/*
 		possible Unicode caracter for wrapping arrow :
@@ -126,7 +126,9 @@ void QLineNumberPanel::paint(QPainter *p, QEditor *e)
 	static const QChar wrappingArrow(0x2937);
 	const QFontMetrics specialSfm(sfm);
 	#else
-	static const QChar wrappingArrow('Ä');
+	// 0xC4 gives a decent wrapping arrow in Wingdings fonts, availables on all windows systems
+	// this is a hackish fallback to workaround Windows issues with Unicode...
+	static const QChar wrappingArrow(0xC4);
 	QFont specialFont(font());
 	specialFont.setRawName("Wingdings");
 	const QFontMetrics specialSfm(specialFont);
@@ -226,7 +228,7 @@ void QLineNumberPanel::paint(QPainter *p, QEditor *e)
 	//p->drawLine(width()-1, 0, width()-1, pageBottom);
 	
 	//setFixedWidth(sfm.width(txt) + 5);
+	return true;
 }
 
 /*! @} */
-

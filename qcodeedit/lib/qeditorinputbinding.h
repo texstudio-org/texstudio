@@ -18,45 +18,90 @@
 
 #include "qeditorinputbindinginterface.h"
 
-class QEditorInputBinding : public QEditorInputBindingInterface
+#include "qdocumentcursor.h"
+
+#include <QList>
+#include <QVector>
+#include <QString>
+#include <QKeySequence>
+
+class QCE_EXPORT QEditorInputBinding : public QEditorInputBindingInterface
 {
 	public:
-		enum Motion
+		class Command
 		{
-			None,
-			
-			MoveLeft,
-			MoveRight,
-			MoveUp,
-			MoveDown,
-			
-			PageUp,
-			PageDown,
-			
-			MoveToStartOfDocument,
-			MoveToEndOfDocument,
-			
-			MoveToStartOfLine,
-			MoveToEndOfLine,
-			
-			MoveToEndOfWord,
-			MoveToStartOfWord,
-			
-			MoveToMouseCursor
+			public:
+				virtual ~Command() {}
+				
+				virtual void exec(QEditor *e) = 0;
 		};
 		
-		enum Operator
+		class MotionCommand : public Command
 		{
-			Move			= 0,
-			Select			= 1,
-			Delete			= 2,
-			CreateMirror	= 4
-		}
+			public:
+				MotionCommand(QDocumentCursor::MoveOperation op, QDocumentCursor::MoveMode m, int n = 1);
+				
+				virtual void exec(QEditor *e);
+				
+			private:
+				int count;
+				QDocumentCursor::MoveMode mode;
+				QDocumentCursor::MoveOperation operation;
+		};
+		
+		class EditCommand : public Command
+		{
+			public:
+				enum Operation
+				{
+					ClearSelection,
+					SelectWord,
+					SelectLine,
+					SelectDocument,
+					
+					DeleteChar,
+					DeletePreviousChar,
+					DeleteSelection,
+					DeleteLine,
+					
+					InsertLine,
+					InsertClipBoard,
+				};
+				
+				EditCommand(Operation op);
+				
+				virtual void exec(QEditor *e);
+				
+			private:
+				Operation operation;
+		};
+		
+		class WriteCommand : public Command
+		{
+			public:
+				WriteCommand(const QString& t);
+				
+				virtual void exec(QEditor *e);
+				
+			private:
+				QString text;
+		};
+		
+		class GroupCommand : public Command
+		{
+			public:
+				void addCommand(Command *c);
+				
+				virtual void exec(QEditor *e);
+				
+			private:
+				QList<Command*> commands;
+		};
 		
 		QEditorInputBinding();
+		~QEditorInputBinding();
 		
-		virtual QString id();
-		virtual QString name();
+		void setMapping(const QKeySequence& ks, Command *cmd);
 		
 		virtual bool isExclusive() const;
 		
@@ -79,6 +124,11 @@ class QEditorInputBinding : public QEditorInputBindingInterface
 		virtual void postMouseDoubleClickEvent(QMouseEvent *event, QEditor *editor);
 		
 		virtual bool contextMenuEvent(QContextMenuEvent *event, QEditor *editor);
+		
+	private:
+		QVector<int> m_index;
+		QVector<Command*> m_actions;
+		QVector<QKeySequence> m_keys;
 };
 
 #endif // _QEDITOR_INPUT_BINDING_H_

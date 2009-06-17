@@ -36,6 +36,7 @@
 class QFont;
 class QRect;
 class QPrinter;
+class QDateTime;
 class QFormatScheme;
 class QLanguageDefinition;
 
@@ -123,6 +124,9 @@ class QCE_EXPORT QDocument : public QObject
 		QString lineEndingString() const;
 		void setLineEnding(LineEnding le);
 		
+		QDateTime lastModified() const;
+		void setLastModified(const QDateTime& d);
+		
 		bool canUndo() const;
 		bool canRedo() const;
 		
@@ -131,7 +135,9 @@ class QCE_EXPORT QDocument : public QObject
 		int widthConstraint() const;
 		
 		int lines() const;
+		int lineCount() const;
 		int visualLines() const;
+		int visualLineCount() const;
 		
 		int visualLineNumber(int textLineNumber) const;
 		int textLineNumber(int visualLineNumber) const;
@@ -249,6 +255,9 @@ class QCE_EXPORT QDocument : public QObject
 		void widthChanged(int width);
 		void heightChanged(int height);
 		void sizeChanged(const QSize& s);
+		
+		void lineCountChanged(int n);
+		void visualLineCountChanged(int n);
 		
 		void lineDeleted(QDocumentLineHandle *h);
 		void markChanged(QDocumentLineHandle *l, int m, bool on);

@@ -48,7 +48,7 @@ class QCE_EXPORT QLineMarkPanel : public QPanel
         
 	protected:
         virtual bool event(QEvent *e);
-		virtual void paint(QPainter *p, QEditor *e);
+		virtual bool paint(QPainter *p, QEditor *e);
 		virtual void mousePressEvent(QMouseEvent *e);
 		virtual void mouseReleaseEvent(QMouseEvent *e);
 		virtual void contextMenuEvent(QContextMenuEvent *e);

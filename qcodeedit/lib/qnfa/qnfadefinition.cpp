@@ -1096,7 +1096,7 @@ void QNFADefinition::matchOpen(QDocument *d, PMatch& m)
 			if ( (par.role & QParenthesis::Open) && (par.role & QParenthesis::Close) )
 			{
 				bool bInsert = true;
-
+				
 				if (  parens.count() )
 				{
 					if ( ::match(par, parens.top()) )

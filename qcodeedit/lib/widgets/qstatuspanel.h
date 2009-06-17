@@ -43,7 +43,7 @@ class QCE_EXPORT QStatusPanel : public QPanel
 		
 	protected:
 		virtual void editorChange(QEditor *e);
-		virtual void paint(QPainter *p, QEditor *e);
+		virtual bool paint(QPainter *p, QEditor *e);
 		
 		virtual void mousePressEvent(QMouseEvent *e);
 		virtual void mouseReleaseEvent(QMouseEvent *e);

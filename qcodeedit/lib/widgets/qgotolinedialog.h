@@ -25,7 +25,7 @@
 	\see QGotoLineDialog
 */
 
-#include "ui_gotoline.h"
+#include "ui_gotolinedialog.h"
 
 #include <QDialog>
 

@@ -31,8 +31,8 @@ class QEditorInputBindingInterface
 	public:
 		virtual ~QEditorInputBindingInterface() {}
 		
-		virtual QString id() = 0;
-		virtual QString name() = 0;
+		virtual QString id() const = 0;
+		virtual QString name() const = 0;
 		
 		virtual bool isExclusive() const = 0;
 		

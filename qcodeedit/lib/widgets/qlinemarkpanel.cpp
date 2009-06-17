@@ -112,10 +112,10 @@ bool QLineMarkPanel::event(QEvent *e) {
     }
     return QWidget::event(e);
 }
-void QLineMarkPanel::paint(QPainter *p, QEditor *e)
+bool QLineMarkPanel::paint(QPainter *p, QEditor *e)
 {
 	if ( !e || !e->document() )
-		return;
+		return true;
 
 	m_rects.clear();
 	m_lines.clear();
@@ -189,6 +189,7 @@ void QLineMarkPanel::paint(QPainter *p, QEditor *e)
 	//qDebug("</session>");
 
 	//setFixedWidth(sfm.width(txt) + 5);
+	return true;
 }
 
 /*!

@@ -73,10 +73,10 @@ QString QLineChangePanel::type() const
 /*!
 	\internal
 */
-void QLineChangePanel::paint(QPainter *p, QEditor *e)
+bool QLineChangePanel::paint(QPainter *p, QEditor *e)
 {
 	if ( !e || !e->document() )
-		return;
+		return true;
 
 	const QFontMetrics fm( e->document()->font() );
 
@@ -115,6 +115,8 @@ void QLineChangePanel::paint(QPainter *p, QEditor *e)
 
 		posY += ls * span;
 	}
+	
+	return true;
 }
 
 /*! @} */

@@ -293,6 +293,23 @@ QAction* QCodeEdit::addPanel(const QString& name, Position pos, bool _add)
 }
 
 /*!
+	\return whether the editor has a panel of the given \a type
+*/
+bool QCodeEdit::hasPanel(const QString& type) const
+{
+	if ( !m_layout )
+		return false;
+	
+	QList<QPanel*> l = m_layout->panels();
+	
+	foreach ( QPanel *p, l )
+		if ( p->type() == type )
+			return true;
+	
+	return false;
+}
+
+/*!
 	\return a list of panels added to the editor
 	\param type Type of panel to look for (no filtering is performed if empty)
 */

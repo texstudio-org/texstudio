@@ -236,6 +236,14 @@ bool QDocumentLine::hasFlag(State s) const
 }
 
 /*!
+	\brief Check whether any of the flags in a given combination is set to the line
+*/
+bool QDocumentLine::hasAnyFlag(int s) const
+{
+	return m_handle ? m_handle->hasFlag(s) : false;
+}
+
+/*!
 	\brief Set a flag of the line
 	
 	\warning Do not mess with flags unless you know what you are doing

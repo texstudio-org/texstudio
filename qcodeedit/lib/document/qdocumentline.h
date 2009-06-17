@@ -136,6 +136,7 @@ class QCE_EXPORT QDocumentLine
 		{ return hasFlag(Hidden); }
 		
 		bool hasFlag(State s) const;
+		bool hasAnyFlag(int s) const;
 		void setFlag(State s, bool y = true);
 		
 		QDocumentLine next() const;

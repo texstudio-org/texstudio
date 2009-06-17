@@ -5,7 +5,9 @@
 #include "smallUsefulFunctions.h"
 
 #include "qdocumentline.h"
+#include "qeditorinputbinding.h"
 #include "qformatfactory.h"
+
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QFile>
@@ -160,7 +162,7 @@ void CompletionWord::insertAt(QEditor* editor, QDocumentCursor* cursor) {
 }
 
 //------------------------------Default Input Binding--------------------------------
-class CompleterInputBinding: public QEditor::InputBinding {
+class CompleterInputBinding: public QEditorInputBinding {
 public:
 	CompleterInputBinding():active(0) {}
 	virtual QString id() const {
@@ -428,7 +430,7 @@ public:
 		active=true;
 		completer=caller;
 		editor=edit;
-		oldBinding=editor->inputBinding();
+		oldBinding=(editor->inputBindings().count()>0?editor->inputBindings()[0]:0);
 		editor->setInputBinding(this);
 		curStart=start>0?start:0;
 		maxWritten=editor->cursor().columnNumber();
@@ -451,7 +453,7 @@ private:
 	bool showAlways;
 	LatexCompleter *completer;
 	QEditor * editor;
-	QEditor::InputBinding* oldBinding;
+	QEditorInputBindingInterface* oldBinding;
 	QString completionWord;
 	int curStart,maxWritten;
 	QDocumentLine curLine;
