@@ -50,12 +50,12 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel, private Ui::SearchReplace
                 void replace(bool replaceAll = false);
 		
 	protected:
+		virtual bool forward(QMouseEvent *e);
 		virtual void editorChange(QEditor *e);
 		
 		virtual bool eventFilter(QObject *o, QEvent *e);
 		
 		virtual void hideEvent(QHideEvent *e);
-		virtual void paintEvent(QPaintEvent *e);
 		
 	private slots:
 		void on_leFind_textEdited(const QString& text);

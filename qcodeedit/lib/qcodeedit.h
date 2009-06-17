@@ -63,6 +63,7 @@ class QCE_EXPORT QCodeEdit
 		QAction* addPanel(QPanel *panel, Position pos, bool _add = false);
 		QAction* addPanel(const QString& name, Position pos, bool _add = false); 
 		
+		bool hasPanel(const QString& type) const;
 		QList<QPanel*> panels(const QString& type = QString()) const;
 		
 		QAction* toggleViewAction(QPanel *p) const;

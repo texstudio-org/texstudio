@@ -242,8 +242,10 @@ bool QDocument::canRedo() const
 void QDocument::undo()
 {
 	if ( m_impl )
+	{
 		m_impl->m_commands.undo();
-
+		m_impl->m_lastModified = QDateTime::currentDateTime();
+}
 }
 
 /*!
@@ -252,7 +254,10 @@ void QDocument::undo()
 void QDocument::redo()
 {
 	if ( m_impl )
+	{
 		m_impl->m_commands.redo();
+		m_impl->m_lastModified = QDateTime::currentDateTime();
+	}
 
 }
 
@@ -411,13 +416,17 @@ void QDocument::setText(const QString& s)
 
 	//qDebug("[one go] dos : %i; nix : %i", m_impl->_dos, m_impl->_nix);
 
+	m_impl->m_lastModified = QDateTime::currentDateTime();
+	
 	if ( lineEnding() == Conservative )
 		setLineEnding(Conservative);
 
 	m_impl->setWidth();
 	m_impl->setHeight();
 
-	emit m_impl->emitContentsChange(0, m_impl->m_lines.count());
+	emit lineCountChanged(lineCount());
+	
+	m_impl->emitContentsChange(0, m_impl->m_lines.count());
 }
 
 /*!
@@ -492,12 +501,16 @@ void QDocument::stopChunkLoading()
 
 	//qDebug("[chunk] dos : %i; nix : %i", m_impl->_dos, m_impl->_nix);
 
+	m_impl->m_lastModified = QDateTime::currentDateTime();
+	
 	if ( lineEnding() == Conservative )
 		setLineEnding(Conservative);
 
 	m_impl->setWidth();
 	m_impl->setHeight();
 
+	emit lineCountChanged(lineCount());
+	
 	emit m_impl->emitContentsChange(0, m_impl->m_lines.count());
 }
 
@@ -889,6 +902,8 @@ int QDocument::widthConstraint() const
 
 	The number of visual lines may differ from that of text
 	lines as soon as line wrapping and/or folding are enabled.
+	
+	\deprecated Use lineCount() instead
 */
 int QDocument::lines() const
 {
@@ -896,9 +911,29 @@ int QDocument::lines() const
 }
 
 /*!
+	\return the number of text lines in the document
+	
+	The number of visual lines may differ from that of text
+	lines as soon as line wrapping and/or folding are enabled.
+*/
+int QDocument::lineCount() const
+{
+	return m_impl ? m_impl->m_lines.count() : 0;
+}
+
+/*!
 	\return the number of visual lines in the document
+	\deprecated Use visualLineCount() instead
 */
 int QDocument::visualLines() const
+{
+	return m_impl ? m_impl->visualLine(m_impl->m_lines.count() - 1) : 0;
+}
+
+/*!
+	\return the number of visual lines in the document
+*/
+int QDocument::visualLineCount() const
 {
 	return m_impl ? m_impl->visualLine(m_impl->m_lines.count() - 1) : 0;
 }
@@ -1425,6 +1460,29 @@ void QDocument::removeMarks(int id){
     if (m_impl) m_impl->removeMarks(id);
 }
 
+/*!
+	\return the date/time of the last modification of the document
+	
+	If the document has not been modified since its load the date/time
+	of last modification (as reported by QFileInfo) will be returned.
+*/
+QDateTime QDocument::lastModified() const
+{
+	return m_impl ? m_impl->m_lastModified : QDateTime();
+}
+
+/*!
+	\brief set the date/time of the last modification of the document
+	
+	You should not need to use that EVER. It is only provided for use
+	in QEditor (and possibly in some panels).
+*/
+void QDocument::setLastModified(const QDateTime& d)
+{
+	if ( m_impl )
+		m_impl->m_lastModified = d;
+}
+
 /////////////////////////
 //	QDocumentLineHandle
 /////////////////////////
@@ -1628,7 +1686,7 @@ void QDocumentLineHandle::updateWrap() const
 
 		while ( idx < m_text.length() )
 		{
-			if ( !isWord(c) || !isWord(m_text.at(idx)) )
+			if ( c.isSpace() )  //!isWord(c) || !isWord(m_text.at(idx)) )
 			{
 				lastX = rx;
 				lastWidth = x;
@@ -1719,7 +1777,7 @@ void QDocumentLineHandle::updateWrap() const
 
 		while ( idx < m_text.length() )
 		{
-			if ( !isWord(c) || !isWord(m_text.at(idx)) )
+			if ( c.isSpace() )  //!isWord(c) || !isWord(m_text.at(idx)) )
 			{
 				lastX = rx;
 				lastWidth = x;
@@ -2400,12 +2458,6 @@ void QDocumentLineHandle::applyOverlays() const
 	//setFlag(QDocumentLine::FormatsApplied, true);
 }
 
-/*
-	Algorithm borrowed from KDE libs 4 :
-	KateRenderer::layoutLine(KateLineLayoutPtr lineLayout, int maxwidth, bool cacheLayout) const
-
-	apart from the indenting and names little has been changed
-*/
 void QDocumentLineHandle::layout() const
 {
 	bool needLayout = false;
@@ -2436,8 +2488,7 @@ void QDocumentLineHandle::layout() const
 			//m_layout->setFont(config()->font());
 		}
 
-		m_layout->setCacheEnabled(false); //true); //cacheLayout);
-
+		m_layout->setCacheEnabled(false);
 		// Initial setup of the QTextLayout.
 
 		// Tab width
@@ -2445,10 +2496,8 @@ void QDocumentLineHandle::layout() const
 		opt.setFlags(QTextOption::IncludeTrailingSpaces);
 		opt.setTabStop(m_doc->tabStop() * QDocumentPrivate::m_spaceWidth);
 
-		// <CHANGE author=fullmetalcoder>
 		//opt.setWrapMode(QTextOption::NoWrap);
 		opt.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
-		// </CHANGE>
 
 		// Find the first strong character in the string.
 		// If it is an RTL character, set the base layout direction of the string to RTL.
@@ -2459,9 +2508,9 @@ void QDocumentLineHandle::layout() const
 		// by itself. If this ever change in Qt, the next code block could be removed.
 		if ( m_text.isRightToLeft() )
 			opt.setTextDirection(Qt::RightToLeft);
-
+		
 		m_layout->setTextOption(opt);
-
+		
 		// Syntax highlighting, inbuilt and arbitrary
 		//m_layout->setAdditionalFormats(m_ranges);
 
@@ -2484,8 +2533,6 @@ void QDocumentLineHandle::layout() const
 				break;
 			}
 
-			line.setPosition(QPoint(minwidth, height));
-
 			if ( m_doc->widthConstraint() )
 				line.setLineWidth(m_doc->widthConstraint() - QDocumentPrivate::m_leftMargin);
 			else
@@ -2493,16 +2540,23 @@ void QDocumentLineHandle::layout() const
 
 			rx += qRound(line.naturalTextWidth()); //qRound(line.cursorToX(line.textLength()));
 
-			m_frontiers << qMakePair(line.textStart() + line.textLength(), rx);
-
-			if ( !i )
+			if ( m_doc->impl()->m_constrained && m_layout->textOption().textDirection() == Qt::RightToLeft )
 			{
-				m_indent = minwidth = cursorToX(nextNonSpaceChar(0)) - QDocumentPrivate::m_leftMargin;
-
-				if ( minwidth < 0 || minwidth >= m_doc->widthConstraint() )
-					minwidth = 0;
+				line.setPosition(QPoint(qRound(qreal(m_doc->widthConstraint() - 2 * QDocumentPrivate::m_leftMargin) - line.naturalTextWidth()), height));
+			} else {
+				line.setPosition(QPoint(minwidth, height));
+				
+				if ( !i )
+				{
+					m_indent = minwidth = cursorToX(nextNonSpaceChar(0)) - QDocumentPrivate::m_leftMargin;
+					
+					if ( minwidth < 0 || minwidth >= m_doc->widthConstraint() )
+						minwidth = 0;
+			}
 			}
 
+			m_frontiers << qMakePair(line.textStart() + line.textLength(), rx);
+			
 			++i;
 
 			height += QDocumentPrivate::m_lineSpacing;
@@ -2593,11 +2647,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 			}
 		}
 
-		const QPoint off(QDocumentPrivate::m_leftMargin, 0);
-
-		//m_layout->setAdditionalFormats(decorations());
-
-		//qDebug("%i, %i", m_layout->additionalFormats().count(), selections.count());
+		QPoint off(QDocumentPrivate::m_leftMargin, 0);
 
 		m_layout->draw(p, off, selections);
 
@@ -4494,7 +4544,7 @@ void QDocumentCursorHandle::execute(QDocumentCommand *c)
 
 	if ( isSilent() && !c->isSilent() )
 		c->setSilent(isSilent());
-
+	
 	if ( m_blocks.count() )
 	{
 		c->redo();
@@ -5230,7 +5280,9 @@ void QDocumentPrivate::execute(QDocumentCommand *cmd)
 {
 	if ( !cmd )
 		return;
-
+	
+	m_lastModified = QDateTime::currentDateTime();
+	
 	//qDebug("adding a command...");
 
 	//cmd->setTarget(m_doc);
@@ -5840,6 +5892,7 @@ void QDocumentPrivate::insertLines(int after, const QList<QDocumentLineHandle*>&
 		++i;
 	}
 
+	emit m_doc->lineCountChanged(m_lines.count());
 	setHeight();
 }
 
@@ -5922,6 +5975,7 @@ void QDocumentPrivate::removeLines(int after, int n)
 	updateWrapped(after, -n);
 	m_lines.remove(after, n);
 
+	emit m_doc->lineCountChanged(m_lines.count());
 	setHeight();
 }
 
@@ -6561,4 +6615,3 @@ void QDocumentPrivate::emitMarkChanged(QDocumentLineHandle *l, int m, bool on)
 }
 
 /*! @} */
-

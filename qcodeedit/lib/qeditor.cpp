@@ -20,6 +20,8 @@
 	\brief Implementation of the QEditor class
 */
 
+#include "qeditorinputbindinginterface.h"
+
 #include "qdocument.h"
 #include "qdocument_p.h"
 #include "qdocumentline.h"
@@ -169,15 +171,15 @@
 ////////////////////////////////////////////////////////////////////////
 
 QList<QEditor*> QEditor::m_editors;
-QEditor::InputBinding* QEditor::m_defaultBinding = 0;
-QHash<QString, QEditor::InputBinding*> QEditor::m_bindings;
+QEditorInputBindingInterface* QEditor::m_defaultBinding = 0;
+QHash<QString, QEditorInputBindingInterface*> QEditor::m_registeredBindings;
 
 /*!
 	\return A list of available input bindings
 */
-QStringList QEditor::inputBindings()
+QStringList QEditor::registeredInputBindingIds()
 {
-	return m_bindings.keys();
+	return m_registeredBindings.keys();
 }
 
 /*!
@@ -186,7 +188,7 @@ QStringList QEditor::inputBindings()
 	\note The "Default" name (or its translation, obtained via QEditor::tr())
 	is used to indicate that no default input binding has been set.
 */
-QString QEditor::defaultInputBinding()
+QString QEditor::defaultInputBindingId()
 {
 	return m_defaultBinding ? m_defaultBinding->name() : tr("Default");
 }
@@ -194,9 +196,9 @@ QString QEditor::defaultInputBinding()
 /*!
 	\brief Add an input binding to make it available for all editors
 */
-void QEditor::addInputBinding(QEditor::InputBinding *b)
+void QEditor::registerInputBinding(QEditorInputBindingInterface *b)
 {
-	m_bindings[b->id()] = b;
+	m_registeredBindings[b->id()] = b;
 
 	foreach ( QEditor *e, m_editors )
 		e->updateBindingsMenu();
@@ -206,9 +208,9 @@ void QEditor::addInputBinding(QEditor::InputBinding *b)
 /*!
 	\brief Remove an input binding from the pool of publicly available ones
 */
-void QEditor::removeInputBinding(QEditor::InputBinding *b)
+void QEditor::unregisterInputBinding(QEditorInputBindingInterface *b)
 {
-	m_bindings.remove(b->id());
+	m_registeredBindings.remove(b->id());
 
 	foreach ( QEditor *e, m_editors )
 		e->updateBindingsMenu();
@@ -220,7 +222,7 @@ void QEditor::removeInputBinding(QEditor::InputBinding *b)
 
 	\note This does not change the current input binding of existing editors
 */
-void QEditor::setDefaultInputBinding(QEditor::InputBinding *b)
+void QEditor::setDefaultInputBinding(QEditorInputBindingInterface *b)
 {
 	m_defaultBinding = b;
 }
@@ -235,7 +237,7 @@ void QEditor::setDefaultInputBinding(QEditor::InputBinding *b)
 */
 void QEditor::setDefaultInputBinding(const QString& b)
 {
-	m_defaultBinding = m_bindings.value(b);
+	m_defaultBinding = m_registeredBindings.value(b);
 }
 ////////////////////////////////////////////////////////////////////////
 
@@ -258,7 +260,7 @@ QReliableFileWatch* QEditor::watcher()
 
 ////////////////////////////////////////////////////////////////////////
 
-int QEditor::m_defaultFlags = QEditor::AutoIndent;
+int QEditor::m_defaultFlags = QEditor::AutoIndent | QEditor::AdjustIndent;
 QTextCodec* QEditor::m_defaultCodec = 0;
 
 /*!
@@ -384,14 +386,13 @@ QEditor::QEditor(QWidget *p)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-	m_doc(0), m_codec(m_defaultCodec), m_binding(m_defaultBinding), m_definition(0), m_curPlaceHolder(-1), m_state(defaultFlags())
+	m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_state(defaultFlags())
 {
 	m_editors << this;
 
 	m_saveState = Undefined;
 
 	init();
-	setToolTip("Test");
 }
 
 /*!
@@ -402,7 +403,7 @@ QEditor::QEditor(bool actions, QWidget *p)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-	m_doc(0), m_codec(m_defaultCodec), m_binding(m_defaultBinding), m_definition(0), m_curPlaceHolder(-1), m_state(defaultFlags())
+	m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_state(defaultFlags())
 {
 	m_editors << this;
 
@@ -423,7 +424,7 @@ QEditor::QEditor(const QString& s, QWidget *p)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-	m_doc(0), m_codec(m_defaultCodec), m_binding(m_defaultBinding), m_definition(0), m_curPlaceHolder(-1), m_state(defaultFlags())
+	m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_state(defaultFlags())
 {
 	m_editors << this;
 
@@ -445,7 +446,7 @@ QEditor::QEditor(const QString& s, bool actions, QWidget *p)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-	m_doc(0), m_codec(m_defaultCodec), m_binding(m_defaultBinding), m_definition(0), m_curPlaceHolder(-1), m_state(defaultFlags())
+	m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_state(defaultFlags())
 {
 	m_editors << this;
 
@@ -543,7 +544,10 @@ void QEditor::init(bool actions)
 	m_cursor = QDocumentCursor(m_doc);
 	m_cursor.setAutoUpdated(true);
 
-	//m_doc->setEditCursor(&m_cursor);
+	if ( m_defaultBinding )
+	{
+		m_bindings << m_defaultBinding;
+	}
 
 	if ( actions )
 	{
@@ -721,7 +725,7 @@ void QEditor::init(bool actions)
 
 		m_bindingsMenu = new QMenu(tr("Input binding"), this);
 		m_bindingsActions = new QActionGroup(m_bindingsMenu);
-		m_bindingsActions->setExclusive(true);
+		//m_bindingsActions->setExclusive(true);
 
 		connect(m_bindingsActions	, SIGNAL( triggered(QAction*) ),
 				this				, SLOT  ( bindingSelected(QAction*) ) );
@@ -733,7 +737,7 @@ void QEditor::init(bool actions)
 		m_bindingsMenu->addAction(aDefaultBinding);
 		m_bindingsMenu->addSeparator();
 		m_bindingsActions->addAction(aDefaultBinding);
-		m_bindings["default"] = 0;
+		m_registeredBindings["default"] = 0;
 
 		updateBindingsMenu();
 
@@ -755,7 +759,8 @@ void QEditor::init(bool actions)
 		m_lineEndingsActions->addAction(tr("Local"))->setData("local");
 		m_lineEndingsActions->addAction(tr("Unix/Linux"))->setData("unix");
 		m_lineEndingsActions->addAction(tr("Dos/Windows"))->setData("dos");
-
+		m_lineEndingsActions->addAction(tr("Old Mac"))->setData("mac");
+		
 		QList<QAction*> lle = m_lineEndingsActions->actions();
 
 		foreach ( QAction *a, lle )
@@ -1192,6 +1197,9 @@ void QEditor::find()
 
 	if ( m )
 	{
+		// makes sense hiding this one if present...
+		m->sendPanelCommand("Goto", "hide");
+		
 		m->sendPanelCommand("Search",
 							"display",
 							Q_COMMAND
@@ -1213,6 +1221,9 @@ void QEditor::findNext()
 
 	if ( m )
 	{
+		// makes sense hiding this one if present...
+		m->sendPanelCommand("Goto", "hide");
+		
 		m->sendPanelCommand("Search",
 							"find",
 							Q_COMMAND
@@ -1229,6 +1240,9 @@ void QEditor::find(QString text, bool highlight, bool regex){
 
 	if ( m )
 	{
+		// makes sense hiding this one if present...
+		m->sendPanelCommand("Goto", "hide");
+
 		m->sendPanelCommand("Search",
 							"find",
 							Q_COMMAND
@@ -1251,6 +1265,9 @@ void QEditor::replace()
 
 	if ( m )
 	{
+		// makes sense hiding this one if present...
+		m->sendPanelCommand("Goto", "hide");
+		
 		m->sendPanelCommand("Search",
 							"display",
 							Q_COMMAND
@@ -1264,13 +1281,23 @@ void QEditor::replace()
 }
 
 /*!
-	\brief Show a dialog to go to a specific line
+	\brief Show a panel or dialog to go to a specific line
 */
 void QEditor::gotoLine()
 {
-	QGotoLineDialog dlg(this);
-
-	dlg.exec(this);
+	QCodeEdit *m = QCodeEdit::manager(this);
+	
+	if ( m && m->hasPanel("Goto") )
+	{
+		// makes sense hiding this one if present...
+		m->sendPanelCommand("Search", "hide");
+		
+		m->sendPanelCommand("Goto", "show");
+	} else {
+		QGotoLineDialog dlg(this);
+		
+		dlg.exec(this);
+	}
 }
 
 /*!
@@ -1492,6 +1519,8 @@ void QEditor::load(const QString& file, QTextCodec* codec)
 	}
 	m_codec=codec;
 
+	m_doc->setLastModified(QFileInfo(file).lastModified());
+	
 	//qDebug("checksum = %i", m_lastFileState.checksum);
 
 	if ( m_lineEndingsActions )
@@ -1604,17 +1633,18 @@ void QEditor::highlight()
 /*!
 	\return the current InputBinding
 */
-QEditor::InputBinding* QEditor::inputBinding() const
+QList<QEditorInputBindingInterface*> QEditor::inputBindings() const
 {
-	return m_binding;
+	return m_bindings;
 }
 
 /*!
 	\brief Set the current input binding
 */
-void QEditor::setInputBinding(QEditor::InputBinding *b)
+void QEditor::addInputBinding(QEditorInputBindingInterface *b)
 {
-	m_binding = b;
+	if ( b )
+		m_bindings << b;
 
 	if ( !aDefaultBinding || !m_bindingsActions )
 		return;
@@ -1630,10 +1660,60 @@ void QEditor::setInputBinding(QEditor::InputBinding *b)
 	foreach ( QAction *a, actions )
 	{
 		if ( a->data().toString() != id )
-			continue;
-
 		a->setChecked(true);
-		break;
+	}
+}
+
+/*!
+	\brief Set the current input binding
+*/
+void QEditor::removeInputBinding(QEditorInputBindingInterface *b)
+{
+	int n = m_bindings.removeAll(b);
+	
+	if ( !aDefaultBinding || !m_bindingsActions || !n )
+		return;
+	
+	QString id = b ? b->id() : QString();
+	aDefaultBinding->setChecked(!b);
+	
+	if ( !b )
+		return;
+	
+	QList<QAction*> actions = m_bindingsActions->actions();
+	
+	foreach ( QAction *a, actions )
+	{
+		if ( a->data().toString() != id )
+			a->setChecked(false);
+	}
+}
+
+/*!
+	\brief Set the current input binding
+*/
+void QEditor::setInputBinding(QEditorInputBindingInterface *b)
+{
+	m_bindings.clear();
+	
+	if ( b )
+		m_bindings << b;
+	
+	if ( !aDefaultBinding || !m_bindingsActions )
+		return;
+	
+	QString id = b ? b->id() : QString();
+	aDefaultBinding->setChecked(!b);
+	
+	if ( !b )
+		return;
+	
+	QList<QAction*> actions = m_bindingsActions->actions();
+	
+	foreach ( QAction *a, actions )
+	{
+		if ( a )
+			a->setChecked(a->data().toString() != id);
 	}
 }
 
@@ -1645,11 +1725,10 @@ void QEditor::updateBindingsMenu()
 	if ( !aDefaultBinding || !m_bindingsMenu || !m_bindingsActions )
 		return;
 
-	QStringList bindings = inputBindings();
+	QStringList bindings = registeredInputBindingIds();
 	QList<QAction*> actions = m_bindingsActions->actions();
 
-	QString id = m_binding ? m_binding->id() : QString();
-	aDefaultBinding->setChecked(!m_binding);
+	aDefaultBinding->setChecked(m_bindings.contains(m_defaultBinding));
 
 	foreach ( QAction *a, actions )
 	{
@@ -1663,7 +1742,8 @@ void QEditor::updateBindingsMenu()
 		} else {
 			bindings.removeAt(idx);
 
-			if ( a->data().toString() == id )
+			foreach ( QEditorInputBindingInterface *b, m_bindings )
+				if ( a->data().toString() == b->id() )
 				a->setChecked(true);
 
 		}
@@ -1673,7 +1753,7 @@ void QEditor::updateBindingsMenu()
 
 	foreach ( QString s, bindings )
 	{
-		InputBinding *b = m_bindings.value(s);
+		QEditorInputBindingInterface *b = m_registeredBindings.value(s);
 
 		if ( !b )
 			continue;
@@ -1692,9 +1772,18 @@ void QEditor::updateBindingsMenu()
 */
 void QEditor::bindingSelected(QAction *a)
 {
-	a = m_bindingsActions->checkedAction();
-	m_binding = m_bindings.value(a->data().toString());
+	//a = m_bindingsActions->checkedAction();
 
+	if ( !a )
+		return;
+	
+	QEditorInputBindingInterface *b = m_registeredBindings.value(a->data().toString());
+	
+	if ( a->isChecked() )
+		addInputBinding(b);
+	else
+		removeInputBinding(b);
+	
 	//qDebug("setting binding to %s [0x%x]", qPrintable(a->data().toString()), m_binding);
 
 	updateMicroFocus();
@@ -2206,22 +2295,27 @@ static void removeFromStart(const QDocumentCursor& cur, const QString& txt)
 */
 void QEditor::indentSelection()
 {
-	QString txt("\t");
+	// TODO : respect tab stops in case of screwed up indent (correct it?)
 
+	QString txt = flag(ReplaceTabs) ? QString(m_doc->tabStop(), ' ') : QString("\t");
+	
 	if ( m_mirrors.count() )
 	{
 		m_doc->beginMacro();
 
+		if ( !protectedCursor(m_cursor) )
 		insert(m_cursor, txt);
 
 		foreach ( const QDocumentCursor& m, m_mirrors )
+			if ( !protectedCursor(m) )
 			insert(m, txt);
 
 		m_doc->endMacro();
 
 	} else if ( !m_cursor.hasSelection() ) {
+		if ( !protectedCursor(m_cursor) )
 		insert(m_cursor, txt);
-	} else {
+	} else if ( !protectedCursor(m_cursor) ) {
 		QDocumentSelection s = m_cursor.selection();
 		QDocumentCursor c(m_doc, s.startLine);
 		c.setSilent(true);
@@ -2252,6 +2346,7 @@ void QEditor::unindentSelection()
 	{
 		m_doc->beginMacro();
 
+		if ( !protectedCursor(m_cursor) )
 		unindent(m_cursor);
 
 		foreach ( const QDocumentCursor& m, m_mirrors )
@@ -2261,7 +2356,7 @@ void QEditor::unindentSelection()
 
 	} else if ( !m_cursor.hasSelection() ) {
 		unindent(m_cursor);
-	} else {
+	} else if ( !protectedCursor(m_cursor) ) {
 		QDocumentSelection s = m_cursor.selection();
 
 		m_doc->beginMacro();
@@ -2292,16 +2387,19 @@ void QEditor::commentSelection()
 	{
 		m_doc->beginMacro();
 
+		if ( !protectedCursor(m_cursor) )
 		insert(m_cursor, txt);
 
 		foreach ( const QDocumentCursor& m, m_mirrors )
+			if ( !protectedCursor(m) )
 			insert(m, txt);
 
 		m_doc->endMacro();
 
 	} else if ( !m_cursor.hasSelection() ) {
+		if ( !protectedCursor(m_cursor) )
 		insert(m_cursor, txt);
-	} else {
+	} else if ( !protectedCursor(m_cursor) ) {
 		QDocumentSelection s = m_cursor.selection();
 		QDocumentCursor c(m_doc, s.startLine);
 		c.setSilent(true);
@@ -2337,16 +2435,19 @@ void QEditor::uncommentSelection()
 	{
 		m_doc->beginMacro();
 
+		if ( !protectedCursor(m_cursor) )
 		removeFromStart(m_cursor, txt);
 
 		foreach ( const QDocumentCursor& m, m_mirrors )
+			if ( !protectedCursor(m) )
 			removeFromStart(m, txt);
 
 		m_doc->endMacro();
 
 	} else if ( !m_cursor.hasSelection() ) {
+		if ( !protectedCursor(m_cursor) )
 		removeFromStart(m_cursor, txt);
-	} else {
+	} else if ( !protectedCursor(m_cursor) ) {
 		QDocumentSelection s = m_cursor.selection();
 
 		m_doc->beginMacro();
@@ -2549,40 +2650,25 @@ static int min(const QList<QDocumentCursor>& l)
 	return ln;
 }
 
-static bool protectedCursor(const QDocumentCursor& c)
+bool QEditor::protectedCursor(const QDocumentCursor& c) const
 {
-	QDocumentLine l = c.line();
-
-	bool prot =
-			l.hasFlag(QDocumentLine::Hidden)
-		||
-			l.hasFlag(QDocumentLine::CollapsedBlockStart)
-		||
-			l.hasFlag(QDocumentLine::CollapsedBlockEnd)
-		;
-
-	if ( c.hasSelection() && !prot )
+	if ( c.hasSelection() )
 	{
-		l = c.anchorLine();
-		prot =
-				l.hasFlag(QDocumentLine::Hidden)
-			||
-				l.hasFlag(QDocumentLine::CollapsedBlockStart)
-			||
-				l.hasFlag(QDocumentLine::CollapsedBlockEnd)
-			;
+		int line = qMin(c.lineNumber(), c.anchorLineNumber()), end = qMax(c.lineNumber(), c.anchorLineNumber());
+		
+		while ( line <= end )
+		{
+			if ( m_doc->line(line).hasAnyFlag(QDocumentLine::Hidden | QDocumentLine::CollapsedBlockStart | QDocumentLine::CollapsedBlockEnd) )
+				return true;
+			
+			++line;
+		}
+		
+	} else {
+		return m_doc->line(c.lineNumber()).hasAnyFlag(QDocumentLine::Hidden | QDocumentLine::CollapsedBlockStart | QDocumentLine::CollapsedBlockEnd);
 	}
-
-	/*
-	if ( prot )
-		qDebug("line %i is protected (%i, %i, %i)", c.lineNumber(),
-			l.hasFlag(QDocumentLine::Hidden),
-			l.hasFlag(QDocumentLine::CollapsedBlockStart),
-			l.hasFlag(QDocumentLine::CollapsedBlockEnd)
-		);
-	*/
-
-	return prot;
+	
+	return false;
 }
 
 /*!
@@ -2590,11 +2676,9 @@ static bool protectedCursor(const QDocumentCursor& c)
 */
 void QEditor::keyPressEvent(QKeyEvent *e)
 {
-	if ( m_binding )
-	{
-		if ( m_binding->keyPressEvent(e, this) )
+	foreach ( QEditorInputBindingInterface *b, m_bindings )
+		if ( b->keyPressEvent(e, this) )
 			return;
-	}
 
 	forever
 	{
@@ -2652,6 +2736,40 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 			}
 		}
 
+		// default shortcuts
+		if ( e->matches(QKeySequence::Undo) )
+		{
+			undo();
+			break;
+		} else if ( e->matches(QKeySequence::Redo) ) {
+			redo();
+			break;
+		} else if ( e->matches(QKeySequence::Copy) ) {
+			copy();
+			break;
+		} else if ( e->matches(QKeySequence::Paste) ) {
+			paste();
+			break;
+		} else if ( e->matches(QKeySequence::Cut) ) {
+			cut();
+			break;
+		} else if ( e->matches(QKeySequence::Print) ) {
+			print();
+			break;
+		} else if ( e->matches(QKeySequence::SelectAll) ) {
+			selectAll();
+			break;
+		} else if ( e->matches(QKeySequence::Find) ) {
+			find();
+			break;
+		} else if ( e->matches(QKeySequence::FindNext) ) {
+			findNext();
+			break;
+		} else if ( e->matches(QKeySequence::Replace) ) {
+			replace();
+			break;
+		}
+		
 		// regular moves
 		if ( !bHandled )
 		{
@@ -2745,8 +2863,9 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 		break;
 	}
 
-	if ( m_binding )
-		m_binding->postKeyPressEvent(e, this);
+	foreach ( QEditorInputBindingInterface *b, m_bindings )
+		b->postKeyPressEvent(e, this);
+	
 }
 
 /*!
@@ -2754,11 +2873,9 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 */
 void QEditor::inputMethodEvent(QInputMethodEvent* e)
 {
-	if ( m_binding )
-	{
-		if ( m_binding->inputMethodEvent(e, this) )
+	foreach ( QEditorInputBindingInterface *b, m_bindings )
+		if ( b->inputMethodEvent(e, this) )
 			return;
-	}
 
 	/*
 	if ( m_doc->readOnly() )
@@ -2775,8 +2892,9 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
 
 	m_cursor.endEditBlock();
 
-	if ( m_binding )
-		m_binding->postInputMethodEvent(e, this);
+	foreach ( QEditorInputBindingInterface *b, m_bindings )
+		b->postInputMethodEvent(e, this);
+	
 }
 
 /*!
@@ -2784,11 +2902,9 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
 */
 void QEditor::mouseMoveEvent(QMouseEvent *e)
 {
-	if ( m_binding )
-	{
-		if ( m_binding->mouseMoveEvent(e, this) )
+	foreach ( QEditorInputBindingInterface *b, m_bindings )
+		if ( b->mouseMoveEvent(e, this) )
 			return;
-	}
 
 	forever
 	{
@@ -2830,10 +2946,8 @@ void QEditor::mouseMoveEvent(QMouseEvent *e)
 		if ( newCursor.isNull() )
 			break;
 
-		if ( flag(Persistent) )
+		if ( e->modifiers() & Qt::ControlModifier )
 		{
-			//persistent.setPosition(newCursorPos, QTextCursor::KeepAnchor);
-		} else if ( e->modifiers() & Qt::ControlModifier ) {
 
 			// get column number for column selection
 			int org = m_cursor.anchorColumnNumber();
@@ -2878,8 +2992,9 @@ void QEditor::mouseMoveEvent(QMouseEvent *e)
 		break;
 	}
 
-	if ( m_binding )
-		m_binding->postMouseMoveEvent(e, this);
+	foreach ( QEditorInputBindingInterface *b, m_bindings )
+		b->postMouseMoveEvent(e, this);
+	
 }
 
 /*!
@@ -2887,11 +3002,9 @@ void QEditor::mouseMoveEvent(QMouseEvent *e)
 */
 void QEditor::mousePressEvent(QMouseEvent *e)
 {
-	if ( m_binding )
-	{
-		if ( m_binding->mousePressEvent(e, this) )
+	foreach ( QEditorInputBindingInterface *b, m_bindings )
+		if ( b->mousePressEvent(e, this) )
 			return;
-	}
 
 	forever
 	{
@@ -3011,8 +3124,9 @@ void QEditor::mousePressEvent(QMouseEvent *e)
 		break;
 	}
 
-	if ( m_binding )
-		m_binding->postMousePressEvent(e, this);
+	foreach ( QEditorInputBindingInterface *b, m_bindings )
+		b->postMousePressEvent(e, this);
+	
 }
 
 /*!
@@ -3020,11 +3134,9 @@ void QEditor::mousePressEvent(QMouseEvent *e)
 */
 void QEditor::mouseReleaseEvent(QMouseEvent *e)
 {
-	if ( m_binding )
-	{
-		if ( m_binding->mouseReleaseEvent(e, this) )
+	foreach ( QEditorInputBindingInterface *b, m_bindings )
+		if ( b->mouseReleaseEvent(e, this) )
 			return;
-	}
 
 	m_scroll.stop();
 
@@ -3036,14 +3148,8 @@ void QEditor::mouseReleaseEvent(QMouseEvent *e)
 		setFlag(MousePressed, false);
 		setCursorPosition(mapToContents(e->pos()));
 
-		if ( flag(Persistent) )
-		{
-			//persistent.clearSelection();
-		} else {
 			m_cursor.clearSelection();
-			//setFlag(FoldedCursor, isCollapsed());
 		}
-	}
 
 	if ( flag(MousePressed) )
 	{
@@ -3069,8 +3175,9 @@ void QEditor::mouseReleaseEvent(QMouseEvent *e)
 
 	selectionChange();
 
-	if ( m_binding )
-		m_binding->postMouseReleaseEvent(e, this);
+	foreach ( QEditorInputBindingInterface *b, m_bindings )
+		b->postMouseReleaseEvent(e, this);
+	
 }
 
 /*!
@@ -3078,11 +3185,9 @@ void QEditor::mouseReleaseEvent(QMouseEvent *e)
 */
 void QEditor::mouseDoubleClickEvent(QMouseEvent *e)
 {
-	if ( m_binding )
-	{
-		if ( m_binding->mouseDoubleClickEvent(e, this) )
+	foreach ( QEditorInputBindingInterface *b, m_bindings )
+		if ( b->mouseDoubleClickEvent(e, this) )
 			return;
-	}
 
 	forever
 	{
@@ -3103,12 +3208,7 @@ void QEditor::mouseDoubleClickEvent(QMouseEvent *e)
 
 		if ( m_cursor.isValid() )
 		{
-			if ( flag(Persistent) )
-			{
-				//persistent.select(QDocumentCursor::WordUnderCursor);
-			} else {
 				m_cursor.select(QDocumentCursor::WordUnderCursor);
-			}
 
 			setClipboardSelection();
 			//emit clearAutoCloseStack();
@@ -3127,8 +3227,9 @@ void QEditor::mouseDoubleClickEvent(QMouseEvent *e)
 		break;
 	}
 
-	if ( m_binding )
-		m_binding->postMouseDoubleClickEvent(e, this);
+	foreach ( QEditorInputBindingInterface *b, m_bindings )
+		b->postMouseDoubleClickEvent(e, this);
+	
 }
 
 /*!
@@ -3307,23 +3408,21 @@ void QEditor::changeEvent(QEvent *e)
 */
 void QEditor::showEvent(QShowEvent *e)
 {
-	QAbstractScrollArea::showEvent(e);
-
-	//ensureCursorVisible();
-
-	// => moved to focusInEvent()
-	//setFlag(CursorOn, true);
-	//m_blink.start(QApplication::cursorFlashTime() / 2, this);
-
 	QCodeEdit *ce = QCodeEdit::manager(this);
 
 	if ( ce )
 		ce->panelLayout()->update();
 
+	QAbstractScrollArea::showEvent(e);
+	
 	if ( flag(LineWrap) )
 	{
 		m_doc->setWidthConstraint(wrapWidth());
 	}
+	
+	if ( flag(EnsureVisible) )
+		ensureCursorVisible();
+	
 }
 
 /*!
@@ -3408,13 +3507,9 @@ void QEditor::focusOutEvent(QFocusEvent *e)
 */
 void QEditor::contextMenuEvent(QContextMenuEvent *e)
 {
-	if ( m_binding )
-	{
-		if ( m_binding->contextMenuEvent(e, this) )
-		{
+	foreach ( QEditorInputBindingInterface *b, m_bindings )
+		if ( b->contextMenuEvent(e, this) )
 			return;
-		}
-	}
 
 	if ( !pMenu )
 	{
@@ -4026,24 +4121,12 @@ bool QEditor::processCursor(QDocumentCursor& c, QKeyEvent *e, bool& b)
 	}
 
 	selectionChange();
-
+	
 	return true;
 }
 
-/*!
-	\brief Insert some text at a given cursor position
-
-	This function is provided to keep indenting/outdenting working when editing
-*/
-void QEditor::insertText(QDocumentCursor& c, const QString& text)
+void QEditor::preInsert(QDocumentCursor& c, const QString& s)
 {
-	bool hasSelection = c.hasSelection();
-
-	//if ( hasSelection )
-	//	c.removeSelectedText();
-
-	QStringList lines = text.split('\n', QString::KeepEmptyParts);
-
 	if (
 			flag(AutoIndent)
 		&&
@@ -4053,7 +4136,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		&&
 			m_definition
 		&&
-			m_definition->unindent(c, lines.at(0))
+			m_definition->unindent(c, s)
 		)
 	{
 		int firstNS = 0;
@@ -4083,60 +4166,81 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 
 		if ( off > 0 )
 			c.movePosition(off, QDocumentCursor::NextCharacter);
-
+		
 	}
+}
 
-	if ( !hasSelection && flag(Overwrite) && !c.atBlockEnd() ){
-		c.movePosition(1, QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor); // better for undo operation
-	}
-
-	if ( true ) //lines.count() == 1 )
+/*!
+	\brief Insert some text at a given cursor position
+	
+	This function is provided to keep indenting/outdenting working when editing
+*/
+void QEditor::insertText(QDocumentCursor& c, const QString& text)
+{
+	if ( protectedCursor(c) )
+		return;
+	
+	bool hasSelection = c.hasSelection();
+	
+	if ( hasSelection )
+		c.removeSelectedText();
+	
+	if ( !hasSelection && flag(Overwrite) )
+		c.deleteChar();
+	
+	QStringList lines = text.split('\n', QString::KeepEmptyParts);
+	
+	if ( (lines.count() == 1) || !flag(AdjustIndent) )
 	{
+		preInsert(c, lines.first());
+		
+		if ( flag(ReplaceTabs) )
+		{
+			// TODO : replace tabs by spaces properly
+		}
+		
 		c.insertText(text);
 	} else {
-		#if 0
-		for ( int i = 0; i < lines.count(); ++i )
-		{
+		
+		preInsert(c, lines.first());
+		c.insertText(lines.takeFirst());
+		
 			QString indent;
-			// TODO : adjust indent based on indent around insertion spot
-			/*
-			if ( flag(AutoIndent) && (m_curPlaceHolder == -1) )
+		// FIXME ? work on strings to make sure command grouping does not interfere with cursor state...
+		
+		indent = c.line().text().left(qMax(0, qMin(c.line().firstChar(), c.columnNumber())));
+		
+		foreach ( QString l, lines )
 			{
-				if ( m_definition )
-				{
-					indent = m_definition->indent(c);
-				} else {
-					// default : keep leading ws from previous line...
-					QDocumentLine l = c.line();
-					const int idx = l.firstChar();
-
-					indent = l.text();
-
-					if ( idx != -1 )
-						indent.resize(idx);
-
-				}
-			}
-			*/
-
-			if ( indent.count() )
+			int n = 0;
+			
+			while ( n < l.count() && l.at(n).isSpace() )
+				++n;
+			
+			l.remove(0, n);
+			
+			if ( m_definition )
 			{
-				indent.prepend("\n");
-				c.insertText(indent);
-			} else {
-				c.insertLine();
+				// FIXME ? work on strings to make sure command grouping does not interfere with cursor state...
+				indent = m_definition->indent(c);
+				
+				if ( flag(ReplaceTabs) )
+					indent.replace("\t", QString(m_doc->tabStop(), ' '));
 			}
-
-			insertText(c, lines.at(i));
-			//c.insertText(lines.at(i));
+			
+			c.insertLine();
+			c.insertText(indent);
+			
+			preInsert(c, l);
+			
+			c.insertText(l);
 		}
-		#endif
 	}
 }
 
 /*!
 	\brief Write some text at the current cursor position
-
+	
 	This function is provided to make editing operations easier
 	from the outside and to keep them compatible with cursor
 	mirrors.
@@ -4144,14 +4248,14 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 void QEditor::write(const QString& s)
 {
 	m_doc->beginMacro();
-
+	
 	insertText(m_cursor, s);
-
+	
 	for ( int i = 0; i < m_mirrors.count(); ++i )
 		insertText(m_mirrors[i], s);
-
+	
 	m_doc->endMacro();
-
+	
 	emitCursorPositionChanged();
 	setFlag(CursorOn, true);
 	ensureCursorVisible();
@@ -4272,6 +4376,12 @@ bool QEditor::isCursorVisible() const
 */
 void QEditor::ensureCursorVisible()
 {
+	if ( !isVisible() )
+	{
+		setFlag(EnsureVisible, true);
+		return;
+	}
+	
 	QPoint pos = m_cursor.documentPosition();
 
 	const int ls = QDocument::fontMetrics().lineSpacing();
@@ -4299,6 +4409,8 @@ void QEditor::ensureCursorVisible()
 		horizontalScrollBar()
 			->setValue(qMax(horizontalScrollBar()->value(), xpos - xlen + 4));
 	}
+	
+	setFlag(EnsureVisible, false);
 }
 
 /*!
@@ -4592,11 +4704,7 @@ void QEditor::setClipboardSelection()
 {
 	QClipboard *clipboard = QApplication::clipboard();
 
-	if ( !clipboard->supportsSelection() )
-		return;
-
-	if ( //( flag(Persistent) && !persistent.hasSelection() ) ||
-		( !flag(Persistent) && !m_cursor.hasSelection() ) )
+	if ( !clipboard->supportsSelection() || !m_cursor.hasSelection() )
 		return;
 
 	QMimeData *data = createMimeDataFromSelection();

@@ -51,6 +51,8 @@ class QDocumentLineHandle;
 class QLanguageDefinition;
 class QCodeCompletionEngine;
 
+class QEditorInputBindingInterface;
+
 class QCE_EXPORT QEditor : public QAbstractScrollArea
 #ifdef _QMDI_
 , public qmdiClient
@@ -82,9 +84,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			MousePressed	= 0x008,
 			MaybeDrag		= 0x010,
 			Selection		= 0x020,
+			EnsureVisible	= 0x040,
 			
-			Persistent		= 0x040,
-			Multiline		= 0x080,
 			FoldedCursor	= 0x100,
 			
 			Internal				= 0x00000fff,
@@ -97,106 +98,12 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			ReplaceTabs				= 0x00100000,
 			RemoveTrailing			= 0x00200000,
 			PreserveTrailingIndent	= 0x00400000,
+			AdjustIndent			= 0x00800000,
 			
 			AutoCloseChars			= 0x01000000,
 			AutoIndent				= 0x02000000,
 			
 			Accessible				= 0xfffff000
-		};
-		
-		class InputBinding
-		{
-			public:
-				virtual ~InputBinding() {}
-				
-				virtual QString id() const = 0;
-				virtual QString name() const = 0;
-				
-				virtual bool keyPressEvent(QKeyEvent *event, QEditor *editor)
-				{
-					Q_UNUSED(event)
-					Q_UNUSED(editor)
-					return false;
-				}
-				
-				virtual void postKeyPressEvent(QKeyEvent *event, QEditor *editor)
-				{
-					Q_UNUSED(event)
-					Q_UNUSED(editor)
-				}
-				
-				virtual bool inputMethodEvent(QInputMethodEvent* event, QEditor *editor)
-				{
-					Q_UNUSED(event)
-					Q_UNUSED(editor)
-					return false;
-				}
-				
-				virtual void postInputMethodEvent(QInputMethodEvent *event, QEditor *editor)
-				{
-					Q_UNUSED(event)
-					Q_UNUSED(editor)
-				}
-				
-				virtual bool mouseMoveEvent(QMouseEvent *event, QEditor *editor)
-				{
-					Q_UNUSED(event)
-					Q_UNUSED(editor)
-					return false;
-				}
-
-				virtual void postMouseMoveEvent(QMouseEvent *event, QEditor *editor)
-				{
-					Q_UNUSED(event)
-					Q_UNUSED(editor)
-				}
-				
-				virtual bool mousePressEvent(QMouseEvent *event, QEditor *editor)
-				{
-					Q_UNUSED(event)
-					Q_UNUSED(editor)
-					return false;
-				}
-				
-				virtual void postMousePressEvent(QMouseEvent *event, QEditor *editor)
-				{
-					Q_UNUSED(event)
-					Q_UNUSED(editor)
-				}
-				
-				virtual bool mouseReleaseEvent(QMouseEvent *event, QEditor *editor)
-				{
-					Q_UNUSED(event)
-					Q_UNUSED(editor)
-					return false;
-				}
-				
-				virtual void postMouseReleaseEvent(QMouseEvent *event, QEditor *editor)
-				{
-					Q_UNUSED(event)
-					Q_UNUSED(editor)
-				}
-				
-				virtual bool mouseDoubleClickEvent(QMouseEvent *event, QEditor *editor)
-				{
-					Q_UNUSED(event)
-					Q_UNUSED(editor)
-					return false;
-				}
-				
-				virtual void postMouseDoubleClickEvent(QMouseEvent *event, QEditor *editor)
-				{
-					Q_UNUSED(event)
-					Q_UNUSED(editor)
-				}
-				
-				virtual bool contextMenuEvent(QContextMenuEvent *event, QEditor *editor)
-				{
-					Q_UNUSED(event)
-					Q_UNUSED(editor)
-
-					return false;
-				}
 		};
 		
 		Q_DECLARE_FLAGS(State, EditFlag)
@@ -239,7 +146,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		QTextCodec* codec() const;
 		QDocument* document() const;
-		InputBinding* inputBinding() const;
+		
+		QList<QEditorInputBindingInterface*> inputBindings() const;
 		
 		bool isCursorVisible() const;
 		QDocumentCursor cursor() const;
@@ -297,6 +205,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 							point.y() + m_margins.top() );
 		}
 
+		virtual bool protectedCursor(const QDocumentCursor& c) const;
+		
 		static int defaultFlags();
 		static void setDefaultFlags(int f);
 		
@@ -306,11 +216,12 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		static void setDefaultCodec(const char *name, int update);
 		static void setDefaultCodec(const QByteArray& name, int update);
 		
-		static QStringList inputBindings();
-		static QString defaultInputBinding();
-		static void addInputBinding(InputBinding *b);
-		static void removeInputBinding(InputBinding *b);
-		static void setDefaultInputBinding(InputBinding *b);
+		static QEditorInputBindingInterface* registeredInputBinding(const QString& n);
+		static QString defaultInputBindingId();
+		static QStringList registeredInputBindingIds();
+		static void registerInputBinding(QEditorInputBindingInterface *b);
+		static void unregisterInputBinding(QEditorInputBindingInterface *b);
+		static void setDefaultInputBinding(QEditorInputBindingInterface *b);
 		static void setDefaultInputBinding(const QString& b);
 		static inline const QList<QEditor*>& editors() { return m_editors; }
 		
@@ -362,7 +273,10 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void setCodec(const QByteArray& name);
 		
 		void setDocument(QDocument *d);
-		void setInputBinding(InputBinding *b);
+		
+		void addInputBinding(QEditorInputBindingInterface *b);
+		void removeInputBinding(QEditorInputBindingInterface *b);
+		void setInputBinding(QEditorInputBindingInterface *b);
 		
 		void setCursor(const QDocumentCursor& c);
 		
@@ -476,6 +390,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void ensureVisible(int line);
 		void ensureVisible(const QRect &rect);
 		
+		void preInsert(QDocumentCursor& c, const QString& text);
 		void insertText(QDocumentCursor& c, const QString& text);
 		
 		QDocumentLine lineAtPosition(const QPoint& p) const;
@@ -535,7 +450,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		QDocument *m_doc;
 		QTextCodec *m_codec;
-		InputBinding *m_binding;
+		QList<QEditorInputBindingInterface*> m_bindings;
 		
 		QLanguageDefinition *m_definition;
 		QPointer<QCodeCompletionEngine> m_completionEngine;
@@ -559,8 +474,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		static QTextCodec *m_defaultCodec;
 		
 		static QList<QEditor*> m_editors;
-		static InputBinding *m_defaultBinding;
-		static QHash<QString, InputBinding*> m_bindings;
+		static QEditorInputBindingInterface *m_defaultBinding;
+		static QHash<QString, QEditorInputBindingInterface*> m_registeredBindings;
 		
 		static int m_manageMenu;
 };

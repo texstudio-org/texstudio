@@ -43,7 +43,7 @@ class QCE_EXPORT QLineChangePanel : public QPanel
 		virtual QString type() const;
 		
 	protected:
-		virtual void paint(QPainter *p, QEditor *e);
+		virtual bool paint(QPainter *p, QEditor *e);
 		
 	private:
 		

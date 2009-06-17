@@ -32,7 +32,7 @@
 #include "qlinemarkpanel.h"
 #include "qlinenumberpanel.h"
 #include "qlinechangepanel.h"
-
+#include "qgotolinepanel.h"
 #include "qstatuspanel.h"
 #include "qsearchreplacepanel.h"
 
@@ -118,6 +118,8 @@ QEditorFactory::QEditorFactory(QSettingsServer *s)
 				+ QString::number(QCodeEdit::South)
 				+ "{"
 				+ Q_PANEL_ID(QStatusPanel)
+				+ ","
+				+ Q_PANEL_ID(QGotoLinePanel)
 				+ ","
 				+ Q_PANEL_ID(QSearchReplacePanel)
 				+ "}"
@@ -337,4 +339,3 @@ QSettingsClient QEditorFactory::settings(const QString& alias)
 /*! @} */
 
 #endif
-

@@ -48,7 +48,7 @@ HEADERS += texmaker.h \
     latexcompleter_config.h \
     latexcompleter_p.h \
     codesnippet.h \
-	thesaurusdialog.h \
+    thesaurusdialog.h \
     hunspell/affentry.hxx \
     hunspell/affixmgr.hxx \
     hunspell/atypes.hxx \
@@ -67,7 +67,9 @@ HEADERS += texmaker.h \
     hunspell/license.myspell \
     hunspell/filemgr.hxx \
     hunspell/hunzip.hxx \
-    hunspell/w_char.hxx 
+    hunspell/w_char.hxx \
+    qcodeedit/lib/qeditorinputbinding.h \
+    qcodeedit/lib/qeditorinputbindinginterface.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -103,7 +105,7 @@ SOURCES += main.cpp \
     latexoutputfilter.cpp \
     toolwidgets.cpp \
     codesnippet.cpp \
-	thesaurusdialog.cpp \
+    thesaurusdialog.cpp \
     hunspell/affentry.cxx \
     hunspell/affixmgr.cxx \
     hunspell/csutil.cxx \
@@ -116,7 +118,8 @@ SOURCES += main.cpp \
     hunspell/utf_info.cxx \
     hunspell/filemgr.cxx \
     hunspell/hunzip.cxx \
-    encodingdialog.cpp 
+    encodingdialog.cpp \
+    qcodeedit/lib/qeditorinputbinding.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
@@ -298,6 +301,7 @@ HEADERS += qcodeedit/lib/qce-config.h \
     qcodeedit/lib/widgets/qstatuspanel.h \
     qcodeedit/lib/widgets/qsearchreplacepanel.h \
     qcodeedit/lib/widgets/qgotolinedialog.h \
+    qcodeedit/lib/widgets/qgotolinepanel.h \
     qcodeedit/lib/widgets/qeditconfig.h \
     qcodeedit/lib/widgets/qformatconfig.h \
     qcodeedit/lib/widgets/qsimplecolorpicker.h \
@@ -327,12 +331,14 @@ SOURCES += qcodeedit/lib/qeditor.cpp \
     qcodeedit/lib/widgets/qstatuspanel.cpp \
     qcodeedit/lib/widgets/qsearchreplacepanel.cpp \
     qcodeedit/lib/widgets/qgotolinedialog.cpp \
+    qcodeedit/lib/widgets/qgotolinepanel.cpp \
     qcodeedit/lib/widgets/qeditconfig.cpp \
     qcodeedit/lib/widgets/qformatconfig.cpp \
     qcodeedit/lib/widgets/qsimplecolorpicker.cpp \
     qcodeedit/lib/widgets/qcalltip.cpp
 FORMS += qcodeedit/lib/widgets/searchreplace.ui \
     qcodeedit/lib/widgets/gotoline.ui \
+    qcodeedit/lib/widgets/gotolinedialog.ui \
     qcodeedit/lib/widgets/editconfig.ui \
     qcodeedit/lib/widgets/formatconfig.ui
 DEFINES += QNFA_BUILD

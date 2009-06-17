@@ -84,7 +84,6 @@ QCE_AUTO_REGISTER(QSearchReplacePanel)
 QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
  : QPanel(p), lastDirection(0), m_search(0)
 {
-	//setFixedHeight(20);
 	setupUi(this);
 	setDefaultVisibility(false);
 
@@ -118,8 +117,8 @@ void QSearchReplacePanel::editorChange(QEditor *e)
 {
 	if ( editor() )
 	{
-		connect(editor(), SIGNAL( cursorPositionChanged() ),
-				this	, SLOT  ( cursorPositionChanged() ) );
+		disconnect(	editor(), SIGNAL( cursorPositionChanged() ),
+					this	, SLOT  ( cursorPositionChanged() ) );
 	}
 
 	if ( e )
@@ -127,6 +126,15 @@ void QSearchReplacePanel::editorChange(QEditor *e)
 		connect(e	, SIGNAL( cursorPositionChanged() ),
 				this, SLOT  ( cursorPositionChanged() ) );
 	}
+}
+
+bool QSearchReplacePanel::forward(QMouseEvent *e)
+{
+	/*
+		This panel does not need mouse events to be forwarded to the editor.
+		Even more, it requires them not to be forwarded...
+	*/
+	return false;
 }
 
 /*!
@@ -234,14 +242,6 @@ void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool
 */
 void QSearchReplacePanel::hideEvent(QHideEvent *)
 {
-}
-
-/*!
-
-*/
-void QSearchReplacePanel::paintEvent(QPaintEvent *e)
-{
-	QWidget::paintEvent(e);
 }
 
 bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)

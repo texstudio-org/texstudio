@@ -28,7 +28,9 @@
 #include "qdocumentline.h"
 #include "qdocumentcursor.h"
 
+#include <QTimer>
 #include <QPainter>
+#include <QDateTime>
 #include <QPaintEvent>
 #include <QFontMetrics>
 #include <QApplication>
@@ -93,17 +95,18 @@ void QStatusPanel::editorChange(QEditor *e)
 /*!
 
 */
-void QStatusPanel::paint(QPainter *p, QEditor *e)
+bool QStatusPanel::paint(QPainter *p, QEditor *e)
 {
 	//qDebug("drawing status panel... [%i, %i, %i, %i]",
 	//		geometry().x(),
 	//		geometry().y(),
 	//		geometry().width(),
 	//		geometry().height());
-	static QPixmap _warn(":/warning.png");
+	static QPixmap _warn(":/warning.png"), _mod(":/save.png");
 
 	QString s;
 	int xpos = 10;
+	QDocument *d = e->document();
 	QDocumentCursor c = e->cursor();
 	const QFontMetrics fm(fontMetrics());
 
@@ -118,12 +121,26 @@ void QStatusPanel::paint(QPainter *p, QEditor *e)
 	p->drawText(xpos, ascent, s);
 	xpos += fm.width(s) + 10;
 
-	// TODO : draw icon to show mod status
+	int sz = qMin(height(), _mod.height());
+	int lastMod = d->lastModified().secsTo(QDateTime::currentDateTime());
+	QString timeDiff = tr("(%1 min %2 s ago)").arg(lastMod / 60).arg(lastMod % 60);
 
+	xpos += 10;
+	if ( e->isContentModified() )
+	{
+		p->drawPixmap(xpos, (height() - sz) / 2, sz, sz, _mod);
+		xpos += sz;
+		xpos += 10;
+		p->drawText(xpos, ascent, timeDiff);
+	} else {
+		xpos += sz + 10;
+	}
+	xpos += fm.width(timeDiff);
+	xpos += 20;
+	
 	s = editor()->flag(QEditor::Overwrite) ? tr("OVERWRITE") : tr("INSERT");
 	p->drawText(xpos, ascent, s);
 	xpos += fm.width(s) + 10;
-
 
 	m_conflictSpot = 0;
 
@@ -144,6 +161,10 @@ void QStatusPanel::paint(QPainter *p, QEditor *e)
 	}
 
 	setFixedHeight(ls + 4);
+	
+	QTimer::singleShot(1000, this, SLOT( update() ) );
+	
+	return true;
 }
 
 /*!

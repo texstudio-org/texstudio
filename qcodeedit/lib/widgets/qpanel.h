@@ -71,7 +71,7 @@ class QCE_EXPORT QPanel : public QWidget
 		virtual void showEvent(QShowEvent *e);
 		virtual void hideEvent(QHideEvent *e);
 		virtual void paintEvent(QPaintEvent *e);
-		virtual void paint(QPainter *p, QEditor *e);
+		virtual bool paint(QPainter *p, QEditor *e);
 		
 	private:
 		QPointer<QEditor> m_editor;

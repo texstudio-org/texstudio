@@ -25,6 +25,7 @@
 #include "qlinemarkpanel.h"
 #include "qlinenumberpanel.h"
 #include "qfoldpanel.h"
+#include "qgotolinepanel.h"
 #include "qlinechangepanel.h"
 #include "qstatuspanel.h"
 #include "qsearchreplacepanel.h"
@@ -163,6 +164,7 @@ LatexEditorView::LatexEditorView(QWidget *parent) : QWidget(parent),curChangePos
 	lineFoldPanel=codeeditor->addPanel(new QFoldPanel, QCodeEdit::West, false);
 	lineChangePanel=codeeditor->addPanel(new QLineChangePanel, QCodeEdit::West, false);
 	statusPanel=codeeditor->addPanel(new QStatusPanel, QCodeEdit::South, false);
+	gotoLinePanelAction=codeeditor->addPanel(new QGotoLinePanel, QCodeEdit::South, false);
 	searchReplacePanel=codeeditor->addPanel(new QSearchReplacePanel, QCodeEdit::South,false);
 
 
