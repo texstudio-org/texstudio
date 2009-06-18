@@ -764,11 +764,14 @@ QDocumentInsertCommand::~QDocumentInsertCommand()
 
 bool QDocumentInsertCommand::mergeWith(const QUndoCommand *command)
 {
-	int new_line=static_cast<const QDocumentInsertCommand*>(command)->m_data.lineNumber;
-	int new_startOffset=static_cast<const QDocumentInsertCommand*>(command)->m_data.startOffset;
+	const QDocumentInsertCommand* cmd = static_cast<const QDocumentInsertCommand*>(command);
+	int new_line=cmd->m_data.lineNumber;
+	int new_startOffset=cmd->m_data.startOffset;
 	int myLenght=m_data.begin.length();
-	if(new_line==m_data.lineNumber && new_startOffset==m_data.startOffset+myLenght){
-		m_data.begin+=static_cast<const QDocumentInsertCommand*>(command)->m_data.begin;
+	if(new_line==m_data.lineNumber && new_startOffset==m_data.startOffset+myLenght && 
+	   cmd->m_data.handles.count()==0 && m_data.handles.count()==0) //don't know exactly why this line is needed but otherwise undo after insertion with several lines with autoindent doesn't work
+	{
+		m_data.begin+=cmd->m_data.begin;
 		return true;
 	}
 	return false;
