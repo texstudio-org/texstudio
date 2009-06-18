@@ -780,8 +780,11 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 		topic=topic.left(nextpos);
 	}
 	QRect r = list->visualRect(index);
+	QDocumentCursor c=editor->cursor();
 	QRect screen = QApplication::desktop()->availableGeometry();
-	QPoint tt=list->mapToGlobal(QPoint(list->width(), r.top()));
+	int lineHeight=c.line().document()->fontMetrics().lineSpacing();
+	QPoint tt=list->mapToGlobal(QPoint(list->width(), r.top()-lineHeight));
+	int lineY=editor->mapToGlobal(editor->mapFromContents(c.documentPosition())).y();
 	// estimate width of coming tooltip
 	// rather dirty code
 	QLabel lLabel(0,Qt::ToolTip);
@@ -799,12 +802,18 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 
 
 	int textWidthInPixels = lLabel.width()+10; // +10 good guess
-	// int textHeightInPixels = lLabel.height()+10; // +10 good guess
+
+	if(lineY>tt.y()){
+		tt.setY(lineY-lLabel.height()-lineHeight-5);
+	}
 
 	if (screen.width()-textWidthInPixels>=tt.x()) QToolTip::showText(tt, topic, list);//-90
 	else {
 		//list->mapToGlobal
-		QPoint tt=list->mapToGlobal(QPoint(-textWidthInPixels, r.top()));
+		QPoint tt=list->mapToGlobal(QPoint(-textWidthInPixels, r.top()-lineHeight));
+		if(lineY>tt.y()){
+			tt.setY(lineY-lLabel.height()-lineHeight-5);
+		}
 		QToolTip::showText(tt, topic, list,QRect(-300,-200,300,600));
 	}
 }
