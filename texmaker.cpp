@@ -969,6 +969,10 @@ void Texmaker::fileSaveAs(QString fileName) {
 	// get a file name
 	QString fn = QFileDialog::getSaveFileName(this,tr("Save As"),currentDir,"TeX files (*.tex *.bib *.sty *.cls *.mp);;All files (*.*)");
 	if (!fn.isEmpty()) {
+		int lastsep=qMax(fn.lastIndexOf("/"),fn.lastIndexOf("\\"));
+		int lastpoint=fn.lastIndexOf(".");
+		if (lastpoint <= lastsep) //if both aren't found or point is in directory name
+			fn.append(".tex");
 		QFileInfo fic(fn);
 		currentEditorView()->editor->setFileName(fn);
 		filenames.remove(currentEditorView());
