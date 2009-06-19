@@ -1056,13 +1056,13 @@ void QEditor::fileChanged(const QString& file)
 	if ( (file != fileName()) || (m_saveState == Saving) )
 		return;
 
-	if ( m_saveState == Saved )
+/*	if ( m_saveState == Saved )
 	{
 		qApp->processEvents();
 
 		m_saveState = Undefined;
 		return;
-	}
+	}*/
 
 	if ( !isContentModified() )
 	{
@@ -1090,7 +1090,7 @@ void QEditor::fileChanged(const QString& file)
 
 		if ( autoReload )
 		{
-			load(fileName());
+			load(fileName(),m_codec);
 			m_saveState = Undefined;
 			return;
 		}
