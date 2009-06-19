@@ -1541,8 +1541,6 @@ void Texmaker::ReadSettings() {
 	showoutputview=config->value("Show/OutputView",true).toBool();
 	showstructview=config->value("Show/Structureview",true).toBool();
 
-	quickmode=config->value("Tools/Quick Mode",1).toInt();
-
 	userClassList=config->value("Tools/User Class").toStringList();
 	userPaperList=config->value("Tools/User Paper").toStringList();
 	userEncodingList=config->value("Tools/User Encoding").toStringList();
@@ -1641,9 +1639,6 @@ void Texmaker::SaveSettings() {
 	config->setValue("Show/OutputView",showoutputview);
 
 	config->setValue("Show/Structureview",showstructview);
-
-	config->setValue("Tools/Quick Mode",quickmode);
-
 	
 	if (userClassList.count()>0)
 		config->setValue("Tools/User Class",userClassList);
@@ -2975,7 +2970,7 @@ void Texmaker::QuickBuild() {
 	RunPreCompileCommand();
 	stat2->setText(QString(" %1 ").arg(tr("Quick Build")));
 	ERRPROCESS=false;
-	switch (quickmode) {
+	switch (buildManager.quickmode) {
 	case 1: {
 		stat2->setText(QString(" %1 ").arg("Latex"));
 		runCommand(BuildManager::CMD_LATEX,true,false);
@@ -3363,8 +3358,9 @@ void Texmaker::HelpAbout() {
 }
 ////////////// OPTIONS //////////////////////////////////////
 void Texmaker::GeneralOptions() {
+	//don't add anything here, move it in the configManager
+	
 	ConfigDialog *confDlg = configManager.createConfigDialog(this);
-
 
 	confDlg->ui.checkBoxWordwrap->setChecked(wordwrap);
 	
@@ -3387,39 +3383,8 @@ void Texmaker::GeneralOptions() {
 	confDlg->ui.lineEditAspellCommand->setText(spell_dic);
 	confDlg->ui.thesaurusFileName->setText(thesaurus_database);
 
-	if (quickmode==1) {
-		confDlg->ui.radioButton1->setChecked(true);
-		confDlg->ui.lineEditUserquick->setEnabled(false);
-	}
-	if (quickmode==2) {
-		confDlg->ui.radioButton2->setChecked(true);
-		confDlg->ui.lineEditUserquick->setEnabled(false);
-	}
-	if (quickmode==3) {
-		confDlg->ui.radioButton3->setChecked(true);
-		confDlg->ui.lineEditUserquick->setEnabled(false);
-	}
-	if (quickmode==4)  {
-		confDlg->ui.radioButton4->setChecked(true);
-		confDlg->ui.lineEditUserquick->setEnabled(false);
-	}
-	if (quickmode==5)  {
-		confDlg->ui.radioButton5->setChecked(true);
-		confDlg->ui.lineEditUserquick->setEnabled(false);
-	}
-	if (quickmode==6)  {
-		confDlg->ui.radioButton6->setChecked(true);
-		confDlg->ui.lineEditUserquick->setEnabled(true);
-	}
 
 	if (configManager.execConfigDialog(confDlg)) {
-		if (confDlg->ui.radioButton1->isChecked()) quickmode=1;
-		if (confDlg->ui.radioButton2->isChecked()) quickmode=2;
-		if (confDlg->ui.radioButton3->isChecked()) quickmode=3;
-		if (confDlg->ui.radioButton4->isChecked()) quickmode=4;
-		if (confDlg->ui.radioButton5->isChecked()) quickmode=5;
-		if (confDlg->ui.radioButton6->isChecked()) quickmode=6;
-
 		wordwrap=confDlg->ui.checkBoxWordwrap->isChecked();
 		autoindent=confDlg->ui.checkBoxAutoIndent->isChecked();
 		switch (confDlg->ui.comboboxLineNumbers->currentIndex()) {

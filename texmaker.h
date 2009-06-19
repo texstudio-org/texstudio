@@ -134,7 +134,7 @@ private:
 //settings
 	ConfigManager configManager;
 	BuildManager buildManager;
-	int split1_right, split1_left, split2_top, split2_bottom, quickmode;
+	int split1_right, split1_left, split2_top, split2_bottom;
 	bool singlemode, wordwrap, parenmatch, showoutputview, showstructview, ams_packages, makeidx_package, autoindent;
 	int showlinemultiples;
 	bool folding, showlinestate, showcursorstate, realtimespellchecking;

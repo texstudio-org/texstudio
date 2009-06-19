@@ -352,7 +352,8 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	//preview
 	confDlg->ui.comboBoxPreviewMode->setCurrentIndex(previewMode);
 	
-	//build things
+	//--build things
+	//normal commands
 	QGridLayout* gl=new QGridLayout(confDlg->ui.groupBoxCommands);
 	confDlg->ui.groupBoxCommands->setLayout(gl);
 	for (BuildManager::LatexCommand cmd=BuildManager::CMD_LATEX; cmd <= BuildManager::CMD_GHOSTSCRIPT; ++cmd){
@@ -374,8 +375,17 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		buttonsToCommands.insert(bdefault,cmd);
 		commandsToEdits.insert(cmd,e);
 	}
+	//quickbuild/more page
+	if (buildManager->quickmode==1) confDlg->ui.radioButton1->setChecked(true);
+	else if (buildManager->quickmode==2) confDlg->ui.radioButton2->setChecked(true);
+	else if (buildManager->quickmode==3) confDlg->ui.radioButton3->setChecked(true);
+	else if (buildManager->quickmode==4) confDlg->ui.radioButton4->setChecked(true);
+	else if (buildManager->quickmode==5) confDlg->ui.radioButton5->setChecked(true);
+	else if (buildManager->quickmode==6) confDlg->ui.radioButton6->setChecked(true);
+	confDlg->ui.lineEditUserquick->setEnabled(buildManager->quickmode==6);
 	confDlg->ui.lineEditExecuteBeforeCompiling->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_PRECOMPILE));
 	confDlg->ui.lineEditUserquick->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_QUICK));
+	
 	
 	//menu shortcuts
 	QTreeWidgetItem * menuShortcuts=new QTreeWidgetItem((QTreeWidget*)0, QStringList() << QString(tr("Menus")));
@@ -470,6 +480,14 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		buildManager->setLatexCommand(BuildManager::CMD_USER_PRECOMPILE,confDlg->ui.lineEditExecuteBeforeCompiling->text());
 		buildManager->setLatexCommand(BuildManager::CMD_USER_QUICK,confDlg->ui.lineEditUserquick->text());
 
+		if (confDlg->ui.radioButton1->isChecked()) buildManager->quickmode=1;
+		if (confDlg->ui.radioButton2->isChecked()) buildManager->quickmode=2;
+		if (confDlg->ui.radioButton3->isChecked()) buildManager->quickmode=3;
+		if (confDlg->ui.radioButton4->isChecked()) buildManager->quickmode=4;
+		if (confDlg->ui.radioButton5->isChecked()) buildManager->quickmode=5;
+		if (confDlg->ui.radioButton6->isChecked()) buildManager->quickmode=6;
+		
+		
 		//key replacements
 		keyReplace.clear();
 		keyReplaceBeforeWord.clear();
