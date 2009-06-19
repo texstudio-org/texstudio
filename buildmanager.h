@@ -46,9 +46,10 @@ public:
 	void readSettings(const QSettings &settings);
 	void saveSettings(QSettings &settings);
 	
-	void setLatexCommand(LatexCommand cmd, const QString &cmdString);
-	QString getLatexCommand(LatexCommand cmd);
-	QString getLatexCommandForDisplay(LatexCommand cmd);
+	void setLatexCommand(LatexCommand cmd, const QString &cmdString);//sets a command (accepts tr("<unknown>"))
+	QString getLatexCommand(LatexCommand cmd); //returns the program+args for the command
+	QString getLatexCommandForDisplay(LatexCommand cmd); //returns program or tr("<unknown>") if no command exists
+	bool hasLatexCommand(LatexCommand cmd); //returns if the command can be called
 	
 	ProcessX* newProcess(LatexCommand cmd, const QString &fileToCompile, int currentLine=0);
 	ProcessX* newProcess(LatexCommand cmd, const QString &additionalParameters, const QString &fileToCompile, int currentLine=0);
@@ -58,6 +59,8 @@ public:
 					
 	void preview(const QString &preamble, const QString &text);
 
+	int quickmode;
+	
 private slots:	
 	void latexPreviewCompleted(int status);
 	void conversionPreviewCompleted(int status);

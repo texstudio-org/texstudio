@@ -413,10 +413,28 @@ QString BuildManager::commandDisplayName(LatexCommand cmd){
 void BuildManager::readSettings(const QSettings &settings){
 	for (LatexCommand i=CMD_LATEX; i < CMD_MAXIMUM_COMMAND_VALUE;++i)
 		setLatexCommand(i,settings.value(cmdToConfigString(i), "<default>").toString());
+	if (settings.contains("Tools/Quick Mode")) 
+		quickmode=settings.value("Tools/Quick Mode",1).toInt(); //load stored value
+	else {
+		//choose working default where every necessary command is knownr
+		if (hasLatexCommand(CMD_LATEX) && hasLatexCommand(CMD_DVIPS) && hasLatexCommand(CMD_VIEWPS)) 
+			quickmode=1;
+		else if (hasLatexCommand(CMD_LATEX) && hasLatexCommand(CMD_VIEWDVI)) 
+			quickmode=2;
+		else if (hasLatexCommand(CMD_PDFLATEX) && hasLatexCommand(CMD_VIEWPDF)) 
+			quickmode=3;
+		else if (hasLatexCommand(CMD_LATEX) && hasLatexCommand(CMD_DVIPDF) && hasLatexCommand(CMD_VIEWPDF))
+			quickmode=4;
+		else if (hasLatexCommand(CMD_LATEX) && hasLatexCommand(CMD_DVIPS) && 
+				 hasLatexCommand(CMD_PS2PDF) && hasLatexCommand(CMD_VIEWPDF)) 
+			quickmode=5;
+		else quickmode=1; //texmaker default
+	}	
 }
 void BuildManager::saveSettings(QSettings &settings){
 	for (LatexCommand i=CMD_LATEX; i < CMD_MAXIMUM_COMMAND_VALUE;++i)
 		settings.setValue(cmdToConfigString(i),commands[i]);
+	settings.setValue("Tools/Quick Mode",quickmode);
 }
 
 void BuildManager::setLatexCommand(LatexCommand cmd, const QString &cmdString){
@@ -432,7 +450,9 @@ QString BuildManager::getLatexCommandForDisplay(LatexCommand cmd){
 	if (commands[cmd] == "") return tr("<unknown>");
 	else return commands[cmd];
 }
-
+bool BuildManager::hasLatexCommand(LatexCommand cmd){
+	return !commands[cmd].isEmpty();
+}
 ProcessX* BuildManager::newProcess(LatexCommand cmd, const QString &fileToCompile, int currentLine){
 	return newProcess(getLatexCommand(cmd), fileToCompile, currentLine);
 }
