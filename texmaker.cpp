@@ -1851,10 +1851,10 @@ void Texmaker::updateStructureForFile(const QString& fileName){
 			Child->setData(structureTreeLineColumn,Qt::UserRole,QVariant::fromValue(edView->editor->document()->line(i).handle()));
 		}
 		//// include,input ////
-		static const QStringList inputTokens = QStringList() << "\\input{" << "\\include{";
+		static const QStringList inputTokens = QStringList() << "input" << "include";
 		for(int header=0;header<inputTokens.count();header++){
 			s=edView->editor->text(i);
-			s=findToken(s,inputTokens.at(header));
+			s=findToken(s,"\\"+inputTokens.at(header)+"{");
 			if (s!="") {
 				Child = new QTreeWidgetItem(top);
 				Child->setText(0,s);
