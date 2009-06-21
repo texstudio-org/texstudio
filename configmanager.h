@@ -44,6 +44,7 @@ public:
 	
 	QFont editorFont;
 
+        bool displayModifyTime;
 	//language
 	QString lastLanguage;
 	QString language;

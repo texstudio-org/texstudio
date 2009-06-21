@@ -137,7 +137,8 @@ QSettings* ConfigManager::readSettings() {
 	int si=config->value("Editor/Font Size",qApp->font().pointSize()).toInt();
 #endif
 	editorFont=QFont(fam,si);
-	
+
+        displayModifyTime=config->value("Editor/Display Modifytime",true).toBool();
 	//interface
 #ifdef Q_WS_X11
 	if ((x11desktop_env() != 4) || (!QStyleFactory::keys().contains("Oxygen")))
@@ -290,6 +291,8 @@ QSettings* ConfigManager::saveSettings() {
 	//editor
 	config->setValue("Editor/Font Family",editorFont.family());
 	config->setValue("Editor/Font Size",editorFont.pointSize());
+
+        config->setValue("Editor/Display Modifytime",displayModifyTime);
 	
 	config->endGroup();
 
@@ -429,6 +432,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	confDlg->ui.spinBoxInterfaceFontSize->setValue(interfaceFontSize);
 
 	confDlg->ui.checkBoxTabbedLogView->setChecked(tabbedLogView);
+        confDlg->ui.checkBoxDisplayModifyTime->setChecked(displayModifyTime);
 	
 	//editor font
 	confDlg->ui.comboBoxFont->lineEdit()->setText(editorFont.family());
@@ -526,6 +530,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 			emit tabbedLogViewChanged(confDlg->ui.checkBoxTabbedLogView->isChecked());
 		tabbedLogView=confDlg->ui.checkBoxTabbedLogView->isChecked();
 
+                displayModifyTime=confDlg->ui.checkBoxDisplayModifyTime->isChecked();
 		//language
 		lastLanguage=language;
 		language = confDlg->ui.comboBoxLanguage->currentText();

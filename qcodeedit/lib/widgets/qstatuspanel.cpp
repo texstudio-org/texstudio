@@ -122,8 +122,11 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 	xpos += fm.width(s) + 10;
 
 	int sz = qMin(height(), _mod.height());
-	int lastMod = d->lastModified().secsTo(QDateTime::currentDateTime());
-	QString timeDiff = tr("(%1 min %2 s ago)").arg(lastMod / 60).arg(lastMod % 60);
+        QString timeDiff;
+        if(e->displayModifyTime()){
+            int lastMod = d->lastModified().secsTo(QDateTime::currentDateTime());
+            timeDiff = tr("(%1 min %2 s ago)").arg(lastMod / 60).arg(lastMod % 60);
+        }
 
 	xpos += 10;
 	if ( e->isContentModified() )
@@ -131,7 +134,7 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 		p->drawPixmap(xpos, (height() - sz) / 2, sz, sz, _mod);
 		xpos += sz;
 		xpos += 10;
-		p->drawText(xpos, ascent, timeDiff);
+                if(e->displayModifyTime()) p->drawText(xpos, ascent, timeDiff);
 	} else {
 		xpos += sz + 10;
 	}

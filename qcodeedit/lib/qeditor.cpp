@@ -386,7 +386,8 @@ QEditor::QEditor(QWidget *p)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-	m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_state(defaultFlags())
+        m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_state(defaultFlags()),
+        mDisplayModifyTime(true)
 {
 	m_editors << this;
 
@@ -403,7 +404,8 @@ QEditor::QEditor(bool actions, QWidget *p)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-	m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_state(defaultFlags())
+        m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_state(defaultFlags()),
+        mDisplayModifyTime(true)
 {
 	m_editors << this;
 
@@ -424,7 +426,8 @@ QEditor::QEditor(const QString& s, QWidget *p)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-	m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_state(defaultFlags())
+        m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_state(defaultFlags()),
+        mDisplayModifyTime(true)
 {
 	m_editors << this;
 
@@ -446,7 +449,8 @@ QEditor::QEditor(const QString& s, bool actions, QWidget *p)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-	m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_state(defaultFlags())
+        m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_state(defaultFlags()),
+        mDisplayModifyTime(true)
 {
 	m_editors << this;
 
@@ -4185,7 +4189,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	if ( hasSelection )
 		c.removeSelectedText();
 	
-	if ( !hasSelection && flag(Overwrite) )
+        if ( !hasSelection && flag(Overwrite) && !c.atLineEnd() )
 		c.deleteChar();
 	
 	QStringList lines = text.split('\n', QString::KeepEmptyParts);
@@ -4880,6 +4884,11 @@ void QEditor::updateContent (int i, int n)
 void QEditor::markChanged(QDocumentLineHandle *l, int mark, bool on)
 {
 	emit markChanged(fileName(), l, mark, on);
+}
+
+bool QEditor::displayModifyTime()
+{
+    return mDisplayModifyTime;
 }
 
 /*! @} */
