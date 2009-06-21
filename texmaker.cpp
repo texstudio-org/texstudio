@@ -785,6 +785,7 @@ void Texmaker::updateEditorSetting(LatexEditorView *edit) {
 	edit->lineFoldPanel->setChecked(folding);
 	edit->lineChangePanel->setChecked(showlinestate);
 	edit->statusPanel->setChecked(showcursorstate);
+        edit->editor->setDisplayModifyTime(configManager.displayModifyTime);
 }
 
 LatexEditorView* Texmaker::getEditorFromFileName(const QString &fileName){
@@ -1780,8 +1781,8 @@ void Texmaker::updateStructureForFile(const QString& fileName){
 			if (findTokenWithArg(curLine,commandTokens[j],name,arg)) {
 				int options=arg.toInt(); //returns 0 if conversion fails
 				for (int j=0; j<options; j++) {
-					if (j==0) name.append("{%<1%|%>}");
-					else name.append(QString("{%<%1%>}").arg(j+1));
+                                        if (j==0) name.append("{%<arg1%|%>}");
+                                        else name.append(QString("{%<arg%1%>}").arg(j+1));
 				}
 				userCommandList.append(name);
 			}

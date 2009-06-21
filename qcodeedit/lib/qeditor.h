@@ -181,7 +181,9 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
         void viewAsEncoding(QTextCodec* codec);
 		
 		int wrapWidth() const;
-		
+
+                bool displayModifyTime();
+                void setDisplayModifyTime(bool flag) {mDisplayModifyTime=flag;}
 		inline int horizontalOffset() const
 		{ return horizontalScrollBar()->isVisible() ? horizontalScrollBar()->value() : 0; }
 		inline int verticalOffset() const
@@ -467,6 +469,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		QRect m_crect, m_margins;
 		QPoint m_clickPoint, m_dragPoint;
 		QBasicTimer m_blink, m_scroll, m_click, m_drag;
+
+                bool mDisplayModifyTime;
 		
 		static QReliableFileWatch* watcher();
 		
