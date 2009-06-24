@@ -38,8 +38,9 @@ public:
 	};
 	static QString findFileInPath(QString fileName);
 	static QString cmdToConfigString(LatexCommand cmd);
-	static QString parseExtendedCommandLine(QString str, const QFileInfo &mainFile,int currentline);
+	static QString parseExtendedCommandLine(QString str, const QFileInfo &mainFile,int currentline=0);
 	static QString guessCommandName(LatexCommand cmd);
+	static QString baseCommandName(LatexCommand cmd); //returns a platform independent base name if it exists
 	static QString defaultCommandOptions(LatexCommand cmd);
 	static QString commandDisplayName(LatexCommand cmd);
 
@@ -51,8 +52,11 @@ public:
 	QString getLatexCommandForDisplay(LatexCommand cmd); //returns program or tr("<unknown>") if no command exists
 	bool hasLatexCommand(LatexCommand cmd); //returns if the command can be called
 	
+	//creates a process object for a predefined command, which will operate on the given file and line number
 	ProcessX* newProcess(LatexCommand cmd, const QString &fileToCompile, int currentLine=0);
+	//like above, but will add (TODO: override) the given parameters (they will be parsed, e.g % will replaced by the file name) 
 	ProcessX* newProcess(LatexCommand cmd, const QString &additionalParameters, const QString &fileToCompile, int currentLine=0);
+	//creates a process object with the given command line (after it is changed by parseExtendedCommandLine)
 	ProcessX* newProcess(const QString &unparsedCommandLine, const QString &fileToCompile, int currentLine=0);
 	
 	static QTemporaryFile* temporaryTexFile(); //don't forget to remove the file!
@@ -60,10 +64,14 @@ public:
 	void preview(const QString &preamble, const QString &text);
 
 	int quickmode;
-	
+	enum Dvi2PngMode { DPM_DVIPNG, DPM_DVIPNG_FOLLOW, DPM_DVIPS_GHOSTSCRIPT};
+	Dvi2PngMode dvi2pngMode;
+
 private slots:	
 	void latexPreviewCompleted(int status);
-	void conversionPreviewCompleted(int status);
+	void dvi2psPreviewCompleted(int status);
+	void conversionPreviewCompleted(int status); 
+	
 	
 signals:
 	void previewAvailable(const QString& filename, const QString& text);

@@ -354,6 +354,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	
 	//preview
 	confDlg->ui.comboBoxPreviewMode->setCurrentIndex(previewMode);
+	confDlg->ui.comboBoxDvi2PngMode->setCurrentIndex(buildManager->dvi2pngMode);
 	
 	//--build things
 	//normal commands
@@ -474,6 +475,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		
 		//preview
 		previewMode=(PreviewMode) confDlg->ui.comboBoxPreviewMode->currentIndex();
+		buildManager->dvi2pngMode=(BuildManager::Dvi2PngMode) confDlg->ui.comboBoxDvi2PngMode->currentIndex();
 		
 		//build things
 		for (BuildManager::LatexCommand cmd=BuildManager::CMD_LATEX; cmd <= BuildManager::CMD_GHOSTSCRIPT; ++cmd){
