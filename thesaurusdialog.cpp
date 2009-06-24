@@ -16,6 +16,8 @@ ThesaurusDialog::ThesaurusDialog(QWidget *parent)
 	replaceWrdLe->setEnabled(false);
 	classlistWidget = new QListWidget(this);
 	replacelistWidget = new QListWidget(this);
+	replacelistWidget->setSortingEnabled(true);
+
 	QGridLayout *gridLayout=new QGridLayout(this);
 	gridLayout->addWidget(searchWrdLe,0,0,1,1,Qt::AlignLeft);
 	gridLayout->addWidget(replaceWrdLe,0,1,1,1,Qt::AlignLeft);
@@ -42,7 +44,7 @@ ThesaurusDialog::ThesaurusDialog(QWidget *parent)
 void ThesaurusDialog::setSearchWord(const QString word)
 {
 	searchWrdLe->setText(word);
-	replaceWrdLe->setText("");
+	replaceWrdLe->setText(word);
 	//clear Lists
 	classlistWidget->clear();
 	replacelistWidget->clear();
@@ -50,7 +52,7 @@ void ThesaurusDialog::setSearchWord(const QString word)
 	QList<QStringList> result=Thesaurus.values(word.toLower());
 	// set word classes
 	QString first;
-
+	if(result.count()>0) classlistWidget->addItem(tr("<all>"));
 	foreach(QStringList elem,result){
 		first=elem[0];
 		classlistWidget->addItem(first);
@@ -106,7 +108,12 @@ void ThesaurusDialog::classClicked(QListWidgetItem *item)
 	QString word=searchWrdLe->text();
 	QList<QStringList> result=Thesaurus.values(word.toLower());
 	replacelistWidget->clear();
-	replacelistWidget->addItems(result[row]);
+
+	if(row==0){
+		foreach(QStringList elem,result){
+			replacelistWidget->addItems(elem);
+		}
+	}else replacelistWidget->addItems(result[row-1]);
 }
 
 void ThesaurusDialog::wordClicked(QListWidgetItem *item)

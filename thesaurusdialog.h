@@ -13,7 +13,7 @@ class ThesaurusDialog: public QDialog
 
 public:
 	ThesaurusDialog(QWidget *parent = 0);
-	~ThesaurusDialog(){};
+	~ThesaurusDialog(){}
 	QString getReplaceWord();
 	void setSearchWord(const QString word);
 	void readDatabase(const QString filename);
