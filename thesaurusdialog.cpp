@@ -9,11 +9,13 @@ ThesaurusDialog::ThesaurusDialog(QWidget *parent)
 {
 	replaceBt=new QPushButton(tr("replace"),this);
 	lookupBt=new QPushButton(tr("lookup"),this);
+	startsWithBt=new QPushButton(tr("starts with ..."),this);
+	containsBt=new QPushButton(tr("contains ..."),this);
 	cancelBt=new QPushButton(tr("cancel"),this);
 	searchWrdLe=new QLineEdit("",this);
 	searchWrdLe->setEnabled(false);
 	replaceWrdLe=new QLineEdit("",this);
-	replaceWrdLe->setEnabled(false);
+	replaceWrdLe->setEnabled(true);
 	classlistWidget = new QListWidget(this);
 	replacelistWidget = new QListWidget(this);
 	replacelistWidget->setSortingEnabled(true);
@@ -23,7 +25,9 @@ ThesaurusDialog::ThesaurusDialog(QWidget *parent)
 	gridLayout->addWidget(replaceWrdLe,0,1,1,1,Qt::AlignLeft);
 	gridLayout->addWidget(replaceBt,0,2,1,1,Qt::AlignLeft);
 	gridLayout->addWidget(lookupBt,1,2,1,1,Qt::AlignLeft);
-	gridLayout->addWidget(cancelBt,2,2,1,1,Qt::AlignLeft);
+	gridLayout->addWidget(startsWithBt,2,2,1,1,Qt::AlignLeft);
+	gridLayout->addWidget(containsBt,3,2,1,1,Qt::AlignLeft);
+	gridLayout->addWidget(cancelBt,4,2,1,1,Qt::AlignLeft);
 	gridLayout->addWidget(classlistWidget,1,0,5,1,Qt::AlignLeft);
 	gridLayout->addWidget(replacelistWidget,1,1,5,1,Qt::AlignLeft);
 
@@ -33,6 +37,8 @@ ThesaurusDialog::ThesaurusDialog(QWidget *parent)
 
 	connect(replaceBt, SIGNAL(clicked()), this, SLOT(accept()));
 	connect(lookupBt, SIGNAL(clicked()), this, SLOT(lookupClicked()));
+	connect(startsWithBt, SIGNAL(clicked()), this, SLOT(startsWithClicked()));
+	connect(containsBt, SIGNAL(clicked()), this, SLOT(containsClicked()));
 	connect(cancelBt, SIGNAL(clicked()), this, SLOT(reject()));
 	connect(classlistWidget, SIGNAL(itemClicked(QListWidgetItem*)),this,SLOT(classClicked(QListWidgetItem*)));
 	connect(replacelistWidget, SIGNAL(itemClicked(QListWidgetItem*)),this,SLOT(wordClicked(QListWidgetItem*)));
@@ -63,7 +69,9 @@ void ThesaurusDialog::setSearchWord(const QString word)
 
 QString ThesaurusDialog::getReplaceWord()
 {
-	return replaceWrdLe->text();
+	QString word=replaceWrdLe->text();
+	word.replace(QRegExp(" \\(.*"), "");
+	return word;
 }
 
 void ThesaurusDialog::readDatabase(const QString filename)
@@ -126,4 +134,30 @@ void ThesaurusDialog::lookupClicked()
 	QString word=replaceWrdLe->text();
 	word.replace(QRegExp(" \\(.*"), "");
 	setSearchWord(word);
+}
+
+void ThesaurusDialog::containsClicked()
+{
+	QString word=replaceWrdLe->text();
+	word.replace(QRegExp(" \\(.*"), "");
+	classlistWidget->clear();
+	replacelistWidget->clear();
+	QMultiMap<QString, QStringList>::const_iterator i = Thesaurus.constBegin();
+	while (i != Thesaurus.constEnd()) {
+		if(!replacelistWidget->findItems(i.key(),Qt::MatchExactly).count()&&i.key().contains(word)) replacelistWidget->addItem(i.key());
+		++i;
+	}
+}
+
+void ThesaurusDialog::startsWithClicked()
+{
+	QString word=replaceWrdLe->text();
+	word.replace(QRegExp(" \\(.*"), "");
+	classlistWidget->clear();
+	replacelistWidget->clear();
+	QMultiMap<QString, QStringList>::const_iterator i = Thesaurus.lowerBound(word);
+	while (i != Thesaurus.constEnd() && i.key().startsWith(word)) {
+		if(!replacelistWidget->findItems(i.key(),Qt::MatchExactly).count()) replacelistWidget->addItem(i.key());
+		++i;
+	}
 }

@@ -22,10 +22,14 @@ private slots:
 	void classClicked(QListWidgetItem *item);
 	void wordClicked(QListWidgetItem *item);
 	void lookupClicked();
+	void containsClicked();
+	void startsWithClicked();
 
 protected:
 	QPushButton* replaceBt;
 	QPushButton* lookupBt;
+	QPushButton* startsWithBt;
+	QPushButton* containsBt;
 	QPushButton* cancelBt;
 	QLineEdit* searchWrdLe;
 	QLineEdit* replaceWrdLe;
