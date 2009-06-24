@@ -129,12 +129,12 @@ QString latexToPlainWord(QString word) {
 	replaceList.append(QPair<QString, QString> ("\"~","-")); //- ohne Trennung (without separation)
 	//german-babel-package: "- (\- but also normal break),  "= ( like - but also normal break), "" (umbruch ohne bindestrich)
 	replaceList.append(QPair<QString, QString> ("\"-",""));
-	replaceList.append(QPair<QString, QString> ("\"a","ä"));
-	replaceList.append(QPair<QString, QString> ("\"o","ö"));
-	replaceList.append(QPair<QString, QString> ("\"u","ü"));
-	replaceList.append(QPair<QString, QString> ("\"A","Ä"));
-	replaceList.append(QPair<QString, QString> ("\"O","Ö"));
-	replaceList.append(QPair<QString, QString> ("\"U","Ü"));
+	replaceList.append(QPair<QString, QString> ("\"a","ï¿½"));
+	replaceList.append(QPair<QString, QString> ("\"o","ï¿½"));
+	replaceList.append(QPair<QString, QString> ("\"u","ï¿½"));
+	replaceList.append(QPair<QString, QString> ("\"A","ï¿½"));
+	replaceList.append(QPair<QString, QString> ("\"O","ï¿½"));
+	replaceList.append(QPair<QString, QString> ("\"U","ï¿½"));
 	replaceList.append(QPair<QString, QString> ("\"",""));
 	replaceList.append(QPair<QString, QString> ("\\","")); // eliminating backslash which might remain from accents like \"a ...
 
@@ -284,7 +284,8 @@ QString findToken(const QString &line,const QString &token){
 	return "";
 }
 
-QString findToken(const QString &line,const QRegExp &token){
+QString findToken(const QString &line,QRegExp &token){
+//ATTENTION: token is not const because, you can't call cap on const qregexp in qt < 4.5
 	int tagStart=0;
 	QString s=line;
 	tagStart=token.indexIn(line);

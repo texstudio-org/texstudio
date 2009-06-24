@@ -51,18 +51,21 @@ CompletionWord::CompletionWord(const QString &newWord) {
 				inDescription=true;
 				formatStart=visibleWord.length();
 				break;
-			case '>': {
+			case '>': 
 				inDescription=false;
 				descriptiveParts.append(QPair<int, int>(formatStart, visibleWord.length()-formatStart));
 				break;
-				case 'n':
-					visibleWord+="\n";
-					break;
-				}
+			case 'n':
+				visibleWord+="\n";
+				break;	
 			default:
 				;
 			}
 		}
+	if (cursorPos==-1 && !descriptiveParts.isEmpty()) {
+		anchorPos =descriptiveParts[0].first;
+		cursorPos =descriptiveParts[0].first+descriptiveParts[0].second;
+	}
 	if (anchorPos==-1) anchorPos=cursorPos;
 	shownWord=visibleWord;
 	sortWord=word.toLower();
@@ -788,8 +791,13 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 	// estimate width of coming tooltip
 	// rather dirty code
 	QLabel lLabel(0,Qt::ToolTip);
+#if QT_VERSION >= 0x040400
 	lLabel.setForegroundRole(QPalette::ToolTipText);
 	lLabel.setBackgroundRole(QPalette::ToolTipBase);
+#else
+	lLabel.setForegroundRole(QPalette::Text);
+	lLabel.setBackgroundRole(QPalette::AlternateBase);
+#endif
 	lLabel.setPalette(QToolTip::palette());
 	lLabel.setMargin(1 + lLabel.style()->pixelMetric(QStyle::PM_ToolTipLabelFrameWidth, 0, &lLabel));
 	lLabel.setFrameStyle(QFrame::StyledPanel);
@@ -864,10 +872,6 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
 								line.chop(6);
 							}
 						}
-						i=line.indexOf("%<",0);
-						line.replace(i,2,"%|%<");
-						i=line.indexOf("%>",0);
-						line.replace(i,2,"%>%|");
 					}
 					words.append(line.trimmed());
 				}
