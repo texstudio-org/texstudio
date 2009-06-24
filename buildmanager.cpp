@@ -57,7 +57,7 @@ QString BuildManager::cmdToConfigString(LatexCommand cmd){
 }
 
 QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mainFile,int currentline) {
-	str=str+" ";
+	str=str+" "; //end character  so str[i++] is always defined 
 	QString result;
 	result.reserve(2*str.length());
 	for (int i=0; i<str.size(); i++) {
@@ -120,6 +120,7 @@ QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mai
 		} else result+=str.at(i);
 	}
 	//  QMessageBox::information(0,"",str+"->"+result,0);
+	if (result.endsWith(" ")) result.chop(1); //remove additional end character
 	return result;
 }
 
@@ -172,17 +173,6 @@ QString getMiKTeXBinPath() {
 		mikPath+="\\"; //windows
 	return mikPath+"miktex\\bin\\";
 }
-QString searchBaseCommand(QString cmd, QString options, bool mustExist=false) {
-	QString fileName=cmd+".exe";
-	if (BuildManager::findFileInPath(fileName).isEmpty()) {
-		QString mikPath=getMiKTeXBinPath();
-		//QMessageBox::information(0,mikPath,mikPath,0);
-		if (!mikPath.isEmpty() && QFileInfo(mikPath+fileName).exists())
-			return mikPath+fileName+options;
-	} else return cmd+options;
-	if (mustExist) return "";
-	return cmd+options;
-}
 QString findGhostscriptDLL() {
 	//registry
 	for (int type=0; type<=1; type++)
@@ -206,64 +196,74 @@ QString findGhostscriptDLL() {
 }
 #endif
 
+QString searchBaseCommand(const QString &cmd, QString options) {
+#ifdef Q_WS_WIN
+	QString fileName=cmd+".exe";
+#else
+	QString fileName=cmd;
+#endif
+	if (!options.startsWith(" ")) options=" "+options;
+	if (!BuildManager::findFileInPath(fileName).isEmpty()) 
+		return cmd+options; //found in path
+	else {
+		//platform dependent mess
+#ifdef Q_WS_WIN
+		//Windows MikTex
+		QString mikPath=getMiKTeXBinPath();
+		if (!mikPath.isEmpty() && QFileInfo(mikPath+fileName).exists())
+			return mikPath+fileName+options; //found
+#endif
+#ifdef Q_WS_MACX
+		// comments from texmaker: /usr/local/teTeX/bin/i386-apple-darwin-current
+		// /usr/local/teTeX/bin/powerpc-apple-darwin-current
+		// /usr/texbin MACTEX/TEXLIVE2007
+		if (QFileInfo("/usr/bin/texbin/"+fileName).exists())
+			return "/usr/bin/texbin/"+fileName+options;
+		if (QFileInfo("/usr/local/bin/"+fileName).exists())
+			return "/usr/local/bin/"+fileName+options;
+#endif		
+	} 
+	return "";
+}
+
+
 QString BuildManager::guessCommandName(LatexCommand cmd) {
 	//todo: remove default options and call defaultCommandOptions instead
-#ifdef Q_WS_MACX
-	// /usr/local/teTeX/bin/i386-apple-darwin-current
-	// /usr/local/teTeX/bin/powerpc-apple-darwin-current
-	// /usr/texbin MACTEX/TEXLIVE2007
+
+//-------------User Commands--------------------
+//no need to perform next checks
 	switch (cmd) {
-	case CMD_LATEX:
-		return "\"/usr/texbin/latex\" -interaction=nonstopmode %.tex";
-	case CMD_DVIPS:
-		return "\"/usr/texbin/dvips\" -o %.ps %.dvi";
-	case CMD_DVIPNG:
-		return "\"/usr/texbin/dvipng\" -T tight -D 120 %.dvi";
-	case CMD_PS2PDF:
-		return "\"/usr/local/bin/ps2pdf\" %.ps";
-	case CMD_MAKEINDEX:
-		return "\"/usr/texbin/makeindex\" %.idx";
-	case CMD_BIBTEX:
-		return "\"/usr/texbin/bibtex\" %.aux";
-	case CMD_PDFLATEX:
-		return "\"/usr/texbin/pdflatex\" -interaction=nonstopmode %.tex";
-	case CMD_DVIPDF:
-		return "\"/usr/texbin/dvipdfm\" %.dvi";
-	case CMD_METAPOST:
-		return "\"/usr/texbin/mpost\" --interaction nonstopmode ?me)";
-	case CMD_VIEWDVI:
-		return "open %.dvi";
-	case CMD_VIEWPS:
-		return "open %.ps";
-	case CMD_VIEWPDF:
-		return "open %.pdf";
-	case CMD_GHOSTSCRIPT:
-		return "/usr/local/bin/gs";
-	case CMD_USER_QUICK: return "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex|xdvi %.dvi";
-	case CMD_USER_PRECOMPILE: return "";
-	case CMD_MAXIMUM_COMMAND_VALUE: return "";
+		case CMD_USER_QUICK: 
+			return "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex|xdvi %.dvi";
+		case CMD_USER_PRECOMPILE:
+		case CMD_MAXIMUM_COMMAND_VALUE:
+			return "";
+		default:;
+	}
+				
+	
+//-------------Latex Base Commands ---------------------
+//They're the same on every platform and we will choose the path default if they exists
+	QString baseCommand  = baseCommandName(cmd); //platform independent name
+	QString defaultOptions= defaultCommandOptions(cmd); //default parameters
+	if (!baseCommand.isEmpty()){
+		//search it
+		QString bestCommand = searchBaseCommand(baseCommand,defaultOptions);
+		if (!bestCommand.isEmpty()) return bestCommand;
+	}
+	
+//-------------Viewer or WinGhostScript----------------------
+//Platform dependant
+#ifdef Q_WS_MACX
+	switch (cmd) {
+		case CMD_VIEWDVI: return "open %.dvi";
+		case CMD_VIEWPS: return "open %.ps";
+		case CMD_VIEWPDF: return "open %.pdf";
+		default:;
 	}
 #endif
 #ifdef Q_WS_WIN
 	switch (cmd) {
-	case CMD_LATEX:
-		return searchBaseCommand("latex"," -interaction=nonstopmode %.tex");
-	case CMD_DVIPS:
-		return searchBaseCommand("dvips"," -o %.ps %.dvi");
-	case CMD_DVIPNG:
-		return searchBaseCommand("dvipng"," -T tight -D 120 %.dvi");
-	case CMD_PS2PDF:
-		return searchBaseCommand("ps2pdf"," %.ps");
-	case CMD_MAKEINDEX:
-		return searchBaseCommand("makeindex"," %.idx");
-	case CMD_BIBTEX:
-		return searchBaseCommand("bibtex"," %");
-	case CMD_PDFLATEX:
-		return searchBaseCommand("pdflatex"," -interaction=nonstopmode %.tex");
-	case CMD_DVIPDF:
-		return searchBaseCommand("dvipdfm"," %.dvi");
-	case CMD_METAPOST:
-		return searchBaseCommand("mpost"," --interaction nonstopmode ?me)");
 	case CMD_VIEWDVI: {
 		const QString yapOptions = " -1 -s @?ame \"?am.dvi\"";
 		QString def=W32_FileAssociation(".dvi");
@@ -312,69 +312,54 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 			return "\"C:/Program Files/gs/gs8.61/bin/gswin32c.exe\"";
 		else break;
 	}
-	case CMD_USER_QUICK: return "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex|xdvi %.dvi";
-	case CMD_USER_PRECOMPILE: return "";
-	case CMD_MAXIMUM_COMMAND_VALUE: return "";
+	default:;
 	}
 #endif
 #ifdef Q_WS_X11
 // xdvi %.dvi  -sourceposition @:%.tex
 // kdvi "file:%.dvi#src:@ %.tex"
 	switch (cmd) {
-	case CMD_LATEX:
-		return "latex -interaction=nonstopmode %.tex";
-	case CMD_DVIPS:
-		return "dvips -o %.ps %.dvi";
-	case CMD_DVIPNG:
-		return "dvipng -T tight -D 120 %.dvi";
-	case CMD_PS2PDF:
-		return "ps2pdf %.ps";
-	case CMD_MAKEINDEX:
-		return "makeindex %.idx";
-	case CMD_BIBTEX:
-		return "bibtex %.aux";
-	case CMD_PDFLATEX:
-		return "pdflatex -interaction=nonstopmode %.tex";
-	case CMD_DVIPDF:
-		return "dvipdfm %.dvi";
-	case CMD_METAPOST:
-		return "mpost --interaction nonstopmode ?me)";
 	case CMD_VIEWDVI:
 		switch (x11desktop_env()) {
-		case 3:
-			return "kdvi %.dvi";
-		case 4:
-			return "okular %.dvi";
-		default:
-			return "evince %.dvi";
+		case 3:	return "kdvi %.dvi";
+		case 4:	return "okular %.dvi";
+		default:return "evince %.dvi";
 		};
 	case CMD_VIEWPS:
 		switch (x11desktop_env()) {
-		case 3:
-			return "kghostview %.ps";
-		case 4:
-			return "okular %.ps";
-		default:
-			return "evince %.ps";
+		case 3: return "kghostview %.ps";
+		case 4:	return "okular %.ps";
+		default:return "evince %.ps";
 		};
 	case CMD_VIEWPDF:
 		switch (x11desktop_env()) {
-		case 3:
-			return "kpdf %.pdf";
-		case 4:
-			return "okular %.pdf";
-		default:
-			return "evince %.pdf";
+		case 3: return "kpdf %.pdf";
+		case 4:	return "okular %.pdf";
+		default:return "evince %.pdf";
 		};
-	case CMD_GHOSTSCRIPT:
-		return "gs";
-	case CMD_USER_QUICK: return "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex|xdvi %.dvi";
-	case CMD_USER_PRECOMPILE: return "";
-	case CMD_MAXIMUM_COMMAND_VALUE: return "";
+	default:;
 	}
 #endif
 	return "";
 }
+//returns a platform independent base name if it exists
+QString BuildManager::baseCommandName(LatexCommand cmd){
+	switch(cmd) {
+		case CMD_LATEX: return "latex";
+		case CMD_DVIPS: return "dvips";
+		case CMD_DVIPNG: return "dvipng";
+		case CMD_PS2PDF: return "ps2pdf";
+		case CMD_MAKEINDEX: return "makeindex";
+		case CMD_BIBTEX: return "bibtex";
+		case CMD_PDFLATEX: return "pdflatex";
+		case CMD_DVIPDF: return "dvipdf";
+		case CMD_METAPOST: return "mpost";
+		/*case CMD_VIEWDVI: case CMD_VIEWPS:  case CMD_VIEWPDF: 
+			viewer are platform dependent*/
+		case CMD_GHOSTSCRIPT: return "gs";
+		default: return "";
+	}
+} 
 QString BuildManager::defaultCommandOptions(LatexCommand cmd){
 	switch (cmd){
 		case CMD_LATEX: return "-interaction=nonstopmode %.tex";
@@ -430,11 +415,19 @@ void BuildManager::readSettings(const QSettings &settings){
 			quickmode=5;
 		else quickmode=1; //texmaker default
 	}	
+	if (settings.contains("Tools/Dvi2Png Mode")) 
+		dvi2pngMode=(Dvi2PngMode) settings.value("Tools/Dvi2Png Mode",1).toInt(); //load stored value
+	else {
+		if (hasLatexCommand(CMD_DVIPNG)) dvi2pngMode = DPM_DVIPNG_FOLLOW; //best/fastest mode
+		else if (hasLatexCommand(CMD_DVIPS) && hasLatexCommand(CMD_GHOSTSCRIPT)) dvi2pngMode = DPM_DVIPS_GHOSTSCRIPT; //compatible mode
+		else dvi2pngMode = DPM_DVIPNG_FOLLOW; //won't work
+	}
 }
 void BuildManager::saveSettings(QSettings &settings){
 	for (LatexCommand i=CMD_LATEX; i < CMD_MAXIMUM_COMMAND_VALUE;++i)
 		settings.setValue(cmdToConfigString(i),commands[i]);
 	settings.setValue("Tools/Quick Mode",quickmode);
+	settings.setValue("Tools/Dvi2Png Mode",dvi2pngMode);
 }
 
 void BuildManager::setLatexCommand(LatexCommand cmd, const QString &cmdString){
@@ -482,9 +475,10 @@ QTemporaryFile* BuildManager::temporaryTexFile(){
 	return temp;
 }
 
-//the preview works in 3 steps.
-//First latex is called
-//Then dvips to convert it to ps
+//there are 3 ways to generate a preview png:
+//1. latex is called => dvipng is called after latex finished and converts the dvi
+//2. latex is called and dvipng --follow is called at the same time, and will manage the wait time on its own
+//3. latex is called => dvips converts .dvi to .ps => ghostscript is called and created final png
 //Then ghostscript to convert it to 
 void BuildManager::preview(const QString &preamble, const QString &text){
     // write to temp file
@@ -509,35 +503,62 @@ void BuildManager::preview(const QString &preamble, const QString &text){
 	connect(p1,SIGNAL(finished(int)),this,SLOT(latexPreviewCompleted(int)));
 	p1->startCommand();
 	
-	
-	p1->waitForStarted();
-	// dvi -> png
-	//follow mode is a tricky features which allows dvipng to run while tex isn't finished
-	ProcessX *p2 = newProcess(CMD_DVIPNG,"--follow", ffn);
-	connect(p2,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
-	p2->startCommand();		
+	if (dvi2pngMode==DPM_DVIPNG_FOLLOW) {
+		p1->waitForStarted();
+		// dvi -> png
+		//follow mode is a tricky features which allows dvipng to run while tex isn't finished
+		ProcessX *p2 = newProcess(CMD_DVIPNG,"--follow", ffn);
+		connect(p2,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
+		p2->startCommand();
+	}
 }
 
-
+//latex has finished the dvi creation
+//now either dvips or dvipng is necessary if not already running
 void BuildManager::latexPreviewCompleted(int status){
-	/*ProcessX* p1=qobject_cast<ProcessX*> (sender());
-	if (!p1) return;
-	// dvi -> png
-	ProcessX *p2 = newProcess(CMD_DVIPNG,p1->getFile());
-	connect(p2,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
-	p2->startCommand();	*/
+	Q_UNUSED(status);
+	if (dvi2pngMode==DPM_DVIPNG) {
+		ProcessX* p1=qobject_cast<ProcessX*> (sender());
+		if (!p1) return;
+		// dvi -> png
+		ProcessX *p2 = newProcess(CMD_DVIPNG,p1->getFile());
+		connect(p2,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
+		p2->startCommand();	
+	}
+	if (dvi2pngMode==DPM_DVIPS_GHOSTSCRIPT) {
+		ProcessX* p1=qobject_cast<ProcessX*> (sender());
+		if (!p1) return;
+		// dvi -> ps
+		ProcessX *p2 = newProcess(CMD_DVIPS,p1->getFile());
+		connect(p2,SIGNAL(finished(int)),this,SLOT(dvi2psPreviewCompleted(int)));
+		p2->startCommand();	
+	}
 }
+
+//dvi to ps conversion is finished, call ghostscript to make a useable png from it 
+void BuildManager::dvi2psPreviewCompleted(int status){
+	Q_UNUSED(status);
+	ProcessX* p2=qobject_cast<ProcessX*> (sender());
+	if (!p2) return;
+	// ps -> png, ghostscript is quite, safe, will create 24-bit png 
+	ProcessX *p3 = newProcess(CMD_GHOSTSCRIPT,"-q -dSAFER -dBATCH -dNOPAUSE -sDEVICE=png16m -dEPSCrop -sOutputFile=\"?am)1.png\"  \"?am.ps\"",p2->getFile());
+	connect(p3,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
+	p3->startCommand();	
+}
+
 void BuildManager::conversionPreviewCompleted(int status){
+	Q_UNUSED(status);
 	ProcessX* p2=qobject_cast<ProcessX*> (sender());
 	if (!p2) return;
 	// put image in preview
-	QString fn=QFileInfo(p2->getFile()).completeBaseName();
-	QFile file(QDir::tempPath()+"/"+fn+"1.png");
-    if(file.exists()){
-		emit previewAvailable(QDir::tempPath()+"/"+fn+"1.png",previewFileNameToText[p2->getFile()]);
-    }
+	QString processedFile=p2->getFile();
+	QString fn=parseExtendedCommandLine("?am)1.png",processedFile);
+	if(QFileInfo(fn).exists()) 
+		emit previewAvailable(fn,previewFileNameToText[processedFile]);
 }
 
+
+//DDE things
 #ifdef Q_WS_WIN
 #include "windows.h"
 bool BuildManager::executeDDE(QString ddePseudoURL) {
