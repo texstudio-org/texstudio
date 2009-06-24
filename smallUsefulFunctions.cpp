@@ -129,12 +129,12 @@ QString latexToPlainWord(QString word) {
 	replaceList.append(QPair<QString, QString> ("\"~","-")); //- ohne Trennung (without separation)
 	//german-babel-package: "- (\- but also normal break),  "= ( like - but also normal break), "" (umbruch ohne bindestrich)
 	replaceList.append(QPair<QString, QString> ("\"-",""));
-	replaceList.append(QPair<QString, QString> ("\"a","�"));
-	replaceList.append(QPair<QString, QString> ("\"o","�"));
-	replaceList.append(QPair<QString, QString> ("\"u","�"));
-	replaceList.append(QPair<QString, QString> ("\"A","�"));
-	replaceList.append(QPair<QString, QString> ("\"O","�"));
-	replaceList.append(QPair<QString, QString> ("\"U","�"));
+	replaceList.append(QPair<QString, QString> ("\"a","\xE4"));
+	replaceList.append(QPair<QString, QString> ("\"o","\xF6"));
+	replaceList.append(QPair<QString, QString> ("\"u","\xFC"));
+	replaceList.append(QPair<QString, QString> ("\"A","\xC4"));
+	replaceList.append(QPair<QString, QString> ("\"O","\xD6"));
+	replaceList.append(QPair<QString, QString> ("\"U","\xDC"));
 	replaceList.append(QPair<QString, QString> ("\"",""));
 	replaceList.append(QPair<QString, QString> ("\\","")); // eliminating backslash which might remain from accents like \"a ...
 
