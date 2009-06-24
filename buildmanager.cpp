@@ -275,7 +275,7 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 			}
 			return def;
 		}
-		def=searchBaseCommand("yap",yapOptions,true);
+		def=searchBaseCommand("yap",yapOptions);//,true);
 		if (!def.isEmpty()) return def;
 		else if (QFileInfo("C:/Program Files/MiKTeX 2.7/miktex/bin/yap.exe").exists())
 			return "\"C:/Program Files/MiKTeX 2.7/miktex/bin/yap.exe\" " + yapOptions;
