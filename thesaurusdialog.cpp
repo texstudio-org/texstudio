@@ -13,23 +13,38 @@ ThesaurusDialog::ThesaurusDialog(QWidget *parent)
 	containsBt=new QPushButton(tr("contains ..."),this);
 	cancelBt=new QPushButton(tr("cancel"),this);
 	searchWrdLe=new QLineEdit("",this);
-	searchWrdLe->setEnabled(false);
 	replaceWrdLe=new QLineEdit("",this);
-	replaceWrdLe->setEnabled(true);
+
+	//replaceWrdLe->setEnabled(false);
 	classlistWidget = new QListWidget(this);
 	replacelistWidget = new QListWidget(this);
 	replacelistWidget->setSortingEnabled(true);
 
+	replacelistWidget->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Fixed);
+	classlistWidget->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Fixed);
+	searchWrdLe->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Fixed);
+	replaceWrdLe->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Fixed);
+
 	QGridLayout *gridLayout=new QGridLayout(this);
-	gridLayout->addWidget(searchWrdLe,0,0,1,1,Qt::AlignLeft);
-	gridLayout->addWidget(replaceWrdLe,0,1,1,1,Qt::AlignLeft);
-	gridLayout->addWidget(replaceBt,0,2,1,1,Qt::AlignLeft);
-	gridLayout->addWidget(lookupBt,1,2,1,1,Qt::AlignLeft);
-	gridLayout->addWidget(startsWithBt,2,2,1,1,Qt::AlignLeft);
-	gridLayout->addWidget(containsBt,3,2,1,1,Qt::AlignLeft);
-	gridLayout->addWidget(cancelBt,4,2,1,1,Qt::AlignLeft);
-	gridLayout->addWidget(classlistWidget,1,0,5,1,Qt::AlignLeft);
-	gridLayout->addWidget(replacelistWidget,1,1,5,1,Qt::AlignLeft);
+	gridLayout->addWidget(searchWrdLe,0,0);
+	gridLayout->addWidget(replaceWrdLe,0,1);
+	gridLayout->addWidget(replaceBt,0,2,Qt::AlignTop);
+	gridLayout->addWidget(classlistWidget,1,0,Qt::AlignTop);
+	gridLayout->addWidget(replacelistWidget,1,1,Qt::AlignTop);
+	gridLayout->setColumnStretch(0,10);
+	gridLayout->setColumnStretch(1,10);
+	gridLayout->setRowStretch(1,10);
+
+	QVBoxLayout *verticalLayout=new QVBoxLayout();
+	verticalLayout->addWidget(lookupBt,0,Qt::AlignTop);
+	verticalLayout->addWidget(startsWithBt,0,Qt::AlignTop);
+	verticalLayout->addWidget(containsBt,0,Qt::AlignTop);
+	verticalLayout->addWidget(cancelBt,0,Qt::AlignTop);
+	verticalLayout->insertStretch(-1,10);
+
+	gridLayout->addItem(verticalLayout,1,2);
+
+	searchWrdLe->setEnabled(false);
 
 	setLayout(gridLayout);
 
