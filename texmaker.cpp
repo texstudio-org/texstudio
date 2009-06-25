@@ -1867,7 +1867,7 @@ void Texmaker::updateStructureForFile(const QString& fileName){
 		//// all sections ////
 		for(int header=0;header<struct_level.count();header++){
 			s=edView->editor->text(i);
-			static QRegExp regexp = QRegExp("\\\\"+struct_level[header]+"\\*?[\\{\\[]");
+			QRegExp regexp = QRegExp("\\\\"+struct_level[header]+"\\*?[\\{\\[]");
 			s=findToken(s,regexp);
 			if (s!="") {
 				s=extractSectionName(s);
