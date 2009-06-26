@@ -109,6 +109,7 @@ bool QLineMarkPanel::event(QEvent *e) {
         }
         if (markToolTip.isEmpty()) QToolTip::hideText();
         else QToolTip::showText(helpEvent->globalPos(), markToolTip);
+		e->setAccepted(true);
     }
     return QWidget::event(e);
 }

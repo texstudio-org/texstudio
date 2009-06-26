@@ -20,8 +20,8 @@ ThesaurusDialog::ThesaurusDialog(QWidget *parent)
 	replacelistWidget = new QListWidget(this);
 	replacelistWidget->setSortingEnabled(true);
 
-	replacelistWidget->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Fixed);
-	classlistWidget->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Fixed);
+	replacelistWidget->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Expanding);
+	classlistWidget->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Expanding);
 	searchWrdLe->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Fixed);
 	replaceWrdLe->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Fixed);
 
@@ -29,8 +29,8 @@ ThesaurusDialog::ThesaurusDialog(QWidget *parent)
 	gridLayout->addWidget(searchWrdLe,0,0);
 	gridLayout->addWidget(replaceWrdLe,0,1);
 	gridLayout->addWidget(replaceBt,0,2,Qt::AlignTop);
-	gridLayout->addWidget(classlistWidget,1,0,Qt::AlignTop);
-	gridLayout->addWidget(replacelistWidget,1,1,Qt::AlignTop);
+	gridLayout->addWidget(classlistWidget,1,0);
+	gridLayout->addWidget(replacelistWidget,1,1);
 	gridLayout->setColumnStretch(0,10);
 	gridLayout->setColumnStretch(1,10);
 	gridLayout->setRowStretch(1,10);

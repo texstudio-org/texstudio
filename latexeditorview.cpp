@@ -504,7 +504,7 @@ void LatexEditorView::dictionaryReloaded() {
 void LatexEditorView::mouseHovered(QPoint pos){
 	// reimplement to what is necessary
 
-        if(pos.x()<0) return;  // hover event on panel
+	if(pos.x()<0) return;  // hover event on panel
 	QDocumentCursor cursor;
 	cursor=editor->cursorForPosition(editor->mapToContents(pos));
 	QString line=cursor.line().text();
