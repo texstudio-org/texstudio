@@ -17,7 +17,6 @@
 #include "qdocumentline.h"
 #include "qdocumentcommand.h"
 
-
 #include "qlinemarksinfocenter.h"
 #include "qformatfactory.h"
 #include "qlanguagedefinition.h"
@@ -405,6 +404,70 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		}
 	}
 
+	// updating structure information of document
+	for (int i=linenr; i<linenr+count; i++) {
+		QDocumentLine line = editor->document()->line(i);
+		QString lineText = line.text();
+		QDocumentLineHandle* dlh=line.handle();
+
+		QRegExp rxRef("(\\\\ref|\\\\pageref)\\{(.+)\\}");
+		int pos = 0;
+		QString ref;
+
+		// remove all references of current line
+		QMultiHash<QString, QDocumentLineHandle*>::iterator it = containedReferences.begin();
+		while (it != containedReferences.end()) {
+			if (it.value() == dlh)
+				it = containedLabels.erase(it);
+			else
+				++it;
+		}
+		// add references of current line
+		while(pos=rxRef.indexIn(lineText, pos)!=-1){
+			ref=rxRef.cap(2);
+			containedReferences.insert(ref,dlh);
+			pos += rxRef.matchedLength();
+		}
+
+		// remove all labels of current line
+		QRegExp rxLabel("\\\\label\\{(.+)\\}");
+		it = containedLabels.begin();
+		while (it != containedLabels.end()) {
+			if (it.value() == dlh){
+				QList<QDocumentLineHandle*> lst=containedReferences.values(it.key());
+				foreach(QDocumentLineHandle* elem,lst){
+					QDocumentLine mLine(elem);
+					if(mLine.lineNumber()>=linenr&&mLine.lineNumber()<linenr+count) continue;
+					int posRef=rxRef.indexIn(mLine.text());
+					if(posRef!=-1) {
+						if(containedLabels.contains(ref)) mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referencePresentFormat));
+						else mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMissingFormat));
+					}
+				}
+				it = containedLabels.erase(it);
+			} else
+				++it;
+		}
+		// add labels of current line
+		pos=0;
+		while(pos=rxLabel.indexIn(lineText, pos)!=-1){
+			ref=rxLabel.cap(1);
+			containedLabels.insert(ref,dlh);
+			pos += rxLabel.matchedLength();
+			// look for corresponding reeferences and adapt format respectively
+			QList<QDocumentLineHandle*> lst=containedReferences.values(ref);
+			foreach(QDocumentLineHandle* elem,lst){
+				QDocumentLine mLine(elem);
+				if(mLine.lineNumber()>=linenr&&mLine.lineNumber()<linenr+count) continue;
+				int posRef=rxRef.indexIn(mLine.text());
+				if(posRef!=-1) {
+					mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referencePresentFormat));
+				}
+
+			}
+		}
+	}
+	// spell checking
 	if (!speller || !QDocument::formatFactory()) return;
 	int tccFormat=QDocument::formatFactory()->id("temporaryCodeCompletion");
 	for (int i=linenr; i<linenr+count; i++) {
@@ -415,6 +478,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		if (!speller->isActive()) continue;
 
 		QString lineText = line.text();
+
 		QString word;
 		int start=0;
 		int wordstart;
@@ -426,8 +490,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			} else if (status==NW_REFERENCE) {
 				// provisorium
 				QString ref=lineText.mid(wordstart,start-wordstart);
-				int l=editor->document()->findLineContaining("\\label{"+ref+"}",0,Qt::CaseSensitive);
-				if(l>0) line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
+				//int l=editor->document()->findLineContaining("\\label{"+ref+"}",0,Qt::CaseSensitive);
+				if(containedLabels.contains(ref)) line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
 				else line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMissingFormat));
 			} else if (status==NW_COMMENT) break;
 			else if (word.length()>=3 && !speller->check(word)) {
@@ -435,8 +499,36 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				line.addOverlay(QFormatRange(wordstart,start-wordstart,speller->spellcheckErrorFormat));
 			}
 	}
+	editor->document()->markViewDirty();
 }
 void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {
+	// delete Labels
+	QRegExp rxRef("(\\\\ref|\\\\pageref)\\{(.+)\\}");
+	QMultiHash<QString, QDocumentLineHandle*>::iterator mIt = containedLabels.begin();
+	while (mIt != containedLabels.end()) {
+		if (mIt.value() == l){
+			QString ref=mIt.key();
+			mIt = containedLabels.erase(mIt);
+			QList<QDocumentLineHandle*> lst=containedReferences.values(ref);
+			foreach(QDocumentLineHandle* elem,lst){
+				QDocumentLine mLine(elem);
+				int posRef=rxRef.indexIn(mLine.text());
+				if(posRef!=-1) {
+					if(containedLabels.contains(ref)) mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referencePresentFormat));
+					else mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMissingFormat));
+				}
+			}
+		} else
+			++mIt;
+	}
+	// delete References
+	mIt = containedReferences.begin();
+	while (mIt != containedReferences.end()) {
+		if (mIt.value() == l){
+			mIt = containedReferences.erase(mIt);
+		} else
+			++mIt;
+	}
 	QHash<QDocumentLineHandle*, int>::iterator it;
 	while ((it=lineToLogEntries.find(l))!=lineToLogEntries.end()) {
 		logEntryToLine.remove(it.value());
@@ -453,6 +545,7 @@ void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {
 			//    QMessageBox::information(0,"trig",0);
 		}
 	emit lineHandleDeleted(l);
+	editor->document()->markViewDirty();
 }
 void LatexEditorView::spellCheckingReplace() {
 	QAction* action = qobject_cast<QAction*>(QObject::sender());
