@@ -771,6 +771,8 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	EditorView->setCurrentIndex(EditorView->indexOf(edit));
 
 	edit->environmentFormat=m_formats->id("environment");
+	edit->referencePresentFormat=m_formats->id("referencePresent");
+	edit->referenceMissingFormat=m_formats->id("referenceMissing");
 
 	connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(NewDocumentStatus(bool)));
 	connect(edit->lineMarkPanel, SIGNAL(toolTipRequested(int,int)),this,SLOT(lineMarkToolTip(int,int)));
@@ -787,7 +789,7 @@ void Texmaker::updateEditorSetting(LatexEditorView *edit) {
 	edit->lineFoldPanel->setChecked(folding);
 	edit->lineChangePanel->setChecked(showlinestate);
 	edit->statusPanel->setChecked(showcursorstate);
-        edit->editor->setDisplayModifyTime(configManager.displayModifyTime);
+	edit->editor->setDisplayModifyTime(configManager.displayModifyTime);
 }
 
 LatexEditorView* Texmaker::getEditorFromFileName(const QString &fileName){

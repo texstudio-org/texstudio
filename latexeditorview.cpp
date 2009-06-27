@@ -423,6 +423,12 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			// hack to color the environment given in \begin{environment}...
 			if (status==NW_ENVIRONMENT) {
 				line.addOverlay(QFormatRange(wordstart,start-wordstart,environmentFormat));
+			} else if (status==NW_REFERENCE) {
+				// provisorium
+				QString ref=lineText.mid(wordstart,start-wordstart);
+				int l=editor->document()->findLineContaining("\\label{"+ref+"}",0,Qt::CaseSensitive);
+				if(l>0) line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
+				else line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMissingFormat));
 			} else if (status==NW_COMMENT) break;
 			else if (word.length()>=3 && !speller->check(word)) {
 				if(word.endsWith('.')) start--;

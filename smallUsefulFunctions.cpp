@@ -234,10 +234,12 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 
 
 NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordStartIndex, bool returnCommands,bool abbreviations) {
-	static const QStringList optionCommands = QStringList() << "\\ref" << "\\label"  << "\\includegraphics" << "\\usepackage" << "\\documentclass" << "\\include" << "\\input";
-	static const QStringList environmentCommands = QStringList() << "\\begin" << "\\end"
+	const QStringList optionCommands = QStringList() << "\\ref" << "\\pageref" << "\\label"  << "\\includegraphics" << "\\usepackage" << "\\documentclass" << "\\include" << "\\input";
+	const QStringList refCommands = QStringList() << "\\ref" << "\\pageref" ;
+	const QStringList environmentCommands = QStringList() << "\\begin" << "\\end"
 	        << "\\newenvironment" << "\\renewenvironment";
 
+	int reference=-1;
 	QString lastCommand="";
 	while ((wordStartIndex = nextToken(line, index,abbreviations))!=-1) {
 		outWord=line.mid(wordStartIndex,index-wordStartIndex);
@@ -247,16 +249,26 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 			return NW_COMMENT; //return comment start
 		case '\\':
 			if (returnCommands) return NW_COMMAND;
-			if (!optionCommands.contains(lastCommand)) lastCommand=outWord;
+			if (!optionCommands.contains(lastCommand))
+				lastCommand=outWord;
 			break;
 		case '{':
 			break; //ignore
 		case '}':
+			if (refCommands.contains(lastCommand)){
+				wordStartIndex=reference;
+				--index;
+				return NW_REFERENCE;
+			}
 			lastCommand="";
 			break;//command doesn't matter anymore
 		default:
 			if (outWord.contains("\\")||outWord.contains("\""))
 				outWord=latexToPlainWord(outWord); //remove special chars
+			if (refCommands.contains(lastCommand)&&reference==-1){
+				reference=wordStartIndex;
+				break;
+			}
 			if (optionCommands.contains(lastCommand))
 				; //ignore command options
 			else if (environmentCommands.contains(lastCommand))
