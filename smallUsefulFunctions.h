@@ -34,7 +34,7 @@ int x11desktop_env();
 //there are these possible kind of tokens % (which starts a comment), { or } (as parantheses), \.* (command) or .* (text)
 //index returns the index of the first character after the word
 //return: start index of the token (or -1 if last)
-int nextToken(const QString &line,int &index);
+int nextToken(const QString &line,int &index,bool abbreviation=false);
 
 
 enum NextWordFlag {
@@ -53,7 +53,7 @@ enum NextWordFlag {
 //                "    "  is false it only returns normal text (NW_TEXT, without things like filenames after \include), environment names
 //                          (NW_ENVIRONMENT, they are treated as text in the other mode) and % (NW_COMMENT)       [or NW_NOTHING at the end]
 //returns the type of outWord
-NextWordFlag nextWord(const QString & line, int &index, QString &outWord, int &wordStartIndex, bool returnCommands);
+NextWordFlag nextWord(const QString & line, int &index, QString &outWord, int &wordStartIndex, bool returnCommands,bool abbreviations=false);
 
 //searches the next text words and ignores command options, environments or comments
 //returns false if none is found
