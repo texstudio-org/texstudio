@@ -217,12 +217,12 @@ void OutputViewWidget::setMessage(const QString &message){
 void OutputViewWidget::insertMessageLine(const QString &message){
 	OutputTextEdit->insertLine(message);
 }
-void OutputViewWidget::resetMessages(){
+void OutputViewWidget::resetMessages(bool noTabChange){
 	OutputTextEdit->clear();
-	logViewerTabBar->setCurrentIndex(0);
+	if(!noTabChange) logViewerTabBar->setCurrentIndex(0);
 }
-void OutputViewWidget::resetMessagesAndLog(){
-	resetMessages();
+void OutputViewWidget::resetMessagesAndLog(bool noTabChange){
+	resetMessages(noTabChange);
 	logpresent=false;
 }
 void OutputViewWidget::selectLogEntry(int logEntryNumber, bool makeVisible){
@@ -234,9 +234,9 @@ void OutputViewWidget::selectLogEntry(int logEntryNumber, bool makeVisible){
 	OutputTable2->selectRow(logEntryNumber);
 	OutputLogTextEdit->setCursorPosition(logModel->at(logEntryNumber).logline, 0);
 }
-void OutputViewWidget::showLogOrErrorList(){
+void OutputViewWidget::showLogOrErrorList(bool noTabChange){
 	if (!isVisible()) show();
-	if (OutputLayout->currentIndex()!=LAYOUT_PAGE_LOG && OutputLayout->currentIndex()!=LAYOUT_PAGE_MESSAGES) 
+	if (OutputLayout->currentIndex()!=LAYOUT_PAGE_LOG && OutputLayout->currentIndex()!=LAYOUT_PAGE_ERRORS &&!noTabChange)
 		logViewerTabBar->setCurrentIndex(LAYOUT_PAGE_LOG);
 }
 void OutputViewWidget::showErrorListOrLog(){

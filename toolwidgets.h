@@ -45,10 +45,10 @@ public:
 	void setMessage(const QString &message); //set the message text (don't change page and no auto-show)
 	void insertMessageLine(const QString &message); //inserts the message text (don't change page and no auto-show)
 public slots:
-	void resetMessages(); //remove all messages and jumps to the message page (stays hidden if not visible)
-	void resetMessagesAndLog();
+	void resetMessages(bool noTabChange=false); //remove all messages and jumps to the message page (stays hidden if not visible)
+	void resetMessagesAndLog(bool noTabChange=false);
 	void selectLogEntry(int logEntryNumber, bool makeVisible=true);
-	void showLogOrErrorList(); //this will show the log unless the error list is open
+	void showLogOrErrorList(bool noTabChange=false); //this will show the log unless the error list is open
 	void showErrorListOrLog(); //this will show the error list unless log is open
 	void showPreview();
 	void gotoLogEntry(int logEntryNumber);
