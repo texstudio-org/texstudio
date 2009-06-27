@@ -529,9 +529,13 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			if(command=="\\ref"){
 				l=editor->document()->findLineContaining("\\label{"+ref+"}",0,Qt::CaseSensitive);
 				QString mText="";
-				for(int i=qMax(0,l-2);i<qMin(editor->document()->lines(),l+3);i++){
-					mText+=editor->document()->line(i).text();
-					if(i<l+2) mText+="\n";
+				if(l<0){
+					mText=tr("label missing!");
+				} else {
+					for(int i=qMax(0,l-2);i<qMin(editor->document()->lines(),l+3);i++){
+						mText+=editor->document()->line(i).text();
+						if(i<l+2) mText+="\n";
+					}
 				}
 				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), mText);
 			}else{
