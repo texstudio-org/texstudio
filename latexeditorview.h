@@ -97,7 +97,7 @@ public:
 	
 	static int hideTooltipWhenLeavingLine;
 
-	int environmentFormat;
+	int environmentFormat,referencePresentFormat,referenceMissingFormat;
 private:
 	friend class DefaultInputBinding;
 	static int bookMarkId(int bookmarkNumber);

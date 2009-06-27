@@ -112,4 +112,22 @@
         <waveUnderline>false</waveUnderline>
         <foreground>#000080</foreground>
     </format>
+	<format id="referencePresent" >
+		<bold>false</bold>
+		<italic>false</italic>
+		<overline>false</overline>
+		<underline>false</underline>
+		<strikeout>false</strikeout>
+		<waveUnderline>false</waveUnderline>
+		<foreground>#008000</foreground>
+	</format>
+	<format id="referenceMissing" >
+		<bold>false</bold>
+		<italic>false</italic>
+		<overline>false</overline>
+		<underline>false</underline>
+		<strikeout>false</strikeout>
+		<waveUnderline>true</waveUnderline>
+		<foreground>#008000</foreground>
+	</format>
 </QXF>
