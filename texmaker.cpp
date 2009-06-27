@@ -2896,6 +2896,7 @@ void Texmaker::RightDelimiter() {
 
 ///////////////TOOLS////////////////////
 void Texmaker::runCommand(BuildManager::LatexCommand cmd,bool waitendprocess,bool showStdout,QString fn){
+	if(cmd==BuildManager::CMD_LATEX||cmd==BuildManager::CMD_PDFLATEX) ClearMarkers();
 	runCommand(buildManager.getLatexCommand(cmd),waitendprocess,showStdout,fn);
 }
 void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,QString fn) {
