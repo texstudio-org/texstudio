@@ -313,6 +313,7 @@ private slots:
 	void PreviousBadBox();
 	bool NoLatexErrors();
 	bool LogExists();
+	void ClearMarkers();
 /////
 	void LatexHelp();
 	void UserManualHelp();
