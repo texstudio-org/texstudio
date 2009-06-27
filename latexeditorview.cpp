@@ -419,13 +419,15 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		int start=0;
 		int wordstart;
 		int status;
-		while (status=nextWord(lineText,start,word,wordstart,false))
+		while (status=nextWord(lineText,start,word,wordstart,false,true))
 			// hack to color the environment given in \begin{environment}...
 			if (status==NW_ENVIRONMENT) {
 				line.addOverlay(QFormatRange(wordstart,start-wordstart,environmentFormat));
 			} else if (status==NW_COMMENT) break;
-			else if (word.length()>=3 && !speller->check(word))
+			else if (word.length()>=3 && !speller->check(word)) {
+				if(word.endsWith('.')) start--;
 				line.addOverlay(QFormatRange(wordstart,start-wordstart,speller->spellcheckErrorFormat));
+			}
 	}
 }
 void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {

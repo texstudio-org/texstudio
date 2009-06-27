@@ -183,7 +183,7 @@ bool localAwareLessThan(const QString &s1, const QString &s2) {
 }
 
 
-int nextToken(const QString &line,int &index) {
+int nextToken(const QString &line,int &index,bool abbreviation) {
 	bool inWord=false;
 	bool inCmd=false;
 	//bool reparse=false;
@@ -210,6 +210,9 @@ int nextToken(const QString &line,int &index) {
 			} else if (cur=='\'') {
 				if (singleQuoteChar) break;	 //no word's with two '' => output
 				else singleQuoteChar=true;   //but accept one
+			} else if (cur=='.' && abbreviation) {
+				i++; //take '.' into word, so that abbreviations, at least German ones, are checked correctly
+				break;
 			} else if (CommonEOW.indexOf(cur)>=0) break;
 		} else if (cur=='\\') {
 			start=i;
@@ -230,13 +233,13 @@ int nextToken(const QString &line,int &index) {
 }
 
 
-NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordStartIndex, bool returnCommands) {
+NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordStartIndex, bool returnCommands,bool abbreviations) {
 	static const QStringList optionCommands = QStringList() << "\\ref" << "\\label"  << "\\includegraphics" << "\\usepackage" << "\\documentclass" << "\\include" << "\\input";
 	static const QStringList environmentCommands = QStringList() << "\\begin" << "\\end"
 	        << "\\newenvironment" << "\\renewenvironment";
 
 	QString lastCommand="";
-	while ((wordStartIndex = nextToken(line, index))!=-1) {
+	while ((wordStartIndex = nextToken(line, index,abbreviations))!=-1) {
 		outWord=line.mid(wordStartIndex,index-wordStartIndex);
 		if (outWord.length()==0) return NW_NOTHING; //should never happen
 		switch (outWord.at(0).toAscii()) {
