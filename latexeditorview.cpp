@@ -418,7 +418,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		QMultiHash<QString, QDocumentLineHandle*>::iterator it = containedReferences.begin();
 		while (it != containedReferences.end()) {
 			if (it.value() == dlh)
-				it = containedLabels.erase(it);
+				it = containedReferences.erase(it);
 			else
 				++it;
 		}
@@ -434,24 +434,54 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		it = containedLabels.begin();
 		while (it != containedLabels.end()) {
 			if (it.value() == dlh){
-				QList<QDocumentLineHandle*> lst=containedReferences.values(it.key());
+				QString ref=it.key();
+				it = containedLabels.erase(it);
+				QList<QDocumentLineHandle*> lst=containedReferences.values(ref);
 				foreach(QDocumentLineHandle* elem,lst){
 					QDocumentLine mLine(elem);
 					if(mLine.lineNumber()>=linenr&&mLine.lineNumber()<linenr+count) continue;
 					int posRef=rxRef.indexIn(mLine.text());
 					if(posRef!=-1) {
-						if(containedLabels.contains(ref)) mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referencePresentFormat));
+						int cnt=containedLabels.count(ref);
+						if(cnt>1) {
+							mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMultipleFormat));
+						} else if(cnt==1) mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referencePresentFormat));
 						else mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMissingFormat));
 					}
 				}
-				it = containedLabels.erase(it);
+				// update Labels
+				lst=containedLabels.values(ref);
+				foreach(QDocumentLineHandle* elem,lst){
+					QDocumentLine mLine(elem);
+					if(mLine.lineNumber()>=linenr&&mLine.lineNumber()<linenr+count) continue;
+					int posRef=rxLabel.indexIn(mLine.text());
+					if(posRef!=-1) {
+						int cnt=containedLabels.count(ref);
+						if(cnt>1) {
+							mLine.addOverlay(QFormatRange(rxLabel.pos(1),rxLabel.cap(1).length(),referenceMultipleFormat));
+						} else mLine.addOverlay(QFormatRange(rxLabel.pos(1),rxLabel.cap(1).length(),referencePresentFormat));
+					}
+				}
 			} else
 				++it;
 		}
 		// add labels of current line
 		pos=0;
+		bool multipleLabels=false;
 		while(pos=rxLabel.indexIn(lineText, pos)!=-1){
 			ref=rxLabel.cap(1);
+			if(containedLabels.contains(ref)) {
+				multipleLabels=true;
+				QList<QDocumentLineHandle*> lst=containedLabels.values(ref);
+				foreach(QDocumentLineHandle* elem,lst){
+					QDocumentLine mLine(elem);
+					if(mLine.lineNumber()>=linenr&&mLine.lineNumber()<linenr+count) continue;
+					int posRef=rxLabel.indexIn(mLine.text());
+					if(posRef!=-1) {
+						mLine.addOverlay(QFormatRange(rxLabel.pos(1),rxLabel.cap(1).length(),referenceMultipleFormat));
+					}
+				}
+			}
 			containedLabels.insert(ref,dlh);
 			pos += rxLabel.matchedLength();
 			// look for corresponding reeferences and adapt format respectively
@@ -461,7 +491,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				if(mLine.lineNumber()>=linenr&&mLine.lineNumber()<linenr+count) continue;
 				int posRef=rxRef.indexIn(mLine.text());
 				if(posRef!=-1) {
-					mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referencePresentFormat));
+					if(multipleLabels) mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMultipleFormat));
+					else mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referencePresentFormat));
 				}
 
 			}
@@ -488,11 +519,18 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			if (status==NW_ENVIRONMENT) {
 				line.addOverlay(QFormatRange(wordstart,start-wordstart,environmentFormat));
 			} else if (status==NW_REFERENCE) {
-				// provisorium
 				QString ref=lineText.mid(wordstart,start-wordstart);
-				//int l=editor->document()->findLineContaining("\\label{"+ref+"}",0,Qt::CaseSensitive);
-				if(containedLabels.contains(ref)) line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
+				int cnt=containedLabels.count(ref);
+				if(cnt>1) {
+					line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMultipleFormat));
+				}else if (cnt==1) line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
 				else line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMissingFormat));
+			} else if (status==NW_LABEL) {
+				QString ref=lineText.mid(wordstart,start-wordstart);
+				int cnt=containedLabels.count(ref);
+				if(cnt>1) {
+					line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMultipleFormat));
+				}else line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
 			} else if (status==NW_COMMENT) break;
 			else if (word.length()>=3 && !speller->check(word)) {
 				if(word.endsWith('.')) start--;
@@ -514,7 +552,10 @@ void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {
 				QDocumentLine mLine(elem);
 				int posRef=rxRef.indexIn(mLine.text());
 				if(posRef!=-1) {
-					if(containedLabels.contains(ref)) mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referencePresentFormat));
+					int cnt=containedLabels.count(ref);
+					if (cnt>1) {
+						mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMultipleFormat));
+					} else if (cnt==1) mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referencePresentFormat));
 					else mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMissingFormat));
 				}
 			}

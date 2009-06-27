@@ -773,6 +773,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	edit->environmentFormat=m_formats->id("environment");
 	edit->referencePresentFormat=m_formats->id("referencePresent");
 	edit->referenceMissingFormat=m_formats->id("referenceMissing");
+	edit->referenceMultipleFormat=m_formats->id("referenceMultiple");
 
 	connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(NewDocumentStatus(bool)));
 	connect(edit->lineMarkPanel, SIGNAL(toolTipRequested(int,int)),this,SLOT(lineMarkToolTip(int,int)));
