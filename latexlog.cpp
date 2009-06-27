@@ -109,9 +109,11 @@ void LatexLogModel::parseLogDocument(QTextDocument* doc, QString baseFileName, Q
 }
 
 bool LatexLogModel::found(LogType lt) {
+	Q_ASSERT_X(lt>0&&lt<4, "found logtype", "unbound array index");
 	return foundType[lt];
 }
 int LatexLogModel::markID(LogType lt) {
+	Q_ASSERT_X(lt>0&&lt<4, "markID logtype", "unbound array index");
 	return markIDs[lt];
 }
 int LatexLogModel::logLineNumberToLogEntryNumber(int logLine){
