@@ -420,6 +420,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "viewlog",tr("View Log"), SLOT(RealViewLog()), Qt::Key_F10, ":/images/viewlog.png");
 	newManagedAction(menu, "bibtex",tr("BibTeX"), SLOT(commandFromAction()), Qt::Key_F11)->setData(BuildManager::CMD_BIBTEX);
 	newManagedAction(menu, "makeindex",tr("MakeIndex"), SLOT(commandFromAction()), Qt::Key_F12)->setData(BuildManager::CMD_MAKEINDEX);
+	newManagedAction(menu, "clearmarkers",tr("Clear Markers"), SLOT(ClearMarkers()));
 
 	menu->addSeparator();
 	newManagedAction(menu, "metapost",tr("MetaPost"), SLOT(commandFromAction()))->setData(BuildManager::CMD_METAPOST);
@@ -3343,6 +3344,22 @@ void Texmaker::NextBadBox() {
 }
 void Texmaker::PreviousBadBox() {
 	gotoNearLogEntry(LT_BADBOX,true,tr("No bad boxes detected !"));
+}
+
+void Texmaker::ClearMarkers(){
+	int errorMarkID = QLineMarksInfoCenter::instance()->markTypeId("error");
+	int warningMarkID = QLineMarksInfoCenter::instance()->markTypeId("warning");
+	int badboxMarkID = QLineMarksInfoCenter::instance()->markTypeId("badbox");
+	for (int i=0; i<EditorView->count(); i++) {
+		LatexEditorView *ed=qobject_cast<LatexEditorView *>(EditorView->widget(i));
+		if (ed) {
+			ed->editor->document()->removeMarks(errorMarkID);
+			ed->editor->document()->removeMarks(warningMarkID);
+			ed->editor->document()->removeMarks(badboxMarkID);
+			//ed->logEntryToLine.clear();
+			//ed->lineToLogEntries.clear();
+		}
+	}
 }
 //////////////// HELP /////////////////
 void Texmaker::LatexHelp() {
