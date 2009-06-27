@@ -236,6 +236,7 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordStartIndex, bool returnCommands,bool abbreviations) {
 	const QStringList optionCommands = QStringList() << "\\ref" << "\\pageref" << "\\label"  << "\\includegraphics" << "\\usepackage" << "\\documentclass" << "\\include" << "\\input";
 	const QStringList refCommands = QStringList() << "\\ref" << "\\pageref" ;
+	const QStringList labelCommands = QStringList() << "\\label" ;
 	const QStringList environmentCommands = QStringList() << "\\begin" << "\\end"
 	        << "\\newenvironment" << "\\renewenvironment";
 
@@ -260,12 +261,17 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 				--index;
 				return NW_REFERENCE;
 			}
+			if (labelCommands.contains(lastCommand)){
+				wordStartIndex=reference;
+				--index;
+				return NW_LABEL;
+			}
 			lastCommand="";
 			break;//command doesn't matter anymore
 		default:
 			if (outWord.contains("\\")||outWord.contains("\""))
 				outWord=latexToPlainWord(outWord); //remove special chars
-			if (refCommands.contains(lastCommand)&&reference==-1){
+			if ((refCommands.contains(lastCommand)||labelCommands.contains(lastCommand))&&reference==-1){
 				reference=wordStartIndex;
 				break;
 			}

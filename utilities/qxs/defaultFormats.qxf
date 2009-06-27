@@ -130,4 +130,13 @@
 		<waveUnderline>true</waveUnderline>
 		<foreground>#008000</foreground>
 	</format>
+	<format id="referenceMultiple" >
+		<bold>false</bold>
+		<italic>false</italic>
+		<overline>false</overline>
+		<underline>false</underline>
+		<strikeout>false</strikeout>
+		<waveUnderline>true</waveUnderline>
+		<foreground>#800080</foreground>
+	</format>
 </QXF>
