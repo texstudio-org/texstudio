@@ -3223,14 +3223,14 @@ bool Texmaker::LogExists() {
 
 
 //shows the log (even if it is empty)
-void Texmaker::RealViewLog() {
-	ViewLog();
-	outputView->showLogOrErrorList();
+void Texmaker::RealViewLog(bool noTabChange) {
+	ViewLog(noTabChange);
+	outputView->showLogOrErrorList(noTabChange);
 }
 
 //shows the log if there are errors
-void Texmaker::ViewLog() {
-	outputView->resetMessagesAndLog();
+void Texmaker::ViewLog(bool noTabChange) {
+	outputView->resetMessagesAndLog(noTabChange);
 	QString finame;
 	if (singlemode) {
 		finame=getName();
@@ -3746,7 +3746,7 @@ void Texmaker::updateCompleter() {
 }
 
 void Texmaker::tabChanged(int i) {
-	if (i>0 && i<3 && !outputView->logPresent()) RealViewLog();
+	if (i>0 && i<3 && !outputView->logPresent()) RealViewLog(true);
 }
 
 void Texmaker::gotoLine(int line) {

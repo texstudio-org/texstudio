@@ -299,8 +299,8 @@ private slots:
 	void AnalyseText();
 	void AnalyseTextFormDestroyed();
 	
-	void RealViewLog();
-	void ViewLog();
+	void RealViewLog(bool noTabChange=false);
+	void ViewLog(bool noTabChange=false);
 	void DisplayLatexError();
 	void NextMark();
 	void PreviousMark();
