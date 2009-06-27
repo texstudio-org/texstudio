@@ -7,8 +7,8 @@
 class LatexLogModel: public QAbstractTableModel {
 private:
 	QList<LatexLogEntry> log;
-	bool foundType[3];
-	int markIDs[3];
+	bool foundType[4];
+	int markIDs[4];
 public:
 	LatexLogModel(QObject * parent = 0);
 
