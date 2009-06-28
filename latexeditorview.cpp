@@ -182,6 +182,8 @@ LatexEditorView::LatexEditorView(QWidget *parent) : QWidget(parent),curChangePos
 	setFocusProxy(editor);
 
 	environmentFormat=0;
+	containedLabels.setPattern("(\\\\label)\\{(.+)\\}");
+	containedReferences.setPattern("(\\\\ref|\\\\pageref)\\{(.+)\\}");
 }
 
 LatexEditorView::~LatexEditorView() {
@@ -410,7 +412,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		QString lineText = line.text();
 		QDocumentLineHandle* dlh=line.handle();
 
-		QRegExp rxRef("(\\\\ref|\\\\pageref)\\{(.+)\\}");
+		QRegExp rxRef(containedReferences.pattern());
+		QRegExp rxLabel(containedLabels.pattern());
 		int pos = 0;
 		QString ref;
 
@@ -424,67 +427,17 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		}
 
 		// remove all labels of current line
-		QRegExp rxLabel("\\\\label\\{(.+)\\}");
-		QStringList refs=containedLabels.removeByHandle(dlh);
-		foreach(QString ref,refs){
-			QList<QDocumentLineHandle*> lst=containedReferences.values(ref);
-			foreach(QDocumentLineHandle* elem,lst){
-				QDocumentLine mLine(elem);
-				if(mLine.lineNumber()>=linenr&&mLine.lineNumber()<linenr+count) continue;
-				int posRef=rxRef.indexIn(mLine.text());
-				if(posRef!=-1) {
-					int cnt=containedLabels.count(ref);
-					if(cnt>1) {
-						mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMultipleFormat));
-					} else if(cnt==1) mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referencePresentFormat));
-					else mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMissingFormat));
-				}
-			}
-			// update Labels
-			lst=containedLabels.values(ref);
-			foreach(QDocumentLineHandle* elem,lst){
-				QDocumentLine mLine(elem);
-				if(mLine.lineNumber()>=linenr&&mLine.lineNumber()<linenr+count) continue;
-				int posRef=rxLabel.indexIn(mLine.text());
-				if(posRef!=-1) {
-					int cnt=containedLabels.count(ref);
-					if(cnt>1) {
-						mLine.addOverlay(QFormatRange(rxLabel.pos(1),rxLabel.cap(1).length(),referenceMultipleFormat));
-					} else mLine.addOverlay(QFormatRange(rxLabel.pos(1),rxLabel.cap(1).length(),referencePresentFormat));
-				}
-			}
-		}
+		containedLabels.removeUpdateByHandle(dlh,&containedReferences);
+
 		// add labels of current line
 		pos=0;
-		bool multipleLabels=false;
+		//bool multipleLabels=false;
 		while(pos=rxLabel.indexIn(lineText, pos)!=-1){
-			ref=rxLabel.cap(1);
-			if(containedLabels.contains(ref)) {
-				multipleLabels=true;
-				QList<QDocumentLineHandle*> lst=containedLabels.values(ref);
-				foreach(QDocumentLineHandle* elem,lst){
-					QDocumentLine mLine(elem);
-					if(mLine.lineNumber()>=linenr&&mLine.lineNumber()<linenr+count) continue;
-					int posRef=rxLabel.indexIn(mLine.text());
-					if(posRef!=-1) {
-						mLine.addOverlay(QFormatRange(rxLabel.pos(1),rxLabel.cap(1).length(),referenceMultipleFormat));
-					}
-				}
-			}
+			ref=rxLabel.cap(2);
 			containedLabels.insert(ref,dlh);
 			pos += rxLabel.matchedLength();
 			// look for corresponding reeferences and adapt format respectively
-			QList<QDocumentLineHandle*> lst=containedReferences.values(ref);
-			foreach(QDocumentLineHandle* elem,lst){
-				QDocumentLine mLine(elem);
-				if(mLine.lineNumber()>=linenr&&mLine.lineNumber()<linenr+count) continue;
-				int posRef=rxRef.indexIn(mLine.text());
-				if(posRef!=-1) {
-					if(multipleLabels) mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMultipleFormat));
-					else mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referencePresentFormat));
-				}
-
-			}
+			containedLabels.updateByKeys(QStringList(ref),&containedReferences);
 		}
 	}
 	// spell checking
@@ -529,25 +482,11 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 	editor->document()->markViewDirty();
 }
 void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {
-	// delete Labels
-	QRegExp rxRef("(\\\\ref|\\\\pageref)\\{(.+)\\}");
-	QStringList refs=containedLabels.removeByHandle(l);
-	foreach(QString ref,refs){
-		QList<QDocumentLineHandle*> lst=containedReferences.values(ref);
-		foreach(QDocumentLineHandle* elem,lst){
-			QDocumentLine mLine(elem);
-			int posRef=rxRef.indexIn(mLine.text());
-			if(posRef!=-1) {
-				int cnt=containedLabels.count(ref);
-				if (cnt>1) {
-					mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMultipleFormat));
-				} else if (cnt==1) mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referencePresentFormat));
-				else mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMissingFormat));
-			}
-		}
-	}
 	// delete References
 	containedReferences.removeByHandle(l);
+	// delete Labels and update referenced refs
+	containedLabels.removeUpdateByHandle(l,&containedReferences);
+
 	QHash<QDocumentLineHandle*, int>::iterator it;
 	while ((it=lineToLogEntries.find(l))!=lineToLogEntries.end()) {
 		logEntryToLine.remove(it.value());
@@ -691,4 +630,43 @@ QStringList References::removeByHandle(QDocumentLineHandle* handle){
 			++mIt;
 	}
 	return result;
+}
+
+void References::removeUpdateByHandle(QDocumentLineHandle* handle,References* altRefs){
+	QStringList refs=removeByHandle(handle);
+	updateByKeys(refs,altRefs);
+}
+
+void References::updateByKeys(QStringList refs,References* altRefs){
+	QRegExp rxRef(altRefs->pattern());
+	QRegExp rxLabel(pattern());
+	foreach(QString ref,refs){
+		QList<QDocumentLineHandle*> lst;
+		if(altRefs) {
+			lst=altRefs->values(ref);
+			foreach(QDocumentLineHandle* elem,lst){
+				QDocumentLine mLine(elem);
+				int posRef=rxRef.indexIn(mLine.text());
+				if(posRef!=-1) {
+					int cnt=count(ref);
+					if (cnt>1) {
+						mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMultipleFormat));
+					} else if (cnt==1) mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referencePresentFormat));
+					else mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMissingFormat));
+				}
+			}
+		}
+		lst=values(ref);
+		foreach(QDocumentLineHandle* elem,lst){
+			QDocumentLine mLine(elem);
+			int posRef=rxLabel.indexIn(mLine.text());
+			if(posRef!=-1) {
+				int cnt=count(ref);
+				if(cnt>1) {
+					mLine.addOverlay(QFormatRange(rxLabel.pos(2),rxLabel.cap(2).length(),referenceMultipleFormat));
+				} else if (cnt==1) mLine.addOverlay(QFormatRange(rxLabel.pos(2),rxLabel.cap(2).length(),referencePresentFormat));
+				else mLine.addOverlay(QFormatRange(rxLabel.pos(2),rxLabel.cap(2).length(),referenceMissingFormat));
+			}
+		}
+	} //foreach
 }
