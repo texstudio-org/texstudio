@@ -289,9 +289,19 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 		QString def=W32_FileAssociation(".ps");
 		if (!def.isEmpty())
 			return def;
-		else if (QFileInfo("\"C:/Program Files/Ghostgum/gsview/gsview32.exe\"").exists())
-			return "\"C:/Program Files/Ghostgum/gsview/gsview32.exe\" \"?am.ps\"";
-		else break;
+		QString gsDll = findGhostscriptDLL().replace("/","\\"); //gsview contains gs so x
+		int pos;
+		while ((pos=gsDll.lastIndexOf("\\"))>-1) {
+			gsDll=gsDll.mid(0,pos+1);
+			if (QFileInfo(gsDll+"gsview32.exe").exists()) 
+				return "\""+gsDll+"gsview32.exe\" -e \"?am.ps\"";
+			if (QFileInfo(gsDll+"gsview.exe").exists()) 
+				return "\""+gsDll+"gsview.exe\" -e \"?am.ps\"";
+			gsDll=gsDll.mid(0,pos); 
+		}
+		if (QFileInfo("\"C:/Program Files/Ghostgum/gsview/gsview32.exe\"").exists())
+			return "\"C:/Program Files/Ghostgum/gsview/gsview32.exe\" -e \"?am.ps\"";
+		break;
 	}
 	case CMD_VIEWPDF: {
 		QString def=W32_FileAssociation(".pdf");
@@ -305,7 +315,7 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 	}
 	case CMD_GHOSTSCRIPT: {
 		QString dll=findGhostscriptDLL().replace("gsdll32.dll","gswin32c.exe",Qt::CaseInsensitive);
-		if (dll.endsWith("gswin32c.exe")) return dll;
+		if (dll.endsWith("gswin32c.exe")) return "\""+dll+"\"";
 		else if (QFileInfo("C:/Program Files/gs/gs8.63/bin/gswin32c.exe").exists())  //old behaviour
 			return "\"C:/Program Files/gs/gs8.63/bin/gswin32c.exe\"";
 		else if (QFileInfo("C:/Program Files/gs/gs8.61/bin/gswin32c.exe").exists())
@@ -529,7 +539,7 @@ void BuildManager::latexPreviewCompleted(int status){
 		ProcessX* p1=qobject_cast<ProcessX*> (sender());
 		if (!p1) return;
 		// dvi -> ps
-		ProcessX *p2 = newProcess(CMD_DVIPS,p1->getFile());
+		ProcessX *p2 = newProcess(CMD_DVIPS,"-E",p1->getFile());
 		connect(p2,SIGNAL(finished(int)),this,SLOT(dvi2psPreviewCompleted(int)));
 		p2->startCommand();	
 	}
