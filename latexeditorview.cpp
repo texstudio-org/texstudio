@@ -420,7 +420,10 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		// remove all references of current line
 		containedReferences.removeByHandle(dlh);
 		// add references of current line
+		int lpos = 0;
 		while(pos=rxRef.indexIn(lineText, pos)!=-1){
+			if (pos<=lpos) break; //huch?
+			lpos=pos;
 			ref=rxRef.cap(2);
 			containedReferences.insert(ref,dlh);
 			pos += rxRef.matchedLength();
@@ -431,8 +434,11 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 
 		// add labels of current line
 		pos=0;
-		//bool multipleLabels=false;
+		lpos=pos;
+		bool multipleLabels=false;
 		while(pos=rxLabel.indexIn(lineText, pos)!=-1){
+			if (pos<=lpos) break; //huch?
+			lpos=pos;
 			ref=rxLabel.cap(2);
 			containedLabels.insert(ref,dlh);
 			pos += rxLabel.matchedLength();
@@ -440,6 +446,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			containedLabels.updateByKeys(QStringList(ref),&containedReferences);
 		}
 	}
+
 	// spell checking
 	if (!speller || !QDocument::formatFactory()) return;
 	int tccFormat=QDocument::formatFactory()->id("temporaryCodeCompletion");
