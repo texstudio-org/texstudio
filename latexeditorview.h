@@ -28,6 +28,18 @@
 
 //#include "qpanel.h"
 
+class References {
+public:
+	References() {}
+	void insert(QString key,QDocumentLineHandle* handle) {mReferences.insert(key,handle);}
+	QList<QDocumentLineHandle*> values(QString key) {return mReferences.values(key);}
+	bool contains(QString key) {return mReferences.contains(key);}
+	int count(QString key) {return mReferences.count(key);}
+	QStringList removeByHandle(QDocumentLineHandle* handle);
+protected:
+	QMultiHash<QString,QDocumentLineHandle*> mReferences;
+};
+
 class DefaultInputBinding: public QEditorInputBinding {
 //  Q_OBJECT not possible because inputbinding is no qobject
 public:
@@ -108,7 +120,7 @@ private:
 	int curChangePos;
 	int lastSetBookmark; //only looks at 1..3 (mouse range)
 
-	QMultiHash<QString,QDocumentLineHandle*> containedLabels,containedReferences;
+	References containedLabels,containedReferences;
 public slots:
 	void lineMarkClicked(int line);
 	void documentContentChanged(int linenr, int count);

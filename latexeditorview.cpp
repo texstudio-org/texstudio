@@ -415,13 +415,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		QString ref;
 
 		// remove all references of current line
-		QMultiHash<QString, QDocumentLineHandle*>::iterator it = containedReferences.begin();
-		while (it != containedReferences.end()) {
-			if (it.value() == dlh)
-				it = containedReferences.erase(it);
-			else
-				++it;
-		}
+		containedReferences.removeByHandle(dlh);
 		// add references of current line
 		while(pos=rxRef.indexIn(lineText, pos)!=-1){
 			ref=rxRef.cap(2);
@@ -431,39 +425,34 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 
 		// remove all labels of current line
 		QRegExp rxLabel("\\\\label\\{(.+)\\}");
-		it = containedLabels.begin();
-		while (it != containedLabels.end()) {
-			if (it.value() == dlh){
-				QString ref=it.key();
-				it = containedLabels.erase(it);
-				QList<QDocumentLineHandle*> lst=containedReferences.values(ref);
-				foreach(QDocumentLineHandle* elem,lst){
-					QDocumentLine mLine(elem);
-					if(mLine.lineNumber()>=linenr&&mLine.lineNumber()<linenr+count) continue;
-					int posRef=rxRef.indexIn(mLine.text());
-					if(posRef!=-1) {
-						int cnt=containedLabels.count(ref);
-						if(cnt>1) {
-							mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMultipleFormat));
-						} else if(cnt==1) mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referencePresentFormat));
-						else mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMissingFormat));
-					}
+		QStringList refs=containedLabels.removeByHandle(dlh);
+		foreach(QString ref,refs){
+			QList<QDocumentLineHandle*> lst=containedReferences.values(ref);
+			foreach(QDocumentLineHandle* elem,lst){
+				QDocumentLine mLine(elem);
+				if(mLine.lineNumber()>=linenr&&mLine.lineNumber()<linenr+count) continue;
+				int posRef=rxRef.indexIn(mLine.text());
+				if(posRef!=-1) {
+					int cnt=containedLabels.count(ref);
+					if(cnt>1) {
+						mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMultipleFormat));
+					} else if(cnt==1) mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referencePresentFormat));
+					else mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMissingFormat));
 				}
-				// update Labels
-				lst=containedLabels.values(ref);
-				foreach(QDocumentLineHandle* elem,lst){
-					QDocumentLine mLine(elem);
-					if(mLine.lineNumber()>=linenr&&mLine.lineNumber()<linenr+count) continue;
-					int posRef=rxLabel.indexIn(mLine.text());
-					if(posRef!=-1) {
-						int cnt=containedLabels.count(ref);
-						if(cnt>1) {
-							mLine.addOverlay(QFormatRange(rxLabel.pos(1),rxLabel.cap(1).length(),referenceMultipleFormat));
-						} else mLine.addOverlay(QFormatRange(rxLabel.pos(1),rxLabel.cap(1).length(),referencePresentFormat));
-					}
+			}
+			// update Labels
+			lst=containedLabels.values(ref);
+			foreach(QDocumentLineHandle* elem,lst){
+				QDocumentLine mLine(elem);
+				if(mLine.lineNumber()>=linenr&&mLine.lineNumber()<linenr+count) continue;
+				int posRef=rxLabel.indexIn(mLine.text());
+				if(posRef!=-1) {
+					int cnt=containedLabels.count(ref);
+					if(cnt>1) {
+						mLine.addOverlay(QFormatRange(rxLabel.pos(1),rxLabel.cap(1).length(),referenceMultipleFormat));
+					} else mLine.addOverlay(QFormatRange(rxLabel.pos(1),rxLabel.cap(1).length(),referencePresentFormat));
 				}
-			} else
-				++it;
+			}
 		}
 		// add labels of current line
 		pos=0;
@@ -542,34 +531,23 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {
 	// delete Labels
 	QRegExp rxRef("(\\\\ref|\\\\pageref)\\{(.+)\\}");
-	QMultiHash<QString, QDocumentLineHandle*>::iterator mIt = containedLabels.begin();
-	while (mIt != containedLabels.end()) {
-		if (mIt.value() == l){
-			QString ref=mIt.key();
-			mIt = containedLabels.erase(mIt);
-			QList<QDocumentLineHandle*> lst=containedReferences.values(ref);
-			foreach(QDocumentLineHandle* elem,lst){
-				QDocumentLine mLine(elem);
-				int posRef=rxRef.indexIn(mLine.text());
-				if(posRef!=-1) {
-					int cnt=containedLabels.count(ref);
-					if (cnt>1) {
-						mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMultipleFormat));
-					} else if (cnt==1) mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referencePresentFormat));
-					else mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMissingFormat));
-				}
+	QStringList refs=containedLabels.removeByHandle(l);
+	foreach(QString ref,refs){
+		QList<QDocumentLineHandle*> lst=containedReferences.values(ref);
+		foreach(QDocumentLineHandle* elem,lst){
+			QDocumentLine mLine(elem);
+			int posRef=rxRef.indexIn(mLine.text());
+			if(posRef!=-1) {
+				int cnt=containedLabels.count(ref);
+				if (cnt>1) {
+					mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMultipleFormat));
+				} else if (cnt==1) mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referencePresentFormat));
+				else mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMissingFormat));
 			}
-		} else
-			++mIt;
+		}
 	}
 	// delete References
-	mIt = containedReferences.begin();
-	while (mIt != containedReferences.end()) {
-		if (mIt.value() == l){
-			mIt = containedReferences.erase(mIt);
-		} else
-			++mIt;
-	}
+	containedReferences.removeByHandle(l);
 	QHash<QDocumentLineHandle*, int>::iterator it;
 	while ((it=lineToLogEntries.find(l))!=lineToLogEntries.end()) {
 		logEntryToLine.remove(it.value());
@@ -700,4 +678,17 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			break;*/
 	}
 	//QToolTip::showText(editor->mapToGlobal(pos), line);
+}
+
+QStringList References::removeByHandle(QDocumentLineHandle* handle){
+	QStringList result;
+	QMultiHash<QString, QDocumentLineHandle*>::iterator mIt = mReferences.begin();
+	while (mIt != mReferences.end()) {
+		if (mIt.value() == handle){
+			result << mIt.key();
+			mIt = mReferences.erase(mIt);
+		} else
+			++mIt;
+	}
+	return result;
 }
