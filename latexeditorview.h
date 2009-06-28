@@ -31,13 +31,25 @@
 class References {
 public:
 	References() {}
+	References(QString pattern) : mPattern(pattern) {}
 	void insert(QString key,QDocumentLineHandle* handle) {mReferences.insert(key,handle);}
 	QList<QDocumentLineHandle*> values(QString key) {return mReferences.values(key);}
 	bool contains(QString key) {return mReferences.contains(key);}
 	int count(QString key) {return mReferences.count(key);}
 	QStringList removeByHandle(QDocumentLineHandle* handle);
+	void removeUpdateByHandle(QDocumentLineHandle* handle,References* altRefs=0);
+	void updateByKeys(QStringList refs,References* altRefs=0);
+	void setPattern(QString pattern) {mPattern=pattern;}
+	QString pattern() {return mPattern;}
+	void setFormats(int multiple,int single,int none) {
+		referenceMultipleFormat=multiple;
+		referencePresentFormat=single;
+		referenceMissingFormat=none;
+	}
 protected:
 	QMultiHash<QString,QDocumentLineHandle*> mReferences;
+	int referenceMultipleFormat,referencePresentFormat,referenceMissingFormat;
+	QString mPattern;
 };
 
 class DefaultInputBinding: public QEditorInputBinding {
@@ -108,6 +120,14 @@ public:
 	
 	
 	static int hideTooltipWhenLeavingLine;
+
+	void setFormats(int multiple,int single,int none) {
+		referenceMultipleFormat=multiple;
+		referencePresentFormat=single;
+		referenceMissingFormat=none;
+		containedLabels.setFormats(multiple,single,none);
+		containedReferences.setFormats(multiple,single,none);
+	}
 
 	int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat;
 private:
