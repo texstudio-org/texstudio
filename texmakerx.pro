@@ -139,8 +139,8 @@ FORMS += structdialog.ui \
     textanalysis.ui \
     encodingdialog.ui
 TRANSLATIONS += texmakerx_fr.ts \
-    texmakerx_de.ts
-
+    texmakerx_de.ts \
+    texmakerx_it.ts
 # ###############################
 unix:!macx { 
     UI_DIR = .ui
