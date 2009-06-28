@@ -82,4 +82,7 @@ QToolButton* createComboToolButton(QWidget *parent,QStringList list,const int he
 
 // realizes whether col is in a reference or in a command
 int findContext(QString &line,int col);
+
+//check if the run-time qt version is higher than the given version (e.g. 4,3)
+bool hasAtLeastQt(int major, int minor);
 #endif

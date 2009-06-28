@@ -138,10 +138,10 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	EditorView->setFocusPolicy(Qt::ClickFocus);
 	EditorView->setFocus();
 	connect(EditorView, SIGNAL(currentChanged(QWidget *)), this, SLOT(UpdateCaption()));
-#if QT_VERSION >= 0x040500
-	EditorView->setTabsClosable(true);
-	connect(EditorView, SIGNAL(tabCloseRequested(int)), this, SLOT(CloseEditorTab(int)));
-#endif
+	if (hasAtLeastQt(4,5)){
+		EditorView->setProperty("tabsClosable",true);
+		connect(EditorView, SIGNAL(tabCloseRequested(int)), this, SLOT(CloseEditorTab(int)));
+	}
 	setCentralWidget(EditorView);
 	
 	setupDockWidgets();
