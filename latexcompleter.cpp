@@ -19,150 +19,6 @@
 #include <QLabel>
 
 #include <QMessageBox>
-CompletionWord::CompletionWord(const QString &newWord) {
-	cursorPos=-1;
-	anchorPos=-1;
-	QString visibleWord;
-	visibleWord.reserve(newWord.length());
-	word.reserve(newWord.length());
-	bool escape=false;
-	bool inDescription=false;
-	int formatStart=0;
-	for (int i=0; i<newWord.length(); i++)
-		if (!escape) {
-			if (newWord.at(i)==QChar('%')) escape=true;
-			else {
-				visibleWord+=newWord.at(i);
-				if (!inDescription) word.append(newWord.at(i));
-			}
-		} else {
-			escape=false;
-			switch (newWord.at(i).toAscii()) {
-			case '%':
-				word+='%';
-				visibleWord+='%';
-				break;
-			case '|':
-				if (inDescription && cursorPos==-1) anchorPos=formatStart;
-				else anchorPos=cursorPos;
-				cursorPos=visibleWord.length();
-				break;
-			case '<':
-				inDescription=true;
-				formatStart=visibleWord.length();
-				break;
-			case '>': 
-				inDescription=false;
-				descriptiveParts.append(QPair<int, int>(formatStart, visibleWord.length()-formatStart));
-				break;
-			case 'n':
-				visibleWord+="\n";
-				break;	
-			default:
-				;
-			}
-		}
-	if (cursorPos==-1 && !descriptiveParts.isEmpty()) {
-		anchorPos =descriptiveParts[0].first;
-		cursorPos =descriptiveParts[0].first+descriptiveParts[0].second;
-	}
-	if (anchorPos==-1) anchorPos=cursorPos;
-	shownWord=visibleWord;
-	sortWord=word.toLower();
-	sortWord.replace("{","!");//js: still using dirty hack, however order should be ' '{[* abcde...
-	sortWord.replace("}","!");// needs to be replaced as well for sorting \bgein{abc*} after \bgein{abc}
-	sortWord.replace("[","\"");//(first is a space->) !"# follow directly in the ascii table
-	sortWord.replace("*","#");
-}
-
-void CompletionWord::insertAt(QEditor* editor, QDocumentCursor* cursor) {
-	QString savedSelection;
-	int multilines=shownWord.count('\n');
-	QVector<QDocumentLine> documentlines;
-
-	if (cursor->hasSelection()) {
-		savedSelection=cursor->selectedText();
-		cursor->removeSelectedText();
-	}
-	QDocumentCursor selector=*cursor;
-	int curStart=cursor->columnNumber();
-	QDocumentLine curLine=cursor->line();
-
-	cursor->insertText(shownWord);
-
-	if (multilines) {
-		documentlines.resize(multilines+1);
-		documentlines[0]=curLine;
-		for (int i=1; i<documentlines.count()-1; i++) documentlines[i]=documentlines[i-1].next(); //todo: optimize
-	}
-
-	if (QDocument::formatFactory())
-		for (int i=0; i<descriptiveParts.size(); i++) {
-			QFormatRange fr(descriptiveParts[i].first+curStart,descriptiveParts[i].second,QDocument::formatFactory()->id("temporaryCodeCompletion"));
-			if (multilines) {
-				QString temp= shownWord;
-				temp.truncate(descriptiveParts[i].first);
-				int linetoadd=temp.count('\n');
-				if (linetoadd==0) curLine.addOverlay(fr);
-				else if (linetoadd<documentlines.size()) {
-					fr.offset=temp.size()-temp.lastIndexOf('\n')-1;
-					documentlines[linetoadd].addOverlay(fr);
-				}
-			} else curLine.addOverlay(fr);
-		}
-
-	//place cursor/add \end
-	int selectFrom=-1;
-	int selectTo=-1;
-	int deltaLine=0;
-	if (shownWord.startsWith("\\begin")&&!multilines) {
-		//int curColumnNumber=cursor.columnNumber();
-		QString indent=curLine.indentation();
-		int p=shownWord.indexOf("{");
-		QString content="content...";
-		if (editor->flag(QEditor::AutoIndent)) {
-			cursor->insertText("\n"+indent+"\t"+content+"\n"+indent+"\\end"+shownWord.mid(p,shownWord.indexOf("}")-p+1));
-			indent+="\t";
-		} else
-			cursor->insertText("\n"+indent+content+"\n"+indent+"\\end"+shownWord.mid(p,shownWord.indexOf("}")-p+1));
-		if (QDocument::formatFactory())
-			for (int i=0; i<descriptiveParts.size(); i++)
-				curLine.next().addOverlay(QFormatRange(indent.size(),content.size(),QDocument::formatFactory()->id("temporaryCodeCompletion")));
-
-		if (cursorPos==-1) {
-			deltaLine=1;
-			selectFrom=indent.length();
-			selectTo=indent.length()+content.size();
-		} else {
-			selectFrom=anchorPos+curStart;
-			selectTo=cursorPos+curStart;
-		}
-	} else if (cursorPos>-1) {
-		if (multilines) { //todo: add support for selected multilines
-			QString temp= shownWord;
-			temp.truncate(cursorPos);
-			deltaLine=temp.count('\n');
-			if (!deltaLine) {
-				selectFrom=anchorPos+curStart;
-				selectTo=cursorPos+curStart;
-			} else {
-				selectTo=temp.size()-temp.lastIndexOf('\n')-1;
-				selectFrom=anchorPos-cursorPos+selectTo;
-			}
-		} else {
-			selectFrom=anchorPos+curStart;
-			selectTo=cursorPos+curStart;
-		}
-	} else editor->setCursor(*cursor); //place after insertion
-	if (selectFrom!=-1) {
-		if (deltaLine>0) selector.movePosition(deltaLine,QDocumentCursor::Down,QDocumentCursor::MoveAnchor);
-		selector.setColumnNumber(selectFrom);
-		if (selectTo>selectFrom) selector.movePosition(selectTo-selectFrom,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
-		else if (selectTo<selectFrom) selector.movePosition(selectFrom-selectTo,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
-		editor->setCursor(selector);
-	}
-	if (!savedSelection.isEmpty() && cursorPos>0) editor->cursor().insertText(savedSelection);
-}
 
 //------------------------------Default Input Binding--------------------------------
 class CompleterInputBinding: public QEditorInputBinding {
@@ -196,7 +52,6 @@ public:
 			QVariant v=completer->list->model()->data(completer->list->currentIndex(),Qt::DisplayRole);
 			if (!v.isValid() || !v.canConvert<CompletionWord>()) return false;
 			CompletionWord cw= v.value<CompletionWord>();
-			QString full=cw.shownWord;
 			//int alreadyWrittenLen=editor->cursor().columnNumber()-curStart;
 			//remove current text for correct case
 			for (int i=maxWritten-cursor.columnNumber(); i>0; i--) cursor.deleteChar();
@@ -473,6 +328,7 @@ public:
 		QVariant v=index.model()->data(index);
 		if (!v.isValid() || !v.canConvert<CompletionWord>()) return;
 		CompletionWord cw=v.value<CompletionWord>();
+		if (cw.lines.empty()||cw.placeHolders.empty()) return;
 		QFont fNormal=option.font;
 		QFont fItalic=option.font;
 		fItalic.setItalic(true);
@@ -487,24 +343,26 @@ public:
 		}
 		QRect r=option.rect;
 		r.setLeft(r.left()+2);
-		if (cw.descriptiveParts.empty())
-			painter->drawText(r,Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, cw.shownWord);
+		QString firstLine=cw.lines[0];
+		if (cw.placeHolders.empty())
+			painter->drawText(r,Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, firstLine);
 		else {
 			QFontMetrics fmn(fNormal);
 			QFontMetrics fmi(fItalic);
 			int p=0;
-			for (int i=0; i<cw.descriptiveParts.size(); i++) {
-				QString temp=cw.shownWord.mid(p,cw.descriptiveParts[i].first-p);
+			for (int i=0; i<cw.placeHolders[0].size(); i++) {
+				QString temp=firstLine.mid(p,cw.placeHolders[0][i].first-p);
 				painter->drawText(r,Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, temp);
 				r.setLeft(r.left()+fmn.width(temp));
-				temp=cw.shownWord.mid(cw.descriptiveParts[i].first,cw.descriptiveParts[i].second);
+				temp=firstLine.mid(cw.placeHolders[0][i].first,cw.placeHolders[0][i].second);
 				painter->setFont(fItalic);
 				painter->drawText(r,Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, temp);
 				r.setLeft(r.left()+fmi.width(temp)+1);
-				p=cw.descriptiveParts[i].first+cw.descriptiveParts[i].second;
+				p=cw.placeHolders[0][i].first+cw.placeHolders[0][i].second;
 				painter->setFont(fNormal);
+				if (p>firstLine.length()) break;
 			}
-			painter->drawText(r,Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, cw.shownWord.mid(p));
+			painter->drawText(r,Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, firstLine.mid(p));
 		}
 	}
 };
@@ -626,7 +484,8 @@ void LatexCompleter::setAdditionalWords(const QStringList &newwords, bool normal
 		QFontMetrics fm(f);
 		const QList<CompletionWord> & words=listModel->getWords();
 		for (int i=0; i<words.size(); i++) {
-			int temp=fm.width(words[i].shownWord)+words[i].descriptiveParts.size()+10;
+			if (words[i].lines.empty() || words[i].placeHolders.empty()) continue;
+			int temp=fm.width(words[i].lines[0])+words[i].placeHolders[0].size()+10;
 			if (temp>newWordMax) newWordMax=temp;
 		}
 		maxWordLen=newWordMax;

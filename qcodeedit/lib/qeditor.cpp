@@ -1955,7 +1955,17 @@ void QEditor::addPlaceHolder(const PlaceHolder& p, bool autoUpdate)
 		ph.mirrors[i].movePosition(ph.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 	}
 }
+void QEditor::removePlaceHolder(int id){
+	if (id<0 || id>=m_placeHolders.count()) return;
+	if (id==m_curPlaceHolder) 
+		clearCursorMirrors();
 
+	for (int i=0;i<m_placeHolders[id].mirrors.count();i++)
+		m_placeHolders[id].mirrors[i].setAutoUpdated(false);
+	m_placeHolders[id].mirrors.clear();
+	m_placeHolders[id].cursor.setAutoUpdated(false);
+	m_placeHolders.removeAt(id);
+}
 /*!
 	\return the number of placeholders currently set
 */
@@ -1963,7 +1973,9 @@ int QEditor::placeHolderCount() const
 {
 	return m_placeHolders.count();
 }
-
+int QEditor::currentPlaceHolder() const{
+	return m_curPlaceHolder;
+}
 /*!
 	\brief Set the current placeholder to use
 
@@ -2592,6 +2604,9 @@ void QEditor::paintEvent(QPaintEvent *e)
 		}
 	}
 
+	foreach (const PlaceHolder& ph, m_placeHolders)
+		p.drawConvexPolygon(ph.cursor.documentRegion());
+	
 	if ( viewport()->height() > m_doc->height() )
 	{
 		p.fillRect(	0,
@@ -4875,6 +4890,12 @@ void QEditor::updateContent (int i, int n)
 
 	bool cont = n > 1;
 
+	if (m_curPlaceHolder!=m_lastPlaceHolder && 
+		m_lastPlaceHolder>=0 &&  m_lastPlaceHolder < m_placeHolders.count())
+		if (m_placeHolders[m_lastPlaceHolder].removeAutomatically)
+			removePlaceHolder(m_lastPlaceHolder);
+	m_lastPlaceHolder=m_curPlaceHolder;
+			
 	repaintContent(i, cont ? -1 : n);
 }
 

@@ -410,7 +410,6 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 
 	// spell checking
 	if (!speller || !QDocument::formatFactory()) return;
-	int tccFormat=QDocument::formatFactory()->id("temporaryCodeCompletion");
 
 	for (int i=linenr; i<linenr+count; i++) {
 		QDocumentLine line = editor->document()->line(i);

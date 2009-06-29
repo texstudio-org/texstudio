@@ -2102,8 +2102,8 @@ void Texmaker::InsertFromAction() {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (action)	{
 		QDocumentCursor c = currentEditorView()->editor->cursor();
-		CompletionWord(action->data().toString()).insertAt(currentEditorView()->editor,&c);
-		outputView->setMessage(CompletionWord(action->whatsThis()).shownWord);
+		CodeSnippet(action->data().toString()).insertAt(currentEditorView()->editor,&c);
+		outputView->setMessage(CodeSnippet(action->whatsThis()).lines.join("\n"));
 	}
 }
 
@@ -2722,7 +2722,7 @@ void Texmaker::InsertUserTag() {
 		InsertTag(s,0,1);
 	} else {
 		QDocumentCursor c = currentEditorView()->editor->cursor();
-		CompletionWord(userTag).insertAt(currentEditorView()->editor,&c);
+		CodeSnippet(userTag).insertAt(currentEditorView()->editor,&c);
 	}
 }
 
