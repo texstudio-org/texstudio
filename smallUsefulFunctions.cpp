@@ -196,8 +196,8 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 			if (CommonEOW.indexOf(cur)>=0) break;
 		} else if (inWord) {
 			if (cur=='\\') {
-				if (i+1<line.size() && line.at(i+1)=='-')  {
-					i++;//ignore word separation marker
+				if (i+1<line.size() && (line.at(i+1)=='-'||line.at(i+1)=='_'))  {
+					i++;//ignore word separation marker and _ respectively
 					//reparse=true;
 				} else break;
 			} else if (cur=='"') {  //ignore "  "- "a
