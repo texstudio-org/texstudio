@@ -406,53 +406,20 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		}
 	}
 
-	// updating structure information of document
-	for (int i=linenr; i<linenr+count; i++) {
-		QDocumentLine line = editor->document()->line(i);
-		QString lineText = line.text();
-		QDocumentLineHandle* dlh=line.handle();
-
-		QRegExp rxRef(containedReferences.pattern());
-		QRegExp rxLabel(containedLabels.pattern());
-		int pos = 0;
-		QString ref;
-
-		// remove all references of current line
-		containedReferences.removeByHandle(dlh);
-		// add references of current line
-		int lpos = 0;
-		while(pos=rxRef.indexIn(lineText, pos)!=-1){
-			if (pos<=lpos) break; //huch?
-			lpos=pos;
-			ref=rxRef.cap(2);
-			containedReferences.insert(ref,dlh);
-			pos += rxRef.matchedLength();
-		}
-
-		// remove all labels of current line
-		containedLabels.removeUpdateByHandle(dlh,&containedReferences);
-
-		// add labels of current line
-		pos=0;
-		lpos=pos;
-		bool multipleLabels=false;
-		while(pos=rxLabel.indexIn(lineText, pos)!=-1){
-			if (pos<=lpos) break; //huch?
-			lpos=pos;
-			ref=rxLabel.cap(2);
-			containedLabels.insert(ref,dlh);
-			pos += rxLabel.matchedLength();
-			// look for corresponding reeferences and adapt format respectively
-			containedLabels.updateByKeys(QStringList(ref),&containedReferences);
-		}
-	}
+	
 
 	// spell checking
 	if (!speller || !QDocument::formatFactory()) return;
 	int tccFormat=QDocument::formatFactory()->id("temporaryCodeCompletion");
+
 	for (int i=linenr; i<linenr+count; i++) {
 		QDocumentLine line = editor->document()->line(i);
-		if (!line.isValid() || line.hasOverlay(tccFormat)) continue;
+		if (!line.isValid()) continue;
+		QDocumentLineHandle* dlh = line.handle();
+		// remove all labels/references of current line
+		containedLabels.removeUpdateByHandle(dlh,&containedReferences);
+		containedReferences.removeUpdateByHandle(dlh,&containedReferences);
+
 		line.clearOverlays();
 		if (line.length()<=3) continue;
 		if (!speller->isActive()) continue;
@@ -469,6 +436,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				line.addOverlay(QFormatRange(wordstart,start-wordstart,environmentFormat));
 			} else if (status==NW_REFERENCE) {
 				QString ref=lineText.mid(wordstart,start-wordstart);
+				containedReferences.insert(ref,dlh);
 				int cnt=containedLabels.count(ref);
 				if(cnt>1) {
 					line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMultipleFormat));
@@ -476,10 +444,13 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				else line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMissingFormat));
 			} else if (status==NW_LABEL) {
 				QString ref=lineText.mid(wordstart,start-wordstart);
+				containedLabels.insert(ref,dlh);
 				int cnt=containedLabels.count(ref);
 				if(cnt>1) {
 					line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMultipleFormat));
 				}else line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
+				// look for corresponding reeferences and adapt format respectively
+				containedLabels.updateByKeys(QStringList(ref),&containedReferences);
 			} else if (status==NW_COMMENT) break;
 			else if (word.length()>=3 && !speller->check(word)) {
 				if(word.endsWith('.')) start--;
