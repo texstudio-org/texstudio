@@ -4,32 +4,29 @@
 #include "qeditor.h"
 #include "qdocumentcursor.h"
 
-//currently implemented in latexcompleter.cpp should be moved
-class CompletionWord {
-public:
-	CompletionWord():cursorPos(-1),anchorPos(-1) {}
-	CompletionWord(const CompletionWord &cw):word(cw.word),sortWord(cw.sortWord),shownWord(cw.shownWord),cursorPos(cw.cursorPos),anchorPos(cw.anchorPos),descriptiveParts(cw.descriptiveParts) {}
-	CompletionWord(const QString &newWord);//see cpp
-	bool operator< (const CompletionWord &cw) const {
-		return cw.sortWord > sortWord;
-	}
-	bool operator== (const CompletionWord &cw) const {
-		return cw.word == word;
-	}
-
-	QString word,sortWord,shownWord;
-	int cursorPos; //-1 => not defined
-	int anchorPos;
-	QList<QPair<int, int> > descriptiveParts; //used to draw
-
-	void insertAt(QEditor* editor, QDocumentCursor* cursor);
-};
-Q_DECLARE_METATYPE(CompletionWord);
 
 class CodeSnippet
 {
 public:
-    CodeSnippet();
+	CodeSnippet():cursorLine(-1), cursorOffset(-1),anchorOffset(-1) {}
+	CodeSnippet(const CodeSnippet &cw):word(cw.word),sortWord(cw.sortWord),lines(cw.lines),cursorLine(cw.cursorLine),cursorOffset(cw.cursorOffset),anchorOffset(cw.anchorOffset),placeHolders(cw.placeHolders) {}
+	CodeSnippet(const QString &newWord);
+	bool operator< (const CodeSnippet &cw) const {
+		return cw.sortWord > sortWord;
+	}
+	bool operator== (const CodeSnippet &cw) const {
+		return cw.word == word;
+	}
+
+	QString word,sortWord;
+	QStringList lines; 
+	int cursorLine;  //-1 => not defined
+	int cursorOffset; //-1 => not defined
+	int anchorOffset;
+	QList<QList<QPair<int, int> > > placeHolders; //used to draw
+
+	void insertAt(QEditor* editor, QDocumentCursor* cursor);
 };
 
+Q_DECLARE_METATYPE(CodeSnippet);
 #endif // CODESNIPPET_H

@@ -22,7 +22,6 @@
 #include <qcolor.h>
 #include <QListView>
 
-
 class CompletionListModel;
 class LatexCompleterConfig;
 

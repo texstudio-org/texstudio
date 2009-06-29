@@ -7,7 +7,9 @@
 #include <QChar>
 #include <QList>
 #include <QSet>
-class CompletionWord;
+
+typedef CodeSnippet CompletionWord;
+
 //class CompleterInputBinding;
 class CompletionListModel : public QAbstractListModel {
 	Q_OBJECT

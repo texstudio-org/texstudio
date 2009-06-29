@@ -117,15 +117,21 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 					virtual QString affect(const QString& base, int i) = 0;
 			};
 			
-			PlaceHolder() : length(0), affector(0) {}
-			PlaceHolder(const PlaceHolder& ph) : length(ph.length), affector(ph.affector)
+			PlaceHolder() : length(0), affector(0),removeAutomatically(true) {}
+			PlaceHolder(const PlaceHolder& ph) : length(ph.length), affector(ph.affector),removeAutomatically(ph.removeAutomatically)
 			{
 				cursor = ph.cursor;
 				mirrors << ph.mirrors;
 			}
+			PlaceHolder(int len, const QDocumentCursor &cur): length(len), cursor(cur),removeAutomatically(true) {}
+			PlaceHolder(int len, const QDocumentCursor &cur, const QDocumentCursor &mirror): 
+					length(len), cursor(cur),removeAutomatically(true) {
+				mirrors << mirror;
+			}
 			
 			int length;
 			Affector *affector;
+			bool removeAutomatically;
 			QDocumentCursor cursor;
 			QList<QDocumentCursor> mirrors;
 		};
@@ -297,8 +303,10 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		void clearPlaceHolders();
 		void addPlaceHolder(const PlaceHolder& p, bool autoUpdate = true);
-		
+		void removePlaceHolder(int id);
+				
 		int placeHolderCount() const;
+		int currentPlaceHolder() const;
 		
 		void nextPlaceHolder();
 		void previousPlaceHolder();
@@ -405,8 +413,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void getCursorPosition(int &line, int &index);
 		
 		void clearCursorMirrors();
-		void addCursorMirror(const QDocumentCursor& c);
-		
+		void addCursorMirror(const QDocumentCursor& c);		
 	protected slots:
 		void documentWidthChanged(int newWidth);
 		void documentHeightChanged(int newWidth);
@@ -461,7 +468,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		QList<QDocumentCursor> m_mirrors;
 		
-		int m_curPlaceHolder, m_cphOffset;
+		int m_curPlaceHolder, m_lastPlaceHolder, m_cphOffset;
+		
 		QList<PlaceHolder> m_placeHolders;
 		
 		int m_state;
