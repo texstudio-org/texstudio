@@ -108,6 +108,7 @@ bool SpellerUtility::check(QString word) {
 	if (currentDic=="" || pChecker==0) return true; //no speller => everything is correct
 	if (word.length()<=1) return true;
 	if (ignoredWords.contains(word)) return true;
+	if (word.endsWith('.')&&ignoredWords.contains(word.left(word.length()-1))) return true;
 	if (checkCache.contains(word)) return checkCache.value(word);
 	QByteArray encodedString = spellCodec->fromUnicode(word);
 	bool result=pChecker->spell(encodedString.data());
