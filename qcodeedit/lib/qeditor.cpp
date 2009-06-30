@@ -1965,6 +1965,8 @@ void QEditor::removePlaceHolder(int id){
 	m_placeHolders[id].mirrors.clear();
 	m_placeHolders[id].cursor.setAutoUpdated(false);
 	m_placeHolders.removeAt(id);
+	if (m_curPlaceHolder>id) 
+		m_curPlaceHolder--;
 }
 /*!
 	\return the number of placeholders currently set
@@ -2593,10 +2595,17 @@ void QEditor::paintEvent(QPaintEvent *e)
 	m_doc->draw(&p, ctx);
 	p.restore();
 
+	//TODO: Customizable appearance
+	//TODO: documentRegion is too large, isn't correctly redrawn (especially with a non fixed width font)
+	foreach (const PlaceHolder& ph, m_placeHolders)
+		p.drawConvexPolygon(ph.cursor.documentRegion());
+	
 	if ( m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.count() )
 	{
 		const PlaceHolder& ph = m_placeHolders.at(m_curPlaceHolder);
-
+		p.setPen(QColor(255,0,0));
+		p.drawConvexPolygon(ph.cursor.documentRegion());
+		p.setPen(QColor(0,0,255));
 		foreach ( const QDocumentCursor& m, ph.mirrors )
 		{
 			if ( m.isValid() )
@@ -2604,8 +2613,6 @@ void QEditor::paintEvent(QPaintEvent *e)
 		}
 	}
 
-	foreach (const PlaceHolder& ph, m_placeHolders)
-		p.drawConvexPolygon(ph.cursor.documentRegion());
 	
 	if ( viewport()->height() > m_doc->height() )
 	{
@@ -4888,14 +4895,40 @@ void QEditor::updateContent (int i, int n)
 
 	//qDebug("updating %i, %i", i, n);
 
-	bool cont = n > 1;
-
-	if (m_curPlaceHolder!=m_lastPlaceHolder && 
-		m_lastPlaceHolder>=0 &&  m_lastPlaceHolder < m_placeHolders.count())
-		if (m_placeHolders[m_lastPlaceHolder].removeAutomatically)
-			removePlaceHolder(m_lastPlaceHolder);
+	if (m_placeHolders.count()>0) {
+		//look which placeholder has been modified
+		if (m_mirrors.count()==0){
+			for (int i=0;i<m_placeHolders.count();i++){
+				bool found=false;
+				if (m_placeHolders[i].cursor.isWithinSelection(m_cursor))
+					found=true;
+				else foreach (const QDocumentCursor &c, m_placeHolders[i].mirrors) 
+					if (c.isWithinSelection(m_cursor)) {
+						found=true;
+						break;
+					}
+				if (found) {
+					m_curPlaceHolder=i;
+					break;
+				}
+			}
+		}
+		//remove placeholders
+		//if another has been modified
+		if (m_curPlaceHolder!=m_lastPlaceHolder && 
+			m_lastPlaceHolder>=0 &&  m_lastPlaceHolder < m_placeHolders.count())
+			if (m_placeHolders[m_lastPlaceHolder].removeAutomatically)
+				removePlaceHolder(m_lastPlaceHolder);
+		//if someone pressed enter
+		if (m_curPlaceHolder>=0 && m_curPlaceHolder < m_placeHolders.count()) 
+			if (m_placeHolders[m_curPlaceHolder].removeAutomatically && m_placeHolders[m_curPlaceHolder].cursor.lineNumber() != m_placeHolders[m_curPlaceHolder].cursor.anchorLineNumber())
+				removePlaceHolder(m_curPlaceHolder);
+	}
 	m_lastPlaceHolder=m_curPlaceHolder;
 			
+	if (m_curPlaceHolder!=-1) 
+		n=3; //draw more because the placeholder poylgon doesn't fit on a line
+	bool cont = n > 1;
 	repaintContent(i, cont ? -1 : n);
 }
 

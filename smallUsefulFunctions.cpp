@@ -386,7 +386,7 @@ int findContext(QString &line,int col){
 
 bool hasAtLeastQt(int major, int minor){
 	QStringList vers=QString(qVersion()).split('.');
-	if (vers.length()<2) return false;
+	if (vers.count()<2) return false;
 	int ma=vers[0].toInt();
 	int mi=vers[1].toInt();
 	return (ma>major) || (ma==major && mi>=minor);

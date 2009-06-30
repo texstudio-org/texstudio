@@ -449,7 +449,10 @@ void QDocumentCommand::updateCursorsOnDeletion(int line, int column, int prefixL
 		// TODO : better selection handling
 		if ( ch->hasSelection() )
 		{
-			int lbeg = line, cbeg = column, lend = line + numLines, cend = numLines ? suffixLength : column + prefixLength;
+			int lbeg = line;
+			int cbeg = column;
+			int lend = line + numLines;
+			int cend = (numLines > 1) ? suffixLength : column + prefixLength;
 
 			ch->intersectBoundaries(lbeg, cbeg, lend, cend);
 			//qDebug("intersection (%i, %i : %i, %i)", lbeg, cbeg, lend, cend);

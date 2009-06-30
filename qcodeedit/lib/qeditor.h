@@ -121,7 +121,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			PlaceHolder(const PlaceHolder& ph) : length(ph.length), affector(ph.affector),removeAutomatically(ph.removeAutomatically)
 			{
 				cursor = ph.cursor;
-				mirrors << ph.mirrors;
+				mirrors  << ph.mirrors;
 			}
 			PlaceHolder(int len, const QDocumentCursor &cur): length(len), cursor(cur),removeAutomatically(true) {}
 			PlaceHolder(int len, const QDocumentCursor &cur, const QDocumentCursor &mirror): 
@@ -131,9 +131,9 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			
 			int length;
 			Affector *affector;
-			bool removeAutomatically;
 			QDocumentCursor cursor;
 			QList<QDocumentCursor> mirrors;
+			bool removeAutomatically;
 		};
 		
 		QEditor(QWidget *p = 0);
