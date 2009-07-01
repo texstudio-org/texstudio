@@ -260,6 +260,7 @@ class QCE_EXPORT QDocument : public QObject
 		void visualLineCountChanged(int n);
 		
 		void lineDeleted(QDocumentLineHandle *h);
+		void lineRemoved(QDocumentLineHandle *h);
 		void markChanged(QDocumentLineHandle *l, int m, bool on);
 		
 		void lineEndingChanged(int lineEnding);

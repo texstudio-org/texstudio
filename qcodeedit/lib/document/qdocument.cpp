@@ -5974,7 +5974,7 @@ void QDocumentPrivate::removeLines(int after, int n)
 	updateHidden(after, -n);
 	updateWrapped(after, -n);
 	for(int i=after;i<after+n;i++){
-		emit m_doc->lineDeleted(m_lines[i]);
+		emit m_doc->lineRemoved(m_lines[i]);
 	}
 	m_lines.remove(after, n);
 
