@@ -358,7 +358,7 @@ void QDocumentCommand::insertLines(int after, const QList<QDocumentLineHandle*>&
 
 void QDocumentCommand::updateCursorsOnInsertion(int line, int column, int prefixLength, int numLines, int suffixLength)
 {
-	//qDebug("inserting %i lines at (%i, %i) with (%i : %i) bounds", numLines, line, column, prefixLength, suffixLength);
+	qDebug("inserting %i lines at (%i, %i) with (%i : %i) bounds", numLines, line, column, prefixLength, suffixLength);
 
 	foreach ( QDocumentCursorHandle *ch, m_autoUpdated )
 	{
@@ -437,14 +437,14 @@ void QDocumentCommand::updateCursorsOnInsertion(int line, int column, int prefix
 
 void QDocumentCommand::updateCursorsOnDeletion(int line, int column, int prefixLength, int numLines, int suffixLength)
 {
-	//qDebug("removing %i lines at (%i, %i) with (%i : %i) bounds", numLines, line, column, prefixLength, suffixLength);
+//	qDebug("removing %i lines at (%i, %i) with (%i : %i) bounds", numLines, line, column, prefixLength, suffixLength);
 
 	foreach ( QDocumentCursorHandle *ch, m_autoUpdated )
 	{
 		if ( ch == m_cursor || ch->document() != m_doc )
 			continue;
 
-		//printf("[[watch:0x%x(%i, %i)]]", ch, ch->m_begLine, ch->m_begOffset);
+	//	qDebug("[[watch:0x%x(%i, %i)]]", ch, ch->m_begLine, ch->m_begOffset);
 
 		// TODO : better selection handling
 		if ( ch->hasSelection() )
@@ -466,12 +466,13 @@ void QDocumentCommand::updateCursorsOnDeletion(int line, int column, int prefixL
 				continue;
 			}
 		}
-
+		
+		int cend = (numLines > 1) ? suffixLength : column + prefixLength;//defined again, because intersectBoundaries changed it
 		// move
 		if ( ch->m_begLine > line + numLines )
 		{
 			ch->m_begLine -= numLines;
-		} else if ( ch->m_begLine == line + numLines && ch->m_begOffset >= suffixLength ) {
+		} else if ( ch->m_begLine == line + numLines && ch->m_begOffset >= cend ) {
 			if ( numLines )
 			{
 				ch->m_begLine -= numLines;
@@ -488,7 +489,7 @@ void QDocumentCommand::updateCursorsOnDeletion(int line, int column, int prefixL
 		if ( ch->m_endLine > line + numLines )
 		{
 			ch->m_endLine -= numLines;
-		} else if ( ch->m_endLine == line + numLines && ch->m_endOffset >= suffixLength ) {
+		} else if ( ch->m_endLine == line + numLines && ch->m_endOffset >= cend ) {
 			if ( numLines )
 			{
 				ch->m_endLine -= numLines;
