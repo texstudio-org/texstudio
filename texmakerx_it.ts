@@ -201,7 +201,7 @@
     <message>
         <location filename="configdialog.cpp" line="420"/>
         <source>Browse program</source>
-        <translation type="unfinished"></translation>
+        <translation>Esplora programma</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="13"/>
@@ -241,7 +241,7 @@
     <message>
         <location filename="configdialog.ui" line="242"/>
         <source>Tabbed Log Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="255"/>
@@ -366,7 +366,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="configdialog.ui" line="679"/>
         <source>Assume that every error is in the current document:</source>
-        <translation type="unfinished">Assumi che ogni errore sia nel documento:</translation>
+        <translation>Assumi che ogni errore nel documento:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="693"/>
@@ -421,17 +421,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="configdialog.ui" line="883"/>
         <source>Show State Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra pannello stato</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="896"/>
         <source>Show Line Change State</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra cambiamenti nelle linee</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="927"/>
         <source>Formats</source>
-        <translation type="unfinished"></translation>
+        <translation>Formati</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="940"/>
@@ -446,17 +446,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="configdialog.ui" line="966"/>
         <source>Word Wrap</source>
-        <translation type="unfinished"></translation>
+        <translation>A capo automatico</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="979"/>
         <source>Folding</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="993"/>
         <source>show preview as tool tip if panel is hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>mostra l&apos;anteprima come aiuto contestuale se il pannello non è visibile</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="998"/>
@@ -486,7 +486,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="configdialog.ui" line="1033"/>
         <source>Show important line numbers</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra numeri linee importanti</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1047"/>
@@ -521,7 +521,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="configdialog.ui" line="1116"/>
         <source>In first character</source>
-        <translation type="unfinished"></translation>
+        <translation>Nel primo carattere</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1138"/>
@@ -531,12 +531,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="configdialog.ui" line="1145"/>
         <source>Complete selected text when non-word character is pressed</source>
-        <translation type="unfinished"></translation>
+        <translation>Completa il testo selezionato quando è premuto un carattere non di testo</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1152"/>
         <source>Enable ToolTip-Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Attiva l&apos;aiuto contestuale</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1159"/>
@@ -551,12 +551,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="configmanager.cpp" line="404"/>
         <source>New column meaning:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sgnificato nuova colonna:</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="404"/>
         <source>Key to replace</source>
-        <translation type="unfinished"></translation>
+        <translation>Carattere da sostituire</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="404"/>
@@ -824,7 +824,7 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     <name>LatexEditorView</name>
     <message>
         <location filename="latexeditorview.cpp" line="117"/>
-        <location filename="latexeditorview.cpp" line="536"/>
+        <location filename="latexeditorview.cpp" line="513"/>
         <source>shift pressed =&gt; suggestions hidden</source>
         <translation>shift premuto =&gt; suggerimento nascosto</translation>
     </message>
@@ -834,18 +834,18 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
         <translation>Ignora sempre</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="591"/>
+        <location filename="latexeditorview.cpp" line="568"/>
         <source>label missing!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="593"/>
-        <location filename="latexeditorview.cpp" line="608"/>
+        <location filename="latexeditorview.cpp" line="570"/>
+        <location filename="latexeditorview.cpp" line="585"/>
         <source>label multiple times defined!</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="latexeditorview.cpp" line="611"/>
+        <location filename="latexeditorview.cpp" line="588"/>
         <source>%n reference(s) to this label</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -1016,7 +1016,7 @@ Restart from the begining ?</source>
     <message>
         <location filename="qcodeedit/lib/qcodeedit.cpp" line="272"/>
         <source>Panels</source>
-        <translation type="unfinished"></translation>
+        <translation>Pannelli</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qcodeedit.cpp" line="274"/>
@@ -1321,6 +1321,11 @@ Vuoi salvarli?</translation>
         <source>Error: </source>
         <translation>Errore:</translation>
     </message>
+    <message>
+        <location filename="codesnippet.cpp" line="12"/>
+        <source>content...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QStatusPanel</name>
@@ -1500,7 +1505,7 @@ Vuoi salvarli?</translation>
     <message>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="314"/>
         <source>Regexp</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="327"/>
@@ -1540,7 +1545,7 @@ Vuoi salvarli?</translation>
     <message>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="482"/>
         <source>Escape sequences</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1576,18 +1581,18 @@ Vuoi salvarli?</translation>
     <message>
         <location filename="spellerdialog.cpp" line="190"/>
         <source>No more misspelled words</source>
-        <translation type="unfinished"></translation>
+        <translation>Non ci sono più parole sbagliate</translation>
     </message>
     <message>
         <location filename="spellerdialog.cpp" line="196"/>
         <location filename="spellerdialog.ui" line="128"/>
         <source>Show Ignore List \/</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra la lista delle parole ignorate \/</translation>
     </message>
     <message>
         <location filename="spellerdialog.cpp" line="200"/>
         <source>Hide Ignore List /\</source>
-        <translation type="unfinished"></translation>
+        <translation>NAscondi lista parole ignorate /\</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="14"/>
@@ -1711,7 +1716,7 @@ Vuoi salvarli?</translation>
     <message>
         <location filename="tabbingdialog.cpp" line="25"/>
         <source>Quick Tabbing</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="tabbingdialog.ui" line="43"/>
@@ -1801,7 +1806,7 @@ Vuoi salvarli?</translation>
         <location filename="texmaker.cpp" line="261"/>
         <location filename="texmaker.cpp" line="262"/>
         <source>MetaPost Commands</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="278"/>
@@ -1937,12 +1942,12 @@ Vuoi salvarli?</translation>
     <message>
         <location filename="texmaker.cpp" line="337"/>
         <source>Indent</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="338"/>
         <source>Unindent</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="341"/>
@@ -1982,12 +1987,12 @@ Vuoi salvarli?</translation>
     <message>
         <location filename="texmaker.cpp" line="351"/>
         <source>Previous mark</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="352"/>
         <source>Next mark</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="354"/>
@@ -2033,7 +2038,7 @@ Vuoi salvarli?</translation>
     <message>
         <location filename="texmaker.cpp" line="366"/>
         <source>Toggle Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="367"/>
@@ -2174,7 +2179,7 @@ Vuoi salvarli?</translation>
     <message>
         <location filename="texmaker.cpp" line="426"/>
         <source>MetaPost</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="428"/>
@@ -2217,7 +2222,7 @@ Vuoi salvarli?</translation>
     <message>
         <location filename="texmaker.cpp" line="445"/>
         <source>Quick Tabbing</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="446"/>
@@ -2242,7 +2247,7 @@ Vuoi salvarli?</translation>
     <message>
         <location filename="texmaker.cpp" line="451"/>
         <source>Article in a collection</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="452"/>
@@ -2262,7 +2267,7 @@ Vuoi salvarli?</translation>
     <message>
         <location filename="texmaker.cpp" line="455"/>
         <source>Booklet</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="456"/>
@@ -2282,7 +2287,7 @@ Vuoi salvarli?</translation>
     <message>
         <location filename="texmaker.cpp" line="459"/>
         <source>Technical Manual</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="460"/>
@@ -2345,13 +2350,13 @@ Vuoi salvarli?</translation>
         <location filename="texmaker.cpp" line="494"/>
         <location filename="texmaker.cpp" line="499"/>
         <source>Everything</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="495"/>
         <location filename="texmaker.cpp" line="500"/>
         <source>Nearest block</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="497"/>
@@ -2393,7 +2398,7 @@ Vuoi salvarli?</translation>
     <message>
         <location filename="texmaker.cpp" line="515"/>
         <source>LaTeX Reference</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="516"/>
@@ -2421,13 +2426,13 @@ Vuoi salvarli?</translation>
         <location filename="texmaker.cpp" line="532"/>
         <location filename="texmaker.cpp" line="3815"/>
         <source>Indent Section</source>
-        <translation type="unfinished"></translation>
+        <translation>Indent la selezione</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="533"/>
         <location filename="texmaker.cpp" line="3816"/>
         <source>Unindent Section</source>
-        <translation type="unfinished"></translation>
+        <translation>Unident la  Selezione</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="687"/>
@@ -2684,7 +2689,7 @@ Vuoi salvarli?</translation>
     <message>
         <location filename="textanalysis.ui" line="77"/>
         <source>total shown phrases</source>
-        <translation type="unfinished"></translation>
+        <translation>frasi totali mostrate</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="84"/>
@@ -2699,7 +2704,7 @@ Vuoi salvarli?</translation>
     <message>
         <location filename="textanalysis.ui" line="126"/>
         <source>characters in phrases</source>
-        <translation type="unfinished"></translation>
+        <translation>caratteri nelle frasi</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="159"/>
@@ -2709,7 +2714,7 @@ Vuoi salvarli?</translation>
     <message>
         <location filename="textanalysis.ui" line="165"/>
         <source>If this is enabled, words/phrases in the normal text (which aren&apos;t in comments) are counted</source>
-        <translation type="unfinished"></translation>
+        <translation>se anilitato parole/frasi nel testo normale (che non sono nei commenti) sono contate</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="168"/>
@@ -2719,7 +2724,7 @@ Vuoi salvarli?</translation>
     <message>
         <location filename="textanalysis.ui" line="178"/>
         <source>If this is enabled, words/phrases in the comments are counted.</source>
-        <translation type="unfinished">Se abilitato, parole/frasi nel commento sono contate.</translation>
+        <translation>Se abilitato, parole/frasi nel commento sono contate.</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="181"/>
@@ -3070,7 +3075,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="webpublishdialog.ui" line="145"/>
         <source>Number of compilations :</source>
-        <translation type="unfinished"></translation>
+        <translation>Numero di compilazioni:</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="157"/>
@@ -3150,7 +3155,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="webpublishdialog.ui" line="318"/>
         <source>Browser :</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="330"/>
