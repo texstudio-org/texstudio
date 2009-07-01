@@ -145,6 +145,7 @@ public slots:
 	void lineMarkClicked(int line);
 	void documentContentChanged(int linenr, int count);
 	void lineDeleted(QDocumentLineHandle* l);
+	void lineRemoved(QDocumentLineHandle* l);
 	void spellCheckingReplace();
 	void spellCheckingAlwaysIgnore();
 	void spellCheckingListSuggestions();

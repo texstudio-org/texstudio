@@ -171,6 +171,7 @@ LatexEditorView::LatexEditorView(QWidget *parent) : QWidget(parent),curChangePos
 	connect(editor,SIGNAL(hovered(QPoint)),this,SLOT(mouseHovered(QPoint)));
 	connect(editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
 	connect(editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),this,SLOT(lineDeleted(QDocumentLineHandle*)));
+	connect(editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),this,SLOT(lineRemoved(QDocumentLineHandle*)));
 
 	connect(LatexEditorView::speller,SIGNAL(reloadDictionary()),this,SLOT(dictionaryReloaded()));
 
@@ -458,11 +459,17 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 	}
 	editor->document()->markViewDirty();
 }
-void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {
+
+void LatexEditorView::lineRemoved(QDocumentLineHandle* l) {
 	// delete References
 	containedReferences.removeByHandle(l);
 	// delete Labels and update referenced refs
 	containedLabels.removeUpdateByHandle(l,&containedReferences);
+}
+
+void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {
+
+	lineRemoved(l);
 
 	QHash<QDocumentLineHandle*, int>::iterator it;
 	while ((it=lineToLogEntries.find(l))!=lineToLogEntries.end()) {
