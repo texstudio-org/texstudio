@@ -1106,18 +1106,18 @@ Est-ce que tu acceptes perte des données?</translation>
         <translation>toujours ignorer</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="591"/>
+        <location filename="latexeditorview.cpp" line="568"/>
         <source>label missing!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="593"/>
-        <location filename="latexeditorview.cpp" line="608"/>
+        <location filename="latexeditorview.cpp" line="570"/>
+        <location filename="latexeditorview.cpp" line="585"/>
         <source>label multiple times defined!</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="latexeditorview.cpp" line="611"/>
+        <location filename="latexeditorview.cpp" line="588"/>
         <source>%n reference(s) to this label</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -1126,7 +1126,7 @@ Est-ce que tu acceptes perte des données?</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="117"/>
-        <location filename="latexeditorview.cpp" line="536"/>
+        <location filename="latexeditorview.cpp" line="513"/>
         <source>shift pressed =&gt; suggestions hidden</source>
         <translation>touche Majuscule =&gt; aucune proposition</translation>
     </message>
@@ -1632,6 +1632,11 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="latexoutputfilter.cpp" line="49"/>
         <source>Error: </source>
         <translation type="unfinished">Erreur:</translation>
+    </message>
+    <message>
+        <location filename="codesnippet.cpp" line="12"/>
+        <source>content...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

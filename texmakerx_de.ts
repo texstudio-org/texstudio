@@ -932,18 +932,18 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
         <translation>immer ignorieren</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="591"/>
+        <location filename="latexeditorview.cpp" line="568"/>
         <source>label missing!</source>
         <translation>Label fehlt!</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="593"/>
-        <location filename="latexeditorview.cpp" line="608"/>
+        <location filename="latexeditorview.cpp" line="570"/>
+        <location filename="latexeditorview.cpp" line="585"/>
         <source>label multiple times defined!</source>
         <translation>Label mehrfach definiert!</translation>
     </message>
     <message numerus="yes">
-        <location filename="latexeditorview.cpp" line="611"/>
+        <location filename="latexeditorview.cpp" line="588"/>
         <source>%n reference(s) to this label</source>
         <translation>
             <numerusform>%f Referenz(en) zu diesem Label</numerusform>
@@ -952,7 +952,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="117"/>
-        <location filename="latexeditorview.cpp" line="536"/>
+        <location filename="latexeditorview.cpp" line="513"/>
         <source>shift pressed =&gt; suggestions hidden</source>
         <translation>shift gedrückt =&gt; keine Vorschläge</translation>
     </message>
@@ -1444,6 +1444,11 @@ Wollen Sie es speichern?</translation>
         <location filename="latexoutputfilter.cpp" line="49"/>
         <source>Error: </source>
         <translation>Fehler:</translation>
+    </message>
+    <message>
+        <location filename="codesnippet.cpp" line="12"/>
+        <source>content...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
