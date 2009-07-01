@@ -106,6 +106,7 @@
 		<word parenthesis="chapter:boundary@nomatch" fold="true">\\chapter</word>
 		<word parenthesis="section:boundary@nomatch" fold="true">\\section</word>
 		<word parenthesis="subsection:boundary@nomatch" fold="true">\\subsection</word>
+		<word parenthesis="subsubsection:boundary@nomatch" fold="true">\\subsubsection</word>
 		<word parenthesis="paragraph:boundary@nomatch" fold="true" >\\paragraph</word>
 		<word parenthesis="subparagraph:boundary@nomatch" fold="true" >\\subparagraph</word>
 	</list>
