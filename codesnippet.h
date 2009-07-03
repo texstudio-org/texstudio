@@ -25,7 +25,7 @@ public:
 	int anchorOffset;
 	QList<QList<QPair<int, int> > > placeHolders; //used to draw
 
-	void insertAt(QEditor* editor, QDocumentCursor* cursor);
+	void insertAt(QEditor* editor, QDocumentCursor* cursor) const;
 };
 
 Q_DECLARE_METATYPE(CodeSnippet);

@@ -4806,31 +4806,43 @@ bool QDocumentCursorHandle::isWithinSelection(const QDocumentCursor& c) const
 
 }
 
-void QDocumentCursorHandle::boundaries(int& begline, int& begcol, int& endline, int& endcol) const
-{
+void QDocumentCursorHandle::leftBoundaries(int& begline, int& begcol) const{
 	if ( m_begLine == m_endLine )
 	{
 		begline = m_begLine;
-		endline = m_endLine;
-		if ( m_begOffset < m_endOffset )
-		{
+		if ( m_begOffset < m_endOffset /*&& (m_begLine!=-1)*/)
 			begcol = m_begOffset;
-			endcol = m_endOffset;
-		} else {
-			endcol = m_begOffset;
+		else
 			begcol = m_endOffset;
-		}
-	} else if ( m_begLine < m_endLine ) {
+	} else if ( m_begLine < m_endLine || m_endLine==-1) {
 		begline = m_begLine;
-		endline = m_endLine;
 		begcol = m_begOffset;
+	} else {
+		begline = m_endLine;
+		begcol = m_endOffset;
+	}
+}
+void QDocumentCursorHandle::rightBoundaries(int& endline, int& endcol) const{
+	if ( m_begLine == m_endLine )
+	{
+		endline = m_endLine;
+		if ( m_begOffset < m_endOffset /*&& (m_endOffset!=-1)*/)
+			endcol = m_endOffset;
+		else
+			endcol = m_begOffset;
+	} else if ( m_begLine < m_endLine) {
+		endline = m_endLine;
 		endcol = m_endOffset;
 	} else {
 		endline = m_begLine;
-		begline = m_endLine;
 		endcol = m_begOffset;
-		begcol = m_endOffset;
 	}
+}
+
+void QDocumentCursorHandle::boundaries(int& begline, int& begcol, int& endline, int& endcol) const
+{
+	leftBoundaries(begline,begcol);
+	rightBoundaries(endline,endcol);
 }
 
 void QDocumentCursorHandle::substractBoundaries(int lbeg, int cbeg, int lend, int cend)

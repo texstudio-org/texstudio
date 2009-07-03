@@ -127,6 +127,8 @@ class QCE_EXPORT QDocumentCursorHandle
 		QDocumentCursor intersect(const QDocumentCursor& c) const;
 		
 		void substractBoundaries(int lbeg, int cbeg, int lend, int cend);
+		void leftBoundaries(int& begline, int& begcol) const;
+		void rightBoundaries(int& endline, int& endcol) const;
 		void boundaries(int& begline, int& begcol, int& endline, int& endcol) const;
 		void intersectBoundaries(int& lbeg, int& cbeg, int& lend, int& cend) const;
 		void intersectBoundaries(QDocumentCursorHandle *h, int& lbeg, int& cbeg, int& lend, int& cend) const;

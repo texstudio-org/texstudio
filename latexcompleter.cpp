@@ -712,14 +712,17 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
 						if (line.contains("{")) {
 							line.replace("{","{%<");
 							line.replace("}","%>}");
+							line.replace("{%<%>}", "{%<something%>}");
 						}
 						if (line.contains("(")) {
 							line.replace("(","(%<");
 							line.replace(")","%>)");
+							line.replace("(%<%>)", "(%<something%>)");
 						}
 						if (line.contains("[")) {
 							line.replace("[","[%<");
 							line.replace("]","%>]");
+							line.replace("[%<%>]", "[%<something%>]");
 						}
 						int i;
 						if (line.startsWith("\\begin")||line.startsWith("\\end")) {
