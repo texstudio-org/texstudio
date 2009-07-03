@@ -1,6 +1,8 @@
 #ifndef CODESNIPPET_H
 #define CODESNIPPET_H
 
+#include "mostQtHeaders.h"
+
 #include "qeditor.h"
 #include "qdocumentcursor.h"
 

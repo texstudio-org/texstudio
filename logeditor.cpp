@@ -10,8 +10,6 @@
  ***************************************************************************/
 
 #include "logeditor.h"
-#include <QRegExp>
-#include <QPainter>
 
 LogEditor::LogEditor(QWidget *parent) : QTextEdit(parent) {
 //setToolTip(tr("Click to jump to the line"));

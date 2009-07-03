@@ -25,12 +25,6 @@
 #include "qdocument.h"
 #include "qdocumentline.h"
 
-#include <QIcon>
-#include <QMenu>
-#include <QPainter>
-#include <QScrollBar>
-#include <QContextMenuEvent>
-
 /*!
 	\ingroup widgets
 	@{

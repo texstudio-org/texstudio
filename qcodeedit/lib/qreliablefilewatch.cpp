@@ -20,9 +20,6 @@
 	\brief Implementation of the QReliableFileWatch class.
 */
 
-#include <QFile>
-#include <QTimerEvent>
-
 /*!
 	\class QReliableFileWatch
 	\brief A specialized file monitor that works around some issues in QFileSystemWatcher

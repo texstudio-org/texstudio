@@ -12,8 +12,7 @@
 #ifndef SYMBOLLISTWIDGET_H
 #define SYMBOLLISTWIDGET_H
 
-#include <QTableWidget>
-#include <QTableView>
+#include "mostQtHeaders.h"
 
 typedef QString codelist[412];
 const codelist code= {

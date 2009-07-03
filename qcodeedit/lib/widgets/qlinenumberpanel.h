@@ -16,6 +16,8 @@
 #ifndef _QLINE_NUMBER_PANEL_H_
 #define _QLINE_NUMBER_PANEL_H_
 
+#include "mostQtHeaders.h"
+
 /*!
 	\file qlinenumberpanel.h
 	\brief Definition of the QLineNumberPanel class

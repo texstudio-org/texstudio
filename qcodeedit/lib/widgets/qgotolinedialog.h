@@ -16,6 +16,8 @@
 #ifndef _QGOTO_LINE__DIALOG_H_
 #define _QGOTO_LINE__DIALOG_H_
 
+#include "mostQtHeaders.h"
+
 #include "qce-config.h"
 
 /*!
@@ -26,8 +28,6 @@
 */
 
 #include "ui_gotolinedialog.h"
-
-#include <QDialog>
 
 class QEditor;
 

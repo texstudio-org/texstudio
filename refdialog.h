@@ -12,6 +12,8 @@
 #ifndef REFDIALOG_H
 #define REFDIALOG_H
 
+#include "mostQtHeaders.h"
+
 #include "ui_refdialog.h"
 
 class RefDialog : public QDialog  {

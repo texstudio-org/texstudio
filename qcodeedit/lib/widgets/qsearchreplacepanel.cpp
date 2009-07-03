@@ -29,9 +29,6 @@
 #include "qdocumentcursor.h"
 #include "qdocumentsearch.h"
 
-#include <QScrollBar>
-#include <QPaintEvent>
-
 static QString escapeCpp(const QString& s, bool rep)
 {
 	if ( !rep )

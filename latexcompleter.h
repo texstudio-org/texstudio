@@ -12,15 +12,13 @@
 #ifndef LATEXCOMPLETER_H
 #define LATEXCOMPLETER_H
 
+#include "mostQtHeaders.h"
+
 #include "codesnippet.h"
 
 #include "qcodeedit.h"
 #include "qeditor.h"
 
-#include <qwidget.h>
-#include <qfont.h>
-#include <qcolor.h>
-#include <QListView>
 
 class CompletionListModel;
 class LatexCompleterConfig;

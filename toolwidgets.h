@@ -1,17 +1,10 @@
 #ifndef TOOLWIDGETS_H
 #define TOOLWIDGETS_H
 
+#include "mostQtHeaders.h"
+
 #include "logeditor.h"
 #include "latexlog.h"
-
-
-#include <QDockWidget>
-#include <QLabel>
-#include <QScrollArea>
-#include <QStackedWidget>
-#include <QTabBar>
-#include <QTableView>
-#include <QWidget>
 
 class PreviewWidget : public QScrollArea
 {

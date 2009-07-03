@@ -13,8 +13,9 @@
 #ifndef STRUCTDIALOG_H
 #define STRUCTDIALOG_H
 
-#include "ui_structdialog.h"
+#include "mostQtHeaders.h"
 
+#include "ui_structdialog.h"
 
 class StructDialog : public QDialog  {
 	Q_OBJECT

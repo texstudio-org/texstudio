@@ -16,6 +16,8 @@
 #ifndef _QEDIT_CONFIG_H_
 #define _QEDIT_CONFIG_H_
 
+#include "mostQtHeaders.h"
+
 #include "qce-config.h"
 
 /*!
@@ -26,8 +28,6 @@
 */
 
 #include "ui_editconfig.h"
-
-#include <QWidget>
 
 class QCE_EXPORT QEditConfig : public QWidget, private Ui::EditorConfig
 {

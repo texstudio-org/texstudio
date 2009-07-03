@@ -8,17 +8,6 @@
 #include "qeditorinputbinding.h"
 #include "qformatfactory.h"
 
-#include <QApplication>
-#include <QDesktopWidget>
-#include <QFile>
-#include <QItemDelegate>
-#include <QKeyEvent>
-#include <QPainter>
-#include <QStyleOptionViewItem>
-#include <QToolTip>
-#include <QLabel>
-
-#include <QMessageBox>
 
 //------------------------------Default Input Binding--------------------------------
 class CompleterInputBinding: public QEditorInputBinding {

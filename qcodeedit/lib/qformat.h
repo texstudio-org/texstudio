@@ -16,14 +16,12 @@
 #ifndef _QFORMAT_H_
 #define _QFORMAT_H_
 
+#include "mostQtHeaders.h"
+
 /*!
 	\file qformat.h
 	\brief Definition of the QFormat class
 */
-
-#include <QFont>
-#include <QColor>
-#include <QTextCharFormat>
 
 template <typename T>
 class QVector;

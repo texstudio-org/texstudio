@@ -12,7 +12,8 @@
 #ifndef USERMENUDIALOG_H
 #define USERMENUDIALOG_H
 
-#include <QString>
+#include "mostQtHeaders.h"
+
 #include "ui_usermenudialog.h"
 
 typedef QString userlist[10];

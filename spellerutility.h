@@ -11,12 +11,9 @@
 #ifndef SPELLERUTILITY_H
 #define SPELLERUTILITY_H
 
+#include "mostQtHeaders.h"
+
 #include "hunspell/hunspell.hxx"
-#include "QHash"
-#include "QLinkedList"
-#include "QSet"
-#include "QStringList"
-#include "QStringListModel"
 class SpellerUtility: public QObject {
 	Q_OBJECT
 public:

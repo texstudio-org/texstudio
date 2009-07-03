@@ -12,10 +12,8 @@
 #ifndef ICONDELEGATE_H
 #define ICONLDELEGATE_H
 
-#include <QAbstractItemDelegate>
-#include <QFontMetrics>
-#include <QModelIndex>
-#include <QSize>
+#include "mostQtHeaders.h"
+
 
 class QAbstractItemModel;
 class QObject;

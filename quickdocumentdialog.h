@@ -12,10 +12,10 @@
 #ifndef QUICKDOCUMENTDIALOG_H
 #define QUICKDOCUMENTDIALOG_H
 
+#include "mostQtHeaders.h"
+
 #include "ui_quickdocumentdialog.h"
 #include "addoptiondialog.h"
-
-
 
 class QuickDocumentDialog : public QDialog  {
 	Q_OBJECT

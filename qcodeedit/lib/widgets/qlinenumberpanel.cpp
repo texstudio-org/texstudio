@@ -22,9 +22,6 @@
 	\see QLineNumberPanel
 */
 
-#include <QPainter>
-#include <QScrollBar>
-
 #include "qeditor.h"
 #include "qdocument.h"
 #include "qdocument_p.h"

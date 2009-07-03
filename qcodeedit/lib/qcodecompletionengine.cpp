@@ -22,10 +22,6 @@
 
 #include "qeditor.h"
 
-#include <QAction>
-#include <QKeyEvent>
-#include <QTextCursor>
-
 #ifdef _QCODE_MODEL_
 #include "qcodebuffer.h"
 #endif

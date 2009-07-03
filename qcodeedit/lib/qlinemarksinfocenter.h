@@ -16,6 +16,8 @@
 #ifndef _QLINE_MARKS_INFO_CENTER_H_
 #define _QLINE_MARKS_INFO_CENTER_H_
 
+#include "mostQtHeaders.h"
+
 /*!
 	\file qlinemarksinfocenter.h
 	\brief Definition of the QLineMarksInfoCenter class.
@@ -28,12 +30,6 @@
 */
 
 #include "qce-config.h"
-
-#include <QColor>
-#include <QPixmap>
-#include <QObject>
-#include <QMetaType>
-#include <QStringList>
 
 class QEditor;
 class QDataStream;

@@ -11,12 +11,6 @@
 
 #include "spellerutility.h"
 #include "smallUsefulFunctions.h"
-#include <QTextCodec>
-#include <QFileInfo>
-#include <QMessageBox>
-#include <QStringListModel>
-
-
 
 SpellerUtility::SpellerUtility(): currentDic(""), pChecker(0),active(false) {
 	checkCache.reserve(1020);

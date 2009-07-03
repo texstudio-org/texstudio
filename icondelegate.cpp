@@ -9,9 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <QtGui>
-#include <QAbstractItemModel>
-#include <QPainter>
+#include "mostQtHeaders.h"
+ 
 #include "icondelegate.h"
 
 static const int textMargin = 2;

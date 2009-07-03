@@ -16,6 +16,8 @@
 #ifndef _QLANGUAGE_FACTORY_H_
 #define _QLANGUAGE_FACTORY_H_
 
+#include "mostQtHeaders.h"
+
 /*!
 	\file qlanguagefactory.h
 	\brief Definition of the QLanguageFactory class.
@@ -28,10 +30,6 @@
 */
 
 #include "qce-config.h"
-
-#include <QHash>
-#include <QObject>
-#include <QStringList>
 
 class QEditor;
 class QFormatScheme;

@@ -13,12 +13,8 @@
 #ifndef WEBPUBLISHDIALOG_H
 #define WEBPUBLISHDIALOG_H
 
-#include <QVariant>
-#include <QProcess>
-#include <QMap>
-#include <QVector>
-#include <QPointer>
-#include <QTextCodec>
+#include "mostQtHeaders.h"
+
 #include "ui_webpublishdialog.h"
 
 

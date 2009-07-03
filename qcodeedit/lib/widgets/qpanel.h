@@ -16,6 +16,8 @@
 #ifndef _QPANEL_H_
 #define _QPANEL_H_
 
+#include "mostQtHeaders.h"
+
 /*!
 	\file qpanel.h
 	\brief Definition of the QPanel class
@@ -26,10 +28,6 @@
 */
 
 #include "qce-config.h"
-
-#include <QHash>
-#include <QWidget>
-#include <QPointer>
 
 class QPainter;
 class QPaintEvent;

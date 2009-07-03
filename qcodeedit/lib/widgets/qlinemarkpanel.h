@@ -23,10 +23,9 @@
 	\see QLineMarkPanel
 */
 
-#include "qpanel.h"
+#include "mostQtHeaders.h"
 
-#include <QHash>
-#include <QIcon>
+#include "qpanel.h"
 
 class QDocumentLine;
 

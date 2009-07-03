@@ -1,6 +1,8 @@
 #ifndef ENCODINGDIALOG_H
 #define ENCODINGDIALOG_H
 
+#include "mostQtHeaders.h"
+
 #include "ui_encodingdialog.h"
 
 #include "qeditor.h"

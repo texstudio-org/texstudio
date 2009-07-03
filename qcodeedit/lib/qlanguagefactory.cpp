@@ -37,14 +37,6 @@
 	\see QLanguageDefinition
 */
 
-#include <QDir>
-#include <QFileInfo>
-#include <QStringList>
-
-#ifdef _QCODE_EDIT_DEBUG_
-#include <QtDebug>
-#endif
-
 #include "qeditor.h"
 #include "qformatscheme.h"
 

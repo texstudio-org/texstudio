@@ -16,6 +16,8 @@
 #ifndef _QFORMAT_CONFIG_H_
 #define _QFORMAT_CONFIG_H_
 
+#include "mostQtHeaders.h"
+
 #include "qce-config.h"
 
 /*!
@@ -24,8 +26,6 @@
 	
 	\see QFormatConfig
 */
-
-#include <QWidget>
 
 #include "ui_formatconfig.h"
 

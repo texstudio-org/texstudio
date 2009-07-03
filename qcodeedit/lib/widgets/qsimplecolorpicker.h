@@ -16,6 +16,8 @@
 #ifndef _QSIMPLE_COLOR_PICKER_H_
 #define _QSIMPLE_COLOR_PICKER_H_
 
+#include "mostQtHeaders.h"
+
 #include "qce-config.h"
 
 /*!

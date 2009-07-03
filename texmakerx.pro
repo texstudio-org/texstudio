@@ -11,6 +11,8 @@ QT += network \
     xml
 
 # ##############################
+PRECOMPILED_HEADER  = mostQtHeaders.h
+
 HEADERS += texmaker.h \
     buildmanager.h \
     dsingleapplication.h \

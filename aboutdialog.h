@@ -12,6 +12,8 @@
 #ifndef ABOUTDIALOG_H
 #define ABOUTDIALOG_H
 
+#include "mostQtHeaders.h"
+
 #include "ui_aboutdialog.h"
 
 class AboutDialog : public QDialog  {

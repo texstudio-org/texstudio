@@ -16,16 +16,14 @@
 #ifndef _QCODE_EDIT_H_
 #define _QCODE_EDIT_H_
 
+#include "mostQtHeaders.h"
+
 #include "qce-config.h"
 
 /*!
 	\file qcodeedit.h
 	\brief Definition of the QCodeEdit class
 */
-
-#include <QList>
-#include <QPointer>
-#include <QGenericArgument>
 
 class QMenu;
 class QPanel;

@@ -12,6 +12,8 @@
 #ifndef ADDOPTIONDIALOG_H
 #define ADDOPTIONDIALOG_H
 
+#include "mostQtHeaders.h"
+
 #include "ui_addoptiondialog.h"
 
 class AddOptionDialog : public QDialog {

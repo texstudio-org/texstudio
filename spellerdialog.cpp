@@ -14,9 +14,6 @@
 
 #include "qdocumentline.h"
 
-#include <QCloseEvent>
-
-
 SpellerDialog::SpellerDialog(QWidget *parent,SpellerUtility *utility)
 		:QDialog(parent),m_speller(utility),editor(0),editorView(0) {
 	ui.setupUi(this);

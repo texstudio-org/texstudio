@@ -39,8 +39,6 @@
 #include "qdocument.h"
 #include "qdocument_p.h"
 
-#include <QFile>
-#include <QDataStream>
 #include <QDomDocument>
 
 #define QLINE_MARKS_DUMP_VERSION		1

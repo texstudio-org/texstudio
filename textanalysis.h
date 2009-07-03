@@ -1,6 +1,7 @@
 #ifndef TEXTANALYSIS_H
 #define TEXTANALYSIS_H
 
+#include "mostQtHeaders.h"
 
 #include "ui_textanalysis.h"
 
@@ -8,8 +9,6 @@
 #include "qdocument.h"
 #include "qdocumentcursor.h"
 
-#include <QString>
-#include <QTreeWidgetItem>
 class Word {
 public:
 	QString word;

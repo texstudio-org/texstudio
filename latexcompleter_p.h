@@ -1,12 +1,10 @@
 #ifndef LATEXCOMPLETER_P_H
 #define LATEXCOMPLETER_P_H
 
+#include "mostQtHeaders.h"
+
 #include "codesnippet.h"
 
-#include <QAbstractListModel>
-#include <QChar>
-#include <QList>
-#include <QSet>
 
 typedef CodeSnippet CompletionWord;
 

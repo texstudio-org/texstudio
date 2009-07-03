@@ -16,6 +16,8 @@
 #ifndef _QEDITOR_FACTORY_H_
 #define _QEDITOR_FACTORY_H_
 
+#include "mostQtHeaders.h"
+
 #include "qce-config.h"
 
 /*!
@@ -36,8 +38,6 @@
 #endif
 
 #include "qsettingsclient.h"
-
-#include <QStringList>
 
 class QEditor;
 class QCodeEdit;

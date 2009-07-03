@@ -1,5 +1,4 @@
 #include "latexlog.h"
-#include <QTextBlock>
 #include "qlinemarksinfocenter.h"
 
 LatexLogModel::LatexLogModel(QObject * parent): QAbstractTableModel(parent) {

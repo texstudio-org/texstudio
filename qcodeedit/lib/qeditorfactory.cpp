@@ -41,12 +41,6 @@
 
 #include "qsettingsserver.h"
 
-#include <QDir>
-#include <QFile>
-#include <QFileInfo>
-#include <QTextStream>
-#include <QApplication>
-
 /*!
 	\ingroup editor
 	@{

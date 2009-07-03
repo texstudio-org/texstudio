@@ -10,9 +10,8 @@
 
 #ifndef SMALLUSEFULFUNCTIONS_H
 #define SMALLUSEFULFUNCTIONS_H
-#include <QString>
-#include <QToolButton>
-#include <QScrollBar>
+
+#include "mostQtHeaders.h"
 
 QString getCommonEOW();
 

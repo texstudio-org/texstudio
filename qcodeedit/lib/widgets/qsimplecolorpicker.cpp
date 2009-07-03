@@ -20,12 +20,6 @@
 	\brief Implementation of the QSimpleColorPicker class
 */
 
-#include <QIcon>
-#include <QPixmap>
-#include <QPainter>
-#include <QResizeEvent>
-#include <QColorDialog>
-
 QSimpleColorPicker::QSimpleColorPicker(QWidget *w)
  : QToolButton(w)
 {

@@ -1,11 +1,7 @@
 #ifndef THESAURUSDIALOG_H
 #define THESAURUSDIALOG_H
 
-#include <QDialog>
-#include <QPushButton>
-#include <QLineEdit>
-#include <QListWidget>
-#include <QGridLayout>
+#include "mostQtHeaders.h"
 
 class ThesaurusDialog: public QDialog
 {

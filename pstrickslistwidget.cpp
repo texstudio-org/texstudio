@@ -11,11 +11,6 @@
 
 #include "pstrickslistwidget.h"
 
-#include <QFont>
-#include <QColor>
-#include <QListWidgetItem>
-#include <QApplication>
-
 PstricksListWidget::PstricksListWidget(QWidget *parent):QListWidget(parent) {
 	QListWidgetItem *title, *command;
 	QFont fontTitle=qApp->font();

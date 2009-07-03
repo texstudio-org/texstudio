@@ -12,6 +12,8 @@
 #ifndef LETTERDIALOG_H
 #define LETTERDIALOG_H
 
+#include "mostQtHeaders.h"
+
 #include "ui_letterdialog.h"
 
 class LetterDialog : public QDialog  {

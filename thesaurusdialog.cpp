@@ -1,9 +1,5 @@
 #include "thesaurusdialog.h"
 
-#include <QFile>
-#include <QTextStream>
-#include <QMessageBox>
-
 ThesaurusDialog::ThesaurusDialog(QWidget *parent)
 	:QDialog(parent)
 {

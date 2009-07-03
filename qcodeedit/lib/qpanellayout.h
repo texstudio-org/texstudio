@@ -16,16 +16,14 @@
 #ifndef _QPANEL_LAYOUT_H_
 #define _QPANEL_LAYOUT_H_
 
+#include "mostQtHeaders.h"
+
 #include "qce-config.h"
 
 /*!
 	\file qpanellayout.h
 	\brief Definition of the QPanelLayout class
 */
-
-#include <QList>
-#include <QLayout>
-#include <QPointer>
 
 class QPanel;
 class QEditor;

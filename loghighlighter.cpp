@@ -9,9 +9,6 @@
  *                                                                         *
  ***************************************************************************/
 
-
-#include <QtGui>
-
 #include "loghighlighter.h"
 
 LogHighlighter::LogHighlighter(QTextDocument *parent)

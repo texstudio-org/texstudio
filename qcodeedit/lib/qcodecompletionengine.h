@@ -16,6 +16,8 @@
 #ifndef _QCOMPLETION_ENGINE_H_
 #define _QCOMPLETION_ENGINE_H_
 
+#include "mostQtHeaders.h"
+
 #include "qce-config.h"
 
 /*!
@@ -24,10 +26,6 @@
 */
 
 #include "qdocumentcursor.h"
-
-#include <QObject>
-#include <QPointer>
-#include <QStringList>
 
 class QEditor;
 class QAction;

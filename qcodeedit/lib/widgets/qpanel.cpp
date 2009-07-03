@@ -26,17 +26,6 @@
 #include "qcodeedit.h"
 #include "qpanellayout.h"
 
-#include <QFont>
-#include <QFontMetrics>
-
-#include <QPainter>
-#include <QPaintEvent>
-
-#include <QScrollBar>
-
-#include <QMouseEvent>
-#include <QApplication>
-
 /*!
 	\ingroup widgets
 	@{

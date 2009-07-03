@@ -37,33 +37,8 @@
 
 #include "qreliablefilewatch.h"
 
-#include <QFile>
-#include <QMenu>
-#include <QTimer>
-#include <QStyle>
-#include <QDebug>
-#include <QAction>
-#include <QPointer>
-#include <QPainter>
-#include <QPrinter>
-#include <QKeyEvent>
-#include <QMimeData>
-#include <QFileInfo>
-#include <QToolTip>
-#include <QHelpEvent>
-#include <QClipboard>
-#include <QScrollBar>
-#include <QTextCodec>
-#include <QFileDialog>
-#include <QTextStream>
-#include <QMessageBox>
-#include <QPrintDialog>
-#include <QApplication>
-#include <QActionGroup>
-
 #include <QPrinter>
 #include <QPrintDialog>
-#include <QTextDocument>
 //#define Q_GL_EDITOR
 
 #ifdef _QMDI_

@@ -11,25 +11,22 @@
 
 #include "configdialog.h"
 
-#include <QFontDatabase>
-#include <QTextCodec>
+#include <QCompleter>
 #if QT_VERSION >= 0x040400
 #include <QFileSystemModel>
 #else
-#include <QCompleter>
 #include <QDirModel>
 #endif
-#include <QFileDialog>
-#include <QColorDialog>
-#include <QDir>
-#include <QKeySequence>
-#include <QMessageBox>
-#include <QList>
-#include <QPainter>
 
 #include "qdocument.h"
 
 #if QT_VERSION >= 0x040400
+class FileSystemCompleter: public QCompleter{
+public:
+	FileSystemCompleter(QObject *p=0);
+    virtual QString pathFromIndex(const QModelIndex &index) const;
+    virtual QStringList splitPath(const QString &path) const;
+};
 //copied from Qt source
 FileSystemCompleter::FileSystemCompleter(QObject *p): QCompleter(p){
 	#ifdef Q_WS_WIN

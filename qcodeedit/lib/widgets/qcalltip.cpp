@@ -20,9 +20,6 @@
 	\brief Implementation of the QCallTip class
 */
 
-#include <QPainter>
-#include <QMouseEvent>
-
 /*!
 	\class QCallTip
 	\brief A widget dedicated to calltips display

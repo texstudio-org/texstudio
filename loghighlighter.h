@@ -13,11 +13,7 @@
 #ifndef LOGHIGHLIGHTER_H
 #define LOGHIGHLIGHTER_H
 
-#include <QSyntaxHighlighter>
-
-#include <QHash>
-#include <QTextCharFormat>
-#include <QColor>
+#include "mostQtHeaders.h"
 
 class QTextDocument;
 

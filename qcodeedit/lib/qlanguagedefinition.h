@@ -16,6 +16,8 @@
 #ifndef _QLANGUAGE_DEFINITION_H_
 #define _QLANGUAGE_DEFINITION_H_
 
+#include "mostQtHeaders.h"
+
 #include "qce-config.h"
 
 /*!
@@ -26,8 +28,6 @@
 */
 
 #include "qformat.h"
-
-#include <QStringList>
 
 class QKeyEvent;
 class QDocument;

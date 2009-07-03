@@ -11,6 +11,8 @@
 #ifndef SPELLERDIALOG_H
 #define SPELLERDIALOG_H
 
+#include "mostQtHeaders.h"
+
 #include "latexeditorview.h"
 #include "spellerutility.h"
 

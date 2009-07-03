@@ -16,14 +16,14 @@
 #ifndef _QCALL_TIP_H_
 #define _QCALL_TIP_H_
 
+#include "mostQtHeaders.h"
+
 #include "qce-config.h"
 
 /*!
 	\file qcalltip.h
 	\brief Definition of the QCallTip class
 */
-
-#include <QWidget>
 
 class QCE_EXPORT QCallTip : public QWidget
 {

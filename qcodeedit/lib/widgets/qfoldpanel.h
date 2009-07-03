@@ -16,6 +16,8 @@
 #ifndef _QFOLD_PANEL_H_
 #define _QFOLD_PANEL_H_
 
+#include "mostQtHeaders.h"
+
 #include "qpanel.h"
 
 /*!

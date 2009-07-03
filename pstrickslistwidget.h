@@ -12,8 +12,7 @@
 #ifndef PSTRICKSLISTWIDGET_H
 #define PSTRICKSLISTWIDGET_H
 
-#include <QListWidget>
-
+#include "mostQtHeaders.h"
 
 class PstricksListWidget : public QListWidget  {
 	Q_OBJECT

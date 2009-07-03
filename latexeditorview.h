@@ -12,6 +12,8 @@
 #ifndef LATEXEDITORVIEW_H
 #define LATEXEDITORVIEW_H
 
+#include "mostQtHeaders.h"
+
 #include "spellerutility.h"
 
 #include "qcodeedit.h"
@@ -19,14 +21,6 @@
 #include "qeditorinputbinding.h"
 #include "qlinemarkpanel.h"
 #include "qlinenumberpanel.h"
-
-#include <qwidget.h>
-#include <qfont.h>
-#include <qcolor.h>
-
-
-
-//#include "qpanel.h"
 
 class References {
 public:
