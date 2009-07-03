@@ -12,18 +12,6 @@
 
 #include "webpublishdialog.h"
 
-#include <QVariant>
-#include <QFile>
-#include <QFileDialog>
-#include <QTextStream>
-#include <QRegExp>
-#include <QSettings>
-#include <QStringList>
-#include <QEventLoop>
-#include <QApplication>
-#include <QCloseEvent>
-#include <QDebug>
-#include <QMessageBox>
 #include "smallUsefulFunctions.h"
 
 WebPublishDialog::WebPublishDialog(QWidget *parent, QString name, QString gs_cd, QString latex_cd, QString dvips_cd, QTextCodec *input_codec)

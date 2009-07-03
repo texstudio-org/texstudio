@@ -23,9 +23,6 @@
 #include "qpanel.h"
 #include "qeditor.h"
 
-#include <QWidget>
-#include <QScrollBar>
-
 #ifdef Q_WS_WIN
 // panel position fix required on some systems to work around a bug in QAbstractScrollArea
 #define _PANEL_POSITION_FIX_

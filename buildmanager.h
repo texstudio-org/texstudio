@@ -1,13 +1,7 @@
 #ifndef BUILDMANAGER_H
 #define BUILDMANAGER_H
 
-#include <QHash>
-#include <QString>
-#include <QFileInfo>
-#include <QPixmap>
-#include <QProcess>
-#include <QSettings>
-#include <QTemporaryFile>
+#include "mostQtHeaders.h"
 
 class ProcessX;
 

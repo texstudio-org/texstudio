@@ -16,16 +16,14 @@
 #ifndef _QEDIT_SESSION_H_
 #define _QEDIT_SESSION_H_
 
+#include "mostQtHeaders.h"
+
 #include "qce-config.h"
 
 /*!
 	\file qeditsession.h
 	\brief Definition of the QEditSession class.
 */
-
-#include <QObject>
-#include <QPointer>
-#include <QStringList>
 
 class QEditor;
 

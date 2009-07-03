@@ -12,7 +12,8 @@
 #ifndef USERTOOLDIALOG_H
 #define USERTOOLDIALOG_H
 
-#include <QString>
+#include "mostQtHeaders.h"
+
 #include "ui_usertooldialog.h"
 
 typedef QString userCd[5];

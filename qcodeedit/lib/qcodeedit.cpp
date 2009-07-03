@@ -24,14 +24,6 @@
 #include "qeditor.h"
 #include "qpanellayout.h"
 
-#include <QDir>
-#include <QMenu>
-#include <QEvent>
-#include <QAction>
-#include <QFileInfo>
-#include <QStringList>
-#include <QMetaObject>
-
 /*!
 	\class QCodeEdit
 	\brief A thin layer over QEditor

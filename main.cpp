@@ -11,16 +11,13 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "mostQtHeaders.h"
+ 
 #include "texmaker.h"
 #include "smallUsefulFunctions.h"
 #include "dsingleapplication.h"
 
-#include <QApplication>
-#include <QTranslator>
-#include <QLocale>
 #include <QSplashScreen>
-#include <QDir>
-#include <QFileOpenEvent>
 #ifdef Q_WS_WIN
 #include "windows.h"
 typedef BOOL (*AllowSetForegroundWindowFunc)(DWORD);

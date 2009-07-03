@@ -28,14 +28,6 @@
 #include "qlanguagedefinition.h"
 #include "qlinemarksinfocenter.h"
 
-#include <QIcon>
-#include <QMenu>
-#include <QPainter>
-#include <QScrollBar>
-#include <QToolTip>
-#include <QMessageBox>
-#include <QContextMenuEvent>
-
 /*!
 	\ingroup widgets
 	@{

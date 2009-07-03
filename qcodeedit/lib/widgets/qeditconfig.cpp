@@ -26,9 +26,6 @@
 #include "qdocument.h"
 #include "qdocument_p.h"
 
-#include <QDebug>
-#include <QTextCodec>
-
 /*!
 	\ingroup dialogs
 	@{

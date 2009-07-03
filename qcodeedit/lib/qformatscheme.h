@@ -16,6 +16,8 @@
 #ifndef _QFORMAT_SCHEME_H_
 #define _QFORMAT_SCHEME_H_
 
+#include "mostQtHeaders.h"
+
 /*!
 	\file qformatscheme.h
 	\brief Definition of the QFormatScheme class.
@@ -28,9 +30,6 @@
 */
 
 #include "qce-config.h"
-
-#include <QVector>
-#include <QObject>
 
 struct QFormat;
 class QString;

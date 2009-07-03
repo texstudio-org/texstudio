@@ -11,50 +11,6 @@
  ***************************************************************************/
 //#include <stdlib.h>
 
-#include <QMainWindow>
-#include <QMenuBar>
-#include <QToolBar>
-#include <QToolButton>
-#include <QAction>
-#include <QClipboard>
-#include <QStatusBar>
-#include <QSettings>
-#include <QApplication>
-#include <QDesktopWidget>
-#include <QTextCodec>
-#include <QFileInfo>
-#include <QLabel>
-#include <QTextStream>
-#include <QFile>
-#include <QDir>
-#include <QInputDialog>
-#include <QMessageBox>
-#include <QFileDialog>
-#include <QTreeWidgetItem>
-#include <QHeaderView>
-#include <QLineEdit>
-#include <QProcess>
-#include <QComboBox>
-#include <QDomNode>
-#include <QSpinBox>
-#include <QTableWidget>
-#include <QTableWidgetItem>
-#include <QCheckBox>
-#include <QLocale>
-#include <QTabWidget>
-#include <QToolTip>
-#include <QStyleFactory>
-#include <QStyle>
-#include <QFontDatabase>
-#include <QTextBlock>
-#include <QDebug>
-#include <QDesktopServices>
-#include <QAbstractItemModel>
-#include <QFrame>
-#include <QFontMetrics>
-#include <QCloseEvent>
-#include <QTemporaryFile>
-
 #include "texmaker.h"
 #include "latexeditorview.h"
 

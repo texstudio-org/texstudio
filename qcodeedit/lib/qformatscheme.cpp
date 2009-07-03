@@ -13,6 +13,8 @@
 **
 ****************************************************************************/
 
+#include "mostQtHeaders.h"
+
 #include "qformatscheme.h"
 
 /*!
@@ -38,10 +40,7 @@
 
 #include "qformat.h"
 
-#include <QFile>
 #include <QDomText>
-#include <QSettings>
-#include <QStringList>
 #include <QDomElement>
 #include <QDomDocument>
 

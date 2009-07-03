@@ -29,12 +29,6 @@
 
 #include "qlanguagedefinition.h"
 
-#include <QStack>
-#include <QBitmap>
-#include <QPainter>
-#include <QScrollBar>
-#include <QMouseEvent>
-
 /*!
 	\ingroup widgets
 	@{

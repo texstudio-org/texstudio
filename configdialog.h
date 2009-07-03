@@ -12,22 +12,12 @@
 #ifndef CONFIGDIALOG_H
 #define CONFIGDIALOG_H
 
+#include "mostQtHeaders.h"
+
 #include "ui_configdialog.h"
 
-#include <QItemDelegate>
-#include <QListWidgetItem>
 #include "qformat.h"
 #include "qformatconfig.h"
-
-#if QT_VERSION >= 0x040400
-#include <QCompleter>
-class FileSystemCompleter: public QCompleter{
-public:
-	FileSystemCompleter(QObject *p=0);
-    virtual QString pathFromIndex(const QModelIndex &index) const;
-    virtual QStringList splitPath(const QString &path) const;
-};
-#endif
 
 class ShortcutDelegate : public QItemDelegate {
 	Q_OBJECT

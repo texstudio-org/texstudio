@@ -12,6 +12,8 @@
 #ifndef ARRAYDIALOG_H
 #define ARRAYDIALOG_H
 
+#include "mostQtHeaders.h"
+
 #include "ui_arraydialog.h"
 
 class ArrayDialog : public QDialog  {

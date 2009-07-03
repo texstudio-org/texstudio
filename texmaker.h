@@ -14,6 +14,8 @@
 #ifndef TEXMAKER_H
 #define TEXMAKER_H
 
+#include "mostQtHeaders.h"
+
 
 #include "buildmanager.h"
 #include "codesnippet.h"
@@ -33,29 +35,6 @@
 #include "qformatfactory.h"
 #include "qlanguagefactory.h"
 #include "qlinemarksinfocenter.h"
-
-#include <QMainWindow>
-#include <QDockWidget>
-#include <QMenuBar>
-#include <QToolBar>
-#include <QListWidget>
-#include <QToolBox>
-#include <QToolButton>
-#include <QTabWidget>
-#include <QTreeWidget>
-#include <QLabel>
-#include <QAction>
-#include <QTreeWidgetItem>
-#include <QListWidgetItem>
-#include <QPointer>
-#include <QProcess>
-#include <QPushButton>
-#include <QColor>
-#include <QDateTime>
-#include <QTextTable>
-#include <QVBoxLayout>
-#include <QTableView>
-
 
 typedef  QMap<LatexEditorView*, QString> FilesMap;
 typedef  QString Userlist[10];

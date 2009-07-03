@@ -11,10 +11,6 @@
 
 #include "symbollistwidget.h"
 #include "icondelegate.h"
-#include <QFont>
-#include <QStandardItemModel>
-#include <QHeaderView>
-#include <QDebug>
 
 SymbolListWidget :: SymbolListWidget(QWidget *parent, int page) : QTableWidget(parent) {
 	setItemDelegate(new IconDelegate(this));

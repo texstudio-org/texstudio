@@ -1,12 +1,4 @@
 #include "smallUsefulFunctions.h"
-#include <QCoreApplication>
-#include <QFile>
-#include <QDir>
-#include <QFileInfo>
-#include <QMap>
-#include <QMessageBox>
-#include <QAction>
-#include <QMenu>
 
 const QString CommonEOW="~!@#$%^&*()_+{}|:\"<>?,./;[]-= \t\n\r`+�";
 

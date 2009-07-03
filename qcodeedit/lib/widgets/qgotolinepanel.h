@@ -16,6 +16,8 @@
 #ifndef _QGOTO_LINE_PANEL_H_
 #define _QGOTO_LINE_PANEL_H_
 
+#include "mostQtHeaders.h"
+
 #include "qpanel.h"
 
 /*!

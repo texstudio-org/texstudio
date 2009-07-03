@@ -1,8 +1,7 @@
 #ifndef LATEXLOG_H
 #define LATEXLOG_H
-#include <QAbstractTableModel>
-#include <QTextDocument>
-#include <QVariant>
+#include "mostQtHeaders.h"
+
 #include "latexoutputfilter.h"
 class LatexLogModel: public QAbstractTableModel {
 private:

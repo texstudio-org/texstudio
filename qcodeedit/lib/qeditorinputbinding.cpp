@@ -19,8 +19,6 @@
 #include "qdocument.h"
 #include "qdocumentcursor.h"
 
-#include <QKeyEvent>
-
 /////////////////////////////////////////////////////////////////////////////
 
 QEditorInputBinding::MotionCommand::MotionCommand(QDocumentCursor::MoveOperation op, QDocumentCursor::MoveMode m, int n)

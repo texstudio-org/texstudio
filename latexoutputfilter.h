@@ -17,11 +17,7 @@
 #ifndef LATEXOUTPUTFILTER_H
 #define LATEXOUTPUTFILTER_H
 
-#include <QMap>
-#include <QObject>
-#include <QStack>
-#include <QString>
-#include <QTextDocument>
+#include "mostQtHeaders.h"
 
 enum LogType {LT_NONE = 0, LT_ERROR=1, LT_WARNING=2, LT_BADBOX=3};
 struct LatexLogEntry {

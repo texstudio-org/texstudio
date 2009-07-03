@@ -1,11 +1,4 @@
 #include "buildmanager.h"
-#include <QChar>
-#include <QCoreApplication>
-#include <QDir>
-#include <QMessageBox>
-#include <QProcess>
-#include <QTemporaryFile>
-#include <QTextStream>
 
 #include "smallUsefulFunctions.h"
 

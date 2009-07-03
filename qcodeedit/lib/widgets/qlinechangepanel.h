@@ -16,6 +16,8 @@
 #ifndef _QLINE_CHANGE_PANEL_H_
 #define _QLINE_CHANGE_PANEL_H_
 
+#include "mostQtHeaders.h"
+
 /*!
 	\file qlinechangepanel.h
 	\brief Definition of the QLineChangePanel class.
@@ -24,9 +26,6 @@
 */
 
 #include "qpanel.h"
-
-#include <QHash>
-#include <QIcon>
 
 class QDocumentLine;
 

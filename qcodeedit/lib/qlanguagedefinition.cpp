@@ -45,8 +45,6 @@
 
 #include "qlanguagefactory.h"
 
-#include <QKeyEvent>
-
 /*!
 	\brief Empty constructor
 */

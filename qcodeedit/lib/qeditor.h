@@ -16,20 +16,14 @@
 #ifndef _QEDITOR_H_
 #define _QEDITOR_H_
 
+#include "mostQtHeaders.h"
+
 #include "qce-config.h"
 
 /*!
 	\file qeditor.h
 	\brief Definition of the QEditor class
 */
-
-#include <QHash>
-#include <QPointer>
-#include <QScrollBar>
-#include <QBasicTimer>
-#include <QFontMetrics>
-#include <QAbstractScrollArea>
-#include <QTextCodec>
  
 #include "qdocument.h"
 #include "qdocumentcursor.h"

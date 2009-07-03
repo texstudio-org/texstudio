@@ -16,6 +16,8 @@
 #ifndef _QSEARCH_REPLACE_PANEL_H_
 #define _QSEARCH_REPLACE_PANEL_H_
 
+#include "mostQtHeaders.h"
+
 #include "qpanel.h"
 
 /*!

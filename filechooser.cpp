@@ -9,8 +9,10 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "mostQtHeaders.h"
+ 
 #include "filechooser.h"
-#include <QFileDialog>
+
 
 FileChooser::FileChooser(QWidget *parent, QString name)
 		: QDialog(parent) {

@@ -28,8 +28,6 @@
 #include "qdocumentline.h"
 #include "qdocumentcursor.h"
 
-#include <QKeyEvent>
-
 /*!
 	\ingroup widgets
 	@{

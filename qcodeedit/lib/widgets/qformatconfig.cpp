@@ -30,11 +30,6 @@
 
 #include "qsimplecolorpicker.h"
 
-#include <QHeaderView>
-#include <QVBoxLayout>
-#include <QMessageBox>
-#include <QTableWidget>
-
 /*!
 	\ingroup dialogs
 	@{

@@ -16,14 +16,11 @@
 #ifndef _QEDITOR_INPUT_BINDING_H_
 #define _QEDITOR_INPUT_BINDING_H_
 
+#include "mostQtHeaders.h"
+
 #include "qeditorinputbindinginterface.h"
 
 #include "qdocumentcursor.h"
-
-#include <QList>
-#include <QVector>
-#include <QString>
-#include <QKeySequence>
 
 class QCE_EXPORT QEditorInputBinding : public QEditorInputBindingInterface
 {

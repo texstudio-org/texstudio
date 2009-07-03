@@ -12,6 +12,8 @@
 #ifndef TABBINGDIALOG_H
 #define TABBINGDIALOG_H
 
+#include "mostQtHeaders.h"
+
 #include "ui_tabbingdialog.h"
 
 class TabbingDialog : public QDialog  {

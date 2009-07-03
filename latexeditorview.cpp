@@ -29,13 +29,6 @@
 #include "qstatuspanel.h"
 #include "qsearchreplacepanel.h"
 
-#include <QVBoxLayout>
-#include <QFrame>
-#include <QKeyEvent>
-#include <QMenu>
-#include <QMessageBox>
-#include <QToolTip>
-
 //------------------------------Default Input Binding--------------------------------
 bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 	if (LatexEditorView::completer && LatexEditorView::completer->acceptTriggerString(event->text()))  {

@@ -12,13 +12,7 @@
 #ifndef LOGEDITOR_H
 #define LOGEDITOR_H
 
-#include <QWidget>
-#include <QString>
-#include <QTextEdit>
-#include <QTextDocument>
-#include <QTextCursor>
-#include <QTextBlock>
-
+#include "mostQtHeaders.h"
 
 #include "loghighlighter.h"
 

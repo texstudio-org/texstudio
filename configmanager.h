@@ -1,15 +1,10 @@
 #ifndef CONFIGMANAGER_H
 #define CONFIGMANAGER_H
 
+#include "mostQtHeaders.h"
+
 #include "buildmanager.h"
 
-#include <QDomElement>
-#include <QMenuBar>
-#include <QPushButton>
-#include <QSettings>
-#include <QStyle>
-#include <QTranslator>
-#include <QTreeWidgetItem>
 
 class ConfigDialog;
 class LatexCompleterConfig;

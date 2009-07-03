@@ -12,8 +12,9 @@
 #ifndef TABDIALOG_H
 #define TABDIALOG_H
 
-#include "ui_tabdialog.h"
+#include "mostQtHeaders.h"
 
+#include "ui_tabdialog.h"
 
 class TabDialog : public QDialog  {
 	Q_OBJECT

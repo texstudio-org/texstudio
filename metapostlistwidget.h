@@ -12,8 +12,7 @@
 #ifndef METAPOSTLISTWIDGET_H
 #define METAPOSTLISTWIDGET_H
 
-#include <QListWidget>
-
+#include "mostQtHeaders.h"
 
 class MetapostListWidget : public QListWidget  {
 	Q_OBJECT

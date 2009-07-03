@@ -1,8 +1,4 @@
 #include "encodingdialog.h"
-#include <QFileInfo>
-#include <QFont>
-#include <QMessageBox>
-#include <QTextCodec>
 EncodingDialog::EncodingDialog(QWidget *parent, QEditor *editor) :
 		QDialog(parent), edit(editor) {
 	setupUi(this);

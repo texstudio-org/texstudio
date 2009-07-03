@@ -6,13 +6,8 @@
 #include "latexcompleter_config.h"
 #include "smallUsefulFunctions.h"
 
-#include <QFile>
-#include <QFileDialog>
-#include <QLabel>
-#include <QLineEdit>
-#include <QMessageBox>
-#include <QPushButton>
-#include <QStyleFactory>
+#include <QDomElement>
+
 
 ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	buildManager(0),completerConfig (new LatexCompleterConfig), menuParent(0), menuParentsBar(0){

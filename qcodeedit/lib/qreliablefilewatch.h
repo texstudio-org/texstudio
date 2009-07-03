@@ -16,17 +16,14 @@
 #ifndef _QRELIABLE_FILE_WATCH_H_
 #define _QRELIABLE_FILE_WATCH_H_
 
+#include "mostQtHeaders.h"
+
 #include "qce-config.h"
 
 /*!
 	\file qreliablefilewatch.h
 	\brief Definition of the QReliableFileWatch class
 */
-
-#include <QHash>
-#include <QTimer>
-#include <QPointer>
-#include <QFileSystemWatcher>
 
 class QCE_EXPORT QReliableFileWatch : protected QFileSystemWatcher
 {

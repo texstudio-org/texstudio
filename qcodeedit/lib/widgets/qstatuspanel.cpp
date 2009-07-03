@@ -28,13 +28,6 @@
 #include "qdocumentline.h"
 #include "qdocumentcursor.h"
 
-#include <QTimer>
-#include <QPainter>
-#include <QDateTime>
-#include <QPaintEvent>
-#include <QFontMetrics>
-#include <QApplication>
-
 /*!
 	\ingroup widgets
 	@{

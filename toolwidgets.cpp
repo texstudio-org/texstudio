@@ -1,14 +1,5 @@
 #include "toolwidgets.h"
 
-#include <QApplication>
-#include <QFile>
-#include <QFontMetrics>
-#include <QHeaderView>
-#include <QMenu>
-#include <QScrollBar>
-#include <QTextStream>
-#include <QVBoxLayout>
-
 void adjustScrollBar(QScrollBar *scrollBar, double factor)
 {
 	scrollBar->setValue(int(factor * scrollBar->value()

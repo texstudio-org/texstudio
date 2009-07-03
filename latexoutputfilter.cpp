@@ -19,12 +19,6 @@
 
 #include "latexoutputfilter.h"
 
-#include <QDir>
-#include <QFile>
-#include <QFileInfo>
-#include <QMessageBox>
-#include <QRegExp>
-#include <QTextStream>
 
 using namespace std;
 
