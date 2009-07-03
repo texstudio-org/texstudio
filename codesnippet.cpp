@@ -81,7 +81,13 @@ CodeSnippet::CodeSnippet(const QString &newWord) {
 	sortWord.replace("*","#");
 }
 
-void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor) {
+void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor) const{
+	if (lines.empty()) return;
+	
+	int beginMagicLine=-1;//hack will made every placeholder in the line a mirror of the pre-previous placeholder
+	if (lines[0]=="\\begin{environment-name}") //useful in this case (TODO: mirrors in code snippet language)
+		beginMagicLine=lines.count()-1;
+
 	QString savedSelection;
 	if (cursor->hasSelection()) {
 		savedSelection=cursor->selectedText();
@@ -98,12 +104,23 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor) {
 			QEditor::PlaceHolder ph;
 			ph.length=placeHolders[l][i].second;
 			ph.cursor=editor->document()->cursor(baseLine+l,placeHolders[l][i].first);
-			if (ph.cursor.isValid())
-				editor->addPlaceHolder(ph);
+			if (l!=beginMagicLine) {
+				if (ph.cursor.isValid())
+					editor->addPlaceHolder(ph);
+			}	else {
+				editor->addPlaceHolderMirror(editor->placeHolderCount()-2,ph.cursor);
+			}
+				
 		}
 	}
 	
 	//place cursor/add \end
+	if (beginMagicLine!=-1){
+		//workaround for mirror bug, doesn't seem to be correctly updated if placeholder text and then changed
+		//TODO: fix it
+		editor->setPlaceHolder(editor->placeHolderCount()-2);
+		return;
+	}
 	if (cursorOffset!=-1) {
 		if (cursorLine>0) 
 			if (!selector.movePosition(cursorLine,QDocumentCursor::Down,QDocumentCursor::MoveAnchor))

@@ -1955,6 +1955,17 @@ void QEditor::addPlaceHolder(const PlaceHolder& p, bool autoUpdate)
 		ph.mirrors[i].movePosition(ph.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 	}
 }
+/*!
+  Adds a mirror to the given placeholder
+  */
+void QEditor::addPlaceHolderMirror(int placeHolderId, const QDocumentCursor& c){
+	if (placeHolderId<0 || placeHolderId>=m_placeHolders.count())
+		return;
+	PlaceHolder& ph = m_placeHolders[placeHolderId];
+	ph.mirrors << c;
+	ph.mirrors.last().setAutoUpdated(true);
+	ph.mirrors.last().movePosition(ph.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+}
 void QEditor::removePlaceHolder(int id){
 	if (id<0 || id>=m_placeHolders.count()) return;
 	if (id==m_curPlaceHolder) 
@@ -2019,11 +2030,17 @@ void QEditor::nextPlaceHolder()
 	if ( m_placeHolders.isEmpty() )
 		return;
 
-	++m_curPlaceHolder;
+	/*++m_curPlaceHolder;
 
 	if ( m_curPlaceHolder >= m_placeHolders.count() )
 		m_curPlaceHolder = 0;
-
+	*/
+	int m_curPlaceHolder=-1;
+	for (int i=0; i< m_placeHolders.count();i++){
+		if (m_placeHolders[i].cursor.rightBoundaryLarger(m_cursor) && 
+			(m_curPlaceHolder==-1 || m_placeHolders[i].cursor<=m_placeHolders[m_curPlaceHolder].cursor))
+				m_curPlaceHolder=i;
+	}
 	setPlaceHolder(m_curPlaceHolder);
 }
 
@@ -2037,10 +2054,16 @@ void QEditor::previousPlaceHolder()
 	if ( m_placeHolders.isEmpty() )
 		return;
 
-	if ( m_curPlaceHolder <= 0 )
+	/*if ( m_curPlaceHolder <= 0 )
 		m_curPlaceHolder = m_placeHolders.count();
 
-	--m_curPlaceHolder;
+	--m_curPlaceHolder;*/
+	int m_curPlaceHolder=-1;
+	for (int i=0; i< m_placeHolders.count();i++){
+		if (m_cursor.leftBoundaryLarger(m_placeHolders[i].cursor) && 
+			(m_curPlaceHolder==-1 || m_placeHolders[i].cursor>=m_placeHolders[m_curPlaceHolder].cursor))
+				m_curPlaceHolder=i;
+	}	
 
 	setPlaceHolder(m_curPlaceHolder);
 }

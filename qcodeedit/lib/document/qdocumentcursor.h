@@ -102,6 +102,9 @@ class QCE_EXPORT QDocumentCursor
 		bool operator <= (const QDocumentCursor& c) const;
 		bool operator >= (const QDocumentCursor& c) const;
 		
+		bool rightBoundaryLarger (const QDocumentCursor& c) const;
+		bool leftBoundaryLarger (const QDocumentCursor& c) const;
+		
 		bool isNull() const;
 		bool isValid() const;
 		

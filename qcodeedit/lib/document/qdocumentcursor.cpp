@@ -253,6 +253,33 @@ bool QDocumentCursor::isNull() const
 }
 
 /*!
+  Returns if my right boundary is larger (line/offset) than c
+*/
+bool QDocumentCursor::rightBoundaryLarger (const QDocumentCursor& c) const{
+	if (!m_handle || !c.m_handle) return false;
+	int line1, col1;
+	m_handle->rightBoundaries(line1,col1);
+	int line2, col2;
+	c.m_handle->rightBoundaries(line2,col2);
+	if (line1==line2)
+		return col1>col2;
+	else 
+		return line1>line2;	
+}
+bool QDocumentCursor::leftBoundaryLarger (const QDocumentCursor& c) const{
+	if (!m_handle || !c.m_handle) return false;
+	int line1, col1;
+	m_handle->leftBoundaries(line1,col1);
+	int line2, col2;
+	c.m_handle->leftBoundaries(line2,col2);
+	if (line1==line2)
+		return col1>col2;
+	else 
+		return line1>line2;	
+}
+
+
+/*!
 	\brief comparision operator
 */
 bool QDocumentCursor::isValid() const

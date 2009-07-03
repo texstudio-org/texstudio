@@ -161,13 +161,13 @@ bool QEditorInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
 		int idx = m_index.at(i);
 		const QKeySequence& ks = m_keys.at(i);
 		
-		if ( idx < ks.count() )
+		if ( idx < (int) ks.count() )
 		{
 			if ( ks[idx] == event->key() )
 			{
 				++idx;
 				
-				if ( idx == ks.count() )
+				if ( idx == (int)ks.count() )
 				{
 					qDebug("match");
 					

@@ -303,6 +303,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		void clearPlaceHolders();
 		void addPlaceHolder(const PlaceHolder& p, bool autoUpdate = true);
+		void addPlaceHolderMirror(int placeHolderId, const QDocumentCursor& c);
 		void removePlaceHolder(int id);
 				
 		int placeHolderCount() const;
