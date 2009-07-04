@@ -389,6 +389,10 @@ void Texmaker::setupMenus() {
 
 //  Latex/Math external
 	configManager.loadManagedMenus(":/uiconfig.xml");
+	// add some additional items
+	menu=newManagedMenu("main/latex",tr("&Latex"));
+	newManagedAction(menu, "insertrefnextlabel",tr("Insert \\ref to next label"), SLOT(editInsertRefToNextLabel()), Qt::ALT+Qt::CTRL+Qt::Key_R);
+	newManagedAction(menu, "insertrefprevlabel",tr("Insert \\ref to previous label"), SLOT(editInsertRefToPrevLabel()));
 
 //wizards
 
@@ -3893,4 +3897,22 @@ void Texmaker::escAction(){
 		 // standard event processing
 		 return QMainWindow::eventFilter(obj, event);
 	 }
+ }
+
+ void Texmaker::editInsertRefToNextLabel(bool backward) {
+	if (!currentEditorView()) return;
+	QDocumentCursor c = currentEditorView()->editor->cursor();
+	int l=c.lineNumber();
+	int m=currentEditorView()->editor->document()->findLineContaining("\\label",l,Qt::CaseSensitive,backward);
+	if(!backward && m<l) return;
+	if(m<0) return;
+	QDocumentLine dLine=currentEditorView()->editor->document()->line(m);
+	QString mLine=dLine.text();
+	QRegExp rx("\\\\label\\{(.*)\\}");
+	if(rx.indexIn(mLine)>-1){
+		c.insertText("\\ref{"+rx.cap(1)+"}");
+	}
+}
+ void Texmaker::editInsertRefToPrevLabel() {
+	  editInsertRefToNextLabel(true);
  }

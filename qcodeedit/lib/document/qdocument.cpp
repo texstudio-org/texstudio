@@ -1034,10 +1034,16 @@ QDocumentLine QDocument::findLine(int& position) const
 	return QDocumentLine(m_impl->lineForPosition(position));
 }
 
-int QDocument::findLineContaining(const QString &searchText,  const int& startLine, const Qt::CaseSensitivity cs) const{
-	for (int i=startLine;i<lines();i++)
-                if(line(i).text().contains(searchText,cs))
-			return i;
+int QDocument::findLineContaining(const QString &searchText,  const int& startLine, const Qt::CaseSensitivity cs, const bool backward) const{
+	if(backward){
+		for (int i=startLine;i>-1;i--)
+			if(line(i).text().contains(searchText,cs))
+				return i;
+	} else {
+		for (int i=startLine;i<lines();i++)
+			if(line(i).text().contains(searchText,cs))
+				return i;
+	}
 	return -1;
 }
 
