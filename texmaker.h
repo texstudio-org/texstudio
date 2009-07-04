@@ -197,6 +197,8 @@ private slots:
 	void editThesaurus();
 	void editChangeLineEnding();
 	void editSetupEncoding();
+	void editInsertRefToNextLabel(bool backward=false);
+	void editInsertRefToPrevLabel();
 
 	void StructureContextMenu(QPoint point);
 
