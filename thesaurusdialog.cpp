@@ -149,7 +149,7 @@ void ThesaurusDialog::lookupClicked()
 
 void ThesaurusDialog::containsClicked()
 {
-	QString word=replaceWrdLe->text();
+	QString word=replaceWrdLe->text().toLower();
 	word.replace(QRegExp(" \\(.*"), "");
 	classlistWidget->clear();
 	replacelistWidget->clear();
@@ -162,7 +162,7 @@ void ThesaurusDialog::containsClicked()
 
 void ThesaurusDialog::startsWithClicked()
 {
-	QString word=replaceWrdLe->text();
+	QString word=replaceWrdLe->text().toLower();
 	word.replace(QRegExp(" \\(.*"), "");
 	classlistWidget->clear();
 	replacelistWidget->clear();
