@@ -97,13 +97,14 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor) const{
 	QDocumentLine curLine=cursor->line();
 
 	int baseLine=cursor->lineNumber();
+	int baseLineIndent = cursor->line().length(); //text before inserted word moves placeholders to the right
 	for (int l=0;l< lines.count();l++){
 		cursor->insertText(lines[l]);
 		if (l<lines.count()-1) cursor->insertLine();
 		for (int i=0; i<placeHolders[l].size(); i++) {
 			QEditor::PlaceHolder ph;
 			ph.length=placeHolders[l][i].second;
-			ph.cursor=editor->document()->cursor(baseLine+l,placeHolders[l][i].first);
+			ph.cursor=editor->document()->cursor(baseLine+l,placeHolders[l][i].first+(l==0?baseLineIndent:0));
 			if (l!=beginMagicLine) {
 				if (ph.cursor.isValid())
 					editor->addPlaceHolder(ph);
@@ -115,17 +116,13 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor) const{
 	}
 	
 	//place cursor/add \end
-	if (beginMagicLine!=-1){
-		//workaround for mirror bug, doesn't seem to be correctly updated if placeholder text and then changed
-		//TODO: fix it
-		editor->setPlaceHolder(editor->placeHolderCount()-2);
-		return;
-	}
 	if (cursorOffset!=-1) {
-		if (cursorLine>0) 
+		int realAnchorOffset=anchorOffset; //will be moved to the right if text is already inserted on this line
+		if (cursorLine>0) {
 			if (!selector.movePosition(cursorLine,QDocumentCursor::Down,QDocumentCursor::MoveAnchor))
 				return;
-		selector.setColumnNumber(anchorOffset);
+		} else realAnchorOffset += baseLineIndent;
+		selector.setColumnNumber(realAnchorOffset);
 		bool ok;
 		if (cursorOffset>anchorOffset) 
 			ok=selector.movePosition(cursorOffset-anchorOffset,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);

@@ -5106,6 +5106,17 @@ void QDocumentCursorHandle::removeSelectedText()
 	execute(c);
 }
 
+void QDocumentCursorHandle::replaceSelectedText (const QString& newText){
+	int beginLine, beginOffset;
+	leftBoundaries(beginLine,beginOffset);
+	insertText(newText);
+	//select newText
+	m_endLine=m_begLine;
+	m_endOffset=m_begOffset;
+	m_begLine=beginLine;
+	m_begOffset=beginOffset;
+}
+
 //////////////////
 
 /////////////////////////

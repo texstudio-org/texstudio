@@ -361,7 +361,7 @@ QEditor::QEditor(QWidget *p)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-        m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_state(defaultFlags()),
+        m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
         mDisplayModifyTime(true)
 {
 	m_editors << this;
@@ -379,7 +379,7 @@ QEditor::QEditor(bool actions, QWidget *p)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-        m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_state(defaultFlags()),
+        m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
         mDisplayModifyTime(true)
 {
 	m_editors << this;
@@ -401,7 +401,7 @@ QEditor::QEditor(const QString& s, QWidget *p)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-        m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_state(defaultFlags()),
+        m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
         mDisplayModifyTime(true)
 {
 	m_editors << this;
@@ -424,7 +424,7 @@ QEditor::QEditor(const QString& s, bool actions, QWidget *p)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-        m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_state(defaultFlags()),
+        m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
         mDisplayModifyTime(true)
 {
 	m_editors << this;
@@ -1969,30 +1969,64 @@ int QEditor::currentPlaceHolder() const{
 
 	This function change the cursor and the cursor mirrors.
 */
-void QEditor::setPlaceHolder(int i)
+void QEditor::setPlaceHolder(int i, bool selectCursors)
 {
 	if ( i < 0 || i >= m_placeHolders.count() )
 		return;
 
+	if (m_placeHolderSynchronizing) return;
+	m_placeHolderSynchronizing=true; //prevent recursive calls (from updateContent)
+	
 	clearCursorMirrors();
 
-	const PlaceHolder& ph = m_placeHolders.at(i);
+	m_curPlaceHolder = i; 
+
+	PlaceHolder& ph = m_placeHolders[i]; //using reference to change the placeholder
 	QDocumentCursor cc = ph.cursor;
+	selectCursors|=!cc.isWithinSelection(m_cursor);
 
-	//if ( ph.length > 0 )
-	//	cc.movePosition(ph.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+	
+	if (selectCursors)
+		setCursor(cc);
+	else if (m_cursor.hasColumnMemory()) 
+		m_cursor.setColumnMemory(false);
 
-	setCursor(cc);
-
-	foreach ( cc, ph.mirrors )
+	
+	for ( int j=0; j< ph.mirrors.size(); j++)
 	{
-		//if ( ph.length > 0 )
-		//	cc.movePosition(ph.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-
-		addCursorMirror(cc);
+		QDocumentCursor &mc = ph.mirrors[j];
+		if (mc.selectedText()!=cc.selectedText()){
+			//if mirror synchronization is broken => resyncronize
+			mc.replaceSelectedText(cc.selectedText());
+			
+			//mc.replaceSelectedText(cc.selectedText());
+		}
+		if (selectCursors)	
+			addCursorMirror(mc);
+		else {
+			QDocumentCursor nmc=mc.selectionStart();
+			//if (nmc < mc.selectionEnd()) 
+				//nmc = mc.selectionEnd(); //wtf?? sometime start and end are swapped, why?? 
+			if (m_cursor.anchorLineNumber()==cc.anchorLineNumber()) 
+				nmc.movePosition(m_cursor.anchorColumnNumber()-cc.anchorColumnNumber(),QDocumentCursor::NextCharacter);
+			else {
+				nmc.movePosition(m_cursor.anchorLineNumber()-cc.anchorLineNumber(),QDocumentCursor::Down);
+				nmc.setColumnNumber(m_cursor.anchorColumnNumber());
+			}
+			if (m_cursor.hasSelection()){
+				nmc.movePosition(m_cursor.lineNumber()-m_cursor.anchorLineNumber(),
+								 QDocumentCursor::Down,QDocumentCursor::KeepAnchor);
+				if (m_cursor.anchorLineNumber()==cc.anchorLineNumber())
+					nmc.setColumnNumber(mc.columnNumber()+m_cursor.columnNumber()-cc.columnNumber(),
+										QDocumentCursor::KeepAnchor);
+				else
+					nmc.setColumnNumber(m_cursor.columnNumber(),QDocumentCursor::KeepAnchor);
+			}
+			addCursorMirror(nmc);
+		}
 	}
 
-	m_curPlaceHolder = i;
+	m_placeHolderSynchronizing=false;
 }
 
 /*!
@@ -2595,10 +2629,11 @@ void QEditor::paintEvent(QPaintEvent *e)
 
 	//TODO: Customizable appearance
 	//TODO: documentRegion is too large, isn't correctly redrawn (especially with a non fixed width font)
-	foreach (const PlaceHolder& ph, m_placeHolders)
-		p.drawConvexPolygon(ph.cursor.documentRegion());
+	for (int i=0; i < m_placeHolders.count(); i++)
+		if (i != m_curPlaceHolder && i!=m_lastPlaceHolder)
+			p.drawConvexPolygon(m_placeHolders[i].cursor.documentRegion());
 	
-	if ( m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.count() )
+	/*if ( m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.count() )
 	{
 		const PlaceHolder& ph = m_placeHolders.at(m_curPlaceHolder);
 		p.setPen(QColor(255,0,0));
@@ -2609,8 +2644,19 @@ void QEditor::paintEvent(QPaintEvent *e)
 			if ( m.isValid() )
 				p.drawConvexPolygon(m.documentRegion());
 		}
+	}*/
+	if (m_lastPlaceHolder >=0 && m_lastPlaceHolder < m_placeHolders.count() && m_lastPlaceHolder != m_curPlaceHolder){
+		const PlaceHolder& ph = m_placeHolders.at(m_lastPlaceHolder);
+		p.setPen(QColor(0,0,0));
+		p.setPen(Qt::DotLine);
+		p.drawConvexPolygon(ph.cursor.documentRegion());
 	}
-
+	p.setPen(QColor(0,128,0));
+	for (int i=0; i < m_placeHolders.count(); i++) {
+		p.drawConvexPolygon(m_placeHolders[i].cursor.selectionStart().documentRegion());
+		foreach (const QDocumentCursor& m, m_placeHolders[i].mirrors )
+			p.drawConvexPolygon(m.selectionStart().documentRegion());
+	}
 	
 	if ( viewport()->height() > m_doc->height() )
 	{
@@ -4893,7 +4939,8 @@ void QEditor::updateContent (int i, int n)
 
 	//qDebug("updating %i, %i", i, n);
 
-	if (m_placeHolders.count()>0) {
+	if (m_placeHolders.count()>0 && 
+		!m_placeHolderSynchronizing) { //no recursion, if updateContent is called due to changes made by setPlaceHolder
 		//look which placeholder has been modified
 		if (m_mirrors.count()==0){
 			for (int i=0;i<m_placeHolders.count();i++){
@@ -4906,7 +4953,8 @@ void QEditor::updateContent (int i, int n)
 						break;
 					}
 				if (found) {
-					m_curPlaceHolder=i;
+					if (m_curPlaceHolder!=i) 
+						setPlaceHolder(i,false);
 					break;
 				}
 			}
@@ -4921,11 +4969,21 @@ void QEditor::updateContent (int i, int n)
 		if (m_curPlaceHolder>=0 && m_curPlaceHolder < m_placeHolders.count()) 
 			if (m_placeHolders[m_curPlaceHolder].removeAutomatically && m_placeHolders[m_curPlaceHolder].cursor.lineNumber() != m_placeHolders[m_curPlaceHolder].cursor.anchorLineNumber())
 				removePlaceHolder(m_curPlaceHolder);
+		
+		//stupid mirrors, resyncronize them if necessary 
+		if (m_mirrors.count()>0 && m_curPlaceHolder>=0 && m_curPlaceHolder < m_placeHolders.count()){
+			const PlaceHolder &ph = m_placeHolders[m_curPlaceHolder];
+			foreach (const QDocumentCursor &mc, ph.mirrors)
+				if (mc.selectedText()!=ph.cursor.selectedText()){
+					setPlaceHolder(m_curPlaceHolder,false);
+					break;
+				}
+		}
 	}
 	m_lastPlaceHolder=m_curPlaceHolder;
 			
 	if (m_curPlaceHolder!=-1) 
-		n=3; //draw more because the placeholder poylgon doesn't fit on a line
+		n=qMax(n,3); //draw more because the placeholder poylgon doesn't fit on a line
 	bool cont = n > 1;
 	repaintContent(i, cont ? -1 : n);
 }
