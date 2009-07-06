@@ -358,7 +358,7 @@ void QDocumentCommand::insertLines(int after, const QList<QDocumentLineHandle*>&
 
 void QDocumentCommand::updateCursorsOnInsertion(int line, int column, int prefixLength, int numLines, int suffixLength)
 {
-	qDebug("inserting %i lines at (%i, %i) with (%i : %i) bounds", numLines, line, column, prefixLength, suffixLength);
+	//qDebug("inserting %i lines at (%i, %i) with (%i : %i) bounds", numLines, line, column, prefixLength, suffixLength);
 
 	foreach ( QDocumentCursorHandle *ch, m_autoUpdated )
 	{
@@ -956,9 +956,6 @@ void QDocumentEraseCommand::redo()
 	if ( m_data.handles.isEmpty() )
 	{
 		removeText(m_data.lineNumber, m_data.startOffset, m_data.begin.count());
-
-		m_doc->impl()->emitContentsChange(m_data.lineNumber, 1);
-
 	} else {
 		removeText(m_data.lineNumber, m_data.startOffset, m_data.begin.count());
 
@@ -966,13 +963,14 @@ void QDocumentEraseCommand::redo()
 			insertText(m_data.lineNumber, m_data.startOffset, m_data.end);
 
 		removeLines(m_data.lineNumber, m_data.handles.count());
-
-		m_doc->impl()->emitContentsChange(m_data.lineNumber, m_data.handles.count() + 1);
 	}
+
+	m_doc->impl()->emitContentsChange(m_data.lineNumber, m_data.handles.count() + 1);
 
 	updateTarget(m_data.lineNumber, m_data.startOffset + m_redoOffset);
 
 	updateCursorsOnDeletion(m_data.lineNumber, m_data.startOffset, m_data.begin.length(), m_data.handles.count(), m_data.endOffset);
+
 
 	markRedone(hl, m_first);
 

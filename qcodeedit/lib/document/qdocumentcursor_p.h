@@ -119,6 +119,7 @@ class QCE_EXPORT QDocumentCursorHandle
 		
 		void clearSelection();
 		void removeSelectedText();
+		void replaceSelectedText (const QString& newText);
 		
 		void select(QDocumentCursor::SelectionType t);
 		void setSelectionBoundary(const QDocumentCursor& c);

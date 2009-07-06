@@ -305,7 +305,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		void nextPlaceHolder();
 		void previousPlaceHolder();
-		void setPlaceHolder(int i);
+		void setPlaceHolder(int i, bool selectCursors=true);
 		
 		virtual void setFileName(const QString& f);
 		
@@ -464,6 +464,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		QList<QDocumentCursor> m_mirrors;
 		
 		int m_curPlaceHolder, m_lastPlaceHolder, m_cphOffset;
+		bool m_placeHolderSynchronizing; 
 		
 		QList<PlaceHolder> m_placeHolders;
 		

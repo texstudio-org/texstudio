@@ -637,6 +637,11 @@ void QDocumentCursor::removeSelectedText()
 		m_handle->removeSelectedText();
 }
 
+void QDocumentCursor::replaceSelectedText (const QString& newText){
+	if ( m_handle ) 
+		m_handle->replaceSelectedText(newText);
+}
+
 /*!
 	\brief Begin an edit block
 	
