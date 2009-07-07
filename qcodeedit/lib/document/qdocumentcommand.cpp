@@ -965,12 +965,12 @@ void QDocumentEraseCommand::redo()
 		removeLines(m_data.lineNumber, m_data.handles.count());
 	}
 
-	m_doc->impl()->emitContentsChange(m_data.lineNumber, m_data.handles.count() + 1);
 
 	updateTarget(m_data.lineNumber, m_data.startOffset + m_redoOffset);
 
 	updateCursorsOnDeletion(m_data.lineNumber, m_data.startOffset, m_data.begin.length(), m_data.handles.count(), m_data.endOffset);
 
+	m_doc->impl()->emitContentsChange(m_data.lineNumber, m_data.handles.count() + 1);
 
 	markRedone(hl, m_first);
 
