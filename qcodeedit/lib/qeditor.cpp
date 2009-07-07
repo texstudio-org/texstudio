@@ -1983,9 +1983,10 @@ void QEditor::setPlaceHolder(int i, bool selectCursors)
 
 	PlaceHolder& ph = m_placeHolders[i]; //using reference to change the placeholder
 	QDocumentCursor cc = ph.cursor;
-	selectCursors|=!cc.isWithinSelection(m_cursor);
-
+	selectCursors|=!cc.isWithinSelection(m_cursor);// && cc.hasSelection() && cc.selectionStart()!=cc.selectionEnd();
 	
+	//qDebug("set placeholder: %i, select cursors: %i", i, (int)selectCursors);
+
 	if (selectCursors)
 		setCursor(cc);
 	else if (m_cursor.hasColumnMemory()) 
@@ -1996,6 +1997,7 @@ void QEditor::setPlaceHolder(int i, bool selectCursors)
 	{
 		QDocumentCursor &mc = ph.mirrors[j];
 		if (mc.selectedText()!=cc.selectedText()){
+			//qDebug() << "resync placeholder mirror for " << m_curPlaceHolder << " mirror "<<j << " was: " << mc.selectedText() << " should be " << cc.selectedText() << " from " << cc.anchorLineNumber() << ":" << cc.anchorColumnNumber() << "->" << cc.lineNumber() << ":"<<cc.columnNumber()<<"\n";
 			//if mirror synchronization is broken => resyncronize
 			mc.replaceSelectedText(cc.selectedText());
 			
@@ -2005,19 +2007,22 @@ void QEditor::setPlaceHolder(int i, bool selectCursors)
 			addCursorMirror(mc);
 		else {
 			QDocumentCursor nmc=mc.selectionStart();
+			int ccbline, ccboff;
+			cc.handle()->leftBoundaries(ccbline,ccboff);
 			//if (nmc < mc.selectionEnd()) 
 				//nmc = mc.selectionEnd(); //wtf?? sometime start and end are swapped, why?? 
-			if (m_cursor.anchorLineNumber()==cc.anchorLineNumber()) 
-				nmc.movePosition(m_cursor.anchorColumnNumber()-cc.anchorColumnNumber(),QDocumentCursor::NextCharacter);
-			else {
-				nmc.movePosition(m_cursor.anchorLineNumber()-cc.anchorLineNumber(),QDocumentCursor::Down);
-				nmc.setColumnNumber(m_cursor.anchorColumnNumber());
+			if (m_cursor.anchorLineNumber()==ccbline) {
+				//qDebug ("mirror rightmove: %i", m_cursor.anchorColumnNumber()-ccboff);
+				nmc.movePosition(m_cursor.anchorColumnNumber()-ccboff,QDocumentCursor::NextCharacter);
+			} else {
+				nmc.movePosition(m_cursor.anchorLineNumber()-ccbline,QDocumentCursor::Down);
+				nmc.setColumnNumber(ccboff);
 			}
 			if (m_cursor.hasSelection()){
-				nmc.movePosition(m_cursor.lineNumber()-m_cursor.anchorLineNumber(),
+				nmc.movePosition(m_cursor.lineNumber()-ccbline,
 								 QDocumentCursor::Down,QDocumentCursor::KeepAnchor);
-				if (m_cursor.anchorLineNumber()==cc.anchorLineNumber())
-					nmc.setColumnNumber(mc.columnNumber()+m_cursor.columnNumber()-cc.columnNumber(),
+				if (m_cursor.lineNumber()==ccbline)
+					nmc.setColumnNumber(mc.columnNumber()+m_cursor.columnNumber()-ccboff,
 										QDocumentCursor::KeepAnchor);
 				else
 					nmc.setColumnNumber(m_cursor.columnNumber(),QDocumentCursor::KeepAnchor);
@@ -2629,11 +2634,13 @@ void QEditor::paintEvent(QPaintEvent *e)
 
 	//TODO: Customizable appearance
 	//TODO: documentRegion is too large, isn't correctly redrawn (especially with a non fixed width font)
+	//draw placeholders
 	for (int i=0; i < m_placeHolders.count(); i++)
 		if (i != m_curPlaceHolder && i!=m_lastPlaceHolder)
 			p.drawConvexPolygon(m_placeHolders[i].cursor.documentRegion());
 	
-	/*if ( m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.count() )
+	//mark active placeholder
+	if ( m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.count() )
 	{
 		const PlaceHolder& ph = m_placeHolders.at(m_curPlaceHolder);
 		p.setPen(QColor(255,0,0));
@@ -2644,19 +2651,22 @@ void QEditor::paintEvent(QPaintEvent *e)
 			if ( m.isValid() )
 				p.drawConvexPolygon(m.documentRegion());
 		}
-	}*/
+	}
+	//mark placeholder which will probably be removed 
 	if (m_lastPlaceHolder >=0 && m_lastPlaceHolder < m_placeHolders.count() && m_lastPlaceHolder != m_curPlaceHolder){
 		const PlaceHolder& ph = m_placeHolders.at(m_lastPlaceHolder);
 		p.setPen(QColor(0,0,0));
 		p.setPen(Qt::DotLine);
 		p.drawConvexPolygon(ph.cursor.documentRegion());
 	}
+	/*
+	debug code for cursor direction: 
 	p.setPen(QColor(0,128,0));
 	for (int i=0; i < m_placeHolders.count(); i++) {
 		p.drawConvexPolygon(m_placeHolders[i].cursor.selectionStart().documentRegion());
 		foreach (const QDocumentCursor& m, m_placeHolders[i].mirrors )
 			p.drawConvexPolygon(m.selectionStart().documentRegion());
-	}
+	}*/
 	
 	if ( viewport()->height() > m_doc->height() )
 	{
