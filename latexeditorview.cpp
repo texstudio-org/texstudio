@@ -183,10 +183,10 @@ LatexEditorView::LatexEditorView(QWidget *parent) : QWidget(parent),curChangePos
 LatexEditorView::~LatexEditorView() {
 }
 
-void LatexEditorView::complete(bool forceVisibleList, bool normalText) {
+void LatexEditorView::complete(bool forceVisibleList, bool normalText, bool forceRef) {
 	if (!LatexEditorView::completer) return;
 	setFocus();
-	LatexEditorView::completer->complete(editor,forceVisibleList,normalText);
+	LatexEditorView::completer->complete(editor,forceVisibleList,normalText,forceRef);
 }
 void LatexEditorView::jumpChangePositionBackward() {
 	if (changePositions.size()==0) return;

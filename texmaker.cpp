@@ -1914,8 +1914,23 @@ void Texmaker::NormalCompletion() {
 		c.movePosition(1,QDocumentCursor::PreviousCharacter);
 		i++;
 	}
+
 	if(c.nextChar()==QChar('\\')) currentEditorView()->complete(true);
 	else {
+		// check further with reduced eow
+		eow="}\\ ";
+		int j=0;
+		while (c.columnNumber()>0 && !eow.contains(c.previousChar())) {
+			c.movePosition(1,QDocumentCursor::PreviousCharacter);
+			j++;
+		}
+		if(c.previousChar()==QChar('\\')){
+			QString cmd=word.mid(col-i-j,j);
+			if(cmd=="ref{"){
+				currentEditorView()->complete(true);
+				return;
+			}
+		}
 		if (i>1) {
 			QString my_text=currentEditorView()->editor->text();
 			int end=0;
