@@ -93,10 +93,10 @@ int main(int argc, char ** argv) {
 			// various commands
 			if (cmdArgument == "--start-always")
 				startAlways = true;
-			else if (cmdArgument == "-master" || cmdArgument == "--master")
-				cmdLine << "--master"; //-master is only for backward compatibility
 			else if ((cmdArgument == "-line" || cmdArgument == "--line") && (++i < args.count()))
 				cmdLine << "--line" << args[i];
+			else if (cmdArgument.startsWith("-"))
+				cmdLine << cmdArgument;			
 		} else
 			cmdLine << QFileInfo(cmdArgument).absoluteFilePath();
 	}
