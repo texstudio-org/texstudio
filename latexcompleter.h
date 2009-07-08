@@ -29,7 +29,7 @@ public:
 	LatexCompleter(QObject *p = 0);
 	virtual ~LatexCompleter();
 
-	void complete(QEditor *newEditor, bool forceVisibleList, bool normalText=false);
+	void complete(QEditor *newEditor, bool forceVisibleList, bool normalText=false, bool forceRef=false);
 	void setAdditionalWords(const QStringList &newwords, bool normalTextList=false);
 
 	static void parseHelpfile(QString text);
