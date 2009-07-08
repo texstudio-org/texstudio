@@ -514,7 +514,8 @@ void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool nor
 	if (c.previousChar()!='\\' || forceVisibleList) {
 		int start=c.columnNumber()-1;
 		if (normalText) start=0;
-		QString eow="~!@#$%^&*()_+{}|:\"<>?,./;[]-= \n\r`+�";
+		QString eow="~!@#$%^&*()_+}|:\"<>?,./;[]-= \n\r`+�";
+		if (normalText) eow+="{";
 		QString lineText=c.line().text();
 		for (int i=c.columnNumber()-1; i>=0; i--) {
 			if (lineText.at(i)==QChar('\\')) {
