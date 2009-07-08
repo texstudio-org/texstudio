@@ -214,6 +214,10 @@ QSettings* ConfigManager::readSettings() {
 	QCoreApplication::installTranslator(appTranslator);
 	QCoreApplication::installTranslator(basicTranslator);
 
+	#ifndef QT_NO_DEBUG
+	debugLastFileModification=config->value("Debug/Last Application Modification").toDateTime();
+	#endif
+
 	
 	config->endGroup();
 
@@ -287,7 +291,12 @@ QSettings* ConfigManager::saveSettings() {
 	config->setValue("Editor/Font Family",editorFont.family());
 	config->setValue("Editor/Font Size",editorFont.pointSize());
 
-        config->setValue("Editor/Display Modifytime",displayModifyTime);
+	config->setValue("Editor/Display Modifytime",displayModifyTime);
+
+	//debug
+	#ifndef QT_NO_DEBUG
+	config->setValue("Debug/Last Application Modification",debugLastFileModification);
+	#endif
 	
 	config->endGroup();
 

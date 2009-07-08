@@ -31,6 +31,10 @@
 #include "encodingdialog.h"
 #include "webpublishdialog.h"
 
+#ifndef QT_NO_DEBUG
+#include "tests/testmanager.h"
+#endif
+
 #include "qdocument.h"
 #include "qdocumentcursor.h"
 #include "qdocumentline.h"
@@ -3424,9 +3428,6 @@ void Texmaker::GeneralOptions() {
 	delete confDlg;
 }
 void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
-	// remove unused argument warning
-	Q_UNUSED(realCmdLine);
-
 	// parse command line
 	QString fileToLoad;
 	bool activateMasterMode = false;
@@ -3461,6 +3462,18 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 		QApplication::processEvents();
 		gotoLine(line);
 	}
+	
+	#ifndef QT_NO_DEBUG
+	//execute test after command line is known
+	if (realCmdLine) //only at start
+		if (QFileInfo(QCoreApplication::applicationFilePath()).lastModified()!=configManager.debugLastFileModification 
+			|| args.contains("--execute-tests")){
+			QString testResultFile=TestManager::execute();
+			if (!testResultFile.isEmpty()) load(testResultFile);
+			else QMessageBox::warning(0,"TexMakerX","Couldn't run unit tests",QMessageBox::Ok);
+			configManager.debugLastFileModification=QFileInfo(QCoreApplication::applicationFilePath()).lastModified();
+		}
+	#endif
 }
 void Texmaker::onOtherInstanceMessage(const QString &msg) { // Added slot for messages to the single instance
 	show();

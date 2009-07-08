@@ -258,9 +258,6 @@ macx {
     ICON = texmaker.icns
     QMAKE_INFO_PLIST = Info.plist
 }
-HEADERS += 
-SOURCES += 
-FORMS += 
 
 # ##########QCODEEDIT###############
 DEFINES += _QCODE_EDIT_BUILD_
@@ -350,5 +347,11 @@ HEADERS += qcodeedit/lib/qnfa/qnfa.h \
 SOURCES += qcodeedit/lib/qnfa/qnfa.cpp \
     qcodeedit/lib/qnfa/qnfadefinition.cpp \
     qcodeedit/lib/qnfa/xml2qnfa.cpp
-CONFIG(debug, debug|release):TARGET = texmakerxd
-else:TARGET = texmakerx
+
+# ###############################
+#these files should be debug only, but debug-only thing in a qmake file become an
+#incredible mess, so they are always compiled (but empty through #define in release mode)
+SOURCES += tests/testmanager.cpp           
+HEADERS += tests/testmanager.h \
+           tests/smallUsefulFunctions_t.h 	           
+LIBS += -lQtTestd4

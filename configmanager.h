@@ -39,7 +39,8 @@ public:
 	
 	QFont editorFont;
 
-        bool displayModifyTime;
+	bool displayModifyTime;
+	
 	//language
 	QString lastLanguage;
 	QString language;
@@ -73,6 +74,11 @@ public:
 	QList<QMenu*> managedMenus;
 	QHash<QString,QKeySequence> managedMenuShortcuts;
 	QList<QPair<QString,QString> > managedMenuNewShortcuts;
+	
+	//debug
+	#ifndef QT_NO_DEBUG
+	QDateTime debugLastFileModification;
+	#endif
 	
 	QMenu* newManagedMenu(const QString &id,const QString &text);
 	QMenu* newManagedMenu(QMenu* menu, const QString &id,const QString &text);
