@@ -1925,9 +1925,9 @@ void Texmaker::NormalCompletion() {
 			j++;
 		}
 		if(c.previousChar()==QChar('\\')){
-			QString cmd=word.mid(col-i-j,j);
+			QString cmd=word.mid(col-i-j,4);
 			if(cmd=="ref{"){
-				currentEditorView()->complete(true);
+				currentEditorView()->complete(true,false,true);
 				return;
 			}
 		}
