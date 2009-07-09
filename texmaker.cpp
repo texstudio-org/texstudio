@@ -831,7 +831,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 
 	if (!QFile::exists(f_real)) return 0;
 	LatexEditorView *edit = new LatexEditorView(0);
-	EditorView->addTab(edit, QFileInfo(f_real).fileName());
+	EditorView->addTab(edit, "[*] "+QFileInfo(f_real).fileName());
 	configureNewEditorView(edit);
 
 	QFile file(f_real);
