@@ -354,4 +354,9 @@ SOURCES += qcodeedit/lib/qnfa/qnfa.cpp \
 SOURCES += tests/testmanager.cpp           
 HEADERS += tests/testmanager.h \
            tests/smallUsefulFunctions_t.h 	           
-LIBS += -lQtTestd4
+win32{
+	LIBS += -lQtTestd4
+}
+!win32{
+	LIBS += -lQtTest
+}

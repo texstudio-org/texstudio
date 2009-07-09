@@ -1,11 +1,8 @@
 #ifndef SMALLUSEFULFUNCTIONS_T_H
 #define SMALLUSEFULFUNCTIONS_T_H
 #ifndef QT_NO_DEBUG
-#include "..\smallUsefulFunctions.h"
-#include <QList>
-#include <QRegExp>
-#include <QString>
-#include <QStringList>
+#include "mostQtHeaders.h"
+#include "smallUsefulFunctions.h"
 #include <QtTest/QtTest>
 
 const int NW_IGNORED_TOKEN=-2; //token with are no words,  { and }
@@ -54,33 +51,33 @@ class SmallUsefulFunctionsTest: public QObject{
 	void addRow(const char* name, TokenFilter filter, QList<TestToken> tokens){
 		QString str;
 		int curpos=0;
-		int firstComment=tokens.length();
-		for (int i=0;i<tokens.length();i++){
+		int firstComment=tokens.size();
+		for (int i=0;i<tokens.size();i++){
 			tokens[i].position=curpos;
 			str+=tokens[i];
-			curpos+=tokens[i].length();
+			curpos+=tokens[i].size();
 			if (tokens[i].type==NW_COMMENT && i<firstComment) firstComment=i;
 		}
 		//remove all tokens which don't belong to the current test
 		switch (filter){
 			case FILTER_NEXTTOKEN:
-				for (int i=tokens.length()-1;i>=0;i--)
+				for (int i=tokens.size()-1;i>=0;i--)
 					if (tokens[i].type==NW_IGNORED_TOKEN && tokens[i]!="{" && tokens[i]!="}")	
 						tokens.removeAt(i);
 				break;
 			case FILTER_NEXTWORD_WITH_COMMANDS:
-				for (int i=tokens.length()-1;i>=0;i--)
+				for (int i=tokens.size()-1;i>=0;i--)
 					if (tokens[i].type==NW_IGNORED_TOKEN)	tokens.removeAt(i);
 					else if (tokens[i].type==NW_ENVIRONMENT || tokens[i].type==NW_OPTION)
 						tokens[i].type=NW_TEXT;//nextWord in command mode don't distinguish between text, environments and options
 				break;
 			case FILTER_NEXTWORD:
-				for (int i=tokens.length()-1;i>=0;i--)
+				for (int i=tokens.size()-1;i>=0;i--)
 					if (tokens[i].type==NW_COMMAND || tokens[i].type==NW_OPTION || tokens[i].type==NW_IGNORED_TOKEN) 
 						tokens.removeAt(i);//remove tokens not returned by nextWord in text mode
 				break;
 			case FILTER_NEXTTEXTWORD:
-				for (int i=tokens.length()-1;i>=0;i--)
+				for (int i=tokens.size()-1;i>=0;i--)
 					if (tokens[i].type!=NW_TEXT || i>=firstComment)  
 						tokens.removeAt(i);//remove all except text before comment start
 				break;
@@ -90,8 +87,8 @@ class SmallUsefulFunctionsTest: public QObject{
 		QTest::newRow(name) << str << tokens;
 	}
 	void addComplexData(TokenFilter filter){
-	    QTest::addColumn<QString >("str");
-	    QTest::addColumn<QList<TestToken> >("tokens");
+		QTest::addColumn<QString >("str");
+		QTest::addColumn<QList<TestToken> >("tokens");
 
 		addRow("simple whitespace", filter,
 			QList<TestToken>() << "abcde" << "    " << "fghik" << "\t" << "Mice");
@@ -103,6 +100,25 @@ class SmallUsefulFunctionsTest: public QObject{
 			QList<TestToken>() << "hallo" << " " << "welt" << "\\ignoreMe" << "{" << "text" << "}" << "     " << "\\begin" << "{" << env("I'mXnotXthere") << "}" << " *" << "g"  << "* " << "%"     << " " << "more" << " " << "\\comment");
 		addRow("command as option", filter,
 			QList<TestToken>() << "\\includegraphics" << "[" << option("ab") << "." << "\\linewidth" << "]" << "{" << "\\abc" << " " << option("dfdf") << "\\xyz" << "}" << "continue");
+	}
+	void nextWord_complex_test(bool commands){
+		//get data
+		QFETCH(QString, str);	
+		QFETCH(QList<TestToken>, tokens);	
+		int index=0;int startIndex=0;
+		int pos=0; int type;
+		QString token;
+		while ((type=nextWord(str, index, token, startIndex, commands))!=NW_NOTHING) {
+			if (pos>=tokens.size()) {
+				QFAIL(QString("Found additional token: %1 at %2").arg(token).arg(startIndex).toLatin1().constData());
+			} else {
+				QVERIFY2(token==tokens[pos], QString("Invalid token: %1 at %2 expected %3").arg(token).arg(startIndex).arg(tokens[pos]).toLatin1().constData());
+				QVERIFY2(startIndex==tokens[pos].position, QString("Invalid startIndex: %2 for %1").arg(token).arg(startIndex).toLatin1().constData());
+				QVERIFY2(type==tokens[pos].type, QString("Invalid type: %2 for %1").arg(token).arg(type).toLatin1().constData());
+			}
+			pos++;
+		}
+		QVERIFY2 (pos==tokens.size(), "Didn't found all tokens");
 	}
 private slots:
 	void nextToken_complex_data(){ addComplexData(FILTER_NEXTTOKEN); }
@@ -116,7 +132,7 @@ private slots:
 		int pos=0;
 		while ((startIndex = nextToken(str,index)) != -1) {
 			QString token=str.mid(startIndex,index-startIndex);
-			if (pos>=tokens.length()) {
+			if (pos>=tokens.size()) {
 				QFAIL(QString("Found additional token: %1 at %2").arg(token).arg(startIndex).toLatin1().constData());
 			} else {
 				QVERIFY2(token==tokens[pos], QString("Invalid token: %1 at %2 expected %3").arg(token).arg(startIndex).arg(tokens[pos]).toLatin1().constData());
@@ -124,7 +140,34 @@ private slots:
 			}
 			pos++;
 		}
-		QVERIFY2 (pos==tokens.length(), "Didn't found all tokens");
+		QVERIFY2 (pos==tokens.size(), "Didn't found all tokens");
+	}
+	void nextWordWithCommands_complex_data(){ addComplexData(FILTER_NEXTWORD_WITH_COMMANDS); }
+	void nextWordWithCommands_complex(){ 
+		nextWord_complex_test(true);
+	}
+	void nextWord_complex_data(){ addComplexData(FILTER_NEXTWORD); }
+	void nextWord_complex(){ 
+		nextWord_complex_test(false);
+	}
+	void nextTextWord_complex_data(){ addComplexData(FILTER_NEXTTEXTWORD); }
+	void nextTextWord_complex(){ 
+		//get data
+		QFETCH(QString, str);	
+		QFETCH(QList<TestToken>, tokens);	
+		
+		int index=0;int startIndex=0;
+		int pos=0;
+		QString token;
+		while (nextTextWord(str, index, token, startIndex)) {
+			if (pos>=tokens.size()) QFAIL(QString("Found additional token: %1 at %2").arg(token).arg(startIndex).toLatin1().constData());
+			else {
+				QVERIFY2(token==tokens[pos], QString("Invalid token: %1 at %2, expected %3").arg(token).arg(startIndex).arg(tokens[pos]).toLatin1().constData());
+				QVERIFY2(startIndex==tokens[pos].position, QString("Invalid startIndex: %2 for %1").arg(token).arg(startIndex).toLatin1().constData());
+			}
+			pos++;
+		}
+		QVERIFY2 (pos==tokens.size(), "Didn't found all tokens");
 	}
 	
 };
@@ -142,45 +185,45 @@ void error(QString text) { printStr(QString("Error: %1").arg(text));}
 
 void nextWordTest(QString str, bool commands, QStringList tokens, QList<int> positions, QList<int> types){
 	printStr(QString("\nnextWordTest: %1 %2").arg(str).arg(commands));
-	if (tokens.length()!=positions.length()) fatalError("Test Data Invalid, length mismatch tokens <> positions");
-	if (tokens.length()!=types.length()) fatalError("Test Data Invalid, length mismatch tokens <> types");
+	if (tokens.size()!=positions.size()) fatalError("Test Data Invalid, size mismatch tokens <> positions");
+	if (tokens.size()!=types.size()) fatalError("Test Data Invalid, size mismatch tokens <> types");
 	int index=0;int startIndex=0;
 	int pos=0; int type;
 	QString token;
 	while ((type=nextWord(str, index, token, startIndex, commands))!=NW_NOTHING) {
-		if (pos>=tokens.length()) error(QString("Found additional word: %1 at %2").arg(token).arg(startIndex));
+		if (pos>=tokens.size()) error(QString("Found additional word: %1 at %2").arg(token).arg(startIndex));
 		else {
 			if (token!=tokens[pos]) error(QString("Invalid word: %1 at %2, expected %3").arg(token).arg(startIndex).arg(tokens[pos]));
 			if (startIndex!=positions[pos]) error(QString("Invalid startIndex: %2 for %1").arg(token).arg(startIndex));
 			if (type!=types[pos]) error(QString("Invalid type: %2 for %1").arg(token).arg(type));
-		}
+}
 		pos++;
-	}
-	if (pos<tokens.length()) error("Didn't found all tokens");
+}
+	if (pos<tokens.size()) error("Didn't found all tokens");
 }
 
 void nextTextWordTest(QString str, QStringList tokens, QList<int> positions){
 	printStr(QString("\nnextTextWordTest: %1").arg(str));
-	if (tokens.length()!=positions.length()) fatalError("Test Data Invalid");
+	if (tokens.size()!=positions.size()) fatalError("Test Data Invalid");
 	int index=0;int startIndex=0;
 	int pos=0;
 	QString token;
 	while (nextTextWord(str, index, token, startIndex)) {
-		if (pos>=tokens.length()) error(QString("Found additional token: %1 at %2").arg(token).arg(startIndex));
+		if (pos>=tokens.size()) error(QString("Found additional token: %1 at %2").arg(token).arg(startIndex));
 		else {
 			if (token!=tokens[pos]) error(QString("Invalid token: %1 at %2, expected").arg(token).arg(startIndex).arg(tokens[pos]));
 			if (startIndex!=positions[pos]) error(QString("Invalid startIndex: %2 for %1").arg(token).arg(startIndex));
-		}
+}
 		pos++;
-	}
-	if (pos<tokens.length()) error("Didn't found all tokens");
+}
+	if (pos<tokens.size()) error("Didn't found all tokens");
 }
 
 
 void testStringParsers(QString str, QStringList tokens, QList<int> positions, QList<int> types){
 	nextTokenTest(str,tokens,positions); //next token will return all tokens
 	QList<int> newTypes;
-	for (int i=types.length()-1;i>=0;i--)  
+	for (int i=types.size()-1;i>=0;i--)  
 		switch (types[i]) { //remove all tokens only returned by nextToken ({ and })
 			case NW_IGNORED_TOKEN: 
 				tokens.removeAt(i);
@@ -195,7 +238,7 @@ void testStringParsers(QString str, QStringList tokens, QList<int> positions, QL
 				newTypes.push_front(types[i]);
 		}
 	nextWordTest(str,true,tokens,positions,newTypes);
-	for (int i=types.length()-1;i>=0;i--)  
+	for (int i=types.size()-1;i>=0;i--)  
 		if (types[i]==NW_OPTION_TEXT || types[i]==NW_COMMAND) { //remove tokens not returned by nextWord in text mode
 			tokens.removeAt(i);
 			positions.removeAt(i);
@@ -204,12 +247,12 @@ void testStringParsers(QString str, QStringList tokens, QList<int> positions, QL
 	nextWordTest(str,false,tokens,positions,types);
 	int comment=types.indexOf(NW_COMMENT);
 	if (comment>-1) //remove comments, ignored by nextTextWord
-		for (int i=types.length()-1;i>=comment;i--){
+		for (int i=types.size()-1;i>=comment;i--){
 			tokens.removeLast();
 			positions.removeLast();
 			types.removeLast();
 		}
-	for (int i=types.length()-1;i>=0;i--)  
+	for (int i=types.size()-1;i>=0;i--)  
 		if (types[i]!=NW_TEXT) { //remove everything which is no text
 			tokens.removeAt(i);
 			positions.removeAt(i);
