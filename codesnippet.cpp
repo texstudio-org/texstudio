@@ -58,7 +58,10 @@ CodeSnippet::CodeSnippet(const QString &newWord) {
 				placeHolders.last().append(QPair<int, int>(formatStart, curLine.length()-formatStart));
 				break;
 			case 'n':
-				curLine+="\n";
+				lines.append(curLine);
+				placeHolders.append(QList<QPair<int,int> >());
+				curLine.clear();
+				//curLine+="\n";
 				break;	
 			default:
 				;
@@ -97,7 +100,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor) const{
 	QDocumentLine curLine=cursor->line();
 
 	int baseLine=cursor->lineNumber();
-	int baseLineIndent = cursor->line().length(); //text before inserted word moves placeholders to the right
+	int baseLineIndent = cursor->columnNumber(); //text before inserted word moves placeholders to the right
 	for (int l=0;l< lines.count();l++){
 		cursor->insertText(lines[l]);
 		if (l<lines.count()-1) cursor->insertLine();
@@ -123,10 +126,10 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor) const{
 				return;
 		} else realAnchorOffset += baseLineIndent;
 		selector.setColumnNumber(realAnchorOffset);
-		bool ok;
+		bool ok=true;
 		if (cursorOffset>anchorOffset) 
 			ok=selector.movePosition(cursorOffset-anchorOffset,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
-		else if (cursorOffset>anchorOffset)
+		else if (cursorOffset<anchorOffset)
 			ok=selector.movePosition(anchorOffset-cursorOffset,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
 		if (!ok) return;
 		editor->setCursor(selector);
