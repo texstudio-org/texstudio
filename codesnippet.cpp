@@ -101,13 +101,15 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor) const{
 
 	int baseLine=cursor->lineNumber();
 	int baseLineIndent = cursor->columnNumber(); //text before inserted word moves placeholders to the right
+	editor->insertText(*cursor,lines.join("\n")); //don't use cursor->insertText to keep autoindentation working
 	for (int l=0;l< lines.count();l++){
-		cursor->insertText(lines[l]);
-		if (l<lines.count()-1) cursor->insertLine();
+		//if (l<lines.count()-1) cursor->insertLine();
 		for (int i=0; i<placeHolders[l].size(); i++) {
 			QEditor::PlaceHolder ph;
 			ph.length=placeHolders[l][i].second;
-			ph.cursor=editor->document()->cursor(baseLine+l,placeHolders[l][i].first+(l==0?baseLineIndent:0));
+			ph.cursor=editor->document()->cursor(baseLine+l,placeHolders[l][i].first);
+			if (l==0) ph.cursor.movePosition(baseLineIndent,QDocumentCursor::NextCharacter);
+			else ph.cursor.movePosition(ph.cursor.line().length()-lines[l].length(),QDocumentCursor::NextCharacter);
 			if (l!=beginMagicLine) {
 				if (ph.cursor.isValid())
 					editor->addPlaceHolder(ph);
@@ -122,8 +124,11 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor) const{
 	if (cursorOffset!=-1) {
 		int realAnchorOffset=anchorOffset; //will be moved to the right if text is already inserted on this line
 		if (cursorLine>0) {
+			if (cursorLine>=lines.size()) return;
 			if (!selector.movePosition(cursorLine,QDocumentCursor::Down,QDocumentCursor::MoveAnchor))
 				return;
+			if (editor->flag(QEditor::AutoIndent))
+				realAnchorOffset += selector.line().length()-lines[cursorLine].length();
 		} else realAnchorOffset += baseLineIndent;
 		selector.setColumnNumber(realAnchorOffset);
 		bool ok=true;
