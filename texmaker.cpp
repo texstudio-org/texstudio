@@ -3469,8 +3469,8 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 		if (QFileInfo(QCoreApplication::applicationFilePath()).lastModified()!=configManager.debugLastFileModification 
 			|| args.contains("--execute-tests")){
 			QString testResultFile=TestManager::execute();
-			if (!testResultFile.isEmpty()) load(testResultFile);
-			else QMessageBox::warning(0,"TexMakerX","Couldn't run unit tests",QMessageBox::Ok);
+			fileNew();
+			currentEditorView()->editor->cursor().insertText(testResultFile);
 			configManager.debugLastFileModification=QFileInfo(QCoreApplication::applicationFilePath()).lastModified();
 		}
 	#endif
