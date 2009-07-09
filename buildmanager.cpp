@@ -55,13 +55,12 @@ QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mai
 	result.reserve(2*str.length());
 	for (int i=0; i<str.size(); i++) {
 		if (str.at(i)==QChar('%')) {
-			if (str.at(++i)==QChar('%')) result+="%";
+			if (str.at(i+1)==QChar('%')) result+=str.at(++i);
 			else result+="\""+mainFile.completeBaseName()+"\"";
 		} else if (str.at(i)==QChar('@')) {
-			if (str.at(++i)==QChar('@')) result+="@";
+			if (str.at(i+1)==QChar('@')) result+=str.at(++i);
 			else result+=QString::number(currentline);
-		}
-		if (str.at(i)==QChar('?')) {
+		} else if (str.at(i)==QChar('?')) {
 			if (str.at(++i)==QChar('?')) result+="?";
 			else {
 				QString command;

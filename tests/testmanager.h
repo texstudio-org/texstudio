@@ -5,6 +5,8 @@
 //the only reason for this file is to separate the test headers from the remaining program
 
 class TestManager{
+private:
+	static QString performTest(QObject* obj);
 public:
 	static QString execute();
 };

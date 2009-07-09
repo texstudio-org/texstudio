@@ -353,7 +353,8 @@ SOURCES += qcodeedit/lib/qnfa/qnfa.cpp \
 #incredible mess, so they are always compiled (but empty through #define in release mode)
 SOURCES += tests/testmanager.cpp           
 HEADERS += tests/testmanager.h \
-           tests/smallUsefulFunctions_t.h 	           
+           tests/smallUsefulFunctions_t.h \
+           tests/buildManager_t.h
 win32{
 	LIBS += -lQtTestd4
 }
