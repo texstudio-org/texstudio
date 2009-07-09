@@ -17,8 +17,9 @@ private slots:
 		QTest::newRow("basic meta") << "@-@@ %% ?? @" << "" << 17 << "17-@ % ? 17";
 		QTest::newRow("relative file") << "%#?m)#?me)#?m.pdf:42!" << "pseudo.tex" << 42  
 				<< "\"pseudo\"#pseudo#pseudo.tex#pseudo.pdf:42!";
-		QTest::newRow("absolute file") << "?a)~?am)~?ame)~" << "/somewhere/something/test.tex" << 0 
-				<< "/somewhere/something/~/somewhere/something/test~/somewhere/something/test.tex~";
+		//use resource path so no drive letter will be inserted on windows 
+		QTest::newRow("absolute file") << "?a)~?am)~?ame)~" << ":/somewhere/something/test.tex" << 0 
+				<< QString(":/somewhere/something/~:/somewhere/something/test~:/somewhere/something/test.tex~").replace("/",QDir::separator());;
 		QTest::newRow("placeholder end") << "?m.newExt##?m)##?m\"##?m ##" << "rel.tex" << 0 
 				<< "rel.newExt##rel##\"rel\"##rel ##";
 		
