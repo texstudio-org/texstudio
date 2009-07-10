@@ -546,15 +546,21 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	QString line=cursor.line().text();
 	int col=cursor.columnNumber();
 	int context=findContext(line,col);
+	QString topic;
 
 	switch(context){
 		case 0:
 			QToolTip::hideText();
 			break;
 		case 1: //command
-			//QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), line);
-			//whatever you want to do with it (help generation ?)
-			QToolTip::hideText();
+			if(line=="\\begin") {
+				line=cursor.line().text();
+				int a=line.indexOf("{",col);
+				int b=line.indexOf("}",col);
+				line="\\begin"+line.mid(a,b-a+1);
+			}
+			topic=completer->lookupWord(line);
+			if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
 			break;
 		case 2: // ref
 			int l=line.indexOf("{");

@@ -38,6 +38,8 @@ public:
 	bool acceptTriggerString(const QString& trigger);
 	
 	void setConfig(const LatexCompleterConfig* config);
+
+	QString lookupWord(QString id);
 private:
 	friend class CompleterInputBinding;
 	friend class CompletionListModel;
