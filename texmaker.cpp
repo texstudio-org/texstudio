@@ -3625,7 +3625,7 @@ void Texmaker::SetMostUsedSymbols() {
 
 void Texmaker::updateBibFiles(){
 	//mentionedBibTeXFiles is set by updateStructure (which calls this)
-	for (int i=0; i<mentionedBibTeXFiles.count()-1;i++){
+	for (int i=0; i<mentionedBibTeXFiles.count();i++){
 		mentionedBibTeXFiles[i]=getAbsoluteFileName(mentionedBibTeXFiles[i],".bib"); //store absolute 
 		QString &fileName=mentionedBibTeXFiles[i];
 		QFileInfo fi(fileName);
@@ -3717,9 +3717,11 @@ void Texmaker::updateCompleter() {
 	}
 
 	if (configManager.parseBibTeX)
-		for (int i=0; i<mentionedBibTeXFiles.count()-1;i++){
-			if (!bibTeXFiles.contains(mentionedBibTeXFiles[i]))
-				continue; //wtf?
+		for (int i=0; i<mentionedBibTeXFiles.count();i++){
+			if (!bibTeXFiles.contains(mentionedBibTeXFiles[i])){
+				qDebug("BibTex-File %s not loaded",mentionedBibTeXFiles[i].toLatin1().constData());
+				continue; //wtf?s
+			}
 			BibTeXFileInfo& bibTex=bibTeXFiles[mentionedBibTeXFiles[i]];
 			for (int i=0; i<bibTex.ids.count();i++)
 				words.append("\\cite{"+bibTex.ids[i]+"}");
