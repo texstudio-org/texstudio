@@ -737,3 +737,30 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
 const QStringList& LatexCompleterConfig::getLoadedFiles(){
 	return files;
 }
+
+QString LatexCompleter::lookupWord(QString text){
+	QRegExp wordrx("^\\\\([^ {[*]+|begin\\{[^ {}]+)");
+	if (wordrx.indexIn(text)==-1) return "";
+	QString id=helpIndices.value(wordrx.cap(0),"");
+	if (id=="") return "";
+	QString aim="<a name=\""+id;
+	int pos=helpIndicesCache.value(wordrx.cap(0),-2);
+	if (pos==-2) {
+		//search id in help file
+		//QRegExp aim ("<a\\s+name=\""+id);
+		pos=helpFile.indexOf(aim);// aim.indexIn(helpFile);
+		helpIndicesCache.insert(wordrx.cap(0),pos);
+	}
+	if (pos<0) return "";
+	//get whole topic of the line
+	int opos=pos;
+	while (pos>=1 && helpFile.at(pos)!=QChar('\n')) pos--;
+	QString topic=helpFile.mid(pos);
+	if (topic.left(opos-pos).contains("<dt>")) topic=topic.left(topic.indexOf("</dd>"));
+	else {
+		QRegExp anotherLink("<a\\s+name=\\s*\"[^\"]*\"(\\s+href=\\s*\"[^\"]*\")?>\\s*[^< ][^<]*</a>");
+		int nextpos=anotherLink.indexIn(topic,opos-pos+aim.length());
+		topic=topic.left(nextpos);
+	}
+	return topic;
+}
