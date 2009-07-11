@@ -765,8 +765,8 @@ void ConfigManager::managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu
 		if (acts[i]->menu()) managedMenuToTreeWidget(menuitem, acts[i]->menu());
 		else {
 			QTreeWidgetItem* twi=new QTreeWidgetItem(menuitem, QStringList() << acts[i]->text()
-			        << managedMenuShortcuts[acts[i]->objectName()+"0"]
-			        << acts[i]->shortcut().toString(QKeySequence::NativeText));
+					<< managedMenuShortcuts[acts[i]->objectName()+"0"]
+					<< acts[i]->shortcut().toString(QKeySequence::NativeText));
 			twi->setIcon(0,acts[i]->icon());
 			if (!acts[i]->isSeparator()) twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
 			twi->setData(0,Qt::UserRole,acts[i]->objectName());
@@ -784,12 +784,18 @@ void ConfigManager::treeWidgetToManagedMenuTo(QTreeWidgetItem* item) {
 		if (id=="") return;
 		QAction * act=getManagedAction(id);
 		if (act) {
-			QKeySequence sc=QKeySequence(item->text(2));
+			QString mseq=item->text(2);
+			if(mseq==tr("<none>")) mseq="";
+			if(mseq==tr("<default>")) mseq=managedMenuShortcuts[act->objectName()+"0"].toString(QKeySequence::NativeText);
+			QKeySequence sc=QKeySequence(mseq);
 			act->setShortcut(sc);
 			if (sc!=managedMenuShortcuts.value(act->objectName()+"0",QKeySequence()))
 				managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~0", sc.toString(QKeySequence ::PortableText)));
-			sc=QKeySequence(item->text(3));
-			if (item->text(3)!="") act->setShortcuts((QList<QKeySequence>()<<act->shortcut()) << sc);
+			mseq=item->text(3);
+			if(mseq==tr("<none>")) mseq="";
+			if(mseq==tr("<default>")) mseq=managedMenuShortcuts.value(act->objectName()+"1",QKeySequence()).toString(QKeySequence::NativeText);
+			sc=QKeySequence(mseq);
+			if (mseq!="") act->setShortcuts((QList<QKeySequence>()<<act->shortcut()) << sc);
 			if (sc!=managedMenuShortcuts.value(act->objectName()+"1",QKeySequence()))
 				managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~1", sc.toString(QKeySequence ::PortableText)));
 			if(id=="main/view/outputview"){  // special handling for outputview because of "esc"-key
