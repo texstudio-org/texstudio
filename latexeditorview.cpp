@@ -427,7 +427,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			// hack to color the environment given in \begin{environment}...
 			if (status==NW_ENVIRONMENT) {
 				line.addOverlay(QFormatRange(wordstart,start-wordstart,environmentFormat));
-				QRegExp rx("[ ]*\\{.+\\}");
+				QRegExp rx("[ ]*(\\[.*\\])*\\{.+\\}");
+				rx.setMinimal(true);
 				int l=rx.indexIn(lineText,start);
 				if (l==start+1) start=start+rx.cap(0).length();
 			} else if (status==NW_REFERENCE) {
