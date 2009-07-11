@@ -1,5 +1,7 @@
 #include "codesnippet.h"
 
+#include "qeditor.h"
+#include "qdocumentcursor.h"
 #include "qdocumentline.h"
 
 
