@@ -315,6 +315,11 @@ int QDocumentLine::lastChar() const
 	return previousNonSpaceChar(length() - 1);
 }
 
+int QDocumentLine::indent() const
+{
+	return m_handle ? m_handle->indent() : 0;
+}
+
 /*!
 	Find the position of the next char that is not a space.
 	\param pos Column of the character which is examined first.

@@ -82,6 +82,8 @@ class QCE_EXPORT QDocumentLineHandle
 		
 		QPoint cursorToDocumentOffset(int cpos) const;
 		
+		int indent() const;
+		
 		int nextNonSpaceChar(uint pos) const;
 		int previousNonSpaceChar(int pos) const;
 		
