@@ -1034,15 +1034,17 @@ void QEditor::fileChanged(const QString& file)
 {
 	if ( (file != fileName()) || (m_saveState == Saving) )
 		return;
-
-/*	if ( m_saveState == Saved )
+	
+	/*
+	if ( m_saveState == Saved )
 	{
 		qApp->processEvents();
-
+		
 		m_saveState = Undefined;
 		return;
-	}*/
-
+	}
+	*/
+	
 	if ( !isContentModified() )
 	{
 		// silently reload file if the editor contains no modification?
@@ -1077,36 +1079,7 @@ void QEditor::fileChanged(const QString& file)
 
 	// TODO : check for actual modification (using a checksum?)
 	// TODO : conflict reversible (checksum again?)
-
-	/*
-	QFile f(file);
-	quint64 sz = f.size();
-
-	if ( sz == m_lastFileState.size )
-	{
-		quint32 checksum = 0;
-		f.open(QFile::ReadOnly);
-
-		while ( !f.atEnd() )
-		{
-			QByteArray b = f.read(100000);
-
-			checksum ^= qChecksum(b.constData(), b.size());
-		}
-
-		qDebug("%s : checksum = %i", qPrintable(file),  checksum);
-
-		if ( checksum == m_lastFileState.checksum )
-			return;
-
-		m_lastFileState.checksum = checksum;
-
-	} else {
-		qDebug("%s : size = %i", qPrintable(file), sz);
-		m_lastFileState.size = sz;
-	}
-	*/
-
+	
 	//qDebug("conflict!");
 	m_saveState = Conflict;
 }

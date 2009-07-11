@@ -1390,8 +1390,17 @@ bool QNFADefinition::unindent (const QDocumentCursor& c, const QString& ktxt)
 		return false;
 
 	QDocumentLine b = c.line();
+	QDocumentLine prev = c.document()->line(c.lineNumber() - 1);
+	
+	if ( !prev.isValid() )
+		return false;
+	
+	int prevIndent = prev.indent(), curIndent = b.indent();
 	int pos, max = qMin(c.columnNumber(), b.text().size());
 
+	if ( (prevIndent - curIndent) >= c.document()->tabStop() )
+		return false;
+	
 	QString s = b.text();
 	s.insert(max, ktxt);
 
@@ -1407,9 +1416,7 @@ bool QNFADefinition::unindent (const QDocumentCursor& c, const QString& ktxt)
 
 	QNFAMatchContext cxt;
 	QNFANotifier notify(text);
-
-	QDocumentLine prev = c.document()->line(c.lineNumber() - 1);
-
+	
 	if ( prev.isValid() )
 	{
 		cxt = prev.matchContext();

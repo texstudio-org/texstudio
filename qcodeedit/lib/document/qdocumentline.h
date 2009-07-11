@@ -126,6 +126,8 @@ class QCE_EXPORT QDocumentLine
 		int firstChar() const;
 		int lastChar() const;
 		
+		int indent() const;
+		
 		int nextNonSpaceChar(int pos) const;
 		int previousNonSpaceChar(int pos) const;
 

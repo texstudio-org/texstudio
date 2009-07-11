@@ -1567,6 +1567,12 @@ QString QDocumentLineHandle::text() const
 	return m_text;
 }
 
+int QDocumentLineHandle::indent() const
+{
+	int l = nextNonSpaceChar(0);
+	return QDocument::screenLength(m_text.constData(), l == -1 ? m_text.length() : l, m_doc->tabStop());
+}
+
 int QDocumentLineHandle::nextNonSpaceChar(uint pos) const
 {
 	const int len = m_text.length();
@@ -3700,7 +3706,7 @@ QPolygon QDocumentCursorHandle::documentRegion() const
 
 	int w = m_doc->width();
 	const int lm = m_doc->impl()->m_leftMargin;
-	const int ls = m_doc->impl()->m_lineSpacing;
+	const int ls = m_doc->impl()->m_lineSpacing - 1;
 
 	if ( p == ap )
 	{
