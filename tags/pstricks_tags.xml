@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texmakertags title="Pstricks">
+<section title="General (Pstricks)">
+<item tag="\\psset{xunit=%&lt;1cm%>,yunit=%&lt;1cm%>}"/>
+<item txt="\\begin{pspicture}(x0,y0)(x1,y1) \\end{pspicture}" tag="\\begin{pspicture}(%&lt;x0%>,%&lt;y0%>)(%&lt;x1%>,%&lt;y1%>)"/>
+<item tag="\\SpecialCoor"/>
+</section>
+<section title="Lines/Polygons  (Pstricks)">
+<item tag="\\psline[%&lt;options%>]{%&lt;arrows%>}(%&lt;x0%>,%&lt;y0%>)(%&lt;x1%>,%&lt;y1%>)"/>
+<item tag="\\pspolygon[%&lt;options%>](%&lt;x0%>,%&lt;y0%>)(%&lt;xn%>,%&lt;yn%>)"/>
+<item tag="\\psframe[%&lt;options%>](%&lt;x0%>,%&lt;y0%>)(%&lt;x1%>,%&lt;y1%>)"/>
+<item tag="linearc=[%&lt;0pt%>]" type="1"/>
+<item tag="framearc=[%&lt;0%>]" type="1"/>
+</section>
+<section title="Arcs/Circles/Ellipses  (Pstricks)">
+<item tag="\\pscircle[%&lt;options%>](%&lt;x0%>,%&lt;y0%>){%&lt;radius%>}"/>
+<item tag="\\pswedge[%&lt;options%>](%&lt;x0%>,%&lt;y0%>){%&lt;radius%>}{%&lt;angle1%>}{%&lt;angle2%>}"/>
+<item tag="\\psarc[%&lt;options%>]{arrows}(%&lt;x%>,%&lt;y%>){%&lt;radius%>}{%&lt;angleA%>}{%&lt;angleB%>}"/>
+<item tag="\\psellipse[%&lt;options%>](%&lt;x0%>,%&lt;y0%>)(%&lt;x1%>,%&lt;y1%>)"/>
+<item tag="arcSepA=[%&lt;0pt%>]" type="1"/>
+<item tag="arcSepB=[%&lt;0pt%>]" type="1"/>
+<item tag="arcsep=[%&lt;0%>]" type="1"/>
+</section>
+<section title="Curves  (Pstricks)">
+<item tag="\\psbezier[%&lt;options%>]{arrows}(%&lt;x0%>,%&lt;y0%>)(%&lt;x1%>,%&lt;y1%>)(%&lt;x2%>,%&lt;y2%>)(%&lt;x3%>,%&lt;y3%>)"/>
+<item tag="\\parabola[%&lt;options%>]{arrows}(%&lt;x0%>,%&lt;y0%>)(%&lt;x1%>,%&lt;y1%>)"/>
+<item tag="\\pscurve[%&lt;options%>]{arrows}(%&lt;x1%>,%&lt;y1%>)(%&lt;xn%>,%&lt;yn%>)"/>
+<item tag="\\psecurve[%&lt;options%>]{arrows}(%&lt;x1%>,%&lt;y1%>)(%&lt;xn%>,%&lt;yn%>)"/>
+<item tag="\\psccurve[%&lt;options%>]{arrows}(%&lt;x1%>,%&lt;y1%>)(%&lt;xn%>,%&lt;yn%>)"/>
+</section>
+<section title="Dots  (Pstricks)">
+<item tag="\\psdot[%&lt;options%>](%&lt;x1%>,%&lt;y1%>)"/>
+<item tag="\\psdots[%&lt;options%>](%&lt;x1%>,%&lt;y1%>)(%&lt;xn%>,%&lt;yn%>)"/>
+<item tag="dotstyle=[%&lt;*/o/+/triangle(*)/square(*)/pentagon(*)/|%>]" type="1"/>
+<item tag="dotscale=[%&lt;1%>]" type="1"/>
+<item tag="dotangle=[%&lt;0%>]" type="1"/>
+</section>
+<section title="Grids  (Pstricks)">
+<item tag="\\psgrid[%&lt;options%>](%&lt;x0%>,%&lt;y0%>)(%&lt;x1%>,%&lt;y1%>)(%&lt;x2%>,%&lt;y2%>)"/>
+<item tag="gridwidth=[%&lt;0.8pt%>]" type="1"/>
+<item tag="gridcolor=[%&lt;black%>]" type="1"/>
+<item tag="griddots=[%&lt;0%>]" type="1"/>
+<item tag="gridlabels=[%&lt;10pt%>]" type="1"/>
+<item tag="gridlabelcolor=[%&lt;black%>]" type="1"/>
+<item tag="subgriddiv=[%&lt;5%>]" type="1"/>
+<item tag="subgridwidth=[%&lt;0.4pt%>]" type="1"/>
+<item tag="subgridcolor=[%&lt;gray%>]" type="1"/>
+<item tag="subgriddots=[%&lt;0%>]" type="1"/>
+</section>
+<section title="Placing/Rotating  (Pstricks)">
+<item tag="\\uput[%&lt;refangle%>](%&lt;x%>,%&lt;y%>){%&lt;stuff%>}"/>
+<item tag="\\uput[%&lt;refangle%>]{rotation}(%&lt;x%>,%&lt;y%>){%&lt;stuff%>}"/>
+<item tag="\\uput{labelsep}[%&lt;refangle%>]{rotation}(%&lt;x%>,%&lt;y%>){%&lt;stuff%>}"/>
+<item tag="\\rput(%&lt;x%>,%&lt;y%>){%&lt;stuff%>}"/>
+<item tag="\\rput[%&lt;refpoint%>](%&lt;x%>,%&lt;y%>){%&lt;stuff%>}"/>
+<item tag="\\rput{rotation}(%&lt;x%>,%&lt;y%>){%&lt;stuff%>}"/>
+<item tag="\\rput[%&lt;refpoint%>]{rotation}(%&lt;x%>,%&lt;y%>){%&lt;stuff%>}"/>
+</section>
+<section title="Arrows  (Pstricks)">
+<item tag="-"/>
+<item tag="&lt;-&gt;"/>
+<item tag="&gt;-&lt;"/>
+<item tag="&lt;&lt;-&gt;&gt;"/>
+<item tag="&gt;&gt;-&lt;&lt;"/>
+<item tag="|-|"/>
+<item tag="|*-|*"/>
+<item tag="[-]"/>
+<item tag="(-)"/>
+<item tag="o-o"/>
+<item tag="*-*"/>
+<item tag="oo-oo"/>
+<item tag="**-**"/>
+<item tag="c-c"/>
+<item tag="cc-cc"/>
+<item tag="C-C"/>
+<item tag="arrowsize=[%&lt;2pt%> %&lt;3%>]" type="1"/>
+<item tag="arrowlength=[%&lt;1.4%>]" type="1"/>
+<item tag="arrowinset=[%&lt;0.4%>]" type="1"/>
+<item tag="tbarsize=[%&lt;2pt%> %&lt;5%>]" type="1"/>
+<item tag="bracketlength=[%&lt;0.15%>]" type="1"/>
+<item tag="rbracketlength=[%&lt;0.15%>]" type="1"/>
+<item tag="dotsize=[%&lt;0.5pt%> %&lt;2.5%>]" type="1"/>
+<item tag="arrowscale=[%&lt;1%>]" type="1"/>
+</section>
+<section title="Line styles  (Pstricks)">
+<item tag="linestyle=[%&lt;solid/dashed/dotted%>]" type="1"/>
+<item tag="linewidth=[%&lt;0.8pt%>]" type="1"/>
+<item tag="linecolor=[%&lt;black%>]" type="1"/>
+<item tag="showpoints=[%&lt;false%>]" type="1"/>
+<item tag="dash=[%&lt;5pt%> %&lt;3pt%>]" type="1"/>
+<item tag="dotsep=[%&lt;3pt%>]" type="1"/>
+<item tag="border=[%&lt;0pt%>]" type="1"/>
+<item tag="bordercolor=[%&lt;white%>]" type="1"/>
+<item tag="doubleline=[%&lt;false%>]" type="1"/>
+<item tag="doublesep=[%&lt;1.25%>\\pslinewidth]" type="1"/>
+<item tag="doublecolor=[%&lt;white%>]" type="1"/>
+<item tag="shadow=[%&lt;false%>]" type="1"/>
+<item tag="shadowsize=[%&lt;3pt%>]" type="1"/>
+<item tag="shadowangle=[%&lt;-45%>]" type="1"/>
+<item tag="shadowcolor=[%&lt;darkgray%>]" type="1"/>
+</section>
+<section title="Fill styles  (Pstricks)">
+<item tag="fillstyle=[%&lt;none/solid/vlines(*)/hlines(*)/crosshatch(*)%>]" type="1"/>
+<item tag="fillcolor=[%&lt;white%>]" type="1"/>
+<item tag="hatchwidth=[%&lt;0.8pt%>]" type="1"/>
+<item tag="hatchsep=[%&lt;4pt%>]" type="1"/>
+<item tag="hatchcolor=[%&lt;black%>]" type="1"/>
+<item tag="hatchangle=[%&lt;45%>]" type="1"/>
+</section>
+<section title="Colors  (Pstricks)">
+<item tag="\\newgray{%&lt;color%>}{%&lt;num%>}"/>
+<item tag="\\newrgbcolor{%&lt;color%>}{%&lt;num1%> %&lt;num2%> %&lt;num3%>}"/>
+</section>
+<section title="Plots (Pstricks/pst-plot)">
+<item tag="\\psplot[%&lt;options%>]{%&lt;xmin%>}{%&lt;xmax%>}{%&lt;function%>}"/>
+<item tag="\\parametricplot[%&lt;options%>]{%&lt;tmin%>}{%&lt;tmax%>}{%&lt;function%>}"/>
+<item tag="\\dataplot[%&lt;options%>]{%&lt;commands%>}"/>
+<item tag="\\fileplot[%&lt;options%>]{%&lt;file%>}"/>
+<item tag="\\listplot[%&lt;options%>]{%&lt;list%>}"/>
+<item tag="plotstyle=[%&lt;line/dots/polygon/curve/ecurve/ccurve%>]" type="1"/>
+<item tag="plotpoints=[%&lt;50%>]" type="1"/>
+<item tag="origin=[{%&lt;0pt%>,%&lt;0pt%>}]" type="1"/>
+<item tag="swapaxes=[%&lt;false%>]" type="1"/>
+<item tag="\\readdata{%&lt;command%>}{%&lt;file%>}"/>
+<item tag="\\savedata{%&lt;command%>}[%&lt;data%>]"/>
+<item tag="\\psaxes[%&lt;options%>]{%&lt;arrows%>}(%&lt;x0%>,%&lt;y0%>)(%&lt;x1%>,%&lt;y1%>)(%&lt;x2%>,%&lt;y2%>)"/>
+<item tag="labels=[%&lt;all/x/y/none%>]" type="1"/>
+<item tag="Dx=[%&lt;1%>]" type="1"/>
+<item tag="Dy=[%&lt;1%>]" type="1"/>
+<item tag="showorigin=[%&lt;true%>]" type="1"/>
+<item tag="ticks=[%&lt;all/x/y/none%>]" type="1"/>
+<item tag="tickstyle=[%&lt;full/top/bottom%>]" type="1"/>
+<item tag="ticksize=[%&lt;3pt%>]" type="1"/>
+<item tag="axesstyle=[%&lt;axes/frame/none%>]" type="1"/>
+</section>
+</texmakertags>

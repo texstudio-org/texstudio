@@ -24,8 +24,7 @@
 #include "latexeditorview.h"
 #include "latexcompleter.h"
 #include "symbollistwidget.h"
-#include "metapostlistwidget.h"
-#include "pstrickslistwidget.h"
+#include "xmltagslistwidget.h"
 #include "spellerdialog.h"
 #include "textanalysis.h"
 #include "toolwidgets.h"
@@ -72,7 +71,9 @@ private:
 	inline QAction* newManagedAction(QWidget* menu, const QString &id, QAction* act);
 	inline QAction* getManagedAction(QString id);
 	
-	void addSymbolList(SymbolListWidget** list, int index, const char* slot, const QString& iconName, const QString& text);
+	void addSymbolList(SymbolListWidget** list, int index, const QString& iconName, const QString& text);
+	void addTagList(XmlTagsListWidget** list, const QString& iconName, const QString& text, const QString& tagFile);
+
 	void setupDockWidgets();
 	void setupMenus();
 	void setupToolBars();
@@ -92,8 +93,7 @@ private:
 	QDockWidget *StructureView;
 	QTabWidget *EditorView;
 	QToolBox *StructureToolbox;
-	MetapostListWidget *MpListWidget;
-	PstricksListWidget *PsListWidget;
+	XmlTagsListWidget *MpListWidget, *PsListWidget, *leftrightWidget, *tikzWidget, *asyWidget;
 	SymbolListWidget *RelationListWidget, *ArrowListWidget, *MiscellaneousListWidget, *DelimitersListWidget, *GreekListWidget, *MostUsedListWidget;
 	QTreeWidget *StructureTreeWidget;
 
@@ -220,8 +220,7 @@ private slots:
 	void InsertTextCompletion();
 	void InsertTag(QString Entity, int dx, int dy);
 	void InsertSymbol(QTableWidgetItem *item);
-	void InsertMetaPost(QListWidgetItem *item);
-	void InsertPstricks(QListWidgetItem *item);
+	void InsertXmlTag(QListWidgetItem *item);	
 	void InsertFromAction();
 	void InsertWithSelectionFromString(const QString& text);
 	void InsertFromString(const QString& text);

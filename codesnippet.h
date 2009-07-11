@@ -3,10 +3,8 @@
 
 #include "mostQtHeaders.h"
 
-#include "qeditor.h"
-#include "qdocumentcursor.h"
-
-
+class QDocumentCursor;
+class QEditor;
 class CodeSnippet
 {
 public:

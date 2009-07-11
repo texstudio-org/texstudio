@@ -4206,13 +4206,17 @@ void QEditor::preInsert(QDocumentCursor& c, const QString& s)
 		//qDebug("%i spaces", firstNS);
 
 		const int ts = m_doc->tabStop();
-
-		do
-		{
+		
+		if (txt.contains(' ') && txt.contains('\t') && c.previousChar()=='\t') {
 			--firstNS;
 			c.movePosition(1, QDocumentCursor::Left, QDocumentCursor::KeepAnchor);
-		} while ( QDocument::screenLength(txt.constData(), firstNS, ts) % ts );
-
+		} else {
+			do
+			{
+				--firstNS;
+				c.movePosition(1, QDocumentCursor::Left, QDocumentCursor::KeepAnchor);
+			} while ( QDocument::screenLength(txt.constData(), firstNS, ts) % ts );
+		}
 		//qDebug("%i left => \"%s\"", firstNS, qPrintable(c.selectedText()));
 
 		c.removeSelectedText();

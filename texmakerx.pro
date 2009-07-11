@@ -23,7 +23,6 @@ HEADERS += texmaker.h \
     latexlog.h \
     logeditor.h \
     loghighlighter.h \
-    metapostlistwidget.h \
     smallUsefulFunctions.h \
     structdialog.h \
     encodingdialog.h \
@@ -43,7 +42,6 @@ HEADERS += texmaker.h \
     webpublishdialog.h \
     spellerdialog.h \
     spellerutility.h \
-    pstrickslistwidget.h \
     textanalysis.h \
     toolwidgets.h \
     latexoutputfilter.h \
@@ -51,6 +49,7 @@ HEADERS += texmaker.h \
     latexcompleter_p.h \
     codesnippet.h \
     thesaurusdialog.h \
+	xmltagslistwidget.h \
     hunspell/affentry.hxx \
     hunspell/affixmgr.hxx \
     hunspell/atypes.hxx \
@@ -83,7 +82,6 @@ SOURCES += main.cpp \
     latexlog.cpp \
     logeditor.cpp \
     loghighlighter.cpp \
-    metapostlistwidget.cpp \
     smallUsefulFunctions.cpp \
     structdialog.cpp \
     filechooser.cpp \
@@ -102,12 +100,12 @@ SOURCES += main.cpp \
     webpublishdialog.cpp \
     spellerdialog.cpp \
     spellerutility.cpp \
-    pstrickslistwidget.cpp \
     textanalysis.cpp \
     latexoutputfilter.cpp \
     toolwidgets.cpp \
     codesnippet.cpp \
     thesaurusdialog.cpp \
+	xmltagslistwidget.cpp \
     hunspell/affentry.cxx \
     hunspell/affixmgr.cxx \
     hunspell/csutil.cxx \

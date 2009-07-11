@@ -22,6 +22,7 @@
         <file>images/qcodeedit/strokecolor.png</file>
         <file>images/warning.png</file>
         <file>images/error.png</file>
+        <file>images/asymptote.png</file>
         <file>images/badbox.png</file>
         <file>images/lbook.png</file>
         <file>images/lbook0.png</file>
@@ -34,6 +35,7 @@
         <file>images/lbook7.png</file>
         <file>images/lbook8.png</file>
         <file>images/lbook9.png</file>
+        <file>images/leftright.png</file>
         <file alias="blank.png" >utilities/blank.png</file>
         <file alias="next.gif" >utilities/next.gif</file>
         <file alias="next_d.gif" >utilities/next_d.gif</file>
@@ -127,6 +129,7 @@
         <file>images/text_right.png</file>
         <file>images/text_under.png</file>
         <file>images/tilde.png</file>
+        <file>images/tikz.png</file>
         <file>images/undo.png</file>
         <file>images/vec.png</file>
         <file>images/bookmark1.png</file>
@@ -651,5 +654,10 @@
         <file>completion/xifthen.cwl</file>
         <file>completion/xltxtra.cwl</file>
         <file>completion/xtab.cwl</file>
+		<file>tags/asymptote_tags.xml</file>
+		<file>tags/leftright_tags.xml</file>
+		<file>tags/metapost_tags.xml</file>
+		<file>tags/pstricks_tags.xml</file>
+		<file>tags/tikz_tags.xml</file>
     </qresource>
 </RCC>

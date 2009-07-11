@@ -1,6 +1,7 @@
 /***************************************************************************
  *   copyright       : (C) 2003-2007 by Pascal Brachet                     *
  *   http://www.xm1math.net/texmaker/                                      *
+ *   inspired by the ktikz (GPL) program from Glad Deschrijver             *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -9,16 +10,33 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef METAPOSTLISTWIDGET_H
-#define METAPOSTLISTWIDGET_H
+#ifndef XMLTAGSLISTWIDGET_H
+#define XMLTAGSLISTWIDGET_H
 
-#include "mostQtHeaders.h"
+#include <QListWidget>
 
-class MetapostListWidget : public QListWidget  {
-	Q_OBJECT
+class QDomElement;
+
+struct xmlTag{
+	QString txt;
+	QString tag;
+	int type;
+};
+
+struct xmlTagList{
+	QString title;
+	QList<xmlTag> tags;
+	QList<xmlTagList> children;
+};
+
+class XmlTagsListWidget : public QListWidget  {
+  Q_OBJECT
 public:
-	MetapostListWidget(QWidget *parent=0);
-	~MetapostListWidget();
+	XmlTagsListWidget(QWidget *parent, QString file);
+private:
+	xmlTagList getTags(const QDomElement &element);
+	xmlTagList xmlSections;
+	void addListWidgetItems(const xmlTagList &tagList);
 };
 
 #endif

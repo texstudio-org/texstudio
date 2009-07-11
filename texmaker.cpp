@@ -72,7 +72,12 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	MpListWidget=0;
 	outputView=0;
 	thesaurusDialog=0;
-
+	MpListWidget=0;
+	PsListWidget=0;
+	leftrightWidget=0;
+	tikzWidget=0;
+	asyWidget=0;
+	
 	mainSpeller=new SpellerUtility();;
 	mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);
 	mainSpeller->setActive(realtimespellchecking);
@@ -168,14 +173,20 @@ QMenu* Texmaker::newManagedMenu(const QString &id,const QString &text){
 	return configManager.newManagedMenu(id,text);
 }
 
-void Texmaker::addSymbolList(SymbolListWidget** list, int index, const char* slot, const QString& iconName, const QString& text){
+void Texmaker::addSymbolList(SymbolListWidget** list, int index,  const QString& iconName, const QString& text){
 	if (!*list) {
 		(*list)=new SymbolListWidget(StructureToolbox,index);
-		connect(*list, SIGNAL(itemClicked(QTableWidgetItem*)), this, slot);
+		connect(*list, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
 		StructureToolbox->addItem(*list,QIcon(iconName),text);
 	} else StructureToolbox->setItemText(StructureToolbox->indexOf(*list),text);
 }
-
+void Texmaker::addTagList(XmlTagsListWidget** list, const QString& iconName, const QString& text, const QString& tagFile){
+	if (!*list) {
+		(*list)=new XmlTagsListWidget(StructureToolbox,":/tags/"+tagFile);
+		connect(*list, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(InsertXmlTag(QListWidgetItem*)));
+		StructureToolbox->addItem(*list,QIcon(iconName),text);
+	} else StructureToolbox->setItemText(StructureToolbox->indexOf(*list),text);
+}
 void Texmaker::setupDockWidgets(){
 //to allow retranslate this function must be able to be called multiple times
 
@@ -202,25 +213,19 @@ void Texmaker::setupDockWidgets(){
 		StructureToolbox->addItem(StructureTreeWidget,QIcon(":/images/structure.png"),tr("Structure"));
 	} else StructureToolbox->setItemText(StructureToolbox->indexOf(StructureTreeWidget),tr("Structure"));
 	
-	addSymbolList(&RelationListWidget,0, SLOT(InsertSymbol(QTableWidgetItem*)),":/images/math1.png",tr("Relation symbols"));
-	addSymbolList(&ArrowListWidget,1,SLOT(InsertSymbol(QTableWidgetItem*)),":/images/math2.png",tr("Arrow symbols"));
-	addSymbolList(&MiscellaneousListWidget,2,SLOT(InsertSymbol(QTableWidgetItem*)),":/images/math3.png",tr("Miscellaneous symbols"));
-	addSymbolList(&DelimitersListWidget,3,SLOT(InsertSymbol(QTableWidgetItem*)),":/images/math4.png",tr("Delimiters"));
-	addSymbolList(&GreekListWidget,4,SLOT(InsertSymbol(QTableWidgetItem*)),":/images/math5.png",tr("Greek letters"));
-	addSymbolList(&MostUsedListWidget,5,SLOT(InsertSymbol(QTableWidgetItem*)),":/images/math6.png",tr("Most used symbols"));
+	addSymbolList(&RelationListWidget,0, ":/images/math1.png",tr("Relation symbols"));
+	addSymbolList(&ArrowListWidget,1, ":/images/math2.png",tr("Arrow symbols"));
+	addSymbolList(&MiscellaneousListWidget,2,":/images/math3.png",tr("Miscellaneous symbols"));
+	addSymbolList(&DelimitersListWidget,3,":/images/math4.png",tr("Delimiters"));
+	addSymbolList(&GreekListWidget,4,":/images/math5.png",tr("Greek letters"));
+	addSymbolList(&MostUsedListWidget,5,":/images/math6.png",tr("Most used symbols"));
 
-	if (!PsListWidget){
-		PsListWidget=new PstricksListWidget(StructureToolbox);
-		connect(PsListWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(InsertPstricks(QListWidgetItem*)));
-		StructureToolbox->addItem(PsListWidget,QIcon(":/images/pstricks.png"),tr("Pstricks Commands"));
-	} else StructureToolbox->setItemText(StructureToolbox->indexOf(PsListWidget),tr("Pstricks Commands"));
+	addTagList(&leftrightWidget, ":/images/leftright.png", tr("Left/Right Brackets"),"leftright_tags.xml");
+	addTagList(&PsListWidget, ":/images/pstricks.png", tr("Pstricks Commands"),"pstricks_tags.xml");
+	addTagList(&MpListWidget, ":/images/metapost.png", tr("MetaPost Commands"),"metapost_tags.xml");
+	addTagList(&tikzWidget, ":/images/tikz.png", tr("Tikz Commands"),"tikz_tags.xml");
+	addTagList(&asyWidget, ":/images/asymptote.png", tr("Asymptote Commands"),"asymptote_tags.xml");
 	
-	if (!MpListWidget){
-		MpListWidget=new MetapostListWidget(StructureToolbox);
-		connect(MpListWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(InsertMetaPost(QListWidgetItem*)));
-		StructureToolbox->addItem(MpListWidget,QIcon(":/images/metapost.png"),tr("MetaPost Commands"));
-	} else StructureToolbox->setItemText(StructureToolbox->indexOf(MpListWidget),tr("MetaPost Commands"));
-
 // OUTPUT WIDGETS
 	if (!outputView) {
 		outputView = new OutputViewWidget(this);
@@ -2058,21 +2063,15 @@ void Texmaker::InsertSymbol(QTableWidgetItem *item) {
 		SetMostUsedSymbols();
 	}
 }
-
-void Texmaker::InsertMetaPost(QListWidgetItem *item) {
-	QString mpcode;
-	if (item) {
-		mpcode=item->text();
-		if (mpcode!="----------") InsertTag(mpcode,mpcode.length(),0);
-	}
-}
-
-void Texmaker::InsertPstricks(QListWidgetItem *item) {
-	QString pstcode;
-	if (item  && !item->font().bold()) {
-		pstcode=item->text();
-		pstcode.remove(QRegExp("\\[(.*)\\]"));
-		InsertTag(pstcode,pstcode.length(),0);
+ 
+void Texmaker::InsertXmlTag(QListWidgetItem *item)
+{
+	if (!currentEditorView())	return;
+	if (item  && !item->font().bold()){
+		QString code=item->data(Qt::UserRole).toString();
+		QDocumentCursor c = currentEditorView()->editor->cursor();
+		CodeSnippet(code).insertAt(currentEditorView()->editor,&c);
+		currentEditorView()->editor->setFocus();
 	}
 }
 
