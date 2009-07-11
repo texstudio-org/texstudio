@@ -119,6 +119,8 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
 	//menu shortcut key
 	if (index.column()!=2 && index.column()!=3) return 0;
 	QComboBox *editor = new QComboBox(parent);
+	editor->addItem(tr("<default>"));
+	editor->addItem(tr("<none>"));
 	for (int k=Qt::Key_F1; k<=Qt::Key_F12; k++)
 		editor->addItem(QKeySequence(k).toString(QKeySequence::NativeText));
 	for (int c=0; c<=1; c++)
@@ -172,7 +174,8 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 	QComboBox *box = qobject_cast<QComboBox*>(editor);
 	if (!box) return;
 	QString value=box->currentText();
-	if (value=="" || value=="none") value="";
+	if (value=="" || value=="none" || value==tr("<none>")) value="";
+	else if (value=="<default>") ;
 	else {
 		value=QKeySequence(box->currentText()).toString(QKeySequence::NativeText);
 		if (value=="" || (value.endsWith("+") && !value.endsWith("++"))) { //Alt+wrong=>Alt+

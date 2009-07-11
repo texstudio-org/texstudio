@@ -563,41 +563,43 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
 			break;
 		case 2: // ref
-			int l=line.indexOf("{");
-			QString ref=line.mid(l+1,line.length());
-			QString command=line.left(l);
-			if(command=="\\ref"){
-				//l=editor->document()->findLineContaining("\\label{"+ref+"}",0,Qt::CaseSensitive);
-				QList<QDocumentLineHandle*> lst=containedLabels.values(ref);
-				QString mText="";
-				if(lst.isEmpty()){
-					mText=tr("label missing!");
-				} else if(lst.count()>1) {
-					mText=tr("label multiple times defined!");
-				} else {
-					QDocumentLine mLine(lst.first());
-					int l=mLine.lineNumber();
-					for(int i=qMax(0,l-2);i<qMin(editor->document()->lines(),l+3);i++){
-						mText+=editor->document()->line(i).text();
-						if(i<l+2) mText+="\n";
+			{
+				int l=line.indexOf("{");
+				QString ref=line.mid(l+1,line.length());
+				QString command=line.left(l);
+				if(command=="\\ref"){
+					//l=editor->document()->findLineContaining("\\label{"+ref+"}",0,Qt::CaseSensitive);
+					QList<QDocumentLineHandle*> lst=containedLabels.values(ref);
+					QString mText="";
+					if(lst.isEmpty()){
+						mText=tr("label missing!");
+					} else if(lst.count()>1) {
+						mText=tr("label multiple times defined!");
+					} else {
+						QDocumentLine mLine(lst.first());
+						int l=mLine.lineNumber();
+						for(int i=qMax(0,l-2);i<qMin(editor->document()->lines(),l+3);i++){
+							mText+=editor->document()->line(i).text();
+							if(i<l+2) mText+="\n";
+						}
 					}
+					QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), mText);
+				}else{
+					QToolTip::hideText();
 				}
-				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), mText);
-			}else{
-				QToolTip::hideText();
-			}
-			if(command=="\\label"){
-				if(containedLabels.count(ref)>1){
-					QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("label multiple times defined!"));
-				} else {
-					int cnt=containedReferences.count(ref);
-					QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("%n reference(s) to this label","",cnt));
+				if(command=="\\label"){
+					if(containedLabels.count(ref)>1){
+						QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("label multiple times defined!"));
+					} else {
+						int cnt=containedReferences.count(ref);
+						QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("%n reference(s) to this label","",cnt));
+					}
 				}
 			}
 			break;
-		/*default:
+		default:
 			QToolTip::hideText();
-			break;*/
+			//break;
 	}
 	//QToolTip::showText(editor->mapToGlobal(pos), line);
 }
