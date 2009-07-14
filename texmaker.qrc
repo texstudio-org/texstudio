@@ -654,10 +654,12 @@
         <file>completion/xifthen.cwl</file>
         <file>completion/xltxtra.cwl</file>
         <file>completion/xtab.cwl</file>
-		<file>tags/asymptote_tags.xml</file>
-		<file>tags/leftright_tags.xml</file>
-		<file>tags/metapost_tags.xml</file>
-		<file>tags/pstricks_tags.xml</file>
-		<file>tags/tikz_tags.xml</file>
+        <file>tags/asymptote_tags.xml</file>
+        <file>tags/leftright_tags.xml</file>
+        <file>tags/metapost_tags.xml</file>
+        <file>tags/pstricks_tags.xml</file>
+        <file>tags/tikz_tags.xml</file>
+        <file>images/qcodeedit/replaceup.png</file>
+        <file>images/qcodeedit/replacedown.png</file>
     </qresource>
 </RCC>

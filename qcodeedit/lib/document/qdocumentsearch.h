@@ -76,7 +76,7 @@ class QCE_EXPORT QDocumentSearch
 		QDocumentCursor scope() const;
 		void setScope(const QDocumentCursor& c);
 		
-                bool next(bool backward, bool all = false, bool again=false);
+		bool next(bool backward, bool all = false, bool again=false);
 		
 	private:
 		bool end(bool backward) const;
