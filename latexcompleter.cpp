@@ -496,7 +496,7 @@ void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool nor
 	}
 	QDocumentLine line=c.line();
 	QPoint offset=line.cursorToDocumentOffset(c.columnNumber()-1);
-	offset.setY(offset.y()+line.document()->y(line)+line.document()->fontMetrics().lineSpacing());
+	offset.setY(offset.y()+line.document()->y(c.lineNumber())+line.document()->fontMetrics().lineSpacing());
 	offset=editor->mapFromContents(offset);
 	int left;
 	int temp;

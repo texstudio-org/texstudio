@@ -367,7 +367,7 @@ QEditor::QEditor(QWidget *p)
 	m_editors << this;
 
 	m_saveState = Undefined;
-
+	
 	init();
 }
 
@@ -760,6 +760,7 @@ void QEditor::init(bool actions)
 		*/
 	}
 
+	setWindowTitle("[*]"); //remove warning of setWindowModified
 	m_codec=0;
 }
 
