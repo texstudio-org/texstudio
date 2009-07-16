@@ -63,6 +63,7 @@ class QCE_EXPORT QDocumentSearch
 		Options options() const;
 		bool hasOption(Option opt) const;
 		void setOption(Option opt, bool on);
+		void setOptions(Options options);
 		
 		QString replaceText() const;
 		void setReplaceText(const QString& r);
@@ -92,7 +93,5 @@ class QCE_EXPORT QDocumentSearch
 		QDocumentCursor m_cursor, m_scope, m_origin;
 		QList<QDocumentCursor> m_highlight;
 };
-
 Q_DECLARE_OPERATORS_FOR_FLAGS(QDocumentSearch::Options)
-
 #endif // !_QDOCUMENT_SEARCH_H_
