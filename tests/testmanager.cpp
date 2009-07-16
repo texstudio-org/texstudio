@@ -1,8 +1,11 @@
 #ifndef QT_NO_DEBUG
 #include "testmanager.h"
 
+#include "latexeditorview.h"
+
 #include "smallUsefulFunctions_t.h"
 #include "buildmanager_t.h"
+#include "qdocumentsearch_t.h"
 #include <QtTest/QtTest>
 
 const QRegExp TestToken::simpleTextRegExp ("[A-Z'a-z0-9]+");
@@ -22,10 +25,11 @@ QString TestManager::performTest(QObject* obj){
 	return f.readAll();
 }
 
-QString TestManager::execute(){
+QString TestManager::execute(LatexEditorView* edView, QEditor* editor){
 	QString tr;
 	tr+=performTest(new SmallUsefulFunctionsTest());
 	tr+=performTest(new BuildManagerTest());
+	tr+=performTest(new QDocumentSearchTest(editor));
 	return tr;
 }
 #endif

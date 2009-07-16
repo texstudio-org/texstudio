@@ -207,6 +207,13 @@ void QDocumentSearch::setOption(Option opt, bool on)
 	}
 }
 
+
+void QDocumentSearch::setOptions(Options options){
+	for (int i=0;i<8;i++)
+		setOption((Option)(1<<i), options & (1<<i));
+}
+
+
 /*!
 	\return the replacement text
 */
@@ -221,8 +228,8 @@ QString QDocumentSearch::replaceText() const
 void QDocumentSearch::setReplaceText(const QString& r)
 {
 	m_replace = r;
-	
-	clearMatches();
+	//if (m_option & QDocumentSearch::HighlightAll)
+	//	clearMatches();
 }
 
 /*!

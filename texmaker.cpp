@@ -3467,9 +3467,10 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	if (realCmdLine) //only at start
 		if ((QFileInfo(QCoreApplication::applicationFilePath()).lastModified()!=configManager.debugLastFileModification
 			|| args.contains("--execute-tests"))&& !args.contains("--disable-tests")){
-			QString testResultFile=TestManager::execute();
 			fileNew();
-			currentEditorView()->editor->cursor().insertText(testResultFile);
+			if (!currentEditorView() || !currentEditorView()->editor)
+				QMessageBox::critical(0,"wtf?","test failed",QMessageBox::Ok);
+			currentEditorView()->editor->document()->setText(TestManager::execute(currentEditorView(),currentEditorView()->editor));
 			configManager.debugLastFileModification=QFileInfo(QCoreApplication::applicationFilePath()).lastModified();
 		}
 	#endif

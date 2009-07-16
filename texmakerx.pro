@@ -49,7 +49,7 @@ HEADERS += texmaker.h \
     latexcompleter_p.h \
     codesnippet.h \
     thesaurusdialog.h \
-	xmltagslistwidget.h \
+    xmltagslistwidget.h \
     hunspell/affentry.hxx \
     hunspell/affixmgr.hxx \
     hunspell/atypes.hxx \
@@ -105,7 +105,7 @@ SOURCES += main.cpp \
     toolwidgets.cpp \
     codesnippet.cpp \
     thesaurusdialog.cpp \
-	xmltagslistwidget.cpp \
+    xmltagslistwidget.cpp \
     hunspell/affentry.cxx \
     hunspell/affixmgr.cxx \
     hunspell/csutil.cxx \
@@ -349,10 +349,12 @@ SOURCES += qcodeedit/lib/qnfa/qnfa.cpp \
 # ###############################
 #these files should be debug only, but debug-only thing in a qmake file become an
 #incredible mess, so they are always compiled (but empty through #define in release mode)
-SOURCES += tests/testmanager.cpp           
+SOURCES += tests/testmanager.cpp \
+           tests/qdocumentsearch_t.cpp
 HEADERS += tests/testmanager.h \
            tests/smallUsefulFunctions_t.h \
-           tests/buildManager_t.h
+           tests/buildManager_t.h \
+           tests/qdocumentsearch_t.h 
 win32{
 	LIBS += -lQtTestd4
 }
