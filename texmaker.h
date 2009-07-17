@@ -35,7 +35,6 @@
 #include "qlanguagefactory.h"
 #include "qlinemarksinfocenter.h"
 
-typedef  QMap<LatexEditorView*, QString> FilesMap;
 typedef  QString Userlist[10];
 typedef  QString UserCd[5];
 typedef int SymbolList[412];
@@ -52,10 +51,12 @@ class Texmaker : public QMainWindow {
 public:
 	Texmaker(QWidget *parent = 0, Qt::WFlags flags = 0);
 
-	QString getName();
 	QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opened
-	QString getCompileFileName(); //returns the absolute file name of the file to be compiled (master or current)  TODO: test if it is always absolute (it depends on MasterFile and filenames)
-	QString getAbsoluteFileName(const QString & relName, const QString &extension=""); //treats the path relative to the compiled .tex file
+	QString getCompileFileName(); //returns the absolute file name of the file to be compiled (master or current)  
+	QString getCompilePath(); //returns the absolute file path of the file to be compiled (master or current) 
+	QString getPreferredPath(); //returns getCompilePath() if not empty or QDir::homePath (for dialogs)
+	QString getAbsoluteFilePath(const QString & relName, const QString &extension=""); //treats the path relative to the compiled .tex file
+	QString getRelativeBaseName(const QString & file);//get completebasename with path relative to the compiled file for a given file 
 	QByteArray windowstate;
 public slots:
 	LatexEditorView* load(const QString &f , bool asProject = false);
@@ -79,9 +80,9 @@ private:
 	void setupToolBars();
 	void createStatusBar();
 	bool FileAlreadyOpen(QString f);
+	bool canCloseNow(); //asks the user and close all files
 	void closeEvent(QCloseEvent *e);
 
-	FilesMap filenames;
 	QMap<QString, BibTeXFileInfo> bibTeXFiles; //bibtex files loaded by tmx
 	QStringList mentionedBibTeXFiles; //bibtex files imported in the tex file
 
@@ -143,6 +144,7 @@ private:
 	usercodelist symbolMostused;
 
 	LatexEditorView *currentEditorView() const;
+	QEditor* currentEditor() const;
 	void configureNewEditorView(LatexEditorView *edit);
 	void updateEditorSetting(LatexEditorView *edit);
 	LatexEditorView* getEditorFromFileName(const QString &fileName);

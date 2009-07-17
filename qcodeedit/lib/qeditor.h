@@ -169,6 +169,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		#ifndef _QMDI_
 		QString name() const;
 		QString fileName() const;
+		QFileInfo fileInfo() const;
 		
 		bool isContentModified() const;
 		#endif
@@ -437,6 +438,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		#ifndef _QMDI_
 		QString m_name, m_fileName;
+		QFileInfo m_fileInfo; 
 		#endif
 		
 		QMenu *pMenu;

@@ -120,7 +120,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	createStatusBar();
 	UpdateCaption();
 	singlemode=true;
-	MasterName=getName();
+	MasterName="";
 
 	show();
 
@@ -666,7 +666,7 @@ void Texmaker::UpdateCaption() {
 	if (!currentEditorView())	{
 		title="TexMakerX";
 	} else {
-		title="Document : "+getName();
+		title="Document : "+getCurrentFileName();
 		if (currentEditorView()->editor) {
 			if (currentEditorView()->editor->getFileEncoding()) stat3->setText(currentEditorView()->editor->getFileEncoding()->name());
 			else stat3->setText("unknown");
@@ -693,8 +693,8 @@ void Texmaker::UpdateCaption() {
 	if (singlemode) {
 		outputView->resetMessagesAndLog();
 	}
-	QString finame=getName();
-	if (finame!="untitled" && finame!="") configManager.lastDocument=finame;
+	QString finame=getCurrentFileName();
+	if (finame!="") configManager.lastDocument=finame;
 }
 
 void Texmaker::CloseEditorTab(int tab) {
@@ -721,19 +721,24 @@ void Texmaker::lineMarkToolTip(int line, int mark) {
 
 void Texmaker::NewDocumentStatus(bool m) {
 	if (!currentEditorView())	return;
-	if (m) {
-		EditorView->setTabIcon(EditorView->indexOf(currentEditorView()),QIcon(":/images/modified.png"));
-		EditorView->setTabText(EditorView->indexOf(currentEditorView()),QFileInfo(getName()).fileName());
-	} else {
-		EditorView->setTabIcon(EditorView->indexOf(currentEditorView()),QIcon(":/images/empty.png"));
-		EditorView->setTabText(EditorView->indexOf(currentEditorView()),QFileInfo(getName()).fileName());
-	}
+	if (m) 
+		EditorView->setTabIcon(EditorView->currentIndex(),QIcon(":/images/modified.png"));
+	else 
+		EditorView->setTabIcon(EditorView->currentIndex(),QIcon(":/images/empty.png"));
+	if (currentEditor()->fileName().isEmpty()) 
+		EditorView->setTabText(EditorView->currentIndex(),tr("untitled"));
+	else
+		EditorView->setTabText(EditorView->currentIndex(),currentEditor()->name());
 }
 
 LatexEditorView *Texmaker::currentEditorView() const {
 	return qobject_cast<LatexEditorView *>(EditorView->currentWidget());
 }
-
+QEditor* Texmaker::currentEditor() const{
+	LatexEditorView* edView = currentEditorView();
+	if (!edView) return 0;
+	return edView->editor;
+}
 void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	edit->editor->document()->setLineEnding(QDocument::Local);
 	m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
@@ -748,6 +753,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	updateEditorSetting(edit);
 }
 void Texmaker::updateEditorSetting(LatexEditorView *edit) {
+	if (!edit) return;
 	edit->editor->setFont(configManager.editorFont);
 	edit->editor->setLineWrapping(wordwrap);
 	edit->editor->setFlag(QEditor::AutoIndent,autoindent);
@@ -762,39 +768,58 @@ void Texmaker::updateEditorSetting(LatexEditorView *edit) {
 
 LatexEditorView* Texmaker::getEditorFromFileName(const QString &fileName){
 	//TODO: normalize file names
+	QFileInfo fi(getAbsoluteFilePath(fileName));
+	if (!fi.exists()) return 0;
+	for (int i=0; i< EditorView->count(); i++){
+		LatexEditorView* edView = qobject_cast<LatexEditorView*>(EditorView->widget(i));
+		if (!edView) continue; 
+		const QEditor* edit=edView->editor;
+		if (edit->fileInfo().exists() && edit->fileInfo()==fi)
+			return edView;
+	}
+/*
+#ifdef Q_WS_WIN
+	Qt::CaseSensitivity cs = Qt::CaseInsensitive;
+#else
+	Qt::CaseSensitivity cs = Qt::CaseSensitive;
+#endif
 	for (FilesMap::const_iterator it=filenames.constBegin(); it!=filenames.constEnd(); ++it){
-		if (it.value()==fileName) return it.key();
-		if (QString(it.value()).replace("\\","/") == fileName)  return it.key();
-		if (QString(it.value()).replace("/","\\") == fileName)  return it.key();
+		if (fileName.compare(it.value(),cs)==0) return it.key();
+		if (fileName.compare(it.value().replace("\\","/"), cs) == 0)  return it.key();
+		if (fileName.compare(it.value().replace("/","\\"), cs) == 0)  return it.key();
 	}
 	if (fileName.contains("/") || fileName.contains("\\")) return 0;
 	//try relative file names
 	QString slashFileName="/"+fileName;
 	for (FilesMap::const_iterator it=filenames.constBegin(); it!=filenames.constEnd(); ++it){
-		if (it.value().endsWith(slashFileName)) return it.key();
-		if (QString(it.value()).replace("\\","/").endsWith(slashFileName))  return it.key();
-	}	
+		if (it.value().endsWith(slashFileName,cs)) return it.key();
+		if (it.value().replace("\\","/").endsWith(slashFileName,cs))  return it.key();
+	}	*/
 	return 0;
 }
 
-QString Texmaker::getName() {
-	QString title;
-	if (!currentEditorView())	{
-		title="";
-	} else {
-		title=filenames[currentEditorView()];
-	}
-	return title;
-}
+
 QString Texmaker::getCurrentFileName() {
 	if (!currentEditorView()) return "";
-	return filenames[currentEditorView()];
+	return currentEditorView()->editor->fileName();
 }
 QString Texmaker::getCompileFileName(){
 	if (singlemode) return getCurrentFileName();
 	else return MasterName;
 }
-QString Texmaker::getAbsoluteFileName(const QString & relName, const QString &extension){
+QString Texmaker::getCompilePath(){
+	QString compFile=getCompileFileName();
+	if (compFile.isEmpty()) return "";
+	QString dir=QFileInfo(compFile).absolutePath();
+	if (!dir.endsWith(QDir::separator())) dir.append(QDir::separator());
+	return dir;
+}
+QString Texmaker::getPreferredPath(){
+	QString dir=getCompilePath();
+	if (!dir.isEmpty()) return dir;
+	return QDir::homePath();
+}
+QString Texmaker::getAbsoluteFilePath(const QString & relName, const QString &extension){
 	QString s=relName;
 	if (!s.endsWith(extension,Qt::CaseInsensitive)) s+=extension;
 	QFileInfo fi(s);
@@ -806,6 +831,44 @@ QString Texmaker::getAbsoluteFileName(const QString & relName, const QString &ex
 		compilePath+=QDir::separator();
 	return  compilePath+s;
 }
+QString Texmaker::getRelativeBaseName(const QString & file){
+	QString basepath=getCompilePath();
+	basepath.replace(QDir::separator(),"/");
+
+	QFileInfo fi(file);
+	QString filename = fi.fileName();
+	QString path = fi.path();
+	QStringList basedirs = basepath.split("/");
+	QStringList dirs = path.split("/");
+	//QStringList basedirs = QStringList::split("/", basepath, false);
+	//QStringList dirs = QStringList::split("/", path, false);
+
+	int nDirs = dirs.count();
+
+	while (dirs.count() > 0 && basedirs.count() > 0 &&  dirs[0] == basedirs[0]) {
+		dirs.pop_front();
+		basedirs.pop_front();
+	}
+
+	if (nDirs != dirs.count()) {
+		path = dirs.join("/");
+
+		if (basedirs.count() > 0) {
+			for (int j=0; j < basedirs.count(); ++j) {
+				path = "../" + path;
+			}
+		}
+
+		if (path.length()>0 && path.right(1) != "/") path = path + "/";
+	} else {
+		path = fi.path();
+	}
+
+	if (!path.endsWith("/") && !path.endsWith("\\")) path+="/"; //necessary if basepath isn't given
+
+	return path+fi.completeBaseName();
+}
+
 bool Texmaker::FileAlreadyOpen(QString f) {
 	LatexEditorView* edView = getEditorFromFileName(f);
 	if (!edView) return false;
@@ -849,9 +912,6 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	else edit->editor->load(f_real,configManager.newfile_encoding);
 	edit->editor->document()->setLineEnding(edit->editor->document()->originalLineEnding());
 
-//filenames.replace( edit, f_real );
-	filenames.remove(edit);
-	filenames.insert(edit, f_real);
 	edit->editor->setFocus();
 	UpdateCaption();
 	NewDocumentStatus(false);
@@ -878,9 +938,6 @@ void Texmaker::fileNew(QString fileName) {
 	EditorView->addTab(edit, fileName);
 	configureNewEditorView(edit);
 
-	filenames.remove(edit);
-	filenames.insert(edit, fileName);
-
 	UpdateCaption();
 	NewDocumentStatus(false);
 
@@ -898,14 +955,11 @@ void Texmaker::fileOpen() {
 }
 
 void Texmaker::fileSave() {
-	if (!currentEditorView())
+	if (!currentEditor())
 		return;
 
-	QString fn=getName();
-	if (fn == "untitled")
+	if (currentEditor()->fileName()=="" || !currentEditor()->fileInfo().exists())
 		fileSaveAs();
-	else if (! QFile::exists(fn))
-		fileSaveAs(getName());
 	else {
 		/*QFile file( *filenames.find( currentEditorView() ) );
 		if ( !file.open( QIODevice::WriteOnly ) )
@@ -915,7 +969,6 @@ void Texmaker::fileSave() {
 			}*/
 		currentEditorView()->editor->save();
 		//currentEditorView()->editor->setModified(false);
-		fn=getName();
 		MarkCurrentFileAsRecent();
 	}
 	UpdateCaption();
@@ -946,16 +999,11 @@ void Texmaker::fileSaveAs(QString fileName) {
 		int lastpoint=fn.lastIndexOf(".");
 		if (lastpoint <= lastsep) //if both aren't found or point is in directory name
 			fn.append(".tex");
-		QFileInfo fic(fn);
-		currentEditorView()->editor->setFileName(fn);
-		filenames.remove(currentEditorView());
-		filenames.insert(currentEditorView(), fn);
-
 		// save file
-		currentEditorView()->editor->save();
+		currentEditor()->save(fn);
 		MarkCurrentFileAsRecent();
 
-		EditorView->setTabText(EditorView->indexOf(currentEditorView()),fic.fileName());
+		EditorView->setTabText(EditorView->indexOf(currentEditorView()),currentEditor()->name());
 	}
 
 	UpdateCaption();
@@ -965,9 +1013,8 @@ void Texmaker::fileSaveAll() {
 //LatexEditorView *temp = new LatexEditorView(EditorView,colorMath,colorCommand,colorKeyword);
 //temp=currentEditorView();
 	int currentIndex=EditorView->indexOf(currentEditorView());
-	FilesMap::Iterator it;
-	for (it = filenames.begin(); it != filenames.end(); ++it) {
-		EditorView->setCurrentIndex(EditorView->indexOf(it.key()));
+	for (int i=0;i<EditorView->count(); i++){
+		EditorView->setCurrentIndex(i);
 		fileSave();
 	}
 	EditorView->setCurrentIndex(currentIndex);
@@ -985,11 +1032,9 @@ void Texmaker::fileClose() {
 		                             2)) {
 		case 0:
 			fileSave();
-			filenames.remove(currentEditorView());
 			delete currentEditorView();
 			break;
 		case 1:
-			filenames.remove(currentEditorView());
 			delete currentEditorView();
 			break;
 		case 2:
@@ -997,10 +1042,7 @@ void Texmaker::fileClose() {
 			return;
 			break;
 		}
-	} else {
-		filenames.remove(currentEditorView());
-		delete currentEditorView();
-	}
+	} else delete currentEditorView();
 	UpdateCaption();
 }
 
@@ -1016,11 +1058,9 @@ void Texmaker::fileCloseAll() {
 			                             2)) {
 			case 0:
 				fileSave();
-				filenames.remove(currentEditorView());
 				delete currentEditorView();
 				break;
 			case 1:
-				filenames.remove(currentEditorView());
 				delete currentEditorView();
 				break;
 			case 2:
@@ -1029,56 +1069,18 @@ void Texmaker::fileCloseAll() {
 				return;
 				break;
 			}
-		} else {
-			filenames.remove(currentEditorView());
+		} else 
 			delete currentEditorView();
-		}
 	}
 	UpdateCaption();
 }
 
 void Texmaker::fileExit() {
-	SaveSettings();
-	bool accept=true;
-	while (currentEditorView() && accept) {
-		if (currentEditorView()->editor->isContentModified()) {
-			switch (QMessageBox::warning(this, "TexMakerX",
-			                             tr("The document contains unsaved work. "
-			                                "Do you want to save it before exiting?"),
-			                             tr("Save and Close"), tr("Don't Save and Close"),tr("Cancel"),
-			                             0,
-			                             2)) {
-			case 0:
-				fileSave();
-				filenames.remove(currentEditorView());
-				delete currentEditorView();
-				break;
-			case 1:
-				filenames.remove(currentEditorView());
-				delete currentEditorView();
-				break;
-			case 2:
-			default:
-				accept=false;
-				break;
-			}
-
-		} else {
-			filenames.remove(currentEditorView());
-			delete currentEditorView();
-		}
-	}
-	if (accept) {
-		if (mainSpeller) {
-			delete mainSpeller; //this saves the ignore list
-			mainSpeller=0;
-		}
-		
+	if (canCloseNow())
 		qApp->quit();
-	}
 }
 
-void Texmaker::closeEvent(QCloseEvent *e) {
+bool Texmaker::canCloseNow(){
 	SaveSettings();
 	bool accept=true;
 	while (currentEditorView() && accept) {
@@ -1091,11 +1093,9 @@ void Texmaker::closeEvent(QCloseEvent *e) {
 			                             2)) {
 			case 0:
 				fileSave();
-				filenames.remove(currentEditorView());
 				delete currentEditorView();
 				break;
 			case 1:
-				filenames.remove(currentEditorView());
 				delete currentEditorView();
 				break;
 			case 2:
@@ -1103,18 +1103,19 @@ void Texmaker::closeEvent(QCloseEvent *e) {
 				accept=false;
 				break;
 			}
-		} else {
-			filenames.remove(currentEditorView());
+		} else 
 			delete currentEditorView();
-		}
 	}
-	if (accept)  {
+	if (accept)  
 		if (mainSpeller) {
 			delete mainSpeller; //this saves the ignore list
 			mainSpeller=0;
 		}
-		e->accept();
-	} else e->ignore();
+	return accept;
+}
+void Texmaker::closeEvent(QCloseEvent *e) {
+	if (canCloseNow())  e->accept();
+	else e->ignore();
 }
 
 
@@ -1628,10 +1629,10 @@ void Texmaker::SaveSettings() {
 		QStringList curFiles;//store in order
 		for (int i=0; i<EditorView->count(); i++) {
 			LatexEditorView *ed=qobject_cast<LatexEditorView *>(EditorView->widget(i));
-			if (ed) curFiles.append(filenames[ed]);
+			if (ed) curFiles.append(ed->editor->fileName());
 		}
 		config->setValue("Files/Session/Files",curFiles);
-		config->setValue("Files/Session/CurrentFile",currentEditorView()?filenames[currentEditorView()]:"");
+		config->setValue("Files/Session/CurrentFile",currentEditorView()?currentEditor()->fileName():"");
 		config->setValue("Files/Session/MasterFile",singlemode?"":MasterName);
 	} else config->setValue("Files/RestoreSession",false);
 
@@ -1716,7 +1717,7 @@ void Texmaker::updateStructureForFile(const QString& fileName){
     QVector<QTreeWidgetItem *> parent_level(struct_level.count());
 
 	QString shortName = QFileInfo(fileName).fileName(); //remove path
-	if ((shortName.right(4)!=".tex") && (shortName!="untitled"))  return;
+	if (shortName.right(4)!=".tex")  return;
 	
 	LatexEditorView* edView=getEditorFromFileName(fileName);
 	if (!edView)return;
@@ -1878,8 +1879,8 @@ void Texmaker::ClickedOnStructure(QTreeWidgetItem *item,int col) {
 	if (!tempItem) return;
 	LatexEditorView *edView=getEditorFromStructureItem(tempItem);
 	if (!edView) return;
-	QString finame=filenames.value(edView);
-	if (finame=="untitled" || finame=="") return;
+	QString finame=edView->editor->fileName();
+	if (finame=="") return;
 	QFileInfo fi(finame);
 	QString name=fi.absoluteFilePath();
 	QString flname=fi.fileName();
@@ -2112,9 +2113,8 @@ void Texmaker::InsertBib() {
 	if (!currentEditorView())	return;
 //currentEditorView()->editor->viewport()->setFocus();
 	QString tag;
-	QFileInfo fi(getName());
 	tag=QString("\\bibliography{");
-	tag +=fi.completeBaseName();
+	tag +=currentEditor()->fileInfo().completeBaseName();
 	tag +=QString("}\n");
 	InsertTag(tag,0,1);
 	outputView->setMessage(QString("The argument to \\bibliography refers to the bib file (without extension)\n")+
@@ -2164,66 +2164,33 @@ void Texmaker::InsertStructFromString(const QString& text) {
 
 void Texmaker::InsertImage() {
 	if (!currentEditorView())	return;
-	QString currentDir=QDir::homePath();
-	QString finame;
-	if (singlemode) {
-		finame=getName();
-	} else {
-		finame=MasterName;
-	}
-	QFileInfo fi(finame);
-	if (finame!="untitled") currentDir=fi.absolutePath();
 	FileChooser *sfDlg = new FileChooser(this,tr("Select an image File"));
 	sfDlg->setFilter("Graphic files (*.eps *.pdf *.png);;All files (*.*)");
-	sfDlg->setDir(currentDir);
+	sfDlg->setDir(getPreferredPath());
 	if (sfDlg->exec()) {
 		QString fn=sfDlg->fileName();
 		QFileInfo fi(fn);
-		InsertTag("\\includegraphics[scale=1]{"+getRelativePath(currentDir, fn)+fi.fileName()+"} ",26,0);
+		InsertTag("\\includegraphics[scale=1]{"+getRelativeBaseName(fn)+"."+fi.suffix()+"} ",26,0);
 	}
 }
 
 void Texmaker::InsertInclude() {
 	if (!currentEditorView())	return;
-	QString currentDir=QDir::homePath();
-	QString finame;
-	if (singlemode) {
-		finame=getName();
-	} else {
-		finame=MasterName;
-	}
-	QFileInfo fi(finame);
-	if (finame!="untitled") currentDir=fi.absolutePath();
 	FileChooser *sfDlg = new FileChooser(this,tr("Select a File"));
 	sfDlg->setFilter("TeX files (*.tex);;All files (*.*)");
-	sfDlg->setDir(currentDir);
-	if (sfDlg->exec()) {
-		QString fn=sfDlg->fileName();
-		QFileInfo fi(fn);
-		InsertTag("\\include{"+getRelativePath(currentDir, fn)+fi.completeBaseName()+"}",9,0);
-	}
+	sfDlg->setDir(getPreferredPath());
+	if (sfDlg->exec()) 
+		InsertTag("\\include{"+getRelativeBaseName(sfDlg->fileName())+"}",9,0);
 	updateStructure();
 }
 
 void Texmaker::InsertInput() {
 	if (!currentEditorView())	return;
-	QString currentDir=QDir::homePath();
-	QString finame;
-	if (singlemode) {
-		finame=getName();
-	} else {
-		finame=MasterName;
-	}
-	QFileInfo fi(finame);
-	if (finame!="untitled") currentDir=fi.absolutePath();
 	FileChooser *sfDlg = new FileChooser(this,tr("Select a File"));
 	sfDlg->setFilter("TeX files (*.tex);;All files (*.*)");
-	sfDlg->setDir(currentDir);
-	if (sfDlg->exec()) {
-		QString fn=sfDlg->fileName();
-		QFileInfo fi(fn);
-		InsertTag("\\input{"+getRelativePath(currentDir, fn)+fi.completeBaseName()+"}",7,0);
-	}
+	sfDlg->setDir(getPreferredPath());
+	if (sfDlg->exec()) 
+		InsertTag("\\input{"+getRelativeBaseName(sfDlg->fileName())+"}",7,0);
 	updateStructure();
 }
 
@@ -2885,7 +2852,7 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,QStri
 	else finame=fn;
 	QString commandline=comd;
 	QByteArray result;
-	if ((singlemode && !currentEditorView()) || finame=="untitled" || finame=="") {
+	if ((singlemode && !currentEditorView()) || finame=="") {
 		QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name"));
 		return;
 	}
@@ -3079,13 +3046,8 @@ void Texmaker::commandFromAction(){
 }
 
 void Texmaker::CleanAll() {
-	QString finame,f;
-	if (singlemode) {
-		finame=getName();
-	} else {
-		finame=MasterName;
-	}
-	if ((singlemode && !currentEditorView()) || finame=="untitled" || finame=="") {
+	QString finame=getCompileFileName();
+	if ((singlemode && !currentEditorView()) || finame=="") {
 		QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name"));
 		return;
 	}
@@ -3139,14 +3101,8 @@ void Texmaker::WebPublish() {
 		return;
 	}
 	if (!currentEditorView()->editor->getFileEncoding()) return;
-	QString finame;
 	fileSave();
-	if (singlemode) {
-		finame=getName();
-	} else {
-		finame=MasterName;
-	}
-	if (finame=="untitled") finame="";
+	QString finame=getCompileFileName();
 	//TODO: check if it really uses the correct commands
 	WebPublishDialog *ttwpDlg = new WebPublishDialog(this,tr("Convert to Html"),buildManager.getLatexCommand(BuildManager::CMD_GHOSTSCRIPT),buildManager.getLatexCommand(BuildManager::CMD_LATEX),buildManager.getLatexCommand(BuildManager::CMD_DVIPS),
 	        currentEditorView()->editor->getFileEncoding());
@@ -3181,20 +3137,10 @@ void Texmaker::AnalyseTextFormDestroyed() {
 }
 //////////////// MESSAGES - LOG FILE///////////////////////
 bool Texmaker::LogExists() {
-	QString finame;
-	if (singlemode) {
-		finame=getName();
-	} else {
-		finame=MasterName;
-	}
-	if ((singlemode && !currentEditorView()) ||finame=="untitled" || finame=="") {
+	QString finame=getCompileFileName();
+	if ((singlemode && !currentEditorView()) || finame=="") 
 		return false;
-	}
-	QFileInfo fi(finame);
-	QString name=fi.absoluteFilePath();
-	QString ext=fi.suffix();
-	QString basename=name.left(name.length()-ext.length()-1);
-	QString logname=basename+".log";
+	QString logname=getAbsoluteFilePath(QFileInfo(finame).baseName(),".log");
 	QFileInfo fic(logname);
 	if (fic.exists() && fic.isReadable()) return true;
 	else return false;
@@ -3210,22 +3156,13 @@ void Texmaker::RealViewLog(bool noTabChange) {
 //shows the log if there are errors
 void Texmaker::ViewLog(bool noTabChange) {
 	outputView->resetMessagesAndLog(noTabChange);
-	QString finame;
-	if (singlemode) {
-		finame=getName();
-	} else {
-		finame=MasterName;
-	}
-	if ((singlemode && !currentEditorView()) ||finame=="untitled" || finame=="") {
-		QMessageBox::warning(this,tr("Error"),tr("Could not start the command."));
+	QString finame=getCompileFileName();
+	if ((singlemode && !currentEditorView()) || finame=="") {
+		QMessageBox::warning(this,tr("Error"),tr("File must be saved and compiling before you can view the log"));
 		ERRPROCESS=true;
 		return;
 	}
-	QFileInfo fi(finame);
-	QString name=fi.absoluteFilePath();
-	QString ext=fi.suffix();
-	QString basename=name.left(name.length()-ext.length()-1);
-	QString logname=basename+".log";
+	QString logname=getAbsoluteFilePath(QFileInfo(finame).baseName(),".log");
 	QString line;
 	QFileInfo fic(logname);
 	if (fic.exists() && fic.isReadable()) {
@@ -3265,16 +3202,18 @@ void Texmaker::DisplayLatexError() {
 	LatexLogModel* logModel = outputView->getLogModel();
 	for (int i = logModel->count()-1; i >= 0; i--) //TODO call getFileName..
 		if (logModel->at(i).oldline!=-1)
-			for (FilesMap::iterator it=filenames.begin(); it!=filenames.end(); ++it)
-				if (it.value().endsWith(logModel->at(i).file)) {
-					QDocumentLine l=it.key()->editor->document()->line(logModel->at(i).oldline-1);
+			for (int j=0;j<EditorView->count();j++){
+				LatexEditorView* edView = qobject_cast<LatexEditorView*>( EditorView->widget(i));
+				if (edView && edView->editor->fileName().endsWith(logModel->at(i).file)) {
+					QDocumentLine l=edView->editor->document()->line(logModel->at(i).oldline-1);
 					if (logModel->at(i).type==LT_ERROR) l.addMark(errorMarkID);
 					else if (logModel->at(i).type==LT_WARNING) l.addMark(warningMarkID);
 					else if (logModel->at(i).type==LT_BADBOX) l.addMark(badboxMarkID);
-					it.key()->lineToLogEntries.insert(l.handle(),i);
-					it.key()->logEntryToLine[i]=l.handle();
+					edView->lineToLogEntries.insert(l.handle(),i);
+					edView->logEntryToLine[i]=l.handle();
 					break;
 				}
+			}
 }
 
 bool Texmaker::NoLatexErrors() {
@@ -3415,9 +3354,8 @@ void Texmaker::GeneralOptions() {
 		mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);
 
 		if (currentEditorView()) {
-			FilesMap::Iterator it;
-			for (it = filenames.begin(); it != filenames.end(); ++it)
-				updateEditorSetting(it.key());
+			for (int i=0; i<EditorView->count();i++)
+				updateEditorSetting(qobject_cast<LatexEditorView*>(EditorView->widget(i)));
 			UpdateCaption();
 		}
 		
@@ -3490,9 +3428,11 @@ void Texmaker::ToggleMode() {
 		return;
 	}
 	if (singlemode && currentEditorView()) {
-		MasterName=getName();
-		if (MasterName=="untitled" || MasterName=="") {
-			QMessageBox::warning(this,tr("Error"),tr("Could not start the command."));
+		if (getCurrentFileName()=="") 
+			fileSave();
+		MasterName=getCurrentFileName();
+		if (MasterName=="") {
+			QMessageBox::warning(this,tr("Error"),tr("You must save the file before switching to master mode."));
 			return;
 		}
 		QString shortName = MasterName;
@@ -3626,7 +3566,7 @@ void Texmaker::SetMostUsedSymbols() {
 void Texmaker::updateBibFiles(){
 	//mentionedBibTeXFiles is set by updateStructure (which calls this)
 	for (int i=0; i<mentionedBibTeXFiles.count();i++){
-		mentionedBibTeXFiles[i]=getAbsoluteFileName(mentionedBibTeXFiles[i],".bib"); //store absolute 
+		mentionedBibTeXFiles[i]=getAbsoluteFilePath(mentionedBibTeXFiles[i],".bib"); //store absolute 
 		QString &fileName=mentionedBibTeXFiles[i];
 		QFileInfo fi(fileName);
 		if (!fi.isReadable()) continue; //ups...
