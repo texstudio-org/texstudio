@@ -3664,8 +3664,9 @@ void QEditor::setFileName(const QString& f)
 	#ifdef _QMDI_
 	qmdiClient::setFileName(f);
 	#else
-	m_fileName = f;
-	m_name = QFileInfo(f).fileName();
+	m_fileInfo = QFileInfo(f);
+	m_fileName = m_fileInfo.absoluteFilePath();
+	m_name = m_fileInfo.fileName();
 	#endif
 
 	//if ( fileName().count() )
@@ -3709,6 +3710,9 @@ QString QEditor::name() const
 QString QEditor::fileName() const
 {
 	return m_fileName;
+}
+QFileInfo QEditor::fileInfo() const{
+	return m_fileInfo;
 }
 #endif
 

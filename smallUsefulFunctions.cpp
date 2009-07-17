@@ -68,41 +68,6 @@ bool isExistingFileRealWritable(QString filename) {
 	return QFileInfo(filename).exists() && isFileRealWritable(filename);
 }
 
-QString getRelativePath(const QString basepath, const QString & file) {
-
-	QFileInfo fi(file);
-	QString filename = fi.fileName();
-	QString path = fi.path();
-	QStringList basedirs = basepath.split("/");
-	QStringList dirs = path.split("/");
-	//QStringList basedirs = QStringList::split("/", basepath, false);
-	//QStringList dirs = QStringList::split("/", path, false);
-
-	int nDirs = dirs.count();
-
-	while (dirs.count() > 0 && basedirs.count() > 0 &&  dirs[0] == basedirs[0]) {
-		dirs.pop_front();
-		basedirs.pop_front();
-	}
-
-	if (nDirs != dirs.count()) {
-		path = dirs.join("/");
-
-		if (basedirs.count() > 0) {
-			for (int j=0; j < basedirs.count(); ++j) {
-				path = "../" + path;
-			}
-		}
-
-		if (path.length()>0 && path.right(1) != "/") path = path + "/";
-	} else {
-		path = fi.path();
-	}
-
-	if (!path.endsWith("/") && !path.endsWith("\\")) path+="/"; //necessary if basepath isn't given
-
-	return path;
-}
 
 int x11desktop_env() {
 	// 0 : no kde ; 3: kde ; 4 : kde4 ;
