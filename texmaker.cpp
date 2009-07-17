@@ -3200,20 +3200,24 @@ void Texmaker::DisplayLatexError() {
 	//backward, so the more important marks (with lower indices) will be inserted last and
 	//returned first be QMultiHash.value
 	LatexLogModel* logModel = outputView->getLogModel();
-	for (int i = logModel->count()-1; i >= 0; i--) //TODO call getFileName..
-		if (logModel->at(i).oldline!=-1)
-			for (int j=0;j<EditorView->count();j++){
-				LatexEditorView* edView = qobject_cast<LatexEditorView*>( EditorView->widget(i));
-				if (edView && edView->editor->fileName().endsWith(logModel->at(i).file)) {
-					QDocumentLine l=edView->editor->document()->line(logModel->at(i).oldline-1);
-					if (logModel->at(i).type==LT_ERROR) l.addMark(errorMarkID);
-					else if (logModel->at(i).type==LT_WARNING) l.addMark(warningMarkID);
-					else if (logModel->at(i).type==LT_BADBOX) l.addMark(badboxMarkID);
-					edView->lineToLogEntries.insert(l.handle(),i);
-					edView->logEntryToLine[i]=l.handle();
-					break;
-				}
+	QHash<QString, LatexEditorView*> tempFilenames; //temporary maps the filenames (as they appear in this log!) to the editor
+	for (int i = logModel->count()-1; i >= 0; i--)
+		if (logModel->at(i).oldline!=-1){
+			LatexEditorView* edView;
+			if (tempFilenames.contains(logModel->at(i).file)) edView=tempFilenames.value(logModel->at(i).file);
+			else{
+				edView=getEditorFromFileName(logModel->at(i).file);
+				tempFilenames[logModel->at(i).file]=edView;
 			}
+			if (edView) {
+				QDocumentLine l=edView->editor->document()->line(logModel->at(i).oldline-1);
+				if (logModel->at(i).type==LT_ERROR) l.addMark(errorMarkID);
+				else if (logModel->at(i).type==LT_WARNING) l.addMark(warningMarkID);
+				else if (logModel->at(i).type==LT_BADBOX) l.addMark(badboxMarkID);
+				edView->lineToLogEntries.insert(l.handle(),i);
+				edView->logEntryToLine[i]=l.handle();
+			}
+		}
 }
 
 bool Texmaker::NoLatexErrors() {
