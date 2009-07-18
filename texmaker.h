@@ -147,7 +147,7 @@ private:
 	QEditor* currentEditor() const;
 	void configureNewEditorView(LatexEditorView *edit);
 	void updateEditorSetting(LatexEditorView *edit);
-	LatexEditorView* getEditorFromFileName(const QString &fileName);
+	LatexEditorView* getEditorViewFromFileName(const QString &fileName);
 	
 	QAction* outputViewAction;
 private slots:
