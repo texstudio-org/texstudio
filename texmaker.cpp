@@ -780,12 +780,13 @@ LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName){
 		LatexEditorView* edView = qobject_cast<LatexEditorView*>(EditorView->widget(i));
 		if (!edView) continue; 
 		const QEditor* edit=edView->editor;
-		if (edit->fileName().compare(fnorm,cs)  || 
-			edit->fileName().replace("/",QDir::separator()).replace("\\",QDir::separator()).compare(fnorm,cs))	
+		if (edit->fileName().compare(fnorm,cs)==0  || 
+			edit->fileName().replace("/",QDir::separator()).replace("\\",QDir::separator()).compare(fnorm,cs)==0)
 			return edView;
 	}
 	//slower for relative file names
-	QFileInfo fi(getAbsoluteFilePath(fileName));
+	qDebug("%s %s", fileName.toLatin1().constData(), getAbsoluteFilePath(fileName,".tex").toLatin1().constData());
+	QFileInfo fi(getAbsoluteFilePath(fileName,".tex"));
 	if (!fi.exists()) return 0;
 	for (int i=0; i< EditorView->count(); i++){
 		LatexEditorView* edView = qobject_cast<LatexEditorView*>(EditorView->widget(i));
