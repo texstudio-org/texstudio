@@ -766,8 +766,25 @@ void Texmaker::updateEditorSetting(LatexEditorView *edit) {
 	edit->editor->setDisplayModifyTime(configManager.displayModifyTime);
 }
 
-LatexEditorView* Texmaker::getEditorFromFileName(const QString &fileName){
-	//TODO: normalize file names
+LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName){
+	if (fileName=="") return 0;
+	QString fnorm = fileName;
+	fnorm.replace("/",QDir::separator()).replace("\\",QDir::separator());
+	//fast check for absolute file names
+#ifdef Q_WS_WIN
+	Qt::CaseSensitivity cs = Qt::CaseInsensitive;
+#else
+	Qt::CaseSensitivity cs = Qt::CaseSensitive;
+#endif
+	for (int i=0; i< EditorView->count(); i++){
+		LatexEditorView* edView = qobject_cast<LatexEditorView*>(EditorView->widget(i));
+		if (!edView) continue; 
+		const QEditor* edit=edView->editor;
+		if (edit->fileName().compare(fnorm,cs)  || 
+			edit->fileName().replace("/",QDir::separator()).replace("\\",QDir::separator()).compare(fnorm,cs))	
+			return edView;
+	}
+	//slower for relative file names
 	QFileInfo fi(getAbsoluteFilePath(fileName));
 	if (!fi.exists()) return 0;
 	for (int i=0; i< EditorView->count(); i++){
@@ -778,11 +795,6 @@ LatexEditorView* Texmaker::getEditorFromFileName(const QString &fileName){
 			return edView;
 	}
 /*
-#ifdef Q_WS_WIN
-	Qt::CaseSensitivity cs = Qt::CaseInsensitive;
-#else
-	Qt::CaseSensitivity cs = Qt::CaseSensitive;
-#endif
 	for (FilesMap::const_iterator it=filenames.constBegin(); it!=filenames.constEnd(); ++it){
 		if (fileName.compare(it.value(),cs)==0) return it.key();
 		if (fileName.compare(it.value().replace("\\","/"), cs) == 0)  return it.key();
@@ -870,7 +882,7 @@ QString Texmaker::getRelativeBaseName(const QString & file){
 }
 
 bool Texmaker::FileAlreadyOpen(QString f) {
-	LatexEditorView* edView = getEditorFromFileName(f);
+	LatexEditorView* edView = getEditorViewFromFileName(f);
 	if (!edView) return false;
 	EditorView->setCurrentWidget(edView);
 	return true;
@@ -967,7 +979,7 @@ void Texmaker::fileSave() {
 			QMessageBox::warning( this,tr("Error"),tr("The file could not be saved. Please check if you have write permission."));
 			return;
 			}*/
-		currentEditorView()->editor->save();
+		currentEditor()->save();
 		//currentEditorView()->editor->setModified(false);
 		MarkCurrentFileAsRecent();
 	}
@@ -1015,7 +1027,8 @@ void Texmaker::fileSaveAll() {
 	int currentIndex=EditorView->indexOf(currentEditorView());
 	for (int i=0;i<EditorView->count(); i++){
 		EditorView->setCurrentIndex(i);
-		fileSave();
+		currentEditor()->save();
+		//UpdateCaption();
 	}
 	EditorView->setCurrentIndex(currentIndex);
 	UpdateCaption();
@@ -1304,7 +1317,7 @@ LatexEditorView* Texmaker::getEditorFromStructureItem(QTreeWidgetItem* m_item){
 		m_item=parent;
 		parent=parent->parent();
 	}
-	return getEditorFromFileName(m_item->text(0));
+	return getEditorViewFromFileName(m_item->text(0));
 }
 
 QPoint Texmaker::sectionSelection(QTreeWidgetItem* m_item) {
@@ -1719,7 +1732,7 @@ void Texmaker::updateStructureForFile(const QString& fileName){
 	QString shortName = QFileInfo(fileName).fileName(); //remove path
 	if (shortName.right(4)!=".tex")  return;
 	
-	LatexEditorView* edView=getEditorFromFileName(fileName);
+	LatexEditorView* edView=getEditorViewFromFileName(fileName);
 	if (!edView)return;
 	
 	int pos;
@@ -1868,7 +1881,7 @@ void Texmaker::ClickedOnStructure(QTreeWidgetItem *item,int col) {
 	QTreeWidgetItem* parent=item->parent();
 	if (!parent) {
 		//top level item, is file name
-		EditorView->setCurrentWidget(getEditorFromFileName(item->text(0)));
+		EditorView->setCurrentWidget(getEditorViewFromFileName(item->text(0)));
 		return;
 	}
 	QTreeWidgetItem* tempItem=item;
@@ -3206,7 +3219,7 @@ void Texmaker::DisplayLatexError() {
 			LatexEditorView* edView;
 			if (tempFilenames.contains(logModel->at(i).file)) edView=tempFilenames.value(logModel->at(i).file);
 			else{
-				edView=getEditorFromFileName(logModel->at(i).file);
+				edView=getEditorViewFromFileName(logModel->at(i).file);
 				tempFilenames[logModel->at(i).file]=edView;
 			}
 			if (edView) {
@@ -3817,7 +3830,7 @@ void Texmaker::previewLatex(){
 	if (originalText=="") return;
     // get document definitions
     //preliminary code ...
-	LatexEditorView* edView=getEditorFromFileName(getCompileFileName());
+	LatexEditorView* edView=getEditorViewFromFileName(getCompileFileName());
 	if (!edView) return;
     int m_endingLine=edView->editor->document()->findLineContaining("\\begin{document}",0,Qt::CaseSensitive);
     if (m_endingLine<0) return; // can't create header
