@@ -2025,7 +2025,7 @@ void QEditor::nextPlaceHolder()
 	*/
 	int m_curPlaceHolder=-1;
 	for (int i=0; i< m_placeHolders.count();i++){
-		if (m_placeHolders[i].cursor.rightBoundaryLarger(m_cursor) && 
+		if (m_placeHolders[i].cursor.leftBoundaryLarger(m_cursor) && 
 			(m_curPlaceHolder==-1 || m_placeHolders[i].cursor<=m_placeHolders[m_curPlaceHolder].cursor))
 				m_curPlaceHolder=i;
 	}
@@ -2048,7 +2048,7 @@ void QEditor::previousPlaceHolder()
 	--m_curPlaceHolder;*/
 	int m_curPlaceHolder=-1;
 	for (int i=0; i< m_placeHolders.count();i++){
-		if (m_cursor.leftBoundaryLarger(m_placeHolders[i].cursor) && 
+		if (m_cursor.rightBoundaryLarger(m_placeHolders[i].cursor) && 
 			(m_curPlaceHolder==-1 || m_placeHolders[i].cursor>=m_placeHolders[m_curPlaceHolder].cursor))
 				m_curPlaceHolder=i;
 	}	
@@ -4961,6 +4961,14 @@ void QEditor::updateContent (int i, int n)
 		if (m_curPlaceHolder>=0 && m_curPlaceHolder < m_placeHolders.count()) 
 			if (m_placeHolders[m_curPlaceHolder].removeAutomatically && m_placeHolders[m_curPlaceHolder].cursor.lineNumber() != m_placeHolders[m_curPlaceHolder].cursor.anchorLineNumber())
 				removePlaceHolder(m_curPlaceHolder);
+		//empty ones
+		for (int i=m_placeHolders.count()-1;i>=0;i--)
+			if (i != m_curPlaceHolder && i!=m_lastPlaceHolder && m_placeHolders[i].removeAutomatically &&
+				m_placeHolders[i].cursor.lineNumber()==m_placeHolders[i].cursor.anchorLineNumber() &&
+				m_placeHolders[i].cursor.columnNumber()==m_placeHolders[i].cursor.anchorColumnNumber())
+				removePlaceHolder(i);
+				
+		 
 		
 		//stupid mirrors, resyncronize them if necessary 
 		if (m_mirrors.count()>0 && m_curPlaceHolder>=0 && m_curPlaceHolder < m_placeHolders.count()){
