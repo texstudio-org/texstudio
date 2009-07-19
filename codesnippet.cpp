@@ -8,7 +8,7 @@
 CodeSnippet::CodeSnippet(const QString &newWord) {
 	QString realNewWord=newWord;
 	// \begin magic
-	if (realNewWord.startsWith("\\begin")&&!realNewWord.contains("\n")) {
+	if (realNewWord.startsWith("\\begin")&&!realNewWord.contains("\n")&&!realNewWord.contains("%n")) {
 		int p=newWord.indexOf("{");
 		QString environmentName=realNewWord.mid(p,newWord.indexOf("}")-p+1); //contains the {}
 		QString content="%<"+QObject::tr("content...")+"%>";
