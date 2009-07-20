@@ -780,14 +780,13 @@ LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName){
 		LatexEditorView* edView = qobject_cast<LatexEditorView*>(EditorView->widget(i));
 		if (!edView) continue; 
 		const QEditor* edit=edView->editor;
-		if (edit->fileName().compare(fnorm,cs)==0  || 
-			edit->fileName().replace("/",QDir::separator()).replace("\\",QDir::separator()).compare(fnorm,cs)==0)
+		if (edit->fileName().compare(fnorm,cs)==0)
 			return edView;
 	}
-	//slower for relative file names
-	qDebug("%s %s", fileName.toLatin1().constData(), getAbsoluteFilePath(fileName,".tex").toLatin1().constData());
+	//check for relative file names
 	QFileInfo fi(getAbsoluteFilePath(fileName,".tex"));
 	if (!fi.exists()) return 0;
+	//check for same file infos (is not reliable in qt < 4.5, because they just compare absoluteFilePath)
 	for (int i=0; i< EditorView->count(); i++){
 		LatexEditorView* edView = qobject_cast<LatexEditorView*>(EditorView->widget(i));
 		if (!edView) continue; 
@@ -795,19 +794,15 @@ LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName){
 		if (edit->fileInfo().exists() && edit->fileInfo()==fi)
 			return edView;
 	}
-/*
-	for (FilesMap::const_iterator it=filenames.constBegin(); it!=filenames.constEnd(); ++it){
-		if (fileName.compare(it.value(),cs)==0) return it.key();
-		if (fileName.compare(it.value().replace("\\","/"), cs) == 0)  return it.key();
-		if (fileName.compare(it.value().replace("/","\\"), cs) == 0)  return it.key();
+	//check for canonical file path (unnecessary in qt 4.5)
+	fnorm = fi.canonicalFilePath();
+	for (int i=0; i< EditorView->count(); i++){
+		LatexEditorView* edView = qobject_cast<LatexEditorView*>(EditorView->widget(i));
+		if (!edView) continue; 
+		const QEditor* edit=edView->editor;
+		if (edit->fileInfo().canonicalFilePath().compare(fnorm,cs)==0)
+			return edView;
 	}
-	if (fileName.contains("/") || fileName.contains("\\")) return 0;
-	//try relative file names
-	QString slashFileName="/"+fileName;
-	for (FilesMap::const_iterator it=filenames.constBegin(); it!=filenames.constEnd(); ++it){
-		if (it.value().endsWith(slashFileName,cs)) return it.key();
-		if (it.value().replace("\\","/").endsWith(slashFileName,cs))  return it.key();
-	}	*/
 	return 0;
 }
 
