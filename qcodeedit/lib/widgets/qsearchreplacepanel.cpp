@@ -183,16 +183,21 @@ void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceA
 	} else {
 		if ( lastDirectionBackward != backward && editor()->cursor().hasSelection() && !replace && !replaceAll )
 			m_search->next(backward, false); //the first hit is already selected
-		//m_search->setOption(QDocumentSearch::Replace,replace);
 	}	
+	m_search->setOption(QDocumentSearch::Replace,replace);
 	lastDirectionBackward = backward;
-    if((m_search->cursor().hasSelection()&&replace) ||replaceAll) 
-		m_search->next(backward,replaceAll,!cbPrompt->isChecked());
-	if (!replaceAll)
-		m_search->next(backward, false);
+	if((m_search->cursor().hasSelection()&&replace) && (!cbPrompt->isChecked())) {
+		//replace current text and search next
+		m_search->next(backward,replaceAll,true);
+		m_search->setOption(QDocumentSearch::Replace,false);
+		m_search->next(backward, false, false);
+	} else {
+		m_search->next(backward, replaceAll, false);
+	}
 	
 	if (isVisible() && !leFind->hasFocus() && !leReplace->hasFocus() )
-		leFind->setFocus();
+		if (replace) leReplace->setFocus();
+		else leFind->setFocus();
 }
 
 void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool regex){
@@ -368,6 +373,13 @@ void QSearchReplacePanel::on_leReplace_textEdited(const QString& text)
 
 }
 
+void QSearchReplacePanel::on_cbPrompt_toggled(bool on){
+	if ( m_search )
+		m_search->setOption(QDocumentSearch::Prompt, on);
+	if ( leFind->isVisible() )
+		leFind->setFocus();
+}
+
 void QSearchReplacePanel::on_cbReplace_toggled(bool on)
 {
 	if ( m_search )
@@ -381,15 +393,14 @@ void QSearchReplacePanel::on_cbWords_toggled(bool on)
 {
 	if ( m_search )
 		m_search->setOption(QDocumentSearch::WholeWords, on);
-
-	leFind->setFocus();
+	if ( leFind->isVisible() )
+		leFind->setFocus();
 }
 
 void QSearchReplacePanel::on_cbRegExp_clicked(bool on)
 {
 	if ( m_search )
 		m_search->setOption(QDocumentSearch::RegExp, on);
-
 	leFind->setFocus();
 }
 
@@ -506,7 +517,8 @@ void QSearchReplacePanel::init()
 	if ( cbReplace->isChecked() && cbReplace->isVisible() )
 		opt |= QDocumentSearch::Replace;
 
-        opt |= QDocumentSearch::Prompt;
+	if ( cbPrompt->isChecked() )
+        	opt |= QDocumentSearch::Prompt;
 
 	m_search = new QDocumentSearch(	editor(),
 									leFind->text(),

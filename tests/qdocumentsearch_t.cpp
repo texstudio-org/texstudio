@@ -12,22 +12,32 @@ void QDocumentSearchTest::initTestCase(){
 	ds=new QDocumentSearch(ed,"",0);
 }
 //cursor movement
-struct CM{
+class CM{
 public:
 	CM(): l(-1){}
-	CM(bool adir, int line, int anchorOffset, int cursorOffset):dir(adir),l(line),ax(anchorOffset),cx(cursorOffset){
-		
+	CM(bool adir, int line, int anchorOffset, int cursorOffset,const QString &replaceText,const QString& newText):
+		dir(adir),l(line),ax(anchorOffset),cx(cursorOffset),rt(replaceText),nt(newText){
+		nt.append("\n");
 	}
 	bool dir;
 	int l,ax,cx;
+	QString rt, nt;
 };
+class SP:public CM{//search previous
+public:	
+	SP(int line, int anchorOffset, int cursorOffset,const QString &replaceText="",const QString 
+&newText=""):
+		CM(true,line,anchorOffset,cursorOffset,replaceText,newText){}
+};
+class SN:public CM{//search next
+public:
+	SN(int line, int anchorOffset, int cursorOffset,const QString &replaceText="",const QString& newText=""):
+		CM(false,line,anchorOffset,cursorOffset,replaceText,newText){}
+};
+	
 Q_DECLARE_METATYPE(CM);
 Q_DECLARE_METATYPE(QList<CM>);
 
-//search previous
-#define SP(a,b,c) CM(true, a, b, c)
-//search next
-#define SN(a,b,c) CM(false, a, b, c)
 
 void QDocumentSearchTest::next_sameText_data(){
 	QTest::addColumn<QString >("editorText");
@@ -45,7 +55,7 @@ void QDocumentSearchTest::next_sameText_data(){
 		<< 0 << 6
 		<< (QList<CM>() 
 			<< SN(0,7,9) << SP(0, 9, 7) << SN(0, 7, 9) 
-			<< SN(1, 6, 8) << CM (false, 3, 0, 2) << SN(-1, -1, -1));
+			<< SN(1, 6, 8) << SN (3, 0, 2) << SN(-1, -1, -1));
 	QTest::newRow("forward-backward-case sensitive")
 		<< "aaAaaAaaA\naAaAa\naaaaaaaa" 
 		<< "aa" << (int)QDocumentSearch::CaseSensitive
@@ -68,12 +78,41 @@ void QDocumentSearchTest::next_sameText_data(){
 		<< 0 << 0
 		<< (QList<CM>() 
 			<< SN(1, 0, 2) << SN(2, 4, 6) << SP(2, 6, 4) << SP(1, 2, 0) << SN(1,0,2) << SN (2, 4, 6) << SN(-1,-1,-1));
+	QTest::newRow("forward-backward-case reg exp")
+		<< "Hello42World" 
+		<< "[0-9]+" << (int)QDocumentSearch::RegExp
+		<< 0 << 0
+		<< (QList<CM>() 
+			<< SN(0, 5, 7) << SN(-1,-1,-1));
 	QTest::newRow("forward-backward-case reg exp (THIS FAILS DUE TO DESIGN ISSUES AND IS EXPECT TO FAIL IN THE MOMENT)")
 		<< "Hello42World" 
 		<< "[0-9]*" << (int)QDocumentSearch::RegExp
 		<< 0 << 0
 		<< (QList<CM>() 
 			<< SN(0, 5, 7) << SN(-1,-1,-1));
+	QTest::newRow("replace forward")
+		<< "Hello42World17XXXX2358YYY" 
+		<< "[0-9]+" << (int)QDocumentSearch::RegExp
+		<< 0 << 0
+		<< (QList<CM>() 
+			<< SN(0, 5, 7) 
+			<< SN(0, 10, 10, "mouse","HellomouseWorld17XXXX2358YYY") 
+			//<< SN(0, 15, 17, "mouse", "HellomouseWorld17XXXX2358YYY") 
+			<< SN(0, 20, 20, "mouse","HellomouseWorldmouseXXXX2358YYY") 
+			<< SN(0, 24, 28) 
+			<< SN(0, 30, 30, "house!","HellomouseWorldmouseXXXXhouse!YYY") 
+			<< SN(-1,-1,-1));
+	QTest::newRow("replace forward-backward")
+		<< "aa aaa XXXX aa\naa YYYY aa aa YYYY" 
+		<< "aa" << (int)QDocumentSearch::WholeWords
+		<< 1 << 0
+		<< (QList<CM>() 
+			<< SN(1, 3, 3, "***","aa aaa XXXX aa\n*** YYYY aa aa YYYY") 
+			<< SN(2, 1, 1, "\n!","aa aaa XXXX aa\n*** YYYY \n! aa YYYY") 
+			<< SP(0, 12, 12, "ups", "aa aaa XXXX ups\n*** YYYY \n! aa YYYY") 
+			<< SP(0, 0, 0, "first","first aaa XXXX ups\n*** YYYY \n! aa YYYY") 
+			<< SN(3, 2, 2, "","first aaa XXXX ups\n*** YYYY \n!  YYYY") 
+			<< SP(-1,-1,-1));
 			
 	
 }
@@ -81,6 +120,7 @@ void QDocumentSearchTest::next_sameText(){
 	QFETCH(QString, editorText);
 	QFETCH(QString, searchText);
 	QFETCH(int, options);
+	options |= QDocumentSearch::Silent ;
 	
 	QFETCH(int, sy);
 	QFETCH(int, sx);
@@ -89,7 +129,7 @@ void QDocumentSearchTest::next_sameText(){
 	
 	ed->document()->setText(editorText);
 	ds->setSearchText(searchText);
-	ds->setOptions((QDocumentSearch::Options)options |QDocumentSearch::Silent );
+	ds->setOptions((QDocumentSearch::Options)options);
 	
 	ds->setOrigin(ed->document()->cursor(sy,sx));
 	
@@ -98,13 +138,22 @@ void QDocumentSearchTest::next_sameText(){
 		if (cms[i].l>=0)
 			if (cms[i].ax<cms[i].cx) sel = ed->document()->line(cms[i].l).text().mid(cms[i].ax,cms[i].cx-cms[i].ax);
 			else sel = ed->document()->line(cms[i].l).text().mid(cms[i].cx,cms[i].ax-cms[i].cx);
-		ds->next(cms[i].dir);
-		const char* errorMessage=QString("%1: %2 %3 %4  %5 expected %6 %7 %8").arg(i).arg(ds->cursor().lineNumber()).arg(ds->cursor().anchorColumnNumber()).arg(ds->cursor().columnNumber()).arg(ds->cursor().selectedText()).arg(cms[i].l).arg(cms[i].ax).arg(cms[i].cx).toLatin1().constData();
+		if (cms[i].rt.isEmpty())
+			ds->setOptions((QDocumentSearch::Options)options & (~QDocumentSearch::Replace));
+		else {
+			ds->setOptions((QDocumentSearch::Options)options | QDocumentSearch::Replace);
+			ds->setReplaceText(cms[i].rt);
+		}
+		ds->next(cms[i].dir,false,!cms[i].rt.isEmpty());
+		const char* errorMessage=QString("%1: %2 %3 %4  \"%5\" \"%6\" expected %7 %8 %9 %10").arg(i).arg(ds->cursor().lineNumber()).arg(ds->cursor().anchorColumnNumber()).arg(ds->cursor().columnNumber()).arg(ds->cursor().selectedText()).arg(ed->document()->text()).arg(cms[i].l).arg(cms[i].ax).arg(cms[i].cx).arg(sel).toLatin1().constData();
 		QVERIFY2(ds->cursor().selectedText()== sel,errorMessage);
 		QVERIFY2(ds->cursor().lineNumber()== cms[i].l,errorMessage);
 		QVERIFY2(ds->cursor().columnNumber()== cms[i].cx,errorMessage);
 		QVERIFY2(ds->cursor().anchorLineNumber()== cms[i].l,errorMessage);
 		QVERIFY2(ds->cursor().anchorColumnNumber()== cms[i].ax,errorMessage);
+		if (!cms[i].rt.isEmpty()){
+			QVERIFY2(ed->document()->text()== cms[i].nt,errorMessage);
+		}
 		/*if (options & QDocumentSearch::Replace)
 			QVERIFY(ed->document()->text()== newText[i]);*/
 	}
