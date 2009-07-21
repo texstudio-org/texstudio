@@ -504,15 +504,16 @@ bool QDocumentSearch::next(bool backward, bool all, bool again)
 			
 		}
 		
-		int column = backward
-				?
-					m_regexp.lastIndexIn(s, m_cursor.columnNumber() - 1)
-				:
-					m_regexp.indexIn(s, m_cursor.columnNumber())
-				;
-		
-                if(again) column=m_regexp.indexIn(s, m_cursor.selectionStart().columnNumber());
-
+		int column;
+                if(again) {
+			if (backward) 
+				column=m_regexp.lastIndexIn(s,m_cursor.selectionEnd().columnNumber());
+			else 
+				column=m_regexp.indexIn(s, m_cursor.selectionStart().columnNumber());
+		} else if (backward) 
+			column=m_regexp.lastIndexIn(s, m_cursor.columnNumber() - 1);
+		else 
+			column=m_regexp.indexIn(s, m_cursor.columnNumber());
                 /*
 		qDebug("searching %s in %s => %i",
 				qPrintable(m_regexp.pattern()),
@@ -552,16 +553,18 @@ bool QDocumentSearch::next(bool backward, bool all, bool again)
 			{
 				bool rep = true;
 				
-				if ( hasOption(Prompt) )
+				if (again) rep=true;
+				else if ( hasOption(Prompt) )
 				{
-                                        /*int ret = QMessageBox::question(m_editor, tr("Replacement prompt"),
+					QMessageBox::StandardButtons buttons=QMessageBox::Yes | QMessageBox::No;
+					if (all) buttons|=QMessageBox::Cancel;
+                                        int ret = QMessageBox::question(m_editor, tr("Replacement prompt"),
 										tr("Shall it be replaced?"),
-										QMessageBox::Yes
-										| QMessageBox::No
-										| QMessageBox::Cancel,
+										buttons,
 										QMessageBox::Yes);
-                                        */
-                                        rep=again;
+					rep=ret==QMessageBox::Yes;
+					if (ret==QMessageBox::Cancel) 
+						return false;
 				}
 				
 				//
