@@ -80,6 +80,7 @@ class QCE_EXPORT QDocumentSearch
 		bool next(bool backward, bool all = false, bool again=false);
 		
 	private:
+		void replaceCursorText(QRegExp& m_regexp, bool backward);
 		bool end(bool backward) const;
 		
 		void clearMatches();

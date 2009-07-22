@@ -133,6 +133,7 @@ bool QSearchReplacePanel::forward(QMouseEvent *e)
 		This panel does not need mouse events to be forwarded to the editor.
 		Even more, it requires them not to be forwarded...
 	*/
+	Q_UNUSED(e);
 	return false;
 }
 
@@ -186,14 +187,7 @@ void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceA
 	}	
 	m_search->setOption(QDocumentSearch::Replace,replace);
 	lastDirectionBackward = backward;
-	if((m_search->cursor().hasSelection()&&replace) && (!cbPrompt->isChecked())) {
-		//replace current text and search next
-		m_search->next(backward,replaceAll,true);
-		m_search->setOption(QDocumentSearch::Replace,false);
-		m_search->next(backward, false, false);
-	} else {
-		m_search->next(backward, replaceAll, false);
-	}
+	m_search->next(backward, replaceAll, !cbPrompt->isChecked());
 	
 	if (isVisible() && !leFind->hasFocus() && !leReplace->hasFocus() )
 		if (replace) leReplace->setFocus();
@@ -369,7 +363,7 @@ void QSearchReplacePanel::on_leReplace_returnPressed(bool backward){
 void QSearchReplacePanel::on_leReplace_textEdited(const QString& text)
 {
 	if ( m_search )
-		m_search->setReplaceText(escapeCpp(leReplace->text(), cbEscapeSeq->isChecked()));
+		m_search->setReplaceText(escapeCpp(text, cbEscapeSeq->isChecked()));
 
 }
 
@@ -393,15 +387,20 @@ void QSearchReplacePanel::on_cbWords_toggled(bool on)
 {
 	if ( m_search )
 		m_search->setOption(QDocumentSearch::WholeWords, on);
+	if (on && cbRegExp->isChecked()) 
+		cbRegExp->setChecked(false); //word and regexp is not possible
 	if ( leFind->isVisible() )
 		leFind->setFocus();
 }
 
-void QSearchReplacePanel::on_cbRegExp_clicked(bool on)
+void QSearchReplacePanel::on_cbRegExp_toggled(bool on)
 {
 	if ( m_search )
 		m_search->setOption(QDocumentSearch::RegExp, on);
-	leFind->setFocus();
+	if (on && cbWords->isChecked()) 
+		cbWords->setChecked(false); //word and regexp is not possible
+	if ( leFind->isVisible() )
+		leFind->setFocus();
 }
 
 void QSearchReplacePanel::on_cbCase_toggled(bool on)
@@ -409,7 +408,8 @@ void QSearchReplacePanel::on_cbCase_toggled(bool on)
 	if ( m_search )
 		m_search->setOption(QDocumentSearch::CaseSensitive, on);
 
-	leFind->setFocus();
+	if ( leFind->isVisible() )
+		leFind->setFocus();
 }
 
 void QSearchReplacePanel::on_cbCursor_clicked(bool on)
