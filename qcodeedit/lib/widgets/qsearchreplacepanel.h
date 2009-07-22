@@ -66,7 +66,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel, private Ui::SearchReplace
 		
 		void on_cbCase_toggled(bool on);
 		void on_cbWords_toggled(bool on);
-		void on_cbRegExp_clicked(bool on);
+		void on_cbRegExp_toggled(bool on);
 		void on_cbCursor_clicked(bool on);
 		void on_cbHighlight_clicked(bool on);
 		void on_cbSelection_toggled(bool on);

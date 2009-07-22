@@ -343,7 +343,8 @@ bool QDocumentSearch::end(bool backward) const
 	\brief Perform a search
 	\param backward whether to go backward or forward
 	\param all if true, the whole document will be searched first, all matches recorded and available for further navigation
-	
+	\param again if a search match is selected it will be replaced, than a normal search (no replace) will be performed
+
 	\note Technically speaking the all parameter make search behave similarly to the HighlightAll option, except that the former
 	option does not alter the formatting of the document.
 */
@@ -354,7 +355,7 @@ bool QDocumentSearch::next(bool backward, bool all, bool again)
 	
 	if ( !hasOption(Replace) && (all || hasOption(HighlightAll)) && m_highlight.count() )
 	{
-                if ( !backward && !again )
+                if ( !backward )
 			++m_index;
 		
 		//m_index = m_index + (backward ? -1 : 1);
@@ -456,8 +457,13 @@ bool QDocumentSearch::next(bool backward, bool all, bool again)
 		m_regexp = QRegExp(m_string, cs, QRegExp::FixedString);
 	}
 	
+	bool realReplace=hasOption(Replace) && !again;
+	if (hasOption(Replace) && again) 
+		if (m_regexp.exactMatch(m_cursor.selectedText()))  
+			replaceCursorText(m_regexp,backward);
+	
         bool found = false;
-
+	
 	QDocumentCursor::MoveOperation move;
 	QDocument *d = m_editor ? m_editor->document() : m_origin.document();
 	QFormatScheme *f = d->formatScheme() ? d->formatScheme() : QDocument::formatFactory();
@@ -505,15 +511,8 @@ bool QDocumentSearch::next(bool backward, bool all, bool again)
 		}
 		
 		int column;
-                if(again) {
-			if (backward) 
-				column=m_regexp.lastIndexIn(s,m_cursor.selectionEnd().columnNumber());
-			else 
-				column=m_regexp.indexIn(s, m_cursor.selectionStart().columnNumber());
-		} else if (backward) 
-			column=m_regexp.lastIndexIn(s, m_cursor.columnNumber() - 1);
-		else 
-			column=m_regexp.indexIn(s, m_cursor.columnNumber());
+		if (backward) column=m_regexp.lastIndexIn(s,m_cursor.selectionEnd().columnNumber());
+		else column=m_regexp.indexIn(s, m_cursor.selectionStart().columnNumber());
                 /*
 		qDebug("searching %s in %s => %i",
 				qPrintable(m_regexp.pattern()),
@@ -521,7 +520,7 @@ bool QDocumentSearch::next(bool backward, bool all, bool again)
 				column);
 		*/
 		
-                if ( column != -1 && (backward || column >= m_cursor.columnNumber() ||again) )
+                if ( column != -1 && (backward || column >= m_cursor.columnNumber() ) )
 		{
 			column += coloffset;
 			
@@ -549,12 +548,11 @@ bool QDocumentSearch::next(bool backward, bool all, bool again)
 			if ( m_editor && !hasOption(Silent) && !hasOption(HighlightAll) )
 				m_editor->setCursor(m_cursor);
 			
-			if ( hasOption(Replace) )
+			if ( realReplace )
 			{
 				bool rep = true;
 				
-				if (again) rep=true;
-				else if ( hasOption(Prompt) )
+				if ( hasOption(Prompt) )
 				{
 					QMessageBox::StandardButtons buttons=QMessageBox::Yes | QMessageBox::No;
 					if (all) buttons|=QMessageBox::Cancel;
@@ -568,24 +566,7 @@ bool QDocumentSearch::next(bool backward, bool all, bool again)
 				}
 				
 				//
-				if ( rep )
-				{
-					QString replacement = m_replace;
-					
-					for ( int i = m_regexp.numCaptures(); i >= 0; --i )
-						replacement.replace(QString("\\") + QString::number(i),
-											m_regexp.cap(i));
-					
-					m_cursor.beginEditBlock();
-					m_cursor.removeSelectedText();
-					m_cursor.insertText(replacement);
-					m_cursor.endEditBlock();
-					
-					if ( backward )
-						m_cursor.movePosition(replacement.length(), QDocumentCursor::PreviousCharacter);
-				} else {
-					//qDebug("no rep");
-				}
+				if ( rep ) replaceCursorText(m_regexp, backward);
 			} else if ( all || hasOption(HighlightAll) ) {
 				
 				if ( sid && hasOption(HighlightAll) )
@@ -667,3 +648,17 @@ bool QDocumentSearch::next(bool backward, bool all, bool again)
         return false;
 }
 /*! @} */
+
+void QDocumentSearch::replaceCursorText(QRegExp& m_regexp, bool backward){
+	QString replacement = m_replace;
+	
+	for ( int i = m_regexp.numCaptures(); i >= 0; --i )
+		replacement.replace(QString("\\") + QString::number(i),
+							m_regexp.cap(i));
+	
+	m_cursor.replaceSelectedText(replacement);
+	
+	if ( backward )
+		m_cursor.movePosition(replacement.length(), QDocumentCursor::PreviousCharacter);
+	
+}
