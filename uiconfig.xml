@@ -21,6 +21,7 @@
   </menu>
 
   <menu id="environment" text="&amp;Environments">
+    <insert id="common" text="\begin{&lt;environment>} [selection]" insert="\begin{%&lt;environment-name%>}%n%|%n\end{%&lt;environment-name%>}" shortcut="Ctrl+E"/>
     <insert id="center" text="\begin{center} [selection]" insert="\begin{center}%n%|%n\end{center}" icon=":/images/text_center.png"/>
     <insert id="flushleft" text="\begin{flushleft} [selection]" insert="\begin{flushleft}%n%|%n\end{flushleft}" icon=":/images/text_left.png"/>
     <insert id="flushright" text="\begin{flushright}  [selection]" insert="\begin{flushright}%n%|%n\end{flushright}" icon=":/images/text_right.png"/>
@@ -157,7 +158,7 @@
     <insert id="mathfrak" text="\mathfrak{} [selection]" insert="\mathfrak{%|}"/>
   </menu>
 
-  <menu id="fontstyles" text="Math &amp;Accents">
+  <menu id="fontaccent" text="Math &amp;Accents">
     <insert id="acute" text="\acute{}" insert="\acute{%|}" icon=":/images/acute.png"/>
     <insert id="grave" text="\grave{}" insert="\grave{%|}" icon=":/images/grave.png"/>
     <insert id="tilde" text="\tilde{}" insert="\tilde{%|}" icon=":/images/tilde.png"/>
@@ -170,7 +171,7 @@
     <insert id="ddot" text="\ddot{}" insert="\ddot{%|}" icon=":/images/ddtot.png"/>
   </menu>
   
-  <menu id="fontstyles" text="Math S&amp;paces">
+  <menu id="fontspaces" text="Math S&amp;paces">
     <insert id="small" text="small" insert="\,"/>
     <insert id="medium" text="medium" insert="\:"/>
     <insert id="large" text="large" insert="\;"/>

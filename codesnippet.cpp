@@ -87,12 +87,13 @@ CodeSnippet::CodeSnippet(const QString &newWord) {
 }
 
 void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor) const{
-	if (lines.empty()) return;
+	if (lines.empty()||!editor||!cursor) return;
 	
-	int beginMagicLine=-1;//hack will made every placeholder in the line a mirror of the pre-previous placeholder
+	int beginMagicLine=-1;//hack will made every placeholder in this line a mirror of the first placeholder and select this placeholder afterwards
 	if (lines[0]=="\\begin{environment-name}") //useful in this case (TODO: mirrors in code snippet language)
 		beginMagicLine=lines.count()-1;
-
+	int magicPlaceHolder=editor->placeHolderCount();
+		
 	QString savedSelection;
 	if (cursor->hasSelection()) {
 		savedSelection=cursor->selectedText();
@@ -116,7 +117,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor) const{
 				if (ph.cursor.isValid())
 					editor->addPlaceHolder(ph);
 			}	else {
-				editor->addPlaceHolderMirror(editor->placeHolderCount()-2,ph.cursor);
+				editor->addPlaceHolderMirror(magicPlaceHolder,ph.cursor);
 			}
 				
 		}
@@ -140,7 +141,9 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor) const{
 			ok=selector.movePosition(anchorOffset-cursorOffset,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
 		if (!ok) return;
 		editor->setCursor(selector);
+		if (!savedSelection.isEmpty()) editor->cursor().insertText(savedSelection);
 	}	else editor->setCursor(*cursor); //place after insertion
-	if (!savedSelection.isEmpty() && cursorOffset>0) editor->cursor().insertText(savedSelection);
+	if (beginMagicLine!=-1)  //select magic placeholder if there (must be last line because there may be insertion
+		editor->setPlaceHolder(magicPlaceHolder); //at another cursor position necessary)
 }
 

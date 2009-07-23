@@ -650,6 +650,7 @@
         <file>completion/url.cwl</file>
         <file>completion/varioref.cwl</file>
         <file>completion/verse.cwl</file>
+		<file>completion/wasysym.cwl</file>
         <file>completion/virginialake.cwl</file>
         <file>completion/xifthen.cwl</file>
         <file>completion/xltxtra.cwl</file>
