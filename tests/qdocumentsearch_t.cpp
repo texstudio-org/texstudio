@@ -55,30 +55,29 @@ void QDocumentSearchTest::next_sameText_data(){
 		<< "wo" << 0
 		<< 0 << 6
 		<< (QList<CM>() 
-			<< SN(0,7,9) << SP(0, 9, 7) << SN(0, 7, 9) 
+			<< SN(0,7,9) << SP(0, 5, 3) << SN(0, 7, 9) 
 			<< SN(1, 6, 8) << SN (3, 0, 2) << SN(-1, -1, -1));
 	QTest::newRow("forward-backward-case sensitive")
 		<< "aaAaaAaaA\naAaAa\naaaaaaaa" 
 		<< "aa" << (int)QDocumentSearch::CaseSensitive
 		<< 0 << 2
 		<< (QList<CM>() 
-			<< SN(0, 3, 5) << SN(0, 6, 8) << SN(2, 0, 2) << SP(2, 2, 0)
-			<< SP(0, 8, 6) << SN(0, 6, 8) << SN(2, 0, 2) << SN(2, 2, 4) 
-			<< SN(2, 4, 6) << SN(2, 6, 8) << SP(2, 8, 6) << SP(2, 6, 4)
-			<< SP(2, 4, 2) << SP(2, 2, 0) << SP(0, 8, 6) << SP(0, 5, 3) 
-			<< SP(0, 2, 0) << SP(-1, -1, -1));
+			<< SN(0, 3, 5) << SN(0, 6, 8) << SN(2, 0, 2) << SP(0, 8, 6)
+			<< SN(2, 0, 2) << SN(2, 2, 4) << SN(2, 4, 6) << SN(2, 6, 8) 
+			<< SP(2, 6, 4) << SP(2, 4, 2) << SP(2, 2, 0) << SP(0, 8, 6) 
+			<< SP(0, 5, 3) << SP(0, 2, 0) << SP(-1, -1, -1));
 	QTest::newRow("forward-backward-case whole words")
 		<< "aaAaaAaaA\naA aAa\naaa aa aaa\n" 
 		<< "aA" << (int)QDocumentSearch::WholeWords
 		<< 0 << 0
 		<< (QList<CM>() 
-			<< SN(1, 0, 2) << SN(2, 4, 6) << SP(2, 6, 4) << SP(1, 2, 0) << SN(1,0,2) << SN (2, 4, 6) << SN(-1,-1,-1));
+			<< SN(1, 0, 2) << SN(2, 4, 6) << SP(1, 2, 0) << SN (2, 4, 6) << SN(-1,-1,-1));
 	QTest::newRow("forward-backward-case whole words case sensitive ")
 		<< "aa Aaa Aaa A\naA aAa\naa  aA aa a\n" 
 		<< "aA" << (int)(QDocumentSearch::WholeWords | QDocumentSearch::CaseSensitive)
 		<< 0 << 0
 		<< (QList<CM>() 
-			<< SN(1, 0, 2) << SN(2, 4, 6) << SP(2, 6, 4) << SP(1, 2, 0) << SN(1,0,2) << SN (2, 4, 6) << SN(-1,-1,-1));
+			<< SN(1, 0, 2) << SN(2, 4, 6) << SP(1, 2, 0) << SN (2, 4, 6) << SN(-1,-1,-1));
 	QTest::newRow("forward-backward-case reg exp")
 		<< "Hello42World" 
 		<< "[0-9]+" << (int)QDocumentSearch::RegExp
@@ -97,26 +96,26 @@ void QDocumentSearchTest::next_sameText_data(){
 		<< 0 << 0
 		<< (QList<CM>() 
 			<< SN(0, 5, 7) 
-			<< SN(0, 10, 10, "mouse","HellomouseWorld17XXXX2358YYY") 
-			//<< SN(0, 15, 17, "mouse", "HellomouseWorld17XXXX2358YYY") 
-			<< SN(0, 20, 20, "mouse","HellomouseWorldmouseXXXX2358YYY") 
-			<< SN(0, 24, 28) 
-			<< SN(0, 30, 30, "house!","HellomouseWorldmouseXXXXhouse!YYY") 
-			<< SN(-1,-1,-1));
+			<< SN(0, 15, 17, "mouse","HellomouseWorld17XXXX2358YYY") 
+			<< SN(0, 24, 28, "mouse","HellomouseWorldmouseXXXX2358YYY") 
+			<< SN(-1, -1, -1, "house!","HellomouseWorldmouseXXXXhouse!YYY"));
 	QTest::newRow("replace forward-backward")
-		<< "aa aa \naa aaa XXXX aa\naa YYYY aa aa YYYY" 
+		<< "aa aa aa\naa aaa XXXX aa\naa YYYY aa aa YYYY" 
 		<< "aa" << (int)QDocumentSearch::WholeWords
 		<< 2 << 0
 		<< (QList<CM>() 
-			<< SN(2, 3, 3, "***","aa aa \naa aaa XXXX aa\n*** YYYY aa aa YYYY") 
-			<< SN(3, 1, 1, "\n!","aa aa \naa aaa XXXX aa\n*** YYYY \n! aa YYYY") 
-			<< SP(1, 12, 12, "ups", "aa aa \naa aaa XXXX ups\n*** YYYY \n! aa YYYY") 
-			<< SP(1, 0, 0, "first","aa aa \nfirst aaa XXXX ups\n*** YYYY \n! aa YYYY") 
-			<< SP(0, 3, 3, "\xE4","aa \xE4 \nfirst aaa XXXX ups\n*** YYYY \n! aa YYYY") 
-			<< SP(0, 0, 0, "^^^^","^^^^ \xE4 \nfirst aaa XXXX ups\n*** YYYY \n! aa YYYY") 
+			<< SN(2, 0, 2, "***","aa aa aa\naa aaa XXXX aa\naa YYYY aa aa YYYY") 
+			<< SN(2, 9, 11, "***","aa aa aa\naa aaa XXXX aa\n*** YYYY aa aa YYYY") 
+			<< SN(3, 2, 4, "\n!","aa aa aa\naa aaa XXXX aa\n*** YYYY \n! aa YYYY") 
+			<< SP(1, 14, 12, "ups", "aa aa aa\naa aaa XXXX aa\n*** YYYY \n! ups YYYY") 
+			<< SP(1, 2, 0, "first","aa aa aa\naa aaa XXXX first\n*** YYYY \n! ups YYYY") 
+			<< SP(0, 8, 6, "sec","aa aa aa\nsec aaa XXXX first\n*** YYYY \n! ups YYYY") 
+			<< SP(0, 5, 3, "\xE4","aa aa \xE4\nsec aaa XXXX first\n*** YYYY \n! ups YYYY") 
+			<< SP(0, 2, 0, "miau","aa miau \xE4\nsec aaa XXXX first\n*** YYYY \n! ups YYYY") 
+			<< SP(-1, -1, -1, "^^^^","^^^^ miau \xE4\nsec aaa XXXX first\n*** YYYY \n! ups YYYY") );
 			//<< SP(1, 0, 0, "first","aa aa \nfirst aaa XXXX ups\n*** YYYY \n! aa YYYY") 
-			<< SN(3, 2, 2, "","^^^^ \xE4 \nfirst aaa XXXX ups\n*** YYYY \n!  YYYY") 
-			<< SP(-1,-1,-1));
+			//<< SN(3, 2, 2, "","^^^^ \xE4 \nfirst aaa XXXX ups\n*** YYYY \n!  YYYY") 
+			//<< SP(-1,-1,-1));
 			
 	
 }
@@ -139,9 +138,12 @@ void QDocumentSearchTest::next_sameText(){
 	
 	for (int i=0;i< cms.size();i++){
 		QString sel;
-		if (cms[i].l>=0)
-			if (cms[i].ax<cms[i].cx) sel = ed->document()->line(cms[i].l).text().mid(cms[i].ax,cms[i].cx-cms[i].ax);
-			else sel = ed->document()->line(cms[i].l).text().mid(cms[i].cx,cms[i].ax-cms[i].cx);
+		if (cms[i].l>=0) {
+			if (cms[i].rep) sel=cms[i].nt.split("\n")[cms[i].l];
+			else sel=ed->document()->line(cms[i].l).text();
+			if (cms[i].ax<cms[i].cx) sel = sel.mid(cms[i].ax,cms[i].cx-cms[i].ax);
+			else sel =sel.mid(cms[i].cx,cms[i].ax-cms[i].cx);
+		}
 		if (!cms[i].rep)
 			ds->setOptions((QDocumentSearch::Options)options & (~QDocumentSearch::Replace));
 		else {
