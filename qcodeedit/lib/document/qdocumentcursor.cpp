@@ -278,6 +278,23 @@ bool QDocumentCursor::leftBoundaryLarger (const QDocumentCursor& c) const{
 		return line1>line2;	
 }
 
+void QDocumentCursor::leftBoundaries(int& begline, int& begcol) const{
+	if (!m_handle) {
+		begline=-1;
+		begcol=-1;
+		return;
+	}
+	m_handle->leftBoundaries(begline, begcol);
+}
+void QDocumentCursor::rightBoundaries(int& endline, int& endcol) const{
+	if (!m_handle) {
+		endline=-1;
+		endcol=-1;
+		return;
+	}
+	m_handle->rightBoundaries(endline, endcol);
+}
+
 
 /*!
 	\brief comparision operator

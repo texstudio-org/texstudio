@@ -346,7 +346,9 @@ bool QDocumentSearch::end(bool backward) const
 	\param again if a search match is selected it will be replaced, than a normal search (no replace) will be performed
 
 	\note Technically speaking the all parameter make search behave similarly to the HighlightAll option, except that the former
-	option does not alter the formatting of the document.
+	option does not alter the formatting of the document
+
+	\note The .search will start at the first character left/right from the selected text
 */
 bool QDocumentSearch::next(bool backward, bool all, bool again)
 {
@@ -481,6 +483,14 @@ bool QDocumentSearch::next(bool backward, bool all, bool again)
 	if ( bounded )
 		boundaries = m_scope.selection();
 	
+	//make sure current selection isn't searched
+	if ( m_cursor.hasSelection() ) {
+		int l; int c;
+		if (backward) m_cursor.leftBoundaries(l,c);
+		else m_cursor.rightBoundaries(l,c);
+		m_cursor.moveTo(l,c);
+	}
+	
 	while ( !end(backward) )
 	{
 		if ( backward && !m_cursor.columnNumber() )
@@ -511,8 +521,8 @@ bool QDocumentSearch::next(bool backward, bool all, bool again)
 		}
 		
 		int column;
-		if (backward) column=m_regexp.lastIndexIn(s,m_cursor.selectionEnd().columnNumber());
-		else column=m_regexp.indexIn(s, m_cursor.selectionStart().columnNumber());
+		if (backward) column=m_regexp.lastIndexIn(s,m_cursor.columnNumber());
+		else column=m_regexp.indexIn(s, m_cursor.columnNumber());
                 /*
 		qDebug("searching %s in %s => %i",
 				qPrintable(m_regexp.pattern()),
@@ -658,7 +668,7 @@ void QDocumentSearch::replaceCursorText(QRegExp& m_regexp, bool backward){
 	
 	m_cursor.replaceSelectedText(replacement);
 	
-	if ( backward )
-		m_cursor.movePosition(replacement.length(), QDocumentCursor::PreviousCharacter);
+//	if ( backward )
+//		m_cursor.movePosition(replacement.length(), QDocumentCursor::PreviousCharacter);
 	
 }

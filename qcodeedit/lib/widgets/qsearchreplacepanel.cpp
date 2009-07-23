@@ -181,10 +181,7 @@ void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceA
 		}
 
 		lastDirectionBackward = backward;
-	} else {
-		if ( lastDirectionBackward != backward && editor()->cursor().hasSelection() && !replace && !replaceAll )
-			m_search->next(backward, false); //the first hit is already selected
-	}	
+	}
 	m_search->setOption(QDocumentSearch::Replace,replace);
 	lastDirectionBackward = backward;
 	m_search->next(backward, replaceAll, !cbPrompt->isChecked());

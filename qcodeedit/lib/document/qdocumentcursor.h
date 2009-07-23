@@ -105,6 +105,9 @@ class QCE_EXPORT QDocumentCursor
 		bool rightBoundaryLarger (const QDocumentCursor& c) const;
 		bool leftBoundaryLarger (const QDocumentCursor& c) const;
 		
+		void leftBoundaries(int& begline, int& begcol) const;
+		void rightBoundaries(int& endline, int& endcol) const;
+		
 		bool isNull() const;
 		bool isValid() const;
 		
