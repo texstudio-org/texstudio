@@ -6,6 +6,7 @@
 #include "smallUsefulFunctions_t.h"
 #include "buildmanager_t.h"
 #include "qdocumentsearch_t.h"
+#include "codesnippet_t.h"
 #include <QtTest/QtTest>
 
 const QRegExp TestToken::simpleTextRegExp ("[A-Z'a-z0-9]+");
@@ -27,9 +28,20 @@ QString TestManager::performTest(QObject* obj){
 
 QString TestManager::execute(LatexEditorView* edView, QEditor* editor){
 	QString tr;
-	tr+=performTest(new SmallUsefulFunctionsTest());
-	tr+=performTest(new BuildManagerTest());
-	tr+=performTest(new QDocumentSearchTest(editor));
+	QList<QObject*> tests=QList<QObject*>()
+		<< new SmallUsefulFunctionsTest()
+		<< new BuildManagerTest()
+		<< new QDocumentSearchTest(editor)
+		<< new CodeSnippetTest(editor);
+	bool allPassed=true;
+	for (int i=0; i <tests.size();i++){
+		QString res=performTest(tests[i]);
+		tr+=res;
+		if (!res.contains(", 0 failed, 0 skipped")) allPassed=false;
+	}	
+	
+	if (!allPassed) 
+		tr="THERE SEEMS TO BE FAILED TESTS! \n\n\n\n\n\n\n"+tr;
 	return tr;
 }
 #endif

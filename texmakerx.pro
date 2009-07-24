@@ -350,11 +350,13 @@ SOURCES += qcodeedit/lib/qnfa/qnfa.cpp \
 #these files should be debug only, but debug-only thing in a qmake file become an
 #incredible mess, so they are always compiled (but empty through #define in release mode)
 SOURCES += tests/testmanager.cpp \
-           tests/qdocumentsearch_t.cpp
+           tests/qdocumentsearch_t.cpp \
+		   tests/codesnippet_t.cpp
 HEADERS += tests/testmanager.h \
            tests/smallUsefulFunctions_t.h \
            tests/buildManager_t.h \
-           tests/qdocumentsearch_t.h 
+           tests/qdocumentsearch_t.h \
+		   tests/codesnippet_t.h
 win32{
 	LIBS += -lQtTestd4
 }
