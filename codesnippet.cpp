@@ -104,6 +104,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor) const{
 
 	int baseLine=cursor->lineNumber();
 	int baseLineIndent = cursor->columnNumber(); //text before inserted word moves placeholders to the right
+	int lastLineRemainingLength = curLine.text().length()-baseLineIndent; //last line will has length: indentation + codesnippet + lastLineRemainingLength
 	editor->insertText(*cursor,lines.join("\n")); //don't use cursor->insertText to keep autoindentation working
 	for (int l=0;l< lines.count();l++){
 		//if (l<lines.count()-1) cursor->insertLine();
@@ -132,6 +133,8 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor) const{
 				return;
 			if (editor->flag(QEditor::AutoIndent))
 				realAnchorOffset += selector.line().length()-lines[cursorLine].length();
+			if (cursorLine + 1 == lines.size())
+				realAnchorOffset-=lastLineRemainingLength;
 		} else realAnchorOffset += baseLineIndent;
 		selector.setColumnNumber(realAnchorOffset);
 		bool ok=true;

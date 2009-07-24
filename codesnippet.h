@@ -20,6 +20,7 @@ public:
 
 	QString word,sortWord;
 	QStringList lines; 
+	//TODO: Multirow selection
 	int cursorLine;  //-1 => not defined
 	int cursorOffset; //-1 => not defined
 	int anchorOffset;
