@@ -323,14 +323,27 @@ int findContext(QString &line,int col){
 	int start_ref=col;
 	int start_close=col;
 	int stop=col;
+	int bow=col;
 	QString helper=line.mid(0,col);
 	start_command=helper.lastIndexOf("\\");
 	start_ref=helper.lastIndexOf("{");
 	start_close=helper.lastIndexOf("}");
+	bow=helper.lastIndexOf("[");
+	if(bow<helper.lastIndexOf(" ")) bow=helper.lastIndexOf(" ");
 	helper=line.mid(col,line.length());
-	if((start_command>start_ref)&&(start_command>start_close)){
-		stop=helper.indexOf("{")+col;
-		line=line.mid(start_command,stop-start_command);
+	if((start_command>start_ref)&&(start_command>start_close)&&(start_command>bow)){
+		helper=line.mid(start_command);
+		stop=helper.indexOf("{");
+		if(stop>-1) stop=stop;
+		else {
+			stop=helper.indexOf("[");
+			int stop2=helper.indexOf(" ");
+			if(stop==-1) stop=stop2;
+			if(stop2==-1) stop2=stop;
+			if(stop2<stop) stop=stop2;
+		}
+		if(stop==-1) stop=helper.length();
+		line=helper.mid(0,stop);
 		return 1;
 	}
 	if((start_ref>start_command)&&(start_command>start_close)){
