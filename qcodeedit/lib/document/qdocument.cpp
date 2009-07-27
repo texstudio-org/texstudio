@@ -351,8 +351,9 @@ void QDocument::setText(const QString& s)
 	//qDeleteAll(m_impl->m_lines);
 	foreach ( QDocumentLineHandle *h, m_impl->m_lines )
 	{
-		h->m_doc = 0;
+		emit lineRemoved(h);
 		h->deref();
+		h->m_doc = 0;
 	}
 
 	QDocumentCommand::discardHandlesFromDocument(this);
@@ -457,9 +458,10 @@ void QDocument::startChunkLoading()
 	//qDeleteAll(m_impl->m_lines);
 	foreach ( QDocumentLineHandle *h, m_impl->m_lines )
 	{
-		h->m_doc = 0;
+		emit lineRemoved(h);
 		h->deref();
-	}
+		h->m_doc = 0;
+ 	}
 
 	m_impl->m_lines.clear();
 	m_impl->m_marks.clear();
