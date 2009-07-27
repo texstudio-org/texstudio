@@ -889,8 +889,6 @@ void QEditor::save()
 	if ( !m_doc )
 		return;
 
-	QString oldFileName = fileName();
-
 	if ( fileName().isEmpty() )
 	{
 		QString fn = QFileDialog::getSaveFileName();
@@ -933,10 +931,8 @@ void QEditor::save()
 
 	m_saveState = Saving;
 
-	if ( oldFileName.count() )
-	{
-		watcher()->removeWatch(oldFileName, this);
-	}
+	//remove all watches (on old and new file name (setfilename above could have create one!) )
+	watcher()->removeWatch(QString(), this); 
 
 	QFile f(fileName());
 
@@ -956,14 +952,16 @@ void QEditor::save()
 		f.write(m_codec->fromUnicode(txt));
 	else
 		f.write(txt.toLocal8Bit());
+	f.close(); //explicitly close for watcher
 
 	m_doc->setClean();
 
 	emit saved(this, fileName());
 	m_saveState = Saved;
 
+	
 	QTimer::singleShot(100, this, SLOT( reconnectWatcher() ));
-
+	
 	update();
 }
 
@@ -997,12 +995,14 @@ void QEditor::save(const QString& fn)
 	else
 		f.write(txt.toLocal8Bit());
 
+	f.close();//explicitly close for watcher
+	
 	m_doc->setClean();
 
 	setFileName(fn);
 	emit saved(this, fn);
 	m_saveState = Saved;
-
+	
 	QTimer::singleShot(100, this, SLOT( reconnectWatcher() ));
 }
 
