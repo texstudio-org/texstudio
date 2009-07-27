@@ -117,7 +117,7 @@ void QDocumentSearchTest::next_sameText_data(){
 			//<< SP(1, 0, 0, "first","aa aa \nfirst aaa XXXX ups\n*** YYYY \n! aa YYYY") 
 			//<< SN(3, 2, 2, "","^^^^ \xE4 \nfirst aaa XXXX ups\n*** YYYY \n!  YYYY") 
 			//<< SP(-1,-1,-1));
-	QTest::newRow("replace regexp backreferences")
+	/*QTest::newRow("replace regexp backreferences")
 		<< "\\begin{abc} \n content \n ... \n \\end{abc}"
 		<< "\\\\(begin|end)\\{([a-zA-Z]*)\\}" << (int)QDocumentSearch::RegExp
 		<< 0 << 0
@@ -133,11 +133,11 @@ void QDocumentSearchTest::next_sameText_data(){
 			<< SN(0, 2, 3, "????", "hello world! hello!") 
 			<< SN(1, 0, 1, "\\n","he\nlo world! hello!") 
 			<< SN(1, 6, 7, "\\\\","he\n\\o world! hello!") 
-			<< SN(1, 12, 13, "\\0","he\n\\o wor\0d! hello!") 
-			<< SN(1, 13, 14, "\\r","he\n\\o wor\0d! he\rlo!") 
-			<< SN(-1, -1, -1, "\\t","he\n\\o wor\0d! he\r\to!")); 
+			<< SN(1, 12, 13, "\\t","he\n\\o wor\td! hello!") 
+			<< SN(2, 0, 1, "\\r","he\n\\o wor\td! he\nlo!")); 
+//			<< SN(-1, -1, -1, "\\0",QString("he\n\\o wor\td! he\n*o!").replace(QChar('*'),QChar('\0')))); 
 			
-	
+	*/
 }
 void QDocumentSearchTest::next_sameText(){
 	QFETCH(QString, editorText);

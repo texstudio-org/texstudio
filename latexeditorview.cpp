@@ -465,7 +465,6 @@ void LatexEditorView::lineRemoved(QDocumentLineHandle* l) {
 }
 
 void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {
-
 	lineRemoved(l);
 
 	QHash<QDocumentLineHandle*, int>::iterator it;

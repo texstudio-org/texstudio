@@ -348,12 +348,15 @@ void QDocument::setText(const QString& s)
 
 	m_impl->m_deleting = true;
 
+	foreach ( QDocumentLineHandle *h, m_impl->m_lines )
+		emit lineDeleted(h);
 	//qDeleteAll(m_impl->m_lines);
 	foreach ( QDocumentLineHandle *h, m_impl->m_lines )
 	{
-		emit lineRemoved(h);
-		h->deref();
+//		emit lineRemoved(h);
+//		emit lineDeleted(h);
 		h->m_doc = 0;
+		h->deref();
 	}
 
 	QDocumentCommand::discardHandlesFromDocument(this);
@@ -457,10 +460,13 @@ void QDocument::startChunkLoading()
 
 	//qDeleteAll(m_impl->m_lines);
 	foreach ( QDocumentLineHandle *h, m_impl->m_lines )
+		emit lineDeleted(h);
+	foreach ( QDocumentLineHandle *h, m_impl->m_lines )
 	{
-		emit lineRemoved(h);
-		h->deref();
+//		emit lineRemoved(h);
+//		emit lineDeleted(h);
 		h->m_doc = 0;
+		h->deref();
  	}
 
 	m_impl->m_lines.clear();
