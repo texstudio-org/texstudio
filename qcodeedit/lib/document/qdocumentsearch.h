@@ -45,7 +45,8 @@ class QCE_EXPORT QDocumentSearch
 			Replace			= 8,
 			Prompt			= 16,
 			Silent			= 32,
-			HighlightAll	= 64
+			HighlightAll	= 64,
+			EscapeSeq		= 128 
 		};
 		
 		Q_DECLARE_FLAGS(Options, Option);

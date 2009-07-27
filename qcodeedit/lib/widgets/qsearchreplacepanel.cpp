@@ -29,39 +29,6 @@
 #include "qdocumentcursor.h"
 #include "qdocumentsearch.h"
 
-static QString escapeCpp(const QString& s, bool rep)
-{
-	if ( !rep )
-		return s;
-
-	QString es;
-
-	for ( int i = 0; i < s.count(); ++i )
-	{
-		if ( (s.at(i) == '\\') && ((i + 1) < s.count()) )
-		{
-			QChar c = s.at(++i);
-
-			if ( c == '\\' )
-				es += '\\';
-			else if ( c == 't' )
-				es += '\t';
-			else if ( c == 'n' )
-				es += '\n';
-			else if ( c == 'r' )
-				es += '\r';
-			else if ( c == '0' )
-				es += '\0';
-
-		} else {
-			es += s.at(i);
-		}
-	}
-
-	//qDebug("\"%s\" => \"%s\"", qPrintable(s), qPrintable(es));
-
-	return es;
-}
 
 /*!
 	\ingroup widgets
@@ -360,7 +327,7 @@ void QSearchReplacePanel::on_leReplace_returnPressed(bool backward){
 void QSearchReplacePanel::on_leReplace_textEdited(const QString& text)
 {
 	if ( m_search )
-		m_search->setReplaceText(escapeCpp(text, cbEscapeSeq->isChecked()));
+		m_search->setReplaceText(text);
 
 }
 
@@ -448,11 +415,11 @@ void QSearchReplacePanel::on_cbSelection_toggled(bool on)
 
 void QSearchReplacePanel::on_cbEscapeSeq_toggled(bool on)
 {
-	// remove unused argument warning
-	(void) on;
-
 	if ( m_search )
-		m_search->setReplaceText(escapeCpp(leReplace->text(), cbEscapeSeq->isChecked()));
+		m_search->setOption(QDocumentSearch::EscapeSeq, on);
+
+	if ( leFind->isVisible() )
+		leFind->setFocus();
 }
 
 void QSearchReplacePanel::on_bNext_clicked()
@@ -517,12 +484,15 @@ void QSearchReplacePanel::init()
 	if ( cbPrompt->isChecked() )
         	opt |= QDocumentSearch::Prompt;
 
+	if ( cbEscapeSeq->isChecked() )
+        	opt |= QDocumentSearch::EscapeSeq;
+	
 	m_search = new QDocumentSearch(	editor(),
 									leFind->text(),
 									opt,
 									cbReplace->isChecked()
 										?
-											escapeCpp(leReplace->text(), cbEscapeSeq->isChecked())
+											leReplace->text()
 										:
 											QString()
 									);
@@ -533,6 +503,7 @@ void QSearchReplacePanel::init()
 
 	if ( cbSelection->isChecked() )
 		m_search->setScope(editor()->cursor());
+
 
 }
 
