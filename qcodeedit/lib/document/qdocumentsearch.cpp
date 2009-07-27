@@ -659,8 +659,39 @@ bool QDocumentSearch::next(bool backward, bool all, bool again)
 }
 /*! @} */
 
+static QString escapeCpp(const QString& s)
+{
+	QString es;
+
+	for ( int i = 0; i < s.count(); ++i )
+	{
+		if ( (s.at(i) == '\\') && ((i + 1) < s.count()) )
+		{
+			QChar c = s.at(++i);
+
+			if ( c == '\\' )
+				es += '\\';
+			else if ( c == 't' )
+				es += '\t';
+			else if ( c == 'n' )
+				es += '\n';
+			else if ( c == 'r' )
+				es += '\r';
+			else if ( c == '0' )
+				es += '\0';
+
+		} else {
+			es += s.at(i);
+		}
+	}
+
+	//qDebug("\"%s\" => \"%s\"", qPrintable(s), qPrintable(es));
+
+	return es;
+}
+
 void QDocumentSearch::replaceCursorText(QRegExp& m_regexp, bool backward){
-	QString replacement = m_replace;
+	QString replacement = hasOption(EscapeSeq)?escapeCpp(m_replace):m_replace;
 	
 	for ( int i = m_regexp.numCaptures(); i >= 0; --i )
 		replacement.replace(QString("\\") + QString::number(i),
