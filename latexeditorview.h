@@ -11,17 +11,9 @@
 
 #ifndef LATEXEDITORVIEW_H
 #define LATEXEDITORVIEW_H
-
 #include "mostQtHeaders.h"
 
-#include "spellerutility.h"
-
-#include "qcodeedit.h"
-#include "qeditor.h"
-#include "qeditorinputbinding.h"
-#include "qlinemarkpanel.h"
-#include "qlinenumberpanel.h"
-
+class QDocumentLineHandle;
 class References {
 public:
 	References() {}
@@ -46,32 +38,17 @@ protected:
 	QString mPattern;
 };
 
-class DefaultInputBinding: public QEditorInputBinding {
-//  Q_OBJECT not possible because inputbinding is no qobject
-public:
-	DefaultInputBinding():keyToReplace(0),contextMenu(0) {}
-	virtual QString id() const {
-		return "TexMakerX::DefaultInputBinding";
-	}
-	virtual QString name() const {
-		return "TexMakerX::DefaultInputBinding";
-	}
 
-	virtual bool keyPressEvent(QKeyEvent *event, QEditor *editor);
-	virtual bool contextMenuEvent(QContextMenuEvent *event, QEditor *editor);
-private:
-	friend class LatexEditorView;
-	QStringList *keyToReplace;
-	QStringList *keyReplaceAfterWord;
-	QStringList *keyReplaceBeforeWord;
-	QList<QAction *> baseActions;
-
-	QMenu* contextMenu;
-	QString lastSpellCheckedWord;
-
-};
-
+class QCodeEdit;
+class QEditor;
+class QLineMarkPanel;
+class QLineNumberPanel;
+class QSearchReplacePanel;
+class QGotoLinePanel;
+class QStatusPanel;
 class LatexCompleter;
+class SpellerUtility;
+class DefaultInputBinding;
 class LatexEditorView : public QWidget  {
 	Q_OBJECT
 public:
@@ -103,11 +80,14 @@ public:
 	static void setSpeller(SpellerUtility* mainSpeller);
 	static void setCompleter(LatexCompleter* newCompleter);
 	
-	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanel, *lineChangePanel, 
-	*statusPanel, *searchReplacePanel, *gotoLinePanelAction;
+	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 
+	*statusPanelAction, *searchReplacePanelAction, *gotoLinePanelAction;
 	QLineMarkPanel* lineMarkPanel;
 	QLineNumberPanel* lineNumberPanel;
-
+	QSearchReplacePanel* searchReplacePanel;
+	QGotoLinePanel* gotoLinePanel;
+	QStatusPanel* statusPanel;
+	
 	QMultiHash<QDocumentLineHandle*, int> lineToLogEntries;
 	QHash<int, QDocumentLineHandle*> logEntryToLine;
 
@@ -115,22 +95,17 @@ public:
 	
 	static int hideTooltipWhenLeavingLine;
 
-	void setFormats(int multiple,int single,int none) {
-		referenceMultipleFormat=multiple;
-		referencePresentFormat=single;
-		referenceMissingFormat=none;
-		containedLabels.setFormats(multiple,single,none);
-		containedReferences.setFormats(multiple,single,none);
-	}
-
-	int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat;
+	void setLineMarkToolTip(const QString& tooltip);
+	void setFormats(int environment, int multiple,int single,int none);
+	void updateSettings(int lineNumberMultiples);
 private:
+	int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat;
 	friend class DefaultInputBinding;
 	static int bookMarkId(int bookmarkNumber);
 
 	static SpellerUtility* speller;
 	static LatexCompleter* completer;
-	QList<QPair<QDocumentLine, int> > changePositions; //line, index
+	QList<QPair<QDocumentLineHandle*, int> > changePositions; //line, index
 	int curChangePos;
 	int lastSetBookmark; //only looks at 1..3 (mouse range)
 

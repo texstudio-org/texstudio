@@ -18,8 +18,7 @@ public:
 	CM(): l(-1){}
 	CM(bool adir, int line, int anchorOffset, int cursorOffset,const QString &replaceText,const QString& newText):
 		dir(adir),rep(replaceText!="\1"),l(line),ax(anchorOffset),cx(cursorOffset),rt(replaceText),nt(newText){
-		
-		nt.append("\n");
+		if (!nt.endsWith("\n")) nt.append("\n");
 	}
 	bool dir, rep;
 	int l,ax,cx;
@@ -57,7 +56,7 @@ void QDocumentSearchTest::next_sameText_data(){
 		<< 0 << 6
 		<< (QList<CM>() 
 			<< SN(0,7,9) << SP(0, 5, 3) << SN(0, 7, 9) 
-			<< SN(1, 6, 8) << SN (3, 0, 2) << SN(-1, -1, -1));
+			<< SN(1, 6, 8) << SN (3, 0, 2) << SN(0, 0,2));
 	QTest::newRow("forward-backward-case sensitive")
 		<< "aaAaaAaaA\naAaAa\naaaaaaaa" 
 		<< "aa" << (int)QDocumentSearch::CaseSensitive
@@ -66,25 +65,25 @@ void QDocumentSearchTest::next_sameText_data(){
 			<< SN(0, 3, 5) << SN(0, 6, 8) << SN(2, 0, 2) << SP(0, 8, 6)
 			<< SN(2, 0, 2) << SN(2, 2, 4) << SN(2, 4, 6) << SN(2, 6, 8) 
 			<< SP(2, 6, 4) << SP(2, 4, 2) << SP(2, 2, 0) << SP(0, 8, 6) 
-			<< SP(0, 5, 3) << SP(0, 2, 0) << SP(-1, -1, -1));
+			<< SP(0, 5, 3) << SP(0, 2, 0) << SP(2, 8, 6));
 	QTest::newRow("forward-backward-case whole words")
 		<< "aaAaaAaaA\naA aAa\naaa aa aaa\n" 
 		<< "aA" << (int)QDocumentSearch::WholeWords
 		<< 0 << 0
 		<< (QList<CM>() 
-			<< SN(1, 0, 2) << SN(2, 4, 6) << SP(1, 2, 0) << SN (2, 4, 6) << SN(-1,-1,-1));
+			<< SN(1, 0, 2) << SN(2, 4, 6) << SP(1, 2, 0) << SN (2, 4, 6) << SN(1,0,2));
 	QTest::newRow("forward-backward-case whole words case sensitive ")
 		<< "aa Aaa Aaa A\naA aAa\naa  aA aa a\n" 
 		<< "aA" << (int)(QDocumentSearch::WholeWords | QDocumentSearch::CaseSensitive)
 		<< 0 << 0
 		<< (QList<CM>() 
-			<< SN(1, 0, 2) << SN(2, 4, 6) << SP(1, 2, 0) << SN (2, 4, 6) << SN(-1,-1,-1));
+			<< SN(1, 0, 2) << SN(2, 4, 6) << SP(1, 2, 0) << SN (2, 4, 6) << SN(1,0,2));
 	QTest::newRow("forward-backward-case reg exp")
 		<< "Hello42World" 
 		<< "[0-9]+" << (int)QDocumentSearch::RegExp
 		<< 0 << 0
 		<< (QList<CM>() 
-			<< SN(0, 5, 7) << SN(-1,-1,-1));
+			<< SN(0, 5, 7) << SN(0,5,7));
 	/*QTest::newRow("forward-backward-case reg exp (THIS FAILS DUE TO DESIGN ISSUES AND IS EXPECT TO FAIL IN THE MOMENT)")
 		<< "Hello42World" 
 		<< "[0-9]*" << (int)QDocumentSearch::RegExp
@@ -117,7 +116,7 @@ void QDocumentSearchTest::next_sameText_data(){
 			//<< SP(1, 0, 0, "first","aa aa \nfirst aaa XXXX ups\n*** YYYY \n! aa YYYY") 
 			//<< SN(3, 2, 2, "","^^^^ \xE4 \nfirst aaa XXXX ups\n*** YYYY \n!  YYYY") 
 			//<< SP(-1,-1,-1));
-	/*QTest::newRow("replace regexp backreferences")
+	QTest::newRow("replace regexp backreferences")
 		<< "\\begin{abc} \n content \n ... \n \\end{abc}"
 		<< "\\\\(begin|end)\\{([a-zA-Z]*)\\}" << (int)QDocumentSearch::RegExp
 		<< 0 << 0
@@ -134,10 +133,31 @@ void QDocumentSearchTest::next_sameText_data(){
 			<< SN(1, 0, 1, "\\n","he\nlo world! hello!") 
 			<< SN(1, 6, 7, "\\\\","he\n\\o world! hello!") 
 			<< SN(1, 12, 13, "\\t","he\n\\o wor\td! hello!") 
-			<< SN(2, 0, 1, "\\r","he\n\\o wor\td! he\nlo!")); 
-//			<< SN(-1, -1, -1, "\\0",QString("he\n\\o wor\td! he\n*o!").replace(QChar('*'),QChar('\0')))); 
-			
-	*/
+			<< SN(2, 0, 1, "\\r","he\n\\o wor\td! he\nlo!") 
+			<< SN(-1, -1, -1, "\\0",QString("he\n\\o wor\td! he\n*o!").replace(QChar('*'),QChar('\0')))); 
+	QTest::newRow("loop around replace")
+		<< "aaaaaa\nggaagg\nbbaabb\n"
+		<< "aa" << 0
+		<< 1 << 0
+		<< (QList<CM>() 
+			 << SN(1, 2,4, "**", "aaaaaa\nggaagg\nbbaabb\n")
+			 << SN(2, 2,4, "xy", "aaaaaa\nggxygg\nbbaabb\n")
+			 << SN(0, 0,2, "tz", "aaaaaa\nggxygg\nbbtzbb\n")
+			 << SN(0, 2,4, "12", "12aaaa\nggxygg\nbbtzbb\n")
+			 << SN(0, 4,6, "34", "1234aa\nggxygg\nbbtzbb\n")
+			 << SN(-1, -1,-1, "56", "123456\nggxygg\nbbtzbb\n"));
+	QTest::newRow("loop around backward replace")
+		<< "aaaaaa\nggaagg\nbbaabb\n"
+		<< "aa" << 0
+		<< 1 << 4
+		<< (QList<CM>() 
+			<< SP(1, 4, 2, "tsara", "aaaaaa\nggaagg\nbbaabb\n")
+			<< SP(0, 6, 4, "---", "aaaaaa\ngg---gg\nbbaabb\n")
+			<< SP(0, 4, 2, "!!!!", "aaaa!!!!\ngg---gg\nbbaabb\n")
+			<< SP(0, 2, 0, ">>", "aa>>!!!!\ngg---gg\nbbaabb\n")
+			<< SP(2, 4, 2, "<<", "<<>>!!!!\ngg---gg\nbbaabb\n")
+			<< SP(-1, -1, -1, "%", "<<>>!!!!\ngg---gg\nbb%bb\n"));
+	
 }
 void QDocumentSearchTest::next_sameText(){
 	QFETCH(QString, editorText);

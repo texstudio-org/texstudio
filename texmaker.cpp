@@ -716,7 +716,8 @@ void Texmaker::lineMarkToolTip(int line, int mark) {
 	if (mark != errorMarkID && mark != warningMarkID && mark != badboxMarkID) return;
 	int error = currentEditorView()->lineToLogEntries.value(currentEditorView()->editor->document()->line(line).handle(),-1);
 	if (error<0 || error >= outputView->getLogModel()->count()) return;
-	currentEditorView()->lineMarkPanel->setToolTipForTouchedMark(outputView->getLogModel()->at(error).niceMessage());
+	currentEditorView()->setLineMarkToolTip(outputView->getLogModel()->at(error).niceMessage());
+	
 }
 
 void Texmaker::NewDocumentStatus(bool m) {
@@ -744,11 +745,10 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
 	EditorView->setCurrentIndex(EditorView->indexOf(edit));
 
-	edit->environmentFormat=m_formats->id("environment");
-	edit->setFormats(m_formats->id("referenceMultiple"),m_formats->id("referencePresent"),m_formats->id("referenceMissing"));
+	edit->setFormats(m_formats->id("environment"),m_formats->id("referenceMultiple"),m_formats->id("referencePresent"),m_formats->id("referenceMissing"));
 
 	connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(NewDocumentStatus(bool)));
-	connect(edit->lineMarkPanel, SIGNAL(toolTipRequested(int,int)),this,SLOT(lineMarkToolTip(int,int)));
+	connect(edit->lineMarkPanelAction, SIGNAL(toolTipRequested(int,int)),this,SLOT(lineMarkToolTip(int,int)));
 
 	updateEditorSetting(edit);
 }
@@ -759,11 +759,11 @@ void Texmaker::updateEditorSetting(LatexEditorView *edit) {
 	edit->editor->setFlag(QEditor::AutoIndent,autoindent);
 	edit->lineMarkPanelAction->setChecked((showlinemultiples!=0) ||folding||showlinestate);
 	edit->lineNumberPanelAction->setChecked(showlinemultiples!=0);
-	edit->lineNumberPanel->setVerboseMode(showlinemultiples!=10);
-	edit->lineFoldPanel->setChecked(folding);
-	edit->lineChangePanel->setChecked(showlinestate);
-	edit->statusPanel->setChecked(showcursorstate);
+	edit->lineFoldPanelAction->setChecked(folding);
+	edit->lineChangePanelAction->setChecked(showlinestate);
+	edit->statusPanelAction->setChecked(showcursorstate);
 	edit->editor->setDisplayModifyTime(configManager.displayModifyTime);
+	edit->updateSettings(showlinemultiples);
 }
 
 LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName){
