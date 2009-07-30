@@ -46,7 +46,7 @@ QCE_AUTO_REGISTER(QSearchReplacePanel)
 	\brief Constructor
 */
 QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
- : QPanel(p), lastDirectionBackward(false), m_search(0)
+ : QPanel(p),m_search(0)
 {
 	setupUi(this);
 	setDefaultVisibility(false);
@@ -146,13 +146,11 @@ void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceA
 		} else {
 			init();
 		}
-
-		lastDirectionBackward = backward;
 	}
+	if (cbCursor->isChecked() && !m_search->cursor().isValid())
+		m_search->setCursor(editor()->cursor());  //start from current cursor if no known cursor
 	m_search->setOption(QDocumentSearch::Replace,replace);
-	lastDirectionBackward = backward;
 	m_search->next(backward, replaceAll, !cbPrompt->isChecked());
-	
 	if (isVisible() && !leFind->hasFocus() && !leReplace->hasFocus() )
 		if (replace) leReplace->setFocus();
 		else leFind->setFocus();
@@ -165,7 +163,6 @@ void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool
         m_search=0;
     }
     if (!m_search) editor()->setCursorPosition(0,0);
-    lastDirectionBackward=backward;
     leFind->setText(text);
     cbHighlight->setChecked(highlight);
     cbRegExp->setChecked(regex);
@@ -248,13 +245,15 @@ void QSearchReplacePanel::on_leFind_textEdited(const QString& text)
 		return;
 	}
 
-	bool hadSearch = m_search;
+	//bool hadSearch = m_search;
 	QDocumentCursor cur = editor()->cursor();
 
 	if ( m_search )
 	{
-		cur = m_search->cursor();
-
+		if (m_search->cursor().isValid())
+			cur = m_search->cursor();
+		
+		
 		m_search->setSearchText(text);
 
 		if ( cbCursor->isChecked() )
@@ -282,31 +281,11 @@ void QSearchReplacePanel::on_leFind_textEdited(const QString& text)
 	m_search->setOption(QDocumentSearch::Silent, false);
 
 	if ( m_search->cursor().isNull() )
-	{
 		leFind->setStyleSheet("QLineEdit { background: red; color : white; }");
-
-		if ( hadSearch )
-		{
-			m_search->setCursor(cur);
-
-			// figure out whether other matches are availables
-			QDocumentSearch::Options opts = m_search->options();
-			opts &= ~QDocumentSearch::HighlightAll;
-			opts |= QDocumentSearch::Silent;
-
-			QDocumentSearch temp(editor(), text, opts);
-			temp.setOrigin(QDocumentCursor());
-			temp.setScope(m_search->scope());
-			temp.next(true);
-
-			if ( temp.cursor().isValid() )
-			{
-				// other match found from doc start
-				leFind->setStyleSheet("QLineEdit { background: yellow; color : black; }");
-				m_search->setCursor(cur.document()->cursor(0,0));
-				findReplace(false);
-			}
-		}
+	else if ((m_search->cursor().anchorLineNumber() < cur.anchorLineNumber()) || 
+			(m_search->cursor().anchorLineNumber() == cur.anchorLineNumber() && m_search->cursor().anchorColumnNumber()<cur.anchorColumnNumber())) {
+		leFind->setStyleSheet("QLineEdit { background: yellow; color : black; }");
+		editor()->setCursor(m_search->cursor());
 	} else {
 		leFind->setStyleSheet(QString());
 		editor()->setCursor(m_search->cursor());

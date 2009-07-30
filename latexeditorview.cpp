@@ -13,6 +13,7 @@
 
 #include "latexcompleter.h"
 #include "smallUsefulFunctions.h"
+#include "spellerutility.h"
 
 #include "qdocumentline.h"
 #include "qdocumentcommand.h"
@@ -21,6 +22,9 @@
 #include "qformatfactory.h"
 #include "qlanguagedefinition.h"
 
+#include "qcodeedit.h"
+#include "qeditor.h"
+#include "qeditorinputbinding.h"
 #include "qlinemarkpanel.h"
 #include "qlinenumberpanel.h"
 #include "qfoldpanel.h"
@@ -30,6 +34,30 @@
 #include "qsearchreplacepanel.h"
 
 //------------------------------Default Input Binding--------------------------------
+class DefaultInputBinding: public QEditorInputBinding {
+//  Q_OBJECT not possible because inputbinding is no qobject
+public:
+	DefaultInputBinding():keyToReplace(0),contextMenu(0) {}
+	virtual QString id() const {
+		return "TexMakerX::DefaultInputBinding";
+	}
+	virtual QString name() const {
+		return "TexMakerX::DefaultInputBinding";
+	}
+
+	virtual bool keyPressEvent(QKeyEvent *event, QEditor *editor);
+	virtual bool contextMenuEvent(QContextMenuEvent *event, QEditor *editor);
+private:
+	friend class LatexEditorView;
+	QStringList *keyToReplace;
+	QStringList *keyReplaceAfterWord;
+	QStringList *keyReplaceBeforeWord;
+	QList<QAction *> baseActions;
+
+	QMenu* contextMenu;
+	QString lastSpellCheckedWord;
+
+};
 bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 	if (LatexEditorView::completer && LatexEditorView::completer->acceptTriggerString(event->text()))  {
 		editor->cursor().removeSelectedText();
@@ -153,11 +181,20 @@ LatexEditorView::LatexEditorView(QWidget *parent) : QWidget(parent),curChangePos
 	lineMarkPanelAction=codeeditor->addPanel(lineMarkPanel, QCodeEdit::West, false);
 	lineNumberPanel=new QLineNumberPanel;
 	lineNumberPanelAction=codeeditor->addPanel(lineNumberPanel, QCodeEdit::West, false);;
-	lineFoldPanel=codeeditor->addPanel(new QFoldPanel, QCodeEdit::West, false);
-	lineChangePanel=codeeditor->addPanel(new QLineChangePanel, QCodeEdit::West, false);
-	statusPanel=codeeditor->addPanel(new QStatusPanel, QCodeEdit::South, false);
-	gotoLinePanelAction=codeeditor->addPanel(new QGotoLinePanel, QCodeEdit::South, false);
-	searchReplacePanel=codeeditor->addPanel(new QSearchReplacePanel, QCodeEdit::South,false);
+	lineFoldPanelAction=codeeditor->addPanel(new QFoldPanel, QCodeEdit::West, false);
+	lineChangePanelAction=codeeditor->addPanel(new QLineChangePanel, QCodeEdit::West, false);
+	
+	statusPanel=new QStatusPanel;
+	statusPanel->setFont(QApplication::font());
+	statusPanelAction=codeeditor->addPanel(statusPanel, QCodeEdit::South, false);
+	
+	gotoLinePanel=new QGotoLinePanel;
+	gotoLinePanel->setFont(QApplication::font());
+	gotoLinePanelAction=codeeditor->addPanel(gotoLinePanel, QCodeEdit::South, false);
+	
+	searchReplacePanel=new QSearchReplacePanel;
+	searchReplacePanel->setFont(QApplication::font());
+	searchReplacePanelAction=codeeditor->addPanel(searchReplacePanel, QCodeEdit::South,false);
 
 
 	connect(lineMarkPanel,SIGNAL(lineClicked(int)),this,SLOT(lineMarkClicked(int)));
@@ -191,26 +228,26 @@ void LatexEditorView::complete(bool forceVisibleList, bool normalText, bool forc
 void LatexEditorView::jumpChangePositionBackward() {
 	if (changePositions.size()==0) return;
 	for (int i=changePositions.size()-1; i>=0; i--)
-		if (!changePositions[i].first.isValid() || changePositions[i].first.lineNumber()<0) {
+		if (!QDocumentLine(changePositions[i].first).isValid() || QDocumentLine(changePositions[i].first).lineNumber()<0) {
 			changePositions.removeAt(i);
 			if (i<=curChangePos) curChangePos--;
 		}
 	if (curChangePos >= changePositions.size()-1) curChangePos = changePositions.size()-1;
 	else if (curChangePos>=0 && curChangePos < changePositions.size()-1) curChangePos++;
-	else if (editor->cursor().line()==changePositions.first().first) curChangePos=1;
+	else if (editor->cursor().line().handle()==changePositions.first().first) curChangePos=1;
 	else curChangePos=0;
 	if (curChangePos>=0 && curChangePos < changePositions.size())
-		editor->setCursorPosition(changePositions[curChangePos].first.lineNumber(),changePositions[curChangePos].second);
+		editor->setCursorPosition(QDocumentLine(changePositions[curChangePos].first).lineNumber(),changePositions[curChangePos].second);
 }
 void LatexEditorView::jumpChangePositionForward() {
 	for (int i=changePositions.size()-1; i>=0; i--)
-		if (!changePositions[i].first.isValid() || changePositions[i].first.lineNumber()<0) {
+		if (!QDocumentLine(changePositions[i].first).isValid() || QDocumentLine(changePositions[i].first).lineNumber()<0) {
 			changePositions.removeAt(i);
 			if (i<=curChangePos) curChangePos--;
 		}
 	if (curChangePos>0) {
 		curChangePos--;
-		editor->setCursorPosition(changePositions[curChangePos].first.lineNumber(),changePositions[curChangePos].second);
+		editor->setCursorPosition(QDocumentLine(changePositions[curChangePos].first).lineNumber(),changePositions[curChangePos].second);
 	}
 }
 void LatexEditorView::jumpToBookmark(int bookmarkNumber) {
@@ -331,6 +368,21 @@ int LatexEditorView::bookMarkId(int bookmarkNumber) {
 	else return QLineMarksInfoCenter::instance()->markTypeId("bookmark"+QString::number(bookmarkNumber));
 }
 
+void LatexEditorView::setLineMarkToolTip(const QString& tooltip){
+	lineMarkPanel->setToolTipForTouchedMark(tooltip);
+}
+void LatexEditorView::setFormats(int environment, int multiple,int single,int none) {
+	environmentFormat=environment;
+	referenceMultipleFormat=multiple;
+	referencePresentFormat=single;
+	referenceMissingFormat=none;
+	containedLabels.setFormats(multiple,single,none);
+	containedReferences.setFormats(multiple,single,none);
+}
+void LatexEditorView::updateSettings(int lineNumberMultiples){
+	lineNumberPanel->setVerboseMode(lineNumberMultiples!=10);
+}
+
 void LatexEditorView::lineMarkClicked(int line) {
 	QDocumentLine l=editor->document()->line(line);
 	if (!l.isValid()) return;
@@ -385,17 +437,17 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		bool add=false;
 		if (changePositions.size()<=0) add=true;
 		else if (curChangePos<1) {
-			if (changePositions.first().first!=startline) add=true;
+			if (changePositions.first().first!=startline.handle()) add=true;
 			else changePositions.first().second=editor->cursor().columnNumber();
 		} else if (curChangePos>=changePositions.size()-1) {
-			if (changePositions.last().first!=startline) add=true;
+			if (changePositions.last().first!=startline.handle()) add=true;
 			else changePositions.last().second=editor->cursor().columnNumber();
-		}  else if (changePositions[curChangePos].first==startline) changePositions[curChangePos].second=editor->cursor().columnNumber();
-		else if (changePositions[curChangePos+1].first==startline) changePositions[curChangePos+1].second=editor->cursor().columnNumber();
+		}  else if (changePositions[curChangePos].first==startline.handle()) changePositions[curChangePos].second=editor->cursor().columnNumber();
+		else if (changePositions[curChangePos+1].first==startline.handle()) changePositions[curChangePos+1].second=editor->cursor().columnNumber();
 		else add=true;
 		if (add) {
 			curChangePos=-1;
-			changePositions.insert(0,QPair<QDocumentLine,int>(startline,editor->cursor().columnNumber()));
+			changePositions.insert(0,QPair<QDocumentLineHandle*,int>(startline.handle(),editor->cursor().columnNumber()));
 			if (changePositions.size()>20) changePositions.removeLast();
 		}
 	}
@@ -464,7 +516,7 @@ void LatexEditorView::lineRemoved(QDocumentLineHandle* l) {
 	containedLabels.removeUpdateByHandle(l,&containedReferences);
 }
 
-void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {
+void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {	
 	lineRemoved(l);
 
 	QHash<QDocumentLineHandle*, int>::iterator it;
@@ -476,9 +528,9 @@ void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {
 	QPair<int, int> p;
 	//QMessageBox::information(0,QString::number(nr),"",0);
 	for (int i=0; i<changePositions.size(); i++)
-		if (changePositions[i].first==l) {
-			if (changePositions[i].first.previous().isValid()) changePositions[i].first=changePositions[i].first.previous();
-			else if (changePositions[i].first.next().isValid()) changePositions[i].first=changePositions[i].first.next();
+		if (changePositions[i].first==l) { //TODO: optimize
+			if (QDocumentLine(changePositions[i].first).previous().isValid()) changePositions[i].first=QDocumentLine(changePositions[i].first).previous().handle();
+			else if (QDocumentLine(changePositions[i].first).next().isValid()) changePositions[i].first=QDocumentLine(changePositions[i].first).next().handle();
 			else changePositions.removeAt(i);
 			//    QMessageBox::information(0,"trig",0);
 		}

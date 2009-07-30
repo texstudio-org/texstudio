@@ -350,7 +350,7 @@ bool QDocumentSearch::end(bool backward) const
 
 	\note The .search will start at the first character left/right from the selected text
 */
-bool QDocumentSearch::next(bool backward, bool all, bool again)
+bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAround)
 {
 	if ( m_string.isEmpty() )
 		return true;
@@ -629,33 +629,33 @@ bool QDocumentSearch::next(bool backward, bool all, bool again)
 		return next(backward);
 	}
 	
-	if ( !found )
+	if ( !found && allowWrapAround)
 	{
 		m_cursor = QDocumentCursor();
-		
-		if ( hasOption(Silent) )
-			return false;
-		
-		int ret = 
-		QMessageBox::question(
-						m_editor,
-						tr("Failure"),
-						tr(
-							"End of scope reached with no match.\n"
-							"Restart from the begining ?"
-						),
-						QMessageBox::Yes
-						| QMessageBox::No,
-						QMessageBox::Yes
-					);
+			
+		int ret = QMessageBox::Yes; //different to base qce2.2, where it defaults to ::no if silent
+		if ( !hasOption(Silent) )
+			ret=QMessageBox::question(
+							m_editor,
+							tr("Failure"),
+							tr(
+								"End of scope reached with no match.\n"
+								"Restart from the begining ?"
+							),
+							QMessageBox::Yes
+							| QMessageBox::No,
+							QMessageBox::Yes
+						);
 		
 		if ( ret == QMessageBox::Yes )
 		{
 			m_origin = QDocumentCursor();
-			return next(backward);
+			return next(backward, false, again, false);
 		}
 	}
-        return false;
+	if ( !found )
+		m_cursor = QDocumentCursor();
+	return false;
 }
 /*! @} */
 
