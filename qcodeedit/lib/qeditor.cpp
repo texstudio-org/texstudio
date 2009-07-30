@@ -1054,6 +1054,8 @@ void QEditor::fileChanged(const QString& file)
 
 		if ( canUndo() || canRedo() )
 		{
+			watcher()->removeWatch(QString(), this); //no duplicated questions
+			
 			int ret = QMessageBox::warning(this,
 										tr("File changed"),
 										tr(
@@ -1068,6 +1070,7 @@ void QEditor::fileChanged(const QString& file)
 
 			if ( ret == QMessageBox::No )
 				autoReload = false;
+			reconnectWatcher(); 
 		}
 
 		if ( autoReload )
