@@ -50,7 +50,7 @@ void QReliableFileWatch::addWatch(const QString& file, QObject *recipient)
 
 		Watch w;
 		w.state = Clean;
-		w.checksum = -1;
+		w.checksum = (unsigned int)-1;
 		w.size = f.size();
 		w.recipients << recipient;
 		m_targets[file] = w;
@@ -115,9 +115,10 @@ void QReliableFileWatch::timerEvent(QTimerEvent *e)
 		return QFileSystemWatcher::timerEvent(e);
 
 	int postponedEmissions = 0;
-	QHash<QString, Watch>::iterator it = m_targets.begin();
+	QHash<QString, Watch> targets=m_targets; //copy targets, so m_targets can be modified without crashing
+	QHash<QString, Watch>::iterator it = targets.begin();
 
-	while ( it != m_targets.end() )
+	while ( it != targets.end() )
 	{
 		if ( it->state & Duplicate )
 		{
@@ -127,14 +128,14 @@ void QReliableFileWatch::timerEvent(QTimerEvent *e)
 		} else if ( it->state & Recent ) {
 			// send signal
 			it->state = Clean;
-
+/*
 			QFile f(it.key());
 
 			if ( f.size() == (unsigned int)(it->size) )
 			{
 				// TODO : avoid signal emission if checksum match
 				// DO this in editor or here?
-			}
+			}*/
 
 			//qDebug("%s emission.", qPrintable(it.key()));
 
