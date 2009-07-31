@@ -14,6 +14,7 @@
 
 SymbolListWidget :: SymbolListWidget(QWidget *parent, int page) : QTableWidget(parent) {
 	setItemDelegate(new IconDelegate(this));
+	listOfItems.clear();
 	QString icon_name;
 	setShowGrid(true);
 	verticalHeader()->hide();
@@ -36,6 +37,7 @@ SymbolListWidget :: SymbolListWidget(QWidget *parent, int page) : QTableWidget(p
 			item->setText(code[i]+";"+QString::number(i));
 			item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 			setItem(i/4,i%4,item);
+			listOfItems << item;
 		}
 	}
 	break;
@@ -54,6 +56,7 @@ SymbolListWidget :: SymbolListWidget(QWidget *parent, int page) : QTableWidget(p
 			item->setText(code[i]+";"+QString::number(i));
 			item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 			setItem((i-247)/4,(i-247)%4,item);
+			listOfItems << item;
 		}
 	}
 	break;
@@ -72,6 +75,7 @@ SymbolListWidget :: SymbolListWidget(QWidget *parent, int page) : QTableWidget(p
 			item->setText(code[i]+";"+QString::number(i));
 			item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 			setItem((i-314)/4,(i-314)%4,item);
+			listOfItems << item;
 		}
 	}
 	break;
@@ -90,6 +94,7 @@ SymbolListWidget :: SymbolListWidget(QWidget *parent, int page) : QTableWidget(p
 			item->setText(code[i]+";"+QString::number(i));
 			item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 			setItem((i-226)/4,(i-226)%4,item);
+			listOfItems << item;
 		}
 	}
 	break;
@@ -108,6 +113,7 @@ SymbolListWidget :: SymbolListWidget(QWidget *parent, int page) : QTableWidget(p
 			item->setText(code[i+372]+";"+QString::number(i+372));
 			item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 			setItem(i/4,i%4,item);
+			listOfItems << item;
 		}
 	}
 	break;
@@ -125,6 +131,7 @@ SymbolListWidget :: SymbolListWidget(QWidget *parent, int page) : QTableWidget(p
 
 }
 void SymbolListWidget::SetUserPage(usercodelist ulist) {
+	listOfItems.clear();
 	QString icon_name;
 	for (uint i = 0; i <=11; ++i) {
 		if ((ulist[i]>-1) && (ulist[i]<412)) {
@@ -138,7 +145,31 @@ void SymbolListWidget::SetUserPage(usercodelist ulist) {
 			item->setIcon(QIcon(icon_name));
 			item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 			setItem(i/4,i%4,item);
+			listOfItems << item;
 		}
 	}
+}
+
+void SymbolListWidget::resizeEvent ( QResizeEvent * event )
+{
+	//qDebug("%d",event->size());
+	QTableWidget::resizeEvent(event);
+	// remove remaining old items
+	int numberOfColumns=columnCount();
+	for(int i=0;i<rowCount()*columnCount();i++){
+		//delete(item(i/numberOfColumns,i%numberOfColumns));
+		takeItem(i/numberOfColumns,i%numberOfColumns);
+	}
+	// add items with adapted number of columns
+	numberOfColumns=event->size().width()/36;
+	setColumnCount(numberOfColumns);
+	setRowCount(listOfItems.length()/numberOfColumns+1);
+	for(int j = 0; j < listOfItems.length()/numberOfColumns+1; ++j) setRowHeight(j,36);
+	for(int j=0;j < numberOfColumns;++j) setColumnWidth(j,36);
+
+	for (int i = 0; i < listOfItems.length(); ++i) {
+		setItem(i/numberOfColumns,i%numberOfColumns,listOfItems[i]);
+	}
+
 }
 
