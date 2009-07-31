@@ -17,6 +17,7 @@ HEADERS += texmaker.h \
     buildmanager.h \
     dsingleapplication.h \
     symbollistwidget.h \
+	symbolgridwidget.h \
     icondelegate.h \
     latexcompleter.h \
     latexeditorview.h \
@@ -76,6 +77,7 @@ SOURCES += main.cpp \
     dsingleapplication.cpp \
     texmaker.cpp \
     symbollistwidget.cpp \
+	symbolgridwidget.cpp \
     icondelegate.cpp \
     latexcompleter.cpp \
     latexeditorview.cpp \
