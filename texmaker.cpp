@@ -784,8 +784,14 @@ LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName){
 			return edView;
 	}
 	//check for relative file names
-	QFileInfo fi(getAbsoluteFilePath(fileName,".tex"));
-	if (!fi.exists()) return 0;
+	QFileInfo fi(getAbsoluteFilePath(fileName));
+	if (!fi.exists()) {
+		if (QFileInfo(getAbsoluteFilePath(fileName),".tex").exists())
+			fi=QFileInfo(getAbsoluteFilePath(fileName),".tex");
+		else if (QFileInfo(getAbsoluteFilePath(fileName),".bib").exists())
+			fi=QFileInfo(getAbsoluteFilePath(fileName),".bib");
+		else return 0;
+	}
 	//check for same file infos (is not reliable in qt < 4.5, because they just compare absoluteFilePath)
 	for (int i=0; i< EditorView->count(); i++){
 		LatexEditorView* edView = qobject_cast<LatexEditorView*>(EditorView->widget(i));

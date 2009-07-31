@@ -115,7 +115,7 @@ void QReliableFileWatch::timerEvent(QTimerEvent *e)
 		return QFileSystemWatcher::timerEvent(e);
 
 	int postponedEmissions = 0;
-	QHash<QString, Watch> targets=m_targets; //copy targets, so m_targets can be modified without crashing
+	QHash<QString, Watch> targets=m_targets; //copy targets, so m_targets can be modified from the invoken functions without crashing
 	QHash<QString, Watch>::iterator it = targets.begin();
 
 	while ( it != targets.end() )
@@ -124,10 +124,9 @@ void QReliableFileWatch::timerEvent(QTimerEvent *e)
 		{
 			// postpone signal emission...
 			++postponedEmissions;
-			it->state = Recent;
 		} else if ( it->state & Recent ) {
-			// send signal
-			it->state = Clean;
+//			// send signal
+//			it->state = Clean;
 /*
 			QFile f(it.key());
 
@@ -152,9 +151,24 @@ void QReliableFileWatch::timerEvent(QTimerEvent *e)
 
 	if ( postponedEmissions )
 	{
+		//remove duplicates from the real hash
+		it = m_targets.begin();
+		while (it != m_targets.end()) {
+			if ( it->state & Duplicate ) 
+				it->state = Recent;
+			++it;
+		}
 		//qDebug("%i postponed emissions", postponedEmissions);
 		m_timer.start(20, this);
-	}
+	} else {
+		//remove changes from the real hash
+		it = m_targets.begin();
+		while (it != m_targets.end()) {
+			if ( it->state & Recent ) 
+				it->state = Clean;
+			++it;
+		}
+	} 
 }
 
 void QReliableFileWatch::sourceChanged(const QString& filepath)
@@ -166,7 +180,7 @@ void QReliableFileWatch::sourceChanged(const QString& filepath)
 	if ( it == m_targets.end() )
 		return;
 
-	//qDebug("%s modified.", qPrintable(filepath));
+	qDebug("%s modified.", qPrintable(filepath));
 
 	if ( it->state )
 	{
