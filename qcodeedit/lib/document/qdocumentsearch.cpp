@@ -355,10 +355,11 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 	if ( m_string.isEmpty() )
 		return true;
 	
-	if ( !hasOption(Replace) && (all || hasOption(HighlightAll)) && m_highlight.count() )
-	{
-                if ( !backward )
-			++m_index;
+	if ( !hasOption(Replace) && (all || hasOption(HighlightAll)) /*&& m_highlight.count()*/ &&
+	     m_index >= 0 && m_index < m_highlight.count()  && m_cursor == m_highlight.at(m_index))
+	{		
+                if ( !backward ) ++m_index;
+		else --m_index;
 		
 		//m_index = m_index + (backward ? -1 : 1);
 		
@@ -395,11 +396,9 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 			
 			if ( m_editor && !hasOption(Silent) )
 				m_editor->setCursor(m_cursor);
-            return true;
+			return true;
 		}
 		
-		if ( backward )
-			--m_index;
 		
 		return false;
 	}
@@ -482,6 +481,11 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 	// condition only to avoid debug messages...
 	if ( bounded )
 		boundaries = m_scope.selection();
+	
+	if (hasOption(HighlightAll)) {
+		if (backward) m_cursor = bounded? m_scope.selectionEnd() : d->cursor(d->lines()-1,d->line(d->lines()-1).length()-1) ;
+		else m_cursor = bounded?m_scope.selectionStart():d->cursor(0);
+	}
 	
 	//make sure current selection isn't searched
 	if ( m_cursor.hasSelection() ) {
@@ -615,6 +619,7 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 	
 	if ( !hasOption(Replace) && hasOption(HighlightAll) && m_highlight.count() )
 	{
+		//matches has been updated (only reached if there were no matches when next was called)
 		//qDebug("%i matches in group %i", indexedMatchCount(), m_group);
 		if ( indexedMatchCount() )
 		{
@@ -624,9 +629,9 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 			m_group = -1;
 		}
 		
-		m_index = backward ? m_highlight.count() : 0;
-		--m_index;
-		return next(backward);
+		m_index = backward ? m_highlight.count()-1 : 0;
+		m_cursor = m_origin;
+		return next(backward, false, again, allowWrapAround);
 	}
 	
 	if ( !found && allowWrapAround)

@@ -170,40 +170,43 @@ void QDocumentSearchTest::next_sameText(){
 	
 	QFETCH(QList<CM>, cms);
 	
-	ed->document()->setText(editorText);
-	ds->setSearchText(searchText);
-	ds->setOptions((QDocumentSearch::Options)options);
 	
-	ds->setOrigin(ed->document()->cursor(sy,sx));
-	
-	for (int i=0;i< cms.size();i++){
-		QString sel;
-		if (cms[i].l>=0) {
-			if (cms[i].rep) sel=cms[i].nt.split("\n")[cms[i].l];
-			else sel=ed->document()->line(cms[i].l).text();
-			if (cms[i].ax<cms[i].cx) sel = sel.mid(cms[i].ax,cms[i].cx-cms[i].ax);
-			else sel =sel.mid(cms[i].cx,cms[i].ax-cms[i].cx);
+	for (int loop=0; loop<2; loop++){
+		ed->document()->setText(editorText);
+		ds->setSearchText(searchText);
+		if (loop) 
+			options|=QDocumentSearch::HighlightAll; //highlighting shouldn't change anything
+		ds->setOptions((QDocumentSearch::Options)options);
+		ds->setOrigin(ed->document()->cursor(sy,sx));
+		
+		for (int i=0;i< cms.size();i++){
+			QString sel;
+			if (cms[i].l>=0) {
+				if (cms[i].rep) sel=cms[i].nt.split("\n")[cms[i].l];
+				else sel=ed->document()->line(cms[i].l).text();
+				if (cms[i].ax<cms[i].cx) sel = sel.mid(cms[i].ax,cms[i].cx-cms[i].ax);
+				else sel =sel.mid(cms[i].cx,cms[i].ax-cms[i].cx);
+			}
+			if (!cms[i].rep)
+				ds->setOptions((QDocumentSearch::Options)options & (~QDocumentSearch::Replace));
+			else {
+				ds->setOptions((QDocumentSearch::Options)options | QDocumentSearch::Replace);
+				ds->setReplaceText(cms[i].rt);
+			}
+			ds->next(cms[i].dir,false,cms[i].rep);
+			const char* errorMessage=QString("%1: %2 %3 %4  \"%5\" \"%6\" expected %7 %8 %9 %10 %11  %12").arg(i).arg(ds->cursor().lineNumber()).arg(ds->cursor().anchorColumnNumber()).arg(ds->cursor().columnNumber()).arg(ds->cursor().selectedText()).arg(ed->document()->text()).arg(cms[i].l).arg(cms[i].ax).arg(cms[i].cx).arg(sel).arg(cms[i].nt).arg(loop?"(highlight-run)":"").toLatin1().constData();
+			QVERIFY2(ds->cursor().selectedText()== sel,errorMessage);
+			QVERIFY2(ds->cursor().lineNumber()== cms[i].l,errorMessage);
+			QVERIFY2(ds->cursor().columnNumber()== cms[i].cx,errorMessage);
+			QVERIFY2(ds->cursor().anchorLineNumber()== cms[i].l,errorMessage);
+			QVERIFY2(ds->cursor().anchorColumnNumber()== cms[i].ax,errorMessage);
+			if (cms[i].rep){
+				QVERIFY2(ed->document()->text()== cms[i].nt,errorMessage);
+			}
+			/*if (options & QDocumentSearch::Replace)
+				QVERIFY(ed->document()->text()== newText[i]);*/
 		}
-		if (!cms[i].rep)
-			ds->setOptions((QDocumentSearch::Options)options & (~QDocumentSearch::Replace));
-		else {
-			ds->setOptions((QDocumentSearch::Options)options | QDocumentSearch::Replace);
-			ds->setReplaceText(cms[i].rt);
-		}
-		ds->next(cms[i].dir,false,cms[i].rep);
-		const char* errorMessage=QString("%1: %2 %3 %4  \"%5\" \"%6\" expected %7 %8 %9 %10 %11").arg(i).arg(ds->cursor().lineNumber()).arg(ds->cursor().anchorColumnNumber()).arg(ds->cursor().columnNumber()).arg(ds->cursor().selectedText()).arg(ed->document()->text()).arg(cms[i].l).arg(cms[i].ax).arg(cms[i].cx).arg(sel).arg(cms[i].nt).toLatin1().constData();
-		QVERIFY2(ds->cursor().selectedText()== sel,errorMessage);
-		QVERIFY2(ds->cursor().lineNumber()== cms[i].l,errorMessage);
-		QVERIFY2(ds->cursor().columnNumber()== cms[i].cx,errorMessage);
-		QVERIFY2(ds->cursor().anchorLineNumber()== cms[i].l,errorMessage);
-		QVERIFY2(ds->cursor().anchorColumnNumber()== cms[i].ax,errorMessage);
-		if (cms[i].rep){
-			QVERIFY2(ed->document()->text()== cms[i].nt,errorMessage);
-		}
-		/*if (options & QDocumentSearch::Replace)
-			QVERIFY(ed->document()->text()== newText[i]);*/
 	}
-	
 
 }
 void QDocumentSearchTest::cleanupTestCase(){
