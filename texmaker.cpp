@@ -65,6 +65,13 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	RelationListWidget=0;
 	ArrowListWidget=0;
 	ArrowGridWidget=0;
+	RelationGridWidget=0;
+	GreekGridWidget=0;
+	CyrillicGridWidget=0;
+	MiscellaneousMathGridWidget=0;
+	MiscellaneousTextGridWidget=0;
+	DelimitersGridWidget=0;
+	SpecialGridWidget=0;
 	MiscellaneousListWidget=0;
 	DelimitersListWidget=0;
 	GreekListWidget=0;
