@@ -680,6 +680,8 @@ void References::removeUpdateByHandle(QDocumentLineHandle* handle,References* al
 void References::updateByKeys(QStringList refs,References* altRefs){
 	QRegExp rxRef(altRefs->pattern());
 	QRegExp rxLabel(pattern());
+	rxLabel.setMinimal(true);
+	rxRef.setMinimal(true);
 	foreach(QString ref,refs){
 		QList<QDocumentLineHandle*> lst;
 		if(altRefs) {
