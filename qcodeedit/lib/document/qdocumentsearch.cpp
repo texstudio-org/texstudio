@@ -355,10 +355,10 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 	if ( m_string.isEmpty() )
 		return true;
 	
-	if ( !hasOption(Replace) && (all || hasOption(HighlightAll)) /*&& m_highlight.count()*/ &&
-	     m_index >= 0 && m_index < m_highlight.count()  && m_cursor == m_highlight.at(m_index))
+	if ( !hasOption(Replace) && (all || hasOption(HighlightAll)) && m_highlight.count()/* &&
+	     m_index >= 0 && m_index < m_highlight.count()  && m_cursor == m_highlight.at(m_index)*/)
 	{		
-                if ( !backward ) ++m_index;
+		if ( !backward ) ++m_index;
 		else --m_index;
 		
 		//m_index = m_index + (backward ? -1 : 1);
