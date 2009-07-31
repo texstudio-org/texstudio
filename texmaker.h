@@ -24,6 +24,7 @@
 #include "latexeditorview.h"
 #include "latexcompleter.h"
 #include "symbollistwidget.h"
+#include "symbolgridwidget.h"
 #include "xmltagslistwidget.h"
 #include "spellerdialog.h"
 #include "textanalysis.h"
@@ -72,8 +73,9 @@ private:
 	inline QAction* newManagedAction(QWidget* menu, const QString &id, QAction* act);
 	inline QAction* getManagedAction(QString id);
 	
-	void addSymbolList(SymbolListWidget** list, int index, const QString& iconName, const QString& text);
-	void addTagList(XmlTagsListWidget** list, const QString& iconName, const QString& text, const QString& tagFile);
+	void addSymbolGrid(SymbolGridWidget** list, QString SymbolList,  const QString& iconName, const QString& text, const bool show=true);
+	void addSymbolList(SymbolListWidget** list, int index, const QString& iconName, const QString& text, const bool show=true);
+	void addTagList(XmlTagsListWidget** list, const QString& iconName, const QString& text, const QString& tagFile, const bool show=true);
 
 	void setupDockWidgets();
 	void setupMenus();
@@ -96,6 +98,7 @@ private:
 	QToolBox *StructureToolbox;
 	XmlTagsListWidget *MpListWidget, *PsListWidget, *leftrightWidget, *tikzWidget, *asyWidget;
 	SymbolListWidget *RelationListWidget, *ArrowListWidget, *MiscellaneousListWidget, *DelimitersListWidget, *GreekListWidget, *MostUsedListWidget;
+	SymbolGridWidget *RelationGridWidget,*ArrowGridWidget,*GreekGridWidget,*CyrillicGridWidget,*MiscellaneousMathGridWidget,*MiscellaneousTextGridWidget,*DelimitersGridWidget,*SpecialGridWidget;
 	QTreeWidget *StructureTreeWidget;
 
 	OutputViewWidget *outputView; //contains output widgets (over OutputLayout)
@@ -142,6 +145,9 @@ private:
 
 	SymbolList symbolScore;
 	usercodelist symbolMostused;
+
+	QList<QAction*> StructureToolboxActions;
+	QList<QWidget*> StructureToolboxWidgets;
 
 	LatexEditorView *currentEditorView() const;
 	QEditor* currentEditor() const;
@@ -203,6 +209,7 @@ private slots:
 	void editInsertRefToPrevLabel();
 
 	void StructureContextMenu(QPoint point);
+	void StructureToolBoxContextMenu(QPoint point);
 
 	void ReadSettings();
 	void SaveSettings();
@@ -338,6 +345,8 @@ private slots:
 	void previewAvailable(const QString& imageFile, const QString& text);
 
 	void escAction();
+
+	void StructureToolBoxToggle(bool checked);
 protected:
 	LatexEditorView* getEditorFromStructureItem(QTreeWidgetItem* m_item);
 	QPoint sectionSelection(QTreeWidgetItem* m_item);

@@ -64,6 +64,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	
 	RelationListWidget=0;
 	ArrowListWidget=0;
+	ArrowGridWidget=0;
 	MiscellaneousListWidget=0;
 	DelimitersListWidget=0;
 	GreekListWidget=0;
@@ -173,18 +174,57 @@ QMenu* Texmaker::newManagedMenu(const QString &id,const QString &text){
 	return configManager.newManagedMenu(id,text);
 }
 
-void Texmaker::addSymbolList(SymbolListWidget** list, int index,  const QString& iconName, const QString& text){
+void Texmaker::addSymbolGrid(SymbolGridWidget** list, QString SymbolList,  const QString& iconName, const QString& text, const bool show){
 	if (!*list) {
-		(*list)=new SymbolListWidget(StructureToolbox,index);
+		(*list)=new SymbolGridWidget(this,SymbolList);
 		connect(*list, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
-		StructureToolbox->addItem(*list,QIcon(iconName),text);
+		if(show) StructureToolbox->addItem(*list,QIcon(iconName),text);
+		QAction *Act = new QAction(text, this);
+		Act->setCheckable(true);
+		Act->setChecked(show);
+		//Act->setData(QVariant::fromValue((*list)));
+		connect(Act, SIGNAL(toggled(bool)), this, SLOT(StructureToolBoxToggle(bool)));
+		StructureToolboxActions << Act;
+		StructureToolboxWidgets << qobject_cast<QWidget*>(*list);
+		Act->setData(StructureToolboxWidgets.length()-1);
+		(*list)->setProperty("Name",text);
+		(*list)->setProperty("iconName",iconName);
+		(*list)->setProperty("StructPos",StructureToolboxWidgets.length());
 	} else StructureToolbox->setItemText(StructureToolbox->indexOf(*list),text);
 }
-void Texmaker::addTagList(XmlTagsListWidget** list, const QString& iconName, const QString& text, const QString& tagFile){
+
+void Texmaker::addSymbolList(SymbolListWidget** list, int index,const QString& iconName, const QString& text, const bool show){
 	if (!*list) {
-		(*list)=new XmlTagsListWidget(StructureToolbox,":/tags/"+tagFile);
+		(*list)=new SymbolListWidget(this,index);
+		connect(*list, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
+		if(show) StructureToolbox->addItem(*list,QIcon(iconName),text);
+		QAction *Act = new QAction(text, this);
+		Act->setCheckable(true);
+		Act->setChecked(show);
+		connect(Act, SIGNAL(toggled(bool)), this, SLOT(StructureToolBoxToggle(bool)));
+		StructureToolboxActions << Act;
+		StructureToolboxWidgets << qobject_cast<QWidget*>(*list);
+		Act->setData(StructureToolboxWidgets.length()-1);
+		(*list)->setProperty("Name",text);
+		(*list)->setProperty("iconName",iconName);
+		(*list)->setProperty("StructPos",StructureToolboxWidgets.length());
+	} else StructureToolbox->setItemText(StructureToolbox->indexOf(*list),text);
+}
+void Texmaker::addTagList(XmlTagsListWidget** list, const QString& iconName, const QString& text, const QString& tagFile, const bool show){
+	if (!*list) {
+		(*list)=new XmlTagsListWidget(this,":/tags/"+tagFile);
 		connect(*list, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(InsertXmlTag(QListWidgetItem*)));
-		StructureToolbox->addItem(*list,QIcon(iconName),text);
+		if(show) StructureToolbox->addItem(*list,QIcon(iconName),text);
+		QAction *Act = new QAction(text, this);
+		Act->setCheckable(true);
+		Act->setChecked(show);
+		connect(Act, SIGNAL(toggled(bool)), this, SLOT(StructureToolBoxToggle(bool)));
+		StructureToolboxActions << Act;
+		StructureToolboxWidgets << qobject_cast<QWidget*>(*list);
+		Act->setData(StructureToolboxWidgets.length()-1);
+		(*list)->setProperty("Name",text);
+		(*list)->setProperty("iconName",iconName);
+		(*list)->setProperty("StructPos",StructureToolboxWidgets.length());
 	} else StructureToolbox->setItemText(StructureToolbox->indexOf(*list),text);
 }
 void Texmaker::setupDockWidgets(){
@@ -213,11 +253,24 @@ void Texmaker::setupDockWidgets(){
 		StructureToolbox->addItem(StructureTreeWidget,QIcon(":/images/structure.png"),tr("Structure"));
 	} else StructureToolbox->setItemText(StructureToolbox->indexOf(StructureTreeWidget),tr("Structure"));
 	
+	StructureToolbox->setContextMenuPolicy(Qt::CustomContextMenu);
+	connect(StructureToolbox,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(StructureToolBoxContextMenu(QPoint)));
+
 	addSymbolList(&RelationListWidget,0, ":/images/math1.png",tr("Relation symbols"));
 	addSymbolList(&ArrowListWidget,1, ":/images/math2.png",tr("Arrow symbols"));
 	addSymbolList(&MiscellaneousListWidget,2,":/images/math3.png",tr("Miscellaneous symbols"));
 	addSymbolList(&DelimitersListWidget,3,":/images/math4.png",tr("Delimiters"));
 	addSymbolList(&GreekListWidget,4,":/images/math5.png",tr("Greek letters"));
+
+	addSymbolGrid(&RelationGridWidget,"relation", ":/images/math1.png",tr("Relation symbols"),false);
+	addSymbolGrid(&ArrowGridWidget,"arrows", ":/images/math2.png",tr("Arrow symbols"),false);
+	addSymbolGrid(&DelimitersGridWidget,"delimiters",":/images/math4.png",tr("Delimiters"),false);
+	addSymbolGrid(&GreekGridWidget,"greek", ":/images/math5.png",tr("Greek letters"),false);
+	addSymbolGrid(&CyrillicGridWidget,"cyrillic", ":/images/math2.png",tr("Cyrillic letters"),false);
+	addSymbolGrid(&MiscellaneousMathGridWidget,"misc-math", ":/images/math3.png",tr("Miscellaneous math symbols"),false);
+	addSymbolGrid(&MiscellaneousTextGridWidget,"misc-text", ":/images/math3.png",tr("Miscellaneous text symbols"),false);
+	addSymbolGrid(&SpecialGridWidget,"special", ":/images/math3.png",tr("Accented letters"),false);
+
 	addSymbolList(&MostUsedListWidget,5,":/images/math6.png",tr("Most used symbols"));
 
 	addTagList(&leftrightWidget, ":/images/leftright.png", tr("Left/Right Brackets"),"leftright_tags.xml");
@@ -3904,4 +3957,29 @@ void Texmaker::escAction(){
 }
  void Texmaker::editInsertRefToPrevLabel() {
 	  editInsertRefToNextLabel(true);
+ }
+
+ void Texmaker::StructureToolBoxContextMenu(QPoint point) {
+
+
+	QMenu menu;
+	menu.addActions(StructureToolboxActions);
+	menu.exec(StructureToolbox->mapToGlobal(point));
+}
+
+ void Texmaker::StructureToolBoxToggle(bool checked) {
+	QAction *action = qobject_cast<QAction *>(sender());
+	//QTableWidget* widget=action->data().value<QTableWidget*>();
+	int pos=action->data().toInt();
+	QWidget* widget=StructureToolboxWidgets[pos];
+	if(checked){
+		int index=1;
+		while(StructureToolbox->count()>index && StructureToolbox->widget(index)->property("StructPos").toInt()<pos+1){
+			index++;
+		}
+		StructureToolbox->insertItem(index,widget,QIcon(widget->property("iconName").toString()),widget->property("Name").toString());
+	}else{
+		int index=StructureToolbox->indexOf(widget);
+		StructureToolbox->removeItem(index);
+	}
  }
