@@ -439,6 +439,12 @@ public:
 	SymbolListWidget(QWidget *parent, int page);
 public slots:
 	void SetUserPage(usercodelist ulist);
+
+protected:
+	void resizeEvent ( QResizeEvent * event );
+
+private:
+	QList<QTableWidgetItem*>listOfItems;
 };
 
 #endif
