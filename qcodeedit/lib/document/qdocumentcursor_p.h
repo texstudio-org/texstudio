@@ -86,6 +86,7 @@ class QCE_EXPORT QDocumentCursorHandle
 		
 		int visualColumnNumber() const;
 		
+		void setLineNumber(int l, int m = QDocumentCursor::MoveAnchor);
 		void setColumnNumber(int c, int m = QDocumentCursor::MoveAnchor);
 		
 		QPoint documentPosition() const;

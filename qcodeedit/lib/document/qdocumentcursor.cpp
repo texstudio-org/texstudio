@@ -400,6 +400,13 @@ int QDocumentCursor::columnNumber() const
 	return m_handle ? m_handle->columnNumber() : -1;
 }
 
+
+void QDocumentCursor::setLineNumber(int l, MoveMode m)
+{
+	if ( m_handle )
+		m_handle->setLineNumber(l, m);
+}
+
 /*!
 	\brief Set the text column of the cursor
 	\param c text column to set
