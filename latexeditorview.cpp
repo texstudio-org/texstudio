@@ -688,26 +688,34 @@ void References::updateByKeys(QStringList refs,References* altRefs){
 			lst=altRefs->values(ref);
 			foreach(QDocumentLineHandle* elem,lst){
 				QDocumentLine mLine(elem);
-				int posRef=rxRef.indexIn(mLine.text());
-				if(posRef!=-1) {
+				QString text=mLine.text();
+				int offset=0;
+				while(rxRef.indexIn(text)!=-1){
 					int cnt=count(ref);
 					if (cnt>1) {
-						mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMultipleFormat));
-					} else if (cnt==1) mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referencePresentFormat));
-					else mLine.addOverlay(QFormatRange(rxRef.pos(2),rxRef.cap(2).length(),referenceMissingFormat));
+						mLine.addOverlay(QFormatRange(rxRef.pos(2)+offset,rxRef.cap(2).length(),referenceMultipleFormat));
+					} else if (cnt==1) mLine.addOverlay(QFormatRange(rxRef.pos(2)+offset,rxRef.cap(2).length(),referencePresentFormat));
+					else mLine.addOverlay(QFormatRange(rxRef.pos(2)+offset,rxRef.cap(2).length(),referenceMissingFormat));
+
+					text=text.mid(rxRef.pos(0)+rxRef.cap(0).length());
+					offset += rxRef.pos(0)+rxRef.cap(0).length();
 				}
 			}
 		}
 		lst=values(ref);
 		foreach(QDocumentLineHandle* elem,lst){
 			QDocumentLine mLine(elem);
-			int posRef=rxLabel.indexIn(mLine.text());
-			if(posRef!=-1) {
+			QString text=mLine.text();
+			int offset=0;
+			while(rxLabel.indexIn(text)!=-1){
 				int cnt=count(ref);
 				if(cnt>1) {
-					mLine.addOverlay(QFormatRange(rxLabel.pos(2),rxLabel.cap(2).length(),referenceMultipleFormat));
-				} else if (cnt==1) mLine.addOverlay(QFormatRange(rxLabel.pos(2),rxLabel.cap(2).length(),referencePresentFormat));
-				else mLine.addOverlay(QFormatRange(rxLabel.pos(2),rxLabel.cap(2).length(),referenceMissingFormat));
+					mLine.addOverlay(QFormatRange(rxLabel.pos(2)+offset,rxLabel.cap(2).length(),referenceMultipleFormat));
+				} else if (cnt==1) mLine.addOverlay(QFormatRange(rxLabel.pos(2)+offset,rxLabel.cap(2).length(),referencePresentFormat));
+				else mLine.addOverlay(QFormatRange(rxLabel.pos(2)+offset,rxLabel.cap(2).length(),referenceMissingFormat));
+
+				text=text.mid(rxLabel.pos(0)+rxLabel.cap(0).length());
+				offset += rxLabel.pos(0)+rxLabel.cap(0).length();
 			}
 		}
 	} //foreach
