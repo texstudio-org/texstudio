@@ -650,7 +650,7 @@
         <file>completion/url.cwl</file>
         <file>completion/varioref.cwl</file>
         <file>completion/verse.cwl</file>
-		<file>completion/wasysym.cwl</file>
+        <file>completion/wasysym.cwl</file>
         <file>completion/virginialake.cwl</file>
         <file>completion/xifthen.cwl</file>
         <file>completion/xltxtra.cwl</file>
@@ -662,5 +662,7 @@
         <file>tags/tikz_tags.xml</file>
         <file>images/qcodeedit/replaceup.png</file>
         <file>images/qcodeedit/replacedown.png</file>
+        <file>images/hi16-action-math5.png</file>
+        <file>images/hi16-action-math10.png</file>
     </qresource>
 </RCC>

@@ -273,10 +273,10 @@ void Texmaker::setupDockWidgets(){
 	addSymbolGrid(&ArrowGridWidget,"arrows", ":/images/math2.png",tr("Arrow symbols"),false);
 	addSymbolGrid(&DelimitersGridWidget,"delimiters",":/images/math4.png",tr("Delimiters"),false);
 	addSymbolGrid(&GreekGridWidget,"greek", ":/images/math5.png",tr("Greek letters"),false);
-	addSymbolGrid(&CyrillicGridWidget,"cyrillic", ":/images/math2.png",tr("Cyrillic letters"),false);
+	addSymbolGrid(&CyrillicGridWidget,"cyrillic", ":/images/hi16-action-math10.png",tr("Cyrillic letters"),false);
 	addSymbolGrid(&MiscellaneousMathGridWidget,"misc-math", ":/images/math3.png",tr("Miscellaneous math symbols"),false);
-	addSymbolGrid(&MiscellaneousTextGridWidget,"misc-text", ":/images/math3.png",tr("Miscellaneous text symbols"),false);
-	addSymbolGrid(&SpecialGridWidget,"special", ":/images/math3.png",tr("Accented letters"),false);
+	addSymbolGrid(&MiscellaneousTextGridWidget,"misc-text", ":/images/hi16-action-math5.png",tr("Miscellaneous text symbols"),false);
+	addSymbolGrid(&SpecialGridWidget,"special", ":/images/accent1.png",tr("Accented letters"),false);
 
 	addSymbolList(&MostUsedListWidget,5,":/images/math6.png",tr("Most used symbols"));
 
