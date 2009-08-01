@@ -99,6 +99,8 @@ private:
 	XmlTagsListWidget *MpListWidget, *PsListWidget, *leftrightWidget, *tikzWidget, *asyWidget;
 	SymbolListWidget *RelationListWidget, *ArrowListWidget, *MiscellaneousListWidget, *DelimitersListWidget, *GreekListWidget, *MostUsedListWidget;
 	SymbolGridWidget *RelationGridWidget,*ArrowGridWidget,*GreekGridWidget,*CyrillicGridWidget,*MiscellaneousMathGridWidget,*MiscellaneousTextGridWidget,*DelimitersGridWidget,*SpecialGridWidget;
+	qlonglong SymbolListVisible;
+
 	QTreeWidget *StructureTreeWidget;
 
 	OutputViewWidget *outputView; //contains output widgets (over OutputLayout)

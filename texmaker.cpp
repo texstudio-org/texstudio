@@ -183,7 +183,7 @@ QMenu* Texmaker::newManagedMenu(const QString &id,const QString &text){
 
 void Texmaker::addSymbolGrid(SymbolGridWidget** list, QString SymbolList,  const QString& iconName, const QString& text, const bool show){
 	if (!*list) {
-		(*list)=new SymbolGridWidget(this,SymbolList);
+		(*list)=new SymbolGridWidget(0,SymbolList);
 		connect(*list, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
 		if(show) StructureToolbox->addItem(*list,QIcon(iconName),text);
 		QAction *Act = new QAction(text, this);
@@ -202,7 +202,7 @@ void Texmaker::addSymbolGrid(SymbolGridWidget** list, QString SymbolList,  const
 
 void Texmaker::addSymbolList(SymbolListWidget** list, int index,const QString& iconName, const QString& text, const bool show){
 	if (!*list) {
-		(*list)=new SymbolListWidget(this,index);
+		(*list)=new SymbolListWidget(0,index);
 		connect(*list, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
 		if(show) StructureToolbox->addItem(*list,QIcon(iconName),text);
 		QAction *Act = new QAction(text, this);
@@ -219,7 +219,7 @@ void Texmaker::addSymbolList(SymbolListWidget** list, int index,const QString& i
 }
 void Texmaker::addTagList(XmlTagsListWidget** list, const QString& iconName, const QString& text, const QString& tagFile, const bool show){
 	if (!*list) {
-		(*list)=new XmlTagsListWidget(this,":/tags/"+tagFile);
+		(*list)=new XmlTagsListWidget(0,":/tags/"+tagFile);
 		connect(*list, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(InsertXmlTag(QListWidgetItem*)));
 		if(show) StructureToolbox->addItem(*list,QIcon(iconName),text);
 		QAction *Act = new QAction(text, this);
@@ -263,29 +263,29 @@ void Texmaker::setupDockWidgets(){
 	StructureToolbox->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(StructureToolbox,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(StructureToolBoxContextMenu(QPoint)));
 
-	addSymbolList(&RelationListWidget,0, ":/images/math1.png",tr("Relation symbols"));
-	addSymbolList(&ArrowListWidget,1, ":/images/math2.png",tr("Arrow symbols"));
-	addSymbolList(&MiscellaneousListWidget,2,":/images/math3.png",tr("Miscellaneous symbols"));
-	addSymbolList(&DelimitersListWidget,3,":/images/math4.png",tr("Delimiters"));
-	addSymbolList(&GreekListWidget,4,":/images/math5.png",tr("Greek letters"));
+	addSymbolList(&RelationListWidget,0, ":/images/math1.png",tr("Relation symbols"),SymbolListVisible&(1<<0));
+	addSymbolList(&ArrowListWidget,1, ":/images/math2.png",tr("Arrow symbols"),SymbolListVisible&1<<1);
+	addSymbolList(&MiscellaneousListWidget,2,":/images/math3.png",tr("Miscellaneous symbols"),SymbolListVisible&1<<2);
+	addSymbolList(&DelimitersListWidget,3,":/images/math4.png",tr("Delimiters"),SymbolListVisible&1<<3);
+	addSymbolList(&GreekListWidget,4,":/images/math5.png",tr("Greek letters"),SymbolListVisible&1<<4);
 
-	addSymbolGrid(&RelationGridWidget,"relation", ":/images/math1.png",tr("Relation symbols"),false);
-	addSymbolGrid(&ArrowGridWidget,"arrows", ":/images/math2.png",tr("Arrow symbols"),false);
-	addSymbolGrid(&DelimitersGridWidget,"delimiters",":/images/math4.png",tr("Delimiters"),false);
-	addSymbolGrid(&GreekGridWidget,"greek", ":/images/math5.png",tr("Greek letters"),false);
-	addSymbolGrid(&CyrillicGridWidget,"cyrillic", ":/images/hi16-action-math10.png",tr("Cyrillic letters"),false);
-	addSymbolGrid(&MiscellaneousMathGridWidget,"misc-math", ":/images/math3.png",tr("Miscellaneous math symbols"),false);
-	addSymbolGrid(&MiscellaneousTextGridWidget,"misc-text", ":/images/hi16-action-math5.png",tr("Miscellaneous text symbols"),false);
-	addSymbolGrid(&SpecialGridWidget,"special", ":/images/accent1.png",tr("Accented letters"),false);
+	addSymbolGrid(&RelationGridWidget,"relation", ":/images/math1.png",tr("Relation symbols"),SymbolListVisible&1<<5);
+	addSymbolGrid(&ArrowGridWidget,"arrows", ":/images/math2.png",tr("Arrow symbols"),SymbolListVisible&(1<<6));
+	addSymbolGrid(&DelimitersGridWidget,"delimiters",":/images/math4.png",tr("Delimiters"),SymbolListVisible&(1<<7));
+	addSymbolGrid(&GreekGridWidget,"greek", ":/images/math5.png",tr("Greek letters"),SymbolListVisible&(1<<8));
+	addSymbolGrid(&CyrillicGridWidget,"cyrillic", ":/images/hi16-action-math10.png",tr("Cyrillic letters"),SymbolListVisible&(1<<9));
+	addSymbolGrid(&MiscellaneousMathGridWidget,"misc-math", ":/images/math3.png",tr("Miscellaneous math symbols"),SymbolListVisible&(1<<10));
+	addSymbolGrid(&MiscellaneousTextGridWidget,"misc-text", ":/images/hi16-action-math5.png",tr("Miscellaneous text symbols"),SymbolListVisible&(1<<11));
+	addSymbolGrid(&SpecialGridWidget,"special", ":/images/accent1.png",tr("Accented letters"),SymbolListVisible&(1<<12));
 
-	addSymbolList(&MostUsedListWidget,5,":/images/math6.png",tr("Most used symbols"));
+	addSymbolList(&MostUsedListWidget,5,":/images/math6.png",tr("Most used symbols"),SymbolListVisible&1<<13);
 
-	addTagList(&leftrightWidget, ":/images/leftright.png", tr("Left/Right Brackets"),"leftright_tags.xml");
-	addTagList(&PsListWidget, ":/images/pstricks.png", tr("Pstricks Commands"),"pstricks_tags.xml");
-	addTagList(&MpListWidget, ":/images/metapost.png", tr("MetaPost Commands"),"metapost_tags.xml");
-	addTagList(&tikzWidget, ":/images/tikz.png", tr("Tikz Commands"),"tikz_tags.xml");
-	addTagList(&asyWidget, ":/images/asymptote.png", tr("Asymptote Commands"),"asymptote_tags.xml");
-	
+	addTagList(&leftrightWidget, ":/images/leftright.png", tr("Left/Right Brackets"),"leftright_tags.xml",SymbolListVisible&1<<14);
+	addTagList(&PsListWidget, ":/images/pstricks.png", tr("Pstricks Commands"),"pstricks_tags.xml",SymbolListVisible&1<<15);
+	addTagList(&MpListWidget, ":/images/metapost.png", tr("MetaPost Commands"),"metapost_tags.xml",SymbolListVisible&1<<16);
+	addTagList(&tikzWidget, ":/images/tikz.png", tr("Tikz Commands"),"tikz_tags.xml",SymbolListVisible&1<<17);
+	addTagList(&asyWidget, ":/images/asymptote.png", tr("Asymptote Commands"),"asymptote_tags.xml",SymbolListVisible&1<<18);
+
 // OUTPUT WIDGETS
 	if (!outputView) {
 		outputView = new OutputViewWidget(this);
@@ -1650,7 +1650,7 @@ void Texmaker::ReadSettings() {
 	for (int i=0; i <412 ; i++)
 		symbolScore[i]=config->value("Symbols/symbol"+QString::number(i),0).toInt();
 
-
+	SymbolListVisible=config->value("Symbols/symbollists",1040415).toLongLong();
 
 
 	config->endGroup();
@@ -1740,6 +1740,12 @@ void Texmaker::SaveSettings() {
 	for (int i=0; i <412 ; i++) {
 		config->setValue("Symbols/symbol"+QString::number(i),symbolScore[i]);
 	}
+
+	qlonglong result=0;
+	for(int index=1;StructureToolbox->count()>index;index++){
+		result+=1<<(StructureToolbox->widget(index)->property("StructPos").toInt()-1);
+	}
+	config->setValue("Symbols/symbollists",result);
 
 
 
