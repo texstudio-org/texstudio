@@ -3663,12 +3663,42 @@ int QDocumentCursorHandle::columnNumber() const
 	return m_begOffset;
 }
 
+void QDocumentCursorHandle::setLineNumber(int l, int m)
+{
+	if ( !m_doc )
+		return;
+
+	QDocumentLine /*l1 = m_doc->line(m_begLine), */l2 = m_doc->line(m_endLine);
+	QDocumentLine ln = m_doc->line(l);
+
+	if (ln.isNull()) 
+		return;
+	
+	if ( m & QDocumentCursor::KeepAnchor )
+	{
+		if ( l2.isNull() )
+		{
+			m_endLine = m_begLine;
+			m_endOffset = m_begOffset;
+		}
+
+		m_begLine = l; //qBound(0, c, l1.length());
+	} else {
+		m_endLine = -1;
+		m_endOffset = 0;
+		m_begLine = l;
+	}
+
+	refreshColumnMemory();
+}
+
+
 void QDocumentCursorHandle::setColumnNumber(int c, int m)
 {
 	if ( !m_doc )
 		return;
 
-	QDocumentLine l1 = m_doc->line(m_begLine), l2 = m_doc->line(m_endLine);
+	QDocumentLine /*l1 = m_doc->line(m_begLine), */l2 = m_doc->line(m_endLine);
 
 	if ( m & QDocumentCursor::KeepAnchor )
 	{
@@ -4773,7 +4803,7 @@ void QDocumentCursorHandle::setSelectionBoundary(const QDocumentCursor& c)
 
 bool QDocumentCursorHandle::isWithinSelection(const QDocumentCursor& c) const
 {
-	if ( !hasSelection() ) //|| c.hasSelection() )
+	if ( !hasSelection() || c.isNull() ) //|| c.hasSelection() )
 		return false;
 
 	int minOff, maxOff, min, max;

@@ -490,7 +490,7 @@ void QSearchReplacePanel::cursorPositionChanged()
 {
 	if ( m_search )
 	{
-		if ( editor()->cursor() == m_search->cursor() || cbHighlight->isChecked() )
+		if ( editor()->cursor() == m_search->cursor() )
 			return;
 
 		if ( cbCursor->isChecked() )

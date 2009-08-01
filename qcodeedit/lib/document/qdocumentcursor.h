@@ -138,6 +138,7 @@ class QCE_EXPORT QDocumentCursor
 		
 		int visualColumnNumber() const;
 		
+		void setLineNumber(int c, MoveMode m = MoveAnchor);
 		void setColumnNumber(int c, MoveMode m = MoveAnchor);
 		
 		int wrappedLineOffset() const;

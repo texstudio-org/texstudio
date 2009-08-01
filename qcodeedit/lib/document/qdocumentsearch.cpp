@@ -87,6 +87,169 @@ QDocumentCursor QDocumentSearch::match(int idx) const
 	return idx >= 0 && idx < m_highlight.count() ? m_highlight.at(idx) : QDocumentCursor();
 }
 
+//equal to next but needs matches
+bool QDocumentSearch::nextMatch(bool backward, bool again,  bool allowWrapAround){
+	if (!hasOption(HighlightAll)) 
+		return false;
+	if (!indexedMatchCount()) searchMatches();
+	if (!indexedMatchCount()) 
+		return false;
+	if (m_cursor.isNull())
+		return false; //need a starting point, m_cursor should have been set by next
+
+	//search the correct index	
+	if (m_index >= 0 && m_index < m_highlight.count() && m_highlight.at(m_index).isWithinSelection(m_cursor)){
+		//we have a cached match!
+		if ( !backward ) ++m_index;
+		else --m_index;
+	} else if (backward){
+		//todo: binary search
+		m_index=-1;
+		for (int i=m_highlight.count()-1; i>=0;--i)
+			if (m_highlight[i].selectionEnd()<=m_cursor) {
+				m_index=i;
+				break;
+			}
+	} else {
+		m_index=-1;
+		for (int i=0;i<m_highlight.count(); ++i)
+			if (m_highlight[i].selectionStart()>=m_cursor) {
+				m_index=i;
+				break;
+			}
+	}
+	if ( (m_index < 0 || m_index >= m_highlight.count()) )
+	{
+		if (!allowWrapAround) 
+			return false;
+		
+		int ret = QMessageBox::Yes ;
+		if ( !hasOption(Silent) )
+		{
+			ret=QMessageBox::question(
+							m_editor,
+							tr("Failure"),
+							tr(
+								"End of matches reached.\n"
+								"Restart from the begining ?"
+							),
+							QMessageBox::Yes | QMessageBox::No,
+							QMessageBox::Yes
+						);
+		}
+		
+		if ( ret == QMessageBox::Yes ) {
+			m_index = backward ? m_highlight.count()-1 : 0;
+		} else return false;
+	}
+	
+	//m_index is now valid and the search match the user expects
+
+	
+	if (!backward) m_cursor = m_highlight.at(m_index);
+	else {
+		m_cursor.moveTo(m_highlight.at(m_index).lineNumber(), m_highlight.at(m_index).columnNumber());
+		m_cursor.setColumnNumber(m_highlight.at(m_index).anchorColumnNumber(),QDocumentCursor::KeepAnchor); //swap anchor and normals
+		//TODO: match spanning across several lines
+	} 
+	if ( m_editor && !hasOption(Silent) )
+			m_editor->setCursor(m_cursor);
+
+	if (hasOption(Replace) && !again) //again replacement should already have been handled by next
+	{
+		QRegExp m_regexp=currentRegExp();
+		if (!m_regexp.exactMatch(m_cursor.selectedText())) 
+			return false; //wtf? anyway this check is necessary to access the submatch \1, \2 in the replace text
+		int ret=QMessageBox::Yes;
+		
+		if ( hasOption(Prompt) )
+			ret = QMessageBox::question(m_editor, tr("Replacement prompt"),
+								tr("Shall it be replaced?"),
+								QMessageBox::Yes | QMessageBox::No,
+								QMessageBox::Yes);
+
+		if (ret==QMessageBox::Yes)
+			replaceCursorText(m_regexp);
+	}
+	return true;
+}
+void QDocumentSearch::searchMatches(const QDocumentCursor& highlightScope){
+	clearMatches();
+	
+	QDocument* d= currentDocument();
+	if ( !d || !d->lines()) return;
+
+	QFormatScheme *f = d->formatScheme() ? d->formatScheme() : QDocument::formatFactory();
+	int sid = f ? f->id("search") : 0;
+	
+	if ( !sid )
+		qWarning("Highlighting of search matches disabled due to unavailability of a format scheme.");
+
+	QDocumentCursor hscope = highlightScope; //TODO: implement partially update of matches (in the changed line)
+	if (!hscope.isValid() || !hscope.hasSelection() || hscope.document()!=d){
+		if (m_scope.isValid() && m_scope.hasSelection() && m_scope.document()==d) hscope=m_scope;
+		else {
+			if (hscope.document()!=d) hscope=d->cursor(0,0);
+			else hscope.movePosition(0,QDocumentCursor::Start);
+			hscope.movePosition(0,QDocumentCursor::End, QDocumentCursor::KeepAnchor);
+		}
+	}
+	
+	QDocumentCursor hc = hscope.selectionStart();
+	QDocumentSelection boundaries=hscope.selection();
+	QRegExp m_regexp = currentRegExp();
+	
+	while ( !hc.atEnd() && hscope.isWithinSelection(hc))
+	{
+		int ln = hc.lineNumber();
+		QDocumentLine l = hc.line();
+		
+		QString s = l.text();
+		
+		if ( boundaries.endLine == ln )
+			s = s.left(boundaries.end);
+		
+		int column=m_regexp.indexIn(s, hc.columnNumber());
+                /*
+		qDebug("searching %s in %s => %i",
+				qPrintable(m_regexp.pattern()),
+				qPrintable(s),
+				column);
+		*/
+		
+		if ( column != -1 && (column >= hc.columnNumber() ) )
+		{
+			if (!m_regexp.matchedLength())
+				hc.setColumnNumber(column+1); //empty (e.g. a* regexp)
+			else {
+				hc.setColumnNumber(column);
+				hc.setColumnNumber(column + m_regexp.matchedLength(), QDocumentCursor::KeepAnchor);
+							
+				if ( m_group == -1 )
+					m_group = d->getNextGroupId();
+				
+				d->addMatch(m_group,
+							hc.lineNumber(),
+							hc.anchorColumnNumber(),
+							hc.columnNumber() - hc.anchorColumnNumber(),
+							sid);
+				
+				m_highlight << hc;
+				m_highlight.last().setAutoUpdated(true);		
+			}
+		} else hc.movePosition(1, QDocumentCursor::NextBlock);
+	}
+	
+	if ( m_highlight.count() )
+	{
+		//qDebug("%i matches in group %i", indexedMatchCount(), m_group);
+		m_editor->document()->flushMatches(m_group);
+	} else {
+		m_editor->document()->releaseGroupId(m_group);
+		m_group = -1;
+	}
+}
+
 /*!
 	\brief Clear matches
 	
@@ -95,21 +258,57 @@ QDocumentCursor QDocumentSearch::match(int idx) const
 */
 void QDocumentSearch::clearMatches()
 {
-	if ( !m_editor || !m_editor->document() )
+	QDocument* doc= currentDocument();
+	if ( !doc )
 		return;
 	
 	//qDebug("clearing matches");
-	m_cursor = QDocumentCursor();
+	//m_cursor = QDocumentCursor();
+	m_index=-1;
 	
 	if ( m_group != -1 )
 	{
-		m_editor->document()->clearMatches(m_group);
-		m_editor->document()->flushMatches(m_group);
+		doc->clearMatches(m_group);
+		doc->flushMatches(m_group);
 		m_group = -1;
 	}
 	
 	m_highlight.clear();
 }
+
+/*
+  returns the document the search should be performed
+  */
+QDocument* QDocumentSearch::currentDocument(){
+	return m_editor ? m_editor->document() : m_origin.document();
+}
+
+/*
+  returns a regexp which fully describes the search text (including flags like casesensitivity, wholewords,...)
+  */
+QRegExp QDocumentSearch::currentRegExp(){
+	Qt::CaseSensitivity cs = hasOption(CaseSensitive)
+								?
+									Qt::CaseSensitive
+								:
+									Qt::CaseInsensitive;
+	
+	QRegExp m_regexp;
+	if ( hasOption(RegExp) )
+	{
+		m_regexp = QRegExp(m_string, cs, QRegExp::RegExp);
+	} else if ( hasOption(WholeWords) ) {
+		m_regexp = QRegExp(
+						QString("\\b%1\\b").arg(QRegExp::escape(m_string)),
+						cs,
+						QRegExp::RegExp
+					);
+	} else {
+		m_regexp = QRegExp(m_string, cs, QRegExp::FixedString);
+	}
+	return m_regexp;
+}
+
 
 /*!
 	\return The search pattern
@@ -202,8 +401,7 @@ void QDocumentSearch::setOption(Option opt, bool on)
 			)
 	{
 		// matches may have become invalid : update them
-		clearMatches();
-		next(false);
+		searchMatches();
 	}
 }
 
@@ -258,7 +456,7 @@ void QDocumentSearch::setOrigin(const QDocumentCursor& c)
 	
 	m_origin = c;
 	
-	clearMatches();
+//	clearMatches();
 }
 
 /*!
@@ -279,6 +477,7 @@ QDocumentCursor QDocumentSearch::cursor() const
 void QDocumentSearch::setCursor(const QDocumentCursor& c)
 {
 	m_cursor = c;
+	m_index = -1;
 }
 
 /*!
@@ -345,63 +544,13 @@ bool QDocumentSearch::end(bool backward) const
 	\param all if true, the whole document will be searched first, all matches recorded and available for further navigation
 	\param again if a search match is selected it will be replaced, than a normal search (no replace) will be performed
 
-	\note Technically speaking the all parameter make search behave similarly to the HighlightAll option, except that the former
-	option does not alter the formatting of the document
-
-	\note The .search will start at the first character left/right from the selected text
+	\note The search will start at the first character left/right from the selected text
 */
 bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAround)
 {
 	if ( m_string.isEmpty() )
 		return true;
 	
-	if ( !hasOption(Replace) && (all || hasOption(HighlightAll)) && m_highlight.count()/* &&
-	     m_index >= 0 && m_index < m_highlight.count()  && m_cursor == m_highlight.at(m_index)*/)
-	{		
-		if ( !backward ) ++m_index;
-		else --m_index;
-		
-		//m_index = m_index + (backward ? -1 : 1);
-		
-		if ( (m_index < 0 || m_index >= m_highlight.count()) )
-		{
-			if ( hasOption(Silent) )
-			{
-				m_cursor = QDocumentCursor();
-				return false;
-			}
-			
-			int ret = 
-			QMessageBox::question(
-							m_editor,
-							tr("Failure"),
-							tr(
-								"End of matches reached.\n"
-								"Restart from the begining ?"
-							),
-							QMessageBox::Yes
-							| QMessageBox::No,
-							QMessageBox::Yes
-						);
-			
-			if ( ret == QMessageBox::Yes )
-			{
-				m_index = backward ? m_highlight.count() : 0;
-				--m_index;
-				return next(backward);
-			}
-			return false;
-		} else {
-			m_cursor = m_highlight.at(m_index);
-			
-			if ( m_editor && !hasOption(Silent) )
-				m_editor->setCursor(m_cursor);
-			return true;
-		}
-		
-		
-		return false;
-	}
 	
 	if ( m_cursor.isNull() )
 	{
@@ -427,6 +576,27 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 			QMessageBox::warning(0, 0, "Unable to perform search operation");
 		}
 	}
+
+
+	if (all && !hasOption(Replace)) {
+		all=false;
+		qWarning("QDocumentSearch:next: all without replace is meaningless");
+	}
+
+	QRegExp m_regexp=currentRegExp();
+	
+	if (hasOption(Replace) && again) 
+		if (m_regexp.exactMatch(m_cursor.selectedText()))  
+			replaceCursorText(m_regexp);
+
+	//ensure that the current selection isn't searched
+	if ( m_cursor.hasSelection() ) {
+		if (backward) m_cursor=m_cursor.selectionStart();
+		else m_cursor=m_cursor.selectionEnd();
+	}
+
+	if (hasOption(HighlightAll) && !all)  //special handling if highlighting is on, but all replace is still handled here
+		return nextMatch(backward,again,allowWrapAround);
 	
 	/*
 	qDebug(
@@ -438,40 +608,11 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 	*/
 	
 	m_index = 0;
-	QRegExp m_regexp;
-	Qt::CaseSensitivity cs = hasOption(CaseSensitive)
-								?
-									Qt::CaseSensitive
-								:
-									Qt::CaseInsensitive;
-	
-	if ( hasOption(RegExp) )
-	{
-		m_regexp = QRegExp(m_string, cs, QRegExp::RegExp);
-	} else if ( hasOption(WholeWords) ) {
-		m_regexp = QRegExp(
-						QString("\\b%1\\b").arg(QRegExp::escape(m_string)),
-						cs,
-						QRegExp::RegExp
-					);
-	} else {
-		m_regexp = QRegExp(m_string, cs, QRegExp::FixedString);
-	}
-	
 	bool realReplace=hasOption(Replace) && !again;
-	if (hasOption(Replace) && again) 
-		if (m_regexp.exactMatch(m_cursor.selectedText()))  
-			replaceCursorText(m_regexp,backward);
-	
-        bool found = false;
+	bool found = false;
 	
 	QDocumentCursor::MoveOperation move;
-	QDocument *d = m_editor ? m_editor->document() : m_origin.document();
-	QFormatScheme *f = d->formatScheme() ? d->formatScheme() : QDocument::formatFactory();
-	int sid = f ? f->id("search") : 0;
-	
-	if ( !sid )
-		qWarning("Highlighting of search matches disabled due to unavailability of a format scheme.");
+//	QDocument *d = currentDocument();
 	
 	move = backward ? QDocumentCursor::PreviousBlock : QDocumentCursor::NextBlock;
 	
@@ -481,19 +622,7 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 	// condition only to avoid debug messages...
 	if ( bounded )
 		boundaries = m_scope.selection();
-	
-	if (hasOption(HighlightAll)) {
-		if (backward) m_cursor = bounded? m_scope.selectionEnd() : d->cursor(d->lines()-1,d->line(d->lines()-1).length()-1) ;
-		else m_cursor = bounded?m_scope.selectionStart():d->cursor(0);
-	}
-	
-	//make sure current selection isn't searched
-	if ( m_cursor.hasSelection() ) {
-		int l; int c;
-		if (backward) m_cursor.leftBoundaries(l,c);
-		else m_cursor.rightBoundaries(l,c);
-		m_cursor.moveTo(l,c);
-	}
+		
 	
 	while ( !end(backward) )
 	{
@@ -534,106 +663,56 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 				column);
 		*/
 		
-                if ( column != -1 && (backward || column >= m_cursor.columnNumber() ) )
+		if ( column != -1 && (backward || column >= m_cursor.columnNumber() ) )
 		{
-			column += coloffset;
-			
-			if ( backward )
-			{
-				m_cursor.setColumnNumber(column + m_regexp.matchedLength());
-				m_cursor.setColumnNumber(column, QDocumentCursor::KeepAnchor);
-				
-				/*
-				m_cursor.movePosition(m_regexp.matchedLength(),
-									QDocumentCursor::PreviousCharacter,
-									QDocumentCursor::KeepAnchor);
-				*/
+			if (!m_regexp.matchedLength()){
+				//empty (e.g. a* regexp)
+				if (backward) m_cursor.setColumnNumber(column-1);
+				else m_cursor.setColumnNumber(column+1);
 			} else {
-				m_cursor.setColumnNumber(column);
-				m_cursor.setColumnNumber(column + m_regexp.matchedLength(), QDocumentCursor::KeepAnchor);
+				column += coloffset;
 				
-				/*
-				m_cursor.movePosition(m_regexp.matchedLength(),
-									QDocumentCursor::NextCharacter,
-									QDocumentCursor::KeepAnchor);
-				*/
-			}
-			
-			if ( m_editor && !hasOption(Silent) && !hasOption(HighlightAll) )
-				m_editor->setCursor(m_cursor);
-			
-			if ( realReplace )
-			{
-				bool rep = true;
-				
-				if ( hasOption(Prompt) )
+				if ( backward )
 				{
-					QMessageBox::StandardButtons buttons=QMessageBox::Yes | QMessageBox::No;
-					if (all) buttons|=QMessageBox::Cancel;
-                                        int ret = QMessageBox::question(m_editor, tr("Replacement prompt"),
-										tr("Shall it be replaced?"),
-										buttons,
-										QMessageBox::Yes);
-					rep=ret==QMessageBox::Yes;
-					if (ret==QMessageBox::Cancel) 
-						return false;
+					m_cursor.setColumnNumber(column + m_regexp.matchedLength());
+					m_cursor.setColumnNumber(column, QDocumentCursor::KeepAnchor);
+				} else {
+					m_cursor.setColumnNumber(column);
+					m_cursor.setColumnNumber(column + m_regexp.matchedLength(), QDocumentCursor::KeepAnchor);
 				}
 				
-				//
-				if ( rep ) replaceCursorText(m_regexp, backward);
-			} else if ( all || hasOption(HighlightAll) ) {
+				if ( m_editor && !hasOption(Silent))
+					m_editor->setCursor(m_cursor);
 				
-				if ( sid && hasOption(HighlightAll) )
+				if ( realReplace )
 				{
-					if ( m_group == -1 )
-						m_group = d->getNextGroupId();
+					bool rep = true;
 					
-					d->addMatch(m_group,
-								m_cursor.lineNumber(),
-								m_cursor.anchorColumnNumber(),
-								m_cursor.columnNumber() - m_cursor.anchorColumnNumber(),
-								sid);
-					//QFormatRange r(
-					//			m_cursor.anchorColumnNumber(),
-					//			m_cursor.columnNumber() - m_cursor.anchorColumnNumber(),
-					//			m_editor->document()->formatScheme()->id("search")
-					//		);
+					if ( hasOption(Prompt) )
+					{
+						QMessageBox::StandardButtons buttons=QMessageBox::Yes | QMessageBox::No;
+						if (all) buttons|=QMessageBox::Cancel;
+											int ret = QMessageBox::question(m_editor, tr("Replacement prompt"),
+											tr("Shall it be replaced?"),
+											buttons,
+											QMessageBox::Yes);
+						rep=ret==QMessageBox::Yes;
+						if (ret==QMessageBox::Cancel) 
+							return false;
+					}
 					
-					//qDebug("(%i, %i, %i)", r.offset, r.length, r.format);
-					//m_cursor.line().addOverlay(r);
-				}
+					if ( rep ) replaceCursorText(m_regexp);
+				} 
 				
-				m_highlight << m_cursor;
-				m_highlight.last().setAutoUpdated(true);
+				found = true;
+				
+				if ( !all )
+					break;
 			}
-			
-			found = true;
-			
-			if ( !(all || hasOption(HighlightAll)) )
-				break;
-			
-		} else {
+		} else 
 			m_cursor.movePosition(1, move);
-		}
 	}
-	
-	if ( !hasOption(Replace) && hasOption(HighlightAll) && m_highlight.count() )
-	{
-		//matches has been updated (only reached if there were no matches when next was called)
-		//qDebug("%i matches in group %i", indexedMatchCount(), m_group);
-		if ( indexedMatchCount() )
-		{
-			m_editor->document()->flushMatches(m_group);
-		} else {
-			m_editor->document()->releaseGroupId(m_group);
-			m_group = -1;
-		}
 		
-		m_index = backward ? m_highlight.count()-1 : 0;
-		m_cursor = m_origin;
-		return next(backward, false, again, allowWrapAround);
-	}
-	
 	if ( !found && allowWrapAround)
 	{
 		m_cursor = QDocumentCursor();
@@ -667,7 +746,7 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 static QString escapeCpp(const QString& s)
 {
 	QString es;
-
+//TODO: numbers (e.g. \xA6)
 	for ( int i = 0; i < s.count(); ++i )
 	{
 		if ( (s.at(i) == '\\') && ((i + 1) < s.count()) )
@@ -695,12 +774,13 @@ static QString escapeCpp(const QString& s)
 	return es;
 }
 
-void QDocumentSearch::replaceCursorText(QRegExp& m_regexp, bool backward){
+void QDocumentSearch::replaceCursorText(QRegExp& m_regexp){
 	QString replacement = hasOption(EscapeSeq)?escapeCpp(m_replace):m_replace;
 	
-	for ( int i = m_regexp.numCaptures(); i >= 0; --i )
-		replacement.replace(QString("\\") + QString::number(i),
-							m_regexp.cap(i));
+	if (hasOption(RegExp)) 
+		for ( int i = m_regexp.numCaptures(); i >= 0; --i )
+			replacement.replace(QString("\\") + QString::number(i),
+								m_regexp.cap(i));
 	
 	m_cursor.replaceSelectedText(replacement);
 	
