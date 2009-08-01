@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "SymbolGridWidget.h"
+#include "symbolgridwidget.h"
 #include "icondelegate.h"
 #include "smallUsefulFunctions.h"
 
