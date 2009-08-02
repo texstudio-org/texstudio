@@ -147,6 +147,8 @@ void SymbolListWidget::SetUserPage(usercodelist ulist) {
 	int i=0;
 	foreach(QTableWidgetItem* elem,ulist){
 		QTableWidgetItem* item= elem->clone();
+		item->setData(Qt::UserRole,-1);
+		item->setData(Qt::UserRole+1,QVariant::fromValue(elem));
 		setItem(i/numberOfColumns,i%numberOfColumns,item);
 		listOfItems << item;
 		i++;

@@ -185,7 +185,7 @@ QMenu* Texmaker::newManagedMenu(const QString &id,const QString &text){
 void Texmaker::addSymbolGrid(SymbolGridWidget** list, QString SymbolList,  const QString& iconName, const QString& text, const bool show){
 	if (!*list) {
 		(*list)=new SymbolGridWidget(0,SymbolList);
-		connect(*list, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
+		connect(*list, SIGNAL(itemPressed(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
 		if(show) StructureToolbox->addItem(*list,QIcon(iconName),text);
 		QAction *Act = new QAction(text, this);
 		Act->setCheckable(true);
@@ -204,7 +204,7 @@ void Texmaker::addSymbolGrid(SymbolGridWidget** list, QString SymbolList,  const
 void Texmaker::addSymbolList(SymbolListWidget** list, int index,const QString& iconName, const QString& text, const bool show){
 	if (!*list) {
 		(*list)=new SymbolListWidget(0,index);
-		connect(*list, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
+		connect(*list, SIGNAL(itemPressed(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
 		if(show) StructureToolbox->addItem(*list,QIcon(iconName),text);
 		QAction *Act = new QAction(text, this);
 		Act->setCheckable(true);
@@ -2135,9 +2135,17 @@ void Texmaker::InsertTag(QString Entity, int dx, int dy) {
 }
 
 void Texmaker::InsertSymbol(QTableWidgetItem *item) {
+
+	Qt::MouseButtons mb=QApplication::mouseButtons();
+	if (QApplication::mouseButtons()==Qt::RightButton) return; // avoid jumping to line if contextmenu is called
+
 	QString code_symbol;
 	if (item) {
 		int cnt=item->data(Qt::UserRole).toInt();
+		if(cnt<0) {
+			item=item->data(Qt::UserRole+1).value<QTableWidgetItem*>();
+			cnt=item->data(Qt::UserRole).toInt();
+		}
 		item->setData(Qt::UserRole,cnt+1);
 		code_symbol=item->text();
 		InsertTag(code_symbol,code_symbol.length(),0);
@@ -3972,7 +3980,7 @@ void Texmaker::escAction(){
  }
 
  void Texmaker::StructureToolBoxContextMenu(QPoint point) {
-
+	qDebug("%x %x",point.x(),point.y());
 
 	QMenu menu;
 	menu.addActions(StructureToolboxActions);
@@ -3994,4 +4002,9 @@ void Texmaker::escAction(){
 		int index=StructureToolbox->indexOf(widget);
 		StructureToolbox->removeItem(index);
 	}
+ }
+
+ void Texmaker::MostUsedSymbolsTriggered(){
+	 QTableWidgetItem *item=MostUsedListWidget->currentItem();
+
  }
