@@ -198,6 +198,7 @@ void Texmaker::addSymbolGrid(SymbolGridWidget** list, QString SymbolList,  const
 		(*list)->setProperty("Name",text);
 		(*list)->setProperty("iconName",iconName);
 		(*list)->setProperty("StructPos",StructureToolboxWidgets.length());
+		(*list)->setProperty("mType",0);
 	} else StructureToolbox->setItemText(StructureToolbox->indexOf(*list),text);
 }
 
@@ -216,6 +217,7 @@ void Texmaker::addSymbolList(SymbolListWidget** list, int index,const QString& i
 		(*list)->setProperty("Name",text);
 		(*list)->setProperty("iconName",iconName);
 		(*list)->setProperty("StructPos",StructureToolboxWidgets.length());
+		(*list)->setProperty("mType",1);
 	} else StructureToolbox->setItemText(StructureToolbox->indexOf(*list),text);
 }
 void Texmaker::addTagList(XmlTagsListWidget** list, const QString& iconName, const QString& text, const QString& tagFile, const bool show){
@@ -233,6 +235,7 @@ void Texmaker::addTagList(XmlTagsListWidget** list, const QString& iconName, con
 		(*list)->setProperty("Name",text);
 		(*list)->setProperty("iconName",iconName);
 		(*list)->setProperty("StructPos",StructureToolboxWidgets.length());
+		(*list)->setProperty("mType",2);
 	} else StructureToolbox->setItemText(StructureToolbox->indexOf(*list),text);
 }
 void Texmaker::setupDockWidgets(){
@@ -3980,11 +3983,20 @@ void Texmaker::escAction(){
  }
 
  void Texmaker::StructureToolBoxContextMenu(QPoint point) {
-	qDebug("%x %x",point.x(),point.y());
 
-	QMenu menu;
-	menu.addActions(StructureToolboxActions);
-	menu.exec(StructureToolbox->mapToGlobal(point));
+	QWidget *widget=StructureToolbox->currentWidget();
+	if(widget->underMouse()){
+		if(widget==MostUsedListWidget){
+			QMenu menu;
+			menu.addAction(tr("remove"),this,SLOT(MostUsedSymbolsTriggered()));
+			menu.addAction(tr("remove all"),this,SLOT(MostUsedSymbolsTriggered()));
+			menu.exec(StructureToolbox->mapToGlobal(point));
+		}
+	}else{
+		QMenu menu;
+		menu.addActions(StructureToolboxActions);
+		menu.exec(StructureToolbox->mapToGlobal(point));
+	}
 }
 
  void Texmaker::StructureToolBoxToggle(bool checked) {
@@ -4005,6 +4017,47 @@ void Texmaker::escAction(){
  }
 
  void Texmaker::MostUsedSymbolsTriggered(){
+	 QAction *action = qobject_cast<QAction *>(sender());
 	 QTableWidgetItem *item=MostUsedListWidget->currentItem();
-
+	 if(action->text()==tr("remove")){
+		QTableWidgetItem *elem=item->data(Qt::UserRole+1).value<QTableWidgetItem*>();
+		elem->setData(Qt::UserRole,0);
+		symbolMostused.clear();
+		for(int i=0;i<StructureToolboxWidgets.length();i++){
+			if(StructureToolboxWidgets[i]->property("mType").toInt()==2) continue;
+			QTableWidget* tw=qobject_cast<QTableWidget*>(StructureToolboxWidgets[i]);
+			int l=tw->findItems("*",Qt::MatchWildcard).length();
+			foreach(QTableWidgetItem* elem,tw->findItems("*",Qt::MatchWildcard)){
+				if(!elem) continue;
+				int cnt=elem->data(Qt::UserRole).toInt();
+				if (cnt<1) continue;
+				if(symbolMostused.isEmpty()){
+					symbolMostused.append(elem);
+				}else {
+					int index=0;
+					while(index<symbolMostused.length()&&symbolMostused[index]->data(Qt::UserRole).toInt()<cnt){
+						index++;
+					}
+					if(index==12){
+						symbolMostused.removeFirst();
+						index--;
+					}
+					symbolMostused.insert(index,elem);
+				}
+			}
+		}
+	}else{
+		for(int i=0;i<StructureToolboxWidgets.length();i++){
+			if(StructureToolboxWidgets[i]->property("mType").toInt()==2) continue;
+			QTableWidget* tw=qobject_cast<QTableWidget*>(StructureToolboxWidgets[i]);
+			if(StructureToolboxWidgets[i]->property("mType").toInt()==2) continue;
+			foreach(QTableWidgetItem* elem,tw->findItems("*",Qt::MatchWildcard)){
+				if(!elem) continue;
+				elem->setData(Qt::UserRole,0);
+			}
+			symbolMostused.clear();
+		}
+	}
+	// Update Most Used Symbols Widget
+	MostUsedListWidget->SetUserPage(symbolMostused);
  }
