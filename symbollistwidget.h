@@ -432,6 +432,8 @@ const codelist code= {
 
 typedef QList<QTableWidgetItem*> usercodelist;
 
+Q_DECLARE_METATYPE(QTableWidgetItem*)
+
 class SymbolListWidget : public QTableWidget {
 	Q_OBJECT
 

@@ -212,6 +212,7 @@ private slots:
 
 	void StructureContextMenu(QPoint point);
 	void StructureToolBoxContextMenu(QPoint point);
+	void MostUsedSymbolsTriggered();
 
 	void ReadSettings();
 	void SaveSettings();
@@ -359,5 +360,7 @@ protected:
 public:
 	static const int structureTreeLineColumn;
 };
+
+
 
 #endif
