@@ -118,7 +118,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	setCentralWidget(EditorView);
 	
 	setupDockWidgets();
-	SetMostUsedSymbols();
+	//SetMostUsedSymbols();
+	symbolMostused.clear();
 	setupMenus();
 	configManager.updateRecentFiles(true);
 	setupToolBars();
@@ -1647,8 +1648,8 @@ void Texmaker::ReadSettings() {
 		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_de_DE_v2.dat");
 	}
 
-	for (int i=0; i <412 ; i++)
-		symbolScore[i]=config->value("Symbols/symbol"+QString::number(i),0).toInt();
+	//for (int i=0; i <412 ; i++)
+	//	symbolScore[i]=config->value("Symbols/symbol"+QString::number(i),0).toInt();
 
 	SymbolListVisible=config->value("Symbols/symbollists",1040415).toLongLong();
 
@@ -1737,9 +1738,9 @@ void Texmaker::SaveSettings() {
 	config->setValue("Spell/Dic",spell_dic);
 	config->setValue("Thesaurus/Database",thesaurus_database);
 
-	for (int i=0; i <412 ; i++) {
-		config->setValue("Symbols/symbol"+QString::number(i),symbolScore[i]);
-	}
+	//for (int i=0; i <412 ; i++) {
+	//	config->setValue("Symbols/symbol"+QString::number(i),symbolScore[i]);
+	//}
 
 	qlonglong result=0;
 	for(int index=1;StructureToolbox->count()>index;index++){
@@ -2135,14 +2136,12 @@ void Texmaker::InsertTag(QString Entity, int dx, int dy) {
 
 void Texmaker::InsertSymbol(QTableWidgetItem *item) {
 	QString code_symbol;
-	QRegExp rxnumber(";([0-9]+)");
-	int number=-1;
 	if (item) {
-		if (rxnumber.indexIn(item->text()) != -1) number=rxnumber.cap(1).toInt();
-		if ((number>-1) && (number<412)) symbolScore[number]=symbolScore[number]+1;
-		code_symbol=item->text().remove(rxnumber);
+		int cnt=item->data(Qt::UserRole).toInt();
+		item->setData(Qt::UserRole,cnt+1);
+		code_symbol=item->text();
 		InsertTag(code_symbol,code_symbol.length(),0);
-		SetMostUsedSymbols();
+		SetMostUsedSymbols(item);
 	}
 }
  
@@ -3621,30 +3620,30 @@ void Texmaker::changeEvent(QEvent *e) {
 }
 
 //***********************************
-void Texmaker::SetMostUsedSymbols() {
-	for (int i = 0; i <=11; ++i) symbolMostused[i]=-1;
-	QList<int> list_num, list_score;
-	list_num.clear();
-	list_score.clear();
-	for (int i=0; i <412 ; i++) {
-		list_num.append(i);
-		list_score.append(symbolScore[i]);
-	}
-	int max;
-	for (int i = 0; i < 412; i++) {
-		max=i;
-		for (int j = i+1; j < 412; j++) {
-			if (list_score.at(j)>list_score.at(max)) max=j;
+void Texmaker::SetMostUsedSymbols(QTableWidgetItem* item) {
+
+	bool changed=false;
+	int index=symbolMostused.indexOf(item);
+	if(index<0){
+		if(symbolMostused.length()<12){
+			symbolMostused.prepend(item);
+			changed=true;
+		}else {
+			if(item->data(Qt::UserRole).toInt()>symbolMostused[0]->data(Qt::UserRole).toInt()){
+				symbolMostused.removeFirst();
+				symbolMostused.prepend(item);
+				changed=true;
+			}
 		}
-		if (max!=i) {
-			list_num.swap(i,max);
-			list_score.swap(i,max);
+	} else {
+		symbolMostused.removeAt(index);
+		while(index<symbolMostused.length()&&symbolMostused[index]->data(Qt::UserRole).toInt()<item->data(Qt::UserRole).toInt()){
+			index++;
 		}
+		symbolMostused.insert(index,item);
+		changed=true;
 	}
-	for (int i = 0; i <=11; ++i) {
-		if (list_score.at(i)>0) symbolMostused[i]=list_num.at(i);
-	}
-	MostUsedListWidget->SetUserPage(symbolMostused);
+	if(changed) MostUsedListWidget->SetUserPage(symbolMostused);
 }
 
 

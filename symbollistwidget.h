@@ -430,7 +430,7 @@ const codelist code= {
 	"\\Omega"//"img40greek.png"
 };
 
-typedef int usercodelist[12];
+typedef QList<QTableWidgetItem*> usercodelist;
 
 class SymbolListWidget : public QTableWidget {
 	Q_OBJECT
