@@ -232,6 +232,7 @@ private slots:
 	void InsertTextCompletion();
 	void InsertTag(QString Entity, int dx, int dy);
 	void InsertSymbol(QTableWidgetItem *item);
+	void InsertSymbolPressed(QTableWidgetItem *item);
 	void InsertXmlTag(QListWidgetItem *item);	
 	void InsertFromAction();
 	void InsertWithSelectionFromString(const QString& text);
@@ -357,6 +358,8 @@ protected:
 	void dropEvent(QDropEvent *event);
 	bool eventFilter(QObject *obj, QEvent *event);
 	virtual void changeEvent(QEvent *e);
+
+	Qt::MouseButtons mb;
 public:
 	static const int structureTreeLineColumn;
 };
