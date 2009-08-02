@@ -136,7 +136,11 @@ SymbolListWidget :: SymbolListWidget(QWidget *parent, int page) : QTableWidget(p
 
 }
 void SymbolListWidget::SetUserPage(usercodelist ulist) {
-	listOfItems.clear(); // memory leak ???
+	foreach(QTableWidgetItem* elem,listOfItems){
+		takeItem(row(elem),column(elem));
+		delete(elem);
+	}
+	listOfItems.clear();
 	int numberOfColumns=columnCount();
 	//setColumnCount(numberOfColumns);
 	setRowCount(12/numberOfColumns);
