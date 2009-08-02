@@ -185,7 +185,8 @@ QMenu* Texmaker::newManagedMenu(const QString &id,const QString &text){
 void Texmaker::addSymbolGrid(SymbolGridWidget** list, QString SymbolList,  const QString& iconName, const QString& text, const bool show){
 	if (!*list) {
 		(*list)=new SymbolGridWidget(0,SymbolList);
-		connect(*list, SIGNAL(itemPressed(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
+		connect(*list, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
+		connect(*list, SIGNAL(itemPressed(QTableWidgetItem*)), this, SLOT(InsertSymbolPressed(QTableWidgetItem*)));
 		if(show) StructureToolbox->addItem(*list,QIcon(iconName),text);
 		QAction *Act = new QAction(text, this);
 		Act->setCheckable(true);
@@ -205,7 +206,8 @@ void Texmaker::addSymbolGrid(SymbolGridWidget** list, QString SymbolList,  const
 void Texmaker::addSymbolList(SymbolListWidget** list, int index,const QString& iconName, const QString& text, const bool show){
 	if (!*list) {
 		(*list)=new SymbolListWidget(0,index);
-		connect(*list, SIGNAL(itemPressed(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
+		connect(*list, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
+		connect(*list, SIGNAL(itemPressed(QTableWidgetItem*)), this, SLOT(InsertSymbolPressed(QTableWidgetItem*)));
 		if(show) StructureToolbox->addItem(*list,QIcon(iconName),text);
 		QAction *Act = new QAction(text, this);
 		Act->setCheckable(true);
@@ -2137,10 +2139,13 @@ void Texmaker::InsertTag(QString Entity, int dx, int dy) {
 	//logpresent=false;
 }
 
+void Texmaker::InsertSymbolPressed(QTableWidgetItem *item) {
+	mb=QApplication::mouseButtons();
+}
+
 void Texmaker::InsertSymbol(QTableWidgetItem *item) {
 
-	Qt::MouseButtons mb=QApplication::mouseButtons();
-	if (QApplication::mouseButtons()==Qt::RightButton) return; // avoid jumping to line if contextmenu is called
+	if (mb==Qt::RightButton) return; // avoid jumping to line if contextmenu is called
 
 	QString code_symbol;
 	if (item) {
@@ -4026,7 +4031,6 @@ void Texmaker::escAction(){
 		for(int i=0;i<StructureToolboxWidgets.length();i++){
 			if(StructureToolboxWidgets[i]->property("mType").toInt()==2) continue;
 			QTableWidget* tw=qobject_cast<QTableWidget*>(StructureToolboxWidgets[i]);
-			int l=tw->findItems("*",Qt::MatchWildcard).length();
 			foreach(QTableWidgetItem* elem,tw->findItems("*",Qt::MatchWildcard)){
 				if(!elem) continue;
 				int cnt=elem->data(Qt::UserRole).toInt();
