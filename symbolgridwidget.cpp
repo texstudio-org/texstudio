@@ -32,8 +32,9 @@ SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString SymbolList) : QTab
 		QTableWidgetItem* item= new QTableWidgetItem();
 		QImage img=QImage(findResourceFile("symbols/"+SymbolList+"/"+icon_name));
 		item->setIcon(QIcon(findResourceFile("symbols/"+SymbolList+"/"+icon_name)));
-		item->setText(img.text("Command")+";"+QString::number(i));
+		item->setText(img.text("Command"));
 		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+		item->setData(Qt::UserRole,0);
 		QString label;
 		QStringList args,pkgs;
 

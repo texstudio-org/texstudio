@@ -38,7 +38,7 @@
 
 typedef  QString Userlist[10];
 typedef  QString UserCd[5];
-typedef int SymbolList[412];
+typedef QHash<QString,int> SymbolList;
 
 struct BibTeXFileInfo{
 	QDateTime lastModified;
@@ -328,7 +328,7 @@ private slots:
 	void gotoBookmark();
 	void toggleBookmark();
 
-	void SetMostUsedSymbols();
+	void SetMostUsedSymbols(QTableWidgetItem* item);
 
 	void updateBibFiles();
 	void updateCompleter();
