@@ -113,6 +113,7 @@ class QCE_EXPORT QDocumentPrivate
 		int getNextGroupId();
 		void releaseGroupId(int groupId);
 		void clearMatches(int gid);
+		//void clearMatchesFromToWhenFlushing(int groupId, int firstMatch, int lastMatch);
 		void flushMatches(int gid);
 		void addMatch(int gid, int line, int pos, int len, int format);
 		
@@ -173,9 +174,10 @@ class QCE_EXPORT QDocumentPrivate
 		
 		struct MatchList : QList<Match>
 		{
-			MatchList() : index(0) {}
+			MatchList() : removeLength(0), removeStart(0) {}
 			
-			int index;
+			int removeLength;
+			int removeStart;
 		};
 		
 		int m_lastGroupId;

@@ -360,9 +360,6 @@ void QSearchReplacePanel::on_cbCursor_clicked(bool on)
 	if ( m_search )
 	{
 		m_search->setOrigin(on ? editor()->cursor() : QDocumentCursor());
-
-		if ( cbHighlight->isChecked() )
-			m_search->next(false);
 	}
 
 	leFind->setFocus();
@@ -376,9 +373,6 @@ void QSearchReplacePanel::on_cbHighlight_clicked(bool on)
 	if ( m_search )
 	{
 		m_search->setOption(QDocumentSearch::HighlightAll, on);
-
-		if ( on && !m_search->indexedMatchCount() )
-			m_search->next(false);
 	}
 
 	leFind->setFocus();
@@ -495,7 +489,9 @@ void QSearchReplacePanel::cursorPositionChanged()
 
 		if ( cbCursor->isChecked() )
 			m_search->setOrigin(editor()->cursor());
-
+		if ( cbSelection->isChecked() )
+			m_search->setScope(editor()->cursor());
+			
 		m_search->setCursor(editor()->cursor());
 	}
 }

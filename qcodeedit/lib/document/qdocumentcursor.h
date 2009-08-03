@@ -177,6 +177,7 @@ class QCE_EXPORT QDocumentCursor
 		void setSelectionBoundary(const QDocumentCursor& c);
 		
 		bool isWithinSelection(const QDocumentCursor& c) const;
+		QDocumentCursor intersect(const QDocumentCursor& c) const;
 		
 		QChar nextChar() const;
 		QChar previousChar() const;

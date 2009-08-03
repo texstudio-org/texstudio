@@ -1335,6 +1335,13 @@ void QDocument::clearMatches(int gid)
 	}
 }
 
+/*void QDocument:: clearMatchesFromToWhenFlushing(int groupId, int firstMatch, int lastMatch);
+	if ( m_impl )
+	{
+		m_impl->clearMatchesFromToWhenFlushing(gid,firstMatch,lastMatch);
+	}
+}*/
+
 /*!
 	\brief Highlight the matched sequences
 
@@ -6165,9 +6172,27 @@ void QDocumentPrivate::clearMatches(int groupId)
 		m.h->removeOverlay(m.range);
 	}
 
-	matches.index = matches.count();
+	matches.removeStart = 0;
+	matches.removeLength = matches.count();
 }
 
+/*void QDocumentPrivate::clearMatchesFromToWhenFlushing(gid,firstMatch,lastMatch){
+	QHash<int, MatchList>::iterator mit = m_matches.find(groupId);
+
+	if ( mit == m_matches.end() )
+	{
+		return;
+	}
+
+	MatchList& matches = *mit;
+	if (firstMatch>=matches.length()) firstMatch=matches.length()-1;
+	if (lastMatch>=matches.length()) lastMatch=matches.length()-1;
+	for (int i=firstMatch; i<=lastMatch; i++){
+		matches[i].h->removeOverlay(matches[i].range);
+	}
+	matches.removeStart=firstMatch;
+	matches.removeLength=lastMatch-firstMatch;
+}*/
 /*!
 	\brief Highlight the matched sequences
 
@@ -6180,6 +6205,7 @@ void QDocumentPrivate::addMatch(int groupId, int line, int pos, int len, int for
 	Match m;
 	m.line = line;
 	m.h = at(line);
+	if (!m.h) return;
 	m.range = QFormatRange(pos, len, format);
 	m_matches[groupId] << m;
 
@@ -6240,12 +6266,12 @@ void QDocumentPrivate::flushMatches(int groupId)
 	}
 
 	// remove old matches
-	while ( matches.index )
+	while ( matches.removeLength )
 	{
-		matches.removeFirst();
-		--matches.index;
+		matches.removeAt(matches.removeStart);
+		--matches.removeLength;
 	}
-
+	
 	// send update messages
 	QMap<int, int>::const_iterator it = areas.constBegin();
 
