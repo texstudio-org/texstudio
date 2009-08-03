@@ -78,18 +78,18 @@ void QDocumentSearchTest::next_sameText_data(){
 		<< 0 << 0
 		<< (QList<CM>() 
 			<< SN(1, 0, 2) << SN(2, 4, 6) << SP(1, 2, 0) << SN (2, 4, 6) << SN(1,0,2));
-	QTest::newRow("forward-backward-case reg exp")
+	QTest::newRow("forward reg exp")
 		<< "Hello42World" 
 		<< "[0-9]+" << (int)QDocumentSearch::RegExp
 		<< 0 << 0
 		<< (QList<CM>() 
 			<< SN(0, 5, 7) << SN(0,5,7));
-	/*QTest::newRow("forward-backward-case reg exp (THIS FAILS DUE TO DESIGN ISSUES AND IS EXPECT TO FAIL IN THE MOMENT)")
-		<< "Hello42World" 
+	QTest::newRow("reg exp with 0 match")
+		<< "Hello423World" 
 		<< "[0-9]*" << (int)QDocumentSearch::RegExp
 		<< 0 << 0
 		<< (QList<CM>() 
-			<< SN(0, 5, 7) << SN(-1,-1,-1));*/
+			<< SN(0, 5, 8) << SN(0, 5, 8) << SN(0, 5, 8) << SN(0, 5, 8) );
 	QTest::newRow("replace forward")
 		<< "Hello42World17XXXX2358YYY" 
 		<< "[0-9]+" << (int)QDocumentSearch::RegExp
@@ -135,6 +135,18 @@ void QDocumentSearchTest::next_sameText_data(){
 			<< SN(1, 12, 13, "\\t","he\n\\o wor\td! hello!") 
 			<< SN(2, 0, 1, "\\r","he\n\\o wor\td! he\nlo!") 
 			<< SN(-1, -1, -1, "\\0",QString("he\n\\o wor\td! he\n*o!").replace(QChar('*'),QChar('\0')))); 
+	QTest::newRow("touching block replace")
+		<< "xxxxxxxxxxxx"
+		<< "xx" << 0
+		<< 0 << 4
+		<< (QList<CM>() 
+			 << SN(0, 4,6, "abc",  "xxxxxxxxxxxx")
+			 << SN(0, 6,8, "**",   "xxxx**xxxxxx")
+			 << SN(0, 8,10, "!!",  "xxxx**!!xxxx")
+			 << SN(0, 10,12, "==", "xxxx**!!==xx")
+			 << SN(0, 0,2, "--",   "xxxx**!!==--")
+			 << SN(0, 4,6, "++++", "++++xx**!!==--")
+			 << SN(-1, -1,-1, "//", "++++//**!!==--") );
 	QTest::newRow("loop around replace")
 		<< "aaaaaa\nggaagg\nbbaabb\n"
 		<< "aa" << 0

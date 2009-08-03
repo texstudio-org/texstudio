@@ -32,9 +32,9 @@
 
 class QEditor;
 
-class QCE_EXPORT QDocumentSearch
+class QCE_EXPORT QDocumentSearch: public QObject
 {
-	Q_DECLARE_TR_FUNCTIONS(QDocumentSearch)
+	Q_OBJECT
 	
 	public:
 		enum Option
@@ -84,7 +84,7 @@ class QCE_EXPORT QDocumentSearch
 		bool end(bool backward) const;
 		
 		bool nextMatch(bool backward, bool again=false,  bool allowWrapAround=true);
-		void searchMatches(const QDocumentCursor& highlightScope=QDocumentCursor());
+		void searchMatches(const QDocumentCursor& subHighlightScope=QDocumentCursor(), bool clearAll=false);
 		void clearMatches();
 		
 		QDocument* currentDocument();
@@ -98,6 +98,8 @@ class QCE_EXPORT QDocumentSearch
 		QPointer<QEditor> m_editor;
 		QDocumentCursor m_cursor, m_scope, m_origin;
 		QList<QDocumentCursor> m_highlight;
+	private slots:
+		void documentContentChanged(int line, int n);
 };
 Q_DECLARE_OPERATORS_FOR_FLAGS(QDocumentSearch::Options)
 #endif // !_QDOCUMENT_SEARCH_H_

@@ -652,6 +652,7 @@ QString QDocumentCursor::selectedText() const
 	return m_handle ? m_handle->selectedText() : QString();
 }
 
+
 /*!
 	\brief Remove the selected text
 */
@@ -824,6 +825,10 @@ void QDocumentCursor::setSelectionBoundary(const QDocumentCursor& c)
 bool QDocumentCursor::isWithinSelection(const QDocumentCursor& c) const
 {
 	return m_handle ? m_handle->isWithinSelection(c) : false;
+}
+
+QDocumentCursor QDocumentCursor::intersect(const QDocumentCursor& c) const{
+	return m_handle ? m_handle->intersect(c) : QDocumentCursor();
 }
 
 /*!

@@ -196,6 +196,7 @@ class QCE_EXPORT QDocument : public QObject
 		int getNextGroupId();
 		void releaseGroupId(int groupId);
 		void clearMatches(int groupId);
+		//void clearMatchesFromToWhenFlushing(int groupId, int firstMatch, int lastMatch);
 		void flushMatches(int groupId);
 		void addMatch(int groupId, int line, int pos, int len, int format);
 		
