@@ -81,9 +81,10 @@ void SpellerUtility::unload() {
 	}
 }
 void SpellerUtility::addToIgnoreList(QString toIgnore) {
-	ignoredWords.insert(toIgnore);
-	if (!ignoredWordList.contains(toIgnore))
-		ignoredWordList.insert(qLowerBound(ignoredWordList.begin(),ignoredWordList.end(), toIgnore, localAwareLessThan), toIgnore);
+	QString word=latexToPlainWord(toIgnore);
+	ignoredWords.insert(word);
+	if (!ignoredWordList.contains(word))
+		ignoredWordList.insert(qLowerBound(ignoredWordList.begin(),ignoredWordList.end(), word, localAwareLessThan), word);
 	ignoredWordsModel.setStringList(ignoredWordList);
 }
 void SpellerUtility::removeFromIgnoreList(QString toIgnore) {
