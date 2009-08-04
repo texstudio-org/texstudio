@@ -98,7 +98,7 @@ private:
 	QToolBox *StructureToolbox;
 	XmlTagsListWidget *MpListWidget, *PsListWidget, *leftrightWidget, *tikzWidget, *asyWidget;
 	SymbolListWidget *RelationListWidget, *ArrowListWidget, *MiscellaneousListWidget, *DelimitersListWidget, *GreekListWidget, *MostUsedListWidget;
-	SymbolGridWidget *RelationGridWidget,*ArrowGridWidget,*GreekGridWidget,*CyrillicGridWidget,*MiscellaneousMathGridWidget,*MiscellaneousTextGridWidget,*DelimitersGridWidget,*SpecialGridWidget;
+	SymbolGridWidget *RelationGridWidget,*ArrowGridWidget,*GreekGridWidget,*CyrillicGridWidget,*MiscellaneousMathGridWidget,*MiscellaneousTextGridWidget,*DelimitersGridWidget,*SpecialGridWidget,*OperatorGridWidget;
 	qlonglong SymbolListVisible;
 
 	QTreeWidget *StructureTreeWidget;
