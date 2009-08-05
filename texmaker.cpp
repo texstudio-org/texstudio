@@ -44,6 +44,8 @@
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 		: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0){
+
+	MapForSymbols=0;
 	
 	ReadSettings();
 	setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
@@ -118,9 +120,9 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	}
 	setCentralWidget(EditorView);
 	
+	symbolMostused.clear();
 	setupDockWidgets();
 	//SetMostUsedSymbols();
-	symbolMostused.clear();
 	setupMenus();
 	configManager.updateRecentFiles(true);
 	setupToolBars();
@@ -185,7 +187,7 @@ QMenu* Texmaker::newManagedMenu(const QString &id,const QString &text){
 
 void Texmaker::addSymbolGrid(SymbolGridWidget** list, QString SymbolList,  const QString& iconName, const QString& text, const bool show){
 	if (!*list) {
-		(*list)=new SymbolGridWidget(0,SymbolList);
+		(*list)=new SymbolGridWidget(0,SymbolList,MapForSymbols);
 		connect(*list, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
 		connect(*list, SIGNAL(itemPressed(QTableWidgetItem*)), this, SLOT(InsertSymbolPressed(QTableWidgetItem*)));
 		if(show) StructureToolbox->addItem(*list,QIcon(iconName),text);
@@ -293,6 +295,11 @@ void Texmaker::setupDockWidgets(){
 	addTagList(&MpListWidget, ":/images/metapost.png", tr("MetaPost Commands"),"metapost_tags.xml",SymbolListVisible&1<<12);
 	addTagList(&tikzWidget, ":/images/tikz.png", tr("Tikz Commands"),"tikz_tags.xml",SymbolListVisible&1<<13);
 	addTagList(&asyWidget, ":/images/asymptote.png", tr("Asymptote Commands"),"asymptote_tags.xml",SymbolListVisible&1<<14);
+
+	// update MostOftenUsed
+	MostUsedSymbolsTriggered(true);
+	// clean not further used map;
+	delete MapForSymbols;
 
 // OUTPUT WIDGETS
 	if (!outputView) {
@@ -1657,6 +1664,8 @@ void Texmaker::ReadSettings() {
 
 	//for (int i=0; i <412 ; i++)
 	//	symbolScore[i]=config->value("Symbols/symbol"+QString::number(i),0).toInt();
+	MapForSymbols= new QVariantMap;
+	*MapForSymbols=config->value("Symbols/Quantity").toMap();
 
 	SymbolListVisible=config->value("Symbols/symbollists",32767).toLongLong();
 
@@ -1748,6 +1757,20 @@ void Texmaker::SaveSettings() {
 	//for (int i=0; i <412 ; i++) {
 	//	config->setValue("Symbols/symbol"+QString::number(i),symbolScore[i]);
 	//}
+	MapForSymbols= new QVariantMap;
+	for(int i=0;i<StructureToolboxWidgets.size();i++){
+		if(StructureToolboxWidgets[i]->property("mType").toInt()==2) continue;
+		QTableWidget* tw=qobject_cast<QTableWidget*>(StructureToolboxWidgets[i]);
+		foreach(QTableWidgetItem* elem,tw->findItems("*",Qt::MatchWildcard)){
+			if(!elem) continue;
+			int cnt=elem->data(Qt::UserRole).toInt();
+			if (cnt<1) continue;
+			QString text=elem->text();
+			MapForSymbols->insert(text,cnt);
+		}
+	}
+	config->setValue("Symbols/Quantity",*MapForSymbols);
+	delete MapForSymbols;
 
 	qlonglong result=0;
 	for(int index=1;StructureToolbox->count()>index;index++){
@@ -4023,12 +4046,18 @@ void Texmaker::escAction(){
 	}
  }
 
- void Texmaker::MostUsedSymbolsTriggered(){
-	 QAction *action = qobject_cast<QAction *>(sender());
-	 QTableWidgetItem *item=MostUsedListWidget->currentItem();
-	 if(action->text()==tr("remove")){
-		QTableWidgetItem *elem=item->data(Qt::UserRole+1).value<QTableWidgetItem*>();
-		elem->setData(Qt::UserRole,0);
+ void Texmaker::MostUsedSymbolsTriggered(bool direct){
+	 QAction *action = 0;
+	 QTableWidgetItem *item=0;
+	 if(!direct){
+		 action = qobject_cast<QAction *>(sender());
+		 item=MostUsedListWidget->currentItem();
+	 }
+	 if(direct || action->text()==tr("remove")){
+		 if(!direct){
+			 QTableWidgetItem *elem=item->data(Qt::UserRole+1).value<QTableWidgetItem*>();
+			 elem->setData(Qt::UserRole,0);
+		 }
 		symbolMostused.clear();
 		for(int i=0;i<StructureToolboxWidgets.size();i++){
 			if(StructureToolboxWidgets[i]->property("mType").toInt()==2) continue;

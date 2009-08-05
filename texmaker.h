@@ -77,6 +77,8 @@ private:
 	void addSymbolList(SymbolListWidget** list, int index, const QString& iconName, const QString& text, const bool show=true);
 	void addTagList(XmlTagsListWidget** list, const QString& iconName, const QString& text, const QString& tagFile, const bool show=true);
 
+	QVariantMap *MapForSymbols;
+
 	void setupDockWidgets();
 	void setupMenus();
 	void setupToolBars();
@@ -212,7 +214,7 @@ private slots:
 
 	void StructureContextMenu(QPoint point);
 	void StructureToolBoxContextMenu(QPoint point);
-	void MostUsedSymbolsTriggered();
+	void MostUsedSymbolsTriggered(bool direct=false);
 
 	void ReadSettings();
 	void SaveSettings();

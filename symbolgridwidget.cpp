@@ -13,7 +13,7 @@
 #include "icondelegate.h"
 #include "smallUsefulFunctions.h"
 
-SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString SymbolList) : QTableWidget(parent) {
+SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString SymbolList, QVariantMap *Map) : QTableWidget(parent) {
 	listOfItems.clear();
 	setItemDelegate(new IconDelegate(this));
 	QString icon_name;
@@ -34,7 +34,8 @@ SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString SymbolList) : QTab
 		item->setIcon(QIcon(findResourceFile("symbols/"+SymbolList+"/"+icon_name)));
 		item->setText(img.text("Command"));
 		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-		item->setData(Qt::UserRole,0);
+		if(Map) item->setData(Qt::UserRole,Map->value(img.text("Command"),0).toInt());
+		else item->setData(Qt::UserRole,0);
 		QString label;
 		QStringList args,pkgs;
 
