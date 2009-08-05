@@ -169,11 +169,11 @@ void SymbolListWidget::resizeEvent ( QResizeEvent * event )
 	// add items with adapted number of columns
 	numberOfColumns=event->size().width()/36;
 	setColumnCount(numberOfColumns);
-	setRowCount(listOfItems.length()/numberOfColumns+1);
-	for(int j = 0; j < listOfItems.length()/numberOfColumns+1; ++j) setRowHeight(j,36);
+	setRowCount(listOfItems.size()/numberOfColumns+1);
+	for(int j = 0; j < listOfItems.size()/numberOfColumns+1; ++j) setRowHeight(j,36);
 	for(int j=0;j < numberOfColumns;++j) setColumnWidth(j,36);
 
-	for (int i = 0; i < listOfItems.length(); ++i) {
+	for (int i = 0; i < listOfItems.size(); ++i) {
 		setItem(i/numberOfColumns,i%numberOfColumns,listOfItems[i]);
 	}
 

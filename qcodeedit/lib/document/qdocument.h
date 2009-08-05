@@ -167,7 +167,7 @@ class QCE_EXPORT QDocument : public QObject
 		QDocumentLine line(int line) const;
 		QDocumentLine line(QDocumentConstIterator iterator) const;
 		
-		QDocumentCursor cursor(int line, int column = 0) const;
+		QDocumentCursor cursor(int line, int column = 0, int lineTo=-1, int columnTo=-1) const;
 		
 		QDocumentLine findLine(int& position) const;
 		int findLineContaining(const QString &searchText,  const int& startLine=0, const Qt::CaseSensitivity cs = Qt::CaseSensitive, const bool backward=false) const;

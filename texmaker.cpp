@@ -195,10 +195,10 @@ void Texmaker::addSymbolGrid(SymbolGridWidget** list, QString SymbolList,  const
 		connect(Act, SIGNAL(toggled(bool)), this, SLOT(StructureToolBoxToggle(bool)));
 		StructureToolboxActions << Act;
 		StructureToolboxWidgets << qobject_cast<QWidget*>(*list);
-		Act->setData(StructureToolboxWidgets.length()-1);
+		Act->setData(StructureToolboxWidgets.size()-1);
 		(*list)->setProperty("Name",text);
 		(*list)->setProperty("iconName",iconName);
-		(*list)->setProperty("StructPos",StructureToolboxWidgets.length());
+		(*list)->setProperty("StructPos",StructureToolboxWidgets.size());
 		(*list)->setProperty("mType",0);
 	} else StructureToolbox->setItemText(StructureToolbox->indexOf(*list),text);
 }
@@ -215,10 +215,10 @@ void Texmaker::addSymbolList(SymbolListWidget** list, int index,const QString& i
 		connect(Act, SIGNAL(toggled(bool)), this, SLOT(StructureToolBoxToggle(bool)));
 		StructureToolboxActions << Act;
 		StructureToolboxWidgets << qobject_cast<QWidget*>(*list);
-		Act->setData(StructureToolboxWidgets.length()-1);
+		Act->setData(StructureToolboxWidgets.size()-1);
 		(*list)->setProperty("Name",text);
 		(*list)->setProperty("iconName",iconName);
-		(*list)->setProperty("StructPos",StructureToolboxWidgets.length());
+		(*list)->setProperty("StructPos",StructureToolboxWidgets.size());
 		(*list)->setProperty("mType",1);
 	} else StructureToolbox->setItemText(StructureToolbox->indexOf(*list),text);
 }
@@ -233,10 +233,10 @@ void Texmaker::addTagList(XmlTagsListWidget** list, const QString& iconName, con
 		connect(Act, SIGNAL(toggled(bool)), this, SLOT(StructureToolBoxToggle(bool)));
 		StructureToolboxActions << Act;
 		StructureToolboxWidgets << qobject_cast<QWidget*>(*list);
-		Act->setData(StructureToolboxWidgets.length()-1);
+		Act->setData(StructureToolboxWidgets.size()-1);
 		(*list)->setProperty("Name",text);
 		(*list)->setProperty("iconName",iconName);
-		(*list)->setProperty("StructPos",StructureToolboxWidgets.length());
+		(*list)->setProperty("StructPos",StructureToolboxWidgets.size());
 		(*list)->setProperty("mType",2);
 	} else StructureToolbox->setItemText(StructureToolbox->indexOf(*list),text);
 }
@@ -3642,7 +3642,7 @@ void Texmaker::SetMostUsedSymbols(QTableWidgetItem* item) {
 	bool changed=false;
 	int index=symbolMostused.indexOf(item);
 	if(index<0){
-		if(symbolMostused.length()<12){
+		if(symbolMostused.size()<12){
 			symbolMostused.prepend(item);
 			changed=true;
 		}else {
@@ -3654,7 +3654,7 @@ void Texmaker::SetMostUsedSymbols(QTableWidgetItem* item) {
 		}
 	} else {
 		symbolMostused.removeAt(index);
-		while(index<symbolMostused.length()&&symbolMostused[index]->data(Qt::UserRole).toInt()<item->data(Qt::UserRole).toInt()){
+		while(index<symbolMostused.size()&&symbolMostused[index]->data(Qt::UserRole).toInt()<item->data(Qt::UserRole).toInt()){
 			index++;
 		}
 		symbolMostused.insert(index,item);
@@ -4029,7 +4029,7 @@ void Texmaker::escAction(){
 		QTableWidgetItem *elem=item->data(Qt::UserRole+1).value<QTableWidgetItem*>();
 		elem->setData(Qt::UserRole,0);
 		symbolMostused.clear();
-		for(int i=0;i<StructureToolboxWidgets.length();i++){
+		for(int i=0;i<StructureToolboxWidgets.size();i++){
 			if(StructureToolboxWidgets[i]->property("mType").toInt()==2) continue;
 			QTableWidget* tw=qobject_cast<QTableWidget*>(StructureToolboxWidgets[i]);
 			foreach(QTableWidgetItem* elem,tw->findItems("*",Qt::MatchWildcard)){
@@ -4040,7 +4040,7 @@ void Texmaker::escAction(){
 					symbolMostused.append(elem);
 				}else {
 					int index=0;
-					while(index<symbolMostused.length()&&symbolMostused[index]->data(Qt::UserRole).toInt()<cnt){
+					while(index<symbolMostused.size()&&symbolMostused[index]->data(Qt::UserRole).toInt()<cnt){
 						index++;
 					}
 					if(index==12){
@@ -4052,7 +4052,7 @@ void Texmaker::escAction(){
 			}
 		}
 	}else{
-		for(int i=0;i<StructureToolboxWidgets.length();i++){
+		for(int i=0;i<StructureToolboxWidgets.size();i++){
 			if(StructureToolboxWidgets[i]->property("mType").toInt()==2) continue;
 			QTableWidget* tw=qobject_cast<QTableWidget*>(StructureToolboxWidgets[i]);
 			if(StructureToolboxWidgets[i]->property("mType").toInt()==2) continue;

@@ -221,6 +221,63 @@ void QDocumentSearchTest::next_sameText(){
 	}
 
 }
+void QDocumentSearchTest::replaceAll_data(){
+	QTest::addColumn<QString >("editorText");
+	QTest::addColumn<QString >("searchText");
+	QTest::addColumn<QString >("replaceText");
+	QTest::addColumn<int>("options");
+	QTest::addColumn<bool>("dir");
+	QTest::addColumn<int>("scopey");
+	QTest::addColumn<int >("scopex");
+	QTest::addColumn<int>("scopey2");
+	QTest::addColumn<int>("scopex2");
+	QTest::addColumn<int>("sy");
+	QTest::addColumn<int>("sx");
+	QTest::addColumn<QString >("newtext");
+	
+	QTest::newRow("simple")
+		<< "hell!\nes ist hell, die Sonne scheint\nHello World\nHello!!!\nhell!"
+		<< "hell"
+		<< "Heaven"
+		<< 0 << false
+		<< 1 << 7
+		<< 3 << 4
+		<< 0 << 0
+		<< "hell!\nes ist Heaven, die Sonne scheint\nHeaveno World\nHeaveno!!!\nhell!";
+			
+}
+void QDocumentSearchTest::replaceAll(){
+	QFETCH(QString, editorText);
+	QFETCH(QString, searchText);
+	QFETCH(QString, replaceText);
+	QFETCH(int, options);
+	options |= QDocumentSearch::Silent ;
+	options |= QDocumentSearch::Replace;
+	QFETCH(bool, dir);
+	
+	QFETCH(int, scopey);
+	QFETCH(int, scopex);
+	QFETCH(int, scopey2);
+	QFETCH(int, scopex2);
+	QFETCH(int, sy);
+	QFETCH(int, sx);
+	
+	QFETCH(QString, newtext);
+	if (!newtext.endsWith("\n")) newtext+="\n";
+	
+	for (int loop=0; loop<2; loop++){
+		ed->document()->setText(editorText);
+		ds->setSearchText(searchText);
+		ds->setReplaceText(replaceText);
+		if (loop) 
+			options|=QDocumentSearch::HighlightAll; //highlighting shouldn't change anything
+		ds->setOptions((QDocumentSearch::Options)options);
+		ds->setOrigin(ed->document()->cursor(sy,sx));
+		ds->setScope(ed->document()->cursor(scopey,scopex,scopey2,scopex2));
+		ds->next(dir, true);
+		QVERIFY2(ed->document()->text()== newtext,qPrintable(QString("%1 != %2 loop: %3, dir: %4").arg(ed->document()->text()).arg(newtext).arg(loop).arg(dir)));
+	}
+}
 void QDocumentSearchTest::cleanupTestCase(){
 	delete ds;
 }

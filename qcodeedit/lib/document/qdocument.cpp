@@ -1023,10 +1023,18 @@ QDocumentLine QDocument::line(QDocumentConstIterator iterator) const
 	\param line target line number (text line)
 	\param column target text column
 */
-QDocumentCursor QDocument::cursor(int line, int column) const
+QDocumentCursor QDocument::cursor(int line, int column, int lineTo, int columnTo) const
 {
-	return QDocumentCursor(const_cast<QDocument*>(this), line, column);
+	if (lineTo == -1 || columnTo == -1) 
+		return QDocumentCursor(const_cast<QDocument*>(this), line, column);
+	else {
+		QDocumentCursor c(const_cast<QDocument*>(this), line, column);
+		c.setLineNumber(lineTo, QDocumentCursor::KeepAnchor);
+		c.setColumnNumber(columnTo, QDocumentCursor::KeepAnchor);
+		return c;
+	}
 }
+
 
 /*!
 	\return the document line which contains a given (document-wide) text position
