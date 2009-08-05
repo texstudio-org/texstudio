@@ -24,10 +24,10 @@ SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString SymbolList) : QTab
 	setSelectionMode(QAbstractItemView::SingleSelection);
 	QStringList files=findResourceFiles("symbols/"+SymbolList, "img*.png");
 	setColumnCount(4);
-	setRowCount(files.length()/4+1);
-	for (int j = 0; j < (files.length()/4+1); ++j) setRowHeight(j,36);
+	setRowCount(files.size()/4+1);
+	for (int j = 0; j < (files.size()/4+1); ++j) setRowHeight(j,36);
 	for(int j=0;j < 4;++j) setColumnWidth(j,36);
-	for (int i = 0; i < files.length(); ++i) {
+	for (int i = 0; i < files.size(); ++i) {
 		icon_name=files.at(i);
 		QTableWidgetItem* item= new QTableWidgetItem();
 		QImage img=QImage(findResourceFile("symbols/"+SymbolList+"/"+icon_name));
@@ -90,11 +90,11 @@ void SymbolGridWidget::resizeEvent ( QResizeEvent * event )
 	// add items with adapted number of columns
 	numberOfColumns=event->size().width()/36;
 	setColumnCount(numberOfColumns);
-	setRowCount(listOfItems.length()/numberOfColumns+1);
-	for(int j = 0; j < listOfItems.length()/numberOfColumns+1; ++j) setRowHeight(j,36);
+	setRowCount(listOfItems.size()/numberOfColumns+1);
+	for(int j = 0; j < listOfItems.size()/numberOfColumns+1; ++j) setRowHeight(j,36);
 	for(int j=0;j < numberOfColumns;++j) setColumnWidth(j,36);
 
-	for (int i = 0; i < listOfItems.length(); ++i) {
+	for (int i = 0; i < listOfItems.size(); ++i) {
 		setItem(i/numberOfColumns,i%numberOfColumns,listOfItems[i]);
 	}
 

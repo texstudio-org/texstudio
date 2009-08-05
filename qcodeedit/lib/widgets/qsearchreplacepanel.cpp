@@ -147,10 +147,12 @@ void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceA
 			init();
 		}
 	}
-	if (cbCursor->isChecked() && !m_search->cursor().isValid())
+	if (replaceAll)
+		m_search->setCursor(QDocumentCursor());
+	else if (cbCursor->isChecked() && !m_search->cursor().isValid())
 		m_search->setCursor(editor()->cursor());  //start from current cursor if no known cursor
 	m_search->setOption(QDocumentSearch::Replace,replace);
-	m_search->next(backward, replaceAll, !cbPrompt->isChecked());
+	m_search->next(backward, replaceAll, !cbPrompt->isChecked(), !replaceAll);
 	if (isVisible() && !leFind->hasFocus() && !leReplace->hasFocus() )
 		if (replace) leReplace->setFocus();
 		else leFind->setFocus();
@@ -359,7 +361,10 @@ void QSearchReplacePanel::on_cbCursor_clicked(bool on)
 {
 	if ( m_search )
 	{
-		m_search->setOrigin(on ? editor()->cursor() : QDocumentCursor());
+		if ( on && !cbSelection->isChecked())
+			m_search->setOrigin(editor()->cursor());
+		else
+			m_search->setOrigin(QDocumentCursor());
 	}
 
 	leFind->setFocus();
@@ -380,9 +385,10 @@ void QSearchReplacePanel::on_cbHighlight_clicked(bool on)
 
 void QSearchReplacePanel::on_cbSelection_toggled(bool on)
 {
-	if ( m_search )
+	if ( m_search ) {
+		m_search->setOrigin(QDocumentCursor());
 		m_search->setScope(on ? editor()->cursor() : QDocumentCursor());
-
+	}
 	leFind->setFocus();
 }
 
@@ -471,11 +477,12 @@ void QSearchReplacePanel::init()
 									);
 
 
-	if ( cbCursor->isChecked() )
+	if ( cbSelection->isChecked() && editor()->cursor().hasSelection()){
+		m_search->setScope(editor()->cursor());
+		m_search->setOrigin(QDocumentCursor());
+	} else if ( cbCursor->isChecked() )
 		m_search->setCursor(editor()->cursor());
 
-	if ( cbSelection->isChecked() )
-		m_search->setScope(editor()->cursor());
 
 
 }
@@ -487,12 +494,14 @@ void QSearchReplacePanel::cursorPositionChanged()
 		if ( editor()->cursor() == m_search->cursor() )
 			return;
 
-		if ( cbCursor->isChecked() )
-			m_search->setOrigin(editor()->cursor());
-		if ( cbSelection->isChecked() )
+		if ( cbSelection->isChecked() ){
 			m_search->setScope(editor()->cursor());
-			
-		m_search->setCursor(editor()->cursor());
+			m_search->setOrigin(QDocumentCursor());
+		} else {
+			if ( cbCursor->isChecked() )
+				m_search->setOrigin(editor()->cursor());
+			m_search->setCursor(editor()->cursor());
+		}
 	}
 }
 

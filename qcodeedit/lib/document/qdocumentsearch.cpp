@@ -400,17 +400,18 @@ void QDocumentSearch::setOption(Option opt, bool on)
 	else
 		m_option &= ~opt;
 	
-	if ( (opt & QDocumentSearch::HighlightAll) && m_highlight.count() )
+	if ( (opt & QDocumentSearch::HighlightAll)  )
 	{
 		QDocument *d = m_editor->document();
 		
-		if ( m_group != -1 && !on )
+		if ( m_group != -1 && !on && m_highlight.count() )
 		{
 			d->clearMatches(m_group);
 			d->flushMatches(m_group);
 			m_group = -1;
 		} else if ( m_group == -1 && on ) {
-			m_group = d->getNextGroupId();
+			searchMatches();
+			/*m_group = d->getNextGroupId();
 			
 			QFormatScheme *f = d->formatScheme();
 			
@@ -438,7 +439,7 @@ void QDocumentSearch::setOption(Option opt, bool on)
 			}
 			
 			//qDebug("%i matches in group %i", indexedMatchCount(), m_group);
-			d->flushMatches(m_group);
+			d->flushMatches(m_group);*/
 		}
 	} else if (
 					(m_option & QDocumentSearch::HighlightAll)
@@ -661,7 +662,7 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 	*/
 	
 	m_index = 0;
-	bool realReplace=hasOption(Replace) && !again;
+	bool realReplace=hasOption(Replace) && (!again || all);
 	bool found = false;
 	
 	QDocumentCursor::MoveOperation move;
@@ -699,7 +700,7 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 				coloffset = boundaries.start;
 			}
 			
-			s = s.left(m_cursor.columnNumber());
+			s = s.left(m_cursor.columnNumber()-coloffset);
 		} else {
 			if ( bounded && (boundaries.endLine == ln) )
 				s = s.left(boundaries.end);
@@ -787,7 +788,7 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 		if ( ret == QMessageBox::Yes )
 		{
 			m_origin = QDocumentCursor();
-			return next(backward, false, again, false);
+			return next(backward, all, again, false);
 		}
 	}
 	if ( !found )
