@@ -689,6 +689,8 @@ void References::updateByKeys(QStringList refs,References* altRefs){
 			foreach(QDocumentLineHandle* elem,lst){
 				QDocumentLine mLine(elem);
 				QString text=mLine.text();
+				int commentStart=text.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
+				text=text.left(commentStart); // remove comments
 				int offset=0;
 				while(rxRef.indexIn(text)!=-1){
 					int cnt=count(ref);
@@ -706,6 +708,8 @@ void References::updateByKeys(QStringList refs,References* altRefs){
 		foreach(QDocumentLineHandle* elem,lst){
 			QDocumentLine mLine(elem);
 			QString text=mLine.text();
+			int commentStart=text.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
+			text=text.left(commentStart); // remove comments
 			int offset=0;
 			while(rxLabel.indexIn(text)!=-1){
 				int cnt=count(ref);
