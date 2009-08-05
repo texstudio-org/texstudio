@@ -67,6 +67,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	ArrowGridWidget=0;
 	RelationGridWidget=0;
 	GreekGridWidget=0;
+	OperatorGridWidget=0;
 	CyrillicGridWidget=0;
 	MiscellaneousMathGridWidget=0;
 	MiscellaneousTextGridWidget=0;

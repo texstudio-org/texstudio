@@ -1,6 +1,7 @@
 #include "smallUsefulFunctions.h"
 
 const QString CommonEOW="~!@#$%^&*()_+{}|:\"<>?,./;[]-= \t\n\r`+�";
+const QString EscapedChars="%&_";
 
 QString getCommonEOW() {
 	return CommonEOW;
@@ -153,7 +154,7 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 			if (CommonEOW.indexOf(cur)>=0) break;
 		} else if (inWord) {
 			if (cur=='\\') {
-				if (i+1<line.size() && (line.at(i+1)=='-'||line.at(i+1)=='_'))  {
+				if (i+1<line.size() && (line.at(i+1)=='-'||EscapedChars.indexOf(line.at(i+1))>=0))  {
 					i++;//ignore word separation marker and _ respectively
 					//reparse=true;
 				} else break;
@@ -172,14 +173,17 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 				break;
 			} else if (CommonEOW.indexOf(cur)>=0) break;
 		} else if (cur=='\\') {
-			start=i;
-			inCmd=true;
+			if (i+1<line.size() && EscapedChars.indexOf(line.at(i+1))>=0)  {
+				inWord=true;
+				start=i;
+				i++;
+			}else{
+				start=i;
+				inCmd=true;
+			}
 		} else if (cur=='{' || cur=='}' || cur=='%') {
 			index=i+1;
 			return i;
-		} else if (cur=='\\') {
-			start=i;
-			inCmd=true;
 		} else if (CommonEOW.indexOf(cur)<0 && cur!='\'') {
 			start=i;
 			inWord=true;
