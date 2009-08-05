@@ -18,7 +18,7 @@ class SymbolGridWidget : public QTableWidget {
 	Q_OBJECT
 
 public:
-	SymbolGridWidget(QWidget *parent, QString SymbolList);
+	SymbolGridWidget(QWidget *parent, QString SymbolList, QVariantMap *Map=0);
 public slots:
 protected:
 	void resizeEvent ( QResizeEvent * event );
