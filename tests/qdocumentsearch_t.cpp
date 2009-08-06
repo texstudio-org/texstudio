@@ -5,6 +5,7 @@
 #include "qdocumentsearch.h"
 #include "qdocumentline.h"
 #include "qeditor.h"
+#include "testutil.h"
 #include <QtTest/QtTest>
 QDocumentSearchTest::QDocumentSearchTest(QEditor* editor): QObject(0), 	ed(editor){
 }
@@ -244,6 +245,15 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< 3 << 4
 		<< 0 << 0
 		<< "hell!\nes ist Heaven, die Sonne scheint\nHeaveno World\nHeaveno!!!\nhell!";
+	QTest::newRow("simple")
+		<< "hell!\nes ist hell, die Sonne scheint\nHello World\nxxHello!!!\nhell!"
+		<< "hell"
+		<< "Heaven"
+		<< 0 << true
+		<< 1 << 7
+		<< 3 << 4
+		<< 99 << 99
+		<< "hell!\nes ist Heaven, die Sonne scheint\nHeaveno World\nxxHeaveno!!!\nhell!";
 			
 }
 void QDocumentSearchTest::replaceAll(){
