@@ -7,6 +7,10 @@ CONFIG -= debug \
     release
 CONFIG += qt \
     debug_and_release
+exists(texmakerx_my.pri){
+    include(texmakerx_my.pri)
+}
+
 QT += network \
     xml
 
@@ -366,4 +370,27 @@ win32{
 }
 !win32{
 	LIBS += -lQtTest
+}
+
+################################
+#add files to svn if team is set
+CONFIG(team){
+!CONFIG(build_pass){
+	SVNPREPATH = ./
+	SVNPATH = /.svn/text-base/
+	SVNEXT = .svn-base
+	ALLFILES = $${HEADERS}
+	ALLFILES += $${SOURCES}
+	for(filename, ALLFILES) {
+		#warning($${filename}: test)
+		#warning($${SVNPREPATH}$$dirname(filename)$${SVNPATH}$$basename(filename)$${SVNEXT})
+		!exists($${SVNPREPATH}$$dirname(filename)$${SVNPATH}$$basename(filename)$${SVNEXT}) {
+		    warning($${filename} not contained in svn base will be added)
+			system(svn add $${filename})
+			#!exists($${SVNPREPATH}$$dirname(filename)$${SVNPATH}$$basename(filename)$${SVNEXT}) {
+			#	error($${filename} is not contained in the svn)
+			#}
+		}
+	}
+}
 }
