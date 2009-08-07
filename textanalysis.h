@@ -13,7 +13,7 @@ class Word {
 public:
 	QString word;
 	int count;
-	Word() {};
+	Word() {}
 	Word(QString nw, int nc);
 	bool operator<(const Word &cmpTo) const;
 };

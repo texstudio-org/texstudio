@@ -278,7 +278,7 @@ QString QDocument::text(int mode) const
 	if ( nextIndent < 0 )
 		nextIndent = 0;
 
-	foreach ( QDocumentLineHandle *l, m_impl->m_lines )
+	foreach ( const QDocumentLineHandle *l, m_impl->m_lines )
 	{
 		prevIndent = curIndent;
 		curIndent = nextIndent;
@@ -334,6 +334,15 @@ QString QDocument::text(bool removeTrailing, bool preserveIndent) const
 		mode |= PreserveIndent;
 
 	return text(mode);
+}
+
+QStringList QDocument::textLines() const{
+	QStringList res;
+	if ( !m_impl || m_impl->m_lines.isEmpty() )
+		return res;
+	foreach ( const QDocumentLineHandle *l, m_impl->m_lines )
+		res << l->text();
+	return res;
 }
 
 /*!

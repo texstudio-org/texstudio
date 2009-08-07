@@ -113,6 +113,7 @@ class QCE_EXPORT QDocument : public QObject
 		
 		QString text(int mode) const;
 		QString text(bool removeTrailing = false, bool preserveIndent = true) const;
+		QStringList textLines() const;
 		void setText(const QString& s);
 		
 		void startChunkLoading();
