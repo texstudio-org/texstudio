@@ -41,8 +41,10 @@ SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString SymbolList, QVaria
 		item->setIcon(QIcon(findResourceFile("symbols/"+SymbolList+"/"+icon_name)));
 		item->setText(img.text("Command"));
 		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-		if(Map) item->setData(Qt::UserRole,Map->value(img.text("Command"),0).toInt());
-		else item->setData(Qt::UserRole,0);
+		if(Map) {
+			item->setData(Qt::UserRole,Map->value(img.text("Command"),0).toInt());
+			Map->insert(img.text("Command"),0);
+		} else item->setData(Qt::UserRole,0);
 		QString label;
 		QStringList args,pkgs;
 
