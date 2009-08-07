@@ -65,8 +65,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	StructureView=0;
 	StructureTreeWidget=0;
 	
-	RelationListWidget=0;
-	ArrowListWidget=0;
+	//RelationListWidget=0;
+	//ArrowListWidget=0;
 	ArrowGridWidget=0;
 	RelationGridWidget=0;
 	GreekGridWidget=0;
@@ -76,9 +76,9 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	MiscellaneousTextGridWidget=0;
 	DelimitersGridWidget=0;
 	SpecialGridWidget=0;
-	MiscellaneousListWidget=0;
-	DelimitersListWidget=0;
-	GreekListWidget=0;
+	//MiscellaneousListWidget=0;
+	//DelimitersListWidget=0;
+	//GreekListWidget=0;
 	MostUsedListWidget=0;
 	PsListWidget=0;
 	MpListWidget=0;
@@ -207,7 +207,7 @@ void Texmaker::addSymbolGrid(SymbolGridWidget** list, QString SymbolList,  const
 	} else StructureToolbox->setItemText(StructureToolbox->indexOf(*list),text);
 }
 
-void Texmaker::addSymbolList(SymbolListWidget** list, int index,const QString& iconName, const QString& text, const bool show){
+/*void Texmaker::addSymbolList(SymbolListWidget** list, int index,const QString& iconName, const QString& text, const bool show){
 	if (!*list) {
 		(*list)=new SymbolListWidget(0,index);
 		connect(*list, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
@@ -225,7 +225,7 @@ void Texmaker::addSymbolList(SymbolListWidget** list, int index,const QString& i
 		(*list)->setProperty("StructPos",StructureToolboxWidgets.size());
 		(*list)->setProperty("mType",1);
 	} else StructureToolbox->setItemText(StructureToolbox->indexOf(*list),text);
-}
+}*/
 void Texmaker::addTagList(XmlTagsListWidget** list, const QString& iconName, const QString& text, const QString& tagFile, const bool show){
 	if (!*list) {
 		(*list)=new XmlTagsListWidget(0,":/tags/"+tagFile);
@@ -289,7 +289,8 @@ void Texmaker::setupDockWidgets(){
 	addSymbolGrid(&MiscellaneousTextGridWidget,"misc-text", ":/images/hi16-action-math5.png",tr("Miscellaneous text symbols"),SymbolListVisible&(1<<7));
 	addSymbolGrid(&SpecialGridWidget,"special", ":/images/accent1.png",tr("Accented letters"),SymbolListVisible&(1<<8));
 
-	addSymbolList(&MostUsedListWidget,5,":/images/math6.png",tr("Most used symbols"),SymbolListVisible&1<<9);
+	//addSymbolList(&MostUsedListWidget,5,":/images/math6.png",tr("Most used symbols"),SymbolListVisible&1<<9);
+	addSymbolGrid(&MostUsedListWidget,"",":/images/math6.png",tr("Most used symbols"),SymbolListVisible&1<<9);
 
 	addTagList(&leftrightWidget, ":/images/leftright.png", tr("Left/Right Brackets"),"leftright_tags.xml",SymbolListVisible&1<<10);
 	addTagList(&PsListWidget, ":/images/pstricks.png", tr("Pstricks Commands"),"pstricks_tags.xml",SymbolListVisible&1<<11);
