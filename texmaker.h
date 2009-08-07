@@ -23,7 +23,7 @@
 #include "latexlog.h"
 #include "latexeditorview.h"
 #include "latexcompleter.h"
-#include "symbollistwidget.h"
+//#include "symbollistwidget.h"
 #include "symbolgridwidget.h"
 #include "xmltagslistwidget.h"
 #include "spellerdialog.h"
@@ -74,7 +74,7 @@ private:
 	inline QAction* getManagedAction(QString id);
 	
 	void addSymbolGrid(SymbolGridWidget** list, QString SymbolList,  const QString& iconName, const QString& text, const bool show=true);
-	void addSymbolList(SymbolListWidget** list, int index, const QString& iconName, const QString& text, const bool show=true);
+	//void addSymbolList(SymbolListWidget** list, int index, const QString& iconName, const QString& text, const bool show=true);
 	void addTagList(XmlTagsListWidget** list, const QString& iconName, const QString& text, const QString& tagFile, const bool show=true);
 
 	QVariantMap *MapForSymbols;
@@ -99,8 +99,8 @@ private:
 	QTabWidget *EditorView;
 	QToolBox *StructureToolbox;
 	XmlTagsListWidget *MpListWidget, *PsListWidget, *leftrightWidget, *tikzWidget, *asyWidget;
-	SymbolListWidget *RelationListWidget, *ArrowListWidget, *MiscellaneousListWidget, *DelimitersListWidget, *GreekListWidget, *MostUsedListWidget;
-	SymbolGridWidget *RelationGridWidget,*ArrowGridWidget,*GreekGridWidget,*CyrillicGridWidget,*MiscellaneousMathGridWidget,*MiscellaneousTextGridWidget,*DelimitersGridWidget,*SpecialGridWidget,*OperatorGridWidget;
+	//SymbolListWidget *RelationListWidget, *ArrowListWidget, *MiscellaneousListWidget, *DelimitersListWidget, *GreekListWidget ;
+	SymbolGridWidget *RelationGridWidget,*ArrowGridWidget,*GreekGridWidget,*CyrillicGridWidget,*MiscellaneousMathGridWidget,*MiscellaneousTextGridWidget,*DelimitersGridWidget,*SpecialGridWidget,*OperatorGridWidget, *MostUsedListWidget;
 	qlonglong SymbolListVisible;
 
 	QTreeWidget *StructureTreeWidget;

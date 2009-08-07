@@ -16,7 +16,7 @@ PRECOMPILED_HEADER = mostQtHeaders.h
 HEADERS += texmaker.h \
     buildmanager.h \
     dsingleapplication.h \
-    symbollistwidget.h \
+	#symbollistwidget.h \
     symbolgridwidget.h \
     icondelegate.h \
     latexcompleter.h \
@@ -77,7 +77,7 @@ SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
     texmaker.cpp \
-    symbollistwidget.cpp \
+	#symbollistwidget.cpp \
     symbolgridwidget.cpp \
     icondelegate.cpp \
     latexcompleter.cpp \

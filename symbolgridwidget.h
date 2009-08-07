@@ -14,12 +14,17 @@
 
 #include "mostQtHeaders.h"
 
+typedef QList<QTableWidgetItem*> usercodelist;
+
+Q_DECLARE_METATYPE(QTableWidgetItem*)
+
 class SymbolGridWidget : public QTableWidget {
 	Q_OBJECT
 
 public:
 	SymbolGridWidget(QWidget *parent, QString SymbolList, QVariantMap *Map=0);
 public slots:
+	void SetUserPage(usercodelist ulist);
 protected:
 	void resizeEvent ( QResizeEvent * event );
 
