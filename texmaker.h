@@ -293,6 +293,7 @@ private slots:
 	void WebPublish();
 	void AnalyseText();
 	void AnalyseTextFormDestroyed();
+	void GenerateRandomText();
 	
 	void RealViewLog(bool noTabChange=false);
 	void ViewLog(bool noTabChange=false);

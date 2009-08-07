@@ -7,21 +7,17 @@ CONFIG -= debug \
     release
 CONFIG += qt \
     debug_and_release
-exists(texmakerx_my.pri){
-    include(texmakerx_my.pri)
-}
-
+exists(texmakerx_my.pri):include(texmakerx_my.pri)
 QT += network \
     xml
 
 # ##############################
-PRECOMPILED_HEADER  = mostQtHeaders.h
-
+PRECOMPILED_HEADER = mostQtHeaders.h
 HEADERS += texmaker.h \
     buildmanager.h \
     dsingleapplication.h \
     symbollistwidget.h \
-	symbolgridwidget.h \
+    symbolgridwidget.h \
     icondelegate.h \
     latexcompleter.h \
     latexeditorview.h \
@@ -75,13 +71,14 @@ HEADERS += texmaker.h \
     hunspell/hunzip.hxx \
     hunspell/w_char.hxx \
     qcodeedit/lib/qeditorinputbinding.h \
-    qcodeedit/lib/qeditorinputbindinginterface.h
+    qcodeedit/lib/qeditorinputbindinginterface.h \
+    randomtextgenerator.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
     texmaker.cpp \
     symbollistwidget.cpp \
-	symbolgridwidget.cpp \
+    symbolgridwidget.cpp \
     icondelegate.cpp \
     latexcompleter.cpp \
     latexeditorview.cpp \
@@ -125,7 +122,8 @@ SOURCES += main.cpp \
     hunspell/filemgr.cxx \
     hunspell/hunzip.cxx \
     encodingdialog.cpp \
-    qcodeedit/lib/qeditorinputbinding.cpp
+    qcodeedit/lib/qeditorinputbinding.cpp \
+    randomtextgenerator.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
@@ -143,10 +141,12 @@ FORMS += structdialog.ui \
     configdialog.ui \
     spellerdialog.ui \
     textanalysis.ui \
-    encodingdialog.ui
+    encodingdialog.ui \
+    randomtextgenerator.ui
 TRANSLATIONS += texmakerx_fr.ts \
     texmakerx_de.ts \
     texmakerx_it.ts
+
 # ###############################
 unix:!macx { 
     UI_DIR = .ui
@@ -353,44 +353,32 @@ SOURCES += qcodeedit/lib/qnfa/qnfa.cpp \
     qcodeedit/lib/qnfa/xml2qnfa.cpp
 
 # ###############################
-#these files should be debug only, but debug-only thing in a qmake file become an
-#incredible mess, so they are always compiled (but empty through #define in release mode)
+# these files should be debug only, but debug-only thing in a qmake file become an
+# incredible mess, so they are always compiled (but empty through #define in release mode)
 SOURCES += tests/testmanager.cpp \
-           tests/testutil.cpp \
-           tests/qdocumentsearch_t.cpp \
-		   tests/codesnippet_t.cpp
+    tests/testutil.cpp \
+    tests/qdocumentsearch_t.cpp \
+    tests/codesnippet_t.cpp
 HEADERS += tests/testmanager.h \
-           tests/testutil.h \
-           tests/smallUsefulFunctions_t.h \
-           tests/buildManager_t.h \
-           tests/qdocumentsearch_t.h \
-		   tests/codesnippet_t.h
-win32{
-	LIBS += -lQtTestd4
-}
-!win32{
-	LIBS += -lQtTest
-}
+    tests/testutil.h \
+    tests/smallUsefulFunctions_t.h \
+    tests/buildManager_t.h \
+    tests/qdocumentsearch_t.h \
+    tests/codesnippet_t.h
+win32:LIBS += -lQtTestd4
+!win32:LIBS += -lQtTest
 
-################################
-#add files to svn if team is set
-CONFIG(team){
-!CONFIG(build_pass){
-	SVNPREPATH = ./
-	SVNPATH = /.svn/text-base/
-	SVNEXT = .svn-base
-	ALLFILES = $${HEADERS}
-	ALLFILES += $${SOURCES}
-	for(filename, ALLFILES) {
-		#warning($${filename}: test)
-		#warning($${SVNPREPATH}$$dirname(filename)$${SVNPATH}$$basename(filename)$${SVNEXT})
-		!exists($${SVNPREPATH}$$dirname(filename)$${SVNPATH}$$basename(filename)$${SVNEXT}) {
-		    warning($${filename} not contained in svn base will be added)
-			system(svn add $${filename})
-			#!exists($${SVNPREPATH}$$dirname(filename)$${SVNPATH}$$basename(filename)$${SVNEXT}) {
-			#	error($${filename} is not contained in the svn)
-			#}
-		}
-	}
-}
+# ###############################
+# add files to svn if team is set
+CONFIG(team):!CONFIG(build_pass) { 
+    SVNPREPATH = ./
+    SVNPATH = /.svn/text-base/
+    SVNEXT = .svn-base
+    ALLFILES = $${HEADERS}
+    ALLFILES += $${SOURCES}
+    ALLFILES += $${FORMS}
+    for(filename, ALLFILES): !exists($${SVNPREPATH}$$dirname(filename)$${SVNPATH}$$basename(filename)$${SVNEXT}) { 
+        warning($${filename} not contained in svn base will be added)
+        system(svn add $${filename})
+    }
 }

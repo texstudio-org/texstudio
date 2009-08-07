@@ -29,6 +29,7 @@
 #include "aboutdialog.h"
 #include "configdialog.h"
 #include "encodingdialog.h"
+#include "randomtextgenerator.h"
 #include "webpublishdialog.h"
 
 #ifndef QT_NO_DEBUG
@@ -470,6 +471,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "htmlexport",tr("Convert to Html"), SLOT(WebPublish()));
 	menu->addSeparator();
 	newManagedAction(menu, "analysetext",tr("Analyse Text"), SLOT(AnalyseText()));
+	newManagedAction(menu, "generaterandomtext",tr("Generate Random Text"), SLOT(GenerateRandomText()));
 
 //  Latex/Math external
 	configManager.loadManagedMenus(":/uiconfig.xml");
@@ -3256,6 +3258,19 @@ void Texmaker::AnalyseText() {
 void Texmaker::AnalyseTextFormDestroyed() {
 	textAnalysisDlg=0;
 }
+void Texmaker::GenerateRandomText(){
+	if (!currentEditorView()){
+		QMessageBox::warning(this ,"TexMakerX", tr("The random text generator constructs new texts from existing words, so you have to open some text files"), QMessageBox::Ok);
+		return;
+	}
+		
+	QStringList allLines;
+	for (int i=0;i<EditorView->count();i++)
+		allLines<<(qobject_cast<LatexEditorView*>(EditorView->widget(i)))->editor->document()->textLines();
+	RandomTextGenerator generator(this, allLines);
+	generator.exec();
+}
+
 //////////////// MESSAGES - LOG FILE///////////////////////
 bool Texmaker::LogExists() {
 	QString finame=getCompileFileName();
