@@ -9,12 +9,13 @@ QString getCommonEOW() {
 
 QStringList findResourceFiles(QString dirName, QString filter) {
 	QStringList searchFiles;
+
+	searchFiles<<":/"+dirName; //resource fall back
+	searchFiles<<QCoreApplication::applicationDirPath() + "/"+dirName; //windows new
+	// searchFiles<<QCoreApplication::applicationDirPath() + "/data/"+fileName; //windows new
 #if defined( Q_WS_X11 )
 	searchFiles<<PREFIX"/share/texmakerx/"+dirName; //X_11
 #endif
-	searchFiles<<QCoreApplication::applicationDirPath() + "/"+dirName; //windows new
-	// searchFiles<<QCoreApplication::applicationDirPath() + "/data/"+fileName; //windows new
-	searchFiles<<":/"+dirName; //resource fall back
 
 	foreach(QString fn, searchFiles) {
 		QDir fic(fn);
@@ -28,9 +29,8 @@ QStringList findResourceFiles(QString dirName, QString filter) {
 
 QString findResourceFile(QString fileName) {
 	QStringList searchFiles;
-#if defined( Q_WS_X11 )
-	searchFiles<<PREFIX"/share/texmakerx/"+fileName; //X_11
-#endif
+
+	searchFiles<<":/"+fileName; //resource fall back
 	searchFiles<<QCoreApplication::applicationDirPath() + "/../Resources/"+fileName; //macx
 	searchFiles<<QCoreApplication::applicationDirPath() + "/"+fileName; //windows old
 	searchFiles<<QCoreApplication::applicationDirPath() + "/dictionaries/"+fileName; //windows new
@@ -38,7 +38,10 @@ QString findResourceFile(QString fileName) {
 	searchFiles<<QCoreApplication::applicationDirPath() + "/help/"+fileName; //windows new
 	searchFiles<<QCoreApplication::applicationDirPath() + "/utilities/"+fileName; //windows new
 	// searchFiles<<QCoreApplication::applicationDirPath() + "/data/"+fileName; //windows new
-	searchFiles<<":/"+fileName; //resource fall back
+#if defined( Q_WS_X11 )
+	searchFiles<<PREFIX"/share/texmakerx/"+fileName; //X_11
+#endif
+
 
 	foreach(QString fn, searchFiles) {
 		QFileInfo fic(fn);
