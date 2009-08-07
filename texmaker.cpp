@@ -1771,6 +1771,7 @@ void Texmaker::SaveSettings() {
 			int cnt=elem->data(Qt::UserRole).toInt();
 			if (cnt<1) continue;
 			QString text=elem->text();
+			if(MapForSymbols->value(text).toInt()>cnt) cnt=MapForSymbols->value(text).toInt();
 			MapForSymbols->insert(text,cnt);
 		}
 	}
