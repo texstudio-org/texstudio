@@ -74,6 +74,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	CyrillicGridWidget=0;
 	MiscellaneousMathGridWidget=0;
 	MiscellaneousTextGridWidget=0;
+	MiscellaneousWasyGridWidget=0;
 	DelimitersGridWidget=0;
 	SpecialGridWidget=0;
 	//MiscellaneousListWidget=0;
@@ -287,16 +288,17 @@ void Texmaker::setupDockWidgets(){
 	addSymbolGrid(&CyrillicGridWidget,"cyrillic", ":/images/hi16-action-math10.png",tr("Cyrillic letters"),SymbolListVisible&(1<<5));
 	addSymbolGrid(&MiscellaneousMathGridWidget,"misc-math", ":/images/math3.png",tr("Miscellaneous math symbols"),SymbolListVisible&(1<<6));
 	addSymbolGrid(&MiscellaneousTextGridWidget,"misc-text", ":/images/hi16-action-math5.png",tr("Miscellaneous text symbols"),SymbolListVisible&(1<<7));
-	addSymbolGrid(&SpecialGridWidget,"special", ":/images/accent1.png",tr("Accented letters"),SymbolListVisible&(1<<8));
+	addSymbolGrid(&MiscellaneousWasyGridWidget,"wasysym", ":/images/hi16-action-math5.png",tr("Miscellaneous text symbols (wasysym)"),SymbolListVisible&(1<<8));
+	addSymbolGrid(&SpecialGridWidget,"special", ":/images/accent1.png",tr("Accented letters"),SymbolListVisible&(1<<9));
 
 	//addSymbolList(&MostUsedListWidget,5,":/images/math6.png",tr("Most used symbols"),SymbolListVisible&1<<9);
-	addSymbolGrid(&MostUsedListWidget,"",":/images/math6.png",tr("Most used symbols"),SymbolListVisible&1<<9);
+	addSymbolGrid(&MostUsedListWidget,"",":/images/math6.png",tr("Most used symbols"),SymbolListVisible&1<<10);
 
-	addTagList(&leftrightWidget, ":/images/leftright.png", tr("Left/Right Brackets"),"leftright_tags.xml",SymbolListVisible&1<<10);
-	addTagList(&PsListWidget, ":/images/pstricks.png", tr("Pstricks Commands"),"pstricks_tags.xml",SymbolListVisible&1<<11);
-	addTagList(&MpListWidget, ":/images/metapost.png", tr("MetaPost Commands"),"metapost_tags.xml",SymbolListVisible&1<<12);
-	addTagList(&tikzWidget, ":/images/tikz.png", tr("Tikz Commands"),"tikz_tags.xml",SymbolListVisible&1<<13);
-	addTagList(&asyWidget, ":/images/asymptote.png", tr("Asymptote Commands"),"asymptote_tags.xml",SymbolListVisible&1<<14);
+	addTagList(&leftrightWidget, ":/images/leftright.png", tr("Left/Right Brackets"),"leftright_tags.xml",SymbolListVisible&1<<11);
+	addTagList(&PsListWidget, ":/images/pstricks.png", tr("Pstricks Commands"),"pstricks_tags.xml",SymbolListVisible&1<<12);
+	addTagList(&MpListWidget, ":/images/metapost.png", tr("MetaPost Commands"),"metapost_tags.xml",SymbolListVisible&1<<13);
+	addTagList(&tikzWidget, ":/images/tikz.png", tr("Tikz Commands"),"tikz_tags.xml",SymbolListVisible&1<<14);
+	addTagList(&asyWidget, ":/images/asymptote.png", tr("Asymptote Commands"),"asymptote_tags.xml",SymbolListVisible&1<<15);
 
 	// update MostOftenUsed
 	MostUsedSymbolsTriggered(true);
@@ -1670,7 +1672,7 @@ void Texmaker::ReadSettings() {
 	MapForSymbols= new QVariantMap;
 	*MapForSymbols=config->value("Symbols/Quantity").toMap();
 
-	SymbolListVisible=config->value("Symbols/symbollists",32767).toLongLong();
+	SymbolListVisible=config->value("Symbols/symbollists",65279).toLongLong();
 
 
 	config->endGroup();
