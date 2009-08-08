@@ -10,7 +10,7 @@ CONFIG += qt \
 exists(texmakerx_my.pri):include(texmakerx_my.pri)
 QT += network \
     xml
-
+	
 # ##############################
 PRECOMPILED_HEADER = mostQtHeaders.h
 HEADERS += texmaker.h \
