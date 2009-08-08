@@ -1399,7 +1399,7 @@ LatexEditorView* Texmaker::getEditorFromStructureItem(QTreeWidgetItem* m_item){
 		m_item=parent;
 		parent=parent->parent();
 	}
-	return getEditorViewFromFileName(m_item->text(0));
+	return getEditorViewFromFileName(m_item->text(1)); //see updateStructureForFile...
 }
 
 QPoint Texmaker::sectionSelection(QTreeWidgetItem* m_item) {
@@ -1846,6 +1846,7 @@ void Texmaker::updateStructureForFile(const QString& fileName){
 	QTreeWidgetItem *top = new QTreeWidgetItem(StructureTreeWidget);
 	top->setIcon(0,QIcon(":/images/doc.png"));
 	top->setText(0,shortName);
+	top->setText(1,fileName);//see getEditorFromStructureItem
 	Child=parent_level[0]=parent_level[1]=parent_level[2]=parent_level[3]=parent_level[4]=top;
 	labelitem.clear();
 	QTreeWidgetItem *toplabel = new QTreeWidgetItem(top);
@@ -1986,7 +1987,7 @@ void Texmaker::ClickedOnStructure(QTreeWidgetItem *item,int col) {
 	QTreeWidgetItem* parent=item->parent();
 	if (!parent) {
 		//top level item, is file name
-		EditorView->setCurrentWidget(getEditorViewFromFileName(item->text(0)));
+		EditorView->setCurrentWidget(getEditorFromStructureItem(item));
 		return;
 	}
 	QTreeWidgetItem* tempItem=item;
@@ -3872,6 +3873,7 @@ void Texmaker::gotoMark(bool backward, int id) {
 
 void Texmaker::StructureContextMenu(QPoint point) {
 	QTreeWidgetItem* item=StructureTreeWidget->currentItem();
+	if (!item) return; 
 	if(item->parent()&&item->text(0)!="LABELS"&&item->text(1)!="include"&&item->text(1)!="input"){
 		if (item->parent()->text(0)=="LABELS") {
 			QMenu menu;
