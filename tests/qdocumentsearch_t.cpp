@@ -245,15 +245,24 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< 3 << 4
 		<< 0 << 0
 		<< "hell!\nes ist Heaven, die Sonne scheint\nHeaveno World\nHeaveno!!!\nhell!";
-	QTest::newRow("simple")
+	QTest::newRow("simple backward")
 		<< "hell!\nes ist hell, die Sonne scheint\nHello World\nxxHello!!!\nhell!"
 		<< "hell"
 		<< "Heaven"
 		<< 0 << true
 		<< 1 << 7
-		<< 3 << 4
+		<< 3 << 6
 		<< 99 << 99
 		<< "hell!\nes ist Heaven, die Sonne scheint\nHeaveno World\nxxHeaveno!!!\nhell!";
+	QTest::newRow("whole words backward")
+		<< "abc abc \nabc abc abc \nabc abcabcabcabc \nabc\nabc abc abc\nabc"
+		<< "abc"
+		<< "uvxyz"
+		<< (int)QDocumentSearch::WholeWords << true
+		<< 0 << 5
+		<< 5 << 3
+		<< 5 << 0
+		<< "abc abc \nuvxyz uvxyz uvxyz \nuvxyz abcabcabcabc \nuvxyz\nuvxyz uvxyz uvxyz\nabc";
 			
 }
 void QDocumentSearchTest::replaceAll(){

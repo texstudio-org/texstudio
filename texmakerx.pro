@@ -357,14 +357,16 @@ SOURCES += qcodeedit/lib/qnfa/qnfa.cpp \
 # incredible mess, so they are always compiled (but empty through #define in release mode)
 SOURCES += tests/testmanager.cpp \
     tests/testutil.cpp \
+    tests/codesnippet_t.cpp\
     tests/qdocumentsearch_t.cpp \
-    tests/codesnippet_t.cpp
+    tests/qsearchreplacepanel_t.cpp
 HEADERS += tests/testmanager.h \
     tests/testutil.h \
     tests/smallUsefulFunctions_t.h \
     tests/buildManager_t.h \
+    tests/codesnippet_t.h \
     tests/qdocumentsearch_t.h \
-    tests/codesnippet_t.h
+    tests/qsearchreplacepanel_t.h
 win32:LIBS += -lQtTestd4
 !win32:LIBS += -lQtTest
 

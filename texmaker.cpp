@@ -3553,7 +3553,7 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 			fileNew();
 			if (!currentEditorView() || !currentEditorView()->editor)
 				QMessageBox::critical(0,"wtf?","test failed",QMessageBox::Ok);
-			currentEditorView()->editor->document()->setText(TestManager::execute(currentEditorView(),currentEditorView()->editor));
+			currentEditorView()->editor->document()->setText(TestManager::execute(currentEditorView(),currentEditorView()->codeeditor,currentEditorView()->editor));
 			configManager.debugLastFileModification=QFileInfo(QCoreApplication::applicationFilePath()).lastModified();
 		}
 	#endif

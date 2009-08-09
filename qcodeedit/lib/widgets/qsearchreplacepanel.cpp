@@ -170,7 +170,17 @@ void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool
     cbRegExp->setChecked(regex);
     findReplace(backward);
 }
-
+void QSearchReplacePanel::setOptions(int searchOptions, bool cursor, bool selection){
+	cbRegExp->setChecked(searchOptions & QDocumentSearch::RegExp);
+	cbCase->setChecked(searchOptions &QDocumentSearch::CaseSensitive);
+	cbWords->setChecked(searchOptions &QDocumentSearch::WholeWords);
+	cbHighlight->setChecked(searchOptions &QDocumentSearch::HighlightAll);
+	cbReplace->setChecked(searchOptions & QDocumentSearch::Replace);
+	cbPrompt->setChecked(searchOptions & QDocumentSearch::Prompt);
+	cbEscapeSeq->setChecked(searchOptions & QDocumentSearch::EscapeSeq);
+	cbCursor->setChecked(cursor);
+	cbSelection->setChecked(selection);
+}
 /*!
 
 */
@@ -357,7 +367,7 @@ void QSearchReplacePanel::on_cbCase_toggled(bool on)
 		leFind->setFocus();
 }
 
-void QSearchReplacePanel::on_cbCursor_clicked(bool on)
+void QSearchReplacePanel::on_cbCursor_toggled(bool on)
 {
 	if ( m_search )
 	{
@@ -367,10 +377,11 @@ void QSearchReplacePanel::on_cbCursor_clicked(bool on)
 			m_search->setOrigin(QDocumentCursor());
 	}
 
-	leFind->setFocus();
+	if ( leFind->isVisible() )
+		leFind->setFocus();
 }
 
-void QSearchReplacePanel::on_cbHighlight_clicked(bool on)
+void QSearchReplacePanel::on_cbHighlight_toggled(bool on)
 {
 	if ( !m_search )
 		init();
@@ -380,7 +391,8 @@ void QSearchReplacePanel::on_cbHighlight_clicked(bool on)
 		m_search->setOption(QDocumentSearch::HighlightAll, on);
 	}
 
-	leFind->setFocus();
+	if ( leFind->isVisible() )
+		leFind->setFocus();
 }
 
 void QSearchReplacePanel::on_cbSelection_toggled(bool on)
@@ -454,10 +466,10 @@ void QSearchReplacePanel::init()
 	if ( cbWords->isChecked() )
 		opt |= QDocumentSearch::WholeWords;
 
-	if ( cbHighlight->isChecked() && !cbReplace->isVisible() )
+	if ( cbHighlight->isChecked())
 		opt |= QDocumentSearch::HighlightAll;
 
-	if ( cbReplace->isChecked() && cbReplace->isVisible() )
+	if ( cbReplace->isChecked())
 		opt |= QDocumentSearch::Replace;
 
 	if ( cbPrompt->isChecked() )

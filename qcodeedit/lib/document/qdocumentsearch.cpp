@@ -350,6 +350,8 @@ QRegExp QDocumentSearch::currentRegExp(){
 	{
 		m_regexp = QRegExp(m_string, cs, QRegExp::RegExp);
 	} else if ( hasOption(WholeWords) ) {
+		//todo: screw this? it prevents searching of "world!" and similar things
+		//(qtextdocument just checks the surrounding character when searching for whole words, this would also allow wholewords|regexp search)
 		m_regexp = QRegExp(
 						QString("\\b%1\\b").arg(QRegExp::escape(m_string)),
 						cs,
@@ -615,7 +617,7 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 	{
 		if ( m_scope.isValid() && m_scope.hasSelection() )
 		{
-                        if ( backward )
+			if ( backward )
 				m_cursor = m_scope.selectionEnd();
 			else
 				m_cursor = m_scope.selectionStart();
@@ -652,14 +654,13 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 	if (hasOption(HighlightAll) && !all)  //special handling if highlighting is on, but all replace is still handled here
 		return nextMatch(backward,again,allowWrapAround);
 	
-	/*
-	qDebug(
+	/*qDebug(
 		"searching %s from line %i (column %i)",
 		backward ? "backward" : "forward",
 		m_cursor.lineNumber(),
 		m_cursor.columnNumber()
 	);
-	*/
+	//*/
 	
 	m_index = 0;
 	bool realReplace=hasOption(Replace) && (!again || all);
@@ -687,7 +688,7 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 		}
 		
 		int ln = m_cursor.lineNumber();
-		QDocumentLine l = m_cursor.line();
+		const QDocumentLine& l = m_cursor.line();
 		
 		int coloffset = 0;
 		QString s = l.text();
@@ -708,14 +709,14 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 		}
 		
 		int column;
-		if (backward) column=m_regexp.lastIndexIn(s,m_cursor.columnNumber());
+		if (backward) column=m_regexp.lastIndexIn(s,m_cursor.columnNumber()-coloffset);
 		else column=m_regexp.indexIn(s, m_cursor.columnNumber());
-                /*
-		qDebug("searching %s in %s => %i",
+        /*
+		qDebug("searching %s in %s from %i => %i",
 				qPrintable(m_regexp.pattern()),
-				qPrintable(s),
+				qPrintable(s), m_cursor.columnNumber(), 
 				column);
-		*/
+		//*/
 		
 		if ( column != -1 && (backward || column >= m_cursor.columnNumber() ) )
 		{

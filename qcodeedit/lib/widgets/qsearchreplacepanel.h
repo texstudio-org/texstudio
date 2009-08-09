@@ -49,6 +49,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel, private Ui::SearchReplace
 		
 		void findReplace(bool backward, bool replace=false, bool replaceAll=false);
 		void find(QString text, bool backward, bool highlight, bool regex);
+		void setOptions(int searchOptions, bool cursor, bool selection);
 		
 	protected:
 		virtual bool forward(QMouseEvent *e);
@@ -67,8 +68,8 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel, private Ui::SearchReplace
 		void on_cbCase_toggled(bool on);
 		void on_cbWords_toggled(bool on);
 		void on_cbRegExp_toggled(bool on);
-		void on_cbCursor_clicked(bool on);
-		void on_cbHighlight_clicked(bool on);
+		void on_cbCursor_toggled(bool on);
+		void on_cbHighlight_toggled(bool on);
 		void on_cbSelection_toggled(bool on);
 		void on_cbEscapeSeq_toggled(bool on);
 		void on_cbPrompt_toggled(bool on);
