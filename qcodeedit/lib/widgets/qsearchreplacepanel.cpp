@@ -124,6 +124,12 @@ void QSearchReplacePanel::display(int mode, bool replace)
 		leFind->setFocus();
 		leFind->selectAll();
 		//show();
+	}else{
+		if ( m_search )
+		{
+			//m_search->setOption(QDocumentSearch::HighlightAll, false);
+			m_search->clearMatches();
+		}
 	}
 
 	setVisible(visible);
@@ -220,7 +226,7 @@ bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
 					return true;
 				} else if ( kc == Qt::Key_Escape) {
 					if ( cbReplace->isChecked() )
-						display(1,false);
+						display(0,false);
 					else
 						display(0,false);
 					return true;
