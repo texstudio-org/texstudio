@@ -79,13 +79,14 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		void setScope(const QDocumentCursor& c);
 		
 		bool next(bool backward, bool all = false, bool again=false,  bool allowWrapAround=true);
+
+		void clearMatches();
 	private:
 		void replaceCursorText(QRegExp& m_regexp);
 		bool end(bool backward) const;
 		
 		bool nextMatch(bool backward, bool again=false,  bool allowWrapAround=true);
 		void searchMatches(const QDocumentCursor& subHighlightScope=QDocumentCursor(), bool clearAll=false);
-		void clearMatches();
 		
 		QDocument* currentDocument();
 		QRegExp currentRegExp();
