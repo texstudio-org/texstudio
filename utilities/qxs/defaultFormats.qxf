@@ -69,13 +69,14 @@
         <foreground>#ffff00</foreground>
     </format>
     <format id="search" >
-        <bold>true</bold>
-        <italic>true</italic>
+		<bold>false</bold>
+		<italic>false</italic>
         <overline>false</overline>
         <underline>false</underline>
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
-        <foreground>#ff0000</foreground>
+		<background>#ffff00</background>
+		<foreground>#000000</foreground>
     </format>
     <format id="numbers" >
         <bold>false</bold>
