@@ -47,6 +47,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel, private Ui::SearchReplace
 	public slots:
 		void display(int mode, bool replace);
 		
+		void findNext();
 		void findReplace(bool backward, bool replace=false, bool replaceAll=false);
 		void find(QString text, bool backward, bool highlight, bool regex);
 		void setOptions(int searchOptions, bool cursor, bool selection);
@@ -90,6 +91,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel, private Ui::SearchReplace
 		void on_leFind_returnPressed(bool backward);
 		void on_leReplace_returnPressed(bool backward);
 		QDocumentSearch *m_search;
+		bool m_lastDirection;
 };
 
 #endif // _QSEARCH_REPLACE_PANEL_H_

@@ -46,7 +46,7 @@ QCE_AUTO_REGISTER(QSearchReplacePanel)
 	\brief Constructor
 */
 QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
- : QPanel(p),m_search(0)
+ : QPanel(p),m_search(0),m_lastDirection(false)
 {
 	setupUi(this);
 	setDefaultVisibility(false);
@@ -138,6 +138,10 @@ void QSearchReplacePanel::display(int mode, bool replace)
 		editor()->setFocus();
 }
 
+void QSearchReplacePanel::findNext(){
+	findReplace(m_lastDirection);
+}
+
 /*!
 
 */
@@ -153,6 +157,7 @@ void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceA
 			init();
 		}
 	}
+	m_lastDirection=backward;
 	if (replaceAll)
 		m_search->setCursor(QDocumentCursor());
 	else if (cbCursor->isChecked() && !m_search->cursor().isValid())
@@ -174,6 +179,8 @@ void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool
     leFind->setText(text);
     cbHighlight->setChecked(highlight);
     cbRegExp->setChecked(regex);
+	cbCase->setChecked(false);
+	cbSelection->setChecked(false);
     findReplace(backward);
 }
 void QSearchReplacePanel::setOptions(int searchOptions, bool cursor, bool selection){
@@ -512,7 +519,7 @@ void QSearchReplacePanel::cursorPositionChanged()
 		if ( editor()->cursor() == m_search->cursor() )
 			return;
 
-		if ( cbSelection->isChecked() ){
+		if ( cbSelection->isChecked() && editor()->cursor().hasSelection()){
 			m_search->setScope(editor()->cursor());
 			m_search->setOrigin(QDocumentCursor());
 		} else {

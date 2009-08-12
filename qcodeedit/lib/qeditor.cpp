@@ -1181,9 +1181,8 @@ void QEditor::findNext()
 		m->sendPanelCommand("Goto", "hide");
 		
 		m->sendPanelCommand("Search",
-							"find",
+							"findNext",
 							Q_COMMAND
-								<< Q_ARG(int, -1)
 							);
 
 	} else {

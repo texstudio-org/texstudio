@@ -773,7 +773,7 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 		m_cursor = QDocumentCursor();
 			
 		int ret = QMessageBox::Yes; //different to base qce2.2, where it defaults to ::no if silent
-		if ( !hasOption(Silent) )
+		if ( !hasOption(Silent) /*&& hasOption(Prompt), to ask or not to ask that is the question; if it doesn't ask it fails silently if no match exists*/)
 			ret=QMessageBox::question(
 							m_editor,
 							tr("Failure"),
