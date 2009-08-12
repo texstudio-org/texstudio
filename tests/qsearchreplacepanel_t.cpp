@@ -29,17 +29,29 @@ void QSearchReplacePanelTest::incrementalsearch_data(){
 	QTest::addColumn<int>("sy");
 	QTest::addColumn<int>("sx");
 	QTest::addColumn<QStringList>("moves");
+	QTest::addColumn<int>("scopey1");
+	QTest::addColumn<int>("scopex1");
+	QTest::addColumn<int>("scopey2");
+	QTest::addColumn<int>("scopex2");
 
 	QTest::newRow("simple")
 			<< "hello world!\nhello world!\nyeah!"
 			<< 0 << true
 			<< 1 << 0
-			<< (QStringList() << "1|0|h" << "he" << "hel" << "hell" << "hello" << "1|6|world!");
+			<< (QStringList() << "1|0|h" << "he" << "hel" << "hell" << "hello" << "1|6|world!")
+			<< -1 << -1 << -1 << -1;
 	QTest::newRow("whole words")
 			<< "hello world!\nhello hell hel he h!\nyeah!"
 			<< (int)QDocumentSearch::WholeWords << true
 			<< 1 << 0
-			<< (QStringList() << "1|18|h" << "1|15|he" << "1|11|hel" << "1|6|hell" << "0|0|hello" << "0|6|world");
+			<< (QStringList() << "1|18|h" << "1|15|he" << "1|11|hel" << "1|6|hell" << "0|0|hello" << "0|6|world")
+			<< -1 << -1 << -1 << -1;
+	QTest::newRow("regexp scoped")
+			<< "seven dwarfs go around\nlooking for the worthful treasure\nthey are digging at the beach"
+			<< (int)QDocumentSearch::RegExp << true
+			<< 0 << 0
+			<< (QStringList() << "0|14|[aeiou]|o" << "0|14|[aeiou]|o" << "0|14|[aeiou]|o" << "1|1|o{2,}|oo" << "1|1|[aeiou]|o" << "1|22|u" << "1|22|u.|ul" << "1|23|l " << "1|23|l t" << "1|25|tr[aeoiu]*|trea" << "2|1|h.y|hey" << "1|26|re")
+			<< 0 << 9 << 2 << 7;
 }
 void QSearchReplacePanelTest::incrementalsearch(){
 	QFETCH(QString, editorText);
@@ -50,9 +62,18 @@ void QSearchReplacePanelTest::incrementalsearch(){
 	QFETCH(int, sx);
 	
 	QFETCH(QStringList, moves);
+
+	QFETCH(int, scopey1);
+	QFETCH(int, scopex1);
+	QFETCH(int, scopey2);
+	QFETCH(int, scopex2);
 	
 	ed->document()->setText(editorText);
-	panel->setOptions((QDocumentSearch::Options)options, cursor, false);
+	if (scopey1!=-1) {
+		widget->cbSelection->setChecked(true);
+		ed->setCursor(ed->document()->cursor(scopey1,scopex1,scopey2,scopex2));
+	}
+	panel->setOptions((QDocumentSearch::Options)options, cursor, scopey1!=-1);
 	ed->setCursorPosition(sy,sx);
 	
 	int cx=-1;
@@ -83,6 +104,44 @@ void QSearchReplacePanelTest::incrementalsearch(){
 		QEQUAL2(s.lineNumber(), cy, search+" "+ed->cursor().selectedText());
 		QEQUAL2(s.columnNumber(), cx, search+" "+ed->cursor().selectedText());
 		QEQUAL2(ed->cursor().selectedText(), res, search+" "+ed->cursor().selectedText());
+	}
+}
+void QSearchReplacePanelTest::findNext_data(){
+	QTest::addColumn<QString >("editorText");
+	QTest::addColumn<int>("options");
+	QTest::addColumn<int>("sy");
+	QTest::addColumn<int>("sx");
+	QTest::addColumn<QString >("search");
+	QTest::addColumn<QStringList>("positions"); //x|y
+	
+	QTest::newRow("simple") 
+		<< "Hello World\nHello!!heLlO!!\nHello World!"
+		<< 0 << 0 << 0
+		<< "hello"
+		<< (QStringList() << "0|0|Hello" << "1|0|Hello" << "1|7|heLlO" << "2|0|Hello");
+}
+void QSearchReplacePanelTest::findNext(){
+	QFETCH(QString, editorText);
+	QFETCH(int, options);
+	QFETCH(int, sy);
+	QFETCH(int, sx);
+	QFETCH(QString, search);
+	QFETCH(QStringList, positions);
+
+	for (int highlightRun=0; highlightRun<2; highlightRun++) {
+		ed->document()->setText(editorText);
+		ed->setCursorPosition(sy,sx);
+		ed->find(search,highlightRun!=0,false);
+		panel->display(0,false);
+		for (int i=0;i<positions.size();i++){
+			QStringList pos=positions[i].split('|');
+			QEQUAL(pos.size(),3);			
+			QEQUAL2(ed->cursor().selectionStart().lineNumber(),pos[0].toInt(),QString("%1 highlight-run: %2").arg(positions[i]).arg(highlightRun));
+			QEQUAL2(ed->cursor().selectionStart().columnNumber(),pos[1].toInt(),QString("%1 highlight-run: %2").arg(positions[i]).arg(highlightRun));
+			QEQUAL2(ed->cursor().selectedText(),pos[2],QString("%1 highlight-run: %2").arg(positions[i]).arg(highlightRun));
+			if (i!=positions.size()-1) 
+				panel->findNext();
+		}
 	}
 }
 void QSearchReplacePanelTest::cleanupTestCase(){

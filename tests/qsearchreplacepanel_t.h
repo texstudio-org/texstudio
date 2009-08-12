@@ -20,6 +20,8 @@ class QSearchReplacePanelTest: public QObject{
 		void initTestCase();
 		void incrementalsearch_data();
 		void incrementalsearch();
+		void findNext_data();
+		void findNext();
 		void cleanupTestCase();
 };
 
