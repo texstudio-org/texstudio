@@ -93,8 +93,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	
 	mainSpeller=new SpellerUtility();;
 	mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);
-	mainSpeller->setActive(realtimespellchecking);
-
+	
 	LatexEditorView::setSpeller(mainSpeller);
 
 
@@ -786,15 +785,8 @@ void Texmaker::CloseEditorTab(int tab) {
 	if (total!=EditorView->count() && cur!=tab)//if user clicks cancel stay in clicked editor
 		EditorView->setCurrentIndex(cur);
 }
-
-void Texmaker::lineMarkToolTip(int line, int mark) {
-	if (!currentEditorView())	return;
-	if (line < 0 || line>=currentEditorView()->editor->document()->lines()) return;
-	int errorMarkID = QLineMarksInfoCenter::instance()->markTypeId("error");
-	int warningMarkID = QLineMarksInfoCenter::instance()->markTypeId("warning");
-	int badboxMarkID = QLineMarksInfoCenter::instance()->markTypeId("badbox");
-	if (mark != errorMarkID && mark != warningMarkID && mark != badboxMarkID) return;
-	int error = currentEditorView()->lineToLogEntries.value(currentEditorView()->editor->document()->line(line).handle(),-1);
+void Texmaker::showMarkTooltipForLogMessage(int error){
+	if (!currentEditorView()) return;
 	if (error<0 || error >= outputView->getLogModel()->count()) return;
 	currentEditorView()->setLineMarkToolTip(outputView->getLogModel()->at(error).niceMessage());
 	
@@ -821,29 +813,14 @@ QEditor* Texmaker::currentEditor() const{
 	return edView->editor;
 }
 void Texmaker::configureNewEditorView(LatexEditorView *edit) {
-	edit->editor->document()->setLineEnding(QDocument::Local);
+	
 	m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
-	EditorView->setCurrentIndex(EditorView->indexOf(edit));
+	//EditorView->setCurrentIndex(EditorView->indexOf(edit));
 
 	edit->setFormats(m_formats->id("environment"),m_formats->id("referenceMultiple"),m_formats->id("referencePresent"),m_formats->id("referenceMissing"));
 
 	connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(NewDocumentStatus(bool)));
-	connect(edit->lineMarkPanelAction, SIGNAL(toolTipRequested(int,int)),this,SLOT(lineMarkToolTip(int,int)));
-
-	updateEditorSetting(edit);
-}
-void Texmaker::updateEditorSetting(LatexEditorView *edit) {
-	if (!edit) return;
-	edit->editor->setFont(configManager.editorFont);
-	edit->editor->setLineWrapping(wordwrap);
-	edit->editor->setFlag(QEditor::AutoIndent,autoindent);
-	edit->lineMarkPanelAction->setChecked((showlinemultiples!=0) ||folding||showlinestate);
-	edit->lineNumberPanelAction->setChecked(showlinemultiples!=0);
-	edit->lineFoldPanelAction->setChecked(folding);
-	edit->lineChangePanelAction->setChecked(showlinestate);
-	edit->statusPanelAction->setChecked(showcursorstate);
-	edit->editor->setDisplayModifyTime(configManager.displayModifyTime);
-	edit->updateSettings(showlinemultiples);
+	connect(edit, SIGNAL(showMarkTooltipForLogMessage(int)),this,SLOT(showMarkTooltipForLogMessage(int)));
 }
 
 LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName){
@@ -992,7 +969,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	}
 
 	if (!QFile::exists(f_real)) return 0;
-	LatexEditorView *edit = new LatexEditorView(0);
+	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig);
 	EditorView->addTab(edit, "[*] "+QFileInfo(f_real).fileName());
 	configureNewEditorView(edit);
 
@@ -1023,7 +1000,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 }
 
 void Texmaker::fileNew(QString fileName) {
-	LatexEditorView *edit = new LatexEditorView(0);
+	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig);
 	if (configManager.newfile_encoding)
 		edit->editor->setFileEncoding(configManager.newfile_encoding);
 	else
@@ -1595,21 +1572,6 @@ void Texmaker::ReadSettings() {
 	move(x,y);
 	windowstate=config->value("MainWindowState").toByteArray();
 
-	wordwrap=config->value("Editor/WordWrap",true).toBool();
-	parenmatch=config->value("Editor/Parentheses Matching",true).toBool();
-	showlinemultiples=config->value("Editor/Line Number Multiples",-1).toInt();
-	if (showlinemultiples==-1) {
-		if (config->value("Editor/Line Numbers",true).toBool()) showlinemultiples=1;  //texmaker import
-		else showlinemultiples=0;
-	}
-
-	autoindent=config->value("Editor/Auto Indent",true).toBool();
-	folding=config->value("Editor/Folding",true).toBool();
-	showlinestate=config->value("Editor/Show Line State",true).toBool();
-	showcursorstate=config->value("Editor/Show Cursor State",true).toBool();
-	realtimespellchecking=config->value("Editor/Real-Time Spellchecking",true).toBool();
-
-
 
 	showoutputview=config->value("Show/OutputView",true).toBool();
 	showstructview=config->value("Show/Structureview",true).toBool();
@@ -1699,17 +1661,6 @@ void Texmaker::SaveSettings() {
 	config->setValue("Geometries/MainwindowHeight", height());
 	config->setValue("Geometries/MainwindowX", x());
 	config->setValue("Geometries/MainwindowY", y());
-
-	config->setValue("Editor/WordWrap",wordwrap);
-
-	config->setValue("Editor/Parentheses Matching",parenmatch);
-	config->setValue("Editor/Line Number Multiples",showlinemultiples);
-	config->setValue("Editor/Auto Indent",autoindent);
-
-	config->setValue("Editor/Folding",folding);
-	config->setValue("Editor/Show Line State",showlinestate);
-	config->setValue("Editor/Show Cursor State",showcursorstate);
-	config->setValue("Editor/Real-Time Spellchecking",realtimespellchecking);
 
 	config->setValue("Show/OutputView",showoutputview);
 
@@ -1980,6 +1931,7 @@ void Texmaker::updateStructureForFile(const QString& fileName){
 }
 
 void Texmaker::ClickedOnStructure(QTreeWidgetItem *item,int col) {
+	Q_UNUSED(col);
 	if (!item) return;
 	Qt::MouseButtons mb=QApplication::mouseButtons();
 	if (QApplication::mouseButtons()==Qt::RightButton) return; // avoid jumping to line if contextmenu is called
@@ -3450,57 +3402,21 @@ void Texmaker::GeneralOptions() {
 	
 	ConfigDialog *confDlg = configManager.createConfigDialog(this);
 
-	confDlg->ui.checkBoxWordwrap->setChecked(wordwrap);
-	
-	switch (showlinemultiples) {
-	case 0:
-		confDlg->ui.comboboxLineNumbers->setCurrentIndex(0);
-		break;
-	case 10:
-		confDlg->ui.comboboxLineNumbers->setCurrentIndex(2);
-		break;
-	default:
-		confDlg->ui.comboboxLineNumbers->setCurrentIndex(1);
-	}
-	confDlg->ui.checkBoxAutoIndent->setChecked(autoindent);
-	confDlg->ui.checkBoxFolding->setChecked(folding);
-	confDlg->ui.checkBoxLineState->setChecked(showlinestate);
-	confDlg->ui.checkBoxState->setChecked(showcursorstate);
-	confDlg->ui.checkBoxRealTimeCheck->setChecked(realtimespellchecking);
-
 	confDlg->ui.lineEditAspellCommand->setText(spell_dic);
 	confDlg->ui.thesaurusFileName->setText(thesaurus_database);
 
 
 	if (configManager.execConfigDialog(confDlg)) {
-		wordwrap=confDlg->ui.checkBoxWordwrap->isChecked();
-		autoindent=confDlg->ui.checkBoxAutoIndent->isChecked();
-		switch (confDlg->ui.comboboxLineNumbers->currentIndex()) {
-		case 0:
-			showlinemultiples=0;
-			break;
-		case 2:
-			showlinemultiples=10;
-			break;
-		default:
-			showlinemultiples=1;
-			break;
-		}
 		spell_dic=confDlg->ui.lineEditAspellCommand->text();
+		mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);
 		thesaurus_database=confDlg->ui.thesaurusFileName->text();
-		folding=confDlg->ui.checkBoxFolding->isChecked();
-		showlinestate=confDlg->ui.checkBoxLineState->isChecked();
-		showcursorstate=confDlg->ui.checkBoxState->isChecked();
-		realtimespellchecking=confDlg->ui.checkBoxRealTimeCheck->isChecked();
-
 		if(thesaurusDialog) thesaurusDialog->readDatabase(thesaurus_database);
 
-		mainSpeller->setActive(realtimespellchecking);
-		mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);
-
 		if (currentEditorView()) {
-			for (int i=0; i<EditorView->count();i++)
-				updateEditorSetting(qobject_cast<LatexEditorView*>(EditorView->widget(i)));
+			for (int i=0; i<EditorView->count();i++) {
+				LatexEditorView* edView=qobject_cast<LatexEditorView*>(EditorView->widget(i));
+				if (edView) edView->updateSettings();
+			}
 			UpdateCaption();
 		}
 		

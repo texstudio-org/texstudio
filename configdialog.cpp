@@ -293,7 +293,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	connect(ui.btSelectThesaurusFileName, SIGNAL(clicked()), this, SLOT(browseThesaurus()));
 	connect(ui.lineEditAspellCommand, SIGNAL(textChanged(QString)), this, SLOT(lineEditAspellChanged(QString)));
 
-	ui.labelGetDic->setText(tr("Get dictionary at: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>"));
+	ui.labelGetDic->setText(tr("Get dictionaries at: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>"));
 	ui.labelGetDic->setOpenExternalLinks(true);
 
 //pagequick
@@ -358,6 +358,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	        SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
 	        this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
 	ui.contentsWidget->setCurrentRow(0);
+	connect(ui.checkBoxShowAdvancedOptions, SIGNAL(toggled(bool)), this, SLOT(advancedOptionsToggled(bool)));
 }
 
 ConfigDialog::~ConfigDialog() {
@@ -425,6 +426,18 @@ void ConfigDialog::browsePrecompiling() {
 	}
 }
 
+void hideShowAdvancedOptions(QWidget* w, bool on){
+	foreach (QObject* o, w->children()){
+		QWidget* w = qobject_cast<QWidget*> (o);
+		if (!w) continue;
+		if (w->property("advancedOption").isValid() && w->property("advancedOption").toBool())
+			w->setVisible(on);
+		hideShowAdvancedOptions(w,on);
+	}
+}
 
+void ConfigDialog::advancedOptionsToggled(bool on){
+	hideShowAdvancedOptions(this,on);
+}
 
 

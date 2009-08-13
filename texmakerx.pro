@@ -21,6 +21,7 @@ HEADERS += texmaker.h \
     icondelegate.h \
     latexcompleter.h \
     latexeditorview.h \
+    latexeditorview_config.h \
     latexlog.h \
     logeditor.h \
     loghighlighter.h \

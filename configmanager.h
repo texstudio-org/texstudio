@@ -8,6 +8,7 @@
 
 class ConfigDialog;
 class LatexCompleterConfig;
+class LatexEditorViewConfig;
 
 class ConfigManager: public QObject {
 	Q_OBJECT
@@ -36,10 +37,7 @@ public:
 	QString interfaceFontFamily;
 	int interfaceFontSize;
 	bool tabbedLogView;
-	
-	QFont editorFont;
-
-	bool displayModifyTime;
+	bool configShowAdvancedOptions;
 	
 	//language
 	QString lastLanguage;
@@ -49,6 +47,7 @@ public:
 	
 	
 	//editor 
+	LatexEditorViewConfig * const editorConfig;
 	//completion
 	LatexCompleterConfig * const completerConfig;
 	

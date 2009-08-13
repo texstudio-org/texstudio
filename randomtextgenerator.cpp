@@ -36,10 +36,10 @@ void RandomTextGenerator::generateText(){
 	//---------------------------reading all words and characters in words-------------------
 	if (words.empty()) {
 		if (lines.empty()) {
-			ui->outputEdit->setPlainText(tr("No data given"));
+			ui->outputEdit->setText(tr("No data given"));
 			return;
 		}
-		ui->outputEdit->setPlainText(tr("Reading all words\n(This will take a while but only on the first generation)"));
+		ui->outputEdit->setText(tr("Reading all words\n(This will take a while but only on the first generation)"));
 		QApplication::processEvents();
 		words.clear();
 		chars.clear();
@@ -75,10 +75,10 @@ void RandomTextGenerator::generateText(){
 		else if (ui->characterOrderXRadioButton->isChecked()) order=ui->characterOrderSpinBox->value();		
 	}
 	if (order<=0) {
-		ui->outputEdit->setPlainText(tr("You didn't select an order!"));
+		ui->outputEdit->setText(tr("You didn't select an order!"));
 		return;
 	}
-	ui->outputEdit->setPlainText(tr("Generating random text..."));
+	ui->outputEdit->setText(tr("Generating random text..."));
 	QApplication::processEvents();
 	
 	QString text;
@@ -103,15 +103,15 @@ void RandomTextGenerator::generateText(){
 			}
 			if (possibleMatches.empty()) {
 				text+="\n\n"+tr("Couldn't find possible extension word");
-				ui->outputEdit->setPlainText(text);
+				ui->outputEdit->setText(text);
 				return;
 			}
 			last << words[possibleMatches[myrand(possibleMatches.size())]];
 			text+=last.last()+" ";
-			ui->outputEdit->setPlainText(tr("Generating random text...")+"\n\n"+text);
+			ui->outputEdit->setText(tr("Generating random text...")+"\n\n"+text);
 			QApplication::processEvents();
 		}
-		ui->outputEdit->setPlainText(text);
+		ui->outputEdit->setText(text);
 	} else {
 		//----------generate with characters--------------
 		QString text;
@@ -136,17 +136,17 @@ void RandomTextGenerator::generateText(){
 					}
 				if (foundPos==-1) {
 					text+="\n\n"+tr("Couldn't find possible extension word");
-					ui->outputEdit->setPlainText(text);
+					ui->outputEdit->setText(text);
 					return;
 				}
 			}
 			const QChar& c=chars.at(foundPos);
 			last+=c;
 			text+=c;
-			ui->outputEdit->setPlainText(tr("Generating random text...")+"\n\n"+text);
+			ui->outputEdit->setText(tr("Generating random text...")+"\n\n"+text);
 			QApplication::processEvents();
 		}
-		ui->outputEdit->setPlainText(text);	
+		ui->outputEdit->setText(text);	
 	}
 }
 

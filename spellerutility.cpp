@@ -12,7 +12,7 @@
 #include "spellerutility.h"
 #include "smallUsefulFunctions.h"
 
-SpellerUtility::SpellerUtility(): currentDic(""), pChecker(0),active(false) {
+SpellerUtility::SpellerUtility(): currentDic(""), pChecker(0) {
 	checkCache.reserve(1020);
 }
 bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
@@ -127,9 +127,3 @@ QStringList SpellerUtility::suggest(QString word) {
 	return suggestion;
 }
 
-bool SpellerUtility::isActive() {
-	return active;
-}
-void SpellerUtility::setActive(bool a) {
-	active=a;
-}

@@ -664,7 +664,7 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 	
 	m_index = 0;
 	bool realReplace=hasOption(Replace) && (!again || all);
-	bool found = false;
+	int foundCount = 0;
 	
 	QDocumentCursor::MoveOperation move;
 //	QDocument *d = currentDocument();
@@ -759,7 +759,7 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 					if ( rep ) replaceCursorText(m_regexp);
 				} 
 				
-				found = true;
+				foundCount++;
 				
 				if ( !all )
 					break;
@@ -768,12 +768,12 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 			m_cursor.movePosition(1, move);
 	}
 		
-	if ( !found && allowWrapAround)
+	if ( !foundCount && allowWrapAround)
 	{
 		m_cursor = QDocumentCursor();
 			
 		int ret = QMessageBox::Yes; //different to base qce2.2, where it defaults to ::no if silent
-		if ( !hasOption(Silent) /*&& hasOption(Prompt), to ask or not to ask that is the question; if it doesn't ask it fails silently if no match exists*/)
+		if ( !hasOption(Silent) /*&& hasOption(Prompt), to ask or not to ask that is the question; if it doesn't ask it fails silently if no match exists*/){
 			ret=QMessageBox::question(
 							m_editor,
 							tr("Failure"),
@@ -785,15 +785,20 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 							| QMessageBox::No,
 							QMessageBox::Yes
 						);
-		
+		}
 		if ( ret == QMessageBox::Yes )
 		{
 			m_origin = QDocumentCursor();
 			return next(backward, all, again, false);
 		}
 	}
-	if ( !found )
+	
+	if ( !foundCount )
 		m_cursor = QDocumentCursor();
+	
+	if ( all && foundCount && !hasOption(Silent)) 
+		QMessageBox::information(m_editor,tr("Replacing Finished"),tr("%1 occurences have been replaced").arg(foundCount),QMessageBox::Ok);
+	
 	return false;
 }
 /*! @} */

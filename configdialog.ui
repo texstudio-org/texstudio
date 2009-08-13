@@ -31,22 +31,6 @@
    <property name="verticalSpacing" >
     <number>6</number>
    </property>
-   <item row="2" column="0" >
-    <spacer>
-     <property name="orientation" >
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeType" >
-      <enum>QSizePolicy::Maximum</enum>
-     </property>
-     <property name="sizeHint" >
-      <size>
-       <width>131</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
    <item row="2" column="2" >
     <layout class="QHBoxLayout" >
      <property name="spacing" >
@@ -273,6 +257,9 @@
         <widget class="QGroupBox" name="groupBox_7" >
          <property name="title" >
           <string>Files</string>
+         </property>
+         <property name="advancedOption" stdset="0" >
+          <bool>true</bool>
          </property>
          <layout class="QGridLayout" >
           <item row="0" column="0" >
@@ -633,6 +620,9 @@ p, li { white-space: pre-wrap; }&#xd;
          <property name="title" >
           <string>More</string>
          </property>
+         <property name="advancedOption" stdset="0" >
+          <bool>true</bool>
+         </property>
          <layout class="QGridLayout" >
           <item row="0" column="0" >
            <widget class="QLabel" name="label_2" >
@@ -792,286 +782,216 @@ p, li { white-space: pre-wrap; }&#xd;
          <property name="title" >
           <string>Editor</string>
          </property>
-         <widget class="QLabel" name="labelFamily" >
-          <property name="geometry" >
-           <rect>
-            <x>11</x>
-            <y>25</y>
-            <width>134</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text" >
-           <string>Editor Font Family</string>
-          </property>
-         </widget>
-         <widget class="QComboBox" name="comboBoxFont" >
-          <property name="geometry" >
-           <rect>
-            <x>153</x>
-            <y>25</y>
-            <width>423</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="editable" >
-           <bool>true</bool>
-          </property>
-         </widget>
-         <widget class="QLabel" name="labelSize" >
-          <property name="geometry" >
-           <rect>
-            <x>11</x>
-            <y>52</y>
-            <width>134</width>
-            <height>19</height>
-           </rect>
-          </property>
-          <property name="text" >
-           <string>Editor Font Size</string>
-          </property>
-         </widget>
-         <widget class="QSpinBox" name="spinBoxSize" >
-          <property name="geometry" >
-           <rect>
-            <x>153</x>
-            <y>52</y>
-            <width>423</width>
-            <height>19</height>
-           </rect>
-          </property>
-          <property name="minimum" >
-           <number>1</number>
-          </property>
-          <property name="value" >
-           <number>12</number>
-          </property>
-         </widget>
-         <widget class="QLabel" name="labelEncoding" >
-          <property name="geometry" >
-           <rect>
-            <x>11</x>
-            <y>78</y>
-            <width>134</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text" >
-           <string>Editor Font Encoding</string>
-          </property>
-         </widget>
-         <widget class="QComboBox" name="comboBoxEncoding" >
-          <property name="geometry" >
-           <rect>
-            <x>153</x>
-            <y>78</y>
-            <width>281</width>
-            <height>20</height>
-           </rect>
-          </property>
-         </widget>
-         <widget class="QCheckBox" name="checkBoxState" >
-          <property name="geometry" >
-           <rect>
-            <x>150</x>
-            <y>160</y>
-            <width>134</width>
-            <height>19</height>
-           </rect>
-          </property>
-          <property name="text" >
-           <string>Show State Panel</string>
-          </property>
-         </widget>
-         <widget class="QCheckBox" name="checkBoxLineState" >
-          <property name="geometry" >
-           <rect>
-            <x>10</x>
-            <y>160</y>
-            <width>139</width>
-            <height>19</height>
-           </rect>
-          </property>
-          <property name="text" >
-           <string>Show Line Change State</string>
-          </property>
-         </widget>
-         <widget class="QGroupBox" name="formatConfigBox" >
-          <property name="geometry" >
-           <rect>
-            <x>153</x>
-            <y>218</y>
-            <width>565</width>
-            <height>281</height>
-           </rect>
-          </property>
-          <property name="sizePolicy" >
-           <sizepolicy vsizetype="MinimumExpanding" hsizetype="Preferred" >
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize" >
-           <size>
-            <width>0</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="baseSize" >
-           <size>
-            <width>0</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="title" >
-           <string>Formats</string>
-          </property>
-         </widget>
-         <widget class="QCheckBox" name="checkBoxAutoDetectOnLoad" >
-          <property name="geometry" >
-           <rect>
-            <x>442</x>
-            <y>78</y>
-            <width>276</width>
-            <height>19</height>
-           </rect>
-          </property>
-          <property name="text" >
-           <string>auto detect encoding of loaded files</string>
-          </property>
-         </widget>
-         <widget class="QCheckBox" name="checkBoxAutoIndent" >
-          <property name="geometry" >
-           <rect>
-            <x>153</x>
-            <y>131</y>
-            <width>139</width>
-            <height>19</height>
-           </rect>
-          </property>
-          <property name="text" >
-           <string>Autoindent</string>
-          </property>
-         </widget>
-         <widget class="QCheckBox" name="checkBoxWordwrap" >
-          <property name="geometry" >
-           <rect>
-            <x>584</x>
-            <y>25</y>
-            <width>134</width>
-            <height>19</height>
-           </rect>
-          </property>
-          <property name="text" >
-           <string>Word Wrap</string>
-          </property>
-         </widget>
-         <widget class="QCheckBox" name="checkBoxFolding" >
-          <property name="geometry" >
-           <rect>
-            <x>584</x>
-            <y>52</y>
-            <width>134</width>
-            <height>19</height>
-           </rect>
-          </property>
-          <property name="text" >
-           <string>Folding</string>
-          </property>
-         </widget>
-         <widget class="QComboBox" name="comboBoxPreviewMode" >
-          <property name="geometry" >
-           <rect>
-            <x>10</x>
-            <y>190</y>
-            <width>277</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <item>
-           <property name="text" >
-            <string>show preview as tool tip if panel is hidden</string>
-           </property>
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
+           <widget class="QLabel" name="labelFamily" >
+            <property name="text" >
+             <string>Editor Font Family</string>
+            </property>
+           </widget>
           </item>
-          <item>
-           <property name="text" >
-            <string>always show preview in preview panel</string>
-           </property>
+          <item row="0" column="1" colspan="3" >
+           <widget class="QComboBox" name="comboBoxFont" >
+            <property name="editable" >
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
-          <item>
-           <property name="text" >
-            <string>always show preview as tool tip</string>
-           </property>
+          <item row="0" column="4" >
+           <widget class="QCheckBox" name="checkBoxWordwrap" >
+            <property name="text" >
+             <string>Word Wrap</string>
+            </property>
+           </widget>
           </item>
-          <item>
-           <property name="text" >
-            <string>always show both</string>
-           </property>
+          <item row="1" column="0" >
+           <widget class="QLabel" name="labelSize" >
+            <property name="text" >
+             <string>Editor Font Size</string>
+            </property>
+           </widget>
           </item>
-         </widget>
-         <widget class="QComboBox" name="comboboxLineNumbers" >
-          <property name="geometry" >
-           <rect>
-            <x>299</x>
-            <y>131</y>
-            <width>277</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <item>
-           <property name="text" >
-            <string>No line numbers</string>
-           </property>
+          <item row="1" column="1" colspan="3" >
+           <widget class="QSpinBox" name="spinBoxSize" >
+            <property name="minimum" >
+             <number>1</number>
+            </property>
+            <property name="value" >
+             <number>12</number>
+            </property>
+           </widget>
           </item>
-          <item>
-           <property name="text" >
-            <string>Show line numbers</string>
-           </property>
+          <item row="1" column="4" >
+           <widget class="QCheckBox" name="checkBoxFolding" >
+            <property name="text" >
+             <string>Folding</string>
+            </property>
+           </widget>
           </item>
-          <item>
-           <property name="text" >
-            <string>Show important line numbers</string>
-           </property>
+          <item row="2" column="0" >
+           <widget class="QLabel" name="labelEncoding" >
+            <property name="text" >
+             <string>Editor Font Encoding</string>
+            </property>
+           </widget>
           </item>
-         </widget>
-         <widget class="QCheckBox" name="checkBoxDisplayModifyTime" >
-          <property name="geometry" >
-           <rect>
-            <x>300</x>
-            <y>160</y>
-            <width>111</width>
-            <height>19</height>
-           </rect>
-          </property>
-          <property name="text" >
-           <string>Show Modify Time</string>
-          </property>
-         </widget>
-         <widget class="QComboBox" name="comboBoxDvi2PngMode" >
-          <property name="geometry" >
-           <rect>
-            <x>300</x>
-            <y>190</y>
-            <width>281</width>
-            <height>22</height>
-           </rect>
-          </property>
-          <item>
-           <property name="text" >
-            <string>preview with dvipng</string>
-           </property>
+          <item row="2" column="1" colspan="2" >
+           <widget class="QComboBox" name="comboBoxEncoding" />
           </item>
-          <item>
-           <property name="text" >
-            <string>preview with dvipng --follow (parallel)</string>
-           </property>
+          <item row="2" column="3" colspan="2" >
+           <widget class="QCheckBox" name="checkBoxAutoDetectOnLoad" >
+            <property name="text" >
+             <string>auto detect encoding of loaded files</string>
+            </property>
+           </widget>
           </item>
-          <item>
-           <property name="text" >
-            <string>preview with dvips/ghostscript</string>
-           </property>
+          <item row="3" column="1" >
+           <widget class="QCheckBox" name="checkBoxAutoIndent" >
+            <property name="text" >
+             <string>Autoindent</string>
+            </property>
+            <property name="advancedOption" stdset="0" >
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
-         </widget>
+          <item row="3" column="2" colspan="2" >
+           <widget class="QComboBox" name="comboboxLineNumbers" >
+            <property name="advancedOption" stdset="0" >
+             <bool>true</bool>
+            </property>
+            <item>
+             <property name="text" >
+              <string>No line numbers</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>Show line numbers</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>Show important line numbers</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="4" column="0" >
+           <widget class="QCheckBox" name="checkBoxLineState" >
+            <property name="text" >
+             <string>Show Line Change State</string>
+            </property>
+            <property name="advancedOption" stdset="0" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1" >
+           <widget class="QCheckBox" name="checkBoxState" >
+            <property name="text" >
+             <string>Show State Panel</string>
+            </property>
+            <property name="advancedOption" stdset="0" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2" >
+           <widget class="QCheckBox" name="checkBoxDisplayModifyTime" >
+            <property name="text" >
+             <string>Show Modify Time</string>
+            </property>
+            <property name="advancedOption" stdset="0" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0" colspan="2" >
+           <widget class="QComboBox" name="comboBoxPreviewMode" >
+            <property name="advancedOption" stdset="0" >
+             <bool>true</bool>
+            </property>
+            <item>
+             <property name="text" >
+              <string>show preview as tool tip if panel is hidden</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>always show preview in preview panel</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>always show preview as tool tip</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>always show both</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="5" column="2" colspan="2" >
+           <widget class="QComboBox" name="comboBoxDvi2PngMode" >
+            <property name="advancedOption" stdset="0" >
+             <bool>true</bool>
+            </property>
+            <item>
+             <property name="text" >
+              <string>preview with dvipng</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>preview with dvipng --follow (parallel)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>preview with dvips/ghostscript</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="7" column="1" colspan="4" >
+           <widget class="QGroupBox" name="formatConfigBox" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="MinimumExpanding" hsizetype="Preferred" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize" >
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="baseSize" >
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="title" >
+             <string>Formats</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0" colspan="2" >
+           <widget class="QCheckBox" name="checkBoxCloseSearchReplaceTogether" >
+            <property name="text" >
+             <string>close search and replace dialog together</string>
+            </property>
+            <property name="advancedOption" stdset="0" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
       </layout>
@@ -1115,6 +1035,9 @@ p, li { white-space: pre-wrap; }&#xd;
            <property name="text" >
             <string>In first character</string>
            </property>
+           <property name="advancedOption" stdset="0" >
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
          <item>
@@ -1137,6 +1060,9 @@ p, li { white-space: pre-wrap; }&#xd;
          <property name="text" >
           <string>Auto Complete Common Prefix</string>
          </property>
+         <property name="advancedOption" stdset="0" >
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>
@@ -1144,12 +1070,18 @@ p, li { white-space: pre-wrap; }&#xd;
          <property name="text" >
           <string>Complete selected text when non-word character is pressed</string>
          </property>
+         <property name="advancedOption" stdset="0" >
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>
         <widget class="QCheckBox" name="checkBoxToolTipHelp" >
          <property name="text" >
           <string>Enable ToolTip-Help</string>
+         </property>
+         <property name="advancedOption" stdset="0" >
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -1169,6 +1101,16 @@ p, li { white-space: pre-wrap; }&#xd;
        </item>
       </layout>
      </widget>
+    </widget>
+   </item>
+   <item row="2" column="0" >
+    <widget class="QCheckBox" name="checkBoxShowAdvancedOptions" >
+     <property name="text" >
+      <string>show advanced options</string>
+     </property>
+     <property name="checked" >
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
   </layout>
