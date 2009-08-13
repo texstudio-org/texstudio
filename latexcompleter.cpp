@@ -764,3 +764,11 @@ QString LatexCompleter::lookupWord(QString text){
 	}
 	return topic;
 }
+//ends completion (closes the list) and returns true if there was any
+bool LatexCompleter::close(){
+	if (completerInputBinding->isActive()){
+		completerInputBinding->resetBinding();
+		list->setVisible(false);
+		return true;
+	} else return false;
+}

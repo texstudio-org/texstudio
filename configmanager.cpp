@@ -152,6 +152,7 @@ QSettings* ConfigManager::readSettings() {
 	editorConfig->editorFont=QFont(fam,si);
 
         editorConfig->displayModifyTime=config->value("Editor/Display Modifytime",true).toBool();
+	editorConfig->closeSearchAndReplace=config->value("Editor/Close Search Replace Together",false).toBool();
 	//interface
 #ifdef Q_WS_X11
 	if ((x11desktop_env() != 4) || (!QStyleFactory::keys().contains("Oxygen")))
@@ -324,6 +325,7 @@ QSettings* ConfigManager::saveSettings() {
 	config->setValue("Editor/Font Size",editorConfig->editorFont.pointSize());
 
 	config->setValue("Editor/Display Modifytime",editorConfig->displayModifyTime);
+	config->setValue("Editor/Close Search Replace Together",editorConfig->closeSearchAndReplace);
 
 	//debug
 	#ifndef QT_NO_DEBUG
@@ -490,6 +492,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 
 	confDlg->ui.checkBoxTabbedLogView->setChecked(tabbedLogView);
         confDlg->ui.checkBoxDisplayModifyTime->setChecked(editorConfig->displayModifyTime);
+	confDlg->ui.checkBoxCloseSearchReplaceTogether->setChecked(editorConfig->closeSearchAndReplace);
 	
 	//editor font
 	confDlg->ui.comboBoxFont->lineEdit()->setText(editorConfig->editorFont.family());
@@ -610,6 +613,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		tabbedLogView=confDlg->ui.checkBoxTabbedLogView->isChecked();
 
                 editorConfig->displayModifyTime=confDlg->ui.checkBoxDisplayModifyTime->isChecked();
+		editorConfig->closeSearchAndReplace=confDlg->ui.checkBoxCloseSearchReplaceTogether->isChecked();
 		//language
 		lastLanguage=language;
 		language = confDlg->ui.comboBoxLanguage->currentText();

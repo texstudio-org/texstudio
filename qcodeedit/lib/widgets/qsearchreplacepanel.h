@@ -43,7 +43,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel, private Ui::SearchReplace
 		virtual ~QSearchReplacePanel();
 		
 		virtual QString type() const;
-		
+		bool isReplaceModeActive() const;
 	public slots:
 		void display(int mode, bool replace);
 		

@@ -488,7 +488,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		int start=0;
 		int wordstart;
 		int status;
-		while (status=nextWord(lineText,start,word,wordstart,false,true))
+		while ((status=nextWord(lineText,start,word,wordstart,false,true)))
 			// hack to color the environment given in \begin{environment}...
 			if (status==NW_ENVIRONMENT) {
 				line.addOverlay(QFormatRange(wordstart,start-wordstart,environmentFormat));
@@ -681,7 +681,17 @@ void LatexEditorView::lineMarkToolTip(int line, int mark){
 	if (error>=0)
 		emit showMarkTooltipForLogMessage(error);
 }
-
+bool LatexEditorView::closeSomething(){
+	if (completer->close()) return true;
+	if (searchReplacePanel->isVisible()) {
+		if (searchReplacePanel->isReplaceModeActive() & !config->closeSearchAndReplace) 
+			searchReplacePanel->display(1,false);
+		else
+			searchReplacePanel->display(0,false);
+		return true;
+	}
+	return false;
+}
 
 QStringList References::removeByHandle(QDocumentLineHandle* handle){
 	QStringList result;

@@ -40,6 +40,8 @@ public:
 	void setConfig(const LatexCompleterConfig* config);
 
 	QString lookupWord(QString id);
+	
+	bool close();
 private:
 	friend class CompleterInputBinding;
 	friend class CompletionListModel;
