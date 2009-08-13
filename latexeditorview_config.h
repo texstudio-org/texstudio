@@ -13,6 +13,7 @@ public:
 	bool folding, showlinestate, showcursorstate, realtimespellchecking;	
 	QFont editorFont;
 	bool displayModifyTime;
+	bool closeSearchAndReplace;
 private:
 };
 

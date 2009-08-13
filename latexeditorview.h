@@ -125,6 +125,7 @@ public slots:
 	void dictionaryReloaded();
 	void mouseHovered(QPoint pos);
 	void lineMarkToolTip(int line, int mark);
+	bool closeSomething();
 signals:
 	void lineHandleDeleted(QDocumentLineHandle* l);
 	void showMarkTooltipForLogMessage(int logMessage);

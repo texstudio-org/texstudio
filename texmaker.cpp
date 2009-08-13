@@ -534,9 +534,10 @@ void Texmaker::setupMenus() {
 
 	menu->addSeparator();
 	newManagedAction(menu, "structureview",StructureView->toggleViewAction());
-	outputViewAction=newManagedAction(menu, "outputview",tr("Messages / Log File"), SLOT(escAction()),Qt::Key_Escape);
+	outputViewAction=newManagedAction(menu, "outputview",tr("Messages / Log File"), SLOT(viewToggleOutputView()));
 	outputViewAction->setCheckable(true);
-
+	newManagedAction(menu, "closesomething",tr("Close Something"), SLOT(viewCloseSomething()), Qt::Key_Escape);
+	
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "collapse", tr("Collapse"));
 	newManagedAction(submenu, "all", tr("Everything"), SLOT(viewCollapseEverything()));
@@ -3521,7 +3522,25 @@ void Texmaker::gotoPrevDocument() {
 	if (cPage < 0) EditorView->setCurrentIndex(EditorView->count() - 1);
 	else EditorView->setCurrentIndex(cPage);
 }
+void Texmaker::viewToggleOutputView(){
+	bool mVis=outputView->isVisible();
+	outputView->setVisible(!mVis);
+	outputViewAction->setChecked(!mVis);
+}
 
+void Texmaker::viewCloseSomething(){
+	if (textAnalysisDlg) {
+		textAnalysisDlg->close();
+		return;
+	}
+	if (currentEditorView() && currentEditorView()->closeSomething()) 
+		return;
+	if (outputView->isVisible()) {
+		viewToggleOutputView();
+		return;
+	}
+	
+}
 void Texmaker::viewCollapseEverything() {
 	if (!currentEditorView()) return;
 	currentEditorView()->foldEverything(false);
@@ -3901,35 +3920,6 @@ void Texmaker::previewAvailable(const QString& imageFile, const QString& text){
 		
 	}
 }
-
-void Texmaker::escAction(){
-	bool mVis=outputView->isVisible();
-	outputView->setVisible(!mVis);
-	outputViewAction->setChecked(!mVis);
-	if(outputViewAction->shortcuts().isEmpty()||outputViewAction->shortcut()==QKeySequence(Qt::Key_Escape))
-	{
-			if (!mVis) outputViewAction->setShortcut(Qt::Key_Escape);
-			else outputViewAction->setShortcut(QKeySequence());
-	}
-}
-
- bool Texmaker::eventFilter(QObject *obj, QEvent *event)
- {
-	 if (event->type() == QEvent::KeyPress) {
-		 QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-		 if(keyEvent->key()==Qt::Key_Escape){
-			 if(outputViewAction->shortcut()==QKeySequence(Qt::Key_Escape))
-			 {
-				 escAction();
-			 }
-			 return true;
-		 }
-		 else return QMainWindow::eventFilter(obj, event);
-	 } else {
-		 // standard event processing
-		 return QMainWindow::eventFilter(obj, event);
-	 }
- }
 
  void Texmaker::editInsertRefToNextLabel(bool backward) {
 	if (!currentEditorView()) return;

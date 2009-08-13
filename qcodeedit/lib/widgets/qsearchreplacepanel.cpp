@@ -76,6 +76,10 @@ QString QSearchReplacePanel::type() const
 	return "Search";
 }
 
+bool QSearchReplacePanel::isReplaceModeActive() const{
+	return cbReplace->isChecked();
+}
+
 /*!
 	\brief
 */

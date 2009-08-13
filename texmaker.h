@@ -318,6 +318,10 @@ private slots:
 	void gotoNextDocument();
 	void gotoPrevDocument();
 	
+	
+	void viewToggleOutputView();
+	void viewCloseSomething();
+	
 	void viewCollapseEverything();
 	void viewCollapseLevel();
 	void viewCollapseBlock();
@@ -348,7 +352,6 @@ private slots:
 	void previewLatex();
 	void previewAvailable(const QString& imageFile, const QString& text);
 
-	void escAction();
 
 	void StructureToolBoxToggle(bool checked);
 protected:
@@ -356,7 +359,6 @@ protected:
 	QPoint sectionSelection(QTreeWidgetItem* m_item);
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
-	bool eventFilter(QObject *obj, QEvent *event);
 	virtual void changeEvent(QEvent *e);
 
 	Qt::MouseButtons mb;
