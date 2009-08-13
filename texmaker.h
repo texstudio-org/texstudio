@@ -122,9 +122,7 @@ private:
 	ConfigManager configManager;
 	BuildManager buildManager;
 	int split1_right, split1_left, split2_top, split2_bottom;
-	bool singlemode, wordwrap, parenmatch, showoutputview, showstructview, ams_packages, makeidx_package, autoindent;
-	int showlinemultiples;
-	bool folding, showlinestate, showcursorstate, realtimespellchecking;
+	bool singlemode,  showoutputview, showstructview, ams_packages, makeidx_package;
 	QString document_class, typeface_size, paper_size, document_encoding, author;
 	QString spell_dic, spell_ignored_words;
 	QStringList struct_level;
@@ -156,7 +154,6 @@ private:
 	LatexEditorView *currentEditorView() const;
 	QEditor* currentEditor() const;
 	void configureNewEditorView(LatexEditorView *edit);
-	void updateEditorSetting(LatexEditorView *edit);
 	LatexEditorView* getEditorViewFromFileName(const QString &fileName);
 	
 	QAction* outputViewAction;
@@ -219,7 +216,7 @@ private slots:
 	void ReadSettings();
 	void SaveSettings();
 
-	void lineMarkToolTip(int line, int mark);
+	void showMarkTooltipForLogMessage(int error);
 	void NewDocumentStatus(bool m);
 	void UpdateCaption();
 	void CloseEditorTab(int tab);

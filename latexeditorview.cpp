@@ -10,6 +10,7 @@
  ***************************************************************************/
 
 #include "latexeditorview.h"
+#include "latexeditorview_config.h"
 
 #include "latexcompleter.h"
 #include "smallUsefulFunctions.h"
@@ -169,7 +170,8 @@ SpellerUtility* LatexEditorView::speller=0;
 LatexCompleter* LatexEditorView::completer=0;
 int LatexEditorView::hideTooltipWhenLeavingLine = -1;
 
-LatexEditorView::LatexEditorView(QWidget *parent) : QWidget(parent),curChangePos(-1),lastSetBookmark(0) {
+LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig) : QWidget(parent),curChangePos(-1),lastSetBookmark(0), config(aconfig) {
+	Q_ASSERT(config);
 	QVBoxLayout* mainlay = new QVBoxLayout(this);
 	mainlay->setSpacing(0);
 	mainlay->setMargin(0);
@@ -208,6 +210,7 @@ LatexEditorView::LatexEditorView(QWidget *parent) : QWidget(parent),curChangePos
 	//editor->setFlag(QEditor::CursorJumpPastWrap,false);
 
 	editor->setInputBinding(defaultInputBinding);
+	editor->document()->setLineEnding(QDocument::Local);
 	mainlay->addWidget(editor);
 
 	setFocusProxy(editor);
@@ -215,6 +218,7 @@ LatexEditorView::LatexEditorView(QWidget *parent) : QWidget(parent),curChangePos
 	environmentFormat=0;
 	containedLabels.setPattern("(\\\\label)\\{(.+)\\}");
 	containedReferences.setPattern("(\\\\ref|\\\\pageref)\\{(.+)\\}");
+	updateSettings();
 }
 
 LatexEditorView::~LatexEditorView() {
@@ -379,8 +383,17 @@ void LatexEditorView::setFormats(int environment, int multiple,int single,int no
 	containedLabels.setFormats(multiple,single,none);
 	containedReferences.setFormats(multiple,single,none);
 }
-void LatexEditorView::updateSettings(int lineNumberMultiples){
-	lineNumberPanel->setVerboseMode(lineNumberMultiples!=10);
+void LatexEditorView::updateSettings(){
+	lineNumberPanel->setVerboseMode(config->showlinemultiples!=10);
+	editor->setFont(config->editorFont);
+	editor->setLineWrapping(config->wordwrap);
+	editor->setFlag(QEditor::AutoIndent,config->autoindent);
+	lineMarkPanelAction->setChecked((config->showlinemultiples!=0) ||config->folding||config->showlinestate);
+	lineNumberPanelAction->setChecked(config->showlinemultiples!=0);
+	lineFoldPanelAction->setChecked(config->folding);
+	lineChangePanelAction->setChecked(config->showlinestate);
+	statusPanelAction->setChecked(config->showcursorstate);
+	editor->setDisplayModifyTime(config->displayModifyTime);
 }
 
 void LatexEditorView::lineMarkClicked(int line) {
@@ -467,7 +480,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 
 		line.clearOverlays();
 		if (line.length()<=3) continue;
-		if (!speller->isActive()) continue;
+		if (!config->realtimespellchecking) continue;
 
 		QString lineText = line.text();
 
@@ -658,6 +671,17 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	}
 	//QToolTip::showText(editor->mapToGlobal(pos), line);
 }
+void LatexEditorView::lineMarkToolTip(int line, int mark){
+	if (line < 0 || line>=editor->document()->lines()) return;
+	int errorMarkID = QLineMarksInfoCenter::instance()->markTypeId("error");
+	int warningMarkID = QLineMarksInfoCenter::instance()->markTypeId("warning");
+	int badboxMarkID = QLineMarksInfoCenter::instance()->markTypeId("badbox");
+	if (mark != errorMarkID && mark != warningMarkID && mark != badboxMarkID) return;
+	int error = lineToLogEntries.value(editor->document()->line(line).handle(),-1);
+	if (error>=0)
+		emit showMarkTooltipForLogMessage(error);
+}
+
 
 QStringList References::removeByHandle(QDocumentLineHandle* handle){
 	QStringList result;

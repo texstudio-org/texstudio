@@ -4,13 +4,14 @@
 #include "configdialog.h"
 #include "latexeditorview.h"
 #include "latexcompleter_config.h"
+#include "latexeditorview_config.h"
 #include "smallUsefulFunctions.h"
 
 #include <QDomElement>
 
 
 ConfigManager::ConfigManager(QObject *parent): QObject (parent),
-	buildManager(0),completerConfig (new LatexCompleterConfig), menuParent(0), menuParentsBar(0){
+	buildManager(0),editorConfig(new LatexEditorViewConfig), completerConfig (new LatexCompleterConfig), menuParent(0), menuParentsBar(0){
 }
 
 QSettings* ConfigManager::readSettings() {
@@ -59,6 +60,23 @@ QSettings* ConfigManager::readSettings() {
 	lastDocument=config->value("Files/Last Document","").toString();
 	parseBibTeX=config->value("Files/Parse BibTeX",true).toBool();
 	
+	
+	//----------------------------editor--------------------
+	editorConfig->wordwrap=config->value("Editor/WordWrap",true).toBool();
+	editorConfig->parenmatch=config->value("Editor/Parentheses Matching",true).toBool();
+	editorConfig->showlinemultiples=config->value("Editor/Line Number Multiples",-1).toInt();
+	if (editorConfig->showlinemultiples==-1) {
+		if (config->value("Editor/Line Numbers",true).toBool()) editorConfig->showlinemultiples=1;  //texmaker import
+		else editorConfig->showlinemultiples=0;
+	}
+
+	editorConfig->autoindent=config->value("Editor/Auto Indent",true).toBool();
+	editorConfig->folding=config->value("Editor/Folding",true).toBool();
+	editorConfig->showlinestate=config->value("Editor/Show Line State",true).toBool();
+	editorConfig->showcursorstate=config->value("Editor/Show Cursor State",true).toBool();
+	editorConfig->realtimespellchecking=config->value("Editor/Real-Time Spellchecking",true).toBool();
+	
+
 	//completion
 	completerConfig->enabled=config->value("Editor/Completion",true).toBool();
 	completerConfig->caseSensitive=(LatexCompleterConfig::CaseSensitive) config->value("Editor/Completion Case Sensitive",2).toInt();
@@ -131,9 +149,9 @@ QSettings* ConfigManager::readSettings() {
 	QString fam=config->value("Editor/Font Family",deft).toString();
 	int si=config->value("Editor/Font Size",qApp->font().pointSize()).toInt();
 #endif
-	editorFont=QFont(fam,si);
+	editorConfig->editorFont=QFont(fam,si);
 
-        displayModifyTime=config->value("Editor/Display Modifytime",true).toBool();
+        editorConfig->displayModifyTime=config->value("Editor/Display Modifytime",true).toBool();
 	//interface
 #ifdef Q_WS_X11
 	if ((x11desktop_env() != 4) || (!QStyleFactory::keys().contains("Oxygen")))
@@ -151,6 +169,7 @@ QSettings* ConfigManager::readSettings() {
 	interfaceFontFamily=QApplication::font().family();
 #endif
 		
+	configShowAdvancedOptions = config->value("Interface/Config Show Advanced Options",false).toBool();
 	interfaceStyle=config->value("X11/Style",interfaceStyle).toString(); //named X11 for backward compatibility
 	defaultStyle=QApplication::style();
 	if (interfaceStyle!="") QApplication::setStyle(interfaceStyle); 
@@ -245,6 +264,18 @@ QSettings* ConfigManager::saveSettings() {
 	config->setValue("Files/Last Document",lastDocument);
 	config->setValue("Files/Parse BibTeX",parseBibTeX);
 
+	//--------------------editor--------------------------
+	config->setValue("Editor/WordWrap",editorConfig->wordwrap);
+
+	config->setValue("Editor/Parentheses Matching",editorConfig->parenmatch);
+	config->setValue("Editor/Line Number Multiples",editorConfig->showlinemultiples);
+	config->setValue("Editor/Auto Indent",editorConfig->autoindent);
+
+	config->setValue("Editor/Folding",editorConfig->folding);
+	config->setValue("Editor/Show Line State",editorConfig->showlinestate);
+	config->setValue("Editor/Show Cursor State",editorConfig->showcursorstate);
+	config->setValue("Editor/Real-Time Spellchecking",editorConfig->realtimespellchecking);
+	
 	//completion
 	config->setValue("Editor/Completion",completerConfig->enabled);
 	config->setValue("Editor/Completion Case Sensitive",completerConfig->caseSensitive);
@@ -279,6 +310,7 @@ QSettings* ConfigManager::saveSettings() {
 	config->endArray();
 
 	//------------------appearance--------------------
+	config->setValue("Interface/Config Show Advanced Options",configShowAdvancedOptions);
 	config->setValue("X11/Style",interfaceStyle); //named X11/ for backward compatibility
 	config->setValue("X11/Font Family",interfaceFontFamily);
 	config->setValue("X11/Font Size",interfaceFontSize);
@@ -288,10 +320,10 @@ QSettings* ConfigManager::saveSettings() {
 	config->setValue("Interface/Language",language); 
 	
 	//editor
-	config->setValue("Editor/Font Family",editorFont.family());
-	config->setValue("Editor/Font Size",editorFont.pointSize());
+	config->setValue("Editor/Font Family",editorConfig->editorFont.family());
+	config->setValue("Editor/Font Size",editorConfig->editorFont.pointSize());
 
-	config->setValue("Editor/Display Modifytime",displayModifyTime);
+	config->setValue("Editor/Display Modifytime",editorConfig->displayModifyTime);
 
 	//debug
 	#ifndef QT_NO_DEBUG
@@ -319,6 +351,25 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	confDlg->ui.spinBoxMaxRecentFiles->setValue(maxRecentFiles);
 	confDlg->ui.spinBoxMaxRecentProjects->setValue(maxRecentProjects);
 	confDlg->ui.checkBoxParseBibTeX->setChecked(parseBibTeX);
+	
+	//-----------------------editor------------------------------
+	confDlg->ui.checkBoxWordwrap->setChecked(editorConfig->wordwrap);
+	
+	switch (editorConfig->showlinemultiples) {
+	case 0:
+		confDlg->ui.comboboxLineNumbers->setCurrentIndex(0);
+		break;
+	case 10:
+		confDlg->ui.comboboxLineNumbers->setCurrentIndex(2);
+		break;
+	default:
+		confDlg->ui.comboboxLineNumbers->setCurrentIndex(1);
+	}
+	confDlg->ui.checkBoxAutoIndent->setChecked(editorConfig->autoindent);
+	confDlg->ui.checkBoxFolding->setChecked(editorConfig->folding);
+	confDlg->ui.checkBoxLineState->setChecked(editorConfig->showlinestate);
+	confDlg->ui.checkBoxState->setChecked(editorConfig->showcursorstate);
+	confDlg->ui.checkBoxRealTimeCheck->setChecked(editorConfig->realtimespellchecking);
 	
 	//completion
 	confDlg->ui.checkBoxCompletion->setChecked(completerConfig->enabled);
@@ -426,6 +477,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	delegate.connect(confDlg->ui.shortcutTree,SIGNAL(itemClicked(QTreeWidgetItem *, int)),&delegate,SLOT(treeWidgetItemClicked(QTreeWidgetItem * , int)));
 
 	//appearance
+	confDlg->ui.checkBoxShowAdvancedOptions->setChecked(configShowAdvancedOptions);
 	confDlg->ui.comboBoxInterfaceStyle->clear();
 	confDlg->ui.comboBoxInterfaceStyle->addItems(QStyleFactory::keys()<<tr("default"));
 	if (interfaceStyle=="") //default
@@ -437,11 +489,11 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	confDlg->ui.spinBoxInterfaceFontSize->setValue(interfaceFontSize);
 
 	confDlg->ui.checkBoxTabbedLogView->setChecked(tabbedLogView);
-        confDlg->ui.checkBoxDisplayModifyTime->setChecked(displayModifyTime);
+        confDlg->ui.checkBoxDisplayModifyTime->setChecked(editorConfig->displayModifyTime);
 	
 	//editor font
-	confDlg->ui.comboBoxFont->lineEdit()->setText(editorFont.family());
-	confDlg->ui.spinBoxSize->setValue(editorFont.pointSize());
+	confDlg->ui.comboBoxFont->lineEdit()->setText(editorConfig->editorFont.family());
+	confDlg->ui.spinBoxSize->setValue(editorConfig->editorFont.pointSize());
 	
 	
 	//EXECUTE IT
@@ -460,6 +512,26 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 			updateRecentFiles(true);
 		}
 		parseBibTeX=confDlg->ui.checkBoxParseBibTeX->isChecked();
+		
+		//editor
+		editorConfig->wordwrap=confDlg->ui.checkBoxWordwrap->isChecked();
+		editorConfig->autoindent=confDlg->ui.checkBoxAutoIndent->isChecked();
+		switch (confDlg->ui.comboboxLineNumbers->currentIndex()) {
+		case 0:
+			editorConfig->showlinemultiples=0;
+			break;
+		case 2:
+			editorConfig->showlinemultiples=10;
+			break;
+		default:
+			editorConfig->showlinemultiples=1;
+			break;
+		}
+		editorConfig->folding=confDlg->ui.checkBoxFolding->isChecked();
+		editorConfig->showlinestate=confDlg->ui.checkBoxLineState->isChecked();
+		editorConfig->showcursorstate=confDlg->ui.checkBoxState->isChecked();
+		editorConfig->realtimespellchecking=confDlg->ui.checkBoxRealTimeCheck->isChecked();
+		
 		
 		//completion
 		completerConfig->enabled=confDlg->ui.checkBoxCompletion->isChecked();
@@ -515,6 +587,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		treeWidgetToManagedMenuTo(menuShortcuts);
 				
 		//appearance
+		configShowAdvancedOptions=confDlg->ui.checkBoxShowAdvancedOptions->isChecked();
 		//  interface
 		if (confDlg->ui.comboBoxInterfaceFont->currentFont().family()!=interfaceFontFamily ||
 			confDlg->ui.spinBoxInterfaceFontSize->value()!=interfaceFontSize) {
@@ -536,7 +609,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 			emit tabbedLogViewChanged(confDlg->ui.checkBoxTabbedLogView->isChecked());
 		tabbedLogView=confDlg->ui.checkBoxTabbedLogView->isChecked();
 
-                displayModifyTime=confDlg->ui.checkBoxDisplayModifyTime->isChecked();
+                editorConfig->displayModifyTime=confDlg->ui.checkBoxDisplayModifyTime->isChecked();
 		//language
 		lastLanguage=language;
 		language = confDlg->ui.comboBoxLanguage->currentText();
@@ -546,7 +619,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		//  editor font
 		QString fam=confDlg->ui.comboBoxFont->lineEdit()->text();
 		int si=confDlg->ui.spinBoxSize->value();
-		editorFont=QFont (fam,si);		
+		editorConfig->editorFont=QFont (fam,si);		
 		
 	}
 	return executed;

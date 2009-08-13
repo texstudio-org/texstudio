@@ -49,11 +49,12 @@ class QStatusPanel;
 class LatexCompleter;
 class SpellerUtility;
 class DefaultInputBinding;
+class LatexEditorViewConfig;
 class LatexEditorView : public QWidget  {
 	Q_OBJECT
 public:
 
-	LatexEditorView(QWidget *parent);
+	LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig);
 	~LatexEditorView();
 
 	QCodeEdit *codeeditor;
@@ -80,13 +81,6 @@ public:
 	static void setSpeller(SpellerUtility* mainSpeller);
 	static void setCompleter(LatexCompleter* newCompleter);
 	
-	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 
-	*statusPanelAction, *searchReplacePanelAction, *gotoLinePanelAction;
-	QLineMarkPanel* lineMarkPanel;
-	QLineNumberPanel* lineNumberPanel;
-	QSearchReplacePanel* searchReplacePanel;
-	QGotoLinePanel* gotoLinePanel;
-	QStatusPanel* statusPanel;
 	
 	QMultiHash<QDocumentLineHandle*, int> lineToLogEntries;
 	QHash<int, QDocumentLineHandle*> logEntryToLine;
@@ -97,8 +91,17 @@ public:
 
 	void setLineMarkToolTip(const QString& tooltip);
 	void setFormats(int environment, int multiple,int single,int none);
-	void updateSettings(int lineNumberMultiples);
+	void updateSettings();
+
 private:
+	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 
+	*statusPanelAction, *searchReplacePanelAction, *gotoLinePanelAction;
+	QLineMarkPanel* lineMarkPanel;
+	QLineNumberPanel* lineNumberPanel;
+	QSearchReplacePanel* searchReplacePanel;
+	QGotoLinePanel* gotoLinePanel;
+	QStatusPanel* statusPanel;
+	
 	int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat;
 	friend class DefaultInputBinding;
 	static int bookMarkId(int bookmarkNumber);
@@ -110,6 +113,7 @@ private:
 	int lastSetBookmark; //only looks at 1..3 (mouse range)
 
 	References containedLabels,containedReferences;
+	LatexEditorViewConfig* config;
 public slots:
 	void lineMarkClicked(int line);
 	void documentContentChanged(int linenr, int count);
@@ -120,8 +124,10 @@ public slots:
 	void spellCheckingListSuggestions();
 	void dictionaryReloaded();
 	void mouseHovered(QPoint pos);
+	void lineMarkToolTip(int line, int mark);
 signals:
 	void lineHandleDeleted(QDocumentLineHandle* l);
+	void showMarkTooltipForLogMessage(int logMessage);
 };
 
 #endif

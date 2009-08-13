@@ -29,8 +29,6 @@ public:
 	QStringList suggest(QString word);
 
 	int spellcheckErrorFormat;
-	bool isActive(); //interactive spelling only
-	void setActive(bool a);
 signals:
 	void reloadDictionary();
 private:
@@ -42,7 +40,6 @@ private:
 	QSet<QString> ignoredWords;
 	QStringList ignoredWordList;
 	QStringListModel ignoredWordsModel;
-	bool active;
 };
 
 #endif

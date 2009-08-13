@@ -63,6 +63,7 @@ private slots:
 	void browseAspell();
 	void browseThesaurus();
 	void browsePrecompiling();
+	void advancedOptionsToggled(bool on);
 };
 
 #endif
