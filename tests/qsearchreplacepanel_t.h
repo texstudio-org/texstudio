@@ -22,6 +22,8 @@ class QSearchReplacePanelTest: public QObject{
 		void incrementalsearch();
 		void findNext_data();
 		void findNext();
+		void findReplace_data();
+		void findReplace();
 		void cleanupTestCase();
 };
 

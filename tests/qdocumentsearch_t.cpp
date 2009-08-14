@@ -171,6 +171,29 @@ void QDocumentSearchTest::next_sameText_data(){
 			<< SP(2, 4, 2, "<<", "<<>>!!!!\ngg---gg\nbbaabb\n")
 			<< SP(-1, -1, -1, "%", "<<>>!!!!\ngg---gg\nbb%bb\n"));
 	
+	QTest::newRow("replacing leading to new find occurences")
+		<< "abc\nabc\nabc"
+		<< "abc" << 0
+		<< 0 << 0
+		<< (QList<CM>() 
+			<< SN(0,0,3) << SN(1,0,3) 
+			<< SN(2, 0,3, "abc abc", "abc\nabc abc\nabc")
+			<< SN(0,0,3) << SN(1,0,3) << SN(1, 4, 7) << SN(2,0,3) 
+			<< SP(1,7,4) << SP(1,3,0) << SP(0,3,0)
+			<< SN(1, 0,3, "abc+++abc", "abc+++abc\nabc abc\nabc")
+			<< SN(1, 4,7) << SP (1,3,0) << SP(0,9,6) << SP(0,3,0) << SP(2,3,0));
+
+	QTest::newRow("replacing leading to new find occurences empty lines")
+		<< "abc\n\n\nabc\n\n\nabc"
+		<< "abc" << 0
+		<< 0 << 0
+		<< (QList<CM>() 
+			<< SN(0,0,3) << SN(3,0,3) 
+			<< SN(6, 0,3, "abc abc", "abc\n\n\nabc abc\n\n\nabc")
+			<< SN(0,0,3) << SN(3,0,3) << SN(3, 4, 7) << SN(6,0,3) 
+			<< SP(3,7,4) << SP(3,3,0) << SP(0,3,0)
+			<< SN(3, 0,3, "abc+++abc", "abc+++abc\n\n\nabc abc\n\n\nabc")
+			<< SN(3, 4,7) << SP (3,3,0) << SP(0,9,6) << SP(0,3,0) << SP(6,3,0));
 }
 void QDocumentSearchTest::next_sameText(){
 	QFETCH(QString, editorText);
@@ -183,20 +206,29 @@ void QDocumentSearchTest::next_sameText(){
 	
 	QFETCH(QList<CM>, cms);
 	
+	QDocumentSearch* ds=this->ds;
 	
-	for (int loop=0; loop<2; loop++){
+	for (int loop=0; loop<4; loop++){
+		//QWARN(qPrintable(QString("%1").arg(loop)));
 		ed->document()->setText(editorText);
-		ds->setSearchText(searchText);
-		if (loop) 
-			options|=QDocumentSearch::HighlightAll; //highlighting shouldn't change anything
-		ds->setOptions((QDocumentSearch::Options)options);
+		if (loop<2) {
+			ds->setSearchText(searchText);
+			if (loop) 
+				options|=QDocumentSearch::HighlightAll; //highlighting shouldn't change anything
+			ds->setOptions((QDocumentSearch::Options)options);
+		} else if (loop==2)//creating a new search shouldn't change anything
+			ds=new QDocumentSearch(ed,searchText,(QDocumentSearch::Options)options); 
+		else
+			ds=new QDocumentSearch(ed,searchText,(QDocumentSearch::Options)options|QDocumentSearch::HighlightAll); 
 		ds->setOrigin(ed->document()->cursor(sy,sx));
-		
 		for (int i=0;i< cms.size();i++){
 			QString sel;
 			if (cms[i].l>=0) {
-				if (cms[i].rep) sel=cms[i].nt.split("\n")[cms[i].l];
-				else sel=ed->document()->line(cms[i].l).text();
+				if (cms[i].rep) {
+					QStringList temp=cms[i].nt.split("\n");
+					QVERIFY(temp.size()>cms[i].l);
+					sel=temp[cms[i].l];
+				} else sel=ed->document()->line(cms[i].l).text();
 				if (cms[i].ax<cms[i].cx) sel = sel.mid(cms[i].ax,cms[i].cx-cms[i].ax);
 				else sel =sel.mid(cms[i].cx,cms[i].ax-cms[i].cx);
 			}
@@ -219,6 +251,7 @@ void QDocumentSearchTest::next_sameText(){
 			/*if (options & QDocumentSearch::Replace)
 				QVERIFY(ed->document()->text()== newText[i]);*/
 		}
+		if (loop>=2) delete ds;
 	}
 
 }

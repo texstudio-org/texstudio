@@ -816,7 +816,7 @@ QEditor* Texmaker::currentEditor() const{
 void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	
 	m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
-	//EditorView->setCurrentIndex(EditorView->indexOf(edit));
+	EditorView->setCurrentWidget(edit);
 
 	edit->setFormats(m_formats->id("environment"),m_formats->id("referenceMultiple"),m_formats->id("referencePresent"),m_formats->id("referenceMissing"));
 
