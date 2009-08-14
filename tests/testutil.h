@@ -8,6 +8,7 @@
 #define QEQUAL(a,b) QSVERIFY2(a==b, QString("equal failed: got \"%1\" !=expected \"%2\" ").arg(a).arg(b))
 #define QEQUAL2(a,b,m) QSVERIFY2(a==b, QString("equal failed: got \"%1\" !=expected \"%2\"  reason:%3").arg(a).arg(b).arg(m))
 
+namespace QTest{
 class MessageBoxCloser:public QObject{
 	Q_OBJECT
 public:
@@ -18,8 +19,8 @@ private:
 private slots: 
 	void closeNow();
 };
-
 void closeMessageBoxLater(bool mustExists=false, QMessageBox::StandardButton button=QMessageBox::NoButton);
-
+void messageBoxShouldBeClose();
+}
 #endif
 #endif

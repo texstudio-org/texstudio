@@ -112,7 +112,7 @@ void QSearchReplacePanelTest::findNext_data(){
 	QTest::addColumn<int>("sy");
 	QTest::addColumn<int>("sx");
 	QTest::addColumn<QString >("search");
-	QTest::addColumn<QStringList>("positions"); //x|y
+	QTest::addColumn<QStringList>("positions"); //y|x
 	
 	QTest::newRow("simple") 
 		<< "Hello World\nHello!!heLlO!!\nHello World!"
@@ -130,6 +130,7 @@ void QSearchReplacePanelTest::findNext(){
 
 	for (int highlightRun=0; highlightRun<2; highlightRun++) {
 		ed->document()->setText(editorText);
+		panel->setOptions(options,true,false);
 		ed->setCursorPosition(sy,sx);
 		ed->find(search,highlightRun!=0,false);
 		panel->display(0,false);
@@ -143,6 +144,88 @@ void QSearchReplacePanelTest::findNext(){
 				panel->findNext();
 		}
 	}
+}
+void QSearchReplacePanelTest::findReplace_data(){
+	QTest::addColumn<QString >("editorText");
+	QTest::addColumn<int>("options");
+	QTest::addColumn<int>("sy");
+	QTest::addColumn<int>("sx");
+	QTest::addColumn<QStringList>("movements"); //search|y|x or search|y|x|replace|new text
+	
+	QTest::newRow("simple find")
+		<< "hello\nhello\nhello!!!"
+		<< 0
+		<< 0 << 0
+		<< (QStringList() << "llo|0|2" << "hello|1|0" << "hello!!!|2|0");
+	QTest::newRow("simple replace")
+		<< "hello\nhello\nhello!!!"
+		<< 0
+		<< 0 << 0
+		<< (QStringList() 
+			<< "hello|0|0"
+			<< "hello|1|0|mouse|mouse\nhello\nhello!!!" 
+			<< "hello|2|0|mouse|mouse\nmouse\nhello!!!");
+	QTest::newRow("replace new occurences")
+		<< "abc\nabc\nabc"
+		<< 0
+		<< 0 << 0
+		<<(QStringList() 
+		 	<< "abc|0|0"
+			<< "abc|1|0"
+			<< "abc|2|0|abc abc|abc\nabc abc\nabc" 
+			<< "abc|0|0|1"
+			<< "abc|1|0"
+			<< "abc|1|4"
+			<< "abc|2|0");
+	QTest::newRow("replace new occurences with empty lines")
+		<< "abc\n\n\nabc\n\n\nabc"
+		<< 0
+		<< 0 << 0
+		<< (QStringList() 
+			<<  "abc|0|0"
+			<< "abc|3|0"
+			<< "abc|6|0|abc abc|abc\n\n\nabc abc\n\n\nabc" 
+			<< "abc|0|0|1"
+			<< "abc|3|0"
+			<< "abc|3|4"
+			<< "abc|6|0");
+	
+}
+void QSearchReplacePanelTest::findReplace(){
+	QFETCH(QString, editorText);
+	QFETCH(int, options);
+	QFETCH(int, sy);
+	QFETCH(int, sx);
+	QFETCH(QStringList, movements);
+	panel->display(1,true);
+	for (int highlightRun=0; highlightRun<2; highlightRun++) {
+		ed->document()->setText(editorText);
+		panel->setOptions(options | (highlightRun?QDocumentSearch::HighlightAll:0), true, false);
+		ed->setCursorPosition(sy,sx);
+		
+		for (int i=0;i<movements.size();i++){
+			QStringList move=movements[i].split('|');
+			QVERIFY(move.size()>=3);
+			widget->leFind->setText(move[0]);
+			if (move.size()==5) {
+				widget->leReplace->setText(move[3]);
+				widget->bReplaceNext->click();
+				QString newText=move[4];
+				if (!newText.endsWith("\n")) newText+="\n";
+				QEQUAL2(ed->document()->text(),newText,QString("%1 highlight-run: %2").arg(movements[i]).arg(highlightRun));
+			} else {
+				bool mes=false;
+				if (move.size()==4) mes=true;
+				else QVERIFY(move.size()==3);
+				if (mes) QTest::closeMessageBoxLater(true,QMessageBox::Yes);
+				widget->bNext->click();
+				if (mes) QTest::messageBoxShouldBeClose();
+				QApplication::processEvents();
+			}
+			QEQUAL2(ed->cursor().selectionStart().lineNumber(),move[1].toInt(),QString("%1 highlight-run: %2").arg(movements[i]).arg(highlightRun));			QEQUAL2(ed->cursor().selectionStart().columnNumber(),move[2].toInt(),QString("%1 highlight-run: %2").arg(movements[i]).arg(highlightRun));
+			QEQUAL2(ed->cursor().selectedText(),move[0],QString("%1 highlight-run: %2").arg(movements[i]).arg(highlightRun));
+		}
+	}	
 }
 void QSearchReplacePanelTest::cleanupTestCase(){
 }
