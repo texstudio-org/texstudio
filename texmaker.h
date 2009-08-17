@@ -133,16 +133,19 @@ private:
 	Userlist UserMenuName, UserMenuTag;
 	UserCd UserToolName, UserToolCommand;
 
+	QStringList userCommandList;
+	QStringList userTemplatesList;
+
 	int spellcheckErrorFormat;
 	SpellerUtility *mainSpeller;
 
-	ThesaurusDialog *thesaurusDialog;
 //dialogs
+	ThesaurusDialog *thesaurusDialog;
 	TextAnalysisDialog *textAnalysisDlg;
 	SpellerDialog *spellDlg;
+	templateselector *templateSelectorDialog;
 
-	QStringList userCommandList;
-	QStringList userTemplatesList;
+
 
 //tools
 	bool FINPROCESS, ERRPROCESS;
@@ -358,6 +361,9 @@ private slots:
 
 
 	void StructureToolBoxToggle(bool checked);
+
+	void templateRemove();
+	void templateEdit();
 protected:
 	LatexEditorView* getEditorFromStructureItem(QTreeWidgetItem* m_item);
 	QPoint sectionSelection(QTreeWidgetItem* m_item);

@@ -85,6 +85,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	MpListWidget=0;
 	outputView=0;
 	thesaurusDialog=0;
+	templateSelectorDialog=0;
 	MpListWidget=0;
 	PsListWidget=0;
 	leftrightWidget=0;
@@ -1038,22 +1039,52 @@ void Texmaker::fileMakeTemplate() {
 	}
 }
 
+void Texmaker::templateRemove(){
+	QStringList templates=findResourceFiles("templates/","template_*.tex");
+	int len=templates.size();
+	if(templateSelectorDialog->ui.listWidget->currentRow()>=len){
+		if(QMessageBox::question(this,tr("Please Confirm"), tr("Are you sure to remove that template permanently ?"),QMessageBox::Yes|QMessageBox::No,QMessageBox::No)==QMessageBox::Yes){
+			QString f_real=userTemplatesList.at(templateSelectorDialog->ui.listWidget->currentRow()-len);
+			userTemplatesList.removeAt(templateSelectorDialog->ui.listWidget->currentRow()-len);
+			templateSelectorDialog->ui.listWidget->takeItem(templateSelectorDialog->ui.listWidget->currentRow());
+			QFile file(f_real);
+			if(!file.remove()) QMessageBox::warning(this,tr("Error"), tr("You do not have permission to remove this file."));
+		}
+	} else QMessageBox::warning(this,tr("Error"), tr("You cannot remove built-in templates."));
+
+}
+
+void Texmaker::templateEdit(){
+	QStringList templates=findResourceFiles("templates/","template_*.tex");
+	int len=templates.size();
+	if(templateSelectorDialog->ui.listWidget->currentRow()>=len){
+		load(userTemplatesList.at(templateSelectorDialog->ui.listWidget->currentRow()-len),false);
+		templateSelectorDialog->close();
+	} else QMessageBox::warning(this,tr("Error"), tr("You cannot edit built-in templates."));
+}
+
 void Texmaker::fileNewFromTemplate() {
 	// select Template
 	QString f_real;
-	templateselector *dialog=new templateselector(this,tr("Templates"));
+	templateSelectorDialog=new templateselector(this,tr("Templates"));
 	QStringList templates=findResourceFiles("templates/","template_*.tex");
 	int len=templates.size();
 	templates.append(userTemplatesList);
 	templates.replaceInStrings(QRegExp("(^|^.*/)(template_)?"),"");
 	templates.replaceInStrings(QRegExp(".tex$"),"");
-	dialog->ui.listWidget->insertItems(0,templates);
-	if(dialog->exec()){
-		if(dialog->ui.listWidget->currentRow()<len){
-			f_real="templates/template_"+dialog->ui.listWidget->currentItem()->text()+".tex";
+	templateSelectorDialog->ui.listWidget->insertItems(0,templates);
+	QAction *act=new QAction(tr("Edit"),this);
+	connect(act,SIGNAL(triggered()),this,SLOT(templateEdit()));
+	templateSelectorDialog->ui.listWidget->addAction(act);
+	act=new QAction(tr("Remove"),this);
+	connect(act,SIGNAL(triggered()),this,SLOT(templateRemove()));
+	templateSelectorDialog->ui.listWidget->addAction(act);
+	if(templateSelectorDialog->exec()){
+		if(templateSelectorDialog->ui.listWidget->currentRow()<len){
+			f_real="templates/template_"+templateSelectorDialog->ui.listWidget->currentItem()->text()+".tex";
 			f_real=findResourceFile(f_real);
 		}else {
-			f_real=userTemplatesList.at(dialog->ui.listWidget->currentRow()-len);
+			f_real=userTemplatesList.at(templateSelectorDialog->ui.listWidget->currentRow()-len);
 		}
 		QFile file(f_real);
 		if (!file.open(QIODevice::ReadOnly)) {
@@ -1737,12 +1768,12 @@ void Texmaker::SaveSettings() {
 	config->setValue("Show/Structureview",showstructview);
 	
 	if (userClassList.count()>0)
-		config->setValue("Tools/User Class",userClassList);
+		config->setValue("Tools/User Class",userClassList);  // not removable , okay this way ?
 	if (userPaperList.count()>0) config->setValue("Tools/User Paper",userPaperList);
 	if (userEncodingList.count()>0) config->setValue("Tools/User Encoding",userEncodingList);
 	if (userOptionsList.count()>0) config->setValue("Tools/User Options",userOptionsList);
 
-	if(userTemplatesList.count()>0) config->setValue("User/Templates",userTemplatesList);
+	config->setValue("User/Templates",userTemplatesList);
 
 	if (ToggleRememberAct->isChecked()) {
 		config->setValue("Files/RestoreSession",true);
