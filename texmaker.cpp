@@ -1035,7 +1035,7 @@ void Texmaker::fileMakeTemplate() {
 			fn.append(".tex");
 		// save file
 		currentEditor()->save(fn);
-		userTemplatesList.append(fn);
+		if(!userTemplatesList.contains(fn)) userTemplatesList.append(fn);
 	}
 }
 
