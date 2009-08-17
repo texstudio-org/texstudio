@@ -1,6 +1,6 @@
 /***************************************************************************
- *   copyright       : (C) 2003-2007 by Pascal Brachet                     *
- *   http://www.xm1math.net/texmaker/                                      *
+ *   copyright       : (C) 2009 by Jan Sundermeyer                         *
+ *   http://texmakerx.sourceforgw.net/                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -16,6 +16,8 @@ templateselector::templateselector(QWidget *parent, QString name)
 	setModal(true);
 	ui.setupUi(this);
 	setWindowTitle(name);
+	ui.listWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
+
 }
 
 templateselector::~templateselector() {
