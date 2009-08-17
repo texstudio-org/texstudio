@@ -69,42 +69,46 @@ void QSearchReplacePanelTest::incrementalsearch(){
 	QFETCH(int, scopey2);
 	QFETCH(int, scopex2);
 	
-	ed->document()->setText(editorText);
-	if (scopey1!=-1) {
-		widget->cbSelection->setChecked(true);
-		ed->setCursor(ed->document()->cursor(scopey1,scopex1,scopey2,scopex2));
-	}
-	panel->setOptions((QDocumentSearch::Options)options, cursor, scopey1!=-1);
-	ed->setCursorPosition(sy,sx);
 	
-	int cx=-1;
-	int cy=-1;
-	foreach (const QString& s, moves){
-		QString search=s;
-		QStringList sl = s.split("|");
-		QVERIFY(sl.count()==1||sl.count()==3||sl.count()==4);
-		if (sl.count()>=3){
-			cy=sl[0].toInt();
-			cx=sl[1].toInt();
-			search=sl[2];
-		} 
-		QString res=search;
-		if (sl.count()==4) res=sl[3];
-		
-		//it doesn't react to setText
-		if (search.isEmpty()) {
-			widget->leFind->setText("a");
-			widget->leFind->cursorForward(false);	
-			QTest::keyClick(widget->leFind,Qt::Key_Backspace);
-		} else {
-			widget->leFind->setText(search.left(search.length()-1));
-			widget->leFind->cursorForward(false,search.length());	
-			QTest::keyClick(widget->leFind,search[search.length()-1].toLatin1());
+	for (int loop=0; loop<2; loop++) {
+		panel->display(1,loop==1);
+		ed->document()->setText(editorText);
+		if (scopey1!=-1) {
+			widget->cbSelection->setChecked(true);
+			ed->setCursor(ed->document()->cursor(scopey1,scopex1,scopey2,scopex2));
 		}
-		QDocumentCursor s=ed->cursor().selectionStart();
-		QEQUAL2(s.lineNumber(), cy, search+" "+ed->cursor().selectedText());
-		QEQUAL2(s.columnNumber(), cx, search+" "+ed->cursor().selectedText());
-		QEQUAL2(ed->cursor().selectedText(), res, search+" "+ed->cursor().selectedText());
+		panel->setOptions((QDocumentSearch::Options)options, cursor, scopey1!=-1);
+		ed->setCursorPosition(sy,sx);
+		
+		int cx=-1;
+		int cy=-1;
+		foreach (const QString& s, moves){
+			QString search=s;
+			QStringList sl = s.split("|");
+			QVERIFY(sl.count()==1||sl.count()==3||sl.count()==4);
+			if (sl.count()>=3){
+				cy=sl[0].toInt();
+				cx=sl[1].toInt();
+				search=sl[2];
+			} 
+			QString res=search;
+			if (sl.count()==4) res=sl[3];
+			
+			//it doesn't react to setText
+			if (search.isEmpty()) {
+				widget->leFind->setText("a");
+				widget->leFind->cursorForward(false);	
+				QTest::keyClick(widget->leFind,Qt::Key_Backspace);
+			} else {
+				widget->leFind->setText(search.left(search.length()-1));
+				widget->leFind->cursorForward(false,search.length());	
+				QTest::keyClick(widget->leFind,search[search.length()-1].toLatin1());
+			}
+			QDocumentCursor s=ed->cursor().selectionStart();
+			QEQUAL2(s.lineNumber(), cy, search+" "+ed->cursor().selectedText());
+			QEQUAL2(s.columnNumber(), cx, search+" "+ed->cursor().selectedText());
+			QEQUAL2(ed->cursor().selectedText(), res, search+" "+ed->cursor().selectedText());
+		}
 	}
 }
 void QSearchReplacePanelTest::findNext_data(){
