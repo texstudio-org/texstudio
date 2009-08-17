@@ -179,7 +179,7 @@
     <message>
         <location filename="configdialog.cpp" line="183"/>
         <source>The shortcut you entered is invalid.</source>
-        <translation>Das eingegebene Tastaturkürzel ist ungültig:</translation>
+        <translation>Das eingegebene Tastaturkürzel ist ungültig.</translation>
     </message>
     <message>
         <source>The shortcut you entered is the same as the one of this command: 
@@ -937,12 +937,12 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <message>
         <location filename="qcodeedit/lib/widgets/gotoline.ui" line="27"/>
         <source>&amp;Go to line :</source>
-        <translation>Gehe zu Zeile :</translation>
+        <translation>&amp;Gehe zu Zeile :</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/gotoline.ui" line="53"/>
         <source>G&amp;o</source>
-        <translation>Gehe</translation>
+        <translation>G&amp;ehe</translation>
     </message>
 </context>
 <context>
@@ -967,7 +967,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
         <location filename="latexeditorview.cpp" line="663"/>
         <source>%n reference(s) to this label</source>
         <translation>
-            <numerusform>%f Referenz(en) zu diesem Label</numerusform>
+            <numerusform>%n Referenz(en) zu diesem Label</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -2473,24 +2473,24 @@ Wollen Sie es speichern?</translation>
     <message>
         <location filename="texmaker.cpp" line="519"/>
         <source>User &amp;Tags</source>
-        <translation>Benutzer Makros</translation>
+        <translation>Benutzer &amp;Makros</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="524"/>
         <location filename="texmaker.cpp" line="2858"/>
         <source>Edit User &amp;Tags</source>
-        <translation>Benutzer Makros ändern...</translation>
+        <translation>Benutzer &amp;Makros ändern</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="526"/>
         <source>User &amp;Commands</source>
-        <translation>Benutzer Befehle</translation>
+        <translation>Benutzer &amp;Befehle</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="531"/>
         <location filename="texmaker.cpp" line="3266"/>
         <source>Edit User &amp;Commands</source>
-        <translation>Benutzerbefehle ändern</translation>
+        <translation>Benutzer&amp;befehle ändern</translation>
     </message>
     <message>
         <source>Edit User &amp;Key Replacements...</source>
@@ -2613,7 +2613,7 @@ Wollen Sie es speichern?</translation>
         <location filename="texmaker.cpp" line="982"/>
         <location filename="texmaker.cpp" line="1091"/>
         <source>You do not have read permission to this file.</source>
-        <translation>Dir fehlen die nötigen Rechte um die Datei zu lesen</translation>
+        <translation>Dir fehlen die nötigen Rechte um die Datei zu lesen.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="1123"/>
@@ -2688,7 +2688,7 @@ Wollen Sie es speichern?</translation>
         <location filename="texmaker.cpp" line="3170"/>
         <location filename="texmaker.cpp" line="3190"/>
         <source>Could not start the command.</source>
-        <translation>Programm konnte nicht gestartet werden</translation>
+        <translation>Programm konnte nicht gestartet werden.</translation>
     </message>
     <message>
         <source>View Dvi file</source>
