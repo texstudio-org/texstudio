@@ -23,6 +23,7 @@
 #include "latexlog.h"
 #include "latexeditorview.h"
 #include "latexcompleter.h"
+#include "templateselector.h"
 //#include "symbollistwidget.h"
 #include "symbolgridwidget.h"
 #include "xmltagslistwidget.h"
@@ -160,6 +161,7 @@ private:
 private slots:
 
 	void fileNew(QString fileName="untitled");
+	void fileNewFromTemplate();
 	void fileOpen();
 	void fileSave();
 	void fileSaveAll();
