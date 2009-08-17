@@ -862,7 +862,6 @@ void QDocumentSearch::replaceCursorText(QRegExp& m_regexp){
 	
 }
 
-#include "windows.h"
 void QDocumentSearch::documentContentChanged(int line, int n){
 	if (!m_editor || !m_editor->document() || !hasOption(HighlightAll)) return;
 	int lineend = qMin(m_editor->document()->lines()-1,line+n);
