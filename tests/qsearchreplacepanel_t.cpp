@@ -9,6 +9,7 @@
 #include "qcodeedit.h"
 #include "testutil.h"
 #include <QtTest/QtTest>
+//#include "windows.h"
 QSearchReplacePanelTest::QSearchReplacePanelTest(QCodeEdit* codeedit): 
 		QObject(0), ed(codeedit->editor()), panel(0){
 	if (!codeedit->hasPanel("Search")) return;
@@ -222,10 +223,38 @@ void QSearchReplacePanelTest::findReplace(){
 				if (mes) QTest::messageBoxShouldBeClose();
 				QApplication::processEvents();
 			}
+			//QApplication::processEvents();
+			//Sleep(1000);
 			QEQUAL2(ed->cursor().selectionStart().lineNumber(),move[1].toInt(),QString("%1 highlight-run: %2").arg(movements[i]).arg(highlightRun));			QEQUAL2(ed->cursor().selectionStart().columnNumber(),move[2].toInt(),QString("%1 highlight-run: %2").arg(movements[i]).arg(highlightRun));
 			QEQUAL2(ed->cursor().selectedText(),move[0],QString("%1 highlight-run: %2").arg(movements[i]).arg(highlightRun));
 		}
 	}	
+}
+void QSearchReplacePanelTest::findReplaceSpecialCase(){
+	//test for a strange special case
+	ed->document()->setText("abc\n\n\nabc\n\n\nabc");
+	widget->leFind->setText("abc");
+	ed->setCursorPosition(0,0);
+	panel->setOptions(QDocumentSearch::HighlightAll, true, false);
+	
+	widget->bNext->click();
+	QEQUAL2(ed->cursor().lineNumber(),0,"a"); QEQUAL(ed->cursor().selectionStart().columnNumber(),0);
+	
+	widget->bNext->click();
+	QEQUAL2(ed->cursor().lineNumber(),3,"b"); QEQUAL(ed->cursor().selectionStart().columnNumber(),0);
+	
+	widget->leReplace->setText("abc abc");
+	widget->bReplaceNext->click();
+	QEQUAL2(ed->cursor().lineNumber(),6,"c"); QEQUAL(ed->cursor().selectionStart().columnNumber(),0);
+
+	widget->bPrevious->click();
+	QEQUAL2(ed->cursor().lineNumber(),3,"d"); QEQUAL(ed->cursor().selectionStart().columnNumber(),4);
+
+	widget->bPrevious->click();
+	QEQUAL2(ed->cursor().lineNumber(),3,"e"); QEQUAL(ed->cursor().selectionStart().columnNumber(),0);
+
+	widget->bPrevious->click();
+	QEQUAL2(ed->cursor().lineNumber(),0,"f"); QEQUAL(ed->cursor().selectionStart().columnNumber(),0);
 }
 void QSearchReplacePanelTest::cleanupTestCase(){
 }

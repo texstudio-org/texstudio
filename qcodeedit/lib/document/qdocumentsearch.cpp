@@ -43,7 +43,7 @@
 QDocumentSearch::QDocumentSearch(QEditor *e, const QString& f, Options opt, const QString& r)
  : m_group(-1), m_option(opt), m_string(f), m_replace(r), m_editor(e)
 {
-	if (m_editor)
+	if (m_editor && hasOption(HighlightAll))
 		connect(m_editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
 }
 
@@ -232,16 +232,17 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 		//TODO: binary search
 		d->clearMatches(m_group); //clear matches in the document, remember our copy
 		//remove all matches witin the new scope
-		bool found=false;
+		QDocumentCursor ss=hscope.selectionStart();
+		QDocumentCursor se=hscope.selectionEnd();
 		for (int i=0; i<m_highlight.count();)
-			if (hscope.isWithinSelection(m_highlight[i])) {
-				m_highlight.removeAt(i);
-				found=true;
-			} else if (found) {
+			if (m_highlight[i].selectionEnd()<ss) 
+				i++;
+			else if (m_highlight[i].selectionStart()>se){
 				saved<<m_highlight.mid(i);
 				m_highlight.erase(m_highlight.begin()+i,m_highlight.end());
 				break;
-			} else i++;
+			} else 
+				m_highlight.removeAt(i);
 	}
 	
 	QDocumentCursor hc = hscope.selectionStart();
@@ -295,10 +296,7 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 	
 		//qDebug("%i matches in group %i", indexedMatchCount(), m_group);
 		m_editor->document()->flushMatches(m_group);
-	} else {
-		m_editor->document()->releaseGroupId(m_group);
-		m_group = -1;
-	}
+	} else clearMatches();
 	m_index = -1; //current index became invalid due to (partially) cleaning (TODO?: change to new index)
 }
 
@@ -379,7 +377,10 @@ void QDocumentSearch::setSearchText(const QString& f)
 {
 	m_string = f;
 	
-	clearMatches();
+	if (hasOption(HighlightAll) && !m_string.isEmpty()) 
+		searchMatches();
+	else if (m_group !=-1 || m_highlight.count())
+		clearMatches();
 }
 
 /*!
@@ -404,14 +405,15 @@ void QDocumentSearch::setOption(Option opt, bool on)
 	
 	if ( (opt & QDocumentSearch::HighlightAll)  )
 	{
-		QDocument *d = m_editor->document();
-		
-		if ( m_group != -1 && !on && m_highlight.count() )
-		{
-			d->clearMatches(m_group);
-			d->flushMatches(m_group);
-			m_group = -1;
-		} else if ( m_group == -1 && on ) {
+		//prevent multiple connections
+		if (m_editor->document()) {
+			disconnect(m_editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
+			if (on) //connect if highlighting is on
+				connect(m_editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
+		}
+		if ( (m_group != -1 || m_highlight.count()) && !on  ) 
+			clearMatches();
+		else if ( m_group == -1 && on ) 
 			searchMatches();
 			/*m_group = d->getNextGroupId();
 			
@@ -442,7 +444,7 @@ void QDocumentSearch::setOption(Option opt, bool on)
 			
 			//qDebug("%i matches in group %i", indexedMatchCount(), m_group);
 			d->flushMatches(m_group);*/
-		}
+		
 	} else if (
 					(m_option & QDocumentSearch::HighlightAll)
 				&&
@@ -860,6 +862,7 @@ void QDocumentSearch::replaceCursorText(QRegExp& m_regexp){
 	
 }
 
+#include "windows.h"
 void QDocumentSearch::documentContentChanged(int line, int n){
 	if (!m_editor || !m_editor->document() || !hasOption(HighlightAll)) return;
 	int lineend = qMin(m_editor->document()->lines()-1,line+n);
@@ -870,4 +873,5 @@ void QDocumentSearch::documentContentChanged(int line, int n){
 	c.setLineNumber(lineend, QDocumentCursor::KeepAnchor);
 	c.setColumnNumber(le.length(), QDocumentCursor::KeepAnchor);
 	searchMatches(c,false);
+	//searchMatches();
 }

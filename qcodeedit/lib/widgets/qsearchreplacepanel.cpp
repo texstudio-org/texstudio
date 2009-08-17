@@ -127,12 +127,14 @@ void QSearchReplacePanel::display(int mode, bool replace)
 		//frameReplace->setVisible(replace);
 		leFind->setFocus();
 		leFind->selectAll();
+		if (m_search && cbHighlight->isChecked() && !m_search->hasOption(QDocumentSearch::HighlightAll)) 
+			m_search->setOption(QDocumentSearch::HighlightAll, true);
 		//show();
 	}else{
 		if ( m_search )
 		{
-			//m_search->setOption(QDocumentSearch::HighlightAll, false);
-			m_search->clearMatches();
+			m_search->setOption(QDocumentSearch::HighlightAll, false);
+			//m_search->clearMatches();
 		}
 	}
 
@@ -267,52 +269,29 @@ bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
 
 void QSearchReplacePanel::on_leFind_textEdited(const QString& text)
 {
-	if ( cbReplace->isChecked() )
-	{
-		// do not perfrom incremental search when replacing
-
-		if ( m_search )
-			m_search->setSearchText(text);
-
-		leFind->setStyleSheet(QString());
-		return;
-	}
-
-	//bool hadSearch = m_search;
-	QDocumentCursor cur = editor()->cursor();
-
-	if ( m_search )
-	{
-		if (m_search->cursor().isValid())
-			cur = m_search->cursor();
-		
-		
-		m_search->setSearchText(text);
-
-		if ( cbCursor->isChecked() )
-		{
-			QDocumentCursor c = cur;
-			c.setColumnNumber(qMin(c.anchorColumnNumber(), c.columnNumber()));
-
-			m_search->setCursor(c);
-		}
-	} else {
-		// TODO : make incremental search optional
-		init();
-	}
-
+	if (! m_search) init();
+	
+	m_search->setSearchText(text);
+	
 	if ( text.isEmpty() )
 	{
 		leFind->setStyleSheet(QString());
 		return;
 	}
 
-	m_search->setOption(QDocumentSearch::Silent, true);
+	QDocumentCursor cur = editor()->cursor();
 
+	if (m_search->cursor().isValid()){
+		cur = m_search->cursor();
+		m_search->setCursor(m_search->cursor().selectionStart());
+	}
+	
+	m_search->setOption(QDocumentSearch::Silent,true);
+	
 	findReplace(false);
-
-	m_search->setOption(QDocumentSearch::Silent, false);
-
+	
+	m_search->setOption(QDocumentSearch::Silent,false);	
+	
 	if ( m_search->cursor().isNull() )
 		leFind->setStyleSheet("QLineEdit { background: red; color : white; }");
 	else if ((m_search->cursor().anchorLineNumber() < cur.anchorLineNumber()) || 
