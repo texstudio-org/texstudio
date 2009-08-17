@@ -344,6 +344,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"save",tr("Save"), SLOT(fileSave()), Qt::CTRL+Qt::Key_S, ":/images/filesave.png");
 	newManagedAction(menu,"saveas",tr("Save As"), SLOT(fileSaveAs()), Qt::CTRL+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu,"saveall",tr("Save All"), SLOT(fileSaveAll()), Qt::CTRL+Qt::SHIFT+Qt::Key_S);
+	newManagedAction(menu, "maketemplate",tr("Make Template"), SLOT(fileMakeTemplate()));
 
 	menu->addSeparator();
 	newManagedAction(menu,"close",tr("Close"), SLOT(fileClose()), Qt::CTRL+Qt::Key_W, ":/images/fileclose.png");
@@ -1017,17 +1018,43 @@ void Texmaker::fileNew(QString fileName) {
 	edit->editor->setFocus();
 }
 
+void Texmaker::fileMakeTemplate() {
+	if (!currentEditorView())
+		return;
+
+	// select a directory/filepath
+	QString currentDir=configManager.configFileNameBase;
+
+	// get a file name
+	QString fn = QFileDialog::getSaveFileName(this,tr("Save As"),currentDir,"TeX files (*.tex)");
+	if (!fn.isEmpty()) {
+		int lastsep=qMax(fn.lastIndexOf("/"),fn.lastIndexOf("\\"));
+		int lastpoint=fn.lastIndexOf(".");
+		if (lastpoint <= lastsep) //if both aren't found or point is in directory name
+			fn.append(".tex");
+		// save file
+		currentEditor()->save(fn);
+		userTemplatesList.append(fn);
+	}
+}
+
 void Texmaker::fileNewFromTemplate() {
 	// select Template
 	QString f_real;
 	templateselector *dialog=new templateselector(this,tr("Templates"));
 	QStringList templates=findResourceFiles("templates/","template_*.tex");
-	templates.replaceInStrings(QRegExp("^template_"),"");
+	int len=templates.size();
+	templates.append(userTemplatesList);
+	templates.replaceInStrings(QRegExp("(^|^.*/)(template_)?"),"");
 	templates.replaceInStrings(QRegExp(".tex$"),"");
 	dialog->ui.listWidget->insertItems(0,templates);
 	if(dialog->exec()){
-		f_real="templates/template_"+dialog->ui.listWidget->currentItem()->text()+".tex";
-		f_real=findResourceFile(f_real);
+		if(dialog->ui.listWidget->currentRow()<len){
+			f_real="templates/template_"+dialog->ui.listWidget->currentItem()->text()+".tex";
+			f_real=findResourceFile(f_real);
+		}else {
+			f_real=userTemplatesList.at(dialog->ui.listWidget->currentRow()-len);
+		}
 		QFile file(f_real);
 		if (!file.open(QIODevice::ReadOnly)) {
 			QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
@@ -1622,6 +1649,8 @@ void Texmaker::ReadSettings() {
 	userEncodingList=config->value("Tools/User Encoding").toStringList();
 	userOptionsList=config->value("Tools/User Options").toStringList();
 
+	userTemplatesList=config->value("User/Templates").toStringList();
+
 	for (int i=0; i<=9; i++) {
 		UserMenuName[i]=config->value(QString("User/Menu%1").arg(i+1),"").toString();
 		UserMenuTag[i]=config->value(QString("User/Tag%1").arg(i+1),"").toString();
@@ -1712,6 +1741,8 @@ void Texmaker::SaveSettings() {
 	if (userPaperList.count()>0) config->setValue("Tools/User Paper",userPaperList);
 	if (userEncodingList.count()>0) config->setValue("Tools/User Encoding",userEncodingList);
 	if (userOptionsList.count()>0) config->setValue("Tools/User Options",userOptionsList);
+
+	if(userTemplatesList.count()>0) config->setValue("User/Templates",userTemplatesList);
 
 	if (ToggleRememberAct->isChecked()) {
 		config->setValue("Files/RestoreSession",true);

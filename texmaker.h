@@ -142,6 +142,7 @@ private:
 	SpellerDialog *spellDlg;
 
 	QStringList userCommandList;
+	QStringList userTemplatesList;
 
 //tools
 	bool FINPROCESS, ERRPROCESS;
@@ -162,6 +163,7 @@ private slots:
 
 	void fileNew(QString fileName="untitled");
 	void fileNewFromTemplate();
+	void fileMakeTemplate();
 	void fileOpen();
 	void fileSave();
 	void fileSaveAll();
