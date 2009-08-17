@@ -10,13 +10,12 @@ CONFIG += qt \
 exists(texmakerx_my.pri):include(texmakerx_my.pri)
 QT += network \
     xml
-	
+
 # ##############################
 PRECOMPILED_HEADER = mostQtHeaders.h
 HEADERS += texmaker.h \
     buildmanager.h \
     dsingleapplication.h \
-	#symbollistwidget.h \
     symbolgridwidget.h \
     icondelegate.h \
     latexcompleter.h \
@@ -73,13 +72,13 @@ HEADERS += texmaker.h \
     hunspell/w_char.hxx \
     qcodeedit/lib/qeditorinputbinding.h \
     qcodeedit/lib/qeditorinputbindinginterface.h \
-    randomtextgenerator.h
+    randomtextgenerator.h \
+    templateselector.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
     texmaker.cpp \
-	#symbollistwidget.cpp \
-    symbolgridwidget.cpp \
+	symbolgridwidget.cpp \
     icondelegate.cpp \
     latexcompleter.cpp \
     latexeditorview.cpp \
@@ -124,7 +123,8 @@ SOURCES += main.cpp \
     hunspell/hunzip.cxx \
     encodingdialog.cpp \
     qcodeedit/lib/qeditorinputbinding.cpp \
-    randomtextgenerator.cpp
+    randomtextgenerator.cpp \
+    templateselector.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
@@ -143,7 +143,8 @@ FORMS += structdialog.ui \
     spellerdialog.ui \
     textanalysis.ui \
     encodingdialog.ui \
-    randomtextgenerator.ui
+    randomtextgenerator.ui \
+    templateselector.ui
 TRANSLATIONS += texmakerx_fr.ts \
     texmakerx_de.ts \
     texmakerx_it.ts
@@ -358,7 +359,7 @@ SOURCES += qcodeedit/lib/qnfa/qnfa.cpp \
 # incredible mess, so they are always compiled (but empty through #define in release mode)
 SOURCES += tests/testmanager.cpp \
     tests/testutil.cpp \
-    tests/codesnippet_t.cpp\
+    tests/codesnippet_t.cpp \
     tests/qdocumentsearch_t.cpp \
     tests/qsearchreplacepanel_t.cpp
 HEADERS += tests/testmanager.h \
@@ -380,7 +381,7 @@ CONFIG(team):!CONFIG(build_pass) {
     ALLFILES = $${HEADERS}
     ALLFILES += $${SOURCES}
     ALLFILES += $${FORMS}
-    for(filename, ALLFILES): !exists($${SVNPREPATH}$$dirname(filename)$${SVNPATH}$$basename(filename)$${SVNEXT}) { 
+    for(filename, ALLFILES):!exists($${SVNPREPATH}$$dirname(filename)$${SVNPATH}$$basename(filename)$${SVNEXT}) { 
         warning($${filename} not contained in svn base will be added)
         system(svn add $${filename})
     }

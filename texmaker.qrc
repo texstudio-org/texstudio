@@ -1355,5 +1355,16 @@
         <file>symbols/wasysym/img110wasysym.png</file>
         <file>symbols/wasysym/img111wasysym.png</file>
         <file>symbols/wasysym/img112wasysym.png</file>
+        <file>templates/template_Article.tex</file>
+        <file>templates/template_Beamer.tex</file>
+        <file>templates/template_Book.tex</file>
+        <file>templates/template_HA-prosper.tex</file>
+        <file>templates/template_Letter.tex</file>
+        <file>templates/template_Prosper.tex</file>
+        <file>templates/template_Report.tex</file>
+        <file>templates/template_Scrartcl.tex</file>
+        <file>templates/template_Scrbook.tex</file>
+        <file>templates/template_Scrlttr2.tex</file>
+        <file>templates/template_Scrreprt.tex</file>
     </qresource>
 </RCC>

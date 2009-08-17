@@ -335,6 +335,7 @@ void Texmaker::setupMenus() {
 //file
 	QMenu *menu=newManagedMenu("main/file",tr("&File"));
 	newManagedAction(menu, "new",tr("New"), SLOT(fileNew()), Qt::CTRL+Qt::Key_N, ":/images/filenew.png");
+	newManagedAction(menu, "newfromtemplate",tr("New from template"), SLOT(fileNewFromTemplate()));
 	newManagedAction(menu, "open",tr("Open"), SLOT(fileOpen()), Qt::CTRL+Qt::Key_O, ":/images/fileopen.png");
 
 	QMenu *submenu=newManagedMenu(menu, "openrecent",tr("Open Recent")); //only create the menu here, actions are created by config manager
@@ -1015,6 +1016,45 @@ void Texmaker::fileNew(QString fileName) {
 
 	edit->editor->setFocus();
 }
+
+void Texmaker::fileNewFromTemplate() {
+	// select Template
+	QString f_real;
+	templateselector *dialog=new templateselector(this,tr("Templates"));
+	QStringList templates=findResourceFiles("templates/","template_*.tex");
+	templates.replaceInStrings(QRegExp("^template_"),"");
+	templates.replaceInStrings(QRegExp(".tex$"),"");
+	dialog->ui.listWidget->insertItems(0,templates);
+	if(dialog->exec()){
+		f_real="templates/template_"+dialog->ui.listWidget->currentItem()->text()+".tex";
+		f_real=findResourceFile(f_real);
+		QFile file(f_real);
+		if (!file.open(QIODevice::ReadOnly)) {
+			QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
+			return;
+		}
+		//set up new editor with template
+		LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig);
+		if (configManager.newfile_encoding)
+			edit->editor->setFileEncoding(configManager.newfile_encoding);
+		else
+			edit->editor->setFileEncoding(QTextCodec::codecForName("utf-8"));
+
+		EditorView->addTab(edit, "untitled");
+		configureNewEditorView(edit);
+
+		if (configManager.autodetectLoadedFile) edit->editor->load(f_real,0);
+		else edit->editor->load(f_real,configManager.newfile_encoding);
+		edit->editor->document()->setLineEnding(edit->editor->document()->originalLineEnding());
+
+		edit->editor->setFileName("untitled");
+		UpdateCaption();
+		NewDocumentStatus(true);
+
+		edit->editor->setFocus();
+	}
+}
+
 
 void Texmaker::fileOpen() {
 	QString currentDir=QDir::homePath();
