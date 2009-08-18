@@ -1,6 +1,6 @@
 #include "smallUsefulFunctions.h"
 
-const QString CommonEOW="~!@#$%^&*()_+{}|:\"<>?,./;[]-= \t\n\r`+�";
+const QString CommonEOW="~!@#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`+�";
 const QString EscapedChars="%&_";
 
 QString getCommonEOW() {
@@ -154,7 +154,10 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 	for (i=(i>0?i:0); i<line.size(); i++) {
 		QChar cur = line.at(i);
 		if (inCmd) {
-			if (CommonEOW.indexOf(cur)>=0) break;
+			if (CommonEOW.indexOf(cur)>=0) {
+				if (i-start==1) i++;
+				break;
+			}
 		} else if (inWord) {
 			if (cur=='\\') {
 				if (i+1<line.size() && (line.at(i+1)=='-'||EscapedChars.indexOf(line.at(i+1))>=0))  {
@@ -212,11 +215,6 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 		switch (outWord.at(0).toAscii()) {
 		case '%':
 			return NW_COMMENT; //return comment start
-		case '\\':
-			if (returnCommands) return NW_COMMAND;
-			if (!optionCommands.contains(lastCommand))
-				lastCommand=outWord;
-			break;
 		case '{':
 			break; //ignore
 		case '}':
@@ -232,6 +230,13 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 			}
 			lastCommand="";
 			break;//command doesn't matter anymore
+		case '\\':
+			if (outWord.length()==1 || !EscapedChars.contains(outWord.at(1))) {
+				if (returnCommands) return NW_COMMAND;
+				if (!optionCommands.contains(lastCommand))
+				lastCommand=outWord;
+				break;
+			} else ; //first character is escaped, fall through to default case
 		default:
 			if (outWord.contains("\\")||outWord.contains("\""))
 				outWord=latexToPlainWord(outWord); //remove special chars

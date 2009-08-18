@@ -70,16 +70,22 @@ class SmallUsefulFunctionsTest: public QObject{
 					if (tokens[i].type==NW_IGNORED_TOKEN)	tokens.removeAt(i);
 					else if (tokens[i].type==NW_ENVIRONMENT || tokens[i].type==NW_OPTION)
 						tokens[i].type=NW_TEXT;//nextWord in command mode don't distinguish between text, environments and options
+					else if (tokens[i].contains("\\") && tokens[i].type==NW_TEXT) 
+						tokens[i].replace("\\",""); //unescape escaped characters
 				break;
 			case FILTER_NEXTWORD:
-				for (int i=tokens.size()-1;i>=0;i--)
+				for (int i=tokens.size()-1;i>=0;i--) 
 					if (tokens[i].type==NW_COMMAND || tokens[i].type==NW_OPTION || tokens[i].type==NW_IGNORED_TOKEN) 
 						tokens.removeAt(i);//remove tokens not returned by nextWord in text mode
+					else if (tokens[i].contains("\\") && tokens[i].type==NW_TEXT) 
+						tokens[i].replace("\\",""); //unescape escaped characters
 				break;
 			case FILTER_NEXTTEXTWORD:
 				for (int i=tokens.size()-1;i>=0;i--)
 					if (tokens[i].type!=NW_TEXT || i>=firstComment)  
 						tokens.removeAt(i);//remove all except text before comment start
+					else if (tokens[i].contains("\\") && tokens[i].type==NW_TEXT) 
+						tokens[i].replace("\\",""); //unescape escaped characters
 				break;
 			default:
 				QVERIFY2(false, "Invalid filter");
@@ -100,6 +106,8 @@ class SmallUsefulFunctionsTest: public QObject{
 			QList<TestToken>() << "hallo" << " " << "welt" << "\\ignoreMe" << "{" << "text" << "}" << "     " << "\\begin" << "{" << env("I'mXnotXthere") << "}" << " *" << "g"  << "* " << "%"     << " " << "more" << " " << "\\comment");
 		addRow("command as option", filter,
 			QList<TestToken>() << "\\includegraphics" << "[" << option("ab") << "." << "\\linewidth" << "]" << "{" << "\\abc" << " " << option("dfdf") << "\\xyz" << "}" << "continue");
+		addRow("comments", filter, QList<TestToken>() << "hallo" << " " << "welt" <<  "  " << "\\\\" << "normaltext" <<  "  " << TestToken("\\%",NW_TEXT) << "!!!" << "stillNoComment" << "\\\\" << TestToken("\\%",NW_TEXT) <<"  "<< "none" << "\\\\" << "%" << "comment" << "   " << "more" << " " << "comment");
+		addRow("escaped characters", filter, QList<TestToken>() << TestToken("hallo\\%abc",NW_TEXT));
 	}
 	void nextWord_complex_test(bool commands){
 		//get data
