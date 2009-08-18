@@ -512,8 +512,9 @@ void QSearchReplacePanel::cursorPositionChanged()
 		} else {
 			if ( cbCursor->isChecked() )
 				m_search->setOrigin(editor()->cursor());
-			m_search->setCursor(editor()->cursor());
 		}
+		if (editor()->cursor().hasSelection()) m_search->setCursor(editor()->cursor().selectionStart());
+		else m_search->setCursor(editor()->cursor());
 	}
 }
 

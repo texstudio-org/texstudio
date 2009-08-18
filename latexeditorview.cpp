@@ -683,6 +683,11 @@ void LatexEditorView::lineMarkToolTip(int line, int mark){
 }
 bool LatexEditorView::closeSomething(){
 	if (completer->close()) return true;
+	if (gotoLinePanel->isVisible()) {
+		gotoLinePanel->hide();
+		editor->setFocus();
+		return true;
+	}
 	if (searchReplacePanel->isVisible()) {
 		if (searchReplacePanel->isReplaceModeActive() & !config->closeSearchAndReplace) 
 			searchReplacePanel->display(1,false);
