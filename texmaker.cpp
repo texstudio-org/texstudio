@@ -1066,12 +1066,13 @@ void Texmaker::templateEdit(){
 void Texmaker::fileNewFromTemplate() {
 	// select Template
 	QString f_real;
-	templateSelectorDialog=new templateselector(this,tr("Templates"));
+	if(!templateSelectorDialog) templateSelectorDialog=new templateselector(this,tr("Templates"));
 	QStringList templates=findResourceFiles("templates/","template_*.tex");
 	int len=templates.size();
 	templates.append(userTemplatesList);
 	templates.replaceInStrings(QRegExp("(^|^.*/)(template_)?"),"");
 	templates.replaceInStrings(QRegExp(".tex$"),"");
+	templateSelectorDialog->ui.listWidget->clear();
 	templateSelectorDialog->ui.listWidget->insertItems(0,templates);
 	QAction *act=new QAction(tr("Edit"),this);
 	connect(act,SIGNAL(triggered()),this,SLOT(templateEdit()));
