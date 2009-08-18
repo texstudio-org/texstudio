@@ -1069,7 +1069,7 @@ void Texmaker::fileNewFromTemplate() {
 	if(!templateSelectorDialog) templateSelectorDialog=new templateselector(this,tr("Templates"));
 	QStringList templates=findResourceFiles("templates/","template_*.tex");
 	int len=templates.size();
-	templates.append(userTemplatesList);
+	templates << userTemplatesList;
 	templates.replaceInStrings(QRegExp("(^|^.*/)(template_)?"),"");
 	templates.replaceInStrings(QRegExp(".tex$"),"");
 	templateSelectorDialog->ui.listWidget->clear();
@@ -2100,7 +2100,7 @@ void Texmaker::NormalCompletion() {
 		i++;
 	}
 
-	if(c.nextChar()==QChar('\\')) currentEditorView()->complete(true);
+	if(c.previousChar()==QChar('\\')) currentEditorView()->complete(true);
 	else {
 		// check further with reduced eow
 		eow="}\\ ";
