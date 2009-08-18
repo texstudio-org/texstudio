@@ -74,6 +74,9 @@ QString findToken(const QString &line,QRegExp &token);
 // find token (e.g. \label \input \section and return content (\newcommand{name}[arg]), returns true if outName!=""
 bool findTokenWithArg(const QString &line,const QString &token, QString &outName, QString &outArg);
 
+// remove comment from text, take care of multiple backslashes before comment character ...
+QString cutComment(QString text);
+
 //setup toolbutton as substitute for const combobox
 QToolButton* createComboToolButton(QWidget *parent,QStringList list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member);
 

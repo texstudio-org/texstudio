@@ -373,3 +373,10 @@ bool hasAtLeastQt(int major, int minor){
 	int mi=vers[1].toInt();
 	return (ma>major) || (ma==major && mi>=minor);
 }
+
+QString cutComment(QString text){
+	QString test=text;
+	test.replace("\\\\","  ");
+	int commentStart=test.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
+	return text.left(commentStart); // remove comments
+}
