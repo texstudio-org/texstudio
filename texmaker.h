@@ -90,7 +90,8 @@ private:
 
 	QMap<QString, BibTeXFileInfo> bibTeXFiles; //bibtex files loaded by tmx
 	QStringList mentionedBibTeXFiles; //bibtex files imported in the tex file
-
+	QSet<QString> allBibTeXIds;
+	
 	QFormatFactory *m_formats;
 	QLanguageFactory* m_languages;
 	LatexCompleter* completer;

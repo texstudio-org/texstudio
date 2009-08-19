@@ -75,22 +75,21 @@ public:
 	void foldBlockAt(bool unFold, int line);
 
 	void cleanBib();
+	
+	
 	static void setKeyReplacements(QStringList *UserKeyReplace, QStringList *UserKeyReplaceAfterWord, QStringList *UserKeyReplaceBeforeWord);
 	static QList<QAction *> getBaseActions();
 	static void setBaseActions(QList<QAction *> baseActions);
 	static void setSpeller(SpellerUtility* mainSpeller);
 	static void setCompleter(LatexCompleter* newCompleter);
-	
+	void setBibTeXIds(QSet<QString>* newIds);
 	
 	QMultiHash<QDocumentLineHandle*, int> lineToLogEntries;
 	QHash<int, QDocumentLineHandle*> logEntryToLine;
 
-	
-	
 	static int hideTooltipWhenLeavingLine;
 
 	void setLineMarkToolTip(const QString& tooltip);
-	void setFormats(int environment, int multiple,int single,int none);
 	void updateSettings();
 
 private:
@@ -102,12 +101,13 @@ private:
 	QGotoLinePanel* gotoLinePanel;
 	QStatusPanel* statusPanel;
 	
-	int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat;
+	int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat, citationMissingFormat, citationPresentFormat;
 	friend class DefaultInputBinding;
 	static int bookMarkId(int bookmarkNumber);
 
 	static SpellerUtility* speller;
 	static LatexCompleter* completer;
+	QSet<QString>* bibTeXIds;
 	QList<QPair<QDocumentLineHandle*, int> > changePositions; //line, index
 	int curChangePos;
 	int lastSetBookmark; //only looks at 1..3 (mouse range)
