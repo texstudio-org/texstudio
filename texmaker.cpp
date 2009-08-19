@@ -1036,7 +1036,9 @@ void Texmaker::fileMakeTemplate() {
 		if (lastpoint <= lastsep) //if both aren't found or point is in directory name
 			fn.append(".tex");
 		// save file
+		QString old_name=currentEditor()->fileName();
 		currentEditor()->save(fn);
+		currentEditor()->setFileName(old_name);
 		if(!userTemplatesList.contains(fn)) userTemplatesList.append(fn);
 	}
 }
