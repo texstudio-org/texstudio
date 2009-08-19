@@ -201,10 +201,11 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 
 
 NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordStartIndex, bool returnCommands,bool abbreviations) {
-	const QStringList optionCommands = QStringList() << "\\ref" << "\\pageref" << "\\label"  << "\\includegraphics" << "\\usepackage" << "\\documentclass" << "\\include" << "\\input";
-	const QStringList refCommands = QStringList() << "\\ref" << "\\pageref" ;
-	const QStringList labelCommands = QStringList() << "\\label" ;
-	const QStringList environmentCommands = QStringList() << "\\begin" << "\\end"
+	static const QStringList optionCommands = QStringList() << "\\ref" << "\\pageref" << "\\label"  << "\\includegraphics" << "\\usepackage" << "\\documentclass" << "\\include" << "\\input";
+	static const QStringList refCommands = QStringList() << "\\ref" << "\\pageref" ;
+	static const QStringList labelCommands = QStringList() << "\\label" ;
+	static const QStringList citeCommands = QStringList() << "\\cite" << "\\nocite" ;
+	static const QStringList environmentCommands = QStringList() << "\\begin" << "\\end"
 	        << "\\newenvironment" << "\\renewenvironment";
 
 	int reference=-1;
@@ -248,6 +249,8 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 				; //ignore command options
 			else if (environmentCommands.contains(lastCommand))
 				return NW_ENVIRONMENT;
+			else if (citeCommands.contains(lastCommand))
+				return NW_CITATION;
 			else return NW_TEXT;
 		}
 	}

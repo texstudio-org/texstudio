@@ -821,10 +821,12 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
 	EditorView->setCurrentWidget(edit);
 
-	edit->setFormats(m_formats->id("environment"),m_formats->id("referenceMultiple"),m_formats->id("referencePresent"),m_formats->id("referenceMissing"));
+//edit->setFormats(m_formats->id("environment"),m_formats->id("referenceMultiple"),m_formats->id("referencePresent"),m_formats->id("referenceMissing"));
 
 	connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(NewDocumentStatus(bool)));
 	connect(edit, SIGNAL(showMarkTooltipForLogMessage(int)),this,SLOT(showMarkTooltipForLogMessage(int)));
+	
+	edit->setBibTeXIds(&allBibTeXIds);	
 }
 
 LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName){
@@ -3748,16 +3750,18 @@ void Texmaker::SetMostUsedSymbols(QTableWidgetItem* item) {
 
 void Texmaker::updateBibFiles(){
 	//mentionedBibTeXFiles is set by updateStructure (which calls this)
+	bool changed=false;
 	for (int i=0; i<mentionedBibTeXFiles.count();i++){
 		mentionedBibTeXFiles[i]=getAbsoluteFilePath(mentionedBibTeXFiles[i],".bib"); //store absolute 
 		QString &fileName=mentionedBibTeXFiles[i];
 		QFileInfo fi(fileName);
 		if (!fi.isReadable()) continue; //ups...
 		if (!bibTeXFiles.contains(fileName))
-		QString s;	bibTeXFiles.insert(fileName,BibTeXFileInfo());
+			bibTeXFiles.insert(fileName,BibTeXFileInfo());
 		BibTeXFileInfo& bibTex=bibTeXFiles[mentionedBibTeXFiles[i]];
 		QDateTime lastModified = fi.lastModified();
 		if (bibTex.lastModified!=lastModified) { //load BibTeX iff modified
+			changed=true;
 			bibTex.lastModified=lastModified;
 			bibTex.ids.clear();
 			bibTex.linksTo.clear();
@@ -3828,6 +3832,14 @@ void Texmaker::updateBibFiles(){
 		if (bibTex.ids.empty() && !bibTex.linksTo.isEmpty()) 
 			//handle obscure bib tex feature, a just line containing "link fileName"
 			mentionedBibTeXFiles.append(bibTex.linksTo);
+	}
+	if (changed) {
+		allBibTeXIds.clear();
+		for (QMap<QString, BibTeXFileInfo>::const_iterator it=bibTeXFiles.constBegin(); it!=bibTeXFiles.constEnd();++it)
+			foreach (const QString& s, it.value().ids)
+				allBibTeXIds << s;
+		for (int i=0;i<EditorView->count();i++)
+			qobject_cast<LatexEditorView*>(EditorView->widget(i))->setBibTeXIds(&allBibTeXIds);
 	}
 }
 void Texmaker::updateCompleter() {

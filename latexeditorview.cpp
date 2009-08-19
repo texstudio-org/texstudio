@@ -170,7 +170,7 @@ SpellerUtility* LatexEditorView::speller=0;
 LatexCompleter* LatexEditorView::completer=0;
 int LatexEditorView::hideTooltipWhenLeavingLine = -1;
 
-LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig) : QWidget(parent),curChangePos(-1),lastSetBookmark(0), config(aconfig) {
+LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig) : QWidget(parent), bibTeXIds(0),curChangePos(-1),lastSetBookmark(0), config(aconfig) {
 	Q_ASSERT(config);
 	QVBoxLayout* mainlay = new QVBoxLayout(this);
 	mainlay->setSpacing(0);
@@ -367,6 +367,24 @@ void LatexEditorView::setSpeller(SpellerUtility* speller) {
 void LatexEditorView::setCompleter(LatexCompleter* newCompleter) {
 	LatexEditorView::completer=newCompleter;
 }
+void LatexEditorView::setBibTeXIds(QSet<QString>* newIds){
+	bibTeXIds=newIds;
+
+	Q_ASSERT(bibTeXIds);
+	for (int i=0; i<editor->document()->lines(); i++) {
+		QList<QFormatRange> li=editor->document()->line(i).getOverlays();
+		QString curLineText=editor->document()->line(i).text();
+		for (int j=0; j<li.size(); j++)
+			if (li[j].format == citationPresentFormat || li[j].format == citationMissingFormat){
+				int newFormat=bibTeXIds->contains(curLineText.mid(li[j].offset,li[j].length))?citationPresentFormat:citationMissingFormat;
+				if (newFormat!=li[j].format) {
+					editor->document()->line(i).removeOverlay(li[j]);
+					li[j].format=newFormat;
+					editor->document()->line(i).addOverlay(li[j]);
+				}
+			}
+	}
+}
 int LatexEditorView::bookMarkId(int bookmarkNumber) {
 	if (bookmarkNumber==-1) return  QLineMarksInfoCenter::instance()->markTypeId("bookmark"); //unnumbered mark
 	else return QLineMarksInfoCenter::instance()->markTypeId("bookmark"+QString::number(bookmarkNumber));
@@ -374,14 +392,6 @@ int LatexEditorView::bookMarkId(int bookmarkNumber) {
 
 void LatexEditorView::setLineMarkToolTip(const QString& tooltip){
 	lineMarkPanel->setToolTipForTouchedMark(tooltip);
-}
-void LatexEditorView::setFormats(int environment, int multiple,int single,int none) {
-	environmentFormat=environment;
-	referenceMultipleFormat=multiple;
-	referencePresentFormat=single;
-	referenceMissingFormat=none;
-	containedLabels.setFormats(multiple,single,none);
-	containedReferences.setFormats(multiple,single,none);
 }
 void LatexEditorView::updateSettings(){
 	lineNumberPanel->setVerboseMode(config->showlinemultiples!=10);
@@ -394,6 +404,15 @@ void LatexEditorView::updateSettings(){
 	lineChangePanelAction->setChecked(config->showlinestate);
 	statusPanelAction->setChecked(config->showcursorstate);
 	editor->setDisplayModifyTime(config->displayModifyTime);
+
+	environmentFormat=QDocument::formatFactory()->id("environment");
+	referenceMultipleFormat=QDocument::formatFactory()->id("referenceMultiple");
+	referencePresentFormat=QDocument::formatFactory()->id("referencePresent");
+	referenceMissingFormat=QDocument::formatFactory()->id("referenceMissing");
+	citationPresentFormat=QDocument::formatFactory()->id("citationPresent");
+	citationMissingFormat=QDocument::formatFactory()->id("citationMissing");
+	containedLabels.setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
+	containedReferences.setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
 }
 
 void LatexEditorView::lineMarkClicked(int line) {
@@ -497,7 +516,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				int l=rx.indexIn(lineText,start);
 				if (l==start+1) start=start+rx.cap(0).length();
 			} else if (status==NW_REFERENCE) {
-				QString ref=lineText.mid(wordstart,start-wordstart);
+				QString ref=word;//lineText.mid(wordstart,start-wordstart);
 				containedReferences.insert(ref,dlh);
 				int cnt=containedLabels.count(ref);
 				if(cnt>1) {
@@ -505,7 +524,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				}else if (cnt==1) line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
 				else line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMissingFormat));
 			} else if (status==NW_LABEL) {
-				QString ref=lineText.mid(wordstart,start-wordstart);
+				QString ref=word;//lineText.mid(wordstart,start-wordstart);
 				containedLabels.insert(ref,dlh);
 				int cnt=containedLabels.count(ref);
 				if(cnt>1) {
@@ -513,6 +532,11 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				}else line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
 				// look for corresponding reeferences and adapt format respectively
 				containedLabels.updateByKeys(QStringList(ref),&containedReferences);
+			} else if (status==NW_CITATION) {
+				if (!bibTeXIds || !bibTeXIds->contains(word)) 
+					line.addOverlay(QFormatRange(wordstart,start-wordstart,citationMissingFormat));
+				else	
+					line.addOverlay(QFormatRange(wordstart,start-wordstart,citationPresentFormat));
 			} else if (status==NW_COMMENT) break;
 			else if (word.length()>=3 && !speller->check(word)) {
 				if(word.endsWith('.')) start--;
@@ -565,7 +589,7 @@ void LatexEditorView::spellCheckingAlwaysIgnore() {
 		speller->addToIgnoreList(newToIgnore);
 		//documentContentChanged(editor->cursor().lineNumber(),1);
 		for (int i=0; i<editor->document()->lines(); i++) {
-			QList<QFormatRange> li=editor->document()->line(i).getOverlays();
+			QList<QFormatRange> li=editor->document()->line(i).getOverlays(LatexEditorView::speller->spellcheckErrorFormat);
 			QString curLineText=editor->document()->line(i).text();
 			for (int j=0; j<li.size(); j++)
 				if (curLineText.mid(li[j].offset,li[j].length)==newToIgnore)

@@ -41,7 +41,8 @@ enum NextWordFlag {
 	NW_COMMENT=3,
 	NW_ENVIRONMENT=4, //environment name, e.g. in \begin or \newenvironment
 	NW_REFERENCE=5,
-	NW_LABEL=6
+	NW_LABEL=6,
+	NW_CITATION=7
 };
 //Returns the next word (giving meaning to the nextToken tokens)
 //line: line to be examined
