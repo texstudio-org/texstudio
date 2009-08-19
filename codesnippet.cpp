@@ -86,6 +86,11 @@ CodeSnippet::CodeSnippet(const QString &newWord) {
 	sortWord.replace("*","#");
 }
 
+void CodeSnippet::insert(QEditor* editor){
+	if (!editor) return;
+	QDocumentCursor c=editor->cursor();
+	insertAt(editor,&c);
+}
 void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor) const{
 	if (lines.empty()||!editor||!cursor) return;
 	

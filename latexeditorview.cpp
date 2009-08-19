@@ -516,7 +516,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				int l=rx.indexIn(lineText,start);
 				if (l==start+1) start=start+rx.cap(0).length();
 			} else if (status==NW_REFERENCE) {
-				QString ref=word;//lineText.mid(wordstart,start-wordstart);
+				QString ref=lineText.mid(wordstart,start-wordstart);
 				containedReferences.insert(ref,dlh);
 				int cnt=containedLabels.count(ref);
 				if(cnt>1) {
@@ -524,7 +524,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				}else if (cnt==1) line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
 				else line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMissingFormat));
 			} else if (status==NW_LABEL) {
-				QString ref=word;//lineText.mid(wordstart,start-wordstart);
+				QString ref=lineText.mid(wordstart,start-wordstart);
 				containedLabels.insert(ref,dlh);
 				int cnt=containedLabels.count(ref);
 				if(cnt>1) {

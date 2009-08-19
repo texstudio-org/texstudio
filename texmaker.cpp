@@ -20,6 +20,7 @@
 #include "filechooser.h"
 #include "tabdialog.h"
 #include "arraydialog.h"
+#include "bibtexdialog.h"
 #include "tabbingdialog.h"
 #include "letterdialog.h"
 #include "quickdocumentdialog.h"
@@ -497,7 +498,9 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "array",tr("Quick Array"), SLOT(QuickArray()));
 
 	menu=newManagedMenu("main/bibtex",tr("&Bibliography"));
-	newManagedAction(menu, "jourarticle", tr("Article in Journal"), SLOT(InsertBib1()));
+	foreach (const BibTeXType& bt, BibTeXDialog::getPossibleBibTeXTypes())
+		newManagedAction(menu,bt.name.mid(1), bt.description, SLOT(InsertBibEntry()))->setData(bt.name);
+	/*newManagedAction(menu, "jourarticle", tr("Article in Journal"), SLOT(InsertBib1()));
 	newManagedAction(menu, "confarticle", tr("Article in Conference Proceedings"), SLOT(InsertBib2()));
 	newManagedAction(menu, "collarticle", tr("Article in a collection"), SLOT(InsertBib3()));
 	newManagedAction(menu, "bookpage", tr("Chapter or Pages in a Book"), SLOT(InsertBib4()));
@@ -509,9 +512,11 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "report", tr("Technical Report"), SLOT(InsertBib10()));
 	newManagedAction(menu, "manual", tr("Technical Manual"), SLOT(InsertBib11()));
 	newManagedAction(menu, "unpublished", tr("Unpublished"), SLOT(InsertBib12()));
-	newManagedAction(menu, "misc", tr("Miscellaneous"), SLOT(InsertBib13()));
+	newManagedAction(menu, "misc", tr("Miscellaneous"), SLOT(InsertBib13()));*/
 	menu->addSeparator();
 	newManagedAction(menu, "clean", tr("Clean"), SLOT(CleanBib()));
+	menu->addSeparator();
+	newManagedAction(menu, "dialog", tr("BibTeX insert dialog"), SLOT(InsertBibTeX()));
 
 
 //  User
@@ -2603,244 +2608,26 @@ void Texmaker::QuickDocument() {
 	}
 }
 
-void Texmaker::InsertBib1() {
-	QString tag = QString("@Article{,\n");
-	tag+="author = {},\n";
-	tag+="title = {},\n";
-	tag+="journal = {},\n";
-	tag+="year = {},\n";
-	tag+="OPTkey = {},\n";
-	tag+="OPTvolume = {},\n";
-	tag+="OPTnumber = {},\n";
-	tag+="OPTpages = {},\n";
-	tag+="OPTmonth = {},\n";
-	tag+="OPTnote = {},\n";
-	tag+="OPTannote = {}\n";
-	tag+="}\n";
-	InsertTag(tag,9,0);
-	outputView->setMessage("Bib fields - Article in Journal \n OPT.... : optionnal fields (use the 'Clean' command to remove them)");
-}
-void Texmaker::InsertBib2() {
-	QString tag = QString("@InProceedings{,\n");
-	tag+="author = {},\n";
-	tag+="title = {},\n";
-	tag+="booktitle = {},\n";
-	tag+="OPTcrossref = {},\n";
-	tag+="OPTkey = {},\n";
-	tag+="OPTpages = {},\n";
-	tag+="OPTyear = {},\n";
-	tag+="OPTeditor = {},\n";
-	tag+="OPTvolume = {},\n";
-	tag+="OPTnumber = {},\n";
-	tag+="OPTseries = {},\n";
-	tag+="OPTaddress = {},\n";
-	tag+="OPTmonth = {},\n";
-	tag+="OPTorganization = {},\n";
-	tag+="OPTpublisher = {},\n";
-	tag+="OPTnote = {},\n";
-	tag+="OPTannote = {}\n";
-	tag+="}\n";
-	InsertTag(tag,15,0);
-	outputView->setMessage("Bib fields - Article in Conference Proceedings\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
-}
-void Texmaker::InsertBib3() {
-	QString tag = QString("@InCollection{,\n");
-	tag+="author = {},\n";
-	tag+="title = {},\n";
-	tag+="booktitle = {},\n";
-	tag+="OPTcrossref = {},\n";
-	tag+="OPTkey = {},\n";
-	tag+="OPTpages = {},\n";
-	tag+="OPTpublisher = {},\n";
-	tag+="OPTyear = {},\n";
-	tag+="OPTeditor = {},\n";
-	tag+="OPTvolume = {},\n";
-	tag+="OPTnumber = {},\n";
-	tag+="OPTseries = {},\n";
-	tag+="OPTtype = {},\n";
-	tag+="OPTchapter = {},\n";
-	tag+="OPTaddress = {},\n";
-	tag+="OPTedition = {},\n";
-	tag+="OPTmonth = {},\n";
-	tag+="OPTnote = {},\n";
-	tag+="OPTannote = {}\n";
-	tag+="}\n";
-	InsertTag(tag,14,0);
-	outputView->setMessage("Bib fields - Article in a Collection\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
-}
-void Texmaker::InsertBib4() {
-	QString tag = QString("@InBook{,\n");
-	tag+="ALTauthor = {},\n";
-	tag+="ALTeditor = {},\n";
-	tag+="title = {},\n";
-	tag+="chapter = {},\n";
-	tag+="publisher = {},\n";
-	tag+="year = {},\n";
-	tag+="OPTkey = {},\n";
-	tag+="OPTvolume = {},\n";
-	tag+="OPTnumber = {},\n";
-	tag+="OPTseries = {},\n";
-	tag+="OPTtype = {},\n";
-	tag+="OPTaddress = {},\n";
-	tag+="OPTedition = {},\n";
-	tag+="OPTmonth = {},\n";
-	tag+="OPTpages = {},\n";
-	tag+="OPTnote = {},\n";
-	tag+="OPTannote = {}\n";
-	tag+="}\n";
-	InsertTag(tag,8,0);
-	outputView->setMessage("Bib fields - Chapter or Pages in a Book\nALT.... : you have the choice between these two fields\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
-}
-void Texmaker::InsertBib5() {
-	QString tag = QString("@Proceedings{,\n");
-	tag+="title = {},\n";
-	tag+="year = {},\n";
-	tag+="OPTkey = {},\n";
-	tag+="OPTeditor = {},\n";
-	tag+="OPTvolume = {},\n";
-	tag+="OPTnumber = {},\n";
-	tag+="OPTseries = {},\n";
-	tag+="OPTaddress = {},\n";
-	tag+="OPTmonth = {},\n";
-	tag+="OPTorganization = {},\n";
-	tag+="OPTpublisher = {},\n";
-	tag+="OPTnote = {},\n";
-	tag+="OPTannote = {}\n";
-	tag+="}\n";
-	InsertTag(tag,13,0);
-	outputView->setMessage("Bib fields - Conference Proceedings\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
-}
-void Texmaker::InsertBib6() {
-	QString tag = QString("@Book{,\n");
-	tag+="ALTauthor = {},\n";
-	tag+="ALTeditor = {},\n";
-	tag+="title = {},\n";
-	tag+="publisher = {},\n";
-	tag+="year = {},\n";
-	tag+="OPTkey = {},\n";
-	tag+="OPTvolume = {},\n";
-	tag+="OPTnumber = {},\n";
-	tag+="OPTseries = {},\n";
-	tag+="OPTaddress = {},\n";
-	tag+="OPTedition = {},\n";
-	tag+="OPTmonth = {},\n";
-	tag+="OPTnote = {},\n";
-	tag+="OPTannote = {}\n";
-	tag+="}\n";
-	InsertTag(tag,6,0);
-	outputView->setMessage("Bib fields - Book\nALT.... : you have the choice between these two fields\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
-}
-void Texmaker::InsertBib7() {
-	QString tag = QString("@Booklet{,\n");
-	tag+="title = {},\n";
-	tag+="OPTkey = {},\n";
-	tag+="OPTauthor = {},\n";
-	tag+="OPThowpublished = {},\n";
-	tag+="OPTaddress = {},\n";
-	tag+="OPTmonth = {},\n";
-	tag+="OPTyear = {},\n";
-	tag+="OPTnote = {},\n";
-	tag+="OPTannote = {}\n";
-	tag+="}\n";
-	InsertTag(tag,9,0);
-	outputView->setMessage("Bib fields - Booklet\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
-}
-void Texmaker::InsertBib8() {
-	QString tag = QString("@PhdThesis{,\n");
-	tag+="author = {},\n";
-	tag+="title = {},\n";
-	tag+="school = {},\n";
-	tag+="year = {},\n";
-	tag+="OPTkey = {},\n";
-	tag+="OPTtype = {},\n";
-	tag+="OPTaddress = {},\n";
-	tag+="OPTmonth = {},\n";
-	tag+="OPTnote = {},\n";
-	tag+="OPTannote = {}\n";
-	tag+="}\n";
-	InsertTag(tag,11,0);
-	outputView->setMessage("Bib fields - PhD. Thesis\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
-}
-void Texmaker::InsertBib9() {
-	QString tag = QString("@MastersThesis{,\n");
-	tag+="author = {},\n";
-	tag+="title = {},\n";
-	tag+="school = {},\n";
-	tag+="year = {},\n";
-	tag+="OPTkey = {},\n";
-	tag+="OPTtype = {},\n";
-	tag+="OPTaddress = {},\n";
-	tag+="OPTmonth = {},\n";
-	tag+="OPTnote = {},\n";
-	tag+="OPTannote = {}\n";
-	tag+="}\n";
-	InsertTag(tag,15,0);
-	outputView->setMessage("Bib fields - Master's Thesis\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
-}
-void Texmaker::InsertBib10() {
-	QString tag = QString("@TechReport{,\n");
-	tag+="author = {},\n";
-	tag+="title = {},\n";
-	tag+="institution = {},\n";
-	tag+="year = {},\n";
-	tag+="OPTkey = {},\n";
-	tag+="OPTtype = {},\n";
-	tag+="OPTnumber = {},\n";
-	tag+="OPTaddress = {},\n";
-	tag+="OPTmonth = {},\n";
-	tag+="OPTnote = {},\n";
-	tag+="OPTannote = {}\n";
-	tag+="}\n";
-	InsertTag(tag,12,0);
-	outputView->setMessage("Bib fields - Technical Report\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
-}
-void Texmaker::InsertBib11() {
-	QString tag = QString("@Manual{,\n");
-	tag+="title = {},\n";
-	tag+="OPTkey = {},\n";
-	tag+="OPTauthor = {},\n";
-	tag+="OPTorganization = {},\n";
-	tag+="OPTaddress = {},\n";
-	tag+="OPTedition = {},\n";
-	tag+="OPTmonth = {},\n";
-	tag+="OPTyear = {},\n";
-	tag+="OPTnote = {},\n";
-	tag+="OPTannote = {}\n";
-	tag+="}\n";
-	InsertTag(tag,8,0);
-	outputView->setMessage("Bib fields - Technical Manual\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
-}
-void Texmaker::InsertBib12() {
-	QString tag = QString("@Unpublished{,\n");
-	tag+="author = {},\n";
-	tag+="title = {},\n";
-	tag+="note = {},\n";
-	tag+="OPTkey = {},\n";
-	tag+="OPTmonth = {},\n";
-	tag+="OPTyear = {},\n";
-	tag+="OPTannote = {}\n";
-	tag+="}\n";
-	InsertTag(tag,13,0);
-	outputView->setMessage("Bib fields - Unpublished\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
-}
-void Texmaker::InsertBib13() {
-	QString tag = QString("@Misc{,\n");
-	tag+="OPTkey = {},\n";
-	tag+="OPTauthor = {},\n";
-	tag+="OPTtitle = {},\n";
-	tag+="OPThowpublished = {},\n";
-	tag+="OPTmonth = {},\n";
-	tag+="OPTyear = {},\n";
-	tag+="OPTnote = {},\n";
-	tag+="OPTannote = {}\n";
-	tag+="}\n";
-	InsertTag(tag,6,0);
-	outputView->setMessage("Bib fields - Miscellaneous\nOPT.... : optionnal fields (use the 'Clean' command to remove them)");
+
+void Texmaker::InsertBibEntry(){
+	if (!currentEditorView()) return;
+	QAction* action=qobject_cast<QAction*>(sender());
+	if (!action) return;
+	QString insertText=BibTeXDialog::textToInsert(action->data().toString());
+	if (!insertText.isEmpty())
+		CodeSnippet(insertText).insert(currentEditor());
 }
 
 void Texmaker::CleanBib() {
 	if (!currentEditorView()) return;
 	currentEditorView()->cleanBib();
+}
+
+void Texmaker::InsertBibTeX(){
+	BibTeXDialog* bd=new BibTeXDialog(0,mentionedBibTeXFiles,currentEditor()->fileName());
+	if (bd->exec())
+		CodeSnippet(bd->resultString).insert(currentEditorView()->editor);
+	delete bd;		
 }
 
 void Texmaker::InsertUserTag() {
@@ -2853,10 +2640,7 @@ void Texmaker::InsertUserTag() {
 		userTag=userTag.remove(0,1);
 		QString s="\\begin{"+userTag+"}\n\n\\end{"+userTag+"}\n";
 		InsertTag(s,0,1);
-	} else {
-		QDocumentCursor c = currentEditorView()->editor->cursor();
-		CodeSnippet(userTag).insertAt(currentEditorView()->editor,&c);
-	}
+	} else CodeSnippet(userTag).insert(currentEditorView()->editor);
 }
 
 void Texmaker::EditUserMenu() {
