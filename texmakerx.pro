@@ -73,12 +73,13 @@ HEADERS += texmaker.h \
     qcodeedit/lib/qeditorinputbinding.h \
     qcodeedit/lib/qeditorinputbindinginterface.h \
     randomtextgenerator.h \
-    templateselector.h
+    templateselector.h \
+    bibtexdialog.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
     texmaker.cpp \
-	symbolgridwidget.cpp \
+    symbolgridwidget.cpp \
     icondelegate.cpp \
     latexcompleter.cpp \
     latexeditorview.cpp \
@@ -124,7 +125,8 @@ SOURCES += main.cpp \
     encodingdialog.cpp \
     qcodeedit/lib/qeditorinputbinding.cpp \
     randomtextgenerator.cpp \
-    templateselector.cpp
+    templateselector.cpp \
+    bibtexdialog.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
@@ -144,7 +146,8 @@ FORMS += structdialog.ui \
     textanalysis.ui \
     encodingdialog.ui \
     randomtextgenerator.ui \
-    templateselector.ui
+    templateselector.ui \
+    bibtexdialog.ui
 TRANSLATIONS += texmakerx_fr.ts \
     texmakerx_de.ts \
     texmakerx_it.ts

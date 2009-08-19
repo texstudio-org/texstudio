@@ -251,21 +251,10 @@ private slots:
 	void InsertInclude();
 	void InsertInput();
 
-	void InsertBib1();
-	void InsertBib2();
-	void InsertBib3();
-	void InsertBib4();
-	void InsertBib5();
-	void InsertBib6();
-	void InsertBib7();
-	void InsertBib8();
-	void InsertBib9();
-	void InsertBib10();
-	void InsertBib11();
-	void InsertBib12();
-	void InsertBib13();
+	void InsertBibEntry();
 	void CleanBib();
-
+	void InsertBibTeX();
+	
 	void InsertUserTag();
 	void EditUserMenu();
 
