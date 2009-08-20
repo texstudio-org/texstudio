@@ -1099,15 +1099,31 @@ void Texmaker::fileNewFromTemplate() {
 		EditorView->addTab(edit, "untitled");
 		configureNewEditorView(edit);
 
-		if (configManager.autodetectLoadedFile) edit->editor->load(f_real,0);
+		QString mTemplate;
+		QTextStream in(&file);
+		while (!in.atEnd()) {
+			QString line = in.readLine();
+			mTemplate+=line+"\n";
+		}
+		CodeSnippet toInsert(mTemplate);
+		bool flag=edit->editor->flag(QEditor::AutoIndent);
+		edit->editor->setFlag(QEditor::AutoIndent,false);
+		toInsert.insert(edit->editor);
+		edit->editor->setFlag(QEditor::AutoIndent,flag);
+		edit->editor->setCursorPosition(0,0);
+		edit->editor->nextPlaceHolder();
+		edit->editor->ensureCursorVisible();
+		/*if (configManager.autodetectLoadedFile) edit->editor->load(f_real,0);
 		else edit->editor->load(f_real,configManager.newfile_encoding);
 		edit->editor->document()->setLineEnding(edit->editor->document()->originalLineEnding());
+		*/
 
 		edit->editor->setFileName("untitled");
 		UpdateCaption();
 		NewDocumentStatus(true);
 
 		edit->editor->setFocus();
+
 	}
 }
 
