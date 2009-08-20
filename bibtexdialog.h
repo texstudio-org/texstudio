@@ -23,10 +23,11 @@ class BibTeXDialog : public QDialog {
     Q_OBJECT
     Q_DISABLE_COPY(BibTeXDialog)
 public:
-    explicit BibTeXDialog(QWidget *parent = 0, const QStringList& sl=QStringList(), const QString& curFile=QString());
+    explicit BibTeXDialog(QWidget *parent = 0, const QStringList& fileList=QStringList(), int curFile=-1, const QString& defId="");
     virtual ~BibTeXDialog();
 
 	QString resultString;
+	int resultFileId; //-1 for new, 0..n for files from fileList, -2 for none
 	static QString textToInsert(const BibTeXType& entry, bool keepOptionalFields, const QMap<QString,QString>& fields);
 	static QString textToInsert(const QString& entryName);
 	static QList<BibTeXType> getPossibleBibTeXTypes();

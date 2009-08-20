@@ -114,6 +114,8 @@ private:
 
 	References containedLabels,containedReferences;
 	LatexEditorViewConfig* config;
+private slots:
+	void requestCitation(); //emits needCitation with selected text
 public slots:
 	void lineMarkClicked(int line);
 	void documentContentChanged(int linenr, int count);
@@ -129,6 +131,7 @@ public slots:
 signals:
 	void lineHandleDeleted(QDocumentLineHandle* l);
 	void showMarkTooltipForLogMessage(int logMessage);
+	void needCitation(const QString& id);//request a new citation 
 };
 
 #endif

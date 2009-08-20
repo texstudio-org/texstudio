@@ -89,7 +89,7 @@ private:
 	void closeEvent(QCloseEvent *e);
 
 	QMap<QString, BibTeXFileInfo> bibTeXFiles; //bibtex files loaded by tmx
-	QStringList mentionedBibTeXFiles; //bibtex files imported in the tex file
+	QStringList mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
 	QSet<QString> allBibTeXIds;
 	
 	QFormatFactory *m_formats;
@@ -251,9 +251,10 @@ private slots:
 	void InsertInclude();
 	void InsertInput();
 
-	void InsertBibEntry();
+	void InsertBibEntryFromAction();
 	void CleanBib();
-	void InsertBibTeX();
+	void InsertBibEntry();
+	void InsertBibEntry(const QString& id);
 	
 	void InsertUserTag();
 	void EditUserMenu();
