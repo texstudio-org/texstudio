@@ -54,15 +54,25 @@ void BibTeXDialog::needTypes(){
 }
 
 
-BibTeXDialog::BibTeXDialog(QWidget *parent, const QStringList& sl, const QString&  curFile) :
+BibTeXDialog::BibTeXDialog(QWidget *parent, const QStringList& fileList, int curFile, const QString& id) :
     QDialog(parent),
     m_ui(new Ui::BibTeXDialog)
 {
     m_ui->setupUi(this);
 	m_ui->fileList->addItem(tr("<new file>"));
-	foreach (const QString& s, sl)
+	foreach (const QString& s, fileList)
 		m_ui->fileList->addItem(s);
+	m_ui->fileList->setCurrentRow(curFile+1);
 	needTypes();
+	if (!id.isEmpty()){
+		m_ui->fieldTable->setRowCount(1);
+		QTableWidgetItem* item=new QTableWidgetItem("ID");
+		QFont f=QApplication::font();
+		f.setBold(true);
+		item->setFont(f);
+		m_ui->fieldTable->setItem(0,0,item);
+		m_ui->fieldTable->setItem(0,1,new QTableWidgetItem(id));
+	}
 	foreach (const BibTeXType& bt, types)
 		m_ui->typeList->addItem(bt.description);
 	connect(m_ui->typeList,SIGNAL(itemSelectionChanged()),this,SLOT(typeSelectionChanged()));
@@ -77,10 +87,12 @@ BibTeXDialog::~BibTeXDialog()
 QString BibTeXDialog::textToInsert(const BibTeXType& entry, bool keepOptionalFields, const QMap<QString,QString>& fields){
 	QString result=entry.name+"{"+fields.value("ID","%<ID%>")+",\n";
 	QMap<QString,QString> remainingFields=fields;
+	remainingFields.remove("ID");
 	foreach (const QString &s, entry.mandatoryFields){
-		if (!s.contains("/")) 
+		if (!s.contains("/")) {
 			result+=s+ " = {"+remainingFields.value(s,"%<"+s+"%>")+"},\n";
-		else {
+			remainingFields.remove(s);;
+		} else {
 			//split alternative values and use first set value, if non is set use all prepended with ALT like in texmaker
 			QStringList sl=s.split("/");
 			bool inserted=false;
@@ -88,13 +100,14 @@ QString BibTeXDialog::textToInsert(const BibTeXType& entry, bool keepOptionalFie
 				if (remainingFields.contains(t)) {
 					result+=t+ " = {"+remainingFields.value(t,"%<"+t+"%>")+"},\n";
 					inserted=true;
+					remainingFields.remove(t);
 					break;
 				}
 			if (!inserted)
 				foreach (const QString& t, sl)
 					result+="ALT"+t+ " = {%<"+t+"%>},\n";
 		}
-		remainingFields.remove(s);
+		
 	}
 	
 	foreach (const QString &s, entry.optionalFields){
@@ -149,6 +162,7 @@ void BibTeXDialog::accept(){
 		if (v!="") curFields.insert(k,v);
 	}
 	resultString=textToInsert(types.at(m_ui->typeList->currentRow()),m_ui->optFieldCheckBox->isChecked(),curFields);
+	resultFileId=m_ui->fileList->currentRow()-1;
 	QDialog::accept();
 }
 void BibTeXDialog::typeSelectionChanged(){

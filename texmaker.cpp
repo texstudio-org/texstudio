@@ -499,24 +499,11 @@ void Texmaker::setupMenus() {
 
 	menu=newManagedMenu("main/bibtex",tr("&Bibliography"));
 	foreach (const BibTeXType& bt, BibTeXDialog::getPossibleBibTeXTypes())
-		newManagedAction(menu,bt.name.mid(1), bt.description, SLOT(InsertBibEntry()))->setData(bt.name);
-	/*newManagedAction(menu, "jourarticle", tr("Article in Journal"), SLOT(InsertBib1()));
-	newManagedAction(menu, "confarticle", tr("Article in Conference Proceedings"), SLOT(InsertBib2()));
-	newManagedAction(menu, "collarticle", tr("Article in a collection"), SLOT(InsertBib3()));
-	newManagedAction(menu, "bookpage", tr("Chapter or Pages in a Book"), SLOT(InsertBib4()));
-	newManagedAction(menu, "conference", tr("Conference Proceedings"), SLOT(InsertBib5()));
-	newManagedAction(menu, "book", tr("Book"), SLOT(InsertBib6()));
-	newManagedAction(menu, "booklet", tr("Booklet"), SLOT(InsertBib7()));
-	newManagedAction(menu, "phdthesis", tr("PhD. Thesis"), SLOT(InsertBib8()));
-	newManagedAction(menu, "masterthesis", tr("Master's Thesis"), SLOT(InsertBib9()));
-	newManagedAction(menu, "report", tr("Technical Report"), SLOT(InsertBib10()));
-	newManagedAction(menu, "manual", tr("Technical Manual"), SLOT(InsertBib11()));
-	newManagedAction(menu, "unpublished", tr("Unpublished"), SLOT(InsertBib12()));
-	newManagedAction(menu, "misc", tr("Miscellaneous"), SLOT(InsertBib13()));*/
+		newManagedAction(menu,bt.name.mid(1), bt.description, SLOT(InsertBibEntryFromAction()))->setData(bt.name);
 	menu->addSeparator();
 	newManagedAction(menu, "clean", tr("Clean"), SLOT(CleanBib()));
 	menu->addSeparator();
-	newManagedAction(menu, "dialog", tr("BibTeX insert dialog"), SLOT(InsertBibTeX()));
+	newManagedAction(menu, "dialog", tr("BibTeX insert dialog"), SLOT(InsertBibEntry()));
 
 
 //  User
@@ -830,6 +817,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 
 	connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(NewDocumentStatus(bool)));
 	connect(edit, SIGNAL(showMarkTooltipForLogMessage(int)),this,SLOT(showMarkTooltipForLogMessage(int)));
+	connect(edit, SIGNAL(needCitation(const QString&)),this,SLOT(InsertBibEntry(const QString&)));
 	
 	edit->setBibTeXIds(&allBibTeXIds);	
 }
@@ -2609,7 +2597,7 @@ void Texmaker::QuickDocument() {
 }
 
 
-void Texmaker::InsertBibEntry(){
+void Texmaker::InsertBibEntryFromAction(){
 	if (!currentEditorView()) return;
 	QAction* action=qobject_cast<QAction*>(sender());
 	if (!action) return;
@@ -2623,10 +2611,38 @@ void Texmaker::CleanBib() {
 	currentEditorView()->cleanBib();
 }
 
-void Texmaker::InsertBibTeX(){
-	BibTeXDialog* bd=new BibTeXDialog(0,mentionedBibTeXFiles,currentEditor()->fileName());
-	if (bd->exec())
-		CodeSnippet(bd->resultString).insert(currentEditorView()->editor);
+void Texmaker::InsertBibEntry(){
+	InsertBibEntry("");
+}
+
+void Texmaker::InsertBibEntry(const QString& id){
+	QStringList possibleBibFiles;
+	int usedFile=0;
+	if (currentEditor()){
+		if (currentEditor()->fileName().isEmpty())
+			possibleBibFiles.prepend(tr("<current file>"));
+		else {
+			usedFile=mentionedBibTeXFiles.indexOf(currentEditor()->fileName());
+			if (usedFile<0 && !mentionedBibTeXFiles.empty()) usedFile=0;
+		}
+	}
+	foreach (const QString &s, mentionedBibTeXFiles)
+		possibleBibFiles << QFileInfo(s).fileName();
+	BibTeXDialog* bd=new BibTeXDialog(0,possibleBibFiles,usedFile,id);
+	if (bd->exec()){
+		usedFile=bd->resultFileId;
+		if (usedFile<0 || usedFile>=possibleBibFiles.count()) fileNew();
+		else if (currentEditor()->fileName().isEmpty() && usedFile==0); //stay in current editor
+		else if (QFileInfo(currentEditor()->fileName())==QFileInfo(possibleBibFiles[usedFile])); //stay in current editor
+		else {
+			if (currentEditor()->fileName().isEmpty()) usedFile--;
+			load(mentionedBibTeXFiles[usedFile]);
+			currentEditor()->setCursorPosition(currentEditor()->document()->lines()-1,0);
+			bd->resultString="\n"+bd->resultString;
+		}
+			
+		CodeSnippet(bd->resultString).insert(currentEditor());
+	}
 	delete bd;		
 }
 

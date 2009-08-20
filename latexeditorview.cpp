@@ -116,13 +116,14 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *editor) {
 	if (!contextMenu) contextMenu=new QMenu(0);
 	contextMenu->clear();
-	if (LatexEditorView::speller) {
+	QDocumentCursor cursor;
+	if (event->reason()==QContextMenuEvent::Mouse) cursor=editor->cursorForPosition(editor->mapToContents(event->pos()));
+	else cursor=editor->cursor();
+	if (cursor.isValid() && cursor.line().isValid())  {
 		LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget()); //a qobject is necessary to retrieve events
-		QDocumentCursor cursor;
-		if (event->reason()==QContextMenuEvent::Mouse) cursor=editor->cursorForPosition(editor->mapToContents(event->pos()));
-		else cursor=editor->cursor();
-		if (edView && cursor.isValid() && cursor.line().isValid())  {
-			QFormatRange fr;
+		QFormatRange fr;
+		//spell checking
+		if (edView && LatexEditorView::speller){
 			if (cursor.hasSelection()) fr= cursor.line().getOverlayAt((cursor.columnNumber()+cursor.anchorColumnNumber()) / 2,LatexEditorView::speller->spellcheckErrorFormat);
 			else fr = cursor.line().getOverlayAt(cursor.columnNumber(),LatexEditorView::speller->spellcheckErrorFormat);
 			if (fr.length>0 && fr.format==LatexEditorView::speller->spellcheckErrorFormat) {
@@ -149,6 +150,18 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 					contextMenu->addSeparator();
 				}
 			}
+		} 
+		//citation checking
+		int f=QDocument::formatFactory()->id("citationMissing");
+		if (cursor.hasSelection()) fr= cursor.line().getOverlayAt((cursor.columnNumber()+cursor.anchorColumnNumber()) / 2,f);
+		else fr = cursor.line().getOverlayAt(cursor.columnNumber(),f);
+		if (fr.length>0 && fr.format==f) {
+			QString word=cursor.line().text().mid(fr.offset,fr.length);
+			editor->setCursor(editor->document()->cursor(cursor.lineNumber(),fr.offset,cursor.lineNumber(),fr.offset+fr.length));
+			QAction* act=new QAction(LatexEditorView::tr("New BibTeX Entry %1").arg(word),contextMenu);
+			edView->connect(act,SIGNAL(triggered()),edView,SLOT(requestCitation()));
+			contextMenu->addAction(act);
+			contextMenu->addSeparator();				
 		}
 	}
 	contextMenu->addActions(baseActions);
@@ -415,6 +428,11 @@ void LatexEditorView::updateSettings(){
 	containedReferences.setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
 }
 
+void LatexEditorView::requestCitation(){
+	QString id = editor->cursor().selectedText();
+	emit needCitation(id);
+}
+
 void LatexEditorView::lineMarkClicked(int line) {
 	QDocumentLine l=editor->document()->line(line);
 	if (!l.isValid()) return;
@@ -654,7 +672,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			topic=completer->lookupWord(line);
 			if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
 			break;
-		case 2: // ref
+		case 2: //command parameter
 			{
 				int l=line.indexOf("{");
 				QString ref=line.mid(l+1,line.length());
@@ -687,6 +705,11 @@ void LatexEditorView::mouseHovered(QPoint pos){
 						QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("%n reference(s) to this label","",cnt));
 					}
 				}
+				if (command=="\\cite")
+					if (bibTeXIds)
+						QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),
+							bibTeXIds->contains(ref)?tr("citation correct"):tr("citation missing!"));
+				
 			}
 			break;
 		default:
