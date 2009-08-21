@@ -345,7 +345,7 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	newManagedAction(menu,"save",tr("Save"), SLOT(fileSave()), Qt::CTRL+Qt::Key_S, ":/images/filesave.png");
 	newManagedAction(menu,"saveas",tr("Save As"), SLOT(fileSaveAs()), Qt::CTRL+Qt::ALT+Qt::Key_S);
-	newManagedAction(menu,"saveall",tr("Save All"), SLOT(fileSaveAll()), Qt::CTRL+Qt::SHIFT+Qt::Key_S);
+	newManagedAction(menu,"saveall",tr("Save All"), SLOT(fileSaveAll()), Qt::CTRL+Qt::SHIFT+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu, "maketemplate",tr("Make Template"), SLOT(fileMakeTemplate()));
 
 	menu->addSeparator();
@@ -789,15 +789,27 @@ void Texmaker::showMarkTooltipForLogMessage(int error){
 }
 
 void Texmaker::NewDocumentStatus(bool m) {
-	if (!currentEditorView())	return;
+	LatexEditorView* edView = currentEditorView();
+	if (!edView) return;
+	int index=EditorView->currentIndex();
+	if (qobject_cast<QEditor*>(sender()) && edView->editor!=sender()){
+		edView=0;
+		for (int i=0;i<EditorView->count();i++)
+			if (qobject_cast<LatexEditorView*>(EditorView->widget(i))->editor==sender()){
+				edView=	qobject_cast<LatexEditorView*>(EditorView->widget(i));
+				index=i;
+				break;
+			}
+		if (!edView) return;
+	}
 	if (m) 
-		EditorView->setTabIcon(EditorView->currentIndex(),QIcon(":/images/modified.png"));
+		EditorView->setTabIcon(index,QIcon(":/images/modified.png"));
 	else 
-		EditorView->setTabIcon(EditorView->currentIndex(),QIcon(":/images/empty.png"));
-	if (currentEditor()->fileName().isEmpty()) 
-		EditorView->setTabText(EditorView->currentIndex(),tr("untitled"));
+		EditorView->setTabIcon(index,QIcon(":/images/empty.png"));
+	if (edView->editor->fileName().isEmpty()) 
+		EditorView->setTabText(index,tr("untitled"));
 	else
-		EditorView->setTabText(EditorView->currentIndex(),currentEditor()->name());
+		EditorView->setTabText(index,currentEditor()->name());
 }
 
 LatexEditorView *Texmaker::currentEditorView() const {
@@ -1198,12 +1210,18 @@ void Texmaker::fileSaveAll() {
 //temp=currentEditorView();
 	int currentIndex=EditorView->indexOf(currentEditorView());
 	for (int i=0;i<EditorView->count(); i++){
-		EditorView->setCurrentIndex(i);
-		currentEditor()->save();
+		LatexEditorView *edView = qobject_cast<LatexEditorView*>(EditorView->widget(i));
+		if (edView->editor->fileName().isEmpty() || edView->editor->isInConflict()) {
+			EditorView->setCurrentIndex(i);
+			if (edView->editor->fileName().isEmpty()) fileSaveAs();
+			else edView->editor->save();
+		} else edView->editor->save();
+		//currentEditor()->save();
 		//UpdateCaption();
 	}
-	EditorView->setCurrentIndex(currentIndex);
-	UpdateCaption();
+	if (EditorView->currentIndex()!=currentIndex)
+		EditorView->setCurrentIndex(currentIndex);
+	//UpdateCaption();
 }
 
 void Texmaker::fileClose() {
