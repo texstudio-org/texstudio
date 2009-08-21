@@ -1042,8 +1042,11 @@ void Texmaker::fileMakeTemplate() {
 			fn.append(".tex");
 		// save file
 		QString old_name=currentEditor()->fileName();
+		QTextCodec *mCodec=currentEditor()->getFileEncoding();
+		currentEditor()->setFileEncoding(QTextCodec::codecForName("utf-8"));
 		currentEditor()->save(fn);
 		currentEditor()->setFileName(old_name);
+		currentEditor()->setCodec(mCodec);
 		if(!userTemplatesList.contains(fn)) userTemplatesList.append(fn);
 	}
 }
@@ -1113,6 +1116,7 @@ void Texmaker::fileNewFromTemplate() {
 
 		QString mTemplate;
 		QTextStream in(&file);
+		in.setAutoDetectUnicode(true);
 		while (!in.atEnd()) {
 			QString line = in.readLine();
 			mTemplate+=line+"\n";
