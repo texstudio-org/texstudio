@@ -3853,7 +3853,7 @@ void Texmaker::previewLatex(){
 	for (int l=0; l<m_endingLine; l++) 
 		header << edView->editor->document()->line(l).text();
 	header << "\\pagestyle{empty}";// << "\\begin{document}";
-	buildManager.preview(header.join("\n"), originalText);
+	buildManager.preview(header.join("\n"), originalText, edView->editor->codec());
 }
 void Texmaker::previewAvailable(const QString& imageFile, const QString& text){
 	if (configManager.previewMode == ConfigManager::PM_BOTH || 

@@ -482,11 +482,12 @@ QTemporaryFile* BuildManager::temporaryTexFile(){
 //2. latex is called and dvipng --follow is called at the same time, and will manage the wait time on its own
 //3. latex is called => dvips converts .dvi to .ps => ghostscript is called and created final png
 //Then ghostscript to convert it to 
-void BuildManager::preview(const QString &preamble, const QString &text){
+void BuildManager::preview(const QString &preamble, const QString &text, QTextCodec *outputCodec){
     // write to temp file
 	QTemporaryFile *tf=new QTemporaryFile(QDir::tempPath()+"/XXXXXX.tex");
 	tf->open();
 	QTextStream out(tf);
+	if (outputCodec) out.setCodec(outputCodec);
 	out << preamble 
 		<< "\n\\begin{document}\n" 
 		<< text

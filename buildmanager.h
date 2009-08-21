@@ -55,7 +55,7 @@ public:
 	
 	static QTemporaryFile* temporaryTexFile(); //don't forget to remove the file!
 					
-	void preview(const QString &preamble, const QString &text);
+	void preview(const QString &preamble, const QString &text, QTextCodec *outputCodec=0);
 
 	int quickmode;
 	enum Dvi2PngMode { DPM_DVIPNG, DPM_DVIPNG_FOLLOW, DPM_DVIPS_GHOSTSCRIPT};
