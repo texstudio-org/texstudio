@@ -513,7 +513,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		QDocumentLineHandle* dlh = line.handle();
 		// remove all labels/references of current line
 		containedLabels.removeUpdateByHandle(dlh,&containedReferences);
-		containedReferences.removeUpdateByHandle(dlh,&containedReferences);
+		containedReferences.removeUpdateByHandle(dlh,0);
 
 		line.clearOverlays();
 		if (line.length()<=3) continue;
@@ -760,7 +760,7 @@ QStringList References::removeByHandle(QDocumentLineHandle* handle){
 
 void References::removeUpdateByHandle(QDocumentLineHandle* handle,References* altRefs){
 	QStringList refs=removeByHandle(handle);
-	updateByKeys(refs,altRefs);
+	if(altRefs) updateByKeys(refs,altRefs);
 }
 
 void References::updateByKeys(QStringList refs,References* altRefs){
