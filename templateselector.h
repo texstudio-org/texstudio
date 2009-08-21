@@ -23,6 +23,9 @@ public:
 	~templateselector();
 	Ui::templateSelectorDialog ui;
 
+
+private slots:
+	void on_listWidget_itemDoubleClicked(QListWidgetItem* item);
 };
 
 #endif // TEMPLATESELECTOR_H
