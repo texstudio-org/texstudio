@@ -81,9 +81,17 @@ QString cutComment(QString text);
 //setup toolbutton as substitute for const combobox
 QToolButton* createComboToolButton(QWidget *parent,QStringList list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member);
 
-// realizes whether col is in a reference or in a command
-int findContext(QString &line,int col);
 
 //check if the run-time qt version is higher than the given version (e.g. 4,3)
 bool hasAtLeastQt(int major, int minor);
+
+class LatexParser{
+public:
+	enum ContextType {Unknown, Command, Environment, Label, Reference, Citation};
+	// realizes whether col is in a \command or in a parameter {}
+	static int findContext(QString &line, int column);
+	
+	static ContextType findContext(const QString &line, int column, QString &command, QString& value);
+};
+
 #endif
