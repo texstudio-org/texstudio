@@ -8,8 +8,8 @@ class QEditor;
 class CodeSnippet
 {
 public:
-	CodeSnippet():cursorLine(-1), cursorOffset(-1),anchorOffset(-1) {}
-	CodeSnippet(const CodeSnippet &cw):word(cw.word),sortWord(cw.sortWord),lines(cw.lines),cursorLine(cw.cursorLine),cursorOffset(cw.cursorOffset),anchorOffset(cw.anchorOffset),placeHolders(cw.placeHolders) {}
+        CodeSnippet():cursorLine(-1), cursorOffset(-1),anchorOffset(-1),m_cut(false) {}
+        CodeSnippet(const CodeSnippet &cw):word(cw.word),sortWord(cw.sortWord),lines(cw.lines),cursorLine(cw.cursorLine),cursorOffset(cw.cursorOffset),anchorOffset(cw.anchorOffset),placeHolders(cw.placeHolders),m_cut(cw.m_cut) {}
 	CodeSnippet(const QString &newWord);
 	bool operator< (const CodeSnippet &cw) const {
 		return cw.sortWord > sortWord;
@@ -28,6 +28,11 @@ public:
 
 	void insert(QEditor* editor);
 	void insertAt(QEditor* editor, QDocumentCursor* cursor) const;
+
+        void setCut(bool cut) {m_cut=cut;}
+
+private:
+        bool m_cut;
 };
 
 Q_DECLARE_METATYPE(CodeSnippet);

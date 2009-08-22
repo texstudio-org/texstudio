@@ -4449,8 +4449,8 @@ void QEditor::ensureCursorVisible()
 	QPoint pos = m_cursor.documentPosition();
 
 	const int ls = QDocument::fontMetrics().lineSpacing();
-	qDebug("%d",verticalScrollBar()->isVisible());
-	int ypos = pos.y(),
+
+        int ypos = pos.y(),
 		yval = verticalScrollBar()->value() * ls, //verticalOffset(),
 		ylen = viewport()->height(),
 		yend = ypos + ls;
