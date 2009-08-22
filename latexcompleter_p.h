@@ -24,13 +24,15 @@ public:
 	bool isNextCharPossible(const QChar &c); //does this character lead to a new possible word
 	void filterList(const QString &word);
 	void setBaseWords(const QStringList &newwords, bool normalTextList);
+        void setBaseWords(const QList<CompletionWord> &newwords, bool normalTextList);
+        void setAbbrevWords(const QList<CompletionWord> &newwords);
 private:
 	friend class LatexCompleter; //TODO: make this unnecessary
 	QList<CompletionWord> words;
 	QString curWord;
 
 	QList<CompletionWord> baselist;
-	QList<CompletionWord> wordsText, wordsCommands;
+        QList<CompletionWord> wordsText, wordsCommands,wordsAbbrev;
 	QSet<QChar> acceptedChars;
 };
 

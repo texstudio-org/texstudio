@@ -437,6 +437,25 @@ void CompletionListModel::setBaseWords(const QStringList &newwords, bool normalT
 	baselist=wordsCommands;
 }
 
+void CompletionListModel::setBaseWords(const QList<CompletionWord> &newwords, bool normalTextList) {
+	QList<CompletionWord> newWordList;
+	acceptedChars.clear();
+	newWordList.clear();
+	foreach(CompletionWord cw, newwords) {
+		newWordList.append(cw);
+		foreach(QChar c, cw.word) acceptedChars.insert(c);
+	}
+	qSort(newWordList.begin(), newWordList.end());
+
+        if (normalTextList) wordsText=newWordList;
+	else wordsCommands=newWordList;
+	baselist=wordsCommands;
+}
+
+void CompletionListModel::setAbbrevWords(const QList<CompletionWord> &newwords) {
+        wordsAbbrev=newwords;
+}
+
 //------------------------------completer-----------------------------------
 QString LatexCompleter::helpFile;
 QHash<QString, QString> LatexCompleter::helpIndices;
@@ -482,6 +501,21 @@ void LatexCompleter::setAdditionalWords(const QStringList &newwords, bool normal
 	}
 }
 
+void LatexCompleter::setAbbreviations(const QStringList &Abbrevs,const QStringList &Tags){
+    QList<CompletionWord> wordsAbbrev;
+    wordsAbbrev.clear();
+    for(int i=0;i<Abbrevs.size();i++){
+        QString abbr=Abbrevs.value(i,"");
+        if(!abbr.isEmpty()){
+            CompletionWord cw(abbr);
+            cw.lines=(abbr+tr(" (Usertag)")+"\n"+Tags.value(i)).split("\n");
+            cw.setCut(true);
+            wordsAbbrev << cw;
+        }
+    }
+    listModel->setAbbrevWords(wordsAbbrev);
+}
+
 void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool normalText, bool forceRef) {
 	if (editor != newEditor) {
 		if (editor) disconnect(editor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
@@ -511,6 +545,8 @@ void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool nor
 	//list->show();
 	if (normalText) listModel->baselist=listModel->wordsText;
 	else listModel->baselist=listModel->wordsCommands;
+        listModel->baselist+=listModel->wordsAbbrev;
+        qSort(listModel->baselist.begin(),listModel->baselist.end());
 	if (c.previousChar()!='\\' || forceVisibleList) {
 		int start=c.columnNumber()-1;
 		if (normalText) start=0;

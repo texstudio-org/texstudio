@@ -37,7 +37,7 @@
 #include "qlanguagefactory.h"
 #include "qlinemarksinfocenter.h"
 
-typedef  QString Userlist[10];
+typedef  QStringList Userlist;
 typedef  QString UserCd[5];
 typedef QHash<QString,int> SymbolList;
 
@@ -131,7 +131,7 @@ private:
 	QString thesaurus_database;
 	QStringList userClassList, userPaperList, userEncodingList, userOptionsList;
 	QStringList labelitem;
-	Userlist UserMenuName, UserMenuTag;
+        Userlist UserMenuName, UserMenuTag, UserMenuAbbrev;
 	UserCd UserToolName, UserToolCommand;
 
 	QStringList userCommandList;

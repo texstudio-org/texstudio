@@ -16,7 +16,7 @@
 
 #include "ui_usermenudialog.h"
 
-typedef QString userlist[10];
+typedef QStringList userlist;
 
 class UserMenuDialog : public QDialog {
 	Q_OBJECT
@@ -26,7 +26,7 @@ public:
 	~UserMenuDialog();
 	Ui::UserMenuDialog ui;
 
-	userlist Name,Tag;
+	userlist Name,Tag,Abbrev;
 
 private:
 	int previous_index;
