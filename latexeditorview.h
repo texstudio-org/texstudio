@@ -69,7 +69,8 @@ public:
 	void jumpChangePositionForward();
 	void jumpToBookmark(int bookmarkNumber);
 	void toggleBookmark(int bookmarkNumber);
-
+	bool gotoToLabel(const QString& label);
+	
 	void foldEverything(bool unFold);
 	void foldLevel(bool unFold, int level);
 	void foldBlockAt(bool unFold, int line);

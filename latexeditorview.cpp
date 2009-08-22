@@ -287,6 +287,17 @@ void LatexEditorView::toggleBookmark(int bookmarkNumber) {
 	if (bookmarkNumber>=1 && bookmarkNumber<=3) lastSetBookmark=bookmarkNumber;
 }
 
+bool LatexEditorView::gotoToLabel(const QString& label){
+	QList<QDocumentLineHandle*> lst=containedLabels.values(label);
+	if (lst.empty()) return false;
+	QDocumentLine line(lst[0]);
+	int ln=line.lineNumber();
+	if (ln<0) return false;
+	editor->setCursorPosition(ln, line.text().indexOf("\\label{"+label) + 7);
+	editor->ensureCursorVisible();
+	return true;
+}
+
 //collapse/expand every possible line
 void LatexEditorView::foldEverything(bool unFold) {
 	QDocument* doc = editor->document();
@@ -655,66 +666,57 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	cursor=editor->cursorForPosition(editor->mapToContents(pos));
 	QString line=cursor.line().text();
 	int col=cursor.columnNumber();
-	int context=findContext(line,col);
+	QString command, value;
 	QString topic;
-
-	switch(context){
-		case 0:
+	switch(LatexParser::findContext(line, cursor.columnNumber(), command, value)){
+		case LatexParser::Unknown:
 			QToolTip::hideText();
 			break;
-		case 1: //command
-			if(line=="\\begin") {
-				line=cursor.line().text();
-				int a=line.indexOf("{",col);
-				int b=line.indexOf("}",col);
-				line="\\begin"+line.mid(a,b-a+1);
-			}
-			topic=completer->lookupWord(line);
+		case LatexParser::Command: 
+			if (command=="\\begin" || command=="\\end")
+				command="\\begin{"+value+"}";
+			topic=completer->lookupWord(command);
 			if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
 			break;
-		case 2: //command parameter
+		case LatexParser::Environment: 
+			topic=completer->lookupWord("\\begin{"+value+"}");
+			if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
+			break;
+		case LatexParser::Reference: 
 			{
-				int l=line.indexOf("{");
-				QString ref=line.mid(l+1,line.length());
-				QString command=line.left(l);
-				if(command=="\\ref"){
-					//l=editor->document()->findLineContaining("\\label{"+ref+"}",0,Qt::CaseSensitive);
-					QList<QDocumentLineHandle*> lst=containedLabels.values(ref);
-					QString mText="";
-					if(lst.isEmpty()){
-						mText=tr("label missing!");
-					} else if(lst.count()>1) {
-						mText=tr("label multiple times defined!");
-					} else {
-						QDocumentLine mLine(lst.first());
-						int l=mLine.lineNumber();
-						for(int i=qMax(0,l-2);i<qMin(editor->document()->lines(),l+3);i++){
-							mText+=editor->document()->line(i).text();
-							if(i<l+2) mText+="\n";
-						}
-					}
-					QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), mText);
-				}else{
-					QToolTip::hideText();
-				}
-				if(command=="\\label"){
-					if(containedLabels.count(ref)>1){
-						QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("label multiple times defined!"));
-					} else {
-						int cnt=containedReferences.count(ref);
-						QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("%n reference(s) to this label","",cnt));
+				//l=editor->document()->findLineContaining("\\label{"+ref+"}",0,Qt::CaseSensitive);
+				QList<QDocumentLineHandle*> lst=containedLabels.values(value);
+				QString mText="";
+				if(lst.isEmpty()){
+					mText=tr("label missing!");
+				} else if(lst.count()>1) {
+					mText=tr("label multiple times defined!");
+				} else {
+					QDocumentLine mLine(lst.first());
+					int l=mLine.lineNumber();
+					for(int i=qMax(0,l-2);i<qMin(editor->document()->lines(),l+3);i++){
+						mText+=editor->document()->line(i).text();
+						if(i<l+2) mText+="\n";
 					}
 				}
-				if (command=="\\cite")
-					if (bibTeXIds)
-						QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),
-							bibTeXIds->contains(ref)?tr("citation correct"):tr("citation missing!"));
-				
+				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), mText);
+				break;
 			}
+		case LatexParser::Label:
+			if(containedLabels.count(value)>1){
+				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("label multiple times defined!"));
+			} else {
+				int cnt=containedReferences.count(value);
+				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("%n reference(s) to this label","",cnt));
+			}
+			break;
+		case LatexParser::Citation:
+			if (bibTeXIds)
+				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),
+					bibTeXIds->contains(value)?tr("citation correct"):tr("citation missing!"));
 			break;
 		default:
 			QToolTip::hideText();
-			//break;
 	}
 	//QToolTip::showText(editor->mapToGlobal(pos), line);
 }

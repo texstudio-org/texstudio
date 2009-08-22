@@ -404,6 +404,8 @@ void Texmaker::setupMenus() {
 	newManagedAction(submenu,"warningnext",tr("Next warning"),SLOT(NextWarning()),Qt::CTRL+Qt::ALT+Qt::Key_Down);//, ":/images/errornext.png");
 	newManagedAction(submenu,"badboxprev",tr("Previous bad box"),SLOT(PreviousBadBox()),Qt::SHIFT+Qt::ALT+Qt::Key_Up);//, ":/images/errorprev.png");
 	newManagedAction(submenu,"badboxnext",tr("Next bad box"),SLOT(NextBadBox()),Qt::SHIFT+Qt::ALT+Qt::Key_Down);//, ":/images/errornext.png");
+	submenu->addSeparator();
+	newManagedAction(submenu,"definition",tr("Definition"),SLOT(editGotoDefinition()),Qt::CTRL+Qt::ALT+Qt::Key_F);
 
 	submenu=newManagedMenu(menu, "gotoBookmark",tr("Goto Bookmark"));
 	for (int i=0; i<=9; i++)
@@ -1434,6 +1436,18 @@ void Texmaker::editJumpToLastChange() {
 void Texmaker::editJumpToLastChangeForward() {
 	if (!currentEditorView())	return;
 	currentEditorView()->jumpChangePositionForward();
+}
+
+void Texmaker::editGotoDefinition(){
+	if (!currentEditorView())	return;
+	QDocumentCursor c=currentEditor()->cursor();
+	QString command, value;
+	switch (LatexParser::findContext(c.line().text(), c.columnNumber(), command, value)) {
+		case LatexParser::Reference:
+			currentEditorView()->gotoToLabel(value);
+			break;
+		default:; //TODO: Jump to command definition and in bib files
+	}
 }
 
 void Texmaker::editComment() {

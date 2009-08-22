@@ -206,6 +206,7 @@ private slots:
 	void editGotoLine();
 	void editJumpToLastChange();
 	void editJumpToLastChangeForward();
+	void editGotoDefinition();
 	void editComment();
 	void editUncomment();
 	void editIndent();

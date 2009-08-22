@@ -3,6 +3,12 @@
 const QString CommonEOW="~!@#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`+�";
 const QString EscapedChars="%&_";
 
+const QStringList refCommands = QStringList() << "\\ref" << "\\pageref" ;
+const QStringList labelCommands = QStringList() << "\\label" ;
+const QStringList citeCommands = QStringList() << "\\cite" << "\\nocite" ;
+const QStringList environmentCommands = QStringList() << "\\begin" << "\\end" << "\\newenvironment" << "\\renewenvironment";
+
+
 QString getCommonEOW() {
 	return CommonEOW;
 }
@@ -202,11 +208,6 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 
 NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordStartIndex, bool returnCommands,bool abbreviations) {
 	static const QStringList optionCommands = QStringList() << "\\ref" << "\\pageref" << "\\label"  << "\\includegraphics" << "\\usepackage" << "\\documentclass" << "\\include" << "\\input";
-	static const QStringList refCommands = QStringList() << "\\ref" << "\\pageref" ;
-	static const QStringList labelCommands = QStringList() << "\\label" ;
-	static const QStringList citeCommands = QStringList() << "\\cite" << "\\nocite" ;
-	static const QStringList environmentCommands = QStringList() << "\\begin" << "\\end"
-	        << "\\newenvironment" << "\\renewenvironment";
 
 	int reference=-1;
 	QString lastCommand="";
@@ -333,7 +334,23 @@ QToolButton* createComboToolButton(QWidget *parent,QStringList list,const int he
 	return combo;
 }
 
-int findContext(QString &line,int col){
+
+bool hasAtLeastQt(int major, int minor){
+	QStringList vers=QString(qVersion()).split('.');
+	if (vers.count()<2) return false;
+	int ma=vers[0].toInt();
+	int mi=vers[1].toInt();
+	return (ma>major) || (ma==major && mi>=minor);
+}
+
+QString cutComment(QString text){
+	QString test=text;
+	test.replace("\\\\","  ");
+	int commentStart=test.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
+	return text.left(commentStart); // remove comments
+}
+
+int LatexParser::findContext(QString &line,int col){
 	int start_command=col;
 	int start_ref=col;
 	int start_close=col;
@@ -369,17 +386,32 @@ int findContext(QString &line,int col){
 	return 0;
 }
 
-bool hasAtLeastQt(int major, int minor){
-	QStringList vers=QString(qVersion()).split('.');
-	if (vers.count()<2) return false;
-	int ma=vers[0].toInt();
-	int mi=vers[1].toInt();
-	return (ma>major) || (ma==major && mi>=minor);
-}
-
-QString cutComment(QString text){
-	QString test=text;
-	test.replace("\\\\","  ");
-	int commentStart=test.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
-	return text.left(commentStart); // remove comments
+LatexParser::ContextType LatexParser::findContext(const QString &line, int column, QString &command, QString& value){
+	command=line;
+	int temp=findContext(command,column);
+	int a=command.indexOf("{");
+	if (a>=0) {
+		int b=command.indexOf("}");
+		if (b<0) b = command.length();
+		value=command.mid(a+1,b-a-1);
+		command=command.left(a);
+	} else {
+		int a=line.indexOf("{",column);
+		int b=line.indexOf("}",column);
+		value=line.mid(a+1,b-a-1);
+	}
+	switch (temp) {
+		case 0: return Unknown;
+		case 1: return Command;
+		case 2: 
+			if (environmentCommands.contains(command))
+				return Environment;
+			else if (labelCommands.contains(command)) 
+				return Label;
+			else if (refCommands.contains(command))
+				return Reference;
+			else if (citeCommands.contains(command))
+				return Citation;
+		default: return Unknown;
+	}
 }
