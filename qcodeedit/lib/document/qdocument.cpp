@@ -6071,15 +6071,13 @@ void QDocumentPrivate::removeLines(int after, int n)
 	}
 
 
-        updateHidden(after, -n);
-        updateWrapped(after, -n);
+	++after;
+	updateHidden(after, -n);
+	updateWrapped(after, -n);
 	for(int i=after;i<after+n;i++){
-                qDebug(qPrintable(m_lines[i]->text()));
-                emit m_doc->lineRemoved(m_lines[i]);
+		emit m_doc->lineRemoved(m_lines[i]);
 	}
-        m_lines.remove(after,n);
-
-        ++after;
+	m_lines.remove(after, n);
 
 	emit m_doc->lineCountChanged(m_lines.count());
 	setHeight();
