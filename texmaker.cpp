@@ -812,7 +812,7 @@ void Texmaker::NewDocumentStatus(bool m) {
 	if (edView->editor->fileName().isEmpty()) 
 		EditorView->setTabText(index,tr("untitled"));
 	else
-		EditorView->setTabText(index,currentEditor()->name());
+		EditorView->setTabText(index,edView->editor->name());
 }
 
 LatexEditorView *Texmaker::currentEditorView() const {
