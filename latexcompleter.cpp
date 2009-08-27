@@ -524,11 +524,13 @@ void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool nor
 	}
 	if (!editor) return;
 	QDocumentCursor c=editor->cursor();
+	if (!c.isValid()) return;
 	if (c.hasSelection()) {
 		c.setColumnNumber(qMax(c.columnNumber(),c.anchorColumnNumber()));
 		editor->setCursor(c);
 	}
 	QDocumentLine line=c.line();
+	if (c.columnNumber()<0 || c.columnNumber()>line.length()) return;
 	QPoint offset=line.cursorToDocumentOffset(c.columnNumber()-1);
 	offset.setY(offset.y()+line.document()->y(c.lineNumber())+line.document()->fontMetrics().lineSpacing());
 	offset=editor->mapFromContents(offset);

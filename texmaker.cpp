@@ -145,11 +145,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	// adapt menu output view visible;
 	bool mVis=outputView->isVisible();
 	outputViewAction->setChecked(mVis);
-	if(outputViewAction->shortcuts().isEmpty()||outputViewAction->shortcut()==QKeySequence(Qt::Key_Escape))
-	{
-			if (mVis) outputViewAction->setShortcut(Qt::Key_Escape);
-			else outputViewAction->setShortcut(QKeySequence());
-	}
 
 	setAcceptDrops(true);
 	installEventFilter(this);
@@ -581,8 +576,6 @@ void Texmaker::setupMenus() {
 	connect(StructureTreeWidget,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(StructureContextMenu(QPoint)));
 
 	configManager.modifyManagedShortcuts();
-	if(outputViewAction->shortcuts().isEmpty()||outputViewAction->shortcut()==QKeySequence(Qt::Key_Escape)) outputViewAction->setShortcutContext(Qt::WidgetShortcut);
-	else outputViewAction->setShortcutContext(Qt::WindowShortcut);
 }
 
 void Texmaker::setupToolBars() {
@@ -3428,6 +3421,7 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	if (line!=-1){
 		QApplication::processEvents();
 		gotoLine(line);
+		QTimer::singleShot(1000,currentEditor(),SLOT(ensureCursorVisible()));
 	}
 	
 	#ifndef QT_NO_DEBUG

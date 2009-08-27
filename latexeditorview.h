@@ -117,8 +117,9 @@ private:
 	LatexEditorViewConfig* config;
 private slots:
 	void requestCitation(); //emits needCitation with selected text
-public slots:
 	void lineMarkClicked(int line);
+	void lineMarkToolTip(int line, int mark);
+public slots:
 	void documentContentChanged(int linenr, int count);
 	void lineDeleted(QDocumentLineHandle* l);
 	void lineRemoved(QDocumentLineHandle* l);
@@ -127,7 +128,6 @@ public slots:
 	void spellCheckingListSuggestions();
 	void dictionaryReloaded();
 	void mouseHovered(QPoint pos);
-	void lineMarkToolTip(int line, int mark);
 	bool closeSomething();
 signals:
 	void lineHandleDeleted(QDocumentLineHandle* l);

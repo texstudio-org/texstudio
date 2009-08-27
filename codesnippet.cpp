@@ -117,15 +117,19 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor) const{
 	int baseLine=cursor->lineNumber();
 	int baseLineIndent = cursor->columnNumber(); //text before inserted word moves placeholders to the right
 	int lastLineRemainingLength = curLine.text().length()-baseLineIndent; //last line will has length: indentation + codesnippet + lastLineRemainingLength
-        editor->insertText(*cursor,mLines.join("\n")); //don't use cursor->insertText to keep autoindentation working
-        for (int l=0;l< mLines.count();l++){
-                //if (l<mLines.count()-1) cursor->insertLine();
+	editor->insertText(*cursor,mLines.join("\n")); //don't use cursor->insertText to keep autoindentation working
+	for (int l=0;l< mLines.count();l++){
+		//if (l<mLines.count()-1) cursor->insertLine();
 		for (int i=0; i<placeHolders[l].size(); i++) {
 			QEditor::PlaceHolder ph;
 			ph.length=placeHolders[l][i].second;
 			ph.cursor=editor->document()->cursor(baseLine+l,placeHolders[l][i].first);
 			if (l==0) ph.cursor.movePosition(baseLineIndent,QDocumentCursor::NextCharacter);
-                        else ph.cursor.movePosition(ph.cursor.line().length()-mLines[l].length(),QDocumentCursor::NextCharacter);
+			else {
+				ph.cursor.movePosition(ph.cursor.line().length()-mLines[l].length(),QDocumentCursor::NextCharacter);
+				if (l+1==mLines.size())	
+					ph.cursor.movePosition(lastLineRemainingLength,QDocumentCursor::PreviousCharacter);
+			} 
 			if (l!=beginMagicLine) {
 				if (ph.cursor.isValid())
 					editor->addPlaceHolder(ph);
@@ -140,12 +144,12 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor) const{
 	if (cursorOffset!=-1) {
 		int realAnchorOffset=anchorOffset; //will be moved to the right if text is already inserted on this line
 		if (cursorLine>0) {
-                        if (cursorLine>=mLines.size()) return;
+			if (cursorLine>=mLines.size()) return;
 			if (!selector.movePosition(cursorLine,QDocumentCursor::Down,QDocumentCursor::MoveAnchor))
 				return;
 			if (editor->flag(QEditor::AutoIndent))
-                                realAnchorOffset += selector.line().length()-mLines[cursorLine].length();
-                        if (cursorLine + 1 == mLines.size())
+				realAnchorOffset += selector.line().length()-mLines[cursorLine].length();
+			if (cursorLine + 1 == mLines.size())
 				realAnchorOffset-=lastLineRemainingLength;
 		} else realAnchorOffset += baseLineIndent;
 		selector.setColumnNumber(realAnchorOffset);
