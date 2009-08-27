@@ -4136,7 +4136,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, int m)
                 m_doc->line(line).cursorToDocumentOffset(offset+2).y()==m_doc->line(line).cursorToDocumentOffset(offset+1).y())//not at w. line end
                 //m_doc->line(line).cursorToDocumentOffset(offset).y()/QDocumentPrivate::m_lineSpacing+1<m_doc->line(line).lineSpan()) //not in the last
 			{
-			    int curline=line;
+				int curline=line;
 			    //goto next line start
 			    if (m_doc->line(line).cursorToDocumentOffset(offset+1).y()!=m_doc->line(line).cursorToDocumentOffset(offset-1).y())
                     offset++;
@@ -4151,7 +4151,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, int m)
 				//one left in the w. line before
 				offset--;
 				m_max = m_doc->line(line).cursorToDocumentOffset(offset).x();
-				if (curline != line) line=curline; //jumped to far
+				if ((curline != line)||(m_doc->height()==p.ry())) line=curline; //jumped to far, work around for wrapped last line
 				else if (offset>0) return true;
 			}
 
