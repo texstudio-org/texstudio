@@ -66,8 +66,13 @@ CodeSnippet::CodeSnippet(const QString &newWord) {
 				curLine.clear();
 				//curLine+="\n";
 				break;	
-			default:
-				;
+			default: // escape was not an escape character ...
+				curLine+='%';
+				curLine+=realNewWord.at(i);
+				if (!inDescription) {
+					word.append('%');
+					word.append(realNewWord.at(i));
+				}
 			}
 		}
 	lines.append(curLine);
