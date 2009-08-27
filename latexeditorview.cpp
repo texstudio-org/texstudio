@@ -213,6 +213,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 
 
 	connect(lineMarkPanel,SIGNAL(lineClicked(int)),this,SLOT(lineMarkClicked(int)));
+	connect(lineMarkPanel,SIGNAL(toolTipRequested(int,int)),this,SLOT(lineMarkToolTip(int,int)));
 	connect(editor,SIGNAL(hovered(QPoint)),this,SLOT(mouseHovered(QPoint)));
 	connect(editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
 	connect(editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),this,SLOT(lineDeleted(QDocumentLineHandle*)));
@@ -478,6 +479,16 @@ void LatexEditorView::lineMarkClicked(int line) {
 	editor->document()->line(editor->document()->findNextMark(bookMarkId(lastSetBookmark))).removeMark(bookMarkId(lastSetBookmark));
 	l.addMark(bookMarkId(lastSetBookmark));
 }
+void LatexEditorView::lineMarkToolTip(int line, int mark){
+	if (line < 0 || line>=editor->document()->lines()) return;
+	int errorMarkID = QLineMarksInfoCenter::instance()->markTypeId("error");
+	int warningMarkID = QLineMarksInfoCenter::instance()->markTypeId("warning");
+	int badboxMarkID = QLineMarksInfoCenter::instance()->markTypeId("badbox");
+	if (mark != errorMarkID && mark != warningMarkID && mark != badboxMarkID) return;
+	int error = lineToLogEntries.value(editor->document()->line(line).handle(),-1);
+	if (error>=0)
+		emit showMarkTooltipForLogMessage(error);
+}
 
 void LatexEditorView::documentContentChanged(int linenr, int count) {
 	QDocumentLine startline=editor->document()->line(linenr);
@@ -719,16 +730,6 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			QToolTip::hideText();
 	}
 	//QToolTip::showText(editor->mapToGlobal(pos), line);
-}
-void LatexEditorView::lineMarkToolTip(int line, int mark){
-	if (line < 0 || line>=editor->document()->lines()) return;
-	int errorMarkID = QLineMarksInfoCenter::instance()->markTypeId("error");
-	int warningMarkID = QLineMarksInfoCenter::instance()->markTypeId("warning");
-	int badboxMarkID = QLineMarksInfoCenter::instance()->markTypeId("badbox");
-	if (mark != errorMarkID && mark != warningMarkID && mark != badboxMarkID) return;
-	int error = lineToLogEntries.value(editor->document()->line(line).handle(),-1);
-	if (error>=0)
-		emit showMarkTooltipForLogMessage(error);
 }
 bool LatexEditorView::closeSomething(){
 	if (completer->close()) return true;
