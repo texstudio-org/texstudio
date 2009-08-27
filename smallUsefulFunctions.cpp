@@ -207,7 +207,7 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 
 
 NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordStartIndex, bool returnCommands,bool abbreviations) {
-	static const QStringList optionCommands = QStringList() << "\\ref" << "\\pageref" << "\\label"  << "\\includegraphics" << "\\usepackage" << "\\documentclass" << "\\include" << "\\input";
+	static const QStringList optionCommands = QStringList() << "\\ref" << "\\pageref" << "\\label"  << "\\includegraphics" << "\\usepackage" << "\\documentclass" << "\\include" << "\\input" << "\\hspace" << "\\vspace";
 
 	int reference=-1;
 	QString lastCommand="";
