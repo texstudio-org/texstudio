@@ -1077,6 +1077,7 @@ void QEditor::fileChanged(const QString& file)
 		{
 			load(fileName(),m_codec);
 			m_saveState = Undefined;
+			emit fileReloaded();
 			return;
 		}
 	}

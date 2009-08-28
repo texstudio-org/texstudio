@@ -328,6 +328,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void markChanged(const QString& f, QDocumentLineHandle *l, int mark, bool on);
 
 		void hovered(QPoint pos);
+
+		void fileReloaded();
 		
 	public slots:
 		void checkClipboard();

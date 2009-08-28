@@ -356,6 +356,8 @@ private slots:
 
 	void templateRemove();
 	void templateEdit();
+
+	void fileReloaded();
 protected:
 	LatexEditorView* getEditorFromStructureItem(QTreeWidgetItem* m_item);
 	QPoint sectionSelection(QTreeWidgetItem* m_item);
