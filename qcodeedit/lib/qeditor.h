@@ -304,8 +304,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		int placeHolderCount() const;
 		int currentPlaceHolder() const;
 		
-		void nextPlaceHolder();
-		void previousPlaceHolder();
+		bool nextPlaceHolder();
+		bool previousPlaceHolder();
 		void setPlaceHolder(int i, bool selectCursors=true);
 		
 		virtual void setFileName(const QString& f);
