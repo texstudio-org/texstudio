@@ -2015,11 +2015,12 @@ void QEditor::setPlaceHolder(int i, bool selectCursors)
 	\brief Move to next placeholder
 
 	\see setPlaceHolder
+	\return is there actually a next placeholder
 */
-void QEditor::nextPlaceHolder()
+bool QEditor::nextPlaceHolder()
 {
 	if ( m_placeHolders.isEmpty() )
-		return;
+		return false;
 
 	/*++m_curPlaceHolder;
 
@@ -2032,18 +2033,21 @@ void QEditor::nextPlaceHolder()
 			(m_curPlaceHolder==-1 || m_placeHolders[i].cursor<=m_placeHolders[m_curPlaceHolder].cursor))
 				m_curPlaceHolder=i;
 	}
+	if (m_curPlaceHolder==-1) return false;
 	setPlaceHolder(m_curPlaceHolder);
+	return true;
 }
 
 /*!
 	\brief Move to previous placeholder
 
 	\see setPlaceHolder
+	\return is there actually a previous placeholder
 */
-void QEditor::previousPlaceHolder()
+bool QEditor::previousPlaceHolder()
 {
 	if ( m_placeHolders.isEmpty() )
-		return;
+		return false;
 
 	/*if ( m_curPlaceHolder <= 0 )
 		m_curPlaceHolder = m_placeHolders.count();
@@ -2056,7 +2060,9 @@ void QEditor::previousPlaceHolder()
 				m_curPlaceHolder=i;
 	}	
 
+	if (m_curPlaceHolder==-1) return false;
 	setPlaceHolder(m_curPlaceHolder);
+	return true;
 }
 
 /*!
@@ -2785,11 +2791,9 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 		{
 			if ( e->key() == Qt::Key_Up || e->key() == Qt::Key_Left )
 			{
-				bHandled = true;
-				previousPlaceHolder();
+				bHandled=previousPlaceHolder();
 			} else if ( e->key() == Qt::Key_Down || e->key() == Qt::Key_Right ) {
-				bHandled = true;
-				nextPlaceHolder();
+				bHandled=nextPlaceHolder();
 			}
 		}
 
@@ -3966,23 +3970,27 @@ bool QEditor::moveKeyEvent(QDocumentCursor& cursor, QKeyEvent *e, bool *leave)
 	//const bool moved =
 	cursor.movePosition(1, op, mode);
 
+	if ( m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.count() )
+	{
+		// allow mirror movement out of line while in placeholder
+		PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
+		if ( ph.cursor.isWithinSelection(cursor) )
+			return true;
+		for ( int i = 0; i < ph.mirrors.count(); ++i )
+			if ( ph.mirrors.at(i).isWithinSelection(cursor) )
+				return true;
+		if ( prev == cursor.line() && m_mirrors.empty()) {
+			//mark placeholder as leaved
+			m_curPlaceHolder = -1;
+			return false;
+		}
+	}
 	if ( prev != cursor.line() )
 	{
-		if ( m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.count() )
-		{
-			// allow mirror movement out of line while in placeholder
-			PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
-			if ( ph.cursor.isWithinSelection(cursor) )
-				return true;
-			for ( int i = 0; i < ph.mirrors.count(); ++i )
-				if ( ph.mirrors.at(i).isWithinSelection(cursor) )
-					return true;
-		}
 		//moved = true;
 		if ( leave ) *leave = true;
 		m_curPlaceHolder = -1;
-	}
-
+	} 
 	return true;
 }
 
@@ -4989,10 +4997,7 @@ void QEditor::updateContent (int i, int n)
 	}
 	m_lastPlaceHolder=m_curPlaceHolder;
 			
-	if (m_curPlaceHolder!=-1) 
-		n=qMax(n,3); //draw more because the placeholder poylgon doesn't fit on a line
-	bool cont = n > 1;
-	repaintContent(i, cont ? -1 : n);
+	repaintContent(i, n>1 ? -1 : n);
 }
 
 /*!
