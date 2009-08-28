@@ -979,6 +979,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig);
 	EditorView->addTab(edit, "[*] "+QFileInfo(f_real).fileName());
 	configureNewEditorView(edit);
+	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
 
 	QFile file(f_real);
 	if (!file.open(QIODevice::ReadOnly)) {
@@ -1019,7 +1020,17 @@ void Texmaker::fileNew(QString fileName) {
 	UpdateCaption();
 	NewDocumentStatus(false);
 
+	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
+
 	edit->editor->setFocus();
+}
+
+
+void Texmaker::fileReloaded(){
+	QEditor *mEditor = qobject_cast<QEditor *>(sender());
+	if(mEditor==currentEditor()){
+		updateStructure();
+	}
 }
 
 void Texmaker::fileMakeTemplate() {
