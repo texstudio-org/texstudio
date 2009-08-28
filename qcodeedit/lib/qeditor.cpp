@@ -4653,9 +4653,10 @@ QMimeData* QEditor::createMimeDataFromSelection() const
 */
 void QEditor::insertFromMimeData(const QMimeData *d)
 {
+	qDebug(qPrintable(d->formats().join(":")));
 	bool s = m_cursor.hasSelection();
 
-	if ( d && m_cursor.isValid() && !d->hasFormat("text/uri-list") )
+	if ( d && m_cursor.isValid() /*&& !d->hasFormat("text/uri-list")*/ )
 	{
 
 		if ( d->hasFormat("text/column-selection") )
@@ -4698,19 +4699,22 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 			m_doc->endMacro();
 
 		} else {
-			m_doc->beginMacro();
-
-			//if ( s )
-			//{
-			//	m_cursor.removeSelectedText();
-			//}
-
 			QString txt;
 
 			if ( d->hasFormat("text/plain") )
 				txt = d->text();
 			else if ( d->hasFormat("text/html") )
 				txt = d->html();
+
+			if (txt.isEmpty())
+				return;
+				
+			m_doc->beginMacro();
+
+			//if ( s )
+			//{
+			//	m_cursor.removeSelectedText();
+			//}
 
 			insertText(m_cursor, txt);
 
