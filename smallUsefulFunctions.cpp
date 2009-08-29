@@ -5,7 +5,7 @@ const QString EscapedChars="%&_";
 
 const QStringList refCommands = QStringList() << "\\ref" << "\\pageref" ;
 const QStringList labelCommands = QStringList() << "\\label" ;
-const QStringList citeCommands = QStringList() << "\\cite" << "\\nocite" ;
+const QStringList citeCommands = QStringList() << "\\cite" << "\\nocite" << "\\citeauthor" << "\\textcite" << "\\parencite" << "\\citetitle" << "\\footcite" << "\\nptextcite" ;
 const QStringList environmentCommands = QStringList() << "\\begin" << "\\end" << "\\newenvironment" << "\\renewenvironment";
 
 
@@ -218,41 +218,49 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 		case '%':
 			return NW_COMMENT; //return comment start
 		case '{':
+			if (reference!=-1)
+				reference=wordStartIndex+1;
 			break; //ignore
 		case '}':
-			if (refCommands.contains(lastCommand)){
-				wordStartIndex=reference;
-				--index;
-				return NW_REFERENCE;
-			}
-			if (labelCommands.contains(lastCommand)){
-				wordStartIndex=reference;
-				--index;
-				return NW_LABEL;
-			}
+			if (reference!=-1)
+				if (refCommands.contains(lastCommand)){
+					wordStartIndex=reference;
+					--index;
+					outWord=line.mid(reference,index-reference);
+					return NW_REFERENCE;
+				} else if (labelCommands.contains(lastCommand)){
+					wordStartIndex=reference;
+					--index;
+					outWord=line.mid(reference,index-reference);
+					return NW_LABEL;
+				} else if (citeCommands.contains(lastCommand)){
+					wordStartIndex=reference;
+					--index;
+					outWord=line.mid(reference,index-reference);
+					return NW_CITATION;
+				}
 			lastCommand="";
 			break;//command doesn't matter anymore
 		case '\\':
 			if (outWord.length()==1 || !EscapedChars.contains(outWord.at(1))) {
 				if (returnCommands) return NW_COMMAND;
-				if (!optionCommands.contains(lastCommand))
-				lastCommand=outWord;
+				if (!optionCommands.contains(lastCommand)) {
+					lastCommand=outWord;
+					if (refCommands.contains(lastCommand)||labelCommands.contains(lastCommand)||citeCommands.contains(lastCommand))
+						reference=index; //todo: support for nested brackets like \cite[\xy{\ab{s}}]{miau}
+				}
 				break;
 			} else ; //first character is escaped, fall through to default case
 		default:
-			if (outWord.contains("\\")||outWord.contains("\""))
-				outWord=latexToPlainWord(outWord); //remove special chars
-			if ((refCommands.contains(lastCommand)||labelCommands.contains(lastCommand))&&reference==-1){
-				reference=wordStartIndex;
-				break;
+			if (reference==-1) {
+				if (outWord.contains("\\")||outWord.contains("\""))
+					outWord=latexToPlainWord(outWord); //remove special chars
+				if (optionCommands.contains(lastCommand))
+					; //ignore command options
+				else if (environmentCommands.contains(lastCommand))
+					return NW_ENVIRONMENT;
+				else return NW_TEXT;
 			}
-			if (optionCommands.contains(lastCommand))
-				; //ignore command options
-			else if (environmentCommands.contains(lastCommand))
-				return NW_ENVIRONMENT;
-			else if (citeCommands.contains(lastCommand))
-				return NW_CITATION;
-			else return NW_TEXT;
 		}
 	}
 	return NW_NOTHING;

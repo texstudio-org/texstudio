@@ -556,7 +556,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				int l=rx.indexIn(lineText,start);
 				if (l==start+1) start=start+rx.cap(0).length();
 			} else if (status==NW_REFERENCE) {
-				QString ref=lineText.mid(wordstart,start-wordstart);
+				QString ref=word;//lineText.mid(wordstart,start-wordstart);
 				containedReferences.insert(ref,dlh);
 				int cnt=containedLabels.count(ref);
 				if(cnt>1) {
@@ -564,7 +564,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				}else if (cnt==1) line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
 				else line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMissingFormat));
 			} else if (status==NW_LABEL) {
-				QString ref=lineText.mid(wordstart,start-wordstart);
+				QString ref=word;//lineText.mid(wordstart,start-wordstart);
 				containedLabels.insert(ref,dlh);
 				int cnt=containedLabels.count(ref);
 				if(cnt>1) {
@@ -573,10 +573,25 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				// look for corresponding reeferences and adapt format respectively
 				containedLabels.updateByKeys(QStringList(ref),&containedReferences);
 			} else if (status==NW_CITATION) {
-				if (!bibTeXIds || !bibTeXIds->contains(word)) 
-					line.addOverlay(QFormatRange(wordstart,start-wordstart,citationMissingFormat));
-				else	
-					line.addOverlay(QFormatRange(wordstart,start-wordstart,citationPresentFormat));
+				if (bibTeXIds) {
+					QStringList citations=word.split(",");
+					int pos=wordstart;
+					foreach ( const QString &cit, citations) {
+						QString rcit =  cit;
+						//trim left (left spaces are ignored by \cite, right space not)
+						for (int j=0; j<cit.length();j++)
+							if (cit[j]!=' '){
+								if (j!=0) rcit=cit.mid(j);
+								break;
+							}
+						//check and highlight
+						if (bibTeXIds->contains(rcit)) 
+							line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationPresentFormat));
+						else	
+							line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationMissingFormat));
+						pos+=cit.length()+1;
+					}
+				}
 			} else if (status==NW_COMMENT) break;
 			else if (word.length()>=3 && !speller->check(word)) {
 				if(word.endsWith('.')) start--;
