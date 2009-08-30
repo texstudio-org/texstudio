@@ -239,7 +239,8 @@ void QDocumentSearchTest::next_sameText(){
 				ds->setReplaceText(cms[i].rt);
 			}
 			ds->next(cms[i].dir,false,cms[i].rep);
-			const char* errorMessage=QString("%1: %2 %3 %4  \"%5\" \"%6\" expected %7 %8 %9 %10 %11  %12").arg(i).arg(ds->cursor().lineNumber()).arg(ds->cursor().anchorColumnNumber()).arg(ds->cursor().columnNumber()).arg(ds->cursor().selectedText()).arg(ed->document()->text()).arg(cms[i].l).arg(cms[i].ax).arg(cms[i].cx).arg(sel).arg(cms[i].nt).arg(loop?"(highlight-run)":"").toLatin1().constData();
+			QByteArray emba=QString("%1: %2 %3 %4  \"%5\" \"%6\" expected %7 %8 %9 %10 %11  %12").arg(i).arg(ds->cursor().lineNumber()).arg(ds->cursor().anchorColumnNumber()).arg(ds->cursor().columnNumber()).arg(ds->cursor().selectedText()).arg(ed->document()->text()).arg(cms[i].l).arg(cms[i].ax).arg(cms[i].cx).arg(sel).arg(cms[i].nt).arg(loop?"(highlight-run)":"").toLatin1();//make sure the message stays in memory for the next few lines
+			const char* errorMessage=emba.constData();
 			QVERIFY2(ds->cursor().selectedText()== sel,errorMessage);
 			QVERIFY2(ds->cursor().lineNumber()== cms[i].l,errorMessage);
 			QVERIFY2(ds->cursor().columnNumber()== cms[i].cx,errorMessage);
