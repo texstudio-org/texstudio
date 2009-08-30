@@ -62,12 +62,28 @@ public:
 		editor->setCursor(cursor);//necessary to keep the cursor at the same place (but why???)
 	}
 
+	//selects an index in the completion suggestion list
 	void select(const QModelIndex &ind) {
 		if (!completer || !completer->list) return;
 		completer->list->setCurrentIndex(ind);
 		completer->selectionChanged(ind);
 	}
 
+	//moves the selection index to the next/previous delta-th entry in the suggestion list
+	bool selectDelta(const int delta){
+		if (!completer || !completer->list || !completer->list->isVisible()) {
+			resetBinding();
+			return false;
+		}
+		QModelIndex ind=completer->list->model()->index(completer->list->currentIndex().row()+delta,0,QModelIndex());
+		if (!ind.isValid()) {
+			if (delta<0) ind=completer->list->model()->index(0,0,QModelIndex());
+			else if (delta>0) ind=completer->list->model()->index(completer->list->model()->rowCount()-1,0,QModelIndex());
+		}
+		if (ind.isValid()) select(ind);
+		return true;
+	}
+	
 	bool completeCommonPrefix(){
 		QString my_curWord=getCurWord();
 		if (my_curWord.isEmpty()) return false;
@@ -151,41 +167,11 @@ public:
 			editor->setCursorPosition(curLine.lineNumber(),editor->cursor().columnNumber()+1);
 			if (editor->cursor().columnNumber()>maxWritten) resetBinding();
 			handled=true;
-		} else if (event->key()==Qt::Key_Up) {
-			if (!completer->list->isVisible()) {
-				resetBinding();
-				return false;
-			}
-			QModelIndex ind=completer->list->model()->index(completer->list->currentIndex().row()-1,0,QModelIndex());
-			if (ind.isValid()) select(ind);
-			return true;
-		} else if (event->key()==Qt::Key_Down) {
-			if (!completer->list->isVisible()) {
-				resetBinding();
-				return false;
-			}
-			QModelIndex ind=completer->list->model()->index(completer->list->currentIndex().row()+1,0,QModelIndex());
-			if (ind.isValid()) select(ind);
-			return true;
-		} else if (event->key()==Qt::Key_PageUp) {
-			if (!completer->list->isVisible()) {
-				resetBinding();
-				return false;
-			}
-			QModelIndex ind=completer->list->model()->index(completer->list->currentIndex().row()-5,0,QModelIndex());
-			if (!ind.isValid()) ind=completer->list->model()->index(0,0,QModelIndex());
-			if (ind.isValid()) select(ind);
-			return true;
-		} else if (event->key()==Qt::Key_PageDown) {
-			if (!completer->list->isVisible()) {
-				resetBinding();
-				return false;
-			}
-			QModelIndex ind=completer->list->model()->index(completer->list->currentIndex().row()+5,0,QModelIndex());
-			if (!ind.isValid()) ind=completer->list->model()->index(completer->list->model()->rowCount()-1,0,QModelIndex());
-			if (ind.isValid()) select(ind);
-			return true;
-		} else if (event->key()==Qt::Key_Home) {
+		} else if (event->key()==Qt::Key_Up) return selectDelta(-1);
+		else if (event->key()==Qt::Key_Down) return selectDelta(+1);
+		else if (event->key()==Qt::Key_PageUp) return  selectDelta(-5);
+		else if (event->key()==Qt::Key_PageDown) return  selectDelta(+5);
+		else if (event->key()==Qt::Key_Home) {
 			if (!completer->list->isVisible()) {
 				resetBinding();
 				return false;
@@ -226,7 +212,12 @@ public:
 					maxWritten=curStart+1;
 				} else {
 					insertCompletedWord();
-					curStart=editor->cursor().columnNumber();
+					QDocumentCursor edc=editor->cursor();
+					if (edc.hasSelection()) {
+						edc.removeSelectedText();
+						editor->setCursor(edc);
+					}
+					curStart=edc.columnNumber();
 					maxWritten=curStart+1;
 				}
 				editor->cursor().insertText(written);
