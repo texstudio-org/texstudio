@@ -304,6 +304,10 @@ void LatexOutputFilter::updateFileStackHeuristic(const QString &strLine, short &
 			//KILE_DEBUG() << "Update the partial filename " << strPartialFileName << endl;
 			strPartialFileName =  strPartialFileName + strLine.mid(index, i-index + 1);
 
+			if(strPartialFileName.isEmpty()){ // nothing left to do here
+			  continue;
+			}
+		
 			//FIXME: improve these heuristics
 			if((isLastChar && (i < 78)) || nextIsTerminator || fileExists(strPartialFileName)) {
 				m_stackFile.push(LOFStackItem(strPartialFileName));
@@ -347,7 +351,7 @@ void LatexOutputFilter::updateFileStackHeuristic(const QString &strLine, short &
 			//If this filename was pushed on the stack by the reliable ":<+-" method, don't pop
 			//a ":<-" will follow. This helps in preventing unbalanced ')' from popping filenames
 			//from the stack too soon.
-			if(!m_stackFile.top().reliable()) {
+			if(m_stackFile.count() > 1 && !m_stackFile.top().reliable()) {
 				m_stackFile.pop();
 			}
 			else {
@@ -363,7 +367,7 @@ void LatexOutputFilter::flushCurrentItem()
 	//KILE_DEBUG() << "==LatexOutputFilter::flushCurrentItem()================" << endl;
 	int nItemType = m_currentItem.type;
 
-	while((!fileExists(m_stackFile.top().file())) && (m_stackFile.count() > 1)) {
+	while( m_stackFile.count() > 0 && (!fileExists(m_stackFile.top().file())) && (m_stackFile.count() > 1)) {
 		m_stackFile.pop();
 	}
 
@@ -624,7 +628,7 @@ bool LatexOutputFilter::detectBadBoxLineNumber(QString & strLine, short & dwCook
 	static QRegExp reBadBoxLine("(.*) at line ([0-9]+)", Qt::CaseInsensitive);
 	//Use the following only, if you know how to get the source line for it.
 	// This is not simple, as TeX is not reporting it.
-	static QRegExp reBadBoxOutput("(.*)has occurred while \\output is active^", Qt::CaseInsensitive);
+	static QRegExp reBadBoxOutput("(.*)has occurred while \\\\output is active^", Qt::CaseInsensitive);
 
 	if(reBadBoxLines.indexIn(strLine) != -1) {
 		dwCookie = Start;
