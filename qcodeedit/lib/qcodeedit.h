@@ -73,7 +73,7 @@ class QCE_EXPORT QCodeEdit
 		static QCodeEdit* manager(QEditor *e);
 		static QEditor* managed(const QString& f);
 		
-	protected:
+	//protected:
 		QCodeEdit(QEditor *e, QPanelLayout *p);
 		QCodeEdit(QEditor *e, const QString& l);
 		

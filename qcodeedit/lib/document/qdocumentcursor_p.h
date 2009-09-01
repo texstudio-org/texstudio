@@ -100,7 +100,7 @@ class QCE_EXPORT QDocumentCursorHandle
 		void setPosition(int pos, int m);
 		bool movePosition(int offset, int op, int m);
 		
-		void insertText(const QString& s);
+		void insertText(const QString& s, bool keepAnchor = false);
 		
 		QChar nextChar() const;
 		QChar previousChar() const;
@@ -119,8 +119,8 @@ class QCE_EXPORT QDocumentCursorHandle
 		QString selectedText() const;
 		
 		void clearSelection();
-		void removeSelectedText();
-		void replaceSelectedText (const QString& newText);
+		void removeSelectedText(bool keepAnchor = false);
+		void replaceSelectedText(const QString& text);
 		
 		void select(QDocumentCursor::SelectionType t);
 		void setSelectionBoundary(const QDocumentCursor& c);
@@ -128,9 +128,9 @@ class QCE_EXPORT QDocumentCursorHandle
 		bool isWithinSelection(const QDocumentCursor& c) const;
 		QDocumentCursor intersect(const QDocumentCursor& c) const;
 		
+		void beginBoundary(int& begline, int& begcol) const;
+		void endBoundary(int& endline, int& endcol) const;
 		void substractBoundaries(int lbeg, int cbeg, int lend, int cend);
-		void leftBoundaries(int& begline, int& begcol) const;
-		void rightBoundaries(int& endline, int& endcol) const;
 		void boundaries(int& begline, int& begcol, int& endline, int& endcol) const;
 		void intersectBoundaries(int& lbeg, int& cbeg, int& lend, int& cend) const;
 		void intersectBoundaries(QDocumentCursorHandle *h, int& lbeg, int& cbeg, int& lend, int& cend) const;

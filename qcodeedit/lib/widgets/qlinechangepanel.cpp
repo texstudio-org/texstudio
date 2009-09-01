@@ -71,11 +71,10 @@ bool QLineChangePanel::paint(QPainter *p, QEditor *e)
 {
 	if ( !e || !e->document() )
 		return true;
-
+	
 	const QFontMetrics fm( e->document()->font() );
-
+	
 	int n, posY,
-//		maxCount = 0,
 		as = fm.ascent(),
 		ls = fm.lineSpacing(),
 		pageBottom = e->viewport()->height(),

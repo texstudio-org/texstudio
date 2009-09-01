@@ -252,9 +252,8 @@ const QLanguageFactory::LangData& QLanguageFactory::languageData(const QString& 
 */
 void QLanguageFactory::addLanguageDefinition(QLanguageDefinition *l)
 {
-	// remove unused argument warning
-	(void) l;
-
+	Q_UNUSED(l)
+	
 	qWarning("New design does not allow this sorry...");
 }
 

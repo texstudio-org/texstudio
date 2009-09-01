@@ -430,14 +430,13 @@ QList<int> QFormatConfig::modifiedFormats() const
 
 void QFormatConfig::hideEvent(QHideEvent *e)
 {
-	//remove unused argument warning
-	(void) e;
-
+	Q_UNUSED(e)
+	
 	if ( !m_autonomous )
 		return;
-
+	
 	QList<int> hasModif = modifiedFormats();
-
+	
 	if ( hasModif.count() )
 	{
 		// TODO : provide custom widget to allow user to select which items should be saved?

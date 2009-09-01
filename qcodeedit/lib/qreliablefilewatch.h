@@ -58,8 +58,7 @@ class QCE_EXPORT QReliableFileWatch : protected QFileSystemWatcher
 		struct Watch
 		{
 			char state;
-			quint64 size;
-			quint16 checksum;
+			qint64 size;
 			QList< QPointer<QObject> > recipients;
 		};
 		

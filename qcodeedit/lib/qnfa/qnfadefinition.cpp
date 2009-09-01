@@ -126,17 +126,17 @@ class QNFANotifier : public QNFAMatchHandler
 
 				m_parens << par;
 			}
-
+			
 			if ( action & QNFAAction::Highlight )
 			{
-				// int i = qMin(pos, 0);
-				int max = qMin(pos + len, m_formats.count());
-
-				while ( pos < max )
-					m_formats[pos++] = action & QNFAAction::FormatMask;
+				int i = qMax(pos, 0);
+				int max = qMin(i + len, m_formats.count());
+				
+				while ( i < max )
+					m_formats[i++] = action & QNFAAction::FormatMask;
 			}
 		}
-
+		
 	private:
 		QDocumentLine m_line;
 		QVector<int> m_formats;
@@ -1352,11 +1352,10 @@ QString QNFADefinition::indent(const QDocumentCursor& c)
 	for ( pos = 0; pos < max; pos++ )
 		if ( !s.at(pos).isSpace() )
 			break;
-
+	
 	int indent = 0;
-//	bool open = false;
 	QString spaces = s.left(pos);
-
+	
 	foreach ( QParenthesis p, b.parentheses() )
 	{
 		if ( p.offset >= max )
@@ -1524,12 +1523,12 @@ void QNFADefinition::expand(QDocument *d, int line)
 
 	if ( !b.isValid() || !b.hasFlag(QDocumentLine::CollapsedBlockStart) )
 		return;
-
+	
 	bool open = false;
 	int end = findBlockEnd(d, line, &open);
-
-	int /* depth = 1, */ count = end - line;
-
+	
+	int count = end - line;
+	
 	if ( open )
 		--count;
 
@@ -1589,15 +1588,14 @@ void QNFADefinition::collapse(QDocument *d, int line)
 
 	if ( !b.isValid() || b.hasFlag(QDocumentLine::CollapsedBlockStart) )
 		return;
-
+	
 	//qDebug("collapse line %i", line);
-
+	
 	bool open = false;
 	int end = findBlockEnd(d, line, &open);
-
+	
 	int count = end - line;
-//	int	indent = 0;
-
+	
 	if ( open )
 		--count;
 
@@ -1679,8 +1677,8 @@ void QNFADefinition::collapse(QDocument *d, int line)
 */
 int QNFADefinition::blockFlags(QDocument *d, int line, int depth) const
 {
-	// remove unused arguments warning
-	(void) depth;
+	Q_UNUSED(depth)
+	
 	QDocumentLine b = d->line(line);
 
 	if ( !b.isValid() )
@@ -1731,9 +1729,9 @@ void QNFADefinition::addContext(const QString& id, QNFA *nfa)
 
 void QNFADefinition::flushEmbedRequests(const QString& lang)
 {
-	//qDebug("flushing requests...");
+	//qDebug("flushing requests for : %s", qPrintable(lang));
 	QHash<QString, EmbedRequestList>::iterator it;
-
+	
 	it = m_pendingEmbeds.begin();
 
 	while ( it != m_pendingEmbeds.end() )
@@ -1746,7 +1744,7 @@ void QNFADefinition::flushEmbedRequests(const QString& lang)
 				(
 					(r.count() == lang.count())
 				||
-					(r.at(lang.count() + 1) == ':')
+					(r.at(lang.count()) == ':')
 				)
 			)
 		{

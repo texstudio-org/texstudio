@@ -79,10 +79,9 @@ QLanguageDefinition::~QLanguageDefinition()
 */
 int QLanguageDefinition::tokenize(QDocument *d, int line, int count)
 {
-	//remove unused argument warning
-	(void) d;
-	(void) line;
-
+	Q_UNUSED(d)
+	Q_UNUSED(line)
+	
 	return count;
 }
 

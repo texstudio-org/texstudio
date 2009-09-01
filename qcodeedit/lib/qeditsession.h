@@ -28,6 +28,7 @@
 class QEditor;
 
 class QDocument;
+class QDocumentCursor;
 class QDocumentCommand;
 
 class QDataStream;
@@ -37,10 +38,21 @@ class QCE_EXPORT QEditSession : public QObject
 	Q_OBJECT
 	
 	public:
+		enum SessionFormat
+		{
+			QCESession0,
+			QCESession1,
+			
+			FormatCount
+		};
+		
 		QEditSession(QObject *p = 0);
+		QEditSession(const QString& f, QObject *p = 0);
 		virtual ~QEditSession();
 		
 		int autoUpdateInterval() const;
+		
+		int format() const;
 		
 		QString fileName() const;
 		
@@ -52,17 +64,33 @@ class QCE_EXPORT QEditSession : public QObject
 		
 		virtual void setAutoUpdateInterval(int ms);
 		
-		virtual void setFileName(const QString& filename);
+		virtual void setFormat(int fmt);
+		
+		virtual void setFileName(const QString& filename, bool restore = false);
+		
+		virtual void clear(bool cleanup = false);
+		
+		virtual void save();
+		virtual void restore();
 		
 		virtual void save(QDataStream& s);
-		virtual void restore(const QDataStream& s);
+		virtual void restore(QDataStream& s);
+		
+	signals:
+		void restored(QEditor *e);
+		
+	protected slots:
+		virtual void destroyed(QObject *o);
+		
+		virtual void saved(QEditor *e, const QString& fn);
+		virtual void loaded(QEditor *e, const QString& fn);
 		
 	protected:
-		virtual void saved(QEditor *e);
 		virtual void timerEvent(QTimerEvent *e);
 		
 		virtual QEditor* createEditor();
 		
+	public:
 		struct Cursor
 		{
 			Cursor()
@@ -76,43 +104,35 @@ class QCE_EXPORT QEditSession : public QObject
 			
 			Cursor(const QDocumentCursor& c);
 			
+			QDocumentCursor toDocumentCursor(QDocument *d) const;
+			
 			int beginLine;
 			int beginColumn;
 			int endLine;
 			int endColumn;
 		};
 		
-		struct Command
-		{
-			enum Type
-			{
-				Nop,
-				Insert,
-				Remove
-			};
-			
-			int type;
-			Cursor cursor;
-			QVariant data;
-		};
-		
 		struct Document
 		{
+			quint8 flags;
 			QString fileName;
 			QDateTime timeStamp;
 			
+			int scrollX, scrollY;
+			
 			QList<Cursor> cursors;
 			QHash<int, QList<int> > marks;
-			
-			int commandIndex;
-			QStack<Command> commands;
 		};
+		
+	protected:
+		virtual void update(QEditor *e, Document *d);
 		
 		int m_id;
 		int m_delay;
+		int m_format;
 		QString m_fileName;
 		
-		QList< QPointer<QEditor*> > m_editors;
+		QList<QEditor*> m_editors;
 		QList<Document*> m_sessionData;
 };
 

@@ -1789,7 +1789,7 @@ void QDocumentLineHandle::updateWrap() const
 		{
 			c = m_text.at(idx);
 			fmt = idx < composited.count() ? composited[idx] : 0;
-			QFontMetrics fm(fonts.at(fmt));
+			QFontMetrics fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
 
 			if ( c.unicode() == '\t' )
 			{
@@ -1830,7 +1830,7 @@ void QDocumentLineHandle::updateWrap() const
 
 			c = m_text.at(idx);
 			fmt = idx < composited.count() ? composited[idx] : 0;
-			QFontMetrics fm(fonts.at(fmt));
+			QFontMetrics fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
 
 			if ( c.unicode() == '\t' )
 			{
@@ -1921,7 +1921,8 @@ int QDocumentLineHandle::cursorToX(int cpos) const
 	while ( idx < cpos )
 	{
 		QChar c = m_text.at(idx);
-		QFontMetrics fm(fonts.at(idx < composited.count() ? composited[idx] : 0));
+		int fmt = idx < composited.count() ? composited[idx] : 0;
+		QFontMetrics fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
 
 		if ( c == '\t' )
 		{
@@ -2014,7 +2015,8 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 
 		while ( idx < m_text.length() )
 		{
-			QFontMetrics fm(fonts.at(idx < composited.count() ? composited[idx] : 0));
+			int fmt = idx < composited.count() ? composited[idx] : 0;
+			QFontMetrics fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
 
 			if ( m_text.at(idx) == '\t' )
 			{
@@ -2314,11 +2316,11 @@ void QDocumentLineHandle::addOverlay(const QFormatRange& over)
 
 void QDocumentLineHandle::removeOverlay(const QFormatRange& over)
 {
-//	int i = m_overlays.removeAll(over);
-	m_overlays.removeAll(over);
-
+	int i = m_overlays.removeAll(over);
+	
 	//setFlag(QDocumentLine::LayoutDirty, true);
-	setFlag(QDocumentLine::FormatsApplied, false);
+	if ( i )
+		setFlag(QDocumentLine::FormatsApplied, false);
 	//applyOverlays();
 }
 
@@ -2840,7 +2842,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				showTrailing = QDocument::showSpaces() & QDocument::ShowTrailing;
 
 		//const int fns = nextNonSpaceChar(0);
-		int indent = qMax(m_indent, QDocumentPrivate::m_leftMargin);
+		int indent = qMax(0, m_indent) + QDocumentPrivate::m_leftMargin;
 
 		int cidx = 0;
 		int rngIdx = 0;
@@ -2869,10 +2871,12 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 				}
 
+				/*
 				if ( pastLead && (r.format & 0x4000) )
 				{
 					indent = QDocumentPrivate::m_leftMargin;
 				}
+				*/
 
 				++wrap;
 				column = 0;
@@ -4449,7 +4453,7 @@ void QDocumentCursorHandle::moveTo(int line, int column)
 	refreshColumnMemory();
 }
 
-void QDocumentCursorHandle::insertText(const QString& s)
+void QDocumentCursorHandle::insertText(const QString& s, bool keepAnchor)
 {
 	if ( !m_doc || s.isEmpty() || m_doc->line(m_begLine).isNull() )
 		return;
@@ -4459,7 +4463,7 @@ void QDocumentCursorHandle::insertText(const QString& s)
 	if ( sel )
 	{
 		beginEditBlock();
-		removeSelectedText();
+		removeSelectedText(keepAnchor);
 	}
 
 	QDocumentCommand *command = new QDocumentInsertCommand(
@@ -4468,7 +4472,8 @@ void QDocumentCursorHandle::insertText(const QString& s)
 										s,
 										m_doc
 									);
-
+	
+	command->setKeepAnchor(keepAnchor);
 	command->setTargetCursor(this);
 	execute(command);
 
@@ -4781,6 +4786,43 @@ void QDocumentCursorHandle::clearSelection()
 	}
 }
 
+void QDocumentCursorHandle::replaceSelectedText(const QString& text)
+{
+	int begline, begcol;
+	beginBoundary(begline, begcol);
+	
+	//bool atStart = (begline == m_begLine && begcol == m_begOffset);
+	
+	if ( text.isEmpty() )
+	{
+		removeSelectedText();
+	} else {
+		insertText(text, true);
+		
+		/*
+			Adjust selection around the new text 
+		*/
+		m_endLine=m_begLine;
+		m_endOffset=m_begOffset;
+		m_begLine=begline;
+		m_begOffset=begcol;
+		/*
+		if ( atStart )
+		{
+			m_endLine = m_begLine;
+			m_begLine = begline;
+			m_endOffset = m_begOffset;
+			m_begOffset = begcol;
+		} else {
+			m_endLine = begline;
+			m_endOffset = begcol;
+		}
+		*/
+	}
+	
+	//qDebug("[%i, %i] => ( (%i, %i), (%i, %i) )", begline, begcol, m_begLine, m_begOffset, m_endLine, m_endOffset);
+}
+
 void QDocumentCursorHandle::select(QDocumentCursor::SelectionType t)
 {
 	if ( !m_doc || !m_doc->line(m_begLine).isValid() )
@@ -4880,9 +4922,14 @@ bool QDocumentCursorHandle::isWithinSelection(const QDocumentCursor& c) const
 
 }
 
-void QDocumentCursorHandle::leftBoundaries(int& begline, int& begcol) const{
-	if ( m_begLine == m_endLine )
-	{
+/*
+	beware when modifying these as their current form handle the special
+	case of no selection (m_endLine == -1) and a hasty change may break
+	that behavior : no selection -> both boundary are the cursor pos = (m_begLine, m_begOffset)
+*/
+void QDocumentCursorHandle::beginBoundary(int& begline, int& begcol) const
+{
+	if ( m_begLine == m_endLine ) {
 		begline = m_begLine;
 		if ( m_begOffset < m_endOffset /*&& (m_begLine!=-1)*/)
 			begcol = m_begOffset;
@@ -4896,7 +4943,9 @@ void QDocumentCursorHandle::leftBoundaries(int& begline, int& begcol) const{
 		begcol = m_endOffset;
 	}
 }
-void QDocumentCursorHandle::rightBoundaries(int& endline, int& endcol) const{
+
+void QDocumentCursorHandle::endBoundary(int& endline, int& endcol) const
+{
 	if ( m_begLine == m_endLine )
 	{
 		endline = m_endLine;
@@ -4915,8 +4964,25 @@ void QDocumentCursorHandle::rightBoundaries(int& endline, int& endcol) const{
 
 void QDocumentCursorHandle::boundaries(int& begline, int& begcol, int& endline, int& endcol) const
 {
-	leftBoundaries(begline,begcol);
-	rightBoundaries(endline,endcol);
+	beginBoundary(begline, begcol);
+	endBoundary(endline, endcol);
+	
+	/*
+	if ( m_begLine == m_endLine )
+	{
+		endline = m_endLine;
+		if ( m_begOffset < m_endOffset //&& (m_endOffset!=-1)\\)
+			endcol = m_endOffset;
+		else
+			endcol = m_begOffset;
+	} else if ( m_begLine < m_endLine) {
+		endline = m_endLine;
+		endcol = m_endOffset;
+	} else {
+		endline = m_begLine;
+		endcol = m_begOffset;
+	}
+	*/
 }
 
 void QDocumentCursorHandle::substractBoundaries(int lbeg, int cbeg, int lend, int cend)
@@ -5118,7 +5184,7 @@ QDocumentCursor QDocumentCursorHandle::intersect(const QDocumentCursor& c) const
 	return QDocumentCursor();
 }
 
-void QDocumentCursorHandle::removeSelectedText()
+void QDocumentCursorHandle::removeSelectedText(bool keepAnchor)
 {
 	if ( !m_doc )
 		return;
@@ -5139,9 +5205,7 @@ void QDocumentCursorHandle::removeSelectedText()
 										m_endOffset,
 										m_doc
 									);
-
-		m_endLine = -1;
-		m_endOffset = -1;
+		
 	} else if ( m_begLine > m_endLine ) {
 		c = new QDocumentEraseCommand(
 										m_endLine,
@@ -5150,12 +5214,10 @@ void QDocumentCursorHandle::removeSelectedText()
 										m_begOffset,
 										m_doc
 									);
-
-		m_begLine = m_endLine;
-		m_begOffset = m_endOffset;
-
-		m_endLine = -1;
-		m_endOffset = -1;
+		
+		//m_begLine = m_endLine;
+		//m_begOffset = m_endOffset;
+		
 	} else {
 		c = new QDocumentEraseCommand(
 										m_begLine,
@@ -5164,28 +5226,15 @@ void QDocumentCursorHandle::removeSelectedText()
 										qMax(m_begOffset, m_endOffset),
 										m_doc
 									);
-
-		m_begOffset = qMin(m_begOffset, m_endOffset);
-		m_endLine = -1;
-		m_endOffset = -1;
+		
+		//m_begOffset = qMin(m_begOffset, m_endOffset);
+		//m_endLine = -1;
+		//m_endOffset = -1;
 	}
 
+	c->setKeepAnchor(keepAnchor);
 	c->setTargetCursor(this);
 	execute(c);
-}
-
-void QDocumentCursorHandle::replaceSelectedText (const QString& newText){
-	int beginLine, beginOffset;
-	leftBoundaries(beginLine,beginOffset);
-	if (newText.isEmpty()) removeSelectedText();
-	else {
-		insertText(newText); //also removes but doesn't seem to work with empty text?
-		//select newText
-		m_endLine=m_begLine;
-		m_endOffset=m_begOffset;
-		m_begLine=beginLine;
-		m_begOffset=beginOffset;
-	}
 }
 
 //////////////////
@@ -5383,11 +5432,13 @@ void QDocumentPrivate::execute(QDocumentCommand *cmd)
 	
 	m_lastModified = QDateTime::currentDateTime();
 	
-	//qDebug("adding a command...");
-
-	//cmd->setTarget(m_doc);
-
+	if ( m_macros.count() )
+	{
+		cmd->redo();
+		m_macros.top()->addCommand(cmd);
+	} else {
 	m_commands.push(cmd);
+}
 }
 
 void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
@@ -6133,14 +6184,20 @@ QDocumentLineHandle* QDocumentPrivate::previous(const QDocumentLineHandle *l) co
 
 void QDocumentPrivate::beginChangeBlock()
 {
-	//qDebug("<macro>");
-	m_commands.beginMacro(QString());
+	QDocumentCommandBlock *b = new QDocumentCommandBlock(m_doc);
+	
+	m_macros.push(b);
 }
 
 void QDocumentPrivate::endChangeBlock()
 {
-	m_commands.endMacro();
-	//qDebug("</macro>");
+	if ( !m_macros.count() )
+		return;
+	
+	QDocumentCommandBlock *b = m_macros.pop();
+	b->setWeakLock(true);
+	
+	execute(b);
 }
 
 /*!

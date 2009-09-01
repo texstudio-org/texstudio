@@ -100,11 +100,12 @@ void QSearchReplacePanel::editorChange(QEditor *e)
 
 bool QSearchReplacePanel::forward(QMouseEvent *e)
 {
+	Q_UNUSED(e)
+	
 	/*
 		This panel does not need mouse events to be forwarded to the editor.
 		Even more, it requires them not to be forwarded...
 	*/
-	Q_UNUSED(e);
 	return false;
 }
 

@@ -252,47 +252,47 @@ bool QDocumentCursor::isNull() const
 	return !m_handle || !m_handle->document() || !line().isValid();
 }
 
-/*!
-  Returns if my right boundary is larger (line/offset) than c
-*/
-bool QDocumentCursor::rightBoundaryLarger (const QDocumentCursor& c) const{
+bool QDocumentCursor::beginBoundaryLarger (const QDocumentCursor& c) const{
 	if (!m_handle || !c.m_handle) return false;
 	int line1, col1;
-	m_handle->rightBoundaries(line1,col1);
+	m_handle->beginBoundary(line1,col1);
 	int line2, col2;
-	c.m_handle->rightBoundaries(line2,col2);
+	c.m_handle->beginBoundary(line2,col2);
 	if (line1==line2)
 		return col1>col2;
 	else 
 		return line1>line2;	
 }
-bool QDocumentCursor::leftBoundaryLarger (const QDocumentCursor& c) const{
+/*!
+  Returns if my right boundary is larger (line/offset) than c
+*/
+bool QDocumentCursor::endBoundaryLarger (const QDocumentCursor& c) const{
 	if (!m_handle || !c.m_handle) return false;
 	int line1, col1;
-	m_handle->leftBoundaries(line1,col1);
+	m_handle->endBoundary(line1,col1);
 	int line2, col2;
-	c.m_handle->leftBoundaries(line2,col2);
+	c.m_handle->endBoundary(line2,col2);
 	if (line1==line2)
 		return col1>col2;
 	else 
 		return line1>line2;	
 }
 
-void QDocumentCursor::leftBoundaries(int& begline, int& begcol) const{
+void QDocumentCursor::beginBoundary(int& begline, int& begcol) const{
 	if (!m_handle) {
 		begline=-1;
 		begcol=-1;
 		return;
 	}
-	m_handle->leftBoundaries(begline, begcol);
+	m_handle->beginBoundary(begline, begcol);
 }
-void QDocumentCursor::rightBoundaries(int& endline, int& endcol) const{
+void QDocumentCursor::endBoundary(int& endline, int& endcol) const{
 	if (!m_handle) {
 		endline=-1;
 		endcol=-1;
 		return;
 	}
-	m_handle->rightBoundaries(endline, endcol);
+	m_handle->endBoundary(endline, endcol);
 }
 
 
@@ -605,19 +605,23 @@ void QDocumentCursor::eraseLine()
 /*!
 	\brief insert a new line at the cursor position
 */
-void QDocumentCursor::insertLine()
+void QDocumentCursor::insertLine(bool keepAnchor)
 {
 	if ( m_handle )
-		m_handle->insertText("\n");
+		m_handle->insertText("\n", keepAnchor);
 }
 
 /*!
 	\brief insert some text at the cursor position
+	
+	Selected text will be removed before insertion happens.
+	
+	\note Nothing happens if \a s is empty
 */
-void QDocumentCursor::insertText(const QString& s)
+void QDocumentCursor::insertText(const QString& s, bool keepAnchor)
 {
 	if ( m_handle )
-		m_handle->insertText(s);
+		m_handle->insertText(s, keepAnchor);
 }
 
 /*!
@@ -662,9 +666,22 @@ void QDocumentCursor::removeSelectedText()
 		m_handle->removeSelectedText();
 }
 
-void QDocumentCursor::replaceSelectedText (const QString& newText){
-	if ( m_handle ) 
-		m_handle->replaceSelectedText(newText);
+/*!
+	\brief Replace the selected text
+	
+	This method differs from insertText() in two ways :
+	<ul>
+		<li>if \a text is empty the selection WILL be removed
+		<li>after the replacement happens this command will
+		cause the cursor to select the new text (note that this
+		information is NOT preserved by the undo/redo stack
+		however).
+	</ul>
+*/
+void QDocumentCursor::replaceSelectedText(const QString& text)
+{
+	if ( m_handle )
+		m_handle->replaceSelectedText(text);
 }
 
 /*!
@@ -811,6 +828,13 @@ void QDocumentCursor::select(SelectionType t)
 
 /*!
 	\brief Set the selection boundary
+	
+	Select text between the current cursor anchor and the one
+	of \a c.
+	
+	\note We mean ANCHOR. If the cursor already has a selection the
+	anchor will not change, but the position will be set to that of
+	\a c.
 */
 void QDocumentCursor::setSelectionBoundary(const QDocumentCursor& c)
 {

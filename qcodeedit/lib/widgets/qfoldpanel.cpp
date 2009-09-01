@@ -131,11 +131,10 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 		pos,
 		depth = 0,
 		max = doc->lines(),
-//		h = fm.height(),
 		ls = fm.lineSpacing(),
 		pageBottom = e->viewport()->height(),
 		contentsY = e->verticalOffset();
-
+	
 	pos = - contentsY;
 
 	//qDebug("beg pos : %i", pos);
