@@ -98,6 +98,8 @@ void QGotoLinePanel::editorChange(QEditor *e)
 
 bool QGotoLinePanel::forward(QMouseEvent *e)
 {
+	Q_UNUSED(e)
+	
 	/*
 		This panel does not need mouse events to be forwarded to the editor.
 		Even more, it requires them not to be forwarded...
@@ -107,6 +109,8 @@ bool QGotoLinePanel::forward(QMouseEvent *e)
 
 void QGotoLinePanel::showEvent(QShowEvent *e)
 {
+	Q_UNUSED(e)
+	
 	spLine->setFocus();
 	spLine->selectAll();
 }

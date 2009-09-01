@@ -295,10 +295,8 @@ void QCodeCompletionEngine::complete(const QDocumentCursor& c, const QString& tr
 	//QCodeBuffer buffer(c.document()->text());
 	complete(&buffer, trigger);
 	#else
-	// remove unused argument warnings
-	(void) c;
-	(void) trigger;
-
+	Q_UNUSED(c)
+	Q_UNUSED(trigger)
 	qWarning("From complete(QDocumentCursor, QString)");
 	qWarning("QCodeCompletionEngine is not self-sufficient : subclasses should "
 			"reimplement at least on of the complete() method...");
@@ -311,10 +309,9 @@ void QCodeCompletionEngine::complete(const QDocumentCursor& c, const QString& tr
 */
 void QCodeCompletionEngine::complete(QCodeStream *s, const QString& trigger)
 {
-	// remove unused argument warnings
-	(void) s;
-	(void) trigger;
-
+	Q_UNUSED(s)
+	Q_UNUSED(trigger)
+	
 	qWarning("From complete(QCodeStream*, QString)");
 	qWarning("QCodeCompletionEngine is not self-sufficient : subclasses should"
 			"reimplement at least on of the complete() method...");

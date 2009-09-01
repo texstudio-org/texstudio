@@ -362,6 +362,8 @@ void match(QNFAMatchContext *lexer, const QChar *d, int length, QNFAMatchNotifie
 								
 								if ( chain->type & Exclusive )
 									index = idx;
+								else
+									di -= idx - index;
 								
 								--index;
 								--di;
@@ -569,6 +571,12 @@ QNFA* context(const QString& start, const QString& stop, const QString&, int act
 {
 	QNFA *nfa, *end, *beg = sequence(start.constData(), start.length(), &end, cs);
 	
+	if ( !beg )
+	{
+		qWarning("Invalid context start sequence.");
+		return 0;
+	}
+	
 	nfa = new QNFA;
 	nfa->type = ContextBegin;
 	nfa->actionid = action;
@@ -583,6 +591,15 @@ QNFA* context(const QString& start, const QString& stop, const QString&, int act
 	end = nfa;
 	
 	QNFA *endmark, *begendmark = sequence(stop.constData(), stop.length(), &endmark, cs);
+	
+	if ( !begendmark )
+	{
+		delete beg;
+		delete end;
+		
+		qWarning("Invalid context stop sequence.");
+		return 0;
+	}
 	
 	nfa = new QNFA;
 	nfa->type = ContextEnd;
@@ -615,6 +632,13 @@ void addWord(QNFA *lexer, const QString& w, int action, bool cs)
 	QNFA *nfa, *word, *end;
 	
 	word = sequence(w.constData(), w.length(), &end, cs);
+	
+	if ( !word )
+	{
+		qWarning("Invalid word regex.");
+		return;
+	}
+	
 	word->assertion |= WordStart;
 	
 	nfa = new QNFA;
@@ -638,6 +662,12 @@ void addSequence(QNFA *lexer, const QString& w, int action, bool cs)
 	QNFA *seq, *end, *nfa;
 	
 	seq = sequence(w.constData(), w.length(), &end, cs);
+	
+	if ( !seq )
+	{
+		qWarning("Invalid sequence regexp.");
+		return;
+	}
 	
 	nfa = new QNFA;
 	nfa->type = Match;

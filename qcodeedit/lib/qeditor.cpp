@@ -112,33 +112,41 @@
 
 */
 
-
-/*!
-	\class QEditor::InputBinding
-	\brief A class designed to allow extending user input in a transparent way
-
-	An input binding, when set to an editor, can intercept all the events the
-	editor receive and radically change the behavior.
-
-	The main purpose of this class is twofold :
-	<ul>
-	<li>Allow vi-like (or emacs-like, ...) editing to be implemented with little extra work.
-	And allow the user to easily switch between input modes</li>
-	<li>Allow applications using QCE to easily add extra features (e.g extended code
-	navigation within projects, jump to documentation, ...) with little extra work</li>
-	</ul>
-*/
-
 /*!
 	\struct QEditor::PlaceHolder
 	\brief A small structure holding placeholder data
 
 	Placeholders are basically lists of cursors. When several palceholders coexist, it is
 	possible to navigate among them using the key assigned to that function by the current
-	input binding (tab and SHIFT+tab by default).
+	input binding (CTRL+arrows by default).
 
 	Each placeholder consist of a primary cursor and a list of mirrors (modeling the internals
 	of QEditor and allowing extended snippet replacements easily).
+	
+	Additionaly a placeholder can have an Affector which allows the text of the mirrors to be
+	modified in any imaginable way
+*/
+
+/*!
+	\class QEditor::PlaceHolder::Affector
+	\brief A small class allowing "placeholder scripting"
+	
+	The purpose of this class is to affect/process/reformat (whichever word you understand/like
+	most) the content of placeholder mirrors.
+	
+	The main placeholder instance (primary cursor) will always contain the text typed by the user,
+	only mirrors can be affected.
+	
+	To allow a large panel of processing to be done the affector is passed the following data :
+	<ul>
+		<li>A stringlist containing placeholder contents (primary cursor of all placeholders present in the editor)
+		<li>The index of the current placeholder among these
+		<li>The key event leading to a modification of the current placeholder
+		<li>The index of the current mirror
+		<li>A reference to the text of that placeholder mirror. This text has already been modified according
+		to the key event. The original text can be retrieved from the first argument (stringlist). This text
+		can be modified in any way you see fit or left as it is.
+	</ul>
 */
 
 ////////////////////////////////////////////////////////////////////////
@@ -387,7 +395,6 @@ QEditor::QEditor(bool actions, QWidget *p)
 	m_saveState = Undefined;
 
 	init(actions);
-	setToolTip("Test");
 }
 
 
@@ -411,7 +418,6 @@ QEditor::QEditor(const QString& s, QWidget *p)
 	init();
 
 	setText(s);
-	setToolTip("Test");
 }
 
 /*!
@@ -432,9 +438,8 @@ QEditor::QEditor(const QString& s, bool actions, QWidget *p)
 	m_saveState = Undefined;
 
 	init(actions);
-
+	
 	setText(s);
-	setToolTip("Test");
 }
 
 /*!
@@ -958,7 +963,6 @@ void QEditor::save()
 
 	emit saved(this, fileName());
 	m_saveState = Saved;
-
 	
 	QTimer::singleShot(100, this, SLOT( reconnectWatcher() ));
 	
@@ -1374,9 +1378,8 @@ void QEditor::removeAction(QAction *a, const QString& menu, const QString& toolb
 		toolbars[toolbar]->removeAction(a);
 	}
 	#else
-	// remove unused argument warnings
-	(void) menu;
-	(void) toolbar;
+	Q_UNUSED(menu)
+	Q_UNUSED(toolbar)
 	#endif
 }
 
@@ -1505,6 +1508,8 @@ void QEditor::load(const QString& file, QTextCodec* codec)
 	}
 
 	setFileName(file);
+	
+	emit loaded(this, file);
 }
 
 /*!
@@ -1595,7 +1600,7 @@ QList<QEditorInputBindingInterface*> QEditor::inputBindings() const
 }
 
 /*!
-	\brief Set the current input binding
+	\brief Add an input binding
 */
 void QEditor::addInputBinding(QEditorInputBindingInterface *b)
 {
@@ -1621,7 +1626,7 @@ void QEditor::addInputBinding(QEditorInputBindingInterface *b)
 }
 
 /*!
-	\brief Set the current input binding
+	\brief Remove an input binding
 */
 void QEditor::removeInputBinding(QEditorInputBindingInterface *b)
 {
@@ -1807,6 +1812,17 @@ void QEditor::setCursor(const QDocumentCursor& c)
 	m_cursor.setAutoUpdated(true);
 	clearCursorMirrors();
 
+	if ( m_curPlaceHolder != -1 )
+	{
+		const PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
+		
+		if ( !ph.cursor.isWithinSelection(m_cursor) )
+		{
+			m_curPlaceHolder = -1;
+			viewport()->update();
+		}
+	}
+	
 	emitCursorPositionChanged();
 
 	setFlag(CursorOn, true);
@@ -1863,6 +1879,8 @@ QDocumentCursor QEditor::cursorMirror(int i) const
 */
 void QEditor::clearPlaceHolders()
 {
+	bool updateView = m_placeHolders.count() && m_curPlaceHolder != -1;
+	
 	m_curPlaceHolder = -1;
 
 	for ( int i = 0; i < m_placeHolders.count(); ++i )
@@ -1880,6 +1898,10 @@ void QEditor::clearPlaceHolders()
 	}
 
 	m_placeHolders.clear();
+	
+	if ( updateView )
+		viewport()->update();
+	
 }
 
 /*!
@@ -1898,12 +1920,12 @@ void QEditor::addPlaceHolder(const PlaceHolder& p, bool autoUpdate)
 
 	PlaceHolder& ph = m_placeHolders.last();
 
-	ph.cursor.setAutoUpdated(true);
+	ph.cursor.setAutoUpdated(autoUpdate);
 	ph.cursor.movePosition(ph.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 
 	for ( int i = 0; i < ph.mirrors.count(); ++i )
 	{
-		ph.mirrors[i].setAutoUpdated(true);
+		ph.mirrors[i].setAutoUpdated(autoUpdate);
 		ph.mirrors[i].movePosition(ph.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 	}
 }
@@ -1918,19 +1940,34 @@ void QEditor::addPlaceHolderMirror(int placeHolderId, const QDocumentCursor& c){
 	ph.mirrors.last().setAutoUpdated(true);
 	ph.mirrors.last().movePosition(ph.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 }
-void QEditor::removePlaceHolder(int id){
-	if (id<0 || id>=m_placeHolders.count()) return;
-	if (id==m_curPlaceHolder) 
-		clearCursorMirrors();
 
-	for (int i=0;i<m_placeHolders[id].mirrors.count();i++)
-		m_placeHolders[id].mirrors[i].setAutoUpdated(false);
-	m_placeHolders[id].mirrors.clear();
-	m_placeHolders[id].cursor.setAutoUpdated(false);
+/*!
+	\brief Remove a placeholder
+	\param i placeholder index
+	
+	\note if the current placeholder is removed there will be NO automatic switching to a remaining one.
+*/
+void QEditor::removePlaceHolder(int id)
+{
+	if ( id<0 || id>=m_placeHolders.count() ) 
+		return;
+	if ( id == m_curPlaceHolder)
+		clearCursorMirrors();
+	
+	PlaceHolder& ph = m_placeHolders[id];
+	
+	for ( int i = 0; i < ph.mirrors.count(); ++i )
+		ph.mirrors[i].setAutoUpdated(false);
+	
+	ph.mirrors.clear();
+	ph.cursor.setAutoUpdated(false);
 	m_placeHolders.removeAt(id);
-	if (m_curPlaceHolder>id) 
-		m_curPlaceHolder--;
+	
+	if ( id < m_curPlaceHolder )
+		--m_curPlaceHolder;
+	
 }
+
 /*!
 	\return the number of placeholders currently set
 */
@@ -1938,9 +1975,14 @@ int QEditor::placeHolderCount() const
 {
 	return m_placeHolders.count();
 }
-int QEditor::currentPlaceHolder() const{
+/*!
+	\return the id of the current placeholder
+*/
+int QEditor::currentPlaceHolder() const
+{
 	return m_curPlaceHolder;
 }
+
 /*!
 	\brief Set the current placeholder to use
 
@@ -1955,8 +1997,8 @@ void QEditor::setPlaceHolder(int i, bool selectCursors)
 	m_placeHolderSynchronizing=true; //prevent recursive calls (from updateContent)
 	
 	clearCursorMirrors();
+	m_curPlaceHolder = -i; 
 
-	m_curPlaceHolder = i; 
 
 	PlaceHolder& ph = m_placeHolders[i]; //using reference to change the placeholder
 	QDocumentCursor cc = ph.cursor;
@@ -1980,35 +2022,22 @@ void QEditor::setPlaceHolder(int i, bool selectCursors)
 			
 			//mc.replaceSelectedText(cc.selectedText());
 		}
-		if (selectCursors)	
-			addCursorMirror(mc);
-		else {
-			QDocumentCursor nmc=mc.selectionStart();
-			int ccbline, ccboff;
-			cc.handle()->leftBoundaries(ccbline,ccboff);
-			//if (nmc < mc.selectionEnd()) 
-				//nmc = mc.selectionEnd(); //wtf?? sometime start and end are swapped, why?? 
-			if (m_cursor.anchorLineNumber()==ccbline) {
-				//qDebug ("mirror rightmove: %i", m_cursor.anchorColumnNumber()-ccboff);
-				nmc.movePosition(m_cursor.anchorColumnNumber()-ccboff,QDocumentCursor::NextCharacter);
-			} else {
-				nmc.movePosition(m_cursor.anchorLineNumber()-ccbline,QDocumentCursor::Down);
-				nmc.setColumnNumber(ccboff);
-			}
-			if (m_cursor.hasSelection()){
-				nmc.movePosition(m_cursor.lineNumber()-ccbline,
-								 QDocumentCursor::Down,QDocumentCursor::KeepAnchor);
-				if (m_cursor.lineNumber()==ccbline)
-					nmc.setColumnNumber(mc.columnNumber()+m_cursor.columnNumber()-ccboff,
-										QDocumentCursor::KeepAnchor);
-				else
-					nmc.setColumnNumber(m_cursor.columnNumber(),QDocumentCursor::KeepAnchor);
-			}
-			addCursorMirror(nmc);
-		}
 	}
 
 	m_placeHolderSynchronizing=false;
+		
+	/*
+		ditch cursor mirrors in favor of QDocumentCursor::replaceSelectedText()
+		
+			* workaround mirror limitations re movement (no way to ensure proper
+			synchronization when moving up/down)
+			
+			* make it relatively easy to implement affectors
+	*/
+	
+	m_curPlaceHolder = i;
+	
+	viewport()->update();
 }
 
 /*!
@@ -2029,7 +2058,7 @@ bool QEditor::nextPlaceHolder()
 	*/
 	int m_curPlaceHolder=-1;
 	for (int i=0; i< m_placeHolders.count();i++){
-		if (m_placeHolders[i].cursor.leftBoundaryLarger(m_cursor) && 
+		if (m_placeHolders[i].cursor.beginBoundaryLarger(m_cursor) && 
 			(m_curPlaceHolder==-1 || m_placeHolders[i].cursor<=m_placeHolders[m_curPlaceHolder].cursor))
 				m_curPlaceHolder=i;
 	}
@@ -2055,7 +2084,7 @@ bool QEditor::previousPlaceHolder()
 	--m_curPlaceHolder;*/
 	int m_curPlaceHolder=-1;
 	for (int i=0; i< m_placeHolders.count();i++){
-		if (m_cursor.rightBoundaryLarger(m_placeHolders[i].cursor) && 
+		if (m_cursor.endBoundaryLarger(m_placeHolders[i].cursor) && 
 			(m_curPlaceHolder==-1 || m_placeHolders[i].cursor>=m_placeHolders[m_curPlaceHolder].cursor))
 				m_curPlaceHolder=i;
 	}	
@@ -2882,31 +2911,60 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 				if ( m_definition )
 					m_definition->clearMatches(m_doc);
 
+				bool hasPH = m_placeHolders.count() && m_curPlaceHolder != -1;
+				bool macroing = hasPH || m_mirrors.count();
+				
+				if ( macroing )
+					m_doc->beginMacro();
+				
+				QStringList prevText;
+				
+				if ( hasPH )
+				{
+					for ( int k = 0; k < m_placeHolders.count(); ++k )
+						prevText << m_placeHolders.at(k).cursor.selectedText();
+					
+				}
+				
+				bHandled = processCursor(m_cursor, e, bOk);
+				
+				if ( hasPH )
+				{
+					PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
+					
+					QString baseText = ph.cursor.selectedText();
+					
+					for ( int phm = 0; phm < ph.mirrors.count(); ++phm )
+					{
+						QString s = baseText;
+						
+						if ( ph.affector )
+							ph.affector->affect(prevText, m_curPlaceHolder, e, phm, s);
+						
+						ph.mirrors[phm].replaceSelectedText(s);
+					}
+				}
+				
 				if ( m_mirrors.isEmpty() )
 				{
-					bHandled = processCursor(m_cursor, e, bOk);
-
 					// this signal is NOT emitted when cursor mirrors are used ON PURPOSE
 					// as it is the "standard" entry point for code completion, which cannot
 					// work properly with cursor mirrors (art least not always and not simply)
 					if ( bHandled )
 						emit textEdited(e);
+					
 				} else {
-					// begin macro [synchronization of undo/redo ops]
-					m_doc->beginMacro();
-
-					processCursor(m_cursor, e, bOk);
 
 					for ( int i = 0; bOk && (i < m_mirrors.count()); ++i )
-					{
-						bHandled = processCursor(m_mirrors[i], e, bOk);
-					}
+						processCursor(m_mirrors[i], e, bOk);
 
-					// end macro
+				}
+				
+				if ( macroing )
 					m_doc->endMacro();
+				
 				}
 			}
-		}
 
 		if ( !bHandled )
 		{
@@ -3169,8 +3227,6 @@ void QEditor::mousePressEvent(QMouseEvent *e)
 					}
 				}
 
-	// 			m_cursor = cursor;
-	// 			clearCursorMirrors();
 				m_doubleClick = QDocumentCursor();
 				setCursor(cursor);
 				break;
@@ -3963,29 +4019,29 @@ bool QEditor::moveKeyEvent(QDocumentCursor& cursor, QKeyEvent *e, bool *leave)
 		default:
 			return false;
 	}
-
-	QDocumentLine prev = cursor.line();
-//	int prevcol = cursor.columnNumber();
-
-	//const bool moved =
+	
+	int prev = cursor.lineNumber();
+	
+	//const bool moved = 
 	cursor.movePosition(1, op, mode);
-
-	if ( m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.count() )
-	{
-		// allow mirror movement out of line while in placeholder
-		PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
-		if ( ph.cursor.isWithinSelection(cursor) )
-			return true;
-		for ( int i = 0; i < ph.mirrors.count(); ++i )
-			if ( ph.mirrors.at(i).isWithinSelection(cursor) )
+	
+	if ( prev != cursor.lineNumber() )
+		if ( m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.count() ) 
+		{
+			// allow mirror movement out of line while in placeholder
+			PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
+			if ( ph.cursor.isWithinSelection(cursor) )
 				return true;
-		if ( prev == cursor.line() && m_mirrors.empty()) {
-			//mark placeholder as leaved
-			m_curPlaceHolder = -1;
-			return false;
+			for ( int i = 0; i < ph.mirrors.count(); ++i )
+				if ( ph.mirrors.at(i).isWithinSelection(cursor) )
+					return true;
+			if ( prev == cursor.lineNumber() && m_mirrors.empty()) {
+				//mark placeholder as leaved
+				m_curPlaceHolder = -1;
+				return false;
+			}
 		}
-	}
-	if ( prev != cursor.line() )
+	if ( prev != cursor.lineNumber() )
 	{
 		//moved = true;
 		if ( leave ) *leave = true;
@@ -4214,32 +4270,41 @@ void QEditor::preInsert(QDocumentCursor& c, const QString& s)
 		while ( (firstNS < txt.length()) && txt.at(firstNS).isSpace() )
 			++firstNS;
 
+		if ( !firstNS )
+			return;
+		
 		const int off = c.columnNumber() - firstNS;
 
 		if ( off > 0 )
 			c.movePosition(off, QDocumentCursor::PreviousCharacter);
 
-		//qDebug("%i spaces", firstNS);
+		/*
+			It might be possible to improve that part to have a more natural/smarter unindenting
+			by trying to guess the scheme used by the user...
+		*/
 
-		const int ts = m_doc->tabStop();
-		
-		if (txt.contains(' ') && txt.contains('\t') && c.previousChar()=='\t') {
-			--firstNS;
+		if ( txt.at(firstNS - 1) == '\t' )
+		{
 			c.movePosition(1, QDocumentCursor::Left, QDocumentCursor::KeepAnchor);
 		} else {
-			do
-			{
+			const int ts = m_doc->tabStop();
+			
+			if (txt.contains(' ') && txt.contains('\t') && c.previousChar()=='\t') {
 				--firstNS;
 				c.movePosition(1, QDocumentCursor::Left, QDocumentCursor::KeepAnchor);
-			} while ( QDocument::screenLength(txt.constData(), firstNS, ts) % ts );
+			} else {
+				do
+				{
+					--firstNS;
+					c.movePosition(1, QDocumentCursor::Left, QDocumentCursor::KeepAnchor);
+				} while ( QDocument::screenLength(txt.constData(), firstNS, ts) % ts );
+			}
+			
+			c.removeSelectedText();
+
+			if ( off > 0 )
+				c.movePosition(off, QDocumentCursor::NextCharacter);
 		}
-		//qDebug("%i left => \"%s\"", firstNS, qPrintable(c.selectedText()));
-
-		c.removeSelectedText();
-
-		if ( off > 0 )
-			c.movePosition(off, QDocumentCursor::NextCharacter);
-		
 	}
 }
 
@@ -4392,12 +4457,9 @@ void QEditor::setPanelMargins(int l, int t, int r, int b)
 */
 void QEditor::selectionChange(bool force)
 {
-	// remove unused argument warning
-	(void) force;
-
-	return;
+	Q_UNUSED(force)
 	// TODO : repaint only selection rect
-
+	/*
 	if ( false )//force )
 	{
 		//qDebug("repainting selection... [%i]", force);
@@ -4407,6 +4469,7 @@ void QEditor::selectionChange(bool force)
 	}
 
 	m_selection = m_cursor.hasSelection();
+	*/
 }
 
 /*!
@@ -4662,7 +4725,6 @@ QMimeData* QEditor::createMimeDataFromSelection() const
 */
 void QEditor::insertFromMimeData(const QMimeData *d)
 {
-	qDebug(qPrintable(d->formats().join(":")));
 	bool s = m_cursor.hasSelection();
 
 	if ( d && m_cursor.isValid() /*&& !d->hasFormat("text/uri-list")*/ )
@@ -4747,6 +4809,9 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 */
 void QEditor::clearCursorMirrors()
 {
+	if ( m_mirrors.isEmpty() )
+		return;
+	
 	m_curPlaceHolder = -1;
 	repaintCursor();
 
@@ -4756,6 +4821,8 @@ void QEditor::clearCursorMirrors()
 	}
 
 	m_mirrors.clear();
+	
+	viewport()->update();
 }
 
 /*!
@@ -4970,15 +5037,15 @@ void QEditor::updateContent (int i, int n)
 		//if another has been modified
 		if (m_curPlaceHolder!=m_lastPlaceHolder && 
 			m_lastPlaceHolder>=0 &&  m_lastPlaceHolder < m_placeHolders.count())
-			if (m_placeHolders[m_lastPlaceHolder].removeAutomatically)
+			if (m_placeHolders[m_lastPlaceHolder].autoRemove)
 				removePlaceHolder(m_lastPlaceHolder);
 		//if someone pressed enter
 		if (m_curPlaceHolder>=0 && m_curPlaceHolder < m_placeHolders.count()) 
-			if (m_placeHolders[m_curPlaceHolder].removeAutomatically && m_placeHolders[m_curPlaceHolder].cursor.lineNumber() != m_placeHolders[m_curPlaceHolder].cursor.anchorLineNumber())
+			if (m_placeHolders[m_curPlaceHolder].autoRemove && m_placeHolders[m_curPlaceHolder].cursor.lineNumber() != m_placeHolders[m_curPlaceHolder].cursor.anchorLineNumber())
 				removePlaceHolder(m_curPlaceHolder);
 		//empty ones
 		for (int i=m_placeHolders.count()-1;i>=0;i--)
-			if (i != m_curPlaceHolder && i!=m_lastPlaceHolder && m_placeHolders[i].removeAutomatically &&
+			if (i != m_curPlaceHolder && i!=m_lastPlaceHolder && m_placeHolders[i].autoRemove &&
 				m_placeHolders[i].cursor.lineNumber()==m_placeHolders[i].cursor.anchorLineNumber() &&
 				m_placeHolders[i].cursor.columnNumber()==m_placeHolders[i].cursor.anchorColumnNumber())
 				removePlaceHolder(i);

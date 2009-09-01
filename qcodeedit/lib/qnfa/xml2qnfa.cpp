@@ -395,33 +395,44 @@ void addToContext(	QNFA *cxt, QDomElement c, int fid,
 				addNFA(cstart, stop);
 			
 			//qDebug("after stop : %i", cstart->out.branch->count());
+		} else {
+			cstart = new QNFA;
+			cstart->type = ContextBegin | (stay ? StayOnLine : 0);
+			cstart->actionid = defact;
+			cstart->out.branch = new QNFABranch;
+		}
+		
+		fillContext(cstart, c, f, pids, cs);
+		
+		if ( c.hasAttribute("id") )
+		{
+			QNFADefinition::addContext(
+					c.ownerDocument().documentElement().attribute("language")
+					+ ":"
+					+ _id,
+					cstart
+				);
 			
-			fillContext(cstart, c, f, pids, cs);
-			
-			//qDebug("after sub : %i", cstart->out.branch->count());
-			
-			if ( trans )
-			{
-				QNFADefinition::shareEmbedRequests(cxt, cstart, cstart->out.branch->count());
-				embed(cxt, cstart, cstart->out.branch->count());
-			}
-			
+		} else {
+			//qDebug("unregistered context");
+		}
+		
+		//qDebug("after sub : %i", cstart->out.branch->count());
+		
+		if ( trans )
+		{
+			QNFADefinition::shareEmbedRequests(cxt, cstart, cstart->out.branch->count());
+			embed(cxt, cstart, cstart->out.branch->count());
+		}
+		
+		if ( hstart )
+		{
 			foreach ( start, lStart )
 				addNFA(cxt, start);
 			
-			if ( c.hasAttribute("id") )
-			{
-				QNFADefinition::addContext(
-						c.ownerDocument().documentElement().attribute("language")
-						+ ":"
-						+ _id,
-						cstart
-					);
-				
-			} else {
-				//qDebug("unregistered context");
-			}
 			//qDebug("ending cxt");
+		} else {
+			
 		}
 		
 		//fillContext(subcxt, c, f, pids);

@@ -99,7 +99,6 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 
 	QString s;
 	int xpos = 10;
-	QDocument *d = e->document();
 	QDocumentCursor c = e->cursor();
 	const QFontMetrics fm(fontMetrics());
 
@@ -115,11 +114,11 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 	xpos += fm.width(s) + 10;
 
 	int sz = qMin(height(), _mod.height());
-        QString timeDiff;
-        if(e->displayModifyTime()){
-            int lastMod = d->lastModified().secsTo(QDateTime::currentDateTime());
-            timeDiff = tr("(%1 min %2 s ago)").arg(lastMod / 60).arg(lastMod % 60);
-        }
+	QString timeDiff;
+	if(e->displayModifyTime() && e->document()){
+		int lastMod = e->document()->lastModified().secsTo(QDateTime::currentDateTime());
+		timeDiff = tr("(%1 min %2 s ago)").arg(lastMod / 60).arg(lastMod % 60);
+	}
 
 	xpos += 10;
 	if ( e->isContentModified() )
@@ -182,9 +181,8 @@ void QStatusPanel::mousePressEvent(QMouseEvent *e)
 */
 void QStatusPanel::mouseReleaseEvent(QMouseEvent *e)
 {
-	// remove unused argument warning
-	(void) e;
-
+	Q_UNUSED(e)
+	
 	editor()->setFocus();
 }
 

@@ -159,7 +159,7 @@ class QCE_EXPORT QDocumentPrivate
 		QDocumentCursor *m_editCursor;
 		
 		bool m_suspend, m_deleting;
-		QQueue<QPair<int, int> > m_notifications;
+		QStack<QDocumentCommandBlock*> m_macros;
 		
 		QMap<int, int> m_hidden;
 		QMap<int, int> m_wrapped;

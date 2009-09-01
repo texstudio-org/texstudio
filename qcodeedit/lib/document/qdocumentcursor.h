@@ -102,11 +102,11 @@ class QCE_EXPORT QDocumentCursor
 		bool operator <= (const QDocumentCursor& c) const;
 		bool operator >= (const QDocumentCursor& c) const;
 		
-		bool rightBoundaryLarger (const QDocumentCursor& c) const;
-		bool leftBoundaryLarger (const QDocumentCursor& c) const;
+		bool beginBoundaryLarger (const QDocumentCursor& c) const;
+		bool endBoundaryLarger (const QDocumentCursor& c) const;
 		
-		void leftBoundaries(int& begline, int& begcol) const;
-		void rightBoundaries(int& endline, int& endcol) const;
+		void beginBoundary(int& begline, int& begcol) const;
+		void endBoundary(int& endline, int& endcol) const;
 		
 		bool isNull() const;
 		bool isValid() const;
@@ -161,8 +161,8 @@ class QCE_EXPORT QDocumentCursor
 		void moveTo(const QDocumentLine &l, int column);
 		
 		void eraseLine();
-		void insertLine();
-		void insertText(const QString& s);
+		void insertLine(bool keepAnchor = false);
+		void insertText(const QString& s, bool keepAnchor = false);
 		
 		QDocumentCursor selectionStart() const;
 		QDocumentCursor selectionEnd() const;
@@ -171,7 +171,7 @@ class QCE_EXPORT QDocumentCursor
 		
 		void clearSelection();
 		void removeSelectedText();
-		void replaceSelectedText (const QString& newText); 
+		void replaceSelectedText(const QString& text);
 		
 		void select(SelectionType t);
 		void setSelectionBoundary(const QDocumentCursor& c);

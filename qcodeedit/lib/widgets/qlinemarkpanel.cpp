@@ -121,9 +121,8 @@ bool QLineMarkPanel::paint(QPainter *p, QEditor *e)
 	setFixedWidth(marksPerLine ? marksPerLine * 16 + 2 : 18);
 
 	const QFontMetrics fm( d->font() );
-
+	
 	int n, posY,
-//		maxCount = 0,
 		as = fm.ascent(),
 		ls = fm.lineSpacing(),
 		pageBottom = e->viewport()->height(),

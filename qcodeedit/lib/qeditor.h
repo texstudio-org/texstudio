@@ -108,26 +108,22 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			{
 				public:
 					virtual ~Affector() {}
-					virtual QString affect(const QString& base, int i) = 0;
+					virtual void affect(const QStringList& base, int ph, const QKeyEvent *e, int mirror, QString& after) const = 0;
 			};
 			
-			PlaceHolder() : length(0), affector(0),removeAutomatically(true) {}
-			PlaceHolder(const PlaceHolder& ph) : length(ph.length), affector(ph.affector),removeAutomatically(ph.removeAutomatically)
+			PlaceHolder() : length(0), autoRemove(false), affector(0) {}
+			PlaceHolder(const PlaceHolder& ph) : length(ph.length), autoRemove(ph.autoRemove), affector(ph.affector)
 			{
 				cursor = ph.cursor;
 				mirrors  << ph.mirrors;
 			}
-			PlaceHolder(int len, const QDocumentCursor &cur): length(len), cursor(cur),removeAutomatically(true) {}
-			PlaceHolder(int len, const QDocumentCursor &cur, const QDocumentCursor &mirror): 
-					length(len), cursor(cur),removeAutomatically(true) {
-				mirrors << mirror;
-			}
+			PlaceHolder(int len, const QDocumentCursor &cur): length(len), autoRemove(true),  affector(0), cursor(cur) {}
 			
 			int length;
+			bool autoRemove;
 			Affector *affector;
 			QDocumentCursor cursor;
 			QList<QDocumentCursor> mirrors;
-			bool removeAutomatically;
 		};
 		
 		QEditor(QWidget *p = 0);
@@ -183,8 +179,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		int wrapWidth() const;
 
-                bool displayModifyTime();
-                void setDisplayModifyTime(bool flag) {mDisplayModifyTime=flag;}
+		bool displayModifyTime();
+		void setDisplayModifyTime(bool flag) {mDisplayModifyTime=flag;}
 		inline int horizontalOffset() const
 		{ return horizontalScrollBar()->isVisible() ? horizontalScrollBar()->value() : 0; }
 		inline int verticalOffset() const
@@ -478,7 +474,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		QPoint m_clickPoint, m_dragPoint;
 		QBasicTimer m_blink, m_scroll, m_click, m_drag;
 
-                bool mDisplayModifyTime;
+		bool mDisplayModifyTime;
 		
 		static QReliableFileWatch* watcher();
 		

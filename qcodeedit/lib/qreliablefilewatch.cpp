@@ -50,7 +50,6 @@ void QReliableFileWatch::addWatch(const QString& file, QObject *recipient)
 
 		Watch w;
 		w.state = Clean;
-		w.checksum = (unsigned int)-1;
 		w.size = f.size();
 		w.recipients << recipient;
 		m_targets[file] = w;

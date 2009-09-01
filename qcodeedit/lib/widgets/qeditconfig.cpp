@@ -547,11 +547,8 @@ void QEditConfig::on_cbEncoding_currentIndexChanged(const QString& name)
 */
 void QEditConfig::on_cbLineEndings_currentIndexChanged(int idx)
 {
-	// remove unused argument warning
-	(void) idx;
-
-	QDocument::LineEnding le = QDocument::LineEnding(cbLineEndings->currentIndex() + 1);
-
+	QDocument::LineEnding le = QDocument::LineEnding(idx + 1);
+	
 	if ( m_direct )
 	{
 		QDocument::setDefaultLineEnding(le);

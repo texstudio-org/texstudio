@@ -41,7 +41,7 @@ QDocumentCommand::QDocumentCommand(Command c, QDocument *d, QDocumentCommand *p)
  : QUndoCommand(p),
 	m_state(false), m_first(true), m_doc(d),
 	m_redoOffset(0), m_undoOffset(0),
-	m_silent(false), m_command(c), m_cursor(0)
+	m_silent(false), m_keepAnchor(false), m_command(c), m_cursor(0)
 {
 
 }
@@ -111,6 +111,30 @@ void QDocumentCommand::setSilent(bool y)
 }
 
 /*!
+	\return whether the command preserve selection of the target cursor
+	
+	When this property is true, cursor adjustement upon command execution
+	will preserve the anchor of target cursor and only alter its position
+	thus keeping a selection.
+	
+	\note This is disabled by default
+*/
+bool QDocumentCommand::keepAnchor() const
+{
+	return m_keepAnchor;
+}
+
+/*!
+	\brief Set whether the command preserve selection of the target cursor
+	
+	\note This is disabled by default
+*/
+void QDocumentCommand::setKeepAnchor(bool y)
+{
+	m_keepAnchor = y;
+}
+
+/*!
 	\brief Set the target cursor
 
 	The position of the target cursor is update upon undo() and redo()
@@ -167,27 +191,10 @@ void QDocumentCommand::insertText(int line, int pos, const QString& s)
 
 	if ( !h )
 		return;
-
+	
 	h->textBuffer().insert(pos, s);
 	h->shiftOverlays(pos, s.length());
-	/*
-	foreach ( QDocumentCursorHandle *ch, m_autoUpdated )
-	{
-		if ( ch == m_cursor || ch->document() != m_doc )
-			continue;
-
-		if ( (pd->at(ch->m_begLine) == h) && (ch->m_begOffset >= pos) )
-		{
-			if ( !(pd->at(ch->m_endLine) == h) || !(ch->m_endOffset >= pos) )
-				ch->m_begOffset += s.length();
-		}
-
-		if ( (pd->at(ch->m_endLine) == h) && (ch->m_endOffset >= pos) )
-		{
-			ch->m_endOffset += s.length();
-		}
-	}
-	*/
+	
 	pd->adjustWidth(line);
 }
 
@@ -213,60 +220,6 @@ void QDocumentCommand::removeText(int line, int pos, int length)
 
 	h->textBuffer().remove(pos, length);
 	h->shiftOverlays(pos, -length);
-	/*
-	QList<QDocumentCursorHandle*> m_del;
-
-	foreach ( QDocumentCursorHandle *ch, m_autoUpdated )
-	{
-		if ( ch == m_cursor || ch->document() != m_doc )
-			continue;
-
-		if ( ch->hasSelection() )
-		{
-			int lbeg = line, cbeg = pos, lend = line, cend = pos + length;
-
-			ch->substractBoundaries(lbeg, cbeg, lend, cend);
-		} else {
-			if ( pd->at(ch->m_begLine) == h )
-			{
-				if ( ch->m_begOffset < pos )
-					continue;
-
-				if ( ch->m_begOffset >= (pos + length) )
-				{
-					ch->m_begOffset -= length;
-				} else {
-					// TODO : what if only part of a selection disappeared???
-					// cursor caught in a deleted text..
-					ch->moveTo(QDocumentCursor());
-					m_del << ch;
-				}
-			}
-
-			if ( pd->at(ch->m_endLine) == h )
-			{
-				if ( ch->m_endOffset < pos )
-					continue;
-
-				if ( ch->m_endOffset >= (pos + length) )
-				{
-					ch->m_endOffset -= length;
-				} else {
-					// TODO : what if only part of a selection disappeared???
-					// cursor caught in a deleted text..
-					ch->moveTo(QDocumentCursor());
-					m_del << ch;
-				}
-			}
-		}
-	}
-
-	foreach ( QDocumentCursorHandle *ch, m_del )
-	{
-		//qDebug("hard-no-up(0x%x)", h);
-		//m_autoUpdated.removeAll(ch);
-	}
-	*/
 
 	pd->adjustWidth(line);
 }
@@ -284,74 +237,6 @@ void QDocumentCommand::insertLines(int after, const QList<QDocumentLineHandle*>&
 {
 	if ( l.isEmpty() || !m_doc->impl()->at(after) )
 		return;
-	/*
-	//printf("[processing %i watches]\n", m_autoUpdated.count());
-	//fflush(stdout);
-	const int len = m_doc->impl()->at(after)->length();
-
-	foreach ( QDocumentCursorHandle *ch, m_autoUpdated )
-	{
-		if ( ch == m_cursor || ch->document() != m_doc )
-			continue;
-
-		//printf("[[watch:0x%x(%i, %i)]]", ch, ch->m_begLine, ch->m_begOffset);
-
-		// TODO : better selection handling
-		if ( ch->hasSelection() )
-		{
-			int lbeg = after, cbeg = len, lend = after, cend = len;
-
-			ch->intersectBoundaries(lbeg, cbeg, lend, cend);
-
-			if ( lbeg == after && cbeg == len )
-			{
-				if ( (ch->m_begLine > ch->m_endLine) || (ch->m_begLine == ch->m_endLine && ch->m_begOffset > ch->m_endOffset) )
-				{
-					ch->m_begLine += l.count();
-					ch->m_begOffset = 0;
-				} else {
-					ch->m_endLine += l.count();
-					ch->m_endOffset = 0;
-				}
-				continue;
-			}
-		}
-
-		if ( ch->m_begLine > after )
-		{
-//			qDebug("moving cursor [0x%x:beg] from line %i to %i upon insertion of %i lines",
-//					ch,
-//					ch->m_begLine,
-//					ch->m_begLine + l.count(),
-//					l.count()
-//					);
-//
-			//printf(" moved.\n");
-			ch->m_begLine += l.count();
-		} else {
-//			qDebug("skipped cursor [0x%x:beg] at line %i upon insertion of %i lines",
-//					ch,
-//					ch->m_begLine,
-//					l.count()
-//					);
-//
-			//printf("\n");
-		}
-
-		if ( ch->m_endLine > after )
-		{
-//			qDebug("moving cursor [0x%x:end] from line %i to %i upon insertion of %i lines",
-//					ch,
-//					ch->m_endLine,
-//					ch->m_endLine + l.count(),
-//					l.count()
-//					);
-//
-			ch->m_endLine += l.count();
-		}
-		//fflush(stdout);
-	}
-	*/
 
 	m_doc->impl()->insertLines(after, l);
 }
@@ -517,69 +402,6 @@ void QDocumentCommand::removeLines(int after, int n)
 {
 	if ( n <= 0 || !m_doc->impl()->at(after) || !m_doc->impl()->at(after + n) )
 		return;
-	/*
-	const int flen = m_doc->impl()->at(after)->length();
-	const int llen = m_doc->impl()->at(after + n)->length();
-
-	foreach ( QDocumentCursorHandle *ch, m_autoUpdated )
-	{
-		if ( ch == m_cursor || ch->document() != m_doc )
-			continue;
-
-		// TODO : better selection handling
-		if ( ch->hasSelection() )
-		{
-			int lbeg = after, cbeg = flen, lend = after + n, cend = llen;
-
-			ch->intersectBoundaries(lbeg, cbeg, lend, cend);
-
-			if ( lbeg != -1 && cbeg != -1 && (lbeg != lend || cbeg != cend) )
-			{
-				if ( (ch->m_begLine > ch->m_endLine) || (ch->m_begLine == ch->m_endLine && ch->m_begOffset > ch->m_endOffset) )
-				{
-					ch->m_begLine -= lbeg - after;
-					ch->m_begOffset = 0;
-				} else {
-					ch->m_endLine -= lbeg - after;
-					ch->m_endOffset = 0;
-				}
-
-				ch->substractBoundaries(lbeg, cbeg, lend, cend);
-				continue;
-			}
-		}
-
-		if ( ch->m_begLine > after )
-		{
-//			qDebug("moving cursor [0x%x:beg] from line %i to %i upon deletion of %i lines",
-//					ch,
-//					ch->m_begLine,
-//					ch->m_begLine - n,
-//					n
-//					);
-//
-			ch->m_begLine -= n;
-
-			if ( ch->m_begLine < 0 )
-				ch->m_begLine = 0;
-		}
-
-		if ( ch->m_endLine > after )
-		{
-//			qDebug("moving cursor [0x%x:end] from line %i to %i upon deletion of %i lines",
-//					ch,
-//					ch->m_endLine,
-//					ch->m_endLine - n,
-//					n
-//					);
-//
-			ch->m_endLine -= n;
-
-			if ( ch->m_endLine < 0 )
-				ch->m_endLine = 0;
-		}
-	}
-	*/
 
 	m_doc->impl()->removeLines(after, n);
 }
@@ -591,8 +413,8 @@ void QDocumentCommand::removeLines(int after, int n)
 */
 void QDocumentCommand::updateTarget(int l, int offset)
 {
-//	QDocumentLineHandle *h = m_doc->impl()->at(l);
-
+	//QDocumentLineHandle *h = m_doc->impl()->at(l);
+	
 	// update command sender if any
 	if ( m_cursor )
 	{
@@ -616,11 +438,18 @@ void QDocumentCommand::updateTarget(int l, int offset)
 			++l;
 		}
 
-		m_cursor->m_begLine = qMax(0, l);
-		m_cursor->m_begOffset = qMax(0, offset);
+		if ( !m_keepAnchor )
+		{
 		m_cursor->m_endLine = -1;
 		m_cursor->m_endOffset = -1;
+		} else if ( m_cursor->m_endLine == -1 ) {
+			m_cursor->m_endLine = m_cursor->m_begLine;
+			m_cursor->m_endOffset = m_cursor->m_begOffset;
+		}
 
+		m_cursor->m_begLine = qMax(0, l);
+		m_cursor->m_begOffset = qMax(0, offset);
+		
 		m_cursor->refreshColumnMemory();
 	}
 }

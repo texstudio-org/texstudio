@@ -63,6 +63,9 @@ class QCE_EXPORT QDocumentCommand : public QUndoCommand
 		bool isSilent() const;
 		void setSilent(bool y);
 		
+		bool keepAnchor() const;
+		void setKeepAnchor(bool y);
+		
 		void setTargetCursor(QDocumentCursorHandle *h);
 		
 		void setRedoOffset(int off);
@@ -94,6 +97,7 @@ class QCE_EXPORT QDocumentCommand : public QUndoCommand
 		
 	private:
 		bool m_silent;
+		bool m_keepAnchor;
 		Command m_command;
 		QDocumentCursorHandle *m_cursor;
 		

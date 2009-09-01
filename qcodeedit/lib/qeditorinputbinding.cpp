@@ -19,6 +19,31 @@
 #include "qdocument.h"
 #include "qdocumentcursor.h"
 
+/*!
+	\class QEditorInputBindingInterface
+	\brief A class designed to allow extending user input in a transparent way
+	
+	An input binding interface, when set to an editor, can intercept all the events the
+	editor receive and radically change the behavior.
+	
+	The main purpose of this class is twofold :
+	<ul>
+	<li>Allow vi-like (or emacs-like, ...) editing to be implemented with little extra work.
+	And allow the user to easily switch between input modes</li>
+	<li>Allow applications using QCE to easily add extra features (e.g extended code
+	navigation within projects, jump to documentation, ...) with little extra work</li>
+	</ul>
+*/
+
+/*!
+	\class QEditorInputBinding
+	\brief A "managed" input binding interface
+	
+	This subclass of QEditorInputBindingInterface is meant to make the creatio of input
+	bindings easier and more intuitive by abstracting away most of the low-level event
+	handling logic.
+*/
+
 /////////////////////////////////////////////////////////////////////////////
 
 QEditorInputBinding::MotionCommand::MotionCommand(QDocumentCursor::MoveOperation op, QDocumentCursor::MoveMode m, int n)
@@ -159,7 +184,7 @@ bool QEditorInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
 		int idx = m_index.at(i);
 		const QKeySequence& ks = m_keys.at(i);
 		
-		if ( idx < (int) ks.count() )
+		if ( idx < (int)ks.count() )
 		{
 			if ( ks[idx] == event->key() )
 			{
@@ -167,7 +192,7 @@ bool QEditorInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
 				
 				if ( idx == (int)ks.count() )
 				{
-					qDebug("match");
+					//qDebug("match");
 					
 					// key sequence matched
 					m_actions.at(i)->exec(editor);
