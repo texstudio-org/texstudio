@@ -330,29 +330,37 @@ void QDocumentCommand::updateCursorsOnDeletion(int line, int column, int prefixL
 			continue;
 
 	//	qDebug("[[watch:0x%x(%i, %i)]]", ch, ch->m_begLine, ch->m_begOffset);
-
+		int columnEnd = (numLines > 1) ? suffixLength : column + prefixLength;
 		// TODO : better selection handling
 		if ( ch->hasSelection() )
 		{
 			int lbeg = line;
 			int cbeg = column;
 			int lend = line + numLines;
-			int cend = (numLines > 1) ? suffixLength : column + prefixLength;
+			int cend = columnEnd;
 
+			
 			ch->intersectBoundaries(lbeg, cbeg, lend, cend);
 			//qDebug("intersection (%i, %i : %i, %i)", lbeg, cbeg, lend, cend);
-
 			if ( lbeg != -1 && cbeg != -1 && lend != -1 && cend != -1 )
 			{
 				//qDebug("shrink (%i, %i : %i, %i)", ch->m_begLine, ch->m_begOffset, ch->m_endLine, ch->m_endOffset);
 				//qDebug("of intersection (%i, %i : %i, %i)", lbeg, cbeg, lend, cend);
-				ch->substractBoundaries(lbeg, cbeg, lend, cend);
+				if ((lbeg > line || (lbeg == line && cbeg > column)) &&
+					(lend < line+numLines || (lend == line+numLines && cend < columnEnd))) 
+				{	
+					//intersection is complete within the removed range without touching the bordes
+					//=> cursor is completely removed and thus invalid
+					ch->m_begLine = ch->m_endLine = -1;
+					ch->m_begOffset = ch->m_endOffset = -1;
+				} else
+					ch->substractBoundaries(lbeg, cbeg, lend, cend);
 				//qDebug("into (%i, %i : %i, %i)", ch->m_begLine, ch->m_begOffset, ch->m_endLine, ch->m_endOffset);
 				continue;
 			}
 		}
 		
-		int cend = (numLines > 1) ? suffixLength : column + prefixLength;//defined again, because intersectBoundaries changed it
+		int cend = columnEnd;
 		// move
 		if ( ch->m_begLine > line + numLines )
 		{

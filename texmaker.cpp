@@ -263,7 +263,8 @@ void Texmaker::setupDockWidgets(){
 		StructureTreeWidget->header()->hide();
 		StructureTreeWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 //StructureTreeWidget->setToolTip(tr("Click to jump to the line"));
-		connect(StructureTreeWidget, SIGNAL(itemPressed(QTreeWidgetItem *,int)), SLOT(ClickedOnStructure(QTreeWidgetItem *,int)));
+		connect(StructureTreeWidget, SIGNAL(itemActivated(QTreeWidgetItem *,int)), SLOT(ClickedOnStructure(QTreeWidgetItem *,int))); //enter or double click (+single click on some platforms)
+		connect(StructureTreeWidget, SIGNAL(itemPressed(QTreeWidgetItem *,int)), SLOT(ClickedOnStructure(QTreeWidgetItem *,int))); //single click
 // connect( StructureTreeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem *,int )), SLOT(DoubleClickedOnStructure(QTreeWidgetItem *,int))); // qt4 bugs - don't use it
 		StructureToolbox->addItem(StructureTreeWidget,QIcon(":/images/structure.png"),tr("Structure"));
 	} else StructureToolbox->setItemText(StructureToolbox->indexOf(StructureTreeWidget),tr("Structure"));

@@ -1812,7 +1812,7 @@ void QEditor::setCursor(const QDocumentCursor& c)
 	m_cursor.setAutoUpdated(true);
 	clearCursorMirrors();
 
-	if ( m_curPlaceHolder != -1 )
+	if ( m_curPlaceHolder >=0 && m_curPlaceHolder < m_placeHolders.count() )
 	{
 		const PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
 		
@@ -1879,7 +1879,7 @@ QDocumentCursor QEditor::cursorMirror(int i) const
 */
 void QEditor::clearPlaceHolders()
 {
-	bool updateView = m_placeHolders.count() && m_curPlaceHolder != -1;
+	bool updateView = m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.count();
 	
 	m_curPlaceHolder = -1;
 
@@ -1951,8 +1951,10 @@ void QEditor::removePlaceHolder(int id)
 {
 	if ( id<0 || id>=m_placeHolders.count() ) 
 		return;
-	if ( id == m_curPlaceHolder)
+	if ( id == m_curPlaceHolder){
 		clearCursorMirrors();
+		m_curPlaceHolder=-1;
+	}
 	
 	PlaceHolder& ph = m_placeHolders[id];
 	
@@ -1965,6 +1967,10 @@ void QEditor::removePlaceHolder(int id)
 	
 	if ( id < m_curPlaceHolder )
 		--m_curPlaceHolder;
+	if ( id < m_lastPlaceHolder )
+		--m_lastPlaceHolder;
+	else if ( id == m_lastPlaceHolder )
+		m_lastPlaceHolder=-1;
 	
 }
 
@@ -1990,15 +1996,15 @@ int QEditor::currentPlaceHolder() const
 */
 void QEditor::setPlaceHolder(int i, bool selectCursors)
 {
-	if ( i < 0 || i >= m_placeHolders.count() )
+	m_curPlaceHolder = -1; 
+	clearCursorMirrors();
+	if ( i < 0 || i >= m_placeHolders.count() ){
+		viewport()->update();
 		return;
+	}
 
 	if (m_placeHolderSynchronizing) return;
-	m_placeHolderSynchronizing=true; //prevent recursive calls (from updateContent)
-	
-	clearCursorMirrors();
-	m_curPlaceHolder = -i; 
-
+	m_placeHolderSynchronizing=true; //prevent recursive calls (from updateContent)	
 
 	PlaceHolder& ph = m_placeHolders[i]; //using reference to change the placeholder
 	QDocumentCursor cc = ph.cursor;
@@ -2056,15 +2062,15 @@ bool QEditor::nextPlaceHolder()
 	if ( m_curPlaceHolder >= m_placeHolders.count() )
 		m_curPlaceHolder = 0;
 	*/
-	int m_curPlaceHolder=-1;
+	int np=-1;
 	for (int i=0; i< m_placeHolders.count();i++){
 		if (m_placeHolders[i].cursor.beginBoundaryLarger(m_cursor) && 
-			(m_curPlaceHolder==-1 || m_placeHolders[i].cursor<=m_placeHolders[m_curPlaceHolder].cursor))
-				m_curPlaceHolder=i;
+			(np==-1 || m_placeHolders[i].cursor<=m_placeHolders[np].cursor))
+				np=i;
 	}
-	if (m_curPlaceHolder==-1) return false;
-	setPlaceHolder(m_curPlaceHolder);
-	return true;
+
+	setPlaceHolder(np);
+	return np!=-1;
 }
 
 /*!
@@ -2082,16 +2088,15 @@ bool QEditor::previousPlaceHolder()
 		m_curPlaceHolder = m_placeHolders.count();
 
 	--m_curPlaceHolder;*/
-	int m_curPlaceHolder=-1;
+	int np=-1;
 	for (int i=0; i< m_placeHolders.count();i++){
 		if (m_cursor.endBoundaryLarger(m_placeHolders[i].cursor) && 
-			(m_curPlaceHolder==-1 || m_placeHolders[i].cursor>=m_placeHolders[m_curPlaceHolder].cursor))
-				m_curPlaceHolder=i;
+			(np==-1 || m_placeHolders[i].cursor>=m_placeHolders[np].cursor))
+				np=i;
 	}	
 
-	if (m_curPlaceHolder==-1) return false;
-	setPlaceHolder(m_curPlaceHolder);
-	return true;
+	setPlaceHolder(np);
+	return np!=-1;
 }
 
 /*!
@@ -2911,7 +2916,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 				if ( m_definition )
 					m_definition->clearMatches(m_doc);
 
-				bool hasPH = m_placeHolders.count() && m_curPlaceHolder != -1;
+				bool hasPH = m_curPlaceHolder >= 0 && m_curPlaceHolder<m_placeHolders.count();
 				bool macroing = hasPH || m_mirrors.count();
 				
 				if ( macroing )
@@ -2928,7 +2933,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 				
 				bHandled = processCursor(m_cursor, e, bOk);
 				
-				if ( hasPH )
+				if ( m_curPlaceHolder >= 0 && m_curPlaceHolder<m_placeHolders.count() ) //hasPH is invalid
 				{
 					PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
 					
@@ -5037,18 +5042,31 @@ void QEditor::updateContent (int i, int n)
 		//if another has been modified
 		if (m_curPlaceHolder!=m_lastPlaceHolder && 
 			m_lastPlaceHolder>=0 &&  m_lastPlaceHolder < m_placeHolders.count())
-			if (m_placeHolders[m_lastPlaceHolder].autoRemove)
+			if (m_placeHolders[m_lastPlaceHolder].autoRemove){
 				removePlaceHolder(m_lastPlaceHolder);
+				m_lastPlaceHolder=m_curPlaceHolder;
+			}
 		//if someone pressed enter
 		if (m_curPlaceHolder>=0 && m_curPlaceHolder < m_placeHolders.count()) 
 			if (m_placeHolders[m_curPlaceHolder].autoRemove && m_placeHolders[m_curPlaceHolder].cursor.lineNumber() != m_placeHolders[m_curPlaceHolder].cursor.anchorLineNumber())
 				removePlaceHolder(m_curPlaceHolder);
-		//empty ones
-		for (int i=m_placeHolders.count()-1;i>=0;i--)
-			if (i != m_curPlaceHolder && i!=m_lastPlaceHolder && m_placeHolders[i].autoRemove &&
-				m_placeHolders[i].cursor.lineNumber()==m_placeHolders[i].cursor.anchorLineNumber() &&
-				m_placeHolders[i].cursor.columnNumber()==m_placeHolders[i].cursor.anchorColumnNumber())
-				removePlaceHolder(i);
+		//empty ones (which are not currently used)
+		for (int i=m_placeHolders.count()-1;i>=0;i--) {
+			const PlaceHolder& ph = m_placeHolders.at(i);
+			if (i != m_curPlaceHolder && i!=m_lastPlaceHolder && ph.autoRemove &&
+				ph.cursor.lineNumber()==ph.cursor.anchorLineNumber() &&
+				ph.cursor.columnNumber()==ph.cursor.anchorColumnNumber())
+					removePlaceHolder(i);					
+		}
+		//invalid used ones
+		if (m_lastPlaceHolder>=0 &&  m_lastPlaceHolder < m_placeHolders.count() &&
+			m_placeHolders[m_lastPlaceHolder].cursor.lineNumber()==-1) {
+			removePlaceHolder(m_lastPlaceHolder);
+		}
+		if (m_curPlaceHolder>=0 &&  m_curPlaceHolder < m_placeHolders.count() &&
+			m_placeHolders[m_curPlaceHolder].cursor.lineNumber()==-1) {
+			removePlaceHolder(m_curPlaceHolder);
+		}
 				
 		 
 		
