@@ -152,8 +152,8 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor) const{
 			if (cursorLine>=mLines.size()) return;
 			if (!selector.movePosition(cursorLine,QDocumentCursor::Down,QDocumentCursor::MoveAnchor))
 				return;
-			if (editor->flag(QEditor::AutoIndent))
-				realAnchorOffset += selector.line().length()-mLines[cursorLine].length();
+			//if (editor->flag(QEditor::AutoIndent))
+			realAnchorOffset += selector.line().length()-mLines[cursorLine].length();
 			if (cursorLine + 1 == mLines.size())
 				realAnchorOffset-=lastLineRemainingLength;
 		} else realAnchorOffset += baseLineIndent;
