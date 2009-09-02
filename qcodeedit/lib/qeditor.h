@@ -111,7 +111,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 					virtual void affect(const QStringList& base, int ph, const QKeyEvent *e, int mirror, QString& after) const = 0;
 			};
 			
-			PlaceHolder() : length(0), autoRemove(false), affector(0) {}
+			PlaceHolder() : length(0), autoRemove(true), affector(0) {}
 			PlaceHolder(const PlaceHolder& ph) : length(ph.length), autoRemove(ph.autoRemove), affector(ph.affector)
 			{
 				cursor = ph.cursor;
