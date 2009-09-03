@@ -100,12 +100,12 @@ void CodeSnippet::insert(QEditor* editor){
 void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor) const{
 	if (lines.empty()||!editor||!cursor) return;
 	
-        QStringList mLines=lines;
+	QStringList mLines=lines;
 
-        if(m_cut){
-            Q_ASSERT(mLines.size()>1);
-            mLines.removeFirst();
-        }
+	if(m_cut){
+		Q_ASSERT(mLines.size()>1);
+		mLines.removeFirst();
+	}
 	int beginMagicLine=-1;//hack will made every placeholder in this line a mirror of the first placeholder and select this placeholder afterwards
         if (mLines.value(0,"")=="\\begin{environment-name}") //useful in this case (TODO: mirrors in code snippet language)
                 beginMagicLine=mLines.count()-1;
@@ -125,6 +125,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor) const{
 	editor->insertText(*cursor,mLines.join("\n")); //don't use cursor->insertText to keep autoindentation working
 	for (int l=0;l< mLines.count();l++){
 		//if (l<mLines.count()-1) cursor->insertLine();
+		Q_ASSERT(placeHolders.size()>l);
 		for (int i=0; i<placeHolders[l].size(); i++) {
 			QEditor::PlaceHolder ph;
 			ph.length=placeHolders[l][i].second;

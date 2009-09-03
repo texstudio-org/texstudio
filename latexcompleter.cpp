@@ -500,6 +500,8 @@ void LatexCompleter::setAbbreviations(const QStringList &Abbrevs,const QStringLi
         if(!abbr.isEmpty()){
             CompletionWord cw(abbr);
             cw.lines=(abbr+tr(" (Usertag)")+"\n"+Tags.value(i)).split("\n");
+			for(int i=0;i<cw.lines.size();i++)
+				cw.placeHolders.append(QList<QPair<int,int> >());
             cw.setCut(true);
             wordsAbbrev << cw;
         }

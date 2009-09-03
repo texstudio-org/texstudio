@@ -154,7 +154,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	completer->setConfig(configManager.completerConfig);
 	updateCompleter();
 	LatexEditorView::setCompleter(completer);
-        completer->setAbbreviations(UserMenuAbbrev,UserMenuTag);
+	completer->setAbbreviations(UserMenuAbbrev,UserMenuTag);
 
 	if (!configManager.sessionFilesToRestore.empty()) {
 		for (int i=0; i<configManager.sessionFilesToRestore.size(); i++)
