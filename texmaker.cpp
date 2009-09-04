@@ -2896,10 +2896,11 @@ void Texmaker::RightDelimiter() {
 
 ///////////////TOOLS////////////////////
 void Texmaker::runCommand(BuildManager::LatexCommand cmd,bool waitendprocess,bool showStdout,QString fn){
-	if(cmd==BuildManager::CMD_LATEX||cmd==BuildManager::CMD_PDFLATEX) ClearMarkers();
-	runCommand(buildManager.getLatexCommand(cmd),waitendprocess,showStdout,fn);
+	bool compileLatex=cmd==BuildManager::CMD_LATEX||cmd==BuildManager::CMD_PDFLATEX;
+	if(compileLatex) ClearMarkers();
+	runCommand(buildManager.getLatexCommand(cmd),waitendprocess,showStdout,fn,compileLatex);
 }
-void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,QString fn) {
+void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,QString fn, bool compileLatex) {
 
 	QString finame;
 	if(fn.isEmpty()) finame=getCompileFileName();
@@ -2936,6 +2937,9 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,QStri
 		return;
 	} else outputView->insertMessageLine(tr("Process started")+"\n");
 
+	if (compileLatex && configManager.showLogAfterCompiling)
+		connect(procX,SIGNAL(finished(int)),this,SLOT(ViewAndHighlightError()));
+	
 	if (waitendprocess) {
 		QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 		while (!FINPROCESS) {
@@ -2987,16 +2991,12 @@ void Texmaker::QuickBuild() {
 			QMessageBox::warning(this,tr("Error"),tr("Could not start the command."));
 			return;
 		}
-		ViewLog();
 		if (NoLatexErrors()) {
 			stat2->setText(QString(" %1 ").arg("Dvips"));
 			if (!ERRPROCESS) runCommand(BuildManager::CMD_DVIPS,true,false);
 			else return;
 			if (!ERRPROCESS) configManager.triggerManagedAction("main/tools/viewps");
 			else return;
-		} else {
-			NextError();
-			outputView->showErrorListOrLog();
 		}
 	}
 	break;
@@ -3007,13 +3007,9 @@ void Texmaker::QuickBuild() {
 			QMessageBox::warning(this,tr("Error"),tr("Could not start the command."));
 			return;
 		}
-		ViewLog();
 		if (NoLatexErrors()) {
 			if (!ERRPROCESS) configManager.triggerManagedAction("main/tools/viewdvi");
 			else return;
-		} else {
-			NextError();
-			outputView->showErrorListOrLog();
 		}
 	}
 	break;
@@ -3024,13 +3020,9 @@ void Texmaker::QuickBuild() {
 			QMessageBox::warning(this,tr("Error"),tr("Could not start the command."));
 			return;
 		}
-		ViewLog();
 		if (NoLatexErrors()) {
 			if (!ERRPROCESS) configManager.triggerManagedAction("main/tools/viewpdf");
 			else return;
-		} else {
-			NextError();
-			outputView->showErrorListOrLog();
 		}
 	}
 	break;
@@ -3041,16 +3033,12 @@ void Texmaker::QuickBuild() {
 			QMessageBox::warning(this,tr("Error"),tr("Could not start the command."));
 			return;
 		}
-		ViewLog();
 		if (NoLatexErrors()) {
 			stat2->setText(QString(" %1 ").arg("Dvi to Pdf"));
 			if (!ERRPROCESS) runCommand(BuildManager::CMD_DVIPDF,true,false);
 			else return;
 			if (!ERRPROCESS) configManager.triggerManagedAction("main/tools/viewpdf");
 			else return;
-		} else {
-			NextError();
-			outputView->showErrorListOrLog();
 		}
 	}
 	break;
@@ -3061,7 +3049,6 @@ void Texmaker::QuickBuild() {
 			QMessageBox::warning(this,tr("Error"),tr("Could not start the command."));
 			return;
 		}
-		ViewLog();
 		if (NoLatexErrors()) {
 			stat2->setText(QString(" %1 ").arg("Dvips"));
 			if (!ERRPROCESS) runCommand(BuildManager::CMD_DVIPS,true,false);
@@ -3070,9 +3057,6 @@ void Texmaker::QuickBuild() {
 			if (!ERRPROCESS) runCommand(BuildManager::CMD_PS2PDF,true,false);
 			else return;
 			if (!ERRPROCESS) configManager.triggerManagedAction("main/tools/viewpdf");
-		} else {
-			NextError();
-			outputView->showErrorListOrLog();
 		}
 	}
 	break;
@@ -3080,12 +3064,13 @@ void Texmaker::QuickBuild() {
 		QStringList commandList=buildManager.getLatexCommand(BuildManager::CMD_USER_QUICK).split("|");
 		for (int i = 0; i < commandList.size(); ++i) {
 			if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) runCommand(commandList.at(i),true,true);
-			else return;
+			else break;
 		}
+		ViewAndHighlightError();
 	}
 	break;
 	}
-	if (NoLatexErrors()) ViewLog();
+//	if (NoLatexErrors()) ViewLog();
 //ViewLog();
 //DisplayLatexError();
 }
@@ -3095,7 +3080,9 @@ void Texmaker::commandFromAction(){
 	if (!act) return;
 	stat2->setText(QString(" %1 ").arg(act->text()));
 	BuildManager::LatexCommand cmd=(BuildManager::LatexCommand) act->data().toInt();
-	if (cmd==BuildManager::CMD_LATEX || cmd==BuildManager::CMD_PDFLATEX) RunPreCompileCommand();
+	bool compileLatex=(cmd==BuildManager::CMD_LATEX || cmd==BuildManager::CMD_PDFLATEX);
+	if (compileLatex)
+		RunPreCompileCommand();
 	runCommand(cmd, false, false);
 }
 
@@ -3248,6 +3235,14 @@ void Texmaker::ViewLog(bool noTabChange) {
 	}
 }
 
+//call this after latex compilation to show the errors (it only opens the log them if there are any)
+void Texmaker::ViewAndHighlightError(){
+	ViewLog();
+	if (!NoLatexErrors()) {
+		NextError();
+		outputView->showErrorListOrLog();
+	}				
+}
 
 ////////////////////////// ERRORS /////////////////////////////
 void Texmaker::DisplayLatexError() {

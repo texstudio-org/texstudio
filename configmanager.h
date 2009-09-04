@@ -31,7 +31,8 @@ public:
 	
 	//build
 	BuildManager* buildManager; 
-		
+	bool showLogAfterCompiling;
+	
 	//appearance 
 	QString interfaceStyle;
 	QString interfaceFontFamily;
@@ -67,18 +68,18 @@ public:
 	bool addRecentFile(const QString & fileName, bool asMaster); //adds a recent file
 	void updateRecentFiles(bool alwaysRecreateMenuItems=false);
 	
+	//debug
+	#ifndef QT_NO_DEBUG
+	QDateTime debugLastFileModification;
+	#endif
+	
 	//menus
 	QObject* menuParent; //lets assume there is only one
 	QMenuBar* menuParentsBar; //that's ugly, but faster as long as there is only one (both values could be extracted from the action's name)
 	QList<QMenu*> managedMenus;
 	QHash<QString,QKeySequence> managedMenuShortcuts;
 	QList<QPair<QString,QString> > managedMenuNewShortcuts;
-	
-	//debug
-	#ifndef QT_NO_DEBUG
-	QDateTime debugLastFileModification;
-	#endif
-	
+		
 	QMenu* newManagedMenu(const QString &id,const QString &text);
 	QMenu* newManagedMenu(QMenu* menu, const QString &id,const QString &text);
 	QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts = QList<QKeySequence>(), const QString & iconFile="");
