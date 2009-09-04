@@ -274,8 +274,8 @@ private slots:
 	void QuickLetter();
 	void QuickDocument();
 
-	void runCommand(QString comd,bool waitendprocess,bool showStdout,QString fn="");
 	void runCommand(BuildManager::LatexCommand cmd,bool waitendprocess,bool showStdout,QString fn="");
+	void runCommand(QString comd,bool waitendprocess,bool showStdout,QString fn="", bool compileLatex=false);
 	void RunPreCompileCommand();
 	void readFromStderr();
 	void readFromStdoutput();
@@ -293,6 +293,7 @@ private slots:
 	
 	void RealViewLog(bool noTabChange=false);
 	void ViewLog(bool noTabChange=false);
+	void ViewAndHighlightError();
 	void DisplayLatexError();
 	void NextMark();
 	void PreviousMark();

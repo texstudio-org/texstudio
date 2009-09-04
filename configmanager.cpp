@@ -91,6 +91,7 @@ QSettings* ConfigManager::readSettings() {
 	//build commands
 	if (!buildManager) QMessageBox::critical(0,"TexMakerX","No build Manager created! => crash",QMessageBox::Ok);
 	buildManager->readSettings(*config);
+	showLogAfterCompiling=config->value("Tools/Show Log After Compiling", true).toBool();
 	
 	//read user key replacements
 	keyReplace.clear();
@@ -291,6 +292,7 @@ QSettings* ConfigManager::saveSettings() {
 	
 	//---------------------build commands----------------
 	buildManager->saveSettings(*config);
+	config->setValue("Tools/Show Log After Compiling", showLogAfterCompiling);
 	
 	//-------------------key replacements-----------------
 	int keyReplaceCount = keyReplace.count();
@@ -447,6 +449,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	confDlg->ui.lineEditExecuteBeforeCompiling->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_PRECOMPILE));
 	confDlg->ui.lineEditUserquick->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_QUICK));
 	
+	confDlg->ui.checkBoxShowLog->setChecked(showLogAfterCompiling);
 	
 	//menu shortcuts
 	QTreeWidgetItem * menuShortcuts=new QTreeWidgetItem((QTreeWidget*)0, QStringList() << QString(tr("Menus")));
@@ -571,7 +574,8 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		if (confDlg->ui.radioButton4->isChecked()) buildManager->quickmode=4;
 		if (confDlg->ui.radioButton5->isChecked()) buildManager->quickmode=5;
 		if (confDlg->ui.radioButton6->isChecked()) buildManager->quickmode=6;
-		
+
+		showLogAfterCompiling=confDlg->ui.checkBoxShowLog->isChecked();	
 		
 		//key replacements
 		keyReplace.clear();
