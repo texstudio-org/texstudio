@@ -105,6 +105,7 @@
  <tabstops>
   <tabstop>comboBox</tabstop>
   <tabstop>itemEdit</tabstop>
+  <tabstop>abbrevEdit</tabstop>
   <tabstop>tagEdit</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>cancelButton</tabstop>
