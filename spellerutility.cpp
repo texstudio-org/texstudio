@@ -54,6 +54,14 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
 		return true;
 	}
 	ignoredWordList=QTextCodec::codecForName("UTF-8")->toUnicode(f.readAll()).split("\n",QString::SkipEmptyParts);
+	// add words in user dic
+	QByteArray encodedString;
+	QString spell_encoding=QString(pChecker->get_dic_encoding());
+	QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());
+	foreach(QString elem,ignoredWordList){
+		encodedString = codec->fromUnicode(elem);
+		pChecker->add(encodedString.data());
+	}
 	qSort(ignoredWordList.begin(),ignoredWordList.end(),localAwareLessThan);
 	while (!ignoredWordList.empty() && ignoredWordList.first().startsWith("%")) ignoredWordList.removeFirst();
 	ignoredWordsModel.setStringList(ignoredWordList);
@@ -82,12 +90,22 @@ void SpellerUtility::unload() {
 }
 void SpellerUtility::addToIgnoreList(QString toIgnore) {
 	QString word=latexToPlainWord(toIgnore);
+	QByteArray encodedString;
+	QString spell_encoding=QString(pChecker->get_dic_encoding());
+	QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());
+	encodedString = codec->fromUnicode(word);
+	pChecker->add(encodedString.data());
 	ignoredWords.insert(word);
 	if (!ignoredWordList.contains(word))
 		ignoredWordList.insert(qLowerBound(ignoredWordList.begin(),ignoredWordList.end(), word, localAwareLessThan), word);
 	ignoredWordsModel.setStringList(ignoredWordList);
 }
 void SpellerUtility::removeFromIgnoreList(QString toIgnore) {
+	QByteArray encodedString;
+	QString spell_encoding=QString(pChecker->get_dic_encoding());
+	QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());
+	encodedString = codec->fromUnicode(toIgnore);
+	pChecker->remove(encodedString.data());
 	ignoredWords.remove(toIgnore);
 	ignoredWordList.removeAll(toIgnore);
 	ignoredWordsModel.setStringList(ignoredWordList);
