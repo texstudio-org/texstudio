@@ -4,6 +4,7 @@
 
 #include "latexoutputfilter.h"
 class LatexLogModel: public QAbstractTableModel {
+	Q_OBJECT
 private:
 	QList<LatexLogEntry> log;
 	bool foundType[4];

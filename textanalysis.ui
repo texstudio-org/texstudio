@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>560</width>
-    <height>558</height>
+    <height>564</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@
       <item>
        <widget class="QPushButton" name="countButton">
         <property name="text">
-         <string>count</string>
+         <string extracomment="count as verb">count</string>
         </property>
        </widget>
       </item>
