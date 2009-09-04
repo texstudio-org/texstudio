@@ -949,7 +949,7 @@ with bit numconds-1 representing the last char at the end of the string.
 
 Note: since entries in the conds[] are 8 bits, only 8 conditions
 (read that only 8 character positions) can be examined at one
-end of a word (the beginning for prefixes and the end for suffixes.
+end of a word (the beginning for prefixes and the end for suffixes).
 
 So to make this clearer, lets encode the conds array values for the
 first two affentries for the suffix D described earlier.
