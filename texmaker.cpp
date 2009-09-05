@@ -267,10 +267,10 @@ void Texmaker::setupDockWidgets(){
 		connect(StructureTreeWidget, SIGNAL(itemPressed(QTreeWidgetItem *,int)), SLOT(ClickedOnStructure(QTreeWidgetItem *,int))); //single click
 // connect( StructureTreeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem *,int )), SLOT(DoubleClickedOnStructure(QTreeWidgetItem *,int))); // qt4 bugs - don't use it
 		StructureToolbox->addItem(StructureTreeWidget,QIcon(":/images/structure.png"),tr("Structure"));
+		StructureToolbox->setContextMenuPolicy(Qt::CustomContextMenu);
+		connect(StructureToolbox,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(StructureToolBoxContextMenu(QPoint)));
 	} else StructureToolbox->setItemText(StructureToolbox->indexOf(StructureTreeWidget),tr("Structure"));
 	
-	StructureToolbox->setContextMenuPolicy(Qt::CustomContextMenu);
-	connect(StructureToolbox,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(StructureToolBoxContextMenu(QPoint)));
 
 	//addSymbolList(&RelationListWidget,0, ":/images/math1.png",tr("Relation symbols"),SymbolListVisible&(1<<0));
 	//addSymbolList(&ArrowListWidget,1, ":/images/math2.png",tr("Arrow symbols"),SymbolListVisible&1<<1);
@@ -301,8 +301,10 @@ void Texmaker::setupDockWidgets(){
 	// update MostOftenUsed
 	MostUsedSymbolsTriggered(true);
 	// clean not further used map;
-	delete MapForSymbols;
-
+	if (MapForSymbols){
+		delete MapForSymbols;
+		MapForSymbols = 0;
+	}
 // OUTPUT WIDGETS
 	if (!outputView) {
 		outputView = new OutputViewWidget(this);

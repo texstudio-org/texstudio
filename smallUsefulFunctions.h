@@ -15,13 +15,13 @@
 
 QString getCommonEOW();
 
-QStringList findResourceFiles(QString dirName, QString filter);
+QStringList findResourceFiles(const QString& dirName, const QString& filter);
 //returns the real name of a resource file (allowing the user to override resource files with local files)
-QString findResourceFile(QString fileName);
+QString findResourceFile(const QString& fileName);
 //returns if the file is writable (QFileInfo.isWritable works in different ways on Windows and Linux)
-bool isFileRealWritable(QString filename);
+bool isFileRealWritable(const QString& filename);
 //returns if the file exists and is writable
-bool isExistingFileRealWritable(QString filename);
+bool isExistingFileRealWritable(const QString& filename);
 
 //returns kde version 0,3,4
 int x11desktop_env();
@@ -60,11 +60,11 @@ NextWordFlag nextWord(const QString & line, int &index, QString &outWord, int &w
 bool nextTextWord(const QString & line, int &index, QString &outWord, int &wordStartIndex);
 
 //removes special latex characters
-QString latexToPlainWord(QString word);
+QString latexToPlainWord(const QString& word);
 //extracts the section name after \section is removed (brackets removal)
-QString extractSectionName(QString word);
+QString extractSectionName(const QString& word);
 //replaces character with corresponding LaTeX commands
-QString textToLatex(QString text);
+QString textToLatex(const QString& text);
 
 //compares two strings local aware
 bool localAwareLessThan(const QString &s1, const QString &s2);
@@ -76,10 +76,10 @@ QString findToken(const QString &line,QRegExp &token);
 bool findTokenWithArg(const QString &line,const QString &token, QString &outName, QString &outArg);
 
 // remove comment from text, take care of multiple backslashes before comment character ...
-QString cutComment(QString text);
+QString cutComment(const QString& text);
 
 //setup toolbutton as substitute for const combobox
-QToolButton* createComboToolButton(QWidget *parent,QStringList list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member);
+QToolButton* createComboToolButton(QWidget *parent,const QStringList& list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member);
 
 
 //check if the run-time qt version is higher than the given version (e.g. 4,3)
