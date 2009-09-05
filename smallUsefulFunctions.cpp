@@ -13,27 +13,26 @@ QString getCommonEOW() {
 	return CommonEOW;
 }
 
-QStringList findResourceFiles(QString dirName, QString filter) {
+QStringList findResourceFiles(const QString& dirName, const QString& filter) {
 	QStringList searchFiles;
-
-	searchFiles<<":/"+dirName; //resource fall back
-	searchFiles<<QCoreApplication::applicationDirPath() + "/"+dirName; //windows new
+	QString dn = dirName.endsWith('/')?"":("/"+dirName);
+	searchFiles<<":"+dn; //resource fall back
+	searchFiles<<QCoreApplication::applicationDirPath() + dn; //windows new
 	// searchFiles<<QCoreApplication::applicationDirPath() + "/data/"+fileName; //windows new
 #if defined( Q_WS_X11 )
-	searchFiles<<PREFIX"/share/texmakerx/"+dirName; //X_11
+	searchFiles<<PREFIX"/share/texmakerx"+dn; //X_11
 #endif
 
-	foreach(QString fn, searchFiles) {
+	QStringList result;
+	foreach(const QString& fn, searchFiles) {
 		QDir fic(fn);
-		if (fic.exists() && fic.isReadable()) {
-			return fic.entryList(QStringList(filter),QDir::Files,QDir::Name);
-			break;
-		}
+		if (fic.exists() && fic.isReadable()) 
+			result<< fic.entryList(QStringList(filter),QDir::Files,QDir::Name);
 	}
-	return QStringList();
+	return result;
 }
 
-QString findResourceFile(QString fileName) {
+QString findResourceFile(const QString& fileName) {
 	QStringList searchFiles;
 
 	searchFiles<<":/"+fileName; //resource fall back
@@ -49,7 +48,7 @@ QString findResourceFile(QString fileName) {
 #endif
 
 
-	foreach(QString fn, searchFiles) {
+	foreach(const QString& fn, searchFiles) {
 		QFileInfo fic(fn);
 		if (fic.exists() && fic.isReadable()) {
 			return fn;
@@ -59,7 +58,7 @@ QString findResourceFile(QString fileName) {
 	return "";
 }
 
-bool isFileRealWritable(QString filename) {
+bool isFileRealWritable(const QString& filename) {
 #ifdef Q_WS_WIN
 	//thanks to Vistas virtual folders trying to open an unaccessable file can create it somewhere else
 	return QFileInfo(filename).isWritable();
@@ -74,7 +73,7 @@ bool isFileRealWritable(QString filename) {
 	return result;
 }
 
-bool isExistingFileRealWritable(QString filename) {
+bool isExistingFileRealWritable(const QString& filename) {
 	return QFileInfo(filename).exists() && isFileRealWritable(filename);
 }
 
@@ -89,7 +88,7 @@ int x11desktop_env() {
 }
 
 
-QString latexToPlainWord(QString word) {
+QString latexToPlainWord(const QString& word) {
 	QList<QPair<QString,QString> > replaceList;
 	replaceList.append(QPair<QString, QString> ("\\-","")); //Trennung [separation] (german-babel-package also: \")
 	replaceList.append(QPair<QString, QString> ("\\/","")); //ligatur preventing (german-package also: "|)
@@ -105,13 +104,14 @@ QString latexToPlainWord(QString word) {
 	replaceList.append(QPair<QString, QString> ("\"",""));
 	replaceList.append(QPair<QString, QString> ("\\","")); // eliminating backslash which might remain from accents like \"a ...
 
+	QString result=word;
 	for (QList<QPair<QString,QString> >::const_iterator it=replaceList.begin(); it!=replaceList.end(); ++it)
-		word.replace(it->first,it->second);
+		result.replace(it->first,it->second);
 
-	return word;
+	return result;
 }
 
-QString extractSectionName(QString word) {
+QString extractSectionName(const QString& word) {
 	int i=0;
 	int start=word.indexOf("{",i);
 	i=start;
@@ -122,11 +122,10 @@ QString extractSectionName(QString word) {
 		i=word.indexOf("{",i+1);
 	}
 	if (stop<0) stop=word.length();
-	word=word.mid(start+1,stop-start-1);
-	return word;
+	return word.mid(start+1,stop-start-1);
 }
 
-QString textToLatex(QString text) {
+QString textToLatex(const QString& text) {
 	QList<QPair<QString,QString> > replaceList;
 	replaceList.append(QPair<QString, QString> ("\\","\\verb+\\+"));
 	replaceList.append(QPair<QString, QString> ("{","\\{"));
@@ -139,10 +138,11 @@ QString textToLatex(QString text) {
 	replaceList.append(QPair<QString, QString> ("_","\\_"));
 	replaceList.append(QPair<QString, QString> ("^","\\^"));
 
+	QString result=text;
 	for (QList<QPair<QString,QString> >::const_iterator it=replaceList.begin(); it!=replaceList.end(); ++it)
-		text.replace(it->first,it->second);
+		result.replace(it->first,it->second);
 
-	return text;
+	return result;
 }
 
 bool localAwareLessThan(const QString &s1, const QString &s2) {
@@ -323,7 +323,7 @@ bool findTokenWithArg(const QString &line,const QString &token, QString &outName
 }
 
 
-QToolButton* createComboToolButton(QWidget *parent,QStringList list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member){
+QToolButton* createComboToolButton(QWidget *parent,const QStringList& list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member){
 	QToolButton *combo=new QToolButton(parent);
 	combo->setPopupMode(QToolButton::MenuButtonPopup);
 	combo->setMinimumHeight(height);
@@ -351,7 +351,7 @@ bool hasAtLeastQt(int major, int minor){
 	return (ma>major) || (ma==major && mi>=minor);
 }
 
-QString cutComment(QString text){
+QString cutComment(const QString& text){
 	QString test=text;
 	test.replace("\\\\","  ");
 	int commentStart=test.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
