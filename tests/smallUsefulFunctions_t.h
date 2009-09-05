@@ -13,24 +13,32 @@ class TestToken: public QString{
 	static const QRegExp simpleTextRegExp; //defined in testmanager.cpp
 	static const QRegExp commandRegExp;
 	static const QRegExp ignoredTextRegExp;
+	static const QRegExp specialCharTextRegExp;
 	void guessType(){
 		if (simpleTextRegExp.exactMatch(*this)) type=NW_TEXT;
 		else if (commandRegExp.exactMatch(*this)) type=NW_COMMAND;
 		else if (ignoredTextRegExp.exactMatch(*this)) type=NW_IGNORED_TOKEN;
 		else if (*this=="%") type=NW_COMMENT;
+		else if (specialCharTextRegExp.exactMatch(*this)) type=NW_TEXT;
 		else QVERIFY2(false, QString("invalid test data: \"%1\"").arg(*this).toLatin1().constData());
 	}
 public:
 	int type,position;
-	TestToken():QString(), type(NW_IGNORED_TOKEN){ }
-	TestToken(const TestToken& token):QString(token), type(token.type), position(token.position){ }
-	TestToken(const QString& str):QString(str){
+	TestToken():QString(), type(NW_IGNORED_TOKEN),soll(QString()){ }
+	TestToken(const TestToken& token):QString(token), type(token.type), position(token.position), soll(token.soll) { }
+	TestToken(const QString& str):QString(str),soll(str) {
 		guessType();
 	}
-	TestToken(const char* cstr):QString(cstr){
+	TestToken(const char* cstr):QString(cstr), soll(QString(cstr)){
 		guessType();
 	}
-	TestToken(const QString& str, int atype):QString(str),type(atype){}
+	TestToken(const QString& str, int atype):QString(str),type(atype),soll(str){}
+	TestToken(const QString& str, const QString result, int atype):QString(str),type(atype),soll(result){}
+	bool operator ==(const QString &other) {
+		return other.operator ==(soll);
+	}
+private:
+	QString soll;
 };
 
 Q_DECLARE_METATYPE(TestToken);
@@ -71,22 +79,22 @@ class SmallUsefulFunctionsTest: public QObject{
 					if (tokens[i].type==NW_IGNORED_TOKEN)	tokens.removeAt(i);
 					else if (tokens[i].type==NW_ENVIRONMENT || tokens[i].type==NW_OPTION)
 						tokens[i].type=NW_TEXT;//nextWord in command mode don't distinguish between text, environments and options
-					else if (tokens[i].contains("\\") && tokens[i].type==NW_TEXT) 
-						tokens[i].replace("\\",""); //unescape escaped characters
+					//else if (tokens[i].contains("\\") && tokens[i].type==NW_TEXT)
+						//tokens[i].replace("\\%","%"); //unescape escaped characters
 				break;
 			case FILTER_NEXTWORD:
 				for (int i=tokens.size()-1;i>=0;i--) 
 					if (tokens[i].type==NW_COMMAND || tokens[i].type==NW_OPTION || tokens[i].type==NW_IGNORED_TOKEN) 
 						tokens.removeAt(i);//remove tokens not returned by nextWord in text mode
-					else if (tokens[i].contains("\\") && tokens[i].type==NW_TEXT) 
-						tokens[i].replace("\\",""); //unescape escaped characters
+					//else if (tokens[i].contains("\\") && tokens[i].type==NW_TEXT)
+						//tokens[i].replace("\\",""); //unescape escaped characters
 				break;
 			case FILTER_NEXTTEXTWORD:
 				for (int i=tokens.size()-1;i>=0;i--)
 					if (tokens[i].type!=NW_TEXT || i>=firstComment)  
 						tokens.removeAt(i);//remove all except text before comment start
-					else if (tokens[i].contains("\\") && tokens[i].type==NW_TEXT) 
-						tokens[i].replace("\\",""); //unescape escaped characters
+					//else if (tokens[i].contains("\\") && tokens[i].type==NW_TEXT)
+						//tokens[i].replace("\\",""); //unescape escaped characters
 				break;
 			default:
 				QVERIFY2(false, "Invalid filter");
@@ -107,8 +115,10 @@ class SmallUsefulFunctionsTest: public QObject{
 			QList<TestToken>() << "hallo" << " " << "welt" << "\\ignoreMe" << "{" << "text" << "}" << "     " << "\\begin" << "{" << env("I'mXnotXthere") << "}" << " *" << "g"  << "* " << "%"     << " " << "more" << " " << "\\comment");
 		addRow("command as option", filter,
 			QList<TestToken>() << "\\includegraphics" << "[" << option("ab") << "." << "\\linewidth" << "]" << "{" << "\\abc" << " " << option("dfdf") << "\\xyz" << "}" << "continue");
-		addRow("comments", filter, QList<TestToken>() << "hallo" << " " << "welt" <<  "  " << "\\\\" << "normaltext" <<  "  " << TestToken("\\%",NW_TEXT) << "!!!" << "stillNoComment" << "\\\\" << TestToken("\\%",NW_TEXT) <<"  "<< "none" << "\\\\" << "%" << "comment" << "   " << "more" << " " << "comment");
-		addRow("escaped characters", filter, QList<TestToken>() << TestToken("hallo\\%abc",NW_TEXT));
+		addRow("comments", filter, QList<TestToken>() << "hallo" << " " << "welt" <<  "  " << "\\\\" << "normaltext" <<  "  " << TestToken("\\%","%",NW_TEXT) << "!!!" << "stillNoComment" << "\\\\" << TestToken("\\%","%",NW_TEXT) <<"  "<< "none" << "\\\\" << "%" << "comment" << "   " << "more" << " " << "comment");
+		addRow("escaped characters", filter, QList<TestToken>() << TestToken("hallo\\%abc","hallo%abc",NW_TEXT));
+		addRow("special characters", filter,
+			   QList<TestToken>() << "lösbar" << " " << TestToken("l\"osbar","lösbar",NW_TEXT) << " " << TestToken("l\\\"osbar","lösbar",NW_TEXT) << " " << TestToken("l\\\"{o}sbar","lösbar",NW_TEXT) << " " << "örtlich" <<" " <<TestToken("\"ortlich","örtlich",NW_TEXT)<<" " <<TestToken("\\\"ortlich","örtlich",NW_TEXT)<<" " <<TestToken("\\\"{o}rtlich","örtlich",NW_TEXT) );
 	}
 	void nextWord_complex_test(bool commands){
 		//get data
@@ -121,7 +131,7 @@ class SmallUsefulFunctionsTest: public QObject{
 			if (pos>=tokens.size()) {
 				QFAIL(QString("Found additional token: %1 at %2").arg(token).arg(startIndex).toLatin1().constData());
 			} else {
-				QVERIFY2(token==tokens[pos], QString("Invalid token: %1 at %2 expected %3").arg(token).arg(startIndex).arg(tokens[pos]).toLatin1().constData());
+				QVERIFY2(tokens[pos]==token, QString("Invalid token: %1 at %2 expected %3").arg(token).arg(startIndex).arg(tokens[pos]).toLatin1().constData());
 				QVERIFY2(startIndex==tokens[pos].position, QString("Invalid startIndex: %2 for %1").arg(token).arg(startIndex).toLatin1().constData());
 				QVERIFY2(type==tokens[pos].type, QString("Invalid type: %2 for %1").arg(token).arg(type).toLatin1().constData());
 			}
@@ -171,7 +181,7 @@ private slots:
 		while (nextTextWord(str, index, token, startIndex)) {
 			if (pos>=tokens.size()) QFAIL(QString("Found additional token: %1 at %2").arg(token).arg(startIndex).toLatin1().constData());
 			else {
-				QVERIFY2(token==tokens[pos], QString("Invalid token: %1 at %2, expected %3").arg(token).arg(startIndex).arg(tokens[pos]).toLatin1().constData());
+				QVERIFY2(tokens[pos]==token, QString("Invalid token: %1 at %2, expected %3").arg(token).arg(startIndex).arg(tokens[pos]).toLatin1().constData());
 				QVERIFY2(startIndex==tokens[pos].position, QString("Invalid startIndex: %2 for %1").arg(token).arg(startIndex).toLatin1().constData());
 			}
 			pos++;
