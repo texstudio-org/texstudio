@@ -251,6 +251,52 @@ private slots:
 		QString res=cutComment(in);
 		QEQUAL(res,out);
 	}
+	void test_findContext_data(){
+		QTest::addColumn<QString >("in");
+		QTest::addColumn<int>("pos");
+		QTest::addColumn<int>("out");
+
+		QTest::newRow("command") << "\\begin{test}" << 3 << 1;
+		QTest::newRow("content") << "\\begin{test}" << 8 << 2;
+		QTest::newRow("option") << "\\begin[abc]{test}" << 8 << 0;
+		QTest::newRow("content with option") << "\\begin[abc]{test}" << 13 << 2;
+		QTest::newRow("command with option") << "\\begin[abc]{test}" << 3 << 1;
+		QTest::newRow("nothing") << "\\begin{test}" << 0 << 0;
+	}
+	void test_findContext(){
+		QFETCH(QString, in);
+		QFETCH(int, pos);
+		QFETCH(int, out);
+		int res=LatexParser::findContext(in,pos);
+		QEQUAL(res,out);
+	}
+	void test_findContext2_data(){
+		QTest::addColumn<QString >("in");
+		QTest::addColumn<int>("pos");
+		QTest::addColumn<int>("out");
+		QTest::addColumn<QString>("command");
+		QTest::addColumn<QString>("value");
+
+		QTest::newRow("command") << "\\begin{test}" << 3 << (int)LatexParser::Command << "\\begin" <<"test";
+		QTest::newRow("content") << "\\begin{test}" << 8 << (int)LatexParser::Environment << "\\begin" <<"test";
+		QTest::newRow("ref") << "\\ref{test}" << 8 << (int)LatexParser::Reference << "\\ref" <<"test";
+		QTest::newRow("label") << "\\label{test}" << 8 << (int)LatexParser::Label << "\\label" <<"test";
+		QTest::newRow("cite") << "\\cite{test}" << 8 << (int)LatexParser::Citation << "\\cite" <<"test";
+		QTest::newRow("cite") << "\\cite{test}" << 3 << (int)LatexParser::Command << "\\cite" <<"test";
+	}
+	void test_findContext2(){
+		QFETCH(QString, in);
+		QFETCH(int, pos);
+		QFETCH(int, out);
+		QFETCH(QString, command);
+		QFETCH(QString, value);
+		QString cmd;
+		QString val;
+		LatexParser::ContextType res=LatexParser::findContext(in,pos,cmd,val);
+		QEQUAL((int)res,out);
+		QEQUAL(cmd,command);
+		QEQUAL(val,value);
+	}
 };
 
 #endif
