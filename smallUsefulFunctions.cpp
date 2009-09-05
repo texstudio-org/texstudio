@@ -375,6 +375,7 @@ QString cutComment(const QString& text){
 	QString test=text;
 	test.replace("\\\\","  ");
 	int commentStart=test.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
+	if(commentStart>0) commentStart++;
 	return text.left(commentStart); // remove comments
 }
 

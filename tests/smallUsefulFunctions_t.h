@@ -234,6 +234,23 @@ private slots:
 		QEQUAL(row,outWord);
 		QEQUAL(wsi,wordStartIndex);
 	}
+	void cutComment_simple_data(){
+		QTest::addColumn<QString >("in");
+		QTest::addColumn<QString >("out");
+
+		QTest::newRow("comment") << "ab%cd" << "ab";
+		QTest::newRow("nocomment") << "ab\\%cd" << "ab\\%cd";
+		QTest::newRow("comment and newline") << "ab\\\\%cd" << "ab\\\\";
+		QTest::newRow("nocomment and newline") << "ab\\\\\\%cd" << "ab\\\\\\%cd";
+		QTest::newRow("comment at start of line") << "%abcd" << "";
+
+	}
+	void cutComment_simple(){
+		QFETCH(QString, in);
+		QFETCH(QString, out);
+		QString res=cutComment(in);
+		QEQUAL(res,out);
+	}
 };
 
 #endif
