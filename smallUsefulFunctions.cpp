@@ -2,6 +2,7 @@
 
 const QString CommonEOW="~!@#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`+�";
 const QString EscapedChars="%&_";
+const QString CharacterAlteringChars="\"";
 
 const QStringList refCommands = QStringList() << "\\ref" << "\\pageref" ;
 const QStringList labelCommands = QStringList() << "\\label" ;
@@ -101,6 +102,12 @@ QString latexToPlainWord(const QString& word) {
 	replaceList.append(QPair<QString, QString> ("\"A","\xC4"));
 	replaceList.append(QPair<QString, QString> ("\"O","\xD6"));
 	replaceList.append(QPair<QString, QString> ("\"U","\xDC"));
+	replaceList.append(QPair<QString, QString> ("\\\"{a}","\xE4"));
+	replaceList.append(QPair<QString, QString> ("\\\"{o}","\xF6"));
+	replaceList.append(QPair<QString, QString> ("\\\"{u}","\xFC"));
+	replaceList.append(QPair<QString, QString> ("\\\"{A}","\xC4"));
+	replaceList.append(QPair<QString, QString> ("\\\"{O}","\xD6"));
+	replaceList.append(QPair<QString, QString> ("\\\"{U}","\xDC"));
 	replaceList.append(QPair<QString, QString> ("\"",""));
 	replaceList.append(QPair<QString, QString> ("\\","")); // eliminating backslash which might remain from accents like \"a ...
 
@@ -155,10 +162,21 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 	bool inCmd=false;
 	//bool reparse=false;
 	bool singleQuoteChar=false;
+	bool ignoreBrace=false;
+	bool ignoreClosingBrace=false;
 	int start=-1;
 	int i=index;
 	for (i=(i>0?i:0); i<line.size(); i++) {
 		QChar cur = line.at(i);
+		if(ignoreBrace && cur=='{'){
+			ignoreBrace=false;
+			ignoreClosingBrace=true;
+			continue;
+		} else ignoreBrace=false;
+		if(ignoreClosingBrace && cur=='}'){
+			ignoreClosingBrace=false;
+			continue;
+		}
 		if (inCmd) {
 			if (CommonEOW.indexOf(cur)>=0) {
 				if (i-start==1) i++;
@@ -166,7 +184,8 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 			}
 		} else if (inWord) {
 			if (cur=='\\') {
-				if (i+1<line.size() && (line.at(i+1)=='-'||EscapedChars.indexOf(line.at(i+1))>=0))  {
+				if (i+1<line.size() && (line.at(i+1)=='-'||EscapedChars.indexOf(line.at(i+1))>=0||CharacterAlteringChars.indexOf(line.at(i+1))>=0))  {
+					if(CharacterAlteringChars.indexOf(line.at(i+1))>=0) ignoreBrace=true;
 					i++;//ignore word separation marker and _ respectively
 					//reparse=true;
 				} else break;
@@ -185,9 +204,10 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 				break;
 			} else if (CommonEOW.indexOf(cur)>=0) break;
 		} else if (cur=='\\') {
-			if (i+1<line.size() && EscapedChars.indexOf(line.at(i+1))>=0)  {
+			if (i+1<line.size() && (EscapedChars.indexOf(line.at(i+1))>=0||CharacterAlteringChars.indexOf(line.at(i+1))>=0))  {
 				inWord=true;
 				start=i;
+				if(CharacterAlteringChars.indexOf(line.at(i+1))>=0) ignoreBrace=true;
 				i++;
 			}else{
 				start=i;
