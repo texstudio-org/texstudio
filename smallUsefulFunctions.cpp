@@ -216,7 +216,7 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 		} else if (cur=='{' || cur=='}' || cur=='%') {
 			index=i+1;
 			return i;
-		} else if (CommonEOW.indexOf(cur)<0 && cur!='\'') {
+		} else if (CommonEOW.indexOf(cur)<0 && cur!='\'' || cur=='"') {
 			start=i;
 			inWord=true;
 		}
@@ -262,7 +262,7 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 			lastCommand="";
 			break;//command doesn't matter anymore
 		case '\\':
-			if (outWord.length()==1 || !EscapedChars.contains(outWord.at(1))) {
+			if (outWord.length()==1 || !(EscapedChars.contains(outWord.at(1)) || CharacterAlteringChars.contains(outWord.at(1)))) {
 				if (returnCommands) return NW_COMMAND;
 				if (!optionCommands.contains(lastCommand)) {
 					lastCommand=outWord;

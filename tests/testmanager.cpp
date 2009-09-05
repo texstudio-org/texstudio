@@ -13,6 +13,7 @@
 const QRegExp TestToken::simpleTextRegExp ("[A-Z'a-z0-9]+");
 const QRegExp TestToken::commandRegExp ("\\\\([A-Za-z]+|.)");
 const QRegExp TestToken::ignoredTextRegExp ("[$\t *!{}.\\][]+");
+const QRegExp TestToken::specialCharTextRegExp ("[A-Z'\"\\\\\\{\\}a-z0-9ö]+");
 
 QString TestManager::performTest(QObject* obj){
 	char* argv[3];
