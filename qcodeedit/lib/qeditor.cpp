@@ -3467,9 +3467,10 @@ void QEditor::dropEvent(QDropEvent *e)
 
 	//repaintSelection();
 
-	m_doc->beginMacro();
+	//m_doc->beginMacro();
 	//m_cursor.beginEditBlock();
-
+	QDocumentCursor insertCursor = cursorForPosition(mapToContents(e->pos()));
+	
 	if (
 			(e->dropAction() == Qt::MoveAction)
 		&&
@@ -3480,22 +3481,27 @@ void QEditor::dropEvent(QDropEvent *e)
 			)
 		)
 	{
+		insertCursor.setAutoUpdated(true);
+		m_doc->beginMacro();
+		
 		m_cursor.removeSelectedText();
 
 		for ( int i = 0; i < m_mirrors.count(); ++i )
 			m_mirrors[i].removeSelectedText();
-
+			
+		m_doc->endMacro();
+		insertCursor.setAutoUpdated(false);
 	} else {
 		//qDebug("action : %i", e->dropAction());
 		m_cursor.clearSelection();
 	}
 
 	clearCursorMirrors();
-	m_cursor.moveTo(cursorForPosition(mapToContents(e->pos())));
+	m_cursor=insertCursor;//.moveTo(cursorForPosition(mapToContents(e->pos())));
 	insertFromMimeData(e->mimeData());
 	//m_cursor.endEditBlock();
 
-	m_doc->endMacro();
+	//m_doc->endMacro();
 
 	selectionChange();
 }
