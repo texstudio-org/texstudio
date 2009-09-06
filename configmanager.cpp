@@ -9,6 +9,7 @@
 
 #include <QDomElement>
 
+#include "manhattanstyle.h"
 
 ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	buildManager(0),editorConfig(new LatexEditorViewConfig), completerConfig (new LatexCompleterConfig), menuParent(0), menuParentsBar(0){
@@ -152,7 +153,7 @@ QSettings* ConfigManager::readSettings() {
 #endif
 	editorConfig->editorFont=QFont(fam,si);
 
-        editorConfig->displayModifyTime=config->value("Editor/Display Modifytime",true).toBool();
+	editorConfig->displayModifyTime=config->value("Editor/Display Modifytime",true).toBool();
 	editorConfig->closeSearchAndReplace=config->value("Editor/Close Search Replace Together",false).toBool();
 	//interface
 #ifdef Q_WS_X11
@@ -174,7 +175,11 @@ QSettings* ConfigManager::readSettings() {
 	configShowAdvancedOptions = config->value("Interface/Config Show Advanced Options",false).toBool();
 	interfaceStyle=config->value("X11/Style",interfaceStyle).toString(); //named X11 for backward compatibility
 	defaultStyle=QApplication::style();
-	if (interfaceStyle!="") QApplication::setStyle(interfaceStyle); 
+	modernStyle=config->value("GUI/Style", true).toBool();
+	if (modernStyle) {
+		ManhattanStyle* style=new ManhattanStyle(interfaceStyle==""?defaultStyle->objectName():interfaceStyle);
+		if (style->isValid()) QApplication::setStyle(style);
+	} else if (interfaceStyle!="") QApplication::setStyle(interfaceStyle); 
 
 	interfaceFontFamily = config->value("X11/Font Family",QApplication::font().family()).toString();
 	interfaceFontSize = config->value("X11/Font Size",QApplication::font().pointSize()).toInt();		
@@ -222,6 +227,7 @@ QSettings* ConfigManager::readSettings() {
 
 	QApplication::setPalette(pal);
 #endif
+	
 
 	tabbedLogView=config->value("LogView/Tabbed","true").toBool();
 	
@@ -317,7 +323,8 @@ QSettings* ConfigManager::saveSettings() {
 	config->setValue("X11/Style",interfaceStyle); //named X11/ for backward compatibility
 	config->setValue("X11/Font Family",interfaceFontFamily);
 	config->setValue("X11/Font Size",interfaceFontSize);
-
+	config->setValue("GUI/Style", modernStyle);
+	
 	config->setValue("LogView/Tabbed",tabbedLogView);
 	
 	config->setValue("Interface/Language",language); 
@@ -497,6 +504,8 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
         confDlg->ui.checkBoxDisplayModifyTime->setChecked(editorConfig->displayModifyTime);
 	confDlg->ui.checkBoxCloseSearchReplaceTogether->setChecked(editorConfig->closeSearchAndReplace);
 	
+	confDlg->ui.comboBoxInterfaceModernStyle->setCurrentIndex(modernStyle?1:0);
+	
 	//editor font
 	confDlg->ui.comboBoxFont->lineEdit()->setText(editorConfig->editorFont.family());
 	confDlg->ui.spinBoxSize->setValue(editorConfig->editorFont.pointSize());
@@ -602,11 +611,16 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 			interfaceFontFamily=confDlg->ui.comboBoxInterfaceFont->currentFont().family();
 			QApplication::setFont(QFont(interfaceFontFamily, interfaceFontSize));
 		}
-		if (confDlg->ui.comboBoxInterfaceStyle->currentText()!=interfaceStyle){
+		if (confDlg->ui.comboBoxInterfaceStyle->currentText()!=interfaceStyle || 
+			confDlg->ui.comboBoxInterfaceModernStyle->currentIndex()!=(modernStyle?1:0)){
 			interfaceStyle=confDlg->ui.comboBoxInterfaceStyle->currentText();
+			modernStyle=confDlg->ui.comboBoxInterfaceModernStyle->currentIndex()==1;
 			if (interfaceStyle==tr("default")) interfaceStyle="";
 			QPalette pal = QApplication::palette();
-			if (interfaceStyle=="") QApplication::setStyle(defaultStyle);
+			if (modernStyle) {
+				ManhattanStyle* style=new ManhattanStyle(interfaceStyle==""?defaultStyle->objectName():interfaceStyle);
+				if (style->isValid()) QApplication::setStyle(style);
+			} else if (interfaceStyle=="") QApplication::setStyle(defaultStyle);
 			else QApplication::setStyle(interfaceStyle);
 			QApplication::setPalette(pal);
 		}
@@ -616,7 +630,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 			emit tabbedLogViewChanged(confDlg->ui.checkBoxTabbedLogView->isChecked());
 		tabbedLogView=confDlg->ui.checkBoxTabbedLogView->isChecked();
 
-                editorConfig->displayModifyTime=confDlg->ui.checkBoxDisplayModifyTime->isChecked();
+		editorConfig->displayModifyTime=confDlg->ui.checkBoxDisplayModifyTime->isChecked();
 		editorConfig->closeSearchAndReplace=confDlg->ui.checkBoxCloseSearchReplaceTogether->isChecked();
 		//language
 		lastLanguage=language;

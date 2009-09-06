@@ -36,6 +36,7 @@ public:
 	//appearance 
 	QString interfaceStyle;
 	QString interfaceFontFamily;
+	bool modernStyle;
 	int interfaceFontSize;
 	bool tabbedLogView;
 	bool configShowAdvancedOptions;
