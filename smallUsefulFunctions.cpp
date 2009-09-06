@@ -374,8 +374,9 @@ bool hasAtLeastQt(int major, int minor){
 QString cutComment(const QString& text){
 	QString test=text;
 	test.replace("\\\\","  ");
-	int commentStart=test.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
-	if(commentStart>0) commentStart++;
+	int commentStart=test.indexOf(QRegExp("[^\\\\]%")); // find start of comment (if any)
+	if(commentStart>-1) commentStart++;
+	if(test.startsWith("%")) commentStart=0;
 	return text.left(commentStart); // remove comments
 }
 

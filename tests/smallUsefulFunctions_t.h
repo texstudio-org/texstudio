@@ -243,6 +243,7 @@ private slots:
 		QTest::newRow("comment and newline") << "ab\\\\%cd" << "ab\\\\";
 		QTest::newRow("nocomment and newline") << "ab\\\\\\%cd" << "ab\\\\\\%cd";
 		QTest::newRow("comment at start of line") << "%abcd" << "";
+		QTest::newRow("comment at start+1 of line") << "a%abcd" << "a";
 
 	}
 	void cutComment_simple(){
