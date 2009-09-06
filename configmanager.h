@@ -100,8 +100,7 @@ signals:
 	void tabbedLogViewChanged(bool changed);
 public:
 //private:
-	QString configFileName,configFileNameBase;
-	QStyle* defaultStyle;
+	QString configFileName,configFileNameBase,defaultStyleName;
 	QMap<QPushButton*, BuildManager::LatexCommand> buttonsToCommands;
 	QMap<BuildManager::LatexCommand, QLineEdit*> commandsToEdits;
 	void loadTranslations(QString locale);

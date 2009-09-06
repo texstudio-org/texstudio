@@ -174,10 +174,10 @@ QSettings* ConfigManager::readSettings() {
 		
 	configShowAdvancedOptions = config->value("Interface/Config Show Advanced Options",false).toBool();
 	interfaceStyle=config->value("X11/Style",interfaceStyle).toString(); //named X11 for backward compatibility
-	defaultStyle=QApplication::style();
+	defaultStyleName=QApplication::style()->objectName();
 	modernStyle=config->value("GUI/Style", true).toBool();
 	if (modernStyle) {
-		ManhattanStyle* style=new ManhattanStyle(interfaceStyle==""?defaultStyle->objectName():interfaceStyle);
+		ManhattanStyle* style=new ManhattanStyle(interfaceStyle==""?defaultStyleName:interfaceStyle);
 		if (style->isValid()) QApplication::setStyle(style);
 	} else if (interfaceStyle!="") QApplication::setStyle(interfaceStyle); 
 
@@ -615,13 +615,16 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 			confDlg->ui.comboBoxInterfaceModernStyle->currentIndex()!=(modernStyle?1:0)){
 			interfaceStyle=confDlg->ui.comboBoxInterfaceStyle->currentText();
 			modernStyle=confDlg->ui.comboBoxInterfaceModernStyle->currentIndex()==1;
-			if (interfaceStyle==tr("default")) interfaceStyle="";
+			QString newStyle=interfaceStyle;
+			if (interfaceStyle==tr("default")) {
+				interfaceStyle="";
+				newStyle=defaultStyleName;
+			}
 			QPalette pal = QApplication::palette();
 			if (modernStyle) {
-				ManhattanStyle* style=new ManhattanStyle(interfaceStyle==""?defaultStyle->objectName():interfaceStyle);
+				ManhattanStyle* style=new ManhattanStyle(newStyle);
 				if (style->isValid()) QApplication::setStyle(style);
-			} else if (interfaceStyle=="") QApplication::setStyle(defaultStyle);
-			else QApplication::setStyle(interfaceStyle);
+			} else QApplication::setStyle(newStyle);
 			QApplication::setPalette(pal);
 		}
 	
