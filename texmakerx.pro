@@ -74,7 +74,10 @@ HEADERS += texmaker.h \
     qcodeedit/lib/qeditorinputbindinginterface.h \
     randomtextgenerator.h \
     templateselector.h \
-    bibtexdialog.h
+    bibtexdialog.h \
+    manhattanstyle.h \
+    stylehelper.h \
+    styleanimator.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -126,7 +129,10 @@ SOURCES += main.cpp \
     qcodeedit/lib/qeditorinputbinding.cpp \
     randomtextgenerator.cpp \
     templateselector.cpp \
-    bibtexdialog.cpp
+    bibtexdialog.cpp \
+    manhattanstyle.cpp \
+    stylehelper.cpp \
+    styleanimator.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
