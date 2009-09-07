@@ -756,8 +756,16 @@ void QDocumentCursor::setAutoUpdated(bool y)
 {
 	if ( m_handle )
 		m_handle->setAutoUpdated(y);
-	
 }
+
+bool QDocumentCursor::isAutoErasable() const{
+	return m_handle ? m_handle->isAutoErasable() : true;
+}
+void QDocumentCursor::setAutoErasable(bool y){
+	if ( m_handle )
+		m_handle->setAutoErasable(y);
+}
+
 
 /*!
 	\brief Refresh the column memory of the cursor

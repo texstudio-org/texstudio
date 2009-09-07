@@ -127,6 +127,9 @@ class QCE_EXPORT QDocumentCursor
 		
 		bool isAutoUpdated() const;
 		void setAutoUpdated(bool y);
+
+		bool isAutoErasable() const;
+		void setAutoErasable(bool y);
 		
 		int position() const;
 		

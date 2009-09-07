@@ -53,7 +53,8 @@ class QCE_EXPORT QDocumentCursorHandle
 		{
 			Silent				= 1,
 			ColumnMemory		= 2,
-			MoveWithinWrapped	= 4
+			MoveWithinWrapped	= 4,
+			AutoErasable        = 0xF01
 		};
 
 		QDocument* document() const;
@@ -74,6 +75,10 @@ class QCE_EXPORT QDocumentCursorHandle
 		
 		bool isAutoUpdated() const;
 		void setAutoUpdated(bool y);
+
+		bool isAutoErasable() const;
+		void setAutoErasable(bool y);
+
 		
 		QDocumentLine line() const;
 		QDocumentLine anchorLine() const;
