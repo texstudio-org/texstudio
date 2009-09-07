@@ -1810,6 +1810,7 @@ void QEditor::setCursor(const QDocumentCursor& c)
 
 	m_cursor = c.isValid() ? c : QDocumentCursor(m_doc);
 	m_cursor.setAutoUpdated(true);
+	m_cursor.setAutoErasable(false);
 	clearCursorMirrors();
 
 	if ( m_curPlaceHolder >=0 && m_curPlaceHolder < m_placeHolders.count() )
@@ -1921,11 +1922,13 @@ void QEditor::addPlaceHolder(const PlaceHolder& p, bool autoUpdate)
 	PlaceHolder& ph = m_placeHolders.last();
 
 	ph.cursor.setAutoUpdated(autoUpdate);
+	ph.cursor.setAutoErasable(p.autoRemove);
 	ph.cursor.movePosition(ph.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 
 	for ( int i = 0; i < ph.mirrors.count(); ++i )
 	{
 		ph.mirrors[i].setAutoUpdated(autoUpdate);
+		ph.mirrors[i].setAutoErasable(p.autoRemove);
 		ph.mirrors[i].movePosition(ph.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 	}
 }
@@ -1938,6 +1941,7 @@ void QEditor::addPlaceHolderMirror(int placeHolderId, const QDocumentCursor& c){
 	PlaceHolder& ph = m_placeHolders[placeHolderId];
 	ph.mirrors << c;
 	ph.mirrors.last().setAutoUpdated(true);
+	ph.mirrors.last().setAutoErasable(true);
 	ph.mirrors.last().movePosition(ph.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 }
 
@@ -4849,6 +4853,7 @@ void QEditor::addCursorMirror(const QDocumentCursor& c)
 	// necessary for smooth mirroring
 	m_mirrors.last().setSilent(true);
 	m_mirrors.last().setAutoUpdated(true);
+	m_mirrors.last().setAutoErasable(false);
 }
 
 /*!

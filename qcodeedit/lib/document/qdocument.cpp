@@ -3642,6 +3642,15 @@ void QDocumentCursorHandle::setAutoUpdated(bool y)
 		QDocumentCommand::disableAutoUpdate(this);
 }
 
+bool QDocumentCursorHandle::isAutoErasable() const{
+	return hasFlag(AutoErasable);
+}
+void QDocumentCursorHandle::setAutoErasable(bool y){
+	if (y) setFlag(AutoErasable);
+	else clearFlag(AutoErasable);
+}
+
+
 QDocumentLine QDocumentCursorHandle::line() const
 {
 	if ( !m_doc )

@@ -346,7 +346,8 @@ void QDocumentCommand::updateCursorsOnDeletion(int line, int column, int prefixL
 			{
 				//qDebug("shrink (%i, %i : %i, %i)", ch->m_begLine, ch->m_begOffset, ch->m_endLine, ch->m_endOffset);
 				//qDebug("of intersection (%i, %i : %i, %i)", lbeg, cbeg, lend, cend);
-				if ((lbeg > line || (lbeg == line && cbeg > column)) &&
+				if (ch->isAutoErasable() && 
+				    (lbeg > line || (lbeg == line && cbeg > column)) &&
 					(lend < line+numLines || (lend == line+numLines && cend < columnEnd))) 
 				{	
 					//intersection is complete within the removed range without touching the bordes
