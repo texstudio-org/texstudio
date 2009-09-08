@@ -108,7 +108,9 @@ QString latexToPlainWord(const QString& word) {
 	replaceList.append(QPair<QString, QString> ("\\\"{A}","\xC4"));
 	replaceList.append(QPair<QString, QString> ("\\\"{O}","\xD6"));
 	replaceList.append(QPair<QString, QString> ("\\\"{U}","\xDC"));
+	replaceList.append(QPair<QString, QString> ("\"|",""));
 	replaceList.append(QPair<QString, QString> ("\"",""));
+	//replaceList.append(QPair<QString, QString> ("\"\"","")); redunant
 	replaceList.append(QPair<QString, QString> ("\\","")); // eliminating backslash which might remain from accents like \"a ...
 
 	QString result=word;
@@ -189,10 +191,10 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 					i++;//ignore word separation marker and _ respectively
 					//reparse=true;
 				} else break;
-			} else if (cur=='"') {  //ignore "  "- "a
+			} else if (cur=='"') {  //ignore " like in "-, "", "| "a
 				if (i+1<line.size()){
 					QChar nextChar=line.at(i+1);
-					if(nextChar=='-')  i++;
+					if(nextChar=='-' || nextChar=='"' || nextChar=='|')  i++; 
 					else if(!nextChar.isLetterOrNumber()) break;
 				}
 				else break;
@@ -221,6 +223,8 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 			inWord=true;
 		}
 	}
+	if (singleQuoteChar && i-1<line.size() && line.at(i-1)=='\'') 
+		i--; //remove ' when a word ends with it  (starting is handled because ' does not start a word)
 	index=i;
 	return start;
 }
