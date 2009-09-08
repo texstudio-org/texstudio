@@ -190,7 +190,7 @@ private slots:
 	}
 	
 	
-	void nextWordSimple_simple_data(){
+	void nextWord_simple_data(){
 		QTest::addColumn<QString >("line");
 		QTest::addColumn<int>("inIndex");
 		QTest::addColumn<bool>("commands");
@@ -213,8 +213,21 @@ private slots:
 		                           << (int)NW_CITATION << 29 << " Hallo:Welt! " << 16;
 		QTest::newRow("citation3") << "012345\\cite[aasasadaa]{Hallo:Welt!,miau!}abcdef" << 6 << false << false
 		                           << (int)NW_CITATION << 40 << "Hallo:Welt!,miau!" << 23;
+		QTest::newRow("no abbre.") << "+++TEST.---" << 0 << false << false << (int)NW_TEXT << 7 << "TEST" << 3;
+		QTest::newRow("abbrev.")   << "+++TEST.---" << 0 << false << true << (int)NW_TEXT << 8 << "TEST." << 3;
+		QTest::newRow("in cmd.")   << "\\abc{text}" << 0 << false << false << (int)NW_TEXT << 9 << "text" << 5;
+		QTest::newRow("' chars")   << " can't " << 0 << false << false << (int)NW_TEXT << 6 << "can't" << 1;
+		QTest::newRow("' char2")   << " 'abc def' " << 0 << false << false << (int)NW_TEXT << 5 << "abc" << 2;
+		QTest::newRow("' char3")   << " 'abc def' " << 5 << false << false << (int)NW_TEXT << 9 << "def" << 6;
+		QTest::newRow("sepchars")  << " ha\\-llo " << 0 << false << false << (int)NW_TEXT << 8 << "hallo" << 1;
+		QTest::newRow("sepchar2")  << " la\"-tex " << 0 << false << false << (int)NW_TEXT << 8 << "latex" << 1;
+		QTest::newRow("sepchar3")  << "!ab\"\"xyz!" << 0 << false << false << (int)NW_TEXT << 8 << "abxyz" << 1;
+		QTest::newRow("sepchar4")  << "?oz\"|di?" << 0 << false << false << (int)NW_TEXT << 7 << "ozdi" << 1;
+		QTest::newRow("word end")  << "?no\"<di?" << 0 << false << false << (int)NW_TEXT << 3 << "no" << 1;
+		QTest::newRow("word end")  << "?yi''di?" << 0 << false << false << (int)NW_TEXT << 3 << "yi" << 1;
+		QTest::newRow("umlauts")  << "\"a\"o\"u\"A\"O\"U\\\"{a}\\\"{o}\\\"{u}\\\"{A}\\\"{O}\\\"{U}" << 0 << false << false << (int)NW_TEXT << 42 << (QString(QChar(0xE4))+QString(QChar(0xF6))+QString(QChar(0xFC))+QString(QChar(0xC4))+QString(QChar(0xD6))+QString(QChar(0xDC))+QString(QChar(0xE4))+QString(QChar(0xF6))+QString(QChar(0xFC))+QString(QChar(0xC4))+QString(QChar(0xD6))+QString(QChar(0xDC))) << 0; //unicode to be independent from c++ character encoding
 	}
-	void nextWordSimple_simple(){
+	void nextWord_simple(){
 		QFETCH(QString, line);
 		QFETCH(int, inIndex);
 		QFETCH(bool, commands);
@@ -229,9 +242,9 @@ private slots:
 		int wsi;
 		int rs=(int)(nextWord(line,inIndex,row,wsi,commands,abbreviations));
 
+		QEQUAL(row,outWord);
 		QEQUAL(rs, result);
 		QEQUAL(inIndex,outIndex);
-		QEQUAL(row,outWord);
 		QEQUAL(wsi,wordStartIndex);
 	}
 	void cutComment_simple_data(){

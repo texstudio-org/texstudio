@@ -106,13 +106,13 @@ QSettings* ConfigManager::readSettings() {
 		if (loc=="de") {
 			keyReplaceBeforeWord.append("\">");
 			keyReplaceAfterWord.append("\"<");
-
+/*
 			keyReplace.append("'");
 			keyReplaceBeforeWord.append("''");
-			keyReplaceAfterWord.append("``");
+			keyReplaceAfterWord.append("``");*/
 		} else {
-			keyReplaceBeforeWord.append("''");
-			keyReplaceAfterWord.append("``");
+			keyReplaceAfterWord.append("''");
+			keyReplaceBeforeWord.append("``");
 		}
 		keyReplace.append("%");
 		keyReplaceBeforeWord.append("%");
