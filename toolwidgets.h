@@ -40,6 +40,7 @@ public:
 public slots:
 	void resetMessages(bool noTabChange=false); //remove all messages and jumps to the message page (stays hidden if not visible)
 	void resetMessagesAndLog(bool noTabChange=false);
+	void resetLog(bool noTabChange=false);
 	void selectLogEntry(int logEntryNumber, bool makeVisible=true);
 	void showLogOrErrorList(bool noTabChange=false); //this will show the log unless the error list is open
 	void showErrorListOrLog(); //this will show the error list unless log is open

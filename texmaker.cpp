@@ -3211,7 +3211,7 @@ void Texmaker::RealViewLog(bool noTabChange) {
 
 //shows the log if there are errors
 void Texmaker::ViewLog(bool noTabChange) {
-	outputView->resetMessagesAndLog(noTabChange);
+	outputView->resetLog(noTabChange);
 	QString finame=getCompileFileName();
 	if ((singlemode && !currentEditorView()) || finame=="") {
 		QMessageBox::warning(this,tr("Error"),tr("File must be saved and compiling before you can view the log"));
