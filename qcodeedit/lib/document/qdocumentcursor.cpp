@@ -852,7 +852,7 @@ void QDocumentCursor::setSelectionBoundary(const QDocumentCursor& c)
 }
 
 /*!
-	\return whether a given cursor is within the selection
+	\return whether a given cursor is within the selection (ignores selection of c)
 */
 bool QDocumentCursor::isWithinSelection(const QDocumentCursor& c) const
 {
