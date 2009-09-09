@@ -369,6 +369,7 @@ SOURCES += qcodeedit/lib/qnfa/qnfa.cpp \
 SOURCES += tests/testmanager.cpp \
     tests/testutil.cpp \
     tests/codesnippet_t.cpp \
+    tests/qdocumentcursor_t.cpp \
     tests/qdocumentsearch_t.cpp \
     tests/qsearchreplacepanel_t.cpp
 HEADERS += tests/testmanager.h \
@@ -376,6 +377,7 @@ HEADERS += tests/testmanager.h \
     tests/smallUsefulFunctions_t.h \
     tests/buildManager_t.h \
     tests/codesnippet_t.h \
+    tests/qdocumentcursor_t.h \
     tests/qdocumentsearch_t.h \
     tests/qsearchreplacepanel_t.h
 win32:LIBS += -lQtTestd4

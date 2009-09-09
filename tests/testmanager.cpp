@@ -6,6 +6,7 @@
 #include "smallUsefulFunctions_t.h"
 #include "buildmanager_t.h"
 #include "codesnippet_t.h"
+#include "qdocumentcursor_t.h"
 #include "qdocumentsearch_t.h"
 #include "qsearchreplacepanel_t.h"
 #include <QtTest/QtTest>
@@ -34,6 +35,7 @@ QString TestManager::execute(LatexEditorView* edView, QCodeEdit* codeedit, QEdit
 		<< new SmallUsefulFunctionsTest()
 		<< new BuildManagerTest()
 		<< new CodeSnippetTest(editor)
+		<< new QDocumentCursorTest()
 		<< new QDocumentSearchTest(editor)
 		<< new QSearchReplacePanelTest(codeedit);
 	bool allPassed=true;
