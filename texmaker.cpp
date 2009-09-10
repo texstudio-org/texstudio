@@ -2721,8 +2721,8 @@ void Texmaker::InsertUserTag() {
 	QString userTag=UserMenuTag[id];
 	if (userTag.left(1)=="%") {
 		userTag=userTag.remove(0,1);
-		QString s="\\begin{"+userTag+"}\n\n\\end{"+userTag+"}\n";
-		InsertTag(s,0,1);
+		CodeSnippet s("\\begin{"+userTag+"}");
+		s.insert(currentEditorView()->editor);
 	} else CodeSnippet(userTag).insert(currentEditorView()->editor);
 }
 

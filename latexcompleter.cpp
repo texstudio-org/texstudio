@@ -498,10 +498,23 @@ void LatexCompleter::setAbbreviations(const QStringList &Abbrevs,const QStringLi
     for(int i=0;i<Abbrevs.size();i++){
         QString abbr=Abbrevs.value(i,"");
         if(!abbr.isEmpty()){
-            CompletionWord cw(abbr);
-            cw.lines=(abbr+tr(" (Usertag)")+"\n"+Tags.value(i)).split("\n");
-			for(int i=0;i<cw.lines.size();i++)
-				cw.placeHolders.append(QList<QPair<int,int> >());
+			//CompletionWord cw(abbr);
+			// for compatibility to texmaker ...
+			QString s=Tags.value(i);
+			if (s.left(1)=="%") {
+				s=s.remove(0,1);
+				s="\\begin{"+s+"}";
+			}
+			CompletionWord cw(s);
+			// <!compatibility>
+			cw.word=abbr;
+			cw.sortWord=cw.word.toLower();
+			cw.sortWord.replace("{","!");//js: still using dirty hack, however order should be ' '{[* abcde...
+			cw.sortWord.replace("}","!");// needs to be replaced as well for sorting \bgein{abc*} after \bgein{abc}
+			cw.sortWord.replace("[","\"");//(first is a space->) !"# follow directly in the ascii table
+			cw.sortWord.replace("*","#");
+			cw.lines.prepend(abbr+tr(" (Usertag)"));
+			//cw.placeHolders.prepend(QList<QPair<int,int> >());
             cw.setCut(true);
             wordsAbbrev << cw;
         }
