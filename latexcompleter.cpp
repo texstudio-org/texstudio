@@ -37,7 +37,7 @@ public:
 	bool insertCompletedWord() {
 		if (completer->list->isVisible() && maxWritten>curStart && completer->list->currentIndex().isValid()) {
 			QDocumentCursor cursor=editor->cursor();
-			cursor.beginEditBlock();
+			editor->document()->beginMacro();
 			QVariant v=completer->list->model()->data(completer->list->currentIndex(),Qt::DisplayRole);
 			if (!v.isValid() || !v.canConvert<CompletionWord>()) return false;
 			CompletionWord cw= v.value<CompletionWord>();
@@ -45,10 +45,10 @@ public:
 			//remove current text for correct case
 			for (int i=maxWritten-cursor.columnNumber(); i>0; i--) cursor.deleteChar();
 			for (int i=cursor.columnNumber()-curStart; i>0; i--) cursor.deletePreviousChar();
+			//cursor.endEditBlock(); //doesn't work and lead to crash when auto indentation is enabled => TODO:figure out why
 			//  cursor.setColumnNumber(curStart);
 			cw.insertAt(editor,&cursor);
-
-			cursor.endEditBlock();
+			editor->document()->endMacro();
 
 			return true;
 		}
