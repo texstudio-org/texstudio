@@ -406,6 +406,7 @@ bool LatexOutputFilter::detectError(const QString & strLine, short &dwCookie)
 	static QRegExp reLaTeXError("^! LaTeX Error: (.*)$", Qt::CaseInsensitive);
 	static QRegExp rePDFLaTeXError("^Error: pdflatex (.*)$", Qt::CaseInsensitive);
 	static QRegExp reTeXError("^! (.*)\\.$");
+	static QRegExp rePackageError("^! Package (.*) Error:(.*)$", Qt::CaseInsensitive);
 	static QRegExp reLineNumber("^l\\.([0-9]+)(.*)");
 
 	switch (dwCookie) {
@@ -423,6 +424,11 @@ bool LatexOutputFilter::detectError(const QString & strLine, short &dwCookie)
 			else if(reTeXError.indexIn(strLine) != -1) {
 				//KILE_DEBUG() << "\tError : " <<  reTeXError.cap(1) << endl;
 				m_currentItem.message=reTeXError.cap(1);
+				found = true;
+			}
+			else if(rePackageError.indexIn(strLine) != -1) {
+				//KILE_DEBUG() << "\tError : " <<  reTeXError.cap(1) << endl;
+				m_currentItem.message=rePackageError.cap(1)+":"+rePackageError.cap(2);
 				found = true;
 			}
 			if(found) {
