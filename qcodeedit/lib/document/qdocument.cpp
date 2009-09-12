@@ -5686,6 +5686,8 @@ int QDocumentPrivate::position(const QDocumentLineHandle *l) const
 	for ( int i = 0; i < idx; i++ )
 		pos += m_lines.at(i)->length();
 
+	pos += m_lineEndingString.length()*idx;
+		
 	return pos;
 }
 

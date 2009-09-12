@@ -14,8 +14,8 @@ class QDocumentCursorTest: public QObject{
 		QDocumentCursor str2cur(const QString &s);
 	private slots:
 		void initTestCase();
-		/*void constMethods_data();
-		void constMethods();*/
+		void constMethods_data();
+		void constMethods();
 		void const2Methods_data();
 		void const2Methods();
 		void cleanupTestCase();

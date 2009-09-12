@@ -12,12 +12,125 @@ void QDocumentCursorTest::initTestCase(){
 	doc->setText("test: line 1\n"
 	             "test: line 2, hello world! abcdefghijklmnopqrstuvwxyzABCDE...XYZ\n"
 				 "test: line 3\n");
+	doc->setLineEnding(QDocument::Unix);
 }
 QDocumentCursor QDocumentCursorTest::str2cur(const QString &s){
 	QStringList sl=s.split("|");
 	if (sl.size()==2) return doc->cursor(sl[0].toInt(),sl[1].toInt());
 	else if (sl.size()==4) return doc->cursor(sl[0].toInt(),sl[1].toInt(),sl[2].toInt(),sl[3].toInt());
 	else return QDocumentCursor();
+	
+}
+void QDocumentCursorTest::constMethods_data(){
+	QTest::addColumn<QString>("cursor");
+	QTest::addColumn<bool>("atStart");
+	QTest::addColumn<bool>("atEnd");
+	QTest::addColumn<bool>("atLineStart");
+	QTest::addColumn<bool>("atLineEnd");
+	QTest::addColumn<int>("position");
+	QTest::addColumn<int>("anchorLineNumber");
+	QTest::addColumn<int>("anchorColumnNumber");
+	QTest::addColumn<int>("lineNumber");
+	QTest::addColumn<int>("columnNumber");
+	QTest::addColumn<QString>("selectionStart");
+	QTest::addColumn<QString>("selectionEnd");
+	QTest::addColumn<bool>("hasSelection");
+	QTest::addColumn<QString>("selectedText");
+	QTest::addColumn<char>("previousChar");
+	QTest::addColumn<char>("nextChar");
+	
+	//-------------cursor without selection--------------
+	QTest::newRow("simple cursor mid in a line") 
+		<< "1|12"
+		<< false << false << false << false
+		<< 13+12
+		<< 1 << 12 << 1 << 12
+		<< "" << ""
+		<< false << ""
+		<< '2' << ',';
+	QTest::newRow("simple cursor at line start") 
+		<< "1|0"
+		<< false << false << true << false
+		<< 13+0
+		<< 1 << 0 << 1 << 0
+		<< "" << ""
+		<< false << ""
+		<< '\n' << 't';
+	QTest::newRow("simple cursor at line end") 
+		<< "1|64"
+		<< false << false << false << true
+		<< 13+64
+		<< 1 << 64 << 1 << 64
+		<< "" << ""
+		<< false << ""
+		<< 'Z' << '\n';
+	QTest::newRow("simple cursor at doc start") 
+		<< "0|0"
+		<< true << false << true << false
+		<< 0
+		<< 0 << 0 << 0 << 0
+		<< "" << ""
+		<< false << ""
+		<< '\0' << 't';
+	QTest::newRow("simple cursor at doc end")  //TODO: check if this is right
+		<< "2|12"
+		<< false << true << false << true
+		<< 13+65+12
+		<< 2 << 12 << 2 << 12
+		<< "" << ""
+		<< false << ""
+		//<< '\n' << '\0';
+		<< '3' << '\n';
+	
+	//--------------cursor with selection-------------
+	//...TODO...
+}
+void QDocumentCursorTest::constMethods(){
+	QFETCH(QString, cursor);
+	QFETCH(bool, atStart);
+	QFETCH(bool, atEnd);
+	QFETCH(bool, atLineStart);
+	QFETCH(bool, atLineEnd);
+	QFETCH(int, position);
+	QFETCH(int, anchorLineNumber);
+	QFETCH(int, anchorColumnNumber);
+	QFETCH(int, lineNumber);
+	QFETCH(int, columnNumber);
+	QFETCH(QString, selectionStart);
+	QFETCH(QString, selectionEnd);
+	QFETCH(bool, hasSelection);
+	QFETCH(QString, selectedText);
+	QFETCH(char, previousChar);
+	QFETCH(char, nextChar);
+	
+	//TODO: REMOVE THIS WORKAROUND WHEN THE CURSOR SOURCE<->COMMENT IS CONSISTENT AND BEFORE ADDING NEW TESTS
+	selectionEnd=cursor;
+	selectionStart=cursor;
+	
+	QDocumentCursor c=str2cur(cursor);
+	QVERIFY(c.isValid()); QVERIFY(!c.isNull());
+	QVERIFY(c==c); QVERIFY(!(c!=c));
+	QVERIFY(c<=c); QVERIFY(c>=c);
+	QVERIFY(!(c<c)); QVERIFY(!(c>c));
+	QEQUAL(c.atStart(), atStart);
+	QEQUAL(c.atEnd(), atEnd);
+	QEQUAL(c.atLineStart(), atLineStart);
+	QEQUAL(c.atLineEnd(), atLineEnd);
+	QEQUAL(c.position(), position);
+	QEQUAL(c.anchorLineNumber(), anchorLineNumber);
+	QEQUAL(c.anchorColumnNumber(), anchorColumnNumber);
+	QEQUAL(c.lineNumber(), lineNumber);
+	QEQUAL(c.columnNumber(), columnNumber);
+	QVERIFY(c.line()==doc->line(lineNumber));
+	QVERIFY(c.anchorLine()==doc->line(anchorLineNumber));
+	if (selectionStart == "") QVERIFY(c.selectionStart().isNull());
+	else QVERIFY(c.selectionStart() == str2cur(selectionStart));
+	if (selectionEnd == "") QVERIFY(c.selectionEnd().isNull());
+	else QVERIFY(c.selectionEnd() == str2cur(selectionEnd));
+	QEQUAL(c.hasSelection(), hasSelection);
+	QEQUAL(c.selectedText(), selectedText);
+	QEQUAL(c.previousChar(), previousChar);
+	QEQUAL(c.nextChar(), nextChar);
 	
 }
 void QDocumentCursorTest::const2Methods_data(){
@@ -29,9 +142,10 @@ void QDocumentCursorTest::const2Methods_data(){
 	QTest::addColumn<bool>("gt");
 	QTest::addColumn<bool>("lteq");
 	QTest::addColumn<bool>("gteq");
-	QTest::addColumn<bool>("c1withinc2");
+	QTest::addColumn<bool>("c1withinc2"); //c1.isWithInSelection(c2) === is c2 within c1
 	QTest::addColumn<QString>("intersection");
 	
+	//----------------identical cursor------------------
 	QTest::newRow("identical cursors single line") 
 		<< "1|4|1|10" << "1|4|1|10"
 		<< true << false
@@ -46,6 +160,9 @@ void QDocumentCursorTest::const2Methods_data(){
 		<< true << true
 		<< true
 		<< "0|4|2|7";
+		
+		
+	//---------------identical right side-----------------
 	//if the right side is identical the cursor are considered to be identical
 	QTest::newRow("identical right side, c1 before c2 on same line, single line") 
 		<< "1|4|1|17" << "1|10|1|17"
@@ -61,6 +178,7 @@ void QDocumentCursorTest::const2Methods_data(){
 		<< true << true //<< true << false
 		<< true
 		<< "1|10|2|7";
+
 	QTest::newRow("identical right side, c1 after c2 on same line, single line") 
 		<< "1|8|1|17" << "1|3|1|17"
 		<< true << false //<< false << true
@@ -75,6 +193,76 @@ void QDocumentCursorTest::const2Methods_data(){
 		<< true << true//<< false << true
 		<< true //false
 		<< "1|9|2|7";
+
+		
+	QTest::newRow("identical right side, c1 before c2 on different lines") 
+		<< "0|8|2|7" << "1|4|2|7"
+		<< true << false //<< false << true
+		<< false << false  //<< true << false
+		<< true << true //<< true << false
+		<< true
+		<< "1|4|2|7";
+	QTest::newRow("identical right side, c1 after c2 on different lines") 
+		<< "1|0|2|7" << "0|3|2|7"		
+		<< true << false//<< false << true
+		<< false << false  //<< false << true
+		<< true << true//<< false << true
+		<< true //false
+		<< "1|0|2|7";
+		
+		
+	//----------------identical left side-------------------
+	QTest::newRow("identical left side, c1 before c2 on same line, single line") 
+		<< "1|4|1|10" << "1|4|1|17"
+		<< false << true
+		<< true << false
+		<< true << false
+		<< false
+		<< "1|4|1|10";
+	QTest::newRow("identical left side, c1 before c2 on same line, multi line") 
+		<< "0|7|2|4" << "0|7|2|7"
+		<< false << true
+		<< true << false
+		<< true << false
+		<< false
+		<< "0|7|2|4";
+
+	QTest::newRow("identical left side, c1 after c2 on same line, single line") 
+		<< "1|3|1|17" << "1|3|1|7"
+		<< false << true
+		<< false << true
+		<< false << true
+		<< true
+		<< "1|3|1|7";
+	QTest::newRow("identical left side, c1 after c2 on same line, multi line") 
+		<< "1|3|2|7" << "1|3|2|3"		
+		<< false << true
+		<< false << true
+		<< false << true
+		<< true //false
+		<< "1|3|2|3";
+
+	QTest::newRow("identical left side, c1 before c2 on different lines") 
+		<< "0|5|1|10" << "0|5|2|7"
+		<< false << true
+		<< true << false
+		<< true << false
+		<< false
+		<< "0|5|1|10";
+	QTest::newRow("identical left side, c1 after c2 on different lines") 
+		<< "1|0|2|7" << "1|0|1|3"		
+		<< false << true
+		<< false << true
+		<< false << true
+		<< true 
+		<< "1|0|1|3";
+	
+	
+	//-------------c1 left side before c2--------------
+	//...
+	
+	//-------------c1 left side after c2--------------
+	//...
 }
 void QDocumentCursorTest::const2Methods(){
 	QFETCH(QString, tc1);
