@@ -297,7 +297,65 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< 5 << 3
 		<< 5 << 0
 		<< "abc abc \nuvxyz uvxyz uvxyz \nuvxyz abcabcabcabc \nuvxyz\nuvxyz uvxyz uvxyz\nabc";
-			
+
+	QTest::newRow("replaces leading to new search result")
+		<< "abc abc abc"
+		<< "a"
+		<< "aj"
+		<< 0 << false
+		<< -1 << -1
+		<< -1 << -1
+		<< 0 << 0
+		<< "ajbc ajbc ajbc";
+		
+	QTest::newRow("replaces leading to new search result ending with o")
+		<< "abc abc abc"
+		<< "a"
+		<< "ao"
+		<< 0 << false
+		<< -1 << -1
+		<< -1 << -1
+		<< 0 << 0
+		<< "aobc aobc aobc";
+		
+	QTest::newRow("replaces leading to new search result ending with o backward")
+		<< "abc abc abc"
+		<< "a"
+		<< "ao"
+		<< 0 << true
+		<< -1 << -1
+		<< -1 << -1
+		<< 0 << 8
+		<< "aobc aobc abc";
+
+	QTest::newRow("replaces all matching regexp")
+		<< "abc a12b34c abc"
+		<< "[0-9]*"
+		<< "x"
+		<< (int)QDocumentSearch::RegExp << false
+		<< -1 << -1
+		<< -1 << -1
+		<< 0 << 0
+		<< "abc axbxc abc";
+
+	QTest::newRow("replaces all matching regexp backward") //correct? no greedy replace with backward search
+		<< "abc a12b34c abc"
+		<< "[0-9]*"
+		<< "!"
+		<< (int)QDocumentSearch::RegExp << true
+		<< -1 << -1
+		<< -1 << -1
+		<< 0 << 8
+		<< "abc a12b34c abc";
+	QTest::newRow("replaces number matching regexp backward") //correct? no greedy replace with backward search
+		<< "abc a12b34c abc"
+		<< "[0-9]+"
+		<< "!"
+		<< (int)QDocumentSearch::RegExp << true
+		<< -1 << -1
+		<< -1 << -1
+		<< 0 << 8
+		<< "abc a!!b34c abc";
 }
 void QDocumentSearchTest::replaceAll(){
 	QFETCH(QString, editorText);

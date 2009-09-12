@@ -4811,10 +4811,9 @@ void QDocumentCursorHandle::replaceSelectedText(const QString& text)
 		/*
 			Adjust selection around the new text 
 		*/
-		m_endLine=m_begLine;
-		m_endOffset=m_begOffset;
-		m_begLine=begline;
-		m_begOffset=begcol;
+		m_endLine=begline;
+		m_endOffset=begcol;
+		
 		/*
 		if ( atStart )
 		{

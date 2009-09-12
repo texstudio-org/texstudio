@@ -194,7 +194,7 @@ bool QDocumentSearch::nextMatch(bool backward, bool again,  bool allowWrapAround
 								QMessageBox::Yes);
 
 		if (ret==QMessageBox::Yes)
-			replaceCursorText(m_regexp);
+			replaceCursorText(m_regexp,backward);
 	}
 	return true;
 }
@@ -648,15 +648,15 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 	
 	if (hasOption(Replace) && again) 
 		if (m_regexp.exactMatch(m_cursor.selectedText()))  {
-			replaceCursorText(m_regexp);
+			replaceCursorText(m_regexp,backward);
 			replaceCount++;
 		}
 
 	//ensure that the current selection isn't searched
-	if ( m_cursor.hasSelection() ) {
+	if ( m_cursor.hasSelection() ) 
 		if (backward) m_cursor=m_cursor.selectionStart();
 		else m_cursor=m_cursor.selectionEnd();
-	}
+	
 
 	if (hasOption(HighlightAll) && !all)  //special handling if highlighting is on, but all replace is still handled here
 		return nextMatch(backward,again,allowWrapAround);
@@ -768,7 +768,7 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 					}
 					
 					if ( rep ) {
-						replaceCursorText(m_regexp);
+						replaceCursorText(m_regexp,backward);
 						replaceCount++;
 					}
 				} 
@@ -847,7 +847,7 @@ static QString escapeCpp(const QString& s)
 	return es;
 }
 
-void QDocumentSearch::replaceCursorText(QRegExp& m_regexp){
+void QDocumentSearch::replaceCursorText(QRegExp& m_regexp,bool backward){
 	QString replacement = hasOption(EscapeSeq)?escapeCpp(m_replace):m_replace;
 	
 	if (hasOption(RegExp)) 
@@ -857,9 +857,12 @@ void QDocumentSearch::replaceCursorText(QRegExp& m_regexp){
 	
 	m_cursor.replaceSelectedText(replacement);
 	
-//	if ( backward )
-//		m_cursor.movePosition(replacement.length(), QDocumentCursor::PreviousCharacter);
-	
+	//make sure that the cursor if  the correct side of the selection is used
+	//(otherwise the cursor could be moved out of the searched scope by a long 
+	//replacement text)
+	if (m_cursor.hasSelection())
+		if (backward) m_cursor=m_cursor.selectionStart();
+		else m_cursor=m_cursor.selectionEnd();
 }
 
 void QDocumentSearch::documentContentChanged(int line, int n){

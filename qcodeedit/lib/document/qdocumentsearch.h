@@ -81,7 +81,7 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		bool next(bool backward, bool all = false, bool again=false,  bool allowWrapAround=true);
 
 	private:
-		void replaceCursorText(QRegExp& m_regexp);
+		void replaceCursorText(QRegExp& m_regexp, bool backward);
 		bool end(bool backward) const;
 		
 		bool nextMatch(bool backward, bool again=false,  bool allowWrapAround=true);
