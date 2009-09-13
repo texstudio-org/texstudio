@@ -175,7 +175,7 @@ QSettings* ConfigManager::readSettings() {
 	configShowAdvancedOptions = config->value("Interface/Config Show Advanced Options",false).toBool();
 	interfaceStyle=config->value("X11/Style",interfaceStyle).toString(); //named X11 for backward compatibility
 	defaultStyleName=QApplication::style()->objectName();
-	modernStyle=config->value("GUI/Style", true).toBool();
+	modernStyle=config->value("GUI/Style", false).toBool();
 	if (modernStyle) {
 		ManhattanStyle* style=new ManhattanStyle(interfaceStyle==""?defaultStyleName:interfaceStyle);
 		if (style->isValid()) QApplication::setStyle(style);
