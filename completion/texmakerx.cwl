@@ -300,6 +300,7 @@
 \section[table of content]{name}
 \section*{}
 \setlength{command}{length}
+\setminus
 \Sigma
 \sigma
 \sin
