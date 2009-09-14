@@ -2903,7 +2903,6 @@ void Texmaker::runCommand(BuildManager::LatexCommand cmd,bool waitendprocess,boo
 	runCommand(buildManager.getLatexCommand(cmd),waitendprocess,showStdout,fn,compileLatex);
 }
 void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,QString fn, bool compileLatex) {
-
 	QString finame;
 	if(fn.isEmpty()) finame=getCompileFileName();
 	else finame=fn;
@@ -2913,7 +2912,6 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,QStri
 		QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name"));
 		return;
 	}
-	fileSaveAll();
 
 	if (commandline.trimmed().isEmpty()) {
 		ERRPROCESS=true;
@@ -2982,6 +2980,7 @@ void Texmaker::SlotEndProcess(int err) {
 }
 
 void Texmaker::QuickBuild() {
+	fileSaveAll();
 	RunPreCompileCommand();
 	stat2->setText(QString(" %1 ").arg(tr("Quick Build")));
 	ERRPROCESS=false;
@@ -2997,7 +2996,7 @@ void Texmaker::QuickBuild() {
 			stat2->setText(QString(" %1 ").arg("Dvips"));
 			if (!ERRPROCESS) runCommand(BuildManager::CMD_DVIPS,true,false);
 			else return;
-			if (!ERRPROCESS) configManager.triggerManagedAction("main/tools/viewps");
+			if (!ERRPROCESS) runCommand(BuildManager::CMD_VIEWPS, false, false);
 			else return;
 		}
 	}
@@ -3010,7 +3009,7 @@ void Texmaker::QuickBuild() {
 			return;
 		}
 		if (NoLatexErrors()) {
-			if (!ERRPROCESS) configManager.triggerManagedAction("main/tools/viewdvi");
+			if (!ERRPROCESS) runCommand(BuildManager::CMD_VIEWDVI, false, false);
 			else return;
 		}
 	}
@@ -3023,7 +3022,7 @@ void Texmaker::QuickBuild() {
 			return;
 		}
 		if (NoLatexErrors()) {
-			if (!ERRPROCESS) configManager.triggerManagedAction("main/tools/viewpdf");
+			if (!ERRPROCESS) runCommand(BuildManager::CMD_VIEWPDF, false, false);
 			else return;
 		}
 	}
@@ -3039,7 +3038,7 @@ void Texmaker::QuickBuild() {
 			stat2->setText(QString(" %1 ").arg("Dvi to Pdf"));
 			if (!ERRPROCESS) runCommand(BuildManager::CMD_DVIPDF,true,false);
 			else return;
-			if (!ERRPROCESS) configManager.triggerManagedAction("main/tools/viewpdf");
+			if (!ERRPROCESS) runCommand(BuildManager::CMD_VIEWPDF, false, false);
 			else return;
 		}
 	}
@@ -3058,7 +3057,7 @@ void Texmaker::QuickBuild() {
 			stat2->setText(QString(" %1 ").arg("Ps to Pdf"));
 			if (!ERRPROCESS) runCommand(BuildManager::CMD_PS2PDF,true,false);
 			else return;
-			if (!ERRPROCESS) configManager.triggerManagedAction("main/tools/viewpdf");
+			if (!ERRPROCESS) runCommand(BuildManager::CMD_VIEWPDF, false, false);
 		}
 	}
 	break;
@@ -3080,6 +3079,7 @@ void Texmaker::QuickBuild() {
 void Texmaker::commandFromAction(){
 	QAction* act = qobject_cast<QAction*>(sender());
 	if (!act) return;
+	fileSaveAll();
 	stat2->setText(QString(" %1 ").arg(act->text()));
 	BuildManager::LatexCommand cmd=(BuildManager::LatexCommand) act->data().toInt();
 	bool compileLatex=(cmd==BuildManager::CMD_LATEX || cmd==BuildManager::CMD_PDFLATEX);
@@ -3114,6 +3114,7 @@ void Texmaker::UserTool() {
 	if (action->data().toInt()<0 || action->data().toInt()>=5) return;
 	QString cmd=UserToolCommand[action->data().toInt()];
 	if (cmd.isEmpty()) return;
+	fileSaveAll();
 	QStringList commandList=cmd.split("|");
 	ERRPROCESS=false;
 	for (int i = 0; i < commandList.size(); ++i)

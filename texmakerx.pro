@@ -9,7 +9,7 @@ CONFIG += qt \
     debug_and_release
 exists(texmakerx_my.pri):include(texmakerx_my.pri)
 QT += network \
-    xml
+    xml  
 
 # ##############################
 PRECOMPILED_HEADER = mostQtHeaders.h
@@ -381,7 +381,7 @@ HEADERS += tests/testmanager.h \
     tests/qdocumentsearch_t.h \
     tests/qsearchreplacepanel_t.h
 win32:LIBS += -lQtTestd4
-!win32:LIBS += -lQtTest
+#!win32:LIBS += -lQtTest
 
 # ###############################
 # add files to svn if team is set
