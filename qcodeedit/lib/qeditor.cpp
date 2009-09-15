@@ -4208,7 +4208,7 @@ bool QEditor::processCursor(QDocumentCursor& c, QKeyEvent *e, bool& b)
 
 			if ( flag(AutoIndent) && (m_curPlaceHolder == -1) )
 			{
-				if ( m_definition )
+				if ( m_definition && !flag(WeakIndent) )
 				{
 					indent = m_definition->indent(c);
 				} else {
@@ -4270,6 +4270,8 @@ void QEditor::preInsert(QDocumentCursor& c, const QString& s)
 	if (
 			flag(AutoIndent)
 		&&
+			!flag(WeakIndent)
+		&&
 			(m_curPlaceHolder == -1)
 		&&
 			c.columnNumber()
@@ -4307,19 +4309,18 @@ void QEditor::preInsert(QDocumentCursor& c, const QString& s)
 			if (txt.contains(' ') && txt.contains('\t') && c.previousChar()=='\t') {
 				--firstNS;
 				c.movePosition(1, QDocumentCursor::Left, QDocumentCursor::KeepAnchor);
-			} else {
+			} else
 				do
 				{
 					--firstNS;
 					c.movePosition(1, QDocumentCursor::Left, QDocumentCursor::KeepAnchor);
 				} while ( QDocument::screenLength(txt.constData(), firstNS, ts) % ts );
-			}
-			
-			c.removeSelectedText();
-
-			if ( off > 0 )
-				c.movePosition(off, QDocumentCursor::NextCharacter);
 		}
+			
+		c.removeSelectedText();
+
+		if ( off > 0 )
+			c.movePosition(off, QDocumentCursor::NextCharacter);
 	}
 }
 
@@ -4338,12 +4339,12 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	if ( hasSelection )
 		c.removeSelectedText();
 	
-        if ( !hasSelection && flag(Overwrite) && !c.atLineEnd() )
+	if ( !hasSelection && flag(Overwrite) && !c.atLineEnd() )
 		c.deleteChar();
 	
 	QStringList lines = text.split('\n', QString::KeepEmptyParts);
 	
-	if ( (lines.count() == 1) || !flag(AdjustIndent)  || !flag(AutoIndent))
+	if ( (lines.count() == 1) || flag(WeakIndent) || !flag(AdjustIndent)  || !flag(AutoIndent)) 
 	{
 		preInsert(c, lines.first());
 		
@@ -4351,7 +4352,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		{
 			// TODO : replace tabs by spaces properly
 		}
-		
+	 
 		c.insertText(text);
 	} else {
 		

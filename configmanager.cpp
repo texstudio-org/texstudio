@@ -72,6 +72,7 @@ QSettings* ConfigManager::readSettings() {
 	}
 
 	editorConfig->autoindent=config->value("Editor/Auto Indent",true).toBool();
+	editorConfig->weakindent=config->value("Editor/Weak Indent",true).toBool();
 	editorConfig->folding=config->value("Editor/Folding",true).toBool();
 	editorConfig->showlinestate=config->value("Editor/Show Line State",true).toBool();
 	editorConfig->showcursorstate=config->value("Editor/Show Cursor State",true).toBool();
@@ -278,6 +279,7 @@ QSettings* ConfigManager::saveSettings() {
 	config->setValue("Editor/Parentheses Matching",editorConfig->parenmatch);
 	config->setValue("Editor/Line Number Multiples",editorConfig->showlinemultiples);
 	config->setValue("Editor/Auto Indent",editorConfig->autoindent);
+	config->setValue("Editor/Weak Indent",editorConfig->weakindent);
 
 	config->setValue("Editor/Folding",editorConfig->folding);
 	config->setValue("Editor/Show Line State",editorConfig->showlinestate);
@@ -376,7 +378,9 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	default:
 		confDlg->ui.comboboxLineNumbers->setCurrentIndex(1);
 	}
-	confDlg->ui.checkBoxAutoIndent->setChecked(editorConfig->autoindent);
+	if (editorConfig->autoindent && editorConfig->weakindent) confDlg->ui.comboBoxAutoIndent->setCurrentIndex(1);
+	else if (editorConfig->autoindent) confDlg->ui.comboBoxAutoIndent->setCurrentIndex(2);
+	else confDlg->ui.comboBoxAutoIndent->setCurrentIndex(0);
 	confDlg->ui.checkBoxFolding->setChecked(editorConfig->folding);
 	confDlg->ui.checkBoxLineState->setChecked(editorConfig->showlinestate);
 	confDlg->ui.checkBoxState->setChecked(editorConfig->showcursorstate);
@@ -530,7 +534,8 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		
 		//editor
 		editorConfig->wordwrap=confDlg->ui.checkBoxWordwrap->isChecked();
-		editorConfig->autoindent=confDlg->ui.checkBoxAutoIndent->isChecked();
+		editorConfig->autoindent=confDlg->ui.comboBoxAutoIndent->currentIndex()!=0;
+		editorConfig->weakindent=confDlg->ui.comboBoxAutoIndent->currentIndex()==1;
 		switch (confDlg->ui.comboboxLineNumbers->currentIndex()) {
 		case 0:
 			editorConfig->showlinemultiples=0;
