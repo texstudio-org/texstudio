@@ -32,7 +32,7 @@ private:
 	QString curWord;
 
 	QList<CompletionWord> baselist;
-        QList<CompletionWord> wordsText, wordsCommands,wordsAbbrev;
+	QList<CompletionWord> wordsText, wordsCommands,wordsAbbrev;
 	QSet<QChar> acceptedChars;
 };
 

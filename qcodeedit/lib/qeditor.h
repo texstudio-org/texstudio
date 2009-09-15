@@ -96,6 +96,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			
 			AutoCloseChars			= 0x01000000,
 			AutoIndent				= 0x02000000,
+			WeakIndent				= 0x04000000,
 			
 			Accessible				= 0xfffff000
 		};
