@@ -92,6 +92,7 @@ public:
 	void startCommand();
 	bool waitForStarted(int timeOut=30000);
 	const QString& getFile();
+	const QString& getCommandLine();
 private:
 	QString cmd;
 	QString file;

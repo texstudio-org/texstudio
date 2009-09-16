@@ -651,3 +651,6 @@ bool ProcessX::waitForStarted(int timeOut){
 const QString& ProcessX::getFile(){
 	return file;
 }
+const QString& ProcessX::getCommandLine(){
+	return cmd;
+}

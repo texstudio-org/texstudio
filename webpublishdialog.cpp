@@ -11,16 +11,15 @@
  ***************************************************************************/
 
 #include "webpublishdialog.h"
-
+#include "webpublishdialog_config.h"
 #include "smallUsefulFunctions.h"
 
-WebPublishDialog::WebPublishDialog(QWidget *parent, QString name, QString gs_cd, QString latex_cd, QString dvips_cd, QTextCodec *input_codec)
-		:QDialog(parent) {
-	gs_command=gs_cd;
-	latex_command=latex_cd;
-	dvips_command=dvips_cd;
-	codec = input_codec;
-	setWindowTitle(name);
+WebPublishDialog::WebPublishDialog(QWidget *parent, WebPublishDialogConfig* aConfig, BuildManager*  aBuildManager, QTextCodec *input_codec)
+		:QDialog(parent), config(aConfig), buildManager(aBuildManager), codec (input_codec) {	
+	Q_ASSERT(aConfig);
+	Q_ASSERT(aBuildManager);
+	//Q_ASSERT(input_codec);
+	setWindowTitle(tr("Convert to Html"));
 	setModal(true);
 	ui.setupUi(this);
 	ui.alignmentcomboBox->insertItem(0, tr("Left"));
@@ -40,39 +39,30 @@ WebPublishDialog::~WebPublishDialog() {
 }
 
 void WebPublishDialog::accept() {
-	writesettings();
+	applyusersettings();
 	if (proc && proc->state()==QProcess::Running) {
 		proc->kill();
 		delete proc ;
-	}
-	if (bboxproc && bboxproc->state()==QProcess::Running) {
-		bboxproc->kill();
-		delete bboxproc ;
-	}
-	if (imgproc && imgproc->state()==QProcess::Running) {
-		imgproc->kill();
-		delete imgproc ;
 	}
 	QDialog::accept();
 }
 
 void WebPublishDialog::init() {
-	readsettings();
-	ui.titleEdit->setText(title);
-	ui.footnoteEdit->setText(address);
-	ui.browserEdit->setText(browser);
-	ui.contentEdit->setText(contentname);
-	if (noindex) ui.indexcomboBox->setCurrentIndex(1);
+	ui.titleEdit->setText(config->title);
+	ui.footnoteEdit->setText(config->address);
+	ui.browserEdit->setText(config->browser);
+	ui.contentEdit->setText(config->contentname);
+	if (config->noindex) ui.indexcomboBox->setCurrentIndex(1);
 	else ui.indexcomboBox->setCurrentIndex(0);
-	if (align=="left") ui.alignmentcomboBox->setCurrentIndex(0);
-	if (align=="center") ui.alignmentcomboBox->setCurrentIndex(1);
-	if (align=="right") ui.alignmentcomboBox->setCurrentIndex(2);
-	if (navigation==1) ui.navigationBox->setCurrentIndex(0);
+	if (config->align=="left") ui.alignmentcomboBox->setCurrentIndex(0);
+	if (config->align=="center") ui.alignmentcomboBox->setCurrentIndex(1);
+	if (config->align=="right") ui.alignmentcomboBox->setCurrentIndex(2);
+	if (config->navigation==1) ui.navigationBox->setCurrentIndex(0);
 	else ui.navigationBox->setCurrentIndex(1);
-	ui.widthspinBox->setValue(userwidth);
-	ui.compilationspinBox->setValue(compil);
-	ui.tocdepthspinBox->setValue(tocdepth);
-	ui.startindexspinBox->setValue(startindex);
+	ui.widthspinBox->setValue(config->userwidth);
+	ui.compilationspinBox->setValue(config->compil);
+	ui.tocdepthspinBox->setValue(config->tocdepth);
+	ui.startindexspinBox->setValue(config->startindex);
 	maxwidth=0;
 	colorlink="1 0 0";
 	nb_pages=0;
@@ -89,9 +79,10 @@ void WebPublishDialog::convert(const QString &fileName) {
 	QFileInfo fi(fileName);
 	if (fi.exists() && fi.isReadable()) {
 		workdir=fi.absolutePath();
-		lastdir=workdir;
+		config->lastdir=workdir;
 		base=fi.baseName();
-		htmldir=workdir+"/"+base+"_html";
+		if (workdir.endsWith("/")) 	htmldir=workdir+base+"_html";
+		else htmldir=workdir+"/"+base+"_html";;
 		QDir HDir(htmldir);
 		if (HDir.exists()) {
 			QFileInfoList files = HDir.entryInfoList();
@@ -109,30 +100,38 @@ void WebPublishDialog::convert(const QString &fileName) {
 		copyDataFile("up.gif",htmldir+"/up.gif");
 		copyDataFile("up_d.gif",htmldir+"/up_d.gif");
 		copyDataFile("psheader.txt",workdir+"/psheader.txt");
-		if (navigation==1) {
+		if (config->navigation==1) {
 			copyDataFile("next.gif",htmldir+"/next.gif");
 			copyDataFile("next_d.gif",htmldir+"/next_d.gif");
 			copyDataFile("prev.gif",htmldir+"/prev.gif");
 			copyDataFile("prev_d.gif",htmldir+"/prev_d.gif");
 		}
-		if (title=="") title=base;
-		if (tocdepth==2) {
+		if (config->title=="") config->title=base;
+		if (config->tocdepth==2) {
 			depth=depth+"|\\{subsection\\}";
-		} else if (tocdepth==3) {
+		} else if (config->tocdepth==3) {
 			depth=depth+"|\\{subsection\\}|\\{subsubsection\\}";
 		}
 		writepages("content");
 		if (ttwperr || errprocess) return;
-		if (!noindex) writepages("index");
+		if (!config->noindex) writepages("index");
 		if (ttwperr || errprocess) return;
 		clean();
 		ui.messagetextEdit->append("Conversion done.\nThe html files are located in the "+htmldir+" directory.");
-		if (!noindex) firstpage=htmldir+"/index.html";
+		if (!config->noindex) firstpage=htmldir+"/index.html";
 		else firstpage=htmldir+"/page1.html";
 		QFileInfo fip(firstpage);
-		if (fip.exists() && fip.isReadable() && (!browser.isEmpty()) && (!errprocess)) {
+		if (fip.exists() && fip.isReadable() && (!config->browser.isEmpty()) && (!errprocess)) {
 			ui.messagetextEdit->append("Running browser .");
-			RunCommand(browser+" "+firstpage,false);
+			proc=new QProcess(this);
+			connect(proc, SIGNAL(finished(int)),proc, SLOT(deleteLater())); //will free proc after the process has ended
+			proc->setWorkingDirectory(workdir);
+			
+			proc->start(config->browser+" "+firstpage);
+			if (!proc->waitForStarted(1000)) {
+				ui.messagetextEdit->append("Error : could not start the command");
+				errprocess=true;
+			}
 		}
 	} else {
 		ui.messagetextEdit->append("Input file not found.");
@@ -147,34 +146,28 @@ void WebPublishDialog::closeEvent(QCloseEvent* ce) {
 		proc->kill();
 		delete proc ;
 	}
-	if (bboxproc && bboxproc->state()==QProcess::Running) {
-		bboxproc->kill();
-		delete bboxproc ;
-	}
-	if (imgproc && imgproc->state()==QProcess::Running) {
-		imgproc->kill();
-		delete imgproc ;
-	}
-	writesettings();
+	applyusersettings();
 	ce->accept();
 }
 
 //************************************
-void WebPublishDialog::RunCommand(QString comd,bool waitendprocess) {
-	ui.messagetextEdit->append("  Running this command: "+comd);
+void WebPublishDialog::RunCommand(const BuildManager::LatexCommand &cmd, const QString& addParams, const QString& file, const bool waitendprocess, const char* stdErrSlot){
+	ProcessX* proc= buildManager->newProcess(cmd, addParams, file);
+	this->proc=proc;
+	ui.messagetextEdit->append("  Running this command: "+proc->getCommandLine());
 	curLog="";
-	proc = new QProcess(this);
 	proc->setWorkingDirectory(workdir);
-	connect(proc, SIGNAL(readyReadStandardError()),this, SLOT(readOutputForLog()));
+	if (stdErrSlot)	connect(proc, SIGNAL(readyReadStandardError()),this, stdErrSlot);
+	else 	connect(proc, SIGNAL(readyReadStandardError()),this, SLOT(readOutputForLog()));
 	connect(proc, SIGNAL(finished(int)),this, SLOT(SlotEndProcess(int)));
-	proc->start(comd);
+	proc->startCommand();
 	if (!proc->waitForStarted(1000)) {
 		ui.messagetextEdit->append("Error : could not start the command");
 		errprocess=true;
 	}
 	procfinished=false;
 	if (waitendprocess) {
-		while (!procfinished) {
+		while (!procfinished) { //be carefully when changing this, its duplicated in imgProcess
 			qApp->instance()->processEvents(QEventLoop::ExcludeUserInputEvents);
 		}
 	}
@@ -190,28 +183,14 @@ void WebPublishDialog::SlotEndProcess(int err) {
 }
 
 void WebPublishDialog::bboxProcess() {
-	ui.messagetextEdit->append("  Running this command: "+gs_command+" -q -dBATCH -dNOPAUSE -sDEVICE=bbox page.ps");
-	curLog="";
-	bboxproc = new QProcess(this);
-	bboxproc->setWorkingDirectory(workdir);
-	connect(bboxproc, SIGNAL(finished(int)),this, SLOT(SlotEndProcess(int)));
-	connect(bboxproc, SIGNAL(readyReadStandardError()),this, SLOT(readBboxOutput()));
-	bboxproc->start(gs_command+" -q -dBATCH -dNOPAUSE -sDEVICE=bbox page.ps");
-	if (!bboxproc->waitForStarted(1000)) {
-		ui.messagetextEdit->append("Error : could not start the command");
-		errprocess=true;
-	}
-	procfinished=false;
-	while (!procfinished) {
-		qApp->instance()->processEvents(QEventLoop::ExcludeUserInputEvents);
-	}
+	RunCommand(BuildManager::CMD_GHOSTSCRIPT, "-q -dBATCH -dNOPAUSE -sDEVICE=bbox page.ps", "", true, SLOT(readBboxOutput()));
 }
 
 void WebPublishDialog::readBboxOutput() {
 	QRegExp rxbbox("%%BoundingBox:\\s*([0-9eE\\.\\-]+)\\s+([0-9eE\\.\\-]+)\\s+([0-9eE\\.\\-]+)\\s+([0-9eE\\.\\-]+)");
 	QString x0,y0,x1,y1;
 	QString line;
-	QByteArray result=bboxproc->readAllStandardError();
+	QByteArray result=proc->readAllStandardError();
 	QTextStream bbox(&result);
 	while (!bbox.atEnd()) {
 		line=bbox.readLine();
@@ -229,18 +208,9 @@ void WebPublishDialog::readBboxOutput() {
 	}
 }
 
-void WebPublishDialog::imgProcess(QString command) {
-	curLog="";
-	ui.messagetextEdit->append("  Running this command: "+command);
-	imgproc = new QProcess(this);
-	imgproc->setWorkingDirectory(workdir);
-	connect(imgproc, SIGNAL(finished(int)),this, SLOT(SlotEndProcess(int)));
-	connect(imgproc, SIGNAL(readyReadStandardOutput()),this, SLOT(readImgOutput()));
-	imgproc->start(command);
-	if (!imgproc->waitForStarted(1000)) {
-		ui.messagetextEdit->append("Error : could not start the command");
-		errprocess=true;
-	}
+void WebPublishDialog::imgProcess(const QString& params) {
+	procfinished=false;
+	RunCommand(BuildManager::CMD_GHOSTSCRIPT, params, "", false, SLOT(readImgOutput())); //don't wait here, proceed until wait loop below
 	QFile linkf(workdir+"/link.txt");
 	if (!linkf.open(QIODevice::WriteOnly)) {
 		fatalerror(workdir+"/link.txt"+" not found.");
@@ -250,14 +220,13 @@ void WebPublishDialog::imgProcess(QString command) {
 		linkts << "";
 		linkf.close();
 	}
-	procfinished=false;
 	while (!procfinished) {
 		qApp->instance()->processEvents(QEventLoop::ExcludeUserInputEvents);
 	}
 }
 
 void WebPublishDialog::readImgOutput() {
-	QString line=QString(imgproc->readAllStandardOutput());
+	QString line=QString(proc->readAllStandardOutput());
 	QFile linkf(workdir+"/link.txt");
 	if (!linkf.open(QIODevice::WriteOnly)) {
 		fatalerror(workdir+"/link.txt"+" not found.");
@@ -296,7 +265,7 @@ QString WebPublishDialog::header() {
 	result+="<html>\n";
 	result+="<head>\n";
 	result+="<META NAME='Generator' CONTENT='texmakerx (http://texmakerx.sourceforge.net/)'>\n";
-	result+="<title>"+title+"</title>\n";
+	result+="<title>"+config->title+"</title>\n";
 	result+="<link rel=StyleSheet href='style.css' type='text/css'>\n";
 	result+="</head>\n";
 	result+="<body bgcolor='white'>\n";
@@ -304,7 +273,7 @@ QString WebPublishDialog::header() {
 }
 
 QString WebPublishDialog::footer() {
-	QString result="<div align='"+align+"' id='address'> "+address+" </div>\n";
+	QString result="<div align='"+config->align+"' id='address'> "+config->address+" </div>\n";
 	result+="</body>\n";
 	result+="</html>";
 	return result;
@@ -317,7 +286,7 @@ QString WebPublishDialog::content_navigation(int page,int numpages,QString up_pa
 	QString upcode ="";
 	int prev_page=page-1;
 	int next_page=page+1;
-	if (navigation==1) {
+	if (config->navigation==1) {
 		if (page > 1) {
 			leftcode= "<A HREF='page"+QString::number(prev_page)+".html'><IMG src='prev.gif' align='middle' border='0'></A>";
 		} else {
@@ -425,7 +394,7 @@ void WebPublishDialog::extractpage(QString psfile,int page) {
 }
 
 QString WebPublishDialog::codepic(QString pic_name, QString map_name) {
-	QString result="<div id='content' align='"+align+"'><IMG src='"+pic_name+"' align='middle' border='0'";
+	QString result="<div id='content' align='"+config->align+"'><IMG src='"+pic_name+"' align='middle' border='0'";
 	if (map_name!="") result+=" usemap='#"+map_name+"'";
 	result+="></div>\n";
 	return result;
@@ -434,8 +403,8 @@ QString WebPublishDialog::codepic(QString pic_name, QString map_name) {
 void WebPublishDialog::ps2gif(QString input,QString output,int id_page,int w,int h,int maxw) {
 	if (!errprocess) extractpage(input,id_page);
 	if (ttwperr  || errprocess) return;
-	float resolution=float(72*userwidth)/maxw;
-	float scale=float(userwidth)/maxw;
+	float resolution=float(72*config->userwidth)/maxw;
+	float scale=float(config->userwidth)/maxw;
 	int gx=int(w*resolution/72+0.5);
 	int gy=int(h*resolution/72+0.5);
 	QFile psf(workdir+"/page.ps");
@@ -469,7 +438,7 @@ void WebPublishDialog::ps2gif(QString input,QString output,int id_page,int w,int
 			psf.close();
 			outf.close();
 			if (w!=0) {
-				if (!errprocess) imgProcess(gs_command+" -q -dSAFER -dBATCH -dNOPAUSE -sDEVICE=png16m  -g"+QString::number(gx)+"x"+QString::number(gy)+" -r"+QString::number(resolution)+" -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -sOutputFile=\""+output+QString::number(id_page)+".png\" tmp.ps");
+				if (!errprocess) imgProcess(" -q -dSAFER -dBATCH -dNOPAUSE -sDEVICE=png16m  -g"+QString::number(gx)+"x"+QString::number(gy)+" -r"+QString::number(resolution)+" -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -sOutputFile=\""+output+QString::number(id_page)+".png\" tmp.ps");
 				if (ttwperr || errprocess) return;
 			} else {
 				copyDataFile("blank.png",htmldir+"/"+output+QString::number(id_page)+".png");
@@ -482,7 +451,6 @@ void WebPublishDialog::ps2gif(QString input,QString output,int id_page,int w,int
 }
 
 void WebPublishDialog::writepages(QString mode) {
-	QString commandline;
 	bool match=false;
 	bool ok;
 	int counter=1;
@@ -522,13 +490,11 @@ void WebPublishDialog::writepages(QString mode) {
 				texf.close();
 				outf.close();
 				ui.messagetextEdit->append("Compiling input file. Please wait...");
-				while (counter <= compil) {
-					if (!errprocess) {
-						commandline=latex_command; //latex -interaction=nonstopmode %.tex
-						commandline.replace("%","\""+base+"_"+mode+"\"");
-						RunCommand(commandline,true);
+				while (counter <= config->compil) {
+					if (!errprocess) 
+						RunCommand(BuildManager::CMD_LATEX, "", workdir+"/"+base+"_"+mode+".tex", true);
 						//RunCommand("latex -interaction=nonstopmode "+base+"_"+mode+".tex",true);
-					}
+					
 					latexerror(workdir+"/"+base+"_"+mode+".log");
 					if (ttwperr  || errprocess) break;
 					counter++;
@@ -581,12 +547,12 @@ void WebPublishDialog::writepages(QString mode) {
 				}
 				texf.close();
 				outts << "\\pagestyle{empty}\n";
-				outts << "\\setcounter{tocdepth}{"+QString::number(tocdepth)+"} \n";
+				outts << "\\setcounter{tocdepth}{"+QString::number(config->tocdepth)+"} \n";
 				outts << "\\newbox\\bwk\\edef\\tempd#1pt{#1\\string p\\string t}\\tempd\\def\\nbextr#1pt{#1}\n";
 				outts << "\\def\\npts#1{\\expandafter\\nbextr\\the#1\\space}\n";
 				outts << "\\def\\ttwplink#1#2{#2\\setbox\\bwk=\\vbox{#2}\\special{ps:( linkto #1)\\space\\npts{\\wd\\bwk} \\npts{\\dp\\bwk} -\\npts{\\ht\\bwk} false\\space Cpos}}\n";
 				outts << "\\begin{document}\n";
-				outts << "\\section*{"+contentname+"}\n";
+				outts << "\\section*{"+config->contentname+"}\n";
 				outts << "\\makeatletter\n\\parindent = 0.0 in\n";
 				QFile auxf(workdir+"/"+base+"_content.aux");
 				if (!auxf.open(QIODevice::ReadOnly)) {
@@ -603,7 +569,7 @@ void WebPublishDialog::writepages(QString mode) {
 							id_page=captured2.toInt(&ok);
 							line.remove(QRegExp("\\\\@writefile\\{toc\\}"));
 							if (line.indexOf(QRegExp("\\\\numberline"),0) >-1) {
-								id_page=id_page+startindex-1;
+								id_page=id_page+config->startindex-1;
 								outts << "\\ttwplink{page"+QString::number(id_page)+".html}";
 							} else {
 								outts << "\\ttwplink{none}";
@@ -614,25 +580,18 @@ void WebPublishDialog::writepages(QString mode) {
 					auxf.close();
 					outts << "\\end{document}" ;
 					outf.close();
-					if (!errprocess) {
-						commandline=latex_command; //latex -interaction=nonstopmode %.tex
-						commandline.replace("%","\""+base+"_"+mode+"\"");
-						RunCommand(commandline,true);
-						//RunCommand("latex -interaction=nonstopmode "+base+"_"+mode+".tex",true);
-					}
+					if (!errprocess) 
+						RunCommand(BuildManager::CMD_LATEX, "", workdir+"/"+base+"_"+mode+".tex", true);
 					latexerror(workdir+"/"+base+"_"+mode+".log");
 					if (ttwperr  || errprocess) return;
 				}
 			}
 		}
 	}
-	if (!errprocess) {
-		commandline=dvips_command; //dvips -o %.ps %.dvi
-		commandline.replace("%","\""+base+"_"+mode+"\"");
-		commandline.replace("-o","-q "+dviopt+" -h psheader.txt -o");
-		RunCommand(commandline,true);
+	if (!errprocess)
+		RunCommand(BuildManager::CMD_DVIPS,"-q "+config->dviopt+" -h psheader.txt -o", workdir+"/"+base+"_"+mode+".tex", true);
 		//RunCommand("dvips -q "+dviopt+" -h psheader.txt -o "+base+"_"+mode+".ps "+base+"_"+mode+".dvi",true) ;
-	}
+	
 	if (ttwperr || errprocess) return;
 	QString link="none";
 	int nb_link=0;
@@ -700,7 +659,7 @@ void WebPublishDialog::writepages(QString mode) {
 			} else {
 				QTextStream htmts(&htmf);
 				htmts << header();
-				if (noindex) {
+				if (config->noindex) {
 					htmts << content_navigation(id_page,nb_pages,"page1.html");
 				} else {
 					htmts << content_navigation(id_page,nb_pages,"index.html");
@@ -744,7 +703,7 @@ void WebPublishDialog::writepages(QString mode) {
 					} else {
 						htmts << codepic("image"+QString::number(id_page)+".png","");
 					}
-					if (noindex) {
+					if (config->noindex) {
 						htmts << content_navigation(id_page,nb_pages,"page1.html");
 					} else {
 						htmts << content_navigation(id_page,nb_pages,"index.html");
@@ -867,15 +826,72 @@ void WebPublishDialog::proceedSlot() {
 }
 
 void WebPublishDialog::browseSlot() {
-	QString fn = QFileDialog::getOpenFileName(this,tr("Open File"),lastdir,"TeX files (*.tex);;All files (*.*)");
+	QString fn = QFileDialog::getOpenFileName(this,tr("Open File"),config->lastdir,"TeX files (*.tex);;All files (*.*)");
 	if (!fn.isEmpty()) {
 		ui.inputfileEdit->setText(fn);
 	}
 }
 
-void WebPublishDialog::writesettings() {
-	applyusersettings();
-	QSettings settings("xm1","qttwp");
+void WebPublishDialog::applyusersettings() {
+	config->title=ui.titleEdit->text();
+	config->address=ui.footnoteEdit->text();
+	config->browser=ui.browserEdit->text();
+	config->contentname=ui.contentEdit->text();
+	if (ui.indexcomboBox->currentIndex()==0) config->noindex=false;
+	else config->noindex=true;
+	if (ui.alignmentcomboBox->currentIndex()==0) config->align="left";
+	if (ui.alignmentcomboBox->currentIndex()==1) config->align="center";
+	if (ui.alignmentcomboBox->currentIndex()==2) config->align="right";
+	if (ui.navigationBox->currentIndex()==0) config->navigation=1;
+	else config->navigation=0;
+	config->userwidth=ui.widthspinBox->value();
+	config->compil=ui.compilationspinBox->value();
+	config->tocdepth=ui.tocdepthspinBox->value();
+	config->startindex=ui.startindexspinBox->value();
+}
+
+
+
+
+//===================================================
+// Config Management
+//===================================================
+
+
+void WebPublishDialogConfig::readSettings(QSettings& settings){
+	settings.beginGroup("qttwp");
+	userwidth=settings.value("/userwidth",700).toInt();
+	compil=settings.value("/compil",1).toInt();
+	tocdepth=settings.value("/tocdepth",2).toInt();
+	startindex=settings.value("/startindex",1).toInt();
+	navigation=settings.value("/navigation",1).toInt();
+	noindex=settings.value("/noindex",false).toBool();
+	title=settings.value("/title","").toString();
+	address=settings.value("/address","").toString();
+#ifdef Q_WS_X11
+	QString kdesession= ::getenv("KDE_FULL_SESSION");
+	if (!kdesession.isEmpty()) browser=settings.value("/browser","konqueror").toString();
+	else browser=settings.value("/browser","firefox").toString();
+	//programdir=PREFIX"/share/texmakerx";
+#endif
+#ifdef Q_WS_MACX
+	browser=settings.value("/browser","open").toString();
+	//programdir="/Applications/texmakerx.app/Contents/Resources";
+#endif
+#ifdef Q_WS_WIN
+	browser=settings.value("/browser","\"C:/Program Files/Internet Explorer/IEXPLORE.EXE\"").toString();
+	//programdir=QCoreApplication::applicationDirPath();
+#endif
+	contentname=settings.value("/contentname","\\contentsname").toString();
+	align=settings.value("/align","center").toString();
+	lastdir=settings.value("/lastdir",QDir::homePath()).toString();
+	dviopt=settings.value("/dviopt"," -Ppk -V").toString();
+
+	settings.endGroup();
+}
+
+//	applyusersettings();
+void WebPublishDialogConfig::saveSettings(QSettings& settings){
 	settings.beginGroup("qttwp");
 	settings.setValue("userwidth",userwidth);
 	settings.setValue("compil",compil);
@@ -893,53 +909,3 @@ void WebPublishDialog::writesettings() {
 	settings.endGroup();
 }
 
-void WebPublishDialog::readsettings() {
-	QSettings settings("xm1","qttwp");
-	settings.beginGroup("qttwp");
-	userwidth=settings.value("/userwidth",700).toInt();
-	compil=settings.value("/compil",1).toInt();
-	tocdepth=settings.value("/tocdepth",2).toInt();
-	startindex=settings.value("/startindex",1).toInt();
-	navigation=settings.value("/navigation",1).toInt();
-	noindex=settings.value("/noindex",false).toBool();
-	title=settings.value("/title","").toString();
-	address=settings.value("/address","").toString();
-#ifdef Q_WS_X11
-	QString kdesession= ::getenv("KDE_FULL_SESSION");
-	if (!kdesession.isEmpty()) browser=settings.value("/browser","konqueror").toString();
-	else browser=settings.value("/browser","firefox").toString();
-	programdir=PREFIX"/share/texmakerx";
-#endif
-#ifdef Q_WS_MACX
-	browser=settings.value("/browser","open").toString();
-	programdir="/Applications/texmakerx.app/Contents/Resources";
-#endif
-#ifdef Q_WS_WIN
-	browser=settings.value("/browser","\"C:/Program Files/Internet Explorer/IEXPLORE.EXE\"").toString();
-	programdir=QCoreApplication::applicationDirPath();
-#endif
-	contentname=settings.value("/contentname","\\contentsname").toString();
-	align=settings.value("/align","center").toString();
-	lastdir=settings.value("/lastdir",QDir::homePath()).toString();
-	dviopt=settings.value("/dviopt"," -Ppk -V").toString();
-
-	settings.endGroup();
-}
-
-void WebPublishDialog::applyusersettings() {
-	title=ui.titleEdit->text();
-	address=ui.footnoteEdit->text();
-	browser=ui.browserEdit->text();
-	contentname=ui.contentEdit->text();
-	if (ui.indexcomboBox->currentIndex()==0) noindex=false;
-	else noindex=true;
-	if (ui.alignmentcomboBox->currentIndex()==0) align="left";
-	if (ui.alignmentcomboBox->currentIndex()==1) align="center";
-	if (ui.alignmentcomboBox->currentIndex()==2) align="right";
-	if (ui.navigationBox->currentIndex()==0) navigation=1;
-	else navigation=0;
-	userwidth=ui.widthspinBox->value();
-	compil=ui.compilationspinBox->value();
-	tocdepth=ui.tocdepthspinBox->value();
-	startindex=ui.startindexspinBox->value();
-}

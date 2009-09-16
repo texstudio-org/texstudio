@@ -3148,7 +3148,7 @@ void Texmaker::WebPublish() {
 	fileSave();
 	QString finame=getCompileFileName();
 	//TODO: check if it really uses the correct commands
-	WebPublishDialog *ttwpDlg = new WebPublishDialog(this,tr("Convert to Html"),buildManager.getLatexCommand(BuildManager::CMD_GHOSTSCRIPT),buildManager.getLatexCommand(BuildManager::CMD_LATEX),buildManager.getLatexCommand(BuildManager::CMD_DVIPS),
+	WebPublishDialog *ttwpDlg = new WebPublishDialog(this,configManager.webPublishDialogConfig, &buildManager,
 	        currentEditorView()->editor->getFileEncoding());
 	ttwpDlg->ui.inputfileEdit->setText(finame);
 	ttwpDlg->exec();
