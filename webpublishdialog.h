@@ -15,15 +15,19 @@
 
 #include "mostQtHeaders.h"
 
+#include "buildmanager.h"
+
 #include "ui_webpublishdialog.h"
 
 
 typedef  QMap<QString, QString> LinkMap;
 
+class WebPublishDialogConfig;
+
 class WebPublishDialog : public QDialog  {
 	Q_OBJECT
 public:
-	WebPublishDialog(QWidget *parent=0, QString name="", QString gs_cd="", QString latex_cd="", QString dvips_cd="", QTextCodec *input_codec=0);
+	WebPublishDialog(QWidget *parent=0, WebPublishDialogConfig* aConfig=0, BuildManager* aBuildManager=0, QTextCodec *input_codec=0);
 	~WebPublishDialog();
 	Ui::WebPublishDialog ui;
 
@@ -34,7 +38,7 @@ private slots:
 	void accept();
 	void init();
 	void convert(const QString &fileName);
-	void RunCommand(QString comd,bool waitendprocess);
+	void RunCommand(const BuildManager::LatexCommand &cmd, const QString& addParams, const QString& file, const bool waitendprocess, const char* stdErrSlot=0);
 	void SlotEndProcess(int err);
 	void copyDataFile(QString fileNameWithoutDir, QString to_file);
 	void removeFile(QString file);
@@ -45,25 +49,26 @@ private slots:
 	void clean();
 	void proceedSlot();
 	void browseSlot();
-	void writesettings();
-	void readsettings();
 	void applyusersettings();
 	void extractpage(QString psfile,int page);
 	void bboxProcess();
 	void readBboxOutput();
-	void imgProcess(QString command);
+	void imgProcess(const QString& params);
 	void readImgOutput();
 	void readOutputForLog();
 
 private:
-	QString gs_command, latex_command, dvips_command;
+	WebPublishDialogConfig* const config;
+	BuildManager* const buildManager;
+	
 	QTextCodec *codec;
-	QString programdir, dviopt, address, align, contentname, colorlink, depth, base, title, workdir, htmldir, browser, lastdir;
+	QString programdir, colorlink, depth, base,  workdir, htmldir, browser;
 	QString filename;
 	QString curLog;
-	int navigation, compil, maxwidth, userwidth, startindex, tocdepth, nb_pages, nb_content_pages, id_page, x1, y1, x2, y2;
-	bool noindex, procfinished, ttwperr, errprocess;
-	QPointer<QProcess> proc, bboxproc, imgproc;
+	
+	int maxwidth, nb_pages, nb_content_pages, id_page, x1, y1, x2, y2;
+	bool procfinished, ttwperr, errprocess;
+	QPointer<QProcess> proc;
 	int nbpagesps(QString psfile);
 	QString header();
 	QString footer();

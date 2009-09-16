@@ -77,7 +77,8 @@ HEADERS += texmaker.h \
     bibtexdialog.h \
     manhattanstyle.h \
     stylehelper.h \
-    styleanimator.h
+    styleanimator.h \
+	webpublishdialog_config.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \

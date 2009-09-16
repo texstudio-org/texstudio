@@ -5,6 +5,7 @@
 #include "latexeditorview.h"
 #include "latexcompleter_config.h"
 #include "latexeditorview_config.h"
+#include "webpublishdialog_config.h"
 #include "smallUsefulFunctions.h"
 
 #include <QDomElement>
@@ -12,7 +13,7 @@
 #include "manhattanstyle.h"
 
 ConfigManager::ConfigManager(QObject *parent): QObject (parent),
-	buildManager(0),editorConfig(new LatexEditorViewConfig), completerConfig (new LatexCompleterConfig), menuParent(0), menuParentsBar(0){
+	buildManager(0),editorConfig(new LatexEditorViewConfig), completerConfig (new LatexCompleterConfig), webPublishDialogConfig (new WebPublishDialogConfig), menuParent(0), menuParentsBar(0){ //TODO: fix theoretical memory leak (it doesn't matter, this is almost a singletone)
 }
 
 QSettings* ConfigManager::readSettings() {
@@ -86,6 +87,9 @@ QSettings* ConfigManager::readSettings() {
 	completerConfig->eowCompletes=config->value("Editor/Completion EOW Completes", true).toBool();
 	completerConfig->tooltipHelp=config->value("Editor/Completion Enable Tooltip Help", true).toBool();
 	completerConfig->loadFiles(config->value("Editor/Completion Files",QStringList("texmakerx.cwl")).toStringList());
+	
+	//web publish dialog
+	webPublishDialogConfig->readSettings(*config);
 	
 	//preview
 	previewMode=(PreviewMode) config->value("Preview/Mode",0).toInt();
@@ -295,6 +299,9 @@ QSettings* ConfigManager::saveSettings() {
 	if (!completerConfig->getLoadedFiles().isEmpty())
 		config->setValue("Editor/Completion Files",completerConfig->getLoadedFiles());
 
+	//web publish dialog
+	webPublishDialogConfig->saveSettings(*config);
+		
 	//preview
 	config->setValue("Preview/Mode",previewMode);
 	

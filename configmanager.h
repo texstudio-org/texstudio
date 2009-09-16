@@ -9,6 +9,7 @@
 class ConfigDialog;
 class LatexCompleterConfig;
 class LatexEditorViewConfig;
+class WebPublishDialogConfig;
 
 class ConfigManager: public QObject {
 	Q_OBJECT
@@ -52,6 +53,8 @@ public:
 	LatexEditorViewConfig * const editorConfig;
 	//completion
 	LatexCompleterConfig * const completerConfig;
+	//webpublish dialog
+	WebPublishDialogConfig * const webPublishDialogConfig;
 	
 	//preview
 	enum PreviewMode {PM_TOOLTIP_AS_FALLBACK=0, PM_PANEL,PM_TOOLTIP,PM_BOTH};
