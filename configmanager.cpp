@@ -61,6 +61,7 @@ QSettings* ConfigManager::readSettings() {
 	}
 	lastDocument=config->value("Files/Last Document","").toString();
 	parseBibTeX=config->value("Files/Parse BibTeX",true).toBool();
+	parseMaster=config->value("Files/Parse Master",true).toBool();
 	
 	
 	//----------------------------editor--------------------
@@ -76,10 +77,9 @@ QSettings* ConfigManager::readSettings() {
 	editorConfig->weakindent=config->value("Editor/Weak Indent",true).toBool();
 	editorConfig->folding=config->value("Editor/Folding",true).toBool();
 	editorConfig->showlinestate=config->value("Editor/Show Line State",true).toBool();
-	editorConfig->showcursorstate=config->value("Editor/Show Cursor State",true).toBool();
-	editorConfig->realtimespellchecking=config->value("Editor/Real-Time Spellchecking",true).toBool();
+	editorConfig->showcursorstate=config->value("Editor/Show Cursor State",true).toBool();	
+	editorConfig->readSettings(*config);
 	
-
 	//completion
 	completerConfig->enabled=config->value("Editor/Completion",true).toBool();
 	completerConfig->caseSensitive=(LatexCompleterConfig::CaseSensitive) config->value("Editor/Completion Case Sensitive",2).toInt();
@@ -276,6 +276,7 @@ QSettings* ConfigManager::saveSettings() {
 	//session is saved by main class (because we don't know the active files here)
 	config->setValue("Files/Last Document",lastDocument);
 	config->setValue("Files/Parse BibTeX",parseBibTeX);
+	config->setValue("Files/Parse Master",parseMaster);
 
 	//--------------------editor--------------------------
 	config->setValue("Editor/WordWrap",editorConfig->wordwrap);
@@ -288,7 +289,7 @@ QSettings* ConfigManager::saveSettings() {
 	config->setValue("Editor/Folding",editorConfig->folding);
 	config->setValue("Editor/Show Line State",editorConfig->showlinestate);
 	config->setValue("Editor/Show Cursor State",editorConfig->showcursorstate);
-	config->setValue("Editor/Real-Time Spellchecking",editorConfig->realtimespellchecking);
+	editorConfig->saveSettings(*config);
 	
 	//completion
 	config->setValue("Editor/Completion",completerConfig->enabled);
@@ -371,6 +372,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	confDlg->ui.spinBoxMaxRecentFiles->setValue(maxRecentFiles);
 	confDlg->ui.spinBoxMaxRecentProjects->setValue(maxRecentProjects);
 	confDlg->ui.checkBoxParseBibTeX->setChecked(parseBibTeX);
+	confDlg->ui.checkBoxParseMaster->setChecked(parseMaster);
 	
 	//-----------------------editor------------------------------
 	confDlg->ui.checkBoxWordwrap->setChecked(editorConfig->wordwrap);
@@ -391,7 +393,10 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	confDlg->ui.checkBoxFolding->setChecked(editorConfig->folding);
 	confDlg->ui.checkBoxLineState->setChecked(editorConfig->showlinestate);
 	confDlg->ui.checkBoxState->setChecked(editorConfig->showcursorstate);
-	confDlg->ui.checkBoxRealTimeCheck->setChecked(editorConfig->realtimespellchecking);
+	confDlg->ui.checkBoxRealTimeCheck->setChecked(editorConfig->realtimeChecking);
+	confDlg->ui.checkBoxInlineSpellCheck->setChecked(editorConfig->inlineSpellChecking);
+	confDlg->ui.checkBoxInlineReferenceCheck->setChecked(editorConfig->inlineReferenceChecking);
+	confDlg->ui.checkBoxInlineCitationCheck->setChecked(editorConfig->inlineCitationChecking);
 	
 	//completion
 	confDlg->ui.checkBoxCompletion->setChecked(completerConfig->enabled);
@@ -538,6 +543,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 			updateRecentFiles(true);
 		}
 		parseBibTeX=confDlg->ui.checkBoxParseBibTeX->isChecked();
+		parseMaster=confDlg->ui.checkBoxParseMaster->isChecked();
 		
 		//editor
 		editorConfig->wordwrap=confDlg->ui.checkBoxWordwrap->isChecked();
@@ -557,7 +563,10 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		editorConfig->folding=confDlg->ui.checkBoxFolding->isChecked();
 		editorConfig->showlinestate=confDlg->ui.checkBoxLineState->isChecked();
 		editorConfig->showcursorstate=confDlg->ui.checkBoxState->isChecked();
-		editorConfig->realtimespellchecking=confDlg->ui.checkBoxRealTimeCheck->isChecked();
+		editorConfig->realtimeChecking=confDlg->ui.checkBoxRealTimeCheck->isChecked();
+		editorConfig->inlineSpellChecking=confDlg->ui.checkBoxInlineSpellCheck->isChecked();
+		editorConfig->inlineReferenceChecking=confDlg->ui.checkBoxInlineReferenceCheck->isChecked();
+		editorConfig->inlineCitationChecking=confDlg->ui.checkBoxInlineCitationCheck->isChecked();
 		
 		
 		//completion

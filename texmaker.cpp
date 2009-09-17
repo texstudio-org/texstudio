@@ -98,8 +98,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	
 	LatexEditorView::setSpeller(mainSpeller);
 
-
-
 	QDocument::setFormatFactory(m_formats);
 	mainSpeller->spellcheckErrorFormat=m_formats->id("spellingMistake");
 
@@ -1931,9 +1929,11 @@ void Texmaker::updateStructure() {
 	StructureTreeWidget->clear();
 	if (!currentEditorView()) return;
 	//TODO: cache structures of not changed files, perhaps show all included structures at the same time
-	updateStructureForFile(getCompileFileName());
-	if (!singlemode && getCompileFileName()!=getCurrentFileName()) updateStructureForFile(getCurrentFileName());
-
+	if (!singlemode && getCompileFileName()!=getCurrentFileName() && configManager.parseMaster) 
+		updateStructureForFile(getCompileFileName());
+	updateStructureForFile(getCurrentFileName());
+	
+	
 	if (!current.isEmpty()) {
 		QList<QTreeWidgetItem *> fItems=StructureTreeWidget->findItems(current,Qt::MatchRecursive,0);
 		if ((fItems.size()>0) && (fItems.at(0))) {
