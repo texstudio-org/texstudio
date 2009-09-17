@@ -527,9 +527,11 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 
 	
 
-	// spell checking
-	if (!speller || !QDocument::formatFactory()) return;
-
+	// checking
+	if (!QDocument::formatFactory()) return;
+	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)
+	
+	
 	for (int i=linenr; i<linenr+count; i++) {
 		QDocumentLine line = editor->document()->line(i);
 		if (!line.isValid()) continue;
@@ -540,7 +542,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 
 		line.clearOverlays();
 		if (line.length()<=3) continue;
-		if (!config->realtimespellchecking) continue;
+		//if (!config->realtimespellchecking) continue;
 
 		QString lineText = line.text();
 
@@ -556,7 +558,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				rx.setMinimal(true);
 				int l=rx.indexIn(lineText,start);
 				if (l==start+1) start=start+rx.cap(0).length();
-			} else if (status==NW_REFERENCE) {
+			} else if (status==NW_REFERENCE && config->inlineReferenceChecking) {
 				QString ref=word;//lineText.mid(wordstart,start-wordstart);
 				containedReferences.insert(ref,dlh);
 				int cnt=containedLabels.count(ref);
@@ -564,7 +566,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 					line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMultipleFormat));
 				}else if (cnt==1) line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
 				else line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMissingFormat));
-			} else if (status==NW_LABEL) {
+			} else if (status==NW_LABEL && config->inlineReferenceChecking) {
 				QString ref=word;//lineText.mid(wordstart,start-wordstart);
 				containedLabels.insert(ref,dlh);
 				int cnt=containedLabels.count(ref);
@@ -573,7 +575,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				}else line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
 				// look for corresponding reeferences and adapt format respectively
 				containedLabels.updateByKeys(QStringList(ref),&containedReferences);
-			} else if (status==NW_CITATION) {
+			} else if (status==NW_CITATION && config->inlineCitationChecking) {
 				if (bibTeXIds) {
 					QStringList citations=word.split(",");
 					int pos=wordstart;
@@ -594,7 +596,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 					}
 				}
 			} else if (status==NW_COMMENT) break;
-			else if (word.length()>=3 && !speller->check(word)) {
+			else if (status==NW_TEXT && word.length()>=3 && !speller->check(word) && config->inlineSpellChecking) {
 				if(word.endsWith('.')) start--;
 				line.addOverlay(QFormatRange(wordstart,start-wordstart,speller->spellcheckErrorFormat));
 			}
@@ -826,4 +828,27 @@ void References::updateByKeys(QStringList refs,References* altRefs){
 			}
 		}
 	} //foreach
+}
+
+
+
+
+
+
+//------------------------------------------------------------
+// Configuration
+//------------------------------------------------------------
+
+void LatexEditorViewConfig::readSettings(QSettings& settings){	
+	//TODO: move more to this place
+	realtimeChecking=settings.value("Editor/Real-Time Spellchecking",true).toBool(); //named for compatibility reasons with older tmx versions
+	inlineSpellChecking=settings.value("Editor/Check Spelling",true).toBool();
+	inlineCitationChecking=settings.value("Editor/Check Citations",true).toBool();
+	inlineReferenceChecking=settings.value("Editor/Check References",true).toBool();
+}
+void LatexEditorViewConfig::saveSettings(QSettings& settings){
+	settings.setValue("Editor/Real-Time Spellchecking",realtimeChecking);
+	settings.setValue("Editor/Check Spelling",inlineSpellChecking);
+	settings.setValue("Editor/Check Citations",inlineCitationChecking);
+	settings.setValue("Editor/Check References",inlineReferenceChecking);
 }

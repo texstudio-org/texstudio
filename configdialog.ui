@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>921</width>
-    <height>610</height>
+    <width>945</width>
+    <height>626</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -66,20 +66,20 @@
    <item row="0" column="0" rowspan="2">
     <widget class="QListWidget" name="contentsWidget">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
      <property name="minimumSize">
       <size>
-       <width>150</width>
+       <width>170</width>
        <height>442</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>150</width>
+       <width>170</width>
        <height>32000</height>
       </size>
      </property>
@@ -115,7 +115,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>4</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -316,6 +316,16 @@
             </property>
            </widget>
           </item>
+          <item row="2" column="1">
+           <widget class="QCheckBox" name="checkBoxParseMaster">
+            <property name="text">
+             <string>Always show structure of master document</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -324,7 +334,7 @@
          <property name="title">
           <string>Dictionaries</string>
          </property>
-         <layout class="QGridLayout">
+         <layout class="QGridLayout" name="gridLayout">
           <item row="0" column="0">
            <widget class="QLabel" name="labelASpellCommand">
             <property name="text">
@@ -332,7 +342,7 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1" colspan="2">
+          <item row="0" column="1" colspan="4">
            <widget class="QLineEdit" name="lineEditAspellCommand">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -348,7 +358,7 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="3">
+          <item row="0" column="5">
            <widget class="QPushButton" name="pushButtonAspell">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
@@ -365,7 +375,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
+          <item row="1" column="1" colspan="3">
            <widget class="QLabel" name="labelGetDic">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -378,7 +388,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="2" colspan="2">
+          <item row="1" column="4" colspan="2">
            <widget class="QCheckBox" name="checkBoxRealTimeCheck">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -387,7 +397,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>real time checking</string>
+             <string>inline checking</string>
             </property>
            </widget>
           </item>
@@ -398,10 +408,10 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1" colspan="2">
+          <item row="2" column="1" colspan="4">
            <widget class="QLineEdit" name="thesaurusFileName"/>
           </item>
-          <item row="2" column="3">
+          <item row="2" column="5">
            <widget class="QPushButton" name="btSelectThesaurusFileName">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
@@ -415,6 +425,36 @@
             <property name="icon">
              <iconset>
               <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QCheckBox" name="checkBoxInlineSpellCheck">
+            <property name="text">
+             <string>inline spell checking</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="QCheckBox" name="checkBoxInlineCitationCheck">
+            <property name="text">
+             <string>inline citation checking</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3">
+           <widget class="QCheckBox" name="checkBoxInlineReferenceCheck">
+            <property name="text">
+             <string>inline reference checking</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -1146,12 +1186,60 @@ p, li { white-space: pre-wrap; }
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>222</x>
-     <y>46</y>
+     <x>255</x>
+     <y>20</y>
     </hint>
     <hint type="destinationlabel">
-     <x>298</x>
-     <y>73</y>
+     <x>248</x>
+     <y>24</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxRealTimeCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxInlineSpellCheck</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>759</x>
+     <y>376</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>354</x>
+     <y>438</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxRealTimeCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxInlineCitationCheck</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>825</x>
+     <y>385</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>466</x>
+     <y>435</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxRealTimeCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxInlineReferenceCheck</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>825</x>
+     <y>373</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>616</x>
+     <y>439</y>
     </hint>
    </hints>
   </connection>

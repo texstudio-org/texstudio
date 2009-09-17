@@ -11,10 +11,14 @@ public:
 	bool wordwrap, parenmatch;
 	bool autoindent, weakindent;
 	int showlinemultiples;
-	bool folding, showlinestate, showcursorstate, realtimespellchecking;	
+	bool folding, showlinestate, showcursorstate, realtimeChecking;	
+	bool inlineSpellChecking, inlineCitationChecking, inlineReferenceChecking;
 	QFont editorFont;
 	bool displayModifyTime;
 	bool closeSearchAndReplace;
+
+	void readSettings(QSettings& settings);
+	void saveSettings(QSettings& settings);
 private:
 };
 
