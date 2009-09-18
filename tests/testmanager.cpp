@@ -9,6 +9,7 @@
 #include "qdocumentcursor_t.h"
 #include "qdocumentsearch_t.h"
 #include "qsearchreplacepanel_t.h"
+#include "latexeditorview_t.h"
 #include <QtTest/QtTest>
 
 const QRegExp TestToken::simpleTextRegExp ("[A-Z'a-z0-9]+");
@@ -37,7 +38,8 @@ QString TestManager::execute(LatexEditorView* edView, QCodeEdit* codeedit, QEdit
 		<< new CodeSnippetTest(editor)
 		<< new QDocumentCursorTest()
 		<< new QDocumentSearchTest(editor)
-		<< new QSearchReplacePanelTest(codeedit);
+		<< new QSearchReplacePanelTest(codeedit)
+		<< new LatexEditorViewTest(edView);
 	bool allPassed=true;
 	for (int i=0; i <tests.size();i++){
 		QString res=performTest(tests[i]);

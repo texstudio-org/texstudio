@@ -90,6 +90,9 @@ QSettings* ConfigManager::readSettings() {
 	
 	//web publish dialog
 	webPublishDialogConfig->readSettings(*config);
+
+	//other dialogs
+	lastHardWrapColumn=config->value("Dialogs/Last Hard Wrap Column",80).toInt();
 	
 	//preview
 	previewMode=(PreviewMode) config->value("Preview/Mode",0).toInt();
@@ -302,6 +305,9 @@ QSettings* ConfigManager::saveSettings() {
 
 	//web publish dialog
 	webPublishDialogConfig->saveSettings(*config);
+	
+	//other dialogs
+	config->setValue("Dialogs/Last Hard Wrap Column",lastHardWrapColumn);
 		
 	//preview
 	config->setValue("Preview/Mode",previewMode);

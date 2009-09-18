@@ -129,6 +129,8 @@ public slots:
 	void dictionaryReloaded();
 	void mouseHovered(QPoint pos);
 	bool closeSomething();
+	
+	void insertHardLineBreaks(int newLength);
 signals:
 	void lineHandleDeleted(QDocumentLineHandle* l);
 	void showMarkTooltipForLogMessage(int logMessage);

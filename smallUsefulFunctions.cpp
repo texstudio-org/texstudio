@@ -376,12 +376,7 @@ bool hasAtLeastQt(int major, int minor){
 }
 
 QString cutComment(const QString& text){
-	QString test=text;
-	test.replace("\\\\","  ");
-	int commentStart=test.indexOf(QRegExp("[^\\\\]%")); // find start of comment (if any)
-	if(commentStart>-1) commentStart++;
-	if(test.startsWith("%")) commentStart=0;
-	return text.left(commentStart); // remove comments
+	return text.left(LatexParser::commentStart(text)); // remove comments
 }
 
 int LatexParser::findContext(QString &line,int col){
@@ -448,4 +443,13 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
 				return Citation;
 		default: return Unknown;
 	}
+}
+
+int LatexParser::commentStart(const QString& text){
+	if(text.startsWith("%")) return 0;
+	QString test=text;
+	test.replace("\\\\","  ");
+	int cs=test.indexOf(QRegExp("[^\\\\]%")); // find start of comment (if any)
+	if(cs>-1) return cs+1;
+	else return -1;
 }

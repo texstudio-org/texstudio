@@ -380,7 +380,8 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"uncomment",tr("Uncomment"), SLOT(editUncomment()));
 	newManagedAction(menu,"indent",tr("Indent"), SLOT(editIndent()));
 	newManagedAction(menu,"unindent",tr("Unindent"), SLOT(editUnindent()));
-
+	newManagedAction(menu,"hardbreak",tr("Hard Line Break"), SLOT(editHardLineBreak()));
+	
 	menu->addSeparator();
 	newManagedAction(menu,"find", tr("Find"), SLOT(editFind()), Qt::CTRL+Qt::Key_F);
 	newManagedAction(menu,"findnext",tr("Find Next"), SLOT(editFindNext()), Qt::CTRL+Qt::Key_M);
@@ -1474,6 +1475,15 @@ void Texmaker::editIndent() {
 void Texmaker::editUnindent() {
 	if (!currentEditorView())	return;
 	currentEditorView()->editor->unindentSelection();
+}
+
+void Texmaker::editHardLineBreak(){
+	if (!currentEditorView())	return;
+	bool ok=false;
+	int wrapColumn=QInputDialog::getInteger(this,"TexMakerX",tr("Insert hard line breaks after so many characters:"),configManager.lastHardWrapColumn, 1,2147483647,1,&ok);
+	if (!ok) return;
+	configManager.lastHardWrapColumn=wrapColumn;
+	currentEditorView()->insertHardLineBreaks(wrapColumn);
 }
 
 void Texmaker::editSpell() {

@@ -766,6 +766,60 @@ bool LatexEditorView::closeSomething(){
 	return false;
 }
 
+void LatexEditorView::insertHardLineBreaks(int newLength){
+	QRegExp breakChars("[ \t\n\r]");
+	QDocumentCursor cur=editor->cursor();
+	QDocument* doc=editor->document();
+	int startLine=0; int endLine=doc->lines()-1;
+	if (cur.hasSelection()) {
+		startLine=cur.selectionStart().lineNumber();
+		endLine=cur.selectionEnd().lineNumber();
+		if (cur.selectionEnd().columnNumber()==0 && startLine<endLine) endLine--;
+	}
+	bool areThereLinesToBreak=false;
+	for (int i=startLine;i<=endLine;i++)
+		if (doc->line(i).length()>newLength) {
+			areThereLinesToBreak=true;
+			break;
+		}
+	if (!areThereLinesToBreak) return;
+	//remove all lines and reinsert them wrapped
+	if (endLine+1<doc->lines()) 
+		cur = doc->cursor(startLine,0,endLine+1,0);//+1,0);
+	else	
+		cur = doc->cursor(startLine,0,endLine,doc->line(endLine).length());//+1,0);
+	cur.beginEditBlock();
+	QStringList lines;
+	for (int i=startLine;i<=endLine;i++)
+		lines<<doc->line(i).text();
+	cur.removeSelectedText();
+	for (int i=0;i<lines.count();i++){
+		QString line=lines[i];
+		int commentStart=LatexParser::commentStart(line);
+		if (commentStart==-1) commentStart=line.length();
+		while (line.length()>newLength) {
+			int breakAt=line.lastIndexOf(breakChars,newLength);
+			if (breakAt<0) breakAt=line.indexOf(breakChars,newLength);
+			if (breakAt<0) break;
+			if (breakAt>=commentStart && breakAt+1 > newLength) {
+				int newBreakAt=line.indexOf(breakChars,breakAt-1);
+				if (newBreakAt >-1) breakAt=newBreakAt;
+			}
+			cur.insertText(line.left(breakAt)+"\n");
+			if (breakAt<commentStart) {
+				line=line.mid(breakAt+1);
+				commentStart-=breakAt+1;
+			} else {
+				line="%"+line.mid(breakAt+1);
+				commentStart=0;
+			}
+		}
+		cur.insertText(line+"\n");
+	}
+	cur.endEditBlock();
+	editor->setCursor(cur);
+}
+
 QStringList References::removeByHandle(QDocumentLineHandle* handle){
 	QStringList result;
 	QMultiHash<QString, QDocumentLineHandle*>::iterator mIt = mReferences.begin();
