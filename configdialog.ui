@@ -115,7 +115,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -501,15 +501,59 @@
         </widget>
        </item>
        <item>
+        <widget class="QLabel" name="label_15">
+         <property name="text">
+          <string>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QLabel" name="label_4">
          <property name="text">
-          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;: &lt;span style=&quot; font-weight:600;&quot;&gt;%&lt;/span&gt;: filename without extension &lt;span style=&quot; font-weight:600;&quot;&gt;@&lt;/span&gt;: line number &lt;br /&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;?&lt;/span&gt; followed by &lt;span style=&quot; font-style:italic;&quot;&gt;a&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;r&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;m&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;e&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;&quot;&lt;/span&gt;, ,&lt;span style=&quot; font-style:italic;&quot;&gt;)&lt;/span&gt;: extended filename&lt;br /&gt;      &lt;span style=&quot; font-style:italic;&quot;&gt;a&lt;/span&gt;: absolute path, &lt;!--&lt;span style=&quot; font-style:italic;&quot;&gt;r&lt;/span&gt;: relative path, --&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;m&lt;/span&gt;: basefile name without extension,&lt;span style=&quot; font-style:italic;&quot;&gt;e&lt;/span&gt;: extension&lt;br /&gt;      &lt;span style=&quot; font-style:italic;&quot;&gt;&quot;&lt;/span&gt;: enclose with &quot;..&quot;, (space): ends placeholder and add a space, &lt;span style=&quot; font-style:italic;&quot;&gt;)&lt;/span&gt;: ends placeholder &lt;br /&gt;      examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just the extension (without leading point), &lt;br /&gt;            ?m&quot; (filename without extension, identical to %) ?me (filename with extension like example.tex)&lt;br /&gt;
- %%, @@ or ?? become: %, @ or ?
- &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;b&gt;%&lt;/b&gt;: filename without extension &lt;b&gt;@&lt;/b&gt;: line number </string>
+         </property>
+         <property name="indent">
+          <number>15</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_18">
+         <property name="text">
+          <string>&lt;b&gt;?&lt;/b&gt; followed by &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: extended filename</string>
+         </property>
+         <property name="indent">
+          <number>15</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_17">
+         <property name="text">
+          <string>&lt;i&gt;a&lt;/i&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;i&gt;m&lt;/i&gt;: basefile name without extension,&lt;i&gt;e&lt;/i&gt;: extension&lt;br /&gt;
+&lt;i&gt;&quot;&lt;/i&gt;: enclose with &quot;..&quot;, . (point): ends placeholder with a point, (space): ends placeholder and add a space, &lt;i&gt;)&lt;/i&gt;: ends placeholder &lt;br /&gt;
+examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just the extension (without leading point), &lt;br /&gt;
+?m&quot; (filename without extension, identical to %) ?me (filename with extension like example.tex)</string>
+         </property>
+         <property name="indent">
+          <number>30</number>
+         </property>
+         <property name="advancedOption" stdset="0">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_16">
+         <property name="text">
+          <string>%%, @@ or ?? become: %, @ or ?
+</string>
+         </property>
+         <property name="margin">
+          <number>0</number>
+         </property>
+         <property name="indent">
+          <number>15</number>
          </property>
         </widget>
        </item>
