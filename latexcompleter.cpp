@@ -770,7 +770,7 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
 							}
 						}
 					}
-					words.append(line.trimmed());
+					if(!words.contains(line.trimmed())) words.append(line.trimmed());
 				}
 			}
 		}
