@@ -122,6 +122,7 @@ void QGotoLinePanel::keyPressEvent(QKeyEvent *e)
 		on_bClose_clicked();
 	} else if ( e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter ) {
 		on_bGo_clicked();
+		on_bClose_clicked();
 	} else {
 		QPanel::keyPressEvent(e);
 	}
