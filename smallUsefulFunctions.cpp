@@ -30,6 +30,16 @@ QStringList findResourceFiles(const QString& dirName, const QString& filter) {
 		if (fic.exists() && fic.isReadable()) 
 			result<< fic.entryList(QStringList(filter),QDir::Files,QDir::Name);
 	}
+	// sort and remove double entries
+	result.sort();
+
+	QMutableStringListIterator i(result);
+	QString old="";
+	while(i.hasNext()){
+		QString cmp=i.next();
+		if(cmp==old) i.remove();
+		else old=cmp;
+	}
 	return result;
 }
 
