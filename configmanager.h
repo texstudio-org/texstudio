@@ -56,6 +56,9 @@ public:
 	//webpublish dialog
 	WebPublishDialogConfig * const webPublishDialogConfig;
 	
+	//other dialogs
+	int lastHardWrapColumn;
+	
 	//preview
 	enum PreviewMode {PM_TOOLTIP_AS_FALLBACK=0, PM_PANEL,PM_TOOLTIP,PM_BOTH};
 	PreviewMode previewMode; 

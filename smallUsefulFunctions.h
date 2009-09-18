@@ -75,6 +75,7 @@ QString findToken(const QString &line,QRegExp &token);
 // find token (e.g. \label \input \section and return content (\newcommand{name}[arg]), returns true if outName!=""
 bool findTokenWithArg(const QString &line,const QString &token, QString &outName, QString &outArg);
 
+
 // remove comment from text, take care of multiple backslashes before comment character ...
 QString cutComment(const QString& text);
 
@@ -90,6 +91,9 @@ public:
 	enum ContextType {Unknown, Command, Environment, Label, Reference, Citation};
 	// realizes whether col is in a \command or in a parameter {}
 	static int findContext(QString &line, int column);
+	
+	//position of the % starting a comment (takes care of multiple backslashes before comment character ..)
+	static int commentStart(const QString& text);
 	
 	static ContextType findContext(const QString &line, int column, QString &command, QString& value);
 };

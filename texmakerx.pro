@@ -372,7 +372,8 @@ SOURCES += tests/testmanager.cpp \
     tests/codesnippet_t.cpp \
     tests/qdocumentcursor_t.cpp \
     tests/qdocumentsearch_t.cpp \
-    tests/qsearchreplacepanel_t.cpp
+    tests/qsearchreplacepanel_t.cpp \
+	tests/latexeditorview_t.cpp
 HEADERS += tests/testmanager.h \
     tests/testutil.h \
     tests/smallUsefulFunctions_t.h \
@@ -380,7 +381,8 @@ HEADERS += tests/testmanager.h \
     tests/codesnippet_t.h \
     tests/qdocumentcursor_t.h \
     tests/qdocumentsearch_t.h \
-    tests/qsearchreplacepanel_t.h
+    tests/qsearchreplacepanel_t.h \
+    tests/latexeditorview_t.h
 win32:LIBS += -lQtTestd4
 !win32:LIBS += -lQtTest
 
