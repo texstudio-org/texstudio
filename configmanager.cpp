@@ -238,7 +238,8 @@ QSettings* ConfigManager::readSettings() {
 	
 
 	tabbedLogView=config->value("LogView/Tabbed","true").toBool();
-	
+	newLeftPanelLayout=config->value("Interface/New Left Panel Layout",true).toBool();
+
 	//language
 	language=config->value("Interface/Language","").toString();
 	lastLanguage=language;
@@ -343,6 +344,7 @@ QSettings* ConfigManager::saveSettings() {
 	
 	config->setValue("LogView/Tabbed",tabbedLogView);
 	
+	config->setValue("Interface/New Left Panel Layout",newLeftPanelLayout);
 	config->setValue("Interface/Language",language); 
 	
 	//editor
@@ -523,7 +525,9 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	confDlg->ui.spinBoxInterfaceFontSize->setValue(interfaceFontSize);
 
 	confDlg->ui.checkBoxTabbedLogView->setChecked(tabbedLogView);
-        confDlg->ui.checkBoxDisplayModifyTime->setChecked(editorConfig->displayModifyTime);
+	confDlg->ui.checkBoxTabbedStructureView->setChecked(!newLeftPanelLayout);
+	
+	confDlg->ui.checkBoxDisplayModifyTime->setChecked(editorConfig->displayModifyTime);
 	confDlg->ui.checkBoxCloseSearchReplaceTogether->setChecked(editorConfig->closeSearchAndReplace);
 	
 	confDlg->ui.comboBoxInterfaceModernStyle->setCurrentIndex(modernStyle?1:0);
@@ -659,7 +663,10 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		if (tabbedLogView!=confDlg->ui.checkBoxTabbedLogView->isChecked()) 
 			emit tabbedLogViewChanged(confDlg->ui.checkBoxTabbedLogView->isChecked());
 		tabbedLogView=confDlg->ui.checkBoxTabbedLogView->isChecked();
-
+		if (newLeftPanelLayout!=!confDlg->ui.checkBoxTabbedStructureView->isChecked())
+			emit newLeftPanelLayoutChanged(!confDlg->ui.checkBoxTabbedStructureView->isChecked());
+		newLeftPanelLayout=!confDlg->ui.checkBoxTabbedStructureView->isChecked();
+		
 		editorConfig->displayModifyTime=confDlg->ui.checkBoxDisplayModifyTime->isChecked();
 		editorConfig->closeSearchAndReplace=confDlg->ui.checkBoxCloseSearchReplaceTogether->isChecked();
 		//language

@@ -260,3 +260,136 @@ void OutputViewWidget::clickedOnLogModelIndex(const QModelIndex& index){
 void OutputViewWidget::gotoLogLine(int logLine){
 	gotoLogEntry(logModel->logLineNumberToLogEntryNumber(logLine));
 }
+
+
+
+//====================================================================
+// CustomWidgetList (for left panel)
+//====================================================================
+CustomWidgetList::CustomWidgetList(QWidget* p): 
+	QDockWidget(p), toolbox(0), frame(0),stack(0), toolbar(0)
+{
+	
+}
+void CustomWidgetList::addWidget(QWidget* widget, const QString& id, const QString& text, const QString& iconName){
+	widgets << widget;
+	widget->setProperty("id",id);
+	widget->setProperty("Name",text);
+	widget->setProperty("iconName",iconName);
+	widget->setProperty("StructPos",widgets.size());
+
+	QAction *Act = new QAction(text, this);
+	Act->setCheckable(true);
+	//Act->setChecked(visible);
+	Act->setData(id);
+	connect(Act, SIGNAL(toggled(bool)), this, SLOT(toggleWidget(bool)));
+	addAction(Act);
+}
+void CustomWidgetList::setWidgetText(const QString& id, const QString& text){
+	setWidgetText(widget(id),text);
+}
+void CustomWidgetList::setWidgetText(const QWidget* widget, const QString& text){
+	if (!widget) return;
+}
+void CustomWidgetList::showPageFromAction(){
+	QAction* act=qobject_cast<QAction*>(sender());
+	if (!act) return;
+	QWidget* wid=widget(act->data().toString());
+	stack->setCurrentWidget(wid);
+}
+void CustomWidgetList::showWidgets(bool newLayoutStyle){
+	if (toolbox) {
+		for (int i=0;i<widgets.count();i++){
+			toolbox->removeItem(toolbox->indexOf(widgets[i]));
+			widgets[i]->setParent(this);//otherwise it will be deleted
+		}
+		delete toolbox;
+	}
+	if (stack) {
+		for (int i=0;i<widgets.count();i++){
+			stack->removeWidget(widgets[i]);
+			widgets[i]->setParent(this);//otherwise it will be deleted
+		}
+		delete stack;
+	}
+	if (toolbar) delete toolbar;
+	if (frame) delete frame; 
+	newStyle=newLayoutStyle;
+	if (newLayoutStyle) {
+		toolbox=0;
+		frame=new QFrame(this);
+		frame->setLineWidth(0);
+		frame->setFrameShape(QFrame::Box);
+		frame->setFrameShadow(QFrame::Plain);
+
+		toolbar=new QToolBar("LogToolBar",this);
+		toolbar->setFloatable(false);
+		toolbar->setOrientation(Qt::Vertical);
+		toolbar->setMovable(false);
+		toolbar->setIconSize(QSize(16,16 ));
+
+		stack=new QStackedWidget(this);
+
+		for (int i=0;i<widgets.size();i++)
+			if (!hiddenWidgetsIds.contains(widgetId(widgets[i]))) {
+				stack->addWidget(widgets[i]);
+				QAction* act=toolbar->addAction(QIcon(widgets[i]->property("iconName").toString()),widgets[i]->property("Name").toString());
+				act->setData(widgetId(widgets[i]));
+				connect(act,SIGNAL(triggered()),this,SLOT(showPageFromAction()));
+			}
+		
+		QHBoxLayout* hlayout= new QHBoxLayout(frame);
+		hlayout->setSpacing(0);
+		hlayout->setMargin(0);
+		hlayout->addWidget(toolbar);
+		hlayout->addWidget(stack);
+			
+		setWidget(frame);
+	} else {
+		frame=0;
+		toolbar=0;
+		stack=0;
+		toolbox = new QToolBox(this);
+		for (int i=0;i<widgets.size();i++)
+			if (!hiddenWidgetsIds.contains(widgetId(widgets[i]))) {
+				toolbox->addItem(widgets[i],QIcon(widgets[i]->property("iconName").toString()),widgets[i]->property("Name").toString());
+			}
+		setWidget(toolbox);
+	}
+}
+int CustomWidgetList::widgetCount() const{
+	return widgets.count();
+}
+/*'void CustomWidgetList::addWidgetOld(QWidget* widget, const QString& text, const QIcon& icon){
+}
+void CustomWidgetList::addWidgetNew(QWidget* widget, const QString& text, const QIcon& icon){
+	stack->addWidget(*list);
+	toolbar->addAction(icon,text);
+}*/
+qlonglong CustomWidgetList::visibleWidgets() const{
+	qlonglong result=0;
+	for(int index=1;widgets.count()>index;index++){
+		result+=1<<(widgets[index]->property("StructPos").toInt()-1);
+	}
+	return result;
+}
+QWidget* CustomWidgetList::widget(int i) const{
+	return widgets[i];
+}
+QWidget* CustomWidgetList::widget(const QString& id) const{
+	for (int i=0;i<widgets.size();i++)
+		if (widgetId(widgets[i])==id) 
+			return widgets[i];
+	return 0;
+}
+void CustomWidgetList::setCurrentWidget(QWidget* widget){
+	if (newStyle) {
+		stack->setCurrentWidget(widget);
+	} else {
+		toolbox->setCurrentWidget(widget);
+	}
+}
+QString CustomWidgetList::widgetId(QWidget* widget) const{
+	if (!widget) return "";
+	return widget->property("id").toString();
+}

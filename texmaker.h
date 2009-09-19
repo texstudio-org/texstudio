@@ -74,9 +74,8 @@ private:
 	inline QAction* newManagedAction(QWidget* menu, const QString &id, QAction* act);
 	inline QAction* getManagedAction(QString id);
 	
-	void addSymbolGrid(SymbolGridWidget** list, QString SymbolList,  const QString& iconName, const QString& text, const bool show=true);
-	//void addSymbolList(SymbolListWidget** list, int index, const QString& iconName, const QString& text, const bool show=true);
-	void addTagList(XmlTagsListWidget** list, const QString& iconName, const QString& text, const QString& tagFile, const bool show=true);
+	void addSymbolGrid(const QString& SymbolList,  const QString& iconName, const QString& text);
+	void addTagList(const QString& id, const QString& iconName, const QString& text, const QString& tagFile);
 
 	QVariantMap *MapForSymbols;
 
@@ -97,12 +96,12 @@ private:
 	LatexCompleter* completer;
 
 //gui
-	QDockWidget *StructureView;
 	QTabWidget *EditorView;
-	QToolBox *StructureToolbox;
-	XmlTagsListWidget *MpListWidget, *PsListWidget, *leftrightWidget, *tikzWidget, *asyWidget;
+	CustomWidgetList* leftPanel;
+	
+	//XmlTagsListWidget *MpListWidget, *PsListWidget, *leftrightWidget, *tikzWidget, *asyWidget;
 	//SymbolListWidget *RelationListWidget, *ArrowListWidget, *MiscellaneousListWidget, *DelimitersListWidget, *GreekListWidget ;
-	SymbolGridWidget *RelationGridWidget,*ArrowGridWidget,*GreekGridWidget,*CyrillicGridWidget,*MiscellaneousMathGridWidget,*MiscellaneousTextGridWidget,*MiscellaneousWasyGridWidget,*DelimitersGridWidget,*SpecialGridWidget,*OperatorGridWidget, *MostUsedListWidget;
+	//SymbolGridWidget *RelationGridWidget,*ArrowGridWidget,*GreekGridWidget,*CyrillicGridWidget,*MiscellaneousMathGridWidget,*MiscellaneousTextGridWidget,*MiscellaneousWasyGridWidget,*DelimitersGridWidget,*SpecialGridWidget,*OperatorGridWidget, *MostUsedListWidget;
 	qlonglong SymbolListVisible;
 
 	QTreeWidget *StructureTreeWidget;

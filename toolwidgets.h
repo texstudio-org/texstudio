@@ -1,3 +1,6 @@
+/*
+	This file contains the dockwidgets at the left/bottom side of tmx
+*/
 #ifndef TOOLWIDGETS_H
 #define TOOLWIDGETS_H
 
@@ -66,5 +69,44 @@ private slots:
 	void gotoLogLine(int logLine);
 };
 
+
+
+class CustomWidgetList: public QDockWidget{
+	Q_OBJECT
+public:
+	CustomWidgetList(QWidget *p=0);
+	void addWidget(QWidget* widget, const QString& id, const QString& text, const QString& iconName);
+	void setWidgetText(const QString& id, const QString& text);
+	void setWidgetText(const QWidget* widget, const QString& text);
+	int widgetCount() const;
+	qlonglong visibleWidgets() const; 
+	QWidget* widget(int i) const;
+	QWidget* widget(const QString& id) const;
+	void setCurrentWidget(QWidget* widget);
+public slots:
+	void showWidgets(bool newLayoutStyle);
+private slots:
+	void showPageFromAction();
+private:
+	void showWidget(const QString& id);
+	void hideWidget(const QString& id);
+	//void addWidgetOld(QWidget* widget, const QString& id, const QString& text, const QString& iconName, const bool visible);
+//	void addWidgetNew(QWidget* widget, const QString& id, const QString& text, const QString& iconName, const bool visible);
+	QString widgetId(QWidget* widget) const;
+	
+	
+	QStringList hiddenWidgetsIds;
+	QList<QWidget*> widgets;
+	bool newStyle;
+	
+	//old layout
+	QToolBox *toolbox;
+	
+	//new layout
+	QFrame* frame;
+	QStackedWidget* stack;
+	QToolBar* toolbar;
+		
+};
 
 #endif 

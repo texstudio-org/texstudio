@@ -63,35 +63,37 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 	setIconSize(QSize(22,22));
 
-	StructureView=0;
+	leftPanel=0;
 	StructureTreeWidget=0;
 	
 	//RelationListWidget=0;
 	//ArrowListWidget=0;
-	ArrowGridWidget=0;
-	RelationGridWidget=0;
-	GreekGridWidget=0;
-	OperatorGridWidget=0;
-	CyrillicGridWidget=0;
-	MiscellaneousMathGridWidget=0;
-	MiscellaneousTextGridWidget=0;
-	MiscellaneousWasyGridWidget=0;
-	DelimitersGridWidget=0;
-	SpecialGridWidget=0;
-	//MiscellaneousListWidget=0;
-	//DelimitersListWidget=0;
-	//GreekListWidget=0;
-	MostUsedListWidget=0;
-	PsListWidget=0;
-	MpListWidget=0;
+	// ArrowGridWidget=0;
+	// RelationGridWidget=0;
+	// GreekGridWidget=0;
+	// OperatorGridWidget=0;
+	// CyrillicGridWidget=0;
+	// MiscellaneousMathGridWidget=0;
+	// MiscellaneousTextGridWidget=0;
+	// MiscellaneousWasyGridWidget=0;
+	// DelimitersGridWidget=0;
+	// SpecialGridWidget=0;
+	// //MiscellaneousListWidget=0;
+	// //DelimitersListWidget=0;
+	// //GreekListWidget=0;
+	// MostUsedListWidget=0;
+	// PsListWidget=0;
+	// MpListWidget=0;
+
+	// MpListWidget=0;
+	// PsListWidget=0;
+	// leftrightWidget=0;
+	// tikzWidget=0;
+	// asyWidget=0;
+
 	outputView=0;
 	thesaurusDialog=0;
 	templateSelectorDialog=0;
-	MpListWidget=0;
-	PsListWidget=0;
-	leftrightWidget=0;
-	tikzWidget=0;
-	asyWidget=0;
 	
 	mainSpeller=new SpellerUtility();;
 	mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);
@@ -182,81 +184,41 @@ QMenu* Texmaker::newManagedMenu(const QString &id,const QString &text){
 	return configManager.newManagedMenu(id,text);
 }
 
-void Texmaker::addSymbolGrid(SymbolGridWidget** list, QString SymbolList,  const QString& iconName, const QString& text, const bool show){
-	if (!*list) {
-		(*list)=new SymbolGridWidget(0,SymbolList,MapForSymbols);
-		connect(*list, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
-		connect(*list, SIGNAL(itemPressed(QTableWidgetItem*)), this, SLOT(InsertSymbolPressed(QTableWidgetItem*)));
-		if(show) StructureToolbox->addItem(*list,QIcon(iconName),text);
-		QAction *Act = new QAction(text, this);
-		Act->setCheckable(true);
-		Act->setChecked(show);
-		//Act->setData(QVariant::fromValue((*list)));
-		connect(Act, SIGNAL(toggled(bool)), this, SLOT(StructureToolBoxToggle(bool)));
-		StructureToolboxActions << Act;
-		StructureToolboxWidgets << qobject_cast<QWidget*>(*list);
-		Act->setData(StructureToolboxWidgets.size()-1);
-		(*list)->setProperty("Name",text);
-		(*list)->setProperty("iconName",iconName);
-		(*list)->setProperty("StructPos",StructureToolboxWidgets.size());
-		(*list)->setProperty("mType",0);
-	} else StructureToolbox->setItemText(StructureToolbox->indexOf(*list),text);
+void Texmaker::addSymbolGrid(const QString& SymbolList,  const QString& iconName, const QString& text){
+	SymbolGridWidget* list = qobject_cast<SymbolGridWidget*>(leftPanel->widget(SymbolList));
+	if (!list) {
+		list=new SymbolGridWidget(this,SymbolList,MapForSymbols);
+		connect(list, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
+		connect(list, SIGNAL(itemPressed(QTableWidgetItem*)), this, SLOT(InsertSymbolPressed(QTableWidgetItem*)));
+		leftPanel->addWidget(list, SymbolList, text, iconName);
+	} else leftPanel->setWidgetText(list,text);
 }
 
-/*void Texmaker::addSymbolList(SymbolListWidget** list, int index,const QString& iconName, const QString& text, const bool show){
-	if (!*list) {
-		(*list)=new SymbolListWidget(0,index);
-		connect(*list, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
-		connect(*list, SIGNAL(itemPressed(QTableWidgetItem*)), this, SLOT(InsertSymbolPressed(QTableWidgetItem*)));
-		if(show) StructureToolbox->addItem(*list,QIcon(iconName),text);
-		QAction *Act = new QAction(text, this);
-		Act->setCheckable(true);
-		Act->setChecked(show);
-		connect(Act, SIGNAL(toggled(bool)), this, SLOT(StructureToolBoxToggle(bool)));
-		StructureToolboxActions << Act;
-		StructureToolboxWidgets << qobject_cast<QWidget*>(*list);
-		Act->setData(StructureToolboxWidgets.size()-1);
-		(*list)->setProperty("Name",text);
-		(*list)->setProperty("iconName",iconName);
-		(*list)->setProperty("StructPos",StructureToolboxWidgets.size());
-		(*list)->setProperty("mType",1);
-	} else StructureToolbox->setItemText(StructureToolbox->indexOf(*list),text);
-}*/
-void Texmaker::addTagList(XmlTagsListWidget** list, const QString& iconName, const QString& text, const QString& tagFile, const bool show){
-	if (!*list) {
-		(*list)=new XmlTagsListWidget(0,":/tags/"+tagFile);
-		connect(*list, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(InsertXmlTag(QListWidgetItem*)));
-		if(show) StructureToolbox->addItem(*list,QIcon(iconName),text);
-		QAction *Act = new QAction(text, this);
-		Act->setCheckable(true);
-		Act->setChecked(show);
-		connect(Act, SIGNAL(toggled(bool)), this, SLOT(StructureToolBoxToggle(bool)));
-		StructureToolboxActions << Act;
-		StructureToolboxWidgets << qobject_cast<QWidget*>(*list);
-		Act->setData(StructureToolboxWidgets.size()-1);
-		(*list)->setProperty("Name",text);
-		(*list)->setProperty("iconName",iconName);
-		(*list)->setProperty("StructPos",StructureToolboxWidgets.size());
-		(*list)->setProperty("mType",2);
-	} else StructureToolbox->setItemText(StructureToolbox->indexOf(*list),text);
+void Texmaker::addTagList(const QString& id, const QString& iconName, const QString& text, const QString& tagFile){
+	XmlTagsListWidget* list=qobject_cast<XmlTagsListWidget*>(leftPanel->widget(id));
+	if (!list) {
+		list=new XmlTagsListWidget(0,":/tags/"+tagFile);
+		connect(list, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(InsertXmlTag(QListWidgetItem*)));
+		leftPanel->addWidget(list, id, text, iconName);
+		//(*list)->setProperty("mType",2);
+	} else leftPanel->setWidgetText(list,text);
 }
 void Texmaker::setupDockWidgets(){
 //to allow retranslate this function must be able to be called multiple times
 
 	//Structure panel
-	if (!StructureView) {
-		StructureView = new QDockWidget(this);
-		StructureView->setObjectName("StructureView");
-		StructureView->setAllowedAreas(Qt::AllDockWidgetAreas);
-		StructureView->setFeatures(QDockWidget::DockWidgetClosable);
-		addDockWidget(Qt::LeftDockWidgetArea, StructureView);
-		StructureToolbox=new QToolBox(StructureView);
-		StructureView->setWidget(StructureToolbox);
+	if (!leftPanel) {
+		leftPanel = new CustomWidgetList(this);
+		leftPanel->setObjectName("leftPanel");
+		leftPanel->setAllowedAreas(Qt::AllDockWidgetAreas);
+		leftPanel->setFeatures(QDockWidget::DockWidgetClosable);
+		addDockWidget(Qt::LeftDockWidgetArea, leftPanel);
+		connect(&configManager,SIGNAL(newLeftPanelLayoutChanged(bool)), leftPanel,  SLOT(showWidgets(bool)));
 	}
-	StructureView->setWindowTitle(tr("Structure"));
-
+	leftPanel->setWindowTitle(tr("Structure"));
+	
 	if (!StructureTreeWidget) {
-		StructureTreeWidget=new QTreeWidget(StructureToolbox);
+		StructureTreeWidget=new QTreeWidget(this);
 		StructureTreeWidget->setColumnCount(1);
 		StructureTreeWidget->header()->hide();
 		StructureTreeWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -264,38 +226,33 @@ void Texmaker::setupDockWidgets(){
 		connect(StructureTreeWidget, SIGNAL(itemActivated(QTreeWidgetItem *,int)), SLOT(ClickedOnStructure(QTreeWidgetItem *,int))); //enter or double click (+single click on some platforms)
 		connect(StructureTreeWidget, SIGNAL(itemPressed(QTreeWidgetItem *,int)), SLOT(ClickedOnStructure(QTreeWidgetItem *,int))); //single click
 // connect( StructureTreeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem *,int )), SLOT(DoubleClickedOnStructure(QTreeWidgetItem *,int))); // qt4 bugs - don't use it
-		StructureToolbox->addItem(StructureTreeWidget,QIcon(":/images/structure.png"),tr("Structure"));
-		StructureToolbox->setContextMenuPolicy(Qt::CustomContextMenu);
-		connect(StructureToolbox,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(StructureToolBoxContextMenu(QPoint)));
-	} else StructureToolbox->setItemText(StructureToolbox->indexOf(StructureTreeWidget),tr("Structure"));
+		//TODO:StructureToolbox->setContextMenuPolicy(Qt::CustomContextMenu);
+		//TODO:connect(StructureToolbox,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(StructureToolBoxContextMenu(QPoint)));
+		
+		leftPanel->addWidget(StructureTreeWidget, "structureTree", tr("Structure"), ":/images/structure.png");
+	} else leftPanel->setWidgetText(StructureTreeWidget,tr("Structure"));
 	
+	addSymbolGrid("operators", ":/images/math1.png",tr("Operator symbols"));
+	addSymbolGrid("relation", ":/images/hi16-action-math1.png",tr("Relation symbols"));
+	addSymbolGrid("arrows", ":/images/math2.png",tr("Arrow symbols"));
+	addSymbolGrid("delimiters",":/images/math4.png",tr("Delimiters"));
+	addSymbolGrid("greek", ":/images/math5.png",tr("Greek letters"));
+	addSymbolGrid("cyrillic", ":/images/hi16-action-math10.png",tr("Cyrillic letters"));
+	addSymbolGrid("misc-math", ":/images/math3.png",tr("Miscellaneous math symbols"));
+	addSymbolGrid("misc-text", ":/images/hi16-action-math5.png",tr("Miscellaneous text symbols"));
+	addSymbolGrid("wasysym", ":/images/hi16-action-math5.png",tr("Miscellaneous text symbols (wasysym)"));
+	addSymbolGrid("special", ":/images/accent1.png",tr("Accented letters"));
 
-	//addSymbolList(&RelationListWidget,0, ":/images/math1.png",tr("Relation symbols"),SymbolListVisible&(1<<0));
-	//addSymbolList(&ArrowListWidget,1, ":/images/math2.png",tr("Arrow symbols"),SymbolListVisible&1<<1);
-	//addSymbolList(&MiscellaneousListWidget,2,":/images/math3.png",tr("Miscellaneous symbols"),SymbolListVisible&1<<2);
-	//addSymbolList(&DelimitersListWidget,3,":/images/math4.png",tr("Delimiters"),SymbolListVisible&1<<3);
-	//addSymbolList(&GreekListWidget,4,":/images/math5.png",tr("Greek letters"),SymbolListVisible&1<<4);
+	addSymbolGrid("!mostused",":/images/math6.png",tr("Most used symbols"));
 
-	addSymbolGrid(&OperatorGridWidget,"operators", ":/images/math1.png",tr("Operator symbols"),SymbolListVisible&1<<0);
-	addSymbolGrid(&RelationGridWidget,"relation", ":/images/hi16-action-math1.png",tr("Relation symbols"),SymbolListVisible&1<<1);
-	addSymbolGrid(&ArrowGridWidget,"arrows", ":/images/math2.png",tr("Arrow symbols"),SymbolListVisible&(1<<2));
-	addSymbolGrid(&DelimitersGridWidget,"delimiters",":/images/math4.png",tr("Delimiters"),SymbolListVisible&(1<<3));
-	addSymbolGrid(&GreekGridWidget,"greek", ":/images/math5.png",tr("Greek letters"),SymbolListVisible&(1<<4));
-	addSymbolGrid(&CyrillicGridWidget,"cyrillic", ":/images/hi16-action-math10.png",tr("Cyrillic letters"),SymbolListVisible&(1<<5));
-	addSymbolGrid(&MiscellaneousMathGridWidget,"misc-math", ":/images/math3.png",tr("Miscellaneous math symbols"),SymbolListVisible&(1<<6));
-	addSymbolGrid(&MiscellaneousTextGridWidget,"misc-text", ":/images/hi16-action-math5.png",tr("Miscellaneous text symbols"),SymbolListVisible&(1<<7));
-	addSymbolGrid(&MiscellaneousWasyGridWidget,"wasysym", ":/images/hi16-action-math5.png",tr("Miscellaneous text symbols (wasysym)"),SymbolListVisible&(1<<8));
-	addSymbolGrid(&SpecialGridWidget,"special", ":/images/accent1.png",tr("Accented letters"),SymbolListVisible&(1<<9));
+	addTagList("leftright", ":/images/leftright.png", tr("Left/Right Brackets"),"leftright_tags.xml");
+	addTagList("pstricks", ":/images/pstricks.png", tr("Pstricks Commands"),"pstricks_tags.xml");
+	addTagList("metapost", ":/images/metapost.png", tr("MetaPost Commands"),"metapost_tags.xml");
+	addTagList("tikz", ":/images/tikz.png", tr("Tikz Commands"),"tikz_tags.xml");
+	addTagList("asymptote", ":/images/asymptote.png", tr("Asymptote Commands"),"asymptote_tags.xml");
 
-	//addSymbolList(&MostUsedListWidget,5,":/images/math6.png",tr("Most used symbols"),SymbolListVisible&1<<9);
-	addSymbolGrid(&MostUsedListWidget,"",":/images/math6.png",tr("Most used symbols"),SymbolListVisible&1<<10);
-
-	addTagList(&leftrightWidget, ":/images/leftright.png", tr("Left/Right Brackets"),"leftright_tags.xml",SymbolListVisible&1<<11);
-	addTagList(&PsListWidget, ":/images/pstricks.png", tr("Pstricks Commands"),"pstricks_tags.xml",SymbolListVisible&1<<12);
-	addTagList(&MpListWidget, ":/images/metapost.png", tr("MetaPost Commands"),"metapost_tags.xml",SymbolListVisible&1<<13);
-	addTagList(&tikzWidget, ":/images/tikz.png", tr("Tikz Commands"),"tikz_tags.xml",SymbolListVisible&1<<14);
-	addTagList(&asyWidget, ":/images/asymptote.png", tr("Asymptote Commands"),"asymptote_tags.xml",SymbolListVisible&1<<15);
-
+	leftPanel->showWidgets(configManager.newLeftPanelLayout);
+	
 	// update MostOftenUsed
 	MostUsedSymbolsTriggered(true);
 	// clean not further used map;
@@ -318,6 +275,7 @@ void Texmaker::setupDockWidgets(){
 		connect(&buildManager,SIGNAL(previewAvailable(const QString&, const QString&)),this,SLOT(previewAvailable	(const QString&,const QString&)));
 	}
 	outputView->setWindowTitle(tr("Messages / Log File"));
+	
 }
 
 void Texmaker::setupMenus() {
@@ -528,7 +486,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "prevdocument",tr("Previous Document"), SLOT(gotoPrevDocument()), Qt::ALT+Qt::Key_PageDown);
 
 	menu->addSeparator();
-	newManagedAction(menu, "structureview",StructureView->toggleViewAction());
+	newManagedAction(menu, "structureview",leftPanel->toggleViewAction());
 	outputViewAction=newManagedAction(menu, "outputview",tr("Messages / Log File"), SLOT(viewToggleOutputView()));
 	outputViewAction->setCheckable(true);
 	newManagedAction(menu, "closesomething",tr("Close Something"), SLOT(viewCloseSomething()), Qt::Key_Escape);
@@ -1905,11 +1863,8 @@ void Texmaker::SaveSettings() {
 	config->setValue("Symbols/Quantity",*MapForSymbols);
 	delete MapForSymbols;
 
-	qlonglong result=0;
-	for(int index=1;StructureToolbox->count()>index;index++){
-		result+=1<<(StructureToolbox->widget(index)->property("StructPos").toInt()-1);
-	}
-	config->setValue("Symbols/symbollists",result);
+	
+	config->setValue("Symbols/symbollists",leftPanel->visibleWidgets());
 
 
 
@@ -1925,7 +1880,8 @@ void Texmaker::SaveSettings() {
 ////////////////// STRUCTURE ///////////////////
 void Texmaker::ShowStructure() {
 //StructureToolbox->setCurrentItem(StructureTreeWidget);
-	StructureToolbox->setCurrentIndex(StructureToolbox->indexOf(StructureTreeWidget));
+	//StructureToolbox->setCurrentIndex(StructureToolbox->indexOf(StructureTreeWidget));
+	leftPanel->setCurrentWidget(StructureTreeWidget);
 }
 
 void Texmaker::updateStructure() {
@@ -3621,7 +3577,7 @@ void Texmaker::SetMostUsedSymbols(QTableWidgetItem* item) {
 		symbolMostused.insert(index,item);
 		changed=true;
 	}
-	if(changed) MostUsedListWidget->SetUserPage(symbolMostused);
+	//TODO: if(changed) MostUsedListWidget->SetUserPage(symbolMostused);
 }
 
 
@@ -3932,7 +3888,7 @@ void Texmaker::previewAvailable(const QString& imageFile, const QString& text){
  }
 
  void Texmaker::StructureToolBoxContextMenu(QPoint point) {
-
+	/*TODO: if (!StructureToolbox) return;
 	QWidget *widget=StructureToolbox->currentWidget();
 	if(widget->underMouse()){
 		if(widget==MostUsedListWidget){
@@ -3945,10 +3901,11 @@ void Texmaker::previewAvailable(const QString& imageFile, const QString& text){
 		QMenu menu;
 		menu.addActions(StructureToolboxActions);
 		menu.exec(StructureToolbox->mapToGlobal(point));
-	}
+	}*/
 }
 
  void Texmaker::StructureToolBoxToggle(bool checked) {
+	/*TODO: if (!StructureToolbox) return;
 	QAction *action = qobject_cast<QAction *>(sender());
 	//QTableWidget* widget=action->data().value<QTableWidget*>();
 	int pos=action->data().toInt();
@@ -3962,11 +3919,11 @@ void Texmaker::previewAvailable(const QString& imageFile, const QString& text){
 	}else{
 		int index=StructureToolbox->indexOf(widget);
 		StructureToolbox->removeItem(index);
-	}
+	}*/
  }
 
  void Texmaker::MostUsedSymbolsTriggered(bool direct){
-	 QAction *action = 0;
+	 /*TODO:QAction *action = 0;
 	 QTableWidgetItem *item=0;
 	 if(!direct){
 		 action = qobject_cast<QAction *>(sender());
@@ -4013,5 +3970,5 @@ void Texmaker::previewAvailable(const QString& imageFile, const QString& text){
 		}
 	}
 	// Update Most Used Symbols Widget
-	MostUsedListWidget->SetUserPage(symbolMostused);
+	MostUsedListWidget->SetUserPage(symbolMostused);*/
  }
