@@ -40,6 +40,7 @@ public:
 	bool modernStyle;
 	int interfaceFontSize;
 	bool tabbedLogView;
+	bool newLeftPanelLayout;
 	bool configShowAdvancedOptions;
 	
 	//language
@@ -104,6 +105,7 @@ public:
 
 signals:
 	void tabbedLogViewChanged(bool changed);
+	void newLeftPanelLayoutChanged(bool newValue);
 public:
 //private:
 	QString configFileName,configFileNameBase,defaultStyleName;
