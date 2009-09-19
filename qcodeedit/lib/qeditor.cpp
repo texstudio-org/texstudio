@@ -4172,8 +4172,13 @@ bool QEditor::processCursor(QDocumentCursor& c, QKeyEvent *e, bool& b)
 
 			if ( hasSelection )
 				c.removeSelectedText();
-			else
-				c.deletePreviousChar();
+			else {
+				if(e->modifiers()==Qt::ControlModifier) {
+					c.movePosition(1,QDocumentCursor::PreviousWord,QDocumentCursor::KeepAnchor);
+					c.removeSelectedText();
+				} else
+					c.deletePreviousChar();
+			}
 
 			break;
 
