@@ -269,7 +269,8 @@ void OutputViewWidget::gotoLogLine(int logLine){
 CustomWidgetList::CustomWidgetList(QWidget* p): 
 	QDockWidget(p), toolbox(0), frame(0),stack(0), toolbar(0)
 {
-	
+	setContextMenuPolicy(Qt::CustomContextMenu);
+	connect(this,SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(customContextMenuRequested(QPoint)));
 }
 void CustomWidgetList::addWidget(QWidget* widget, const QString& id, const QString& text, const QString& iconName){
 	widgets << widget;
@@ -280,9 +281,9 @@ void CustomWidgetList::addWidget(QWidget* widget, const QString& id, const QStri
 
 	QAction *Act = new QAction(text, this);
 	Act->setCheckable(true);
-	//Act->setChecked(visible);
+	Act->setChecked(!hiddenWidgetsIds.contains(id));
 	Act->setData(id);
-	connect(Act, SIGNAL(toggled(bool)), this, SLOT(toggleWidget(bool)));
+	connect(Act, SIGNAL(toggled(bool)), this, SLOT(toggleWidgetFromAction(bool)));
 	addAction(Act);
 }
 void CustomWidgetList::setWidgetText(const QString& id, const QString& text){
@@ -296,6 +297,25 @@ void CustomWidgetList::showPageFromAction(){
 	if (!act) return;
 	QWidget* wid=widget(act->data().toString());
 	stack->setCurrentWidget(wid);
+}
+void CustomWidgetList::toggleWidgetFromAction(bool on){
+	QAction* act=qobject_cast<QAction*>(sender());
+	if (!act || act->data().toString()=="") return;
+	if (on) 
+		hiddenWidgetsIds.removeAll(act->data().toString());
+	else if (!hiddenWidgetsIds.contains(act->data().toString())) 
+		hiddenWidgetsIds.append(act->data().toString());
+	showWidgets(newStyle);
+}
+void CustomWidgetList::customContextMenuRequested(const QPoint& localPosition){
+	QWidget *widget=currentWidget();
+	if(widget && widget->underMouse()) //todo?: use a more reliable function than underMouse (see qt bug 260000)
+		emit widgetContextMenuRequested(widget, mapToGlobal(localPosition));
+	else{
+		QMenu menu;
+		menu.addActions(actions());
+		menu.exec(mapToGlobal(localPosition));
+	}
 }
 void CustomWidgetList::showWidgets(bool newLayoutStyle){
 	if (toolbox) {
@@ -336,7 +356,7 @@ void CustomWidgetList::showWidgets(bool newLayoutStyle){
 				QAction* act=toolbar->addAction(QIcon(widgets[i]->property("iconName").toString()),widgets[i]->property("Name").toString());
 				act->setData(widgetId(widgets[i]));
 				connect(act,SIGNAL(triggered()),this,SLOT(showPageFromAction()));
-			}
+			} else widgets[i]->hide();
 		
 		QHBoxLayout* hlayout= new QHBoxLayout(frame);
 		hlayout->setSpacing(0);
@@ -353,26 +373,27 @@ void CustomWidgetList::showWidgets(bool newLayoutStyle){
 		for (int i=0;i<widgets.size();i++)
 			if (!hiddenWidgetsIds.contains(widgetId(widgets[i]))) {
 				toolbox->addItem(widgets[i],QIcon(widgets[i]->property("iconName").toString()),widgets[i]->property("Name").toString());
-			}
+			} else widgets[i]->hide();
 		setWidget(toolbox);
 	}
 }
 int CustomWidgetList::widgetCount() const{
 	return widgets.count();
 }
+void CustomWidgetList::setHiddenWidgets(const QString& hidden){
+	hiddenWidgetsIds=hidden.split("|");
+}
+QString CustomWidgetList::hiddenWidgets() const{
+	return hiddenWidgetsIds.join("|");
+}
+
 /*'void CustomWidgetList::addWidgetOld(QWidget* widget, const QString& text, const QIcon& icon){
 }
 void CustomWidgetList::addWidgetNew(QWidget* widget, const QString& text, const QIcon& icon){
 	stack->addWidget(*list);
 	toolbar->addAction(icon,text);
 }*/
-qlonglong CustomWidgetList::visibleWidgets() const{
-	qlonglong result=0;
-	for(int index=1;widgets.count()>index;index++){
-		result+=1<<(widgets[index]->property("StructPos").toInt()-1);
-	}
-	return result;
-}
+
 QWidget* CustomWidgetList::widget(int i) const{
 	return widgets[i];
 }
@@ -388,6 +409,10 @@ void CustomWidgetList::setCurrentWidget(QWidget* widget){
 	} else {
 		toolbox->setCurrentWidget(widget);
 	}
+}
+QWidget* CustomWidgetList::currentWidget() const{
+	if (newStyle) return stack->currentWidget();
+	else return toolbox->currentWidget();
 }
 QString CustomWidgetList::widgetId(QWidget* widget) const{
 	if (!widget) return "";

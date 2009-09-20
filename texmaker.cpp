@@ -216,6 +216,10 @@ void Texmaker::setupDockWidgets(){
 		leftPanel->setFeatures(QDockWidget::DockWidgetClosable);
 		addDockWidget(Qt::LeftDockWidgetArea, leftPanel);
 		connect(&configManager,SIGNAL(newLeftPanelLayoutChanged(bool)), leftPanel,  SLOT(showWidgets(bool)));
+		if (hiddenLeftPanelWidgets!="") {
+			leftPanel->setHiddenWidgets(hiddenLeftPanelWidgets);
+			hiddenLeftPanelWidgets=""; //not needed anymore after the first call
+		}
 	}
 	leftPanel->setWindowTitle(tr("Structure"));
 	
@@ -228,8 +232,8 @@ void Texmaker::setupDockWidgets(){
 		connect(StructureTreeWidget, SIGNAL(itemActivated(QTreeWidgetItem *,int)), SLOT(ClickedOnStructure(QTreeWidgetItem *,int))); //enter or double click (+single click on some platforms)
 		connect(StructureTreeWidget, SIGNAL(itemPressed(QTreeWidgetItem *,int)), SLOT(ClickedOnStructure(QTreeWidgetItem *,int))); //single click
 // connect( StructureTreeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem *,int )), SLOT(DoubleClickedOnStructure(QTreeWidgetItem *,int))); // qt4 bugs - don't use it
-		//TODO:StructureToolbox->setContextMenuPolicy(Qt::CustomContextMenu);
-		//TODO:connect(StructureToolbox,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(StructureToolBoxContextMenu(QPoint)));
+
+		connect(leftPanel,SIGNAL(widgetContextMenuRequested(QWidget*, QPoint)),this,SLOT(SymbolGridContextMenu(QWidget*, QPoint)));
 		
 		leftPanel->addWidget(StructureTreeWidget, "structureTree", tr("Structure"), ":/images/structure.png");
 	} else leftPanel->setWidgetText(StructureTreeWidget,tr("Structure"));
@@ -1764,7 +1768,7 @@ void Texmaker::ReadSettings() {
 	MapForSymbols= new QVariantMap;
 	*MapForSymbols=config->value("Symbols/Quantity").toMap();
 
-	SymbolListVisible=config->value("Symbols/symbollists",65279).toLongLong();
+	hiddenLeftPanelWidgets=config->value("Symbols/hiddenlists","").toString();
 
 
 	config->endGroup();
@@ -1866,7 +1870,7 @@ void Texmaker::SaveSettings() {
 	delete MapForSymbols;
 
 	
-	config->setValue("Symbols/symbollists",leftPanel->visibleWidgets());
+	config->setValue("Symbols/hiddenlists",leftPanel->hiddenWidgets());
 
 
 
@@ -1881,8 +1885,6 @@ void Texmaker::SaveSettings() {
 
 ////////////////// STRUCTURE ///////////////////
 void Texmaker::ShowStructure() {
-//StructureToolbox->setCurrentItem(StructureTreeWidget);
-	//StructureToolbox->setCurrentIndex(StructureToolbox->indexOf(StructureTreeWidget));
 	leftPanel->setCurrentWidget(StructureTreeWidget);
 }
 
@@ -3756,7 +3758,7 @@ void Texmaker::gotoMark(bool backward, int id) {
 		gotoLogEntryAt(currentEditorView()->editor->document()->findNextMark(id,currentEditorView()->editor->cursor().lineNumber()+1));
 }
 
-void Texmaker::StructureContextMenu(QPoint point) {
+void Texmaker::StructureContextMenu(const QPoint& point) {
 	QTreeWidgetItem* item=StructureTreeWidget->currentItem();
 	if (!item) return; 
 	if(item->parent()&&item->text(0)!="LABELS"&&item->text(1)!="include"&&item->text(1)!="input"){
@@ -3885,25 +3887,17 @@ void Texmaker::previewAvailable(const QString& imageFile, const QString& text){
 		c.insertText("\\ref{"+rx.cap(1)+"}");
 	}
 }
- void Texmaker::editInsertRefToPrevLabel() {
-	  editInsertRefToNextLabel(true);
- }
+void Texmaker::editInsertRefToPrevLabel() {
+	editInsertRefToNextLabel(true);
+}
 
- void Texmaker::StructureToolBoxContextMenu(QPoint point) {
-	/*TODO: if (!StructureToolbox) return;
-	QWidget *widget=StructureToolbox->currentWidget();
-	if(widget->underMouse()){
-		if(widget==MostUsedListWidget){
-			QMenu menu;
-			menu.addAction(tr("remove"),this,SLOT(MostUsedSymbolsTriggered()));
-			menu.addAction(tr("remove all"),this,SLOT(MostUsedSymbolsTriggered()));
-			menu.exec(StructureToolbox->mapToGlobal(point));
-		}
-	}else{
+ void Texmaker::SymbolGridContextMenu(QWidget* widget, const QPoint& point) {
+	if(widget==MostUsedListWidget){
 		QMenu menu;
-		menu.addActions(StructureToolboxActions);
-		menu.exec(StructureToolbox->mapToGlobal(point));
-	}*/
+		menu.addAction(tr("remove"),this,SLOT(MostUsedSymbolsTriggered()));
+		menu.addAction(tr("remove all"),this,SLOT(MostUsedSymbolsTriggered()));
+		menu.exec(point);
+	}
 }
 
  void Texmaker::StructureToolBoxToggle(bool checked) {
