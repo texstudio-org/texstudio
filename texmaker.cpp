@@ -184,14 +184,16 @@ QMenu* Texmaker::newManagedMenu(const QString &id,const QString &text){
 	return configManager.newManagedMenu(id,text);
 }
 
-void Texmaker::addSymbolGrid(const QString& SymbolList,  const QString& iconName, const QString& text){
+SymbolGridWidget* Texmaker::addSymbolGrid(const QString& SymbolList,  const QString& iconName, const QString& text){
 	SymbolGridWidget* list = qobject_cast<SymbolGridWidget*>(leftPanel->widget(SymbolList));
 	if (!list) {
 		list=new SymbolGridWidget(this,SymbolList,MapForSymbols);
+		list->setProperty("isSymbolGrid",true);
 		connect(list, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
 		connect(list, SIGNAL(itemPressed(QTableWidgetItem*)), this, SLOT(InsertSymbolPressed(QTableWidgetItem*)));
 		leftPanel->addWidget(list, SymbolList, text, iconName);
 	} else leftPanel->setWidgetText(list,text);
+	return list;
 }
 
 void Texmaker::addTagList(const QString& id, const QString& iconName, const QString& text, const QString& tagFile){
@@ -243,8 +245,8 @@ void Texmaker::setupDockWidgets(){
 	addSymbolGrid("wasysym", ":/images/hi16-action-math5.png",tr("Miscellaneous text symbols (wasysym)"));
 	addSymbolGrid("special", ":/images/accent1.png",tr("Accented letters"));
 
-	addSymbolGrid("!mostused",":/images/math6.png",tr("Most used symbols"));
-
+	MostUsedListWidget=addSymbolGrid("!mostused",":/images/math6.png",tr("Most used symbols"));
+	
 	addTagList("leftright", ":/images/leftright.png", tr("Left/Right Brackets"),"leftright_tags.xml");
 	addTagList("pstricks", ":/images/pstricks.png", tr("Pstricks Commands"),"pstricks_tags.xml");
 	addTagList("metapost", ":/images/metapost.png", tr("MetaPost Commands"),"metapost_tags.xml");
@@ -1848,9 +1850,9 @@ void Texmaker::SaveSettings() {
 	//	config->setValue("Symbols/symbol"+QString::number(i),symbolScore[i]);
 	//}
 	MapForSymbols= new QVariantMap;
-	for(int i=0;i<StructureToolboxWidgets.size();i++){
-		if(StructureToolboxWidgets[i]->property("mType").toInt()==2) continue;
-		QTableWidget* tw=qobject_cast<QTableWidget*>(StructureToolboxWidgets[i]);
+	for(int i=0;i<leftPanel->widgetCount();i++){
+		if (!leftPanel->widget(i)->property("isSymbolGrid").toBool()) continue;
+		QTableWidget* tw=qobject_cast<QTableWidget*>(leftPanel->widget(i));
 		foreach(QTableWidgetItem* elem,tw->findItems("*",Qt::MatchWildcard)){
 			if(!elem) continue;
 			int cnt=elem->data(Qt::UserRole).toInt();
@@ -3113,7 +3115,7 @@ void Texmaker::WebPublish() {
 	if (!currentEditorView()->editor->getFileEncoding()) return;
 	fileSave();
 	QString finame=getCompileFileName();
-	//TODO: check if it really uses the correct commands
+	
 	WebPublishDialog *ttwpDlg = new WebPublishDialog(this,configManager.webPublishDialogConfig, &buildManager,
 	        currentEditorView()->editor->getFileEncoding());
 	ttwpDlg->ui.inputfileEdit->setText(finame);
@@ -3577,7 +3579,7 @@ void Texmaker::SetMostUsedSymbols(QTableWidgetItem* item) {
 		symbolMostused.insert(index,item);
 		changed=true;
 	}
-	//TODO: if(changed) MostUsedListWidget->SetUserPage(symbolMostused);
+	if(changed) MostUsedListWidget->SetUserPage(symbolMostused);
 }
 
 
@@ -3923,7 +3925,7 @@ void Texmaker::previewAvailable(const QString& imageFile, const QString& text){
  }
 
  void Texmaker::MostUsedSymbolsTriggered(bool direct){
-	 /*TODO:QAction *action = 0;
+	 QAction *action = 0;
 	 QTableWidgetItem *item=0;
 	 if(!direct){
 		 action = qobject_cast<QAction *>(sender());
@@ -3935,9 +3937,9 @@ void Texmaker::previewAvailable(const QString& imageFile, const QString& text){
 			 elem->setData(Qt::UserRole,0);
 		 }
 		symbolMostused.clear();
-		for(int i=0;i<StructureToolboxWidgets.size();i++){
-			if(StructureToolboxWidgets[i]->property("mType").toInt()==2) continue;
-			QTableWidget* tw=qobject_cast<QTableWidget*>(StructureToolboxWidgets[i]);
+		for(int i=0;i<leftPanel->widgetCount();i++){
+			if (!leftPanel->widget(i)->property("isSymbolGrid").toBool()) continue;
+			QTableWidget* tw=qobject_cast<QTableWidget*>(leftPanel->widget(i));
 			foreach(QTableWidgetItem* elem,tw->findItems("*",Qt::MatchWildcard)){
 				if(!elem) continue;
 				int cnt=elem->data(Qt::UserRole).toInt();
@@ -3958,10 +3960,9 @@ void Texmaker::previewAvailable(const QString& imageFile, const QString& text){
 			}
 		}
 	}else{
-		for(int i=0;i<StructureToolboxWidgets.size();i++){
-			if(StructureToolboxWidgets[i]->property("mType").toInt()==2) continue;
-			QTableWidget* tw=qobject_cast<QTableWidget*>(StructureToolboxWidgets[i]);
-			if(StructureToolboxWidgets[i]->property("mType").toInt()==2) continue;
+		for(int i=0;i<leftPanel->widgetCount();i++){
+			if (!leftPanel->widget(i)->property("isSymbolGrid").toBool()) continue;
+			QTableWidget* tw=qobject_cast<QTableWidget*>(leftPanel->widget(i));
 			foreach(QTableWidgetItem* elem,tw->findItems("*",Qt::MatchWildcard)){
 				if(!elem) continue;
 				elem->setData(Qt::UserRole,0);
@@ -3970,5 +3971,5 @@ void Texmaker::previewAvailable(const QString& imageFile, const QString& text){
 		}
 	}
 	// Update Most Used Symbols Widget
-	MostUsedListWidget->SetUserPage(symbolMostused);*/
+	MostUsedListWidget->SetUserPage(symbolMostused);
  }

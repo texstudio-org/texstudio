@@ -74,7 +74,7 @@ private:
 	inline QAction* newManagedAction(QWidget* menu, const QString &id, QAction* act);
 	inline QAction* getManagedAction(QString id);
 	
-	void addSymbolGrid(const QString& SymbolList,  const QString& iconName, const QString& text);
+	SymbolGridWidget* addSymbolGrid(const QString& SymbolList,  const QString& iconName, const QString& text);
 	void addTagList(const QString& id, const QString& iconName, const QString& text, const QString& tagFile);
 
 	QVariantMap *MapForSymbols;
@@ -101,7 +101,8 @@ private:
 	
 	//XmlTagsListWidget *MpListWidget, *PsListWidget, *leftrightWidget, *tikzWidget, *asyWidget;
 	//SymbolListWidget *RelationListWidget, *ArrowListWidget, *MiscellaneousListWidget, *DelimitersListWidget, *GreekListWidget ;
-	//SymbolGridWidget *RelationGridWidget,*ArrowGridWidget,*GreekGridWidget,*CyrillicGridWidget,*MiscellaneousMathGridWidget,*MiscellaneousTextGridWidget,*MiscellaneousWasyGridWidget,*DelimitersGridWidget,*SpecialGridWidget,*OperatorGridWidget, *MostUsedListWidget;
+	//SymbolGridWidget *RelationGridWidget,*ArrowGridWidget,*GreekGridWidget,*CyrillicGridWidget,*MiscellaneousMathGridWidget,*MiscellaneousTextGridWidget,*MiscellaneousWasyGridWidget,*DelimitersGridWidget,*SpecialGridWidget,*OperatorGridWidget;
+	SymbolGridWidget* MostUsedListWidget;
 	qlonglong SymbolListVisible;
 
 	QTreeWidget *StructureTreeWidget;
@@ -152,9 +153,6 @@ private:
 
 	SymbolList symbolScore;
 	usercodelist symbolMostused;
-
-	QList<QAction*> StructureToolboxActions;
-	QList<QWidget*> StructureToolboxWidgets;
 
 	LatexEditorView *currentEditorView() const;
 	QEditor* currentEditor() const;
