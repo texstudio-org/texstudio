@@ -79,14 +79,20 @@ public:
 	void setWidgetText(const QString& id, const QString& text);
 	void setWidgetText(const QWidget* widget, const QString& text);
 	int widgetCount() const;
-	qlonglong visibleWidgets() const; 
+	void setHiddenWidgets(const QString& hidden); 
+	QString hiddenWidgets() const; 
 	QWidget* widget(int i) const;
 	QWidget* widget(const QString& id) const;
 	void setCurrentWidget(QWidget* widget);
+	QWidget* currentWidget() const;
+signals:
+	void widgetContextMenuRequested(QWidget* widget, const QPoint& globalPosition);
 public slots:
 	void showWidgets(bool newLayoutStyle);
 private slots:
 	void showPageFromAction();
+	void toggleWidgetFromAction(bool on);
+	void customContextMenuRequested(const QPoint& localPosition);	
 private:
 	void showWidget(const QString& id);
 	void hideWidget(const QString& id);
@@ -101,7 +107,7 @@ private:
 	
 	//old layout
 	QToolBox *toolbox;
-	
+		
 	//new layout
 	QFrame* frame;
 	QStackedWidget* stack;

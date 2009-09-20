@@ -98,13 +98,9 @@ private:
 //gui
 	QTabWidget *EditorView;
 	CustomWidgetList* leftPanel;
-	
-	//XmlTagsListWidget *MpListWidget, *PsListWidget, *leftrightWidget, *tikzWidget, *asyWidget;
-	//SymbolListWidget *RelationListWidget, *ArrowListWidget, *MiscellaneousListWidget, *DelimitersListWidget, *GreekListWidget ;
-	//SymbolGridWidget *RelationGridWidget,*ArrowGridWidget,*GreekGridWidget,*CyrillicGridWidget,*MiscellaneousMathGridWidget,*MiscellaneousTextGridWidget,*MiscellaneousWasyGridWidget,*DelimitersGridWidget,*SpecialGridWidget,*OperatorGridWidget;
 	SymbolGridWidget* MostUsedListWidget;
-	qlonglong SymbolListVisible;
-
+	QString hiddenLeftPanelWidgets;
+	
 	QTreeWidget *StructureTreeWidget;
 
 	OutputViewWidget *outputView; //contains output widgets (over OutputLayout)
@@ -216,8 +212,8 @@ private slots:
 	void editInsertRefToNextLabel(bool backward=false);
 	void editInsertRefToPrevLabel();
 
-	void StructureContextMenu(QPoint point);
-	void StructureToolBoxContextMenu(QPoint point);
+	void StructureContextMenu(const QPoint& point);
+	void SymbolGridContextMenu(QWidget* widget, const QPoint& point);
 	void MostUsedSymbolsTriggered(bool direct=false);
 
 	void ReadSettings();
