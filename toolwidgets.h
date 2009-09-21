@@ -77,7 +77,7 @@ public:
 	CustomWidgetList(QWidget *p=0);
 	void addWidget(QWidget* widget, const QString& id, const QString& text, const QString& iconName);
 	void setWidgetText(const QString& id, const QString& text);
-	void setWidgetText(const QWidget* widget, const QString& text);
+	void setWidgetText(QWidget* widget, const QString& text);
 	int widgetCount() const;
 	void setHiddenWidgets(const QString& hidden); 
 	QString hiddenWidgets() const; 

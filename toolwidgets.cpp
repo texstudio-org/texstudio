@@ -289,8 +289,12 @@ void CustomWidgetList::addWidget(QWidget* widget, const QString& id, const QStri
 void CustomWidgetList::setWidgetText(const QString& id, const QString& text){
 	setWidgetText(widget(id),text);
 }
-void CustomWidgetList::setWidgetText(const QWidget* widget, const QString& text){
-	if (!widget) return;
+void CustomWidgetList::setWidgetText(QWidget* widget, const QString& text){
+	int pos=widgets.indexOf(widget);
+	if (pos<0) return;
+	widget->setProperty("Name",text);
+	if (newStyle) actions()[pos]->setToolTip(text);
+	else toolbox->setItemText(pos,text);
 }
 void CustomWidgetList::showPageFromAction(){
 	QAction* act=qobject_cast<QAction*>(sender());
