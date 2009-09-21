@@ -86,7 +86,7 @@ QSettings* ConfigManager::readSettings() {
 	completerConfig->completeCommonPrefix=config->value("Editor/Completion Complete Common Prefix",true).toBool();
 	completerConfig->eowCompletes=config->value("Editor/Completion EOW Completes", true).toBool();
 	completerConfig->tooltipHelp=config->value("Editor/Completion Enable Tooltip Help", true).toBool();
-	completerConfig->loadFiles(config->value("Editor/Completion Files",QStringList("texmakerx.cwl")).toStringList());
+	completerConfig->loadFiles(config->value("Editor/Completion Files",QStringList() << "texmakerx.cwl" << "tex.cwl" << "latex-document.cwl" << "latex-mathsymbols.cwl").toStringList());
 	
 	//web publish dialog
 	webPublishDialogConfig->readSettings(*config);
