@@ -162,6 +162,7 @@ private slots:
 	void fileNewFromTemplate();
 	void fileMakeTemplate();
 	void fileOpen();
+	void fileRestoreSession();
 	void fileSave();
 	void fileSaveAll();
 	void fileSaveAs(QString fileName = "");

@@ -156,11 +156,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	LatexEditorView::setCompleter(completer);
 	completer->setAbbreviations(UserMenuAbbrev,UserMenuTag);
 
-	if (!configManager.sessionFilesToRestore.empty()) {
-		for (int i=0; i<configManager.sessionFilesToRestore.size(); i++)
-			load(configManager.sessionFilesToRestore[i], configManager.sessionFilesToRestore[i]==configManager.sessionMaster);
-		FileAlreadyOpen(configManager.sessionCurrent);
-		configManager.sessionFilesToRestore.clear(); //save memory ;-)
+	if (configManager.sessionRestore) {
+		fileRestoreSession();
 		ToggleRememberAct->setChecked(true);
 	}
 }
@@ -302,6 +299,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "open",tr("Open"), SLOT(fileOpen()), Qt::CTRL+Qt::Key_O, ":/images/fileopen.png");
 
 	QMenu *submenu=newManagedMenu(menu, "openrecent",tr("Open Recent")); //only create the menu here, actions are created by config manager
+	newManagedAction(menu, "restoresession",tr("Restore previous session"), SLOT(fileRestoreSession()));
 	
 	menu->addSeparator();
 	newManagedAction(menu,"save",tr("Save"), SLOT(fileSave()), Qt::CTRL+Qt::Key_S, ":/images/filesave.png");
@@ -515,7 +513,7 @@ void Texmaker::setupMenus() {
 	
 	menu->addSeparator();
 	ToggleAct=newManagedAction(menu, "masterdocument",tr("Define Current Document as 'Master Document'"), SLOT(ToggleMode()));
-	ToggleRememberAct=newManagedAction(menu, "remembersession",tr("Remember session when closing"));
+	ToggleRememberAct=newManagedAction(menu, "remembersession",tr("Automatically restore session at next start"));
 	ToggleRememberAct->setCheckable(true);
 
 //---help---
@@ -1125,6 +1123,13 @@ void Texmaker::fileOpen() {
 	}
 	QString fn = QFileDialog::getOpenFileName(this,tr("Open File"),currentDir,"TeX files (*.tex *.bib *.sty *.cls *.mp);;All files (*.*)");
 	if (!fn.isEmpty()) load(fn);
+}
+
+void Texmaker::fileRestoreSession(){
+	fileCloseAll();
+	for (int i=0; i<configManager.sessionFilesToRestore.size(); i++)
+		load(configManager.sessionFilesToRestore[i], configManager.sessionFilesToRestore[i]==configManager.sessionMaster);
+	FileAlreadyOpen(configManager.sessionCurrent);
 }
 
 void Texmaker::fileSave() {
@@ -1808,17 +1813,16 @@ void Texmaker::SaveSettings() {
 
 	config->setValue("User/Templates",userTemplatesList);
 
-	if (ToggleRememberAct->isChecked()) {
-		config->setValue("Files/RestoreSession",true);
-		QStringList curFiles;//store in order
-		for (int i=0; i<EditorView->count(); i++) {
-			LatexEditorView *ed=qobject_cast<LatexEditorView *>(EditorView->widget(i));
-			if (ed) curFiles.append(ed->editor->fileName());
-		}
-		config->setValue("Files/Session/Files",curFiles);
-		config->setValue("Files/Session/CurrentFile",currentEditorView()?currentEditor()->fileName():"");
-		config->setValue("Files/Session/MasterFile",singlemode?"":MasterName);
-	} else config->setValue("Files/RestoreSession",false);
+	config->setValue("Files/RestoreSession",ToggleRememberAct->isChecked());
+	//always store session for manual reload
+	QStringList curFiles;//store in order
+	for (int i=0; i<EditorView->count(); i++) {
+		LatexEditorView *ed=qobject_cast<LatexEditorView *>(EditorView->widget(i));
+		if (ed) curFiles.append(ed->editor->fileName());
+	}
+	config->setValue("Files/Session/Files",curFiles);
+	config->setValue("Files/Session/CurrentFile",currentEditorView()?currentEditor()->fileName():"");
+	config->setValue("Files/Session/MasterFile",singlemode?"":MasterName);
 
         /*for (int i=0; i<=9; i++) {
 		config->setValue(QString("User/Menu%1").arg(i+1),UserMenuName[i]);
