@@ -97,8 +97,8 @@ private:
 
 //gui
 	QTabWidget *EditorView;
-	CustomWidgetList* leftPanel;
-	SymbolGridWidget* MostUsedListWidget;
+	CustomWidgetList *leftPanel;
+	SymbolGridWidget *MostUsedSymbolWidget, *FavoriteSymbolWidget;
 	QString hiddenLeftPanelWidgets;
 	
 	QTreeWidget *StructureTreeWidget;
@@ -149,7 +149,8 @@ private:
 
 	SymbolList symbolScore;
 	usercodelist symbolMostused;
-
+	QStringList symbolFavorites;
+	
 	LatexEditorView *currentEditorView() const;
 	QEditor* currentEditor() const;
 	void configureNewEditorView(LatexEditorView *edit);
@@ -216,7 +217,10 @@ private slots:
 	void StructureContextMenu(const QPoint& point);
 	void SymbolGridContextMenu(QWidget* widget, const QPoint& point);
 	void MostUsedSymbolsTriggered(bool direct=false);
-
+	void symbolAddFavorite();
+	void symbolRemoveFavorite();
+	void symbolRemoveAllFavorites();
+	
 	void ReadSettings();
 	void SaveSettings();
 

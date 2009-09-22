@@ -81,7 +81,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	// //MiscellaneousListWidget=0;
 	// //DelimitersListWidget=0;
 	// //GreekListWidget=0;
-	// MostUsedListWidget=0;
+	// MostUsedSymbolWidget=0;
 	// PsListWidget=0;
 	// MpListWidget=0;
 
@@ -246,7 +246,9 @@ void Texmaker::setupDockWidgets(){
 	addSymbolGrid("wasysym", ":/images/hi16-action-math5.png",tr("Miscellaneous text symbols (wasysym)"));
 	addSymbolGrid("special", ":/images/accent1.png",tr("Accented letters"));
 
-	MostUsedListWidget=addSymbolGrid("!mostused",":/images/math6.png",tr("Most used symbols"));
+	MostUsedSymbolWidget=addSymbolGrid("!mostused",":/images/math6.png",tr("Most used symbols"));
+	FavoriteSymbolWidget=addSymbolGrid("!favorite",":/images/math7.png",tr("Favorites"));
+	FavoriteSymbolWidget->loadSymbols(symbolFavorites);
 	
 	addTagList("leftright", ":/images/leftright.png", tr("Left/Right Brackets"),"leftright_tags.xml");
 	addTagList("pstricks", ":/images/pstricks.png", tr("Pstricks Commands"),"pstricks_tags.xml");
@@ -1774,7 +1776,7 @@ void Texmaker::ReadSettings() {
 	*MapForSymbols=config->value("Symbols/Quantity").toMap();
 
 	hiddenLeftPanelWidgets=config->value("Symbols/hiddenlists","").toString();
-
+	symbolFavorites=config->value("Symbols/Favorite IDs",QStringList()).toStringList();
 
 	config->endGroup();
 
@@ -1872,7 +1874,7 @@ void Texmaker::SaveSettings() {
 	}
 	config->setValue("Symbols/Quantity",*MapForSymbols);
 	delete MapForSymbols;
-
+	config->setValue("Symbols/Favorite IDs",symbolFavorites);
 	
 	config->setValue("Symbols/hiddenlists",leftPanel->hiddenWidgets());
 
@@ -3585,7 +3587,7 @@ void Texmaker::SetMostUsedSymbols(QTableWidgetItem* item) {
 		symbolMostused.insert(index,item);
 		changed=true;
 	}
-	if(changed) MostUsedListWidget->SetUserPage(symbolMostused);
+	if(changed) MostUsedSymbolWidget->SetUserPage(symbolMostused);
 }
 
 
@@ -3896,12 +3898,24 @@ void Texmaker::editInsertRefToPrevLabel() {
 }
 
  void Texmaker::SymbolGridContextMenu(QWidget* widget, const QPoint& point) {
-	if(widget==MostUsedListWidget){
+	if (!widget->property("isSymbolGrid").toBool()) return;
+	if(widget==MostUsedSymbolWidget){
 		QMenu menu;
-		menu.addAction(tr("remove"),this,SLOT(MostUsedSymbolsTriggered()));
-		menu.addAction(tr("remove all"),this,SLOT(MostUsedSymbolsTriggered()));
+		menu.addAction(tr("Add to favorites"),this,SLOT(symbolAddFavorite()));
+		menu.addAction(tr("Remove"),this,SLOT(MostUsedSymbolsTriggered()));
+		menu.addAction(tr("Remove all"),this,SLOT(MostUsedSymbolsTriggered()));
+		menu.exec(point);
+	} else if (widget==FavoriteSymbolWidget) {
+		QMenu menu;
+		menu.addAction(tr("Remove from favorites"),this,SLOT(symbolRemoveFavorite()));
+		menu.addAction(tr("Remove all favorites"),this,SLOT(symbolRemoveAllFavorites()));
+		menu.exec(point);
+	} else {
+		QMenu menu;
+		menu.addAction(tr("Add to favorites"),this,SLOT(symbolAddFavorite()));
 		menu.exec(point);
 	}
+
 }
 
  void Texmaker::StructureToolBoxToggle(bool checked) {
@@ -3921,13 +3935,32 @@ void Texmaker::editInsertRefToPrevLabel() {
 		StructureToolbox->removeItem(index);
 	}*/
  }
+ 
+void Texmaker::symbolAddFavorite(){
+	SymbolGridWidget* grid=qobject_cast<SymbolGridWidget*>(leftPanel->currentWidget());
+	if (!grid) return;
+	QString symbol=grid->getCurrentSymbol();
+	if (symbol.isEmpty()) return;
+	if (!symbolFavorites.contains(symbol)) symbolFavorites.append(symbol);
+	FavoriteSymbolWidget->loadSymbols(symbolFavorites);
+}
+void Texmaker::symbolRemoveFavorite(){
+	QString symbol=FavoriteSymbolWidget->getCurrentSymbol();
+	if (symbol.isEmpty()) return;
+	symbolFavorites.removeAll(symbol);
+	FavoriteSymbolWidget->loadSymbols(symbolFavorites);
+}
+void Texmaker::symbolRemoveAllFavorites(){
+	symbolFavorites.clear();
+	FavoriteSymbolWidget->loadSymbols(symbolFavorites);
+}
 
- void Texmaker::MostUsedSymbolsTriggered(bool direct){
+void Texmaker::MostUsedSymbolsTriggered(bool direct){
 	 QAction *action = 0;
 	 QTableWidgetItem *item=0;
 	 if(!direct){
 		 action = qobject_cast<QAction *>(sender());
-		 item=MostUsedListWidget->currentItem();
+		 item=MostUsedSymbolWidget->currentItem();
 	 }
 	 if(direct || action->text()==tr("remove")){
 		 if(!direct){
@@ -3969,5 +4002,5 @@ void Texmaker::editInsertRefToPrevLabel() {
 		}
 	}
 	// Update Most Used Symbols Widget
-	MostUsedListWidget->SetUserPage(symbolMostused);
+	MostUsedSymbolWidget->SetUserPage(symbolMostused);
  }
