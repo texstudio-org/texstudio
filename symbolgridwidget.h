@@ -23,14 +23,16 @@ class SymbolGridWidget : public QTableWidget {
 
 public:
 	SymbolGridWidget(QWidget *parent, QString SymbolList, QVariantMap *Map=0);
+	QString getCurrentSymbol(); //returns category/fileName.png
 public slots:
 	void SetUserPage(usercodelist ulist);
+	void loadSymbols(const QStringList& fileNames, QVariantMap *Map=0);
 protected:
 	void resizeEvent ( QResizeEvent * event );
 
 private:
 	QList<QTableWidgetItem*>listOfItems;
-
+	int countOfItems; //not necessary equal to listOfItems.size() while the symbols are added
 };
 
 #endif

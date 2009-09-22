@@ -16,35 +16,54 @@
 SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString SymbolList, QVariantMap *Map) : QTableWidget(parent) {
 	listOfItems.clear();
 	setItemDelegate(new IconDelegate(this));
-	QString icon_name;
 	setShowGrid(true);
 	verticalHeader()->hide();
 	horizontalHeader()->hide();
 	setIconSize(QSize(32,32));
 	setSelectionMode(QAbstractItemView::SingleSelection);
-	setColumnCount(4);
-	int rows;
+
 	QStringList files;
-	if(SymbolList.isEmpty()) rows=3;
-	else {
+	if(!SymbolList.isEmpty() && !SymbolList.startsWith("!")) 
 		files=findResourceFiles("symbols/"+SymbolList, "img*.png");
-		rows=files.size()/4+1;
+
+	QStringList fullNames;
+	foreach (const QString& partName, files) fullNames << SymbolList+"/"+partName;
+
+	loadSymbols(fullNames,Map);
+}
+QString SymbolGridWidget::getCurrentSymbol(){
+	QTableWidgetItem * cur=currentItem();
+	if (!cur) return QString();
+	return cur->data(Qt::UserRole+2).toString();
+}
+void SymbolGridWidget::loadSymbols(const QStringList& fileNames, QVariantMap *Map){	
+	foreach(QTableWidgetItem* elem,listOfItems){
+		takeItem(row(elem),column(elem));
+		delete(elem);
 	}
+	listOfItems.clear();
+	setColumnCount(4);
+	int rows=fileNames.isEmpty()?3:(fileNames.size()/4+1);
 	setRowCount(rows);
 	for (int j = 0; j < rows; ++j) setRowHeight(j,36);
 	for(int j=0;j < 4;++j) setColumnWidth(j,36);
-	if(SymbolList.isEmpty()) return;
-	for (int i = 0; i < files.size(); ++i) {
-		icon_name=files.at(i);
+	int cols=columnCount();
+	
+	countOfItems=fileNames.size();
+	
+	for (int i = 0; i < fileNames.size(); ++i) {
+		QString iconName=fileNames.at(i);
+		QString fileName=findResourceFile("symbols/"+iconName);
 		QTableWidgetItem* item= new QTableWidgetItem();
-		QImage img=QImage(findResourceFile("symbols/"+SymbolList+"/"+icon_name));
-		item->setIcon(QIcon(findResourceFile("symbols/"+SymbolList+"/"+icon_name)));
+		QImage img=QImage(fileName);
+		item->setIcon(QIcon(fileName));
 		item->setText(img.text("Command"));
 		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 		if(Map) {
 			item->setData(Qt::UserRole,Map->value(img.text("Command"),0).toInt());
 			Map->insert(img.text("Command"),0);
 		} else item->setData(Qt::UserRole,0);
+		item->setData(Qt::UserRole+2,iconName);
 		QString label;
 		QStringList args,pkgs;
 
@@ -71,17 +90,17 @@ SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString SymbolList, QVaria
 			else
 				label += "\n" + tr("Packages: ");
 
-			for( int i = 0; i < pkgs.count() ; i++ )
+			for( int j = 0; j < pkgs.count() ; j++ )
 			{
-				if(i>0) label += "\n";
-				if( i < args.count() && !args[i].isEmpty())
-					label = label + "[" + args[i] + "]" + pkgs[i];
+				if(j>0) label += "\n";
+				if( j < args.count() && !args[j].isEmpty())
+					label = label + "[" + args[j] + "]" + pkgs[j];
 				else
-					label = label + pkgs[i] ;
+					label = label + pkgs[j] ;
 			}
 		}
 		item->setToolTip(label);
-		setItem(i/4,i%4,item);
+		setItem(i/cols,i%cols,item);
 		listOfItems << item;
 	}
 }
@@ -100,14 +119,13 @@ void SymbolGridWidget::resizeEvent ( QResizeEvent * event )
 	// add items with adapted number of columns
 	numberOfColumns=event->size().width()/36;
 	setColumnCount(numberOfColumns);
-	setRowCount(listOfItems.size()/numberOfColumns+1);
-	for(int j = 0; j < listOfItems.size()/numberOfColumns+1; ++j) setRowHeight(j,36);
+	setRowCount(countOfItems/numberOfColumns+1);
+	for(int j = 0; j < countOfItems/numberOfColumns+1; ++j) setRowHeight(j,36);
 	for(int j=0;j < numberOfColumns;++j) setColumnWidth(j,36);
 
 	for (int i = 0; i < listOfItems.size(); ++i) {
 		setItem(i/numberOfColumns,i%numberOfColumns,listOfItems[i]);
 	}
-
 }
 
 void SymbolGridWidget::SetUserPage(usercodelist ulist) {
