@@ -68,6 +68,7 @@ public:
 	QString lastDocument; //last opened document, for file open directory
 	QStringList recentFilesList, recentProjectList;
 	int maxRecentFiles, maxRecentProjects;
+	bool sessionRestore;
 	QStringList sessionFilesToRestore;
 	QString sessionMaster;
 	QString sessionCurrent;

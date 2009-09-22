@@ -115,7 +115,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -1188,6 +1188,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
   </layout>
  </widget>
  <tabstops>
+  <tabstop>contentsWidget</tabstop>
   <tabstop>radioButton1</tabstop>
   <tabstop>radioButton2</tabstop>
   <tabstop>radioButton3</tabstop>
@@ -1198,9 +1199,51 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
   <tabstop>comboBoxFont</tabstop>
   <tabstop>spinBoxSize</tabstop>
   <tabstop>comboBoxEncoding</tabstop>
-  <tabstop>contentsWidget</tabstop>
+  <tabstop>comboBoxInterfaceStyle</tabstop>
+  <tabstop>comboBoxInterfaceModernStyle</tabstop>
+  <tabstop>comboBoxInterfaceFont</tabstop>
+  <tabstop>spinBoxInterfaceFontSize</tabstop>
+  <tabstop>checkBoxTabbedLogView</tabstop>
+  <tabstop>checkBoxTabbedStructureView</tabstop>
+  <tabstop>comboBoxLanguage</tabstop>
+  <tabstop>spinBoxMaxRecentFiles</tabstop>
+  <tabstop>spinBoxMaxRecentProjects</tabstop>
+  <tabstop>checkBoxParseBibTeX</tabstop>
+  <tabstop>checkBoxParseMaster</tabstop>
+  <tabstop>lineEditAspellCommand</tabstop>
+  <tabstop>pushButtonAspell</tabstop>
+  <tabstop>checkBoxRealTimeCheck</tabstop>
+  <tabstop>thesaurusFileName</tabstop>
+  <tabstop>btSelectThesaurusFileName</tabstop>
+  <tabstop>checkBoxInlineSpellCheck</tabstop>
+  <tabstop>checkBoxInlineCitationCheck</tabstop>
+  <tabstop>checkBoxInlineReferenceCheck</tabstop>
+  <tabstop>lineEditExecuteBeforeCompiling</tabstop>
+  <tabstop>pushButtonExecuteBeforeCompiling</tabstop>
+  <tabstop>checkBoxShowLog</tabstop>
+  <tabstop>comboBoxIgnoreLogFileNames</tabstop>
+  <tabstop>shortcutTree</tabstop>
+  <tabstop>checkBoxWordwrap</tabstop>
+  <tabstop>checkBoxFolding</tabstop>
+  <tabstop>checkBoxAutoDetectOnLoad</tabstop>
+  <tabstop>checkBoxLineState</tabstop>
+  <tabstop>checkBoxState</tabstop>
+  <tabstop>checkBoxDisplayModifyTime</tabstop>
+  <tabstop>comboBoxAutoIndent</tabstop>
+  <tabstop>comboboxLineNumbers</tabstop>
+  <tabstop>comboBoxPreviewMode</tabstop>
+  <tabstop>comboBoxDvi2PngMode</tabstop>
+  <tabstop>checkBoxCloseSearchReplaceTogether</tabstop>
+  <tabstop>checkBoxCompletion</tabstop>
+  <tabstop>checkBoxCaseSensitive</tabstop>
+  <tabstop>checkBoxCaseSensitiveInFirstCharacter</tabstop>
+  <tabstop>checkBoxCompletePrefix</tabstop>
+  <tabstop>checkBoxEOWCompletes</tabstop>
+  <tabstop>checkBoxToolTipHelp</tabstop>
+  <tabstop>completeListWidget</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>cancelButton</tabstop>
+  <tabstop>checkBoxShowAdvancedOptions</tabstop>
  </tabstops>
  <resources/>
  <connections>

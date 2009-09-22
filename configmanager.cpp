@@ -54,11 +54,10 @@ QSettings* ConfigManager::readSettings() {
 	maxRecentProjects=config->value("Files/Max Recent Projects", 3).toInt();
 	recentFilesList=config->value("Files/Recent Files").toStringList();
 	recentProjectList=config->value("Files/Recent Project Files").toStringList();
-	if (config->value("Files/RestoreSession",false).toBool()) {
-		sessionFilesToRestore=config->value("Files/Session/Files").toStringList();
-		sessionCurrent=config->value("Files/Session/CurrentFile","").toString();
-		sessionMaster=config->value("Files/Session/MasterFile","").toString();
-	}
+	sessionRestore=config->value("Files/RestoreSession",false).toBool(); 
+	sessionFilesToRestore=config->value("Files/Session/Files").toStringList();
+	sessionCurrent=config->value("Files/Session/CurrentFile","").toString();
+	sessionMaster=config->value("Files/Session/MasterFile","").toString();
 	lastDocument=config->value("Files/Last Document","").toString();
 	parseBibTeX=config->value("Files/Parse BibTeX",true).toBool();
 	parseMaster=config->value("Files/Parse Master",true).toBool();
