@@ -165,16 +165,16 @@ void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceA
 		}
 	}
 	m_lastDirection=backward;
-	if (replaceAll)
+	/*if (replaceAll)
 		m_search->setCursor(QDocumentCursor());
-	else if (cbCursor->isChecked() && !m_search->cursor().isValid())
+	else */if (cbCursor->isChecked() && !m_search->cursor().isValid())
 		m_search->setCursor(editor()->cursor());  //start from current cursor if no known cursor
 	if (m_search->searchText()!=leFind->text())
 		m_search->setSearchText(leFind->text());
 	if (replace && m_search->replaceText()!=leReplace->text())
 		m_search->setReplaceText(leReplace->text());
 	m_search->setOption(QDocumentSearch::Replace,replace);
-	m_search->next(backward, replaceAll, !cbPrompt->isChecked(), !replaceAll);
+	m_search->next(backward, replaceAll, !cbPrompt->isChecked(), true);
 	if (isVisible() && !leFind->hasFocus() && !leReplace->hasFocus() )
 		if (replace) leReplace->setFocus();
 		else leFind->setFocus();

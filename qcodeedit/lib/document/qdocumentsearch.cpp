@@ -650,6 +650,7 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 		if (m_regexp.exactMatch(m_cursor.selectedText()))  {
 			replaceCursorText(m_regexp,backward);
 			replaceCount++;
+			//foundCount++;
 		}
 
 	//ensure that the current selection isn't searched
@@ -792,7 +793,7 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 							tr("Failure"),
 							tr(
 								"End of scope reached with no match.\n"
-								"Restart from the begining ?"
+								"Restart from the beginning ?"
 							),
 							QMessageBox::Yes
 							| QMessageBox::No,
@@ -809,8 +810,26 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 	if ( !foundCount )
 		m_cursor = QDocumentCursor();
 	
-	if ( all && foundCount && !hasOption(Silent)) 
-		QMessageBox::information(m_editor,tr("Replacing Finished"),tr("%1 (of %2) occurences have been replaced").arg(replaceCount).arg(foundCount),QMessageBox::Ok);
+	if ( all && foundCount && !hasOption(Silent)) {
+		if (allowWrapAround) {
+			int ret=QMessageBox::question(
+								m_editor,
+								tr("Replacing Finished"),
+								tr("%1 (of %2) occurences have been replaced").arg(replaceCount).arg(foundCount)+"\n\n"+
+								tr("Do you want to continue replacing from the beginning?"),
+								QMessageBox::Yes
+								| QMessageBox::No,
+								QMessageBox::Yes
+							);
+			if ( ret == QMessageBox::Yes )
+			{
+				m_cursor = QDocumentCursor();
+				m_origin = QDocumentCursor();
+				return next(backward, all, again, false);
+			}
+		} else QMessageBox::information(m_editor,tr("Replacing Finished"),tr("%1 (of %2) occurences have been replaced").arg(replaceCount).arg(foundCount),QMessageBox::Ok);
+	}
+	
 	
 	return false;
 }
