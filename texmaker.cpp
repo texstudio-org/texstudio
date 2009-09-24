@@ -982,8 +982,7 @@ void Texmaker::fileNew(QString fileName) {
 
 	EditorView->addTab(edit, fileName);
 	configureNewEditorView(edit);
-	if (fileName!="") edit->editor->setFileName(fileName);
-	
+
 	UpdateCaption();
 	NewDocumentStatus(false);
 
@@ -1124,8 +1123,9 @@ void Texmaker::fileOpen() {
 		QFileInfo fi(configManager.lastDocument);
 		if (fi.exists() && fi.isReadable()) currentDir=fi.absolutePath();
 	}
-	QString fn = QFileDialog::getOpenFileName(this,tr("Open File"),currentDir,"TeX files (*.tex *.bib *.sty *.cls *.mp);;All files (*.*)");
-	if (!fn.isEmpty()) load(fn);
+	QStringList files = QFileDialog::getOpenFileNames(this,tr("Open Files"),currentDir,"TeX files (*.tex *.bib *.sty *.cls *.mp);;All files (*.*)");
+	foreach (const QString& fn, files)
+		load(fn);
 }
 
 void Texmaker::fileRestoreSession(){
@@ -1140,7 +1140,7 @@ void Texmaker::fileSave() {
 		return;
 
 	if (currentEditor()->fileName()=="" || !currentEditor()->fileInfo().exists())
-		fileSaveAs(currentEditor()->fileName());
+		fileSaveAs();
 	else {
 		/*QFile file( *filenames.find( currentEditorView() ) );
 		if ( !file.open( QIODevice::WriteOnly ) )
@@ -1182,13 +1182,6 @@ void Texmaker::fileSaveAs(QString fileName) {
 			fn.append(".tex");
 		// save file
 		currentEditor()->save(fn);
-		if (!currentEditor()->fileInfo().exists()){#
-			//workaround for a qt "bug": the qfileinfo caches the result of the
-			//exists() method and will return that the file still doesn't exists
-			//even if it exists. setFileName resets the qfileinfo object
-			currentEditor()->setFileName("");
-			currentEditor()->setFileName(fn);
-		}
 		MarkCurrentFileAsRecent();
 
 		EditorView->setTabText(EditorView->indexOf(currentEditorView()),currentEditor()->name());
@@ -3396,7 +3389,6 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 
 	// execute command line
 	QFileInfo ftl(fileToLoad);
-	
 	if (fileToLoad != "") {
 		if (ftl.exists())
 			load(fileToLoad, activateMasterMode);
