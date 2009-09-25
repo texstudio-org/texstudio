@@ -47,7 +47,7 @@ QSettings* ConfigManager::readSettings() {
 	newfile_encoding=QTextCodec::codecForName(config->value("Files/New File Encoding", "utf-8").toString().toAscii().data());
 	autodetectLoadedFile=config->value("Files/Auto Detect Encoding Of Loaded Files", "true").toBool();
 
-	ignoreLogFileNames=config->value("Files/Ignore Log File Names",1).toInt(); //default only ignore in single mode
+	ignoreLogFileNames=config->value("Files/Ignore Log File Names",0).toInt(); //default never ignore
 
 	//recent files
 	maxRecentFiles=config->value("Files/Max Recent Files", 5).toInt();
