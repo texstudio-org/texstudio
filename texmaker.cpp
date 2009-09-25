@@ -3215,13 +3215,16 @@ void Texmaker::ViewLog(bool noTabChange) {
 	}
 }
 
-//call this after latex compilation to show the errors (it only opens the log them if there are any)
+//this is show after latex compilation to show the errors (it only opens the log them if there are any)
 void Texmaker::ViewAndHighlightError(){
 	ViewLog();
-	if (!NoLatexErrors()) {
-		NextError();
+	//it seems viewlog does this already, it calls nexterror if there are errors and 
+	//nexterror shows the log; 
+	//but should nextError really show the log?
+	/*if (!NoLatexErrors()) {
+		//NextError();
 		outputView->showErrorListOrLog();
-	}				
+	}*/			
 }
 
 ////////////////////////// ERRORS /////////////////////////////

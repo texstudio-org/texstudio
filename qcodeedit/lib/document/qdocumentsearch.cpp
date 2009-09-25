@@ -643,20 +643,22 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 
 	QRegExp m_regexp=currentRegExp();
 	
-	int foundCount = 0;
 	int replaceCount = 0;
 	
-	if (hasOption(Replace) && again) 
+	if (hasOption(Replace) && again && !all) 
 		if (m_regexp.exactMatch(m_cursor.selectedText()))  {
 			replaceCursorText(m_regexp,backward);
 			replaceCount++;
-			//foundCount++;
+			//foundCount++; we can't set this here, because it has to search the next match
+			//and if (foundCount) is true, it thinks already found something and doesn't restart from scope
 		}
 
 	//ensure that the current selection isn't searched
 	if ( m_cursor.hasSelection() ) 
-		if (backward) m_cursor=m_cursor.selectionStart();
-		else m_cursor=m_cursor.selectionEnd();
+		if (backward ^ all) //let all search in the selection
+			m_cursor=m_cursor.selectionStart();
+		else 
+			m_cursor=m_cursor.selectionEnd();
 	
 
 	if (hasOption(HighlightAll) && !all)  //special handling if highlighting is on, but all replace is still handled here
@@ -686,6 +688,7 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 		boundaries = m_scope.selection();
 		
 	
+	int foundCount = 0;
 	while ( !end(backward) )
 	{
 		if ( backward && !m_cursor.columnNumber() )
