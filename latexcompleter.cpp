@@ -47,7 +47,7 @@ public:
 			for (int i=cursor.columnNumber()-curStart; i>0; i--) cursor.deletePreviousChar();
 			//cursor.endEditBlock(); //doesn't work and lead to crash when auto indentation is enabled => TODO:figure out why
 			//  cursor.setColumnNumber(curStart);
-			cw.insertAt(editor,&cursor);
+			cw.insertAt(editor,&cursor,LatexCompleter::config && LatexCompleter::config->usePlaceholders);
 			editor->document()->endMacro();
 
 			return true;

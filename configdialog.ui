@@ -115,7 +115,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>5</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -1151,6 +1151,16 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <widget class="QCheckBox" name="checkBoxToolTipHelp">
          <property name="text">
           <string>Enable ToolTip-Help</string>
+         </property>
+         <property name="advancedOption" stdset="0">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBoxUsePlaceholders">
+         <property name="text">
+          <string>Use placeholders</string>
          </property>
          <property name="advancedOption" stdset="0">
           <bool>true</bool>
