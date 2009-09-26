@@ -85,6 +85,7 @@ QSettings* ConfigManager::readSettings() {
 	completerConfig->completeCommonPrefix=config->value("Editor/Completion Complete Common Prefix",true).toBool();
 	completerConfig->eowCompletes=config->value("Editor/Completion EOW Completes", true).toBool();
 	completerConfig->tooltipHelp=config->value("Editor/Completion Enable Tooltip Help", true).toBool();
+	completerConfig->usePlaceholders=config->value("Editor/Completion Use Placeholders", true).toBool();
 	completerConfig->loadFiles(config->value("Editor/Completion Files",QStringList() << "texmakerx.cwl" << "tex.cwl" << "latex-document.cwl" << "latex-mathsymbols.cwl").toStringList());
 	
 	//web publish dialog
@@ -300,6 +301,7 @@ QSettings* ConfigManager::saveSettings() {
 	config->setValue("Editor/Completion Complete Common Prefix",completerConfig->completeCommonPrefix);
 	config->setValue("Editor/Completion EOW Completes", completerConfig->eowCompletes);
 	config->setValue("Editor/Completion Enable Tooltip Help", completerConfig->tooltipHelp);
+	config->setValue("Editor/Completion Use Placeholders", completerConfig->usePlaceholders);
 	if (!completerConfig->getLoadedFiles().isEmpty())
 		config->setValue("Editor/Completion Files",completerConfig->getLoadedFiles());
 
@@ -412,6 +414,8 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	confDlg->ui.checkBoxCompletePrefix->setChecked(completerConfig->completeCommonPrefix);
 	confDlg->ui.checkBoxEOWCompletes->setChecked(completerConfig->eowCompletes);
 	confDlg->ui.checkBoxToolTipHelp->setChecked(completerConfig->tooltipHelp);
+	confDlg->ui.checkBoxUsePlaceholders->setChecked(completerConfig->usePlaceholders);
+	
 	
 	QStringList languageFiles=findResourceFiles("translations","texmakerx_*.qm") 
 							<< findResourceFiles("","texmakerx_*.qm");
@@ -586,6 +590,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		completerConfig->completeCommonPrefix=confDlg->ui.checkBoxCompletePrefix->isChecked();
 		completerConfig->eowCompletes=confDlg->ui.checkBoxEOWCompletes->isChecked();
 		completerConfig->tooltipHelp=confDlg->ui.checkBoxToolTipHelp->isChecked();
+		completerConfig->usePlaceholders=confDlg->ui.checkBoxUsePlaceholders->isChecked();
 		QStringList newFiles;
 		QListWidgetItem *elem;
 		for (int i=0; i<confDlg->ui.completeListWidget->count(); i++) {
