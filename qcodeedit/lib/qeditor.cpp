@@ -1992,7 +1992,9 @@ int QEditor::currentPlaceHolder() const
 {
 	return m_curPlaceHolder;
 }
-
+const QEditor::PlaceHolder& QEditor::getPlaceHolder(int i) const{
+	return m_placeHolders.at(i);
+}
 /*!
 	\brief Set the current placeholder to use
 
@@ -2029,8 +2031,6 @@ void QEditor::setPlaceHolder(int i, bool selectCursors)
 			//qDebug() << "resync placeholder mirror for " << m_curPlaceHolder << " mirror "<<j << " was: " << mc.selectedText() << " should be " << cc.selectedText() << " from " << cc.anchorLineNumber() << ":" << cc.anchorColumnNumber() << "->" << cc.lineNumber() << ":"<<cc.columnNumber()<<"\n";
 			//if mirror synchronization is broken => resyncronize
 			mc.replaceSelectedText(cc.selectedText());
-			
-			//mc.replaceSelectedText(cc.selectedText());
 		}
 	}
 

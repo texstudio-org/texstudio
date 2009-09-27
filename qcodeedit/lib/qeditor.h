@@ -300,6 +300,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 				
 		int placeHolderCount() const;
 		int currentPlaceHolder() const;
+		const PlaceHolder& getPlaceHolder(int i) const;
 		
 		bool nextPlaceHolder();
 		bool previousPlaceHolder();
