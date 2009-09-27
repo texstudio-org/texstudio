@@ -4800,7 +4800,7 @@ void QDocumentCursorHandle::replaceSelectedText(const QString& text)
 	int begline, begcol;
 	beginBoundary(begline, begcol);
 	
-	//bool atStart = (begline == m_begLine && begcol == m_begOffset);
+	bool atStart = (begline == m_begLine && begcol == m_begOffset);
 	
 	if ( text.isEmpty() )
 	{
@@ -4811,10 +4811,6 @@ void QDocumentCursorHandle::replaceSelectedText(const QString& text)
 		/*
 			Adjust selection around the new text 
 		*/
-		m_endLine=begline;
-		m_endOffset=begcol;
-		
-		/*
 		if ( atStart )
 		{
 			m_endLine = m_begLine;
@@ -4825,7 +4821,6 @@ void QDocumentCursorHandle::replaceSelectedText(const QString& text)
 			m_endLine = begline;
 			m_endOffset = begcol;
 		}
-		*/
 	}
 	
 	//qDebug("[%i, %i] => ( (%i, %i), (%i, %i) )", begline, begcol, m_begLine, m_begOffset, m_endLine, m_endOffset);

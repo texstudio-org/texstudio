@@ -9,7 +9,10 @@ CodeSnippet::CodeSnippet(const QString &newWord) {
         m_cut=false;
 	QString realNewWord=newWord;
 	// \begin magic
-	if (realNewWord.startsWith("\\begin")&&!realNewWord.contains("\n")&&!realNewWord.contains("%n")) {
+	if (realNewWord.startsWith("\\begin{")&&
+		!realNewWord.contains("\n")&&!realNewWord.contains("%n") //only a single line
+	    && realNewWord.lastIndexOf("\\") == 0) //only one latex command in the line
+	{
 		int p=newWord.indexOf("{");
 		QString environmentName=realNewWord.mid(p,newWord.indexOf("}")-p+1); //contains the {}
 		QString content="%<"+QObject::tr("content...")+"%>";
@@ -107,9 +110,8 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 		mLines.removeFirst();
 	}
 	int beginMagicLine=-1;//hack will made every placeholder in this line a mirror of the first placeholder and select this placeholder afterwards
-        if (mLines.value(0,"")=="\\begin{environment-name}") //useful in this case (TODO: mirrors in code snippet language)
-                beginMagicLine=mLines.count()-1;
-	int magicPlaceHolder=editor->placeHolderCount();
+	if (mLines.value(0,"")=="\\begin{environment-name}") //useful in this case (TODO: mirrors in code snippet language) (when changed, update unit test!)
+		beginMagicLine=mLines.count()-1; 
 		
 	QString savedSelection;
 	if (cursor->hasSelection()) {
@@ -123,10 +125,22 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 	int baseLineIndent = cursor->columnNumber(); //text before inserted word moves placeholders to the right
 	int lastLineRemainingLength = curLine.text().length()-baseLineIndent; //last line will has length: indentation + codesnippet + lastLineRemainingLength
 	editor->insertText(*cursor,mLines.join("\n")); //don't use cursor->insertText to keep autoindentation working
-	if (usePlaceholders)
+	int magicPlaceHolder=-1;
+	Q_ASSERT(placeHolders.size()==mLines.count());
+	if (usePlaceholders) {
+		//check if there actually are placeholders to insert
+		usePlaceholders=false;
+		for (int l=0;l< mLines.count();l++)
+			usePlaceholders|=placeHolders[l].size();
+	}
+	if (usePlaceholders) {
+		if (editor->currentPlaceHolder()!=-1 && 
+			editor->getPlaceHolder(editor->currentPlaceHolder()).cursor.isWithinSelection(*cursor))
+			editor->removePlaceHolder(editor->currentPlaceHolder()); //remove currentplaceholder to prevent nesting
+		if (beginMagicLine!=-1)	
+			magicPlaceHolder=editor->placeHolderCount();
 		for (int l=0;l< mLines.count();l++){
 			//if (l<mLines.count()-1) cursor->insertLine();
-			Q_ASSERT(placeHolders.size()>l);
 			for (int i=0; i<placeHolders[l].size(); i++) {
 				QEditor::PlaceHolder ph;
 				ph.length=placeHolders[l][i].second;
@@ -140,13 +154,11 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 				if (l!=beginMagicLine) {
 					if (ph.cursor.isValid())
 						editor->addPlaceHolder(ph);
-				}	else {
+				}	else 
 					editor->addPlaceHolderMirror(magicPlaceHolder,ph.cursor);
-				}
-					
 			}
 		}
-	
+	}
 	//place cursor/add \end
 	if (cursorOffset!=-1) {
 		int realAnchorOffset=anchorOffset; //will be moved to the right if text is already inserted on this line
@@ -167,9 +179,9 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 			ok=selector.movePosition(anchorOffset-cursorOffset,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
 		if (!ok) return;
 		editor->setCursor(selector);
-		if (!savedSelection.isEmpty()) editor->cursor().insertText(savedSelection);
+		if (!savedSelection.isEmpty()) editor->cursor().insertText(savedSelection,true);
 	}	else editor->setCursor(*cursor); //place after insertion
-	if (beginMagicLine!=-1 && usePlaceholders)  //select magic placeholder if there (must be last line because there may be insertion
+	if (magicPlaceHolder!=-1)  //select magic placeholder if there (must be last line because there may be insertion
 		editor->setPlaceHolder(magicPlaceHolder); //at another cursor position necessary)
 }
 

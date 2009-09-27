@@ -12,8 +12,11 @@ class CodeSnippetTest: public QObject{
 	private:
 		QEditor *ed;
 	private slots:
+		void initTestCase();
 		void insert_data();
 		void insert();
+		void nestedInsert_data();
+		void nestedInsert();
 };
 
 #endif

@@ -262,7 +262,7 @@ void QDocumentCommand::updateCursorsOnInsertion(int line, int column, int prefix
 			if ( lbeg == line && cbeg == column )
 			{
 				//qDebug("expand (%i, %i : %i, %i)", ch->m_begLine, ch->m_begOffset, ch->m_endLine, ch->m_endOffset);
-				if ( (ch->m_begLine > ch->m_endLine) || (ch->m_begLine == ch->m_endLine && ch->m_begOffset > ch->m_endOffset) )
+				if ( (ch->m_begLine > ch->m_endLine) || (ch->m_begLine == ch->m_endLine && ch->m_begOffset >= ch->m_endOffset) )
 				{
 					if ( numLines )
 					{
