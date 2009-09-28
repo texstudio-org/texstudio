@@ -694,7 +694,6 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	QDocumentCursor cursor;
 	cursor=editor->cursorForPosition(editor->mapToContents(pos));
 	QString line=cursor.line().text();
-	int col=cursor.columnNumber();
 	QString command, value;
 	QString topic;
 	switch(LatexParser::findContext(line, cursor.columnNumber(), command, value)){
