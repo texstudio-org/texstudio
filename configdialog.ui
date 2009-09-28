@@ -115,7 +115,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>5</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -1004,7 +1004,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="7" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxCloseSearchReplaceTogether">
             <property name="text">
-             <string>close search and replace dialog together</string>
+             <string>close search and replace panel together</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>

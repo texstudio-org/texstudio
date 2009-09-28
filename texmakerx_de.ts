@@ -644,8 +644,9 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <location filename="configdialog.ui" line="1007"/>
-        <source>close search and replace dialog together</source>
-        <translation>Schließe Such- und Ersetzendialog zusammen</translation>
+        <source>close search and replace panel together</source>
+        <oldsource>close search and replace dialog together</oldsource>
+        <translation>Schließe Such- und Ersetzenpanel zusammen</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1076"/>
@@ -1750,7 +1751,9 @@ Wollen Sie es speichern?</translation>
         <translation>Fehler:</translation>
     </message>
     <message>
-        <location filename="codesnippet.cpp" line="15"/>
+        <location filename="codesnippet.cpp" line="18"/>
+        <location filename="tests/codesnippet_t.cpp" line="129"/>
+        <location filename="tests/codesnippet_t.cpp" line="216"/>
         <source>content...</source>
         <translation>Inhalt...</translation>
     </message>

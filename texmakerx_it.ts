@@ -713,7 +713,8 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     </message>
     <message>
         <location filename="configdialog.ui" line="1007"/>
-        <source>close search and replace dialog together</source>
+        <source>close search and replace panel together</source>
+        <oldsource>close search and replace dialog together</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1604,7 +1605,9 @@ Vuoi salvarli?</translation>
         <translation>Errore:</translation>
     </message>
     <message>
-        <location filename="codesnippet.cpp" line="15"/>
+        <location filename="codesnippet.cpp" line="18"/>
+        <location filename="tests/codesnippet_t.cpp" line="129"/>
+        <location filename="tests/codesnippet_t.cpp" line="216"/>
         <source>content...</source>
         <translation type="unfinished"></translation>
     </message>
