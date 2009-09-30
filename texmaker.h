@@ -296,9 +296,9 @@ private slots:
 	void DisplayLatexError();
 	void NextMark();
 	void PreviousMark();
-	void gotoNearLogEntry(LogType lt, bool backward, QString notFoundMessage);
-	void NextError();
-	void PreviousError();
+	bool gotoNearLogEntry(LogType lt, bool backward, QString notFoundMessage);
+	bool NextError();
+	bool PreviousError();
 	void NextWarning();
 	void PreviousWarning();
 	void NextBadBox();
@@ -343,8 +343,8 @@ private slots:
 	void gotoLine(int line);  //0 based
 	void gotoLocation(int line, const QString &fileName);  //0 based, absolute file name
 	void gotoLogEntryEditorOnly(int logEntryNumber);
-	void gotoLogEntryAt(int newLineNumber);
-	void gotoMark(bool backward, int id);
+	bool gotoLogEntryAt(int newLineNumber);
+	bool gotoMark(bool backward, int id);
 
 	void lineHandleDeleted(QDocumentLineHandle* l);
 	

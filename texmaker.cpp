@@ -3208,7 +3208,9 @@ void Texmaker::ViewLog(bool noTabChange) {
 		//display errors in editor
 		DisplayLatexError();
 		if (outputView->getLogModel()->found(LT_ERROR)) 
-			NextError();
+			if (!NextError()) //jump to an error
+				PreviousError(); 
+					
 
 	} else {
 		QMessageBox::warning(this,tr("Error"),tr("Log File not found !"));
@@ -3279,25 +3281,27 @@ void Texmaker::PreviousMark() {
 }
 
 
-void Texmaker::gotoNearLogEntry(LogType lt, bool backward, QString notFoundMessage) {
+bool Texmaker::gotoNearLogEntry(LogType lt, bool backward, QString notFoundMessage) {
 	if (!outputView->logPresent()) {
 		ViewLog();
 	}
 	if (outputView->logPresent()) {
-		if (outputView->getLogModel()->found(lt))
-			gotoMark(backward, outputView->getLogModel()->markID(lt));
-		else {
+		if (outputView->getLogModel()->found(lt)){
+			outputView->showErrorListOrLog(); //always show log if a mark of this type exists (even if is in another file)
+			return gotoMark(backward, outputView->getLogModel()->markID(lt));
+		} else {
 			QMessageBox::information(this,"TexMakerX",notFoundMessage);
 			//OutputTextEdit->setCursorPosition(0 , 0);
 		}	
 	}
+	return false;
 }
-void Texmaker::NextError() {
-	gotoNearLogEntry(LT_ERROR,false,tr("No LaTeX errors detected !"));
+bool Texmaker::NextError() {
+	return gotoNearLogEntry(LT_ERROR,false,tr("No LaTeX errors detected !"));
 }
 
-void Texmaker::PreviousError() {
-	gotoNearLogEntry(LT_ERROR,true,tr("No LaTeX errors detected !"));	
+bool Texmaker::PreviousError() {
+	return gotoNearLogEntry(LT_ERROR,true,tr("No LaTeX errors detected !"));	
 }
 
 void Texmaker::NextWarning() {
@@ -3744,14 +3748,14 @@ void Texmaker::gotoLogEntryEditorOnly(int logEntryNumber) {
 	gotoLine(QDocumentLine(lh).lineNumber());
 }
 
-void Texmaker::gotoLogEntryAt(int newLineNumber) {
+bool Texmaker::gotoLogEntryAt(int newLineNumber) {
 	//goto line
-	if (newLineNumber<0) return;
+	if (newLineNumber<0) return false;
 	gotoLine(newLineNumber);
 	//find error number
 	QDocumentLineHandle* lh=currentEditorView()->editor->document()->line(newLineNumber).handle();
 	int logEntryNumber=currentEditorView()->lineToLogEntries.value(lh,-1);
-	if (logEntryNumber==-1) return;
+	if (logEntryNumber==-1) return false;
 	//goto log entry
 	outputView->selectLogEntry(logEntryNumber);
 
@@ -3759,13 +3763,14 @@ void Texmaker::gotoLogEntryAt(int newLineNumber) {
 	//  p.ry()+=2*currentEditorView()->editor->document()->fontMetrics().lineSpacing();
 	QToolTip::showText(p, outputView->getLogModel()->at(logEntryNumber).niceMessage(), 0);
 	LatexEditorView::hideTooltipWhenLeavingLine=newLineNumber;
+	return true;
 }
 
-void Texmaker::gotoMark(bool backward, int id) {
+bool Texmaker::gotoMark(bool backward, int id) {
 	if (backward)
-		gotoLogEntryAt(currentEditorView()->editor->document()->findPreviousMark(id,qMax(0,currentEditorView()->editor->cursor().lineNumber()-1),0));
+		return gotoLogEntryAt(currentEditorView()->editor->document()->findPreviousMark(id,qMax(0,currentEditorView()->editor->cursor().lineNumber()-1),0));
 	else
-		gotoLogEntryAt(currentEditorView()->editor->document()->findNextMark(id,currentEditorView()->editor->cursor().lineNumber()+1));
+		return gotoLogEntryAt(currentEditorView()->editor->document()->findNextMark(id,currentEditorView()->editor->cursor().lineNumber()+1));
 }
 
 void Texmaker::StructureContextMenu(const QPoint& point) {
