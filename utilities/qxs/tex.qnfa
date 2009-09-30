@@ -79,25 +79,38 @@
   </context>
 
 	<context id="mathmodeNormal" format="numbers" transparency="true">
-		<start parenthesis="math:open" fold="1" format="extra-keyword">\\begin{math}</start>
-		<stop parenthesis="math:close" fold="1" format="extra-keyword">\\end{math}</stop>
-		<start parenthesis="math:open" fold="1" >\\\(</start>
-		<stop parenthesis="math:close" fold="1" >\\\)</stop>
+		<start parenthesis="mathN1:open" fold="1" format="extra-keyword">\\begin{math}</start>
+		<stop parenthesis="mathN1:close" fold="1" format="extra-keyword">\\end{math}</stop>
+		<start parenthesis="mathN2:open" fold="1" >\\\(</start>
+		<stop parenthesis="mathN2:close" fold="1" >\\\)</stop>
 
-    <word id="keywords/single" format="math-keyword">\\[a-zA-Z]+</word>
-  </context>
+		<word id="keywords/single" format="math-keyword">\\[a-zA-Z]+</word>
+	</context>
 	
-  <context id="mathmodeDisplay" format="numbers" transparency="true">
-		<start parenthesis="math:open" fold="1" format="extra-keyword">\\begin{displaymath}</start>
-		<stop parenthesis="math:close" fold="1" format="extra-keyword">\\end{displaymath}</stop>
-		<start parenthesis="math:open" fold="1" >\\\[</start>
-		<stop parenthesis="math:close" fold="1" >\\\]</stop>
-		<start parenthesis="math:open" fold="1" format="extra-keyword">\\begin{equation}</start>
-		<stop parenthesis="math:close" fold="1" format="extra-keyword">\\end{equation}</stop>
+	<context id="mathmodeDisplay" format="numbers" transparency="true">
+		<start parenthesis="mathD1:open" fold="1" format="extra-keyword">\\begin{displaymath}</start>
+		<stop parenthesis="mathD1:close" fold="1" format="extra-keyword">\\end{displaymath}</stop>
+		<start parenthesis="mathD2:open" fold="1" >\\\[</start>
+		<stop parenthesis="mathD2:close" fold="1" >\\\]</stop>
+		<start parenthesis="mathD3:open" fold="1" format="extra-keyword">\\begin{equation}</start>
+		<stop parenthesis="mathD3:close" fold="1" format="extra-keyword">\\end{equation}</stop>
 
-    <word id="keywords/single" format="math-keyword">\\[a-zA-Z]+</word>
-  </context>
+		<word id="keywords/single" format="math-keyword">\\[a-zA-Z]+</word>
+	</context>
 
+	<context id="mathmodeEqnArray" format="numbers" transparency="true">
+		<start parenthesis="mathEA1:open" fold="1" format="extra-keyword">\\begin{eqnarray}</start>
+		<stop parenthesis="mathEA1:close" fold="1" format="extra-keyword">\\end{eqnarray}</stop>
+		<start parenthesis="mathEA2:open" fold="1" format="extra-keyword">\\begin{align}</start>
+		<stop parenthesis="mathEA2:close" fold="1" format="extra-keyword">\\end{align}</stop>
+		<start parenthesis="mathEA3:open" fold="1" format="extra-keyword">\\begin{eqnarray\*}</start>
+		<stop parenthesis="mathEA3:close" fold="1" format="extra-keyword">\\end{eqnarray\*}</stop>
+		<start parenthesis="mathEA4:open" fold="1" format="extra-keyword">\\begin{align\*}</start>
+		<stop parenthesis="mathEA4:close" fold="1" format="extra-keyword">\\end{align\*}</stop>
+
+		<word id="keywords/single" format="math-keyword">\\[a-zA-Z]+</word>
+	</context>
+	
 	<word parenthesis="block:open" fold="1" indent="1" ambiguous="true" format="extra-keyword">\\begin{[^}]*}</word>
 	<word parenthesis="block:close" fold="1" indent="1" format="extra-keyword" >\\end{[^}]*}</word>
 
