@@ -855,7 +855,7 @@ QString Texmaker::getCompilePath(){
 	QString compFile=getCompileFileName();
 	if (compFile.isEmpty()) return "";
 	QString dir=QFileInfo(compFile).absolutePath();
-	if (!dir.endsWith(QDir::separator())) dir.append(QDir::separator());
+	if (!dir.endsWith("/") && !dir.endsWith(QDir::separator())) dir.append(QDir::separator());
 	return dir;
 }
 QString Texmaker::getPreferredPath(){
@@ -878,10 +878,12 @@ QString Texmaker::getAbsoluteFilePath(const QString & relName, const QString &ex
 QString Texmaker::getRelativeBaseName(const QString & file){
 	QString basepath=getCompilePath();
 	basepath.replace(QDir::separator(),"/");
-
+	if (basepath.endsWith("/")) basepath=basepath.left(basepath.length()-1);
+	
 	QFileInfo fi(file);
 	QString filename = fi.fileName();
 	QString path = fi.path();
+	if (path.endsWith("/")) path=path.left(path.length()-1);
 	QStringList basedirs = basepath.split("/");
 	QStringList dirs = path.split("/");
 	//QStringList basedirs = QStringList::split("/", basepath, false);
@@ -903,12 +905,12 @@ QString Texmaker::getRelativeBaseName(const QString & file){
 			}
 		}
 
-		if (path.length()>0 && path.right(1) != "/") path = path + "/";
+		//if (path.length()>0 && path.right(1) != "/") path = path + "/";
 	} else {
 		path = fi.path();
-	}
+	}	
 
-	if (!path.endsWith("/") && !path.endsWith("\\")) path+="/"; //necessary if basepath isn't given
+	if (path.length()>0 && !path.endsWith("/") && !path.endsWith("\\")) path+="/"; //necessary if basepath isn't given
 
 	return path+fi.completeBaseName();
 }

@@ -45,7 +45,7 @@ void QDocumentCursorTest::constMethods_data(){
 		<< false << false << false << false
 		<< 13+12
 		<< 1 << 12 << 1 << 12
-		<< "" << ""
+		<< "1|12" << "1|12" //TODO: qce documentation says << "" << ""
 		<< false << ""
 		<< '2' << ',';
 	QTest::newRow("simple cursor at line start") 
@@ -53,7 +53,7 @@ void QDocumentCursorTest::constMethods_data(){
 		<< false << false << true << false
 		<< 13+0
 		<< 1 << 0 << 1 << 0
-		<< "" << ""
+		<< "1|0" << "1|0" //TODO: qce documentation says << "" << ""
 		<< false << ""
 		<< '\n' << 't';
 	QTest::newRow("simple cursor at line end") 
@@ -61,7 +61,7 @@ void QDocumentCursorTest::constMethods_data(){
 		<< false << false << false << true
 		<< 13+64
 		<< 1 << 64 << 1 << 64
-		<< "" << ""
+		<< "1|64" << "1|64" //TODO: qce documentation says << "" << ""
 		<< false << ""
 		<< 'Z' << '\n';
 	QTest::newRow("simple cursor at doc start") 
@@ -69,7 +69,7 @@ void QDocumentCursorTest::constMethods_data(){
 		<< true << false << true << false
 		<< 0
 		<< 0 << 0 << 0 << 0
-		<< "" << ""
+		<< "0|0" << "0|0" //TODO: qce documentation says << "" << ""
 		<< false << ""
 		<< '\0' << 't';
 	QTest::newRow("simple cursor at doc end")  //TODO: check if this is right
@@ -77,13 +77,158 @@ void QDocumentCursorTest::constMethods_data(){
 		<< false << true << false << true
 		<< 13+65+12
 		<< 2 << 12 << 2 << 12
-		<< "" << ""
+		<< "2|12" << "2|12" //TODO: qce documentation says << "" << ""
 		<< false << ""
 		//<< '\n' << '\0';
 		<< '3' << '\n';
 	
 	//--------------cursor with selection-------------
-	//...TODO...
+	QTest::newRow("selection mid in a line") 
+		<< "1|12|1|18"
+		<< false << false << false << false
+		<< 13+18
+		<< 1 << 12 << 1 << 18
+		<< "1|12" << "1|18"
+		<< true << ", hell"
+		<< 'l' << 'o';
+	QTest::newRow("selection mid in a line reverted") 
+		<< "1|18|1|12"
+		<< false << false << false << false
+		<< 13+12
+		<< 1 << 18 << 1 << 12
+		<< "1|12" << "1|18"
+		<< true << ", hell"
+		<< '2' << ',';
+	QTest::newRow("selection from line start to mid") 
+		<< "1|0|1|18"
+		<< false << false << false << false
+		<< 13+18
+		<< 1 << 0 << 1 << 18
+		<< "1|0" << "1|18"
+		<< true << "test: line 2, hell"
+		<< 'l' << 'o';
+	QTest::newRow("selection from line start to mid reverted") 
+		<< "1|18|1|0"
+		<< false << false << true << false
+		<< 13+0
+		<< 1 << 18 << 1 << 0
+		<< "1|0" << "1|18"
+		<< true << "test: line 2, hell"
+		<< '\n' << 't';
+	QTest::newRow("selection from line mid to end") 
+		<< "1|4|1|64"
+		<< false << false << false << true
+		<< 13+64
+		<< 1 << 4 << 1 << 64
+		<< "1|4" << "1|64"
+		<< true << ": line 2, hello world! abcdefghijklmnopqrstuvwxyzABCDE...XYZ"
+		<< 'Z' << '\n';
+	QTest::newRow("selection from line mid to end reversed") 
+		<< "1|64|1|4"
+		<< false << false << false << false
+		<< 13+4
+		<< 1 << 64 << 1 << 4
+		<< "1|4" << "1|64"
+		<< true << ": line 2, hello world! abcdefghijklmnopqrstuvwxyzABCDE...XYZ"
+		<< 't' << ':';
+	QTest::newRow("selection from document start to line mid") 
+		<< "0|0|0|4"
+		<< false << false << false << false
+		<< 4
+		<< 0 << 0 << 0 << 4
+		<< "0|0" << "0|4"
+		<< true << "test"
+		<< 't' << ':';
+	QTest::newRow("selection from document start to line mid reversed") 
+		<< "0|4|0|0"
+		<< true << false << true << false
+		<< 0
+		<< 0 << 4 << 0 << 0
+		<< "0|0" << "0|4"
+		<< true << "test"
+		<< '\0' << 't';
+	QTest::newRow("selection from line mid to document end") //TODO: is 2|12 really the document end?
+		<< "2|6|2|12"
+		<< false << true << false << true
+		<< 13+65+12
+		<< 2 << 6 << 2 << 12
+		<< "2|6" << "2|12"
+		<< true << "line 3"
+		<< '3' << '\n';
+	QTest::newRow("selection from line mid to document end reversed") //TODO: is 2|12 really the document end?
+		<< "2|12|2|6"
+		<< false << false << false << false
+		<< 13+65+6
+		<< 2 << 12 << 2 << 6
+		<< "2|6" << "2|12"
+		<< true << "line 3"
+		<< ' ' << 'l';
+	QTest::newRow("selection from line start to line end") 
+		<< "1|0|1|64"
+		<< false << false << false << true
+		<< 13+64
+		<< 1 << 0 << 1 << 64
+		<< "1|0" << "1|64"
+		<< true << "test: line 2, hello world! abcdefghijklmnopqrstuvwxyzABCDE...XYZ"
+		<< 'Z' << '\n';
+	QTest::newRow("selection from line start to line end reversed") 
+		<< "1|64|1|0"
+		<< false << false << true << false
+		<< 13+0
+		<< 1 << 64 << 1 << 0
+		<< "1|0" << "1|64"
+		<< true << "test: line 2, hello world! abcdefghijklmnopqrstuvwxyzABCDE...XYZ"
+		<< '\n' << 't';
+	QTest::newRow("multi line selection from document start to document end") //TODO: is 2|12 really the document end?
+		<< "0|0|2|12"
+		<< false << true << false << true
+		<< 13+65+12
+		<< 0 << 0 << 2 << 12
+		<< "0|0" << "2|12"
+		<< true << "test: line 1\ntest: line 2, hello world! abcdefghijklmnopqrstuvwxyzABCDE...XYZ\ntest: line 3" //no \n at end?
+		<< '3' << '\n';
+	QTest::newRow("multi line selection from document start to document end reversed") //TODO: is 2|12 really the document end?
+		<< "2|12|0|0"
+		<< true << false << true << false
+		<< 0
+		<< 2 << 12 <<  0 << 0
+		<< "0|0" << "2|12"
+		<< true << "test: line 1\ntest: line 2, hello world! abcdefghijklmnopqrstuvwxyzABCDE...XYZ\ntest: line 3" //no \n at end?
+		<< '\0' << 't';
+	QTest::newRow("multi line selection from line mid to next line")
+		<< "0|4|1|2"
+		<< false << false << false << false
+		<< 13+2
+		<< 0 << 4 << 1 << 2
+		<< "0|4" << "1|2"
+		<< true << ": line 1\nte"
+		<< 'e' << 's';
+	QTest::newRow("multi line selection from line mid to next line reversed")
+		<< "1|2|0|4"
+		<< false << false << false << false
+		<< 4
+		<< 1 << 2 << 0 << 4
+		<< "0|4" << "1|2"
+		<< true << ": line 1\nte"
+		<< 't' << ':';
+	QTest::newRow("multi line selection from line mid to second next line")
+		<< "0|4|2|10"
+		<< false << false << false << false
+		<< 13+65+10
+		<< 0 << 4 << 2 << 10
+		<< "0|4" << "2|10"
+		<< true << ": line 1\ntest: line 2, hello world! abcdefghijklmnopqrstuvwxyzABCDE...XYZ\ntest: line"
+		<< 'e' << ' ';
+	QTest::newRow("multi line selection from line mid to second next line reversed")
+		<< "2|10|0|4"
+		<< false << false << false << false
+		<< 4
+		<< 2 << 10 << 0 << 4
+		<< "0|4" << "2|10"
+		<< true << ": line 1\ntest: line 2, hello world! abcdefghijklmnopqrstuvwxyzABCDE...XYZ\ntest: line"
+		<< 't' << ':';
+
+	//there are more cases (e.g. multi line starting at line start/end) but they probably aren't independent of those tested above
 }
 void QDocumentCursorTest::constMethods(){
 	QFETCH(QString, cursor);
@@ -103,10 +248,6 @@ void QDocumentCursorTest::constMethods(){
 	QFETCH(char, previousChar);
 	QFETCH(char, nextChar);
 	
-	//TODO: REMOVE THIS WORKAROUND WHEN THE CURSOR SOURCE<->COMMENT IS CONSISTENT AND BEFORE ADDING NEW TESTS
-	selectionEnd=cursor;
-	selectionStart=cursor;
-	
 	QDocumentCursor c=str2cur(cursor);
 	QVERIFY(c.isValid()); QVERIFY(!c.isNull());
 	QVERIFY(c==c); QVERIFY(!(c!=c));
@@ -124,9 +265,9 @@ void QDocumentCursorTest::constMethods(){
 	QVERIFY(c.line()==doc->line(lineNumber));
 	QVERIFY(c.anchorLine()==doc->line(anchorLineNumber));
 	if (selectionStart == "") QVERIFY(c.selectionStart().isNull());
-	else QVERIFY(c.selectionStart() == str2cur(selectionStart));
+	else QSVERIFY2(c.selectionStart() == str2cur(selectionStart),QString("%1:%2").arg(c.selectionStart().lineNumber()).arg(c.selectionStart().columnNumber()));
 	if (selectionEnd == "") QVERIFY(c.selectionEnd().isNull());
-	else QVERIFY(c.selectionEnd() == str2cur(selectionEnd));
+	else QSVERIFY2(c.selectionEnd() == str2cur(selectionEnd),QString("%1:%2").arg(c.selectionEnd().lineNumber()).arg(c.selectionEnd().columnNumber()));
 	QEQUAL(c.hasSelection(), hasSelection);
 	QEQUAL(c.selectedText(), selectedText);
 	QEQUAL(c.previousChar(), previousChar);
