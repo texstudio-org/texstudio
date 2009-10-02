@@ -111,6 +111,7 @@ void SymbolGridWidget::resizeEvent ( QResizeEvent * event )
 	//qDebug("%d",event->size());
 	QTableWidget::resizeEvent(event);
 	// remove remaining old items
+	//	qDebug("1");
 	int numberOfColumns=columnCount();
 	for(int i=0;i<rowCount()*columnCount();i++){
 		//delete(item(i/numberOfColumns,i%numberOfColumns));
@@ -118,14 +119,19 @@ void SymbolGridWidget::resizeEvent ( QResizeEvent * event )
 	}
 	// add items with adapted number of columns
 	numberOfColumns=event->size().width()/36;
+	//	qDebug("1.5");
 	setColumnCount(numberOfColumns);
 	setRowCount(countOfItems/numberOfColumns+1);
 	for(int j = 0; j < countOfItems/numberOfColumns+1; ++j) setRowHeight(j,36);
 	for(int j=0;j < numberOfColumns;++j) setColumnWidth(j,36);
 
+	//	qDebug(qPrintable(QString("2:%1").arg((int)this)));
 	for (int i = 0; i < listOfItems.size(); ++i) {
-		setItem(i/numberOfColumns,i%numberOfColumns,listOfItems[i]);
+		//	qDebug(qPrintable(QString("%1:%2 %3").arg(listOfItems[i]->text()).arg(listOfItems[i]->column()).arg((int)listOfItems[i]->tableWidget())));
+		if (!listOfItems[i]->tableWidget()) //the items aren't properly removed if the number of rows changes or the number of cols decrease (latter only if the resizeEvent is propagated to the super class) TODO: fix this correctly
+			setItem(i/numberOfColumns,i%numberOfColumns,listOfItems[i]);
 	}
+		//qDebug("3");
 }
 
 void SymbolGridWidget::SetUserPage(usercodelist ulist) {
@@ -146,5 +152,5 @@ void SymbolGridWidget::SetUserPage(usercodelist ulist) {
 		listOfItems << item;
 		i++;
 	}
-
+	countOfItems=listOfItems.count();
 }
