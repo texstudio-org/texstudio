@@ -2626,6 +2626,16 @@ Wollen Sie es speichern?</translation>
         <translation>Seesion automatisch am Programmstart wieder herstellen</translation>
     </message>
     <message>
+        <location filename="texmaker.cpp" line="1040"/>
+        <source>You can not remove built-in templates.</source>
+        <translation>Sie können integrierte Templates nicht entfernen.</translation>
+    </message>
+    <message>
+        <location filename="texmaker.cpp" line="1050"/>
+        <source>You can not edit built-in templates.</source>
+        <translation>Sie können integrierte Templates nicht editieren.</translation>
+    </message>
+    <message>
         <location filename="texmaker.cpp" line="3144"/>
         <source>Text Analysis</source>
         <translation>Textanalyse</translation>
@@ -3496,14 +3506,12 @@ Wollen Sie es speichern?</translation>
         <translation>Sie haben keine Erlaubnis diese Datei zu entfernen.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1040"/>
         <source>You cannot remove built-in templates.</source>
-        <translation>Sie können integrierte Templates nicht entfernen.</translation>
+        <translation type="obsolete">Sie können integrierte Templates nicht entfernen.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1050"/>
         <source>You cannot edit built-in templates.</source>
-        <translation>Sie können integrierte Templates nicht editieren.</translation>
+        <translation type="obsolete">Sie können integrierte Templates nicht editieren.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="1056"/>
