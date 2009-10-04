@@ -243,6 +243,11 @@
         <translation>Comando</translation>
     </message>
     <message>
+        <location filename="configdialog.cpp" line="296"/>
+        <source>Get dictionaries at: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="configdialog.cpp" line="312"/>
         <source>Default Shortcut</source>
         <translation>Combinazione tasti di default</translation>
@@ -2262,6 +2267,11 @@ Vuoi salvarli?</translation>
         <translation></translation>
     </message>
     <message>
+        <location filename="texmaker.cpp" line="256"/>
+        <source>Tikz Commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="texmaker.cpp" line="257"/>
         <source>Asymptote Commands</source>
         <translation type="unfinished"></translation>
@@ -2764,12 +2774,12 @@ Vuoi salvarli?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="1040"/>
-        <source>You cannot remove built-in templates.</source>
+        <source>You can not remove built-in templates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="1050"/>
-        <source>You cannot edit built-in templates.</source>
+        <source>You can not edit built-in templates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

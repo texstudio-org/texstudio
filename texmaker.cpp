@@ -1037,7 +1037,7 @@ void Texmaker::templateRemove(){
 			QFile file(f_real);
 			if(!file.remove()) QMessageBox::warning(this,tr("Error"), tr("You do not have permission to remove this file."));
 		}
-	} else QMessageBox::warning(this,tr("Error"), tr("You cannot remove built-in templates."));
+	} else QMessageBox::warning(this,tr("Error"), tr("You can not remove built-in templates."));
 
 }
 
@@ -1047,7 +1047,7 @@ void Texmaker::templateEdit(){
 	if(templateSelectorDialog->ui.listWidget->currentRow()>=len){
 		load(userTemplatesList.at(templateSelectorDialog->ui.listWidget->currentRow()-len),false);
 		templateSelectorDialog->close();
-	} else QMessageBox::warning(this,tr("Error"), tr("You cannot edit built-in templates."));
+	} else QMessageBox::warning(this,tr("Error"), tr("You can not edit built-in templates."));
 }
 
 void Texmaker::fileNewFromTemplate() {
