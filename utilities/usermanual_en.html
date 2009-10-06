@@ -13,6 +13,7 @@ body { background: #ffffff; color: black; }
 <h1 align=center><A NAME="top">TexMakerX : User manual</a></h1>
 <h2><a name="sommaire">Contents </a>:</h2>
 <ul>
+<li><a href="#SECTIONNEW">0. What's new</a></li>
 <li><a href="#SECTION0">1. Configuring TexMakerX</a></li>
 	<ul>
 	<li><a href="#SECTION01">1.1 Configuring the editor</a></li>
@@ -59,6 +60,55 @@ body { background: #ffffff; color: black; }
 	</ul>
 </ul>
 <hr>
+<h1><a name="SECTIONNEW">0. What's new</a></h1>
+
+<P>TexMakerX has been diligently extended for the last months. The
+subsequent list gives a probably incomplete overview of new and
+changed functionality:</P>
+<ul>
+	<LI><P>First steps for dynamic syntax highlighting have been
+	implemented. For example references in in commands like \label or
+	\ref are checked and are marked especially if the reference does not
+	exist (in case of referencing) or if it has been defined multiple
+	times.</P>
+	<LI><P>The word completion system has been extended. It now uses
+	&ldquo;kile&rdquo;-word lists which extend the number of known
+	commands considerably. Furthermore it can also complete normal text
+	by proposing earlier used text parts. The two modes are
+	distinguished by a backslash as starting letter. And finally &ldquo;User
+	Tags&rdquo; (user defined text blocks) can be inserted  by using
+	user defined abbreviations which replaced in the completion process.
+	The old behavior of using key sequences for inserting user tags
+	certainly is still possible. And lastly user defined latex commands
+	are automatically scanned and can be used for command completion.</P>
+	<LI><P>Apart from using wizards, new documents can be created by
+	using templates. User can add own templates which can be edited or
+	removed later on if necessary.</P>
+	<LI><P>The symbol panel was extended. It was also extended by &ldquo;kile&rdquo;
+	symbol list. It also can insert &ldquo;tags&rdquo; from textual
+	lists. And finally the column count automatically adapts to the
+	available horizontal space. Not to mention that unwanted symbol
+	lists can be hidden.</P>
+	<LI><P>The symbol list selector was moved to the left edge to give
+	more room for the symbols, like it was done in texmaker.</P>
+	<LI><P>Hover help was implemented. Hovering the cursor over standard
+	latex commands will present tool tip help. If it is hovers over
+	references, the corresponding text passage which contains the label
+	is shown as tool tip.</P>
+	<LI><P>A preview for selected text can be shown either in the status
+	panel or as tool tip.</P>
+	<LI><P>The status/log/error panel can also be used in a tabbed
+	manner if desired.</P>
+	<LI><P>The online spell checker handles escaped chars like &ldquo;a
+	or \&rdquo;{a} now correctly. It also refrain from spell checking in
+	(some) latex command options like \ref{label} and some more.</P>
+	<LI><P>The context menu of the structure view gives some useful
+	option like selecting a complete section or indenting a section
+	which means changing \section to \subsection and accordingly all
+	included headings as well.</P>
+	<li><p>A thesaurus was added. It allows search for word parts as well.</p>
+	<LI><P>For sure, lots of bugs have been squashed !</P>
+</ul>
 <h1><a name="SECTION0">1. Configuring TexMakerXX</a></h1>
 Before using TexMakerX, you should configure the editor and latex related commands via the "Configure TexMakerX" command in the "Options" menu ("Preferences" under macosx).
 <h2><a name="SECTION01">1.1 Configuring the editor</a></h2>
