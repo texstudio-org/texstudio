@@ -347,12 +347,12 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	
 	
 	//create icons
-	createIcon(tr("General"),QIcon(":/images/configeditor.png"));
+	createIcon(tr("General"),QIcon(":/images/configgeneral.png"));
 	createIcon(tr("Commands"),QIcon(":/images/configtools.png"));
 	createIcon(tr("Quick Build"),QIcon(":/images/configquick.png"));
 	createIcon(tr("Shortcuts"),QIcon(":/images/configkeys.png"));
 	createIcon(tr("Editor"),QIcon(":/images/configeditor.png"));
-	createIcon(tr("Completion"),QIcon(":/images/configeditor.png"));
+	createIcon(tr("Completion"),QIcon(":/images/configcompletion.png"));
 
 	connect(ui.contentsWidget,
 	        SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),

@@ -83,6 +83,12 @@
        <height>32000</height>
       </size>
      </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
      <property name="iconSize">
       <size>
        <width>96</width>
@@ -91,6 +97,12 @@
      </property>
      <property name="spacing">
       <number>12</number>
+     </property>
+     <property name="gridSize">
+      <size>
+       <width>150</width>
+       <height>130</height>
+      </size>
      </property>
      <property name="viewMode">
       <enum>QListView::IconMode</enum>
