@@ -16,7 +16,9 @@ QString getCommonEOW() {
 
 QStringList findResourceFiles(const QString& dirName, const QString& filter) {
 	QStringList searchFiles;
-	QString dn = dirName.endsWith('/')?"":("/"+dirName);
+	QString dn = dirName;
+	if (dn.endsWith('/')||dn.endsWith(QDir::separator())) dn=dn.left(dn.length()-1); //remove / at the end
+	if (!dn.startsWith('/')&&!dn.startsWith(QDir::separator())) dn="/"+dn; //add / at beginning
 	searchFiles<<":"+dn; //resource fall back
 	searchFiles<<QCoreApplication::applicationDirPath() + dn; //windows new
 	// searchFiles<<QCoreApplication::applicationDirPath() + "/data/"+fileName; //windows new
