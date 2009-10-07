@@ -233,7 +233,8 @@ private slots:
 	void updateStructureForFile(const QString& fileName);
 	void ShowStructure();
 	void ClickedOnStructure(QTreeWidgetItem *item,int);
-
+	void editRemovePlaceHolders();
+	
 	void NormalCompletion();
 	void InsertEnvironmentCompletion();
 	void InsertTextCompletion();

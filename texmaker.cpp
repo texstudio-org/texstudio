@@ -412,6 +412,7 @@ void Texmaker::setupMenus() {
 
 	menu->addSeparator();
 	newManagedAction(menu,"reparse",tr("Refresh Structure"),SLOT(updateStructure()));
+	newManagedAction(menu,"removePlaceHolders",tr("Remove Placeholders"),SLOT(editRemovePlaceHolders()),Qt::CTRL+Qt::SHIFT+Qt::Key_K);
 
 
 //tools
@@ -2129,6 +2130,12 @@ void Texmaker::ClickedOnStructure(QTreeWidgetItem *item,int col) {
 	}
 }
 
+void Texmaker::editRemovePlaceHolders(){
+	if (!currentEditor()) return;
+	for (int i=currentEditor()->placeHolderCount();i>=0;i--)
+		currentEditor()->removePlaceHolder(i);
+	currentEditor()->viewport()->update();
+}
 //////////TAGS////////////////
 void Texmaker::NormalCompletion() {
 	if (!currentEditorView())	return;
