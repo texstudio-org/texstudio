@@ -119,6 +119,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	connect(EditorView, SIGNAL(currentChanged(QWidget *)), this, SLOT(UpdateCaption()));
 	if (hasAtLeastQt(4,5)){
 		EditorView->setProperty("tabsClosable",true);
+		EditorView->setProperty("movable",true);
 		connect(EditorView, SIGNAL(tabCloseRequested(int)), this, SLOT(CloseEditorTab(int)));
 	}
 	setCentralWidget(EditorView);
