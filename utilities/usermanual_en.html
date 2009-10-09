@@ -50,7 +50,7 @@ body { background: #ffffff; color: black; }
 	<ul>
 	<li><a href="#SECTION31">4.1 About documents separated in several files</a></li>
 	<li><a href="#SECTION32">4.2 Bibliography</a></li>
-	<li><a href="#SECTION33">4.3 Personals tags ans tools</a></li>
+	<li><a href="#SECTION33">4.3 Personal tags and tools</a></li>
 	<li><a href="#SECTION34">4.4 Pstricks support</a></li>
 	<li><a href="#SECTION35">4.5 Metapost support</a></li>
 	<li><a href="#SECTION36">4.6 The "Convert to Html" command</a></li>
@@ -109,12 +109,12 @@ changed functionality:</P>
 	<li><p>A thesaurus was added. It allows search for word parts as well.</p>
 	<LI><P>For sure, lots of bugs have been squashed !</P>
 </ul>
-<h1><a name="SECTION0">1. Configuring TexMakerXX</a></h1>
+<h1><a name="SECTION0">1. Configuring TexMakerX</a></h1>
 Before using TexMakerX, you should configure the editor and latex related commands via the "Configure TexMakerX" command in the "Options" menu ("Preferences" under macosx).
 <h2><a name="SECTION01">1.1 Configuring the editor</a></h2>
 <p>
 You can should set the default encoding for new files ("Configure TexMakerX" -> "Editor" -> "Editor Font Encoding") if you don't want utf8 as encoding. Don't forget to set the same encoding in the preamble of your documents. (e.g. \usepackage[utf8]{inputenc}, if you use utf-8).<br>
-TexMakerX can auto detect utf-8 and latin1 encoded files, but if you use a different encoding in your existing documents you have to specify it in the configuration dialog before opening them. (and then you also have to disable the autodetection)
+TexMakerX can auto detect utf-8 and latin1 encoded files, but if you use a different encoding in your existing documents you have to specify it in the configuration dialog before opening them. (and then you also have to disable the auto detection)
 </p>
 <h2><a name="SECTION02">1.2 Configuring the latex related commands</a></h2>
 <p>TexMakerX can't compile yours documents if the paths to the LaTeX related commands are wrong.<br>
@@ -124,7 +124,7 @@ The <strong>%</strong> character represents the name of the file without the ext
 <p><IMG src="doc14.png" border="1"></p>
 <h2><a name="SECTION03">1.3 Configuring the spell checker</a></h2>
 <p>
-The spell checker uses the OpenOffice.org dictionaries. Only GPL french and british dictionaries are distributed with TexMakerX.<br>
+The spell checker uses the OpenOffice.org dictionaries. Only GPL French and British dictionaries are distributed with TexMakerX.<br>
 Users can download others dictionaries here : <A href="http://wiki.services.openoffice.org/wiki/Dictionaries" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A><br>
 To configure the spell checker : "Configure TexMakerX" -> "Editor" -> "Spelling dictionary" -> click on the button at the end of the line to select the dictionary with the file browser. If you specify a non existing file the edit gets red.<br>
 Warning : spell checking with Ctrl+Shift+F7 starts at the cursor position and not at the beginning of the document.<br><br>
@@ -133,7 +133,7 @@ The ignore list is normally saved in the same directory as the dictionary with t
 </p>
 <h1><a name="SECTION1">2. Editing a TeX document</a></h1>
 <h2><a name="SECTION11">2.1 Usual commands</a></h2>
-<p>The standard commands (cut, copy, find...) can be launched via the "Edit" menu and the "Edit" toolbar.</p>
+<p>The standard commands (cut, copy, find...) can be launched via the "Edit" menu and the "Edit" tool bar.</p>
 <p><IMG src="doc1.png" border="1"></p>
 <h2><a name="SECTION12">2.2 Setting the preamble of a TeX document</a></h2>
 <p>To define the preamble of your document, you can use the "Quick start" wizard ("Wizard" menu).</p>
@@ -141,7 +141,7 @@ The ignore list is normally saved in the same directory as the dictionary with t
 <p>This dialog allows you to set the main features of your document (class, paper size, encoding...).<br>Note : You can add other options by clicking the "+" buttons. All yours settings are recorded.</p>
 <p>You can also type your own preamble model in the editor : with the "Copy/paste" or "Save As" commands, you can use it for a new document.</p>
 <h2><a name="SECTION13">2.3 Structure of a document</a></h2>
-<p>To define a new part (section,subsection...) in your document with TexMakerX, just use this combobox in the toolbar :</p>
+<p>To define a new part (section,subsection...) in your document with TexMakerX, just use this combo box in the tool bar :</p>
 <p><IMG src="doc3.png" border="1"></p>
 <p>This will cause a dialog to pop up which allows you to define the style of the part (section,subsection...).<br>Note : the "Structure View" is automatically updated.</p>
 <p><IMG src="doc4.png" border="1"></p>
@@ -152,7 +152,7 @@ The ignore list is normally saved in the same directory as the dictionary with t
 <p>For each file, three bookmarks can be used to speed up navigation : just click on a line number to add or remove a bookmark. When you have already defined three bookmarks, you must remove one of them to add a new bookmark. To jump to the line corresponding to a bookmark in the editor, just click on the buttons in the status bar.</p>
 <p><IMG src="doc20.png" border="1"></p>
 <h2><a name="SECTION15">2.5 Formatting your text</a></h2>
-<p>You can quickly set the format of a part of your text with this toolbar :</p>
+<p>You can quickly set the format of a part of your text with this tool bar :</p>
 <p><IMG src="doc6.png" border="1"></p>
 <p><b>Additional option:</b> a selected text can be directly framed by certain environments. Example: while clicking on the button "Bold" after having selected the word "Hello" , you will obtain the code: \textbf{Hello}.<br>This option is available for all the environments indicated by "[selection]" in the "LaTeX" menu.</p>
 <h2><a name="SECTION16">2.6 Spacings</a></h2>
@@ -182,7 +182,10 @@ The ignore list is normally saved in the same directory as the dictionary with t
 <p><IMG src="doc13.png" border="1"></p>
 <h2><a name="SECTION112">2.13 Auto Completion</a></h2>
 <p>Whenever you press \  followed by a letter, a list of possible LaTex tags is shown where you select the right one. If you write additional letters the list is filtered, so that only the tags starting with the already written text are shown. You can also press Ctrl+Space to open this list whenever you want.<br>
-If a tag has different options, a short descriptive text is inserted into your text, telling you the meaning of each option. You can press Ctrl+Left, Ctrl+Right to select all positions.
+If a tag has different options, a short descriptive text is inserted into your text, telling you the meaning of each option. You can press Ctrl+Left, Ctrl+Right to select all positions.<br>
+Furthermore normal text can be completed by starting to type a word and pressing Ctrl+Space. All apropriate words in the current document are used as possible suggestions.<br>
+If a enviroment is to be inserted, typing in the beginning of the environment name and pressing Ctrl+Alt+Space gives suggestions for adequate enviroments which are inserted completely with \begin{env}..\end{env}<br>
+And finally user tags can be assigned a abbreviation which can also be used with completion. Just type in the start of the abbreviation and start the completion with Ctrl+Space. The abbreviation should show up in the completion list, especially marked with &ldquo;abbreviation (template)&rdquo;.
 </p>
 
 <h1><a name="SECTION2">3. Compiling a document</a></h1>
@@ -263,14 +266,17 @@ With the "--start-always" option, TexMakerX will start, even if another instance
 </p>
 <h2><a name="SECTION39">4.9 Keyboard shortcuts</a></h2>
 <p>
-Defaults keyboard shorscuts <!--(*:can be modified - "Configure TexMakerX" -> "Editor") -->:
+Defaults keyboard shortcuts <!--(*:can be modified - "Configure TexMakerX" -> "Editor") -->:
 <ul>
 <li> "File" menu :
 	<ul>
 	<li>New : Ctrl+N</li>
 	<li>Open : Ctrl+O</li>
 	<li>Save : Ctrl+S</li>
+	<li>Save as: Ctrl+Alt+S</li>
+	<li>Save all: Ctrl+Shift+Alt+S</li>
 	<li>Close : Ctrl+W</li>
+	<li>Print : Ctrl+P</li>
 	<li>Exit : Ctrl+Q</li>
 	</ul>
 </li>
@@ -281,9 +287,10 @@ Defaults keyboard shorscuts <!--(*:can be modified - "Configure TexMakerX" -> "E
 	<li>Copy : Ctrl+C</li>
 	<li>Cut : Ctrl+X</li>
 	<li>Paste : Ctrl+V</li>
+	<li>Paste as latex: Ctrl+Shift+V</li>
 	<li>Select all : Ctrl+A</li>
-	<li>Comment : Ctrl+T</li>
-	<li>Uncomment : Ctrl+U</li>
+	<li>Remove line : Ctrl+K</li>
+	<li>Show preview : Alt+P</li>
 	<li>Find : Ctrl+F</li>
 	<li>Find next : Ctrl+M</li>
 	<li>Replace : CTrl+R</li>
@@ -292,9 +299,19 @@ Defaults keyboard shorscuts <!--(*:can be modified - "Configure TexMakerX" -> "E
 	<li>Jump to previous change: Ctrl+Shift+H</li>
 	<li>Set Bookmark 0..9: Ctrl+Shift+0..9</li>
 	<li>Jump to Bookmark 0..9: Ctrl+0..9</li>
-	<li>Next Latex Error: Ctrl+Down</li>
-	<li>Previous Latex Error: Ctrl+Up</li>
+	<li>Next Marker: Ctrl+Down</li>
+	<li>Previous Marker: Ctrl+Shift+Up</li>
+	<li>Next Latex Error: Ctrl+Shift+Down</li>
+	<li>Previous Latex Error: Ctrl+Shift+Up</li>
+	<li>Next Latex Warning: Ctrl+Alt+Down</li>
+	<li>Previous Latex Warning: Ctrl+Alt+Up</li>
+	<li>Next Latex Bad Box: Shift+Alt+Down</li>
+	<li>Previous Latex Bad Box: Shift+Alt+Up</li>
+	<li>Go to definition: Ctrl+Alt+F</li>
 	<li>Check spelling (from cursor) : Ctrl+Shift+F7</li>
+	<li>Open Thesaurus : Ctrl+Shift+F8</li>
+	<li>Refresh Structure View : F12</li>
+	<li>Remove placeholders : Ctrl+Shift+K</li>
 	</ul>
 </li>
 <li> "Tools" menu :
@@ -308,7 +325,6 @@ Defaults keyboard shorscuts <!--(*:can be modified - "Configure TexMakerX" -> "E
 	<li>View Pdf : F7</li>
 	<li>PS->Pdf : F8</li>
 	<li>Dvi->Pdf : F9</li>
-	<li>View log : F10</li>
 	<li>Bibtex : F11</li>
 	<li>Make index : F12</li>
 	</ul>
@@ -323,6 +339,8 @@ Defaults keyboard shorscuts <!--(*:can be modified - "Configure TexMakerX" -> "E
 	<li>* Small caps : Ctrl+Shift+C</li>
 	<li>* Emphasis : Ctrl+Shift+E</li>
 	<li>* New line : Ctrl+Return</li>
+	<li>* begin{environment} : Ctrl+E</li>
+	<li>* Insert reference to next label : Ctrl+Alt+R</li>
 	</ul>
 </li>
 <li> * "Math" menu :
@@ -343,6 +361,13 @@ Defaults keyboard shorscuts <!--(*:can be modified - "Configure TexMakerX" -> "E
 	<ul>
 	<li>User tags : Shift+F1...Shift+F10</li>
 	<li>User commands : Shift+Alt+F1...Shift+Alt+F10</li>
+	</ul>
+</li>
+<li> "View" menu :
+	<ul>
+	<li>Next Document : Alt+PgUp</li>
+	<li>Previous Document : Alt+PgDown</li>
+	<li>View log : F10</li>
 	</ul>
 </li>
 </ul>
