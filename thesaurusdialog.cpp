@@ -110,9 +110,10 @@ void ThesaurusDialog::readDatabase(const QString filename)
 	do {
 		line = stream.readLine();
 		parts=line.split("|");
-		if(parts[0]=="-"){
+		if(parts[0]=="-"||parts[0].startsWith("(")){
 			parts.removeFirst();
 			Thesaurus.insert(key,parts);
+			//TODO: do something something that word type is included in key and still correct search is possible
 		}
 		else {
 			key=parts[0];
