@@ -1055,7 +1055,15 @@ void Texmaker::templateEdit(){
 void Texmaker::fileNewFromTemplate() {
 	// select Template
 	QString f_real;
-	if(!templateSelectorDialog) templateSelectorDialog=new templateselector(this,tr("Templates"));
+	if(!templateSelectorDialog) {
+		templateSelectorDialog=new templateselector(this,tr("Templates"));
+		QAction *act=new QAction(tr("Edit"),this);
+		connect(act,SIGNAL(triggered()),this,SLOT(templateEdit()));
+		templateSelectorDialog->ui.listWidget->addAction(act);
+		act=new QAction(tr("Remove"),this);
+		connect(act,SIGNAL(triggered()),this,SLOT(templateRemove()));
+		templateSelectorDialog->ui.listWidget->addAction(act);
+	}
 	QStringList templates=findResourceFiles("templates/","template_*.tex");
 	int len=templates.size();
 	templates << userTemplatesList;
@@ -1063,12 +1071,7 @@ void Texmaker::fileNewFromTemplate() {
 	templates.replaceInStrings(QRegExp(".tex$"),"");
 	templateSelectorDialog->ui.listWidget->clear();
 	templateSelectorDialog->ui.listWidget->insertItems(0,templates);
-	QAction *act=new QAction(tr("Edit"),this);
-	connect(act,SIGNAL(triggered()),this,SLOT(templateEdit()));
-	templateSelectorDialog->ui.listWidget->addAction(act);
-	act=new QAction(tr("Remove"),this);
-	connect(act,SIGNAL(triggered()),this,SLOT(templateRemove()));
-	templateSelectorDialog->ui.listWidget->addAction(act);
+
 	if(templateSelectorDialog->exec()){
 		if(templateSelectorDialog->ui.listWidget->currentRow()<len){
 			f_real="templates/template_"+templateSelectorDialog->ui.listWidget->currentItem()->text()+".tex";
