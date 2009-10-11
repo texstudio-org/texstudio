@@ -22,6 +22,7 @@ body { background: #ffffff; color: black; }
 	<li><a href="#SECTION01">1.1 Configuring the editor</a></li>
 	<li><a href="#SECTION02">1.2 Configuring the latex related commands</a></li>
 	<li><a href="#SECTION03">1.3 Configuring the spell checker</a></li>
+	<li><a href="#SECTION04">1.4 Configuring the thesaurus</a></li>
 	</ul>
 </ul>
 <ul>
@@ -139,6 +140,29 @@ Warning : spell checking with Ctrl+Shift+F7 starts at the cursor position and no
 If the interactive spell checker is enabled (default), any wrong spelled word is underlined with a red wave. Click on it with the right mouse to open an menu with a list of possible corrections. There you can also move it to the ignore list. If your dictionary is very large (> 5MB), opening the context menu and showing possible suggestions can take some seconds. If you don't need the suggestion, you can press shift while right clicking and don't have to wait.<br><br>
 The ignore list is normally saved in the same directory as the dictionary with the extension .ign. If this isn't possible (e.g. missing access) the list is stored in the user configuration directory.
 </p>
+<h2><a name="SECTION04">1.4 Configuring the thesaurus</a></h2>
+<p>
+The thesaurus uses OpenOffice.org 2.x databases. Only GPL French and US-English and German databases are distributed with TexMakerX.<br>
+Users can download others databases here : <A href="http://wiki.services.openoffice.org/wiki/Dictionaries" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A><br>
+</p>
+<h2><a name="SECTION04">1.4 Configuring the autocompletion</a></h2>
+<p>
+TexMakerX has taken up completion word list from kile which extended the number of known commands for completion considerably.
+This probably not every command is useful in your document if the corresponding latex package is not used, TexMakerX allows to select the valid word list under 
+"Configure TexMakerX" -> "Editor" -> "". The names of the word lists corresponds to the package for which they are made. The list latex.cwl contains the standard latex commands. <br>
+Concerning auto completion, TexMakerX allows to adapt the behaviour to your liking.
+Following options are available:
+<ul>
+<li>Completion enabled: self explanatory
+<li>Case sensitive: let's you complete e.g. \Large from \la ...
+<li>in first character: ?
+<li>Auto Complete Common Prefix: if only one item is in the list or all items in the completion list share common starting characters, the common characters are directly inserted, like pressing the key Tab.
+<li>Complete selected text when non-word character is pressed: when in completion mode, pressing a non-word character like space, leads to accepting the selected word. This may speed up typing.
+<li>Enable ToolTip-Help: show tool tips on selected latex commands in the completion list.
+<li>Use Placeholders: if the completed commands have options which need to be filled out, "place holder" are put at this positions and they can be jumped to by using Ctrl+Right/Ctrl+Left.
+</ul>
+</p>
+<p><IMG src="configure_completion.png" border="1"></p>
 <h1><a name="SECTION1">2. Editing a TeX document</a></h1>
 <h2><a name="SECTION11">2.1 Usual commands</a></h2>
 <p>The standard commands (cut, copy, find...) can be launched via the "Edit" menu and the "Edit" tool bar.</p>
