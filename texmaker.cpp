@@ -1715,6 +1715,7 @@ void Texmaker::ReadSettings() {
 	resize(w,h);
 	move(x,y);
 	windowstate=config->value("MainWindowState").toByteArray();
+        if(config->value("MainWindow/Maximized").toBool()) showMaximized();
 
 
 	showoutputview=config->value("Show/OutputView",true).toBool();
@@ -1805,11 +1806,14 @@ void Texmaker::SaveSettings() {
 
 
 	config->setValue("MainWindowState",saveState(0));
+        config->setValue("MainWindow/Maximized", isMaximized());
+
 	config->setValue("Geometries/MainwindowWidth", width());
 
 	config->setValue("Geometries/MainwindowHeight", height());
 	config->setValue("Geometries/MainwindowX", x());
 	config->setValue("Geometries/MainwindowY", y());
+
 
 	config->setValue("Show/OutputView",showoutputview);
 
