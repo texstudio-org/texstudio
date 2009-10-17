@@ -115,6 +115,8 @@ bool QSearchReplacePanel::forward(QMouseEvent *e)
 void QSearchReplacePanel::display(int mode, bool replace)
 {
 	//qDebug("display(%i)", replace);
+        if (! m_search) init();
+
 	bool visible = true;
 
 	if ( mode < 0 )
@@ -127,9 +129,21 @@ void QSearchReplacePanel::display(int mode, bool replace)
 		cbReplace->setChecked(replace);
 		//frameReplace->setVisible(replace);
 		leFind->setFocus();
-		leFind->selectAll();
-		if (m_search && cbHighlight->isChecked() && !m_search->hasOption(QDocumentSearch::HighlightAll)) 
-			m_search->setOption(QDocumentSearch::HighlightAll, true);
+
+                if (m_search){
+                    if(editor()->cursor().hasSelection()){
+                        if(editor()->cursor().anchorLineNumber()!=editor()->cursor().lineNumber()){
+                            cbSelection->setChecked(true);
+                        }else{
+                            // single line selection
+                            // copy content to leFind
+                            leFind->setText(editor()->cursor().selectedText());
+                        }
+                    }
+                    if (cbHighlight->isChecked() && !m_search->hasOption(QDocumentSearch::HighlightAll))
+                        m_search->setOption(QDocumentSearch::HighlightAll, true);
+                }
+                leFind->selectAll();
 		//show();
 	}else{
 		if ( m_search )
