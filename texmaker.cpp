@@ -132,6 +132,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	setupToolBars();
 
 	restoreState(windowstate, 0);
+	if(tobemaximized) showMaximized();
 
 	createStatusBar();
 	UpdateCaption();
@@ -1715,7 +1716,7 @@ void Texmaker::ReadSettings() {
 	resize(w,h);
 	move(x,y);
 	windowstate=config->value("MainWindowState").toByteArray();
-        if(config->value("MainWindow/Maximized").toBool()) showMaximized();
+	tobemaximized=config->value("MainWindow/Maximized",false).toBool();
 
 
 	showoutputview=config->value("Show/OutputView",true).toBool();

@@ -60,6 +60,7 @@ public:
 	QString getAbsoluteFilePath(const QString & relName, const QString &extension=""); //treats the path relative to the compiled .tex file
 	QString getRelativeBaseName(const QString & file);//get completebasename with path relative to the compiled file for a given file 
 	QByteArray windowstate;
+	bool tobemaximized;
 public slots:
 	LatexEditorView* load(const QString &f , bool asProject = false);
 	void executeCommandLine(const QStringList& args, bool realCmdLine);
