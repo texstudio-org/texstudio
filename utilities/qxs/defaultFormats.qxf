@@ -158,4 +158,7 @@
 		<waveUnderline>true</waveUnderline>
 		<foreground>#008000</foreground>
 	</format>
+	<format id="current" >
+		<background>#EEEEFF</foreground>
+	</format>
 </QXF>
