@@ -5461,7 +5461,8 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	QBrush bg,
 		base = cxt.palette.base(),
 		selbg = cxt.palette.highlight(),
-		alternate = QLineMarksInfoCenter::instance()->markType("current").color;
+		//alternate = QLineMarksInfoCenter::instance()->markType("current").color;
+		alternate = QDocument::formatFactory()->format("current").toTextCharFormat().background();
 
 	if ( !alternate.color().isValid() )
 		alternate = cxt.palette.alternateBase();
