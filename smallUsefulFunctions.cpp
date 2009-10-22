@@ -111,6 +111,7 @@ QString latexToPlainWord(const QString& word) {
 	replaceList.append(QPair<QString, QString> ("\"a","\xE4"));
 	replaceList.append(QPair<QString, QString> ("\"o","\xF6"));
 	replaceList.append(QPair<QString, QString> ("\"u","\xFC"));
+	replaceList.append(QPair<QString, QString> ("\"s","\xDF"));
 	replaceList.append(QPair<QString, QString> ("\"A","\xC4"));
 	replaceList.append(QPair<QString, QString> ("\"O","\xD6"));
 	replaceList.append(QPair<QString, QString> ("\"U","\xDC"));
