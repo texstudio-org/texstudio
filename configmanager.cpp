@@ -183,11 +183,14 @@ QSettings* ConfigManager::readSettings() {
 	configShowAdvancedOptions = config->value("Interface/Config Show Advanced Options",false).toBool();
 	interfaceStyle=config->value("X11/Style",interfaceStyle).toString(); //named X11 for backward compatibility
 	defaultStyleName=QApplication::style()->objectName();
+	#if QT_VERSION >= 0x040500
 	modernStyle=config->value("GUI/Style", false).toBool();
 	if (modernStyle) {
 		ManhattanStyle* style=new ManhattanStyle(interfaceStyle==""?defaultStyleName:interfaceStyle);
 		if (style->isValid()) QApplication::setStyle(style);
-	} else if (interfaceStyle!="") QApplication::setStyle(interfaceStyle); 
+	} else 
+	#endif
+		if (interfaceStyle!="") QApplication::setStyle(interfaceStyle); 
 
 	interfaceFontFamily = config->value("X11/Font Family",QApplication::font().family()).toString();
 	interfaceFontSize = config->value("X11/Font Size",QApplication::font().pointSize()).toInt();		
@@ -656,10 +659,13 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 				newStyle=defaultStyleName;
 			}
 			QPalette pal = QApplication::palette();
+			#if QT_VERSION >= 0x040500
 			if (modernStyle) {
 				ManhattanStyle* style=new ManhattanStyle(newStyle);
 				if (style->isValid()) QApplication::setStyle(style);
-			} else QApplication::setStyle(newStyle);
+			} else 
+			#endif
+				QApplication::setStyle(newStyle);
 			QApplication::setPalette(pal);
 		}
 	
