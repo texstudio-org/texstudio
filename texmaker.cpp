@@ -1115,7 +1115,7 @@ void Texmaker::fileNewFromTemplate() {
 		edit->editor->document()->setLineEnding(edit->editor->document()->originalLineEnding());
 		*/
 
-		edit->editor->setFileName("untitled");
+		//edit->editor->setFileName("untitled");
 		UpdateCaption();
 		NewDocumentStatus(true);
 
