@@ -1,6 +1,6 @@
 Name: texmakerx
 Summary: LaTeX editor
-Version: 1.8.1
+Version: 1.9.2
 License: GPL
 Group: Applications/Publishing
 Source: texmakerx.svn.sourceforge.net/svnroot/texmakerx/trunk

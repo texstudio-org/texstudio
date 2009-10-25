@@ -192,14 +192,31 @@ unix:!macx {
         utilities/latexhelp.html \
         texmakerx_fr.qm \
         texmakerx_de.qm \
+        texmakerx_it.qm \
         utilities/qt_fr.qm \
         utilities/qt_de.qm \
+        templates/template_Article.tex \
+        templates/template_Beamer.tex  \
+        templates/template_Book.tex    \
+        templates/template_HA-prosper.tex \
+        templates/template_Letter.tex     \
+        templates/template_Prosper.tex    \
+        templates/template_Report.tex     \
+        templates/template_Scrartcl.tex   \
+        templates/template_Scrbook.tex    \
+        templates/template_Scrlttr2.tex   \
+        templates/template_Scrreprt.tex   \
         utilities/usermanual_en.html \
         utilities/usermanual_fr.html \
         utilities/en_GB.aff \
         utilities/en_GB.dic \
         utilities/fr_FR.aff \
         utilities/fr_FR.dic \
+        utilities/de_DE.aff \
+        utilities/de_DE.dic \
+        utilities/th_en_US_v2.dat \
+        utilities/th_fr_FR_v2.dat \
+        utilities/th_de_DE_v2.dat \            
         utilities/AUTHORS \
         utilities/COPYING \
         utilities/CHANGELOG.txt \
@@ -258,14 +275,31 @@ macx {
         utilities/latexhelp.html \
         texmakerx_fr.qm \
         texmakerx_de.qm \
+        texmakerx_it.qm \
         utilities/qt_fr.qm \
         utilities/qt_de.qm \
+        templates/template_Article.tex \
+        templates/template_Beamer.tex  \
+        templates/template_Book.tex    \
+        templates/template_HA-prosper.tex \
+        templates/template_Letter.tex     \
+        templates/template_Prosper.tex    \
+        templates/template_Report.tex     \
+        templates/template_Scrartcl.tex   \
+        templates/template_Scrbook.tex    \
+        templates/template_Scrlttr2.tex   \
+        templates/template_Scrreprt.tex   \
         utilities/usermanual_en.html \
         utilities/usermanual_fr.html \
         utilities/en_GB.aff \
         utilities/en_GB.dic \
         utilities/fr_FR.aff \
         utilities/fr_FR.dic \
+        utilities/de_DE.aff \
+        utilities/de_DE.dic \
+        utilities/th_en_US_v2.dat \
+        utilities/th_fr_FR_v2.dat \
+        utilities/th_de_DE_v2.dat \            
         utilities/AUTHORS \
         utilities/COPYING \
         utilities/CHANGELOG.txt
