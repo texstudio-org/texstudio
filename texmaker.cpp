@@ -679,6 +679,17 @@ void Texmaker::setupToolBars() {
 	combo5=createComboToolButton(mathToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(RightDelimiter()));
 	mathToolBar->addWidget(combo5);
 
+// spelling language
+	spellToolBar = addToolBar("Spelling");
+	spellToolBar->setObjectName("Spelling");
+	list.clear();
+	QDir fic=QFileInfo(spell_dic).absoluteDir();
+	if (fic.exists() && fic.isReadable())
+			list << fic.entryList(QStringList("*.dic"),QDir::Files,QDir::Name);
+
+
+	comboSpell=createComboToolButton(spellToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()));
+	spellToolBar->addWidget(comboSpell);
 }
 
 
@@ -2889,6 +2900,18 @@ void Texmaker::RightDelimiter() {
 	if (text=="right }") InsertTag("\\right\\rbrace ",14,0);
 	if (text=="right >") InsertTag("\\right\\rangle ",14,0);
 	if (text=="right.") InsertTag("\\right. ",8,0);
+}
+
+void Texmaker::SpellingLanguageChanged() {
+	QAction *action = qobject_cast<QAction *>(sender());
+	if (!action) return;
+	if (!currentEditorView()) return;
+	QString text=action->text();
+	comboSpell->defaultAction()->setText(text);
+
+	QString baseName=QFileInfo(spell_dic).absolutePath();
+	spell_dic=baseName+"/"+text;
+	mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);
 }
 
 ///////////////TOOLS////////////////////
