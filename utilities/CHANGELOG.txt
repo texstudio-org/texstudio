@@ -1,4 +1,20 @@
+TexmakerX 1.8.1 -> TexMakerX 1.9.2
+--------------------------------------
+- added experimental latex preview
+- added random text generator
+- added integrated synonym dictionary (using openOffice databases, default en, de, fr)
+- added interactive checking of correct \ref to \label matching
+- added BibTeX parser, interactive checking of correct \cite commands and bibtex insert dialog
+- added templates
+- added tabbed log panel
+- extended completer word list using kile cwl files
+- imported more math symbols (+730) from kile
+- imported changes of texmaker 1.8.1->1.9.2 (favourite symbols, new color scheme, a)
+- fixed several bugs
+- see usermanual_en.html for a more detailed description
+
 TexmakerX 1.8 -> TexMakerX 1.8.1
+-------------------------------------
 - added Windows DDE support
 - added free menu key board mapping (also shift+insert key bindings)
 - added word completion
@@ -7,7 +23,9 @@ TexmakerX 1.8 -> TexMakerX 1.8.1
 - fixed MAC support (compiling, line endings)
 - fixed possible crash with multiple instances and spellchecking
 - more bug fixes
+
 version Texmaker 1.8 -> TexMakerX 1.8
+-------------------------------------
 - editor based on qcodeedit (code folding, better bookmarks, incremental search, ...)
 - interactive spell checking, spell checker based on hunspell-1.2.8 (fixing bug)
 - code completion adding descriptive texts
@@ -15,7 +33,8 @@ version Texmaker 1.8 -> TexMakerX 1.8
 - --start-always command line option added 
 - stdout is now listed in the list
 - text analysis
-- maintaining author changed, new name, new howepage: texmakerx.sourceforge.net
+- maintaining author changed, new name, new homepage: texmakerx.sourceforge.net
+
 version 1.7.1 -> 1.8:
 ----------------------
 - texmaker can now be only started once per user : inverse search will no more launch a new instance of texmaker
