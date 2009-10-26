@@ -109,13 +109,13 @@ private:
 
 //toolbars
 //
-	QToolBar *fileToolBar, *editToolBar, *runToolBar, *formatToolBar, *mathToolBar;
+	QToolBar *fileToolBar, *editToolBar, *runToolBar, *formatToolBar, *mathToolBar, *spellToolBar;
 	QAction *ToggleAct, *ToggleRememberAct;
 
 	QLabel *stat1, *stat2, *stat3;
 	QString MasterName,persistentMasterFile;
 	
-	QToolButton *combo1,*combo2,*combo3,*combo4,*combo5;
+	QToolButton *combo1,*combo2,*combo3,*combo4,*combo5,*comboSpell;
 
 //settings
 	ConfigManager configManager;
@@ -268,6 +268,8 @@ private slots:
 	void SizeCommand();
 	void LeftDelimiter();
 	void RightDelimiter();
+
+	void SpellingLanguageChanged();
 
 	void QuickTabular();
 	void QuickArray();

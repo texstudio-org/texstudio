@@ -365,7 +365,12 @@ QToolButton* createComboToolButton(QWidget *parent,const QStringList& list,const
 	combo->setPopupMode(QToolButton::MenuButtonPopup);
 	combo->setMinimumHeight(height);
 
-	QAction *mAction=new QAction(list[0],parent);
+	QAction *mAction=0;
+	if(list.isEmpty()){
+		mAction=new QAction("<"+QApplication::tr("none")+">",parent);
+	} else {
+		mAction=new QAction(list[0],parent);
+	}
 	QObject::connect(mAction, SIGNAL(triggered()),receiver,member);
 	combo->setDefaultAction(mAction);
 	QMenu *mMenu=new QMenu(parent);
