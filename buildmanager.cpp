@@ -635,8 +635,13 @@ void ProcessX::startCommand() {
 	if (cmd.startsWith("dde://")) {
 		started=true;
 		BuildManager* manager = qobject_cast<BuildManager*>(parent());
-		if (!manager) return;
+		if (!manager) {
+			emit finished(1);
+			emit finished(1, NormalExit);
+			return;
+		}
 		bool ok = manager->executeDDE(cmd);
+		emit finished(ok?0:1);
 		emit finished(ok?0:1, NormalExit);
 		return;
 	}
