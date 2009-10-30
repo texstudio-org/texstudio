@@ -409,7 +409,13 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void getCursorPosition(int &line, int &index);
 		
 		void clearCursorMirrors();
-		void addCursorMirror(const QDocumentCursor& c);		
+		void addCursorMirror(const QDocumentCursor& c);
+
+		void setUseLineForSearch(bool b)
+		{m_UseLineForSearch=b;}
+		bool UseLineForSearch()
+		{return m_UseLineForSearch;}
+
 	protected slots:
 		void documentWidthChanged(int newWidth);
 		void documentHeightChanged(int newWidth);
@@ -488,6 +494,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		static QHash<QString, QEditorInputBindingInterface*> m_registeredBindings;
 		
 		static int m_manageMenu;
+
+		bool m_UseLineForSearch;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(QEditor::State);

@@ -430,6 +430,7 @@ void LatexEditorView::updateSettings(){
 	lineChangePanelAction->setChecked(config->showlinestate);
 	statusPanelAction->setChecked(config->showcursorstate);
 	editor->setDisplayModifyTime(config->displayModifyTime);
+	editor->setUseLineForSearch(config->useLineForSearch);
 
 	environmentFormat=QDocument::formatFactory()->id("environment");
 	referenceMultipleFormat=QDocument::formatFactory()->id("referenceMultiple");
