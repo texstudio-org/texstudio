@@ -688,7 +688,7 @@ void Texmaker::setupToolBars() {
 			list << fic.entryList(QStringList("*.dic"),QDir::Files,QDir::Name);
 
 
-	comboSpell=createComboToolButton(spellToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()));
+	comboSpell=createComboToolButton(spellToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(spell_dic).fileName());
 	spellToolBar->addWidget(comboSpell);
 }
 
@@ -3404,6 +3404,14 @@ void Texmaker::GeneralOptions() {
 	if (configManager.execConfigDialog(confDlg)) {
 		spell_dic=confDlg->ui.lineEditAspellCommand->text();
 		mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);
+		// refresh quick language selection combobox
+		QFontMetrics fontMetrics(runToolBar->font());
+		QStringList list;
+		QDir fic=QFileInfo(spell_dic).absoluteDir();
+		if (fic.exists() && fic.isReadable())
+			list << fic.entryList(QStringList("*.dic"),QDir::Files,QDir::Name);
+		createComboToolButton(spellToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(spell_dic).fileName(),comboSpell);
+
 		thesaurus_database=confDlg->ui.thesaurusFileName->text();
 		if(thesaurusDialog) thesaurusDialog->readDatabase(thesaurus_database);
 

@@ -80,7 +80,7 @@ bool findTokenWithArg(const QString &line,const QString &token, QString &outName
 QString cutComment(const QString& text);
 
 //setup toolbutton as substitute for const combobox
-QToolButton* createComboToolButton(QWidget *parent,const QStringList& list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member);
+QToolButton* createComboToolButton(QWidget *parent,const QStringList& list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member,QString defaultElem="",QToolButton *combo=0);
 
 
 //check if the run-time qt version is higher than the given version (e.g. 4,3)

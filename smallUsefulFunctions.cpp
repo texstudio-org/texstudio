@@ -360,12 +360,16 @@ bool findTokenWithArg(const QString &line,const QString &token, QString &outName
 }
 
 
-QToolButton* createComboToolButton(QWidget *parent,const QStringList& list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member){
-	QToolButton *combo=new QToolButton(parent);
+QToolButton* createComboToolButton(QWidget *parent,const QStringList& list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member,QString defaultElem,QToolButton *combo){
+	if(combo==0) combo=new QToolButton(parent);
 	combo->setPopupMode(QToolButton::MenuButtonPopup);
 	combo->setMinimumHeight(height);
 
 	QAction *mAction=0;
+	// remove old actions
+	foreach(mAction, combo->actions()){
+		combo->removeAction(mAction);
+	}
 	if(list.isEmpty()){
 		mAction=new QAction("<"+QApplication::tr("none")+">",parent);
 	} else {
@@ -376,8 +380,9 @@ QToolButton* createComboToolButton(QWidget *parent,const QStringList& list,const
 	QMenu *mMenu=new QMenu(parent);
 	int max=0;
 	foreach(QString elem,list){
-		mMenu->addAction(elem,receiver,member);
+		mAction=mMenu->addAction(elem,receiver,member);
 		max=qMax(max,fm.width(elem+"        "));
+		if(elem==defaultElem) combo->setDefaultAction(mAction);
 	}
 	combo->setMinimumWidth(max);
 	combo->setMenu(mMenu);
