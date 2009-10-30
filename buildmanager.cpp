@@ -49,7 +49,7 @@ QString BuildManager::cmdToConfigString(LatexCommand cmd){
 	}
 }
 
-QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mainFile,int currentline) {
+QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentline) {
 	str=str+" "; //end character  so str[i++] is always defined 
 	QString result;
 	result.reserve(2*str.length());
@@ -82,18 +82,22 @@ QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mai
 					command+=str.at(i);
 					i++;
 				}
+				bool useCurrentFile=command.startsWith("c:");
+				const QFileInfo& selectedFile=useCurrentFile?currentFile:mainFile;
+				if (useCurrentFile) command=command.mid(2);
 				//check only sane commands
-				if (command=="ame") command=QDir::toNativeSeparators(mainFile.absoluteFilePath());
+				if (command=="ame") command=QDir::toNativeSeparators(selectedFile.absoluteFilePath());
 				else if (command=="am") {
-					command=QDir::toNativeSeparators(mainFile.absoluteFilePath());
-					if (mainFile.suffix()!="") command.chop(1+mainFile.suffix().length());
+					command=QDir::toNativeSeparators(selectedFile.absoluteFilePath());
+					if (selectedFile.suffix()!="") command.chop(1+selectedFile.suffix().length());
 				} else if (command=="a") {
-					command=QDir::toNativeSeparators(mainFile.absolutePath());
+					command=QDir::toNativeSeparators(selectedFile.absolutePath());
 					if (!command.endsWith(QDir::separator())) command+=QDir::separator();
-				} else if (command=="me") command=mainFile.fileName();
-				else if (command=="m") command=mainFile.completeBaseName();
-				else if (command=="e") command=mainFile.suffix();
+				} else if (command=="me") command=selectedFile.fileName();
+				else if (command=="m") command=selectedFile.completeBaseName();
+				else if (command=="e") command=selectedFile.suffix();
 				else continue; //invalid command
+				//TODO: relative paths rme, rm, re
 				switch (endMode) {
 				case 2:
 					command+=" ";
@@ -115,6 +119,11 @@ QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mai
 	if (result.endsWith(" ")) result.chop(1); //remove additional end character
 	return result;
 }
+
+QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mainFile, int currentLine) {
+		return parseExtendedCommandLine(str, mainFile, mainFile, currentLine);
+}
+
 
 QString BuildManager::findFileInPath(QString fileName) {
 	QStringList env= QProcess::systemEnvironment();    //QMessageBox::information(0,env.join("  \n"),env.join("  \n"),0);
@@ -257,7 +266,7 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 #ifdef Q_WS_WIN
 	switch (cmd) {
 	case CMD_VIEWDVI: {
-		const QString yapOptions = " -1 -s @?ame \"?am.dvi\"";
+		const QString yapOptions = " -1 -s @?c:ame \"?am.dvi\"";
 		QString def=W32_FileAssociation(".dvi");
 		if (!def.isEmpty()) {
 			if (def.contains("yap.exe")) {
@@ -461,13 +470,19 @@ ProcessX* BuildManager::newProcess(LatexCommand cmd, const QString &additionalPa
 	return newProcess(cmdStr, fileToCompile, currentLine);
 }
 
-ProcessX* BuildManager::newProcess(const QString &unparsedCommandLine, const QString &fileToCompile, int currentLine){
-	QFileInfo fi(fileToCompile);
-	QString cmd=BuildManager::parseExtendedCommandLine(unparsedCommandLine,fi,currentLine);	
-	ProcessX* proc = new ProcessX(this, cmd, fileToCompile);
+ProcessX* BuildManager::newProcess(const QString &unparsedCommandLine, const QString &mainFile, const QString &currentFile, int currentLine){
+	QFileInfo mfi(mainFile);
+	QFileInfo cfi;
+	if (mainFile==currentFile) cfi=mfi;
+	else cfi=QFileInfo(currentFile);
+	QString cmd=BuildManager::parseExtendedCommandLine(unparsedCommandLine,mfi,cfi,currentLine);	
+	ProcessX* proc = new ProcessX(this, cmd, mainFile);
 	connect(proc, SIGNAL(finished(int)),proc, SLOT(deleteLater())); //will free proc after the process has ended
-	proc->setWorkingDirectory(fi.absolutePath());
+	proc->setWorkingDirectory(mfi.absolutePath());
 	return proc;
+}
+ProcessX* BuildManager::newProcess(const QString &unparsedCommandLine, const QString &mainFile, int currentLine){
+	return newProcess(unparsedCommandLine, mainFile, mainFile, currentLine);
 }
 
 QTemporaryFile* BuildManager::temporaryTexFile(){
