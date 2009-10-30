@@ -127,7 +127,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -395,7 +395,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="texmaker.qrc">
               <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
             </property>
            </widget>
@@ -448,7 +448,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="texmaker.qrc">
               <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
             </property>
            </widget>
@@ -726,7 +726,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
              <string/>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="texmaker.qrc">
               <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
             </property>
             <property name="iconSize">
@@ -1075,6 +1075,13 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
+          <item row="7" column="2">
+           <widget class="QCheckBox" name="checkBoxUseLineForSearch">
+            <property name="text">
+             <string>Use single line selection as Search Word</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -1267,7 +1274,9 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
   <tabstop>cancelButton</tabstop>
   <tabstop>checkBoxShowAdvancedOptions</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="texmaker.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>okButton</sender>

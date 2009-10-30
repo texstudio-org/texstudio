@@ -16,6 +16,7 @@ public:
 	QFont editorFont;
 	bool displayModifyTime;
 	bool closeSearchAndReplace;
+	bool useLineForSearch;
 
 	void readSettings(QSettings& settings);
 	void saveSettings(QSettings& settings);
