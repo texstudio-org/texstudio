@@ -277,8 +277,8 @@ private slots:
 	void QuickLetter();
 	void QuickDocument();
 
-	void runCommand(BuildManager::LatexCommand cmd,bool waitendprocess,bool showStdout,QString fn="");
-	void runCommand(QString comd,bool waitendprocess,bool showStdout,QString fn="", bool compileLatex=false);
+	void runCommand(BuildManager::LatexCommand cmd,bool waitendprocess,bool showStdout);
+	void runCommand(QString comd,bool waitendprocess,bool showStdout, bool compileLatex=false);
 	void RunPreCompileCommand();
 	void readFromStderr();
 	void readFromStdoutput();

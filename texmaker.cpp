@@ -2915,15 +2915,13 @@ void Texmaker::SpellingLanguageChanged() {
 }
 
 ///////////////TOOLS////////////////////
-void Texmaker::runCommand(BuildManager::LatexCommand cmd,bool waitendprocess,bool showStdout,QString fn){
+void Texmaker::runCommand(BuildManager::LatexCommand cmd,bool waitendprocess,bool showStdout){
 	bool compileLatex=cmd==BuildManager::CMD_LATEX||cmd==BuildManager::CMD_PDFLATEX;
 	if(compileLatex) ClearMarkers();
-	runCommand(buildManager.getLatexCommand(cmd),waitendprocess,showStdout,fn,compileLatex);
+	runCommand(buildManager.getLatexCommand(cmd),waitendprocess,showStdout,compileLatex);
 }
-void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,QString fn, bool compileLatex) {
-	QString finame;
-	if(fn.isEmpty()) finame=getCompileFileName();
-	else finame=fn;
+void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool compileLatex) {
+	QString finame=getCompileFileName();
 	QString commandline=comd;
 	QByteArray result;
 	if ((singlemode && !currentEditorView()) || finame=="") {
@@ -2937,7 +2935,7 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,QStri
 		return;
 	}
 
-	ProcessX* procX = buildManager.newProcess(comd,finame,currentEditorView()->editor->cursor().lineNumber()+1);
+	ProcessX* procX = buildManager.newProcess(comd,finame,getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1);
 	
 	connect(procX, SIGNAL(readyReadStandardError()),this, SLOT(readFromStderr()));
 	if (showStdout) connect(procX, SIGNAL(readyReadStandardOutput()),this, SLOT(readFromStdoutput()));

@@ -323,14 +323,14 @@ Synopsis :<br>
 <h2><a name="SECTION37">4.7 "Forward/Inverse search" with TexMakerX</a></h2>
 <p>
 Some dvi viewers can jump to (and visually highlight) a position in the DVI file that corresponds to a certain line number in the (La)TeX source file.<br>
-To use this feature, you can use the <b>@</b> character in the syntax of the dvi viewer command ("Configure TexMakerX" -> "Commands").<br>
+To use this feature, you can use the <b>@</b> character (=line number) and <b>?c:ame</b> (=complete absolute filename of currently opened file) placeholder in the syntax of the dvi viewer command ("Configure TexMakerX" -> "Commands").<br>
 Examples ("Forward search"):
 <ul>
-<li>To launch yap from TexMakerX : "C:/Program Files/MiKTeX 2.7/miktex/bin/yap.exe" -1 -s @%.tex %.dvi</li>
-<li>To launch xdvi from TexMakerX : xdvi %.dvi  -sourceposition @:%.tex</li>
-<li>To launch kdvi from TexMakerX : kdvi "file:%.dvi#src:@ %.tex"</li>
+<li>To launch yap from TexMakerX : "C:/Program Files/MiKTeX 2.7/miktex/bin/yap.exe" -1 -s @?c:m.tex %.dvi</li>
+<li>To launch xdvi from TexMakerX : xdvi %.dvi  -sourceposition @:?c:m.tex</li>
+<li>To launch kdvi from TexMakerX : kdvi "file:%.dvi#src:@ ?c:m.tex"</li>
 <li>To jump to a position in a running Acrobat Reader (Windows only): dde://acroview/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocGotoNameDest("?am.pdf","jump-position")]<i>jump-position can be defined with the hyperref package</i></li>
-<li>To jump to a line in a running Sumatra (Windows only): dde://SUMATRA/control/[ForwardSearch("?m.pdf","?m.tex",@,0,0,1)]</li>
+<li>To jump to a line in a running Sumatra (Windows only): dde://SUMATRA/control/[ForwardSearch("?m.pdf","?c:m.tex",@,0,0,1)]</li>
 </ul>
  
 For the opposite operation ("Inverse search") :
