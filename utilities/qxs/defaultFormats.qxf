@@ -159,6 +159,9 @@
 		<foreground>#008000</foreground>
 	</format>
 	<format id="current" >
-		<background>#EEEEFF</foreground>
+		<background>#EEEEFF</background>
+	</format>
+	<format id="selection" >
+		<background>#AAFFFF</background>
 	</format>
 </QXF>

@@ -90,8 +90,10 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel, private Ui::SearchReplace
 		void init();
 		void on_leFind_returnPressed(bool backward);
 		void on_leReplace_returnPressed(bool backward);
+		void highlightSelection(bool on=true);
 		QDocumentSearch *m_search;
 		bool m_lastDirection;
+		int m_group;
 };
 
 #endif // _QSEARCH_REPLACE_PANEL_H_
