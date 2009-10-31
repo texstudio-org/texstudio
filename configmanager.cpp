@@ -163,7 +163,7 @@ QSettings* ConfigManager::readSettings() {
 
 	editorConfig->displayModifyTime=config->value("Editor/Display Modifytime",true).toBool();
 	editorConfig->closeSearchAndReplace=config->value("Editor/Close Search Replace Together",false).toBool();
-	editorConfig->useLineForSearch=config->value("Editor/Use Line For Search",false).toBool();
+	editorConfig->useLineForSearch=config->value("Editor/Use Line For Search",true).toBool();
 	//interface
 #ifdef Q_WS_X11
 	if ((x11desktop_env() != 4) || (!QStyleFactory::keys().contains("Oxygen")))
