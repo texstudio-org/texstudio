@@ -157,7 +157,7 @@ private:
 	void configureNewEditorView(LatexEditorView *edit);
 	LatexEditorView* getEditorViewFromFileName(const QString &fileName);
 	
-	QAction* outputViewAction;
+        QAction* outputViewAction, *fullscreenModeAction;
 private slots:
 
 	void fileNew(QString fileName="untitled");
@@ -324,6 +324,7 @@ private slots:
 	
 	void viewToggleOutputView();
 	void viewCloseSomething();
+        void setFullScreenMode();
 	
 	void viewCollapseEverything();
 	void viewCollapseLevel();
@@ -370,6 +371,8 @@ protected:
 	virtual void changeEvent(QEvent *e);
 
 	Qt::MouseButtons mb;
+
+        QByteArray stateNormalWin,stateFullScreen;
 public:
 	static const int structureTreeLineColumn;
 };
