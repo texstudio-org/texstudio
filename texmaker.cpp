@@ -512,6 +512,10 @@ void Texmaker::setupMenus() {
 	for (int i=1; i<=4; i++)
 		newManagedAction(submenu, QString::number(i), tr("Level %1").arg(i), SLOT(viewExpandLevel()))->setData(i);
 
+        menu->addSeparator();
+        fullscreenModeAction=newManagedAction(menu, "fullscreenmode",tr("Fullscreen Mode"), SLOT(setFullScreenMode()));
+        fullscreenModeAction->setCheckable(true);
+
 //---options---
 	menu=newManagedMenu("main/options",tr("&Options"));
 	newManagedAction(menu, "config",tr("Configure TexMakerX"), SLOT(GeneralOptions()), 0,":/images/configure.png");
@@ -1727,6 +1731,7 @@ void Texmaker::ReadSettings() {
 	resize(w,h);
 	move(x,y);
 	windowstate=config->value("MainWindowState").toByteArray();
+        stateFullScreen=config->value("MainWindowFullssscreenState").toByteArray();
 	tobemaximized=config->value("MainWindow/Maximized",false).toBool();
 
 
@@ -1818,6 +1823,7 @@ void Texmaker::SaveSettings() {
 
 
 	config->setValue("MainWindowState",saveState(0));
+        config->setValue("MainWindowFullssscreenState",stateFullScreen);
         config->setValue("MainWindow/Maximized", isMaximized());
 
 	config->setValue("Geometries/MainwindowWidth", width());
@@ -3532,6 +3538,13 @@ void Texmaker::viewToggleOutputView(){
 }
 
 void Texmaker::viewCloseSomething(){
+        if(windowState()==Qt::WindowFullScreen){
+            stateFullScreen=saveState(1);
+            setWindowState(Qt::WindowNoState);
+            restoreState(stateNormalWin,0);
+            fullscreenModeAction->setChecked(false);
+            return;
+        }
 	if (textAnalysisDlg) {
 		textAnalysisDlg->close();
 		return;
@@ -3544,6 +3557,20 @@ void Texmaker::viewCloseSomething(){
 	}
 	
 }
+
+void Texmaker::setFullScreenMode() {
+    if(!fullscreenModeAction->isChecked()) {
+        stateNormalWin=saveState(0);
+        setWindowState(Qt::WindowNoState);
+        restoreState(stateFullScreen,1);
+    }
+    else {
+        stateFullScreen=saveState(1);
+        setWindowState(Qt::WindowFullScreen);
+        restoreState(stateNormalWin,0);
+    }
+}
+
 void Texmaker::viewCollapseEverything() {
 	if (!currentEditorView()) return;
 	currentEditorView()->foldEverything(false);
