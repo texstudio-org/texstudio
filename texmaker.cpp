@@ -45,7 +45,8 @@
  const int Texmaker::structureTreeLineColumn=4;
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
-		: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0){
+		: QMainWindow(parent, flags), bibTeXFilesModified(false),
+		textAnalysisDlg(0), spellDlg(0){
 
 	MapForSymbols=0;
 	
@@ -967,6 +968,8 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	}
 
 	if (!QFile::exists(f_real)) return 0;
+	bool bibTeXmodified=bibTeXFilesModified;
+	
 	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig);
 	EditorView->addTab(edit, "[*] "+QFileInfo(f_real).fileName());
 	configureNewEditorView(edit);
@@ -995,6 +998,8 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 		}
 	}
 	if (outputView->logPresent()) DisplayLatexError(); //show marks
+	if (!bibTeXmodified)
+		bibTeXFilesModified=false; //loading a file can change the list of included bib files, but we won't consider that as a modification of them
 	return edit;
 }
 
@@ -1228,7 +1233,15 @@ void Texmaker::fileSaveAll() {
 			EditorView->setCurrentIndex(i);
 			if (edView->editor->fileName().isEmpty()) fileSaveAs();
 			else edView->editor->save();
-		} else edView->editor->save();
+		} else if (!edView->editor->fileName().endsWith(".bib"))
+			edView->editor->save();
+		else if (edView->editor->isContentModified()){ //only save modified bib files, to prevent unecessary recompilations
+			edView->editor->save();
+		
+			QString temp=edView->editor->fileName();
+			temp=temp.replace(QDir::separator(),"/");
+			bibTeXFilesModified = bibTeXFilesModified  || mentionedBibTeXFiles.contains(temp);//call bibtex on next compilation (this would also set as soon as the user switch to a tex file, but he could compile before switching)
+		}
 		//currentEditor()->save();
 		//UpdateCaption();
 	}
@@ -2984,8 +2997,29 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool 
 
 void Texmaker::RunPreCompileCommand() {
 	outputView->resetMessagesAndLog();//log to old (whenever latex is called)
-	if (buildManager.getLatexCommand(BuildManager::CMD_USER_PRECOMPILE).isEmpty()) return;
-	runCommand(BuildManager::CMD_USER_PRECOMPILE,true,false);
+	if (!buildManager.getLatexCommand(BuildManager::CMD_USER_PRECOMPILE).isEmpty()) {
+		stat2->setText(QString(" %1 ").arg(tr("Pre-LaTeX")));	
+		runCommand(BuildManager::CMD_USER_PRECOMPILE,true,false);
+	}
+	if (bibTeXFilesModified && configManager.runLaTeXBibTeXLaTeX) {
+		ERRPROCESS=false;
+		stat2->setText(QString(" %1 ").arg(tr("LaTeX")));	
+		runCommand(BuildManager::CMD_LATEX,true,false);
+		if (ERRPROCESS && !LogExists()) {
+			QMessageBox::warning(this,tr("Error"),tr("Could not start LaTeX."));
+			return;
+		}		
+		if (NoLatexErrors()) {
+			ERRPROCESS=false;
+			stat2->setText(QString(" %1 ").arg(tr("BibTeX")));	
+			runCommand(BuildManager::CMD_BIBTEX,true,false);
+			if (!ERRPROCESS) {
+				stat2->setText(QString(" %1 ").arg(tr("LaTeX")));	
+				runCommand(BuildManager::CMD_LATEX,true,false);
+			}
+		}
+		bibTeXFilesModified = false;
+	}
 }
 
 void Texmaker::readFromStderr() {
@@ -3022,7 +3056,7 @@ void Texmaker::QuickBuild() {
 		stat2->setText(QString(" %1 ").arg("Latex"));
 		runCommand(BuildManager::CMD_LATEX,true,false);
 		if (ERRPROCESS && !LogExists()) {
-			QMessageBox::warning(this,tr("Error"),tr("Could not start the command."));
+			QMessageBox::warning(this,tr("Error"),tr("Could not start LaTeX."));
 			return;
 		}
 		if (NoLatexErrors()) {
@@ -3038,7 +3072,7 @@ void Texmaker::QuickBuild() {
 		stat2->setText(QString(" %1 ").arg("Latex"));
 		runCommand(BuildManager::CMD_LATEX,true,false);
 		if (ERRPROCESS && !LogExists()) {
-			QMessageBox::warning(this,tr("Error"),tr("Could not start the command."));
+			QMessageBox::warning(this,tr("Error"),tr("Could not start LaTeX."));
 			return;
 		}
 		if (NoLatexErrors()) {
@@ -3051,7 +3085,7 @@ void Texmaker::QuickBuild() {
 		stat2->setText(QString(" %1 ").arg("Pdf Latex"));
 		runCommand(BuildManager::CMD_PDFLATEX,true,false);
 		if (ERRPROCESS && !LogExists()) {
-			QMessageBox::warning(this,tr("Error"),tr("Could not start the command."));
+			QMessageBox::warning(this,tr("Error"),tr("Could not start PdfLaTeX."));
 			return;
 		}
 		if (NoLatexErrors()) {
@@ -3064,7 +3098,7 @@ void Texmaker::QuickBuild() {
 		stat2->setText(QString(" %1 ").arg("Latex"));
 		runCommand(BuildManager::CMD_LATEX,true,false);
 		if (ERRPROCESS && !LogExists()) {
-			QMessageBox::warning(this,tr("Error"),tr("Could not start the command."));
+			QMessageBox::warning(this,tr("Error"),tr("Could not start LaTeX."));
 			return;
 		}
 		if (NoLatexErrors()) {
@@ -3080,7 +3114,7 @@ void Texmaker::QuickBuild() {
 		stat2->setText(QString(" %1 ").arg("Latex"));
 		runCommand(BuildManager::CMD_LATEX,true,false);
 		if (ERRPROCESS && !LogExists()) {
-			QMessageBox::warning(this,tr("Error"),tr("Could not start the command."));
+			QMessageBox::warning(this,tr("Error"),tr("Could not start LaTeX."));
 			return;
 		}
 		if (NoLatexErrors()) {
@@ -3113,11 +3147,11 @@ void Texmaker::commandFromAction(){
 	QAction* act = qobject_cast<QAction*>(sender());
 	if (!act) return;
 	fileSaveAll();
-	stat2->setText(QString(" %1 ").arg(act->text()));
 	BuildManager::LatexCommand cmd=(BuildManager::LatexCommand) act->data().toInt();
 	bool compileLatex=(cmd==BuildManager::CMD_LATEX || cmd==BuildManager::CMD_PDFLATEX);
 	if (compileLatex)
 		RunPreCompileCommand();
+	stat2->setText(QString(" %1 ").arg(act->text()));
 	runCommand(cmd, false, false);
 }
 
@@ -3688,7 +3722,7 @@ void Texmaker::updateBibFiles(){
 	//mentionedBibTeXFiles is set by updateStructure (which calls this)
 	bool changed=false;
 	for (int i=0; i<mentionedBibTeXFiles.count();i++){
-		mentionedBibTeXFiles[i]=getAbsoluteFilePath(mentionedBibTeXFiles[i],".bib"); //store absolute 
+		mentionedBibTeXFiles[i]=getAbsoluteFilePath(mentionedBibTeXFiles[i],".bib").replace(QDir::separator(), "/"); //store absolute 
 		QString &fileName=mentionedBibTeXFiles[i];
 		QFileInfo fi(fileName);
 		if (!fi.isReadable()) continue; //ups...
@@ -3776,6 +3810,7 @@ void Texmaker::updateBibFiles(){
 				allBibTeXIds << s;
 		for (int i=0;i<EditorView->count();i++)
 			qobject_cast<LatexEditorView*>(EditorView->widget(i))->setBibTeXIds(&allBibTeXIds);
+		bibTeXFilesModified=true;
 	}
 }
 void Texmaker::updateCompleter() {
