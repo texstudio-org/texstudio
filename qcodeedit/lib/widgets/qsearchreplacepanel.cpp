@@ -244,6 +244,8 @@ void QSearchReplacePanel::closeEvent(QCloseEvent *)
 	if ( m_search )
 	{
 		m_search->setOption(QDocumentSearch::HighlightAll, false);
+		delete m_search;
+		m_search=0;
 	}
 }
 
@@ -593,7 +595,7 @@ void QSearchReplacePanel::highlightSelection(bool on)
 										   sid);
 		}
 		editor()->document()->flushMatches(m_group);
-		if(!QApplication::mouseButtons()) editor()->selectNothing();
+		//if(!QApplication::mouseButtons()) editor()->selectNothing();
 	}else{
 		if(m_group>-1){
 			editor()->document()->clearMatches(m_group);
