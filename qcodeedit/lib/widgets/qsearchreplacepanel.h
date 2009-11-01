@@ -59,6 +59,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel, private Ui::SearchReplace
 		virtual bool eventFilter(QObject *o, QEvent *e);
 		
 		virtual void hideEvent(QHideEvent *e);
+		virtual void closeEvent(QCloseEvent *e);
 		
 	private slots:
 		void on_leFind_textEdited(const QString& text);
@@ -85,7 +86,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel, private Ui::SearchReplace
 		void on_bReplaceAll_clicked();
 		
 		void cursorPositionChanged();
-		
+
 	private:
 		void init();
 		void on_leFind_returnPressed(bool backward);
