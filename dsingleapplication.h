@@ -39,7 +39,7 @@ const int d_unique_port_start  = 23232;
 const int d_unique_port_finish = 23242;
 
 // timeouts are in ms
-const int d_timeout_try_connect = 10;
+const int d_timeout_try_connect = 75;
 const int d_timeout_try_read    = 1000;
 const int d_timeout_try_write   = 30000;
 
