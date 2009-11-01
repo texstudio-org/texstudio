@@ -133,6 +133,11 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 	restoreState(windowstate, 0);
 	if(tobemaximized) showMaximized();
+	if(tobefullscreen) {
+		showFullScreen();
+		restoreState(stateFullScreen,1);
+		fullscreenModeAction->setChecked(true);
+	}
 
 	createStatusBar();
 	UpdateCaption();
@@ -512,9 +517,9 @@ void Texmaker::setupMenus() {
 	for (int i=1; i<=4; i++)
 		newManagedAction(submenu, QString::number(i), tr("Level %1").arg(i), SLOT(viewExpandLevel()))->setData(i);
 
-        menu->addSeparator();
-        fullscreenModeAction=newManagedAction(menu, "fullscreenmode",tr("Fullscreen Mode"), SLOT(setFullScreenMode()));
-        fullscreenModeAction->setCheckable(true);
+	menu->addSeparator();
+	fullscreenModeAction=newManagedAction(menu, "fullscreenmode",tr("Fullscreen Mode"), SLOT(setFullScreenMode()));
+	fullscreenModeAction->setCheckable(true);
 
 //---options---
 	menu=newManagedMenu("main/options",tr("&Options"));
@@ -1731,8 +1736,9 @@ void Texmaker::ReadSettings() {
 	resize(w,h);
 	move(x,y);
 	windowstate=config->value("MainWindowState").toByteArray();
-        stateFullScreen=config->value("MainWindowFullssscreenState").toByteArray();
+	stateFullScreen=config->value("MainWindowFullssscreenState").toByteArray();
 	tobemaximized=config->value("MainWindow/Maximized",false).toBool();
+	tobefullscreen=config->value("MainWindow/FullScreen",false).toBool();
 
 
 	showoutputview=config->value("Show/OutputView",true).toBool();
@@ -1745,13 +1751,13 @@ void Texmaker::ReadSettings() {
 
 	userTemplatesList=config->value("User/Templates").toStringList();
 
-        /*for (int i=0; i<=9; i++) {
+	/*for (int i=0; i<=9; i++) {
 		UserMenuName[i]=config->value(QString("User/Menu%1").arg(i+1),"").toString();
 		UserMenuTag[i]=config->value(QString("User/Tag%1").arg(i+1),"").toString();
-        }*/
-        UserMenuName=config->value("User/TagNames",QStringList()<<""<<""<<""<<""<<""<<""<<""<<""<<""<<"").toStringList();
-        UserMenuTag=config->value("User/Tags",QStringList()<<""<<""<<""<<""<<""<<""<<""<<""<<""<<"").toStringList();
-        UserMenuAbbrev=config->value("User/TagAbbrevs",QStringList()<<""<<""<<""<<""<<""<<""<<""<<""<<""<<"").toStringList();
+		}*/
+	UserMenuName=config->value("User/TagNames",QStringList()<<""<<""<<""<<""<<""<<""<<""<<""<<""<<"").toStringList();
+	UserMenuTag=config->value("User/Tags",QStringList()<<""<<""<<""<<""<<""<<""<<""<<""<<""<<"").toStringList();
+	UserMenuAbbrev=config->value("User/TagAbbrevs",QStringList()<<""<<""<<""<<""<<""<<""<<""<<""<<""<<"").toStringList();
 	for (int i=0; i<=4; i++) {
 		UserToolName[i]=config->value(QString("User/ToolName%1").arg(i+1),"").toString();
 		UserToolCommand[i]=config->value(QString("User/Tool%1").arg(i+1),"").toString();
@@ -1821,10 +1827,15 @@ void Texmaker::SaveSettings() {
 	QList<int> sizes;
 	QList<int>::Iterator it;
 
-
-	config->setValue("MainWindowState",saveState(0));
-        config->setValue("MainWindowFullssscreenState",stateFullScreen);
-        config->setValue("MainWindow/Maximized", isMaximized());
+	if(isFullScreen()){
+		config->setValue("MainWindowState",windowstate);
+		config->setValue("MainWindowFullssscreenState",saveState(1));
+	}else {
+		config->setValue("MainWindowState",saveState(0));
+		config->setValue("MainWindowFullssscreenState",stateFullScreen);
+	}
+	config->setValue("MainWindow/Maximized", isMaximized());
+	config->setValue("MainWindow/FullScreen", isFullScreen());
 
 	config->setValue("Geometries/MainwindowWidth", width());
 
@@ -3541,7 +3552,7 @@ void Texmaker::viewCloseSomething(){
         if(windowState()==Qt::WindowFullScreen){
             stateFullScreen=saveState(1);
             setWindowState(Qt::WindowNoState);
-            restoreState(stateNormalWin,0);
+			restoreState(windowstate,0);
             fullscreenModeAction->setChecked(false);
             return;
         }
@@ -3560,14 +3571,14 @@ void Texmaker::viewCloseSomething(){
 
 void Texmaker::setFullScreenMode() {
     if(!fullscreenModeAction->isChecked()) {
-        stateNormalWin=saveState(0);
-        setWindowState(Qt::WindowNoState);
-        restoreState(stateFullScreen,1);
+		stateFullScreen=saveState(1);
+		setWindowState(Qt::WindowNoState);
+		restoreState(windowstate,0);
     }
     else {
-        stateFullScreen=saveState(1);
-        setWindowState(Qt::WindowFullScreen);
-        restoreState(stateNormalWin,0);
+		windowstate=saveState(0);
+		setWindowState(Qt::WindowFullScreen);
+		restoreState(stateFullScreen,1);
     }
 }
 
