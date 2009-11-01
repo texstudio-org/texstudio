@@ -33,6 +33,7 @@ public:
 	//build
 	BuildManager* buildManager; 
 	bool showLogAfterCompiling;
+	bool runLaTeXBibTeXLaTeX;
 	
 	//appearance 
 	QString interfaceStyle;

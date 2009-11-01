@@ -91,6 +91,7 @@ private:
 	QMap<QString, BibTeXFileInfo> bibTeXFiles; //bibtex files loaded by tmx
 	QStringList mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
 	QSet<QString> allBibTeXIds;
+	bool bibTeXFilesModified; //true iff the BibTeX files were changed after the last compilation
 	
 	QFormatFactory *m_formats;
 	QLanguageFactory* m_languages;

@@ -127,7 +127,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>4</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -737,14 +737,14 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="2" column="0" colspan="2">
+          <item row="3" column="0" colspan="2">
            <widget class="QLabel" name="label_11">
             <property name="text">
              <string>Assume that every error is in the current document:</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="2" colspan="2">
+          <item row="3" column="2" colspan="2">
            <widget class="QComboBox" name="comboBoxIgnoreLogFileNames">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -769,13 +769,20 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </item>
            </widget>
           </item>
-          <item row="1" column="0" colspan="2">
+          <item row="2" column="0" colspan="3">
            <widget class="QCheckBox" name="checkBoxShowLog">
             <property name="text">
              <string>Show log after compiling if there are errors</string>
             </property>
             <property name="checked">
              <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="4">
+           <widget class="QCheckBox" name="checkBoxRunAfterBibTeXChange">
+            <property name="text">
+             <string>run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</string>
             </property>
            </widget>
           </item>

@@ -101,6 +101,7 @@ QSettings* ConfigManager::readSettings() {
 	if (!buildManager) QMessageBox::critical(0,"TexMakerX","No build Manager created! => crash",QMessageBox::Ok);
 	buildManager->readSettings(*config);
 	showLogAfterCompiling=config->value("Tools/Show Log After Compiling", true).toBool();
+	runLaTeXBibTeXLaTeX=config->value("Tools/After BibTeX Change", "tmx://latex && tmx://bibtex && tmx://latex").toString()!="";
 	
 	//read user key replacements
 	keyReplace.clear();
@@ -321,6 +322,7 @@ QSettings* ConfigManager::saveSettings() {
 	//---------------------build commands----------------
 	buildManager->saveSettings(*config);
 	config->setValue("Tools/Show Log After Compiling", showLogAfterCompiling);
+	config->setValue("Tools/After BibTeX Change",runLaTeXBibTeXLaTeX?"tmx://latex && tmx://bibtex && tmx://latex":"");
 	
 	//-------------------key replacements-----------------
 	int keyReplaceCount = keyReplace.count();
@@ -489,6 +491,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	confDlg->ui.lineEditUserquick->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_QUICK));
 	
 	confDlg->ui.checkBoxShowLog->setChecked(showLogAfterCompiling);
+	confDlg->ui.checkBoxRunAfterBibTeXChange->setChecked(runLaTeXBibTeXLaTeX);
 	
 	//menu shortcuts
 	QTreeWidgetItem * menuShortcuts=new QTreeWidgetItem((QTreeWidget*)0, QStringList() << QString(tr("Menus")));
@@ -626,6 +629,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		if (confDlg->ui.radioButton6->isChecked()) buildManager->quickmode=6;
 
 		showLogAfterCompiling=confDlg->ui.checkBoxShowLog->isChecked();	
+		runLaTeXBibTeXLaTeX=confDlg->ui.checkBoxRunAfterBibTeXChange->isChecked();
 		
 		//key replacements
 		keyReplace.clear();

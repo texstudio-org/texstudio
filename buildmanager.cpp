@@ -378,7 +378,12 @@ QString BuildManager::defaultCommandOptions(LatexCommand cmd){
 		case CMD_DVIPNG: return "-T tight -D 120 %.dvi";
 		case CMD_PS2PDF: return "%.ps";
 		case CMD_MAKEINDEX: return "%.idx";
-		case CMD_BIBTEX: return "%.aux";
+		case CMD_BIBTEX:
+		#ifdef Q_WS_WIN
+			return "%"; //miktex bibtex will stop (appears like crash in tmx) if .aux is attached
+		#else
+			return "%.aux";
+		#endif
 		case CMD_PDFLATEX: return "-interaction=nonstopmode %.tex";
 		case CMD_DVIPDF: return "%.dvi";
 		case CMD_METAPOST: return "--interaction nonstopmode ?me)";
