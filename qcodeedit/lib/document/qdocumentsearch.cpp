@@ -28,7 +28,6 @@
 #include "qeditor.h"
 #include "qdocument.h"
 #include "qdocument_p.h"
-#include "qdocumentline.h"
 #include "qformatscheme.h"
 
 #include <QMessageBox>
@@ -41,7 +40,8 @@
 */
 
 QDocumentSearch::QDocumentSearch(QEditor *e, const QString& f, Options opt, const QString& r)
- : m_group(-1), m_option(opt), m_string(f), m_replace(r), m_editor(e)
+ : m_group(-1), m_option(opt), m_string(f), m_replace(r), m_editor(e), m_scopeGroup(-1), m_replaced(0), m_replaceDeltaLength(0),
+  begLine(0), endLine(0), begCol(-1), endCol(-1)
 {
 	if (m_editor && hasOption(HighlightAll))
 		connect(m_editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
@@ -559,11 +559,28 @@ void QDocumentSearch::setScope(const QDocumentCursor& c)
 	if ( c == m_scope )
 		return;
 	
-	if ( c.hasSelection() )
+	if ( c.hasSelection() ){
 		m_scope = c;
-	else
+		//prevent multiple connections
+		if (m_editor->document()) {
+			disconnect(m_editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
+			connect(m_editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
+		}
+	} else
 		m_scope = QDocumentCursor();
 	
+	if(m_scope.anchorLineNumber()<m_scope.lineNumber()){
+		begLine=m_scope.anchorLine().handle();
+		endLine=m_scope.line().handle();
+		begCol= c.anchorColumnNumber();
+		endCol= c.columnNumber();
+	}else{
+		begLine=m_scope.line().handle();
+		endLine=m_scope.anchorLine().handle();
+		begCol= c.columnNumber();
+		endCol= c.anchorColumnNumber();
+	}
+	highlightSelection();
 	searchMatches();
 	//clearMatches();
 }
@@ -877,7 +894,9 @@ void QDocumentSearch::replaceCursorText(QRegExp& m_regexp,bool backward){
 			replacement.replace(QString("\\") + QString::number(i),
 								m_regexp.cap(i));
 	
+	m_replaced=2;
 	m_cursor.replaceSelectedText(replacement);
+
 	
 	//make sure that the cursor if  the correct side of the selection is used
 	//(otherwise the cursor could be moved out of the searched scope by a long 
@@ -888,7 +907,22 @@ void QDocumentSearch::replaceCursorText(QRegExp& m_regexp,bool backward){
 }
 
 void QDocumentSearch::documentContentChanged(int line, int n){
-	if (!m_editor || !m_editor->document() || !hasOption(HighlightAll)) return;
+	if (!m_editor || !m_editor->document()) return;
+	if(begLine && endLine && !(line+n-1<begLine->line() || line>endLine->line()) && !m_replaced) {
+		setScope(QDocumentCursor());
+	} else {
+		if(m_scope.hasSelection()){
+			m_scope.setLineNumber(begLine->line());
+			m_scope.setColumnNumber(begCol);
+			m_scope.setLineNumber(endLine->line(),QDocumentCursor::KeepAnchor);
+			m_scope.setColumnNumber(endCol,QDocumentCursor::KeepAnchor);
+		}
+	}
+	if(m_replaced) m_replaced--; // changedocument is called twice after replace (delete text -> insert other text)
+	if(!hasOption(HighlightAll)) {
+		highlightSelection();
+		return;
+	}
 	int lineend = qMin(m_editor->document()->lines()-1,line+n);
 	if (lineend < line) return;
 	QDocumentLine le = m_editor->document()->line(lineend);
@@ -896,6 +930,35 @@ void QDocumentSearch::documentContentChanged(int line, int n){
 	QDocumentCursor c = m_editor->document()->cursor(line);
 	c.setLineNumber(lineend, QDocumentCursor::KeepAnchor);
 	c.setColumnNumber(le.length(), QDocumentCursor::KeepAnchor);
+	highlightSelection();
 	searchMatches(c,false);
 	//searchMatches();
+}
+
+void QDocumentSearch::highlightSelection(bool on)
+{
+	if(m_scopeGroup>-1){
+		m_editor->document()->clearMatches(m_scopeGroup);
+		m_editor->document()->flushMatches(m_scopeGroup);
+		m_scopeGroup = -1;
+	}
+
+	if(on){
+		m_scopeGroup = m_editor->document()->getNextGroupId();
+		QFormatScheme *f = m_editor->document()->formatScheme() ? m_editor->document()->formatScheme() : QDocument::formatFactory();
+		int sid = f ? f->id("selection") : 0;
+		if(m_scope.hasSelection()){
+			for(int i=begLine->line();i<=endLine->line();i++){
+				int beg = i==begLine->line() ? begCol : 0;
+				int en = i==endLine->line() ? endCol : m_editor->document()->line(i).length();
+				m_editor->document()->addMatch(m_scopeGroup,
+											   i,
+											   qMin(beg,en),
+											   abs(en-beg),
+											   sid);
+			}
+			m_editor->document()->flushMatches(m_scopeGroup);
+		}
+		//if(!QApplication::mouseButtons()) editor()->selectNothing();
+	}
 }

@@ -29,6 +29,7 @@
 #include <QCoreApplication>
 
 #include "qdocumentcursor.h"
+#include "qdocumentline.h"
 
 class QEditor;
 
@@ -80,6 +81,8 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		
 		bool next(bool backward, bool all = false, bool again=false,  bool allowWrapAround=true);
 
+		void highlightSelection(bool on=true);
+
 	private:
 		void replaceCursorText(QRegExp& m_regexp, bool backward);
 		bool end(bool backward) const;
@@ -91,7 +94,7 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		QDocument* currentDocument();
 		QRegExp currentRegExp();
 		
-		int m_group;
+		int m_group,m_scopeGroup;
 		int m_index;
 		Options m_option;
 		QString m_string;
@@ -99,6 +102,10 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		QPointer<QEditor> m_editor;
 		QDocumentCursor m_cursor, m_scope, m_origin;
 		QList<QDocumentCursor> m_highlight;
+
+		int m_replaced,m_replaceDeltaLength;
+		QDocumentLineHandle *begLine,*endLine;
+		int begCol,endCol;
 	private slots:
 		void documentContentChanged(int line, int n);
 };

@@ -47,7 +47,7 @@ QCE_AUTO_REGISTER(QSearchReplacePanel)
 	\brief Constructor
 */
 QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
- : QPanel(p),m_search(0),m_lastDirection(false),m_group(-1)
+ : QPanel(p),m_search(0),m_lastDirection(false)
 {
 	setupUi(this);
 	setDefaultVisibility(false);
@@ -69,11 +69,7 @@ QSearchReplacePanel::~QSearchReplacePanel()
 {
 	if ( m_search )
 		delete m_search;
-	/*if(m_group>-1 && editor() && editor()->document()){
-		editor()->document()->clearMatches(m_group);
-		editor()->document()->flushMatches(m_group);
-		m_group = -1;
-	}*/
+	m_search=0;
 }
 
 /*!
@@ -142,8 +138,7 @@ void QSearchReplacePanel::display(int mode, bool replace)
                     if(editor()->cursor().hasSelection()){
 						if(editor()->cursor().anchorLineNumber()!=editor()->cursor().lineNumber() || !editor()->UseLineForSearch() ||cbSelection->isChecked()){
 							if(cbSelection->isChecked()){
-								highlightSelection(false);
-								highlightSelection(true);
+								m_search->highlightSelection(true);
 							} else cbSelection->setChecked(true);
                         }else{
                             // single line selection
@@ -160,7 +155,7 @@ void QSearchReplacePanel::display(int mode, bool replace)
 		if ( m_search )
 		{
 			m_search->setOption(QDocumentSearch::HighlightAll, false);
-			highlightSelection(false);
+			m_search->highlightSelection(false);
 			//m_search->clearMatches();
 		}
 	}
@@ -240,9 +235,9 @@ void QSearchReplacePanel::hideEvent(QHideEvent *)
 
 void QSearchReplacePanel::closeEvent(QCloseEvent *)
 {
-	highlightSelection(false);
 	if ( m_search )
 	{
+		m_search->highlightSelection(false);
 		m_search->setOption(QDocumentSearch::HighlightAll, false);
 		delete m_search;
 		m_search=0;
@@ -439,7 +434,6 @@ void QSearchReplacePanel::on_cbSelection_toggled(bool on)
 	if ( m_search ) {
 		m_search->setOrigin(QDocumentCursor());
 		m_search->setScope(on ? editor()->cursor() : QDocumentCursor());
-		highlightSelection(on);
 		if ( m_search && cbHighlight->isChecked())
 		{
 			m_search->setOption(QDocumentSearch::HighlightAll, false);
@@ -537,7 +531,6 @@ void QSearchReplacePanel::init()
 	if ( cbSelection->isChecked() && editor()->cursor().hasSelection()){
 		m_search->setScope(editor()->cursor());
 		m_search->setOrigin(QDocumentCursor());
-		highlightSelection();
 	} else if ( cbCursor->isChecked() )
 		m_search->setCursor(editor()->cursor());
 
@@ -555,11 +548,6 @@ void QSearchReplacePanel::cursorPositionChanged()
 		if ( cbSelection->isChecked() && editor()->cursor().hasSelection()){
 			m_search->setScope(editor()->cursor());
 			m_search->setOrigin(QDocumentCursor());
-			highlightSelection();
-			if ( cbHighlight->isChecked()) {
-				m_search->setOption(QDocumentSearch::HighlightAll, false);
-				m_search->setOption(QDocumentSearch::HighlightAll, true);
-			}
 		} else {
 			if ( cbCursor->isChecked() )
 				m_search->setOrigin(editor()->cursor());
@@ -568,42 +556,5 @@ void QSearchReplacePanel::cursorPositionChanged()
 		else m_search->setCursor(editor()->cursor());
 	}
 }
-
-void QSearchReplacePanel::highlightSelection(bool on)
-{
-	if(on){
-		if(m_group>-1){
-			editor()->document()->clearMatches(m_group);
-			editor()->document()->flushMatches(m_group);
-			m_group = -1;
-		}
-		m_group = editor()->document()->getNextGroupId();
-		QFormatScheme *f = editor()->document()->formatScheme() ? editor()->document()->formatScheme() : QDocument::formatFactory();
-		int sid = f ? f->id("selection") : 0;
-		QDocumentCursor c=m_search->scope();
-		int begLine=qMin(c.anchorLineNumber(),c.lineNumber());
-		int endLine=qMax(c.anchorLineNumber(),c.lineNumber());
-		int begCol= c.anchorLineNumber()<=c.lineNumber() ? c.anchorColumnNumber() : c.columnNumber();
-		int endCol= c.anchorLineNumber()<=c.lineNumber() ? c.columnNumber() : c.anchorColumnNumber();
-		for(int i=begLine;i<=endLine;i++){
-			int beg = i==begLine ? begCol : 0;
-			int en = i==endLine ? endCol : editor()->document()->line(i).length();
-			editor()->document()->addMatch(m_group,
-										   i,
-										   qMin(beg,en),
-										   abs(en-beg),
-										   sid);
-		}
-		editor()->document()->flushMatches(m_group);
-		//if(!QApplication::mouseButtons()) editor()->selectNothing();
-	}else{
-		if(m_group>-1){
-			editor()->document()->clearMatches(m_group);
-			editor()->document()->flushMatches(m_group);
-			m_group = -1;
-		}
-	}
-}
-
 
 /*! @} */
