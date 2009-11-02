@@ -40,8 +40,7 @@
 */
 
 QDocumentSearch::QDocumentSearch(QEditor *e, const QString& f, Options opt, const QString& r)
- : m_group(-1), m_option(opt), m_string(f), m_replace(r), m_editor(e), m_scopeGroup(-1), m_replaced(0), m_replaceDeltaLength(0),m_replaceDeltaLines(0),
-  begLine(0), endLine(0), begCol(-1), endCol(-1)
+ : m_group(-1), m_option(opt), m_string(f), m_replace(r), m_editor(e), m_scopeGroup(-1), m_replaced(0), m_replaceDeltaLength(0)
 {
 	if (m_editor && hasOption(HighlightAll))
 		connect(m_editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
@@ -566,20 +565,9 @@ void QDocumentSearch::setScope(const QDocumentCursor& c)
 			disconnect(m_editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
 			connect(m_editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
 		}
+		m_scope.setAutoUpdated(true);
 	} else
 		m_scope = QDocumentCursor();
-	
-	if(m_scope.anchorLineNumber()<m_scope.lineNumber()){
-		begLine=m_scope.anchorLine().handle();
-		endLine=m_scope.line().handle();
-		begCol= c.anchorColumnNumber();
-		endCol= c.columnNumber();
-	}else{
-		begLine=m_scope.line().handle();
-		endLine=m_scope.anchorLine().handle();
-		begCol= c.columnNumber();
-		endCol= c.anchorColumnNumber();
-	}
 	highlightSelection();
 	searchMatches();
 	//clearMatches();
@@ -894,11 +882,11 @@ void QDocumentSearch::replaceCursorText(QRegExp& m_regexp,bool backward){
 			replacement.replace(QString("\\") + QString::number(i),
 								m_regexp.cap(i));
 	
-	m_replaced=2;
+	/*m_replaced=2;
 	int n=replacement.lastIndexOf("\n");
 	QString replacement_lastLine=replacement.mid(n+1);
 	m_replaceDeltaLength=replacement_lastLine.length()-m_cursor.selectedText().length();
-	m_replaceDeltaLines=replacement.count("\n");
+	m_replaceDeltaLines=replacement.count("\n");*/
 	m_cursor.replaceSelectedText(replacement);
 
 	
@@ -912,30 +900,22 @@ void QDocumentSearch::replaceCursorText(QRegExp& m_regexp,bool backward){
 
 void QDocumentSearch::documentContentChanged(int line, int n){
 	if (!m_editor || !m_editor->document()) return;
-	if(begLine && endLine && !(line+n-1<begLine->line() || line>endLine->line()) && !m_replaced) {
+	if (m_scope.isValid() && m_scope.hasSelection() && m_scope.selectionStart()==m_scope.selectionEnd()) 
 		setScope(QDocumentCursor());
-	} else {
-		if(m_scope.hasSelection()){
-			// adapt search scope if replacement makes that necessary
-			if((line+n-1==endLine->line()) && (m_replaced==2)){
-				endCol+=m_replaceDeltaLength;
-			}
-			//
-			m_scope.setLineNumber(begLine->line());
-			m_scope.setColumnNumber(begCol);
-			m_scope.setLineNumber(endLine->line(),QDocumentCursor::KeepAnchor);
-			m_scope.setColumnNumber(endCol,QDocumentCursor::KeepAnchor);
-		}
-	}
-	if(m_replaced) m_replaced--; // changedocument is called twice after replace (delete text -> insert other text)
 	if(!hasOption(HighlightAll)) {
 		highlightSelection();
 		return;
 	}
 	int lineend = qMin(m_editor->document()->lines()-1,line+n);
-	if (lineend < line) return;
+	if (lineend < line) {
+		highlightSelection();
+		return;
+	}
 	QDocumentLine le = m_editor->document()->line(lineend);
-	if (!le.isValid()) return;
+	if (!le.isValid()) {
+		highlightSelection();
+		return;
+	}
 	QDocumentCursor c = m_editor->document()->cursor(line);
 	c.setLineNumber(lineend, QDocumentCursor::KeepAnchor);
 	c.setColumnNumber(le.length(), QDocumentCursor::KeepAnchor);
@@ -952,14 +932,16 @@ void QDocumentSearch::highlightSelection(bool on)
 		m_scopeGroup = -1;
 	}
 
-	if(on){
+	if(on && m_scope.isValid() && m_scope.hasSelection()){
 		m_scopeGroup = m_editor->document()->getNextGroupId();
 		QFormatScheme *f = m_editor->document()->formatScheme() ? m_editor->document()->formatScheme() : QDocument::formatFactory();
 		int sid = f ? f->id("selection") : 0;
 		if(m_scope.hasSelection()){
-			for(int i=begLine->line();i<=endLine->line();i++){
-				int beg = i==begLine->line() ? begCol : 0;
-				int en = i==endLine->line() ? endCol : m_editor->document()->line(i).length();
+			int begLine, endLine, begCol, endCol;
+			m_scope.boundaries(begLine, begCol, endLine, endCol);
+			for(int i=begLine;i<=endLine;i++){
+				int beg = i==begLine ? begCol : 0;
+				int en = i==endLine ? endCol : m_editor->document()->line(i).length();
 				m_editor->document()->addMatch(m_scopeGroup,
 											   i,
 											   qMin(beg,en),

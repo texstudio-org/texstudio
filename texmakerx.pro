@@ -403,6 +403,7 @@ SOURCES += qcodeedit/lib/qnfa/qnfa.cpp \
 # incredible mess, so they are always compiled (but empty through #define in release mode)
 SOURCES += tests/testmanager.cpp \
     tests/testutil.cpp \
+    tests/qcetestutil.cpp \
     tests/codesnippet_t.cpp \
     tests/qdocumentcursor_t.cpp \
     tests/qdocumentsearch_t.cpp \
@@ -410,6 +411,7 @@ SOURCES += tests/testmanager.cpp \
 	tests/latexeditorview_t.cpp
 HEADERS += tests/testmanager.h \
     tests/testutil.h \
+    tests/qcetestutil.h \
     tests/smallUsefulFunctions_t.h \
     tests/buildManager_t.h \
     tests/codesnippet_t.h \

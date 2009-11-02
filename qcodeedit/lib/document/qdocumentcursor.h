@@ -107,6 +107,7 @@ class QCE_EXPORT QDocumentCursor
 		
 		void beginBoundary(int& begline, int& begcol) const;
 		void endBoundary(int& endline, int& endcol) const;
+		void boundaries(int& begline, int& begcol, int& endline, int& endcol) const;
 		
 		bool isNull() const;
 		bool isValid() const;

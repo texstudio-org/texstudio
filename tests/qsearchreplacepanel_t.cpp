@@ -2,19 +2,77 @@
 #include "mostQtHeaders.h"
 #include "qsearchreplacepanel_t.h"
 #include "qsearchreplacepanel.h"
+#include "qdocumentcursor.h"
 #include "qdocumentsearch.h"
 #include "ui_searchreplace.h"
+#include "qformatscheme.h"
 #include "qdocumentline.h"
 #include "qeditor.h"
 #include "qcodeedit.h"
+#include "qcetestutil.h"
 #include "testutil.h"
 #include <QtTest/QtTest>
+
+//must return void to be able to use QEQUAL,...
+void getHighlightedSelection(QEditor* ed, int &minLine, int& minCol, int& maxLine, int& maxCol){
+	int f=QDocument::formatFactory()->id("selection");	
+	minLine=-1;
+	for (int i=0;i<ed->document()->lines();i++){
+		QList<QFormatRange> overlays= ed->document()->line(i).getOverlays(f);
+		if (overlays.size()==0) continue;
+		QEQUAL2(overlays.size(),1,"multiple selection highlighted on the same line");
+		minLine=i;
+		minCol=ed->document()->line(i).length();
+		int frLength=0;
+		foreach (const QFormatRange& fr, overlays)
+			if (fr.offset<minCol) {
+				minCol=fr.offset;
+				frLength=fr.length;
+			}
+		QEQUAL2(minCol+frLength,ed->document()->line(minLine).length(),"highlighted selection too short in first line");
+		break;
+	}
+	if (minLine==-1) return;
+
+	maxLine=-1;
+	for (int i=ed->document()->lines()-1;i>=0;i--){
+		QList<QFormatRange> overlays= ed->document()->line(i).getOverlays(f);
+		if (overlays.size()==0) continue;
+		QEQUAL2(overlays.size(),1,"multiple selection highlighted on the same line");
+		maxLine=i;
+		maxCol=0;
+		int frOffset=0;
+		foreach (const QFormatRange& fr, overlays)
+			if (fr.offset+fr.length>maxCol) {
+				maxCol=fr.offset+fr.length;
+				frOffset=fr.offset;
+			}
+		QEQUAL2(frOffset,0,"highlighted selection starts too late in last line");
+		break;
+	}
+	if (maxLine==-1) return;
+	for (int i = minLine+1;i<maxLine;i++){
+		QList<QFormatRange> overlays= ed->document()->line(i).getOverlays(f);
+		QVERIFY2(overlays.size()<=1,"multiple selection highlighted on the same line");
+		QEQUAL2(overlays.size(),1,QString("no selection highlighted in line %1").arg(i));
+		QEQUAL2(overlays[0].offset,0,"selection highlighting start not at offset 0");
+		QEQUAL2(overlays[0].length, ed->document()->line(i).length(),"selection highlighting hasn't line length");
+	}
+	
+}
+QDocumentCursor getHighlightedSelection(QEditor* ed){
+	int minLine, minCol, maxLine, maxCol;
+	getHighlightedSelection(ed,minLine, minCol, maxLine, maxCol);
+	if (minLine==-1 || maxLine==-1) return QDocumentCursor();
+	return ed->document()->cursor(minLine, minCol, maxLine, maxCol);
+}
 //#include "windows.h"
 QSearchReplacePanelTest::QSearchReplacePanelTest(QCodeEdit* codeedit): 
 		QObject(0), ed(codeedit->editor()), panel(0){
 	if (!codeedit->hasPanel("Search")) return;
 	panel=qobject_cast<QSearchReplacePanel*>(codeedit->panels("Search")[0]);
 }
+
 
 void QSearchReplacePanelTest::initTestCase(){
 	QVERIFY(panel);
@@ -76,6 +134,8 @@ void QSearchReplacePanelTest::incrementalsearch(){
 		if (scopey1!=-1) {
 			widget->cbSelection->setChecked(true);
 			ed->setCursor(ed->document()->cursor(scopey1,scopex1,scopey2,scopex2));
+			//test if the set search scope is correctly highlighted
+			QCEEQUAL(getHighlightedSelection(ed), panel->getSearchScope(), ed->document()->cursor(scopey1,scopex1,scopey2,scopex2));
 		}
 		panel->setOptions((QDocumentSearch::Options)options, cursor, scopey1!=-1);
 		ed->setCursorPosition(sy,sx);
@@ -108,6 +168,8 @@ void QSearchReplacePanelTest::incrementalsearch(){
 			QEQUAL2(s.lineNumber(), cy, search+" "+ed->cursor().selectedText());
 			QEQUAL2(s.columnNumber(), cx, search+" "+ed->cursor().selectedText());
 			QEQUAL2(ed->cursor().selectedText(), res, search+" "+ed->cursor().selectedText());
+			//searching shouldn't change highlighted selection
+			QCEEQUAL(getHighlightedSelection(ed), panel->getSearchScope(), ed->document()->cursor(scopey1,scopex1,scopey2,scopex2));			
 		}
 	}
 }
@@ -229,7 +291,8 @@ void QSearchReplacePanelTest::findReplace(){
 			}
 			//QApplication::processEvents();
 			//Sleep(1000);
-			QEQUAL2(ed->cursor().selectionStart().lineNumber(),move[1].toInt(),QString("%1 highlight-run: %2").arg(movements[i]).arg(highlightRun));			QEQUAL2(ed->cursor().selectionStart().columnNumber(),move[2].toInt(),QString("%1 highlight-run: %2").arg(movements[i]).arg(highlightRun));
+			QEQUAL2(ed->cursor().selectionStart().lineNumber(),move[1].toInt(),QString("%1 highlight-run: %2").arg(movements[i]).arg(highlightRun));			
+			QEQUAL2(ed->cursor().selectionStart().columnNumber(),move[2].toInt(),QString("%1 highlight-run: %2").arg(movements[i]).arg(highlightRun));
 			QEQUAL2(ed->cursor().selectedText(),move[0],QString("%1 highlight-run: %2").arg(movements[i]).arg(highlightRun));
 		}
 	}	
@@ -259,6 +322,80 @@ void QSearchReplacePanelTest::findReplaceSpecialCase(){
 
 	widget->bPrevious->click();
 	QEQUAL2(ed->cursor().lineNumber(),0,"f"); QEQUAL(ed->cursor().selectionStart().columnNumber(),0);
+}
+
+//test if the panel use the correct highlighting of the current selection 
+void QSearchReplacePanelTest::selectionHighlighting(){
+	ed->document()->setText("hallo welt\nhello world\nsalve mundus\nbounjoure ???\n");
+	widget->cbSelection->setChecked(true);
+	
+	QDocumentCursor sel=ed->document()->cursor(0,5,2,10);
+	ed->setCursor(sel);
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
+	
+	//modify mid line of selection
+	QDocumentCursor c=ed->document()->cursor(1,10);
+	c.deletePreviousChar();
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
+	c.insertText("m");
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
+	c.movePosition(1, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+	c.insertText(" doomination!!!! panically!");
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
+	
+	//modify last line, after selection
+	c=ed->document()->cursor(2,11);
+	c.insertText("holla!holla!holla!");
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
+	
+	//modify first line, before selection, keeping length
+	c=ed->document()->cursor(0,1);
+	c.deletePreviousChar();
+	c.insertText("e");
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
+
+	//modify first line, in selection, changing text, but not selection
+	c=ed->document()->cursor(0,7);
+	c.deletePreviousChar();
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
+	c.insertText("okay!dokay!decay!");
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
+	
+	//modify last line, in selection
+	c=ed->document()->cursor(2,1);
+	c.insertText("holla!");
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(0,5,2,16));
+	c.deletePreviousChar();
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(0,5,2,15));
+
+	//modify first line, before selection
+	c=ed->document()->cursor(0,1);
+	c.insertText("holland!");
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(0,13,2,15));
+	c.deletePreviousChar();
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(0,12,2,15));
+	
+	//removing line in selection
+	c=ed->document()->cursor(1,1);
+	c.eraseLine();
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(0,12,1,15));
+	
+	//adding new lines
+	c=ed->document()->cursor(0,15);
+	c.insertText("abc\ndef\n");
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(0,12,3,15));
+	c=ed->document()->cursor(0,5);
+	c.insertText("abc\ndef\n");
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(2,8,5,15));
+	
+	//removing lines
+	c=ed->document()->cursor(0,5);
+	c.eraseLine();
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(2,0,4,15));
+	c.eraseLine();
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(2,0,3,15));
+	c.eraseLine();
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(2,0)); //??
 }
 void QSearchReplacePanelTest::cleanupTestCase(){
 }

@@ -104,8 +104,6 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		QList<QDocumentCursor> m_highlight;
 
 		int m_replaced,m_replaceDeltaLength,m_replaceDeltaLines;
-		QDocumentLineHandle *begLine,*endLine;
-		int begCol,endCol;
 	private slots:
 		void documentContentChanged(int line, int n);
 };
