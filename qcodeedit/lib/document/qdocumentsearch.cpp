@@ -40,7 +40,7 @@
 */
 
 QDocumentSearch::QDocumentSearch(QEditor *e, const QString& f, Options opt, const QString& r)
- : m_group(-1), m_option(opt), m_string(f), m_replace(r), m_editor(e), m_scopeGroup(-1), m_replaced(0), m_replaceDeltaLength(0),
+ : m_group(-1), m_option(opt), m_string(f), m_replace(r), m_editor(e), m_scopeGroup(-1), m_replaced(0), m_replaceDeltaLength(0),m_replaceDeltaLines(0),
   begLine(0), endLine(0), begCol(-1), endCol(-1)
 {
 	if (m_editor && hasOption(HighlightAll))
@@ -895,6 +895,10 @@ void QDocumentSearch::replaceCursorText(QRegExp& m_regexp,bool backward){
 								m_regexp.cap(i));
 	
 	m_replaced=2;
+	int n=replacement.lastIndexOf("\n");
+	QString replacement_lastLine=replacement.mid(n+1);
+	m_replaceDeltaLength=replacement_lastLine.length()-m_cursor.selectedText().length();
+	m_replaceDeltaLines=replacement.count("\n");
 	m_cursor.replaceSelectedText(replacement);
 
 	
@@ -912,6 +916,11 @@ void QDocumentSearch::documentContentChanged(int line, int n){
 		setScope(QDocumentCursor());
 	} else {
 		if(m_scope.hasSelection()){
+			// adapt search scope if replacement makes that necessary
+			if((line+n-1==endLine->line()) && (m_replaced==2)){
+				endCol+=m_replaceDeltaLength;
+			}
+			//
 			m_scope.setLineNumber(begLine->line());
 			m_scope.setColumnNumber(begCol);
 			m_scope.setLineNumber(endLine->line(),QDocumentCursor::KeepAnchor);

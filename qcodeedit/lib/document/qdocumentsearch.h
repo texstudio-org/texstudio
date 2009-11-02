@@ -103,7 +103,7 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		QDocumentCursor m_cursor, m_scope, m_origin;
 		QList<QDocumentCursor> m_highlight;
 
-		int m_replaced,m_replaceDeltaLength;
+		int m_replaced,m_replaceDeltaLength,m_replaceDeltaLines;
 		QDocumentLineHandle *begLine,*endLine;
 		int begCol,endCol;
 	private slots:
