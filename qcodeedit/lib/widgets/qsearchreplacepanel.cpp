@@ -84,6 +84,10 @@ bool QSearchReplacePanel::isReplaceModeActive() const{
 	return cbReplace->isChecked();
 }
 
+QDocumentCursor QSearchReplacePanel::getSearchScope() const{
+	return m_search->scope();
+}
+
 /*!
 	\brief
 */

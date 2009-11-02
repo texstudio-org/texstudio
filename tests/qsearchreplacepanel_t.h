@@ -25,6 +25,7 @@ class QSearchReplacePanelTest: public QObject{
 		void findReplace_data();
 		void findReplace();
 		void findReplaceSpecialCase();
+		void selectionHighlighting();
 		void cleanupTestCase();
 };
 

@@ -294,6 +294,13 @@ void QDocumentCursor::endBoundary(int& endline, int& endcol) const{
 	}
 	m_handle->endBoundary(endline, endcol);
 }
+void QDocumentCursor::boundaries(int& begline, int& begcol, int& endline, int& endcol) const{
+	if (!m_handle) {
+		begline=begcol=endline=endcol=-1;
+		return;
+	}
+	m_handle->boundaries(begline,begcol,endline,endcol);
+}
 
 
 /*!
@@ -862,6 +869,7 @@ bool QDocumentCursor::isWithinSelection(const QDocumentCursor& c) const
 QDocumentCursor QDocumentCursor::intersect(const QDocumentCursor& c) const{
 	return m_handle ? m_handle->intersect(c) : QDocumentCursor();
 }
+
 
 /*!
 	\return selection information

@@ -29,6 +29,7 @@
 
 #include "ui_searchreplace.h"
 
+class QDocumentCursor;
 class QDocumentLine;
 class QDocumentSearch;
 
@@ -44,6 +45,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel, private Ui::SearchReplace
 		
 		virtual QString type() const;
 		bool isReplaceModeActive() const;
+		QDocumentCursor getSearchScope() const;
 	public slots:
 		void display(int mode, bool replace);
 		
