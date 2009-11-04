@@ -4349,7 +4349,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	
 	QStringList lines = text.split('\n', QString::KeepEmptyParts);
 	
-	if ( (lines.count() == 1) || flag(WeakIndent) || !flag(AdjustIndent)  || !flag(AutoIndent)) 
+	if ( (lines.count() == 1) || !flag(AdjustIndent)  || !flag(AutoIndent)) //|| flag(WeakIndent) || !flag(AdjustIndent)  || !flag(AutoIndent))
 	{
 		preInsert(c, lines.first());
 		
@@ -4378,7 +4378,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 			
 			l.remove(0, n);
 			
-			if ( m_definition )
+			if ( m_definition && !flag(WeakIndent))
 			{
 				// FIXME ? work on strings to make sure command grouping does not interfere with cursor state...
 				indent = m_definition->indent(c);
