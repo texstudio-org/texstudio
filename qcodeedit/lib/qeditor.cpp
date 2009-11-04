@@ -4362,12 +4362,16 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	} else {
 		
 		preInsert(c, lines.first());
+		int n=c.columnNumber();
 		c.insertText(lines.takeFirst());
 		
-			QString indent;
+		QString indent;
 		// FIXME ? work on strings to make sure command grouping does not interfere with cursor state...
-		
-		indent = c.line().text().left(qMax(0, qMin(c.line().firstChar(), c.columnNumber())));
+		if(!flag(WeakIndent)){
+			indent = c.line().text().left(qMax(0, qMin(c.line().firstChar(), c.columnNumber())));
+		}else{
+			indent = QString(n,' ');
+		}
 		
 		foreach ( QString l, lines )
 			{
