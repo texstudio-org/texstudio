@@ -4371,22 +4371,24 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		
 		foreach ( QString l, lines )
 			{
-			int n = 0;
-			
-			while ( n < l.count() && l.at(n).isSpace() )
-				++n;
-			
-			l.remove(0, n);
-			
-			if ( m_definition && !flag(WeakIndent))
-			{
-				// FIXME ? work on strings to make sure command grouping does not interfere with cursor state...
-				indent = m_definition->indent(c);
-				
-				if ( flag(ReplaceTabs) )
-					indent.replace("\t", QString(m_doc->tabStop(), ' '));
+
+			if(!flag(WeakIndent)){
+				int n = 0;
+
+				while ( n < l.count() && l.at(n).isSpace() )
+					++n;
+
+				l.remove(0, n);
+
+				if ( m_definition )
+				{
+					// FIXME ? work on strings to make sure command grouping does not interfere with cursor state...
+					indent = m_definition->indent(c);
+
+					if ( flag(ReplaceTabs) )
+						indent.replace("\t", QString(m_doc->tabStop(), ' '));
+				}
 			}
-			
 			c.insertLine();
 			c.insertText(indent);
 			
