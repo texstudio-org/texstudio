@@ -160,7 +160,8 @@ void QSearchReplacePanel::display(int mode, bool replace)
 		{
 			m_search->setOption(QDocumentSearch::HighlightAll, false);
 			m_search->highlightSelection(false);
-			//m_search->clearMatches();
+			delete m_search;
+			m_search=0;
 		}
 	}
 
