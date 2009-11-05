@@ -127,7 +127,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -1048,6 +1048,16 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             <item>
              <property name="text">
               <string>indent and unindent automatically</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>keep indentation with spaces only</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>indent and unindent automatically with spaces only</string>
              </property>
             </item>
            </widget>
