@@ -1,6 +1,6 @@
 #include "smallUsefulFunctions.h"
 
-const QString CommonEOW="~!@#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`+ï¿½";
+const QString CommonEOW="~!@#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`+ï¿½´";
 const QString EscapedChars="%&_";
 const QString CharacterAlteringChars="\"";
 
@@ -177,6 +177,7 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 	bool inCmd=false;
 	//bool reparse=false;
 	bool singleQuoteChar=false;
+	bool doubleQuoteChar=false;
 	bool ignoreBrace=false;
 	bool ignoreClosingBrace=false;
 	int start=-1;
@@ -192,6 +193,8 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 			ignoreClosingBrace=false;
 			continue;
 		}
+		if(doubleQuoteChar && cur=='\'') break; // check for words staring with "' (german quotation mark)
+		else doubleQuoteChar=false;
 		if (inCmd) {
 			if (CommonEOW.indexOf(cur)>=0) {
 				if (i-start==1) i++;
@@ -234,6 +237,7 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 		} else if (CommonEOW.indexOf(cur)<0 && cur!='\'' || cur=='"') {
 			start=i;
 			inWord=true;
+			doubleQuoteChar= ( cur == '"');
 		}
 	}
 	if (singleQuoteChar && i-1<line.size() && line.at(i-1)=='\'') 
