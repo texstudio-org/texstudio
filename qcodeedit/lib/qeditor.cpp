@@ -4370,7 +4370,11 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		if(!flag(WeakIndent)){
 			indent = c.line().text().left(qMax(0, qMin(c.line().firstChar(), c.columnNumber())));
 		}else{
-			indent = QString(n,' ');
+			indent = c.line().text().left(n);
+			n=0;
+			for(n=0; n < indent.count();n++){
+				if(!indent.at(n).isSpace()) indent[n]=' ';
+			}
 		}
 		
 		foreach ( QString l, lines )
