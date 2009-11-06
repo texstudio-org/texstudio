@@ -511,7 +511,9 @@ void QDocumentSearch::setOrigin(const QDocumentCursor& c)
 		return;
 	
 	m_origin = c;
-	
+	if (m_origin.hasSelection())
+		m_origin = m_origin.selectionStart();
+		
 //	clearMatches();
 }
 

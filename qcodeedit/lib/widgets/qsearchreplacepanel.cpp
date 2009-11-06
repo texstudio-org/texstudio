@@ -138,32 +138,24 @@ void QSearchReplacePanel::display(int mode, bool replace)
 		//frameReplace->setVisible(replace);
 		leFind->setFocus();
 
-                if (m_search){
-                    if(editor()->cursor().hasSelection()){
-						if(editor()->cursor().anchorLineNumber()!=editor()->cursor().lineNumber() || !editor()->UseLineForSearch() ||cbSelection->isChecked()){
-							if(cbSelection->isChecked()){
-								m_search->highlightSelection(true);
-							} else cbSelection->setChecked(true);
-                        }else{
-                            // single line selection
-                            // copy content to leFind
-                            leFind->setText(editor()->cursor().selectedText());
-                        }
-                    }
-                    if (cbHighlight->isChecked() && !m_search->hasOption(QDocumentSearch::HighlightAll))
-                        m_search->setOption(QDocumentSearch::HighlightAll, true);
-                }
-                leFind->selectAll();
-		//show();
-	}else{
-		if ( m_search )
-		{
-			m_search->setOption(QDocumentSearch::HighlightAll, false);
-			m_search->highlightSelection(false);
-			delete m_search;
-			m_search=0;
+		if (m_search){
+			if(editor()->cursor().hasSelection()){
+				if(editor()->cursor().anchorLineNumber()!=editor()->cursor().lineNumber() || !editor()->UseLineForSearch() ||cbSelection->isChecked()){
+					if(cbSelection->isChecked()){
+						m_search->highlightSelection(true);
+					} else cbSelection->setChecked(true);
+				}else{
+					// single line selection
+					// copy content to leFind
+				leFind->setText(editor()->cursor().selectedText());
+				}
+			}
+			if (cbHighlight->isChecked() && !m_search->hasOption(QDocumentSearch::HighlightAll))
+				m_search->setOption(QDocumentSearch::HighlightAll, true);
 		}
-	}
+		leFind->selectAll();
+		//show();
+	}else closeEvent(0);
 
 	setVisible(visible);
 
@@ -240,12 +232,17 @@ void QSearchReplacePanel::hideEvent(QHideEvent *)
 
 void QSearchReplacePanel::closeEvent(QCloseEvent *)
 {
+	//beware: the CloseEvent could be 0
+	
 	if ( m_search )
 	{
 		m_search->highlightSelection(false);
 		m_search->setOption(QDocumentSearch::HighlightAll, false);
-		delete m_search;
-		m_search=0;
+		//reset search scope
+		m_search->setScope(QDocumentCursor());
+		m_search->setOrigin(QDocumentCursor());
+		//delete m_search;
+		//m_search=0;
 	}
 }
 
@@ -550,7 +547,7 @@ void QSearchReplacePanel::cursorPositionChanged()
 		if ( editor()->cursor() == m_search->cursor() )
 			return;
 
-		if ( cbSelection->isChecked() && editor()->cursor().hasSelection()){
+		if ( cbSelection->isChecked() && editor()->cursor().hasSelection() && isVisible()){
 			m_search->setScope(editor()->cursor());
 			m_search->setOrigin(QDocumentCursor());
 		} else {

@@ -14,13 +14,15 @@
 #include <QtTest/QtTest>
 
 //must return void to be able to use QEQUAL,...
-void getHighlightedSelection(QEditor* ed, int &minLine, int& minCol, int& maxLine, int& maxCol){
+void getHighlightedSelectionIntern(QEditor* ed, int &minLine, int& minCol, int& maxLine, int& maxCol, const QString& message){
 	int f=QDocument::formatFactory()->id("selection");	
 	minLine=-1;
+	maxLine=-1;
+	int minRight = -1;
 	for (int i=0;i<ed->document()->lines();i++){
 		QList<QFormatRange> overlays= ed->document()->line(i).getOverlays(f);
 		if (overlays.size()==0) continue;
-		QEQUAL2(overlays.size(),1,"multiple selection highlighted on the same line");
+		QEQUAL2(overlays.size(),1,"multiple selection highlighted on the same line"+message);
 		minLine=i;
 		minCol=ed->document()->line(i).length();
 		int frLength=0;
@@ -29,16 +31,16 @@ void getHighlightedSelection(QEditor* ed, int &minLine, int& minCol, int& maxLin
 				minCol=fr.offset;
 				frLength=fr.length;
 			}
-		QEQUAL2(minCol+frLength,ed->document()->line(minLine).length(),"highlighted selection too short in first line");
+		minRight=minCol+frLength;
 		break;
 	}
 	if (minLine==-1) return;
 
-	maxLine=-1;
+	int maxLeft=-1;
 	for (int i=ed->document()->lines()-1;i>=0;i--){
 		QList<QFormatRange> overlays= ed->document()->line(i).getOverlays(f);
 		if (overlays.size()==0) continue;
-		QEQUAL2(overlays.size(),1,"multiple selection highlighted on the same line");
+		QEQUAL2(overlays.size(),1,"multiple selection highlighted on the same line"+message);
 		maxLine=i;
 		maxCol=0;
 		int frOffset=0;
@@ -47,25 +49,32 @@ void getHighlightedSelection(QEditor* ed, int &minLine, int& minCol, int& maxLin
 				maxCol=fr.offset+fr.length;
 				frOffset=fr.offset;
 			}
-		QEQUAL2(frOffset,0,"highlighted selection starts too late in last line");
+		maxLeft=frOffset;
 		break;
 	}
 	if (maxLine==-1) return;
+	if (minLine!=maxLine) {
+		QEQUAL2(maxLeft,0,"highlighted selection starts too late in last line"+message);
+		QEQUAL2(minRight,ed->document()->line(minLine).length(),"highlighted selection too short in first line"+message);
+	}
 	for (int i = minLine+1;i<maxLine;i++){
 		QList<QFormatRange> overlays= ed->document()->line(i).getOverlays(f);
-		QVERIFY2(overlays.size()<=1,"multiple selection highlighted on the same line");
-		QEQUAL2(overlays.size(),1,QString("no selection highlighted in line %1").arg(i));
-		QEQUAL2(overlays[0].offset,0,"selection highlighting start not at offset 0");
-		QEQUAL2(overlays[0].length, ed->document()->line(i).length(),"selection highlighting hasn't line length");
+		QSVERIFY2(overlays.size()<=1,"multiple selection highlighted on the same line"+message);
+		QEQUAL2(overlays.size(),1,QString("no selection highlighted in line %1: %2").arg(i).arg(message));
+		QEQUAL2(overlays[0].offset,0,"selection highlighting start not at offset 0: "+message);
+		QEQUAL2(overlays[0].length, ed->document()->line(i).length(),"selection highlighting hasn't line length "+message);
 	}
 	
 }
-QDocumentCursor getHighlightedSelection(QEditor* ed){
+QDocumentCursor getHighlightedSelectionIntern(QEditor* ed, const QString& str){
 	int minLine, minCol, maxLine, maxCol;
-	getHighlightedSelection(ed,minLine, minCol, maxLine, maxCol);
+	getHighlightedSelectionIntern(ed,minLine, minCol, maxLine, maxCol, str);
 	if (minLine==-1 || maxLine==-1) return QDocumentCursor();
 	return ed->document()->cursor(minLine, minCol, maxLine, maxCol);
 }
+
+#define getHighlightedSelection(ed) getHighlightedSelectionIntern(ed, Q__POSITION__)
+
 //#include "windows.h"
 QSearchReplacePanelTest::QSearchReplacePanelTest(QCodeEdit* codeedit): 
 		QObject(0), ed(codeedit->editor()), panel(0){
@@ -204,8 +213,10 @@ void QSearchReplacePanelTest::findNext(){
 		for (int i=0;i<positions.size();i++){
 			QStringList pos=positions[i].split('|');
 			QEQUAL(pos.size(),3);			
-			QEQUAL2(ed->cursor().selectionStart().lineNumber(),pos[0].toInt(),QString("%1 highlight-run: %2").arg(positions[i]).arg(highlightRun));
-			QEQUAL2(ed->cursor().selectionStart().columnNumber(),pos[1].toInt(),QString("%1 highlight-run: %2").arg(positions[i]).arg(highlightRun));
+			QCEEQUAL2(ed->cursor(),ed->document()->cursor(pos[0].toInt(),pos[1].toInt(),pos[0].toInt(),pos[1].toInt()+pos[2].length()),QString("%1 highlight-run: %2").arg(positions[i]).arg(highlightRun));
+			//QMessageBox::information(0,"abc","def",0);
+			//QEQUAL2(ed->cursor().selectionStart().lineNumber(),pos[0].toInt(),QString("%1 highlight-run: %2").arg(positions[i]).arg(highlightRun));
+			//QEQUAL2(ed->cursor().selectionStart().columnNumber(),pos[1].toInt(),.arg(highlightRun));
 			QEQUAL2(ed->cursor().selectedText(),pos[2],QString("%1 highlight-run: %2").arg(positions[i]).arg(highlightRun));
 			if (i!=positions.size()-1) 
 				panel->findNext();
@@ -327,9 +338,25 @@ void QSearchReplacePanelTest::findReplaceSpecialCase(){
 //test if the panel use the correct highlighting of the current selection 
 void QSearchReplacePanelTest::selectionHighlighting(){
 	ed->document()->setText("hallo welt\nhello world\nsalve mundus\nbounjoure ???\n");
+	panel->display(1, false);
 	widget->cbSelection->setChecked(true);
+	QDocumentCursor sel=ed->document()->cursor(0,7,2,10);
+
+//test if nothing is highlighted if the panel is hidden
+	ed->setCursor(sel);
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel); //should now highlighted
+	panel->display(0, false);
+	QCEEQUAL2(getHighlightedSelection(ed),QDocumentCursor(), "highlight not removed"); //highlighting should be removed
 	
-	QDocumentCursor sel=ed->document()->cursor(0,5,2,10);
+//test if cursor changes with invisible panel modify are (correctly not) highlighted
+	ed->setCursor(sel);
+	QCEEQUAL2(getHighlightedSelection(ed),QDocumentCursor(), "sel. highlighting was wrongly restored");
+	ed->setCursor(ed->document()->cursor(1,3,1,8));
+	QCEEQUAL2(getHighlightedSelection(ed),QDocumentCursor(), "sel. highlighting was wrongly restored");
+	
+//test how selection reacts to document modifications
+	panel->display(1, false);
+	sel=ed->document()->cursor(0,5,2,10);	
 	ed->setCursor(sel);
 	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
 	

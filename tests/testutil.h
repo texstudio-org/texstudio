@@ -8,6 +8,8 @@
 #define QEQUAL(a,b) QSVERIFY2((a)==(b), QString("equal failed: got \"%1\" !=expected \"%2\" ").arg(a).arg(b))
 #define QEQUAL2(a,b,m) QSVERIFY2((a)==(b), QString("equal failed: got \"%1\" !=expected \"%2\"  reason:%3").arg(a).arg(b).arg(m))
 
+#define Q__POSITION__ QString(__FILE__ ": %1").arg(__LINE__)
+
 namespace QTest{
 class MessageBoxCloser:public QObject{
 	Q_OBJECT
