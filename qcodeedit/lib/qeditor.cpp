@@ -4367,15 +4367,15 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		
 		QString indent;
 		// FIXME ? work on strings to make sure command grouping does not interfere with cursor state...
-		if(!flag(WeakIndent)){
+		//if(!flag(WeakIndent)){
 			indent = c.line().text().left(qMax(0, qMin(c.line().firstChar(), c.columnNumber())));
-		}else{
+		/*}else{
 			indent = c.line().text().left(n);
 			n=0;
 			for(n=0; n < indent.count();n++){
 				if(!indent.at(n).isSpace()) indent[n]=' ';
 			}
-		}
+		}*/
 		
 		foreach ( QString l, lines )
 			{
