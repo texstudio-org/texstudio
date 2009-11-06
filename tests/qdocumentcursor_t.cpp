@@ -3,9 +3,11 @@
 #include "mostQtHeaders.h"
 #include "qdocumentcursor_t.h"
 #include "qdocumentcursor.h"
+#include "qdocumentcursor_p.h"
 #include "qdocument.h"
 #include "qdocumentline.h"
 #include "testutil.h"
+#include "qcetestutil.h"
 #include <QtTest/QtTest>
 void QDocumentCursorTest::initTestCase(){
 	doc=new QDocument();
@@ -400,6 +402,54 @@ void QDocumentCursorTest::const2Methods_data(){
 	
 	
 	//-------------c1 left side before c2--------------
+	QTest::newRow("c1 left side before c2, no intersection, start on same line") 
+		<< "0|1|0|5" << "0|7|2|10"		
+		<< false << true
+		<< true << false
+		<< true << false
+		<< false
+		<< "";
+
+	QTest::newRow("c1 left side before c2, no intersection, start on different lines") 
+		<< "0|1|1|5" << "1|7|2|10"		
+		<< false << true
+		<< true << false
+		<< true << false
+		<< false
+		<< "";
+
+	QTest::newRow("c1 left side before c2, no intersection, start on same line, c1 inverted") 
+		<< "0|5|0|1" << "0|7|2|10"		
+		<< false << true
+		<< true << false
+		<< true << false
+		<< false
+		<< "";
+
+	QTest::newRow("c1 left side before c2, no intersection, start on different lines, c1 inverted") 
+		<< "1|5|0|5" << "1|7|2|10"		
+		<< false << true
+		<< true << false
+		<< true << false
+		<< false
+		<< "";
+
+		
+	QTest::newRow("c1 left side before c2, touching ends, start on same line") 
+		<< "0|1|0|7" << "0|7|2|10"		
+		<< false << true
+		<< true << false
+		<< true << false
+		<< false
+		<< "0|7";
+
+	QTest::newRow("c1 left side before c2, touching ends, start on same line, inverted") 
+		<< "0|1|0|7" << "2|10|0|7"	
+		<< true << false
+		<< false << false
+		<< true << true
+		<< true
+		<< "0|7";
 	//...
 	
 	//-------------c1 left side after c2--------------
@@ -434,9 +484,30 @@ void QDocumentCursorTest::const2Methods(){
 	QEQUAL(c1>=c2, gteq);
 	
 	QEQUAL(c1.isWithinSelection(c2), c1withinc2);
-	QDocumentCursor intersect = str2cur(intersection);
-	QVERIFY(intersect == c1.intersect(c2));
+	QCEEQUAL(c1.intersect(c2),str2cur(intersection));
 	
+}
+void QDocumentCursorTest::subtractBoundaries_data(){
+	QTest::addColumn<QString>("cursor");
+	QTest::addColumn<QString>("subtract");
+	QTest::addColumn<QString>("result");
+	
+	QTest::newRow("cutting left, single char") << "0|4|2|10" << "0|4|0|5" << "0|4|2|10"; //(no change, only line length in the selection differs)
+	QTest::newRow("cutting left, multiple chars") << "0|4|2|10" << "0|4|0|10" << "0|4|2|10"; // "
+	QTest::newRow("cutting left, whole line") << "0|4|2|10" << "0|4|1|0" << "0|0|1|10"; //(removing first line of selection, everything moves one line up)
+	QTest::newRow("cutting left, whole line + chars on next line") << "0|4|2|10" << "0|4|1|5" << "0|5|1|10";//"
+}
+void QDocumentCursorTest::subtractBoundaries(){
+	QFETCH(QString, cursor);
+	QFETCH(QString, subtract);
+	QFETCH(QString, result);
+	QDocumentCursor c=str2cur(cursor),
+	                s=str2cur(subtract),
+	                r=str2cur(result);
+	int bl, bc, el, ec;
+	s.boundaries(bl,bc,el,ec);
+	c.handle()->substractBoundaries(bl,bc,el,ec);
+	QCEEQUAL(c,r);
 }
 void QDocumentCursorTest::cleanupTestCase(){
 	delete doc;
