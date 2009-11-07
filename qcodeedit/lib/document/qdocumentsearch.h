@@ -83,6 +83,8 @@ class QCE_EXPORT QDocumentSearch: public QObject
 
 		void highlightSelection(bool on=true);
 
+		QDocument* currentDocument();
+
 	private:
 		void replaceCursorText(QRegExp& m_regexp, bool backward);
 		bool end(bool backward) const;
@@ -91,7 +93,6 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		void searchMatches(const QDocumentCursor& subHighlightScope=QDocumentCursor(), bool clearAll=true);
 		void clearMatches();
 		
-		QDocument* currentDocument();
 		QRegExp currentRegExp();
 		
 		int m_group,m_scopeGroup;

@@ -1195,7 +1195,7 @@ void QEditor::findNext()
 	}
 }
 
-void QEditor::find(QString text, bool highlight, bool regex){
+void QEditor::find(QString text, bool highlight, bool regex, bool word, bool caseSensitive){
 	QCodeEdit *m = QCodeEdit::manager(this);
 
 	if ( m )
@@ -1210,6 +1210,8 @@ void QEditor::find(QString text, bool highlight, bool regex){
 								<< Q_ARG(bool, false)
 								<< Q_ARG(bool, highlight)
 								<< Q_ARG(bool, regex)
+								<< Q_ARG(bool, word)
+								<< Q_ARG(bool, caseSensitive)
 							);
 
 	} else {
@@ -4362,7 +4364,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	} else {
 		
 		preInsert(c, lines.first());
-		int n=c.columnNumber();
+		// int n=c.columnNumber();
 		c.insertText(lines.takeFirst());
 		
 		QString indent;

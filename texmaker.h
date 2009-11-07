@@ -215,6 +215,7 @@ private slots:
 	void editSetupEncoding();
 	void editInsertRefToNextLabel(bool backward=false);
 	void editInsertRefToPrevLabel();
+	void editFindGlobal();
 
 	void StructureContextMenu(const QPoint& point);
 	void SymbolGridContextMenu(QWidget* widget, const QPoint& point);
@@ -364,6 +365,8 @@ private slots:
 	void templateEdit();
 
 	void fileReloaded();
+
+	void jumpToSearch(QString filename,int lineNumber);
 protected:
 	LatexEditorView* getEditorFromStructureItem(QTreeWidgetItem* m_item);
 	QPoint sectionSelection(QTreeWidgetItem* m_item);
