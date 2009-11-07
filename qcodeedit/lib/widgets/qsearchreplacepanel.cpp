@@ -205,6 +205,7 @@ void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool
         m_search=0;
     }
 	if (!m_search) editor()->setCursorPosition(0,0);
+	if(!m_search) init();
     leFind->setText(text);
     cbHighlight->setChecked(highlight);
     cbRegExp->setChecked(regex);
