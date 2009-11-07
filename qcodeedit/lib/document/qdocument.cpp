@@ -5002,6 +5002,12 @@ void QDocumentCursorHandle::substractBoundaries(int lbeg, int cbeg, int lend, in
 		return;
 	}
 
+	//references so we don't have to difference between the cases
+	int &rtlbeg = begFirst?m_begLine:m_endLine;
+	int &rtcbeg = begFirst?m_begOffset:m_endOffset;
+	int &rtlend = begFirst?m_endLine:m_begLine;
+	int &rtcend = begFirst?m_endOffset:m_begOffset;
+	
 	int numLines = lend - lbeg;
 	bool beyondBeg = (tlmin > lbeg || (tlmin == lbeg && tcmin >= cbeg));
 	bool beyondEnd = (tlmax < lend || (tlmax == lend && tcmax <= cend));
@@ -5014,42 +5020,16 @@ void QDocumentCursorHandle::substractBoundaries(int lbeg, int cbeg, int lend, in
 		m_begOffset = m_endOffset = cbeg;
 	} else if ( beyondEnd ) {
 		//qDebug("beyond end");
-		if ( begFirst )
-		{
-			m_endLine = lbeg;
-			m_endOffset = cbeg;
-		} else {
-			m_begLine = lbeg;
-			m_begOffset = cbeg;
-		}
+		rtlend = lbeg;
+		rtcend = cbeg;
 	} else if ( beyondBeg ) {
 		//qDebug("beyond beg");
-		if ( begFirst )
-		{
-			m_begLine = lend;
-			m_begOffset = cend;
-			if ( numLines )
-			{
-				m_begLine -= numLines;
-				m_endLine -= numLines;
-			} else {
-				m_begOffset = cbeg;
-			}
-			if ( m_begLine == m_endLine )
-				m_endOffset -= (cend - cbeg);
-		} else {
-			m_endLine = lend;
-			m_endOffset = cend;
-			if ( numLines )
-			{
-				m_endLine -= numLines;
-				m_begLine -= numLines;
-			} else {
-				m_endOffset = cbeg;
-			}
-			if ( m_begLine == m_endLine )
-				m_begOffset -= (cend - cbeg);
-		}
+		
+		rtlbeg = lbeg;  //selection is moved upwards
+		rtcbeg = cbeg;//to the begin of the removed part
+		if ( rtlend == lend)
+			rtcend = rtcend - cend + cbeg; //end column moved forward by the count of removed characters
+		rtlend -= numLines; //end line moved upwards by the count of removed lines
 	} else {
 		int off = cend - cbeg;
 

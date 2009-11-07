@@ -450,6 +450,22 @@ void QDocumentCursorTest::const2Methods_data(){
 		<< true << true
 		<< true
 		<< "0|7";
+
+	QTest::newRow("c1 left side before c2, touching ends on next line") 
+		<< "0|0|1|0" << "1|0|2|10"		
+		<< false << true
+		<< true << false
+		<< true << false
+		<< false
+		<< "1|0";
+
+	QTest::newRow("c1 left side before c2, touching ends on next line, inverted") 
+		<< "0|1|1|0" << "2|10|1|0"	
+		<< true << false
+		<< false << false
+		<< true << true
+		<< true
+		<< "1|0";
 	//...
 	
 	//-------------c1 left side after c2--------------
@@ -491,11 +507,62 @@ void QDocumentCursorTest::subtractBoundaries_data(){
 	QTest::addColumn<QString>("cursor");
 	QTest::addColumn<QString>("subtract");
 	QTest::addColumn<QString>("result");
+
+/*aaaXXXXXbbbb*/
+	QTest::newRow("cutting left, one char") << "0|4|0|9" << "0|4|0|5" << "0|4|0|8";
+	QTest::newRow("cutting left, multiple chars") << "0|4|0|9" << "0|4|0|7" << "0|4|0|6";
+	QTest::newRow("cutting left, whole selection") << "0|4|0|9" << "0|4|0|9" << "0|4|0|4";
 	
+	QTest::newRow("beyond left, one intersecting char") << "0|4|0|9" << "0|2|0|5" << "0|2|0|6";
+	QTest::newRow("beyond left, multiple char") << "0|4|0|9" << "0|2|0|6" << "0|2|0|5";
+	QTest::newRow("beyond left, whole selection") << "0|4|0|9" << "0|2|0|9" << "0|2|0|2";
+	QTest::newRow("beyond left, more than selection") << "0|4|0|9" << "0|2|0|13" << "0|2|0|2";
+
+	QTest::newRow("cutting mid, chars") << "0|4|0|9" << "0|5|0|8" << "0|4|0|6";
+	QTest::newRow("cutting mid, remaining") << "0|4|0|9" << "0|5|0|9" << "0|4|0|5";
+	QTest::newRow("cutting mid, more than selection") << "0|4|0|9" << "0|5|0|12" << "0|4|0|5";
+	
+/*aaaaXXXXXX
+ZZZZZZZZZZbbbbbbbbbbbb*/
+	
+	QTest::newRow("cutting left, one char") << "0|4|1|10" << "0|4|0|5" << "0|4|1|10";
+	QTest::newRow("cutting left, multiple char") << "0|4|1|10" << "0|4|0|10" << "0|4|1|10";
+	QTest::newRow("cutting left, whole line") << "0|4|1|10" << "0|4|1|0" << "0|4|0|14";
+	QTest::newRow("cutting left, whole line + chars on last line") << "0|4|1|10" << "0|4|1|3" << "0|4|0|11";
+	QTest::newRow("cutting left, whole selection") << "0|4|1|10" << "0|4|1|10" << "0|4|0|4";
+	QTest::newRow("cutting left, more than selection") << "0|4|1|10" << "0|4|1|20" << "0|4|0|4";
+
+	QTest::newRow("cutting mid, in first line") << "0|4|1|10" << "0|6|0|10" << "0|4|1|10";
+	QTest::newRow("cutting mid, first line") << "0|4|1|10" << "0|6|1|0" << "0|4|0|16";
+	QTest::newRow("cutting mid, first line + part of second") << "0|4|1|10" << "0|6|1|4" << "0|4|0|12";
+	QTest::newRow("cutting mid, remaining") << "0|4|1|10" << "0|6|1|10" << "0|4|0|6";
+	QTest::newRow("cutting mid, more than selection") << "0|4|1|10" << "0|6|1|12" << "0|4|0|6";
+	QTest::newRow("cutting mid, in second line") << "0|4|1|10" << "1|3|1|5" << "0|4|1|8";
+	
+/*aaaaXXXXXX
+YYYYYYYYYY
+ZZZZZZZZbbbbbbbbbbbb*/
+
 	QTest::newRow("cutting left, single char") << "0|4|2|10" << "0|4|0|5" << "0|4|2|10"; //(no change, only line length in the selection differs)
 	QTest::newRow("cutting left, multiple chars") << "0|4|2|10" << "0|4|0|10" << "0|4|2|10"; // "
-	QTest::newRow("cutting left, whole line") << "0|4|2|10" << "0|4|1|0" << "0|0|1|10"; //(removing first line of selection, everything moves one line up)
-	QTest::newRow("cutting left, whole line + chars on next line") << "0|4|2|10" << "0|4|1|5" << "0|5|1|10";//"
+	QTest::newRow("cutting left, whole line of selection") << "0|4|2|10" << "0|4|1|0" << "0|4|1|10"; //(removing first line of selection, everything moves one line up)
+	QTest::newRow("cutting left, whole line + chars on next line") << "0|4|2|10" << "0|4|1|5" << "0|4|1|10";//"
+	QTest::newRow("cutting left, two whole lines") << "0|4|2|10" << "0|4|2|0" << "0|4|0|14";
+	QTest::newRow("cutting left, two whole lines + chars on last line") << "0|4|2|10" << "0|4|2|8" << "0|4|0|6";
+
+	//QTest::newRow("beyond left, no intersection") << "0|4|2|10" << "0|1|0|3" << "0|4|2|10"; //should move left, but substractb.. handles only intersections
+	QTest::newRow("beyond left, intersection in first line") << "0|4|2|10" << "0|1|0|10" << "0|1|2|10"; //moves to the left because characters before selection are removed
+	QTest::newRow("beyond left, removing complete previous line") << "1|0|2|10" << "0|0|1|0" << "0|0|1|10"; //line moves up
+	QTest::newRow("beyond left, removing partly previous line") << "1|0|2|10" << "0|5|1|0" << "0|5|1|10"; //line moves up, column moves left
+
+	QTest::newRow("cutting mid, chars in first line") << "0|4|2|10" << "0|6|0|10" << "0|4|2|10"; 
+	QTest::newRow("cutting mid, chars in second line") << "0|4|2|10" << "1|6|1|10" << "0|4|2|10"; 
+	QTest::newRow("cutting mid, chars in third line") << "0|4|2|10" << "2|4|2|6" << "0|4|2|8"; 
+	QTest::newRow("cutting mid, whole second line") << "0|4|2|10" << "1|0|2|0" << "0|4|1|10"; 
+	QTest::newRow("cutting mid, second line + chars in third") << "0|4|2|10" << "1|0|2|4" << "0|4|1|6"; 
+	QTest::newRow("cutting mid, remaining") << "0|4|2|10" << "1|0|2|10" << "0|4|1|0"; 
+	QTest::newRow("cutting mid, more than selection") << "0|4|2|10" << "1|0|2|15" << "0|4|1|0"; 
+	
 }
 void QDocumentCursorTest::subtractBoundaries(){
 	QFETCH(QString, cursor);

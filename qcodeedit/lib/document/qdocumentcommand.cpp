@@ -355,7 +355,8 @@ void QDocumentCommand::updateCursorsOnDeletion(int line, int column, int prefixL
 					ch->m_begLine = ch->m_endLine = -1;
 					ch->m_begOffset = ch->m_endOffset = -1;
 				} else {				
-					ch->substractBoundaries(lbeg, cbeg, lend, cend);
+					ch->substractBoundaries(line, column, line+numLines,columnEnd);
+					//lbeg, cbeg, lend, cend);
 				}
 				//qDebug("into (%i, %i : %i, %i)", ch->m_begLine, ch->m_begOffset, ch->m_endLine, ch->m_endOffset);
 				continue;
