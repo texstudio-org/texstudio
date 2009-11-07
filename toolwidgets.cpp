@@ -78,12 +78,20 @@ const int LAYOUT_PAGE_MESSAGES=0;
 const int LAYOUT_PAGE_LOG=1;
 const int LAYOUT_PAGE_ERRORS=2;
 const int LAYOUT_PAGE_PREVIEW=3;
+const int LAYOUT_PAGE_SEARCH=4;
 	
 OutputViewWidget::OutputViewWidget(QWidget * parent): QDockWidget(parent), logModel(0), logpresent(false), tabbedLogView(false){
 	logModel = new LatexLogModel(this);//needs loaded line marks
+	searchResultModel = new SearchResultModel(this);
 
 	OutputTable= new QTableView(this);
 	OutputTable2= new QTableView(this); // second table view for tab log view
+
+	// Search Results tree
+	OutputTree= new QTreeView(this);
+	OutputTree->setModel(searchResultModel);
+	connect(OutputTree,SIGNAL(clicked(QModelIndex)),this,SLOT(clickedSearchResult(QModelIndex)));
+
 	QFontMetrics fm(QApplication::font());
 	for (int i=0;i<2;i++){ //setup tables
 		QTableView* table=(i==0)?OutputTable:OutputTable2;
@@ -135,12 +143,16 @@ OutputViewWidget::OutputViewWidget(QWidget * parent): QDockWidget(parent), logMo
 	previewWidget = new PreviewWidget(this);
 	OutputLayout->addWidget(previewWidget);
 
+	// global search results
+	OutputLayout->addWidget(OutputTree);
+
 	// order for tabbar
 	logViewerTabBar=new QTabBar(this);
 	logViewerTabBar->addTab(tr("messages"));
 	logViewerTabBar->addTab(tr("log file"));
 	logViewerTabBar->addTab(tr("errors"));
 	logViewerTabBar->addTab(tr("preview"));
+	logViewerTabBar->addTab(tr("search results"));
 	logViewerTabBar->hide(); //internal default is non tabbed mode
 
 	this->setWidget(OutputLayout);
@@ -166,6 +178,11 @@ void OutputViewWidget::previewLatex(const QPixmap& pixmap){
 	previewWidget->previewLatex(pixmap);
 	//showPreview();	
 }
+
+void OutputViewWidget::clickedSearchResult(const QModelIndex& index){
+	emit jumpToSearch(searchResultModel->getFilename(index),searchResultModel->getLineNumber(index));
+}
+
 LatexLogModel* OutputViewWidget::getLogModel(){
 	return logModel;
 }
@@ -244,6 +261,11 @@ void OutputViewWidget::showPreview(){
 	if (!isVisible()) show();
 	logViewerTabBar->setCurrentIndex(LAYOUT_PAGE_PREVIEW);
 }
+
+void OutputViewWidget::showSearchResults(){
+	if (!isVisible()) show();
+	logViewerTabBar->setCurrentIndex(LAYOUT_PAGE_SEARCH);
+}
 void OutputViewWidget::gotoLogEntry(int logEntryNumber) {
 	if (logEntryNumber<0 || logEntryNumber>=logModel->count()) return;
 	//select entry in table view/log
@@ -259,6 +281,12 @@ void OutputViewWidget::clickedOnLogModelIndex(const QModelIndex& index){
 }
 void OutputViewWidget::gotoLogLine(int logLine){
 	gotoLogEntry(logModel->logLineNumberToLogEntryNumber(logLine));
+}
+void OutputViewWidget::addSearch(QDocumentSearch *search,QString name){
+	searchResultModel->addSearch(search,name);
+}
+void OutputViewWidget::clearSearch(){
+	searchResultModel->clear();
 }
 
 

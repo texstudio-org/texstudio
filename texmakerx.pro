@@ -9,7 +9,7 @@ CONFIG += qt \
     debug_and_release
 exists(texmakerx_my.pri):include(texmakerx_my.pri)
 QT += network \
-    xml  
+    xml
 
 # ##############################
 PRECOMPILED_HEADER = mostQtHeaders.h
@@ -78,7 +78,9 @@ HEADERS += texmaker.h \
     manhattanstyle.h \
     stylehelper.h \
     styleanimator.h \
-	webpublishdialog_config.h
+    webpublishdialog_config.h \
+    findGlobalDialog.h \
+    searchresultmodel.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -133,7 +135,9 @@ SOURCES += main.cpp \
     bibtexdialog.cpp \
     manhattanstyle.cpp \
     stylehelper.cpp \
-    styleanimator.cpp
+    styleanimator.cpp \
+    findGlobalDialog.cpp \
+    searchresultmodel.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
@@ -154,7 +158,8 @@ FORMS += structdialog.ui \
     encodingdialog.ui \
     randomtextgenerator.ui \
     templateselector.ui \
-    bibtexdialog.ui
+    bibtexdialog.ui \
+    findGlobalDialog.ui
 TRANSLATIONS += texmakerx_fr.ts \
     texmakerx_de.ts \
     texmakerx_it.ts
@@ -196,16 +201,16 @@ unix:!macx {
         utilities/qt_fr.qm \
         utilities/qt_de.qm \
         templates/template_Article.tex \
-        templates/template_Beamer.tex  \
-        templates/template_Book.tex    \
+        templates/template_Beamer.tex \
+        templates/template_Book.tex \
         templates/template_HA-prosper.tex \
-        templates/template_Letter.tex     \
-        templates/template_Prosper.tex    \
-        templates/template_Report.tex     \
-        templates/template_Scrartcl.tex   \
-        templates/template_Scrbook.tex    \
-        templates/template_Scrlttr2.tex   \
-        templates/template_Scrreprt.tex   \
+        templates/template_Letter.tex \
+        templates/template_Prosper.tex \
+        templates/template_Report.tex \
+        templates/template_Scrartcl.tex \
+        templates/template_Scrbook.tex \
+        templates/template_Scrlttr2.tex \
+        templates/template_Scrreprt.tex \
         utilities/usermanual_en.html \
         utilities/usermanual_fr.html \
         utilities/en_GB.aff \
@@ -216,7 +221,7 @@ unix:!macx {
         utilities/de_DE.dic \
         utilities/th_en_US_v2.dat \
         utilities/th_fr_FR_v2.dat \
-        utilities/th_de_DE_v2.dat \            
+        utilities/th_de_DE_v2.dat \
         utilities/AUTHORS \
         utilities/COPYING \
         utilities/CHANGELOG.txt \
@@ -279,16 +284,16 @@ macx {
         utilities/qt_fr.qm \
         utilities/qt_de.qm \
         templates/template_Article.tex \
-        templates/template_Beamer.tex  \
-        templates/template_Book.tex    \
+        templates/template_Beamer.tex \
+        templates/template_Book.tex \
         templates/template_HA-prosper.tex \
-        templates/template_Letter.tex     \
-        templates/template_Prosper.tex    \
-        templates/template_Report.tex     \
-        templates/template_Scrartcl.tex   \
-        templates/template_Scrbook.tex    \
-        templates/template_Scrlttr2.tex   \
-        templates/template_Scrreprt.tex   \
+        templates/template_Letter.tex \
+        templates/template_Prosper.tex \
+        templates/template_Report.tex \
+        templates/template_Scrartcl.tex \
+        templates/template_Scrbook.tex \
+        templates/template_Scrlttr2.tex \
+        templates/template_Scrreprt.tex \
         utilities/usermanual_en.html \
         utilities/usermanual_fr.html \
         utilities/en_GB.aff \
@@ -299,7 +304,7 @@ macx {
         utilities/de_DE.dic \
         utilities/th_en_US_v2.dat \
         utilities/th_fr_FR_v2.dat \
-        utilities/th_de_DE_v2.dat \            
+        utilities/th_de_DE_v2.dat \
         utilities/AUTHORS \
         utilities/COPYING \
         utilities/CHANGELOG.txt
@@ -408,7 +413,7 @@ SOURCES += tests/testmanager.cpp \
     tests/qdocumentcursor_t.cpp \
     tests/qdocumentsearch_t.cpp \
     tests/qsearchreplacepanel_t.cpp \
-	tests/latexeditorview_t.cpp
+    tests/latexeditorview_t.cpp
 HEADERS += tests/testmanager.h \
     tests/testutil.h \
     tests/qcetestutil.h \

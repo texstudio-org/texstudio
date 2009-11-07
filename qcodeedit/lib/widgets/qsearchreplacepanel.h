@@ -46,12 +46,17 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel, private Ui::SearchReplace
 		virtual QString type() const;
 		bool isReplaceModeActive() const;
 		QDocumentCursor getSearchScope() const;
+		int numberOfFindings();
+		QDocumentSearch * search(){
+			return m_search;
+		}
+
 	public slots:
 		void display(int mode, bool replace);
 		
 		void findNext();
 		void findReplace(bool backward, bool replace=false, bool replaceAll=false);
-		void find(QString text, bool backward, bool highlight, bool regex);
+		void find(QString text, bool backward, bool highlight, bool regex, bool word, bool caseSensitive);
 		void setOptions(int searchOptions, bool cursor, bool selection);
 		
 	protected:

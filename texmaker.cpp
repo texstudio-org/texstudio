@@ -32,6 +32,8 @@
 #include "encodingdialog.h"
 #include "randomtextgenerator.h"
 #include "webpublishdialog.h"
+#include "findGlobalDialog.h"
+#include "qsearchreplacepanel.h"
 
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
@@ -284,6 +286,7 @@ void Texmaker::setupDockWidgets(){
 		connect(outputView,SIGNAL(locationActivated(int,const QString&)),this,SLOT(gotoLocation(int,const QString&)));
 		connect(outputView,SIGNAL(logEntryActivated(int)),this,SLOT(gotoLogEntryEditorOnly(int)));
 		connect(outputView,SIGNAL(tabChanged(int)),this,SLOT(tabChanged(int)));
+		connect(outputView,SIGNAL(jumpToSearch(QString,int)),this,SLOT(jumpToSearch(QString,int)));
 		connect(&configManager,SIGNAL(tabbedLogViewChanged(bool)),outputView,SLOT(setTabbedLogView(bool)));
 		connect(&buildManager,SIGNAL(previewAvailable(const QString&, const QString&)),this,SLOT(previewAvailable	(const QString&,const QString&)));
 	}
@@ -357,6 +360,7 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	newManagedAction(menu,"find", tr("Find"), SLOT(editFind()), Qt::CTRL+Qt::Key_F);
 	newManagedAction(menu,"findnext",tr("Find Next"), SLOT(editFindNext()), Qt::CTRL+Qt::Key_M);
+	newManagedAction(menu,"findglobal",tr("Find Dialog"), SLOT(editFindGlobal()));
 	newManagedAction(menu,"replace",tr("Replace"), SLOT(editReplace()), Qt::CTRL+Qt::Key_R);
 
 	menu->addSeparator();
@@ -3846,6 +3850,20 @@ void Texmaker::tabChanged(int i) {
 	if (i>0 && i<3 && !outputView->logPresent()) RealViewLog(true);
 }
 
+void Texmaker::jumpToSearch(QString filename,int lineNumber){
+	for(int i=0;i<EditorView->count();i++){
+		LatexEditorView *edView=qobject_cast<LatexEditorView *>(EditorView->widget(i));
+		if (!edView) continue;
+		if(edView->editor->fileName()==filename){
+			if(EditorView->currentIndex()==i) break;
+			EditorView->setCurrentIndex(i);
+			outputView->showSearchResults();
+			break;
+		}
+	}
+	gotoLine(lineNumber);
+}
+
 void Texmaker::gotoLine(int line) {
 	if (currentEditorView() && line>=0)	{
 		currentEditorView()->editor->setCursorPosition(line,0);
@@ -4133,3 +4151,43 @@ void Texmaker::MostUsedSymbolsTriggered(bool direct){
 	// Update Most Used Symbols Widget
 	MostUsedSymbolWidget->SetUserPage(symbolMostused);
  }
+
+void Texmaker::editFindGlobal(){
+	if(!currentEditor()) return;
+	QEditor *e=currentEditor();
+	findGlobalDialog* dlg=new findGlobalDialog(this);
+	if(e->cursor().hasSelection()){
+		dlg->setSearchWord(e->cursor().selectedText());
+	}
+	if(dlg->exec()){
+		QList<QEditor *> editors;
+		QCodeEdit *codeedit=0;
+		QSearchReplacePanel* panel=0;
+		switch (dlg->getSearchScope()) {
+			case 0:
+				currentEditorView()->editor->find(dlg->getSearchWord(),false,dlg->isRegExp(),dlg->isWords(),dlg->isCase());
+				break;
+			case 1:
+				for(int i=0;i<EditorView->count();i++){
+					LatexEditorView *edView=qobject_cast<LatexEditorView *>(EditorView->widget(i));
+					if (!edView) continue;
+					editors << edView->editor;
+				}
+				outputView->clearSearch();
+				foreach(QEditor *ed,editors){
+					ed->find(dlg->getSearchWord(),true,dlg->isRegExp(),dlg->isWords(),dlg->isCase());
+					codeedit=QCodeEdit::manager(ed);
+					if (!codeedit->hasPanel("Search")) continue;
+					panel=qobject_cast<QSearchReplacePanel*>(codeedit->panels("Search")[0]);
+					//int i=panel->numberOfFindings();
+					//outputView->resetMessages(true);
+					//outputView->insertMessageLine(QString("%1: %2 found").arg(ed->fileName()).arg(i));
+					outputView->addSearch(panel->search(),ed->fileName());
+					outputView->showSearchResults();
+				}
+				break;
+			default:
+				break;
+		}
+	}
+}

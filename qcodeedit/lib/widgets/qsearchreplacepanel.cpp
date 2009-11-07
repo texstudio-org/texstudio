@@ -198,18 +198,20 @@ void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceA
 		else leFind->setFocus();
 }
 
-void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool regex){
+void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool regex, bool word, bool caseSensitive){
     if (!isVisible()) display(1,false);
     if (m_search && m_search->searchText()!=text) {
         delete m_search;
         m_search=0;
     }
-    if (!m_search) editor()->setCursorPosition(0,0);
+	if (!m_search) editor()->setCursorPosition(0,0);
     leFind->setText(text);
     cbHighlight->setChecked(highlight);
     cbRegExp->setChecked(regex);
-	cbCase->setChecked(false);
+	cbCase->setChecked(caseSensitive);
+	cbWords->setChecked(word);
 	cbSelection->setChecked(false);
+	cbCursor->setChecked(false);
     findReplace(backward);
 }
 void QSearchReplacePanel::setOptions(int searchOptions, bool cursor, bool selection){
@@ -557,6 +559,14 @@ void QSearchReplacePanel::cursorPositionChanged()
 		if (editor()->cursor().hasSelection()) m_search->setCursor(editor()->cursor().selectionStart());
 		else m_search->setCursor(editor()->cursor());
 	}
+}
+
+int QSearchReplacePanel::numberOfFindings(){
+	if ( m_search )
+	{
+		m_search->setOption(QDocumentSearch::HighlightAll, true);
+		return m_search->indexedMatchCount();
+	} else return 0;
 }
 
 /*! @} */
