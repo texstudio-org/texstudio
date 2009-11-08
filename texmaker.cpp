@@ -4165,7 +4165,7 @@ void Texmaker::editFindGlobal(){
 		QSearchReplacePanel* panel=0;
 		switch (dlg->getSearchScope()) {
 			case 0:
-				currentEditorView()->editor->find(dlg->getSearchWord(),false,dlg->isRegExp(),dlg->isWords(),dlg->isCase());
+				editors << currentEditorView()->editor;
 				break;
 			case 1:
 				for(int i=0;i<EditorView->count();i++){
@@ -4173,21 +4173,21 @@ void Texmaker::editFindGlobal(){
 					if (!edView) continue;
 					editors << edView->editor;
 				}
-				outputView->clearSearch();
-				foreach(QEditor *ed,editors){
-					ed->find(dlg->getSearchWord(),true,dlg->isRegExp(),dlg->isWords(),dlg->isCase());
-					codeedit=QCodeEdit::manager(ed);
-					if (!codeedit->hasPanel("Search")) continue;
-					panel=qobject_cast<QSearchReplacePanel*>(codeedit->panels("Search")[0]);
-					//int i=panel->numberOfFindings();
-					//outputView->resetMessages(true);
-					//outputView->insertMessageLine(QString("%1: %2 found").arg(ed->fileName()).arg(i));
-					outputView->addSearch(panel->search(),ed->fileName());
-					outputView->showSearchResults();
-				}
 				break;
 			default:
 				break;
+		}
+		outputView->clearSearch();
+		foreach(QEditor *ed,editors){
+			ed->find(dlg->getSearchWord(),true,dlg->isRegExp(),dlg->isWords(),dlg->isCase());
+			codeedit=QCodeEdit::manager(ed);
+			if (!codeedit->hasPanel("Search")) continue;
+			panel=qobject_cast<QSearchReplacePanel*>(codeedit->panels("Search")[0]);
+			//int i=panel->numberOfFindings();
+			//outputView->resetMessages(true);
+			//outputView->insertMessageLine(QString("%1: %2 found").arg(ed->fileName()).arg(i));
+			outputView->addSearch(panel->search(),ed->fileName());
+			outputView->showSearchResults();
 		}
 	}
 }
