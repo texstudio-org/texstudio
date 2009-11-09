@@ -106,3 +106,14 @@ int SearchResultModel::getLineNumber(const QModelIndex &index){
 		}
 	}else return -1;
 }
+
+QVariant SearchResultModel::headerData(int section, Qt::Orientation orientation, int role) const {
+	if (role != Qt::DisplayRole) return QVariant();
+	if (orientation != Qt::Horizontal) return QVariant();
+	switch (section) {
+	case 0:
+		return tr("Results");
+	default:
+		return QVariant();
+	}
+}
