@@ -413,16 +413,22 @@ void QSearchReplacePanelTest::selectionHighlighting(){
 	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(0,12,3,15));
 	c=ed->document()->cursor(0,5);
 	c.insertText("abc\ndef\n");
-	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(2,8,5,15));
-	
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(2,7,5,15));
+
 	//removing lines
 	c=ed->document()->cursor(0,5);
 	c.eraseLine();
-	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(2,0,4,15));
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(1,7,4,15));
 	c.eraseLine();
-	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(2,0,3,15));
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(0,7,3,15));
 	c.eraseLine();
-	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(2,0)); //??
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(0,0,2,15));
+	c.eraseLine();
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(0,0,1,15));
+	c.eraseLine();
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(0,0,0,15));
+	c.eraseLine();
+	QCEEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), QDocumentCursor());
 }
 void QSearchReplacePanelTest::cleanupTestCase(){
 }

@@ -5027,31 +5027,16 @@ void QDocumentCursorHandle::substractBoundaries(int lbeg, int cbeg, int lend, in
 		
 		rtlbeg = lbeg;  //selection is moved upwards
 		rtcbeg = cbeg;//to the begin of the removed part
-		if ( rtlend == lend)
-			rtcend = rtcend - cend + cbeg; //end column moved forward by the count of removed characters
 		rtlend -= numLines; //end line moved upwards by the count of removed lines
+		if ( tlmax == lend)
+			rtcend = rtcend - cend + cbeg; //end column moved forward by the count of removed characters
 	} else {
-		int off = cend - cbeg;
-
-		//qDebug("correcting by %i", off);
-
-		if ( begFirst )
-		{
-			m_endLine -= numLines;
-			if ( tlmax == lend )
-			{
-				m_endOffset -= off;
-			}
-		} else {
-			m_begLine -= numLines;
-			if ( tlmax == lend )
-			{
-				m_begOffset -= off;
-			}
-		}
+		rtlend -= numLines;
+		if ( tlmax == lend )
+			rtcend -= cend - cbeg;
 	}
 
-	//qDebug("(%i, %i : %i, %i) corrected to (%i, %i : %i, %i)", tlmin, tcmin, tlmax, tcmax, m_begLine, m_begOffset, m_endLine, m_endOffset);
+	//qDebug("(%i, %i : %i, %i) corrected to (%i, %i : %i, %i) after subtracting of (%i, %i : %i, %i)", tlmin, tcmin, tlmax, tcmax, m_begLine, m_begOffset, m_endLine, m_endOffset, lbeg, cbeg, lend, cend);
 }
 
 void QDocumentCursorHandle::intersectBoundaries(int& lbeg, int& cbeg, int& lend, int& cend) const

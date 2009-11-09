@@ -575,6 +575,13 @@ void QDocumentCursorTest::subtractBoundaries(){
 	s.boundaries(bl,bc,el,ec);
 	c.handle()->substractBoundaries(bl,bc,el,ec);
 	QCEEQUAL(c,r);
+	
+	//check swapped cursor
+	c = str2cur(cursor);
+	c = doc->cursor(c.lineNumber(),c.columnNumber(),c.anchorLineNumber(),c.anchorColumnNumber());
+	c.handle()->substractBoundaries(bl,bc,el,ec);
+	r = doc->cursor(r.lineNumber(),r.columnNumber(),r.anchorLineNumber(),r.anchorColumnNumber());
+	QCEEQUAL2(c,r, "swapped");
 }
 void QDocumentCursorTest::cleanupTestCase(){
 	delete doc;
