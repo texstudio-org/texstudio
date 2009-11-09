@@ -59,6 +59,8 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel, private Ui::SearchReplace
 		void find(QString text, bool backward, bool highlight, bool regex, bool word, bool caseSensitive);
 		void setOptions(int searchOptions, bool cursor, bool selection);
 		
+	signals:
+		void onClose();
 	protected:
 		virtual bool forward(QMouseEvent *e);
 		virtual void editorChange(QEditor *e);

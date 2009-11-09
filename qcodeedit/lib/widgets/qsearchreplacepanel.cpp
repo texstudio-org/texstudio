@@ -244,6 +244,7 @@ void QSearchReplacePanel::closeEvent(QCloseEvent *)
 		//reset search scope
 		m_search->setScope(QDocumentCursor());
 		m_search->setOrigin(QDocumentCursor());
+		emit onClose();
 		//delete m_search;
 		//m_search=0;
 	}
