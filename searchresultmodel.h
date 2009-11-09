@@ -17,6 +17,7 @@ public:
 	QModelIndex parent(const QModelIndex &index) const;
 	int rowCount(const QModelIndex &parent = QModelIndex()) const;
 	int columnCount(const QModelIndex &parent = QModelIndex()) const;
+	QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 
 	void addSearch(QDocumentSearch *newSearch,QString name="");
 	void removeSearch(QDocumentSearch *search);
