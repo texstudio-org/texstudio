@@ -36,11 +36,11 @@
 #define D_SINGLE_APPLICATION_H
 
 const int d_unique_port_start  = 23232;
-const int d_unique_port_finish = 23242;
+const int d_unique_port_finish = 23235;
 
 // timeouts are in ms
-const int d_timeout_try_connect = 75;
-const int d_timeout_try_read    = 1000;
+const int d_timeout_try_connect = 1000;
+const int d_timeout_try_read    = 3000;
 const int d_timeout_try_write   = 30000;
 
 #include <QString>
@@ -100,17 +100,15 @@ class DPortChecker : public QObject {
 public:
 	enum PortStatus { free=0, us=1, others=2 };
 
-	DPortChecker(const QString &id, int port, QObject *parent = 0);
+	DPortChecker(const QString &id, QObject *parent = 0);
 	~DPortChecker();
 
-	PortStatus status() const;
-	void check(int port);
+	PortStatus check(int port);
 	QTcpSocket* transferSocketOwnership();
 
 private:
-	PortStatus result;
 	QTcpSocket *tcpSocket;
-	int port;
+	QTcpServer *tcpServer;
 	QString app_id;
 };
 
