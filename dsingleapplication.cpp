@@ -65,18 +65,17 @@ void DSingleApplication::init() {
 	// that answers correctly
 	other_instance_running = false;
 
-	DPortChecker checker(app_id, d_unique_port_start, this);
+	DPortChecker checker(app_id, this);
 
 	// first go over the range of ports and check for other instance
 	// if not, then listen on the forst port available
 	DPortList ports;
-
+	
+	port = d_unique_port_start;
 	while (port <= d_unique_port_finish) {
 
 		// here check if the stuff running on port is our instance if not procede
-		checker.check(port);
-		// checker.wait();
-		DPortChecker::PortStatus port_status = checker.status();
+		DPortChecker::PortStatus port_status = checker.check(port);
 
 		if (port_status == DPortChecker::us) {
 			other_instance_running = true;
@@ -85,7 +84,7 @@ void DSingleApplication::init() {
 			return;
 		}
 
-		DPortInfo pi(port, checker.status() == DPortChecker::free);
+		DPortInfo pi(port, port_status == DPortChecker::free);
 		ports << pi;
 		++port;
 	} // while
@@ -132,39 +131,40 @@ void DSingleApplication::onClientMessage(const QString & message) {
 // This class is used to check specific port if it has an instance of this app
 //******************************************************************************
 
-DPortChecker::DPortChecker(const QString &id, int port, QObject *parent)
+DPortChecker::DPortChecker(const QString &id,  QObject *parent)
 		: QObject(parent) {
 	tcpSocket = NULL;
-	this->port = port;
 	app_id = id;
-	result = DPortChecker::free;
 	tcpSocket = new QTcpSocket();
+	tcpServer = new QTcpServer();
 }
 
 DPortChecker::~DPortChecker() {
-	if (tcpSocket != NULL) delete tcpSocket;
+	if (tcpSocket) delete tcpSocket;
+	if (tcpServer) delete tcpServer;
 }
 
-DPortChecker::PortStatus DPortChecker::status() const {
-	return result;
-}
+DPortChecker::PortStatus DPortChecker::check(int port) {
+	if (tcpSocket == NULL) 
+		return DPortChecker::free; //broken if this happens
 
-void DPortChecker::check(int port) {
-	this->port = port;
-	result = DPortChecker::free;
+	// if port is occupied, listening = false
+	bool listening = tcpServer->listen(QHostAddress::LocalHost, port);
+	tcpServer->close(); // close listening, but do not destroy
 
-	if (tcpSocket == NULL) return;
+	if (listening)
+		return DPortChecker::free;
 
 	tcpSocket->connectToHost(QHostAddress(QHostAddress::LocalHost), port);
 	if (!tcpSocket->waitForConnected(d_timeout_try_connect)) {
 		tcpSocket->abort();
-		return;
+		return DPortChecker::others;
 	}
 
-	result = DPortChecker::others;
+	
 	if (!tcpSocket->waitForReadyRead(d_timeout_try_read)) {
 		tcpSocket->abort();
-		return;
+		return DPortChecker::others;
 	}
 
 	// now compare received bytes with app_id
@@ -176,12 +176,13 @@ void DPortChecker::check(int port) {
 		in >> msgString;
 		if (msgString.size() <= 1) {
 			tcpSocket->abort();
-			return;
+			return DPortChecker::others;
 		}
 		int s = qMin(msgString.size(), app_id.size());
 		if (QString::compare(msgString.left(s), app_id.left(s)) == 0)
-			result = DPortChecker::us;
+			return DPortChecker::us;
 	}
+	return DPortChecker::others;
 }
 
 QTcpSocket* DPortChecker::transferSocketOwnership() {

@@ -203,17 +203,18 @@ void QSearchReplacePanelTest::findNext(){
 	QFETCH(int, sx);
 	QFETCH(QString, search);
 	QFETCH(QStringList, positions);
-
+	
 	for (int highlightRun=0; highlightRun<2; highlightRun++) {
 		ed->document()->setText(editorText);
 		panel->setOptions(options,true,false);
 		ed->setCursorPosition(sy,sx);
-		ed->find(search,highlightRun!=0,false);
+		//ed->find(search,highlightRun!=0,false);
+		panel->find(search, false, highlightRun!=0, false, false, false);//init search
 		panel->display(0,false);
 		for (int i=0;i<positions.size();i++){
 			QStringList pos=positions[i].split('|');
 			QEQUAL(pos.size(),3);			
-			QCEEQUAL2(ed->cursor(),ed->document()->cursor(pos[0].toInt(),pos[1].toInt(),pos[0].toInt(),pos[1].toInt()+pos[2].length()),QString("%1 highlight-run: %2").arg(positions[i]).arg(highlightRun));
+			QCEEQUAL2(ed->cursor(),ed->document()->cursor(pos[0].toInt(),pos[1].toInt(),pos[0].toInt(),pos[1].toInt()+pos[2].length()),QString("%1: %2 highlight-run: %3").arg(i).arg(positions[i]).arg(highlightRun));
 			//QMessageBox::information(0,"abc","def",0);
 			//QEQUAL2(ed->cursor().selectionStart().lineNumber(),pos[0].toInt(),QString("%1 highlight-run: %2").arg(positions[i]).arg(highlightRun));
 			//QEQUAL2(ed->cursor().selectionStart().columnNumber(),pos[1].toInt(),.arg(highlightRun));
