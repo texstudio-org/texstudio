@@ -54,6 +54,10 @@ void RandomTextGenerator::generateText(){
 			}
 		}
 		lines.clear();
+		if (words.empty()) {
+			ui->outputEdit->setText(tr("The current document contains no words, but we need some phrases as a base to create the random text from"));
+			return;
+		}
 	}
 	
 	
