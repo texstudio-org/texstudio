@@ -4192,7 +4192,11 @@ bool QEditor::processCursor(QDocumentCursor& c, QKeyEvent *e, bool& b)
 
 				c.removeSelectedText();
 			else
-				c.deleteChar();
+				if(e->modifiers()==Qt::ControlModifier) {
+					c.movePosition(1,QDocumentCursor::NextWord,QDocumentCursor::KeepAnchor);
+					c.removeSelectedText();
+				} else
+					c.deleteChar();
 
 			//emit clearAutoCloseStack();
 			break;
