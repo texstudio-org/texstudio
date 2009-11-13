@@ -1305,6 +1305,8 @@ void Texmaker::fileCloseAll() {
 		} else 
 			delete currentEditorView();
 	}
+	if (!singlemode) 
+		ToggleMode();
 	UpdateCaption();
 }
 
