@@ -2162,17 +2162,13 @@ void Texmaker::ClickedOnStructure(QTreeWidgetItem *item,int col) {
 	QString basename=name.left(name.length()-flname.length());
 	QString s=item->text(1);
 	if (s=="include" || s=="input") {
-		QString fname=item->text(0);
-		if (fname.right(4)==".tex") fname=basename+fname;
-		else fname=basename+fname+".tex";
-		QFileInfo fi(fname);
-		if (fi.exists() && fi.isReadable()) load(fname);
+		if (load(getAbsoluteFilePath(item->text(0),".tex")));
+		else if (load(getAbsoluteFilePath(basename+item->text(0),".tex")));
+		else QMessageBox::warning(this,"TexMakerX","Sorry, I couldn't find the file \""+item->text(0)+"\"",QMessageBox::Ok);
 	} else if (s=="bibtex") {
-		QString fname=item->text(0);
-		if (fname.right(4)==".bib") fname=basename+fname;
-		else fname=basename+fname+".bib";
-		QFileInfo fi(fname);
-		if (fi.exists() && fi.isReadable()) load(fname);
+		if (load(getAbsoluteFilePath(item->text(0),".bib")));
+		else if (load(getAbsoluteFilePath(basename+item->text(0),".bib")));
+		else QMessageBox::warning(this,"TexMakerX","Sorry, I couldn't find the file \""+item->text(0)+"\"",QMessageBox::Ok);
 	} else {
 		QDocumentLineHandle *dlh = item->data(structureTreeLineColumn,Qt::UserRole).value<QDocumentLineHandle*>();
 		if (!dlh) return;
