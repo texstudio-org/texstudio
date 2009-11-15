@@ -56,7 +56,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel, private Ui::SearchReplace
 		
 		void findNext();
 		void findReplace(bool backward, bool replace=false, bool replaceAll=false);
-		void find(QString text, bool backward, bool highlight, bool regex, bool word, bool caseSensitive);
+		void find(QString text, bool backward, bool highlight, bool regex, bool word, bool caseSensitive, bool fromCursor=false, bool selection=false);
 		void setOptions(int searchOptions, bool cursor, bool selection);
 		
 	signals:

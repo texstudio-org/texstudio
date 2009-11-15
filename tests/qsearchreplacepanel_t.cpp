@@ -209,7 +209,7 @@ void QSearchReplacePanelTest::findNext(){
 		panel->setOptions(options,true,false);
 		ed->setCursorPosition(sy,sx);
 		//ed->find(search,highlightRun!=0,false);
-		panel->find(search, false, highlightRun!=0, false, false, false);//init search
+		panel->find(search, false, highlightRun!=0, false, false, false,true,false);//init search
 		panel->display(0,false);
 		for (int i=0;i<positions.size();i++){
 			QStringList pos=positions[i].split('|');
@@ -277,6 +277,7 @@ void QSearchReplacePanelTest::findReplace(){
 	QFETCH(int, sx);
 	QFETCH(QStringList, movements);
 	panel->display(1,true);
+	ed->document()->setLineEnding(QDocument::Unix);
 	for (int highlightRun=0; highlightRun<2; highlightRun++) {
 		ed->document()->setText(editorText);
 		panel->setOptions(options | (highlightRun?QDocumentSearch::HighlightAll:0), true, false);
