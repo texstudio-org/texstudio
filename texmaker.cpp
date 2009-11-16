@@ -4177,7 +4177,7 @@ void Texmaker::editFindGlobal(){
 		}
 		outputView->clearSearch();
 		foreach(QEditor *ed,editors){
-			ed->find(dlg->getSearchWord(),true,dlg->isRegExp(),dlg->isWords(),dlg->isCase());
+                        ed->find(dlg->getSearchWord(),true,dlg->isRegExp(),dlg->isWords(),dlg->isCase(),true,false);
 			codeedit=QCodeEdit::manager(ed);
 			if (!codeedit->hasPanel("Search")) continue;
 			panel=qobject_cast<QSearchReplacePanel*>(codeedit->panels("Search")[0]);

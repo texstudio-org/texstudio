@@ -197,6 +197,12 @@ void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceA
 		else leFind->setFocus();
 }
 
+void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool regex, bool word, bool caseSensitive, bool fromCursor, bool selection){
+    cbSelection->setChecked(selection);
+    cbCursor->setChecked(fromCursor);
+    find(text, backward, highlight, regex, word, caseSensitive);
+}
+
 void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool regex, bool word, bool caseSensitive){
     if (!isVisible()) display(1,false);
     if (m_search && m_search->searchText()!=text) {

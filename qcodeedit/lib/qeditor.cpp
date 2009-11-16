@@ -1218,6 +1218,32 @@ void QEditor::find(QString text, bool highlight, bool regex, bool word, bool cas
 		qDebug("Unmanaged QEditor");
 	}
 }
+
+void QEditor::find(QString text, bool highlight, bool regex, bool word, bool caseSensitive, bool fromCursor, bool selection){
+        QCodeEdit *m = QCodeEdit::manager(this);
+
+        if ( m )
+        {
+                // makes sense hiding this one if present...
+                m->sendPanelCommand("Goto", "hide");
+
+                m->sendPanelCommand("Search",
+                                                        "find",
+                                                        Q_COMMAND
+                                                                << Q_ARG(QString, text)
+                                                                << Q_ARG(bool, false)
+                                                                << Q_ARG(bool, highlight)
+                                                                << Q_ARG(bool, regex)
+                                                                << Q_ARG(bool, word)
+                                                                << Q_ARG(bool, caseSensitive)
+                                                                << Q_ARG(bool, fromCursor)
+                                                                << Q_ARG(bool, selection)
+                                                        );
+
+        } else {
+                qDebug("Unmanaged QEditor");
+        }
+}
 /*!
 	\brief Show the search/replace panel, if any
 */
