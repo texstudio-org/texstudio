@@ -4186,8 +4186,10 @@ void Texmaker::editFindGlobal(){
 			//outputView->insertMessageLine(QString("%1: %2 found").arg(ed->fileName()).arg(i));
 			disconnect(panel,SIGNAL(onClose()),outputView,SLOT(clearSearch()));
 			connect(panel,SIGNAL(onClose()),outputView,SLOT(clearSearch()));
-			outputView->addSearch(panel->search(),ed->fileName());
-			outputView->showSearchResults();
+                        if(panel->search()->indexedMatchCount()>0){ // don't add empty searches
+                            outputView->addSearch(panel->search(),ed->fileName());
+                            outputView->showSearchResults();
+                        }
 		}
 	}
 }
