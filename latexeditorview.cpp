@@ -236,6 +236,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 }
 
 LatexEditorView::~LatexEditorView() {
+    delete searchReplacePanel; // to force deletion of m_search before document. Otherwise crashes can come up (linux)
 }
 
 void LatexEditorView::complete(bool forceVisibleList, bool normalText, bool forceRef) {

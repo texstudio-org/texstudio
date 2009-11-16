@@ -48,7 +48,7 @@ QDocumentSearch::QDocumentSearch(QEditor *e, const QString& f, Options opt, cons
 
 QDocumentSearch::~QDocumentSearch()
 {
-	clearMatches();
+        clearMatches();
 }
 
 QDocumentSearch::Options QDocumentSearch::options() const
