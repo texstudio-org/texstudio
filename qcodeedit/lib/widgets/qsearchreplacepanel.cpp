@@ -197,7 +197,7 @@ void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceA
 		else leFind->setFocus();
 }
 
-void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool regex, bool word, bool caseSensitive, bool fromCursor, bool selection){
+void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool regex, bool word, bool caseSensitive){
     if (!isVisible()) display(1,false);
     if (m_search && m_search->searchText()!=text) {
         delete m_search;
@@ -210,8 +210,6 @@ void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool
     cbRegExp->setChecked(regex);
 	cbCase->setChecked(caseSensitive);
 	cbWords->setChecked(word);
-	cbSelection->setChecked(selection);
-	cbCursor->setChecked(fromCursor);
     findReplace(backward);
 }
 void QSearchReplacePanel::setOptions(int searchOptions, bool cursor, bool selection){
@@ -557,8 +555,7 @@ void QSearchReplacePanel::cursorPositionChanged()
 			if ( cbCursor->isChecked() )
 				m_search->setOrigin(editor()->cursor());
 		}
-		if (editor()->cursor().hasSelection()) m_search->setCursor(editor()->cursor().selectionStart());
-		else m_search->setCursor(editor()->cursor());
+		m_search->setCursor(editor()->cursor());
 	}
 }
 
