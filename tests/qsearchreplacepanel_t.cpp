@@ -407,7 +407,40 @@ void QSearchReplacePanelTest::findSpecialCase2(){
 		QEQUAL(widget->leFind->text(),"l");
 		QEQUAL(widget->cbSelection->isChecked(),oldSel);
 	}
+
+	//test if first match in newly selected text is matched
+	panel->display(0,false);
+	QDocumentCursor sel=ed->document()->cursor(0,1,2,3);
+	ed->setCursor(sel);
+	panel->display(1,false);
+	widget->leFind->setText("el");
+	panel->findReplace(false);
+	QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
+	QCEEQUAL(ed->cursor(),ed->document()->cursor(0,1,0,3));
+	
+	//test if first match is selected if text is searched from above the current scope
+	ed->setCursorPosition(0,0);
+	panel->findReplace(false);
+	QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
+	QCEEQUAL(ed->cursor(),ed->document()->cursor(0,1,0,3));
+
+	//test if last match is selected if text is searched from below the current scope
+	ed->setCursorPosition(3,3);
+	panel->findReplace(true);
+	QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
+	QCEEQUAL(ed->cursor(),ed->document()->cursor(2,3,2,1));
+
+	//test if last match is found in newly selected text
+	panel->display(0,false);
+	sel=ed->document()->cursor(0,1,1,3);
+	ed->setCursor(sel);
+	panel->display(1,false);
+	widget->leFind->setText("el");
+	panel->findReplace(true);
+	QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
+	QCEEQUAL(ed->cursor(),ed->document()->cursor(1,3,1,1));
 }
+
 
 //test if the panel use the correct highlighting of the current selection 
 void QSearchReplacePanelTest::selectionHighlighting(){
