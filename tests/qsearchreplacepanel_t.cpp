@@ -340,37 +340,72 @@ void QSearchReplacePanelTest::findReplaceSpecialCase(){
 //this tests how the search panel reacts to an already existing selection
 void QSearchReplacePanelTest::findSpecialCase2(){
 	ed->document()->setText("sela\nseli\nselo\nSSSSSSSSSSNAKE\nsnape");
-	widget->cbSelection->setChecked(false);
-	//init (necessary because find does changes the cursor if search text is changed)
-	panel->find("el", false, false, false, false, false);
-	for (int highlightRun=0; highlightRun<2; highlightRun++) {
-		//goto next match if searched text is already selected
-		ed->setCursor(ed->document()->cursor(0,1,0,3)); //select searched text
-		panel->find("el", false, highlightRun!=0, false, false, false);
-		QCEEQUAL2(ed->cursor(), ed->document()->cursor(1,1,1,3), highlightRun);
+	for (int useCursor=0; useCursor<2; useCursor++) {
+		widget->cbCursor->setChecked(useCursor!=0); //doesn't depend on cursor
+		widget->cbSelection->setChecked(false);
+		//init (necessary because find does changes the cursor if search text is changed)
+		panel->find("el", false, false, false, false, false);
+		for (int highlightRun=0; highlightRun<2; highlightRun++) {
+			//goto next match if searched text is already selected
+			ed->setCursor(ed->document()->cursor(0,1,0,3)); //select searched text
+			panel->find("el", false, highlightRun!=0, false, false, false);
+			QCEEQUAL2(ed->cursor(), ed->document()->cursor(1,1,1,3), highlightRun);
+			
+			//find first match if it is not selected, but touched
+			ed->setCursor(ed->document()->cursor(0,1)); 
+			panel->find("el", false, highlightRun!=0, false, false, false);
+			QCEEQUAL(ed->cursor(), ed->document()->cursor(0,1,0,3));
+
+			//find next match
+			panel->find("el", false, highlightRun!=0, false, false, false);
+			QCEEQUAL(ed->cursor(), ed->document()->cursor(1,1,1,3));
+
+			//find second match if first is selected
+			ed->setCursor(ed->document()->cursor(0,1,0,3)); 
+			panel->find("el", false, highlightRun!=0, false, false, false);
+			QCEEQUAL(ed->cursor(), ed->document()->cursor(1,1,1,3));
+
+			//find first if backward searching
+			panel->find("el", true, highlightRun!=0, false, false, false);
+			QCEEQUAL(ed->cursor(), ed->document()->cursor(0,3,0,1));
+
+			//find first if backward searching and second is selected
+			ed->setCursor(ed->document()->cursor(1,1,1,3)); 
+			panel->find("el", true, highlightRun!=0, false, false, false);
+			QCEEQUAL(ed->cursor(), ed->document()->cursor(0,3,0,1));
+		}
+	}
+	
+	
+	//test if the current selection is used as search scope
+	for (int oldSel=0;oldSel<2;oldSel++){
+		//multiline
+		widget->cbSelection->setChecked(oldSel);
+		panel->display(0,false);
+		QDocumentCursor sel=ed->document()->cursor(0,2,2,3);
+		ed->setCursor(sel);
+		panel->display(1,false);
+		QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
+		QEQUAL(widget->cbSelection->isChecked(),true);
 		
-		//find first match if it is not selected, but touched
-		ed->setCursor(ed->document()->cursor(0,1)); 
-		panel->find("el", false, highlightRun!=0, false, false, false);
-		QCEEQUAL(ed->cursor(), ed->document()->cursor(0,1,0,3));
-
-		//find next match
-		panel->find("el", false, highlightRun!=0, false, false, false);
-		QCEEQUAL(ed->cursor(), ed->document()->cursor(1,1,1,3));
-
-		//find second match if first is selected
-		ed->setCursor(ed->document()->cursor(0,1,0,3)); 
-		panel->find("el", false, highlightRun!=0, false, false, false);
-		QCEEQUAL(ed->cursor(), ed->document()->cursor(1,1,1,3));
-
-		//find first if backward searching
-		panel->find("el", true, highlightRun!=0, false, false, false);
-		QCEEQUAL(ed->cursor(), ed->document()->cursor(0,3,0,1));
-
-		//find first if backward searching and second is selected
-		ed->setCursor(ed->document()->cursor(1,1,1,3)); 
-		panel->find("el", true, highlightRun!=0, false, false, false);
-		QCEEQUAL(ed->cursor(), ed->document()->cursor(0,3,0,1));
+		//single line
+		ed->setUseLineForSearch(false);
+		widget->cbSelection->setChecked(oldSel);
+		panel->display(0,false);
+		sel=ed->document()->cursor(0,2,0,3);
+		ed->setCursor(sel);
+		panel->display(1,false);
+		QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
+		QEQUAL(widget->cbSelection->isChecked(),true);
+		
+		//not single line (=single line with disabled take selection)
+		ed->setUseLineForSearch(true);
+		widget->cbSelection->setChecked(oldSel);
+		panel->display(0,false);
+		ed->setCursor(sel);
+		panel->display(1,false);
+		QEQUAL(widget->leFind->text(),"l");
+		QEQUAL(widget->cbSelection->isChecked(),oldSel);
 	}
 }
 
