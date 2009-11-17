@@ -141,9 +141,8 @@ void QSearchReplacePanel::display(int mode, bool replace)
 		if (m_search){
 			if(editor()->cursor().hasSelection()){
 				if(editor()->cursor().anchorLineNumber()!=editor()->cursor().lineNumber() || !editor()->UseLineForSearch() ||cbSelection->isChecked()){
-					if(cbSelection->isChecked()){
-						m_search->highlightSelection(true);
-					} else cbSelection->setChecked(true);
+					if(cbSelection->isChecked()) on_cbSelection_toggled(true);
+					else cbSelection->setChecked(true);
 				}else{
 					// single line selection
 					// copy content to leFind
