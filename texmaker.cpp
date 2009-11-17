@@ -44,13 +44,15 @@
 #include "qdocumentline.h"
 #include "qdocumentline_p.h"
 
- const int Texmaker::structureTreeLineColumn=4;
+
+const int Texmaker::structureTreeLineColumn=4;
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 		: QMainWindow(parent, flags), bibTeXFilesModified(false),
-		textAnalysisDlg(0), spellDlg(0){
+                textAnalysisDlg(0), spellDlg(0) {
 
 	MapForSymbols=0;
+        thesaurusFileName.clear();
 	
 	ReadSettings();
 	setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
@@ -1520,9 +1522,39 @@ void Texmaker::editThesaurus() {
 		QMessageBox::information(this,"TexMakerX",tr("No document open"),0);
 		return;
 	}
+        if (thesaurusFileName=="<dontLoad>") {
+            QMessageBox::warning(this,tr("Error"), tr("Can't load Thesaurus Database"));
+            return;
+        }
 	QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
 	if(thesaurusDialog==0) thesaurusDialog=new ThesaurusDialog(this);
-	thesaurusDialog->readDatabase(thesaurus_database);
+        //thesaurusDialog->readDatabase(thesaurus_database);
+        // alternative version for concurrent setup
+        if (thesaurusFileName!=thesaurus_database){
+
+
+            thesaurusFileName=thesaurus_database;
+
+#if QT_VERSION >= 0x040500
+            //thesaurusFuture=QtConcurrent::run(&ThesaurusDialog::loadDatabase,file);
+            ThesaurusDatabaseType database=thesaurusFuture.result();
+#else
+            if (!QFile::exists(thesaurus_database)) return;
+
+            databasefile=new QFile(thesaurus_database);
+            if (!databasefile->open(QIODevice::ReadOnly)) {
+                QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
+                thesaurusFileName="<dontLoad>";
+                return;
+            }
+            ThesaurusDatabaseType database=ThesaurusDialog::loadDatabase(databasefile);
+
+#endif
+            thesaurusDialog->setDatabase(database);
+            delete databasefile;
+            databasefile=0;
+        }
+        // end of mocifications
 	QString word;
 	if(m_cursor.hasSelection()){
 		word=m_cursor.selectedText();
@@ -1820,6 +1852,20 @@ void Texmaker::ReadSettings() {
 		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_fr_FR_v2.dat");
 		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_de_DE_v2.dat");
 	}
+#if QT_VERSION >= 0x040500
+        if (QFile::exists(thesaurus_database)) {
+
+            databasefile=new QFile(thesaurus_database);
+            if (!databasefile->open(QIODevice::ReadOnly)) {
+                //QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
+                thesaurusFileName="<dontLoad>";
+            }
+
+            thesaurusFuture=QtConcurrent::run(&ThesaurusDialog::loadDatabase,databasefile);
+        }else
+            thesaurusFileName="<dontLoad>";
+#endif
+
 
 	//for (int i=0; i <412 ; i++)
 	//	symbolScore[i]=config->value("Symbols/symbol"+QString::number(i),0).toInt();
@@ -3466,7 +3512,26 @@ void Texmaker::GeneralOptions() {
 		createComboToolButton(spellToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(spell_dic).fileName(),comboSpell);
 
 		thesaurus_database=confDlg->ui.thesaurusFileName->text();
-		if(thesaurusDialog) thesaurusDialog->readDatabase(thesaurus_database);
+#if QT_VERSION >= 0x040500
+                if (thesaurusFileName!=thesaurus_database){
+                    if (!QFile::exists(thesaurus_database))
+                        thesaurusFileName="<dontLoad>";
+                    else {
+
+                        databasefile=new QFile(thesaurus_database);
+                        if (!databasefile->open(QIODevice::ReadOnly)) {
+                            //QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
+                            thesaurusFileName="<dontLoad>";
+                            delete databasefile;
+                            databasefile=0;
+                        } else {
+                            thesaurusFileName="";
+                            thesaurusFuture=QtConcurrent::run(&ThesaurusDialog::loadDatabase,databasefile);
+                        }
+                    }
+                }
+#endif
+                //if(thesaurusDialog) thesaurusDialog->readDatabase(thesaurus_database);
 
 		if (currentEditorView()) {
 			for (int i=0; i<EditorView->count();i++) {

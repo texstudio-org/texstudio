@@ -16,6 +16,9 @@
 
 #include "mostQtHeaders.h"
 
+#if QT_VERSION >= 0x040500
+#include <QtConcurrentRun>
+#endif
 
 #include "buildmanager.h"
 #include "codesnippet.h"
@@ -377,6 +380,12 @@ protected:
 	Qt::MouseButtons mb;
 
 	QByteArray stateFullScreen;
+
+        QString thesaurusFileName;
+        QFile *databasefile;
+#if QT_VERSION >= 0x040500
+        QFuture<ThesaurusDatabaseType> thesaurusFuture;
+#endif
 public:
 	static const int structureTreeLineColumn;
 };

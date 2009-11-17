@@ -89,10 +89,11 @@ void ThesaurusDialog::readDatabase(const QString filename)
 {
 	if (!QFile::exists(filename)) return;
 
-	QFile file(filename);
-	if (!file.open(QIODevice::ReadOnly)) {
+        QFile *file=new QFile(filename);
+        if (!file->open(QIODevice::ReadOnly)) {
 		QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
 		thesaurusFileName="";
+                delete file;
 		return;
 	}
 
@@ -100,25 +101,36 @@ void ThesaurusDialog::readDatabase(const QString filename)
 	thesaurusFileName=filename;
 	
 	Thesaurus.clear();
-	// read in file
-	QTextStream stream(&file);
-	QString line;
-	QString key;
-	QStringList parts;
-	line = stream.readLine();
-	stream.setCodec(qPrintable(line));
-	do {
-		line = stream.readLine();
-		parts=line.split("|");
-		if(parts[0]=="-"||parts[0].startsWith("(")){
-			parts.removeFirst();
-			Thesaurus.insert(key,parts);
-			//TODO: do something something that word type is included in key and still correct search is possible
-		}
-		else {
-			key=parts[0];
-		}
-	} while (!line.isNull());
+        Thesaurus=loadDatabase(file);
+}
+
+QMultiMap<QString,QStringList> ThesaurusDialog::loadDatabase(QFile *file){
+
+    QMultiMap<QString,QStringList> result;
+    QTextStream stream(file);
+    QString line;
+    QString key;
+    QStringList parts;
+    line = stream.readLine();
+    stream.setCodec(qPrintable(line));
+    do {
+            line = stream.readLine();
+            parts=line.split("|");
+            if(parts[0]=="-"||parts[0].startsWith("(")){
+                    parts.removeFirst();
+                    result.insert(key,parts);
+                    //TODO: do something something that word type is included in key and still correct search is possible
+            }
+            else {
+                    key=parts[0];
+            }
+    } while (!line.isNull());
+
+    return result;
+}
+void ThesaurusDialog::setDatabase(QMultiMap<QString,QStringList> database){
+    Thesaurus.clear();
+    Thesaurus=database;
 }
 
 void ThesaurusDialog::classClicked(QListWidgetItem *item)
