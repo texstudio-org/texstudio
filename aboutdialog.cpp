@@ -15,10 +15,10 @@ AboutDialog::AboutDialog(QWidget *parent)
 		:QDialog(parent) {
 	ui.setupUi(this);
 	ui.textBrowser->setOpenExternalLinks(true);
-	ui.textBrowser->setHtml(QString::fromUtf8("<b>TexmakerX 1.9.2</b><br>Copyright (c) (original TexMaker) 2004-2008 by Pascal Brachet<br>")+
+        ui.textBrowser->setHtml(QString::fromUtf8("<b>TexmakerX 1.9.3</b><br>Copyright (c) (original TexMaker) 2004-2008 by Pascal Brachet<br>")+
 	                        QString::fromUtf8("TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun<br>QCodeEdit: Luc Bruant <br>html conversion: Joël Amblard.</i><br>")+
 	                        QString::fromUtf8("TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) and KILE (GPL) program.<br> TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)<br>")+
-	                        QString::fromUtf8("Thanks to Frederic Devernay, Denis Bitouzé, Jean-Côme Charpentier, Luis Silvestre, Enrico Vittorini & Aleksandr Zolotarev.<br><br>")+
+                                QString::fromUtf8("Thanks to Frederic Devernay, Denis Bitouzé, Jean-Côme Charpentier, Luis Silvestre, Enrico Vittorini, Aleksandr Zolotarev & David Sichau.<br><br>")+
 	                        QString::fromUtf8("Project home site : <a href=\"http://texmakerx.sourceforge.net/\">http://texmakerx.sourceforge.net/</a><br><br>")+
 	                        QString::fromUtf8("Home site of original Texmaker: <a href=\"http://www.xm1math.net/texmaker/\">http://www.xm1math.net/texmaker/</a><br><br>")+
 	                        QString::fromUtf8("This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation."));
