@@ -36,9 +36,11 @@ public:
 	bool runLaTeXBibTeXLaTeX;
 	
 	//appearance 
+	QPalette systemPalette; 
 	QString interfaceStyle;
 	QString interfaceFontFamily;
 	bool modernStyle;
+	bool useTexmakerPalette;
 	int interfaceFontSize;
 	bool tabbedLogView;
 	bool newLeftPanelLayout;
@@ -114,6 +116,8 @@ public:
 	QMap<QPushButton*, BuildManager::LatexCommand> buttonsToCommands;
 	QMap<BuildManager::LatexCommand, QLineEdit*> commandsToEdits;
 	void loadTranslations(QString locale);
+private:
+	void setInterfaceStyle();
 private slots:
 	void browseCommand();
 	void undoCommand();

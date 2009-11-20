@@ -166,83 +166,42 @@ QSettings* ConfigManager::readSettings() {
 	editorConfig->displayModifyTime=config->value("Editor/Display Modifytime",true).toBool();
 	editorConfig->closeSearchAndReplace=config->value("Editor/Close Search Replace Together",false).toBool();
 	editorConfig->useLineForSearch=config->value("Editor/Use Line For Search",true).toBool();
+
 	//interface
-#ifdef Q_WS_X11
-	if ((x11desktop_env() != 4) || (!QStyleFactory::keys().contains("Oxygen")))
-		interfaceStyle="Plastique"; //plastique style if not kde4
-	else
-		interfaceStyle="";
-		
+	systemPalette = QApplication::palette();
+	defaultStyleName=QApplication::style()->objectName();
+
+#ifdef Q_WS_X11		
+	//use an interface like Texmaker
+	useTexmakerPalette=true;
 	if (xf.contains("DejaVu Sans",Qt::CaseInsensitive)) interfaceFontFamily="DejaVu Sans";
 	else if (xf.contains("DejaVu Sans LGC",Qt::CaseInsensitive)) interfaceFontFamily="DejaVu Sans LGC";
 	else if (xf.contains("Bitstream Vera Sans",Qt::CaseInsensitive)) interfaceFontFamily="Bitstream Vera Sans";
 	else if (xf.contains("Luxi Sans",Qt::CaseInsensitive)) interfaceFontFamily="Luxi Sans";
 	else interfaceFontFamily=QApplication::font().family();
+	if (x11desktop_env()==0) //no-kde
+	{
+		if (QStyleFactory::keys().contains("GTK+")) interfaceStyle="GTK+";//gtkstyle
+		else interfaceStyle="Cleanlooks";
+	} else if ((x11desktop_env() ==4) && (QStyleFactory::keys().contains("Oxygen"))) interfaceStyle="Oxygen"; //kde4+oxygen
+	else interfaceStyle="Plastique"; //others
 #else
-	interfaceStyle="";
+	//use system defaults
+	useTexmakerPalette=false;
 	interfaceFontFamily=QApplication::font().family();
+	interfaceStyle="";
 #endif
 		
-	configShowAdvancedOptions = config->value("Interface/Config Show Advanced Options",false).toBool();
+	useTexmakerPalette=config->value("GUI/Texmaker Palette", useTexmakerPalette).toBool();
 	interfaceStyle=config->value("X11/Style",interfaceStyle).toString(); //named X11 for backward compatibility
-	defaultStyleName=QApplication::style()->objectName();
-	#if QT_VERSION >= 0x040500
 	modernStyle=config->value("GUI/Style", false).toBool();
-	if (modernStyle) {
-		ManhattanStyle* style=new ManhattanStyle(interfaceStyle==""?defaultStyleName:interfaceStyle);
-		if (style->isValid()) QApplication::setStyle(style);
-	} else 
-	#endif
-		if (interfaceStyle!="") QApplication::setStyle(interfaceStyle); 
+	setInterfaceStyle();
 
-	interfaceFontFamily = config->value("X11/Font Family",QApplication::font().family()).toString();
+	interfaceFontFamily = config->value("X11/Font Family",interfaceFontFamily).toString();
 	interfaceFontSize = config->value("X11/Font Size",QApplication::font().pointSize()).toInt();		
 	QApplication::setFont(QFont(interfaceFontFamily, interfaceFontSize));
-	
-#ifdef Q_WS_X11
-	QPalette pal = QApplication::palette();
-	pal.setColor(QPalette::Active, QPalette::Highlight, QColor("#4490d8"));
-	pal.setColor(QPalette::Inactive, QPalette::Highlight, QColor("#4490d8"));
-	pal.setColor(QPalette::Disabled, QPalette::Highlight, QColor("#4490d8"));
 
-	pal.setColor(QPalette::Active, QPalette::HighlightedText, QColor("#ffffff"));
-	pal.setColor(QPalette::Inactive, QPalette::HighlightedText, QColor("#ffffff"));
-	pal.setColor(QPalette::Disabled, QPalette::HighlightedText, QColor("#ffffff"));
-
-	pal.setColor(QPalette::Active, QPalette::Base, QColor("#ffffff"));
-	pal.setColor(QPalette::Inactive, QPalette::Base, QColor("#ffffff"));
-	pal.setColor(QPalette::Disabled, QPalette::Base, QColor("#ffffff"));
-
-	pal.setColor(QPalette::Active, QPalette::WindowText, QColor("#000000"));
-	pal.setColor(QPalette::Inactive, QPalette::WindowText, QColor("#000000"));
-	pal.setColor(QPalette::Disabled, QPalette::WindowText, QColor("#000000"));
-
-	pal.setColor(QPalette::Active, QPalette::ButtonText, QColor("#000000"));
-	pal.setColor(QPalette::Inactive, QPalette::ButtonText, QColor("#000000"));
-	pal.setColor(QPalette::Disabled, QPalette::ButtonText, QColor("#000000"));
-
-	if (x11desktop_env() ==4) {
-		pal.setColor(QPalette::Active, QPalette::Window, QColor("#eae9e9"));
-		pal.setColor(QPalette::Inactive, QPalette::Window, QColor("#eae9e9"));
-		pal.setColor(QPalette::Disabled, QPalette::Window, QColor("#eae9e9"));
-
-		pal.setColor(QPalette::Active, QPalette::Button, QColor("#eae9e9"));
-		pal.setColor(QPalette::Inactive, QPalette::Button, QColor("#eae9e9"));
-		pal.setColor(QPalette::Disabled, QPalette::Button, QColor("#eae9e9"));
-	} else {
-		pal.setColor(QPalette::Active, QPalette::Window, QColor("#fbf8f1"));
-		pal.setColor(QPalette::Inactive, QPalette::Window, QColor("#fbf8f1"));
-		pal.setColor(QPalette::Disabled, QPalette::Window, QColor("#fbf8f1"));
-
-		pal.setColor(QPalette::Active, QPalette::Button, QColor("#fbf8f1"));
-		pal.setColor(QPalette::Inactive, QPalette::Button, QColor("#fbf8f1"));
-		pal.setColor(QPalette::Disabled, QPalette::Button, QColor("#fbf8f1"));
-	}
-
-	QApplication::setPalette(pal);
-#endif
-	
-
+	configShowAdvancedOptions = config->value("Interface/Config Show Advanced Options",false).toBool();
 	tabbedLogView=config->value("LogView/Tabbed","true").toBool();
 	newLeftPanelLayout=config->value("Interface/New Left Panel Layout",true).toBool();
 
@@ -350,7 +309,8 @@ QSettings* ConfigManager::saveSettings() {
 	config->setValue("X11/Font Family",interfaceFontFamily);
 	config->setValue("X11/Font Size",interfaceFontSize);
 	config->setValue("GUI/Style", modernStyle);
-	
+	config->setValue("GUI/Texmaker Palette", useTexmakerPalette);
+
 	config->setValue("LogView/Tabbed",tabbedLogView);
 	
 	config->setValue("Interface/New Left Panel Layout",newLeftPanelLayout);
@@ -482,7 +442,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		buttonsToCommands.insert(bdefault,cmd);
 		commandsToEdits.insert(cmd,e);
 	}
-	//quickbuild/more page
+	//quickbuild/more page	
 	if (buildManager->quickmode==1) confDlg->ui.radioButton1->setChecked(true);
 	else if (buildManager->quickmode==2) confDlg->ui.radioButton2->setChecked(true);
 	else if (buildManager->quickmode==3) confDlg->ui.radioButton3->setChecked(true);
@@ -528,13 +488,11 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 
 	//appearance
 	confDlg->ui.checkBoxShowAdvancedOptions->setChecked(configShowAdvancedOptions);
+	QString displayedInterfaceStyle=interfaceStyle==""?tr("default"):interfaceStyle;
 	confDlg->ui.comboBoxInterfaceStyle->clear();
 	confDlg->ui.comboBoxInterfaceStyle->addItems(QStyleFactory::keys()<<tr("default"));
-	if (interfaceStyle=="") //default
-		confDlg->ui.comboBoxInterfaceStyle->setCurrentIndex(confDlg->ui.comboBoxInterfaceStyle->count()-1);
-	else 
-		confDlg->ui.comboBoxInterfaceStyle->setCurrentIndex(QStyleFactory::keys().indexOf(interfaceStyle));
-	confDlg->ui.comboBoxInterfaceStyle->setEditText(interfaceStyle);
+	confDlg->ui.comboBoxInterfaceStyle->setCurrentIndex(confDlg->ui.comboBoxInterfaceStyle->findText(displayedInterfaceStyle));
+	confDlg->ui.comboBoxInterfaceStyle->setEditText(displayedInterfaceStyle);
 	confDlg->ui.comboBoxInterfaceFont->setCurrentFont(QFont(interfaceFontFamily));
 	confDlg->ui.spinBoxInterfaceFontSize->setValue(interfaceFontSize);
 
@@ -546,7 +504,8 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	confDlg->ui.checkBoxUseLineForSearch->setChecked(editorConfig->useLineForSearch);
 	
 	confDlg->ui.comboBoxInterfaceModernStyle->setCurrentIndex(modernStyle?1:0);
-	
+	confDlg->ui.checkBoxUseTexmakerPalette->setChecked(useTexmakerPalette);
+
 	//editor font
 	confDlg->ui.comboBoxFont->lineEdit()->setText(editorConfig->editorFont.family());
 	confDlg->ui.spinBoxSize->setValue(editorConfig->editorFont.pointSize());
@@ -660,24 +619,15 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 			interfaceFontFamily=confDlg->ui.comboBoxInterfaceFont->currentFont().family();
 			QApplication::setFont(QFont(interfaceFontFamily, interfaceFontSize));
 		}
-		if (confDlg->ui.comboBoxInterfaceStyle->currentText()!=interfaceStyle || 
-			confDlg->ui.comboBoxInterfaceModernStyle->currentIndex()!=(modernStyle?1:0)){
+		if (confDlg->ui.comboBoxInterfaceStyle->currentText()!=displayedInterfaceStyle || 
+			confDlg->ui.comboBoxInterfaceModernStyle->currentIndex()!=(modernStyle?1:0) ||
+			confDlg->ui.checkBoxUseTexmakerPalette->isChecked()!=useTexmakerPalette){
 			interfaceStyle=confDlg->ui.comboBoxInterfaceStyle->currentText();
-			modernStyle=confDlg->ui.comboBoxInterfaceModernStyle->currentIndex()==1;
-			QString newStyle=interfaceStyle;
-			if (interfaceStyle==tr("default")) {
+			if (interfaceStyle==tr("default")) 
 				interfaceStyle="";
-				newStyle=defaultStyleName;
-			}
-			QPalette pal = QApplication::palette();
-			#if QT_VERSION >= 0x040500
-			if (modernStyle) {
-				ManhattanStyle* style=new ManhattanStyle(newStyle);
-				if (style->isValid()) QApplication::setStyle(style);
-			} else 
-			#endif
-				QApplication::setStyle(newStyle);
-			QApplication::setPalette(pal);
+			modernStyle=confDlg->ui.comboBoxInterfaceModernStyle->currentIndex()==1;
+			useTexmakerPalette=confDlg->ui.checkBoxUseTexmakerPalette->isChecked();
+			setInterfaceStyle();
 		}
 	
 		// read checkbox and set logViewer accordingly
@@ -745,7 +695,7 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 			if (old!=NULL) recentMenu->addAction(old);
 			else newManagedAction(recentMenu, QString::number(i), tr("Recent File %1").arg(i), SLOT(fileOpenRecent()))->setVisible(false);		
 		}
-	}
+        }
 
 	for (int i=0; i < maxRecentProjects; i++) {
 		QAction* act = getManagedAction(QString("main/file/openrecent/p%1").arg(i));
@@ -764,7 +714,6 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 		} else act->setVisible(false);
 	}
 }
-
 
 QMenu* ConfigManager::newManagedMenu(const QString &id,const QString &text) {
 	if (!menuParentsBar) qFatal("No menu parent bar!");
@@ -971,6 +920,73 @@ void ConfigManager::loadTranslations(QString locale){
 		appTranslator->load(tmxTranslationFile);
 		basicTranslator->load(findResourceFile("qt_"+locale+".qm"));
 	//}
+}
+
+void ConfigManager::setInterfaceStyle(){
+	//style is controlled by the properties interfaceStyle, modernStyle and useTexmakerPalette
+	//default values are read from systemPalette and defaultStyleName
+
+	QString newStyle=interfaceStyle!=""?interfaceStyle:defaultStyleName;
+	#if QT_VERSION >= 0x040500
+	if (modernStyle) {
+		ManhattanStyle* style=new ManhattanStyle(newStyle);
+		if (style->isValid()) QApplication::setStyle(style);
+	} else 
+	#endif
+		QApplication::setStyle(newStyle);
+	QPalette pal = systemPalette;
+	if (useTexmakerPalette){ //modify palette like texmaker does it
+		pal.setColor(QPalette::Active, QPalette::Highlight, QColor("#4490d8"));
+		pal.setColor(QPalette::Inactive, QPalette::Highlight, QColor("#4490d8"));
+		pal.setColor(QPalette::Disabled, QPalette::Highlight, QColor("#4490d8"));
+
+		pal.setColor(QPalette::Active, QPalette::HighlightedText, QColor("#ffffff"));
+		pal.setColor(QPalette::Inactive, QPalette::HighlightedText, QColor("#ffffff"));
+		pal.setColor(QPalette::Disabled, QPalette::HighlightedText, QColor("#ffffff"));
+
+		pal.setColor(QPalette::Active, QPalette::Base, QColor("#ffffff"));
+		pal.setColor(QPalette::Inactive, QPalette::Base, QColor("#ffffff"));
+		pal.setColor(QPalette::Disabled, QPalette::Base, QColor("#ffffff"));
+
+		pal.setColor(QPalette::Active, QPalette::WindowText, QColor("#000000"));
+		pal.setColor(QPalette::Inactive, QPalette::WindowText, QColor("#000000"));
+		pal.setColor(QPalette::Disabled, QPalette::WindowText, QColor("#000000"));
+
+		pal.setColor( QPalette::Active, QPalette::Text, QColor("#000000") );
+		pal.setColor( QPalette::Inactive, QPalette::Text, QColor("#000000") );
+		pal.setColor( QPalette::Disabled, QPalette::Text, QColor("#000000") );
+
+		pal.setColor(QPalette::Active, QPalette::ButtonText, QColor("#000000"));
+		pal.setColor(QPalette::Inactive, QPalette::ButtonText, QColor("#000000"));
+		pal.setColor(QPalette::Disabled, QPalette::ButtonText, QColor("#000000"));
+
+		if (x11desktop_env() ==4) {
+			pal.setColor(QPalette::Active, QPalette::Window, QColor("#eae9e9"));
+			pal.setColor(QPalette::Inactive, QPalette::Window, QColor("#eae9e9"));
+			pal.setColor(QPalette::Disabled, QPalette::Window, QColor("#eae9e9"));
+
+			pal.setColor(QPalette::Active, QPalette::Button, QColor("#eae9e9"));
+			pal.setColor(QPalette::Inactive, QPalette::Button, QColor("#eae9e9"));
+			pal.setColor(QPalette::Disabled, QPalette::Button, QColor("#eae9e9"));
+		} else {
+			/*pal.setColor(QPalette::Active, QPalette::Window, QColor("#fbf8f1"));
+			pal.setColor(QPalette::Inactive, QPalette::Window, QColor("#fbf8f1"));
+			pal.setColor(QPalette::Disabled, QPalette::Window, QColor("#fbf8f1"));
+
+			pal.setColor(QPalette::Active, QPalette::Button, QColor("#fbf8f1"));
+			pal.setColor(QPalette::Inactive, QPalette::Button, QColor("#fbf8f1"));
+			pal.setColor(QPalette::Disabled, QPalette::Button, QColor("#fbf8f1"));*/
+			pal.setColor( QPalette::Active, QPalette::Window, QColor("#f6f3eb") );
+			pal.setColor( QPalette::Inactive, QPalette::Window, QColor("#f6f3eb") );
+			pal.setColor( QPalette::Disabled, QPalette::Window, QColor("#f6f3eb") );
+
+			pal.setColor( QPalette::Active, QPalette::Button, QColor("#f6f3eb") );
+			pal.setColor( QPalette::Inactive, QPalette::Button, QColor("#f6f3eb") );
+			pal.setColor( QPalette::Disabled, QPalette::Button, QColor("#f6f3eb") );
+
+		}
+	}
+	QApplication::setPalette(pal);
 }
 
 void ConfigManager::browseCommand(){
