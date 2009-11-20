@@ -625,7 +625,7 @@ void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {
 
 	QPair<int, int> p;
 	//QMessageBox::information(0,QString::number(nr),"",0);
-	for (int i=0; i<changePositions.size(); i++)
+        for (int i=changePositions.size()-1; i>=0; i--)
 		if (changePositions[i].first==l) { //TODO: optimize
 			if (QDocumentLine(changePositions[i].first).previous().isValid()) changePositions[i].first=QDocumentLine(changePositions[i].first).previous().handle();
 			else if (QDocumentLine(changePositions[i].first).next().isValid()) changePositions[i].first=QDocumentLine(changePositions[i].first).next().handle();
