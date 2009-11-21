@@ -103,6 +103,7 @@ void QReliableFileWatch::removeWatch(const QString& file, QObject *recipient)
 			}
 		} else {
 			// stop watching given file at all
+			removePath(it.key());
 			m_targets.erase(it);
 		}
 	}
