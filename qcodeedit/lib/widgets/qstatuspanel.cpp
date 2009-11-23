@@ -47,6 +47,8 @@ QStatusPanel::QStatusPanel(QWidget *p)
  : QPanel(p)
 {
 	setFixedHeight(fontMetrics().lineSpacing() + 4);
+	timer=0;
+
 }
 
 /*!
@@ -74,6 +76,11 @@ void QStatusPanel::editorChange(QEditor *e)
 	{
 		disconnect(	editor(), SIGNAL( cursorPositionChanged() ),
 					this	, SLOT  ( update() ) );
+		if(timer) {
+			disconnect(timer, SIGNAL(timeout()), this, SLOT(update()));
+			delete timer;
+			timer=0;
+		}
 
 	}
 
@@ -81,6 +88,11 @@ void QStatusPanel::editorChange(QEditor *e)
 	{
 		connect(e	, SIGNAL( cursorPositionChanged() ),
 				this, SLOT  ( update() ) );
+		if(e->displayModifyTime()){
+			timer = new QTimer(this);
+			connect(timer, SIGNAL(timeout()), this, SLOT(update()));
+			timer->start(1000);
+		}
 
 	}
 }
@@ -157,7 +169,18 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 
 	setFixedHeight(ls + 4);
 	
-	QTimer::singleShot(1000, this, SLOT( update() ) );
+	if(!e->displayModifyTime() && timer){
+		disconnect(timer, SIGNAL(timeout()), this, SLOT(update()));
+		delete timer;
+		timer=0;
+	}
+
+	if(e->displayModifyTime() && !timer){
+		timer = new QTimer(this);
+		connect(timer, SIGNAL(timeout()), this, SLOT(update()));
+		timer->start(1000);
+	}
+	//QTimer::singleShot(1000, this, SLOT( update() ) );
 	
 	return true;
 }

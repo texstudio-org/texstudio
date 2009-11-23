@@ -52,6 +52,7 @@ class QCE_EXPORT QStatusPanel : public QPanel
 		
 	private:
 		int m_conflictSpot;
+		QTimer *timer;
 };
 
 #endif // _QSTATUS_PANEL_H_
