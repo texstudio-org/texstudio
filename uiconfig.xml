@@ -76,7 +76,7 @@
     <insert id="pagebreak" text="\pagebreak" insert="\pagebreak" info="The \pagebreak command tells LaTeX to break the current page at the point of the command."/>
     <insert id="bigskip" text="\bigskip" insert="\bigskip" info="The \bigskip command adds a 'big' vertical space."/>
     <insert id="medskip" text="\medskip" insert="\medskip" info="The \medskip command adds a 'medium' vertical space."/>
-    <insert id="newline" text="New line" insert="\\%n%|" info="The \newline command breaks the line right where it is." icon=":/images/newline.png" shortcut="Ctrl+Return"/>
+    <insert id="newline" text="New line" insert="\\%n" info="The \newline command breaks the line right where it is." icon=":/images/newline.png" shortcut="Ctrl+Return"/>
   </menu>
   
   <menu id="accents" text="International &amp;Accents">
