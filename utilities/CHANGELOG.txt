@@ -1,3 +1,15 @@
+TexmakerX 1.9.2 -> TexMakerX 1.9.3
+--------------------------------------
+- added a find in open files dialog
+- added automatical bibtex calling
+- added a syntax for the current file in commands as ?c:ame
+- thesaurus is loaded in the background at start up (=>faster first synonym lookup)
+- fixed crash of DDE
+- fixed "keep indentation" mode for code snippets
+- fixed slowdown on mac
+- fixed relative paths in included files bug
+- fixed KDE dark theme
+
 TexmakerX 1.8.1 -> TexMakerX 1.9.2
 --------------------------------------
 - added experimental latex preview

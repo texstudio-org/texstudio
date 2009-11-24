@@ -1786,7 +1786,7 @@ void Texmaker::ReadSettings() {
 	int y= config->value("Geometries/MainwindowY",10).toInt() ;
 	resize(w,h);
 	// in case desktop has changed since last run
-	while(x>screen.width()) x-=screen.width();
+	while(x>screen.width() && screen.width() > 0) x-=screen.width();
 	move(x,y);
 	windowstate=config->value("MainWindowState").toByteArray();
 	stateFullScreen=config->value("MainWindowFullssscreenState").toByteArray();
