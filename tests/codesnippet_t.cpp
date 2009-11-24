@@ -374,9 +374,9 @@ void CodeSnippetTest::nestedInsert_data(){
 		<< "abc\\la{\\tex{here}}def"
 		<< CP(0,12,16,
 		   QList<CP>()<<CP(0,12,16)); 
-/*	QTest::newRow("multi line nested placeholder")
+	QTest::newRow("multi line nested placeholder")
 		<< "abcdef"
-		<< 0 << 0 << 3
+		<< -1 << 0 << 3
 		<< "\\la{%<here%>}"
 		<< 0
 		<< "loli\n\\tex{%<print%>}"
@@ -388,11 +388,36 @@ void CodeSnippetTest::nestedInsert_data(){
 		<< 0 << 0 << 3
 		<< "\\la{%<here%>}"
 		<< 0
-		<< "loli\n\\tex{%<print%>}"
-		<< "abc\\la{loli\n\\tex{here}}def"
-		<< CP(1,5,9,
-		   QList<CP>()<<CP(1,5,9));
-*/
+		<< "just me"
+		<< "abc\\la{just me}def"
+		<< CP(0,14,14,
+		   QList<CP>()<<CP(0,7,14));
+	QTest::newRow("selection removing multiline placeholder")
+		<< "abcdef"
+		<< -1 << 0 << 3
+		<< "\\la{%<here%>}"
+		<< 0
+		<< "just\nme"
+		<< "abc\\la{just\nme}def"
+		<< CP(1,2,2);
+	QTest::newRow("selection reinserted at cursor pos")
+		<< "abcdef"
+		<< 0 << 0 << 3
+		<< "\\la{%<here%>}"
+		<< 0
+		<< "just me %|"
+		<< "abc\\la{just me here}def"
+		<< CP(0,19,19,
+		   QList<CP>()<<CP(0,7,19));
+	QTest::newRow("selection multiline reinserted at cursor pos")
+		<< "abcdef"
+		<< -1 << 0 << 3
+		<< "\\la{%<here%>}"
+		<< 0
+		<< "just\nme %|"
+		<< "abc\\la{just\nme here}def"
+		<< CP(1,7,7);
+
 	//begin MAGIC
 	//begin MAGIC (don't forget to change this when the spells changes)
 	QString content=QObject::tr("content...");
