@@ -11,13 +11,21 @@
   
   
   <menu id="sectioning" text="&amp;Sectioning">
-    <insert id="part" text="\part" insert="\part"/>
-    <insert id="chapter" text="\chapter" insert="\chapter"/>
-    <insert id="section" text="\section" insert="\section"/>
-    <insert id="subsection" text="\subsection" insert="\subsection"/>
-    <insert id="subsubsection" text="\subsubsection" insert="\subsubsection"/>
-    <insert id="paragraph" text="\paragraph" insert="\paragraph"/>
-    <insert id="subparagraph" text="\subparagraph" insert="\subparagraph"/>
+    <insert id="part" text="\part{} [selection]" insert="\part{%&lt;title%>}"/>
+    <insert id="chapter" text="\chapter{} [selection]" insert="\chapter{%&lt;title%>}"/>
+    <insert id="section" text="\section{} [selection]" insert="\section{%&lt;title%>}"/>
+    <insert id="subsection" text="\subsection{} [selection]" insert="\subsection{%&lt;title%>}"/>
+    <insert id="subsubsection" text="\subsubsection{} [selection]" insert="\subsubsection{%&lt;title%>}"/>
+    <insert id="paragraph" text="\paragraph{} [selection]" insert="\paragraph{%&lt;title%>}"/>
+    <insert id="subparagraph" text="\subparagraph{} [selection]" insert="\subparagraph{%&lt;title%>}"/>
+
+    <insert id="part*" text="\part*{} [selection]" insert="\part*{%&lt;title%>}"/>
+    <insert id="chapter*" text="\chapter*{} [selection]" insert="\chapter*{%&lt;title%>}"/>
+    <insert id="section*" text="\section*{} [selection]" insert="\section*{%&lt;title%>}"/>
+    <insert id="subsection*" text="\subsection*{} [selection]" insert="\subsection*{%&lt;title%>}"/>
+    <insert id="subsubsection*" text="\subsubsection*{} [selection]" insert="\subsubsection*{%&lt;title%>}"/>
+    <insert id="paragraph*" text="\paragraph*{} [selection]" insert="\paragraph*{%&lt;title%>}"/>
+    <insert id="subparagraph*" text="\subparagraph*{} [selection]" insert="\subparagraph*{%&lt;title%>}"/>
   </menu>
 
   <menu id="environment" text="&amp;Environments">

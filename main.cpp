@@ -32,6 +32,11 @@ public:
 	TexmakerApp(int & argc, char ** argv);
 	~TexmakerApp();
 	void init(QStringList &cmdLine);   // This function does all the initialization instead of the constructor.
+/*really slow global event logging:
+	bool notify(QObject* obj, QEvent* event){
+		qWarning(qPrintable(QString("%1 obj %2 named %3 typed %4 child of %5 received %6").arg(QTime::currentTime().toString("HH:mm:ss:zzz")).arg((long)obj,8,16).arg(obj->objectName()).arg(obj->metaObject()->className()).arg(obj->parent()?obj->parent()->metaObject()->className():"").arg(event->type())));
+		return QApplication::notify(obj,event);
+	}//*/
 };
 
 TexmakerApp::TexmakerApp(int & argc, char ** argv) : QApplication(argc, argv) {

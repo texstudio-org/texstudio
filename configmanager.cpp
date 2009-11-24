@@ -459,7 +459,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	//menu shortcuts
 	QTreeWidgetItem * menuShortcuts=new QTreeWidgetItem((QTreeWidget*)0, QStringList() << QString(tr("Menus")));
 	foreach(QMenu* menu, managedMenus)
-	managedMenuToTreeWidget(menuShortcuts,menu);
+		managedMenuToTreeWidget(menuShortcuts,menu);
 	confDlg->ui.shortcutTree->addTopLevelItem(menuShortcuts);
 	menuShortcuts->setExpanded(true);
 

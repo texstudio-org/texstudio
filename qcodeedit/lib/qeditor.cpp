@@ -909,13 +909,13 @@ void QEditor::save()
 											"%1\nhas been modified by another application.\n"
 											"Press \"Save\" to overwrite the file on disk\n"
 											"Press \"Reset\"to be reload the file from disk.\n"
-											"Press \"Discard\" to ignore this warning.\n"
+											"Press \"Ignore\" to ignore this warning.\n"
 										).arg(fileName()),
 											QMessageBox::Save
 										|
 											QMessageBox::Reset
 										|
-											QMessageBox::Discard
+											QMessageBox::Ignore
 										|
 											QMessageBox::Cancel
 										);
@@ -926,7 +926,7 @@ void QEditor::save()
 			load(fileName());
 			m_saveState = Undefined;
 			return;
-		} else if ( ret == QMessageBox::Discard ) {
+		} else if ( ret == QMessageBox::Ignore ) {
 			m_saveState = Undefined;
 			return;
 		} else {
