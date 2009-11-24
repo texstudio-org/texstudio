@@ -113,7 +113,7 @@ void QReliableFileWatch::timerEvent(QTimerEvent *e)
 {
 	if ( e->timerId() != m_timer.timerId() )
 		return QFileSystemWatcher::timerEvent(e);
-
+qDebug(qPrintable(QTime::currentTime().toString()+"QReliableFileWatch::timerEvent"));
 	int postponedEmissions = 0;
 	QHash<QString, Watch> targets=m_targets; //copy targets, so m_targets can be modified from the invoken functions without crashing
 	QHash<QString, Watch>::iterator it = targets.begin();
@@ -149,6 +149,7 @@ void QReliableFileWatch::timerEvent(QTimerEvent *e)
 		++it;
 	}
 
+	m_timer.stop();
 	if ( postponedEmissions )
 	{
 		//remove duplicates from the real hash
