@@ -1662,8 +1662,8 @@ Vuoi salvarli?</translation>
     </message>
     <message>
         <location filename="codesnippet.cpp" line="18"/>
-        <location filename="tests/codesnippet_t.cpp" line="129"/>
-        <location filename="tests/codesnippet_t.cpp" line="216"/>
+        <location filename="tests/codesnippet_t.cpp" line="130"/>
+        <location filename="tests/codesnippet_t.cpp" line="423"/>
         <source>content...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1671,27 +1671,27 @@ Vuoi salvarli?</translation>
 <context>
     <name>QStatusPanel</name>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="108"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="120"/>
         <source>Line : %1 Visual column : %2 Text column : %3</source>
         <translation>Linea : %1 Conollna: %2 Testo: %3</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="120"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="132"/>
         <source>(%1 min %2 s ago)</source>
         <translation>(%1 min %2 s fa)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="136"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="148"/>
         <source>OVERWRITE</source>
         <translation>SOVRASCRIVI</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="136"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="148"/>
         <source>INSERT</source>
         <translation>INSERISCI</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="144"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="156"/>
         <source>Conflict</source>
         <translation>Conflitto</translation>
     </message>
@@ -3896,42 +3896,42 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>findGlobalDialog</name>
     <message>
-        <location filename="findGlobalDialog.ui" line="14"/>
+        <location filename="findGlobalDialog.ui" line="13"/>
         <source>Dialog</source>
         <translation type="unfinished">Dialogo</translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="27"/>
+        <location filename="findGlobalDialog.ui" line="23"/>
         <source>Scope:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="38"/>
+        <location filename="findGlobalDialog.ui" line="34"/>
         <source>current document</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="43"/>
+        <location filename="findGlobalDialog.ui" line="39"/>
         <source>open documents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="57"/>
+        <location filename="findGlobalDialog.ui" line="53"/>
         <source>Find:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="67"/>
+        <location filename="findGlobalDialog.ui" line="63"/>
         <source>Case Sensitive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="74"/>
+        <location filename="findGlobalDialog.ui" line="70"/>
         <source>Regular Expression</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="94"/>
+        <location filename="findGlobalDialog.ui" line="90"/>
         <source>Complete Words only</source>
         <translation type="unfinished"></translation>
     </message>

@@ -632,7 +632,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="configdialog.ui" line="282"/>
         <source>ignore most system colors</source>
-        <translation type="unfinished"></translation>
+        <translation>ignorer couleur de système</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="538"/>
@@ -648,7 +648,7 @@ p, li { white-space: pre-wrap; }
         <location filename="configdialog.ui" line="555"/>
         <source>&lt;b&gt;?&lt;/b&gt; followed by &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: extended filename; prepend &lt;i&gt;c:&lt;/i&gt; for current file instead of master file</source>
         <oldsource>&lt;b&gt;?&lt;/b&gt; followed by &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: extended filename</oldsource>
-        <translation type="unfinished">&lt;b&gt;?&lt;/b&gt; devant &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: nom fichier élargi</translation>
+        <translation>&lt;b&gt;?&lt;/b&gt; devant &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: nom fichier élargi; (utiliser ?c: pour fichier actuel au lieu de maître document)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="565"/>
@@ -671,7 +671,7 @@ examples: ?ame&quot;: nom fichier complet avec  extension. joindre á &quot;, ?e
     <message>
         <location filename="configdialog.ui" line="792"/>
         <source>run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</source>
-        <translation type="unfinished"></translation>
+        <translation>executer &quot;latex bibtex latex&quot;, si fichiers de bibtex étaient changé</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="995"/>
@@ -692,17 +692,17 @@ examples: ?ame&quot;: nom fichier complet avec  extension. joindre á &quot;, ?e
     <message>
         <location filename="configdialog.ui" line="1062"/>
         <source>keep indentation with spaces only</source>
-        <translation type="unfinished"></translation>
+        <translation>préserver indentation (par espaces)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1067"/>
         <source>indent and unindent automatically with spaces only</source>
-        <translation type="unfinished"></translation>
+        <translation>Indenter et unindenter automatiquement (par espaces)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1105"/>
         <source>Use single line selection as Search Word</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser sélection de ligne seule pour mot de chercher</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1119"/>
@@ -1556,7 +1556,7 @@ Est-ce que tu acceptes perte des données?</translation>
     <message>
         <location filename="toolwidgets.cpp" line="155"/>
         <source>search results</source>
-        <translation type="unfinished"></translation>
+        <translation>résultat de chercher</translation>
     </message>
 </context>
 <context>
@@ -1826,11 +1826,11 @@ Press &quot;Save&quot; to overwrite the file on disk
 Press &quot;Reset&quot;to be reload the file from disk.
 Press &quot;Discard&quot; to ignore this warning.
 </oldsource>
-        <translation type="unfinished">Le document %1 
+        <translation>Le document %1 
 fut changé par un programme étrange.
 Clicke &quot;Enregistrer&quot; de écrire par-dessus fichier dans disque dur.
 Clicke &quot;Réinitialiser&quot; de ouvrir fichier dans disque dur.
-Clicke &quot;Ne pas enregistrer&quot; de ignorer celle-ci semonce.</translation>
+Clicke &quot;Ignorer&quot; de ignorer celle-ci semonce.</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1064"/>
@@ -1984,8 +1984,8 @@ Voulez-vous l&apos;enregistrer?</translation>
     </message>
     <message>
         <location filename="codesnippet.cpp" line="18"/>
-        <location filename="tests/codesnippet_t.cpp" line="129"/>
-        <location filename="tests/codesnippet_t.cpp" line="216"/>
+        <location filename="tests/codesnippet_t.cpp" line="130"/>
+        <location filename="tests/codesnippet_t.cpp" line="423"/>
         <source>content...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1993,27 +1993,27 @@ Voulez-vous l&apos;enregistrer?</translation>
 <context>
     <name>QStatusPanel</name>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="108"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="120"/>
         <source>Line : %1 Visual column : %2 Text column : %3</source>
         <translation>Ligne: %1 Colonne visuel: %2 Colonne de texte : %3</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="120"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="132"/>
         <source>(%1 min %2 s ago)</source>
         <translation>(%1 mn il y a %2 s)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="136"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="148"/>
         <source>OVERWRITE</source>
         <translation>Mode de Ecraser</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="136"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="148"/>
         <source>INSERT</source>
         <translation>Mode de Inserer</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="144"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="156"/>
         <source>Conflict</source>
         <translation>Conflit!</translation>
     </message>
@@ -2105,7 +2105,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="randomtextgenerator.cpp" line="58"/>
         <source>The current document contains no words, but we need some phrases as a base to create the random text from</source>
-        <translation type="unfinished"></translation>
+        <translation>Le document est vide.</translation>
     </message>
     <message>
         <location filename="randomtextgenerator.cpp" line="82"/>
@@ -2378,12 +2378,12 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="searchresultmodel.cpp" line="67"/>
         <source>Click to jump to the line</source>
-        <translation type="unfinished">Cliquer pour aller à la ligne correspondante</translation>
+        <translation>Cliquer pour aller à la ligne correspondante</translation>
     </message>
     <message>
         <location filename="searchresultmodel.cpp" line="115"/>
         <source>Results</source>
-        <translation type="unfinished"></translation>
+        <translation>résultats</translation>
     </message>
 </context>
 <context>
@@ -3504,7 +3504,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="texmaker.cpp" line="365"/>
         <source>Find Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialogue de Checher</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="369"/>
@@ -3718,7 +3718,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="texmaker.cpp" line="528"/>
         <source>Fullscreen Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode plein écran</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="1074"/>
@@ -3733,12 +3733,12 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="texmaker.cpp" line="1526"/>
         <source>Can&apos;t load Thesaurus Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucun thesaurus trouvé</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3051"/>
         <source>Pre-LaTeX</source>
-        <translation type="unfinished"></translation>
+        <translation>Devant LaTeX</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3059"/>
@@ -3747,12 +3747,12 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="texmaker.cpp" line="3151"/>
         <location filename="texmaker.cpp" line="3167"/>
         <source>Could not start LaTeX.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de lancer la LaTeX</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3138"/>
         <source>Could not start PdfLaTeX.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de lancer la PdfLaTeX</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="4116"/>
@@ -4636,44 +4636,44 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>findGlobalDialog</name>
     <message>
-        <location filename="findGlobalDialog.ui" line="14"/>
+        <location filename="findGlobalDialog.ui" line="13"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="27"/>
+        <location filename="findGlobalDialog.ui" line="23"/>
         <source>Scope:</source>
-        <translation type="unfinished"></translation>
+        <translation>Domaine:</translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="38"/>
+        <location filename="findGlobalDialog.ui" line="34"/>
         <source>current document</source>
-        <translation type="unfinished"></translation>
+        <translation>fichier actuel</translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="43"/>
+        <location filename="findGlobalDialog.ui" line="39"/>
         <source>open documents</source>
-        <translation type="unfinished"></translation>
+        <translation>documents ouvert</translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="57"/>
+        <location filename="findGlobalDialog.ui" line="53"/>
         <source>Find:</source>
-        <translation type="unfinished"></translation>
+        <translation>Chercher:</translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="67"/>
+        <location filename="findGlobalDialog.ui" line="63"/>
         <source>Case Sensitive</source>
-        <translation type="unfinished">Sensible à la casse</translation>
+        <translation>Sensible à la casse</translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="74"/>
+        <location filename="findGlobalDialog.ui" line="70"/>
         <source>Regular Expression</source>
-        <translation type="unfinished"></translation>
+        <translation>Expression rationnelle</translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="94"/>
+        <location filename="findGlobalDialog.ui" line="90"/>
         <source>Complete Words only</source>
-        <translation type="unfinished"></translation>
+        <translation>Mots entiers</translation>
     </message>
 </context>
 <context>

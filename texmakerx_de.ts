@@ -598,8 +598,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="configdialog.ui" line="282"/>
         <source>ignore most system colors</source>
-        <translatorcomment>eigenes Farbschema verwenden</translatorcomment>
-        <translation></translation>
+        <translation>eigenes Farbschema verwenden</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="354"/>
@@ -1799,8 +1798,8 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <location filename="codesnippet.cpp" line="18"/>
-        <location filename="tests/codesnippet_t.cpp" line="129"/>
-        <location filename="tests/codesnippet_t.cpp" line="216"/>
+        <location filename="tests/codesnippet_t.cpp" line="130"/>
+        <location filename="tests/codesnippet_t.cpp" line="423"/>
         <source>content...</source>
         <translation>Inhalt...</translation>
     </message>
@@ -1808,27 +1807,27 @@ Wollen Sie es speichern?</translation>
 <context>
     <name>QStatusPanel</name>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="108"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="120"/>
         <source>Line : %1 Visual column : %2 Text column : %3</source>
         <translation>Zeile: %1 Sichbare Spalte: %2 Textspalte: %3</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="120"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="132"/>
         <source>(%1 min %2 s ago)</source>
         <translation>(vor %1 min %2 s)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="136"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="148"/>
         <source>OVERWRITE</source>
         <translation>Modus: Überschreiben</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="136"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="148"/>
         <source>INSERT</source>
         <translation>Modus: Einfügen</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="144"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="156"/>
         <source>Conflict</source>
         <translation>Konflikt</translation>
     </message>
@@ -4366,42 +4365,42 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>findGlobalDialog</name>
     <message>
-        <location filename="findGlobalDialog.ui" line="14"/>
+        <location filename="findGlobalDialog.ui" line="13"/>
         <source>Dialog</source>
         <translation>Dialog</translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="27"/>
+        <location filename="findGlobalDialog.ui" line="23"/>
         <source>Scope:</source>
         <translation>Suche in:</translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="38"/>
+        <location filename="findGlobalDialog.ui" line="34"/>
         <source>current document</source>
         <translation>aktuellem Dokument</translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="43"/>
+        <location filename="findGlobalDialog.ui" line="39"/>
         <source>open documents</source>
         <translation>allen offenen Dokumenten</translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="57"/>
+        <location filename="findGlobalDialog.ui" line="53"/>
         <source>Find:</source>
         <translation>Suche nach:</translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="67"/>
+        <location filename="findGlobalDialog.ui" line="63"/>
         <source>Case Sensitive</source>
         <translation>Groß-/Kleinschreibung</translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="74"/>
+        <location filename="findGlobalDialog.ui" line="70"/>
         <source>Regular Expression</source>
         <translation>Regulärer Ausdruck</translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="94"/>
+        <location filename="findGlobalDialog.ui" line="90"/>
         <source>Complete Words only</source>
         <translation>nur ganze Worte</translation>
     </message>
