@@ -3916,17 +3916,8 @@ void Texmaker::tabChanged(int i) {
 }
 
 void Texmaker::jumpToSearch(QString filename,int lineNumber){
-	for(int i=0;i<EditorView->count();i++){
-		LatexEditorView *edView=qobject_cast<LatexEditorView *>(EditorView->widget(i));
-		if (!edView) continue;
-		if(edView->editor->fileName()==filename){
-			if(EditorView->currentIndex()==i) break;
-			EditorView->setCurrentIndex(i);
-			outputView->showSearchResults();
-			break;
-		}
-	}
-	gotoLine(lineNumber);
+        gotoLocation(lineNumber,filename);
+        outputView->showSearchResults();
 }
 
 void Texmaker::gotoLine(int line) {
