@@ -19,13 +19,13 @@ public:
 	int columnCount(const QModelIndex &parent = QModelIndex()) const;
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 
-	void addSearch(QDocumentSearch *newSearch,QString name="");
-	void removeSearch(QDocumentSearch *search);
+        void addSearch(QList<QDocumentLineHandle *> newSearch,QString name="");
+        void removeSearch(QString name);
 	void clear();
 	QString getFilename(const QModelIndex &index);
 	int getLineNumber(const QModelIndex &index);
 private:
-	QList<QDocumentSearch *> m_searches;
+        QList< QList<QDocumentLineHandle *> > m_searches;
 	QStringList m_files;
 };
 

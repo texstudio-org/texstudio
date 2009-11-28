@@ -2377,7 +2377,7 @@ void Texmaker::InsertTag(QString Entity, int dx, int dy) {
 	//logpresent=false;
 }
 
-void Texmaker::InsertSymbolPressed(QTableWidgetItem *item) {
+void Texmaker::InsertSymbolPressed(QTableWidgetItem *) {
 	mb=QApplication::mouseButtons();
 }
 
@@ -4217,7 +4217,6 @@ void Texmaker::editFindGlobal(){
 	}
 	if(dlg->exec()){
 		QList<QEditor *> editors;
-		QCodeEdit *codeedit=0;
 		QSearchReplacePanel* panel=0;
 		switch (dlg->getSearchScope()) {
 			case 0:
@@ -4235,17 +4234,20 @@ void Texmaker::editFindGlobal(){
 		}
 		outputView->clearSearch();
 		foreach(QEditor *ed,editors){
-                        ed->find(dlg->getSearchWord(),true,dlg->isRegExp(),dlg->isWords(),dlg->isCase(),true,false);
-			codeedit=QCodeEdit::manager(ed);
-			if (!codeedit->hasPanel("Search")) continue;
-			panel=qobject_cast<QSearchReplacePanel*>(codeedit->panels("Search")[0]);
-			//int i=panel->numberOfFindings();
-			//outputView->resetMessages(true);
-			//outputView->insertMessageLine(QString("%1: %2 found").arg(ed->fileName()).arg(i));
+                        //ed->find(dlg->getSearchWord(),true,dlg->isRegExp(),dlg->isWords(),dlg->isCase(),true,false);
+                        QDocument *doc=ed->document();
+                        QList<QDocumentLineHandle *> lines;
+                        for(int l=0;l<doc->lineCount();l++){
+                            l=doc->findLineRegExp(dlg->getSearchWord(),l,dlg->isCase() ? Qt::CaseSensitive : Qt::CaseInsensitive,dlg->isWords(),dlg->isRegExp());
+                            if(l>-1) lines << doc->line(l).handle();
+                            if(l==-1) break;
+                        }
+
 			disconnect(panel,SIGNAL(onClose()),outputView,SLOT(clearSearch()));
 			connect(panel,SIGNAL(onClose()),outputView,SLOT(clearSearch()));
-                        if(panel->search()->indexedMatchCount()>0){ // don't add empty searches
-                            outputView->addSearch(panel->search(),ed->fileName());
+
+                        if(!lines.isEmpty()){ // don't add empty searches
+                            outputView->addSearch(lines,ed->fileName());
                             outputView->showSearchResults();
                         }
 		}
