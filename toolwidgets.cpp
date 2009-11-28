@@ -89,6 +89,7 @@ OutputViewWidget::OutputViewWidget(QWidget * parent): QDockWidget(parent), logMo
 
 	// Search Results tree
 	OutputTree= new QTreeView(this);
+        OutputTree->setUniformRowHeights(true);
 	OutputTree->setModel(searchResultModel);
 	connect(OutputTree,SIGNAL(clicked(QModelIndex)),this,SLOT(clickedSearchResult(QModelIndex)));
 
@@ -282,7 +283,7 @@ void OutputViewWidget::clickedOnLogModelIndex(const QModelIndex& index){
 void OutputViewWidget::gotoLogLine(int logLine){
 	gotoLogEntry(logModel->logLineNumberToLogEntryNumber(logLine));
 }
-void OutputViewWidget::addSearch(QDocumentSearch *search,QString name){
+void OutputViewWidget::addSearch(QList<QDocumentLineHandle *> search,QString name){
 	searchResultModel->addSearch(search,name);
 }
 void OutputViewWidget::clearSearch(){

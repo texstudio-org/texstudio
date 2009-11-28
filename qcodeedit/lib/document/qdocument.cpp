@@ -1072,6 +1072,34 @@ int QDocument::findLineContaining(const QString &searchText,  const int& startLi
 	return -1;
 }
 
+int QDocument::findLineRegExp(const QString &searchText,  const int& startLine, const Qt::CaseSensitivity cs, const bool wholeWord, const bool useRegExp) const{
+
+    QRegExp m_regexp;
+    if ( useRegExp )
+    {
+        m_regexp = QRegExp(searchText, cs, QRegExp::RegExp);
+    } else if ( wholeWord ) {
+        //todo: screw this? it prevents searching of "world!" and similar things
+        //(qtextdocument just checks the surrounding character when searching for whole words, this would also allow wholewords|regexp search)
+        m_regexp = QRegExp(
+                QString("\\b%1\\b").arg(QRegExp::escape(searchText)),
+                cs,
+                QRegExp::RegExp
+                );
+    } else {
+        m_regexp = QRegExp(searchText, cs, QRegExp::FixedString);
+    }
+
+    for (int i=startLine;i<lines();i++){
+        if(m_regexp.indexIn(line(i).text(),0)>-1)
+            return i;
+    }
+
+    return -1;
+}
+
+
+
 /*!
 	\return The Y document coordinate of a given line
 	\param ln textual line number

@@ -54,7 +54,7 @@ public slots:
 	void gotoLogEntry(int logEntryNumber);
 	void setTabbedLogView(bool tabbed);
 	void previewLatex(const QPixmap& pixmap);
-	void addSearch(QDocumentSearch *search,QString name);
+        void addSearch(QList<QDocumentLineHandle *> search,QString name);
 	void clearSearch();
 signals:
 	void locationActivated(int line, QString fileName); //0-based line, absolute file name
