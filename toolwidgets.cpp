@@ -88,9 +88,11 @@ OutputViewWidget::OutputViewWidget(QWidget * parent): QDockWidget(parent), logMo
 	OutputTable2= new QTableView(this); // second table view for tab log view
 
 	// Search Results tree
+        SearchTreeDelegate *searchDelegate=new SearchTreeDelegate(this);
 	OutputTree= new QTreeView(this);
         OutputTree->setUniformRowHeights(true);
 	OutputTree->setModel(searchResultModel);
+        OutputTree->setItemDelegate(searchDelegate);
 	connect(OutputTree,SIGNAL(clicked(QModelIndex)),this,SLOT(clickedSearchResult(QModelIndex)));
 
 	QFontMetrics fm(QApplication::font());
@@ -289,8 +291,60 @@ void OutputViewWidget::addSearch(QList<QDocumentLineHandle *> search,QString nam
 void OutputViewWidget::clearSearch(){
 	searchResultModel->clear();
 }
+void OutputViewWidget::setSearchExpression(QString exp,bool isCase,bool isWord,bool isRegExp){
+        searchResultModel->setSearchExpression(exp,isCase,isWord,isRegExp);
+}
 
+//====================================================================
+// CustomDelegate for search results
+//====================================================================
+SearchTreeDelegate::SearchTreeDelegate(QObject *parent):QItemDelegate(parent)
+{
+    ;
+}
 
+void SearchTreeDelegate::paint( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const
+{
+    QPalette::ColorGroup    cg  = option.state & QStyle::State_Enabled ? QPalette::Normal : QPalette::Disabled;
+
+    /*if( cg == QPalette::Normal && !(option.state & QStyle::State_Active) )
+        cg = QPalette::Inactive;*/
+
+    if( option.state & QStyle::State_Selected )
+    {
+        painter->fillRect( option.rect, option.palette.brush(cg, QPalette::Highlight) );
+        painter->setPen( option.palette.color(cg, QPalette::HighlightedText) );
+    }
+    else
+    {
+        painter->setPen( option.palette.color(cg, QPalette::Text) );
+    }
+
+    if( index.data().toString().isEmpty() )
+        return;
+    painter->save();
+    QString text=index.data().toString();
+    QRect r=option.rect;
+    QStringList textList=text.split("|");
+    for(int i=0;i<textList.size();i++){
+        QString temp=textList.at(i);
+        int w=option.fontMetrics.width(temp);
+        if(i%2) {
+            painter->fillRect( QRect(r.left(),r.top(),w,r.height()), QBrush(Qt::yellow) );
+        }
+        painter->drawText(r,Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, temp);
+        r.setLeft(r.left()+w+1);
+    }
+    painter->restore();
+}
+
+QSize SearchTreeDelegate::sizeHint(const QStyleOptionViewItem &option,
+                              const QModelIndex &index) const
+ {
+       QFontMetrics fontMetrics = option.fontMetrics;
+       QRect rect = fontMetrics.boundingRect(index.data().toString());
+       return QSize(rect.width(), rect.height());
+}
 
 //====================================================================
 // CustomWidgetList (for left panel)

@@ -11,6 +11,9 @@
 #include "searchresultmodel.h"
 #include "qdocumentsearch.h"
 
+#include <QStyledItemDelegate>
+#include <QAbstractTextDocumentLayout>
+
 class PreviewWidget : public QScrollArea
 {
 	Q_OBJECT
@@ -42,6 +45,7 @@ public:
 	bool isPreviewPanelVisible();
 	void setMessage(const QString &message); //set the message text (don't change page and no auto-show)
 	void insertMessageLine(const QString &message); //inserts the message text (don't change page and no auto-show)
+        void setSearchExpression(QString exp,bool isCase,bool isWord,bool isRegExp);
 public slots:
 	void resetMessages(bool noTabChange=false); //remove all messages and jumps to the message page (stays hidden if not visible)
 	void resetMessagesAndLog(bool noTabChange=false);
@@ -78,7 +82,15 @@ private slots:
 	void gotoLogLine(int logLine);
 };
 
-
+class SearchTreeDelegate: public QItemDelegate {
+    Q_OBJECT
+public:
+        SearchTreeDelegate(QObject * parent = 0 );
+protected:
+        void paint( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const;
+        //void drawDisplay( QPainter* painter, const QStyleOptionViewItem& option, const QRect& rect, const QString& text ) const;
+        QSize sizeHint(const QStyleOptionViewItem &option,const QModelIndex &index) const;
+};
 
 class CustomWidgetList: public QDockWidget{
 	Q_OBJECT
