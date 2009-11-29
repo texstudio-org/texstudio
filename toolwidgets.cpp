@@ -294,6 +294,9 @@ void OutputViewWidget::clearSearch(){
 void OutputViewWidget::setSearchExpression(QString exp,bool isCase,bool isWord,bool isRegExp){
         searchResultModel->setSearchExpression(exp,isCase,isWord,isRegExp);
 }
+int OutputViewWidget::getNextSearchResultColumn(QString text,int col){
+        return searchResultModel->getNextSearchResultColumn(text,col);
+}
 
 //====================================================================
 // CustomDelegate for search results

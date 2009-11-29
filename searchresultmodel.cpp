@@ -1,5 +1,6 @@
 #include "searchresultmodel.h"
 #include "qdocument.h"
+#include "smallUsefulFunctions.h"
 
 SearchResultModel::SearchResultModel(QObject *)
 {
@@ -117,22 +118,8 @@ QString SearchResultModel::prepareResulText(QString text) const{
 
 QList<QPair<int,int> > SearchResultModel::getSearchResults(const QString &text) const{
     if(mExpression.isEmpty()) return QList<QPair<int,int> >();
-    Qt::CaseSensitivity cs= mIsCaseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive;
-    QRegExp m_regexp;
-    if ( mIsRegExp )
-    {
-        m_regexp = QRegExp(mExpression, cs, QRegExp::RegExp);
-    } else if ( mIsWord ) {
-        //todo: screw this? it prevents searching of "world!" and similar things
-        //(qtextdocument just checks the surrounding character when searching for whole words, this would also allow wholewords|regexp search)
-        m_regexp = QRegExp(
-                QString("\\b%1\\b").arg(QRegExp::escape(mExpression)),
-                cs,
-                QRegExp::RegExp
-                );
-    } else {
-        m_regexp = QRegExp(mExpression, cs, QRegExp::FixedString);
-    }
+
+    QRegExp m_regexp=generateRegExp(mExpression,mIsCaseSensitive,mIsWord,mIsRegExp);
 
     int i=0;
     QList<QPair<int,int> > result;
@@ -182,4 +169,19 @@ QVariant SearchResultModel::headerData(int section, Qt::Orientation orientation,
 	default:
 		return QVariant();
 	}
+}
+
+int SearchResultModel::getNextSearchResultColumn(QString text,int col){
+    QRegExp m_regexp=generateRegExp(mExpression,mIsCaseSensitive,mIsWord,mIsRegExp);
+
+    int i=0;
+    int i_old=0;
+    while(i<=col && i>-1){
+        i=m_regexp.indexIn(text,i);
+        if(i>-1) {
+            i_old=i;
+            i++;
+        }
+    }
+    return i_old;
 }
