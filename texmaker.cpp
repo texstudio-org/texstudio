@@ -4233,7 +4233,8 @@ void Texmaker::editFindGlobal(){
 				break;
 		}
 		outputView->clearSearch();
-		foreach(QEditor *ed,editors){
+                outputView->setSearchExpression(dlg->getSearchWord(),dlg->isCase(),dlg->isWords(),dlg->isRegExp());
+                foreach(QEditor *ed,editors){
                         //ed->find(dlg->getSearchWord(),true,dlg->isRegExp(),dlg->isWords(),dlg->isCase(),true,false);
                         QDocument *doc=ed->document();
                         QList<QDocumentLineHandle *> lines;
