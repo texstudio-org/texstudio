@@ -79,6 +79,9 @@ bool findTokenWithArg(const QString &line,const QString &token, QString &outName
 // remove comment from text, take care of multiple backslashes before comment character ...
 QString cutComment(const QString& text);
 
+// generate multiple times used regexpression
+QRegExp generateRegExp(const QString &text,const bool isCase,const bool isWord, const bool isRegExp);
+
 //setup toolbutton as substitute for const combobox
 QToolButton* createComboToolButton(QWidget *parent,const QStringList& list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member,QString defaultElem="",QToolButton *combo=0);
 

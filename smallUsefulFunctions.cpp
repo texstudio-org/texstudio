@@ -406,6 +406,26 @@ QString cutComment(const QString& text){
 	return text.left(LatexParser::commentStart(text)); // remove comments
 }
 
+QRegExp generateRegExp(const QString &text,const bool isCase,const bool isWord, const bool isRegExp){
+    Qt::CaseSensitivity cs= isCase ? Qt::CaseSensitive : Qt::CaseInsensitive;
+    QRegExp m_regexp;
+    if ( isRegExp )
+    {
+        m_regexp = QRegExp(text, cs, QRegExp::RegExp);
+    } else if ( isWord ) {
+        //todo: screw this? it prevents searching of "world!" and similar things
+        //(qtextdocument just checks the surrounding character when searching for whole words, this would also allow wholewords|regexp search)
+        m_regexp = QRegExp(
+                QString("\\b%1\\b").arg(QRegExp::escape(text)),
+                cs,
+                QRegExp::RegExp
+                );
+    } else {
+        m_regexp = QRegExp(text, cs, QRegExp::FixedString);
+    }
+    return m_regexp;
+}
+
 int LatexParser::findContext(QString &line,int col){
 	int start_command=col;
 	int start_ref=col;

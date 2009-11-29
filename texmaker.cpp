@@ -3916,8 +3916,19 @@ void Texmaker::tabChanged(int i) {
 }
 
 void Texmaker::jumpToSearch(QString filename,int lineNumber){
+    if(currentEditor()->fileName()==filename && currentEditor()->cursor().lineNumber()==lineNumber)
+    {
+        QDocumentCursor c=currentEditor()->cursor();
+        int col=c.columnNumber();
+        gotoLine(lineNumber);
+        col=outputView->getNextSearchResultColumn(c.line().text() ,col+1);
+        currentEditor()->setCursorPosition(lineNumber,col);
+    } else {
         gotoLocation(lineNumber,filename);
+        int col=outputView->getNextSearchResultColumn(currentEditor()->document()->line(lineNumber).text() ,0);
+        currentEditor()->setCursorPosition(lineNumber,col);
         outputView->showSearchResults();
+    }
 }
 
 void Texmaker::gotoLine(int line) {
@@ -4217,7 +4228,6 @@ void Texmaker::editFindGlobal(){
 	}
 	if(dlg->exec()){
 		QList<QEditor *> editors;
-		QSearchReplacePanel* panel=0;
 		switch (dlg->getSearchScope()) {
 			case 0:
 				editors << currentEditorView()->editor;
@@ -4235,7 +4245,6 @@ void Texmaker::editFindGlobal(){
 		outputView->clearSearch();
                 outputView->setSearchExpression(dlg->getSearchWord(),dlg->isCase(),dlg->isWords(),dlg->isRegExp());
                 foreach(QEditor *ed,editors){
-                        //ed->find(dlg->getSearchWord(),true,dlg->isRegExp(),dlg->isWords(),dlg->isCase(),true,false);
                         QDocument *doc=ed->document();
                         QList<QDocumentLineHandle *> lines;
                         for(int l=0;l<doc->lineCount();l++){
@@ -4244,13 +4253,11 @@ void Texmaker::editFindGlobal(){
                             if(l==-1) break;
                         }
 
-			disconnect(panel,SIGNAL(onClose()),outputView,SLOT(clearSearch()));
-			connect(panel,SIGNAL(onClose()),outputView,SLOT(clearSearch()));
-
                         if(!lines.isEmpty()){ // don't add empty searches
                             outputView->addSearch(lines,ed->fileName());
                             outputView->showSearchResults();
                         }
 		}
 	}
+        delete dlg;
 }
