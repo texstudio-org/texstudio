@@ -426,7 +426,7 @@ HEADERS += tests/testmanager.h \
     tests/latexeditorview_t.h
 win32:LIBS += -lQtTestd4
 unix:LIBS += -lQtTest
-mac:LIBS += -framework QtTest
+macx:LIBS += -framework QtTest
 
 # ###############################
 # add files to svn if team is set
