@@ -3589,11 +3589,11 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	//execute test after command line is known
 	if (realCmdLine) //only at start
 		if ((QFileInfo(QCoreApplication::applicationFilePath()).lastModified()!=configManager.debugLastFileModification
-			|| args.contains("--execute-tests"))&& !args.contains("--disable-tests")){
+			|| args.contains("--execute-tests") || args.contains("--execute-all-tests"))&& !args.contains("--disable-tests")){
 			fileNew();
 			if (!currentEditorView() || !currentEditorView()->editor)
 				QMessageBox::critical(0,"wtf?","test failed",QMessageBox::Ok);
-			currentEditorView()->editor->document()->setText(TestManager::execute(currentEditorView(),currentEditorView()->codeeditor,currentEditorView()->editor));
+			currentEditorView()->editor->document()->setText(TestManager::execute(args.contains("--execute-all-tests")?TestManager::TL_ALL:TestManager::TL_FAST, currentEditorView(),currentEditorView()->codeeditor,currentEditorView()->editor));
 			configManager.debugLastFileModification=QFileInfo(QCoreApplication::applicationFilePath()).lastModified();
 		}
 	#endif
@@ -3798,76 +3798,7 @@ void Texmaker::updateBibFiles(){
 		if (!bibTeXFiles.contains(fileName))
 			bibTeXFiles.insert(fileName,BibTeXFileInfo());
 		BibTeXFileInfo& bibTex=bibTeXFiles[mentionedBibTeXFiles[i]];
-		QDateTime lastModified = fi.lastModified();
-		if (bibTex.lastModified!=lastModified) { //load BibTeX iff modified
-			changed=true;
-			bibTex.lastModified=lastModified;
-			bibTex.ids.clear();
-			bibTex.linksTo.clear();
-			QFile f(fileName);
-			if (!f.open(QFile::ReadOnly)) continue; //ups...
-			QByteArray data=f.readAll().trimmed();
-			if (data.startsWith("link ")) {
-				//handle obscure bib tex feature, a just line containing "link fileName"
-				bibTex.linksTo  = QString::fromAscii(data.constData(),data.count()).mid(5).trimmed();
-			} else {
-				enum BibTeXState {BTS_IN_SPACE,  //searches the first @, ignore everything before it
-								  BTS_IN_TYPE,   //read until bracket ( or { e.g in @article{, reset if @comment
-								  BTS_IN_ID,     //read everything until bracket close or , and ignore whitespace, reset when = or "
-								  BTS_IN_ENTRY}; //read balanced bracket until all are closed, then reset
-				enum BibTeXState state=BTS_IN_SPACE;
-				const char* comment="comment\0"; const char* COMMENT="COMMENT\0";
-				int typeLen;
-				bool commentPossible;
-				int bracketBalance;
-				char bracketOpen;
-				char bracketClose;
-				QString curID;
-				for (int j=0; j<data.count(); j++){
-					char c = data.at(j);
-					switch (state) {
-						case BTS_IN_SPACE: 
-							if (c=='@') {
-								state=BTS_IN_TYPE;
-								commentPossible=true;
-								typeLen=0;
-							}
-							break;
-						case BTS_IN_TYPE: 
-							if (c=='(' || c=='{') {
-								bracketOpen=c;
-								if (c=='(') bracketClose=')';
-								if (c=='{') bracketClose='}';
-								bracketBalance=1;
-								curID="";
-								state=BTS_IN_ID;
-							} else if (commentPossible && (comment[typeLen]==c || COMMENT[typeLen]==c)) {
-								if (comment[typeLen+1]=='\0') state=BTS_IN_SPACE; //comment found
-							} else commentPossible=false;
-							typeLen++;
-							break;
-						case BTS_IN_ID:
-							if (c!=' '&& c!='\t' && c!='\n' && c!='\r') {
-								if (c==',' || c==bracketClose) {
-									if (!curID.isEmpty()) 
-										bibTex.ids.append(curID); //found id
-									state=BTS_IN_ENTRY;
-								} else if (c=='=' || c=='"') 
-									state=BTS_IN_ENTRY; //@string or @preamble (don't cite that)
-								else curID+=c;
-							}
-							break;
-						case BTS_IN_ENTRY:
-							if (c==bracketOpen) bracketBalance++;
-							else if (c==bracketClose) {
-								bracketBalance--;
-								if (bracketBalance<=0) state=BTS_IN_SPACE;
-							}
-							break;
-					}
-				}
-			}
-		}
+		bibTex.loadIfModified(fileName);
 		if (bibTex.ids.empty() && !bibTex.linksTo.isEmpty()) 
 			//handle obscure bib tex feature, a just line containing "link fileName"
 			mentionedBibTeXFiles.append(bibTex.linksTo);

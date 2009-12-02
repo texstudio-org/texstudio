@@ -20,6 +20,7 @@
 #include <QtConcurrentRun>
 #endif
 
+#include "bibtexparser.h"
 #include "buildmanager.h"
 #include "codesnippet.h"
 #include "configmanager.h"
@@ -43,12 +44,6 @@
 typedef  QStringList Userlist;
 typedef  QString UserCd[5];
 typedef QHash<QString,int> SymbolList;
-
-struct BibTeXFileInfo{
-	QDateTime lastModified;
-	QStringList ids;
-	QString linksTo;
-};
 
 class Texmaker : public QMainWindow {
 	Q_OBJECT
