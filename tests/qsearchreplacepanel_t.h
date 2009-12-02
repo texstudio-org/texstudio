@@ -11,11 +11,12 @@ namespace Ui{class SearchReplace;}
 class QSearchReplacePanelTest: public QObject{
 	Q_OBJECT
 	public:
-		QSearchReplacePanelTest(QCodeEdit* codeedit);
+		QSearchReplacePanelTest(QCodeEdit* codeedit, bool executeAllTests=true);
 	private:
 		QEditor *ed;
 		QSearchReplacePanel *panel;
 		Ui::SearchReplace *widget;
+		bool allTests;
 	private slots:
 		void initTestCase();
 		void incrementalsearch_data();
