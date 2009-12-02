@@ -1,8 +1,6 @@
 #ifndef QT_NO_DEBUG
 #include "testmanager.h"
 
-#include "latexeditorview.h"
-
 #include "smallUsefulFunctions_t.h"
 #include "buildmanager_t.h"
 #include "codesnippet_t.h"
@@ -30,7 +28,10 @@ QString TestManager::performTest(QObject* obj){
 	return f.readAll();
 }
 
-QString TestManager::execute(LatexEditorView* edView, QCodeEdit* codeedit, QEditor* editor){
+QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit* codeedit, QEditor* editor){
+	//codeedit, editor are passed as extra parameters and not extracted from edView, so we don't have
+	//to include latexeditorview.h here
+
 	QString tr;
 	QList<QObject*> tests=QList<QObject*>()
 		<< new SmallUsefulFunctionsTest()
@@ -41,6 +42,8 @@ QString TestManager::execute(LatexEditorView* edView, QCodeEdit* codeedit, QEdit
 		<< new QSearchReplacePanelTest(codeedit)
 		<< new LatexEditorViewTest(edView);
 	bool allPassed=true;
+	if (level!=TL_ALL)
+		tr="There are skipped tests. Please rerun with --execute-all-tests\n\n";
 	for (int i=0; i <tests.size();i++){
 		QString res=performTest(tests[i]);
 		tr+=res;

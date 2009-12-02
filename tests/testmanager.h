@@ -10,7 +10,8 @@ class TestManager{
 private:
 	static QString performTest(QObject* obj);
 public:
-	static QString execute(LatexEditorView *edView, QCodeEdit* codeedit, QEditor* editor);
+	enum TestLevel {TL_ALL, TL_FAST/*, TL_NONE*/};
+	static QString execute(TestLevel level, LatexEditorView *edView, QCodeEdit* codeedit, QEditor* editor);
 };
 
 #endif

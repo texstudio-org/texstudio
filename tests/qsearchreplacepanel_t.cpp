@@ -76,8 +76,8 @@ QDocumentCursor getHighlightedSelectionIntern(QEditor* ed, const QString& str){
 #define getHighlightedSelection(ed) getHighlightedSelectionIntern(ed, Q__POSITION__)
 
 //#include "windows.h"
-QSearchReplacePanelTest::QSearchReplacePanelTest(QCodeEdit* codeedit): 
-		QObject(0), ed(codeedit->editor()), panel(0){
+QSearchReplacePanelTest::QSearchReplacePanelTest(QCodeEdit* codeedit, bool executeAllTests):
+		QObject(0), ed(codeedit->editor()), panel(0), allTests(executeAllTests){
 	if (!codeedit->hasPanel("Search")) return;
 	panel=qobject_cast<QSearchReplacePanel*>(codeedit->panels("Search")[0]);
 }
@@ -244,31 +244,32 @@ void QSearchReplacePanelTest::findReplace_data(){
 			<< "hello|0|0"
 			<< "hello|1|0|mouse|mouse\nhello\nhello!!!" 
 			<< "hello|2|0|mouse|mouse\nmouse\nhello!!!");
-	QTest::newRow("replace new occurences")
-		<< "abc\nabc\nabc"
-		<< 0
-		<< 0 << 0
-		<<(QStringList() 
-		 	<< "abc|0|0"
-			<< "abc|1|0"
-			<< "abc|2|0|abc abc|abc\nabc abc\nabc" 
-			<< "abc|0|0|1"
-			<< "abc|1|0"
-			<< "abc|1|4"
-			<< "abc|2|0");
-	QTest::newRow("replace new occurences with empty lines")
-		<< "abc\n\n\nabc\n\n\nabc"
-		<< 0
-		<< 0 << 0
-		<< (QStringList() 
-			<<  "abc|0|0"
-			<< "abc|3|0"
-			<< "abc|6|0|abc abc|abc\n\n\nabc abc\n\n\nabc" 
-			<< "abc|0|0|1"
-			<< "abc|3|0"
-			<< "abc|3|4"
-			<< "abc|6|0");
-	
+	if (allTests){
+		QTest::newRow("replace new occurences")
+			<< "abc\nabc\nabc"
+			<< 0
+			<< 0 << 0
+			<<(QStringList()
+				<< "abc|0|0"
+				<< "abc|1|0"
+				<< "abc|2|0|abc abc|abc\nabc abc\nabc"
+				<< "abc|0|0|1"
+				<< "abc|1|0"
+				<< "abc|1|4"
+				<< "abc|2|0");
+		QTest::newRow("replace new occurences with empty lines")
+			<< "abc\n\n\nabc\n\n\nabc"
+			<< 0
+			<< 0 << 0
+			<< (QStringList()
+				<<  "abc|0|0"
+				<< "abc|3|0"
+				<< "abc|6|0|abc abc|abc\n\n\nabc abc\n\n\nabc"
+				<< "abc|0|0|1"
+				<< "abc|3|0"
+				<< "abc|3|4"
+				<< "abc|6|0");
+	}
 }
 void QSearchReplacePanelTest::findReplace(){
 	QFETCH(QString, editorText);
