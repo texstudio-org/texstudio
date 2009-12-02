@@ -80,7 +80,8 @@ HEADERS += texmaker.h \
     styleanimator.h \
     webpublishdialog_config.h \
     findGlobalDialog.h \
-    searchresultmodel.h
+    searchresultmodel.h \
+    bibtexparser.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -137,7 +138,8 @@ SOURCES += main.cpp \
     stylehelper.cpp \
     styleanimator.cpp \
     findGlobalDialog.cpp \
-    searchresultmodel.cpp
+    searchresultmodel.cpp \
+    bibtexparser.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
@@ -425,8 +427,7 @@ HEADERS += tests/testmanager.h \
     tests/qsearchreplacepanel_t.h \
     tests/latexeditorview_t.h
 win32:LIBS += -lQtTestd4
-unix:LIBS += -lQtTest
-macx:LIBS += -framework QtTest
+!win32:LIBS += -lQtTest
 
 # ###############################
 # add files to svn if team is set
