@@ -269,7 +269,7 @@ void QSearchReplacePanelTest::findReplace_data(){
 				<< "abc|3|0"
 				<< "abc|3|4"
 				<< "abc|6|0");
-	}
+	} else qDebug("skipped some findReplace tests");
 }
 void QSearchReplacePanelTest::findReplace(){
 	QFETCH(QString, editorText);
