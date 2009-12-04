@@ -427,11 +427,8 @@ HEADERS += tests/testmanager.h \
     tests/qsearchreplacepanel_t.h \
     tests/latexeditorview_t.h
 win32:LIBS += -lQtTestd4
-unix: !macx {
-            LIBS += -lQtTest
-            } else {
-            LIBS += -framework QtTest
-            }
+unix:!macx {LIBS += -lQtTest}
+macx:LIBS += -framework QtTest
 
 # ###############################
 # add files to svn if team is set
