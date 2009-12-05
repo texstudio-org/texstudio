@@ -661,16 +661,19 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 		}
 
 	//ensure that the current selection isn't searched
-	if ( m_cursor.hasSelection() ) 
+        if ( m_cursor.hasSelection() ) {
 		if (m_cursor.selectionStart() == m_scope.selectionStart() &&
 			m_cursor.selectionEnd() == m_scope.selectionEnd()) {
 			//search whole scope
 			if (backward) m_cursor=m_scope.selectionEnd();
 			else m_cursor=m_scope.selectionStart();
-		} else if (backward ^ all) //let all search in the selection
-			m_cursor=m_cursor.selectionStart();
-		else 
-			m_cursor=m_cursor.selectionEnd();
+                    } else {
+                        if (backward ^ all) //let all search in the selection
+                            m_cursor=m_cursor.selectionStart();
+                        else
+                            m_cursor=m_cursor.selectionEnd();
+                    }
+                }
 	
 	QDocumentSelection boundaries;
 	bool bounded = m_scope.isValid() && m_scope.hasSelection();
@@ -680,11 +683,14 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 		boundaries = m_scope.selection();
 	
 		//moves the cursor in the search scope if it isn't there, but directly in front of the selection (only possible if there actually is a selection)
-		if ( end(backward) ) 
-			if ( !backward && m_cursor < m_scope.selectionStart() ) 
-				m_cursor = m_scope.selectionStart();
-			else if ( backward && m_cursor > m_scope.selectionEnd() ) 
-				m_cursor = m_scope.selectionEnd();
+                if ( end(backward) ) {
+                    if ( !backward && m_cursor < m_scope.selectionStart() ) {
+                        m_cursor = m_scope.selectionStart();
+                    } else {
+                        if ( backward && m_cursor > m_scope.selectionEnd() )
+                            m_cursor = m_scope.selectionEnd();
+                    }
+                }
 	}
 
 	if (hasOption(HighlightAll) && !all)  //special handling if highlighting is on, but all replace is still handled here
@@ -906,9 +912,10 @@ void QDocumentSearch::replaceCursorText(QRegExp& m_regexp,bool backward){
 	//make sure that the cursor if  the correct side of the selection is used
 	//(otherwise the cursor could be moved out of the searched scope by a long 
 	//replacement text)
-	if (m_cursor.hasSelection())
+        if (m_cursor.hasSelection()) {
 		if (backward) m_cursor=m_cursor.selectionStart();
 		else m_cursor=m_cursor.selectionEnd();
+            }
 }
 
 void QDocumentSearch::documentContentChanged(int line, int n){

@@ -4007,7 +4007,7 @@ void Texmaker::previewLatex(){
 	header << "\\pagestyle{empty}";// << "\\begin{document}";
 	buildManager.preview(header.join("\n"), originalText, edView->editor->codec());
 }
-void Texmaker::previewAvailable(const QString& imageFile, const QString& text){
+void Texmaker::previewAvailable(const QString& imageFile, const QString& /*text*/){
 	if (configManager.previewMode == ConfigManager::PM_BOTH || 
 		configManager.previewMode == ConfigManager::PM_PANEL|| 
 		(configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && outputView->isPreviewPanelVisible())) {
@@ -4063,7 +4063,7 @@ void Texmaker::editInsertRefToPrevLabel() {
 
 }
 
- void Texmaker::StructureToolBoxToggle(bool checked) {
+ void Texmaker::StructureToolBoxToggle(bool /*checked*/) {
 	/*TODO: if (!StructureToolbox) return;
 	QAction *action = qobject_cast<QAction *>(sender());
 	//QTableWidget* widget=action->data().value<QTableWidget*>();

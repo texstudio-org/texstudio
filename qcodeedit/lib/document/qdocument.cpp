@@ -5479,7 +5479,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		h = m_lines.at(i);
 
 		// ugly workaround...
-		if( !m_fixedPitch )
+                if( !m_fixedPitch && !h->hasFlag(QDocumentLine::Hidden))
 			adjustWidth(i);
 
 		const int wrap = h->m_frontiers.count();
