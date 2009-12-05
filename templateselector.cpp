@@ -23,7 +23,7 @@ templateselector::templateselector(QWidget *parent, QString name)
 templateselector::~templateselector() {
 }
 
-void templateselector::on_listWidget_itemDoubleClicked(QListWidgetItem* item)
+void templateselector::on_listWidget_itemDoubleClicked(QListWidgetItem* /*item*/)
 {
 	accept();
 }

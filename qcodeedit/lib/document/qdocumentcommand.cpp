@@ -71,7 +71,7 @@ int QDocumentCommand::id() const
 
 	Command merging is not implemented.
 */
-bool QDocumentCommand::mergeWith(const QUndoCommand *command)
+bool QDocumentCommand::mergeWith(const QUndoCommand */*command*/)
 {
 	return false;
 }

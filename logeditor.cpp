@@ -39,7 +39,7 @@ void LogEditor::setCursorPosition(int para, int index) {
 	ensureCursorVisible();
 }
 
-void LogEditor::mouseDoubleClickEvent(QMouseEvent *e) {
+void LogEditor::mouseDoubleClickEvent(QMouseEvent */*e*/) {
 	emit clickOnLogLine(textCursor().blockNumber());
 	/*QTextEdit::mousePressEvent(e);
 	QString content=textCursor().block().text();

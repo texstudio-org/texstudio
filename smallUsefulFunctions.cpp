@@ -234,7 +234,7 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 		} else if (cur=='{' || cur=='}' || cur=='%') {
 			index=i+1;
 			return i;
-		} else if (CommonEOW.indexOf(cur)<0 && cur!='\'' || cur=='"') {
+                } else if ((CommonEOW.indexOf(cur)<0 && cur!='\'' )|| cur=='"') {
 			start=i;
 			inWord=true;
 			doubleQuoteChar= ( cur == '"');
@@ -263,24 +263,29 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 				reference=wordStartIndex+1;
 			break; //ignore
 		case '}':
-			if (reference!=-1)
-				if (refCommands.contains(lastCommand)){
-					wordStartIndex=reference;
-					--index;
-					outWord=line.mid(reference,index-reference);
-					return NW_REFERENCE;
-				} else if (labelCommands.contains(lastCommand)){
-					wordStartIndex=reference;
-					--index;
-					outWord=line.mid(reference,index-reference);
-					return NW_LABEL;
-				} else if (citeCommands.contains(lastCommand)){
-					wordStartIndex=reference;
-					--index;
-					outWord=line.mid(reference,index-reference);
-					return NW_CITATION;
-				}
-			lastCommand="";
+                        if (reference!=-1) {
+                            if (refCommands.contains(lastCommand)){
+                                wordStartIndex=reference;
+                                --index;
+                                outWord=line.mid(reference,index-reference);
+                                return NW_REFERENCE;
+                            } else {
+                                if (labelCommands.contains(lastCommand)){
+                                    wordStartIndex=reference;
+                                    --index;
+                                    outWord=line.mid(reference,index-reference);
+                                    return NW_LABEL;
+                                } else {
+                                    if (citeCommands.contains(lastCommand)){
+                                        wordStartIndex=reference;
+                                        --index;
+                                        outWord=line.mid(reference,index-reference);
+                                        return NW_CITATION;
+                                    }
+                                }
+                            }
+                        }
+                        lastCommand="";
 			break;//command doesn't matter anymore
 		case '\\':
 			if (outWord.length()==1 || !(EscapedChars.contains(outWord.at(1)) || CharacterAlteringChars.contains(outWord.at(1)))) {
@@ -291,7 +296,7 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 						reference=index; //todo: support for nested brackets like \cite[\xy{\ab{s}}]{miau}
 				}
 				break;
-			} else ; //first character is escaped, fall through to default case
+                            } else {;} //first character is escaped, fall through to default case
 		default:
 			if (reference==-1) {
 				if (outWord.contains("\\")||outWord.contains("\""))

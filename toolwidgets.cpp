@@ -236,7 +236,7 @@ void OutputViewWidget::resetMessagesAndLog(bool noTabChange){
 	resetMessages(noTabChange);
 	resetLog(noTabChange);
 }
-void OutputViewWidget::resetLog(bool noTabChange){
+void OutputViewWidget::resetLog(bool /*noTabChange*/){
 	logpresent=false;
 }
 void OutputViewWidget::selectLogEntry(int logEntryNumber, bool makeVisible){

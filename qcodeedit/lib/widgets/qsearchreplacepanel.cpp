@@ -191,9 +191,10 @@ void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceA
 		m_search->setReplaceText(leReplace->text());
 	m_search->setOption(QDocumentSearch::Replace,replace);
 	m_search->next(backward, replaceAll, !cbPrompt->isChecked(), true);
-	if (isVisible() && !leFind->hasFocus() && !leReplace->hasFocus() )
+        if (isVisible() && !leFind->hasFocus() && !leReplace->hasFocus() ) {
 		if (replace) leReplace->setFocus();
 		else leFind->setFocus();
+            }
 }
 
 void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool regex, bool word, bool caseSensitive, bool fromCursor, bool selection){
