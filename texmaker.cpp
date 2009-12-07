@@ -52,7 +52,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
                 textAnalysisDlg(0), spellDlg(0) {
 
 	MapForSymbols=0;
-        thesaurusFileName.clear();
+	thesaurusFileName.clear();
+	previewEquation=false;
 	
 	ReadSettings();
 	setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
@@ -71,31 +72,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	leftPanel=0;
 	StructureTreeWidget=0;
 	
-	//RelationListWidget=0;
-	//ArrowListWidget=0;
-	// ArrowGridWidget=0;
-	// RelationGridWidget=0;
-	// GreekGridWidget=0;
-	// OperatorGridWidget=0;
-	// CyrillicGridWidget=0;
-	// MiscellaneousMathGridWidget=0;
-	// MiscellaneousTextGridWidget=0;
-	// MiscellaneousWasyGridWidget=0;
-	// DelimitersGridWidget=0;
-	// SpecialGridWidget=0;
-	// //MiscellaneousListWidget=0;
-	// //DelimitersListWidget=0;
-	// //GreekListWidget=0;
-	// MostUsedSymbolWidget=0;
-	// PsListWidget=0;
-	// MpListWidget=0;
-
-	// MpListWidget=0;
-	// PsListWidget=0;
-	// leftrightWidget=0;
-	// tikzWidget=0;
-	// asyWidget=0;
-
 	outputView=0;
 	thesaurusDialog=0;
 	templateSelectorDialog=0;
@@ -4017,12 +3993,18 @@ void Texmaker::previewAvailable(const QString& imageFile, const QString& /*text*
 	}
 	if (configManager.previewMode == ConfigManager::PM_BOTH || 
 		configManager.previewMode == ConfigManager::PM_TOOLTIP|| 
+		previewEquation||
 		(configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && !outputView->isPreviewPanelVisible())) {
 		QPoint p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
-		QToolTip::showText(p, "<img src=\""+imageFile+"\"/>", 0);
+		QRect screen = QApplication::desktop()->screenGeometry();
+		QPixmap img(imageFile);
+		int w=img.width();
+		if(w>screen.width()) w=screen.width()-2;
+		QToolTip::showText(p, QString("<img src=\""+imageFile+"\" width=%1 />").arg(w), 0);
 		LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
 		
 	}
+	previewEquation=false;
 }
 
 void Texmaker::showPreview(const QString text){
@@ -4034,6 +4016,7 @@ void Texmaker::showPreview(const QString text){
 	for (int l=0; l<m_endingLine; l++)
 		header << edView->editor->document()->line(l).text();
 	header << "\\pagestyle{empty}";// << "\\begin{document}";
+	previewEquation=true;
 	buildManager.preview(header.join("\n"), text, edView->editor->codec());
 }
 
