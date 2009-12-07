@@ -135,6 +135,7 @@ signals:
 	void lineHandleDeleted(QDocumentLineHandle* l);
 	void showMarkTooltipForLogMessage(int logMessage);
 	void needCitation(const QString& id);//request a new citation 
+	void showPreview(const QString text);
 };
 
 #endif

@@ -822,6 +822,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(NewDocumentStatus(bool)));
 	connect(edit, SIGNAL(showMarkTooltipForLogMessage(int)),this,SLOT(showMarkTooltipForLogMessage(int)));
 	connect(edit, SIGNAL(needCitation(const QString&)),this,SLOT(InsertBibEntry(const QString&)));
+	connect(edit, SIGNAL(showPreview(QString)),this,SLOT(showPreview(QString)));
 	
 	edit->setBibTeXIds(&allBibTeXIds);	
 }
@@ -4022,6 +4023,18 @@ void Texmaker::previewAvailable(const QString& imageFile, const QString& /*text*
 		LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
 		
 	}
+}
+
+void Texmaker::showPreview(const QString text){
+	LatexEditorView* edView=getEditorViewFromFileName(getCompileFileName());
+	if (!edView) return;
+	int m_endingLine=edView->editor->document()->findLineContaining("\\begin{document}",0,Qt::CaseSensitive);
+	if (m_endingLine<0) return; // can't create header
+	QStringList header;
+	for (int l=0; l<m_endingLine; l++)
+		header << edView->editor->document()->line(l).text();
+	header << "\\pagestyle{empty}";// << "\\begin{document}";
+	buildManager.preview(header.join("\n"), text, edView->editor->codec());
 }
 
  void Texmaker::editInsertRefToNextLabel(bool backward) {

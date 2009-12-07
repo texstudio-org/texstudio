@@ -355,6 +355,7 @@ private slots:
 	
 	void previewLatex();
 	void previewAvailable(const QString& imageFile, const QString& text);
+	void showPreview(const QString text);
 
 
 	void StructureToolBoxToggle(bool checked);

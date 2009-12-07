@@ -706,8 +706,21 @@ void LatexEditorView::mouseHovered(QPoint pos){
 		case LatexParser::Command: 
 			if (command=="\\begin" || command=="\\end")
 				command="\\begin{"+value+"}";
-			topic=completer->lookupWord(command);
-			if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
+			if(value=="equation"){
+				if(command=="\\begin{equation}"){
+					// find closing
+					int endingLine=editor->document()->findLineContaining("\\end{equation}",cursor.lineNumber(),Qt::CaseSensitive,false);
+					QString text;
+					text=command+"\n";
+					for(int i=cursor.lineNumber()+1;i<=endingLine;i++){
+						text=text+editor->document()->line(i).text()+"\n";
+					}
+					emit showPreview(text);
+				}
+			} else {
+				topic=completer->lookupWord(command);
+				if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
+			}
 			break;
 		case LatexParser::Environment: 
 			topic=completer->lookupWord("\\begin{"+value+"}");
