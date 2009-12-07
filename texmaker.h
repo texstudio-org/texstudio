@@ -375,6 +375,8 @@ protected:
 
 	Qt::MouseButtons mb;
 
+	bool previewEquation;
+
 	QByteArray stateFullScreen;
 
         QString thesaurusFileName;
