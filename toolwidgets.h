@@ -27,10 +27,15 @@ public slots:
 	void zoomOut();
 	void zoomIn();
 	void contextMenu(QPoint point);
+	void centerImage();
+
+protected:
+	void wheelEvent(QWheelEvent *event);
 
 private:
 	QLabel *preViewer;
 	double pvscaleFactor;
+	bool mCenter;
 };
 
 class OutputViewWidget: public QDockWidget{
