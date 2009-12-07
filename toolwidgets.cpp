@@ -1,4 +1,5 @@
 #include "toolwidgets.h"
+#include "math.h"
 
 void adjustScrollBar(QScrollBar *scrollBar, double factor)
 {
@@ -10,12 +11,16 @@ void adjustScrollBar(QScrollBar *scrollBar, double factor)
 PreviewWidget::PreviewWidget(QWidget * parent): QScrollArea(parent){
 	setBackgroundRole(QPalette::Base);
 
+	mCenter=false;
+
 	preViewer = new QLabel(this);
 	preViewer->setBackgroundRole(QPalette::Base);
 	preViewer->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 	preViewer->setScaledContents(true);
 	preViewer->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(preViewer,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(contextMenu(QPoint)));
+	connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(contextMenu(QPoint)));
+	setContextMenuPolicy(Qt::CustomContextMenu);
 
 	setWidget(preViewer);
 }
@@ -47,20 +52,37 @@ void PreviewWidget::fitImage(){
 	if(ratioPreviewer>ratio){
 		h=qRound(ratio*m_size.width());
 		w=m_size.width();
+		pvscaleFactor=1.0*w/preViewer->pixmap()->size().width();
 	} else {
 		h=m_size.height();
 		w=qRound(m_size.height()/ratio);
+		pvscaleFactor=1.0*h/preViewer->pixmap()->size().height();;
 	}
 	preViewer->resize(w,h);
 	//setWidgetResizable(true);
 }
+void PreviewWidget::centerImage(){
+	mCenter=!mCenter;
+	if(mCenter) setAlignment(Qt::AlignCenter);
+	else setAlignment(Qt::AlignLeft|Qt::AlignTop);
+	scaleImage(1.0);
+}
 
 void PreviewWidget::zoomOut(){
-	scaleImage(0.8);
+	scaleImage(1/1.4);
 }
 
 void PreviewWidget::zoomIn(){
-	scaleImage(1.2);
+	scaleImage(1.4);
+}
+
+void PreviewWidget::wheelEvent(QWheelEvent *event){
+	if(event->modifiers()==Qt::ControlModifier){
+		int numDegrees = event->delta() / 8;
+		int numSteps = numDegrees / 15;
+		scaleImage(pow(1.4,numSteps));
+		event->accept();
+	} else QScrollArea::wheelEvent(event);
 }
 
 void PreviewWidget::contextMenu(QPoint point) {
@@ -68,6 +90,8 @@ void PreviewWidget::contextMenu(QPoint point) {
 	menu.addAction(tr("zoom in "),this, SLOT(zoomIn()));
 	menu.addAction(tr("zoom out"),this, SLOT(zoomOut()));
 	menu.addAction(tr("fit"),this, SLOT(fitImage()));
+	if(mCenter) menu.addAction(tr("left-align image"),this, SLOT(centerImage()));
+	else menu.addAction(tr("center image"),this, SLOT(centerImage()));
 	menu.exec(preViewer->mapToGlobal(point));
 }
 
