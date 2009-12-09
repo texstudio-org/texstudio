@@ -699,6 +699,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	QString line=cursor.line().text();
 	QString command, value;
 	QString topic;
+	QStringList MathEnvirons;
 	switch(LatexParser::findContext(line, cursor.columnNumber(), command, value)){
 		case LatexParser::Unknown:
 			QToolTip::hideText();
@@ -706,15 +707,26 @@ void LatexEditorView::mouseHovered(QPoint pos){
 		case LatexParser::Command: 
 			if (command=="\\begin" || command=="\\end")
 				command="\\begin{"+value+"}";
-			if(value=="equation"){
-				if(command=="\\begin{equation}"){
+
+			MathEnvirons << "equation" << "math" << "displaymath" << "eqnarray" << "eqnarray*";
+			if(MathEnvirons.contains(value)){
+				if(command.startsWith("\\begin")){
 					// find closing
-					int endingLine=editor->document()->findLineContaining("\\end{equation}",cursor.lineNumber(),Qt::CaseSensitive,false);
+					if(value=="eqnarray"||value=="eqnarray*")
+						command="\\begin{eqnarray*}";
+					else command="\\begin{displaymath}";
+
+					int endingLine=editor->document()->findLineContaining(QString("\\end{%1}").arg(value),cursor.lineNumber(),Qt::CaseSensitive,false);
 					QString text;
 					text=command+"\n";
-					for(int i=cursor.lineNumber()+1;i<=endingLine;i++){
+					for(int i=cursor.lineNumber()+1;i<endingLine;i++){
 						text=text+editor->document()->line(i).text()+"\n";
 					}
+
+					if(value=="eqnarray"||value=="eqnarray*")
+						text+="\\end{eqnarray*}";
+					else text+="\\end{displaymath}";
+
 					emit showPreview(text);
 				}
 			} else {

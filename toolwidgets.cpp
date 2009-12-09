@@ -76,6 +76,11 @@ void PreviewWidget::zoomIn(){
 	scaleImage(1.4);
 }
 
+void PreviewWidget::resetZoom(){
+	pvscaleFactor=1.0;
+	scaleImage(1.0);
+}
+
 void PreviewWidget::wheelEvent(QWheelEvent *event){
 	if(event->modifiers()==Qt::ControlModifier){
 		int numDegrees = event->delta() / 8;
@@ -89,6 +94,7 @@ void PreviewWidget::contextMenu(QPoint point) {
 	QMenu menu;
 	menu.addAction(tr("zoom in "),this, SLOT(zoomIn()));
 	menu.addAction(tr("zoom out"),this, SLOT(zoomOut()));
+	menu.addAction(tr("reset zoom"),this, SLOT(resetZoom()));
 	menu.addAction(tr("fit"),this, SLOT(fitImage()));
 	if(mCenter) menu.addAction(tr("left-align image"),this, SLOT(centerImage()));
 	else menu.addAction(tr("center image"),this, SLOT(centerImage()));
