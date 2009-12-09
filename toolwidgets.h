@@ -26,6 +26,7 @@ public slots:
 	void scaleImage(double factor);
 	void zoomOut();
 	void zoomIn();
+	void resetZoom();
 	void contextMenu(QPoint point);
 	void centerImage();
 
