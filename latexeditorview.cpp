@@ -697,12 +697,45 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	QDocumentCursor cursor;
 	cursor=editor->cursorForPosition(editor->mapToContents(pos));
 	QString line=cursor.line().text();
+	QDocumentLine l=cursor.line();
 	QString command, value;
 	QString topic;
 	QStringList MathEnvirons;
+	int i,first,last;
+	int id_first;
+	QVector<QParenthesis> parens;
 	switch(LatexParser::findContext(line, cursor.columnNumber(), command, value)){
 		case LatexParser::Unknown:
-			QToolTip::hideText();
+			if(cursor.nextChar()==QChar('$')){
+				i=cursor.columnNumber();
+				parens=l.parentheses();
+				first=i;
+				last=-1;
+				for(i=0;i<parens.size();i++){
+					if(parens[i].offset==first) {
+						last=i;
+						id_first=parens[i].id;
+						break;
+					}
+				}
+				if(last>-1){
+					if(parens[i].role&1){
+						last=-1;
+						for(;i<parens.size();i++){
+							if(parens[i].id==id_first && parens[i].role&2) {
+								last=parens[i].offset;
+								break;
+							}
+						}
+						if(last>-1){
+							command=line.mid(first,last-first);
+							emit showPreview(command);
+						}
+					}
+				}
+			} else {
+				QToolTip::hideText();
+			}
 			break;
 		case LatexParser::Command: 
 			if (command=="\\begin" || command=="\\end")
