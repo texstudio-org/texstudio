@@ -542,13 +542,14 @@ void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool nor
 	offset=editor->mapFromContents(offset);
 	int left;
 	int temp;
-	editor->getPanelMargins(&left,&temp,&temp,&temp);
+        editor->getPanelMargins(&left,&temp,&temp,&temp);
 	offset.setX(offset.x()+left);
 	//list->resize(200>maxWordLen?200:maxWordLen,100);
 	//list->setParent(editor);
 	if (offset.y()+list->height()>editor->height()) {
 		offset.setY(offset.y()-line.document()->fontMetrics().lineSpacing()-list->height());
 	}
+        if(offset.x()+list->width()>editor->width()) offset.setX(editor->width() - list->width());
 	list->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
 	//list->show();
 	if (normalText) listModel->baselist=listModel->wordsText;
