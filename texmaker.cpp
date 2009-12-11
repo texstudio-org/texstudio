@@ -1139,7 +1139,7 @@ void Texmaker::fileOpen() {
 		QFileInfo fi(configManager.lastDocument);
 		if (fi.exists() && fi.isReadable()) currentDir=fi.absolutePath();
 	}
-	QStringList files = QFileDialog::getOpenFileNames(this,tr("Open Files"),currentDir,"TeX files (*.tex *.bib *.sty *.cls *.mp);;All files (*.*)");
+	QStringList files = QFileDialog::getOpenFileNames(this,tr("Open Files"),currentDir,"TeX files (*.tex *.bib *.sty *.cls *.mp);;All files (*)");
 	foreach (const QString& fn, files)
 		load(fn);
 }
