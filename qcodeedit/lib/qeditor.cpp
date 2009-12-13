@@ -2853,7 +2853,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 		// placeholders handling
 		bool bHandled = false;
 
-		if ( m_placeHolders.count() && e->modifiers() == Qt::ControlModifier )
+                if ( m_placeHolders.count() && ((e->modifiers() == Qt::ControlModifier)||(e->modifiers() == Qt::ControlModifier|Qt::KeypadModifier)) )
 		{
 			if ( e->key() == Qt::Key_Up || e->key() == Qt::Key_Left )
 			{
