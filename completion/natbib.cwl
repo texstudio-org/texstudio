@@ -2,7 +2,7 @@
 # author: Jan Sundermeyer 12/2009
 \citet{key}
 \citet[prefix]{key}
-\citep{jkey}
+\citep{key}
 \citep[prefix]{key}
 \citep[postfix][prefix]{key}
 \citet*{key}
@@ -21,7 +21,7 @@
 \citeyearpar{key}
 \Citet{key}
 \Citet[prefix]{key}
-\Citep{jkey}
+\Citep{key}
 \Citep[prefix]{key}
 \Citep[postfix][prefix]{key}
 \Citet*{key}
