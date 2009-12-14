@@ -3995,7 +3995,11 @@ void Texmaker::previewAvailable(const QString& imageFile, const QString& /*text*
 		configManager.previewMode == ConfigManager::PM_TOOLTIP|| 
 		previewEquation||
 		(configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && !outputView->isPreviewPanelVisible())) {
-		QPoint p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
+                QPoint p;
+                if(previewEquation)
+                    p=currentEditorView()->getHoverPosistion();
+                else
+                    p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
 		QRect screen = QApplication::desktop()->screenGeometry();
 		QPixmap img(imageFile);
 		int w=img.width();

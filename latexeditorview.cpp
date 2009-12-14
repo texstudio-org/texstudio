@@ -729,6 +729,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 						}
 						if(last>-1){
 							command=line.mid(first,last-first);
+                                                        m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
 							emit showPreview(command);
 						}
 					}
