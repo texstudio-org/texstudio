@@ -93,6 +93,10 @@ public:
 	void setLineMarkToolTip(const QString& tooltip);
 	void updateSettings();
 
+        QPoint getHoverPosistion(){
+            return m_point;
+        }
+
 private:
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 
 	*statusPanelAction, *searchReplacePanelAction, *gotoLinePanelAction;
@@ -101,6 +105,8 @@ private:
 	QSearchReplacePanel* searchReplacePanel;
 	QGotoLinePanel* gotoLinePanel;
 	QStatusPanel* statusPanel;
+
+        QPoint m_point;
 	
 	int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat, citationMissingFormat, citationPresentFormat;
 	friend class DefaultInputBinding;
