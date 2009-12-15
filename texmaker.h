@@ -366,6 +366,9 @@ private slots:
 	void fileReloaded();
 
 	void jumpToSearch(QString filename,int lineNumber);
+
+	void cursorPositionChanged();
+	void treeWidgetChanged();
 protected:
 	LatexEditorView* getEditorFromStructureItem(QTreeWidgetItem* m_item);
 	QPoint sectionSelection(QTreeWidgetItem* m_item);
@@ -376,6 +379,9 @@ protected:
 	Qt::MouseButtons mb;
 
 	bool previewEquation;
+	int currentLine;
+	QTreeWidgetItem *currentTreeItem;
+	QBrush oldBackground;
 
 	QByteArray stateFullScreen;
 

@@ -52,6 +52,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
                 textAnalysisDlg(0), spellDlg(0) {
 
 	MapForSymbols=0;
+	currentLine=-1;
+	currentTreeItem=0;
 	thesaurusFileName.clear();
 	previewEquation=false;
 	
@@ -216,6 +218,8 @@ void Texmaker::setupDockWidgets(){
 //StructureTreeWidget->setToolTip(tr("Click to jump to the line"));
 		connect(StructureTreeWidget, SIGNAL(itemActivated(QTreeWidgetItem *,int)), SLOT(ClickedOnStructure(QTreeWidgetItem *,int))); //enter or double click (+single click on some platforms)
 		connect(StructureTreeWidget, SIGNAL(itemPressed(QTreeWidgetItem *,int)), SLOT(ClickedOnStructure(QTreeWidgetItem *,int))); //single click
+		connect(StructureTreeWidget, SIGNAL(itemExpanded(QTreeWidgetItem *)), SLOT(treeWidgetChanged()));
+		connect(StructureTreeWidget, SIGNAL(itemCollapsed(QTreeWidgetItem *)), SLOT(treeWidgetChanged()));
 // connect( StructureTreeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem *,int )), SLOT(DoubleClickedOnStructure(QTreeWidgetItem *,int))); // qt4 bugs - don't use it
 
 		connect(leftPanel,SIGNAL(widgetContextMenuRequested(QWidget*, QPoint)),this,SLOT(SymbolGridContextMenu(QWidget*, QPoint)));
@@ -796,6 +800,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 //edit->setFormats(m_formats->id("environment"),m_formats->id("referenceMultiple"),m_formats->id("referencePresent"),m_formats->id("referenceMissing"));
 
 	connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(NewDocumentStatus(bool)));
+	connect(edit->editor, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
 	connect(edit, SIGNAL(showMarkTooltipForLogMessage(int)),this,SLOT(showMarkTooltipForLogMessage(int)));
 	connect(edit, SIGNAL(needCitation(const QString&)),this,SLOT(InsertBibEntry(const QString&)));
 	connect(edit, SIGNAL(showPreview(QString)),this,SLOT(showPreview(QString)));
@@ -1988,6 +1993,8 @@ void Texmaker::updateStructure() {
 	QString current;
 	if (StructureTreeWidget->currentItem()) current=StructureTreeWidget->currentItem()->text(0);
 	StructureTreeWidget->clear();
+	currentTreeItem=0;
+	currentLine=-1;
 	if (!currentEditorView()) return;
 	//TODO: cache structures of not changed files, perhaps show all included structures at the same time
 	if (!singlemode && getCompileFileName()!=getCurrentFileName() && configManager.parseMaster) 
@@ -2009,6 +2016,8 @@ void Texmaker::updateStructure() {
 	
 	if (configManager.parseBibTeX) updateBibFiles();
 	updateCompleter();
+
+	cursorPositionChanged();
 }
 void Texmaker::updateStructureForFile(const QString& fileName){
     QTreeWidgetItem *Child;
@@ -4191,4 +4200,45 @@ void Texmaker::editFindGlobal(){
 		}
 	}
         delete dlg;
+}
+
+// show current cursor position in structure view
+void Texmaker::cursorPositionChanged(){
+	int i=currentEditor()->cursor().lineNumber();
+	// search line in structure
+	if (currentLine==i) return;
+	currentLine=i;
+	QTreeWidgetItemIterator it(StructureTreeWidget,QTreeWidgetItemIterator::NotHidden);
+	QTreeWidgetItem *item=0;
+	bool ok;
+	int line=-1;
+	while (*it) {
+		if ((*it)->parent() && (*it)->parent()->isExpanded()){
+			if(struct_level.contains((*it)->text(1))){
+				line=(*it)->text(2).toInt(&ok);
+				if (ok && line > currentLine+1){
+					if(item){
+						if(currentTreeItem) currentTreeItem->setBackground(0,oldBackground);
+						currentTreeItem=item;
+						oldBackground=currentTreeItem->background(0);
+						currentTreeItem->setBackground(0,Qt::lightGray);
+					}
+					break;
+				}
+				item=(*it);
+			}
+		}
+		++it;
+	}
+	if(!(*it) && item){
+		if(currentTreeItem) currentTreeItem->setBackground(0,oldBackground);
+		currentTreeItem=item;
+		oldBackground=currentTreeItem->background(0);
+		currentTreeItem->setBackground(0,Qt::lightGray);
+	}
+}
+
+void Texmaker::treeWidgetChanged(){
+	currentLine=-1;
+	cursorPositionChanged();
 }
