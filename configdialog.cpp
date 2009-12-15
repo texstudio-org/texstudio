@@ -311,7 +311,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 
 	ui.shortcutTree->setHeaderLabels(QStringList()<<tr("Command")<<tr("Default Shortcut")<<tr("Current Shortcut")<<tr("Additional Shortcut"));
 	ui.shortcutTree->setColumnWidth(0,200);
-
+/*
 	//QFileSystemModel is faster than QDirModel but requires Qt4.4
 	#if QT_VERSION >= 0x040400
 		QCompleter* dictionaryCompleter = new FileSystemCompleter(this);
@@ -344,7 +344,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	#endif
 	thesaurusCompleter->setModel(thesaurusModel);
 	ui.thesaurusFileName->setCompleter(thesaurusCompleter);
-	
+	*/
 	
 	//create icons
 	createIcon(tr("General"),QIcon(":/images/configgeneral.png"));
