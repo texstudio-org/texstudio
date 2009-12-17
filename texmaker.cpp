@@ -4222,6 +4222,7 @@ void Texmaker::cursorPositionChanged(){
 						currentTreeItem=item;
 						oldBackground=currentTreeItem->background(0);
 						currentTreeItem->setBackground(0,Qt::lightGray);
+						StructureTreeWidget->scrollToItem(item);
 					}
 					break;
 				}
