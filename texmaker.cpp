@@ -4215,13 +4215,16 @@ void Texmaker::cursorPositionChanged(){
 	currentLine=i;
 	QTreeWidgetItemIterator it(StructureTreeWidget,QTreeWidgetItemIterator::NotHidden);
 	QTreeWidgetItem *item=0;
-	bool ok;
 	int line=-1;
 	while (*it) {
 		if ((*it)->parent() && (*it)->parent()->isExpanded()){
 			if(struct_level.contains((*it)->text(1))){
-				line=(*it)->text(2).toInt(&ok);
-				if (ok && line > currentLine+1){
+				//line=(*it)->text(2).toInt(&ok);
+				QDocumentLineHandle *dlh = (*it)->data(structureTreeLineColumn,Qt::UserRole).value<QDocumentLineHandle*>();
+				if (!dlh) return;
+				QDocumentLine mLine(dlh);
+				line=mLine.lineNumber();
+				if (line > currentLine){
 					if(item){
 						if(currentTreeItem) currentTreeItem->setBackground(0,oldBackground);
 						currentTreeItem=item;
