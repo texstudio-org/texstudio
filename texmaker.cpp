@@ -4215,30 +4215,35 @@ void Texmaker::cursorPositionChanged(){
 	currentLine=i;
 	QTreeWidgetItemIterator it(StructureTreeWidget,QTreeWidgetItemIterator::NotHidden);
 	QTreeWidgetItem *item=0;
+	QString fname;
+	QString currentFileName=currentEditor()->fileName();
 	int line=-1;
 	while (*it) {
-		if ((*it)->parent() && (*it)->parent()->isExpanded()){
-			if(struct_level.contains((*it)->text(1))){
-				//line=(*it)->text(2).toInt(&ok);
-				QDocumentLineHandle *dlh = (*it)->data(structureTreeLineColumn,Qt::UserRole).value<QDocumentLineHandle*>();
-				if (!dlh) return;
-				QDocumentLine mLine(dlh);
-				line=mLine.lineNumber();
-				if (line > currentLine){
-					if(item){
-						if(currentTreeItem) currentTreeItem->setBackground(0,oldBackground);
-						currentTreeItem=item;
-						oldBackground=currentTreeItem->background(0);
-						currentTreeItem->setBackground(0,Qt::lightGray);
-						if(!mDontScrollToItem) StructureTreeWidget->scrollToItem(item);
-						mDontScrollToItem=false;
-					}
-					break;
-				}
-				item=(*it);
-			}
-		}
-		++it;
+            if( !(*it)->parent()){
+				fname=(*it)->text(1);
+            }
+			if ((fname==currentFileName)&&((*it)->parent() && (*it)->parent()->isExpanded())){
+				if(struct_level.contains((*it)->text(1))){
+					//line=(*it)->text(2).toInt(&ok);
+                    QDocumentLineHandle *dlh = (*it)->data(structureTreeLineColumn,Qt::UserRole).value<QDocumentLineHandle*>();
+                    if (!dlh) return;
+                    QDocumentLine mLine(dlh);
+                    line=mLine.lineNumber();
+                    if (line > currentLine){
+                        if(item){
+                            if(currentTreeItem) currentTreeItem->setBackground(0,oldBackground);
+                            currentTreeItem=item;
+                            oldBackground=currentTreeItem->background(0);
+                            currentTreeItem->setBackground(0,Qt::lightGray);
+                            if(!mDontScrollToItem) StructureTreeWidget->scrollToItem(item);
+                            mDontScrollToItem=false;
+                        }
+                        break;
+                    }
+                    item=(*it);
+                }
+            }
+            ++it;
 	}
 	if(!(*it) && item){
 		if(currentTreeItem) currentTreeItem->setBackground(0,oldBackground);
