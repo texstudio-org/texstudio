@@ -49,7 +49,7 @@ const int Texmaker::structureTreeLineColumn=4;
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 		: QMainWindow(parent, flags), bibTeXFilesModified(false),
-                textAnalysisDlg(0), spellDlg(0) {
+				textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false) {
 
 	MapForSymbols=0;
 	currentLine=-1;
@@ -2212,6 +2212,11 @@ void Texmaker::ClickedOnStructure(QTreeWidgetItem *item,int col) {
 		if (edView != currentEditorView()) 
 			EditorView->setCurrentWidget(edView);//change to editor, now item is deleted!
 		edView->editor->setFocus();
+		if(struct_level.contains(s)){
+			mDontScrollToItem=false;
+		} else {
+			mDontScrollToItem=true;
+		}
 		edView->editor->setCursorPosition(l,1);
 	}
 }
@@ -4222,7 +4227,8 @@ void Texmaker::cursorPositionChanged(){
 						currentTreeItem=item;
 						oldBackground=currentTreeItem->background(0);
 						currentTreeItem->setBackground(0,Qt::lightGray);
-						StructureTreeWidget->scrollToItem(item);
+						if(!mDontScrollToItem) StructureTreeWidget->scrollToItem(item);
+						mDontScrollToItem=false;
 					}
 					break;
 				}

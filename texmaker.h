@@ -382,6 +382,7 @@ protected:
 	int currentLine;
 	QTreeWidgetItem *currentTreeItem;
 	QBrush oldBackground;
+	bool mDontScrollToItem;
 
 	QByteArray stateFullScreen;
 
