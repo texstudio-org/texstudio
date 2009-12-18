@@ -354,6 +354,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"indent",tr("Indent"), SLOT(editIndent()));
 	newManagedAction(menu,"unindent",tr("Unindent"), SLOT(editUnindent()));
 	newManagedAction(menu,"hardbreak",tr("Hard Line Break"), SLOT(editHardLineBreak()));
+	newManagedAction(menu,"hardbreakrepeat",tr("Repeat Hard Line Break"), SLOT(editHardLineBreakRepeat()));
 	
 	menu->addSeparator();
 	newManagedAction(menu,"find", tr("Find"), SLOT(editFind()), Qt::CTRL+Qt::Key_F);
@@ -1505,8 +1506,17 @@ void Texmaker::editHardLineBreak(){
 	bool ok=false;
 	int wrapColumn=QInputDialog::getInteger(this,"TexMakerX",tr("Insert hard line breaks after so many characters:"),configManager.lastHardWrapColumn, 1,2147483647,1,&ok);
 	if (!ok) return;
+	bool smartScopeSelection = QMessageBox::question(0, "TexMakerX", tr("Should I autodetect the text which should be wrapped?"), QMessageBox::Yes|QMessageBox::No, QMessageBox::No) == QMessageBox::Yes;
+	bool joinLines = QMessageBox::question(0, "TexMakerX", tr("Should I join the lines before wrapping?"), QMessageBox::Yes|QMessageBox::No, QMessageBox::No) == QMessageBox::Yes;
 	configManager.lastHardWrapColumn=wrapColumn;
-	currentEditorView()->insertHardLineBreaks(wrapColumn);
+	configManager.lastHardWrapSmartScopeSelection=smartScopeSelection;
+	configManager.lastHardWrapJoinLines=joinLines;
+	currentEditorView()->insertHardLineBreaks(wrapColumn, smartScopeSelection, joinLines);
+}
+
+void Texmaker::editHardLineBreakRepeat() {
+	if (!currentEditorView()) return;
+	currentEditorView()->insertHardLineBreaks(configManager.lastHardWrapColumn, configManager.lastHardWrapSmartScopeSelection, configManager.lastHardWrapJoinLines);
 }
 
 void Texmaker::editSpell() {

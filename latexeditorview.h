@@ -138,7 +138,7 @@ public slots:
 	void mouseHovered(QPoint pos);
 	bool closeSomething();
 	
-	void insertHardLineBreaks(int newLength);
+	void insertHardLineBreaks(int newLength, bool smartScopeSelection, bool joinLines);
 signals:
 	void lineHandleDeleted(QDocumentLineHandle* l);
 	void showMarkTooltipForLogMessage(int logMessage);
