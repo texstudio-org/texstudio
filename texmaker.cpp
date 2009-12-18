@@ -73,7 +73,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 	leftPanel=0;
 	StructureTreeWidget=0;
-	
+	structureTreeView=0;
+
 	outputView=0;
 	thesaurusDialog=0;
 	templateSelectorDialog=0;
@@ -226,7 +227,22 @@ void Texmaker::setupDockWidgets(){
 		
 		leftPanel->addWidget(StructureTreeWidget, "structureTree", tr("Structure"), ":/images/structure.png");
 	} else leftPanel->setWidgetText(StructureTreeWidget,tr("Structure"));
-	
+
+	if (!structureTreeView) {
+		structureTreeView=new QTreeView(this);
+		structureTreeView->setModel(new LatexDocumentsModel(documents));
+//		StructureTreeView->header()->hide();
+//		StructureTreeView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+//--StructureTreeWidget->setToolTip(tr("Click to jump to the line"));
+//		connect(StructureTreeWidget, SIGNAL(itemActivated(QTreeWidgetItem *,int)), SLOT(ClickedOnStructure(QTreeWidgetItem *,int))); //enter or double click (+single click on some platforms)
+//		connect(StructureTreeWidget, SIGNAL(itemPressed(QTreeWidgetItem *,int)), SLOT(ClickedOnStructure(QTreeWidgetItem *,int))); //single click
+//-- connect( StructureTreeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem *,int )), SLOT(DoubleClickedOnStructure(QTreeWidgetItem *,int))); // qt4 bugs - don't use it
+
+//		connect(leftPanel,SIGNAL(widgetContextMenuRequested(QWidget*, QPoint)),this,SLOT(SymbolGridContextMenu(QWidget*, QPoint)));
+
+		leftPanel->addWidget(structureTreeView, "structureTreeView", tr("Structure (experimental)"), ":/images/structure.png");
+	} else leftPanel->setWidgetText(structureTreeView,tr("Structure (experimental)"));
+
 	addSymbolGrid("operators", ":/images/math1.png",tr("Operator symbols"));
 	addSymbolGrid("relation", ":/images/hi16-action-math1.png",tr("Relation symbols"));
 	addSymbolGrid("arrows", ":/images/math2.png",tr("Arrow symbols"));
@@ -806,6 +822,10 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(showPreview(QString)),this,SLOT(showPreview(QString)));
 	
 	edit->setBibTeXIds(&allBibTeXIds);	
+
+	edit->document=new LatexDocument();
+	edit->document->edView=edit;
+	documents.documents.append(edit->document);
 }
 
 LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName){
@@ -1249,17 +1269,17 @@ void Texmaker::fileClose() {
 		                             2)) {
 		case 0:
 			fileSave();
-			delete currentEditorView();
+			documents.deleteDocument(currentEditorView()->document);
 			break;
 		case 1:
-			delete currentEditorView();
+			documents.deleteDocument(currentEditorView()->document);
 			break;
 		case 2:
 		default:
 			return;
 			break;
 		}
-	} else delete currentEditorView();
+	} else documents.deleteDocument(currentEditorView()->document);
 	UpdateCaption();
 }
 
@@ -1275,10 +1295,10 @@ void Texmaker::fileCloseAll() {
 			                             2)) {
 			case 0:
 				fileSave();
-				delete currentEditorView();
+				documents.deleteDocument(currentEditorView()->document);
 				break;
 			case 1:
-				delete currentEditorView();
+				documents.deleteDocument(currentEditorView()->document);
 				break;
 			case 2:
 			default:
@@ -1287,7 +1307,7 @@ void Texmaker::fileCloseAll() {
 				break;
 			}
 		} else 
-			delete currentEditorView();
+			documents.deleteDocument(currentEditorView()->document);
 	}
 	if (!singlemode) 
 		ToggleMode();
@@ -1312,10 +1332,10 @@ bool Texmaker::canCloseNow(){
 			                             2)) {
 			case 0:
 				fileSave();
-				delete currentEditorView();
+				documents.deleteDocument(currentEditorView()->document);
 				break;
 			case 1:
-				delete currentEditorView();
+				documents.deleteDocument(currentEditorView()->document);
 				break;
 			case 2:
 			default:
@@ -1323,7 +1343,7 @@ bool Texmaker::canCloseNow(){
 				break;
 			}
 		} else 
-			delete currentEditorView();
+			documents.deleteDocument(currentEditorView()->document);
 	}
 	if (accept)  
 		if (mainSpeller) {
@@ -2016,8 +2036,9 @@ void Texmaker::updateStructure() {
 	
 	if (configManager.parseBibTeX) updateBibFiles();
 	updateCompleter();
-
 	cursorPositionChanged();
+
+	structureTreeView->reset();
 }
 void Texmaker::updateStructureForFile(const QString& fileName){
     QTreeWidgetItem *Child;
@@ -2029,6 +2050,8 @@ void Texmaker::updateStructureForFile(const QString& fileName){
 	LatexEditorView* edView=getEditorViewFromFileName(fileName);
 	if (!edView)return;
 	
+	if (edView->document) edView->document->updateStructure();
+
 	int pos;
 	while ((pos = (int)shortName.indexOf('/')) != -1)
 		shortName.remove(0,pos+1);
