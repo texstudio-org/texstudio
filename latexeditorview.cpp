@@ -129,7 +129,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			if (fr.length>0 && fr.format==LatexEditorView::speller->spellcheckErrorFormat) {
 				QString word=cursor.line().text().mid(fr.offset,fr.length);
 				if (!(editor->cursor().hasSelection() && editor->cursor().selectedText().length()>0) || editor->cursor().selectedText()==word
-				        || editor->cursor().selectedText()==lastSpellCheckedWord) {
+					|| editor->cursor().selectedText()==lastSpellCheckedWord) {
 					lastSpellCheckedWord=word;
 					word=latexToPlainWord(word);
 					QDocumentCursor wordSelection(editor->document(),cursor.lineNumber(),fr.offset);
@@ -150,7 +150,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 					contextMenu->addSeparator();
 				}
 			}
-		} 
+		}
 		//citation checking
 		int f=QDocument::formatFactory()->id("citationMissing");
 		if (cursor.hasSelection()) fr= cursor.line().getOverlayAt((cursor.columnNumber()+cursor.anchorColumnNumber()) / 2,f);
@@ -161,7 +161,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			QAction* act=new QAction(LatexEditorView::tr("New BibTeX Entry %1").arg(word),contextMenu);
 			edView->connect(act,SIGNAL(triggered()),edView,SLOT(requestCitation()));
 			contextMenu->addAction(act);
-			contextMenu->addSeparator();				
+			contextMenu->addSeparator();
 		}
 	}
 	contextMenu->addActions(baseActions);
@@ -198,15 +198,15 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	lineNumberPanelAction=codeeditor->addPanel(lineNumberPanel, QCodeEdit::West, false);;
 	lineFoldPanelAction=codeeditor->addPanel(new QFoldPanel, QCodeEdit::West, false);
 	lineChangePanelAction=codeeditor->addPanel(new QLineChangePanel, QCodeEdit::West, false);
-	
+
 	statusPanel=new QStatusPanel;
 	statusPanel->setFont(QApplication::font());
 	statusPanelAction=codeeditor->addPanel(statusPanel, QCodeEdit::South, false);
-	
+
 	gotoLinePanel=new QGotoLinePanel;
 	gotoLinePanel->setFont(QApplication::font());
 	gotoLinePanelAction=codeeditor->addPanel(gotoLinePanel, QCodeEdit::South, false);
-	
+
 	searchReplacePanel=new QSearchReplacePanel;
 	searchReplacePanel->setFont(QApplication::font());
 	searchReplacePanelAction=codeeditor->addPanel(searchReplacePanel, QCodeEdit::South,false);
@@ -380,7 +380,7 @@ void LatexEditorView::setKeyReplacements(QStringList *UserKeyReplace, QStringLis
 	defaultInputBinding->keyReplaceBeforeWord=UserKeyReplaceBeforeWord;
 }
  QList<QAction *> LatexEditorView::getBaseActions(){
-	if (!defaultInputBinding) return QList<QAction *>(); 
+	if (!defaultInputBinding) return QList<QAction *>();
 	return defaultInputBinding->baseActions;
 }
 void LatexEditorView::setBaseActions(QList<QAction *> baseActions) {
@@ -424,7 +424,7 @@ void LatexEditorView::updateSettings(){
 	editor->setFont(config->editorFont);
 	editor->setLineWrapping(config->wordwrap);
 	editor->setFlag(QEditor::AutoIndent,config->autoindent);
-	editor->setFlag(QEditor::WeakIndent,config->weakindent);	
+	editor->setFlag(QEditor::WeakIndent,config->weakindent);
 	editor->setFlag(QEditor::ReplaceTabs,config->indentWithSpaces);
 	lineMarkPanelAction->setChecked((config->showlinemultiples!=0) ||config->folding||config->showlinestate);
 	lineNumberPanelAction->setChecked(config->showlinemultiples!=0);
@@ -497,17 +497,17 @@ void LatexEditorView::lineMarkToolTip(int line, int mark){
 void LatexEditorView::documentContentChanged(int linenr, int count) {
 	QDocumentLine startline=editor->document()->line(linenr);
 	if ((linenr>=0 || count<editor->document()->lines()) && editor->cursor().isValid() &&
-	        !editor->cursor().atLineStart() && editor->cursor().line().text().trimmed().length()>0 &&
-	        startline.isValid()) {
+		!editor->cursor().atLineStart() && editor->cursor().line().text().trimmed().length()>0 &&
+		startline.isValid()) {
 		/*if (curChangePos<1) {
 		    if (changePositions.size()==0 || changePositions.first.first<>linenr)
-		        changePositions.insert(0,QPair<linenr,editor->cursor().columnNumber());
+			changePositions.insert(0,QPair<linenr,editor->cursor().columnNumber());
 		} else if (curChangePos==changePositions.size()-1) {
 		    if (changePositions[curChangePos].first!=linenr)
-		        changePositions.append(QPair<linenr,editor->cursor().columnNumber());
+			changePositions.append(QPair<linenr,editor->cursor().columnNumber());
 		} else {
 		    if (changePositions[curChangePos].first!=linenr && changePositions[curChangePos+1].first!=linenr)
-		        changePositions.insert(curChangePos,QPair<linenr,editor->cursor().columnNumber());
+			changePositions.insert(curChangePos,QPair<linenr,editor->cursor().columnNumber());
 		}*/
 
 		bool add=false;
@@ -528,13 +528,13 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		}
 	}
 
-	
+
 
 	// checking
 	if (!QDocument::formatFactory()) return;
 	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)
-	
-	
+
+
 	for (int i=linenr; i<linenr+count; i++) {
 		QDocumentLine line = editor->document()->line(i);
 		if (!line.isValid()) continue;
@@ -591,9 +591,9 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 								break;
 							}
 						//check and highlight
-						if (bibTeXIds->contains(rcit)) 
+						if (bibTeXIds->contains(rcit))
 							line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationPresentFormat));
-						else	
+						else
 							line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationMissingFormat));
 						pos+=cit.length()+1;
 					}
@@ -614,7 +614,7 @@ void LatexEditorView::lineRemoved(QDocumentLineHandle* l) {
 	containedLabels.removeUpdateByHandle(l,&containedReferences);
 }
 
-void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {	
+void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {
 	lineRemoved(l);
 
 	QHash<QDocumentLineHandle*, int>::iterator it;
@@ -625,7 +625,7 @@ void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {
 
 	QPair<int, int> p;
 	//QMessageBox::information(0,QString::number(nr),"",0);
-        for (int i=changePositions.size()-1; i>=0; i--)
+	for (int i=changePositions.size()-1; i>=0; i--)
 		if (changePositions[i].first==l) { //TODO: optimize
 			if (QDocumentLine(changePositions[i].first).previous().isValid()) changePositions[i].first=QDocumentLine(changePositions[i].first).previous().handle();
 			else if (QDocumentLine(changePositions[i].first).next().isValid()) changePositions[i].first=QDocumentLine(changePositions[i].first).next().handle();
@@ -729,7 +729,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 						}
 						if(last>-1){
 							command=line.mid(first,last-first);
-                                                        m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
+							m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
 							emit showPreview(command);
 						}
 					}
@@ -738,7 +738,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 				QToolTip::hideText();
 			}
 			break;
-		case LatexParser::Command: 
+		case LatexParser::Command:
 			if (command=="\\begin" || command=="\\end")
 				command="\\begin{"+value+"}";
 
@@ -768,11 +768,11 @@ void LatexEditorView::mouseHovered(QPoint pos){
 				if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
 			}
 			break;
-		case LatexParser::Environment: 
+		case LatexParser::Environment:
 			topic=completer->lookupWord("\\begin{"+value+"}");
 			if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
 			break;
-		case LatexParser::Reference: 
+		case LatexParser::Reference:
 			{
 				//l=editor->document()->findLineContaining("\\label{"+ref+"}",0,Qt::CaseSensitive);
 				QList<QDocumentLineHandle*> lst=containedLabels.values(value);
@@ -818,7 +818,7 @@ bool LatexEditorView::closeSomething(){
 		return true;
 	}
 	if (searchReplacePanel->isVisible()) {
-		if (searchReplacePanel->isReplaceModeActive() & !config->closeSearchAndReplace) 
+		if (searchReplacePanel->isReplaceModeActive() & !config->closeSearchAndReplace)
 			searchReplacePanel->display(1,false);
 		else
 			searchReplacePanel->display(0,false);
@@ -827,16 +827,103 @@ bool LatexEditorView::closeSomething(){
 	return false;
 }
 
-void LatexEditorView::insertHardLineBreaks(int newLength){
+void LatexEditorView::insertHardLineBreaks(int newLength, bool smartScopeSelection, bool joinLines){
 	QRegExp breakChars("[ \t\n\r]");
 	QDocumentCursor cur=editor->cursor();
 	QDocument* doc=editor->document();
 	int startLine=0; int endLine=doc->lines()-1;
-	if (cur.hasSelection()) {
-		startLine=cur.selectionStart().lineNumber();
-		endLine=cur.selectionEnd().lineNumber();
-		if (cur.selectionEnd().columnNumber()==0 && startLine<endLine) endLine--;
+
+	if (cur.isValid()) {
+		if (cur.hasSelection()) {
+			startLine=cur.selectionStart().lineNumber();
+			endLine=cur.selectionEnd().lineNumber();
+			if (cur.selectionEnd().columnNumber()==0 && startLine<endLine) endLine--;
+		} else if (smartScopeSelection){
+			QDocumentCursor currentCur=cur;
+			QDocumentCursor lineCursor=currentCur;
+			do {
+				lineCursor.select(QDocumentCursor::LineUnderCursor);
+				QString lineString  = lineCursor.selectedText().trimmed();
+				if ((lineString == QLatin1String("")) ||
+				    (lineString.contains("\\begin")) ||
+				    (lineString.contains("\\end")) ||
+				    (lineString.contains("$$")) ||
+				    (lineString.contains("\\[")) ||
+				    (lineString.contains("\\]"))) {
+					qDebug() << lineString;
+					break;
+				}
+			} while (lineCursor.movePosition(1, QDocumentCursor::Up, QDocumentCursor::MoveAnchor && lineCursor.lineNumber()>0));
+			startLine = lineCursor.lineNumber();
+
+			lineCursor = currentCur;
+			do {
+				lineCursor.select(QDocumentCursor::LineUnderCursor);
+				QString lineString  = lineCursor.selectedText().trimmed();
+				if ((lineString == QLatin1String("")) ||
+				    (lineString.contains("\\begin")) ||
+				    (lineString.contains("\\end")) ||
+				    (lineString.contains("$$")) ||
+				    (lineString.contains("\\[")) ||
+				    (lineString.contains("\\]"))) {
+					qDebug() << lineString;
+					break;
+				}
+			} while (lineCursor.movePosition(1, QDocumentCursor::Down, QDocumentCursor::MoveAnchor) && lineCursor.lineNumber()<endLine);
+			endLine = lineCursor.lineNumber();
+
+			if ((endLine - startLine) < 2) { // lines near, therefore no need to line break
+				return ;
+			}
+
+			startLine++;
+			endLine--;
+		}
 	}
+	if (joinLines) { // start of smart formatting, similar to what emacs (AucTeX) can do, but much simple
+		QStringList lines;  QString tmpLine;
+		for (int i=startLine; i <= endLine; i++)  {
+			QString fullString  = doc->line(i).text();
+			int commentStart    = LatexParser::commentStart(fullString);
+			if (commentStart==-1) {
+				tmpLine.append(" ");
+				tmpLine.append(fullString);
+			} else {
+				lines << tmpLine;
+				lines << fullString;
+				tmpLine.clear();
+			}
+		}
+		lines.append(tmpLine);
+		lines[0].remove(0,1); // remove needless space character from first line
+
+		QStringList formattedList;
+		for (int i=0; i < lines.size(); i++) {
+			QString bigString = lines.at(i);
+			while (bigString.size() > newLength) {
+				int breakAt=bigString.lastIndexOf(breakChars,newLength);
+				formattedList << bigString.left(breakAt);
+				if (breakAt >= 0) {
+					bigString.remove(0, breakAt+1);
+				} else {
+					bigString.clear();
+					break;
+				}
+			}
+			if (bigString.size() > 0)  formattedList << bigString;
+		}
+
+		QDocumentCursor vCur = doc->cursor(startLine, 0, endLine, doc->line(endLine).length());
+		vCur.beginEditBlock();
+		vCur.removeSelectedText();
+		vCur.insertText(formattedList.join("\n"));
+		vCur.endEditBlock();
+
+		editor->setCursor(cur);
+
+		return ;
+	}
+
 	bool areThereLinesToBreak=false;
 	for (int i=startLine;i<=endLine;i++)
 		if (doc->line(i).length()>newLength) {
@@ -845,9 +932,9 @@ void LatexEditorView::insertHardLineBreaks(int newLength){
 		}
 	if (!areThereLinesToBreak) return;
 	//remove all lines and reinsert them wrapped
-	if (endLine+1<doc->lines()) 
+	if (endLine+1<doc->lines())
 		cur = doc->cursor(startLine,0,endLine+1,0);//+1,0);
-	else	
+	else
 		cur = doc->cursor(startLine,0,endLine,doc->line(endLine).length());//+1,0);
 	cur.beginEditBlock();
 	QStringList lines;
@@ -878,6 +965,7 @@ void LatexEditorView::insertHardLineBreaks(int newLength){
 		cur.insertText(line+"\n");
 	}
 	cur.endEditBlock();
+
 	editor->setCursor(cur);
 }
 
@@ -954,7 +1042,7 @@ void References::updateByKeys(QStringList refs,References* altRefs){
 // Configuration
 //------------------------------------------------------------
 
-void LatexEditorViewConfig::readSettings(QSettings& settings){	
+void LatexEditorViewConfig::readSettings(QSettings& settings){
 	//TODO: move more to this place
 	realtimeChecking=settings.value("Editor/Real-Time Spellchecking",true).toBool(); //named for compatibility reasons with older tmx versions
 	inlineSpellChecking=settings.value("Editor/Check Spelling",true).toBool();

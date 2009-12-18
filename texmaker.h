@@ -197,6 +197,7 @@ private slots:
 	void editIndentSection();
 	void editUnIndentSection();
 	void editHardLineBreak();
+	void editHardLineBreakRepeat();
 	void editSelectAll();
 	void editEraseLine();
 	void editFind();

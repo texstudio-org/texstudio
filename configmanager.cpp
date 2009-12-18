@@ -94,7 +94,9 @@ QSettings* ConfigManager::readSettings() {
 
 	//other dialogs
 	lastHardWrapColumn=config->value("Dialogs/Last Hard Wrap Column",80).toInt();
-	
+	lastHardWrapSmartScopeSelection=config->value("Dialogs/Last Hard Wrap Smart Scope Selection", false).toBool();
+	lastHardWrapJoinLines=config->value("Dialogs/Last Hard Wrap Join Lines", false).toBool();
+
 	//preview
 	previewMode=(PreviewMode) config->value("Preview/Mode",0).toInt();
 
@@ -276,7 +278,9 @@ QSettings* ConfigManager::saveSettings() {
 	
 	//other dialogs
 	config->setValue("Dialogs/Last Hard Wrap Column",lastHardWrapColumn);
-		
+	config->setValue("Dialogs/Last Hard Wrap Smart Scope Selection", lastHardWrapSmartScopeSelection);
+	config->setValue("Dialogs/Last Hard Wrap Join Lines", lastHardWrapJoinLines);
+
 	//preview
 	config->setValue("Preview/Mode",previewMode);
 	
