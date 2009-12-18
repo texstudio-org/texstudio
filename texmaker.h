@@ -25,6 +25,7 @@
 #include "codesnippet.h"
 #include "configmanager.h"
 #include "latexlog.h"
+#include "latexdocument.h"
 #include "latexeditorview.h"
 #include "latexcompleter.h"
 #include "templateselector.h"
@@ -102,6 +103,8 @@ private:
 	QString hiddenLeftPanelWidgets;
 	
 	QTreeWidget *StructureTreeWidget;
+	QTreeView *structureTreeView;
+	LatexDocuments documents;
 
 	OutputViewWidget *outputView; //contains output widgets (over OutputLayout)
 	

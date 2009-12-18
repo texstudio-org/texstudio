@@ -39,6 +39,7 @@ protected:
 };
 
 
+class LatexDocument;
 class QCodeEdit;
 class QEditor;
 class QLineMarkPanel;
@@ -60,6 +61,7 @@ public:
 	QCodeEdit *codeeditor;
 	QEditor *editor;
 
+	LatexDocument* document;
 
 //  FindWidget *findwidget;
 	//Functions affecting the editor
