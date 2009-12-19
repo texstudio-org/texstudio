@@ -1020,8 +1020,8 @@ void Texmaker::fileNew(QString fileName) {
 	else
 		edit->editor->setFileEncoding(QTextCodec::codecForName("utf-8"));
 
-	EditorView->addTab(edit, fileName);
-	configureNewEditorView(edit);
+        configureNewEditorView(edit);
+        EditorView->addTab(edit, fileName);
 
 	UpdateCaption();
 	NewDocumentStatus(false);
