@@ -12,6 +12,7 @@ LatexDocument::LatexDocument()
 	labelList = new StructureEntry(baseStructure, StructureEntry::SE_OVERVIEW);
 	todoList = new StructureEntry(baseStructure, StructureEntry::SE_OVERVIEW);
 	bibTeXList = new StructureEntry(baseStructure, StructureEntry::SE_OVERVIEW);
+        labelItem.clear();
 }
 LatexDocument::~LatexDocument(){
 	delete baseStructure;
@@ -23,6 +24,7 @@ void LatexDocument::updateStructure() {
 	QDocument* document=edView->editor->document();//TODO
 
 	userCommandList.clear();
+        labelItem.clear();
 
 	delete baseStructure;
 	baseStructure = new StructureEntry(StructureEntry::SE_OVERVIEW);
