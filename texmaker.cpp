@@ -34,6 +34,7 @@
 #include "webpublishdialog.h"
 #include "findGlobalDialog.h"
 #include "qsearchreplacepanel.h"
+#include "latexcompleter_config.h"
 
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
@@ -980,8 +981,8 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	bool bibTeXmodified=bibTeXFilesModified;
 	
 	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig);
-	EditorView->addTab(edit, "[*] "+QFileInfo(f_real).fileName());
 	configureNewEditorView(edit);
+        EditorView->addTab(edit, "[*] "+QFileInfo(f_real).fileName());
 	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
 
 	QFile file(f_real);
@@ -3841,10 +3842,13 @@ void Texmaker::updateCompleter() {
 	QStringList words;
 
 	words << userCommandList;
-	for (int i=0; i<labelitem.count(); ++i) {
-		words.append("\\ref{"+labelitem.at(i)+"}");
-		words.append("\\pageref{"+labelitem.at(i)+"}");
-	}
+        LatexEditorView* edView=currentEditorView();
+        if(edView && edView->document){
+            for (int i=0; i<edView->document->labelItem.count(); ++i) {
+                words.append("\\ref{"+edView->document->labelItem.at(i)+"}");
+                words.append("\\pageref{"+edView->document->labelItem.at(i)+"}");
+            }
+        }
 
 	if (configManager.parseBibTeX)
 		for (int i=0; i<mentionedBibTeXFiles.count();i++){
@@ -3853,8 +3857,19 @@ void Texmaker::updateCompleter() {
 				continue; //wtf?s
 			}
 			BibTeXFileInfo& bibTex=bibTeXFiles[mentionedBibTeXFiles[i]];
-			for (int i=0; i<bibTex.ids.count();i++)
-				words.append("\\cite{"+bibTex.ids[i]+"}");
+                        /*for (int i=0; i<bibTex.ids.count();i++)
+                                words.append("\\cite{"+bibTex.ids[i]+"}");*/
+                        //automatic use of cite commans
+                        LatexCompleterConfig *conf=configManager.completerConfig;
+                        QStringList citeCommands=conf->words;
+                        citeCommands=citeCommands.filter(QRegExp("^\\\\[Cc]ite.*"));
+                        for (int i=0; i<bibTex.ids.count();i++){
+                            foreach(QString elem,citeCommands){
+                                elem.replace("%<keylist%>",bibTex.ids[i]);
+                                words << elem;
+                            }
+                            //words.append("\\cite{"+bibTex.ids[i]+"}");
+                        }
 		}
 	
 	completer->setAdditionalWords(words);
