@@ -1,6 +1,6 @@
 #ifndef QT_NO_DEBUG
 #include "testmanager.h"
-
+//hel 
 #include "smallUsefulFunctions_t.h"
 #include "buildmanager_t.h"
 #include "codesnippet_t.h"
