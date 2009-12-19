@@ -3844,9 +3844,18 @@ void Texmaker::updateCompleter() {
 	words << userCommandList;
         LatexEditorView* edView=currentEditorView();
         if(edView && edView->document){
-            for (int i=0; i<edView->document->labelItem.count(); ++i) {
-                words.append("\\ref{"+edView->document->labelItem.at(i)+"}");
-                words.append("\\pageref{"+edView->document->labelItem.at(i)+"}");
+            LatexDocument *doc=edView->document;
+            LatexDocuments docs;
+            if(!singlemode){
+                docs=documents;
+            }else{
+                docs.documents.append(doc);
+            }
+            foreach(doc,docs.documents){
+                for (int i=0; i<doc->labelItem.count(); ++i) {
+                    words.append("\\ref{"+doc->labelItem.at(i)+"}");
+                    words.append("\\pageref{"+doc->labelItem.at(i)+"}");
+                }
             }
         }
 
