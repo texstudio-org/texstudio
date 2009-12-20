@@ -6254,6 +6254,7 @@ void QDocumentPrivate::clearMatches(int groupId)
 	foreach ( const Match& m, matches )
 	{
 		m.h->removeOverlay(m.range);
+		m_LineCache.remove(m.h);
 	}
 
 	matches.removeStart = 0;
@@ -6290,6 +6291,7 @@ void QDocumentPrivate::addMatch(int groupId, int line, int pos, int len, int for
 	m.line = line;
 	m.h = at(line);
 	if (!m.h) return;
+	m_LineCache.remove(m.h);
 	m.range = QFormatRange(pos, len, format);
 	m_matches[groupId] << m;
 
