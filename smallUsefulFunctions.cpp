@@ -136,7 +136,7 @@ QString latexToPlainWord(const QString& word) {
 QString extractSectionName(const QString& word) {
 	int i=0;
 	int start=word.indexOf("{",i);
-	i=start;
+	i=start>-1 ? start : 0;
 	int stop=word.indexOf("}",i);
 	i=word.indexOf("{",i+1);
 	while (i>0 && stop>0 && i<stop) {
