@@ -82,7 +82,8 @@ HEADERS += texmaker.h \
     findGlobalDialog.h \
     searchresultmodel.h \
     bibtexparser.h \
-    latexdocument.h
+    latexdocument.h \
+    universalinputdialog.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -141,7 +142,8 @@ SOURCES += main.cpp \
     findGlobalDialog.cpp \
     searchresultmodel.cpp \
     bibtexparser.cpp \
-    latexdocument.cpp
+    latexdocument.cpp \
+    universalinputdialog.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
@@ -429,23 +431,22 @@ HEADERS += tests/testmanager.h \
     tests/qsearchreplacepanel_t.h \
     tests/latexeditorview_t.h
 win32:LIBS += -lQtTestd4
-unix:!macx { 
-    LIBS += -lQtTest
-}
-macx:LIBS += -framework QtTest
-    
-    # ###############################
-    # add files to svn if team is set
-    CONFIG(team):!CONFIG(build_pass) { 
-        SVNPREPATH = ./
-        SVNPATH = /.svn/text-base/
-        SVNEXT = .svn-base
-        ALLFILES = $${HEADERS}
-        ALLFILES += $${SOURCES}
-        ALLFILES += $${FORMS}
-        for(filename, ALLFILES):!exists($${SVNPREPATH}$$dirname(filename)$${SVNPATH}$$basename(filename)$${SVNEXT}) { 
-            warning($${filename} not contained in svn base will be added)
-            system(svn add $${filename})
-        }
-    }
+unix:!macx:LIBS += -lQtTest
+macx:LIBS += -framework \
+    QtTest
 
+# ###############################
+# add files to svn if team is set
+CONFIG(team):!CONFIG(build_pass) { 
+    SVNPREPATH = ./
+    SVNPATH = /.svn/text-base/
+    SVNEXT = .svn-base
+    ALLFILES = $${HEADERS}
+    ALLFILES += $${SOURCES}
+    ALLFILES += $${FORMS}
+    for(filename, ALLFILES):!exists($${SVNPREPATH}$$dirname(filename)$${SVNPATH}$$basename(filename)$${SVNEXT}) { 
+        warning($${filename} not contained in svn base will be added)
+        system(svn add $${filename})
+    }
+}
+OTHER_FILES += universalinputdialog.*

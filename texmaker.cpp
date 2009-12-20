@@ -35,6 +35,7 @@
 #include "findGlobalDialog.h"
 #include "qsearchreplacepanel.h"
 #include "latexcompleter_config.h"
+#include "universalinputdialog.h"
 
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
@@ -1503,16 +1504,13 @@ void Texmaker::editUnindent() {
 }
 
 void Texmaker::editHardLineBreak(){
-	if (!currentEditorView())	return;
-	bool ok=false;
-	int wrapColumn=QInputDialog::getInteger(this,"TexMakerX",tr("Insert hard line breaks after so many characters:"),configManager.lastHardWrapColumn, 1,2147483647,1,&ok);
-	if (!ok) return;
-	bool smartScopeSelection = QMessageBox::question(0, "TexMakerX", tr("Should I autodetect the text which should be wrapped?"), QMessageBox::Yes|QMessageBox::No, QMessageBox::No) == QMessageBox::Yes;
-	bool joinLines = QMessageBox::question(0, "TexMakerX", tr("Should I join the lines before wrapping?"), QMessageBox::Yes|QMessageBox::No, QMessageBox::No) == QMessageBox::Yes;
-	configManager.lastHardWrapColumn=wrapColumn;
-	configManager.lastHardWrapSmartScopeSelection=smartScopeSelection;
-	configManager.lastHardWrapJoinLines=joinLines;
-	currentEditorView()->insertHardLineBreaks(wrapColumn, smartScopeSelection, joinLines);
+	if (!currentEditorView()) return;
+	UniversalInputDialog dialog;
+	dialog.addVariable(&configManager.lastHardWrapColumn, "Insert hard line breaks after so many characters:");
+	dialog.addVariable(&configManager.lastHardWrapSmartScopeSelection, "Smart scope selecting");
+	dialog.addVariable(&configManager.lastHardWrapJoinLines, "Join lines before wrapping");
+	if (dialog.exec()==QDialog::Accepted)
+		currentEditorView()->insertHardLineBreaks(configManager.lastHardWrapColumn, configManager.lastHardWrapSmartScopeSelection, configManager.lastHardWrapJoinLines);
 }
 
 void Texmaker::editHardLineBreakRepeat() {
