@@ -823,6 +823,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(showMarkTooltipForLogMessage(int)),this,SLOT(showMarkTooltipForLogMessage(int)));
 	connect(edit, SIGNAL(needCitation(const QString&)),this,SLOT(InsertBibEntry(const QString&)));
 	connect(edit, SIGNAL(showPreview(QString)),this,SLOT(showPreview(QString)));
+	connect(edit, SIGNAL(lineHandleDeleted(QDocumentLineHandle*)),this,SLOT(lineHandleDeleted(QDocumentLineHandle*)));
 	
 	edit->setBibTeXIds(&allBibTeXIds);	
 
@@ -3998,15 +3999,18 @@ void Texmaker::editPasteRef() {
 }
 
 void removeDeletedLineHandle(QTreeWidgetItem* item, QDocumentLineHandle* l){
+	if(!item) return;
 	for (int i=0; i< item->childCount(); i++)
 		removeDeletedLineHandle(item,l);
 	if (item->data(Texmaker::structureTreeLineColumn,Qt::UserRole).value<QDocumentLineHandle*>() == l) 
-		item->setData(Texmaker::structureTreeLineColumn,Qt::UserRole,QVariant());
+		item->setData(Texmaker::structureTreeLineColumn,Qt::UserRole,QVariant::fromValue(0));
 }
 
-void Texmaker::lineHandleDeleted(QDocumentLineHandle* l){
-	for (int i=0;i<StructureTreeWidget->topLevelItemCount();i++)
+void Texmaker::lineHandleDeleted(QDocumentLineHandle* /*l*/){
+	StructureTreeWidget->clear();
+	/*for (int i=0;i<StructureTreeWidget->topLevelItemCount();i++)
 		removeDeletedLineHandle(StructureTreeWidget->topLevelItem(i),l);
+		*/
 }
 
 void Texmaker::previewLatex(){
