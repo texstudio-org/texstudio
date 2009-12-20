@@ -36,6 +36,7 @@
 #include <QStringList>
 #include <QFontMetrics>
 #include <QUndoCommand>
+#include <QCache>
 
 class QDocument;
 class QDocumentBuffer;
@@ -224,6 +225,8 @@ class QCE_EXPORT QDocumentPrivate
 		
 		QDocumentBuffer *m_buffer;
 		QVector<QDocumentLineHandle*> m_lines;
+
+		QCache<QDocumentLineHandle*,QPixmap> m_LineCache;
 };
 
 #endif

@@ -438,7 +438,7 @@ void CompletionListModel::setBaseWords(const QList<CompletionWord> &newwords, bo
 	}
 	qSort(newWordList.begin(), newWordList.end());
 
-        if (normalTextList) wordsText=newWordList;
+	if (normalTextList) wordsText=newWordList;
 	else wordsCommands=newWordList;
 	baselist=wordsCommands;
 }
