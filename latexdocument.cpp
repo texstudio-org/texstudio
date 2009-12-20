@@ -5,10 +5,11 @@
 #include "qeditor.h"
 #include "smallUsefulFunctions.h"
 
+QStringList struct_level = QStringList() << "part" << "chapter" << "section" << "subsection" << "subsubsection"; //TODO
 
 LatexDocument::LatexDocument()
 {
-	baseStructure = new StructureEntry(StructureEntry::SE_OVERVIEW);
+	baseStructure = new StructureEntry(StructureEntry::SE_DOCUMENT_ROOT);
 	labelList = new StructureEntry(baseStructure, StructureEntry::SE_OVERVIEW);
 	todoList = new StructureEntry(baseStructure, StructureEntry::SE_OVERVIEW);
 	bibTeXList = new StructureEntry(baseStructure, StructureEntry::SE_OVERVIEW);
@@ -18,8 +19,6 @@ LatexDocument::~LatexDocument(){
 	delete baseStructure;
 }
 void LatexDocument::updateStructure() {
-	QStringList struct_level;
-	struct_level << "part" << "chapter" << "section" << "subsection" << "subsubsection"; //TODO
 
 	QDocument* document=edView->editor->document();//TODO
 
@@ -27,7 +26,7 @@ void LatexDocument::updateStructure() {
         labelItem.clear();
 
 	delete baseStructure;
-	baseStructure = new StructureEntry(StructureEntry::SE_OVERVIEW);
+	baseStructure = new StructureEntry(StructureEntry::SE_DOCUMENT_ROOT);
 	baseStructure->title=edView->editor->fileName();
 	labelList = new StructureEntry(baseStructure, StructureEntry::SE_OVERVIEW);
 	labelList->title=tr("LABELS");
@@ -161,9 +160,9 @@ void LatexDocument::includeDocument(LatexDocument* includedDocument){
 
 }
 */
-StructureEntry::StructureEntry(Type newType):type(newType), lineHandle(0), parent(0){
+StructureEntry::StructureEntry(Type newType):type(newType), lineNumber(-1), lineHandle(0), parent(0){
 }
-StructureEntry::StructureEntry(StructureEntry* parent, Type newType):type(newType), lineHandle(0){
+StructureEntry::StructureEntry(StructureEntry* parent, Type newType):type(newType), lineNumber(-1), lineHandle(0){
 	parent->add(this);
 }
 StructureEntry::~StructureEntry(){
@@ -177,18 +176,17 @@ void StructureEntry::add(StructureEntry* child){
 }
 
 /*
+  QIcon(":/images/doc.png"));
   static const QIcon structureBibTeXIcon(":/images/bibtex.png");
 				Child->setIcon(0,QIcon(":/images/include.png"));
-				parent_level[header]->setIcon(0,QIcon(":/images/"+struct_level[header]+".png"));
+				parent_level[header]->setIcon(0,);
 */
 
-void LatexDocuments::deleteDocument(LatexDocument* document){
-	documents.removeAll(document);
-	if (document->edView) delete document->edView;
-	delete document;
-}
-
-LatexDocumentsModel::LatexDocumentsModel(LatexDocuments& docs):documents(docs){
+LatexDocumentsModel::LatexDocumentsModel(LatexDocuments& docs):documents(docs),
+	iconDocument(":/images/doc.png"), iconBibTeX(":/images/bibtex.png"), iconInclude(":/images/include.png"){
+	iconSection.resize(struct_level.count());
+	for (int i=0;i<struct_level.count();i++)
+		iconSection[i]=QIcon(":/images/"+struct_level[i]+".png");
 }
 Qt::ItemFlags LatexDocumentsModel::flags ( const QModelIndex & index ) const{
 	if (index.isValid()) return Qt::ItemIsEnabled|Qt::ItemIsSelectable;
@@ -199,8 +197,24 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 	StructureEntry* entry = (StructureEntry*) index.internalPointer();
 	if (!entry) return QVariant();
 	switch (role) {
-		case Qt::DisplayRole:
-			return QVariant(entry->title);
+		case Qt::DisplayRole: case Qt::ToolTipRole:
+			if (entry->lineNumber>-1)
+				return QVariant(entry->title+QString(" (%1 %2)").arg(tr("Zeile")).arg(entry->lineNumber+1));
+			else
+				return QVariant(entry->title);
+		case Qt::DecorationRole:
+			switch (entry->type){
+				case StructureEntry::SE_BIBTEX: return iconBibTeX;
+				case StructureEntry::SE_INCLUDE: return iconInclude;
+				case StructureEntry::SE_SECTION:
+					if (entry->level>=0 && entry->level<iconSection.count())
+						return iconSection[entry->level];
+					else
+						return QVariant();
+				case StructureEntry::SE_DOCUMENT_ROOT:
+					return iconDocument;
+				default: return QVariant();
+			}
 		default:
 			return QVariant();
 	}
@@ -250,5 +264,15 @@ QModelIndex LatexDocumentsModel::parent ( const QModelIndex & index ) const{
 }
 
 
-
+LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)){
+}
+LatexDocuments::~LatexDocuments(){
+	delete model;
+}
+void LatexDocuments::deleteDocument(LatexDocument* document){
+	documents.removeAll(document);
+	if (document->edView) delete document->edView;
+	delete document;
+	model->reset();
+}
 
