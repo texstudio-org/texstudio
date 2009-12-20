@@ -33,12 +33,12 @@ protected:
 
 
 struct StructureEntry{
-	enum Type {SE_OVERVIEW,SE_SECTION,SE_BIBTEX,SE_TODO,SE_INCLUDE,SE_LABEL};
+	enum Type {SE_DOCUMENT_ROOT,SE_OVERVIEW,SE_SECTION,SE_BIBTEX,SE_TODO,SE_INCLUDE,SE_LABEL};
 	Type type;
 	QString title;
 	int level; //only used for section types
-	QDocumentLineHandle* lineHandle;
 	int lineNumber;
+	QDocumentLineHandle* lineHandle;
 	QList<StructureEntry*> children;
 	StructureEntry* parent;
 
@@ -82,20 +82,12 @@ signals:
 	void hasBeenIncluded(const LatexDocument& newMasterDocument);
 };
 
-class LatexDocuments
-{
-public:
-	QList<LatexDocument*> documents;
-	QMap<QString, BibTeXFileInfo> bibTeXFiles; //bibtex files loaded by tmx
-	bool bibTeXFilesModified; //true iff the BibTeX files were changed after the last compilation
-
-
-	void deleteDocument(LatexDocument* document);
-};
-
+class LatexDocuments;
 class LatexDocumentsModel: public QAbstractItemModel{
 private:
 	LatexDocuments& documents;
+	QIcon iconDocument, iconBibTeX, iconInclude;
+	QVector<QIcon> iconSection;
 public:
 	LatexDocumentsModel(LatexDocuments& docs);
 	Qt::ItemFlags flags ( const QModelIndex & index ) const;
@@ -105,6 +97,21 @@ public:
 	int columnCount ( const QModelIndex & parent = QModelIndex() ) const;
 	QModelIndex index ( int row, int column, const QModelIndex & parent = QModelIndex() ) const;
 	QModelIndex parent ( const QModelIndex & index ) const;
+
+	friend class LatexDocuments;
+};
+
+class LatexDocuments
+{
+public:
+	LatexDocumentsModel* model;
+	QList<LatexDocument*> documents;
+	QMap<QString, BibTeXFileInfo> bibTeXFiles; //bibtex files loaded by tmx
+	bool bibTeXFilesModified; //true iff the BibTeX files were changed after the last compilation
+
+	LatexDocuments();
+	~LatexDocuments();
+	void deleteDocument(LatexDocument* document);
 };
 
 #endif // LATEXDOCUMENT_H

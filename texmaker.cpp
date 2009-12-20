@@ -232,7 +232,7 @@ void Texmaker::setupDockWidgets(){
 
 	if (!structureTreeView) {
 		structureTreeView=new QTreeView(this);
-		structureTreeView->setModel(new LatexDocumentsModel(documents));
+		structureTreeView->setModel(documents.model);
 //		StructureTreeView->header()->hide();
 //		StructureTreeView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 //--StructureTreeWidget->setToolTip(tr("Click to jump to the line"));
