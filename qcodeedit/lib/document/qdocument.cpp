@@ -5602,7 +5602,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			continue;
 
 		//qDebug("drawing line %i (visual %i)", i, realln);
-
+		/* not used when caching
 		p->fillRect(qMax(cxt.xoffset, m_leftMargin), pos,
 					cxt.width, m_lineSpacing,
 					fullSel ? selbg : bg);
@@ -5610,6 +5610,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		if ( wrapped )
 			p->fillRect(qMax(cxt.xoffset, m_leftMargin), pos + m_lineSpacing,
 						cxt.width, m_lineSpacing * wrap, fullSel ? selbg : bg);
+		*/
 
 		//p->fillRect(cxt.xoffset, pos + 1,
 		//			cxt.width, m_lineHeight,
@@ -5626,22 +5627,15 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			px=m_LineCache.object(h);
 			p->drawPixmap(0,0,*px);
 		} else {
-			qDebug("not cached");
 			px=new QPixmap(cxt.width,m_lineSpacing*(wrap+1));
 			px->fill(fullSel ? selbg.color() : bg.color());
 			QPainter pnt(px);
 			pnt.setFont(p->font());
-			//pnt.setPen(p->pen());
-			//pnt.setBrush(fullSel ? selbg.color() : bg.color());
-			//pnt.drawLine(0,0,10,10);
-			//p->setPen(Qt::black);
 			h->draw(&pnt, cxt.xoffset, cxt.width, m_selectionBoundaries, m_cursorLines, cxt.palette, fullSel);
-			//p->drawImage(0,0,img,0,0,200,30);
-
-			//QPixmap *px=new QPixmap();
-			//px->fromImage(img);
-			if(!currentLine) m_LineCache.insert(h,px);
 			p->drawPixmap(0,0,*px);
+			pnt.end();
+			if(!currentLine) m_LineCache.insert(h,px);
+			else delete px;
 		}
 
 
