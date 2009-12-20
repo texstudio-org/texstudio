@@ -4245,23 +4245,23 @@ void Texmaker::editFindGlobal(){
 				break;
 		}
 		outputView->clearSearch();
-                outputView->setSearchExpression(dlg->getSearchWord(),dlg->isCase(),dlg->isWords(),dlg->isRegExp());
-                foreach(QEditor *ed,editors){
-                        QDocument *doc=ed->document();
-                        QList<QDocumentLineHandle *> lines;
-                        for(int l=0;l<doc->lineCount();l++){
-                            l=doc->findLineRegExp(dlg->getSearchWord(),l,dlg->isCase() ? Qt::CaseSensitive : Qt::CaseInsensitive,dlg->isWords(),dlg->isRegExp());
-                            if(l>-1) lines << doc->line(l).handle();
-                            if(l==-1) break;
-                        }
+		outputView->setSearchExpression(dlg->getSearchWord(),dlg->isCase(),dlg->isWords(),dlg->isRegExp());
+		foreach(QEditor *ed,editors){
+			QDocument *doc=ed->document();
+			QList<QDocumentLineHandle *> lines;
+			for(int l=0;l<doc->lineCount();l++){
+				l=doc->findLineRegExp(dlg->getSearchWord(),l,dlg->isCase() ? Qt::CaseSensitive : Qt::CaseInsensitive,dlg->isWords(),dlg->isRegExp());
+				if(l>-1) lines << doc->line(l).handle();
+				if(l==-1) break;
+			}
 
-                        if(!lines.isEmpty()){ // don't add empty searches
-                            outputView->addSearch(lines,ed->fileName());
-                            outputView->showSearchResults();
-                        }
+			if(!lines.isEmpty()){ // don't add empty searches
+				outputView->addSearch(lines,ed->fileName());
+				outputView->showSearchResults();
+			}
 		}
 	}
-        delete dlg;
+	delete dlg;
 }
 
 // show current cursor position in structure view

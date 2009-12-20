@@ -5426,6 +5426,8 @@ void QDocumentPrivate::execute(QDocumentCommand *cmd)
 
 void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 {
+	//QTime t;
+	//t.start();
 	QDocumentLineHandle *h;
 	bool inSel = false, fullSel;
 	QList<QDocumentCursorHandle*>::iterator cit;
@@ -5437,6 +5439,8 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		++lastLine;
 
 	p->setFont(*m_font);
+
+	bool currentLine=false;
 
 	QBrush bg,
 		base = cxt.palette.base(),
@@ -5478,9 +5482,9 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
 		h = m_lines.at(i);
 
-		// ugly workaround...
-                if( !m_fixedPitch && !h->hasFlag(QDocumentLine::Hidden))
-			adjustWidth(i);
+		// ugly workaround..., disabled 20.12.'09 because it slows down rendering speed on mac considerably and i don't see its function
+		//if( !m_fixedPitch && !h->hasFlag(QDocumentLine::Hidden))
+		//	adjustWidth(i);
 
 		const int wrap = h->m_frontiers.count();
 		const bool wrapped = wrap;
@@ -5553,8 +5557,10 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 				if ( cxt.blinkingCursor )
 					m_cursorLines.append((*cit)->columnNumber());
 
-				if ( cxt.fillCursorRect )
+				if ( cxt.fillCursorRect ){
 					bg = alternate;
+					currentLine=true;
+				}
 
 				cit = cxt.cursors.erase(cit);
 			} else {
@@ -5614,9 +5620,32 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		// simplify line drawing
 		p->translate(0, pos);
 
-		// draw text
-		h->draw(p, cxt.xoffset, cxt.width, m_selectionBoundaries, m_cursorLines, cxt.palette, fullSel);
+		// draw text with caching
+		QPixmap *px;
+		if(!currentLine&&!h->hasFlag(QDocumentLine::LayoutDirty)&&m_LineCache.contains(h)){
+			px=m_LineCache.object(h);
+			p->drawPixmap(0,0,*px);
+		} else {
+			qDebug("not cached");
+			px=new QPixmap(cxt.width,m_lineSpacing*(wrap+1));
+			px->fill(fullSel ? selbg.color() : bg.color());
+			QPainter pnt(px);
+			pnt.setFont(p->font());
+			//pnt.setPen(p->pen());
+			//pnt.setBrush(fullSel ? selbg.color() : bg.color());
+			//pnt.drawLine(0,0,10,10);
+			//p->setPen(Qt::black);
+			h->draw(&pnt, cxt.xoffset, cxt.width, m_selectionBoundaries, m_cursorLines, cxt.palette, fullSel);
+			//p->drawImage(0,0,img,0,0,200,30);
 
+			//QPixmap *px=new QPixmap();
+			//px->fromImage(img);
+			if(!currentLine) m_LineCache.insert(h,px);
+			p->drawPixmap(0,0,*px);
+		}
+
+
+		currentLine=false;
 		// see above
 		p->translate(0, -pos);
 
