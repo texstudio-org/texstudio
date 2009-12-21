@@ -814,7 +814,7 @@ QEditor* Texmaker::currentEditor() const{
 void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	
 	m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
-	EditorView->setCurrentWidget(edit);
+        //EditorView->setCurrentWidget(edit);
 
 //edit->setFormats(m_formats->id("environment"),m_formats->id("referenceMultiple"),m_formats->id("referencePresent"),m_formats->id("referenceMissing"));
 
@@ -985,6 +985,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig);
 	configureNewEditorView(edit);
         EditorView->addTab(edit, "[*] "+QFileInfo(f_real).fileName());
+        EditorView->setCurrentWidget(edit);
 	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
 
 	QFile file(f_real);
@@ -1024,6 +1025,7 @@ void Texmaker::fileNew(QString fileName) {
 
         configureNewEditorView(edit);
         EditorView->addTab(edit, fileName);
+        EditorView->setCurrentWidget(edit);
 
 	UpdateCaption();
 	NewDocumentStatus(false);
@@ -1129,8 +1131,9 @@ void Texmaker::fileNewFromTemplate() {
 		else
 			edit->editor->setFileEncoding(QTextCodec::codecForName("utf-8"));
 
-		EditorView->addTab(edit, "untitled");
-		configureNewEditorView(edit);
+                configureNewEditorView(edit);
+                EditorView->addTab(edit, "untitled");
+                EditorView->setCurrentWidget(edit);
 
 		QString mTemplate;
 		QTextStream in(&file);
