@@ -5635,7 +5635,10 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			p->drawPixmap(0,0,*px);
 			pnt.end();
 			if(!currentLine) m_LineCache.insert(h,px);
-			else delete px;
+                        else {
+                          m_LineCache.remove(h);
+                          delete px;
+                        }
 		}
 
 
