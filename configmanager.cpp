@@ -348,7 +348,8 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	//files
 	if (newfile_encoding)
 		confDlg->ui.comboBoxEncoding->setCurrentIndex(confDlg->ui.comboBoxEncoding->findText(newfile_encoding->name(), Qt::MatchExactly));
-	confDlg->ui.checkBoxAutoDetectOnLoad->setChecked(autodetectLoadedFile);
+        //confDlg->ui.checkBoxAutoDetectOnLoad->setChecked(autodetectLoadedFile);
+        if(autodetectLoadedFile) confDlg->ui.comboBoxEncoding->setCurrentIndex(confDlg->ui.comboBoxEncoding->findText("Autodetect UTF-8/UTF-16/ISO 8859-1", Qt::MatchExactly));
 	confDlg->ui.comboBoxIgnoreLogFileNames->setCurrentIndex(ignoreLogFileNames);
 	
 	confDlg->ui.spinBoxMaxRecentFiles->setValue(maxRecentFiles);
@@ -520,8 +521,13 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	//handle changes
 	if (executed) {
 		//files
-		newfile_encoding=QTextCodec::codecForName(confDlg->ui.comboBoxEncoding->currentText().toAscii().data());
-		autodetectLoadedFile=confDlg->ui.checkBoxAutoDetectOnLoad->isChecked();
+                if(confDlg->ui.comboBoxEncoding->currentText()=="Autodetect UTF-8/UTF-16/ISO 8859-1"){
+                    newfile_encoding=QTextCodec::codecForName("system");
+                    autodetectLoadedFile=true;
+                }else{
+                    newfile_encoding=QTextCodec::codecForName(confDlg->ui.comboBoxEncoding->currentText().toAscii().data());
+                    autodetectLoadedFile=false;
+                }
 		ignoreLogFileNames=confDlg->ui.comboBoxIgnoreLogFileNames->currentIndex();
 		
 		if (maxRecentFiles!=confDlg->ui.spinBoxMaxRecentFiles->value() ||
