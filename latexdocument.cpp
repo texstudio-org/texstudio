@@ -25,7 +25,11 @@ void LatexDocument::updateStructure() {
 	userCommandList.clear();
         labelItem.clear();
 
+	emit structureLost(this);
+
 	delete baseStructure;
+	baseStructure=0;
+
 	baseStructure = new StructureEntry(StructureEntry::SE_DOCUMENT_ROOT);
 	baseStructure->title=edView->editor->fileName();
 	labelList = new StructureEntry(baseStructure, StructureEntry::SE_OVERVIEW);
@@ -144,6 +148,8 @@ void LatexDocument::updateStructure() {
 			}
 		}
 	}
+
+	emit structureUpdated(this);
 }
 
 /*
@@ -263,11 +269,24 @@ QModelIndex LatexDocumentsModel::parent ( const QModelIndex & index ) const{
 	}
 }
 
+void LatexDocumentsModel::structureUpdated(LatexDocument* document){
+	reset();
+}
+void LatexDocumentsModel::structureLost(LatexDocument* document){
+	reset();
+}
+
+
 
 LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)){
 }
 LatexDocuments::~LatexDocuments(){
-	//delete model;
+	delete model;
+}
+void LatexDocuments::addDocument(LatexDocument* document){
+	documents.append(document);
+	model->connect(document,SIGNAL(structureLost(LatexDocument*)),model,SLOT(structureLost(LatexDocument*)));
+	model->connect(document,SIGNAL(structureUpdated(LatexDocument*)),model,SLOT(structureUpdated(LatexDocument*)));
 }
 void LatexDocuments::deleteDocument(LatexDocument* document){
 	documents.removeAll(document);

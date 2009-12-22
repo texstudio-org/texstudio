@@ -80,14 +80,18 @@ public slots:
 
 signals:
 	void hasBeenIncluded(const LatexDocument& newMasterDocument);
+	void structureUpdated(LatexDocument* document);
+	void structureLost(LatexDocument* document);
 };
 
 class LatexDocuments;
 class LatexDocumentsModel: public QAbstractItemModel{
+	Q_OBJECT
 private:
 	LatexDocuments& documents;
 	QIcon iconDocument, iconBibTeX, iconInclude;
 	QVector<QIcon> iconSection;
+
 public:
 	LatexDocumentsModel(LatexDocuments& docs);
 	Qt::ItemFlags flags ( const QModelIndex & index ) const;
@@ -97,6 +101,10 @@ public:
 	int columnCount ( const QModelIndex & parent = QModelIndex() ) const;
 	QModelIndex index ( int row, int column, const QModelIndex & parent = QModelIndex() ) const;
 	QModelIndex parent ( const QModelIndex & index ) const;
+
+private slots:
+	void structureUpdated(LatexDocument* document);
+	void structureLost(LatexDocument* document);
 
 	friend class LatexDocuments;
 };
@@ -111,6 +119,7 @@ public:
 
 	LatexDocuments();
 	~LatexDocuments();
+	void addDocument(LatexDocument* document);
 	void deleteDocument(LatexDocument* document);
 };
 
