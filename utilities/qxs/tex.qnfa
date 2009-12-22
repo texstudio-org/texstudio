@@ -1,25 +1,30 @@
 <!DOCTYPE QNFA>
 <QNFA language="(La-)Tex" extensions="tex" defaultLineMark="">
-    <word id="keywords/single" ambiguous="true" format="keyword">\\[\\%\$]</word>
-
 	<sequence parenthesis="round:open">(</sequence>
 	<sequence parenthesis="round:close">)</sequence>
-	<sequence parenthesis="curly:open" indent="1" fold="1">{</sequence>
-	<sequence parenthesis="curly:close" indent="1" fold="1">}</sequence>
 	<sequence parenthesis="texcurly:open">\\{</sequence>
 	<sequence parenthesis="texcurly:close">\\}</sequence>
 	<sequence parenthesis="square:open">\[</sequence>
 	<sequence parenthesis="square:close">\]</sequence>
 	
-	<context id="verbatim" format="verbatim">
+	<context id="verbatim" format="verbatim" transparency="true">
 		<start parenthesis="verbatim:open" fold="true" format="extra-keyword">\\begin{verbatim}</start>
 		<stop parenthesis="verbatim:close" fold="true" format="extra-keyword">\\end{verbatim}</stop>
-	</context>
 
-	<context id="verbatimS" format="verbatim">
+		<sequence parenthesis="curly:open">{</sequence>
+ 		<sequence parenthesis="curly:close">}</sequence>
+	</context>
+	<context id="verbatimS" format="verbatim" transparency="true">
 		<start parenthesis="verbatimS:open" fold="true" format="extra-keyword">\\begin{verbatim*}</start>
 		<stop parenthesis="verbatimS:close" fold="true" format="extra-keyword">\\end{verbatim*}</stop>
+
+		<sequence parenthesis="curly:open">{</sequence>
+ 		<sequence parenthesis="curly:close">}</sequence>
 	</context>
+
+	<word id="keywords/single" ambiguous="true" format="keyword">\\[\\%\$]</word>
+	<sequence parenthesis="curly:open" indent="1" fold="1">{</sequence>
+	<sequence parenthesis="curly:close" indent="1" fold="1">}</sequence>
 
   <context id="verb$" format="verbatim">
 		<start parenthesis="verb$:open" format="keyword">\\verb$</start>
