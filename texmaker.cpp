@@ -829,7 +829,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 
 	edit->document=new LatexDocument();
 	edit->document->edView=edit;
-	documents.documents.append(edit->document);
+	documents.addDocument(edit->document);
 }
 
 LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName){
@@ -2051,7 +2051,7 @@ void Texmaker::updateStructure() {
 	updateCompleter();
 	cursorPositionChanged();
 
-	structureTreeView->reset();
+	//structureTreeView->reset();
 }
 void Texmaker::updateStructureForFile(const QString& fileName){
     QTreeWidgetItem *Child;
@@ -3846,14 +3846,10 @@ void Texmaker::updateCompleter() {
 	words << userCommandList;
         LatexEditorView* edView=currentEditorView();
         if(edView && edView->document){
-            LatexDocument *doc=edView->document;
-            LatexDocuments docs;
-            if(!singlemode){
-                docs=documents;
-            }else{
-                docs.documents.append(doc);
-            }
-            foreach(doc,docs.documents){
+	    QList<LatexDocument*> docs;
+	    if (singlemode) docs << edView->document;
+	    else docs << documents.documents;
+	    foreach(const LatexDocument* doc,docs){
                 for (int i=0; i<doc->labelItem.count(); ++i) {
                     words.append("\\ref{"+doc->labelItem.at(i)+"}");
                     words.append("\\pageref{"+doc->labelItem.at(i)+"}");

@@ -842,8 +842,7 @@ void LatexEditorView::insertHardLineBreaks(int newLength, bool smartScopeSelecti
 			QDocumentCursor currentCur=cur;
 			QDocumentCursor lineCursor=currentCur;
 			do {
-				lineCursor.select(QDocumentCursor::LineUnderCursor);
-				QString lineString  = lineCursor.selectedText().trimmed();
+				QString lineString  = lineCursor.line().text().trimmed();
 				if ((lineString == QLatin1String("")) ||
 				    (lineString.contains("\\begin")) ||
 				    (lineString.contains("\\end")) ||
@@ -853,13 +852,13 @@ void LatexEditorView::insertHardLineBreaks(int newLength, bool smartScopeSelecti
 					qDebug() << lineString;
 					break;
 				}
-			} while (lineCursor.movePosition(1, QDocumentCursor::Up, QDocumentCursor::MoveAnchor && lineCursor.lineNumber()>0));
+			} while (lineCursor.movePosition(1, QDocumentCursor::Up, QDocumentCursor::MoveAnchor));
 			startLine = lineCursor.lineNumber();
+			if (lineCursor.atStart()) startLine--;
 
 			lineCursor = currentCur;
 			do {
-				lineCursor.select(QDocumentCursor::LineUnderCursor);
-				QString lineString  = lineCursor.selectedText().trimmed();
+				QString lineString  = lineCursor.line().text().trimmed();
 				if ((lineString == QLatin1String("")) ||
 				    (lineString.contains("\\begin")) ||
 				    (lineString.contains("\\end")) ||
@@ -869,8 +868,9 @@ void LatexEditorView::insertHardLineBreaks(int newLength, bool smartScopeSelecti
 					qDebug() << lineString;
 					break;
 				}
-			} while (lineCursor.movePosition(1, QDocumentCursor::Down, QDocumentCursor::MoveAnchor) && lineCursor.lineNumber()<endLine);
+			} while (lineCursor.movePosition(1, QDocumentCursor::Down, QDocumentCursor::MoveAnchor));
 			endLine = lineCursor.lineNumber();
+			if (lineCursor.atEnd()) endLine++	;
 
 			if ((endLine - startLine) < 2) { // lines near, therefore no need to line break
 				return ;
