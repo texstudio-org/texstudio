@@ -267,7 +267,7 @@ QModelIndex LatexDocumentsModel::parent ( const QModelIndex & index ) const{
 LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)){
 }
 LatexDocuments::~LatexDocuments(){
-	delete model;
+	//delete model;
 }
 void LatexDocuments::deleteDocument(LatexDocument* document){
 	documents.removeAll(document);

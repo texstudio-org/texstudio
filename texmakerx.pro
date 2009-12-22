@@ -11,6 +11,7 @@ exists(texmakerx_my.pri):include(texmakerx_my.pri)
 QT += network \
     xml
 
+include(qtsingleapplication/qtsingleapplication.pri)
 # ##############################
 PRECOMPILED_HEADER = mostQtHeaders.h
 HEADERS += texmaker.h \

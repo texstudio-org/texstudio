@@ -15,14 +15,15 @@
  
 #include "texmaker.h"
 #include "smallUsefulFunctions.h"
-#include "dsingleapplication.h"
+//#include "dsingleapplication.h"
+#include <qtsingleapplication.h>
 
 #include <QSplashScreen>
 #ifdef Q_WS_WIN
 #include "windows.h"
 typedef BOOL (*AllowSetForegroundWindowFunc)(DWORD);
 #endif
-class TexmakerApp : public QApplication {
+class TexmakerApp : public QtSingleApplication {
 protected:
 	bool event(QEvent *event);
 public:
@@ -30,6 +31,7 @@ public:
 	QString delayedFileLoad;
 	Texmaker *mw;  // Moved from private:
 	TexmakerApp(int & argc, char ** argv);
+	TexmakerApp(QString &id,int & argc, char ** argv);
 	~TexmakerApp();
 	void init(QStringList &cmdLine);   // This function does all the initialization instead of the constructor.
 /*really slow global event logging:
@@ -39,7 +41,12 @@ public:
 	}//*/
 };
 
-TexmakerApp::TexmakerApp(int & argc, char ** argv) : QApplication(argc, argv) {
+TexmakerApp::TexmakerApp(int & argc, char ** argv) : QtSingleApplication(argc, argv) {
+	mw = 0;
+	initialized=false;
+}
+
+TexmakerApp::TexmakerApp(QString &id,int & argc, char ** argv) : QtSingleApplication(id,argc, argv) {
 	mw = 0;
 	initialized=false;
 }
@@ -78,7 +85,6 @@ bool TexmakerApp::event(QEvent * event) {
 
 int main(int argc, char ** argv) {
 // This is a dummy constructor so that the programs loads fast.
-	TexmakerApp a(argc, argv);
 	QStringList environment = QProcess::systemEnvironment();
 	QString user=environment.filter(QRegExp("^USERNAME=|^USER=",Qt::CaseInsensitive)).first();
 	if(!user.isEmpty()){
@@ -86,7 +92,9 @@ int main(int argc, char ** argv) {
 		user="_"+user.right(user.length()-l-1);
 	}
 	user="TexMakerX"+user;
-	DSingleApplication instance(user);
+	TexmakerApp a(user,argc, argv);
+
+	//DSingleApplication instance(user);
 
 	bool startAlways=false;
 	QStringList args = QCoreApplication::arguments();
@@ -107,19 +115,19 @@ int main(int argc, char ** argv) {
 	}
 
 	if (!startAlways)
-		if (instance.isRunning()) {
+		if (a.isRunning()) {
 #ifdef Q_WS_WIN
 			AllowSetForegroundWindowFunc asfw = (AllowSetForegroundWindowFunc)GetProcAddress(GetModuleHandleA("user32.dll"),"AllowSetForegroundWindow");
 			if (asfw) asfw(/*ASFW_ANY*/(DWORD)(-1));
 #endif
 
-			instance.sendMessage(cmdLine.join("#!#"));
+			a.sendMessage(cmdLine.join("#!#"));
 			return 0;
 		}
 
 	a.init(cmdLine); // Initialization takes place only if there is no other instance running.
 
-	QObject::connect(&instance, SIGNAL(messageReceived(const QString &)),
+	QObject::connect(&a, SIGNAL(messageReceived(const QString &)),
 	                 a.mw,   SLOT(onOtherInstanceMessage(const QString &)));
 
 	return a.exec();
