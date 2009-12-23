@@ -15,7 +15,6 @@
 #include "mostQtHeaders.h"
 
 #include "ui_quickdocumentdialog.h"
-#include "addoptiondialog.h"
 
 class QuickDocumentDialog : public QDialog  {
 	Q_OBJECT
@@ -35,8 +34,6 @@ private slots:
 	void addUserPaper();
 	void addUserEncoding();
 	void addUserOptions();
-private :
-	AddOptionDialog *dlg;
 };
 
 

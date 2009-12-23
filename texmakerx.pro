@@ -10,8 +10,8 @@ CONFIG += qt \
 exists(texmakerx_my.pri):include(texmakerx_my.pri)
 QT += network \
     xml
-
 include(qtsingleapplication/qtsingleapplication.pri)
+
 # ##############################
 PRECOMPILED_HEADER = mostQtHeaders.h
 HEADERS += texmaker.h \
@@ -33,11 +33,9 @@ HEADERS += texmaker.h \
     arraydialog.h \
     tabdialog.h \
     letterdialog.h \
-    addoptiondialog.h \
     quickdocumentdialog.h \
     usermenudialog.h \
     usertooldialog.h \
-    refdialog.h \
     configmanager.h \
     configdialog.h \
     aboutdialog.h \
@@ -65,7 +63,6 @@ HEADERS += texmaker.h \
     hunspell/langnum.hxx \
     hunspell/license.hunspell \
     hunspell/phonet.hxx \
-    hunspell/replist.hxx \
     hunspell/suggestmgr.hxx \
     hunspell/license.myspell \
     hunspell/filemgr.hxx \
@@ -84,7 +81,8 @@ HEADERS += texmaker.h \
     searchresultmodel.h \
     bibtexparser.h \
     latexdocument.h \
-    universalinputdialog.h
+    universalinputdialog.h \
+    hunspell/replist.hxx
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -103,11 +101,9 @@ SOURCES += main.cpp \
     arraydialog.cpp \
     tabdialog.cpp \
     letterdialog.cpp \
-    addoptiondialog.cpp \
     quickdocumentdialog.cpp \
     usermenudialog.cpp \
     usertooldialog.cpp \
-    refdialog.cpp \
     configmanager.cpp \
     configdialog.cpp \
     aboutdialog.cpp \
@@ -152,11 +148,9 @@ FORMS += structdialog.ui \
     arraydialog.ui \
     tabdialog.ui \
     letterdialog.ui \
-    addoptiondialog.ui \
     quickdocumentdialog.ui \
     usermenudialog.ui \
     usertooldialog.ui \
-    refdialog.ui \
     aboutdialog.ui \
     webpublishdialog.ui \
     configdialog.ui \

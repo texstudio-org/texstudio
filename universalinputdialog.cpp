@@ -14,7 +14,7 @@ void UniversalInputDialog::myAccept(){
 		if (w->property("storage").isValid()){
 			void* storage = w->property("storage").value<void*>();
 			if (!storage) continue;
-			//set stored variables according to the type of the widget
+			//get value of the
 			QCheckBox* checkBox = qobject_cast<QCheckBox*>(w);
 			if (checkBox) {
 				*((bool*)storage) = checkBox->isChecked();
@@ -30,6 +30,11 @@ void UniversalInputDialog::myAccept(){
 				*((int*)storage) = spinBox->value();
 				continue;
 			}
+			QComboBox* comboBox = qobject_cast<QComboBox*>(w);
+			if (comboBox){
+				*((QStringList*)storage) = QStringList(comboBox->currentText());
+				continue;
+			}
 		}
 	}
 	accept();
@@ -39,9 +44,11 @@ void UniversalInputDialog::addWidget(QWidget* widget, QString description, void*
 	widget->setProperty("storage", QVariant::fromValue((void*)storage));
 	widget->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Preferred);
 	QLabel *descWidget = new QLabel(description, this);
+	descWidget->setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Preferred);
+	widget->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Preferred);
 	if (description.length()<32){
 		gridLayout->addWidget(descWidget, gridLayout->rowCount(), 0, 0);
-		gridLayout->addWidget(widget, gridLayout->rowCount(), 1, 0);
+		gridLayout->addWidget(widget, gridLayout->rowCount()-1, 1, 0);
 	} else {
 		gridLayout->addWidget(descWidget, gridLayout->rowCount(), 0, 1, 2,0 );
 		gridLayout->addWidget(widget, gridLayout->rowCount(), 0, 1, 2, 0);
@@ -67,6 +74,12 @@ void UniversalInputDialog::addVariable(QString* var, QString description){
 	QLineEdit* edit = new QLineEdit(this);
 	edit->setText(*var);
 	addWidget(edit,description,var);
+}
+void UniversalInputDialog::addVariable(QStringList* var, QString description){
+	Q_ASSERT(var);
+	QComboBox* cmb = new QComboBox(this);
+	cmb->addItems(*var);
+	addWidget(cmb,description,var);
 }
 void UniversalInputDialog::showEvent(QShowEvent* event){
 	QDialog::showEvent(event);

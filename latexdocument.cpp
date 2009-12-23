@@ -32,11 +32,11 @@ void LatexDocument::updateStructure() {
 
 	baseStructure = new StructureEntry(StructureEntry::SE_DOCUMENT_ROOT);
 	baseStructure->title=edView->editor->fileName();
-	labelList = new StructureEntry(baseStructure, StructureEntry::SE_OVERVIEW);
+	labelList = new StructureEntry(StructureEntry::SE_OVERVIEW);
 	labelList->title=tr("LABELS");
-	todoList = new StructureEntry(baseStructure, StructureEntry::SE_OVERVIEW);
+	todoList = new StructureEntry(StructureEntry::SE_OVERVIEW);
 	todoList->title=tr("TODO");
-	bibTeXList = new StructureEntry(baseStructure, StructureEntry::SE_OVERVIEW);
+	bibTeXList = new StructureEntry(StructureEntry::SE_OVERVIEW);
 	bibTeXList->title=tr("BIBTEX");
 
 	QVector<StructureEntry*> parent_level(struct_level.count());
@@ -149,6 +149,10 @@ void LatexDocument::updateStructure() {
 		}
 	}
 
+	if (!bibTeXList->children.isEmpty()) baseStructure->insert(0, bibTeXList);
+	if (!todoList->children.isEmpty()) baseStructure->insert(0, todoList);
+	if (!labelList->children.isEmpty()) baseStructure->insert(0, labelList);
+
 	emit structureUpdated(this);
 }
 
@@ -180,7 +184,11 @@ void StructureEntry::add(StructureEntry* child){
 	children.append(child);
 	child->parent=this;
 }
-
+void StructureEntry::insert(int pos, StructureEntry* child){
+	Q_ASSERT(child!=0);
+	children.insert(pos,child);
+	child->parent=this;
+}
 /*
   QIcon(":/images/doc.png"));
   static const QIcon structureBibTeXIcon(":/images/bibtex.png");
@@ -203,7 +211,11 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 	StructureEntry* entry = (StructureEntry*) index.internalPointer();
 	if (!entry) return QVariant();
 	switch (role) {
-		case Qt::DisplayRole: case Qt::ToolTipRole:
+		case Qt::DisplayRole:
+			if (entry->type==StructureEntry::SE_DOCUMENT_ROOT) //show only base file name
+				return QVariant(entry->title.mid(1+qMax(entry->title.lastIndexOf("/"), entry->title.lastIndexOf(QDir::separator()))));
+			//fall through to show full title in other cases
+		case Qt::ToolTipRole:
 			if (entry->lineNumber>-1)
 				return QVariant(entry->title+QString(" (%1 %2)").arg(tr("Zeile")).arg(entry->lineNumber+1));
 			else

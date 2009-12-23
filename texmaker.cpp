@@ -26,7 +26,6 @@
 #include "quickdocumentdialog.h"
 #include "usermenudialog.h"
 #include "usertooldialog.h"
-#include "refdialog.h"
 #include "aboutdialog.h"
 #include "configdialog.h"
 #include "encodingdialog.h"
@@ -2900,11 +2899,11 @@ void Texmaker::OtherCommand() {
 
 void Texmaker::InsertRef() {
 	updateStructure();
-	QString tag="";
-	RefDialog *refDlg = new RefDialog(this,"Labels");
-	refDlg->ui.comboBox->addItems(labelitem);
-	if (!labelitem.isEmpty() && refDlg->exec()) {
-		tag="\\ref{"+refDlg->ui.comboBox->currentText()+"}";
+	QStringList labels = labelitem;
+	UniversalInputDialog dialog;
+	dialog.addVariable(&labels, tr("Labels:"));
+	if (dialog.exec() && !labels.isEmpty()) {
+		QString tag="\\ref{"+labels.first()+"}";
 		InsertTag(tag,tag.length(),0);
 	} else InsertTag("\\ref{}",5,0);
 	outputView->setMessage("\\ref{key}");
@@ -2912,11 +2911,11 @@ void Texmaker::InsertRef() {
 
 void Texmaker::InsertPageRef() {
 	updateStructure();
-	QString tag="";
-	RefDialog *refDlg = new RefDialog(this,"Labels");
-	refDlg->ui.comboBox->addItems(labelitem);
-	if (!labelitem.isEmpty() && refDlg->exec()) {
-		tag="\\pageref{"+refDlg->ui.comboBox->currentText()+"}";
+	QStringList labels = labelitem;
+	UniversalInputDialog dialog;
+	dialog.addVariable(&labels, tr("Labels:"));
+	if (dialog.exec() && !labels.isEmpty()) {
+		QString tag="\\pageref{"+labels.first()+"}";
 		InsertTag(tag,tag.length(),0);
 	} else InsertTag("\\pageref{}",9,0);
 	outputView->setMessage("\\pageref{key}");

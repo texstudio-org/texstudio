@@ -10,7 +10,7 @@
  ***************************************************************************/
 
 #include "quickdocumentdialog.h"
-
+#include "universalinputdialog.h"
 
 QuickDocumentDialog::QuickDocumentDialog(QWidget *parent, const char *name)
 		:QDialog(parent) {
@@ -90,45 +90,41 @@ void QuickDocumentDialog::Init() {
 }
 
 void QuickDocumentDialog::addUserClass() {
-	QString newoption="";
-	dlg = new AddOptionDialog(this,"New");
-	if (dlg->exec()) {
-		newoption=dlg->ui.lineEdit->text();
-		if (newoption!="") otherClassList.append(newoption);
+	QString newoption;
+	UniversalInputDialog dialog;
+	dialog.addVariable(&newoption, tr("New:"));
+	if (dialog.exec() && !newoption.isEmpty()) {
+		otherClassList.append(newoption);
 		Init();
 	}
-	delete(dlg);
 }
 
 void QuickDocumentDialog::addUserPaper() {
-	QString newoption="";
-	dlg = new AddOptionDialog(this,"New");
-	if (dlg->exec()) {
-		newoption=dlg->ui.lineEdit->text();
-		if (newoption!="") otherPaperList.append(newoption);
+	QString newoption;
+	UniversalInputDialog dialog;
+	dialog.addVariable(&newoption, tr("New:"));
+	if (dialog.exec() && !newoption.isEmpty()) {
+		otherPaperList.append(newoption);
 		Init();
 	}
-	delete(dlg);
 }
 
 void QuickDocumentDialog::addUserEncoding() {
-	QString newoption="";
-	dlg = new AddOptionDialog(this,"New");
-	if (dlg->exec()) {
-		newoption=dlg->ui.lineEdit->text();
-		if (newoption!="") otherEncodingList.append(newoption);
+	QString newoption;
+	UniversalInputDialog dialog;
+	dialog.addVariable(&newoption, tr("New:"));
+	if (dialog.exec() && !newoption.isEmpty()) {
+		otherEncodingList.append(newoption);
 		Init();
 	}
-	delete(dlg);
 }
 
 void QuickDocumentDialog::addUserOptions() {
-	QString newoption="";
-	dlg = new AddOptionDialog(this,"New");
-	if (dlg->exec()) {
-		newoption=dlg->ui.lineEdit->text();
-		if (newoption!="") otherOptionsList.append(newoption);
+	QString newoption;
+	UniversalInputDialog dialog;
+	dialog.addVariable(&newoption, tr("New:"));
+	if (dialog.exec() && !newoption.isEmpty()) {
+		otherOptionsList.append(newoption);
 		Init();
 	}
-	delete(dlg);
 }

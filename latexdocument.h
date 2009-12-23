@@ -46,6 +46,7 @@ struct StructureEntry{
 	StructureEntry(StructureEntry* parent, Type newType);
 	~StructureEntry();
 	void add(StructureEntry* child);
+	void insert(int pos, StructureEntry* child);
 };
 
 class LatexEditorView;
