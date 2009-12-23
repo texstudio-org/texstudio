@@ -10,7 +10,12 @@ CONFIG += qt \
 exists(texmakerx_my.pri):include(texmakerx_my.pri)
 QT += network \
     xml
-QT_VERSION >= 0x040400:include(qtsingleapplication/qtsingleapplication.pri)
+
+contains($$list($$[QT_VERSION]), 4.3.*) {
+message("qt 4.3.x")
+}else{
+include(qtsingleapplication/qtsingleapplication.pri)
+}
 
 # ##############################
 PRECOMPILED_HEADER = mostQtHeaders.h
