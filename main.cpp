@@ -15,15 +15,25 @@
  
 #include "texmaker.h"
 #include "smallUsefulFunctions.h"
-//#include "dsingleapplication.h"
+
+
+#if QT_VERSION >= 0x040400
 #include <qtsingleapplication.h>
+#else
+#include "dsingleapplication.h"
+#endif
 
 #include <QSplashScreen>
 #ifdef Q_WS_WIN
 #include "windows.h"
 typedef BOOL (*AllowSetForegroundWindowFunc)(DWORD);
 #endif
+
+#if QT_VERSION >= 0x040400
 class TexmakerApp : public QtSingleApplication {
+#else
+class TexmakerApp : public QApplication {
+#endif
 protected:
 	bool event(QEvent *event);
 public:
@@ -31,7 +41,9 @@ public:
 	QString delayedFileLoad;
 	Texmaker *mw;  // Moved from private:
 	TexmakerApp(int & argc, char ** argv);
+	#if QT_VERSION >= 0x040400
 	TexmakerApp(QString &id,int & argc, char ** argv);
+	#endif
 	~TexmakerApp();
 	void init(QStringList &cmdLine);   // This function does all the initialization instead of the constructor.
 /*really slow global event logging:
@@ -41,6 +53,7 @@ public:
 	}//*/
 };
 
+#if QT_VERSION >= 0x040400
 TexmakerApp::TexmakerApp(int & argc, char ** argv) : QtSingleApplication(argc, argv) {
 	mw = 0;
 	initialized=false;
@@ -50,6 +63,12 @@ TexmakerApp::TexmakerApp(QString &id,int & argc, char ** argv) : QtSingleApplica
 	mw = 0;
 	initialized=false;
 }
+#else
+TexmakerApp::TexmakerApp(int & argc, char ** argv) : QApplication(argc, argv) {
+	mw = 0;
+	initialized=false;
+}
+#endif
 
 void TexmakerApp::init(QStringList &cmdLine) {
 	QPixmap pixmap(":/images/splash.png");
@@ -92,10 +111,12 @@ int main(int argc, char ** argv) {
 		user="_"+user.right(user.length()-l-1);
 	}
 	user="TexMakerX"+user;
+#if QT_VERSION >= 0x040400
 	TexmakerApp a(user,argc, argv);
-
-	//DSingleApplication instance(user);
-
+#else
+	TexmakerApp a(argc, argv);
+	DSingleApplication instance(user);
+#endif
 	bool startAlways=false;
 	QStringList args = QCoreApplication::arguments();
 	QStringList cmdLine;
@@ -115,20 +136,33 @@ int main(int argc, char ** argv) {
 	}
 
 	if (!startAlways)
+#if QT_VERSION >= 0x040400
 		if (a.isRunning()) {
+#else
+		if (instance.isRunning()) {
+#endif
 #ifdef Q_WS_WIN
 			AllowSetForegroundWindowFunc asfw = (AllowSetForegroundWindowFunc)GetProcAddress(GetModuleHandleA("user32.dll"),"AllowSetForegroundWindow");
 			if (asfw) asfw(/*ASFW_ANY*/(DWORD)(-1));
 #endif
 
+#if QT_VERSION >= 0x040400
 			a.sendMessage(cmdLine.join("#!#"));
+#else
+			instance.sendMessage(cmdLine.join("#!#"));
+#endif
 			return 0;
 		}
 
 	a.init(cmdLine); // Initialization takes place only if there is no other instance running.
 
+#if QT_VERSION >= 0x040400
 	QObject::connect(&a, SIGNAL(messageReceived(const QString &)),
 	                 a.mw,   SLOT(onOtherInstanceMessage(const QString &)));
+#else
+	QObject::connect(&instance, SIGNAL(messageReceived(const QString &)),
+					 a.mw,   SLOT(onOtherInstanceMessage(const QString &)));
+#endif
 
 	return a.exec();
 }
