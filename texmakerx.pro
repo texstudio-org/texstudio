@@ -10,7 +10,7 @@ CONFIG += qt \
 exists(texmakerx_my.pri):include(texmakerx_my.pri)
 QT += network \
     xml
-include(qtsingleapplication/qtsingleapplication.pri)
+QT_VERSION >= 0x040400:include(qtsingleapplication/qtsingleapplication.pri)
 
 # ##############################
 PRECOMPILED_HEADER = mostQtHeaders.h
