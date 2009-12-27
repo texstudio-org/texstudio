@@ -20,6 +20,9 @@ void scriptengine::run(){
         QDocumentCursor c=m_editor->cursor();
         QScriptValue cursorValue = engine->newQObject(&c);
         engine->globalObject().setProperty("cursor", cursorValue);
+        QScriptValue qsMetaObject = engine->newQMetaObject(c.metaObject());
+        engine->globalObject().setProperty("cursorEnums", qsMetaObject);
+
         engine->evaluate(m_script);
         if(engine->hasUncaughtException()){
             qDebug() << "uncaught exception at line "<< engine->uncaughtExceptionLineNumber() << ":" << engine->uncaughtException().toString();
