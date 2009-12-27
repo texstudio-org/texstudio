@@ -2,10 +2,7 @@
 
 scriptengine::scriptengine(QObject *parent) : QObject(parent),m_editor(0)
 {
-    qDebug("reached");
-    //QEditor* editor=qobject_cast<QEditor*>(parent);
     engine=new QScriptEngine(this);
-    //qScriptRegisterMetaType(engine,)
     //qScriptRegisterMetaType<QDocumentCursor>(engine);
 }
 
@@ -23,7 +20,11 @@ void scriptengine::run(){
         QDocumentCursor c=m_editor->cursor();
         QScriptValue cursorValue = engine->newQObject(&c);
         engine->globalObject().setProperty("cursor", cursorValue);
-        qDebug() << engine->evaluate(m_script).toString();
+        engine->evaluate(m_script);
+        if(engine->hasUncaughtException()){
+            qDebug() << "uncaught exception at line "<< engine->uncaughtExceptionLineNumber() << ":" << engine->uncaughtException().toString();
+            qDebug() << "Backtrace: " << engine->uncaughtExceptionBacktrace().join(", ");
+        }
         m_editor->setCursor(c);
     }
 }
