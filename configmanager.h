@@ -109,6 +109,9 @@ public:
 	void managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu);
 	void treeWidgetToManagedMenuTo(QTreeWidgetItem* item);
 
+        QTreeWidgetItem* managedLatexMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu);
+        void treeWidgetToManagedLatexMenuTo();
+
 signals:
 	void tabbedLogViewChanged(bool changed);
 	void newLeftPanelLayoutChanged(bool newValue);
@@ -120,8 +123,14 @@ public:
 	void loadTranslations(QString locale);
 private:
 	void setInterfaceStyle();
+
+        QList<QTreeWidgetItem*> changedItemsList;
+
+        QHash<QString,QVariant> hashManipulateMenus;
+
 private slots:
 	void browseCommand();
 	void undoCommand();
+        void latexTreeItemChanged(QTreeWidgetItem* item,int l);
 };
 #endif
