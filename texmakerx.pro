@@ -9,13 +9,9 @@ CONFIG += qt \
     debug_and_release
 exists(texmakerx_my.pri):include(texmakerx_my.pri)
 QT += network \
-    xml
-
-contains($$list($$[QT_VERSION]), 4.3.*) {
-message("qt 4.3.x")
-}else{
-include(qtsingleapplication/qtsingleapplication.pri)
-}
+    xml script
+contains($$list($$[QT_VERSION]), 4.3.*):message("qt 4.3.x")
+else:include(qtsingleapplication/qtsingleapplication.pri)
 
 # ##############################
 PRECOMPILED_HEADER = mostQtHeaders.h
@@ -87,7 +83,8 @@ HEADERS += texmaker.h \
     bibtexparser.h \
     latexdocument.h \
     universalinputdialog.h \
-    hunspell/replist.hxx
+    hunspell/replist.hxx \
+    scriptengine.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -145,7 +142,8 @@ SOURCES += main.cpp \
     searchresultmodel.cpp \
     bibtexparser.cpp \
     latexdocument.cpp \
-    universalinputdialog.cpp
+    universalinputdialog.cpp \
+    scriptengine.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \

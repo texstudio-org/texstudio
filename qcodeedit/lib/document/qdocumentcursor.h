@@ -18,6 +18,9 @@
 
 #include "qce-config.h"
 
+#include <QObject>
+#include <QMetaType>
+
 /*!
 	\file qdocumentcursor.h
 	\brief Definition of the QDocumentCursor class
@@ -36,8 +39,9 @@ class QDocumentLine;
 struct QDocumentSelection;
 class QDocumentCursorHandle;
 
-class QCE_EXPORT QDocumentCursor
+class QCE_EXPORT QDocumentCursor : public QObject
 {
+        Q_OBJECT
 	public:
 		enum MoveFlag
 		{
@@ -81,7 +85,7 @@ class QCE_EXPORT QDocumentCursor
 			LineUnderCursor
 		};
 		
-		explicit QDocumentCursor(QDocument *doc);
+                explicit QDocumentCursor(QDocument *doc);
 		QDocumentCursor(const QDocumentCursor& cursor);
 		QDocumentCursor(QDocument *doc, int line, int column = 0);
 		//QDocumentCursor(const QDocumentLine& line, int column = 0);
@@ -112,16 +116,16 @@ class QCE_EXPORT QDocumentCursor
 		bool isNull() const;
 		bool isValid() const;
 		
-		bool atEnd() const;
-		bool atStart() const;
+                Q_INVOKABLE bool atEnd() const;
+                Q_INVOKABLE bool atStart() const;
 		
-		bool atBlockEnd() const;
-		bool atBlockStart() const;
+                Q_INVOKABLE bool atBlockEnd() const;
+                Q_INVOKABLE bool atBlockStart() const;
 		
-		bool atLineEnd() const;
-		bool atLineStart() const;
+                Q_INVOKABLE bool atLineEnd() const;
+                Q_INVOKABLE bool atLineStart() const;
 		
-		bool hasSelection() const;
+                Q_INVOKABLE bool hasSelection() const;
 		
 		bool isSilent() const;
 		void setSilent(bool y);
@@ -134,16 +138,16 @@ class QCE_EXPORT QDocumentCursor
 		
 		int position() const;
 		
-		int lineNumber() const;
-		int columnNumber() const;
+                Q_INVOKABLE int lineNumber() const;
+                Q_INVOKABLE int columnNumber() const;
 		
-		int anchorLineNumber() const;
-		int anchorColumnNumber() const;
+                Q_INVOKABLE int anchorLineNumber() const;
+                Q_INVOKABLE int anchorColumnNumber() const;
 		
 		int visualColumnNumber() const;
 		
-		void setLineNumber(int c, MoveMode m = MoveAnchor);
-		void setColumnNumber(int c, MoveMode m = MoveAnchor);
+                Q_INVOKABLE void setLineNumber(int c, MoveMode m = MoveAnchor);
+                Q_INVOKABLE void setColumnNumber(int c, MoveMode m = MoveAnchor);
 		
 		int wrappedLineOffset() const;
 		int anchorWrappedLineOffset() const;
@@ -156,26 +160,26 @@ class QCE_EXPORT QDocumentCursor
 		QDocumentLine line() const;
 		QDocumentLine anchorLine() const;
 		
-		void shift(int offset);
-		void setPosition(int pos, MoveMode m = MoveAnchor);
-		bool movePosition(int offset, MoveOperation op = NextCharacter, MoveMode m = MoveAnchor);
+                Q_INVOKABLE void shift(int offset);
+                Q_INVOKABLE void setPosition(int pos, MoveMode m = MoveAnchor);
+                Q_INVOKABLE bool movePosition(int offset, MoveOperation op = NextCharacter, MoveMode m = MoveAnchor);
 		
-		void moveTo(int line, int column);
+                Q_INVOKABLE void moveTo(int line, int column);
 		void moveTo(const QDocumentCursor &c);
 		void moveTo(const QDocumentLine &l, int column);
 		
-		void eraseLine();
-		void insertLine(bool keepAnchor = false);
-		void insertText(const QString& s, bool keepAnchor = false);
+                Q_INVOKABLE void eraseLine();
+                Q_INVOKABLE void insertLine(bool keepAnchor = false);
+                Q_INVOKABLE void insertText(const QString& s, bool keepAnchor = false);
 		
 		QDocumentCursor selectionStart() const;
 		QDocumentCursor selectionEnd() const;
 		
-		QString selectedText() const;
+                Q_INVOKABLE QString selectedText() const;
 		
-		void clearSelection();
-		void removeSelectedText();
-		void replaceSelectedText(const QString& text);
+                Q_INVOKABLE void clearSelection();
+                Q_INVOKABLE void removeSelectedText();
+                Q_INVOKABLE void replaceSelectedText(const QString& text);
 		
 		void select(SelectionType t);
 		void setSelectionBoundary(const QDocumentCursor& c);
@@ -186,11 +190,11 @@ class QCE_EXPORT QDocumentCursor
 		QChar nextChar() const;
 		QChar previousChar() const;
 		
-		void deleteChar();
-		void deletePreviousChar();
+                Q_INVOKABLE void deleteChar();
+                Q_INVOKABLE void deletePreviousChar();
 		
-		void beginEditBlock();
-		void endEditBlock();
+                Q_INVOKABLE void beginEditBlock();
+                Q_INVOKABLE void endEditBlock();
 		
 		void refreshColumnMemory();
 		bool hasColumnMemory() const;
@@ -206,5 +210,7 @@ class QCE_EXPORT QDocumentCursor
 	private:
 		QDocumentCursorHandle *m_handle;
 };
+
+Q_DECLARE_METATYPE(QDocumentCursor)
 
 #endif

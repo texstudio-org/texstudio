@@ -40,8 +40,10 @@
 */
 
 QDocumentSearch::QDocumentSearch(QEditor *e, const QString& f, Options opt, const QString& r)
- : m_group(-1), m_option(opt), m_string(f), m_replace(r),  m_scopeGroup(-1), m_editor(e), m_replaced(0), m_replaceDeltaLength(0)
+ : m_group(-1), m_option(opt), m_string(f),  m_editor(e), m_replaced(0), m_replaceDeltaLength(0)
 {
+        m_replace=r;
+        m_scopeGroup=-1;
 	if (m_editor && hasOption(HighlightAll))
 		connect(m_editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
 }

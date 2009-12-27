@@ -2831,11 +2831,19 @@ void Texmaker::InsertUserTag() {
 	int id = action->data().toInt();
 	if (id<0 || id>=10) return;
 	QString userTag=UserMenuTag[id];
-	if (userTag.left(1)=="%") {
+        if (userTag.left(8)=="%SCRIPT\n"){
+            scriptengine eng(this);
+            eng.setEditor(currentEditor());
+            userTag=userTag.remove(0,8);
+            eng.setScript(userTag);
+            eng.run();
+        } else {
+            if (userTag.left(1)=="%") {
 		userTag=userTag.remove(0,1);
 		CodeSnippet s("\\begin{"+userTag+"}");
 		s.insert(currentEditorView()->editor);
-	} else CodeSnippet(userTag).insert(currentEditorView()->editor);
+            } else CodeSnippet(userTag).insert(currentEditorView()->editor);
+        }
 }
 
 void Texmaker::EditUserMenu() {

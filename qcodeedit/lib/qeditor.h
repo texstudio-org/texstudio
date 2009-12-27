@@ -138,8 +138,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		bool canUndo() const;
 		bool canRedo() const;
 		
-		QString text() const;
-		QString text(int line) const;
+                Q_INVOKABLE QString text() const;
+                Q_INVOKABLE QString text(int line) const;
 		
 		QTextCodec* codec() const;
 		QDocument* document() const;
@@ -147,7 +147,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		QList<QEditorInputBindingInterface*> inputBindings() const;
 		
 		bool isCursorVisible() const;
-		QDocumentCursor cursor() const;
+                QDocumentCursor cursor() const;
 		
 		int cursorMirrorCount() const;
 		QDocumentCursor cursorMirror(int i) const;
@@ -176,7 +176,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void setFileEncoding(QTextCodec* codec);
 		void setFileEncoding(char* name);
 		void setFileEncoding(int mib);
-        void viewAsEncoding(QTextCodec* codec);
+                void viewAsEncoding(QTextCodec* codec);
 		
 		int wrapWidth() const;
 
