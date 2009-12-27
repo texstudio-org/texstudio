@@ -81,13 +81,13 @@
 */
 
 QDocumentCursor::QDocumentCursor(QDocument *doc)
- : m_handle(new QDocumentCursorHandle(doc))
+ : QObject(0),m_handle(new QDocumentCursorHandle(doc))
 {
 	m_handle->ref();
 }
 
 QDocumentCursor::QDocumentCursor(const QDocumentCursor& cursor)
- : m_handle(0)
+ : QObject(0),m_handle(0)
 {
 	if ( cursor.m_handle )
 	{
@@ -97,7 +97,7 @@ QDocumentCursor::QDocumentCursor(const QDocumentCursor& cursor)
 }
 
 QDocumentCursor::QDocumentCursor(QDocument *doc, int line, int column)
- : m_handle(new QDocumentCursorHandle(doc, line))
+ : QObject(doc),m_handle(new QDocumentCursorHandle(doc, line))
 {
 	m_handle->ref();
 	
@@ -116,7 +116,7 @@ QDocumentCursor::QDocumentCursor(const QDocumentLine& line, int column)
 */
 
 QDocumentCursor::QDocumentCursor(QDocumentCursorHandle *handle)
- : m_handle(handle)
+ : QObject(0),m_handle(handle)
 {
 	if ( m_handle )
 		m_handle->ref();

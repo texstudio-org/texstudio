@@ -36,6 +36,7 @@
 #include "textanalysis.h"
 #include "toolwidgets.h"
 #include "thesaurusdialog.h"
+#include "scriptengine.h"
 
 
 #include "qformatfactory.h"
@@ -373,6 +374,7 @@ private slots:
 
 	void cursorPositionChanged();
 	void treeWidgetChanged();
+
 protected:
 	LatexEditorView* getEditorFromStructureItem(QTreeWidgetItem* m_item);
 	QPoint sectionSelection(QTreeWidgetItem* m_item);
