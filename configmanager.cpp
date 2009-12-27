@@ -143,6 +143,9 @@ QSettings* ConfigManager::readSettings() {
 		managedMenuNewShortcuts.append(QPair<QString, QString> (config->value("id").toString(), config->value("key").toString()));
 	}
 	config->endArray();
+
+        //changed latex menus
+        hashManipulateMenus=config->value("changedLatexMenus").toHash();
 	
 	
 	//--------------------appearance------------------------------------
@@ -306,6 +309,9 @@ QSettings* ConfigManager::saveSettings() {
 		config->setValue("key", managedMenuNewShortcuts[i].second);
 	}
 	config->endArray();
+
+        //changed latex menus
+        config->setValue("changedLatexMenus",hashManipulateMenus);
 
 	//------------------appearance--------------------
 	config->setValue("Interface/Config Show Advanced Options",configShowAdvancedOptions);
@@ -491,6 +497,17 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	confDlg->ui.shortcutTree->setItemDelegate(&delegate); //setting in the config dialog doesn't work
 	delegate.connect(confDlg->ui.shortcutTree,SIGNAL(itemClicked(QTreeWidgetItem *, int)),&delegate,SLOT(treeWidgetItemClicked(QTreeWidgetItem * , int)));
 
+        //latex menus
+        changedItemsList.clear();
+        foreach(QMenu* menu, managedMenus){
+                QTreeWidgetItem *menuLatex=managedLatexMenuToTreeWidget(0,menu);
+                if(menuLatex) {
+                    confDlg->ui.latexTree->addTopLevelItem(menuLatex);
+                    menuLatex->setExpanded(true);
+                }
+            }
+        connect(confDlg->ui.latexTree,SIGNAL(itemChanged(QTreeWidgetItem*,int)),this,SLOT(latexTreeItemChanged(QTreeWidgetItem*,int)));
+
 	//appearance
 	confDlg->ui.checkBoxShowAdvancedOptions->setChecked(configShowAdvancedOptions);
 	QString displayedInterfaceStyle=interfaceStyle==""?tr("default"):interfaceStyle;
@@ -619,6 +636,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		//menus
 		managedMenuNewShortcuts.clear();
 		treeWidgetToManagedMenuTo(menuShortcuts);
+                treeWidgetToManagedLatexMenuTo();
 				
 		//appearance
 		configShowAdvancedOptions=confDlg->ui.checkBoxShowAdvancedOptions->isChecked();
@@ -829,6 +847,19 @@ void ConfigManager::modifyManagedShortcuts(){
 			else act->setShortcuts((QList<QKeySequence>()<<act->shortcut())<<managedMenuNewShortcuts[i].second);
 		}
 	}
+        QHash<QString, QVariant>::const_iterator i = hashManipulateMenus.constBegin();
+        while (i != hashManipulateMenus.constEnd()) {
+            QString id=i.key();
+            QVariant zw=i.value();
+            QStringList m=zw.toStringList();
+            QAction * act= getManagedAction(id);
+            if (act) {
+                act->setText(m.first());
+                act->setData(m.last());
+            }
+            ++i;
+        }
+
 }
 void ConfigManager::loadManagedMenu(QMenu* parent,const QDomElement &f) {
 	QMenu *menu = newManagedMenu(parent,f.attributes().namedItem("id").nodeValue(),f.attributes().namedItem("text").nodeValue());
@@ -886,8 +917,6 @@ void ConfigManager::managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu
 			twi->setData(0,Qt::UserRole,acts[i]->objectName());
 			if (acts[i]->shortcuts().size()>1) twi->setText(3,acts[i]->shortcuts()[1].toString(QKeySequence::NativeText));
 		}
-
-
 }
 void ConfigManager::treeWidgetToManagedMenuTo(QTreeWidgetItem* item) {
 	if (item->childCount() > 0) {
@@ -1031,3 +1060,44 @@ void ConfigManager::undoCommand(){
 	ed->setText(BuildManager::guessCommandName(cmd));
 }
 
+// manipulate latex menus
+QTreeWidgetItem* ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu) {
+        if (!menu) return 0;
+        QStringList relevantMenus;
+        relevantMenus << tr("Latex") << tr("Math");
+        if(!parent && !relevantMenus.contains(menu->title().replace("&",""))) return 0;
+        QTreeWidgetItem* menuitem= new QTreeWidgetItem(parent, QStringList(menu->title().replace("&","")));
+        if (menu->objectName().count("/")<=2) menuitem->setExpanded(true);
+        QList<QAction *> acts=menu->actions();
+        for (int i=0; i<acts.size(); i++)
+                if (acts[i]->menu()) managedLatexMenuToTreeWidget(menuitem, acts[i]->menu());
+                else {
+                    if(acts[i]->data().isValid()){
+                        QTreeWidgetItem* twi=new QTreeWidgetItem(menuitem, QStringList() << acts[i]->text()
+                                        << acts[i]->data().toString());
+                        twi->setIcon(0,acts[i]->icon());
+                        if (!acts[i]->isSeparator()) twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
+                        twi->setData(0,Qt::UserRole,acts[i]->objectName());
+                    }
+                }
+        return menuitem;
+}
+
+void ConfigManager::latexTreeItemChanged(QTreeWidgetItem* item,int ){
+    if(!changedItemsList.contains(item)) changedItemsList.append(item);
+}
+
+void ConfigManager::treeWidgetToManagedLatexMenuTo() {
+    foreach(QTreeWidgetItem* item,changedItemsList){
+        QString id=item->data(0,Qt::UserRole).toString();
+        if (id=="") return;
+        QAction * act=getManagedAction(id);
+        if (act) {
+            act->setText(item->text(0));
+            act->setData(item->text(1));
+            QStringList m;
+            m << item->text(0) << item->text(1);
+            hashManipulateMenus.insert(id,m);
+        }
+    }
+}
