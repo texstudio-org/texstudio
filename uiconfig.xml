@@ -92,9 +92,9 @@
     <insert id="10" text="\H{}" insert="\H{}" icon=":/images/accent10.png"/>
   </menu>
 
-  <action id="includegraphics" text="\includegraphics{file}" slot="1InsertImage()"/>
-  <action id="include" text="\include{file}" slot="1InsertInclude()"/>
-  <action id="input" text="\input{file}" slot="1InsertInput()"/>
+  <insert id="includegraphics" text="\includegraphics{file}" insert="\includegraphics{%(Graphic files (*.eps *.pdf *.png);;All files (*.*)%)}"/>
+  <insert id="include" text="\include{file}" insert="\include{%(TeX files (*.tex);;All files (*.*)%)}"/>
+  <insert id="input" text="\input{file}" insert="\input{%(TeX files (*.tex);;All files (*.*)%)}"/>
 
   <separator/>
   

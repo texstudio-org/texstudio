@@ -3,10 +3,13 @@
 #include "qeditor.h"
 #include "qdocumentcursor.h"
 #include "qdocumentline.h"
+#include "filechooser.h"
+#include "texmaker.h"
 
 
 CodeSnippet::CodeSnippet(const QString &newWord) {
         m_cut=false;
+        tmx=0;
 	QString realNewWord=newWord;
 	// \begin magic
 	if (realNewWord.startsWith("\\begin{")&&
@@ -121,10 +124,26 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 	QDocumentCursor selector=*cursor;
 	QDocumentLine curLine=cursor->line();
 
+        //find filechooser escape %(   %)
+        QString line=mLines.join("\n");
+        QRegExp rx("%\\((.+)%\\)");
+        int pos=rx.indexIn(line,0);
+        if(pos>-1){
+            FileChooser *sfDlg = new FileChooser(0,"Select an image File");
+            sfDlg->setFilter(rx.cap(1));
+            if(tmx) sfDlg->setDir(tmx->getPreferredPath());
+            if (sfDlg->exec()) {
+                    QString fn=sfDlg->fileName();
+                    if(tmx) line.replace(rx,tmx->getRelativeBaseName(fn));
+                    else line.replace(rx,fn);
+            }
+            delete sfDlg;
+        }
+
 	int baseLine=cursor->lineNumber();
 	int baseLineIndent = cursor->columnNumber(); //text before inserted word moves placeholders to the right
 	int lastLineRemainingLength = curLine.text().length()-baseLineIndent; //last line will has length: indentation + codesnippet + lastLineRemainingLength
-	editor->insertText(*cursor,mLines.join("\n")); //don't use cursor->insertText to keep autoindentation working
+        editor->insertText(*cursor,line); //don't use cursor->insertText to keep autoindentation working
 	int magicPlaceHolder=-1;
 	Q_ASSERT(placeHolders.size()==mLines.count());
 	if (usePlaceholders) {
