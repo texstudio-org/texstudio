@@ -2441,7 +2441,9 @@ void Texmaker::InsertFromAction() {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (action)	{
 		QDocumentCursor c = currentEditorView()->editor->cursor();
-		CodeSnippet(action->data().toString()).insertAt(currentEditorView()->editor,&c);
+                CodeSnippet cs=CodeSnippet(action->data().toString());
+                cs.setTMX(this);
+                cs.insertAt(currentEditorView()->editor,&c);
 		outputView->setMessage(CodeSnippet(action->whatsThis()).lines.join("\n"));
 	}
 }
@@ -2520,38 +2522,6 @@ void Texmaker::InsertStructFromString(const QString& text) {
 		InsertTag(tag,0,1);
 		updateStructure();
 	}
-}
-
-void Texmaker::InsertImage() {
-	if (!currentEditorView())	return;
-	FileChooser *sfDlg = new FileChooser(this,tr("Select an image File"));
-	sfDlg->setFilter("Graphic files (*.eps *.pdf *.png);;All files (*.*)");
-	sfDlg->setDir(getPreferredPath());
-	if (sfDlg->exec()) {
-		QString fn=sfDlg->fileName();
-		QFileInfo fi(fn);
-		InsertTag("\\includegraphics[scale=1]{"+getRelativeBaseName(fn)+"."+fi.suffix()+"} ",26,0);
-	}
-}
-
-void Texmaker::InsertInclude() {
-	if (!currentEditorView())	return;
-	FileChooser *sfDlg = new FileChooser(this,tr("Select a File"));
-	sfDlg->setFilter("TeX files (*.tex);;All files (*.*)");
-	sfDlg->setDir(getPreferredPath());
-	if (sfDlg->exec()) 
-		InsertTag("\\include{"+getRelativeBaseName(sfDlg->fileName())+"}",9,0);
-	updateStructure();
-}
-
-void Texmaker::InsertInput() {
-	if (!currentEditorView())	return;
-	FileChooser *sfDlg = new FileChooser(this,tr("Select a File"));
-	sfDlg->setFilter("TeX files (*.tex);;All files (*.*)");
-	sfDlg->setDir(getPreferredPath());
-	if (sfDlg->exec()) 
-		InsertTag("\\input{"+getRelativeBaseName(sfDlg->fileName())+"}",7,0);
-	updateStructure();
 }
 
 void Texmaker::QuickTabular() {

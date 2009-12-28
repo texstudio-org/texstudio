@@ -254,9 +254,6 @@ private slots:
 	void InsertBib();
 	void InsertStruct();
 	void InsertStructFromString(const QString& text);
-	void InsertImage();
-	void InsertInclude();
-	void InsertInput();
 
 	void InsertBibEntryFromAction();
 	void CleanBib();
