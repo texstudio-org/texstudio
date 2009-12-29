@@ -1557,6 +1557,7 @@ QDocumentLineHandle::QDocumentLineHandle(QDocument *d)
  , m_indent(0)
  , m_state(QDocumentLine::LayoutDirty)
  , m_layout(0)
+ , lineHasSelection(false)
 {
 	#if QT_VERSION < 0x040400
 	m_ref.init(1);
@@ -5615,6 +5616,10 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		//p->fillRect(cxt.xoffset, pos + 1,
 		//			cxt.width, m_lineHeight,
 		//			bg);
+		if(inSel!=h->lineHasSelection) {
+			h->setFlag(QDocumentLine::LayoutDirty,true);
+			h->lineHasSelection=inSel;
+		}
 
 		p->save();
 
