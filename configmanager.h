@@ -112,6 +112,11 @@ public:
         QTreeWidgetItem* managedLatexMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu);
         void treeWidgetToManagedLatexMenuTo();
 
+        // custom toolbar
+        QStringList listCustomActions;
+
+        void populateCustomActions(QListWidget* parent, QMenu* menu, bool go=false);
+
 signals:
 	void tabbedLogViewChanged(bool changed);
 	void newLeftPanelLayoutChanged(bool newValue);

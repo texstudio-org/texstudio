@@ -14,6 +14,7 @@
 
 ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	buildManager(0),editorConfig(new LatexEditorViewConfig), completerConfig (new LatexCompleterConfig), webPublishDialogConfig (new WebPublishDialogConfig), menuParent(0), menuParentsBar(0){ //TODO: fix theoretical memory leak (it doesn't matter, this is almost a singletone)
+    listCustomActions.clear();
 }
 
 QSettings* ConfigManager::readSettings() {
@@ -146,6 +147,8 @@ QSettings* ConfigManager::readSettings() {
 
         //changed latex menus
         hashManipulateMenus=config->value("changedLatexMenus").toHash();
+        //custom toolbar
+        listCustomActions=config->value("customToolBar").toStringList();
 	
 	
 	//--------------------appearance------------------------------------
@@ -312,6 +315,8 @@ QSettings* ConfigManager::saveSettings() {
 
         //changed latex menus
         config->setValue("changedLatexMenus",hashManipulateMenus);
+        //custom toolbar
+        config->setValue("customToolBar",listCustomActions);
 
 	//------------------appearance--------------------
 	config->setValue("Interface/Config Show Advanced Options",configShowAdvancedOptions);
@@ -508,7 +513,23 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
             }
         connect(confDlg->ui.latexTree,SIGNAL(itemChanged(QTreeWidgetItem*,int)),this,SLOT(latexTreeItemChanged(QTreeWidgetItem*,int)));
 
-	//appearance
+        // custom toolbar
+        int l=listCustomActions.size();
+        confDlg->ui.listCustomToolBar->clear();
+        if(l>0){
+            for (int i=0; i<l; i++){
+                QAction *act=getManagedAction(listCustomActions.at(i));
+                if(act) {
+                    QListWidgetItem *item=new QListWidgetItem(act->icon(),act->text());
+                    confDlg->ui.listCustomToolBar->addItem(item);
+                }
+            }
+        }
+        foreach(QMenu* menu, managedMenus){
+            populateCustomActions(confDlg->ui.listCustomIcons,menu);
+        }
+
+        //appearance
 	confDlg->ui.checkBoxShowAdvancedOptions->setChecked(configShowAdvancedOptions);
 	QString displayedInterfaceStyle=interfaceStyle==""?tr("default"):interfaceStyle;
 	confDlg->ui.comboBoxInterfaceStyle->clear();
@@ -637,6 +658,13 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		managedMenuNewShortcuts.clear();
 		treeWidgetToManagedMenuTo(menuShortcuts);
                 treeWidgetToManagedLatexMenuTo();
+
+                // custom toolbar
+                listCustomActions.clear();
+                int l=confDlg->ui.listCustomToolBar->count();
+                for(int i=0;i<l;i++){
+                    listCustomActions << confDlg->ui.listCustomToolBar->item(i)->data(Qt::UserRole).toString();
+                }
 				
 		//appearance
 		configShowAdvancedOptions=confDlg->ui.checkBoxShowAdvancedOptions->isChecked();
@@ -1100,4 +1128,27 @@ void ConfigManager::treeWidgetToManagedLatexMenuTo() {
             hashManipulateMenus.insert(id,m);
         }
     }
+}
+
+void ConfigManager::populateCustomActions(QListWidget* parent, QMenu* menu,bool go) {
+        if (!menu) return;
+        QStringList relevantMenus;
+        relevantMenus << tr("&Latex") << tr("&Math") << tr("&User");
+        if(!go && !relevantMenus.contains(menu->title())) return;
+        QList<QAction *> acts=menu->actions();
+        for (int i=0; i<acts.size(); i++)
+                if (acts[i]->menu()) populateCustomActions(parent, acts[i]->menu(),true);
+                else {
+                    if(acts[i]->data().isValid()){
+                        QListWidgetItem* twi=new QListWidgetItem(acts[i]->text(),parent);
+                        if(!acts[i]->icon().isNull()){
+                            twi->setIcon(acts[i]->icon());
+                        }else{
+                            twi->setIcon(QIcon(":/images/appicon.png"));
+                        }
+                        twi->setToolTip(acts[i]->text());
+                        //if (!acts[i]->isSeparator()) twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
+                        twi->setData(Qt::UserRole,acts[i]->objectName());
+                    }
+                }
 }

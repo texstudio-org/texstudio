@@ -353,6 +353,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	createIcon(tr("Quick Build"),QIcon(":/images/configquick.png"));
 	createIcon(tr("Shortcuts"),QIcon(":/images/configkeys.png"));
         createIcon(tr("Latex Menus"),QIcon(":/images/configkeys.png"));
+        createIcon(tr("Custom Toolbar"),QIcon(":/images/configkeys.png"));
 	createIcon(tr("Editor"),QIcon(":/images/configeditor.png"));
 	createIcon(tr("Completion"),QIcon(":/images/configcompletion.png"));
 
@@ -361,13 +362,24 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	        this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
 	ui.contentsWidget->setCurrentRow(0);
 	connect(ui.checkBoxShowAdvancedOptions, SIGNAL(toggled(bool)), this, SLOT(advancedOptionsToggled(bool)));
+
+        // custom toolbar
+        ui.listCustomIcons->setIconSize(QSize(96, 96));
+        ui.listCustomIcons->setViewMode(QListView::ListMode);
+        ui.listCustomIcons->setMovement(QListView::Static);
+        ui.listCustomToolBar->setIconSize(QSize(96, 96));
+        ui.listCustomToolBar->setViewMode(QListView::ListMode);
+        ui.listCustomToolBar->setMovement(QListView::Static);
+        connect(ui.pbToToolbar,SIGNAL(clicked()),this,SLOT(toToolbarClicked()));
+        connect(ui.pbFromToolbar,SIGNAL(clicked()),this,SLOT(fromToolbarClicked()));
 }
 
 ConfigDialog::~ConfigDialog() {
 }
 
-QListWidgetItem * ConfigDialog::createIcon(const QString &caption, const QIcon &icon){
-	QListWidgetItem * button=new QListWidgetItem(ui.contentsWidget);
+QListWidgetItem * ConfigDialog::createIcon(const QString &caption, const QIcon &icon, QListWidget *parent){
+        if(!parent) parent=ui.contentsWidget;
+        QListWidgetItem * button=new QListWidgetItem(parent);
 	button->setIcon(icon);
 	button->setText(caption);
 	button->setTextAlignment(Qt::AlignHCenter);
@@ -442,4 +454,20 @@ void ConfigDialog::advancedOptionsToggled(bool on){
 	hideShowAdvancedOptions(this,on);
 }
 
+void ConfigDialog::toToolbarClicked(){
+    if(!ui.listCustomIcons->currentItem()) return;
+    QListWidgetItem *item=ui.listCustomIcons->currentItem()->clone();
+    ui.listCustomToolBar->addItem(item);
+    ui.listCustomIcons->currentItem()->setHidden(true);
+}
 
+void ConfigDialog::fromToolbarClicked(){
+    if(!ui.listCustomToolBar->currentItem()) return;
+    QListWidgetItem *item=ui.listCustomToolBar->currentItem();
+    QList<QListWidgetItem *>result=ui.listCustomIcons->findItems(item->text(),Qt::MatchExactly);
+    foreach(QListWidgetItem *elem,result){
+        elem->setHidden(false);
+    }
+    item=ui.listCustomToolBar->takeItem(ui.listCustomToolBar->currentRow());
+    delete item;
+}

@@ -112,7 +112,7 @@ private:
 
 //toolbars
 //
-	QToolBar *fileToolBar, *editToolBar, *runToolBar, *formatToolBar, *mathToolBar, *spellToolBar;
+        QToolBar *fileToolBar, *editToolBar, *runToolBar, *formatToolBar, *mathToolBar, *spellToolBar, *customToolBar;
 	QAction *ToggleAct, *ToggleRememberAct;
 
 	QLabel *stat1, *stat2, *stat3;
