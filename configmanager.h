@@ -114,6 +114,7 @@ public:
 
         // custom toolbar
         QStringList listCustomActions;
+        QHash<QString,QVariant> replacedIconsOnMenus;
 
         void populateCustomActions(QListWidget* parent, QMenu* menu, bool go=false);
 

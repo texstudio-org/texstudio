@@ -147,8 +147,10 @@ QSettings* ConfigManager::readSettings() {
 
         //changed latex menus
         hashManipulateMenus=config->value("changedLatexMenus").toHash();
+
         //custom toolbar
         listCustomActions=config->value("customToolBar").toStringList();
+        replacedIconsOnMenus=config->value("customIcons").toHash();
 	
 	
 	//--------------------appearance------------------------------------
@@ -317,6 +319,7 @@ QSettings* ConfigManager::saveSettings() {
         config->setValue("changedLatexMenus",hashManipulateMenus);
         //custom toolbar
         config->setValue("customToolBar",listCustomActions);
+        config->setValue("customIcons",replacedIconsOnMenus);
 
 	//------------------appearance--------------------
 	config->setValue("Interface/Config Show Advanced Options",configShowAdvancedOptions);
@@ -521,6 +524,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
                 QAction *act=getManagedAction(listCustomActions.at(i));
                 if(act) {
                     QListWidgetItem *item=new QListWidgetItem(act->icon(),act->text());
+                    item->setData(Qt::UserRole,listCustomActions.at(i));
                     confDlg->ui.listCustomToolBar->addItem(item);
                 }
             }
@@ -528,6 +532,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
         foreach(QMenu* menu, managedMenus){
             populateCustomActions(confDlg->ui.listCustomIcons,menu);
         }
+        confDlg->replacedIconsOnMenus=&replacedIconsOnMenus;
 
         //appearance
 	confDlg->ui.checkBoxShowAdvancedOptions->setChecked(configShowAdvancedOptions);
@@ -588,7 +593,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 			break;
 		case 2:
 			editorConfig->showlinemultiples=10;
-			break;
+                break;
 		default:
 			editorConfig->showlinemultiples=1;
 			break;

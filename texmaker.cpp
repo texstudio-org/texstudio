@@ -705,6 +705,18 @@ void Texmaker::setupToolBars() {
 	comboSpell=createComboToolButton(spellToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(spell_dic).fileName());
 	spellToolBar->addWidget(comboSpell);
 //custom toolbar
+        //first apply custom icons
+        QHash<QString, QVariant>::const_iterator i = configManager.replacedIconsOnMenus.constBegin();
+        while (i != configManager.replacedIconsOnMenus.constEnd()) {
+            QString id=i.key();
+            QVariant zw=i.value();
+            QAction * act= getManagedAction(id);
+            if (act) {
+                if(zw.canConvert<QString>()) act->setIcon(QIcon(zw.toString()));
+            }
+            i++;
+        }
+        //setup actual custom toolbar
         customToolBar = addToolBar("Custom");
         customToolBar->setObjectName("Custom");
         int l=configManager.listCustomActions.size();
@@ -3560,6 +3572,16 @@ void Texmaker::GeneralOptions() {
 			UpdateCaption();
 		}
                 //custom toolbar
+                QHash<QString, QVariant>::const_iterator i = configManager.replacedIconsOnMenus.constBegin();
+                while (i != configManager.replacedIconsOnMenus.constEnd()) {
+                    QString id=i.key();
+                    QVariant zw=i.value();
+                    QAction * act= getManagedAction(id);
+                    if (act) {
+                        if(zw.canConvert<QString>()) act->setIcon(QIcon(zw.toString()));
+                    }
+                    i++;
+                }
                 customToolBar->clear();
                 int l=configManager.listCustomActions.size();
                 if(l>0){
