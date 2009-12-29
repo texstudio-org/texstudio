@@ -372,6 +372,8 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
         ui.listCustomToolBar->setMovement(QListView::Static);
         connect(ui.pbToToolbar,SIGNAL(clicked()),this,SLOT(toToolbarClicked()));
         connect(ui.pbFromToolbar,SIGNAL(clicked()),this,SLOT(fromToolbarClicked()));
+        ui.listCustomToolBar->setContextMenuPolicy(Qt::CustomContextMenu);
+        connect(ui.listCustomToolBar,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(customContextMenuRequested(QPoint)));
 }
 
 ConfigDialog::~ConfigDialog() {
@@ -470,4 +472,25 @@ void ConfigDialog::fromToolbarClicked(){
     }
     item=ui.listCustomToolBar->takeItem(ui.listCustomToolBar->currentRow());
     delete item;
+}
+
+void ConfigDialog::customContextMenuRequested(const QPoint &p){
+    QMenu menu;
+    menu.addAction(tr("Load other icon"),this, SLOT(loadOtherIcon()));
+    menu.exec(ui.listCustomToolBar->mapToGlobal(p));
+}
+
+void ConfigDialog::loadOtherIcon(){
+    QString fn = QFileDialog::getOpenFileName(this,tr("Select a File"),"",tr("Images (*.png *.xpm *.jpg *.bmp *.svg)"));
+    if(!fn.isEmpty()){
+        QListWidgetItem *item=ui.listCustomToolBar->currentItem();
+        item->setIcon(QIcon(fn));
+        replacedIconsOnMenus->insert(item->data(Qt::UserRole).toString(),fn);
+        ui.listCustomToolBar->reset();
+        // set the same icon on other list
+        QList<QListWidgetItem *>result=ui.listCustomIcons->findItems(item->text(),Qt::MatchExactly);
+        foreach(QListWidgetItem *elem,result){
+            elem->setIcon(QIcon(fn));
+        }
+    }
 }

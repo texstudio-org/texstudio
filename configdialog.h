@@ -55,6 +55,7 @@ public:
 
 	QMap<QString,QFormat> editorFormats;
 	QFormatConfig * fmConfig;
+        QHash<QString,QVariant> * replacedIconsOnMenus;
 public slots:
 	void changePage(QListWidgetItem *current, QListWidgetItem *previous);
 private slots:
@@ -66,6 +67,8 @@ private slots:
 	void advancedOptionsToggled(bool on);
         void toToolbarClicked();
         void fromToolbarClicked();
+        void customContextMenuRequested(const QPoint &p);
+        void loadOtherIcon();
 };
 
 #endif
