@@ -1154,6 +1154,7 @@ void ConfigManager::populateCustomActions(QListWidget* parent, QMenu* menu,bool 
                         twi->setToolTip(acts[i]->text());
                         //if (!acts[i]->isSeparator()) twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
                         twi->setData(Qt::UserRole,acts[i]->objectName());
+                        if(listCustomActions.contains(acts[i]->objectName())) twi->setHidden(true);
                     }
                 }
 }
