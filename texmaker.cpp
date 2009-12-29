@@ -486,9 +486,9 @@ void Texmaker::setupMenus() {
 //  User
 	menu=newManagedMenu("main/user",tr("&User"));
 	submenu=newManagedMenu(menu,"tags",tr("User &Tags"));
-	for (int i=0; i<10; i++)
-		newManagedAction(submenu, QString("tag%1").arg(i),QString("%1: %2").arg(i+1).arg(UserMenuName[i]), SLOT(InsertUserTag()), Qt::SHIFT+Qt::Key_F1+i)
-		->setData(i);
+        for (int i=0; i<10; i++)
+                newManagedAction(submenu, QString("tag%1").arg(i),QString("%1: %2").arg(i+1).arg(UserMenuName[i]), SLOT(InsertUserTag()), Qt::SHIFT+Qt::Key_F1+i)
+                ->setData(i);
 	submenu->addSeparator();
 	newManagedAction(submenu, QString("manage"),tr("Edit User &Tags"), SLOT(EditUserMenu()));
 
@@ -704,6 +704,19 @@ void Texmaker::setupToolBars() {
 
 	comboSpell=createComboToolButton(spellToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(spell_dic).fileName());
 	spellToolBar->addWidget(comboSpell);
+//custom toolbar
+        customToolBar = addToolBar("Custom");
+        customToolBar->setObjectName("Custom");
+        int l=configManager.listCustomActions.size();
+        if(l>0){
+            for (int i=0; i<l; i++){
+                QAction *act=getManagedAction(configManager.listCustomActions.at(i));
+                if(act->icon().isNull()){
+                    act->setIcon(QIcon(":/images/appicon.png"));
+                }
+                customToolBar->addAction(act);
+            }
+        }
 }
 
 
@@ -3546,7 +3559,18 @@ void Texmaker::GeneralOptions() {
 			}
 			UpdateCaption();
 		}
-		
+                //custom toolbar
+                customToolBar->clear();
+                int l=configManager.listCustomActions.size();
+                if(l>0){
+                    for (int i=0; i<l; i++){
+                        QAction *act=getManagedAction(configManager.listCustomActions.at(i));
+                        if(act->icon().isNull()){
+                            act->setIcon(QIcon(":/images/appicon.png"));
+                        }
+                        customToolBar->addAction(act);
+                    }
+                }
 		//completion
 		updateCompleter();
 	}

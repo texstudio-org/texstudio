@@ -127,7 +127,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>4</number>
+      <number>5</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -876,6 +876,67 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         </widget>
        </item>
       </layout>
+     </widget>
+     <widget class="QWidget" name="page_4">
+      <widget class="QLabel" name="label_20">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>50</y>
+         <width>171</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Custom Toolbar</string>
+       </property>
+      </widget>
+      <widget class="QListWidget" name="listCustomToolBar">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>121</width>
+         <height>291</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QListWidget" name="listCustomIcons">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>80</y>
+         <width>111</width>
+         <height>291</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pbToToolbar">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>80</y>
+         <width>93</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>&lt;</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pbFromToolbar">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>110</y>
+         <width>93</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>&gt;</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="pe">
       <layout class="QGridLayout">
