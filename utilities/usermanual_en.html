@@ -16,6 +16,7 @@ body { background: #ffffff; color: black; }
 <li><a href="#SECTIONNEW">0. What's new</a></li>
 	<ul>
 	<li><a href="#SECTIONNEW19">0.1 Version 1.8.1 -> Version 1.9</a></li>
+	<li><a href="#SECTIONNEW19x">0.2 Version 1.9.3 -> Version 1.9.x+1</a></li>
 	</ul>
 <li><a href="#SECTION0">1. Configuring TexMakerX</a></li>
 	<ul>
@@ -121,6 +122,17 @@ changed functionality:</P>
 	<li><p>A thesaurus was added. It allows search for word parts as well.</p>
 	<LI><P>For sure, lots of bugs have been squashed !</P>
 </ul>
+<h2><a name="SECTIONNEW19x">0.2 Version 1.9.3 -> Version 1.9.x+1</a></h2>
+<P>This section describes the upcoming changes which are already implemented in the svn-version.</P>
+<ul>
+    <LI><p>User Tags can use java script to manipulate the current document. The manipulation is done via direct cursor handling. If further functionality is needed, feel free to open a feature request.</p>
+    <li><p>some performance issues on mac have been adressed. Still not perfect, but it should feel much faster on mac.</p>
+    <li><p>math constructs can be previewed with mouse hover over the expression limit ($, begin{equation},...)</p>
+    <li><p>a customizable tool bar is available</p>
+    <li><p>the latex expressions in the Math/Latex-Menus can be changed to user preferred versions.</p>
+    <li><p>global find over all open documents improved</p>
+    <li><p>lots of bugs removed after user feedback</p>
+</ul>
 <h1><a name="SECTION0">1. Configuring TexMakerX</a></h1>
 Before using TexMakerX, you should configure the editor and latex related commands via the "Configure TexMakerX" command in the "Options" menu ("Preferences" under macosx).
 <h2><a name="SECTION01">1.1 Configuring the editor</a></h2>
@@ -186,10 +198,20 @@ Following options are available:
 <h2><a name="SECTION05">1.5 Configuring shortcuts</a></h2>
 <p>
 Shortcuts can be changed by double clicking on "Current Shortcut" or "Additional Shortcut".
-A shortcut can be selected from the driop down list or put in as text directly.
+A shortcut can be selected from the drop down list or put in as text directly.
 If a shortcut should be set to default value or removed completely, the items "&lt;default&gt;" or "&lt;none&gt;" at the top of the list can be selected.
 </p>
 <p><IMG src="configure_shortcuts.png" border="1"></p>
+<h2><a name="SECTION06">1.6 Configuring the Latex/Math-Menu</a></h2>
+<p>The Math/Latex-Menu can be adapted to user likings.
+For this menu items can be renamed and a new Latex-Code can be placed. The apropriate item can be be directly edited by doubleclicking on them.
+</p>
+<p><IMG src="configure_customizeMenu.png" border="1"></p>
+<h2><a name="SECTION07">1.7 Configuring the Custom Toolbar</a></h2>
+<p>One Custom Toolbar is present in TMX. This toolbar can be filled with actions from the Latex-, Math- and User-Menu.
+Since many of those item don't have icons, user icons can be loaded as well. This is achieved by applying "load other icon" from the context menu on a item in the cunstom toolbar list in the configure dialog.
+</p>
+<p><IMG src="configure_customToolbar.png" border="1"></p>
 <h1><a name="SECTION1">2. Editing a TeX document</a></h1>
 <h2><a name="SECTION11">2.1 Usual commands</a></h2>
 <p>The standard commands (cut, copy, find...) can be launched via the "Edit" menu and the "Edit" tool bar.</p>
@@ -300,8 +322,262 @@ To include a TeX file into your document, just use the "\include{file}" command 
 <br>
 If you write %| somewhere the cursor will be placed at that place in the inserted text. (A second %| will select everything between them).<br>
 Write %&lt;something%&gt; to mark it as descriptive text which can be selected by Ctrl+Left/Right.
+<br>
+The option %(<i>filefilter</i>%) will be replaced by a filename which is asked for in a file dialog. The file filter is the standard Qt-Filefilterformat.
+For example "Images (*.png *.xpm *.jpg);;Text files (*.txt);;XML files (*.xml)", see also <a href="http://doc.trolltech.com/4.6/qfiledialog.html#getOpenFileName">Qt-Doc</a>
 </p>
 <p><IMG src="doc17.png" border="1"></p>
+<p>
+Instead of using code snippets, you can also make use of javascript.
+To do so, put "%SCRIPT" in the first line. The following code will be interpreted as javascript.
+The language is based on <a href="http://doc.trolltech.com/4.5/ecmascript.html">ECMAScript</a>.
+To acces the document, to objects are introduced:
+<ul>
+<li>"editor" allows some top level operations like save/load.
+<li>"cursor" gives acces to cursor operations like moving, inserting and deleting texts.
+</ul>
+The following table gives an overview on the possible commands.
+<table border="1">
+  <tr>
+    <td> <b>command</b> </td>
+    <td> <b>description</b> </td>
+  </tr>
+  <tr>
+    <td> editor.setText(<i>text</i>) </td> 
+    <td> replace the whole text of the current document by <i>text</i> </td>
+  </tr>
+  <tr>
+    <td> editor.text()
+    <td> return the text of the complete document
+  </tr>
+  <tr>
+    <td> editor.text(int line)
+    <td> return text of <i>line</i>
+  </tr>
+  <tr>
+    <td> editor.undo();
+    <td>undo last command in editor
+  </tr>
+  <tr>
+    <td> editor.redo();
+    <td> redo last command in editor
+  </tr>
+  <tr>
+    <td> editor.cut();
+    <td> cut selection to clipboard
+  </tr>
+  <tr>
+    <td> editor.copy();
+    <td> copy selection to clipboard
+  </tr>
+  <tr>
+    <td> editor.paste();
+    <td> paste clipboard contents
+  </tr>
+  <tr>
+    <td> editor.selectAll();
+    <td> select all
+  </tr>
+  <tr>
+    <td> editor.selectNothing();
+    <td> select nothing (clear selections)
+  </tr>
+  <tr>
+    <td> editor.find();
+    <td> activate "find panel"
+  </tr>
+  <tr>
+    <td> editor.find(QString text, bool highlight, bool regex, bool word=false, bool caseSensitive=false);
+    <td> activate "find panel" with predefined values
+  </tr>
+  <tr>
+    <td> editor.find(QString text, bool highlight, bool regex, bool word, bool caseSensitive, bool fromCursor, bool selection);
+    <td> activate "find panel" with predefined values
+  </tr>
+  <tr>
+    <td> editor.findNext();
+    <td> find next
+  </tr>
+  <tr>
+    <td> editor.replace();
+    <td> replace (if find panel open and something is selected)
+  <tr>
+    <td> editor.gotoLine();
+    <td> activate "goto line panel"
+  </tr>
+  <tr>
+    <td> editor.indentSelection();
+    <td> indent selection
+  </tr>
+  <tr>
+    <td> editor.unindentSelection();
+    <td> unindent selection
+  </tr>
+  <tr>
+    <td> editor.commentSelection();
+    <td> comment selection
+  </tr>
+  <tr>
+    <td> editor.uncommentSelection();
+    <td> uncomment selection
+  </tr>
+  <tr>
+    <td> editor.clearPlaceHolders();
+    <td> clear place holders
+  </tr>
+  <tr>
+    <td> editor.nextPlaceHolder();
+    <td> jump to next place holder
+  </tr>
+  <tr>
+    <td> editor.previousPlaceHolder()
+    <td> jump to previous place holder
+  </tr>
+  <tr>
+    <td> editor.setPlaceHolder(int i, bool selectCursors=true);
+    <td> set Placeholder
+  </tr>
+  <tr>
+    <td> editor.setFileName(f);
+    <td> set filename to <i>f</i>
+  </tr>
+  <tr>
+    <td> cursor.atEnd()
+    <td> returns whether the cursor is at the end of the document
+  </tr>
+  <tr>
+    <td> cursor.atStart()
+    <td> returns whether the cursor is at the start of the document
+  </tr>
+  <tr>
+    <td> cursor.atBlockEnd()
+    <td> returns whether the cursor is at the end of a block
+  </tr>
+  <tr>
+    <td> cursor.atBlockStart()
+    <td> returns whether the cursor is at the start of a block
+  </tr>
+  <tr>
+    <td> cursor.atLineEnd()
+    <td> returns whether the cursor is at the end of a line
+  </tr>
+  <tr>
+    <td> cursor.atLineStart()
+    <td> returns whether the cursor is at the start of a line
+  </tr>
+  <tr>
+    <td> cursor.hasSelection()
+    <td> return whether the cursor has a selection
+  </tr>
+  <tr>
+    <td> cursor.lineNumber()
+    <td> returns the line number of the cursor
+  </tr>
+  <tr>
+    <td> cursor.columnNumber()
+    <td> returns the column of the cursor
+  </tr>
+  <tr>
+    <td> cursor.anchorLineNumber() const;
+    <td> returns the line number of the anchor.
+  </tr>
+  <tr>
+    <td> cursor.anchorColumnNumber()
+    <td> returns the column of the anchor.
+  </tr>
+  <tr>
+    <td> cursor.shift(int offset)
+    <td>Shift cursor position (text column) by a number of columns (characters)
+  </tr>
+  <tr>
+    <td> cursor.setPosition(int pos, MoveMode m = MoveAnchor)
+    <td> ?
+  </tr>
+  <tr>
+    <td> cursor.movePosition(int offset, MoveOperation op = NextCharacter, MoveMode m = MoveAnchor);
+    <td> move cursor <i>offset</i> times. MoveOperations may be:
+      <ul>
+	<li>cursorEnums.NoMove
+	<li>cursorEnums.Up
+	<li>cursorEnums.Down
+	<li>cursorEnums.Left
+	<li>cursorEnums.PreviousCharacter = Left
+	<li>cursorEnums.Right
+	<li>cursorEnums.NextCharacter = Right
+	<li>cursorEnums.Start
+	<li>cursorEnums.StartOfLine
+	<li>cursorEnums.StartOfBlock = StartOfLine
+	<li>cursorEnums.StartOfWord
+	<li>cursorEnums.PreviousBlock
+	<li>cursorEnums.PreviousLine = PreviousBlock
+	<li>cursorEnums.PreviousWord
+	<li>cursorEnums.WordLeft
+	<li>cursorEnums.WordRight
+	<li>cursorEnums.End
+	<li>cursorEnums.EndOfLine
+	<li>cursorEnums.EndOfBlock = EndOfLine
+	<li>cursorEnums.EndOfWord
+	<li>cursorEnums.NextWord
+	<li>cursorEnums.NextBlock
+	<li>cursorEnums.NextLine = NextBlock
+      </ul>
+      Options for MoveMode are:
+      <ul>
+	<li>cursorEnums.MoveAnchor
+	<li>cursorEnums.KeepAnchor
+	<li>cursorEnums.ThroughWrap
+      </ul>
+  </tr>
+  <tr>
+    <td> cursor.moveTo(int line, int column);
+    <td> move cursor to <i>line</i> and <i>column</i>
+  </tr>
+  <tr>
+    <td> cursor.eraseLine();
+    <td> remove current line
+  </tr>  
+  <tr>
+    <td> cursor.insertLine(bool keepAnchor = false);
+    <td> insert empty line
+  </tr>  
+  <tr>
+    <td> cursor.insertText(text, bool keepAnchor = false)
+    <td> insert <i>text</i> text at cursor
+  </tr>
+  <tr>
+    <td> cursor.selectedText()
+    <td>return the selected text
+  </tr>
+  <tr>
+    <td> cursor.clearSelection();
+    <td>clears selection
+  </tr>
+  <tr>
+    <td> cursor.removeSelectedText();
+    <td> removes selected text
+  </tr>
+  <tr>
+    <td> cursor.replaceSelectedText(text);
+    <td> replace selected text with <i>text</i>
+  </tr>
+  <tr>
+    <td> cursor.deleteChar();
+    <td> removes char right to the cursor
+  </tr>
+  <tr>
+    <td> cursor.deletePreviousChar();
+    <td> removes char left to the cursor
+  </tr>		
+  <tr>
+    <td> cursor.beginEditBlock();
+    <td> move cursor to the start of a block
+  </tr>
+  <tr>
+    <td> cursor.endEditBlock();
+    <td> move cursor to the end of a block
+  </tr>
+</table> 
+</p>
 <p>You can also launch your own commands (shortcuts : Alt+Shift+F1...Alt+Shift+F5). These commands are defined with the "User - User Commands" menu.</p>
 <h2><a name="SECTION34">4.4 Pstricks support</a></h2>
 <p>The main pstricks commands can be inserted with the "Pstricks" panel in the "Structure View".</p>
