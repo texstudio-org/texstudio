@@ -2,25 +2,63 @@
 #include "latexeditorview.h"
 #include "qdocument.h"
 #include "qdocumentline.h"
+#include "qdocumentcursor.h"
 #include "qeditor.h"
 #include "smallUsefulFunctions.h"
 
 QStringList struct_level = QStringList() << "part" << "chapter" << "section" << "subsection" << "subsubsection"; //TODO
 
-LatexDocument::LatexDocument()
+LatexDocument::LatexDocument():edView(0),text(0)
 {
-	baseStructure = new StructureEntry(StructureEntry::SE_DOCUMENT_ROOT);
-	labelList = new StructureEntry(baseStructure, StructureEntry::SE_OVERVIEW);
-	todoList = new StructureEntry(baseStructure, StructureEntry::SE_OVERVIEW);
-	bibTeXList = new StructureEntry(baseStructure, StructureEntry::SE_OVERVIEW);
+	baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
+	labelList = new StructureEntry(this,baseStructure, StructureEntry::SE_OVERVIEW);
+	todoList = new StructureEntry(this,baseStructure, StructureEntry::SE_OVERVIEW);
+	bibTeXList = new StructureEntry(this,baseStructure, StructureEntry::SE_OVERVIEW);
         labelItem.clear();
 }
 LatexDocument::~LatexDocument(){
 	delete baseStructure;
 }
+
+QDocumentSelection LatexDocument::sectionSelection(StructureEntry* section){
+	QDocumentSelection result;
+	result.endLine=-1;result.startLine=-1;
+
+	if (section->type!=StructureEntry::SE_SECTION) return result;
+	int startLine=section->getRealLineNumber();
+
+	// find next section or higher
+	StructureEntry* parent;
+	int index;
+	do {
+		parent=section->parent;
+		if (parent) {
+			index=parent->children.indexOf(section);
+			section=parent;
+		} else index=-1;
+	} while ((index>=0)&&(index>=parent->children.count()-1)&&(parent->type==StructureEntry::SE_SECTION));
+
+	int endingLine=-1;
+	if (index>=0 && index<parent->children.count()-1) {
+		endingLine=parent->children.at(index+1)->getRealLineNumber();
+	} else if (text) {
+		// no ending section but end of document
+		endingLine=text->findLineContaining("\\end{document}",startLine,Qt::CaseInsensitive);
+		if (endingLine<0) endingLine=text->lines();
+	} else return result;
+
+	result.startLine=startLine;
+	result.endLine=endingLine;
+	result.end=0;
+	result.start=0;
+	return result;
+}
+
 void LatexDocument::updateStructure() {
 
-	QDocument* document=edView->editor->document();//TODO
+	QDocument* document=text;
+
+	if (!document) return; //TODO: load document
 
 	userCommandList.clear();
         labelItem.clear();
@@ -30,13 +68,13 @@ void LatexDocument::updateStructure() {
 	delete baseStructure;
 	baseStructure=0;
 
-	baseStructure = new StructureEntry(StructureEntry::SE_DOCUMENT_ROOT);
+	baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
 	baseStructure->title=edView->editor->fileName();
-	labelList = new StructureEntry(StructureEntry::SE_OVERVIEW);
+	labelList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
 	labelList->title=tr("LABELS");
-	todoList = new StructureEntry(StructureEntry::SE_OVERVIEW);
+	todoList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
 	todoList->title=tr("TODO");
-	bibTeXList = new StructureEntry(StructureEntry::SE_OVERVIEW);
+	bibTeXList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
 	bibTeXList->title=tr("BIBTEX");
 
 	QVector<StructureEntry*> parent_level(struct_level.count());
@@ -92,7 +130,7 @@ void LatexDocument::updateStructure() {
 			QStringList bibs=s.split(',',QString::SkipEmptyParts);
 			//TODO: mentionedBibTeXFiles<<bibs;
 			foreach (const QString& bibFile, bibs) {
-				StructureEntry *newFile=new StructureEntry(bibTeXList, StructureEntry::SE_BIBTEX);
+				StructureEntry *newFile=new StructureEntry(this,bibTeXList, StructureEntry::SE_BIBTEX);
 				newFile->title=bibFile;
 				newFile->lineNumber=i;
 				newFile->lineHandle=document->line(i).handle();
@@ -103,7 +141,7 @@ void LatexDocument::updateStructure() {
 		s=findToken(curLine,"\\label{");
 		if (s!="") {
 			labelItem.append(s);
-			StructureEntry *newLabel=new StructureEntry(labelList, StructureEntry::SE_LABEL);
+			StructureEntry *newLabel=new StructureEntry(this,labelList, StructureEntry::SE_LABEL);
 			newLabel->title=s;
 			newLabel->lineNumber=i;
 			newLabel->lineHandle=document->line(i).handle();
@@ -113,7 +151,7 @@ void LatexDocument::updateStructure() {
 		int l=s.indexOf("%TODO");
 		if (l>=0) {
 			s=s.mid(l+6,s.length());
-			StructureEntry *newTodo=new StructureEntry(todoList, StructureEntry::SE_TODO);
+			StructureEntry *newTodo=new StructureEntry(this,todoList, StructureEntry::SE_TODO);
 			newTodo->title=s;
 			newTodo->lineNumber=i;
 			newTodo->lineHandle=document->line(i).handle();
@@ -123,7 +161,7 @@ void LatexDocument::updateStructure() {
 		for(int header=0;header<inputTokens.count();header++){
 			s=findToken(curLine,"\\"+inputTokens.at(header)+"{");
 			if (s!="") {
-				StructureEntry *newInclude=new StructureEntry(baseStructure, StructureEntry::SE_INCLUDE);
+				StructureEntry *newInclude=new StructureEntry(this,baseStructure, StructureEntry::SE_INCLUDE);
 				newInclude->title=s;
 //				newInclude.title=inputTokens.at(header); //texmaker distinguished include/input, doesn't seem necessary
 				newInclude->lineNumber=i;
@@ -137,7 +175,7 @@ void LatexDocument::updateStructure() {
 			if (s!="") {
 				s=extractSectionName(s);
 				StructureEntry* parent=header == 0 ? baseStructure : parent_level[header-1];
-				StructureEntry *newSection=new StructureEntry(parent,StructureEntry::SE_SECTION);
+				StructureEntry *newSection=new StructureEntry(this,parent,StructureEntry::SE_SECTION);
 				newSection->title=s;
 				newSection->level=header;
 				newSection->lineNumber=i;
@@ -170,9 +208,9 @@ void LatexDocument::includeDocument(LatexDocument* includedDocument){
 
 }
 */
-StructureEntry::StructureEntry(Type newType):type(newType), lineNumber(-1), lineHandle(0), parent(0){
+StructureEntry::StructureEntry(LatexDocument* doc, Type newType):type(newType), lineNumber(-1), lineHandle(0), parent(0), document(doc){
 }
-StructureEntry::StructureEntry(StructureEntry* parent, Type newType):type(newType), lineNumber(-1), lineHandle(0){
+StructureEntry::StructureEntry(LatexDocument* doc, StructureEntry* parent, Type newType):type(newType), lineNumber(-1), lineHandle(0), document(doc){
 	parent->add(this);
 }
 StructureEntry::~StructureEntry(){
@@ -188,6 +226,13 @@ void StructureEntry::insert(int pos, StructureEntry* child){
 	Q_ASSERT(child!=0);
 	children.insert(pos,child);
 	child->parent=this;
+}
+int StructureEntry::getRealLineNumber() const{
+	if (lineHandle) {
+		int nr = QDocumentLine(lineHandle).lineNumber();
+		if (nr>=0) return nr;
+	}
+	return lineNumber;
 }
 /*
   QIcon(":/images/doc.png"));
@@ -240,7 +285,7 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 QVariant LatexDocumentsModel::headerData ( int section, Qt::Orientation orientation, int role ) const{
 	if (section!=0) return QVariant();
 	if (role!=Qt::DisplayRole) return QVariant();
-	return QVariant("Structure (experimental)");
+	return QVariant("Structure");
 }
 int LatexDocumentsModel::rowCount ( const QModelIndex & parent ) const{
 	if (!parent.isValid()) return documents.documents.count();
@@ -281,6 +326,13 @@ QModelIndex LatexDocumentsModel::parent ( const QModelIndex & index ) const{
 	}
 }
 
+StructureEntry* LatexDocumentsModel::indexToStructureEntry(const QModelIndex & index ){
+	if (!index.isValid()) return 0;
+	StructureEntry* result=(StructureEntry*)index.internalPointer();
+	if (!result || !result->document) return 0;
+	return result;
+}
+
 void LatexDocumentsModel::structureUpdated(LatexDocument* document){
 	reset();
 }
@@ -306,4 +358,3 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 	delete document;
 	model->reset();
 }
-

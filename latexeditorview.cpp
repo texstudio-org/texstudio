@@ -13,6 +13,7 @@
 #include "latexeditorview_config.h"
 
 #include "latexcompleter.h"
+#include "latexdocument.h"
 #include "smallUsefulFunctions.h"
 #include "spellerutility.h"
 

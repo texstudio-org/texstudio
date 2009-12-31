@@ -22,6 +22,9 @@ QString findResourceFile(const QString& fileName);
 bool isFileRealWritable(const QString& filename);
 //returns if the file exists and is writable
 bool isExistingFileRealWritable(const QString& filename);
+//adds QDir::separator() if the path end not with it
+QString ensureTrailingDirSeparator(const QString& dirPath);
+		
 
 //returns kde version 0,3,4
 int x11desktop_env();

@@ -185,16 +185,23 @@ private slots:
 	void editCopy();
 	void editPaste();
 	void editSectionCopy();
+	void editSectionCopyOld();
 	void editSectionCopy(int startingLine, int endLine);
 	void editSectionCut();
+	void editSectionCutOld();
 	void editSectionCut(int startingLine, int endLine);
 	void editSectionPasteAfter();
+	void editSectionPasteAfterOld();
 	void editSectionPasteAfter(int line);
 	void editSectionPasteBefore();
+	void editSectionPasteBeforeOld();
 	void editSectionPasteBefore(int line);
 	void editPasteLatex();
 	void convertToLatex();
 	void editPasteRef();
+	void editPasteRefOld();
+	void editIndentSectionOld();
+	void editUnIndentSectionOld();
 	void editIndentSection();
 	void editUnIndentSection();
 	void editHardLineBreak();
@@ -221,6 +228,7 @@ private slots:
 	void editFindGlobal();
 
 	void StructureContextMenu(const QPoint& point);
+	void StructureContextMenuOld(const QPoint& point);
 	void SymbolGridContextMenu(QWidget* widget, const QPoint& point);
 	void MostUsedSymbolsTriggered(bool direct=false);
 	void symbolAddFavorite();
@@ -239,6 +247,7 @@ private slots:
 	void updateStructureForFile(const QString& fileName);
 	void ShowStructure();
 	void ClickedOnStructure(QTreeWidgetItem *item,int);
+	void clickedOnStructureEntry(const QModelIndex & index);
 	void editRemovePlaceHolders();
 	
 	void NormalCompletion();
