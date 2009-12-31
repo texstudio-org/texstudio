@@ -23,8 +23,8 @@ void scriptengine::run(){
         engine->globalObject().setProperty("cursor", cursorValue);
         QScriptValue qsMetaObject = engine->newQMetaObject(c.metaObject());
         engine->globalObject().setProperty("cursorEnums", qsMetaObject);
-		FileChooser *flchooser=new FileChooser(0,"File Chooser");
-		QScriptValue qsFileChooserObject = engine->newQObject(flchooser);
+		FileChooser flchooser(0,"File Chooser");
+		QScriptValue qsFileChooserObject = engine->newQObject(&flchooser);
 		engine->globalObject().setProperty("fileChooser", qsFileChooserObject);
 
         engine->evaluate(m_script);
