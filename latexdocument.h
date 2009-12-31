@@ -4,6 +4,12 @@
 #include "bibtexparser.h"
 
 class QDocumentLineHandle;
+class LatexEditorView;
+class LatexDocument;
+class QDocument;
+class QDocumentCursor;
+struct QDocumentSelection;
+
 /*class References {
 public:
 	References() {}
@@ -41,15 +47,17 @@ struct StructureEntry{
 	QDocumentLineHandle* lineHandle;
 	QList<StructureEntry*> children;
 	StructureEntry* parent;
+	LatexDocument* document;
 
-	StructureEntry(Type newType);
-	StructureEntry(StructureEntry* parent, Type newType);
+	StructureEntry(LatexDocument* doc, Type newType);
+	StructureEntry(LatexDocument* doc, StructureEntry* parent, Type newType);
 	~StructureEntry();
 	void add(StructureEntry* child);
 	void insert(int pos, StructureEntry* child);
+
+	int getRealLineNumber() const;
 };
 
-class LatexEditorView;
 class LatexDocument: public QObject
 {
 	Q_OBJECT
@@ -57,6 +65,7 @@ public:
 	LatexDocument();
 	~LatexDocument();
 	LatexEditorView* edView;
+	QDocument* text;
 
 	//QString fileName; //Masterfile, absolute
 	QSet<QString> texFiles; //absolute file names, also contains fileName
@@ -76,6 +85,10 @@ public:
 	StructureEntry* labelList;
 	StructureEntry* todoList;
 	StructureEntry* bibTeXList;
+
+
+	QDocumentSelection sectionSelection(StructureEntry* section);
+
 public slots:
 	void updateStructure();
 
@@ -102,6 +115,8 @@ public:
 	int columnCount ( const QModelIndex & parent = QModelIndex() ) const;
 	QModelIndex index ( int row, int column, const QModelIndex & parent = QModelIndex() ) const;
 	QModelIndex parent ( const QModelIndex & index ) const;
+
+	static StructureEntry* indexToStructureEntry(const QModelIndex & index );
 
 private slots:
 	void structureUpdated(LatexDocument* document);

@@ -90,6 +90,15 @@ bool isExistingFileRealWritable(const QString& filename) {
 	return QFileInfo(filename).exists() && isFileRealWritable(filename);
 }
 
+QString ensureTrailingDirSeparator(const QString& dirPath){
+	if (dirPath.endsWith("/")) return dirPath;
+	if (dirPath.endsWith(QDir::separator())) return dirPath;
+#ifdef Q_WS_WIN
+	if (dirPath.endsWith("\\")) return dirPath; //you can create a directory named \ on linux
+#endif
+	return dirPath+"/";
+}
+
 
 int x11desktop_env() {
 	// 0 : no kde ; 3: kde ; 4 : kde4 ;
