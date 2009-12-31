@@ -20,7 +20,7 @@ class FileChooser : public QDialog {
 public:
 	FileChooser(QWidget *parent = 0, QString name="");
 	Ui::FileChooser ui;
-	QString fileName() const;
+	Q_INVOKABLE QString fileName() const;
 	QString filter,dir;
 
 public slots:

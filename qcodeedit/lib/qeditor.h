@@ -138,8 +138,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		bool canUndo() const;
 		bool canRedo() const;
 		
-                Q_INVOKABLE QString text() const;
-                Q_INVOKABLE QString text(int line) const;
+		Q_INVOKABLE QString text() const;
+		Q_INVOKABLE QString text(int line) const;
 		
 		QTextCodec* codec() const;
 		QDocument* document() const;
