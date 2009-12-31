@@ -335,6 +335,7 @@ To acces the document, to objects are introduced:
 <ul>
 <li>"editor" allows some top level operations like save/load.
 <li>"cursor" gives acces to cursor operations like moving, inserting and deleting texts.
+<li>"fileChooser" gives access to the filechooser dialog, a very simple file selection dialog
 </ul>
 The following table gives an overview on the possible commands.
 <table border="1">
@@ -576,6 +577,22 @@ The following table gives an overview on the possible commands.
     <td> cursor.endEditBlock();
     <td> move cursor to the end of a block
   </tr>
+  <tr>
+	<td> fileChooser.exec()
+	<td> show dialog and wait until it is closed again
+  </tr>
+  <tr>
+	<td> fileChooser.setDir(dir)
+	<td> set directory in the dialog to <i>dir</i>
+  </tr>
+  <tr>
+	<td> fileChooser.setFilter(filter)
+	<td> set file filter to <i>filter</i>, using the QT-format, see above
+  </tr>
+  <tr>
+	<td> fileChooser.fileName()
+	<td> return selected filename (after exec)
+  </tr>  
 </table> 
 </p>
 <p>You can also launch your own commands (shortcuts : Alt+Shift+F1...Alt+Shift+F5). These commands are defined with the "User - User Commands" menu.</p>
