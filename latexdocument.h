@@ -105,6 +105,7 @@ private:
 	LatexDocuments& documents;
 	QIcon iconDocument, iconBibTeX, iconInclude;
 	QVector<QIcon> iconSection;
+	StructureEntry* mHighlightedEntry;
 
 public:
 	LatexDocumentsModel(LatexDocuments& docs);
@@ -114,9 +115,12 @@ public:
 	int rowCount ( const QModelIndex & parent = QModelIndex() ) const;
 	int columnCount ( const QModelIndex & parent = QModelIndex() ) const;
 	QModelIndex index ( int row, int column, const QModelIndex & parent = QModelIndex() ) const;
+	QModelIndex index ( StructureEntry* entry ) const;
 	QModelIndex parent ( const QModelIndex & index ) const;
 
 	static StructureEntry* indexToStructureEntry(const QModelIndex & index );
+	StructureEntry* highlightedEntry();
+	void setHighlightedEntry(StructureEntry* entry);
 
 private slots:
 	void structureUpdated(LatexDocument* document);

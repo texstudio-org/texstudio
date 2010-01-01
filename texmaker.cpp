@@ -4493,7 +4493,7 @@ void Texmaker::editFindGlobal(){
 }
 
 // show current cursor position in structure view
-void Texmaker::cursorPositionChanged(){
+void Texmaker::cursorPositionChangedOld(){
 	int i=currentEditor()->cursor().lineNumber();
 	// search line in structure
 	if (currentLine==i) return;
@@ -4539,7 +4539,71 @@ void Texmaker::cursorPositionChanged(){
 		mDontScrollToItem=false;
 	}
 }
+void Texmaker::cursorPositionChanged(){
+	int i=currentEditor()->cursor().lineNumber();
+	int oldLine=currentLine;
+	// search line in structure
+	if (currentLine==i) return;
+	cursorPositionChangedOld();
+	currentLine=i;
 
+	LatexDocumentsModel *model=qobject_cast<LatexDocumentsModel*>(structureTreeView->model());
+	if (!model) return; //shouldn't happen
+
+	StructureEntry *oldSection = model->highlightedEntry();
+	if (oldSection && currentLine>oldLine && currentLine<oldSection->lineNumber)
+		return; //still in the same section
+
+	StructureEntry *newSection=0;
+
+	QList<StructureEntry*> entryHierarchy=QList<StructureEntry*>() << currentEditorView()->document->baseStructure;
+	if (entryHierarchy.last()->children.isEmpty()) return;
+	QList<int> indexHierarchy=QList<int>() << 0;
+	while (/*!entryHierarchy.isEmpty()*/true){
+		while (!entryHierarchy.isEmpty()) {
+			while (indexHierarchy.last()<entryHierarchy.last()->children.count() &&
+			       entryHierarchy.last()->children.at(indexHierarchy.last())->type!=StructureEntry::SE_SECTION){
+				//goto next entry
+				if (entryHierarchy.last()->children.at(indexHierarchy.last())->children.isEmpty())
+					indexHierarchy.last()=indexHierarchy.last()+1; //on the same level
+				else {  //to child
+					indexHierarchy.last()++; //next item on the current level
+					//on a deeper level to the first child
+					entryHierarchy.append(entryHierarchy.last()->children.at(indexHierarchy.last()));
+					indexHierarchy.append(0);
+
+				}
+			}
+			if (indexHierarchy.last()<entryHierarchy.last()->children.count())
+				break; //reached a another structure entry
+			else { //continue on higher level
+				entryHierarchy.removeLast();
+				indexHierarchy.removeLast();
+			}
+		}
+		if (entryHierarchy.isEmpty()) return;
+
+		StructureEntry *curSection=entryHierarchy.last()->children.at(indexHierarchy.last());
+
+		if (curSection->lineNumber > currentLine) break; //curSection is after newSection where the cursor is
+		else newSection=curSection;
+
+		indexHierarchy.last()++; //next item on the current level
+		if (!curSection->children.isEmpty()){
+			entryHierarchy.append(curSection);
+			indexHierarchy.append(0);
+		}
+	}
+
+	if (newSection==0 || newSection->lineNumber>currentLine){
+		model->setHighlightedEntry(0);
+		return;
+	}
+
+	model->setHighlightedEntry(newSection);
+	if(!mDontScrollToItem)
+		structureTreeView->scrollTo(model->index(model->highlightedEntry()));
+}
 void Texmaker::treeWidgetChanged(){
 	currentLine=-1;
 	cursorPositionChanged();
