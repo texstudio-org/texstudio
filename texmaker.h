@@ -378,6 +378,7 @@ private slots:
 
 	void jumpToSearch(QString filename,int lineNumber);
 
+	void cursorPositionChangedOld();
 	void cursorPositionChanged();
 	void treeWidgetChanged();
 

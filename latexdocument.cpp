@@ -242,7 +242,7 @@ int StructureEntry::getRealLineNumber() const{
 */
 
 LatexDocumentsModel::LatexDocumentsModel(LatexDocuments& docs):documents(docs),
-	iconDocument(":/images/doc.png"), iconBibTeX(":/images/bibtex.png"), iconInclude(":/images/include.png"){
+	iconDocument(":/images/doc.png"), iconBibTeX(":/images/bibtex.png"), iconInclude(":/images/include.png"),mHighlightedEntry(0){
 	iconSection.resize(struct_level.count());
 	for (int i=0;i<struct_level.count();i++)
 		iconSection[i]=QIcon(":/images/"+struct_level[i]+".png");
@@ -278,6 +278,9 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 					return iconDocument;
 				default: return QVariant();
 			}
+		case Qt::BackgroundRole:
+			if (entry==mHighlightedEntry) return QVariant(Qt::lightGray);
+			else return QVariant();
 		default:
 			return QVariant();
 	}
@@ -311,6 +314,18 @@ QModelIndex LatexDocumentsModel::index ( int row, int column, const QModelIndex 
 		return createIndex(row, column, documents.documents.at(row)->baseStructure);
 	}
 }
+QModelIndex LatexDocumentsModel::index ( StructureEntry* entry ) const{
+	if (!entry) return QModelIndex();
+	if (entry->parent==0 && entry->type==StructureEntry::SE_DOCUMENT_ROOT) {
+		int row=documents.documents.indexOf(entry->document);
+		if (row<0) return QModelIndex();
+		return createIndex(row, 0, entry);
+	} else if (entry->parent!=0 && entry->type!=StructureEntry::SE_DOCUMENT_ROOT) {
+		int row=entry->parent->children.indexOf(entry);
+		if (row<0) return QModelIndex(); //shouldn't happen
+		return createIndex(row, 0, entry);
+	} else return QModelIndex(); //shouldn't happen
+}
 QModelIndex LatexDocumentsModel::parent ( const QModelIndex & index ) const{
 	if (!index.isValid()) return QModelIndex();
 	const StructureEntry* entry = (StructureEntry*) index.internalPointer();
@@ -332,6 +347,19 @@ StructureEntry* LatexDocumentsModel::indexToStructureEntry(const QModelIndex & i
 	if (!result || !result->document) return 0;
 	return result;
 }
+StructureEntry* LatexDocumentsModel::highlightedEntry(){
+	return mHighlightedEntry;
+}
+void LatexDocumentsModel::setHighlightedEntry(StructureEntry* entry){
+	if (mHighlightedEntry==entry) return;
+	QModelIndex i1=index(mHighlightedEntry);
+	QModelIndex i2=index(entry);
+	emit dataChanged(i1,i1);
+	mHighlightedEntry=entry;
+	emit dataChanged(i2,i2);
+}
+
+
 
 void LatexDocumentsModel::structureUpdated(LatexDocument* document){
 	reset();
