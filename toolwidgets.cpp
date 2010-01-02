@@ -417,6 +417,11 @@ void CustomWidgetList::showPageFromAction(){
 	if (!act) return;
 	QWidget* wid=widget(act->data().toString());
 	stack->setCurrentWidget(wid);
+	setWindowTitle(act->toolTip());
+}
+void CustomWidgetList::currentWidgetChanged(int i){
+	Q_ASSERT(newStyle==false);
+	setWindowTitle(toolbox->itemText(i));
 }
 void CustomWidgetList::toggleWidgetFromAction(bool on){
 	QAction* act=qobject_cast<QAction*>(sender());
@@ -494,8 +499,12 @@ void CustomWidgetList::showWidgets(bool newLayoutStyle){
 			if (!hiddenWidgetsIds.contains(widgetId(widgets[i]))) {
 				toolbox->addItem(widgets[i],QIcon(widgets[i]->property("iconName").toString()),widgets[i]->property("Name").toString());
 			} else widgets[i]->hide();
+		connect(toolbox,SIGNAL(currentChanged(int)),SLOT(currentWidgetChanged(int)));
 		setWidget(toolbox);
+
 	}
+	if (!widgets.empty()) //name after active (first) widget
+		setWindowTitle(widgets.first()->property("Name").toString());
 }
 int CustomWidgetList::widgetCount() const{
 	return widgets.count();
@@ -533,6 +542,9 @@ void CustomWidgetList::setCurrentWidget(QWidget* widget){
 QWidget* CustomWidgetList::currentWidget() const{
 	if (newStyle) return stack->currentWidget();
 	else return toolbox->currentWidget();
+}
+bool CustomWidgetList::isNewLayoutStyleEnabled() const{
+	return newStyle;
 }
 QString CustomWidgetList::widgetId(QWidget* widget) const{
 	if (!widget) return "";
