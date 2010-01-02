@@ -126,9 +126,8 @@ private:
 	int split1_right, split1_left, split2_top, split2_bottom;
 	bool singlemode,  showoutputview, showstructview, ams_packages, makeidx_package;
 	QString document_class, typeface_size, paper_size, document_encoding, author;
-	QString spell_dic, spell_ignored_words;
+	QString spell_ignored_words;
 	QStringList struct_level;
-	QString thesaurus_database;
 	QStringList userClassList, userPaperList, userEncodingList, userOptionsList;
 	QStringList labelitem;
         Userlist UserMenuName, UserMenuTag, UserMenuAbbrev;

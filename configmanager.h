@@ -19,8 +19,7 @@ public:
 	QSettings* readSettings();
 	QSettings* saveSettings();
 
-	ConfigDialog* createConfigDialog(QWidget* parent);
-	bool execConfigDialog(ConfigDialog* confDlg);
+	bool execConfigDialog();
 
 //public configuration
 
@@ -51,8 +50,7 @@ public:
 	QString language;
 	QTranslator* appTranslator;
 	QTranslator* basicTranslator;	
-	
-	
+		
 	//editor 
 	LatexEditorViewConfig * const editorConfig;
 	//completion
@@ -82,6 +80,9 @@ public:
 	bool addRecentFile(const QString & fileName, bool asMaster); //adds a recent file
 	void updateRecentFiles(bool alwaysRecreateMenuItems=false);
 	
+	//dictionaries
+	QString spell_dic, thesaurus_database;
+
 	//debug
 	#ifndef QT_NO_DEBUG
 	QDateTime debugLastFileModification;

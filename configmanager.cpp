@@ -62,7 +62,26 @@ QSettings* ConfigManager::readSettings() {
 	lastDocument=config->value("Files/Last Document","").toString();
 	parseBibTeX=config->value("Files/Parse BibTeX",true).toBool();
 	parseMaster=config->value("Files/Parse Master",true).toBool();
-	
+
+	//----------------------------dictionaries-------------------------
+	spell_dic=config->value("Spell/Dic","<dic not found>").toString();
+	if (spell_dic=="<dic not found>") {
+		spell_dic=findResourceFile(QString(QLocale::system().name())+".dic");
+		if (spell_dic=="") spell_dic=findResourceFile("en_US.dic");
+		if (spell_dic=="") spell_dic=findResourceFile("en_GB.dic");
+		if (spell_dic=="") spell_dic=findResourceFile("fr_FR.dic");
+		if (spell_dic=="") spell_dic=findResourceFile("de_DE.dic");
+	}
+
+	thesaurus_database=config->value("Thesaurus/Database","<dic not found>").toString();
+	if (thesaurus_database=="<dic not found>"||thesaurus_database=="") {
+		thesaurus_database=findResourceFile("th_"+QString(QLocale::system().name())+"_v2.dat");
+		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_en_US_v2.dat");
+		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_en_GB_v2.dat");
+		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_fr_FR_v2.dat");
+		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_de_DE_v2.dat");
+	}
+
 	
 	//----------------------------editor--------------------
 	editorConfig->wordwrap=config->value("Editor/WordWrap",true).toBool();
@@ -257,6 +276,10 @@ QSettings* ConfigManager::saveSettings() {
 	config->setValue("Files/Parse BibTeX",parseBibTeX);
 	config->setValue("Files/Parse Master",parseMaster);
 
+	//--------------------dictionaries------------------
+	config->setValue("Spell/Dic",spell_dic);
+	config->setValue("Thesaurus/Database",thesaurus_database);
+
 	//--------------------editor--------------------------
 	config->setValue("Editor/WordWrap",editorConfig->wordwrap);
 
@@ -352,12 +375,8 @@ QSettings* ConfigManager::saveSettings() {
 	return config;
 }
 
-
-ConfigDialog* ConfigManager::createConfigDialog(QWidget* parent) {
-	ConfigDialog *confDlg = new ConfigDialog(parent);
-	return confDlg;
-}
-bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
+bool ConfigManager::execConfigDialog() {
+	ConfigDialog *confDlg = new ConfigDialog(qobject_cast<QWidget*>(parent()));
 
 	//files
 	if (newfile_encoding)
@@ -371,6 +390,11 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 	confDlg->ui.checkBoxParseBibTeX->setChecked(parseBibTeX);
 	confDlg->ui.checkBoxParseMaster->setChecked(parseMaster);
 	
+	//dictionaries
+	confDlg->ui.lineEditAspellCommand->setText(spell_dic);
+	confDlg->ui.thesaurusFileName->setText(thesaurus_database);
+
+
 	//-----------------------editor------------------------------
 	confDlg->ui.checkBoxWordwrap->setChecked(editorConfig->wordwrap);
 	
@@ -581,7 +605,11 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		}
 		parseBibTeX=confDlg->ui.checkBoxParseBibTeX->isChecked();
 		parseMaster=confDlg->ui.checkBoxParseMaster->isChecked();
-		
+
+		//dictionaries
+		spell_dic=confDlg->ui.lineEditAspellCommand->text();
+		thesaurus_database=confDlg->ui.thesaurusFileName->text();
+
 		//editor
 		editorConfig->wordwrap=confDlg->ui.checkBoxWordwrap->isChecked();
 		editorConfig->autoindent=confDlg->ui.comboBoxAutoIndent->currentIndex()!=0;
@@ -715,6 +743,7 @@ bool ConfigManager::execConfigDialog(ConfigDialog* confDlg) {
 		editorConfig->editorFont=QFont (fam,si);		
 		
 	}
+	delete confDlg;
 	return executed;
 }
 

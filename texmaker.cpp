@@ -27,7 +27,6 @@
 #include "usermenudialog.h"
 #include "usertooldialog.h"
 #include "aboutdialog.h"
-#include "configdialog.h"
 #include "encodingdialog.h"
 #include "randomtextgenerator.h"
 #include "webpublishdialog.h"
@@ -57,7 +56,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	currentTreeItem=0;
 	thesaurusFileName.clear();
 	previewEquation=false;
-	
+
 	ReadSettings();
 	setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
 	setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
@@ -79,10 +78,10 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	outputView=0;
 	thesaurusDialog=0;
 	templateSelectorDialog=0;
-	
+
 	mainSpeller=new SpellerUtility();;
-	mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);
-	
+	mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);
+
 	LatexEditorView::setSpeller(mainSpeller);
 
 	QDocument::setFormatFactory(m_formats);
@@ -95,8 +94,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	m_languages = new QLanguageFactory(m_formats, this);
 	m_languages->addDefinitionPath(qxsPath);
 	QLineMarksInfoCenter::instance()->loadMarkTypes(qxsPath+"/marks.qxm");
-	
-	
+
+
 // TAB WIDGET EDITEUR
 	EditorView=new QTabWidget(this);
 	EditorView->setFocusPolicy(Qt::ClickFocus);
@@ -108,7 +107,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 		connect(EditorView, SIGNAL(tabCloseRequested(int)), this, SLOT(CloseEditorTab(int)));
 	}
 	setCentralWidget(EditorView);
-	
+
 	symbolMostused.clear();
 	setupDockWidgets();
 	//SetMostUsedSymbols();
@@ -239,7 +238,7 @@ void Texmaker::setupDockWidgets(){
 		connect(StructureTreeWidget, SIGNAL(itemCollapsed(QTreeWidgetItem *)), SLOT(treeWidgetChanged()));
 // connect( StructureTreeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem *,int )), SLOT(DoubleClickedOnStructure(QTreeWidgetItem *,int))); // qt4 bugs - don't use it
 
-		
+
 		leftPanel->addWidget(StructureTreeWidget, "structureTree", tr("Structure (old)"), ":/images/structure.png");
 	} else leftPanel->setWidgetText(StructureTreeWidget,tr("Structure"));
 
@@ -258,7 +257,7 @@ void Texmaker::setupDockWidgets(){
 	MostUsedSymbolWidget=addSymbolGrid("!mostused",":/images/math6.png",tr("Most used symbols"));
 	FavoriteSymbolWidget=addSymbolGrid("!favorite",":/images/math7.png",tr("Favorites"));
 	FavoriteSymbolWidget->loadSymbols(symbolFavorites);
-	
+
 	addTagList("leftright", ":/images/leftright.png", tr("Left/Right Brackets"),"leftright_tags.xml");
 	addTagList("pstricks", ":/images/pstricks.png", tr("Pstricks Commands"),"pstricks_tags.xml");
 	addTagList("metapost", ":/images/metapost.png", tr("MetaPost Commands"),"metapost_tags.xml");
@@ -290,20 +289,20 @@ void Texmaker::setupDockWidgets(){
 		connect(&buildManager,SIGNAL(previewAvailable(const QString&, const QString&)),this,SLOT(previewAvailable	(const QString&,const QString&)));
 	}
 	outputView->setWindowTitle(tr("Messages / Log File"));
-	
+
 }
 
 void Texmaker::setupMenus() {
 	//This function is called whenever the menu changes (= start and retranslation)
-	//This means if you call it repeatedly with the same language setting it should not change anything 
+	//This means if you call it repeatedly with the same language setting it should not change anything
 	//Currently this is not true, because it adds additional separator, which are invisible
 	//creates new action groups and new context menu, although all invisible, they are a memory leak
 	//But not a bad one, because no one is expected to change the language multiple times
 	//TODO: correct somewhen
-	
+
 	configManager.menuParent=this;
 	configManager.menuParentsBar=menuBar();
-	
+
 //file
 	QMenu *menu=newManagedMenu("main/file",tr("&File"));
 	newManagedAction(menu, "new",tr("New"), SLOT(fileNew()), Qt::CTRL+Qt::Key_N, ":/images/filenew.png");
@@ -312,7 +311,7 @@ void Texmaker::setupMenus() {
 
 	QMenu *submenu=newManagedMenu(menu, "openrecent",tr("Open Recent")); //only create the menu here, actions are created by config manager
 	newManagedAction(menu, "restoresession",tr("Restore previous session"), SLOT(fileRestoreSession()));
-	
+
 	menu->addSeparator();
 	newManagedAction(menu,"save",tr("Save"), SLOT(fileSave()), Qt::CTRL+Qt::Key_S, ":/images/filesave.png");
 	newManagedAction(menu,"saveas",tr("Save As"), SLOT(fileSaveAs()), Qt::CTRL+Qt::ALT+Qt::Key_S);
@@ -344,7 +343,7 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	newManagedAction(menu,"pasteAsLatex",tr("Paste as Latex"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, ":/images/editpaste.png");
 	newManagedAction(menu,"convertToLatex",tr("Convert to Latex"), SLOT(convertToLatex()));
-        newManagedAction(menu,"previewLatex",tr("Preview Selection/Parantheses"), SLOT(previewLatex()),Qt::ALT+Qt::Key_P);
+	newManagedAction(menu,"previewLatex",tr("Preview Selection/Parantheses"), SLOT(previewLatex()),Qt::ALT+Qt::Key_P);
 
 	if (LatexEditorView::getBaseActions().empty()) //only called at first menu created
 		LatexEditorView::setBaseActions(menu->actions());
@@ -356,7 +355,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"unindent",tr("Unindent"), SLOT(editUnindent()));
 	newManagedAction(menu,"hardbreak",tr("Hard Line Break"), SLOT(editHardLineBreak()));
 	newManagedAction(menu,"hardbreakrepeat",tr("Repeat Hard Line Break"), SLOT(editHardLineBreakRepeat()));
-	
+
 	menu->addSeparator();
 	newManagedAction(menu,"find", tr("Find"), SLOT(editFind()), Qt::CTRL+Qt::Key_F);
 	newManagedAction(menu,"findnext",tr("Find Next"), SLOT(editFindNext()), Qt::CTRL+Qt::Key_M);
@@ -486,9 +485,9 @@ void Texmaker::setupMenus() {
 //  User
 	menu=newManagedMenu("main/user",tr("&User"));
 	submenu=newManagedMenu(menu,"tags",tr("User &Tags"));
-        for (int i=0; i<10; i++)
-                newManagedAction(submenu, QString("tag%1").arg(i),QString("%1: %2").arg(i+1).arg(UserMenuName[i]), SLOT(InsertUserTag()), Qt::SHIFT+Qt::Key_F1+i)
-                ->setData(i);
+	for (int i=0; i<10; i++)
+		newManagedAction(submenu, QString("tag%1").arg(i),QString("%1: %2").arg(i+1).arg(UserMenuName[i]), SLOT(InsertUserTag()), Qt::SHIFT+Qt::Key_F1+i)
+		->setData(i);
 	submenu->addSeparator();
 	newManagedAction(submenu, QString("manage"),tr("Edit User &Tags"), SLOT(EditUserMenu()));
 
@@ -509,7 +508,7 @@ void Texmaker::setupMenus() {
 	outputViewAction=newManagedAction(menu, "outputview",tr("Messages / Log File"), SLOT(viewToggleOutputView()));
 	outputViewAction->setCheckable(true);
 	newManagedAction(menu, "closesomething",tr("Close Something"), SLOT(viewCloseSomething()), Qt::Key_Escape);
-	
+
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "collapse", tr("Collapse"));
 	newManagedAction(submenu, "all", tr("Everything"), SLOT(viewCollapseEverything()));
@@ -529,7 +528,7 @@ void Texmaker::setupMenus() {
 //---options---
 	menu=newManagedMenu("main/options",tr("&Options"));
 	newManagedAction(menu, "config",tr("Configure TexMakerX"), SLOT(GeneralOptions()), 0,":/images/configure.png");
-	
+
 	menu->addSeparator();
 	ToggleAct=newManagedAction(menu, "masterdocument",tr("Define Current Document as 'Master Document'"), SLOT(ToggleMode()));
 	ToggleRememberAct=newManagedAction(menu, "remembersession",tr("Automatically restore session at next start"));
@@ -715,38 +714,38 @@ void Texmaker::setupToolBars() {
 	spellToolBar = addToolBar("Spelling");
 	spellToolBar->setObjectName("Spelling");
 	list.clear();
-	QDir fic=QFileInfo(spell_dic).absoluteDir();
+	QDir fic=QFileInfo(configManager.spell_dic).absoluteDir();
 	if (fic.exists() && fic.isReadable())
 			list << fic.entryList(QStringList("*.dic"),QDir::Files,QDir::Name);
 
 
-	comboSpell=createComboToolButton(spellToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(spell_dic).fileName());
+	comboSpell=createComboToolButton(spellToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName());
 	spellToolBar->addWidget(comboSpell);
 //custom toolbar
-        //first apply custom icons
-        QHash<QString, QVariant>::const_iterator i = configManager.replacedIconsOnMenus.constBegin();
-        while (i != configManager.replacedIconsOnMenus.constEnd()) {
-            QString id=i.key();
-            QVariant zw=i.value();
-            QAction * act= getManagedAction(id);
-            if (act) {
-                if(zw.canConvert<QString>()) act->setIcon(QIcon(zw.toString()));
-            }
-            i++;
-        }
-        //setup actual custom toolbar
-        customToolBar = addToolBar("Custom");
-        customToolBar->setObjectName("Custom");
-        int l=configManager.listCustomActions.size();
-        if(l>0){
-            for (int i=0; i<l; i++){
-                QAction *act=getManagedAction(configManager.listCustomActions.at(i));
-                if(act->icon().isNull()){
-                    act->setIcon(QIcon(":/images/appicon.png"));
-                }
-                customToolBar->addAction(act);
-            }
-        }
+	//first apply custom icons
+	QHash<QString, QVariant>::const_iterator i = configManager.replacedIconsOnMenus.constBegin();
+	while (i != configManager.replacedIconsOnMenus.constEnd()) {
+	    QString id=i.key();
+	    QVariant zw=i.value();
+	    QAction * act= getManagedAction(id);
+	    if (act) {
+		if(zw.canConvert<QString>()) act->setIcon(QIcon(zw.toString()));
+	    }
+	    i++;
+	}
+	//setup actual custom toolbar
+	customToolBar = addToolBar("Custom");
+	customToolBar->setObjectName("Custom");
+	int l=configManager.listCustomActions.size();
+	if(l>0){
+	    for (int i=0; i<l; i++){
+		QAction *act=getManagedAction(configManager.listCustomActions.at(i));
+		if(act->icon().isNull()){
+		    act->setIcon(QIcon(":/images/appicon.png"));
+		}
+		customToolBar->addAction(act);
+	    }
+	}
 }
 
 
@@ -818,7 +817,7 @@ void Texmaker::showMarkTooltipForLogMessage(int error){
 	if (!currentEditorView()) return;
 	if (error<0 || error >= outputView->getLogModel()->count()) return;
 	currentEditorView()->setLineMarkToolTip(outputView->getLogModel()->at(error).niceMessage());
-	
+
 }
 
 void Texmaker::NewDocumentStatus(bool m) {
@@ -835,11 +834,11 @@ void Texmaker::NewDocumentStatus(bool m) {
 			}
 		if (!edView) return;
 	}
-	if (m) 
+	if (m)
 		EditorView->setTabIcon(index,QIcon(":/images/modified.png"));
-	else 
+	else
 		EditorView->setTabIcon(index,QIcon(":/images/empty.png"));
-	if (edView->editor->fileName().isEmpty()) 
+	if (edView->editor->fileName().isEmpty())
 		EditorView->setTabText(index,tr("untitled"));
 	else
 		EditorView->setTabText(index,edView->editor->name());
@@ -854,9 +853,9 @@ QEditor* Texmaker::currentEditor() const{
 	return edView->editor;
 }
 void Texmaker::configureNewEditorView(LatexEditorView *edit) {
-	
+
 	m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
-        //EditorView->setCurrentWidget(edit);
+	//EditorView->setCurrentWidget(edit);
 
 //edit->setFormats(m_formats->id("environment"),m_formats->id("referenceMultiple"),m_formats->id("referencePresent"),m_formats->id("referenceMissing"));
 
@@ -866,8 +865,8 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(needCitation(const QString&)),this,SLOT(InsertBibEntry(const QString&)));
 	connect(edit, SIGNAL(showPreview(QString)),this,SLOT(showPreview(QString)));
 	connect(edit, SIGNAL(lineHandleDeleted(QDocumentLineHandle*)),this,SLOT(lineHandleDeleted(QDocumentLineHandle*)));
-	
-	edit->setBibTeXIds(&allBibTeXIds);	
+
+	edit->setBibTeXIds(&allBibTeXIds);
 
 	edit->document=new LatexDocument();
 	edit->document->edView=edit;
@@ -887,7 +886,7 @@ LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName){
 #endif
 	for (int i=0; i< EditorView->count(); i++){
 		LatexEditorView* edView = qobject_cast<LatexEditorView*>(EditorView->widget(i));
-		if (!edView) continue; 
+		if (!edView) continue;
 		const QEditor* edit=edView->editor;
 		if (edit->fileName().compare(fnorm,cs)==0)
 			return edView;
@@ -904,7 +903,7 @@ LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName){
 	//check for same file infos (is not reliable in qt < 4.5, because they just compare absoluteFilePath)
 	for (int i=0; i< EditorView->count(); i++){
 		LatexEditorView* edView = qobject_cast<LatexEditorView*>(EditorView->widget(i));
-		if (!edView) continue; 
+		if (!edView) continue;
 		const QEditor* edit=edView->editor;
 		if (edit->fileInfo().exists() && edit->fileInfo()==fi)
 			return edView;
@@ -913,7 +912,7 @@ LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName){
 	fnorm = fi.canonicalFilePath();
 	for (int i=0; i< EditorView->count(); i++){
 		LatexEditorView* edView = qobject_cast<LatexEditorView*>(EditorView->widget(i));
-		if (!edView) continue; 
+		if (!edView) continue;
 		const QEditor* edit=edView->editor;
 		if (edit->fileInfo().canonicalFilePath().compare(fnorm,cs)==0)
 			return edView;
@@ -950,7 +949,7 @@ QString Texmaker::getAbsoluteFilePath(const QString & relName, const QString &ex
 	QString compileFileName=getCompileFileName();
 	if (compileFileName.isEmpty()) return s; //what else can we do?
 	QString compilePath=QFileInfo(compileFileName).absolutePath();
-	if (!compilePath.endsWith("\\") && !compilePath.endsWith("/")) 
+	if (!compilePath.endsWith("\\") && !compilePath.endsWith("/"))
 		compilePath+=QDir::separator();
 	return  compilePath+s;
 }
@@ -958,7 +957,7 @@ QString Texmaker::getRelativeBaseName(const QString & file){
 	QString basepath=getCompilePath();
 	basepath.replace(QDir::separator(),"/");
 	if (basepath.endsWith("/")) basepath=basepath.left(basepath.length()-1);
-	
+
 	QFileInfo fi(file);
 	QString filename = fi.fileName();
 	QString path = fi.path();
@@ -987,7 +986,7 @@ QString Texmaker::getRelativeBaseName(const QString & file){
 		//if (path.length()>0 && path.right(1) != "/") path = path + "/";
 	} else {
 		path = fi.path();
-	}	
+	}
 
 	if (path.length()>0 && !path.endsWith("/") && !path.endsWith("\\")) path+="/"; //necessary if basepath isn't given
 
@@ -1024,11 +1023,11 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 
 	if (!QFile::exists(f_real)) return 0;
 	bool bibTeXmodified=bibTeXFilesModified;
-	
+
 	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig);
 	configureNewEditorView(edit);
-        EditorView->addTab(edit, "[*] "+QFileInfo(f_real).fileName());
-        EditorView->setCurrentWidget(edit);
+	EditorView->addTab(edit, "[*] "+QFileInfo(f_real).fileName());
+	EditorView->setCurrentWidget(edit);
 	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
 
 	QFile file(f_real);
@@ -1066,9 +1065,9 @@ void Texmaker::fileNew(QString fileName) {
 	else
 		edit->editor->setFileEncoding(QTextCodec::codecForName("utf-8"));
 
-        configureNewEditorView(edit);
-        EditorView->addTab(edit, fileName);
-        EditorView->setCurrentWidget(edit);
+	configureNewEditorView(edit);
+	EditorView->addTab(edit, fileName);
+	EditorView->setCurrentWidget(edit);
 
 	UpdateCaption();
 	NewDocumentStatus(false);
@@ -1174,9 +1173,9 @@ void Texmaker::fileNewFromTemplate() {
 		else
 			edit->editor->setFileEncoding(QTextCodec::codecForName("utf-8"));
 
-                configureNewEditorView(edit);
-                EditorView->addTab(edit, "untitled");
-                EditorView->setCurrentWidget(edit);
+		configureNewEditorView(edit);
+		EditorView->addTab(edit, "untitled");
+		EditorView->setCurrentWidget(edit);
 
 		QString mTemplate;
 		QTextStream in(&file);
@@ -1295,7 +1294,7 @@ void Texmaker::fileSaveAll() {
 			edView->editor->save();
 		else if (edView->editor->isContentModified()){ //only save modified bib files, to prevent unecessary recompilations
 			edView->editor->save();
-		
+
 			QString temp=edView->editor->fileName();
 			temp=temp.replace(QDir::separator(),"/");
 			bibTeXFilesModified = bibTeXFilesModified  || mentionedBibTeXFiles.contains(temp);//call bibtex on next compilation (this would also set as soon as the user switch to a tex file, but he could compile before switching)
@@ -1312,11 +1311,11 @@ void Texmaker::fileClose() {
 	if (!currentEditorView())	return;
 	if (currentEditorView()->editor->isContentModified()) {
 		switch (QMessageBox::warning(this, "TexMakerX",
-		                             tr("The document contains unsaved work. "
-		                                "Do you want to save it before closing?"),
-		                             tr("Save and Close"), tr("Don't Save and Close"), tr("Cancel"),
-		                             0,
-		                             2)) {
+					     tr("The document contains unsaved work. "
+						"Do you want to save it before closing?"),
+					     tr("Save and Close"), tr("Don't Save and Close"), tr("Cancel"),
+					     0,
+					     2)) {
 		case 0:
 			fileSave();
 			documents.deleteDocument(currentEditorView()->document);
@@ -1338,11 +1337,11 @@ void Texmaker::fileCloseAll() {
 	while (currentEditorView() && go) {
 		if (currentEditorView()->editor->isContentModified()) {
 			switch (QMessageBox::warning(this, "TexMakerX",
-			                             tr("The document contains unsaved work. "
-			                                "Do you want to save it before exiting?"),
-			                             tr("Save and Close"), tr("Don't Save and Close"), tr("Cancel"),
-			                             0,
-			                             2)) {
+						     tr("The document contains unsaved work. "
+							"Do you want to save it before exiting?"),
+						     tr("Save and Close"), tr("Don't Save and Close"), tr("Cancel"),
+						     0,
+						     2)) {
 			case 0:
 				fileSave();
 				documents.deleteDocument(currentEditorView()->document);
@@ -1356,10 +1355,10 @@ void Texmaker::fileCloseAll() {
 				return;
 				break;
 			}
-		} else 
+		} else
 			documents.deleteDocument(currentEditorView()->document);
 	}
-	if (!singlemode) 
+	if (!singlemode)
 		ToggleMode();
 	UpdateCaption();
 }
@@ -1375,11 +1374,11 @@ bool Texmaker::canCloseNow(){
 	while (currentEditorView() && accept) {
 		if (currentEditorView()->editor->isContentModified()) {
 			switch (QMessageBox::warning(this, "TexMakerX",
-			                             tr("The document contains unsaved work. "
-			                                "Do you want to save it before exiting?"),
-			                             tr("Save and Close"), tr("Don't Save and Close"), tr("Cancel"),
-			                             0,
-			                             2)) {
+						     tr("The document contains unsaved work. "
+							"Do you want to save it before exiting?"),
+						     tr("Save and Close"), tr("Don't Save and Close"), tr("Cancel"),
+						     0,
+						     2)) {
 			case 0:
 				fileSave();
 				documents.deleteDocument(currentEditorView()->document);
@@ -1392,10 +1391,10 @@ bool Texmaker::canCloseNow(){
 				accept=false;
 				break;
 			}
-		} else 
+		} else
 			documents.deleteDocument(currentEditorView()->document);
 	}
-	if (accept)  
+	if (accept)
 		if (mainSpeller) {
 			delete mainSpeller; //this saves the ignore list
 			mainSpeller=0;
@@ -1580,39 +1579,39 @@ void Texmaker::editThesaurus() {
 		QMessageBox::information(this,"TexMakerX",tr("No document open"),0);
 		return;
 	}
-        if (thesaurusFileName=="<dontLoad>") {
-            QMessageBox::warning(this,tr("Error"), tr("Can't load Thesaurus Database"));
-            return;
-        }
+	if (thesaurusFileName=="<dontLoad>") {
+		QMessageBox::warning(this,tr("Error"), tr("Can't load Thesaurus Database"));
+		return;
+	}
 	QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
 	if(thesaurusDialog==0) thesaurusDialog=new ThesaurusDialog(this);
-        //thesaurusDialog->readDatabase(thesaurus_database);
-        // alternative version for concurrent setup
-        if (thesaurusFileName!=thesaurus_database){
+	//thesaurusDialog->readDatabase(thesaurus_database);
+	// alternative version for concurrent setup
+	if (thesaurusFileName!=configManager.thesaurus_database){
 
 
-            thesaurusFileName=thesaurus_database;
+		thesaurusFileName=configManager.thesaurus_database;
 
 #if QT_VERSION >= 0x040500
-            //thesaurusFuture=QtConcurrent::run(&ThesaurusDialog::loadDatabase,file);
-            ThesaurusDatabaseType database=thesaurusFuture.result();
+		//thesaurusFuture=QtConcurrent::run(&ThesaurusDialog::loadDatabase,file);
+		ThesaurusDatabaseType database=thesaurusFuture.result();
 #else
-            if (!QFile::exists(thesaurus_database)) return;
+		if (!QFile::exists(configManager.thesaurus_database)) return;
 
-            databasefile=new QFile(thesaurus_database);
-            if (!databasefile->open(QIODevice::ReadOnly)) {
-                QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
-                thesaurusFileName="<dontLoad>";
-                return;
-            }
-            ThesaurusDatabaseType database=ThesaurusDialog::loadDatabase(databasefile);
+		databasefile=new QFile(configManagerthesaurus_database);
+		if (!databasefile->open(QIODevice::ReadOnly)) {
+			QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
+			thesaurusFileName="<dontLoad>";
+			return;
+		}
+		ThesaurusDatabaseType database=ThesaurusDialog::loadDatabase(databasefile);
 
 #endif
-            thesaurusDialog->setDatabase(database);
-            delete databasefile;
-            databasefile=0;
-        }
-        // end of mocifications
+		thesaurusDialog->setDatabase(database);
+		delete databasefile;
+		databasefile=0;
+	}
+	// end of mocifications
 	QString word;
 	if(m_cursor.hasSelection()){
 		word=m_cursor.selectedText();
@@ -1657,8 +1656,8 @@ LatexEditorView* Texmaker::getEditorFromStructureItem(QTreeWidgetItem* m_item){
 QPoint Texmaker::sectionSelection(QTreeWidgetItem* m_item) {
 	EditorView->setCurrentWidget(getEditorFromStructureItem(m_item));
 	// called by action
-        QDocumentLine mLine(m_item->data(structureTreeLineColumn,Qt::UserRole).value<QDocumentLineHandle*>());
-        int l=mLine.lineNumber()+1;
+	QDocumentLine mLine(m_item->data(structureTreeLineColumn,Qt::UserRole).value<QDocumentLineHandle*>());
+	int l=mLine.lineNumber()+1;
 	// find next section or higher
 	QTreeWidgetItem* m_parent;
 	int m_index;
@@ -1671,9 +1670,9 @@ QPoint Texmaker::sectionSelection(QTreeWidgetItem* m_item) {
 	} while ((m_index>=0)&&(m_index>=m_parent->childCount()-1)&&(m_parent->text(1)!="part"));
 	if (m_index>=0&&m_index<m_parent->childCount()-1) {
 		m_item=m_parent->child(m_index+1);
-                QDocumentLine mLine(m_item->data(structureTreeLineColumn,Qt::UserRole).value<QDocumentLineHandle*>());
-                int m_endingLine=mLine.lineNumber();
-                return QPoint(l,m_endingLine);
+		QDocumentLine mLine(m_item->data(structureTreeLineColumn,Qt::UserRole).value<QDocumentLineHandle*>());
+		int m_endingLine=mLine.lineNumber();
+		return QPoint(l,m_endingLine);
 	} else {
 		if (!currentEditorView()) return QPoint();
 		// no ending section but end of document
@@ -1972,17 +1971,17 @@ void Texmaker::ReadSettings() {
 		UserToolCommand[i]=config->value(QString("User/Tool%1").arg(i+1),"").toString();
 	}
 
-        struct_level.clear();
-        if(config->value("Structure/Structure Level 1","").toString()==""){
-            struct_level << "part" << "chapter" << "section" << "subsection" << "subsubsection";
-        }else{
-            int i=0;
-            QString elem;
-            while((elem=config->value("Structure/Structure Level "+QString::number(i+1),"").toString())!=""){
-                struct_level << elem;
-                i++;
-            }
-        }
+	struct_level.clear();
+	if(config->value("Structure/Structure Level 1","").toString()==""){
+	    struct_level << "part" << "chapter" << "section" << "subsection" << "subsubsection";
+	}else{
+	    int i=0;
+	    QString elem;
+	    while((elem=config->value("Structure/Structure Level "+QString::number(i+1),"").toString())!=""){
+		struct_level << elem;
+		i++;
+	    }
+	}
 
 	document_class=config->value("Quick/Class","article").toString();
 	typeface_size=config->value("Quick/Typeface","10pt").toString();
@@ -1992,36 +1991,18 @@ void Texmaker::ReadSettings() {
 	makeidx_package=config->value("Quick/MakeIndex",false).toBool();
 	author=config->value("Quick/Author","").toString();
 
-
-	spell_dic=config->value("Spell/Dic","<dic not found>").toString();
-	if (spell_dic=="<dic not found>") {
-		spell_dic=findResourceFile(QString(QLocale::system().name())+".dic");
-		if (spell_dic=="") spell_dic=findResourceFile("en_US.dic");
-		if (spell_dic=="") spell_dic=findResourceFile("en_GB.dic");
-		if (spell_dic=="") spell_dic=findResourceFile("fr_FR.dic");
-		if (spell_dic=="") spell_dic=findResourceFile("de_DE.dic");
-	}
-
-	thesaurus_database=config->value("Thesaurus/Database","<dic not found>").toString();
-	if (thesaurus_database=="<dic not found>"||thesaurus_database=="") {
-		thesaurus_database=findResourceFile("th_"+QString(QLocale::system().name())+"_v2.dat");
-		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_en_US_v2.dat");
-		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_en_GB_v2.dat");
-		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_fr_FR_v2.dat");
-		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_de_DE_v2.dat");
-	}
 #if QT_VERSION >= 0x040500
-        if (QFile::exists(thesaurus_database)) {
+	if (QFile::exists(configManager.thesaurus_database)) {
 
-            databasefile=new QFile(thesaurus_database);
-            if (!databasefile->open(QIODevice::ReadOnly)) {
-                //QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
-                thesaurusFileName="<dontLoad>";
-            }
+	databasefile=new QFile(configManager.thesaurus_database);
+	if (!databasefile->open(QIODevice::ReadOnly)) {
+		//QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
+		thesaurusFileName="<dontLoad>";
+	}
 
-            thesaurusFuture=QtConcurrent::run(&ThesaurusDialog::loadDatabase,databasefile);
-        }else
-            thesaurusFileName="<dontLoad>";
+		thesaurusFuture=QtConcurrent::run(&ThesaurusDialog::loadDatabase,databasefile);
+	} else
+		thesaurusFileName="<dontLoad>";
 #endif
 
 
@@ -2038,7 +2019,7 @@ void Texmaker::ReadSettings() {
 	config->beginGroup("formats");
 	m_formats = new QFormatFactory(":/qxs/defaultFormats.qxf", this); //load default formats from resource file
 	m_formats->load(*config,true); //load customized formats
-	config->endGroup();	
+	config->endGroup();
 
 	delete config;
 }
@@ -2070,7 +2051,7 @@ void Texmaker::SaveSettings() {
 	config->setValue("Show/OutputView",showoutputview);
 
 	config->setValue("Show/Structureview",showstructview);
-	
+
 	if (userClassList.count()>0)
 		config->setValue("Tools/User Class",userClassList);  // not removable , okay this way ?
 	if (userPaperList.count()>0) config->setValue("Tools/User Paper",userPaperList);
@@ -2090,21 +2071,17 @@ void Texmaker::SaveSettings() {
 	config->setValue("Files/Session/CurrentFile",currentEditorView()?currentEditor()->fileName():"");
 	config->setValue("Files/Session/MasterFile",singlemode?"":MasterName);
 
-        /*for (int i=0; i<=9; i++) {
-		config->setValue(QString("User/Menu%1").arg(i+1),UserMenuName[i]);
-		config->setValue(QString("User/Tag%1").arg(i+1),UserMenuTag[i]);
-        }*/
-        config->setValue("User/TagNames",UserMenuName);
-        config->setValue("User/Tags",UserMenuTag);
-        config->setValue("User/TagAbbrevs",UserMenuAbbrev);
+	config->setValue("User/TagNames",UserMenuName);
+	config->setValue("User/Tags",UserMenuTag);
+	config->setValue("User/TagAbbrevs",UserMenuAbbrev);
 
 	for (int i=0; i<=4; i++) {
 		config->setValue(QString("User/ToolName%1").arg(i+1),UserToolName[i]);
 		config->setValue(QString("User/Tool%1").arg(i+1),UserToolCommand[i]);
 	}
 
-        for(int i=0;i<struct_level.count();i++)
-            config->setValue("Structure/Structure Level "+QString::number(i+1),struct_level[i]);
+	for(int i=0;i<struct_level.count();i++)
+	    config->setValue("Structure/Structure Level "+QString::number(i+1),struct_level[i]);
 
 	config->setValue("Quick/Class",document_class);
 
@@ -2115,10 +2092,6 @@ void Texmaker::SaveSettings() {
 
 	config->setValue("Quick/MakeIndex",makeidx_package);
 	config->setValue("Quick/Author",author);
-
-
-	config->setValue("Spell/Dic",spell_dic);
-	config->setValue("Thesaurus/Database",thesaurus_database);
 
 	//for (int i=0; i <412 ; i++) {
 	//	config->setValue("Symbols/symbol"+QString::number(i),symbolScore[i]);
@@ -2139,7 +2112,7 @@ void Texmaker::SaveSettings() {
 	config->setValue("Symbols/Quantity",*MapForSymbols);
 	delete MapForSymbols;
 	config->setValue("Symbols/Favorite IDs",symbolFavorites);
-	
+
 	config->setValue("Symbols/hiddenlists",leftPanel->hiddenWidgets());
 
 
@@ -2171,11 +2144,11 @@ void Texmaker::updateStructure() {
 	currentLine=-1;
 	if (!currentEditorView()) return;
 	//TODO: cache structures of not changed files, perhaps show all included structures at the same time
-	if (!singlemode && getCompileFileName()!=getCurrentFileName() && configManager.parseMaster) 
+	if (!singlemode && getCompileFileName()!=getCurrentFileName() && configManager.parseMaster)
 		updateStructureForFile(getCompileFileName());
 	updateStructureForFile(getCurrentFileName());
-	
-	
+
+
 	if (!current.isEmpty()) {
 		QList<QTreeWidgetItem *> fItems=StructureTreeWidget->findItems(current,Qt::MatchRecursive,0);
 		if ((fItems.size()>0) && (fItems.at(0))) {
@@ -2187,7 +2160,7 @@ void Texmaker::updateStructure() {
 			}
 		}
 	}
-	
+
 	if (configManager.parseBibTeX) updateBibFiles();
 	updateCompleter();
 	cursorPositionChanged();
@@ -2200,10 +2173,10 @@ void Texmaker::updateStructureForFile(const QString& fileName){
 
 	QString shortName = QFileInfo(fileName).fileName(); //remove path
 	if (shortName.right(4)!=".tex")  return;
-	
+
 	LatexEditorView* edView=getEditorViewFromFileName(fileName);
 	if (!edView)return;
-	
+
 	if (edView->document) edView->document->updateStructure();
 
 	int pos;
@@ -2239,8 +2212,8 @@ void Texmaker::updateStructureForFile(const QString& fileName){
 			if (findTokenWithArg(curLine,commandTokens[j],name,arg)) {
 				int options=arg.toInt(); //returns 0 if conversion fails
 				for (int j=0; j<options; j++) {
-                                        if (j==0) name.append("{%<arg1%|%>}");
-                                        else name.append(QString("{%<arg%1%>}").arg(j+1));
+					if (j==0) name.append("{%<arg1%|%>}");
+					else name.append(QString("{%<arg%1%>}").arg(j+1));
 				}
 				userCommandList.append(name);
 			}
@@ -2271,7 +2244,7 @@ void Texmaker::updateStructureForFile(const QString& fileName){
 		//// bibliography ////
 		s=findToken(curLine,"\\bibliography{");
 		if (s!="") {
-			QStringList bibs=s.split(',',QString::SkipEmptyParts); 
+			QStringList bibs=s.split(',',QString::SkipEmptyParts);
 			mentionedBibTeXFiles<<bibs;
 			topbib->setHidden(false);
 			foreach (const QString& bibFile, bibs) {
@@ -2387,7 +2360,7 @@ void Texmaker::ClickedOnStructure(QTreeWidgetItem *item,int col) {
 		QDocumentLine mLine(dlh);
 		int l=mLine.lineNumber();
 		if(l<0) return;
-		if (edView != currentEditorView()) 
+		if (edView != currentEditorView())
 			EditorView->setCurrentWidget(edView);//change to editor, now item is deleted!
 		edView->editor->setFocus();
 		if(struct_level.contains(s)){
@@ -2611,7 +2584,7 @@ void Texmaker::InsertSymbol(QTableWidgetItem *item) {
 		SetMostUsedSymbols(item);
 	}
 }
- 
+
 void Texmaker::InsertXmlTag(QListWidgetItem *item)
 {
 	if (!currentEditorView())	return;
@@ -2628,9 +2601,9 @@ void Texmaker::InsertFromAction() {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (action)	{
 		QDocumentCursor c = currentEditorView()->editor->cursor();
-                CodeSnippet cs=CodeSnippet(action->data().toString());
-                cs.setTMX(this);
-                cs.insertAt(currentEditorView()->editor,&c);
+		CodeSnippet cs=CodeSnippet(action->data().toString());
+		cs.setTMX(this);
+		cs.insertAt(currentEditorView()->editor,&c);
 		outputView->setMessage(CodeSnippet(action->whatsThis()).lines.join("\n"));
 	}
 }
@@ -2667,8 +2640,8 @@ void Texmaker::InsertBib() {
 	tag +=QString("}\n");
 	InsertTag(tag,0,1);
 	outputView->setMessage(QString("The argument to \\bibliography refers to the bib file (without extension)\n")+
-	                                "which should contain your database in BibTeX format.\n"+
-	                                "Texmaker inserts automatically the base name of the TeX file");
+					"which should contain your database in BibTeX format.\n"+
+					"Texmaker inserts automatically the base name of the TeX file");
 }
 
 void Texmaker::InsertStruct() {
@@ -2976,10 +2949,10 @@ void Texmaker::InsertBibEntry(const QString& id){
 			currentEditor()->setCursorPosition(currentEditor()->document()->lines()-1,0);
 			bd->resultString="\n"+bd->resultString;
 		}
-			
+
 		CodeSnippet(bd->resultString).insert(currentEditor());
 	}
-	delete bd;		
+	delete bd;
 }
 
 void Texmaker::InsertUserTag() {
@@ -2988,36 +2961,36 @@ void Texmaker::InsertUserTag() {
 	int id = action->data().toInt();
 	if (id<0 || id>=10) return;
 	QString userTag=UserMenuTag[id];
-        if (userTag.left(8)=="%SCRIPT\n"){
-            scriptengine eng(this);
-            eng.setEditor(currentEditor());
-            userTag=userTag.remove(0,8);
-            eng.setScript(userTag);
-            eng.run();
-        } else {
-            if (userTag.left(1)=="%") {
-		userTag=userTag.remove(0,1);
-		CodeSnippet s("\\begin{"+userTag+"}");
-		s.insert(currentEditorView()->editor);
-            } else CodeSnippet(userTag).insert(currentEditorView()->editor);
-        }
+	if (userTag.left(8)=="%SCRIPT\n"){
+		scriptengine eng(this);
+		eng.setEditor(currentEditor());
+		userTag=userTag.remove(0,8);
+		eng.setScript(userTag);
+		eng.run();
+	} else {
+		if (userTag.left(1)=="%") {
+			userTag=userTag.remove(0,1);
+			CodeSnippet s("\\begin{"+userTag+"}");
+			s.insert(currentEditorView()->editor);
+		} else CodeSnippet(userTag).insert(currentEditorView()->editor);
+	}
 }
 
 void Texmaker::EditUserMenu() {
 	UserMenuDialog *umDlg = new UserMenuDialog(this,tr("Edit User &Tags"));
-        umDlg->Name=UserMenuName;
-        umDlg->Tag=UserMenuTag;
-        umDlg->Abbrev=UserMenuAbbrev;
-        umDlg->init();
+	umDlg->Name=UserMenuName;
+	umDlg->Tag=UserMenuTag;
+	umDlg->Abbrev=UserMenuAbbrev;
+	umDlg->init();
 	if (umDlg->exec())
-            UserMenuName=umDlg->Name;
-            UserMenuTag=umDlg->Tag;
-            UserMenuAbbrev=umDlg->Abbrev;
-            for (int i = 0; i <= 9; i++) {
-                QAction * act=getManagedAction("main/user/tags/tag"+QString::number(i));
-                if (act) act->setText(QString::number(i+1)+": "+UserMenuName[i]);
-            }
-            completer->setAbbreviations(UserMenuAbbrev,UserMenuTag);
+		UserMenuName=umDlg->Name;
+		UserMenuTag=umDlg->Tag;
+		UserMenuAbbrev=umDlg->Abbrev;
+		for (int i = 0; i <= 9; i++) {
+		QAction * act=getManagedAction("main/user/tags/tag"+QString::number(i));
+		if (act) act->setText(QString::number(i+1)+": "+UserMenuName[i]);
+	}
+	completer->setAbbreviations(UserMenuAbbrev,UserMenuTag);
 }
 
 void Texmaker::SectionCommand() {
@@ -3180,9 +3153,9 @@ void Texmaker::SpellingLanguageChanged() {
 	QString text=action->text();
 	comboSpell->defaultAction()->setText(text);
 
-	QString baseName=QFileInfo(spell_dic).absolutePath();
-	spell_dic=baseName+"/"+text;
-	mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);
+	QString baseName=QFileInfo(configManager.spell_dic).absolutePath();
+	configManager.spell_dic=baseName+"/"+text;
+	mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);
 }
 
 ///////////////TOOLS////////////////////
@@ -3207,7 +3180,7 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool 
 	}
 
 	ProcessX* procX = buildManager.newProcess(comd,finame,getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1);
-	
+
 	connect(procX, SIGNAL(readyReadStandardError()),this, SLOT(readFromStderr()));
 	if (showStdout) connect(procX, SIGNAL(readyReadStandardOutput()),this, SLOT(readFromStdoutput()));
 	connect(procX, SIGNAL(finished(int)),this, SLOT(SlotEndProcess(int)));
@@ -3226,7 +3199,7 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool 
 
 	if (compileLatex && configManager.showLogAfterCompiling)
 		connect(procX,SIGNAL(finished(int)),this,SLOT(ViewAndHighlightError()));
-	
+
 	if (waitendprocess) {
 		QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 		while (!FINPROCESS) {
@@ -3239,23 +3212,23 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool 
 void Texmaker::RunPreCompileCommand() {
 	outputView->resetMessagesAndLog();//log to old (whenever latex is called)
 	if (!buildManager.getLatexCommand(BuildManager::CMD_USER_PRECOMPILE).isEmpty()) {
-		stat2->setText(QString(" %1 ").arg(tr("Pre-LaTeX")));	
+		stat2->setText(QString(" %1 ").arg(tr("Pre-LaTeX")));
 		runCommand(BuildManager::CMD_USER_PRECOMPILE,true,false);
 	}
 	if (bibTeXFilesModified && configManager.runLaTeXBibTeXLaTeX) {
 		ERRPROCESS=false;
-		stat2->setText(QString(" %1 ").arg(tr("LaTeX")));	
+		stat2->setText(QString(" %1 ").arg(tr("LaTeX")));
 		runCommand(BuildManager::CMD_LATEX,true,false);
 		if (ERRPROCESS && !LogExists()) {
 			QMessageBox::warning(this,tr("Error"),tr("Could not start LaTeX."));
 			return;
-		}		
+		}
 		if (NoLatexErrors()) {
 			ERRPROCESS=false;
-			stat2->setText(QString(" %1 ").arg(tr("BibTeX")));	
+			stat2->setText(QString(" %1 ").arg(tr("BibTeX")));
 			runCommand(BuildManager::CMD_BIBTEX,true,false);
 			if (!ERRPROCESS) {
-				stat2->setText(QString(" %1 ").arg(tr("LaTeX")));	
+				stat2->setText(QString(" %1 ").arg(tr("LaTeX")));
 				runCommand(BuildManager::CMD_LATEX,true,false);
 			}
 		}
@@ -3455,9 +3428,9 @@ void Texmaker::WebPublish() {
 	if (!currentEditorView()->editor->getFileEncoding()) return;
 	fileSave();
 	QString finame=getCompileFileName();
-	
+
 	WebPublishDialog *ttwpDlg = new WebPublishDialog(this,configManager.webPublishDialogConfig, &buildManager,
-	        currentEditorView()->editor->getFileEncoding());
+		currentEditorView()->editor->getFileEncoding());
 	ttwpDlg->ui.inputfileEdit->setText(finame);
 	ttwpDlg->exec();
 	delete ttwpDlg;
@@ -3492,7 +3465,7 @@ void Texmaker::GenerateRandomText(){
 		QMessageBox::warning(this ,"TexMakerX", tr("The random text generator constructs new texts from existing words, so you have to open some text files"), QMessageBox::Ok);
 		return;
 	}
-		
+
 	QStringList allLines;
 	for (int i=0;i<EditorView->count();i++)
 		allLines<<(qobject_cast<LatexEditorView*>(EditorView->widget(i)))->editor->document()->textLines();
@@ -3503,7 +3476,7 @@ void Texmaker::GenerateRandomText(){
 //////////////// MESSAGES - LOG FILE///////////////////////
 bool Texmaker::LogExists() {
 	QString finame=getCompileFileName();
-	if ((singlemode && !currentEditorView()) || finame=="") 
+	if ((singlemode && !currentEditorView()) || finame=="")
 		return false;
 	QString logname=getAbsoluteFilePath(QFileInfo(finame).baseName(),".log");
 	QFileInfo fic(logname);
@@ -3538,10 +3511,10 @@ void Texmaker::ViewLog(bool noTabChange) {
 		outputView->loadLogFile(logname,getCompileFileName(),overrideFileName);
 		//display errors in editor
 		DisplayLatexError();
-		if (outputView->getLogModel()->found(LT_ERROR)) 
+		if (outputView->getLogModel()->found(LT_ERROR))
 			if (!NextError()) //jump to an error
-				PreviousError(); 
-					
+				PreviousError();
+
 
 	} else {
 		QMessageBox::warning(this,tr("Error"),tr("Log File not found !"));
@@ -3551,13 +3524,13 @@ void Texmaker::ViewLog(bool noTabChange) {
 //this is show after latex compilation to show the errors (it only opens the log them if there are any)
 void Texmaker::ViewAndHighlightError(){
 	ViewLog();
-	//it seems viewlog does this already, it calls nexterror if there are errors and 
-	//nexterror shows the log; 
+	//it seems viewlog does this already, it calls nexterror if there are errors and
+	//nexterror shows the log;
 	//but should nextError really show the log?
 	/*if (!NoLatexErrors()) {
 		//NextError();
 		outputView->showErrorListOrLog();
-	}*/			
+	}*/
 }
 
 ////////////////////////// ERRORS /////////////////////////////
@@ -3623,7 +3596,7 @@ bool Texmaker::gotoNearLogEntry(LogType lt, bool backward, QString notFoundMessa
 		} else {
 			QMessageBox::information(this,"TexMakerX",notFoundMessage);
 			//OutputTextEdit->setCursorPosition(0 , 0);
-		}	
+		}
 	}
 	return false;
 }
@@ -3632,7 +3605,7 @@ bool Texmaker::NextError() {
 }
 
 bool Texmaker::PreviousError() {
-	return gotoNearLogEntry(LT_ERROR,true,tr("No LaTeX errors detected !"));	
+	return gotoNearLogEntry(LT_ERROR,true,tr("No LaTeX errors detected !"));
 }
 
 void Texmaker::NextWarning() {
@@ -3685,46 +3658,35 @@ void Texmaker::HelpAbout() {
 }
 ////////////// OPTIONS //////////////////////////////////////
 void Texmaker::GeneralOptions() {
-	//don't add anything here, move it in the configManager
-	
-	ConfigDialog *confDlg = configManager.createConfigDialog(this);
-
-	confDlg->ui.lineEditAspellCommand->setText(spell_dic);
-	confDlg->ui.thesaurusFileName->setText(thesaurus_database);
-
-
-	if (configManager.execConfigDialog(confDlg)) {
-		spell_dic=confDlg->ui.lineEditAspellCommand->text();
-		mainSpeller->loadDictionary(spell_dic,configManager.configFileNameBase);
+	if (configManager.execConfigDialog()) {
+		mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);
 		// refresh quick language selection combobox
 		QFontMetrics fontMetrics(runToolBar->font());
 		QStringList list;
-		QDir fic=QFileInfo(spell_dic).absoluteDir();
+		QDir fic=QFileInfo(configManager.spell_dic).absoluteDir();
 		if (fic.exists() && fic.isReadable())
 			list << fic.entryList(QStringList("*.dic"),QDir::Files,QDir::Name);
-		createComboToolButton(spellToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(spell_dic).fileName(),comboSpell);
+		createComboToolButton(spellToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName(),comboSpell);
 
-		thesaurus_database=confDlg->ui.thesaurusFileName->text();
+
 #if QT_VERSION >= 0x040500
-                if (thesaurusFileName!=thesaurus_database){
-                    if (!QFile::exists(thesaurus_database))
-                        thesaurusFileName="<dontLoad>";
-                    else {
-
-                        databasefile=new QFile(thesaurus_database);
-                        if (!databasefile->open(QIODevice::ReadOnly)) {
-                            //QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
-                            thesaurusFileName="<dontLoad>";
-                            delete databasefile;
-                            databasefile=0;
-                        } else {
-                            thesaurusFileName="";
-                            thesaurusFuture=QtConcurrent::run(&ThesaurusDialog::loadDatabase,databasefile);
-                        }
-                    }
-                }
+		if (thesaurusFileName!=configManager.thesaurus_database){
+			if (!QFile::exists(configManager.thesaurus_database))
+				thesaurusFileName="<dontLoad>";
+			else {
+				databasefile=new QFile(configManager.thesaurus_database);
+				if (!databasefile->open(QIODevice::ReadOnly)) {
+					//QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
+					thesaurusFileName="<dontLoad>";
+					delete databasefile;
+					databasefile=0;
+				} else {
+					thesaurusFileName="";
+					thesaurusFuture=QtConcurrent::run(&ThesaurusDialog::loadDatabase,databasefile);
+				}
+			}
+		}
 #endif
-                //if(thesaurusDialog) thesaurusDialog->readDatabase(thesaurus_database);
 
 		if (currentEditorView()) {
 			for (int i=0; i<EditorView->count();i++) {
@@ -3733,32 +3695,31 @@ void Texmaker::GeneralOptions() {
 			}
 			UpdateCaption();
 		}
-                //custom toolbar
-                QHash<QString, QVariant>::const_iterator i = configManager.replacedIconsOnMenus.constBegin();
-                while (i != configManager.replacedIconsOnMenus.constEnd()) {
-                    QString id=i.key();
-                    QVariant zw=i.value();
-                    QAction * act= getManagedAction(id);
-                    if (act) {
-                        if(zw.canConvert<QString>()) act->setIcon(QIcon(zw.toString()));
-                    }
-                    i++;
-                }
-                customToolBar->clear();
-                int l=configManager.listCustomActions.size();
-                if(l>0){
-                    for (int i=0; i<l; i++){
-                        QAction *act=getManagedAction(configManager.listCustomActions.at(i));
-                        if(act->icon().isNull()){
-                            act->setIcon(QIcon(":/images/appicon.png"));
-                        }
-                        customToolBar->addAction(act);
-                    }
-                }
+		//custom toolbar
+		QHash<QString, QVariant>::const_iterator i = configManager.replacedIconsOnMenus.constBegin();
+		while (i != configManager.replacedIconsOnMenus.constEnd()) {
+			QString id=i.key();
+			QVariant zw=i.value();
+			QAction * act= getManagedAction(id);
+			if (act) {
+				if(zw.canConvert<QString>()) act->setIcon(QIcon(zw.toString()));
+			}
+			i++;
+		}
+		customToolBar->clear();
+		int l=configManager.listCustomActions.size();
+		if(l>0){
+			for (int i=0; i<l; i++){
+				QAction *act=getManagedAction(configManager.listCustomActions.at(i));
+				if(act->icon().isNull()){
+					act->setIcon(QIcon(":/images/appicon.png"));
+				}
+				customToolBar->addAction(act);
+			}
+		}
 		//completion
 		updateCompleter();
 	}
-	delete confDlg;
 }
 void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	// parse command line
@@ -3796,7 +3757,7 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 		gotoLine(line);
 		QTimer::singleShot(1000,currentEditor(),SLOT(ensureCursorVisible()));
 	}
-	
+
 	#ifndef QT_NO_DEBUG
 	//execute test after command line is known
 	if (realCmdLine) //only at start
@@ -3825,7 +3786,7 @@ void Texmaker::ToggleMode() {
 		return;
 	}
 	if (singlemode && currentEditorView()) {
-		if (getCurrentFileName()=="") 
+		if (getCurrentFileName()=="")
 			fileSave();
 		MasterName=getCurrentFileName();
 		if (MasterName=="") {
@@ -3864,24 +3825,24 @@ void Texmaker::viewToggleOutputView(){
 }
 
 void Texmaker::viewCloseSomething(){
-        if(windowState()==Qt::WindowFullScreen){
-            stateFullScreen=saveState(1);
-            setWindowState(Qt::WindowNoState);
+	if(windowState()==Qt::WindowFullScreen){
+	    stateFullScreen=saveState(1);
+	    setWindowState(Qt::WindowNoState);
 			restoreState(windowstate,0);
-            fullscreenModeAction->setChecked(false);
-            return;
-        }
+	    fullscreenModeAction->setChecked(false);
+	    return;
+	}
 	if (textAnalysisDlg) {
 		textAnalysisDlg->close();
 		return;
 	}
-	if (currentEditorView() && currentEditorView()->closeSomething()) 
+	if (currentEditorView() && currentEditorView()->closeSomething())
 		return;
 	if (outputView->isVisible()) {
 		viewToggleOutputView();
 		return;
 	}
-	
+
 }
 
 void Texmaker::setFullScreenMode() {
@@ -4003,7 +3964,7 @@ void Texmaker::updateBibFiles(){
 	//mentionedBibTeXFiles is set by updateStructure (which calls this)
 	bool changed=false;
 	for (int i=0; i<mentionedBibTeXFiles.count();i++){
-		mentionedBibTeXFiles[i]=getAbsoluteFilePath(mentionedBibTeXFiles[i],".bib").replace(QDir::separator(), "/"); //store absolute 
+		mentionedBibTeXFiles[i]=getAbsoluteFilePath(mentionedBibTeXFiles[i],".bib").replace(QDir::separator(), "/"); //store absolute
 		QString &fileName=mentionedBibTeXFiles[i];
 		QFileInfo fi(fileName);
 		if (!fi.isReadable()) continue; //ups...
@@ -4011,7 +3972,7 @@ void Texmaker::updateBibFiles(){
 			bibTeXFiles.insert(fileName,BibTeXFileInfo());
 		BibTeXFileInfo& bibTex=bibTeXFiles[mentionedBibTeXFiles[i]];
 		bibTex.loadIfModified(fileName);
-		if (bibTex.ids.empty() && !bibTex.linksTo.isEmpty()) 
+		if (bibTex.ids.empty() && !bibTex.linksTo.isEmpty())
 			//handle obscure bib tex feature, a just line containing "link fileName"
 			mentionedBibTeXFiles.append(bibTex.linksTo);
 	}
@@ -4029,18 +3990,18 @@ void Texmaker::updateCompleter() {
 	QStringList words;
 
 	words << userCommandList;
-        LatexEditorView* edView=currentEditorView();
-        if(edView && edView->document){
+	LatexEditorView* edView=currentEditorView();
+	if(edView && edView->document){
 	    QList<LatexDocument*> docs;
 	    if (singlemode) docs << edView->document;
 	    else docs << documents.documents;
 	    foreach(const LatexDocument* doc,docs){
-                for (int i=0; i<doc->labelItem.count(); ++i) {
-                    words.append("\\ref{"+doc->labelItem.at(i)+"}");
-                    words.append("\\pageref{"+doc->labelItem.at(i)+"}");
-                }
-            }
-        }
+		for (int i=0; i<doc->labelItem.count(); ++i) {
+		    words.append("\\ref{"+doc->labelItem.at(i)+"}");
+		    words.append("\\pageref{"+doc->labelItem.at(i)+"}");
+		}
+	    }
+	}
 
 	if (configManager.parseBibTeX)
 		for (int i=0; i<mentionedBibTeXFiles.count();i++){
@@ -4049,21 +4010,21 @@ void Texmaker::updateCompleter() {
 				continue; //wtf?s
 			}
 			BibTeXFileInfo& bibTex=bibTeXFiles[mentionedBibTeXFiles[i]];
-                        /*for (int i=0; i<bibTex.ids.count();i++)
-                                words.append("\\cite{"+bibTex.ids[i]+"}");*/
-                        //automatic use of cite commans
-                        LatexCompleterConfig *conf=configManager.completerConfig;
-                        QStringList citeCommands=conf->words;
-                        citeCommands=citeCommands.filter(QRegExp("^\\\\[Cc]ite.*"));
-                        for (int i=0; i<bibTex.ids.count();i++){
-                            foreach(QString elem,citeCommands){
-                                elem.replace("%<keylist%>",bibTex.ids[i]);
-                                words << elem;
-                            }
-                            //words.append("\\cite{"+bibTex.ids[i]+"}");
-                        }
+			/*for (int i=0; i<bibTex.ids.count();i++)
+				words.append("\\cite{"+bibTex.ids[i]+"}");*/
+			//automatic use of cite commans
+			LatexCompleterConfig *conf=configManager.completerConfig;
+			QStringList citeCommands=conf->words;
+			citeCommands=citeCommands.filter(QRegExp("^\\\\[Cc]ite.*"));
+			for (int i=0; i<bibTex.ids.count();i++){
+			    foreach(QString elem,citeCommands){
+				elem.replace("%<keylist%>",bibTex.ids[i]);
+				words << elem;
+			    }
+			    //words.append("\\cite{"+bibTex.ids[i]+"}");
+			}
 		}
-	
+
 	completer->setAdditionalWords(words);
 
 	if (!LatexCompleter::hasHelpfile()) {
@@ -4080,16 +4041,16 @@ void Texmaker::tabChanged(int i) {
 void Texmaker::jumpToSearch(QString filename,int lineNumber){
     if(currentEditor()->fileName()==filename && currentEditor()->cursor().lineNumber()==lineNumber)
     {
-        QDocumentCursor c=currentEditor()->cursor();
-        int col=c.columnNumber();
-        gotoLine(lineNumber);
-        col=outputView->getNextSearchResultColumn(c.line().text() ,col+1);
-        currentEditor()->setCursorPosition(lineNumber,col);
+	QDocumentCursor c=currentEditor()->cursor();
+	int col=c.columnNumber();
+	gotoLine(lineNumber);
+	col=outputView->getNextSearchResultColumn(c.line().text() ,col+1);
+	currentEditor()->setCursorPosition(lineNumber,col);
     } else {
-        gotoLocation(lineNumber,filename);
-        int col=outputView->getNextSearchResultColumn(currentEditor()->document()->line(lineNumber).text() ,0);
-        currentEditor()->setCursorPosition(lineNumber,col);
-        outputView->showSearchResults();
+	gotoLocation(lineNumber,filename);
+	int col=outputView->getNextSearchResultColumn(currentEditor()->document()->line(lineNumber).text() ,0);
+	currentEditor()->setCursorPosition(lineNumber,col);
+	outputView->showSearchResults();
     }
 }
 
@@ -4142,7 +4103,7 @@ bool Texmaker::gotoMark(bool backward, int id) {
 
 void Texmaker::StructureContextMenuOld(const QPoint& point) {
 	QTreeWidgetItem* item=StructureTreeWidget->currentItem();
-	if (!item) return; 
+	if (!item) return;
 	if(item->parent()&&item->text(0)!="LABELS"&&item->text(1)!="include"&&item->text(1)!="input"){
 		if (item->parent()->text(0)=="LABELS") {
 			QMenu menu;
@@ -4228,7 +4189,7 @@ void removeDeletedLineHandle(QTreeWidgetItem* item, QDocumentLineHandle* l){
 	if(!item) return;
 	for (int i=0; i< item->childCount(); i++)
 		removeDeletedLineHandle(item,l);
-	if (item->data(Texmaker::structureTreeLineColumn,Qt::UserRole).value<QDocumentLineHandle*>() == l) 
+	if (item->data(Texmaker::structureTreeLineColumn,Qt::UserRole).value<QDocumentLineHandle*>() == l)
 		item->setData(Texmaker::structureTreeLineColumn,Qt::UserRole,QVariant::fromValue(0));
 }
 
@@ -4247,7 +4208,7 @@ void Texmaker::previewLatex(){
 	if (c.hasSelection()) {
 		originalText = c.selectedText();
 	} else {
-		//search matching parantheses 
+		//search matching parantheses
 		//it will just get the ones with the greatest distance to each other
 		//=>problem if multiple matches appear (e.g ()|$...$)
 		//TODO: it doesn't work if the match is in another line
@@ -4278,34 +4239,34 @@ void Texmaker::previewLatex(){
     int m_endingLine=edView->editor->document()->findLineContaining("\\begin{document}",0,Qt::CaseSensitive);
     if (m_endingLine<0) return; // can't create header
     QStringList header;
-	for (int l=0; l<m_endingLine; l++) 
+	for (int l=0; l<m_endingLine; l++)
 		header << edView->editor->document()->line(l).text();
 	header << "\\pagestyle{empty}";// << "\\begin{document}";
 	buildManager.preview(header.join("\n"), originalText, edView->editor->codec());
 }
 void Texmaker::previewAvailable(const QString& imageFile, const QString& /*text*/){
-	if (configManager.previewMode == ConfigManager::PM_BOTH || 
-		configManager.previewMode == ConfigManager::PM_PANEL|| 
+	if (configManager.previewMode == ConfigManager::PM_BOTH ||
+		configManager.previewMode == ConfigManager::PM_PANEL||
 		(configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && outputView->isPreviewPanelVisible())) {
 		outputView->showPreview();
 		outputView->previewLatex(QPixmap(imageFile));
 	}
-	if (configManager.previewMode == ConfigManager::PM_BOTH || 
-		configManager.previewMode == ConfigManager::PM_TOOLTIP|| 
+	if (configManager.previewMode == ConfigManager::PM_BOTH ||
+		configManager.previewMode == ConfigManager::PM_TOOLTIP||
 		previewEquation||
 		(configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && !outputView->isPreviewPanelVisible())) {
-                QPoint p;
-                if(previewEquation)
-                    p=currentEditorView()->getHoverPosistion();
-                else
-                    p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
+		QPoint p;
+		if(previewEquation)
+		    p=currentEditorView()->getHoverPosistion();
+		else
+		    p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
 		QRect screen = QApplication::desktop()->screenGeometry();
 		QPixmap img(imageFile);
 		int w=img.width();
 		if(w>screen.width()) w=screen.width()-2;
 		QToolTip::showText(p, QString("<img src=\""+imageFile+"\" width=%1 />").arg(w), 0);
 		LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
-		
+
 	}
 	previewEquation=false;
 }
@@ -4379,7 +4340,7 @@ void Texmaker::editInsertRefToPrevLabel() {
 		StructureToolbox->removeItem(index);
 	}*/
  }
- 
+
 void Texmaker::symbolAddFavorite(){
 	SymbolGridWidget* grid=qobject_cast<SymbolGridWidget*>(leftPanel->currentWidget());
 	if (!grid) return;
@@ -4504,31 +4465,31 @@ void Texmaker::cursorPositionChangedOld(){
 	QString currentFileName=currentEditor()->fileName();
 	int line=-1;
 	while (*it) {
-            if( !(*it)->parent()){
+	    if( !(*it)->parent()){
 				fname=(*it)->text(1);
-            }
+	    }
 			if ((fname==currentFileName)&&((*it)->parent() && (*it)->parent()->isExpanded())){
 				if(struct_level.contains((*it)->text(1))){
 					//line=(*it)->text(2).toInt(&ok);
-                    QDocumentLineHandle *dlh = (*it)->data(structureTreeLineColumn,Qt::UserRole).value<QDocumentLineHandle*>();
-                    if (!dlh) return;
-                    QDocumentLine mLine(dlh);
-                    line=mLine.lineNumber();
-                    if (line > currentLine){
-                        if(item){
-                            if(currentTreeItem) currentTreeItem->setBackground(0,oldBackground);
-                            currentTreeItem=item;
-                            oldBackground=currentTreeItem->background(0);
-                            currentTreeItem->setBackground(0,Qt::lightGray);
-                            if(!mDontScrollToItem) StructureTreeWidget->scrollToItem(item);
-                            mDontScrollToItem=false;
-                        }
-                        break;
-                    }
-                    item=(*it);
-                }
-            }
-            ++it;
+		    QDocumentLineHandle *dlh = (*it)->data(structureTreeLineColumn,Qt::UserRole).value<QDocumentLineHandle*>();
+		    if (!dlh) return;
+		    QDocumentLine mLine(dlh);
+		    line=mLine.lineNumber();
+		    if (line > currentLine){
+			if(item){
+			    if(currentTreeItem) currentTreeItem->setBackground(0,oldBackground);
+			    currentTreeItem=item;
+			    oldBackground=currentTreeItem->background(0);
+			    currentTreeItem->setBackground(0,Qt::lightGray);
+			    if(!mDontScrollToItem) StructureTreeWidget->scrollToItem(item);
+			    mDontScrollToItem=false;
+			}
+			break;
+		    }
+		    item=(*it);
+		}
+	    }
+	    ++it;
 	}
 	if(!(*it) && item){
 		if(currentTreeItem) currentTreeItem->setBackground(0,oldBackground);
