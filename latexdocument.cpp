@@ -362,9 +362,11 @@ void LatexDocumentsModel::setHighlightedEntry(StructureEntry* entry){
 
 
 void LatexDocumentsModel::structureUpdated(LatexDocument* document){
+	mHighlightedEntry=0;
 	reset();
 }
 void LatexDocumentsModel::structureLost(LatexDocument* document){
+	mHighlightedEntry=0;
 	reset();
 }
 
