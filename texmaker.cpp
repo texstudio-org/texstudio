@@ -200,6 +200,7 @@ void Texmaker::setupDockWidgets(){
 	//Structure panel
 	if (!leftPanel) {
 		leftPanel = new CustomWidgetList(this);
+		leftPanel->setWindowTitle(tr("Structure"));
 		leftPanel->setObjectName("leftPanel");
 		leftPanel->setAllowedAreas(Qt::AllDockWidgetAreas);
 		leftPanel->setFeatures(QDockWidget::DockWidgetClosable);
@@ -212,20 +213,19 @@ void Texmaker::setupDockWidgets(){
 
 		connect(leftPanel,SIGNAL(widgetContextMenuRequested(QWidget*, QPoint)),this,SLOT(SymbolGridContextMenu(QWidget*, QPoint)));
 	}
-	leftPanel->setWindowTitle(tr("Structure"));
 
 	if (!structureTreeView) {
 		structureTreeView=new QTreeView(this);
+		structureTreeView->header()->hide();
 		structureTreeView->setModel(documents.model);
-//		StructureTreeView->header()->hide();
 		connect(structureTreeView, SIGNAL(activated(const QModelIndex &)), SLOT(clickedOnStructureEntry(const QModelIndex &))); //enter or double click (+single click on some platforms)
 		connect(structureTreeView, SIGNAL(pressed(const QModelIndex &)), SLOT(clickedOnStructureEntry(const QModelIndex &))); //single click
 		connect(structureTreeView, SIGNAL(expanded(const QModelIndex &)), SLOT(treeWidgetChanged()));
 		connect(structureTreeView, SIGNAL(collapsed(const QModelIndex &)), SLOT(treeWidgetChanged()));
 //-- connect( StructureTreeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem *,int )), SLOT(DoubleClickedOnStructure(QTreeWidgetItem *,int))); // qt4 bugs - don't use it ?? also true for view??
 
-		leftPanel->addWidget(structureTreeView, "structureTreeView", tr("Structure (new)"), ":/images/structure.png");
-	} else leftPanel->setWidgetText(structureTreeView,tr("Structure (experimental)"));
+		leftPanel->addWidget(structureTreeView, "structureTreeView", tr("Structure"), ":/images/structure.png");
+	} else leftPanel->setWidgetText(structureTreeView,tr("Structure"));
 
 	if (!StructureTreeWidget) {
 		StructureTreeWidget=new QTreeWidget(this);
@@ -266,7 +266,7 @@ void Texmaker::setupDockWidgets(){
 	addTagList("asymptote", ":/images/asymptote.png", tr("Asymptote Commands"),"asymptote_tags.xml");
 
 	leftPanel->showWidgets(configManager.newLeftPanelLayout);
-	
+
 	// update MostOftenUsed
 	MostUsedSymbolsTriggered(true);
 	// clean not further used map;
