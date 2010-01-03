@@ -594,6 +594,29 @@ The following table gives an overview on the possible commands.
 	<td> return selected filename (after exec)
   </tr>  
 </table> 
+Some examples:
+<ul>
+<li>Execution of editor text: <pre>
+%SCRIPT
+eval(editor.text());</pre>
+You can use this to easier write and test scripts
+</li>
+<li>Calculator:<pre>
+%SCRIPT
+currentLine=editor.text(cursor.lineNumber()); 
+from=currentLine.lastIndexOf("%")+1; 
+to=currentLine.lastIndexOf("="); 
+if (from>=0 && to > from) {
+  toEvaluate = currentLine.substring(from, to);
+  value = eval(toEvaluate);
+  cursor.eraseLine(); 
+  cursor.insertText(currentLine.substring(0, from)+toEvaluate+"="+value); 
+  cursor.insertLine();
+  cursor.movePosition(1,cursorEnums.Left );
+}
+</pre>
+This will evaluate everything between % and = and write the result after the =. You can use it like a calculator if you write %5+3= in the tex file.
+</ul>
 </p>
 <p>You can also launch your own commands (shortcuts : Alt+Shift+F1...Alt+Shift+F5). These commands are defined with the "User - User Commands" menu.</p>
 <h2><a name="SECTION34">4.4 Pstricks support</a></h2>
