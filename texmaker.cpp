@@ -4512,7 +4512,7 @@ void Texmaker::cursorPositionChanged(){
 	if (!model) return; //shouldn't happen
 
 	StructureEntry *oldSection = model->highlightedEntry();
-	if (oldSection && currentLine>oldLine && currentLine<oldSection->lineNumber)
+	if (oldSection && currentLine>oldLine && currentLine<oldSection->lineNumber && oldSection->document==currentEditorView()->document)
 		return; //still in the same section
 
 	StructureEntry *newSection=0;
@@ -4542,7 +4542,7 @@ void Texmaker::cursorPositionChanged(){
 				indexHierarchy.removeLast();
 			}
 		}
-		if (entryHierarchy.isEmpty()) return;
+		if (entryHierarchy.isEmpty()) break;
 
 		StructureEntry *curSection=entryHierarchy.last()->children.at(indexHierarchy.last());
 
