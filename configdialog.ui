@@ -1316,6 +1316,9 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         </widget>
        </item>
        <item>
+        <widget class="QSpinBox" name="sbDirSearchDepth"/>
+       </item>
+       <item>
         <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>

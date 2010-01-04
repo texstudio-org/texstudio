@@ -35,6 +35,7 @@ public:
 	bool runLaTeXBibTeXLaTeX;
 
 	bool autoCheckinAfterSave;
+	int svnSearchPathDepth;
 	
 	//appearance 
 	QPalette systemPalette; 

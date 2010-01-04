@@ -1276,6 +1276,11 @@ void Texmaker::fileSaveAs(QString fileName) {
 		currentEditor()->save(fn);
 		MarkCurrentFileAsRecent();
 
+		if(configManager.autoCheckinAfterSave){
+			svnadd(QStringList(currentEditor()->fileName()));
+			checkin(QStringList(currentEditor()->fileName()));
+		}
+
 		EditorView->setTabText(EditorView->indexOf(currentEditorView()),currentEditor()->name());
 	}
 
@@ -4587,5 +4592,24 @@ void Texmaker::checkin(QStringList fns, QString text){
 	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
 	cmd+="ci -m \""+text+"\" "+fns.join(" ");
 	stat2->setText(QString(" svn check in "));
+	runCommand(cmd, false, true,false);
+}
+
+void Texmaker::svnadd(QStringList fns,int stage){
+	foreach(QString elem,fns){
+		QString path=QDir(elem).absoluteFilePath(elem);
+		if(!QFile::exists(path+".svn")&&stage<configManager.svnSearchPathDepth){
+			if(stage>0){
+				QDir dr(path);
+				dr.cdUp();
+				path=dr.absolutePath();
+			}
+			svnadd(QStringList(path),stage+1);
+			checkin(QStringList(path));
+		}
+	}
+	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+	cmd+="add "+fns.join(" ");
+	stat2->setText(QString(" svn add "));
 	runCommand(cmd, false, true,false);
 }
