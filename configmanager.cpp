@@ -125,6 +125,7 @@ QSettings* ConfigManager::readSettings() {
 	buildManager->readSettings(*config);
 	showLogAfterCompiling=config->value("Tools/Show Log After Compiling", true).toBool();
 	runLaTeXBibTeXLaTeX=config->value("Tools/After BibTeX Change", "tmx://latex && tmx://bibtex && tmx://latex").toString()!="";
+	autoCheckinAfterSave=config->value("Tools/Auto Checkin after Save", false).toBool();
 	
 	//read user key replacements
 	keyReplace.clear();
@@ -319,6 +320,8 @@ QSettings* ConfigManager::saveSettings() {
 	buildManager->saveSettings(*config);
 	config->setValue("Tools/Show Log After Compiling", showLogAfterCompiling);
 	config->setValue("Tools/After BibTeX Change",runLaTeXBibTeXLaTeX?"tmx://latex && tmx://bibtex && tmx://latex":"");
+
+	config->setValue("Tools/Auto Checkin after Save", autoCheckinAfterSave);
 	
 	//-------------------key replacements-----------------
 	int keyReplaceCount = keyReplace.count();
@@ -485,6 +488,27 @@ bool ConfigManager::execConfigDialog() {
 		buttonsToCommands.insert(bdefault,cmd);
 		commandsToEdits.insert(cmd,e);
 	}
+	QGridLayout* glsvn=new QGridLayout(confDlg->ui.groupBoxSVN);
+	confDlg->ui.groupBoxSVN->setLayout(glsvn);
+	for (BuildManager::LatexCommand cmd=BuildManager::CMD_SVN; cmd <= BuildManager::CMD_SVN; ++cmd){
+		QLabel *l = new QLabel(confDlg);
+		l->setText(BuildManager::commandDisplayName(cmd));
+		QLineEdit *e = new QLineEdit(confDlg);
+		e->setText(buildManager->getLatexCommandForDisplay(cmd));
+		QPushButton *b = new QPushButton(confDlg);
+		b->setIcon(QIcon(":/images/fileopen.png"));
+		connect(b,SIGNAL(clicked()),this,SLOT(browseCommand()));
+		QPushButton *bdefault = new QPushButton(confDlg);
+		bdefault->setIcon(QIcon(":/images/undo.png"));
+		connect(bdefault,SIGNAL(clicked()),this,SLOT(undoCommand()));
+		glsvn->addWidget(l,(int)cmd,0);
+		glsvn->addWidget(e,(int)cmd,1);
+		glsvn->addWidget(b,(int)cmd,2);
+		glsvn->addWidget(bdefault,(int)cmd,3);
+		buttonsToCommands.insert(b,cmd);
+		buttonsToCommands.insert(bdefault,cmd);
+		commandsToEdits.insert(cmd,e);
+	}
 	//quickbuild/more page	
 	if (buildManager->quickmode==1) confDlg->ui.radioButton1->setChecked(true);
 	else if (buildManager->quickmode==2) confDlg->ui.radioButton2->setChecked(true);
@@ -498,6 +522,8 @@ bool ConfigManager::execConfigDialog() {
 	
 	confDlg->ui.checkBoxShowLog->setChecked(showLogAfterCompiling);
 	confDlg->ui.checkBoxRunAfterBibTeXChange->setChecked(runLaTeXBibTeXLaTeX);
+
+	confDlg->ui.cbAutoCheckin->setChecked(autoCheckinAfterSave);
 	
 	//menu shortcuts
 	QTreeWidgetItem * menuShortcuts=new QTreeWidgetItem((QTreeWidget*)0, QStringList() << QString(tr("Menus")));
@@ -529,36 +555,36 @@ bool ConfigManager::execConfigDialog() {
 	confDlg->ui.shortcutTree->setItemDelegate(&delegate); //setting in the config dialog doesn't work
 	delegate.connect(confDlg->ui.shortcutTree,SIGNAL(itemClicked(QTreeWidgetItem *, int)),&delegate,SLOT(treeWidgetItemClicked(QTreeWidgetItem * , int)));
 
-        //latex menus
-        changedItemsList.clear();
-        foreach(QMenu* menu, managedMenus){
-                QTreeWidgetItem *menuLatex=managedLatexMenuToTreeWidget(0,menu);
-                if(menuLatex) {
-                    confDlg->ui.latexTree->addTopLevelItem(menuLatex);
-                    menuLatex->setExpanded(true);
-                }
-            }
-        connect(confDlg->ui.latexTree,SIGNAL(itemChanged(QTreeWidgetItem*,int)),this,SLOT(latexTreeItemChanged(QTreeWidgetItem*,int)));
+	//latex menus
+	changedItemsList.clear();
+	foreach(QMenu* menu, managedMenus){
+		QTreeWidgetItem *menuLatex=managedLatexMenuToTreeWidget(0,menu);
+		if(menuLatex) {
+			confDlg->ui.latexTree->addTopLevelItem(menuLatex);
+			menuLatex->setExpanded(true);
+		}
+	}
+	connect(confDlg->ui.latexTree,SIGNAL(itemChanged(QTreeWidgetItem*,int)),this,SLOT(latexTreeItemChanged(QTreeWidgetItem*,int)));
 
-        // custom toolbar
-        int l=listCustomActions.size();
-        confDlg->ui.listCustomToolBar->clear();
-        if(l>0){
-            for (int i=0; i<l; i++){
-                QAction *act=getManagedAction(listCustomActions.at(i));
-                if(act) {
-                    QListWidgetItem *item=new QListWidgetItem(act->icon(),act->text());
-                    item->setData(Qt::UserRole,listCustomActions.at(i));
-                    confDlg->ui.listCustomToolBar->addItem(item);
-                }
-            }
-        }
-        foreach(QMenu* menu, managedMenus){
-            populateCustomActions(confDlg->ui.listCustomIcons,menu);
-        }
-        confDlg->replacedIconsOnMenus=&replacedIconsOnMenus;
+	// custom toolbar
+	int l=listCustomActions.size();
+	confDlg->ui.listCustomToolBar->clear();
+	if(l>0){
+		for (int i=0; i<l; i++){
+			QAction *act=getManagedAction(listCustomActions.at(i));
+			if(act) {
+				QListWidgetItem *item=new QListWidgetItem(act->icon(),act->text());
+				item->setData(Qt::UserRole,listCustomActions.at(i));
+				confDlg->ui.listCustomToolBar->addItem(item);
+			}
+		}
+	}
+	foreach(QMenu* menu, managedMenus){
+		populateCustomActions(confDlg->ui.listCustomIcons,menu);
+	}
+	confDlg->replacedIconsOnMenus=&replacedIconsOnMenus;
 
-        //appearance
+	//appearance
 	confDlg->ui.checkBoxShowAdvancedOptions->setChecked(configShowAdvancedOptions);
 	QString displayedInterfaceStyle=interfaceStyle==""?tr("default"):interfaceStyle;
 	confDlg->ui.comboBoxInterfaceStyle->clear();
@@ -662,6 +688,11 @@ bool ConfigManager::execConfigDialog() {
 			buildManager->setLatexCommand(cmd,commandsToEdits.value(cmd)->text());;
 		}
 		
+		for (BuildManager::LatexCommand cmd=BuildManager::CMD_SVN; cmd <= BuildManager::CMD_SVN; ++cmd){
+			if (!commandsToEdits.value(cmd)) continue;
+			buildManager->setLatexCommand(cmd,commandsToEdits.value(cmd)->text());;
+		}
+
 		buildManager->setLatexCommand(BuildManager::CMD_USER_PRECOMPILE,confDlg->ui.lineEditExecuteBeforeCompiling->text());
 		buildManager->setLatexCommand(BuildManager::CMD_USER_QUICK,confDlg->ui.lineEditUserquick->text());
 
@@ -674,6 +705,8 @@ bool ConfigManager::execConfigDialog() {
 
 		showLogAfterCompiling=confDlg->ui.checkBoxShowLog->isChecked();	
 		runLaTeXBibTeXLaTeX=confDlg->ui.checkBoxRunAfterBibTeXChange->isChecked();
+
+		autoCheckinAfterSave=confDlg->ui.cbAutoCheckin->isChecked();
 		
 		//key replacements
 		keyReplace.clear();

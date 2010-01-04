@@ -33,6 +33,8 @@ public:
 	BuildManager* buildManager; 
 	bool showLogAfterCompiling;
 	bool runLaTeXBibTeXLaTeX;
+
+	bool autoCheckinAfterSave;
 	
 	//appearance 
 	QPalette systemPalette; 

@@ -352,10 +352,11 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	createIcon(tr("Commands"),QIcon(":/images/configtools.png"));
 	createIcon(tr("Quick Build"),QIcon(":/images/configquick.png"));
 	createIcon(tr("Shortcuts"),QIcon(":/images/configkeys.png"));
-        createIcon(tr("Latex Menus"),QIcon(":/images/configkeys.png"));
-        createIcon(tr("Custom Toolbar"),QIcon(":/images/configkeys.png"));
+	createIcon(tr("Latex Menus"),QIcon(":/images/configkeys.png"));
+	createIcon(tr("Custom Toolbar"),QIcon(":/images/configkeys.png"));
 	createIcon(tr("Editor"),QIcon(":/images/configeditor.png"));
 	createIcon(tr("Completion"),QIcon(":/images/configcompletion.png"));
+	createIcon(tr("SVN"),QIcon(":/images/configtools.png"));
 
 	connect(ui.contentsWidget,
 	        SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),

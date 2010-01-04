@@ -127,7 +127,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>5</number>
+      <number>8</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -1296,6 +1296,37 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <bool>true</bool>
          </property>
         </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_5">
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QCheckBox" name="cbAutoCheckin">
+         <property name="text">
+          <string>Automatically check in after save ?</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBoxSVN">
+         <property name="title">
+          <string>SVN Commands</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>554</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
