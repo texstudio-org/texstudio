@@ -179,7 +179,8 @@ private slots:
 	void filePrint();
 	void fileCheckin(QString filename="");
 	void checkin(QStringList fns,QString text="tmx auto checkin");
-	void svnadd(QStringList fns,int stage=0);
+	bool svnadd(QStringList fns,int stage=0);
+	void svncreateRep(QString fn);
 
 	void editUndo();
 	void editRedo();

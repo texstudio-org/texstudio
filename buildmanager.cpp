@@ -46,6 +46,7 @@ QString BuildManager::cmdToConfigString(LatexCommand cmd){
 		case CMD_USER_PRECOMPILE: return "Tools/Precompile";
 		case CMD_USER_QUICK: return "Tools/Userquick";
 		case CMD_SVN: return "Tools/SVN";
+		case CMD_SVNADMIN: return "Tools/SVNADMIN";
 		default: return QString("_unknown_cmd_%1").arg((int)cmd);
 	}
 }
@@ -239,6 +240,8 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 			return "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex|xdvi %.dvi";
 		case CMD_SVN:
 			return "svn";
+		case CMD_SVNADMIN:
+			return "svnadmin";
 		case CMD_USER_PRECOMPILE:
 		case CMD_MAXIMUM_COMMAND_VALUE:
 			return "";
@@ -369,6 +372,7 @@ QString BuildManager::baseCommandName(LatexCommand cmd){
 		case CMD_DVIPDF: return "dvipdf";
 		case CMD_METAPOST: return "mpost";
 		case CMD_SVN: return "svn";
+		case CMD_SVNADMIN: return "svnadmin";
 		/*case CMD_VIEWDVI: case CMD_VIEWPS:  case CMD_VIEWPDF: 
 			viewer are platform dependent*/
 		case CMD_GHOSTSCRIPT: return "gs";
@@ -395,6 +399,7 @@ QString BuildManager::defaultCommandOptions(LatexCommand cmd){
 		case CMD_VIEWPS: return "%.ps";
 		case CMD_VIEWPDF: return "%.pdf";
 		case CMD_SVN: return "";
+		case CMD_SVNADMIN: return "";
 		default: return "";
 	}
 }
@@ -414,6 +419,7 @@ QString BuildManager::commandDisplayName(LatexCommand cmd){
 		case CMD_VIEWPDF: return tr("Pdf Viewer");
 		case CMD_GHOSTSCRIPT: return "Ghostscript";
 		case CMD_SVN: return "SVN";
+		case CMD_SVNADMIN: return "SVNADMIN";
 		default: return "";
 	}
 }

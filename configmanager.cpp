@@ -492,7 +492,7 @@ bool ConfigManager::execConfigDialog() {
 	}
 	QGridLayout* glsvn=new QGridLayout(confDlg->ui.groupBoxSVN);
 	confDlg->ui.groupBoxSVN->setLayout(glsvn);
-	for (BuildManager::LatexCommand cmd=BuildManager::CMD_SVN; cmd <= BuildManager::CMD_SVN; ++cmd){
+	for (BuildManager::LatexCommand cmd=BuildManager::CMD_SVN; cmd <= BuildManager::CMD_SVNADMIN; ++cmd){
 		QLabel *l = new QLabel(confDlg);
 		l->setText(BuildManager::commandDisplayName(cmd));
 		QLineEdit *e = new QLineEdit(confDlg);
@@ -691,7 +691,7 @@ bool ConfigManager::execConfigDialog() {
 			buildManager->setLatexCommand(cmd,commandsToEdits.value(cmd)->text());;
 		}
 		
-		for (BuildManager::LatexCommand cmd=BuildManager::CMD_SVN; cmd <= BuildManager::CMD_SVN; ++cmd){
+		for (BuildManager::LatexCommand cmd=BuildManager::CMD_SVN; cmd <= BuildManager::CMD_SVNADMIN; ++cmd){
 			if (!commandsToEdits.value(cmd)) continue;
 			buildManager->setLatexCommand(cmd,commandsToEdits.value(cmd)->text());;
 		}
