@@ -1277,8 +1277,15 @@ void Texmaker::fileSaveAs(QString fileName) {
 		MarkCurrentFileAsRecent();
 
 		if(configManager.autoCheckinAfterSave){
-			svnadd(QStringList(currentEditor()->fileName()));
-			checkin(QStringList(currentEditor()->fileName()));
+			if(svnadd(QStringList(currentEditor()->fileName()))){
+				checkin(QStringList(currentEditor()->fileName()));
+			} else {
+				//create simple repository
+				svncreateRep(currentEditor()->fileName());
+				svnadd(QStringList(currentEditor()->fileName()));
+				checkin(QStringList(currentEditor()->fileName()));
+			}
+
 		}
 
 		EditorView->setTabText(EditorView->indexOf(currentEditorView()),currentEditor()->name());
@@ -4595,21 +4602,40 @@ void Texmaker::checkin(QStringList fns, QString text){
 	runCommand(cmd, false, true,false);
 }
 
-void Texmaker::svnadd(QStringList fns,int stage){
+bool Texmaker::svnadd(QStringList fns,int stage){
 	foreach(QString elem,fns){
-		QString path=QDir(elem).absoluteFilePath(elem);
-		if(!QFile::exists(path+".svn")&&stage<configManager.svnSearchPathDepth){
-			if(stage>0){
-				QDir dr(path);
-				dr.cdUp();
-				path=dr.absolutePath();
+		QString path=QFileInfo(elem).absolutePath();
+		if(!QFile::exists(path+"/.svn")){
+			if(stage<configManager.svnSearchPathDepth){
+				if(stage>0){
+					QDir dr(path);
+					dr.cdUp();
+					path=dr.absolutePath();
+				}
+				if(svnadd(QStringList(path),stage+1)){
+					checkin(QStringList(path));
+				} else
+					return false;
+			} else {
+				return false;
 			}
-			svnadd(QStringList(path),stage+1);
-			checkin(QStringList(path));
 		}
 	}
 	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
 	cmd+="add "+fns.join(" ");
 	stat2->setText(QString(" svn add "));
 	runCommand(cmd, false, true,false);
+	return true;
+}
+
+void Texmaker::svncreateRep(QString fn){
+	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+	QString admin=buildManager.getLatexCommand(BuildManager::CMD_SVNADMIN);
+	QString path=QFileInfo(fn).absolutePath();
+	admin+="create "+path+"/repo";
+	stat2->setText(QString(" svn create repo "));
+	runCommand(admin, true, true,false);
+	stat2->setText(QString(" svn checkout repo "));
+	cmd+="co file:///"+path+"/repo "+path;
+	runCommand(cmd, true, true,false);
 }
