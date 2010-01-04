@@ -19,6 +19,7 @@ public:
 	void addVariable(int* var, QString description="");
 	void addVariable(QString* var, QString description="");
 	void addVariable(QStringList* var, QString description="");
+	void addTextEdit(QString* var, QString description="");
 	virtual void showEvent(QShowEvent* event);
 };
 

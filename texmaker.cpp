@@ -317,6 +317,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"saveas",tr("Save As"), SLOT(fileSaveAs()), Qt::CTRL+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu,"saveall",tr("Save All"), SLOT(fileSaveAll()), Qt::CTRL+Qt::SHIFT+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu, "maketemplate",tr("Make Template"), SLOT(fileMakeTemplate()));
+	newManagedAction(menu, "checkin",tr("Check in"), SLOT(fileCheckin()));
 
 	menu->addSeparator();
 	newManagedAction(menu,"close",tr("Close"), SLOT(fileClose()), Qt::CTRL+Qt::Key_W, ":/images/fileclose.png");
@@ -1241,6 +1242,7 @@ void Texmaker::fileSave() {
 		currentEditor()->save();
 		//currentEditorView()->editor->setModified(false);
 		MarkCurrentFileAsRecent();
+		if(configManager.autoCheckinAfterSave) checkin(QStringList(currentEditor()->fileName()));
 	}
 	UpdateCaption();
 }
@@ -4568,4 +4570,22 @@ void Texmaker::cursorPositionChanged(){
 void Texmaker::treeWidgetChanged(){
 	currentLine=-1;
 	cursorPositionChanged();
+}
+
+void Texmaker::fileCheckin(QString filename){
+	QString fn=filename.isEmpty() ? currentEditor()->fileName() : filename;
+	UniversalInputDialog dialog;
+	QString text;
+	dialog.addTextEdit(&text, tr("commit comment:"));
+	if (dialog.exec()==QDialog::Accepted){
+		fileSave();
+		checkin(QStringList(fn),text);
+	}
+}
+
+void Texmaker::checkin(QStringList fns, QString text){
+	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+	cmd+="ci -m \""+text+"\" "+fns.join(" ");
+	stat2->setText(QString(" svn check in "));
+	runCommand(cmd, false, true,false);
 }

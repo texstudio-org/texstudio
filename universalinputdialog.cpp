@@ -25,6 +25,11 @@ void UniversalInputDialog::myAccept(){
 				*((QString*)storage) = edit->text();
 				continue;
 			}
+			QTextEdit* tedit = qobject_cast<QTextEdit*>(w);
+			if (tedit){
+				*((QString*)storage) = tedit->toPlainText();
+				continue;
+			}
 			QSpinBox* spinBox = qobject_cast<QSpinBox*>(w);
 			if (spinBox){
 				*((int*)storage) = spinBox->value();
@@ -80,6 +85,12 @@ void UniversalInputDialog::addVariable(QStringList* var, QString description){
 	QComboBox* cmb = new QComboBox(this);
 	cmb->addItems(*var);
 	addWidget(cmb,description,var);
+}
+void UniversalInputDialog::addTextEdit(QString* var, QString description){
+	Q_ASSERT(var);
+	QTextEdit* edit = new QTextEdit(this);
+	edit->setPlainText(*var);
+	addWidget(edit,description,var);
 }
 void UniversalInputDialog::showEvent(QShowEvent* event){
 	QDialog::showEvent(event);
