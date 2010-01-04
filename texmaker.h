@@ -112,7 +112,7 @@ private:
 
 //toolbars
 //
-        QToolBar *fileToolBar, *editToolBar, *runToolBar, *formatToolBar, *mathToolBar, *spellToolBar, *customToolBar;
+	QToolBar *fileToolBar, *editToolBar, *runToolBar, *formatToolBar, *mathToolBar, *spellToolBar, *customToolBar;
 	QAction *ToggleAct, *ToggleRememberAct;
 
 	QLabel *stat1, *stat2, *stat3;
@@ -177,6 +177,8 @@ private slots:
 	void fileOpenRecentProject();
 	void MarkCurrentFileAsRecent();
 	void filePrint();
+	void fileCheckin(QString filename="");
+	void checkin(QStringList fns,QString text="tmx auto checkin");
 
 	void editUndo();
 	void editRedo();
@@ -398,8 +400,8 @@ protected:
 
 	QByteArray stateFullScreen;
 
-        QString thesaurusFileName;
-        QFile *databasefile;
+	QString thesaurusFileName;
+	QFile *databasefile;
 #if QT_VERSION >= 0x040500
         QFuture<ThesaurusDatabaseType> thesaurusFuture;
 #endif
