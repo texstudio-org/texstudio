@@ -28,6 +28,7 @@ public:
 		CMD_GHOSTSCRIPT,
 		CMD_USER_QUICK,
 		CMD_USER_PRECOMPILE,
+		CMD_SVN,
 		CMD_MAXIMUM_COMMAND_VALUE
 	};
 	static QString findFileInPath(QString fileName);
