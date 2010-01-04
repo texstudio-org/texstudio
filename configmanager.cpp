@@ -126,6 +126,7 @@ QSettings* ConfigManager::readSettings() {
 	showLogAfterCompiling=config->value("Tools/Show Log After Compiling", true).toBool();
 	runLaTeXBibTeXLaTeX=config->value("Tools/After BibTeX Change", "tmx://latex && tmx://bibtex && tmx://latex").toString()!="";
 	autoCheckinAfterSave=config->value("Tools/Auto Checkin after Save", false).toBool();
+	svnSearchPathDepth=config->value("Tools/SVN Search Path Depth", 2).toInt();
 	
 	//read user key replacements
 	keyReplace.clear();
@@ -322,6 +323,7 @@ QSettings* ConfigManager::saveSettings() {
 	config->setValue("Tools/After BibTeX Change",runLaTeXBibTeXLaTeX?"tmx://latex && tmx://bibtex && tmx://latex":"");
 
 	config->setValue("Tools/Auto Checkin after Save", autoCheckinAfterSave);
+	config->setValue("Tools/SVN Search Path Depth", svnSearchPathDepth);
 	
 	//-------------------key replacements-----------------
 	int keyReplaceCount = keyReplace.count();
@@ -524,6 +526,7 @@ bool ConfigManager::execConfigDialog() {
 	confDlg->ui.checkBoxRunAfterBibTeXChange->setChecked(runLaTeXBibTeXLaTeX);
 
 	confDlg->ui.cbAutoCheckin->setChecked(autoCheckinAfterSave);
+	confDlg->ui.sbDirSearchDepth->setValue(svnSearchPathDepth);
 	
 	//menu shortcuts
 	QTreeWidgetItem * menuShortcuts=new QTreeWidgetItem((QTreeWidget*)0, QStringList() << QString(tr("Menus")));
@@ -707,6 +710,7 @@ bool ConfigManager::execConfigDialog() {
 		runLaTeXBibTeXLaTeX=confDlg->ui.checkBoxRunAfterBibTeXChange->isChecked();
 
 		autoCheckinAfterSave=confDlg->ui.cbAutoCheckin->isChecked();
+		svnSearchPathDepth=confDlg->ui.sbDirSearchDepth->value();
 		
 		//key replacements
 		keyReplace.clear();
