@@ -262,6 +262,15 @@ void QDocument::redo()
 
 }
 
+void QDocument::clearUndo()
+{
+	if ( m_impl )
+	{
+		m_impl->m_commands.clear();
+	}
+}
+
+
 /*!
 	\return The content of the document
 	\param mode extra processing to perform on text

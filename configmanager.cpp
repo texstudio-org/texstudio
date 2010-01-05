@@ -126,6 +126,7 @@ QSettings* ConfigManager::readSettings() {
 	showLogAfterCompiling=config->value("Tools/Show Log After Compiling", true).toBool();
 	runLaTeXBibTeXLaTeX=config->value("Tools/After BibTeX Change", "tmx://latex && tmx://bibtex && tmx://latex").toString()!="";
 	autoCheckinAfterSave=config->value("Tools/Auto Checkin after Save", false).toBool();
+	svnUndo=config->value("Tools/SVN Undo", false).toBool();
 	svnSearchPathDepth=config->value("Tools/SVN Search Path Depth", 2).toInt();
 	
 	//read user key replacements
@@ -323,6 +324,7 @@ QSettings* ConfigManager::saveSettings() {
 	config->setValue("Tools/After BibTeX Change",runLaTeXBibTeXLaTeX?"tmx://latex && tmx://bibtex && tmx://latex":"");
 
 	config->setValue("Tools/Auto Checkin after Save", autoCheckinAfterSave);
+	config->setValue("Tools/SVN Undo", svnUndo);
 	config->setValue("Tools/SVN Search Path Depth", svnSearchPathDepth);
 	
 	//-------------------key replacements-----------------
@@ -526,6 +528,7 @@ bool ConfigManager::execConfigDialog() {
 	confDlg->ui.checkBoxRunAfterBibTeXChange->setChecked(runLaTeXBibTeXLaTeX);
 
 	confDlg->ui.cbAutoCheckin->setChecked(autoCheckinAfterSave);
+	confDlg->ui.cbSVNUndo->setChecked(svnUndo);
 	confDlg->ui.sbDirSearchDepth->setValue(svnSearchPathDepth);
 	
 	//menu shortcuts
@@ -710,6 +713,7 @@ bool ConfigManager::execConfigDialog() {
 		runLaTeXBibTeXLaTeX=confDlg->ui.checkBoxRunAfterBibTeXChange->isChecked();
 
 		autoCheckinAfterSave=confDlg->ui.cbAutoCheckin->isChecked();
+		svnUndo=confDlg->ui.cbSVNUndo->isChecked();
 		svnSearchPathDepth=confDlg->ui.sbDirSearchDepth->value();
 		
 		//key replacements

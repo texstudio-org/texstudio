@@ -181,6 +181,8 @@ private slots:
 	void checkin(QStringList fns,QString text="tmx auto checkin");
 	bool svnadd(QStringList fns,int stage=0);
 	void svncreateRep(QString fn);
+	void svnUndo(bool redo=false);
+	void svnPatch(QEditor *ed,QString diff);
 
 	void editUndo();
 	void editRedo();
@@ -292,7 +294,7 @@ private slots:
 	void QuickDocument();
 
 	void runCommand(BuildManager::LatexCommand cmd,bool waitendprocess,bool showStdout);
-	void runCommand(QString comd,bool waitendprocess,bool showStdout, bool compileLatex=false);
+	void runCommand(QString comd,bool waitendprocess,bool showStdout, bool compileLatex=false,QString *buffer=0);
 	void RunPreCompileCommand();
 	void readFromStderr();
 	void readFromStdoutput();
@@ -399,6 +401,8 @@ protected:
 	QTreeWidgetItem *currentTreeItem;
 	QBrush oldBackground;
 	bool mDontScrollToItem;
+
+	int undoRevision;
 
 	QByteArray stateFullScreen;
 

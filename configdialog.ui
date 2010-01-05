@@ -1309,6 +1309,13 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="cbSVNUndo">
+         <property name="text">
+          <string>Uses SVN revisions to undo before last saved version ?</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QGroupBox" name="groupBoxSVN">
          <property name="title">
           <string>SVN Commands</string>

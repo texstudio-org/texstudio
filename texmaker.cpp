@@ -49,7 +49,7 @@ const int Texmaker::structureTreeLineColumn=4;
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 		: QMainWindow(parent, flags), bibTeXFilesModified(false),
-				textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false) {
+				textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false),undoRevision(0) {
 
 	MapForSymbols=0;
 	currentLine=-1;
@@ -1242,7 +1242,10 @@ void Texmaker::fileSave() {
 		currentEditor()->save();
 		//currentEditorView()->editor->setModified(false);
 		MarkCurrentFileAsRecent();
-		if(configManager.autoCheckinAfterSave) checkin(QStringList(currentEditor()->fileName()));
+		if(configManager.autoCheckinAfterSave) {
+			checkin(QStringList(currentEditor()->fileName()));
+			if(configManager.svnUndo) currentEditor()->document()->clearUndo();
+		}
 	}
 	UpdateCaption();
 }
@@ -1443,12 +1446,26 @@ void Texmaker::filePrint() {
 //////////////////////////// EDIT ///////////////////////
 void Texmaker::editUndo() {
 	if (!currentEditorView()) return;
-	currentEditorView()->editor->undo();
+	if(currentEditor()->document()->canUndo()){
+		currentEditor()->undo();
+		if(undoRevision>0) undoRevision=-1;
+	}else{
+		if(configManager.svnUndo && (undoRevision>=0)){
+			svnUndo();
+		}
+	}
+
 }
 
 void Texmaker::editRedo() {
 	if (!currentEditorView()) return;
-	currentEditorView()->editor->redo();
+	if(currentEditor()->document()->canUndo()){
+		currentEditorView()->editor->redo();
+	} else {
+		if(configManager.svnUndo && (undoRevision>0)){
+			svnUndo(true);
+		}
+	}
 }
 
 void Texmaker::editCut() {
@@ -3178,7 +3195,7 @@ void Texmaker::runCommand(BuildManager::LatexCommand cmd,bool waitendprocess,boo
 	if(compileLatex) ClearMarkers();
 	runCommand(buildManager.getLatexCommand(cmd),waitendprocess,showStdout,compileLatex);
 }
-void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool compileLatex) {
+void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool compileLatex,QString *buffer) {
 	QString finame=getCompileFileName();
 	QString commandline=comd;
 	QByteArray result;
@@ -3195,10 +3212,11 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool 
 
 	ProcessX* procX = buildManager.newProcess(comd,finame,getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1);
 
+	procX->setBuffer(buffer);
+
 	connect(procX, SIGNAL(readyReadStandardError()),this, SLOT(readFromStderr()));
 	if (showStdout) connect(procX, SIGNAL(readyReadStandardOutput()),this, SLOT(readFromStdoutput()));
 	connect(procX, SIGNAL(finished(int)),this, SLOT(SlotEndProcess(int)));
-
 
 	outputView->resetMessages();
 
@@ -3263,15 +3281,25 @@ void Texmaker::readFromStdoutput() {
 	if (!procX) return;
 	QByteArray result=procX->readAllStandardOutput();
 	QString t=QString(result).trimmed();
+	QString *buffer=procX->getBuffer();
+	if(buffer) buffer->append(t);
 	if (!t.isEmpty()) outputView->insertMessageLine(t+"\n");
 }
 
 void Texmaker::SlotEndProcess(int err) {
+	ProcessX* procX = qobject_cast<ProcessX*> (sender());
 	FINPROCESS=true;
 	QString result=((err) ? "Process exited with error(s)" : "Process exited normally");
 	if (err) ERRPROCESS=true;
 	outputView->insertMessageLine(result);
 	stat2->setText(QString(" %1 ").arg(tr("Ready")));
+	if(!procX) return;
+	QString *buffer=procX->getBuffer();
+	if(buffer){
+		QByteArray result=procX->readAllStandardOutput();
+		QString t=QString(result).trimmed();
+		buffer->append(t);
+	}
 }
 
 void Texmaker::QuickBuild() {
@@ -4600,6 +4628,7 @@ void Texmaker::checkin(QStringList fns, QString text){
 	cmd+="ci -m \""+text+"\" "+fns.join(" ");
 	stat2->setText(QString(" svn check in "));
 	runCommand(cmd, false, true,false);
+	undoRevision=0; // needs to be changed to document property
 }
 
 bool Texmaker::svnadd(QStringList fns,int stage){
@@ -4638,4 +4667,77 @@ void Texmaker::svncreateRep(QString fn){
 	stat2->setText(QString(" svn checkout repo "));
 	cmd+="co file:///"+path+"/repo "+path;
 	runCommand(cmd, true, true,false);
+}
+
+void Texmaker::svnUndo(bool redo){
+	QString cmd_svn=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+	QString fn=currentEditor()->fileName();
+	// get revisions of current file
+	QString cmd=cmd_svn+"log "+fn;
+	QString buffer;
+	runCommand(cmd,true,false,false,&buffer);
+	QStringList revisions=buffer.split("\n",QString::SkipEmptyParts);
+	buffer.clear();
+	QMutableStringListIterator i(revisions);
+	bool keep=false;
+	QString elem;
+	while(i.hasNext()){
+		elem=i.next();
+		if(!keep) i.remove();
+		keep=elem.contains(QRegExp("-{60,}"));
+	}
+
+	int l=revisions.size();
+	if(undoRevision>=l-1) return;
+	if(!redo) undoRevision++;
+	// get diff
+	QRegExp rx("^[r](\\d+) \\|");
+	QString old_revision=revisions.at(undoRevision-1);
+	if(rx.indexIn(old_revision)>-1){
+		old_revision=rx.cap(1);
+	} else return;
+	QString new_revision=revisions.at(undoRevision);
+	if(rx.indexIn(new_revision)>-1){
+		new_revision=rx.cap(1);
+	} else return;
+	if(redo) cmd=cmd_svn+"diff -r "+new_revision+":"+old_revision+" "+fn;
+	else cmd=cmd_svn+"diff -r "+old_revision+":"+new_revision+" "+fn;
+	runCommand(cmd,true,false,false,&buffer);
+	// patch
+	svnPatch(currentEditor(),buffer);
+	if(redo) undoRevision--;
+}
+
+void Texmaker::svnPatch(QEditor *ed,QString diff){
+	QStringList lines=diff.split("\n");
+	for(int i=0;i<4;i++) lines.removeFirst();
+	//qDebug() <<lines;
+	QRegExp rx("@@ -(\\d+),\\d+");
+	int cur_line;
+	int offset=0;
+	QDocumentCursor c=ed->cursor();
+	foreach(QString elem,lines){
+		QChar ch=elem.at(0);
+		if(ch=='@'){
+			if(rx.indexIn(elem)>-1){
+				cur_line=rx.cap(1).toInt();
+				c.moveTo(cur_line-1+offset,0);
+			}
+		}else{
+			if(ch=='-'){
+				c.eraseLine();
+				offset--;
+			}else{
+				if(ch=='+'){
+					//c.insertLine();
+					c.insertText(elem.right(elem.length()-1));
+					offset++;
+				} else {
+					c.movePosition(1,QDocumentCursor::Down,QDocumentCursor::MoveAnchor);
+					c.movePosition(1,QDocumentCursor::StartOfLine,QDocumentCursor::MoveAnchor);
+				}
+			}
+		}
+	}
+	ed->document()->clearUndo();
 }

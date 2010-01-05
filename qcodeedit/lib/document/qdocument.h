@@ -233,6 +233,8 @@ class QCE_EXPORT QDocument : public QObject
 		
 		void undo();
 		void redo();
+
+		void clearUndo();
 		
 		void setClean();
 		
