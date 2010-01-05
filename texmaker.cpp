@@ -49,7 +49,7 @@ const int Texmaker::structureTreeLineColumn=4;
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 		: QMainWindow(parent, flags), bibTeXFilesModified(false),
-				textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false),undoRevision(0) {
+				textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false) {
 
 	MapForSymbols=0;
 	currentLine=-1;
@@ -1446,9 +1446,16 @@ void Texmaker::filePrint() {
 //////////////////////////// EDIT ///////////////////////
 void Texmaker::editUndo() {
 	if (!currentEditorView()) return;
+
+	QVariant zw=currentEditor()->property("undoRevision");
+	int undoRevision=zw.canConvert<int>()?zw.toInt():0;
+
 	if(currentEditor()->document()->canUndo()){
 		currentEditor()->undo();
-		if(undoRevision>0) undoRevision=-1;
+		if(undoRevision>0) {
+			undoRevision=-1;
+			currentEditor()->setProperty("undoRevision",undoRevision);
+		}
 	}else{
 		if(configManager.svnUndo && (undoRevision>=0)){
 			svnUndo();
@@ -1459,6 +1466,10 @@ void Texmaker::editUndo() {
 
 void Texmaker::editRedo() {
 	if (!currentEditorView()) return;
+
+	QVariant zw=currentEditor()->property("undoRevision");
+	int undoRevision=zw.canConvert<int>()?zw.toInt():0;
+
 	if(currentEditor()->document()->canUndo()){
 		currentEditorView()->editor->redo();
 	} else {
@@ -4628,7 +4639,10 @@ void Texmaker::checkin(QStringList fns, QString text){
 	cmd+="ci -m \""+text+"\" "+fns.join(" ");
 	stat2->setText(QString(" svn check in "));
 	runCommand(cmd, false, true,false);
-	undoRevision=0; // needs to be changed to document property
+	foreach(QString elem,fns){
+		LatexEditorView *edView=getEditorViewFromFileName(elem);
+		edView->editor->setProperty("undoRevision",0);
+	}
 }
 
 bool Texmaker::svnadd(QStringList fns,int stage){
@@ -4687,6 +4701,9 @@ void Texmaker::svnUndo(bool redo){
 		keep=elem.contains(QRegExp("-{60,}"));
 	}
 
+	QVariant zw=currentEditor()->property("undoRevision");
+	int undoRevision=zw.canConvert<int>()?zw.toInt():0;
+
 	int l=revisions.size();
 	if(undoRevision>=l-1) return;
 	if(!redo) undoRevision++;
@@ -4706,6 +4723,7 @@ void Texmaker::svnUndo(bool redo){
 	// patch
 	svnPatch(currentEditor(),buffer);
 	if(redo) undoRevision--;
+	currentEditor()->setProperty("undoRevision",undoRevision);
 }
 
 void Texmaker::svnPatch(QEditor *ed,QString diff){

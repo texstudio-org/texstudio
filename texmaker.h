@@ -159,7 +159,7 @@ private:
 	void configureNewEditorView(LatexEditorView *edit);
 	LatexEditorView* getEditorViewFromFileName(const QString &fileName);
 	
-        QAction* outputViewAction, *fullscreenModeAction;
+	QAction* outputViewAction, *fullscreenModeAction;
 private slots:
 
 	void fileNew(QString fileName="untitled");
@@ -401,8 +401,6 @@ protected:
 	QTreeWidgetItem *currentTreeItem;
 	QBrush oldBackground;
 	bool mDontScrollToItem;
-
-	int undoRevision;
 
 	QByteArray stateFullScreen;
 
