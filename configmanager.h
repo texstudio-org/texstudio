@@ -35,6 +35,7 @@ public:
 	bool runLaTeXBibTeXLaTeX;
 
 	bool autoCheckinAfterSave;
+	bool svnUndo;
 	int svnSearchPathDepth;
 	
 	//appearance 

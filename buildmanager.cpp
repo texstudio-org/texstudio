@@ -660,7 +660,7 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 #endif
 
 ProcessX::ProcessX(BuildManager* parent, const QString &assignedCommand, const QString& fileToCompile):
-		QProcess(parent), cmd(assignedCommand), file(fileToCompile), started(false) {
+		QProcess(parent), cmd(assignedCommand), file(fileToCompile), started(false), mBuffer(0) {
 }
 void ProcessX::startCommand() {
 	#ifdef Q_WS_WIN

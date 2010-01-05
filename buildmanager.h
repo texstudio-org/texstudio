@@ -97,10 +97,18 @@ public:
 	bool waitForStarted(int timeOut=30000);
 	const QString& getFile();
 	const QString& getCommandLine();
+	QString *getBuffer(){
+		return mBuffer;
+	}
+	void setBuffer(QString *buffer) {
+		mBuffer=buffer;
+	}
+
 private:
 	QString cmd;
 	QString file;
 	bool started;
+	QString *mBuffer;
 };
 
 
