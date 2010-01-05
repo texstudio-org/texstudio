@@ -239,9 +239,9 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 		case CMD_USER_QUICK: 
 			return "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex|xdvi %.dvi";
 		case CMD_SVN:
-			return "svn";
+			return "svn ";
 		case CMD_SVNADMIN:
-			return "svnadmin";
+			return "svnadmin ";
 		case CMD_USER_PRECOMPILE:
 		case CMD_MAXIMUM_COMMAND_VALUE:
 			return "";
