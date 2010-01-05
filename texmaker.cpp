@@ -4636,7 +4636,7 @@ void Texmaker::fileCheckin(QString filename){
 
 void Texmaker::checkin(QStringList fns, QString text){
 	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
-	cmd+="ci -m \""+text+"\" "+fns.join(" ");
+	cmd+=" ci -m \""+text+"\" "+fns.join(" ");
 	stat2->setText(QString(" svn check in "));
 	runCommand(cmd, false, true,false);
 	foreach(QString elem,fns){
@@ -4665,7 +4665,7 @@ bool Texmaker::svnadd(QStringList fns,int stage){
 		}
 	}
 	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
-	cmd+="add "+fns.join(" ");
+	cmd+=" add "+fns.join(" ");
 	stat2->setText(QString(" svn add "));
 	runCommand(cmd, false, true,false);
 	return true;
@@ -4675,11 +4675,11 @@ void Texmaker::svncreateRep(QString fn){
 	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
 	QString admin=buildManager.getLatexCommand(BuildManager::CMD_SVNADMIN);
 	QString path=QFileInfo(fn).absolutePath();
-	admin+="create "+path+"/repo";
+	admin+=" create "+path+"/repo";
 	stat2->setText(QString(" svn create repo "));
 	runCommand(admin, true, true,false);
 	stat2->setText(QString(" svn checkout repo "));
-	cmd+="co file:///"+path+"/repo "+path;
+	cmd+=" co file:///"+path+"/repo "+path;
 	runCommand(cmd, true, true,false);
 }
 
@@ -4687,7 +4687,7 @@ void Texmaker::svnUndo(bool redo){
 	QString cmd_svn=buildManager.getLatexCommand(BuildManager::CMD_SVN);
 	QString fn=currentEditor()->fileName();
 	// get revisions of current file
-	QString cmd=cmd_svn+"log "+fn;
+	QString cmd=cmd_svn+" log "+fn;
 	QString buffer;
 	runCommand(cmd,true,false,false,&buffer);
 	QStringList revisions=buffer.split("\n",QString::SkipEmptyParts);
@@ -4717,8 +4717,8 @@ void Texmaker::svnUndo(bool redo){
 	if(rx.indexIn(new_revision)>-1){
 		new_revision=rx.cap(1);
 	} else return;
-	if(redo) cmd=cmd_svn+"diff -r "+new_revision+":"+old_revision+" "+fn;
-	else cmd=cmd_svn+"diff -r "+old_revision+":"+new_revision+" "+fn;
+	if(redo) cmd=cmd_svn+" diff -r "+new_revision+":"+old_revision+" "+fn;
+	else cmd=cmd_svn+" diff -r "+old_revision+":"+new_revision+" "+fn;
 	runCommand(cmd,true,false,false,&buffer);
 	// patch
 	svnPatch(currentEditor(),buffer);
