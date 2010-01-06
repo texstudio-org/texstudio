@@ -608,7 +608,7 @@ from=currentLine.lastIndexOf("%")+1;
 to=currentLine.lastIndexOf("="); 
 if (from>=0 && to > from) {
   toEvaluate = currentLine.substring(from, to);
-  value = eval(toEvaluate);
+  with (Math) { value = eval(toEvaluate);}
   cursor.eraseLine(); 
   cursor.insertText(currentLine.substring(0, from)+toEvaluate+"="+value); 
   cursor.insertLine();

@@ -122,8 +122,6 @@ class QCE_EXPORT QDocumentLineHandle
 		
 		inline void ref() { m_ref.ref(); }
 		inline void deref() { if ( m_ref ) m_ref.deref(); if ( !m_ref ) delete this; }
-
-		bool lineHasSelection;
 		
 	protected:
 		~QDocumentLineHandle();
@@ -153,6 +151,8 @@ class QCE_EXPORT QDocumentLineHandle
 		QVector<int> m_formats;
 		QVector<QParenthesis> m_parens;
 		QList<QFormatRange> m_overlays;
+
+		bool lineHasSelection;
 };
 
 Q_DECLARE_TYPEINFO(QDocumentLineHandle*, Q_PRIMITIVE_TYPE);

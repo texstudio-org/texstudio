@@ -5535,6 +5535,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			}
 		}
 
+
 		if ( inSel && m_selectionBoundaries.count() == 1 && m_selectionBoundaries.at(0) == 0 )
 		{
 			m_selectionBoundaries.clear();
@@ -5625,9 +5626,10 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		//p->fillRect(cxt.xoffset, pos + 1,
 		//			cxt.width, m_lineHeight,
 		//			bg);
-		if(inSel!=h->lineHasSelection) {
+		bool curSelectionState=inSel || (!m_selectionBoundaries.empty());
+		if(curSelectionState!=h->lineHasSelection) {
 			h->setFlag(QDocumentLine::LayoutDirty,true);
-			h->lineHasSelection=inSel;
+			h->lineHasSelection=curSelectionState;
 		}
 
 		p->save();
