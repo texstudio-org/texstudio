@@ -4678,8 +4678,14 @@ void Texmaker::svncreateRep(QString fn){
 	admin+=" create "+path+"/repo";
 	stat2->setText(QString(" svn create repo "));
 	runCommand(admin, true, true,false);
-	stat2->setText(QString(" svn checkout repo "));
-	cmd+=" co file:///"+path+"/repo "+path;
+	QString scmd=cmd+" mkdir file:///"+path+"/repo/trunk -m\"tmx auto generate\"";
+	runCommand(scmd, true, true,false);
+	scmd=cmd+" mkdir file:///"+path+"/repo/branches -m\"tmx auto generate\"";
+	runCommand(scmd, true, true,false);
+	scmd=cmd+" mkdir file:///"+path+"/repo/tags -m\"tmx auto generate\"";
+	runCommand(scmd, true, true,false);
+	stat2->setText(QString(" svn checkout repo"));
+	cmd+=" co file:///"+path+"/repo/trunk "+path;
 	runCommand(cmd, true, true,false);
 }
 
