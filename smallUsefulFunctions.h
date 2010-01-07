@@ -102,6 +102,12 @@ public:
 	static int commentStart(const QString& text);
 	
 	static ContextType findContext(const QString &line, int column, QString &command, QString& value);
+
+	static QSet<QString> refCommands;
+	static QSet<QString> labelCommands;
+	static QSet<QString> citeCommands;
+	static QSet<QString> environmentCommands;
+	static QSet<QString> optionCommands;
 };
 
 #endif

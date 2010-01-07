@@ -4,10 +4,11 @@ const QString CommonEOW="~!@#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`+ï¿½´";
 const QString EscapedChars="%&_";
 const QString CharacterAlteringChars="\"";
 
-const QStringList refCommands = QStringList() << "\\ref" << "\\pageref" ;
-const QStringList labelCommands = QStringList() << "\\label" ;
-const QStringList citeCommands = QStringList() << "\\cite" << "\\nocite" << "\\citeauthor" << "\\textcite" << "\\parencite" << "\\citetitle" << "\\footcite" << "\\nptextcite" ;
-const QStringList environmentCommands = QStringList() << "\\begin" << "\\end" << "\\newenvironment" << "\\renewenvironment";
+QSet<QString> LatexParser::refCommands = QSet<QString>::fromList(QStringList() << "\\ref" << "\\pageref");
+QSet<QString> LatexParser::labelCommands = QSet<QString>::fromList(QStringList() << "\\label");
+QSet<QString> LatexParser::citeCommands = QSet<QString>::fromList(QStringList() << "\\cite" << "\\citet" << "\\citetitle" << "\\citep" << "\\citeauthor" << "\\footcite" << "\\nocite"  << "\\nptextcite" << "\\parencite" << "\\textcite");
+QSet<QString> LatexParser::environmentCommands = QSet<QString>::fromList(QStringList() << "\\begin" << "\\end" << "\\newenvironment" << "\\renewenvironment");
+QSet<QString> LatexParser::optionCommands = QSet<QString>::fromList(QStringList() << LatexParser::refCommands.toList() << LatexParser::labelCommands.toList() << "\\includegraphics" << "\\usepackage" << "\\documentclass" << "\\include" << "\\input" << "\\hspace" << "\\vspace");
 
 
 QString getCommonEOW() {
@@ -257,8 +258,6 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 
 
 NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordStartIndex, bool returnCommands,bool abbreviations) {
-	static const QStringList optionCommands = QStringList() << "\\ref" << "\\pageref" << "\\label"  << "\\includegraphics" << "\\usepackage" << "\\documentclass" << "\\include" << "\\input" << "\\hspace" << "\\vspace";
-
 	int reference=-1;
 	QString lastCommand="";
 	while ((wordStartIndex = nextToken(line, index,abbreviations))!=-1) {
@@ -273,19 +272,19 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 			break; //ignore
 		case '}':
                         if (reference!=-1) {
-                            if (refCommands.contains(lastCommand)){
+			    if (LatexParser::refCommands.contains(lastCommand)){
                                 wordStartIndex=reference;
                                 --index;
                                 outWord=line.mid(reference,index-reference);
                                 return NW_REFERENCE;
                             } else {
-                                if (labelCommands.contains(lastCommand)){
+				if (LatexParser::labelCommands.contains(lastCommand)){
                                     wordStartIndex=reference;
                                     --index;
                                     outWord=line.mid(reference,index-reference);
                                     return NW_LABEL;
                                 } else {
-                                    if (citeCommands.contains(lastCommand)){
+				    if (LatexParser::citeCommands.contains(lastCommand)){
                                         wordStartIndex=reference;
                                         --index;
                                         outWord=line.mid(reference,index-reference);
@@ -299,9 +298,9 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 		case '\\':
 			if (outWord.length()==1 || !(EscapedChars.contains(outWord.at(1)) || CharacterAlteringChars.contains(outWord.at(1)))) {
 				if (returnCommands) return NW_COMMAND;
-				if (!optionCommands.contains(lastCommand)) {
+				if (!LatexParser::optionCommands.contains(lastCommand)) {
 					lastCommand=outWord;
-					if (refCommands.contains(lastCommand)||labelCommands.contains(lastCommand)||citeCommands.contains(lastCommand))
+					if (LatexParser::refCommands.contains(lastCommand)||LatexParser::labelCommands.contains(lastCommand)||LatexParser::citeCommands.contains(lastCommand))
 						reference=index; //todo: support for nested brackets like \cite[\xy{\ab{s}}]{miau}
 				}
 				break;
@@ -310,9 +309,9 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 			if (reference==-1) {
 				if (outWord.contains("\\")||outWord.contains("\""))
 					outWord=latexToPlainWord(outWord); //remove special chars
-				if (optionCommands.contains(lastCommand))
+				if (LatexParser::optionCommands.contains(lastCommand))
 					; //ignore command options
-				else if (environmentCommands.contains(lastCommand))
+				else if (LatexParser::environmentCommands.contains(lastCommand))
 					return NW_ENVIRONMENT;
 				else return NW_TEXT;
 			}
@@ -494,13 +493,13 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
 		case 0: return Unknown;
 		case 1: return Command;
 		case 2: 
-			if (environmentCommands.contains(command))
+			if (LatexParser::environmentCommands.contains(command))
 				return Environment;
-			else if (labelCommands.contains(command)) 
+			else if (LatexParser::labelCommands.contains(command))
 				return Label;
-			else if (refCommands.contains(command))
+			else if (LatexParser::refCommands.contains(command))
 				return Reference;
-			else if (citeCommands.contains(command))
+			else if (LatexParser::citeCommands.contains(command))
 				return Citation;
 		default: return Unknown;
 	}

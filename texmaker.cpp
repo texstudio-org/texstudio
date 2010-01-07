@@ -4045,16 +4045,23 @@ void Texmaker::updateCompleter() {
 	words << userCommandList;
 	LatexEditorView* edView=currentEditorView();
 	if(edView && edView->document){
-	    QList<LatexDocument*> docs;
-	    if (singlemode) docs << edView->document;
-	    else docs << documents.documents;
-	    foreach(const LatexDocument* doc,docs){
-		for (int i=0; i<doc->labelItem.count(); ++i) {
-		    words.append("\\ref{"+doc->labelItem.at(i)+"}");
-		    words.append("\\pageref{"+doc->labelItem.at(i)+"}");
-		}
-	    }
+		QList<LatexDocument*> docs;
+		if (singlemode) docs << edView->document;
+		else docs << documents.documents;
+		foreach(const LatexDocument* doc,docs)
+			foreach(const QString& refCommand, LatexParser::refCommands){
+				QString temp=refCommand+"{%1}";
+				for (int i=0; i<doc->labelItem.count(); ++i)
+					words.append(temp.arg(doc->labelItem.at(i)));
+			}
 	}
+
+	//add cite commands from the cwls to LatexParser::citeCommands
+	LatexCompleterConfig *conf=configManager.completerConfig;
+	QStringList citeCommands=conf->words;
+	citeCommands=citeCommands.filter(QRegExp("^\\\\[Cc]ite.*"));
+	foreach(QString elem,citeCommands)
+		LatexParser::citeCommands.insert(elem.remove("{%<keylist%>}"));
 
 	if (configManager.parseBibTeX)
 		for (int i=0; i<mentionedBibTeXFiles.count();i++){
@@ -4063,18 +4070,12 @@ void Texmaker::updateCompleter() {
 				continue; //wtf?s
 			}
 			BibTeXFileInfo& bibTex=bibTeXFiles[mentionedBibTeXFiles[i]];
-			/*for (int i=0; i<bibTex.ids.count();i++)
-				words.append("\\cite{"+bibTex.ids[i]+"}");*/
-			//automatic use of cite commans
-			LatexCompleterConfig *conf=configManager.completerConfig;
-			QStringList citeCommands=conf->words;
-			citeCommands=citeCommands.filter(QRegExp("^\\\\[Cc]ite.*"));
-			for (int i=0; i<bibTex.ids.count();i++){
-			    foreach(QString elem,citeCommands){
-				elem.replace("%<keylist%>",bibTex.ids[i]);
-				words << elem;
-			    }
-			    //words.append("\\cite{"+bibTex.ids[i]+"}");
+
+			//automatic use of cite commands
+			foreach(const QString& citeCommand, LatexParser::citeCommands){
+				QString temp=citeCommand+"{%1}";
+				for (int i=0; i<bibTex.ids.count();i++)
+					words.append(temp.arg(bibTex.ids[i]));
 			}
 		}
 
