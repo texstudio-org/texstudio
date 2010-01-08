@@ -186,6 +186,7 @@ private slots:
 	void showOldRevisions();
 	QStringList svnLog();
 	void changeToRevision(QString rev,QString old_rev="");
+	void svnDialogClosed();
 
 
 	void editUndo();
@@ -407,6 +408,8 @@ protected:
 	bool mDontScrollToItem;
 
 	QByteArray stateFullScreen;
+
+	QDialog *svndlg;
 
 	QString thesaurusFileName;
 	QFile *databasefile;
