@@ -56,6 +56,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	currentTreeItem=0;
 	thesaurusFileName.clear();
 	previewEquation=false;
+	svndlg=0;
 
 	ReadSettings();
 	setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
@@ -4758,8 +4759,9 @@ void Texmaker::svnPatch(QEditor *ed,QString diff){
 }
 
 void Texmaker::showOldRevisions(){
+	// check if a dialog is already open
+	if(svndlg) return;
 	//needs to save first if modified
-	//fileSave();
 	if (!currentEditor())
 		return;
 
@@ -4777,15 +4779,22 @@ void Texmaker::showOldRevisions(){
 	QStringList log=svnLog();
 	if(log.size()<1) return;
 
-	QDialog *dlg=new QDialog(this);
-	QVBoxLayout *lay=new QVBoxLayout(dlg);
-	QComboBox *cmbLog=new QComboBox(dlg);
+	svndlg=new QDialog(this);
+	QVBoxLayout *lay=new QVBoxLayout(svndlg);
+	QLabel *label=new QLabel(tr("Attention: dialog is automatically closed if the text is manually edited!"),svndlg);
+	lay->addWidget(label);
+	QComboBox *cmbLog=new QComboBox(svndlg);
 	cmbLog->insertItems(0,log);
 	lay->addWidget(cmbLog);
-	connect(dlg,SIGNAL(finished(int)),dlg,SLOT(deleteLater()));
+	connect(svndlg,SIGNAL(finished(int)),this,SLOT(svnDialogClosed()));
 	connect(cmbLog,SIGNAL(currentIndexChanged(QString)),this,SLOT(changeToRevision(QString)));
+	connect(currentEditor(),SIGNAL(textEdited(QKeyEvent*)),svndlg,SLOT(close()));
 	currentEditor()->setProperty("Revision",log.first());
-	dlg->show();
+	svndlg->setAttribute(Qt::WA_DeleteOnClose,true);
+	svndlg->show();
+}
+void Texmaker::svnDialogClosed(){
+	svndlg=0;
 }
 
 void Texmaker::changeToRevision(QString rev,QString old_rev){
@@ -4795,6 +4804,7 @@ void Texmaker::changeToRevision(QString rev,QString old_rev){
 	QRegExp rx("^[r](\\d+) \\|");
 	QString old_revision;
 	if(old_rev.isEmpty()){
+		disconnect(currentEditor(),SIGNAL(contentModified(bool)),svndlg,SLOT(close()));
 		QVariant zw=currentEditor()->property("Revision");
 		Q_ASSERT(zw.isValid());
 		old_revision= zw.toString();
@@ -4814,6 +4824,9 @@ void Texmaker::changeToRevision(QString rev,QString old_rev){
 	// patch
 	svnPatch(currentEditor(),buffer);
 	currentEditor()->setProperty("Revision",rev);
+	if(old_rev.isEmpty()){
+		connect(currentEditor(),SIGNAL(textEdited(QKeyEvent*)),svndlg,SLOT(close()));
+	}
 }
 
 QStringList Texmaker::svnLog(){
