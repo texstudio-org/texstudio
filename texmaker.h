@@ -178,11 +178,15 @@ private slots:
 	void MarkCurrentFileAsRecent();
 	void filePrint();
 	void fileCheckin(QString filename="");
-	void checkin(QStringList fns,QString text="tmx auto checkin");
+	void checkin(QStringList fns,QString text="tmx auto checkin",bool blocking=false);
 	bool svnadd(QStringList fns,int stage=0);
 	void svncreateRep(QString fn);
 	void svnUndo(bool redo=false);
 	void svnPatch(QEditor *ed,QString diff);
+	void showOldRevisions();
+	QStringList svnLog();
+	void changeToRevision(QString rev,QString old_rev="");
+
 
 	void editUndo();
 	void editRedo();

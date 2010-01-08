@@ -318,6 +318,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"saveall",tr("Save All"), SLOT(fileSaveAll()), Qt::CTRL+Qt::SHIFT+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu, "maketemplate",tr("Make Template"), SLOT(fileMakeTemplate()));
 	newManagedAction(menu, "checkin",tr("Check in"), SLOT(fileCheckin()));
+	newManagedAction(menu, "showrevisions",tr("Show old Revisions"), SLOT(showOldRevisions()));
 
 	menu->addSeparator();
 	newManagedAction(menu,"close",tr("Close"), SLOT(fileClose()), Qt::CTRL+Qt::Key_W, ":/images/fileclose.png");
@@ -4635,11 +4636,11 @@ void Texmaker::fileCheckin(QString filename){
 	}
 }
 
-void Texmaker::checkin(QStringList fns, QString text){
+void Texmaker::checkin(QStringList fns, QString text, bool blocking){
 	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
 	cmd+=" ci -m \""+text+"\" "+fns.join(" ");
 	stat2->setText(QString(" svn check in "));
-	runCommand(cmd, false, true,false);
+	runCommand(cmd, blocking, true,false);
 	foreach(QString elem,fns){
 		LatexEditorView *edView=getEditorViewFromFileName(elem);
 		edView->editor->setProperty("undoRevision",0);
@@ -4714,21 +4715,11 @@ void Texmaker::svnUndo(bool redo){
 	int l=revisions.size();
 	if(undoRevision>=l-1) return;
 	if(!redo) undoRevision++;
-	// get diff
-	QRegExp rx("^[r](\\d+) \\|");
-	QString old_revision=revisions.at(undoRevision-1);
-	if(rx.indexIn(old_revision)>-1){
-		old_revision=rx.cap(1);
-	} else return;
-	QString new_revision=revisions.at(undoRevision);
-	if(rx.indexIn(new_revision)>-1){
-		new_revision=rx.cap(1);
-	} else return;
-	if(redo) cmd=cmd_svn+" diff -r "+new_revision+":"+old_revision+" "+fn;
-	else cmd=cmd_svn+" diff -r "+old_revision+":"+new_revision+" "+fn;
-	runCommand(cmd,true,false,false,&buffer);
-	// patch
-	svnPatch(currentEditor(),buffer);
+
+	if(redo) changeToRevision(revisions.at(undoRevision-1),revisions.at(undoRevision));
+	else changeToRevision(revisions.at(undoRevision),revisions.at(undoRevision-1));
+
+	currentEditor()->document()->clearUndo();
 	if(redo) undoRevision--;
 	currentEditor()->setProperty("undoRevision",undoRevision);
 }
@@ -4764,5 +4755,83 @@ void Texmaker::svnPatch(QEditor *ed,QString diff){
 			}
 		}
 	}
-	ed->document()->clearUndo();
+}
+
+void Texmaker::showOldRevisions(){
+	//needs to save first if modified
+	//fileSave();
+	if (!currentEditor())
+		return;
+
+	if (currentEditor()->fileName()=="" || !currentEditor()->fileInfo().exists())
+		return;
+
+	if(currentEditor()->isContentModified()){
+		currentEditor()->save();
+		//currentEditorView()->editor->setModified(false);
+		MarkCurrentFileAsRecent();
+		checkin(QStringList(currentEditor()->fileName()),"tmx auto checkin",true);
+	}
+	UpdateCaption();
+
+	QStringList log=svnLog();
+	if(log.size()<1) return;
+
+	QDialog *dlg=new QDialog(this);
+	QVBoxLayout *lay=new QVBoxLayout(dlg);
+	QComboBox *cmbLog=new QComboBox(dlg);
+	cmbLog->insertItems(0,log);
+	lay->addWidget(cmbLog);
+	connect(dlg,SIGNAL(finished(int)),dlg,SLOT(deleteLater()));
+	connect(cmbLog,SIGNAL(currentIndexChanged(QString)),this,SLOT(changeToRevision(QString)));
+	currentEditor()->setProperty("Revision",log.first());
+	dlg->show();
+}
+
+void Texmaker::changeToRevision(QString rev,QString old_rev){
+	QString cmd_svn=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+	QString fn=currentEditor()->fileName();
+	// get diff
+	QRegExp rx("^[r](\\d+) \\|");
+	QString old_revision;
+	if(old_rev.isEmpty()){
+		QVariant zw=currentEditor()->property("Revision");
+		Q_ASSERT(zw.isValid());
+		old_revision= zw.toString();
+	}else{
+		old_revision=old_rev;
+	}
+	if(rx.indexIn(old_revision)>-1){
+		old_revision=rx.cap(1);
+	} else return;
+	QString new_revision=rev;
+	if(rx.indexIn(new_revision)>-1){
+		new_revision=rx.cap(1);
+	} else return;
+	QString cmd=cmd_svn+" diff -r "+old_revision+":"+new_revision+" "+fn;
+	QString buffer;
+	runCommand(cmd,true,false,false,&buffer);
+	// patch
+	svnPatch(currentEditor(),buffer);
+	currentEditor()->setProperty("Revision",rev);
+}
+
+QStringList Texmaker::svnLog(){
+	QString cmd_svn=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+	QString fn=currentEditor()->fileName();
+	// get revisions of current file
+	QString cmd=cmd_svn+" log "+fn;
+	QString buffer;
+	runCommand(cmd,true,false,false,&buffer);
+	QStringList revisions=buffer.split("\n",QString::SkipEmptyParts);
+	buffer.clear();
+	QMutableStringListIterator i(revisions);
+	bool keep=false;
+	QString elem;
+	while(i.hasNext()){
+		elem=i.next();
+		if(!keep) i.remove();
+		keep=elem.contains(QRegExp("-{60,}"));
+	}
+	return revisions;
 }
