@@ -5,9 +5,11 @@
 
 #include "ui_textanalysis.h"
 
-#include "qeditor.h"
-#include "qdocument.h"
 #include "qdocumentcursor.h"
+
+class QEditor;
+class QDocument;
+struct StructureEntry;
 
 class Word {
 public:
@@ -58,7 +60,7 @@ public:
 
 	//void setData(const QDocument* doc, const QDocumentCursor &cur);
 	void setEditor(QEditor* aeditor);
-	void interpretStructureTree(QTreeWidgetItem *item);
+	void interpretStructureTree(StructureEntry *item);
 private slots:
 	void slotCount();
 	void slotClose();
