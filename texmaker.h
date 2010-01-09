@@ -103,7 +103,6 @@ private:
 	SymbolGridWidget *MostUsedSymbolWidget, *FavoriteSymbolWidget;
 	QString hiddenLeftPanelWidgets;
 	
-	QTreeWidget *StructureTreeWidget;
 	QTreeView *structureTreeView;
 	LatexDocuments documents;
 
@@ -144,8 +143,6 @@ private:
 	TextAnalysisDialog *textAnalysisDlg;
 	SpellerDialog *spellDlg;
 	templateselector *templateSelectorDialog;
-
-
 
 //tools
 	bool FINPROCESS, ERRPROCESS;
@@ -195,23 +192,16 @@ private slots:
 	void editCopy();
 	void editPaste();
 	void editSectionCopy();
-	void editSectionCopyOld();
 	void editSectionCopy(int startingLine, int endLine);
 	void editSectionCut();
-	void editSectionCutOld();
 	void editSectionCut(int startingLine, int endLine);
 	void editSectionPasteAfter();
-	void editSectionPasteAfterOld();
 	void editSectionPasteAfter(int line);
 	void editSectionPasteBefore();
-	void editSectionPasteBeforeOld();
 	void editSectionPasteBefore(int line);
 	void editPasteLatex();
 	void convertToLatex();
 	void editPasteRef();
-	void editPasteRefOld();
-	void editIndentSectionOld();
-	void editUnIndentSectionOld();
 	void editIndentSection();
 	void editUnIndentSection();
 	void editHardLineBreak();
@@ -238,7 +228,6 @@ private slots:
 	void editFindGlobal();
 
 	void StructureContextMenu(const QPoint& point);
-	void StructureContextMenuOld(const QPoint& point);
 	void SymbolGridContextMenu(QWidget* widget, const QPoint& point);
 	void MostUsedSymbolsTriggered(bool direct=false);
 	void symbolAddFavorite();
@@ -254,9 +243,7 @@ private slots:
 	void CloseEditorTab(int tab);
 
 	void updateStructure();
-	void updateStructureForFile(const QString& fileName);
 	void ShowStructure();
-	void ClickedOnStructure(QTreeWidgetItem *item,int);
 	void clickedOnStructureEntry(const QModelIndex & index);
 	void editRemovePlaceHolders();
 	
@@ -371,8 +358,6 @@ private slots:
 	void gotoLogEntryEditorOnly(int logEntryNumber);
 	bool gotoLogEntryAt(int newLineNumber);
 	bool gotoMark(bool backward, int id);
-
-	void lineHandleDeleted(QDocumentLineHandle* l);
 	
 	void previewLatex();
 	void previewAvailable(const QString& imageFile, const QString& text);
@@ -388,13 +373,10 @@ private slots:
 
 	void jumpToSearch(QString filename,int lineNumber);
 
-	void cursorPositionChangedOld();
 	void cursorPositionChanged();
-	void treeWidgetChanged();
+//	void treeWidgetChanged();
 
 protected:
-	LatexEditorView* getEditorFromStructureItem(QTreeWidgetItem* m_item);
-	QPoint sectionSelection(QTreeWidgetItem* m_item);
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
 	virtual void changeEvent(QEvent *e);
@@ -403,7 +385,6 @@ protected:
 
 	bool previewEquation;
 	int currentLine;
-	QTreeWidgetItem *currentTreeItem;
 	QBrush oldBackground;
 	bool mDontScrollToItem;
 
@@ -416,8 +397,6 @@ protected:
 #if QT_VERSION >= 0x040500
         QFuture<ThesaurusDatabaseType> thesaurusFuture;
 #endif
-public:
-	static const int structureTreeLineColumn;
 };
 
 

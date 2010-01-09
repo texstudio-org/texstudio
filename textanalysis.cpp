@@ -1,6 +1,11 @@
 #include "textanalysis.h"
-#include "qdocumentline.h"
+
 #include "smallUsefulFunctions.h"
+#include "latexdocument.h"
+
+#include "qeditor.h"
+#include "qdocument.h"
+#include "qdocumentline.h"
 //#include "latexeditorview.h"
 //#include <QMessageBox>
 Word::Word(QString nw, int nc) {
@@ -97,12 +102,13 @@ void TextAnalysisDialog::setEditor(QEditor* aeditor) {
 	}
 }
 
-void TextAnalysisDialog::interpretStructureTree(QTreeWidgetItem *item) {
-	if (item->text(1)==QString("chapter")) {
-		chapters.append(QPair<QString,int> (item->text(0), item->text(3).toUInt()));
-		ui.comboBox->addItem(item->text(0));
-	} else for (int i=0; i<item->childCount(); i++)
-			interpretStructureTree(item->child(i));
+void TextAnalysisDialog::interpretStructureTree(StructureEntry *entry) {
+	if (!entry) return;
+	if (entry->level==1) {
+		chapters.append(QPair<QString,int> (entry->title,entry->lineNumber));
+		ui.comboBox->addItem(entry->title);
+	} else for (int i=0; i<entry->children.count(); i++)
+			interpretStructureTree(entry->children.at(i));
 }
 
 void TextAnalysisDialog::init() {
