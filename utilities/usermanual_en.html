@@ -27,6 +27,9 @@ body { background: #ffffff; color: black; }
 	<li><a href="#SECTION04">1.3.2 Configuring the thesaurus</a></li>
 	<li><a href="#SECTION040">1.4 Configuring the autocompletion</a></li>
 	<li><a href="#SECTION05">1.5 Configuring shortcuts</a></li>
+	<li><a href="#SECTION06">1.6 Configuring the Latex/Math-Menu</a></li>
+	<li><a href="#SECTION07">1.7 Configuring the Custom Toolbar</a></li>
+	<li><a href="#SECTION08">1.8 Configuring SVN support</a></li>
 	</ul>
 </ul>
 <ul>
@@ -61,13 +64,14 @@ body { background: #ffffff; color: black; }
 	<ul>
 	<li><a href="#SECTION31">4.1 About documents separated in several files</a></li>
 	<li><a href="#SECTION32">4.2 Bibliography</a></li>
-	<li><a href="#SECTION33">4.3 Personal tags and tools</a></li>
-	<li><a href="#SECTION34">4.4 Pstricks support</a></li>
-	<li><a href="#SECTION35">4.5 Metapost support</a></li>
-	<li><a href="#SECTION36">4.6 The "Convert to Html" command</a></li>
-	<li><a href="#SECTION37">4.7 "Forward/Inverse search" with TexMakerX</a></li>
-	<li><a href="#SECTION38">4.8 Synopsis of the TexMakerX command</a></li>
-	<li><a href="#SECTION39">4.9 Keyboard shortcuts</a></li>
+	<li><a href="#SECTION33a">4.3 SVN Support</a></li>
+	<li><a href="#SECTION33">4.4 Personal tags and tools</a></li>
+	<li><a href="#SECTION34">4.5 Pstricks support</a></li>
+	<li><a href="#SECTION35">4.6 Metapost support</a></li>
+	<li><a href="#SECTION36">4.7 The "Convert to Html" command</a></li>
+	<li><a href="#SECTION37">4.8 "Forward/Inverse search" with TexMakerX</a></li>
+	<li><a href="#SECTION38">4.9 Synopsis of the TexMakerX command</a></li>
+	<li><a href="#SECTION39">4.10 Keyboard shortcuts</a></li>
 	</ul>
 </ul>
 <hr>
@@ -131,6 +135,7 @@ changed functionality:</P>
     <li><p>a customizable tool bar is available</p>
     <li><p>the latex expressions in the Math/Latex-Menus can be changed to user preferred versions.</p>
     <li><p>global find over all open documents improved</p>
+	<li><p>support of transparent versioning of text documents via svn</p>
     <li><p>lots of bugs removed after user feedback</p>
 </ul>
 <h1><a name="SECTION0">1. Configuring TexMakerX</a></h1>
@@ -212,6 +217,28 @@ For this menu items can be renamed and a new Latex-Code can be placed. The aprop
 Since many of those item don't have icons, user icons can be loaded as well. This is achieved by applying "load other icon" from the context menu on a item in the cunstom toolbar list in the configure dialog.
 </p>
 <p><IMG src="configure_customToolbar.png" border="1"></p>
+<h2><a name="SECTION08">1.8 Configuring SVN support</a></h2>
+<p>To provide documenten versioning, TexMakerX makes use of SVN (subversion). To make use of it, the SVN commandline tools need to be installed.
+Linux and Mac OSX normally provide already svn tools, for Windows, the installation of "SlikSVN" is recommended.
+</p>
+<p>
+The complete path to the command "svn" and "svnadmin" need to be adjusted in the aprioriate field of the svn configure page, see below.
+Furthermore the user can choose the degree of automation, which TexMakerX provides.
+</p>
+<p>
+"Automatically check in after save" allows TexMakerX to perform an svn check in after every save of a document, thus providing a very complete history of the creation of a document.
+Since text documents are rather small compared to disk spaces, size of the svn database should not be a problem.
+In addition newly saved files (save as) are automatically added to svn control,provided that the directory is alredy under svn control.
+If that is not the case, TexMakerX searches in "SVN Directory Search Depth" directory above the current diorectory for a svn controlled directory to which the subdirectories and the TeX-Document will be added.
+If no apropriate directory is found, a repository is automatically generated in a directory called "./repo" and the document is added.
+Thus the user does not need to look up the necessary commands to set up a repository. This functionality is only activated when "Auto checkin in" is enabled !
+</p>
+<p>
+With "User SVN revisions to undo before last save" TexMakerX will perform undo as usually, but if there are no further undoable commands in the internal storage, the document will be changed to the previous version in svn history.
+Further undo commands allows to back further to older revisions, whereas a redo goes forward to more recent versions.
+This is a more interactive approach than choosing svn revisions directly via a menu command, see <a href="#SECTION33a">section 4.3</a>
+</p>
+<p><IMG src="configure_svn.png" border="1"></p>
 <h1><a name="SECTION1">2. Editing a TeX document</a></h1>
 <h2><a name="SECTION11">2.1 Usual commands</a></h2>
 <p>The standard commands (cut, copy, find...) can be launched via the "Edit" menu and the "Edit" tool bar.</p>
@@ -314,7 +341,19 @@ To include a TeX file into your document, just use the "\include{file}" command 
 <h2><a name="SECTION32">4.2 Bibliography</a></h2>
 <p>For the "bib" files , the "Bibliography" menu enables you to directly insert the entries corresponding to the standard types of document.<br>Note: the optional fields can be automatically deleted with the "Clean" command of the "Bibliography" menu.</p>
 <p><IMG src="doc16.png" border="1"></p>
-<h2><a name="SECTION33">4.3 Personals tags and tools</a></h2>
+<h2><a name="SECTION33a">4.3 SVN Support</a></h2>
+<p>
+Apart from the supported svn features already describes in section 1.8, TexMakerX supports two more commands.
+</p>
+<p>
+"File/chekin" performs an explicit save and check in, with a input dialog which asks for an checkin in message which is stored in the svn history.
+</p>
+<p>
+"File/Show old Revisions" pops up a dialog, which shows all alvailable revisions. A selection of an older revision leads to instatanious change of the current document to that older revision.
+You can can select and copy old parts to transfer them to the most recent version of your document, by copying the parts and then going back to most recent version. If you start editing that document directly, the dialog is closed and the present text is your new 
+most recent version though yet unsaved.
+</p>
+<h2><a name="SECTION33">4.4 Personals tags and tools</a></h2>
 <p>TexMakerX allows you to insert your own tags (shortcuts : Shift+F1...Shift+F10). These tags are defined with the "User - User Tags" menu.<br>Note : if the code of the menu is "%environment", TexMakerX will directly insert:<br>
 \begin{environment }<br>
 <br>
@@ -619,11 +658,11 @@ This will evaluate everything between % and = and write the result after the =. 
 </ul>
 </p>
 <p>You can also launch your own commands (shortcuts : Alt+Shift+F1...Alt+Shift+F5). These commands are defined with the "User - User Commands" menu.</p>
-<h2><a name="SECTION34">4.4 Pstricks support</a></h2>
+<h2><a name="SECTION34">4.5 Pstricks support</a></h2>
 <p>The main pstricks commands can be inserted with the "Pstricks" panel in the "Structure View".</p>
-<h2><a name="SECTION35">4.5 Metapost support</a></h2>
+<h2><a name="SECTION35">4.6 Metapost support</a></h2>
 <p>The metapost keywords can be inserted with the "Metapost" panel in the "Structure View" and the "mpost" command can be launched via the "Tools" menu.</p>
-<h2><a name="SECTION36">4.6 The "Convert to Html" command</a></h2>
+<h2><a name="SECTION36">4.7 The "Convert to Html" command</a></h2>
 <p>This command (from the "Tools" menu ) produces a set of html pages from a LaTeX source file with one image for each html page. Each page in the slide presentation corresponds to one of the postscript pages you would obtain running LaTeX.<br>
 The command also produces an index page corresponding to the table of contents you would obtain with LaTeX. Each item of the index page includes a link to the corresponding html page.</p>
 <p>You can create links in the html pages by using the \ttwplink{}{} command in the tex file.<br>
@@ -636,7 +675,7 @@ Synopsis :<br>
 <p><IMG src="doc19.png" border="1"></p>
 
 
-<h2><a name="SECTION37">4.7 "Forward/Inverse search" with TexMakerX</a></h2>
+<h2><a name="SECTION37">4.8 "Forward/Inverse search" with TexMakerX</a></h2>
 <p>
 Some dvi viewers can jump to (and visually highlight) a position in the DVI file that corresponds to a certain line number in the (La)TeX source file.<br>
 To use this feature, you can use the <b>@</b> character (=line number) and <b>?c:ame</b> (=complete absolute filename of currently opened file) placeholder in the syntax of the dvi viewer command ("Configure TexMakerX" -> "Commands").<br>
@@ -658,14 +697,14 @@ For the opposite operation ("Inverse search") :
 </ul>
 
 </p>
-<h2><a name="SECTION38">4.8 Synopsis of the TexMakerX command</a></h2>
+<h2><a name="SECTION38">4.9 Synopsis of the TexMakerX command</a></h2>
 <p>
 TexMakerX file [-master] [-line xx] [--start-always]<br>
 With the "-master" option, the document will be automatically defined as a "master" document.<br>
 With the "-line xx" option, TexMakerX will ask you if you want to jump to the xx line after loading the document.<br>
 With the "--start-always" option, TexMakerX will start, even if another instance of it is already running
 </p>
-<h2><a name="SECTION39">4.9 Keyboard shortcuts</a></h2>
+<h2><a name="SECTION39">4.10 Keyboard shortcuts</a></h2>
 <p>
 Defaults keyboard shortcuts <!--(*:can be modified - "Configure TexMakerX" -> "Editor") -->:
 <ul>
