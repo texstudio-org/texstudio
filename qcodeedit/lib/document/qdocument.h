@@ -116,6 +116,7 @@ class QCE_EXPORT QDocument : public QObject
 		QStringList textLines() const;
 		void setText(const QString& s);
 		
+		void load(const QString& file, QTextCodec* codec);
 		void startChunkLoading();
 		void stopChunkLoading();
 		void addChunk(const QString& txt);
