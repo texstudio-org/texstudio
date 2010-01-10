@@ -1834,16 +1834,17 @@ void Texmaker::ReadSettings() {
 		UserToolCommand[i]=config->value(QString("User/Tool%1").arg(i+1),"").toString();
 	}
 
-	struct_level.clear();
+	LatexParser::structureCommands.clear();
 	if(config->value("Structure/Structure Level 1","").toString()==""){
-	    struct_level << "part" << "chapter" << "section" << "subsection" << "subsubsection";
+		LatexParser::structureCommands << "\\part" << "\\chapter" << "\\section" << "\\subsection" << "\\subsubsection";
 	}else{
-	    int i=0;
-	    QString elem;
-	    while((elem=config->value("Structure/Structure Level "+QString::number(i+1),"").toString())!=""){
-		struct_level << elem;
-		i++;
-	    }
+		int i=0;
+		QString elem;
+		while((elem=config->value("Structure/Structure Level "+QString::number(i+1),"").toString())!=""){
+			if (!elem.startsWith("\\")) elem=elem.prepend("\\");
+			LatexParser::structureCommands << elem;
+			i++;
+		}
 	}
 
 	document_class=config->value("Quick/Class","article").toString();
@@ -1885,6 +1886,8 @@ void Texmaker::ReadSettings() {
 	config->endGroup();
 
 	delete config;
+
+	documents.settingsRead();
 }
 
 void Texmaker::SaveSettings() {
@@ -3914,24 +3917,6 @@ void Texmaker::editInsertRefToPrevLabel() {
 
 }
 
- void Texmaker::StructureToolBoxToggle(bool /*checked*/) {
-	/*TODO: if (!StructureToolbox) return;
-	QAction *action = qobject_cast<QAction *>(sender());
-	//QTableWidget* widget=action->data().value<QTableWidget*>();
-	int pos=action->data().toInt();
-	QWidget* widget=StructureToolboxWidgets[pos];
-	if(checked){
-		int index=1;
-		while(StructureToolbox->count()>index && StructureToolbox->widget(index)->property("StructPos").toInt()<pos+1){
-			index++;
-		}
-		StructureToolbox->insertItem(index,widget,QIcon(widget->property("iconName").toString()),widget->property("Name").toString());
-	}else{
-		int index=StructureToolbox->indexOf(widget);
-		StructureToolbox->removeItem(index);
-	}*/
- }
-
 void Texmaker::symbolAddFavorite(){
 	SymbolGridWidget* grid=qobject_cast<SymbolGridWidget*>(leftPanel->currentWidget());
 	if (!grid) return;
@@ -4059,45 +4044,21 @@ void Texmaker::cursorPositionChanged(){
 	if (oldSection && currentLine>oldLine && currentLine<oldSection->lineNumber && oldSection->document==currentEditorView()->document)
 		return; //still in the same section
 
+	StructureEntryIterator iter(currentEditorView()->document->baseStructure);
 	StructureEntry *newSection=0;
 
-	QList<StructureEntry*> entryHierarchy=QList<StructureEntry*>() << currentEditorView()->document->baseStructure;
-	if (entryHierarchy.last()->children.isEmpty()) return;
-	QList<int> indexHierarchy=QList<int>() << 0;
-	while (/*!entryHierarchy.isEmpty()*/true){
-		while (!entryHierarchy.isEmpty()) {
-			while (indexHierarchy.last()<entryHierarchy.last()->children.count() &&
-			       entryHierarchy.last()->children.at(indexHierarchy.last())->type!=StructureEntry::SE_SECTION){
-				//goto next entry
-				if (entryHierarchy.last()->children.at(indexHierarchy.last())->children.isEmpty())
-					indexHierarchy.last()=indexHierarchy.last()+1; //on the same level
-				else {  //to child
-					indexHierarchy.last()++; //next item on the current level
-					//on a deeper level to the first child
-					entryHierarchy.append(entryHierarchy.last()->children.at(indexHierarchy.last()));
-					indexHierarchy.append(0);
-
-				}
-			}
-			if (indexHierarchy.last()<entryHierarchy.last()->children.count())
-				break; //reached a another structure entry
-			else { //continue on higher level
-				entryHierarchy.removeLast();
-				indexHierarchy.removeLast();
-			}
+	while (/*iter.hasNext()*/true){
+		StructureEntry *curSection=0;
+		while (iter.hasNext()){
+			curSection=iter.next();
+			if (curSection->type==StructureEntry::SE_SECTION)
+				break;
 		}
-		if (entryHierarchy.isEmpty()) break;
-
-		StructureEntry *curSection=entryHierarchy.last()->children.at(indexHierarchy.last());
+		if (curSection==0 || curSection->type!=StructureEntry::SE_SECTION)
+			break;
 
 		if (curSection->lineNumber > currentLine) break; //curSection is after newSection where the cursor is
 		else newSection=curSection;
-
-		indexHierarchy.last()++; //next item on the current level
-		if (!curSection->children.isEmpty()){
-			entryHierarchy.append(curSection);
-			indexHierarchy.append(0);
-		}
 	}
 
 	if (newSection==0 || newSection->lineNumber>currentLine){

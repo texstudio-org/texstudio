@@ -108,6 +108,7 @@ public:
 	static QSet<QString> citeCommands;
 	static QSet<QString> environmentCommands;
 	static QSet<QString> optionCommands;
+	static QStringList structureCommands;
 };
 
 #endif
