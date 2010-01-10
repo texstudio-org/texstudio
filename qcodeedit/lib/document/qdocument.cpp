@@ -452,6 +452,87 @@ void QDocument::setText(const QString& s)
 	m_impl->emitContentsChange(0, m_impl->m_lines.count());
 }
 
+QTextCodec* guessEncoding(char* str, int size){
+    if (size==0)  return QTextCodec::codecForName("UTF-8"); //default
+    char prev=str[0];
+    int good=0;int bad=0;
+    int utf16le=0, utf16be = 0;
+    for (int i=1;i<size;i++) {
+	char cur = str[i];
+	    if ((cur & 0xC0) == 0x80) {
+	    if ((prev & 0xC0) == 0xC0) good++;
+	    else if ((prev & 0x80) == 0x00) bad++;
+		} else {
+		    if ((prev & 0xC0) == 0xC0) bad++;
+		    //if (cur==0) { if (i & 1 == 0) utf16be++; else utf16le++;}
+		    if (prev==0) {
+		if ((i & 1) == 1) utf16be++;
+		else utf16le++;
+	    }
+		}
+	prev=cur;
+    }
+    // less than 0.1% of the characters can be wrong for utf-16 if at least 1% are valid (for English text)
+    if (utf16le > utf16be) {
+	if (utf16be <= size / 1000 && utf16le >= size / 100 && utf16le >= 2) return QTextCodec::codecForName("UTF-16LE");
+    } else {
+	if (utf16le <= size / 1000 && utf16be >= size / 100 && utf16be >= 2) return QTextCodec::codecForName("UTF-16BE");
+    }
+    if (good>bad) return QTextCodec::codecForName("UTF-8");
+    else return QTextCodec::codecForName("ISO-8859-1");
+}
+
+
+void QDocument::load(const QString& file, QTextCodec* codec){
+	QFile f(file);
+
+	// gotta handle line endings ourselves if we want to detect current line ending style...
+	//if ( !f.open(QFile::Text | QFile::ReadOnly) )
+	if ( !f.open(QFile::ReadOnly) )
+	{
+		setText(QString());
+		return;
+	}
+
+	const int size = f.size();
+	//const int size = m_lastFileState.size = f.size();
+
+	if ( size < 500000 )
+	{
+		// instant load for files smaller than 500kb
+		QByteArray d = f.readAll();
+		if (codec == 0)
+			codec=guessEncoding(d.data(),d.size());
+
+		setText(codec->toUnicode(d));
+	} else {
+		// load by chunks of 100kb otherwise to avoid huge peaks of memory usage
+		// and driving mad the disk drivers
+
+		int count = 0;
+		QByteArray ba;
+
+		startChunkLoading();
+		//m_lastFileState.checksum = 0;
+
+		ba = f.read(100000);
+		if (codec == 0)
+			codec=guessEncoding(ba.data(),ba.size());
+
+		QTextDecoder *dec = codec->makeDecoder();
+		do
+		{
+			count += ba.count();
+			//m_lastFileState.checksum ^= qChecksum(ba.constData(), ba.size());
+			addChunk(dec->toUnicode(ba));
+			ba = f.read(100000);
+		} while ( (count < size) && ba.count() );
+		delete dec;
+		stopChunkLoading();
+	}
+	setLastModified(QFileInfo(file).lastModified());
+}
+
 /*!
 	\brief Start a chunk loading
 

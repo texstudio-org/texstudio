@@ -18,6 +18,33 @@ LatexDocument::~LatexDocument(){
 	delete baseStructure;
 }
 
+void LatexDocument::setFileName(const QString& fileName){
+	//clear all references to old editor
+	if (this->edView || this->text){
+		StructureEntryIterator iter(baseStructure);
+		while (iter.hasNext()) iter.next()->lineHandle=0;
+	}
+
+	this->fileName=fileName;
+	this->fileInfo=QFileInfo(fileName);
+	this->edView=0;
+	this->text=0;
+}
+void LatexDocument::setEditorView(LatexEditorView* edView){
+	this->fileName=edView->editor->fileName();
+	this->fileInfo=edView->editor->fileInfo();
+	this->edView=edView;
+	this->text=edView->editor->document();
+}
+LatexEditorView *LatexDocument::getEditorView(){
+	return this->edView;
+}
+QString LatexDocument::getFileName(){
+	return fileName;
+}
+QFileInfo LatexDocument::getFileInfo(){
+	return fileInfo;
+}
 QDocumentSelection LatexDocument::sectionSelection(StructureEntry* section){
 	QDocumentSelection result;
 	result.endLine=-1;result.startLine=-1;
@@ -55,8 +82,16 @@ QDocumentSelection LatexDocument::sectionSelection(StructureEntry* section){
 void LatexDocument::updateStructure() {
 
 	QDocument* document=text;
-
-	if (!document) return; //TODO: load document
+	bool temporaryLoadedDocument=false;
+	if (!document) {
+		if (fileName=="" || !fileInfo.exists())
+			return;
+		temporaryLoadedDocument=true;
+		document=new QDocument();
+		//TODO:if (configManager.autodetectLoadedFile)
+		document->load(fileName,0);
+		//else document->load(fileName,configManager.newfile_encoding);
+	}
 
 	userCommandList.clear();
         labelItem.clear();
@@ -67,7 +102,7 @@ void LatexDocument::updateStructure() {
 	baseStructure=0;
 
 	baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
-	baseStructure->title=edView->editor->fileName();
+	baseStructure->title=fileName;
 	labelList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
 	labelList->title=tr("LABELS");
 	todoList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
@@ -129,7 +164,8 @@ void LatexDocument::updateStructure() {
 				StructureEntry *newFile=new StructureEntry(this,bibTeXList, StructureEntry::SE_BIBTEX);
 				newFile->title=bibFile;
 				newFile->lineNumber=i;
-				newFile->lineHandle=document->line(i).handle();
+				if (!temporaryLoadedDocument)
+					newFile->lineHandle=document->line(i).handle();
 			}
 		}
 		//// label ////
@@ -140,7 +176,8 @@ void LatexDocument::updateStructure() {
 			StructureEntry *newLabel=new StructureEntry(this,labelList, StructureEntry::SE_LABEL);
 			newLabel->title=s;
 			newLabel->lineNumber=i;
-			newLabel->lineHandle=document->line(i).handle();
+			if (!temporaryLoadedDocument)
+				newLabel->lineHandle=document->line(i).handle();
 		}
 		//// TODO marker
 		s=curLine;
@@ -150,7 +187,8 @@ void LatexDocument::updateStructure() {
 			StructureEntry *newTodo=new StructureEntry(this,todoList, StructureEntry::SE_TODO);
 			newTodo->title=s;
 			newTodo->lineNumber=i;
-			newTodo->lineHandle=document->line(i).handle();
+			if (!temporaryLoadedDocument)
+				newTodo->lineHandle=document->line(i).handle();
 		}
 		//// include,input ////
 		static const QStringList inputTokens = QStringList() << "input" << "include";
@@ -161,7 +199,8 @@ void LatexDocument::updateStructure() {
 				newInclude->title=s;
 //				newInclude.title=inputTokens.at(header); //texmaker distinguished include/input, doesn't seem necessary
 				newInclude->lineNumber=i;
-				newInclude->lineHandle=document->line(i).handle();
+				if (!temporaryLoadedDocument)
+					newInclude->lineHandle=document->line(i).handle();
 			}
 		}//for
 		//// all sections ////
@@ -175,7 +214,8 @@ void LatexDocument::updateStructure() {
 				newSection->title=s;
 				newSection->level=header;
 				newSection->lineNumber=i;
-				newSection->lineHandle=document->line(i).handle();
+				if (!temporaryLoadedDocument)
+					newSection->lineHandle=document->line(i).handle();
 				parent_level[header]=newSection;
 				for(int j=header+1;j<parent_level.size();j++)
 					parent_level[j]=parent_level[header];
@@ -188,6 +228,9 @@ void LatexDocument::updateStructure() {
 	if (!labelList->children.isEmpty()) baseStructure->insert(0, labelList);
 
 	emit structureUpdated(this);
+
+	if (temporaryLoadedDocument)
+		delete document;
 }
 
 /*
@@ -266,7 +309,7 @@ StructureEntry* StructureEntryIterator::next(){
 }
 
 LatexDocumentsModel::LatexDocumentsModel(LatexDocuments& docs):documents(docs),
-	iconDocument(":/images/doc.png"), iconBibTeX(":/images/bibtex.png"), iconInclude(":/images/include.png"),mHighlightedEntry(0){
+	iconDocument(":/images/doc.png"), iconMasterDocument(":/images/masterdoc.png"), iconBibTeX(":/images/bibtex.png"), iconInclude(":/images/include.png"),mHighlightedEntry(0){
 	iconSection.resize(LatexParser::structureCommands.count());
 	for (int i=0;i<LatexParser::structureCommands.count();i++)
 		iconSection[i]=QIcon(":/images/"+LatexParser::structureCommands[i].mid(1)+".png");
@@ -299,7 +342,10 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 					else
 						return QVariant();
 				case StructureEntry::SE_DOCUMENT_ROOT:
-					return iconDocument;
+					if (documents.masterDocument==entry->document)
+						return iconMasterDocument;
+					else
+						return iconDocument;
 				default: return QVariant();
 			}
 		case Qt::BackgroundRole:
@@ -383,20 +429,21 @@ void LatexDocumentsModel::setHighlightedEntry(StructureEntry* entry){
 	emit dataChanged(i2,i2);
 }
 
-
+void LatexDocumentsModel::resetAll(){
+	mHighlightedEntry=0;
+	reset();
+}
 
 void LatexDocumentsModel::structureUpdated(LatexDocument* document){
-	mHighlightedEntry=0;
-	reset();
+	resetAll();
 }
 void LatexDocumentsModel::structureLost(LatexDocument* document){
-	mHighlightedEntry=0;
-	reset();
+	resetAll();
 }
 
 
 
-LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)){
+LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)), masterDocument(0), currentDocument(0){
 }
 LatexDocuments::~LatexDocuments(){
 	delete model;
@@ -407,10 +454,86 @@ void LatexDocuments::addDocument(LatexDocument* document){
 	model->connect(document,SIGNAL(structureUpdated(LatexDocument*)),model,SLOT(structureUpdated(LatexDocument*)));
 }
 void LatexDocuments::deleteDocument(LatexDocument* document){
-	documents.removeAll(document);
-	if (document->edView) delete document->edView;
-	delete document;
-	model->reset();
+	if (document->getEditorView()) delete document->getEditorView();
+	if (document!=masterDocument) {
+		documents.removeAll(document);
+		delete document;
+		model->resetAll();
+		if (document==currentDocument)
+			currentDocument=0;
+	} else document->setFileName(document->getFileName());
+}
+void LatexDocuments::setMasterDocument(LatexDocument* document){
+	if (document==masterDocument) return;
+	if (masterDocument!=0 && masterDocument->getEditorView()==0){
+		documents.removeAll(masterDocument);
+		delete masterDocument;
+	}
+	masterDocument=document;
+	if (masterDocument!=0) {
+		documents.removeAll(masterDocument);
+		documents.prepend(masterDocument);
+	}
+	model->resetAll();
+}
+
+QString LatexDocuments::getCurrentFileName() {
+	if (!currentDocument) return "";
+	return currentDocument->getFileName();
+}
+QString LatexDocuments::getCompileFileName(){
+	if (!masterDocument) return getCurrentFileName();
+	else return masterDocument->getFileName();
+}
+QString LatexDocuments::getAbsoluteFilePath(const QString & relName, const QString &extension){
+	QString s=relName;
+	if (!s.endsWith(extension,Qt::CaseInsensitive)) s+=extension;
+	QFileInfo fi(s);
+	if (!fi.isRelative()) return s;
+	QString compileFileName=getCompileFileName();
+	if (compileFileName.isEmpty()) return s; //what else can we do?
+	QString compilePath=QFileInfo(compileFileName).absolutePath();
+	if (!compilePath.endsWith("\\") && !compilePath.endsWith("/"))
+		compilePath+=QDir::separator();
+	return  compilePath+s;
+}
+
+
+LatexDocument* LatexDocuments::findDocument(const QString& fileName){
+	if (fileName=="") return 0;
+	QString fnorm = fileName;
+	fnorm.replace("/",QDir::separator()).replace("\\",QDir::separator());
+	//fast check for absolute file names
+#ifdef Q_WS_WIN
+	Qt::CaseSensitivity cs = Qt::CaseInsensitive;
+#else
+	Qt::CaseSensitivity cs = Qt::CaseSensitive;
+#endif
+	foreach (LatexDocument* document, documents)
+		if (document->getFileName().compare(fnorm,cs)==0)
+			return document;
+
+	//check for relative file names
+	QFileInfo fi(getAbsoluteFilePath(fileName));
+	if (!fi.exists()) {
+		if (QFileInfo(getAbsoluteFilePath(fileName),".tex").exists())
+			fi=QFileInfo(getAbsoluteFilePath(fileName),".tex");
+		else if (QFileInfo(getAbsoluteFilePath(fileName),".bib").exists())
+			fi=QFileInfo(getAbsoluteFilePath(fileName),".bib");
+		else return 0;
+	}
+	//check for same file infos (is not reliable in qt < 4.5, because they just compare absoluteFilePath)
+	foreach (LatexDocument* document, documents)
+		if (document->getFileInfo().exists() && document->getFileInfo()==fi)
+			return document;
+
+	//check for canonical file path (unnecessary in qt 4.5)
+	fnorm = fi.canonicalFilePath();
+	foreach (LatexDocument* document, documents)
+		if (document->getFileInfo().canonicalFilePath().compare(fnorm,cs)==0)
+			return document;
+
+	return 0;
 }
 void LatexDocuments::settingsRead(){
 	model->iconSection.resize(LatexParser::structureCommands.count());

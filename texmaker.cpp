@@ -213,7 +213,7 @@ void Texmaker::setupDockWidgets(){
 		structureTreeView=new QTreeView(this);
 		structureTreeView->header()->hide();
 		structureTreeView->setModel(documents.model);
-		connect(structureTreeView, SIGNAL(activated(const QModelIndex &)), SLOT(clickedOnStructureEntry(const QModelIndex &))); //enter or double click (+single click on some platforms)
+		//disabled because it also reacts to expand, connect(structureTreeView, SIGNAL(activated(const QModelIndex &)), SLOT(clickedOnStructureEntry(const QModelIndex &))); //enter or double click (+single click on some platforms)
 		connect(structureTreeView, SIGNAL(pressed(const QModelIndex &)), SLOT(clickedOnStructureEntry(const QModelIndex &))); //single click
 //		connect(structureTreeView, SIGNAL(expanded(const QModelIndex &)), SLOT(treeWidgetChanged()));
 //		connect(structureTreeView, SIGNAL(collapsed(const QModelIndex &)), SLOT(treeWidgetChanged()));
@@ -732,6 +732,8 @@ void Texmaker::createStatusBar() {
 }
 
 void Texmaker::UpdateCaption() {
+	if (!currentEditorView()) documents.currentDocument=0;
+	else documents.currentDocument=currentEditorView()->document;
 	QString title;
 	if (!currentEditorView())	{
 		title="TexMakerX";
@@ -759,7 +761,8 @@ void Texmaker::UpdateCaption() {
 		}
 	}
 	setWindowTitle(title);
-	updateStructure();
+	//updateStructure();
+	cursorPositionChanged();
 	if (singlemode) {
 		outputView->resetMessagesAndLog();
 	}
@@ -829,67 +832,20 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(showPreview(QString)),this,SLOT(showPreview(QString)));
 
 	edit->setBibTeXIds(&allBibTeXIds);
-
-	edit->document=new LatexDocument();
-	edit->document->edView=edit;
-	edit->document->text=edit->editor->document();
-	documents.addDocument(edit->document);
 }
 
 LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName){
-	if (fileName=="") return 0;
-	QString fnorm = fileName;
-	fnorm.replace("/",QDir::separator()).replace("\\",QDir::separator());
-	//fast check for absolute file names
-#ifdef Q_WS_WIN
-	Qt::CaseSensitivity cs = Qt::CaseInsensitive;
-#else
-	Qt::CaseSensitivity cs = Qt::CaseSensitive;
-#endif
-	for (int i=0; i< EditorView->count(); i++){
-		LatexEditorView* edView = qobject_cast<LatexEditorView*>(EditorView->widget(i));
-		if (!edView) continue;
-		const QEditor* edit=edView->editor;
-		if (edit->fileName().compare(fnorm,cs)==0)
-			return edView;
-	}
-	//check for relative file names
-	QFileInfo fi(getAbsoluteFilePath(fileName));
-	if (!fi.exists()) {
-		if (QFileInfo(getAbsoluteFilePath(fileName),".tex").exists())
-			fi=QFileInfo(getAbsoluteFilePath(fileName),".tex");
-		else if (QFileInfo(getAbsoluteFilePath(fileName),".bib").exists())
-			fi=QFileInfo(getAbsoluteFilePath(fileName),".bib");
-		else return 0;
-	}
-	//check for same file infos (is not reliable in qt < 4.5, because they just compare absoluteFilePath)
-	for (int i=0; i< EditorView->count(); i++){
-		LatexEditorView* edView = qobject_cast<LatexEditorView*>(EditorView->widget(i));
-		if (!edView) continue;
-		const QEditor* edit=edView->editor;
-		if (edit->fileInfo().exists() && edit->fileInfo()==fi)
-			return edView;
-	}
-	//check for canonical file path (unnecessary in qt 4.5)
-	fnorm = fi.canonicalFilePath();
-	for (int i=0; i< EditorView->count(); i++){
-		LatexEditorView* edView = qobject_cast<LatexEditorView*>(EditorView->widget(i));
-		if (!edView) continue;
-		const QEditor* edit=edView->editor;
-		if (edit->fileInfo().canonicalFilePath().compare(fnorm,cs)==0)
-			return edView;
-	}
-	return 0;
+	LatexDocument* document=documents.findDocument(fileName);
+	if (!document) return 0;
+	return document->getEditorView();
 }
 
 
 QString Texmaker::getCurrentFileName() {
-	if (!currentEditorView()) return "";
-	return currentEditorView()->editor->fileName();
+	return documents.getCurrentFileName();
 }
 QString Texmaker::getCompileFileName(){
-	if (singlemode) return getCurrentFileName();
-	else return MasterName;
+	return documents.getCompileFileName();
 }
 QString Texmaker::getCompilePath(){
 	QString compFile=getCompileFileName();
@@ -904,16 +860,7 @@ QString Texmaker::getPreferredPath(){
 	return QDir::homePath();
 }
 QString Texmaker::getAbsoluteFilePath(const QString & relName, const QString &extension){
-	QString s=relName;
-	if (!s.endsWith(extension,Qt::CaseInsensitive)) s+=extension;
-	QFileInfo fi(s);
-	if (!fi.isRelative()) return s;
-	QString compileFileName=getCompileFileName();
-	if (compileFileName.isEmpty()) return s; //what else can we do?
-	QString compilePath=QFileInfo(compileFileName).absolutePath();
-	if (!compilePath.endsWith("\\") && !compilePath.endsWith("/"))
-		compilePath+=QDir::separator();
-	return  compilePath+s;
+	return documents.getAbsoluteFilePath(relName, extension);
 }
 QString Texmaker::getRelativeBaseName(const QString & file){
 	QString basepath=getCompilePath();
@@ -988,6 +935,13 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 
 	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig);
 	configureNewEditorView(edit);
+
+	edit->document=documents.findDocument(f);
+	if (!edit->document) {
+		edit->document=new LatexDocument();
+		edit->document->setEditorView(edit);
+		documents.addDocument(edit->document);
+	} else edit->document->setEditorView(edit);
 	EditorView->addTab(edit, "[*] "+QFileInfo(f_real).fileName());
 	EditorView->setCurrentWidget(edit);
 	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
@@ -1003,9 +957,11 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	edit->editor->document()->setLineEnding(edit->editor->document()->originalLineEnding());
 
 	edit->editor->setFocus();
+	edit->document->setEditorView(edit); //update file name (if document didn't exist)
 	UpdateCaption();
 	NewDocumentStatus(false);
 	MarkCurrentFileAsRecent();
+	updateStructure();
 	ShowStructure();
 	if (asProject) {
 		if (singlemode) ToggleMode();
@@ -1028,6 +984,11 @@ void Texmaker::fileNew(QString fileName) {
 		edit->editor->setFileEncoding(QTextCodec::codecForName("utf-8"));
 
 	configureNewEditorView(edit);
+
+	edit->document=new LatexDocument();
+	edit->document->setEditorView(edit);
+	documents.addDocument(edit->document);
+
 	EditorView->addTab(edit, fileName);
 	EditorView->setCurrentWidget(edit);
 
@@ -1136,6 +1097,11 @@ void Texmaker::fileNewFromTemplate() {
 			edit->editor->setFileEncoding(QTextCodec::codecForName("utf-8"));
 
 		configureNewEditorView(edit);
+
+		edit->document=new LatexDocument();
+		edit->document->setEditorView(edit);
+		documents.addDocument(edit->document);
+
 		EditorView->addTab(edit, "untitled");
 		EditorView->setCurrentWidget(edit);
 
@@ -1238,6 +1204,7 @@ void Texmaker::fileSaveAs(QString fileName) {
 			fn.append(".tex");
 		// save file
 		currentEditor()->save(fn);
+		currentEditorView()->document->setEditorView(currentEditorView()); //update file name
 		MarkCurrentFileAsRecent();
 
 		if(configManager.autoCheckinAfterSave){
@@ -1647,8 +1614,8 @@ void Texmaker::editSetupEncoding() {
 
 void Texmaker::editIndentSection() {
 	StructureEntry *entry=LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
-	if (!entry || !entry->document->edView) return;
-	EditorView->setCurrentWidget(entry->document->edView);
+	if (!entry || !entry->document->getEditorView()) return;
+	EditorView->setCurrentWidget(entry->document->getEditorView());
 	QDocumentSelection sel = entry->document->sectionSelection(entry);
 
 	// replace list
@@ -1676,8 +1643,8 @@ void Texmaker::editIndentSection() {
 
 void Texmaker::editUnIndentSection() {
 	StructureEntry *entry=LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
-	if (!entry || !entry->document->edView) return;
-	EditorView->setCurrentWidget(entry->document->edView);
+	if (!entry || !entry->document->getEditorView()) return;
+	EditorView->setCurrentWidget(entry->document->getEditorView());
 	QDocumentSelection sel = entry->document->sectionSelection(entry);
 
 	QStringList m_replace;
@@ -1707,8 +1674,8 @@ void Texmaker::editUnIndentSection() {
 void Texmaker::editSectionCopy() {
 	// called by action
 	StructureEntry *entry=LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
-	if (!entry || !entry->document->edView) return;
-	EditorView->setCurrentWidget(entry->document->edView);
+	if (!entry || !entry->document->getEditorView()) return;
+	EditorView->setCurrentWidget(entry->document->getEditorView());
 	QDocumentSelection sel = entry->document->sectionSelection(entry);
 	editSectionCopy(sel.startLine+1,sel.endLine);
 }
@@ -1716,8 +1683,8 @@ void Texmaker::editSectionCopy() {
 void Texmaker::editSectionCut() {
 	// called by action
 	StructureEntry *entry=LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
-	if (!entry || !entry->document->edView) return;
-	EditorView->setCurrentWidget(entry->document->edView);
+	if (!entry || !entry->document->getEditorView()) return;
+	EditorView->setCurrentWidget(entry->document->getEditorView());
 	QDocumentSelection sel = entry->document->sectionSelection(entry);
 	editSectionCut(sel.startLine+1,sel.endLine);
 	//UpdateStructure();
@@ -1749,16 +1716,16 @@ void Texmaker::editSectionCut(int startingLine, int endLine) {
 
 void Texmaker::editSectionPasteBefore() {
 	StructureEntry *entry=LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
-	if (!entry || !entry->document->edView) return;
-	EditorView->setCurrentWidget(entry->document->edView);
+	if (!entry || !entry->document->getEditorView()) return;
+	EditorView->setCurrentWidget(entry->document->getEditorView());
 	editSectionPasteBefore(entry->getRealLineNumber());
 	//UpdateStructure();
 }
 
 void Texmaker::editSectionPasteAfter() {
 	StructureEntry *entry=LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
-	if (!entry || !entry->document->edView) return;
-	EditorView->setCurrentWidget(entry->document->edView);
+	if (!entry || !entry->document->getEditorView()) return;
+	EditorView->setCurrentWidget(entry->document->getEditorView());
 	QDocumentSelection sel=entry->document->sectionSelection(entry);
 	editSectionPasteAfter(sel.endLine);
 	//UpdateStructure();
@@ -2000,7 +1967,7 @@ void Texmaker::ShowStructure() {
 void Texmaker::updateStructure() {
 // collect user define tex commands for completer
 // initialize List
-	if (!currentEditorView()) return;
+	if (!currentEditorView() || !currentEditorView()->document) return;
 	currentEditorView()->document->updateStructure();
 
 	userCommandList.clear();
@@ -2014,17 +1981,19 @@ void Texmaker::updateStructure() {
 }
 
 void Texmaker::clickedOnStructureEntry(const QModelIndex & index){
-	const StructureEntry* entry = (StructureEntry*)index.internalPointer();
+	const StructureEntry* entry = LatexDocumentsModel::indexToStructureEntry(index);
 	if (!entry) return;
 	if (!entry->document) return;
-	if (!entry->document->edView) return;
 
 	Qt::MouseButtons mb=QApplication::mouseButtons();
 	if (QApplication::mouseButtons()==Qt::RightButton) return; // avoid jumping to line if contextmenu is called
 
 	switch (entry->type){
 		case StructureEntry::SE_DOCUMENT_ROOT:
-			EditorView->setCurrentWidget(entry->document->edView);
+			if (entry->document->getEditorView())
+				EditorView->setCurrentWidget(entry->document->getEditorView());
+			else
+				load(entry->document->getFileName());
 			break;
 
 		case StructureEntry::SE_OVERVIEW:
@@ -2034,12 +2003,15 @@ void Texmaker::clickedOnStructureEntry(const QModelIndex & index){
 		case StructureEntry::SE_TODO:
 		case StructureEntry::SE_LABEL:{
 			int lineNr=-1;
-			QDocumentLineHandle *dlh = entry->lineHandle;
-			if (dlh) lineNr=QDocumentLine(dlh).lineNumber();
-			if (lineNr<0) lineNr=entry->lineNumber;
 			mDontScrollToItem = entry->type!=StructureEntry::SE_SECTION;
-			LatexEditorView* edView=entry->document->edView;
-			EditorView->setCurrentWidget(edView); //with the old structure widget this would have deleted entry (but it shouldn't happen anymore)
+			LatexEditorView* edView=entry->document->getEditorView();
+			if (!entry->document->getEditorView()){
+				lineNr=entry->lineNumber;
+				edView=load(entry->document->getFileName());
+				if (!edView) return;
+				//entry is now invalid
+			} else lineNr=entry->getRealLineNumber();
+			EditorView->setCurrentWidget(edView);
 			edView->editor->setFocus();
 			edView->editor->setCursorPosition(lineNr,1);
 			break;
@@ -2048,7 +2020,7 @@ void Texmaker::clickedOnStructureEntry(const QModelIndex & index){
 		case StructureEntry::SE_INCLUDE:
 		case StructureEntry::SE_BIBTEX:{
 			QString defaultExt=entry->type==StructureEntry::SE_BIBTEX?".bib":".tex";
-			QString curPath=ensureTrailingDirSeparator(entry->document->edView->editor->fileInfo().absolutePath());
+			QString curPath=ensureTrailingDirSeparator(entry->document->getFileInfo().absolutePath());
 			if (load(getAbsoluteFilePath(entry->title,defaultExt)));
 			else if (load(getAbsoluteFilePath(curPath+entry->title,defaultExt)));
 			else QMessageBox::warning(this,"TexMakerX","Sorry, I couldn't find the file \""+entry->title+"\"",QMessageBox::Ok);
@@ -3429,6 +3401,7 @@ void Texmaker::onOtherInstanceMessage(const QString &msg) { // Added slot for me
 void Texmaker::ToggleMode() {
 //QAction *action = qobject_cast<QAction *>(sender());
 	if (!singlemode) {
+		documents.setMasterDocument(0);
 		ToggleAct->setText(tr("Define Current Document as 'Master Document'"));
 		outputView->resetMessagesAndLog();
 		singlemode=true;
@@ -3443,6 +3416,7 @@ void Texmaker::ToggleMode() {
 			QMessageBox::warning(this,tr("Error"),tr("You must save the file before switching to master mode."));
 			return;
 		}
+		documents.setMasterDocument(currentEditorView()->document);
 		QString shortName = MasterName;
 		int pos;
 		while ((pos = (int)shortName.indexOf('/')) != -1) shortName.remove(0,pos+1);
@@ -4031,6 +4005,7 @@ void Texmaker::editFindGlobal(){
 
 // show current cursor position in structure view
 void Texmaker::cursorPositionChanged(){
+	if (!currentEditorView()) return;
 	int i=currentEditor()->cursor().lineNumber();
 	int oldLine=currentLine;
 	// search line in structure

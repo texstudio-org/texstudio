@@ -75,11 +75,13 @@ class LatexDocument: public QObject
 public:
 	LatexDocument();
 	~LatexDocument();
-	LatexEditorView* edView;
-	QDocument* text;
 
-	//QString fileName; //Masterfile, absolute
-	QSet<QString> texFiles; //absolute file names, also contains fileName
+	void setFileName(const QString& fileName);
+	void setEditorView(LatexEditorView* edView);
+	LatexEditorView *getEditorView();
+	QString getFileName();
+	QFileInfo getFileInfo();
+	//QSet<QString> texFiles; //absolute file names, also contains fileName
 
 //	References containedLabels,containedReferences;
 //	QMap<QString,DocumentLine> mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
@@ -99,6 +101,12 @@ public:
 
 
 	QDocumentSelection sectionSelection(StructureEntry* section);
+private:
+	QString fileName; //absolute
+	QFileInfo fileInfo;
+
+	LatexEditorView* edView;
+	QDocument* text;
 
 public slots:
 	void updateStructure();
@@ -114,7 +122,7 @@ class LatexDocumentsModel: public QAbstractItemModel{
 	Q_OBJECT
 private:
 	LatexDocuments& documents;
-	QIcon iconDocument, iconBibTeX, iconInclude;
+	QIcon iconDocument, iconMasterDocument, iconBibTeX, iconInclude;
 	QVector<QIcon> iconSection;
 	StructureEntry* mHighlightedEntry;
 
@@ -133,6 +141,7 @@ public:
 	StructureEntry* highlightedEntry();
 	void setHighlightedEntry(StructureEntry* entry);
 
+	void resetAll();
 private slots:
 	void structureUpdated(LatexDocument* document);
 	void structureLost(LatexDocument* document);
@@ -144,6 +153,8 @@ class LatexDocuments
 {
 public:
 	LatexDocumentsModel* model;
+	LatexDocument* masterDocument;
+	LatexDocument* currentDocument;
 	QList<LatexDocument*> documents;
 	QMap<QString, BibTeXFileInfo> bibTeXFiles; //bibtex files loaded by tmx
 	bool bibTeXFilesModified; //true iff the BibTeX files were changed after the last compilation
@@ -152,6 +163,13 @@ public:
 	~LatexDocuments();
 	void addDocument(LatexDocument* document);
 	void deleteDocument(LatexDocument* document);
+	void setMasterDocument(LatexDocument* document);
+
+	QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opened
+	QString getCompileFileName(); //returns the absolute file name of the file to be compiled (master or current)
+	QString getAbsoluteFilePath(const QString & relName, const QString &extension="");
+
+	LatexDocument* findDocument(const QString& fileName);
 
 	void settingsRead();
 };
