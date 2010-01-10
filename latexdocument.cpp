@@ -6,8 +6,6 @@
 #include "qeditor.h"
 #include "smallUsefulFunctions.h"
 
-QStringList struct_level = QStringList() << "part" << "chapter" << "section" << "subsection" << "subsubsection"; //TODO
-
 LatexDocument::LatexDocument():edView(0),text(0)
 {
 	baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
@@ -77,13 +75,11 @@ void LatexDocument::updateStructure() {
 	bibTeXList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
 	bibTeXList->title=tr("BIBTEX");
 
-	QVector<StructureEntry*> parent_level(struct_level.count());
+	QVector<StructureEntry*> parent_level(LatexParser::structureCommands.count());
 	for (int i=0;i<parent_level.size();i++)
 		parent_level[i]=baseStructure;
 
-	//TODO: Use a cache to prevent reparsing (especially important for mastermode, where more structures are shown) (perhaps it makes sense to show the structure of every open file)
 	//TODO: This assumes one command per line, which is not necessary true
-	//TODO: Move this in a latex parser class
 	for (int i=0; i<document->lines(); i++) {
 		const QString curLine = document->line(i).text(); //TODO: use this instead of s
 		//// newcommand ////
@@ -169,8 +165,8 @@ void LatexDocument::updateStructure() {
 			}
 		}//for
 		//// all sections ////
-		for(int header=0;header<struct_level.count();header++){
-			QRegExp regexp = QRegExp("\\\\"+struct_level[header]+"\\*?[\\{\\[]");
+		for(int header=0;header<LatexParser::structureCommands.count();header++){
+			QRegExp regexp = QRegExp("\\"+LatexParser::structureCommands[header]+"\\*?[\\{\\[]");
 			s=findToken(curLine,regexp);
 			if (s!="") {
 				s=extractSectionName(s);
@@ -234,18 +230,46 @@ int StructureEntry::getRealLineNumber() const{
 	}
 	return lineNumber;
 }
-/*
-  QIcon(":/images/doc.png"));
-  static const QIcon structureBibTeXIcon(":/images/bibtex.png");
-				Child->setIcon(0,QIcon(":/images/include.png"));
-				parent_level[header]->setIcon(0,);
-*/
+
+StructureEntryIterator::StructureEntryIterator(StructureEntry* entry){
+	if (!entry) return;
+	while (entry->parent){
+		entryHierarchy.prepend(entry);
+		indexHierarchy.prepend(entry->parent->children.indexOf(entry));
+		entry=entry->parent;
+	}
+	entryHierarchy.prepend(entry);
+	indexHierarchy.prepend(0);
+}
+bool StructureEntryIterator::hasNext(){
+	return !entryHierarchy.isEmpty();
+}
+StructureEntry* StructureEntryIterator::next(){
+	if (!hasNext()) return 0;
+	StructureEntry* result=entryHierarchy.last();
+	if (!result->children.isEmpty()) { //first child is next element, go a level deeper
+		entryHierarchy.append(result->children.at(0));
+		indexHierarchy.append(0);
+	} else { //no child, go to next on same level
+		entryHierarchy.removeLast();
+		indexHierarchy.last()++;
+		while (!entryHierarchy.isEmpty() && indexHierarchy.last()>=entryHierarchy.last()->children.size()) {
+			//doesn't exists, proceed to travel upwards
+			entryHierarchy.removeLast();
+			indexHierarchy.removeLast();
+			indexHierarchy.last()++;
+		}
+		if (!entryHierarchy.isEmpty())
+			entryHierarchy.append(entryHierarchy.last()->children.at(indexHierarchy.last()));
+	}
+	return result;
+}
 
 LatexDocumentsModel::LatexDocumentsModel(LatexDocuments& docs):documents(docs),
 	iconDocument(":/images/doc.png"), iconBibTeX(":/images/bibtex.png"), iconInclude(":/images/include.png"),mHighlightedEntry(0){
-	iconSection.resize(struct_level.count());
-	for (int i=0;i<struct_level.count();i++)
-		iconSection[i]=QIcon(":/images/"+struct_level[i]+".png");
+	iconSection.resize(LatexParser::structureCommands.count());
+	for (int i=0;i<LatexParser::structureCommands.count();i++)
+		iconSection[i]=QIcon(":/images/"+LatexParser::structureCommands[i].mid(1)+".png");
 }
 Qt::ItemFlags LatexDocumentsModel::flags ( const QModelIndex & index ) const{
 	if (index.isValid()) return Qt::ItemIsEnabled|Qt::ItemIsSelectable;
@@ -387,4 +411,9 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 	if (document->edView) delete document->edView;
 	delete document;
 	model->reset();
+}
+void LatexDocuments::settingsRead(){
+	model->iconSection.resize(LatexParser::structureCommands.count());
+	for (int i=0;i<LatexParser::structureCommands.count();i++)
+		model->iconSection[i]=QIcon(":/images/"+LatexParser::structureCommands[i].mid(1)+".png");
 }
