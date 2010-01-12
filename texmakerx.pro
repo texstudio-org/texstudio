@@ -414,6 +414,7 @@ SOURCES += tests/testmanager.cpp \
     tests/testutil.cpp \
     tests/qcetestutil.cpp \
     tests/codesnippet_t.cpp \
+	tests/scriptengine_t.cpp \
     tests/qdocumentcursor_t.cpp \
     tests/qdocumentsearch_t.cpp \
     tests/qsearchreplacepanel_t.cpp \
@@ -424,6 +425,7 @@ HEADERS += tests/testmanager.h \
     tests/smallUsefulFunctions_t.h \
     tests/buildManager_t.h \
     tests/codesnippet_t.h \
+	tests/scriptengine_t.h \
     tests/qdocumentcursor_t.h \
     tests/qdocumentsearch_t.h \
     tests/qsearchreplacepanel_t.h \
