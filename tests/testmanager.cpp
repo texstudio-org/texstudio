@@ -8,6 +8,7 @@
 #include "qdocumentsearch_t.h"
 #include "qsearchreplacepanel_t.h"
 #include "latexeditorview_t.h"
+#include "scriptengine_t.h"
 #include <QtTest/QtTest>
 
 const QRegExp TestToken::simpleTextRegExp ("[A-Z'a-z0-9]+");
@@ -40,7 +41,8 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 		<< new QDocumentCursorTest()
 		<< new QDocumentSearchTest(editor)
 		<< new QSearchReplacePanelTest(codeedit,level==TL_ALL)
-		<< new LatexEditorViewTest(edView);
+		<< new LatexEditorViewTest(edView)
+		<< new ScriptEngineTest(editor);
 	bool allPassed=true;
 	if (level!=TL_ALL)
 		tr="There are skipped tests. Please rerun with --execute-all-tests\n\n";
