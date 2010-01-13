@@ -282,7 +282,6 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	QFontDatabase fdb;
 	ui.comboBoxFont->addItems(fdb.families());
 
-        ui.comboBoxEncoding->addItem("Autodetect UTF-8/UTF-16/ISO 8859-1");
 	ui.comboBoxEncoding->addItem("UTF-8");
 	foreach(int mib, QTextCodec::availableMibs()) {
 		QTextCodec *codec = QTextCodec::codecForMib(mib);

@@ -1352,6 +1352,8 @@ void QEditor::load(const QString& file, QTextCodec* codec)
 	documentHeightChanged(m_doc->height());
 	viewport()->update();
 
+	//m_codec=codec;
+	
 	//qDebug("checksum = %i", m_lastFileState.checksum);
 
 	if ( m_lineEndingsActions )
