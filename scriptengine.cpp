@@ -4,7 +4,7 @@
 scriptengine::scriptengine(QObject *parent) : QObject(parent),m_editor(0)
 {
     engine=new QScriptEngine(this);
-    //qScriptRegisterMetaType<QDocumentCursor>(engine);
+	//qScriptRegisterMetaType<QDocumentCursor>(engine);
 }
 
 scriptengine::~scriptengine(){
@@ -18,7 +18,7 @@ void scriptengine::run(){
     if(m_editor){
         QScriptValue editorValue = engine->newQObject(m_editor);
         engine->globalObject().setProperty("editor", editorValue);
-        QDocumentCursor c=m_editor->cursor();
+		QDocumentCursor c=m_editor->cursor();
         QScriptValue cursorValue = engine->newQObject(&c);
         engine->globalObject().setProperty("cursor", cursorValue);
         QScriptValue qsMetaObject = engine->newQMetaObject(c.metaObject());

@@ -32,6 +32,22 @@ void ScriptEngineTest::script_data(){
 		<< "cursor.deletePreviousChar();cursor.deleteChar();"
 		<< "Hallo";
 
+	QTest::newRow("Undo")
+		<< "editor.undo()"
+		<< "baHallo";
+
+	QTest::newRow("Redo")
+		<< "editor.redo()"
+		<< "Hallo";
+
+	QTest::newRow("Select All/copy/paste")
+		<< "editor.selectAll();editor.copy();editor.selectNothing();editor.paste()"
+		<< "HalloHallo";
+
+	QTest::newRow("Move Cursor")
+		<< "cursor.movePosition(1,cursorEnums.Start);cursor.movePosition(1,cursorEnums.End,cursorEnums.KeepAnchor)"
+		<< "HalloHallo";
+
 }
 void ScriptEngineTest::script(){
 	QFETCH(QString, script);
