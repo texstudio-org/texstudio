@@ -42,7 +42,9 @@ class QDocumentCursorHandle;
 class QCE_EXPORT QDocumentCursor : public QObject
 {
         Q_OBJECT
-        Q_ENUMS(MoveOperation MoveFlag SelectionType)
+		Q_ENUMS(MoveOperation)
+		Q_ENUMS(MoveMode MoveFlag)
+		Q_ENUMS(SelectionType)
 	public:
 		enum MoveFlag
 		{
