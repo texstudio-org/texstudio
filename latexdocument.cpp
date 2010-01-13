@@ -88,9 +88,7 @@ void LatexDocument::updateStructure() {
 			return;
 		temporaryLoadedDocument=true;
 		document=new QDocument();
-		//TODO:if (configManager.autodetectLoadedFile)
-		document->load(fileName,0);
-		//else document->load(fileName,configManager.newfile_encoding);
+		document->load(fileName,QDocument::defaultCodec());
 	}
 
 	userCommandList.clear();

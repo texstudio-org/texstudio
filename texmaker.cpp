@@ -85,6 +85,9 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 	QDocument::setShowSpaces(QDocument::ShowTrailing | QDocument::ShowLeading | QDocument::ShowTabs);
 
+	if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
+	else QDocument::setDefaultCodec(configManager.newfile_encoding);
+
 
 	QString qxsPath=QFileInfo(findResourceFile("qxs/tex.qnfa")).path();
 	m_languages = new QLanguageFactory(m_formats, this);
@@ -952,8 +955,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 		return 0;
 	}
 
-	if (configManager.autodetectLoadedFile) edit->editor->load(f_real,0);
-	else edit->editor->load(f_real,configManager.newfile_encoding);
+	edit->editor->load(f_real,QDocument::defaultCodec());
 	edit->editor->document()->setLineEnding(edit->editor->document()->originalLineEnding());
 
 	edit->editor->setFocus();
@@ -1120,7 +1122,7 @@ void Texmaker::fileNewFromTemplate() {
 		edit->editor->setCursorPosition(0,0);
 		edit->editor->nextPlaceHolder();
 		edit->editor->ensureCursorVisible();
-		/*if (configManager.autodetectLoadedFile) edit->editor->load(f_real,0);
+		/*if (configManager.autodetectLoadedFile) edit->editor->load(f_real,QDocument::defaultcodec);
 		else edit->editor->load(f_real,configManager.newfile_encoding);
 		edit->editor->document()->setLineEnding(edit->editor->document()->originalLineEnding());
 		*/
@@ -3290,6 +3292,8 @@ void Texmaker::GeneralOptions() {
 			list << fic.entryList(QStringList("*.dic"),QDir::Files,QDir::Name);
 		createComboToolButton(spellToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName(),comboSpell);
 
+		if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
+		else QDocument::setDefaultCodec(configManager.newfile_encoding);
 
 #if QT_VERSION >= 0x040500
 		if (thesaurusFileName!=configManager.thesaurus_database){
