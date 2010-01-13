@@ -119,7 +119,7 @@ bool QEditConfig::hasUnsavedChanges() const
 		return true;
 	}
 
-	QTextCodec *c = QEditor::defaultCodec();
+	QTextCodec *c = QDocument::defaultCodec();
 
 	if ( cbEncoding->currentText() == "System" )
 	{
@@ -208,9 +208,9 @@ void QEditConfig::apply()
 	QDocument::setShowSpaces(ws);
 
 	if ( cbEncoding->currentText() == "System" )
-		QEditor::setDefaultCodec(0, QEditor::UpdateAll);
+		QDocument::setDefaultCodec(0);
 	else
-		QEditor::setDefaultCodec(cbEncoding->currentText().toLatin1(), QEditor::UpdateAll);
+		QDocument::setDefaultCodec(QTextCodec::codecForName(cbEncoding->currentText().toLatin1()));
 
 	int flags = QEditor::defaultFlags();
 
@@ -266,7 +266,7 @@ void QEditConfig::cancel()
 	chkAutoRemoveTrailingWhitespace->setChecked(flags & QEditor::RemoveTrailing);
 	chkPreserveTrailingIndent->setChecked(flags & QEditor::PreserveTrailingIndent);
 
-	QTextCodec *c = QEditor::defaultCodec();
+	QTextCodec *c = QDocument::defaultCodec();
 	cbEncoding->setCurrentIndex(cbEncoding->findText(c ? c->name() : QTextCodec::codecForLocale()->name()));
 
 	m_direct = oldDir;
@@ -537,7 +537,7 @@ void QEditConfig::on_cbEncoding_currentIndexChanged(const QString& name)
 {
 	if ( m_direct )
 	{
-		QEditor::setDefaultCodec(name.toLatin1(), QEditor::UpdateAll);
+		QDocument::setDefaultCodec(QTextCodec::codecForName(name.toLatin1()));
 		emit keyChanged("encoding", name);
 	}
 }

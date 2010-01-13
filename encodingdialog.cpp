@@ -8,7 +8,7 @@ EncodingDialog::EncodingDialog(QWidget *parent, QEditor *editor) :
 		name+=" / " + ba;
 		QListWidgetItem* it = new QListWidgetItem(name, encodings);
 		it->setData(Qt::UserRole, mib);
-		if (mib==edit->getFileEncoding()->mibEnum()) encodings->setCurrentItem(it);
+		if (mib==edit->getFileCodec()->mibEnum()) encodings->setCurrentItem(it);
 		if (mib==0 || mib==4 /*latin1*/ || mib==106 /*utf-8*/ || mib==1013 || mib==1014 /*utf16be+le*/) {
 			QFont font=QApplication::font();
 			font.setBold(true);
@@ -34,11 +34,11 @@ void EncodingDialog::on_view_clicked() {
 		reject();
 		return;
 	}
-	edit->viewAsEncoding(QTextCodec::codecForMib(encodings->currentItem()->data(Qt::UserRole).toInt()));
+	edit->viewWithCodec(QTextCodec::codecForMib(encodings->currentItem()->data(Qt::UserRole).toInt()));
 	accept();
 }
 void EncodingDialog::on_change_clicked() {
-	edit->setFileEncoding(QTextCodec::codecForMib(encodings->currentItem()->data(Qt::UserRole).toInt()));
+	edit->setFileCodec(QTextCodec::codecForMib(encodings->currentItem()->data(Qt::UserRole).toInt()));
 	accept();
 }
 void EncodingDialog::on_reload_clicked() {

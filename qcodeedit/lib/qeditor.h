@@ -141,7 +141,6 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		Q_INVOKABLE QString text() const;
 		Q_INVOKABLE QString text(int line) const;
 		
-		QTextCodec* codec() const;
 		QDocument* document() const;
 		
 		QList<QEditorInputBindingInterface*> inputBindings() const;
@@ -172,11 +171,9 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		#endif
 		
 		bool isInConflict() const;
-		QTextCodec* getFileEncoding() const;
-		void setFileEncoding(QTextCodec* codec);
-		void setFileEncoding(char* name);
-		void setFileEncoding(int mib);
-                void viewAsEncoding(QTextCodec* codec);
+		QTextCodec* getFileCodec() const;
+		void setFileCodec(QTextCodec* codec);
+		void viewWithCodec(QTextCodec* codec);
 		
 		int wrapWidth() const;
 
@@ -209,13 +206,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		static int defaultFlags();
 		static void setDefaultFlags(int f);
-		
-		static QTextCodec* defaultCodec();
-		static void setDefaultCodec(int mib, int update);
-		static void setDefaultCodec(QTextCodec *c, int update);
-		static void setDefaultCodec(const char *name, int update);
-		static void setDefaultCodec(const QByteArray& name, int update);
-		
+				
 		static QEditorInputBindingInterface* registeredInputBinding(const QString& n);
 		static QString defaultInputBindingId();
 		static QStringList registeredInputBindingIds();
@@ -267,11 +258,6 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void load(const QString& file, QTextCodec* codec= QTextCodec::codecForLocale());
 		
 		void setText(const QString& s);
-		
-		void setCodec(int mib);
-		void setCodec(QTextCodec *c);
-		void setCodec(const char *name);
-		void setCodec(const QByteArray& name);
 		
 		void setDocument(QDocument *d);
 		
@@ -462,7 +448,6 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		quint16 m_checksum;
 		
 		QDocument *m_doc;
-		QTextCodec *m_codec;
 		QList<QEditorInputBindingInterface*> m_bindings;
 		
 		QLanguageDefinition *m_definition;
@@ -488,7 +473,6 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		static QReliableFileWatch* watcher();
 		
 		static int m_defaultFlags;
-		static QTextCodec *m_defaultCodec;
 		
 		static QList<QEditor*> m_editors;
 		static QEditorInputBindingInterface *m_defaultBinding;

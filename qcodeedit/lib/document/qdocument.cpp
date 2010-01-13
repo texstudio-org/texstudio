@@ -97,6 +97,7 @@
 #include <QMessageBox>
 
 static int m_spaceSignOffset = 2;
+QTextCodec* QDocumentPrivate::m_defaultCodec = 0;
 
 static QPoint m_spaceSign[] = {
 	QPoint(2, -1),
@@ -530,6 +531,7 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 		delete dec;
 		stopChunkLoading();
 	}
+	setCodec(codec);
 	setLastModified(QFileInfo(file).lastModified());
 }
 
@@ -866,6 +868,15 @@ void QDocument::setLineEnding(LineEnding le)
 
 	emit lineEndingChanged(le);
 }
+
+QTextCodec* QDocument::codec() const{
+	return (m_impl && m_impl->m_codec)?m_impl->m_codec:QDocumentPrivate::m_defaultCodec;
+}
+void QDocument::setCodec(QTextCodec* codec){
+	if (!m_impl) return;
+	m_impl->m_codec=codec;
+}
+
 
 /*!
 	\return the font used by ALL documents to render their content
@@ -1366,6 +1377,18 @@ void QDocument::setDefaultLineEnding(QDocument::LineEnding le)
 	{
 		d->m_doc->setLineEnding(le);
 	}
+}
+
+/*!
+	\return The default text codec used to load and save document contents
+
+	\note a null pointer indicates auto detection
+*/
+QTextCodec* QDocument::defaultCodec(){
+	return QDocumentPrivate::m_defaultCodec;
+}
+void QDocument::setDefaultCodec(QTextCodec* codec){
+	QDocumentPrivate::m_defaultCodec=codec;
 }
 
 /*!
@@ -5355,7 +5378,8 @@ QDocumentPrivate::QDocumentPrivate(QDocument *d)
 	_nix(0),
 	_dos(0),
 	_mac(0),
-	m_lineEnding(m_defaultLineEnding)
+	m_lineEnding(m_defaultLineEnding),
+	m_codec(m_defaultCodec)
 {
 	m_documents << this;
 	updateFormatCache();
