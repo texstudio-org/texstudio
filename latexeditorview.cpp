@@ -654,8 +654,10 @@ void LatexEditorView::spellCheckingAlwaysIgnore() {
 			QList<QFormatRange> li=editor->document()->line(i).getOverlays(LatexEditorView::speller->spellcheckErrorFormat);
 			QString curLineText=editor->document()->line(i).text();
 			for (int j=0; j<li.size(); j++)
-				if (curLineText.mid(li[j].offset,li[j].length)==newToIgnore)
+				if (curLineText.mid(li[j].offset,li[j].length)==newToIgnore){
 					editor->document()->line(i).removeOverlay(li[j]);
+					editor->document()->line(i).setFlag(QDocumentLine::LayoutDirty,true);
+				}
 		}
 		editor->viewport()->update();
 	}
