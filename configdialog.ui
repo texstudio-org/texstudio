@@ -127,7 +127,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>8</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -1001,7 +1001,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="2" column="1" colspan="3">
+          <item row="2" column="1" colspan="2">
            <widget class="QComboBox" name="comboBoxEncoding"/>
           </item>
           <item row="4" column="2" colspan="2">
@@ -1176,6 +1176,16 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            <widget class="QCheckBox" name="checkBoxUseLineForSearch">
             <property name="text">
              <string>Use single line selection as Search Word</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3" colspan="2">
+           <widget class="QCheckBox" name="checkBoxAutoDetectOnLoad">
+            <property name="toolTip">
+             <string>can only decide between utf16/utf-8 and ISO 8859-1 !</string>
+            </property>
+            <property name="text">
+             <string>auto detect encoding of loaded files</string>
             </property>
            </widget>
           </item>
