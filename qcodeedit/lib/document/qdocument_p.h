@@ -197,6 +197,7 @@ class QCE_EXPORT QDocumentPrivate
 		static int m_leftMargin;
 		static QDocument::WhiteSpaceMode m_showSpaces;
 		static QDocument::LineEnding m_defaultLineEnding;
+		static QTextCodec* m_defaultCodec;
 		static int m_lineHeight;
 		static int m_lineSpacing;
 		static int m_spaceWidth;
@@ -220,7 +221,8 @@ class QCE_EXPORT QDocumentPrivate
 		int _nix, _dos, _mac;
 		QString m_lineEndingString;
 		QDocument::LineEnding m_lineEnding;
-		
+		QTextCodec *m_codec;
+
 		QDateTime m_lastModified;
 		
 		QDocumentBuffer *m_buffer;

@@ -740,7 +740,7 @@ void Texmaker::UpdateCaption() {
 	} else {
 		title="Document : "+getCurrentFileName();
 		if (currentEditorView()->editor) {
-			if (currentEditorView()->editor->getFileEncoding()) stat3->setText(currentEditorView()->editor->getFileEncoding()->name());
+			if (currentEditorView()->editor->getFileCodec()) stat3->setText(currentEditorView()->editor->getFileCodec()->name());
 			else stat3->setText("unknown");
 			QDocument::LineEnding le = currentEditorView()->editor->document()->lineEnding();
 			if (le==QDocument::Conservative) le= currentEditorView()->editor->document()->originalLineEnding();
@@ -979,9 +979,9 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 void Texmaker::fileNew(QString fileName) {
 	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig);
 	if (configManager.newfile_encoding)
-		edit->editor->setFileEncoding(configManager.newfile_encoding);
+		edit->editor->setFileCodec(configManager.newfile_encoding);
 	else
-		edit->editor->setFileEncoding(QTextCodec::codecForName("utf-8"));
+		edit->editor->setFileCodec(QTextCodec::codecForName("utf-8"));
 
 	configureNewEditorView(edit);
 
@@ -1024,11 +1024,11 @@ void Texmaker::fileMakeTemplate() {
 			fn.append(".tex");
 		// save file
 		QString old_name=currentEditor()->fileName();
-		QTextCodec *mCodec=currentEditor()->getFileEncoding();
-		currentEditor()->setFileEncoding(QTextCodec::codecForName("utf-8"));
+		QTextCodec *mCodec=currentEditor()->getFileCodec();
+		currentEditor()->setFileCodec(QTextCodec::codecForName("utf-8"));
 		currentEditor()->save(fn);
 		currentEditor()->setFileName(old_name);
-		currentEditor()->setCodec(mCodec);
+		currentEditor()->setFileCodec(mCodec);
 		if(!userTemplatesList.contains(fn)) userTemplatesList.append(fn);
 	}
 }
@@ -1092,9 +1092,9 @@ void Texmaker::fileNewFromTemplate() {
 		//set up new editor with template
 		LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig);
 		if (configManager.newfile_encoding)
-			edit->editor->setFileEncoding(configManager.newfile_encoding);
+			edit->editor->setFileCodec(configManager.newfile_encoding);
 		else
-			edit->editor->setFileEncoding(QTextCodec::codecForName("utf-8"));
+			edit->editor->setFileCodec(QTextCodec::codecForName("utf-8"));
 
 		configureNewEditorView(edit);
 
@@ -3049,12 +3049,12 @@ void Texmaker::WebPublish() {
 		QMessageBox::information(this,"TexMakerX",tr("No document open"),0);
 		return;
 	}
-	if (!currentEditorView()->editor->getFileEncoding()) return;
+	if (!currentEditorView()->editor->getFileCodec()) return;
 	fileSave();
 	QString finame=getCompileFileName();
 
 	WebPublishDialog *ttwpDlg = new WebPublishDialog(this,configManager.webPublishDialogConfig, &buildManager,
-		currentEditorView()->editor->getFileEncoding());
+		currentEditorView()->editor->getFileCodec());
 	ttwpDlg->ui.inputfileEdit->setText(finame);
 	ttwpDlg->exec();
 	delete ttwpDlg;
@@ -3810,7 +3810,7 @@ void Texmaker::previewLatex(){
 	for (int l=0; l<m_endingLine; l++)
 		header << edView->editor->document()->line(l).text();
 	header << "\\pagestyle{empty}";// << "\\begin{document}";
-	buildManager.preview(header.join("\n"), originalText, edView->editor->codec());
+	buildManager.preview(header.join("\n"), originalText, edView->editor->document()->codec());
 }
 void Texmaker::previewAvailable(const QString& imageFile, const QString& /*text*/){
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
@@ -3849,7 +3849,7 @@ void Texmaker::showPreview(const QString text){
 		header << edView->editor->document()->line(l).text();
 	header << "\\pagestyle{empty}";// << "\\begin{document}";
 	previewEquation=true;
-	buildManager.preview(header.join("\n"), text, edView->editor->codec());
+	buildManager.preview(header.join("\n"), text, edView->editor->document()->codec());
 }
 
  void Texmaker::editInsertRefToNextLabel(bool backward) {

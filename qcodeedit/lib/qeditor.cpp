@@ -244,7 +244,6 @@ QReliableFileWatch* QEditor::watcher()
 ////////////////////////////////////////////////////////////////////////
 
 int QEditor::m_defaultFlags = QEditor::AutoIndent | QEditor::AdjustIndent;
-QTextCodec* QEditor::m_defaultCodec = 0;
 
 /*!
 	\return The default flags set to every QEditor upon construction
@@ -291,76 +290,6 @@ void QEditor::setDefaultFlags(int flags)
 }
 
 /*!
-	\return The default text codec used to load and save document contents
-
-	\note a null pointer indicates that local 8 bit encoding is used.
-*/
-QTextCodec* QEditor::defaultCodec()
-{
-	return m_defaultCodec;
-}
-
-/*!
-	\overload
-	\param mib codec identifier
-	\param update Update policy
-*/
-void QEditor::setDefaultCodec(int mib, int update)
-{
-	setDefaultCodec(QTextCodec::codecForMib(mib), update);
-}
-
-/*!
-	\overload
-	\param name name of the codec to use
-	\param update Update policy
-*/
-void QEditor::setDefaultCodec(const char *name, int update)
-{
-	setDefaultCodec(QTextCodec::codecForName(name), update);
-}
-
-/*!
-	\overload
-	\param name name of the codec to use
-	\param update Update policy
-*/
-void QEditor::setDefaultCodec(const QByteArray& name, int update)
-{
-	setDefaultCodec(QTextCodec::codecForName(name), update);
-}
-
-/*!
-	\brief Set the default text codec
-	\param c codec to use
-	\param update Update policy
-
-	The update policy determines whether existing editors are
-	affected by the change of the default codec.
-*/
-void QEditor::setDefaultCodec(QTextCodec *c, int update)
-{
-	foreach ( QEditor *e, m_editors )
-	{
-		if ( e->codec() == m_defaultCodec )
-		{
-			if ( update & UpdateOld )
-				e->setCodec(c);
-		} else if ( e->codec() ) {
-			if ( update & UpdateCustom )
-				e->setCodec(c);
-		} else {
-			if ( update & UpdateDefault )
-				e->setCodec(c);
-		}
-	}
-
-	//qDebug("new codec is : 0x%x (%s)", c, c ? c->name().constData() : "System");
-
-	m_defaultCodec = c;
-}
-
-/*!
 	\brief ctor
 
 	\note Creates builtin menus/actions
@@ -369,7 +298,7 @@ QEditor::QEditor(QWidget *p)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-        m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
+	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
 		mDisplayModifyTime(true),m_UseLineForSearch(false)
 {
 	m_editors << this;
@@ -387,7 +316,7 @@ QEditor::QEditor(bool actions, QWidget *p)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-        m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
+	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
 		mDisplayModifyTime(true),m_UseLineForSearch(false)
 {
 	m_editors << this;
@@ -408,7 +337,7 @@ QEditor::QEditor(const QString& s, QWidget *p)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-        m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
+	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
 		mDisplayModifyTime(true),m_UseLineForSearch(false)
 {
 	m_editors << this;
@@ -430,7 +359,7 @@ QEditor::QEditor(const QString& s, bool actions, QWidget *p)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-        m_doc(0), m_codec(m_defaultCodec), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
+	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
 		mDisplayModifyTime(true),m_UseLineForSearch(false)
 {
 	m_editors << this;
@@ -766,7 +695,6 @@ void QEditor::init(bool actions)
 	}
 
 	setWindowTitle("[*]"); //remove warning of setWindowModified
-	m_codec=0;
 }
 
 /*!
@@ -953,8 +881,8 @@ void QEditor::save()
 	//s << text();
 	QString txt = m_doc->text(flag(RemoveTrailing), flag(PreserveTrailingIndent));
 
-	if ( m_codec )
-		f.write(m_codec->fromUnicode(txt));
+	if ( m_doc->codec())
+		f.write(m_doc->codec()->fromUnicode(txt));
 	else
 		f.write(txt.toLocal8Bit());
 	f.close(); //explicitly close for watcher
@@ -994,8 +922,8 @@ void QEditor::save(const QString& fn)
 
 	QString txt = m_doc->text(flag(RemoveTrailing), flag(PreserveTrailingIndent));
 
-	if ( m_codec )
-		f.write(m_codec->fromUnicode(txt));
+	if ( m_doc->codec() )
+		f.write(m_doc->codec()->fromUnicode(txt));
 	else
 		f.write(txt.toLocal8Bit());
 
@@ -1079,7 +1007,7 @@ void QEditor::fileChanged(const QString& file)
 
 		if ( autoReload )
 		{
-			load(fileName(),m_codec);
+			load(fileName(),m_doc->codec());
 			m_saveState = Undefined;
 			emit fileReloaded();
 			return;
@@ -1105,28 +1033,22 @@ bool QEditor::isInConflict() const
 	return m_saveState == Conflict;
 }
 
-QTextCodec* QEditor::getFileEncoding() const
+QTextCodec* QEditor::getFileCodec() const
 {
  //   if (m_codec==0) QMessageBox::information(0,"abc","def",0);
-    return m_codec;
+    return m_doc?m_doc->codec():QDocument::defaultCodec();
 }
 
-void QEditor::setFileEncoding(QTextCodec* codec){
-    if (codec==0 || codec==m_codec) return;
-    m_codec=codec; //standard encoding in memory, file encoding set when saving
+void QEditor::setFileCodec(QTextCodec* codec){
+    if (!m_doc || !codec || codec==m_doc->codec()) return;
+    m_doc->setCodec(codec); //standard encoding in memory, file encoding set when saving
    // setContentModified(true);
 }
-void QEditor::setFileEncoding(char* name){
-    setFileEncoding(QTextCodec::codecForName(name));
-}
-void QEditor::setFileEncoding(int mib){
-    setFileEncoding(QTextCodec::codecForMib(mib));
-}
-void QEditor::viewAsEncoding(QTextCodec* codec){
-    if (codec==0) return;
-    QByteArray dat= m_codec->fromUnicode(document()->text());
-    m_codec=codec; //standard encoding in memory, file encoding set when saving
-    document()->setText(m_codec->toUnicode(dat));
+void QEditor::viewWithCodec(QTextCodec* codec){
+    if (!m_doc || !codec) return;
+    QByteArray dat= m_doc->codec()->fromUnicode(document()->text());
+    m_doc->setCodec(codec); //standard encoding in memory, file encoding set when saving
+    document()->setText(m_doc->codec()->toUnicode(dat));
 }
 
 /*!
@@ -1430,8 +1352,6 @@ void QEditor::load(const QString& file, QTextCodec* codec)
 	documentHeightChanged(m_doc->height());
 	viewport()->update();
 
-	m_codec=codec;
-	
 	//qDebug("checksum = %i", m_lastFileState.checksum);
 
 	if ( m_lineEndingsActions )
@@ -1480,58 +1400,6 @@ void QEditor::setDocument(QDocument *d)
 	Q_UNUSED(d)
 
 	qWarning("QEditor::setDocument() is not working yet...");
-}
-
-/*!
-	\return The text codec to use for load/save operations
-*/
-QTextCodec* QEditor::codec() const
-{
-	return m_codec;
-}
-
-/*!
-	\overload
-*/
-void QEditor::setCodec(int mib)
-{
-	setCodec(QTextCodec::codecForMib(mib));
-}
-
-/*!
-	\overload
-*/
-void QEditor::setCodec(const char *name)
-{
-	setCodec(QTextCodec::codecForName(name));
-}
-
-/*!
-	\overload
-*/
-void QEditor::setCodec(const QByteArray& name)
-{
-	setCodec(QTextCodec::codecForName(name));
-}
-
-/*!
-	\brief Set the text codec to use for load/save operations
-*/
-void QEditor::setCodec(QTextCodec *c)
-{
-	if ( c == m_codec )
-		return;
-
-	m_codec = c;
-
-	// TODO : reload file?
-	if ( fileName().count() && QFile::exists(fileName()) )
-	{
-		if ( !isContentModified() )
-		{
-			load(fileName());
-		}
-	}
 }
 
 /*!

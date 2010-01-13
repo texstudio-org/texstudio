@@ -126,6 +126,9 @@ class QCE_EXPORT QDocument : public QObject
 		QString lineEndingString() const;
 		void setLineEnding(LineEnding le);
 		
+		QTextCodec* codec() const;
+		void setCodec(QTextCodec* codec);
+
 		QDateTime lastModified() const;
 		void setLastModified(const QDateTime& d);
 		
@@ -209,6 +212,9 @@ class QCE_EXPORT QDocument : public QObject
 		
 		static LineEnding defaultLineEnding();
 		static void setDefaultLineEnding(LineEnding le);
+
+		static QTextCodec* defaultCodec();
+		static void setDefaultCodec(QTextCodec* codec);
 		
 		static int tabStop();
 		static void setTabStop(int n);
