@@ -388,6 +388,7 @@ protected:
 	QByteArray stateFullScreen;
 
 	QDialog *svndlg;
+	QComboBox *cmbLog;
 
 	QString thesaurusFileName;
 	QFile *databasefile;
