@@ -2,10 +2,9 @@
 #define SCRIPTENGINE_T_H
 #ifndef QT_NO_DEBUG
 #include "mostQtHeaders.h"
-#include "qeditor.h"
-#include <QtTest/QtTest>
 
 class scriptengine;
+class QEditor;
 class ScriptEngineTest: public QObject{
 	Q_OBJECT
 	public:

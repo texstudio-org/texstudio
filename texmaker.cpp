@@ -3386,15 +3386,21 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 
 	#ifndef QT_NO_DEBUG
 	//execute test after command line is known
-	if (realCmdLine) //only at start
-		if ((QFileInfo(QCoreApplication::applicationFilePath()).lastModified()!=configManager.debugLastFileModification
+	if (realCmdLine){ //only at start
+		QFileInfo myself(QCoreApplication::applicationFilePath());
+		if ((myself.lastModified()!=configManager.debugLastFileModification
 			|| args.contains("--execute-tests") || args.contains("--execute-all-tests"))&& !args.contains("--disable-tests")){
 			fileNew();
 			if (!currentEditorView() || !currentEditorView()->editor)
 				QMessageBox::critical(0,"wtf?","test failed",QMessageBox::Ok);
-			currentEditorView()->editor->document()->setText(TestManager::execute(args.contains("--execute-all-tests")?TestManager::TL_ALL:TestManager::TL_FAST, currentEditorView(),currentEditorView()->codeeditor,currentEditorView()->editor));
+			//execute all tests once a week or if command paramter is set
+			bool allTests=args.contains("--execute-all-tests");
+			if (configManager.debugLastFullTestRun.daysTo(myself.lastModified())>6) allTests=true;
+			if (allTests) configManager.debugLastFullTestRun=myself.lastModified();
+			currentEditorView()->editor->document()->setText(TestManager::execute(allTests?TestManager::TL_ALL:TestManager::TL_FAST, currentEditorView(),currentEditorView()->codeeditor,currentEditorView()->editor));
 			configManager.debugLastFileModification=QFileInfo(QCoreApplication::applicationFilePath()).lastModified();
 		}
+	}
 	#endif
 }
 void Texmaker::onOtherInstanceMessage(const QString &msg) { // Added slot for messages to the single instance

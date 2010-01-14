@@ -851,7 +851,7 @@ void QEditor::save()
 		{
 			m_saveState = Undefined;
 		} else if ( ret == QMessageBox::Reset ) {
-			load(fileName());
+			load(fileName(),document()->codec());
 			m_saveState = Undefined;
 			return;
 		} else if ( ret == QMessageBox::Ignore ) {
