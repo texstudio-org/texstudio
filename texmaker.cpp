@@ -4157,7 +4157,7 @@ void Texmaker::svnPatch(QEditor *ed,QString diff){
 	QStringList lines=diff.split("\n");
 	for(int i=0;i<4;i++) lines.removeFirst();
 	//qDebug() <<lines;
-	QRegExp rx("@@ -(\\d+),\\d+");
+        QRegExp rx("@@ -(\\d+),(\\d+) \\+(\\d+),(\\d+)");
 	int cur_line;
 	int offset=0;
 	QDocumentCursor c=ed->cursor();
@@ -4165,17 +4165,20 @@ void Texmaker::svnPatch(QEditor *ed,QString diff){
 		QChar ch=elem.at(0);
 		if(ch=='@'){
 			if(rx.indexIn(elem)>-1){
-				cur_line=rx.cap(1).toInt();
+				cur_line=rx.cap(3).toInt();
+                                offset=0;
 				c.moveTo(cur_line-1+offset,0);
 			}
 		}else{
 			if(ch=='-'){
+                            qDebug("line: %d",c.lineNumber());
 				c.eraseLine();
 				offset--;
 			}else{
 				if(ch=='+'){
 					//c.insertLine();
 					c.insertText(elem.right(elem.length()-1));
+                                        c.insertText("\n");
 					offset++;
 				} else {
 					c.movePosition(1,QDocumentCursor::Down,QDocumentCursor::MoveAnchor);
