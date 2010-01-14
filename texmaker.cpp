@@ -4160,35 +4160,47 @@ void Texmaker::svnUndo(bool redo){
 }
 
 void Texmaker::svnPatch(QEditor *ed,QString diff){
-	QStringList lines=diff.split("\n");
+	QStringList lines;
+	if(diff.contains("\r\n")){
+		lines=diff.split("\r\n");
+	}else{
+		lines=diff.split("\n");
+	}
 	for(int i=0;i<4;i++) lines.removeFirst();
-	//qDebug() <<lines;
-        QRegExp rx("@@ -(\\d+),(\\d+) \\+(\\d+),(\\d+)");
+	QRegExp rx("@@ -(\\d+),(\\d+) \\+(\\d+),(\\d+)");
 	int cur_line;
-	int offset=0;
+	bool atDocEnd=false;
 	QDocumentCursor c=ed->cursor();
 	foreach(QString elem,lines){
 		QChar ch=elem.at(0);
 		if(ch=='@'){
 			if(rx.indexIn(elem)>-1){
 				cur_line=rx.cap(3).toInt();
-                                offset=0;
-				c.moveTo(cur_line-1+offset,0);
+				c.moveTo(cur_line-1,0);
 			}
 		}else{
 			if(ch=='-'){
-                            qDebug("line: %d",c.lineNumber());
+				atDocEnd=(c.lineNumber()==ed->document()->lineCount()-1);
 				c.eraseLine();
-				offset--;
+				if(atDocEnd) c.deletePreviousChar();
 			}else{
 				if(ch=='+'){
-					//c.insertLine();
+					atDocEnd=(c.lineNumber()==ed->document()->lineCount()-1);
+					if(atDocEnd){
+						c.movePosition(1,QDocumentCursor::EndOfLine,QDocumentCursor::MoveAnchor);
+						c.insertLine();
+					}
 					c.insertText(elem.right(elem.length()-1));
-                                        c.insertText("\n");
-					offset++;
+					// if line contains \r, no further line break needed
+					if(!atDocEnd){
+						c.insertText("\n");
+					}
 				} else {
-					c.movePosition(1,QDocumentCursor::Down,QDocumentCursor::MoveAnchor);
-					c.movePosition(1,QDocumentCursor::StartOfLine,QDocumentCursor::MoveAnchor);
+					atDocEnd=(c.lineNumber()==ed->document()->lineCount()-1);
+					if(!atDocEnd){
+						c.movePosition(1,QDocumentCursor::NextLine,QDocumentCursor::MoveAnchor);
+						c.movePosition(1,QDocumentCursor::StartOfLine,QDocumentCursor::MoveAnchor);
+					}
 				}
 			}
 		}
