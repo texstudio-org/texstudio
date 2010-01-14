@@ -5521,8 +5521,10 @@ void QDocumentPrivate::removeMarks(int id){
     }
 
 	//then notify
-	for (int i=0; i<changed.size();i++)
+	for (int i=0; i<changed.size();i++){
         emitMarkChanged(changed[i], id, false);
+		changed[i]->setFlag(QDocumentLine::LayoutDirty,true);
+	}
 }
 
 void QDocumentPrivate::execute(QDocumentCommand *cmd)
