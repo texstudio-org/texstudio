@@ -4232,7 +4232,7 @@ void Texmaker::showOldRevisions(){
 	QVBoxLayout *lay=new QVBoxLayout(svndlg);
 	QLabel *label=new QLabel(tr("Attention: dialog is automatically closed if the text is manually edited!"),svndlg);
 	lay->addWidget(label);
-	QComboBox *cmbLog=new QComboBox(svndlg);
+	cmbLog=new QComboBox(svndlg);
 	cmbLog->insertItems(0,log);
 	lay->addWidget(cmbLog);
 	connect(svndlg,SIGNAL(finished(int)),this,SLOT(svnDialogClosed()));
@@ -4243,6 +4243,7 @@ void Texmaker::showOldRevisions(){
 	svndlg->show();
 }
 void Texmaker::svnDialogClosed(){
+	if(cmbLog->currentIndex()==0) currentEditor()->document()->setClean();
 	svndlg=0;
 }
 
