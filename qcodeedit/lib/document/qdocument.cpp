@@ -4626,6 +4626,9 @@ void QDocumentCursorHandle::eraseLine()
 
 	QDocumentCommand *command = 0;
 
+	if((m_begLine>m_doc->lineCount())||(m_begLine<0)) return; // return if cursor is out of range
+	if((m_endLine>m_doc->lineCount())) m_endLine=m_doc->lineCount()-1;
+
 	if ( m_endLine == -1 )
 	{
 		command = new QDocumentEraseCommand(
@@ -4644,7 +4647,6 @@ void QDocumentCursorHandle::eraseLine()
 										m_doc
 									);
 	}
-
 	command->setTargetCursor(this);
 	execute(command);
 }
