@@ -7,6 +7,7 @@
 #include "qdocumentcursor_t.h"
 #include "qdocumentsearch_t.h"
 #include "qsearchreplacepanel_t.h"
+#include "qeditor_t.h"
 #include "latexeditorview_t.h"
 #include "scriptengine_t.h"
 #include <QtTest/QtTest>
@@ -41,6 +42,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 		<< new QDocumentCursorTest()
 		<< new QDocumentSearchTest(editor)
 		<< new QSearchReplacePanelTest(codeedit,level==TL_ALL)
+		<< new QEditorTest(level==TL_ALL)
 		<< new LatexEditorViewTest(edView)
 		<< new ScriptEngineTest(editor);
 	bool allPassed=true;

@@ -9,7 +9,8 @@ CONFIG += qt \
     debug_and_release
 exists(texmakerx_my.pri):include(texmakerx_my.pri)
 QT += network \
-    xml script
+    xml \
+    script
 contains($$list($$[QT_VERSION]), 4.3.*):message("qt 4.3.x")
 else:include(qtsingleapplication/qtsingleapplication.pri)
 
@@ -84,7 +85,8 @@ HEADERS += texmaker.h \
     latexdocument.h \
     universalinputdialog.h \
     hunspell/replist.hxx \
-    scriptengine.h
+    scriptengine.h \
+    tests/qeditortest.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -414,10 +416,11 @@ SOURCES += tests/testmanager.cpp \
     tests/testutil.cpp \
     tests/qcetestutil.cpp \
     tests/codesnippet_t.cpp \
-	tests/scriptengine_t.cpp \
+    tests/scriptengine_t.cpp \
     tests/qdocumentcursor_t.cpp \
     tests/qdocumentsearch_t.cpp \
     tests/qsearchreplacepanel_t.cpp \
+    tests/qeditor_t.cpp \
     tests/latexeditorview_t.cpp
 HEADERS += tests/testmanager.h \
     tests/testutil.h \
@@ -425,10 +428,11 @@ HEADERS += tests/testmanager.h \
     tests/smallUsefulFunctions_t.h \
     tests/buildManager_t.h \
     tests/codesnippet_t.h \
-	tests/scriptengine_t.h \
+    tests/scriptengine_t.h \
     tests/qdocumentcursor_t.h \
     tests/qdocumentsearch_t.h \
     tests/qsearchreplacepanel_t.h \
+    tests/qeditor_t.h \
     tests/latexeditorview_t.h
 win32:LIBS += -lQtTestd4
 unix:!macx:LIBS += -lQtTest

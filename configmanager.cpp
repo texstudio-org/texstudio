@@ -249,6 +249,7 @@ QSettings* ConfigManager::readSettings() {
 
 	#ifndef QT_NO_DEBUG
 	debugLastFileModification=config->value("Debug/Last Application Modification").toDateTime();
+	debugLastFullTestRun=config->value("Debug/Last Full Test Run").toDateTime();
 	#endif
 
 	
@@ -375,6 +376,7 @@ QSettings* ConfigManager::saveSettings() {
 	//debug
 	#ifndef QT_NO_DEBUG
 	config->setValue("Debug/Last Application Modification",debugLastFileModification);
+	config->setValue("Debug/Last Full Test Run",debugLastFullTestRun);
 	#endif
 	
 	config->endGroup();

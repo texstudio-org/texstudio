@@ -90,6 +90,7 @@ public:
 	//debug
 	#ifndef QT_NO_DEBUG
 	QDateTime debugLastFileModification;
+	QDateTime debugLastFullTestRun;
 	#endif
 	
 	//menus
