@@ -445,6 +445,7 @@ void QDocumentLine::addMark(int id)
 		return;
 	
 	document()->impl()->addMark(m_handle, id);
+	setFlag(QDocumentLine::LayoutDirty,true);
 }
 
 /*!
