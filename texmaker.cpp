@@ -4164,7 +4164,11 @@ void Texmaker::svnPatch(QEditor *ed,QString diff){
 	if(diff.contains("\r\n")){
 		lines=diff.split("\r\n");
 	}else{
-		lines=diff.split("\n");
+		if(diff.contains("\n")){
+			lines=diff.split("\n");
+		}else{
+			lines=diff.split("\r");
+		}
 	}
 	for(int i=0;i<4;i++) lines.removeFirst();
 	QRegExp rx("@@ -(\\d+),(\\d+) \\+(\\d+),(\\d+)");
