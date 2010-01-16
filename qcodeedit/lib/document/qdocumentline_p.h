@@ -152,7 +152,8 @@ class QCE_EXPORT QDocumentLineHandle
 		QVector<QParenthesis> m_parens;
 		QList<QFormatRange> m_overlays;
 
-		bool lineHasSelection;
+		enum SelectionState {noSel,partialSel,fullSel};
+		SelectionState lineHasSelection;
 };
 
 Q_DECLARE_TYPEINFO(QDocumentLineHandle*, Q_PRIMITIVE_TYPE);

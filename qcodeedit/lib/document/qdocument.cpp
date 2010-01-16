@@ -1670,7 +1670,7 @@ QDocumentLineHandle::QDocumentLineHandle(QDocument *d)
  , m_indent(0)
  , m_state(QDocumentLine::LayoutDirty)
  , m_layout(0)
- , lineHasSelection(false)
+ , lineHasSelection(QDocumentLineHandle::noSel)
 {
 	#if QT_VERSION < 0x040400
 	m_ref.init(1);
@@ -1689,6 +1689,7 @@ QDocumentLineHandle::QDocumentLineHandle(const QString& s, QDocument *d)
  , m_indent(0)
  , m_state(QDocumentLine::LayoutDirty)
  , m_layout(0)
+ , lineHasSelection(QDocumentLineHandle::noSel)
 {
 	#if QT_VERSION < 0x040400
 	m_ref.init(1);
@@ -5736,9 +5737,18 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		//			cxt.width, m_lineHeight,
 		//			bg);
 		bool curSelectionState=inSel || (!m_selectionBoundaries.empty());
-		if(curSelectionState!=h->lineHasSelection) {
+
+		if(fullSel && h->lineHasSelection!=QDocumentLineHandle::fullSel) {
 			h->setFlag(QDocumentLine::LayoutDirty,true);
-			h->lineHasSelection=curSelectionState;
+			h->lineHasSelection=QDocumentLineHandle::fullSel;
+		}
+		if(!fullSel && curSelectionState){
+			h->setFlag(QDocumentLine::LayoutDirty,true);
+			h->lineHasSelection=QDocumentLineHandle::partialSel;
+		}
+		if(!curSelectionState && h->lineHasSelection!=QDocumentLineHandle::noSel){
+			h->setFlag(QDocumentLine::LayoutDirty,true);
+			h->lineHasSelection=QDocumentLineHandle::noSel;
 		}
 
 		p->save();
