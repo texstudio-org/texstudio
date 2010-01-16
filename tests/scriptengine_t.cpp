@@ -44,10 +44,21 @@ void ScriptEngineTest::script_data(){
 		<< "editor.selectAll();editor.copy();editor.selectNothing();editor.paste()"
 		<< "HalloHallo";
 
-	QTest::newRow("Move Cursor")
-		<< "cursor.movePosition(1,cursorEnums.Start);cursor.movePosition(1,cursorEnums.End,cursorEnums.KeepAnchor)"
-		<< "HalloHallo";
+	QTest::newRow("remove Selection")
+		<< "cursor.movePosition(1,cursorEnums.Start);cursor.movePosition(5,cursorEnums.Right,cursorEnums.KeepAnchor);cursor.removeSelectedText()"
+		<< "Hallo";
 
+	QTest::newRow("get selected Text")
+		<< "cursor.movePosition(1,cursorEnums.Start);cursor.movePosition(2,cursorEnums.Right,cursorEnums.KeepAnchor);a=cursor.selectedText();cursor.replaceSelectedText(\"be\");cursor.clearSelection();cursor.insertText(a)"
+		<< "beHallo";
+
+	QTest::newRow("check cursor movement out of range")
+		<< "cursor.movePosition(20,cursorEnums.Right);cursor.deleteChar();cursor.deletePreviousChar()"
+		<< "bello";  // a movement out of range is canceled completely
+
+	QTest::newRow("check cursor movement out of range")
+		<< "cursor.moveTo(20,10);cursor.deleteChar();cursor.deletePreviousChar();cursor.eraseLine();cursor.insertText(\"as\")"
+		<< "bello";  // invalid cursors are not executed
 }
 void ScriptEngineTest::script(){
 	QFETCH(QString, script);
