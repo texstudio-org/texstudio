@@ -2061,11 +2061,15 @@ void Texmaker::NormalCompletion() {
 			j++;
 		}
 		if(c.previousChar()==QChar('\\')){
-			QString cmd=word.mid(col-i-j,4);
-			if(cmd=="ref{"){
+                        QString cmd=word.mid(col-i-j);
+                        if(cmd.startsWith("ref{")||cmd.startsWith("pageref{")){
 				currentEditorView()->complete(true,false,true);
 				return;
 			}
+                        if(cmd.startsWith("begin{")||cmd.startsWith("end{")){
+                                currentEditorView()->complete(true,false,false);
+                                return;
+                        }
 		}
 		if (i>1) {
 			QString my_text=currentEditorView()->editor->text();
