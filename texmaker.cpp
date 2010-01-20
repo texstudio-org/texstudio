@@ -764,7 +764,7 @@ void Texmaker::UpdateCaption() {
 		}
 	}
 	setWindowTitle(title);
-	//updateStructure();
+	updateStructure();
 	cursorPositionChanged();
 	if (singlemode) {
 		outputView->resetMessagesAndLog();
