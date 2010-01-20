@@ -129,7 +129,7 @@ public:
 	}	
 	
 	virtual bool keyPressEvent(QKeyEvent *event, QEditor *editor) {
-		if (event->key()==Qt::Key_Shift || event->key()==Qt::Key_Alt || event->key()==Qt::Key_Control)
+                if (event->key()==Qt::Key_Shift || event->key()==Qt::Key_Alt || event->key()==Qt::Key_AltGr || event->key()==Qt::Key_Control)
 			return false;
 		if (!active) return false; //we should never have been called
 		bool handled=false;

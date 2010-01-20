@@ -2682,7 +2682,7 @@ void Texmaker::InsertPageRef() {
                 foreach(const LatexDocument* doc,docs)
                         labels << doc->labelItem;
         } else return;
-	UniversalInputDialog dialog;
+        UniversalInputDialog dialog;
 	dialog.addVariable(&labels, tr("Labels:"));
 	if (dialog.exec() && !labels.isEmpty()) {
 		QString tag="\\pageref{"+labels.first()+"}";
