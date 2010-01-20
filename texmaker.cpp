@@ -2652,7 +2652,16 @@ void Texmaker::OtherCommand() {
 
 void Texmaker::InsertRef() {
 	updateStructure();
-	QStringList labels = labelitem;
+
+        LatexEditorView* edView=currentEditorView();
+        QStringList labels;
+        if(edView && edView->document){
+                QList<LatexDocument*> docs;
+                if (singlemode) docs << edView->document;
+                else docs << documents.documents;
+                foreach(const LatexDocument* doc,docs)
+                        labels << doc->labelItem;
+        } else return;
 	UniversalInputDialog dialog;
 	dialog.addVariable(&labels, tr("Labels:"));
 	if (dialog.exec() && !labels.isEmpty()) {
@@ -2664,7 +2673,15 @@ void Texmaker::InsertRef() {
 
 void Texmaker::InsertPageRef() {
 	updateStructure();
-	QStringList labels = labelitem;
+        LatexEditorView* edView=currentEditorView();
+        QStringList labels;
+        if(edView && edView->document){
+                QList<LatexDocument*> docs;
+                if (singlemode) docs << edView->document;
+                else docs << documents.documents;
+                foreach(const LatexDocument* doc,docs)
+                        labels << doc->labelItem;
+        } else return;
 	UniversalInputDialog dialog;
 	dialog.addVariable(&labels, tr("Labels:"));
 	if (dialog.exec() && !labels.isEmpty()) {
