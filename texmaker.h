@@ -127,7 +127,6 @@ private:
         Userlist UserMenuName, UserMenuTag, UserMenuAbbrev;
 	UserCd UserToolName, UserToolCommand;
 
-	QStringList userCommandList;
 	QStringList userTemplatesList;
 
 	int spellcheckErrorFormat;
