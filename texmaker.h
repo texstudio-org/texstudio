@@ -87,11 +87,6 @@ private:
 	bool FileAlreadyOpen(QString f);
 	bool canCloseNow(); //asks the user and close all files
 	void closeEvent(QCloseEvent *e);
-
-	QMap<QString, BibTeXFileInfo> bibTeXFiles; //bibtex files loaded by tmx
-	QStringList mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
-	QSet<QString> allBibTeXIds;
-	bool bibTeXFilesModified; //true iff the BibTeX files were changed after the last compilation
 	
 	QFormatFactory *m_formats;
 	QLanguageFactory* m_languages;
@@ -348,7 +343,6 @@ private slots:
 
 	void SetMostUsedSymbols(QTableWidgetItem* item);
 
-	void updateBibFiles();
 	void updateCompleter();
 
 	void tabChanged(int i);

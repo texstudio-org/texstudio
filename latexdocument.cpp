@@ -92,7 +92,8 @@ void LatexDocument::updateStructure() {
 	}
 
 	userCommandList.clear();
-        labelItem.clear();
+	labelItem.clear();
+	mentionedBibTeXFiles.clear();
 
 	emit structureLost(this);
 
@@ -157,7 +158,7 @@ void LatexDocument::updateStructure() {
 		s=findToken(curLine,"\\bibliography{");
 		if (s!="") {
 			QStringList bibs=s.split(',',QString::SkipEmptyParts);
-			//TODO: mentionedBibTeXFiles<<bibs;
+			mentionedBibTeXFiles<<bibs;
 			foreach (const QString& bibFile, bibs) {
 				StructureEntry *newFile=new StructureEntry(this,bibTeXList, StructureEntry::SE_BIBTEX);
 				newFile->title=bibFile;
@@ -441,7 +442,7 @@ void LatexDocumentsModel::structureLost(LatexDocument* document){
 
 
 
-LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)), masterDocument(0), currentDocument(0){
+LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)), masterDocument(0), currentDocument(0), bibTeXFilesModified(false){
 }
 LatexDocuments::~LatexDocuments(){
 	delete model;
@@ -537,4 +538,36 @@ void LatexDocuments::settingsRead(){
 	model->iconSection.resize(LatexParser::structureCommands.count());
 	for (int i=0;i<LatexParser::structureCommands.count();i++)
 		model->iconSection[i]=QIcon(":/images/"+LatexParser::structureCommands[i].mid(1)+".png");
+}
+
+
+void LatexDocuments::updateBibFiles(){
+	mentionedBibTeXFiles.clear();
+	foreach (const LatexDocument* doc, documents)
+		mentionedBibTeXFiles.append(doc->mentionedBibTeXFiles);
+
+	bool changed=false;
+	for (int i=0; i<mentionedBibTeXFiles.count();i++){
+		mentionedBibTeXFiles[i]=getAbsoluteFilePath(mentionedBibTeXFiles[i],".bib").replace(QDir::separator(), "/"); //store absolute
+		QString &fileName=mentionedBibTeXFiles[i];
+		QFileInfo fi(fileName);
+		if (!fi.isReadable()) continue; //ups...
+		if (!bibTeXFiles.contains(fileName))
+			bibTeXFiles.insert(fileName,BibTeXFileInfo());
+		BibTeXFileInfo& bibTex=bibTeXFiles[mentionedBibTeXFiles[i]];
+		changed=changed|bibTex.loadIfModified(fileName);
+		if (bibTex.ids.empty() && !bibTex.linksTo.isEmpty())
+			//handle obscure bib tex feature, a just line containing "link fileName"
+			mentionedBibTeXFiles.append(bibTex.linksTo);
+	}
+	if (changed) {
+		allBibTeXIds.clear();
+		for (QMap<QString, BibTeXFileInfo>::const_iterator it=bibTeXFiles.constBegin(); it!=bibTeXFiles.constEnd();++it)
+			foreach (const QString& s, it.value().ids)
+				allBibTeXIds << s;
+		for (int i=0;i<documents.size();i++)
+			if (documents[i]->getEditorView())
+				documents[i]->getEditorView()->setBibTeXIds(&allBibTeXIds);
+		bibTeXFilesModified=true;
+	}
 }

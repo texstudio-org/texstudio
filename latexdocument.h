@@ -84,6 +84,7 @@ public:
 	//QSet<QString> texFiles; //absolute file names, also contains fileName
 
 //	References containedLabels,containedReferences;
+	QStringList mentionedBibTeXFiles;
 //	QMap<QString,DocumentLine> mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
 //	QSet<QString> allBibTeXIds;
 
@@ -156,8 +157,6 @@ public:
 	LatexDocument* masterDocument;
 	LatexDocument* currentDocument;
 	QList<LatexDocument*> documents;
-	QMap<QString, BibTeXFileInfo> bibTeXFiles; //bibtex files loaded by tmx
-	bool bibTeXFilesModified; //true iff the BibTeX files were changed after the last compilation
 
 	LatexDocuments();
 	~LatexDocuments();
@@ -172,6 +171,13 @@ public:
 	LatexDocument* findDocument(const QString& fileName);
 
 	void settingsRead();
+
+	//support for included BibTeX-files
+	QMap<QString, BibTeXFileInfo> bibTeXFiles; //bibtex files loaded by tmx
+	bool bibTeXFilesModified; //true iff the BibTeX files were changed after the last compilation
+	QStringList mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
+	QSet<QString> allBibTeXIds;
+	void updateBibFiles();
 };
 
 #endif // LATEXDOCUMENT_H
