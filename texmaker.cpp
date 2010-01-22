@@ -763,7 +763,7 @@ void Texmaker::UpdateCaption() {
 		}
 	}
 	setWindowTitle(title);
-	updateStructure();
+	//updateStructure();
 	cursorPositionChanged();
 	if (singlemode) {
 		outputView->resetMessagesAndLog();
@@ -1176,6 +1176,7 @@ void Texmaker::fileSave() {
 		}
 	}
 	UpdateCaption();
+	updateStructure();
 }
 
 void Texmaker::fileSaveAs(QString fileName) {
@@ -1970,8 +1971,6 @@ void Texmaker::updateStructure() {
 // initialize List
 	if (!currentEditorView() || !currentEditorView()->document) return;
 	currentEditorView()->document->updateStructure();
-
-	userCommandList.clear();
 
 	if (configManager.parseBibTeX) documents.updateBibFiles();
 	updateCompleter();
@@ -3615,7 +3614,9 @@ void Texmaker::SetMostUsedSymbols(QTableWidgetItem* item) {
 void Texmaker::updateCompleter() {
 	QStringList words;
 
-	words << userCommandList;
+	foreach (const LatexDocument* doc, documents.documents)
+		words << doc->userCommandList;
+
 	LatexEditorView* edView=currentEditorView();
 	if(edView && edView->document){
 		QList<LatexDocument*> docs;
