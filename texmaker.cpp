@@ -45,8 +45,7 @@
 #include "qdocumentline_p.h"
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
-		: QMainWindow(parent, flags), bibTeXFilesModified(false),
-				textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false) {
+		: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false) {
 
 	MapForSymbols=0;
 	currentLine=-1;
@@ -834,7 +833,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(needCitation(const QString&)),this,SLOT(InsertBibEntry(const QString&)));
 	connect(edit, SIGNAL(showPreview(QString)),this,SLOT(showPreview(QString)));
 
-	edit->setBibTeXIds(&allBibTeXIds);
+	edit->setBibTeXIds(&documents.allBibTeXIds);
 }
 
 LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName){
@@ -934,7 +933,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	}
 
 	if (!QFile::exists(f_real)) return 0;
-	bool bibTeXmodified=bibTeXFilesModified;
+	bool bibTeXmodified=documents.bibTeXFilesModified;
 
 	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig);
 	configureNewEditorView(edit);
@@ -974,7 +973,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	}
 	if (outputView->logPresent()) DisplayLatexError(); //show marks
 	if (!bibTeXmodified)
-		bibTeXFilesModified=false; //loading a file can change the list of included bib files, but we won't consider that as a modification of them
+		documents.bibTeXFilesModified=false; //loading a file can change the list of included bib files, but we won't consider that as a modification of them, because then they don't have to be recompiled
 	return edit;
 }
 
@@ -1244,7 +1243,7 @@ void Texmaker::fileSaveAll() {
 
 			QString temp=edView->editor->fileName();
 			temp=temp.replace(QDir::separator(),"/");
-			bibTeXFilesModified = bibTeXFilesModified  || mentionedBibTeXFiles.contains(temp);//call bibtex on next compilation (this would also set as soon as the user switch to a tex file, but he could compile before switching)
+			documents.bibTeXFilesModified = documents.bibTeXFilesModified  || documents.mentionedBibTeXFiles.contains(temp);//call bibtex on next compilation (this would also set as soon as the user switch to a tex file, but he could compile before switching)
 		}
 		//currentEditor()->save();
 		//UpdateCaption();
@@ -1973,9 +1972,8 @@ void Texmaker::updateStructure() {
 	currentEditorView()->document->updateStructure();
 
 	userCommandList.clear();
-	mentionedBibTeXFiles.clear();
 
-	if (configManager.parseBibTeX) updateBibFiles();
+	if (configManager.parseBibTeX) documents.updateBibFiles();
 	updateCompleter();
 	cursorPositionChanged();
 
@@ -2550,11 +2548,11 @@ void Texmaker::InsertBibEntry(const QString& id){
 		if (currentEditor()->fileName().isEmpty())
 			possibleBibFiles.prepend(tr("<current file>"));
 		else {
-			usedFile=mentionedBibTeXFiles.indexOf(currentEditor()->fileName());
-			if (usedFile<0 && !mentionedBibTeXFiles.empty()) usedFile=0;
+			usedFile=documents.mentionedBibTeXFiles.indexOf(currentEditor()->fileName());
+			if (usedFile<0 && !documents.mentionedBibTeXFiles.empty()) usedFile=0;
 		}
 	}
-	foreach (const QString &s, mentionedBibTeXFiles)
+	foreach (const QString &s, documents.mentionedBibTeXFiles)
 		possibleBibFiles << QFileInfo(s).fileName();
 	BibTeXDialog* bd=new BibTeXDialog(0,possibleBibFiles,usedFile,id);
 	if (bd->exec()){
@@ -2564,7 +2562,7 @@ void Texmaker::InsertBibEntry(const QString& id){
 		else if (QFileInfo(currentEditor()->fileName())==QFileInfo(possibleBibFiles[usedFile])); //stay in current editor
 		else {
 			if (currentEditor()->fileName().isEmpty()) usedFile--;
-			load(mentionedBibTeXFiles[usedFile]);
+			load(documents.mentionedBibTeXFiles[usedFile]);
 			currentEditor()->setCursorPosition(currentEditor()->document()->lines()-1,0);
 			bd->resultString="\n"+bd->resultString;
 		}
@@ -2852,7 +2850,7 @@ void Texmaker::RunPreCompileCommand() {
 		stat2->setText(QString(" %1 ").arg(tr("Pre-LaTeX")));
 		runCommand(BuildManager::CMD_USER_PRECOMPILE,true,false);
 	}
-	if (bibTeXFilesModified && configManager.runLaTeXBibTeXLaTeX) {
+	if (documents.bibTeXFilesModified && configManager.runLaTeXBibTeXLaTeX) {
 		ERRPROCESS=false;
 		stat2->setText(QString(" %1 ").arg(tr("LaTeX")));
 		runCommand(BuildManager::CMD_LATEX,true,false);
@@ -2869,7 +2867,7 @@ void Texmaker::RunPreCompileCommand() {
 				runCommand(BuildManager::CMD_LATEX,true,false);
 			}
 		}
-		bibTeXFilesModified = false;
+		documents.bibTeXFilesModified = false;
 	}
 }
 
@@ -3614,33 +3612,6 @@ void Texmaker::SetMostUsedSymbols(QTableWidgetItem* item) {
 	if(changed) MostUsedSymbolWidget->SetUserPage(symbolMostused);
 }
 
-
-void Texmaker::updateBibFiles(){
-	//mentionedBibTeXFiles is set by updateStructure (which calls this)
-	bool changed=false;
-	for (int i=0; i<mentionedBibTeXFiles.count();i++){
-		mentionedBibTeXFiles[i]=getAbsoluteFilePath(mentionedBibTeXFiles[i],".bib").replace(QDir::separator(), "/"); //store absolute
-		QString &fileName=mentionedBibTeXFiles[i];
-		QFileInfo fi(fileName);
-		if (!fi.isReadable()) continue; //ups...
-		if (!bibTeXFiles.contains(fileName))
-			bibTeXFiles.insert(fileName,BibTeXFileInfo());
-		BibTeXFileInfo& bibTex=bibTeXFiles[mentionedBibTeXFiles[i]];
-		bibTex.loadIfModified(fileName);
-		if (bibTex.ids.empty() && !bibTex.linksTo.isEmpty())
-			//handle obscure bib tex feature, a just line containing "link fileName"
-			mentionedBibTeXFiles.append(bibTex.linksTo);
-	}
-	if (changed) {
-		allBibTeXIds.clear();
-		for (QMap<QString, BibTeXFileInfo>::const_iterator it=bibTeXFiles.constBegin(); it!=bibTeXFiles.constEnd();++it)
-			foreach (const QString& s, it.value().ids)
-				allBibTeXIds << s;
-		for (int i=0;i<EditorView->count();i++)
-			qobject_cast<LatexEditorView*>(EditorView->widget(i))->setBibTeXIds(&allBibTeXIds);
-		bibTeXFilesModified=true;
-	}
-}
 void Texmaker::updateCompleter() {
 	QStringList words;
 
@@ -3666,12 +3637,12 @@ void Texmaker::updateCompleter() {
 		LatexParser::citeCommands.insert(elem.remove("{%<keylist%>}"));
 
 	if (configManager.parseBibTeX)
-		for (int i=0; i<mentionedBibTeXFiles.count();i++){
-			if (!bibTeXFiles.contains(mentionedBibTeXFiles[i])){
-				qDebug("BibTex-File %s not loaded",mentionedBibTeXFiles[i].toLatin1().constData());
+		for (int i=0; i<documents.mentionedBibTeXFiles.count();i++){
+			if (!documents.bibTeXFiles.contains(documents.mentionedBibTeXFiles[i])){
+				qDebug("BibTex-File %s not loaded",documents.mentionedBibTeXFiles[i].toLatin1().constData());
 				continue; //wtf?s
 			}
-			BibTeXFileInfo& bibTex=bibTeXFiles[mentionedBibTeXFiles[i]];
+			BibTeXFileInfo& bibTex=documents.bibTeXFiles[documents.mentionedBibTeXFiles[i]];
 
 			//automatic use of cite commands
 			foreach(const QString& citeCommand, LatexParser::citeCommands){
