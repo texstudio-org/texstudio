@@ -139,7 +139,7 @@ private:
 	templateselector *templateSelectorDialog;
 
 //tools
-	bool FINPROCESS, ERRPROCESS;
+	bool FINPROCESS, ERRPROCESS, KILLPROCESS, PROCESSRUNNING;
 
 	SymbolList symbolScore;
 	usercodelist symbolMostused;
