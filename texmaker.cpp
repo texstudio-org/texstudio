@@ -45,7 +45,7 @@
 #include "qdocumentline_p.h"
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
-		: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false) {
+		: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false), PROCESSRUNNING(false) {
 
 	MapForSymbols=0;
 	currentLine=-1;
@@ -2836,9 +2836,21 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool 
 
 	if (waitendprocess) {
 		QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+		QTime time;
+		time.start();
+		KILLPROCESS=false;
+		PROCESSRUNNING=true;
 		while (!FINPROCESS) {
 			qApp->instance()->processEvents(QEventLoop::ExcludeUserInputEvents);
+			if (time.elapsed()>2000)
+				qApp->instance()->processEvents(QEventLoop::AllEvents);
+			if (KILLPROCESS) {
+				procX->kill();
+				FINPROCESS=ERRPROCESS=true;
+				break;
+			}
 		}
+		PROCESSRUNNING=false;
 		QApplication::restoreOverrideCursor();
 	}
 }
@@ -3477,6 +3489,10 @@ void Texmaker::viewToggleOutputView(){
 }
 
 void Texmaker::viewCloseSomething(){
+	if (PROCESSRUNNING) {
+		KILLPROCESS=true;
+		return;
+	}
 	if(windowState()==Qt::WindowFullScreen){
 	    stateFullScreen=saveState(1);
 	    setWindowState(Qt::WindowNoState);
