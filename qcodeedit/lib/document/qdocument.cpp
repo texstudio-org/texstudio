@@ -2430,7 +2430,7 @@ void QDocumentLineHandle::clearOverlays()
 {
 	m_overlays.clear();
 
-	//setFlag(QDocumentLine::LayoutDirty, true);
+	setFlag(QDocumentLine::LayoutDirty, true);
 	setFlag(QDocumentLine::FormatsApplied, false);
 	//applyOverlays();
 }
@@ -2439,7 +2439,7 @@ void QDocumentLineHandle::addOverlay(const QFormatRange& over)
 {
 	m_overlays << over;
 
-	//setFlag(QDocumentLine::LayoutDirty, true);
+	setFlag(QDocumentLine::LayoutDirty, true);
 	setFlag(QDocumentLine::FormatsApplied, false);
 	//applyOverlays();
 }
@@ -2448,7 +2448,7 @@ void QDocumentLineHandle::removeOverlay(const QFormatRange& over)
 {
 	int i = m_overlays.removeAll(over);
 	
-	//setFlag(QDocumentLine::LayoutDirty, true);
+	setFlag(QDocumentLine::LayoutDirty, true);
 	if ( i )
 		setFlag(QDocumentLine::FormatsApplied, false);
 	//applyOverlays();
@@ -2537,7 +2537,7 @@ void QDocumentLineHandle::setFormats(const QVector<int>& fmts)
 	while ( m_formats.count() < m_text.length() )
 		m_formats.append(0);
 
-	//setFlag(QDocumentLine::LayoutDirty, true);
+	setFlag(QDocumentLine::LayoutDirty, true);
 	setFlag(QDocumentLine::FormatsApplied, false);
 	//applyOverlays();
 }
