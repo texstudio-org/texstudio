@@ -2430,7 +2430,7 @@ void QDocumentLineHandle::clearOverlays()
 {
 	m_overlays.clear();
 
-	setFlag(QDocumentLine::LayoutDirty, true);
+	//setFlag(QDocumentLine::LayoutDirty, true);
 	setFlag(QDocumentLine::FormatsApplied, false);
 	//applyOverlays();
 }
@@ -2439,7 +2439,7 @@ void QDocumentLineHandle::addOverlay(const QFormatRange& over)
 {
 	m_overlays << over;
 
-	setFlag(QDocumentLine::LayoutDirty, true);
+	//setFlag(QDocumentLine::LayoutDirty, true);
 	setFlag(QDocumentLine::FormatsApplied, false);
 	//applyOverlays();
 }
@@ -2448,7 +2448,7 @@ void QDocumentLineHandle::removeOverlay(const QFormatRange& over)
 {
 	int i = m_overlays.removeAll(over);
 	
-	setFlag(QDocumentLine::LayoutDirty, true);
+	//setFlag(QDocumentLine::LayoutDirty, true);
 	if ( i )
 		setFlag(QDocumentLine::FormatsApplied, false);
 	//applyOverlays();
@@ -5758,7 +5758,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
 		// draw text with caching
 		QPixmap *px;
-		if(!currentLine&&!h->hasFlag(QDocumentLine::LayoutDirty)&&m_LineCache.contains(h)){
+		if(!currentLine&&!h->hasFlag(QDocumentLine::LayoutDirty)&&h->hasFlag(QDocumentLine::FormatsApplied)&&m_LineCache.contains(h)){
 			px=m_LineCache.object(h);
 			p->drawPixmap(0,0,*px);
 		} else {
