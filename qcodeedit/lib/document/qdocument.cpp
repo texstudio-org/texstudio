@@ -2537,7 +2537,7 @@ void QDocumentLineHandle::setFormats(const QVector<int>& fmts)
 	while ( m_formats.count() < m_text.length() )
 		m_formats.append(0);
 
-	setFlag(QDocumentLine::LayoutDirty, true);
+	//setFlag(QDocumentLine::LayoutDirty, true);
 	setFlag(QDocumentLine::FormatsApplied, false);
 	//applyOverlays();
 }
