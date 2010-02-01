@@ -328,7 +328,7 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 			//fall through to show full title in other cases
 		case Qt::ToolTipRole:
 			if (entry->lineNumber>-1)
-				return QVariant(entry->title+QString(" (%1 %2)").arg(tr("Zeile")).arg(entry->lineNumber+1));
+				return QVariant(entry->title+QString(" (%1 %2)").arg(tr("Line")).arg(entry->lineNumber+1));
 			else
 				return QVariant(entry->title);
 		case Qt::DecorationRole:
