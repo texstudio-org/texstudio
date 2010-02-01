@@ -594,7 +594,7 @@
     <message>
         <location filename="configdialog.ui" line="1340"/>
         <source>SVN Directory Search Depth: </source>
-        <translation>SVN VVerzeichnis Suchtiefe:</translation>
+        <translation>SVN Verzeichnissuchtiefe:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1376"/>
