@@ -168,7 +168,8 @@ FORMS += structdialog.ui \
     findGlobalDialog.ui
 TRANSLATIONS += texmakerx_fr.ts \
     texmakerx_de.ts \
-    texmakerx_it.ts
+    texmakerx_it.ts \
+    texmakerx_cs.ts
 
 # ###############################
 unix:!macx { 
