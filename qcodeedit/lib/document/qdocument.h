@@ -251,6 +251,7 @@ class QCE_EXPORT QDocument : public QObject
 		
 		void clearWidthConstraint();
 		void setWidthConstraint(int width);
+		void markFormatCacheDirty();
 		
 	signals:
 		void cleanChanged(bool m);

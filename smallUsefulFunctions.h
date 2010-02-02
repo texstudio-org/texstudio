@@ -85,6 +85,9 @@ QString cutComment(const QString& text);
 // generate multiple times used regexpression
 QRegExp generateRegExp(const QString &text,const bool isCase,const bool isWord, const bool isRegExp);
 
+// add Environment to QNFA DOM
+void addEnvironmentToDom(QDomDocument &doc,const QString EnvironName,const QString EnvironMode);
+
 //setup toolbutton as substitute for const combobox
 QToolButton* createComboToolButton(QWidget *parent,const QStringList& list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member,QString defaultElem="",QToolButton *combo=0);
 

@@ -15,6 +15,8 @@
 ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	buildManager(0),editorConfig(new LatexEditorViewConfig), completerConfig (new LatexCompleterConfig), webPublishDialogConfig (new WebPublishDialogConfig), menuParent(0), menuParentsBar(0){ //TODO: fix theoretical memory leak (it doesn't matter, this is almost a singletone)
     listCustomActions.clear();
+
+    enviromentModes << "verbatim" << "numbers";
 }
 
 QSettings* ConfigManager::readSettings() {
@@ -173,6 +175,9 @@ QSettings* ConfigManager::readSettings() {
         //custom toolbar
         listCustomActions=config->value("customToolBar").toStringList();
         replacedIconsOnMenus=config->value("customIcons").toHash();
+
+	//custom highlighting
+	customEnvironments=config->value("customHighlighting").toMap();
 	
 	
 	//--------------------appearance------------------------------------
@@ -351,6 +356,9 @@ QSettings* ConfigManager::saveSettings() {
         //custom toolbar
         config->setValue("customToolBar",listCustomActions);
         config->setValue("customIcons",replacedIconsOnMenus);
+	// custom highlighting
+	config->setValue("customHighlighting",customEnvironments);
+
 
 	//------------------appearance--------------------
 	config->setValue("Interface/Config Show Advanced Options",configShowAdvancedOptions);
@@ -615,6 +623,30 @@ bool ConfigManager::execConfigDialog() {
 	//editor font
 	confDlg->ui.comboBoxFont->lineEdit()->setText(editorConfig->editorFont.family());
 	confDlg->ui.spinBoxSize->setValue(editorConfig->editorFont.pointSize());
+
+	// custom higlighting
+	{
+	    confDlg->environModes=&enviromentModes;
+	    int l=0;
+	    confDlg->ui.twHighlighEnvirons->setRowCount(customEnvironments.size()+1);
+	    QMap<QString, QVariant>::const_iterator i;
+	    for (i = customEnvironments.constBegin(); i != customEnvironments.constEnd(); ++i){
+		QTableWidgetItem *item=new QTableWidgetItem(i.key());
+		confDlg->ui.twHighlighEnvirons->setItem(l,0,item);
+		//item=new QTableWidgetItem(i.value());
+		QComboBox *cb=new QComboBox(0);
+		cb->insertItems(0,enviromentModes);
+		cb->setCurrentIndex(i.value().toInt());
+		confDlg->ui.twHighlighEnvirons->setCellWidget(l,1,cb);
+		l++;
+	    }
+	    QTableWidgetItem *item=new QTableWidgetItem("");
+	    confDlg->ui.twHighlighEnvirons->setItem(l,0,item);
+	    //item=new QTableWidgetItem(i.value());
+	    QComboBox *cb=new QComboBox(0);
+	    cb->insertItems(0,enviromentModes);
+	    confDlg->ui.twHighlighEnvirons->setCellWidget(l,1,cb);
+	}
 	
 	
 	//EXECUTE IT
@@ -778,7 +810,17 @@ bool ConfigManager::execConfigDialog() {
 		//  editor font
 		QString fam=confDlg->ui.comboBoxFont->lineEdit()->text();
 		int si=confDlg->ui.spinBoxSize->value();
-		editorConfig->editorFont=QFont (fam,si);		
+		editorConfig->editorFont=QFont (fam,si);
+
+		// custom highlighting
+		customEnvironments.clear();
+		for(int i=0;i<confDlg->ui.twHighlighEnvirons->rowCount();i++){
+		    QString env=confDlg->ui.twHighlighEnvirons->item(i,0)->text();
+		    if(!env.isEmpty()){
+			QComboBox *cb=qobject_cast<QComboBox*>(confDlg->ui.twHighlighEnvirons->cellWidget(i,1));
+			customEnvironments.insert(env,cb->currentIndex());
+		    }
+		}
 		
 	}
 	delete confDlg;
