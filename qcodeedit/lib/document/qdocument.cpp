@@ -1098,6 +1098,11 @@ void QDocument::setWidthConstraint(int width)
 		m_impl->setWidth(qMax(0, width));
 }
 
+void QDocument::markFormatCacheDirty(){
+    if ( m_impl )
+	    m_impl->markFormatCacheDirty();
+}
+
 /*!
 	\return the line object at a given line number
 	\param line Text line to acces
@@ -6896,6 +6901,13 @@ void QDocumentPrivate::emitContentsChange(int line, int lines)
 	if ( n > lines )
 		emitFormatsChange(line + lines, n - lines);
 }
+
+void QDocumentPrivate::markFormatCacheDirty(){
+    foreach(QDocumentLineHandle *dlh,m_lines){
+	dlh->setFlag(QDocumentLine::FormatsApplied,false);
+    }
+}
+
 
 void QDocumentPrivate::emitFormatsChanged()
 {

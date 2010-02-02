@@ -44,6 +44,8 @@
 #include "qdocumentline.h"
 #include "qdocumentline_p.h"
 
+#include "qnfadefinition.h"
+
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 		: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false), PROCESSRUNNING(false) {
 
@@ -91,6 +93,25 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	QString qxsPath=QFileInfo(findResourceFile("qxs/tex.qnfa")).path();
 	m_languages = new QLanguageFactory(m_formats, this);
 	m_languages->addDefinitionPath(qxsPath);
+
+	// custom evironments
+	if(!configManager.customEnvironments.isEmpty()){
+	    QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)Tex");
+
+	    QFile f(findResourceFile("qxs/tex.qnfa"));
+	    QDomDocument doc;
+	    doc.setContent(&f);
+
+	    QMap<QString, QVariant>::const_iterator i;
+	    for (i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i){
+		QString mode=configManager.enviromentModes.value(i.value().toInt(),"verbatim");
+		addEnvironmentToDom(doc,i.key(),mode);
+	    }
+	    QNFADefinition::load(doc,&m_lang,dynamic_cast<QFormatScheme*>(m_formats));
+
+	    m_languages->addLanguage(m_lang);
+	}
+
 	QLineMarksInfoCenter::instance()->loadMarkTypes(qxsPath+"/marks.qxm");
 
 
@@ -3372,6 +3393,36 @@ void Texmaker::GeneralOptions() {
 				}
 				customToolBar->addAction(act);
 			}
+		}
+		// custom evironments
+		if(!configManager.customEnvironments.isEmpty()){
+		    QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)Tex");
+
+		    QFile f(findResourceFile("qxs/tex.qnfa"));
+		    QDomDocument doc;
+		    doc.setContent(&f);
+
+		    QMap<QString, QVariant>::const_iterator i;
+		    for (i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i){
+			QString mode=configManager.enviromentModes.value(i.value().toInt(),"verbatim");
+			addEnvironmentToDom(doc,i.key(),mode);
+		    }
+		    QNFADefinition::load(doc,&m_lang,dynamic_cast<QFormatScheme*>(m_formats));
+
+		    m_languages->addLanguage(m_lang);
+		    if (currentEditorView()) {
+			    for (int i=0; i<EditorView->count();i++) {
+				    LatexEditorView* edView=qobject_cast<LatexEditorView*>(EditorView->widget(i));
+				    if (edView) {
+					QEditor *ed=edView->editor;
+					QString extension="."+ed->fileInfo().suffix();
+					m_languages->setLanguage(ed, extension);
+					ed->document()->markFormatCacheDirty();
+					ed->update();
+				    }
+			    }
+		    }
+
 		}
 		//completion
 		updateCompleter();

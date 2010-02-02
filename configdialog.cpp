@@ -295,7 +295,10 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 
 	ui.labelGetDic->setText(tr("Get dictionaries at: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>"));
 	ui.labelGetDic->setOpenExternalLinks(true);
-
+//page custom environment
+	connect(ui.pbAddLine, SIGNAL(clicked()), this, SLOT(custEnvAddLine()));
+	connect(ui.pbRemoveLine, SIGNAL(clicked()), this, SLOT(custEnvRemoveLine()));
+	environModes=0;
 //pagequick
 	connect(ui.radioButton6, SIGNAL(toggled(bool)),ui.lineEditUserquick, SLOT(setEnabled(bool)));
 
@@ -354,6 +357,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	createIcon(tr("Latex Menus"),QIcon(":/images/configkeys.png"));
 	createIcon(tr("Custom Toolbar"),QIcon(":/images/configkeys.png"));
 	createIcon(tr("Editor"),QIcon(":/images/configeditor.png"));
+	createIcon(tr("Custom Highlighting"),QIcon(":/images/configeditor.png"));
 	createIcon(tr("Completion"),QIcon(":/images/configcompletion.png"));
 	createIcon(tr("SVN"),QIcon(":/images/configtools.png"));
 
@@ -492,5 +496,44 @@ void ConfigDialog::loadOtherIcon(){
         foreach(QListWidgetItem *elem,result){
             elem->setIcon(QIcon(fn));
         }
+    }
+}
+
+void ConfigDialog::custEnvAddLine(){
+    int i=ui.twHighlighEnvirons->rowCount();
+    ui.twHighlighEnvirons->setRowCount(i+1);
+
+    QStringList lst;
+    if(environModes)
+	lst=*environModes;
+    else
+	lst << "verbatim" << "math";
+
+    QTableWidgetItem *item=new QTableWidgetItem("");
+    ui.twHighlighEnvirons->setItem(i,0,item);
+    QComboBox *cb=new QComboBox(0);
+    cb->insertItems(0,lst);
+    ui.twHighlighEnvirons->setCellWidget(i,1,cb);
+}
+
+void ConfigDialog::custEnvRemoveLine(){
+    int i=ui.twHighlighEnvirons->currentRow();
+    ui.twHighlighEnvirons->removeRow(i);
+
+    i=ui.twHighlighEnvirons->rowCount();
+    if(i==0){
+	ui.twHighlighEnvirons->setRowCount(i+1);
+
+	QStringList lst;
+	if(environModes)
+	    lst=*environModes;
+	else
+	    lst << "verbatim" << "math";
+
+	QTableWidgetItem *item=new QTableWidgetItem("");
+	ui.twHighlighEnvirons->setItem(i,0,item);
+	QComboBox *cb=new QComboBox(0);
+	cb->insertItems(0,lst);
+	ui.twHighlighEnvirons->setCellWidget(i,1,cb);
     }
 }

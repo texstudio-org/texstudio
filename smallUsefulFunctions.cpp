@@ -439,6 +439,40 @@ QRegExp generateRegExp(const QString &text,const bool isCase,const bool isWord, 
     return m_regexp;
 }
 
+void addEnvironmentToDom(QDomDocument& doc,const QString EnvironName,const QString EnvironMode){
+    QDomElement root= doc.documentElement();
+    QDomElement tag = doc.createElement("context");
+    tag.setAttribute("id","myVerb");
+    tag.setAttribute("format",EnvironMode);
+    tag.setAttribute("transparency","true");
+    QDomElement child1 = doc.createElement("start");
+    child1.setAttribute("parenthesis",QString("my%1:open").arg(EnvironName));
+    child1.setAttribute("fold","true");
+    child1.setAttribute("format","extra-keyword");
+    QDomText dtxt=doc.createTextNode(QString("\\\\begin{%1}").arg(EnvironName));
+    child1.appendChild(dtxt);
+    QDomElement child2 = doc.createElement("stop");
+    child2.setAttribute("parenthesis",QString("my%1:close").arg(EnvironName));
+    child2.setAttribute("fold","true");
+    child2.setAttribute("format","extra-keyword");
+    QDomText dtxt2=doc.createTextNode(QString("\\\\end{%1}").arg(EnvironName));
+    child2.appendChild(dtxt2);
+    QDomElement child3 = doc.createElement("sequence");
+    child3.setAttribute("parenthesis","curly:open");
+    QDomText dtxt3=doc.createTextNode("{");
+    child3.appendChild(dtxt3);
+    QDomElement child4 = doc.createElement("sequence");
+    child4.setAttribute("parenthesis","curly:close");
+    QDomText dtxt4=doc.createTextNode("}");
+    child4.appendChild(dtxt4);
+
+    tag.appendChild(child1);
+    tag.appendChild(child2);
+    tag.appendChild(child3);
+    tag.appendChild(child4);
+    root.insertBefore(tag,QDomNode());
+}
+
 int LatexParser::findContext(QString &line,int col){
 	int start_command=col;
 	int start_ref=col;

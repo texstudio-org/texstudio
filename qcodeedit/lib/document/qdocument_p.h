@@ -139,6 +139,8 @@ class QCE_EXPORT QDocumentPrivate
 		
 		inline QDocumentConstIterator constBegin() const { return m_lines.constBegin(); }
 		inline QDocumentConstIterator constEnd() const { return m_lines.constEnd(); }
+
+		void markFormatCacheDirty();
 		
 	protected:
 		void updateHidden(int line, int count);
