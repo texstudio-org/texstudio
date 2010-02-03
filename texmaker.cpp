@@ -47,7 +47,7 @@
 #include "qnfadefinition.h"
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
-		: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false), PROCESSRUNNING(false) {
+		: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), PROCESSRUNNING(false), mDontScrollToItem(false) {
 
 	MapForSymbols=0;
 	currentLine=-1;
