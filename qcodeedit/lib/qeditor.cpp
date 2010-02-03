@@ -2437,7 +2437,7 @@ void QEditor::paintEvent(QPaintEvent *e)
 	QDocument::PaintContext ctx;
 	ctx.xoffset = xOffset;
 	ctx.yoffset = r.y() + yOffset;
-	ctx.width = viewport()->width();
+	ctx.width = m_doc->width();//viewport()->width();
 	ctx.height = qMin(r.height(), viewport()->height());
 	ctx.palette = palette();
 	ctx.cursors << m_cursor.handle();
