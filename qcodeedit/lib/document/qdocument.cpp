@@ -5568,6 +5568,11 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
 	bool currentLine=false;
 
+	if(oldOffset!=cxt.xoffset) {
+		m_LineCache.clear();
+		qDebug("clear");
+	}
+
 	QBrush bg,
 		base = cxt.palette.base(),
 		selbg = cxt.palette.highlight(),
@@ -5764,16 +5769,24 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
 		// draw text with caching
 		QPixmap *px;
-		if(oldOffset!=cxt.xoffset) m_LineCache.clear();
+
 		if(!currentLine&&!h->hasFlag(QDocumentLine::LayoutDirty)&&h->hasFlag(QDocumentLine::FormatsApplied)&&m_LineCache.contains(h)){
 			px=m_LineCache.object(h);
 			p->drawPixmap(oldOffset,0,*px);
 		} else {
 			px=new QPixmap(cxt.width,m_lineSpacing*(wrap+1));
-			px->fill(fullSel ? selbg.color() : bg.color());
+			px->fill(base.color());//fullSel ? selbg.color() : bg.color());
+			//px->fill(fullSel ? selbg.color() : bg.color());
 			QPainter pnt(px);
 			pnt.setFont(p->font());
 			pnt.translate(-cxt.xoffset,0);
+			pnt.fillRect(qMax(cxt.xoffset, m_leftMargin), 0,
+						cxt.width, m_lineSpacing,
+						fullSel ? selbg : bg); // fillrect executed twice, to be optimized
+
+			if ( wrapped )
+				pnt.fillRect(qMax(cxt.xoffset, m_leftMargin), m_lineSpacing,
+							 cxt.width, m_lineSpacing * wrap, fullSel ? selbg : bg);
 			h->draw(&pnt, cxt.xoffset, cxt.width, m_selectionBoundaries, m_cursorLines, cxt.palette, fullSel);
 			p->drawPixmap(cxt.xoffset,0,*px);
 			pnt.end();
