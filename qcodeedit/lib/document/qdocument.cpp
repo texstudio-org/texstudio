@@ -5387,7 +5387,8 @@ QDocumentPrivate::QDocumentPrivate(QDocument *d)
 	_dos(0),
 	_mac(0),
 	m_lineEnding(m_defaultLineEnding),
-	m_codec(m_defaultCodec)
+	m_codec(m_defaultCodec),
+	oldOffset(0)
 {
 	m_documents << this;
 	updateFormatCache();
@@ -5763,22 +5764,24 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
 		// draw text with caching
 		QPixmap *px;
+		if(oldOffset!=cxt.xoffset) m_LineCache.clear();
 		if(!currentLine&&!h->hasFlag(QDocumentLine::LayoutDirty)&&h->hasFlag(QDocumentLine::FormatsApplied)&&m_LineCache.contains(h)){
 			px=m_LineCache.object(h);
-			p->drawPixmap(0,0,*px);
+			p->drawPixmap(oldOffset,0,*px);
 		} else {
 			px=new QPixmap(cxt.width,m_lineSpacing*(wrap+1));
 			px->fill(fullSel ? selbg.color() : bg.color());
 			QPainter pnt(px);
 			pnt.setFont(p->font());
+			pnt.translate(-cxt.xoffset,0);
 			h->draw(&pnt, cxt.xoffset, cxt.width, m_selectionBoundaries, m_cursorLines, cxt.palette, fullSel);
-			p->drawPixmap(0,0,*px);
+			p->drawPixmap(cxt.xoffset,0,*px);
 			pnt.end();
 			if(!currentLine) m_LineCache.insert(h,px);
-                        else {
-                          m_LineCache.remove(h);
-                          delete px;
-                        }
+			else {
+				m_LineCache.remove(h);
+				delete px;
+			}
 		}
 
 
@@ -5812,6 +5815,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		//qDebug("drawing line %i in %i ms", i, t.elapsed());
 	}
 
+	oldOffset=cxt.xoffset;
 	//qDebug("painting done"); // in %i ms...", t.elapsed());
 }
 

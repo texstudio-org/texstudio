@@ -231,6 +231,7 @@ class QCE_EXPORT QDocumentPrivate
 		QVector<QDocumentLineHandle*> m_lines;
 
 		QCache<QDocumentLineHandle*,QPixmap> m_LineCache;
+		int oldOffset;
 };
 
 #endif
