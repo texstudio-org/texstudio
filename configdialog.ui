@@ -127,7 +127,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>5</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -402,7 +402,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="texmaker.qrc">
               <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
             </property>
            </widget>
@@ -455,7 +455,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="texmaker.qrc">
               <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
             </property>
            </widget>
@@ -733,7 +733,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
              <string/>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="texmaker.qrc">
               <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
             </property>
             <property name="iconSize">
@@ -822,6 +822,9 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        </item>
        <item>
         <widget class="QTreeWidget" name="shortcutTree">
+         <property name="animated">
+          <bool>true</bool>
+         </property>
          <property name="columnCount">
           <number>4</number>
          </property>
@@ -860,6 +863,9 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        </item>
        <item>
         <widget class="QTreeWidget" name="latexTree">
+         <property name="animated">
+          <bool>true</bool>
+         </property>
          <property name="columnCount">
           <number>2</number>
          </property>
@@ -932,6 +938,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <widget class="QTreeWidget" name="treePossibleToolbarActions">
            <property name="rootIsDecorated">
             <bool>false</bool>
+           </property>
+           <property name="animated">
+            <bool>true</bool>
+           </property>
+           <property name="allColumnsShowFocus">
+            <bool>true</bool>
            </property>
            <property name="headerHidden">
             <bool>true</bool>
@@ -1522,7 +1534,9 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
   <tabstop>cancelButton</tabstop>
   <tabstop>checkBoxShowAdvancedOptions</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="texmaker.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>okButton</sender>
@@ -1563,12 +1577,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>456</x>
-     <y>67</y>
+     <x>291</x>
+     <y>38</y>
     </hint>
     <hint type="destinationlabel">
-     <x>359</x>
-     <y>99</y>
+     <x>291</x>
+     <y>38</y>
     </hint>
    </hints>
   </connection>
@@ -1579,12 +1593,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>992</x>
-     <y>490</y>
+     <x>300</x>
+     <y>57</y>
     </hint>
     <hint type="destinationlabel">
-     <x>509</x>
-     <y>559</y>
+     <x>300</x>
+     <y>57</y>
     </hint>
    </hints>
   </connection>
@@ -1595,12 +1609,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>992</x>
-     <y>490</y>
+     <x>300</x>
+     <y>57</y>
     </hint>
     <hint type="destinationlabel">
-     <x>687</x>
-     <y>559</y>
+     <x>300</x>
+     <y>57</y>
     </hint>
    </hints>
   </connection>
@@ -1611,12 +1625,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>992</x>
-     <y>490</y>
+     <x>300</x>
+     <y>57</y>
     </hint>
     <hint type="destinationlabel">
-     <x>879</x>
-     <y>559</y>
+     <x>300</x>
+     <y>57</y>
     </hint>
    </hints>
   </connection>
