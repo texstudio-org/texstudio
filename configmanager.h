@@ -11,6 +11,14 @@ class LatexCompleterConfig;
 class LatexEditorViewConfig;
 class WebPublishDialogConfig;
 
+struct ManagedToolBar{
+	QString name;
+	QStringList defaults;
+	QStringList actualActions;
+	QToolBar *toolbar;
+	ManagedToolBar(const QString &newName, const QStringList &defs);
+};
+
 class ConfigManager: public QObject {
 	Q_OBJECT
 public:
@@ -119,14 +127,14 @@ public:
 	void managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu);
 	void treeWidgetToManagedMenuTo(QTreeWidgetItem* item);
 
-        QTreeWidgetItem* managedLatexMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu);
-        void treeWidgetToManagedLatexMenuTo();
+	QTreeWidgetItem* managedLatexMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu);
+	void treeWidgetToManagedLatexMenuTo();
 
-        // custom toolbar
-        QStringList listCustomActions;
-        QHash<QString,QVariant> replacedIconsOnMenus;
+	// custom toolbar
+	QList<ManagedToolBar> managedToolBars;
+	QHash<QString,QVariant> replacedIconsOnMenus;
 
-        void populateCustomActions(QListWidget* parent, QMenu* menu, bool go=false);
+	void populateCustomActions(QListWidget* parent, QMenu* menu, bool go=false);
 
 signals:
 	void tabbedLogViewChanged(bool changed);
