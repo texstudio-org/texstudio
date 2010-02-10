@@ -566,42 +566,6 @@ void Texmaker::setupMenus() {
 
 void Texmaker::setupToolBars() {
 	QStringList list;
-//file
-	fileToolBar = addToolBar("File");
-	fileToolBar->setObjectName("File");
-
-	fileToolBar->addAction(getManagedAction("main/file/new"));
-	fileToolBar->addAction(getManagedAction("main/file/open"));
-	fileToolBar->addAction(getManagedAction("main/file/save"));
-	fileToolBar->addAction(getManagedAction("main/file/close"));
-
-//edit
-	editToolBar = addToolBar("Edit");
-	editToolBar->setObjectName("Edit");
-
-	editToolBar->addAction(getManagedAction("main/edit/undo"));
-	editToolBar->addAction(getManagedAction("main/edit/redo"));
-	editToolBar->addAction(getManagedAction("main/edit/copy"));
-	editToolBar->addAction(getManagedAction("main/edit/cut"));
-	editToolBar->addAction(getManagedAction("main/edit/paste"));
-
-
-//tools
-	runToolBar = addToolBar("Tools");
-	runToolBar->setObjectName("Tools");
-
-	runToolBar->addAction(getManagedAction("main/tools/viewlog"));
-	runToolBar->addAction(getManagedAction("main/edit/goto/errorprev"));
-	runToolBar->addAction(getManagedAction("main/edit/goto/errornext"));
-
-	runToolBar->addSeparator();
-	runToolBar->addAction(getManagedAction("main/tools/quickbuild"));
-	runToolBar->addAction(getManagedAction("main/tools/latex"));
-	runToolBar->addAction(getManagedAction("main/tools/viewdvi"));
-	runToolBar->addAction(getManagedAction("main/tools/dvi2ps"));
-	runToolBar->addAction(getManagedAction("main/tools/viewps"));
-	runToolBar->addAction(getManagedAction("main/tools/pdflatex"));
-	runToolBar->addAction(getManagedAction("main/tools/viewpdf"));
 
 //format
 	formatToolBar = addToolBar("Format");
@@ -616,8 +580,8 @@ void Texmaker::setupToolBars() {
 	list.append("subsubsection");
 	list.append("paragraph");
 	list.append("subparagraph");
-	QFontMetrics fontMetrics(runToolBar->font());
-	combo1=createComboToolButton(formatToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(SectionCommand()));
+	QFontMetrics fontMetrics(formatToolBar->font());
+	combo1=createComboToolButton(formatToolBar,list,formatToolBar->height()-2,fontMetrics,this,SLOT(SectionCommand()));
 	formatToolBar->addWidget(combo1);
 	formatToolBar->addSeparator();
 
@@ -628,7 +592,7 @@ void Texmaker::setupToolBars() {
 	list.append("index");
 	list.append("cite");
 	list.append("footnote");
-	combo2=createComboToolButton(formatToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(OtherCommand()));
+	combo2=createComboToolButton(formatToolBar,list,formatToolBar->height()-2,fontMetrics,this,SLOT(OtherCommand()));
 	formatToolBar->addWidget(combo2);
 	formatToolBar->addSeparator();
 
@@ -643,7 +607,7 @@ void Texmaker::setupToolBars() {
 	list.append("LARGE");
 	list.append("huge");
 	list.append("Huge");
-	combo3=createComboToolButton(formatToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(SizeCommand()));
+	combo3=createComboToolButton(formatToolBar,list,formatToolBar->height()-2,fontMetrics,this,SLOT(SizeCommand()));
 	formatToolBar->addWidget(combo3);
 	formatToolBar->addSeparator();
 
@@ -679,7 +643,7 @@ void Texmaker::setupToolBars() {
 	list.append("left }");
 	list.append("left >");
 	list.append("left.");
-	combo4=createComboToolButton(mathToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(LeftDelimiter()));
+	combo4=createComboToolButton(mathToolBar,list,formatToolBar->height()-2,fontMetrics,this,SLOT(LeftDelimiter()));
 	mathToolBar->addWidget(combo4);
 	mathToolBar->addSeparator();
 
@@ -693,7 +657,7 @@ void Texmaker::setupToolBars() {
 	list.append("right {");
 	list.append("right <");
 	list.append("right.");
-	combo5=createComboToolButton(mathToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(RightDelimiter()));
+	combo5=createComboToolButton(mathToolBar,list,formatToolBar->height()-2,fontMetrics,this,SLOT(RightDelimiter()));
 	mathToolBar->addWidget(combo5);
 
 // spelling language
@@ -705,7 +669,7 @@ void Texmaker::setupToolBars() {
 			list << fic.entryList(QStringList("*.dic"),QDir::Files,QDir::Name);
 
 
-	comboSpell=createComboToolButton(spellToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName());
+	comboSpell=createComboToolButton(spellToolBar,list,formatToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName());
 	spellToolBar->addWidget(comboSpell);
 //custom toolbar
 	//first apply custom icons
@@ -719,18 +683,21 @@ void Texmaker::setupToolBars() {
 	    }
 	    i++;
 	}
-	//setup actual custom toolbar
-	customToolBar = addToolBar("Custom");
-	customToolBar->setObjectName("Custom");
-	int l=configManager.listCustomActions.size();
-	if(l>0){
-	    for (int i=0; i<l; i++){
-		QAction *act=getManagedAction(configManager.listCustomActions.at(i));
-		if(act->icon().isNull()){
-		    act->setIcon(QIcon(":/images/appicon.png"));
+	//setup customizable toolbars
+	for (int i=0;i<configManager.managedToolBars.size();i++){
+		ManagedToolBar &mtb = configManager.managedToolBars[i];
+		mtb.toolbar = addToolBar(mtb.name);
+		mtb.toolbar->setObjectName(mtb.name);
+
+		foreach (const QString& actionName, mtb.actualActions){
+			if (actionName == "separator") mtb.toolbar->addSeparator();
+			else {
+				QAction *act=getManagedAction(actionName);
+				if(act->icon().isNull())
+					act->setIcon(QIcon(":/images/appicon.png"));
+				mtb.toolbar->addAction(act);
+			}
 		}
-		customToolBar->addAction(act);
-	    }
 	}
 }
 
@@ -3336,12 +3303,12 @@ void Texmaker::GeneralOptions() {
 	if (configManager.execConfigDialog()) {
 		mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);
 		// refresh quick language selection combobox
-		QFontMetrics fontMetrics(runToolBar->font());
+		QFontMetrics fontMetrics(formatToolBar->font());
 		QStringList list;
 		QDir fic=QFileInfo(configManager.spell_dic).absoluteDir();
 		if (fic.exists() && fic.isReadable())
 			list << fic.entryList(QStringList("*.dic"),QDir::Files,QDir::Name);
-		createComboToolButton(spellToolBar,list,runToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName(),comboSpell);
+		createComboToolButton(spellToolBar,list,formatToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName(),comboSpell);
 
 		if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
 		else QDocument::setDefaultCodec(configManager.newfile_encoding);
@@ -3383,15 +3350,19 @@ void Texmaker::GeneralOptions() {
 			}
 			i++;
 		}
-		customToolBar->clear();
-		int l=configManager.listCustomActions.size();
-		if(l>0){
-			for (int i=0; i<l; i++){
-				QAction *act=getManagedAction(configManager.listCustomActions.at(i));
-				if(act->icon().isNull()){
-					act->setIcon(QIcon(":/images/appicon.png"));
+		for (int j=0;j<configManager.managedToolBars.size();j++){
+			ManagedToolBar &mtb = configManager.managedToolBars[j];
+			mtb.toolbar->clear();
+			mtb.toolbar->setObjectName(mtb.name);
+
+			foreach (const QString& actionName, mtb.actualActions){
+				if (actionName == "separator") mtb.toolbar->addSeparator();
+				else {
+					QAction *act=getManagedAction(actionName);
+					if(act->icon().isNull())
+						act->setIcon(QIcon(":/images/appicon.png"));
+					mtb.toolbar->addAction(act);
 				}
-				customToolBar->addAction(act);
 			}
 		}
 		// custom evironments

@@ -367,25 +367,27 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	ui.contentsWidget->setCurrentRow(0);
 	connect(ui.checkBoxShowAdvancedOptions, SIGNAL(toggled(bool)), this, SLOT(advancedOptionsToggled(bool)));
 
-        // custom toolbar
-        ui.listCustomIcons->setIconSize(QSize(96, 96));
-        ui.listCustomIcons->setViewMode(QListView::ListMode);
-        ui.listCustomIcons->setMovement(QListView::Static);
-        ui.listCustomToolBar->setIconSize(QSize(96, 96));
-        ui.listCustomToolBar->setViewMode(QListView::ListMode);
-        ui.listCustomToolBar->setMovement(QListView::Static);
-        connect(ui.pbToToolbar,SIGNAL(clicked()),this,SLOT(toToolbarClicked()));
-        connect(ui.pbFromToolbar,SIGNAL(clicked()),this,SLOT(fromToolbarClicked()));
-        ui.listCustomToolBar->setContextMenuPolicy(Qt::CustomContextMenu);
-        connect(ui.listCustomToolBar,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(customContextMenuRequested(QPoint)));
+	// custom toolbars
+	connect(ui.comboBoxToolbars,SIGNAL(currentIndexChanged(int)), SLOT(toolbarChanged(int)));
+	connect(ui.comboBoxActions,SIGNAL(currentIndexChanged(int)), SLOT(actionsChanged(int)));
+	ui.listCustomToolBar->setIconSize(QSize(96, 96));
+	ui.listCustomToolBar->setViewMode(QListView::ListMode);
+	ui.listCustomToolBar->setMovement(QListView::Static);
+	connect(ui.pbToToolbar,SIGNAL(clicked()),this,SLOT(toToolbarClicked()));
+	connect(ui.pbFromToolbar,SIGNAL(clicked()),this,SLOT(fromToolbarClicked()));
+	ui.listCustomToolBar->setContextMenuPolicy(Qt::CustomContextMenu);
+	connect(ui.listCustomToolBar,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(customContextMenuRequested(QPoint)));
+
+//	ui.listCustomToolBar->setSelectionMode(QAbstractItemView::ExtendedSelection);
+//	ui.treePossibleToolbarActions->setSelectionMode(QAbstractItemView::ExtendedSelection);
 }
 
 ConfigDialog::~ConfigDialog() {
 }
 
 QListWidgetItem * ConfigDialog::createIcon(const QString &caption, const QIcon &icon, QListWidget *parent){
-        if(!parent) parent=ui.contentsWidget;
-        QListWidgetItem * button=new QListWidgetItem(parent);
+	if(!parent) parent=ui.contentsWidget;
+	QListWidgetItem * button=new QListWidgetItem(parent);
 	button->setIcon(icon);
 	button->setText(caption);
 	button->setTextAlignment(Qt::AlignHCenter);
@@ -460,28 +462,51 @@ void ConfigDialog::advancedOptionsToggled(bool on){
 	hideShowAdvancedOptions(this,on);
 }
 
+void ConfigDialog::toolbarChanged(int toolbar){
+	if (toolbar < 0 || toolbar >= customizableToolbars.size()) return;
+	ui.listCustomToolBar->clear();
+	foreach (const QAction* act, customizableToolbars[toolbar]){
+		if (!act) continue;
+		QListWidgetItem *item=new QListWidgetItem(act->icon(),act->text());
+		item->setData(Qt::UserRole,act);
+		ui.listCustomToolBar->addItem(item);
+	}
+}
+
+void ConfigDialog::actionsChanged(int actionClass){
+	const QList<QMenu*> &menus = (actionClass==0)?standardToolbarMenus:allMenus;
+	ui.treePossibleToolbarActions->clear();
+	foreach (const QMenu* menu, menus)
+		populatePossibleActions(0, menu, actionClass!=0);
+}
+
 void ConfigDialog::toToolbarClicked(){
-    if(!ui.listCustomIcons->currentItem()) return;
-    QListWidgetItem *item=ui.listCustomIcons->currentItem()->clone();
-    ui.listCustomToolBar->addItem(item);
-    ui.listCustomIcons->currentItem()->setHidden(true);
+	if (!ui.treePossibleToolbarActions->currentItem()) return;
+	if (ui.comboBoxToolbars->currentIndex() < 0 || ui.comboBoxToolbars->currentIndex() >= customizableToolbars.size()) return;
+	QAction *act = ui.treePossibleToolbarActions->currentItem()->data(0,Qt::UserRole).value<QAction*>();
+	if (!act) return;
+	customizableToolbars[ui.comboBoxToolbars->currentIndex()].append(act);
+	QListWidgetItem *item=new QListWidgetItem(act->icon(), act->text());
+	item->setData(Qt::UserRole,QVariant::fromValue<QAction*>(act));
+	ui.listCustomToolBar->addItem(item);
 }
 
 void ConfigDialog::fromToolbarClicked(){
-    if(!ui.listCustomToolBar->currentItem()) return;
-    QListWidgetItem *item=ui.listCustomToolBar->currentItem();
+	if(!ui.listCustomToolBar->currentItem()) return;
+	if (ui.comboBoxToolbars->currentIndex() < 0 || ui.comboBoxToolbars->currentIndex() >= customizableToolbars.size()) return;
+    /*QListWidgetItem *item=ui.listCustomToolBar->currentItem();
     QList<QListWidgetItem *>result=ui.listCustomIcons->findItems(item->text(),Qt::MatchExactly);
     foreach(QListWidgetItem *elem,result){
         elem->setHidden(false);
-    }
-    item=ui.listCustomToolBar->takeItem(ui.listCustomToolBar->currentRow());
-    delete item;
+    }*/
+	customizableToolbars[ui.comboBoxToolbars->currentIndex()].removeAt(ui.listCustomToolBar->currentRow());
+	delete ui.listCustomToolBar->takeItem(ui.listCustomToolBar->currentRow());
 }
 
 void ConfigDialog::customContextMenuRequested(const QPoint &p){
-    QMenu menu;
-    menu.addAction(tr("Load other icon"),this, SLOT(loadOtherIcon()));
-    menu.exec(ui.listCustomToolBar->mapToGlobal(p));
+	QMenu menu;
+	menu.addAction(tr("Load other icon"),this, SLOT(loadOtherIcon()));
+	menu.exec(ui.listCustomToolBar->mapToGlobal(p));
 }
 
 void ConfigDialog::loadOtherIcon(){
@@ -492,11 +517,31 @@ void ConfigDialog::loadOtherIcon(){
         replacedIconsOnMenus->insert(item->data(Qt::UserRole).toString(),fn);
         ui.listCustomToolBar->reset();
         // set the same icon on other list
-        QList<QListWidgetItem *>result=ui.listCustomIcons->findItems(item->text(),Qt::MatchExactly);
-        foreach(QListWidgetItem *elem,result){
-            elem->setIcon(QIcon(fn));
-        }
+	//TODO QList<QListWidgetItem *>result=ui.listCustomIcons->findItems(item->text(),Qt::MatchExactly);
+	//foreach(QListWidgetItem *elem,result){
+	  //  elem->setIcon(QIcon(fn));
+	//}
     }
+}
+
+void ConfigDialog::populatePossibleActions(QTreeWidgetItem* parent, const QMenu* menu,bool keepHierarchy){
+	if (!menu) return;
+	QList<QAction *> acts=menu->actions();
+	for (int i=0; i<acts.size(); i++)
+		if (acts[i]->menu()) populatePossibleActions(parent, acts[i]->menu(),keepHierarchy);
+		else {
+			//if(acts[i]->data().isValid()){
+			QTreeWidgetItem* twi = new QTreeWidgetItem(parent,QStringList() << acts[i]->text());
+			if (!acts[i]->isSeparator())
+				if(!acts[i]->icon().isNull()){
+					twi->setIcon(0,acts[i]->icon());
+				}else{
+					twi->setIcon(0,QIcon(":/images/appicon.png"));
+				}
+			twi->setToolTip(0,acts[i]->text());
+			twi->setData(0,Qt::UserRole,QVariant::fromValue<QAction*>(acts[i]));
+			ui.treePossibleToolbarActions->addTopLevelItem(twi);
+		}
 }
 
 void ConfigDialog::custEnvAddLine(){

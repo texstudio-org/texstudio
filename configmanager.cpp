@@ -12,11 +12,19 @@
 
 #include "manhattanstyle.h"
 
+ManagedToolBar::ManagedToolBar(const QString &newName, const QStringList &defs): name(newName), defaults(defs), toolbar(0){}
+
+
 ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	buildManager(0),editorConfig(new LatexEditorViewConfig), completerConfig (new LatexCompleterConfig), webPublishDialogConfig (new WebPublishDialogConfig), menuParent(0), menuParentsBar(0){ //TODO: fix theoretical memory leak (it doesn't matter, this is almost a singletone)
-    listCustomActions.clear();
 
-    enviromentModes << "verbatim" << "numbers";
+	managedToolBars.append(ManagedToolBar("Custom", QStringList()));
+	managedToolBars.append(ManagedToolBar("File", QStringList() << "main/file/new" << "main/file/open" << "main/file/save" << "main/file/close"));
+	managedToolBars.append(ManagedToolBar("Edit", QStringList() << "main/edit/undo" << "main/edit/redo" << "main/edit/copy" << "main/edit/cut" << "main/edit/paste"));
+	managedToolBars.append(ManagedToolBar("Tools", QStringList() << "main/tools/viewlog" << "main/edit/goto/errorprev" << "main/edit/goto/errornext"	<< "separator"
+	    << "main/tools/quickbuild" << "main/tools/latex" << "main/tools/viewdvi" << "main/tools/dvi2ps" << "main/tools/viewps" << "main/tools/pdflatex" << "main/tools/viewpdf"));
+
+	enviromentModes << "verbatim" << "numbers";
 }
 
 QSettings* ConfigManager::readSettings() {
@@ -169,12 +177,16 @@ QSettings* ConfigManager::readSettings() {
 	}
 	config->endArray();
 
-        //changed latex menus
-        hashManipulateMenus=config->value("changedLatexMenus").toHash();
+	//changed latex menus
+	hashManipulateMenus=config->value("changedLatexMenus").toHash();
 
-        //custom toolbar
-        listCustomActions=config->value("customToolBar").toStringList();
-        replacedIconsOnMenus=config->value("customIcons").toHash();
+	//custom toolbar
+	for (int i=0; i<managedToolBars.size();i++){
+		ManagedToolBar& mtb=managedToolBars[i];
+		mtb.actualActions=config->value(mtb.name+"ToolBar").toStringList();
+		if (mtb.actualActions.empty()) mtb.actualActions=mtb.defaults;
+	}
+	replacedIconsOnMenus=config->value("customIcons").toHash();
 
 	//custom highlighting
 	customEnvironments=config->value("customHighlighting").toMap();
@@ -351,11 +363,15 @@ QSettings* ConfigManager::saveSettings() {
 	}
 	config->endArray();
 
-        //changed latex menus
-        config->setValue("changedLatexMenus",hashManipulateMenus);
-        //custom toolbar
-        config->setValue("customToolBar",listCustomActions);
-        config->setValue("customIcons",replacedIconsOnMenus);
+	//changed latex menus
+	config->setValue("changedLatexMenus",hashManipulateMenus);
+	//custom toolbar
+	for (int i=0; i<managedToolBars.size();i++){
+		ManagedToolBar& mtb=managedToolBars[i];
+		if (mtb.actualActions == mtb.defaults) config->setValue(mtb.name+"ToolBar", QStringList());
+		else config->setValue(mtb.name+"ToolBar", mtb.actualActions);
+	}
+	config->setValue("customIcons",replacedIconsOnMenus);
 	// custom highlighting
 	config->setValue("customHighlighting",customEnvironments);
 
@@ -582,22 +598,17 @@ bool ConfigManager::execConfigDialog() {
 	}
 	connect(confDlg->ui.latexTree,SIGNAL(itemChanged(QTreeWidgetItem*,int)),this,SLOT(latexTreeItemChanged(QTreeWidgetItem*,int)));
 
-	// custom toolbar
-	int l=listCustomActions.size();
-	confDlg->ui.listCustomToolBar->clear();
-	if(l>0){
-		for (int i=0; i<l; i++){
-			QAction *act=getManagedAction(listCustomActions.at(i));
-			if(act) {
-				QListWidgetItem *item=new QListWidgetItem(act->icon(),act->text());
-				item->setData(Qt::UserRole,listCustomActions.at(i));
-				confDlg->ui.listCustomToolBar->addItem(item);
-			}
-		}
+	// custom toolbars
+	confDlg->customizableToolbars.clear();
+	foreach (const ManagedToolBar &mtb, managedToolBars){
+		Q_ASSERT(mtb.toolbar);
+		confDlg->customizableToolbars.append(mtb.toolbar->actions());
+		confDlg->ui.comboBoxToolbars->addItem(mtb.name);
 	}
-	foreach(QMenu* menu, managedMenus){
-		populateCustomActions(confDlg->ui.listCustomIcons,menu);
-	}
+	confDlg->allMenus=managedMenus;
+	confDlg->standardToolbarMenus=QList<QMenu*>()<< getManagedMenu("main/latex") << getManagedMenu("main/math") << getManagedMenu("main/user");
+	confDlg->ui.comboBoxActions->addItem(tr("Latex/Math menus"));
+	confDlg->ui.comboBoxActions->addItem(tr("All menus"));
 	confDlg->replacedIconsOnMenus=&replacedIconsOnMenus;
 
 	//appearance
@@ -760,15 +771,20 @@ bool ConfigManager::execConfigDialog() {
 		//menus
 		managedMenuNewShortcuts.clear();
 		treeWidgetToManagedMenuTo(menuShortcuts);
-                treeWidgetToManagedLatexMenuTo();
+		treeWidgetToManagedLatexMenuTo();
 
-                // custom toolbar
-                listCustomActions.clear();
-                int l=confDlg->ui.listCustomToolBar->count();
-                for(int i=0;i<l;i++){
-                    listCustomActions << confDlg->ui.listCustomToolBar->item(i)->data(Qt::UserRole).toString();
-                }
-				
+		// custom toolbar
+		Q_ASSERT(confDlg->customizableToolbars.size() == managedToolBars.size());
+		for (int i=0; i<managedToolBars.size();i++){
+			ManagedToolBar& mtb=managedToolBars[i];
+			mtb.actualActions.clear();
+			foreach (const QAction* act, confDlg->customizableToolbars[i]){
+				Q_ASSERT(act);
+				if (act->isSeparator()) mtb.actualActions.append("separator");
+				else mtb.actualActions.append(act->objectName());
+			}
+		}
+
 		//appearance
 		configShowAdvancedOptions=confDlg->ui.checkBoxShowAdvancedOptions->isChecked();
 		//  interface
@@ -1244,26 +1260,3 @@ void ConfigManager::treeWidgetToManagedLatexMenuTo() {
     }
 }
 
-void ConfigManager::populateCustomActions(QListWidget* parent, QMenu* menu,bool go) {
-        if (!menu) return;
-        QStringList relevantMenus;
-        relevantMenus << tr("&Latex") << tr("&Math") << tr("&User");
-        if(!go && !relevantMenus.contains(menu->title())) return;
-        QList<QAction *> acts=menu->actions();
-        for (int i=0; i<acts.size(); i++)
-                if (acts[i]->menu()) populateCustomActions(parent, acts[i]->menu(),true);
-                else {
-                    if(acts[i]->data().isValid()){
-                        QListWidgetItem* twi=new QListWidgetItem(acts[i]->text(),parent);
-                        if(!acts[i]->icon().isNull()){
-                            twi->setIcon(acts[i]->icon());
-                        }else{
-                            twi->setIcon(QIcon(":/images/appicon.png"));
-                        }
-                        twi->setToolTip(acts[i]->text());
-                        //if (!acts[i]->isSeparator()) twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
-                        twi->setData(Qt::UserRole,acts[i]->objectName());
-                        if(listCustomActions.contains(acts[i]->objectName())) twi->setHidden(true);
-                    }
-                }
-}

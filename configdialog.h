@@ -19,6 +19,7 @@
 #include "qformat.h"
 #include "qformatconfig.h"
 
+
 class ShortcutDelegate : public QItemDelegate {
 	Q_OBJECT
 
@@ -55,24 +56,34 @@ public:
 
 	QMap<QString,QFormat> editorFormats;
 	QFormatConfig * fmConfig;
-        QHash<QString,QVariant> * replacedIconsOnMenus;
+	QHash<QString,QVariant> * replacedIconsOnMenus;
+
+	QList<QList<QAction*> > customizableToolbars;
+	QList<QMenu*> allMenus;
+	QList<QMenu*> standardToolbarMenus;
 
 	QStringList * environModes;
 public slots:
 	void changePage(QListWidgetItem *current, QListWidgetItem *previous);
 private slots:
-        QListWidgetItem * createIcon(const QString &caption, const QIcon &icon,QListWidget *parent=0);
+	QListWidgetItem * createIcon(const QString &caption, const QIcon &icon,QListWidget *parent=0);
 	void lineEditAspellChanged(QString newText);
 	void browseAspell();
 	void browseThesaurus();
 	void browsePrecompiling();
 	void advancedOptionsToggled(bool on);
-        void toToolbarClicked();
-        void fromToolbarClicked();
-        void customContextMenuRequested(const QPoint &p);
-        void loadOtherIcon();
+	void toolbarChanged(int toolbar);
+	void actionsChanged(int actionClass);
+	void toToolbarClicked();
+	void fromToolbarClicked();
+	void customContextMenuRequested(const QPoint &p);
+	void loadOtherIcon();
+	void populatePossibleActions(QTreeWidgetItem* parent, const QMenu* menu,bool keepHierarchy);
+
 	void custEnvAddLine();
 	void custEnvRemoveLine();
 };
+
+Q_DECLARE_METATYPE(QAction*);
 
 #endif
