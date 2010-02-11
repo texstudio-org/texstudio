@@ -35,11 +35,39 @@ XmlTagsListWidget::XmlTagsListWidget(QWidget *parent, QString file):QListWidget(
 	}
 }
 
+QStringList XmlTagsListWidget::tagsTxtFromCategory(const QString & category){
+	foreach  (const xmlTagList &tags, xmlSections.children)
+		if (tags.id==category) {
+			QStringList result;
+			foreach (const xmlTag& tag, tags.tags)
+				result.append(tag.txt);
+			return result;
+		}
+	return QStringList();
+}
+
+QString tagsFromTagTxtRec(const xmlTagList& tagList, const QString& tagTxt){
+	foreach (const xmlTag& tag, tagList.tags)
+		if (tag.txt == tagTxt) return tag.tag;
+	QString result;
+	foreach (const xmlTagList& childTagList, tagList.children){
+		result = tagsFromTagTxtRec(childTagList, tagTxt);
+		if (!result.isEmpty())
+			return result;
+	}
+	return result;
+}
+
+QString XmlTagsListWidget::tagsFromTagTxt(const QString& tagTxt){
+	return tagsFromTagTxtRec(xmlSections, tagTxt);
+}
+
 xmlTagList XmlTagsListWidget::getTags(const QDomElement &element){
 	xmlTag item;
 	xmlTagList tagList;
 	QList<xmlTag> tags;
 	tagList.title = element.attribute("title");
+	tagList.id = element.attribute("id");
 	QDomElement child = element.firstChildElement("item");
 	QString txt, code, type;
 	while (!child.isNull()){

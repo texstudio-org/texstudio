@@ -58,7 +58,8 @@ public:
 	QFormatConfig * fmConfig;
 	QHash<QString,QVariant> * replacedIconsOnMenus;
 
-	QList<QList<QAction*> > customizableToolbars;
+	QObject* menuParent;
+	QList<QStringList> customizableToolbars;
 	QList<QMenu*> allMenus;
 	QList<QMenu*> standardToolbarMenus;
 

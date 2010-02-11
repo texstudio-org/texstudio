@@ -23,6 +23,10 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	managedToolBars.append(ManagedToolBar("Edit", QStringList() << "main/edit/undo" << "main/edit/redo" << "main/edit/copy" << "main/edit/cut" << "main/edit/paste"));
 	managedToolBars.append(ManagedToolBar("Tools", QStringList() << "main/tools/viewlog" << "main/edit/goto/errorprev" << "main/edit/goto/errornext"	<< "separator"
 	    << "main/tools/quickbuild" << "main/tools/latex" << "main/tools/viewdvi" << "main/tools/dvi2ps" << "main/tools/viewps" << "main/tools/pdflatex" << "main/tools/viewpdf"));
+	managedToolBars.append(ManagedToolBar("Tools", QStringList() << "main/tools/viewlog" << "main/edit/goto/errorprev" << "main/edit/goto/errornext"	<< "separator"
+	    << "main/tools/quickbuild" << "main/tools/latex" << "main/tools/viewdvi" << "main/tools/dvi2ps" << "main/tools/viewps" << "main/tools/pdflatex" << "main/tools/viewpdf"));
+	managedToolBars.append(ManagedToolBar("Math", QStringList() << "main/math/mathmode" << "main/math/subscript" << "main/math/superscript" << "main/math/frac" << "main/math/dfrac" << "main/math/sqrt" << "separator"
+			<< "tags/brackets/left" << "separator" << "tags/brackets/right"));
 
 	enviromentModes << "verbatim" << "numbers";
 }
@@ -588,6 +592,7 @@ bool ConfigManager::execConfigDialog() {
 	delegate.connect(confDlg->ui.shortcutTree,SIGNAL(itemClicked(QTreeWidgetItem *, int)),&delegate,SLOT(treeWidgetItemClicked(QTreeWidgetItem * , int)));
 
 	//latex menus
+	confDlg->menuParent=menuParent;
 	changedItemsList.clear();
 	foreach(QMenu* menu, managedMenus){
 		QTreeWidgetItem *menuLatex=managedLatexMenuToTreeWidget(0,menu);
@@ -602,13 +607,14 @@ bool ConfigManager::execConfigDialog() {
 	confDlg->customizableToolbars.clear();
 	foreach (const ManagedToolBar &mtb, managedToolBars){
 		Q_ASSERT(mtb.toolbar);
-		confDlg->customizableToolbars.append(mtb.toolbar->actions());
+		confDlg->customizableToolbars.append(mtb.actualActions);
 		confDlg->ui.comboBoxToolbars->addItem(mtb.name);
 	}
 	confDlg->allMenus=managedMenus;
 	confDlg->standardToolbarMenus=QList<QMenu*>()<< getManagedMenu("main/latex") << getManagedMenu("main/math") << getManagedMenu("main/user");
 	confDlg->ui.comboBoxActions->addItem(tr("Latex/Math menus"));
 	confDlg->ui.comboBoxActions->addItem(tr("All menus"));
+	confDlg->ui.comboBoxActions->addItem(tr("Special Tags"));
 	confDlg->replacedIconsOnMenus=&replacedIconsOnMenus;
 
 	//appearance
@@ -777,12 +783,7 @@ bool ConfigManager::execConfigDialog() {
 		Q_ASSERT(confDlg->customizableToolbars.size() == managedToolBars.size());
 		for (int i=0; i<managedToolBars.size();i++){
 			ManagedToolBar& mtb=managedToolBars[i];
-			mtb.actualActions.clear();
-			foreach (const QAction* act, confDlg->customizableToolbars[i]){
-				Q_ASSERT(act);
-				if (act->isSeparator()) mtb.actualActions.append("separator");
-				else mtb.actualActions.append(act->objectName());
-			}
+			mtb.actualActions=confDlg->customizableToolbars[i];
 		}
 
 		//appearance

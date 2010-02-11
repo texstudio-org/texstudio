@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<texmakertags title="Left/Right">
-<section title="Left">
+<texmakertags title="Left/Right" id="brackets">
+<section title="Left" id="left">
 <item tag="\\left( "/>
 <item tag="\\left[ "/>
 <item txt="\\left{ " tag="\\left\\lbrace "/>
@@ -11,7 +11,7 @@
 <item txt="\\left&gt; " tag="\\left\\rangle "/>
 <item tag="\\left. "/>
 </section>
-<section title="Right">
+<section title="Right" id="right">
 <item tag="\\right( "/>
 <item tag="\\right[ "/>
 <item txt="\\right{ " tag="\\right\\lbrace "/>
