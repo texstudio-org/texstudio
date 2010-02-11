@@ -106,13 +106,13 @@ private:
 
 //toolbars
 //
-	QToolBar *formatToolBar, *mathToolBar, *spellToolBar;
+	QToolBar *formatToolBar, *spellToolBar;
 	QAction *ToggleAct, *ToggleRememberAct;
 
 	QLabel *stat1, *stat2, *stat3;
 	QString MasterName,persistentMasterFile;
 	
-	QToolButton *combo1,*combo2,*combo3,*combo4,*combo5,*comboSpell;
+	QToolButton *combo1,*combo2,*combo3,*comboSpell;
 
 //settings
 	ConfigManager configManager;
@@ -227,7 +227,7 @@ private slots:
 	void symbolAddFavorite();
 	void symbolRemoveFavorite();
 	void symbolRemoveAllFavorites();
-	
+
 	void ReadSettings();
 	void SaveSettings();
 
@@ -248,6 +248,7 @@ private slots:
 	void InsertSymbol(QTableWidgetItem *item);
 	void InsertSymbolPressed(QTableWidgetItem *item);
 	void InsertXmlTag(QListWidgetItem *item);	
+	void insertXmlTagFromToolButtonAction();
 	void InsertFromAction();
 	void InsertWithSelectionFromString(const QString& text);
 	void InsertFromString(const QString& text);
@@ -268,8 +269,6 @@ private slots:
 	void InsertRef();
 	void InsertPageRef();
 	void SizeCommand();
-	void LeftDelimiter();
-	void RightDelimiter();
 
 	void SpellingLanguageChanged();
 

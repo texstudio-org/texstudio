@@ -388,13 +388,13 @@ QToolButton* createComboToolButton(QWidget *parent,const QStringList& list,const
 		combo->removeAction(mAction);
 	}
 	if(list.isEmpty()){
-		mAction=new QAction("<"+QApplication::tr("none")+">",parent);
+		mAction=new QAction("<"+QApplication::tr("none")+">",combo);
 	} else {
-		mAction=new QAction(list[0],parent);
+		mAction=new QAction(list[0],combo);
 	}
 	QObject::connect(mAction, SIGNAL(triggered()),receiver,member);
 	combo->setDefaultAction(mAction);
-	QMenu *mMenu=new QMenu(parent);
+	QMenu *mMenu=new QMenu(combo);
 	int max=0;
 	foreach(QString elem,list){
 		mAction=mMenu->addAction(elem,receiver,member);

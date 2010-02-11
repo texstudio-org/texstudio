@@ -24,7 +24,7 @@ struct xmlTag{
 };
 
 struct xmlTagList{
-	QString title;
+	QString title,id;
 	QList<xmlTag> tags;
 	QList<xmlTagList> children;
 };
@@ -33,6 +33,8 @@ class XmlTagsListWidget : public QListWidget  {
   Q_OBJECT
 public:
 	XmlTagsListWidget(QWidget *parent, QString file);
+	QStringList tagsTxtFromCategory(const QString & category);
+	QString tagsFromTagTxt(const QString& tagTxt);
 private:
 	xmlTagList getTags(const QDomElement &element);
 	xmlTagList xmlSections;
