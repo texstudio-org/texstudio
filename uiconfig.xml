@@ -11,21 +11,21 @@
   
   
   <menu id="sectioning" text="&amp;Sectioning">
-    <insert id="part" text="\part{} [selection]" insert="\part{%&lt;title%>}"/>
-    <insert id="chapter" text="\chapter{} [selection]" insert="\chapter{%&lt;title%>}"/>
-    <insert id="section" text="\section{} [selection]" insert="\section{%&lt;title%>}"/>
-    <insert id="subsection" text="\subsection{} [selection]" insert="\subsection{%&lt;title%>}"/>
-    <insert id="subsubsection" text="\subsubsection{} [selection]" insert="\subsubsection{%&lt;title%>}"/>
-    <insert id="paragraph" text="\paragraph{} [selection]" insert="\paragraph{%&lt;title%>}"/>
-    <insert id="subparagraph" text="\subparagraph{} [selection]" insert="\subparagraph{%&lt;title%>}"/>
+    <insert id="part" text="part" insert="\part{%&lt;title%>}"/>
+    <insert id="chapter" text="chapter" insert="\chapter{%&lt;title%>}"/>
+    <insert id="section" text="section" insert="\section{%&lt;title%>}"/>
+    <insert id="subsection" text="subsection" insert="\subsection{%&lt;title%>}"/>
+    <insert id="subsubsection" text="subsubsection" insert="\subsubsection{%&lt;title%>}"/>
+    <insert id="paragraph" text="paragraph" insert="\paragraph{%&lt;title%>}"/>
+    <insert id="subparagraph" text="subparagraph" insert="\subparagraph{%&lt;title%>}"/>
 
-    <insert id="part*" text="\part*{} [selection]" insert="\part*{%&lt;title%>}"/>
-    <insert id="chapter*" text="\chapter*{} [selection]" insert="\chapter*{%&lt;title%>}"/>
-    <insert id="section*" text="\section*{} [selection]" insert="\section*{%&lt;title%>}"/>
-    <insert id="subsection*" text="\subsection*{} [selection]" insert="\subsection*{%&lt;title%>}"/>
-    <insert id="subsubsection*" text="\subsubsection*{} [selection]" insert="\subsubsection*{%&lt;title%>}"/>
-    <insert id="paragraph*" text="\paragraph*{} [selection]" insert="\paragraph*{%&lt;title%>}"/>
-    <insert id="subparagraph*" text="\subparagraph*{} [selection]" insert="\subparagraph*{%&lt;title%>}"/>
+    <insert id="part*" text="part*" insert="\part*{%&lt;title%>}"/>
+    <insert id="chapter*" text="chapter*" insert="\chapter*{%&lt;title%>}"/>
+    <insert id="section*" text="section*" insert="\section*{%&lt;title%>}"/>
+    <insert id="subsection*" text="subsection*" insert="\subsection*{%&lt;title%>}"/>
+    <insert id="subsubsection*" text="subsubsection*" insert="\subsubsection*{%&lt;title%>}"/>
+    <insert id="paragraph*" text="paragraph*" insert="\paragraph*{%&lt;title%>}"/>
+    <insert id="subparagraph*" text="subparagraph*" insert="\subparagraph*{%&lt;title%>}"/>
   </menu>
 
   <menu id="environment" text="&amp;Environments">
@@ -60,6 +60,19 @@
     <insert id="textsc" text="\textsc - Small caps  [selection]" insert="\textsc{%|}" shortcut="Ctrl+Shift+C"/>
     <insert id="underline" text="\underline" insert="\underline{%|}" icon=":/images/text_under.png"/>
   </menu>
+
+  <menu id="fontsizes" text="Font Sizes">
+    <insert id="tiny" text="tiny" insert="\begin{tiny}%n%|%n\end{tiny}"/>
+    <insert id="scriptsize" text="scriptsize" insert="\begin{scriptsize}%n%|%n\end{scriptsize}"/>
+    <insert id="footnotesize" text="footnotesize" insert="\begin{footnotesize}%n%|%n\end{footnotesize}"/>
+    <insert id="small" text="small" insert="\begin{small}%n%|%n\end{small}"/>
+    <insert id="normalsize" text="normalsize" insert="\begin{normalsize}%n%|%n\end{normalsize}"/>
+    <insert id="large" text="large" insert="\begin{large}%n%|%n\end{large}"/>
+    <insert id="Large" text="Large" insert="\begin{Large}%n%|%n\end{Large}"/>
+    <insert id="LARGE" text="LARGE" insert="\begin{LARGE}%n%|%n\end{LARGE}"/>
+    <insert id="Huge" text="Huge" insert="\begin{Huge}%n%|%n\end{Huge}"/>
+  </menu>
+
   
   <menu id="tabular" text="&amp;Tabular Environment">
     <insert id="tabbing" text="\begin{tabbing}" insert="\begin{tabbing}%n%|%n\end{tabbing}" info="\begin{tabbing}%ntext \= more text \= still more text \= last text \\%nsecond row \>  \> more \\%n\end{tabbing}"/>
@@ -97,10 +110,16 @@
   <insert id="input" text="\input{file}" insert="\input{%(TeX files (*.tex);;All files (*.*)%)}"/>
 
   <separator/>
+
+  <menu id="references" text="Cross References">
+    <insert id="label" text="label" insert="\label{%&lt;key%>}" info="\label{key}"/>
+    <action id="ref" text="ref" slot="1InsertRef()"/> 
+    <action id="pageref" text="pageref" slot="1InsertPageRef()"/> 
+    <insert id="index" text="index" insert="\index{%&lt;key%>}"/>
+    <insert id="cite" text="cite" insert="\cite{%&lt;key%>}"  info="This command generates an in-text citation to the reference associated with the ref entry in the bib file"/>
+    <insert id="footnote" text="footnote" insert="\footnote{%&lt;text%|%>}" info="\footnote[number]{text}%nThe \footnote command places the numbered footnote text at the bottom of the current page."/>
+  </menu>
   
-  <insert id="label" text="\label{}" insert="\label{%&lt;key%|%>}" info="\label{key}"/>
-  <insert id="cite" text="\cite{}" insert="\cite{%&lt;reference%|%>}" info="This command generates an in-text citation to the reference associated with the ref entry in the bib file"/>
-  <insert id="footnote" text="\footnote{}" insert="\footnote{%&lt;text%|%>}" info="\footnote[number]{text}%nThe \footnote command places the numbered footnote text at the bottom of the current page."/>
   <insert id="bibliographystyle" text="\bibliographystyle{}" insert="\bibliographystyle{%|}" info="The argument to \bibliographystyle refers to a file style.bst, which defines how your citations will look"/>
   
   <action id="bibliography" text="\bibliography{}" slot="1InsertBib()"/> 
@@ -124,7 +143,7 @@
 
   <menu id="functions" text="Math &amp;Functions">
     <insert id="arccos" text="\arccos " insert="\arccos "/>
-     <insert id="arcsin" text="\arcsin " insert="\arcsin "/>
+    <insert id="arcsin" text="\arcsin " insert="\arcsin "/>
     <insert id="arctan" text="\arctan " insert="\arctan "/>
     <insert id="cos" text="\cos " insert="\cos "/>
     <insert id="cosh" text="\cosh " insert="\cosh "/>

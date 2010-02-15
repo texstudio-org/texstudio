@@ -23,10 +23,12 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	managedToolBars.append(ManagedToolBar("Edit", QStringList() << "main/edit/undo" << "main/edit/redo" << "main/edit/copy" << "main/edit/cut" << "main/edit/paste"));
 	managedToolBars.append(ManagedToolBar("Tools", QStringList() << "main/tools/viewlog" << "main/edit/goto/errorprev" << "main/edit/goto/errornext"	<< "separator"
 	    << "main/tools/quickbuild" << "main/tools/latex" << "main/tools/viewdvi" << "main/tools/dvi2ps" << "main/tools/viewps" << "main/tools/pdflatex" << "main/tools/viewpdf"));
-	managedToolBars.append(ManagedToolBar("Tools", QStringList() << "main/tools/viewlog" << "main/edit/goto/errorprev" << "main/edit/goto/errornext"	<< "separator"
-	    << "main/tools/quickbuild" << "main/tools/latex" << "main/tools/viewdvi" << "main/tools/dvi2ps" << "main/tools/viewps" << "main/tools/pdflatex" << "main/tools/viewpdf"));
 	managedToolBars.append(ManagedToolBar("Math", QStringList() << "main/math/mathmode" << "main/math/subscript" << "main/math/superscript" << "main/math/frac" << "main/math/dfrac" << "main/math/sqrt" << "separator"
 			<< "tags/brackets/left" << "separator" << "tags/brackets/right"));
+	managedToolBars.append(ManagedToolBar("Format", QStringList() << "main/latex/sectioning" << "separator" << "main/latex/references" <<"separator" <<
+					      "main/latex/fontsizes" << "separator" <<
+					      "main/latex/fontstyles/textbf" << "main/latex/fontstyles/textit" << "main/latex/fontstyles/underline" << "main/latex/environment/flushleft" << "main/latex/environment/center" << "main/latex/environment/flushright"
+					      << "separator" << "main/latex/spacing/newline"));
 
 	enviromentModes << "verbatim" << "numbers";
 }
@@ -971,7 +973,7 @@ QAction* ConfigManager::newManagedAction(QWidget* menu, const QString &id, QActi
 QAction* ConfigManager::getManagedAction(QString id) {
 	QAction* act=0;
 	if (menuParent) act=menuParent->findChild<QAction*>(id);
-	if (act==0) qWarning("Can't find internal menu %s",id.toAscii().data());
+	if (act==0) qWarning("Can't find internal action %s",id.toAscii().data());
 	return act;
 }
 QMenu* ConfigManager::getManagedMenu(QString id) {

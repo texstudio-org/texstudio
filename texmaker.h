@@ -106,7 +106,7 @@ private:
 
 //toolbars
 //
-	QToolBar *formatToolBar, *spellToolBar;
+	QToolBar *spellToolBar;
 	QAction *ToggleAct, *ToggleRememberAct;
 
 	QLabel *stat1, *stat2, *stat3;
@@ -249,12 +249,10 @@ private slots:
 	void InsertSymbolPressed(QTableWidgetItem *item);
 	void InsertXmlTag(QListWidgetItem *item);	
 	void insertXmlTagFromToolButtonAction();
+	void insertFromActionFromToolButtonAction();
 	void InsertFromAction();
-	void InsertWithSelectionFromString(const QString& text);
-	void InsertFromString(const QString& text);
 	void InsertBib();
 	void InsertStruct();
-	void InsertStructFromString(const QString& text);
 
 	void InsertBibEntryFromAction();
 	void CleanBib();
@@ -264,11 +262,8 @@ private slots:
 	void InsertUserTag();
 	void EditUserMenu();
 
-	void SectionCommand();
-	void OtherCommand();
 	void InsertRef();
 	void InsertPageRef();
-	void SizeCommand();
 
 	void SpellingLanguageChanged();
 
