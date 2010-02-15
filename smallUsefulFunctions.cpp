@@ -406,6 +406,17 @@ QToolButton* createComboToolButton(QWidget *parent,const QStringList& list,const
 	return combo;
 }
 
+QToolButton* comboToolButtonFromAction(QAction* action){
+	if (!action) return 0;
+	QToolButton *button = qobject_cast<QToolButton*>(action->parent());
+	if (!button) {
+		QMenu* menu=qobject_cast<QMenu*>(action->parent());
+		if (!menu) return 0;
+		button=qobject_cast<QToolButton*>(menu->parent());
+		if (!button) return 0;
+	}
+	return button;
+}
 
 bool hasAtLeastQt(int major, int minor){
 	QStringList vers=QString(qVersion()).split('.');

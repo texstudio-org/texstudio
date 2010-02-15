@@ -550,6 +550,7 @@ void ConfigDialog::populatePossibleActions(QTreeWidgetItem* parent, const QMenu*
 	QList<QAction *> acts=menu->actions();
 	if (keepHierarchy) {
 		QTreeWidgetItem* twi = new QTreeWidgetItem(parent,QStringList() << menu->title().replace("&",""));
+		twi->setData(0,Qt::UserRole,menu->objectName());
 		if (parent) parent->addChild(twi);
 		else ui.treePossibleToolbarActions->addTopLevelItem(twi);
 		parent=twi;

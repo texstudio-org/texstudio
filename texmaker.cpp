@@ -47,7 +47,7 @@
 #include "qnfadefinition.h"
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
-		: QMainWindow(parent, flags), formatToolBar(0), spellToolBar(0), textAnalysisDlg(0), spellDlg(0), PROCESSRUNNING(false), mDontScrollToItem(false) {
+		: QMainWindow(parent, flags), spellToolBar(0), textAnalysisDlg(0), spellDlg(0), PROCESSRUNNING(false), mDontScrollToItem(false) {
 
 	MapForSymbols=0;
 	currentLine=-1;
@@ -567,90 +567,32 @@ void Texmaker::setupMenus() {
 
 void Texmaker::setupToolBars() {
 	//This method will be called multiple times and must not create something if this something already exists
-
-
-//format
-	if (!formatToolBar){
-		QStringList list;
-
-		formatToolBar = addToolBar("Format");
-		formatToolBar->setObjectName("Format");
-		insertToolBarBreak(formatToolBar);
-
-		list.clear();
-		list.append("part");
-		list.append("chapter");
-		list.append("section");
-		list.append("subsection");
-		list.append("subsubsection");
-		list.append("paragraph");
-		list.append("subparagraph");
-		QFontMetrics fontMetrics(formatToolBar->font());
-		combo1=createComboToolButton(formatToolBar,list,formatToolBar->height()-2,fontMetrics,this,SLOT(SectionCommand()));
-		formatToolBar->addWidget(combo1);
-		formatToolBar->addSeparator();
-
-		list.clear();
-		list.append("label");
-		list.append("ref");
-		list.append("pageref");
-		list.append("index");
-		list.append("cite");
-		list.append("footnote");
-		combo2=createComboToolButton(formatToolBar,list,formatToolBar->height()-2,fontMetrics,this,SLOT(OtherCommand()));
-		formatToolBar->addWidget(combo2);
-		formatToolBar->addSeparator();
-
-		list.clear();
-		list.append("tiny");
-		list.append("scriptsize");
-		list.append("footnotesize");
-		list.append("small");
-		list.append("normalsize");
-		list.append("large");
-		list.append("Large");
-		list.append("LARGE");
-		list.append("huge");
-		list.append("Huge");
-		combo3=createComboToolButton(formatToolBar,list,formatToolBar->height()-2,fontMetrics,this,SLOT(SizeCommand()));
-		formatToolBar->addWidget(combo3);
-		formatToolBar->addSeparator();
-
-		formatToolBar->addAction(getManagedAction("main/latex/fontstyles/textbf"));
-		formatToolBar->addAction(getManagedAction("main/latex/fontstyles/textit"));
-		formatToolBar->addAction(getManagedAction("main/latex/fontstyles/underline"));
-		formatToolBar->addAction(getManagedAction("main/latex/environment/flushleft"));
-		formatToolBar->addAction(getManagedAction("main/latex/environment/center"));
-		formatToolBar->addAction(getManagedAction("main/latex/environment/flushright"));
-		formatToolBar->addSeparator();
-		formatToolBar->addAction(getManagedAction("main/latex/spacing/newline"));
-	}
-
 // spelling language
 	if (!spellToolBar){
 		spellToolBar = addToolBar("Spelling");
 		spellToolBar->setObjectName("Spelling");
-		QFontMetrics fontMetrics(formatToolBar->font());
+		QFontMetrics fontMetrics(spellToolBar->font());
 		QStringList list;
 		QDir fic=QFileInfo(configManager.spell_dic).absoluteDir();
 		if (fic.exists() && fic.isReadable())
 				list << fic.entryList(QStringList("*.dic"),QDir::Files,QDir::Name);
 
 
-		comboSpell=createComboToolButton(spellToolBar,list,formatToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName());
+		comboSpell=createComboToolButton(spellToolBar,list,spellToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName());
 		spellToolBar->addWidget(comboSpell);
 	}
 //customizable toolbars
 	//first apply custom icons
 	QHash<QString, QVariant>::const_iterator i = configManager.replacedIconsOnMenus.constBegin();
 	while (i != configManager.replacedIconsOnMenus.constEnd()) {
-	    QString id=i.key();
-	    QVariant zw=i.value();
-	    QAction * act= getManagedAction(id);
-	    if (act) {
-		if(zw.canConvert<QString>()) act->setIcon(QIcon(zw.toString()));
-	    }
-	    i++;
+		QString id=i.key();
+		QVariant zw=i.value();
+		QObject *obj=configManager.menuParent->findChild<QObject*>(id);
+		QAction *act=qobject_cast<QAction*>(obj);
+		if (act) {
+			if(zw.canConvert<QString>()) act->setIcon(QIcon(zw.toString()));
+		}
+		i++;
 	}
 	//setup customizable toolbars
 	for (int i=0;i<configManager.managedToolBars.size();i++){
@@ -660,8 +602,9 @@ void Texmaker::setupToolBars() {
 			mtb.toolbar->setObjectName(mtb.name);
 		} else mtb.toolbar->clear();
 		foreach (const QString& actionName, mtb.actualActions){
-			if (actionName == "separator") mtb.toolbar->addSeparator();
+			if (actionName == "separator") mtb.toolbar->addSeparator(); //Case 1: Separator
 			else if (actionName.startsWith("tags/")) {
+				//Case 2: One of the xml tag widgets mapped on a toolbutton
 				int tagCategorySep=actionName.indexOf("/",5);
 				XmlTagsListWidget* tagsWidget = findChild<XmlTagsListWidget*>(actionName.left(tagCategorySep));
 				if (!tagsWidget) continue;
@@ -672,11 +615,29 @@ void Texmaker::setupToolBars() {
 				combo->setProperty("tagsID", actionName);
 				mtb.toolbar->addWidget(combo);
 			} else {
-				QAction *act=getManagedAction(actionName);
-				if (!act) continue;
-				if(act->icon().isNull())
-					act->setIcon(QIcon(":/images/appicon.png"));
-				mtb.toolbar->addAction(act);
+				QObject *obj=configManager.menuParent->findChild<QObject*>(actionName);
+				QAction *act=qobject_cast<QAction*>(obj);
+				if (act) {
+					//Case 3: A normal QAction
+					if(act->icon().isNull())
+						act->setIcon(QIcon(":/images/appicon.png"));
+					mtb.toolbar->addAction(act);
+				} else {
+					QMenu* menu=qobject_cast<QMenu*>(obj);
+					if (!menu) {
+						qWarning("Unkown toolbar command %s", qPrintable(actionName));
+						continue;
+					}
+					//Case 4: A submenu mapped on a toolbutton
+					QFontMetrics fontMetrics(mtb.toolbar->font());
+					QStringList list;
+					foreach (const QAction* act, menu->actions())
+						if (!act->isSeparator())
+							list.append(act->text());
+					QToolButton* combo=createComboToolButton(mtb.toolbar,list,mtb.toolbar->height()-2,fontMetrics,this,SLOT(insertFromActionFromToolButtonAction()));
+					combo->setProperty("menuID", actionName);
+					mtb.toolbar->addWidget(combo);
+				}
 			}
 		}
 	}
@@ -2185,14 +2146,10 @@ void Texmaker::insertXmlTagFromToolButtonAction(){
 	if (!currentEditorView()) return;
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (!action) return;
-	QToolButton *button = qobject_cast<QToolButton*>(action->parent());
-	if (!button) {
-		QMenu* menu=qobject_cast<QMenu*>(action->parent());
-		if (!menu) return;
-		button=qobject_cast<QToolButton*>(menu->parent());
-		if (!button) return;
-	}
+	QToolButton *button = comboToolButtonFromAction(action);
+	if (!button) return;
 	button->defaultAction()->setText(action->text());
+
 	QString tagsID = button->property("tagsID").toString();
 	int tagCategorySep=tagsID.indexOf("/",5);
 	XmlTagsListWidget* tagsWidget = findChild<XmlTagsListWidget*>(tagsID.left(tagCategorySep));
@@ -2200,6 +2157,24 @@ void Texmaker::insertXmlTagFromToolButtonAction(){
 	QString code=tagsWidget->tagsFromTagTxt(action->text());
 	CodeSnippet(code).insert(currentEditorView()->editor);
 	currentEditorView()->editor->setFocus();
+}
+
+void Texmaker::insertFromActionFromToolButtonAction(){
+	if (!currentEditorView()) return;
+	QAction *action = qobject_cast<QAction *>(sender());
+	QToolButton *button = comboToolButtonFromAction(action);
+	if (!button) return;
+	button->defaultAction()->setText(action->text());
+
+	QString menuID = button->property("menuID").toString();
+	QMenu* menu=configManager.getManagedMenu(menuID);
+	if (!menu) return;
+
+	foreach (QAction* act, menu->actions())
+		if (act->text()==action->text()) {
+			act->trigger();
+			return;
+		}
 }
 
 void Texmaker::InsertFromAction() {
@@ -2212,29 +2187,6 @@ void Texmaker::InsertFromAction() {
 		cs.insertAt(currentEditorView()->editor,&c);
 		outputView->setMessage(CodeSnippet(action->whatsThis()).lines.join("\n"));
 	}
-}
-
-void Texmaker::InsertWithSelectionFromString(const QString& text) {
-	bool ok;
-	QStringList tagList;
-	if (!currentEditorView())	return;
-	tagList= text.split("/");
-	if (!currentEditorView()->editor->cursor().hasSelection()) {
-		InsertTag(tagList.at(0)+tagList.at(1),tagList.at(2).toInt(&ok, 10),tagList.at(3).toInt(&ok, 10));
-	} else {
-		currentEditorView()->editor->cut();
-		InsertTag(tagList.at(0),tagList.at(2).toInt(&ok, 10),tagList.at(3).toInt(&ok, 10));
-		currentEditorView()->editor->paste();
-		InsertTag(tagList.at(1),0,0);
-	}
-}
-
-void Texmaker::InsertFromString(const QString& text) {
-	bool ok;
-	QStringList tagList;
-	if (!currentEditorView()) return;
-	tagList= text.split("/");
-	InsertTag(tagList.at(0),tagList.at(1).toInt(&ok, 10),tagList.at(2).toInt(&ok, 10));
 }
 
 void Texmaker::InsertBib() {
@@ -2269,24 +2221,6 @@ void Texmaker::InsertStruct() {
 			InsertTag(tag,0,1);
 			updateStructure();
 		}
-	}
-}
-
-void Texmaker::InsertStructFromString(const QString& text) {
-	QString tag;
-	if (!currentEditorView())	return;
-//currentEditorView()->editor->viewport()->setFocus();
-	StructDialog *stDlg = new StructDialog(this,text);
-	if (stDlg->exec()) {
-		if (stDlg->ui.checkBox->isChecked()) {
-			tag=text+"{";
-		} else {
-			tag=text+"*{";
-		}
-		tag +=stDlg->ui.TitlelineEdit->text();
-		tag +=QString("}\n");
-		InsertTag(tag,0,1);
-		updateStructure();
 	}
 }
 
@@ -2599,48 +2533,6 @@ void Texmaker::EditUserMenu() {
 	completer->setAbbreviations(UserMenuAbbrev,UserMenuTag);
 }
 
-void Texmaker::SectionCommand() {
-	QAction *action = qobject_cast<QAction *>(sender());
-	if (!action) return;
-	if (!currentEditorView()) return;
-	InsertStructFromString("\\"+action->text());
-	combo1->defaultAction()->setText(action->text());
-}
-
-void Texmaker::OtherCommand() {
-	QAction *action = qobject_cast<QAction *>(sender());
-	if (!action) return;
-	if (!currentEditorView()) return;
-
-	QString text=action->text();
-	combo2->defaultAction()->setText(text);
-
-	if (text=="label") {
-		InsertFromString("\\label{} /7/0");
-		return;
-	}
-	if (text=="ref") {
-		InsertRef();
-		return;
-	}
-	if (text=="pageref") {
-		InsertPageRef();
-		return;
-	}
-	if (text=="index") {
-		InsertFromString("\\index{}/7/0");
-		return;
-	}
-	if (text=="cite") {
-		InsertFromString("\\cite{}/6/0");
-		return;
-	}
-	if (text=="footnote") {
-		InsertFromString("\\footnote{}/10/0");
-		return;
-	}
-}
-
 void Texmaker::InsertRef() {
 	updateStructure();
 
@@ -2680,57 +2572,6 @@ void Texmaker::InsertPageRef() {
 		InsertTag(tag,tag.length(),0);
 	} else InsertTag("\\pageref{}",9,0);
 	outputView->setMessage("\\pageref{key}");
-}
-
-void Texmaker::SizeCommand() {
-	QAction *action = qobject_cast<QAction *>(sender());
-	if (!action) return;
-
-	if (!currentEditorView()) return;
-
-	QString text=action->text();
-	combo3->defaultAction()->setText(text);
-
-	if (text=="tiny") {
-		InsertWithSelectionFromString("\\begin{tiny}/\\end{tiny}/12/0");
-		return;
-	}
-	if (text=="scriptsize") {
-		InsertWithSelectionFromString("\\begin{scriptsize}/\\end{scriptsize}/18/0");
-		return;
-	}
-	if (text=="footnotesize") {
-		InsertWithSelectionFromString("\\begin{footnotesize}/\\end{footnotesize}/20/0");
-		return;
-	}
-	if (text=="small") {
-		InsertWithSelectionFromString("\\begin{small}/\\end{small}/13/0");
-		return;
-	}
-	if (text=="normalsize") {
-		InsertWithSelectionFromString("\\begin{normalsize}/\\end{normalsize}/18/0");
-		return;
-	}
-	if (text=="large") {
-		InsertWithSelectionFromString("\\begin{large}/\\end{large}/13/0");
-		return;
-	}
-	if (text=="Large") {
-		InsertWithSelectionFromString("\\begin{Large}/\\end{Large}/13/0");
-		return;
-	}
-	if (text=="LARGE") {
-		InsertWithSelectionFromString("\\begin{LARGE}/\\end{LARGE}/13/0");
-		return;
-	}
-	if (text=="huge") {
-		InsertWithSelectionFromString("\\begin{huge}/\\end{huge}/12/0");
-		return;
-	}
-	if (text=="Huge") {
-		InsertWithSelectionFromString("\\begin{Huge}/\\end{Huge}/12/0");
-		return;
-	}
 }
 
 void Texmaker::SpellingLanguageChanged() {
@@ -3269,12 +3110,12 @@ void Texmaker::GeneralOptions() {
 	if (configManager.execConfigDialog()) {
 		mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);
 		// refresh quick language selection combobox
-		QFontMetrics fontMetrics(formatToolBar->font());
+		QFontMetrics fontMetrics(spellToolBar->font());
 		QStringList list;
 		QDir fic=QFileInfo(configManager.spell_dic).absoluteDir();
 		if (fic.exists() && fic.isReadable())
 			list << fic.entryList(QStringList("*.dic"),QDir::Files,QDir::Name);
-		createComboToolButton(spellToolBar,list,formatToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName(),comboSpell);
+		createComboToolButton(spellToolBar,list,spellToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName(),comboSpell);
 
 		if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
 		else QDocument::setDefaultCodec(configManager.newfile_encoding);
