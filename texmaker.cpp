@@ -697,6 +697,7 @@ void Texmaker::UpdateCaption() {
 	cursorPositionChanged();
 	if (singlemode) {
 		outputView->resetMessagesAndLog();
+		if(currentEditorView()) updateCompleter();
 	}
 	QString finame=getCurrentFileName();
 	if (finame!="") configManager.lastDocument=finame;
@@ -3436,10 +3437,18 @@ void Texmaker::SetMostUsedSymbols(QTableWidgetItem* item) {
 void Texmaker::updateCompleter() {
 	QStringList words;
 
-	foreach (const LatexDocument* doc, documents.documents)
-		words << doc->userCommandList;
-
 	LatexEditorView* edView=currentEditorView();
+
+	if(singlemode){
+		if(edView && edView->document){
+			words << edView->document->userCommandList;
+		}
+	} else {
+		foreach (const LatexDocument* doc, documents.documents)
+			words << doc->userCommandList;
+	}
+
+
 	if(edView && edView->document){
 		QList<LatexDocument*> docs;
 		if (singlemode) docs << edView->document;
