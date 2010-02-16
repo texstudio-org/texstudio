@@ -343,21 +343,7 @@ void LatexEditorView::foldLevel(bool unFold, int level) {
 }
 //Collapse at the first possible point before/at line
 void LatexEditorView::foldBlockAt(bool unFold, int line) {
-	QDocument* doc = editor->document();
-	QLanguageDefinition* ld = doc->languageDefinition();
-	while (line>=0) {
-		QDocumentLine b=doc->line(line);
-		if (!b.isHidden()) {
-			if (unFold && (ld->blockFlags(doc,line) & QLanguageDefinition::Collapsed)) {
-				ld->expand(doc,line);
-				break;
-			} else if (!unFold && (ld->blockFlags(doc,line) & QLanguageDefinition::Collapsible) && !(ld->blockFlags(doc,line) & QLanguageDefinition::Collapsed)) {
-				ld->collapse(doc,line);
-				break;
-			}
-		}
-		line--;
-	}
+	editor->foldBlockAt(unFold,line);
 }
 
 

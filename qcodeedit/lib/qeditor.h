@@ -215,6 +215,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		static void setDefaultInputBinding(QEditorInputBindingInterface *b);
 		static void setDefaultInputBinding(const QString& b);
 		static inline const QList<QEditor*>& editors() { return m_editors; }
+
+		void foldBlockAt(bool unFold, int line);
 		
 	public slots:
 		void undo();

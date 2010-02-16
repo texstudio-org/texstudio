@@ -605,6 +605,31 @@ bool QDocumentSearch::end(bool backward) const
 	return absEnd;
 }
 
+bool QDocumentSearch::end(bool backward,QDocumentLine l) const
+{
+	bool absEnd = backward ? l.lineNumber()==1 : l.lineNumber()==l.document()->lineCount();
+
+	if ( m_scope.isValid() && m_scope.hasSelection() )
+	{
+		absEnd |= !m_scope.isWithinSelection(m_cursor);
+		/*
+		qDebug(
+				"(%i, %i, %i) %s in {(%i, %i), (%i, %i)}",
+				m_cursor.lineNumber(),
+				m_cursor.anchorColumnNumber(),
+				m_cursor.columnNumber(),
+				absEnd ? "is not" : "is",
+				m_scope.selectionStart().lineNumber(),
+				m_scope.selectionStart().columnNumber(),
+				m_scope.selectionEnd().lineNumber(),
+				m_scope.selectionEnd().columnNumber()
+			);
+		*/
+	}
+
+	return absEnd;
+}
+
 /*!
 	\brief Perform a search
 	\param backward whether to go backward or forward
@@ -715,20 +740,29 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 	move = backward ? QDocumentCursor::PreviousBlock : QDocumentCursor::NextBlock;	
 	
 	int foundCount = 0;
-	while ( !end(backward) )
+
+	QDocumentLine l = m_cursor.line();
+	int ln=l.lineNumber();
+
+	while ( !end(backward) && l.isValid() )
 	{
 		if ( backward && !m_cursor.columnNumber() )
 		{
-			m_cursor.movePosition(1, QDocumentCursor::PreviousCharacter);
+			//m_cursor.movePosition(1, QDocumentCursor::PreviousCharacter);
+			l=m_editor->document()->line(ln-1);
+			m_cursor.setLineNumber(ln-1);
+			ln--;
+			if(l.isValid()) m_cursor.setColumnNumber(l.length());
 			continue;
 		}
 		
-		int ln = m_cursor.lineNumber();
-		const QDocumentLine& l = m_cursor.line();
+		//int ln = m_cursor.lineNumber();
+		ln=l.lineNumber();
+		//const QDocumentLine& l = m_cursor.line();
 		
 		int coloffset = 0;
 		QString s = l.text();
-		
+
 		if ( backward )
 		{
 			if ( bounded && (boundaries.startLine == ln) )
@@ -756,6 +790,10 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 		
 		if ( column != -1 && (backward || column >= m_cursor.columnNumber() ) )
 		{
+			m_cursor.setLineNumber(ln);
+			if(l.isHidden()) {
+				m_editor->foldBlockAt(true,ln);
+			}
 			if (!m_regexp.matchedLength()){
 				//empty (e.g. a* regexp)
 				if (backward) m_cursor.setColumnNumber(column-1);
@@ -808,7 +846,16 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 					break;
 			}
 		} else 
-			m_cursor.movePosition(1, move);
+			//m_cursor.movePosition(1, move);
+			if(backward) {
+				l=m_editor->document()->line(ln-1);
+				m_cursor.setLineNumber(ln-1);
+				if(l.isValid()) m_cursor.setColumnNumber(l.length());
+			} else {
+				l=m_editor->document()->line(ln+1);
+				m_cursor.setLineNumber(ln+1);
+				m_cursor.setColumnNumber(0);
+			}
 	}
 		
 	if ( !foundCount && allowWrapAround)
