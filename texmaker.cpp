@@ -3850,7 +3850,7 @@ void Texmaker::cursorPositionChanged(){
 	if (!model) return; //shouldn't happen
 
 	StructureEntry *oldSection = model->highlightedEntry();
-	if (oldSection && currentLine>oldLine && currentLine<oldSection->lineNumber && oldSection->document==currentEditorView()->document)
+	if (oldSection && currentLine>oldLine && currentLine<oldSection->getRealLineNumber() && oldSection->document==currentEditorView()->document)
 		return; //still in the same section
 
 	StructureEntryIterator iter(currentEditorView()->document->baseStructure);
@@ -3866,11 +3866,11 @@ void Texmaker::cursorPositionChanged(){
 		if (curSection==0 || curSection->type!=StructureEntry::SE_SECTION)
 			break;
 
-		if (curSection->lineNumber > currentLine) break; //curSection is after newSection where the cursor is
+		if (curSection->getRealLineNumber() > currentLine) break; //curSection is after newSection where the cursor is
 		else newSection=curSection;
 	}
 
-	if (newSection==0 || newSection->lineNumber>currentLine){
+	if (newSection==0 || newSection->getRealLineNumber()>currentLine){
 		model->setHighlightedEntry(0);
 		return;
 	}
