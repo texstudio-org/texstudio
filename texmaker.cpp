@@ -878,6 +878,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	EditorView->addTab(edit, "[*] "+QFileInfo(f_real).fileName());
 	EditorView->setCurrentWidget(edit);
 	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
+        connect(edit->editor,SIGNAL(fileAutoReloading(QString)),this,SLOT(fileAutoReloading(QString)));
 
 	QFile file(f_real);
 	if (!file.open(QIODevice::ReadOnly)) {
@@ -932,6 +933,12 @@ void Texmaker::fileNew(QString fileName) {
 	edit->editor->setFocus();
 }
 
+void Texmaker::fileAutoReloading(QString fname){
+    LatexDocument* document=documents.findDocument(fname);
+    if (!document) return;
+    document->clearStructure();
+
+}
 
 void Texmaker::fileReloaded(){
 	QEditor *mEditor = qobject_cast<QEditor *>(sender());

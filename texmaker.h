@@ -354,6 +354,7 @@ private slots:
 	void templateEdit();
 
 	void fileReloaded();
+        void fileAutoReloading(QString fname);
 
 	void jumpToSearch(QString filename,int lineNumber);
 

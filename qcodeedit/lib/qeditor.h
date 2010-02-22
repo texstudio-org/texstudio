@@ -317,6 +317,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void hovered(QPoint pos);
 
 		void fileReloaded();
+                void fileAutoReloading(QString fname);
 		
 	public slots:
 		void checkClipboard();

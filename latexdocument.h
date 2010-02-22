@@ -111,6 +111,7 @@ private:
 
 public slots:
 	void updateStructure();
+        void clearStructure();
 
 signals:
 	void hasBeenIncluded(const LatexDocument& newMasterDocument);
