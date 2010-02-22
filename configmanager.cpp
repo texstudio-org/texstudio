@@ -1016,7 +1016,8 @@ void ConfigManager::modifyManagedShortcuts(){
             QAction * act= getManagedAction(id);
             if (act) {
                 act->setText(m.first());
-                act->setData(m.last());
+				act->setData(m.at(1));
+				act->setVisible(!(m.value(2,"visible")=="hidden"));
             }
             ++i;
         }
@@ -1237,8 +1238,12 @@ QTreeWidgetItem* ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem* pa
                         QTreeWidgetItem* twi=new QTreeWidgetItem(menuitem, QStringList() << acts[i]->text()
                                         << acts[i]->data().toString());
                         twi->setIcon(0,acts[i]->icon());
-                        if (!acts[i]->isSeparator()) twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
+						if (!acts[i]->isSeparator()) {
+							twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
+							twi->setCheckState(0,acts[i]->isVisible() ? Qt::Checked : Qt::Unchecked);
+						}
                         twi->setData(0,Qt::UserRole,acts[i]->objectName());
+
                     }
                 }
         return menuitem;
@@ -1256,8 +1261,11 @@ void ConfigManager::treeWidgetToManagedLatexMenuTo() {
         if (act) {
             act->setText(item->text(0));
             act->setData(item->text(1));
+			act->setVisible(item->checkState(0)==Qt::Checked);
+			QString zw="hidden";
+			if(item->checkState(0)==Qt::Checked) zw="visible";
             QStringList m;
-            m << item->text(0) << item->text(1);
+			m << item->text(0) << item->text(1) << zw ;
             hashManipulateMenus.insert(id,m);
         }
     }
