@@ -79,6 +79,18 @@ QDocumentSelection LatexDocument::sectionSelection(StructureEntry* section){
 	return result;
 }
 
+void LatexDocument::clearStructure() {
+    userCommandList.clear();
+    labelItem.clear();
+    mentionedBibTeXFiles.clear();
+
+    emit structureLost(this);
+
+    delete baseStructure;
+    baseStructure=0;
+
+}
+
 void LatexDocument::updateStructure() {
 
 	QDocument* document=text;
