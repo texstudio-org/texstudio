@@ -11,90 +11,8 @@
 
 #include "configdialog.h"
 
-#include <QCompleter>
-#if QT_VERSION >= 0x040400
-#include <QFileSystemModel>
-#else
-#include <QDirModel>
-#endif
-
 #include "qdocument.h"
 
-#if QT_VERSION >= 0x040400
-class FileSystemCompleter: public QCompleter{
-public:
-	FileSystemCompleter(QObject *p=0);
-    virtual QString pathFromIndex(const QModelIndex &index) const;
-    virtual QStringList splitPath(const QString &path) const;
-};
-//copied from Qt source
-FileSystemCompleter::FileSystemCompleter(QObject *p): QCompleter(p){
-	#ifdef Q_WS_WIN
-		setCaseSensitivity ( Qt::CaseInsensitive);
-	#endif
-}
-QString FileSystemCompleter::pathFromIndex(const QModelIndex& index) const
-{
-    if (!index.isValid())
-        return QString();
-
-    QFileSystemModel *dirModel = qobject_cast<QFileSystemModel*>(model());
-    if (!dirModel)
-        return model()->data(index, Qt::EditRole).toString();
-
-    QModelIndex idx = index;
-    QStringList list;
-    do {
-        QString t = dirModel->data(idx, Qt::EditRole).toString();
-        list.prepend(t);
-        QModelIndex parent = idx.parent();
-        idx = parent.sibling(parent.row(), index.column());
-    } while (idx.isValid());
-
-#if !defined(Q_OS_WIN) || defined(Q_OS_WINCE)
-    if (list.count() == 1) // only the separator or some other text
-        return list[0];
-    list[0].clear() ; // the join below will provide the separator
-#endif
-
-    return list.join(QDir::separator());
-}
-
-QStringList FileSystemCompleter::splitPath(const QString& path) const
-{
-	QFileSystemModel *fsm = qobject_cast<QFileSystemModel *>(model());
-    bool isDirModel = fsm;
-    if (!isDirModel || path.isEmpty())
-        return QStringList(completionPrefix());
-
-    QString pathCopy = QDir::toNativeSeparators(path);
-    QString sep = QDir::separator();
-#if defined(Q_OS_WIN) && !defined(Q_OS_WINCE)
-    if (pathCopy == QLatin1String("\\") || pathCopy == QLatin1String("\\\\"))
-        return QStringList(pathCopy);
-    QString doubleSlash(QLatin1String("\\\\"));
-    if (pathCopy.startsWith(doubleSlash))
-        pathCopy = pathCopy.mid(2);
-    else
-        doubleSlash.clear();
-#endif
-
-    QRegExp re(QLatin1String("[") + QRegExp::escape(sep) + QLatin1String("]"));
-    QStringList parts = pathCopy.split(re);
-
-#if defined(Q_OS_WIN) && !defined(Q_OS_WINCE)
-    if (!doubleSlash.isEmpty())
-        parts[0].prepend(doubleSlash);
-#else
-    if (pathCopy[0] == sep[0]) // readd the "/" at the beginning as the split removed it
-        parts[0] = QDir::fromNativeSeparators(QString(sep[0]));
-#endif
-
-	fsm->setRootPath(path.mid(0,path.lastIndexOf(re)).replace("\\","/"));
-
-    return parts;
-}
-#endif
 
 const QString ShortcutDelegate::addRowButton="<internal: add row>";
 const QString ShortcutDelegate::deleteRowButton="<internal: delete row>";
@@ -270,6 +188,9 @@ void ShortcutDelegate::treeWidgetItemClicked(QTreeWidgetItem * item, int column)
 	}
 }
 
+
+
+
 ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	setModal(true);
 	ui.setupUi(this);
@@ -289,9 +210,15 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	}
 
 
+	ui.comboBoxDictionaryFileName->setCompleter(0);
+	ui.comboBoxThesaurusFileName->setCompleter(0);
+
 	connect(ui.pushButtonAspell, SIGNAL(clicked()), this, SLOT(browseAspell()));
 	connect(ui.btSelectThesaurusFileName, SIGNAL(clicked()), this, SLOT(browseThesaurus()));
-	connect(ui.lineEditAspellCommand, SIGNAL(textChanged(QString)), this, SLOT(lineEditAspellChanged(QString)));
+	connect(ui.comboBoxDictionaryFileName, SIGNAL(editTextChanged(QString)), this, SLOT(lineEditAspellChanged(QString)));
+	connect(ui.comboBoxDictionaryFileName, SIGNAL(editTextChanged(QString)), this, SLOT(comboBoxWithPathEdited(QString)));
+	connect(ui.comboBoxThesaurusFileName, SIGNAL(editTextChanged(QString)), this, SLOT(comboBoxWithPathEdited(QString)));
+
 
 	ui.labelGetDic->setText(tr("Get dictionaries at: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>"));
 	ui.labelGetDic->setOpenExternalLinks(true);
@@ -314,40 +241,6 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 
 	ui.shortcutTree->setHeaderLabels(QStringList()<<tr("Command")<<tr("Default Shortcut")<<tr("Current Shortcut")<<tr("Additional Shortcut"));
 	ui.shortcutTree->setColumnWidth(0,200);
-/*
-	//QFileSystemModel is faster than QDirModel but requires Qt4.4
-	#if QT_VERSION >= 0x040400
-		QCompleter* dictionaryCompleter = new FileSystemCompleter(this);
-		QFileSystemModel* dictionaryModel = new QFileSystemModel(dictionaryCompleter);
-		dictionaryModel->setFilter(QDir::AllDirs | QDir::Files);
-		dictionaryModel->setNameFilters (QStringList()<<"*.dic");
-		dictionaryModel->setNameFilterDisables(false);
-		dictionaryModel->setRootPath(ui.lineEditAspellCommand->text());
-	#else
-		QCompleter* dictionaryCompleter = new QCompleter(this);
-		QDirModel * dictionaryModel =new QDirModel(QStringList()<<"*.dic",QDir::AllDirs | QDir::Files,QDir::Name | QDir::IgnoreCase | QDir::DirsFirst, dictionaryCompleter);
-		dictionaryModel->setReadOnly(true);
-		dictionaryModel->setLazyChildCount(true);
-	#endif
-	dictionaryCompleter->setModel(dictionaryModel);
-	ui.lineEditAspellCommand->setCompleter(dictionaryCompleter);
-	
-	#if QT_VERSION >= 0x040400
-		QCompleter* thesaurusCompleter = new FileSystemCompleter(this);
-		QFileSystemModel* thesaurusModel = new QFileSystemModel(thesaurusCompleter);
-		thesaurusModel->setFilter(QDir::AllDirs | QDir::Files);
-		thesaurusModel->setNameFilters (QStringList()<<"*.dat");
-		thesaurusModel->setNameFilterDisables(false);
-		dictionaryModel->setRootPath(ui.thesaurusFileName->text());
-	#else
-		QCompleter* thesaurusCompleter = new QCompleter(this);
-		QDirModel * thesaurusModel =new QDirModel(QStringList()<<"*.dat",QDir::AllDirs | QDir::Files,QDir::Name | QDir::IgnoreCase | QDir::DirsFirst, thesaurusCompleter);
-		thesaurusModel->setReadOnly(true);
-		thesaurusModel->setLazyChildCount(true);
-	#endif
-	thesaurusCompleter->setModel(thesaurusModel);
-	ui.thesaurusFileName->setCompleter(thesaurusCompleter);
-	*/
 	
 	//create icons
 	createIcon(tr("General"),QIcon(":/images/configgeneral.png"));
@@ -408,33 +301,62 @@ void ConfigDialog::changePage(QListWidgetItem *current, QListWidgetItem *previou
 
 //pageditor
 void ConfigDialog::browseAspell() {
-	QString path=ui.lineEditAspellCommand->text();
+	QString path=ui.comboBoxDictionaryFileName->currentText();
 	if (path.isEmpty()) path=QDir::homePath();
 	QString location=QFileDialog::getOpenFileName(this,tr("Browse dictionary"),path,"Dictionary (*.dic)",0,QFileDialog::DontResolveSymlinks);
 	if (!location.isEmpty()) {
 		location.replace(QString("\\"),QString("/"));
 //	location="\""+location+"\"";
-		ui.lineEditAspellCommand->setText(location);
+		ui.comboBoxDictionaryFileName->setEditText(location);
 	}
 }
-void ConfigDialog::lineEditAspellChanged(QString newText) {
+void ConfigDialog::lineEditAspellChanged(const QString &newText) {
 	if (QFile(newText).exists()) {
-		ui.lineEditAspellCommand->setStyleSheet(QString());
+		ui.comboBoxDictionaryFileName->setStyleSheet(QString());
 		ui.labelGetDic->setText(tr("Get dictionary at: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>"));
 	} else {
-		ui.lineEditAspellCommand->setStyleSheet(QString("QLineEdit {background: red}"));
+		ui.comboBoxDictionaryFileName->setStyleSheet(QString("QComboBox {background: red}"));
 		ui.labelGetDic->setText("<font color=\"red\">"+tr("(Dictionary doesn't exists)")+"</font><br>"+tr("Get dictionary at: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>"));
 	}
 }
 
+
+//sets the items of a combobox to the filenames and sub-directory names in the directory which name
+//is the current text of the combobox
+void ConfigDialog::comboBoxWithPathEdited(const QString& newText){
+	if (newText.isEmpty()) return;
+	QString path=newText.mid(0,qMax(newText.lastIndexOf("/"),qMax(newText.lastIndexOf("\\"),newText.lastIndexOf(QDir::separator()))));
+	QComboBox* box=qobject_cast<QComboBox*>(sender());
+	if (!box) return;
+	QString oldPath=box->property("dir").toString();
+	if (path==oldPath) return;
+	//prevent endless recursion + dir caching
+	box->setProperty("dir",path);
+	box->clear();
+	box->addItem(newText); //adding a new item in the empty list will set the edit text to it
+
+	QDir dir(path);
+	QString absPath=dir.absolutePath();
+	if (absPath==oldPath || (absPath+QDir::separator())==oldPath) return;
+	if (!absPath.endsWith("/") || absPath.endsWith(QDir::separator())) absPath+=QDir::separator();
+	QStringList entries=dir.entryList(QStringList() << box->property("dirFilter").toString(), QDir::Files);
+	foreach (const QString& file, entries)
+		if (absPath+file!=newText)
+			box->addItem(absPath+file);
+	entries=dir.entryList(QStringList(), QDir::AllDirs);
+	foreach (const QString& file, entries)
+		if (absPath+file!=newText && file!=".")
+			box->addItem(absPath+file+QDir::separator());
+}
+
 void ConfigDialog::browseThesaurus() {
-	QString path=ui.thesaurusFileName->text();
+	QString path=ui.comboBoxThesaurusFileName->currentText();
 	if (path.isEmpty()) path=QDir::homePath();
 	QString location=QFileDialog::getOpenFileName(this,tr("Browse thesaurus database"),path,"Database (*.dat)",0,QFileDialog::DontResolveSymlinks);
 	if (!location.isEmpty()) {
 		location.replace(QString("\\"),QString("/"));
 //	location="\""+location+"\"";
-		ui.thesaurusFileName->setText(location);
+		ui.comboBoxThesaurusFileName->setEditText(location);
 	}
 }
 
