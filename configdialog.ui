@@ -127,7 +127,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -374,22 +374,6 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1" colspan="4">
-           <widget class="QLineEdit" name="lineEditAspellCommand">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>190</width>
-              <height>0</height>
-             </size>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="5">
            <widget class="QPushButton" name="pushButtonAspell">
             <property name="sizePolicy">
@@ -402,12 +386,12 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="texmaker.qrc">
+             <iconset>
               <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
             </property>
            </widget>
           </item>
-          <item row="1" column="1" colspan="3">
+          <item row="1" column="1" colspan="2">
            <widget class="QLabel" name="labelGetDic">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -420,7 +404,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="4" colspan="2">
+          <item row="1" column="3" colspan="3">
            <widget class="QCheckBox" name="checkBoxRealTimeCheck">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -440,9 +424,6 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1" colspan="4">
-           <widget class="QLineEdit" name="thesaurusFileName"/>
-          </item>
           <item row="2" column="5">
            <widget class="QPushButton" name="btSelectThesaurusFileName">
             <property name="sizePolicy">
@@ -455,7 +436,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="texmaker.qrc">
+             <iconset>
               <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
             </property>
            </widget>
@@ -487,6 +468,26 @@
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" colspan="4">
+           <widget class="QComboBox" name="comboBoxDictionaryFileName">
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+            <property name="dirFilter" stdset="0">
+             <string notr="true">*.dic</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" colspan="4">
+           <widget class="QComboBox" name="comboBoxThesaurusFileName">
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+            <property name="dirFilter" stdset="0">
+             <string notr="true">*.dat</string>
             </property>
            </widget>
           </item>
@@ -733,7 +734,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="texmaker.qrc">
+             <iconset>
               <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
             </property>
             <property name="iconSize">
@@ -1500,10 +1501,8 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
   <tabstop>spinBoxMaxRecentProjects</tabstop>
   <tabstop>checkBoxParseBibTeX</tabstop>
   <tabstop>checkBoxParseMaster</tabstop>
-  <tabstop>lineEditAspellCommand</tabstop>
   <tabstop>pushButtonAspell</tabstop>
   <tabstop>checkBoxRealTimeCheck</tabstop>
-  <tabstop>thesaurusFileName</tabstop>
   <tabstop>btSelectThesaurusFileName</tabstop>
   <tabstop>checkBoxInlineSpellCheck</tabstop>
   <tabstop>checkBoxInlineCitationCheck</tabstop>
@@ -1534,9 +1533,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
   <tabstop>cancelButton</tabstop>
   <tabstop>checkBoxShowAdvancedOptions</tabstop>
  </tabstops>
- <resources>
-  <include location="texmaker.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>okButton</sender>
@@ -1577,12 +1574,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>291</x>
-     <y>38</y>
+     <x>492</x>
+     <y>69</y>
     </hint>
     <hint type="destinationlabel">
-     <x>291</x>
-     <y>38</y>
+     <x>359</x>
+     <y>99</y>
     </hint>
    </hints>
   </connection>
@@ -1593,12 +1590,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>300</x>
-     <y>57</y>
+     <x>992</x>
+     <y>490</y>
     </hint>
     <hint type="destinationlabel">
-     <x>300</x>
-     <y>57</y>
+     <x>509</x>
+     <y>559</y>
     </hint>
    </hints>
   </connection>
@@ -1609,12 +1606,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>300</x>
-     <y>57</y>
+     <x>992</x>
+     <y>490</y>
     </hint>
     <hint type="destinationlabel">
-     <x>300</x>
-     <y>57</y>
+     <x>687</x>
+     <y>559</y>
     </hint>
    </hints>
   </connection>
@@ -1625,12 +1622,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>300</x>
-     <y>57</y>
+     <x>992</x>
+     <y>490</y>
     </hint>
     <hint type="destinationlabel">
-     <x>300</x>
-     <y>57</y>
+     <x>879</x>
+     <y>559</y>
     </hint>
    </hints>
   </connection>

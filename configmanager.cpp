@@ -430,8 +430,8 @@ bool ConfigManager::execConfigDialog() {
 	confDlg->ui.checkBoxParseMaster->setChecked(parseMaster);
 	
 	//dictionaries
-	confDlg->ui.lineEditAspellCommand->setText(spell_dic);
-	confDlg->ui.thesaurusFileName->setText(thesaurus_database);
+	confDlg->ui.comboBoxDictionaryFileName->setEditText(spell_dic);
+	confDlg->ui.comboBoxThesaurusFileName->setEditText(thesaurus_database);
 
 
 	//-----------------------editor------------------------------
@@ -687,8 +687,8 @@ bool ConfigManager::execConfigDialog() {
 		parseMaster=confDlg->ui.checkBoxParseMaster->isChecked();
 
 		//dictionaries
-		spell_dic=confDlg->ui.lineEditAspellCommand->text();
-		thesaurus_database=confDlg->ui.thesaurusFileName->text();
+		spell_dic=confDlg->ui.comboBoxDictionaryFileName->currentText();
+		thesaurus_database=confDlg->ui.comboBoxThesaurusFileName->currentText();
 
 		//editor
 		editorConfig->wordwrap=confDlg->ui.checkBoxWordwrap->isChecked();
