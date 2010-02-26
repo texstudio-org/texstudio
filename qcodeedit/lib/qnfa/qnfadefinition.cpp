@@ -145,7 +145,7 @@ class QNFANotifier : public QNFAMatchHandler
 
 extern QString *_singleLineCommentTarget;
 void embed(QNFA *src, QNFA *dest, int index);
-void fillContext(QNFA *cxt, QDomElement e, QFormatScheme *f, QHash<QString, int>& pids, bool cs);
+void fillContext(QNFA *cxt, QDomElement e, QFormatScheme *f, QHash<QString, int>& pids, QHash<int, int>& parenWeight, bool cs);
 
 static inline bool match(const QParenthesis& open, const QParenthesis& close)
 {
@@ -780,6 +780,7 @@ class QNFAHighlighter : public QHighlighterInterface
 extern bool stringToBool(const QString& s, bool previous);
 
 QHash<QString, int> QNFADefinition::m_paren;
+QHash<int, int> QNFADefinition::m_parenWeight;
 QHash<QString, QNFA*> QNFADefinition::m_contexts;
 //QHash<QString, QNFADefinition*> QNFADefinition::m_definitions;
 QHash<QString, QNFADefinition::EmbedRequestList> QNFADefinition::m_pendingEmbeds;
@@ -826,7 +827,7 @@ void QNFADefinition::load(const QDomDocument& doc, QLanguageFactory::LangData *d
 	nd->m_root = lexer();
 
 	_singleLineCommentTarget = &(nd->m_singleLineComment);
-	fillContext(nd->m_root, root, s, m_paren, true);
+	fillContext(nd->m_root, root, s, m_paren, m_parenWeight, true);
 	_singleLineCommentTarget = 0;
 
 	squeeze(nd->m_root);
@@ -1022,6 +1023,7 @@ void QNFADefinition::match(QDocumentCursor& c)
 		m.line[0] = c.lineNumber();
 		m.column[0] = p.offset;
 		m.length[0] = p.length;
+		m.weight[0] = m_parenWeight.value(p.id, -1);
 
 		if ( (p.role & QParenthesis::Open) && (p.role & QParenthesis::Close) )
 		{
@@ -1038,6 +1040,7 @@ void QNFADefinition::match(QDocumentCursor& c)
 			m.line[0] = c.lineNumber();
 			m.column[0] = p.offset;
 			m.length[0] = p.length;
+			m.weight[0] = m_parenWeight.value(p.id, -1);
 
 			matchClose(d, m);
 
@@ -1091,6 +1094,9 @@ void QNFADefinition::matchOpen(QDocument *d, PMatch& m)
 		foreach ( par, m_parens )
 		{
 			if ( par.offset < pos )
+				continue;
+//qDebug("%i: %i vs. %i", par.id, m_parenWeight.value(par.id, -1), m.weight[0]);
+			if ( m_parenWeight.value(par.id, -1) < m.weight[0] )
 				continue;
 
 			if ( (par.role & QParenthesis::Open) && (par.role & QParenthesis::Close) )
@@ -1202,6 +1208,7 @@ void QNFADefinition::matchOpen(QDocument *d, PMatch& m)
 	m.line[1] = line;
 	m.column[1] = par.offset;
 	m.length[1] = par.length;
+	//m.weight[1] = m_parenWeight.value(par.id, -1); would be more consistent, but weight[1] won't be used
 }
 
 void QNFADefinition::matchClose(QDocument *d, PMatch& m)
@@ -1222,6 +1229,9 @@ void QNFADefinition::matchClose(QDocument *d, PMatch& m)
 			par = m_parens.at(i);
 
 			if ( par.offset > pos )
+				continue;
+
+			if ( m_parenWeight.value(par.id, -1) < m.weight[0] )
 				continue;
 
 			if ( (par.role & QParenthesis::Open) && (par.role & QParenthesis::Close) )
@@ -1332,6 +1342,7 @@ void QNFADefinition::matchClose(QDocument *d, PMatch& m)
 	m.line[1] = line;
 	m.column[1] = par.offset;
 	m.length[1] = par.length;
+	//m.weight[1] = m_parenWeight.value(par.id, -1); would be more consistent, but weight[1] won't be used
 }
 
 /*!
@@ -1482,6 +1493,7 @@ int QNFADefinition::findBlockEnd(QDocument *d, int line, bool *open)
 		m.line[0] = line;
 		m.column[0] = p.offset;
 		m.length[0] = p.length;
+		m.weight[0] = m_parenWeight.value(p.id, -1);
 
 		matchOpen(d, m);
 

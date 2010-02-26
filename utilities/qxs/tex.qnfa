@@ -1,74 +1,83 @@
 <!DOCTYPE QNFA>
 <QNFA language="(La-)Tex" extensions="tex" defaultLineMark="">
-	<sequence parenthesis="round:open">(</sequence>
-	<sequence parenthesis="round:close">)</sequence>
-	<sequence parenthesis="texcurly:open">\\{</sequence>
-	<sequence parenthesis="texcurly:close">\\}</sequence>
-	<sequence parenthesis="square:open">\[</sequence>
-	<sequence parenthesis="square:close">\]</sequence>
+<!--
+parenthesis weights:
+50: \part, \chapter, \section, ...
+40: \[ \]  $   \(  \[
+30: \begin{..}
+20: \verb*  *
+10: { }
+0: (, ), \{, \}, [, ]
+-->
+	<sequence parenthesis="round:open" parenthesisWeight="00">(</sequence>
+	<sequence parenthesis="round:close" parenthesisWeight="00">)</sequence>
+	<sequence parenthesis="texcurly:open" parenthesisWeight="00">\\{</sequence>
+	<sequence parenthesis="texcurly:close" parenthesisWeight="00">\\}</sequence>
+	<sequence parenthesis="square:open" parenthesisWeight="00">\[</sequence>
+	<sequence parenthesis="square:close" parenthesisWeight="00">\]</sequence>
 	
 	<context id="verbatim" format="verbatim" transparency="true">
-		<start parenthesis="verbatim:open" fold="true" format="extra-keyword">\\begin{verbatim}</start>
-		<stop parenthesis="verbatim:close" fold="true" format="extra-keyword">\\end{verbatim}</stop>
+		<start parenthesis="verbatim:open" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{verbatim}</start>
+		<stop parenthesis="verbatim:close" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{verbatim}</stop>
 
-		<sequence parenthesis="curly:open">{</sequence>
- 		<sequence parenthesis="curly:close">}</sequence>
+		<sequence parenthesis="curly:open" parenthesisWeight="10">{</sequence>
+ 		<sequence parenthesis="curly:close" parenthesisWeight="10">}</sequence>
 	</context>
 	<context id="verbatimS" format="verbatim" transparency="true">
-		<start parenthesis="verbatimS:open" fold="true" format="extra-keyword">\\begin{verbatim*}</start>
-		<stop parenthesis="verbatimS:close" fold="true" format="extra-keyword">\\end{verbatim*}</stop>
+		<start parenthesis="verbatimS:open" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{verbatim*}</start>
+		<stop parenthesis="verbatimS:close" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{verbatim*}</stop>
 
 		<sequence parenthesis="curly:open">{</sequence>
  		<sequence parenthesis="curly:close">}</sequence>
 	</context>
 
 	<word id="keywords/single" ambiguous="true" format="keyword">\\[\\%\$]</word>
-	<sequence parenthesis="curly:open" indent="1" fold="1">{</sequence>
-	<sequence parenthesis="curly:close" indent="1" fold="1">}</sequence>
+	<sequence parenthesis="curly:open" parenthesisWeight="10" indent="1" fold="1">{</sequence>
+	<sequence parenthesis="curly:close" parenthesisWeight="10" indent="1" fold="1">}</sequence>
 
-  <context id="verb$" format="verbatim">
-		<start parenthesis="verb$:open" format="keyword">\\verb$</start>
-		<stop parenthesis="verb$:close" format="keyword">$</stop>
+	<context id="verb$" format="verbatim">
+		<start parenthesis="verb$:open" parenthesisWeight="20" format="keyword">\\verb$</start>
+		<stop parenthesis="verb$:close" parenthesisWeight="20" format="keyword">$</stop>
 	</context>
-  <context id="verb+" format="verbatim">
-		<start parenthesis="verb+:open" format="keyword">\\verb\+</start>
-		<stop parenthesis="verb+:close" format="keyword">\+</stop>
+	<context id="verb+" format="verbatim">
+		<start parenthesis="verb+:open" parenthesisWeight="20" format="keyword">\\verb\+</start>
+		<stop parenthesis="verb+:close" parenthesisWeight="20" format="keyword">\+</stop>
 	</context>
-  <context id="verb1" format="verbatim">
-		<start parenthesis="verb1:open" format="keyword">\\verb1</start>
-		<stop parenthesis="verb1:close" format="keyword">1</stop>
+	<context id="verb1" format="verbatim">
+		<start parenthesis="verb1:open" parenthesisWeight="20" format="keyword">\\verb1</start>
+		<stop parenthesis="verb1:close" parenthesisWeight="20" format="keyword">1</stop>
 	</context>
-  <context id="verb!" format="verbatim">
-		<start parenthesis="verb!:open" format="keyword">\\verb!</start>
-		<stop parenthesis="verb!:close" format="keyword">!</stop>
+	<context id="verb!" format="verbatim">
+		<start parenthesis="verb!:open" parenthesisWeight="20" format="keyword">\\verb!</start>
+		<stop parenthesis="verb!:close" parenthesisWeight="20" format="keyword">!</stop>
 	</context>
-  <context id="verb." format="verbatim">
-		<start parenthesis="verb.:open" format="keyword">\\verb\.</start>
-		<stop parenthesis="verb.:close" format="keyword">\.</stop>
+	<context id="verb." format="verbatim">
+		<start parenthesis="verb.:open" parenthesisWeight="20" format="keyword">\\verb\.</start>
+		<stop parenthesis="verb.:close" parenthesisWeight="20" format="keyword">\.</stop>
 	</context>
-  <context id="verb@" format="verbatim">
-		<start parenthesis="verb@:open" format="keyword">\\verb@</start>
-		<stop parenthesis="verb@:close" format="keyword">@</stop>
+	<context id="verb@" format="verbatim">
+		<start parenthesis="verb@:open" parenthesisWeight="20" format="keyword">\\verb@</start>
+		<stop parenthesis="verb@:close" parenthesisWeight="20" format="keyword">@</stop>
 	</context>
-  <context id="verb#" format="verbatim">
-		<start parenthesis="verb#:open" format="keyword">\\verb#</start>
-		<stop parenthesis="verb#:close" format="keyword">#</stop>
+	<context id="verb#" format="verbatim">
+		<start parenthesis="verb#:open" parenthesisWeight="20" format="keyword">\\verb#</start>
+		<stop parenthesis="verb#:close" parenthesisWeight="20" format="keyword">#</stop>
 	</context>
-  <context id="verb|" format="verbatim">
-		<start parenthesis="verb|:open" format="keyword">\\verb\|</start>
-		<stop parenthesis="verb|:close" format="keyword">\|</stop>
+	<context id="verb|" format="verbatim">
+		<start parenthesis="verb|:open" parenthesisWeight="20" format="keyword">\\verb\|</start>
+		<stop parenthesis="verb|:close" parenthesisWeight="20" format="keyword">\|</stop>
 	</context>
-  <context id="verb/" format="verbatim">
-		<start parenthesis="verb/:open" format="keyword">\\verb/</start>
-		<stop parenthesis="verb/:close" format="keyword">/</stop>
+	<context id="verb/" format="verbatim">
+		<start parenthesis="verb/:open" parenthesisWeight="20" format="keyword">\\verb/</start>
+		<stop parenthesis="verb/:close" parenthesisWeight="20" format="keyword">/</stop>
 	</context>
-  <context id="verb\" format="verbatim">
-		<start parenthesis="verb\:open" format="keyword">\\verb\\</start>
-		<stop parenthesis="verb\:close" format="keyword">\\</stop>
+	<context id="verb\" format="verbatim">
+		<start parenthesis="verb\:open" parenthesisWeight="20" format="keyword">\\verb\\</start>
+		<stop parenthesis="verb\:close" parenthesisWeight="20" format="keyword">\\</stop>
 	</context>
-  <context id="verb_" format="verbatim">
-		<start parenthesis="verb_:open" format="keyword">\\verb_</start>
-		<stop parenthesis="verb_:close" format="keyword">_</stop>
+	<context id="verb_" format="verbatim">
+		<start parenthesis="verb_:open" parenthesisWeight="20" format="keyword">\\verb_</start>
+		<stop parenthesis="verb_:close" parenthesisWeight="20" format="keyword">_</stop>
 	</context>
   
 	<context id="comment/single" format="comment" stayOnLine="true" >
@@ -77,58 +86,58 @@
 	</context>
 	
 	<context id="mathmode$" format="numbers" transparency="true">
-		<start parenthesis="math:open" fold="1" >$</start>
-		<stop parenthesis="math:close" fold="1" >$</stop>
+		<start parenthesis="math:open" parenthesisWeight="40" fold="1" >$</start>
+		<stop parenthesis="math:close" parenthesisWeight="40" fold="1" >$</stop>
     
-    <word id="keywords/single" format="math-keyword">\\[a-zA-Z]+</word>
-  </context>
+		<word id="keywords/single" format="math-keyword">\\[a-zA-Z]+</word>
+	</context>
 
 	<context id="mathmodeNormal" format="numbers" transparency="true">
-		<start parenthesis="mathN1:open" fold="1" format="extra-keyword">\\begin{math}</start>
-		<stop parenthesis="mathN1:close" fold="1" format="extra-keyword">\\end{math}</stop>
-		<start parenthesis="mathN2:open" fold="1" >\\\(</start>
-		<stop parenthesis="mathN2:close" fold="1" >\\\)</stop>
+		<start parenthesis="mathN1:open" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{math}</start>
+		<stop parenthesis="mathN1:close" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{math}</stop>
+		<start parenthesis="mathN2:open" parenthesisWeight="40" fold="1" >\\\(</start>
+		<stop parenthesis="mathN2:close" parenthesisWeight="40" fold="1" >\\\)</stop>
 
 		<word id="keywords/single" format="math-keyword">\\[a-zA-Z]+</word>
 	</context>
 	
 	<context id="mathmodeDisplay" format="numbers" transparency="true">
-		<start parenthesis="mathD1:open" fold="1" format="extra-keyword">\\begin{displaymath}</start>
-		<stop parenthesis="mathD1:close" fold="1" format="extra-keyword">\\end{displaymath}</stop>
-		<start parenthesis="mathD2:open" fold="1" >\\\[</start>
-		<stop parenthesis="mathD2:close" fold="1" >\\\]</stop>
-		<start parenthesis="mathD3:open" fold="1" format="extra-keyword">\\begin{equation}</start>
-		<stop parenthesis="mathD3:close" fold="1" format="extra-keyword">\\end{equation}</stop>
+		<start parenthesis="mathD1:open" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{displaymath}</start>
+		<stop parenthesis="mathD1:close" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{displaymath}</stop>
+		<start parenthesis="mathD2:open" parenthesisWeight="40" fold="1" >\\\[</start>
+		<stop parenthesis="mathD2:close" parenthesisWeight="40" fold="1" >\\\]</stop>
+		<start parenthesis="mathD3:open" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{equation}</start>
+		<stop parenthesis="mathD3:close" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{equation}</stop>
 
 		<word id="keywords/single" format="math-keyword">\\[a-zA-Z]+</word>
 	</context>
 
 	<context id="mathmodeEqnArray" format="numbers" transparency="true">
-		<start parenthesis="mathEA1:open" fold="1" format="extra-keyword">\\begin{eqnarray}</start>
-		<stop parenthesis="mathEA1:close" fold="1" format="extra-keyword">\\end{eqnarray}</stop>
-		<start parenthesis="mathEA2:open" fold="1" format="extra-keyword">\\begin{align}</start>
-		<stop parenthesis="mathEA2:close" fold="1" format="extra-keyword">\\end{align}</stop>
-		<start parenthesis="mathEA3:open" fold="1" format="extra-keyword">\\begin{eqnarray\*}</start>
-		<stop parenthesis="mathEA3:close" fold="1" format="extra-keyword">\\end{eqnarray\*}</stop>
-		<start parenthesis="mathEA4:open" fold="1" format="extra-keyword">\\begin{align\*}</start>
-		<stop parenthesis="mathEA4:close" fold="1" format="extra-keyword">\\end{align\*}</stop>
+		<start parenthesis="mathEA1:open" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{eqnarray}</start>
+		<stop parenthesis="mathEA1:close" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{eqnarray}</stop>
+		<start parenthesis="mathEA2:open" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{align}</start>
+		<stop parenthesis="mathEA2:close" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{align}</stop>
+		<start parenthesis="mathEA3:open" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{eqnarray\*}</start>
+		<stop parenthesis="mathEA3:close" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{eqnarray\*}</stop>
+		<start parenthesis="mathEA4:open" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{align\*}</start>
+		<stop parenthesis="mathEA4:close" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{align\*}</stop>
 
 		<word id="keywords/single" format="math-keyword">\\[a-zA-Z]+</word>
 	</context>
 	
-	<word parenthesis="block:open" fold="1" indent="1" ambiguous="true" format="extra-keyword">\\begin{[^}]*}</word>
-	<word parenthesis="block:close" fold="1" indent="1" format="extra-keyword" >\\end{[^}]*}</word>
+	<word parenthesis="block:open" parenthesisWeight="30" fold="1" indent="1" ambiguous="true" format="extra-keyword">\\begin{[^}]*}</word>
+	<word parenthesis="block:close" parenthesisWeight="30" fold="1" indent="1" format="extra-keyword" >\\end{[^}]*}</word>
 
 	<list id="keywords/block" format="extra-keyword">
-		<word parenthesis="part:boundary@nomatch" fold="true">\\part</word>
-		<word parenthesis="chapter:boundary@nomatch" fold="true">\\chapter</word>
-		<word parenthesis="section:boundary@nomatch" fold="true">\\section</word>
-		<word parenthesis="subsection:boundary@nomatch" fold="true">\\subsection</word>
-		<word parenthesis="subsubsection:boundary@nomatch" fold="true">\\subsubsection</word>
-		<word parenthesis="paragraph:boundary@nomatch" fold="true" >\\paragraph</word>
-		<word parenthesis="subparagraph:boundary@nomatch" fold="true" >\\subparagraph</word>
+		<word parenthesis="part:boundary@nomatch" parenthesisWeight="50" fold="true">\\part</word>
+		<word parenthesis="chapter:boundary@nomatch" parenthesisWeight="50" fold="true">\\chapter</word>
+		<word parenthesis="section:boundary@nomatch" parenthesisWeight="50" fold="true">\\section</word>
+		<word parenthesis="subsection:boundary@nomatch" parenthesisWeight="50" fold="true">\\subsection</word>
+		<word parenthesis="subsubsection:boundary@nomatch" parenthesisWeight="50" fold="true">\\subsubsection</word>
+		<word parenthesis="paragraph:boundary@nomatch" parenthesisWeight="50" fold="true" >\\paragraph</word>
+		<word parenthesis="subparagraph:boundary@nomatch" parenthesisWeight="50" fold="true" >\\subparagraph</word>
 	</list>
 	
-  <sequence id="keywords/single" ambiguous="true" format="keyword">\\[a-zA-Z]+</sequence>
+	<sequence id="keywords/single" ambiguous="true" format="keyword">\\[a-zA-Z]+</sequence>
 </QNFA>
 

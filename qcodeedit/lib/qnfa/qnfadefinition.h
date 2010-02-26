@@ -110,6 +110,7 @@ class QCE_EXPORT QNFADefinition : public QLanguageDefinition
 		QHash<QPointer<QDocument>, int> m_matchGroups;
 		
 		static QHash<QString, int> m_paren;
+		static QHash<int, int> m_parenWeight;
 		static QHash<QString, QNFA*> m_contexts;
 		
 		struct PMatch
@@ -138,6 +139,7 @@ class QCE_EXPORT QNFADefinition : public QLanguageDefinition
 			int line[2];
 			int column[2];
 			int length[2];
+			int weight[2];
 		};
 		
 		void matchOpen(QDocument *d, PMatch& m);

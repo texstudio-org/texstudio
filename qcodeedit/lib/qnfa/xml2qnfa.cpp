@@ -79,7 +79,7 @@ int pid(const QString& s, QHash<QString, int>& pids)
 	return id;
 }
 
-int action(QDomElement c, QFormatScheme *f, QHash<QString, int>& pids, int fid = 0)
+int action(QDomElement c, QFormatScheme *f, QHash<QString, int>& pids, QHash<int, int>& parenWeight, int fid = 0)
 {
 	QString paren, spid, spt, sfid;
 	
@@ -97,12 +97,16 @@ int action(QDomElement c, QFormatScheme *f, QHash<QString, int>& pids, int fid =
 		spid = paren.section(':', 0, -2);
 		spt = paren.section(':', -1, -1);
 		
+		bool match=true;
+		int weight=100;
+
 		if ( spt.endsWith("@nomatch") )
 		{
 			spt.chop(8);
 		} else {
 			fid |= QNFAAction::MatchParen;
 		}
+
 		
 		if ( spid.count() )
 		{
@@ -118,14 +122,22 @@ int action(QDomElement c, QFormatScheme *f, QHash<QString, int>& pids, int fid =
 			else if ( spt == "boundary" )
 				fid |= QNFAAction::ParenOpen | QNFAAction::ParenClose;
 
-			fid |= QNFAAction::parenthesis(pid(spid, pids));
+			int cid=pid(spid, pids);
+			fid |= QNFAAction::parenthesis(cid);
 			
 			/*
 			qDebug("paren : [%s|%s] => 0x%x",
 					qPrintable(spid), qPrintable(spt),
 					fid & QNFAAction::ParenMask);
 			*/
+			QString weight=c.attribute("parenthesisWeight");
+			if (weight.count()){
+				//qDebug(qPrintable(QString("%1 %2: %3").arg(cid).arg((cid & QNFAAction::ParenMask) >> 8).arg(weight)));
+				parenWeight.insert((cid & QNFAAction::ParenMask) >> 8, weight.toInt());
+			}
+
 		}
+
 	}
 	
 	if ( stringToBool(c.attribute("indent"), false) )
@@ -181,11 +193,11 @@ void embed(QNFA *src, QNFA *dest, int idx = 0)
 	copy(src->tree, dest->tree);
 }
 
-void fillContext(QNFA *cxt, QDomElement e, QFormatScheme *f, QHash<QString, int>& pids, bool cs);
-void fillContext(QNFA *cxt, QDomNodeList l, QFormatScheme *f, QHash<QString, int>& pids, bool cs);
+void fillContext(QNFA *cxt, QDomElement e, QFormatScheme *f, QHash<QString, int>& pids, QHash<int, int>& parenWeight, bool cs);
+void fillContext(QNFA *cxt, QDomNodeList l, QFormatScheme *f, QHash<QString, int>& pids, QHash<int, int>& parenWeight, bool cs);
 
 void addToContext(	QNFA *cxt, QDomElement c, int fid,
-					QFormatScheme *f, QHash<QString, int>& pids,
+					QFormatScheme *f, QHash<QString, int>& pids, QHash<int, int>& parenWeight,
 					const QStringList& pref,
 					const QStringList& suff,
 					bool cs)
@@ -272,7 +284,7 @@ void addToContext(	QNFA *cxt, QDomElement c, int fid,
 			else if ( role == "suffix" )
 				suffixes << value;
 			else
-				addToContext(cxt, cc, action(cc, f, pids, fid), f, pids, prefixes, suffixes, cs);
+				addToContext(cxt, cc, action(cc, f, pids, parenWeight, fid), f, pids, parenWeight, prefixes, suffixes, cs);
 		}
 		//qDebug("ending list");
 		
@@ -291,7 +303,7 @@ void addToContext(	QNFA *cxt, QDomElement c, int fid,
 		QList<QNFA*> lStart, lStop, lEscape;
 		
 		QString attr;
-		int defact = action(c, f, pids);
+		int defact = action(c, f, pids, parenWeight);
 		QDomNodeList children = c.childNodes();
 		
 		QString _id = c.attribute("id");
@@ -307,7 +319,7 @@ void addToContext(	QNFA *cxt, QDomElement c, int fid,
 			
 			bool tcs = stringToBool(child.attribute("caseSensitive"), cs);
 			
-			int act = action(child, f, pids);
+			int act = action(child, f, pids,parenWeight);
 			
 			if ( !(act & QNFAAction::Highlight) )
 				act |= QNFAAction::Highlight | QNFAAction::format(defact);
@@ -371,7 +383,7 @@ void addToContext(	QNFA *cxt, QDomElement c, int fid,
 				
 				nfa = new QNFA;
 				nfa->type = EscapeSeq;
-				nfa->actionid = action(child, f, pids);
+				nfa->actionid = action(child, f, pids,parenWeight);
 				//nfa->out.branch = new QNFABranch;
 				
 				hescape->out.next = nfa;
@@ -402,7 +414,7 @@ void addToContext(	QNFA *cxt, QDomElement c, int fid,
 			cstart->out.branch = new QNFABranch;
 		}
 		
-		fillContext(cstart, c, f, pids, cs);
+		fillContext(cstart, c, f, pids, parenWeight, cs);
 		
 		if ( c.hasAttribute("id") )
 		{
@@ -441,14 +453,14 @@ void addToContext(	QNFA *cxt, QDomElement c, int fid,
 	}
 }
 
-void fillContext(QNFA *cxt, QDomElement e, QFormatScheme *f, QHash<QString, int>& pids, bool cs)
+void fillContext(QNFA *cxt, QDomElement e, QFormatScheme *f, QHash<QString, int>& pids, QHash<int, int>& parenWeight, bool cs)
 {
 	cs = stringToBool(e.attribute("caseSensitive"), cs);
 	
-	fillContext(cxt, e.childNodes(), f, pids, cs);
+	fillContext(cxt, e.childNodes(), f, pids, parenWeight, cs);
 }
 
-void fillContext(QNFA *cxt, QDomNodeList l, QFormatScheme *f, QHash<QString, int>& pids, bool cs)
+void fillContext(QNFA *cxt, QDomNodeList l, QFormatScheme *f, QHash<QString, int>& pids, QHash<int, int>& parenWeight, bool cs)
 {
 	//qDebug("filling context from %i nodes", l.count());
 	
@@ -459,7 +471,7 @@ void fillContext(QNFA *cxt, QDomNodeList l, QFormatScheme *f, QHash<QString, int
 		if ( c.isNull() )
 			continue;
 		
-		addToContext(cxt, c, action(c, f, pids), f, pids, QStringList(), QStringList(), cs);
+		addToContext(cxt, c, action(c, f, pids, parenWeight), f, pids, parenWeight, QStringList(), QStringList(), cs);
 	}
 	
 	//qDebug("context filled");
