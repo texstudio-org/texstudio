@@ -12,7 +12,8 @@ LatexDocument::LatexDocument():edView(0),text(0)
 	labelList = new StructureEntry(this,baseStructure, StructureEntry::SE_OVERVIEW);
 	todoList = new StructureEntry(this,baseStructure, StructureEntry::SE_OVERVIEW);
 	bibTeXList = new StructureEntry(this,baseStructure, StructureEntry::SE_OVERVIEW);
-        labelItem.clear();
+	blockList = new StructureEntry(this,baseStructure, StructureEntry::SE_OVERVIEW);
+	labelItem.clear();
 }
 LatexDocument::~LatexDocument(){
 	delete baseStructure;
@@ -120,6 +121,8 @@ void LatexDocument::updateStructure() {
 	todoList->title=tr("TODO");
 	bibTeXList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
 	bibTeXList->title=tr("BIBTEX");
+	blockList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
+	blockList->title=tr("BLOCKS");
 
 	QVector<StructureEntry*> parent_level(LatexParser::structureCommands.count());
 	for (int i=0;i<parent_level.size();i++)
@@ -201,6 +204,16 @@ void LatexDocument::updateStructure() {
 			if (!temporaryLoadedDocument)
 				newTodo->lineHandle=document->line(i).handle();
 		}
+		//// beamer blocks ////
+		s=findToken(curLine,"\\begin{block}{");
+		if (s!="") {
+			StructureEntry *newBlock=new StructureEntry(this,blockList, StructureEntry::SE_BLOCK);
+			newBlock->title=s;
+			newBlock->lineNumber=i;
+			if (!temporaryLoadedDocument)
+				newBlock->lineHandle=document->line(i).handle();
+		}
+
 		//// include,input ////
 		static const QStringList inputTokens = QStringList() << "input" << "include";
 		for(int header=0;header<inputTokens.count();header++){
@@ -237,6 +250,7 @@ void LatexDocument::updateStructure() {
 	if (!bibTeXList->children.isEmpty()) baseStructure->insert(0, bibTeXList);
 	if (!todoList->children.isEmpty()) baseStructure->insert(0, todoList);
 	if (!labelList->children.isEmpty()) baseStructure->insert(0, labelList);
+	if (!blockList->children.isEmpty()) baseStructure->insert(0, blockList);
 
 	emit structureUpdated(this);
 

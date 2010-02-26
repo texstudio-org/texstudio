@@ -284,6 +284,8 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 		}
 		def=searchBaseCommand("yap",yapOptions);//,true);
 		if (!def.isEmpty()) return def;
+		else if (QFileInfo("C:/Program Files/MiKTeX 2.8/miktex/bin/yap.exe").exists())
+			return "\"C:/Program Files/MiKTeX 2.8/miktex/bin/yap.exe\" " + yapOptions;
 		else if (QFileInfo("C:/Program Files/MiKTeX 2.7/miktex/bin/yap.exe").exists())
 			return "\"C:/Program Files/MiKTeX 2.7/miktex/bin/yap.exe\" " + yapOptions;
 		else if (QFileInfo("C:/Program Files/MiKTeX 2.5/miktex/bin/yap.exe").exists())
@@ -323,6 +325,8 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 	case CMD_GHOSTSCRIPT: {
 		QString dll=findGhostscriptDLL().replace("gsdll32.dll","gswin32c.exe",Qt::CaseInsensitive);
 		if (dll.endsWith("gswin32c.exe")) return "\""+dll+"\"";
+		else if (QFileInfo("C:/Program Files/gs/gs8.64/bin/gswin32c.exe").exists())  //old behaviour
+			return "\"C:/Program Files/gs/gs8.64/bin/gswin32c.exe\"";
 		else if (QFileInfo("C:/Program Files/gs/gs8.63/bin/gswin32c.exe").exists())  //old behaviour
 			return "\"C:/Program Files/gs/gs8.63/bin/gswin32c.exe\"";
 		else if (QFileInfo("C:/Program Files/gs/gs8.61/bin/gswin32c.exe").exists())
@@ -496,6 +500,15 @@ ProcessX* BuildManager::newProcess(const QString &unparsedCommandLine, const QSt
 	ProcessX* proc = new ProcessX(this, cmd, mainFile);
 	connect(proc, SIGNAL(finished(int)),proc, SLOT(deleteLater())); //will free proc after the process has ended
 	proc->setWorkingDirectory(mfi.absolutePath());
+/* this was added in texmaker 1.9.9, not sure if it is useful
++#ifdef Q_WS_MACX
++#if (QT_VERSION >= 0x0406)
++QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
++env.insert("PATH", env.value("PATH") + ":/usr/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/texbin:/sw/bin");
++proc->setProcessEnvironment(env);
++#endif
++#endif
++*/
 	return proc;
 }
 ProcessX* BuildManager::newProcess(const QString &unparsedCommandLine, const QString &mainFile, int currentLine){

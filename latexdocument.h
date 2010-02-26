@@ -39,7 +39,7 @@ protected:
 
 
 struct StructureEntry{
-	enum Type {SE_DOCUMENT_ROOT,SE_OVERVIEW,SE_SECTION,SE_BIBTEX,SE_TODO,SE_INCLUDE,SE_LABEL};
+	enum Type {SE_DOCUMENT_ROOT,SE_OVERVIEW,SE_SECTION,SE_BIBTEX,SE_TODO,SE_INCLUDE,SE_LABEL,SE_BLOCK=SE_LABEL};
 	Type type;
 	QString title;
 	int level; //only used for section types
@@ -96,9 +96,6 @@ public:
 	//QString getAbsoluteFilePath(const QString& relativePath); //returns the absolute file path for an included file
 
 	StructureEntry* baseStructure;
-	StructureEntry* labelList;
-	StructureEntry* todoList;
-	StructureEntry* bibTeXList;
 
 
 	QDocumentSelection sectionSelection(StructureEntry* section);
@@ -109,6 +106,10 @@ private:
 	LatexEditorView* edView;
 	QDocument* text;
 
+	StructureEntry* labelList;
+	StructureEntry* todoList;
+	StructureEntry* bibTeXList;
+	StructureEntry* blockList;
 public slots:
 	void updateStructure();
         void clearStructure();

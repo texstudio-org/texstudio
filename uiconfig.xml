@@ -58,6 +58,7 @@
     <insert id="textbf" text="\textbf - Boldface  [selection]" insert="\textbf{%|}" icon=":/images/text_bold.png" shortcut="Ctrl+B"/>
     <insert id="texttt" text="\texttt - Typewriter  [selection]" insert="\texttt{%|}" shortcut="Ctrl+Shift+T"/>
     <insert id="textsc" text="\textsc - Small caps  [selection]" insert="\textsc{%|}" shortcut="Ctrl+Shift+C"/>
+    <insert id="textsf" text="\textsf - Sans Serif  [selection]" insert="\textsf{%|}" shortcut="Ctrl+Shift+A"/>
     <insert id="underline" text="\underline" insert="\underline{%|}" icon=":/images/text_under.png"/>
   </menu>
 
