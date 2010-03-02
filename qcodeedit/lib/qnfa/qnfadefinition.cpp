@@ -1733,6 +1733,44 @@ int QNFADefinition::blockFlags(QDocument *d, int line, int depth) const
 	return QCE_FOLD_FLAGS(ret, open, close);
 }
 
+
+void QNFADefinition::correctFolding(QDocument *d){
+	int foldingState=0;//number of collapsed blocks the current line belongs to
+	bool changed=false;
+	for (int i=0;i<d->lines();i++){
+		QDocumentLine line=d->line(i);
+		if (line.hasFlag(QDocumentLine::Hidden)){
+			if (foldingState<=0){
+				line.setFlag(QDocumentLine::Hidden, false);
+				changed=true;
+			}
+		} else if (foldingState>0){
+			line.setFlag(QDocumentLine::Hidden,true);
+			changed=true;
+		}
+
+		if (line.hasFlag(QDocumentLine::CollapsedBlockStart) ||
+		    line.hasFlag(QDocumentLine::CollapsedBlockEnd)){
+			int flags=blockFlags(d,i,0);
+			if (line.hasFlag(QDocumentLine::CollapsedBlockStart)){
+				if (!QCE_FOLD_OPEN_COUNT(flags)) {
+					changed=true;
+					line.setFlag(QDocumentLine::CollapsedBlockStart,false);
+				} else
+					foldingState+=QCE_FOLD_OPEN_COUNT(flags);
+			}
+			if (line.hasFlag(QDocumentLine::CollapsedBlockEnd)){
+				if (!QCE_FOLD_CLOSE_COUNT(flags) || foldingState<=0){
+					changed = true;
+					line.setFlag(QDocumentLine::CollapsedBlockEnd,false);
+				} else
+					foldingState-=QCE_FOLD_CLOSE_COUNT(flags);
+			}
+		}
+	}
+	if (changed) d->correctHidden();
+}
+
 void QNFADefinition::addContext(const QString& id, QNFA *nfa)
 {
 	//qDebug("registering context : %s", qPrintable(id));

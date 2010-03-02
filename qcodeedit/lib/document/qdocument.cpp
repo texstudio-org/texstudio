@@ -1528,6 +1528,37 @@ bool QDocument::isClean() const
 	return m_impl ? m_impl->m_commands.isClean() : true;
 }
 
+
+void QDocument::correctHidden(){
+	QLanguageDefinition* ld=languageDefinition();
+	if (!ld)
+		return;
+
+	m_impl->m_hidden.clear();
+	QList<QPair<int,int> > blockStart;
+	for (int i=0;i<lines();i++){
+		QDocumentLine l=line(i);
+		if (l.hasFlag(QDocumentLine::CollapsedBlockStart))
+			blockStart << QPair<int,int>(i, QCE_FOLD_OPEN_COUNT(ld->blockFlags(this,i,0)));
+		if (l.hasFlag(QDocumentLine::CollapsedBlockEnd)){
+			Q_ASSERT(!blockStart.empty());
+			int c=QCE_FOLD_CLOSE_COUNT(ld->blockFlags(this,i,0));
+			while (blockStart.size()>0 && blockStart.last().second<=c){
+				c-=blockStart.last().second;
+				m_impl->m_hidden.insert(blockStart.last().first, i-blockStart.last().first);
+				blockStart.removeLast();
+			}
+			if (c>0 && !blockStart.empty()) blockStart.last().second-=c;
+		}
+	}
+	for (int i=0;i<blockStart.size();i++)
+		m_impl->m_hidden.insert(blockStart[i].first,lines()-1-blockStart[i].first);
+
+	m_impl->setHeight();
+	//emitFormatsChange(line, count);
+	m_impl->emitFormatsChanged();
+}
+
 /*!
 	\brief Set the document to clean state
 
