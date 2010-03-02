@@ -168,4 +168,8 @@ int QLanguageDefinition::blockFlags(QDocument *d, int line, int depth) const
 	return 0;
 }
 
+void QLanguageDefinition::correctFolding(QDocument *d){
+	Q_UNUSED(d);
+}
+
 /*! @} */

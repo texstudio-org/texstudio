@@ -235,6 +235,8 @@ class QCE_EXPORT QDocument : public QObject
 		
 		bool isClean() const;
 		
+		void correctHidden();
+
 	public slots:
 		void clear();
 		

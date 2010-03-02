@@ -88,7 +88,8 @@ class QCE_EXPORT QNFADefinition : public QLanguageDefinition
 		virtual void expand(QDocument *d, int line);
 		virtual void collapse(QDocument *d, int line);
 		virtual int blockFlags(QDocument *d, int line, int depth) const;
-		
+		virtual void correctFolding(QDocument *d);
+
 		static void load(QFile *f, QLanguageFactory::LangData *d, QFormatScheme *s);
 		static void load(const QString& file, QLanguageFactory::LangData *d, QFormatScheme *s);
 		static void load(const QDomDocument& doc, QLanguageFactory::LangData *d, QFormatScheme *s);
