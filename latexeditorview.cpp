@@ -62,8 +62,7 @@ private:
 };
 bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 	if (LatexEditorView::completer && LatexEditorView::completer->acceptTriggerString(event->text()))  {
-		editor->cursor().removeSelectedText();
-		editor->cursor().insertText(event->text());
+		editor->insertTextAtCursor(event->text());
 		LatexEditorView::completer->complete(editor,false);
 		return true;
 	}
@@ -101,11 +100,7 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 	if ((pos=keyToReplace->indexOf(event->text()))>=0) {
 		QString whitespace(" \t\n");
 		QChar prev=editor->cursor().previousChar();
-		QDocumentCursor c=editor->cursor();
-		c.removeSelectedText();
-		if (whitespace.contains(prev)||prev==QChar(0))  c.insertText(keyReplaceBeforeWord->at(pos));
-		else c.insertText(keyReplaceAfterWord->at(pos));
-		editor->setCursor(c); //to remove selection range
+		editor->insertTextAtCursor(whitespace.contains(prev)||prev==QChar(0)?keyReplaceBeforeWord->at(pos):keyReplaceAfterWord->at(pos));
 		return true;
 	}
 	if (LatexEditorView::hideTooltipWhenLeavingLine!=-1 && editor->cursor().lineNumber()!=LatexEditorView::hideTooltipWhenLeavingLine) {
@@ -625,10 +620,8 @@ void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {
 void LatexEditorView::spellCheckingReplace() {
 	QAction* action = qobject_cast<QAction*>(QObject::sender());
 	if (editor && action) {
-		QDocumentCursor c=editor->cursor();
-		//c.removeSelectedText();
-		c.insertText(action->text());
-		editor->setCursor(c); //to remove selection range
+		editor->insertTextAtCursor(action->text());
+		editor->setCursor(editor->cursor()); //to remove selection range
 	}
 }
 void LatexEditorView::spellCheckingAlwaysIgnore() {
@@ -903,10 +896,7 @@ void LatexEditorView::insertHardLineBreaks(int newLength, bool smartScopeSelecti
 		}
 
 		QDocumentCursor vCur = doc->cursor(startLine, 0, endLine, doc->line(endLine).length());
-		vCur.beginEditBlock();
-		vCur.removeSelectedText();
-		vCur.insertText(formattedList.join("\n"));
-		vCur.endEditBlock();
+		editor->insertText(vCur,formattedList.join("\n"));
 
 		editor->setCursor(cur);
 
@@ -925,11 +915,10 @@ void LatexEditorView::insertHardLineBreaks(int newLength, bool smartScopeSelecti
 		cur = doc->cursor(startLine,0,endLine+1,0);//+1,0);
 	else
 		cur = doc->cursor(startLine,0,endLine,doc->line(endLine).length());//+1,0);
-	cur.beginEditBlock();
 	QStringList lines;
 	for (int i=startLine;i<=endLine;i++)
 		lines<<doc->line(i).text();
-	cur.removeSelectedText();
+	QString insertBlock;
 	for (int i=0;i<lines.count();i++){
 		QString line=lines[i];
 		int commentStart=LatexParser::commentStart(line);
@@ -942,7 +931,7 @@ void LatexEditorView::insertHardLineBreaks(int newLength, bool smartScopeSelecti
 				int newBreakAt=line.indexOf(breakChars,breakAt-1);
 				if (newBreakAt >-1) breakAt=newBreakAt;
 			}
-			cur.insertText(line.left(breakAt)+"\n");
+			insertBlock+=line.left(breakAt)+"\n";
 			if (breakAt<commentStart) {
 				line=line.mid(breakAt+1);
 				commentStart-=breakAt+1;
@@ -951,9 +940,9 @@ void LatexEditorView::insertHardLineBreaks(int newLength, bool smartScopeSelecti
 				commentStart=0;
 			}
 		}
-		cur.insertText(line+"\n");
+		insertBlock+=line+"\n";
 	}
-	cur.endEditBlock();
+	editor->insertText(cur,insertBlock);
 
 	editor->setCursor(cur);
 }

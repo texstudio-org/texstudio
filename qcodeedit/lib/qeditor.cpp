@@ -2628,6 +2628,9 @@ bool QEditor::protectedCursor(const QDocumentCursor& c) const
 
 bool QEditor::protectedCursor(const QDocumentCursor& c, bool& isProtected) const{
 	isProtected=protectedCursor(c);
+	/*if (!isProtected) return false;
+	if (!c.hasSelection()) return c.line().hasFlag(QDocumentLine::Hidden);
+	return c.line().hasFlag(QDocumentLine::Hidden) || c.anchorLine().hasFlag(QDocumentLine::Hidden);*/
 	return false;
 }
 /*!
@@ -4279,6 +4282,10 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 
 	if (isProtected && m_doc->languageDefinition())
 		m_doc->languageDefinition()->correctFolding(m_doc);
+}
+
+void QEditor::insertTextAtCursor(const QString& text){
+	insertText(m_cursor, text);
 }
 
 /*!
