@@ -1528,31 +1528,41 @@ bool QDocument::isClean() const
 	return m_impl ? m_impl->m_commands.isClean() : true;
 }
 
-
+/*!
+   Internal method, recalculate the map of hidden lines (=cache) from the hidden flag
+   of the lines
+*/
 void QDocument::correctHidden(){
 	QLanguageDefinition* ld=languageDefinition();
 	if (!ld)
 		return;
 
 	m_impl->m_hidden.clear();
-	QList<QPair<int,int> > blockStart;
+	QList<QPair<int,int> > blockStartList;
 	for (int i=0;i<lines();i++){
 		QDocumentLine l=line(i);
-		if (l.hasFlag(QDocumentLine::CollapsedBlockStart))
-			blockStart << QPair<int,int>(i, QCE_FOLD_OPEN_COUNT(ld->blockFlags(this,i,0)));
-		if (l.hasFlag(QDocumentLine::CollapsedBlockEnd)){
-			Q_ASSERT(!blockStart.empty());
+		bool blockStart=l.hasFlag(QDocumentLine::CollapsedBlockStart);
+		bool blockEnd=l.hasFlag(QDocumentLine::CollapsedBlockEnd);
+		int openCount=0;
+		if (blockStart || blockEnd) openCount=QCE_FOLD_OPEN_COUNT(ld->blockFlags(this,i,0));
+		if (blockStart)
+			blockStartList << QPair<int,int>(i, openCount);
+		if (blockEnd){
+			Q_ASSERT(!blockStartList.empty());
 			int c=QCE_FOLD_CLOSE_COUNT(ld->blockFlags(this,i,0));
-			while (blockStart.size()>0 && blockStart.last().second<=c){
-				c-=blockStart.last().second;
-				m_impl->m_hidden.insert(blockStart.last().first, i-blockStart.last().first);
-				blockStart.removeLast();
+			while (blockStartList.size()>0 && blockStartList.last().second<=c){
+				c-=blockStartList.last().second;
+				if (openCount==0)
+					m_impl->m_hidden.insert(blockStartList.last().first, i-blockStartList.last().first);
+				else
+					m_impl->m_hidden.insert(blockStartList.last().first, i-blockStartList.last().first-1);
+				blockStartList.removeLast();
 			}
-			if (c>0 && !blockStart.empty()) blockStart.last().second-=c;
+			if (c>0 && !blockStartList.empty()) blockStartList.last().second-=c;
 		}
 	}
-	for (int i=0;i<blockStart.size();i++)
-		m_impl->m_hidden.insert(blockStart[i].first,lines()-1-blockStart[i].first);
+	for (int i=0;i<blockStartList.size();i++)
+		m_impl->m_hidden.insert(blockStartList[i].first,lines()-1-blockStartList[i].first);
 
 	m_impl->setHeight();
 	//emitFormatsChange(line, count);
