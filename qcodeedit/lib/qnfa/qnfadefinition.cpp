@@ -1733,40 +1733,56 @@ int QNFADefinition::blockFlags(QDocument *d, int line, int depth) const
 	return QCE_FOLD_FLAGS(ret, open, close);
 }
 
-
+/*! Corrects the folding of a document
+    i.e., it ensures that no line is hidden which is not in an collapsable block
+    (useful if the blocks have changed)
+*/
 void QNFADefinition::correctFolding(QDocument *d){
 	int foldingState=0;//number of collapsed blocks the current line belongs to
 	bool changed=false;
+	bool lastBlockStart=false;
 	for (int i=0;i<d->lines();i++){
 		QDocumentLine line=d->line(i);
+		bool blockStart=line.hasFlag(QDocumentLine::CollapsedBlockStart);
+		bool blockEnd=line.hasFlag(QDocumentLine::CollapsedBlockEnd);
+		int flags=blockFlags(d,i,0);
+		bool realBlockStart=QCE_FOLD_OPEN_COUNT(flags);
+		bool realBlockEnd=qMin(QCE_FOLD_CLOSE_COUNT(flags),foldingState)>0;
+
+		if (realBlockStart && realBlockEnd && lastBlockStart) {
+			//special case: an empty block can't be folded if the next line starts a new one
+			//(e.g {\nabc}{) and therefore it couldn't be unfolded if it was folded before and
+			//it has to be unfolded here
+			foldingState-=QCE_FOLD_OPEN_COUNT(blockFlags(d,i-1,0));
+			d->line(i-1).setFlag(QDocumentLine::CollapsedBlockStart,false);
+			realBlockEnd=qMin(QCE_FOLD_CLOSE_COUNT(flags),foldingState)>0;
+			changed=true;
+		}
+
+		if (blockStart && !realBlockStart){
+			changed=true;
+			blockStart=false;
+			line.setFlag(QDocumentLine::CollapsedBlockStart,false);
+		}
+		if (blockEnd != realBlockEnd){
+			changed=true;
+			//blockEnd=false;
+			line.setFlag(QDocumentLine::CollapsedBlockEnd,realBlockEnd);
+		}
+
 		if (line.hasFlag(QDocumentLine::Hidden)){
 			if (foldingState<=0){
 				line.setFlag(QDocumentLine::Hidden, false);
 				changed=true;
 			}
-		} else if (foldingState>0){
+		} else if (foldingState>0 && (!realBlockStart || !realBlockEnd)){
 			line.setFlag(QDocumentLine::Hidden,true);
 			changed=true;
 		}
 
-		if (line.hasFlag(QDocumentLine::CollapsedBlockStart) ||
-		    line.hasFlag(QDocumentLine::CollapsedBlockEnd)){
-			int flags=blockFlags(d,i,0);
-			if (line.hasFlag(QDocumentLine::CollapsedBlockStart)){
-				if (!QCE_FOLD_OPEN_COUNT(flags)) {
-					changed=true;
-					line.setFlag(QDocumentLine::CollapsedBlockStart,false);
-				} else
-					foldingState+=QCE_FOLD_OPEN_COUNT(flags);
-			}
-			if (line.hasFlag(QDocumentLine::CollapsedBlockEnd)){
-				if (!QCE_FOLD_CLOSE_COUNT(flags) || foldingState<=0){
-					changed = true;
-					line.setFlag(QDocumentLine::CollapsedBlockEnd,false);
-				} else
-					foldingState-=QCE_FOLD_CLOSE_COUNT(flags);
-			}
-		}
+		if (realBlockEnd) foldingState=qMax(0,foldingState- QCE_FOLD_CLOSE_COUNT(flags));
+		if (blockStart) foldingState+=QCE_FOLD_OPEN_COUNT(flags);
+		lastBlockStart=blockStart;
 	}
 	if (changed) d->correctHidden();
 }
