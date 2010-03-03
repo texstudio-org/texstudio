@@ -389,7 +389,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		void preInsert(QDocumentCursor& c, const QString& text);
 		void insertText(QDocumentCursor& c, const QString& text);
-		
+		void insertTextAtCursor(const QString& text);
+
 		QDocumentLine lineAtPosition(const QPoint& p) const;
 		QDocumentCursor cursorForPosition(const QPoint& p) const;
 		

@@ -115,7 +115,7 @@ public:
 			}
 
 			removeRightWordPart();
-			editor->cursor().insertText(myResult.right(myResult.length()-my_start));
+			editor->insertTextAtCursor(myResult.right(myResult.length()-my_start));
 			maxWritten+=myResult.length()-my_start;
 			completer->filterList(getCurWord());
 			if (!completer->list->currentIndex().isValid())
@@ -191,7 +191,7 @@ public:
 			return completeCommonPrefix();
 		} else if (event->key()==Qt::Key_Return || event->key()==Qt::Key_Enter) {
 			if (!insertCompletedWord()) {
-				editor->cursor().insertText("\n");
+				editor->insertTextAtCursor("\n");
 				curLine=editor->document()->line(curLine.lineNumber()+1);
 				editor->setCursorPosition(curLine.lineNumber(),curLine.length());
 			}
@@ -220,11 +220,11 @@ public:
 					curStart=edc.columnNumber();
 					maxWritten=curStart+1;
 				}
-				editor->cursor().insertText(written);
+				editor->insertTextAtCursor(written);
 				handled=true;
 			} else if (completer->acceptChar(written,editor->cursor().columnNumber()-curStart)) {
 				maxWritten++;
-				editor->cursor().insertText(written);
+				editor->insertTextAtCursor(written);
 				if (editor->cursor().columnNumber()+1>curStart)
 					completer->list->show();
 				handled=true;
