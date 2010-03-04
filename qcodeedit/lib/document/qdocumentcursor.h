@@ -50,7 +50,8 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		{
 			MoveAnchor	= 0,
 			KeepAnchor	= 1,
-			ThroughWrap	= 2
+			ThroughWrap	= 2,
+			ThroughFolding  = 4
 		};
 		
 		Q_DECLARE_FLAGS(MoveMode, MoveFlag);

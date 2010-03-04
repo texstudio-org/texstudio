@@ -235,6 +235,10 @@ class QCE_EXPORT QDocument : public QObject
 		
 		bool isClean() const;
 		
+		void expand(int line);
+		void collapse(int line);
+		void expandParents(int l);
+		void foldBlockAt(bool unFold, int line);
 		void correctHidden();
 
 	public slots:

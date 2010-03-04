@@ -178,8 +178,10 @@ bool QDocumentSearch::nextMatch(bool backward, bool again,  bool allowWrapAround
 		m_cursor.setColumnNumber(m_highlight.at(m_index).anchorColumnNumber(),QDocumentCursor::KeepAnchor); //swap anchor and normals
 		//TODO: match spanning across several lines
 	} 
-	if ( m_editor && !hasOption(Silent) )
-			m_editor->setCursor(m_cursor);
+	if ( m_editor && !hasOption(Silent) ){
+		m_editor->setCursor(m_cursor);
+		if (m_cursor.line().isHidden()) m_editor->document()->expandParents(m_cursor.lineNumber());
+	}
 
 	if (hasOption(Replace) && !again) //again replacement should already have been handled by next
 	{
@@ -279,7 +281,7 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 				m_highlight << hc;
 				m_highlight.last().setAutoUpdated(true);		
 			}
-		} else hc.movePosition(1, QDocumentCursor::NextBlock);
+		} else hc.movePosition(1, QDocumentCursor::NextBlock, QDocumentCursor::ThroughFolding);
 	}
 	
 	m_highlight<<saved;
@@ -710,14 +712,14 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 		boundaries = m_scope.selection();
 	
 		//moves the cursor in the search scope if it isn't there, but directly in front of the selection (only possible if there actually is a selection)
-                if ( end(backward) ) {
-                    if ( !backward && m_cursor < m_scope.selectionStart() ) {
-                        m_cursor = m_scope.selectionStart();
-                    } else {
-                        if ( backward && m_cursor > m_scope.selectionEnd() )
-                            m_cursor = m_scope.selectionEnd();
-                    }
-                }
+		if ( end(backward) ) {
+			if ( !backward && m_cursor < m_scope.selectionStart() ) {
+				m_cursor = m_scope.selectionStart();
+			} else {
+				if ( backward && m_cursor > m_scope.selectionEnd() )
+					m_cursor = m_scope.selectionEnd();
+			}
+		}
 	}
 
 	if (hasOption(HighlightAll) && !all)  //special handling if highlighting is on, but all replace is still handled here
@@ -741,24 +743,16 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 	
 	int foundCount = 0;
 
-	QDocumentLine l = m_cursor.line();
-	int ln=l.lineNumber();
-
-	while ( !end(backward) && l.isValid() )
+	while ( !end(backward) )
 	{
 		if ( backward && !m_cursor.columnNumber() )
 		{
-			//m_cursor.movePosition(1, QDocumentCursor::PreviousCharacter);
-			l=m_editor->document()->line(ln-1);
-			m_cursor.setLineNumber(ln-1);
-			ln--;
-			if(l.isValid()) m_cursor.setColumnNumber(l.length());
+			m_cursor.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::ThroughFolding);
 			continue;
 		}
 		
-		//int ln = m_cursor.lineNumber();
-		ln=l.lineNumber();
-		//const QDocumentLine& l = m_cursor.line();
+		int ln = m_cursor.lineNumber();
+		const QDocumentLine& l = m_cursor.line();
 		
 		int coloffset = 0;
 		QString s = l.text();
@@ -790,10 +784,10 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 		
 		if ( column != -1 && (backward || column >= m_cursor.columnNumber() ) )
 		{
-			m_cursor.setLineNumber(ln);
-			if(l.isHidden()) {
-				m_editor->foldBlockAt(true,ln);
-			}
+		//	m_cursor.setLineNumber(ln);
+			if(l.isHidden() && !hasOption(Silent))
+				m_editor->document()->expandParents(ln);
+
 			if (!m_regexp.matchedLength()){
 				//empty (e.g. a* regexp)
 				if (backward) m_cursor.setColumnNumber(column-1);
@@ -846,8 +840,8 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 					break;
 			}
 		} else 
-			//m_cursor.movePosition(1, move);
-			if(backward) {
+			m_cursor.movePosition(1, move, QDocumentCursor::ThroughFolding);
+			/*if(backward) {
 				l=m_editor->document()->line(ln-1);
 				m_cursor.setLineNumber(ln-1);
 				if(l.isValid()) m_cursor.setColumnNumber(l.length());
@@ -855,7 +849,7 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 				l=m_editor->document()->line(ln+1);
 				m_cursor.setLineNumber(ln+1);
 				m_cursor.setColumnNumber(0);
-			}
+			}*/
 	}
 		
 	if ( !foundCount && allowWrapAround)

@@ -1528,6 +1528,50 @@ bool QDocument::isClean() const
 	return m_impl ? m_impl->m_commands.isClean() : true;
 }
 
+void QDocument::expand(int line){
+	if (!languageDefinition()) return;
+	languageDefinition()->expand(this, line);
+}
+void QDocument::collapse(int line){
+	if (!languageDefinition()) return;
+	languageDefinition()->collapse(this, line);
+}
+void QDocument::expandParents(int l){
+	if (!languageDefinition()) return;
+	int prevLine=-1;
+	while (line(l).isHidden()) {
+		QMap<int,int>::const_iterator it=m_impl->m_hidden.upperBound(prevLine);
+		prevLine=-1;
+		for (;it!=m_impl->m_hidden.end();++it){
+			if (it.key()<l && it.key()+ it.value()>=l){
+				prevLine=it.key();
+				expand(it.key());
+				break;
+			}
+		}
+		if (prevLine==-1) //don't loop forever
+			break;
+	}
+}
+
+//Collapse at the first possible point before/at line
+void QDocument::foldBlockAt(bool unFold, int l) {
+	QLanguageDefinition* ld = languageDefinition();
+	while (l>=0) {
+		QDocumentLine b=line(l);
+		if (!b.isHidden()) {
+			if (unFold && (ld->blockFlags(this,l) & QLanguageDefinition::Collapsed)) {
+				ld->expand(this,l);
+				break;
+			} else if (!unFold && (ld->blockFlags(this,l) & QLanguageDefinition::Collapsible) && !(ld->blockFlags(this,l) & QLanguageDefinition::Collapsed)) {
+				ld->collapse(this,l);
+				break;
+			}
+		}
+		l--;
+	}
+}
+
 /*!
    Internal method, recalculate the map of hidden lines (=cache) from the hidden flag
    of the lines
@@ -4120,7 +4164,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, int m)
 				do
 				{
 					--line;
-				} while ( (line > beg) && m_doc->line(line).hasFlag(QDocumentLine::Hidden) );
+				} while ( (line > beg) && m_doc->line(line).hasFlag(QDocumentLine::Hidden) && !(m & QDocumentCursor::ThroughFolding));
 
 				//*line = *it;
 
@@ -4154,7 +4198,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, int m)
 				do
 				{
 					++line;
-				} while ( ((line+1) < end) && m_doc->line(line).hasFlag(QDocumentLine::Hidden) );
+				} while ( ((line+1) < end) && m_doc->line(line).hasFlag(QDocumentLine::Hidden) && !(m & QDocumentCursor::ThroughFolding));
 
 				//*line = *it;
 
@@ -4199,7 +4243,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, int m)
 			{
 				--line;
 
-				if ( !m_doc->line(line).hasFlag(QDocumentLine::Hidden) )
+				if ( !m_doc->line(line).hasFlag(QDocumentLine::Hidden) || (m & QDocumentCursor::ThroughFolding))
 					--count;
 
 			}
@@ -4253,7 +4297,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, int m)
 			{
 				++line;
 
-				if ( !m_doc->line(line).hasFlag(QDocumentLine::Hidden) )
+				if ( !m_doc->line(line).hasFlag(QDocumentLine::Hidden) || (m & QDocumentCursor::ThroughFolding))
 					--count;
 
 			}
@@ -4357,7 +4401,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, int m)
 			{
 				++line;
 
-				if ( !m_doc->line(line).hasFlag(QDocumentLine::Hidden) )
+				if ( !m_doc->line(line).hasFlag(QDocumentLine::Hidden) || (m & QDocumentCursor::ThroughFolding))
 					--count;
 
 			}
@@ -4384,7 +4428,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, int m)
 			{
 				--line;
 
-				if ( !m_doc->line(line).hasFlag(QDocumentLine::Hidden) )
+				if ( !m_doc->line(line).hasFlag(QDocumentLine::Hidden) || (m & QDocumentCursor::ThroughFolding))
 					--count;
 
 			}
@@ -4469,7 +4513,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, int m)
 					--line;
 					l = m_doc->line(line);
 					offset = l.length();
-				} while ( (line != beg) && l.isValid() && l.hasFlag(QDocumentLine::Hidden) );
+				} while ( (line != beg) && l.isValid() && l.hasFlag(QDocumentLine::Hidden) && !(m & QDocumentCursor::ThroughFolding));
 				return true;
 			// -- patch --
 			}
@@ -4530,7 +4574,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, int m)
 					++line;
 					l = m_doc->line(line);
 					offset = 0;
-				} while ( (line != end) && l.isValid() && l.hasFlag(QDocumentLine::Hidden) );
+				} while ( (line != end) && l.isValid() && l.hasFlag(QDocumentLine::Hidden) && !(m & QDocumentCursor::ThroughFolding));
 
 				lineLength = l.text().length();
 				/* empty line */
