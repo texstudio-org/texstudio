@@ -338,7 +338,7 @@ void LatexEditorView::foldLevel(bool unFold, int level) {
 }
 //Collapse at the first possible point before/at line
 void LatexEditorView::foldBlockAt(bool unFold, int line) {
-	editor->foldBlockAt(unFold,line);
+	editor->document()->foldBlockAt(unFold,line);
 }
 
 

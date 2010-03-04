@@ -25,20 +25,17 @@ public:
 	int l,ax,cx;
 	QString rt, nt;
 };
-class SP:public CM{//search previous
-public:	
-	SP(int line, int anchorOffset, int cursorOffset,const QString &replaceText="\1",const QString 
-&newText=""):
-		CM(true,line,anchorOffset,cursorOffset,replaceText,newText){}
-};
-class SN:public CM{//search next
-public:
-	SN(int line, int anchorOffset, int cursorOffset,const QString &replaceText="\1",const QString& newText=""):
-		CM(false,line,anchorOffset,cursorOffset,replaceText,newText){}
-};
+//search previous
+CM SP(int line, int anchorOffset, int cursorOffset,const QString &replaceText="\1",const QString &newText=""){
+	return CM(true,line,anchorOffset,cursorOffset,replaceText,newText);
+}
+CM SN(int line, int anchorOffset, int cursorOffset,const QString &replaceText="\1",const QString& newText=""){
+	return CM(false,line,anchorOffset,cursorOffset,replaceText,newText);
+}
 	
 Q_DECLARE_METATYPE(CM);
 Q_DECLARE_METATYPE(QList<CM>);
+Q_DECLARE_METATYPE(QList<int>);
 
 
 void QDocumentSearchTest::next_sameText_data(){
@@ -389,6 +386,156 @@ void QDocumentSearchTest::replaceAll(){
 		QVERIFY2(ed->document()->text()== newtext,qPrintable(QString("%1 != %2 loop: %3, dir: %4").arg(ed->document()->text()).arg(newtext).arg(loop).arg(dir)));
 	}
 }
+void QDocumentSearchTest::searchAndFolding_data(){
+	QTest::addColumn<QString>("editorText");
+	QTest::addColumn<QList<int> >("foldAt");
+	QTest::addColumn<QList<int> >("hiddenLines");
+	QTest::addColumn<int>("searchFrom");
+	QTest::addColumn<QString>("searchText");
+	QTest::addColumn<int>("options");
+	QTest::addColumn<CM>("movement");
+	QTest::addColumn<QList<int> >("hiddenLinesAfterwards");
+	QTest::newRow("before fold")
+			<< "0\nabc\n{\nabc\n}\n"
+			<< (QList<int>() << 2)
+			<< (QList<int>() << 3 << 4)
+			<< 0
+			<< "abc"
+			<< 0
+			<< SN(1,0,3)
+			<< (QList<int>() << 3 << 4);
+	QTest::newRow("simple fold")
+			<< "0\nabc\n{\nabc\n}\n"
+			<< (QList<int>() << 2)
+			<< (QList<int>() << 3 << 4)
+			<< 2
+			<< "abc"
+			<< 0
+			<< SN(3,0,3)
+			<< (QList<int>());
+	QTest::newRow("after fold")
+			<< "0\n1abc\n2{\n3abc\n4}\n5\n6abc"
+			<< (QList<int>() << 2)
+			<< (QList<int>() << 3 << 4)
+			<< 4
+			<< "abc"
+			<< 0
+			<< SN(6,1,4)
+			<< (QList<int>() << 3 << 4);
+	QTest::newRow("double fold")
+			<< "0\n{\n{\nabc\n}\n}"
+			<< (QList<int>() << 1 << 2)
+			<< (QList<int>() << 2 << 3 << 4 << 5)
+			<< 0
+			<< "abc"
+			<< 0
+			<< SN(3,0,3)
+			<< (QList<int>());
+	QTest::newRow("silent double fold") //don't unfold if silent
+			<< "0\n{\n{\nabc\n}\n}"
+			<< (QList<int>() << 1 << 2)
+			<< (QList<int>() << 2 << 3 << 4 << 5)
+			<< 0
+			<< "abc"
+			<< (int)QDocumentSearch::Silent
+			<< SN(3,0,3)
+			<< (QList<int>() << 2 << 3 << 4 << 5);
+	QTest::newRow("triple fold, only outer")
+			<< "0\n1{\n2{\n3abx\n4}\n5{abc\n6}\n}"
+			<< (QList<int>() << 1 << 2 << 5)
+			<< (QList<int>() << 2 << 3 << 4 << 5 << 6 << 7)
+			<< 0
+			<< "abc"
+			<< 0
+			<< SN(5,2,5)
+			<< (QList<int>() << 3 << 4 << 6);
+	QTest::newRow("triple fold, keep first")
+			<< "0\n1{\n2{\n3abx\n4}\n5{\nabc\n7}\n}"
+			<< (QList<int>() << 1 << 2 << 5)
+			<< (QList<int>() << 2 << 3 << 4 << 5 << 6 << 7 << 8)
+			<< 0
+			<< "abc"
+			<< 0
+			<< SN(6,0,3)
+			<< (QList<int>() << 3 << 4);
+
+	//backward
+	QTest::newRow("simple fold (backward)")
+			<< "0\nabc\n{\nabc\n}\n"
+			<< (QList<int>() << 2)
+			<< (QList<int>() << 3 << 4)
+			<< 4
+			<< "abc"
+			<< 0
+			<< SP(3,3,0)
+			<< (QList<int>());
+	QTest::newRow("double fold (backward)")
+			<< "0\n{\n{\nabc\n}\n}"
+			<< (QList<int>() << 1 << 2)
+			<< (QList<int>() << 2 << 3 << 4 << 5)
+			<< 5
+			<< "abc"
+			<< 0
+			<< SP(3,3,0)
+			<< (QList<int>());
+	QTest::newRow("silent double fold (backward)") //don't unfold if silent
+			<< "0\n{\n{\nabc\n}\n}"
+			<< (QList<int>() << 1 << 2)
+			<< (QList<int>() << 2 << 3 << 4 << 5)
+			<< 6
+			<< "abc"
+			<< (int)QDocumentSearch::Silent
+			<< SP(3,3,0)
+			<< (QList<int>() << 2 << 3 << 4 << 5);
+	QTest::newRow("triple fold, only outer (backward)")
+			<< "0\n1{\n2{\n3abx\n4}\n5{abc\n6}\n}"
+			<< (QList<int>() << 1 << 2 << 5)
+			<< (QList<int>() << 2 << 3 << 4 << 5 << 6 << 7)
+			<< 8
+			<< "abc"
+			<< 0
+			<< SP(5,5,2)
+			<< (QList<int>() << 3 << 4 << 6);
+	QTest::newRow("triple fold, keep first (backward)")
+			<< "0\n1{\n2{\n3abx\n4}\n5{\nabc\n7}\n}"
+			<< (QList<int>() << 1 << 2 << 5)
+			<< (QList<int>() << 2 << 3 << 4 << 5 << 6 << 7 << 8)
+			<< 9
+			<< "abc"
+			<< 0
+			<< SP(6,3,0)
+			<< (QList<int>() << 3 << 4);
+
+}
+
+void QDocumentSearchTest::searchAndFolding(){
+	QFETCH(QString, editorText);
+	QFETCH(QList<int>, foldAt);
+	QFETCH(QList<int>, hiddenLines);
+	QFETCH(int, searchFrom);
+	QFETCH(QString, searchText);
+	QFETCH(int, options);
+	QFETCH(CM, movement);
+	QFETCH(QList<int>, hiddenLinesAfterwards);
+	for (int loop=0;loop<2;loop++){
+		ed->document()->setText(editorText);
+		foreach (const int i, foldAt)
+			ed->document()->collapse(i);
+		for (int i=0;i<ed->document()->lines();i++)
+			QVERIFY(ed->document()->line(i).isHidden()==hiddenLines.contains(i));
+		ds->setCursor(ed->document()->cursor(searchFrom));
+		ds->setOptions((QDocumentSearch::Options)(options|(loop?QDocumentSearch::HighlightAll:0))); //highlighting shouldn't change anything
+		ds->setSearchText(searchText);
+		ds->next(movement.dir);
+
+		QEQUAL(ds->cursor().lineNumber(),movement.l);
+		QEQUAL(ds->cursor().columnNumber(),movement.cx);
+		QEQUAL(ds->cursor().anchorColumnNumber(),movement.ax);
+		for (int i=0;i<ed->document()->lines();i++)
+			QVERIFY2(ed->document()->line(i).isHidden()==hiddenLinesAfterwards.contains(i),qPrintable(QString::number(i)));
+	}
+}
+
 void QDocumentSearchTest::cleanupTestCase(){
 	delete ds;
 }

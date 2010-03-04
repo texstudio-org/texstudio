@@ -19,6 +19,8 @@ class QDocumentSearchTest: public QObject{
 		void next_sameText();
 		void replaceAll_data();
 		void replaceAll();
+		void searchAndFolding_data();
+		void searchAndFolding();
 		void cleanupTestCase();
 };
 
