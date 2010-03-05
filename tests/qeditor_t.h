@@ -9,7 +9,7 @@ class QEditorTest : public QObject
 {
 	Q_OBJECT
 public:
-	QEditorTest(bool executeAllTests);
+	QEditorTest(QEditor* ed, bool executeAllTests);
 	~QEditorTest();
 private:
 	bool allTests;
@@ -17,6 +17,8 @@ private:
 private slots:
 	void loadSave_data();
 	void loadSave();
+	void foldedText_data();
+	void foldedText();
 };
 #endif
 #endif // QEDITORTEST_H

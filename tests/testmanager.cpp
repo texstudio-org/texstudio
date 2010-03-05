@@ -42,7 +42,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 		<< new QDocumentCursorTest()
 		<< new QDocumentSearchTest(editor)
 		<< new QSearchReplacePanelTest(codeedit,level==TL_ALL)
-		<< new QEditorTest(level==TL_ALL)
+		<< new QEditorTest(editor,level==TL_ALL)
 		<< new LatexEditorViewTest(edView)
 		<< new ScriptEngineTest(editor);
 	bool allPassed=true;

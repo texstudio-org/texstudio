@@ -1,15 +1,16 @@
 #ifndef QT_NO_DEBUG
 #include "qeditor_t.h"
 #include "qeditor.h"
+#include "qdocumentline.h"
 #include "tests/testutil.h"
 #include <QtTest/QtTest>
+Q_DECLARE_METATYPE(QList<int>);
 
-QEditorTest::QEditorTest(bool executeAllTests):allTests(executeAllTests)
+QEditorTest::QEditorTest(QEditor* ed, bool executeAllTests):allTests(executeAllTests)
 {
-	editor=new QEditor((QWidget*)0);
+	editor=ed;
 }
 QEditorTest::~QEditorTest(){
-	delete editor;
 }
 void QEditorTest::loadSave_data(){
 	QTest::addColumn<QString>("outCodecName");
@@ -70,4 +71,117 @@ void QEditorTest::loadSave(){
 	QEQUAL2(writtenText, testTextWithLineEndings+"Save test"+outLineEnding, "file text check, file:"+tfn);
 	QVERIFY2(writtenText.contains(outLineEnding), qPrintable("file don't contain right line ending, file"+tfn));
 }
+
+void QEditorTest::foldedText_data(){
+	QTest::addColumn<QString>("editorText");
+	QTest::addColumn<QList<int> >("foldAt");
+	QTest::addColumn<QList<int> >("hiddenLines");
+	QTest::addColumn<int>("froml");
+	QTest::addColumn<int>("fromc");
+	QTest::addColumn<int>("tol");
+	QTest::addColumn<int>("toc");
+	QTest::addColumn<QString>("operation");
+	QTest::addColumn<QString>("newEditorText");
+	QTest::addColumn<QList<int> >("newHiddenLines");
+
+	QTest::newRow("simple folded comment")
+		<< "0\n1{\n2abc\n3}\n4\n"
+		<<  (QList<int>() << 1)
+		<<  (QList<int>() << 2 << 3)
+		<< 0 << 1 << 4 << 1
+		<< "comment"
+		<< "%0\n%1{\n%2abc\n%3}\n%4\n"
+		<< (QList<int>());
+
+	QTest::newRow("simple folded uncomment")
+		<< "0\n1{\n%2abc\n3}\n4\n"
+		<<  (QList<int>() << 1)
+		<<  (QList<int>() << 2 << 3)
+		<< 0 << 1 << 4 << 1
+		<< "uncomment"
+		<< "0\n1{\n2abc\n3}\n4\n"
+		<< (QList<int>() << 2 << 3);
+
+	QTest::newRow("simple folded indent")
+		<< "0\n1{\n2abc\n3}\n4\n"
+		<<  (QList<int>() << 1)
+		<<  (QList<int>() << 2 << 3)
+		<< 0 << 1 << 4 << 1
+		<< "indent"
+		<< "\t0\n\t1{\n\t2abc\n\t3}\n\t4\n"
+		<< (QList<int>() << 2 << 3);
+
+	QTest::newRow("simple folded unindent")
+		<< "\t0\n\t1{\n\t2abc\n\t3}\n\t4\n"
+		<<  (QList<int>() << 1)
+		<<  (QList<int>() << 2 << 3)
+		<< 0 << 1 << 4 << 1
+		<< "unindent"
+		<< "0\n1{\n2abc\n3}\n4\n"
+		<< (QList<int>() << 2 << 3);
+
+	QTest::newRow("inner folded uncomment")
+		<< "{\n1{\n%2abc\n3}\n4\n5}\n6\n"
+		<<  (QList<int>() << 1)
+		<<  (QList<int>() << 2 << 3)
+		<< 0 << 1 << 5 << 1
+		<< "uncomment"
+		<< "{\n1{\n2abc\n3}\n4\n5}\n6\n"
+		<< (QList<int>() << 2 << 3);
+
+	QTest::newRow("fold block shorting uncomment")
+		<< "0\n1{\n%2}\n3}\n4\n"
+		<<  (QList<int>() << 1)
+		<<  (QList<int>() << 2 << 3)
+		<< 0 << 1 << 4 << 1
+		<< "uncomment"
+		<< "0\n1{\n2}\n3}\n4\n"
+		<< (QList<int>() << 2);
+
+	QTest::newRow("fold block larging uncomment")
+		<< "0\n1{\n%2{\n3\n4}\n5\n6}\n"
+		<<  (QList<int>() << 1)
+		<<  (QList<int>() << 2 << 3 << 4)
+		<< 0 << 1 << 6 << 1
+		<< "uncomment"
+		<< "0\n1{\n2{\n3\n4}\n5\n6}\n"
+		<< (QList<int>() << 2 << 3 << 4 << 5 << 6);
+
+	QTest::newRow("uncomment single line")
+		<< "0\n1{\n%2}\n3}\n4\n"
+		<<  (QList<int>() << 1)
+		<<  (QList<int>() << 2 << 3)
+		<< 0 << 1 << 0 << 1
+		<< "uncomment"
+		<< "0\n1{\n%2}\n3}\n4\n"
+		<< (QList<int>() << 2 << 3);
+}
+void QEditorTest::foldedText(){
+	QFETCH(QString, editorText);
+	QFETCH(QList<int>, foldAt);
+	QFETCH(QList<int>, hiddenLines);
+	QFETCH(int, froml);
+	QFETCH(int, fromc);
+	QFETCH(int, tol);
+	QFETCH(int, toc);
+	QFETCH(QString, operation);
+	QFETCH(QString, newEditorText);
+	QFETCH(QList<int>, newHiddenLines);
+
+	editor->setText(editorText);
+	foreach(const int &i, foldAt)
+		editor->document()->collapse(i);
+	for (int i=0;i<editor->document()->lines();i++)
+		QVERIFY2(editor->document()->line(i).isHidden() == hiddenLines.contains(i),qPrintable(QString::number(i)));
+	editor->setCursor(editor->document()->cursor(froml,fromc,tol,toc));
+	if (operation=="indent") editor->indentSelection();
+	else if (operation=="unindent") editor->unindentSelection();
+	else if (operation=="comment") editor->commentSelection();
+	else if (operation=="uncomment") editor->uncommentSelection();
+	else qFatal("invalid operation");
+	QEQUAL(editor->document()->text(), newEditorText);
+	for (int i=0;i<editor->document()->lines();i++)
+		QVERIFY2(editor->document()->line(i).isHidden() == newHiddenLines.contains(i),qPrintable(QString::number(i)));
+}
+
 #endif
