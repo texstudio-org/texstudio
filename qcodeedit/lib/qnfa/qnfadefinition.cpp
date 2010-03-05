@@ -1738,7 +1738,9 @@ int QNFADefinition::blockFlags(QDocument *d, int line, int depth) const
     (useful if the blocks have changed)
 */
 void QNFADefinition::correctFolding(QDocument *d){
-	int foldingState=0;//number of collapsed blocks the current line belongs to
+	QList<int> blockOpenCountList;
+	QList<bool> blockCollapsedList;
+	int foldedState=0;
 	bool changed=false;
 	bool lastBlockStart=false;
 	for (int i=0;i<d->lines();i++){
@@ -1746,42 +1748,60 @@ void QNFADefinition::correctFolding(QDocument *d){
 		bool blockStart=line.hasFlag(QDocumentLine::CollapsedBlockStart);
 		bool blockEnd=line.hasFlag(QDocumentLine::CollapsedBlockEnd);
 		int flags=blockFlags(d,i,0);
-		bool realBlockStart=QCE_FOLD_OPEN_COUNT(flags);
-		bool realBlockEnd=qMin(QCE_FOLD_CLOSE_COUNT(flags),foldingState)>0;
+		int openCount=QCE_FOLD_OPEN_COUNT(flags);
+		int closeCount=QCE_FOLD_CLOSE_COUNT(flags);
+		bool realBlockEnd=false;
 
-		if (realBlockStart && realBlockEnd && lastBlockStart) {
-			//special case: an empty block can't be folded if the next line starts a new one
+		if (closeCount && openCount && lastBlockStart && blockOpenCountList.last()<=closeCount) {
+			//special case: an block can't be folded if the next line starts a new blcok
 			//(e.g {\nabc}{) and therefore it couldn't be unfolded if it was folded before and
 			//it has to be unfolded here
-			foldingState-=QCE_FOLD_OPEN_COUNT(blockFlags(d,i-1,0));
+			Q_ASSERT(blockCollapsedList.last());
+			blockCollapsedList.last()=false;
+			foldedState-=blockOpenCountList.last();
 			d->line(i-1).setFlag(QDocumentLine::CollapsedBlockStart,false);
-			realBlockEnd=qMin(QCE_FOLD_CLOSE_COUNT(flags),foldingState)>0;
 			changed=true;
 		}
 
-		if (blockStart && !realBlockStart){
+		//handle closed blocks
+		if (closeCount) {
+			while (blockOpenCountList.size()>0 && blockOpenCountList.last()<=closeCount){
+				if (blockCollapsedList.last()) {
+					realBlockEnd=true;
+					foldedState-=blockOpenCountList.last();
+				}
+				closeCount-=blockOpenCountList.last();
+				blockOpenCountList.removeLast();
+				blockCollapsedList.removeLast();
+			}
+			if (closeCount>0 && !blockOpenCountList.empty()) blockOpenCountList.last()-=closeCount;
+		}
+
+		if (blockEnd!=realBlockEnd){
+			changed=true;
+			blockEnd=realBlockEnd;
+			line.setFlag(QDocumentLine::CollapsedBlockEnd,realBlockEnd);
+		}
+
+		//handle opened blocks
+		if (openCount) {
+			blockOpenCountList << openCount;
+			blockCollapsedList << blockStart;
+			if (blockStart) foldedState+=openCount;
+		} else if (blockStart) {
 			changed=true;
 			blockStart=false;
 			line.setFlag(QDocumentLine::CollapsedBlockStart,false);
 		}
-		if (blockEnd != realBlockEnd){
-			changed=true;
-			//blockEnd=false;
-			line.setFlag(QDocumentLine::CollapsedBlockEnd,realBlockEnd);
-		}
 
-		if (line.hasFlag(QDocumentLine::Hidden)){
-			if (foldingState<=0){
-				line.setFlag(QDocumentLine::Hidden, false);
-				changed=true;
-			}
-		} else if (foldingState>0 && (!realBlockStart || !realBlockEnd)){
-			line.setFlag(QDocumentLine::Hidden,true);
+		bool realClosed = (foldedState>openCount) || //new block starts in hidden block (but the line starting the first block will be visible)
+				  (foldedState>0 && !blockStart) || //normal line in hidden block
+				  (foldedState==0 && blockEnd && !openCount); //a closing bracket if hidden iff there is no new block opened
+		if (line.hasFlag(QDocumentLine::Hidden)!=realClosed){
+			line.setFlag(QDocumentLine::Hidden, realClosed);
 			changed=true;
 		}
 
-		if (realBlockEnd) foldingState=qMax(0,foldingState- QCE_FOLD_CLOSE_COUNT(flags));
-		if (blockStart) foldingState+=QCE_FOLD_OPEN_COUNT(flags);
 		lastBlockStart=blockStart;
 	}
 	if (changed) d->correctHidden();

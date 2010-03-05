@@ -2227,7 +2227,7 @@ void QEditor::indentSelection()
 			while ( c.isValid() && (c.lineNumber() <= s.endLine) )
 			{
 				c.insertText(txt);
-				c.movePosition(1, QDocumentCursor::NextLine);
+				c.movePosition(1, QDocumentCursor::NextLine, QDocumentCursor::ThroughFolding);
 
 				if ( c.atEnd() )
 					break;
@@ -2324,7 +2324,7 @@ void QEditor::commentSelection()
 			while ( c.isValid() && (c.lineNumber() <= s.endLine) )
 			{
 				c.insertText(txt);
-				c.movePosition(1, QDocumentCursor::NextLine);
+				c.movePosition(1, QDocumentCursor::NextLine, QDocumentCursor::ThroughFolding);
 
 				if ( c.atEnd() )
 					break;
@@ -2372,6 +2372,8 @@ void QEditor::uncommentSelection()
 			removeFromStart(m_cursor, txt);
 		else {
 			QDocumentSelection s = m_cursor.selection();
+			if (s.startLine<0) s.startLine=0;
+			if (s.endLine>m_doc->lines()-1) s.endLine=m_doc->lines()-1;
 
 			m_doc->beginMacro();
 
