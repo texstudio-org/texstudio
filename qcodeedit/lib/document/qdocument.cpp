@@ -1573,14 +1573,41 @@ void QDocument::foldBlockAt(bool unFold, int l) {
 }
 
 /*!
-   Internal method, recalculate the map of hidden lines (=cache) from the hidden flag
-   of the lines
+   (Internal method), returns if one of the lines between from and to (inclusive) belong to
+   a folded block (they can still be all visible if one of them starts/ends a hidden block)
 */
-void QDocument::correctHidden(){
+bool QDocument::linesPartiallyFolded(int fromInc, int toInc){
+	while ( fromInc <= toInc )
+	{
+		if (line(fromInc).hasAnyFlag(QDocumentLine::Hidden | QDocumentLine::CollapsedBlockStart | QDocumentLine::CollapsedBlockEnd) )
+			return true;
+
+		++fromInc;
+	}
+	return false;
+}
+
+/*!
+   Correct the folding
+    i.e., it ensures that no line is hidden which is not in an collapsable block
+    (useful if the blocks have changed)
+*/
+void QDocument::correctFolding(int fromInc, int toInc){
+	Q_UNUSED(fromInc);
+	Q_UNUSED(toInc);
+	//TODO: Optimize it, use fromInc/toInc to handle it locally (problem: behaviour of closing brackets depends on open brackets
+	//      earlier in the document), merge the redunant folding correction in removeLines to this (problem: if all folded
+	//      lines are removed, the hidden flags which are checked by ld->correctFolding are already all correct, but the m_hidden
+	//      map won't be correct if it has not been corrected by the checks in removeLines)
+
 	QLanguageDefinition* ld=languageDefinition();
 	if (!ld)
 		return;
 
+	if (!ld->correctFolding(this))
+		return;
+
+	//recalculate the map of hidden lines (=cache) from the hidden flag of the lines
 	m_impl->m_hidden.clear();
 	QList<QPair<int,int> > blockStartList;
 	for (int i=0;i<lines();i++){

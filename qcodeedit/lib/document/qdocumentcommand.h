@@ -94,7 +94,6 @@ class QCE_EXPORT QDocumentCommand : public QUndoCommand
 		
 		void updateCursorsOnInsertion(int line, int column, int prefixLength, int numLines, int suffixLength);
 		void updateCursorsOnDeletion(int line, int column, int prefixLength, int numLines, int suffixLength);
-		
 	private:
 		bool m_silent;
 		bool m_keepAnchor;

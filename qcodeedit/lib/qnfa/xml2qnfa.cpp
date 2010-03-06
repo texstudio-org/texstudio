@@ -97,9 +97,6 @@ int action(QDomElement c, QFormatScheme *f, QHash<QString, int>& pids, QHash<int
 		spid = paren.section(':', 0, -2);
 		spt = paren.section(':', -1, -1);
 		
-		bool match=true;
-		int weight=100;
-
 		if ( spt.endsWith("@nomatch") )
 		{
 			spt.chop(8);

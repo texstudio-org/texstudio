@@ -1737,7 +1737,7 @@ int QNFADefinition::blockFlags(QDocument *d, int line, int depth) const
     i.e., it ensures that no line is hidden which is not in an collapsable block
     (useful if the blocks have changed)
 */
-void QNFADefinition::correctFolding(QDocument *d){
+bool QNFADefinition::correctFolding(QDocument *d){
 	QList<int> blockOpenCountList;
 	QList<bool> blockCollapsedList;
 	int foldedState=0;
@@ -1804,7 +1804,7 @@ void QNFADefinition::correctFolding(QDocument *d){
 
 		lastBlockStart=blockStart;
 	}
-	if (changed) d->correctHidden();
+	return changed;
 }
 
 void QNFADefinition::addContext(const QString& id, QNFA *nfa)

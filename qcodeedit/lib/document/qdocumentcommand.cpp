@@ -402,6 +402,7 @@ void QDocumentCommand::updateCursorsOnDeletion(int line, int column, int prefixL
 	}
 }
 
+
 /*!
 	\brief Remove some lines from the host document
 	\param after where to remove lines (line number)
@@ -631,6 +632,8 @@ void QDocumentInsertCommand::redo()
 
 	//qDebug("inserting %i lines after %i", m_data.handles.count(), m_data.lineNumber);
 
+	bool commandAffectsFolding = m_doc->linesPartiallyFolded(m_data.lineNumber, m_data.lineNumber);
+
 	QDocumentLineHandle *hl = m_doc->impl()->at(m_data.lineNumber);
 
 	if ( m_data.handles.count() )
@@ -661,6 +664,9 @@ void QDocumentInsertCommand::redo()
 	foreach ( QDocumentLineHandle *h, m_data.handles )
 		markRedone(h, m_first);
 
+	if (commandAffectsFolding)
+		m_doc->correctFolding(m_data.lineNumber, m_data.lineNumber+m_data.handles.count());
+
 	//m_doc->impl()->emitContentsChanged();
 	m_first = false;
 }
@@ -669,6 +675,8 @@ void QDocumentInsertCommand::undo()
 {
 	// state : handles !used by doc
 	m_state = false;
+
+	bool commandAffectsFolding = m_doc->linesPartiallyFolded(m_data.lineNumber, m_data.lineNumber+m_data.handles.count());
 
 	//QDocumentIterator it = m_doc->impl()->index(m_data.line);
 
@@ -693,6 +701,8 @@ void QDocumentInsertCommand::undo()
 	foreach ( QDocumentLineHandle *h, m_data.handles )
 		markUndone(h);
 
+	if (commandAffectsFolding)
+		m_doc->correctFolding(m_data.lineNumber, m_data.lineNumber+m_data.handles.count());
 	//m_doc->impl()->emitContentsChanged();
 }
 
@@ -790,6 +800,8 @@ void QDocumentEraseCommand::redo()
 	// state : handles !used by doc
 	m_state = false;
 
+	bool commandAffectsFolding = m_doc->linesPartiallyFolded(m_data.lineNumber, m_data.lineNumber+m_data.handles.count());
+
 	//QDocumentIterator it = m_doc->impl()->index(m_data.line);
 
 	QDocumentLineHandle *hl = m_doc->impl()->at(m_data.lineNumber);
@@ -818,6 +830,9 @@ void QDocumentEraseCommand::redo()
 	foreach ( QDocumentLineHandle *h, m_data.handles )
 		markRedone(h, m_first);
 
+	if (commandAffectsFolding)
+		m_doc->correctFolding(m_data.lineNumber, m_data.lineNumber+m_data.handles.count());
+
 	//m_doc->impl()->emitContentsChanged();
 	m_first = false;
 }
@@ -826,6 +841,8 @@ void QDocumentEraseCommand::undo()
 {
 	// state : handles used by doc
 	m_state = true;
+
+	bool commandAffectsFolding = m_doc->linesPartiallyFolded(m_data.lineNumber, m_data.lineNumber);
 
 	//QDocumentIterator it = m_doc->impl()->index(m_data.line);
 
@@ -864,6 +881,9 @@ void QDocumentEraseCommand::undo()
 
 	foreach ( QDocumentLineHandle *h, m_data.handles )
 		markUndone(h);
+
+	if (commandAffectsFolding)
+		m_doc->correctFolding(m_data.lineNumber,m_data.lineNumber+m_data.handles.count());
 
 	//m_doc->impl()->emitContentsChanged();
 }
