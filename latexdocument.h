@@ -131,6 +131,7 @@ signals:
 	void hasBeenIncluded(const LatexDocument& newMasterDocument);
 	void structureUpdated(LatexDocument* document);
 	void structureLost(LatexDocument* document);
+	void removeElement(StructureEntry *se);
 };
 
 class LatexDocuments;
@@ -161,6 +162,7 @@ public:
 private slots:
 	void structureUpdated(LatexDocument* document);
 	void structureLost(LatexDocument* document);
+	void removeElement(StructureEntry *se);
 
 	friend class LatexDocuments;
 };
