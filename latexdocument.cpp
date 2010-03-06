@@ -340,12 +340,16 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	    }
 
 	    if(start>-1 || i==0){
-		parent_level[i]=se;
+		parent_level[i]=parent;
 		if(start>-1){
 		    StructureEntry *elem=se->children.at(start);
 		    if(elem->type==StructureEntry::SE_SECTION){
 			for(;i<elem->level;++i){
 			    parent_level[i+1]=parent;
+			}
+		    }else{
+			for(int k=i;k<parent_level.size();k++){
+			    parent_level[k]=parent;
 			}
 		    }
 		}
@@ -361,10 +365,12 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	    if(end>0) {
 		next=se->children.value(end-1,0);
 		parent=se->children.value(start,parent_level[i]);
+		if(parent->type!=StructureEntry::SE_SECTION) parent=parent_level[i];
 	    }else{
 		next=se->children.value(start,0);
 		parent=next;
 		if(!parent) parent=parent_level[i];
+		if(parent->type!=StructureEntry::SE_SECTION) parent=parent_level[i];
 	    }
 
 	    // add elements which are deleted later to a list
@@ -519,9 +525,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		}
 	}
 	// append structure remainder ...
-	for(int i=parent_level.size()-1;i>0;i--){
+	for(int i=parent_level.size()-1;i>=0;i--){
 	    while(!remainingChildren[i].isEmpty() && remainingChildren[i].first()->level>i){
-		parent_level[remainingChildren[i].first()->level]->add(remainingChildren[i].takeFirst());
+		se=remainingChildren[i].takeFirst();
+		parent_level[se->level]->add(se);
 	    }
 	    parent_level[i]->children.append(remainingChildren[i]);
 	    foreach(StructureEntry *elem,remainingChildren[i]){
@@ -622,7 +629,8 @@ StructureEntry* StructureEntryIterator::next(){
 }
 
 LatexDocumentsModel::LatexDocumentsModel(LatexDocuments& docs):documents(docs),
-	iconDocument(":/images/doc.png"), iconMasterDocument(":/images/masterdoc.png"), iconBibTeX(":/images/bibtex.png"), iconInclude(":/images/include.png"),mHighlightedEntry(0){
+	iconDocument(":/images/doc.png"), iconMasterDocument(":/images/masterdoc.png"), iconBibTeX(":/images/bibtex.png"), iconInclude(":/images/include.png"){
+	mHighlightIndex=QModelIndex();
 	iconSection.resize(LatexParser::structureCommands.count());
 	for (int i=0;i<LatexParser::structureCommands.count();i++)
 		iconSection[i]=QIcon(":/images/"+LatexParser::structureCommands[i].mid(1)+".png");
@@ -662,7 +670,7 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 				default: return QVariant();
 			}
 		case Qt::BackgroundRole:
-			if (entry==mHighlightedEntry) return QVariant(Qt::lightGray);
+			if (index==mHighlightIndex) return QVariant(Qt::lightGray);
 			else return QVariant();
 		default:
 			return QVariant();
@@ -732,20 +740,21 @@ StructureEntry* LatexDocumentsModel::indexToStructureEntry(const QModelIndex & i
 	if (!result || !result->document) return 0;
 	return result;
 }
-StructureEntry* LatexDocumentsModel::highlightedEntry(){
-	return mHighlightedEntry;
+QModelIndex LatexDocumentsModel::highlightedEntry(){
+	return mHighlightIndex;
 }
 void LatexDocumentsModel::setHighlightedEntry(StructureEntry* entry){
-	if (mHighlightedEntry==entry) return;
-	QModelIndex i1=index(mHighlightedEntry);
+
+	QModelIndex i1=mHighlightIndex;
 	QModelIndex i2=index(entry);
+	if (i1==i2) return;
 	emit dataChanged(i1,i1);
-	mHighlightedEntry=entry;
+	mHighlightIndex=i2;
 	emit dataChanged(i2,i2);
 }
 
 void LatexDocumentsModel::resetAll(){
-	mHighlightedEntry=0;
+	mHighlightIndex=QModelIndex();
 	reset();
 }
 

@@ -3856,7 +3856,7 @@ void Texmaker::cursorPositionChanged(){
 	LatexDocumentsModel *model=qobject_cast<LatexDocumentsModel*>(structureTreeView->model());
 	if (!model) return; //shouldn't happen
 
-	StructureEntry *oldSection = model->highlightedEntry();
+	//StructureEntry *oldSection = model->highlightedEntry();
 	//if (oldSection && currentLine>oldLine && currentLine<oldSection->getRealLineNumber() && oldSection->document==currentEditorView()->document)
 	//	return; //still in the same section
 	// needs to be remedied
@@ -3885,7 +3885,7 @@ void Texmaker::cursorPositionChanged(){
 
 	model->setHighlightedEntry(newSection);
 	if(!mDontScrollToItem)
-		structureTreeView->scrollTo(model->index(model->highlightedEntry()));
+		structureTreeView->scrollTo(model->highlightedEntry());
 }
 /*void Texmaker::treeWidgetChanged(){
 	currentLine=-1;
