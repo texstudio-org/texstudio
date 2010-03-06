@@ -314,7 +314,8 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	}
 	// purge unconnected elements
 	foreach(se,toBeDeleted){
-		//delete se;
+		emit removeElement(se);
+		delete se;
 	}
 
     emit structureUpdated(this);
@@ -486,7 +487,11 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		elem->parent=parent_level[i];
 	    }
 	}
-
+	// purge unconnected elements
+	foreach(se,toBeDeleted){
+		emit removeElement(se);
+		delete se;
+	}
 
 	baseStructure->children.removeOne(bibTeXList);
 	baseStructure->children.removeOne(labelList);
@@ -498,11 +503,6 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	if (!blockList->children.isEmpty()) baseStructure->insert(0, blockList);
 
 	emit structureUpdated(this);
-
-	// purge unconnected elements
-	foreach(se,toBeDeleted){
-		//delete se;
-	}
 
 }
 
@@ -722,6 +722,12 @@ void LatexDocumentsModel::structureLost(LatexDocument* document){
 	resetAll();
 }
 
+void LatexDocumentsModel::removeElement(StructureEntry *se){
+	StructureEntry *par_se=se->parent;
+	int row=par_se->children.indexOf(se);
+	beginRemoveRows(index(par_se),row,row);
+	endRemoveRows();
+}
 
 
 LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)), masterDocument(0), currentDocument(0), bibTeXFilesModified(false){
@@ -733,6 +739,7 @@ void LatexDocuments::addDocument(LatexDocument* document){
 	documents.append(document);
 	model->connect(document,SIGNAL(structureLost(LatexDocument*)),model,SLOT(structureLost(LatexDocument*)));
 	model->connect(document,SIGNAL(structureUpdated(LatexDocument*)),model,SLOT(structureUpdated(LatexDocument*)));
+	model->connect(document,SIGNAL(removeElement(StructureEntry*)),model,SLOT(removeElement(StructureEntry*)));
 }
 void LatexDocuments::deleteDocument(LatexDocument* document){
 	if (document->getEditorView()) delete document->getEditorView();
@@ -933,6 +940,7 @@ void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QV
 		//delete elements which are completely embedded in the to be updated region
 		if(end<0 && start>-1) end=se->children.size()+1;
 		for(int l=start+1;l<end-1;l++) {
+			toBeDeleted.append(se->children[l]);
 			//delete se->children[l];
 		}
 
