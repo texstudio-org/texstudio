@@ -761,6 +761,7 @@ void LatexDocumentsModel::resetAll(){
 void LatexDocumentsModel::structureUpdated(LatexDocument* document){
 	Q_UNUSED(document);
 	//resetAll();
+	mHighlightIndex=QModelIndex();
 	emit layoutChanged();
 }
 void LatexDocumentsModel::structureLost(LatexDocument* document){
