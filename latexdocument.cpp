@@ -314,7 +314,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	}
 	// purge unconnected elements
 	foreach(se,toBeDeleted){
-		emit removeElement(se);
+		//emit removeElement(se);
 		delete se;
 	}
 
