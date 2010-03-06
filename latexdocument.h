@@ -125,7 +125,7 @@ public slots:
 	void updateStructure();
 	void patchStructure(int linenr, int count);
 	void patchStructureRemoval(QDocumentLineHandle* dlh);
-        void clearStructure();
+	void clearStructure();
 
 signals:
 	void hasBeenIncluded(const LatexDocument& newMasterDocument);
@@ -196,5 +196,6 @@ public:
 };
 
 void findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,int linenr,int count);
+void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QList<StructureEntry*> &toBeDeleted,int linenr,int count);
 
 #endif // LATEXDOCUMENT_H
