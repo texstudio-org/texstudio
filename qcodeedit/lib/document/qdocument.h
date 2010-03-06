@@ -239,7 +239,8 @@ class QCE_EXPORT QDocument : public QObject
 		void collapse(int line);
 		void expandParents(int l);
 		void foldBlockAt(bool unFold, int line);
-		void correctHidden();
+		bool linesPartiallyFolded(int fromInc, int toInc);
+		void correctFolding(int fromInc, int toInc);
 
 	public slots:
 		void clear();

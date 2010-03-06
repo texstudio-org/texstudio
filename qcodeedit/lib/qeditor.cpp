@@ -2198,24 +2198,20 @@ void QEditor::indentSelection()
 
 	QString txt = flag(ReplaceTabs) ? QString(m_doc->tabStop(), ' ') : QString("\t");
 	
-	bool isProtected=false;
 	if ( m_mirrors.count() )
 	{
 		m_doc->beginMacro();
 
-		if ( !protectedCursor(m_cursor, isProtected) )
+		if ( !protectedCursor(m_cursor) )
 			insert(m_cursor, txt);
 
-		foreach ( const QDocumentCursor& m, m_mirrors ){
-			bool temp;
-			if ( !protectedCursor(m,temp) )
+		foreach ( const QDocumentCursor& m, m_mirrors )
+			if ( !protectedCursor(m) )
 				insert(m, txt);
-			isProtected|=temp;
-		}
 
 		m_doc->endMacro();
 
-	} else if ( !protectedCursor(m_cursor, isProtected) ) {
+	} else if ( !protectedCursor(m_cursor) ) {
 		if ( !m_cursor.hasSelection() )
 			insert(m_cursor, txt);
 		else {
@@ -2236,8 +2232,6 @@ void QEditor::indentSelection()
 			c.endEditBlock();
 		}
 	}
-	if (isProtected && m_doc->languageDefinition())
-		m_doc->languageDefinition()->correctFolding(m_doc);
 }
 
 /*!
@@ -2248,24 +2242,21 @@ void QEditor::unindentSelection()
 	if ( !m_cursor.line().firstChar() )
 		return;
 
-	bool isProtected=false;
 	if ( m_mirrors.count() )
 	{
 		m_doc->beginMacro();
 
-		if ( !protectedCursor(m_cursor, isProtected) )
+		if ( !protectedCursor(m_cursor) )
 			unindent(m_cursor);
 
 		foreach ( const QDocumentCursor& m, m_mirrors ){
-			bool temp;
-			if ( !protectedCursor(m, temp) )
+			if ( !protectedCursor(m) )
 				unindent(m);
-			isProtected|=temp;
 		}
 
 		m_doc->endMacro();
 
-	} else if ( !protectedCursor(m_cursor, isProtected) ) {
+	} else if ( !protectedCursor(m_cursor) ) {
 		if ( !m_cursor.hasSelection())
 			unindent(m_cursor);
 		else {
@@ -2281,8 +2272,6 @@ void QEditor::unindentSelection()
 			m_doc->endMacro();
 		}
 	}
-	if (isProtected && m_doc->languageDefinition())
-		m_doc->languageDefinition()->correctFolding(m_doc);
 }
 
 /*!
@@ -2298,21 +2287,20 @@ void QEditor::commentSelection()
 	if ( txt.isEmpty() )
 		return;
 
-	bool isProtected=false;
 	if ( m_mirrors.count() )
 	{
 		m_doc->beginMacro();
 
-		if ( !protectedCursor(m_cursor,isProtected) )
+		if ( !protectedCursor(m_cursor) )
 		insert(m_cursor, txt);
 
 		foreach ( const QDocumentCursor& m, m_mirrors )
 			if ( !protectedCursor(m) )
-			insert(m, txt);
+				insert(m, txt);
 
 		m_doc->endMacro();
 
-	} else if ( !protectedCursor(m_cursor, isProtected) ) {
+	} else if ( !protectedCursor(m_cursor) ) {
 		if ( !m_cursor.hasSelection() )
 			insert(m_cursor, txt);
 		else {
@@ -2333,8 +2321,6 @@ void QEditor::commentSelection()
 			c.endEditBlock();
 		}
 	}
-	if (isProtected && m_doc->languageDefinition())
-		m_doc->languageDefinition()->correctFolding(m_doc);
 }
 
 /*!
@@ -2350,24 +2336,21 @@ void QEditor::uncommentSelection()
 	if ( txt.isEmpty() )
 		return;
 
-	bool isProtected=false;
 	if ( m_mirrors.count() )
 	{
 		m_doc->beginMacro();
 
-		if ( !protectedCursor(m_cursor, isProtected) )
+		if ( !protectedCursor(m_cursor) )
 			removeFromStart(m_cursor, txt);
 
 		foreach ( const QDocumentCursor& m, m_mirrors ){
-			bool temp;
-			if ( !protectedCursor(m, temp) )
+			if ( !protectedCursor(m) )
 				removeFromStart(m, txt);
-			isProtected|=temp;
 		}
 
 		m_doc->endMacro();
 
-	} else if ( !protectedCursor(m_cursor, isProtected) ){
+	} else if ( !protectedCursor(m_cursor) ){
 		if ( !m_cursor.hasSelection() )
 			removeFromStart(m_cursor, txt);
 		else {
@@ -2385,8 +2368,6 @@ void QEditor::uncommentSelection()
 			m_doc->endMacro();
 		}
 	}
-	if (isProtected && m_doc->languageDefinition())
-		m_doc->languageDefinition()->correctFolding(m_doc);
 }
 
 /*!
@@ -2609,32 +2590,20 @@ static int min(const QList<QDocumentCursor>& l)
 
 bool QEditor::protectedCursor(const QDocumentCursor& c) const
 {
-	if ( c.hasSelection() )
+	/*if ( c.hasSelection() )
 	{
 		int line = qMin(c.lineNumber(), c.anchorLineNumber()), end = qMax(c.lineNumber(), c.anchorLineNumber());
-		
-		while ( line <= end )
-		{
-			if ( m_doc->line(line).hasAnyFlag(QDocumentLine::Hidden | QDocumentLine::CollapsedBlockStart | QDocumentLine::CollapsedBlockEnd) )
-				return true;
-			
-			++line;
-		}
-		
+		return document()->linesPartiallyFolded(line,end);
 	} else {
 		return m_doc->line(c.lineNumber()).hasAnyFlag(QDocumentLine::Hidden | QDocumentLine::CollapsedBlockStart | QDocumentLine::CollapsedBlockEnd);
-	}
+	}*/
 	
-	return false;
-}
-
-bool QEditor::protectedCursor(const QDocumentCursor& c, bool& isProtected) const{
-	isProtected=protectedCursor(c);
 	/*if (!isProtected) return false;
 	if (!c.hasSelection()) return c.line().hasFlag(QDocumentLine::Hidden);
 	return c.line().hasFlag(QDocumentLine::Hidden) || c.anchorLine().hasFlag(QDocumentLine::Hidden);*/
 	return false;
 }
+
 /*!
 	\internal
 */
@@ -2769,14 +2738,10 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 		{
 			int offset = 0;
 			bool pke = isProcessingKeyEvent(e, &offset);
-			bool isProtected=false;
-			bool prot = protectedCursor(m_cursor,isProtected);
+			bool prot = protectedCursor(m_cursor);
 
 			foreach ( const QDocumentCursor& c, m_mirrors ){
-				bool temp;
-				prot |= protectedCursor(c,temp);
-				isProtected|=temp;
-				if (prot) break;
+				prot |= protectedCursor(c);
 			}
 
 			if ( !pke || prot )
@@ -2842,8 +2807,6 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 				
 				}
 
-				if (isProtected && m_doc->languageDefinition())
-					m_doc->languageDefinition()->correctFolding(m_doc);
 			}
 
 		if ( !bHandled )
@@ -4211,8 +4174,7 @@ void QEditor::preInsert(QDocumentCursor& c, const QString& s)
 */
 void QEditor::insertText(QDocumentCursor& c, const QString& text)
 {
-	bool isProtected=false;
-	if ( protectedCursor(c, isProtected) )
+	if ( protectedCursor(c) )
 		return;
 	
 	bool hasSelection = c.hasSelection();
@@ -4281,9 +4243,6 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 			c.insertText(l);
 		}
 	}
-
-	if (isProtected && m_doc->languageDefinition())
-		m_doc->languageDefinition()->correctFolding(m_doc);
 }
 
 void QEditor::insertTextAtCursor(const QString& text){

@@ -203,7 +203,6 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		}
 
 		virtual bool protectedCursor(const QDocumentCursor& c) const;
-		virtual bool protectedCursor(const QDocumentCursor& c, bool& isProtected) const;
 
 		static int defaultFlags();
 		static void setDefaultFlags(int f);

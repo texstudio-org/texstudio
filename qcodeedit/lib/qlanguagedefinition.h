@@ -75,7 +75,7 @@ class QCE_EXPORT QLanguageDefinition
 		virtual void expand(QDocument *d, int line);
 		virtual void collapse(QDocument *d, int line);
 		virtual int blockFlags(QDocument *d, int line, int depth = 0) const;
-		virtual void correctFolding(QDocument *d);
+		virtual bool correctFolding(QDocument *d);
 };
 
 #endif // _QLANGUAGE_DEFINITION_H_
