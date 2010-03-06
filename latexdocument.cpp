@@ -314,7 +314,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	}
 	// purge unconnected elements
 	foreach(se,toBeDeleted){
-		delete se;
+		//delete se;
 	}
 
     emit structureUpdated(this);
@@ -486,10 +486,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		elem->parent=parent_level[i];
 	    }
 	}
-	// purge unconnected elements
-	foreach(se,toBeDeleted){
-	    delete se;
-	}
+
 
 	baseStructure->children.removeOne(bibTeXList);
 	baseStructure->children.removeOne(labelList);
@@ -501,6 +498,11 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	if (!blockList->children.isEmpty()) baseStructure->insert(0, blockList);
 
 	emit structureUpdated(this);
+
+	// purge unconnected elements
+	foreach(se,toBeDeleted){
+		//delete se;
+	}
 
 }
 
@@ -931,7 +933,7 @@ void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QV
 		//delete elements which are completely embedded in the to be updated region
 		if(end<0 && start>-1) end=se->children.size()+1;
 		for(int l=start+1;l<end-1;l++) {
-			delete se->children[l];
+			//delete se->children[l];
 		}
 
 
