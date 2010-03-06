@@ -140,7 +140,7 @@ private:
 	LatexDocuments& documents;
 	QIcon iconDocument, iconMasterDocument, iconBibTeX, iconInclude;
 	QVector<QIcon> iconSection;
-	StructureEntry* mHighlightedEntry;
+	QModelIndex mHighlightIndex;
 
 public:
 	LatexDocumentsModel(LatexDocuments& docs);
@@ -154,7 +154,7 @@ public:
 	QModelIndex parent ( const QModelIndex & index ) const;
 
 	static StructureEntry* indexToStructureEntry(const QModelIndex & index );
-	StructureEntry* highlightedEntry();
+	QModelIndex highlightedEntry();
 	void setHighlightedEntry(StructureEntry* entry);
 
 	void resetAll();
