@@ -84,13 +84,19 @@ public:
 	//QSet<QString> texFiles; //absolute file names, also contains fileName
 
 //	References containedLabels,containedReferences;
-	QStringList mentionedBibTeXFiles;
+	const QStringList mentionedBibTeXFiles() const{
+	    return mMentionedBibTeXFiles.values();
+	}
+
 //	QMap<QString,DocumentLine> mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
 //	QSet<QString> allBibTeXIds;
 
-	QStringList labelItem;
-	QStringList userCommandList;
-
+	QStringList labelItem() const{
+	    return mLabelItem.values();
+	}
+	const QStringList userCommandList() const{
+	    return mUserCommandList.values();
+	}
 	//void includeDocument(LatexDocument* includedDocument);
 
 	//QString getAbsoluteFilePath(const QString& relativePath); //returns the absolute file path for an included file
@@ -110,8 +116,15 @@ private:
 	StructureEntry* todoList;
 	StructureEntry* bibTeXList;
 	StructureEntry* blockList;
+
+	QMultiHash<QDocumentLineHandle*,QString>mLabelItem;
+	QMultiHash<QDocumentLineHandle*,QString>mMentionedBibTeXFiles;
+	QMultiHash<QDocumentLineHandle*,QString>mUserCommandList;
+
 public slots:
 	void updateStructure();
+	void patchStructure(int linenr, int count);
+	void patchStructureRemoval(QDocumentLineHandle* dlh);
         void clearStructure();
 
 signals:
@@ -181,5 +194,7 @@ public:
 	QSet<QString> allBibTeXIds;
 	void updateBibFiles();
 };
+
+void findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,int linenr,int count);
 
 #endif // LATEXDOCUMENT_H

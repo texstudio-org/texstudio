@@ -874,6 +874,9 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 		edit->document=new LatexDocument();
 		edit->document->setEditorView(edit);
 		documents.addDocument(edit->document);
+		//patch Structure
+		connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
+		connect(edit->editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
 	} else edit->document->setEditorView(edit);
 	EditorView->addTab(edit, "[*] "+QFileInfo(f_real).fileName());
 	EditorView->setCurrentWidget(edit);
@@ -2550,7 +2553,7 @@ void Texmaker::InsertRef() {
                 if (singlemode) docs << edView->document;
                 else docs << documents.documents;
                 foreach(const LatexDocument* doc,docs)
-                        labels << doc->labelItem;
+			labels << doc->labelItem();
         } else return;
 	UniversalInputDialog dialog;
 	dialog.addVariable(&labels, tr("Labels:"));
@@ -2570,7 +2573,7 @@ void Texmaker::InsertPageRef() {
                 if (singlemode) docs << edView->document;
                 else docs << documents.documents;
                 foreach(const LatexDocument* doc,docs)
-                        labels << doc->labelItem;
+			labels << doc->labelItem();
         } else return;
         UniversalInputDialog dialog;
 	dialog.addVariable(&labels, tr("Labels:"));
@@ -3447,11 +3450,11 @@ void Texmaker::updateCompleter() {
 
 	if(singlemode){
 		if(edView && edView->document){
-			words << edView->document->userCommandList;
+			words << edView->document->userCommandList();
 		}
 	} else {
 		foreach (const LatexDocument* doc, documents.documents)
-			words << doc->userCommandList;
+			words << doc->userCommandList();
 	}
 
 
@@ -3462,8 +3465,8 @@ void Texmaker::updateCompleter() {
 		foreach(const LatexDocument* doc,docs)
 			foreach(const QString& refCommand, LatexParser::refCommands){
 				QString temp=refCommand+"{%1}";
-				for (int i=0; i<doc->labelItem.count(); ++i)
-					words.append(temp.arg(doc->labelItem.at(i)));
+				for (int i=0; i<doc->labelItem().count(); ++i)
+					words.append(temp.arg(doc->labelItem().at(i)));
 			}
 	}
 
@@ -3854,8 +3857,9 @@ void Texmaker::cursorPositionChanged(){
 	if (!model) return; //shouldn't happen
 
 	StructureEntry *oldSection = model->highlightedEntry();
-	if (oldSection && currentLine>oldLine && currentLine<oldSection->getRealLineNumber() && oldSection->document==currentEditorView()->document)
-		return; //still in the same section
+	//if (oldSection && currentLine>oldLine && currentLine<oldSection->getRealLineNumber() && oldSection->document==currentEditorView()->document)
+	//	return; //still in the same section
+	// needs to be remedied
 
 	StructureEntryIterator iter(currentEditorView()->document->baseStructure);
 	StructureEntry *newSection=0;
