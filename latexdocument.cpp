@@ -945,12 +945,12 @@ void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QV
 		StructureEntry *next=0;
 		if(end>0) {
 			next=se->children.value(end-1,0);
-			if(next->type!=StructureEntry::SE_SECTION) next=0;
+			if(next && next->type!=StructureEntry::SE_SECTION) next=0;
 			parent=se->children.value(start,parent_level[i]);
 			if(parent->type!=StructureEntry::SE_SECTION) parent=parent_level[i];
 		}else{
 			next=se->children.value(start,0);
-			if(next->type!=StructureEntry::SE_SECTION) next=0;
+			if(next && next->type!=StructureEntry::SE_SECTION) next=0;
 			parent=next;
 			if(!parent) parent=parent_level[i];
 			if(parent->type!=StructureEntry::SE_SECTION) parent=parent_level[i];
