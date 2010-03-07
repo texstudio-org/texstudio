@@ -275,6 +275,11 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
     mMentionedBibTeXFiles.remove(dlh);
     mUserCommandList.remove(dlh);
 
+    if(dlh==mAppendixLine){
+	updateAppendix(mAppendixLine,0);
+	mAppendixLine=0;
+    }
+
     QMutableListIterator<StructureEntry*> iter_label(labelList->children);
     while(iter_label.hasNext()){
 	StructureEntry* se=iter_label.next();
@@ -332,6 +337,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 	QDocument* document=text;
 	if (!document) return;
+
+	QDocumentLineHandle *oldLine=0; // to detect a change in appendix position
 
 	QMutableListIterator<StructureEntry*> iter_label(labelList->children);
 	findStructureEntryBefore(iter_label,linenr,count);
@@ -445,7 +452,13 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		}
 		//// Appendix keyword
 		if (curLine=="\\appendix") {
+			oldLine=mAppendixLine;
 			mAppendixLine=document->line(i).handle();
+
+		}
+		if(document->line(i).handle()==mAppendixLine && curLine!="\\appendix"){
+			oldLine=mAppendixLine;
+			mAppendixLine=0;
 		}
 		//// beamer blocks ////
 		s=findToken(curLine,"\\begin{block}{");
@@ -528,6 +541,11 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	if (!todoList->children.isEmpty()) baseStructure->insert(0, todoList);
 	if (!labelList->children.isEmpty()) baseStructure->insert(0, labelList);
 	if (!blockList->children.isEmpty()) baseStructure->insert(0, blockList);
+
+	//update appendix change
+	if(oldLine!=mAppendixLine){
+	    updateAppendix(oldLine,mAppendixLine);
+	}
 
 	emit structureUpdated(this);
 
@@ -760,6 +778,9 @@ void LatexDocumentsModel::addElement(StructureEntry *se,int row){
 	beginInsertRows(index(se),row,row);
 	endInsertRows();
 }
+void LatexDocumentsModel::updateElement(StructureEntry *se){
+    emit dataChanged(index(se),index(se));
+}
 
 LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)), masterDocument(0), currentDocument(0), bibTeXFilesModified(false){
 }
@@ -772,6 +793,7 @@ void LatexDocuments::addDocument(LatexDocument* document){
 	model->connect(document,SIGNAL(structureUpdated(LatexDocument*)),model,SLOT(structureUpdated(LatexDocument*)));
 	model->connect(document,SIGNAL(removeElement(StructureEntry*,int)),model,SLOT(removeElement(StructureEntry*,int)));
 	model->connect(document,SIGNAL(addElement(StructureEntry*,int)),model,SLOT(addElement(StructureEntry*,int)));
+	model->connect(document,SIGNAL(updateElement(StructureEntry*)),model,SLOT(updateElement(StructureEntry*)));
 }
 void LatexDocuments::deleteDocument(LatexDocument* document){
 	if (document->getEditorView()) delete document->getEditorView();
@@ -991,4 +1013,42 @@ void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QV
 		// take a look a children
 		se=next;
 	}
+}
+
+void LatexDocument::updateAppendix(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine){
+    int endLine=-1;
+    int startLine=-1;
+    if(newLine) endLine=newLine->line();
+    if(oldLine){
+	startLine=oldLine->line();
+	if(endLine<0 || endLine>startLine){
+	    // remove appendic marker
+	    StructureEntry *se=baseStructure;
+	    setAppendix(se,startLine,endLine,false);
+	}
+    }
+
+    if(endLine>-1 && (endLine<startLine || startLine<0)){
+	StructureEntry *se=baseStructure;
+	setAppendix(se,endLine,startLine,true);
+    }
+}
+
+void LatexDocument::setAppendix(StructureEntry *se,int startLine,int endLine,bool state){
+    bool first=false;
+    for(int i=0;i<se->children.size();i++){
+	StructureEntry *elem=se->children[i];
+	if(endLine>=0 && elem->lineHandle && elem->lineHandle->line()>endLine) break;
+	if(elem->type==StructureEntry::SE_SECTION && elem->lineHandle->line()>startLine){
+	    if(!first && i>0) setAppendix(se->children[i-1],startLine,endLine,state);
+	    elem->appendix=state;
+	    emit updateElement(elem);
+	    setAppendix(se->children[i],startLine,endLine,state);
+	    first=true;
+	}
+    }
+    if(!first && !se->children.isEmpty()) {
+	StructureEntry *elem=se->children.last();
+	if(elem->type==StructureEntry::SE_SECTION) setAppendix(elem,startLine,endLine,state);
+    }
 }

@@ -124,6 +124,9 @@ private:
 
 	QDocumentLineHandle *mAppendixLine;
 
+	void updateAppendix(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine);
+	void setAppendix(StructureEntry *se,int startLine,int endLine,bool state);
+
 public slots:
 	void updateStructure();
 	void patchStructure(int linenr, int count);
@@ -136,6 +139,7 @@ signals:
 	void structureLost(LatexDocument* document);
 	void removeElement(StructureEntry *se,int row);
 	void addElement(StructureEntry *se,int row);
+	void updateElement(StructureEntry *se);
 };
 
 class LatexDocuments;
@@ -168,6 +172,7 @@ private slots:
 	void structureLost(LatexDocument* document);
 	void removeElement(StructureEntry *se,int row);
 	void addElement(StructureEntry *se,int row);
+	void updateElement(StructureEntry *se);
 
 	friend class LatexDocuments;
 };
