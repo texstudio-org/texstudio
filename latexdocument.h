@@ -44,11 +44,11 @@ struct StructureEntry{
 	QString title;
 	int level; //only used for section types
 	int lineNumber;
-	bool appendix;
 	QDocumentLineHandle* lineHandle;
 	QList<StructureEntry*> children;
 	StructureEntry* parent;
 	LatexDocument* document;
+	bool appendix;
 
 	StructureEntry(LatexDocument* doc, Type newType);
 	StructureEntry(LatexDocument* doc, StructureEntry* parent, Type newType);
