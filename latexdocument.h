@@ -44,6 +44,7 @@ struct StructureEntry{
 	QString title;
 	int level; //only used for section types
 	int lineNumber;
+	bool appendix;
 	QDocumentLineHandle* lineHandle;
 	QList<StructureEntry*> children;
 	StructureEntry* parent;
@@ -120,6 +121,8 @@ private:
 	QMultiHash<QDocumentLineHandle*,QString>mLabelItem;
 	QMultiHash<QDocumentLineHandle*,QString>mMentionedBibTeXFiles;
 	QMultiHash<QDocumentLineHandle*,QString>mUserCommandList;
+
+	QDocumentLineHandle *mAppendixLine;
 
 public slots:
 	void updateStructure();

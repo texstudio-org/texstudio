@@ -7,7 +7,7 @@
 #include "qeditor.h"
 #include "smallUsefulFunctions.h"
 
-LatexDocument::LatexDocument():edView(0),text(0)
+LatexDocument::LatexDocument():edView(0),text(0),mAppendixLine(0)
 {
 	baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
 	labelList = new StructureEntry(this,baseStructure, StructureEntry::SE_OVERVIEW);
@@ -209,6 +209,10 @@ void LatexDocument::updateStructure() {
 			if (!temporaryLoadedDocument)
 				newTodo->lineHandle=document->line(i).handle();
 		}
+		//// Appendix keyword
+		if (curLine=="\\appendix") {
+			mAppendixLine=document->line(i).handle();
+		}
 		//// beamer blocks ////
 		s=findToken(curLine,"\\begin{block}{");
 		if (s!="") {
@@ -243,8 +247,10 @@ void LatexDocument::updateStructure() {
 				newSection->title=s;
 				newSection->level=header;
 				newSection->lineNumber=i;
-				if (!temporaryLoadedDocument)
+				if (!temporaryLoadedDocument){
 					newSection->lineHandle=document->line(i).handle();
+					if(mAppendixLine &&mAppendixLine->line()<i) newSection->appendix=true;
+				    }
 				parent_level[header]=newSection;
 				for(int j=header+1;j<parent_level.size();j++)
 					parent_level[j]=parent_level[header];
@@ -437,6 +443,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			newTodo->parent=todoList;
 			iter_todo.insert(newTodo);
 		}
+		//// Appendix keyword
+		if (curLine=="\\appendix") {
+			mAppendixLine=document->line(i).handle();
+		}
 		//// beamer blocks ////
 		s=findToken(curLine,"\\begin{block}{");
 		if (s!="") {
@@ -479,6 +489,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				}else{
 				    newSection=new StructureEntry(this,parent,StructureEntry::SE_SECTION);
 				}
+				if(mAppendixLine &&mAppendixLine->line()<i) newSection->appendix=true;
+				else newSection->appendix=false;
 				newSection->title=s;
 				newSection->level=header;
 				newSection->lineNumber=i;
@@ -535,9 +547,9 @@ void LatexDocument::includeDocument(LatexDocument* includedDocument){
 
 }
 */
-StructureEntry::StructureEntry(LatexDocument* doc, Type newType):type(newType), lineNumber(-1), lineHandle(0), parent(0), document(doc){
+StructureEntry::StructureEntry(LatexDocument* doc, Type newType):type(newType), lineNumber(-1), lineHandle(0), parent(0), document(doc),appendix(false){
 }
-StructureEntry::StructureEntry(LatexDocument* doc, StructureEntry* parent, Type newType):type(newType), lineNumber(-1), lineHandle(0), document(doc){
+StructureEntry::StructureEntry(LatexDocument* doc, StructureEntry* parent, Type newType):type(newType), lineNumber(-1), lineHandle(0), document(doc),appendix(false){
 	parent->add(this);
 }
 StructureEntry::~StructureEntry(){
@@ -639,6 +651,7 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 			}
 		case Qt::BackgroundRole:
 			if (index==mHighlightIndex) return QVariant(Qt::lightGray);
+			if (entry->appendix) return QVariant(QColor(200,230,200));
 			else return QVariant();
 		default:
 			return QVariant();
