@@ -297,9 +297,10 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 
 	QVector<StructureEntry*> parent_level(LatexParser::structureCommands.count());
 	QVector<QList<StructureEntry*> > remainingChildren(LatexParser::structureCommands.count());
-	QList<StructureEntry*> toBeDeleted;
+	QMap<StructureEntry*,int> toBeDeleted;
+	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfElements;
 	StructureEntry* se=baseStructure;
-	splitStructure(se,parent_level,remainingChildren,toBeDeleted,linenr,1);
+	splitStructure(se,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,1);
 
 	// append structure remainder ...
 	for(int i=parent_level.size()-1;i>=0;i--){
@@ -313,7 +314,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 		}
 	}
 	// purge unconnected elements
-	foreach(se,toBeDeleted){
+	foreach(se,toBeDeleted.keys()){
 		//emit removeElement(se);
 		delete se;
 	}
@@ -340,9 +341,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 	QVector<StructureEntry*> parent_level(LatexParser::structureCommands.count());
 	QVector<QList<StructureEntry*> > remainingChildren(LatexParser::structureCommands.count());
-	QList<StructureEntry*> toBeDeleted;
+	QMap<StructureEntry*,int> toBeDeleted;
+	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfElements;
 	StructureEntry* se=baseStructure;
-	splitStructure(se,parent_level,remainingChildren,toBeDeleted,linenr,count);
+	splitStructure(se,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count);
 
 	//TODO: This assumes one command per line, which is not necessary true
 	for (int i=linenr; i<linenr+count; i++) {
@@ -463,9 +465,20 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			QRegExp regexp = QRegExp("\\"+LatexParser::structureCommands[header]+"\\*?[\\{\\[]");
 			s=findToken(curLine,regexp);
 			if (s!="") {
+				bool reuse=false;
 				s=extractSectionName(s);
 				StructureEntry* parent=header == 0 ? baseStructure : parent_level[header];
-				StructureEntry *newSection=new StructureEntry(this,parent,StructureEntry::SE_SECTION);
+				StructureEntry *newSection;
+				if(MapOfElements.contains(dlh)){
+				    newSection=MapOfElements.value(dlh);
+				    parent->add(newSection);
+				    newSection->type=StructureEntry::SE_SECTION;
+				    toBeDeleted.remove(newSection);
+				    MapOfElements.remove(dlh,newSection);
+				    reuse=true;
+				}else{
+				    newSection=new StructureEntry(this,parent,StructureEntry::SE_SECTION);
+				}
 				newSection->title=s;
 				newSection->level=header;
 				newSection->lineNumber=i;
@@ -473,6 +486,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				if(header+1<parent_level.size()) parent_level[header+1]=newSection;
 				for(int j=header+2;j<parent_level.size();j++)
 					parent_level[j]=parent_level[header];
+
+				if(!reuse) emit addElement(parent,parent->children.size()-1);
 			}
 		}
 	}
@@ -488,11 +503,11 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	    }
 	}
 	// purge unconnected elements
-	foreach(se,toBeDeleted){
-		emit removeElement(se);
+	foreach(se,toBeDeleted.keys()){
+		emit removeElement(se,toBeDeleted[se]);
 		delete se;
 	}
-
+	
 	baseStructure->children.removeOne(bibTeXList);
 	baseStructure->children.removeOne(labelList);
 	baseStructure->children.removeOne(todoList);
@@ -722,13 +737,16 @@ void LatexDocumentsModel::structureLost(LatexDocument* document){
 	resetAll();
 }
 
-void LatexDocumentsModel::removeElement(StructureEntry *se){
+void LatexDocumentsModel::removeElement(StructureEntry *se,int row){
 	StructureEntry *par_se=se->parent;
-	int row=par_se->children.indexOf(se);
 	beginRemoveRows(index(par_se),row,row);
 	endRemoveRows();
 }
 
+void LatexDocumentsModel::addElement(StructureEntry *se,int row){
+	beginInsertRows(index(se),row,row);
+	endInsertRows();
+}
 
 LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)), masterDocument(0), currentDocument(0), bibTeXFilesModified(false){
 }
@@ -739,7 +757,8 @@ void LatexDocuments::addDocument(LatexDocument* document){
 	documents.append(document);
 	model->connect(document,SIGNAL(structureLost(LatexDocument*)),model,SLOT(structureLost(LatexDocument*)));
 	model->connect(document,SIGNAL(structureUpdated(LatexDocument*)),model,SLOT(structureUpdated(LatexDocument*)));
-	model->connect(document,SIGNAL(removeElement(StructureEntry*)),model,SLOT(removeElement(StructureEntry*)));
+	model->connect(document,SIGNAL(removeElement(StructureEntry*,int)),model,SLOT(removeElement(StructureEntry*,int)));
+	model->connect(document,SIGNAL(addElement(StructureEntry*,int)),model,SLOT(addElement(StructureEntry*,int)));
 }
 void LatexDocuments::deleteDocument(LatexDocument* document){
 	if (document->getEditorView()) delete document->getEditorView();
@@ -877,7 +896,7 @@ void findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,int li
     if(goBack && iter.hasPrevious()) iter.previous();
 }
 
-void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QList<StructureEntry*> &toBeDeleted,int linenr,int count){
+void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QMap<StructureEntry*,int> &toBeDeleted,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count){
 
 	StructureEntry* parent=se;
 
@@ -926,21 +945,27 @@ void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QV
 		StructureEntry *next=0;
 		if(end>0) {
 			next=se->children.value(end-1,0);
+			if(next->type!=StructureEntry::SE_SECTION) next=0;
 			parent=se->children.value(start,parent_level[i]);
 			if(parent->type!=StructureEntry::SE_SECTION) parent=parent_level[i];
 		}else{
 			next=se->children.value(start,0);
+			if(next->type!=StructureEntry::SE_SECTION) next=0;
 			parent=next;
 			if(!parent) parent=parent_level[i];
 			if(parent->type!=StructureEntry::SE_SECTION) parent=parent_level[i];
 		}
 
 		// add elements which are deleted later to a list
-		if(end-1>start) toBeDeleted.append(se->children[end-1]);
+		if(end-1>start) {
+		    toBeDeleted.insert(se->children[end-1],end-1);
+		    MapOfElements.insert(se->children[end-1]->lineHandle,se->children[end-1]);
+		}
 		//delete elements which are completely embedded in the to be updated region
 		if(end<0 && start>-1) end=se->children.size()+1;
 		for(int l=start+1;l<end-1;l++) {
-			toBeDeleted.append(se->children[l]);
+			toBeDeleted.insert(se->children[l],l);
+			MapOfElements.insert(se->children[l]->lineHandle,se->children[l]);
 			//delete se->children[l];
 		}
 

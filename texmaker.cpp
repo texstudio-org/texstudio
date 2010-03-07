@@ -3848,7 +3848,7 @@ void Texmaker::editFindGlobal(){
 void Texmaker::cursorPositionChanged(){
 	if (!currentEditorView()) return;
 	int i=currentEditor()->cursor().lineNumber();
-	int oldLine=currentLine;
+	//int oldLine=currentLine;
 	// search line in structure
 	if (currentLine==i) return;
 	currentLine=i;
