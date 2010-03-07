@@ -131,7 +131,8 @@ signals:
 	void hasBeenIncluded(const LatexDocument& newMasterDocument);
 	void structureUpdated(LatexDocument* document);
 	void structureLost(LatexDocument* document);
-	void removeElement(StructureEntry *se);
+	void removeElement(StructureEntry *se,int row);
+	void addElement(StructureEntry *se,int row);
 };
 
 class LatexDocuments;
@@ -162,7 +163,8 @@ public:
 private slots:
 	void structureUpdated(LatexDocument* document);
 	void structureLost(LatexDocument* document);
-	void removeElement(StructureEntry *se);
+	void removeElement(StructureEntry *se,int row);
+	void addElement(StructureEntry *se,int row);
 
 	friend class LatexDocuments;
 };
@@ -198,6 +200,6 @@ public:
 };
 
 void findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,int linenr,int count);
-void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QList<StructureEntry*> &toBeDeleted,int linenr,int count);
+void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QMap<StructureEntry*,int> &toBeDeleted,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count);
 
 #endif // LATEXDOCUMENT_H
