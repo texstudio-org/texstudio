@@ -877,10 +877,6 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 		edit->document=new LatexDocument();
 		edit->document->setEditorView(edit);
 		documents.addDocument(edit->document);
-		//patch Structure
-		connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
-		connect(edit->editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
-		connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
 	} else edit->document->setEditorView(edit);
 	EditorView->addTab(edit, "[*] "+QFileInfo(f_real).fileName());
 	EditorView->setCurrentWidget(edit);
@@ -903,6 +899,12 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	MarkCurrentFileAsRecent();
 	updateStructure();
 	ShowStructure();
+
+	//patch Structure
+	connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
+	connect(edit->editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
+	connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
+
 	if (asProject) {
 		if (singlemode) ToggleMode();
 		else if (!singlemode && MasterName != f_real) {
