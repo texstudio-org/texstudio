@@ -205,6 +205,7 @@ public:
 	QStringList mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
 	QSet<QString> allBibTeXIds;
 	void updateBibFiles();
+	void updateStructure();
 };
 
 void findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,int linenr,int count);

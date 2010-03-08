@@ -671,6 +671,13 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 			if (index==mHighlightIndex) return QVariant(Qt::lightGray);
 			if (entry->appendix) return QVariant(QColor(200,230,200));
 			else return QVariant();
+		case Qt::FontRole:
+			if((entry->type==StructureEntry::SE_DOCUMENT_ROOT) && (entry->document==documents.currentDocument)) {
+			    QFont f=QApplication::font();
+			    f.setBold(true);
+			    return QVariant(f);
+			}
+			return QVariant();
 		default:
 			return QVariant();
 	}
@@ -1050,5 +1057,11 @@ void LatexDocument::setAppendix(StructureEntry *se,int startLine,int endLine,boo
     if(!first && !se->children.isEmpty()) {
 	StructureEntry *elem=se->children.last();
 	if(elem->type==StructureEntry::SE_SECTION) setAppendix(elem,startLine,endLine,state);
+    }
+}
+
+void LatexDocuments::updateStructure(){
+    foreach(LatexDocument* doc,documents){
+	model->updateElement(doc->baseStructure);
     }
 }
