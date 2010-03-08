@@ -880,6 +880,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 		//patch Structure
 		connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
 		connect(edit->editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
+		connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
 	} else edit->document->setEditorView(edit);
 	EditorView->addTab(edit, "[*] "+QFileInfo(f_real).fileName());
 	EditorView->setCurrentWidget(edit);
@@ -927,6 +928,10 @@ void Texmaker::fileNew(QString fileName) {
 	edit->document=new LatexDocument();
 	edit->document->setEditorView(edit);
 	documents.addDocument(edit->document);
+
+	connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
+	connect(edit->editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
+	connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
 
 	EditorView->addTab(edit, fileName);
 	EditorView->setCurrentWidget(edit);
@@ -1046,6 +1051,10 @@ void Texmaker::fileNewFromTemplate() {
 		edit->document=new LatexDocument();
 		edit->document->setEditorView(edit);
 		documents.addDocument(edit->document);
+
+		connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
+		connect(edit->editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
+		connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
 
 		EditorView->addTab(edit, "untitled");
 		EditorView->setCurrentWidget(edit);
