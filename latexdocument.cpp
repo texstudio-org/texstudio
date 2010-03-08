@@ -338,6 +338,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	QDocument* document=text;
 	if (!document) return;
 
+	bool completerNeedsUpdate=false;
+
 	QDocumentLineHandle *oldLine=0; // to detect a change in appendix position
 
 	QMutableListIterator<StructureEntry*> iter_label(labelList->children);
@@ -365,9 +367,9 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 		// remove command,bibtex,labels at from this line
 		QDocumentLineHandle* dlh=document->line(i).handle();
-		mLabelItem.remove(dlh);
-		mMentionedBibTeXFiles.remove(dlh);
-		mUserCommandList.remove(dlh);
+		completerNeedsUpdate=completerNeedsUpdate || (mLabelItem.remove(dlh)>0);
+		completerNeedsUpdate=completerNeedsUpdate || (mMentionedBibTeXFiles.remove(dlh)>0);
+		completerNeedsUpdate=completerNeedsUpdate || (mUserCommandList.remove(dlh)>0);
 		//find entries prior to changed lines
 
 
@@ -378,6 +380,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		for (int j=0; j< commandTokens.size();j++){
 			QString name;
 			QString arg;
+			completerNeedsUpdate=true;
 			if (findTokenWithArg(curLine,commandTokens[j],name,arg)) {
 				int options=arg.toInt(); //returns 0 if conversion fails
 				for (int j=0; j<options; j++) {
@@ -392,6 +395,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		for (int j=0; j< envTokens.size();j++){
 			QString name;
 			QString arg;
+			completerNeedsUpdate=true;
 			if (findTokenWithArg(curLine,envTokens[j],name,arg)) {
 				int options=arg.toInt(); //returns 0 if conversion fails
 				name.append("}");
@@ -407,6 +411,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		//// newtheorem ////
 		QString s=findToken(curLine,"\\newtheorem{");
 		if (s!="") {
+			completerNeedsUpdate=true;
 			mUserCommandList.insert(document->line(i).handle(),"\\begin{"+s+"}");
 			mUserCommandList.insert(document->line(i).handle(),"\\end{"+s+"}");
 		}
@@ -414,6 +419,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		s=findToken(curLine,"\\bibliography{");
 		if (s!="") {
 			QStringList bibs=s.split(',',QString::SkipEmptyParts);
+			completerNeedsUpdate=true;
 			foreach(QString elem,bibs){
 			    mMentionedBibTeXFiles.insert(document->line(i).handle(),elem);
 			}
@@ -431,6 +437,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		s=findToken(curLine,"\\label{");
 		if (s!="") {
 			mLabelItem.insert(document->line(i).handle(),s);
+			completerNeedsUpdate=true;
 			StructureEntry *newLabel=new StructureEntry(this, StructureEntry::SE_LABEL);
 			newLabel->title=s;
 			newLabel->lineNumber=i;
@@ -548,6 +555,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	}
 
 	emit structureUpdated(this);
+
+	emit updateCompleter();
 
 }
 

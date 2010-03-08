@@ -140,6 +140,7 @@ signals:
 	void removeElement(StructureEntry *se,int row);
 	void addElement(StructureEntry *se,int row);
 	void updateElement(StructureEntry *se);
+	void updateCompleter();
 };
 
 class LatexDocuments;
