@@ -665,7 +665,10 @@ void Texmaker::createStatusBar() {
 
 void Texmaker::UpdateCaption() {
 	if (!currentEditorView()) documents.currentDocument=0;
-	else documents.currentDocument=currentEditorView()->document;
+	else {
+	    documents.currentDocument=currentEditorView()->document;
+	    documents.updateStructure();
+	}
 	QString title;
 	if (!currentEditorView())	{
 		title="TexMakerX";
