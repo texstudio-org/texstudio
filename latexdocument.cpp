@@ -820,7 +820,10 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 		model->resetAll();
 		if (document==currentDocument)
 			currentDocument=0;
-	} else document->setFileName(document->getFileName());
+	} else {
+		document->setFileName(document->getFileName());
+		model->resetAll();
+	}
 }
 void LatexDocuments::setMasterDocument(LatexDocument* document){
 	if (document==masterDocument) return;
