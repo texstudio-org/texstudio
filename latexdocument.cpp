@@ -380,8 +380,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		for (int j=0; j< commandTokens.size();j++){
 			QString name;
 			QString arg;
-			completerNeedsUpdate=true;
 			if (findTokenWithArg(curLine,commandTokens[j],name,arg)) {
+				completerNeedsUpdate=true;
 				int options=arg.toInt(); //returns 0 if conversion fails
 				for (int j=0; j<options; j++) {
 					if (j==0) name.append("{%<arg1%|%>}");
@@ -395,8 +395,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		for (int j=0; j< envTokens.size();j++){
 			QString name;
 			QString arg;
-			completerNeedsUpdate=true;
 			if (findTokenWithArg(curLine,envTokens[j],name,arg)) {
+				completerNeedsUpdate=true;
 				int options=arg.toInt(); //returns 0 if conversion fails
 				name.append("}");
 				mUserCommandList.insert(document->line(i).handle(),"\\end{"+name);
@@ -556,7 +556,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 	emit structureUpdated(this);
 
-	emit updateCompleter();
+	if (completerNeedsUpdate)
+		emit updateCompleter();
 
 }
 
