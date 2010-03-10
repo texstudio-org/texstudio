@@ -90,7 +90,6 @@ class QCE_EXPORT QNFADefinition : public QLanguageDefinition
 		virtual void expand(QDocument *d, int line);
 		virtual void collapse(QDocument *d, int line);
 		void fold(QDocument *d, int line, bool expand);
-		virtual int blockFlags(QDocument *d, int line, int depth) const;
 		virtual bool correctFolding(QDocument *d);
 
 		static void load(QFile *f, QLanguageFactory::LangData *d, QFormatScheme *s);
@@ -148,9 +147,7 @@ class QCE_EXPORT QNFADefinition : public QLanguageDefinition
 		
 		void matchOpen(QDocument *d, PMatch& m);
 		void matchClose(QDocument *d, PMatch& m);
-		
-		int findBlockEnd(QDocument *d, int line, bool *open = 0);
-		
+
 		static void flushEmbedRequests(const QString& lang);
 		
 		struct EmbedRequest

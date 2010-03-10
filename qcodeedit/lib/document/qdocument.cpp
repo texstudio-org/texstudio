@@ -1554,21 +1554,26 @@ void QDocument::expandParents(int l){
 	}
 }
 
-//Collapse at the first possible point before/at line
+//Collapse at the first possible point before/at the line
 void QDocument::foldBlockAt(bool unFold, int l) {
-	QLanguageDefinition* ld = languageDefinition();
-	while (l>=0) {
-		QDocumentLine b=line(l);
-		if (!b.isHidden()) {
-			if (unFold && (ld->blockFlags(this,l) & QLanguageDefinition::Collapsed)) {
-				ld->expand(this,l);
-				break;
-			} else if (!unFold && (ld->blockFlags(this,l) & QLanguageDefinition::Collapsible) && !(ld->blockFlags(this,l) & QLanguageDefinition::Collapsed)) {
-				ld->collapse(this,l);
+	if (unFold) {
+		//search nearest line which is folded and unfold it
+		for (;l>=0;l--)
+			if (line(l).hasFlag(QDocumentLine::CollapsedBlockStart)) {
+				languageDefinition()->expand(this,l);
 				break;
 			}
+	} else {
+		//search latest line before l which can be folded and is not folded
+		int foldAt=-1;
+		QFoldedLineIterator fli = languageDefinition()->foldedLineIterator(this);
+		while (fli.lineNr<=l) {
+			if (fli.open && !fli.collapsedBlockStart) foldAt=fli.lineNr;
+			++fli;
 		}
-		l--;
+		//fold it
+		if (foldAt!=-1)
+			languageDefinition()->collapse(this,foldAt);
 	}
 }
 
@@ -1608,32 +1613,29 @@ void QDocument::correctFolding(int fromInc, int toInc){
 		return;
 
 	//recalculate the map of hidden lines (=cache) from the hidden flag of the lines
-	m_impl->m_hidden.clear();
+	m_impl->m_hidden.clear();	
 	QList<QPair<int,int> > blockStartList;
-	for (int i=0;i<lines();i++){
-		QDocumentLine l=line(i);
-		bool blockStart=l.hasFlag(QDocumentLine::CollapsedBlockStart);
-		bool blockEnd=l.hasFlag(QDocumentLine::CollapsedBlockEnd);
-		int openCount=0;
-		if (blockStart || blockEnd) openCount=QCE_FOLD_OPEN_COUNT(ld->blockFlags(this,i,0));
-		if (blockStart)
-			blockStartList << QPair<int,int>(i, openCount);
-		if (blockEnd){
+	for (QFoldedLineIterator fli = ld->foldedLineIterator(this);
+	     fli.line.isValid();
+	     ++fli){
+		if (fli.collapsedBlockStart)
+			blockStartList << QPair<int,int>(fli.lineNr, fli.open);
+		if (fli.collapsedBlockEnd){
 			Q_ASSERT(!blockStartList.empty());
-			int c=QCE_FOLD_CLOSE_COUNT(ld->blockFlags(this,i,0));
+			int c=fli.close;
 			while (blockStartList.size()>0 && blockStartList.last().second<=c){
 				c-=blockStartList.last().second;
-				if (openCount==0)
-					m_impl->m_hidden.insert(blockStartList.last().first, i-blockStartList.last().first);
+				if (fli.open==0)
+					m_impl->m_hidden.insertMulti(blockStartList.last().first, fli.lineNr-blockStartList.last().first);
 				else
-					m_impl->m_hidden.insert(blockStartList.last().first, i-blockStartList.last().first-1);
+					m_impl->m_hidden.insertMulti(blockStartList.last().first, fli.lineNr-blockStartList.last().first-1);
 				blockStartList.removeLast();
 			}
 			if (c>0 && !blockStartList.empty()) blockStartList.last().second-=c;
 		}
 	}
 	for (int i=0;i<blockStartList.size();i++)
-		m_impl->m_hidden.insert(blockStartList[i].first,lines()-1-blockStartList[i].first);
+		m_impl->m_hidden.insertMulti(blockStartList[i].first,lines()-1-blockStartList[i].first);
 
 	m_impl->setHeight();
 	//emitFormatsChange(line, count);

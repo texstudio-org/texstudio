@@ -92,7 +92,7 @@ void QFoldPanel::mousePressEvent(QMouseEvent *e)
 
 		if ( b.hasFlag(QDocumentLine::CollapsedBlockStart) )
 			def->expand(doc, ln);
-		else if ( def->blockFlags(doc, ln, 0) & QLanguageDefinition::Collapsible )
+		else //if ( def->blockFlags(doc, ln, 0) & QLanguageDefinition::Collapsible ) collapse checks if it can collapse the line
 			def->collapse(doc, ln);
 
 		act = true;

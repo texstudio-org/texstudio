@@ -17,6 +17,7 @@
 #define _QLANGUAGE_DEFINITION_H_
 
 #include "mostQtHeaders.h"
+#include "qdocumentline.h"
 
 #include "qce-config.h"
 
@@ -78,9 +79,8 @@ class QCE_EXPORT QLanguageDefinition
 		
 		virtual void expand(QDocument *d, int line);
 		virtual void collapse(QDocument *d, int line);
-		virtual int blockFlags(QDocument *d, int line, int depth = 0) const;
 		virtual bool correctFolding(QDocument *d);
-		virtual QFoldedLineIterator foldedLineIterator(QDocument *d, bool trackHidden=false, int line=0) const;
+		virtual QFoldedLineIterator foldedLineIterator(QDocument *d, int line=0) const;
 };
 
 struct QCE_EXPORT FoldedParenthesis{
@@ -95,23 +95,36 @@ struct QCE_EXPORT FoldedParenthesis{
 
 class QCE_EXPORT QFoldedLineIterator{
 public:
-	//QDocumentLine line; need another include
+	//All these values (except line.impl) are READ-ONLY
+	//(no methods for simplicity and performance)
+
+	//You can change the folding while the iterator exists, but
+	//then hidden, hiddenDepth and collapsedBlockEnd can have
+	//invalid values
+
+	//current line
+	QDocumentLine line;
 	int lineNr;
+	//all parentheses which are open (at the end of this line)
 	QList<FoldedParenthesis> openParentheses;
-	//bool open, close;
+	//Count of parentheses which are opened or closed in this line (excluding parentheses like {()} which are opened and closed on this line)
 	int open, close;
 
-
+	//if this line is hidden (actual value, independent from line flags)
 	bool hidden;
+	//if this line starts a collapsed block (actual value, but only true if the flag is also set)
 	bool collapsedBlockStart;
+	//if this line ends a collapsed block (actual value, independent from line flags)
 	bool collapsedBlockEnd;
+	//count of parenthesis in openParentheses which hiding == true
 	int hiddenDepth;
+
+	//goto next line and update parentheses values
 	QFoldedLineIterator& operator++();
 private:
 	friend class QLanguageDefinition;
 	QDocument* doc;
 	const QLanguageDefinition* def;
-	bool trackHidden;
 };
 
 #endif // _QLANGUAGE_DEFINITION_H_

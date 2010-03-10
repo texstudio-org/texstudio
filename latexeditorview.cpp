@@ -307,7 +307,16 @@ void LatexEditorView::foldEverything(bool unFold) {
 	}
 }
 //collapse/expand lines at the top level
-void LatexEditorView::foldLevel(bool unFold, int level) {
+void LatexEditorView::foldLevel(bool unFold, int level) {	
+	QDocument* doc = editor->document();
+	QLanguageDefinition* ld = doc->languageDefinition();
+	for (QFoldedLineIterator fli = ld->foldedLineIterator(doc);
+	fli.line.isValid(); ++fli){
+		if (fli.openParentheses.size()==level && fli.open) {
+			if (unFold) ld->expand(doc, fli.lineNr);
+			else ld->collapse(doc, fli.lineNr);
+		}
+	}/*
 	QDocument* doc = editor->document();
 	QLanguageDefinition* ld = doc->languageDefinition();
 	int depth=0;
@@ -334,7 +343,7 @@ void LatexEditorView::foldLevel(bool unFold, int level) {
 		}
 		if (ld->blockFlags(doc, n, depth) & QLanguageDefinition::Collapsed)
 			depth -= open; // outermost block folded : none of the opening is actually opened
-	}
+	}*/
 }
 //Collapse at the first possible point before/at line
 void LatexEditorView::foldBlockAt(bool unFold, int line) {
