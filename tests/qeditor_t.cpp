@@ -2,7 +2,7 @@
 #include "qeditor_t.h"
 #include "qeditor.h"
 #include "qdocumentline.h"
-#include "tests/testutil.h"
+#include "testutil.h"
 #include <QtTest/QtTest>
 Q_DECLARE_METATYPE(QList<int>);
 
@@ -183,5 +183,79 @@ void QEditorTest::foldedText(){
 	for (int i=0;i<editor->document()->lines();i++)
 		QVERIFY2(editor->document()->line(i).isHidden() == newHiddenLines.contains(i),qPrintable(QString::number(i)));
 }
+
+void QEditorTest::passiveFolding_data(){
+	QTest::addColumn<QString>("editorText");
+	QTest::addColumn<QList<int> >("foldAt");
+	QTest::addColumn<QList<int> >("hiddenLines1");
+	QTest::addColumn<QList<int> >("unFoldAt");
+	QTest::addColumn<QList<int> >("hiddenLines2");
+	QTest::addColumn<QList<int> >("foldAtAgain");
+	QTest::addColumn<QList<int> >("hiddenLines3");
+
+	QTest::newRow("trivial")
+		<< "0\n1{\n2\n3\n4}\n5"
+		<< (QList<int>() << 1)
+		<< (QList<int>() << 2 << 3 << 4)
+		<< (QList<int>() << 1)
+		<< (QList<int>())
+		<< (QList<int>() << 1)
+		<< (QList<int>() << 2 << 3 << 4);
+
+	QTest::newRow("trivial mixed brackets")
+		<< "0\n1${[](\n2\n3\n4)\\{\\}}$\n5"
+		<< (QList<int>() << 1)
+		<< (QList<int>() << 2 << 3 << 4)
+		<< (QList<int>() << 1)
+		<< (QList<int>())
+		<< (QList<int>() << 1)
+		<< (QList<int>() << 2 << 3 << 4);
+
+	QTest::newRow("trivial open/close block")
+		<< "0\n1{\n2\n3\n4} {\n5\n6}\n"
+		<< (QList<int>() << 1 << 4)
+		<< (QList<int>() << 2 << 3 << 5 << 6)
+		<< (QList<int>() << 4)
+		<< (QList<int>() << 2 << 3)
+		<< (QList<int>() << 4)
+		<< (QList<int>() << 2 << 3 << 5 << 6);
+
+	QTest::newRow("open/close block with weight override")
+		<< "0\n1{\n2\n3\n4(} {)\n5\n6}\n"
+		<< (QList<int>() << 1 << 4)
+		<< (QList<int>() << 2 << 3 << 5 << 6)
+		<< (QList<int>() << 4)
+		<< (QList<int>() << 2 << 3)
+		<< (QList<int>() << 4)
+		<< (QList<int>() << 2 << 3 << 5 << 6);
+}
+void QEditorTest::passiveFolding(){
+	QFETCH(QString, editorText);
+	QFETCH(QList<int>, foldAt);
+	QFETCH(QList<int>, hiddenLines1);
+	QFETCH(QList<int>, unFoldAt);
+	QFETCH(QList<int>, hiddenLines2);
+	QFETCH(QList<int>, foldAtAgain);
+	QFETCH(QList<int>, hiddenLines3);
+
+	editor->document()->setText(editorText);
+
+	foreach(const int &i, foldAt)
+		editor->document()->collapse(i);
+	for (int i=0;i<editor->document()->lines();i++)
+		QVERIFY2(editor->document()->line(i).isHidden() == hiddenLines1.contains(i),qPrintable(QString::number(i)));
+
+	foreach(const int &i, unFoldAt)
+		editor->document()->expand(i);
+	for (int i=0;i<editor->document()->lines();i++)
+		QVERIFY2(editor->document()->line(i).isHidden() == hiddenLines2.contains(i),qPrintable(QString::number(i)));
+
+	foreach(const int &i, foldAtAgain)
+		editor->document()->collapse(i);
+	for (int i=0;i<editor->document()->lines();i++)
+		QVERIFY2(editor->document()->line(i).isHidden() == hiddenLines3.contains(i),qPrintable(QString::number(i)));
+
+}
+
 
 #endif

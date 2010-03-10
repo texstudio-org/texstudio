@@ -200,8 +200,8 @@ QFoldedLineIterator& QFoldedLineIterator::operator++(){
 				int removedHidingBrackets=0;
 				int removedOwnBrackets=0;
 				for (int i=openParentheses.size()-1;i>=0;i--){
-					if (openParentheses[i].hiding) removedHidingBrackets++;
 					if (openParentheses[i].line == lineNr) removedOwnBrackets++;
+					else if (openParentheses[i].hiding) removedHidingBrackets++;
 					if (openParentheses[i].weight>weight) break;
 					else if ( openParentheses[i].weight==weight ) {
 						if ( openParentheses[i].id!=par.id ) break;
