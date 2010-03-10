@@ -939,6 +939,10 @@ QString QNFADefinition::defaultLineMark() const
 	return m_defaultMark;
 }
 
+int QNFADefinition::parenthesisWeight(int id) const{
+	return m_parenWeight.value(id, -1);
+}
+
 /*!
 	\brief Brace matching entry point
 */
@@ -1023,7 +1027,7 @@ void QNFADefinition::match(QDocumentCursor& c)
 		m.line[0] = c.lineNumber();
 		m.column[0] = p.offset;
 		m.length[0] = p.length;
-		m.weight[0] = m_parenWeight.value(p.id, -1);
+		m.weight[0] = parenthesisWeight(p.id);
 
 		if ( (p.role & QParenthesis::Open) && (p.role & QParenthesis::Close) )
 		{
@@ -1040,7 +1044,7 @@ void QNFADefinition::match(QDocumentCursor& c)
 			m.line[0] = c.lineNumber();
 			m.column[0] = p.offset;
 			m.length[0] = p.length;
-			m.weight[0] = m_parenWeight.value(p.id, -1);
+			m.weight[0] = parenthesisWeight(p.id);
 
 			matchClose(d, m);
 
@@ -1096,7 +1100,7 @@ void QNFADefinition::matchOpen(QDocument *d, PMatch& m)
 			if ( par.offset < pos )
 				continue;
 //qDebug("%i: %i vs. %i", par.id, m_parenWeight.value(par.id, -1), m.weight[0]);
-			if ( m_parenWeight.value(par.id, -1) < m.weight[0] )
+			if ( parenthesisWeight(par.id) < m.weight[0] )
 				continue;
 
 			if ( (par.role & QParenthesis::Open) && (par.role & QParenthesis::Close) )
@@ -1208,7 +1212,7 @@ void QNFADefinition::matchOpen(QDocument *d, PMatch& m)
 	m.line[1] = line;
 	m.column[1] = par.offset;
 	m.length[1] = par.length;
-	//m.weight[1] = m_parenWeight.value(par.id, -1); would be more consistent, but weight[1] won't be used
+	//m.weight[1] = parenthesisWeight(.value(par.id, -1); would be more consistent, but weight[1] won't be used
 }
 
 void QNFADefinition::matchClose(QDocument *d, PMatch& m)
@@ -1231,7 +1235,7 @@ void QNFADefinition::matchClose(QDocument *d, PMatch& m)
 			if ( par.offset > pos )
 				continue;
 
-			if ( m_parenWeight.value(par.id, -1) < m.weight[0] )
+			if ( parenthesisWeight(par.id) < m.weight[0] )
 				continue;
 
 			if ( (par.role & QParenthesis::Open) && (par.role & QParenthesis::Close) )
@@ -1342,7 +1346,7 @@ void QNFADefinition::matchClose(QDocument *d, PMatch& m)
 	m.line[1] = line;
 	m.column[1] = par.offset;
 	m.length[1] = par.length;
-	//m.weight[1] = m_parenWeight.value(par.id, -1); would be more consistent, but weight[1] won't be used
+	//m.weight[1] = parenthesisWeight(.value(par.id, -1); would be more consistent, but weight[1] won't be used
 }
 
 /*!
@@ -1493,7 +1497,7 @@ int QNFADefinition::findBlockEnd(QDocument *d, int line, bool *open)
 		m.line[0] = line;
 		m.column[0] = p.offset;
 		m.length[0] = p.length;
-		m.weight[0] = m_parenWeight.value(p.id, -1);
+		m.weight[0] = parenthesisWeight(p.id);
 
 		matchOpen(d, m);
 
@@ -1531,10 +1535,9 @@ int QNFADefinition::findBlockEnd(QDocument *d, int line, bool *open)
 */
 void QNFADefinition::expand(QDocument *d, int line)
 {
-	QDocumentLine b = d->line(line);
+	fold(d, line, true);
 
-	if ( !b.isValid() || !b.hasFlag(QDocumentLine::CollapsedBlockStart) )
-		return;
+/*
 	
 	bool open = false;
 	int end = findBlockEnd(d, line, &open);
@@ -1547,7 +1550,6 @@ void QNFADefinition::expand(QDocument *d, int line)
 	if ( count <= 0 )
 		return;
 
-	b.setFlag(QDocumentLine::CollapsedBlockStart, false);
 
 	bool shared = false;
 	int i = line + 1;
@@ -1588,7 +1590,7 @@ void QNFADefinition::expand(QDocument *d, int line)
 	}
 
 	//qDebug("expanding %i lines from %i", count, line);
-	d->impl()->showEvent(line, count);
+	d->impl()->showEvent(line, count);*/
 }
 
 /*!
@@ -1596,14 +1598,9 @@ void QNFADefinition::expand(QDocument *d, int line)
 */
 void QNFADefinition::collapse(QDocument *d, int line)
 {
-	QDocumentLine b = d->line(line);
-
-	if ( !b.isValid() || b.hasFlag(QDocumentLine::CollapsedBlockStart) )
-		return;
+	fold(d, line, false);
 	
-	//qDebug("collapse line %i", line);
-	
-	bool open = false;
+/*	bool open = false;
 	int end = findBlockEnd(d, line, &open);
 	
 	int count = end - line;
@@ -1637,7 +1634,7 @@ void QNFADefinition::collapse(QDocument *d, int line)
 	}
 
 	//qDebug("collapsing %i lines from %i", count, line);
-	d->impl()->hideEvent(line, count);
+	d->impl()->hideEvent(line, count);*/
 
 	#if 0
 	if ( !m_indentFold )
@@ -1733,12 +1730,61 @@ int QNFADefinition::blockFlags(QDocument *d, int line, int depth) const
 	return QCE_FOLD_FLAGS(ret, open, close);
 }
 
+void QNFADefinition::fold(QDocument *d, int line, bool expand){
+	QDocumentLine b = d->line(line);
+
+	if ( !b.isValid() || (b.hasFlag(QDocumentLine::CollapsedBlockStart) != expand) )
+		return;
+
+	b.setFlag(QDocumentLine::CollapsedBlockStart, !expand);
+
+	QFoldedLineIterator fli = foldedLineIterator(d, true, line);
+
+	int firstParenthesisPos = fli.openParentheses.size() - fli.open;
+	const FoldedParenthesis firstParenthesis = fli.openParentheses[firstParenthesisPos];
+
+	while (fli.lineNr<d->lines() &&
+	       firstParenthesisPos<fli.openParentheses.size() &&
+	       fli.openParentheses[firstParenthesisPos] == firstParenthesis){
+		++fli;
+		d->line(fli.lineNr).setFlag(QDocumentLine::Hidden, fli.hidden);
+	}
+	d->line(fli.lineNr).setFlag(QDocumentLine::CollapsedBlockEnd, fli.collapsedBlockEnd);
+
+	int count = fli.lineNr - line;
+	if (fli.open)
+		--count;
+
+	if (expand) d->impl()->showEvent(line, count);
+	else d->impl()->hideEvent(line, count);
+}
+
+
 /*! Corrects the folding of a document
     i.e., it ensures that no line is hidden which is not in an collapsable block
     (useful if the blocks have changed)
 */
 bool QNFADefinition::correctFolding(QDocument *d){
-	QList<int> blockOpenCountList;
+	bool changed=false;
+	for (QFoldedLineIterator fli = foldedLineIterator(d, true);
+	     fli.lineNr<d->lines();
+	     ++fli){
+		QDocumentLine l = d->line(fli.lineNr);
+		if (l.hasFlag(QDocumentLine::Hidden)!=fli.hidden) {
+			changed=true;
+			l.setFlag(QDocumentLine::Hidden, fli.hidden);
+		}
+		if (l.hasFlag(QDocumentLine::CollapsedBlockStart)!=fli.collapsedBlockStart) {
+			changed=true;
+			l.setFlag(QDocumentLine::CollapsedBlockStart, fli.collapsedBlockStart);
+		}
+		if (l.hasFlag(QDocumentLine::CollapsedBlockEnd)!=fli.collapsedBlockEnd) {
+			changed=true;
+			l.setFlag(QDocumentLine::CollapsedBlockEnd, fli.collapsedBlockEnd);
+		}
+	}
+	return changed;
+/*	QList<int> blockOpenCountList;
 	QList<bool> blockCollapsedList;
 	int foldedState=0;
 	bool changed=false;
@@ -1804,7 +1850,7 @@ bool QNFADefinition::correctFolding(QDocument *d){
 
 		lastBlockStart=blockStart;
 	}
-	return changed;
+	return changed;*/
 }
 
 void QNFADefinition::addContext(const QString& id, QNFA *nfa)

@@ -105,6 +105,7 @@ void QFoldPanel::mousePressEvent(QMouseEvent *e)
 
 }
 
+
 /*!
 
 */
@@ -124,12 +125,9 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 	bool bVisible = false; //,
 	//	inCursorBlock = false;
 
-	QDocumentLine block;
 	const QFontMetrics fm(doc->font());
 
-	int n,
-		pos,
-		depth = 0,
+	int pos,
 		max = doc->lines(),
 		ls = fm.lineSpacing(),
 		pageBottom = e->viewport()->height(),
@@ -139,98 +137,72 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 
 	//qDebug("beg pos : %i", pos);
 
-	for ( n = 0; n < max; ++n )
+	QFoldedLineIterator fli = def->foldedLineIterator(doc);
+
+	bool oldFolding=false;
+
+	for (; fli.lineNr<doc->lines(); ++fli)
 	{
 		if ( pos > pageBottom )
 			break;
 
-		block = doc->line(n);
+		QDocumentLine line=doc->line(fli.lineNr);
 
-		if ( block.isHidden() )
+		if ( line.isHidden() )
 		{
 			continue;
 		}
 
-		int len = ls * block.lineSpan();
-		int flags = def->blockFlags(doc, n, depth);
-		short open = QCE_FOLD_OPEN_COUNT(flags);
-		short close = QCE_FOLD_CLOSE_COUNT(flags);
+		int len = ls * line.lineSpan();
+
+//		bool oldFolding = !fli.openParentheses.empty() && fli.openParentheses.first().line!=fli.lineNr;
 
 		bVisible = ((pos + len) >= 0);
 
-		int oldDepth = depth;
-
-		depth -= close;
-
-		if ( depth < 0 )
-			depth = 0;
-
-		depth += open;
-
-		if ( open )
+		if ( fli.open )
 		{
-			if ( flags & QLanguageDefinition::Collapsed )
+			if ( line.hasFlag(QDocumentLine::CollapsedBlockStart) )
 			{
+				// outermost block folded : none of the opening is actually opened
 				int bound = (ls - 8) / 2;
 				int mid = pos + len - ls / 6;
-
-				// outermost block folded : none of the opening is actually opened
-				depth -= open;
 
 				if ( bVisible )
 				{
 					// draw icon
 
-					if ( bound > 0 && oldDepth > 0 )
+					if ( bound > 0 && oldFolding )
 					{
 						p->drawLine(7, pos, 7, pos + bound);
 					}
 
-					if ( close )
+					if ( fli.close )
 					{
 						p->drawLine(7, pos + 8 + bound, 7, mid);
 						p->drawLine(7, mid, 12, mid);
 					}
 
-					m_lines << n;
+					m_lines << fli.lineNr;
 					m_rects << drawIcon(p, e, 3, pos + bound, true);
 				}
 
-				int sub = open;
+				int firstParenthesisPos = fli.openParentheses.size() - fli.open;
+				const FoldedParenthesis firstParenthesis = fli.openParentheses[firstParenthesisPos];
 
-				//qDebug("%i : +%i", n, open);
-
-				while ( sub > 0 && ((n + 1) < max) )
-				{
-					++n;
-					block = doc->line(n);
-
-					if ( !block.isHidden() )
-					{
+				while (fli.lineNr<doc->lines() &&
+				       firstParenthesisPos<fli.openParentheses.size() &&
+				       fli.openParentheses[firstParenthesisPos] == firstParenthesis){
+					if (fli.lineNr < doc->lines()-1 && !doc->line(fli.lineNr+1).isHidden()) {
 						if ( bVisible )
 							p->drawLine(7, pos + 8 + bound, 7, pos + len);
-
-						--n;
 						break;
 					}
-
-					int sflags = def->blockFlags(doc, n, depth + 1);
-					short sopen = QCE_FOLD_OPEN_COUNT(sflags);
-					short sclose = QCE_FOLD_CLOSE_COUNT(sflags);
-
-					sub -= sclose;
-
-					if ( sub <= 0 )
-						break;
-
-					sub += sopen;
+					++fli;
 				}
 
-				depth += sub;
-
-				if ( bVisible && depth > 0 )
+				if ( bVisible && !fli.openParentheses.empty() )
 				{
-					if ( close )
+					if ( fli.close )
 						p->drawLine(7, mid, 7, pos + len);
 					else
 						p->drawLine(7, pos + 8 + bound, 7, pos + len);
@@ -240,30 +212,30 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 				{
 					int bound = (ls - 8) / 2;
 
-					if ( oldDepth > 0 && bound > 0 )
+					if ( oldFolding && bound > 0 )
 						p->drawLine(7, pos, 7, pos + bound);
 
-					m_lines << n;
+					m_lines << fli.lineNr;
 					m_rects << drawIcon(p, e, 3, pos + bound, false);
 
 					int mid = pos + len - ls / 6;
 
-					if ( close )
+					if ( fli.close )
 						p->drawLine(7, mid, 12, mid);
 
 					if ( bound > 0 )
 						p->drawLine(7, pos + 8 + bound, 7, pos + len);
 				}
 			}
-		} else if ( (oldDepth > 0) && bVisible ) {
-			if ( close )
+		} else if ( (oldFolding) && bVisible ) {
+			if ( fli.close )
 			{
 				int mid = pos + len - ls / 6;
 
 				p->drawLine(7, pos, 7, mid);
 				p->drawLine(7, mid, 12, mid);
 
-				if ( depth > 0 )
+				if ( !fli.openParentheses.empty() )
 					p->drawLine(7, pos, 7, pos + len);
 			} else  {
 				p->drawLine(7, pos, 7, pos + len);
@@ -271,6 +243,7 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 		}
 
 		pos += len;
+		oldFolding=!fli.openParentheses.empty();
 	}
 	
 	return true;
