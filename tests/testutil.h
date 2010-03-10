@@ -3,6 +3,7 @@
 #ifndef QT_NO_DEBUG
 #include <QtTest/QtTest>
 #include <QMessageBox>
+#include <QObject>
 //#define QSVERIFY(a,b) QVERIFY(a)
 #define QSVERIFY2(a,b) QVERIFY2(a, qPrintable(QString("%1").arg(b)))
 #define QEQUAL(a,b) QSVERIFY2((a)==(b), QString("equal failed: got \"%1\" !=expected \"%2\" ").arg(a).arg(b))

@@ -19,6 +19,8 @@ private slots:
 	void loadSave();
 	void foldedText_data();
 	void foldedText();
+	void passiveFolding_data();
+	void passiveFolding();
 };
 #endif
 #endif // QEDITORTEST_H
