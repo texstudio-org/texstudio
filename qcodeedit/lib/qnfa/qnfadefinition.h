@@ -79,6 +79,8 @@ class QCE_EXPORT QNFADefinition : public QLanguageDefinition
 		
 		virtual QString defaultLineMark() const;
 		
+		virtual int parenthesisWeight(int id) const;
+
 		virtual void clearMatches(QDocument *d);
 		virtual void match(QDocumentCursor& c);
 		
@@ -87,6 +89,7 @@ class QCE_EXPORT QNFADefinition : public QLanguageDefinition
 		
 		virtual void expand(QDocument *d, int line);
 		virtual void collapse(QDocument *d, int line);
+		void fold(QDocument *d, int line, bool expand);
 		virtual int blockFlags(QDocument *d, int line, int depth) const;
 		virtual bool correctFolding(QDocument *d);
 

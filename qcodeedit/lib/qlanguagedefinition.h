@@ -37,6 +37,8 @@ class QDocumentCursor;
 #define QCE_FOLD_OPEN_COUNT(flags) ((flags) & QLanguageDefinition::OpenMask)
 #define QCE_FOLD_CLOSE_COUNT(flags) (((flags) & QLanguageDefinition::CloseMask) >> 12)
 
+class QFoldedLineIterator;
+
 class QCE_EXPORT QLanguageDefinition
 {
 	public:
@@ -65,7 +67,9 @@ class QCE_EXPORT QLanguageDefinition
 		virtual QString singleLineComment() const;
 		
 		virtual QString defaultLineMark() const;
-		
+
+		virtual int parenthesisWeight(int id) const;
+
 		virtual void match(QDocumentCursor& c);
 		virtual void clearMatches(QDocument *d);
 		
@@ -76,6 +80,38 @@ class QCE_EXPORT QLanguageDefinition
 		virtual void collapse(QDocument *d, int line);
 		virtual int blockFlags(QDocument *d, int line, int depth = 0) const;
 		virtual bool correctFolding(QDocument *d);
+		virtual QFoldedLineIterator foldedLineIterator(QDocument *d, bool trackHidden=false, int line=0) const;
+};
+
+struct QCE_EXPORT FoldedParenthesis{
+	int line, id, weight;
+	bool hiding;
+	FoldedParenthesis(int l, int i, int w, bool h):line(l), id(i), weight(w), hiding(h){}
+	FoldedParenthesis(const FoldedParenthesis& fp):line(fp.line), id(fp.id), weight(fp.weight), hiding(fp.hiding){}
+	bool operator== (const FoldedParenthesis& other) const{
+		return id==other.id && line==other.line;
+	}
+};
+
+class QCE_EXPORT QFoldedLineIterator{
+public:
+	//QDocumentLine line; need another include
+	int lineNr;
+	QList<FoldedParenthesis> openParentheses;
+	//bool open, close;
+	int open, close;
+
+
+	bool hidden;
+	bool collapsedBlockStart;
+	bool collapsedBlockEnd;
+	int hiddenDepth;
+	QFoldedLineIterator& operator++();
+private:
+	friend class QLanguageDefinition;
+	QDocument* doc;
+	const QLanguageDefinition* def;
+	bool trackHidden;
 };
 
 #endif // _QLANGUAGE_DEFINITION_H_

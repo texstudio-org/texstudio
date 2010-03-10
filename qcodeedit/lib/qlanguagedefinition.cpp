@@ -40,9 +40,8 @@
 */
 
 #include "qdocument.h"
-#include "qdocumentline.h"
 #include "qdocumentcursor.h"
-
+#include "qdocumentline.h"
 #include "qlanguagefactory.h"
 
 /*!
@@ -101,6 +100,9 @@ QString QLanguageDefinition::defaultLineMark() const
 	return QString();
 }
 
+int QLanguageDefinition::parenthesisWeight(int id) const{
+	return 0;
+}
 /*!
 	\brief Brace matching entry point
 */
@@ -172,6 +174,74 @@ bool QLanguageDefinition::correctFolding(QDocument *d){
 	Q_UNUSED(d);
 
 	return false;
+}
+
+QFoldedLineIterator QLanguageDefinition::foldedLineIterator(QDocument *d, bool trackHidden, int line) const{
+	QFoldedLineIterator fli;
+	fli.doc=d;
+	fli.def=this;
+	fli.trackHidden=trackHidden;
+	fli.hidden=false;
+	fli.hiddenDepth=0;
+	for (fli.lineNr=-1;fli.lineNr<line;++fli);
+	return fli;
+}
+
+QFoldedLineIterator& QFoldedLineIterator::operator++(){
+	open = 0;
+	close = 0;
+	lineNr++;
+	QDocumentLine line=doc->line(lineNr);
+	if (!line.isValid())
+		return *this;
+	int oldHiddenDepth=hiddenDepth;
+	collapsedBlockStart=line.hasFlag(QDocumentLine::CollapsedBlockStart);
+	foreach (const QParenthesis& par, line.parentheses()){
+		if (!par.role & QParenthesis::Fold)
+			continue;
+		if (par.role & QParenthesis::Close && !openParentheses.empty()) {
+			if (openParentheses.last().id==par.id) {
+				//Close last bracket
+				if (openParentheses.last().line != lineNr) {
+					close++;
+					if (openParentheses.last().hiding) hiddenDepth--;
+				} else open--;
+				openParentheses.removeLast();
+			} else {
+				//Close a matching bracket if there are only "lighter" brackets in-between
+				int weight=def->parenthesisWeight(par.id);
+				int removedHidingBrackets=0;
+				for (int i=openParentheses.size()-1;i>=0;i--){
+					if (openParentheses[i].hiding) removedHidingBrackets++;
+					if (openParentheses[i].weight>weight) break;
+					else if ( openParentheses[i].weight==weight ) {
+						if ( openParentheses[i].id!=par.id ) break;
+						if ( openParentheses[i].line != lineNr ) close++;
+						else open--;
+						hiddenDepth-=removedHidingBrackets;
+						openParentheses.erase(openParentheses.begin()+i,openParentheses.end());
+						break;
+					}
+				}
+			}
+		}
+		if (par.role & QParenthesis::Open){
+			//Open new bracket
+			openParentheses << FoldedParenthesis(lineNr, par.id, def->parenthesisWeight(par.id), collapsedBlockStart );
+			open++;
+		}
+	}
+
+	collapsedBlockStart = collapsedBlockStart  && open;
+	collapsedBlockEnd = hiddenDepth!=oldHiddenDepth;
+
+	hidden = (hiddenDepth>0) || //line contained in a hidden block
+		 (hiddenDepth==0 && oldHiddenDepth>0 && !open); //a closing bracket is hidden iff there is no new block to open
+
+	if (collapsedBlockStart)
+		hiddenDepth+=open;
+
+	return *this;
 }
 
 /*! @} */
