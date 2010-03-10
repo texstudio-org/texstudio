@@ -42,7 +42,7 @@ struct StructureEntry{
 	enum Type {SE_DOCUMENT_ROOT,SE_OVERVIEW,SE_SECTION,SE_BIBTEX,SE_TODO,SE_INCLUDE,SE_LABEL,SE_BLOCK=SE_LABEL};
 	Type type;
 	QString title;
-	int level; //only used for section types
+	uint level; //only used for section types
 	int lineNumber;
 	QDocumentLineHandle* lineHandle;
 	QList<StructureEntry*> children;

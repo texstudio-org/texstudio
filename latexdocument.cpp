@@ -326,7 +326,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	}
 	// purge unconnected elements
 	foreach(se,toBeDeleted.keys()){
-		//emit removeElement(se);
+		emit removeElement(se,toBeDeleted.value(se));
 		delete se;
 	}
 
@@ -575,9 +575,9 @@ void LatexDocument::includeDocument(LatexDocument* includedDocument){
 
 }
 */
-StructureEntry::StructureEntry(LatexDocument* doc, Type newType):type(newType), lineNumber(-1), lineHandle(0), parent(0), document(doc),appendix(false){
+StructureEntry::StructureEntry(LatexDocument* doc, Type newType):type(newType),level(0), lineNumber(-1), lineHandle(0), parent(0), document(doc),appendix(false){
 }
-StructureEntry::StructureEntry(LatexDocument* doc, StructureEntry* parent, Type newType):type(newType), lineNumber(-1), lineHandle(0), document(doc),appendix(false){
+StructureEntry::StructureEntry(LatexDocument* doc, StructureEntry* parent, Type newType):type(newType),level(0), lineNumber(-1), lineHandle(0), document(doc),appendix(false){
 	parent->add(this);
 }
 StructureEntry::~StructureEntry(){
@@ -823,6 +823,8 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 	} else {
 		document->setFileName(document->getFileName());
 		model->resetAll();
+		if (document==currentDocument)
+			currentDocument=0;
 	}
 }
 void LatexDocuments::setMasterDocument(LatexDocument* document){
