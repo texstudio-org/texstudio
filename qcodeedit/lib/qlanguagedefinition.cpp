@@ -158,29 +158,16 @@ void QLanguageDefinition::collapse(QDocument *d, int line)
 	Q_UNUSED(line)
 }
 
-/*!
-	\brief Compute the collapse state of a line
-*/
-int QLanguageDefinition::blockFlags(QDocument *d, int line, int depth) const
-{
-	Q_UNUSED(d)
-	Q_UNUSED(line)
-	Q_UNUSED(depth)
-
-	return 0;
-}
-
 bool QLanguageDefinition::correctFolding(QDocument *d){
 	Q_UNUSED(d);
 
 	return false;
 }
 
-QFoldedLineIterator QLanguageDefinition::foldedLineIterator(QDocument *d, bool trackHidden, int line) const{
+QFoldedLineIterator QLanguageDefinition::foldedLineIterator(QDocument *d, int line) const{
 	QFoldedLineIterator fli;
 	fli.doc=d;
 	fli.def=this;
-	fli.trackHidden=trackHidden;
 	fli.hidden=false;
 	fli.hiddenDepth=0;
 	for (fli.lineNr=-1;fli.lineNr<line;++fli);
@@ -191,7 +178,7 @@ QFoldedLineIterator& QFoldedLineIterator::operator++(){
 	open = 0;
 	close = 0;
 	lineNr++;
-	QDocumentLine line=doc->line(lineNr);
+	line=doc->line(lineNr);
 	if (!line.isValid())
 		return *this;
 	int oldHiddenDepth=hiddenDepth;
@@ -211,13 +198,15 @@ QFoldedLineIterator& QFoldedLineIterator::operator++(){
 				//Close a matching bracket if there are only "lighter" brackets in-between
 				int weight=def->parenthesisWeight(par.id);
 				int removedHidingBrackets=0;
+				int removedOwnBrackets=0;
 				for (int i=openParentheses.size()-1;i>=0;i--){
 					if (openParentheses[i].hiding) removedHidingBrackets++;
+					if (openParentheses[i].line == lineNr) removedOwnBrackets++;
 					if (openParentheses[i].weight>weight) break;
 					else if ( openParentheses[i].weight==weight ) {
 						if ( openParentheses[i].id!=par.id ) break;
-						if ( openParentheses[i].line != lineNr ) close++;
-						else open--;
+						open-=removedOwnBrackets;
+						close+=(openParentheses.size()-i) - removedOwnBrackets;
 						hiddenDepth-=removedHidingBrackets;
 						openParentheses.erase(openParentheses.begin()+i,openParentheses.end());
 						break;
