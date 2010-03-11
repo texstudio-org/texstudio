@@ -314,7 +314,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void hovered(QPoint pos);
 
 		void fileReloaded();
-                void fileAutoReloading(QString fname);
+		void fileAutoReloading(QString fname);
+		void updateCompleter();
 		
 	public slots:
 		void checkClipboard();
@@ -326,6 +327,9 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void emitCursorPositionChanged();
 		
 		virtual void setContentModified(bool y);
+
+		void updateCompleterNow();
+		void completerNeedsUpdate();
 		
 	protected:
 		virtual bool event(QEvent *e);
@@ -448,6 +452,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		char m_saveState;
 		quint16 m_checksum;
 		
+		bool mCompleterNeedsUpdate;
+
 		QDocument *m_doc;
 		QList<QEditorInputBindingInterface*> m_bindings;
 		

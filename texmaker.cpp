@@ -54,6 +54,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	thesaurusFileName.clear();
 	previewEquation=false;
 	svndlg=0;
+	mCompleterNeedsUpdate=false;
 
 	ReadSettings();
 	setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
@@ -903,7 +904,10 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	//patch Structure
 	connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
 	connect(edit->editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
-	connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
+	connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(completerNeedsUpdate()));
+	connect(edit->document,SIGNAL(updateCompleter()),edit->editor,SLOT(completerNeedsUpdate()));
+	connect(edit->editor,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
+
 
 	if (asProject) {
 		if (singlemode) ToggleMode();
@@ -916,6 +920,10 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	if (!bibTeXmodified)
 		documents.bibTeXFilesModified=false; //loading a file can change the list of included bib files, but we won't consider that as a modification of them, because then they don't have to be recompiled
 	return edit;
+}
+
+void Texmaker::completerNeedsUpdate(){
+	mCompleterNeedsUpdate=true;
 }
 
 void Texmaker::fileNew(QString fileName) {
@@ -933,7 +941,9 @@ void Texmaker::fileNew(QString fileName) {
 
 	connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
 	connect(edit->editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
-	connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
+	connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(completerNeedsUpdate()));
+	connect(edit->document,SIGNAL(updateCompleter()),edit->editor,SLOT(completerNeedsUpdate()));
+	connect(edit->editor,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
 
 	EditorView->addTab(edit, fileName);
 	EditorView->setCurrentWidget(edit);
@@ -1056,7 +1066,9 @@ void Texmaker::fileNewFromTemplate() {
 
 		connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
 		connect(edit->editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
-		connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
+		connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(completerNeedsUpdate()));
+		connect(edit->document,SIGNAL(updateCompleter()),edit->editor,SLOT(completerNeedsUpdate()));
+		connect(edit->editor,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
 
 		EditorView->addTab(edit, "untitled");
 		EditorView->setCurrentWidget(edit);
@@ -1991,6 +2003,7 @@ void Texmaker::editRemovePlaceHolders(){
 //////////TAGS////////////////
 void Texmaker::NormalCompletion() {
 	if (!currentEditorView())	return;
+	if(mCompleterNeedsUpdate) updateCompleter();
 	// complete text if no command is present
 	QDocumentCursor c = currentEditorView()->editor->cursor();
 	QString eow=getCommonEOW();
@@ -2059,6 +2072,7 @@ void Texmaker::NormalCompletion() {
 }
 void Texmaker::InsertEnvironmentCompletion() {
 	if (!currentEditorView())	return;
+	if(mCompleterNeedsUpdate) updateCompleter();
 	QDocumentCursor c = currentEditorView()->editor->cursor();
 	QString eow=getCommonEOW();
 	while (c.columnNumber()>0 && !eow.contains(c.previousChar())) c.movePosition(1,QDocumentCursor::PreviousCharacter);
@@ -3514,6 +3528,8 @@ void Texmaker::updateCompleter() {
 		if (!f.open(QIODevice::ReadOnly| QIODevice::Text))  LatexCompleter::parseHelpfile("<missing>");
 		else LatexCompleter::parseHelpfile(QTextStream(&f).readAll());
 	}
+
+	mCompleterNeedsUpdate=false;
 }
 
 void Texmaker::tabChanged(int i) {

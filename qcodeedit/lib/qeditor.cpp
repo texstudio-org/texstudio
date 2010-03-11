@@ -304,6 +304,7 @@ QEditor::QEditor(QWidget *p)
 	m_editors << this;
 
 	m_saveState = Undefined;
+	mCompleterNeedsUpdate=false;
 	
 	init();
 }
@@ -322,6 +323,7 @@ QEditor::QEditor(bool actions, QWidget *p)
 	m_editors << this;
 
 	m_saveState = Undefined;
+	mCompleterNeedsUpdate=false;
 
 	init(actions);
 }
@@ -343,6 +345,7 @@ QEditor::QEditor(const QString& s, QWidget *p)
 	m_editors << this;
 
 	m_saveState = Undefined;
+	mCompleterNeedsUpdate=false;
 
 	init();
 
@@ -365,6 +368,7 @@ QEditor::QEditor(const QString& s, bool actions, QWidget *p)
 	m_editors << this;
 
 	m_saveState = Undefined;
+	mCompleterNeedsUpdate=false;
 
 	init(actions);
 	
@@ -1055,6 +1059,15 @@ void QEditor::fileChanged(const QString& file)
 bool QEditor::isInConflict() const
 {
 	return m_saveState == Conflict;
+}
+
+void QEditor::updateCompleterNow(){
+	if(mCompleterNeedsUpdate)
+		emit updateCompleter();
+	mCompleterNeedsUpdate=false;
+}
+void QEditor::completerNeedsUpdate(){
+	mCompleterNeedsUpdate=true;
 }
 
 QTextCodec* QEditor::getFileCodec() const
