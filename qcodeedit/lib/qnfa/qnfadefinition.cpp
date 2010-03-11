@@ -893,7 +893,7 @@ void QNFADefinition::fold(QDocument *d, int line, bool expand){
 	d->line(fli.lineNr).setFlag(QDocumentLine::CollapsedBlockEnd, fli.collapsedBlockEnd);
 
 	int count = fli.lineNr - line;
-	if (fli.open)
+	if (fli.open || fli.lineNr==d->lines())
 		--count;
 
 	if (expand) d->impl()->showEvent(line, count);
