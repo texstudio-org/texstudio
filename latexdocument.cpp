@@ -336,7 +336,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 void LatexDocument::patchStructure(int linenr, int count) {
 
 	QDocument* document=text;
-	if (!document) return;
+	if (!document || !baseStructure) return;
 
 	bool completerNeedsUpdate=false;
 
@@ -525,6 +525,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	}
 	// append structure remainder ...
 	for(int i=parent_level.size()-1;i>=0;i--){
+		if (!parent_level[i]) break;
 	    while(!remainingChildren[i].isEmpty() && remainingChildren[i].first()->level>i){
 		se=remainingChildren[i].takeFirst();
 		parent_level[se->level]->add(se);
@@ -954,6 +955,7 @@ void findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,int li
 }
 
 void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QMap<StructureEntry*,int> &toBeDeleted,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count){
+	if (!se) return;
 
 	StructureEntry* parent=se;
 
