@@ -1408,6 +1408,8 @@ void QEditor::load(const QString& file, QTextCodec* codec)
 	setFileName(file);
 	
 	emit loaded(this, file);
+
+	reconnectWatcher();
 }
 
 /*!
