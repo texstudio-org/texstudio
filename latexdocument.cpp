@@ -741,6 +741,14 @@ QModelIndex LatexDocumentsModel::parent ( const QModelIndex & index ) const{
 	const StructureEntry* entry = (StructureEntry*) index.internalPointer();
 	if (!entry) return QModelIndex();
 	if (!entry->parent) return QModelIndex();
+	if(entry->level>LatexParser::structureCommands.count()){
+		qDebug("Structure broken!");
+		return QModelIndex();
+	}
+	if(entry->parent->level>LatexParser::structureCommands.count()){
+		qDebug("Structure broken!");
+		return QModelIndex();
+	}
 	if (entry->parent->parent)
 		return createIndex(entry->parent->parent->children.indexOf(entry->parent), 0, entry->parent);
 	else {
