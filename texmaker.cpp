@@ -1143,7 +1143,7 @@ void Texmaker::fileSave() {
 		}
 	}
 	UpdateCaption();
-	updateStructure();
+	//updateStructure(); (not needed anymore for autoupdate)
 }
 
 void Texmaker::fileSaveAs(QString fileName) {
