@@ -6,7 +6,7 @@ parenthesis weights:
 30: \begin{..}
 20: \verb*  *
 10: { }
-5: \part, \chapter, \section, ...  (very low weight, because they are difficult to match, e.g in { \n .. \section \n .. })
+8-2: \part, \chapter, \section, ...  (very low weight, because they are difficult to match, e.g in { \n .. \section \n .. })
 0: (, ), \{, \}, [, ]
 -->
 	<sequence parenthesis="round:open" parenthesisWeight="00">(</sequence>
@@ -129,13 +129,13 @@ parenthesis weights:
 	<word parenthesis="block:close" parenthesisWeight="30" fold="1" indent="1" format="extra-keyword" >\\end{[^}]*}</word>
 
 	<list id="keywords/block" format="extra-keyword">
-		<word parenthesis="part:boundary@nomatch" parenthesisWeight="5" fold="true">\\part</word>
-		<word parenthesis="chapter:boundary@nomatch" parenthesisWeight="5" fold="true">\\chapter</word>
-		<word parenthesis="section:boundary@nomatch" parenthesisWeight="5" fold="true">\\section</word>
+		<word parenthesis="part:boundary@nomatch" parenthesisWeight="8" fold="true">\\part</word>
+		<word parenthesis="chapter:boundary@nomatch" parenthesisWeight="7" fold="true">\\chapter</word>
+		<word parenthesis="section:boundary@nomatch" parenthesisWeight="6" fold="true">\\section</word>
 		<word parenthesis="subsection:boundary@nomatch" parenthesisWeight="5" fold="true">\\subsection</word>
-		<word parenthesis="subsubsection:boundary@nomatch" parenthesisWeight="5" fold="true">\\subsubsection</word>
-		<word parenthesis="paragraph:boundary@nomatch" parenthesisWeight="5" fold="true" >\\paragraph</word>
-		<word parenthesis="subparagraph:boundary@nomatch" parenthesisWeight="5" fold="true" >\\subparagraph</word>
+		<word parenthesis="subsubsection:boundary@nomatch" parenthesisWeight="4" fold="true">\\subsubsection</word>
+		<word parenthesis="paragraph:boundary@nomatch" parenthesisWeight="3" fold="true" >\\paragraph</word>
+		<word parenthesis="subparagraph:boundary@nomatch" parenthesisWeight="2" fold="true" >\\subparagraph</word>
 	</list>
 	
 	<sequence id="keywords/single" ambiguous="true" format="keyword">\\[a-zA-Z]+</sequence>
