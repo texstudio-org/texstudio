@@ -1034,7 +1034,7 @@ void QEditor::fileChanged(const QString& file)
 
 		if ( autoReload )
 		{
-                        emit fileAutoReloading(fileName());
+			emit fileAutoReloading(fileName());
 			load(fileName(),m_doc->codec());
 			m_saveState = Undefined;
 			emit fileReloaded();
