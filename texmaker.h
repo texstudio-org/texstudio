@@ -337,6 +337,7 @@ private slots:
 	void SetMostUsedSymbols(QTableWidgetItem* item);
 
 	void updateCompleter();
+	void completerNeedsUpdate();
 
 	void tabChanged(int i);
 
@@ -367,6 +368,8 @@ protected:
 	virtual void changeEvent(QEvent *e);
 
 	Qt::MouseButtons mb;
+
+	bool mCompleterNeedsUpdate;
 
 	bool previewEquation;
 	int currentLine;
