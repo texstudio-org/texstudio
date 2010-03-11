@@ -92,7 +92,6 @@ void LatexDocument::clearStructure() {
 
     delete baseStructure;
     baseStructure=0;
-
 }
 
 void LatexDocument::updateStructure() {

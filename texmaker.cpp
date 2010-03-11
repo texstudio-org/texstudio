@@ -959,14 +959,17 @@ void Texmaker::fileNew(QString fileName) {
 void Texmaker::fileAutoReloading(QString fname){
     LatexDocument* document=documents.findDocument(fname);
     if (!document) return;
-    document->clearStructure();
-
+	document->clearStructure();
 }
 
 void Texmaker::fileReloaded(){
 	QEditor *mEditor = qobject_cast<QEditor *>(sender());
 	if(mEditor==currentEditor()){
 		updateStructure();
+	}else{
+		LatexDocument* document=documents.findDocument(mEditor->fileName());
+		if (!document) return;
+		document->updateStructure();
 	}
 }
 
