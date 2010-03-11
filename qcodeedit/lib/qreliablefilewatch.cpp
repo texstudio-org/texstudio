@@ -44,7 +44,8 @@ void QReliableFileWatch::addWatch(const QString& file, QObject *recipient)
 
 	if ( it != m_targets.end() )
 	{
-		it->recipients << recipient;
+		if (!it->recipients.contains(recipient))
+			it->recipients << recipient;
 	} else {
 		QFile f(file);
 

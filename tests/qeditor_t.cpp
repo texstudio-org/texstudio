@@ -57,6 +57,7 @@ void QEditorTest::loadSave(){
 	//Load
 	editor->setFileCodec(QTextCodec::codecForName("iso-8859-5"));
 	editor->load(tfn,autodetect?0:outCodec);
+	editor->document()->setLineEnding(editor->document()->originalLineEnding()); //TODO: find out why this line is only needed iff the editor passed by the testmanager is used and not if a new QEditor(0) is created
 	QEQUAL2(editor->document()->text(),testTextWithLineEndings,"File: "+tfn);
 	QVERIFY2(editor->getFileCodec()==outCodec,qPrintable(QString("wrong encoding: got %1 wanted %2 by the sheriff %3").arg(QString::fromAscii(editor->getFileCodec()->name())).arg(QString::fromAscii(outCodec->name())).arg(autodetect)));
 	QEQUAL(editor->document()->lineEndingString(),outLineEnding);
@@ -70,6 +71,9 @@ void QEditorTest::loadSave(){
 
 	QEQUAL2(writtenText, testTextWithLineEndings+"Save test"+outLineEnding, "file text check, file:"+tfn);
 	QVERIFY2(writtenText.contains(outLineEnding), qPrintable("file don't contain right line ending, file"+tfn));
+	
+	editor->setFileName(""); //reset filename so it won't get panically if the file is deleted
+	editor->document()->setLineEnding(QDocument::Conservative); //reset line ending so we won't screw up the other tests
 }
 
 void QEditorTest::foldedText_data(){
