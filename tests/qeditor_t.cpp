@@ -76,6 +76,7 @@ void QEditorTest::loadSave(){
 	editor->document()->setLineEnding(QDocument::Conservative); //reset line ending so we won't screw up the other tests
 }
 
+
 void QEditorTest::foldedText_data(){
 	QTest::addColumn<QString>("editorText");
 	QTest::addColumn<QList<int> >("foldAt");
@@ -160,6 +161,7 @@ void QEditorTest::foldedText_data(){
 		<< "0\n1{\n%2}\n3}\n4\n"
 		<< (QList<int>() << 2 << 3);
 }
+//checks if block-commands (e.g indent, comment) work with folded text
 void QEditorTest::foldedText(){
 	QFETCH(QString, editorText);
 	QFETCH(QList<int>, foldAt);
@@ -187,6 +189,7 @@ void QEditorTest::foldedText(){
 	for (int i=0;i<editor->document()->lines();i++)
 		QVERIFY2(editor->document()->line(i).isHidden() == newHiddenLines.contains(i),qPrintable(QString::number(i)));
 }
+
 
 void QEditorTest::passiveFolding_data(){
 	QTest::addColumn<QString>("editorText");
@@ -260,6 +263,7 @@ void QEditorTest::passiveFolding_data(){
 		<< (QList<int>() << 1)
 		<< (QList<int>() << 2 << 3 << 4 << 5 << 6);
 }
+//checks if collapsing/expanding works
 void QEditorTest::passiveFolding(){
 	QFETCH(QString, editorText);
 	QFETCH(QList<int>, foldAt);
@@ -287,6 +291,121 @@ void QEditorTest::passiveFolding(){
 		QVERIFY2(editor->document()->line(i).isHidden() == hiddenLines3.contains(i),qPrintable(QString::number(i)));
 
 }
+
+
+void QEditorTest::activeFolding_data(){
+	QTest::addColumn<QString>("editorText");
+	QTest::addColumn<QList<int> >("foldAt");
+	QTest::addColumn<QList<int> >("hiddenLines");
+	QTest::addColumn<int>("cursorAL");
+	QTest::addColumn<int>("cursorAC");
+	QTest::addColumn<int>("cursorL");
+	QTest::addColumn<int>("cursorC");
+	QTest::addColumn<QString>("textToInsert");
+	QTest::addColumn<QString>("newEditorText");
+	QTest::addColumn<QList<int> >("newHiddenLines");
+
+	QTest::newRow("trivial insertion: shift down")
+		<< "0\n1\n2{\n3\n4}\n5\n"
+		<< (QList<int> () << 2)
+		<< (QList<int> () << 3 << 4)
+		<< 1 << 1 << 1 << 1
+		<< "insert\nnew line"
+		<< "0\n1insert\nnew line\n2{\n3\n4}\n5\n"
+		<< (QList<int> () << 4 << 5);
+
+	QTest::newRow("trivial insertion: shift up")
+		<< "0\n1\n2{\n3\n4}\n5\n"
+		<< (QList<int> () << 2)
+		<< (QList<int> () << 3 << 4)
+		<< 0 << 0 << 1 << 1
+		<< "remove line"
+		<< "remove line\n2{\n3\n4}\n5\n"
+		<< (QList<int> () << 2 << 3);
+
+	QTest::newRow("comment opened folding")
+		<< "0\n1\n2{\n3\n4}\n5\n"
+		<< (QList<int> () << 2)
+		<< (QList<int> () << 3 << 4)
+		<< 2 << 1 << 2 << 1
+		<< "%"
+		<< "0\n1\n2%{\n3\n4}\n5\n"
+		<< (QList<int> ());
+
+	QTest::newRow("comment opened folding partially")
+		<< "0\n1\n2{{{()}\n3\n4{\n5}\n6}\n7}\n"
+		<< (QList<int> () << 2 << 4)
+		<< (QList<int> () << 3 << 4 << 5 << 6 << 7)
+		<< 2 << 1 << 2 << 1
+		<< "%"
+		<< "0\n1\n2%{{{()}\n3\n4{\n5}\n6}\n7}\n"
+		<< (QList<int> () << 5);
+
+	QTest::newRow("comment merges blocks")
+		<< "0\n1\n2{\n3\n4} {\n5\n6}\n"
+		<< (QList<int> () << 2 << 4)
+		<< (QList<int> () << 3 << 5 << 6)
+		<< 4 << 1 << 4 << 1
+		<< "%"
+		<< "0\n1\n2{\n3\n4%} {\n5\n6}\n"
+		<< (QList<int> () << 3 << 4 << 5 << 6);
+
+	QTest::newRow("comment enlarge block")
+		<< "0\n1\n2{\n3\n4}\n5\n"
+		<< (QList<int> () << 2)
+		<< (QList<int> () << 3 << 4)
+		<< 4 << 1 << 4 << 1
+		<< "%"
+		<< "0\n1\n2{\n3\n4%}\n5\n"
+		<< (QList<int> () << 3 << 4 << 5 << 6);
+
+	QTest::newRow("line removing block merging")
+		<< "0\n1\n2{\n3\n4}\n5\n6{\n7\n8}\n"
+		<< (QList<int> () << 2 << 6)
+		<< (QList<int> () << 3 << 4 << 7 << 8)
+		<< 4 << 2 << 5 << 1
+		<< " "
+		<< "0\n1\n2{\n3\n4} \n6{\n7\n8}\n"
+		<< (QList<int> () << 3 << 4 << 6 << 7);
+
+	QTest::newRow("block override")
+		<< "0\n1$\n2{\n3\n4}\n5\n"
+		<< (QList<int> () << 2 )
+		<< (QList<int> () << 3 << 4)
+		<< 3 << 1 << 3 << 1
+		<< "$"
+		<< "0\n1$\n2{\n3$\n4}\n5\n"
+		<< (QList<int> () << 3);
+}
+//tests if folded text can be edited
+void QEditorTest::activeFolding(){
+	QFETCH(QString, editorText);
+	QFETCH(QList<int>, foldAt);
+	QFETCH(QList<int>, hiddenLines);
+	QFETCH(int, cursorAL);
+	QFETCH(int, cursorAC);
+	QFETCH(int, cursorL);
+	QFETCH(int, cursorC);
+	QFETCH(QString, textToInsert);
+	QFETCH(QString, newEditorText);
+	QFETCH(QList<int>, newHiddenLines);
+
+	editor->document()->setText(editorText);
+
+	foreach(const int &i, foldAt)
+		editor->document()->collapse(i);
+	for (int i=0;i<editor->document()->lines();i++)
+		QVERIFY2(editor->document()->line(i).isHidden() == hiddenLines.contains(i),qPrintable(QString::number(i)));
+
+	QDocumentCursor editCursor = editor->document()->cursor(cursorAL,cursorAC,cursorL,cursorC);
+	editCursor.insertText(textToInsert);
+
+	QEQUAL(editor->document()->text(), newEditorText);
+	for (int i=0;i<editor->document()->lines();i++)
+		QVERIFY2(editor->document()->line(i).isHidden() == newHiddenLines.contains(i),qPrintable(QString::number(i)));
+
+}
+
 
 
 #endif

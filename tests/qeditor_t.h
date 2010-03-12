@@ -21,6 +21,8 @@ private slots:
 	void foldedText();
 	void passiveFolding_data();
 	void passiveFolding();
+	void activeFolding_data();
+	void activeFolding();
 };
 #endif
 #endif // QEDITORTEST_H
