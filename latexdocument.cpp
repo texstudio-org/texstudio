@@ -87,6 +87,8 @@ void LatexDocument::clearStructure() {
     mUserCommandList.clear();
     mLabelItem.clear();
     mMentionedBibTeXFiles.clear();
+    
+    mAppendixLine=0;
 
     emit structureLost(this);
 
