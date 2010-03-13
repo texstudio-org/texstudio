@@ -831,16 +831,18 @@ void LatexDocuments::addDocument(LatexDocument* document){
 	document->parent=this;
 }
 void LatexDocuments::deleteDocument(LatexDocument* document){
-	if (document->getEditorView()) delete document->getEditorView();
+	LatexEditorView *view=document->getEditorView();
 	if (document!=masterDocument) {
 		documents.removeAll(document);
-		delete document;
 		model->resetAll();
 		if (document==currentDocument)
 			currentDocument=0;
+		delete document;
+		if (view) delete view;
 	} else {
 		document->setFileName(document->getFileName());
 		model->resetAll();
+		if (view) delete view;
 		if (document==currentDocument)
 			currentDocument=0;
 	}
