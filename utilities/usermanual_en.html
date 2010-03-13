@@ -136,6 +136,8 @@ changed functionality:</P>
     <li><p>the latex expressions in the Math/Latex-Menus can be changed to user preferred versions.</p>
     <li><p>global find over all open documents improved</p>
 	<li><p>support of transparent versioning of text documents via svn</p>
+	<li><p>structure view and custom command completer are updated as you type</p>
+	<li><p>the structure view marks some aspects with colours like being part of the appendix or missing include files</p>
     <li><p>lots of bugs removed after user feedback</p>
 </ul>
 <h1><a name="SECTION0">1. Configuring TexMakerX</a></h1>
@@ -262,9 +264,10 @@ Built-in templates can not be changed.
 <p><IMG src="doc4.png" border="1"></p>
 <h2><a name="SECTION14">2.4 Browsing your document</a></h2>
 <p>The "Structure View" (left panel) lets you quickly reach any part of your document. All you need to do is to click on any item (label, section...) and you will be taken to the beginning of the corresponding area in the editor. The mechanism for jumping to a line does not anymore only consider line numbers but really remembers text lines. Thus adding and removing lines will not lead to jumps to wrong locations.</p>
+<p>A grey background shows the present cursor position in the text in the structure view as well. A greenish background denotes sections which are in the appendix.</p>
 <p><IMG src="doc5.png" border="1"></p>
-<p>The "Structure View" is automatically updated when you save or compile your document. You can also use the "Refresh Structure" ("Edit" menu) command at any moment.</p>
-<p>Apart from labels,sections and includes, comments starting with %TODO are also scanned for and presented as section of its owhn in the structure view.
+<p>The "Structure View" is automatically updated as you type. You can also use the "Refresh Structure" ("Edit" menu) command at any moment.</p>
+<p>Apart from labels,sections,includes and beamer blocks, comments starting with %TODO are also scanned for and presented as section of its own in the structure view.
 This can be used to create a kind of permanent bookmark in the text or just to note where some changes are still necessary.
 </p>
 <p>
