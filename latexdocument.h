@@ -6,6 +6,7 @@
 class QDocumentLineHandle;
 class LatexEditorView;
 class LatexDocument;
+class LatexDocuments;
 class QDocument;
 class QDocumentCursor;
 struct QDocumentSelection;
@@ -106,6 +107,8 @@ public:
 
 
 	QDocumentSelection sectionSelection(StructureEntry* section);
+
+	LatexDocuments *parent;
 private:
 	QString fileName; //absolute
 	QFileInfo fileInfo;
@@ -126,6 +129,7 @@ private:
 
 	void updateAppendix(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine);
 	void setAppendix(StructureEntry *se,int startLine,int endLine,bool state);
+	bool fileExits(QString fname);
 
 public slots:
 	void updateStructure();
