@@ -182,23 +182,23 @@
 <context>
     <name>BuildManager</name>
     <message>
-        <location filename="buildmanager.cpp" line="417"/>
+        <location filename="buildmanager.cpp" line="421"/>
         <source>Dvi Viewer</source>
         <translation>Prohlížeč Dvi</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="418"/>
+        <location filename="buildmanager.cpp" line="422"/>
         <source>Ps Viewer</source>
         <translation>Prohlížeč PS</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="419"/>
+        <location filename="buildmanager.cpp" line="423"/>
         <source>Pdf Viewer</source>
         <translation>Prohlížeč PDF</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="463"/>
-        <location filename="buildmanager.cpp" line="471"/>
+        <location filename="buildmanager.cpp" line="467"/>
+        <location filename="buildmanager.cpp" line="475"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;neznámý&gt;</translation>
     </message>
@@ -206,129 +206,128 @@
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="configdialog.cpp" line="258"/>
+        <location filename="configdialog.cpp" line="176"/>
         <source>Do you really want to delete this row?</source>
         <translation>Opravdu chcete smazat tento řádek?</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="418"/>
-        <location filename="configdialog.cpp" line="421"/>
+        <location filename="configdialog.cpp" line="316"/>
+        <location filename="configdialog.cpp" line="319"/>
         <source>Get dictionary at: %1</source>
         <translation>Získat slovník: %1</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="315"/>
+        <location filename="configdialog.cpp" line="242"/>
         <source>Command</source>
         <translation>Příkaz</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="296"/>
+        <location filename="configdialog.cpp" line="223"/>
         <source>Get dictionaries at: %1</source>
         <translation>Získat slovníky: %1</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="315"/>
+        <location filename="configdialog.cpp" line="242"/>
         <source>Default Shortcut</source>
         <translation>Výchozí klávesová zkratka</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="315"/>
+        <location filename="configdialog.cpp" line="242"/>
         <source>Current Shortcut</source>
         <translation>Nynější klávesová zkratka</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="315"/>
+        <location filename="configdialog.cpp" line="242"/>
         <source>Additional Shortcut</source>
         <translation>Doplňková klávesová zkratka</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="353"/>
+        <location filename="configdialog.cpp" line="246"/>
         <source>General</source>
         <translation>Obecné</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="354"/>
+        <location filename="configdialog.cpp" line="247"/>
         <source>Commands</source>
         <translation>Příkazy</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="355"/>
+        <location filename="configdialog.cpp" line="248"/>
         <source>Quick Build</source>
         <translation>Rychlý překlad</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="357"/>
-        <location filename="configdialog.ui" line="857"/>
+        <location filename="configdialog.ui" line="861"/>
+        <location filename="configdialog.cpp" line="250"/>
         <source>Latex Menus</source>
         <translation>Latexové nabídky</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="358"/>
-        <location filename="configdialog.ui" line="885"/>
+        <location filename="configdialog.cpp" line="251"/>
         <source>Custom Toolbar</source>
         <translation>Uživatelsky stanovený nástrojový pruh</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="359"/>
-        <location filename="configdialog.ui" line="949"/>
-        <location filename="configmanager.cpp" line="551"/>
+        <location filename="configdialog.ui" line="980"/>
+        <location filename="configdialog.cpp" line="252"/>
+        <location filename="configmanager.cpp" line="573"/>
         <source>Editor</source>
         <translation>Editor</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="360"/>
+        <location filename="configdialog.cpp" line="253"/>
         <source>Custom Highlighting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="362"/>
+        <location filename="configdialog.cpp" line="255"/>
         <source>SVN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="408"/>
+        <location filename="configdialog.cpp" line="306"/>
         <source>Browse dictionary</source>
         <translation>Procházet slovník</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="421"/>
+        <location filename="configdialog.cpp" line="319"/>
         <source>(Dictionary doesn&apos;t exists)</source>
         <translation>(Slovník neexistuje)</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="428"/>
+        <location filename="configdialog.cpp" line="355"/>
         <source>Browse thesaurus database</source>
         <translation>Zvolit slovníkovou databázi</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="441"/>
+        <location filename="configdialog.cpp" line="368"/>
         <source>Browse program</source>
         <translation>Prohlížeč</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="483"/>
+        <location filename="configdialog.cpp" line="451"/>
         <source>Load other icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="488"/>
+        <location filename="configdialog.cpp" line="456"/>
         <source>Select a File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="488"/>
+        <location filename="configdialog.cpp" line="456"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.svg)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="182"/>
-        <location filename="configdialog.cpp" line="202"/>
-        <location filename="configdialog.cpp" line="257"/>
+        <location filename="configdialog.cpp" line="100"/>
+        <location filename="configdialog.cpp" line="120"/>
+        <location filename="configdialog.cpp" line="175"/>
         <source>TexMakerX</source>
         <translation>TexMakerX</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="183"/>
+        <location filename="configdialog.cpp" line="101"/>
         <source>The shortcut you entered is invalid.</source>
         <translation>Zadaná klávesová zkratka je neplatná.</translation>
     </message>
@@ -339,14 +338,15 @@
 </translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="203"/>
+        <location filename="configdialog.cpp" line="121"/>
         <source>Should I delete this other shortcut?</source>
         <translation>Má se tato jiná klávesová zkratka smazat?</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="14"/>
-        <source>Configure Texmaker</source>
-        <translation>Nastavit Texmaker</translation>
+        <source>Configure TexMakerX</source>
+        <oldsource>Configure Texmaker</oldsource>
+        <translation type="unfinished">Nastavit Texmaker</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="347"/>
@@ -359,12 +359,12 @@
         <translation>Slovníky</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="419"/>
+        <location filename="configdialog.ui" line="403"/>
         <source>TextLabel</source>
         <translation>Textová jmenovka</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="531"/>
+        <location filename="configdialog.ui" line="532"/>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
         <translation>Příkazy (%: název souboru bez přípony - @ : číslo řádku - ?: rozšířené volby pro název souboru)</translation>
     </message>
@@ -417,217 +417,222 @@
         <translation type="obsolete">dvips</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="624"/>
+        <location filename="configdialog.ui" line="625"/>
         <source>Quick Build Command</source>
         <translation>Příkaz pro rychlý překlad</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="644"/>
+        <location filename="configdialog.ui" line="645"/>
         <source>LaTeX + dvips + View PS</source>
         <translation>LaTeX + dvips + Zobrazit PS</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="651"/>
+        <location filename="configdialog.ui" line="652"/>
         <source>LaTeX + View DVI</source>
         <translation>LaTeX + Zobrazit DVI</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="658"/>
+        <location filename="configdialog.ui" line="659"/>
         <source>PdfLaTeX + View PDF</source>
         <translation>PdfLaTeX + Zobrazit PDF</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="665"/>
+        <location filename="configdialog.ui" line="666"/>
         <source>LaTeX + dvipdfm + View PDF</source>
         <translation>LaTeX + dvipdfm + Zobrazit PDF</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="672"/>
+        <location filename="configdialog.ui" line="673"/>
         <source>LaTeX + dvips + ps2pdf + View PDF</source>
         <translation>LaTeX + dvips + ps2pdf + Zobrazit PDF</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="679"/>
+        <location filename="configdialog.ui" line="680"/>
         <source>User : (% : filename without extension)</source>
         <translation>Uživatel: (%: název souboru bez přípony)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="689"/>
+        <location filename="configdialog.ui" line="690"/>
         <source>(the commands must be separated by &apos;|&apos;)</source>
         <translation>(Příkazy musí být odděleny &apos;|&apos;)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="701"/>
+        <location filename="configdialog.ui" line="702"/>
         <source>More</source>
         <translation>Více</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="710"/>
+        <location filename="configdialog.ui" line="711"/>
         <source>Execute before compiling:</source>
         <translation>Spustit před sestavením (zavoláním Latexu):</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="750"/>
+        <location filename="configdialog.ui" line="751"/>
         <source>Assume that every error is in the current document:</source>
         <translation>Předpokládejme, že všechny chyby jsou v současném dokumentu:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="764"/>
+        <location filename="configdialog.ui" line="765"/>
         <source>Never (only use the file names in the log)</source>
         <translation>Nikdy (používat pouze názvy souborů v zápisu)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="769"/>
+        <location filename="configdialog.ui" line="770"/>
         <source>Only when there is no master document</source>
         <translation>Pouze když neexistuje žádný hlavní dokument</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="774"/>
+        <location filename="configdialog.ui" line="775"/>
         <source>Always (ignore file names in the log)</source>
         <translation>Vždy (nevšímat si názvů souborů v zápisu)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="782"/>
+        <location filename="configdialog.ui" line="783"/>
         <source>Show log after compiling if there are errors</source>
         <translation>Ukázat po sestavení zápis, pokud se vyskytnou chyby</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="792"/>
+        <location filename="configdialog.ui" line="793"/>
         <source>run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</source>
         <translation>Spustit &quot;latex bibtex latex&quot; před sestavením, pokud byly soubory bib změněny</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="830"/>
+        <location filename="configdialog.ui" line="834"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="835"/>
+        <location filename="configdialog.ui" line="839"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="840"/>
+        <location filename="configdialog.ui" line="844"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="845"/>
+        <location filename="configdialog.ui" line="849"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="899"/>
+        <location filename="configdialog.ui" line="892"/>
+        <source>Toolbar Customization</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configdialog.ui" line="906"/>
         <source>&lt;</source>
         <translation>&lt;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="906"/>
+        <location filename="configdialog.ui" line="913"/>
         <source>&gt;</source>
         <translation>&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="955"/>
+        <location filename="configdialog.ui" line="986"/>
         <source>Editor Font Family</source>
         <translation>Editor: rodina písma</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="976"/>
+        <location filename="configdialog.ui" line="1007"/>
         <source>Editor Font Size</source>
         <translation>Editor: Velikost písma</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1000"/>
+        <location filename="configdialog.ui" line="1031"/>
         <source>Editor Font Encoding</source>
         <translation>Editor: Kódování písma</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1120"/>
+        <location filename="configdialog.ui" line="1151"/>
         <source>ignore indentation</source>
         <translation>Nikdy neodsadit automaticky</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1125"/>
+        <location filename="configdialog.ui" line="1156"/>
         <source>keep indentation</source>
         <translation>Převzít odsazení předchozího řádku</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1130"/>
+        <location filename="configdialog.ui" line="1161"/>
         <source>indent and unindent automatically</source>
         <translation>Odsadit a zrušit odsazení automaticky</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1135"/>
+        <location filename="configdialog.ui" line="1166"/>
         <source>keep indentation with spaces only</source>
         <translation>Převzít odsazení předchozího řádku (použít pouze mezery)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1140"/>
+        <location filename="configdialog.ui" line="1171"/>
         <source>indent and unindent automatically with spaces only</source>
         <translation>Odsadit a zrušit odsazení automaticky (použít pouze mezery)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1178"/>
+        <location filename="configdialog.ui" line="1209"/>
         <source>Use single line selection as Search Word</source>
         <translation>Jako hledané slovo použít jednořádkový výběr</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1185"/>
+        <location filename="configdialog.ui" line="1216"/>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1228"/>
+        <location filename="configdialog.ui" line="1250"/>
         <source>Custom Environment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1233"/>
+        <location filename="configdialog.ui" line="1255"/>
         <source>Type of Environment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1243"/>
+        <location filename="configdialog.ui" line="1265"/>
         <source>add Line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1250"/>
+        <location filename="configdialog.ui" line="1272"/>
         <source>remove Line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1363"/>
+        <location filename="configdialog.ui" line="1385"/>
         <source>Use placeholders</source>
         <translation>Použít zástupné znaky</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1391"/>
+        <location filename="configdialog.ui" line="1413"/>
         <source>Automatically check in after save ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1398"/>
+        <location filename="configdialog.ui" line="1420"/>
         <source>Uses SVN revisions to undo before last saved version ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1405"/>
+        <location filename="configdialog.ui" line="1427"/>
         <source>SVN Commands</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1414"/>
+        <location filename="configdialog.ui" line="1436"/>
         <source>SVN Directory Search Depth: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1450"/>
+        <location filename="configdialog.ui" line="1472"/>
         <source>show advanced options</source>
         <translation>Ukázat rozšířené volby</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="969"/>
+        <location filename="configdialog.ui" line="1000"/>
         <source>Word Wrap</source>
         <translation>Zalamování řádků</translation>
     </message>
@@ -655,12 +660,12 @@ p, li { white-space: pre-wrap; }
  &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1168"/>
+        <location filename="configdialog.ui" line="1199"/>
         <source>Show Modify Time</source>
         <translation>Ukázat čas poslední změny</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1063"/>
+        <location filename="configdialog.ui" line="1094"/>
         <source>preview with dvipng</source>
         <translation>Náhled s dvipng</translation>
     </message>
@@ -695,43 +700,43 @@ p, li { white-space: pre-wrap; }
         <translation>Vždy ukazovat stavbu hlavního dokumentu</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="432"/>
+        <location filename="configdialog.ui" line="416"/>
         <source>inline checking</source>
         <translation>Přezkoušení</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="466"/>
+        <location filename="configdialog.ui" line="447"/>
         <source>inline spell checking</source>
         <translation>Ověřit správné psaní</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="476"/>
+        <location filename="configdialog.ui" line="457"/>
         <source>inline citation checking</source>
         <translation>Ověřit citace</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="486"/>
+        <location filename="configdialog.ui" line="467"/>
         <source>inline reference checking</source>
         <translation>Ověřit odkazy</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="538"/>
+        <location filename="configdialog.ui" line="539"/>
         <source>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</source>
         <translation>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Zvláštní znaky:&lt;/span&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="545"/>
+        <location filename="configdialog.ui" line="546"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension &lt;b&gt;@&lt;/b&gt;: line number </source>
         <translation>&lt;b&gt;%&lt;/b&gt;: Souborový název bez přípony &lt;b&gt;@&lt;/b&gt;: číslo řádku </translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="555"/>
+        <location filename="configdialog.ui" line="556"/>
         <source>&lt;b&gt;?&lt;/b&gt; followed by &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: extended filename; prepend &lt;i&gt;c:&lt;/i&gt; for current file instead of master file</source>
         <oldsource>&lt;b&gt;?&lt;/b&gt; followed by &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: extended filename</oldsource>
         <translation>&lt;b&gt;?&lt;/b&gt; následován &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: rozšířený souborový název; má před &lt;i&gt;c:&lt;/i&gt; pro nynější soubor namísto hlavního souboru</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="565"/>
+        <location filename="configdialog.ui" line="566"/>
         <source>&lt;i&gt;a&lt;/i&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;i&gt;m&lt;/i&gt;: basefile name without extension,&lt;i&gt;e&lt;/i&gt;: extension&lt;br /&gt;
 &lt;i&gt;&quot;&lt;/i&gt;: enclose with &quot;..&quot;, . (point): ends placeholder with a point, (space): ends placeholder and add a space, &lt;i&gt;)&lt;/i&gt;: ends placeholder &lt;br /&gt;
 examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just the extension (without leading point), &lt;br /&gt;
@@ -742,59 +747,59 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
 ?m&quot; (Název souboru bez přípony, totožný s %), ?me (Název souboru bez přípony jako příklad.tex)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="581"/>
+        <location filename="configdialog.ui" line="582"/>
         <source>%%, @@ or ?? become: %, @ or ?
 </source>
         <translation>%%, @@ nebo ?? stane se: %, @ nebo ?</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1068"/>
+        <location filename="configdialog.ui" line="1099"/>
         <source>preview with dvipng --follow (parallel)</source>
         <translation>Náhled s dvipng --follow (parallel)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1073"/>
+        <location filename="configdialog.ui" line="1104"/>
         <source>preview with dvips/ghostscript</source>
         <translation>Náhled s dvips/ghostscript</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1106"/>
+        <location filename="configdialog.ui" line="1137"/>
         <source>close search and replace panel together</source>
         <oldsource>close search and replace dialog together</oldsource>
         <translation>Zavřít společně panel pro hledání a nahrazování</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1276"/>
+        <location filename="configdialog.ui" line="1298"/>
         <source>Completion Enabled</source>
         <translation>Zapnout doplnění</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1283"/>
+        <location filename="configdialog.ui" line="1305"/>
         <source>Case Sensitive</source>
         <translation>Rozlišující velká a malá písmena</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1308"/>
+        <location filename="configdialog.ui" line="1330"/>
         <source>In first character</source>
         <translation>Od prvního písmena</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1333"/>
+        <location filename="configdialog.ui" line="1355"/>
         <source>Auto Complete Common Prefix</source>
         <translation>Automaticky doplnit společnou předponu</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1343"/>
+        <location filename="configdialog.ui" line="1365"/>
         <source>Complete selected text when non-word character is pressed</source>
         <translation>Doplnit vybraný text, když je zadán neslovní znak</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1353"/>
+        <location filename="configdialog.ui" line="1375"/>
         <source>Enable ToolTip-Help</source>
         <translation>Zapnout nápovědu v podobě rady k nástroji</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1373"/>
+        <location filename="configdialog.ui" line="1395"/>
         <source>Use following completion files:</source>
         <translation>Použít následující seznamy slov:</translation>
     </message>
@@ -804,8 +809,8 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
         <translation>Slovník pro pravopis</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="356"/>
-        <location filename="configdialog.ui" line="819"/>
+        <location filename="configdialog.ui" line="820"/>
+        <location filename="configdialog.cpp" line="249"/>
         <source>Shortcuts</source>
         <translation>Zkratky</translation>
     </message>
@@ -818,7 +823,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
         <translation type="obsolete">Tastaturkürzel</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1188"/>
+        <location filename="configdialog.ui" line="1219"/>
         <source>auto detect encoding of loaded files</source>
         <translation type="unfinished">automatisch von geöffneter Datei übernehmen</translation>
     </message>
@@ -827,12 +832,12 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
         <translation type="obsolete">Ausgewählter Style:</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="361"/>
+        <location filename="configdialog.cpp" line="254"/>
         <source>Completion</source>
         <translation>Doplnění</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="993"/>
+        <location filename="configdialog.ui" line="1024"/>
         <source>Folding</source>
         <translation>Skládání kódu</translation>
     </message>
@@ -873,52 +878,52 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
         <translation type="obsolete">Wellen-unterstreichen</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1158"/>
+        <location filename="configdialog.ui" line="1189"/>
         <source>Show State Panel</source>
         <translation>Ukázat stavový panel</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1148"/>
+        <location filename="configdialog.ui" line="1179"/>
         <source>Show Line Change State</source>
         <translation>Ukázat řádkový stav</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1036"/>
+        <location filename="configdialog.ui" line="1067"/>
         <source>show preview as tool tip if panel is hidden</source>
         <translation>Ukázat náhled jako radu k nástroji, pokud je panel neviditelný</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1041"/>
+        <location filename="configdialog.ui" line="1072"/>
         <source>always show preview in preview panel</source>
         <translation>Ukázat náhled pouze v náhledovém panelu</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1046"/>
+        <location filename="configdialog.ui" line="1077"/>
         <source>always show preview as tool tip</source>
         <translation>Ukázat náhled vždy jako radu k nástroji</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1051"/>
+        <location filename="configdialog.ui" line="1082"/>
         <source>always show both</source>
         <translation>Ukázat vždy obojí</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1014"/>
+        <location filename="configdialog.ui" line="1045"/>
         <source>No line numbers</source>
         <translation>Neukazovat žádná čísla řádků</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1019"/>
+        <location filename="configdialog.ui" line="1050"/>
         <source>Show line numbers</source>
         <translation>Ukázat čísla řádků</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1024"/>
+        <location filename="configdialog.ui" line="1055"/>
         <source>Show important line numbers</source>
         <translation>Ukázat důležitá čísla řádků</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1099"/>
+        <location filename="configdialog.ui" line="1130"/>
         <source>Formats</source>
         <translation>Formáty</translation>
     </message>
@@ -982,7 +987,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
         <translation type="obsolete">Thesaurus</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="439"/>
+        <location filename="configdialog.ui" line="423"/>
         <source>Thesaurus Database</source>
         <translation>Slovníková databáze</translation>
     </message>
@@ -991,32 +996,32 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
         <translation type="obsolete">Automatisches Einrücken</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="203"/>
+        <location filename="configdialog.cpp" line="121"/>
         <source>The shortcut you entered is the same as the one of this command:</source>
         <translation>Zadaná klávesová zkratka je tatáž jako ta pro tento příkaz:</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="553"/>
+        <location filename="configmanager.cpp" line="575"/>
         <source>Special Key Replacement</source>
         <translation>Nahrazení zvláštních kláves</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="554"/>
+        <location filename="configmanager.cpp" line="576"/>
         <source>New column meaning:</source>
         <translation>Nový význam sloupce:</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="554"/>
+        <location filename="configmanager.cpp" line="576"/>
         <source>Key to replace</source>
         <translation>Klávesa k nahrazení</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="554"/>
+        <location filename="configmanager.cpp" line="576"/>
         <source>Text to insert before word</source>
         <translation>Nahrazující text k vložení před slovo</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="554"/>
+        <location filename="configmanager.cpp" line="576"/>
         <source>Text to insert after word</source>
         <translation>Nahrazující text k vložení za slovo</translation>
     </message>
@@ -1024,76 +1029,88 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
 <context>
     <name>ConfigManager</name>
     <message>
-        <location filename="configmanager.cpp" line="461"/>
-        <location filename="configmanager.cpp" line="462"/>
-        <location filename="configmanager.cpp" line="605"/>
-        <location filename="configmanager.cpp" line="607"/>
-        <location filename="configmanager.cpp" line="785"/>
-        <location filename="configmanager.cpp" line="807"/>
+        <location filename="configmanager.cpp" line="483"/>
+        <location filename="configmanager.cpp" line="484"/>
+        <location filename="configmanager.cpp" line="624"/>
+        <location filename="configmanager.cpp" line="626"/>
+        <location filename="configmanager.cpp" line="804"/>
+        <location filename="configmanager.cpp" line="826"/>
         <source>default</source>
         <translation>Výchozí</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="545"/>
+        <location filename="configmanager.cpp" line="567"/>
         <source>Menus</source>
         <translation>Nabídky</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="860"/>
+        <location filename="configmanager.cpp" line="617"/>
+        <source>Latex/Math menus</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configmanager.cpp" line="618"/>
+        <source>All menus</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configmanager.cpp" line="619"/>
+        <source>Special Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configmanager.cpp" line="879"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>Poslední &apos;Hlavní dokument&apos; %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="866"/>
+        <location filename="configmanager.cpp" line="885"/>
         <source>Recent File %1</source>
         <translation>Naposledy otevřený soubor %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="874"/>
+        <location filename="configmanager.cpp" line="893"/>
         <source>Master Document: </source>
         <translation>Hlavní dokument:</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1073"/>
-        <location filename="configmanager.cpp" line="1080"/>
+        <location filename="configmanager.cpp" line="1093"/>
+        <location filename="configmanager.cpp" line="1100"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;Žádný&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1074"/>
-        <location filename="configmanager.cpp" line="1081"/>
+        <location filename="configmanager.cpp" line="1094"/>
+        <location filename="configmanager.cpp" line="1101"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;Výchozí&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1189"/>
+        <location filename="configmanager.cpp" line="1209"/>
         <source>Browse program</source>
         <translation>Prohlížeč</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1209"/>
+        <location filename="configmanager.cpp" line="1229"/>
         <source>Latex</source>
         <translation>Latex</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1209"/>
+        <location filename="configmanager.cpp" line="1229"/>
         <source>Math</source>
         <translation>Matematika</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1250"/>
         <source>&amp;Latex</source>
-        <translation>&amp;Latex</translation>
+        <translation type="obsolete">&amp;Latex</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1250"/>
         <source>&amp;Math</source>
-        <translation>&amp;Matematika</translation>
+        <translation type="obsolete">&amp;Matematika</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1250"/>
         <source>&amp;User</source>
-        <translation>&amp;Uživatel</translation>
+        <translation type="obsolete">&amp;Uživatel</translation>
     </message>
 </context>
 <context>
@@ -1320,25 +1337,30 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
 <context>
     <name>LatexDocument</name>
     <message>
-        <location filename="latexdocument.cpp" line="106"/>
+        <location filename="latexdocument.cpp" line="124"/>
         <source>LABELS</source>
         <translation>ŠTÍTKY</translation>
     </message>
     <message>
-        <location filename="latexdocument.cpp" line="108"/>
+        <location filename="latexdocument.cpp" line="126"/>
         <source>TODO</source>
         <translation>TODO</translation>
     </message>
     <message>
-        <location filename="latexdocument.cpp" line="110"/>
+        <location filename="latexdocument.cpp" line="128"/>
         <source>BIBTEX</source>
         <translation>BIBTEX</translation>
+    </message>
+    <message>
+        <location filename="latexdocument.cpp" line="130"/>
+        <source>BLOCKS</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>LatexDocumentsModel</name>
     <message>
-        <location filename="latexdocument.cpp" line="331"/>
+        <location filename="latexdocument.cpp" line="666"/>
         <source>Line</source>
         <translation type="unfinished">Řádek</translation>
     </message>
@@ -1350,28 +1372,28 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
 <context>
     <name>LatexEditorView</name>
     <message>
-        <location filename="latexeditorview.cpp" line="147"/>
+        <location filename="latexeditorview.cpp" line="144"/>
         <source>always ignore</source>
         <translation>Nikdy si nevšímat</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="162"/>
+        <location filename="latexeditorview.cpp" line="159"/>
         <source>New BibTeX Entry %1</source>
         <translation>Nový záznam BibTeX %1</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="784"/>
+        <location filename="latexeditorview.cpp" line="774"/>
         <source>label missing!</source>
         <translation>Štítek chybí!</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="786"/>
-        <location filename="latexeditorview.cpp" line="800"/>
+        <location filename="latexeditorview.cpp" line="776"/>
+        <location filename="latexeditorview.cpp" line="790"/>
         <source>label multiple times defined!</source>
         <translation>Štítek vymezen několikrát!</translation>
     </message>
     <message numerus="yes">
-        <location filename="latexeditorview.cpp" line="803"/>
+        <location filename="latexeditorview.cpp" line="793"/>
         <source>%n reference(s) to this label</source>
         <translation>
             <numerusform>Jeden odkaz k tomuto štítku</numerusform>
@@ -1380,18 +1402,18 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
         </translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="809"/>
+        <location filename="latexeditorview.cpp" line="799"/>
         <source>citation correct</source>
         <translation>Správná citace</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="809"/>
+        <location filename="latexeditorview.cpp" line="799"/>
         <source>citation missing!</source>
         <translation>Citace chybí!</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="141"/>
-        <location filename="latexeditorview.cpp" line="669"/>
+        <location filename="latexeditorview.cpp" line="138"/>
+        <location filename="latexeditorview.cpp" line="659"/>
         <source>shift pressed =&gt; suggestions hidden</source>
         <translation>shift stisknut =&gt; žádné návrhy</translation>
     </message>
@@ -1572,7 +1594,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <name>QDocumentSearch</name>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="150"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="822"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="863"/>
         <source>Failure</source>
         <translation>Neúspěch</translation>
     </message>
@@ -1584,36 +1606,36 @@ Restart from the begining ?</source>
 Spustit hledání znovu od začátku oblasti?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="192"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="788"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="194"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="820"/>
         <source>Replacement prompt</source>
         <translation>Dialog pro nahrazení</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="193"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="789"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="195"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="821"/>
         <source>Shall it be replaced?</source>
         <translation>Má se nález nahradit?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="794"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="826"/>
         <source>Replacing Canceled</source>
         <translation>Nahrazení zrušeno</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="794"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="826"/>
         <source>%1 (of %2 found so far) occurences have been replaced</source>
         <translation>%1 (z %2 dosud nalezených) výskytů bylo nahrazeno</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="823"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="864"/>
         <source>End of scope reached with no match.
 Restart from the beginning ?</source>
         <translation>Konec oblasti hledání dosažen bez nálezu.
 Spustit hledání znovu od začátku oblasti?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="848"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="889"/>
         <source>Do you want to continue replacing from the beginning?</source>
         <translation>Chcete, aby nahrazování pokračovalo od začátku?</translation>
     </message>
@@ -1624,14 +1646,14 @@ Restart from the begining ?</source>
 Soll die Suche vom Anfang des Bereichs neugestartet werden?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="846"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="859"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="887"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="900"/>
         <source>Replacing Finished</source>
         <translation>Nahrazení dokončeno</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="847"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="859"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="888"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="900"/>
         <source>%1 (of %2) occurences have been replaced</source>
         <translation>%1 (z %2) výskytů bylo nahrazeno</translation>
     </message>
@@ -1650,143 +1672,143 @@ Soll die Suche vom Anfang des Bereichs neugestartet werden?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="176"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="646"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1245"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="650"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1282"/>
         <source>Default</source>
         <translation>Výchozí</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="471"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1218"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="475"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1255"/>
         <source>&amp;Undo</source>
         <translation>&amp;Zpět</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="482"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1219"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="486"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1256"/>
         <source>&amp;Redo</source>
         <translation>&amp;Znovu</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="497"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1221"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="501"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1258"/>
         <source>Cu&amp;t</source>
         <translation>Vyj&amp;mout</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="508"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1222"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="512"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1259"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopírovat</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="519"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1223"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="523"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1260"/>
         <source>&amp;Paste</source>
         <translation>&amp;Vložit</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="535"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1225"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="539"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1262"/>
         <source>&amp;Indent</source>
         <translation>&amp;Odsadit</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="543"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1226"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="547"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1263"/>
         <source>&amp;Unindent</source>
         <translation>&amp;Zrušit odsazení</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="555"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1227"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="559"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1264"/>
         <source>Co&amp;mment</source>
         <translation>Opatřit po&amp;známkou</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="563"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1228"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="567"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1265"/>
         <source>Unc&amp;omment</source>
         <translation>Odstranit poz&amp;námku</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="575"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1230"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="579"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1267"/>
         <source>&amp;Select all</source>
         <translation>&amp;Vybrat vše</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="587"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1232"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="591"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1269"/>
         <source>&amp;Find</source>
         <translation>&amp;Najít</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="595"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1233"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="599"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1270"/>
         <source>Fin&amp;d next</source>
         <translation>Hle&amp;dat dál</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="603"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1234"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="607"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1271"/>
         <source>&amp;Replace</source>
         <translation>&amp;Nahradit</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="615"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1236"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="619"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1273"/>
         <source>&amp;Goto line...</source>
         <translation>&amp;Jít na řádek...</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="627"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="631"/>
         <source>Dynamic line wrapping</source>
         <translation>Dynamické lámání řádků</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="639"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1242"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="643"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1279"/>
         <source>Input binding</source>
         <translation>Vstupní vazba</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="664"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="668"/>
         <source>Line endings</source>
         <translation>Konce řádků</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="671"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="675"/>
         <source>Conservative</source>
         <translation>Staromilský</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="672"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="676"/>
         <source>Local</source>
         <translation>Obvyklé v místním systému</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="673"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="677"/>
         <source>Unix/Linux</source>
         <translation>Unix/Linux</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="674"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="678"/>
         <source>Dos/Windows</source>
         <translation>DOS/Windows</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="675"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="679"/>
         <source>Old Mac</source>
         <translation>Starý Mac (CR)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="835"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="839"/>
         <source>Conflict!</source>
         <translation>Rozpor!</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="836"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="840"/>
         <source>%1
 has been modified by another application.
 Press &quot;Save&quot; to overwrite the file on disk
@@ -1807,12 +1829,31 @@ Klepněte na &quot;Nevšímat si&quot; pro přehlížení tohoto upozornění.
 </translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="992"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="990"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="994"/>
+        <source>File deleted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="990"/>
+        <source>The file %1 has been deleted on disk.
+Should I save the document as it is to restore the file?
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="994"/>
+        <source>Well, this is strange: The file %1 is not deleted anymore.
+Probably someone else restored it and therefore I&apos;m not going to override the (possible modified) version on the disk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1019"/>
         <source>File changed</source>
         <translation>Soubor je změněn</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="993"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1020"/>
         <source>%1
 has been modified by another application.
 
@@ -1825,32 +1866,32 @@ Automatické znovunahrání vyřazuje zásobník Zpět/Znovu.
 Má se soubor nahrát znovu?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1248"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1285"/>
         <source>&amp;Edit</source>
         <translation>&amp;Úpravy</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1249"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1286"/>
         <source>&amp;Search</source>
         <translation>&amp;Hledání</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1251"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1288"/>
         <source>Edit</source>
         <translation>Upravit</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1252"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1289"/>
         <source>Search</source>
         <translation>Hledat</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1374"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1411"/>
         <source>Windows</source>
         <translation>Windows</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1376"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1413"/>
         <source>Unix</source>
         <translation>Unix</translation>
     </message>
@@ -2309,28 +2350,28 @@ Chcete, aby byly uloženy?</translation>
 <context>
     <name>ShortcutDelegate</name>
     <message>
-        <location filename="configdialog.cpp" line="122"/>
+        <location filename="configdialog.cpp" line="40"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;Výchozí&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="123"/>
-        <location filename="configdialog.cpp" line="177"/>
+        <location filename="configdialog.cpp" line="41"/>
+        <location filename="configdialog.cpp" line="95"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;Žádný&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="228"/>
+        <location filename="configdialog.cpp" line="146"/>
         <source>delete row</source>
         <translation>Smazat řádek</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="234"/>
+        <location filename="configdialog.cpp" line="152"/>
         <source>add row</source>
         <translation>Přidat řádek</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="166"/>
+        <location filename="configdialog.cpp" line="84"/>
         <source>Only single characters are allowed as key</source>
         <translation>Ve sloupci s klávesami jsou dovoleny pouze jednotlivé znaky</translation>
     </message>
@@ -2348,18 +2389,18 @@ Chcete, aby byly uloženy?</translation>
         <translation>Ověřit pravopis od polohy ukazovátka...</translation>
     </message>
     <message>
-        <location filename="spellerdialog.cpp" line="187"/>
+        <location filename="spellerdialog.cpp" line="186"/>
         <source>No more misspelled words</source>
         <translation>Žádná další slova s chybným pravopisem</translation>
     </message>
     <message>
-        <location filename="spellerdialog.cpp" line="193"/>
         <location filename="spellerdialog.ui" line="128"/>
+        <location filename="spellerdialog.cpp" line="192"/>
         <source>Show Ignore List \/</source>
         <translation>Ukázat seznam s přehlíženými slovy \/</translation>
     </message>
     <message>
-        <location filename="spellerdialog.cpp" line="197"/>
+        <location filename="spellerdialog.cpp" line="196"/>
         <source>Hide Ignore List /\</source>
         <translation>Skrýt seznam s přehlíženými slovy /\</translation>
     </message>
@@ -2534,19 +2575,19 @@ Chcete, aby byly uloženy?</translation>
 <context>
     <name>Texmaker</name>
     <message>
-        <location filename="texmaker.cpp" line="221"/>
-        <location filename="texmaker.cpp" line="245"/>
-        <location filename="texmaker.cpp" line="246"/>
+        <location filename="texmaker.cpp" line="223"/>
+        <location filename="texmaker.cpp" line="247"/>
+        <location filename="texmaker.cpp" line="248"/>
         <source>Structure</source>
         <translation>Stavba</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="249"/>
+        <location filename="texmaker.cpp" line="251"/>
         <source>Relation symbols</source>
         <translation>Symboly a operátory</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="250"/>
+        <location filename="texmaker.cpp" line="252"/>
         <source>Arrow symbols</source>
         <translation>Šipky</translation>
     </message>
@@ -2555,177 +2596,177 @@ Chcete, aby byly uloženy?</translation>
         <translation type="obsolete">Verschiedenes</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="251"/>
+        <location filename="texmaker.cpp" line="253"/>
         <source>Delimiters</source>
         <translation>Oddělovací znaky</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="252"/>
+        <location filename="texmaker.cpp" line="254"/>
         <source>Greek letters</source>
         <translation>Řecká písmena</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="259"/>
+        <location filename="texmaker.cpp" line="261"/>
         <source>Most used symbols</source>
         <translation>Často užívané symboly</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="264"/>
+        <location filename="texmaker.cpp" line="266"/>
         <source>Pstricks Commands</source>
         <translation>Příkazy Pstricks</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="265"/>
+        <location filename="texmaker.cpp" line="267"/>
         <source>MetaPost Commands</source>
         <translation>Příkazy Metapost</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="293"/>
-        <location filename="texmaker.cpp" line="512"/>
+        <location filename="texmaker.cpp" line="295"/>
+        <location filename="texmaker.cpp" line="514"/>
         <source>Messages / Log File</source>
         <translation>Zprávy/Soubor se zápisem</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="152"/>
-        <location filename="texmaker.cpp" line="3499"/>
+        <location filename="texmaker.cpp" line="153"/>
+        <location filename="texmaker.cpp" line="3295"/>
         <source>Normal Mode</source>
         <translation>Obvyklý režim</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="153"/>
-        <location filename="texmaker.cpp" line="2930"/>
-        <location filename="texmaker.cpp" line="3065"/>
+        <location filename="texmaker.cpp" line="154"/>
+        <location filename="texmaker.cpp" line="2745"/>
+        <location filename="texmaker.cpp" line="2880"/>
         <source>Ready</source>
         <translation>Připraven</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="309"/>
+        <location filename="texmaker.cpp" line="311"/>
         <source>&amp;File</source>
         <translation>&amp;Soubor</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="310"/>
+        <location filename="texmaker.cpp" line="312"/>
         <source>New</source>
         <translation>Nový</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="312"/>
+        <location filename="texmaker.cpp" line="314"/>
         <source>Open</source>
         <translation>Otevřít</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="314"/>
+        <location filename="texmaker.cpp" line="316"/>
         <source>Open Recent</source>
         <translation>Naposledy otevřený</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="318"/>
+        <location filename="texmaker.cpp" line="320"/>
         <source>Save</source>
         <translation>Uložit</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="319"/>
-        <location filename="texmaker.cpp" line="1041"/>
-        <location filename="texmaker.cpp" line="1222"/>
+        <location filename="texmaker.cpp" line="321"/>
+        <location filename="texmaker.cpp" line="984"/>
+        <location filename="texmaker.cpp" line="1171"/>
         <source>Save As</source>
         <translation>Uložit jako</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="320"/>
+        <location filename="texmaker.cpp" line="322"/>
         <source>Save All</source>
         <translation>Uložit vše</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="326"/>
+        <location filename="texmaker.cpp" line="328"/>
         <source>Close</source>
         <translation>Zavřít</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="327"/>
+        <location filename="texmaker.cpp" line="329"/>
         <source>Close All</source>
         <translation>Zavřít vše</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="330"/>
+        <location filename="texmaker.cpp" line="332"/>
         <source>Print</source>
         <translation>Tisk</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="333"/>
+        <location filename="texmaker.cpp" line="335"/>
         <source>Exit</source>
         <translation>Ukončit</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="337"/>
+        <location filename="texmaker.cpp" line="339"/>
         <source>&amp;Edit</source>
         <translation>&amp;Úpravy</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="338"/>
+        <location filename="texmaker.cpp" line="340"/>
         <source>Undo</source>
         <translation>Zpět</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="339"/>
+        <location filename="texmaker.cpp" line="341"/>
         <source>Redo</source>
         <translation>Znovu</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="342"/>
-        <location filename="texmaker.cpp" line="552"/>
-        <location filename="texmaker.cpp" line="3811"/>
+        <location filename="texmaker.cpp" line="344"/>
+        <location filename="texmaker.cpp" line="554"/>
+        <location filename="texmaker.cpp" line="3617"/>
         <source>Copy</source>
         <translation>Kopírovat</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="343"/>
-        <location filename="texmaker.cpp" line="553"/>
-        <location filename="texmaker.cpp" line="3812"/>
+        <location filename="texmaker.cpp" line="345"/>
+        <location filename="texmaker.cpp" line="555"/>
+        <location filename="texmaker.cpp" line="3618"/>
         <source>Cut</source>
         <translation>Vyjmout</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="344"/>
+        <location filename="texmaker.cpp" line="346"/>
         <source>Paste</source>
         <translation>Vložit</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="345"/>
+        <location filename="texmaker.cpp" line="347"/>
         <source>Select All</source>
         <translation>Vybrat vše</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="348"/>
+        <location filename="texmaker.cpp" line="350"/>
         <source>Paste as Latex</source>
         <translation>Vložit jako Latex</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="349"/>
+        <location filename="texmaker.cpp" line="351"/>
         <source>Convert to Latex</source>
         <translation>Převést na Latex</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="356"/>
+        <location filename="texmaker.cpp" line="358"/>
         <source>Comment</source>
         <translation>Opatřit poznámkou</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="357"/>
+        <location filename="texmaker.cpp" line="359"/>
         <source>Uncomment</source>
         <translation>Odstranit poznámku</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="358"/>
+        <location filename="texmaker.cpp" line="360"/>
         <source>Indent</source>
         <translation>Odsadit</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="359"/>
+        <location filename="texmaker.cpp" line="361"/>
         <source>Unindent</source>
         <translation>Zrušit odsazení</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="364"/>
+        <location filename="texmaker.cpp" line="366"/>
         <source>Find</source>
         <translation>Najít</translation>
     </message>
@@ -2734,7 +2775,7 @@ Chcete, aby byly uloženy?</translation>
         <translation type="obsolete">Weitersuchen</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="367"/>
+        <location filename="texmaker.cpp" line="369"/>
         <source>Replace</source>
         <translation>Nahradit</translation>
     </message>
@@ -2791,115 +2832,115 @@ Chcete, aby byly uloženy?</translation>
         <translation type="obsolete">Lesezeichen 9</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="425"/>
+        <location filename="texmaker.cpp" line="427"/>
         <source>Check Spelling</source>
         <translation>Ověření pravopisu</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="429"/>
+        <location filename="texmaker.cpp" line="431"/>
         <source>Refresh Structure</source>
         <translation>Obnovit stavbu</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="435"/>
+        <location filename="texmaker.cpp" line="437"/>
         <source>&amp;Tools</source>
         <translation>&amp;Nástroje</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="436"/>
-        <location filename="texmaker.cpp" line="2943"/>
+        <location filename="texmaker.cpp" line="438"/>
+        <location filename="texmaker.cpp" line="2758"/>
         <source>Quick Build</source>
         <translation>Rychlý překlad</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="440"/>
+        <location filename="texmaker.cpp" line="442"/>
         <source>View Dvi</source>
         <translation>Zobrazit Dvi</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="442"/>
+        <location filename="texmaker.cpp" line="444"/>
         <source>View PS</source>
         <translation>Zobrazit PS</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="444"/>
+        <location filename="texmaker.cpp" line="446"/>
         <source>View PDF</source>
         <translation>Zobrazit PDF</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="447"/>
+        <location filename="texmaker.cpp" line="449"/>
         <source>View Log</source>
         <translation>Zobrazit zápis</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="455"/>
-        <location filename="texmaker.cpp" line="484"/>
-        <location filename="texmaker.cpp" line="3062"/>
+        <location filename="texmaker.cpp" line="457"/>
+        <location filename="texmaker.cpp" line="486"/>
+        <location filename="texmaker.cpp" line="2877"/>
         <source>Clean</source>
         <translation>Uklidit</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="457"/>
+        <location filename="texmaker.cpp" line="459"/>
         <source>Convert to Html</source>
         <translation>Převést na HTML</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="486"/>
+        <location filename="texmaker.cpp" line="488"/>
         <source>BibTeX insert dialog</source>
         <translation>Dialog pro nový záznam BibTeX</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="529"/>
+        <location filename="texmaker.cpp" line="531"/>
         <source>Fullscreen Mode</source>
         <translation>Režim na celou obrazovku</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="538"/>
+        <location filename="texmaker.cpp" line="540"/>
         <source>Automatically restore session at next start</source>
         <translation>Automaticky obnovit sezení při novém spuštění programu</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1069"/>
+        <location filename="texmaker.cpp" line="1012"/>
         <source>You can not remove built-in templates.</source>
         <translation>Nemůžete odstranit vestavěné předlohy.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1079"/>
+        <location filename="texmaker.cpp" line="1022"/>
         <source>You can not edit built-in templates.</source>
         <translation>Nemůžete upravit vestavěné předlohy.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1576"/>
+        <location filename="texmaker.cpp" line="1524"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>Nelze nahrát slovníkovou databázi</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2688"/>
-        <location filename="texmaker.cpp" line="2708"/>
+        <location filename="texmaker.cpp" line="2590"/>
+        <location filename="texmaker.cpp" line="2610"/>
         <source>Labels:</source>
         <translation>Štítky:</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2882"/>
+        <location filename="texmaker.cpp" line="2697"/>
         <source>Pre-LaTeX</source>
         <translation>Před-LaTeX</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2890"/>
-        <location filename="texmaker.cpp" line="2950"/>
-        <location filename="texmaker.cpp" line="2966"/>
-        <location filename="texmaker.cpp" line="2992"/>
-        <location filename="texmaker.cpp" line="3008"/>
+        <location filename="texmaker.cpp" line="2705"/>
+        <location filename="texmaker.cpp" line="2765"/>
+        <location filename="texmaker.cpp" line="2781"/>
+        <location filename="texmaker.cpp" line="2807"/>
+        <location filename="texmaker.cpp" line="2823"/>
         <source>Could not start LaTeX.</source>
         <translation>Nepodařilo se spustit LaTeX.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2979"/>
+        <location filename="texmaker.cpp" line="2794"/>
         <source>Could not start PdfLaTeX.</source>
         <translation>Nepodařilo se spustit PdfLaTeX.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3123"/>
+        <location filename="texmaker.cpp" line="2938"/>
         <source>Text Analysis</source>
         <translation>Rozbor textu</translation>
     </message>
@@ -2980,59 +3021,59 @@ Chcete, aby byly uloženy?</translation>
         <translation type="obsolete">&amp;Assistenten</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="472"/>
+        <location filename="texmaker.cpp" line="474"/>
         <source>Quick Start</source>
         <translation>Pomocník pro nový dokument</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="473"/>
+        <location filename="texmaker.cpp" line="475"/>
         <source>Quick Letter</source>
         <translation>Pomocník s dopisem</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="476"/>
+        <location filename="texmaker.cpp" line="478"/>
         <source>Quick Tabular</source>
         <translation>Pomocník s tabulkami</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="477"/>
+        <location filename="texmaker.cpp" line="479"/>
         <source>Quick Tabbing</source>
         <translation>Pomocník se záložkami</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="478"/>
+        <location filename="texmaker.cpp" line="480"/>
         <source>Quick Array</source>
         <translation>Pomocník s uspořádáním</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="480"/>
+        <location filename="texmaker.cpp" line="482"/>
         <source>&amp;Bibliography</source>
         <translation>&amp;Bibliografie</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="490"/>
+        <location filename="texmaker.cpp" line="492"/>
         <source>&amp;User</source>
         <translation>&amp;Uživatel</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="491"/>
+        <location filename="texmaker.cpp" line="493"/>
         <source>User &amp;Tags</source>
         <translation>&amp;Uživatelské značky</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="496"/>
-        <location filename="texmaker.cpp" line="2617"/>
+        <location filename="texmaker.cpp" line="498"/>
+        <location filename="texmaker.cpp" line="2561"/>
         <source>Edit User &amp;Tags</source>
         <translation>Upravit uživatelské &amp;značky</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="498"/>
+        <location filename="texmaker.cpp" line="500"/>
         <source>User &amp;Commands</source>
         <translation>&amp;Uživatelské příkazy</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="503"/>
-        <location filename="texmaker.cpp" line="3085"/>
+        <location filename="texmaker.cpp" line="505"/>
+        <location filename="texmaker.cpp" line="2900"/>
         <source>Edit User &amp;Commands</source>
         <translation>Upravit uživatelské &amp;příkazy</translation>
     </message>
@@ -3041,27 +3082,27 @@ Chcete, aby byly uloženy?</translation>
         <translation type="obsolete">Tastenersetzungen ändern</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="506"/>
+        <location filename="texmaker.cpp" line="508"/>
         <source>&amp;View</source>
         <translation>&amp;Pohled</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="507"/>
+        <location filename="texmaker.cpp" line="509"/>
         <source>Next Document</source>
         <translation>Další dokument</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="508"/>
+        <location filename="texmaker.cpp" line="510"/>
         <source>Previous Document</source>
         <translation>Předchozí dokument</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="533"/>
+        <location filename="texmaker.cpp" line="535"/>
         <source>&amp;Options</source>
         <translation>&amp;Volby</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="534"/>
+        <location filename="texmaker.cpp" line="536"/>
         <source>Configure TexMakerX</source>
         <translation>Nastavit TexMakerX</translation>
     </message>
@@ -3074,28 +3115,28 @@ Chcete, aby byly uloženy?</translation>
         <translation type="obsolete">Interfaceart ändern</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="537"/>
-        <location filename="texmaker.cpp" line="3496"/>
+        <location filename="texmaker.cpp" line="539"/>
+        <location filename="texmaker.cpp" line="3292"/>
         <source>Define Current Document as &apos;Master Document&apos;</source>
         <translation>Prohlásit současný dokument za &apos;Hlavní dokument&apos;</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="542"/>
+        <location filename="texmaker.cpp" line="544"/>
         <source>&amp;Help</source>
         <translation>&amp;Nápověda</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="543"/>
+        <location filename="texmaker.cpp" line="545"/>
         <source>LaTeX Reference</source>
         <translation>LaTeXový odkaz</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="544"/>
+        <location filename="texmaker.cpp" line="546"/>
         <source>User Manual</source>
         <translation>Uživatelská příručka</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="547"/>
+        <location filename="texmaker.cpp" line="549"/>
         <source>About TexMakerX</source>
         <translation>O programu TexMakerX</translation>
     </message>
@@ -3128,43 +3169,43 @@ Chcete, aby byly uloženy?</translation>
         <translation type="obsolete">Neue Zeile</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="749"/>
+        <location filename="texmaker.cpp" line="659"/>
         <source>Click to jump to the bookmark</source>
         <translation>Klepněte kvůli skoku na záložku</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="974"/>
-        <location filename="texmaker.cpp" line="1067"/>
-        <location filename="texmaker.cpp" line="1069"/>
-        <location filename="texmaker.cpp" line="1079"/>
-        <location filename="texmaker.cpp" line="1111"/>
-        <location filename="texmaker.cpp" line="1576"/>
-        <location filename="texmaker.cpp" line="1596"/>
-        <location filename="texmaker.cpp" line="2826"/>
-        <location filename="texmaker.cpp" line="2890"/>
-        <location filename="texmaker.cpp" line="2950"/>
-        <location filename="texmaker.cpp" line="2966"/>
-        <location filename="texmaker.cpp" line="2979"/>
-        <location filename="texmaker.cpp" line="2992"/>
-        <location filename="texmaker.cpp" line="3008"/>
-        <location filename="texmaker.cpp" line="3052"/>
-        <location filename="texmaker.cpp" line="3174"/>
-        <location filename="texmaker.cpp" line="3195"/>
-        <location filename="texmaker.cpp" line="3319"/>
-        <location filename="texmaker.cpp" line="3327"/>
-        <location filename="texmaker.cpp" line="3507"/>
+        <location filename="texmaker.cpp" line="889"/>
+        <location filename="texmaker.cpp" line="1010"/>
+        <location filename="texmaker.cpp" line="1012"/>
+        <location filename="texmaker.cpp" line="1022"/>
+        <location filename="texmaker.cpp" line="1054"/>
+        <location filename="texmaker.cpp" line="1524"/>
+        <location filename="texmaker.cpp" line="1544"/>
+        <location filename="texmaker.cpp" line="2641"/>
+        <location filename="texmaker.cpp" line="2705"/>
+        <location filename="texmaker.cpp" line="2765"/>
+        <location filename="texmaker.cpp" line="2781"/>
+        <location filename="texmaker.cpp" line="2794"/>
+        <location filename="texmaker.cpp" line="2807"/>
+        <location filename="texmaker.cpp" line="2823"/>
+        <location filename="texmaker.cpp" line="2867"/>
+        <location filename="texmaker.cpp" line="2989"/>
+        <location filename="texmaker.cpp" line="3010"/>
+        <location filename="texmaker.cpp" line="3134"/>
+        <location filename="texmaker.cpp" line="3142"/>
+        <location filename="texmaker.cpp" line="3303"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="974"/>
-        <location filename="texmaker.cpp" line="1111"/>
-        <location filename="texmaker.cpp" line="1596"/>
+        <location filename="texmaker.cpp" line="889"/>
+        <location filename="texmaker.cpp" line="1054"/>
+        <location filename="texmaker.cpp" line="1544"/>
         <source>You do not have read permission to this file.</source>
         <translation>Nemáte dostatečná oprávnění pro čtení tohoto souboru.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1166"/>
+        <location filename="texmaker.cpp" line="1115"/>
         <source>Open Files</source>
         <oldsource>Open File</oldsource>
         <translation>Otevřít soubory</translation>
@@ -3174,35 +3215,35 @@ Chcete, aby byly uloženy?</translation>
         <translation type="obsolete">Die Datei konnte nicht abgespeichert werden. Bitte überprüfe, ob Sie die nötzigen Schreibrechte haben.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1282"/>
+        <location filename="texmaker.cpp" line="1231"/>
         <source>The document contains unsaved work. Do you want to save it before closing?</source>
         <translation>Dokument byl změněn, a tak obsahuje neuloženou práci. Chcete ji před ukončením programu uložit?</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1284"/>
-        <location filename="texmaker.cpp" line="1310"/>
-        <location filename="texmaker.cpp" line="1347"/>
+        <location filename="texmaker.cpp" line="1233"/>
+        <location filename="texmaker.cpp" line="1259"/>
+        <location filename="texmaker.cpp" line="1296"/>
         <source>Save and Close</source>
         <translation>Uložit a zavřít</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1284"/>
-        <location filename="texmaker.cpp" line="1310"/>
-        <location filename="texmaker.cpp" line="1347"/>
+        <location filename="texmaker.cpp" line="1233"/>
+        <location filename="texmaker.cpp" line="1259"/>
+        <location filename="texmaker.cpp" line="1296"/>
         <source>Don&apos;t Save and Close</source>
         <translation>Zavřít bez uložení</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1284"/>
-        <location filename="texmaker.cpp" line="1310"/>
-        <location filename="texmaker.cpp" line="1347"/>
-        <location filename="texmaker.cpp" line="3056"/>
+        <location filename="texmaker.cpp" line="1233"/>
+        <location filename="texmaker.cpp" line="1259"/>
+        <location filename="texmaker.cpp" line="1296"/>
+        <location filename="texmaker.cpp" line="2871"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1308"/>
-        <location filename="texmaker.cpp" line="1345"/>
+        <location filename="texmaker.cpp" line="1257"/>
+        <location filename="texmaker.cpp" line="1294"/>
         <source>The document contains unsaved work. Do you want to save it before exiting?</source>
         <translation>Dokument byl změněn, a tak obsahuje neuloženou práci. Chcete jej před ukončením programu uložit?</translation>
     </message>
@@ -3219,8 +3260,8 @@ Chcete, aby byly uloženy?</translation>
         <translation type="obsolete">Wähle eine Datei</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2826"/>
-        <location filename="texmaker.cpp" line="3052"/>
+        <location filename="texmaker.cpp" line="2641"/>
+        <location filename="texmaker.cpp" line="2867"/>
         <source>Can&apos;t detect the file name</source>
         <translation>Nelze zjistit název souboru</translation>
     </message>
@@ -3246,7 +3287,7 @@ Chcete, aby byly uloženy?</translation>
         <translation type="obsolete">Sollen die Ausgabedateien von LaTeX gelöscht werden?(.log,.aux,.dvi,.lof,.lot,.bit,.idx,.glo,.bbl,.ilg,.toc,.ind)</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3056"/>
+        <location filename="texmaker.cpp" line="2871"/>
         <source>Delete Files</source>
         <translation>Smazat soubory</translation>
     </message>
@@ -3255,7 +3296,7 @@ Chcete, aby byly uloženy?</translation>
         <translation type="obsolete">Tastenersetzungen ändern</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3195"/>
+        <location filename="texmaker.cpp" line="3010"/>
         <source>Log File not found !</source>
         <translation>Soubor se zápisem nebyl nalezen!</translation>
     </message>
@@ -3264,19 +3305,19 @@ Chcete, aby byly uloženy?</translation>
         <translation type="obsolete">Klicken um zur Zeile zu springen</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3279"/>
-        <location filename="texmaker.cpp" line="3283"/>
+        <location filename="texmaker.cpp" line="3094"/>
+        <location filename="texmaker.cpp" line="3098"/>
         <source>No LaTeX errors detected !</source>
         <translation>Nenalezeny žádné LaTeXové chyby!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3319"/>
-        <location filename="texmaker.cpp" line="3327"/>
+        <location filename="texmaker.cpp" line="3134"/>
+        <location filename="texmaker.cpp" line="3142"/>
         <source>File not found</source>
         <translation>Soubor nebyl nalezen</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3514"/>
+        <location filename="texmaker.cpp" line="3310"/>
         <source>Normal Mode (current master document :</source>
         <translation>Obvyklý režim (nynější hlavní soubor:</translation>
     </message>
@@ -3293,12 +3334,12 @@ Chcete, aby byly uloženy?</translation>
         <translation type="obsolete">Bitte starte TexMakerX neu, um die Änderung anzuzeigen</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="392"/>
+        <location filename="texmaker.cpp" line="394"/>
         <source>Toggle Bookmark</source>
         <translation>Přepnout záložku</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="387"/>
+        <location filename="texmaker.cpp" line="389"/>
         <source>Goto Bookmark</source>
         <translation>Jít na záložku</translation>
     </message>
@@ -3307,29 +3348,29 @@ Chcete, aby byly uloženy?</translation>
         <translation type="obsolete">Speichere &apos;Masterdatei&apos;-Einstellungen</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2851"/>
+        <location filename="texmaker.cpp" line="2666"/>
         <source>could not start the command:</source>
         <translation>Nepodařilo se spustit příkaz:</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2853"/>
+        <location filename="texmaker.cpp" line="2668"/>
         <source>Process started</source>
         <translation>Postup spuštěn</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3056"/>
+        <location filename="texmaker.cpp" line="2871"/>
         <source>Delete the output files generated by LaTeX?</source>
         <translation>Smazat výstupní soubory vytvořené Latexem?</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3287"/>
-        <location filename="texmaker.cpp" line="3290"/>
+        <location filename="texmaker.cpp" line="3102"/>
+        <location filename="texmaker.cpp" line="3105"/>
         <source>No LaTeX warnings detected !</source>
         <translation>Nenalezena žádná LaTeXová varování!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3294"/>
-        <location filename="texmaker.cpp" line="3297"/>
+        <location filename="texmaker.cpp" line="3109"/>
+        <location filename="texmaker.cpp" line="3112"/>
         <source>No bad boxes detected !</source>
         <translation>Nenalezena žádná špatná políčka!</translation>
     </message>
@@ -3338,12 +3379,12 @@ Chcete, aby byly uloženy?</translation>
         <translation type="obsolete">Menüs</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3516"/>
+        <location filename="texmaker.cpp" line="3312"/>
         <source>Master Document</source>
         <translation>Hlavní dokument</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="365"/>
+        <location filename="texmaker.cpp" line="367"/>
         <source>Find Next</source>
         <translation>Najít další</translation>
     </message>
@@ -3352,322 +3393,322 @@ Chcete, aby byly uloženy?</translation>
         <translation type="obsolete">Stavba (pokusné)</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="248"/>
+        <location filename="texmaker.cpp" line="250"/>
         <source>Operator symbols</source>
         <translation>Symboly operátorů</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="253"/>
+        <location filename="texmaker.cpp" line="255"/>
         <source>Cyrillic letters</source>
         <translation>Cyrilská písmena</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="254"/>
+        <location filename="texmaker.cpp" line="256"/>
         <source>Miscellaneous math symbols</source>
         <translation>Různé matematické symboly</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="255"/>
+        <location filename="texmaker.cpp" line="257"/>
         <source>Miscellaneous text symbols</source>
         <translation>
 Různé textové symboly</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="256"/>
+        <location filename="texmaker.cpp" line="258"/>
         <source>Miscellaneous text symbols (wasysym)</source>
         <translation>Různé textové symboly (wasysym)</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="257"/>
+        <location filename="texmaker.cpp" line="259"/>
         <source>Accented letters</source>
         <translation>Zdůrazněná písmena</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="260"/>
+        <location filename="texmaker.cpp" line="262"/>
         <source>Favorites</source>
         <translation>Nejoblíbenější</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="263"/>
+        <location filename="texmaker.cpp" line="265"/>
         <source>Left/Right Brackets</source>
         <translation>Levé/Pravé závorky</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="266"/>
+        <location filename="texmaker.cpp" line="268"/>
         <source>Tikz Commands</source>
         <translation>Příkazy Tikz</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="267"/>
+        <location filename="texmaker.cpp" line="269"/>
         <source>Asymptote Commands</source>
         <translation>Příkazy Asymptote</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="311"/>
+        <location filename="texmaker.cpp" line="313"/>
         <source>New from template</source>
         <translation>Nový z předlohy</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="315"/>
+        <location filename="texmaker.cpp" line="317"/>
         <source>Restore previous session</source>
         <translation>Obnovit předchozí sezení</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="321"/>
+        <location filename="texmaker.cpp" line="323"/>
         <source>Make Template</source>
         <translation>Vytvořit předlohu</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="322"/>
+        <location filename="texmaker.cpp" line="324"/>
         <source>Check in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="323"/>
+        <location filename="texmaker.cpp" line="325"/>
         <source>Show old Revisions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="346"/>
+        <location filename="texmaker.cpp" line="348"/>
         <source>Erase Line</source>
         <translation>Vymazat řádek</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="350"/>
+        <location filename="texmaker.cpp" line="352"/>
         <source>Preview Selection/Parantheses</source>
         <translation>Náhled na výběr/závorky</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="360"/>
+        <location filename="texmaker.cpp" line="362"/>
         <source>Hard Line Break</source>
         <translation>Tvrdé zalomení řádků</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="361"/>
+        <location filename="texmaker.cpp" line="363"/>
         <source>Repeat Hard Line Break</source>
         <translation>Opakovat tvrdé zalomení řádků</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="366"/>
+        <location filename="texmaker.cpp" line="368"/>
         <source>Find Dialog</source>
         <translation>Dialog hledání</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="370"/>
+        <location filename="texmaker.cpp" line="372"/>
         <source>Go to</source>
         <translation>Jít na</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="371"/>
+        <location filename="texmaker.cpp" line="373"/>
         <source>Line</source>
         <translation>Řádek</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="372"/>
+        <location filename="texmaker.cpp" line="374"/>
         <source>last change</source>
         <translation>Poslední změna</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="373"/>
+        <location filename="texmaker.cpp" line="375"/>
         <source>&quot;next&quot; change</source>
         <translation>&quot;Další&quot; změna</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="375"/>
+        <location filename="texmaker.cpp" line="377"/>
         <source>Previous mark</source>
         <translation>Předchozí značka</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="376"/>
+        <location filename="texmaker.cpp" line="378"/>
         <source>Next mark</source>
         <translation>Další značka</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="378"/>
+        <location filename="texmaker.cpp" line="380"/>
         <source>Previous error</source>
         <translation>Předchozí chyba</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="379"/>
+        <location filename="texmaker.cpp" line="381"/>
         <source>Next error</source>
         <translation>Další chyba</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="380"/>
+        <location filename="texmaker.cpp" line="382"/>
         <source>Previous warning</source>
         <translation>Předchozí varování</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="381"/>
+        <location filename="texmaker.cpp" line="383"/>
         <source>Next warning</source>
         <translation>Další varování</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="382"/>
+        <location filename="texmaker.cpp" line="384"/>
         <source>Previous bad box</source>
         <translation>Předchozí špatné políčko</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="383"/>
+        <location filename="texmaker.cpp" line="385"/>
         <source>Next bad box</source>
         <translation>Další špatné políčko</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="385"/>
+        <location filename="texmaker.cpp" line="387"/>
         <source>Definition</source>
         <translation>Vymezení</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="389"/>
-        <location filename="texmaker.cpp" line="396"/>
+        <location filename="texmaker.cpp" line="391"/>
+        <location filename="texmaker.cpp" line="398"/>
         <source>Bookmark %1</source>
         <translation>Záložka %1</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="393"/>
+        <location filename="texmaker.cpp" line="395"/>
         <source>unnamed bookmark</source>
         <translation>Nepojmenovaná záložka</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="399"/>
+        <location filename="texmaker.cpp" line="401"/>
         <source>Complete</source>
         <translation>Doplnit</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="400"/>
+        <location filename="texmaker.cpp" line="402"/>
         <source>normal</source>
         <translation>Obvyklý</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="401"/>
+        <location filename="texmaker.cpp" line="403"/>
         <source>\begin{ completion</source>
         <translation>\begin{ doplnění</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="402"/>
+        <location filename="texmaker.cpp" line="404"/>
         <source>normal text</source>
         <translation>Obvyklý text</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="405"/>
+        <location filename="texmaker.cpp" line="407"/>
         <source>Line Ending</source>
         <translation>Konec řádku</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="407"/>
+        <location filename="texmaker.cpp" line="409"/>
         <source>DOS/Windows (CR LF)</source>
         <translation>DOS/Windows (CR LF)</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="411"/>
+        <location filename="texmaker.cpp" line="413"/>
         <source>Unix (LF)</source>
         <translation>Unix (LF)</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="415"/>
+        <location filename="texmaker.cpp" line="417"/>
         <source>Old Mac (CR)</source>
         <translation>Starý Mac (CR)</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="421"/>
+        <location filename="texmaker.cpp" line="423"/>
         <source>Setup Encoding</source>
         <translation>Nastavit kódování znaků</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="426"/>
+        <location filename="texmaker.cpp" line="428"/>
         <source>Thesaurus</source>
         <translation>Slovník</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="430"/>
+        <location filename="texmaker.cpp" line="432"/>
         <source>Remove Placeholders</source>
         <translation>Odstranit zástupné znaky</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="439"/>
-        <location filename="texmaker.cpp" line="2887"/>
-        <location filename="texmaker.cpp" line="2898"/>
+        <location filename="texmaker.cpp" line="441"/>
+        <location filename="texmaker.cpp" line="2702"/>
+        <location filename="texmaker.cpp" line="2713"/>
         <source>LaTeX</source>
         <translation>LaTeX</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="441"/>
+        <location filename="texmaker.cpp" line="443"/>
         <source>Dvi-&gt;PS</source>
         <translation>Dvi-&gt;PS</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="443"/>
+        <location filename="texmaker.cpp" line="445"/>
         <source>PDFLaTeX</source>
         <translation>PDFLaTeX</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="445"/>
+        <location filename="texmaker.cpp" line="447"/>
         <source>PS-&gt;PDF</source>
         <translation>PS-&gt;PDF</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="446"/>
+        <location filename="texmaker.cpp" line="448"/>
         <source>DVI-&gt;PDF</source>
         <translation>DVI-&gt;PDF</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="448"/>
-        <location filename="texmaker.cpp" line="2895"/>
+        <location filename="texmaker.cpp" line="450"/>
+        <location filename="texmaker.cpp" line="2710"/>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="449"/>
+        <location filename="texmaker.cpp" line="451"/>
         <source>MakeIndex</source>
         <translation>MakeIndex</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="450"/>
+        <location filename="texmaker.cpp" line="452"/>
         <source>Clear Markers</source>
         <translation>Smazat značky</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="453"/>
+        <location filename="texmaker.cpp" line="455"/>
         <source>MetaPost</source>
         <translation>MetaPost</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="459"/>
+        <location filename="texmaker.cpp" line="461"/>
         <source>Analyse Text</source>
         <translation>Rozebrat text</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="460"/>
+        <location filename="texmaker.cpp" line="462"/>
         <source>Generate Random Text</source>
         <translation>Vytvořit náhodný text</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="465"/>
+        <location filename="texmaker.cpp" line="467"/>
         <source>&amp;Latex</source>
         <translation>&amp;Latex</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="466"/>
+        <location filename="texmaker.cpp" line="468"/>
         <source>Insert \ref to next label</source>
         <translation>Vložit \ref k dalšímu štítku</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="467"/>
+        <location filename="texmaker.cpp" line="469"/>
         <source>Insert \ref to previous label</source>
         <translation>Vložit \ref k předchozímu štítku</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="471"/>
+        <location filename="texmaker.cpp" line="473"/>
         <source>&amp;Wizards</source>
         <translation>&amp;Průvodci</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4127"/>
+        <location filename="texmaker.cpp" line="3932"/>
         <source>commit comment:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4297"/>
+        <location filename="texmaker.cpp" line="4102"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3724,35 +3765,35 @@ Různé textové symboly</translation>
         <translation type="obsolete">Sonstiges</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="514"/>
+        <location filename="texmaker.cpp" line="516"/>
         <source>Close Something</source>
         <translation>Zavřít něco</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="517"/>
+        <location filename="texmaker.cpp" line="519"/>
         <source>Collapse</source>
         <translation>Složit</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="518"/>
-        <location filename="texmaker.cpp" line="523"/>
+        <location filename="texmaker.cpp" line="520"/>
+        <location filename="texmaker.cpp" line="525"/>
         <source>Everything</source>
         <translation>Vše</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="519"/>
-        <location filename="texmaker.cpp" line="524"/>
+        <location filename="texmaker.cpp" line="521"/>
+        <location filename="texmaker.cpp" line="526"/>
         <source>Nearest block</source>
         <translation>Nejbližší blok</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="521"/>
-        <location filename="texmaker.cpp" line="526"/>
+        <location filename="texmaker.cpp" line="523"/>
+        <location filename="texmaker.cpp" line="528"/>
         <source>Level %1</source>
         <translation>Úroveň %1</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="522"/>
+        <location filename="texmaker.cpp" line="524"/>
         <source>Expand</source>
         <translation>Rozbalit</translation>
     </message>
@@ -3761,46 +3802,46 @@ Různé textové symboly</translation>
         <translation type="obsolete">Geöffnete Dateien wiederherstellen</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="554"/>
-        <location filename="texmaker.cpp" line="3813"/>
+        <location filename="texmaker.cpp" line="556"/>
+        <location filename="texmaker.cpp" line="3619"/>
         <source>Paste before</source>
         <translation>Vložit před</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="555"/>
-        <location filename="texmaker.cpp" line="3814"/>
+        <location filename="texmaker.cpp" line="557"/>
+        <location filename="texmaker.cpp" line="3620"/>
         <source>Paste after</source>
         <translation>Vložit za</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="559"/>
-        <location filename="texmaker.cpp" line="3816"/>
+        <location filename="texmaker.cpp" line="561"/>
+        <location filename="texmaker.cpp" line="3622"/>
         <source>Indent Section</source>
         <translation>Odsadit oblast</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="560"/>
-        <location filename="texmaker.cpp" line="3817"/>
+        <location filename="texmaker.cpp" line="562"/>
+        <location filename="texmaker.cpp" line="3623"/>
         <source>Unindent Section</source>
         <translation>Zrušit odsazení oblasti</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="831"/>
+        <location filename="texmaker.cpp" line="745"/>
         <source>untitled</source>
         <translation>Bez názvu</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1062"/>
+        <location filename="texmaker.cpp" line="1005"/>
         <source>Please Confirm</source>
         <translation>Potvrďte, prosím</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1062"/>
+        <location filename="texmaker.cpp" line="1005"/>
         <source>Are you sure to remove that template permanently ?</source>
         <translation>Jste si jist, že chcete předlohu odstranit natrvalo?</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1067"/>
+        <location filename="texmaker.cpp" line="1010"/>
         <source>You do not have permission to remove this file.</source>
         <translation>Nemáte žádné oprávnění pro odstranění tohoto souboru.</translation>
     </message>
@@ -3813,18 +3854,18 @@ Různé textové symboly</translation>
         <translation type="obsolete">Sie können integrierte Templates nicht editieren.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1086"/>
+        <location filename="texmaker.cpp" line="1029"/>
         <source>Templates</source>
         <translation>Předlohy</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1087"/>
+        <location filename="texmaker.cpp" line="1030"/>
         <source>Edit</source>
         <translation>Upravit</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1090"/>
-        <location filename="texmaker.cpp" line="3948"/>
+        <location filename="texmaker.cpp" line="1033"/>
+        <location filename="texmaker.cpp" line="3752"/>
         <source>Remove</source>
         <translation>Odstranit</translation>
     </message>
@@ -3833,60 +3874,60 @@ Různé textové symboly</translation>
         <translation type="obsolete">Fügte den harten Zeilenumbruch nach so vielen Zeichen ein:</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2569"/>
+        <location filename="texmaker.cpp" line="2513"/>
         <source>&lt;current file&gt;</source>
         <translation>&lt;nynější soubor&gt;</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3140"/>
+        <location filename="texmaker.cpp" line="2955"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation>Tvůrce náhodného textu staví nové texty ze stávajících slov, takže musíte otevřít nějaké textové soubory</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3174"/>
+        <location filename="texmaker.cpp" line="2989"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>Soubor musí být uložen a sestaven, dříve než si budete moci prohlédnout zápis</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3507"/>
+        <location filename="texmaker.cpp" line="3303"/>
         <source>You must save the file before switching to master mode.</source>
         <translation>Soubor musí být uložen, dříve než bude lze přepnout do hlavního režimu.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3805"/>
-        <location filename="texmaker.cpp" line="3830"/>
+        <location filename="texmaker.cpp" line="3611"/>
+        <location filename="texmaker.cpp" line="3636"/>
         <source>Insert</source>
         <translation>Vložit</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3806"/>
-        <location filename="texmaker.cpp" line="3807"/>
+        <location filename="texmaker.cpp" line="3612"/>
+        <location filename="texmaker.cpp" line="3613"/>
         <source>Insert as %1</source>
         <translation>Vložit jako %1</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3947"/>
-        <location filename="texmaker.cpp" line="3958"/>
+        <location filename="texmaker.cpp" line="3751"/>
+        <location filename="texmaker.cpp" line="3762"/>
         <source>Add to favorites</source>
         <translation>Přidat k nejoblíbenějším</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3949"/>
+        <location filename="texmaker.cpp" line="3753"/>
         <source>Remove all</source>
         <translation>Odstranit vše</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3953"/>
+        <location filename="texmaker.cpp" line="3757"/>
         <source>Remove from favorites</source>
         <translation>Odstranit z nejoblíbenějších</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3954"/>
+        <location filename="texmaker.cpp" line="3758"/>
         <source>Remove all favorites</source>
         <translation>Odstranit všechny nejoblíbenější</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3990"/>
+        <location filename="texmaker.cpp" line="3794"/>
         <source>remove</source>
         <translation>Odstranit</translation>
     </message>
@@ -3899,10 +3940,10 @@ Různé textové symboly</translation>
         <translation type="obsolete">Masterdokument:</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1562"/>
-        <location filename="texmaker.cpp" line="1572"/>
-        <location filename="texmaker.cpp" line="3102"/>
-        <location filename="texmaker.cpp" line="3119"/>
+        <location filename="texmaker.cpp" line="1510"/>
+        <location filename="texmaker.cpp" line="1520"/>
+        <location filename="texmaker.cpp" line="2917"/>
+        <location filename="texmaker.cpp" line="2934"/>
         <source>No document open</source>
         <translation>Neotevřen žádný dokument</translation>
     </message>
@@ -4381,8 +4422,8 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
         <translation>Otevřít soubor</translation>
     </message>
     <message>
-        <location filename="webpublishdialog.cpp" line="22"/>
         <location filename="webpublishdialog.ui" line="13"/>
+        <location filename="webpublishdialog.cpp" line="22"/>
         <source>Convert to Html</source>
         <translation>Převést na HTML</translation>
     </message>
