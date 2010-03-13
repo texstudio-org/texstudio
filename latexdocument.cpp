@@ -49,6 +49,7 @@ QString LatexDocument::getFileName(){
 QFileInfo LatexDocument::getFileInfo(){
 	return fileInfo;
 }
+
 QDocumentSelection LatexDocument::sectionSelection(StructureEntry* section){
 	QDocumentSelection result;
 	result.endLine=-1;result.startLine=-1;
@@ -233,6 +234,7 @@ void LatexDocument::updateStructure() {
 				newInclude->title=s;
 //				newInclude.title=inputTokens.at(header); //texmaker distinguished include/input, doesn't seem necessary
 				newInclude->lineNumber=i;
+				newInclude->level=fileExits(s)? 0 : 1;
 				if (!temporaryLoadedDocument)
 					newInclude->lineHandle=document->line(i).handle();
 			}
@@ -488,6 +490,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				newInclude->title=s;
 //				newInclude.title=inputTokens.at(header); //texmaker distinguished include/input, doesn't seem necessary
 				newInclude->lineNumber=i;
+				newInclude->level=fileExits(s)? 0 : 1;
 				newInclude->lineHandle=document->line(i).handle();
 			}
 		}//for
@@ -683,6 +686,10 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 			if (index==mHighlightIndex) return QVariant(Qt::lightGray);
 			if (entry->appendix) return QVariant(QColor(200,230,200));
 			else return QVariant();
+		case Qt::ForegroundRole:
+			if((entry->type==StructureEntry::SE_INCLUDE) && (entry->level==1)) {
+				return QVariant(Qt::red);
+			}else return QVariant();
 		case Qt::FontRole:
 			if((entry->type==StructureEntry::SE_DOCUMENT_ROOT) && (entry->document==documents.currentDocument)) {
 			    QFont f=QApplication::font();
@@ -821,6 +828,7 @@ void LatexDocuments::addDocument(LatexDocument* document){
 	model->connect(document,SIGNAL(removeElement(StructureEntry*,int)),model,SLOT(removeElement(StructureEntry*,int)));
 	model->connect(document,SIGNAL(addElement(StructureEntry*,int)),model,SLOT(addElement(StructureEntry*,int)));
 	model->connect(document,SIGNAL(updateElement(StructureEntry*)),model,SLOT(updateElement(StructureEntry*)));
+	document->parent=this;
 }
 void LatexDocuments::deleteDocument(LatexDocument* document){
 	if (document->getEditorView()) delete document->getEditorView();
@@ -1085,6 +1093,14 @@ void LatexDocument::setAppendix(StructureEntry *se,int startLine,int endLine,boo
 	if(elem->type==StructureEntry::SE_SECTION) setAppendix(elem,startLine,endLine,state);
     }
 }
+
+bool LatexDocument::fileExits(QString fname){
+	QString curPath=ensureTrailingDirSeparator(getFileInfo().absolutePath());
+	bool exist=QFile(parent->getAbsoluteFilePath(fname,".tex")).exists();
+	if (!exist) exist=QFile(parent->getAbsoluteFilePath(curPath+fname,".tex")).exists();
+	return exist;
+}
+
 
 void LatexDocuments::updateStructure(){
     foreach(LatexDocument* doc,documents){
