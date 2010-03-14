@@ -920,6 +920,13 @@ QString LatexDocuments::getAbsoluteFilePath(const QString & relName, const QStri
 	return  compilePath+s;
 }
 
+LatexDocument* LatexDocuments::findDocument(const QDocument *qDoc){
+	foreach(LatexDocument *doc,documents){
+		LatexEditorView *edView=doc->getEditorView();
+		if(edView->editor->document()==qDoc) return doc;
+	}
+	return 0;
+}
 
 LatexDocument* LatexDocuments::findDocument(const QString& fileName){
 	if (fileName=="") return 0;
