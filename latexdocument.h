@@ -147,7 +147,6 @@ signals:
 	void updateCompleter();
 };
 
-class LatexDocuments;
 class LatexDocumentsModel: public QAbstractItemModel{
 	Q_OBJECT
 private:
