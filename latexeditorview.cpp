@@ -18,6 +18,7 @@
 #include "spellerutility.h"
 
 #include "qdocumentline.h"
+#include "qdocumentline_p.h"
 #include "qdocumentcommand.h"
 
 #include "qlinemarksinfocenter.h"
@@ -811,10 +812,14 @@ void LatexEditorView::mouseHovered(QPoint pos){
 				} else if(lst.count()>1) {
 					mText=tr("label multiple times defined!");
 				} else {
-					QDocumentLine mLine(lst.first());
-					int l=mLine.lineNumber();
-					for(int i=qMax(0,l-2);i<qMin(editor->document()->lines(),l+3);i++){
-						mText+=editor->document()->line(i).text();
+					QDocumentLineHandle *mLine=lst.first();
+					int l=mLine->line();
+					if(mLine->document()!=editor->document()){
+						LatexDocument *doc=document->parent->findDocument(mLine->document());
+						if(doc) mText=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
+					}
+					for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
+						mText+=mLine->document()->line(i).text();
 						if(i<l+2) mText+="\n";
 					}
 				}

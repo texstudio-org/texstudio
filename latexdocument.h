@@ -200,6 +200,7 @@ public:
 	QString getAbsoluteFilePath(const QString & relName, const QString &extension="");
 
 	LatexDocument* findDocument(const QString& fileName);
+	LatexDocument* findDocument(const QDocument *qDoc);
 
 	void settingsRead();
 
