@@ -829,6 +829,14 @@ void LatexDocuments::addDocument(LatexDocument* document){
 	model->connect(document,SIGNAL(addElement(StructureEntry*,int)),model,SLOT(addElement(StructureEntry*,int)));
 	model->connect(document,SIGNAL(updateElement(StructureEntry*)),model,SLOT(updateElement(StructureEntry*)));
 	document->parent=this;
+	if(masterDocument){
+		References *Label=0;
+		References *Ref=0;
+		LatexEditorView *edView=masterDocument->getEditorView();
+		edView->getReferenceDatabase(Ref,Label);
+		edView=document->getEditorView();
+		edView->setReferenceDatabase(Ref,Label);
+	}
 }
 void LatexDocuments::deleteDocument(LatexDocument* document){
 	LatexEditorView *view=document->getEditorView();
@@ -857,6 +865,36 @@ void LatexDocuments::setMasterDocument(LatexDocument* document){
 	if (masterDocument!=0) {
 		documents.removeAll(masterDocument);
 		documents.prepend(masterDocument);
+		// set Ref/Labeldatabase to common database
+		References *Label=0;
+		References *Ref=0;
+		LatexEditorView *edView=masterDocument->getEditorView();
+		edView->getReferenceDatabase(Ref,Label);
+		foreach(LatexDocument *doc,documents){
+			if(doc!=masterDocument){
+				edView=doc->getEditorView();
+				edView->setReferenceDatabase(Ref,Label);
+				edView->editor->document()->markFormatCacheDirty();
+			}
+		}
+		// repaint doc
+		foreach(LatexDocument *doc,documents){
+			edView=doc->getEditorView();
+			edView->documentContentChanged(1,edView->editor->document()->lines());
+		}
+	}else{
+		if(documents.size()>0){
+			References *Label=0;
+			References *Ref=0;
+			LatexEditorView *edView=documents.first()->getEditorView();
+			edView->getReferenceDatabase(Ref,Label);
+			foreach(LatexDocument *doc,documents){
+				LatexEditorView *edView=doc->getEditorView();
+				edView->resetReferenceDatabase();
+			}
+			delete Label;
+			delete Ref;
+		}
 	}
 	model->resetAll();
 }

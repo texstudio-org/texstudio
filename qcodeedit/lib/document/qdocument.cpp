@@ -6034,7 +6034,7 @@ void QDocumentPrivate::setWidth(int width)
 	setHeight();
 
 	emitFormatsChanged();
-        markFormatCacheDirty();
+	markFormatCacheDirty();
 }
 
 void QDocumentPrivate::setWidth()

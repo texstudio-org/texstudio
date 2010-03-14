@@ -16,7 +16,7 @@
 class QDocumentLineHandle;
 class References {
 public:
-	References() {}
+	References():mPattern("") {}
 	References(QString pattern) : mPattern(pattern) {}
 	void insert(QString key,QDocumentLineHandle* handle) {mReferences.insert(key,handle);}
 	QList<QDocumentLineHandle*> values(QString key) {return mReferences.values(key);}
@@ -32,6 +32,7 @@ public:
 		referencePresentFormat=single;
 		referenceMissingFormat=none;
 	}
+	void appendTo(References *ref);
 protected:
 	QMultiHash<QString,QDocumentLineHandle*> mReferences;
 	int referenceMultipleFormat,referencePresentFormat,referenceMissingFormat;
@@ -95,9 +96,12 @@ public:
 	void setLineMarkToolTip(const QString& tooltip);
 	void updateSettings();
 
-        QPoint getHoverPosistion(){
-            return m_point;
-        }
+	QPoint getHoverPosistion(){
+		return m_point;
+	}
+	void setReferenceDatabase(References *Ref,References *Label);
+	void getReferenceDatabase(References *&Ref,References *&Label);
+	void resetReferenceDatabase();
 
 private:
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 
@@ -108,7 +112,7 @@ private:
 	QGotoLinePanel* gotoLinePanel;
 	QStatusPanel* statusPanel;
 
-        QPoint m_point;
+	QPoint m_point;
 	
 	int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat, citationMissingFormat, citationPresentFormat;
 	friend class DefaultInputBinding;
@@ -121,7 +125,8 @@ private:
 	int curChangePos;
 	int lastSetBookmark; //only looks at 1..3 (mouse range)
 
-	References containedLabels,containedReferences;
+	References *containedLabels,*containedReferences;
+	bool mDontDeleteRef;
 	LatexEditorViewConfig* config;
 private slots:
 	void requestCitation(); //emits needCitation with selected text
