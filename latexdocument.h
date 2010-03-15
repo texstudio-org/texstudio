@@ -130,6 +130,8 @@ private:
 	void updateAppendix(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine);
 	void setAppendix(StructureEntry *se,int startLine,int endLine,bool state);
 	bool fileExits(QString fname);
+	void findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,int linenr,int count);
+	void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QMap<StructureEntry*,int> &toBeDeleted,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count);
 
 public slots:
 	void updateStructure();
@@ -213,7 +215,6 @@ public:
 	void updateStructure();
 };
 
-void findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,int linenr,int count);
-void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QMap<StructureEntry*,int> &toBeDeleted,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count);
+
 
 #endif // LATEXDOCUMENT_H
