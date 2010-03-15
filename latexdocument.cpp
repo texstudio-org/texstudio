@@ -1012,6 +1012,7 @@ void LatexDocument::findStructureEntryBefore(QMutableListIterator<StructureEntry
 			iter.remove();
 			removeElement(se,l);
 			delete se;
+			l--;
 		}
 		if(dlh->line()>linenr+count) {
 			goBack=true;
