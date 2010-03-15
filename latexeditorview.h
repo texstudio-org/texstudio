@@ -12,6 +12,7 @@
 #ifndef LATEXEDITORVIEW_H
 #define LATEXEDITORVIEW_H
 #include "mostQtHeaders.h"
+#include "qdocument.h"
 
 class QDocumentLineHandle;
 class References {
@@ -33,6 +34,7 @@ public:
 		referenceMissingFormat=none;
 	}
 	void appendTo(References *ref);
+	void purgeLinksTo(QDocument *doc);
 protected:
 	QMultiHash<QString,QDocumentLineHandle*> mReferences;
 	int referenceMultipleFormat,referencePresentFormat,referenceMissingFormat;
@@ -102,6 +104,7 @@ public:
 	void setReferenceDatabase(References *Ref,References *Label);
 	void getReferenceDatabase(References *&Ref,References *&Label);
 	void resetReferenceDatabase();
+	void purgeLinksTo(QDocument *doc);
 
 private:
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 

@@ -867,6 +867,10 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 	if (document!=masterDocument) {
 		documents.removeAll(document);
 		model->resetAll();
+		if(masterDocument){
+			LatexEditorView *masterView=masterDocument->getEditorView();
+			masterView->purgeLinksTo(view->editor->document());
+		}
 		if (document==currentDocument)
 			currentDocument=0;
 		delete document;
@@ -874,6 +878,7 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 	} else {
 		document->setFileName(document->getFileName());
 		model->resetAll();
+		view->purgeLinksTo(view->editor->document()); // unsatisfying work around of crash ...
 		if (view) delete view;
 		if (document==currentDocument)
 			currentDocument=0;
