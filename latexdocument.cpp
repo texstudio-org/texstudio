@@ -279,32 +279,56 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
     mUserCommandList.remove(dlh);
 
     if(dlh==mAppendixLine){
-	updateAppendix(mAppendixLine,0);
-	mAppendixLine=0;
+		updateAppendix(mAppendixLine,0);
+		mAppendixLine=0;
     }
 
+	int l=0;
     QMutableListIterator<StructureEntry*> iter_label(labelList->children);
     while(iter_label.hasNext()){
-	StructureEntry* se=iter_label.next();
-	if(dlh==se->lineHandle) iter_label.remove();
+		StructureEntry* se=iter_label.next();
+		if(dlh==se->lineHandle) {
+			iter_label.remove();
+			removeElement(se,l);
+			delete se;
+		}
+		l++;
     }
 
+	l=0;
     QMutableListIterator<StructureEntry*> iter_todo(todoList->children);
     while(iter_todo.hasNext()){
-	StructureEntry* se=iter_todo.next();
-	if(dlh==se->lineHandle) iter_todo.remove();
+		StructureEntry* se=iter_todo.next();
+		if(dlh==se->lineHandle) {
+			iter_todo.remove();
+			removeElement(se,l);
+			delete se;
+		}
+		l++;
     }
 
+	l=0;
     QMutableListIterator<StructureEntry*> iter_block(blockList->children);
     while(iter_block.hasNext()){
-	StructureEntry* se=iter_block.next();
-	if(dlh==se->lineHandle) iter_block.remove();
+		StructureEntry* se=iter_block.next();
+		if(dlh==se->lineHandle) {
+			iter_block.remove();
+			removeElement(se,l);
+			delete se;
+		}
+		l++;
     }
 
+	l=0;
     QMutableListIterator<StructureEntry*> iter_bibTeX(bibTeXList->children);
     while(iter_bibTeX.hasNext()){
-	StructureEntry* se=iter_bibTeX.next();
-	if(dlh==se->lineHandle) iter_bibTeX.remove();
+		StructureEntry* se=iter_bibTeX.next();
+		if(dlh==se->lineHandle) {
+			iter_bibTeX.remove();
+			removeElement(se,l);
+			delete se;
+		}
+		l++;
     }
 
 	int linenr=dlh->line();
