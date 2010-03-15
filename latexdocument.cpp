@@ -1038,7 +1038,7 @@ void LatexDocument::findStructureEntryBefore(QMutableListIterator<StructureEntry
 			delete se;
 			l--;
 		}
-		if(dlh->line()>linenr+count) {
+		if(dlh->line()>=linenr+count) {
 			goBack=true;
 			break;
 		}
