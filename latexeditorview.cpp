@@ -720,6 +720,11 @@ void LatexEditorView::resetReferenceDatabase(){
 	documentContentChanged(1,editor->document()->lines());
 }
 
+void LatexEditorView::purgeLinksTo(QDocument *doc){
+	containedLabels->purgeLinksTo(doc);
+	containedReferences->purgeLinksTo(doc);
+}
+
 void LatexEditorView::mouseHovered(QPoint pos){
 	// reimplement to what is necessary
 
@@ -1072,7 +1077,14 @@ void References::appendTo(References *ref){
 	 }
 }
 
-
+void References::purgeLinksTo(QDocument *doc){
+	if(!doc) return;
+	QMutableHashIterator<QString,QDocumentLineHandle*> i(mReferences);
+	 while (i.hasNext()) {
+		 i.next();
+		 if(i.value()->document()==doc) i.remove();
+	 }
+}
 
 
 //------------------------------------------------------------
