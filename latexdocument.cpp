@@ -1002,23 +1002,27 @@ void LatexDocuments::updateBibFiles(){
 	}
 }
 
-void findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,int linenr,int count){
+void LatexDocument::findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,int linenr,int count){
     bool goBack=false;
+	int l=0;
     while(iter.hasNext()){
-	StructureEntry* se=iter.next();
-	QDocumentLineHandle* dlh=se->lineHandle;
-	if((dlh->line()>=linenr) && (dlh->line()<linenr+count) ){
-	    iter.remove();
-	}
-	if(dlh->line()>linenr+count) {
-	    goBack=true;
-	    break;
-	}
+		StructureEntry* se=iter.next();
+		QDocumentLineHandle* dlh=se->lineHandle;
+		if((dlh->line()>=linenr) && (dlh->line()<linenr+count) ){
+			iter.remove();
+			removeElement(se,l);
+			delete se;
+		}
+		if(dlh->line()>linenr+count) {
+			goBack=true;
+			break;
+		}
+		l++;
     }
     if(goBack && iter.hasPrevious()) iter.previous();
 }
 
-void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QMap<StructureEntry*,int> &toBeDeleted,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count){
+void LatexDocument::splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QMap<StructureEntry*,int> &toBeDeleted,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count){
 	if (!se) return;
 
 	StructureEntry* parent=se;
