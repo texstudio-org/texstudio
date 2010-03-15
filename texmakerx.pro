@@ -85,8 +85,7 @@ HEADERS += texmaker.h \
     latexdocument.h \
     universalinputdialog.h \
     hunspell/replist.hxx \
-    scriptengine.h \
-    tests/qeditortest.h
+	scriptengine.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
