@@ -118,6 +118,8 @@ void LatexDocument::updateStructure() {
 	delete baseStructure;
 	baseStructure=0;
 
+	mAppendixLine=0;
+
 	baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
 	baseStructure->title=fileName;
 	labelList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
