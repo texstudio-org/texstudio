@@ -421,7 +421,8 @@ SOURCES += tests/testmanager.cpp \
     tests/qdocumentsearch_t.cpp \
     tests/qsearchreplacepanel_t.cpp \
     tests/qeditor_t.cpp \
-    tests/latexeditorview_t.cpp
+    tests/latexeditorview_t.cpp \
+    tests/structureview_t.cpp
 HEADERS += tests/testmanager.h \
     tests/testutil.h \
     tests/qcetestutil.h \
@@ -433,7 +434,8 @@ HEADERS += tests/testmanager.h \
     tests/qdocumentsearch_t.h \
     tests/qsearchreplacepanel_t.h \
     tests/qeditor_t.h \
-    tests/latexeditorview_t.h
+    tests/latexeditorview_t.h \
+    tests/structureview_t.h
 win32:LIBS += -lQtTestd4
 unix:!macx:LIBS += -lQtTest
 macx:LIBS += -framework \
