@@ -2894,7 +2894,7 @@ void Texmaker::UserTool() {
 	QStringList commandList=cmd.split("|");
 	ERRPROCESS=false;
 	for (int i = 0; i < commandList.size(); ++i)
-		if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) runCommand(commandList.at(i),true,true);
+		if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) runCommand(commandList.at(i),(i<(commandList.size()-1)),true);
 		else return;
 }
 
