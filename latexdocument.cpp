@@ -1,5 +1,4 @@
 #include "latexdocument.h"
-#include "latexeditorview.h"
 #include "qdocument.h"
 #include "qdocumentline.h"
 #include "qdocumentline_p.h"
@@ -842,10 +841,12 @@ void LatexDocumentsModel::updateElement(StructureEntry *se){
     emit dataChanged(index(se),index(se));
 }
 
-LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)), masterDocument(0), currentDocument(0), bibTeXFilesModified(false){
+LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)), masterDocument(0), currentDocument(0), bibTeXFilesModified(false),Label(0),Ref(0){
 }
 LatexDocuments::~LatexDocuments(){
 	delete model;
+	delete Label;
+	delete Ref;
 }
 void LatexDocuments::addDocument(LatexDocument* document){
 	documents.append(document);
@@ -856,12 +857,10 @@ void LatexDocuments::addDocument(LatexDocument* document){
 	model->connect(document,SIGNAL(updateElement(StructureEntry*)),model,SLOT(updateElement(StructureEntry*)));
 	document->parent=this;
 	if(masterDocument){
-		References *Label=0;
-		References *Ref=0;
-		LatexEditorView *edView=masterDocument->getEditorView();
-		edView->getReferenceDatabase(Ref,Label);
-		edView=document->getEditorView();
-		edView->setReferenceDatabase(Ref,Label);
+		if(!Ref && !Label){
+		    LatexEditorView *edView=document->getEditorView();
+		    edView->setReferenceDatabase(Ref,Label);
+		}
 	}
 }
 void LatexDocuments::deleteDocument(LatexDocument* document){
@@ -870,8 +869,8 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 		documents.removeAll(document);
 		model->resetAll();
 		if(masterDocument){
-			LatexEditorView *masterView=masterDocument->getEditorView();
-			masterView->purgeLinksTo(view->editor->document());
+			Label->purgeLinksTo(view->editor->document());
+			Ref->purgeLinksTo(view->editor->document());
 		}
 		if (document==currentDocument)
 			currentDocument=0;
@@ -898,10 +897,10 @@ void LatexDocuments::setMasterDocument(LatexDocument* document){
 		documents.removeAll(masterDocument);
 		documents.prepend(masterDocument);
 		// set Ref/Labeldatabase to common database
-		References *Label=0;
-		References *Ref=0;
 		LatexEditorView *edView=masterDocument->getEditorView();
 		edView->getReferenceDatabase(Ref,Label);
+		Ref->numberOfViews++;
+		Label->numberOfViews++;
 		foreach(LatexDocument *doc,documents){
 			if(doc!=masterDocument){
 				edView=doc->getEditorView();
@@ -916,16 +915,14 @@ void LatexDocuments::setMasterDocument(LatexDocument* document){
 		}
 	}else{
 		if(documents.size()>0){
-			References *Label=0;
-			References *Ref=0;
-			LatexEditorView *edView=documents.first()->getEditorView();
-			edView->getReferenceDatabase(Ref,Label);
 			foreach(LatexDocument *doc,documents){
 				LatexEditorView *edView=doc->getEditorView();
 				edView->resetReferenceDatabase();
 			}
 			delete Label;
 			delete Ref;
+			Label=0;
+			Ref=0;
 		}
 	}
 	model->resetAll();
