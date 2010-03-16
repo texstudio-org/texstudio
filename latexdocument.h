@@ -107,6 +107,9 @@ public:
 
 
 	QDocumentSelection sectionSelection(StructureEntry* section);
+	void clearAppendix(){
+	    mAppendixLine=0;
+	}
 
 	LatexDocuments *parent;
 private:

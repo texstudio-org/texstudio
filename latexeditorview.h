@@ -17,8 +17,8 @@
 class QDocumentLineHandle;
 class References {
 public:
-	References():mPattern("") {}
-	References(QString pattern) : mPattern(pattern) {}
+	References():numberOfViews(1),mPattern("") {}
+	References(QString pattern) : numberOfViews(1),mPattern(pattern) {}
 	void insert(QString key,QDocumentLineHandle* handle) {mReferences.insert(key,handle);}
 	QList<QDocumentLineHandle*> values(QString key) {return mReferences.values(key);}
 	bool contains(QString key) {return mReferences.contains(key);}
@@ -35,6 +35,7 @@ public:
 	}
 	void appendTo(References *ref);
 	void purgeLinksTo(QDocument *doc);
+	int numberOfViews;
 protected:
 	QMultiHash<QString,QDocumentLineHandle*> mReferences;
 	int referenceMultipleFormat,referencePresentFormat,referenceMissingFormat;
@@ -129,7 +130,6 @@ private:
 	int lastSetBookmark; //only looks at 1..3 (mouse range)
 
 	References *containedLabels,*containedReferences;
-	bool mDontDeleteRef;
 	LatexEditorViewConfig* config;
 private slots:
 	void requestCitation(); //emits needCitation with selected text

@@ -230,7 +230,6 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 
 	containedLabels=new References("(\\\\label)\\{(.+)\\}");
 	containedReferences=new References("(\\\\ref|\\\\pageref)\\{(.+)\\}");
-	mDontDeleteRef=false;
 	environmentFormat=0;
 	//containedLabels.setPattern("(\\\\label)\\{(.+)\\}");
 	//containedReferences.setPattern("(\\\\ref|\\\\pageref)\\{(.+)\\}");
@@ -239,7 +238,8 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 
 LatexEditorView::~LatexEditorView() {
     delete searchReplacePanel; // to force deletion of m_search before document. Otherwise crashes can come up (linux)
-	if(!mDontDeleteRef){
+	containedLabels->numberOfViews--;
+	if(!containedLabels->numberOfViews){
 		delete containedLabels;
 		delete containedReferences;
 	}
@@ -698,7 +698,8 @@ void LatexEditorView::setReferenceDatabase(References *Ref,References *Label){
 	delete containedReferences;
 	containedLabels=Label;
 	containedReferences=Ref;
-	mDontDeleteRef=true;
+	containedLabels->numberOfViews++;
+	containedReferences->numberOfViews++;
 }
 void LatexEditorView::getReferenceDatabase(References *&Ref,References *&Label){
 	Label=containedLabels;
@@ -707,7 +708,6 @@ void LatexEditorView::getReferenceDatabase(References *&Ref,References *&Label){
 void LatexEditorView::resetReferenceDatabase(){
 	containedLabels=new References("(\\\\label)\\{(.+)\\}");
 	containedReferences=new References("(\\\\ref|\\\\pageref)\\{(.+)\\}");
-	mDontDeleteRef=false;
 	environmentFormat=QDocument::formatFactory()->id("environment");
 	referenceMultipleFormat=QDocument::formatFactory()->id("referenceMultiple");
 	referencePresentFormat=QDocument::formatFactory()->id("referencePresent");
