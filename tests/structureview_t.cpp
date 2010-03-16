@@ -22,10 +22,10 @@ void StructureViewTest::script_data(){
 		<< "cursor.movePosition(1,cursorEnums.End);cursor.insertText(\"\\n \\\\label{test}\\n\")";
 
 	QTest::newRow("add Label2")
-		<< "cursor.insertText(\"\\n \\\\label{test2}\\n\")";
+		<< "cursor.insertText(\" \\\\label{test2}\\n\")";
 
 	QTest::newRow("add Label3")
-		<< "cursor.insertText(\"\\n \\\\label{test3}\\n\");cursor.insertText(\"\\n \\\\label{test4}\\n\");cursor.insertText(\"\\n \\\\label{test5}\\n\");cursor.insertText(\"\\n \\\\label{test6}\\n\")";
+		<< "cursor.insertText(\" \\\\label{test3}\\n\");cursor.insertText(\" \\\\label{test4}\\n\");cursor.insertText(\" \\\\label{test5}\\n\");cursor.insertText(\" \\\\label{test6}\\n\")";
 
 	QTest::newRow("change Label")
 		<< "cursor.movePosition(1,cursorEnums.Up);cursor.movePosition(9,cursorEnums.Right);cursor.insertText(\"a\");cursor.insertText(\"b\");cursor.insertText(\"c\")";
@@ -39,9 +39,26 @@ void StructureViewTest::script_data(){
 	QTest::newRow("remove line")
 		<< "cursor.eraseLine()";
 
-	QTest::newRow("remove lines")
-		<< "cursor.movePosition(1,cursorEnums.EndOfLine);cursor.movePosition(1,cursorEnums.StartOfLine,cursorEnums.keepAnchor);cursor.movePosition(2,cursorEnums.Up,cursorEnums.keepAnchor);cursor.deleteChar()";
+	QTest::newRow("remove lines2")
+		<< "cursor.movePosition(1,cursorEnums.EndOfLine);cursor.movePosition(1,cursorEnums.StartOfLine,cursorEnums.KeepAnchor);cursor.movePosition(1,cursorEnums.Up,cursorEnums.KeepAnchor);cursor.removeSelectedText()";
 
+	QTest::newRow("add section")
+			<< "cursor.movePosition(1,cursorEnums.End);cursor.insertText(\" \\\\section{sec:test}\\n\")";
+
+	QTest::newRow("add section2")
+			<< "cursor.movePosition(1,cursorEnums.End);cursor.insertText(\" \\\\section{sec:test}\\n\")";
+
+	QTest::newRow("change section")
+		<< "cursor.movePosition(1,cursorEnums.Up);cursor.movePosition(11,cursorEnums.Right);cursor.insertText(\"a\");cursor.insertText(\"b\");cursor.insertText(\"c\")";
+
+	QTest::newRow("change section2")
+		<< "cursor.movePosition(1,cursorEnums.StartOfLine);cursor.movePosition(2,cursorEnums.Right);cursor.insertText(\"sub\")";
+
+	QTest::newRow("change section3")
+		<< "cursor.movePosition(1,cursorEnums.StartOfLine);cursor.movePosition(2,cursorEnums.Right);cursor.insertText(\"sub\")";
+
+	QTest::newRow("change section4")
+		<< "cursor.movePosition(1,cursorEnums.StartOfLine);cursor.movePosition(2,cursorEnums.Right);cursor.movePosition(6,cursorEnums.Right,cursorEnums.KeepAnchor);cursor.removeSelectedText()";
 }
 void StructureViewTest::script(){
 	QFETCH(QString, script);
@@ -65,7 +82,7 @@ QStringList StructureViewTest::unrollStructure(StructureEntry *baseStructure){
 	QString line=se->title;
 	line+=QString(" LVL:%1").arg(se->level);
 	result << line;
-	qDebug(qPrintable(line));
+	//qDebug(qPrintable(line));
     }
     return result;
 }
