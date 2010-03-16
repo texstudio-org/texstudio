@@ -904,6 +904,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	//patch Structure
 	connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
 	connect(edit->editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
+	connect(edit->editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
 	connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(completerNeedsUpdate()));
 	connect(edit->document,SIGNAL(updateCompleter()),edit->editor,SLOT(completerNeedsUpdate()));
 	connect(edit->editor,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
@@ -941,6 +942,7 @@ void Texmaker::fileNew(QString fileName) {
 
 	connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
 	connect(edit->editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
+	connect(edit->editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
 	connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(completerNeedsUpdate()));
 	connect(edit->document,SIGNAL(updateCompleter()),edit->editor,SLOT(completerNeedsUpdate()));
 	connect(edit->editor,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
@@ -1069,6 +1071,7 @@ void Texmaker::fileNewFromTemplate() {
 
 		connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
 		connect(edit->editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
+		connect(edit->editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
 		connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(completerNeedsUpdate()));
 		connect(edit->document,SIGNAL(updateCompleter()),edit->editor,SLOT(completerNeedsUpdate()));
 		connect(edit->editor,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
