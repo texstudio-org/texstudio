@@ -878,6 +878,7 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 	} else {
 		document->setFileName(document->getFileName());
 		model->resetAll();
+		document->clearAppendix();
 		view->purgeLinksTo(view->editor->document()); // unsatisfying work around of crash ...
 		if (view) delete view;
 		if (document==currentDocument)
