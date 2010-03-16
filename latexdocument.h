@@ -2,6 +2,7 @@
 #define LATEXDOCUMENT_H
 #include "mostQtHeaders.h"
 #include "bibtexparser.h"
+#include "latexeditorview.h"
 
 class QDocumentLineHandle;
 class LatexEditorView;
@@ -216,6 +217,8 @@ public:
 	QSet<QString> allBibTeXIds;
 	void updateBibFiles();
 	void updateStructure();
+private:
+	References *Label,*Ref;
 };
 
 
