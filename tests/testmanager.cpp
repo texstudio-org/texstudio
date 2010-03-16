@@ -45,8 +45,8 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 		<< new QSearchReplacePanelTest(codeedit,level==TL_ALL)
 		<< new QEditorTest(editor,level==TL_ALL)
 		<< new LatexEditorViewTest(edView)
-		<< new ScriptEngineTest(editor)
-		<< new StructureViewTest(editor,edView->document);
+		<< new ScriptEngineTest(editor);
+		//<< new StructureViewTest(editor,edView->document);
 	bool allPassed=true;
 	if (level!=TL_ALL)
 		tr="There are skipped tests. Please rerun with --execute-all-tests\n\n";
