@@ -275,6 +275,7 @@ void LatexDocument::updateStructure() {
 
 void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 
+	if(!baseStructure) return;
     mLabelItem.remove(dlh);
     mMentionedBibTeXFiles.remove(dlh);
     mUserCommandList.remove(dlh);
