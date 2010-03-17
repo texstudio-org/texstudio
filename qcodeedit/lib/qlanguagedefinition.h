@@ -116,6 +116,8 @@ public:
 	bool collapsedBlockStart;
 	//if this line ends a collapsed block (actual value, independent from line flags)
 	bool collapsedBlockEnd;
+	//if the block ending at this line hides this line
+	bool hiddenCollapsedBlockEnd;
 	//count of parenthesis in openParentheses which hiding == true
 	int hiddenDepth;
 

@@ -892,12 +892,15 @@ void QNFADefinition::fold(QDocument *d, int line, bool expand){
 	}
 	d->line(fli.lineNr).setFlag(QDocumentLine::CollapsedBlockEnd, fli.collapsedBlockEnd);
 
-	int count = fli.lineNr - line;
-	if (fli.open || fli.lineNr==d->lines())
-		--count;
 
-	if (expand) d->impl()->showEvent(line, count);
-	else d->impl()->hideEvent(line, count);
+	if (expand)
+		d->impl()->showEvent(line, -1); //expand all blocks starting on this line (count can't reliably determined because the expanding could have the hidden parenthesis weights)
+	else {
+		int count = fli.lineNr - line;
+		if (!fli.hiddenCollapsedBlockEnd || fli.lineNr==d->lines())
+			--count;
+		d->impl()->hideEvent(line, count);
+	}
 }
 
 

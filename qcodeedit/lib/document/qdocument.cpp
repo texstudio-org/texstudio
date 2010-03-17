@@ -1625,7 +1625,7 @@ void QDocument::correctFolding(int fromInc, int toInc){
 			int c=fli.close;
 			while (blockStartList.size()>0 && blockStartList.last().second<=c){
 				c-=blockStartList.last().second;
-				if (fli.open==0)
+				if (fli.hiddenCollapsedBlockEnd)
 					m_impl->m_hidden.insertMulti(blockStartList.last().first, fli.lineNr-blockStartList.last().first);
 				else
 					m_impl->m_hidden.insertMulti(blockStartList.last().first, fli.lineNr-blockStartList.last().first-1);
@@ -6948,7 +6948,7 @@ void QDocumentPrivate::showEvent(int line, int count)
 
 	while ( (it != m_hidden.end()) && (it.key() == line)  )
 	{
-		if ( *it == count )
+		if ( *it == count  || count == -1)
 		{
 //			qDebug("showing %i lines from %i", count, line);
 			it = m_hidden.erase(it);

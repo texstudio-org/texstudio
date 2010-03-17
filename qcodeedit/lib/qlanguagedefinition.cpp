@@ -101,6 +101,7 @@ QString QLanguageDefinition::defaultLineMark() const
 }
 
 int QLanguageDefinition::parenthesisWeight(int id) const{
+	Q_UNUSED(id);
 	return 0;
 }
 /*!
@@ -182,6 +183,7 @@ QFoldedLineIterator& QFoldedLineIterator::operator++(){
 	if (!line.isValid())
 		return *this;
 	int oldHiddenDepth=hiddenDepth;
+	int maxClosedParenthesisWeight=0, maxClosedHiddenParenthesisWeight=0;
 	collapsedBlockStart=line.hasFlag(QDocumentLine::CollapsedBlockStart);
 	foreach (const QParenthesis& par, line.parentheses()){
 		if (!par.role & QParenthesis::Fold)
@@ -191,7 +193,11 @@ QFoldedLineIterator& QFoldedLineIterator::operator++(){
 				//Close last bracket
 				if (openParentheses.last().line != lineNr) {
 					close++;
-					if (openParentheses.last().hiding) hiddenDepth--;
+					if (openParentheses.last().hiding) {
+						hiddenDepth--;
+						maxClosedHiddenParenthesisWeight=qMax(maxClosedHiddenParenthesisWeight, openParentheses.last().weight);
+					} else
+						maxClosedParenthesisWeight=qMax(maxClosedHiddenParenthesisWeight, openParentheses.last().weight);
 				} else open--;
 				openParentheses.removeLast();
 			} else {
@@ -199,16 +205,24 @@ QFoldedLineIterator& QFoldedLineIterator::operator++(){
 				int weight=def->parenthesisWeight(par.id);
 				int removedHidingBrackets=0;
 				int removedOwnBrackets=0;
+				int removedMaxClosedPW = 0;
+				int removedMaxClosedHiddenPW = 0;
 				for (int i=openParentheses.size()-1;i>=0;i--){
-					if (openParentheses[i].line == lineNr) removedOwnBrackets++;
-					else if (openParentheses[i].hiding) removedHidingBrackets++;
 					if (openParentheses[i].weight>weight) break;
-					else if ( openParentheses[i].weight==weight ) {
+					if (openParentheses[i].line == lineNr) removedOwnBrackets++;
+					else if (openParentheses[i].hiding) {
+						removedHidingBrackets++;
+						removedMaxClosedHiddenPW=qMax(removedMaxClosedHiddenPW, openParentheses[i].weight);
+					} else
+						removedMaxClosedPW=qMax(removedMaxClosedPW, openParentheses[i].weight);
+					if ( openParentheses[i].weight==weight ) {
 						if ( openParentheses[i].id!=par.id ) break;
 						open-=removedOwnBrackets;
 						close+=(openParentheses.size()-i) - removedOwnBrackets;
 						hiddenDepth-=removedHidingBrackets;
 						openParentheses.erase(openParentheses.begin()+i,openParentheses.end());
+						maxClosedParenthesisWeight=qMax(maxClosedParenthesisWeight, removedMaxClosedPW);
+						maxClosedHiddenParenthesisWeight=qMax(maxClosedHiddenParenthesisWeight, removedMaxClosedHiddenPW);
 						break;
 					}
 				}
@@ -223,9 +237,10 @@ QFoldedLineIterator& QFoldedLineIterator::operator++(){
 
 	collapsedBlockStart = collapsedBlockStart  && open;
 	collapsedBlockEnd = hiddenDepth!=oldHiddenDepth;
+	hiddenCollapsedBlockEnd = oldHiddenDepth>0 && !open && maxClosedParenthesisWeight <= maxClosedHiddenParenthesisWeight;
 
 	hidden = (hiddenDepth>0) || //line contained in a hidden block
-		 (hiddenDepth==0 && oldHiddenDepth>0 && !open); //a closing bracket is hidden iff there is no new block to open
+		 (hiddenDepth==0 && hiddenCollapsedBlockEnd); //a closing bracket is hidden iff there is no new block to open
 
 	if (collapsedBlockStart)
 		hiddenDepth+=open;
