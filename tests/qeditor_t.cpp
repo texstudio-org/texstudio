@@ -369,12 +369,12 @@ void QEditorTest::activeFolding_data(){
 		<< (QList<int> () << 3 << 4 << 6 << 7);
 
 	QTest::newRow("block override")
-		<< "0\n1$\n2{\n3\n4}\n5\n"
+		<< "0\n1$\n2{\n3\n4\n5}\n6\n"
 		<< (QList<int> () << 2 )
-		<< (QList<int> () << 3 << 4)
-		<< 3 << 1 << 3 << 1
+		<< (QList<int> () << 3 << 4 << 5)
+		<< 4 << 1 << 4 << 1
 		<< "$"
-		<< "0\n1$\n2{\n3$\n4}\n5\n"
+		<< "0\n1$\n2{\n3\n4$\n5}\n6\n"
 		<< (QList<int> () << 3);
 }
 //tests if folded text can be edited
