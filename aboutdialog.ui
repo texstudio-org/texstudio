@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>AboutDialog</class>
- <widget class="QDialog" name="AboutDialog" >
-  <property name="geometry" >
+ <widget class="QDialog" name="AboutDialog">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,18 +10,18 @@
     <height>469</height>
    </rect>
   </property>
-  <property name="windowTitle" >
-   <string>About Texmaker</string>
+  <property name="windowTitle">
+   <string>About TexMakerX</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout" >
-   <item row="0" column="0" >
-    <layout class="QHBoxLayout" name="horizontalLayout" >
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" stdset="0" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>18</width>
          <height>158</height>
@@ -29,21 +30,21 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLabel" name="label" >
-       <property name="text" >
+      <widget class="QLabel" name="label">
+       <property name="text">
         <string/>
        </property>
-       <property name="pixmap" >
-        <pixmap resource="texmaker.qrc" >:/images/splash.png</pixmap>
+       <property name="pixmap">
+        <pixmap resource="texmaker.qrc">:/images/splash.png</pixmap>
        </property>
       </widget>
      </item>
      <item>
       <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" stdset="0" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>18</width>
          <height>158</height>
@@ -53,17 +54,17 @@
      </item>
     </layout>
    </item>
-   <item row="1" column="0" >
-    <widget class="QTextBrowser" name="textBrowser" />
+   <item row="1" column="0">
+    <widget class="QTextBrowser" name="textBrowser"/>
    </item>
-   <item row="2" column="0" >
-    <layout class="QHBoxLayout" name="horizontalLayout_2" >
+   <item row="2" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
       <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" stdset="0" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>181</width>
          <height>20</height>
@@ -72,18 +73,18 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="okButton" >
-       <property name="text" >
+      <widget class="QPushButton" name="okButton">
+       <property name="text">
         <string>OK</string>
        </property>
       </widget>
      </item>
      <item>
       <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" stdset="0" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>171</width>
          <height>20</height>
@@ -96,7 +97,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="texmaker.qrc" />
+  <include location="texmaker.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -105,11 +106,11 @@
    <receiver>AboutDialog</receiver>
    <slot>accept()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>278</x>
      <y>253</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>96</x>
      <y>254</y>
     </hint>
