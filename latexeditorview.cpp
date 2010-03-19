@@ -717,7 +717,7 @@ void LatexEditorView::resetReferenceDatabase(){
 	containedLabels->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
 	containedReferences->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
 
-	documentContentChanged(1,editor->document()->lines());
+	documentContentChanged(0,editor->document()->lines());
 }
 
 void LatexEditorView::purgeLinksTo(QDocument *doc){

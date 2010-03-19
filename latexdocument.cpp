@@ -858,9 +858,14 @@ void LatexDocuments::addDocument(LatexDocument* document){
 	model->connect(document,SIGNAL(updateElement(StructureEntry*)),model,SLOT(updateElement(StructureEntry*)));
 	document->parent=this;
 	if(masterDocument){
-		if(!Ref && !Label){
+		if(Ref && Label){
 		    LatexEditorView *edView=document->getEditorView();
 		    edView->setReferenceDatabase(Ref,Label);
+		}
+		// repaint all docs
+		foreach(LatexDocument *doc,documents){
+			LatexEditorView *edView=doc->getEditorView();
+			edView->documentContentChanged(0,edView->editor->document()->lines());
 		}
 	}
 }
@@ -906,13 +911,13 @@ void LatexDocuments::setMasterDocument(LatexDocument* document){
 			if(doc!=masterDocument){
 				edView=doc->getEditorView();
 				edView->setReferenceDatabase(Ref,Label);
-				edView->editor->document()->markFormatCacheDirty();
+				//edView->editor->document()->markFormatCacheDirty();
 			}
 		}
 		// repaint doc
 		foreach(LatexDocument *doc,documents){
 			edView=doc->getEditorView();
-			edView->documentContentChanged(1,edView->editor->document()->lines());
+			edView->documentContentChanged(0,edView->editor->document()->lines());
 		}
 	}else{
 		if(documents.size()>0){
