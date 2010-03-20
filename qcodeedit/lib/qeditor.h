@@ -408,6 +408,13 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		bool UseLineForSearch()
 		{return m_UseLineForSearch;}
 
+		void setUseTabforMoveToPlaceholder(bool b){
+			m_UseTabforMoveToPlaceholder=b;
+		}
+		bool UseTabforMoveToPlaceholder(){
+			return m_UseTabforMoveToPlaceholder;
+		}
+
 	protected slots:
 		void documentWidthChanged(int newWidth);
 		void documentHeightChanged(int newWidth);
@@ -488,6 +495,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		static int m_manageMenu;
 
 		bool m_UseLineForSearch;
+		bool m_UseTabforMoveToPlaceholder;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(QEditor::State);
