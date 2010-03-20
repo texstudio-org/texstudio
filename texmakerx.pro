@@ -460,10 +460,18 @@ OTHER_FILES += universalinputdialog.*
 
 svn_revision.target   = svn_revision.h
 exists(./.svn/entries){
-    svn_revision.commands = echo \"$${LITERAL_HASH}define SVN_REVISION_NUMBER \\\"$(shell svnversion)\\\"\" > $$svn_revision.target
+	win32 {
+		svn_revision.commands = echo $${LITERAL_HASH}define SVN_REVISION_NUMBER \"$(shell svnversion)\" > $$svn_revision.target
+	}else{
+		svn_revision.commands = echo \"$${LITERAL_HASH}define SVN_REVISION_NUMBER \\\"$(shell svnversion)\\\"\" > $$svn_revision.target
+	}
     svn_revision.depends  = .svn/entries 
 } else {
-    svn_revision.commands = echo \"$${LITERAL_HASH}define SVN_REVISION_NUMBER \\\"?\\\"\" > $$svn_revision.target
+	win32 {
+		svn_revision.commands = echo $${LITERAL_HASH}define SVN_REVISION_NUMBER \"?\" > $$svn_revision.target
+	}else{
+		svn_revision.commands = echo \"$${LITERAL_HASH}define SVN_REVISION_NUMBER \\\"?\\\"\" > $$svn_revision.target
+	}
     svn_revision.depends  = 
 }
 
