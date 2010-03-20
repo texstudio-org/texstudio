@@ -81,6 +81,13 @@ QStringList StructureViewTest::unrollStructure(StructureEntry *baseStructure){
 	StructureEntry *se=iter.next();
 	QString line=se->title;
 	line+=QString(" LVL:%1").arg(se->level);
+	int i=0;
+	StructureEntry *l=se;
+	while(l->parent){
+		l=l->parent;
+		i++;
+	}
+	line+=QString(" IND:%1").arg(i);
 	result << line;
 	//qDebug(qPrintable(line));
     }
