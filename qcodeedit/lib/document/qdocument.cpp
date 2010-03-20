@@ -108,6 +108,12 @@ static QPoint m_spaceSign[] = {
 inline static bool isWord(QChar c)
 { return c.isLetterOrNumber() || (c == QLatin1Char('_')); }
 
+inline static bool isDelimiter(QChar c)
+{
+	QString delimiters="(){}$+-/*,;.";
+	return delimiters.contains(c);
+}
+
 int QDocument::screenLength(const QChar *d, int l, int tabStop)
 {
 	if ( tabStop == 1 )
@@ -4489,7 +4495,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, int m)
 
 			// -- patch --
 			/* eats up white space */
-			while ( (offset > 0) && !isWord(l.text().at(offset - 1)) )
+			while ( (offset > 0) && !isWord(l.text().at(offset - 1)) && !isDelimiter(l.text().at(offset - 1)) )
 				--offset;
 
 			/* start of line */
@@ -4548,9 +4554,17 @@ bool QDocumentCursorHandle::movePosition(int count, int op, int m)
 			}
 
 			// -- patch --
-			/* eats up whole word */
-			while ( (offset > 0) && isWord(l.text().at(offset - 1)) )
+			/* eats up delimiters */
+			bool delimiter_used=false;
+			while ( (offset > 0) && isDelimiter(l.text().at(offset-1)) ){
 				--offset;
+				delimiter_used=true;
+			}
+			/* eats up whole word */
+			if(!delimiter_used){
+				while ( (offset > 0) && isWord(l.text().at(offset - 1)) )
+					--offset;
+			}
 			// -- patch --
 
 			refreshColumnMemory();
@@ -4627,13 +4641,21 @@ bool QDocumentCursorHandle::movePosition(int count, int op, int m)
 
 			// -- patch --
 			/* next char */
-			++offset;
-			/* eats up whole word */
-			while ( (offset < lineLength) && isWord(l.text().at(offset)) )
+			//++offset;
+			bool delimiter_used=false;
+			while ( (offset < lineLength) && isDelimiter(l.text().at(offset)) ){
 				++offset;
+				delimiter_used=true;
+			}
+
+			/* eats up whole word */
+			if(!delimiter_used){
+				while ( (offset < lineLength) && isWord(l.text().at(offset)) )
+					++offset;
+			}
 
 			/* eats up white space */
-			while ( (offset < lineLength) && !isWord(l.text().at(offset)) )
+			while ( (offset < lineLength) && !isWord(l.text().at(offset))&&!isDelimiter(l.text().at(offset)) )
 				++offset;
 			// -- patch --
 
