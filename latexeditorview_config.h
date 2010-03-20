@@ -18,6 +18,7 @@ public:
 	bool displayModifyTime;
 	bool closeSearchAndReplace;
 	bool useLineForSearch;
+	bool useTabforMoveToPlaceholder;
 
 	void readSettings(QSettings& settings);
 	void saveSettings(QSettings& settings);

@@ -221,6 +221,7 @@ QSettings* ConfigManager::readSettings() {
 	editorConfig->displayModifyTime=config->value("Editor/Display Modifytime",true).toBool();
 	editorConfig->closeSearchAndReplace=config->value("Editor/Close Search Replace Together",false).toBool();
 	editorConfig->useLineForSearch=config->value("Editor/Use Line For Search",true).toBool();
+	editorConfig->useTabforMoveToPlaceholder=config->value("Editor/Use Tab for Move to Placeholder",false).toBool();
 
 	//interface
 	systemPalette = QApplication::palette();
@@ -402,6 +403,7 @@ QSettings* ConfigManager::saveSettings() {
 	config->setValue("Editor/Display Modifytime",editorConfig->displayModifyTime);
 	config->setValue("Editor/Close Search Replace Together",editorConfig->closeSearchAndReplace);
 	config->setValue("Editor/Use Line For Search",editorConfig->useLineForSearch);
+	config->setValue("Editor/Use Tab for Move to Placeholder",editorConfig->useTabforMoveToPlaceholder);
 
 	//debug
 	#ifndef QT_NO_DEBUG
@@ -635,6 +637,7 @@ bool ConfigManager::execConfigDialog() {
 	confDlg->ui.checkBoxDisplayModifyTime->setChecked(editorConfig->displayModifyTime);
 	confDlg->ui.checkBoxCloseSearchReplaceTogether->setChecked(editorConfig->closeSearchAndReplace);
 	confDlg->ui.checkBoxUseLineForSearch->setChecked(editorConfig->useLineForSearch);
+	confDlg->ui.checkBoxTabforMoveToPlaceholder->setChecked(editorConfig->useTabforMoveToPlaceholder);
 	
 	confDlg->ui.comboBoxInterfaceModernStyle->setCurrentIndex(modernStyle?1:0);
 	confDlg->ui.checkBoxUseTexmakerPalette->setChecked(useTexmakerPalette);
@@ -819,6 +822,7 @@ bool ConfigManager::execConfigDialog() {
 		editorConfig->displayModifyTime=confDlg->ui.checkBoxDisplayModifyTime->isChecked();
 		editorConfig->closeSearchAndReplace=confDlg->ui.checkBoxCloseSearchReplaceTogether->isChecked();
 		editorConfig->useLineForSearch=confDlg->ui.checkBoxUseLineForSearch->isChecked();
+		editorConfig->useTabforMoveToPlaceholder=confDlg->ui.checkBoxTabforMoveToPlaceholder;
 
 		//language
 		lastLanguage=language;

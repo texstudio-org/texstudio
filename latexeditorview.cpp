@@ -434,6 +434,7 @@ void LatexEditorView::updateSettings(){
 	statusPanelAction->setChecked(config->showcursorstate);
 	editor->setDisplayModifyTime(config->displayModifyTime);
 	editor->setUseLineForSearch(config->useLineForSearch);
+	editor->setUseTabforMoveToPlaceholder(config->useTabforMoveToPlaceholder);
 
 	environmentFormat=QDocument::formatFactory()->id("environment");
 	referenceMultipleFormat=QDocument::formatFactory()->id("referenceMultiple");

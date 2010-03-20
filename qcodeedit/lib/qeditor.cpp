@@ -2695,7 +2695,15 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 		// placeholders handling
 		bool bHandled = false;
 
-		if ( m_placeHolders.count() && ((e->modifiers() == Qt::ControlModifier)||(e->modifiers() == (Qt::ControlModifier|Qt::KeypadModifier)) ))
+		if(m_UseTabforMoveToPlaceholder &&((e->modifiers() == Qt::ControlModifier)||(e->modifiers() == (Qt::ControlModifier|Qt::KeypadModifier)))&&e->key() == Qt::Key_Tab){
+			nextPlaceHolder();
+			bHandled=true;
+		}
+		if(m_UseTabforMoveToPlaceholder &&((e->modifiers() == (Qt::ControlModifier|Qt::ShiftModifier))||(e->modifiers() == (Qt::ControlModifier|Qt::ShiftModifier|Qt::KeypadModifier)))&&e->key() == Qt::Key_Backtab){
+			previousPlaceHolder();
+			bHandled=true;
+		}
+		if (!m_UseTabforMoveToPlaceholder && m_placeHolders.count() && ((e->modifiers() == Qt::ControlModifier)||(e->modifiers() == (Qt::ControlModifier|Qt::KeypadModifier)) ))
 		{
 			if ( e->key() == Qt::Key_Up || e->key() == Qt::Key_Left )
 			{

@@ -127,7 +127,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -386,7 +386,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="texmaker.qrc">
               <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
             </property>
            </widget>
@@ -436,7 +436,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="texmaker.qrc">
               <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
             </property>
            </widget>
@@ -734,7 +734,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
              <string/>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="texmaker.qrc">
               <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
             </property>
             <property name="iconSize">
@@ -1035,7 +1035,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="2" column="1" colspan="2">
            <widget class="QComboBox" name="comboBoxEncoding"/>
           </item>
-          <item row="4" column="2" colspan="2">
+          <item row="5" column="2" colspan="2">
            <widget class="QComboBox" name="comboboxLineNumbers">
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -1057,7 +1057,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </item>
            </widget>
           </item>
-          <item row="6" column="0" colspan="2">
+          <item row="7" column="0" colspan="2">
            <widget class="QComboBox" name="comboBoxPreviewMode">
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -1084,7 +1084,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </item>
            </widget>
           </item>
-          <item row="6" column="2" colspan="2">
+          <item row="7" column="2" colspan="2">
            <widget class="QComboBox" name="comboBoxDvi2PngMode">
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -1106,7 +1106,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </item>
            </widget>
           </item>
-          <item row="8" column="1" colspan="4">
+          <item row="9" column="1" colspan="4">
            <widget class="QGroupBox" name="formatConfigBox">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
@@ -1131,7 +1131,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="7" column="0" colspan="2">
+          <item row="8" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxCloseSearchReplaceTogether">
             <property name="text">
              <string>close search and replace panel together</string>
@@ -1141,7 +1141,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="4" column="0" colspan="2">
+          <item row="5" column="0" colspan="2">
            <widget class="QComboBox" name="comboBoxAutoIndent">
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -1193,7 +1193,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="3" column="2" colspan="2">
+          <item row="3" column="2">
            <widget class="QCheckBox" name="checkBoxDisplayModifyTime">
             <property name="text">
              <string>Show Modify Time</string>
@@ -1203,7 +1203,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="7" column="2" colspan="2">
+          <item row="8" column="2" colspan="2">
            <widget class="QCheckBox" name="checkBoxUseLineForSearch">
             <property name="text">
              <string>Use single line selection as Search Word</string>
@@ -1217,6 +1217,13 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
             <property name="text">
              <string>auto detect encoding of loaded files</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3" colspan="2">
+           <widget class="QCheckBox" name="checkBoxTabforMoveToPlaceholder">
+            <property name="text">
+             <string>Use Tab for Move To Placeholder</string>
             </property>
            </widget>
           </item>
@@ -1243,6 +1250,15 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
          </attribute>
          <attribute name="horizontalHeaderStretchLastSection">
           <bool>true</bool>
+         </attribute>
+         <attribute name="horizontalHeaderStretchLastSection">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="horizontalHeaderMinimumSectionSize">
+          <number>200</number>
+         </attribute>
+         <attribute name="horizontalHeaderDefaultSectionSize">
+          <number>300</number>
          </attribute>
          <row/>
          <column>
@@ -1533,7 +1549,9 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
   <tabstop>cancelButton</tabstop>
   <tabstop>checkBoxShowAdvancedOptions</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="texmaker.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>okButton</sender>
