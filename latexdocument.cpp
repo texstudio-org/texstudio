@@ -830,14 +830,11 @@ void LatexDocumentsModel::structureLost(LatexDocument* document){
 
 void LatexDocumentsModel::removeElement(StructureEntry *se,int row){
 	StructureEntry *par_se=se->parent;
-	beginRemoveRows(index(par_se),row,row);
-	endRemoveRows();
+	removeRow(row,index(par_se));
 }
 
 void LatexDocumentsModel::addElement(StructureEntry *se,int row){
-	//beginInsertRows(index(se),row,row);
 	insertRow(row,index(se));
-	//endInsertRows();
 }
 void LatexDocumentsModel::updateElement(StructureEntry *se){
     emit dataChanged(index(se),index(se));
