@@ -1139,7 +1139,7 @@ void LatexDocument::splitStructure(StructureEntry* se,QVector<StructureEntry*> &
 	if(newFront && end-start==1)
 		splitStructure(next,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count,lvl+1);
 	else{
-		if(newFront) splitStructure(se->children[start],parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count,lvl+1,newFront,false);
+		if(newFront && (se->children[start]->type==StructureEntry::SE_SECTION)) splitStructure(se->children[start],parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count,lvl+1,newFront,false);
 		int next_level= next ? next->level+1 : lvl;
 		splitStructure(next,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count,next_level,false,true);
 	}
