@@ -1107,7 +1107,8 @@ void LatexDocument::splitStructure(StructureEntry* se,QVector<StructureEntry*> &
 		if(next && next->type!=StructureEntry::SE_SECTION) next=0;
 		parent=se->children.value(start,parent_level[lvl]);
 		if(parent->type!=StructureEntry::SE_SECTION) parent=parent_level[lvl];
-	}else{
+	}
+	if(end<0){
 		next=se->children.value(se->children.size()-1,0);// needs changing
 		if(next && next->type!=StructureEntry::SE_SECTION) next=0;
 		parent=next;
