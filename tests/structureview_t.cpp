@@ -18,7 +18,7 @@ void StructureViewTest::script_data(){
 	QTest::newRow("Setup Text")
 		<< "editor.setText(\"Hallo\")";
 
-	/*QTest::newRow("add Label")
+	QTest::newRow("add Label")
 		<< "cursor.movePosition(1,cursorEnums.End);cursor.insertText(\"\\n \\\\label{test}\\n\")";
 
 	QTest::newRow("add Label2")
@@ -59,7 +59,7 @@ void StructureViewTest::script_data(){
 
 	QTest::newRow("change section4")
 		<< "cursor.movePosition(1,cursorEnums.StartOfLine);cursor.movePosition(2,cursorEnums.Right);cursor.movePosition(6,cursorEnums.Right,cursorEnums.KeepAnchor);cursor.removeSelectedText()";
-*/
+
 	QTest::newRow("set sequence of headings")
 			<< "editor.setText(\"\\\\section{a}\\n\\\\section{b}\\n\\\\section{c}\\n\")";
 
