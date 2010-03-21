@@ -18,7 +18,7 @@ void StructureViewTest::script_data(){
 	QTest::newRow("Setup Text")
 		<< "editor.setText(\"Hallo\")";
 
-	QTest::newRow("add Label")
+	/*QTest::newRow("add Label")
 		<< "cursor.movePosition(1,cursorEnums.End);cursor.insertText(\"\\n \\\\label{test}\\n\")";
 
 	QTest::newRow("add Label2")
@@ -59,7 +59,38 @@ void StructureViewTest::script_data(){
 
 	QTest::newRow("change section4")
 		<< "cursor.movePosition(1,cursorEnums.StartOfLine);cursor.movePosition(2,cursorEnums.Right);cursor.movePosition(6,cursorEnums.Right,cursorEnums.KeepAnchor);cursor.removeSelectedText()";
+*/
+	QTest::newRow("set sequence of headings")
+			<< "editor.setText(\"\\\\section{a}\\n\\\\section{b}\\n\\\\section{c}\\n\")";
+
+	QTest::newRow("change heading in line 1 up")
+			<< "cursor.moveTo(0,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\chapter{a}\")";
+
+	QTest::newRow("change heading in line 1 up")
+			<< "cursor.moveTo(0,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\subsection{a}\")";
+
+	QTest::newRow("change heading in line 1 back")
+			<< "cursor.moveTo(0,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\section{a}\")";
+
+	QTest::newRow("change heading in line 2 up")
+			<< "cursor.moveTo(1,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\chapter{b}\")";
+
+	QTest::newRow("change heading in line 2 down")
+			<< "cursor.moveTo(1,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\subsection{b}\")";
+
+	QTest::newRow("change heading in line 2 back")
+			<< "cursor.moveTo(1,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\section{b}\")";
+
+	QTest::newRow("change heading in line 3 up")
+			<< "cursor.moveTo(2,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\chapter{c}\")";
+
+	QTest::newRow("change heading in line 3 down")
+			<< "cursor.moveTo(2,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\subsection{c}\")";
+
+	QTest::newRow("change heading in line 3 back")
+			<< "cursor.moveTo(2,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\section{c}\")";
 }
+
 void StructureViewTest::script(){
 	QFETCH(QString, script);
 	
