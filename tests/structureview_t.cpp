@@ -75,6 +75,12 @@ void StructureViewTest::script_data(){
 	QTest::newRow("change heading in line 2 up")
 			<< "cursor.moveTo(1,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\chapter{b}\")";
 
+	QTest::newRow("change heading in line 1 (remove)")
+			<< "cursor.moveTo(0,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\ssection{a}\")";
+
+	QTest::newRow("change heading in line 1 (add)")
+			<< "cursor.moveTo(0,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\section{a}\")";
+
 	QTest::newRow("change heading in line 2 down")
 			<< "cursor.moveTo(1,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\subsection{b}\")";
 
