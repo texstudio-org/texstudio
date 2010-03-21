@@ -557,8 +557,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	for(int i=parent_level.size()-1;i>=0;i--){
 		if (!parent_level[i]) break;
 	    while(!remainingChildren[i].isEmpty() && remainingChildren[i].first()->level>i){
-		se=remainingChildren[i].takeFirst();
-		parent_level[se->level]->add(se);
+			se=remainingChildren[i].takeFirst();
+			parent_level[se->level]->add(se);
 	    }
 	    parent_level[i]->children.append(remainingChildren[i]);
 	    foreach(StructureEntry *elem,remainingChildren[i]){
@@ -835,8 +835,9 @@ void LatexDocumentsModel::removeElement(StructureEntry *se,int row){
 }
 
 void LatexDocumentsModel::addElement(StructureEntry *se,int row){
-	beginInsertRows(index(se),row,row);
-	endInsertRows();
+	//beginInsertRows(index(se),row,row);
+	insertRow(row,index(se));
+	//endInsertRows();
 }
 void LatexDocumentsModel::updateElement(StructureEntry *se){
     emit dataChanged(index(se),index(se));
