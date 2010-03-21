@@ -135,7 +135,7 @@ private:
 	void setAppendix(StructureEntry *se,int startLine,int endLine,bool state);
 	bool fileExits(QString fname);
 	void findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,int linenr,int count);
-	void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QMap<StructureEntry*,int> &toBeDeleted,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count);
+	void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QMap<StructureEntry*,int> &toBeDeleted,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count,int lvl=0,bool front=true,bool back=true);
 
 public slots:
 	void updateStructure();

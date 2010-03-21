@@ -1058,89 +1058,92 @@ void LatexDocument::findStructureEntryBefore(QMutableListIterator<StructureEntry
     if(goBack && iter.hasPrevious()) iter.previous();
 }
 
-void LatexDocument::splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QMap<StructureEntry*,int> &toBeDeleted,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count){
+void LatexDocument::splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QMap<StructureEntry*,int> &toBeDeleted,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count,int lvl,bool front,bool back){
 	if (!se) return;
+
+	if(front){
+		for(int k=lvl;k<parent_level.size();k++){
+			parent_level[k]=se;
+		}
+	}
+
+	if(se->children.empty()) return;
 
 	StructureEntry* parent=se;
 
-	for (int i=0;i<parent_level.size();i++){
-		if(!se){
-			parent_level[i]=parent_level[i-1];
+	if(lvl>=parent_level.size()) return;
+
+	// determine range of structure entry which encompass the to be updated region
+	int start=-1;
+	int end=-1;
+	for(int l=0;l<se->children.size();l++){
+		StructureEntry *elem=se->children.at(l);
+		if(!elem->lineHandle || elem->lineHandle->line()<linenr) {
+			start=l;
 			continue;
 		}
-		// determine range of structure entry which encompass the to be updated region
-		int start=-1;
-		int end=-1;
-		for(int l=0;l<se->children.size();l++){
-			StructureEntry *elem=se->children.at(l);
-			if(!elem->lineHandle || elem->lineHandle->line()<linenr) {
-				start=l;
-				continue;
-			}
-			if(elem->lineHandle->line()>=linenr+count){
-				end=l;
-				break;
-			}
+		if(elem->lineHandle->line()>=linenr+count){
+			end=l;
+			break;
 		}
-
-		if(start>-1 || i==0){
-			parent_level[i]=parent;
-			if(start>-1){
-				StructureEntry *elem=se->children.at(start);
-				if(elem->type==StructureEntry::SE_SECTION){
-					for(;i<elem->level;++i){
-						parent_level[i+1]=parent;
-					}
-				}else{
-					for(int k=i;k<parent_level.size();k++){
-						parent_level[k]=parent;
-					}
-				}
-			}
-		}else{
-			parent_level[i]=parent;
-		}
-
-		// store remainder of children
-		if(end>-1)
-			remainingChildren[i].append(se->children.mid(end));
-		// get StructureEntry to look deeper in
-		StructureEntry *next=0;
-		if(end>0) {
-			next=se->children.value(end-1,0);
-			if(next && next->type!=StructureEntry::SE_SECTION) next=0;
-			parent=se->children.value(start,parent_level[i]);
-			if(parent->type!=StructureEntry::SE_SECTION) parent=parent_level[i];
-		}else{
-			next=se->children.value(start,0);
-			if(next && next->type!=StructureEntry::SE_SECTION) next=0;
-			parent=next;
-			if(!parent) parent=parent_level[i];
-			if(parent->type!=StructureEntry::SE_SECTION) parent=parent_level[i];
-		}
-
-		// add elements which are deleted later to a list
-		if(end-1>start) {
-		    toBeDeleted.insert(se->children[end-1],end-1);
-		    MapOfElements.insert(se->children[end-1]->lineHandle,se->children[end-1]);
-		}
-		//delete elements which are completely embedded in the to be updated region
-		if(end<0 && start>-1) end=se->children.size()+1;
-		for(int l=start+1;l<end-1;l++) {
-			toBeDeleted.insert(se->children[l],l);
-			MapOfElements.insert(se->children[l]->lineHandle,se->children[l]);
-			//delete se->children[l];
-		}
-
-
-		end=se->children.size();
-		for(int l=start+1;l<end;l++) {
-			se->children.removeAt(start+1);
-		}
-
-		// take a look a children
-		se=next;
 	}
+
+	if(start>-1){
+		StructureEntry *elem=se->children.at(start);
+		if(elem->type==StructureEntry::SE_SECTION){
+			for(;lvl<elem->level;++lvl){
+				parent_level[lvl+1]=parent;
+			}
+		}
+	}
+
+	// store remainder of children
+	if(back && (end>-1))
+		remainingChildren[lvl].append(se->children.mid(end));
+	// get StructureEntry to look deeper in
+	StructureEntry *next=0;
+	if(end>0) {
+		next=se->children.value(end-1,0);// needs changing
+		if(next && next->type!=StructureEntry::SE_SECTION) next=0;
+		parent=se->children.value(start,parent_level[lvl]);
+		if(parent->type!=StructureEntry::SE_SECTION) parent=parent_level[lvl];
+	}else{
+		next=se->children.value(se->children.size()-1,0);// needs changing
+		if(next && next->type!=StructureEntry::SE_SECTION) next=0;
+		parent=next;
+		if(!parent) parent=parent_level[lvl];
+		if(parent->type!=StructureEntry::SE_SECTION) parent=parent_level[lvl];
+	}
+
+	// add elements which are deleted later to a list
+	if(end-1>start) {
+		toBeDeleted.insert(se->children[end-1],end-1);
+		MapOfElements.insert(se->children[end-1]->lineHandle,se->children[end-1]);
+	}
+	//delete elements which are completely embedded in the to be updated region
+	int tmp_end=end;
+	if(tmp_end<0 && start>-1) tmp_end=se->children.size()+1;
+	for(int l=start+1;l<tmp_end-1;l++) {
+		toBeDeleted.insert(se->children[l],l);
+		MapOfElements.insert(se->children[l]->lineHandle,se->children[l]);
+		//delete se->children[l];
+	}
+
+	int tmp=se->children.size();
+	for(int l=start+1;l<tmp;l++) {
+		se->children.removeAt(start+1);
+	}
+
+	// take a look a children
+	bool newFront=start>-1;
+	if(newFront && end-start==1)
+		splitStructure(next,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count,lvl+1);
+	else{
+		if(newFront) splitStructure(se->children[start],parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count,lvl+1,newFront,false);
+		int next_level= next ? next->level+1 : lvl;
+		splitStructure(next,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count,next_level,false,true);
+	}
+
 }
 
 void LatexDocument::updateAppendix(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine){
