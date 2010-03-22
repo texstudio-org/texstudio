@@ -46,6 +46,9 @@ void LatexDocument::setEditorView(LatexEditorView* edView){
 LatexEditorView *LatexDocument::getEditorView(){
 	return this->edView;
 }
+QDocument *LatexDocument::getText(){
+	return text;
+}
 QString LatexDocument::getFileName(){
 	return fileName;
 }
@@ -284,60 +287,27 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
     mMentionedBibTeXFiles.remove(dlh);
     mUserCommandList.remove(dlh);
 
-    if(dlh==mAppendixLine){
+	if(dlh==mAppendixLine){
 		updateAppendix(mAppendixLine,0);
 		mAppendixLine=0;
-    }
-
-	int l=0;
-    QMutableListIterator<StructureEntry*> iter_label(labelList->children);
-    while(iter_label.hasNext()){
-		StructureEntry* se=iter_label.next();
-		if(dlh==se->lineHandle) {
-			iter_label.remove();
-			removeElement(se,l);
-			delete se;
-		}
-		l++;
-    }
-
-	l=0;
-    QMutableListIterator<StructureEntry*> iter_todo(todoList->children);
-    while(iter_todo.hasNext()){
-		StructureEntry* se=iter_todo.next();
-		if(dlh==se->lineHandle) {
-			iter_todo.remove();
-			removeElement(se,l);
-			delete se;
-		}
-		l++;
-    }
-
-	l=0;
-    QMutableListIterator<StructureEntry*> iter_block(blockList->children);
-    while(iter_block.hasNext()){
-		StructureEntry* se=iter_block.next();
-		if(dlh==se->lineHandle) {
-			iter_block.remove();
-			removeElement(se,l);
-			delete se;
-		}
-		l++;
-    }
-
-	l=0;
-    QMutableListIterator<StructureEntry*> iter_bibTeX(bibTeXList->children);
-    while(iter_bibTeX.hasNext()){
-		StructureEntry* se=iter_bibTeX.next();
-		if(dlh==se->lineHandle) {
-			iter_bibTeX.remove();
-			removeElement(se,l);
-			delete se;
-		}
-		l++;
-    }
+	}
 
 	int linenr=dlh->line();
+	if (linenr==-1) linenr=text->lines();
+
+	QList<StructureEntry*> categories=QList<StructureEntry*>() << labelList << todoList << blockList << bibTeXList;
+	foreach (StructureEntry* sec, categories) {
+		int l=0;
+		QMutableListIterator<StructureEntry*> iter(sec->children);
+		while (iter.hasNext()){
+			StructureEntry* se=iter.next();
+			if(dlh==se->lineHandle) {
+				iter.remove();
+				removeElement(se,l);
+				delete se;
+			} else l++;
+		}
+	}
 
 	QVector<StructureEntry*> parent_level(LatexParser::structureCommands.count());
 	QVector<QList<StructureEntry*> > remainingChildren(LatexParser::structureCommands.count());
@@ -629,10 +599,15 @@ void StructureEntry::insert(int pos, StructureEntry* child){
 	children.insert(pos,child);
 	child->parent=this;
 }
-int StructureEntry::getRealLineNumber() const{
+int StructureEntry::getRealLineNumber(){
+	if (document && document->getText() && document->getText()->line(lineNumber).handle() == lineHandle)
+		return lineNumber; //return cached line number if it is still correct
 	if (lineHandle) {
 		int nr = QDocumentLine(lineHandle).lineNumber();
-		if (nr>=0) return nr;
+		if (nr>=0) {
+			lineNumber=nr; //correct cached line number if necessary
+			return nr;
+		}
 	}
 	return lineNumber;
 }
