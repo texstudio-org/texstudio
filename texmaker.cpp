@@ -1981,7 +1981,7 @@ void Texmaker::clickedOnStructureEntry(const QModelIndex & index){
 				edView=load(entry->document->getFileName());
 				if (!edView) return;
 				//entry is now invalid
-			} else lineNr=entry->getRealLineNumber();
+			} else lineNr=LatexDocumentsModel::indexToStructureEntry(index)->getRealLineNumber();
 			EditorView->setCurrentWidget(edView);
 			edView->editor->setFocus();
 			edView->editor->setCursorPosition(lineNr,1);

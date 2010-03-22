@@ -58,7 +58,7 @@ struct StructureEntry{
 	void add(StructureEntry* child);
 	void insert(int pos, StructureEntry* child);
 
-	int getRealLineNumber() const;
+	int getRealLineNumber();
 };
 
 //iterator for fast traversal of a structure entry tree
@@ -82,6 +82,7 @@ public:
 	void setFileName(const QString& fileName);
 	void setEditorView(LatexEditorView* edView);
 	LatexEditorView *getEditorView();
+	QDocument *getText();
 	QString getFileName();
 	QFileInfo getFileInfo();
 	//QSet<QString> texFiles; //absolute file names, also contains fileName
