@@ -1076,7 +1076,7 @@ void ConfigManager::managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu
 		if (acts[i]->menu()) managedMenuToTreeWidget(menuitem, acts[i]->menu());
 		else {
 			QTreeWidgetItem* twi=new QTreeWidgetItem(menuitem, QStringList() << acts[i]->text()
-					<< managedMenuShortcuts[acts[i]->objectName()+"0"]
+					<< managedMenuShortcuts.value(acts[i]->objectName()+"0", QKeySequence())
 					<< acts[i]->shortcut().toString(QKeySequence::NativeText));
 			twi->setIcon(0,acts[i]->icon());
 			if (!acts[i]->isSeparator()) twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
@@ -1095,7 +1095,7 @@ void ConfigManager::treeWidgetToManagedMenuTo(QTreeWidgetItem* item) {
 		if (act) {
 			QString mseq=item->text(2);
 			if(mseq==tr("<none>")) mseq="";
-			if(mseq==tr("<default>")) mseq=managedMenuShortcuts[act->objectName()+"0"].toString(QKeySequence::NativeText);
+			if(mseq==tr("<default>")) mseq=managedMenuShortcuts.value(act->objectName()+"0",QKeySequence()).toString(QKeySequence::NativeText);
 			QKeySequence sc=QKeySequence(mseq);
 			act->setShortcut(sc);
 			if (sc!=managedMenuShortcuts.value(act->objectName()+"0",QKeySequence()))
