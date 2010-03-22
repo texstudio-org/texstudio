@@ -38,6 +38,10 @@ void LatexDocument::setEditorView(LatexEditorView* edView){
 	this->fileInfo=edView->editor->fileInfo();
 	this->edView=edView;
 	this->text=edView->editor->document();
+        if(baseStructure){
+            baseStructure->title=fileName;
+            emit updateElement(baseStructure);
+        }
 }
 LatexEditorView *LatexDocument::getEditorView(){
 	return this->edView;
