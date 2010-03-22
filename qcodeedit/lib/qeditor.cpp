@@ -2254,6 +2254,8 @@ void QEditor::indentSelection()
 			insert(m_cursor, txt);
 		else {
 			QDocumentSelection s = m_cursor.selection();
+			if ( s.end == 0 && s.startLine < s.endLine )
+				s.endLine--; //only change last line if there is selected text
 			QDocumentCursor c(m_doc, s.startLine);
 			c.setSilent(true);
 			c.beginEditBlock();
@@ -2299,6 +2301,8 @@ void QEditor::unindentSelection()
 			unindent(m_cursor);
 		else {
 			QDocumentSelection s = m_cursor.selection();
+			if ( s.end == 0 && s.startLine < s.endLine )
+				s.endLine--; //only change last line if there is selected text
 
 			m_doc->beginMacro();
 
@@ -2343,6 +2347,8 @@ void QEditor::commentSelection()
 			insert(m_cursor, txt);
 		else {
 			QDocumentSelection s = m_cursor.selection();
+			if ( s.end == 0 && s.startLine < s.endLine )
+				s.endLine--; //only change last line if there is selected text
 			QDocumentCursor c(m_doc, s.startLine);
 			c.setSilent(true);
 			c.beginEditBlock();
@@ -2393,6 +2399,8 @@ void QEditor::uncommentSelection()
 			removeFromStart(m_cursor, txt);
 		else {
 			QDocumentSelection s = m_cursor.selection();
+			if ( s.end == 0 && s.startLine < s.endLine )
+				s.endLine--; //only change last line if there is selected text
 			if (s.startLine<0) s.startLine=0;
 			if (s.endLine>m_doc->lines()-1) s.endLine=m_doc->lines()-1;
 
