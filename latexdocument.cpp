@@ -9,10 +9,10 @@
 LatexDocument::LatexDocument():edView(0),text(0),mAppendixLine(0)
 {
 	baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
-	labelList = new StructureEntry(this,baseStructure, StructureEntry::SE_OVERVIEW);
-	todoList = new StructureEntry(this,baseStructure, StructureEntry::SE_OVERVIEW);
-	bibTeXList = new StructureEntry(this,baseStructure, StructureEntry::SE_OVERVIEW);
-	blockList = new StructureEntry(this,baseStructure, StructureEntry::SE_OVERVIEW);
+	labelList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
+	todoList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
+	bibTeXList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
+	blockList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
 	mLabelItem.clear();
 	mUserCommandList.clear();
 	mMentionedBibTeXFiles.clear();
@@ -874,6 +874,7 @@ void LatexDocuments::addDocument(LatexDocument* document){
 			edView->documentContentChanged(0,edView->editor->document()->lines());
 		}
 	}
+	model->structureUpdated(document);
 }
 void LatexDocuments::deleteDocument(LatexDocument* document){
 	LatexEditorView *view=document->getEditorView();
