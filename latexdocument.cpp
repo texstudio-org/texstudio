@@ -688,8 +688,11 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 	if (!entry) return QVariant();
 	switch (role) {
 		case Qt::DisplayRole:
-			if (entry->type==StructureEntry::SE_DOCUMENT_ROOT) //show only base file name
-				return QVariant(entry->title.mid(1+qMax(entry->title.lastIndexOf("/"), entry->title.lastIndexOf(QDir::separator()))));
+		if (entry->type==StructureEntry::SE_DOCUMENT_ROOT){ //show only base file name
+				QString title=entry->title.mid(1+qMax(entry->title.lastIndexOf("/"), entry->title.lastIndexOf(QDir::separator())));
+				if(title.isEmpty()) title="untitled";
+				return QVariant(title);
+			}
 			//fall through to show full title in other cases
 		case Qt::ToolTipRole:
 			if (entry->lineNumber>-1)
@@ -721,9 +724,10 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 				return QVariant(Qt::red);
 			}else return QVariant();
 		case Qt::FontRole:
-			if((entry->type==StructureEntry::SE_DOCUMENT_ROOT) && (entry->document==documents.currentDocument)) {
+			if(entry->type==StructureEntry::SE_DOCUMENT_ROOT) {
 			    QFont f=QApplication::font();
-			    f.setBold(true);
+				if(entry->document==documents.currentDocument) f.setBold(true);
+				if(entry->title.isEmpty()) f.setItalic(true);
 			    return QVariant(f);
 			}
 			return QVariant();
@@ -1200,3 +1204,4 @@ void LatexDocuments::updateStructure(){
 	model->updateElement(doc->baseStructure);
     }
 }
+
