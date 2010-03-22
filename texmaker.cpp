@@ -3615,7 +3615,8 @@ void Texmaker::StructureContextMenu(const QPoint& point) {
 			menu.addAction(tr("Insert as %1").arg("\\ref{...}"),this, SLOT(editPasteRef()));
 			menu.addAction(tr("Insert as %1").arg("\\pageref{...}"),this, SLOT(editPasteRef()));
 			menu.exec(structureTreeView->mapToGlobal(point));
-		} else {
+		}
+		if (entry->type==StructureEntry::SE_SECTION) {
 			QMenu menu(this);
 			menu.addAction(tr("Copy"),this, SLOT(editSectionCopy()));
 			menu.addAction(tr("Cut"),this, SLOT(editSectionCut()));
