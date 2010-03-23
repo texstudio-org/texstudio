@@ -496,6 +496,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 
 		bool m_UseLineForSearch;
 		bool m_UseTabforMoveToPlaceholder;
+
+                bool m_blockKey;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(QEditor::State);
