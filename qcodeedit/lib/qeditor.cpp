@@ -299,7 +299,7 @@ QEditor::QEditor(QWidget *p)
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-		mDisplayModifyTime(true),m_UseLineForSearch(false)
+                mDisplayModifyTime(true),m_UseLineForSearch(false),m_blockKey(false)
 {
 	m_editors << this;
 
@@ -318,7 +318,7 @@ QEditor::QEditor(bool actions, QWidget *p)
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-		mDisplayModifyTime(true),m_UseLineForSearch(false)
+                mDisplayModifyTime(true),m_UseLineForSearch(false),m_blockKey(false)
 {
 	m_editors << this;
 
@@ -340,7 +340,7 @@ QEditor::QEditor(const QString& s, QWidget *p)
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-		mDisplayModifyTime(true),m_UseLineForSearch(false)
+                mDisplayModifyTime(true),m_UseLineForSearch(false),m_blockKey(false)
 {
 	m_editors << this;
 
@@ -363,7 +363,7 @@ QEditor::QEditor(const QString& s, bool actions, QWidget *p)
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-		mDisplayModifyTime(true),m_UseLineForSearch(false)
+                mDisplayModifyTime(true),m_UseLineForSearch(false),m_blockKey(false)
 {
 	m_editors << this;
 
@@ -2822,7 +2822,13 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 					
 				}
 				
-				bHandled = processCursor(m_cursor, e, bOk);
+
+                                if(!m_blockKey)
+                                   bHandled = processCursor(m_cursor, e, bOk);
+                                else {
+                                    bHandled=true;
+                                    m_blockKey=false;
+                                }
 				
 				if ( m_curPlaceHolder >= 0 && m_curPlaceHolder<m_placeHolders.count() ) //hasPH is invalid
 				{
@@ -2903,9 +2909,12 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
 
 	m_cursor.beginEditBlock();
 
-	if ( e->commitString().count() )
+        if ( e->commitString().count() ){
 		m_cursor.insertText(e->commitString());
-
+#ifdef Q_WS_MACX
+                m_blockKey=true;
+#endif
+            }
 	m_cursor.endEditBlock();
 
 	foreach ( QEditorInputBindingInterface *b, m_bindings )
