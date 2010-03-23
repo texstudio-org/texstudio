@@ -1008,7 +1008,7 @@ void ConfigManager::modifyManagedShortcuts(){
 		if (num!=-1) id.chop(2);
 		QAction * act= getManagedAction(id);
 		if (act) {
-			if (num!=1) act->setShortcut(QKeySequence(managedMenuNewShortcuts[i].second));
+			if (num!=1 || act->shortcuts().empty()) act->setShortcut(QKeySequence(managedMenuNewShortcuts[i].second));
 			else act->setShortcuts((QList<QKeySequence>()<<act->shortcut())<<managedMenuNewShortcuts[i].second);
 		}
 	}
@@ -1097,14 +1097,17 @@ void ConfigManager::treeWidgetToManagedMenuTo(QTreeWidgetItem* item) {
 			if(mseq==tr("<none>")) mseq="";
 			if(mseq==tr("<default>")) mseq=managedMenuShortcuts.value(act->objectName()+"0",QKeySequence()).toString(QKeySequence::NativeText);
 			QKeySequence sc=QKeySequence(mseq);
-			act->setShortcut(sc);
+			act->setShortcuts(QList<QKeySequence>()<<sc);
 			if (sc!=managedMenuShortcuts.value(act->objectName()+"0",QKeySequence()))
 				managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~0", sc.toString(QKeySequence ::PortableText)));
 			mseq=item->text(3);
 			if(mseq==tr("<none>")) mseq="";
 			if(mseq==tr("<default>")) mseq=managedMenuShortcuts.value(act->objectName()+"1",QKeySequence()).toString(QKeySequence::NativeText);
 			sc=QKeySequence(mseq);
-			if (mseq!="") act->setShortcuts((QList<QKeySequence>()<<act->shortcut()) << sc);
+			if (mseq!="") {
+				if (act->shortcuts().empty()) act->setShortcut(sc);
+				else act->setShortcuts((QList<QKeySequence>()<<act->shortcut()) << sc);
+			}
 			if (sc!=managedMenuShortcuts.value(act->objectName()+"1",QKeySequence()))
 				managedMenuNewShortcuts.append(QPair<QString, QString> (id+"~1", sc.toString(QKeySequence ::PortableText)));
 			if(id=="main/view/outputview"){  // special handling for outputview because of "esc"-key
