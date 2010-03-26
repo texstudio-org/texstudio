@@ -135,9 +135,10 @@ changed functionality:</P>
     <li><p>a customizable tool bar is available</p>
     <li><p>the latex expressions in the Math/Latex-Menus can be changed to user preferred versions.</p>
     <li><p>global find over all open documents improved</p>
-	<li><p>support of transparent versioning of text documents via svn</p>
-	<li><p>structure view and custom command completer are updated as you type</p>
-	<li><p>the structure view marks some aspects with colours like being part of the appendix or missing include files</p>
+    <li><p>support of transparent versioning of text documents via svn</p>
+    <li><p>structure view and custom command completer are updated as you type</p>
+    <li><p>the structure view marks some aspects with colours like being part of the appendix or missing include files</p>
+    <li><p>if a master document is defined, references and labels from open (!) subdocuments can be used for completion as well as for interactive label checking</p>
     <li><p>lots of bugs removed after user feedback</p>
 </ul>
 <h1><a name="SECTION0">1. Configuring TexMakerX</a></h1>
@@ -340,7 +341,9 @@ A tool tip will show more details of the mistake if you jump to a line (it is al
 <h2><a name="SECTION31">4.1 About documents separated in several files</a></h2>
 <p>TexMakerX allows you to work onto documents separated in several files.<br>
 To include a TeX file into your document, just use the "\include{file}" command in the "LaTeX" menu. The file will appear in the "Structure View". With a click on his name, TexMakerX will open it.</p>
-<p>Then, you can define your "master document" with the "Options" menu. All the commands of the "Tools" menu will apply only to this document even when working on the "children" documents (you can even close the "master" document).<br>Note : you can leave the "master" mode with the "Options" menu.</p>
+<p>Then, you can define your "master document" with the "Options" menu. All the commands of the "Tools" menu will apply only to this document even when working on the "children" documents (you can even close the "master" document).<br>
+If a master document is set, labels and usercommands which are defined in any open document, can be used for completion in any open document. Thus you can insert easily a reference to a label which is defined in another subdocument, as long as that document is open in TexMakerX. 
+<br>Note : you can leave the "master" mode with the "Options" menu.</p>
 <h2><a name="SECTION32">4.2 Bibliography</a></h2>
 <p>For the "bib" files , the "Bibliography" menu enables you to directly insert the entries corresponding to the standard types of document.<br>Note: the optional fields can be automatically deleted with the "Clean" command of the "Bibliography" menu.</p>
 <p><IMG src="doc16.png" border="1"></p>
