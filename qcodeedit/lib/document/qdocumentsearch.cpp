@@ -40,10 +40,9 @@
 */
 
 QDocumentSearch::QDocumentSearch(QEditor *e, const QString& f, Options opt, const QString& r)
- : m_group(-1), m_option(opt), m_string(f),  m_editor(e), m_replaced(0), m_replaceDeltaLength(0)
+ : m_option(opt), m_string(f),  m_editor(e), m_replaced(0), m_replaceDeltaLength(0)
 {
-        m_replace=r;
-        m_scopeGroup=-1;
+	m_replace=r;
 	if (m_editor && hasOption(HighlightAll))
 		connect(m_editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
 }
@@ -214,8 +213,10 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 	QFormatScheme *f = d->formatScheme() ? d->formatScheme() : QDocument::formatFactory();
 	int sid = f ? f->id("search") : 0;
 	
-	if ( !sid )
+	if ( !sid ) {
 		qWarning("Highlighting of search matches disabled due to unavailability of a format scheme.");
+		return;
+	}
 
 	QDocumentCursor hscope = subHighlightScope; 
 	if (!hscope.isValid() || !hscope.hasSelection() || hscope.document()!=d){
@@ -231,9 +232,9 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 	}
 	
 	QList<QDocumentCursor> saved;
-	if (!clearAll && m_group!=-1) {
+	if (!clearAll && !m_highlight.empty()) {
 		//TODO: binary search
-		d->clearMatches(m_group); //clear matches in the document, remember our copy
+		clearMatches(false); //clear matches in the document, remember our copy
 		//remove all matches witin the new scope
 		QDocumentCursor ss=hscope.selectionStart();
 		QDocumentCursor se=hscope.selectionEnd();
@@ -288,17 +289,11 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 	
 	if ( m_highlight.count() )
 	{
-		if ( m_group == -1 )
-			m_group = d->getNextGroupId();
 		foreach (const QDocumentCursor& hc, m_highlight)
-			d->addMatch(m_group,
-						hc.lineNumber(),
-						hc.anchorColumnNumber(),
-						hc.columnNumber() - hc.anchorColumnNumber(),
-						sid);
+			hc.line().addOverlay(QFormatRange(hc.anchorColumnNumber(), hc.columnNumber() - hc.anchorColumnNumber(), sid));
 	
-		//qDebug("%i matches in group %i", indexedMatchCount(), m_group);
-		m_editor->document()->flushMatches(m_group);
+		//qDebug("%i matches in group %i", indexedMatchCount(), up);
+		m_editor->viewport()->update();
 	} else clearMatches();
 	m_index = -1; //current index became invalid due to (partially) cleaning (TODO?: change to new index)
 }
@@ -309,24 +304,25 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 	This function should be called anytime you perform a search with the HighlightAll option,
 	once you're done iterating over the matches.
 */
-void QDocumentSearch::clearMatches()
+void QDocumentSearch::clearMatches(bool clearCursorList)
 {
 	QDocument* doc= currentDocument();
 	if ( !doc )
 		return;
-	
+
+	QFormatScheme *f = doc->formatScheme() ? doc->formatScheme() : QDocument::formatFactory();
+	int sid = f ? f->id("search") : 0;
+
 	//qDebug("clearing matches");
 	//m_cursor = QDocumentCursor();
 	m_index=-1;
 	
-	if ( m_group != -1 )
-	{
-		doc->clearMatches(m_group);
-		doc->flushMatches(m_group);
-		m_group = -1;
-	}
-	
-	m_highlight.clear();
+	foreach (const QDocumentCursor& c, m_highlight)
+		c.line().removeOverlay(QFormatRange(c.anchorColumnNumber(), c.columnNumber()-c.anchorColumnNumber(), sid));
+	m_editor->viewport()->update();
+
+	if (clearCursorList)
+		m_highlight.clear();
 }
 
 /*
@@ -382,7 +378,7 @@ void QDocumentSearch::setSearchText(const QString& f)
 	
 	if (hasOption(HighlightAll) && !m_string.isEmpty()) 
 		searchMatches();
-	else if (m_group !=-1 || m_highlight.count())
+	else if (m_highlight.count())
 		clearMatches();
 }
 
@@ -401,12 +397,15 @@ bool QDocumentSearch::hasOption(Option opt) const
 */
 void QDocumentSearch::setOption(Option opt, bool on)
 {
+	if ( (m_option & opt) == on)
+		return; //no change, option already set
+
 	if ( on )
 		m_option |= opt;
 	else
 		m_option &= ~opt;
-	
-	if ( (opt & QDocumentSearch::HighlightAll)  )
+
+	if ( (opt & QDocumentSearch::HighlightAll) )
 	{
 		//prevent multiple connections
 		if (m_editor->document()) {
@@ -414,40 +413,10 @@ void QDocumentSearch::setOption(Option opt, bool on)
 			if (on) //connect if highlighting is on
 				connect(m_editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
 		}
-		if ( (m_group != -1 || m_highlight.count()) && !on  ) 
+		if ( !on  )
 			clearMatches();
-		else if ( m_group == -1 && on ) 
+		else if ( on )
 			searchMatches();
-			/*m_group = d->getNextGroupId();
-			
-			QFormatScheme *f = d->formatScheme();
-			
-			if ( !f )
-				f = QDocument::formatFactory();
-			
-			if ( !f )
-			{
-				qWarning("No format scheme set to the document and no global default one available.\n"
-						"-> highlighting of search matches disabled.");
-				return;
-			}
-			
-			int sid = f->id("search");
-			
-			foreach ( const QDocumentCursor& c, m_highlight )
-			{
-				//QFormatRange r(c.anchorColumnNumber(), c.columnNumber() - c.anchorColumnNumber(), sid);
-				
-				d->addMatch(m_group,
-							c.lineNumber(),
-							c.anchorColumnNumber(),
-							c.columnNumber() - c.anchorColumnNumber(),
-							sid);
-			}
-			
-			//qDebug("%i matches in group %i", indexedMatchCount(), m_group);
-			d->flushMatches(m_group);*/
-		
 	} else if (
 					(m_option & QDocumentSearch::HighlightAll)
 				&&
@@ -989,30 +958,32 @@ void QDocumentSearch::documentContentChanged(int line, int n){
 
 void QDocumentSearch::highlightSelection(bool on)
 {
-	if(m_scopeGroup>-1){
-		m_editor->document()->clearMatches(m_scopeGroup);
-		m_editor->document()->flushMatches(m_scopeGroup);
-		m_scopeGroup = -1;
+	QFormatScheme *f = m_editor->document()->formatScheme() ? m_editor->document()->formatScheme() : QDocument::formatFactory();
+	int sid = f ? f->id("selection") : 0;
+	if (!sid) return;
+
+	int begLine, endLine, begCol, endCol;
+	if( m_highlightedScope.isValid() && m_highlightedScope.hasSelection() ){
+		m_highlightedScope.boundaries(begLine, begCol, endLine, endCol);
+		for(int i=begLine;i<=endLine;i++){
+			//we can't remove a overlay with the line length because the line length could changed
+			QList<QFormatRange> overlays=m_editor->document()->line(i).getOverlays(sid);
+			if (!overlays.empty())
+				m_editor->document()->line(i).removeOverlay(overlays.first());
+		}
+		m_highlightedScope = QDocumentCursor();
 	}
 
-	if(on && m_scope.isValid() && m_scope.hasSelection()){
-		m_scopeGroup = m_editor->document()->getNextGroupId();
-		QFormatScheme *f = m_editor->document()->formatScheme() ? m_editor->document()->formatScheme() : QDocument::formatFactory();
-		int sid = f ? f->id("selection") : 0;
-		if(m_scope.hasSelection()){
-			int begLine, endLine, begCol, endCol;
-			m_scope.boundaries(begLine, begCol, endLine, endCol);
-			for(int i=begLine;i<=endLine;i++){
-				int beg = i==begLine ? begCol : 0;
-				int en = i==endLine ? endCol : m_editor->document()->line(i).length();
-				m_editor->document()->addMatch(m_scopeGroup,
-											   i,
-											   qMin(beg,en),
-											   abs(en-beg),
-											   sid);
-			}
-			m_editor->document()->flushMatches(m_scopeGroup);
+	if( on && m_scope.isValid() && m_scope.hasSelection() ){
+		m_scope.boundaries(begLine, begCol, endLine, endCol);
+		for(int i=begLine;i<=endLine;i++){
+			int beg = i==begLine ? begCol : 0;
+			int en = i==endLine ? endCol : m_editor->document()->line(i).length();
+			m_editor->document()->line(i).addOverlay(QFormatRange(beg, en-beg, sid));
 		}
-		//if(!QApplication::mouseButtons()) editor()->selectNothing();
+
+		m_highlightedScope = m_scope;
+		m_highlightedScope.setAutoUpdated(true);
 	}
+	//m_editor->viewport()->update();
 }
