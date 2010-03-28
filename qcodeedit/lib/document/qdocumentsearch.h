@@ -26,6 +26,8 @@
 #include <QString>
 #include <QRegExp>
 #include <QPointer>
+#include <QAbstractScrollArea>
+#include <QWidget>
 #include <QCoreApplication>
 
 #include "qdocumentcursor.h"
@@ -92,17 +94,16 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		
 		bool nextMatch(bool backward, bool again=false,  bool allowWrapAround=true);
 		void searchMatches(const QDocumentCursor& subHighlightScope=QDocumentCursor(), bool clearAll=true);
-		void clearMatches();
+		void clearMatches(bool clearCursorList=true);
 		
 		QRegExp currentRegExp();
 		
-		int m_group,m_scopeGroup;
 		int m_index;
 		Options m_option;
 		QString m_string;
 		QString m_replace;
 		QPointer<QEditor> m_editor;
-		QDocumentCursor m_cursor, m_scope, m_origin;
+		QDocumentCursor m_cursor, m_scope, m_highlightedScope, m_origin;
 		QList<QDocumentCursor> m_highlight;
 
 		int m_replaced,m_replaceDeltaLength,m_replaceDeltaLines;
