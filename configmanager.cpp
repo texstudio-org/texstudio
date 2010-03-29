@@ -822,7 +822,7 @@ bool ConfigManager::execConfigDialog() {
 		editorConfig->displayModifyTime=confDlg->ui.checkBoxDisplayModifyTime->isChecked();
 		editorConfig->closeSearchAndReplace=confDlg->ui.checkBoxCloseSearchReplaceTogether->isChecked();
 		editorConfig->useLineForSearch=confDlg->ui.checkBoxUseLineForSearch->isChecked();
-		editorConfig->useTabforMoveToPlaceholder=confDlg->ui.checkBoxTabforMoveToPlaceholder;
+		editorConfig->useTabforMoveToPlaceholder=confDlg->ui.checkBoxTabforMoveToPlaceholder->isChecked();
 
 		//language
 		lastLanguage=language;
