@@ -141,7 +141,7 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 
 	bool oldFolding=false;
 
-	for (; fli.lineNr<doc->lines(); ++fli)
+	for (; fli.lineNr<max; ++fli)
 	{
 		if ( pos > pageBottom )
 			break;

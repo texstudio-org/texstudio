@@ -32,7 +32,6 @@
 	\brief The base class for document editing command
 */
 
-QList<QDocumentCursorHandle*> QDocumentCommand::m_autoUpdated;
 
 /*!
 	\brief ctor
@@ -244,8 +243,7 @@ void QDocumentCommand::insertLines(int after, const QList<QDocumentLineHandle*>&
 void QDocumentCommand::updateCursorsOnInsertion(int line, int column, int prefixLength, int numLines, int suffixLength)
 {
 	//qDebug("inserting %i lines at (%i, %i) with (%i : %i) bounds", numLines, line, column, prefixLength, suffixLength);
-
-	foreach ( QDocumentCursorHandle *ch, m_autoUpdated )
+	foreach ( QDocumentCursorHandle *ch, m_doc->impl()->m_autoUpdatedCursorList )
 	{
 		if ( ch == m_cursor || ch->document() != m_doc )
 			continue;
@@ -325,9 +323,9 @@ void QDocumentCommand::updateCursorsOnDeletion(int line, int column, int prefixL
 //	qDebug("removing %i lines at (%i, %i) with (%i : %i) bounds", numLines, line, column, prefixLength, suffixLength);
 //erstes zeichen einer zeile: warning: removing 0 lines at (12, 0) with (1 : -1) bounds
 //zeile mit 10 textzeichen: warning: removing 1 lines at (13, 0) with (10 : 0) bounds
-	foreach ( QDocumentCursorHandle *ch, m_autoUpdated )
+	foreach ( QDocumentCursorHandle *ch, m_doc->impl()->m_autoUpdatedCursorList )
 	{
-		if ( ch == m_cursor || ch->document() != m_doc )
+		if ( ch == m_cursor || ch->document() != m_doc)
 			continue;
 
 	//	qDebug("[[watch:0x%x(%i, %i)]]", ch, ch->m_begLine, ch->m_begOffset);
@@ -467,46 +465,6 @@ void QDocumentCommand::updateTarget(int l, int offset)
 	}
 }
 
-/*!
-	\return whether a given cursor is auto updated
-*/
-bool QDocumentCommand::isAutoUpdated(const QDocumentCursorHandle *h)
-{
-	return m_autoUpdated.contains(const_cast<QDocumentCursorHandle*>(h));
-}
-
-/*!
-	\brief Enable auto update for a given cursor
-*/
-void QDocumentCommand::enableAutoUpdate(QDocumentCursorHandle *h)
-{
-	//qDebug("up(0x%x)", h);
-
-	if ( !m_autoUpdated.contains(h) )
-		m_autoUpdated << h;
-}
-
-/*!
-	\brief Disable auto update for a given cursor
-*/
-void QDocumentCommand::disableAutoUpdate(QDocumentCursorHandle *h)
-{
-	//qDebug("no-up(0x%x)", h);
-	m_autoUpdated.removeAll(h);
-}
-
-void QDocumentCommand::discardHandlesFromDocument(QDocument *d)
-{
-	int idx = 0;
-
-	while ( idx < m_autoUpdated.count() )
-	{
-		if ( m_autoUpdated.at(idx)->document() == d )
-			m_autoUpdated.removeAt(idx);
-		else
-			++idx;
-	}
-}
 
 /*!
 	\brief Change the modification status of a line

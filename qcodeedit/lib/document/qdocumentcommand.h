@@ -69,13 +69,7 @@ class QCE_EXPORT QDocumentCommand : public QUndoCommand
 		void setTargetCursor(QDocumentCursorHandle *h);
 		
 		void setRedoOffset(int off);
-		void setUndoOffset(int off);
-		
-		static bool isAutoUpdated(const QDocumentCursorHandle *h);
-		static void enableAutoUpdate(QDocumentCursorHandle *h);
-		static void disableAutoUpdate(QDocumentCursorHandle *h);
-		static void discardHandlesFromDocument(QDocument *d);
-		
+		void setUndoOffset(int off);	
 	protected:
 		bool m_state, m_first;
 		QDocument *m_doc;
@@ -99,8 +93,6 @@ class QCE_EXPORT QDocumentCommand : public QUndoCommand
 		bool m_keepAnchor;
 		Command m_command;
 		QDocumentCursorHandle *m_cursor;
-		
-		static QList<QDocumentCursorHandle*> m_autoUpdated;
 };
 
 Q_DECLARE_TYPEINFO(QDocumentCommand::TextCommandData, Q_MOVABLE_TYPE);

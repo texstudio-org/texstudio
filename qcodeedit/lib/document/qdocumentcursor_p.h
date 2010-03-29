@@ -51,10 +51,11 @@ class QCE_EXPORT QDocumentCursorHandle
 	public:
 		enum Flags
 		{
-			Silent				= 1,
+			Silent			= 1,
 			ColumnMemory		= 2,
 			MoveWithinWrapped	= 4,
-			AutoErasable        = 0xF01
+			AutoErasable		= 0x100,
+			AutoUpdated		= 0x200
 		};
 
 		QDocument* document() const;
