@@ -233,20 +233,71 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 	
 	QList<QDocumentCursor> saved;
 	if (!clearAll && !m_highlight.empty()) {
-		//TODO: binary search
 		clearMatches(false); //clear matches in the document, remember our copy
-		//remove all matches witin the new scope
-		QDocumentCursor ss=hscope.selectionStart();
-		QDocumentCursor se=hscope.selectionEnd();
-		for (int i=0; i<m_highlight.count();)
-			if (m_highlight[i].selectionEnd()<ss) 
-				i++;
-			else if (m_highlight[i].selectionStart()>se){
-				saved<<m_highlight.mid(i);
-				m_highlight.erase(m_highlight.begin()+i,m_highlight.end());
-				break;
-			} else 
-				m_highlight.removeAt(i);
+		//remove all matches within the new scope
+		/*  QDocumentCursor ss=hscope.selectionStart();
+	       QDocumentCursor se=hscope.selectionEnd();
+	       for (int i=0; i<m_highlight.count();)
+		       if (m_highlight[i].selectionEnd()<ss)
+			       i++;
+		       else if (m_highlight[i].selectionStart()>se){
+			       saved<<m_highlight.mid(i);
+			       m_highlight.erase(m_highlight.begin()+i,m_highlight.end());
+			       break;
+		       } else
+			       m_highlight.removeAt(i);*/
+		//Binary search: fails unit test
+		int begline, endline, begcol, endcol;
+		hscope.boundaries(begline, begcol, endline, endcol);
+		//find last highlight before the current scope
+		int start = -1;
+		int end = m_highlight.count()-1;
+		while (start < end){
+			int i = (start + end + 1)/2; //+1 => ceil, so something is changed in every loop
+			const QDocumentCursor& curHighlight = m_highlight[i];
+			//Q_ASSERT((curHighlight.lineNumber() > curHighlight.anchorLineNumber()) ||
+			//	 (  curHighlight.lineNumber() == curHighlight.anchorLineNumber() &&
+			//	    curHighlight.columnNumber() >= curHighlight.anchorColumnNumber())
+			//	 );*
+			int cline = curHighlight.lineNumber();
+			int cend = curHighlight.columnNumber();
+			if (cline < begline || (cline == begline && cend < begcol)) start = i; //highlight is before current scope => can be found
+			else end = i-1; //within => can't be found
+		}
+		int lastBeforeScope = end;
+		//find first highlight after the current scope
+		start = lastBeforeScope+1;
+		end = m_highlight.count();
+		while (start < end){
+			int i = (start + end)/2; //no +1 => floor, so something is changed in every loop
+			const QDocumentCursor& curHighlight = m_highlight[i];
+			//Q_ASSERT((curHighlight.lineNumber() > curHighlight.anchorLineNumber()) ||
+			//	 (  curHighlight.lineNumber() == curHighlight.anchorLineNumber() &&
+			//	    curHighlight.columnNumber() >= curHighlight.anchorColumnNumber())
+			//	 );*
+			int cline = curHighlight.anchorLineNumber();
+			int cstart = curHighlight.anchorColumnNumber();
+			if (cline > endline || (cline == endline && cstart > endcol)) end = i; //highlight is after current scope => can be found
+			else start = i+1; //within => can't be found
+		}
+		int firstAfterScope = start;
+
+		//test
+		if (lastBeforeScope >= 0){
+			Q_ASSERT(m_highlight[lastBeforeScope].selectionEnd() < hscope.selectionStart());
+			if (lastBeforeScope+1<m_highlight.count())
+				Q_ASSERT(!(m_highlight[lastBeforeScope+1].selectionEnd() < hscope.selectionStart()));
+		} else Q_ASSERT(!(m_highlight[lastBeforeScope+1].selectionEnd() < hscope.selectionStart()));
+		if (firstAfterScope < m_highlight.count()){
+			Q_ASSERT(m_highlight[firstAfterScope].selectionStart() > hscope.selectionEnd());
+			if (firstAfterScope>0)
+				Q_ASSERT(!(m_highlight[firstAfterScope-1].selectionStart() > hscope.selectionEnd()));
+		} else Q_ASSERT(!(m_highlight[firstAfterScope-1].selectionStart() > hscope.selectionEnd()));
+
+		//split highlight list
+		if (firstAfterScope < m_highlight.count())
+			saved << m_highlight.mid(firstAfterScope);
+		m_highlight.erase(m_highlight.begin()+lastBeforeScope+1,m_highlight.end());//*/
 	}
 	
 	QDocumentCursor hc = hscope.selectionStart();
@@ -256,15 +307,12 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 	while ( !hc.atEnd() && hscope.isWithinSelection(hc))
 	{
 		int ln = hc.lineNumber();
-		QDocumentLine l = hc.line();
+		const QDocumentLine &l = hc.line();
 		
-		QString s = l.text();
-		
-		if ( boundaries.endLine == ln )
-			s = s.left(boundaries.end);
-		
+		const QString &s = boundaries.endLine != ln ? l.text() : l.text().left(boundaries.end);
+
 		int column=m_regexp.indexIn(s, hc.columnNumber());
-                /*
+		/*
 		qDebug("searching %s in %s => %i",
 				qPrintable(m_regexp.pattern()),
 				qPrintable(s),
