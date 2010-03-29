@@ -156,7 +156,7 @@ class QCE_EXPORT QDocument : public QObject
 		
 		QDocumentCursor* editCursor() const;
 		void setEditCursor(QDocumentCursor *c);
-		
+				
 		QLanguageDefinition* languageDefinition() const;
 		void setLanguageDefinition(QLanguageDefinition *l);
 		

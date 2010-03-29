@@ -141,6 +141,10 @@ class QCE_EXPORT QDocumentPrivate
 		inline QDocumentConstIterator constEnd() const { return m_lines.constEnd(); }
 
 		void markFormatCacheDirty();
+
+		void addAutoUpdatedCursor(QDocumentCursorHandle* c);
+		void removeAutoUpdatedCursor(QDocumentCursorHandle* c);
+		void discardAutoUpdatedCursors(bool documentDeleted=false);
 	protected:
 		void updateHidden(int line, int count);
 		void updateWrapped(int line, int count);
@@ -231,6 +235,8 @@ class QCE_EXPORT QDocumentPrivate
 
 		QCache<QDocumentLineHandle*,QPixmap> m_LineCache;
 		int oldOffset;
+
+		QList<QDocumentCursorHandle*> m_autoUpdatedCursorList;
 };
 
 #endif

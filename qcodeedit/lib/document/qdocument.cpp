@@ -385,7 +385,7 @@ void QDocument::setText(const QString& s)
 		h->deref();
 	}
 
-	QDocumentCommand::discardHandlesFromDocument(this);
+	m_impl->discardAutoUpdatedCursors();
 
 	m_impl->m_lines.clear();
 	m_impl->m_marks.clear();
@@ -576,6 +576,8 @@ void QDocument::startChunkLoading()
 		h->m_doc = 0;
 		h->deref();
  	}
+
+	m_impl->discardAutoUpdatedCursors();
 
 	m_impl->m_lines.clear();
 	m_impl->m_marks.clear();
@@ -3505,7 +3507,8 @@ QDocumentCursorHandle::~QDocumentCursorHandle()
 	//qDebug("Cursor handle deleted : 0x%x", this);
 	Q_ASSERT(!m_ref);
 
-	QDocumentCommand::disableAutoUpdate(this);
+	if (isAutoUpdated())
+		setAutoUpdated(false);
 }
 
 void QDocumentCursorHandle::copy(const QDocumentCursorHandle *c)
@@ -3513,11 +3516,14 @@ void QDocumentCursorHandle::copy(const QDocumentCursorHandle *c)
 	if ( !c )
 		return;
 
+	if ( isAutoUpdated() )
+		setAutoUpdated(false);
+
 	m_begLine = c->m_begLine;
 	m_begOffset = c->m_begOffset;
 	m_endLine = c->m_endLine;
 	m_endOffset = c->m_endOffset;
-	m_flags = c->m_flags;
+	m_flags = c->m_flags & ~AutoUpdated; //copy isn't automatically autoupdated
 	m_max = c->m_max;
 }
 
@@ -3623,15 +3629,15 @@ void QDocumentCursorHandle::setSilent(bool y)
 
 bool QDocumentCursorHandle::isAutoUpdated() const
 {
-	return QDocumentCommand::isAutoUpdated(this);
+	return hasFlag(AutoUpdated);
 }
 
 void QDocumentCursorHandle::setAutoUpdated(bool y)
 {
-	if ( y )
-		QDocumentCommand::enableAutoUpdate(this);
-	else
-		QDocumentCommand::disableAutoUpdate(this);
+	if ( isAutoUpdated() == y || !m_doc )
+		return;
+	if ( y ) m_doc->impl()->addAutoUpdatedCursor(this);
+	else m_doc->impl()->removeAutoUpdatedCursor(this);
 }
 
 bool QDocumentCursorHandle::isAutoErasable() const{
@@ -5278,6 +5284,8 @@ QDocumentPrivate::~QDocumentPrivate()
 	foreach ( QDocumentLineHandle *h, m_lines )
 		h->deref();
 
+	discardAutoUpdatedCursors(true);
+
 	m_lines.clear();
 
 	m_deleting = false;
@@ -6801,11 +6809,39 @@ void QDocumentPrivate::emitContentsChange(int line, int lines)
 }
 
 void QDocumentPrivate::markFormatCacheDirty(){
-    foreach(QDocumentLineHandle *dlh,m_lines){
-	dlh->setFlag(QDocumentLine::FormatsApplied,false);
-    }
+	foreach(QDocumentLineHandle *dlh,m_lines){
+		dlh->setFlag(QDocumentLine::FormatsApplied,false);
+	}
 }
 
+//adds an auto updated cursor
+void QDocumentPrivate::addAutoUpdatedCursor(QDocumentCursorHandle* c){
+	if ( c->hasFlag(QDocumentCursorHandle::AutoUpdated) ) return;
+	m_autoUpdatedCursorList << c;
+
+	c->setFlag( QDocumentCursorHandle::AutoUpdated );
+}
+
+//removes an auto updated cursor
+void QDocumentPrivate::removeAutoUpdatedCursor(QDocumentCursorHandle* c){
+	if ( !c->hasFlag(QDocumentCursorHandle::AutoUpdated) ) return;
+	int pos = m_autoUpdatedCursorList.indexOf(c);
+	if ( pos == -1 ) return; //wtf?
+	//fast delete, order doesn't matter
+	m_autoUpdatedCursorList[pos] = m_autoUpdatedCursorList.last();
+	m_autoUpdatedCursorList.removeLast();
+
+	c->clearFlag( QDocumentCursorHandle::AutoUpdated );
+}
+
+//clears auto updated cursors
+void QDocumentPrivate::discardAutoUpdatedCursors(bool documentDeleted){
+	foreach (QDocumentCursorHandle* h, m_autoUpdatedCursorList){
+		h->clearFlag(QDocumentCursorHandle::AutoUpdated);
+		if (documentDeleted) h->m_doc = 0;
+	}
+	m_autoUpdatedCursorList.clear();
+}
 
 void QDocumentPrivate::emitFormatsChanged()
 {
