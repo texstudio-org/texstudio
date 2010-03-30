@@ -85,7 +85,7 @@ int QDocumentSearch::indexedMatchCount() const
 */
 QDocumentCursor QDocumentSearch::match(int idx) const
 {
-	return idx >= 0 && idx < m_highlight.count() ? m_highlight.at(idx) : QDocumentCursor();
+	return idx >= 0 && idx < m_highlight.count() ? *m_highlight.at(idx) : QDocumentCursor();
 }
 
 //equal to next but needs matches
@@ -102,7 +102,7 @@ bool QDocumentSearch::nextMatch(bool backward, bool again,  bool allowWrapAround
 		return false; //need a starting point, m_cursor should have been set by next
 	}
 	//search the correct index	
-	if (m_index >= 0 && m_index < m_highlight.count() && m_highlight.at(m_index).isWithinSelection(m_cursor)){
+	if (m_index >= 0 && m_index < m_highlight.count() && m_highlight.at(m_index)->isWithinSelection(m_cursor)){
 		//we have a cached match!
 		if ( !backward ) ++m_index;
 		else --m_index;
@@ -110,14 +110,14 @@ bool QDocumentSearch::nextMatch(bool backward, bool again,  bool allowWrapAround
 		//todo: binary search
 		m_index=-1;
 		for (int i=m_highlight.count()-1; i>=0;--i)
-			if (m_highlight[i].selectionEnd()<=m_cursor) {
+			if (m_highlight[i]->selectionEnd()<=m_cursor) {
 				m_index=i;
 				break;
 			}
 	} else {
 		m_index=-1;
 		for (int i=0;i<m_highlight.count(); ++i)
-			if (m_highlight[i].selectionStart()>=m_cursor) {
+			if (m_highlight[i]->selectionStart()>=m_cursor) {
 				m_index=i;
 				break;
 			}
@@ -129,11 +129,11 @@ bool QDocumentSearch::nextMatch(bool backward, bool again,  bool allowWrapAround
 	if ( m_index >= 0 && m_index < m_highlight.count() ) {
 		//TODO: understand why the selectedText().isEmpty() check is necessary, perhaps a bug in qdocumentcommand? (in the test case xxxxxxxxxxxxxxxx replace the cursor is moved to a not existing column)
 		if (backward) 
-			while (m_index>=0 && (m_highlight[m_index].isNull() || m_highlight[m_index].selectedText().isEmpty()))
-				m_highlight.removeAt(m_index--);
+			while (m_index>=0 && (m_highlight[m_index]->isNull() || m_highlight[m_index]->selectedText().isEmpty()))
+				delete m_highlight.takeAt(m_index--);
 		if (!backward)
-			while (m_index<m_highlight.count() && (m_highlight[m_index].isNull() || m_highlight[m_index].selectedText().isEmpty()))
-				m_highlight.removeAt(m_index);
+			while (m_index<m_highlight.count() && (m_highlight[m_index]->isNull() || m_highlight[m_index]->selectedText().isEmpty()))
+				delete m_highlight.takeAt(m_index);
 	}
 	
 	if ( (m_index < 0 || m_index >= m_highlight.count()) )
@@ -160,23 +160,26 @@ bool QDocumentSearch::nextMatch(bool backward, bool again,  bool allowWrapAround
 			return false;
 		
 		if (backward)  {
-			while (m_highlight.count() && (m_highlight.last().isNull() || m_highlight.last().selectedText().isEmpty()))
-				m_highlight.removeLast();
+			while (m_highlight.count() && (m_highlight.last()->isNull() || m_highlight.last()->selectedText().isEmpty()))
+				delete m_highlight.takeLast();
 			m_index=m_highlight.count()-1;
 		} else {
-			while (m_highlight.count() && (m_highlight.first().isNull() || m_highlight.first().selectedText().isEmpty()))
-				m_highlight.removeFirst();
+			while (m_highlight.count() && (m_highlight.first()->isNull() || m_highlight.first()->selectedText().isEmpty()))
+				delete m_highlight.takeFirst();
 			m_index=0;
 		}
 		if (!m_highlight.count()) return false;
 	} 	
 
-	m_cursor = m_highlight.at(m_index);
-	if (backward) { //invert cursor, previous line necessary to set cursor document
-		m_cursor.moveTo(m_cursor.lineNumber(), m_cursor.columnNumber());
-		m_cursor.setColumnNumber(m_highlight.at(m_index).anchorColumnNumber(),QDocumentCursor::KeepAnchor); //swap anchor and normals
-		//TODO: match spanning across several lines
-	} 
+	//create new cursor
+	//(don't copy cursor, because copying auto updated cursors is currently quite expensive)
+	if ( !backward )
+		m_cursor = m_editor->document()->cursor(m_highlight.at(m_index)->lineNumber(), m_highlight.at(m_index)->anchorColumnNumber(),
+							m_highlight.at(m_index)->lineNumber(), m_highlight.at(m_index)->columnNumber());
+	else
+		m_cursor = m_editor->document()->cursor(m_highlight.at(m_index)->lineNumber(), m_highlight.at(m_index)->columnNumber(),
+							m_highlight.at(m_index)->lineNumber(), m_highlight.at(m_index)->anchorColumnNumber());
+
 	if ( m_editor && !hasOption(Silent) ){
 		m_editor->setCursor(m_cursor);
 		if (m_cursor.line().isHidden()) m_editor->document()->expandParents(m_cursor.lineNumber());
@@ -231,9 +234,8 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 		if (!hscope.isValid() || !hscope.hasSelection()) return;
 	}
 	
-	QList<QDocumentCursor> saved;
+	QList<QDocumentCursor*> saved;
 	if (!clearAll && !m_highlight.empty()) {
-		clearMatches(false); //clear matches in the document, remember our copy
 		//remove all matches within the new scope
 		/*  QDocumentCursor ss=hscope.selectionStart();
 	       QDocumentCursor se=hscope.selectionEnd();
@@ -246,7 +248,7 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 			       break;
 		       } else
 			       m_highlight.removeAt(i);*/
-		//Binary search: fails unit test
+		//Binary search:
 		int begline, endline, begcol, endcol;
 		hscope.boundaries(begline, begcol, endline, endcol);
 		//find last highlight before the current scope
@@ -254,13 +256,13 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 		int end = m_highlight.count()-1;
 		while (start < end){
 			int i = (start + end + 1)/2; //+1 => ceil, so something is changed in every loop
-			const QDocumentCursor& curHighlight = m_highlight[i];
-			//Q_ASSERT((curHighlight.lineNumber() > curHighlight.anchorLineNumber()) ||
-			//	 (  curHighlight.lineNumber() == curHighlight.anchorLineNumber() &&
-			//	    curHighlight.columnNumber() >= curHighlight.anchorColumnNumber())
-			//	 );*
-			int cline = curHighlight.lineNumber();
-			int cend = curHighlight.columnNumber();
+			const QDocumentCursor* curHighlight = m_highlight[i];
+			Q_ASSERT((curHighlight->lineNumber() > curHighlight->anchorLineNumber()) ||
+				 (  curHighlight->lineNumber() == curHighlight->anchorLineNumber() &&
+				    curHighlight->columnNumber() >= curHighlight->anchorColumnNumber())
+				 );
+			int cline = curHighlight->lineNumber();
+			int cend = curHighlight->columnNumber();
 			if (cline < begline || (cline == begline && cend < begcol)) start = i; //highlight is before current scope => can be found
 			else end = i-1; //within => can't be found
 		}
@@ -270,13 +272,13 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 		end = m_highlight.count();
 		while (start < end){
 			int i = (start + end)/2; //no +1 => floor, so something is changed in every loop
-			const QDocumentCursor& curHighlight = m_highlight[i];
-			//Q_ASSERT((curHighlight.lineNumber() > curHighlight.anchorLineNumber()) ||
-			//	 (  curHighlight.lineNumber() == curHighlight.anchorLineNumber() &&
-			//	    curHighlight.columnNumber() >= curHighlight.anchorColumnNumber())
-			//	 );*
-			int cline = curHighlight.anchorLineNumber();
-			int cstart = curHighlight.anchorColumnNumber();
+			const QDocumentCursor* curHighlight = m_highlight[i];
+			Q_ASSERT((curHighlight->lineNumber() > curHighlight->anchorLineNumber()) ||
+				 (  curHighlight->lineNumber() == curHighlight->anchorLineNumber() &&
+				    curHighlight->columnNumber() >= curHighlight->anchorColumnNumber())
+				 );
+			int cline = curHighlight->anchorLineNumber();
+			int cstart = curHighlight->anchorColumnNumber();
 			if (cline > endline || (cline == endline && cstart > endcol)) end = i; //highlight is after current scope => can be found
 			else start = i+1; //within => can't be found
 		}
@@ -284,21 +286,30 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 
 		//test
 		if (lastBeforeScope >= 0){
-			Q_ASSERT(m_highlight[lastBeforeScope].selectionEnd() < hscope.selectionStart());
+			Q_ASSERT(m_highlight[lastBeforeScope]->selectionEnd() < hscope.selectionStart());
 			if (lastBeforeScope+1<m_highlight.count())
-				Q_ASSERT(!(m_highlight[lastBeforeScope+1].selectionEnd() < hscope.selectionStart()));
-		} else Q_ASSERT(!(m_highlight[lastBeforeScope+1].selectionEnd() < hscope.selectionStart()));
+				Q_ASSERT(!(m_highlight[lastBeforeScope+1]->selectionEnd() < hscope.selectionStart()));
+		} else Q_ASSERT(!(m_highlight[lastBeforeScope+1]->selectionEnd() < hscope.selectionStart()));
 		if (firstAfterScope < m_highlight.count()){
-			Q_ASSERT(m_highlight[firstAfterScope].selectionStart() > hscope.selectionEnd());
+			Q_ASSERT(m_highlight[firstAfterScope]->selectionStart() > hscope.selectionEnd());
 			if (firstAfterScope>0)
-				Q_ASSERT(!(m_highlight[firstAfterScope-1].selectionStart() > hscope.selectionEnd()));
-		} else Q_ASSERT(!(m_highlight[firstAfterScope-1].selectionStart() > hscope.selectionEnd()));
+				Q_ASSERT(!(m_highlight[firstAfterScope-1]->selectionStart() > hscope.selectionEnd()));
+		} else Q_ASSERT(!(m_highlight[firstAfterScope-1]->selectionStart() > hscope.selectionEnd()));
+
+		//remove deleted overlays
+		for (int i=lastBeforeScope+1;i<firstAfterScope;i++) {
+			const QDocumentCursor* c = m_highlight[i];
+			c->line().removeOverlay(QFormatRange(c->anchorColumnNumber(), c->columnNumber()-c->anchorColumnNumber(), sid));
+		}
 
 		//split highlight list
 		if (firstAfterScope < m_highlight.count())
 			saved << m_highlight.mid(firstAfterScope);
+		for (int i=lastBeforeScope+1; i<firstAfterScope;i++)
+			delete m_highlight[i];
 		m_highlight.erase(m_highlight.begin()+lastBeforeScope+1,m_highlight.end());//*/
 	}
+	int oldHighlightCount = m_highlight.count();
 	
 	QDocumentCursor hc = hscope.selectionStart();
 	QDocumentSelection boundaries=hscope.selection();
@@ -327,22 +338,24 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 				hc.setColumnNumber(column);
 				hc.setColumnNumber(column + m_regexp.matchedLength(), QDocumentCursor::KeepAnchor);
 											
-				m_highlight << hc;
-				m_highlight.last().setAutoUpdated(true);		
+				m_highlight << new QDocumentCursor(hc);
+				m_highlight.last()->setAutoUpdated(true);
 			}
 		} else hc.movePosition(1, QDocumentCursor::NextBlock, QDocumentCursor::ThroughFolding);
 	}
-	
-	m_highlight<<saved;
-	
-	if ( m_highlight.count() )
+
+	if ( m_highlight.size() > oldHighlightCount)
 	{
-		foreach (const QDocumentCursor& hc, m_highlight)
-			hc.line().addOverlay(QFormatRange(hc.anchorColumnNumber(), hc.columnNumber() - hc.anchorColumnNumber(), sid));
-	
+		for (int i=oldHighlightCount; i<m_highlight.size();i++){
+			const QDocumentCursor* hc = m_highlight[i];
+			hc->line().addOverlay(QFormatRange(hc->anchorColumnNumber(), hc->columnNumber() - hc->anchorColumnNumber(), sid));
+		}
 		//qDebug("%i matches in group %i", indexedMatchCount(), up);
 		m_editor->viewport()->update();
-	} else clearMatches();
+	} else if ( saved.empty() && m_highlight.empty() )
+		clearMatches();
+	if ( !saved.empty() )
+		m_highlight << saved;
 	m_index = -1; //current index became invalid due to (partially) cleaning (TODO?: change to new index)
 }
 
@@ -352,7 +365,7 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 	This function should be called anytime you perform a search with the HighlightAll option,
 	once you're done iterating over the matches.
 */
-void QDocumentSearch::clearMatches(bool clearCursorList)
+void QDocumentSearch::clearMatches()
 {
 	QDocument* doc= currentDocument();
 	if ( !doc )
@@ -365,12 +378,13 @@ void QDocumentSearch::clearMatches(bool clearCursorList)
 	//m_cursor = QDocumentCursor();
 	m_index=-1;
 	
-	foreach (const QDocumentCursor& c, m_highlight)
-		c.line().removeOverlay(QFormatRange(c.anchorColumnNumber(), c.columnNumber()-c.anchorColumnNumber(), sid));
+	foreach (QDocumentCursor* c, m_highlight){
+		c->line().removeOverlay(QFormatRange(c->anchorColumnNumber(), c->columnNumber()-c->anchorColumnNumber(), sid));
+		delete c;
+	}
 	m_editor->viewport()->update();
 
-	if (clearCursorList)
-		m_highlight.clear();
+	m_highlight.clear();
 }
 
 /*
