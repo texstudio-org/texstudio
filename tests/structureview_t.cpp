@@ -141,6 +141,26 @@ void StructureViewTest::benchmark_data(){
 		<< "abcdefg\nhallo welt\nabcdefg"
 		<< 0 << 1;
 
+	QTest::newRow("labels1")
+		<< "\\label{a}\nhallo welt\n\\label{b}\nabcdefg\n\\label{c}"
+		<< 0 << 1;
+
+	QTest::newRow("labels2")
+		<< "\\label{a}\nhallo welt\n\\label{b}\nabcdefg\n\\label{c}"
+		<< 2 << 1;
+
+	QTest::newRow("labels3")
+		<< "\\label{a}\nhallo welt\n\\label{b}\nabcdefg\n\\label{c}"
+		<< 4 << 1;
+
+	QTest::newRow("sections")
+		<< "\\section{a}\nhallo welt\n\\section{b}\nabcdefg\n\\section{c}"
+		<< 2 << 1;
+
+	QTest::newRow("sections with many children")
+		<< "\\section{a}\nhallo welt\n\\section{b}\nabcdefg\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}"
+		<< 2 << 1;
+
 }
 
 void StructureViewTest::benchmark(){
