@@ -131,5 +131,28 @@ QStringList StructureViewTest::unrollStructure(StructureEntry *baseStructure){
     return result;
 }
 
+void StructureViewTest::benchmark_data(){
+	QTest::addColumn<QString>("text");
+	QTest::addColumn<int>("start");
+	QTest::addColumn<int>("count");
+
+	//-------------cursor without selection--------------
+	QTest::newRow("single line text")
+		<< "abcdefg\nhallo welt\nabcdefg"
+		<< 0 << 1;
+
+}
+
+void StructureViewTest::benchmark(){
+	QFETCH(QString, text);
+	QFETCH(int, start);
+	QFETCH(int, count);
+
+	ed->document()->setText(text);
+	QBENCHMARK {
+		document->patchStructure(start,count);
+	}
+}
+
 #endif
 
