@@ -17,6 +17,8 @@ class StructureViewTest: public QObject{
 	private slots:
 		void script_data();
 		void script();
+		void benchmark_data();
+		void benchmark();
 };
 
 #endif
