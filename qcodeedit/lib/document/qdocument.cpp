@@ -3532,12 +3532,13 @@ QDocument* QDocumentCursorHandle::document() const
 	return m_doc;
 }
 
-QDocumentCursorHandle* QDocumentCursorHandle::clone() const
+QDocumentCursorHandle* QDocumentCursorHandle::clone(bool cloneAutoUpdatedFlag) const
 {
 	QDocumentCursorHandle *c = new QDocumentCursorHandle(m_doc);
 	c->copy(this);
 
-	c->setAutoUpdated(isAutoUpdated());
+	if (cloneAutoUpdatedFlag)
+		c->setAutoUpdated(isAutoUpdated());
 
 	return c;
 }
@@ -4689,7 +4690,7 @@ QDocumentCursor QDocumentCursorHandle::selectionStart() const
 		return QDocumentCursor();
 
 	if ( !hasSelection() )
-		return QDocumentCursor(clone());
+		return QDocumentCursor(clone(false));
 
 	QDocumentCursor pos(m_doc, m_begLine, m_begOffset),
 					anc(m_doc, m_endLine, m_endOffset);
@@ -4703,7 +4704,7 @@ QDocumentCursor QDocumentCursorHandle::selectionEnd() const
 		return QDocumentCursor();
 
 	if ( !hasSelection() )
-		return QDocumentCursor(clone());
+		return QDocumentCursor(clone(false));
 
 	QDocumentCursor pos(m_doc, m_begLine, m_begOffset),
 					anc(m_doc, m_endLine, m_endOffset);
@@ -6817,20 +6818,24 @@ void QDocumentPrivate::markFormatCacheDirty(){
 //adds an auto updated cursor
 void QDocumentPrivate::addAutoUpdatedCursor(QDocumentCursorHandle* c){
 	if ( c->hasFlag(QDocumentCursorHandle::AutoUpdated) ) return;
+	m_autoUpdatedCursorIndex.insert(c, m_autoUpdatedCursorList.size());
 	m_autoUpdatedCursorList << c;
-
 	c->setFlag( QDocumentCursorHandle::AutoUpdated );
 }
 
 //removes an auto updated cursor
 void QDocumentPrivate::removeAutoUpdatedCursor(QDocumentCursorHandle* c){
 	if ( !c->hasFlag(QDocumentCursorHandle::AutoUpdated) ) return;
-	int pos = m_autoUpdatedCursorList.indexOf(c);
-	if ( pos == -1 ) return; //wtf?
-	//fast delete, order doesn't matter
-	m_autoUpdatedCursorList[pos] = m_autoUpdatedCursorList.last();
+	int size = m_autoUpdatedCursorList.size();
+	int pos = m_autoUpdatedCursorIndex.value(c, size);
+	if ( pos>=size ) return; //not found
+	if ( pos != size-1) {
+		//fast delete, order doesn't matter
+		m_autoUpdatedCursorList[pos] = m_autoUpdatedCursorList.last();
+		m_autoUpdatedCursorIndex.insert(m_autoUpdatedCursorList[pos], pos);
+	}
 	m_autoUpdatedCursorList.removeLast();
-
+	m_autoUpdatedCursorIndex.remove(c);
 	c->clearFlag( QDocumentCursorHandle::AutoUpdated );
 }
 

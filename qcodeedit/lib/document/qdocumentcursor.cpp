@@ -91,10 +91,21 @@ QDocumentCursor::QDocumentCursor(const QDocumentCursor& cursor)
 {
 	if ( cursor.m_handle )
 	{
-		m_handle = cursor.m_handle->clone();
+		m_handle = cursor.m_handle->clone(true);
 		m_handle->ref();
 	}
 }
+
+QDocumentCursor::QDocumentCursor(const QDocumentCursor& cursor, const bool cloneAutoUpdateFlag)
+ : QObject(0),m_handle(0)
+{
+	if ( cursor.m_handle )
+	{
+		m_handle = cursor.m_handle->clone(cloneAutoUpdateFlag);
+		m_handle->ref();
+	}
+}
+
 
 QDocumentCursor::QDocumentCursor(QDocument *doc, int line, int column)
  : QObject(doc),m_handle(new QDocumentCursorHandle(doc, line))
@@ -128,9 +139,9 @@ QDocumentCursor::~QDocumentCursor()
 		m_handle->deref();
 }
 
-QDocumentCursor QDocumentCursor::clone() const
+QDocumentCursor QDocumentCursor::clone(bool cloneAutoUpdatedFlag) const
 {
-	return m_handle ? QDocumentCursor(m_handle->clone()) : QDocumentCursor();
+	return m_handle ? QDocumentCursor(m_handle->clone(cloneAutoUpdatedFlag)) : QDocumentCursor();
 }
 
 QDocumentCursor& QDocumentCursor::operator = (const QDocumentCursor& c)
@@ -150,9 +161,9 @@ QDocumentCursor& QDocumentCursor::operator = (const QDocumentCursor& c)
 	{
 		if ( m_handle )
 		{
-			m_handle->copy(c.m_handle);
-		} else {
-			m_handle = c.m_handle->clone();
+			m_handle->copy(c.m_handle); //warning: this is inconsistent, a copied cursor is never auto updated,
+		} else {                            //but the clones is. (there was however a reason for this behaviour)
+			m_handle = c.m_handle->clone(true);
 			m_handle->ref();
 		}
 	} else if ( m_handle ) {

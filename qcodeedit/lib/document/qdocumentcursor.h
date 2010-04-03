@@ -89,15 +89,16 @@ class QCE_EXPORT QDocumentCursor : public QObject
 			LineUnderCursor
 		};
 		
-                explicit QDocumentCursor(QDocument *doc);
+		explicit QDocumentCursor(QDocument *doc);
 		QDocumentCursor(const QDocumentCursor& cursor);
+		QDocumentCursor(const QDocumentCursor& cursor, const bool cloneAutoUpdateFlag);
 		QDocumentCursor(QDocument *doc, int line, int column = 0);
 		//QDocumentCursor(const QDocumentLine& line, int column = 0);
 		QDocumentCursor(QDocumentCursorHandle* handle = 0);
 		
 		~QDocumentCursor();
 		
-		QDocumentCursor clone() const;
+		QDocumentCursor clone(bool cloneAutoUpdatedFlag) const;
 		
 		QDocumentCursor& operator = (const QDocumentCursor& c);
 		

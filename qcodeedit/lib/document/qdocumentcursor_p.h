@@ -166,7 +166,7 @@ class QCE_EXPORT QDocumentCursorHandle
 		QDocumentCursorHandle(QDocument *d, int line = 0);
 		virtual ~QDocumentCursorHandle();
 		
-		QDocumentCursorHandle* clone() const;
+		QDocumentCursorHandle* clone(bool cloneAutoUpdatedFlag) const;
 		
 	private:
 		int m_flags;

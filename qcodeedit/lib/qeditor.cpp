@@ -1657,8 +1657,7 @@ void QEditor::lineEndingChanged(int lineEnding)
 */
 QDocumentCursor QEditor::cursor() const
 {
-	QDocumentCursor copy = m_cursor;
-	copy.setAutoUpdated(false);
+	QDocumentCursor copy(m_cursor, false);
 	return copy;
 }
 
