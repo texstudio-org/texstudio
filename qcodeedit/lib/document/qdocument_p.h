@@ -237,6 +237,7 @@ class QCE_EXPORT QDocumentPrivate
 		int oldOffset;
 
 		QList<QDocumentCursorHandle*> m_autoUpdatedCursorList;
+		QHash<QDocumentCursorHandle*, int> m_autoUpdatedCursorIndex;
 };
 
 #endif
