@@ -3229,32 +3229,34 @@ void Texmaker::GeneralOptions() {
 }
 void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	// parse command line
-	QString fileToLoad;
+	QStringList filesToLoad;
 	bool activateMasterMode = false;
 	int line=-1;
 	for (int i = 0; i < args.size(); ++i) {
 		if (args[i]=="") continue;
-		if (args[i][0] != '-')  fileToLoad=args[i];
+		if (args[i][0] != '-')  filesToLoad << args[i];
 		//-form is for backward compatibility
 		if (args[i] == "--master") activateMasterMode=true;
 		if (args[i] == "--line" && i+1<args.size())  line=args[++i].toInt()-1;
 	}
 
 	// execute command line
-	QFileInfo ftl(fileToLoad);
-	if (fileToLoad != "") {
-		if (ftl.exists())
-			load(fileToLoad, activateMasterMode);
-		else if (ftl.absoluteDir().exists()) {
-			fileNew(ftl.absoluteFilePath());
-			if (activateMasterMode) {
-				if (singlemode) ToggleMode();
-				else {
-					ToggleMode();
-					ToggleMode();
+	foreach(QString fileToLoad,filesToLoad){
+		QFileInfo ftl(fileToLoad);
+		if (fileToLoad != "") {
+			if (ftl.exists())
+				load(fileToLoad, activateMasterMode);
+			else if (ftl.absoluteDir().exists()) {
+				fileNew(ftl.absoluteFilePath());
+				if (activateMasterMode) {
+					if (singlemode) ToggleMode();
+					else {
+						ToggleMode();
+						ToggleMode();
+					}
 				}
+				//return ;
 			}
-			return ;
 		}
 	}
 

@@ -325,6 +325,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void setContentClean(bool y);
 		
 		void emitCursorPositionChanged();
+		void ensureCursorVisible();
 		
 		virtual void setContentModified(bool y);
 
@@ -383,7 +384,6 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void selectionChange(bool force = false);
 		
 		void repaintCursor();
-		void ensureCursorVisible();
 		void ensureVisible(int line);
 		void ensureVisible(const QRect &rect);
 		
