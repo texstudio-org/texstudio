@@ -18,15 +18,15 @@ class QDocumentLineHandle;
 class References {
 public:
 	References():numberOfViews(1),mPattern("") {}
-	References(QString pattern) : numberOfViews(1),mPattern(pattern) {}
-	void insert(QString key,QDocumentLineHandle* handle) {mReferences.insert(key,handle);}
+	References(const QString& pattern) : numberOfViews(1),mPattern(pattern) {}
+	void insert(const QString& key,QDocumentLineHandle* handle) {mReferences.insert(key,handle);}
 	QList<QDocumentLineHandle*> values(QString key) {return mReferences.values(key);}
-	bool contains(QString key) {return mReferences.contains(key);}
-	int count(QString key) {return mReferences.count(key);}
+	bool contains(const QString& key) {return mReferences.contains(key);}
+	int count(const QString& key) {return mReferences.count(key);}
 	QStringList removeByHandle(QDocumentLineHandle* handle);
 	void removeUpdateByHandle(QDocumentLineHandle* handle,References* altRefs=0);
-	void updateByKeys(QStringList refs,References* altRefs=0);
-	void setPattern(QString pattern) {mPattern=pattern;}
+	void updateByKeys(const QStringList& refs,References* altRefs=0);
+	void setPattern(const QString& pattern) {mPattern=pattern;}
 	QString pattern() {return mPattern;}
 	void setFormats(int multiple,int single,int none) {
 		referenceMultipleFormat=multiple;

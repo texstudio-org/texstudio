@@ -237,7 +237,8 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 }
 
 LatexEditorView::~LatexEditorView() {
-    delete searchReplacePanel; // to force deletion of m_search before document. Otherwise crashes can come up (linux)
+	delete searchReplacePanel; // to force deletion of m_search before document. Otherwise crashes can come up (linux)
+	delete codeeditor; //explicit call destructor of codeeditor (although it has a parent, it is no qobject itself, but passed it to editor)
 	containedLabels->numberOfViews--;
 	if(!containedLabels->numberOfViews){
 		delete containedLabels;
@@ -628,12 +629,13 @@ void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {
 	QPair<int, int> p;
 	//QMessageBox::information(0,QString::number(nr),"",0);
 	for (int i=changePositions.size()-1; i>=0; i--)
-		if (changePositions[i].first==l) { //TODO: optimize
-			if (QDocumentLine(changePositions[i].first).previous().isValid()) changePositions[i].first=QDocumentLine(changePositions[i].first).previous().handle();
+		if (changePositions[i].first==l)
+			/*if (QDocumentLine(changePositions[i].first).previous().isValid()) changePositions[i].first=QDocumentLine(changePositions[i].first).previous().handle();
 			else if (QDocumentLine(changePositions[i].first).next().isValid()) changePositions[i].first=QDocumentLine(changePositions[i].first).next().handle();
-			else changePositions.removeAt(i);
+			else  */ //creating a QDocumentLine with a deleted handle is not possible (it will modify the handle reference count which will trigger another delete event, leading to an endless loop)
+			changePositions.removeAt(i);
 			//    QMessageBox::information(0,"trig",0);
-		}
+
 	emit lineHandleDeleted(l);
 	editor->document()->markViewDirty();
 }
@@ -1023,12 +1025,12 @@ void References::removeUpdateByHandle(QDocumentLineHandle* handle,References* al
 	if(altRefs) updateByKeys(refs,altRefs);
 }
 
-void References::updateByKeys(QStringList refs,References* altRefs){
-	QRegExp rxRef(altRefs->pattern());
+void References::updateByKeys(const QStringList& refs,References* altRefs){
+	QRegExp rxRef(altRefs?altRefs->pattern():"");
 	QRegExp rxLabel(pattern());
 	rxLabel.setMinimal(true);
 	rxRef.setMinimal(true);
-	foreach(QString ref,refs){
+	foreach(const QString &ref,refs){
 		QList<QDocumentLineHandle*> lst;
 		if(altRefs) {
 			lst=altRefs->values(ref);
