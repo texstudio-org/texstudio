@@ -60,6 +60,7 @@ class QCE_EXPORT QReliableFileWatch : protected QFileSystemWatcher
 			char state;
 			qint64 size;
 			QList< QPointer<QObject> > recipients;
+			QDateTime lastModified;
 		};
 		
 		QBasicTimer m_timer;
