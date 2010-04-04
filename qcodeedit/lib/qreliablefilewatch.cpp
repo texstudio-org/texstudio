@@ -48,10 +48,12 @@ void QReliableFileWatch::addWatch(const QString& file, QObject *recipient)
 			it->recipients << recipient;
 	} else {
 		QFile f(file);
+		QFileInfo info(file);
 
 		Watch w;
 		w.state = Clean;
 		w.size = f.size();
+		w.lastModified=info.lastModified();
 		w.recipients << recipient;
 		m_targets[file] = w;
 
@@ -183,6 +185,11 @@ void QReliableFileWatch::sourceChanged(const QString& filepath)
 		return;
 
 	qDebug("%s modified.", qPrintable(filepath));
+	QFileInfo info(filepath);
+	if(it->lastModified==info.lastModified()){
+		qDebug("filtered");
+		return;
+	}
 
 	if ( it->state )
 	{
