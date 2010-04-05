@@ -43,7 +43,7 @@ void LatexDocument::setEditorView(LatexEditorView* edView){
             emit updateElement(baseStructure);
         }
 }
-LatexEditorView *LatexDocument::getEditorView(){
+LatexEditorView *LatexDocument::(){
 	return this->edView;
 }
 QDocument *LatexDocument::getText(){
@@ -840,13 +840,13 @@ void LatexDocuments::addDocument(LatexDocument* document){
 	document->parent=this;
 	if(masterDocument){
 		if(Ref && Label){
-		    LatexEditorView *edView=document->getEditorView();
-		    edView->setReferenceDatabase(Ref,Label);
+			LatexEditorView *edView=document->getEditorView();
+			if (edView) edView->setReferenceDatabase(Ref,Label);
 		}
 		// repaint all docs
 		foreach(LatexDocument *doc,documents){
 			LatexEditorView *edView=doc->getEditorView();
-			edView->documentContentChanged(0,edView->editor->document()->lines());
+			if (edView) edView->documentContentChanged(0,edView->editor->document()->lines());
 		}
 	}
 	model->structureUpdated(document);
@@ -886,26 +886,27 @@ void LatexDocuments::setMasterDocument(LatexDocument* document){
 		documents.prepend(masterDocument);
 		// set Ref/Labeldatabase to common database
 		LatexEditorView *edView=masterDocument->getEditorView();
+		Q_ASSERT(edView);
 		edView->getReferenceDatabase(Ref,Label);
 		Ref->numberOfViews++;
 		Label->numberOfViews++;
 		foreach(LatexDocument *doc,documents){
 			if(doc!=masterDocument){
 				edView=doc->getEditorView();
-				edView->setReferenceDatabase(Ref,Label);
+				if (edView) edView->setReferenceDatabase(Ref,Label);
 				//edView->editor->document()->markFormatCacheDirty();
 			}
 		}
 		// repaint doc
 		foreach(LatexDocument *doc,documents){
 			edView=doc->getEditorView();
-			edView->documentContentChanged(0,edView->editor->document()->lines());
+			if (edView) edView->documentContentChanged(0,edView->editor->document()->lines());
 		}
 	}else{
 		if(documents.size()>0){
 			foreach(LatexDocument *doc,documents){
 				LatexEditorView *edView=doc->getEditorView();
-				edView->resetReferenceDatabase();
+				if (edView) edView->resetReferenceDatabase();
 			}
 			delete Label;
 			delete Ref;
@@ -940,7 +941,7 @@ QString LatexDocuments::getAbsoluteFilePath(const QString & relName, const QStri
 LatexDocument* LatexDocuments::findDocument(const QDocument *qDoc){
 	foreach(LatexDocument *doc,documents){
 		LatexEditorView *edView=doc->getEditorView();
-		if(edView->editor->document()==qDoc) return doc;
+		if(edView && edView->editor->document()==qDoc) return doc;
 	}
 	return 0;
 }
