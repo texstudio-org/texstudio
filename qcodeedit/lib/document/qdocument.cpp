@@ -6114,11 +6114,14 @@ void QDocumentPrivate::removeLines(int after, int n)
 	QMap<int, int>::iterator it = m_hidden.begin();
 
 	//qDebug("translating %i", visualLine);
-
+/*	//remove/resize the m_hidden cache if the removed lines are within a hidden block
+	//buggy (test {\n}\ndeleted\n{\n}) and not needed if the qdocumentcommand corrects
+	//the folding of modified lines
 	while ( it != m_hidden.end() )
 	{
-		if ( (it.key() >= after) && (it.key() < (after + n)) )
+		if ( (it.key() > after) && (it.key() <= (after + n)) )
 		{
+			//folded block starting line within the removed lines
 			int i = it.key(), end = i + *it, depth = 0;
 
 			while ( i <= end )
@@ -6136,8 +6139,8 @@ void QDocumentPrivate::removeLines(int after, int n)
 
 			it = m_hidden.erase(it);
 
-		} else if ( (it.key() < after) && (it.key() + *it) >= after ) {
-
+		} else if ( (it.key() < after) && (it.key() + *it) > after ) {
+			//folded starting before the removed lines and containing them
 			if ( (it.key() + *it) > (after + n) )
 			{
 				// fully inside
@@ -6166,7 +6169,7 @@ void QDocumentPrivate::removeLines(int after, int n)
 			++it;
 		}
 	}
-
+*/
 	it = m_wrapped.begin();
 
 	while ( it != m_wrapped.end() )
