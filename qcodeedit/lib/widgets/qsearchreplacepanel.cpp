@@ -242,7 +242,7 @@ void QSearchReplacePanel::closeEvent(QCloseEvent *)
 	
 	if ( m_search )
 	{
-		m_search->highlightSelection(false);
+		//m_search->highlightSelection(false);
 		m_search->setOption(QDocumentSearch::HighlightAll, false);
 		//reset search scope
 		m_search->setScope(QDocumentCursor());

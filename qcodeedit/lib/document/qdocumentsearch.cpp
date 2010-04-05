@@ -1013,12 +1013,12 @@ void QDocumentSearch::documentContentChanged(int line, int n){
 	QDocumentCursor c = m_editor->document()->cursor(line);
 	c.setLineNumber(lineend, QDocumentCursor::KeepAnchor);
 	c.setColumnNumber(le.length(), QDocumentCursor::KeepAnchor);
-	highlightSelection();
+	highlightSelection(c);
 	searchMatches(c,false);
 	//searchMatches();
 }
 
-void QDocumentSearch::highlightSelection(bool on)
+void QDocumentSearch::highlightSelection(const QDocumentCursor& subHighlightScope)
 {
 	QFormatScheme *f = m_editor->document()->formatScheme() ? m_editor->document()->formatScheme() : QDocument::formatFactory();
 	int sid = f ? f->id("selection") : 0;
@@ -1027,6 +1027,8 @@ void QDocumentSearch::highlightSelection(bool on)
 	int begLine, endLine, begCol, endCol;
 	if( m_highlightedScope.isValid() && m_highlightedScope.hasSelection() ){
 		m_highlightedScope.boundaries(begLine, begCol, endLine, endCol);
+		if (subHighlightScope.isValid() && subHighlightScope.hasSelection())
+			subHighlightScope.intersectBoundaries(begLine, begCol, endLine, endCol);
 		for(int i=begLine;i<=endLine;i++){
 			//we can't remove a overlay with the line length because the line length could changed
 			QList<QFormatRange> overlays=m_editor->document()->line(i).getOverlays(sid);
@@ -1036,8 +1038,10 @@ void QDocumentSearch::highlightSelection(bool on)
 		m_highlightedScope = QDocumentCursor();
 	}
 
-	if( on && m_scope.isValid() && m_scope.hasSelection() ){
+	if( m_scope.isValid() && m_scope.hasSelection() ){
 		m_scope.boundaries(begLine, begCol, endLine, endCol);
+		if (subHighlightScope.isValid() && subHighlightScope.hasSelection())
+			subHighlightScope.intersectBoundaries(begLine, begCol, endLine, endCol);
 		for(int i=begLine;i<=endLine;i++){
 			int beg = i==begLine ? begCol : 0;
 			int en = i==endLine ? endCol : m_editor->document()->line(i).length();

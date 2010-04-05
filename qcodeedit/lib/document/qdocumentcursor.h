@@ -191,7 +191,8 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		
 		bool isWithinSelection(const QDocumentCursor& c) const;
 		QDocumentCursor intersect(const QDocumentCursor& c) const;
-		
+		void intersectBoundaries(int& lbeg, int& cbeg, int& lend, int& cend) const;
+
 		QChar nextChar() const;
 		QChar previousChar() const;
 		
