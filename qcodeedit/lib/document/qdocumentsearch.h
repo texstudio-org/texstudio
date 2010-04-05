@@ -83,7 +83,7 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		
 		bool next(bool backward, bool all = false, bool again=false,  bool allowWrapAround=true);
 
-		void highlightSelection(bool on=true);
+		void highlightSelection(const QDocumentCursor& subHighlightScope=QDocumentCursor());
 
 		QDocument* currentDocument();
 

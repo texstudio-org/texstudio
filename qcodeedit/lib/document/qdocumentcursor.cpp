@@ -881,6 +881,10 @@ QDocumentCursor QDocumentCursor::intersect(const QDocumentCursor& c) const{
 	return m_handle ? m_handle->intersect(c) : QDocumentCursor();
 }
 
+void QDocumentCursor::intersectBoundaries(int& lbeg, int& cbeg, int& lend, int& cend) const{
+	if (m_handle)
+		m_handle->intersectBoundaries(lbeg, cbeg, lend, cend);
+}
 
 /*!
 	\return selection information
