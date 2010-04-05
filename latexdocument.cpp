@@ -43,7 +43,7 @@ void LatexDocument::setEditorView(LatexEditorView* edView){
             emit updateElement(baseStructure);
         }
 }
-LatexEditorView *LatexDocument::(){
+LatexEditorView *LatexDocument::getEditorView(){
 	return this->edView;
 }
 QDocument *LatexDocument::getText(){
