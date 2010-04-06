@@ -343,7 +343,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 	bool completerNeedsUpdate=false;
 
-	QDocumentLineHandle *oldLine=0; // to detect a change in appendix position
+	QDocumentLineHandle *oldLine=mAppendixLine; // to detect a change in appendix position
 
 	QMutableListIterator<StructureEntry*> iter_label(labelList->children);
 	findStructureEntryBefore(iter_label,linenr,count);
