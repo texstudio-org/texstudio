@@ -13,6 +13,10 @@ LatexDocument::LatexDocument():edView(0),text(0),mAppendixLine(0)
 	todoList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
 	bibTeXList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
 	blockList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
+	labelList->title=tr("LABELS");
+	todoList->title=tr("TODO");
+	bibTeXList->title=tr("BIBTEX");
+	blockList->title=tr("BLOCKS");
 	mLabelItem.clear();
 	mUserCommandList.clear();
 	mMentionedBibTeXFiles.clear();
