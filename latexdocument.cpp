@@ -303,7 +303,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 			StructureEntry* se=iter.next();
 			if(dlh==se->lineHandle) {
 				iter.remove();
-				removeElement(se,l);
+				emit removeElement(se,l);
 				delete se;
 			} else l++;
 		}
