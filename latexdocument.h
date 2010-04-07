@@ -149,7 +149,6 @@ signals:
 	void structureUpdated(LatexDocument* document);
 	void structureLost(LatexDocument* document);
 	void removeElement(StructureEntry *se,int row);
-	void removeSingleElement(StructureEntry *se,int row);
 	void addElement(StructureEntry *se,int row);
 	void updateElement(StructureEntry *se);
 	void updateCompleter();
@@ -183,7 +182,6 @@ private slots:
 	void structureUpdated(LatexDocument* document);
 	void structureLost(LatexDocument* document);
 	void removeElement(StructureEntry *se,int row);
-	void removeSingleElement(StructureEntry *se,int row);
 	void addElement(StructureEntry *se,int row);
 	void updateElement(StructureEntry *se);
 

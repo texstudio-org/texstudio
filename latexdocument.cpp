@@ -820,13 +820,6 @@ void LatexDocumentsModel::removeElement(StructureEntry *se,int row){
 	removeRow(row,index(par_se));
 }
 
-void LatexDocumentsModel::removeSingleElement(StructureEntry *se,int row){
-	StructureEntry *par_se=se->parent;
-	//removeRow(row,index(par_se));
-	beginRemoveRows(index(par_se),row,row);
-	endRemoveRows();
-}
-
 void LatexDocumentsModel::addElement(StructureEntry *se,int row){
 	insertRow(row,index(se));
 }
@@ -846,7 +839,6 @@ void LatexDocuments::addDocument(LatexDocument* document){
 	model->connect(document,SIGNAL(structureLost(LatexDocument*)),model,SLOT(structureLost(LatexDocument*)));
 	model->connect(document,SIGNAL(structureUpdated(LatexDocument*)),model,SLOT(structureUpdated(LatexDocument*)));
 	model->connect(document,SIGNAL(removeElement(StructureEntry*,int)),model,SLOT(removeElement(StructureEntry*,int)));
-	model->connect(document,SIGNAL(removeSingleElement(StructureEntry*,int)),model,SLOT(removeSingleElement(StructureEntry*,int)));
 	model->connect(document,SIGNAL(addElement(StructureEntry*,int)),model,SLOT(addElement(StructureEntry*,int)));
 	model->connect(document,SIGNAL(updateElement(StructureEntry*)),model,SLOT(updateElement(StructureEntry*)));
 	document->parent=this;
@@ -1039,9 +1031,8 @@ void LatexDocument::findStructureEntryBefore(QMutableListIterator<StructureEntry
 		StructureEntry* se=iter.next();
 		QDocumentLineHandle* dlh=se->lineHandle;
 		if((dlh->line()>=linenr) && (dlh->line()<linenr+count) ){
-			emit removeSingleElement(se,l);
+			emit removeElement(se,l);
 			iter.remove();
-			delete se;
 			l--;
 		}
 		if(dlh->line()>=linenr+count) {
