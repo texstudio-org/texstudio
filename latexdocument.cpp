@@ -1068,6 +1068,8 @@ void LatexDocument::splitStructure(StructureEntry* se,QVector<StructureEntry*> &
 
 	if(lvl>=parent_level.size()) return;
 
+	int countChildren=se->children.size();
+
 	// determine range of structure entry which encompass the to be updated region
 	int start=-1;
 	int end=-1;
@@ -1132,7 +1134,7 @@ void LatexDocument::splitStructure(StructureEntry* se,QVector<StructureEntry*> &
 
 	// take a look a children
 	bool newFront=start>-1;
-	if(newFront && end-start==1)
+	if(newFront && (end-start==1 || start==countChildren-1))
 		splitStructure(next,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count,lvl+1);
 	else{
 		if(newFront && (se->children[start]->type==StructureEntry::SE_SECTION)) splitStructure(se->children[start],parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count,lvl+1,newFront,false);
