@@ -3900,10 +3900,11 @@ void Texmaker::cursorPositionChanged(){
 	//	return; //still in the same section
 	// needs to be remedied
 
+	/*
 	StructureEntryIterator iter(currentEditorView()->document->baseStructure);
 	StructureEntry *newSection=0;
 
-	while (/*iter.hasNext()*/true){
+	while (true){
 		StructureEntry *curSection=0;
 		while (iter.hasNext()){
 			curSection=iter.next();
@@ -3921,6 +3922,8 @@ void Texmaker::cursorPositionChanged(){
 		model->setHighlightedEntry(0);
 		return;
 	}
+	*/
+	StructureEntry *newSection=currentEditorView()->document->findSectionForLine(currentLine);
 
 	model->setHighlightedEntry(newSection);
 	if(!mDontScrollToItem)
