@@ -278,7 +278,16 @@ void LatexDocument::updateStructure() {
 	if (!labelList->children.isEmpty()) baseStructure->insert(0, labelList);
 	if (!blockList->children.isEmpty()) baseStructure->insert(0, blockList);
 
-	emit structureUpdated(this);
+	// rehighlight current cursor position
+	StructureEntry *newSection=0;
+	if(edView){
+	    int i=edView->editor->cursor().lineNumber();
+	    if(i>=0) {
+		newSection=findSectionForLine(i);
+	    }
+	}
+
+	emit structureUpdated(this,newSection);
 
 	if (temporaryLoadedDocument)
 		delete document;
@@ -286,58 +295,68 @@ void LatexDocument::updateStructure() {
 
 void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 
-	if(!baseStructure) return;
+    if(!baseStructure) return;
     mLabelItem.remove(dlh);
     mMentionedBibTeXFiles.remove(dlh);
     mUserCommandList.remove(dlh);
 
-	if(dlh==mAppendixLine){
-		updateAppendix(mAppendixLine,0);
-		mAppendixLine=0;
-	}
+    if(dlh==mAppendixLine){
+	updateAppendix(mAppendixLine,0);
+	mAppendixLine=0;
+    }
 
-	int linenr=dlh->line();
-	if (linenr==-1) linenr=text->lines();
+    int linenr=dlh->line();
+    if (linenr==-1) linenr=text->lines();
 
-	QList<StructureEntry*> categories=QList<StructureEntry*>() << labelList << todoList << blockList << bibTeXList;
-	foreach (StructureEntry* sec, categories) {
-		int l=0;
-		QMutableListIterator<StructureEntry*> iter(sec->children);
-		while (iter.hasNext()){
-			StructureEntry* se=iter.next();
-			if(dlh==se->lineHandle) {
-				iter.remove();
-				emit removeElement(se,l);
-				delete se;
-			} else l++;
-		}
-	}
-
-	QVector<StructureEntry*> parent_level(LatexParser::structureCommands.count());
-	QVector<QList<StructureEntry*> > remainingChildren(LatexParser::structureCommands.count());
-	QMap<StructureEntry*,int> toBeDeleted;
-	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfElements;
-	StructureEntry* se=baseStructure;
-	splitStructure(se,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,1);
-
-	// append structure remainder ...
-	for(int i=parent_level.size()-1;i>=0;i--){
-		while(!remainingChildren[i].isEmpty() && remainingChildren[i].first()->level>i){
-		se=remainingChildren[i].takeFirst();
-		parent_level[se->level]->add(se);
-		}
-		parent_level[i]->children.append(remainingChildren[i]);
-		foreach(StructureEntry *elem,remainingChildren[i]){
-		elem->parent=parent_level[i];
-		}
-	}
-	// purge unconnected elements
-	foreach(se,toBeDeleted.keys()){
-		emit removeElement(se,toBeDeleted.value(se));
+    QList<StructureEntry*> categories=QList<StructureEntry*>() << labelList << todoList << blockList << bibTeXList;
+    foreach (StructureEntry* sec, categories) {
+	int l=0;
+	QMutableListIterator<StructureEntry*> iter(sec->children);
+	while (iter.hasNext()){
+	    StructureEntry* se=iter.next();
+	    if(dlh==se->lineHandle) {
+		iter.remove();
+		emit removeElement(se,l);
 		delete se;
+	    } else l++;
 	}
+    }
 
-    emit structureUpdated(this);
+    QVector<StructureEntry*> parent_level(LatexParser::structureCommands.count());
+    QVector<QList<StructureEntry*> > remainingChildren(LatexParser::structureCommands.count());
+    QMap<StructureEntry*,int> toBeDeleted;
+    QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfElements;
+    StructureEntry* se=baseStructure;
+    splitStructure(se,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,1);
+
+    // append structure remainder ...
+    for(int i=parent_level.size()-1;i>=0;i--){
+	while(!remainingChildren[i].isEmpty() && remainingChildren[i].first()->level>i){
+	    se=remainingChildren[i].takeFirst();
+	    parent_level[se->level]->add(se);
+	}
+	parent_level[i]->children.append(remainingChildren[i]);
+	foreach(StructureEntry *elem,remainingChildren[i]){
+	    elem->parent=parent_level[i];
+	}
+    }
+    // purge unconnected elements
+    foreach(se,toBeDeleted.keys()){
+	emit removeElement(se,toBeDeleted.value(se));
+	delete se;
+    }
+
+    // rehighlight current cursor position
+    StructureEntry *newSection=0;
+    if(edView){
+	int i=edView->editor->cursor().lineNumber();
+	if(i>=0) {
+	    newSection=findSectionForLine(i);
+	}
+    }
+
+    emit structureUpdated(this,newSection);
+
 }
 
 void LatexDocument::patchStructure(int linenr, int count) {
@@ -563,11 +582,42 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	    updateAppendix(oldLine,mAppendixLine);
 	}
 
-	emit structureUpdated(this);
+	// rehighlight current cursor position
+	StructureEntry *newSection=0;
+	if(edView){
+	    int i=edView->editor->cursor().lineNumber();
+	    if(i>=0) {
+		newSection=findSectionForLine(i);
+	    }
+	}
+
+	emit structureUpdated(this,newSection);
 
 	if (completerNeedsUpdate)
 		emit updateCompleter();
 
+}
+
+StructureEntry * LatexDocument::findSectionForLine(int currentLine){
+    StructureEntryIterator iter(baseStructure);
+    StructureEntry *newSection=0;
+
+    while (/*iter.hasNext()*/true){
+	StructureEntry *curSection=0;
+	while (iter.hasNext()){
+	    curSection=iter.next();
+	    if (curSection->type==StructureEntry::SE_SECTION)
+		break;
+	}
+	if (curSection==0 || curSection->type!=StructureEntry::SE_SECTION)
+	    break;
+
+	if (curSection->getRealLineNumber() > currentLine) break; //curSection is after newSection where the cursor is
+	else newSection=curSection;
+    }
+    if(newSection && newSection->getRealLineNumber()>currentLine) newSection=0;
+
+    return newSection;
 }
 
 /*
@@ -804,10 +854,14 @@ void LatexDocumentsModel::resetAll(){
 	reset();
 }
 
-void LatexDocumentsModel::structureUpdated(LatexDocument* document){
+void LatexDocumentsModel::structureUpdated(LatexDocument* document,StructureEntry *highlight){
 	Q_UNUSED(document);
 	//resetAll();
-	mHighlightIndex=QModelIndex();
+	if(highlight){
+	    mHighlightIndex=index(highlight);
+	}else{
+	    mHighlightIndex=QModelIndex();
+	}
 	emit layoutChanged();
 }
 void LatexDocumentsModel::structureLost(LatexDocument* document){
@@ -837,7 +891,7 @@ LatexDocuments::~LatexDocuments(){
 void LatexDocuments::addDocument(LatexDocument* document){
 	documents.append(document);
 	model->connect(document,SIGNAL(structureLost(LatexDocument*)),model,SLOT(structureLost(LatexDocument*)));
-	model->connect(document,SIGNAL(structureUpdated(LatexDocument*)),model,SLOT(structureUpdated(LatexDocument*)));
+	model->connect(document,SIGNAL(structureUpdated(LatexDocument*,StructureEntry*)),model,SLOT(structureUpdated(LatexDocument*,StructureEntry*)));
 	model->connect(document,SIGNAL(removeElement(StructureEntry*,int)),model,SLOT(removeElement(StructureEntry*,int)));
 	model->connect(document,SIGNAL(addElement(StructureEntry*,int)),model,SLOT(addElement(StructureEntry*,int)));
 	model->connect(document,SIGNAL(updateElement(StructureEntry*)),model,SLOT(updateElement(StructureEntry*)));
@@ -853,7 +907,7 @@ void LatexDocuments::addDocument(LatexDocument* document){
 			if (edView) edView->documentContentChanged(0,edView->editor->document()->lines());
 		}
 	}
-	model->structureUpdated(document);
+	model->structureUpdated(document,0);
 }
 void LatexDocuments::deleteDocument(LatexDocument* document){
 	LatexEditorView *view=document->getEditorView();

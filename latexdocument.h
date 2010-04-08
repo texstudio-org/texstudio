@@ -112,6 +112,7 @@ public:
 	void clearAppendix(){
 	    mAppendixLine=0;
 	}
+	StructureEntry * findSectionForLine(int currentLine);
 
 	LatexDocuments *parent;
 private:
@@ -146,12 +147,13 @@ public slots:
 
 signals:
 	void hasBeenIncluded(const LatexDocument& newMasterDocument);
-	void structureUpdated(LatexDocument* document);
+	void structureUpdated(LatexDocument* document,StructureEntry *highlight=0);
 	void structureLost(LatexDocument* document);
 	void removeElement(StructureEntry *se,int row);
 	void addElement(StructureEntry *se,int row);
 	void updateElement(StructureEntry *se);
 	void updateCompleter();
+	
 };
 
 class LatexDocumentsModel: public QAbstractItemModel{
@@ -179,7 +181,7 @@ public:
 
 	void resetAll();
 private slots:
-	void structureUpdated(LatexDocument* document);
+	void structureUpdated(LatexDocument* document,StructureEntry *highlight=0);
 	void structureLost(LatexDocument* document);
 	void removeElement(StructureEntry *se,int row);
 	void addElement(StructureEntry *se,int row);
