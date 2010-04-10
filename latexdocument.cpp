@@ -315,8 +315,9 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	while (iter.hasNext()){
 	    StructureEntry* se=iter.next();
 	    if(dlh==se->lineHandle) {
-		iter.remove();
 		emit removeElement(se,l);
+		iter.remove();
+		emit removeElementFinished();
 		delete se;
 	    } else l++;
 	}
@@ -344,8 +345,8 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
     foreach(se,toBeDeleted.keys()){
 	emit removeElement(se,toBeDeleted.value(se));
 	delete se;
+	emit removeElementFinished();
     }
-
     // rehighlight current cursor position
     StructureEntry *newSection=0;
     if(edView){
@@ -368,17 +369,21 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 	QDocumentLineHandle *oldLine=mAppendixLine; // to detect a change in appendix position
 
+	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfLabels;
 	QMutableListIterator<StructureEntry*> iter_label(labelList->children);
-	findStructureEntryBefore(iter_label,linenr,count);
+	findStructureEntryBefore(iter_label,MapOfLabels,linenr,count);
 
+	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfTodo;
 	QMutableListIterator<StructureEntry*> iter_todo(todoList->children);
-	findStructureEntryBefore(iter_todo,linenr,count);
+	findStructureEntryBefore(iter_todo,MapOfTodo,linenr,count);
 
+	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfBlock;
 	QMutableListIterator<StructureEntry*> iter_block(blockList->children);
-	findStructureEntryBefore(iter_block,linenr,count);
+	findStructureEntryBefore(iter_block,MapOfBlock,linenr,count);
 
+	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfBibtex;
 	QMutableListIterator<StructureEntry*> iter_bibTeX(bibTeXList->children);
-	findStructureEntryBefore(iter_bibTeX,linenr,count);
+	findStructureEntryBefore(iter_bibTeX,MapOfBibtex,linenr,count);
 
 	QVector<StructureEntry*> parent_level(LatexParser::structureCommands.count());
 	QVector<QList<StructureEntry*> > remainingChildren(LatexParser::structureCommands.count());
@@ -450,7 +455,16 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			    mMentionedBibTeXFiles.insert(document->line(i).handle(),elem);
 			}
 			foreach (const QString& bibFile, bibs) {
-				StructureEntry *newFile=new StructureEntry(this, StructureEntry::SE_BIBTEX);
+				bool reuse=false;
+				StructureEntry *newFile;
+				if(MapOfBibtex.contains(dlh)){
+					newFile=MapOfBibtex.value(dlh);
+					newFile->type=StructureEntry::SE_BIBTEX;
+					MapOfBibtex.remove(dlh,newFile);
+					reuse=true;
+				}else{
+					newFile=new StructureEntry(this, StructureEntry::SE_BIBTEX);
+				}
 				newFile->title=bibFile;
 				newFile->lineNumber=i;
 				newFile->lineHandle=document->line(i).handle();
@@ -464,7 +478,16 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		if (s!="") {
 			mLabelItem.insert(document->line(i).handle(),s);
 			completerNeedsUpdate=true;
-			StructureEntry *newLabel=new StructureEntry(this, StructureEntry::SE_LABEL);
+			bool reuse=false;
+			StructureEntry *newLabel;
+			if(MapOfLabels.contains(dlh)){
+				newLabel=MapOfLabels.value(dlh);
+				newLabel->type=StructureEntry::SE_LABEL;
+				MapOfLabels.remove(dlh,newLabel);
+				reuse=true;
+			}else{
+				newLabel=new StructureEntry(this, StructureEntry::SE_LABEL);
+			}
 			newLabel->title=s;
 			newLabel->lineNumber=i;
 			newLabel->lineHandle=document->line(i).handle();
@@ -476,11 +499,22 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		int l=s.indexOf("%TODO");
 		if (l>=0) {
 			s=s.mid(l+6,s.length());
-			StructureEntry *newTodo=new StructureEntry(this, StructureEntry::SE_TODO);
+			bool reuse=false;
+			StructureEntry *newTodo;
+			if(MapOfTodo.contains(dlh)){
+				newTodo=MapOfTodo.value(dlh);
+				//parent->add(newTodo);
+				newTodo->type=StructureEntry::SE_TODO;
+				MapOfTodo.remove(dlh,newTodo);
+				reuse=true;
+			}else{
+				newTodo=new StructureEntry(this, StructureEntry::SE_TODO);
+			}
 			newTodo->title=s;
 			newTodo->lineNumber=i;
 			newTodo->lineHandle=document->line(i).handle();
 			newTodo->parent=todoList;
+			if(!reuse) emit addElement(todoList,todoList->children.size());
 			iter_todo.insert(newTodo);
 		}
 		//// Appendix keyword
@@ -496,7 +530,16 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		//// beamer blocks ////
 		s=findToken(curLine,"\\begin{block}{");
 		if (s!="") {
-			StructureEntry *newBlock=new StructureEntry(this, StructureEntry::SE_BLOCK);
+			bool reuse=false;
+			StructureEntry *newBlock;
+			if(MapOfBlock.contains(dlh)){
+				newBlock=MapOfBlock.value(dlh);
+				newBlock->type=StructureEntry::SE_BLOCK;
+				MapOfBlock.remove(dlh,newBlock);
+				reuse=true;
+			}else{
+				newBlock=new StructureEntry(this, StructureEntry::SE_BLOCK);
+			}
 			newBlock->title=s;
 			newBlock->lineNumber=i;
 			newBlock->lineHandle=document->line(i).handle();
@@ -566,8 +609,13 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	foreach(se,toBeDeleted.keys()){
 		emit removeElement(se,toBeDeleted[se]);
 		delete se;
+		emit removeElementFinished();
 	}
-	
+
+
+
+
+
 	baseStructure->children.removeOne(bibTeXList);
 	baseStructure->children.removeOne(labelList);
 	baseStructure->children.removeOne(todoList);
@@ -592,6 +640,19 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	}
 
 	emit structureUpdated(this,newSection);
+
+	foreach(se,MapOfTodo.values()){
+		delete se;
+	}
+	foreach(se,MapOfBibtex.values()){
+		delete se;
+	}
+	foreach(se,MapOfBlock.values()){
+		delete se;
+	}
+	foreach(se,MapOfLabels.values()){
+		delete se;
+	}
 
 	if (completerNeedsUpdate)
 		emit updateCompleter();
@@ -724,6 +785,7 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 			}
 			//fall through to show full title in other cases
 		case Qt::ToolTipRole:
+			//qDebug("data %x",entry);
 			if (entry->lineNumber>-1)
 				return QVariant(entry->title+QString(" (%1 %2)").arg(tr("Line")).arg(entry->getRealLineNumber()+1));
 			else
@@ -813,11 +875,11 @@ QModelIndex LatexDocumentsModel::parent ( const QModelIndex & index ) const{
 	if (!entry) return QModelIndex();
 	if (!entry->parent) return QModelIndex();
 	if(entry->level>LatexParser::structureCommands.count()){
-		qDebug("Structure broken!");
+		qDebug("Structure broken! %x",entry);
 		return QModelIndex();
 	}
 	if(entry->parent->level>LatexParser::structureCommands.count()){
-		qDebug("Structure broken!");
+		qDebug("Structure broken! %x",entry);
 		return QModelIndex();
 	}
 	if (entry->parent->parent)
@@ -870,8 +932,28 @@ void LatexDocumentsModel::structureLost(LatexDocument* document){
 }
 
 void LatexDocumentsModel::removeElement(StructureEntry *se,int row){
+	/*
+	foreach(QModelIndex ind,persistentIndexList()){
+		qDebug("%x",ind.internalPointer());
+	}
+	*/
+
 	StructureEntry *par_se=se->parent;
-	removeRow(row,index(par_se));
+
+	if(row<0){
+		row=par_se->children.indexOf(se);
+	}
+	//removeRow(row,index(par_se));
+	beginRemoveRows(index(par_se),row,row);
+}
+
+void LatexDocumentsModel::removeElementFinished(){
+	endRemoveRows();
+	/*
+	foreach(QModelIndex ind,persistentIndexList()){
+		qDebug("%x",ind.internalPointer());
+	}
+	*/
 }
 
 void LatexDocumentsModel::addElement(StructureEntry *se,int row){
@@ -893,6 +975,7 @@ void LatexDocuments::addDocument(LatexDocument* document){
 	model->connect(document,SIGNAL(structureLost(LatexDocument*)),model,SLOT(structureLost(LatexDocument*)));
 	model->connect(document,SIGNAL(structureUpdated(LatexDocument*,StructureEntry*)),model,SLOT(structureUpdated(LatexDocument*,StructureEntry*)));
 	model->connect(document,SIGNAL(removeElement(StructureEntry*,int)),model,SLOT(removeElement(StructureEntry*,int)));
+	model->connect(document,SIGNAL(removeElementFinished()),model,SLOT(removeElementFinished()));
 	model->connect(document,SIGNAL(addElement(StructureEntry*,int)),model,SLOT(addElement(StructureEntry*,int)));
 	model->connect(document,SIGNAL(updateElement(StructureEntry*)),model,SLOT(updateElement(StructureEntry*)));
 	document->parent=this;
@@ -1078,7 +1161,7 @@ void LatexDocuments::updateBibFiles(){
 	}
 }
 
-void LatexDocument::findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,int linenr,int count){
+void LatexDocument::findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count){
     bool goBack=false;
 	int l=0;
     while(iter.hasNext()){
@@ -1087,6 +1170,8 @@ void LatexDocument::findStructureEntryBefore(QMutableListIterator<StructureEntry
 		if((dlh->line()>=linenr) && (dlh->line()<linenr+count) ){
 			emit removeElement(se,l);
 			iter.remove();
+			emit removeElementFinished();
+			MapOfElements.insert(se->lineHandle,se);
 			l--;
 		}
 		if(dlh->line()>=linenr+count) {
