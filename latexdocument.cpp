@@ -287,7 +287,8 @@ void LatexDocument::updateStructure() {
 	    }
 	}
 
-	emit structureUpdated(this,newSection);
+	//emit structureUpdated(this,newSection);
+	emit structureLost(this);
 
 	if (temporaryLoadedDocument)
 		delete document;
@@ -612,10 +613,6 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		emit removeElementFinished();
 	}
 
-
-
-
-
 	baseStructure->children.removeOne(bibTeXList);
 	baseStructure->children.removeOne(labelList);
 	baseStructure->children.removeOne(todoList);
@@ -937,7 +934,6 @@ void LatexDocumentsModel::removeElement(StructureEntry *se,int row){
 		qDebug("%x",ind.internalPointer());
 	}
 	*/
-
 	StructureEntry *par_se=se->parent;
 
 	if(row<0){
@@ -1250,7 +1246,7 @@ void LatexDocument::splitStructure(StructureEntry* se,QVector<StructureEntry*> &
 	}
 	//delete elements which are completely embedded in the to be updated region
 	int tmp_end=end;
-	if(tmp_end<0 && start>-1) tmp_end=se->children.size()+1;
+	if(tmp_end<0) tmp_end=se->children.size()+1;
 	for(int l=start+1;l<tmp_end-1;l++) {
 		toBeDeleted.insert(se->children[l],l);
 		MapOfElements.insert(se->children[l]->lineHandle,se->children[l]);
