@@ -132,7 +132,9 @@ bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
 	#endif
 	
 	const int max = e->document()->lines();
-	const int panelWidth = sfm.width(QString::number(max)) + 5;
+	QString s_width=QString::number(max);
+	s_width.fill('6');
+	const int panelWidth = sfm.width(s_width) + 5;
 	setFixedWidth(panelWidth);
 	
 	const QFontMetrics fm( e->document()->font() );
