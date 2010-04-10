@@ -136,7 +136,7 @@ private:
 	void updateAppendix(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine);
 	void setAppendix(StructureEntry *se,int startLine,int endLine,bool state);
 	bool fileExits(QString fname);
-	void findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,int linenr,int count);
+	void findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElemnts,int linenr,int count);
 	void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QMap<StructureEntry*,int> &toBeDeleted,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count,int lvl=0,bool front=true,bool back=true);
 
 public slots:
@@ -150,6 +150,7 @@ signals:
 	void structureUpdated(LatexDocument* document,StructureEntry *highlight=0);
 	void structureLost(LatexDocument* document);
 	void removeElement(StructureEntry *se,int row);
+	void removeElementFinished();
 	void addElement(StructureEntry *se,int row);
 	void updateElement(StructureEntry *se);
 	void updateCompleter();
@@ -184,6 +185,7 @@ private slots:
 	void structureUpdated(LatexDocument* document,StructureEntry *highlight=0);
 	void structureLost(LatexDocument* document);
 	void removeElement(StructureEntry *se,int row);
+	void removeElementFinished();
 	void addElement(StructureEntry *se,int row);
 	void updateElement(StructureEntry *se);
 
