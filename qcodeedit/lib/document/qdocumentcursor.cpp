@@ -877,10 +877,20 @@ bool QDocumentCursor::isWithinSelection(const QDocumentCursor& c) const
 	return m_handle ? m_handle->isWithinSelection(c) : false;
 }
 
+/*!
+  Creates a new cursor whose selection is the largest region which is contained in the selection of both
+  (returns c if c has no selection but is within the selection of c and returns an invalid cursor if
+  this has no selection)
+*/
 QDocumentCursor QDocumentCursor::intersect(const QDocumentCursor& c) const{
 	return m_handle ? m_handle->intersect(c) : QDocumentCursor();
 }
 
+/*!
+  Sets the selection given by lbeg/cbeg/lend/cend to the largest selection which is contained in
+  the selection of this cursor and the passed boundaries
+  (it sets all to -1 if such a selection doesn't exists)
+*/
 void QDocumentCursor::intersectBoundaries(int& lbeg, int& cbeg, int& lend, int& cend) const{
 	if (m_handle)
 		m_handle->intersectBoundaries(lbeg, cbeg, lend, cend);

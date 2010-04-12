@@ -5056,6 +5056,11 @@ void QDocumentCursorHandle::substractBoundaries(int lbeg, int cbeg, int lend, in
 	//qDebug("(%i, %i : %i, %i) corrected to (%i, %i : %i, %i) after subtracting of (%i, %i : %i, %i)", tlmin, tcmin, tlmax, tcmax, m_begLine, m_begOffset, m_endLine, m_endOffset, lbeg, cbeg, lend, cend);
 }
 
+/*!
+  Sets the selection given by lbeg/cbeg/lend/cend to the largest selection which is contained in
+  the selection of this cursor and the passed boundaries
+  (it sets all to -1 if such a selection doesn't exists)
+*/
 void QDocumentCursorHandle::intersectBoundaries(int& lbeg, int& cbeg, int& lend, int& cend) const
 {
 	int tlmin, tlmax, tcmin, tcmax, clmin, clmax, ccmin, ccmax;
@@ -5135,6 +5140,11 @@ void QDocumentCursorHandle::intersectBoundaries(QDocumentCursorHandle *h, int& l
 	}
 }
 
+/*!
+  Creates a new cursor whose selection is the largest region which is contained in the selection of both
+  (returns c if c has no selection but is within the selection of c and returns an invalid cursor if
+  this has no selection)
+*/
 QDocumentCursor QDocumentCursorHandle::intersect(const QDocumentCursor& c) const
 {
 	if ( !hasSelection() )

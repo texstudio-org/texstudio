@@ -406,6 +406,44 @@ void QEditorTest::activeFolding(){
 
 }
 
+void QEditorTest::indentation_data(){
+	editor->setFlag(QEditor::AutoIndent,true);
+	editor->setFlag(QEditor::WeakIndent,false);
+	editor->setFlag(QEditor::ReplaceTabs,false);
+
+	QTest::addColumn<QString>("baseText");
+	QTest::addColumn<int>("line");
+	QTest::addColumn<int>("col");
+	QTest::addColumn<QString>("insert");
+	QTest::addColumn<QString>("result");
+
+	QTest::newRow("trivial")
+		<< "hello\nworld\n"
+		<< 0 << 5
+		<< "{\na\n}"
+		<< "hello{\n\ta\n}\nworld\n";
+
+/*
+  this is broken:
+	QTest::newRow("trivial 2")
+		<< "hello\nworld\n"
+		<< 0 << 5
+		<< "{{\na\n}}"
+		<< "hello{{\n\t\ta\n}}\nworld\n";
+*/
+}
+void QEditorTest::indentation(){
+	QFETCH(QString, baseText);
+	QFETCH(int, line);
+	QFETCH(int, col);
+	QFETCH(QString, insert);
+	QFETCH(QString,	result);
+
+	editor->setText(baseText);
+	QDocumentCursor c=editor->document()->cursor(line,col);
+	editor->insertText(c, insert);
+	QEQUAL(editor->document()->text(), result);
+}
 
 
 #endif
