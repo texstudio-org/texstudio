@@ -23,6 +23,8 @@ private slots:
 	void passiveFolding();
 	void activeFolding_data();
 	void activeFolding();
+	void indentation_data();
+	void indentation();
 };
 #endif
 #endif // QEDITORTEST_H
