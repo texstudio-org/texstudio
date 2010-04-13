@@ -248,4 +248,11 @@ QFoldedLineIterator& QFoldedLineIterator::operator++(){
 	return *this;
 }
 
+bool QFoldedLineIterator::lineFlagsInvalid() const{
+	return line.hasFlag(QDocumentLine::Hidden) != hidden ||
+	       line.hasFlag(QDocumentLine::CollapsedBlockStart) != collapsedBlockStart ||
+	       line.hasFlag(QDocumentLine::CollapsedBlockEnd) != collapsedBlockEnd;
+
+}
+
 /*! @} */
