@@ -146,7 +146,15 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 		if ( pos > pageBottom )
 			break;
 
-		QDocumentLine line=doc->line(fli.lineNr);
+		const QDocumentLine &line=fli.line;
+
+		if ( fli.lineFlagsInvalid() ){
+			//correct folding when the folding of the current line is invalid
+			//problems: slow (but O(n) like the paint method is anyways), doesn't work if panel is hidden
+			//pro: simple, doesn't correct invalid, but invisible folding (e.g. like folding that is only temporary invalid, until the user writes a closing bracket; otherwise writing $$ would expand every folded $-block)
+			doc->correctFolding(fli.lineNr, doc->lines()); //this will again call paint
+			return true;
+		}
 
 		if ( line.isHidden() )
 		{

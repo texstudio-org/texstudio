@@ -123,6 +123,8 @@ public:
 
 	//goto next line and update parentheses values
 	QFoldedLineIterator& operator++();
+
+	bool lineFlagsInvalid() const;
 private:
 	friend class QLanguageDefinition;
 	QDocument* doc;

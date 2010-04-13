@@ -913,17 +913,11 @@ bool QNFADefinition::correctFolding(QDocument *d){
 	for (QFoldedLineIterator fli = foldedLineIterator(d);
 	     fli.lineNr<d->lines();
 	     ++fli){
-		QDocumentLine l = d->line(fli.lineNr);
-		if (l.hasFlag(QDocumentLine::Hidden)!=fli.hidden) {
-			changed=true;
+		changed |= fli.lineFlagsInvalid();
+		if (changed) {
+			QDocumentLine &l = fli.line;
 			l.setFlag(QDocumentLine::Hidden, fli.hidden);
-		}
-		if (l.hasFlag(QDocumentLine::CollapsedBlockStart)!=fli.collapsedBlockStart) {
-			changed=true;
 			l.setFlag(QDocumentLine::CollapsedBlockStart, fli.collapsedBlockStart);
-		}
-		if (l.hasFlag(QDocumentLine::CollapsedBlockEnd)!=fli.collapsedBlockEnd) {
-			changed=true;
 			l.setFlag(QDocumentLine::CollapsedBlockEnd, fli.collapsedBlockEnd);
 		}
 	}
