@@ -2757,6 +2757,11 @@ void Texmaker::SlotEndProcess(int err) {
 
 void Texmaker::QuickBuild() {
 	fileSaveAll();
+	if (getCompileFileName()=="") {
+		QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name.\nYou have to save a document before you can compile it."));
+		return;
+	}
+
 	RunPreCompileCommand();
 	stat2->setText(QString(" %1 ").arg(tr("Quick Build")));
 	ERRPROCESS=false;
