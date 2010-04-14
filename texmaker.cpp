@@ -120,7 +120,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	EditorView=new QTabWidget(this);
 	EditorView->setFocusPolicy(Qt::ClickFocus);
 	EditorView->setFocus();
-	connect(EditorView, SIGNAL(currentChanged(QWidget *)), this, SLOT(UpdateCaption()));
+	connect(EditorView, SIGNAL(currentChanged(int)), this, SLOT(UpdateCaption()));
 	if (hasAtLeastQt(4,5)){
 		EditorView->setProperty("tabsClosable",true);
 		EditorView->setProperty("movable",true);
