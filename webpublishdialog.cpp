@@ -80,7 +80,7 @@ void WebPublishDialog::convert(const QString &fileName) {
 	if (fi.exists() && fi.isReadable()) {
 		workdir=fi.absolutePath();
 		config->lastdir=workdir;
-		base=fi.baseName();
+		base=fi.completeBaseName();
 		if (workdir.endsWith("/")) 	htmldir=workdir+base+"_html";
 		else htmldir=workdir+"/"+base+"_html";;
 		QDir HDir(htmldir);
