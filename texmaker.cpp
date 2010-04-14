@@ -694,6 +694,7 @@ void Texmaker::UpdateCaption() {
 				getManagedAction("main/edit/lineend/lf")->setChecked(true);
 			}
 			//input_encoding=current	EditorView()->editor->getEncoding();
+			currentEditorView()->editor->setFocus();
 		}
 	}
 	setWindowTitle(title);
