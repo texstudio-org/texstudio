@@ -51,6 +51,10 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
 					editor->addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
 				for (int k=Qt::Key_A; k<=Qt::Key_Z; k++)
 					editor->addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
+				if (a || (c&&s)){
+					for (int k=Qt::Key_PageUp; k<=Qt::Key_PageDown; k++)
+						editor->addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
+				}
 			}
 	editor->setEditable(true);
 
