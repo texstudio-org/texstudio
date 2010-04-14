@@ -2977,7 +2977,7 @@ bool Texmaker::LogExists() {
 	QString finame=getCompileFileName();
 	if ((singlemode && !currentEditorView()) || finame=="")
 		return false;
-	QString logname=getAbsoluteFilePath(QFileInfo(finame).baseName(),".log");
+	QString logname=getAbsoluteFilePath(QFileInfo(finame).completeBaseName(),".log");
 	QFileInfo fic(logname);
 	if (fic.exists() && fic.isReadable()) return true;
 	else return false;
@@ -2999,7 +2999,7 @@ void Texmaker::ViewLog(bool noTabChange) {
 		ERRPROCESS=true;
 		return;
 	}
-	QString logname=getAbsoluteFilePath(QFileInfo(finame).baseName(),".log");
+	QString logname=getAbsoluteFilePath(QFileInfo(finame).completeBaseName(),".log");
 	QString line;
 	QFileInfo fic(logname);
 	if (fic.exists() && fic.isReadable()) {
