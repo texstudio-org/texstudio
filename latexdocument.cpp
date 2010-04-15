@@ -871,11 +871,11 @@ QModelIndex LatexDocumentsModel::parent ( const QModelIndex & index ) const{
 	const StructureEntry* entry = (StructureEntry*) index.internalPointer();
 	if (!entry) return QModelIndex();
 	if (!entry->parent) return QModelIndex();
-	if(entry->level>LatexParser::structureCommands.count()){
+	if(entry->level>LatexParser::structureCommands.count() || entry->level<0){
 		qDebug("Structure broken! %x",entry);
 		return QModelIndex();
 	}
-	if(entry->parent->level>LatexParser::structureCommands.count()){
+	if(entry->parent->level>LatexParser::structureCommands.count() || entry->level<0){
 		qDebug("Structure broken! %x",entry);
 		return QModelIndex();
 	}
