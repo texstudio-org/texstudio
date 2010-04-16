@@ -295,22 +295,22 @@ void LatexDocument::updateStructure() {
 }
 
 void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
+	if(!baseStructure) return;
+	mLabelItem.remove(dlh);
+	mMentionedBibTeXFiles.remove(dlh);
 
-    if(!baseStructure) return;
-    mLabelItem.remove(dlh);
-    mMentionedBibTeXFiles.remove(dlh);
-    mUserCommandList.remove(dlh);
+	mUserCommandList.remove(dlh);
 
-    if(dlh==mAppendixLine){
-	updateAppendix(mAppendixLine,0);
-	mAppendixLine=0;
-    }
+	if(dlh==mAppendixLine){
+		updateAppendix(mAppendixLine,0);
+		mAppendixLine=0;
+	}
 
-    int linenr=dlh->line();
-    if (linenr==-1) linenr=text->lines();
+	int linenr=dlh->line();
+	if (linenr==-1) linenr=text->lines();
 
-    QList<StructureEntry*> categories=QList<StructureEntry*>() << labelList << todoList << blockList << bibTeXList;
-    foreach (StructureEntry* sec, categories) {
+	QList<StructureEntry*> categories=QList<StructureEntry*>() << labelList << todoList << blockList << bibTeXList;
+	foreach (StructureEntry* sec, categories) {
 	int l=0;
 	QMutableListIterator<StructureEntry*> iter(sec->children);
 	while (iter.hasNext()){
@@ -367,6 +367,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	if (!document || !baseStructure) return;
 
 	bool completerNeedsUpdate=false;
+	bool bibTeXFilesNeedsUpdate=false;
 
 	QDocumentLineHandle *oldLine=mAppendixLine; // to detect a change in appendix position
 
@@ -400,7 +401,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		// remove command,bibtex,labels at from this line
 		QDocumentLineHandle* dlh=document->line(i).handle();
 		completerNeedsUpdate=completerNeedsUpdate || (mLabelItem.remove(dlh)>0);
-		completerNeedsUpdate=completerNeedsUpdate || (mMentionedBibTeXFiles.remove(dlh)>0);
+		bibTeXFilesNeedsUpdate=bibTeXFilesNeedsUpdate || (mMentionedBibTeXFiles.remove(dlh)>0);
 		completerNeedsUpdate=completerNeedsUpdate || (mUserCommandList.remove(dlh)>0);
 		//find entries prior to changed lines
 
@@ -451,10 +452,22 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		s=findToken(curLine,"\\bibliography{");
 		if (s!="") {
 			QStringList bibs=s.split(',',QString::SkipEmptyParts);
-			completerNeedsUpdate=true;
-			foreach(QString elem,bibs){
-			    mMentionedBibTeXFiles.insert(document->line(i).handle(),elem);
+			QDocumentLineHandle* curLineHandle = document->line(i).handle();
+			//remove old bibs from hash, but keeps a temporary copy
+			QStringList oldBibs;
+			while (mMentionedBibTeXFiles.contains(curLineHandle)) {
+				QHash<QDocumentLineHandle*, QString>::iterator it = mMentionedBibTeXFiles.find(curLineHandle);
+				if (it == mMentionedBibTeXFiles.end()) break;
+				oldBibs.append(it.value());
+				mMentionedBibTeXFiles.remove(it.key(), it.value());
 			}
+			//add new bibs and set bibTeXFilesNeedsUpdate if there was any change
+			bibTeXFilesNeedsUpdate |= oldBibs.size() != bibs.size();
+			foreach(QString elem,bibs){
+				mMentionedBibTeXFiles.insert(document->line(i).handle(),elem);
+				bibTeXFilesNeedsUpdate |= !oldBibs.contains(elem);
+			}
+			//write bib tex in tree
 			foreach (const QString& bibFile, bibs) {
 				bool reuse=false;
 				StructureEntry *newFile;
@@ -651,7 +664,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		delete se;
 	}
 
-	if (completerNeedsUpdate)
+	if (bibTeXFilesNeedsUpdate)
+		emit updateBibTeXFiles();
+
+	if (completerNeedsUpdate || bibTeXFilesNeedsUpdate)
 		emit updateCompleter();
 
 }
@@ -968,12 +984,13 @@ LatexDocuments::~LatexDocuments(){
 }
 void LatexDocuments::addDocument(LatexDocument* document){
 	documents.append(document);
-	model->connect(document,SIGNAL(structureLost(LatexDocument*)),model,SLOT(structureLost(LatexDocument*)));
-	model->connect(document,SIGNAL(structureUpdated(LatexDocument*,StructureEntry*)),model,SLOT(structureUpdated(LatexDocument*,StructureEntry*)));
-	model->connect(document,SIGNAL(removeElement(StructureEntry*,int)),model,SLOT(removeElement(StructureEntry*,int)));
-	model->connect(document,SIGNAL(removeElementFinished()),model,SLOT(removeElementFinished()));
-	model->connect(document,SIGNAL(addElement(StructureEntry*,int)),model,SLOT(addElement(StructureEntry*,int)));
-	model->connect(document,SIGNAL(updateElement(StructureEntry*)),model,SLOT(updateElement(StructureEntry*)));
+	connect(document, SIGNAL(updateBibTeXFiles()), SLOT(bibTeXFilesNeedUpdate()));
+	connect(document,SIGNAL(structureLost(LatexDocument*)),model,SLOT(structureLost(LatexDocument*)));
+	connect(document,SIGNAL(structureUpdated(LatexDocument*,StructureEntry*)),model,SLOT(structureUpdated(LatexDocument*,StructureEntry*)));
+	connect(document,SIGNAL(removeElement(StructureEntry*,int)),model,SLOT(removeElement(StructureEntry*,int)));
+	connect(document,SIGNAL(removeElementFinished()),model,SLOT(removeElementFinished()));
+	connect(document,SIGNAL(addElement(StructureEntry*,int)),model,SLOT(addElement(StructureEntry*,int)));
+	connect(document,SIGNAL(updateElement(StructureEntry*)),model,SLOT(updateElement(StructureEntry*)));
 	document->parent=this;
 	if(masterDocument){
 		if(Ref && Label){
@@ -1322,3 +1339,6 @@ void LatexDocuments::updateStructure(){
     }
 }
 
+void LatexDocuments::bibTeXFilesNeedUpdate(){
+	bibTeXFilesModified=true;
+}
