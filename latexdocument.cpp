@@ -888,11 +888,11 @@ QModelIndex LatexDocumentsModel::parent ( const QModelIndex & index ) const{
 	if (!entry) return QModelIndex();
 	if (!entry->parent) return QModelIndex();
 	if(entry->level>LatexParser::structureCommands.count() || entry->level<0){
-		qDebug("Structure broken! %x",entry);
+		qDebug("Structure broken! %p",entry);
 		return QModelIndex();
 	}
-	if(entry->parent->level>LatexParser::structureCommands.count() || entry->level<0){
-		qDebug("Structure broken! %x",entry);
+	if(entry->parent->level>LatexParser::structureCommands.count() || entry->parent->level<0){
+		qDebug("Structure broken! %p",entry);
 		return QModelIndex();
 	}
 	if (entry->parent->parent)
