@@ -1210,7 +1210,10 @@ void Texmaker::fileSaveAll() {
 		if (edView->editor->fileName().isEmpty() || edView->editor->isInConflict()) {
 			EditorView->setCurrentIndex(i);
 			if (edView->editor->fileName().isEmpty()) fileSaveAs();
-			else edView->editor->save();
+			else {
+				Q_ASSERT(false); //?? this branch makes no sense
+				edView->editor->save();
+			}
 		} else if (!edView->editor->fileName().endsWith(".bib"))
 			edView->editor->save();
 		else if (edView->editor->isContentModified()){ //only save modified bib files, to prevent unecessary recompilations
@@ -1945,7 +1948,6 @@ void Texmaker::updateStructure() {
 	if (!currentEditorView() || !currentEditorView()->document) return;
 	currentEditorView()->document->updateStructure();
 
-	if (configManager.parseBibTeX) documents.updateBibFiles();
 	updateCompleter();
 	cursorPositionChanged();
 
@@ -3487,6 +3489,8 @@ void Texmaker::SetMostUsedSymbols(QTableWidgetItem* item) {
 
 void Texmaker::updateCompleter() {
 	QStringList words;
+
+	if (configManager.parseBibTeX) documents.updateBibFiles();
 
 	LatexEditorView* edView=currentEditorView();
 

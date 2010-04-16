@@ -154,6 +154,7 @@ signals:
 	void addElement(StructureEntry *se,int row);
 	void updateElement(StructureEntry *se);
 	void updateCompleter();
+	void updateBibTeXFiles();
 	
 };
 
@@ -192,8 +193,9 @@ private slots:
 	friend class LatexDocuments;
 };
 
-class LatexDocuments
+class LatexDocuments: QObject
 {
+	Q_OBJECT
 public:
 	LatexDocumentsModel* model;
 	LatexDocument* masterDocument;
@@ -221,7 +223,11 @@ public:
 	QStringList mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
 	QSet<QString> allBibTeXIds;
 	void updateBibFiles();
+
+
 	void updateStructure();
+private slots:
+	void bibTeXFilesNeedUpdate();
 private:
 	References *Label,*Ref;
 };
