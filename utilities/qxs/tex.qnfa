@@ -8,6 +8,8 @@ parenthesis weights:
 10: { }
 8-2: \part, \chapter, \section, ...  (very low weight, because they are difficult to match, e.g in { \n .. \section \n .. })
 0: (, ), \{, \}, [, ]
+(if you change this, don't forget to also update the values for user defined
+environments in smallUsefulFunctions.cpp)
 -->
 	<sequence parenthesis="round:open" parenthesisWeight="00">(</sequence>
 	<sequence parenthesis="round:close" parenthesisWeight="00">)</sequence>
