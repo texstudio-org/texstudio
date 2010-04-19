@@ -3159,6 +3159,7 @@ void Texmaker::HelpAbout() {
 }
 ////////////// OPTIONS //////////////////////////////////////
 void Texmaker::GeneralOptions() {
+	bool customEnvironmentExisted = !configManager.customEnvironments.isEmpty();
 	if (configManager.execConfigDialog()) {
 		mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);
 		// refresh quick language selection combobox
@@ -3202,34 +3203,31 @@ void Texmaker::GeneralOptions() {
 		setupToolBars();
 
 		// custom evironments
-		if(!configManager.customEnvironments.isEmpty()){
-		    QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)Tex");
+		if(customEnvironmentExisted || !configManager.customEnvironments.isEmpty()){
+			QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)Tex");
 
-		    QFile f(findResourceFile("qxs/tex.qnfa"));
-		    QDomDocument doc;
-		    doc.setContent(&f);
+			QFile f(findResourceFile("qxs/tex.qnfa"));
+			QDomDocument doc;
+			doc.setContent(&f);
 
-		    QMap<QString, QVariant>::const_iterator i;
-		    for (i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i){
-			QString mode=configManager.enviromentModes.value(i.value().toInt(),"verbatim");
-			addEnvironmentToDom(doc,i.key(),mode);
-		    }
-		    QNFADefinition::load(doc,&m_lang,dynamic_cast<QFormatScheme*>(m_formats));
+			QMap<QString, QVariant>::const_iterator i;
+			for (i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i){
+				QString mode=configManager.enviromentModes.value(i.value().toInt(),"verbatim");
+				addEnvironmentToDom(doc,i.key(),mode);
+			}
+			QNFADefinition::load(doc,&m_lang,dynamic_cast<QFormatScheme*>(m_formats));
 
-		    m_languages->addLanguage(m_lang);
-		    if (currentEditorView()) {
-			    for (int i=0; i<EditorView->count();i++) {
-				    LatexEditorView* edView=qobject_cast<LatexEditorView*>(EditorView->widget(i));
-				    if (edView) {
+			m_languages->addLanguage(m_lang);
+			for (int i=0; i<EditorView->count();i++) {
+				LatexEditorView* edView=qobject_cast<LatexEditorView*>(EditorView->widget(i));
+				if (edView) {
 					QEditor *ed=edView->editor;
 					QString extension="."+ed->fileInfo().suffix();
 					m_languages->setLanguage(ed, extension);
 					ed->document()->markFormatCacheDirty();
 					ed->update();
-				    }
-			    }
-		    }
-
+				}
+			}
 		}
 		//completion
 		updateCompleter();
