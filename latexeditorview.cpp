@@ -436,6 +436,8 @@ void LatexEditorView::updateSettings(){
 	editor->setDisplayModifyTime(config->displayModifyTime);
 	editor->setUseLineForSearch(config->useLineForSearch);
 	editor->setUseTabforMoveToPlaceholder(config->useTabforMoveToPlaceholder);
+	QDocument::setShowSpaces(config->showWhitespace?(QDocument::ShowTrailing | QDocument::ShowLeading | QDocument::ShowTabs):QDocument::ShowNone);
+
 
 	environmentFormat=QDocument::formatFactory()->id("environment");
 	referenceMultipleFormat=QDocument::formatFactory()->id("referenceMultiple");
@@ -1100,10 +1102,12 @@ void LatexEditorViewConfig::readSettings(QSettings& settings){
 	inlineSpellChecking=settings.value("Editor/Check Spelling",true).toBool();
 	inlineCitationChecking=settings.value("Editor/Check Citations",true).toBool();
 	inlineReferenceChecking=settings.value("Editor/Check References",true).toBool();
+	showWhitespace=settings.value("Editor/Show Whitespace",true).toBool();
 }
 void LatexEditorViewConfig::saveSettings(QSettings& settings){
 	settings.setValue("Editor/Real-Time Spellchecking",realtimeChecking);
 	settings.setValue("Editor/Check Spelling",inlineSpellChecking);
 	settings.setValue("Editor/Check Citations",inlineCitationChecking);
 	settings.setValue("Editor/Check References",inlineReferenceChecking);
+	settings.setValue("Editor/Show Whitespace",showWhitespace);
 }

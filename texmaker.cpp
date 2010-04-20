@@ -85,8 +85,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	QDocument::setFormatFactory(m_formats);
 	mainSpeller->spellcheckErrorFormat=m_formats->id("spellingMistake");
 
-	QDocument::setShowSpaces(QDocument::ShowTrailing | QDocument::ShowLeading | QDocument::ShowTabs);
-
 	if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
 	else QDocument::setDefaultCodec(configManager.newfile_encoding);
 

@@ -460,7 +460,9 @@ bool ConfigManager::execConfigDialog() {
 	confDlg->ui.checkBoxInlineSpellCheck->setChecked(editorConfig->inlineSpellChecking);
 	confDlg->ui.checkBoxInlineReferenceCheck->setChecked(editorConfig->inlineReferenceChecking);
 	confDlg->ui.checkBoxInlineCitationCheck->setChecked(editorConfig->inlineCitationChecking);
-	
+	confDlg->ui.checkBoxShowWhitespace->setChecked(editorConfig->showWhitespace);
+
+
 	//completion
 	confDlg->ui.checkBoxCompletion->setChecked(completerConfig->enabled);
 	confDlg->ui.checkBoxCaseSensitive->setChecked(completerConfig->caseSensitive!=LatexCompleterConfig::CCS_CASE_INSENSITIVE);
@@ -716,7 +718,7 @@ bool ConfigManager::execConfigDialog() {
 		editorConfig->inlineSpellChecking=confDlg->ui.checkBoxInlineSpellCheck->isChecked();
 		editorConfig->inlineReferenceChecking=confDlg->ui.checkBoxInlineReferenceCheck->isChecked();
 		editorConfig->inlineCitationChecking=confDlg->ui.checkBoxInlineCitationCheck->isChecked();
-		
+		editorConfig->showWhitespace = confDlg->ui.checkBoxShowWhitespace->isChecked();
 		
 		//completion
 		completerConfig->enabled=confDlg->ui.checkBoxCompletion->isChecked();
