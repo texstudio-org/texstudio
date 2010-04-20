@@ -251,10 +251,10 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	createIcon(tr("Commands"),QIcon(":/images/configtools.png"));
 	createIcon(tr("Quick Build"),QIcon(":/images/configquick.png"));
 	createIcon(tr("Shortcuts"),QIcon(":/images/configkeys.png"));
-	createIcon(tr("Latex Menus"),QIcon(":/images/configkeys.png"));
-	createIcon(tr("Custom Toolbar"),QIcon(":/images/configkeys.png"));
+	createIcon(tr("Latex Menus"),QIcon(":/images/configkeys.png"), true);
+	createIcon(tr("Custom Toolbar"),QIcon(":/images/configkeys.png"), true);
 	createIcon(tr("Editor"),QIcon(":/images/configeditor.png"));
-	createIcon(tr("Custom Highlighting"),QIcon(":/images/configeditor.png"));
+	createIcon(tr("Custom Highlighting"),QIcon(":/images/configeditor.png"), true);
 	createIcon(tr("Completion"),QIcon(":/images/configcompletion.png"));
 	createIcon(tr("SVN"),QIcon(":/images/configtools.png"));
 
@@ -285,13 +285,16 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 ConfigDialog::~ConfigDialog() {
 }
 
-QListWidgetItem * ConfigDialog::createIcon(const QString &caption, const QIcon &icon, QListWidget *parent){
-	if(!parent) parent=ui.contentsWidget;
-	QListWidgetItem * button=new QListWidgetItem(parent);
+QListWidgetItem * ConfigDialog::createIcon(const QString &caption, const QIcon &icon, bool advancedOption){
+	QListWidgetItem * button=new QListWidgetItem(ui.contentsWidget);
 	button->setIcon(icon);
 	button->setText(caption);
 	button->setTextAlignment(Qt::AlignHCenter);
 	button->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+	if (advancedOption) {
+		//button->setHidden(true);
+		button->setData(Qt::UserRole, true);
+	}
 	return button;
 }
 
@@ -389,6 +392,10 @@ void hideShowAdvancedOptions(QWidget* w, bool on){
 
 void ConfigDialog::advancedOptionsToggled(bool on){
 	hideShowAdvancedOptions(this,on);
+	ui.contentsWidget->reset();
+	for (int i=0;i<ui.contentsWidget->count();i++)
+		if (ui.contentsWidget->item(i)->data(Qt::UserRole).toBool())
+			ui.contentsWidget->item(i)->setHidden(!on);
 }
 
 void ConfigDialog::toolbarChanged(int toolbar){

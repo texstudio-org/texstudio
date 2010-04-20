@@ -11,6 +11,7 @@ public:
 	bool wordwrap, parenmatch;
 	bool autoindent, weakindent;
 	bool indentWithSpaces;
+	bool showWhitespace;
 	int showlinemultiples;
 	bool folding, showlinestate, showcursorstate, realtimeChecking;	
 	bool inlineSpellChecking, inlineCitationChecking, inlineReferenceChecking;

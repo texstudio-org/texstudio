@@ -127,7 +127,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>7</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -1035,7 +1035,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="2" column="1" colspan="2">
            <widget class="QComboBox" name="comboBoxEncoding"/>
           </item>
-          <item row="5" column="2" colspan="2">
+          <item row="6" column="2" colspan="2">
            <widget class="QComboBox" name="comboboxLineNumbers">
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -1057,7 +1057,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </item>
            </widget>
           </item>
-          <item row="7" column="0" colspan="2">
+          <item row="8" column="0" colspan="2">
            <widget class="QComboBox" name="comboBoxPreviewMode">
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -1084,7 +1084,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </item>
            </widget>
           </item>
-          <item row="7" column="2" colspan="2">
+          <item row="8" column="2" colspan="2">
            <widget class="QComboBox" name="comboBoxDvi2PngMode">
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -1106,7 +1106,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </item>
            </widget>
           </item>
-          <item row="9" column="1" colspan="4">
+          <item row="10" column="1" colspan="4">
            <widget class="QGroupBox" name="formatConfigBox">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
@@ -1131,7 +1131,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="8" column="0" colspan="2">
+          <item row="9" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxCloseSearchReplaceTogether">
             <property name="text">
              <string>close search and replace panel together</string>
@@ -1141,7 +1141,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="5" column="0" colspan="2">
+          <item row="6" column="0" colspan="2">
            <widget class="QComboBox" name="comboBoxAutoIndent">
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -1203,10 +1203,13 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="8" column="2" colspan="2">
+          <item row="9" column="2" colspan="2">
            <widget class="QCheckBox" name="checkBoxUseLineForSearch">
             <property name="text">
              <string>Use single line selection as Search Word</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -1224,6 +1227,22 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            <widget class="QCheckBox" name="checkBoxTabforMoveToPlaceholder">
             <property name="text">
              <string>Use Tab for Move To Placeholder</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QCheckBox" name="checkBoxShowWhitespace">
+            <property name="text">
+             <string>Show Whitespace</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
