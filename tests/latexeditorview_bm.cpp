@@ -11,6 +11,7 @@
 LatexEditorViewBenchmark::LatexEditorViewBenchmark(LatexEditorView* view): edView(view){}
 
 void LatexEditorViewBenchmark::documentChange_data(){
+#if QT_VERSION >= 0x040500	
 	QTest::addColumn<QString>("text");
 	QTest::addColumn<int>("start");
 	QTest::addColumn<int>("count");
@@ -37,8 +38,10 @@ void LatexEditorViewBenchmark::documentChange_data(){
 	QTest::newRow("spellcheck in command")
 			<< "\\textbf{abcdsdfsdfds} \\textbf{abcdsdfsdfds}\nhallo welt\nabcdefg"
 		<< 0 << 1;
+#endif
 }
 void LatexEditorViewBenchmark::documentChange(){
+#if QT_VERSION >= 0x040500	
 	QFETCH(QString, text);
 	QFETCH(int, start);
 	QFETCH(int, count);
@@ -47,6 +50,7 @@ void LatexEditorViewBenchmark::documentChange(){
 	QBENCHMARK {
 		edView->documentContentChanged(start,count);
 	}
+#endif
 }
 #endif
 

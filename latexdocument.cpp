@@ -337,7 +337,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	    se=remainingChildren[i].takeFirst();
 	    parent_level[se->level]->add(se);
 	}
-	parent_level[i]->children.append(remainingChildren[i]);
+	parent_level[i]->children << remainingChildren[i];
 	foreach(StructureEntry *elem,remainingChildren[i]){
 	    elem->parent=parent_level[i];
 	}
@@ -614,7 +614,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			se=remainingChildren[i].takeFirst();
 			parent_level[se->level]->add(se);
 	    }
-	    parent_level[i]->children.append(remainingChildren[i]);
+	    parent_level[i]->children << remainingChildren[i];
 	    foreach(StructureEntry *elem,remainingChildren[i]){
 		elem->parent=parent_level[i];
 	    }
@@ -625,11 +625,17 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		delete se;
 		emit removeElementFinished();
 	}
+	
+	int tempPos = -1;
+	tempPos = baseStructure->children.indexOf(bibTeXList);
+	if (tempPos != -1) baseStructure->children.removeAt(tempPos);
+	tempPos = baseStructure->children.indexOf(labelList);
+	if (tempPos != -1) baseStructure->children.removeAt(tempPos);
+	tempPos = baseStructure->children.indexOf(todoList);
+	if (tempPos != -1) baseStructure->children.removeAt(tempPos);
+	tempPos = baseStructure->children.indexOf(blockList);
+	if (tempPos != -1) baseStructure->children.removeAt(tempPos);
 
-	baseStructure->children.removeOne(bibTeXList);
-	baseStructure->children.removeOne(labelList);
-	baseStructure->children.removeOne(todoList);
-	baseStructure->children.removeOne(blockList);
 	if (!bibTeXList->children.isEmpty()) baseStructure->insert(0, bibTeXList);
 	if (!todoList->children.isEmpty()) baseStructure->insert(0, todoList);
 	if (!labelList->children.isEmpty()) baseStructure->insert(0, labelList);
@@ -1146,7 +1152,7 @@ void LatexDocuments::settingsRead(){
 void LatexDocuments::updateBibFiles(){
 	mentionedBibTeXFiles.clear();
 	foreach (const LatexDocument* doc, documents)
-		mentionedBibTeXFiles.append(doc->mentionedBibTeXFiles());
+		mentionedBibTeXFiles << doc->mentionedBibTeXFiles();
 
 	bool changed=false;
 	for (int i=0; i<mentionedBibTeXFiles.count();i++){
@@ -1239,7 +1245,7 @@ void LatexDocument::splitStructure(StructureEntry* se,QVector<StructureEntry*> &
 
 	// store remainder of children
 	if(back && (end>-1))
-		remainingChildren[lvl].append(se->children.mid(end));
+		remainingChildren[lvl]<<se->children.mid(end);
 	// get StructureEntry to look deeper in
 	StructureEntry *next=0;
 	if(end>0) {

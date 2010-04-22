@@ -56,7 +56,7 @@ public:
 
 	QMap<QString,QFormat> editorFormats;
 	QFormatConfig * fmConfig;
-	QHash<QString,QVariant> * replacedIconsOnMenus;
+	QMap<QString,QVariant> * replacedIconsOnMenus;
 
 	QObject* menuParent;
 	QList<QStringList> customizableToolbars;

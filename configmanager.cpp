@@ -184,7 +184,7 @@ QSettings* ConfigManager::readSettings() {
 	config->endArray();
 
 	//changed latex menus
-	hashManipulateMenus=config->value("changedLatexMenus").toHash();
+	manipulatedMenus=config->value("changedLatexMenus").toMap();
 
 	//custom toolbar
 	for (int i=0; i<managedToolBars.size();i++){
@@ -192,7 +192,7 @@ QSettings* ConfigManager::readSettings() {
 		mtb.actualActions=config->value(mtb.name+"ToolBar").toStringList();
 		if (mtb.actualActions.empty()) mtb.actualActions=mtb.defaults;
 	}
-	replacedIconsOnMenus=config->value("customIcons").toHash();
+	replacedIconsOnMenus=config->value("customIcons").toMap();
 
 	//custom highlighting
 	customEnvironments=config->value("customHighlighting").toMap();
@@ -371,7 +371,7 @@ QSettings* ConfigManager::saveSettings() {
 	config->endArray();
 
 	//changed latex menus
-	config->setValue("changedLatexMenus",hashManipulateMenus);
+	config->setValue("changedLatexMenus",manipulatedMenus);
 	//custom toolbar
 	for (int i=0; i<managedToolBars.size();i++){
 		ManagedToolBar& mtb=managedToolBars[i];
@@ -1014,19 +1014,19 @@ void ConfigManager::modifyManagedShortcuts(){
 			else act->setShortcuts((QList<QKeySequence>()<<act->shortcut())<<managedMenuNewShortcuts[i].second);
 		}
 	}
-        QHash<QString, QVariant>::const_iterator i = hashManipulateMenus.constBegin();
-        while (i != hashManipulateMenus.constEnd()) {
-            QString id=i.key();
-            QVariant zw=i.value();
-            QStringList m=zw.toStringList();
-            QAction * act= getManagedAction(id);
-            if (act) {
-                act->setText(m.first());
-				act->setData(m.at(1));
-				act->setVisible(!(m.value(2,"visible")=="hidden"));
-            }
-            ++i;
-        }
+	QMap<QString, QVariant>::const_iterator i = manipulatedMenus.constBegin();
+	while (i != manipulatedMenus.constEnd()) {
+		QString id=i.key();
+		QVariant zw=i.value();
+		QStringList m=zw.toStringList();
+		QAction * act= getManagedAction(id);
+		if (act) {
+			act->setText(m.first());
+			act->setData(m.at(1));
+			act->setVisible(!(m.value(2,"visible")=="hidden"));
+		}
+		++i;
+	}
 
 }
 void ConfigManager::loadManagedMenu(QMenu* parent,const QDomElement &f) {
@@ -1263,20 +1263,20 @@ void ConfigManager::latexTreeItemChanged(QTreeWidgetItem* item,int ){
 }
 
 void ConfigManager::treeWidgetToManagedLatexMenuTo() {
-    foreach(QTreeWidgetItem* item,changedItemsList){
-        QString id=item->data(0,Qt::UserRole).toString();
-        if (id=="") return;
-        QAction * act=getManagedAction(id);
-        if (act) {
-            act->setText(item->text(0));
-            act->setData(item->text(1));
+	foreach(QTreeWidgetItem* item,changedItemsList){
+		QString id=item->data(0,Qt::UserRole).toString();
+		if (id=="") return;
+		QAction * act=getManagedAction(id);
+		if (act) {
+			act->setText(item->text(0));
+			act->setData(item->text(1));
 			act->setVisible(item->checkState(0)==Qt::Checked);
 			QString zw="hidden";
 			if(item->checkState(0)==Qt::Checked) zw="visible";
-            QStringList m;
+			QStringList m;
 			m << item->text(0) << item->text(1) << zw ;
-            hashManipulateMenus.insert(id,m);
-        }
-    }
+			manipulatedMenus.insert(id,m);
+		}
+	}
 }
 
