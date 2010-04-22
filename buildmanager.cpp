@@ -613,6 +613,15 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 	//parse URL
 	if (!ddePseudoURL.startsWith("dde://")) return false;
 	ddePseudoURL.remove(0,6);
+	
+	if (ddePseudoURL.length() < 3) return false;
+	QString serviceEXEPath;
+	if (ddePseudoURL[1] == ':') { //extended dde of format dde://<path>:control/commands
+		int pathLength = ddePseudoURL.indexOf(':', 2);
+		serviceEXEPath = ddePseudoURL.left(pathLength);
+		ddePseudoURL.remove(0,pathLength+1);
+	}
+	
 	int slash=ddePseudoURL.indexOf("/");
 	if (slash==-1) return false;
 	QString service = ddePseudoURL.left(slash);
@@ -641,7 +650,21 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 		return false;
 	}
 	HCONV hConv = DdeConnect(pidInst, hszService, hszTopic, NULL);
-
+	if (!hConv && !serviceEXEPath.isEmpty()){ 
+		//connecting failed; start the service if necessary
+		QProcess* p = new QProcess(QCoreApplication::instance()); //application is parent, to close the service if tmx is closed
+		p->start(serviceEXEPath);
+		if (p->waitForStarted(5000)) {
+			connect(p, SIGNAL(finished(int)), p, SLOT(deleteLater())); //will free proc after the process has ended
+		  //try again to connect (repeatedly 2s long)
+			DWORD startTime = GetTickCount();
+		  while (!hConv && GetTickCount() - startTime < 1000) {
+				hConv = DdeConnect(pidInst, hszService, hszTopic, NULL); 
+				Sleep(100);
+			}
+		} else delete p;			
+	}
+	
 	QCoreApplication::processEvents();
 
 	DdeFreeStringHandle(pidInst, hszService);
