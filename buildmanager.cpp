@@ -528,21 +528,24 @@ QTemporaryFile* BuildManager::temporaryTexFile(){
 //3. latex is called => dvips converts .dvi to .ps => ghostscript is called and created final png
 //Then ghostscript to convert it to 
 void BuildManager::preview(const QString &preamble, const QString &text, QTextCodec *outputCodec){
-    // write to temp file
-	QTemporaryFile *tf=new QTemporaryFile(QDir::tempPath()+"/XXXXXX.tex");
+  // write to temp file
+  // (place /./ after the temporary directory because it fails otherwise with qt4.3 on win and the tempdir "t:")
+	QTemporaryFile *tf=new QTemporaryFile(QDir::tempPath()+QDir::separator()+"."+QDir::separator()+"XXXXXX.tex"); 
+	if (!tf) return;
 	tf->open();
+	
 	QTextStream out(tf);
 	if (outputCodec) out.setCodec(outputCodec);
 	out << preamble 
 		<< "\n\\begin{document}\n" 
 		<< text
 		<< "\n\\end{document}\n";
-	tf->close();
 	// prepare commands/filenames
 	QString ffn=QFileInfo(*tf).absoluteFilePath();
 	previewFileNames.append(ffn);
 	previewFileNameToText.insert(ffn,text);
 	tf->setAutoRemove(false);
+	tf->close();
 	delete tf; // tex file needs to be freed
 	// start conversion
 	// preliminary code
