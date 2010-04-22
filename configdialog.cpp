@@ -278,6 +278,9 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	connect(ui.comboBoxActions,SIGNAL(currentIndexChanged(int)), SLOT(actionsChanged(int)));
 	connect(ui.treePossibleToolbarActions,SIGNAL(doubleClicked(QModelIndex)), SLOT(toToolbarClicked()));
 
+  #if QT_VERSION >= 0x040400
+  ui.treePossibleToolbarActions->setHeaderHidden(true);
+  #endif
 //	ui.listCustomToolBar->setSelectionMode(QAbstractItemView::ExtendedSelection);
 //	ui.treePossibleToolbarActions->setSelectionMode(QAbstractItemView::ExtendedSelection);
 }

@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ui version="4.0">
+<ui version="4.0" >
  <class>ConfigDialog</class>
- <widget class="QDialog" name="ConfigDialog">
-  <property name="geometry">
+ <widget class="QDialog" name="ConfigDialog" >
+  <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
@@ -10,36 +9,57 @@
     <height>674</height>
    </rect>
   </property>
-  <property name="windowTitle">
+  <property name="windowTitle" >
    <string>Configure TexMakerX</string>
   </property>
-  <layout class="QGridLayout">
-   <property name="margin">
+  <layout class="QGridLayout" >
+   <property name="leftMargin" >
     <number>9</number>
    </property>
-   <property name="spacing">
+   <property name="topMargin" >
+    <number>9</number>
+   </property>
+   <property name="rightMargin" >
+    <number>9</number>
+   </property>
+   <property name="bottomMargin" >
+    <number>9</number>
+   </property>
+   <property name="horizontalSpacing" >
     <number>6</number>
    </property>
-   <item row="2" column="2">
-    <layout class="QHBoxLayout">
-     <property name="spacing">
+   <property name="verticalSpacing" >
+    <number>6</number>
+   </property>
+   <item row="2" column="2" >
+    <layout class="QHBoxLayout" >
+     <property name="spacing" >
       <number>6</number>
      </property>
-     <property name="sizeConstraint">
+     <property name="sizeConstraint" >
       <enum>QLayout::SetMinimumSize</enum>
      </property>
-     <property name="margin">
+     <property name="leftMargin" >
+      <number>0</number>
+     </property>
+     <property name="topMargin" >
+      <number>0</number>
+     </property>
+     <property name="rightMargin" >
+      <number>0</number>
+     </property>
+     <property name="bottomMargin" >
       <number>0</number>
      </property>
      <item>
       <spacer>
-       <property name="orientation">
+       <property name="orientation" >
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeType">
+       <property name="sizeType" >
         <enum>QSizePolicy::Expanding</enum>
        </property>
-       <property name="sizeHint" stdset="0">
+       <property name="sizeHint" >
         <size>
          <width>407</width>
          <height>31</height>
@@ -48,237 +68,237 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="okButton">
-       <property name="text">
+      <widget class="QPushButton" name="okButton" >
+       <property name="text" >
         <string>OK</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="cancelButton">
-       <property name="text">
+      <widget class="QPushButton" name="cancelButton" >
+       <property name="text" >
         <string>Cancel</string>
        </property>
       </widget>
      </item>
     </layout>
    </item>
-   <item row="0" column="0" rowspan="2">
-    <widget class="QListWidget" name="contentsWidget">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+   <item rowspan="2" row="0" column="0" >
+    <widget class="QListWidget" name="contentsWidget" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Expanding" hsizetype="Preferred" >
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="minimumSize">
+     <property name="minimumSize" >
       <size>
        <width>170</width>
        <height>442</height>
       </size>
      </property>
-     <property name="maximumSize">
+     <property name="maximumSize" >
       <size>
        <width>170</width>
        <height>32000</height>
       </size>
      </property>
-     <property name="horizontalScrollBarPolicy">
+     <property name="horizontalScrollBarPolicy" >
       <enum>Qt::ScrollBarAlwaysOff</enum>
      </property>
-     <property name="selectionBehavior">
+     <property name="selectionBehavior" >
       <enum>QAbstractItemView::SelectRows</enum>
      </property>
-     <property name="iconSize">
+     <property name="iconSize" >
       <size>
        <width>96</width>
        <height>96</height>
       </size>
      </property>
-     <property name="spacing">
+     <property name="spacing" >
       <number>12</number>
      </property>
-     <property name="gridSize">
+     <property name="gridSize" >
       <size>
        <width>150</width>
        <height>130</height>
       </size>
      </property>
-     <property name="viewMode">
+     <property name="viewMode" >
       <enum>QListView::IconMode</enum>
      </property>
-     <property name="currentRow">
+     <property name="currentRow" >
       <number>-1</number>
      </property>
     </widget>
    </item>
-   <item row="0" column="1" rowspan="2" colspan="2">
-    <widget class="QStackedWidget" name="pagesWidget">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+   <item rowspan="2" row="0" column="1" colspan="2" >
+    <widget class="QStackedWidget" name="pagesWidget" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="MinimumExpanding" hsizetype="Expanding" >
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="minimumSize">
+     <property name="minimumSize" >
       <size>
        <width>450</width>
        <height>442</height>
       </size>
      </property>
-     <property name="currentIndex">
-      <number>6</number>
+     <property name="currentIndex" >
+      <number>5</number>
      </property>
-     <widget class="QWidget" name="page_2">
-      <layout class="QVBoxLayout">
+     <widget class="QWidget" name="page_2" >
+      <layout class="QVBoxLayout" >
        <item>
-        <widget class="QGroupBox" name="groupBox_6">
-         <property name="title">
+        <widget class="QGroupBox" name="groupBox_6" >
+         <property name="title" >
           <string>Appearance</string>
          </property>
-         <layout class="QGridLayout">
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_3">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
+           <widget class="QLabel" name="label_3" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text">
+            <property name="text" >
              <string>Style</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" colspan="2">
-           <widget class="QComboBox" name="comboBoxInterfaceStyle">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+          <item row="0" column="1" colspan="2" >
+           <widget class="QComboBox" name="comboBoxInterfaceStyle" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_5">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <item row="3" column="0" >
+           <widget class="QLabel" name="label_5" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text">
+            <property name="text" >
              <string>Font</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="1" colspan="2">
-           <widget class="QFontComboBox" name="comboBoxInterfaceFont">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <item row="3" column="1" colspan="2" >
+           <widget class="QFontComboBox" name="comboBoxInterfaceFont" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="label_7">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <item row="4" column="0" >
+           <widget class="QLabel" name="label_7" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text">
+            <property name="text" >
              <string>Font Size</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="1" colspan="2">
-           <widget class="QSpinBox" name="spinBoxInterfaceFontSize">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <item row="4" column="1" colspan="2" >
+           <widget class="QSpinBox" name="spinBoxInterfaceFontSize" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
            </widget>
           </item>
-          <item row="8" column="0">
-           <widget class="QLabel" name="label_9">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <item row="8" column="0" >
+           <widget class="QLabel" name="label_9" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text">
+            <property name="text" >
              <string>Language</string>
             </property>
            </widget>
           </item>
-          <item row="8" column="1" colspan="2">
-           <widget class="QComboBox" name="comboBoxLanguage">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <item row="8" column="1" colspan="2" >
+           <widget class="QComboBox" name="comboBoxLanguage" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_14">
-            <property name="text">
+          <item row="1" column="0" >
+           <widget class="QLabel" name="label_14" >
+            <property name="text" >
              <string>Color Scheme</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1" colspan="2">
-           <widget class="QComboBox" name="comboBoxInterfaceModernStyle">
+          <item row="1" column="1" colspan="2" >
+           <widget class="QComboBox" name="comboBoxInterfaceModernStyle" >
             <item>
-             <property name="text">
+             <property name="text" >
               <string>classic</string>
              </property>
             </item>
             <item>
-             <property name="text">
+             <property name="text" >
               <string>modern</string>
              </property>
             </item>
            </widget>
           </item>
-          <item row="7" column="2">
-           <widget class="QCheckBox" name="checkBoxTabbedStructureView">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <item row="7" column="2" >
+           <widget class="QCheckBox" name="checkBoxTabbedStructureView" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text">
+            <property name="text" >
              <string>Tabbed Structure/Symbol View</string>
             </property>
            </widget>
           </item>
-          <item row="7" column="1">
-           <widget class="QCheckBox" name="checkBoxTabbedLogView">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <item row="7" column="1" >
+           <widget class="QCheckBox" name="checkBoxTabbedLogView" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text">
+            <property name="text" >
              <string>Tabbed Log Viewer</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
-           <widget class="QCheckBox" name="checkBoxUseTexmakerPalette">
-            <property name="text">
+          <item row="2" column="1" >
+           <widget class="QCheckBox" name="checkBoxUseTexmakerPalette" >
+            <property name="text" >
              <string>ignore most system colors</string>
             </property>
            </widget>
@@ -287,73 +307,73 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox_7">
-         <property name="title">
+        <widget class="QGroupBox" name="groupBox_7" >
+         <property name="title" >
           <string>Files</string>
          </property>
-         <property name="advancedOption" stdset="0">
+         <property name="advancedOption" stdset="0" >
           <bool>true</bool>
          </property>
-         <layout class="QGridLayout">
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_8">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
+           <widget class="QLabel" name="label_8" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text">
+            <property name="text" >
              <string>Max. Recent Documents</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QSpinBox" name="spinBoxMaxRecentFiles">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <item row="0" column="1" >
+           <widget class="QSpinBox" name="spinBoxMaxRecentFiles" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_10">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <item row="1" column="0" >
+           <widget class="QLabel" name="label_10" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text">
+            <property name="text" >
              <string>Max. Recent Master Documents</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="QSpinBox" name="spinBoxMaxRecentProjects">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <item row="1" column="1" >
+           <widget class="QSpinBox" name="spinBoxMaxRecentProjects" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="QCheckBox" name="checkBoxParseBibTeX">
-            <property name="text">
+          <item row="2" column="0" >
+           <widget class="QCheckBox" name="checkBoxParseBibTeX" >
+            <property name="text" >
              <string>Parse BibTeX</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
-           <widget class="QCheckBox" name="checkBoxParseMaster">
-            <property name="text">
+          <item row="2" column="1" >
+           <widget class="QCheckBox" name="checkBoxParseMaster" >
+            <property name="text" >
              <string>Always show structure of master document</string>
             </property>
-            <property name="advancedOption" stdset="0">
+            <property name="advancedOption" stdset="0" >
              <bool>true</bool>
             </property>
            </widget>
@@ -362,132 +382,130 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox">
-         <property name="title">
+        <widget class="QGroupBox" name="groupBox" >
+         <property name="title" >
           <string>Dictionaries</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelASpellCommand">
-            <property name="text">
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
+           <widget class="QLabel" name="labelASpellCommand" >
+            <property name="text" >
              <string>Spelling dictionary</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="5">
-           <widget class="QPushButton" name="pushButtonAspell">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+          <item row="0" column="5" >
+           <widget class="QPushButton" name="pushButtonAspell" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text">
+            <property name="text" >
              <string/>
             </property>
-            <property name="icon">
-             <iconset resource="texmaker.qrc">
-              <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+            <property name="icon" >
+             <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
             </property>
            </widget>
           </item>
-          <item row="1" column="1" colspan="2">
-           <widget class="QLabel" name="labelGetDic">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <item row="1" column="1" colspan="2" >
+           <widget class="QLabel" name="labelGetDic" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text">
+            <property name="text" >
              <string>TextLabel</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="3" colspan="3">
-           <widget class="QCheckBox" name="checkBoxRealTimeCheck">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <item row="1" column="3" colspan="3" >
+           <widget class="QCheckBox" name="checkBoxRealTimeCheck" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text">
+            <property name="text" >
              <string>inline checking</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_13">
-            <property name="text">
+          <item row="2" column="0" >
+           <widget class="QLabel" name="label_13" >
+            <property name="text" >
              <string>Thesaurus Database</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="5">
-           <widget class="QPushButton" name="btSelectThesaurusFileName">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+          <item row="2" column="5" >
+           <widget class="QPushButton" name="btSelectThesaurusFileName" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text">
+            <property name="text" >
              <string/>
             </property>
-            <property name="icon">
-             <iconset resource="texmaker.qrc">
-              <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+            <property name="icon" >
+             <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
-           <widget class="QCheckBox" name="checkBoxInlineSpellCheck">
-            <property name="text">
+          <item row="3" column="1" >
+           <widget class="QCheckBox" name="checkBoxInlineSpellCheck" >
+            <property name="text" >
              <string>inline spell checking</string>
             </property>
-            <property name="advancedOption" stdset="0">
+            <property name="advancedOption" stdset="0" >
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="3" column="2">
-           <widget class="QCheckBox" name="checkBoxInlineCitationCheck">
-            <property name="text">
+          <item row="3" column="2" >
+           <widget class="QCheckBox" name="checkBoxInlineCitationCheck" >
+            <property name="text" >
              <string>inline citation checking</string>
             </property>
-            <property name="advancedOption" stdset="0">
+            <property name="advancedOption" stdset="0" >
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="3" column="3">
-           <widget class="QCheckBox" name="checkBoxInlineReferenceCheck">
-            <property name="text">
+          <item row="3" column="3" >
+           <widget class="QCheckBox" name="checkBoxInlineReferenceCheck" >
+            <property name="text" >
              <string>inline reference checking</string>
             </property>
-            <property name="advancedOption" stdset="0">
+            <property name="advancedOption" stdset="0" >
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" colspan="4">
-           <widget class="QComboBox" name="comboBoxDictionaryFileName">
-            <property name="editable">
+          <item row="0" column="1" colspan="4" >
+           <widget class="QComboBox" name="comboBoxDictionaryFileName" >
+            <property name="editable" >
              <bool>true</bool>
             </property>
-            <property name="dirFilter" stdset="0">
-             <string notr="true">*.dic</string>
+            <property name="dirFilter" stdset="0" >
+             <string>*.dic</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1" colspan="4">
-           <widget class="QComboBox" name="comboBoxThesaurusFileName">
-            <property name="editable">
+          <item row="2" column="1" colspan="4" >
+           <widget class="QComboBox" name="comboBoxThesaurusFileName" >
+            <property name="editable" >
              <bool>true</bool>
             </property>
-            <property name="dirFilter" stdset="0">
-             <string notr="true">*.dat</string>
+            <property name="dirFilter" stdset="0" >
+             <string>*.dat</string>
             </property>
            </widget>
           </item>
@@ -496,13 +514,13 @@
        </item>
        <item>
         <spacer>
-         <property name="orientation">
+         <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeType">
+         <property name="sizeType" >
           <enum>QSizePolicy::MinimumExpanding</enum>
          </property>
-         <property name="sizeHint" stdset="0">
+         <property name="sizeHint" >
           <size>
            <width>20</width>
            <height>40</height>
@@ -512,90 +530,99 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="pt">
-      <layout class="QVBoxLayout">
-       <property name="spacing">
+     <widget class="QWidget" name="pt" >
+      <layout class="QVBoxLayout" >
+       <property name="spacing" >
         <number>6</number>
        </property>
-       <property name="margin">
+       <property name="leftMargin" >
+        <number>9</number>
+       </property>
+       <property name="topMargin" >
+        <number>9</number>
+       </property>
+       <property name="rightMargin" >
+        <number>9</number>
+       </property>
+       <property name="bottomMargin" >
         <number>9</number>
        </property>
        <item>
-        <widget class="QGroupBox" name="groupBoxCommands">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <widget class="QGroupBox" name="groupBoxCommands" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="title">
+         <property name="title" >
           <string>Commands (%: filename without extension - @: line number - ?: extended filename options)</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_15">
-         <property name="text">
-          <string>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</string>
+        <widget class="QLabel" name="label_15" >
+         <property name="text" >
+          <string>&lt;span style=" font-weight:600; text-decoration: underline;">Special chars&lt;/span></string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>&lt;b&gt;%&lt;/b&gt;: filename without extension &lt;b&gt;@&lt;/b&gt;: line number </string>
+        <widget class="QLabel" name="label_4" >
+         <property name="text" >
+          <string>&lt;b>%&lt;/b>: filename without extension &lt;b>@&lt;/b>: line number </string>
          </property>
-         <property name="indent">
+         <property name="indent" >
           <number>15</number>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_18">
-         <property name="text">
-          <string>&lt;b&gt;?&lt;/b&gt; followed by &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: extended filename; prepend &lt;i&gt;c:&lt;/i&gt; for current file instead of master file</string>
+        <widget class="QLabel" name="label_18" >
+         <property name="text" >
+          <string>&lt;b>?&lt;/b> followed by &lt;i>a&lt;/i>,&lt;!--&lt;i>r&lt;/i>,-->&lt;i>m&lt;/i>,&lt;i>e&lt;/i>,&lt;i>"&lt;/i>, ,&lt;i>)&lt;/i>: extended filename; prepend &lt;i>c:&lt;/i> for current file instead of master file</string>
          </property>
-         <property name="indent">
+         <property name="indent" >
           <number>15</number>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_17">
-         <property name="text">
-          <string>&lt;i&gt;a&lt;/i&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;i&gt;m&lt;/i&gt;: basefile name without extension,&lt;i&gt;e&lt;/i&gt;: extension&lt;br /&gt;
-&lt;i&gt;&quot;&lt;/i&gt;: enclose with &quot;..&quot;, . (point): ends placeholder with a point, (space): ends placeholder and add a space, &lt;i&gt;)&lt;/i&gt;: ends placeholder &lt;br /&gt;
-examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just the extension (without leading point), &lt;br /&gt;
-?m&quot; (filename without extension, identical to %) ?me (filename with extension like example.tex)</string>
+        <widget class="QLabel" name="label_17" >
+         <property name="text" >
+          <string>&lt;i>a&lt;/i>: absolute path, &lt;!--&lt;i>r&lt;/i>: relative path, -->&lt;i>m&lt;/i>: basefile name without extension,&lt;i>e&lt;/i>: extension&lt;br />
+&lt;i>"&lt;/i>: enclose with "..", . (point): ends placeholder with a point, (space): ends placeholder and add a space, &lt;i>)&lt;/i>: ends placeholder &lt;br />
+examples: ?ame": complete absolute filename enclosed in ", ?e) just the extension (without leading point), &lt;br />
+?m" (filename without extension, identical to %) ?me (filename with extension like example.tex)</string>
          </property>
-         <property name="indent">
+         <property name="indent" >
           <number>30</number>
          </property>
-         <property name="advancedOption" stdset="0">
+         <property name="advancedOption" stdset="0" >
           <bool>true</bool>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_16">
-         <property name="text">
+        <widget class="QLabel" name="label_16" >
+         <property name="text" >
           <string>%%, @@ or ?? become: %, @ or ?
 </string>
          </property>
-         <property name="margin">
+         <property name="margin" >
           <number>0</number>
          </property>
-         <property name="indent">
+         <property name="indent" >
           <number>15</number>
          </property>
         </widget>
        </item>
        <item>
         <spacer>
-         <property name="orientation">
+         <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0">
+         <property name="sizeHint" >
           <size>
            <width>401</width>
            <height>16</height>
@@ -605,88 +632,118 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="pq">
-      <layout class="QVBoxLayout">
-       <property name="spacing">
+     <widget class="QWidget" name="pq" >
+      <layout class="QVBoxLayout" >
+       <property name="spacing" >
         <number>6</number>
        </property>
-       <property name="margin">
+       <property name="leftMargin" >
+        <number>9</number>
+       </property>
+       <property name="topMargin" >
+        <number>9</number>
+       </property>
+       <property name="rightMargin" >
+        <number>9</number>
+       </property>
+       <property name="bottomMargin" >
         <number>9</number>
        </property>
        <item>
-        <widget class="QGroupBox" name="groupBox_2">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <widget class="QGroupBox" name="groupBox_2" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="title">
+         <property name="title" >
           <string>Quick Build Command</string>
          </property>
-         <layout class="QGridLayout">
-          <property name="margin">
+         <layout class="QGridLayout" >
+          <property name="leftMargin" >
            <number>9</number>
           </property>
-          <property name="spacing">
+          <property name="topMargin" >
+           <number>9</number>
+          </property>
+          <property name="rightMargin" >
+           <number>9</number>
+          </property>
+          <property name="bottomMargin" >
+           <number>9</number>
+          </property>
+          <property name="horizontalSpacing" >
            <number>6</number>
           </property>
-          <item row="0" column="0">
-           <layout class="QVBoxLayout">
-            <property name="spacing">
+          <property name="verticalSpacing" >
+           <number>6</number>
+          </property>
+          <item row="0" column="0" >
+           <layout class="QVBoxLayout" >
+            <property name="spacing" >
              <number>6</number>
             </property>
-            <property name="margin">
+            <property name="leftMargin" >
+             <number>0</number>
+            </property>
+            <property name="topMargin" >
+             <number>0</number>
+            </property>
+            <property name="rightMargin" >
+             <number>0</number>
+            </property>
+            <property name="bottomMargin" >
              <number>0</number>
             </property>
             <item>
-             <widget class="QRadioButton" name="radioButton1">
-              <property name="text">
+             <widget class="QRadioButton" name="radioButton1" >
+              <property name="text" >
                <string>LaTeX + dvips + View PS</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton2">
-              <property name="text">
+             <widget class="QRadioButton" name="radioButton2" >
+              <property name="text" >
                <string>LaTeX + View DVI</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton3">
-              <property name="text">
+             <widget class="QRadioButton" name="radioButton3" >
+              <property name="text" >
                <string>PdfLaTeX + View PDF</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton4">
-              <property name="text">
+             <widget class="QRadioButton" name="radioButton4" >
+              <property name="text" >
                <string>LaTeX + dvipdfm + View PDF</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton5">
-              <property name="text">
+             <widget class="QRadioButton" name="radioButton5" >
+              <property name="text" >
                <string>LaTeX + dvips + ps2pdf + View PDF</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton6">
-              <property name="text">
+             <widget class="QRadioButton" name="radioButton6" >
+              <property name="text" >
                <string>User : (% : filename without extension)</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEditUserquick"/>
+             <widget class="QLineEdit" name="lineEditUserquick" />
             </item>
             <item>
-             <widget class="QLabel" name="label">
-              <property name="text">
+             <widget class="QLabel" name="label" >
+              <property name="text" >
                <string>(the commands must be separated by '|')</string>
               </property>
              </widget>
@@ -697,47 +754,46 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox_4">
-         <property name="title">
+        <widget class="QGroupBox" name="groupBox_4" >
+         <property name="title" >
           <string>More</string>
          </property>
-         <property name="advancedOption" stdset="0">
+         <property name="advancedOption" stdset="0" >
           <bool>true</bool>
          </property>
-         <layout class="QGridLayout">
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_2">
-            <property name="text">
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
+           <widget class="QLabel" name="label_2" >
+            <property name="text" >
              <string>Execute before compiling:</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" colspan="3">
-           <widget class="QLineEdit" name="lineEditExecuteBeforeCompiling">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <item row="0" column="1" colspan="3" >
+           <widget class="QLineEdit" name="lineEditExecuteBeforeCompiling" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
            </widget>
           </item>
-          <item row="0" column="4">
-           <widget class="QPushButton" name="pushButtonExecuteBeforeCompiling">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+          <item row="0" column="4" >
+           <widget class="QPushButton" name="pushButtonExecuteBeforeCompiling" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text">
+            <property name="text" >
              <string/>
             </property>
-            <property name="icon">
-             <iconset resource="texmaker.qrc">
-              <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+            <property name="icon" >
+             <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
             </property>
-            <property name="iconSize">
+            <property name="iconSize" >
              <size>
               <width>16</width>
               <height>16</height>
@@ -745,52 +801,52 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="3" column="0" colspan="2">
-           <widget class="QLabel" name="label_11">
-            <property name="text">
+          <item row="3" column="0" colspan="2" >
+           <widget class="QLabel" name="label_11" >
+            <property name="text" >
              <string>Assume that every error is in the current document:</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="2" colspan="2">
-           <widget class="QComboBox" name="comboBoxIgnoreLogFileNames">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <item row="3" column="2" colspan="2" >
+           <widget class="QComboBox" name="comboBoxIgnoreLogFileNames" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
             <item>
-             <property name="text">
+             <property name="text" >
               <string>Never (only use the file names in the log)</string>
              </property>
             </item>
             <item>
-             <property name="text">
+             <property name="text" >
               <string>Only when there is no master document</string>
              </property>
             </item>
             <item>
-             <property name="text">
+             <property name="text" >
               <string>Always (ignore file names in the log)</string>
              </property>
             </item>
            </widget>
           </item>
-          <item row="2" column="0" colspan="3">
-           <widget class="QCheckBox" name="checkBoxShowLog">
-            <property name="text">
+          <item row="2" column="0" colspan="3" >
+           <widget class="QCheckBox" name="checkBoxShowLog" >
+            <property name="text" >
              <string>Show log after compiling if there are errors</string>
             </property>
-            <property name="checked">
+            <property name="checked" >
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="4">
-           <widget class="QCheckBox" name="checkBoxRunAfterBibTeXChange">
-            <property name="text">
-             <string>run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</string>
+          <item row="1" column="0" colspan="4" >
+           <widget class="QCheckBox" name="checkBoxRunAfterBibTeXChange" >
+            <property name="text" >
+             <string>run "latex bibtex latex" before compiling if bib-files were changed</string>
             </property>
            </widget>
           </item>
@@ -799,10 +855,10 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        </item>
        <item>
         <spacer>
-         <property name="orientation">
+         <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0">
+         <property name="sizeHint" >
           <size>
            <width>441</width>
            <height>40</height>
@@ -812,40 +868,40 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="Seite">
-      <layout class="QVBoxLayout">
+     <widget class="QWidget" name="Seite" >
+      <layout class="QVBoxLayout" >
        <item>
-        <widget class="QLabel" name="label_6">
-         <property name="text">
+        <widget class="QLabel" name="label_6" >
+         <property name="text" >
           <string>Shortcuts</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QTreeWidget" name="shortcutTree">
-         <property name="animated">
+        <widget class="QTreeWidget" name="shortcutTree" >
+         <property name="animated" >
           <bool>true</bool>
          </property>
-         <property name="columnCount">
+         <property name="columnCount" >
           <number>4</number>
          </property>
          <column>
-          <property name="text">
+          <property name="text" >
            <string>1</string>
           </property>
          </column>
          <column>
-          <property name="text">
+          <property name="text" >
            <string>2</string>
           </property>
          </column>
          <column>
-          <property name="text">
+          <property name="text" >
            <string>3</string>
           </property>
          </column>
          <column>
-          <property name="text">
+          <property name="text" >
            <string>4</string>
           </property>
          </column>
@@ -853,73 +909,73 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="page_3">
-      <layout class="QVBoxLayout" name="verticalLayout">
+     <widget class="QWidget" name="page_3" >
+      <layout class="QVBoxLayout" >
        <item>
-        <widget class="QLabel" name="label_19">
-         <property name="text">
+        <widget class="QLabel" name="label_19" >
+         <property name="text" >
           <string>Latex Menus</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QTreeWidget" name="latexTree">
-         <property name="animated">
+        <widget class="QTreeWidget" name="latexTree" >
+         <property name="animated" >
           <bool>true</bool>
          </property>
-         <property name="columnCount">
+         <property name="columnCount" >
           <number>2</number>
          </property>
          <column>
-          <property name="text">
-           <string notr="true">1</string>
+          <property name="text" >
+           <string>1</string>
           </property>
          </column>
          <column>
-          <property name="text">
-           <string notr="true">2</string>
+          <property name="text" >
+           <string>2</string>
           </property>
          </column>
         </widget>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="page_4">
-      <layout class="QVBoxLayout" name="verticalLayout_2">
+     <widget class="QWidget" name="page_4" >
+      <layout class="QVBoxLayout" >
        <item>
-        <widget class="QLabel" name="label_20">
-         <property name="text">
+        <widget class="QLabel" name="label_20" >
+         <property name="text" >
           <string>Toolbar Customization</string>
          </property>
         </widget>
        </item>
        <item>
-        <layout class="QGridLayout" name="gridLayout_2">
-         <item row="1" column="1">
-          <widget class="QListWidget" name="listCustomToolBar"/>
+        <layout class="QGridLayout" >
+         <item row="1" column="1" >
+          <widget class="QListWidget" name="listCustomToolBar" />
          </item>
-         <item row="1" column="2">
-          <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item row="1" column="2" >
+          <layout class="QVBoxLayout" >
            <item>
-            <widget class="QPushButton" name="pbToToolbar">
-             <property name="text">
+            <widget class="QPushButton" name="pbToToolbar" >
+             <property name="text" >
               <string>&lt;</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pbFromToolbar">
-             <property name="text">
-              <string>&gt;</string>
+            <widget class="QPushButton" name="pbFromToolbar" >
+             <property name="text" >
+              <string>></string>
              </property>
             </widget>
            </item>
            <item>
-            <spacer name="verticalSpacer">
-             <property name="orientation">
+            <spacer>
+             <property name="orientation" >
               <enum>Qt::Vertical</enum>
              </property>
-             <property name="sizeHint" stdset="0">
+             <property name="sizeHint" >
               <size>
                <width>20</width>
                <height>40</height>
@@ -929,29 +985,29 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            </item>
           </layout>
          </item>
-         <item row="0" column="1">
-          <widget class="QComboBox" name="comboBoxToolbars"/>
+         <item row="0" column="1" >
+          <widget class="QComboBox" name="comboBoxToolbars" />
          </item>
-         <item row="0" column="3">
-          <widget class="QComboBox" name="comboBoxActions"/>
+         <item row="0" column="3" >
+          <widget class="QComboBox" name="comboBoxActions" />
          </item>
-         <item row="1" column="3">
-          <widget class="QTreeWidget" name="treePossibleToolbarActions">
-           <property name="rootIsDecorated">
+         <item row="1" column="3" >
+          <widget class="QTreeWidget" name="treePossibleToolbarActions" >
+           <property name="rootIsDecorated" >
             <bool>false</bool>
            </property>
-           <property name="animated">
+           <property name="animated" >
             <bool>true</bool>
            </property>
-           <property name="allColumnsShowFocus">
+           <property name="allColumnsShowFocus" >
             <bool>true</bool>
            </property>
-           <property name="headerHidden">
+           <property name="headerHidden" stdset="0" >
             <bool>true</bool>
            </property>
            <column>
-            <property name="text">
-             <string notr="true">1</string>
+            <property name="text" >
+             <string>1</string>
             </property>
            </column>
           </widget>
@@ -960,288 +1016,300 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="pe">
-      <layout class="QGridLayout">
-       <property name="margin">
+     <widget class="QWidget" name="pe" >
+      <layout class="QGridLayout" >
+       <property name="leftMargin" >
         <number>9</number>
        </property>
-       <property name="spacing">
+       <property name="topMargin" >
+        <number>9</number>
+       </property>
+       <property name="rightMargin" >
+        <number>9</number>
+       </property>
+       <property name="bottomMargin" >
+        <number>9</number>
+       </property>
+       <property name="horizontalSpacing" >
         <number>6</number>
        </property>
-       <item row="1" column="0">
-        <widget class="QGroupBox" name="groupBox_3">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <property name="verticalSpacing" >
+        <number>6</number>
+       </property>
+       <item row="1" column="0" >
+        <widget class="QGroupBox" name="groupBox_3" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="title">
+         <property name="title" >
           <string>Editor</string>
          </property>
-         <layout class="QGridLayout">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelFamily">
-            <property name="text">
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
+           <widget class="QLabel" name="labelFamily" >
+            <property name="text" >
              <string>Editor Font Family</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" colspan="3">
-           <widget class="QComboBox" name="comboBoxFont">
-            <property name="editable">
+          <item row="0" column="1" colspan="3" >
+           <widget class="QComboBox" name="comboBoxFont" >
+            <property name="editable" >
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="0" column="4">
-           <widget class="QCheckBox" name="checkBoxWordwrap">
-            <property name="text">
+          <item row="0" column="4" >
+           <widget class="QCheckBox" name="checkBoxWordwrap" >
+            <property name="text" >
              <string>Word Wrap</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelSize">
-            <property name="text">
+          <item row="1" column="0" >
+           <widget class="QLabel" name="labelSize" >
+            <property name="text" >
              <string>Editor Font Size</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1" colspan="3">
-           <widget class="QSpinBox" name="spinBoxSize">
-            <property name="minimum">
+          <item row="1" column="1" colspan="3" >
+           <widget class="QSpinBox" name="spinBoxSize" >
+            <property name="minimum" >
              <number>1</number>
             </property>
-            <property name="value">
+            <property name="value" >
              <number>12</number>
             </property>
            </widget>
           </item>
-          <item row="1" column="4">
-           <widget class="QCheckBox" name="checkBoxFolding">
-            <property name="text">
+          <item row="1" column="4" >
+           <widget class="QCheckBox" name="checkBoxFolding" >
+            <property name="text" >
              <string>Folding</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelEncoding">
-            <property name="text">
+          <item row="2" column="0" >
+           <widget class="QLabel" name="labelEncoding" >
+            <property name="text" >
              <string>Editor Font Encoding</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1" colspan="2">
-           <widget class="QComboBox" name="comboBoxEncoding"/>
+          <item row="2" column="1" colspan="2" >
+           <widget class="QComboBox" name="comboBoxEncoding" />
           </item>
-          <item row="6" column="2" colspan="2">
-           <widget class="QComboBox" name="comboboxLineNumbers">
-            <property name="advancedOption" stdset="0">
+          <item row="6" column="2" colspan="2" >
+           <widget class="QComboBox" name="comboboxLineNumbers" >
+            <property name="advancedOption" stdset="0" >
              <bool>true</bool>
             </property>
             <item>
-             <property name="text">
+             <property name="text" >
               <string>No line numbers</string>
              </property>
             </item>
             <item>
-             <property name="text">
+             <property name="text" >
               <string>Show line numbers</string>
              </property>
             </item>
             <item>
-             <property name="text">
+             <property name="text" >
               <string>Show important line numbers</string>
              </property>
             </item>
            </widget>
           </item>
-          <item row="8" column="0" colspan="2">
-           <widget class="QComboBox" name="comboBoxPreviewMode">
-            <property name="advancedOption" stdset="0">
+          <item row="8" column="0" colspan="2" >
+           <widget class="QComboBox" name="comboBoxPreviewMode" >
+            <property name="advancedOption" stdset="0" >
              <bool>true</bool>
             </property>
             <item>
-             <property name="text">
+             <property name="text" >
               <string>show preview as tool tip if panel is hidden</string>
              </property>
             </item>
             <item>
-             <property name="text">
+             <property name="text" >
               <string>always show preview in preview panel</string>
              </property>
             </item>
             <item>
-             <property name="text">
+             <property name="text" >
               <string>always show preview as tool tip</string>
              </property>
             </item>
             <item>
-             <property name="text">
+             <property name="text" >
               <string>always show both</string>
              </property>
             </item>
            </widget>
           </item>
-          <item row="8" column="2" colspan="2">
-           <widget class="QComboBox" name="comboBoxDvi2PngMode">
-            <property name="advancedOption" stdset="0">
+          <item row="8" column="2" colspan="2" >
+           <widget class="QComboBox" name="comboBoxDvi2PngMode" >
+            <property name="advancedOption" stdset="0" >
              <bool>true</bool>
             </property>
             <item>
-             <property name="text">
+             <property name="text" >
               <string>preview with dvipng</string>
              </property>
             </item>
             <item>
-             <property name="text">
+             <property name="text" >
               <string>preview with dvipng --follow (parallel)</string>
              </property>
             </item>
             <item>
-             <property name="text">
+             <property name="text" >
               <string>preview with dvips/ghostscript</string>
              </property>
             </item>
            </widget>
           </item>
-          <item row="10" column="1" colspan="4">
-           <widget class="QGroupBox" name="formatConfigBox">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+          <item row="10" column="1" colspan="4" >
+           <widget class="QGroupBox" name="formatConfigBox" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="MinimumExpanding" hsizetype="Preferred" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="minimumSize">
+            <property name="minimumSize" >
              <size>
               <width>0</width>
               <height>0</height>
              </size>
             </property>
-            <property name="baseSize">
+            <property name="baseSize" >
              <size>
               <width>0</width>
               <height>0</height>
              </size>
             </property>
-            <property name="title">
+            <property name="title" >
              <string>Formats</string>
             </property>
            </widget>
           </item>
-          <item row="9" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBoxCloseSearchReplaceTogether">
-            <property name="text">
+          <item row="9" column="0" colspan="2" >
+           <widget class="QCheckBox" name="checkBoxCloseSearchReplaceTogether" >
+            <property name="text" >
              <string>close search and replace panel together</string>
             </property>
-            <property name="advancedOption" stdset="0">
+            <property name="advancedOption" stdset="0" >
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="6" column="0" colspan="2">
-           <widget class="QComboBox" name="comboBoxAutoIndent">
-            <property name="advancedOption" stdset="0">
+          <item row="6" column="0" colspan="2" >
+           <widget class="QComboBox" name="comboBoxAutoIndent" >
+            <property name="advancedOption" stdset="0" >
              <bool>true</bool>
             </property>
             <item>
-             <property name="text">
+             <property name="text" >
               <string>ignore indentation</string>
              </property>
             </item>
             <item>
-             <property name="text">
+             <property name="text" >
               <string>keep indentation</string>
              </property>
             </item>
             <item>
-             <property name="text">
+             <property name="text" >
               <string>indent and unindent automatically</string>
              </property>
             </item>
             <item>
-             <property name="text">
+             <property name="text" >
               <string>keep indentation with spaces only</string>
              </property>
             </item>
             <item>
-             <property name="text">
+             <property name="text" >
               <string>indent and unindent automatically with spaces only</string>
              </property>
             </item>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QCheckBox" name="checkBoxLineState">
-            <property name="text">
+          <item row="3" column="0" >
+           <widget class="QCheckBox" name="checkBoxLineState" >
+            <property name="text" >
              <string>Show Line Change State</string>
             </property>
-            <property name="advancedOption" stdset="0">
+            <property name="advancedOption" stdset="0" >
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
-           <widget class="QCheckBox" name="checkBoxState">
-            <property name="text">
+          <item row="3" column="1" >
+           <widget class="QCheckBox" name="checkBoxState" >
+            <property name="text" >
              <string>Show State Panel</string>
             </property>
-            <property name="advancedOption" stdset="0">
+            <property name="advancedOption" stdset="0" >
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="3" column="2">
-           <widget class="QCheckBox" name="checkBoxDisplayModifyTime">
-            <property name="text">
+          <item row="3" column="2" >
+           <widget class="QCheckBox" name="checkBoxDisplayModifyTime" >
+            <property name="text" >
              <string>Show Modify Time</string>
             </property>
-            <property name="advancedOption" stdset="0">
+            <property name="advancedOption" stdset="0" >
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="9" column="2" colspan="2">
-           <widget class="QCheckBox" name="checkBoxUseLineForSearch">
-            <property name="text">
+          <item row="9" column="2" colspan="2" >
+           <widget class="QCheckBox" name="checkBoxUseLineForSearch" >
+            <property name="text" >
              <string>Use single line selection as Search Word</string>
             </property>
-            <property name="advancedOption" stdset="0">
+            <property name="advancedOption" stdset="0" >
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="2" column="3" colspan="2">
-           <widget class="QCheckBox" name="checkBoxAutoDetectOnLoad">
-            <property name="toolTip">
+          <item row="2" column="3" colspan="2" >
+           <widget class="QCheckBox" name="checkBoxAutoDetectOnLoad" >
+            <property name="toolTip" >
              <string>can only decide between utf16/utf-8 and ISO 8859-1 !</string>
             </property>
-            <property name="text">
+            <property name="text" >
              <string>auto detect encoding of loaded files</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="3" colspan="2">
-           <widget class="QCheckBox" name="checkBoxTabforMoveToPlaceholder">
-            <property name="text">
+          <item row="3" column="3" colspan="2" >
+           <widget class="QCheckBox" name="checkBoxTabforMoveToPlaceholder" >
+            <property name="text" >
              <string>Use Tab for Move To Placeholder</string>
             </property>
-            <property name="advancedOption" stdset="0">
+            <property name="advancedOption" stdset="0" >
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
-           <widget class="QCheckBox" name="checkBoxShowWhitespace">
-            <property name="text">
+          <item row="4" column="0" >
+           <widget class="QCheckBox" name="checkBoxShowWhitespace" >
+            <property name="text" >
              <string>Show Whitespace</string>
             </property>
-            <property name="checked">
+            <property name="checked" >
              <bool>true</bool>
             </property>
-            <property name="advancedOption" stdset="0">
+            <property name="advancedOption" stdset="0" >
              <bool>true</bool>
             </property>
            </widget>
@@ -1251,60 +1319,51 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="page_6">
-      <layout class="QVBoxLayout" name="verticalLayout_5">
+     <widget class="QWidget" name="page_6" >
+      <layout class="QVBoxLayout" >
        <item>
-        <widget class="QTableWidget" name="twHighlighEnvirons">
-         <property name="rowCount">
+        <widget class="QTableWidget" name="twHighlighEnvirons" >
+         <property name="rowCount" >
           <number>1</number>
          </property>
-         <property name="columnCount">
+         <property name="columnCount" >
           <number>2</number>
          </property>
-         <attribute name="horizontalHeaderDefaultSectionSize">
-          <number>300</number>
-         </attribute>
-         <attribute name="horizontalHeaderMinimumSectionSize">
-          <number>200</number>
-         </attribute>
-         <attribute name="horizontalHeaderStretchLastSection">
-          <bool>true</bool>
-         </attribute>
          <row/>
          <column>
-          <property name="text">
+          <property name="text" >
            <string>Custom Environment</string>
           </property>
          </column>
          <column>
-          <property name="text">
+          <property name="text" >
            <string>Type of Environment</string>
           </property>
          </column>
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <layout class="QHBoxLayout" >
          <item>
-          <widget class="QPushButton" name="pbAddLine">
-           <property name="text">
+          <widget class="QPushButton" name="pbAddLine" >
+           <property name="text" >
             <string>Add line</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pbRemoveLine">
-           <property name="text">
+          <widget class="QPushButton" name="pbRemoveLine" >
+           <property name="text" >
             <string>Remove line</string>
            </property>
           </widget>
          </item>
          <item>
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
+          <spacer>
+           <property name="orientation" >
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeHint" stdset="0">
+           <property name="sizeHint" >
             <size>
              <width>40</width>
              <height>20</height>
@@ -1316,33 +1375,33 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="page">
-      <layout class="QVBoxLayout">
+     <widget class="QWidget" name="page" >
+      <layout class="QVBoxLayout" >
        <item>
-        <widget class="QCheckBox" name="checkBoxCompletion">
-         <property name="text">
+        <widget class="QCheckBox" name="checkBoxCompletion" >
+         <property name="text" >
           <string>Completion Enabled</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBoxCaseSensitive">
-         <property name="text">
+        <widget class="QCheckBox" name="checkBoxCaseSensitive" >
+         <property name="text" >
           <string>Case Sensitive</string>
          </property>
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout">
+        <layout class="QHBoxLayout" >
          <item>
           <spacer>
-           <property name="orientation">
+           <property name="orientation" >
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeType">
+           <property name="sizeType" >
             <enum>QSizePolicy::Minimum</enum>
            </property>
-           <property name="sizeHint" stdset="0">
+           <property name="sizeHint" >
             <size>
              <width>20</width>
              <height>20</height>
@@ -1351,21 +1410,21 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           </spacer>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBoxCaseSensitiveInFirstCharacter">
-           <property name="text">
+          <widget class="QCheckBox" name="checkBoxCaseSensitiveInFirstCharacter" >
+           <property name="text" >
             <string>In first character</string>
            </property>
-           <property name="advancedOption" stdset="0">
+           <property name="advancedOption" stdset="0" >
             <bool>true</bool>
            </property>
           </widget>
          </item>
          <item>
           <spacer>
-           <property name="orientation">
+           <property name="orientation" >
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeHint" stdset="0">
+           <property name="sizeHint" >
             <size>
              <width>40</width>
              <height>20</height>
@@ -1376,97 +1435,97 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         </layout>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBoxCompletePrefix">
-         <property name="text">
+        <widget class="QCheckBox" name="checkBoxCompletePrefix" >
+         <property name="text" >
           <string>Auto Complete Common Prefix</string>
          </property>
-         <property name="advancedOption" stdset="0">
+         <property name="advancedOption" stdset="0" >
           <bool>true</bool>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBoxEOWCompletes">
-         <property name="text">
+        <widget class="QCheckBox" name="checkBoxEOWCompletes" >
+         <property name="text" >
           <string>Complete selected text when non-word character is pressed</string>
          </property>
-         <property name="advancedOption" stdset="0">
+         <property name="advancedOption" stdset="0" >
           <bool>true</bool>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBoxToolTipHelp">
-         <property name="text">
+        <widget class="QCheckBox" name="checkBoxToolTipHelp" >
+         <property name="text" >
           <string>Enable ToolTip-Help</string>
          </property>
-         <property name="advancedOption" stdset="0">
+         <property name="advancedOption" stdset="0" >
           <bool>true</bool>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBoxUsePlaceholders">
-         <property name="text">
+        <widget class="QCheckBox" name="checkBoxUsePlaceholders" >
+         <property name="text" >
           <string>Use placeholders</string>
          </property>
-         <property name="advancedOption" stdset="0">
+         <property name="advancedOption" stdset="0" >
           <bool>true</bool>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_12">
-         <property name="text">
+        <widget class="QLabel" name="label_12" >
+         <property name="text" >
           <string>Use following completion files:</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QListWidget" name="completeListWidget">
-         <property name="sortingEnabled">
+        <widget class="QListWidget" name="completeListWidget" >
+         <property name="sortingEnabled" >
           <bool>true</bool>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="page_5">
-      <layout class="QVBoxLayout" name="verticalLayout_4">
+     <widget class="QWidget" name="page_5" >
+      <layout class="QVBoxLayout" >
        <item>
-        <widget class="QCheckBox" name="cbAutoCheckin">
-         <property name="text">
+        <widget class="QCheckBox" name="cbAutoCheckin" >
+         <property name="text" >
           <string>Automatically check in after save ?</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="cbSVNUndo">
-         <property name="text">
+        <widget class="QCheckBox" name="cbSVNUndo" >
+         <property name="text" >
           <string>Uses SVN revisions to undo before last saved version ?</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBoxSVN">
-         <property name="title">
+        <widget class="QGroupBox" name="groupBoxSVN" >
+         <property name="title" >
           <string>SVN Commands</string>
          </property>
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <layout class="QHBoxLayout" >
          <item>
-          <widget class="QLabel" name="label_21">
-           <property name="text">
+          <widget class="QLabel" name="label_21" >
+           <property name="text" >
             <string>SVN Directory Search Depth: </string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="sbDirSearchDepth">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <widget class="QSpinBox" name="sbDirSearchDepth" >
+           <property name="sizePolicy" >
+            <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -1476,11 +1535,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         </layout>
        </item>
        <item>
-        <spacer name="verticalSpacer_2">
-         <property name="orientation">
+        <spacer>
+         <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0">
+         <property name="sizeHint" >
           <size>
            <width>20</width>
            <height>554</height>
@@ -1492,12 +1551,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
      </widget>
     </widget>
    </item>
-   <item row="2" column="0">
-    <widget class="QCheckBox" name="checkBoxShowAdvancedOptions">
-     <property name="text">
+   <item row="2" column="0" >
+    <widget class="QCheckBox" name="checkBoxShowAdvancedOptions" >
+     <property name="text" >
       <string>show advanced options</string>
      </property>
-     <property name="checked">
+     <property name="checked" >
       <bool>true</bool>
      </property>
     </widget>
@@ -1560,7 +1619,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
   <tabstop>checkBoxShowAdvancedOptions</tabstop>
  </tabstops>
  <resources>
-  <include location="texmaker.qrc"/>
+  <include location="texmaker.qrc" />
  </resources>
  <connections>
   <connection>
@@ -1569,11 +1628,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <receiver>ConfigDialog</receiver>
    <slot>accept()</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>918</x>
      <y>661</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>307</x>
      <y>250</y>
     </hint>
@@ -1585,11 +1644,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <receiver>ConfigDialog</receiver>
    <slot>reject()</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>1009</x>
      <y>661</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>307</x>
      <y>250</y>
     </hint>
@@ -1601,11 +1660,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <receiver>checkBoxCaseSensitiveInFirstCharacter</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>492</x>
      <y>69</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>359</x>
      <y>99</y>
     </hint>
@@ -1617,11 +1676,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <receiver>checkBoxInlineSpellCheck</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>992</x>
      <y>490</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>509</x>
      <y>559</y>
     </hint>
@@ -1633,11 +1692,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <receiver>checkBoxInlineCitationCheck</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>992</x>
      <y>490</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>687</x>
      <y>559</y>
     </hint>
@@ -1649,11 +1708,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <receiver>checkBoxInlineReferenceCheck</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>992</x>
      <y>490</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>879</x>
      <y>559</y>
     </hint>

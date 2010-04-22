@@ -11,7 +11,6 @@
 #include "searchresultmodel.h"
 #include "qdocumentsearch.h"
 
-#include <QStyledItemDelegate>
 #include <QAbstractTextDocumentLayout>
 
 class PreviewWidget : public QScrollArea

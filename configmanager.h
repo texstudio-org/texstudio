@@ -132,7 +132,7 @@ public:
 
 	// custom toolbar
 	QList<ManagedToolBar> managedToolBars;
-	QHash<QString,QVariant> replacedIconsOnMenus;
+	QMap<QString,QVariant> replacedIconsOnMenus;
 
 	void populateCustomActions(QListWidget* parent, QMenu* menu, bool go=false);
 
@@ -148,13 +148,13 @@ public:
 private:
 	void setInterfaceStyle();
 
-        QList<QTreeWidgetItem*> changedItemsList;
+	QList<QTreeWidgetItem*> changedItemsList;
 
-        QHash<QString,QVariant> hashManipulateMenus;
+	QMap<QString,QVariant> manipulatedMenus;
 
 private slots:
 	void browseCommand();
 	void undoCommand();
-        void latexTreeItemChanged(QTreeWidgetItem* item,int l);
+	void latexTreeItemChanged(QTreeWidgetItem* item,int l);
 };
 #endif

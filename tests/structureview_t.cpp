@@ -139,6 +139,7 @@ QStringList StructureViewTest::unrollStructure(StructureEntry *baseStructure){
 }
 
 void StructureViewTest::benchmark_data(){
+#if QT_VERSION >= 0x040500	
 	QTest::addColumn<QString>("text");
 	QTest::addColumn<int>("start");
 	QTest::addColumn<int>("count");
@@ -167,10 +168,11 @@ void StructureViewTest::benchmark_data(){
 	QTest::newRow("sections with many children")
 		<< "\\section{a}\nhallo welt\n\\section{b}\nabcdefg\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}\n\\subsection{c}"
 		<< 2 << 1;
-
+#endif
 }
 
 void StructureViewTest::benchmark(){
+#if QT_VERSION >= 0x040500	
 	QFETCH(QString, text);
 	QFETCH(int, start);
 	QFETCH(int, count);
@@ -179,6 +181,7 @@ void StructureViewTest::benchmark(){
 	QBENCHMARK {
 		document->patchStructure(start,count);
 	}
+#endif
 }
 
 #endif

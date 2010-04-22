@@ -582,7 +582,7 @@ void Texmaker::setupToolBars() {
 	}
 //customizable toolbars
 	//first apply custom icons
-	QHash<QString, QVariant>::const_iterator i = configManager.replacedIconsOnMenus.constBegin();
+	QMap<QString, QVariant>::const_iterator i = configManager.replacedIconsOnMenus.constBegin();
 	while (i != configManager.replacedIconsOnMenus.constEnd()) {
 		QString id=i.key();
 		QVariant zw=i.value();
@@ -1544,7 +1544,7 @@ void Texmaker::editThesaurus() {
 #else
 		if (!QFile::exists(configManager.thesaurus_database)) return;
 
-		databasefile=new QFile(configManagerthesaurus_database);
+		databasefile=new QFile(configManager.thesaurus_database);
 		if (!databasefile->open(QIODevice::ReadOnly)) {
 			QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
 			thesaurusFileName="<dontLoad>";
