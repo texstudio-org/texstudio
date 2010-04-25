@@ -7,6 +7,7 @@
 a:link { color: #004faf; text-decoration: none }
 a:visited { color: #672967; text-decoration: none }
 body { background: #ffffff; color: black; }
+.command { font-family: monospace; }
 --></style>
 </head>
 <body>
@@ -159,7 +160,8 @@ TexMakerX can auto detect utf-8 and latin1 encoded files, but if you use a diffe
 <h2><a name="SECTION02">1.2 Configuring the latex related commands</a></h2>
 <p>TexMakerX can't compile yours documents if the paths to the LaTeX related commands are wrong.<br>
 The default settings should work with the recent and standard LaTeX distributions, but you could have to modify them ("Configure TexMakerX" -> "Commands"). To change a command, just click on the button at the end of the corresponding line and select the command in the file browser : TexMakerX will adapt automatically the syntax of the command.<br>
-The <strong>%</strong> character represents the name of the file without the extension and the <strong>@</strong> character will be replaced by the current line number. If you need more options (e.g. absolute paths) use ? and  look at the instruction on the bottom of the configuration dialog.<br>
+The <strong>%</strong> character represents the name of the file without the extension and the <strong>@</strong> character will be replaced by the current line number. If you need more options (e.g. absolute paths) use ? and  look at the instruction on the bottom of the configuration dialog. <br>
+Section <a href="#SECTION37">Forward/Inverse search</a> gives some example commands for common viewers.
 </p>
 <p><IMG src="doc14.png" border="1"></p>
 <h2><a name="SECTION030">1.3 Configuring some general issues</a></h2>
@@ -683,26 +685,51 @@ Synopsis :<br>
 
 <h2><a name="SECTION37">4.8 "Forward/Inverse search" with TexMakerX</a></h2>
 <p>
-Some dvi viewers can jump to (and visually highlight) a position in the DVI file that corresponds to a certain line number in the (La)TeX source file.<br>
-To use this feature, you can use the <b>@</b> character (=line number) and <b>?c:ame</b> (=complete absolute filename of currently opened file) placeholder in the syntax of the dvi viewer command ("Configure TexMakerX" -> "Commands").<br>
-Examples ("Forward search"):
-<ul>
-<li>To launch yap from TexMakerX : "C:/Program Files/MiKTeX 2.7/miktex/bin/yap.exe" -1 -s @?c:m.tex %.dvi</li>
-<li>To launch xdvi from TexMakerX : xdvi %.dvi  -sourceposition @:?c:m.tex</li>
-<li>To launch kdvi from TexMakerX : kdvi "file:%.dvi#src:@ ?c:m.tex"</li>
-<li>To jump to a position in a running Acrobat Reader (Windows only): dde://acroview/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocGotoNameDest("?am.pdf","jump-position")]<i>jump-position can be defined with the hyperref package</i></li>
-<li>To jump to a line in a running Sumatra (Windows only): dde://SUMATRA/control/[ForwardSearch("?m.pdf","?c:m.tex",@,0,0,1)]</li>
-</ul>
- 
-For the opposite operation ("Inverse search") :
-<ul>
-<li>To launch TexMakerX from yap or Sumatra: "C:\Program Files\TexMakerX\TexMakerX.exe" "%f" -line %l <i>(the program arguments : "%f" -line %l )</i></li>
-<li>To launch TexMakerX from xdvi : xdvi -editor "TexMakerX %f -line" %.dvi -sourceposition @:%.tex</li>
-<li>To launch TexMakerX from skim : <i>Command:</i> /applications/texmakerx.app/contents/macos/texmakerx <br>
-    <i>Parameters:</i>"%file" -line %line</li>
-</ul>
+Some (dvi) viewers can jump to (and visually highlight) a position in the DVI file that corresponds to a certain line number in the (La)TeX source file.<br>
+To enable this forward search, you can enter the command line of the corresponding viewer either as command line for an user tool in the User menu (User/User Commands/Edit...) or in the viewer command line in the config dialog  ("Options/Configure TexMakerX" -> "Commands").
+When the viewer is launched, the <b>@</b>-placeholder will be replaced by the current line number and <b>?c:ame</b> by the complete absolute filename of the current file.<br><br>
+On Windows, you can execute DDE commands by inserting a command of the form: <span class="command">dde://service/control/[commands...]</span> or (since TexMakerX 1.9.9) also <span class="command">dde://programpath:service/control/[commands...]</span> to start the program if necessary.
+<br><br>
+Below you can find a list of commands for some common viewers. Of course, you have to replace <i>(your program path)</i> with the path of the program on your computer, if you want to use a command.<br>
 
-</p>
+<h3>Sumatra</h3>
+To launch Sumatra from TexMakerX and configure Sumatra for inverse search: <span class="command">"<i>(your sumatra path)</i>" -reuse-instance -inverse-search """"<i>(your TexMakerX path)</i>""" """%%f""" -line %%l" "?am.pdf"</span><br><br>
+To jump to a line in a running Sumatra (Windows only): <span class="command">dde://SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
+To launch Sumatra if it is not running and jump to a line in it (Windows only): <span class="command">dde://<i>(your sumatra path)</i>:SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
+To launch TexMakerX from Sumatra: <span class="command">"<i>(your TexMakerX path)</i>" "%f" -line %l </span><br><br>
+
+A possible value for <i>(your Sumatra path)</i> is <span class="command">C:/Program Files/SumatraPDF/SumatraPDF.exe</span>
+
+<h3>Foxit Reader</h3>
+To launch Foxit Reader from TexMakerX: <span class="command">"<i>(your Reader path)"</i> "?am.pdf"</span><br><br>
+
+<h3>Acrobat Reader</h3>
+To launch Acrobat Reader from TexMakerX: <span class="command">"<i>(your Reader path)"</i> "?am.pdf"</span><br><br>
+To jump to a position in a running Acrobat Reader (Windows only): <span class="command">dde://acroview/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocGotoNameDest("?am.pdf","jump-position")]</span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<i>jump-position can be defined with the hyperref package</i><br><br>
+
+To close the document in a running Acrobat Reader (Windows only): <span class="command">dde://acroview/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocClose("?am.pdf")]</span><br><br>
+
+
+<h3>Yap (Yet Another Previewer)</h3>
+To launch Yap from TexMakerX : <span class="command">"<i>(your Yap path)</i>" -1 -s @?c:m.tex %.dvi</span>
+<br><br>
+To launch TexMakerX from Yap: <span class="command">"<i>(your TexMakerX path)</i>" "%f" -line %l </span><br><br>
+
+A possible value for <i>(your Yap path)</i> is <span class="command">C:/Program Files/MiKTeX 2.7/miktex/bin/yap.exe</span>
+<h3>xdvi</h3>
+To launch xdvi from TexMakerX : <span class="command">xdvi %.dvi  -sourceposition @:?c:m.tex</span><br><br>
+
+To launch xdvi from TexMakerX and enable inverse search : <span class="command">xdvi -editor "texmakerx %f -line" %.dvi -sourceposition @:%.tex</span>
+
+<h3>kdvi</h3>
+To launch kdvi from TexMakerX : <span class="command">kdvi "file:%.dvi#src:@ ?c:m.tex"</span>
+
+<h3>Skim</h3>
+To launch Skim from TexMakerX: <span class="command">(your Skim path)/Contents/SharedSupport/displayline @ ?am.pdf ?c:ame</span><br><br>
+To launch TexMakerX from skim : Command: <span class="command">/applications/texmakerx.app/contents/macos/texmakerx</span> with arguments: <span class="command">"%file" -line %line </span><br><br>
+
+A possible value for <i>(your Skim path)</i> is <span class="command">/Applications/Skim.app</span>
+
 <h2><a name="SECTION38">4.9 Synopsis of the TexMakerX command</a></h2>
 <p>
 TexMakerX file [-master] [-line xx] [--start-always]<br>
