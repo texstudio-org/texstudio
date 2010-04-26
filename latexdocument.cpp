@@ -124,7 +124,9 @@ void LatexDocument::updateStructure() {
 	mMentionedBibTeXFiles.clear();
 
 	//emit structureLost(this); does removal cause problems ????
-
+#ifdef DEBUG
+	StructureContent.clear();
+#endif
 	delete baseStructure;
 	baseStructure=0;
 
