@@ -1,5 +1,6 @@
 #ifndef LATEXDOCUMENT_H
 #define LATEXDOCUMENT_H
+//#define DEBUG
 #include "mostQtHeaders.h"
 #include "bibtexparser.h"
 #include "latexeditorview.h"
@@ -138,6 +139,14 @@ private:
 	bool fileExits(QString fname);
 	void findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElemnts,int linenr,int count);
 	void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QMap<StructureEntry*,int> &toBeDeleted,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count,int lvl=0,bool front=true,bool back=true);
+
+
+	#ifdef DEBUG
+	QSet<StructureEntry*> StructureContent;
+	void removeFromStructureContent(StructureEntry* se);
+	void checkForLeak();
+#endif
+
 
 public slots:
 	void updateStructure();

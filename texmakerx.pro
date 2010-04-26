@@ -438,8 +438,8 @@ HEADERS += tests/testmanager.h \
     tests/latexeditorview_t.h \
 	tests/latexeditorview_bm.h \
     tests/structureview_t.h
-win32:LIBS += -lQtTest4
-#win32:LIBS += -lQtTestd4
+#win32:LIBS += -lQtTest4
+win32:LIBS += -lQtTestd4
 unix:!macx:LIBS += -lQtTest
 macx:LIBS += -framework \
     QtTest
