@@ -124,7 +124,7 @@ void LatexDocument::updateStructure() {
 	mMentionedBibTeXFiles.clear();
 
 	//emit structureLost(this); does removal cause problems ????
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 	StructureContent.clear();
 #endif
 	delete baseStructure;
@@ -133,27 +133,27 @@ void LatexDocument::updateStructure() {
 	mAppendixLine=0;
 
 	baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 	StructureContent.insert(baseStructure);
 #endif
 	baseStructure->title=fileName;
 	labelList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 	StructureContent.insert(labelList);
 #endif
 	labelList->title=tr("LABELS");
 	todoList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 	StructureContent.insert(todoList);
 #endif
 	todoList->title=tr("TODO");
 	bibTeXList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 	StructureContent.insert(bibTeXList);
 #endif
 	bibTeXList->title=tr("BIBTEX");
 	blockList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 	StructureContent.insert(blockList);
 #endif
 	blockList->title=tr("BLOCKS");
@@ -212,7 +212,7 @@ void LatexDocument::updateStructure() {
 			}
 			foreach (const QString& bibFile, bibs) {
 				StructureEntry *newFile=new StructureEntry(this,bibTeXList, StructureEntry::SE_BIBTEX);
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 				StructureContent.insert(newFile);
 #endif
 				newFile->title=bibFile;
@@ -227,7 +227,7 @@ void LatexDocument::updateStructure() {
 		if (s!="") {
 			mLabelItem.insert(document->line(i).handle(),s);
 			StructureEntry *newLabel=new StructureEntry(this,labelList, StructureEntry::SE_LABEL);
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 			StructureContent.insert(newLabel);
 #endif
 			newLabel->title=s;
@@ -241,7 +241,7 @@ void LatexDocument::updateStructure() {
 		if (l>=0) {
 			s=s.mid(l+6,s.length());
 			StructureEntry *newTodo=new StructureEntry(this,todoList, StructureEntry::SE_TODO);
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 			StructureContent.insert(newTodo);
 #endif
 			newTodo->title=s;
@@ -257,7 +257,7 @@ void LatexDocument::updateStructure() {
 		s=findToken(curLine,"\\begin{block}{");
 		if (s!="") {
 			StructureEntry *newBlock=new StructureEntry(this,blockList, StructureEntry::SE_BLOCK);
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 			StructureContent.insert(newBlock);
 #endif
 			newBlock->title=s;
@@ -272,7 +272,7 @@ void LatexDocument::updateStructure() {
 			s=findToken(curLine,"\\"+inputTokens.at(header)+"{");
 			if (s!="") {
 				StructureEntry *newInclude=new StructureEntry(this,baseStructure, StructureEntry::SE_INCLUDE);
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 				StructureContent.insert(newInclude);
 #endif
 				newInclude->title=s;
@@ -291,7 +291,7 @@ void LatexDocument::updateStructure() {
 				s=extractSectionName(s);
 				StructureEntry* parent=header == 0 ? baseStructure : parent_level[header-1];
 				StructureEntry *newSection=new StructureEntry(this,parent,StructureEntry::SE_SECTION);
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 				StructureContent.insert(newSection);
 #endif
 				newSection->title=s;
@@ -354,7 +354,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 		emit removeElement(se,l);
 		iter.remove();
 		emit removeElementFinished();
-		#ifdef DEBUG
+		#ifndef QT_NO_DEBUG
 		StructureContent.remove(se);
 		#endif
 		delete se;
@@ -383,7 +383,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
     // purge unconnected elements
     foreach(se,toBeDeleted.keys()){
 	emit removeElement(se,toBeDeleted.value(se));
-	#ifdef DEBUG
+	#ifndef QT_NO_DEBUG
 	StructureContent.remove(se);
 	#endif
 	delete se;
@@ -519,7 +519,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 					reuse=true;
 				}else{
 					newFile=new StructureEntry(this, StructureEntry::SE_BIBTEX);
-					#ifdef DEBUG
+					#ifndef QT_NO_DEBUG
 					StructureContent.insert(newFile);
 					#endif
 				}
@@ -545,7 +545,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				reuse=true;
 			}else{
 				newLabel=new StructureEntry(this, StructureEntry::SE_LABEL);
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 				StructureContent.insert(newLabel);
 #endif
 			}
@@ -570,7 +570,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				reuse=true;
 			}else{
 				newTodo=new StructureEntry(this, StructureEntry::SE_TODO);
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 				StructureContent.insert(newTodo);
 #endif
 			}
@@ -603,7 +603,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				reuse=true;
 			}else{
 				newBlock=new StructureEntry(this, StructureEntry::SE_BLOCK);
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 				StructureContent.insert(newBlock);
 #endif
 			}
@@ -620,7 +620,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			s=findToken(curLine,"\\"+inputTokens.at(header)+"{");
 			if (s!="") {
 				StructureEntry *newInclude=new StructureEntry(this,baseStructure, StructureEntry::SE_INCLUDE);
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 				StructureContent.insert(newInclude);
 #endif
 				newInclude->title=s;
@@ -648,7 +648,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				    reuse=true;
 				}else{
 				    newSection=new StructureEntry(this,parent,StructureEntry::SE_SECTION);
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 					StructureContent.insert(newSection);
 #endif
 				}
@@ -681,7 +681,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	// purge unconnected elements
 	foreach(se,toBeDeleted.keys()){
 		emit removeElement(se,toBeDeleted[se]);
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 		removeFromStructureContent(se);
 #endif
 		delete se;
@@ -720,25 +720,25 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	emit structureUpdated(this,newSection);
 
 	foreach(se,MapOfTodo.values()){
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 		StructureContent.remove(se);
 #endif
 		delete se;
 	}
 	foreach(se,MapOfBibtex.values()){
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 		StructureContent.remove(se);
 #endif
 		delete se;
 	}
 	foreach(se,MapOfBlock.values()){
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 		StructureContent.remove(se);
 #endif
 		delete se;
 	}
 	foreach(se,MapOfLabels.values()){
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 		StructureContent.remove(se);
 #endif
 		delete se;
@@ -751,14 +751,14 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		emit updateCompleter();
 
 
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 	checkForLeak();
 #endif
 
 
 }
 
-#ifdef DEBUG
+#ifndef QT_NO_DEBUG
 void LatexDocument::removeFromStructureContent(StructureEntry* se)	{
 	foreach(StructureEntry* entry,se->children){
 		removeFromStructureContent(entry);
