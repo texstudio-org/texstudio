@@ -23,6 +23,7 @@ class SymbolGridWidget : public QTableWidget {
 
 public:
 	SymbolGridWidget(QWidget *parent, QString SymbolList, QVariantMap *Map=0);
+	~SymbolGridWidget();
 	QString getCurrentSymbol(); //returns category/fileName.png
 public slots:
 	void SetUserPage(usercodelist ulist);
