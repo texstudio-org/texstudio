@@ -31,6 +31,11 @@ SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString SymbolList, QVaria
 
 	loadSymbols(fullNames,Map);
 }
+SymbolGridWidget::~SymbolGridWidget(){
+	foreach(QTableWidgetItem* elem,listOfItems)
+		delete(elem);
+	listOfItems.clear();
+}
 QString SymbolGridWidget::getCurrentSymbol(){
 	QTableWidgetItem * cur=currentItem();
 	if (!cur) return QString();

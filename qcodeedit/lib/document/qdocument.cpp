@@ -1364,6 +1364,7 @@ void QDocument::draw(QPainter *p, PaintContext& cxt)
 */
 void QDocument::execute(QDocumentCommand *cmd)
 {
+	Q_ASSERT(m_impl || !cmd);
 	if ( m_impl && cmd )
 		m_impl->execute(cmd);
 
@@ -4644,8 +4645,10 @@ void QDocumentCursorHandle::deletePreviousChar()
 
 void QDocumentCursorHandle::execute(QDocumentCommand *c)
 {
+	Q_ASSERT(m_doc);
+
 	if ( !m_doc )
-		return;
+		return; //returning means c will never freed
 
 	if ( isSilent() && !c->isSilent() )
 		c->setSilent(isSilent());

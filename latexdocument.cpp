@@ -9,10 +9,25 @@
 LatexDocument::LatexDocument():edView(0),text(0),mAppendixLine(0)
 {
 	baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
+#ifndef QT_NO_DEBUG
+	StructureContent.insert(baseStructure);
+#endif
 	labelList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
+#ifndef QT_NO_DEBUG
+	StructureContent.insert(labelList);
+#endif
 	todoList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
+#ifndef QT_NO_DEBUG
+	StructureContent.insert(todoList);
+#endif
 	bibTeXList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
+#ifndef QT_NO_DEBUG
+	StructureContent.insert(bibTeXList);
+#endif
 	blockList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
+#ifndef QT_NO_DEBUG
+	StructureContent.insert(blockList);
+#endif
 	labelList->title=tr("LABELS");
 	todoList->title=tr("TODO");
 	bibTeXList->title=tr("BIBTEX");
