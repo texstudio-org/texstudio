@@ -37,6 +37,10 @@ LatexDocument::LatexDocument():edView(0),text(0),mAppendixLine(0)
 	mMentionedBibTeXFiles.clear();
 }
 LatexDocument::~LatexDocument(){
+	if (!labelList->parent) delete labelList;
+	if (!todoList->parent) delete todoList;
+	if (!bibTeXList->parent) delete bibTeXList;
+	if (!blockList->parent) delete blockList;
 	delete baseStructure;
 }
 
@@ -110,16 +114,20 @@ QDocumentSelection LatexDocument::sectionSelection(StructureEntry* section){
 }
 
 void LatexDocument::clearStructure() {
-    mUserCommandList.clear();
-    mLabelItem.clear();
-    mMentionedBibTeXFiles.clear();
-    
-    mAppendixLine=0;
+	mUserCommandList.clear();
+	mLabelItem.clear();
+	mMentionedBibTeXFiles.clear();
 
-    emit structureLost(this);
+	mAppendixLine=0;
 
-    delete baseStructure;
-    baseStructure=0;
+	emit structureLost(this);
+
+	if (!labelList->parent) delete labelList;
+	if (!todoList->parent) delete todoList; 
+	if (!bibTeXList->parent) delete bibTeXList;
+	if (!blockList->parent) delete blockList;
+	delete baseStructure;
+	baseStructure=0;
 }
 
 void LatexDocument::updateStructure() {
@@ -142,6 +150,10 @@ void LatexDocument::updateStructure() {
 #ifndef QT_NO_DEBUG
 	StructureContent.clear();
 #endif
+	if (!labelList->parent) delete labelList;
+	if (!todoList->parent) delete todoList; //TODO: reuse entries
+	if (!bibTeXList->parent) delete bibTeXList;
+	if (!blockList->parent) delete blockList;
 	delete baseStructure;
 	baseStructure=0;
 
@@ -842,7 +854,7 @@ void LatexDocument::includeDocument(LatexDocument* includedDocument){
 StructureEntry::StructureEntry(LatexDocument* doc, Type newType):type(newType),level(0), lineNumber(-1), lineHandle(0), parent(0), document(doc),appendix(false){
 }
 StructureEntry::StructureEntry(LatexDocument* doc, StructureEntry* parent, Type newType):type(newType),level(0), lineNumber(-1), lineHandle(0), document(doc),appendix(false){
-	parent->add(this);
+	newParent->add(this);
 }
 StructureEntry::~StructureEntry(){
 	foreach (StructureEntry* se, children)
