@@ -853,7 +853,7 @@ void LatexDocument::includeDocument(LatexDocument* includedDocument){
 */
 StructureEntry::StructureEntry(LatexDocument* doc, Type newType):type(newType),level(0), lineNumber(-1), lineHandle(0), parent(0), document(doc),appendix(false){
 }
-StructureEntry::StructureEntry(LatexDocument* doc, StructureEntry* parent, Type newType):type(newType),level(0), lineNumber(-1), lineHandle(0), document(doc),appendix(false){
+StructureEntry::StructureEntry(LatexDocument* doc, StructureEntry* newParent, Type newType):type(newType),level(0), lineNumber(-1), lineHandle(0), document(doc),appendix(false){
 	newParent->add(this);
 }
 StructureEntry::~StructureEntry(){
