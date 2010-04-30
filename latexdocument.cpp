@@ -238,7 +238,8 @@ void LatexDocument::updateStructure() {
 			    mMentionedBibTeXFiles.insert(document->line(i).handle(),elem);
 			}
 			foreach (const QString& bibFile, bibs) {
-				StructureEntry *newFile=new StructureEntry(this,bibTeXList, StructureEntry::SE_BIBTEX);
+				StructureEntry *newFile=new StructureEntry(this, StructureEntry::SE_BIBTEX);
+				bibTeXList->add(newFile);
 #ifndef QT_NO_DEBUG
 				StructureContent.insert(newFile);
 #endif
@@ -253,7 +254,8 @@ void LatexDocument::updateStructure() {
 		s=findToken(curLine,"\\label{");
 		if (s!="") {
 			mLabelItem.insert(document->line(i).handle(),s);
-			StructureEntry *newLabel=new StructureEntry(this,labelList, StructureEntry::SE_LABEL);
+			StructureEntry *newLabel=new StructureEntry(this, StructureEntry::SE_LABEL);
+			labelList->add(newLabel);
 #ifndef QT_NO_DEBUG
 			StructureContent.insert(newLabel);
 #endif
@@ -267,7 +269,8 @@ void LatexDocument::updateStructure() {
 		int l=s.indexOf("%TODO");
 		if (l>=0) {
 			s=s.mid(l+6,s.length());
-			StructureEntry *newTodo=new StructureEntry(this,todoList, StructureEntry::SE_TODO);
+			StructureEntry *newTodo=new StructureEntry(this, StructureEntry::SE_TODO);
+			todoList->add(newTodo);
 #ifndef QT_NO_DEBUG
 			StructureContent.insert(newTodo);
 #endif
@@ -283,7 +286,8 @@ void LatexDocument::updateStructure() {
 		//// beamer blocks ////
 		s=findToken(curLine,"\\begin{block}{");
 		if (s!="") {
-			StructureEntry *newBlock=new StructureEntry(this,blockList, StructureEntry::SE_BLOCK);
+			StructureEntry *newBlock=new StructureEntry(this, StructureEntry::SE_BLOCK);
+			blockList->add(newBlock);
 #ifndef QT_NO_DEBUG
 			StructureContent.insert(newBlock);
 #endif
@@ -298,7 +302,8 @@ void LatexDocument::updateStructure() {
 		for(int header=0;header<inputTokens.count();header++){
 			s=findToken(curLine,"\\"+inputTokens.at(header)+"{");
 			if (s!="") {
-				StructureEntry *newInclude=new StructureEntry(this,baseStructure, StructureEntry::SE_INCLUDE);
+				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
+				baseStructure->add(newInclude);
 #ifndef QT_NO_DEBUG
 				StructureContent.insert(newInclude);
 #endif
@@ -316,8 +321,9 @@ void LatexDocument::updateStructure() {
 			s=findToken(curLine,regexp);
 			if (s!="") {
 				s=extractSectionName(s);
-				StructureEntry* parent=header == 0 ? baseStructure : parent_level[header-1];
-				StructureEntry *newSection=new StructureEntry(this,parent,StructureEntry::SE_SECTION);
+				StructureEntry *newSection=new StructureEntry(this,StructureEntry::SE_SECTION);
+				if (header == 0) baseStructure->add(newSection);
+				else parent_level[header-1]->add(newSection);
 #ifndef QT_NO_DEBUG
 				StructureContent.insert(newSection);
 #endif
@@ -646,7 +652,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		for(int header=0;header<inputTokens.count();header++){
 			s=findToken(curLine,"\\"+inputTokens.at(header)+"{");
 			if (s!="") {
-				StructureEntry *newInclude=new StructureEntry(this,baseStructure, StructureEntry::SE_INCLUDE);
+				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
+				baseStructure->add(newInclude);
 #ifndef QT_NO_DEBUG
 				StructureContent.insert(newInclude);
 #endif
@@ -664,21 +671,22 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			if (s!="") {
 				bool reuse=false;
 				s=extractSectionName(s);
-				StructureEntry* parent=header == 0 ? baseStructure : parent_level[header];
 				StructureEntry *newSection;
 				if(MapOfElements.contains(dlh)){
-				    newSection=MapOfElements.value(dlh);
-				    parent->add(newSection);
-				    newSection->type=StructureEntry::SE_SECTION;
-				    toBeDeleted.remove(newSection);
-				    MapOfElements.remove(dlh,newSection);
-				    reuse=true;
+					newSection=MapOfElements.value(dlh);
+					newSection->type=StructureEntry::SE_SECTION;
+					toBeDeleted.remove(newSection);
+					MapOfElements.remove(dlh,newSection);
+					reuse=true;
 				}else{
-				    newSection=new StructureEntry(this,parent,StructureEntry::SE_SECTION);
+					newSection=new StructureEntry(this,StructureEntry::SE_SECTION);
 #ifndef QT_NO_DEBUG
 					StructureContent.insert(newSection);
 #endif
 				}
+				StructureEntry* parent=header == 0 ? baseStructure : parent_level[header];
+				parent->add(newSection);
+				
 				if(mAppendixLine &&mAppendixLine->line()<i) newSection->appendix=true;
 				else newSection->appendix=false;
 				newSection->title=s;
@@ -852,9 +860,6 @@ void LatexDocument::includeDocument(LatexDocument* includedDocument){
 }
 */
 StructureEntry::StructureEntry(LatexDocument* doc, Type newType):type(newType),level(0), lineNumber(-1), lineHandle(0), parent(0), document(doc),appendix(false){
-}
-StructureEntry::StructureEntry(LatexDocument* doc, StructureEntry* newParent, Type newType):type(newType),level(0), lineNumber(-1), lineHandle(0), document(doc),appendix(false){
-	newParent->add(this);
 }
 StructureEntry::~StructureEntry(){
 	foreach (StructureEntry* se, children)
