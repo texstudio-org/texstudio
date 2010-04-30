@@ -2,10 +2,10 @@
 #include "qdocument.h"
 #include "smallUsefulFunctions.h"
 
-SearchResultModel::SearchResultModel(QObject *)
+SearchResultModel::SearchResultModel(QObject * parent): QAbstractItemModel(parent)
 {
 	m_searches.clear();
-        mExpression.clear();
+	mExpression.clear();
 }
 
 SearchResultModel::~SearchResultModel(){

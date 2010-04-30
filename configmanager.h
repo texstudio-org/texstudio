@@ -23,7 +23,8 @@ class ConfigManager: public QObject {
 	Q_OBJECT
 public:
 	ConfigManager(QObject *parent=0);
-	
+	~ConfigManager();
+
 	QSettings* readSettings();
 	QSettings* saveSettings();
 
