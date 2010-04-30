@@ -54,7 +54,7 @@ struct StructureEntry{
 	bool appendix;
 
 	StructureEntry(LatexDocument* doc, Type newType);
-	StructureEntry(LatexDocument* doc, StructureEntry* parent, Type newType);
+	StructureEntry(LatexDocument* doc, StructureEntry* newParent, Type newType);
 	~StructureEntry();
 	void add(StructureEntry* child);
 	void insert(int pos, StructureEntry* child);
