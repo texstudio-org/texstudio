@@ -16,7 +16,7 @@ ManagedToolBar::ManagedToolBar(const QString &newName, const QStringList &defs):
 
 
 ConfigManager::ConfigManager(QObject *parent): QObject (parent),
-	buildManager(0),editorConfig(new LatexEditorViewConfig), completerConfig (new LatexCompleterConfig), webPublishDialogConfig (new WebPublishDialogConfig), menuParent(0), menuParentsBar(0){ //TODO: fix theoretical memory leak (it doesn't matter, this is almost a singletone)
+	buildManager(0),editorConfig(new LatexEditorViewConfig), completerConfig (new LatexCompleterConfig), webPublishDialogConfig (new WebPublishDialogConfig), menuParent(0), menuParentsBar(0){
 
 	managedToolBars.append(ManagedToolBar("Custom", QStringList()));
 	managedToolBars.append(ManagedToolBar("File", QStringList() << "main/file/new" << "main/file/open" << "main/file/save" << "main/file/close"));
@@ -31,6 +31,12 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 					      << "separator" << "main/latex/spacing/newline"));
 
 	enviromentModes << "verbatim" << "numbers";
+}
+
+ConfigManager::~ConfigManager(){
+	delete editorConfig;
+	delete completerConfig;
+	delete webPublishDialogConfig;
 }
 
 QSettings* ConfigManager::readSettings() {
