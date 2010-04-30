@@ -898,7 +898,7 @@ QDocumentCommandBlock::QDocumentCommandBlock(QDocument *d)
 */
 QDocumentCommandBlock::~QDocumentCommandBlock()
 {
-
+	qDeleteAll(m_commands);
 }
 
 void QDocumentCommandBlock::redo()
