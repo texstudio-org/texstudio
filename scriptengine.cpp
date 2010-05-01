@@ -8,6 +8,7 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent),m_editor(0)
 }
 
 scriptengine::~scriptengine(){
+	delete engine;
 }
 
 void scriptengine::setScript(const QString script){
