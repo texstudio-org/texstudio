@@ -561,8 +561,8 @@ QDocumentInsertCommand::~QDocumentInsertCommand()
 	if ( m_state )
 		return;
 
-	//foreach ( QDocumentLineHandle *h, m_data.handles )
-	//	h->deref();
+	foreach ( QDocumentLineHandle *h, m_data.handles )
+		h->deref();
 
 }
 
@@ -728,6 +728,8 @@ QDocumentEraseCommand::~QDocumentEraseCommand()
 	if ( m_state )
 		return;
 
+	foreach ( QDocumentLineHandle *h, m_data.handles )
+		h->deref();
 	//qDeleteAll(m_data.handles);
 }
 
