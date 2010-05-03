@@ -27,6 +27,7 @@
 #include "qdocument.h"
 #include "qdocumentline.h"
 #include "qdocumentcursor.h"
+#include "qdocumentcursor_p.h"
 
 /*!
 	\ingroup widgets
@@ -111,16 +112,16 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 
 	QString s;
 	int xpos = 10;
-	QDocumentCursor c = e->cursor();
+	QDocumentCursorHandle* c = e->cursorHandle();
 	const QFontMetrics fm(fontMetrics());
 
 	const int ls = fm.lineSpacing();
 	const int ascent = fm.ascent() + 3;
 
 	s = tr("Line : %1 Visual column : %2 Text column : %3")
-			.arg(c.lineNumber() + 1)
-			.arg(c.visualColumnNumber())
-			.arg(c.columnNumber());
+			.arg(c->lineNumber() + 1)
+			.arg(c->visualColumnNumber())
+			.arg(c->columnNumber());
 
 	p->drawText(xpos, ascent, s);
 	xpos += fm.width(s) + 10;

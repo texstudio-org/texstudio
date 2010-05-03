@@ -147,6 +147,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		bool isCursorVisible() const;
                 QDocumentCursor cursor() const;
+		QDocumentCursorHandle* cursorHandle() const;
 		
 		int cursorMirrorCount() const;
 		QDocumentCursor cursorMirror(int i) const;
