@@ -26,6 +26,9 @@ QStringList findResourceFiles(const QString& dirName, const QString& filter) {
 #if defined( Q_WS_X11 )
 	searchFiles<<PREFIX"/share/texmakerx"+dn; //X_11
 #endif
+#if defined( Q_WS_MACX )
+        searchFiles<<"../Resources"+dn; //X_11
+#endif
 
 	QStringList result;
 	foreach(const QString& fn, searchFiles) {
