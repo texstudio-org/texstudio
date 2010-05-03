@@ -52,7 +52,7 @@ QString BuildManager::cmdToConfigString(LatexCommand cmd){
 }
 
 QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentline) {
-	str=str+" "; //end character  so str[i++] is always defined 
+	str=str+" "; //end character  so str[i++] is always defined
 	QString result;
 	result.reserve(2*str.length());
 	for (int i=0; i<str.size(); i++) {
@@ -133,7 +133,7 @@ QString BuildManager::findFileInPath(QString fileName) {
 	if (i==-1) return "";
 	QString path=env[i].mid(5); //skip path=
 	#ifdef Q_WS_WIN
-	if (!fileName.contains('.')) fileName+=".exe"; 
+	if (!fileName.contains('.')) fileName+=".exe";
 	QStringList paths=path.split(";"); //windows
 	#else
 	QStringList paths=path.split(":"); //linux
@@ -206,7 +206,7 @@ QString searchBaseCommand(const QString &cmd, QString options) {
 	QString fileName=cmd;
 #endif
 	if (!options.startsWith(" ")) options=" "+options;
-	if (!BuildManager::findFileInPath(fileName).isEmpty()) 
+	if (!BuildManager::findFileInPath(fileName).isEmpty())
 		return cmd+options; //found in path
 	else {
 		//platform dependent mess
@@ -224,8 +224,8 @@ QString searchBaseCommand(const QString &cmd, QString options) {
 			return "/usr/bin/texbin/"+fileName+options;
 		if (QFileInfo("/usr/local/bin/"+fileName).exists())
 			return "/usr/local/bin/"+fileName+options;
-#endif		
-	} 
+#endif
+	}
 	return "";
 }
 
@@ -236,7 +236,7 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 //-------------User Commands--------------------
 //no need to perform next checks
 	switch (cmd) {
-		case CMD_USER_QUICK: 
+		case CMD_USER_QUICK:
 			return "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex|xdvi %.dvi";
 		case CMD_SVN:
 			return "svn ";
@@ -247,8 +247,8 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 			return "";
 		default:;
 	}
-				
-	
+
+
 //-------------Latex Base Commands ---------------------
 //They're the same on every platform and we will choose the path default if they exists
 	QString baseCommand  = baseCommandName(cmd); //platform independent name
@@ -258,7 +258,7 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 		QString bestCommand = searchBaseCommand(baseCommand,defaultOptions);
 		if (!bestCommand.isEmpty()) return bestCommand;
 	}
-	
+
 //-------------Viewer or WinGhostScript----------------------
 //Platform dependant
 #ifdef Q_WS_MACX
@@ -302,11 +302,11 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 		int pos;
 		while ((pos=gsDll.lastIndexOf("\\"))>-1) {
 			gsDll=gsDll.mid(0,pos+1);
-			if (QFileInfo(gsDll+"gsview32.exe").exists()) 
+			if (QFileInfo(gsDll+"gsview32.exe").exists())
 				return "\""+gsDll+"gsview32.exe\" -e \"?am.ps\"";
-			if (QFileInfo(gsDll+"gsview.exe").exists()) 
+			if (QFileInfo(gsDll+"gsview.exe").exists())
 				return "\""+gsDll+"gsview.exe\" -e \"?am.ps\"";
-			gsDll=gsDll.mid(0,pos); 
+			gsDll=gsDll.mid(0,pos);
 		}
 		if (QFileInfo("\"C:/Program Files/Ghostgum/gsview/gsview32.exe\"").exists())
 			return "\"C:/Program Files/Ghostgum/gsview/gsview32.exe\" -e \"?am.ps\"";
@@ -377,12 +377,12 @@ QString BuildManager::baseCommandName(LatexCommand cmd){
 		case CMD_METAPOST: return "mpost";
 		case CMD_SVN: return "svn";
 		case CMD_SVNADMIN: return "svnadmin";
-		/*case CMD_VIEWDVI: case CMD_VIEWPS:  case CMD_VIEWPDF: 
+		/*case CMD_VIEWDVI: case CMD_VIEWPS:  case CMD_VIEWPDF:
 			viewer are platform dependent*/
 		case CMD_GHOSTSCRIPT: return "gs";
 		default: return "";
 	}
-} 
+}
 QString BuildManager::defaultCommandOptions(LatexCommand cmd){
 	switch (cmd){
 		case CMD_LATEX: return "-interaction=nonstopmode %.tex";
@@ -430,24 +430,24 @@ QString BuildManager::commandDisplayName(LatexCommand cmd){
 void BuildManager::readSettings(const QSettings &settings){
 	for (LatexCommand i=CMD_LATEX; i < CMD_MAXIMUM_COMMAND_VALUE;++i)
 		setLatexCommand(i,settings.value(cmdToConfigString(i), "<default>").toString());
-	if (settings.contains("Tools/Quick Mode")) 
+	if (settings.contains("Tools/Quick Mode"))
 		quickmode=settings.value("Tools/Quick Mode",1).toInt(); //load stored value
 	else {
 		//choose working default where every necessary command is knownr
-		if (hasLatexCommand(CMD_LATEX) && hasLatexCommand(CMD_DVIPS) && hasLatexCommand(CMD_VIEWPS)) 
+		if (hasLatexCommand(CMD_LATEX) && hasLatexCommand(CMD_DVIPS) && hasLatexCommand(CMD_VIEWPS))
 			quickmode=1;
-		else if (hasLatexCommand(CMD_LATEX) && hasLatexCommand(CMD_VIEWDVI)) 
+		else if (hasLatexCommand(CMD_LATEX) && hasLatexCommand(CMD_VIEWDVI))
 			quickmode=2;
-		else if (hasLatexCommand(CMD_PDFLATEX) && hasLatexCommand(CMD_VIEWPDF)) 
+		else if (hasLatexCommand(CMD_PDFLATEX) && hasLatexCommand(CMD_VIEWPDF))
 			quickmode=3;
 		else if (hasLatexCommand(CMD_LATEX) && hasLatexCommand(CMD_DVIPDF) && hasLatexCommand(CMD_VIEWPDF))
 			quickmode=4;
-		else if (hasLatexCommand(CMD_LATEX) && hasLatexCommand(CMD_DVIPS) && 
-				 hasLatexCommand(CMD_PS2PDF) && hasLatexCommand(CMD_VIEWPDF)) 
+		else if (hasLatexCommand(CMD_LATEX) && hasLatexCommand(CMD_DVIPS) &&
+				 hasLatexCommand(CMD_PS2PDF) && hasLatexCommand(CMD_VIEWPDF))
 			quickmode=5;
 		else quickmode=1; //texmaker default
-	}	
-	if (settings.contains("Tools/Dvi2Png Mode")) 
+	}
+	if (settings.contains("Tools/Dvi2Png Mode"))
 		dvi2pngMode=(Dvi2PngMode) settings.value("Tools/Dvi2Png Mode",1).toInt(); //load stored value
 	else {
 		if (hasLatexCommand(CMD_DVIPNG)) dvi2pngMode = DPM_DVIPNG_FOLLOW; //best/fastest mode
@@ -496,7 +496,7 @@ ProcessX* BuildManager::newProcess(const QString &unparsedCommandLine, const QSt
 	QFileInfo cfi;
 	if (mainFile==currentFile) cfi=mfi;
 	else cfi=QFileInfo(currentFile);
-	QString cmd=BuildManager::parseExtendedCommandLine(unparsedCommandLine,mfi,cfi,currentLine);	
+	QString cmd=BuildManager::parseExtendedCommandLine(unparsedCommandLine,mfi,cfi,currentLine);
 	ProcessX* proc = new ProcessX(this, cmd, mainFile);
 	connect(proc, SIGNAL(finished(int)),proc, SLOT(deleteLater())); //will free proc after the process has ended
 	proc->setWorkingDirectory(mfi.absolutePath());
@@ -526,18 +526,18 @@ QTemporaryFile* BuildManager::temporaryTexFile(){
 //1. latex is called => dvipng is called after latex finished and converts the dvi
 //2. latex is called and dvipng --follow is called at the same time, and will manage the wait time on its own
 //3. latex is called => dvips converts .dvi to .ps => ghostscript is called and created final png
-//Then ghostscript to convert it to 
+//Then ghostscript to convert it to
 void BuildManager::preview(const QString &preamble, const QString &text, QTextCodec *outputCodec){
   // write to temp file
   // (place /./ after the temporary directory because it fails otherwise with qt4.3 on win and the tempdir "t:")
-	QTemporaryFile *tf=new QTemporaryFile(QDir::tempPath()+QDir::separator()+"."+QDir::separator()+"XXXXXX.tex"); 
+	QTemporaryFile *tf=new QTemporaryFile(QDir::tempPath()+QDir::separator()+"."+QDir::separator()+"XXXXXX.tex");
 	if (!tf) return;
 	tf->open();
-	
+
 	QTextStream out(tf);
 	if (outputCodec) out.setCodec(outputCodec);
-	out << preamble 
-		<< "\n\\begin{document}\n" 
+	out << preamble
+		<< "\n\\begin{document}\n"
 		<< text
 		<< "\n\\end{document}\n";
 	// prepare commands/filenames
@@ -553,7 +553,7 @@ void BuildManager::preview(const QString &preamble, const QString &text, QTextCo
 	ProcessX *p1 = newProcess(CMD_LATEX,ffn); //no delete! goes automatically
 	connect(p1,SIGNAL(finished(int)),this,SLOT(latexPreviewCompleted(int)));
 	p1->startCommand();
-	
+
 	if (dvi2pngMode==DPM_DVIPNG_FOLLOW) {
 		p1->waitForStarted();
 		// dvi -> png
@@ -574,7 +574,7 @@ void BuildManager::latexPreviewCompleted(int status){
 		// dvi -> png
 		ProcessX *p2 = newProcess(CMD_DVIPNG,p1->getFile());
 		connect(p2,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
-		p2->startCommand();	
+		p2->startCommand();
 	}
 	if (dvi2pngMode==DPM_DVIPS_GHOSTSCRIPT) {
 		ProcessX* p1=qobject_cast<ProcessX*> (sender());
@@ -582,19 +582,19 @@ void BuildManager::latexPreviewCompleted(int status){
 		// dvi -> ps
 		ProcessX *p2 = newProcess(CMD_DVIPS,"-E",p1->getFile());
 		connect(p2,SIGNAL(finished(int)),this,SLOT(dvi2psPreviewCompleted(int)));
-		p2->startCommand();	
+		p2->startCommand();
 	}
 }
 
-//dvi to ps conversion is finished, call ghostscript to make a useable png from it 
+//dvi to ps conversion is finished, call ghostscript to make a useable png from it
 void BuildManager::dvi2psPreviewCompleted(int status){
 	Q_UNUSED(status);
 	ProcessX* p2=qobject_cast<ProcessX*> (sender());
 	if (!p2) return;
-	// ps -> png, ghostscript is quite, safe, will create 24-bit png 
+	// ps -> png, ghostscript is quite, safe, will create 24-bit png
 	ProcessX *p3 = newProcess(CMD_GHOSTSCRIPT,"-q -dSAFER -dBATCH -dNOPAUSE -sDEVICE=png16m -dEPSCrop -sOutputFile=\"?am)1.png\"  \"?am.ps\"",p2->getFile());
 	connect(p3,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
-	p3->startCommand();	
+	p3->startCommand();
 }
 
 void BuildManager::conversionPreviewCompleted(int status){
@@ -604,7 +604,7 @@ void BuildManager::conversionPreviewCompleted(int status){
 	// put image in preview
 	QString processedFile=p2->getFile();
 	QString fn=parseExtendedCommandLine("?am)1.png",processedFile);
-	if(QFileInfo(fn).exists()) 
+	if(QFileInfo(fn).exists())
 		emit previewAvailable(fn,previewFileNameToText[processedFile]);
 }
 
@@ -616,15 +616,15 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 	//parse URL
 	if (!ddePseudoURL.startsWith("dde://")) return false;
 	ddePseudoURL.remove(0,6);
-	
+
 	if (ddePseudoURL.length() < 3) return false;
 	QString serviceEXEPath;
-	if (ddePseudoURL[1] == ':') { //extended dde of format dde://<path>:control/commands
-		int pathLength = ddePseudoURL.indexOf(':', 2);
+	if (ddePseudoURL[1] == ':' || (ddePseudoURL[0] == '"' && ddePseudoURL[2] == ':')) { //extended dde of format dde://<path>:control/commands
+		int pathLength = ddePseudoURL.indexOf(':', 3);
 		serviceEXEPath = ddePseudoURL.left(pathLength);
 		ddePseudoURL.remove(0,pathLength+1);
 	}
-	
+
 	int slash=ddePseudoURL.indexOf("/");
 	if (slash==-1) return false;
 	QString service = ddePseudoURL.left(slash);
@@ -653,7 +653,9 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 		return false;
 	}
 	HCONV hConv = DdeConnect(pidInst, hszService, hszTopic, NULL);
-	if (!hConv && !serviceEXEPath.isEmpty()){ 
+	if (!hConv && !serviceEXEPath.isEmpty()){
+	    if (!serviceEXEPath.contains('"') && serviceEXEPath.contains(' ') && QFileInfo(serviceEXEPath).exists())
+            serviceEXEPath = "\"" + serviceEXEPath + "\"";
 		//connecting failed; start the service if necessary
 		QProcess* p = new QProcess(QCoreApplication::instance()); //application is parent, to close the service if tmx is closed
 		p->start(serviceEXEPath);
@@ -662,12 +664,12 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 		  //try again to connect (repeatedly 2s long)
 			DWORD startTime = GetTickCount();
 		  while (!hConv && GetTickCount() - startTime < 1000) {
-				hConv = DdeConnect(pidInst, hszService, hszTopic, NULL); 
+				hConv = DdeConnect(pidInst, hszService, hszTopic, NULL);
 				Sleep(100);
 			}
-		} else delete p;			
+		} else delete p;
 	}
-	
+
 	QCoreApplication::processEvents();
 
 	DdeFreeStringHandle(pidInst, hszService);
@@ -699,7 +701,7 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 #endif
 
 ProcessX::ProcessX(BuildManager* parent, const QString &assignedCommand, const QString& fileToCompile):
-		QProcess(parent), cmd(assignedCommand), file(fileToCompile), started(false), mBuffer(0) {
+		QProcess(parent), cmd(assignedCommand.trimmed()), file(fileToCompile), started(false), mBuffer(0) {
 }
 void ProcessX::startCommand() {
 	#ifdef Q_WS_WIN
@@ -717,7 +719,7 @@ void ProcessX::startCommand() {
 		return;
 	}
 	#endif
-		
+
 	QProcess::start(cmd);
 }
 bool ProcessX::waitForStarted(int timeOut){
