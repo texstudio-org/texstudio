@@ -1,5 +1,10 @@
 #include "smallUsefulFunctions.h"
 
+#ifdef Q_WS_MAC
+#include <CoreFoundation/CFURL.h>
+#include <CoreFoundation/CFBundle.h>
+#endif
+
 const QString CommonEOW="~!@#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`+ï¿½´";
 const QString EscapedChars="%&_";
 const QString CharacterAlteringChars="\"";
@@ -26,8 +31,15 @@ QStringList findResourceFiles(const QString& dirName, const QString& filter) {
 #if defined( Q_WS_X11 )
 	searchFiles<<PREFIX"/share/texmakerx"+dn; //X_11
 #endif
-#if defined( Q_WS_MACX )
-        searchFiles<<"../Resources"+dn; //X_11
+#ifdef Q_WS_MAC
+        CFURLRef appUrlRef = CFBundleCopyBundleURL(CFBundleGetMainBundle());
+        CFStringRef macPath = CFURLCopyFileSystemPath(appUrlRef,
+                                                      kCFURLPOSIXPathStyle);
+        const char *pathPtr = CFStringGetCStringPtr(macPath,
+                                                    CFStringGetSystemEncoding());
+        searchFiles<<QString(pathPtr)+"/Contents/Resources"+dn; //Mac
+        CFRelease(appUrlRef);
+        CFRelease(macPath);
 #endif
 
 	QStringList result;
