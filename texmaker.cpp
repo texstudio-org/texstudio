@@ -2624,7 +2624,7 @@ void Texmaker::SpellingLanguageChanged() {
 	if (!action) return;
 	if (!currentEditorView()) return;
 	QString text=action->text();
-	comboSpell->defaultAction()->setText(text);
+	comboSpell->setDefaultAction(action);
 
 	QString baseName=QFileInfo(configManager.spell_dic).absolutePath();
 	configManager.spell_dic=baseName+"/"+text;
