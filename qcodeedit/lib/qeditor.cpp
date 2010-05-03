@@ -1662,6 +1662,14 @@ QDocumentCursor QEditor::cursor() const
 }
 
 /*!
+	\return the current cursor handle
+*/
+QDocumentCursorHandle* QEditor::cursorHandle() const
+{
+	return m_cursor.handle();
+}
+
+/*!
 	\brief Set the document cursor
 */
 void QEditor::setCursor(const QDocumentCursor& c)
