@@ -1,3 +1,17 @@
+(look also at the usermanual)
+TexMakerX 1.9.3 -> TexMakerX 1.9.9
+--------------------------------------
+- added interactive structure view update
+- added basic scripting
+- added automatically SVN commits
+- added customizable toolbars, environment highlighting and LaTeX menus
+- faster search (= optimized highlighting)
+- extended DDE syntax to start services which aren't running
+- if a called latex hangs it can be killed with escape after 2 seconds
+- fixed folding 
+- fixed single instance mode on mac (by replacing dsingleapplication with qtsingleapplication)
+- several other fixes
+ 
 TexmakerX 1.9.2 -> TexMakerX 1.9.3
 --------------------------------------
 - added a find in open files dialog
