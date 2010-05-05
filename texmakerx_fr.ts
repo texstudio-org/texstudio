@@ -192,167 +192,177 @@
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="configdialog.ui" line="14"/>
+        <location filename="configdialog.ui" line="13"/>
         <source>Configure TexMakerX</source>
         <oldsource>Configure Texmaker</oldsource>
         <translatorcomment>changed texmaker into texmakerx</translatorcomment>
         <translation>Configuration de TexMakerX</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="53"/>
+        <location filename="configdialog.ui" line="73"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="60"/>
+        <location filename="configdialog.ui" line="80"/>
         <source>Cancel</source>
         <translation>Abandon</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="137"/>
+        <location filename="configdialog.ui" line="157"/>
         <source>Appearance</source>
         <translation>Apparence</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="149"/>
+        <location filename="configdialog.ui" line="169"/>
         <source>Style</source>
         <translation>Style</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="172"/>
+        <location filename="configdialog.ui" line="192"/>
         <source>Font</source>
         <translation>Police</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="195"/>
+        <location filename="configdialog.ui" line="215"/>
         <source>Font Size</source>
         <translation>Taille de police</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="218"/>
+        <location filename="configdialog.ui" line="238"/>
         <source>Language</source>
         <translation>Langue</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="235"/>
+        <location filename="configdialog.ui" line="255"/>
         <source>Color Scheme</source>
         <translation>Thème de couleurs</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="243"/>
+        <location filename="configdialog.ui" line="263"/>
         <source>classic</source>
         <translation>classique</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="248"/>
+        <location filename="configdialog.ui" line="268"/>
         <source>modern</source>
         <translation>moderne</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="262"/>
+        <location filename="configdialog.ui" line="282"/>
         <source>Tabbed Structure/Symbol View</source>
         <translation>Affichage de structure/symboles par onglets</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="275"/>
+        <location filename="configdialog.ui" line="295"/>
         <source>Tabbed Log Viewer</source>
         <translatorcomment>traduire &apos;log&apos; par journal?</translatorcomment>
         <translation>Voir log dans les onglets</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="282"/>
+        <location filename="configdialog.ui" line="302"/>
         <source>ignore most system colors</source>
         <translation>ignorer le thème couleurs du système</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="292"/>
+        <location filename="configdialog.ui" line="312"/>
         <source>Files</source>
         <translation>Fichiers</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="307"/>
+        <location filename="configdialog.ui" line="327"/>
         <source>Max. Recent Documents</source>
         <translation>Nb. max. documents récents</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="330"/>
+        <location filename="configdialog.ui" line="350"/>
         <source>Max. Recent Master Documents</source>
         <translatorcomment>document-maîtres? documents-maîtres?</translatorcomment>
         <translation>Nb. max. documents maîtres récents</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="347"/>
+        <location filename="configdialog.ui" line="367"/>
         <source>Parse BibTeX</source>
         <translation>Analyser BibTeX</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="354"/>
+        <location filename="configdialog.ui" line="374"/>
         <source>Always show structure of master document</source>
         <translation>Toujours afficher la structure du document maître</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="367"/>
+        <location filename="configdialog.ui" line="387"/>
         <source>Dictionaries</source>
         <translation>Dictionnaires</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="373"/>
+        <location filename="configdialog.ui" line="393"/>
         <source>Spelling dictionary</source>
         <translation>Dictionnaire</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="403"/>
+        <location filename="configdialog.ui" line="422"/>
         <source>TextLabel</source>
         <translation>Étiquette de texte</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="416"/>
+        <location filename="configdialog.ui" line="435"/>
         <source>inline checking</source>
         <translation>Vérification à la volée</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="423"/>
+        <location filename="configdialog.ui" line="442"/>
         <source>Thesaurus Database</source>
         <translation>Base de donnée du thésaurus</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="447"/>
+        <location filename="configdialog.ui" line="465"/>
         <source>inline spell checking</source>
         <translation>Vérifier l&apos;orthographe à la volée</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="457"/>
+        <location filename="configdialog.ui" line="475"/>
         <source>inline citation checking</source>
         <translation>Vérifier les citations à la volée</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="467"/>
+        <location filename="configdialog.ui" line="485"/>
         <source>inline reference checking</source>
         <translation>Vérifier les références à la volée</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="532"/>
+        <location filename="configdialog.ui" line="498"/>
+        <source>*.dic</source>
+        <translation>*.dic</translation>
+    </message>
+    <message>
+        <location filename="configdialog.ui" line="508"/>
+        <source>*.dat</source>
+        <translation>*.dat</translation>
+    </message>
+    <message>
+        <location filename="configdialog.ui" line="559"/>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
         <translation>Commandes (% : nom  du fichier sans extension - @ : numéro de ligne - ? : nom du fichier étendu)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="539"/>
+        <location filename="configdialog.ui" line="566"/>
         <source>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</source>
         <translatorcomment>html code shouldn&apos;t appear in text to be translated: see with developers</translatorcomment>
         <translation>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Caractères spéciaux&lt;/span&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="546"/>
+        <location filename="configdialog.ui" line="573"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension &lt;b&gt;@&lt;/b&gt;: line number </source>
         <translation>&lt;b&gt;%&lt;/b&gt;: nom de fichier sans extension &lt;b&gt;@&lt;/b&gt;: numéro de ligne </translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="556"/>
+        <location filename="configdialog.ui" line="583"/>
         <source>&lt;b&gt;?&lt;/b&gt; followed by &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: extended filename; prepend &lt;i&gt;c:&lt;/i&gt; for current file instead of master file</source>
         <translation>&lt;b&gt;?&lt;/b&gt; suivi de &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt; ou &lt;i&gt;)&lt;/i&gt;: nom de fichier étendu (utiliser &lt;i&gt;c:&lt;/i&gt; pour désigner le fichier courant au lieu du document maître)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="566"/>
+        <location filename="configdialog.ui" line="593"/>
         <source>&lt;i&gt;a&lt;/i&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;i&gt;m&lt;/i&gt;: basefile name without extension,&lt;i&gt;e&lt;/i&gt;: extension&lt;br /&gt;
 &lt;i&gt;&quot;&lt;/i&gt;: enclose with &quot;..&quot;, . (point): ends placeholder with a point, (space): ends placeholder and add a space, &lt;i&gt;)&lt;/i&gt;: ends placeholder &lt;br /&gt;
 examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just the extension (without leading point), &lt;br /&gt;
@@ -363,143 +373,146 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
 ?m&quot; (nom de fichier sans extension, identique à %) ?me (nom de fichier avec extension comme par exemple: exemple.tex)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="582"/>
+        <location filename="configdialog.ui" line="609"/>
         <source>%%, @@ or ?? become: %, @ or ?
 </source>
         <translation>pour %, @ ou ?, noter respectivement %%, @@ ou ??</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="625"/>
+        <location filename="configdialog.ui" line="661"/>
         <source>Quick Build Command</source>
         <translation>Commande de compilation rapide</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="645"/>
+        <location filename="configdialog.ui" line="702"/>
         <source>LaTeX + dvips + View PS</source>
         <translation>LaTeX + dvips + Afficheur PS</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="652"/>
+        <location filename="configdialog.ui" line="709"/>
         <source>LaTeX + View DVI</source>
         <translation>LaTeX + Afficheur DVI</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="659"/>
+        <location filename="configdialog.ui" line="716"/>
         <source>PdfLaTeX + View PDF</source>
         <translation>PdfLaTeX + Afficheur PDF</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="666"/>
+        <location filename="configdialog.ui" line="723"/>
         <source>LaTeX + dvipdfm + View PDF</source>
         <translation>LaTeX + dvipdfm + Afficheur PDF</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="673"/>
+        <location filename="configdialog.ui" line="730"/>
         <source>LaTeX + dvips + ps2pdf + View PDF</source>
         <translation>LaTeX + dvips + ps2pdf + Afficheur PDF</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="680"/>
+        <location filename="configdialog.ui" line="737"/>
         <source>User : (% : filename without extension)</source>
         <translation>Utilisateur : (% nom de fichier sans extension)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="690"/>
+        <location filename="configdialog.ui" line="747"/>
         <source>(the commands must be separated by &apos;|&apos;)</source>
         <translation>(les commandes sont séparées par le symbole &apos;|&apos;)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="702"/>
+        <location filename="configdialog.ui" line="759"/>
         <source>More</source>
         <translation>Plus d&apos;options</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="711"/>
+        <location filename="configdialog.ui" line="768"/>
         <source>Execute before compiling:</source>
         <translation>Avant compilation:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="751"/>
+        <location filename="configdialog.ui" line="807"/>
         <source>Assume that every error is in the current document:</source>
         <translation>Supposer que toutes les erreurs sont dans le document courant:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="765"/>
+        <location filename="configdialog.ui" line="821"/>
         <source>Never (only use the file names in the log)</source>
         <translatorcomment>log &gt; journal?</translatorcomment>
         <translation>Jamais (utiliser les noms de fichier dans le log)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="770"/>
+        <location filename="configdialog.ui" line="826"/>
         <source>Only when there is no master document</source>
         <translation>Seulement si aucun document maître n&apos;est défini</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="775"/>
+        <location filename="configdialog.ui" line="831"/>
         <source>Always (ignore file names in the log)</source>
         <translation>Toujours (ignorer noms de fichier du log)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="783"/>
+        <location filename="configdialog.ui" line="839"/>
         <source>Show log after compiling if there are errors</source>
         <translation>Afficher le log en cas d&apos;erreurs de compilation</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="793"/>
+        <location filename="configdialog.ui" line="849"/>
         <source>run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</source>
         <translation>exécuter &quot;latex bibtex latex&quot; avant la compilation si les fichiers BibTeX ont été modifiés</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1239"/>
+        <location filename="configdialog.ui" line="1307"/>
         <source>Show Whitespace</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher espaces</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1291"/>
+        <location filename="configdialog.ui" line="1350"/>
         <source>Add line</source>
         <translation>Ajouter ligne</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1298"/>
+        <location filename="configdialog.ui" line="1357"/>
         <source>Remove line</source>
         <translation>Supprimer ligne</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="820"/>
         <location filename="configdialog.cpp" line="253"/>
+        <location filename="configdialog.ui" line="876"/>
         <source>Shortcuts</source>
         <translation>Raccourcis clavier</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="834"/>
+        <location filename="configdialog.ui" line="890"/>
+        <location filename="configdialog.ui" line="931"/>
+        <location filename="configdialog.ui" line="1010"/>
         <source>1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="839"/>
+        <location filename="configdialog.ui" line="895"/>
+        <location filename="configdialog.ui" line="936"/>
         <source>2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="844"/>
+        <location filename="configdialog.ui" line="900"/>
         <source>3</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="849"/>
+        <location filename="configdialog.ui" line="905"/>
         <source>4</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="861"/>
         <location filename="configdialog.cpp" line="254"/>
+        <location filename="configdialog.ui" line="917"/>
         <source>Latex Menus</source>
         <translation>Menus LaTeX</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="892"/>
+        <location filename="configdialog.ui" line="948"/>
         <source>Toolbar Customization</source>
-        <translation type="unfinished"></translation>
+        <translation>Barre d&apos;outils personnalisée</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="255"/>
@@ -507,243 +520,243 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <translation>Barre d&apos;outils personnalisée</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="906"/>
+        <location filename="configdialog.ui" line="962"/>
         <source>&lt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="913"/>
+        <location filename="configdialog.ui" line="969"/>
         <source>&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="980"/>
         <location filename="configdialog.cpp" line="256"/>
-        <location filename="configmanager.cpp" line="577"/>
+        <location filename="configdialog.ui" line="1048"/>
+        <location filename="configmanager.cpp" line="583"/>
         <source>Editor</source>
         <translation>Éditeur</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="986"/>
+        <location filename="configdialog.ui" line="1054"/>
         <source>Editor Font Family</source>
         <translation>Famille de Police</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1000"/>
+        <location filename="configdialog.ui" line="1068"/>
         <source>Word Wrap</source>
         <translation>Retour à la ligne</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1007"/>
+        <location filename="configdialog.ui" line="1075"/>
         <source>Editor Font Size</source>
         <translation>Taille de Police</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1024"/>
+        <location filename="configdialog.ui" line="1092"/>
         <source>Folding</source>
         <translation>Code repliable</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1031"/>
+        <location filename="configdialog.ui" line="1099"/>
         <source>Editor Font Encoding</source>
         <translation>Encodage des caractères</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1045"/>
+        <location filename="configdialog.ui" line="1113"/>
         <source>No line numbers</source>
         <translation>Pas de numéro de ligne</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1050"/>
+        <location filename="configdialog.ui" line="1118"/>
         <source>Show line numbers</source>
         <translation>Afficher numéros de ligne</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1055"/>
+        <location filename="configdialog.ui" line="1123"/>
         <source>Show important line numbers</source>
         <translation>Afficher numéros de ligne importants</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1067"/>
+        <location filename="configdialog.ui" line="1135"/>
         <source>show preview as tool tip if panel is hidden</source>
         <translation>prévisualisation à bulle si le panneau est caché</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1072"/>
+        <location filename="configdialog.ui" line="1140"/>
         <source>always show preview in preview panel</source>
         <translation>Toujours afficher panneau de prévisualisation</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1077"/>
+        <location filename="configdialog.ui" line="1145"/>
         <source>always show preview as tool tip</source>
         <translation>Toujours afficher prévisualisation à bulle</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1082"/>
+        <location filename="configdialog.ui" line="1150"/>
         <source>always show both</source>
         <translation>Toujours afficher les deux</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1094"/>
+        <location filename="configdialog.ui" line="1162"/>
         <source>preview with dvipng</source>
         <translation>prévisualisation avec dvipng</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1099"/>
+        <location filename="configdialog.ui" line="1167"/>
         <source>preview with dvipng --follow (parallel)</source>
         <translatorcomment>je doute sur la signification de &apos;parallel&apos;, la page &apos;man&apos; de dvipng ne m&apos;éclaire pas</translatorcomment>
         <translation>prévisualisation avec dvipng --follow (parallèlement)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1104"/>
+        <location filename="configdialog.ui" line="1172"/>
         <source>preview with dvips/ghostscript</source>
         <translation>prévisualisation avec dvips/ghostscript</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1130"/>
+        <location filename="configdialog.ui" line="1198"/>
         <source>Formats</source>
         <translation>Formats</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1137"/>
+        <location filename="configdialog.ui" line="1205"/>
         <source>close search and replace panel together</source>
         <translation>Fermer &apos;chercher et remplacer&apos; ensembles</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1151"/>
+        <location filename="configdialog.ui" line="1219"/>
         <source>ignore indentation</source>
         <translatorcomment>devrait-on utiliser le terme &apos;alinéa&apos;?</translatorcomment>
         <translation>Ignorer l&apos;indentation</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1156"/>
+        <location filename="configdialog.ui" line="1224"/>
         <source>keep indentation</source>
         <translation>Considérer l&apos;indentation</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1161"/>
+        <location filename="configdialog.ui" line="1229"/>
         <source>indent and unindent automatically</source>
         <translation>Gestion automatique de l&apos;indentation</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1166"/>
+        <location filename="configdialog.ui" line="1234"/>
         <source>keep indentation with spaces only</source>
         <translation>gérer l&apos;indentation avec des espaces seulement</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1171"/>
+        <location filename="configdialog.ui" line="1239"/>
         <source>indent and unindent automatically with spaces only</source>
         <translation>Gestion automatique de l&apos;indentation avec espaces seulement</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1179"/>
+        <location filename="configdialog.ui" line="1247"/>
         <source>Show Line Change State</source>
         <translatorcomment>je doute...</translatorcomment>
         <translation>Afficher l&apos;état du changement de ligne</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1189"/>
+        <location filename="configdialog.ui" line="1257"/>
         <source>Show State Panel</source>
         <translation>Afficher le panneau d&apos;État</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1199"/>
+        <location filename="configdialog.ui" line="1267"/>
         <source>Show Modify Time</source>
         <translation>Afficher le délai depuis la dernière modification</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1209"/>
+        <location filename="configdialog.ui" line="1277"/>
         <source>Use single line selection as Search Word</source>
         <translation>Utiliser la sélection comme mot à chercher</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1219"/>
+        <location filename="configdialog.ui" line="1287"/>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
         <translation>seuls choix possibles: UTF-16, UTF-8 et ISO 8859-1 !</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1222"/>
+        <location filename="configdialog.ui" line="1290"/>
         <source>auto detect encoding of loaded files</source>
         <translation>détecter l&apos;encodage des fichiers à l&apos;ouverture</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1229"/>
+        <location filename="configdialog.ui" line="1297"/>
         <source>Use Tab for Move To Placeholder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1276"/>
+        <location filename="configdialog.ui" line="1335"/>
         <source>Custom Environment</source>
-        <translation type="unfinished"></translation>
+        <translation>Environnements personnalisée</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1281"/>
+        <location filename="configdialog.ui" line="1340"/>
         <source>Type of Environment</source>
-        <translation type="unfinished"></translation>
+        <translation>Type de environnement</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1324"/>
+        <location filename="configdialog.ui" line="1383"/>
         <source>Completion Enabled</source>
         <translation>Activer la complétion</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1331"/>
+        <location filename="configdialog.ui" line="1390"/>
         <source>Case Sensitive</source>
         <translation>Sensible à la casse</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1356"/>
+        <location filename="configdialog.ui" line="1415"/>
         <source>In first character</source>
         <translation>En premier caractère</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1381"/>
+        <location filename="configdialog.ui" line="1440"/>
         <source>Auto Complete Common Prefix</source>
         <translatorcomment>?</translatorcomment>
         <translation>Complétion automatique des préfixes communs</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1391"/>
+        <location filename="configdialog.ui" line="1450"/>
         <source>Complete selected text when non-word character is pressed</source>
         <translation>Compléter le texte sélectionné si un caractère de ponctuation est pressé</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1401"/>
+        <location filename="configdialog.ui" line="1460"/>
         <source>Enable ToolTip-Help</source>
         <translation>Activer les bulles d&apos;aide</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1411"/>
+        <location filename="configdialog.ui" line="1470"/>
         <source>Use placeholders</source>
         <translation>Utiliser des paramètres fictifs</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1421"/>
+        <location filename="configdialog.ui" line="1480"/>
         <source>Use following completion files:</source>
         <translation>Utiliser les fichiers de complétion suivants:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1439"/>
+        <location filename="configdialog.ui" line="1498"/>
         <source>Automatically check in after save ?</source>
         <translation>Soumettre les modifications automatiquement après la sauvegarde?</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1446"/>
+        <location filename="configdialog.ui" line="1505"/>
         <source>Uses SVN revisions to undo before last saved version ?</source>
         <translation>Utiliser les révisions SVN pour &apos;Défaire&apos; avant la dernière version sauvée?</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1453"/>
+        <location filename="configdialog.ui" line="1512"/>
         <source>SVN Commands</source>
         <translation>Commandes SVN</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1462"/>
+        <location filename="configdialog.ui" line="1521"/>
         <source>SVN Directory Search Depth: </source>
         <translation>Profondeur de recherche dans les répertoires SVN:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1498"/>
+        <location filename="configdialog.ui" line="1557"/>
         <source>show advanced options</source>
         <translation>afficher les options avancées</translation>
     </message>
@@ -818,7 +831,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.cpp" line="257"/>
         <source>Custom Highlighting</source>
-        <translation type="unfinished"></translation>
+        <translation>Surligneur personnalisée</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="258"/>
@@ -831,68 +844,68 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <translation></translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="313"/>
+        <location filename="configdialog.cpp" line="316"/>
         <source>Browse dictionary</source>
         <translation>Localiser dictionnaire</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="323"/>
         <location filename="configdialog.cpp" line="326"/>
+        <location filename="configdialog.cpp" line="329"/>
         <source>Get dictionary at: %1</source>
         <translation>Téléchargement dictionnaire: %1</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="326"/>
+        <location filename="configdialog.cpp" line="329"/>
         <source>(Dictionary doesn&apos;t exists)</source>
         <translation>(dictionnaire introuvable)</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="362"/>
+        <location filename="configdialog.cpp" line="365"/>
         <source>Browse thesaurus database</source>
         <translation>Sélectionner thésaurus</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="375"/>
+        <location filename="configdialog.cpp" line="378"/>
         <source>Browse program</source>
         <translation>Localiser le programme</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="462"/>
+        <location filename="configdialog.cpp" line="465"/>
         <source>Load other icon</source>
         <translation>Charger une autre icône</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="467"/>
+        <location filename="configdialog.cpp" line="470"/>
         <source>Select a File</source>
         <translation>Sélectionner un fichier</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="467"/>
+        <location filename="configdialog.cpp" line="470"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.svg)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="579"/>
+        <location filename="configmanager.cpp" line="585"/>
         <source>Special Key Replacement</source>
         <translation>Remplacement de touche spéciale</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="580"/>
+        <location filename="configmanager.cpp" line="586"/>
         <source>New column meaning:</source>
         <translation>Signification de la nouvelle colonne:</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="580"/>
+        <location filename="configmanager.cpp" line="586"/>
         <source>Key to replace</source>
         <translation>Touche à remplacer</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="580"/>
+        <location filename="configmanager.cpp" line="586"/>
         <source>Text to insert before word</source>
         <translation>Texte à insérer devant le mot</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="580"/>
+        <location filename="configmanager.cpp" line="586"/>
         <source>Text to insert after word</source>
         <translation>Texte à insérer après le mot</translation>
     </message>
@@ -900,74 +913,74 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
 <context>
     <name>ConfigManager</name>
     <message>
-        <location filename="configmanager.cpp" line="487"/>
-        <location filename="configmanager.cpp" line="488"/>
-        <location filename="configmanager.cpp" line="628"/>
-        <location filename="configmanager.cpp" line="630"/>
-        <location filename="configmanager.cpp" line="809"/>
-        <location filename="configmanager.cpp" line="832"/>
+        <location filename="configmanager.cpp" line="493"/>
+        <location filename="configmanager.cpp" line="494"/>
+        <location filename="configmanager.cpp" line="634"/>
+        <location filename="configmanager.cpp" line="636"/>
+        <location filename="configmanager.cpp" line="815"/>
+        <location filename="configmanager.cpp" line="838"/>
         <source>default</source>
         <translation>par défaut</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="571"/>
+        <location filename="configmanager.cpp" line="577"/>
         <source>Menus</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="621"/>
+        <location filename="configmanager.cpp" line="627"/>
         <source>Latex/Math menus</source>
-        <translation type="unfinished"></translation>
+        <translation>Menus LaTeX/Maths</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="622"/>
+        <location filename="configmanager.cpp" line="628"/>
         <source>All menus</source>
-        <translation type="unfinished"></translation>
+        <translation>Tout menus</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="623"/>
+        <location filename="configmanager.cpp" line="629"/>
         <source>Special Tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="885"/>
+        <location filename="configmanager.cpp" line="891"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>&apos;Document maître&apos; récent %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="891"/>
+        <location filename="configmanager.cpp" line="897"/>
         <source>Recent File %1</source>
         <translation>Fichier récent %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="899"/>
+        <location filename="configmanager.cpp" line="905"/>
         <source>Master Document: </source>
         <translation>Document maître:</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1099"/>
-        <location filename="configmanager.cpp" line="1106"/>
+        <location filename="configmanager.cpp" line="1105"/>
+        <location filename="configmanager.cpp" line="1112"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;aucun&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1100"/>
-        <location filename="configmanager.cpp" line="1107"/>
+        <location filename="configmanager.cpp" line="1106"/>
+        <location filename="configmanager.cpp" line="1113"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;défaut&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1218"/>
+        <location filename="configmanager.cpp" line="1224"/>
         <source>Browse program</source>
         <translation>Localiser le programme</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1238"/>
+        <location filename="configmanager.cpp" line="1244"/>
         <source>Latex</source>
         <translation>LaTeX</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1238"/>
+        <location filename="configmanager.cpp" line="1244"/>
         <source>Math</source>
         <translation>Math</translation>
     </message>
@@ -1213,34 +1226,34 @@ Continuer tout de même?</translation>
 <context>
     <name>LatexDocument</name>
     <message>
-        <location filename="latexdocument.cpp" line="16"/>
-        <location filename="latexdocument.cpp" line="136"/>
+        <location filename="latexdocument.cpp" line="31"/>
+        <location filename="latexdocument.cpp" line="171"/>
         <source>LABELS</source>
         <translation>ÉTIQUETTES</translation>
     </message>
     <message>
-        <location filename="latexdocument.cpp" line="17"/>
-        <location filename="latexdocument.cpp" line="138"/>
+        <location filename="latexdocument.cpp" line="32"/>
+        <location filename="latexdocument.cpp" line="176"/>
         <source>TODO</source>
         <translation>À FAIRE</translation>
     </message>
     <message>
-        <location filename="latexdocument.cpp" line="18"/>
-        <location filename="latexdocument.cpp" line="140"/>
+        <location filename="latexdocument.cpp" line="33"/>
+        <location filename="latexdocument.cpp" line="181"/>
         <source>BIBTEX</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="latexdocument.cpp" line="19"/>
-        <location filename="latexdocument.cpp" line="142"/>
+        <location filename="latexdocument.cpp" line="34"/>
+        <location filename="latexdocument.cpp" line="186"/>
         <source>BLOCKS</source>
-        <translation type="unfinished"></translation>
+        <translation>BLOCKS</translation>
     </message>
 </context>
 <context>
     <name>LatexDocumentsModel</name>
     <message>
-        <location filename="latexdocument.cpp" line="803"/>
+        <location filename="latexdocument.cpp" line="951"/>
         <source>Line</source>
         <translation>Ligne</translation>
     </message>
@@ -2261,8 +2274,8 @@ Voulez-vous l&apos;enregistrer?</translation>
         <translation>Fermer</translation>
     </message>
     <message>
-        <location filename="spellerdialog.ui" line="128"/>
         <location filename="spellerdialog.cpp" line="192"/>
+        <location filename="spellerdialog.ui" line="128"/>
         <source>Show Ignore List \/</source>
         <translation>Afficher la liste de mots ignorés \/</translation>
     </message>
@@ -2324,17 +2337,17 @@ Voulez-vous l&apos;enregistrer?</translation>
 <context>
     <name>SymbolGridWidget</name>
     <message>
-        <location filename="symbolgridwidget.cpp" line="70"/>
+        <location filename="symbolgridwidget.cpp" line="75"/>
         <source>Command: </source>
         <translation>Commande:</translation>
     </message>
     <message>
-        <location filename="symbolgridwidget.cpp" line="89"/>
+        <location filename="symbolgridwidget.cpp" line="94"/>
         <source>Package: </source>
         <translation>Paquet:</translation>
     </message>
     <message>
-        <location filename="symbolgridwidget.cpp" line="91"/>
+        <location filename="symbolgridwidget.cpp" line="96"/>
         <source>Packages: </source>
         <translation>Paquets:</translation>
     </message>
@@ -3847,8 +3860,8 @@ Sinon la ponctuation est ignorée.</translation>
 <context>
     <name>WebPublishDialog</name>
     <message>
-        <location filename="webpublishdialog.ui" line="13"/>
         <location filename="webpublishdialog.cpp" line="22"/>
+        <location filename="webpublishdialog.ui" line="13"/>
         <source>Convert to Html</source>
         <translation>Exporter vers Html</translation>
     </message>
