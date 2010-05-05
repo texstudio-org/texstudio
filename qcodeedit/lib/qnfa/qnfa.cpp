@@ -169,7 +169,7 @@ void match(QNFAMatchContext *lexer, const QChar *d, int length, QNFAMatchNotifie
 		
 		wCur = isWord(*di);
 
-		int plainIndex = -1, plainMatch, plainLength;
+		int plainIndex = -1, plainMatch = 0, plainLength = 0;
 		
 		// try fast plain matching
 		if ( !(wPrev && wCur) )
