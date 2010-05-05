@@ -237,9 +237,11 @@ unix:!macx {
         utilities/texmaker48x48.png \
         utilities/texmaker64x64.png \
         utilities/texmaker128x128.png \
-        utilities/texmaker.desktop \
         utilities/texmaker.svg
-    INSTALLS += utilities
+    
+    applicationmenu.path = $${PREFIX}/share/applications
+    applicationmenu.files = utilities/texmakerx.desktop
+    INSTALLS += utilities applicationmenu
 }
 
 # ###############################
