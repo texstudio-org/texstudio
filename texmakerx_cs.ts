@@ -10,7 +10,7 @@
     <message>
         <location filename="aboutdialog.ui" line="14"/>
         <source>About TexMakerX</source>
-        <translation type="unfinished">O programu TexMakerX</translation>
+        <translation>O programu TexMakerX</translation>
     </message>
     <message>
         <location filename="aboutdialog.ui" line="78"/>
@@ -281,12 +281,12 @@
     <message>
         <location filename="configdialog.cpp" line="257"/>
         <source>Custom Highlighting</source>
-        <translation type="unfinished"></translation>
+        <translation>Uživatelsky stanovené zvýrazňování</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="259"/>
         <source>SVN</source>
-        <translation type="unfinished"></translation>
+        <translation>SVN</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="316"/>
@@ -311,17 +311,17 @@
     <message>
         <location filename="configdialog.cpp" line="465"/>
         <source>Load other icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrát jinou ikonu</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="470"/>
         <source>Select a File</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrat soubor</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="470"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.svg)</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrázky (*.png *.xpm *.jpg *.bmp *.svg)</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="104"/>
@@ -350,7 +350,7 @@
         <location filename="configdialog.ui" line="13"/>
         <source>Configure TexMakerX</source>
         <oldsource>Configure Texmaker</oldsource>
-        <translation type="unfinished">Nastavit Texmaker</translation>
+        <translation>Nastavit Texmaker</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="367"/>
@@ -526,7 +526,7 @@
     <message>
         <location filename="configdialog.ui" line="948"/>
         <source>Toolbar Customization</source>
-        <translation type="unfinished"></translation>
+        <translation>Úprava nástrojového pruhu</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="962"/>
@@ -586,27 +586,27 @@
     <message>
         <location filename="configdialog.ui" line="1287"/>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
-        <translation type="unfinished"></translation>
+        <translation>Lze rozhodovat pouze mezi utf16/utf-8 a ISO 8859-1!</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1297"/>
         <source>Use Tab for Move To Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Použít tabulátor pro posunutí se na zástupný znak</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1307"/>
         <source>Show Whitespace</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat mezeru</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1335"/>
         <source>Custom Environment</source>
-        <translation type="unfinished"></translation>
+        <translation>Uživatelsky stanovené prostředí</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1340"/>
         <source>Type of Environment</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ prostředí</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1470"/>
@@ -616,22 +616,22 @@
     <message>
         <location filename="configdialog.ui" line="1498"/>
         <source>Automatically check in after save ?</source>
-        <translation type="unfinished"></translation>
+        <translation>Automaticky se zapsat po uložení?</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1505"/>
         <source>Uses SVN revisions to undo before last saved version ?</source>
-        <translation type="unfinished"></translation>
+        <translation>Použít revize SVN pro krok &quot;Zpět&quot; před naposledy uloženou verzi?</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1512"/>
         <source>SVN Commands</source>
-        <translation type="unfinished"></translation>
+        <translation>Příkazy SVN</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1521"/>
         <source>SVN Directory Search Depth: </source>
-        <translation type="unfinished"></translation>
+        <translation>Hloubka prohledávání adresáře SVN: </translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1557"/>
@@ -729,12 +729,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="configdialog.ui" line="498"/>
         <source>*.dic</source>
-        <translation type="unfinished"></translation>
+        <translation>*.dic</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="508"/>
         <source>*.dat</source>
-        <translation type="unfinished"></translation>
+        <translation>*.dat</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="566"/>
@@ -788,12 +788,12 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     <message>
         <location filename="configdialog.ui" line="1350"/>
         <source>Add line</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat řádek</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1357"/>
         <source>Remove line</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstranit řádek</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1383"/>
@@ -852,7 +852,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     <message>
         <location filename="configdialog.ui" line="1290"/>
         <source>auto detect encoding of loaded files</source>
-        <translation type="unfinished">automatisch von geöffneter Datei übernehmen</translation>
+        <translation>Automaticky převzít kódování nahraných souborů</translation>
     </message>
     <message>
         <source>Change  style:</source>
@@ -1073,17 +1073,17 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     <message>
         <location filename="configmanager.cpp" line="627"/>
         <source>Latex/Math menus</source>
-        <translation type="unfinished"></translation>
+        <translation>Nabídky Latex/Matematika</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="628"/>
         <source>All menus</source>
-        <translation type="unfinished"></translation>
+        <translation>Všechny nabídky</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="629"/>
         <source>Special Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvláštní značky</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="891"/>
@@ -1385,7 +1385,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
         <location filename="latexdocument.cpp" line="34"/>
         <location filename="latexdocument.cpp" line="186"/>
         <source>BLOCKS</source>
-        <translation type="unfinished"></translation>
+        <translation>BLOKY</translation>
     </message>
 </context>
 <context>
@@ -1393,7 +1393,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <message>
         <location filename="latexdocument.cpp" line="951"/>
         <source>Line</source>
-        <translation type="unfinished">Řádek</translation>
+        <translation>Řádek</translation>
     </message>
     <message>
         <source>Zeile</source>
@@ -1427,7 +1427,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
         <location filename="latexeditorview.cpp" line="829"/>
         <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Souborový název: %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="latexeditorview.cpp" line="844"/>
@@ -1869,20 +1869,23 @@ Klepněte na &quot;Nevšímat si&quot; pro přehlížení tohoto upozornění.
         <location filename="qcodeedit/lib/qeditor.cpp" line="990"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="994"/>
         <source>File deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor byl smazán</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="990"/>
         <source>The file %1 has been deleted on disk.
 Should I save the document as it is to restore the file?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor %1 byl na disku smazán.
+Má se dokument uložit tak, jak je, aby byl tento soubor obnoven?
+</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="994"/>
         <source>Well, this is strange: The file %1 is not deleted anymore.
 Probably someone else restored it and therefore I&apos;m not going to override the (possible modified) version on the disk.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dobře, je to divné: Soubor %1 již více není smazán.
+Někdo jiný jej obnovil, a z toho důvodu nebude verze na disku (možná změněná) přepsána.</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1019"/>
@@ -3499,12 +3502,12 @@ Různé textové symboly</translation>
     <message>
         <location filename="texmaker.cpp" line="322"/>
         <source>Check in</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapsat se</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="323"/>
         <source>Show old Revisions</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat staré revize</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="346"/>
@@ -3744,17 +3747,18 @@ Různé textové symboly</translation>
         <location filename="texmaker.cpp" line="2762"/>
         <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nelze zjistit název souboru.
+Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3947"/>
         <source>commit comment:</source>
-        <translation type="unfinished"></translation>
+        <translation>Odeslat poznámku:</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="4117"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozor: dialog je automaticky zavřen, je-li text ručně upravován!</translation>
     </message>
     <message>
         <source>Article in Journal</source>
