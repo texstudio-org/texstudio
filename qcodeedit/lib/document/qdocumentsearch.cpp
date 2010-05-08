@@ -88,6 +88,50 @@ QDocumentCursor QDocumentSearch::match(int idx) const
 	return idx >= 0 && idx < m_highlight.count() ? *m_highlight.at(idx) : QDocumentCursor();
 }
 
+/* Return the index of the last search match which starts before begline:begcol (really before, not at )
+   If non exists (i.e. the first match is after begline:begcol) it returns -1
+  */
+int QDocumentSearch::matchLowerBoundUnequal(int begline, int begcol){
+	int start = -1;
+	int end = m_highlight.count()-1;
+	while (start < end){
+		int i = (start + end + 1)/2; //+1 => ceil, so something is changed in every loop
+		const QDocumentCursor* curHighlight = m_highlight[i];
+		Q_ASSERT((curHighlight->lineNumber() > curHighlight->anchorLineNumber()) ||
+			 (  curHighlight->lineNumber() == curHighlight->anchorLineNumber() &&
+			    curHighlight->columnNumber() >= curHighlight->anchorColumnNumber())
+			 );
+		int cline = curHighlight->lineNumber();
+		int cend = curHighlight->columnNumber();
+		if (cline < begline || (cline == begline && cend < begcol)) start = i; //highlight is before current scope => can be found
+		else end = i-1; //within => can't be found
+	}
+	Q_ASSERT(start>=-1 && start < m_highlight.count());//notice that this doesn't checks if end is a valid index
+	return end;
+}
+/* Return the index of the first search match which ends after endline:endcol (really after, not at)
+   If non exists (i.e. the last match is before endline:endcol) it returns m_highlight.count()
+  */
+int QDocumentSearch::matchUpperBoundUnequal(int endline, int endcol, int startFrom){
+	int start = startFrom;
+	int end = m_highlight.count();
+	while (start < end){
+		int i = (start + end)/2; //no +1 => floor, so something is changed in every loop
+		const QDocumentCursor* curHighlight = m_highlight[i];
+		Q_ASSERT((curHighlight->lineNumber() > curHighlight->anchorLineNumber()) ||
+			 (  curHighlight->lineNumber() == curHighlight->anchorLineNumber() &&
+			    curHighlight->columnNumber() >= curHighlight->anchorColumnNumber())
+			 );
+		int cline = curHighlight->anchorLineNumber();
+		int cstart = curHighlight->anchorColumnNumber();
+		if (cline > endline || (cline == endline && cstart > endcol)) end = i; //highlight is after current scope => can be found
+		else start = i+1; //within => can't be found
+	}
+	Q_ASSERT(start>=0 && start <= m_highlight.count()); //notice that this doesn't checks if start is a valid index
+	return start;
+}
+
+
 //equal to next but needs matches
 bool QDocumentSearch::nextMatch(bool backward, bool again,  bool allowWrapAround){
 	if (!hasOption(HighlightAll)) 
@@ -108,19 +152,21 @@ bool QDocumentSearch::nextMatch(bool backward, bool again,  bool allowWrapAround
 		else --m_index;
 	} else if (backward){
 		//todo: binary search
-		m_index=-1;
+		m_index = matchLowerBoundUnequal(m_cursor.lineNumber(), m_cursor.columnNumber()+1);
+/*		m_index=-1;
 		for (int i=m_highlight.count()-1; i>=0;--i)
 			if (m_highlight[i]->selectionEnd()<=m_cursor) {
 				m_index=i;
 				break;
-			}
+			}*/
 	} else {
-		m_index=-1;
+		m_index = matchUpperBoundUnequal(m_cursor.lineNumber(), m_cursor.columnNumber()-1);
+		/*m_index=-1;
 		for (int i=0;i<m_highlight.count(); ++i)
 			if (m_highlight[i]->selectionStart()>=m_cursor) {
 				m_index=i;
 				break;
-			}
+			}*/
 	}
 
 	m_cursor = QDocumentCursor(); //don't need the old cursor anymore (and will set the new one later if found)
@@ -252,37 +298,9 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 		int begline, endline, begcol, endcol;
 		hscope.boundaries(begline, begcol, endline, endcol);
 		//find last highlight before the current scope
-		int start = -1;
-		int end = m_highlight.count()-1;
-		while (start < end){
-			int i = (start + end + 1)/2; //+1 => ceil, so something is changed in every loop
-			const QDocumentCursor* curHighlight = m_highlight[i];
-			Q_ASSERT((curHighlight->lineNumber() > curHighlight->anchorLineNumber()) ||
-				 (  curHighlight->lineNumber() == curHighlight->anchorLineNumber() &&
-				    curHighlight->columnNumber() >= curHighlight->anchorColumnNumber())
-				 );
-			int cline = curHighlight->lineNumber();
-			int cend = curHighlight->columnNumber();
-			if (cline < begline || (cline == begline && cend < begcol)) start = i; //highlight is before current scope => can be found
-			else end = i-1; //within => can't be found
-		}
-		int lastBeforeScope = end;
+		int lastBeforeScope = matchLowerBoundUnequal(begline, begcol);
 		//find first highlight after the current scope
-		start = lastBeforeScope+1;
-		end = m_highlight.count();
-		while (start < end){
-			int i = (start + end)/2; //no +1 => floor, so something is changed in every loop
-			const QDocumentCursor* curHighlight = m_highlight[i];
-			Q_ASSERT((curHighlight->lineNumber() > curHighlight->anchorLineNumber()) ||
-				 (  curHighlight->lineNumber() == curHighlight->anchorLineNumber() &&
-				    curHighlight->columnNumber() >= curHighlight->anchorColumnNumber())
-				 );
-			int cline = curHighlight->anchorLineNumber();
-			int cstart = curHighlight->anchorColumnNumber();
-			if (cline > endline || (cline == endline && cstart > endcol)) end = i; //highlight is after current scope => can be found
-			else start = i+1; //within => can't be found
-		}
-		int firstAfterScope = start;
+		int firstAfterScope = matchUpperBoundUnequal(endline, endcol, lastBeforeScope+1);
 
 		//test
 		if (lastBeforeScope >= 0){

@@ -92,6 +92,8 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		bool end(bool backward) const;
 		bool end(bool backward,QDocumentLine l) const;
 		
+		int matchLowerBoundUnequal(int begline, int begcol);
+		int matchUpperBoundUnequal(int endline, int endcol, int startFrom=0);
 		bool nextMatch(bool backward, bool again=false,  bool allowWrapAround=true);
 		void searchMatches(const QDocumentCursor& subHighlightScope=QDocumentCursor(), bool clearAll=true);
 		void clearMatches();
