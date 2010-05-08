@@ -446,6 +446,8 @@ unix:!macx:LIBS += -lQtTest
 macx:LIBS += -framework \
     QtTest
 
+macx:LIBS += -framework \
+        CoreFoundation
 # ###############################
 # add files to svn if team is set
 CONFIG(team):!CONFIG(build_pass) { 
