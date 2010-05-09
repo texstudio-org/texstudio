@@ -27,13 +27,13 @@
 	\see QSearchReplacePanel
 */
 
-#include "ui_searchreplace.h"
+//#include "ui_searchreplace.h"
 
 class QDocumentCursor;
 class QDocumentLine;
 class QDocumentSearch;
 
-class QCE_EXPORT QSearchReplacePanel : public QPanel, private Ui::SearchReplace
+class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchReplace
 {
 	Q_OBJECT
 	
@@ -50,6 +50,35 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel, private Ui::SearchReplace
 		QDocumentSearch * search(){
 			return m_search;
 		}
+
+                // public to give tests direct access
+                QGridLayout *gridLayout;
+                QFrame *frame_2;
+                QHBoxLayout *hboxLayout;
+                QToolButton *bClose;
+                QToolButton *bRefresh;
+                QLabel *label;
+                QLineEdit *leFind;
+                QToolButton *bNext;
+                QToolButton *bPrevious;
+                QFrame *frame_6;
+                QGridLayout *gridLayout1;
+                QCheckBox *cbCase;
+                QCheckBox *cbWords;
+                QCheckBox *cbRegExp;
+                QCheckBox *cbHighlight;
+                QCheckBox *cbCursor;
+                QCheckBox *cbSelection;
+                QPushButton *bReplaceAll;
+                QFrame *frame;
+                QHBoxLayout *hboxLayout1;
+                QCheckBox *cbPrompt;
+                QCheckBox *cbReplaceAll;
+                QCheckBox *cbEscapeSeq;
+                QCheckBox *cbReplace;
+                QLineEdit *leReplace;
+                QToolButton *bReplaceNext;
+                QToolButton *bReplacePrevious;
 
 	public slots:
 		void display(int mode, bool replace);
@@ -70,7 +99,9 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel, private Ui::SearchReplace
 		
 		virtual void hideEvent(QHideEvent *e);
 		virtual void closeEvent(QCloseEvent *e);
-		
+
+                virtual void resizeEvent(QResizeEvent *e);
+
 	private slots:
 		void on_leFind_textEdited(const QString& text);
 		void on_leReplace_textEdited(const QString& text);
@@ -103,6 +134,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel, private Ui::SearchReplace
 		void on_leReplace_returnPressed(bool backward);
 		QDocumentSearch *m_search;
 		bool m_lastDirection;
+                int minimum_width;
 };
 
 #endif // _QSEARCH_REPLACE_PANEL_H_

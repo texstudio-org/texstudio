@@ -7,7 +7,7 @@
 class QCodeEdit;
 class QEditor;
 class QSearchReplacePanel;
-namespace Ui{class SearchReplace;}
+
 class QSearchReplacePanelTest: public QObject{
 	Q_OBJECT
 	public:
@@ -15,7 +15,7 @@ class QSearchReplacePanelTest: public QObject{
 	private:
 		QEditor *ed;
 		QSearchReplacePanel *panel;
-		Ui::SearchReplace *widget;
+                QSearchReplacePanel *widget;
 		bool allTests;
 	private slots:
 		void initTestCase();

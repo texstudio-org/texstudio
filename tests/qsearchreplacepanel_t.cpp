@@ -85,7 +85,7 @@ QSearchReplacePanelTest::QSearchReplacePanelTest(QCodeEdit* codeedit, bool execu
 
 void QSearchReplacePanelTest::initTestCase(){
 	QVERIFY(panel);
-	widget=(Ui::SearchReplace*)(panel);
+        widget=panel;
 	//QVERIFY(widget);
 }
 
