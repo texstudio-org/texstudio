@@ -45,6 +45,7 @@ public:
 
 	bool autoCheckinAfterSave;
 	bool svnUndo;
+	bool svnKeywordSubstitution;
 	int svnSearchPathDepth;
 	
 	//appearance 

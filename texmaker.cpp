@@ -1183,14 +1183,20 @@ void Texmaker::fileSaveAs(QString fileName) {
 
 		if(configManager.autoCheckinAfterSave){
 			if(svnadd(QStringList(currentEditor()->fileName()))){
-				checkin(QStringList(currentEditor()->fileName()));
+				checkin(QStringList(currentEditor()->fileName()),"tmx auto checkin",configManager.svnKeywordSubstitution);
 			} else {
 				//create simple repository
 				svncreateRep(currentEditor()->fileName());
 				svnadd(QStringList(currentEditor()->fileName()));
-				checkin(QStringList(currentEditor()->fileName()));
+				checkin(QStringList(currentEditor()->fileName()),"tmx auto checkin",configManager.svnKeywordSubstitution);
 			}
-
+			// set SVN Properties if desired
+			if(configManager.svnKeywordSubstitution){
+				QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+				cmd+=" propset svn:keywords \"Date Author HeadURL Revision\" "+currentEditor()->fileName();
+				stat2->setText(QString(" svn propset svn:keywords "));
+				runCommand(cmd, false, true,false);
+			}
 		}
 
 		EditorView->setTabText(EditorView->indexOf(currentEditorView()),currentEditor()->name());
@@ -3960,6 +3966,7 @@ void Texmaker::checkin(QStringList fns, QString text, bool blocking){
 		LatexEditorView *edView=getEditorViewFromFileName(elem);
 		edView->editor->setProperty("undoRevision",0);
 	}
+
 }
 
 bool Texmaker::svnadd(QStringList fns,int stage){

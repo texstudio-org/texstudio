@@ -149,6 +149,7 @@ QSettings* ConfigManager::readSettings() {
 	runLaTeXBibTeXLaTeX=config->value("Tools/After BibTeX Change", "tmx://latex && tmx://bibtex && tmx://latex").toString()!="";
 	autoCheckinAfterSave=config->value("Tools/Auto Checkin after Save", false).toBool();
 	svnUndo=config->value("Tools/SVN Undo", false).toBool();
+	svnKeywordSubstitution=config->value("Tools/SVN KeywordSubstitution", false).toBool();
 	svnSearchPathDepth=config->value("Tools/SVN Search Path Depth", 2).toInt();
 	
 	//read user key replacements
@@ -356,6 +357,7 @@ QSettings* ConfigManager::saveSettings() {
 
 	config->setValue("Tools/Auto Checkin after Save", autoCheckinAfterSave);
 	config->setValue("Tools/SVN Undo", svnUndo);
+	config->setValue("Tools/SVN KeywordSubstitution", svnKeywordSubstitution);
 	config->setValue("Tools/SVN Search Path Depth", svnSearchPathDepth);
 	
 	//-------------------key replacements-----------------
@@ -571,6 +573,7 @@ bool ConfigManager::execConfigDialog() {
 
 	confDlg->ui.cbAutoCheckin->setChecked(autoCheckinAfterSave);
 	confDlg->ui.cbSVNUndo->setChecked(svnUndo);
+	confDlg->ui.cbKeywordSubstitution->setChecked(svnKeywordSubstitution);
 	confDlg->ui.sbDirSearchDepth->setValue(svnSearchPathDepth);
 	
 	//menu shortcuts
@@ -773,6 +776,7 @@ bool ConfigManager::execConfigDialog() {
 
 		autoCheckinAfterSave=confDlg->ui.cbAutoCheckin->isChecked();
 		svnUndo=confDlg->ui.cbSVNUndo->isChecked();
+		svnKeywordSubstitution=confDlg->ui.cbKeywordSubstitution->isChecked();
 		svnSearchPathDepth=confDlg->ui.sbDirSearchDepth->value();
 		
 		//key replacements
