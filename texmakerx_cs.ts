@@ -1613,7 +1613,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
 <context>
     <name>QApplication</name>
     <message>
-        <location filename="smallUsefulFunctions.cpp" line="391"/>
+        <location filename="smallUsefulFunctions.cpp" line="406"/>
         <source>none</source>
         <translation>Žádný</translation>
     </message>
@@ -1630,49 +1630,49 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
 <context>
     <name>QDocumentSearch</name>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="149"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="894"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="195"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="912"/>
         <source>Failure</source>
         <translation>Neúspěch</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="150"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="196"/>
         <source>End of matches reached.
 Restart from the begining ?</source>
         <translation>Nejsou žádné další nálezy.
 Spustit hledání znovu od začátku oblasti?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="196"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="851"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="242"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="869"/>
         <source>Replacement prompt</source>
         <translation>Dialog pro nahrazení</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="197"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="852"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="243"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="870"/>
         <source>Shall it be replaced?</source>
         <translation>Má se nález nahradit?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="857"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="875"/>
         <source>Replacing Canceled</source>
         <translation>Nahrazení zrušeno</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="857"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="875"/>
         <source>%1 (of %2 found so far) occurences have been replaced</source>
         <translation>%1 (z %2 dosud nalezených) výskytů bylo nahrazeno</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="895"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="913"/>
         <source>End of scope reached with no match.
 Restart from the beginning ?</source>
         <translation>Konec oblasti hledání dosažen bez nálezu.
 Spustit hledání znovu od začátku oblasti?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="920"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="938"/>
         <source>Do you want to continue replacing from the beginning?</source>
         <translation>Chcete, aby nahrazování pokračovalo od začátku?</translation>
     </message>
@@ -1683,14 +1683,14 @@ Restart from the begining ?</source>
 Soll die Suche vom Anfang des Bereichs neugestartet werden?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="918"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="931"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="936"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="949"/>
         <source>Replacing Finished</source>
         <translation>Nahrazení dokončeno</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="919"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="931"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="937"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="949"/>
         <source>%1 (of %2) occurences have been replaced</source>
         <translation>%1 (z %2) výskytů bylo nahrazeno</translation>
     </message>
@@ -2048,27 +2048,27 @@ Chcete, aby byly uloženy?</translation>
 <context>
     <name>QStatusPanel</name>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="120"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="121"/>
         <source>Line : %1 Visual column : %2 Text column : %3</source>
         <translation>Řádek: %1 Viditelný sloupec: %2 Textový sloupec: %3</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="132"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="133"/>
         <source>(%1 min %2 s ago)</source>
         <translation>(před %1 min %2 s)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="148"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="149"/>
         <source>OVERWRITE</source>
         <translation>Režim: Přepsat</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="148"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="149"/>
         <source>INSERT</source>
         <translation>Režim: Vložit</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="156"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="157"/>
         <source>Conflict</source>
         <translation>Rozpor</translation>
     </message>
@@ -2274,78 +2274,95 @@ Chcete, aby byly uloženy?</translation>
         <translation>Formulář</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="342"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="99"/>
         <source>all</source>
         <translation>Vše</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="315"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="328"/>
         <source>Close search/replace panel</source>
         <translation>Zavřít panel hledání/nahrazení</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="316"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="359"/>
         <source>Refresh search underlying context (as an attempt to correct search behavior)</source>
         <translation>Obnovit zásobník hledání (kvůli opravě chybného chování při hledání)</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="326"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="378"/>
         <source> Find :</source>
         <translation> Najít:</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="317"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="431"/>
         <source>Text or pattern to search for</source>
         <translation>Hledaný text nebo pravidelný výraz</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="318"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="321"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="49"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="506"/>
         <source>Find next occurence</source>
         <translation>Najít další výskyt</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="319"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="322"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="80"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="475"/>
         <source>Find previous occurence</source>
         <translation>Najít předchozí výskyt</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="332"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="215"/>
         <source>Words</source>
         <translation>Celé slovo</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="338"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="254"/>
         <source>Cursor</source>
         <translation>Ukazovátko</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="340"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="270"/>
         <source>Selection</source>
         <translation>Výběr</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="336"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="241"/>
         <source>Highlight all</source>
         <translation>Zvýraznit vše</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="334"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="228"/>
         <source>Regexp</source>
         <translation>Pravidelný výraz</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="330"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="199"/>
         <source>Case</source>
         <translation>Psaní velkých/malých počátečních písmen</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="346"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="447"/>
         <source>Replace :</source>
         <translation>Nahradit:</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="320"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="412"/>
         <source>Replacement text</source>
         <translation>Text nahrazení</translation>
@@ -2359,16 +2376,19 @@ Chcete, aby byly uloženy?</translation>
         <translation type="obsolete">Alles ersetzen</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="343"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="127"/>
         <source>Prompt on replace</source>
         <translation>Ptát se při nahrazení</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="344"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="143"/>
         <source>Replace all</source>
         <translation>Nahradit vše</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="345"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="156"/>
         <source>Escape sequences</source>
         <translation>Únikové znaky (např.: \n)</translation>

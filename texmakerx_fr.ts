@@ -1467,7 +1467,7 @@ Continuer tout de même?</translation>
 <context>
     <name>QApplication</name>
     <message>
-        <location filename="smallUsefulFunctions.cpp" line="391"/>
+        <location filename="smallUsefulFunctions.cpp" line="406"/>
         <source>none</source>
         <translation>aucun</translation>
     </message>
@@ -1484,61 +1484,61 @@ Continuer tout de même?</translation>
 <context>
     <name>QDocumentSearch</name>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="149"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="894"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="195"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="912"/>
         <source>Failure</source>
         <translation>Échec</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="150"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="196"/>
         <source>End of matches reached.
 Restart from the begining ?</source>
         <translation>Dernière occurrence.
 Reprendre du début?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="196"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="851"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="242"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="869"/>
         <source>Replacement prompt</source>
         <translation>Dialogue de remplacement</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="197"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="852"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="243"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="870"/>
         <source>Shall it be replaced?</source>
         <translation>Remplacer?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="857"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="875"/>
         <source>Replacing Canceled</source>
         <translation>Remplacement annulé</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="857"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="875"/>
         <source>%1 (of %2 found so far) occurences have been replaced</source>
         <translation>%1 (sur %2 occurrences trouvées) remplacée(s)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="895"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="913"/>
         <source>End of scope reached with no match.
 Restart from the beginning ?</source>
         <translation>Fin de la recherche sans résultat.
 Reprendre du début?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="918"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="931"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="936"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="949"/>
         <source>Replacing Finished</source>
         <translation>Remplacement terminé</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="919"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="931"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="937"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="949"/>
         <source>%1 (of %2) occurences have been replaced</source>
         <translation>%1 (sur %2) occurrences ont été remplacées</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="920"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="938"/>
         <source>Do you want to continue replacing from the beginning?</source>
         <translation>Continer à remplacer à partir du début?</translation>
     </message>
@@ -1887,27 +1887,27 @@ Voulez-vous l&apos;enregistrer?</translation>
 <context>
     <name>QStatusPanel</name>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="120"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="121"/>
         <source>Line : %1 Visual column : %2 Text column : %3</source>
         <translation>Ligne : %1 Colonne visuelle: %2 Colonne texte : %3</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="132"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="133"/>
         <source>(%1 min %2 s ago)</source>
         <translation>(il y a %1 min et %2 s)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="148"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="149"/>
         <source>OVERWRITE</source>
         <translation>ÉCRASER</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="148"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="149"/>
         <source>INSERT</source>
         <translation>INSÉRER</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="156"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="157"/>
         <source>Conflict</source>
         <translation>Conflit</translation>
     </message>
@@ -2097,93 +2097,113 @@ Voulez-vous l&apos;enregistrer?</translation>
         <translation>Formulaire</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="318"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="321"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="49"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="506"/>
         <source>Find next occurence</source>
         <translation>en avant</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="319"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="322"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="80"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="475"/>
         <source>Find previous occurence</source>
         <translation>en arrière</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="342"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="99"/>
         <source>all</source>
         <translation>tout</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="343"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="127"/>
         <source>Prompt on replace</source>
         <translation>demander confirmation</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="344"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="143"/>
         <source>Replace all</source>
         <translation>Remplacer tout</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="345"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="156"/>
         <source>Escape sequences</source>
         <translation>séquences d&apos;échappement</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="330"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="199"/>
         <source>Case</source>
         <translation>Sensible à la casse</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="332"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="215"/>
         <source>Words</source>
         <translation>Mots</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="334"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="228"/>
         <source>Regexp</source>
         <translation>Exp. rég</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="336"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="241"/>
         <source>Highlight all</source>
         <translation>Surligner tout</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="338"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="254"/>
         <source>Cursor</source>
         <translation>Curseur</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="340"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="270"/>
         <source>Selection</source>
         <translation>Sélection</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="315"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="328"/>
         <source>Close search/replace panel</source>
         <translation>Fermer panneau chercher/remplacer</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="316"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="359"/>
         <source>Refresh search underlying context (as an attempt to correct search behavior)</source>
         <translation>Actualiser le contexte de recherche (essai pour corriger le comportement)</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="326"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="378"/>
         <source> Find :</source>
         <translation>Chercher :</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="320"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="412"/>
         <source>Replacement text</source>
         <translation>Texte de remplacement</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="317"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="431"/>
         <source>Text or pattern to search for</source>
         <translation>Texte à chercher</translation>
     </message>
     <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="346"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="447"/>
         <source>Replace :</source>
         <translation>Remplacer :</translation>
