@@ -100,7 +100,7 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 	}
 	if (!keyToReplace) return false;
 	int pos;
-	if ((pos=keyToReplace->indexOf(event->text()))>=0) {
+	if (!event->text().isEmpty() && (pos=keyToReplace->indexOf(event->text()))>=0) {
 		QString whitespace(" \t\n");
 		QChar prev=editor->cursor().previousChar();
 		editor->insertTextAtCursor(whitespace.contains(prev)||prev==QChar(0)?keyReplaceBeforeWord->at(pos):keyReplaceAfterWord->at(pos));
