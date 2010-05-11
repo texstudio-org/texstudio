@@ -126,7 +126,10 @@ void LatexDocument::clearStructure() {
 	if (!todoList->parent) delete todoList; 
 	if (!bibTeXList->parent) delete bibTeXList;
 	if (!blockList->parent) delete blockList;
+	int row=parent->documents.indexOf(this);
+	removeElement(baseStructure,row);
 	delete baseStructure;
+	removeElementFinished();
 	baseStructure=0;
 }
 
@@ -142,22 +145,10 @@ void LatexDocument::updateStructure() {
 		document->load(fileName,QDocument::defaultCodec());
 	}
 
-	mUserCommandList.clear();
-	mLabelItem.clear();
-	mMentionedBibTeXFiles.clear();
-
-	//emit structureLost(this); does removal cause problems ????
+	clearStructure();
 #ifndef QT_NO_DEBUG
 	StructureContent.clear();
 #endif
-	if (!labelList->parent) delete labelList;
-	if (!todoList->parent) delete todoList; //TODO: reuse entries
-	if (!bibTeXList->parent) delete bibTeXList;
-	if (!blockList->parent) delete blockList;
-	delete baseStructure;
-	baseStructure=0;
-
-	mAppendixLine=0;
 
 	baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
 #ifndef QT_NO_DEBUG
@@ -1161,8 +1152,15 @@ void LatexDocuments::addDocument(LatexDocument* document){
 void LatexDocuments::deleteDocument(LatexDocument* document){
 	LatexEditorView *view=document->getEditorView();
 	if (document!=masterDocument) {
+		int row=documents.indexOf(document);
+		if(row>=0){
+			model->removeElement(document->baseStructure,row);
+		}
 		documents.removeAll(document);
-		model->resetAll();
+		if(row>=0){
+			model->removeElementFinished();
+		}
+		//model->resetAll();
 		if(masterDocument){
 			Label->purgeLinksTo(view->editor->document());
 			Ref->purgeLinksTo(view->editor->document());
