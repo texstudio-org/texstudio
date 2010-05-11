@@ -1089,7 +1089,12 @@ void LatexDocumentsModel::structureUpdated(LatexDocument* document,StructureEntr
 }
 void LatexDocumentsModel::structureLost(LatexDocument* document){
 	Q_UNUSED(document);
-	resetAll();
+	//resetAll();
+	if (document) emit layoutChanged();
+	else {
+		//Q_ASSERT(false); //branch shouldn't be reachable?
+		resetAll();
+	}
 }
 
 void LatexDocumentsModel::removeElement(StructureEntry *se,int row){
