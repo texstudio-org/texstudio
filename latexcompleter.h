@@ -18,10 +18,13 @@
 
 #include "qcodeedit.h"
 #include "qeditor.h"
+#include "latexeditorview.h"
+//#include "qdocumentline_p.h"
 
 
 class CompletionListModel;
 class LatexCompleterConfig;
+//class Reference;
 
 class LatexCompleter : public QObject  {
 	Q_OBJECT
@@ -41,6 +44,9 @@ public:
 	void setConfig(const LatexCompleterConfig* config);
 
 	QString lookupWord(QString id);
+	void setLabelDatabase(References *Label){
+		containedLabels=Label;
+	}
 	
 	bool close();
 private:
@@ -58,6 +64,8 @@ private:
 	static QString helpFile;
 	static QHash<QString, QString> helpIndices;
 	static QHash<QString, int> helpIndicesCache;
+
+	References *containedLabels;
 private slots:
 	void cursorPositionChanged();
 	void selectionChanged(const QModelIndex & index);

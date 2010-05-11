@@ -7,6 +7,7 @@
 #include "qdocumentline.h"
 #include "qeditorinputbinding.h"
 #include "qformatfactory.h"
+#include "qdocumentline_p.h"
 
 
 //------------------------------Default Input Binding--------------------------------
@@ -656,26 +657,54 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 	if (index.row() < 0 || index.row()>=listModel->words.size()) return;
 	QRegExp wordrx("^\\\\([^ {[*]+|begin\\{[^ {}]+)");
 	if (wordrx.indexIn(listModel->words[index.row()].word)==-1) return;
-	QString id=helpIndices.value(wordrx.cap(0),"");
+	QString cmd=wordrx.cap(0);
+	QString id=helpIndices.value(cmd,"");
 	if (id=="") return;
-	QString aim="<a name=\""+id;
-	int pos=helpIndicesCache.value(wordrx.cap(0),-2);
-	if (pos==-2) {
-		//search id in help file
-		//QRegExp aim ("<a\\s+name=\""+id);
-		pos=helpFile.indexOf(aim);// aim.indexIn(helpFile);
-		helpIndicesCache.insert(wordrx.cap(0),pos);
-	}
-	if (pos<0) return;
-	//get whole topic of the line
-	int opos=pos;
-	while (pos>=1 && helpFile.at(pos)!=QChar('\n')) pos--;
-	QString topic=helpFile.mid(pos);
-	if (topic.left(opos-pos).contains("<dt>")) topic=topic.left(topic.indexOf("</dd>"));
-	else {
-		QRegExp anotherLink("<a\\s+name=\\s*\"[^\"]*\"(\\s+href=\\s*\"[^\"]*\")?>\\s*[^< ][^<]*</a>");
-		int nextpos=anotherLink.indexIn(topic,opos-pos+aim.length());
-		topic=topic.left(nextpos);
+	QString topic;
+	if(cmd=="\\ref"){
+		QString value=listModel->words[index.row()].word;
+		int i=value.indexOf("{");
+		value.remove(0,i+1);
+		i=value.indexOf("}");
+		value=value.left(i);
+		QList<QDocumentLineHandle*> lst=containedLabels->values(value);
+		topic="";
+		if(lst.isEmpty()){
+			topic=tr("label missing!");
+		} else if(lst.count()>1) {
+			topic=tr("label multiple times defined!");
+		} else {
+			QDocumentLineHandle *mLine=lst.first();
+			int l=mLine->line();
+			if(mLine->document()!=editor->document()){
+				//LatexDocument *doc=document->parent->findDocument(mLine->document());
+				//if(doc) mText=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
+			}
+			for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
+				topic+=mLine->document()->line(i).text();
+				if(i<l+2) topic+="\n";
+			}
+		}
+	}else{
+		QString aim="<a name=\""+id;
+		int pos=helpIndicesCache.value(wordrx.cap(0),-2);
+		if (pos==-2) {
+			//search id in help file
+			//QRegExp aim ("<a\\s+name=\""+id);
+			pos=helpFile.indexOf(aim);// aim.indexIn(helpFile);
+			helpIndicesCache.insert(wordrx.cap(0),pos);
+		}
+		if (pos<0) return;
+		//get whole topic of the line
+		int opos=pos;
+		while (pos>=1 && helpFile.at(pos)!=QChar('\n')) pos--;
+		topic=helpFile.mid(pos);
+		if (topic.left(opos-pos).contains("<dt>")) topic=topic.left(topic.indexOf("</dd>"));
+		else {
+			QRegExp anotherLink("<a\\s+name=\\s*\"[^\"]*\"(\\s+href=\\s*\"[^\"]*\")?>\\s*[^< ][^<]*</a>");
+			int nextpos=anotherLink.indexIn(topic,opos-pos+aim.length());
+			topic=topic.left(nextpos);
+		}
 	}
 	QRect r = list->visualRect(index);
 	QDocumentCursor c=editor->cursor();

@@ -249,6 +249,7 @@ LatexEditorView::~LatexEditorView() {
 void LatexEditorView::complete(bool forceVisibleList, bool normalText, bool forceRef) {
 	if (!LatexEditorView::completer) return;
 	setFocus();
+	LatexEditorView::completer->setLabelDatabase(containedLabels);
 	LatexEditorView::completer->complete(editor,forceVisibleList,normalText,forceRef);
 }
 void LatexEditorView::jumpChangePositionBackward() {
@@ -705,6 +706,9 @@ void LatexEditorView::setReferenceDatabase(References *Ref,References *Label){
 	containedReferences=Ref;
 	containedLabels->numberOfViews++;
 	containedReferences->numberOfViews++;
+	if(completer){
+		completer->setLabelDatabase(Label);
+	}
 }
 void LatexEditorView::getReferenceDatabase(References *&Ref,References *&Label){
 	Label=containedLabels;
