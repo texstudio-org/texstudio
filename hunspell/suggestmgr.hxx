@@ -18,6 +18,8 @@
 #define NGRAM_ANY_MISMATCH  (1 << 1)
 #define NGRAM_LOWERING      (1 << 2)
 
+#include "hunvisapi.h"
+
 #include "atypes.hxx"
 #include "affixmgr.hxx"
 #include "hashmgr.hxx"
@@ -26,7 +28,7 @@
 
 enum { LCS_UP, LCS_LEFT, LCS_UPLEFT };
 
-class SuggestMgr
+class LIBHUNSPELL_DLL_EXPORTED SuggestMgr
 {
   char *          ckey;
   int             ckeyl;
@@ -90,8 +92,7 @@ private:
    int movechar_utf(char **, const w_char *, int, int, int);
 
    int mapchars(char**, const char *, int, int);
-   int map_related(const char *, int, char ** wlst, int, int, const mapentry*, int, int *, clock_t *);
-   int map_related_utf(w_char *, int, int, int, char ** wlst, int, const mapentry*, int, int *, clock_t *);
+   int map_related(const char *, char *, int, int, char ** wlst, int, int, const mapentry*, int, int *, clock_t *);
    int ngram(int n, char * s1, const char * s2, int opt);
    int mystrlen(const char * word);
    int leftcommonsubstring(char * s1, const char * s2);

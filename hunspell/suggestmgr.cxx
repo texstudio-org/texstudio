@@ -1,37 +1,26 @@
 #include "license.hunspell"
 #include "license.myspell"
 
-#ifndef MOZILLA_CLIENT
-#include <cstdlib>
-#include <cstring>
-#include <cstdio>
-#include <cctype>
-#else
-#include <stdlib.h>
+#include <stdlib.h> 
 #include <string.h>
-#include <stdio.h>
+#include <stdio.h> 
 #include <ctype.h>
-#endif
 
 #include "suggestmgr.hxx"
 #include "htypes.hxx"
 #include "csutil.hxx"
 
-#ifndef MOZILLA_CLIENT
-#ifndef WIN32
-using namespace std;
-#endif
-#endif
-
 const w_char W_VLINE = { '\0', '|' };
 
-SuggestMgr::SuggestMgr(const char * tryme, int maxn,
+SuggestMgr::SuggestMgr(const char * tryme, int maxn, 
                        AffixMgr * aptr)
 {
 
-  // register affix manager and check in string of chars to
+  // register affix manager and check in string of chars to 
   // try when building candidate suggestions
   pAMgr = aptr;
+
+  csconv = NULL;
 
   ckeyl = 0;
   ckey = NULL;
@@ -43,8 +32,8 @@ SuggestMgr::SuggestMgr(const char * tryme, int maxn,
 
   utf8 = 0;
   langnum = 0;
-  complexprefixes = 0;
-
+  complexprefixes = 0;  
+  
   maxSug = maxn;
   nosplitsugs = 0;
   maxngramsugs = MAXNGRAMSUGS;
@@ -61,22 +50,23 @@ SuggestMgr::SuggestMgr(const char * tryme, int maxn,
         complexprefixes = pAMgr->get_complexprefixes();
   }
 
-  if (ckey) {
+  if (ckey) {  
     if (utf8) {
-        w_char t[MAXSWL];
+        w_char t[MAXSWL];    
         ckeyl = u8_u16(t, MAXSWL, ckey);
         ckey_utf = (w_char *) malloc(ckeyl * sizeof(w_char));
         if (ckey_utf) memcpy(ckey_utf, t, ckeyl * sizeof(w_char));
+        else ckeyl = 0;
     } else {
         ckeyl = strlen(ckey);
     }
   }
-
-  if (tryme) {
+  
+  if (tryme) {  
     ctry = mystrdup(tryme);
     if (ctry) ctryl = strlen(ctry);
     if (ctry && utf8) {
-        w_char t[MAXSWL];
+        w_char t[MAXSWL];    
         ctryl = u8_u16(t, MAXSWL, tryme);
         ctry_utf = (w_char *) malloc(ctryl * sizeof(w_char));
         if (ctry_utf) memcpy(ctry_utf, t, ctryl * sizeof(w_char));
@@ -100,6 +90,9 @@ SuggestMgr::~SuggestMgr()
   ctry_utf = NULL;
   ctryl = 0;
   maxSug = 0;
+#ifdef MOZILLA_CLIENT
+  delete [] csconv;
+#endif
 }
 
 int SuggestMgr::testsug(char** wlst, const char * candidate, int wl, int ns, int cpdsuggest,
@@ -116,11 +109,11 @@ int SuggestMgr::testsug(char** wlst, const char * candidate, int wl, int ns, int
             return -1;
         }
         ns++;
-      }
+      } 
       return ns;
 }
 
-// generate suggestions for a mispelled word
+// generate suggestions for a misspelled word
 //    pass in address of array of char * pointers
 // onlycompoundsug: probably bad suggestions (need for ngram sugs, too)
 
@@ -128,7 +121,7 @@ int SuggestMgr::suggest(char*** slst, const char * w, int nsug,
     int * onlycompoundsug)
 {
   int nocompoundtwowords = 0;
-  char ** wlst;
+  char ** wlst;    
   w_char word_utf[MAXSWL];
   int wl = 0;
 
@@ -141,7 +134,7 @@ int SuggestMgr::suggest(char*** slst, const char * w, int nsug,
     if (utf8) reverseword_utf(w2); else reverseword(w2);
     word = w2;
   }
-
+    
     if (*slst) {
         wlst = *slst;
     } else {
@@ -151,7 +144,7 @@ int SuggestMgr::suggest(char*** slst, const char * w, int nsug,
             wlst[i] = NULL;
         }
     }
-
+    
     if (utf8) {
         wl = u8_u16(word_utf, MAXSWL, word);
     }
@@ -239,7 +232,7 @@ int SuggestMgr::suggest(char*** slst, const char * w, int nsug,
        free(wlst);
        wlst = NULL;
     }
-
+    
     if (!nocompoundtwowords && (nsug > 0) && onlycompoundsug) *onlycompoundsug = 1;
 
     *slst = wlst;
@@ -288,7 +281,7 @@ int SuggestMgr::suggest_auto(char*** slst, const char * w, int nsug)
     if ((nsug < maxSug) && (nsug > -1) && check_forbidden(word, strlen(word))) {
                 nsug = twowords(wlst, word, nsug, cpdsuggest);
         }
-
+    
     } // repeating ``for'' statement compounding support
 
     if (nsug < 0) {
@@ -326,8 +319,10 @@ int SuggestMgr::capchars(char** wlst, const char * word, int ns, int cpdsuggest)
 // suggestions for when chose the wrong char out of a related set
 int SuggestMgr::mapchars(char** wlst, const char * word, int ns, int cpdsuggest)
 {
+  char candidate[MAXSWUTF8L];
   clock_t timelimit;
   int timer;
+  candidate[0] = '\0';
 
   int wl = strlen(word);
   if (wl < 2 || ! pAMgr) return ns;
@@ -338,100 +333,50 @@ int SuggestMgr::mapchars(char** wlst, const char * word, int ns, int cpdsuggest)
 
   timelimit = clock();
   timer = MINTIMER;
-  if (utf8) {
-    w_char w[MAXSWL];
-    int len = u8_u16(w, MAXSWL, word);
-    ns = map_related_utf(w, len, 0, cpdsuggest, wlst, ns, maptable, nummap, &timer, &timelimit);
-  } else ns = map_related(word, 0, wlst, cpdsuggest, ns, maptable, nummap, &timer, &timelimit);
-  return ns;
+  return map_related(word, (char *) &candidate, 0, 0, wlst, cpdsuggest, ns, maptable, nummap, &timer, &timelimit);
 }
 
-int SuggestMgr::map_related(const char * word, int i, char** wlst,
-    int cpdsuggest,  int ns,
+int SuggestMgr::map_related(const char * word, char * candidate, int wn, int cn,
+    char** wlst, int cpdsuggest,  int ns,
     const mapentry* maptable, int nummap, int * timer, clock_t * timelimit)
 {
-  char c = *(word + i);
-  if (c == 0) {
+  if (*(word + wn) == '\0') {
       int cwrd = 1;
-      int wl = strlen(word);
+      *(candidate + cn) = '\0';
+      int wl = strlen(candidate);
       for (int m=0; m < ns; m++)
-          if (strcmp(word,wlst[m]) == 0) cwrd = 0;
-      if ((cwrd) && checkword(word, wl, cpdsuggest, timer, timelimit)) {
+          if (strcmp(candidate, wlst[m]) == 0) cwrd = 0;
+      if ((cwrd) && checkword(candidate, wl, cpdsuggest, timer, timelimit)) {
           if (ns < maxSug) {
-              wlst[ns] = mystrdup(word);
+              wlst[ns] = mystrdup(candidate);
               if (wlst[ns] == NULL) return -1;
               ns++;
           }
       }
       return ns;
-  }
+  } 
   int in_map = 0;
   for (int j = 0; j < nummap; j++) {
-    if (strchr(maptable[j].set,c) != 0) {
-      in_map = 1;
-      char * newword = mystrdup(word);
-      if (!newword) return -1;
-      for (int k = 0; k < maptable[j].len; k++) {
-        *(newword + i) = *(maptable[j].set + k);
-        ns = map_related(newword, (i+1), wlst, cpdsuggest,
-           ns, maptable, nummap, timer, timelimit);
-        if (!(*timer)) return ns;
+    for (int k = 0; k < maptable[j].len; k++) {
+      int len = strlen(maptable[j].set[k]);
+      if (strncmp(maptable[j].set[k], word + wn, len) == 0) {
+        in_map = 1;
+        for (int l = 0; l < maptable[j].len; l++) {
+	  strcpy(candidate + cn, maptable[j].set[l]);
+	  ns = map_related(word, candidate, wn + len, strlen(candidate), wlst,
+		cpdsuggest, ns, maptable, nummap, timer, timelimit);
+    	  if (!(*timer)) return ns;
+	}
       }
-      free(newword);
     }
   }
   if (!in_map) {
-     i++;
-     ns = map_related(word, i, wlst, cpdsuggest,
+     *(candidate + cn) = *(word + wn);
+     ns = map_related(word, candidate, wn + 1, cn + 1, wlst, cpdsuggest,
         ns, maptable, nummap, timer, timelimit);
   }
   return ns;
 }
-
-int SuggestMgr::map_related_utf(w_char * word, int len, int i, int cpdsuggest,
-    char** wlst, int ns, const mapentry* maptable, int nummap,
-    int * timer, clock_t * timelimit)
-{
-  if (i == len) {
-      int cwrd = 1;
-      int wl;
-      char s[MAXSWUTF8L];
-      u16_u8(s, MAXSWUTF8L, word, len);
-      wl = strlen(s);
-      for (int m=0; m < ns; m++)
-          if (strcmp(s,wlst[m]) == 0) cwrd = 0;
-      if ((cwrd) && checkword(s, wl, cpdsuggest, timer, timelimit)) {
-          if (ns < maxSug) {
-              wlst[ns] = mystrdup(s);
-              if (wlst[ns] == NULL) return -1;
-              ns++;
-          }
-      }
-      return ns;
-  }
-  int in_map = 0;
-  unsigned short c = *((unsigned short *) word + i);
-  for (int j = 0; j < nummap; j++) {
-    if (flag_bsearch((unsigned short *) maptable[j].set_utf16, c, maptable[j].len)) {
-      in_map = 1;
-      for (int k = 0; k < maptable[j].len; k++) {
-        *(word + i) = *(maptable[j].set_utf16 + k);
-        ns = map_related_utf(word, len, i + 1, cpdsuggest,
-           wlst, ns, maptable, nummap, timer, timelimit);
-        if (!(*timer)) return ns;
-      }
-      *((unsigned short *) word + i) = c;
-    }
-  }
-  if (!in_map) {
-     i++;
-     ns = map_related_utf(word, len, i, cpdsuggest,
-          wlst, ns, maptable, nummap, timer, timelimit);
-  }
-  return ns;
-}
-
-
 
 // suggestions for a typical fault of spelling, that
 // differs with more, than 1 letter from the right form.
@@ -471,7 +416,7 @@ int SuggestMgr::replchars(char** wlst, const char * word, int ns, int cpdsuggest
                 wlst[ns - 1] = mystrdup(candidate);
                 if (!wlst[ns - 1]) return -1;
               }
-            }
+            }            
             *sp = ' ';
           }
           r++; // search for the next letter
@@ -644,7 +589,7 @@ int SuggestMgr::badchar_utf(char ** wlst, const w_char * word, int wl, int ns, i
   w_char        candidate_utf[MAXSWL];
   char          candidate[MAXSWUTF8L];
   clock_t timelimit = clock();
-  int timer = MINTIMER;
+  int timer = MINTIMER;  
   memcpy(candidate_utf, word, wl * sizeof(w_char));
   // swap out each char one by one and try all the tryme
   // chars in its place to see if that makes a good word
@@ -663,7 +608,7 @@ int SuggestMgr::badchar_utf(char ** wlst, const w_char * word, int wl, int ns, i
   return ns;
 }
 
-// error is word has an extra letter it does not need
+// error is word has an extra letter it does not need 
 int SuggestMgr::extrachar_utf(char** wlst, const w_char * word, int wl, int ns, int cpdsuggest)
 {
    char   candidate[MAXSWUTF8L];
@@ -684,7 +629,7 @@ int SuggestMgr::extrachar_utf(char** wlst, const w_char * word, int wl, int ns, 
    return ns;
 }
 
-// error is word has an extra letter it does not need
+// error is word has an extra letter it does not need 
 int SuggestMgr::extrachar(char** wlst, const char * word, int ns, int cpdsuggest)
 {
    char    tmpc = '\0';
@@ -761,7 +706,7 @@ int SuggestMgr::twowords(char ** wlst, const char * word, int ns, int cpdsuggest
 
     int wl=strlen(word);
     if (wl < 3) return ns;
-
+    
     if (langnum == LANG_hu) forbidden = check_forbidden(word, wl);
 
     strcpy(candidate + 1, word);
@@ -805,7 +750,7 @@ int SuggestMgr::twowords(char ** wlst, const char * word, int ns, int cpdsuggest
             if (ctry && (strchr(ctry, 'a') || strchr(ctry, '-')) &&
                 mystrlen(p + 1) > 1 &&
                 mystrlen(candidate) - mystrlen(p) > 1) {
-                *p = '-';
+                *p = '-'; 
                 for (int k=0; k < ns; k++)
                     if (strcmp(candidate,wlst[k]) == 0) cwrd = 0;
                 if (ns < maxSug) {
@@ -918,7 +863,7 @@ int SuggestMgr::longswapchar(char ** wlst, const char * word, int ns, int cpdsug
    strcpy(candidate, word);
    for (p = candidate;  *p != 0;  p++) {
     for (q = candidate;  *q != 0;  q++) {
-     if (abs(p-q) > 1) {
+     if (abs((int)(p-q)) > 1) {
       tmpc = *p;
       *p = *q;
       *q = tmpc;
@@ -945,7 +890,7 @@ int SuggestMgr::longswapchar_utf(char ** wlst, const w_char * word, int wl, int 
    memcpy (candidate_utf, word, wl * sizeof(w_char));
    for (p = candidate_utf;  p < (candidate_utf + wl);  p++) {
      for (q = candidate_utf;  q < (candidate_utf + wl);  q++) {
-       if (abs(p-q) > 1) {
+       if (abs((int)(p-q)) > 1) {
          tmpc = *p;
          *p = *q;
          *q = tmpc;
@@ -992,7 +937,7 @@ int SuggestMgr::movechar(char ** wlst, const char * word, int ns, int cpdsuggest
       if (ns == -1) return -1;
     }
     strcpy(candidate, word);
-   }
+   }   
    return ns;
 }
 
@@ -1030,7 +975,7 @@ int SuggestMgr::movechar_utf(char ** wlst, const w_char * word, int wl, int ns, 
      }
      memcpy (candidate_utf, word, wl * sizeof(w_char));
    }
-   return ns;
+   return ns;   
 }
 
 // generate a set of suggestions for very poorly spelled words
@@ -1058,7 +1003,7 @@ int SuggestMgr::ngsuggest(char** wlst, char * w, int ns, HashMgr** pHMgr, int md
   lp = MAX_ROOTS - 1;
   lpphon = MAX_ROOTS - 1;
   scphon = scoresphon[MAX_ROOTS-1];
-
+  
   char w2[MAXWORDUTF8LEN];
   char f[MAXSWUTF8L];
   char * word = w;
@@ -1074,7 +1019,7 @@ int SuggestMgr::ngsuggest(char** wlst, char * w, int ns, HashMgr** pHMgr, int md
   w_char u8[MAXSWL];
   int nc = strlen(word);
   int n = (utf8) ? u8_u16(u8, MAXSWL, word) : nc;
-
+  
   // set character based ngram suggestion for words with non-BMP Unicode characters
   if (n == -1) {
     utf8 = 0;
@@ -1093,9 +1038,9 @@ int SuggestMgr::ngsuggest(char** wlst, char * w, int ns, HashMgr** pHMgr, int md
     phonet(candidate, target, n, *ph);
   }
 
-  for (i = 0; i < md; i++) {
+  for (i = 0; i < md; i++) {  
   while (0 != (hp = (pHMgr[i])->walk_hashtable(col, hp))) {
-    if ((hp->astr) && (pAMgr) &&
+    if ((hp->astr) && (pAMgr) && 
        (TESTAFF(hp->astr, pAMgr->get_forbiddenword(), hp->alen) ||
           TESTAFF(hp->astr, ONLYUPCASEFLAG, hp->alen) ||
           TESTAFF(hp->astr, pAMgr->get_nosuggest(), hp->alen) ||
@@ -1110,7 +1055,7 @@ int SuggestMgr::ngsuggest(char** wlst, char * w, int ns, HashMgr** pHMgr, int md
 	leftcommonsubstring(word, f);
 	if (sc2 > sc) sc = sc2;
     }
-
+    
     if (ph && (sc > 2) && (abs(n - (int) hp->clen) <= 3)) {
 	char target2[MAXSWUTF8L];
         strcpy(candidate, HENTRY_WORD(hp));
@@ -1120,7 +1065,7 @@ int SuggestMgr::ngsuggest(char** wlst, char * w, int ns, HashMgr** pHMgr, int md
     }
 
     if (sc > scores[lp]) {
-      scores[lp] = sc;
+      scores[lp] = sc;  
       roots[lp] = hp;
       lval = sc;
       for (j=0; j < MAX_ROOTS; j++)
@@ -1185,7 +1130,7 @@ int SuggestMgr::ngsuggest(char** wlst, char * w, int ns, HashMgr** pHMgr, int md
       if (roots[i]) {
         struct hentry * rp = roots[i];
         int nw = pAMgr->expand_rootword(glst, MAX_WORDS, HENTRY_WORD(rp), rp->blen,
-            	    rp->astr, rp->alen, word, nc,
+            	    rp->astr, rp->alen, word, nc, 
                     ((rp->var & H_OPT_PHON) ? copy_field(f, HENTRY_DATA(rp), MORPH_PHON) : NULL));
 
         for (int k = 0; k < nw ; k++) {
@@ -1210,7 +1155,7 @@ int SuggestMgr::ngsuggest(char** wlst, char * w, int ns, HashMgr** pHMgr, int md
                        lp = j;
                        lval = gscore[j];
                     }
-              } else {
+              } else { 
                 free(glst[k].word);
                 if (glst[k].orig) free(glst[k].orig);
               }
@@ -1225,8 +1170,8 @@ int SuggestMgr::ngsuggest(char** wlst, char * w, int ns, HashMgr** pHMgr, int md
 
   // now we are done generating guesses
   // sort in order of decreasing score
-
-
+  
+  
   bubblesort(&guess[0], &guessorig[0], &gscore[0], MAX_GUESS);
   if (ph) bubblesort(&rootsphon[0], NULL, &scoresphon[0], MAX_ROOTS);
 
@@ -1257,7 +1202,7 @@ int SuggestMgr::ngsuggest(char** wlst, char * w, int ns, HashMgr** pHMgr, int md
             gscore[i] += 2000;
             break;
         }
-
+        
         // heuristic weigthing of ngram scores
         gscore[i] +=
           // length of longest common subsequent minus length difference
@@ -1340,7 +1285,7 @@ int SuggestMgr::ngsuggest(char** wlst, char * w, int ns, HashMgr** pHMgr, int md
         int unique = 1;
         for (j = 0; j < ns; j++) {
           // don't suggest previous suggestions or a previous suggestion with prefixes or affixes
-          if (strstr(rootsphon[i], wlst[j]) ||
+          if (strstr(rootsphon[i], wlst[j]) || 
             // check forbidden words
             !checkword(rootsphon[i], strlen(rootsphon[i]), 0, NULL, NULL)) unique = 0;
         }
@@ -1376,8 +1321,8 @@ int SuggestMgr::checkword(const char * word, int len, int cpdsuggest, int * time
       *timer = MAXPLUSTIMER;
     }
   }
-
-  if (pAMgr) {
+  
+  if (pAMgr) { 
     if (cpdsuggest==1) {
       if (pAMgr->get_compound()) {
         rv = pAMgr->compound_check(word, len, 0, 0, 100, 0, NULL, 0, 1); //EXT
@@ -1417,9 +1362,9 @@ int SuggestMgr::checkword(const char * word, int len, int cpdsuggest, int * time
       TESTAFF(rv->astr,pAMgr->get_nosuggest(),rv->alen) ||
       TESTAFF(rv->astr,pAMgr->get_onlyincompound(),rv->alen))) return 0;
 
-    if (rv) { // XXX obsolote
-      if ((pAMgr->get_compoundflag()) &&
-          TESTAFF(rv->astr, pAMgr->get_compoundflag(), rv->alen)) return 2 + nosuffix;
+    if (rv) { // XXX obsolote    
+      if ((pAMgr->get_compoundflag()) && 
+          TESTAFF(rv->astr, pAMgr->get_compoundflag(), rv->alen)) return 2 + nosuffix; 
       return 1;
     }
   }
@@ -1430,7 +1375,7 @@ int SuggestMgr::check_forbidden(const char * word, int len)
 {
   struct hentry * rv = NULL;
 
-  if (pAMgr) {
+  if (pAMgr) { 
     rv = pAMgr->lookup(word);
     if (rv && rv->astr && (TESTAFF(rv->astr,pAMgr->get_needaffix(),rv->alen) ||
         TESTAFF(rv->astr,pAMgr->get_onlyincompound(),rv->alen))) rv = NULL;
@@ -1446,7 +1391,7 @@ int SuggestMgr::check_forbidden(const char * word, int len)
 // suggest possible stems
 int SuggestMgr::suggest_pos_stems(char*** slst, const char * w, int nsug)
 {
-    char ** wlst;
+    char ** wlst;    
 
     struct hentry * rv = NULL;
 
@@ -1508,25 +1453,25 @@ char * SuggestMgr::suggest_morph(const char * w)
   }
 
     rv = pAMgr->lookup(word);
-
+    
     while (rv) {
         if ((!rv->astr) || !(TESTAFF(rv->astr, pAMgr->get_forbiddenword(), rv->alen) ||
             TESTAFF(rv->astr, pAMgr->get_needaffix(), rv->alen) ||
             TESTAFF(rv->astr,pAMgr->get_onlyincompound(),rv->alen))) {
                 if (!HENTRY_FIND(rv, MORPH_STEM)) {
-                    mystrcat(result, " ", MAXLNLEN);
+                    mystrcat(result, " ", MAXLNLEN);                                
                     mystrcat(result, MORPH_STEM, MAXLNLEN);
                     mystrcat(result, word, MAXLNLEN);
                 }
                 if (HENTRY_DATA(rv)) {
-                    mystrcat(result, " ", MAXLNLEN);
+                    mystrcat(result, " ", MAXLNLEN);                                
                     mystrcat(result, HENTRY_DATA2(rv), MAXLNLEN);
                 }
                 mystrcat(result, "\n", MAXLNLEN);
         }
         rv = rv->next_homonym;
     }
-
+    
     st = pAMgr->affix_check_morph(word,strlen(word));
     if (st) {
         mystrcat(result, st, MAXLNLEN);
@@ -1536,7 +1481,7 @@ char * SuggestMgr::suggest_morph(const char * w)
     if (pAMgr->get_compound() && (*result == '\0'))
         pAMgr->compound_check_morph(word, strlen(word),
                      0, 0, 100, 0,NULL, 0, &r, NULL);
-
+    
     return (*result) ? mystrdup(line_uniq(result, MSEP_REC)) : NULL;
 }
 
@@ -1592,7 +1537,7 @@ char * SuggestMgr::suggest_hentry_gen(hentry * rv, char * pattern)
 //            if (HENTRY_DATA(rv2) && get_sfxcount(HENTRY_DATA(rv2)) <= sfxcount) {
             if (HENTRY_DATA(rv2)) {
                 char * st = (char *) strstr(HENTRY_DATA2(rv2), MORPH_STEM);
-                if (st && (strncmp(st + MORPH_TAG_LEN,
+                if (st && (strncmp(st + MORPH_TAG_LEN, 
                    HENTRY_WORD(rv), fieldlen(st + MORPH_TAG_LEN)) == 0)) {
                     char * aff = pAMgr->morphgen(HENTRY_WORD(rv2), rv2->blen, rv2->astr, rv2->alen,
                         HENTRY_DATA(rv2), pattern, 0);
@@ -1600,14 +1545,14 @@ char * SuggestMgr::suggest_hentry_gen(hentry * rv, char * pattern)
                         mystrcat(result, aff, MAXLNLEN);
                         mystrcat(result, "\n", MAXLNLEN);
                         free(aff);
-                    }
+                    }    
                 }
             }
             rv2 = rv2->next_homonym;
         }
         p = strstr(p + plen, MORPH_ALLOMORPH);
     }
-
+        
     return (*result) ? mystrdup(result) : NULL;
 }
 
@@ -1741,12 +1686,11 @@ int SuggestMgr::ngram(int n, char * s1, const char * s2, int opt)
       nscore = nscore + ns;
       if (ns < 2) break;
     }
-  } else {
-    char t[MAXSWUTF8L];
-    l1 = strlen(s1);
+  } else {  
     l2 = strlen(s2);
     if (l2 == 0) return 0;
-    strcpy(t, s2);
+    l1 = strlen(s1);
+    char *t = mystrdup(s2);
     if (opt & NGRAM_LOWERING) mkallsmall(t, csconv);
     for (int j = 1; j <= n; j++) {
       ns = 0;
@@ -1759,8 +1703,9 @@ int SuggestMgr::ngram(int n, char * s1, const char * s2, int opt)
       nscore = nscore + ns;
       if (ns < 2) break;
     }
+    free(t);
   }
-
+  
   ns = 0;
   if (opt & NGRAM_LONGER_WORSE) ns = (l2-l1)-2;
   if (opt & NGRAM_ANY_MISMATCH) ns = abs(l2-l1)-2;
@@ -1783,12 +1728,13 @@ int SuggestMgr::leftcommonsubstring(char * s1, const char * s2) {
       u8_u16(su1, 1, s1);
       u8_u16(su2, 1, s2);
       unsigned short idx = (su2->h << 8) + su2->l;
-      if (*((short *)su1) != *((short *)su2) &&
-         (*((unsigned short *)su1) != unicodetolower(idx, langnum))) return 0;
+      unsigned short otheridx = (su1->h << 8) + su1->l;
+      if (otheridx != idx &&
+         (otheridx != unicodetolower(idx, langnum))) return 0;
       int l1 = u8_u16(su1, MAXSWL, s1);
       int l2 = u8_u16(su2, MAXSWL, s2);
       for(i = 1; (i < l1) && (i < l2) &&
-         (*((short *)(su1 + i)) == *((short *)(su2 + i))); i++) ;
+         (su1[i].l == su2[i].l) && (su1[i].h == su2[i].h); i++);
       return i;
     }
   } else {
@@ -1803,7 +1749,7 @@ int SuggestMgr::leftcommonsubstring(char * s1, const char * s2) {
       do {
         s1++; s2++;
       } while ((*s1 == *s2) && (*s1 != '\0'));
-      return s1 - olds;
+      return (int)(s1 - olds);
     }
   }
   return 0;
@@ -1924,7 +1870,7 @@ void SuggestMgr::lcs(const char * s, const char * s2, int * l1, int * l2, char *
   for (j = 0; j <= n; j++) c[j] = 0;
   for (i = 1; i <= m; i++) {
     for (j = 1; j <= n; j++) {
-      if (((utf8) && (*((short *) su+i-1) == *((short *)su2+j-1)))
+      if ( ((utf8) && (*((short *) su+i-1) == *((short *)su2+j-1)))
           || ((!utf8) && ((*(s+i-1)) == (*(s2+j-1))))) {
         c[i*(n+1) + j] = c[(i-1)*(n+1) + j-1]+1;
         b[i*(n+1) + j] = LCS_UPLEFT;

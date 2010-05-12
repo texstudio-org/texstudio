@@ -1,17 +1,10 @@
 #include "license.hunspell"
 #include "license.myspell"
 
-#ifndef MOZILLA_CLIENT
-#include <cstdlib>
-#include <cstring>
-#include <cstdio>
-#include <cctype>
-#else
-#include <stdlib.h>
+#include <stdlib.h> 
 #include <string.h>
-#include <stdio.h>
+#include <stdio.h> 
 #include <ctype.h>
-#endif
 
 #include "csutil.hxx"
 #include "atypes.hxx"
@@ -38,16 +31,6 @@
 
 static NS_DEFINE_CID(kCharsetConverterManagerCID, NS_ICHARSETCONVERTERMANAGER_CID);
 static NS_DEFINE_CID(kUnicharUtilCID, NS_UNICHARUTIL_CID);
-#endif
-
-#ifdef MOZILLA_CLIENT
-#ifdef __SUNPRO_CC // for SunONE Studio compiler
-using namespace std;
-#endif
-#else
-#ifndef WIN32
-using namespace std;
-#endif
 #endif
 
 static struct unicode_info2 * utf_tbl = NULL;
@@ -106,7 +89,7 @@ int u8_u16(w_char * dest, int size, const char * src) {
     const signed char * u8 = (const signed char *)src;
     w_char * u2 = dest;
     w_char * u2_max = u2 + size;
-
+    
     while ((u2 < u2_max) && *u8) {
     switch ((*u8) & 0xf0) {
         case 0x00:
@@ -125,7 +108,7 @@ int u8_u16(w_char * dest, int size, const char * src) {
         case 0x90:
         case 0xa0:
         case 0xb0: {
-            HUNSPELL_WARNING(stderr, "UTF-8 encoding error. Unexpected continuation bytes in %ld. character position\n%s\n", static_cast<long>(u8 - (signed char *)src), src);
+            HUNSPELL_WARNING(stderr, "UTF-8 encoding error. Unexpected continuation bytes in %ld. character position\n%s\n", static_cast<long>(u8 - (signed char *)src), src);    
             u2->h = 0xff;
             u2->l = 0xfd;
             break;
@@ -172,7 +155,7 @@ int u8_u16(w_char * dest, int size, const char * src) {
     u8++;
     u2++;
     }
-    return u2 - dest;
+    return (int)(u2 - dest);
 }
 
 void flag_qsort(unsigned short flags[], int begin, int end) {
@@ -218,7 +201,7 @@ int flag_bsearch(unsigned short flags[], unsigned short flag, int length) {
  // acts like strsep() but only uses a delim char and not
  // a delim string
  // default delimiter: white space characters
-
+ 
  char * mystrsep(char ** stringp, const char delim)
  {
    char * mp = *stringp;
@@ -229,18 +212,17 @@ int flag_bsearch(unsigned short flags[], unsigned short flag, int length) {
       } else {
         // don't use isspace() here, the string can be in some random charset
         // that's way different than the locale's
-        for (dp = mp; (*dp && *dp != ' ' && *dp != '\t'); dp++) ;
+        for (dp = mp; (*dp && *dp != ' ' && *dp != '\t'); dp++);
         if (!*dp) dp = NULL;
       }
       if (dp) {
          *stringp = dp+1;
          int nc = (int)((unsigned long)dp - (unsigned long)mp);
          *(mp+nc) = '\0';
-         return mp;
       } else {
          *stringp = mp + strlen(mp);
-         return mp;
       }
+      return mp;
    }
    return NULL;
  }
@@ -250,13 +232,13 @@ int flag_bsearch(unsigned short flags[], unsigned short flag, int length) {
  {
    char * d = NULL;
    if (s) {
-      int sl = strlen(s);
-      d = (char *) malloc(((sl+1) * sizeof(char)));
+      int sl = strlen(s)+1;
+      d = (char *) malloc(sl);
       if (d) {
-         memcpy(d,s,((sl+1)*sizeof(char)));
-         return d;
+         memcpy(d,s,sl);
+      } else {
+         HUNSPELL_WARNING(stderr, "Can't allocate memory.\n");
       }
-      HUNSPELL_WARNING(stderr, "Can't allocate memory.\n");
    }
    return d;
  }
@@ -280,20 +262,22 @@ int flag_bsearch(unsigned short flags[], unsigned short flag, int length) {
    if ((k > 0) && ((*(s+k-1)=='\r') || (*(s+k-1)=='\n'))) *(s+k-1) = '\0';
    if ((k > 1) && (*(s+k-2) == '\r')) *(s+k-2) = '\0';
  }
-
-
+ 
+ 
  //  does an ansi strdup of the reverse of a string
  char * myrevstrdup(const char * s)
  {
      char * d = NULL;
      if (s) {
         int sl = strlen(s);
-        d = (char *) malloc((sl+1) * sizeof(char));
+        d = (char *) malloc(sl+1);
         if (d) {
           const char * p = s + sl - 1;
           char * q = d;
           while (p >= s) *q++ = *p--;
           *q = '\0';
+        } else {
+          HUNSPELL_WARNING(stderr, "Can't allocate memory.\n");
         }
      }
      return d;
@@ -303,6 +287,9 @@ int flag_bsearch(unsigned short flags[], unsigned short flag, int length) {
 // return number of lines
 int line_tok(const char * text, char *** lines, char breakchar) {
     int linenum = 0;
+    if (!text) {
+        return linenum;
+    }
     char * dup = mystrdup(text);
     char * p = strchr(dup, breakchar);
     while (p) {
@@ -369,7 +356,7 @@ char * line_uniq_app(char ** text, char breakchar) {
     if (!strchr(*text, breakchar)) {
         return *text;
     }
-
+    
     char ** lines;
     int i;
     int linenum = line_tok(*text, &lines, breakchar);
@@ -395,7 +382,7 @@ char * line_uniq_app(char ** text, char breakchar) {
     } else {
         freelist(&lines, linenum);
         return *text;
-    }
+    }    
     strcpy(*text," ( ");
     for (i = 0; i < linenum; i++) if (*(lines[i])) {
         sprintf(*text + strlen(*text), "%s%s", lines[i], " | ");
@@ -442,7 +429,7 @@ int morphcmp(const char * s, const char * t)
     int se = 0;
     int te = 0;
     const char * sl;
-    const char * tl;
+    const char * tl;    
     const char * olds;
     const char * oldt;
     if (!s || !t) return 1;
@@ -529,7 +516,7 @@ int get_sfxcount(const char * morph)
 int fieldlen(const char * r)
 {
     int n = 0;
-    while (r && *r != '\t' && *r != '\0' && *r != '\n' && *r != ' ') {
+    while (r && *r != ' ' && *r != '\t' && *r != '\0' && *r != '\n') {
         r++;
         n++;
     }
@@ -561,20 +548,20 @@ char * mystrrep(char * word, const char * pat, const char * rep) {
             char * end = word + strlen(word);
             char * next = pos + replen;
             char * prev = pos + strlen(pat);
-            for (; prev < end; *next = *prev, prev++, next++) ;
+            for (; prev < end; *next = *prev, prev++, next++);
             *next = '\0';
         } else if (replen > patlen) {
             char * end = pos + patlen;
             char * next = word + strlen(word) + replen - patlen;
             char * prev = next - replen + patlen;
-            for (; prev >= end; *next = *prev, prev--, next--) ;
+            for (; prev >= end; *next = *prev, prev--, next--);
         }
         strncpy(pos, rep, replen);
     }
     return word;
 }
 
- // reverse word
+ // reverse word 
  int reverseword(char * word) {
    char r;
    for (char * dest = word + strlen(word) - 1; word < dest; word++, dest--) {
@@ -613,15 +600,15 @@ char * mystrrep(char * word, const char * pat, const char * rep) {
             break;
         }
      }
-   }
-   int m = 1;
+   } 
+   int m = 1;  
    for (i = 1; i < n; i++) if (list[i]) {
         list[m] = list[i];
         m++;
     }
    return m;
  }
-
+ 
  void freelist(char *** list, int n) {
    if (list && *list && n > 0) {
      for (int i = 0; i < n; i++) if ((*list)[i]) free((*list)[i]);
@@ -629,7 +616,7 @@ char * mystrrep(char * word, const char * pat, const char * rep) {
      *list = NULL;
    }
  }
-
+ 
  // convert null terminated string to all caps
  void mkallcap(char * p, const struct cs_info * csconv)
  {
@@ -638,7 +625,7 @@ char * mystrrep(char * word, const char * pat, const char * rep) {
      p++;
    }
  }
-
+  
  // convert null terminated string to all little
  void mkallsmall(char * p, const struct cs_info * csconv)
  {
@@ -667,8 +654,8 @@ void mkallcap_utf(w_char * u, int nc, int langnum) {
         }
     }
 }
-
- // convert null terminated string to have intial capital
+ 
+ // convert null terminated string to have initial capital
  void mkinitcap(char * p, const struct cs_info * csconv)
  {
    if (*p != '\0') *p = csconv[((unsigned char)*p)].cupper;
@@ -681,7 +668,7 @@ void mkallcap_utf(w_char * u, int nc, int langnum) {
  }
 
  // conversion function for protected memory
- char * get_stored_pointer(char * s)
+ char * get_stored_pointer(const char * s)
  {
     char * p;
     memcpy(&p, s, sizeof(char *));
@@ -691,7 +678,7 @@ void mkallcap_utf(w_char * u, int nc, int langnum) {
 #ifndef MOZILLA_CLIENT
  // convert null terminated string to all caps using encoding
  void enmkallcap(char * d, const char * p, const char * encoding)
-
+ 
  {
    struct cs_info * csconv = get_current_cs(encoding);
    while (*p != '\0') {
@@ -712,7 +699,7 @@ void mkallcap_utf(w_char * u, int nc, int langnum) {
    *d = '\0';
  }
 
- // convert null terminated string to have intial capital using encoding
+ // convert null terminated string to have initial capital using encoding
  void enmkinitcap(char * d, const char * p, const char * encoding)
  {
    struct cs_info * csconv = get_current_cs(encoding);
@@ -720,11 +707,11 @@ void mkallcap_utf(w_char * u, int nc, int langnum) {
    if (*p != '\0') *d= csconv[((unsigned char)*p)].cupper;
  }
 
-// these are simple character mappings for the
+// these are simple character mappings for the 
 // encodings supported
 // supplying isupper, tolower, and toupper
 
-struct cs_info iso1_tbl[] = {
+static struct cs_info iso1_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -984,7 +971,7 @@ struct cs_info iso1_tbl[] = {
 };
 
 
-struct cs_info iso2_tbl[] = {
+static struct cs_info iso2_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -1244,7 +1231,7 @@ struct cs_info iso2_tbl[] = {
 };
 
 
-struct cs_info iso3_tbl[] = {
+static struct cs_info iso3_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -1503,7 +1490,7 @@ struct cs_info iso3_tbl[] = {
 { 0x00, 0xff, 0xff }
 };
 
-struct cs_info iso4_tbl[] = {
+static struct cs_info iso4_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -1762,7 +1749,7 @@ struct cs_info iso4_tbl[] = {
 { 0x00, 0xff, 0xff }
 };
 
-struct cs_info iso5_tbl[] = {
+static struct cs_info iso5_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -2021,7 +2008,7 @@ struct cs_info iso5_tbl[] = {
 { 0x00, 0xff, 0xaf }
 };
 
-struct cs_info iso6_tbl[] = {
+static struct cs_info iso6_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -2280,7 +2267,7 @@ struct cs_info iso6_tbl[] = {
 { 0x00, 0xff, 0xff }
 };
 
-struct cs_info iso7_tbl[] = {
+static struct cs_info iso7_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -2539,7 +2526,7 @@ struct cs_info iso7_tbl[] = {
 { 0x00, 0xff, 0xff }
 };
 
-struct cs_info iso8_tbl[] = {
+static struct cs_info iso8_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -2798,7 +2785,7 @@ struct cs_info iso8_tbl[] = {
 { 0x00, 0xff, 0xff }
 };
 
-struct cs_info iso9_tbl[] = {
+static struct cs_info iso9_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -3057,7 +3044,7 @@ struct cs_info iso9_tbl[] = {
 { 0x00, 0xff, 0xff }
 };
 
-struct cs_info iso10_tbl[] = {
+static struct cs_info iso10_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -3316,7 +3303,7 @@ struct cs_info iso10_tbl[] = {
 { 0x00, 0xff, 0xff }
 };
 
-struct cs_info koi8r_tbl[] = {
+static struct cs_info koi8r_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -3575,7 +3562,7 @@ struct cs_info koi8r_tbl[] = {
 { 0x01, 0xdf, 0xff }
 };
 
-struct cs_info koi8u_tbl[] = {
+static struct cs_info koi8u_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -3834,7 +3821,7 @@ struct cs_info koi8u_tbl[] = {
 { 0x01, 0xdf, 0xff }
 };
 
-struct cs_info cp1251_tbl[] = {
+static struct cs_info cp1251_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -4093,7 +4080,7 @@ struct cs_info cp1251_tbl[] = {
 { 0x00, 0xff, 0xdf }
 };
 
-struct cs_info iso13_tbl[] = {
+static struct cs_info iso13_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -4353,7 +4340,7 @@ struct cs_info iso13_tbl[] = {
 };
 
 
-struct cs_info iso14_tbl[] = {
+static struct cs_info iso14_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -4612,7 +4599,7 @@ struct cs_info iso14_tbl[] = {
 { 0x00, 0xff, 0xff }
 };
 
-struct cs_info iso15_tbl[] = {
+static struct cs_info iso15_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -4871,7 +4858,7 @@ struct cs_info iso15_tbl[] = {
 { 0x00, 0xff, 0xbe }
 };
 
-struct cs_info iscii_devanagari_tbl[] = {
+static struct cs_info iscii_devanagari_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -5168,8 +5155,8 @@ struct cs_info * get_current_cs(const char * es) {
 struct cs_info * get_current_cs(const char * es) {
   struct cs_info *ccs;
 
-  nsCOMPtr<nsIUnicodeEncoder> encoder;
-  nsCOMPtr<nsIUnicodeDecoder> decoder;
+  nsCOMPtr<nsIUnicodeEncoder> encoder; 
+  nsCOMPtr<nsIUnicodeDecoder> decoder; 
   nsCOMPtr<nsICaseConversion> caseConv;
 
   nsresult rv;
@@ -5188,14 +5175,14 @@ struct cs_info * get_current_cs(const char * es) {
   if (NS_FAILED(rv))
     return nsnull;
 
-  ccs = (struct cs_info *) malloc(256 * sizeof(cs_info));
+  ccs = new cs_info[256];
 
   PRInt32 charLength = 256;
   PRInt32 uniLength = 512;
-  char *source = (char *)malloc(charLength * sizeof(char));
+  char *source = (char *)malloc(charLength);
   PRUnichar *uni = (PRUnichar *)malloc(uniLength * sizeof(PRUnichar));
-  char *lower = (char *)malloc(charLength * sizeof(char));
-  char *upper = (char *)malloc(charLength * sizeof(char));
+  char *lower = (char *)malloc(charLength);
+  char *upper = (char *)malloc(charLength);
 
   // Create a long string of all chars.
   unsigned int i;
@@ -5220,12 +5207,12 @@ struct cs_info * get_current_cs(const char * es) {
   for (i = 0x00; i <= 0xff ; ++i) {
     ccs[i].cupper = upper[i];
     ccs[i].clower = lower[i];
-
+    
     if (ccs[i].clower != (unsigned char)i)
       ccs[i].ccase = true;
     else
       ccs[i].ccase = false;
-
+      
   }
 
   free(source);
@@ -5250,14 +5237,14 @@ char * get_casechars(const char * enc) {
     }
     *p = '\0';
 #ifdef MOZILLA_CLIENT
-    delete csconv;
+    delete [] csconv;
 #endif
     return mystrdup(expw);
 }
 
 
 
-struct lang_map lang2enc[] = {
+static struct lang_map lang2enc[] = {
 {"ar", "UTF-8", LANG_ar},
 {"az", "UTF-8", LANG_az},
 {"bg", "microsoft-cp1251", LANG_bg},
@@ -5313,7 +5300,7 @@ int initialize_utf_tbl() {
   if (utf_tbl) return 0;
   utf_tbl = (unicode_info2 *) malloc(CONTSIZE * sizeof(unicode_info2));
   if (utf_tbl) {
-    unsigned int j;
+    size_t j;
     for (j = 0; j < CONTSIZE; j++) {
       utf_tbl[j].cletter = 0;
       utf_tbl[j].clower = (unsigned short) j;
@@ -5351,7 +5338,7 @@ unsigned short unicodetoupper(unsigned short c, int langnum)
 {
   // In Azeri and Turkish, I and i dictinct letters:
   // There are a dotless lower case i pair of upper `I',
-  // and an upper I with dot pair of lower `i'.
+  // and an upper I with dot pair of lower `i'. 
   if (c == 0x0069 && ((langnum == LANG_az) || (langnum == LANG_tr)))
     return 0x0130;
 #ifdef OPENOFFICEORG
@@ -5371,7 +5358,7 @@ unsigned short unicodetolower(unsigned short c, int langnum)
 {
   // In Azeri and Turkish, I and i dictinct letters:
   // There are a dotless lower case i pair of upper `I',
-  // and an upper I with dot pair of lower `i'.
+  // and an upper I with dot pair of lower `i'. 
   if (c == 0x0049 && ((langnum == LANG_az) || (langnum == LANG_tr)))
     return 0x0131;
 #ifdef OPENOFFICEORG
@@ -5502,7 +5489,7 @@ int parse_string(char * line, char ** out, int ln)
       if (*piece != '\0') {
           switch(i) {
               case 0: { np++; break; }
-              case 1: {
+              case 1: { 
                 *out = mystrdup(piece);
                 if (!*out) return 1;
                 np++;
@@ -5518,7 +5505,7 @@ int parse_string(char * line, char ** out, int ln)
    if (np != 2) {
       HUNSPELL_WARNING(stderr, "error: line %d: missing data\n", ln);
       return 1;
-   }
+   } 
    return 0;
 }
 

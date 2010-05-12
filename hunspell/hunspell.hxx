@@ -1,3 +1,5 @@
+#include "hunvisapi.h"
+
 #include "hashmgr.hxx"
 #include "affixmgr.hxx"
 #include "suggestmgr.hxx"
@@ -18,13 +20,7 @@
 #ifndef _MYSPELLMGR_HXX_
 #define _MYSPELLMGR_HXX_
 
-#define DLLEXPORT
-
-#ifdef WIN32
-class DLLEXPORT Hunspell
-#else
-class Hunspell
-#endif
+class LIBHUNSPELL_DLL_EXPORTED Hunspell
 {
   AffixMgr*       pAMgr;
   HashMgr*        pHMgr[MAXDIC];
@@ -136,6 +132,8 @@ public:
 
   struct cs_info * get_csconv();
   const char * get_version();
+
+  int get_langnum() const;
   
   /* experimental and deprecated functions */
 
@@ -147,7 +145,6 @@ public:
   /* spec. suggestions */
   int suggest_auto(char*** slst, const char * word);
   int suggest_pos_stems(char*** slst, const char * word);
-  char * get_possible_root();
 #endif
 
 private:
