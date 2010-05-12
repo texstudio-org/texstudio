@@ -1,15 +1,9 @@
 #include "license.hunspell"
 #include "license.myspell"
 
-#ifndef MOZILLA_CLIENT
-#include <cstdlib>
-#include <cstring>
-#include <cstdio>
-#else
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#endif
 
 #include "filemgr.hxx"
 
@@ -24,11 +18,12 @@ FileMgr::FileMgr(const char * file, const char * key) {
     fin = fopen(file, "r");
     if (!fin) {
         // check hzipped file
-        char * st = (char *) malloc(strlen(file) + strlen(HZIP_EXTENSION));
+        char * st = (char *) malloc(strlen(file) + strlen(HZIP_EXTENSION) + 1);
         if (st) {
             strcpy(st, file);
             strcat(st, HZIP_EXTENSION);
             hin = new Hunzip(st, key);
+            free(st);
         }
     }    
     if (!fin && !hin) fail(MSG_OPEN, file);

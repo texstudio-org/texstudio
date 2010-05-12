@@ -1,25 +1,20 @@
 
-#include <cstdlib>
-#include <cstring>
-#include <cctype>
-#include <cstdio>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdio.h>
 
 #include "dictmgr.hxx"
 
-using namespace std;
-
-DictMgr::DictMgr(const char * dictpath, const char * etype) 
+DictMgr::DictMgr(const char * dictpath, const char * etype) : numdict(0)
 {
   // load list of etype entries
-  numdict = 0;
   pdentry = (dictentry *)malloc(MAXDICTIONARIES*sizeof(struct dictentry));
   if (pdentry) {
      if (parse_file(dictpath, etype)) {
         numdict = 0;
         // no dictionary.lst found is okay
      }
-  } else {
-     numdict = 0;
   }
 }
 
@@ -101,6 +96,16 @@ int  DictMgr::parse_file(const char * dictpath, const char * etype)
                  numdict++;
                  pdict++;
              } else {
+                 switch (i) {
+                    case 3:
+                       free(pdict->region);
+                       pdict->region=NULL;
+                    case 2: //deliberate fallthrough
+                       free(pdict->lang);
+                       pdict->lang=NULL;
+                    default:
+                        break;
+                 }
                  fprintf(stderr,"dictionary list corruption in line \"%s\"\n",line);
                  fflush(stderr);
              }
@@ -138,7 +143,6 @@ char * DictMgr::mystrsep(char ** stringp, const char delim)
         if (rv) {
            memcpy(rv,mp,nc);
            *(rv+nc) = '\0';
-           return rv;
         }
      } else {
        rv = (char *) malloc(n+1);
@@ -146,11 +150,10 @@ char * DictMgr::mystrsep(char ** stringp, const char delim)
           memcpy(rv, mp, n);
           *(rv+n) = '\0';
           *stringp = mp + n;
-          return rv;
        }
      }
   }
-  return NULL;
+  return rv;
 }
 
 
@@ -159,9 +162,9 @@ char * DictMgr::mystrdup(const char * s)
 {
   char * d = NULL;
   if (s) {
-     int sl = strlen(s);
-     d = (char *) malloc(((sl+1) * sizeof(char)));
-     if (d) memcpy(d,s,((sl+1)*sizeof(char)));
+     int sl = strlen(s)+1;
+     d = (char *) malloc(sl);
+     if (d) memcpy(d,s,sl);
   }
   return d;
 }
