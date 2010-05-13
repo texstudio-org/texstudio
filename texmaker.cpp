@@ -115,6 +115,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 
 // TAB WIDGET EDITEUR
+	connect(&documents,SIGNAL(masterDocumentChanged()), SLOT(masterDocumentChanged()));
+
 	EditorView=new QTabWidget(this);
 	EditorView->setFocusPolicy(Qt::ClickFocus);
 	EditorView->setFocus();
@@ -143,8 +145,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 	createStatusBar();
 	UpdateCaption();
-	singlemode=true;
-	MasterName="";
 
 	show();
 
@@ -698,7 +698,7 @@ void Texmaker::UpdateCaption() {
 	setWindowTitle(title);
 	//updateStructure();
 	cursorPositionChanged();
-	if (singlemode) {
+	if (documents.singleMode()) {
 		outputView->resetMessagesAndLog();
 		if(currentEditorView()) updateCompleter();
 	}
@@ -855,24 +855,22 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 #endif
 	raise();
 
-	if (FileAlreadyOpen(f_real)) {
-		if (asProject) {
-			if (singlemode) ToggleMode();
-			else if (!singlemode && MasterName != f_real) {
-				ToggleMode();
-				ToggleMode();
-			}
-		}
-		return currentEditorView();
+	//test is already opened
+	LatexEditorView* existingView = getEditorViewFromFileName(f_real);
+	if (existingView) {
+		if (asProject) documents.setMasterDocument(existingView->document);
+		EditorView->setCurrentWidget(existingView);
+		return existingView;
 	}
 
+	//load it otherwise
 	if (!QFile::exists(f_real)) return 0;
 	bool bibTeXmodified=documents.bibTeXFilesModified;
 
 	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig);
 	configureNewEditorView(edit);
 
-	edit->document=documents.findDocument(f);
+	edit->document=documents.findDocument(f_real);
 	if (!edit->document) {
 		edit->document=new LatexDocument();
 		edit->document->setEditorView(edit);
@@ -909,13 +907,8 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	connect(edit->editor,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
 
 
-	if (asProject) {
-		if (singlemode) ToggleMode();
-		else if (!singlemode && MasterName != f_real) {
-			ToggleMode();
-			ToggleMode();
-		}
-	}
+	if (asProject) documents.setMasterDocument(edit->document);
+
 	if (outputView->logPresent()) DisplayLatexError(); //show marks
 	if (!bibTeXmodified)
 		documents.bibTeXFilesModified=false; //loading a file can change the list of included bib files, but we won't consider that as a modification of them, because then they don't have to be recompiled
@@ -1286,8 +1279,7 @@ void Texmaker::fileCloseAll() {
 		} else
 			documents.deleteDocument(currentEditorView()->document);
 	}
-	if (!singlemode)
-		ToggleMode();
+	documents.setMasterDocument(0);
 	UpdateCaption();
 }
 
@@ -1346,7 +1338,7 @@ void Texmaker::fileOpenRecentProject() {
 }
 
 void Texmaker::MarkCurrentFileAsRecent(){
-	configManager.addRecentFile(getCurrentFileName(),!singlemode && MasterName==getCurrentFileName());
+	configManager.addRecentFile(getCurrentFileName(),documents.masterDocument == currentEditorView()->document);
 }
 
 void Texmaker::filePrint() {
@@ -1744,7 +1736,6 @@ void Texmaker::ReadSettings() {
 	QSettings *config=configManager.readSettings();
 
 	config->beginGroup("texmaker");
-	singlemode=true;
 
 	QRect screen = QApplication::desktop()->screenGeometry();
 	int w= config->value("Geometries/MainwindowWidth",screen.width()-100).toInt();
@@ -1884,7 +1875,7 @@ void Texmaker::SaveSettings() {
 	}
 	config->setValue("Files/Session/Files",curFiles);
 	config->setValue("Files/Session/CurrentFile",currentEditorView()?currentEditor()->fileName():"");
-	config->setValue("Files/Session/MasterFile",singlemode?"":MasterName);
+	config->setValue("Files/Session/MasterFile",documents.singleMode()?"":documents.masterDocument->getFileName());
 
 	config->setValue("User/TagNames",UserMenuName);
 	config->setValue("User/Tags",UserMenuTag);
@@ -2587,15 +2578,15 @@ void Texmaker::EditUserMenu() {
 void Texmaker::InsertRef() {
 	updateStructure();
 
-        LatexEditorView* edView=currentEditorView();
-        QStringList labels;
-        if(edView && edView->document){
-                QList<LatexDocument*> docs;
-                if (singlemode) docs << edView->document;
-                else docs << documents.documents;
-                foreach(const LatexDocument* doc,docs)
+	LatexEditorView* edView=currentEditorView();
+	QStringList labels;
+	if(edView && edView->document){
+		QList<LatexDocument*> docs;
+		if (documents.singleMode()) docs << edView->document;
+		else docs << documents.documents;
+		foreach(const LatexDocument* doc,docs)
 			labels << doc->labelItem();
-        } else return;
+	} else return;
 	UniversalInputDialog dialog;
 	dialog.addVariable(&labels, tr("Labels:"));
 	if (dialog.exec() && !labels.isEmpty()) {
@@ -2607,16 +2598,16 @@ void Texmaker::InsertRef() {
 
 void Texmaker::InsertPageRef() {
 	updateStructure();
-        LatexEditorView* edView=currentEditorView();
-        QStringList labels;
-        if(edView && edView->document){
-                QList<LatexDocument*> docs;
-                if (singlemode) docs << edView->document;
-                else docs << documents.documents;
-                foreach(const LatexDocument* doc,docs)
+	LatexEditorView* edView=currentEditorView();
+	QStringList labels;
+	if(edView && edView->document){
+		QList<LatexDocument*> docs;
+		if (documents.singleMode()) docs << edView->document;
+		else docs << documents.documents;
+		foreach(const LatexDocument* doc,docs)
 			labels << doc->labelItem();
-        } else return;
-        UniversalInputDialog dialog;
+	} else return;
+	UniversalInputDialog dialog;
 	dialog.addVariable(&labels, tr("Labels:"));
 	if (dialog.exec() && !labels.isEmpty()) {
 		QString tag="\\pageref{"+labels.first()+"}";
@@ -2647,7 +2638,7 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool 
 	QString finame=getCompileFileName();
 	QString commandline=comd;
 	QByteArray result;
-	if ((singlemode && !currentEditorView()) || finame=="") {
+	if (finame=="") {
 		QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name"));
 		return;
 	}
@@ -2878,7 +2869,7 @@ void Texmaker::commandFromAction(){
 
 void Texmaker::CleanAll() {
 	QString finame=getCompileFileName();
-	if ((singlemode && !currentEditorView()) || finame=="") {
+	if (finame=="") {
 		QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name"));
 		return;
 	}
@@ -2981,7 +2972,7 @@ void Texmaker::GenerateRandomText(){
 //////////////// MESSAGES - LOG FILE///////////////////////
 bool Texmaker::LogExists() {
 	QString finame=getCompileFileName();
-	if ((singlemode && !currentEditorView()) || finame=="")
+	if (finame=="")
 		return false;
 	QString logname=getAbsoluteFilePath(QFileInfo(finame).completeBaseName(),".log");
 	QFileInfo fic(logname);
@@ -3000,7 +2991,7 @@ void Texmaker::RealViewLog(bool noTabChange) {
 void Texmaker::ViewLog(bool noTabChange) {
 	outputView->resetLog(noTabChange);
 	QString finame=getCompileFileName();
-	if ((singlemode && !currentEditorView()) || finame=="") {
+	if (finame=="") {
 		QMessageBox::warning(this,tr("Error"),tr("File must be saved and compiling before you can view the log"));
 		ERRPROCESS=true;
 		return;
@@ -3012,7 +3003,7 @@ void Texmaker::ViewLog(bool noTabChange) {
 		//OutputLogTextEdit->insertLine("LOG FILE :");
 		QString overrideFileName=""; //workaround, see parseLogDocument for reason
 		if (configManager.ignoreLogFileNames==2 ||
-			(configManager.ignoreLogFileNames==1 && singlemode)) overrideFileName=getCurrentFileName();
+			(configManager.ignoreLogFileNames==1 && documents.singleMode())) overrideFileName=getCurrentFileName();
 		outputView->loadLogFile(logname,getCompileFileName(),overrideFileName);
 		//display errors in editor
 		DisplayLatexError();
@@ -3259,7 +3250,7 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 			else if (ftl.absoluteDir().exists()) {
 				fileNew(ftl.absoluteFilePath());
 				if (activateMasterMode) {
-					if (singlemode) ToggleMode();
+					if (documents.singleMode()) ToggleMode(); //will save the new file
 					else {
 						ToggleMode();
 						ToggleMode();
@@ -3302,30 +3293,15 @@ void Texmaker::onOtherInstanceMessage(const QString &msg) { // Added slot for me
 }
 void Texmaker::ToggleMode() {
 //QAction *action = qobject_cast<QAction *>(sender());
-	if (!singlemode) {
-		documents.setMasterDocument(0);
-		ToggleAct->setText(tr("Define Current Document as 'Master Document'"));
-		outputView->resetMessagesAndLog();
-		singlemode=true;
-		stat1->setText(QString(" %1 ").arg(tr("Normal Mode")));
-		return;
-	}
-	if (singlemode && currentEditorView()) {
+	if (!documents.singleMode()) documents.setMasterDocument(0);
+	else if (currentEditorView()) {
 		if (getCurrentFileName()=="")
 			fileSave();
-		MasterName=getCurrentFileName();
-		if (MasterName=="") {
+		if (getCurrentFileName()=="") {
 			QMessageBox::warning(this,tr("Error"),tr("You must save the file before switching to master mode."));
 			return;
 		}
 		documents.setMasterDocument(currentEditorView()->document);
-		QString shortName = MasterName;
-		int pos;
-		while ((pos = (int)shortName.indexOf('/')) != -1) shortName.remove(0,pos+1);
-		ToggleAct->setText(tr("Normal Mode (current master document :")+shortName+")");
-		singlemode=false;
-		stat1->setText(QString(" %1 ").arg(tr("Master Document")+ ": "+shortName));
-		MarkCurrentFileAsRecent();
 		return;
 	}
 }
@@ -3417,6 +3393,20 @@ void Texmaker::viewExpandBlock() {
 	currentEditorView()->foldBlockAt(true,currentEditorView()->editor->cursor().lineNumber());
 }
 
+void Texmaker::masterDocumentChanged(){
+	Q_ASSERT(documents.singleMode()==!documents.masterDocument);
+	if (documents.singleMode()){
+		ToggleAct->setText(tr("Define Current Document as 'Master Document'"));
+		outputView->resetMessagesAndLog();
+		stat1->setText(QString(" %1 ").arg(tr("Normal Mode")));
+	} else {
+		QString shortName = documents.masterDocument->getFileInfo().fileName();
+		ToggleAct->setText(tr("Normal Mode (current master document :")+shortName+")");
+		stat1->setText(QString(" %1 ").arg(tr("Master Document")+ ": "+shortName));
+		configManager.addRecentFile(documents.masterDocument->getFileName(),true);
+	}
+}
+
 
 void Texmaker::gotoBookmark() {
 	if (!currentEditorView()) return;
@@ -3496,7 +3486,7 @@ void Texmaker::updateCompleter() {
 
 	LatexEditorView* edView=currentEditorView();
 
-	if(singlemode){
+	if(documents.singleMode()){
 		if(edView && edView->document){
 			words << edView->document->userCommandList();
 		}
@@ -3508,7 +3498,7 @@ void Texmaker::updateCompleter() {
 
 	if(edView && edView->document){
 		QList<LatexDocument*> docs;
-		if (singlemode) docs << edView->document;
+		if (documents.singleMode()) docs << edView->document;
 		else docs << documents.documents;
 		foreach(const LatexDocument* doc,docs)
 			foreach(const QString& refCommand, LatexParser::refCommands){
@@ -3622,27 +3612,57 @@ bool Texmaker::gotoMark(bool backward, int id) {
 void Texmaker::StructureContextMenu(const QPoint& point) {
 	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
 	if (!entry) return;
-	if(entry->parent && entry->type!=StructureEntry::SE_OVERVIEW){
-		if (entry->type==StructureEntry::SE_LABEL) {
-			QMenu menu;
-			menu.addAction(tr("Insert"),this, SLOT(editPasteRef()));
-			menu.addAction(tr("Insert as %1").arg("\\ref{...}"),this, SLOT(editPasteRef()));
-			menu.addAction(tr("Insert as %1").arg("\\pageref{...}"),this, SLOT(editPasteRef()));
-			menu.exec(structureTreeView->mapToGlobal(point));
-		}
-		if (entry->type==StructureEntry::SE_SECTION) {
-			QMenu menu(this);
-			menu.addAction(tr("Copy"),this, SLOT(editSectionCopy()));
-			menu.addAction(tr("Cut"),this, SLOT(editSectionCut()));
-			menu.addAction(tr("Paste before"),this, SLOT(editSectionPasteBefore()));
-			menu.addAction(tr("Paste after"),this, SLOT(editSectionPasteAfter()));
-			menu.addSeparator();
-			menu.addAction(tr("Indent Section"),this, SLOT(editIndentSection()));
-			menu.addAction(tr("Unindent Section"),this, SLOT(editUnIndentSection()));
-			menu.exec(structureTreeView->mapToGlobal(point));
-		}
+	if (entry->type==StructureEntry::SE_DOCUMENT_ROOT){
+		QMenu menu;
+		if (entry->document != documents.masterDocument) {
+			menu.addAction(tr("Close document"), this, SLOT(structureContextMenuCloseDocument()));
+			menu.addAction(tr("Set this document as master document"), this, SLOT(structureContextMenuSwitchMasterDocument()));
+		} else
+			menu.addAction(tr("Remove master document role"), this, SLOT(structureContextMenuSwitchMasterDocument()));
+		menu.exec(structureTreeView->mapToGlobal(point));
+	}
+	if (!entry->parent) return;
+	if (entry->type==StructureEntry::SE_LABEL) {
+		QMenu menu;
+		menu.addAction(tr("Insert"),this, SLOT(editPasteRef()));
+		menu.addAction(tr("Insert as %1").arg("\\ref{...}"),this, SLOT(editPasteRef()));
+		menu.addAction(tr("Insert as %1").arg("\\pageref{...}"),this, SLOT(editPasteRef()));
+		menu.exec(structureTreeView->mapToGlobal(point));
+	}
+	if (entry->type==StructureEntry::SE_SECTION) {
+		QMenu menu(this);
+		menu.addAction(tr("Copy"),this, SLOT(editSectionCopy()));
+		menu.addAction(tr("Cut"),this, SLOT(editSectionCut()));
+		menu.addAction(tr("Paste before"),this, SLOT(editSectionPasteBefore()));
+		menu.addAction(tr("Paste after"),this, SLOT(editSectionPasteAfter()));
+		menu.addSeparator();
+		menu.addAction(tr("Indent Section"),this, SLOT(editIndentSection()));
+		menu.addAction(tr("Unindent Section"),this, SLOT(editUnIndentSection()));
+		menu.exec(structureTreeView->mapToGlobal(point));
 	}
 }
+
+void Texmaker::structureContextMenuCloseDocument(){
+	StructureEntry *entry=LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
+	if (!entry) return;
+	LatexDocument* document = entry->document;
+	if (!document) return;
+	if (document->getEditorView()) CloseEditorTab(EditorView->indexOf(document->getEditorView()));
+	else if (document == documents.masterDocument) structureContextMenuSwitchMasterDocument();
+}
+void Texmaker::structureContextMenuSwitchMasterDocument(){
+	StructureEntry *entry=LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
+	if (!entry) return;
+	LatexDocument* document = entry->document;
+	if (document == documents.masterDocument) documents.setMasterDocument(0);
+	else if (document->getFileName()!="") documents.setMasterDocument(document);
+	else if (document->getEditorView()) { //we have to save the document before
+		documents.setMasterDocument(0);
+		EditorView->setCurrentWidget(document->getEditorView());
+		ToggleMode();
+	}
+}
+
 
 void Texmaker::editPasteRef() {
 	if (!currentEditorView()) return;

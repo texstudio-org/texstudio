@@ -110,7 +110,6 @@ private:
 	QAction *ToggleAct, *ToggleRememberAct;
 
 	QLabel *stat1, *stat2, *stat3;
-	QString MasterName,persistentMasterFile;
 	
 	QToolButton *combo1,*combo2,*combo3,*comboSpell;
 
@@ -118,7 +117,7 @@ private:
 	ConfigManager configManager;
 	BuildManager buildManager;
 	int split1_right, split1_left, split2_top, split2_bottom;
-	bool singlemode,  showoutputview, showstructview, ams_packages, makeidx_package;
+	bool showoutputview, showstructview, ams_packages, makeidx_package;
 	QString document_class, typeface_size, paper_size, document_encoding, author;
 	QString spell_ignored_words;
 	QStringList struct_level;
@@ -222,6 +221,8 @@ private slots:
 	void editFindGlobal();
 
 	void StructureContextMenu(const QPoint& point);
+	void structureContextMenuCloseDocument();
+	void structureContextMenuSwitchMasterDocument();
 	void SymbolGridContextMenu(QWidget* widget, const QPoint& point);
 	void MostUsedSymbolsTriggered(bool direct=false);
 	void symbolAddFavorite();
@@ -329,7 +330,7 @@ private slots:
 	void viewExpandLevel();
 	void viewExpandBlock();
 
-//void ToggleMode();
+	void masterDocumentChanged();
 
 	void gotoBookmark();
 	void toggleBookmark();
