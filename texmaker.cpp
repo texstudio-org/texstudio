@@ -1139,7 +1139,7 @@ void Texmaker::fileSave() {
 		//currentEditorView()->editor->setModified(false);
 		MarkCurrentFileAsRecent();
 		if(configManager.autoCheckinAfterSave) {
-			checkin(QStringList(currentEditor()->fileName()));
+			checkin(currentEditor()->fileName());
 			if(configManager.svnUndo) currentEditor()->document()->clearUndo();
 		}
 	}
@@ -1178,18 +1178,18 @@ void Texmaker::fileSaveAs(QString fileName) {
 		MarkCurrentFileAsRecent();
 
 		if(configManager.autoCheckinAfterSave){
-			if(svnadd(QStringList(currentEditor()->fileName()))){
-				checkin(QStringList(currentEditor()->fileName()),"tmx auto checkin",configManager.svnKeywordSubstitution);
+			if(svnadd(currentEditor()->fileName())){
+				checkin(currentEditor()->fileName(),"tmx auto checkin",configManager.svnKeywordSubstitution);
 			} else {
 				//create simple repository
 				svncreateRep(currentEditor()->fileName());
-				svnadd(QStringList(currentEditor()->fileName()));
-				checkin(QStringList(currentEditor()->fileName()),"tmx auto checkin",configManager.svnKeywordSubstitution);
+				svnadd(currentEditor()->fileName());
+				checkin(currentEditor()->fileName(),"tmx auto checkin",configManager.svnKeywordSubstitution);
 			}
 			// set SVN Properties if desired
 			if(configManager.svnKeywordSubstitution){
 				QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
-				cmd+=" propset svn:keywords \"Date Author HeadURL Revision\" "+currentEditor()->fileName();
+				cmd+=" propset svn:keywords \"Date Author HeadURL Revision\" \""+currentEditor()->fileName()+"\"";
 				stat2->setText(QString(" svn propset svn:keywords "));
 				runCommand(cmd, false, true,false);
 			}
@@ -3976,43 +3976,38 @@ void Texmaker::fileCheckin(QString filename){
 	dialog.addTextEdit(&text, tr("commit comment:"));
 	if (dialog.exec()==QDialog::Accepted){
 		fileSave();
-		checkin(QStringList(fn),text);
+		checkin(fn,text);
 	}
 }
 
-void Texmaker::checkin(QStringList fns, QString text, bool blocking){
+void Texmaker::checkin(QString fn, QString text, bool blocking){
 	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
-	cmd+=" ci -m \""+text+"\" "+fns.join(" ");
+	cmd+=" ci -m \""+text+"\" \""+fn+("\"");
 	stat2->setText(QString(" svn check in "));
 	runCommand(cmd, blocking, true,false);
-	foreach(QString elem,fns){
-		LatexEditorView *edView=getEditorViewFromFileName(elem);
-		edView->editor->setProperty("undoRevision",0);
-	}
-
+	LatexEditorView *edView=getEditorViewFromFileName(fn);
+	edView->editor->setProperty("undoRevision",0);
 }
 
-bool Texmaker::svnadd(QStringList fns,int stage){
-	foreach(QString elem,fns){
-		QString path=QFileInfo(elem).absolutePath();
-		if(!QFile::exists(path+"/.svn")){
-			if(stage<configManager.svnSearchPathDepth){
-				if(stage>0){
-					QDir dr(path);
-					dr.cdUp();
-					path=dr.absolutePath();
-				}
-				if(svnadd(QStringList(path),stage+1)){
-					checkin(QStringList(path));
-				} else
-					return false;
-			} else {
-				return false;
+bool Texmaker::svnadd(QString fn,int stage){
+	QString path=QFileInfo(fn).absolutePath();
+	if(!QFile::exists(path+"/.svn")){
+		if(stage<configManager.svnSearchPathDepth){
+			if(stage>0){
+				QDir dr(path);
+				dr.cdUp();
+				path=dr.absolutePath();
 			}
+			if(svnadd(path,stage+1)){
+				checkin(path);
+			} else
+				return false;
+		} else {
+			return false;
 		}
 	}
 	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
-	cmd+=" add "+fns.join(" ");
+	cmd+=" add \""+fn+("\"");
 	stat2->setText(QString(" svn add "));
 	runCommand(cmd, false, true,false);
 	return true;
@@ -4135,7 +4130,7 @@ void Texmaker::showOldRevisions(){
 		currentEditor()->save();
 		//currentEditorView()->editor->setModified(false);
 		MarkCurrentFileAsRecent();
-		checkin(QStringList(currentEditor()->fileName()),"tmx auto checkin",true);
+		checkin(currentEditor()->fileName(),"tmx auto checkin",true);
 	}
 	UpdateCaption();
 
@@ -4163,7 +4158,7 @@ void Texmaker::svnDialogClosed(){
 
 void Texmaker::changeToRevision(QString rev,QString old_rev){
 	QString cmd_svn=buildManager.getLatexCommand(BuildManager::CMD_SVN);
-	QString fn=currentEditor()->fileName();
+	QString fn="\""+currentEditor()->fileName()+"\"";
 	// get diff
 	QRegExp rx("^[r](\\d+) \\|");
 	QString old_revision;
@@ -4195,7 +4190,7 @@ void Texmaker::changeToRevision(QString rev,QString old_rev){
 
 QStringList Texmaker::svnLog(){
 	QString cmd_svn=buildManager.getLatexCommand(BuildManager::CMD_SVN);
-	QString fn=currentEditor()->fileName();
+	QString fn="\""+currentEditor()->fileName()+"\"";
 	// get revisions of current file
 	QString cmd=cmd_svn+" log "+fn;
 	QString buffer;
