@@ -1186,6 +1186,16 @@ void LatexDocuments::setMasterDocument(LatexDocument* document){
 		delete masterDocument;
 	}
 	masterDocument=document;
+	if(documents.size()>0){
+		foreach(LatexDocument *doc,documents){
+			LatexEditorView *edView=doc->getEditorView();
+			if (edView) edView->resetReferenceDatabase();
+		}
+		delete Label;
+		delete Ref;
+		Label=0;
+		Ref=0;
+	}
 	if (masterDocument!=0) {
 		documents.removeAll(masterDocument);
 		documents.prepend(masterDocument);
@@ -1207,19 +1217,9 @@ void LatexDocuments::setMasterDocument(LatexDocument* document){
 			edView=doc->getEditorView();
 			if (edView) edView->documentContentChanged(0,edView->editor->document()->lines());
 		}
-	}else{
-		if(documents.size()>0){
-			foreach(LatexDocument *doc,documents){
-				LatexEditorView *edView=doc->getEditorView();
-				if (edView) edView->resetReferenceDatabase();
-			}
-			delete Label;
-			delete Ref;
-			Label=0;
-			Ref=0;
-		}
 	}
 	model->resetAll();
+	emit masterDocumentChanged();
 }
 
 QString LatexDocuments::getCurrentFileName() {
@@ -1292,7 +1292,9 @@ void LatexDocuments::settingsRead(){
 	for (int i=0;i<LatexParser::structureCommands.count();i++)
 		model->iconSection[i]=QIcon(":/images/"+LatexParser::structureCommands[i].mid(1)+".png");
 }
-
+bool LatexDocuments::singleMode(){
+	return !masterDocument;
+}
 
 void LatexDocuments::updateBibFiles(){
 	mentionedBibTeXFiles.clear();

@@ -201,7 +201,7 @@ private slots:
 	friend class LatexDocuments;
 };
 
-class LatexDocuments: QObject
+class LatexDocuments: public QObject
 {
 	Q_OBJECT
 public:
@@ -225,6 +225,8 @@ public:
 
 	void settingsRead();
 
+	bool singleMode();
+
 	//support for included BibTeX-files
 	QMap<QString, BibTeXFileInfo> bibTeXFiles; //bibtex files loaded by tmx
 	bool bibTeXFilesModified; //true iff the BibTeX files were changed after the last compilation
@@ -234,6 +236,8 @@ public:
 
 
 	void updateStructure();
+signals:
+	void masterDocumentChanged();
 private slots:
 	void bibTeXFilesNeedUpdate();
 private:
