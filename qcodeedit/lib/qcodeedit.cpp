@@ -131,10 +131,10 @@ QCodeEdit::QCodeEdit(QWidget *p)
 	\brief ctor
 	\param actions whether the QEditor object should create builtin actions
 */
-QCodeEdit::QCodeEdit(bool actions, QWidget *p)
+QCodeEdit::QCodeEdit(bool actions, QWidget *p, QDocument *doc)
  : m_panelsMenu(0)
 {
-	m_editor = new QEditor(actions, p);
+	m_editor = new QEditor(actions, p,doc);
 	m_watcher = new QPanelWatcher(this);
 	m_layout = new QPanelLayout(m_editor);
 	

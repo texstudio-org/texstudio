@@ -9,6 +9,8 @@
 #include "qformatfactory.h"
 #include "qdocumentline_p.h"
 
+#include "latexdocument.h"
+
 
 //------------------------------Default Input Binding--------------------------------
 class CompleterInputBinding: public QEditorInputBinding {
@@ -678,7 +680,9 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 			int l=mLine->line();
 			if(mLine->document()!=editor->document()){
 				//LatexDocument *doc=document->parent->findDocument(mLine->document());
-				//if(doc) mText=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
+				LatexDocument *doc=qobject_cast<LatexDocument *>(mLine->document());
+				Q_ASSERT_X(doc,"missing latexdoc","qdoc is not latex document !");
+				if(doc) topic=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
 			}
 			for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
 				topic+=mLine->document()->line(i).text();
