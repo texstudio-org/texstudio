@@ -313,7 +313,7 @@ QEditor::QEditor(QWidget *p)
 	\brief ctor
 	\param actions Whether builtin actions and menus should be created
 */
-QEditor::QEditor(bool actions, QWidget *p)
+QEditor::QEditor(bool actions, QWidget *p,QDocument *doc)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
@@ -325,7 +325,7 @@ QEditor::QEditor(bool actions, QWidget *p)
 	m_saveState = Undefined;
 	mCompleterNeedsUpdate=false;
 
-	init(actions);
+	init(actions,doc);
 }
 
 
@@ -385,8 +385,10 @@ QEditor::~QEditor()
 	if ( m_completionEngine )
 		delete m_completionEngine;
 
+	/* view class should not delete corresponding data
 	if ( m_doc )
 		delete m_doc;
+	*/
 
 	if ( m_editors.isEmpty() )
 	{
@@ -399,7 +401,7 @@ QEditor::~QEditor()
 /*!
 	\internal
 */
-void QEditor::init(bool actions)
+void QEditor::init(bool actions,QDocument *doc)
 {
 	#ifdef Q_GL_EDITOR
 	setViewport(new QGLWidget);
@@ -426,7 +428,12 @@ void QEditor::init(bool actions)
 			QLineMarksInfoCenter::instance(),
 			SLOT  ( markChanged(QString, QDocumentLineHandle*, int, bool) ) );
 
-	m_doc = new QDocument(this);
+	if(doc){
+		// externally created document
+		m_doc=doc;
+	}else{
+		m_doc = new QDocument(this);
+	}
 
 	connect(m_doc	, SIGNAL( formatsChange (int, int) ),
 			this	, SLOT  ( repaintContent(int, int) ) );

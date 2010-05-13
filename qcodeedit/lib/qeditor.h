@@ -128,7 +128,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		};
 		
 		QEditor(QWidget *p = 0);
-		QEditor(bool actions, QWidget *p = 0);
+		QEditor(bool actions, QWidget *p = 0, QDocument *doc=0);
 		QEditor(const QString& s, QWidget *p = 0);
 		QEditor(const QString& s, bool actions, QWidget *p = 0);
 		virtual ~QEditor();
@@ -439,7 +439,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			Conflict
 		};
 		
-		void init(bool actions = true);
+		void init(bool actions = true,QDocument *doc=0);
 		void updateBindingsMenu();
 		
 		#ifndef _QMDI_

@@ -6,7 +6,7 @@
 #include "qeditor.h"
 #include "smallUsefulFunctions.h"
 
-LatexDocument::LatexDocument():edView(0),text(0),mAppendixLine(0)
+LatexDocument::LatexDocument(QObject *parent):edView(0),mAppendixLine(0),QDocument(parent)
 {
 	baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
 #ifndef QT_NO_DEBUG
@@ -46,7 +46,7 @@ LatexDocument::~LatexDocument(){
 
 void LatexDocument::setFileName(const QString& fileName){
 	//clear all references to old editor
-	if (this->edView || this->text){
+	if (this->edView){
 		StructureEntryIterator iter(baseStructure);
 		while (iter.hasNext()) iter.next()->lineHandle=0;
 	}
@@ -54,24 +54,20 @@ void LatexDocument::setFileName(const QString& fileName){
 	this->fileName=fileName;
 	this->fileInfo=QFileInfo(fileName);
 	this->edView=0;
-	this->text=0;
 }
 void LatexDocument::setEditorView(LatexEditorView* edView){
 	this->fileName=edView->editor->fileName();
 	this->fileInfo=edView->editor->fileInfo();
 	this->edView=edView;
-	this->text=edView->editor->document();
-        if(baseStructure){
-            baseStructure->title=fileName;
-            emit updateElement(baseStructure);
-        }
+	if(baseStructure){
+		baseStructure->title=fileName;
+		emit updateElement(baseStructure);
+	}
 }
 LatexEditorView *LatexDocument::getEditorView(){
 	return this->edView;
 }
-QDocument *LatexDocument::getText(){
-	return text;
-}
+
 QString LatexDocument::getFileName(){
 	return fileName;
 }
@@ -100,11 +96,11 @@ QDocumentSelection LatexDocument::sectionSelection(StructureEntry* section){
 	int endingLine=-1;
 	if (index>=0 && index<parent->children.count()-1) {
 		endingLine=parent->children.at(index+1)->getRealLineNumber();
-	} else if (text) {
+	} else {
 		// no ending section but end of document
-		endingLine=text->findLineContaining("\\end{document}",startLine,Qt::CaseInsensitive);
-		if (endingLine<0) endingLine=text->lines();
-	} else return result;
+		endingLine=findLineContaining("\\end{document}",startLine,Qt::CaseInsensitive);
+		if (endingLine<0) endingLine=lines();
+	}
 
 	result.startLine=startLine;
 	result.endLine=endingLine;
@@ -135,15 +131,17 @@ void LatexDocument::clearStructure() {
 
 void LatexDocument::updateStructure() {
 
-	QDocument* document=text;
+
 	bool temporaryLoadedDocument=false;
+	/* how to fix this ? bool isLoaded() ???
 	if (!document) {
 		if (fileName=="" || !fileInfo.exists())
 			return;
 		temporaryLoadedDocument=true;
 		document=new QDocument();
-		document->load(fileName,QDocument::defaultCodec());
+		load(fileName,QDocument::defaultCodec());
 	}
+	*/
 
 	clearStructure();
 #ifndef QT_NO_DEBUG
@@ -181,8 +179,8 @@ void LatexDocument::updateStructure() {
 		parent_level[i]=baseStructure;
 
 	//TODO: This assumes one command per line, which is not necessary true
-	for (int i=0; i<document->lines(); i++) {
-		const QString curLine = document->line(i).text(); //TODO: use this instead of s
+	for (int i=0; i<lines(); i++) {
+		const QString curLine = line(i).text(); //TODO: use this instead of s
 		//// newcommand ////
 		//TODO: handle optional arguments
 		static const QStringList commandTokens = QStringList() << "\\newcommand{" << "\\renewcommand{" << "\\providecommand{{";
@@ -195,7 +193,7 @@ void LatexDocument::updateStructure() {
 					if (j==0) name.append("{%<arg1%|%>}");
 					else name.append(QString("{%<arg%1%>}").arg(j+1));
 				}
-				mUserCommandList.insert(document->line(i).handle(),name);
+				mUserCommandList.insert(line(i).handle(),name);
 			}
 		}
 		//// newenvironment ////
@@ -206,27 +204,27 @@ void LatexDocument::updateStructure() {
 			if (findTokenWithArg(curLine,envTokens[j],name,arg)) {
 				int options=arg.toInt(); //returns 0 if conversion fails
 				name.append("}");
-				mUserCommandList.insert(document->line(i).handle(),"\\end{"+name);
+				mUserCommandList.insert(line(i).handle(),"\\end{"+name);
 				for (int j=0; j<options; j++) {
 					if (j==0) name.append("{%<1%|%>}");
 					else name.append(QString("{%<%1%>}").arg(j+1));
 				}
-				mUserCommandList.insert(document->line(i).handle(),name);
-				mUserCommandList.insert(document->line(i).handle(),"\\begin{"+name);
+				mUserCommandList.insert(line(i).handle(),name);
+				mUserCommandList.insert(line(i).handle(),"\\begin{"+name);
 			}
 		}
 		//// newtheorem ////
 		QString s=findToken(curLine,"\\newtheorem{");
 		if (s!="") {
-			mUserCommandList.insert(document->line(i).handle(),"\\begin{"+s+"}");
-			mUserCommandList.insert(document->line(i).handle(),"\\end{"+s+"}");
+			mUserCommandList.insert(line(i).handle(),"\\begin{"+s+"}");
+			mUserCommandList.insert(line(i).handle(),"\\end{"+s+"}");
 		}
 		//// bibliography ////
 		s=findToken(curLine,"\\bibliography{");
 		if (s!="") {
 			QStringList bibs=s.split(',',QString::SkipEmptyParts);
 			foreach(QString elem,bibs){
-			    mMentionedBibTeXFiles.insert(document->line(i).handle(),elem);
+				mMentionedBibTeXFiles.insert(line(i).handle(),elem);
 			}
 			foreach (const QString& bibFile, bibs) {
 				StructureEntry *newFile=new StructureEntry(this, StructureEntry::SE_BIBTEX);
@@ -237,14 +235,14 @@ void LatexDocument::updateStructure() {
 				newFile->title=bibFile;
 				newFile->lineNumber=i;
 				if (!temporaryLoadedDocument)
-					newFile->lineHandle=document->line(i).handle();
+					newFile->lineHandle=line(i).handle();
 			}
 		}
 		//// label ////
 		//TODO: Use label from dynamical reference checker
 		s=findToken(curLine,"\\label{");
 		if (s!="") {
-			mLabelItem.insert(document->line(i).handle(),s);
+			mLabelItem.insert(line(i).handle(),s);
 			StructureEntry *newLabel=new StructureEntry(this, StructureEntry::SE_LABEL);
 			labelList->add(newLabel);
 #ifndef QT_NO_DEBUG
@@ -253,7 +251,7 @@ void LatexDocument::updateStructure() {
 			newLabel->title=s;
 			newLabel->lineNumber=i;
 			if (!temporaryLoadedDocument)
-				newLabel->lineHandle=document->line(i).handle();
+				newLabel->lineHandle=line(i).handle();
 		}
 		//// TODO marker
 		s=curLine;
@@ -268,11 +266,11 @@ void LatexDocument::updateStructure() {
 			newTodo->title=s;
 			newTodo->lineNumber=i;
 			if (!temporaryLoadedDocument)
-				newTodo->lineHandle=document->line(i).handle();
+				newTodo->lineHandle=line(i).handle();
 		}
 		//// Appendix keyword
 		if (curLine=="\\appendix") {
-			mAppendixLine=document->line(i).handle();
+			mAppendixLine=line(i).handle();
 		}
 		//// beamer blocks ////
 		s=findToken(curLine,"\\begin{block}{");
@@ -285,7 +283,7 @@ void LatexDocument::updateStructure() {
 			newBlock->title=s;
 			newBlock->lineNumber=i;
 			if (!temporaryLoadedDocument)
-				newBlock->lineHandle=document->line(i).handle();
+				newBlock->lineHandle=line(i).handle();
 		}
 
 		//// include,input ////
@@ -303,7 +301,7 @@ void LatexDocument::updateStructure() {
 				newInclude->lineNumber=i;
 				newInclude->level=fileExits(s)? 0 : 1;
 				if (!temporaryLoadedDocument)
-					newInclude->lineHandle=document->line(i).handle();
+					newInclude->lineHandle=line(i).handle();
 			}
 		}//for
 		//// all sections ////
@@ -322,7 +320,7 @@ void LatexDocument::updateStructure() {
 				newSection->level=header;
 				newSection->lineNumber=i;
 				if (!temporaryLoadedDocument){
-					newSection->lineHandle=document->line(i).handle();
+					newSection->lineHandle=line(i).handle();
 					if(mAppendixLine &&mAppendixLine->line()<i) newSection->appendix=true;
 				    }
 				parent_level[header]=newSection;
@@ -349,8 +347,10 @@ void LatexDocument::updateStructure() {
 	//emit structureUpdated(this,newSection);
 	emit structureLost(this);
 
+	/*
 	if (temporaryLoadedDocument)
 		delete document;
+	*/
 }
 
 void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
@@ -366,7 +366,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	}
 
 	int linenr=dlh->line();
-	if (linenr==-1) linenr=text->lines();
+	if (linenr==-1) linenr=lines();
 
 	QList<StructureEntry*> categories=QList<StructureEntry*>() << labelList << todoList << blockList << bibTeXList;
 	foreach (StructureEntry* sec, categories) {
@@ -428,8 +428,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 
 void LatexDocument::patchStructure(int linenr, int count) {
 
-	QDocument* document=text;
-	if (!document || !baseStructure) return;
+	if (!baseStructure) return;
 
 	bool completerNeedsUpdate=false;
 	bool bibTeXFilesNeedsUpdate=false;
@@ -461,10 +460,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 	//TODO: This assumes one command per line, which is not necessary true
 	for (int i=linenr; i<linenr+count; i++) {
-		const QString curLine = document->line(i).text(); //TODO: use this instead of s
+		const QString curLine = line(i).text(); //TODO: use this instead of s
 
 		// remove command,bibtex,labels at from this line
-		QDocumentLineHandle* dlh=document->line(i).handle();
+		QDocumentLineHandle* dlh=line(i).handle();
 		completerNeedsUpdate=completerNeedsUpdate || (mLabelItem.remove(dlh)>0);
 		bibTeXFilesNeedsUpdate=bibTeXFilesNeedsUpdate || (mMentionedBibTeXFiles.remove(dlh)>0);
 		completerNeedsUpdate=completerNeedsUpdate || (mUserCommandList.remove(dlh)>0);
@@ -485,7 +484,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 					if (j==0) name.append("{%<arg1%|%>}");
 					else name.append(QString("{%<arg%1%>}").arg(j+1));
 				}
-				mUserCommandList.insert(document->line(i).handle(),name);
+				mUserCommandList.insert(line(i).handle(),name);
 			}
 		}
 		//// newenvironment ////
@@ -497,27 +496,27 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				completerNeedsUpdate=true;
 				int options=arg.toInt(); //returns 0 if conversion fails
 				name.append("}");
-				mUserCommandList.insert(document->line(i).handle(),"\\end{"+name);
+				mUserCommandList.insert(line(i).handle(),"\\end{"+name);
 				for (int j=0; j<options; j++) {
 					if (j==0) name.append("{%<1%|%>}");
 					else name.append(QString("{%<%1%>}").arg(j+1));
 				}
-				mUserCommandList.insert(document->line(i).handle(),name);
-				mUserCommandList.insert(document->line(i).handle(),"\\begin{"+name);
+				mUserCommandList.insert(line(i).handle(),name);
+				mUserCommandList.insert(line(i).handle(),"\\begin{"+name);
 			}
 		}
 		//// newtheorem ////
 		QString s=findToken(curLine,"\\newtheorem{");
 		if (s!="") {
 			completerNeedsUpdate=true;
-			mUserCommandList.insert(document->line(i).handle(),"\\begin{"+s+"}");
-			mUserCommandList.insert(document->line(i).handle(),"\\end{"+s+"}");
+			mUserCommandList.insert(line(i).handle(),"\\begin{"+s+"}");
+			mUserCommandList.insert(line(i).handle(),"\\end{"+s+"}");
 		}
 		//// bibliography ////
 		s=findToken(curLine,"\\bibliography{");
 		if (s!="") {
 			QStringList bibs=s.split(',',QString::SkipEmptyParts);
-			QDocumentLineHandle* curLineHandle = document->line(i).handle();
+			QDocumentLineHandle* curLineHandle = line(i).handle();
 			//remove old bibs from hash, but keeps a temporary copy
 			QStringList oldBibs;
 			while (mMentionedBibTeXFiles.contains(curLineHandle)) {
@@ -529,7 +528,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			//add new bibs and set bibTeXFilesNeedsUpdate if there was any change
 			bibTeXFilesNeedsUpdate |= oldBibs.size() != bibs.size();
 			foreach(QString elem,bibs){
-				mMentionedBibTeXFiles.insert(document->line(i).handle(),elem);
+				mMentionedBibTeXFiles.insert(line(i).handle(),elem);
 				bibTeXFilesNeedsUpdate |= !oldBibs.contains(elem);
 			}
 			//write bib tex in tree
@@ -549,7 +548,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				}
 				newFile->title=bibFile;
 				newFile->lineNumber=i;
-				newFile->lineHandle=document->line(i).handle();
+				newFile->lineHandle=line(i).handle();
 				newFile->parent=bibTeXList;
 				iter_bibTeX.insert(newFile);
 			}
@@ -558,7 +557,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		//TODO: Use label from dynamical reference checker
 		s=findToken(curLine,"\\label{");
 		if (s!="") {
-			mLabelItem.insert(document->line(i).handle(),s);
+			mLabelItem.insert(line(i).handle(),s);
 			completerNeedsUpdate=true;
 			bool reuse=false;
 			StructureEntry *newLabel;
@@ -575,7 +574,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			}
 			newLabel->title=s;
 			newLabel->lineNumber=i;
-			newLabel->lineHandle=document->line(i).handle();
+			newLabel->lineHandle=line(i).handle();
 			newLabel->parent=labelList;
 			iter_label.insert(newLabel);
 		}
@@ -600,7 +599,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			}
 			newTodo->title=s;
 			newTodo->lineNumber=i;
-			newTodo->lineHandle=document->line(i).handle();
+			newTodo->lineHandle=line(i).handle();
 			newTodo->parent=todoList;
 			if(!reuse) emit addElement(todoList,todoList->children.size());
 			iter_todo.insert(newTodo);
@@ -608,10 +607,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		//// Appendix keyword
 		if (curLine=="\\appendix") {
 			oldLine=mAppendixLine;
-			mAppendixLine=document->line(i).handle();
+			mAppendixLine=line(i).handle();
 
 		}
-		if(document->line(i).handle()==mAppendixLine && curLine!="\\appendix"){
+		if(line(i).handle()==mAppendixLine && curLine!="\\appendix"){
 			oldLine=mAppendixLine;
 			mAppendixLine=0;
 		}
@@ -633,7 +632,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			}
 			newBlock->title=s;
 			newBlock->lineNumber=i;
-			newBlock->lineHandle=document->line(i).handle();
+			newBlock->lineHandle=line(i).handle();
 			newBlock->parent=blockList;
 			iter_block.insert(newBlock);
 		}
@@ -652,7 +651,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 //				newInclude.title=inputTokens.at(header); //texmaker distinguished include/input, doesn't seem necessary
 				newInclude->lineNumber=i;
 				newInclude->level=fileExits(s)? 0 : 1;
-				newInclude->lineHandle=document->line(i).handle();
+				newInclude->lineHandle=line(i).handle();
 			}
 		}//for
 		//// all sections ////
@@ -683,7 +682,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				newSection->title=s;
 				newSection->level=header;
 				newSection->lineNumber=i;
-				newSection->lineHandle=document->line(i).handle();
+				newSection->lineHandle=line(i).handle();
 				if(header+1<parent_level.size()) parent_level[header+1]=newSection;
 				for(int j=header+2;j<parent_level.size();j++)
 					parent_level[j]=parent_level[header];
@@ -867,7 +866,7 @@ void StructureEntry::insert(int pos, StructureEntry* child){
 	child->parent=this;
 }
 int StructureEntry::getRealLineNumber(){
-	if (document && document->getText() && document->getText()->line(lineNumber).handle() == lineHandle)
+	if (document->line(lineNumber).handle() == lineHandle)
 		return lineNumber; //return cached line number if it is still correct
 	if (lineHandle) {
 		int nr = QDocumentLine(lineHandle).lineNumber();
@@ -1167,8 +1166,8 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 		}
 		if (document==currentDocument)
 			currentDocument=0;
-		delete document;
 		if (view) delete view;
+		delete document;
 	} else {
 		document->setFileName(document->getFileName());
 		model->resetAll();

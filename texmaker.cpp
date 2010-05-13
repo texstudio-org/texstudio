@@ -867,12 +867,13 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	if (!QFile::exists(f_real)) return 0;
 	bool bibTeXmodified=documents.bibTeXFilesModified;
 
-	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig);
+	LatexDocument *doc=new LatexDocument(this);
+	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig,doc);
 	configureNewEditorView(edit);
 
 	edit->document=documents.findDocument(f_real);
 	if (!edit->document) {
-		edit->document=new LatexDocument();
+		edit->document=doc;
 		edit->document->setEditorView(edit);
 		documents.addDocument(edit->document);
 	} else edit->document->setEditorView(edit);
@@ -920,7 +921,8 @@ void Texmaker::completerNeedsUpdate(){
 }
 
 void Texmaker::fileNew(QString fileName) {
-	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig);
+	LatexDocument *doc=new LatexDocument();
+	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig,doc);
 	if (configManager.newfile_encoding)
 		edit->editor->setFileCodec(configManager.newfile_encoding);
 	else
@@ -928,7 +930,7 @@ void Texmaker::fileNew(QString fileName) {
 
 	configureNewEditorView(edit);
 
-	edit->document=new LatexDocument();
+	edit->document=doc;
 	edit->document->setEditorView(edit);
 	documents.addDocument(edit->document);
 
@@ -1049,7 +1051,8 @@ void Texmaker::fileNewFromTemplate() {
 			return;
 		}
 		//set up new editor with template
-		LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig);
+		LatexDocument *doc=new LatexDocument(this);
+		LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig,doc);
 		if (configManager.newfile_encoding)
 			edit->editor->setFileCodec(configManager.newfile_encoding);
 		else
@@ -1057,7 +1060,7 @@ void Texmaker::fileNewFromTemplate() {
 
 		configureNewEditorView(edit);
 
-		edit->document=new LatexDocument();
+		edit->document=doc;
 		edit->document->setEditorView(edit);
 		documents.addDocument(edit->document);
 

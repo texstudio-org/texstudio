@@ -182,13 +182,13 @@ SpellerUtility* LatexEditorView::speller=0;
 LatexCompleter* LatexEditorView::completer=0;
 int LatexEditorView::hideTooltipWhenLeavingLine = -1;
 
-LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig) : QWidget(parent), bibTeXIds(0),curChangePos(-1),lastSetBookmark(0), config(aconfig) {
+LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc) : QWidget(parent), bibTeXIds(0),curChangePos(-1),lastSetBookmark(0), config(aconfig) {
 	Q_ASSERT(config);
 	QVBoxLayout* mainlay = new QVBoxLayout(this);
 	mainlay->setSpacing(0);
 	mainlay->setMargin(0);
 
-	codeeditor = new QCodeEdit(false,this);
+	codeeditor = new QCodeEdit(false,this,doc);
 	editor=codeeditor->editor();
 
 	lineMarkPanel=new QLineMarkPanel;

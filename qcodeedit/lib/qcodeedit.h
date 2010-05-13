@@ -33,6 +33,7 @@ class QString;
 class QAction;
 class QPanelLayout;
 class QPanelWatcher;
+class QDocument;
 
 #define Q_COMMAND QList<QGenericArgument>()
 
@@ -50,7 +51,7 @@ class QCE_EXPORT QCodeEdit
 		};
 		
 		QCodeEdit(QWidget *p = 0);
-		QCodeEdit(bool actions, QWidget *p = 0);
+		QCodeEdit(bool actions, QWidget *p = 0, QDocument *doc=0);
 		QCodeEdit(const QString& layout, QWidget *p = 0);
 		QCodeEdit(const QString& layout, bool actions, QWidget *p = 0);
 		virtual ~QCodeEdit();

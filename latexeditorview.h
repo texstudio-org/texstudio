@@ -59,7 +59,7 @@ class LatexEditorView : public QWidget  {
 	Q_OBJECT
 public:
 
-	LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig);
+	LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc=0);
 	~LatexEditorView();
 
 	QCodeEdit *codeeditor;

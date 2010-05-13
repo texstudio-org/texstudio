@@ -72,17 +72,16 @@ private:
 	QList<int> indexHierarchy; //for every element in entryHierarchy the index of this element in its parent children
 };
 
-class LatexDocument: public QObject
+class LatexDocument: public QDocument
 {
 	Q_OBJECT
 public:
-	LatexDocument();
+	LatexDocument(QObject *parent=0);
 	~LatexDocument();
 
 	void setFileName(const QString& fileName);
 	void setEditorView(LatexEditorView* edView);
 	LatexEditorView *getEditorView();
-	QDocument *getText();
 	QString getFileName();
 	QFileInfo getFileInfo();
 	//QSet<QString> texFiles; //absolute file names, also contains fileName
@@ -120,7 +119,6 @@ private:
 	QFileInfo fileInfo;
 
 	LatexEditorView* edView;
-	QDocument* text;
 
 	StructureEntry* labelList;
 	StructureEntry* todoList;
