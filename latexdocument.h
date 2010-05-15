@@ -234,8 +234,9 @@ public:
 
 
 	void updateStructure();
+        void updateLayout();
 signals:
-	void masterDocumentChanged();
+        void masterDocumentChanged(LatexDocument *masterDocument);
 private slots:
 	void bibTeXFilesNeedUpdate();
 private:

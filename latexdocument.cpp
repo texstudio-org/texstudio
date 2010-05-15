@@ -1218,7 +1218,7 @@ void LatexDocuments::setMasterDocument(LatexDocument* document){
 		}
 	}
 	model->resetAll();
-	emit masterDocumentChanged();
+        emit masterDocumentChanged(masterDocument);
 }
 
 QString LatexDocuments::getCurrentFileName() {
@@ -1489,6 +1489,10 @@ void LatexDocuments::updateStructure(){
     foreach(LatexDocument* doc,documents){
 	model->updateElement(doc->baseStructure);
     }
+}
+
+void LatexDocuments::updateLayout(){
+    model->layoutChanged();
 }
 
 void LatexDocuments::bibTeXFilesNeedUpdate(){

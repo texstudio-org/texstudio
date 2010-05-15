@@ -115,9 +115,9 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 
 // TAB WIDGET EDITEUR
-	connect(&documents,SIGNAL(masterDocumentChanged()), SLOT(masterDocumentChanged()));
+        connect(&documents,SIGNAL(masterDocumentChanged(LatexDocument *)), SLOT(masterDocumentChanged(LatexDocument *)));
 
-	EditorView=new QTabWidget(this);
+        EditorView=new TmxTabWidget(this);
 	EditorView->setFocusPolicy(Qt::ClickFocus);
 	EditorView->setFocus();
 	connect(EditorView, SIGNAL(currentChanged(int)), this, SLOT(UpdateCaption()));
@@ -125,6 +125,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 		EditorView->setProperty("tabsClosable",true);
 		EditorView->setProperty("movable",true);
 		connect(EditorView, SIGNAL(tabCloseRequested(int)), this, SLOT(CloseEditorTab(int)));
+                connect(EditorView, SIGNAL(tabMoved(int,int)), this, SLOT(EditorTabMoved(int,int)));
 	}
 	setCentralWidget(EditorView);
 
@@ -704,6 +705,11 @@ void Texmaker::UpdateCaption() {
 	}
 	QString finame=getCurrentFileName();
 	if (finame!="") configManager.lastDocument=finame;
+}
+
+void Texmaker::EditorTabMoved(int from,int to){
+    documents.documents.move(from,to);
+    documents.updateLayout();
 }
 
 void Texmaker::CloseEditorTab(int tab) {
@@ -3396,7 +3402,7 @@ void Texmaker::viewExpandBlock() {
 	currentEditorView()->foldBlockAt(true,currentEditorView()->editor->cursor().lineNumber());
 }
 
-void Texmaker::masterDocumentChanged(){
+void Texmaker::masterDocumentChanged(LatexDocument * doc){
 	Q_ASSERT(documents.singleMode()==!documents.masterDocument);
 	if (documents.singleMode()){
 		ToggleAct->setText(tr("Define Current Document as 'Master Document'"));
@@ -3407,6 +3413,8 @@ void Texmaker::masterDocumentChanged(){
 		ToggleAct->setText(tr("Normal Mode (current master document :")+shortName+")");
 		stat1->setText(QString(" %1 ").arg(tr("Master Document")+ ": "+shortName));
 		configManager.addRecentFile(documents.masterDocument->getFileName(),true);
+                int pos=EditorView->currentIndex();
+                EditorView->moveTab(pos,0);
 	}
 }
 

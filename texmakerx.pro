@@ -85,7 +85,8 @@ HEADERS += texmaker.h \
     latexdocument.h \
     universalinputdialog.h \
     hunspell/replist.hxx \
-	scriptengine.h
+    scriptengine.h \
+    tmxtabwidget.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -144,7 +145,8 @@ SOURCES += main.cpp \
     bibtexparser.cpp \
     latexdocument.cpp \
     universalinputdialog.cpp \
-    scriptengine.cpp
+    scriptengine.cpp \
+    tmxtabwidget.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
@@ -238,10 +240,10 @@ unix:!macx {
         utilities/texmaker64x64.png \
         utilities/texmaker128x128.png \
         utilities/texmaker.svg
-    
     applicationmenu.path = $${PREFIX}/share/applications
     applicationmenu.files = utilities/texmakerx.desktop
-    INSTALLS += utilities applicationmenu
+    INSTALLS += utilities \
+        applicationmenu
 }
 
 # ###############################
@@ -424,7 +426,7 @@ SOURCES += tests/testmanager.cpp \
     tests/qsearchreplacepanel_t.cpp \
     tests/qeditor_t.cpp \
     tests/latexeditorview_t.cpp \
-	tests/latexeditorview_bm.cpp \
+    tests/latexeditorview_bm.cpp \
     tests/structureview_t.cpp
 HEADERS += tests/testmanager.h \
     tests/testutil.h \
@@ -438,16 +440,17 @@ HEADERS += tests/testmanager.h \
     tests/qsearchreplacepanel_t.h \
     tests/qeditor_t.h \
     tests/latexeditorview_t.h \
-	tests/latexeditorview_bm.h \
+    tests/latexeditorview_bm.h \
     tests/structureview_t.h
-#win32:LIBS += -lQtTest4
+
+# win32:LIBS += -lQtTest4
 win32:LIBS += -lQtTestd4
 unix:!macx:LIBS += -lQtTest
 macx:LIBS += -framework \
     QtTest
-
 macx:LIBS += -framework \
-        CoreFoundation
+    CoreFoundation
+
 # ###############################
 # add files to svn if team is set
 CONFIG(team):!CONFIG(build_pass) { 
@@ -463,24 +466,36 @@ CONFIG(team):!CONFIG(build_pass) {
     }
 }
 OTHER_FILES += universalinputdialog.*
-
-
-svn_revision.target   = svn_revision.h
-exists(./.svn/entries){
-	win32 {
-		svn_revision.commands = echo $${LITERAL_HASH}define SVN_REVISION_NUMBER \"$(shell svnversion)\" > $$svn_revision.target
-	}else{
-		svn_revision.commands = echo \"$${LITERAL_HASH}define SVN_REVISION_NUMBER \\\"$(shell svnversion)\\\"\" > $$svn_revision.target
-	}
-    svn_revision.depends  = .svn/entries 
-} else {
-	win32 {
-		svn_revision.commands = echo $${LITERAL_HASH}define SVN_REVISION_NUMBER \"?\" > $$svn_revision.target
-	}else{
-		svn_revision.commands = echo \"$${LITERAL_HASH}define SVN_REVISION_NUMBER \\\"?\\\"\" > $$svn_revision.target
-	}
-    svn_revision.depends  = 
+svn_revision.target = svn_revision.h
+exists(./.svn/entries) { 
+    win32:svn_revision.commands = echo \
+        $${LITERAL_HASH}define \
+        SVN_REVISION_NUMBER \
+        \"$(shell svnversion)\" \
+        > \
+        $$svn_revision.target
+    else:svn_revision.commands = echo \
+        \"$${LITERAL_HASH}define \
+        SVN_REVISION_NUMBER \
+        \\\"$(shell svnversion)\\\"\" \
+        > \
+        $$svn_revision.target
+    svn_revision.depends = .svn/entries
 }
-
+else { 
+    win32:svn_revision.commands = echo \
+        $${LITERAL_HASH}define \
+        SVN_REVISION_NUMBER \
+        \"?\" \
+        > \
+        $$svn_revision.target
+    else:svn_revision.commands = echo \
+        \"$${LITERAL_HASH}define \
+        SVN_REVISION_NUMBER \
+        \\\"?\\\"\" \
+        > \
+        $$svn_revision.target
+    svn_revision.depends = 
+}
 HEADERS += $$svn_revision.target
 QMAKE_EXTRA_TARGETS += svn_revision
