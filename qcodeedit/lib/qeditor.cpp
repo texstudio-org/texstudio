@@ -2804,8 +2804,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 		bool bOk = true;
 		if ( !bHandled )
 		{
-			int offset = 0;
-			bool pke = isProcessingKeyEvent(e, &offset);
+			bool pke = isProcessingKeyEvent(e);
 			bool prot = protectedCursor(m_cursor);
 
 			foreach ( const QDocumentCursor& c, m_mirrors ){
@@ -3019,7 +3018,6 @@ void QEditor::mouseMoveEvent(QMouseEvent *e)
 			}
 		} else {
 			m_cursor.setSelectionBoundary(newCursor);
-			//setFlag(FoldedCursor, isCollapsed());
 		}
 
 		selectionChange(true);
@@ -3241,11 +3239,9 @@ void QEditor::mouseDoubleClickEvent(QMouseEvent *e)
 		clearCursorMirrors();
 		setCursorPosition(mapToContents(e->pos()));
 
-		//setFlag(FoldedCursor, isCollapsed());
-
 		if ( m_cursor.isValid() )
 		{
-				m_cursor.select(QDocumentCursor::WordUnderCursor);
+			m_cursor.select(QDocumentCursor::WordUnderCursor);
 
 			setClipboardSelection();
 			//emit clearAutoCloseStack();
@@ -3371,8 +3367,6 @@ void QEditor::dropEvent(QDropEvent *e)
 			)
 		&&
 			!e->mimeData()->hasFormat("text/uri-list")
-		&&
-			!flag(FoldedCursor)
 		)
 	{
 		e->acceptProposedAction();
@@ -4024,25 +4018,14 @@ void QEditor::pageDown(QDocumentCursor::MoveMode moveMode)
 /*!
 	\brief Determine whether a given key event is an editing operation
 */
-bool QEditor::isProcessingKeyEvent(QKeyEvent *e, int *offset)
+bool QEditor::isProcessingKeyEvent(QKeyEvent *e)
 {
-	if ( flag(FoldedCursor) )
-		return false;
-
 	switch ( e->key() )
 	{
 		case Qt::Key_Backspace :
-			//--*offset;
-			break;
-
 		case Qt::Key_Delete :
-			//--*offset;
-			break;
-
 		case Qt::Key_Enter :
 		case Qt::Key_Return :
-			if ( offset )
-				++*offset;
 			break;
 
 		default :
@@ -4051,9 +4034,6 @@ bool QEditor::isProcessingKeyEvent(QKeyEvent *e, int *offset)
 
 			if ( text.isEmpty() || !(text.at(0).isPrint() || (text.at(0) == '\t')) )
 				return false;
-
-			//if ( offset )
-			//	*offset += text.length();
 
 			break;
 		}
@@ -4078,9 +4058,6 @@ bool QEditor::processCursor(QDocumentCursor& c, QKeyEvent *e, bool& b)
 	switch ( e->key() )
 	{
 		case Qt::Key_Backspace :
-			if ( flag(FoldedCursor) )
-				return false;
-
 			if ( hasSelection )
 				c.removeSelectedText();
 			else {
@@ -4094,9 +4071,6 @@ bool QEditor::processCursor(QDocumentCursor& c, QKeyEvent *e, bool& b)
 			break;
 
 		case Qt::Key_Delete :
-			if ( flag(FoldedCursor) )
-				return false;
-
 			if ( hasSelection )
 
 				c.removeSelectedText();
@@ -4113,16 +4087,15 @@ bool QEditor::processCursor(QDocumentCursor& c, QKeyEvent *e, bool& b)
 		case Qt::Key_Enter :
 		case Qt::Key_Return :
 		{
-			if ( flag(FoldedCursor) )
-				return false;
-
+			insertTextAtCursor("\n"); //I don't think there should be a difference between pressing enter and pasting a "\n"
+/*
 			c.beginEditBlock();
 
 			if ( hasSelection )
 				c.removeSelectedText();
-			/* else if ( flag(Overwrite) )
-				c.deleteChar();  very unusual behaviour
-			*/
+			// else if ( flag(Overwrite) )
+			//	c.deleteChar();  very unusual behaviour
+
 
 			QString indent;
 
@@ -4152,7 +4125,7 @@ bool QEditor::processCursor(QDocumentCursor& c, QKeyEvent *e, bool& b)
 				c.insertLine();
 			}
 
-			c.endEditBlock();
+			c.endEditBlock();*/
 
 			break;
 		}
@@ -4283,7 +4256,9 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		QString indent;
 		// FIXME ? work on strings to make sure command grouping does not interfere with cursor state...
 		//if(!flag(WeakIndent)){
-			indent = c.line().text().left(qMax(0, qMin(c.line().firstChar(), c.columnNumber())));
+			int firstChar = c.line().firstChar();
+			if (firstChar == -1) firstChar = c.line().length(); //line contains only spaces
+			indent = c.line().text().left(qMax(0, qMin(firstChar, c.columnNumber())));
 		/*}else{
 			indent = c.line().text().left(n);
 			n=0;
