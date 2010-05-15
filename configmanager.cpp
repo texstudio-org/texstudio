@@ -515,8 +515,11 @@ bool ConfigManager::execConfigDialog() {
 	
 	//--build things
 	//normal commands
-	QGridLayout* gl=new QGridLayout(confDlg->ui.groupBoxCommands);
-	confDlg->ui.groupBoxCommands->setLayout(gl);
+	QVBoxLayout *verticalLayout = new QVBoxLayout(confDlg->ui.groupBoxCommands);
+	QScrollArea *scrollAreaCommands = new QScrollArea(confDlg->ui.groupBoxCommands);
+	scrollAreaCommands->setWidgetResizable(true);
+	QWidget *scrollAreaWidgetContents = new QWidget();
+	QGridLayout* gl=new QGridLayout(scrollAreaWidgetContents);
 	for (BuildManager::LatexCommand cmd=BuildManager::CMD_LATEX; cmd <= BuildManager::CMD_GHOSTSCRIPT; ++cmd){
 		QLabel *l = new QLabel(confDlg);
 		l->setText(BuildManager::commandDisplayName(cmd));
@@ -528,6 +531,9 @@ bool ConfigManager::execConfigDialog() {
 		QPushButton *bdefault = new QPushButton(confDlg);
 		bdefault->setIcon(QIcon(":/images/undo.png"));
 		connect(bdefault,SIGNAL(clicked()),this,SLOT(undoCommand()));
+		l->setMinimumHeight(l->sizeHint().height());
+		b->setMinimumHeight(b->sizeHint().height());
+		e->setMinimumHeight(e->sizeHint().height());
  		gl->addWidget(l,(int)cmd,0);
 		gl->addWidget(e,(int)cmd,1);
 		gl->addWidget(b,(int)cmd,2);
@@ -536,6 +542,12 @@ bool ConfigManager::execConfigDialog() {
 		buttonsToCommands.insert(bdefault,cmd);
 		commandsToEdits.insert(cmd,e);
 	}
+	scrollAreaCommands->setWidget(scrollAreaWidgetContents);
+	verticalLayout->addWidget(scrollAreaCommands);
+
+
+	//confDlg->ui.groupBoxCommands->setMinimumHeight(confDlg->ui.groupBoxCommands->sizeHint().height());
+	// svn commands
 	QGridLayout* glsvn=new QGridLayout(confDlg->ui.groupBoxSVN);
 	confDlg->ui.groupBoxSVN->setLayout(glsvn);
 	for (BuildManager::LatexCommand cmd=BuildManager::CMD_SVN; cmd <= BuildManager::CMD_SVNADMIN; ++cmd){
@@ -549,6 +561,9 @@ bool ConfigManager::execConfigDialog() {
 		QPushButton *bdefault = new QPushButton(confDlg);
 		bdefault->setIcon(QIcon(":/images/undo.png"));
 		connect(bdefault,SIGNAL(clicked()),this,SLOT(undoCommand()));
+		l->setMinimumHeight(l->sizeHint().height());
+		b->setMinimumHeight(b->sizeHint().height());
+		e->setMinimumHeight(e->sizeHint().height());
 		glsvn->addWidget(l,(int)cmd,0);
 		glsvn->addWidget(e,(int)cmd,1);
 		glsvn->addWidget(b,(int)cmd,2);
