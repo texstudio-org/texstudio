@@ -127,7 +127,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>9</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -589,19 +589,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <number>15</number>
          </property>
         </widget>
-       </item>
-       <item>
-        <spacer>
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>401</width>
-           <height>16</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </widget>
