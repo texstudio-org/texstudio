@@ -80,8 +80,6 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			Selection		= 0x020,
 			EnsureVisible	= 0x040,
 			
-			FoldedCursor	= 0x100,
-			
 			Internal				= 0x00000fff,
 			
 			LineWrap				= 0x00001000,
@@ -367,7 +365,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		virtual bool focusNextPrevChild(bool next);
 		
 		virtual bool moveKeyEvent(QDocumentCursor& c, QKeyEvent *e, bool *leave);
-		virtual bool isProcessingKeyEvent(QKeyEvent *e, int *offset = 0);
+		virtual bool isProcessingKeyEvent(QKeyEvent *e);
 		virtual bool processCursor(QDocumentCursor& c, QKeyEvent *e, bool& b);
 		
 		virtual void startDrag();
