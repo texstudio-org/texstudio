@@ -408,10 +408,11 @@ void QEditorTest::activeFolding(){
 
 void QEditorTest::indentation_data(){
 	editor->setFlag(QEditor::AutoIndent,true);
-	editor->setFlag(QEditor::WeakIndent,false);
+	//editor->setFlag(QEditor::WeakIndent,false);
 	editor->setFlag(QEditor::ReplaceTabs,false);
 
 	QTest::addColumn<QString>("baseText");
+	QTest::addColumn<bool>("weak");
 	QTest::addColumn<int>("line");
 	QTest::addColumn<int>("col");
 	QTest::addColumn<QString>("insert");
@@ -419,10 +420,57 @@ void QEditorTest::indentation_data(){
 
 	QTest::newRow("trivial")
 		<< "hello\nworld\n"
-		<< 0 << 5
+		<< false << 0 << 5
 		<< "{\na\n}"
 		<< "hello{\n\ta\n}\nworld\n";
 
+	QTest::newRow("trivial weak")
+		<< "hello\nworld\n"
+		<< true << 0 << 5
+		<< "{\na\n}"
+		<< "hello{\na\n}\nworld\n";
+
+	QTest::newRow("trivial + \\t indentation")
+		<< "\thello\nworld\n"
+		<< false << 0 << 6
+		<< "{\na\n}"
+		<< "\thello{\n\t\ta\n\t}\nworld\n";
+
+	QTest::newRow("trivial + \\t indentation weak")
+		<< "\thello\nworld\n"
+		<< true << 0 << 6
+		<< "{\na\n}"
+		<< "\thello{\n\ta\n\t}\nworld\n";
+
+	QTest::newRow("trivial + space indentation")
+		<< "   hello\nworld\n"
+		<< false << 0 << 8
+		<< "{\na\n}"
+		<< "   hello{\n   \ta\n   }\nworld\n";
+
+	QTest::newRow("trivial + space indentation weak")
+		<< "   hello\nworld\n"
+		<< true << 0 << 8
+		<< "{\na\n}"
+		<< "   hello{\n   a\n   }\nworld\n";
+
+	QTest::newRow("trivial + \\t indentation")
+		<< "\thello\nworld\n"
+		<< false << 0 << 6
+		<< "{\na\n}"
+		<< "\thello{\n\t\ta\n\t}\nworld\n";
+
+	QTest::newRow("space test")
+		<< "   \nworld\n"
+		<< false << 0 << 2
+		<< "\n"
+		<< "  \n   \nworld\n";
+
+	QTest::newRow("space test + weak")
+		<< "   \nworld\n"
+		<< true << 0 << 2
+		<< "\n"
+		<< "  \n   \nworld\n";
 /*
   this is broken:
 	QTest::newRow("trivial 2")
@@ -431,13 +479,17 @@ void QEditorTest::indentation_data(){
 		<< "{{\na\n}}"
 		<< "hello{{\n\t\ta\n}}\nworld\n";
 */
+
 }
 void QEditorTest::indentation(){
 	QFETCH(QString, baseText);
+	QFETCH(bool, weak);
 	QFETCH(int, line);
 	QFETCH(int, col);
 	QFETCH(QString, insert);
 	QFETCH(QString,	result);
+
+	editor->setFlag(QEditor::WeakIndent,weak);
 
 	editor->setText(baseText);
 	QDocumentCursor c=editor->document()->cursor(line,col);
