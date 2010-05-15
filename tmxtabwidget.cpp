@@ -11,10 +11,9 @@ TmxTabWidget::TmxTabWidget(QWidget *parent) :
 }
 
 void TmxTabWidget::moveTab(int from,int to){
-    if (hasAtLeastQt(4,5)){
-        const QTabBar* tb=tabBar();
-        disconnect(tb,SIGNAL(tabMoved(int,int)),this,SIGNAL(tabMoved(int,int)));
-        tabBar()->moveTab(from,to);
-        connect(tb,SIGNAL(tabMoved(int,int)),this,SIGNAL(tabMoved(int,int)));
-    }
+    QString text=tabText(from);
+    QWidget *wdg=widget(from);
+    removeTab(from);
+    insertTab(0,wdg,text);
+    setCurrentIndex(0);
 }
