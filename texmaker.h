@@ -37,6 +37,7 @@
 #include "toolwidgets.h"
 #include "thesaurusdialog.h"
 #include "scriptengine.h"
+#include "tmxtabwidget.h"
 
 
 #include "qformatfactory.h"
@@ -93,7 +94,7 @@ private:
 	LatexCompleter* completer;
 
 //gui
-	QTabWidget *EditorView;
+        TmxTabWidget *EditorView;
 	CustomWidgetList *leftPanel;
 	SymbolGridWidget *MostUsedSymbolWidget, *FavoriteSymbolWidget;
 	QString hiddenLeftPanelWidgets;
@@ -236,6 +237,7 @@ private slots:
 	void NewDocumentStatus(bool m);
 	void UpdateCaption();
 	void CloseEditorTab(int tab);
+        void EditorTabMoved(int from,int to);
 
 	void updateStructure();
 	void ShowStructure();
@@ -330,7 +332,7 @@ private slots:
 	void viewExpandLevel();
 	void viewExpandBlock();
 
-	void masterDocumentChanged();
+        void masterDocumentChanged(LatexDocument * doc);
 
 	void gotoBookmark();
 	void toggleBookmark();
