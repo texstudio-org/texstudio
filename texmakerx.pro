@@ -170,7 +170,8 @@ FORMS += structdialog.ui \
 TRANSLATIONS += texmakerx_fr.ts \
     texmakerx_de.ts \
     texmakerx_it.ts \
-    texmakerx_cs.ts
+    texmakerx_cs.ts \
+    texmakerx_hu.ts
 
 # ###############################
 unix:!macx { 
