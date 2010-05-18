@@ -174,67 +174,34 @@ TRANSLATIONS += texmakerx_fr.ts \
     texmakerx_hu.ts
 
 # ###############################
+win32 { 
+    RC_FILE = win.rc
+}
+
+
+# ##############################
+macx { 
+    # make sure that the documentation is right 
+    config += unix
+
+    # #universal tiger
+    CONFIG += link_prl x86 ppc
+    QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
+    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.4
+    target.path = /Applications
+    utilities.path = Contents/Resources
+    QMAKE_BUNDLE_DATA += utilities
+    ICON = texmaker.icns
+    QMAKE_INFO_PLIST = Info.plist
+}
+
+# ###############################
 unix:!macx { 
-    UI_DIR = .ui
-    MOC_DIR = .moc
-    OBJECTS_DIR = .obj
     isEmpty( PREFIX ):PREFIX = /usr
     DEFINES += PREFIX=\\\"$${PREFIX}\\\"
     target.path = $${PREFIX}/bin
-    INSTALLS = target
     utilities.path = $${PREFIX}/share/texmakerx
-    utilities.files = utilities/doc1.png \
-        utilities/doc10.png \
-        utilities/doc11.png \
-        utilities/doc12.png \
-        utilities/doc13.png \
-        utilities/doc14.png \
-        utilities/doc15.png \
-        utilities/doc16.png \
-        utilities/doc17.png \
-        utilities/doc18.png \
-        utilities/doc19.png \
-        utilities/doc2.png \
-        utilities/doc20.png \
-        utilities/doc3.png \
-        utilities/doc4.png \
-        utilities/doc5.png \
-        utilities/doc6.png \
-        utilities/doc7.png \
-        utilities/doc8.png \
-        utilities/doc9.png \
-        utilities/latexhelp.html \
-        texmakerx_fr.qm \
-        texmakerx_de.qm \
-        texmakerx_it.qm \
-        utilities/qt_fr.qm \
-        utilities/qt_de.qm \
-        templates/template_Article.tex \
-        templates/template_Beamer.tex \
-        templates/template_Book.tex \
-        templates/template_HA-prosper.tex \
-        templates/template_Letter.tex \
-        templates/template_Prosper.tex \
-        templates/template_Report.tex \
-        templates/template_Scrartcl.tex \
-        templates/template_Scrbook.tex \
-        templates/template_Scrlttr2.tex \
-        templates/template_Scrreprt.tex \
-        utilities/usermanual_en.html \
-        utilities/usermanual_fr.html \
-        utilities/en_GB.aff \
-        utilities/en_GB.dic \
-        utilities/fr_FR.aff \
-        utilities/fr_FR.dic \
-        utilities/de_DE.aff \
-        utilities/de_DE.dic \
-        utilities/th_en_US_v2.dat \
-        utilities/th_fr_FR_v2.dat \
-        utilities/th_de_DE_v2.dat \
-        utilities/AUTHORS \
-        utilities/COPYING \
-        utilities/CHANGELOG.txt \
-        utilities/texmaker16x16.png \
+    utilities.files = utilities/texmaker16x16.png \
         utilities/texmaker22x22.png \
         utilities/texmaker32x32.png \
         utilities/texmaker48x48.png \
@@ -243,32 +210,16 @@ unix:!macx {
         utilities/texmaker.svg
     applicationmenu.path = $${PREFIX}/share/applications
     applicationmenu.files = utilities/texmakerx.desktop
-    INSTALLS += utilities \
-        applicationmenu
+    INSTALLS += applicationmenu
 }
 
-# ###############################
-win32 { 
-    INCLUDEPATH += C:\MinGW\include
-    RC_FILE = win.rc
-}
-
-# ##############################
-macx { 
+# ##########UNIX + MACX###############
+unix {
     UI_DIR = .ui
     MOC_DIR = .moc
     OBJECTS_DIR = .obj
-    
-    # #universal tiger
-    CONFIG += link_prl \
-        x86 \
-        ppc
-    QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
-    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.4
-    target.path = /Applications
-    INSTALLS = target
-    utilities.path = Contents/Resources
-    utilities.files = utilities/doc1.png \
+
+    utilities.files += utilities/doc1.png \
         utilities/doc10.png \
         utilities/doc11.png \
         utilities/doc12.png \
@@ -292,6 +243,8 @@ macx {
         texmakerx_fr.qm \
         texmakerx_de.qm \
         texmakerx_it.qm \
+        texmakerx_cs.qm \
+        texmakerx_hu.qm \
         utilities/qt_fr.qm \
         utilities/qt_de.qm \
         templates/template_Article.tex \
@@ -319,10 +272,8 @@ macx {
         utilities/AUTHORS \
         utilities/COPYING \
         utilities/CHANGELOG.txt
-    QMAKE_BUNDLE_DATA += utilities
-    INSTALLS += utilities
-    ICON = texmaker.icns
-    QMAKE_INFO_PLIST = Info.plist
+
+    INSTALLS += target utilities
 }
 
 # ##########QCODEEDIT###############
