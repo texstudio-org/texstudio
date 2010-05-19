@@ -19,6 +19,22 @@ struct ManagedToolBar{
 	ManagedToolBar(const QString &newName, const QStringList &defs);
 };
 
+enum PropertyType {PT_VOID = 0, PT_INT, PT_BOOL, PT_STRING, PT_STRINGLIST, PT_DATETIME};
+
+struct ManagedProperty{ //TODO: Merge with the universal input dialog
+	QString name;
+	void* storage;
+	PropertyType type;
+	QVariant def;
+	ptrdiff_t widgetOffset;
+
+	ManagedProperty();
+	QVariant valueToQVariant() const;
+	void valueFromQVariant(const QVariant v);
+	void writeToWidget(QWidget* w) const;
+	bool readFromWidget(const QWidget* w);
+};
+
 class ConfigManager: public QObject {
 	Q_OBJECT
 public:
@@ -32,7 +48,8 @@ public:
 
 //public configuration
 
-	QTextCodec* newfile_encoding;
+	QTextCodec* newFileEncoding;
+	QString newFileEncodingName;
 	bool autodetectLoadedFile;
 	int ignoreLogFileNames; //0: never, 1: in single mode, 2: always | see LatexLog::parseDocument for reason
 
@@ -60,8 +77,7 @@ public:
 	bool configShowAdvancedOptions;
 	
 	//language
-	QString lastLanguage;
-	QString language;
+	QString language, lastLanguage;
 	QTranslator* appTranslator;
 	QTranslator* basicTranslator;	
 		
@@ -147,6 +163,13 @@ public:
 	QMap<QPushButton*, BuildManager::LatexCommand> buttonsToCommands;
 	QMap<BuildManager::LatexCommand, QLineEdit*> commandsToEdits;
 	void loadTranslations(QString locale);
+
+	void registerOption(const QString& name, void* storage, PropertyType type, QVariant def, void* displayWidgetOffset);
+	void registerOption(const QString& name, bool* storage, QVariant def=QVariant(),  void* displayWidgetOffset=0);
+	void registerOption(const QString& name, int* storage, QVariant def=QVariant(), void* displayWidgetOffset=0);
+	void registerOption(const QString& name, QString* storage, QVariant def=QVariant(), void* displayWidgetOffset=0);
+	void registerOption(const QString& name, QStringList* storage, QVariant def=QVariant(), void* displayWidgetOffset=0);
+	void registerOption(const QString& name, QDateTime* storage, QVariant def=QVariant(), void* displayWidgetOffset=0);
 private:
 	void setInterfaceStyle();
 
@@ -154,6 +177,7 @@ private:
 
 	QMap<QString,QVariant> manipulatedMenus;
 
+	QList<ManagedProperty> managedProperties;
 private slots:
 	void browseCommand();
 	void undoCommand();
