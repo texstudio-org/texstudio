@@ -15,14 +15,12 @@ public:
 	int showlinemultiples;
 	bool folding, showlinestate, showcursorstate, realtimeChecking;	
 	bool inlineSpellChecking, inlineCitationChecking, inlineReferenceChecking;
-	QFont editorFont;
+	QString fontFamily;
+	int fontSize;
 	bool displayModifyTime;
 	bool closeSearchAndReplace;
 	bool useLineForSearch;
 	bool useTabforMoveToPlaceholder;
-
-	void readSettings(QSettings& settings);
-	void saveSettings(QSettings& settings);
 private:
 };
 

@@ -14,6 +14,150 @@
 
 ManagedToolBar::ManagedToolBar(const QString &newName, const QStringList &defs): name(newName), defaults(defs), toolbar(0){}
 
+ManagedProperty::ManagedProperty():storage(0),type(PT_VOID),widgetOffset(0){
+}
+QVariant ManagedProperty::valueToQVariant() const{
+	Q_ASSERT(storage);
+	if (!storage) return QVariant();
+	switch (type){
+		case PT_INT: return QVariant(*((int*)storage));
+		case PT_BOOL: return QVariant(*((bool*)storage));
+		case PT_STRING: return QVariant(*((QString*)storage));
+		case PT_STRINGLIST: return QVariant(*((QStringList*)storage));
+		case PT_DATETIME: return QVariant(*((QDateTime*)storage));
+		default:
+			Q_ASSERT(false);
+			return QVariant();
+	}
+}
+void ManagedProperty::valueFromQVariant(const QVariant v){
+	Q_ASSERT(storage);
+	if (!storage) return;
+	switch (type){
+		case PT_INT: *((int*)storage) = v.toInt(); break;
+		case PT_BOOL: *((bool*)storage) = v.toBool(); break;
+		case PT_STRING: *((QString*)storage) = v.toString(); break;
+		case PT_STRINGLIST: *((QStringList*)storage) = v.toStringList(); break;
+		case PT_DATETIME: *((QDateTime*)storage) = v.toDateTime(); break;
+		default:
+			Q_ASSERT(false);
+	}
+}
+
+void ManagedProperty::writeToWidget(QWidget* w) const{
+	Q_ASSERT(storage && w);
+	if (!storage || !w) return;
+
+	QCheckBox* checkBox = qobject_cast<QCheckBox*>(w);
+	if (checkBox) {
+		Q_ASSERT(type == PT_BOOL);
+		checkBox->setChecked(*((bool*)storage));
+		return;
+	}
+	QLineEdit* edit = qobject_cast<QLineEdit*>(w);
+	if (edit){
+		Q_ASSERT(type == PT_STRING);
+		edit->setText(*((QString*)storage));
+		return;
+	}
+	/*QTextEdit* tedit = qobject_cast<QTextEdit*>(w);
+	if (tedit){
+		*((QString*)storage) = tedit->toPlainText();
+		continue;
+	}*/
+	QSpinBox* spinBox = qobject_cast<QSpinBox*>(w);
+	if (spinBox){
+		Q_ASSERT(type == PT_INT);
+		spinBox->setValue(*((int*)storage));
+		return;
+	}
+	QComboBox* comboBox = qobject_cast<QComboBox*>(w);
+	if (comboBox){
+		switch (type) {
+			case PT_BOOL:
+				comboBox->setCurrentIndex(*((bool*)storage)?1:0);
+				return;
+			case PT_INT:
+				comboBox->setCurrentIndex(*((int*)storage));
+				return;
+			case PT_STRING:{
+				int index = comboBox->findText(*(QString*)storage);
+				if (index > 0) comboBox->setCurrentIndex(index);
+				if (comboBox->isEditable()) comboBox->setEditText(*(QString*)storage);
+				return;
+			}
+			case PT_STRINGLIST:
+				Q_ASSERT(false);//TODO
+				return;
+			default:
+				Q_ASSERT(false);
+		}
+	}
+
+	Q_ASSERT(false);
+}
+bool ManagedProperty::readFromWidget(const QWidget* w){
+	Q_ASSERT(storage);
+	if (!storage) return false;
+
+	const QCheckBox* checkBox = qobject_cast<const QCheckBox*>(w);
+	if (checkBox) {
+		Q_ASSERT(type == PT_BOOL);
+		bool oldvalue = *((bool*)storage);
+		*((bool*)storage) = checkBox->isChecked();
+		return oldvalue != *((bool*)storage);
+	}
+	const QLineEdit* edit = qobject_cast<const QLineEdit*>(w);
+	if (edit){
+		Q_ASSERT(type == PT_STRING);
+		QString oldvalue = *((QString*)storage);
+		*((QString*)storage) = edit->text();
+		return oldvalue == *((QString*)storage);
+	}
+	/*QTextEdit* tedit = qobject_cast<QTextEdit*>(w);
+	if (tedit){
+		*((QString*)storage) = tedit->toPlainText();
+		continue;
+	}*/
+	const QSpinBox* spinBox = qobject_cast<const QSpinBox*>(w);
+	if (spinBox){
+		Q_ASSERT(type == PT_INT);
+		int oldvalue = *((int*)storage);
+		*((int*)storage) = spinBox->value();
+		return oldvalue != *((int*)storage);
+	}
+	const QComboBox* comboBox = qobject_cast<const QComboBox*>(w);
+	if (comboBox){
+		switch (type) {
+			case PT_BOOL:{
+				bool oldvalue = *((bool*)storage);
+				*((bool*)storage) = comboBox->currentIndex()!=0;
+				return oldvalue != *((bool*)storage);
+			}
+			case PT_INT:{
+				int oldvalue = *((int*)storage);
+				*((int*)storage) = comboBox->currentIndex();
+				return oldvalue != *((int*)storage);
+			}
+			case PT_STRING:{
+				QString oldvalue = *((QString*)storage);
+				*((QString*)storage) = comboBox->currentText();
+				return oldvalue != *((QString*)storage);
+			}
+			case PT_STRINGLIST:{
+				QString oldvalue = ((QStringList*)storage)->first();
+				*((QStringList*)storage) = QStringList(comboBox->currentText());
+				return oldvalue != ((QStringList*)storage)->first();
+			}
+			default:
+				Q_ASSERT(false);
+		}
+	}
+
+	Q_ASSERT(false);
+	return false;
+}
+
 
 ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	buildManager(0),editorConfig(new LatexEditorViewConfig), completerConfig (new LatexCompleterConfig), webPublishDialogConfig (new WebPublishDialogConfig), menuParent(0), menuParentsBar(0){
@@ -31,6 +175,110 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 					      << "separator" << "main/latex/spacing/newline"));
 
 	enviromentModes << "verbatim" << "numbers";
+
+
+
+	Ui::ConfigDialog *pseudoDialog = (Ui::ConfigDialog*) 0;
+
+
+	//beginRegisterGroup("texmaker");
+	//files
+	registerOption("Files/New File Encoding", &newFileEncodingName, "utf-8", &pseudoDialog->comboBoxEncoding); //check
+	registerOption("Files/Auto Detect Encoding Of Loaded Files", &autodetectLoadedFile, true, &pseudoDialog->checkBoxAutoDetectOnLoad);
+	registerOption("Files/Ignore Log File Names", &ignoreLogFileNames, 0, &pseudoDialog->comboBoxIgnoreLogFileNames);
+	//recent files
+	registerOption("Files/Max Recent Files", &maxRecentFiles, 5, &pseudoDialog->spinBoxMaxRecentFiles);
+	registerOption("Files/Max Recent Projects", &maxRecentProjects, 3, &pseudoDialog->spinBoxMaxRecentProjects);
+	registerOption("Files/Recent Files", &recentFilesList);
+	registerOption("Files/Recent Project Files", &recentProjectList);
+	registerOption("Files/RestoreSession", &sessionRestore);
+	registerOption("Files/Session/Files", &sessionFilesToRestore);
+	registerOption("Files/Session/CurrentFile", &sessionCurrent);
+	registerOption("Files/Session/MasterFile", &sessionMaster);
+	registerOption("Files/Last Document", &lastDocument);
+	registerOption("Files/Parse BibTeX", &parseBibTeX, true, &pseudoDialog->checkBoxParseBibTeX);
+	registerOption("Files/Parse Master", &parseMaster, true, &pseudoDialog->checkBoxParseMaster);
+
+	registerOption("Spell/Dic", &spell_dic, "<dic not found>", &pseudoDialog->comboBoxDictionaryFileName); //don't translate it
+	registerOption("Thesaurus/Database", &thesaurus_database, "<dic not found>", &pseudoDialog->comboBoxThesaurusFileName);
+
+	//editor
+	registerOption("Editor/WordWrap", &editorConfig->wordwrap, true, &pseudoDialog->checkBoxWordwrap);
+	registerOption("Editor/Parentheses Matching", &editorConfig->parenmatch, true); //TODO: checkbox?
+	registerOption("Editor/Line Number Multiples", &editorConfig->showlinemultiples, -1);
+	registerOption("Editor/Auto Indent", &editorConfig->autoindent, true);
+	registerOption("Editor/Weak Indent", &editorConfig->weakindent, true);
+	registerOption("Editor/Indent with Spaces", &editorConfig->indentWithSpaces, false);
+	registerOption("Editor/Folding", &editorConfig->folding, true, &pseudoDialog->checkBoxFolding);
+	registerOption("Editor/Show Line State", &editorConfig->showlinestate, true, &pseudoDialog->checkBoxLineState);
+	registerOption("Editor/Show Cursor State", &editorConfig->showcursorstate, true, &pseudoDialog->checkBoxState);
+	registerOption("Editor/Real-Time Spellchecking", &editorConfig->realtimeChecking, true, &pseudoDialog->checkBoxRealTimeCheck); //named for compatibility reasons with older tmx versions
+	registerOption("Editor/Check Spelling", &editorConfig->inlineSpellChecking, true, &pseudoDialog->checkBoxInlineSpellCheck);
+	registerOption("Editor/Check Citations", &editorConfig->inlineCitationChecking, true, &pseudoDialog->checkBoxInlineCitationCheck);
+	registerOption("Editor/Check References", &editorConfig->inlineReferenceChecking, true, &pseudoDialog->checkBoxInlineReferenceCheck);
+	registerOption("Editor/Show Whitespace", &editorConfig->showWhitespace, true, &pseudoDialog->checkBoxShowWhitespace);
+
+	registerOption("Editor/Display Modifytime", &editorConfig->displayModifyTime, true, &pseudoDialog->checkBoxDisplayModifyTime);
+	registerOption("Editor/Close Search Replace Together", &editorConfig->closeSearchAndReplace, false, &pseudoDialog->checkBoxCloseSearchReplaceTogether);
+	registerOption("Editor/Use Line For Search", &editorConfig->useLineForSearch, true, &pseudoDialog->checkBoxUseLineForSearch);
+	registerOption("Editor/Use Tab for Move to Placeholder", &editorConfig->useTabforMoveToPlaceholder, false, &pseudoDialog->checkBoxTabforMoveToPlaceholder);
+
+	registerOption("Editor/Font Family", &editorConfig->fontFamily, "", &pseudoDialog->comboBoxFont);
+	registerOption("Editor/Font Size", &editorConfig->fontSize, -1, &pseudoDialog->spinBoxSize);
+
+	//completion
+	registerOption("Editor/Completion", &completerConfig->enabled, true, &pseudoDialog->checkBoxCompletion);
+	Q_ASSERT(sizeof(int)==sizeof(LatexCompleterConfig::CaseSensitive));
+	registerOption("Editor/Completion Case Sensitive", (int*)&completerConfig->caseSensitive, 2);
+	registerOption("Editor/Completion Complete Common Prefix", &completerConfig->completeCommonPrefix, true, &pseudoDialog->checkBoxCompletePrefix);
+	registerOption("Editor/Completion EOW Completes", &completerConfig->eowCompletes, true, &pseudoDialog->checkBoxEOWCompletes);
+	registerOption("Editor/Completion Enable Tooltip Help", &completerConfig->tooltipHelp, true, &pseudoDialog->checkBoxToolTipHelp);
+	registerOption("Editor/Completion Use Placeholders", &completerConfig->usePlaceholders, true, &pseudoDialog->checkBoxUsePlaceholders);
+
+	//other dialogs
+	registerOption("Dialogs/Last Hard Wrap Column", &lastHardWrapColumn, 80);
+	registerOption("Dialogs/Last Hard Wrap Smart Scope Selection", &lastHardWrapSmartScopeSelection, false);
+	registerOption("Dialogs/Last Hard Wrap Join Lines", &lastHardWrapJoinLines, false);
+
+	//preview
+	registerOption("Preview/Mode", (int*)&previewMode, 0, &pseudoDialog->comboBoxPreviewMode);
+
+	//build commands
+	registerOption("Tools/Show Log After Compiling", &showLogAfterCompiling, true, &pseudoDialog->checkBoxShowLog);
+
+	//SVN
+	registerOption("Tools/Auto Checkin after Save", &autoCheckinAfterSave, false, &pseudoDialog->cbAutoCheckin);
+	registerOption("Tools/SVN Undo", &svnUndo, false, &pseudoDialog->cbSVNUndo);
+	registerOption("Tools/SVN KeywordSubstitution", &svnKeywordSubstitution, false, &pseudoDialog->cbKeywordSubstitution);
+	registerOption("Tools/SVN Search Path Depth", &svnSearchPathDepth, 2, &pseudoDialog->sbDirSearchDepth);
+
+	//interfaces
+	registerOption("GUI/Style", &modernStyle, false, &pseudoDialog->comboBoxInterfaceModernStyle);
+#ifdef Q_WS_X11
+	useTexmakerPalette = true;
+	interfaceFontFamily = "<later>";
+	interfaceStyle="<later>";
+#else
+	useTexmakerPalette = false;
+	interfaceFontFamily=QApplication::font().family();
+	interfaceStyle="";
+#endif
+	registerOption("GUI/Texmaker Palette", &useTexmakerPalette, useTexmakerPalette, &pseudoDialog->checkBoxUseTexmakerPalette);
+	registerOption("X11/Font Family", &interfaceFontFamily, interfaceFontFamily, &pseudoDialog->comboBoxInterfaceFont); //named X11 for backward compatibility
+	registerOption("X11/Font Size", &interfaceFontSize, QApplication::font().pointSize(), &pseudoDialog->spinBoxInterfaceFontSize);
+	registerOption("X11/Style", &interfaceStyle, interfaceStyle, &pseudoDialog->comboBoxInterfaceStyle);
+
+	registerOption("Interface/Config Show Advanced Options", &configShowAdvancedOptions, false, &pseudoDialog->checkBoxShowAdvancedOptions);
+	registerOption("LogView/Tabbed", &tabbedLogView, true, &pseudoDialog->checkBoxTabbedLogView);
+	registerOption("Interface/New Left Panel Layout", &newLeftPanelLayout, true);
+
+	//language
+	registerOption("Interface/Language", &language, "", &pseudoDialog->comboBoxLanguage);
+
+	#ifndef QT_NO_DEBUG
+	registerOption("Debug/Last Application Modification", &debugLastFileModification);
+	registerOption("Debug/Last Full Test Run", &debugLastFullTestRun);
+	#endif
 }
 
 ConfigManager::~ConfigManager(){
@@ -65,28 +313,14 @@ QSettings* ConfigManager::readSettings() {
 
 	config->beginGroup("texmaker");
 
-	//-----------------------files---------------------------
-	//editor
-	newfile_encoding=QTextCodec::codecForName(config->value("Files/New File Encoding", "utf-8").toString().toAscii().data());
-	autodetectLoadedFile=config->value("Files/Auto Detect Encoding Of Loaded Files", "true").toBool();
+	//------------------files--------------------
+	newFileEncoding=QTextCodec::codecForName(newFileEncodingName.toAscii().data());
 
-	ignoreLogFileNames=config->value("Files/Ignore Log File Names",0).toInt(); //default never ignore
-
-	//recent files
-	maxRecentFiles=config->value("Files/Max Recent Files", 5).toInt();
-	maxRecentProjects=config->value("Files/Max Recent Projects", 3).toInt();
-	recentFilesList=config->value("Files/Recent Files").toStringList();
-	recentProjectList=config->value("Files/Recent Project Files").toStringList();
-	sessionRestore=config->value("Files/RestoreSession",false).toBool(); 
-	sessionFilesToRestore=config->value("Files/Session/Files").toStringList();
-	sessionCurrent=config->value("Files/Session/CurrentFile","").toString();
-	sessionMaster=config->value("Files/Session/MasterFile","").toString();
-	lastDocument=config->value("Files/Last Document","").toString();
-	parseBibTeX=config->value("Files/Parse BibTeX",true).toBool();
-	parseMaster=config->value("Files/Parse Master",true).toBool();
+	//----------managed properties--------------------
+	for (int i=0;i<managedProperties.size();i++)
+		managedProperties[i].valueFromQVariant(config->value(managedProperties[i].name, managedProperties[i].def));
 
 	//----------------------------dictionaries-------------------------
-	spell_dic=config->value("Spell/Dic","<dic not found>").toString();
 	if (spell_dic=="<dic not found>") {
 		spell_dic=findResourceFile(QString(QLocale::system().name())+".dic");
 		if (spell_dic=="") spell_dic=findResourceFile("en_US.dic");
@@ -95,7 +329,6 @@ QSettings* ConfigManager::readSettings() {
 		if (spell_dic=="") spell_dic=findResourceFile("de_DE.dic");
 	}
 
-	thesaurus_database=config->value("Thesaurus/Database","<dic not found>").toString();
 	if (thesaurus_database=="<dic not found>"||thesaurus_database=="") {
 		thesaurus_database=findResourceFile("th_"+QString(QLocale::system().name())+"_v2.dat");
 		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_en_US_v2.dat");
@@ -106,51 +339,21 @@ QSettings* ConfigManager::readSettings() {
 
 	
 	//----------------------------editor--------------------
-	editorConfig->wordwrap=config->value("Editor/WordWrap",true).toBool();
-	editorConfig->parenmatch=config->value("Editor/Parentheses Matching",true).toBool();
-	editorConfig->showlinemultiples=config->value("Editor/Line Number Multiples",-1).toInt();
 	if (editorConfig->showlinemultiples==-1) {
 		if (config->value("Editor/Line Numbers",true).toBool()) editorConfig->showlinemultiples=1;  //texmaker import
 		else editorConfig->showlinemultiples=0;
 	}
 
-	editorConfig->autoindent=config->value("Editor/Auto Indent",true).toBool();
-	editorConfig->weakindent=config->value("Editor/Weak Indent",true).toBool();
-	editorConfig->indentWithSpaces=config->value("Editor/Indent with Spaces",false).toBool();
-	editorConfig->folding=config->value("Editor/Folding",true).toBool();
-	editorConfig->showlinestate=config->value("Editor/Show Line State",true).toBool();
-	editorConfig->showcursorstate=config->value("Editor/Show Cursor State",true).toBool();	
-	editorConfig->readSettings(*config);
-	
 	//completion
-	completerConfig->enabled=config->value("Editor/Completion",true).toBool();
-	completerConfig->caseSensitive=(LatexCompleterConfig::CaseSensitive) config->value("Editor/Completion Case Sensitive",2).toInt();
-	completerConfig->completeCommonPrefix=config->value("Editor/Completion Complete Common Prefix",true).toBool();
-	completerConfig->eowCompletes=config->value("Editor/Completion EOW Completes", true).toBool();
-	completerConfig->tooltipHelp=config->value("Editor/Completion Enable Tooltip Help", true).toBool();
-	completerConfig->usePlaceholders=config->value("Editor/Completion Use Placeholders", true).toBool();
 	completerConfig->loadFiles(config->value("Editor/Completion Files",QStringList() << "texmakerx.cwl" << "tex.cwl" << "latex-document.cwl" << "latex-mathsymbols.cwl").toStringList());
 	
 	//web publish dialog
 	webPublishDialogConfig->readSettings(*config);
 
-	//other dialogs
-	lastHardWrapColumn=config->value("Dialogs/Last Hard Wrap Column",80).toInt();
-	lastHardWrapSmartScopeSelection=config->value("Dialogs/Last Hard Wrap Smart Scope Selection", false).toBool();
-	lastHardWrapJoinLines=config->value("Dialogs/Last Hard Wrap Join Lines", false).toBool();
-
-	//preview
-	previewMode=(PreviewMode) config->value("Preview/Mode",0).toInt();
-
 	//build commands
 	if (!buildManager) QMessageBox::critical(0,"TexMakerX","No build Manager created! => crash",QMessageBox::Ok);
 	buildManager->readSettings(*config);
-	showLogAfterCompiling=config->value("Tools/Show Log After Compiling", true).toBool();
 	runLaTeXBibTeXLaTeX=config->value("Tools/After BibTeX Change", "tmx://latex && tmx://bibtex && tmx://latex").toString()!="";
-	autoCheckinAfterSave=config->value("Tools/Auto Checkin after Save", false).toBool();
-	svnUndo=config->value("Tools/SVN Undo", false).toBool();
-	svnKeywordSubstitution=config->value("Tools/SVN KeywordSubstitution", false).toBool();
-	svnSearchPathDepth=config->value("Tools/SVN Search Path Depth", 2).toInt();
 	
 	//read user key replacements
 	keyReplace.clear();
@@ -208,69 +411,52 @@ QSettings* ConfigManager::readSettings() {
 	//--------------------appearance------------------------------------
 	QFontDatabase fdb;
 	QStringList xf = fdb.families();
-	QString deft;
 	//editor
 #ifdef Q_WS_WIN
-	if (xf.contains("Courier New",Qt::CaseInsensitive)) deft="Courier New";
-	else deft=qApp->font().family();
-	QString fam=config->value("Editor/Font Family",deft).toString();
-	int si=config->value("Editor/Font Size",10).toInt();
+	if (editorConfig->fontFamily.isEmpty()){
+		if (xf.contains("Courier New",Qt::CaseInsensitive)) editorConfig->fontFamily="Courier New";
+		else editorConfig->fontFamily=qApp->font().family();
+	}
+	if (editorConfig->fontSize==-1)
+		editorConfig->fontSize=10;
 #else
-	if (xf.contains("DejaVu Sans Mono",Qt::CaseInsensitive)) deft="DejaVu Sans Mono";
-//else if (xf.contains("Lucida Sans Unicode",Qt::CaseInsensitive)) deft="Lucida Sans Unicode";
-	else if (xf.contains("Lucida Sans Typewriter",Qt::CaseInsensitive)) deft="Lucida Sans Typewriter";
-	else deft=qApp->font().family();
-	QString fam=config->value("Editor/Font Family",deft).toString();
-	int si=config->value("Editor/Font Size",qApp->font().pointSize()).toInt();
+	if (editorConfig->fontFamily.isEmpty()){
+		if (xf.contains("DejaVu Sans Mono",Qt::CaseInsensitive)) editorConfig->fontFamily="DejaVu Sans Mono";
+		//else if (xf.contains("Lucida Sans Unicode",Qt::CaseInsensitive)) editorConfig->fontFamily="Lucida Sans Unicode";
+		else if (xf.contains("Lucida Sans Typewriter",Qt::CaseInsensitive)) editorConfig->fontFamily="Lucida Sans Typewriter";
+		else editorConfig->fontFamily=qApp->font().family();
+	}
+	if (editorConfig->fontSize==-1)
+		editorConfig->fontSize=qApp->font().pointSize();
 #endif
-	editorConfig->editorFont=QFont(fam,si);
-
-	editorConfig->displayModifyTime=config->value("Editor/Display Modifytime",true).toBool();
-	editorConfig->closeSearchAndReplace=config->value("Editor/Close Search Replace Together",false).toBool();
-	editorConfig->useLineForSearch=config->value("Editor/Use Line For Search",true).toBool();
-	editorConfig->useTabforMoveToPlaceholder=config->value("Editor/Use Tab for Move to Placeholder",false).toBool();
 
 	//interface
 	systemPalette = QApplication::palette();
 	defaultStyleName=QApplication::style()->objectName();
 
-#ifdef Q_WS_X11		
-	//use an interface like Texmaker
-	useTexmakerPalette=true;
-	if (xf.contains("DejaVu Sans",Qt::CaseInsensitive)) interfaceFontFamily="DejaVu Sans";
-	else if (xf.contains("DejaVu Sans LGC",Qt::CaseInsensitive)) interfaceFontFamily="DejaVu Sans LGC";
-	else if (xf.contains("Bitstream Vera Sans",Qt::CaseInsensitive)) interfaceFontFamily="Bitstream Vera Sans";
-	else if (xf.contains("Luxi Sans",Qt::CaseInsensitive)) interfaceFontFamily="Luxi Sans";
-	else interfaceFontFamily=QApplication::font().family();
-	if (x11desktop_env()==0) //no-kde
-	{
-		if (QStyleFactory::keys().contains("GTK+")) interfaceStyle="GTK+";//gtkstyle
-		else interfaceStyle="Cleanlooks";
-	} else if ((x11desktop_env() ==4) && (QStyleFactory::keys().contains("Oxygen"))) interfaceStyle="Oxygen"; //kde4+oxygen
-	else interfaceStyle="Plastique"; //others
-#else
-	//use system defaults
-	useTexmakerPalette=false;
-	interfaceFontFamily=QApplication::font().family();
-	interfaceStyle="";
+#ifdef Q_WS_X11
+	if (interfaceFontFamily=="<later>") {
+		//use an interface like Texmaker
+		if (xf.contains("DejaVu Sans",Qt::CaseInsensitive)) interfaceFontFamily="DejaVu Sans";
+		else if (xf.contains("DejaVu Sans LGC",Qt::CaseInsensitive)) interfaceFontFamily="DejaVu Sans LGC";
+		else if (xf.contains("Bitstream Vera Sans",Qt::CaseInsensitive)) interfaceFontFamily="Bitstream Vera Sans";
+		else if (xf.contains("Luxi Sans",Qt::CaseInsensitive)) interfaceFontFamily="Luxi Sans";
+		else interfaceFontFamily=QApplication::font().family();
+	}
+	if (interfaceStyle=="<later>") {
+		if (x11desktop_env()==0) //no-kde
+		{
+			if (QStyleFactory::keys().contains("GTK+")) interfaceStyle="GTK+";//gtkstyle
+			else interfaceStyle="Cleanlooks";
+		} else if ((x11desktop_env() ==4) && (QStyleFactory::keys().contains("Oxygen"))) interfaceStyle="Oxygen"; //kde4+oxygen
+		else interfaceStyle="Plastique"; //others
+	}
 #endif
-		
-	useTexmakerPalette=config->value("GUI/Texmaker Palette", useTexmakerPalette).toBool();
-	interfaceStyle=config->value("X11/Style",interfaceStyle).toString(); //named X11 for backward compatibility
-	modernStyle=config->value("GUI/Style", false).toBool();
-	setInterfaceStyle();
 
-	interfaceFontFamily = config->value("X11/Font Family",interfaceFontFamily).toString();
-	interfaceFontSize = config->value("X11/Font Size",QApplication::font().pointSize()).toInt();		
+	setInterfaceStyle();
 	QApplication::setFont(QFont(interfaceFontFamily, interfaceFontSize));
 
-	configShowAdvancedOptions = config->value("Interface/Config Show Advanced Options",false).toBool();
-	tabbedLogView=config->value("LogView/Tabbed","true").toBool();
-	newLeftPanelLayout=config->value("Interface/New Left Panel Layout",true).toBool();
-
 	//language
-	language=config->value("Interface/Language","").toString();
-	lastLanguage=language;
 	QString locale=language;
 	appTranslator=new QTranslator(this);
 	basicTranslator=new QTranslator(this);
@@ -278,12 +464,6 @@ QSettings* ConfigManager::readSettings() {
 	QCoreApplication::installTranslator(appTranslator);
 	QCoreApplication::installTranslator(basicTranslator);
 
-	#ifndef QT_NO_DEBUG
-	debugLastFileModification=config->value("Debug/Last Application Modification").toDateTime();
-	debugLastFullTestRun=config->value("Debug/Last Full Test Run").toDateTime();
-	#endif
-
-	
 	config->endGroup();
 
 	return config;
@@ -294,71 +474,20 @@ QSettings* ConfigManager::saveSettings() {
 
 	config->beginGroup("texmaker");
 
-	//-----------------------files------------------------
-	//editor
-	config->setValue("Files/New File Encoding", newfile_encoding?newfile_encoding->name():"??");
-	config->setValue("Files/Auto Detect Encoding Of Loaded Files", autodetectLoadedFile);
-	
-	config->setValue("Files/Ignore Log File Names",ignoreLogFileNames);
-	
-	//recent files
-	config->setValue("Files/Max Recent Files", maxRecentFiles);
-	config->setValue("Files/Max Recent Projects", maxRecentProjects);
-	if (recentFilesList.count()>0) config->setValue("Files/Recent Files",recentFilesList);
-	if (recentProjectList.count()>0) config->setValue("Files/Recent Project Files",recentProjectList);
-	//session is saved by main class (because we don't know the active files here)
-	config->setValue("Files/Last Document",lastDocument);
-	config->setValue("Files/Parse BibTeX",parseBibTeX);
-	config->setValue("Files/Parse Master",parseMaster);
+	//----------managed properties--------------------
+	foreach (const ManagedProperty& mp, managedProperties)
+		config->setValue(mp.name, mp.valueToQVariant());
 
-	//--------------------dictionaries------------------
-	config->setValue("Spell/Dic",spell_dic);
-	config->setValue("Thesaurus/Database",thesaurus_database);
-
-	//--------------------editor--------------------------
-	config->setValue("Editor/WordWrap",editorConfig->wordwrap);
-
-	config->setValue("Editor/Parentheses Matching",editorConfig->parenmatch);
-	config->setValue("Editor/Line Number Multiples",editorConfig->showlinemultiples);
-	config->setValue("Editor/Auto Indent",editorConfig->autoindent);
-	config->setValue("Editor/Weak Indent",editorConfig->weakindent);
-	config->setValue("Editor/Indent with Spaces",editorConfig->indentWithSpaces);
-
-	config->setValue("Editor/Folding",editorConfig->folding);
-	config->setValue("Editor/Show Line State",editorConfig->showlinestate);
-	config->setValue("Editor/Show Cursor State",editorConfig->showcursorstate);
-	editorConfig->saveSettings(*config);
-	
 	//completion
-	config->setValue("Editor/Completion",completerConfig->enabled);
-	config->setValue("Editor/Completion Case Sensitive",completerConfig->caseSensitive);
-	config->setValue("Editor/Completion Complete Common Prefix",completerConfig->completeCommonPrefix);
-	config->setValue("Editor/Completion EOW Completes", completerConfig->eowCompletes);
-	config->setValue("Editor/Completion Enable Tooltip Help", completerConfig->tooltipHelp);
-	config->setValue("Editor/Completion Use Placeholders", completerConfig->usePlaceholders);
 	if (!completerConfig->getLoadedFiles().isEmpty())
 		config->setValue("Editor/Completion Files",completerConfig->getLoadedFiles());
 
 	//web publish dialog
 	webPublishDialogConfig->saveSettings(*config);
 	
-	//other dialogs
-	config->setValue("Dialogs/Last Hard Wrap Column",lastHardWrapColumn);
-	config->setValue("Dialogs/Last Hard Wrap Smart Scope Selection", lastHardWrapSmartScopeSelection);
-	config->setValue("Dialogs/Last Hard Wrap Join Lines", lastHardWrapJoinLines);
-
-	//preview
-	config->setValue("Preview/Mode",previewMode);
-	
 	//---------------------build commands----------------
 	buildManager->saveSettings(*config);
-	config->setValue("Tools/Show Log After Compiling", showLogAfterCompiling);
 	config->setValue("Tools/After BibTeX Change",runLaTeXBibTeXLaTeX?"tmx://latex && tmx://bibtex && tmx://latex":"");
-
-	config->setValue("Tools/Auto Checkin after Save", autoCheckinAfterSave);
-	config->setValue("Tools/SVN Undo", svnUndo);
-	config->setValue("Tools/SVN KeywordSubstitution", svnKeywordSubstitution);
-	config->setValue("Tools/SVN Search Path Depth", svnSearchPathDepth);
 	
 	//-------------------key replacements-----------------
 	int keyReplaceCount = keyReplace.count();
@@ -390,35 +519,6 @@ QSettings* ConfigManager::saveSettings() {
 	// custom highlighting
 	config->setValue("customHighlighting",customEnvironments);
 
-
-	//------------------appearance--------------------
-	config->setValue("Interface/Config Show Advanced Options",configShowAdvancedOptions);
-	config->setValue("X11/Style",interfaceStyle); //named X11/ for backward compatibility
-	config->setValue("X11/Font Family",interfaceFontFamily);
-	config->setValue("X11/Font Size",interfaceFontSize);
-	config->setValue("GUI/Style", modernStyle);
-	config->setValue("GUI/Texmaker Palette", useTexmakerPalette);
-
-	config->setValue("LogView/Tabbed",tabbedLogView);
-	
-	config->setValue("Interface/New Left Panel Layout",newLeftPanelLayout);
-	config->setValue("Interface/Language",language); 
-	
-	//editor
-	config->setValue("Editor/Font Family",editorConfig->editorFont.family());
-	config->setValue("Editor/Font Size",editorConfig->editorFont.pointSize());
-
-	config->setValue("Editor/Display Modifytime",editorConfig->displayModifyTime);
-	config->setValue("Editor/Close Search Replace Together",editorConfig->closeSearchAndReplace);
-	config->setValue("Editor/Use Line For Search",editorConfig->useLineForSearch);
-	config->setValue("Editor/Use Tab for Move to Placeholder",editorConfig->useTabforMoveToPlaceholder);
-
-	//debug
-	#ifndef QT_NO_DEBUG
-	config->setValue("Debug/Last Application Modification",debugLastFileModification);
-	config->setValue("Debug/Last Full Test Run",debugLastFullTestRun);
-	#endif
-	
 	config->endGroup();
 
 	return config;
@@ -426,27 +526,16 @@ QSettings* ConfigManager::saveSettings() {
 
 bool ConfigManager::execConfigDialog() {
 	ConfigDialog *confDlg = new ConfigDialog(qobject_cast<QWidget*>(parent()));
+	//----------managed properties--------------------
+	foreach (const ManagedProperty& mp, managedProperties)
+		if (mp.widgetOffset)
+			mp.writeToWidget(*((QWidget**)((char*)&confDlg->ui + mp.widgetOffset))); //convert to char*, because the offset is in bytes
 
 	//files
-	if (newfile_encoding)
-		confDlg->ui.comboBoxEncoding->setCurrentIndex(confDlg->ui.comboBoxEncoding->findText(newfile_encoding->name(), Qt::MatchExactly));
-	confDlg->ui.checkBoxAutoDetectOnLoad->setChecked(autodetectLoadedFile);
-	//if(autodetectLoadedFile) confDlg->ui.comboBoxEncoding->setCurrentIndex(confDlg->ui.comboBoxEncoding->findText("Autodetect UTF-8/UTF-16/ISO 8859-1", Qt::MatchExactly));
-	confDlg->ui.comboBoxIgnoreLogFileNames->setCurrentIndex(ignoreLogFileNames);
-	
-	confDlg->ui.spinBoxMaxRecentFiles->setValue(maxRecentFiles);
-	confDlg->ui.spinBoxMaxRecentProjects->setValue(maxRecentProjects);
-	confDlg->ui.checkBoxParseBibTeX->setChecked(parseBibTeX);
-	confDlg->ui.checkBoxParseMaster->setChecked(parseMaster);
-	
-	//dictionaries
-	confDlg->ui.comboBoxDictionaryFileName->setEditText(spell_dic);
-	confDlg->ui.comboBoxThesaurusFileName->setEditText(thesaurus_database);
-
+	//if (newfile_encoding)
+	//	confDlg->ui.comboBoxEncoding->setCurrentIndex(confDlg->ui.comboBoxEncoding->findText(newfile_encoding->name(), Qt::MatchExactly));
 
 	//-----------------------editor------------------------------
-	confDlg->ui.checkBoxWordwrap->setChecked(editorConfig->wordwrap);
-	
 	switch (editorConfig->showlinemultiples) {
 	case 0:
 		confDlg->ui.comboboxLineNumbers->setCurrentIndex(0);
@@ -461,27 +550,14 @@ bool ConfigManager::execConfigDialog() {
 	else if (editorConfig->autoindent) confDlg->ui.comboBoxAutoIndent->setCurrentIndex(2);
 	else confDlg->ui.comboBoxAutoIndent->setCurrentIndex(0);
 	if(confDlg->ui.comboBoxAutoIndent->currentIndex()>0 && editorConfig->indentWithSpaces) confDlg->ui.comboBoxAutoIndent->setCurrentIndex(confDlg->ui.comboBoxAutoIndent->currentIndex()+2);
-	confDlg->ui.checkBoxFolding->setChecked(editorConfig->folding);
-	confDlg->ui.checkBoxLineState->setChecked(editorConfig->showlinestate);
-	confDlg->ui.checkBoxState->setChecked(editorConfig->showcursorstate);
-	confDlg->ui.checkBoxRealTimeCheck->setChecked(editorConfig->realtimeChecking);
-	confDlg->ui.checkBoxInlineSpellCheck->setChecked(editorConfig->inlineSpellChecking);
-	confDlg->ui.checkBoxInlineReferenceCheck->setChecked(editorConfig->inlineReferenceChecking);
-	confDlg->ui.checkBoxInlineCitationCheck->setChecked(editorConfig->inlineCitationChecking);
-	confDlg->ui.checkBoxShowWhitespace->setChecked(editorConfig->showWhitespace);
-
 
 	//completion
-	confDlg->ui.checkBoxCompletion->setChecked(completerConfig->enabled);
 	confDlg->ui.checkBoxCaseSensitive->setChecked(completerConfig->caseSensitive!=LatexCompleterConfig::CCS_CASE_INSENSITIVE);
 	confDlg->ui.checkBoxCaseSensitiveInFirstCharacter->setChecked(completerConfig->caseSensitive==LatexCompleterConfig::CCS_FIRST_CHARACTER_CASE_SENSITIVE);
-	confDlg->ui.checkBoxCompletePrefix->setChecked(completerConfig->completeCommonPrefix);
-	confDlg->ui.checkBoxEOWCompletes->setChecked(completerConfig->eowCompletes);
-	confDlg->ui.checkBoxToolTipHelp->setChecked(completerConfig->tooltipHelp);
-	confDlg->ui.checkBoxUsePlaceholders->setChecked(completerConfig->usePlaceholders);
 	
 	
-	QStringList languageFiles=findResourceFiles("translations","texmakerx_*.qm") 
+	lastLanguage = language;
+	QStringList languageFiles=findResourceFiles("translations","texmakerx_*.qm")
 							<< findResourceFiles("","texmakerx_*.qm");
 	int langId=-1;
 	for (int i=0;i<languageFiles.count();i++){
@@ -510,7 +586,6 @@ bool ConfigManager::execConfigDialog() {
 	}
 	
 	//preview
-	confDlg->ui.comboBoxPreviewMode->setCurrentIndex(previewMode);
 	confDlg->ui.comboBoxDvi2PngMode->setCurrentIndex(buildManager->dvi2pngMode);
 	
 	//--build things
@@ -583,14 +658,8 @@ bool ConfigManager::execConfigDialog() {
 	confDlg->ui.lineEditExecuteBeforeCompiling->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_PRECOMPILE));
 	confDlg->ui.lineEditUserquick->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_QUICK));
 	
-	confDlg->ui.checkBoxShowLog->setChecked(showLogAfterCompiling);
 	confDlg->ui.checkBoxRunAfterBibTeXChange->setChecked(runLaTeXBibTeXLaTeX);
 
-	confDlg->ui.cbAutoCheckin->setChecked(autoCheckinAfterSave);
-	confDlg->ui.cbSVNUndo->setChecked(svnUndo);
-	confDlg->ui.cbKeywordSubstitution->setChecked(svnKeywordSubstitution);
-	confDlg->ui.sbDirSearchDepth->setValue(svnSearchPathDepth);
-	
 	//menu shortcuts
 	QTreeWidgetItem * menuShortcuts=new QTreeWidgetItem((QTreeWidget*)0, QStringList() << QString(tr("Menus")));
 	foreach(QMenu* menu, managedMenus)
@@ -648,29 +717,14 @@ bool ConfigManager::execConfigDialog() {
 	confDlg->replacedIconsOnMenus=&replacedIconsOnMenus;
 
 	//appearance
-	confDlg->ui.checkBoxShowAdvancedOptions->setChecked(configShowAdvancedOptions);
 	QString displayedInterfaceStyle=interfaceStyle==""?tr("default"):interfaceStyle;
 	confDlg->ui.comboBoxInterfaceStyle->clear();
 	confDlg->ui.comboBoxInterfaceStyle->addItems(QStyleFactory::keys()<<tr("default"));
 	confDlg->ui.comboBoxInterfaceStyle->setCurrentIndex(confDlg->ui.comboBoxInterfaceStyle->findText(displayedInterfaceStyle));
 	confDlg->ui.comboBoxInterfaceStyle->setEditText(displayedInterfaceStyle);
-	confDlg->ui.comboBoxInterfaceFont->setCurrentFont(QFont(interfaceFontFamily));
-	confDlg->ui.spinBoxInterfaceFontSize->setValue(interfaceFontSize);
 
 	confDlg->ui.checkBoxTabbedLogView->setChecked(tabbedLogView);
 	confDlg->ui.checkBoxTabbedStructureView->setChecked(!newLeftPanelLayout);
-	
-	confDlg->ui.checkBoxDisplayModifyTime->setChecked(editorConfig->displayModifyTime);
-	confDlg->ui.checkBoxCloseSearchReplaceTogether->setChecked(editorConfig->closeSearchAndReplace);
-	confDlg->ui.checkBoxUseLineForSearch->setChecked(editorConfig->useLineForSearch);
-	confDlg->ui.checkBoxTabforMoveToPlaceholder->setChecked(editorConfig->useTabforMoveToPlaceholder);
-	
-	confDlg->ui.comboBoxInterfaceModernStyle->setCurrentIndex(modernStyle?1:0);
-	confDlg->ui.checkBoxUseTexmakerPalette->setChecked(useTexmakerPalette);
-
-	//editor font
-	confDlg->ui.comboBoxFont->lineEdit()->setText(editorConfig->editorFont.family());
-	confDlg->ui.spinBoxSize->setValue(editorConfig->editorFont.pointSize());
 
 	// custom higlighting
 	{
@@ -701,26 +755,19 @@ bool ConfigManager::execConfigDialog() {
 	bool executed = confDlg->exec();
 	//handle changes
 	if (executed) {
-		//files
-		newfile_encoding=QTextCodec::codecForName(confDlg->ui.comboBoxEncoding->currentText().toAscii().data());
-		autodetectLoadedFile=confDlg->ui.checkBoxAutoDetectOnLoad->isChecked();
-		ignoreLogFileNames=confDlg->ui.comboBoxIgnoreLogFileNames->currentIndex();
-		
-		if (maxRecentFiles!=confDlg->ui.spinBoxMaxRecentFiles->value() ||
-		   maxRecentProjects != confDlg->ui.spinBoxMaxRecentProjects->value()){
-			maxRecentFiles=confDlg->ui.spinBoxMaxRecentFiles->value();
-			maxRecentProjects=confDlg->ui.spinBoxMaxRecentProjects->value();
-			updateRecentFiles(true);
-		}
-		parseBibTeX=confDlg->ui.checkBoxParseBibTeX->isChecked();
-		parseMaster=confDlg->ui.checkBoxParseMaster->isChecked();
+		QList<void*> changedProperties;
+		//----------managed properties--------------------
+		for (int i=0;i<managedProperties.size();i++)
+			if (managedProperties[i].widgetOffset && managedProperties[i].readFromWidget(*((QWidget**)((char*)&confDlg->ui + managedProperties[i].widgetOffset))))
+				changedProperties << managedProperties[i].storage;
 
-		//dictionaries
-		spell_dic=confDlg->ui.comboBoxDictionaryFileName->currentText();
-		thesaurus_database=confDlg->ui.comboBoxThesaurusFileName->currentText();
+		//files
+		newFileEncoding=QTextCodec::codecForName(newFileEncodingName.toAscii().data());
+		
+		if (changedProperties.contains(&maxRecentFiles) || changedProperties.contains(&maxRecentProjects))
+			updateRecentFiles(true);
 
 		//editor
-		editorConfig->wordwrap=confDlg->ui.checkBoxWordwrap->isChecked();
 		editorConfig->autoindent=confDlg->ui.comboBoxAutoIndent->currentIndex()!=0;
 		editorConfig->weakindent=(confDlg->ui.comboBoxAutoIndent->currentIndex()&1)==1;
 		editorConfig->indentWithSpaces=confDlg->ui.comboBoxAutoIndent->currentIndex()>2;
@@ -735,14 +782,6 @@ bool ConfigManager::execConfigDialog() {
 			editorConfig->showlinemultiples=1;
 			break;
 		}
-		editorConfig->folding=confDlg->ui.checkBoxFolding->isChecked();
-		editorConfig->showlinestate=confDlg->ui.checkBoxLineState->isChecked();
-		editorConfig->showcursorstate=confDlg->ui.checkBoxState->isChecked();
-		editorConfig->realtimeChecking=confDlg->ui.checkBoxRealTimeCheck->isChecked();
-		editorConfig->inlineSpellChecking=confDlg->ui.checkBoxInlineSpellCheck->isChecked();
-		editorConfig->inlineReferenceChecking=confDlg->ui.checkBoxInlineReferenceCheck->isChecked();
-		editorConfig->inlineCitationChecking=confDlg->ui.checkBoxInlineCitationCheck->isChecked();
-		editorConfig->showWhitespace = confDlg->ui.checkBoxShowWhitespace->isChecked();
 		
 		//completion
 		completerConfig->enabled=confDlg->ui.checkBoxCompletion->isChecked();
@@ -786,13 +825,8 @@ bool ConfigManager::execConfigDialog() {
 		if (confDlg->ui.radioButton5->isChecked()) buildManager->quickmode=5;
 		if (confDlg->ui.radioButton6->isChecked()) buildManager->quickmode=6;
 
-		showLogAfterCompiling=confDlg->ui.checkBoxShowLog->isChecked();	
 		runLaTeXBibTeXLaTeX=confDlg->ui.checkBoxRunAfterBibTeXChange->isChecked();
 
-		autoCheckinAfterSave=confDlg->ui.cbAutoCheckin->isChecked();
-		svnUndo=confDlg->ui.cbSVNUndo->isChecked();
-		svnKeywordSubstitution=confDlg->ui.cbKeywordSubstitution->isChecked();
-		svnSearchPathDepth=confDlg->ui.sbDirSearchDepth->value();
 		
 		//key replacements
 		keyReplace.clear();
@@ -818,49 +852,24 @@ bool ConfigManager::execConfigDialog() {
 			mtb.actualActions=confDlg->customizableToolbars[i];
 		}
 
-		//appearance
-		configShowAdvancedOptions=confDlg->ui.checkBoxShowAdvancedOptions->isChecked();
 		//  interface
-		if (confDlg->ui.comboBoxInterfaceFont->currentFont().family()!=interfaceFontFamily ||
-			confDlg->ui.spinBoxInterfaceFontSize->value()!=interfaceFontSize) {
-			interfaceFontSize=confDlg->ui.spinBoxInterfaceFontSize->value();
-			interfaceFontFamily=confDlg->ui.comboBoxInterfaceFont->currentFont().family();
+		if (changedProperties.contains(&interfaceFontFamily) || changedProperties.contains(&interfaceFontSize))
 			QApplication::setFont(QFont(interfaceFontFamily, interfaceFontSize));
-		}
-		if (confDlg->ui.comboBoxInterfaceStyle->currentText()!=displayedInterfaceStyle || 
-			confDlg->ui.comboBoxInterfaceModernStyle->currentIndex()!=(modernStyle?1:0) ||
-			confDlg->ui.checkBoxUseTexmakerPalette->isChecked()!=useTexmakerPalette){
-			interfaceStyle=confDlg->ui.comboBoxInterfaceStyle->currentText();
-			if (interfaceStyle==tr("default")) 
-				interfaceStyle="";
-			modernStyle=confDlg->ui.comboBoxInterfaceModernStyle->currentIndex()==1;
-			useTexmakerPalette=confDlg->ui.checkBoxUseTexmakerPalette->isChecked();
+		if (changedProperties.contains(&displayedInterfaceStyle) || changedProperties.contains(&modernStyle) || changedProperties.contains(&useTexmakerPalette)){
+			if (interfaceStyle==tr("default")) interfaceStyle="";
 			setInterfaceStyle();
 		}
 	
 		// read checkbox and set logViewer accordingly
-		if (tabbedLogView!=confDlg->ui.checkBoxTabbedLogView->isChecked()) 
-			emit tabbedLogViewChanged(confDlg->ui.checkBoxTabbedLogView->isChecked());
-		tabbedLogView=confDlg->ui.checkBoxTabbedLogView->isChecked();
-		if (newLeftPanelLayout!=!confDlg->ui.checkBoxTabbedStructureView->isChecked())
-			emit newLeftPanelLayoutChanged(!confDlg->ui.checkBoxTabbedStructureView->isChecked());
-		newLeftPanelLayout=!confDlg->ui.checkBoxTabbedStructureView->isChecked();
-		
-		editorConfig->displayModifyTime=confDlg->ui.checkBoxDisplayModifyTime->isChecked();
-		editorConfig->closeSearchAndReplace=confDlg->ui.checkBoxCloseSearchReplaceTogether->isChecked();
-		editorConfig->useLineForSearch=confDlg->ui.checkBoxUseLineForSearch->isChecked();
-		editorConfig->useTabforMoveToPlaceholder=confDlg->ui.checkBoxTabforMoveToPlaceholder->isChecked();
-
+		if (changedProperties.contains(&tabbedLogView))
+			emit tabbedLogViewChanged(tabbedLogView);
+		if (newLeftPanelLayout != !confDlg->ui.checkBoxTabbedStructureView->isChecked()){
+			newLeftPanelLayout = !confDlg->ui.checkBoxTabbedStructureView->isChecked();
+			emit newLeftPanelLayoutChanged(newLeftPanelLayout);
+		}
 		//language
-		lastLanguage=language;
-		language = confDlg->ui.comboBoxLanguage->currentText();
 		if (language == tr("default")) language="";
 		if (language!=lastLanguage) loadTranslations(language);
-		
-		//  editor font
-		QString fam=confDlg->ui.comboBoxFont->lineEdit()->text();
-		int si=confDlg->ui.spinBoxSize->value();
-		editorConfig->editorFont=QFont (fam,si);
 
 		// custom highlighting
 		customEnvironments.clear();
@@ -1303,5 +1312,32 @@ void ConfigManager::treeWidgetToManagedLatexMenuTo() {
 			manipulatedMenus.insert(id,m);
 		}
 	}
+}
+
+
+void ConfigManager::registerOption(const QString& name, void* storage, PropertyType type, QVariant def, void* displayWidgetOffset){
+	ManagedProperty temp;
+	temp.name = name;
+	temp.storage = storage;
+	temp.type = type;
+	temp.def = def;
+	temp.widgetOffset = (ptrdiff_t)displayWidgetOffset;
+	managedProperties << temp;
+}
+
+void ConfigManager::registerOption(const QString& name, bool* storage, QVariant def, void* displayWidgetOffset){
+	registerOption(name, storage, PT_BOOL, def, displayWidgetOffset);
+}
+void ConfigManager::registerOption(const QString& name, int* storage, QVariant def, void* displayWidgetOffset){
+	registerOption(name, storage, PT_INT, def, displayWidgetOffset);
+}
+void ConfigManager::registerOption(const QString& name, QString* storage, QVariant def, void* displayWidgetOffset){
+	registerOption(name, storage, PT_STRING, def, displayWidgetOffset);
+}
+void ConfigManager::registerOption(const QString& name, QStringList* storage, QVariant def, void* displayWidgetOffset){
+	registerOption(name, storage, PT_STRINGLIST, def, displayWidgetOffset);
+}
+void ConfigManager::registerOption(const QString& name, QDateTime *storage, QVariant def, void* displayWidgetOffset){
+	registerOption(name, storage, PT_DATETIME, def, displayWidgetOffset);
 }
 

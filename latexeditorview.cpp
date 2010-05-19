@@ -424,7 +424,7 @@ void LatexEditorView::setLineMarkToolTip(const QString& tooltip){
 }
 void LatexEditorView::updateSettings(){
 	lineNumberPanel->setVerboseMode(config->showlinemultiples!=10);
-	editor->setFont(config->editorFont);
+	editor->setFont(QFont(config->fontFamily, config->fontSize));
 	editor->setLineWrapping(config->wordwrap);
 	editor->setFlag(QEditor::AutoIndent,config->autoindent);
 	editor->setFlag(QEditor::WeakIndent,config->weakindent);
@@ -1095,23 +1095,3 @@ void References::purgeLinksTo(QDocument *doc){
 	 }
 }
 
-
-//------------------------------------------------------------
-// Configuration
-//------------------------------------------------------------
-
-void LatexEditorViewConfig::readSettings(QSettings& settings){
-	//TODO: move more to this place
-	realtimeChecking=settings.value("Editor/Real-Time Spellchecking",true).toBool(); //named for compatibility reasons with older tmx versions
-	inlineSpellChecking=settings.value("Editor/Check Spelling",true).toBool();
-	inlineCitationChecking=settings.value("Editor/Check Citations",true).toBool();
-	inlineReferenceChecking=settings.value("Editor/Check References",true).toBool();
-	showWhitespace=settings.value("Editor/Show Whitespace",true).toBool();
-}
-void LatexEditorViewConfig::saveSettings(QSettings& settings){
-	settings.setValue("Editor/Real-Time Spellchecking",realtimeChecking);
-	settings.setValue("Editor/Check Spelling",inlineSpellChecking);
-	settings.setValue("Editor/Check Citations",inlineCitationChecking);
-	settings.setValue("Editor/Check References",inlineReferenceChecking);
-	settings.setValue("Editor/Show Whitespace",showWhitespace);
-}

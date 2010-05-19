@@ -86,7 +86,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	mainSpeller->spellcheckErrorFormat=m_formats->id("spellingMistake");
 
 	if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
-	else QDocument::setDefaultCodec(configManager.newfile_encoding);
+	else QDocument::setDefaultCodec(configManager.newFileEncoding);
 
 
 	QString qxsPath=QFileInfo(findResourceFile("qxs/tex.qnfa")).path();
@@ -929,8 +929,8 @@ void Texmaker::completerNeedsUpdate(){
 void Texmaker::fileNew(QString fileName) {
 	LatexDocument *doc=new LatexDocument();
 	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig,doc);
-	if (configManager.newfile_encoding)
-		edit->editor->setFileCodec(configManager.newfile_encoding);
+	if (configManager.newFileEncoding)
+		edit->editor->setFileCodec(configManager.newFileEncoding);
 	else
 		edit->editor->setFileCodec(QTextCodec::codecForName("utf-8"));
 
@@ -1059,8 +1059,8 @@ void Texmaker::fileNewFromTemplate() {
 		//set up new editor with template
 		LatexDocument *doc=new LatexDocument(this);
 		LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig,doc);
-		if (configManager.newfile_encoding)
-			edit->editor->setFileCodec(configManager.newfile_encoding);
+		if (configManager.newFileEncoding)
+			edit->editor->setFileCodec(configManager.newFileEncoding);
 		else
 			edit->editor->setFileCodec(QTextCodec::codecForName("utf-8"));
 
@@ -3175,7 +3175,7 @@ void Texmaker::GeneralOptions() {
 		createComboToolButton(spellToolBar,list,spellToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName(),comboSpell);
 
 		if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
-		else QDocument::setDefaultCodec(configManager.newfile_encoding);
+		else QDocument::setDefaultCodec(configManager.newFileEncoding);
 
 #if QT_VERSION >= 0x040500
 		if (thesaurusFileName!=configManager.thesaurus_database){
@@ -3403,6 +3403,7 @@ void Texmaker::viewExpandBlock() {
 }
 
 void Texmaker::masterDocumentChanged(LatexDocument * doc){
+	Q_UNUSED(doc);
 	Q_ASSERT(documents.singleMode()==!documents.masterDocument);
 	if (documents.singleMode()){
 		ToggleAct->setText(tr("Define Current Document as 'Master Document'"));
