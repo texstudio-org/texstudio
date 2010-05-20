@@ -2749,7 +2749,7 @@ void Texmaker::readFromStdoutput() {
 void Texmaker::SlotEndProcess(int err) {
 	ProcessX* procX = qobject_cast<ProcessX*> (sender());
 	FINPROCESS=true;
-	QString result=((err) ? "Process exited with error(s)" : "Process exited normally");
+	QString result=((err) ? tr("Process exited with error(s)") : tr("Process exited normally"));
 	if (err) ERRPROCESS=true;
 	outputView->insertMessageLine(result);
 	stat2->setText(QString(" %1 ").arg(tr("Ready")));
