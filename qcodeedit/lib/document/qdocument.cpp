@@ -2576,8 +2576,9 @@ void QDocumentLineHandle::addOverlay(const QFormatRange& over)
 void QDocumentLineHandle::removeOverlay(const QFormatRange& over)
 {
 	int i = m_overlays.removeAll(over);
-	if ( !i )
+	/*if ( !i )
 		qDebug("lost overlay");
+		*/
 	//setFlag(QDocumentLine::LayoutDirty, true);
 	if ( i )
 		setFlag(QDocumentLine::FormatsApplied, false);
