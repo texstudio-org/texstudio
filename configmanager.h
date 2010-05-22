@@ -92,6 +92,8 @@ public:
 	int lastHardWrapColumn;
 	bool lastHardWrapSmartScopeSelection;
 	bool lastHardWrapJoinLines;
+
+	int tabstop;
 	
 	//preview
 	enum PreviewMode {PM_TOOLTIP_AS_FALLBACK=0, PM_PANEL,PM_TOOLTIP,PM_BOTH};
