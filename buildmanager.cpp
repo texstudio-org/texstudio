@@ -398,7 +398,7 @@ QString BuildManager::defaultCommandOptions(LatexCommand cmd){
 		#endif
 		case CMD_PDFLATEX: return "-interaction=nonstopmode %.tex";
 		case CMD_DVIPDF: return "%.dvi";
-		case CMD_METAPOST: return "--interaction nonstopmode ?me)";
+		case CMD_METAPOST: return "-interaction=nonstopmode ?me)";
 		case CMD_VIEWDVI: return "%.dvi";
 		case CMD_VIEWPS: return "%.ps";
 		case CMD_VIEWPDF: return "%.pdf";
