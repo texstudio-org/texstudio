@@ -34,6 +34,7 @@
 #include "qsearchreplacepanel.h"
 #include "latexcompleter_config.h"
 #include "universalinputdialog.h"
+#include "insertgraphics.h"
 
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
@@ -308,24 +309,24 @@ void Texmaker::setupMenus() {
 
 //file
 	QMenu *menu=newManagedMenu("main/file",tr("&File"));
-	newManagedAction(menu, "new",tr("New"), SLOT(fileNew()), Qt::CTRL+Qt::Key_N, ":/images/filenew.png");
-	newManagedAction(menu, "newfromtemplate",tr("New from template"), SLOT(fileNewFromTemplate()));
-	newManagedAction(menu, "open",tr("Open"), SLOT(fileOpen()), Qt::CTRL+Qt::Key_O, ":/images/fileopen.png");
+	newManagedAction(menu, "new",tr("&New"), SLOT(fileNew()), Qt::CTRL+Qt::Key_N, ":/images/filenew.png");
+	newManagedAction(menu, "newfromtemplate",tr("New from &template"), SLOT(fileNewFromTemplate()));
+	newManagedAction(menu, "open",tr("&Open"), SLOT(fileOpen()), Qt::CTRL+Qt::Key_O, ":/images/fileopen.png");
 
 	QMenu *submenu=newManagedMenu(menu, "openrecent",tr("Open Recent")); //only create the menu here, actions are created by config manager
 	newManagedAction(menu, "restoresession",tr("Restore previous session"), SLOT(fileRestoreSession()));
 
 	menu->addSeparator();
-	newManagedAction(menu,"save",tr("Save"), SLOT(fileSave()), Qt::CTRL+Qt::Key_S, ":/images/filesave.png");
-	newManagedAction(menu,"saveas",tr("Save As"), SLOT(fileSaveAs()), Qt::CTRL+Qt::ALT+Qt::Key_S);
-	newManagedAction(menu,"saveall",tr("Save All"), SLOT(fileSaveAll()), Qt::CTRL+Qt::SHIFT+Qt::ALT+Qt::Key_S);
-	newManagedAction(menu, "maketemplate",tr("Make Template"), SLOT(fileMakeTemplate()));
-	newManagedAction(menu, "checkin",tr("Check in"), SLOT(fileCheckin()));
-	newManagedAction(menu, "showrevisions",tr("Show old Revisions"), SLOT(showOldRevisions()));
+	newManagedAction(menu,"save",tr("&Save"), SLOT(fileSave()), Qt::CTRL+Qt::Key_S, ":/images/filesave.png");
+	newManagedAction(menu,"saveas",tr("Save &As"), SLOT(fileSaveAs()), Qt::CTRL+Qt::ALT+Qt::Key_S);
+	newManagedAction(menu,"saveall",tr("Save A&ll"), SLOT(fileSaveAll()), Qt::CTRL+Qt::SHIFT+Qt::ALT+Qt::Key_S);
+	newManagedAction(menu, "maketemplate",tr("&Make Template"), SLOT(fileMakeTemplate()));
+	newManagedAction(menu, "checkin",tr("Check &in"), SLOT(fileCheckin()));
+	newManagedAction(menu, "showrevisions",tr("Sh&ow old Revisions"), SLOT(showOldRevisions()));
 
 	menu->addSeparator();
-	newManagedAction(menu,"close",tr("Close"), SLOT(fileClose()), Qt::CTRL+Qt::Key_W, ":/images/fileclose.png");
-	newManagedAction(menu,"closeall",tr("Close All"), SLOT(fileCloseAll()));
+	newManagedAction(menu,"close",tr("&Close"), SLOT(fileClose()), Qt::CTRL+Qt::Key_W, ":/images/fileclose.png");
+	newManagedAction(menu,"closeall",tr("Clos&e All"), SLOT(fileCloseAll()));
 
 	menu->addSeparator();
 	newManagedAction(menu, "print",tr("Print"), SLOT(filePrint()), Qt::CTRL+Qt::Key_P);
@@ -336,36 +337,36 @@ void Texmaker::setupMenus() {
 //edit
 
 	menu=newManagedMenu("main/edit",tr("&Edit"));
-	newManagedAction(menu, "undo",tr("Undo"), SLOT(editUndo()), Qt::CTRL+Qt::Key_Z, ":/images/undo.png");
-	newManagedAction(menu, "redo",tr("Redo"), SLOT(editRedo()), Qt::CTRL+Qt::Key_Y, ":/images/redo.png");
+	newManagedAction(menu, "undo",tr("&Undo"), SLOT(editUndo()), Qt::CTRL+Qt::Key_Z, ":/images/undo.png");
+	newManagedAction(menu, "redo",tr("&Redo"), SLOT(editRedo()), Qt::CTRL+Qt::Key_Y, ":/images/redo.png");
 
 	menu->addSeparator();
-	newManagedAction(menu,"copy",tr("Copy"), SLOT(editCopy()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_C)<<Qt::CTRL+Qt::Key_Insert, ":/images/editcopy.png");
-	newManagedAction(menu,"cut",tr("Cut"), SLOT(editCut()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_X)<<Qt::SHIFT+Qt::Key_Delete, ":/images/editcut.png");
-	newManagedAction(menu,"paste",tr("Paste"), SLOT(editPaste()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::SHIFT+Qt::Key_Insert, ":/images/editpaste.png");
-	newManagedAction(menu,"selectall",tr("Select All"), SLOT(editSelectAll()), Qt::CTRL+Qt::Key_A);
-	newManagedAction(menu,"eraseLine",tr("Erase Line"), SLOT(editEraseLine()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_K));
+	newManagedAction(menu,"copy",tr("&Copy"), SLOT(editCopy()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_C)<<Qt::CTRL+Qt::Key_Insert, ":/images/editcopy.png");
+	newManagedAction(menu,"cut",tr("C&ut"), SLOT(editCut()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_X)<<Qt::SHIFT+Qt::Key_Delete, ":/images/editcut.png");
+	newManagedAction(menu,"paste",tr("&Paste"), SLOT(editPaste()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::SHIFT+Qt::Key_Insert, ":/images/editpaste.png");
+	newManagedAction(menu,"selectall",tr("Select &All"), SLOT(editSelectAll()), Qt::CTRL+Qt::Key_A);
+	newManagedAction(menu,"eraseLine",tr("Erase &Line"), SLOT(editEraseLine()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_K));
 	menu->addSeparator();
-	newManagedAction(menu,"pasteAsLatex",tr("Paste as Latex"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, ":/images/editpaste.png");
-	newManagedAction(menu,"convertToLatex",tr("Convert to Latex"), SLOT(convertToLatex()));
-	newManagedAction(menu,"previewLatex",tr("Preview Selection/Parantheses"), SLOT(previewLatex()),Qt::ALT+Qt::Key_P);
+	newManagedAction(menu,"pasteAsLatex",tr("Pas&te as Latex"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, ":/images/editpaste.png");
+	newManagedAction(menu,"convertToLatex",tr("Co&nvert to Latex"), SLOT(convertToLatex()));
+	newManagedAction(menu,"previewLatex",tr("Pre&view Selection/Parantheses"), SLOT(previewLatex()),Qt::ALT+Qt::Key_P);
 
 	if (LatexEditorView::getBaseActions().empty()) //only called at first menu created
 		LatexEditorView::setBaseActions(menu->actions());
 
 	menu->addSeparator();
-	newManagedAction(menu,"comment", tr("Comment"), SLOT(editComment()));
-	newManagedAction(menu,"uncomment",tr("Uncomment"), SLOT(editUncomment()));
-	newManagedAction(menu,"indent",tr("Indent"), SLOT(editIndent()));
-	newManagedAction(menu,"unindent",tr("Unindent"), SLOT(editUnindent()));
-	newManagedAction(menu,"hardbreak",tr("Hard Line Break"), SLOT(editHardLineBreak()));
-	newManagedAction(menu,"hardbreakrepeat",tr("Repeat Hard Line Break"), SLOT(editHardLineBreakRepeat()));
+	newManagedAction(menu,"comment", tr("Co&mment"), SLOT(editComment()));
+	newManagedAction(menu,"uncomment",tr("&Uncomment"), SLOT(editUncomment()));
+	newManagedAction(menu,"indent",tr("In&dent"), SLOT(editIndent()));
+	newManagedAction(menu,"unindent",tr("Unind&ent"), SLOT(editUnindent()));
+	newManagedAction(menu,"hardbreak",tr("Hard Line &Break"), SLOT(editHardLineBreak()));
+	newManagedAction(menu,"hardbreakrepeat",tr("R&epeat Hard Line Break"), SLOT(editHardLineBreakRepeat()));
 
 	menu->addSeparator();
-	newManagedAction(menu,"find", tr("Find"), SLOT(editFind()), Qt::CTRL+Qt::Key_F);
-	newManagedAction(menu,"findnext",tr("Find Next"), SLOT(editFindNext()), Qt::CTRL+Qt::Key_M);
-	newManagedAction(menu,"findglobal",tr("Find Dialog"), SLOT(editFindGlobal()));
-	newManagedAction(menu,"replace",tr("Replace"), SLOT(editReplace()), Qt::CTRL+Qt::Key_R);
+	newManagedAction(menu,"find", tr("&Find"), SLOT(editFind()), Qt::CTRL+Qt::Key_F);
+	newManagedAction(menu,"findnext",tr("Find &Next"), SLOT(editFindNext()), Qt::CTRL+Qt::Key_M);
+	newManagedAction(menu,"findglobal",tr("Find D&ialog"), SLOT(editFindGlobal()));
+	newManagedAction(menu,"replace",tr("&Replace"), SLOT(editReplace()), Qt::CTRL+Qt::Key_R);
 
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "goto",tr("Go to"));
@@ -437,28 +438,28 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "quickbuild",tr("Quick Build"), SLOT(QuickBuild()), Qt::Key_F1, ":/images/quick.png");
 
 	menu->addSeparator();
-	newManagedAction(menu, "latex",tr("LaTeX"), SLOT(commandFromAction()), Qt::Key_F2, ":/images/latex.png")->setData(BuildManager::CMD_LATEX);
-	newManagedAction(menu, "viewdvi",tr("View Dvi"), SLOT(commandFromAction()), Qt::Key_F3, ":/images/viewdvi.png")->setData(BuildManager::CMD_VIEWDVI);
-	newManagedAction(menu, "dvi2ps",tr("Dvi->PS"), SLOT(commandFromAction()), Qt::Key_F4, ":/images/dvips.png")->setData(BuildManager::CMD_DVIPS);
-	newManagedAction(menu, "viewps",tr("View PS"), SLOT(commandFromAction()), Qt::Key_F5, ":/images/viewps.png")->setData(BuildManager::CMD_VIEWPS);
-	newManagedAction(menu, "pdflatex",tr("PDFLaTeX"), SLOT(commandFromAction()), Qt::Key_F6, ":/images/pdflatex.png")->setData(BuildManager::CMD_PDFLATEX);
-	newManagedAction(menu, "viewpdf",tr("View PDF"), SLOT(commandFromAction()), Qt::Key_F7, ":/images/viewpdf.png")->setData(BuildManager::CMD_VIEWPDF);
-	newManagedAction(menu, "ps2pdf",tr("PS->PDF"), SLOT(commandFromAction()), Qt::Key_F8, ":/images/ps2pdf.png")->setData(BuildManager::CMD_PS2PDF);
-	newManagedAction(menu, "dvipdf",tr("DVI->PDF"), SLOT(commandFromAction()), Qt::Key_F9, ":/images/dvipdf.png")->setData(BuildManager::CMD_DVIPDF);
-	newManagedAction(menu, "viewlog",tr("View Log"), SLOT(RealViewLog()), Qt::Key_F10, ":/images/viewlog.png");
-	newManagedAction(menu, "bibtex",tr("BibTeX"), SLOT(commandFromAction()), Qt::Key_F11)->setData(BuildManager::CMD_BIBTEX);
-	newManagedAction(menu, "makeindex",tr("MakeIndex"), SLOT(commandFromAction()), Qt::Key_F12)->setData(BuildManager::CMD_MAKEINDEX);
-	newManagedAction(menu, "clearmarkers",tr("Clear Markers"), SLOT(ClearMarkers()));
+	newManagedAction(menu, "latex",tr("&LaTeX"), SLOT(commandFromAction()), Qt::Key_F2, ":/images/latex.png")->setData(BuildManager::CMD_LATEX);
+	newManagedAction(menu, "viewdvi",tr("&View Dvi"), SLOT(commandFromAction()), Qt::Key_F3, ":/images/viewdvi.png")->setData(BuildManager::CMD_VIEWDVI);
+	newManagedAction(menu, "dvi2ps",tr("&Dvi->PS"), SLOT(commandFromAction()), Qt::Key_F4, ":/images/dvips.png")->setData(BuildManager::CMD_DVIPS);
+	newManagedAction(menu, "viewps",tr("Vie&w PS"), SLOT(commandFromAction()), Qt::Key_F5, ":/images/viewps.png")->setData(BuildManager::CMD_VIEWPS);
+	newManagedAction(menu, "pdflatex",tr("&PDFLaTeX"), SLOT(commandFromAction()), Qt::Key_F6, ":/images/pdflatex.png")->setData(BuildManager::CMD_PDFLATEX);
+	newManagedAction(menu, "viewpdf",tr("View PD&F"), SLOT(commandFromAction()), Qt::Key_F7, ":/images/viewpdf.png")->setData(BuildManager::CMD_VIEWPDF);
+	newManagedAction(menu, "ps2pdf",tr("P&S->PDF"), SLOT(commandFromAction()), Qt::Key_F8, ":/images/ps2pdf.png")->setData(BuildManager::CMD_PS2PDF);
+	newManagedAction(menu, "dvipdf",tr("DV&I->PDF"), SLOT(commandFromAction()), Qt::Key_F9, ":/images/dvipdf.png")->setData(BuildManager::CMD_DVIPDF);
+	newManagedAction(menu, "viewlog",tr("View &Log"), SLOT(RealViewLog()), Qt::Key_F10, ":/images/viewlog.png");
+	newManagedAction(menu, "bibtex",tr("&BibTeX"), SLOT(commandFromAction()), Qt::Key_F11)->setData(BuildManager::CMD_BIBTEX);
+	newManagedAction(menu, "makeindex",tr("&MakeIndex"), SLOT(commandFromAction()), Qt::Key_F12)->setData(BuildManager::CMD_MAKEINDEX);
+	newManagedAction(menu, "clearmarkers",tr("&Clear Markers"), SLOT(ClearMarkers()));
 
 	menu->addSeparator();
-	newManagedAction(menu, "metapost",tr("MetaPost"), SLOT(commandFromAction()))->setData(BuildManager::CMD_METAPOST);
+	newManagedAction(menu, "metapost",tr("&MetaPost"), SLOT(commandFromAction()))->setData(BuildManager::CMD_METAPOST);
 	menu->addSeparator();
-	newManagedAction(menu, "clean",tr("Clean"), SLOT(CleanAll()));
+	newManagedAction(menu, "clean",tr("Cle&an"), SLOT(CleanAll()));
 	menu->addSeparator();
-	newManagedAction(menu, "htmlexport",tr("Convert to Html"), SLOT(WebPublish()));
+	newManagedAction(menu, "htmlexport",tr("C&onvert to Html"), SLOT(WebPublish()));
 	menu->addSeparator();
-	newManagedAction(menu, "analysetext",tr("Analyse Text"), SLOT(AnalyseText()));
-	newManagedAction(menu, "generaterandomtext",tr("Generate Random Text"), SLOT(GenerateRandomText()));
+	newManagedAction(menu, "analysetext",tr("A&nalyse Text"), SLOT(AnalyseText()));
+	newManagedAction(menu, "generaterandomtext",tr("Generate &Random Text"), SLOT(GenerateRandomText()));
 
 //  Latex/Math external
 	configManager.loadManagedMenus(":/uiconfig.xml");
@@ -470,21 +471,22 @@ void Texmaker::setupMenus() {
 //wizards
 
 	menu=newManagedMenu("main/wizards",tr("&Wizards"));
-	newManagedAction(menu, "start",tr("Quick Start"), SLOT(QuickDocument()));
-	newManagedAction(menu, "letter",tr("Quick Letter"), SLOT(QuickLetter()));
+	newManagedAction(menu, "start",tr("Quick &Start"), SLOT(QuickDocument()));
+	newManagedAction(menu, "letter",tr("Quick &Letter"), SLOT(QuickLetter()));
 
 	menu->addSeparator();
-	newManagedAction(menu, "tabular",tr("Quick Tabular"), SLOT(QuickTabular()));
-	newManagedAction(menu, "tabbing",tr("Quick Tabbing"), SLOT(QuickTabbing()));
-	newManagedAction(menu, "array",tr("Quick Array"), SLOT(QuickArray()));
+	newManagedAction(menu, "tabular",tr("Quick &Tabular"), SLOT(QuickTabular()));
+	newManagedAction(menu, "tabbing",tr("Quick T&abbing"), SLOT(QuickTabbing()));
+	newManagedAction(menu, "array",tr("Quick &Array"), SLOT(QuickArray()));
+	newManagedAction(menu, "graphic",tr("Insert &Graphic"), SLOT(QuickGraphics()));
 
 	menu=newManagedMenu("main/bibtex",tr("&Bibliography"));
 	foreach (const BibTeXType& bt, BibTeXDialog::getPossibleBibTeXTypes())
 		newManagedAction(menu,bt.name.mid(1), bt.description, SLOT(InsertBibEntryFromAction()))->setData(bt.name);
 	menu->addSeparator();
-	newManagedAction(menu, "clean", tr("Clean"), SLOT(CleanBib()));
+	newManagedAction(menu, "clean", tr("&Clean"), SLOT(CleanBib()));
 	menu->addSeparator();
-	newManagedAction(menu, "dialog", tr("BibTeX insert dialog"), SLOT(InsertBibEntry()));
+	newManagedAction(menu, "dialog", tr("BibTeX &insert dialog"), SLOT(InsertBibEntry()));
 
 
 //  User
@@ -2359,6 +2361,45 @@ void Texmaker::QuickArray() {
 		else tag +=QString("\n\\end{")+env+"} ";
 		InsertTag(tag,0,0);
 	}
+}
+
+void Texmaker::QuickGraphics(){
+    if (!currentEditorView())	return;
+
+    InsertGraphics *graphicsDlg = new InsertGraphics(this,"Insert Graphic");
+    if (graphicsDlg->exec()) {
+	QString insert;
+	if(graphicsDlg->ui.cbFloat->isChecked()){
+	    insert.append("\\begin{figure}");
+	    QString placement;
+	    if(graphicsDlg->ui.cbHere->isChecked()) placement.append("h");
+	    if(graphicsDlg->ui.cbBottom->isChecked()) placement.append("b");
+	    if(graphicsDlg->ui.cbTop->isChecked()) placement.append("t");
+	    if(graphicsDlg->ui.cbPage->isChecked()) placement.append("p");
+	    if(!placement.isEmpty()){
+		insert.append("["+placement+"]");
+	    }
+	    insert.append("\n");
+	}
+	if(graphicsDlg->ui.cbPosition->currentIndex()==0){
+	    if(!graphicsDlg->ui.leCaption->text().isEmpty()) insert.append("\\caption{"+graphicsDlg->ui.leCaption->text()+"}\n");
+	    if(!graphicsDlg->ui.leLabel->text().isEmpty()) insert.append("\\label{"+graphicsDlg->ui.leLabel->text()+"}\n");
+	}
+	insert.append("\\includegraphics");
+	if(!graphicsDlg->ui.leScale->text().isEmpty()) insert.append("["+graphicsDlg->ui.leScale->text()+"]");
+	insert.append("{"+graphicsDlg->ui.lineEdit->text()+"}\n");
+	// caption below ?
+	if(graphicsDlg->ui.cbPosition->currentIndex()==1){
+	    if(!graphicsDlg->ui.leCaption->text().isEmpty()) insert.append("\\caption{"+graphicsDlg->ui.leCaption->text()+"}\n");
+	    if(!graphicsDlg->ui.leLabel->text().isEmpty()) insert.append("\\label{"+graphicsDlg->ui.leLabel->text()+"}\n");
+	}
+	if(graphicsDlg->ui.cbFloat->isChecked()){
+	    insert.append("\\end{figure}\n");
+	}
+	int lines=insert.count("\n");
+	InsertTag(insert,0,lines);
+    }
+
 }
 
 void Texmaker::QuickTabbing() {

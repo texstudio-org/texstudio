@@ -86,6 +86,7 @@ HEADERS += texmaker.h \
     universalinputdialog.h \
     hunspell/replist.hxx \
     scriptengine.h \
+    insertgraphics.h \
     tmxtabwidget.h
 SOURCES += main.cpp \
     buildmanager.cpp \
@@ -146,10 +147,12 @@ SOURCES += main.cpp \
     latexdocument.cpp \
     universalinputdialog.cpp \
     scriptengine.cpp \
+    insertgraphics.cpp \
     tmxtabwidget.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
+    insertgraphics.ui \
     tabbingdialog.ui \
     arraydialog.ui \
     tabdialog.ui \
