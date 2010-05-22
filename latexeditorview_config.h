@@ -12,6 +12,7 @@ public:
 	bool autoindent, weakindent;
 	bool indentWithSpaces;
 	bool showWhitespace;
+	int tabStop;
 	int showlinemultiples;
 	bool folding, showlinestate, showcursorstate, realtimeChecking;	
 	bool inlineSpellChecking, inlineCitationChecking, inlineReferenceChecking;

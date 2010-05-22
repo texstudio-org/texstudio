@@ -438,7 +438,7 @@ void LatexEditorView::updateSettings(){
 	editor->setUseLineForSearch(config->useLineForSearch);
 	editor->setUseTabforMoveToPlaceholder(config->useTabforMoveToPlaceholder);
 	QDocument::setShowSpaces(config->showWhitespace?(QDocument::ShowTrailing | QDocument::ShowLeading | QDocument::ShowTabs):QDocument::ShowNone);
-
+	QDocument::setTabStop(config->tabStop);
 
 	environmentFormat=QDocument::formatFactory()->id("environment");
 	referenceMultipleFormat=QDocument::formatFactory()->id("referenceMultiple");
