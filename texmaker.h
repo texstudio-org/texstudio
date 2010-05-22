@@ -275,6 +275,7 @@ private slots:
 	void QuickTabbing();
 	void QuickLetter();
 	void QuickDocument();
+	void QuickGraphics();
 
 	void runCommand(BuildManager::LatexCommand cmd,bool waitendprocess,bool showStdout);
 	void runCommand(QString comd,bool waitendprocess,bool showStdout, bool compileLatex=false,QString *buffer=0);
