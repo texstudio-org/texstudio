@@ -75,7 +75,7 @@ QNFABranch::~QNFABranch()
 }
 
 inline bool isWord(QChar c)
-{ return c.isLetterOrNumber() || (c.unicode() == '_'); }
+{ return c.isLetterOrNumber(); } //see qdocument.cpp isWord || (c.unicode() == '_'); }
 
 static bool match(QChar cc, QNFA *chain)
 {
@@ -110,7 +110,7 @@ static bool match(QChar cc, QNFA *chain)
 				if ( ass & NonSpace )
 					return found;
 				
-				if ( cc.isLetterOrNumber() || (cu == '_') )
+				if ( isWord(cc) )
 				{
 					if ( ass & Word )
 						return found;
