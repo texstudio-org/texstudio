@@ -106,7 +106,7 @@ static QPoint m_spaceSign[] = {
 };
 
 inline static bool isWord(QChar c)
-{ return c.isLetterOrNumber() || (c == QLatin1Char('_')); }
+{ return c.isLetterOrNumber(); } // see qnfa.cpp isWord  || (c == QLatin1Char('_')); }, _ is no word character in LaTeX
 
 inline static bool isDelimiter(QChar c)
 {
