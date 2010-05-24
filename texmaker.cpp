@@ -1743,6 +1743,11 @@ void Texmaker::editSectionPasteBefore(int line) {
 
 /////////////// CONFIG ////////////////////
 void Texmaker::ReadSettings() {
+
+	QuickDocumentDialog::registerOptions(configManager);
+
+	configManager.registerOption("User/Templates",&userTemplatesList);
+
 	configManager.buildManager=&buildManager;
 	QSettings *config=configManager.readSettings();
 
@@ -1762,17 +1767,6 @@ void Texmaker::ReadSettings() {
 	tobemaximized=config->value("MainWindow/Maximized",false).toBool();
 	tobefullscreen=config->value("MainWindow/FullScreen",false).toBool();
 
-
-	showoutputview=config->value("Show/OutputView",true).toBool();
-	showstructview=config->value("Show/Structureview",true).toBool();
-
-	userClassList=config->value("Tools/User Class").toStringList();
-	userPaperList=config->value("Tools/User Paper").toStringList();
-	userEncodingList=config->value("Tools/User Encoding").toStringList();
-	userOptionsList=config->value("Tools/User Options").toStringList();
-
-	userTemplatesList=config->value("User/Templates").toStringList();
-
 	/*for (int i=0; i<=9; i++) {
 		UserMenuName[i]=config->value(QString("User/Menu%1").arg(i+1),"").toString();
 		UserMenuTag[i]=config->value(QString("User/Tag%1").arg(i+1),"").toString();
@@ -1780,6 +1774,8 @@ void Texmaker::ReadSettings() {
 	UserMenuName=config->value("User/TagNames",QStringList()<<""<<""<<""<<""<<""<<""<<""<<""<<""<<"").toStringList();
 	UserMenuTag=config->value("User/Tags",QStringList()<<""<<""<<""<<""<<""<<""<<""<<""<<""<<"").toStringList();
 	UserMenuAbbrev=config->value("User/TagAbbrevs",QStringList()<<""<<""<<""<<""<<""<<""<<""<<""<<""<<"").toStringList();
+	UserToolName << ""<< ""<< ""<< ""<< "";
+	UserToolCommand<< ""<< ""<< ""<< ""<< "";
 	for (int i=0; i<=4; i++) {
 		UserToolName[i]=config->value(QString("User/ToolName%1").arg(i+1),"").toString();
 		UserToolCommand[i]=config->value(QString("User/Tool%1").arg(i+1),"").toString();
@@ -1797,14 +1793,6 @@ void Texmaker::ReadSettings() {
 			i++;
 		}
 	}
-
-	document_class=config->value("Quick/Class","article").toString();
-	typeface_size=config->value("Quick/Typeface","10pt").toString();
-	paper_size=config->value("Quick/Papersize","a4paper").toString();
-	document_encoding=config->value("Quick/Encoding","latin1").toString();
-	ams_packages=config->value("Quick/AMS",true).toBool();
-	makeidx_package=config->value("Quick/MakeIndex",false).toBool();
-	author=config->value("Quick/Author","").toString();
 
 #if QT_VERSION >= 0x040500
 	if (QFile::exists(configManager.thesaurus_database)) {
@@ -1864,19 +1852,6 @@ void Texmaker::SaveSettings() {
 	config->setValue("Geometries/MainwindowX", x());
 	config->setValue("Geometries/MainwindowY", y());
 
-
-	config->setValue("Show/OutputView",showoutputview);
-
-	config->setValue("Show/Structureview",showstructview);
-
-	if (userClassList.count()>0)
-		config->setValue("Tools/User Class",userClassList);  // not removable , okay this way ?
-	if (userPaperList.count()>0) config->setValue("Tools/User Paper",userPaperList);
-	if (userEncodingList.count()>0) config->setValue("Tools/User Encoding",userEncodingList);
-	if (userOptionsList.count()>0) config->setValue("Tools/User Options",userOptionsList);
-
-	config->setValue("User/Templates",userTemplatesList);
-
 	config->setValue("Files/RestoreSession",ToggleRememberAct->isChecked());
 	//always store session for manual reload
 	QStringList curFiles;//store in order
@@ -1900,16 +1875,6 @@ void Texmaker::SaveSettings() {
 	for(int i=0;i<struct_level.count();i++)
 	    config->setValue("Structure/Structure Level "+QString::number(i+1),struct_level[i]);
 
-	config->setValue("Quick/Class",document_class);
-
-	config->setValue("Quick/Typeface",typeface_size);
-	config->setValue("Quick/Papersize",paper_size);
-	config->setValue("Quick/Encoding",document_encoding);
-	config->setValue("Quick/AMS",ams_packages);
-
-	config->setValue("Quick/MakeIndex",makeidx_package);
-	config->setValue("Quick/Author",author);
-
 	//for (int i=0; i <412 ; i++) {
 	//	config->setValue("Symbols/symbol"+QString::number(i),symbolScore[i]);
 	//}
@@ -1931,9 +1896,6 @@ void Texmaker::SaveSettings() {
 	config->setValue("Symbols/Favorite IDs",symbolFavorites);
 
 	config->setValue("Symbols/hiddenlists",leftPanel->hiddenWidgets());
-
-
-
 	config->endGroup();
 
 	config->beginGroup("formats");
@@ -2464,77 +2426,17 @@ void Texmaker::QuickLetter() {
 }
 
 void Texmaker::QuickDocument() {
-	QString opt="";
-	int li=3;
-	int f;
 	if (!currentEditorView()) {
 		fileNew();
-		if (!currentEditorView()) return;
+		Q_ASSERT(currentEditorView());
 	}
-	QString tag=QString("\\documentclass[");
-	QuickDocumentDialog *startDlg = new QuickDocumentDialog(this,"Quick Start");
-	startDlg->otherClassList=userClassList;
-	startDlg->otherPaperList=userPaperList;
-	startDlg->otherEncodingList=userEncodingList;
-	startDlg->otherOptionsList=userOptionsList;
+	QuickDocumentDialog *startDlg = new QuickDocumentDialog(this,tr("Quick Start"));
 	startDlg->Init();
-	f=startDlg->ui.comboBoxClass->findText(document_class,Qt::MatchExactly | Qt::MatchCaseSensitive);
-	startDlg->ui.comboBoxClass->setCurrentIndex(f);
-	f=startDlg->ui.comboBoxSize->findText(typeface_size,Qt::MatchExactly | Qt::MatchCaseSensitive);
-	startDlg->ui.comboBoxSize->setCurrentIndex(f);
-	f=startDlg->ui.comboBoxPaper->findText(paper_size,Qt::MatchExactly | Qt::MatchCaseSensitive);
-	startDlg->ui.comboBoxPaper->setCurrentIndex(f);
-	f=startDlg->ui.comboBoxEncoding->findText(document_encoding,Qt::MatchExactly | Qt::MatchCaseSensitive);
-	startDlg->ui.comboBoxEncoding->setCurrentIndex(f);
-	startDlg->ui.checkBoxAMS->setChecked(ams_packages);
-	startDlg->ui.checkBoxIDX->setChecked(makeidx_package);
-	startDlg->ui.lineEditAuthor->setText(author);
 	if (startDlg->exec()) {
-		tag+=startDlg->ui.comboBoxSize->currentText()+QString(",");
-		tag+=startDlg->ui.comboBoxPaper->currentText();
-		QList<QListWidgetItem *> selectedItems=startDlg->ui.listWidgetOptions->selectedItems();
-		for (int i = 0; i < selectedItems.size(); ++i) {
-			if (selectedItems.at(i)) opt+=QString(",")+selectedItems.at(i)->text();
-		}
-		tag+=opt+QString("]{");
-		tag+=startDlg->ui.comboBoxClass->currentText()+QString("}");
-		tag+=QString("\n");
-		if (startDlg->ui.comboBoxEncoding->currentText()!="NONE") tag+=QString("\\usepackage[")+startDlg->ui.comboBoxEncoding->currentText()+QString("]{inputenc}");
-		tag+=QString("\n");
-		if (startDlg->ui.comboBoxEncoding->currentText().startsWith("utf8x")) {
-			tag+=QString("\\usepackage{ucs}\n");
-			li=li+1;
-		}
-		if (startDlg->ui.checkBoxAMS->isChecked()) {
-			tag+=QString("\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}\n");
-			li=li+3;
-		}
-		if (startDlg->ui.checkBoxIDX->isChecked()) {
-			tag+=QString("\\usepackage{makeidx}\n");
-			li=li+1;
-		}
-		if (startDlg->ui.lineEditAuthor->text()!="") {
-			tag+="\\author{"+startDlg->ui.lineEditAuthor->text()+"}\n";
-			li=li+1;
-		}
-		if (startDlg->ui.lineEditTitle->text()!="") {
-			tag+="\\title{"+startDlg->ui.lineEditTitle->text()+"}\n";
-			li=li+1;
-		}
-		tag+=QString("\\begin{document}\n\n\\end{document}");
-		InsertTag(tag,0,li);
-		document_class=startDlg->ui.comboBoxClass->currentText();
-		typeface_size=startDlg->ui.comboBoxSize->currentText();
-		paper_size=startDlg->ui.comboBoxPaper->currentText();
-		document_encoding=startDlg->ui.comboBoxEncoding->currentText();
-		ams_packages=startDlg->ui.checkBoxAMS->isChecked();
-		makeidx_package=startDlg->ui.checkBoxIDX->isChecked();
-		author=startDlg->ui.lineEditAuthor->text();
-		userClassList=startDlg->otherClassList;
-		userPaperList=startDlg->otherPaperList;
-		userEncodingList=startDlg->otherEncodingList;
-		userOptionsList=startDlg->otherOptionsList;
+		Q_ASSERT(currentEditor());
+		currentEditor()->insertTextAtCursor(startDlg->getNewDocumentText());
 	}
+	delete startDlg;
 }
 
 

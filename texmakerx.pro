@@ -87,7 +87,8 @@ HEADERS += texmaker.h \
     hunspell/replist.hxx \
     scriptengine.h \
     insertgraphics.h \
-    tmxtabwidget.h
+    tmxtabwidget.h \
+    configmanagerinterface.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -177,18 +178,17 @@ TRANSLATIONS += texmakerx_fr.ts \
     texmakerx_hu.ts
 
 # ###############################
-win32 { 
-    RC_FILE = win.rc
-}
-
+win32:RC_FILE = win.rc
 
 # ##############################
 macx { 
-    # make sure that the documentation is right 
+    # make sure that the documentation is right
     config += unix
-
+    
     # #universal tiger
-    CONFIG += link_prl x86 ppc
+    CONFIG += link_prl \
+        x86 \
+        ppc
     QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
     QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.4
     target.path = /Applications
@@ -217,11 +217,10 @@ unix:!macx {
 }
 
 # ##########UNIX + MACX###############
-unix {
+unix { 
     UI_DIR = .ui
     MOC_DIR = .moc
     OBJECTS_DIR = .obj
-
     utilities.files += utilities/doc1.png \
         utilities/doc10.png \
         utilities/doc11.png \
@@ -275,8 +274,8 @@ unix {
         utilities/AUTHORS \
         utilities/COPYING \
         utilities/CHANGELOG.txt
-
-    INSTALLS += target utilities
+    INSTALLS += target \
+        utilities
 }
 
 # ##########QCODEEDIT###############
