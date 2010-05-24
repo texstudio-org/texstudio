@@ -4231,7 +4231,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 
 	bool hasSelection = c.hasSelection();
 
-	bool beginNewMacro = !m_doc->hasMacros() && (hasSelection || flag(Overwrite) || lines.size()>0);
+	bool beginNewMacro = !m_doc->hasMacros() && (hasSelection || flag(Overwrite) || lines.size()>1);
 	if (beginNewMacro)
 		m_doc->beginMacro();
 
