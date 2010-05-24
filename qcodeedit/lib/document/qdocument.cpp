@@ -1470,6 +1470,13 @@ void QDocument::endMacro()
 }
 
 /*!
+	\brief Is a macro active
+*/
+bool QDocument::hasMacros(){
+	return m_impl?m_impl->hasChangeBlocks():false;
+}
+
+/*!
 	\brief Get an available group id for matches
 */
 int QDocument::getNextGroupId()
@@ -6276,6 +6283,9 @@ void QDocumentPrivate::endChangeBlock()
 	execute(b);
 }
 
+bool QDocumentPrivate::hasChangeBlocks(){
+	return m_macros.count()!=0;
+}
 /*!
 	\brief Acquire group id
 */

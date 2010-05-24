@@ -195,6 +195,7 @@ class QCE_EXPORT QDocument : public QObject
 		
 		void beginMacro();
 		void endMacro();
+		bool hasMacros();
 		
 		QFormatScheme* formatScheme() const;
 		void setFormatScheme(QFormatScheme *f);
