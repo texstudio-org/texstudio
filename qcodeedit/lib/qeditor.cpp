@@ -4226,16 +4226,21 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 {
 	if ( protectedCursor(c) )
 		return;
-	
+
+	QStringList lines = text.split('\n', QString::KeepEmptyParts);
+
 	bool hasSelection = c.hasSelection();
-	
+
+	bool beginNewMacro = !m_doc->hasMacros() && (hasSelection || flag(Overwrite) || lines.size()>0);
+	if (beginNewMacro)
+		m_doc->beginMacro();
+
 	if ( hasSelection )
 		c.removeSelectedText();
 	
 	if ( !hasSelection && flag(Overwrite) && !c.atLineEnd() )
 		c.deleteChar();
 	
-	QStringList lines = text.split('\n', QString::KeepEmptyParts);
 	
 	if ( (lines.count() == 1) || !flag(AdjustIndent)  || !flag(AutoIndent)) //|| flag(WeakIndent) || !flag(AdjustIndent)  || !flag(AutoIndent))
 	{
@@ -4295,6 +4300,9 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 			c.insertText(l);
 		}
 	}
+
+	if (beginNewMacro)
+		m_doc->endMacro();
 }
 
 void QEditor::insertTextAtCursor(const QString& text){

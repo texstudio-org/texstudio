@@ -92,6 +92,7 @@ class QCE_EXPORT QDocumentPrivate
 		
 		void beginChangeBlock();
 		void endChangeBlock();
+		bool hasChangeBlocks();
 		
 		inline int maxMarksPerLine() const
 		{ return m_maxMarksPerLine; }
