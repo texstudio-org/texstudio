@@ -1342,3 +1342,22 @@ void ConfigManager::registerOption(const QString& name, QDateTime *storage, QVar
 	registerOption(name, storage, PT_DATETIME, def, displayWidgetOffset);
 }
 
+void ConfigManager::registerOption(const QString& name, void* storage, PropertyType type, QVariant def){
+	registerOption(name, storage, type, def, 0);
+}
+
+void ConfigManager::registerOption(const QString& name, bool* storage, QVariant def){
+	registerOption(name, storage, def, 0);
+}
+void ConfigManager::registerOption(const QString& name, int* storage, QVariant def){
+	registerOption(name, storage, def, 0);
+}
+void ConfigManager::registerOption(const QString& name, QString* storage, QVariant def){
+	registerOption(name, storage, def, 0);
+}
+void ConfigManager::registerOption(const QString& name, QStringList* storage, QVariant def){
+	registerOption(name, storage, def, 0);
+}
+void ConfigManager::registerOption(const QString& name, QDateTime* storage, QVariant def){
+	registerOption(name, storage, def, 0);
+}

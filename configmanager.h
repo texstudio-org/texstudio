@@ -4,7 +4,7 @@
 #include "mostQtHeaders.h"
 
 #include "buildmanager.h"
-
+#include "configmanagerinterface.h"
 
 class ConfigDialog;
 class LatexCompleterConfig;
@@ -19,7 +19,6 @@ struct ManagedToolBar{
 	ManagedToolBar(const QString &newName, const QStringList &defs);
 };
 
-enum PropertyType {PT_VOID = 0, PT_INT, PT_BOOL, PT_STRING, PT_STRINGLIST, PT_DATETIME};
 
 struct ManagedProperty{ //TODO: Merge with the universal input dialog
 	QString name;
@@ -35,7 +34,7 @@ struct ManagedProperty{ //TODO: Merge with the universal input dialog
 	bool readFromWidget(const QWidget* w);
 };
 
-class ConfigManager: public QObject {
+class ConfigManager: public QObject, public ConfigManagerInterface {
 	Q_OBJECT
 public:
 	ConfigManager(QObject *parent=0);
@@ -167,11 +166,17 @@ public:
 	void loadTranslations(QString locale);
 
 	void registerOption(const QString& name, void* storage, PropertyType type, QVariant def, void* displayWidgetOffset);
-	void registerOption(const QString& name, bool* storage, QVariant def=QVariant(),  void* displayWidgetOffset=0);
-	void registerOption(const QString& name, int* storage, QVariant def=QVariant(), void* displayWidgetOffset=0);
-	void registerOption(const QString& name, QString* storage, QVariant def=QVariant(), void* displayWidgetOffset=0);
-	void registerOption(const QString& name, QStringList* storage, QVariant def=QVariant(), void* displayWidgetOffset=0);
-	void registerOption(const QString& name, QDateTime* storage, QVariant def=QVariant(), void* displayWidgetOffset=0);
+	void registerOption(const QString& name, bool* storage, QVariant def,  void* displayWidgetOffset);
+	void registerOption(const QString& name, int* storage, QVariant def, void* displayWidgetOffset);
+	void registerOption(const QString& name, QString* storage, QVariant def, void* displayWidgetOffset);
+	void registerOption(const QString& name, QStringList* storage, QVariant def, void* displayWidgetOffset);
+	void registerOption(const QString& name, QDateTime* storage, QVariant def, void* displayWidgetOffset);
+	virtual void registerOption(const QString& name, void* storage, PropertyType type, QVariant def);
+	virtual void registerOption(const QString& name, bool* storage, QVariant def=QVariant());
+	virtual void registerOption(const QString& name, int* storage, QVariant def=QVariant());
+	virtual void registerOption(const QString& name, QString* storage, QVariant def=QVariant());
+	virtual void registerOption(const QString& name, QStringList* storage, QVariant def=QVariant());
+	virtual void registerOption(const QString& name, QDateTime* storage, QVariant def=QVariant());
 private:
 	void setInterfaceStyle();
 

@@ -11,8 +11,13 @@
 
 #include "quickdocumentdialog.h"
 #include "universalinputdialog.h"
+#include "configmanagerinterface.h"
 
-QuickDocumentDialog::QuickDocumentDialog(QWidget *parent, const char *name)
+QStringList QuickDocumentDialog::otherClassList, QuickDocumentDialog::otherPaperList, QuickDocumentDialog::otherEncodingList, QuickDocumentDialog::otherOptionsList;
+QString QuickDocumentDialog::document_class, QuickDocumentDialog::typeface_size, QuickDocumentDialog::paper_size, QuickDocumentDialog::document_encoding, QuickDocumentDialog::author;
+bool QuickDocumentDialog::ams_packages, QuickDocumentDialog::makeidx_package;
+
+QuickDocumentDialog::QuickDocumentDialog(QWidget *parent, const QString& name)
 		:QDialog(parent) {
 	setWindowTitle(name);
 	setModal(true);
@@ -29,6 +34,60 @@ QuickDocumentDialog::QuickDocumentDialog(QWidget *parent, const char *name)
 }
 
 QuickDocumentDialog::~QuickDocumentDialog() {
+}
+
+QString QuickDocumentDialog::getNewDocumentText(){
+	QString opt="";
+	int li=3;
+
+	QString tag=QString("\\documentclass[");
+	tag+=ui.comboBoxSize->currentText()+QString(",");
+	tag+=ui.comboBoxPaper->currentText();
+	QList<QListWidgetItem *> selectedItems=ui.listWidgetOptions->selectedItems();
+	for (int i = 0; i < selectedItems.size(); ++i) {
+		if (selectedItems.at(i)) opt+=QString(",")+selectedItems.at(i)->text();
+	}
+	tag+=opt+QString("]{");
+	tag+=ui.comboBoxClass->currentText()+QString("}");
+	tag+=QString("\n");
+	if (ui.comboBoxEncoding->currentText()!="NONE") tag+=QString("\\usepackage[")+ui.comboBoxEncoding->currentText()+QString("]{inputenc}");
+	tag+=QString("\n");
+	if (ui.comboBoxEncoding->currentText().startsWith("utf8x")) {
+		tag+=QString("\\usepackage{ucs}\n");
+		li=li+1;
+	}
+	if (ui.checkBoxAMS->isChecked()) {
+		tag+=QString("\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}\n");
+		li=li+3;
+	}
+	if (ui.checkBoxIDX->isChecked()) {
+		tag+=QString("\\usepackage{makeidx}\n");
+		li=li+1;
+	}
+	if (ui.lineEditAuthor->text()!="") {
+		tag+="\\author{"+ui.lineEditAuthor->text()+"}\n";
+		li=li+1;
+	}
+	if (ui.lineEditTitle->text()!="") {
+		tag+="\\title{"+ui.lineEditTitle->text()+"}\n";
+		li=li+1;
+	}
+	tag+=QString("\\begin{document}\n\n\\end{document}");
+	return tag;
+}
+
+void QuickDocumentDialog::registerOptions(ConfigManagerInterface& configManager){
+	configManager.registerOption("Tools/User Class", &otherClassList);
+	configManager.registerOption("Tools/User Paper", &otherPaperList);
+	configManager.registerOption("Tools/User Encoding", &otherEncodingList);
+	configManager.registerOption("Tools/User Options", &otherOptionsList);
+	configManager.registerOption("Quick/Class", &document_class, "article");
+	configManager.registerOption("Quick/Typeface", &typeface_size, "10pt");
+	configManager.registerOption("Quick/Papersize",&paper_size, "a4paper");
+	configManager.registerOption("Quick/Encoding",&document_encoding, "latin1");
+	configManager.registerOption("Quick/AMS",&ams_packages, true);
+	configManager.registerOption("Quick/MakeIndex",&makeidx_package, false);
+	configManager.registerOption("Quick/Author",&author, "");
 }
 
 void QuickDocumentDialog::Init() {
@@ -87,6 +146,30 @@ void QuickDocumentDialog::Init() {
 	ui.listWidgetOptions->addItem("leqno");
 	ui.listWidgetOptions->addItem("fleqn");
 	if (!otherOptionsList.isEmpty()) ui.listWidgetOptions->addItems(otherOptionsList);
+
+	int f=ui.comboBoxClass->findText(document_class,Qt::MatchExactly | Qt::MatchCaseSensitive);
+	ui.comboBoxClass->setCurrentIndex(f);
+	f=ui.comboBoxSize->findText(typeface_size,Qt::MatchExactly | Qt::MatchCaseSensitive);
+	ui.comboBoxSize->setCurrentIndex(f);
+	f=ui.comboBoxPaper->findText(paper_size,Qt::MatchExactly | Qt::MatchCaseSensitive);
+	ui.comboBoxPaper->setCurrentIndex(f);
+	f=ui.comboBoxEncoding->findText(document_encoding,Qt::MatchExactly | Qt::MatchCaseSensitive);
+	ui.comboBoxEncoding->setCurrentIndex(f);
+	ui.checkBoxAMS->setChecked(ams_packages);
+	ui.checkBoxIDX->setChecked(makeidx_package);
+	ui.lineEditAuthor->setText(author);
+
+}
+
+void QuickDocumentDialog::accept(){
+	document_class=ui.comboBoxClass->currentText();
+	typeface_size=ui.comboBoxSize->currentText();
+	paper_size=ui.comboBoxPaper->currentText();
+	document_encoding=ui.comboBoxEncoding->currentText();
+	ams_packages=ui.checkBoxAMS->isChecked();
+	makeidx_package=ui.checkBoxIDX->isChecked();
+	author=ui.lineEditAuthor->text();
+	QDialog::accept();
 }
 
 void QuickDocumentDialog::addUserClass() {

@@ -16,19 +16,26 @@
 
 #include "ui_quickdocumentdialog.h"
 
+class ConfigManagerInterface;
 class QuickDocumentDialog : public QDialog  {
 	Q_OBJECT
 public:
-	QuickDocumentDialog(QWidget *parent=0, const char *name=0);
+	QuickDocumentDialog(QWidget *parent=0, const QString& name=0);
 	~QuickDocumentDialog();
 	Ui::QuickDocumentDialog ui;
 
+
+	QString getNewDocumentText();
+private:
+	static QStringList otherClassList, otherPaperList, otherEncodingList, otherOptionsList;
+	static QString document_class, typeface_size, paper_size, document_encoding, author;
+	static bool ams_packages, makeidx_package;
+
 public:
-
-	QStringList otherClassList, otherPaperList, otherEncodingList, otherOptionsList;
-
+	static void registerOptions(ConfigManagerInterface& configManager);
 public slots:
 	void Init();
+	virtual void accept();
 private slots:
 	void addUserClass();
 	void addUserPaper();

@@ -44,8 +44,6 @@
 #include "qlanguagefactory.h"
 #include "qlinemarksinfocenter.h"
 
-typedef  QStringList Userlist;
-typedef  QString UserCd[5];
 typedef QHash<QString,int> SymbolList;
 
 class Texmaker : public QMainWindow {
@@ -118,14 +116,11 @@ private:
 	ConfigManager configManager;
 	BuildManager buildManager;
 	int split1_right, split1_left, split2_top, split2_bottom;
-	bool showoutputview, showstructview, ams_packages, makeidx_package;
-	QString document_class, typeface_size, paper_size, document_encoding, author;
 	QString spell_ignored_words;
 	QStringList struct_level;
-	QStringList userClassList, userPaperList, userEncodingList, userOptionsList;
 	QStringList labelitem;
-        Userlist UserMenuName, UserMenuTag, UserMenuAbbrev;
-	UserCd UserToolName, UserToolCommand;
+	QStringList UserMenuName, UserMenuTag, UserMenuAbbrev;
+	QStringList UserToolName, UserToolCommand;
 
 	QStringList userTemplatesList;
 
