@@ -309,7 +309,7 @@ void LatexDocument::updateStructure() {
 			QRegExp regexp = QRegExp("\\"+LatexParser::structureCommands[header]+"\\*?[\\{\\[]");
 			s=findToken(curLine,regexp);
 			if (s!="") {
-				s=extractSectionName(s);
+				s=extractSectionName(s,true);
 				StructureEntry *newSection=new StructureEntry(this,StructureEntry::SE_SECTION);
 				if (header == 0) baseStructure->add(newSection);
 				else parent_level[header-1]->add(newSection);
@@ -660,7 +660,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			s=findToken(curLine,regexp);
 			if (s!="") {
 				bool reuse=false;
-				s=extractSectionName(s);
+				s=extractSectionName(s,true);
 				StructureEntry *newSection;
 				if(MapOfElements.contains(dlh)){
 					newSection=MapOfElements.value(dlh);

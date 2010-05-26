@@ -158,9 +158,10 @@ QString latexToPlainWord(const QString& word) {
 	return result;
 }
 
-QString extractSectionName(const QString& word) {
+QString extractSectionName(const QString& word, bool precut) {
 	int i=0;
-	int start=word.indexOf("{",i);
+	int start=-1;
+	if(!precut) start=word.indexOf("{",i);
 	i=start>-1 ? start : 0;
 	int stop=word.indexOf("}",i);
 	i=word.indexOf("{",i+1);
