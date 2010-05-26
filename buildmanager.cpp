@@ -361,7 +361,7 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 	default:;
 	}
 #endif
-	return "";
+	return baseCommand+" "+defaultOptions;
 }
 //returns a platform independent base name if it exists
 QString BuildManager::baseCommandName(LatexCommand cmd){
