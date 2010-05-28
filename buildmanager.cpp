@@ -224,6 +224,8 @@ QString searchBaseCommand(const QString &cmd, QString options) {
 			return "/usr/bin/texbin/"+fileName+options;
 		if (QFileInfo("/usr/local/bin/"+fileName).exists())
 			return "/usr/local/bin/"+fileName+options;
+		if (QFileInfo("/usr/texbin/"+fileName).exists())
+			return "/usr/texbin/"+fileName+options;
 #endif
 	}
 	return "";
