@@ -469,7 +469,9 @@ LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0) {
 	list->setFocusPolicy(Qt::NoFocus);
 	list->setItemDelegate(new CompletionItemDelegate(list));
 	editor=0;
+	containedLabels=0;
 }
+
 LatexCompleter::~LatexCompleter() {
 	//delete list;
 }
@@ -669,25 +671,27 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 		value.remove(0,i+1);
 		i=value.indexOf("}");
 		value=value.left(i);
-		QList<QDocumentLineHandle*> lst=containedLabels->values(value);
-		topic="";
-		if(lst.isEmpty()){
+		if(containedLabels){
+		    QList<QDocumentLineHandle*> lst=containedLabels->values(value);
+		    topic="";
+		    if(lst.isEmpty()){
 			topic=tr("label missing!");
-		} else if(lst.count()>1) {
+		    } else if(lst.count()>1) {
 			topic=tr("label multiple times defined!");
-		} else {
+		    } else {
 			QDocumentLineHandle *mLine=lst.first();
 			int l=mLine->line();
 			if(mLine->document()!=editor->document()){
-				//LatexDocument *doc=document->parent->findDocument(mLine->document());
-				LatexDocument *doc=qobject_cast<LatexDocument *>(mLine->document());
-				Q_ASSERT_X(doc,"missing latexdoc","qdoc is not latex document !");
-				if(doc) topic=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
+			    //LatexDocument *doc=document->parent->findDocument(mLine->document());
+			    LatexDocument *doc=qobject_cast<LatexDocument *>(mLine->document());
+			    Q_ASSERT_X(doc,"missing latexdoc","qdoc is not latex document !");
+			    if(doc) topic=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
 			}
 			for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
-				topic+=mLine->document()->line(i).text();
-				if(i<l+2) topic+="\n";
+			    topic+=mLine->document()->line(i).text();
+			    if(i<l+2) topic+="\n";
 			}
+		    }
 		}
 	}else{
 		QString aim="<a name=\""+id;
