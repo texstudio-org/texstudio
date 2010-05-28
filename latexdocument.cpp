@@ -525,6 +525,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 					else name.append(QString("{%<arg%1%>}").arg(j+1));
 				}
 				mUserCommandList.insert(line(i).handle(),name);
+				continue;
 			}
 
 			//// newenvironment ////
@@ -540,12 +541,14 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				}
 				mUserCommandList.insert(line(i).handle(),name);
 				mUserCommandList.insert(line(i).handle(),"\\begin{"+name);
+				continue;
 			}
 			//// newtheorem ////
 			if (cmd=="\\newtheorem") {
 				completerNeedsUpdate=true;
 				mUserCommandList.insert(line(i).handle(),"\\begin{"+name+"}");
 				mUserCommandList.insert(line(i).handle(),"\\end{"+name+"}");
+				continue;
 			}
 			//// bibliography ////
 			if (cmd=="\\bibliography") {
@@ -586,6 +589,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 					newFile->parent=bibTeXList;
 					iter_bibTeX.insert(newFile);
 				}
+				continue;
 			}
 			//// label ////
 			//TODO: Use label from dynamical reference checker
@@ -610,6 +614,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				newLabel->lineHandle=line(i).handle();
 				newLabel->parent=labelList;
 				iter_label.insert(newLabel);
+				continue;
 			}
 
 			//// beamer blocks ////
@@ -634,6 +639,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				newBlock->lineHandle=line(i).handle();
 				newBlock->parent=blockList;
 				iter_block.insert(newBlock);
+				continue;
 			}
 
 			//// include,input ////
@@ -649,6 +655,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				newInclude->lineNumber=i;
 				newInclude->level=fileExits(name)? 0 : 1;
 				newInclude->lineHandle=line(i).handle();
+				continue;
 			}
 			//// all sections ////
 			if(cmd.endsWith("*")) cmd.left(cmd.length()-1);
