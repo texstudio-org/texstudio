@@ -392,6 +392,36 @@ bool findTokenWithArg(const QString &line,const QString &token, QString &outName
 	
 }
 
+bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QString &outArg, QString &remainder){
+	outName="";
+	outArg="";
+	remainder="";
+	QRegExp token("\\\\\\w+");
+	int tagStart=token.indexIn(line);
+	int commentStart=line.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
+	if (tagStart!=-1 && (commentStart>tagStart || commentStart==-1)) {
+		cmd=token.cap(0);
+		tagStart+=cmd.length();
+		int i=tagStart;
+		int start=-1;
+		start=line.indexOf("{",i);
+		i=start>-1 ? start : 0;
+		int stop=line.indexOf("}",i);
+		i=line.indexOf("{",i+1);
+		while (i>0 && stop>0 && i<stop) {
+			stop=line.indexOf("}",stop+1);
+			i=line.indexOf("{",i+1);
+		}
+		if (stop<0) stop=line.length();
+		outName=line.mid(start+1,stop-start-1);
+		remainder=line.mid(stop+1);
+		return true;
+	}
+	return false;
+
+}
+
+
 
 QToolButton* createComboToolButton(QWidget *parent,const QStringList& list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member,QString defaultElem,QToolButton *combo){
 	if(combo==0) combo=new QToolButton(parent);
