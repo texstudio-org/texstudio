@@ -460,7 +460,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 	//TODO: This assumes one command per line, which is not necessary true
 	for (int i=linenr; i<linenr+count; i++) {
-		const QString curLine = line(i).text(); //TODO: use this instead of s
+		QString curLine = line(i).text(); //TODO: use this instead of s
 
 		// remove command,bibtex,labels at from this line
 		QDocumentLineHandle* dlh=line(i).handle();
@@ -469,117 +469,13 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		completerNeedsUpdate=completerNeedsUpdate || (mUserCommandList.remove(dlh)>0);
 		//find entries prior to changed lines
 
+		QString name;
+		QString arg;
+		QString cmd;
+		QString remainder;
 
-
-		//// newcommand ////
-		//TODO: handle optional arguments
-		static const QStringList commandTokens = QStringList() << "\\newcommand{" << "\\renewcommand{" << "\\providecommand{{";
-		for (int j=0; j< commandTokens.size();j++){
-			QString name;
-			QString arg;
-			if (findTokenWithArg(curLine,commandTokens[j],name,arg)) {
-				completerNeedsUpdate=true;
-				int options=arg.toInt(); //returns 0 if conversion fails
-				for (int j=0; j<options; j++) {
-					if (j==0) name.append("{%<arg1%|%>}");
-					else name.append(QString("{%<arg%1%>}").arg(j+1));
-				}
-				mUserCommandList.insert(line(i).handle(),name);
-			}
-		}
-		//// newenvironment ////
-		static const QStringList envTokens = QStringList() << "\\newenvironment{" << "\\renewenvironment{";
-		for (int j=0; j< envTokens.size();j++){
-			QString name;
-			QString arg;
-			if (findTokenWithArg(curLine,envTokens[j],name,arg)) {
-				completerNeedsUpdate=true;
-				int options=arg.toInt(); //returns 0 if conversion fails
-				name.append("}");
-				mUserCommandList.insert(line(i).handle(),"\\end{"+name);
-				for (int j=0; j<options; j++) {
-					if (j==0) name.append("{%<1%|%>}");
-					else name.append(QString("{%<%1%>}").arg(j+1));
-				}
-				mUserCommandList.insert(line(i).handle(),name);
-				mUserCommandList.insert(line(i).handle(),"\\begin{"+name);
-			}
-		}
-		//// newtheorem ////
-		QString s=findToken(curLine,"\\newtheorem{");
-		if (s!="") {
-			completerNeedsUpdate=true;
-			mUserCommandList.insert(line(i).handle(),"\\begin{"+s+"}");
-			mUserCommandList.insert(line(i).handle(),"\\end{"+s+"}");
-		}
-		//// bibliography ////
-		s=findToken(curLine,"\\bibliography{");
-		if (s!="") {
-			QStringList bibs=s.split(',',QString::SkipEmptyParts);
-			QDocumentLineHandle* curLineHandle = line(i).handle();
-			//remove old bibs from hash, but keeps a temporary copy
-			QStringList oldBibs;
-			while (mMentionedBibTeXFiles.contains(curLineHandle)) {
-				QHash<QDocumentLineHandle*, QString>::iterator it = mMentionedBibTeXFiles.find(curLineHandle);
-				if (it == mMentionedBibTeXFiles.end()) break;
-				oldBibs.append(it.value());
-				mMentionedBibTeXFiles.remove(it.key(), it.value());
-			}
-			//add new bibs and set bibTeXFilesNeedsUpdate if there was any change
-			bibTeXFilesNeedsUpdate |= oldBibs.size() != bibs.size();
-			foreach(QString elem,bibs){
-				mMentionedBibTeXFiles.insert(line(i).handle(),elem);
-				bibTeXFilesNeedsUpdate |= !oldBibs.contains(elem);
-			}
-			//write bib tex in tree
-			foreach (const QString& bibFile, bibs) {
-				bool reuse=false;
-				StructureEntry *newFile;
-				if(MapOfBibtex.contains(dlh)){
-					newFile=MapOfBibtex.value(dlh);
-					newFile->type=StructureEntry::SE_BIBTEX;
-					MapOfBibtex.remove(dlh,newFile);
-					reuse=true;
-				}else{
-					newFile=new StructureEntry(this, StructureEntry::SE_BIBTEX);
-					#ifndef QT_NO_DEBUG
-					StructureContent.insert(newFile);
-					#endif
-				}
-				newFile->title=bibFile;
-				newFile->lineNumber=i;
-				newFile->lineHandle=line(i).handle();
-				newFile->parent=bibTeXList;
-				iter_bibTeX.insert(newFile);
-			}
-		}
-		//// label ////
-		//TODO: Use label from dynamical reference checker
-		s=findToken(curLine,"\\label{");
-		if (s!="") {
-			mLabelItem.insert(line(i).handle(),s);
-			completerNeedsUpdate=true;
-			bool reuse=false;
-			StructureEntry *newLabel;
-			if(MapOfLabels.contains(dlh)){
-				newLabel=MapOfLabels.value(dlh);
-				newLabel->type=StructureEntry::SE_LABEL;
-				MapOfLabels.remove(dlh,newLabel);
-				reuse=true;
-			}else{
-				newLabel=new StructureEntry(this, StructureEntry::SE_LABEL);
-#ifndef QT_NO_DEBUG
-				StructureContent.insert(newLabel);
-#endif
-			}
-			newLabel->title=s;
-			newLabel->lineNumber=i;
-			newLabel->lineHandle=line(i).handle();
-			newLabel->parent=labelList;
-			iter_label.insert(newLabel);
-		}
 		//// TODO marker
-		s=curLine;
+		QString s=curLine;
 		int l=s.indexOf("%TODO");
 		if (l>=0) {
 			s=s.mid(l+6,s.length());
@@ -614,53 +510,151 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			oldLine=mAppendixLine;
 			mAppendixLine=0;
 		}
-		//// beamer blocks ////
-		s=findToken(curLine,"\\begin{block}{");
-		if (s!="") {
-			bool reuse=false;
-			StructureEntry *newBlock;
-			if(MapOfBlock.contains(dlh)){
-				newBlock=MapOfBlock.value(dlh);
-				newBlock->type=StructureEntry::SE_BLOCK;
-				MapOfBlock.remove(dlh,newBlock);
-				reuse=true;
-			}else{
-				newBlock=new StructureEntry(this, StructureEntry::SE_BLOCK);
-#ifndef QT_NO_DEBUG
-				StructureContent.insert(newBlock);
-#endif
-			}
-			newBlock->title=s;
-			newBlock->lineNumber=i;
-			newBlock->lineHandle=line(i).handle();
-			newBlock->parent=blockList;
-			iter_block.insert(newBlock);
-		}
 
-		//// include,input ////
-		static const QStringList inputTokens = QStringList() << "input" << "include";
-		for(int header=0;header<inputTokens.count();header++){
-			s=findToken(curLine,"\\"+inputTokens.at(header)+"{");
-			if (s!="") {
+		while(findCommandWithArg(curLine,cmd,name,arg,remainder)){
+			curLine=remainder;
+			//// newcommand ////
+			//TODO: handle optional arguments
+			static const QStringList commandTokens = QStringList() << "\\newcommand" << "\\renewcommand" << "\\providecommand";
+
+			if (commandTokens.contains(cmd)) {
+				completerNeedsUpdate=true;
+				int options=arg.toInt(); //returns 0 if conversion fails
+				for (int j=0; j<options; j++) {
+					if (j==0) name.append("{%<arg1%|%>}");
+					else name.append(QString("{%<arg%1%>}").arg(j+1));
+				}
+				mUserCommandList.insert(line(i).handle(),name);
+			}
+
+			//// newenvironment ////
+			static const QStringList envTokens = QStringList() << "\\newenvironment" << "\\renewenvironment";
+			if (envTokens.contains(cmd)) {
+				completerNeedsUpdate=true;
+				int options=arg.toInt(); //returns 0 if conversion fails
+				name.append("}");
+				mUserCommandList.insert(line(i).handle(),"\\end{"+name);
+				for (int j=0; j<options; j++) {
+					if (j==0) name.append("{%<1%|%>}");
+					else name.append(QString("{%<%1%>}").arg(j+1));
+				}
+				mUserCommandList.insert(line(i).handle(),name);
+				mUserCommandList.insert(line(i).handle(),"\\begin{"+name);
+			}
+			//// newtheorem ////
+			if (cmd=="\\newtheorem") {
+				completerNeedsUpdate=true;
+				mUserCommandList.insert(line(i).handle(),"\\begin{"+name+"}");
+				mUserCommandList.insert(line(i).handle(),"\\end{"+name+"}");
+			}
+			//// bibliography ////
+			if (cmd=="\\bibliography") {
+				QStringList bibs=name.split(',',QString::SkipEmptyParts);
+				QDocumentLineHandle* curLineHandle = line(i).handle();
+				//remove old bibs from hash, but keeps a temporary copy
+				QStringList oldBibs;
+				while (mMentionedBibTeXFiles.contains(curLineHandle)) {
+					QHash<QDocumentLineHandle*, QString>::iterator it = mMentionedBibTeXFiles.find(curLineHandle);
+					if (it == mMentionedBibTeXFiles.end()) break;
+					oldBibs.append(it.value());
+					mMentionedBibTeXFiles.remove(it.key(), it.value());
+				}
+				//add new bibs and set bibTeXFilesNeedsUpdate if there was any change
+				bibTeXFilesNeedsUpdate |= oldBibs.size() != bibs.size();
+				foreach(QString elem,bibs){
+					mMentionedBibTeXFiles.insert(line(i).handle(),elem);
+					bibTeXFilesNeedsUpdate |= !oldBibs.contains(elem);
+				}
+				//write bib tex in tree
+				foreach (const QString& bibFile, bibs) {
+					bool reuse=false;
+					StructureEntry *newFile;
+					if(MapOfBibtex.contains(dlh)){
+						newFile=MapOfBibtex.value(dlh);
+						newFile->type=StructureEntry::SE_BIBTEX;
+						MapOfBibtex.remove(dlh,newFile);
+						reuse=true;
+					}else{
+						newFile=new StructureEntry(this, StructureEntry::SE_BIBTEX);
+#ifndef QT_NO_DEBUG
+						StructureContent.insert(newFile);
+#endif
+					}
+					newFile->title=bibFile;
+					newFile->lineNumber=i;
+					newFile->lineHandle=line(i).handle();
+					newFile->parent=bibTeXList;
+					iter_bibTeX.insert(newFile);
+				}
+			}
+			//// label ////
+			//TODO: Use label from dynamical reference checker
+			if (cmd=="\\label") {
+				mLabelItem.insert(line(i).handle(),name);
+				completerNeedsUpdate=true;
+				bool reuse=false;
+				StructureEntry *newLabel;
+				if(MapOfLabels.contains(dlh)){
+					newLabel=MapOfLabels.value(dlh);
+					newLabel->type=StructureEntry::SE_LABEL;
+					MapOfLabels.remove(dlh,newLabel);
+					reuse=true;
+				}else{
+					newLabel=new StructureEntry(this, StructureEntry::SE_LABEL);
+#ifndef QT_NO_DEBUG
+					StructureContent.insert(newLabel);
+#endif
+				}
+				newLabel->title=name;
+				newLabel->lineNumber=i;
+				newLabel->lineHandle=line(i).handle();
+				newLabel->parent=labelList;
+				iter_label.insert(newLabel);
+			}
+
+			//// beamer blocks ////
+
+			if (cmd=="\\begin" && name=="block") {
+				QString s=extractSectionName(remainder,true);
+				bool reuse=false;
+				StructureEntry *newBlock;
+				if(MapOfBlock.contains(dlh)){
+					newBlock=MapOfBlock.value(dlh);
+					newBlock->type=StructureEntry::SE_BLOCK;
+					MapOfBlock.remove(dlh,newBlock);
+					reuse=true;
+				}else{
+					newBlock=new StructureEntry(this, StructureEntry::SE_BLOCK);
+#ifndef QT_NO_DEBUG
+					StructureContent.insert(newBlock);
+#endif
+				}
+				newBlock->title=s;
+				newBlock->lineNumber=i;
+				newBlock->lineHandle=line(i).handle();
+				newBlock->parent=blockList;
+				iter_block.insert(newBlock);
+			}
+
+			//// include,input ////
+			static const QStringList inputTokens = QStringList() << "\\input" << "\\include";
+
+			if (inputTokens.contains(cmd)) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
 				baseStructure->add(newInclude);
 #ifndef QT_NO_DEBUG
 				StructureContent.insert(newInclude);
 #endif
-				newInclude->title=s;
-//				newInclude.title=inputTokens.at(header); //texmaker distinguished include/input, doesn't seem necessary
+				newInclude->title=name;
 				newInclude->lineNumber=i;
-				newInclude->level=fileExits(s)? 0 : 1;
+				newInclude->level=fileExits(name)? 0 : 1;
 				newInclude->lineHandle=line(i).handle();
 			}
-		}//for
-		//// all sections ////
-		for(int header=0;header<LatexParser::structureCommands.count();header++){
-			QRegExp regexp = QRegExp("\\"+LatexParser::structureCommands[header]+"\\*?[\\{\\[]");
-			s=findToken(curLine,regexp);
-			if (s!="") {
+			//// all sections ////
+			if(cmd.endsWith("*")) cmd.left(cmd.length()-1);
+			int header=LatexParser::structureCommands.indexOf(cmd);
+			if (header>-1) {
 				bool reuse=false;
-				s=extractSectionName(s,true);
 				StructureEntry *newSection;
 				if(MapOfElements.contains(dlh)){
 					newSection=MapOfElements.value(dlh);
@@ -676,10 +670,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				}
 				StructureEntry* parent=header == 0 ? baseStructure : parent_level[header];
 				parent->add(newSection);
-				
+
 				if(mAppendixLine &&mAppendixLine->line()<i) newSection->appendix=true;
 				else newSection->appendix=false;
-				newSection->title=s;
+				newSection->title=name;
 				newSection->level=header;
 				newSection->lineNumber=i;
 				newSection->lineHandle=line(i).handle();
@@ -689,8 +683,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 				if(!reuse) emit addElement(parent,parent->children.size()-1);
 			}
-		}
-	}
+		}// for each command
+	}//for each line handle
 	// append structure remainder ...
 	for(int i=parent_level.size()-1;i>=0;i--){
 		if (!parent_level[i]) break;
