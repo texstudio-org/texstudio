@@ -144,6 +144,29 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 	int baseLineIndent = cursor->columnNumber(); //text before inserted word moves placeholders to the right
 	int lastLineRemainingLength = curLine.text().length()-baseLineIndent; //last line will has length: indentation + codesnippet + lastLineRemainingLength
         editor->insertText(*cursor,line); //don't use cursor->insertText to keep autoindentation working
+
+		// on single line commands only: replace command
+		if(mLines.size()==1 /*&& tmx && tmx->getAutoReplaceCommands()*/){ //config does not work yet
+			if(cursor->nextChar().isLetterOrNumber()){
+				QString curLine=cursor->line().text();
+				int closeCurl=curLine.indexOf("}",cursor->columnNumber());
+				int openCurl=curLine.indexOf("{",cursor->columnNumber());
+				int openBracket=curLine.indexOf("[",cursor->columnNumber());
+				if(openCurl>-1){
+					if(openBracket<0) openBracket=1e9;
+					if(closeCurl<0) closeCurl=1e9;
+					if(openCurl<openBracket && openCurl<closeCurl){
+						cursor->movePosition(openCurl-cursor->columnNumber(),QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+						cursor->removeSelectedText();
+						int curl=line.length()-line.indexOf("{");
+						cursor->movePosition(curl,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+						cursor->removeSelectedText();
+						return;
+					}
+				}
+			}
+		}
+
 	int magicPlaceHolder=-1;
 	Q_ASSERT(placeHolders.size()==mLines.count());
 	if (usePlaceholders) {

@@ -86,11 +86,13 @@ public:
 	LatexCompleterConfig * const completerConfig;
 	//webpublish dialog
 	WebPublishDialogConfig * const webPublishDialogConfig;
-	
+
 	//other dialogs
 	int lastHardWrapColumn;
 	bool lastHardWrapSmartScopeSelection;
 	bool lastHardWrapJoinLines;
+
+	bool autoReplaceCommands;
 
 	int tabstop;
 	
