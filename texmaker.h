@@ -197,6 +197,7 @@ private slots:
 	void editHardLineBreakRepeat();
 	void editSelectAll();
 	void editEraseLine();
+	void editEraseWordCmdEnv();
 	void editFind();
 	void editFindNext();
 	void editReplace();

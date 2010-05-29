@@ -173,6 +173,19 @@ QString extractSectionName(const QString& word, bool precut) {
 	return word.mid(start+1,stop-start-1);
 }
 
+int findClosingBracket(const QString& word,int &start) {
+	int i=0;
+	if(start<0) start=word.indexOf("{",i);
+	i=start>-1 ? start : 0;
+	int stop=word.indexOf("}",i);
+	i=word.indexOf("{",i+1);
+	while (i>0 && stop>0 && i<stop) {
+		stop=word.indexOf("}",stop+1);
+		i=word.indexOf("{",i+1);
+	}
+	return stop;
+}
+
 QString textToLatex(const QString& text) {
 	QList<QPair<QString,QString> > replaceList;
 	replaceList.append(QPair<QString, QString> ("\\","\\verb+\\+"));
