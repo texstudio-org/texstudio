@@ -223,6 +223,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Close Search Replace Together", &editorConfig->closeSearchAndReplace, false, &pseudoDialog->checkBoxCloseSearchReplaceTogether);
 	registerOption("Editor/Use Line For Search", &editorConfig->useLineForSearch, true, &pseudoDialog->checkBoxUseLineForSearch);
 	registerOption("Editor/Use Tab for Move to Placeholder", &editorConfig->useTabforMoveToPlaceholder, false, &pseudoDialog->checkBoxTabforMoveToPlaceholder);
+	registerOption("Editor/Auto Replace Commands", &autoReplaceCommands, true, &pseudoDialog->checkBoxAutoReplaceCommands);
 
 	registerOption("Editor/Font Family", &editorConfig->fontFamily, "", &pseudoDialog->comboBoxFont);
 	registerOption("Editor/Font Size", &editorConfig->fontSize, -1, &pseudoDialog->spinBoxSize);
