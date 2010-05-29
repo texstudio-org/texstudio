@@ -343,9 +343,10 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	newManagedAction(menu,"copy",tr("&Copy"), SLOT(editCopy()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_C)<<Qt::CTRL+Qt::Key_Insert, ":/images/editcopy.png");
 	newManagedAction(menu,"cut",tr("C&ut"), SLOT(editCut()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_X)<<Qt::SHIFT+Qt::Key_Delete, ":/images/editcut.png");
-	newManagedAction(menu,"paste",tr("&Paste"), SLOT(editPaste()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::SHIFT+Qt::Key_Insert, ":/images/editpaste.png");
+	newManagedAction(menu,"paste",tr("&Paste"), SLOT(editPaste()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, ":/images/editpaste.png");
 	newManagedAction(menu,"selectall",tr("Select &All"), SLOT(editSelectAll()), Qt::CTRL+Qt::Key_A);
 	newManagedAction(menu,"eraseLine",tr("Erase &Line"), SLOT(editEraseLine()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_K));
+	newManagedAction(menu,"eraseWord",tr("Erase &Word/Cmd/Env"), SLOT(editEraseWordCmdEnv()), Qt::ALT+Qt::Key_Delete);
 	menu->addSeparator();
 	newManagedAction(menu,"pasteAsLatex",tr("Pas&te as Latex"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, ":/images/editpaste.png");
 	newManagedAction(menu,"convertToLatex",tr("Co&nvert to Latex"), SLOT(convertToLatex()));
@@ -1440,6 +1441,89 @@ void Texmaker::editEraseLine() {
 	if (!currentEditorView()) return;
 	QDocumentCursor c = currentEditorView()->editor->cursor();
 	c.eraseLine();
+}
+void Texmaker::editEraseWordCmdEnv(){
+	if (!currentEditorView()) return;
+	QDocumentCursor cursor = currentEditorView()->editor->cursor();
+	QString line=cursor.line().text();
+	QString command, value;
+	switch(LatexParser::findContext(line, cursor.columnNumber(), command, value)){
+
+	case LatexParser::Command:
+		if (command=="\\begin" || command=="\\end"){
+			//remove environment (surrounding)
+			currentEditorView()->editor->document()->beginMacro();
+			cursor.movePosition(1,QDocumentCursor::EndOfWord);
+			cursor.movePosition(1,QDocumentCursor::StartOfWord,QDocumentCursor::KeepAnchor);
+			cursor.movePosition(1,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+			cursor.removeSelectedText();
+			// remove curly brakets as well
+			if(cursor.nextChar()==QChar('{')){
+				cursor.deleteChar();
+				line=cursor.line().text();
+				int col=cursor.columnNumber();
+				int i=findClosingBracket(line,col);
+				if(i>-1) {
+					cursor.movePosition(i-col+1,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+					cursor.removeSelectedText();
+					QDocument* doc=currentEditorView()->editor->document();
+					QString searchWord="\\end{"+value+"}";
+					QString inhibitor="\\begin{"+value+"}";
+					bool backward=(command=="\\end");
+					int step=1;
+					if(backward) {
+						qSwap(searchWord,inhibitor);
+						step=-1;
+					}
+					int startLine=cursor.lineNumber();
+					int startCol=cursor.columnNumber();
+					int endLine=doc->findLineContaining(searchWord,startLine,Qt::CaseSensitive,backward);
+					int inhibitLine=doc->findLineContaining(inhibitor,startLine,Qt::CaseSensitive,backward); // not perfect (same line end/start ...)
+					while (inhibitLine>0 && endLine>0 && inhibitLine*step<endLine*step) {
+						endLine=doc->findLineContaining(searchWord,endLine+step,Qt::CaseSensitive,backward); // not perfect (same line end/start ...)
+						inhibitLine=doc->findLineContaining(inhibitor,inhibitLine+step,Qt::CaseSensitive,backward);
+					}
+					if(endLine>-1){
+						line=doc->line(endLine).text();
+						int start=line.indexOf(searchWord);
+						cursor.moveTo(endLine,start);
+						cursor.movePosition(searchWord.length(),QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+						cursor.removeSelectedText();
+						cursor.moveTo(startLine,startCol); // move cursor back to text edit pos
+					}
+				}
+			}
+
+			currentEditorView()->editor->document()->endMacro();
+		}else{
+			currentEditorView()->editor->document()->beginMacro();
+			cursor.movePosition(1,QDocumentCursor::EndOfWord);
+			cursor.movePosition(1,QDocumentCursor::StartOfWord,QDocumentCursor::KeepAnchor);
+			cursor.movePosition(1,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+			cursor.removeSelectedText();
+			// remove curly brakets as well
+			if(cursor.nextChar()==QChar('{')){
+				cursor.deleteChar();
+				line=cursor.line().text();
+				int col=cursor.columnNumber();
+				int i=findClosingBracket(line,col);
+				if(i>-1) {
+					cursor.moveTo(cursor.lineNumber(),i);
+					cursor.deleteChar();
+					cursor.moveTo(cursor.lineNumber(),col);
+				}
+			}
+			currentEditorView()->editor->document()->endMacro();
+		}
+		break;
+
+	default:
+		//cursor.movePosition(1,QDocumentCursor::StartOfWord);
+		cursor.select(QDocumentCursor::WordUnderCursor);
+		cursor.removeSelectedText();
+		break;
+	}
+	currentEditorView()->editor->setCursor(cursor);
 }
 
 void Texmaker::editFind() {

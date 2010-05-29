@@ -66,6 +66,8 @@ bool nextTextWord(const QString & line, int &index, QString &outWord, int &wordS
 QString latexToPlainWord(const QString& word);
 //extracts the section name after \section is removed (brackets removal)
 QString extractSectionName(const QString& word,bool precut=false);
+//closing bracket (opening and closing bracket considered correctly)
+int findClosingBracket(const QString& word,int &start);
 //replaces character with corresponding LaTeX commands
 QString textToLatex(const QString& text);
 
