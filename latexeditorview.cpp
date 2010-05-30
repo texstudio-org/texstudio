@@ -246,6 +246,12 @@ LatexEditorView::~LatexEditorView() {
 	}
 }
 
+void LatexEditorView::viewActivated(){
+	if (!LatexEditorView::completer) return;
+	LatexEditorView::completer->setLabelDatabase(containedLabels);
+}
+
+
 void LatexEditorView::complete(bool forceVisibleList, bool normalText, bool forceRef) {
 	if (!LatexEditorView::completer) return;
 	setFocus();
