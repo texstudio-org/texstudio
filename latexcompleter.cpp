@@ -777,9 +777,18 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
 		QFile tagsfile(fn);
 		if (tagsfile.open(QFile::ReadOnly)) {
 			QString line;
+			QRegExp rxCom("^(\\\\\\w+)(\\[.+\\])*\\{(.+)\\}");
+			QStringList keywords;
+			keywords << "text" << "title";
 			while (!tagsfile.atEnd()) {
 				line = tagsfile.readLine();
 				if (!line.isEmpty() && !line.startsWith("#") && !line.startsWith(" ")) {
+					// parse for spell checkable commands
+					rxCom.indexIn(line);
+					if(keywords.contains(rxCom.cap(3))){
+						LatexParser::optionCommands << rxCom.cap(1);
+					}
+					// normal parsing for completer
 					if (line.startsWith("\\pageref")||line.startsWith("\\ref")) continue;
 					if (!line.contains("%")){
 						if (line.contains("{")) {

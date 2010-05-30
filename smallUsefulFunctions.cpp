@@ -13,7 +13,7 @@ QSet<QString> LatexParser::refCommands = QSet<QString>::fromList(QStringList() <
 QSet<QString> LatexParser::labelCommands = QSet<QString>::fromList(QStringList() << "\\label");
 QSet<QString> LatexParser::citeCommands = QSet<QString>::fromList(QStringList() << "\\cite" << "\\citet" << "\\citetitle" << "\\citep" << "\\citeauthor" << "\\footcite" << "\\nocite"  << "\\nptextcite" << "\\parencite" << "\\textcite");
 QSet<QString> LatexParser::environmentCommands = QSet<QString>::fromList(QStringList() << "\\begin" << "\\end" << "\\newenvironment" << "\\renewenvironment");
-QSet<QString> LatexParser::optionCommands = QSet<QString>::fromList(QStringList() << LatexParser::refCommands.toList() << LatexParser::labelCommands.toList() << "\\includegraphics" << "\\usepackage" << "\\documentclass" << "\\include" << "\\input" << "\\hspace" << "\\vspace");
+QSet<QString> LatexParser::optionCommands; // = QSet<QString>::fromList(QStringList() << LatexParser::refCommands.toList() << LatexParser::labelCommands.toList() << "\\includegraphics" << "\\usepackage" << "\\documentclass" << "\\include" << "\\input" << "\\hspace" << "\\vspace");
 QStringList LatexParser::structureCommands = QStringList(); //see texmaker.cpp
 
 QString getCommonEOW() {
@@ -327,22 +327,23 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 		case '\\':
 			if (outWord.length()==1 || !(EscapedChars.contains(outWord.at(1)) || CharacterAlteringChars.contains(outWord.at(1)))) {
 				if (returnCommands) return NW_COMMAND;
-				if (!LatexParser::optionCommands.contains(lastCommand)) {
+				if (LatexParser::refCommands.contains(lastCommand)||LatexParser::labelCommands.contains(lastCommand)||LatexParser::citeCommands.contains(lastCommand)){
+					reference=index; //todo: support for nested brackets like \cite[\xy{\ab{s}}]{miau}
 					lastCommand=outWord;
-					if (LatexParser::refCommands.contains(lastCommand)||LatexParser::labelCommands.contains(lastCommand)||LatexParser::citeCommands.contains(lastCommand))
-						reference=index; //todo: support for nested brackets like \cite[\xy{\ab{s}}]{miau}
+				}
+				if (LatexParser::optionCommands.contains(lastCommand)||lastCommand.isEmpty()) {
+					lastCommand=outWord;
 				}
 				break;
-                            } else {;} //first character is escaped, fall through to default case
+			} else {;} //first character is escaped, fall through to default case
 		default:
 			if (reference==-1) {
 				if (outWord.contains("\\")||outWord.contains("\""))
 					outWord=latexToPlainWord(outWord); //remove special chars
-				if (LatexParser::optionCommands.contains(lastCommand))
-					; //ignore command options
-				else if (LatexParser::environmentCommands.contains(lastCommand))
+				if (LatexParser::environmentCommands.contains(lastCommand))
 					return NW_ENVIRONMENT;
-				else return NW_TEXT;
+				if (LatexParser::optionCommands.contains(lastCommand)||lastCommand.isEmpty())
+					return NW_TEXT;
 			}
 		}
 	}

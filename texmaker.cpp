@@ -3252,21 +3252,23 @@ void Texmaker::GeneralOptions() {
 				addEnvironmentToDom(doc,i.key(),mode);
 			}
 			QNFADefinition::load(doc,&m_lang,dynamic_cast<QFormatScheme*>(m_formats));
-
 			m_languages->addLanguage(m_lang);
-			for (int i=0; i<EditorView->count();i++) {
-				LatexEditorView* edView=qobject_cast<LatexEditorView*>(EditorView->widget(i));
-				if (edView) {
-					QEditor *ed=edView->editor;
-					QString extension="."+ed->fileInfo().suffix();
-					m_languages->setLanguage(ed, extension);
-					ed->document()->markFormatCacheDirty();
-					ed->update();
-				}
-			}
 		}
+
 		//completion
 		updateCompleter();
+
+		// update all docuemnts views as spellcheck may be different
+		for (int i=0; i<EditorView->count();i++) {
+			LatexEditorView* edView=qobject_cast<LatexEditorView*>(EditorView->widget(i));
+			if (edView) {
+				QEditor *ed=edView->editor;
+				QString extension="."+ed->fileInfo().suffix();
+				m_languages->setLanguage(ed, extension);
+				ed->document()->markFormatCacheDirty();
+				ed->update();
+			}
+		}
 	}
 }
 void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
