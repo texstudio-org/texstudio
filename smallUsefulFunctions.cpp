@@ -270,7 +270,7 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 				start=i;
 				inCmd=true;
 			}
-		} else if (cur=='{' || cur=='}' || cur=='%') {
+		} else if (cur=='{' || cur=='}' || cur=='%' || cur=='[' || cur==']') {
 			index=i+1;
 			return i;
                 } else if ((CommonEOW.indexOf(cur)<0 && cur!='\'' )|| cur=='"') {
@@ -289,40 +289,49 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordStartIndex, bool returnCommands,bool abbreviations) {
 	int reference=-1;
 	QString lastCommand="";
+	bool inOption=false;
 	while ((wordStartIndex = nextToken(line, index,abbreviations))!=-1) {
 		outWord=line.mid(wordStartIndex,index-wordStartIndex);
 		if (outWord.length()==0) return NW_NOTHING; //should never happen
 		switch (outWord.at(0).toAscii()) {
 		case '%':
 			return NW_COMMENT; //return comment start
+		case '[':
+			if(!lastCommand.isEmpty()) inOption=true;
+			break;
+		case ']':
+			inOption=false;
+			break;
 		case '{':
 			if (reference!=-1)
 				reference=wordStartIndex+1;
+			if(!lastCommand.isEmpty()) inOption=true;
 			break; //ignore
 		case '}':
-                        if (reference!=-1) {
+			if (reference!=-1) {
 			    if (LatexParser::refCommands.contains(lastCommand)){
-                                wordStartIndex=reference;
-                                --index;
-                                outWord=line.mid(reference,index-reference);
-                                return NW_REFERENCE;
-                            } else {
-				if (LatexParser::labelCommands.contains(lastCommand)){
-                                    wordStartIndex=reference;
-                                    --index;
-                                    outWord=line.mid(reference,index-reference);
-                                    return NW_LABEL;
-                                } else {
-				    if (LatexParser::citeCommands.contains(lastCommand)){
-                                        wordStartIndex=reference;
-                                        --index;
-                                        outWord=line.mid(reference,index-reference);
-                                        return NW_CITATION;
-                                    }
-                                }
-                            }
-                        }
-                        lastCommand="";
+					wordStartIndex=reference;
+					--index;
+					outWord=line.mid(reference,index-reference);
+					return NW_REFERENCE;
+				} else {
+					if (LatexParser::labelCommands.contains(lastCommand)){
+						wordStartIndex=reference;
+						--index;
+						outWord=line.mid(reference,index-reference);
+						return NW_LABEL;
+					} else {
+						if (LatexParser::citeCommands.contains(lastCommand)){
+							wordStartIndex=reference;
+							--index;
+							outWord=line.mid(reference,index-reference);
+							return NW_CITATION;
+						}
+					}
+				}
+			}
+			lastCommand="";
+			inOption=false;
 			break;//command doesn't matter anymore
 		case '\\':
 			if (outWord.length()==1 || !(EscapedChars.contains(outWord.at(1)) || CharacterAlteringChars.contains(outWord.at(1)))) {
@@ -338,6 +347,10 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 			} else {;} //first character is escaped, fall through to default case
 		default:
 			if (reference==-1) {
+				if(!inOption && !lastCommand.isEmpty()){
+					inOption=false;
+					lastCommand="";
+				}
 				if (outWord.contains("\\")||outWord.contains("\""))
 					outWord=latexToPlainWord(outWord); //remove special chars
 				if (LatexParser::environmentCommands.contains(lastCommand))
