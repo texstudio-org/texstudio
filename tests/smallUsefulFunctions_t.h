@@ -112,7 +112,7 @@ class SmallUsefulFunctionsTest: public QObject{
 		addRow("some environments", filter,
 			QList<TestToken>() << "\\newenvironment" << "{" << env("env") << "}" << " " << "\\begin" << "{" << env("env2") << "}" << " " << "\\end" << "{" << env("env3") << "}" << "  " << "\\renewenvironment" << "{" << env("env4") << "}");
 		addRow("misc", filter, //was only for nextWord, other test will of course not ignore \\ignoreMe 
-			QList<TestToken>() << "hallo" << " " << "welt" << "\\ignoreMe" << "{" << "text" << "}" << "     " << "\\begin" << "{" << env("I'mXnotXthere") << "}" << " *" << "g"  << "* " << "%"     << " " << "more" << " " << "\\comment");
+			QList<TestToken>() << "hallo" << " " << "welt" << "\\section" << "{" << "text" << "}" << "     " << "\\begin" << "{" << env("I'mXnotXthere") << "}" << " *" << "g"  << "* " << "%"     << " " << "more" << " " << "\\comment");
 		addRow("command as option", filter,
 			QList<TestToken>() << "\\includegraphics" << "[" << option("ab") << "." << "\\linewidth" << "]" << "{" << "\\abc" << " " << option("dfdf") << "\\xyz" << "}" << "continue");
 		addRow("comments", filter, QList<TestToken>() << "hallo" << " " << "welt" <<  "  " << "\\\\" << "normaltext" <<  "  " << TestToken("\\%","%",NW_TEXT) << "!!!" << "stillNoComment" << "\\\\" << TestToken("\\%","%",NW_TEXT) <<"  "<< "none" << "\\\\" << "%" << "comment" << "   " << "more" << " " << "comment");
@@ -215,7 +215,7 @@ private slots:
 		                           << (int)NW_CITATION << 40 << "Hallo:Welt!,miau!" << 23;
 		QTest::newRow("no abbre.") << "+++TEST.---" << 0 << false << false << (int)NW_TEXT << 7 << "TEST" << 3;
 		QTest::newRow("abbrev.")   << "+++TEST.---" << 0 << false << true << (int)NW_TEXT << 8 << "TEST." << 3;
-		QTest::newRow("in cmd.")   << "\\abc{text}" << 0 << false << false << (int)NW_TEXT << 9 << "text" << 5;
+		QTest::newRow("in cmd.")   << "\\section{text}" << 0 << false << false << (int)NW_TEXT << 13 << "text" << 9;
 		QTest::newRow("' chars")   << " can't " << 0 << false << false << (int)NW_TEXT << 6 << "can't" << 1;
 		QTest::newRow("' char2")   << " 'abc def' " << 0 << false << false << (int)NW_TEXT << 5 << "abc" << 2;
 		QTest::newRow("' char3")   << " 'abc def' " << 5 << false << false << (int)NW_TEXT << 9 << "def" << 6;
