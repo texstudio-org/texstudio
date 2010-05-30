@@ -60,9 +60,7 @@ public:
 	QString getRelativeBaseName(const QString & file);//get completebasename with path relative to the compiled file for a given file 
 	QByteArray windowstate;
 	bool tobemaximized,tobefullscreen;
-	bool getAutoReplaceCommands(){
-		return configManager.autoReplaceCommands;
-	}
+	static ConfigManager* global_configManager;
 
 public slots:
 	LatexEditorView* load(const QString &f , bool asProject = false);
