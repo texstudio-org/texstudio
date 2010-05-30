@@ -47,6 +47,8 @@
 
 #include "qnfadefinition.h"
 
+ConfigManager* Texmaker::global_configManager=0;
+
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 		: QMainWindow(parent, flags), spellToolBar(0), textAnalysisDlg(0), spellDlg(0), PROCESSRUNNING(false), mDontScrollToItem(false) {
 
@@ -77,6 +79,9 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	outputView=0;
 	thesaurusDialog=0;
 	templateSelectorDialog=0;
+
+	// set static global_configManager ...
+	Texmaker::global_configManager=&configManager;
 
 	mainSpeller=new SpellerUtility();;
 	mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);

@@ -31,15 +31,15 @@ public:
 	void insert(QEditor* editor);
 	void insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePlaceholders=true) const;
 
-        void setCut(bool cut) {m_cut=cut;}
+	void setCut(bool cut) {m_cut=cut;}
 
-        void setTMX(Texmaker *parent){
-            tmx=parent;
-        }
+	void setTMX(Texmaker *parent){
+		tmx=parent;
+	}
 
 private:
         bool m_cut;
-        Texmaker *tmx;
+		Texmaker *tmx;
 };
 
 Q_DECLARE_METATYPE(CodeSnippet);
