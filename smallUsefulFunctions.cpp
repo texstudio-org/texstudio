@@ -327,7 +327,7 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 		case '\\':
 			if (outWord.length()==1 || !(EscapedChars.contains(outWord.at(1)) || CharacterAlteringChars.contains(outWord.at(1)))) {
 				if (returnCommands) return NW_COMMAND;
-				if (LatexParser::refCommands.contains(lastCommand)||LatexParser::labelCommands.contains(lastCommand)||LatexParser::citeCommands.contains(lastCommand)){
+				if (LatexParser::refCommands.contains(outWord)||LatexParser::labelCommands.contains(outWord)||LatexParser::citeCommands.contains(outWord)){
 					reference=index; //todo: support for nested brackets like \cite[\xy{\ab{s}}]{miau}
 					lastCommand=outWord;
 				}
