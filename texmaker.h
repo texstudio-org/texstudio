@@ -364,6 +364,8 @@ private slots:
 	void cursorPositionChanged();
 //	void treeWidgetChanged();
 
+	void generateMirror();
+
 protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);

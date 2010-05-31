@@ -373,6 +373,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"findnext",tr("Find &Next"), SLOT(editFindNext()), Qt::CTRL+Qt::Key_M);
 	newManagedAction(menu,"findglobal",tr("Find D&ialog"), SLOT(editFindGlobal()));
 	newManagedAction(menu,"replace",tr("&Replace"), SLOT(editReplace()), Qt::CTRL+Qt::Key_R);
+	newManagedAction(menu,"generateMirror",tr("Re&name Environment"), SLOT(generateMirror()));
 
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "goto",tr("Go to"));
@@ -4250,4 +4251,65 @@ QStringList Texmaker::svnLog(){
 		keep=elem.contains(QRegExp("-{60,}"));
 	}
 	return revisions;
+}
+
+void Texmaker::generateMirror(){
+	if (!currentEditorView()) return;
+	QDocumentCursor cursor = currentEditorView()->editor->cursor();
+	QString line=cursor.line().text();
+	QString command, value;
+	LatexParser::ContextType result=LatexParser::findContext(line, cursor.columnNumber(), command, value);
+	if(result==LatexParser::Command || result==LatexParser::Environment){
+		if (command=="\\begin" || command=="\\end"){
+			if (currentEditor()->currentPlaceHolder()!=-1 &&
+				currentEditor()->getPlaceHolder(currentEditor()->currentPlaceHolder()).cursor.isWithinSelection(cursor))
+				currentEditor()->removePlaceHolder(currentEditor()->currentPlaceHolder()); //remove currentplaceholder to prevent nesting
+			//move cursor to env name
+			//currentEditorView()->editor->document()->beginMacro();
+			if(result==LatexParser::Environment){
+				cursor.select(QDocumentCursor::WordUnderCursor);
+			}else{
+				cursor.movePosition(1,QDocumentCursor::EndOfWord);
+				cursor.movePosition(1,QDocumentCursor::NextWord);
+				cursor.movePosition(1,QDocumentCursor::NextWord,QDocumentCursor::KeepAnchor);
+			}
+			//currentEditorView()->editor->setCursor(cursor);
+			int magicPlaceHolder=currentEditor()->placeHolderCount();
+			QEditor::PlaceHolder ph;
+			ph.cursor=cursor;
+			currentEditor()->addPlaceHolder(ph,true);
+			// remove curly brakets as well
+			QDocument* doc=currentEditorView()->editor->document();
+			QString searchWord="\\end{"+value+"}";
+			QString inhibitor="\\begin{"+value+"}";
+			bool backward=(command=="\\end");
+			int step=1;
+			if(backward) {
+				qSwap(searchWord,inhibitor);
+				step=-1;
+			}
+			int startLine=cursor.lineNumber();
+			//int startCol=cursor.columnNumber();
+			int endLine=doc->findLineContaining(searchWord,startLine+1,Qt::CaseSensitive,backward);
+			int inhibitLine=doc->findLineContaining(inhibitor,startLine+1,Qt::CaseSensitive,backward); // not perfect (same line end/start ...)
+			while (inhibitLine>0 && endLine>0 && inhibitLine*step<endLine*step) {
+				endLine=doc->findLineContaining(searchWord,endLine+step,Qt::CaseSensitive,backward); // not perfect (same line end/start ...)
+				inhibitLine=doc->findLineContaining(inhibitor,inhibitLine+step,Qt::CaseSensitive,backward);
+			}
+			if(endLine>-1){
+				line=doc->line(endLine).text();
+				int start=line.indexOf(searchWord);
+				int offset=searchWord.indexOf("{");
+				QEditor::PlaceHolder ph;
+				ph.length=searchWord.length()-offset-1;
+				ph.cursor=currentEditor()->document()->cursor(endLine,start+offset+1,endLine,start+searchWord.length()-1);
+				currentEditor()->addPlaceHolderMirror(magicPlaceHolder,ph.cursor);
+			}
+			currentEditor()->setPlaceHolder(magicPlaceHolder);
+		}
+
+		//currentEditorView()->editor->document()->endMacro();
+		//currentEditorView()->editor->setCursor(cursor);
+	}
+
 }
