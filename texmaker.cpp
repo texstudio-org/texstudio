@@ -4290,8 +4290,8 @@ void Texmaker::generateMirror(){
 			}
 			int startLine=cursor.lineNumber();
 			//int startCol=cursor.columnNumber();
-			int endLine=doc->findLineContaining(searchWord,startLine+1,Qt::CaseSensitive,backward);
-			int inhibitLine=doc->findLineContaining(inhibitor,startLine+1,Qt::CaseSensitive,backward); // not perfect (same line end/start ...)
+			int endLine=doc->findLineContaining(searchWord,startLine+step,Qt::CaseSensitive,backward);
+			int inhibitLine=doc->findLineContaining(inhibitor,startLine+step,Qt::CaseSensitive,backward); // not perfect (same line end/start ...)
 			while (inhibitLine>0 && endLine>0 && inhibitLine*step<endLine*step) {
 				endLine=doc->findLineContaining(searchWord,endLine+step,Qt::CaseSensitive,backward); // not perfect (same line end/start ...)
 				inhibitLine=doc->findLineContaining(inhibitor,inhibitLine+step,Qt::CaseSensitive,backward);
