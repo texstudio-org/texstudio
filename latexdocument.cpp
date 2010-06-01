@@ -116,16 +116,19 @@ void LatexDocument::clearStructure() {
 
 	mAppendixLine=0;
 
-	emit structureLost(this);
+	if(baseStructure){
+	    emit structureLost(this);
 
-	if (!labelList->parent) delete labelList;
-	if (!todoList->parent) delete todoList; 
-	if (!bibTeXList->parent) delete bibTeXList;
-	if (!blockList->parent) delete blockList;
-	int row=parent->documents.indexOf(this);
-	removeElement(baseStructure,row);
-	delete baseStructure;
-	removeElementFinished();
+	    if (!labelList->parent) delete labelList;
+	    if (!todoList->parent) delete todoList;
+	    if (!bibTeXList->parent) delete bibTeXList;
+	    if (!blockList->parent) delete blockList;
+	    int row=parent->documents.indexOf(this);
+
+	    removeElement(baseStructure,row);
+	    delete baseStructure;
+	    removeElementFinished();
+	}
 	baseStructure=0;
 }
 
