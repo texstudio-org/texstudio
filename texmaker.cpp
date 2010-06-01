@@ -3967,7 +3967,7 @@ void Texmaker::editFindGlobal(){
 void Texmaker::cursorPositionChanged(){
 	if (!currentEditorView()) return;
 	int i=currentEditor()->cursor().lineNumber();
-	//int oldLine=currentLine;
+
 	// search line in structure
 	if (currentLine==i) return;
 	currentLine=i;
@@ -3975,44 +3975,12 @@ void Texmaker::cursorPositionChanged(){
 	LatexDocumentsModel *model=qobject_cast<LatexDocumentsModel*>(structureTreeView->model());
 	if (!model) return; //shouldn't happen
 
-	//StructureEntry *oldSection = model->highlightedEntry();
-	//if (oldSection && currentLine>oldLine && currentLine<oldSection->getRealLineNumber() && oldSection->document==currentEditorView()->document)
-	//	return; //still in the same section
-	// needs to be remedied
-
-	/*
-	StructureEntryIterator iter(currentEditorView()->document->baseStructure);
-	StructureEntry *newSection=0;
-
-	while (true){
-		StructureEntry *curSection=0;
-		while (iter.hasNext()){
-			curSection=iter.next();
-			if (curSection->type==StructureEntry::SE_SECTION)
-				break;
-		}
-		if (curSection==0 || curSection->type!=StructureEntry::SE_SECTION)
-			break;
-
-		if (curSection->getRealLineNumber() > currentLine) break; //curSection is after newSection where the cursor is
-		else newSection=curSection;
-	}
-
-	if (newSection==0 || newSection->getRealLineNumber()>currentLine){
-		model->setHighlightedEntry(0);
-		return;
-	}
-	*/
 	StructureEntry *newSection=currentEditorView()->document->findSectionForLine(currentLine);
 
 	model->setHighlightedEntry(newSection);
 	if(!mDontScrollToItem)
 		structureTreeView->scrollTo(model->highlightedEntry());
 }
-/*void Texmaker::treeWidgetChanged(){
-	currentLine=-1;
-	cursorPositionChanged();
-}*/
 
 void Texmaker::fileCheckin(QString filename){
 	QString fn=filename.isEmpty() ? currentEditor()->fileName() : filename;

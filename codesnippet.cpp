@@ -149,19 +149,31 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 		if(mLines.size()==1 && Texmaker::global_configManager->autoReplaceCommands){
 			if(cursor->nextChar().isLetterOrNumber()){
 				QString curLine=cursor->line().text();
+				int wordBreak=curLine.indexOf(QRegExp("\\W"),cursor->columnNumber());
 				int closeCurl=curLine.indexOf("}",cursor->columnNumber());
 				int openCurl=curLine.indexOf("{",cursor->columnNumber());
 				int openBracket=curLine.indexOf("[",cursor->columnNumber());
-				if(openCurl>-1){
+				if(!line.contains("{")){
 					if(openBracket<0) openBracket=1e9;
 					if(closeCurl<0) closeCurl=1e9;
-					if(openCurl<openBracket && openCurl<closeCurl){
-						cursor->movePosition(openCurl-cursor->columnNumber(),QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
-						cursor->removeSelectedText();
-						int curl=line.length()-line.indexOf("{");
-						cursor->movePosition(curl,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+					if(openCurl<0) openCurl=1e9;
+					if(wordBreak<openBracket && wordBreak<closeCurl &&wordBreak<openCurl){
+						cursor->movePosition(wordBreak-cursor->columnNumber(),QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
 						cursor->removeSelectedText();
 						return;
+					}
+				}else{
+					if(openCurl>-1){
+						if(openBracket<0) openBracket=1e9;
+						if(closeCurl<0) closeCurl=1e9;
+						if(openCurl<openBracket && openCurl<closeCurl &&openCurl<=wordBreak){
+							cursor->movePosition(openCurl-cursor->columnNumber(),QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+							cursor->removeSelectedText();
+							int curl=line.length()-line.indexOf("{");
+							cursor->movePosition(curl,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+							cursor->removeSelectedText();
+							return;
+						}
 					}
 				}
 			}
