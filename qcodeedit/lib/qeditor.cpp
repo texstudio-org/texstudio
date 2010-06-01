@@ -2082,6 +2082,12 @@ void QEditor::emitCursorPositionChanged()
 	emit cursorPositionChanged();
 	emit copyAvailable(m_cursor.hasSelection());
 
+	if(cutLineNumber>-1 && cursorHandle()->lineNumber()!=cutLineNumber) {
+		cutBuffer.clear();
+		cutLineNumber=-1;
+	}
+
+
 	if ( m_definition )
 		m_definition->match(m_cursor);
 
@@ -4235,8 +4241,11 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	if (beginNewMacro)
 		m_doc->beginMacro();
 
-	if ( hasSelection )
+	if ( hasSelection ){
+		cutBuffer=c.selectedText();
+		cutLineNumber=c.lineNumber();
 		c.removeSelectedText();
+	}
 	
 	if ( !hasSelection && flag(Overwrite) && !c.atLineEnd() )
 		c.deleteChar();

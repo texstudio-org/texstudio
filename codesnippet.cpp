@@ -121,6 +121,12 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 	if (cursor->hasSelection()) {
 		savedSelection=cursor->selectedText();
 		cursor->removeSelectedText();
+	}else{
+		if(!editor->cutBuffer.isEmpty()){
+			savedSelection=editor->cutBuffer;
+			editor->cutBuffer.clear();
+			editor->cutLineNumber=-1;
+		}
 	}
 	QDocumentCursor selector=*cursor;
 	QDocumentLine curLine=cursor->line();
