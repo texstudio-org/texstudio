@@ -6,10 +6,11 @@
 #include "filechooser.h"
 #include "texmaker.h"
 
+extern Texmaker* mw;
+
 
 CodeSnippet::CodeSnippet(const QString &newWord) {
-        m_cut=false;
-        tmx=0;
+	m_cut=false;
 	QString realNewWord=newWord;
 	// \begin magic
 	if (realNewWord.startsWith("\\begin{")&&
@@ -131,11 +132,10 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
         if(pos>-1){
             FileChooser *sfDlg = new FileChooser(0,"Select an image File");
             sfDlg->setFilter(rx.cap(1));
-            if(tmx) sfDlg->setDir(tmx->getPreferredPath());
+			sfDlg->setDir(mw->getPreferredPath());
             if (sfDlg->exec()) {
                     QString fn=sfDlg->fileName();
-                    if(tmx) line.replace(rx,tmx->getRelativeBaseName(fn));
-                    else line.replace(rx,fn);
+					line.replace(rx,mw->getRelativeBaseName(fn));
             }
             delete sfDlg;
         }

@@ -29,6 +29,7 @@
 typedef BOOL (*AllowSetForegroundWindowFunc)(DWORD);
 #endif
 
+
 #if QT_VERSION >= 0x040400
 class TexmakerApp : public QtSingleApplication {
 #else
@@ -39,7 +40,7 @@ protected:
 public:
 	bool initialized;
 	QString delayedFileLoad;
-	Texmaker *mw;  // Moved from private:
+	//static Texmaker *mw;  // Moved from private:
 	TexmakerApp(int & argc, char ** argv);
 	#if QT_VERSION >= 0x040400
 	TexmakerApp(QString &id,int & argc, char ** argv);
@@ -52,6 +53,8 @@ public:
 		return QApplication::notify(obj,event);
 	}//*/
 };
+
+Texmaker *mw=0; //global definition to have easier access to mainwindow from deep reference classes
 
 #if QT_VERSION >= 0x040400
 TexmakerApp::TexmakerApp(int & argc, char ** argv) : QtSingleApplication(argc, argv) {
@@ -158,10 +161,10 @@ int main(int argc, char ** argv) {
 
 #if QT_VERSION >= 0x040400
 	QObject::connect(&a, SIGNAL(messageReceived(const QString &)),
-	                 a.mw,   SLOT(onOtherInstanceMessage(const QString &)));
+					 mw,   SLOT(onOtherInstanceMessage(const QString &)));
 #else
 	QObject::connect(&instance, SIGNAL(messageReceived(const QString &)),
-					 a.mw,   SLOT(onOtherInstanceMessage(const QString &)));
+					 mw,   SLOT(onOtherInstanceMessage(const QString &)));
 #endif
 
 	return a.exec();
