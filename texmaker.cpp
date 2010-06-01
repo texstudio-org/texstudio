@@ -2288,7 +2288,6 @@ void Texmaker::InsertFromAction() {
 	if (action)	{
 		QDocumentCursor c = currentEditorView()->editor->cursor();
 		CodeSnippet cs=CodeSnippet(action->data().toString());
-		cs.setTMX(this);
 		cs.insertAt(currentEditorView()->editor,&c);
 		outputView->setMessage(CodeSnippet(action->whatsThis()).lines.join("\n"));
 	}

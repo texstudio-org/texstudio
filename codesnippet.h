@@ -10,8 +10,8 @@ class Texmaker;
 class CodeSnippet
 {
 public:
-        CodeSnippet():cursorLine(-1), cursorOffset(-1),anchorOffset(-1),m_cut(false),tmx(0) {}
-        CodeSnippet(const CodeSnippet &cw):word(cw.word),sortWord(cw.sortWord),lines(cw.lines),cursorLine(cw.cursorLine),cursorOffset(cw.cursorOffset),anchorOffset(cw.anchorOffset),placeHolders(cw.placeHolders),m_cut(cw.m_cut),tmx(0) {}
+	CodeSnippet():cursorLine(-1), cursorOffset(-1),anchorOffset(-1),m_cut(false) {}
+	CodeSnippet(const CodeSnippet &cw):word(cw.word),sortWord(cw.sortWord),lines(cw.lines),cursorLine(cw.cursorLine),cursorOffset(cw.cursorOffset),anchorOffset(cw.anchorOffset),placeHolders(cw.placeHolders),m_cut(cw.m_cut) {}
 	CodeSnippet(const QString &newWord);
 	bool operator< (const CodeSnippet &cw) const {
 		return cw.sortWord > sortWord;
@@ -33,13 +33,8 @@ public:
 
 	void setCut(bool cut) {m_cut=cut;}
 
-	void setTMX(Texmaker *parent){
-		tmx=parent;
-	}
-
 private:
         bool m_cut;
-		Texmaker *tmx;
 };
 
 Q_DECLARE_METATYPE(CodeSnippet);
