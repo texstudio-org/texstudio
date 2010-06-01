@@ -414,6 +414,9 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			return m_UseTabforMoveToPlaceholder;
 		}
 
+		QString cutBuffer;
+		int cutLineNumber;
+
 	protected slots:
 		void documentWidthChanged(int newWidth);
 		void documentHeightChanged(int newWidth);
