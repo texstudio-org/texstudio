@@ -3578,7 +3578,7 @@ void Texmaker::updateCompleter() {
 		}
 
 	completer->setAdditionalWords(words);
-	edView->viewActivated();
+	if(edView) edView->viewActivated();
 
 	if (!LatexCompleter::hasHelpfile()) {
 		QFile f(findResourceFile("latexhelp.html"));
