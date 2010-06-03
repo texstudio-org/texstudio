@@ -16,6 +16,8 @@ class LatexEditorViewBenchmark: public QObject{
 		void documentChange();
 		void linePaint_data();
 		void linePaint();
+		void paintEvent_data();
+		void paintEvent();
 };
 
 #endif
