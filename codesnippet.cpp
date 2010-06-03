@@ -201,7 +201,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
         editor->insertText(*cursor,line); //don't use cursor->insertText to keep autoindentation working
 
 		// on single line commands only: replace command
-		if(mLines.size()==1 && Texmaker::global_configManager->autoReplaceCommands){
+		if(Texmaker::global_configManager->autoReplaceCommands && mLines.size()==1 && line.startsWith('\\')){
 			if(cursor->nextChar().isLetterOrNumber()){
 				QString curLine=cursor->line().text();
 				int wordBreak=curLine.indexOf(QRegExp("\\W"),cursor->columnNumber());
