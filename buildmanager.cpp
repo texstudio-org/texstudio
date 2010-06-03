@@ -129,9 +129,9 @@ QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mai
 
 QString BuildManager::findFileInPath(QString fileName) {
 #ifdef Q_WS_MAC
-	QProcess *myProcess = new QProcess(this);
+        QProcess *myProcess = new QProcess();
 	myProcess->start("bash -l -c \"echo $PATH\"");
-	myProces->waitForFinished(3000);
+        myProcess->waitForFinished(3000);
 	if(myProcess->exitStatus()==QProcess::CrashExit) return "";
 	QByteArray res=myProcess->readAllStandardOutput();
 	delete myProcess;
@@ -512,15 +512,23 @@ ProcessX* BuildManager::newProcess(const QString &unparsedCommandLine, const QSt
 	ProcessX* proc = new ProcessX(this, cmd, mainFile);
 	connect(proc, SIGNAL(finished(int)),proc, SLOT(deleteLater())); //will free proc after the process has ended
 	proc->setWorkingDirectory(mfi.absolutePath());
-/* this was added in texmaker 1.9.9, not sure if it is useful
-+#ifdef Q_WS_MACX
-+#if (QT_VERSION >= 0x0406)
-+QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-+env.insert("PATH", env.value("PATH") + ":/usr/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/texbin:/sw/bin");
-+proc->setProcessEnvironment(env);
-+#endif
-+#endif
-+*/
+
+#ifdef Q_WS_MACX
+#if (QT_VERSION >= 0x0406)
+        QProcess *myProcess = new QProcess();
+        myProcess->start("bash -l -c \"echo $PATH\"");
+        myProcess->waitForFinished(3000);
+        if(myProcess->exitStatus()==QProcess::NormalExit){
+            QByteArray res=myProcess->readAllStandardOutput();
+            delete myProcess;
+            QString path(res);
+            QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+            env.insert("PATH", env.value("PATH") + ":"+path); //apply user path as well
+            proc->setProcessEnvironment(env);
+        }
+#endif
+#endif
+
 	return proc;
 }
 ProcessX* BuildManager::newProcess(const QString &unparsedCommandLine, const QString &mainFile, int currentLine){
