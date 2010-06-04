@@ -4,10 +4,10 @@
 #include "qdocumentcursor.h"
 #include "qdocumentline.h"
 #include "filechooser.h"
-#include "texmaker.h"
+#include "latexdocument.h"
+#include "smallUsefulFunctions.h"
 
-extern Texmaker* mw;
-
+bool CodeSnippet::autoReplaceCommands=true;
 
 CodeSnippet::CodeSnippet(const QString &newWord) {
 	m_cut=false;
@@ -138,16 +138,22 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
         if(pos>-1){
             FileChooser *sfDlg = new FileChooser(0,"Select an image File");
             sfDlg->setFilter(rx.cap(1));
-			sfDlg->setDir(mw->getPreferredPath());
+			LatexDocument *doc=qobject_cast<LatexDocument*>(cursor->document());
+			QString path=doc->parent->getCompileFileName();
+			path=getPathfromFilename(path);
+			QString directory;
+			if(path.isEmpty()) directory=QDir::homePath();
+			else directory=path;
+			sfDlg->setDir(directory);
             if (sfDlg->exec()) {
                     QString fn=sfDlg->fileName();
-					line.replace(rx,mw->getRelativeBaseName(fn));
+					line.replace(rx,getRelativeBaseNameToPath(fn,path));
             }
             delete sfDlg;
         }
 
 		// on multi line commands, replace environments only
-		if(Texmaker::global_configManager->autoReplaceCommands && mLines.size()>1 && line.contains("\\begin{")){
+		if(autoReplaceCommands && mLines.size()>1 && line.contains("\\begin{")){
 			QString curLine=cursor->line().text();
 			int wordBreak=curLine.indexOf(QRegExp("\\W"),cursor->columnNumber());
 			int closeCurl=curLine.indexOf("}",cursor->columnNumber());
@@ -201,7 +207,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
         editor->insertText(*cursor,line); //don't use cursor->insertText to keep autoindentation working
 
 		// on single line commands only: replace command
-		if(Texmaker::global_configManager->autoReplaceCommands && mLines.size()==1 && line.startsWith('\\')){
+		if(autoReplaceCommands && mLines.size()==1 && line.startsWith('\\')){
 			if(cursor->nextChar().isLetterOrNumber()){
 				QString curLine=cursor->line().text();
 				int wordBreak=curLine.indexOf(QRegExp("\\W"),cursor->columnNumber());

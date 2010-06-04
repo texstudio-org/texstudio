@@ -40,7 +40,7 @@ protected:
 public:
 	bool initialized;
 	QString delayedFileLoad;
-	//static Texmaker *mw;  // Moved from private:
+	Texmaker *mw;  // Moved from private:
 	TexmakerApp(int & argc, char ** argv);
 	#if QT_VERSION >= 0x040400
 	TexmakerApp(QString &id,int & argc, char ** argv);
@@ -54,7 +54,6 @@ public:
 	}//*/
 };
 
-Texmaker *mw=0; //global definition to have easier access to mainwindow from deep reference classes
 
 #if QT_VERSION >= 0x040400
 TexmakerApp::TexmakerApp(int & argc, char ** argv) : QtSingleApplication(argc, argv) {
@@ -161,10 +160,10 @@ int main(int argc, char ** argv) {
 
 #if QT_VERSION >= 0x040400
 	QObject::connect(&a, SIGNAL(messageReceived(const QString &)),
-					 mw,   SLOT(onOtherInstanceMessage(const QString &)));
+					 a.mw,   SLOT(onOtherInstanceMessage(const QString &)));
 #else
 	QObject::connect(&instance, SIGNAL(messageReceived(const QString &)),
-					 mw,   SLOT(onOtherInstanceMessage(const QString &)));
+					 a.mw,   SLOT(onOtherInstanceMessage(const QString &)));
 #endif
 
 	return a.exec();

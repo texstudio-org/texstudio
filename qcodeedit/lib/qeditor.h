@@ -54,7 +54,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 {
 	friend class QEditConfig;
 	friend class QEditorFactory;
-	
+
 	Q_OBJECT
 	
 	public:

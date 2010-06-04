@@ -234,7 +234,7 @@ public:
 
 
 	void updateStructure();
-        void updateLayout();
+	void updateLayout();
 signals:
         void masterDocumentChanged(LatexDocument *masterDocument);
 private slots:

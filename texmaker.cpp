@@ -47,7 +47,6 @@
 
 #include "qnfadefinition.h"
 
-ConfigManager* Texmaker::global_configManager=0;
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 		: QMainWindow(parent, flags), spellToolBar(0), textAnalysisDlg(0), spellDlg(0), PROCESSRUNNING(false), mDontScrollToItem(false) {
@@ -79,9 +78,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	outputView=0;
 	thesaurusDialog=0;
 	templateSelectorDialog=0;
-
-	// set static global_configManager ...
-	Texmaker::global_configManager=&configManager;
 
 	mainSpeller=new SpellerUtility();;
 	mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);
@@ -800,10 +796,7 @@ QString Texmaker::getCompileFileName(){
 }
 QString Texmaker::getCompilePath(){
 	QString compFile=getCompileFileName();
-	if (compFile.isEmpty()) return "";
-	QString dir=QFileInfo(compFile).absolutePath();
-	if (!dir.endsWith("/") && !dir.endsWith(QDir::separator())) dir.append(QDir::separator());
-	return dir;
+	return getPathfromFilename(compFile);
 }
 QString Texmaker::getPreferredPath(){
 	QString dir=getCompilePath();
@@ -815,42 +808,7 @@ QString Texmaker::getAbsoluteFilePath(const QString & relName, const QString &ex
 }
 QString Texmaker::getRelativeBaseName(const QString & file){
 	QString basepath=getCompilePath();
-	basepath.replace(QDir::separator(),"/");
-	if (basepath.endsWith("/")) basepath=basepath.left(basepath.length()-1);
-
-	QFileInfo fi(file);
-	QString filename = fi.fileName();
-	QString path = fi.path();
-	if (path.endsWith("/")) path=path.left(path.length()-1);
-	QStringList basedirs = basepath.split("/");
-	QStringList dirs = path.split("/");
-	//QStringList basedirs = QStringList::split("/", basepath, false);
-	//QStringList dirs = QStringList::split("/", path, false);
-
-	int nDirs = dirs.count();
-
-	while (dirs.count() > 0 && basedirs.count() > 0 &&  dirs[0] == basedirs[0]) {
-		dirs.pop_front();
-		basedirs.pop_front();
-	}
-
-	if (nDirs != dirs.count()) {
-		path = dirs.join("/");
-
-		if (basedirs.count() > 0) {
-			for (int j=0; j < basedirs.count(); ++j) {
-				path = "../" + path;
-			}
-		}
-
-		//if (path.length()>0 && path.right(1) != "/") path = path + "/";
-	} else {
-		path = fi.path();
-	}
-
-	if (path.length()>0 && !path.endsWith("/") && !path.endsWith("\\")) path+="/"; //necessary if basepath isn't given
-
-	return path+fi.completeBaseName();
+	return getRelativeBaseNameToPath(file,basepath);
 }
 
 bool Texmaker::FileAlreadyOpen(QString f) {
