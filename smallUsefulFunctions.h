@@ -100,6 +100,9 @@ QToolButton* comboToolButtonFromAction(QAction* action);
 //check if the run-time qt version is higher than the given version (e.g. 4,3)
 bool hasAtLeastQt(int major, int minor);
 
+QString getRelativeBaseNameToPath(const QString & file,QString basepath);
+QString getPathfromFilename(const QString &compFile);
+
 class LatexParser{
 public:
 	enum ContextType {Unknown, Command, Environment, Label, Reference, Citation};

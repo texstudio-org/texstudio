@@ -33,6 +33,8 @@ public:
 
 	void setCut(bool cut) {m_cut=cut;}
 
+	static bool autoReplaceCommands;
+
 private:
         bool m_cut;
 };

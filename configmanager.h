@@ -92,7 +92,7 @@ public:
 	bool lastHardWrapSmartScopeSelection;
 	bool lastHardWrapJoinLines;
 
-	bool autoReplaceCommands;
+	//bool autoReplaceCommands; // moved to static codesnippet
 
 	int tabstop;
 	
