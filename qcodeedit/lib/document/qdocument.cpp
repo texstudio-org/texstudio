@@ -3429,6 +3429,26 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				//if (format.waveUnderlineForeground.isValid())
 				//	p->setPen(format.waveUnderlineForeground);
 
+				QColor cl=p->pen().color();
+				QImage wv(4,3,QImage::Format_ARGB32);
+				wv.fill(0x00ffffff);
+				wv.setPixel(0,0,cl.rgba());
+				wv.setPixel(1,1,cl.rgba());
+				wv.setPixel(2,2,cl.rgba());
+				wv.setPixel(3,1,cl.rgba());
+
+				QBrush bwv(wv);
+				QTransform tf;
+				tf.translate(0,ycenter%3);
+				bwv.setTransform(tf);
+
+				p->save();
+				p->setBrush(bwv);
+				p->setPen(Qt::NoPen);
+				p->drawRect(xspos,ycenter,rwidth,3);
+				p->restore();
+
+		/*
 				int cp = 0;
 				brokenWave = false;
 
@@ -3475,6 +3495,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
  			} else {
 				continuingWave = false;
 				dir = 0;
+				*/
 			}
 
 			p->setPen(oldpen);
