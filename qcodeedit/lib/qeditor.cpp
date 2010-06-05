@@ -2547,10 +2547,11 @@ void QEditor::paintEvent(QPaintEvent *e)
 	{
 		ctx.extra << m_dragAndDrop.handle();
 	}
-
+        //qDebug("elapsed %d ms",tm.elapsed());
 	p.save();
 	m_doc->draw(&p, ctx);
 	p.restore();
+        //qDebug("drawn %d ms",tm.elapsed());
 
 	//TODO: Customizable appearance
 	//TODO: documentRegion is too large, isn't correctly redrawn (especially with a non fixed width font)
@@ -2675,6 +2676,8 @@ bool QEditor::protectedCursor(const QDocumentCursor& c) const
 */
 void QEditor::keyPressEvent(QKeyEvent *e)
 {
+        //tm.start();
+        //qDebug("pressed");
 	foreach ( QEditorInputBindingInterface *b, m_bindings )
 		if ( b->keyPressEvent(e, this) )
 			return;
@@ -2899,7 +2902,13 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 		emitCursorPositionChanged();
 		setFlag(CursorOn, true);
 		ensureCursorVisible();
-		repaintCursor();
+#ifdef  Q_WS_MAC
+                //repaintCursor(); // squeeze for a little speed
+                m_blink.start(QApplication::cursorFlashTime() / 2, this);
+#else
+                repaintCursor();
+#endif
+
 		selectionChange();
 		break;
 	}
