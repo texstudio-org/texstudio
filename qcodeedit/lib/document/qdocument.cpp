@@ -193,6 +193,8 @@ QDocument::QDocument(QObject *p)
 		setFont(QFont("Monospace", 10));
 	}
 
+        fmtWidthCache.clear();
+
 	setText(QString());
 	setLineEnding(QDocument::Conservative);
 
@@ -218,6 +220,8 @@ QDocument::QDocument(QObject *p)
 QDocument::~QDocument()
 {
 	delete m_impl;
+
+        qDeleteAll(fmtWidthCache);
 }
 
 /*!
@@ -2083,7 +2087,6 @@ void QDocumentLineHandle::updateWrap() const
 		}
 
 		m_indent = minx - QDocumentPrivate::m_leftMargin;
-
 		while ( idx < m_text.length() )
 		{
 			if ( c.isSpace() )  //!isWord(c) || !isWord(m_text.at(idx)) )
@@ -2097,15 +2100,35 @@ void QDocumentLineHandle::updateWrap() const
 			fmt = idx < composited.count() ? composited[idx] : 0;
 			QFontMetrics fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
 
+                        WCache *wCache;
+                        if(m_doc->fmtWidthCache.contains(fmt)){
+                            wCache=m_doc->fmtWidthCache.value(fmt);
+                        }else{
+                            wCache=new WCache;
+                            m_doc->fmtWidthCache.insert(fmt,wCache);
+                        }
+
 			if ( c.unicode() == '\t' )
 			{
 				int taboffset = tabStop - (column % tabStop);
 
 				column += taboffset;
-				cwidth = fm.width(' ') * taboffset;
+                                if(wCache->contains(' ')){
+                                    cwidth=wCache->value(' ');
+                                }else{
+                                    cwidth = fm.width(' ');
+                                    wCache->insert(' ',cwidth);
+                                }
+                                cwidth = cwidth * taboffset;
 			} else {
 				++column;
-				cwidth = fm.width(c);
+
+                                if(wCache->contains(c)){
+                                    cwidth=wCache->value(c);
+                                }else{
+                                    cwidth = fm.width(c);
+                                    wCache->insert(c,cwidth);
+                                }
 			}
 
 			if ( x + cwidth > maxWidth )
