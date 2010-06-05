@@ -26,6 +26,7 @@
 */
 
 #include <QList>
+#include <QMap>
 #include <QVector>
 #include <QLinkedList>
 
@@ -55,6 +56,8 @@ class QDocumentCursorHandle;
 
 typedef QVector<QDocumentLineHandle*>::iterator QDocumentIterator;
 typedef QVector<QDocumentLineHandle*>::const_iterator QDocumentConstIterator;
+
+typedef QMap<QChar,int> WCache;
 
 Q_DECLARE_METATYPE(QDocumentIterator)
 Q_DECLARE_METATYPE(QDocumentConstIterator)
@@ -243,6 +246,8 @@ class QCE_EXPORT QDocument : public QObject
 		bool linesPartiallyFolded(int fromInc, int toInc);
 		void correctFolding(int fromInc, int toInc);
 
+                QMap<int,WCache*>fmtWidthCache;
+
 	public slots:
 		void clear();
 		
@@ -289,6 +294,7 @@ class QCE_EXPORT QDocument : public QObject
 	private:
 		QString m_leftOver;
 		QDocumentPrivate *m_impl;
+
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(QDocument::WhiteSpaceMode)
