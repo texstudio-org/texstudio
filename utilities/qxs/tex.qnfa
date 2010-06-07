@@ -91,7 +91,7 @@ environments in smallUsefulFunctions.cpp)
 		<start parenthesis="math:open" parenthesisWeight="40" fold="1" >$</start>
 		<stop parenthesis="math:close" parenthesisWeight="40" fold="1" >$</stop>
     
-		<word id="keywords/single" format="math-keyword">\\[a-zA-Z]+</word>
+		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
 	</context>
 
 	<context id="mathmodeNormal" format="numbers" transparency="true">
@@ -100,7 +100,7 @@ environments in smallUsefulFunctions.cpp)
 		<start parenthesis="mathN2:open" parenthesisWeight="40" fold="1" >\\\(</start>
 		<stop parenthesis="mathN2:close" parenthesisWeight="40" fold="1" >\\\)</stop>
 
-		<word id="keywords/single" format="math-keyword">\\[a-zA-Z]+</word>
+		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
 	</context>
 	
 	<context id="mathmodeDisplay" format="numbers" transparency="true">
@@ -111,7 +111,7 @@ environments in smallUsefulFunctions.cpp)
 		<start parenthesis="mathD3:open" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{equation}</start>
 		<stop parenthesis="mathD3:close" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{equation}</stop>
 
-		<word id="keywords/single" format="math-keyword">\\[a-zA-Z]+</word>
+		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
 	</context>
 
 	<context id="mathmodeEqnArray" format="numbers" transparency="true">
@@ -124,7 +124,7 @@ environments in smallUsefulFunctions.cpp)
 		<start parenthesis="mathEA4:open" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{align\*}</start>
 		<stop parenthesis="mathEA4:close" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{align\*}</stop>
 
-		<word id="keywords/single" format="math-keyword">\\[a-zA-Z]+</word>
+		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
 	</context>
 	
 	<word parenthesis="block:open" parenthesisWeight="30" fold="1" indent="1" ambiguous="true" format="extra-keyword">\\begin{[^}]*}</word>
@@ -140,6 +140,7 @@ environments in smallUsefulFunctions.cpp)
 		<word parenthesis="subparagraph:boundary@nomatch" parenthesisWeight="2" fold="true" >\\subparagraph</word>
 	</list>
 	
+	<!--sequence instead of word so things like \abc434 are correctly highlighted -->
 	<sequence id="keywords/single" ambiguous="true" format="keyword">\\[a-zA-Z]+</sequence>
 </QNFA>
 

@@ -868,6 +868,8 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 
 	edit->editor->setFocus();
 	edit->document->setEditorView(edit); //update file name (if document didn't exist)
+	if (edit->editor->fileInfo().suffix()!="tex")
+		m_languages->setLanguage(edit->editor, f_real);
 	UpdateCaption();
 	NewDocumentStatus(false);
 	MarkCurrentFileAsRecent();
@@ -1171,6 +1173,9 @@ void Texmaker::fileSaveAs(QString fileName) {
 		}
 
 		EditorView->setTabText(EditorView->indexOf(currentEditorView()),currentEditor()->name());
+		if (currentEditor()->fileInfo().suffix()!="tex")
+			m_languages->setLanguage(currentEditor(), fn);
+
 	}
 
 	UpdateCaption();
@@ -3227,9 +3232,8 @@ void Texmaker::GeneralOptions() {
 		for (int i=0; i<EditorView->count();i++) {
 			LatexEditorView* edView=qobject_cast<LatexEditorView*>(EditorView->widget(i));
 			if (edView) {
-				QEditor *ed=edView->editor;
-				QString extension="."+ed->fileInfo().suffix();
-				m_languages->setLanguage(ed, extension);
+				QEditor* ed = edView->editor;
+				m_languages->setLanguage(ed, ed->fileName());
 				ed->document()->markFormatCacheDirty();
 				ed->update();
 			}
