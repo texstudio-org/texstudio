@@ -98,6 +98,7 @@
 
 static int m_spaceSignOffset = 2;
 QTextCodec* QDocumentPrivate::m_defaultCodec = 0;
+QMap<int,WCache*>QDocument::fmtWidthCache;
 
 static QPoint m_spaceSign[] = {
 	QPoint(2, -1),
@@ -193,7 +194,6 @@ QDocument::QDocument(QObject *p)
 		setFont(QFont("Monospace", 10));
 	}
 
-        fmtWidthCache.clear();
 
 	setText(QString());
 	setLineEnding(QDocument::Conservative);
@@ -220,8 +220,6 @@ QDocument::QDocument(QObject *p)
 QDocument::~QDocument()
 {
 	delete m_impl;
-
-        qDeleteAll(fmtWidthCache);
 }
 
 /*!
@@ -2100,13 +2098,13 @@ void QDocumentLineHandle::updateWrap() const
 			fmt = idx < composited.count() ? composited[idx] : 0;
 			QFontMetrics fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
 
-                        WCache *wCache;
-                        if(m_doc->fmtWidthCache.contains(fmt)){
-                            wCache=m_doc->fmtWidthCache.value(fmt);
-                        }else{
-                            wCache=new WCache;
-                            m_doc->fmtWidthCache.insert(fmt,wCache);
-                        }
+			WCache *wCache;
+			if(m_doc->fmtWidthCache.contains(fmt)){
+				wCache=m_doc->fmtWidthCache.value(fmt);
+			}else{
+				wCache=new WCache;
+				m_doc->fmtWidthCache.insert(fmt,wCache);
+			}
 
 			if ( c.unicode() == '\t' )
 			{
