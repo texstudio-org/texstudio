@@ -106,6 +106,14 @@ static QPoint m_spaceSign[] = {
 	QPoint(3, 0)
 };
 
+static int FORMAT_SELECTION       = 0x80000000;
+static int FORMAT_SPACE           = 0x40000000;
+static int FORMAT_MASK_BASE       = 0x000000ff;
+//static int FORMAT_MASK_SECOND     = 0x0000ff00;
+//static int FORMAT_MASK_FIRST      = 0x00ff0000;
+static int FORMAT_SHIFT           = 8;
+static int FORMAT_MASK_FULL       = FORMAT_MASK_BASE | (FORMAT_MASK_BASE << FORMAT_SHIFT) | (FORMAT_MASK_BASE << (2*FORMAT_SHIFT));
+
 inline static bool isWord(QChar c)
 { return c.isLetterOrNumber(); } // see qnfa.cpp isWord  || (c == QLatin1Char('_')); }, _ is no word character in LaTeX
 
@@ -2715,18 +2723,24 @@ QMediumArray QDocumentLineHandle::compose() const
 	for ( int i = m_formats.count(); i < m_text.length(); ++i )
 		m_cache[i] = 0;
 
-	// compositing formats and overlays
+	// compositing formats and overlays	
+	QDocumentPrivate * d = document()->impl();
 	foreach ( const QFormatRange& r, m_overlays )
 	{
 		int beg = qMax(0, r.offset);
 		int end = qMin(r.offset + r.length, m_cache.count());
 
-		for ( int i = beg; i < end; ++i )
-		{
-			m_cache[i] = r.format;
+		for ( int i = beg; i < end; ++i ) {
+			m_cache[i] = ((m_cache[i] << FORMAT_SHIFT) & FORMAT_MASK_FULL) | r.format;
+		/*	if ((m_cache[i] & FORMAT_MASK_BASE) == r.format) continue;
+			else if (((m_cache[i]<<FORMAT_SHIFT) & FORMAT_MASK_BASE) == r.format) continue;
+			else if (((m_cache[i]<<(2*FORMAT_SHIFT)) & FORMAT_MASK_BASE) == r.format) continue;
+			else m_cache[i] = ((m_cache[i] << FORMAT_SHIFT) & FORMAT_MASK_FULL) | r.format;*/
+			//qDebug("%i: %x ", i, m_cache [i]);
 		}
-	}
 
+	}
+qDebug("\n");
 	setFlag(QDocumentLine::FormatsApplied, true);
 
 	return m_cache;
@@ -2916,7 +2930,7 @@ struct RenderRange
 {
 	int position;
 	int length;
-	quint16 format;
+	int format;
 	int wrap;
 };
 
@@ -3011,7 +3025,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 						);
 
 	} else {
-		QVector<quint16> merged;
+		QVector<int> merged;
 		merged.fill(0, m_text.count());
 
 		QList<RenderRange> ranges;
@@ -3036,7 +3050,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 				// separate spaces to ease rendering loop
 				if ( m_text.at(i).isSpace() )
-					merged[i] |= 0x4000;
+					merged[i] |= FORMAT_SPACE;
 			}
 
 			for ( int i = 0; i < sel.count(); i += 2 )
@@ -3047,7 +3061,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 					max = qMin(sel[i + 1], max);
 
 				for ( int j = sel[i]; j < max; ++j )
-					merged[j] |= 0x8000;
+					merged[j] |= FORMAT_SELECTION;
 			}
 		}
 
@@ -3091,7 +3105,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				r.position = i;
 				r.length = 1;
 				r.wrap = wrap;
-				r.format = fullSel ? 0x8000 : 0;
+				r.format = fullSel ? FORMAT_SELECTION : 0;
 
 				while ( ((i + 1) < frontier) )
 				{
@@ -3113,12 +3127,13 @@ void QDocumentLineHandle::draw(	QPainter *p,
 			RenderRange r;
 			r.position = 0;
 			r.length = m_text.length();
-			r.format = fullSel ? 0x8000 : 0;
+			r.format = fullSel ? FORMAT_SELECTION : 0;
 
 			ranges << r;
 		}
 
-		quint16 fmt = fullSel ? 0x8000 : 0;
+		int fmt = fullSel ? FORMAT_SELECTION : 0;
+		int lastFont = 0;
 		QDocumentPrivate *d = m_doc->impl();
 		const int ts = d->m_tabStop;
 		const int maxWidth = xOffset + vWidth;
@@ -3138,7 +3153,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 		bool continuingWave = false, brokenWave = false;
 		int dir = 0; // 0 = down; 1 = up
 		int wrap = 0, xpos = QDocumentPrivate::m_leftMargin, ypos = 0;
-		bool leading = ranges.first().format & 0x4000, pastLead = false;
+		bool leading = ranges.first().format & FORMAT_SPACE, pastLead = false;
 
 		foreach ( const RenderRange& r, ranges )
 		{
@@ -3148,7 +3163,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 			{
 				continuingWave = false;
 
-				if ( fmt & 0x8000 )
+				if ( fmt & FORMAT_SELECTION )
 				{
 					// finish selection
 					p->fillRect(
@@ -3160,7 +3175,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				}
 
 				/*
-				if ( pastLead && (r.format & 0x4000) )
+				if ( pastLead && (r.format & FORMAT_SPACE) )
 				{
 					indent = QDocumentPrivate::m_leftMargin;
 				}
@@ -3171,7 +3186,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				ypos += QDocumentPrivate::m_lineSpacing;
 				xpos = indent;
 
-				if ( r.format & 0x8000 )
+				if ( r.format & FORMAT_SELECTION )
 				{
 					// finish selection
 					p->fillRect(
@@ -3182,7 +3197,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 				}
 			}
-			if ( leading && !(r.format & 0x4000) )
+			if ( leading && !(r.format & FORMAT_SPACE) )
 			{
 				//indent = xpos;
 				leading = false;
@@ -3193,18 +3208,34 @@ void QDocumentLineHandle::draw(	QPainter *p,
 			if ( xpos > maxWidth )
 				break;
 
-			if ( r.format != fmt )
-			{
-				d->tunePainter(p, r.format & 0x0fff);
+			fmt = r.format;
+			int fmt1 = fmt & FORMAT_MASK_BASE;
+			int fmt2 = (fmt >> (FORMAT_SHIFT)) & FORMAT_MASK_BASE;
+			int fmt3 = (fmt >> (2*FORMAT_SHIFT)) & FORMAT_MASK_BASE;
+			QFormat format1, format2, format3;
 
-				fmt = r.format;
+			if ( d->m_formatScheme ){
+				format1 = d->m_formatScheme->format(fmt1);
+				format2 = d->m_formatScheme->format(fmt2);
+				format3 = d->m_formatScheme->format(fmt3);
+			}
+
+			int newFont = lastFont;
+			if (format1.italic || format1.weight == QFont::Bold) newFont = fmt1;
+			else if (format2.italic || format2.weight == QFont::Bold) newFont = fmt2;
+			else if (format3.italic || format3.weight == QFont::Bold) newFont = fmt3;
+			else newFont = fmt1;
+
+			if (newFont != lastFont) {
+				d->tunePainter(p, newFont);
+				lastFont = newFont;
 			}
 
 			int rwidth = 0;
 			int tcol = column;
 			const QString rng = m_text.mid(r.position, r.length);
 
-			if ( r.format & 0x4000 )
+			if ( r.format & FORMAT_SPACE )
 			{
 				foreach ( QChar c, rng )
 				{
@@ -3231,21 +3262,19 @@ void QDocumentLineHandle::draw(	QPainter *p,
 			{
 				xpos += rwidth;
 
-				if ( r.format & 0x4000 )
+				if ( r.format & FORMAT_SPACE )
 					column = tcol;
 
 				continue;
 			}
 
-			QFormat format;
 			int xspos = xpos;
 			const QPen oldpen = p->pen();
 			const int baseline = ypos + QDocumentPrivate::m_ascent;
 
-			if ( d->m_formatScheme )
-				format = d->m_formatScheme->format(fmt & 0x0fff);
 
-			if ( fullSel || (fmt & 0x8000) )
+
+			if ( fullSel || (fmt & FORMAT_SELECTION) )
 			{
 				p->setPen(ht);
 
@@ -3254,22 +3283,30 @@ void QDocumentLineHandle::draw(	QPainter *p,
 							pal.highlight());
 
 			} else {
-				if ( format.foreground.isValid() )
-				{
-					p->setPen(format.foreground);
-				} else {
-					p->setBrush(pal.text());
-				}
+				if ( format1.foreground.isValid() ) p->setPen(format1.foreground);
+				else if ( format2.foreground.isValid() ) p->setPen(format2.foreground);
+				else if ( format3.foreground.isValid() ) p->setPen(format3.foreground);
+				else p->setBrush(pal.text());
 
-				if ( format.background.isValid() )
+				if ( format1.background.isValid() )
 				{
 					p->fillRect(xpos, ypos,
 								rwidth, QDocumentPrivate::m_lineSpacing,
-								format.background);
+								format1.background);
+				} else if ( format2.background.isValid() )
+				{
+					p->fillRect(xpos, ypos,
+								rwidth, QDocumentPrivate::m_lineSpacing,
+								format2.background);
+				} else if ( format3.background.isValid() )
+				{
+					p->fillRect(xpos, ypos,
+								rwidth, QDocumentPrivate::m_lineSpacing,
+								format3.background);
 				}
 			}
 
-			if ( r.format & 0x4000 )
+			if ( r.format & FORMAT_SPACE )
 			{
 				// spaces
 				int max = r.position + r.length;
@@ -3302,7 +3339,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 						column += toff;
 						int xoff = toff * QDocumentPrivate::m_spaceWidth;
 						/*
-						if ( r.format & 0x8000 )
+						if ( r.format & FORMAT_SELECTION )
 						{
 							p->fillRect(xpos, ypos,
 										xoff, QDocumentPrivate::m_lineSpacing,
@@ -3321,7 +3358,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 					} else {
 						++column;
 						/*
-						if ( r.format & 0x8000 )
+						if ( r.format & FORMAT_SELECTION )
 						{
 							p->fillRect(xpos, ypos,
 										QDocumentPrivate::m_spaceWidth, QDocumentPrivate::m_lineSpacing,
@@ -3403,29 +3440,30 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 			//qDebug("underline pos : %i", p->fontMetrics().underlinePos());
 
-			if ( format.linescolor.isValid() )
-				p->setPen(format.linescolor);
+			if ( format1.linescolor.isValid() ) p->setPen(format1.linescolor);
+			else if ( format2.linescolor.isValid() ) p->setPen(format2.linescolor);
+			else if ( format3.linescolor.isValid() ) p->setPen(format3.linescolor);
 
 			const int ydo = qMin(baseline + p->fontMetrics().underlinePos(), ypos + QDocumentPrivate::m_lineSpacing - 1);
 			const int yin = baseline - p->fontMetrics().strikeOutPos();
 			const int yup = qMax(baseline - p->fontMetrics().overlinePos() + 1, ypos);
 
-			if ( format.overline )
+			if ( format1.overline || format2.overline || format3.overline )
 			{
 				p->drawLine(xspos, yup, xpos, yup);
 			}
 
-			if ( format.strikeout )
+			if ( format1.strikeout || format2.strikeout || format3.strikeout )
 			{
 				p->drawLine(xspos, yin, xpos, yin);
 			}
 
-			if ( format.underline )
+			if ( format1.underline || format2.underline || format3.underline )
 			{
 				p->drawLine(xspos, ydo, xpos, ydo);
 			}
 
-			if ( format.waveUnderline )
+			if ( format1.waveUnderline || format2.waveUnderline || format3.waveUnderline )
  			{
 				/*
 				those goddamn font makers take liberties with common sense
