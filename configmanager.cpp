@@ -1067,7 +1067,7 @@ void ConfigManager::modifyManagedShortcuts(){
 
 }
 void ConfigManager::loadManagedMenu(QMenu* parent,const QDomElement &f) {
-	QMenu *menu = newManagedMenu(parent,f.attributes().namedItem("id").nodeValue(),f.attributes().namedItem("text").nodeValue());
+	QMenu *menu = newManagedMenu(parent,f.attributes().namedItem("id").nodeValue(),tr(qPrintable(f.attributes().namedItem("text").nodeValue())));
 	QDomNodeList children = f.childNodes();
 	for (int i = 0; i < children.count(); i++) {
 		QDomElement c = children.at(i).toElement();
@@ -1083,7 +1083,7 @@ void ConfigManager::loadManagedMenu(QMenu* parent,const QDomElement &f) {
 			}
 			QAction * act=newManagedAction(menu,
 			                               att.namedItem("id").nodeValue(),
-			                               att.namedItem("text").nodeValue(),slotfunc,
+						       tr(qPrintable(att.namedItem("text").nodeValue())),slotfunc,
 			                               QList<QKeySequence>()<<  QKeySequence(att.namedItem("shortcut").nodeValue()),
 										   att.namedItem("icon").nodeValue());
 			act->setWhatsThis(att.namedItem("info").nodeValue());

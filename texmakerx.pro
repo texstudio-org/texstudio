@@ -149,7 +149,8 @@ SOURCES += main.cpp \
     universalinputdialog.cpp \
     scriptengine.cpp \
     insertgraphics.cpp \
-    tmxtabwidget.cpp
+    tmxtabwidget.cpp \
+    additionaltranslations.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \

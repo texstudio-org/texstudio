@@ -3284,7 +3284,8 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	if (realCmdLine){ //only at start
 		QFileInfo myself(QCoreApplication::applicationFilePath());
 		if ((myself.lastModified()!=configManager.debugLastFileModification
-			|| args.contains("--execute-tests") || args.contains("--execute-all-tests"))&& !args.contains("--disable-tests")){
+			|| args.contains("--execute-tests") || args.contains("--execute-all-tests"))
+			&& !args.contains("--disable-tests")){
 			fileNew();
 			if (!currentEditorView() || !currentEditorView()->editor)
 				QMessageBox::critical(0,"wtf?","test failed",QMessageBox::Ok);
@@ -3294,6 +3295,46 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 			if (allTests) configManager.debugLastFullTestRun=myself.lastModified();
 			currentEditorView()->editor->document()->setText(TestManager::execute(allTests?TestManager::TL_ALL:TestManager::TL_FAST, currentEditorView(),currentEditorView()->codeeditor,currentEditorView()->editor));
 			configManager.debugLastFileModification=QFileInfo(QCoreApplication::applicationFilePath()).lastModified();
+		}
+
+		if (args.contains("--update-translations")) {
+			QStringList translations;
+			translations << "#undef UNDEFINED";
+			translations << "#ifdef UNDEFINED";
+			translations << "static const char* translations[] = {";
+			QRegExp commandOnly("\\\\['`^\"~=.^]?[a-zA-Z]*(\\{\\})* *"); //latex command
+			//copy menu item text
+			QFile xmlFile(":/uiconfig.xml");
+			xmlFile.open(QIODevice::ReadOnly);
+			QDomDocument xml;
+			xml.setContent(&xmlFile);
+			QDomNode current = xml.documentElement();
+			while (!current.isNull()) {
+				QDomNamedNodeMap attribs = current.attributes();
+				QString text = attribs.namedItem("text").nodeValue();
+				if (text!="" && !commandOnly.exactMatch(text))
+					translations << "QT_TRANSLATE_NOOP(\"ConfigManager\", \""+text.replace("\\","\\\\").replace("\"","\\\"")+"\"), ";
+				if (current.hasChildNodes()) current=current.firstChild();
+				else if (!current.nextSibling().isNull()) current=current.nextSibling();
+				else if (!current.parentNode().isNull()) current = current.parentNode().nextSibling();
+				else current = current.parentNode();
+			}
+			//copy
+			QFile xmlFile2(":/qxs/defaultFormats.qxf");
+			xmlFile2.open(QIODevice::ReadOnly);
+			xml.setContent(&xmlFile2);
+			QDomNodeList formats=xml.documentElement().elementsByTagName("format");
+			for (int i=0;i<formats.size();i++)
+				translations << "QT_TRANSLATE_NOOP(\"QFormatConfig\", \""+formats.at(i).attributes().namedItem("id").nodeValue()+"\"), ";
+
+			translations << "\"\"};";
+			translations << "#endif\n\n";
+
+
+			QFile translationFile("additionaltranslations.cpp");
+			translationFile.open(QIODevice::WriteOnly);
+			translationFile.write(translations.join("\n\r").toLatin1());;
+			translationFile.close();
 		}
 	}
 	#endif
