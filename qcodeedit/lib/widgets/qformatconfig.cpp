@@ -272,7 +272,7 @@ void QFormatConfig::cancel()
 
 			QTableWidgetItem *item;
 
-			item = new QTableWidgetItem(fid);
+			item = new QTableWidgetItem(tr(qPrintable(fid)));
 			item->setFlags(Qt::ItemIsEnabled);
 			m_table->setItem(i, 0, item);
 
