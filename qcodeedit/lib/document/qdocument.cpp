@@ -2104,7 +2104,7 @@ void QDocumentLineHandle::updateWrap() const
 
 			c = m_text.at(idx);
 			fmt = idx < composited.count() ? composited[idx] : 0;
-			QFontMetrics fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
+
 
 			WCache *wCache;
 			if(m_doc->fmtWidthCache.contains(fmt)){
@@ -2122,6 +2122,7 @@ void QDocumentLineHandle::updateWrap() const
                                 if(wCache->contains(' ')){
                                     cwidth=wCache->value(' ');
                                 }else{
+                                    QFontMetrics fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
                                     cwidth = fm.width(' ');
                                     wCache->insert(' ',cwidth);
                                 }
@@ -2132,6 +2133,7 @@ void QDocumentLineHandle::updateWrap() const
                                 if(wCache->contains(c)){
                                     cwidth=wCache->value(c);
                                 }else{
+                                    QFontMetrics fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
                                     cwidth = fm.width(c);
                                     wCache->insert(c,cwidth);
                                 }
@@ -2724,7 +2726,7 @@ QMediumArray QDocumentLineHandle::compose() const
 		m_cache[i] = 0;
 
 	// compositing formats and overlays	
-	QDocumentPrivate * d = document()->impl();
+        //QDocumentPrivate * d = document()->impl();
 	foreach ( const QFormatRange& r, m_overlays )
 	{
 		int beg = qMax(0, r.offset);
@@ -2740,7 +2742,7 @@ QMediumArray QDocumentLineHandle::compose() const
 		}
 
 	}
-qDebug("\n");
+//qDebug("\n");
 	setFlag(QDocumentLine::FormatsApplied, true);
 
 	return m_cache;
@@ -3150,10 +3152,9 @@ void QDocumentLineHandle::draw(	QPainter *p,
 		int cidx = 0;
 		int rngIdx = 0;
 		int column = 0;
-		bool continuingWave = false, brokenWave = false;
-		int dir = 0; // 0 = down; 1 = up
-		int wrap = 0, xpos = QDocumentPrivate::m_leftMargin, ypos = 0;
+                int wrap = 0, xpos = QDocumentPrivate::m_leftMargin, ypos = 0;
 		bool leading = ranges.first().format & FORMAT_SPACE, pastLead = false;
+                const QVector<QFont>& fonts = m_doc->impl()->m_fonts;
 
 		foreach ( const RenderRange& r, ranges )
 		{
@@ -3161,8 +3162,6 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 			if ( wrap != r.wrap )
 			{
-				continuingWave = false;
-
 				if ( fmt & FORMAT_SELECTION )
 				{
 					// finish selection
@@ -3248,14 +3247,33 @@ void QDocumentLineHandle::draw(	QPainter *p,
 						rwidth += QDocumentPrivate::m_spaceWidth;
 						++tcol;
 					}
-				}
+                                }
 			} else {
 				column += r.length;
 
 				if ( QDocumentPrivate::m_fixedPitch )
 					rwidth = QDocumentPrivate::m_spaceWidth * r.length;
-				else
-					rwidth = p->fontMetrics().width(rng);
+                                else {
+                                    WCache *wCache;
+                                    if(m_doc->fmtWidthCache.contains(fmt1)){
+                                            wCache=m_doc->fmtWidthCache.value(fmt1);
+                                    }else{
+                                            wCache=new WCache;
+                                            m_doc->fmtWidthCache.insert(fmt1,wCache);
+                                    }
+                                    rwidth=0;
+                                    foreach(QChar c,rng){
+                                        if(wCache->contains(c)){
+                                            rwidth+=wCache->value(c);
+                                        }else{
+                                            QFontMetrics fm(fmt1 < fonts.count() ? fonts.at(fmt1) : m_doc->font());
+                                            int cwidth = fm.width(c);
+                                            wCache->insert(c,cwidth);
+                                            rwidth+=cwidth;
+                                        }
+                                        //rwidth = p->fontMetrics().width(rng);
+                                    }
+                                }
 			}
 
 			if ( (xpos + rwidth) <= xOffset )
@@ -5553,7 +5571,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
 	if(oldOffset!=cxt.xoffset) {
 		m_LineCache.clear();
-		qDebug("clear");
+                //qDebug("clear");
 	}
 
 	QBrush bg,
