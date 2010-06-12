@@ -2551,6 +2551,7 @@ void Texmaker::InsertBibEntry(const QString& id){
 void Texmaker::InsertUserTag() {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (!action) return;
+	if (!currentEditorView()) return;
 	int id = action->data().toInt();
 	if (id<0 || id>=10) return;
 	QString userTag=UserMenuTag[id];
