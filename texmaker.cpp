@@ -1182,18 +1182,22 @@ void Texmaker::fileSaveAs(QString fileName) {
 }
 
 void Texmaker::fileSaveAll() {
+	fileSaveAll(true);
+}
+void Texmaker::fileSaveAll(bool alsoUnnamedFiles) {
 //LatexEditorView *temp = new LatexEditorView(EditorView,colorMath,colorCommand,colorKeyword);
 //temp=currentEditorView();
 	int currentIndex=EditorView->indexOf(currentEditorView());
 	for (int i=0;i<EditorView->count(); i++){
 		LatexEditorView *edView = qobject_cast<LatexEditorView*>(EditorView->widget(i));
-		if (edView->editor->fileName().isEmpty() || edView->editor->isInConflict()) {
-			EditorView->setCurrentIndex(i);
-			if (edView->editor->fileName().isEmpty()) fileSaveAs();
-			else {
-				Q_ASSERT(false); //?? this branch makes no sense
-				edView->editor->save();
+		if (edView->editor->fileName().isEmpty()){
+			if ((i==currentIndex || alsoUnnamedFiles) ) {
+				EditorView->setCurrentIndex(i);
+				fileSaveAs();
 			}
+		//else if (edView->editor->isInConflict()) {
+		//edView->editor->save();
+		//}
 		} else if (!edView->editor->fileName().endsWith(".bib"))
 			edView->editor->save();
 		else if (edView->editor->isContentModified()){ //only save modified bib files, to prevent unecessary recompilations
@@ -1800,9 +1804,8 @@ void Texmaker::editSectionPasteBefore(int line) {
 
 /////////////// CONFIG ////////////////////
 void Texmaker::ReadSettings() {
-
 	QuickDocumentDialog::registerOptions(configManager);
-
+	buildManager.registerOptions(configManager);
 	configManager.registerOption("User/Templates",&userTemplatesList);
 
 	configManager.buildManager=&buildManager;
@@ -2762,7 +2765,7 @@ void Texmaker::SlotEndProcess(int err) {
 }
 
 void Texmaker::QuickBuild() {
-	fileSaveAll();
+	fileSaveAll(buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ALWAYS);
 	if (getCompileFileName()=="") {
 		QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name.\nYou have to save a document before you can compile it."));
 		return;
@@ -2866,7 +2869,7 @@ void Texmaker::QuickBuild() {
 void Texmaker::commandFromAction(){
 	QAction* act = qobject_cast<QAction*>(sender());
 	if (!act) return;
-	fileSaveAll();
+	fileSaveAll(buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ALWAYS);
 	BuildManager::LatexCommand cmd=(BuildManager::LatexCommand) act->data().toInt();
 	bool compileLatex=(cmd==BuildManager::CMD_LATEX || cmd==BuildManager::CMD_PDFLATEX);
 	if (compileLatex)
@@ -2901,7 +2904,7 @@ void Texmaker::UserTool() {
 	if (action->data().toInt()<0 || action->data().toInt()>=5) return;
 	QString cmd=UserToolCommand[action->data().toInt()];
 	if (cmd.isEmpty()) return;
-	fileSaveAll();
+	fileSaveAll(buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ALWAYS);
 	QStringList commandList=cmd.split("|");
 	ERRPROCESS=false;
 	for (int i = 0; i < commandList.size(); ++i)

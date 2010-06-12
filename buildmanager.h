@@ -6,6 +6,7 @@
 class ProcessX;
 
 //all the build things in texmaker.cpp are going to be moved to this place, but it doesn't have high priority
+class ConfigManagerInterface;
 class BuildManager: public QObject {
 	Q_OBJECT
 public:
@@ -41,9 +42,9 @@ public:
 	static QString defaultCommandOptions(LatexCommand cmd);
 	static QString commandDisplayName(LatexCommand cmd);
 
+	void registerOptions(ConfigManagerInterface& cmi);
 	void readSettings(const QSettings &settings);
-	void saveSettings(QSettings &settings);
-	
+
 	void setLatexCommand(LatexCommand cmd, const QString &cmdString);//sets a command (accepts tr("<unknown>"))
 	QString getLatexCommand(LatexCommand cmd); //returns the program+args for the command
 	QString getLatexCommandForDisplay(LatexCommand cmd); //returns program or tr("<unknown>") if no command exists
@@ -64,7 +65,8 @@ public:
 	int quickmode;
 	enum Dvi2PngMode { DPM_DVIPNG, DPM_DVIPNG_FOLLOW, DPM_DVIPS_GHOSTSCRIPT};
 	Dvi2PngMode dvi2pngMode;
-
+	enum SaveFilesBeforeCompiling {SFBC_ALWAYS, SFBC_ONLY_CURRENT_OR_NAMED};
+	SaveFilesBeforeCompiling saveFilesBeforeCompiling;
 private slots:	
 	void latexPreviewCompleted(int status);
 	void dvi2psPreviewCompleted(int status);

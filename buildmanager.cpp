@@ -1,6 +1,7 @@
 #include "buildmanager.h"
 
 #include "smallUsefulFunctions.h"
+#include "configmanagerinterface.h"
 
 #ifdef Q_WS_WIN
 #include "windows.h"
@@ -439,12 +440,19 @@ QString BuildManager::commandDisplayName(LatexCommand cmd){
 		default: return "";
 	}
 }
-void BuildManager::readSettings(const QSettings &settings){
+void BuildManager::registerOptions(ConfigManagerInterface& cmi){
 	for (LatexCommand i=CMD_LATEX; i < CMD_MAXIMUM_COMMAND_VALUE;++i)
-		setLatexCommand(i,settings.value(cmdToConfigString(i), "<default>").toString());
-	if (settings.contains("Tools/Quick Mode"))
-		quickmode=settings.value("Tools/Quick Mode",1).toInt(); //load stored value
-	else {
+		cmi.registerOption(cmdToConfigString(i),&commands[i],"<default>");
+	cmi.registerOption("Tools/Quick Mode",&quickmode,-1);
+	Q_ASSERT(sizeof(dvi2pngMode) == sizeof(int));
+	cmi.registerOption("Tools/Dvi2Png Mode",reinterpret_cast<int*>(&dvi2pngMode), -1);
+	cmi.registerOption("Files/Save Files Before Compiling", reinterpret_cast<int*>(&saveFilesBeforeCompiling), (int)SFBC_ALWAYS);
+}
+void BuildManager::readSettings(const QSettings &settings){
+	Q_UNUSED(settings);
+	for (LatexCommand i=CMD_LATEX; i < CMD_MAXIMUM_COMMAND_VALUE;++i)
+		setLatexCommand(i,commands[i]);
+	if (reinterpret_cast<int&>(quickmode)<0) {
 		//choose working default where every necessary command is knownr
 		if (hasLatexCommand(CMD_LATEX) && hasLatexCommand(CMD_DVIPS) && hasLatexCommand(CMD_VIEWPS))
 			quickmode=1;
@@ -459,19 +467,11 @@ void BuildManager::readSettings(const QSettings &settings){
 			quickmode=5;
 		else quickmode=1; //texmaker default
 	}
-	if (settings.contains("Tools/Dvi2Png Mode"))
-		dvi2pngMode=(Dvi2PngMode) settings.value("Tools/Dvi2Png Mode",1).toInt(); //load stored value
-	else {
+	if (reinterpret_cast<Dvi2PngMode&>(quickmode)<0) {
 		if (hasLatexCommand(CMD_DVIPNG)) dvi2pngMode = DPM_DVIPNG_FOLLOW; //best/fastest mode
 		else if (hasLatexCommand(CMD_DVIPS) && hasLatexCommand(CMD_GHOSTSCRIPT)) dvi2pngMode = DPM_DVIPS_GHOSTSCRIPT; //compatible mode
 		else dvi2pngMode = DPM_DVIPNG_FOLLOW; //won't work
 	}
-}
-void BuildManager::saveSettings(QSettings &settings){
-	for (LatexCommand i=CMD_LATEX; i < CMD_MAXIMUM_COMMAND_VALUE;++i)
-		settings.setValue(cmdToConfigString(i),commands[i]);
-	settings.setValue("Tools/Quick Mode",quickmode);
-	settings.setValue("Tools/Dvi2Png Mode",dvi2pngMode);
 }
 
 void BuildManager::setLatexCommand(LatexCommand cmd, const QString &cmdString){
