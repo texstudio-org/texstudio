@@ -6111,6 +6111,7 @@ void QDocumentPrivate::setFont(const QFont& f)
 	m_leading = m_fontMetrics->leading();
 
 	m_lineHeight = m_fontMetrics->height();
+	if(m_lineHeight>m_lineSpacing) m_lineSpacing=m_lineHeight;
 	//m_lineHeight = m_ascent + m_descent - 2;
 
 	m_fixedPitch = QFontInfo(*m_font).fixedPitch();
