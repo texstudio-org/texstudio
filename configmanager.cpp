@@ -489,7 +489,6 @@ QSettings* ConfigManager::saveSettings() {
 	webPublishDialogConfig->saveSettings(*config);
 	
 	//---------------------build commands----------------
-	buildManager->saveSettings(*config);
 	config->setValue("Tools/After BibTeX Change",runLaTeXBibTeXLaTeX?"tmx://latex && tmx://bibtex && tmx://latex":"");
 	
 	//-------------------key replacements-----------------

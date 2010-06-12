@@ -156,6 +156,7 @@ private slots:
 	void fileRestoreSession();
 	void fileSave();
 	void fileSaveAll();
+	void fileSaveAll(bool alsoUnnamedFiles);
 	void fileSaveAs(QString fileName = "");
 	void fileClose();
 	void fileCloseAll();
