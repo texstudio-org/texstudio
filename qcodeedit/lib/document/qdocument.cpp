@@ -3161,6 +3161,10 @@ void QDocumentLineHandle::draw(	QPainter *p,
 		int cidx = 0;
 		int rngIdx = 0;
 		int column = 0;
+#ifdef Q_OS_LINUX
+		bool continuingWave = false, brokenWave = false;
+		int dir = 0; // 0 = down; 1 = up
+#endif
                 int wrap = 0, xpos = QDocumentPrivate::m_leftMargin, ypos = 0;
 		bool leading = ranges.first().format & FORMAT_SPACE, pastLead = false;
                 const QVector<QFont>& fonts = m_doc->impl()->m_fonts;
@@ -3171,6 +3175,9 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 			if ( wrap != r.wrap )
 			{
+#ifdef Q_OS_LINUX
+				continuingWave = false;
+#endif
 				if ( fmt & FORMAT_SELECTION )
 				{
 					// finish selection
@@ -3519,7 +3526,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 				//if (format.waveUnderlineForeground.isValid())
 				//	p->setPen(format.waveUnderlineForeground);
-
+#ifndef Q_OS_LINUX
 				QColor cl=p->pen().color();
 				QImage wv(4,3,QImage::Format_ARGB32);
 				wv.fill(0x00ffffff);
@@ -3538,8 +3545,9 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				p->setPen(Qt::NoPen);
 				p->drawRect(xspos,ycenter,rwidth,3);
 				p->restore();
+			    }
+#else
 
-		/*
 				int cp = 0;
 				brokenWave = false;
 
@@ -3586,9 +3594,9 @@ void QDocumentLineHandle::draw(	QPainter *p,
  			} else {
 				continuingWave = false;
 				dir = 0;
-				*/
-			}
 
+			}
+#endif
 			p->setPen(oldpen);
 		}
 
