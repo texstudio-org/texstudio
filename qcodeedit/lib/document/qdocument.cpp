@@ -2105,7 +2105,7 @@ void QDocumentLineHandle::updateWrap() const
 			c = m_text.at(idx);
 			fmt = idx < composited.count() ? composited[idx] : 0;
 
-
+#ifdef Q_OS_MAC
 			WCache *wCache;
 			if(m_doc->fmtWidthCache.contains(fmt)){
 				wCache=m_doc->fmtWidthCache.value(fmt);
@@ -2113,12 +2113,13 @@ void QDocumentLineHandle::updateWrap() const
 				wCache=new WCache;
 				m_doc->fmtWidthCache.insert(fmt,wCache);
 			}
-
+#endif
 			if ( c.unicode() == '\t' )
 			{
 				int taboffset = tabStop - (column % tabStop);
 
 				column += taboffset;
+#ifdef Q_OS_MAC
                                 if(wCache->contains(' ')){
                                     cwidth=wCache->value(' ');
                                 }else{
@@ -2126,10 +2127,14 @@ void QDocumentLineHandle::updateWrap() const
                                     cwidth = fm.width(' ');
                                     wCache->insert(' ',cwidth);
                                 }
+#else
+				QFontMetrics fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
+				cwidth = fm.width(' ');
+#endif
                                 cwidth = cwidth * taboffset;
 			} else {
 				++column;
-
+#ifdef Q_OS_MAC
                                 if(wCache->contains(c)){
                                     cwidth=wCache->value(c);
                                 }else{
@@ -2137,6 +2142,10 @@ void QDocumentLineHandle::updateWrap() const
                                     cwidth = fm.width(c);
                                     wCache->insert(c,cwidth);
                                 }
+#else
+				QFontMetrics fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
+				cwidth = fm.width(c);
+#endif
 			}
 
 			if ( x + cwidth > maxWidth )
@@ -3254,6 +3263,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				if ( QDocumentPrivate::m_fixedPitch )
 					rwidth = QDocumentPrivate::m_spaceWidth * r.length;
                                 else {
+#ifdef Q_OS_MAC
                                     WCache *wCache;
                                     if(m_doc->fmtWidthCache.contains(fmt1)){
                                             wCache=m_doc->fmtWidthCache.value(fmt1);
@@ -3273,7 +3283,11 @@ void QDocumentLineHandle::draw(	QPainter *p,
                                         }
                                         //rwidth = p->fontMetrics().width(rng);
                                     }
+#else
+				    rwidth = p->fontMetrics().width(rng);
+#endif
                                 }
+
 			}
 
 			if ( (xpos + rwidth) <= xOffset )
