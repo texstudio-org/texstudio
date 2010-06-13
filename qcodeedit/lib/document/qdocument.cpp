@@ -3527,6 +3527,16 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				//if (format.waveUnderlineForeground.isValid())
 				//	p->setPen(format.waveUnderlineForeground);
 #ifndef Q_OS_LINUX
+				QPen pn2=p->pen();
+				QVector<qreal>pattern2;
+				pattern2 << 1.0 << 3.0;
+				pn2.setDashPattern(pattern2);
+				p->setPen(pn2);
+				p->drawLine(xspos, ydo, xpos, ydo);
+				p->drawLine(xspos+1, ydo-1, xpos, ydo-1);
+				p->drawLine(xspos+2, ydo, xpos, ydo);
+				p->drawLine(xspos+3, ydo+1, xpos, ydo+1);
+				/*
 				QColor cl=p->pen().color();
 				QImage wv(4,3,QImage::Format_ARGB32);
 				wv.fill(0x00ffffff);
@@ -3545,7 +3555,8 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				p->setPen(Qt::NoPen);
 				p->drawRect(xspos,ycenter,rwidth,3);
 				p->restore();
-			    }
+				*/
+			}
 #else
 
 				int cp = 0;
