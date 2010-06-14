@@ -6,7 +6,7 @@
 #include "qeditor.h"
 #include "smallUsefulFunctions.h"
 
-LatexDocument::LatexDocument(QObject *parent):edView(0),mAppendixLine(0),QDocument(parent)
+LatexDocument::LatexDocument(QObject *parent):QDocument(parent),edView(0),mAppendixLine(0)
 {
 	baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
 #ifndef QT_NO_DEBUG

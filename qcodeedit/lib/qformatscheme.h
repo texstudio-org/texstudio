@@ -69,6 +69,8 @@ class QCE_EXPORT QFormatScheme : public QObject
 		virtual QFormat format(int ifid) const;
 		virtual QFormat format(const QString& sfid) const;
 		
+		static void mergeFormats(int &oldFormat, int newFormat);
+		void extractFormats(int mergedFormat, int* fmt, QFormat* formats, int &fontFormat) const;
 	public slots:
 		virtual void setFormat(const QString& fid, const QFormat& fmt);
 		
@@ -79,4 +81,12 @@ class QCE_EXPORT QFormatScheme : public QObject
 		QVector<QFormat> m_formatValues;
 };
 
+static const int FORMAT_SELECTION       = 0x80000000;
+static const int FORMAT_SPACE           = 0x40000000;
+static const int FORMAT_MASK_BASE       = 0x000000ff;
+//static int FORMAT_MASK_SECOND     = 0x0000ff00;
+//static int FORMAT_MASK_FIRST      = 0x00ff0000;
+static const int FORMAT_SHIFT           = 8;
+static const int FORMAT_MASK_FULL       = FORMAT_MASK_BASE | (FORMAT_MASK_BASE << FORMAT_SHIFT) | (FORMAT_MASK_BASE << (2*FORMAT_SHIFT));
+static const int FORMAT_MAX_COUNT       = 3;
 #endif // !_QFORMAT_SCHEME_H_

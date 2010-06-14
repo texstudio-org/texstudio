@@ -44,11 +44,35 @@
 #include <QDomElement>
 #include <QDomDocument>
 
+
 #define QFORMAT_VERSION "1.0"
 
 static bool bool_cast(const QString& s)
 {
 	return !QString::compare(s, QLatin1String("true")) || s.toUInt() == 1;
+}
+
+static void setFormatOption(QFormat& fmt, const QString& field, const QString& value){
+	if ( field == "priority" )
+		fmt.setPriority(value.toInt());
+	else if ( field == "bold" )
+		fmt.weight = bool_cast(value) ? QFont::Bold : QFont::Normal;
+	else if ( field == "italic" )
+		fmt.italic = bool_cast(value);
+	else if ( field == "overline" )
+		fmt.overline = bool_cast(value);
+	else if ( field == "underline" )
+		fmt.underline = bool_cast(value);
+	else if ( field == "strikeout" )
+		fmt.strikeout = bool_cast(value);
+	else if ( field == "waveUnderline" )
+		fmt.waveUnderline = bool_cast(value);
+	else if ( field == "color" || field == "foreground" )
+		fmt.foreground = QColor(value);
+	else if ( field == "background" )
+		fmt.background = QColor(value);
+	else if ( field == "linescolor" )
+		fmt.linescolor = QColor(value);
 }
 
 /*!
@@ -179,28 +203,10 @@ void QFormatScheme::load(const QDomElement& elem, bool ignoreNewIds)
 			
 			QString field = c.tagName(),
 					value = c.firstChild().toText().data();
-			
-			if ( field == "bold" )
-				fmt.weight = bool_cast(value) ? QFont::Bold : QFont::Normal;
-			else if ( field == "italic" )
-				fmt.italic = bool_cast(value);
-			else if ( field == "overline" )
-				fmt.overline = bool_cast(value);
-			else if ( field == "underline" )
-				fmt.underline = bool_cast(value);
-			else if ( field == "strikeout" )
-				fmt.strikeout = bool_cast(value);
-			else if ( field == "waveUnderline" )
-				fmt.waveUnderline = bool_cast(value);
-			else if ( field == "color" || field == "foreground" )
-				fmt.foreground = QColor(value);
-			else if ( field == "background" )
-				fmt.background = QColor(value);
-			else if ( field == "linescolor" )
-				fmt.linescolor = QColor(value);
-			
+			setFormatOption(fmt,field,value);
 		}
-		
+		fmt.setPriority(fmt.priority); //update priority if other values changed
+
 		setFormat(e.attribute("id"), fmt);
 	}
 }
@@ -222,6 +228,11 @@ void QFormatScheme::save(QDomElement& elem) const
 		
 		const QFormat& fmt = m_formatValues.at(i);
 		
+		f = doc.createElement("priority");
+		t = doc.createTextNode(QString("%1").arg(fmt.priority));
+		f.appendChild(t);
+		c.appendChild(f);
+
 		f = doc.createElement("bold");
 		t = doc.createTextNode((fmt.weight == QFont::Bold) ? "true" : "false");
 		f.appendChild(t);
@@ -321,28 +332,11 @@ void QFormatScheme::load(QSettings& s, bool ignoreNewIds)
 		foreach ( QString field, fields )
 		{
 			QString value = s.value(field).toString();
-			
-			if ( field == "bold" )
-				fmt.weight = bool_cast(value) ? QFont::Bold : QFont::Normal;
-			else if ( field == "italic" )
-				fmt.italic = bool_cast(value);
-			else if ( field == "overline" )
-				fmt.overline = bool_cast(value);
-			else if ( field == "underline" )
-				fmt.underline = bool_cast(value);
-			else if ( field == "strikeout" )
-				fmt.strikeout = bool_cast(value);
-			else if ( field == "waveUnderline" )
-				fmt.waveUnderline = bool_cast(value);
-			else if ( field == "color" || field == "foreground" )
-				fmt.foreground = QColor(value);
-			else if ( field == "background" )
-				fmt.background = QColor(value);
-			else if ( field == "linescolor" )
-				fmt.linescolor = QColor(value);
+			setFormatOption(fmt, field, value);
 			
 		}
-		
+		fmt.setPriority(fmt.priority); //update priority if other values changed
+
 		setFormat(id, fmt);
 		s.endGroup();
 	}
@@ -365,6 +359,7 @@ void QFormatScheme::save(QSettings& s) const
 		
 		const QFormat& fmt = m_formatValues.at(i);
 		
+		s.setValue("priority", fmt.priority);
 		s.setValue("bold", (fmt.weight == QFont::Bold) ? "true" : "false");
 		s.setValue("italic", fmt.italic ? "true" : "false");
 		s.setValue("overline", fmt.overline ? "true" : "false");
@@ -488,5 +483,36 @@ void QFormatScheme::setFormat(const QString& fid, const QFormat& fmt)
 	}
 }
 
+void QFormatScheme::mergeFormats(int &oldFormat, int newFormat){
+	oldFormat = ((oldFormat << FORMAT_SHIFT) & FORMAT_MASK_FULL) | newFormat;
+	/*	if ((m_cache[i] & FORMAT_MASK_BASE) == r.format) continue;
+		else if (((m_cache[i]<<FORMAT_SHIFT) & FORMAT_MASK_BASE) == r.format) continue;
+		else if (((m_cache[i]<<(2*FORMAT_SHIFT)) & FORMAT_MASK_BASE) == r.format) continue;
+		else m_cache[i] = ((m_cache[i] << FORMAT_SHIFT) & FORMAT_MASK_FULL) | r.format;*/
+		//qDebug("%i: %x ", i, m_cache [i]);
+}
+void QFormatScheme::extractFormats(int mergedFormat, int* fmt, QFormat* formats, int &fontFormat) const{
+//this doesn't require a valid "this"
+	fmt[0] = mergedFormat & FORMAT_MASK_BASE;
+	fmt[1] = (mergedFormat >> (FORMAT_SHIFT)) & FORMAT_MASK_BASE;
+	fmt[2] = (mergedFormat >> (2*FORMAT_SHIFT)) & FORMAT_MASK_BASE;
+
+	Q_ASSERT(this);
+
+	formats[0] = format(fmt[0]);
+	formats[1] = format(fmt[1]);
+	formats[2] = format(fmt[2]);
+
+	if ( formats[0].realPriority < formats[1].realPriority ) {
+		if ( formats[1].realPriority < formats[2].realPriority ) fontFormat = fmt[2];
+		else fontFormat = fmt[1];
+	} else {
+		if ( formats[0].realPriority < formats[2].realPriority ) fontFormat = fmt[2];
+		else fontFormat = fmt[0];
+	}
+}
+
 /*! @} */
+
+
 

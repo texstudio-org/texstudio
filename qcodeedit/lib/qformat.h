@@ -29,33 +29,35 @@ class QVector;
 struct QFormat
 {
 	inline QFormat()
-	 : weight(QFont::Normal), italic(false), overline(false), underline(false), strikeout(false), waveUnderline(false)
+	 : priority(-1), realPriority(-1), weight(QFont::Normal), italic(false), overline(false), underline(false), strikeout(false), waveUnderline(false)
 	{}
 	
 	inline QFormat(const QColor& c)
-	 : weight(QFont::Normal), italic(false), overline(false), underline(false), strikeout(false), waveUnderline(false), foreground(c)
+	 : priority(-1), realPriority(-1), weight(QFont::Normal), italic(false), overline(false), underline(false), strikeout(false), waveUnderline(false), foreground(c)
 	{}
 	
 	inline QFormat(int w, const QColor& c)
-	 : weight(w), italic(false), overline(false), underline(false), strikeout(false), waveUnderline(false), foreground(c)
+	 : priority(-1), realPriority(-1), weight(w), italic(false), overline(false), underline(false), strikeout(false), waveUnderline(false), foreground(c)
 	{}
 	
 	inline QFormat(int w, bool i, bool u, bool s, const QColor& c)
-	 : weight(w), italic(i), overline(false), underline(u), strikeout(s), waveUnderline(false), foreground(c)
+	 : priority(-1), realPriority(-1), weight(w), italic(i), overline(false), underline(u), strikeout(s), waveUnderline(false), foreground(c)
 	{}
 	
 	inline QFormat(int w, bool i, bool o, bool u, bool s, bool wu, const QColor& c)
-	 : weight(w), italic(i), overline(o), underline(u), strikeout(s), waveUnderline(wu), foreground(c)
+	 : priority(-1), realPriority(-1), weight(w), italic(i), overline(o), underline(u), strikeout(s), waveUnderline(wu), foreground(c)
 	{}
 	
 	inline QFormat(const QFormat& f)
-	 : weight(f.weight), italic(f.italic),
+	 : priority(f.priority), realPriority(f.realPriority), weight(f.weight), italic(f.italic),
 	 	overline(f.overline), underline(f.underline), strikeout(f.strikeout), waveUnderline(f.waveUnderline),
 	 	foreground(f.foreground), background(f.background), linescolor(f.linescolor)
 	{}
 	
 	inline QFormat& operator = (const QFormat& f)
 	{
+		priority = f.priority;
+		realPriority = f.realPriority;
 		weight = f.weight;
 		italic = f.italic;
 		overline = f.overline;
@@ -71,7 +73,11 @@ struct QFormat
 	
 	inline bool operator == (const QFormat& f) const
 	{
-		return 		(weight == f.weight)
+		return 		(priority == f.priority)
+				&&
+					(realPriority == f.realPriority)
+				&&
+					(weight == f.weight)
 				&&
 					(italic == f.italic)
 				&&
@@ -93,7 +99,11 @@ struct QFormat
 	
 	inline bool operator != (const QFormat& f) const
 	{
-		return 		(weight != f.weight)
+		return 		(priority != f.priority)
+				||
+					(realPriority != f.realPriority)
+				||
+					(weight != f.weight)
 				||
 					(italic != f.italic)
 				||
@@ -137,6 +147,15 @@ struct QFormat
 		return f;
 	}
 	
+	void setPriority(int p){
+		priority = p;
+		int minPriority = 0;
+		if (italic) minPriority++;
+		if (weight == QFont::Bold) minPriority++;
+		realPriority = qMax(priority,minPriority);
+	}
+
+	int priority, realPriority;
 	int weight;
 	bool italic;
 	bool overline;

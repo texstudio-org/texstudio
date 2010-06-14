@@ -156,10 +156,10 @@ class QCE_EXPORT QDocumentPrivate
 		void emitWidthChanged();
 		void emitHeightChanged();
 		
-		void updateFormatCache();
+		static void updateFormatCache();
 		void setFormatScheme(QFormatScheme *f);
 		void tunePainter(QPainter *p, int fid);
-		
+		int textWidth(int fid, const QString& text);
 	private:
 		QDocument *m_doc;
 		QUndoStack m_commands;
@@ -199,7 +199,6 @@ class QCE_EXPORT QDocumentPrivate
 		
 		static QFont *m_font;
 		static bool m_fixedPitch;
-		static QFontMetrics *m_fontMetrics;
 		static int m_leftMargin;
 		static QDocument::WhiteSpaceMode m_showSpaces;
 		static QDocument::LineEnding m_defaultLineEnding;
@@ -211,13 +210,15 @@ class QCE_EXPORT QDocumentPrivate
 		static int m_descent;
 		static int m_leading;
 		static int m_wrapMargin;
-		
-		QFormatScheme *m_formatScheme;
+				
+		static QVector<QFont> m_fonts;
+		static QList<QFontMetrics> m_fontMetrics;
+		static QMap<int,WCache*> m_fmtWidthCache;
+
+		static QFormatScheme *m_formatScheme;
 		QLanguageDefinition *m_language;
 		static QFormatScheme *m_defaultFormatScheme;
-		
-		QVector<QFont> m_fonts;
-		
+
 		static QList<QDocumentPrivate*> m_documents;
 		
 		int m_maxMarksPerLine;
