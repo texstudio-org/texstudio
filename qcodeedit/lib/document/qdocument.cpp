@@ -2050,6 +2050,8 @@ void QDocumentLineHandle::updateWrap() const
 			++idx;
 		}
 	} else {
+		QDocumentPrivate *d = m_doc->impl();
+
 		QMediumArray composited = compose();
 
 		int idx = 0, minx = 0, lastBreak = 0, lastWidth = 0, lastX = 0, rx,
@@ -2064,7 +2066,39 @@ void QDocumentLineHandle::updateWrap() const
 		{
 			c = m_text.at(idx);
 			fmt = idx < composited.count() ? composited[idx] : 0;
-			QFontMetrics fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
+			int fmt1 = fmt & FORMAT_MASK_BASE;
+			int fmt2 = (fmt >> (FORMAT_SHIFT)) & FORMAT_MASK_BASE;
+			int fmt3 = (fmt >> (2*FORMAT_SHIFT)) & FORMAT_MASK_BASE;
+			QFormat format1, format2, format3;
+
+			if ( d->m_formatScheme ){
+				format1 = d->m_formatScheme->format(fmt1);
+				format2 = d->m_formatScheme->format(fmt2);
+				format3 = d->m_formatScheme->format(fmt3);
+			}
+
+			int newFont=0;
+			int fontWeight=0;
+			if (format1.italic || format1.weight == QFont::Bold) {
+				newFont = fmt1;
+				fontWeight= format1.italic ? 1 :0;
+				fontWeight+= (format1.weight == QFont::Bold) ? 2 :0;
+			} else {
+				if (format2.italic || format2.weight == QFont::Bold) {
+					newFont = fmt2;
+					fontWeight= format2.italic ? 1 :0;
+					fontWeight+= (format2.weight == QFont::Bold) ? 2 :0;
+				} else {
+					if (format3.italic || format3.weight == QFont::Bold){
+						newFont = fmt3;
+						fontWeight= format3.italic ? 1 :0;
+						fontWeight+= (format3.weight == QFont::Bold) ? 2 :0;
+					} else {
+						newFont = fmt1;
+					}
+				}
+			}
+			QFontMetrics fm(newFont < fonts.count() ? fonts.at(newFont) : m_doc->font());
 
 			if ( c.unicode() == '\t' )
 			{
@@ -2105,13 +2139,46 @@ void QDocumentLineHandle::updateWrap() const
 			c = m_text.at(idx);
 			fmt = idx < composited.count() ? composited[idx] : 0;
 
+			int fmt1 = fmt & FORMAT_MASK_BASE;
+			int fmt2 = (fmt >> (FORMAT_SHIFT)) & FORMAT_MASK_BASE;
+			int fmt3 = (fmt >> (2*FORMAT_SHIFT)) & FORMAT_MASK_BASE;
+			QFormat format1, format2, format3;
+
+			if ( d->m_formatScheme ){
+				format1 = d->m_formatScheme->format(fmt1);
+				format2 = d->m_formatScheme->format(fmt2);
+				format3 = d->m_formatScheme->format(fmt3);
+			}
+
+			int newFont=0;
+			int fontWeight=0;
+			if (format1.italic || format1.weight == QFont::Bold) {
+				newFont = fmt1;
+				fontWeight= format1.italic ? 1 :0;
+				fontWeight+= (format1.weight == QFont::Bold) ? 2 :0;
+			} else {
+				if (format2.italic || format2.weight == QFont::Bold) {
+					newFont = fmt2;
+					fontWeight= format2.italic ? 1 :0;
+					fontWeight+= (format2.weight == QFont::Bold) ? 2 :0;
+				} else {
+					if (format3.italic || format3.weight == QFont::Bold){
+						newFont = fmt3;
+						fontWeight= format3.italic ? 1 :0;
+						fontWeight+= (format3.weight == QFont::Bold) ? 2 :0;
+					} else {
+						newFont = fmt1;
+					}
+				}
+			}
+
 #ifdef Q_OS_MAC
 			WCache *wCache;
-			if(m_doc->fmtWidthCache.contains(fmt)){
-				wCache=m_doc->fmtWidthCache.value(fmt);
+			if(m_doc->fmtWidthCache.contains(fontWeight)){
+				wCache=m_doc->fmtWidthCache.value(fontWeight);
 			}else{
 				wCache=new WCache;
-				m_doc->fmtWidthCache.insert(fmt,wCache);
+				m_doc->fmtWidthCache.insert(fontWeight,wCache);
 			}
 #endif
 			if ( c.unicode() == '\t' )
@@ -2120,30 +2187,30 @@ void QDocumentLineHandle::updateWrap() const
 
 				column += taboffset;
 #ifdef Q_OS_MAC
-                                if(wCache->contains(' ')){
-                                    cwidth=wCache->value(' ');
-                                }else{
-                                    QFontMetrics fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
-                                    cwidth = fm.width(' ');
-                                    wCache->insert(' ',cwidth);
-                                }
+				if(wCache->contains(' ')){
+					cwidth=wCache->value(' ');
+				}else{
+					QFontMetrics fm(newFont < fonts.count() ? fonts.at(newFont) : m_doc->font());
+					cwidth = fm.width(' ');
+					wCache->insert(' ',cwidth);
+				}
 #else
-				QFontMetrics fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
+				QFontMetrics fm(newFont < fonts.count() ? fonts.at(newFont) : m_doc->font());
 				cwidth = fm.width(' ');
 #endif
                                 cwidth = cwidth * taboffset;
 			} else {
 				++column;
 #ifdef Q_OS_MAC
-                                if(wCache->contains(c)){
-                                    cwidth=wCache->value(c);
-                                }else{
-                                    QFontMetrics fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
-                                    cwidth = fm.width(c);
-                                    wCache->insert(c,cwidth);
-                                }
+				if(wCache->contains(c)){
+					cwidth=wCache->value(c);
+				}else{
+					QFontMetrics fm(newFont < fonts.count() ? fonts.at(newFont) : m_doc->font());
+					cwidth = fm.width(c);
+					wCache->insert(c,cwidth);
+				}
 #else
-				QFontMetrics fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
+				QFontMetrics fm(newFont < fonts.count() ? fonts.at(newFont) : m_doc->font());
 				cwidth = fm.width(c);
 #endif
 			}
@@ -3236,10 +3303,26 @@ void QDocumentLineHandle::draw(	QPainter *p,
 			}
 
 			int newFont = lastFont;
-			if (format1.italic || format1.weight == QFont::Bold) newFont = fmt1;
-			else if (format2.italic || format2.weight == QFont::Bold) newFont = fmt2;
-			else if (format3.italic || format3.weight == QFont::Bold) newFont = fmt3;
-			else newFont = fmt1;
+			int fontWeight=0;
+			if (format1.italic || format1.weight == QFont::Bold) {
+				newFont = fmt1;
+				fontWeight= format1.italic ? 1 :0;
+				fontWeight+= (format1.weight == QFont::Bold) ? 2 :0;
+			} else {
+				if (format2.italic || format2.weight == QFont::Bold) {
+					newFont = fmt2;
+					fontWeight= format2.italic ? 1 :0;
+					fontWeight+= (format2.weight == QFont::Bold) ? 2 :0;
+				} else {
+					if (format3.italic || format3.weight == QFont::Bold){
+						newFont = fmt3;
+						fontWeight= format3.italic ? 1 :0;
+						fontWeight+= (format3.weight == QFont::Bold) ? 2 :0;
+					} else {
+						newFont = fmt1;
+					}
+				}
+			}
 
 			if (newFont != lastFont) {
 				d->tunePainter(p, newFont);
@@ -3269,32 +3352,32 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 				if ( QDocumentPrivate::m_fixedPitch )
 					rwidth = QDocumentPrivate::m_spaceWidth * r.length;
-                                else {
-#ifdef Q_OS_MAC
-                                    WCache *wCache;
-                                    if(m_doc->fmtWidthCache.contains(fmt1)){
-                                            wCache=m_doc->fmtWidthCache.value(fmt1);
-                                    }else{
-                                            wCache=new WCache;
-                                            m_doc->fmtWidthCache.insert(fmt1,wCache);
-                                    }
-                                    rwidth=0;
-                                    foreach(QChar c,rng){
-                                        if(wCache->contains(c)){
-                                            rwidth+=wCache->value(c);
-                                        }else{
-                                            QFontMetrics fm(fmt1 < fonts.count() ? fonts.at(fmt1) : m_doc->font());
-                                            int cwidth = fm.width(c);
-                                            wCache->insert(c,cwidth);
-                                            rwidth+=cwidth;
-                                        }
-                                        //rwidth = p->fontMetrics().width(rng);
-                                    }
+				else {
+#ifndef Q_OS_LINUX
+					// this gives performance advantage on win as well as on mac
+					WCache *wCache;
+					if(m_doc->fmtWidthCache.contains(fontWeight)){
+						wCache=m_doc->fmtWidthCache.value(fontWeight);
+					}else{
+						wCache=new WCache;
+						m_doc->fmtWidthCache.insert(fontWeight,wCache);
+					}
+					rwidth=0;
+					foreach(QChar c,rng){
+						if(wCache->contains(c)){
+							rwidth+=wCache->value(c);
+						}else{
+							QFontMetrics fm=p->fontMetrics();
+							int cwidth = fm.width(c);
+							wCache->insert(c,cwidth);
+							rwidth+=cwidth;
+						}
+						//rwidth = p->fontMetrics().width(rng);
+					}
 #else
 				    rwidth = p->fontMetrics().width(rng);
 #endif
-                                }
-
+				}
 			}
 
 			if ( (xpos + rwidth) <= xOffset )
