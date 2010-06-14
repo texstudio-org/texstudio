@@ -87,8 +87,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	QDocument::setFormatFactory(m_formats);
 	mainSpeller->spellcheckErrorFormat=m_formats->id("spellingMistake");
 
-	QDocument::fmtWidthCache.clear();
-
 	if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
 	else QDocument::setDefaultCodec(configManager.newFileEncoding);
 
@@ -1306,7 +1304,6 @@ bool Texmaker::canCloseNow(){
 			delete mainSpeller; //this saves the ignore list
 			mainSpeller=0;
 		}
-		qDeleteAll(QDocument::fmtWidthCache);
 	}
 	return accept;
 }
@@ -3169,9 +3166,6 @@ void Texmaker::GeneralOptions() {
 	bool customEnvironmentExisted = !configManager.customEnvironments.isEmpty();
 	if (configManager.execConfigDialog()) {
 		mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);
-		//clear letter width cache
-		qDeleteAll(QDocument::fmtWidthCache);
-		QDocument::fmtWidthCache.clear();
 		// refresh quick language selection combobox
 		QFontMetrics fontMetrics(spellToolBar->font());
 		QStringList list;

@@ -212,7 +212,7 @@ class QCE_EXPORT QDocument : public QObject
 		
 		static QFont font();
 		static void setFont(const QFont& f);
-		static const QFontMetrics& fontMetrics();
+		static const QFontMetrics fontMetrics();
 		
 		static LineEnding defaultLineEnding();
 		static void setDefaultLineEnding(LineEnding le);
@@ -245,8 +245,6 @@ class QCE_EXPORT QDocument : public QObject
 		void foldBlockAt(bool unFold, int line);
 		bool linesPartiallyFolded(int fromInc, int toInc);
 		void correctFolding(int fromInc, int toInc);
-
-		static QMap<int,WCache*>fmtWidthCache;
 
 	public slots:
 		void clear();
