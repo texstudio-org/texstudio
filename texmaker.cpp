@@ -3996,6 +3996,7 @@ void Texmaker::cursorPositionChanged(){
 }
 
 void Texmaker::fileCheckin(QString filename){
+	if (!currentEditorView()) return;
 	QString fn=filename.isEmpty() ? currentEditor()->fileName() : filename;
 	UniversalInputDialog dialog;
 	QString text;
