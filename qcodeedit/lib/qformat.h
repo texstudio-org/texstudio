@@ -29,29 +29,29 @@ class QVector;
 struct QFormat
 {
 	inline QFormat()
-	 : priority(-1), realPriority(-1), weight(QFont::Normal), italic(false), overline(false), underline(false), strikeout(false), waveUnderline(false)
+	 : priority(-1), realPriority(-1), weight(QFont::Normal), italic(false), overline(false), underline(false), strikeout(false), waveUnderline(false), pointSize(0)
 	{}
 	
 	inline QFormat(const QColor& c)
-	 : priority(-1), realPriority(-1), weight(QFont::Normal), italic(false), overline(false), underline(false), strikeout(false), waveUnderline(false), foreground(c)
+	 : priority(-1), realPriority(-1), weight(QFont::Normal), italic(false), overline(false), underline(false), strikeout(false), waveUnderline(false), foreground(c), pointSize(0)
 	{}
 	
 	inline QFormat(int w, const QColor& c)
-	 : priority(-1), realPriority(-1), weight(w), italic(false), overline(false), underline(false), strikeout(false), waveUnderline(false), foreground(c)
+	 : priority(-1), realPriority(-1), weight(w), italic(false), overline(false), underline(false), strikeout(false), waveUnderline(false), foreground(c), pointSize(0)
 	{}
 	
 	inline QFormat(int w, bool i, bool u, bool s, const QColor& c)
-	 : priority(-1), realPriority(-1), weight(w), italic(i), overline(false), underline(u), strikeout(s), waveUnderline(false), foreground(c)
+	 : priority(-1), realPriority(-1), weight(w), italic(i), overline(false), underline(u), strikeout(s), waveUnderline(false), foreground(c), pointSize(0)
 	{}
 	
 	inline QFormat(int w, bool i, bool o, bool u, bool s, bool wu, const QColor& c)
-	 : priority(-1), realPriority(-1), weight(w), italic(i), overline(o), underline(u), strikeout(s), waveUnderline(wu), foreground(c)
+	 : priority(-1), realPriority(-1), weight(w), italic(i), overline(o), underline(u), strikeout(s), waveUnderline(wu), foreground(c), pointSize(0)
 	{}
 	
 	inline QFormat(const QFormat& f)
 	 : priority(f.priority), realPriority(f.realPriority), weight(f.weight), italic(f.italic),
 	 	overline(f.overline), underline(f.underline), strikeout(f.strikeout), waveUnderline(f.waveUnderline),
-	 	foreground(f.foreground), background(f.background), linescolor(f.linescolor)
+		foreground(f.foreground), background(f.background), linescolor(f.linescolor), fontFamily(f.fontFamily), pointSize(f.pointSize)
 	{}
 	
 	inline QFormat& operator = (const QFormat& f)
@@ -67,6 +67,8 @@ struct QFormat
 		background = f.background;
 		linescolor = f.linescolor;
 		waveUnderline = f.waveUnderline;
+		fontFamily = f.fontFamily;
+		pointSize = f.pointSize;
 		
 		return *this;
 	}
@@ -94,6 +96,10 @@ struct QFormat
 					(linescolor == f.linescolor)
 				&&
 					(waveUnderline == f.waveUnderline)
+				&&
+					(fontFamily == f.fontFamily)
+				&&
+					(pointSize == f.pointSize)
 				;
 	}
 	
@@ -120,6 +126,10 @@ struct QFormat
 					(linescolor != f.linescolor)
 				||
 					(waveUnderline != f.waveUnderline)
+				||
+					(fontFamily != f.fontFamily)
+				||
+					(pointSize != f.pointSize)
 				;
 	}
 	
@@ -144,6 +154,12 @@ struct QFormat
 		if ( background.isValid() )
 			f.setBackground(background);
 		
+		if ( !fontFamily.isEmpty() )
+			f.setFontFamily(fontFamily);
+
+		if ( pointSize )
+			f.setFontPointSize(pointSize);
+
 		return f;
 	}
 	
@@ -165,6 +181,8 @@ struct QFormat
 	QColor foreground;
 	QColor background;
 	QColor linescolor;
+	QString fontFamily;
+	int pointSize;
 };
 
 Q_DECLARE_TYPEINFO(QFormat, Q_MOVABLE_TYPE);

@@ -73,6 +73,10 @@ static void setFormatOption(QFormat& fmt, const QString& field, const QString& v
 		fmt.background = QColor(value);
 	else if ( field == "linescolor" )
 		fmt.linescolor = QColor(value);
+	else if ( field == "fontFamily" )
+		fmt.fontFamily = value;
+	else if ( field == "pointSize" )
+		fmt.pointSize = value.toInt();
 }
 
 /*!
@@ -229,7 +233,7 @@ void QFormatScheme::save(QDomElement& elem) const
 		const QFormat& fmt = m_formatValues.at(i);
 		
 		f = doc.createElement("priority");
-		t = doc.createTextNode(QString("%1").arg(fmt.priority));
+		t = doc.createTextNode(QString::number(fmt.priority));
 		f.appendChild(t);
 		c.appendChild(f);
 
@@ -287,6 +291,16 @@ void QFormatScheme::save(QDomElement& elem) const
 			c.appendChild(f);
 		}
 		
+		f = doc.createElement("fontFamily");
+		t = doc.createTextNode(fmt.fontFamily);
+		f.appendChild(t);
+		c.appendChild(f);
+
+		f = doc.createElement("pointSize");
+		t = doc.createTextNode(QString("%1").arg(fmt.pointSize));
+		f.appendChild(t);
+		c.appendChild(f);
+
 		elem.appendChild(c);
 	}
 }
@@ -382,6 +396,9 @@ void QFormatScheme::save(QSettings& s) const
 			s.setValue("linescolor", fmt.linescolor.name());
 		}
 		
+		s.setValue("fontFamily", fmt.fontFamily);
+		s.setValue("pointSize", fmt.pointSize);
+
 		s.endGroup();
 	}
 	

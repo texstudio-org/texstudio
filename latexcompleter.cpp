@@ -543,7 +543,7 @@ void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool nor
 	QDocumentLine line=c.line();
 	if (c.columnNumber()<0 || c.columnNumber()>line.length()) return;
 	QPoint offset=line.cursorToDocumentOffset(c.columnNumber()-1);
-	offset.setY(offset.y()+line.document()->y(c.lineNumber())+line.document()->fontMetrics().lineSpacing());
+	offset.setY(offset.y()+line.document()->y(c.lineNumber())+line.document()->getLineSpacing());
 	offset=editor->mapFromContents(offset);
 	int left;
 	int temp;
@@ -552,7 +552,7 @@ void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool nor
 	//list->resize(200>maxWordLen?200:maxWordLen,100);
 	//list->setParent(editor);
 	if (offset.y()+list->height()>editor->height()) {
-		offset.setY(offset.y()-line.document()->fontMetrics().lineSpacing()-list->height());
+		offset.setY(offset.y()-line.document()->getLineSpacing() - list->height());
 	}
         if(offset.x()+list->width()>editor->width()) offset.setX(editor->width() - list->width());
 	list->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
@@ -717,7 +717,7 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 	QRect r = list->visualRect(index);
 	QDocumentCursor c=editor->cursor();
 	QRect screen = QApplication::desktop()->availableGeometry();
-	int lineHeight=c.line().document()->fontMetrics().lineSpacing();
+	int lineHeight=c.line().document()->getLineSpacing();
 	QPoint tt=list->mapToGlobal(QPoint(list->width(), r.top()-lineHeight));
 	int lineY=editor->mapToGlobal(editor->mapFromContents(c.documentPosition())).y();
 	// estimate width of coming tooltip

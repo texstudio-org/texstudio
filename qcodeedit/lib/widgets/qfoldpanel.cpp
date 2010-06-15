@@ -125,11 +125,9 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 	bool bVisible = false; //,
 	//	inCursorBlock = false;
 
-	const QFontMetrics fm(doc->font());
-
 	int pos,
 		max = doc->lines(),
-		ls = fm.lineSpacing(),
+		ls = doc->getLineSpacing(),
 		pageBottom = e->viewport()->height(),
 		contentsY = e->verticalOffset();
 	

@@ -181,7 +181,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		inline int horizontalOffset() const
 		{ return horizontalScrollBar()->isVisible() ? horizontalScrollBar()->value() : 0; }
 		inline int verticalOffset() const
-		{ return verticalScrollBar()->isVisible() ? verticalScrollBar()->value() * m_doc->fontMetrics().lineSpacing() : 0; }
+		{ return verticalScrollBar()->isVisible() ? verticalScrollBar()->value() * m_doc->getLineSpacing() : 0; }
 		
 		inline QPoint mapToContents(const QPoint &point) const
 		{

@@ -89,7 +89,8 @@ HEADERS += texmaker.h \
     insertgraphics.h \
     tmxtabwidget.h \
     configmanagerinterface.h \
-    qcodeedit/lib/qformat.h
+    qcodeedit/lib/qformat.h \
+    mostQtHeaders.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \

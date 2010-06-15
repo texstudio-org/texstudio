@@ -115,7 +115,7 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 	QDocumentCursorHandle* c = e->cursorHandle();
 	const QFontMetrics fm(fontMetrics());
 
-	const int ls = fm.lineSpacing();
+	const int ls = QDocument::getLineSpacing();
 	const int ascent = fm.ascent() + 3;
 
 	s = tr("Line : %1 Visual column : %2 Text column : %3")

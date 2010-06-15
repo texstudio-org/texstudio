@@ -212,7 +212,8 @@ class QCE_EXPORT QDocument : public QObject
 		
 		static QFont font();
 		static void setFont(const QFont& f);
-		static const QFontMetrics fontMetrics();
+		//static const QFontMetrics fontMetrics() const;
+		static int getLineSpacing();
 		
 		static LineEnding defaultLineEnding();
 		static void setDefaultLineEnding(LineEnding le);
