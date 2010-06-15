@@ -57,6 +57,9 @@ QFormatConfig::QFormatConfig(QWidget *w)
 	m_table->horizontalHeaderItem(7)->setIcon(QIcon(":/images/qcodeedit/textcolor.png"));
 	m_table->horizontalHeaderItem(8)->setIcon(QIcon(":/images/qcodeedit/fillcolor.png"));
 	m_table->horizontalHeaderItem(9)->setIcon(QIcon(":/images/qcodeedit/strokecolor.png"));
+	m_table->horizontalHeaderItem(10)->setText("font");
+	m_table->horizontalHeaderItem(11)->setText("size");
+	m_table->horizontalHeaderItem(12)->setText("prio");  //TODO: images
 
 	connect(m_table, SIGNAL( itemSelectionChanged() ),
 			m_table, SLOT  ( clearSelection() ) );
@@ -228,6 +231,14 @@ void QFormatConfig::apply()
 			if ( cp )
 				fmt.linescolor = cp->color();
 
+			item = m_table->item(i,10);
+			fmt.fontFamily = item->text();
+
+			item = m_table->item(i,11);
+			fmt.pointSize = item->text().toInt();
+
+			item = m_table->item(i,12);
+			fmt.setPriority(item->text().toInt());
 		}
 
 		// TODO : save scheme and update editors
@@ -323,6 +334,25 @@ void QFormatConfig::cancel()
 			m_table->setCellWidget(i, 9, new QSimpleColorPicker(fmt.linescolor));
 			m_table->cellWidget(i, 9)->setToolTip(tr("Lines color (used by all lines formatting : underline, overline, ...)"));
 			//m_table->cellWidget(i, 9)->setMaximumSize(22, 22);
+
+			item = new QTableWidgetItem;
+			item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
+			item->setText(fmt.fontFamily);
+			item->setToolTip(tr("Font family"));
+			m_table->setItem(i, 10, item);
+
+			item = new QTableWidgetItem;
+			item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
+			item->setText(QString::number(fmt.pointSize));
+			item->setToolTip(tr("Point size"));
+			m_table->setItem(i, 11, item);
+
+			item = new QTableWidgetItem;
+			item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
+			item->setText(QString::number(fmt.priority));
+			item->setToolTip(tr("Priority"));
+			m_table->setItem(i, 12, item);
+
 		}
 	}
 
@@ -419,6 +449,24 @@ QList<int> QFormatConfig::modifiedFormats() const
 			cp = qobject_cast<QSimpleColorPicker*>(m_table->cellWidget(i, 9));
 			if ( cp && fmt.linescolor != cp->color() )
 			{
+				hasModif << i;
+				continue;
+			}
+
+			item = m_table->item(i, 10);
+			if (item->text() != fmt.fontFamily){
+				hasModif << i;
+				continue;
+			}
+
+			item = m_table->item(i, 11);
+			if (item->text().toInt() != fmt.pointSize){
+				hasModif << i;
+				continue;
+			}
+
+			item = m_table->item(i, 12);
+			if (item->text().toInt() != fmt.priority){
 				hasModif << i;
 				continue;
 			}

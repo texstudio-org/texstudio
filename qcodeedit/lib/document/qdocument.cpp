@@ -923,9 +923,21 @@ void QDocument::setFont(const QFont& f)
 	\note this limitation is historic and may disappear
 	in future versions
 */
-const QFontMetrics QDocument::fontMetrics()
+/*const QFontMetrics QDocument::fontMetrics()
 {
 	return QFontMetrics(*QDocumentPrivate::m_font);
+}*/
+
+/*!
+	\return The line spacing used by ALL documents, it is identically to
+	the vertical distance of the top pixels of two non-wrapped, successive lines
+
+	\note this limitation is historic and may disappear
+	in future versions
+*/
+int QDocument::getLineSpacing()
+{
+	return QDocumentPrivate::m_lineSpacing;
 }
 
 /*!
@@ -2404,16 +2416,16 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 		if ( wrap )
 			x -= m_indent;
 
-		const QVector<QFont>& fonts = m_doc->impl()->m_fonts;
+		QDocumentPrivate* d = m_doc->impl();
+		int fmts[3];
+		int newFont;
+		QFormat formats[3];
 
 		while ( (idx < max) && (x > 0) )
 		{
 			int fid = idx < m_cache.count() ? m_cache[idx] : 0;
 
-			if ( fid < 0 )
-				fid = 0;
-
-			QFontMetrics fm = (fid < fonts.count()) ? QFontMetrics(fonts.at(fid)) : m_doc->fontMetrics();
+			d->m_formatScheme->extractFormats(fid, fmts, formats, newFont);
 
 			QChar c = m_text.at(idx);
 			bool tab = c.unicode() == '\t';
@@ -2423,11 +2435,11 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 			{
 				int coff = ts - (column % ts);
 				column += coff;
-				cwidth = fm.width(' ');
+				cwidth = d->textWidth(newFont, " ");
 				cwidth *= coff;
 			} else {
 				++column;
-				cwidth = fm.width(c);
+				cwidth = d->textWidth(newFont, c);
 			}
 
 			int thresold = (2 * cwidth) / 3;
@@ -2926,7 +2938,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 		//if ( !hasFlag(QDocumentLine::FormatsApplied) )
 		//	applyOverlays();
 
-		const int lh = QDocument::fontMetrics().height();
+		const int lineSpacing = QDocumentPrivate::m_lineSpacing;
 
 		QVector<QTextLayout::FormatRange> selections;
 
@@ -2958,7 +2970,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 					qreal lineWidth = m_layout->lineAt(m_layout->lineCount() - 1).naturalTextWidth();
 					const int endX = QDocumentPrivate::m_leftMargin + qRound(lineWidth) - xOffset;
 
-					QRect area(endX, lh * i, vWidth - endX, lh);
+					QRect area(endX, lineSpacing * i, vWidth - endX, lineSpacing);
 
 					p->fillRect(area, fmt.background());
 				}
@@ -3125,9 +3137,8 @@ void QDocumentLineHandle::draw(	QPainter *p,
 		bool continuingWave = false, brokenWave = false;
 		int dir = 0; // 0 = down; 1 = up
 #endif
-                int wrap = 0, xpos = QDocumentPrivate::m_leftMargin, ypos = 0;
+		int wrap = 0, xpos = QDocumentPrivate::m_leftMargin, ypos = 0;
 		bool leading = ranges.first().format & FORMAT_SPACE, pastLead = false;
-                const QVector<QFont>& fonts = m_doc->impl()->m_fonts;
 
 		foreach ( const RenderRange& r, ranges )
 		{
@@ -3200,27 +3211,22 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 			if ( r.format & FORMAT_SPACE )
 			{
+				int currentSpaceWidth = d->textWidth(newFont, " ");
 				foreach ( QChar c, rng )
 				{
 					if ( c.unicode() == '\t' )
 					{
 						int toff = ts - (tcol % ts);
- 						rwidth += toff * QDocumentPrivate::m_spaceWidth;
+						rwidth += toff * currentSpaceWidth;
 						tcol += toff;
 					} else {
-						rwidth += QDocumentPrivate::m_spaceWidth;
+						rwidth += currentSpaceWidth;
 						++tcol;
 					}
 				}
 			} else {
 				column += r.length;
-
-				if ( QDocumentPrivate::m_fixedPitch )
-					rwidth = QDocumentPrivate::m_spaceWidth * r.length;
-				else {
-					rwidth = d->textWidth(lastFont, rng);
-				}
-
+				rwidth = d->textWidth(lastFont, rng);
 			}
 
 			if ( (xpos + rwidth) <= xOffset )
@@ -3279,6 +3285,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				if ( rngIdx == ranges.count() )
 					++max;
 
+				int currentSpaceWidth = d->textWidth(newFont, " ");
 				for ( int i = r.position; i < max; ++i )
 				{
 					while ( cidx < cursor.count() )
@@ -3302,7 +3309,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 					{
 						int toff = ts - (column % ts);
 						column += toff;
-						int xoff = toff * QDocumentPrivate::m_spaceWidth;
+						int xoff = toff * currentSpaceWidth;
 						/*
 						if ( r.format & FORMAT_SELECTION )
 						{
@@ -3350,7 +3357,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 							p->translate(m_spaceSignOffset - xpos,-ypos - QDocumentPrivate::m_ascent);
 						}
 
-						xpos += QDocumentPrivate::m_spaceWidth;
+						xpos += currentSpaceWidth;
 					}
 				}
 
@@ -3381,14 +3388,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 						int xcpos = xpos;
 
 						if ( xcoff )
-						{
-							if ( QDocumentPrivate::m_fixedPitch )
-							{
-								xcpos += xcoff * QDocumentPrivate::m_spaceWidth;
-							} else {
-								xcpos += p->fontMetrics().width(rng.left(xcoff));
-							}
-						}
+							xcpos += d->textWidth(newFont, rng.left(xcoff));
 
 						//qDebug("drawing cursor %i (col %i, x=%i)", cidx, cursor.at(cidx), xcpos);
 
@@ -6055,8 +6055,6 @@ void QDocumentPrivate::setFont(const QFont& f)
 	if(m_lineHeight>m_lineSpacing) m_lineSpacing=m_lineHeight;
 	//m_lineHeight = m_ascent + m_descent - 2;
 
-	m_fixedPitch = QFontInfo(*m_font).fixedPitch();
-
 	updateFormatCache();
 	//if ( !m_fixedPitch )
 	//	qDebug("unsafe computations...");
@@ -6088,6 +6086,8 @@ void QDocumentPrivate::tunePainter(QPainter *p, int fid)
 
 int QDocumentPrivate::textWidth(int fid, const QString& text){
 	if ( fid < 0 || fid >= m_fonts.size() ) return 0;
+	if ( QDocumentPrivate::m_fixedPitch )
+		return QDocumentPrivate::m_spaceWidth * text.length();
 	int rwidth=0;
 #ifdef USE_FORMAT_WIDTH_CACHE
 	WCache *wCache;
@@ -6114,6 +6114,8 @@ int QDocumentPrivate::textWidth(int fid, const QString& text){
 
 void QDocumentPrivate::updateFormatCache()
 {
+	m_fixedPitch = QFontInfo(*m_font).fixedPitch();
+
 	m_fonts.clear();
 	m_fontMetrics.clear();
 
@@ -6127,7 +6129,6 @@ void QDocumentPrivate::updateFormatCache()
 		return;
 	}
 
-	QFont f(*m_font);
 	const int end = m_formatScheme->formatCount();
 
 	m_fonts.reserve(end);
@@ -6136,8 +6137,17 @@ void QDocumentPrivate::updateFormatCache()
 	{
 		QFormat fmt = m_formatScheme->format(i);
 
+		QFont f(*m_font);
 		f.setWeight(fmt.weight);
 		f.setItalic(fmt.italic);
+		if ( !fmt.fontFamily.isEmpty() ){
+			f.setFamily(fmt.fontFamily);
+			m_fixedPitch = false;
+		}
+		if ( fmt.pointSize ){
+			f.setPointSize(fmt.pointSize);
+			m_fixedPitch = false;
+		}
 
 		m_fonts << f;
 		m_fontMetrics << QFontMetrics(f);

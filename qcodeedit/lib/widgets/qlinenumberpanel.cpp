@@ -136,12 +136,10 @@ bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
 	s_width.fill('6');
 	const int panelWidth = sfm.width(s_width) + 5;
 	setFixedWidth(panelWidth);
-	
-	const QFontMetrics fm( e->document()->font() );
-	
+		
 	int n, posY,
-		as = fm.ascent(),
-		ls = fm.lineSpacing(),
+		as = QFontMetrics(e->document()->font()).ascent(),
+		ls = e->document()->getLineSpacing(),
 		pageBottom = e->viewport()->height(),
 		contentsY = e->verticalOffset();
 	

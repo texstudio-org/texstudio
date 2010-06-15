@@ -2475,7 +2475,7 @@ bool QEditor::event(QEvent *e)
 	bool r = QAbstractScrollArea::event(e);
 
 	if ( (e->type() == QEvent::Resize || e->type() == QEvent::Show) && m_doc )
-		verticalScrollBar()->setMaximum(qMax(0, 1 + (m_doc->height() - viewport()->height()) / m_doc->fontMetrics().lineSpacing()));
+		verticalScrollBar()->setMaximum(qMax(0, 1 + (m_doc->height() - viewport()->height()) / m_doc->getLineSpacing()));
 
 	if ( e->type() == QEvent::Resize && flag(LineWrap) )
 	{
@@ -3519,7 +3519,7 @@ void QEditor::resizeEvent(QResizeEvent *)
 		horizontalScrollBar()->setPageStep(viewportSize.width());
 	}
 
-	const int ls = m_doc->fontMetrics().lineSpacing();
+	const int ls = m_doc->getLineSpacing();
 	verticalScrollBar()->setMaximum(qMax(0, 1 + (m_doc->height() - viewportSize.height()) / ls));
 	verticalScrollBar()->setPageStep(viewportSize.height() / ls);
 
@@ -3998,7 +3998,7 @@ void QEditor::pageUp(QDocumentCursor::MoveMode moveMode)
 	if ( m_cursor.atStart() )
 		return;
 
-	int n = viewport()->height() / QDocument::fontMetrics().lineSpacing();
+	int n = viewport()->height() / QDocument::getLineSpacing();
 
 	repaintCursor();
 	m_cursor.movePosition(n, QDocumentCursor::Up, moveMode);
@@ -4021,7 +4021,7 @@ void QEditor::pageDown(QDocumentCursor::MoveMode moveMode)
 	if ( m_cursor.atEnd() )
 		return;
 
-	int n = viewport()->height() / QDocument::fontMetrics().lineSpacing();
+	int n = viewport()->height() / document()->getLineSpacing();
 
 	repaintCursor();
 	m_cursor.movePosition(n, QDocumentCursor::Down, moveMode);
@@ -4450,7 +4450,7 @@ bool QEditor::isCursorVisible() const
 {
 	QPoint pos = m_cursor.documentPosition();
 
-	const QRect cursor(pos.x(), pos.y(), 1, QDocument::fontMetrics().lineSpacing());
+	const QRect cursor(pos.x(), pos.y(), 1, document()->getLineSpacing());
 	const QRect display(horizontalOffset(), verticalOffset(), viewport()->width(), viewport()->height());
 
 	//qDebug() << pos << " belongs to " << display << " ?";
@@ -4471,7 +4471,7 @@ void QEditor::ensureCursorVisible()
 	
 	QPoint pos = m_cursor.documentPosition();
 
-	const int ls = QDocument::fontMetrics().lineSpacing();
+	const int ls = document()->getLineSpacing();
 
 	int ypos = pos.y(),
 		yval = verticalScrollBar()->value() * ls, //verticalOffset(),
@@ -4508,7 +4508,7 @@ void QEditor::ensureVisible(int line)
 	if ( !m_doc )
 		return;
 
-	const int ls = QDocument::fontMetrics().lineSpacing();
+	const int ls = document()->getLineSpacing();
 	int ypos = m_doc->y(line),
 		yval = verticalScrollBar()->value() * ls, //verticalOffset(),
 		ylen = viewport()->height(),
@@ -4529,7 +4529,7 @@ void QEditor::ensureVisible(const QRect &rect)
 	if ( !m_doc )
 		return;
 
-	const int ls = QDocument::fontMetrics().lineSpacing();
+	const int ls = document()->getLineSpacing();
 	int ypos = rect.y(),
 		yval = verticalOffset(),
 		ylen = viewport()->height(),
@@ -4819,7 +4819,7 @@ void QEditor::scrollContentsBy(int dx, int dy)
 	#ifdef Q_GL_EDITOR
 	viewport()->update();
 	#else
-	const int ls = m_doc->fontMetrics().lineSpacing();
+	const int ls = document()->getLineSpacing();
 	viewport()->scroll(dx, dy * ls);
 	#endif
 }
@@ -4874,7 +4874,7 @@ void QEditor::documentHeightChanged(int newHeight)
 	{
 		m_doc->setWidthConstraint(wrapWidth());
 	}
-	const int ls = m_doc->fontMetrics().lineSpacing();
+	const int ls = document()->getLineSpacing();
 	verticalScrollBar()->setMaximum(qMax(0, 1 + (newHeight - viewport()->height()) / ls));
 	//ensureCursorVisible();
 }
