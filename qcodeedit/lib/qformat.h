@@ -166,8 +166,10 @@ struct QFormat
 	void setPriority(int p){
 		priority = p;
 		int minPriority = 0;
-		if (italic) minPriority++;
-		if (weight == QFont::Bold) minPriority++;
+		if ( italic ) minPriority++;
+		if ( weight == QFont::Bold ) minPriority++;
+		if ( ! fontFamily.isEmpty() ) minPriority++;
+		if ( pointSize ) minPriority++;
 		realPriority = qMax(priority,minPriority);
 	}
 

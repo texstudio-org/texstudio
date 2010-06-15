@@ -48,6 +48,12 @@ QFormatConfig::QFormatConfig(QWidget *w)
 
 	m_table->verticalHeader()->hide();
 
+	m_table->setColumnCount(13);
+	for  (int i=0;i<13;i++)
+		if ( !m_table->horizontalHeaderItem(i) )
+			m_table->setHorizontalHeaderItem(i, new QTableWidgetItem());
+	Q_ASSERT(m_table->horizontalHeaderItem(0)!=0);
+	m_table->horizontalHeaderItem(0)->setText(tr("Identifier"));
 	m_table->horizontalHeaderItem(1)->setIcon(QIcon(":/images/qcodeedit/bold.png"));
 	m_table->horizontalHeaderItem(2)->setIcon(QIcon(":/images/qcodeedit/italic.png"));
 	m_table->horizontalHeaderItem(3)->setIcon(QIcon(":/images/qcodeedit/underline.png"));

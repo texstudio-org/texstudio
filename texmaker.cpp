@@ -3231,7 +3231,7 @@ void Texmaker::GeneralOptions() {
 			LatexEditorView* edView=qobject_cast<LatexEditorView*>(EditorView->widget(i));
 			if (edView) {
 				QEditor* ed = edView->editor;
-				m_languages->setLanguage(ed, ed->fileName());
+				m_languages->setLanguage(ed, ed->fileName()!=""?ed->fileName():".tex");
 				ed->document()->markFormatCacheDirty();
 				ed->update();
 			}
