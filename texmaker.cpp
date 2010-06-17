@@ -31,6 +31,7 @@
 #include "randomtextgenerator.h"
 #include "webpublishdialog.h"
 #include "findGlobalDialog.h"
+#include "thesaurusdialog.h"
 #include "qsearchreplacepanel.h"
 #include "latexcompleter_config.h"
 #include "universalinputdialog.h"
@@ -53,7 +54,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 	MapForSymbols=0;
 	currentLine=-1;
-	thesaurusFileName.clear();
 	previewEquation=false;
 	svndlg=0;
 	mCompleterNeedsUpdate=false;
@@ -76,7 +76,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	structureTreeView=0;
 
 	outputView=0;
-	thesaurusDialog=0;
 	templateSelectorDialog=0;
 
 	mainSpeller=new SpellerUtility();;
@@ -1592,39 +1591,12 @@ void Texmaker::editThesaurus() {
 		QMessageBox::information(this,"TexMakerX",tr("No document open"),0);
 		return;
 	}
-	if (thesaurusFileName=="<dontLoad>") {
+	if (!ThesaurusDialog::retrieveDatabase()) {
 		QMessageBox::warning(this,tr("Error"), tr("Can't load Thesaurus Database"));
 		return;
 	}
 	QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
-	if(thesaurusDialog==0) thesaurusDialog=new ThesaurusDialog(this);
-	//thesaurusDialog->readDatabase(thesaurus_database);
-	// alternative version for concurrent setup
-	if (thesaurusFileName!=configManager.thesaurus_database){
-
-
-		thesaurusFileName=configManager.thesaurus_database;
-
-#if QT_VERSION >= 0x040500
-		//thesaurusFuture=QtConcurrent::run(&ThesaurusDialog::loadDatabase,file);
-		ThesaurusDatabaseType database=thesaurusFuture.result();
-#else
-		if (!QFile::exists(configManager.thesaurus_database)) return;
-
-		databasefile=new QFile(configManager.thesaurus_database);
-		if (!databasefile->open(QIODevice::ReadOnly)) {
-			QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
-			thesaurusFileName="<dontLoad>";
-			return;
-		}
-		ThesaurusDatabaseType database=ThesaurusDialog::loadDatabase(databasefile);
-
-#endif
-		thesaurusDialog->setDatabase(database);
-		delete databasefile;
-		databasefile=0;
-	}
-	// end of mocifications
+	ThesaurusDialog *thesaurusDialog=new ThesaurusDialog(this);
 	QString word;
 	if(m_cursor.hasSelection()){
 		word=m_cursor.selectedText();
@@ -1639,6 +1611,7 @@ void Texmaker::editThesaurus() {
 		QString replace=thesaurusDialog->getReplaceWord();
 		currentEditor()->insertTextAtCursor(replace);
 	}
+	delete thesaurusDialog;
 }
 
 void Texmaker::editChangeLineEnding() {
@@ -1851,20 +1824,7 @@ void Texmaker::ReadSettings() {
 		}
 	}
 
-#if QT_VERSION >= 0x040500
-	if (QFile::exists(configManager.thesaurus_database)) {
-
-	databasefile=new QFile(configManager.thesaurus_database);
-	if (!databasefile->open(QIODevice::ReadOnly)) {
-		//QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
-		thesaurusFileName="<dontLoad>";
-	}
-
-		thesaurusFuture=QtConcurrent::run(&ThesaurusDialog::loadDatabase,databasefile);
-	} else
-		thesaurusFileName="<dontLoad>";
-#endif
-
+	ThesaurusDialog::prepareDatabase(configManager.thesaurus_database);
 
 	//for (int i=0; i <412 ; i++)
 	//	symbolScore[i]=config->value("Symbols/symbol"+QString::number(i),0).toInt();
@@ -3177,24 +3137,7 @@ void Texmaker::GeneralOptions() {
 		if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
 		else QDocument::setDefaultCodec(configManager.newFileEncoding);
 
-#if QT_VERSION >= 0x040500
-		if (thesaurusFileName!=configManager.thesaurus_database){
-			if (!QFile::exists(configManager.thesaurus_database))
-				thesaurusFileName="<dontLoad>";
-			else {
-				databasefile=new QFile(configManager.thesaurus_database);
-				if (!databasefile->open(QIODevice::ReadOnly)) {
-					//QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
-					thesaurusFileName="<dontLoad>";
-					delete databasefile;
-					databasefile=0;
-				} else {
-					thesaurusFileName="";
-					thesaurusFuture=QtConcurrent::run(&ThesaurusDialog::loadDatabase,databasefile);
-				}
-			}
-		}
-#endif
+		ThesaurusDialog::prepareDatabase(configManager.thesaurus_database);
 
 		if (currentEditorView()) {
 			for (int i=0; i<EditorView->count();i++) {

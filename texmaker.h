@@ -16,10 +16,6 @@
 
 #include "mostQtHeaders.h"
 
-#if QT_VERSION >= 0x040500
-#include <QtConcurrentRun>
-#endif
-
 #include "bibtexparser.h"
 #include "buildmanager.h"
 #include "codesnippet.h"
@@ -35,7 +31,6 @@
 #include "spellerdialog.h"
 #include "textanalysis.h"
 #include "toolwidgets.h"
-#include "thesaurusdialog.h"
 #include "scriptengine.h"
 #include "tmxtabwidget.h"
 
@@ -129,7 +124,6 @@ private:
 	SpellerUtility *mainSpeller;
 
 //dialogs
-	ThesaurusDialog *thesaurusDialog;
 	TextAnalysisDialog *textAnalysisDlg;
 	SpellerDialog *spellDlg;
 	templateselector *templateSelectorDialog;
@@ -384,12 +378,6 @@ protected:
 
 	QDialog *svndlg;
 	QComboBox *cmbLog;
-
-	QString thesaurusFileName;
-	QFile *databasefile;
-#if QT_VERSION >= 0x040500
-        QFuture<ThesaurusDatabaseType> thesaurusFuture;
-#endif
 };
 
 
