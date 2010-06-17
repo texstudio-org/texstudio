@@ -2,9 +2,7 @@
 #define THESAURUSDIALOG_H
 
 #include "mostQtHeaders.h"
-
-typedef QMultiMap<QString,QStringList> ThesaurusDatabaseType;
-
+class ThesaurusDatabaseType;
 class ThesaurusDialog: public QDialog
 {
 	Q_OBJECT
@@ -14,10 +12,12 @@ public:
 	~ThesaurusDialog(){}
 	QString getReplaceWord();
 	void setSearchWord(const QString word);
-        void readDatabase(const QString filename);
-        static ThesaurusDatabaseType loadDatabase(QFile *file);
-        void setDatabase(ThesaurusDatabaseType database);
+/*	void readDatabase(const QString filename);
+	static ThesaurusDatabaseType loadDatabase(const QString& fileName);
+	void setDatabase(ThesaurusDatabaseType database);*/
 
+	static void prepareDatabase(const QString& fileName);
+	static ThesaurusDatabaseType * retrieveDatabase();
 private slots:
 	void classClicked(QListWidgetItem *item);
 	void wordClicked(QListWidgetItem *item);
@@ -36,8 +36,9 @@ protected:
 	QListWidget *classlistWidget;
 	QListWidget *replacelistWidget;
 
-	QMultiMap<QString,QStringList> Thesaurus;
+	ThesaurusDatabaseType *thesaurus;
 	QString thesaurusFileName;
+	static void loadDatabase(const QString& fileName);
 };
 
 #endif // THESAURUSDIALOG_H
