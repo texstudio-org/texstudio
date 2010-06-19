@@ -116,7 +116,9 @@ class QCE_EXPORT QDocumentLineHandle
 					const QSmallArray& sel,
 					const QSmallArray& cursors,
 					const QPalette& pal,
-					bool fullSel) const;
+					bool fullSel,
+					int yStart=0,
+					int yEnd=-1) const;
 		
 		inline QString& textBuffer() { setFlag(QDocumentLine::LayoutDirty, true); return m_text; }
 		
@@ -154,6 +156,7 @@ class QCE_EXPORT QDocumentLineHandle
 
 		enum SelectionState {noSel,partialSel,fullSel};
 		SelectionState lineHasSelection;
+		QBitmap wv;
 };
 
 Q_DECLARE_TYPEINFO(QDocumentLineHandle*, Q_PRIMITIVE_TYPE);

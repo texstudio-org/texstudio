@@ -2927,7 +2927,9 @@ void QDocumentLineHandle::draw(	QPainter *p,
 								const QSmallArray& sel,
 								const QSmallArray& cursor,
 								const QPalette& pal,
-								bool fullSel) const
+								bool fullSel,
+								int yStart,
+								int yEnd) const
 {
 	if ( hasFlag(QDocumentLine::LayoutDirty) )
 		layout();
@@ -3174,6 +3176,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				++wrap;
 				column = 0;
 				ypos += QDocumentPrivate::m_lineSpacing;
+				if(ypos>yEnd) return;
 				xpos = indent;
 
 				if ( r.format & FORMAT_SELECTION )
@@ -3187,6 +3190,8 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 				}
 			}
+			if(ypos<yStart) continue;
+
 			if ( leading && !(r.format & FORMAT_SPACE) )
 			{
 				//indent = xpos;
@@ -5741,14 +5746,21 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			px=m_LineCache.object(h);
 			p->drawPixmap(oldOffset,0,*px);
 		} else {
-			px=new QPixmap(cxt.width,m_lineSpacing*(wrap+1));
+			int ht=m_lineSpacing*(wrap+1);
+			int yoff= (currentLine && cxt.yoffset-pos>0) ? cxt.yoffset-pos : 0;
+			if(currentLine){
+			    ht= ht > cxt.yoffset+cxt.height-pos ? cxt.yoffset+cxt.height-pos : ht;
+			    px=new QPixmap(cxt.width,ht-yoff);
+			}else{
+			    px=new QPixmap(cxt.width,ht-yoff);
+			}
 			//px->fill(base.color());//fullSel ? selbg.color() : bg.color());
 			px->fill(fullSel ? selbg.color() : bg.color());
 			QPainter pnt(px);
 			pnt.setFont(p->font());
-			pnt.translate(-cxt.xoffset,0);
+			pnt.translate(-cxt.xoffset,-yoff);
 			pnt.fillRect(0, 0,
-									m_leftMargin, m_lineSpacing*(wrap+1),
+									m_leftMargin, ht,
 									base); // fillrect executed twice, to be optimized
 			/*pnt.fillRect(qMax(cxt.xoffset, m_leftMargin), 0,
 						cxt.width, m_lineSpacing,
@@ -5757,8 +5769,8 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			if ( wrapped )
 				pnt.fillRect(qMax(cxt.xoffset, m_leftMargin), m_lineSpacing,
 							 cxt.width, m_lineSpacing * wrap, fullSel ? selbg : bg);*/
-			h->draw(&pnt, cxt.xoffset, cxt.width, m_selectionBoundaries, m_cursorLines, cxt.palette, fullSel);
-			p->drawPixmap(cxt.xoffset,0,*px);
+			h->draw(&pnt, cxt.xoffset, cxt.width, m_selectionBoundaries, m_cursorLines, cxt.palette, fullSel,yoff,ht);
+			p->drawPixmap(cxt.xoffset,yoff,*px);
 			pnt.end();
 			if(!currentLine) m_LineCache.insert(h,px);
 			else {
