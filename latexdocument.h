@@ -114,6 +114,9 @@ public:
 	StructureEntry * findSectionForLine(int currentLine);
 
 	LatexDocuments *parent;
+
+	int m_magicPlaceHolder;
+	int m_mirrorInLine;
 private:
 	QString fileName; //absolute
 	QFileInfo fileInfo;

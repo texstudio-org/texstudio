@@ -315,6 +315,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void fileReloaded();
 		void fileAutoReloading(QString fname);
 		void updateCompleter();
+
+		void cursorHovered();
 		
 	public slots:
 		void checkClipboard();
@@ -502,6 +504,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		bool m_UseTabforMoveToPlaceholder;
 
                 bool m_blockKey;
+
+		int m_lastLine,m_lastColumn,m_hoverCount;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(QEditor::State);

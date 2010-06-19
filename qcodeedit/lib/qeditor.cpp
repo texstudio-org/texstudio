@@ -468,6 +468,10 @@ void QEditor::init(bool actions,QDocument *doc)
 	m_cursor = QDocumentCursor(m_doc);
 	m_cursor.setAutoUpdated(true);
 
+	m_lastColumn=-2;
+	m_lastLine=-2;
+	m_hoverCount=-2;
+
 	if ( m_defaultBinding )
 	{
 		m_bindings << m_defaultBinding;
@@ -2624,6 +2628,15 @@ void QEditor::timerEvent(QTimerEvent *e)
 
 		repaintCursor();
 
+		if(m_cursor.lineNumber()==m_lastLine && m_cursor.columnNumber()==m_lastColumn){
+		    m_hoverCount++;
+		    if(m_hoverCount==2) emit cursorHovered();
+		}else{
+		    m_lastLine=m_cursor.lineNumber();
+		    m_lastColumn=m_cursor.columnNumber();
+		    m_hoverCount=0;
+		}
+
 	} else if ( id == m_drag.timerId() ) {
 		m_drag.stop();
 		//startDrag();
@@ -2678,6 +2691,9 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 {
         //tm.start();
         //qDebug("pressed");
+	// reset hover counter
+	m_hoverCount=-1;
+
 	foreach ( QEditorInputBindingInterface *b, m_bindings )
 		if ( b->keyPressEvent(e, this) )
 			return;

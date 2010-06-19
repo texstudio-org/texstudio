@@ -773,6 +773,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 
 	connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(NewDocumentStatus(bool)));
 	connect(edit->editor, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
+	connect(edit->editor, SIGNAL(cursorHovered()), this, SLOT(cursorHovered()));
 	connect(edit, SIGNAL(showMarkTooltipForLogMessage(int)),this,SLOT(showMarkTooltipForLogMessage(int)));
 	connect(edit, SIGNAL(needCitation(const QString&)),this,SLOT(InsertBibEntry(const QString&)));
 	connect(edit, SIGNAL(showPreview(QString)),this,SLOT(showPreview(QString)));
@@ -3918,6 +3919,13 @@ void Texmaker::cursorPositionChanged(){
 	if (!currentEditorView()) return;
 	int i=currentEditor()->cursor().lineNumber();
 
+	//remove mirror cursors generated after hover if linenumber has changed
+	if(currentEditorView()->document->m_mirrorInLine>-1 && i!=currentEditorView()->document->m_mirrorInLine){
+	    currentEditorView()->document->m_mirrorInLine=-1;
+	    currentEditor()->removePlaceHolder(currentEditorView()->document->m_magicPlaceHolder);
+	    currentEditorView()->document->m_magicPlaceHolder=-1;
+	}
+
 	// search line in structure
 	if (currentLine==i) return;
 	currentLine=i;
@@ -4172,14 +4180,16 @@ QStringList Texmaker::svnLog(){
 	return revisions;
 }
 
-void Texmaker::generateMirror(){
-	if (!currentEditorView()) return;
+bool Texmaker::generateMirror(bool setCur){
+	if (!currentEditorView()) return false;
 	QDocumentCursor cursor = currentEditorView()->editor->cursor();
 	QString line=cursor.line().text();
 	QString command, value;
 	LatexParser::ContextType result=LatexParser::findContext(line, cursor.columnNumber(), command, value);
 	if(result==LatexParser::Command || result==LatexParser::Environment){
 		if (command=="\\begin" || command=="\\end"){
+			int l=cursor.lineNumber();
+			int c=cursor.columnNumber();
 			if (currentEditor()->currentPlaceHolder()!=-1 &&
 				currentEditor()->getPlaceHolder(currentEditor()->currentPlaceHolder()).cursor.isWithinSelection(cursor))
 				currentEditor()->removePlaceHolder(currentEditor()->currentPlaceHolder()); //remove currentplaceholder to prevent nesting
@@ -4193,12 +4203,13 @@ void Texmaker::generateMirror(){
 				cursor.movePosition(1,QDocumentCursor::NextWord,QDocumentCursor::KeepAnchor);
 			}
 			//currentEditorView()->editor->setCursor(cursor);
-			int magicPlaceHolder=currentEditor()->placeHolderCount();
+			LatexDocument* doc=currentEditorView()->document;
+
+			doc->m_magicPlaceHolder=currentEditor()->placeHolderCount();
 			QEditor::PlaceHolder ph;
 			ph.cursor=cursor;
 			currentEditor()->addPlaceHolder(ph,true);
 			// remove curly brakets as well
-			QDocument* doc=currentEditorView()->editor->document();
 			QString searchWord="\\end{"+value+"}";
 			QString inhibitor="\\begin{"+value+"}";
 			bool backward=(command=="\\end");
@@ -4222,13 +4233,22 @@ void Texmaker::generateMirror(){
 				QEditor::PlaceHolder ph;
 				ph.length=searchWord.length()-offset-1;
 				ph.cursor=currentEditor()->document()->cursor(endLine,start+offset+1,endLine,start+searchWord.length()-1);
-				currentEditor()->addPlaceHolderMirror(magicPlaceHolder,ph.cursor);
+				currentEditor()->addPlaceHolderMirror(doc->m_magicPlaceHolder,ph.cursor);
 			}
-			currentEditor()->setPlaceHolder(magicPlaceHolder);
+			currentEditor()->setPlaceHolder(doc->m_magicPlaceHolder);
+			if(setCur) currentEditor()->setCursorPosition(l,c);
+			return true;
 		}
 
 		//currentEditorView()->editor->document()->endMacro();
 		//currentEditorView()->editor->setCursor(cursor);
 	}
+	return false;
+}
+
+void Texmaker::cursorHovered(){
+    if(generateMirror(true)){
+	currentEditorView()->document->m_mirrorInLine=currentEditorView()->editor->cursor().lineNumber();
+    }
 
 }
