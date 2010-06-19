@@ -96,9 +96,9 @@
 #include <QVarLengthArray>
 #include <QMessageBox>
 
-#ifdef Q_OS_MAC
+//#ifdef Q_OS_MAC
 #define USE_FORMAT_WIDTH_CACHE
-#endif
+//#endif
 
 static int m_spaceSignOffset = 2;
 
