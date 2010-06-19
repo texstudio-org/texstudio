@@ -2066,21 +2066,25 @@ void QDocumentLineHandle::updateWrap() const
 		int fmt = 0;
 		const QVector<QFont>& fonts = m_doc->impl()->m_fonts;
 
+		QDocumentPrivate *d = m_doc->impl();
+
 		while ( idx < m_text.length() && m_text.at(idx).isSpace() )
 		{
 			c = m_text.at(idx);
 			fmt = idx < composited.count() ? composited[idx] : 0;
-			QFontMetrics fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
+			//QFontMetrics fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
 
 			if ( c.unicode() == '\t' )
 			{
 				int taboffset = tabStop - (column % tabStop);
 
 				column += taboffset;
-				cwidth = fm.width(' ') * taboffset;
+				cwidth = d->textWidth(fmt," ") * taboffset;
+				//cwidth = fm.width(' ') * taboffset;
 			} else {
 				++column;
-				cwidth = fm.width(c);
+				cwidth = d->textWidth(fmt,QString(c));
+				//cwidth = fm.width(c);
 			}
 
 			x += cwidth;
@@ -2101,7 +2105,7 @@ void QDocumentLineHandle::updateWrap() const
 		m_indent = minx - QDocumentPrivate::m_leftMargin;
 		int fmts[3];
 		QFormat formats[3];
-		QDocumentPrivate *d = m_doc->impl();
+
 		while ( idx < m_text.length() )
 		{
 			if ( c.isSpace() )  //!isWord(c) || !isWord(m_text.at(idx)) )
