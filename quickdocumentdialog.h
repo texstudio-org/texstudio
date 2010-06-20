@@ -17,6 +17,7 @@
 #include "ui_quickdocumentdialog.h"
 
 class ConfigManagerInterface;
+struct GeometryOption;
 class QuickDocumentDialog : public QDialog  {
 	Q_OBJECT
 public:
@@ -30,12 +31,14 @@ private:
 	static QStringList otherClassList, otherPaperList, otherEncodingList, otherOptionsList;
 	static QString document_class, typeface_size, paper_size, document_encoding, author;
 	static bool ams_packages, makeidx_package;
-
 public:
 	static void registerOptions(ConfigManagerInterface& configManager);
 public slots:
 	void Init();
 	virtual void accept();
+
+	void geometryUnitsChanged();
+	void geometryValuesChanged();
 private slots:
 	void addUserClass();
 	void addUserPaper();
