@@ -18,7 +18,6 @@ struct ThesaurusDatabaseType{
 	QMultiMap<QStringRef, TinyStringRef> thesaurus;
 	void clear();
 	ThesaurusDatabaseType();
-	~ThesaurusDatabaseType();
 };
 void ThesaurusDatabaseType::clear(){
 	if (buffer) delete buffer;
@@ -27,8 +26,6 @@ void ThesaurusDatabaseType::clear(){
 	fileName.clear();
 }
 ThesaurusDatabaseType::ThesaurusDatabaseType():buffer(0){
-}
-ThesaurusDatabaseType::~ThesaurusDatabaseType(){
 }
 ThesaurusDatabaseType::TinyStringRef::TinyStringRef(int astart, int alen): start(astart), length(alen){
 }
@@ -104,10 +101,10 @@ void ThesaurusDialog::prepareDatabase(const QString& filename){
 	if (filename == globalThesaurusNeededFileName) return;
 	if (!QFile(filename).exists()) {
 #if QT_VERSION >= 0x040500
-	thesaurusLock.lock();
-	globalThesaurusNeededFileName="";
-	globalThesaurus.clear();
-	thesaurusLock.unlock();
+		thesaurusLock.lock();
+		globalThesaurusNeededFileName="";
+		globalThesaurus.clear();
+		thesaurusLock.unlock();
 #else
 		globalThesaurusNeededFileName="";
 #endif
@@ -251,7 +248,7 @@ void ThesaurusDialog::loadDatabase(const QString& fileName ){
 	if (globalThesaurusNeededFileName == fileName){
 		globalThesaurus.clear();
 		globalThesaurus = result;
-	} else delete(result.buffer); //our result isn't actually needed anymore
+	} else result.clear(); //our result isn't actually needed anymore
 	thesaurusLock.unlock();
 }
 
