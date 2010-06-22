@@ -115,7 +115,7 @@
    <item row="2" column="0">
     <widget class="QCheckBox" name="checkBoxShowAdvancedOptions">
      <property name="text">
-      <string>show advanced options</string>
+      <string>Show advanced options</string>
      </property>
      <property name="checked">
       <bool>true</bool>
@@ -151,8 +151,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>580</width>
-            <height>474</height>
+            <width>793</width>
+            <height>597</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -304,7 +304,7 @@
               <item row="2" column="1">
                <widget class="QCheckBox" name="checkBoxUseTexmakerPalette">
                 <property name="text">
-                 <string>ignore most system colors</string>
+                 <string>Ignore most system colors</string>
                 </property>
                </widget>
               </item>
@@ -438,7 +438,7 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>inline checking</string>
+                 <string>Inline checking</string>
                 </property>
                </widget>
               </item>
@@ -469,7 +469,7 @@
               <item row="3" column="1">
                <widget class="QCheckBox" name="checkBoxInlineSpellCheck">
                 <property name="text">
-                 <string>inline spell checking</string>
+                 <string>Inline spell checking</string>
                 </property>
                 <property name="advancedOption" stdset="0">
                  <bool>true</bool>
@@ -479,7 +479,7 @@
               <item row="3" column="2">
                <widget class="QCheckBox" name="checkBoxInlineCitationCheck">
                 <property name="text">
-                 <string>inline citation checking</string>
+                 <string>Inline citation checking</string>
                 </property>
                 <property name="advancedOption" stdset="0">
                  <bool>true</bool>
@@ -489,7 +489,7 @@
               <item row="3" column="3">
                <widget class="QCheckBox" name="checkBoxInlineReferenceCheck">
                 <property name="text">
-                 <string>inline reference checking</string>
+                 <string>Inline reference checking</string>
                 </property>
                 <property name="advancedOption" stdset="0">
                  <bool>true</bool>
@@ -703,7 +703,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             <item>
              <widget class="QLabel" name="label">
               <property name="text">
-               <string>(the commands must be separated by '|')</string>
+               <string>(The commands must be separated by '|')</string>
               </property>
              </widget>
             </item>
@@ -806,7 +806,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="1" column="0" colspan="4">
            <widget class="QCheckBox" name="checkBoxRunAfterBibTeXChange">
             <property name="text">
-             <string>run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</string>
+             <string>Run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</string>
             </property>
            </widget>
           </item>
@@ -1017,13 +1017,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelSize">
-            <property name="text">
-             <string>Editor Font Size</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="1" colspan="3">
            <widget class="QSpinBox" name="spinBoxSize">
             <property name="minimum">
@@ -1051,78 +1044,56 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="2" column="1" colspan="2">
            <widget class="QComboBox" name="comboBoxEncoding"/>
           </item>
-          <item row="6" column="3" colspan="2">
-           <widget class="QComboBox" name="comboboxLineNumbers">
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-            <item>
-             <property name="text">
-              <string>No line numbers</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Show line numbers</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Show important line numbers</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="8" column="0" colspan="3">
+          <item row="10" column="0" colspan="3">
            <widget class="QComboBox" name="comboBoxPreviewMode">
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
             </property>
             <item>
              <property name="text">
-              <string>show preview as tool tip if panel is hidden</string>
+              <string>Show preview as tool tip if panel is hidden</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>always show preview in preview panel</string>
+              <string>Always show preview in preview panel</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>always show preview as tool tip</string>
+              <string>Always show preview as tool tip</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>always show both</string>
+              <string>Always show both</string>
              </property>
             </item>
            </widget>
           </item>
-          <item row="8" column="3" colspan="2">
+          <item row="10" column="3" colspan="2">
            <widget class="QComboBox" name="comboBoxDvi2PngMode">
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
             </property>
             <item>
              <property name="text">
-              <string>preview with dvipng</string>
+              <string>Preview with dvipng</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>preview with dvipng --follow (parallel)</string>
+              <string>Preview with dvipng --follow (parallel)</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>preview with dvips/ghostscript</string>
+              <string>Preview with dvips/ghostscript</string>
              </property>
             </item>
            </widget>
           </item>
-          <item row="11" column="0" colspan="5">
+          <item row="13" column="0" colspan="5">
            <widget class="QGroupBox" name="formatConfigBox">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
@@ -1147,69 +1118,49 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="9" column="0" colspan="2">
+          <item row="11" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxCloseSearchReplaceTogether">
             <property name="text">
-             <string>close search and replace panel together</string>
+             <string>Close search and replace panel together</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="6" column="0" colspan="3">
+          <item row="8" column="0" colspan="3">
            <widget class="QComboBox" name="comboBoxAutoIndent">
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
             </property>
             <item>
              <property name="text">
-              <string>ignore indentation</string>
+              <string>Ignore indentation</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>keep indentation</string>
+              <string>Keep indentation</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>indent and unindent automatically</string>
+              <string>Indent and unindent automatically</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>keep indentation with spaces only</string>
+              <string>Keep indentation with spaces only</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>indent and unindent automatically with spaces only</string>
+              <string>Indent and unindent automatically with spaces only</string>
              </property>
             </item>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QCheckBox" name="checkBoxLineState">
-            <property name="text">
-             <string>Show Line Change State</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QCheckBox" name="checkBoxState">
-            <property name="text">
-             <string>Show State Panel</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="2" colspan="2">
+          <item row="11" column="2" colspan="2">
            <widget class="QCheckBox" name="checkBoxUseLineForSearch">
             <property name="text">
              <string>Use single line selection as Search Word</string>
@@ -1225,44 +1176,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
              <string>can only decide between utf16/utf-8 and ISO 8859-1 !</string>
             </property>
             <property name="text">
-             <string>auto detect encoding of loaded files</string>
+             <string>Auto detect encoding of loaded files</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
-           <widget class="QCheckBox" name="checkBoxShowWhitespace">
-            <property name="text">
-             <string>Show Whitespace</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="2" colspan="3">
-           <widget class="QCheckBox" name="checkBoxTabforMoveToPlaceholder">
-            <property name="text">
-             <string>Use Tab for Move To Placeholder</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="2" colspan="2">
-           <widget class="QCheckBox" name="checkBoxDisplayModifyTime">
-            <property name="text">
-             <string>Show Modify Time</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="4">
+          <item row="11" column="4">
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
              <widget class="QLabel" name="label_22">
@@ -1292,10 +1210,92 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </item>
            </layout>
           </item>
-          <item row="3" column="4">
+          <item row="5" column="0">
            <widget class="QCheckBox" name="checkBoxAutoReplaceCommands">
             <property name="text">
              <string>Auto Replace Latex-Commands</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelSize">
+            <property name="text">
+             <string>Editor Font Size</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QCheckBox" name="checkBoxLineState">
+            <property name="text">
+             <string>Show Line Change State</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="3">
+           <widget class="QCheckBox" name="checkBoxDisplayModifyTime">
+            <property name="text">
+             <string>Show Modify Time</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="QCheckBox" name="checkBoxState">
+            <property name="text">
+             <string>Show State Panel</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2" colspan="2">
+           <widget class="QCheckBox" name="checkBoxTabforMoveToPlaceholder">
+            <property name="text">
+             <string>Use Tab for Move To Placeholder</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="3" colspan="2">
+           <widget class="QComboBox" name="comboboxLineNumbers">
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>No line numbers</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Show line numbers</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Show important line numbers</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="4" column="4">
+           <widget class="QCheckBox" name="checkBoxShowWhitespace">
+            <property name="text">
+             <string>Show Whitespace</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -1585,7 +1585,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
   <tabstop>checkBoxWordwrap</tabstop>
   <tabstop>checkBoxFolding</tabstop>
   <tabstop>checkBoxLineState</tabstop>
-  <tabstop>checkBoxState</tabstop>
   <tabstop>comboBoxAutoIndent</tabstop>
   <tabstop>comboboxLineNumbers</tabstop>
   <tabstop>comboBoxPreviewMode</tabstop>
