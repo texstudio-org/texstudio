@@ -44,9 +44,9 @@ QVariant TextAnalysisModel::headerData(int section, Qt::Orientation orientation,
 		return QVariant();
 
 	if (orientation != Qt::Horizontal) return QString::number(section);
-	else if (section == 0) return QString(TextAnalysisDialog::tr("word/phrase"));
-	else if (section == 1) return QString(TextAnalysisDialog::tr("count","count as noun"));
-	else if (section == 2) return QString(TextAnalysisDialog::tr("count relative"));
+        else if (section == 0) return QString(TextAnalysisDialog::tr("Word/Phrase"));
+        else if (section == 1) return QString(TextAnalysisDialog::tr("Count","count as noun"));
+        else if (section == 2) return QString(TextAnalysisDialog::tr("Count relative"));
 	else return QVariant();
 }
 int TextAnalysisModel::columnCount(const QModelIndex & parent) const {

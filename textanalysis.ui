@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>560</width>
-    <height>564</height>
+    <height>664</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,27 +17,27 @@
    <item row="2" column="0">
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>actions</string>
+      <string>Actions</string>
      </property>
      <layout class="QVBoxLayout">
       <item>
        <widget class="QPushButton" name="countButton">
         <property name="text">
-         <string extracomment="count as verb">count</string>
+         <string extracomment="count as verb">Count</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="searchSelectionButton">
         <property name="text">
-         <string>search selection in the document</string>
+         <string>Search selection in the document</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="closeButton">
         <property name="text">
-         <string>close</string>
+         <string>Close</string>
         </property>
        </widget>
       </item>
@@ -47,13 +47,13 @@
    <item row="1" column="0">
     <widget class="QGroupBox" name="groupBox_3">
      <property name="title">
-      <string>info</string>
+      <string>Info</string>
      </property>
      <layout class="QGridLayout">
       <item row="0" column="0">
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>total lines</string>
+         <string>Total lines</string>
         </property>
        </widget>
       </item>
@@ -67,21 +67,21 @@
       <item row="1" column="0">
        <widget class="QLabel" name="label_3">
         <property name="text">
-         <string>text lines</string>
+         <string>Text lines</string>
         </property>
        </widget>
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="label_4">
         <property name="text">
-         <string>total shown phrases</string>
+         <string>Total shown phrases</string>
         </property>
        </widget>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="label_5">
         <property name="text">
-         <string>comment lines</string>
+         <string>Comment lines</string>
         </property>
        </widget>
       </item>
@@ -109,7 +109,7 @@
       <item row="5" column="0">
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>different phrases</string>
+         <string>Different phrases</string>
         </property>
        </widget>
       </item>
@@ -123,7 +123,7 @@
       <item row="6" column="0">
        <widget class="QLabel" name="label_6">
         <property name="text">
-         <string>characters in phrases</string>
+         <string>Characters in phrases</string>
         </property>
        </widget>
       </item>
@@ -156,7 +156,7 @@
       </sizepolicy>
      </property>
      <property name="title">
-      <string>options</string>
+      <string>Options</string>
      </property>
      <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0">
       <item row="0" column="0" colspan="2">
@@ -165,7 +165,7 @@
          <string>If this is enabled, words/phrases in the normal text (which aren't in comments) are counted</string>
         </property>
         <property name="text">
-         <string>analyse normal text</string>
+         <string>Analyse normal text</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -178,7 +178,7 @@
          <string>If this is enabled, words/phrases in the comments are counted.</string>
         </property>
         <property name="text">
-         <string>analyse comments</string>
+         <string>Analyse comments</string>
         </property>
        </widget>
       </item>
@@ -188,7 +188,7 @@
          <string>If this is enabled, \commands are counted.</string>
         </property>
         <property name="text">
-         <string>analyse commands</string>
+         <string>Analyse commands</string>
         </property>
        </widget>
       </item>
@@ -209,31 +209,31 @@ If &quot;completely ignore&quot; is selected, shorter words are completely ignor
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown)</string>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <item>
          <property name="text">
-          <string>show all phrases</string>
+          <string>Show all phrases</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>minimum phrase length:</string>
+          <string>Minimum phrase length:</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>minimum word length (one):</string>
+          <string>Minimum word length (one):</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>minimum word length (all):</string>
+          <string>Minimum word length (all):</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>fully ignore shorter words:</string>
+          <string>Fully ignore shorter words:</string>
          </property>
         </item>
        </widget>
@@ -268,7 +268,7 @@ If &quot;completely ignore&quot; is selected, shorter words are completely ignor
       <item row="4" column="0" colspan="2">
        <widget class="QLabel" name="label_9">
         <property name="text">
-         <string>minimum occurence count:</string>
+         <string>Minimum occurence count:</string>
         </property>
        </widget>
       </item>
@@ -321,7 +321,7 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
       <item row="8" column="0">
        <widget class="QLabel" name="label_7">
         <property name="text">
-         <string>source:</string>
+         <string>Source:</string>
         </property>
        </widget>
       </item>
@@ -355,7 +355,7 @@ If not, end characters are ignored.</string>
 If not, end characters are ignored.</string>
         </property>
         <property name="text">
-         <string>respect phrase end chars:</string>
+         <string>Respect phrase end chars:</string>
         </property>
        </widget>
       </item>
@@ -368,12 +368,12 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
         </property>
         <item>
          <property name="text">
-          <string>maximum words per phrase:</string>
+          <string>Maximum words per phrase:</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>min&amp;max words per phrase:</string>
+          <string>Min&amp;max words per phrase:</string>
          </property>
         </item>
        </widget>
@@ -426,12 +426,12 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
         </property>
         <item>
          <property name="text">
-          <string>whole document</string>
+          <string>Whole document</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>selection</string>
+          <string>Selection</string>
          </property>
         </item>
        </widget>
