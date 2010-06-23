@@ -100,6 +100,8 @@
 #define USE_FORMAT_WIDTH_CACHE
 //#endif
 
+static QList<GuessEncodingCallback> guessEncodingCallbacks;
+
 static int m_spaceSignOffset = 2;
 
 static QPoint m_spaceSign[] = {
@@ -463,34 +465,41 @@ void QDocument::setText(const QString& s)
 	m_impl->emitContentsChange(0, m_impl->m_lines.count());
 }
 
-QTextCodec* guessEncoding(char* str, int size){
-    if (size==0)  return QTextCodec::codecForName("UTF-8"); //default
-    char prev=str[0];
-    int good=0;int bad=0;
-    int utf16le=0, utf16be = 0;
-    for (int i=1;i<size;i++) {
-	char cur = str[i];
-	    if ((cur & 0xC0) == 0x80) {
-	    if ((prev & 0xC0) == 0xC0) good++;
-	    else if ((prev & 0x80) == 0x00) bad++;
+QTextCodec* guessEncoding(const QByteArray& data){
+	const char* str = data.data();
+	int size = data.size();
+	if (size==0)  return QTextCodec::codecForName("UTF-8"); //default
+	char prev=str[0];
+	int good=0;int bad=0;
+	int utf16le=0, utf16be = 0;
+	for (int i=1;i<size;i++) {
+		char cur = str[i];
+		if ((cur & 0xC0) == 0x80) {
+			if ((prev & 0xC0) == 0xC0) good++;
+			else if ((prev & 0x80) == 0x00) bad++;
 		} else {
-		    if ((prev & 0xC0) == 0xC0) bad++;
-		    //if (cur==0) { if (i & 1 == 0) utf16be++; else utf16le++;}
-		    if (prev==0) {
-		if ((i & 1) == 1) utf16be++;
-		else utf16le++;
-	    }
+			if ((prev & 0xC0) == 0xC0) bad++;
+			//if (cur==0) { if (i & 1 == 0) utf16be++; else utf16le++;}
+			if (prev==0) {
+				if ((i & 1) == 1) utf16be++;
+				else utf16le++;
+			}
 		}
-	prev=cur;
-    }
-    // less than 0.1% of the characters can be wrong for utf-16 if at least 1% are valid (for English text)
-    if (utf16le > utf16be) {
-	if (utf16be <= size / 1000 && utf16le >= size / 100 && utf16le >= 2) return QTextCodec::codecForName("UTF-16LE");
-    } else {
-	if (utf16le <= size / 1000 && utf16be >= size / 100 && utf16be >= 2) return QTextCodec::codecForName("UTF-16BE");
-    }
-    if (good>bad) return QTextCodec::codecForName("UTF-8");
-    else return QTextCodec::codecForName("ISO-8859-1");
+		prev=cur;
+	}
+	// less than 0.1% of the characters can be wrong for utf-16 if at least 1% are valid (for English text)
+	if (utf16le > utf16be) {
+		if (utf16be <= size / 1000 && utf16le >= size / 100 && utf16le >= 2) return QTextCodec::codecForName("UTF-16LE");
+	} else {
+		if (utf16le <= size / 1000 && utf16be >= size / 100 && utf16be >= 2) return QTextCodec::codecForName("UTF-16BE");
+	}
+	if (good>bad) return QTextCodec::codecForName("UTF-8");
+	if (!guessEncodingCallbacks.empty())
+		foreach (const GuessEncodingCallback& callback, guessEncodingCallbacks) {
+			QTextCodec *newGuess = callback(data);
+			if (newGuess) return newGuess;
+		}
+	return QTextCodec::codecForName("ISO-8859-1");
 }
 
 
@@ -513,7 +522,7 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 		// instant load for files smaller than 500kb
 		QByteArray d = f.readAll();
 		if (codec == 0)
-			codec=guessEncoding(d.data(),d.size());
+			codec=guessEncoding(d);
 
 		setText(codec->toUnicode(d));
 	} else {
@@ -528,7 +537,7 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 
 		ba = f.read(100000);
 		if (codec == 0)
-			codec=guessEncoding(ba.data(),ba.size());
+			codec=guessEncoding(ba);
 
 		QTextDecoder *dec = codec->makeDecoder();
 		do
@@ -1421,6 +1430,13 @@ void QDocument::setDefaultCodec(QTextCodec* codec){
 	QDocumentPrivate::m_defaultCodec=codec;
 }
 
+void QDocument::addGuessEncodingCallback(const GuessEncodingCallback& callback){
+	if ( !guessEncodingCallbacks.contains(callback) )
+		guessEncodingCallbacks.append(callback);
+}
+void QDocument::removeGuessEncodingCallback(const GuessEncodingCallback& callback){
+	guessEncodingCallbacks.removeAll(callback);
+}
 /*!
 	\return The default format scheme used to draw document contents
 */

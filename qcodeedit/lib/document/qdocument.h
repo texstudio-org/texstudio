@@ -62,6 +62,8 @@ typedef QMap<QChar,int> WCache;
 Q_DECLARE_METATYPE(QDocumentIterator)
 Q_DECLARE_METATYPE(QDocumentConstIterator)
 
+typedef QTextCodec* (*GuessEncodingCallback) (const QByteArray& data);
+
 class QCE_EXPORT QDocument : public QObject
 {
 	friend class QMatcher;
@@ -220,6 +222,8 @@ class QCE_EXPORT QDocument : public QObject
 
 		static QTextCodec* defaultCodec();
 		static void setDefaultCodec(QTextCodec* codec);
+		static void addGuessEncodingCallback(const GuessEncodingCallback& callback);
+		static void removeGuessEncodingCallback(const GuessEncodingCallback& callback);
 		
 		static int tabStop();
 		static void setTabStop(int n);

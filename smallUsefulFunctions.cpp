@@ -499,10 +499,6 @@ bool hasAtLeastQt(int major, int minor){
 	return (ma>major) || (ma==major && mi>=minor);
 }
 
-QString cutComment(const QString& text){
-	return text.left(LatexParser::commentStart(text)); // remove comments
-}
-
 QRegExp generateRegExp(const QString &text,const bool isCase,const bool isWord, const bool isRegExp){
     Qt::CaseSensitivity cs= isCase ? Qt::CaseSensitive : Qt::CaseInsensitive;
     QRegExp m_regexp;
@@ -640,6 +636,10 @@ int LatexParser::commentStart(const QString& text){
 	else return -1;
 }
 
+QString LatexParser::cutComment(const QString& text){
+	return text.left(LatexParser::commentStart(text)); // remove comments
+}
+
 QString getRelativeBaseNameToPath(const QString & file,QString basepath){
 	basepath.replace(QDir::separator(),"/");
 	if (basepath.endsWith("/")) basepath=basepath.left(basepath.length()-1);
@@ -684,4 +684,85 @@ QString getPathfromFilename(const QString &compFile){
 	QString dir=QFileInfo(compFile).absolutePath();
 	if (!dir.endsWith("/") && !dir.endsWith(QDir::separator())) dir.append(QDir::separator());
 	return dir;
+}
+
+QTextCodec* QTextCodecForLatexName(QString str){
+	if (str.contains(',')) { //multiple options are allowed
+		foreach (const QString& splitter, str.split(',')){
+			QTextCodec* codec = QTextCodecForLatexName(splitter);
+			if (codec) return codec;
+		}
+	}
+	str = str.toLower(); //probably unnecessary
+	if (str.startsWith("x-")) str = str.mid(2); //needed for inputenx encodings used as parameters for inputenc
+
+	//encodings as defined by inputenc 1.1d (2008/03/30)
+	//popular first
+	if (str == "utf8" || str == "utf8x") return QTextCodec::codecForName("UTF-8");
+	if (str.startsWith("latin")) return QTextCodec::codecForName(qPrintable(str));
+	//as in the docu
+	if (str == "ascii") return QTextCodec::codecForName("latin1"); //this is wrong (should be latin1 limited to 0x00-0x7f)
+	//if (str == "decmulti") return??
+	//if (str == "next") ??
+	if (str.startsWith("cp") && (str.length()==5 || str.length()==6)
+	    && (str[2] >= '0') && (str[2] <= '9')
+	    && (str[3] >= '0') && (str[3] <= '9')
+	    && (str[4] >= '0') && (str[4] <= '9') &&
+	    (str.length()==5 || ((str[5] >= '0') && (str[5] <= '9')))) return QTextCodec::codecForName(qPrintable(str));
+	//if (str == "cp437de") return QTextCodec::codecForName("??");
+	if (str == "applemac") return QTextCodec::codecForName("macintosh");
+	if (str == "macce") return QTextCodec::codecForName("macintosh"); //wrong, should be Macintosh Central European code page.
+	if (str == "ansinew") return QTextCodec::codecForName("cp1252");
+
+	//additional encodings by inputenx
+	if (str == "us-ascii" || str == "clean7bit" || str == "ascii-print" || str == "ascii-printable") return QTextCodec::codecForName("latin1"); //this is wrong (should be latin1 limited to 0x00-0x7f)
+	//if (str == "atari" || )str == "atarist" ||  return QTextCodec::codecForName("???")
+	//if (str == "dec-mcs") return??
+	if (str == "koi8-r") return QTextCodec::codecForName("KOI8-R");
+	if (str.startsWith("iso-8859-")) return QTextCodec::codecForName(qPrintable(str));
+	if (str == "iso88595") return QTextCodec::codecForName("ISO-8859-5");
+	if (str == "mac-ce" || str=="mac-centeuro") return QTextCodec::codecForName("macintosh"); //wrong, should be Macintosh Central European code page.
+	if (str == "mac-cyrillic" || str=="maccyr" || str=="mac-ukrainian" || str=="macukr") return QTextCodec::codecForName("macintosh"); //wrong, should be Macintosh Cyrillic
+	//if (str == "nextstep, next?
+
+	//return QTextCodec::codecForName(str); //try it anyways
+	return 0;
+}
+
+QTextCodec* LatexParser::guessEncoding(const QByteArray& data){
+	int headerSize = data.indexOf("\\begin{document}");
+	if (headerSize == -1) headerSize = data.size();
+	//search for \usepackage[.*]{inputenc} outside of a comment
+	int index = data.indexOf("]{inputenc}");
+	while (index >= 0) {
+		if (index >= headerSize) return 0;
+		int previous = data.lastIndexOf("\\usepackage[",index);
+		if (previous >= 0){
+			int commentStart = data.lastIndexOf('%',index);
+			int commentEnd = qMax(data.lastIndexOf('\n',index),data.lastIndexOf('\r',index));
+			if (commentStart <= commentEnd) {
+				QString encoding = QString(data.mid(previous+12, index - (previous + 12)));
+				QTextCodec* codec = QTextCodecForLatexName(encoding);
+				if (codec) return codec;
+			}
+		}
+		index = data.indexOf("]{inputenc}", index + 1);
+	}
+	//search for \usepackage[.*]{inputenx} outside of a comment
+	index = data.indexOf("]{inputenx}");
+	while (index >= 0) {
+		if (index >= headerSize) return 0;
+		int previous = data.lastIndexOf("\\usepackage[",index);
+		if (previous >= 0){
+			int commentStart = data.lastIndexOf('%',index);
+			int commentEnd = qMax(data.lastIndexOf('\n',index),data.lastIndexOf('\r',index));
+			if (commentStart <= commentEnd) {
+				QString encoding = QString(data.mid(previous+12, index - (previous + 12)));
+				QTextCodec* codec = QTextCodecForLatexName(encoding);
+				if (codec) return codec;
+			}
+		}
+		index = data.indexOf("]{inputenc}", index + 1);
+	}
+	return 0;
 }

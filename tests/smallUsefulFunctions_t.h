@@ -262,7 +262,7 @@ private slots:
 	void cutComment_simple(){
 		QFETCH(QString, in);
 		QFETCH(QString, out);
-		QString res=cutComment(in);
+		QString res=LatexParser::cutComment(in);
 		QEQUAL(res,out);
 	}
 	void test_findContext_data(){
