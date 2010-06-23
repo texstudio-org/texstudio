@@ -1049,7 +1049,7 @@ void References::updateByKeys(const QStringList& refs,References* altRefs){
 			foreach(QDocumentLineHandle* elem,lst){
 				QDocumentLine mLine(elem);
 				QString text=mLine.text();
-				text=cutComment(text);
+				text=LatexParser::cutComment(text);
 				int offset=0;
 				while(rxRef.indexIn(text)!=-1){
 					int cnt=count(ref);
@@ -1067,7 +1067,7 @@ void References::updateByKeys(const QStringList& refs,References* altRefs){
 		foreach(QDocumentLineHandle* elem,lst){
 			QDocumentLine mLine(elem);
 			QString text=mLine.text();
-			text=cutComment(text); // remove comments
+			text=LatexParser::cutComment(text); // remove comments
 			int offset=0;
 			while(rxLabel.indexIn(text)!=-1){
 				int cnt=count(ref);

@@ -116,9 +116,9 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 
 // TAB WIDGET EDITEUR
-        connect(&documents,SIGNAL(masterDocumentChanged(LatexDocument *)), SLOT(masterDocumentChanged(LatexDocument *)));
+	connect(&documents,SIGNAL(masterDocumentChanged(LatexDocument *)), SLOT(masterDocumentChanged(LatexDocument *)));
 
-        EditorView=new TmxTabWidget(this);
+	EditorView=new TmxTabWidget(this);
 	EditorView->setFocusPolicy(Qt::ClickFocus);
 	EditorView->setFocus();
 	connect(EditorView, SIGNAL(currentChanged(int)), this, SLOT(UpdateCaption()));
@@ -126,7 +126,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 		EditorView->setProperty("tabsClosable",true);
 		EditorView->setProperty("movable",true);
 		connect(EditorView, SIGNAL(tabCloseRequested(int)), this, SLOT(CloseEditorTab(int)));
-                connect(EditorView, SIGNAL(tabMoved(int,int)), this, SLOT(EditorTabMoved(int,int)));
+		connect(EditorView, SIGNAL(tabMoved(int,int)), this, SLOT(EditorTabMoved(int,int)));
 	}
 	setCentralWidget(EditorView);
 
@@ -171,6 +171,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 		fileRestoreSession();
 		ToggleRememberAct->setChecked(true);
 	}
+
+	QDocument::addGuessEncodingCallback(&LatexParser::guessEncoding);
 }
 
 QMenu* Texmaker::newManagedMenu(QMenu* menu, const QString &id,const QString &text){
@@ -881,7 +883,6 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(completerNeedsUpdate()));
 	connect(edit->document,SIGNAL(updateCompleter()),edit->editor,SLOT(completerNeedsUpdate()));
 	connect(edit->editor,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
-
 
 	if (asProject) documents.setMasterDocument(edit->document);
 

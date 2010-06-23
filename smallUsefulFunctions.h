@@ -82,8 +82,6 @@ bool findTokenWithArg(const QString &line,const QString &token, QString &outName
 bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QString &outArg, QString &remainder);
 
 
-// remove comment from text, take care of multiple backslashes before comment character ...
-QString cutComment(const QString& text);
 
 // generate multiple times used regexpression
 QRegExp generateRegExp(const QString &text,const bool isCase,const bool isWord, const bool isRegExp);
@@ -111,7 +109,10 @@ public:
 	
 	//position of the % starting a comment (takes care of multiple backslashes before comment character ..)
 	static int commentStart(const QString& text);
-	
+
+	// remove comment from text, take care of multiple backslashes before comment character ...
+	static QString cutComment(const QString& text);
+
 	static ContextType findContext(const QString &line, int column, QString &command, QString& value);
 
 	static QSet<QString> refCommands;
@@ -120,6 +121,8 @@ public:
 	static QSet<QString> environmentCommands;
 	static QSet<QString> optionCommands;
 	static QStringList structureCommands;
+
+	static QTextCodec* guessEncoding(const QByteArray& data);
 };
 
 #endif
