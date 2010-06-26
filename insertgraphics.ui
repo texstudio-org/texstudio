@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>402</width>
-    <height>365</height>
+    <height>380</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -81,7 +81,7 @@
      <item>
       <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>scale: </string>
+        <string>Scale: </string>
        </property>
       </widget>
      </item>
@@ -102,14 +102,14 @@
      <item row="0" column="0">
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>caption: </string>
+        <string>Caption: </string>
        </property>
       </widget>
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>label: </string>
+        <string>Label: </string>
        </property>
       </widget>
      </item>
@@ -119,16 +119,16 @@
      <item row="0" column="3">
       <widget class="QComboBox" name="cbPosition">
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <item>
         <property name="text">
-         <string>above</string>
+         <string>Above</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>below</string>
+         <string>Below</string>
         </property>
        </item>
       </widget>
@@ -138,7 +138,7 @@
    <item>
     <widget class="QCheckBox" name="cbFloat">
      <property name="text">
-      <string>place in figure environment</string>
+      <string>Place in figure environment</string>
      </property>
      <property name="checked">
       <bool>true</bool>
@@ -157,7 +157,7 @@
       <item>
        <widget class="QCheckBox" name="cbHere">
         <property name="text">
-         <string>here</string>
+         <string>Here</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -167,7 +167,7 @@
       <item>
        <widget class="QCheckBox" name="cbBottom">
         <property name="text">
-         <string>bottom</string>
+         <string>Bottom</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -177,7 +177,7 @@
       <item>
        <widget class="QCheckBox" name="cbTop">
         <property name="text">
-         <string>top</string>
+         <string>Top</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -187,7 +187,7 @@
       <item>
        <widget class="QCheckBox" name="cbPage">
         <property name="text">
-         <string>page</string>
+         <string>Page</string>
         </property>
         <property name="checked">
          <bool>true</bool>
