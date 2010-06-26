@@ -137,7 +137,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -151,7 +151,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>793</width>
+            <width>806</width>
             <height>597</height>
            </rect>
           </property>
@@ -865,6 +865,13 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            <string>4</string>
           </property>
          </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cb_CloseLogByEsc">
+         <property name="text">
+          <string>Close Log-View with Esc-Key</string>
+         </property>
         </widget>
        </item>
       </layout>

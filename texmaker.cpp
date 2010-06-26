@@ -3340,7 +3340,7 @@ void Texmaker::viewCloseSomething(){
 	}
 	if (currentEditorView() && currentEditorView()->closeSomething())
 		return;
-	if (outputView->isVisible()) {
+	if (outputView->isVisible() && configManager.useEscForClosingLog) {
 		viewToggleOutputView();
 		return;
 	}
