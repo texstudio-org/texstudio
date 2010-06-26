@@ -22,7 +22,7 @@ InsertGraphics::InsertGraphics(QWidget *parent, QString name)
 	connect(ui.lineEdit, SIGNAL(textChanged(const QString &)), this, SIGNAL(fileNameChanged(const QString &)));
 	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(chooseFile()));
 	connect(ui.cbFloat, SIGNAL(stateChanged(int)), this, SLOT(floatStateChanged(int)));
-	setWindowTitle(name);
+	setWindowTitle(tr("Insert Graphics"));;
 }
 
 void InsertGraphics::setDir(const QString &di) {
