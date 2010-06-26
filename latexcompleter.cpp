@@ -688,7 +688,8 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 			    if(doc) topic=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
 			}
 			for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
-			    topic+=mLine->document()->line(i).text();
+			    topic+=mLine->document()->line(i).text().left(80);
+			    if(mLine->document()->line(i).text().length()>80) topic+="...";
 			    if(i<l+2) topic+="\n";
 			}
 		    }
