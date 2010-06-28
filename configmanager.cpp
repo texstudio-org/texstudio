@@ -26,6 +26,7 @@ QVariant ManagedProperty::valueToQVariant() const{
 		case PT_STRING: return QVariant(*((QString*)storage));
 		case PT_STRINGLIST: return QVariant(*((QStringList*)storage));
 		case PT_DATETIME: return QVariant(*((QDateTime*)storage));
+		case PT_DOUBLE: return QVariant(*((double*)storage));
 		default:
 			Q_ASSERT(false);
 			return QVariant();
@@ -40,6 +41,7 @@ void ManagedProperty::valueFromQVariant(const QVariant v){
 		case PT_STRING: *((QString*)storage) = v.toString(); break;
 		case PT_STRINGLIST: *((QStringList*)storage) = v.toStringList(); break;
 		case PT_DATETIME: *((QDateTime*)storage) = v.toDateTime(); break;
+		case PT_DOUBLE: *((double*)storage) = v.toDouble(); break;
 		default:
 			Q_ASSERT(false);
 	}
@@ -93,6 +95,12 @@ void ManagedProperty::writeToWidget(QWidget* w) const{
 			default:
 				Q_ASSERT(false);
 		}
+	}
+	QDoubleSpinBox* doubleSpinBox = qobject_cast<QDoubleSpinBox*>(w);
+	if (doubleSpinBox){
+		Q_ASSERT(type == PT_DOUBLE);
+		doubleSpinBox->setValue(*((double*)storage));
+		return;
 	}
 
 	Q_ASSERT(false);
@@ -153,6 +161,13 @@ bool ManagedProperty::readFromWidget(const QWidget* w){
 			default:
 				Q_ASSERT(false);
 		}
+	}
+	const QDoubleSpinBox* doubleSpinBox = qobject_cast<const QDoubleSpinBox*>(w);
+	if (doubleSpinBox){
+		Q_ASSERT(type == PT_DOUBLE);
+		double oldvalue = *((double*)storage);
+		*((double*)storage) = doubleSpinBox->value();
+		return oldvalue != *((double*)storage);
 	}
 
 	Q_ASSERT(false);
@@ -1343,6 +1358,9 @@ void ConfigManager::registerOption(const QString& name, QStringList* storage, QV
 void ConfigManager::registerOption(const QString& name, QDateTime *storage, QVariant def, void* displayWidgetOffset){
 	registerOption(name, storage, PT_DATETIME, def, displayWidgetOffset);
 }
+void ConfigManager::registerOption(const QString& name, double *storage, QVariant def, void* displayWidgetOffset){
+	registerOption(name, storage, PT_DOUBLE, def, displayWidgetOffset);
+}
 
 void ConfigManager::registerOption(const QString& name, void* storage, PropertyType type, QVariant def){
 	registerOption(name, storage, type, def, 0);
@@ -1362,4 +1380,43 @@ void ConfigManager::registerOption(const QString& name, QStringList* storage, QV
 }
 void ConfigManager::registerOption(const QString& name, QDateTime* storage, QVariant def){
 	registerOption(name, storage, def, 0);
+}
+void ConfigManager::registerOption(const QString& name, double* storage, QVariant def){
+	registerOption(name, storage, def, 0);
+}
+
+void ConfigManager::linkOptionToWidget(const void* optionStorage, QWidget* widget){
+	ManagedProperty *property = getManagedProperty(optionStorage);
+	REQUIRE(property);
+
+	QWidget* parentWidget = widget->parentWidget();
+	while (parentWidget && !qobject_cast<QDialog*>(parentWidget)) parentWidget = parentWidget->parentWidget();
+	Q_ASSERT(parentWidget);
+	QDialog* parentDialog = qobject_cast<QDialog*>(parentWidget);
+	Q_ASSERT(parentDialog);
+
+	if (managedOptionDialogs.contains(parentDialog)) {
+		(*managedOptionDialogs.find(parentDialog)) << widget;
+	} else {
+		managedOptionDialogs.insert(parentDialog, QList<QWidget*>() << widget);
+		connect(parentDialog, SIGNAL(accepted()), SLOT(managedOptionDialogAccepted()));
+	}
+
+	property->writeToWidget(widget);
+	widget->setProperty("managedProperty", QVariant::fromValue<void*>(property->storage));
+}
+ManagedProperty* ConfigManager::getManagedProperty(const void* storage){
+	for (int i=0;i<managedProperties.size();i++)
+		if (managedProperties[i].storage == storage) return &managedProperties[i];
+	return 0;
+}
+void ConfigManager::managedOptionDialogAccepted(){
+	QDialog* dialog = qobject_cast<QDialog*>(sender());
+	REQUIRE(dialog);
+	foreach (const QWidget* widget, managedOptionDialogs.value(dialog, QList<QWidget*>())) {
+		ManagedProperty* prop = getManagedProperty(widget->property("managedProperty").value<void*>());
+		Q_ASSERT(prop);
+		prop->readFromWidget(widget);
+	}
+	managedOptionDialogs.remove(dialog);
 }

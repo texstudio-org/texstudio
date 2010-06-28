@@ -13,6 +13,8 @@
 
 #include "mostQtHeaders.h"
 
+#define REQUIRE(x)  Q_ASSERT((x)); if (!(x)) return;
+
 QString getCommonEOW();
 
 QStringList findResourceFiles(const QString& dirName, const QString& filter);
@@ -122,6 +124,7 @@ public:
 	static QSet<QString> optionCommands;
 	static QStringList structureCommands;
 
+	static QTextCodec* QTextCodecForLatexName(QString str);
 	static QTextCodec* guessEncoding(const QByteArray& data);
 };
 
