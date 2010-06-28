@@ -686,7 +686,7 @@ QString getPathfromFilename(const QString &compFile){
 	return dir;
 }
 
-QTextCodec* QTextCodecForLatexName(QString str){
+QTextCodec* LatexParser::QTextCodecForLatexName(QString str){
 	if (str.contains(',')) { //multiple options are allowed
 		foreach (const QString& splitter, str.split(',')){
 			QTextCodec* codec = QTextCodecForLatexName(splitter);
@@ -762,7 +762,7 @@ QTextCodec* LatexParser::guessEncoding(const QByteArray& data){
 				if (codec) return codec;
 			}
 		}
-		index = data.indexOf("]{inputenc}", index + 1);
+		index = data.indexOf("]{inputenx}", index + 1);
 	}
 	return 0;
 }

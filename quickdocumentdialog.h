@@ -27,10 +27,14 @@ public:
 
 
 	QString getNewDocumentText();
+
+
+	static QString document_encoding;
 private:
 	static QStringList otherClassList, otherPaperList, otherEncodingList, otherOptionsList;
-	static QString document_class, typeface_size, paper_size, document_encoding, author;
+	static QString document_class, typeface_size, paper_size, author;
 	static bool ams_packages, makeidx_package;
+	static ConfigManagerInterface* configManagerInterface;
 public:
 	static void registerOptions(ConfigManagerInterface& configManager);
 public slots:

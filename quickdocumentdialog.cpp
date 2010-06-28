@@ -26,9 +26,16 @@ qreal convertLatexLengthToMetre(const qreal& length, const QString& unit){
 	/*if (unit == "mm")*/ return length * 0.001;
 }
 
+//options for the configmanager
 QStringList QuickDocumentDialog::otherClassList, QuickDocumentDialog::otherPaperList, QuickDocumentDialog::otherEncodingList, QuickDocumentDialog::otherOptionsList;
 QString QuickDocumentDialog::document_class, QuickDocumentDialog::typeface_size, QuickDocumentDialog::paper_size, QuickDocumentDialog::document_encoding, QuickDocumentDialog::author;
 bool QuickDocumentDialog::ams_packages, QuickDocumentDialog::makeidx_package;
+double geometryPageWidth, geometryPageHeight, geometryMarginLeft, geometryMarginRight, geometryMarginTop, geometryMarginBottom;
+QString geometryPageWidthUnit, geometryPageHeightUnit, geometryMarginLeftUnit, geometryMarginRightUnit, geometryMarginTopUnit, geometryMarginBottomUnit;
+bool geometryPageWidthEnabled, geometryPageHeightEnabled, geometryMarginLeftEnabled, geometryMarginRightEnabled, geometryMarginTopEnabled, geometryMarginBottomEnabled;
+
+ConfigManagerInterface *QuickDocumentDialog::configManagerInterface;
+
 
 QuickDocumentDialog::QuickDocumentDialog(QWidget *parent, const QString& name)
 		:QDialog(parent) {
@@ -144,6 +151,29 @@ void QuickDocumentDialog::registerOptions(ConfigManagerInterface& configManager)
 	configManager.registerOption("Quick/AMS",&ams_packages, true);
 	configManager.registerOption("Quick/MakeIndex",&makeidx_package, false);
 	configManager.registerOption("Quick/Author",&author, "");
+	
+	configManager.registerOption("Quick/Geometry Page Width",&geometryPageWidth, 0.0f);
+	configManager.registerOption("Quick/Geometry Page Height",&geometryPageHeight, 0.0f);
+	configManager.registerOption("Quick/Geometry Margin Left",&geometryMarginLeft, 0.0f);
+	configManager.registerOption("Quick/Geometry Margin Right",&geometryMarginRight, 0.0f);
+	configManager.registerOption("Quick/Geometry Margin Top",&geometryMarginTop, 0.0f);
+	configManager.registerOption("Quick/Geometry Margin Bottom",&geometryMarginBottom, 0.0f);
+	
+	configManager.registerOption("Quick/Geometry Page Width Unit",&geometryPageWidthUnit, "cm");
+	configManager.registerOption("Quick/Geometry Page Height Unit",&geometryPageHeightUnit, "cm");
+	configManager.registerOption("Quick/Geometry Margin Left Unit",&geometryMarginLeftUnit, "cm");
+	configManager.registerOption("Quick/Geometry Margin Right Unit",&geometryMarginRightUnit, "cm");
+	configManager.registerOption("Quick/Geometry Margin Top Unit",&geometryMarginTopUnit, "cm");
+	configManager.registerOption("Quick/Geometry Margin Bottom Unit",&geometryMarginBottomUnit, "cm");
+	
+	configManager.registerOption("Quick/Geometry Page Width Enabled",&geometryPageWidthEnabled, false);
+	configManager.registerOption("Quick/Geometry Page Height Enabled",&geometryPageHeightEnabled, false);
+	configManager.registerOption("Quick/Geometry Margin Left Enabled",&geometryMarginLeftEnabled, false);
+	configManager.registerOption("Quick/Geometry Margin Right Enabled",&geometryMarginRightEnabled, false);
+	configManager.registerOption("Quick/Geometry Margin Top Enabled",&geometryMarginTopEnabled, false);
+	configManager.registerOption("Quick/Geometry Margin Bottom Enabled",&geometryMarginBottomEnabled, false);
+
+	configManagerInterface = &configManager;
 }
 
 void QuickDocumentDialog::Init() {
@@ -203,28 +233,38 @@ void QuickDocumentDialog::Init() {
 	ui.listWidgetOptions->addItem("fleqn");
 	if (!otherOptionsList.isEmpty()) ui.listWidgetOptions->addItems(otherOptionsList);
 
-	int f=ui.comboBoxClass->findText(document_class,Qt::MatchExactly | Qt::MatchCaseSensitive);
-	ui.comboBoxClass->setCurrentIndex(f);
-	f=ui.comboBoxSize->findText(typeface_size,Qt::MatchExactly | Qt::MatchCaseSensitive);
-	ui.comboBoxSize->setCurrentIndex(f);
-	f=ui.comboBoxPaper->findText(paper_size,Qt::MatchExactly | Qt::MatchCaseSensitive);
-	ui.comboBoxPaper->setCurrentIndex(f);
-	f=ui.comboBoxEncoding->findText(document_encoding,Qt::MatchExactly | Qt::MatchCaseSensitive);
-	ui.comboBoxEncoding->setCurrentIndex(f);
-	ui.checkBoxAMS->setChecked(ams_packages);
-	ui.checkBoxIDX->setChecked(makeidx_package);
-	ui.lineEditAuthor->setText(author);
 
+	configManagerInterface->linkOptionToWidget(&document_class, ui.comboBoxClass);
+	configManagerInterface->linkOptionToWidget(&typeface_size, ui.comboBoxSize);
+	configManagerInterface->linkOptionToWidget(&paper_size, ui.comboBoxPaper);
+	configManagerInterface->linkOptionToWidget(&document_encoding, ui.comboBoxEncoding);
+	configManagerInterface->linkOptionToWidget(&ams_packages, ui.checkBoxAMS);
+	configManagerInterface->linkOptionToWidget(&makeidx_package, ui.checkBoxIDX);
+	configManagerInterface->linkOptionToWidget(&author, ui.lineEditAuthor);
+
+	configManagerInterface->linkOptionToWidget(&geometryPageWidth, ui.spinBoxGeometryPageWidth);
+	configManagerInterface->linkOptionToWidget(&geometryPageHeight, ui.spinBoxGeometryPageHeight);
+	configManagerInterface->linkOptionToWidget(&geometryMarginLeft, ui.spinBoxGeometryMarginLeft);
+	configManagerInterface->linkOptionToWidget(&geometryMarginRight, ui.spinBoxGeometryMarginRight);
+	configManagerInterface->linkOptionToWidget(&geometryMarginTop, ui.spinBoxGeometryMarginTop);
+	configManagerInterface->linkOptionToWidget(&geometryMarginBottom, ui.spinBoxGeometryMarginBottom);
+
+	configManagerInterface->linkOptionToWidget(&geometryPageWidthUnit, ui.spinBoxUnitGeometryPageWidth);
+	configManagerInterface->linkOptionToWidget(&geometryPageHeightUnit, ui.spinBoxUnitGeometryPageHeight);
+	configManagerInterface->linkOptionToWidget(&geometryMarginLeftUnit, ui.spinBoxUnitGeometryMarginLeft);
+	configManagerInterface->linkOptionToWidget(&geometryMarginRightUnit, ui.spinBoxUnitGeometryMarginRight);
+	configManagerInterface->linkOptionToWidget(&geometryMarginTopUnit, ui.spinBoxUnitGeometryMarginTop);
+	configManagerInterface->linkOptionToWidget(&geometryMarginBottomUnit, ui.spinBoxUnitGeometryMarginBottom);
+
+	configManagerInterface->linkOptionToWidget(&geometryPageWidthEnabled, ui.checkBoxGeometryPageWidth);
+	configManagerInterface->linkOptionToWidget(&geometryPageHeightEnabled, ui.checkBoxGeometryPageHeight);
+	configManagerInterface->linkOptionToWidget(&geometryMarginLeftEnabled, ui.checkBoxGeometryMarginLeft);
+	configManagerInterface->linkOptionToWidget(&geometryMarginRightEnabled, ui.checkBoxGeometryMarginRight);
+	configManagerInterface->linkOptionToWidget(&geometryMarginTopEnabled, ui.checkBoxGeometryMarginTop);
+	configManagerInterface->linkOptionToWidget(&geometryMarginBottomEnabled, ui.checkBoxGeometryMarginBottom);
 }
 
 void QuickDocumentDialog::accept(){
-	document_class=ui.comboBoxClass->currentText();
-	typeface_size=ui.comboBoxSize->currentText();
-	paper_size=ui.comboBoxPaper->currentText();
-	document_encoding=ui.comboBoxEncoding->currentText();
-	ams_packages=ui.checkBoxAMS->isChecked();
-	makeidx_package=ui.checkBoxIDX->isChecked();
-	author=ui.lineEditAuthor->text();
 	QDialog::accept();
 }
 

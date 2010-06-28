@@ -2453,6 +2453,11 @@ void Texmaker::QuickDocument() {
 	if (startDlg->exec()) {
 		Q_ASSERT(currentEditor());
 		currentEditor()->insertTextAtCursor(startDlg->getNewDocumentText());
+		QTextCodec* codec = LatexParser::QTextCodecForLatexName(startDlg->document_encoding);
+		if (codec && codec != currentEditor()->document()->codec()){
+			currentEditor()->document()->setCodec(codec);
+			UpdateCaption();
+		}
 	}
 	delete startDlg;
 }

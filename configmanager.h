@@ -175,12 +175,15 @@ public:
 	void registerOption(const QString& name, QString* storage, QVariant def, void* displayWidgetOffset);
 	void registerOption(const QString& name, QStringList* storage, QVariant def, void* displayWidgetOffset);
 	void registerOption(const QString& name, QDateTime* storage, QVariant def, void* displayWidgetOffset);
+	void registerOption(const QString& name, double* storage, QVariant def, void* displayWidgetOffset);
 	virtual void registerOption(const QString& name, void* storage, PropertyType type, QVariant def);
 	virtual void registerOption(const QString& name, bool* storage, QVariant def=QVariant());
 	virtual void registerOption(const QString& name, int* storage, QVariant def=QVariant());
 	virtual void registerOption(const QString& name, QString* storage, QVariant def=QVariant());
 	virtual void registerOption(const QString& name, QStringList* storage, QVariant def=QVariant());
 	virtual void registerOption(const QString& name, QDateTime* storage, QVariant def=QVariant());
+	virtual void registerOption(const QString& name, double* storage, QVariant def=QVariant());
+	virtual void linkOptionToWidget(const void* optionStorage, QWidget* widget);
 private:
 	void setInterfaceStyle();
 
@@ -189,9 +192,14 @@ private:
 	QMap<QString,QVariant> manipulatedMenus;
 
 	QList<ManagedProperty> managedProperties;
+
+	QMap<QWidget*, QList<QWidget*> > managedOptionDialogs;
+	ManagedProperty* getManagedProperty(const void* storage);
 private slots:
 	void browseCommand();
 	void undoCommand();
 	void latexTreeItemChanged(QTreeWidgetItem* item,int l);
+
+	void managedOptionDialogAccepted();
 };
 #endif
