@@ -43,6 +43,8 @@ public:
 	QSettings* readSettings();
 	QSettings* saveSettings();
 
+	QSettings* readProfile(QString fname);
+
 	bool execConfigDialog();
 
 //public configuration

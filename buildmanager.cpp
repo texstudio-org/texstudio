@@ -48,6 +48,7 @@ QString BuildManager::cmdToConfigString(LatexCommand cmd){
 		case CMD_USER_QUICK: return "Tools/Userquick";
 		case CMD_SVN: return "Tools/SVN";
 		case CMD_SVNADMIN: return "Tools/SVNADMIN";
+		case CMD_ASY: return "Tools/Asy";
 		default: return QString("_unknown_cmd_%1").arg((int)cmd);
 	}
 }
@@ -255,6 +256,8 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 			return "svn ";
 		case CMD_SVNADMIN:
 			return "svnadmin ";
+		case CMD_ASY:
+			return "asy %.asy";
 		case CMD_USER_PRECOMPILE:
 		case CMD_MAXIMUM_COMMAND_VALUE:
 			return "";
@@ -390,6 +393,7 @@ QString BuildManager::baseCommandName(LatexCommand cmd){
 		case CMD_METAPOST: return "mpost";
 		case CMD_SVN: return "svn";
 		case CMD_SVNADMIN: return "svnadmin";
+		case CMD_ASY: return "asy";
 		/*case CMD_VIEWDVI: case CMD_VIEWPS:  case CMD_VIEWPDF:
 			viewer are platform dependent*/
 		case CMD_GHOSTSCRIPT: return "gs";
@@ -417,6 +421,7 @@ QString BuildManager::defaultCommandOptions(LatexCommand cmd){
 		case CMD_VIEWPDF: return "%.pdf";
 		case CMD_SVN: return "";
 		case CMD_SVNADMIN: return "";
+		case CMD_ASY: return "%.asy";
 		default: return "";
 	}
 }
@@ -437,6 +442,7 @@ QString BuildManager::commandDisplayName(LatexCommand cmd){
 		case CMD_GHOSTSCRIPT: return "Ghostscript";
 		case CMD_SVN: return "SVN";
 		case CMD_SVNADMIN: return "SVNADMIN";
+		case CMD_ASY: return "Asymptote";
 		default: return "";
 	}
 }
@@ -463,8 +469,14 @@ void BuildManager::readSettings(const QSettings &settings){
 		else if (hasLatexCommand(CMD_LATEX) && hasLatexCommand(CMD_DVIPDF) && hasLatexCommand(CMD_VIEWPDF))
 			quickmode=4;
 		else if (hasLatexCommand(CMD_LATEX) && hasLatexCommand(CMD_DVIPS) &&
-				 hasLatexCommand(CMD_PS2PDF) && hasLatexCommand(CMD_VIEWPDF))
+					 hasLatexCommand(CMD_PS2PDF) && hasLatexCommand(CMD_VIEWPDF))
 			quickmode=5;
+		else if (hasLatexCommand(CMD_LATEX) && hasLatexCommand(CMD_ASY) &&
+				 hasLatexCommand(CMD_LATEX) && hasLatexCommand(CMD_VIEWDVI))
+			quickmode=6;
+		else if (hasLatexCommand(CMD_PDFLATEX) && hasLatexCommand(CMD_ASY) &&
+				 hasLatexCommand(CMD_PDFLATEX) && hasLatexCommand(CMD_VIEWPDF))
+			quickmode=7;
 		else quickmode=1; //texmaker default
 	}
 	if (reinterpret_cast<Dvi2PngMode&>(quickmode)<0) {

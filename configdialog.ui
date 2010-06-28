@@ -151,8 +151,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>793</width>
-            <height>597</height>
+            <width>586</width>
+            <height>474</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -687,6 +687,20 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
              <widget class="QRadioButton" name="radioButton5">
               <property name="text">
                <string>LaTeX + dvips + ps2pdf + View PDF</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton6_2">
+              <property name="text">
+               <string>LaTeX + Asymptote + LaTeX + View DVI</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton7">
+              <property name="text">
+               <string>PdfLaTeX + Asymptote + PdfLaTeX + View PDF</string>
               </property>
              </widget>
             </item>
