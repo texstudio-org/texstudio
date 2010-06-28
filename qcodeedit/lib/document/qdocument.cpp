@@ -5766,6 +5766,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			int yoff= (currentLine && cxt.yoffset-pos>0) ? cxt.yoffset-pos : 0;
 			if(currentLine){
 			    ht= ht > cxt.yoffset+cxt.height-pos ? cxt.yoffset+cxt.height-pos : ht;
+				if(ht<0) ht=m_lineSpacing;
 			    px=new QPixmap(cxt.width,ht-yoff);
 			}else{
 			    px=new QPixmap(cxt.width,ht-yoff);
