@@ -863,13 +863,14 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 		return 0;
 	}
 
+	if (edit->editor->fileInfo().suffix()!="tex")
+		m_languages->setLanguage(edit->editor, f_real);
+
 	edit->editor->load(f_real,QDocument::defaultCodec());
 	edit->editor->document()->setLineEnding(edit->editor->document()->originalLineEnding());
 
 	edit->editor->setFocus();
 	edit->document->setEditorView(edit); //update file name (if document didn't exist)
-	if (edit->editor->fileInfo().suffix()!="tex")
-		m_languages->setLanguage(edit->editor, f_real);
 	UpdateCaption();
 	NewDocumentStatus(false);
 	MarkCurrentFileAsRecent();
