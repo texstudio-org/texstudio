@@ -457,6 +457,7 @@ void Texmaker::setupMenus() {
 
 	menu->addSeparator();
 	newManagedAction(menu, "metapost",tr("&MetaPost"), SLOT(commandFromAction()))->setData(BuildManager::CMD_METAPOST);
+	newManagedAction(menu, "asymptote",tr("&Asymptote"), SLOT(commandFromAction()))->setData(BuildManager::CMD_ASY);
 	menu->addSeparator();
 	newManagedAction(menu, "clean",tr("Cle&an"), SLOT(CleanAll()));
 	menu->addSeparator();
@@ -2818,6 +2819,42 @@ void Texmaker::QuickBuild() {
 	}
 	break;
 	case 6: {
+		stat2->setText(QString(" %1 ").arg("Latex"));
+		runCommand(BuildManager::CMD_LATEX,true,false);
+		if (ERRPROCESS && !LogExists()) {
+			QMessageBox::warning(this,tr("Error"),tr("Could not start LaTeX."));
+			return;
+		}
+		if (NoLatexErrors()) {
+			stat2->setText(QString(" %1 ").arg("Asymptote"));
+			if (!ERRPROCESS) runCommand(BuildManager::CMD_ASY,true,false);
+			else return;
+			stat2->setText(QString(" %1 ").arg("LaTeX"));
+			if (!ERRPROCESS) runCommand(BuildManager::CMD_LATEX,true,false);
+			else return;
+			if (!ERRPROCESS) runCommand(BuildManager::CMD_VIEWDVI, false, false);
+		}
+	}
+	break;
+	case 7: {
+		stat2->setText(QString(" %1 ").arg("Pdf Latex"));
+		runCommand(BuildManager::CMD_PDFLATEX,true,false);
+		if (ERRPROCESS && !LogExists()) {
+			QMessageBox::warning(this,tr("Error"),tr("Could not start LaTeX."));
+			return;
+		}
+		if (NoLatexErrors()) {
+			stat2->setText(QString(" %1 ").arg("Asymptote"));
+			if (!ERRPROCESS) runCommand(BuildManager::CMD_ASY,true,false);
+			else return;
+			stat2->setText(QString(" %1 ").arg("Pdf Latex"));
+			if (!ERRPROCESS) runCommand(BuildManager::CMD_PDFLATEX,true,false);
+			else return;
+			if (!ERRPROCESS) runCommand(BuildManager::CMD_VIEWPDF, false, false);
+		}
+	}
+	break;
+	case 8: {
 		QStringList commandList=buildManager.getLatexCommand(BuildManager::CMD_USER_QUICK).split("|");
 		for (int i = 0; i < commandList.size(); ++i) {
 			if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) runCommand(commandList.at(i),true,true);
