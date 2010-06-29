@@ -18,11 +18,13 @@
 
 typedef QStringList userlist;
 
+class QCodeEdit;
+class QLanguageFactory;
 class UserMenuDialog : public QDialog {
 	Q_OBJECT
 
 public:
-	UserMenuDialog(QWidget* parent = 0, QString name="");
+	UserMenuDialog(QWidget* parent = 0, QString name="", QLanguageFactory* languageFactory=0);
 	~UserMenuDialog();
 	Ui::UserMenuDialog ui;
 
@@ -30,7 +32,8 @@ public:
 
 private:
 	int previous_index;
-
+	QCodeEdit* codeedit;
+	QLanguageFactory* languages;
 public slots:
 	void init();
 

@@ -2537,7 +2537,7 @@ void Texmaker::InsertUserTag() {
 }
 
 void Texmaker::EditUserMenu() {
-	UserMenuDialog *umDlg = new UserMenuDialog(this,tr("Edit User &Tags"));
+	UserMenuDialog *umDlg = new UserMenuDialog(this,tr("Edit User &Tags"),m_languages);
 	umDlg->Name=UserMenuName;
 	umDlg->Tag=UserMenuTag;
 	umDlg->Abbrev=UserMenuAbbrev;

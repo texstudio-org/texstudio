@@ -514,7 +514,7 @@ void QFormatScheme::extractFormats(int mergedFormat, int* fmt, QFormat* formats,
 	fmt[1] = (mergedFormat >> (FORMAT_SHIFT)) & FORMAT_MASK_BASE;
 	fmt[2] = (mergedFormat >> (2*FORMAT_SHIFT)) & FORMAT_MASK_BASE;
 
-	Q_ASSERT(this);
+	if (!this) return;
 
 	formats[0] = format(fmt[0]);
 	formats[1] = format(fmt[1]);
