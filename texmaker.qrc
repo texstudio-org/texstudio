@@ -4,6 +4,7 @@
         <file alias="qxs/defaultFormats.qxf" >utilities/qxs/defaultFormats.qxf</file>
         <file alias="qxs/marks.qxm" >utilities/qxs/marks.qxm</file>
         <file alias="qxs/bibtex.qnfa" >utilities/qxs/bibtex.qnfa</file>
+        <file alias="qxs/qtscript.qnfa">utilities/qxs/qtscript.qnfa</file>
         <file alias="qxs/tex.qnfa" >utilities/qxs/tex.qnfa</file>
         <file alias="qxs/xml.qnfa" >utilities/qxs/xml.qnfa</file>
         <file alias="closeall.png" >images/qcodeedit/closeall.png</file>

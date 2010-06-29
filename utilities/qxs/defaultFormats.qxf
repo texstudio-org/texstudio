@@ -96,6 +96,15 @@
         <waveUnderline>false</waveUnderline>
         <foreground>#ff0000</foreground>
     </format>
+    <format id="escapeseq" >
+        <bold>false</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <foreground>#ff0088</foreground>
+    </format>
     <format id="spellingMistake" >
         <waveUnderline>true</waveUnderline>
         <linescolor>#FF0000</linescolor>
