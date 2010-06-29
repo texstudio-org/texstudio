@@ -379,6 +379,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 
 		void setFlag(EditFlag f, bool b);
 		
+	public slots:
 		void pageUp(QDocumentCursor::MoveMode moveMode);
 		void pageDown(QDocumentCursor::MoveMode moveMode);
 		
@@ -388,10 +389,14 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void ensureVisible(int line);
 		void ensureVisible(const QRect &rect);
 		
+	protected:
 		void preInsert(QDocumentCursor& c, const QString& text);
-		void insertText(QDocumentCursor& c, const QString& text);
-		void insertTextAtCursor(const QString& text);
 
+	public slots:
+		void insertText(QDocumentCursor& c, const QString& text);
+		void insertText(const QString& text);
+
+	public:
 		QDocumentLine lineAtPosition(const QPoint& p) const;
 		QDocumentCursor cursorForPosition(const QPoint& p) const;
 		
@@ -418,9 +423,6 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 
 		QString cutBuffer;
 		int cutLineNumber;
-
-                //QTime tm;
-
 	protected slots:
 		void documentWidthChanged(int newWidth);
 		void documentHeightChanged(int newWidth);

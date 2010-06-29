@@ -134,7 +134,7 @@ void SpellerDialog::slotReplace() {
 	if (editor->cursor().hasSelection()) {
 		QString selectedword=editor->cursor().selectedText();
 		curWord=ui.lineEditNew->text();
-		editor->insertTextAtCursor(curWord);
+		editor->insertText(curWord);
 	}
 	SpellingNextWord();
 }

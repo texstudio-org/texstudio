@@ -381,10 +381,10 @@ For example "Images (*.png *.xpm *.jpg);;Text files (*.txt);;XML files (*.xml)",
 Instead of using code snippets, you can also make use of javascript.
 To do so, put "%SCRIPT" in the first line. The following code will be interpreted as javascript.
 The language is based on <a href="http://doc.trolltech.com/4.5/ecmascript.html">ECMAScript</a>.
-To acces the document, to objects are introduced:
+To access the document, to objects are introduced:
 <ul>
 <li>"editor" allows some top level operations like save/load.
-<li>"cursor" gives acces to cursor operations like moving, inserting and deleting texts.
+<li>"cursor" gives access to cursor operations like moving, inserting and deleting texts.
 <li>"fileChooser" gives access to the filechooser dialog, a very simple file selection dialog
 </ul>
 The following table gives an overview on the possible commands.
@@ -493,6 +493,21 @@ The following table gives an overview on the possible commands.
     <td> set filename to <i>f</i>
   </tr>
   <tr>
+    <td> editor.write(str) </td>
+    <td> inserts str at the current cursors position (if there are cursor mirrors, str will be inserted by all of them) </td>
+  <tr>
+  <tr>
+    <td> editor.insertText(str) </td>
+    <td> inserts str at the current cursor position (cursor mirrors are ignored)</td>
+  <tr><!--
+  <tr>
+    <td> editor.insertText(cursor, str) </td>
+    <td> inserts str at the position of cursor </td>
+  <tr>-->
+
+  <tr> <td colspan="2">&nbsp;</td> </tr>
+
+  <tr>
     <td> cursor.atEnd()
     <td> returns whether the cursor is at the end of the document
   </tr>
@@ -542,7 +557,7 @@ The following table gives an overview on the possible commands.
   </tr>
   <tr>
     <td> cursor.setPosition(int pos, MoveMode m = MoveAnchor)
-    <td> ?
+    <td> set the cursor position after pos-characters counted from document start (very slow)
   </tr>
   <tr>
     <td> cursor.movePosition(int offset, MoveOperation op = NextCharacter, MoveMode m = MoveAnchor);
@@ -593,7 +608,7 @@ The following table gives an overview on the possible commands.
   </tr>  
   <tr>
     <td> cursor.insertText(text, bool keepAnchor = false)
-    <td> insert <i>text</i> text at cursor
+    <td> insert <i>text</i> text at cursor (this function will ignore indentations and mirrors, see editor.write and editor.insertText)
   </tr>
   <tr>
     <td> cursor.selectedText()
@@ -621,12 +636,13 @@ The following table gives an overview on the possible commands.
   </tr>		
   <tr>
     <td> cursor.beginEditBlock();
-    <td> move cursor to the start of a block
+    <td> begins a new edit block. All cursor operations encapsulated in an edit block are undone/redone at once. 
   </tr>
   <tr>
     <td> cursor.endEditBlock();
-    <td> move cursor to the end of a block
+    <td> ends an edit block
   </tr>
+  <tr> <td colspan="2">&nbsp;</td> </tr>
   <tr>
 	<td> fileChooser.exec()
 	<td> show dialog and wait until it is closed again
@@ -643,7 +659,17 @@ The following table gives an overview on the possible commands.
 	<td> fileChooser.fileName()
 	<td> return selected filename (after exec)
   </tr>  
+  <tr> <td colspan="2">&nbsp;</td> </tr>
+  <tr>
+  	<td> alert(str) </td>
+	<td> shows str in a messagebox </td>
+  </tr>
+  <tr>
+  	<td> debug(str) </td>
+	<td> prints str to stdout </td>
+  </tr>
 </table> 
+<br><br>
 Some examples:
 <ul>
 <li>Execution of editor text: <pre>
@@ -666,6 +692,56 @@ if (from>=0 && to > from) {
 }
 </pre>
 This will evaluate everything between % and = and write the result after the =. You can use it like a calculator if you write %5+3= in the tex file.
+
+<li>(tikz) Coordinate pair mover:
+<pre>
+%SCRIPT
+var doit = function(){
+var mytext=cursor.selectedText();
+var regExNumberPre = " *[0-9]+([.][0-9]*)? *";
+var regExDigit = /[0-9]/;
+var regExSpace = / /g;
+var regExPairPre = " *(-?"+regExNumberPre+")";
+var regExPair = new RegExp("()[(]"+regExPairPre+","+regExPairPre+"[)]"); ;
+
+//read first coordinate pair
+var regExFirstPairPre = regExPairPre + " *([+-]"+regExNumberPre+")?";
+var regExFirstPair = new RegExp("()[(]"+regExFirstPairPre+","+regExFirstPairPre+"[)]");
+
+//extract offsets (start regex search from first digit, to allow -x - y)
+var matches = regExFirstPair.exec(mytext);
+if (matches == null) throw "missing";
+//throw matches;
+var offsetXPre = matches[4];
+var offsetYPre = matches[8];
+if (offsetXPre == "" && offsetYPre == "") throw "abc";
+var offsetX = offsetXPre == ""?0.0:offsetXPre.replace(regExSpace, "")*1.0;
+var offsetY = offsetYPre == ""?0.0:offsetYPre.replace(regExSpace, "")*1.0;
+
+//move first pair
+var matchpos = mytext.search(regExFirstPair);
+editor.write(mytext.slice(0,matchpos));
+editor.write("("+(matches[2].replace(regExSpace, "")*1.0+offsetX));
+editor.write(", "+(matches[6].replace(regExSpace, "")*1.0+offsetY)+")");
+
+//move other pairs
+var remaining = mytext.slice(matchpos+matches[0].length);
+while (remaining != ""){
+	matches = regExPair.exec(remaining);
+	if (matches == null) break;
+	matchpos = remaining.search(regExPair);
+	editor.write(remaining.slice(0,matchpos));
+	remaining = remaining.slice(matchpos+matches[0].length);
+	editor.write("(" + ((matches[2].replace(regExSpace, "")*1.0)+offsetX) + ", "+ ((matches[4].replace(regExSpace, "")*1.0)+offsetY) + ")");
+} 
+editor.write(remaining);
+}
+doit();
+
+</pre>
+
+This will add to all selected coordinate pairs the offset of the first pair which translates all pairs in a given direction. E.g. if you have (1 + 1, 2 - 1.5) (3, 4) it will change it to (2, 0.5) (4, 2.5).
+
 </ul>
 </p>
 <p>You can also launch your own commands (shortcuts : Alt+Shift+F1...Alt+Shift+F5). These commands are defined with the "User - User Commands" menu.</p>

@@ -4118,7 +4118,7 @@ bool QEditor::processCursor(QDocumentCursor& c, QKeyEvent *e, bool& b)
 		case Qt::Key_Enter :
 		case Qt::Key_Return :
 		{
-			insertTextAtCursor("\n"); //I don't think there should be a difference between pressing enter and pasting a "\n"
+			insertText("\n"); //I don't think there should be a difference between pressing enter and pasting a "\n"
 /*
 			c.beginEditBlock();
 
@@ -4339,7 +4339,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		m_doc->endMacro();
 }
 
-void QEditor::insertTextAtCursor(const QString& text){
+void QEditor::insertText(const QString& text){
 	insertText(m_cursor, text);
 }
 
@@ -4352,14 +4352,16 @@ void QEditor::insertTextAtCursor(const QString& text){
 */
 void QEditor::write(const QString& s)
 {
-	m_doc->beginMacro();
+	if (!m_mirrors.empty())
+		m_doc->beginMacro();
 	
 	insertText(m_cursor, s);
 	
 	for ( int i = 0; i < m_mirrors.count(); ++i )
 		insertText(m_mirrors[i], s);
 	
-	m_doc->endMacro();
+	if (!m_mirrors.empty())
+		m_doc->endMacro();
 	
 	emitCursorPositionChanged();
 	setFlag(CursorOn, true);
