@@ -34,9 +34,14 @@ private:
 public slots:
 	void init();
 
+
 private slots:
 	void change(int index);
 	void slotOk();
+	void textChanged();
+	void changeTypeToNormal();
+	void changeTypeToEnvironment();
+	void changeTypeToScript();
 };
 
 #endif // USERMENUDIALOG_H

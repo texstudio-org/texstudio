@@ -1406,7 +1406,7 @@ void Texmaker::convertToLatex() {
 	QString originalText = currentEditor()->cursor().selectedText();
 	QString newText=textToLatex(originalText);
 // insert
-	currentEditor()->insertTextAtCursor(newText);
+	currentEditor()->insertText(newText);
 }
 
 void Texmaker::editSelectAll() {
@@ -1613,7 +1613,7 @@ void Texmaker::editThesaurus() {
 	thesaurusDialog->setSearchWord(word);
 	if(thesaurusDialog->exec()){
 		QString replace=thesaurusDialog->getReplaceWord();
-		currentEditor()->insertTextAtCursor(replace);
+		currentEditor()->insertText(replace);
 	}
 	delete thesaurusDialog;
 }
@@ -1656,7 +1656,7 @@ void Texmaker::editIndentSection() {
 
 		m_cursor.movePosition(1,QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
 		currentEditor()->setCursor(m_cursor);
-		currentEditor()->insertTextAtCursor(m_line);
+		currentEditor()->insertText(m_line);
 	}
 
 }
@@ -1686,7 +1686,7 @@ void Texmaker::editUnIndentSection() {
 
 		m_cursor.movePosition(1,QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
 		currentEditor()->setCursor(m_cursor);
-		currentEditor()->insertTextAtCursor(m_line);
+		currentEditor()->insertText(m_line);
 	}
 
 }
@@ -1757,10 +1757,10 @@ void Texmaker::editSectionPasteAfter(int line) {
 		QDocumentCursor c=currentEditorView()->editor->cursor();
 		c.movePosition(1,QDocumentCursor::End,QDocumentCursor::MoveAnchor);
 		currentEditor()->setCursor(c);
-		currentEditor()->insertTextAtCursor("\n");
+		currentEditor()->insertText("\n");
 	} else {
 		currentEditor()->setCursorPosition(line,0);
-		currentEditor()->insertTextAtCursor("\n");
+		currentEditor()->insertText("\n");
 		currentEditor()->setCursorPosition(line,0);
 	}
 	editPaste();
@@ -1769,7 +1769,7 @@ void Texmaker::editSectionPasteAfter(int line) {
 
 void Texmaker::editSectionPasteBefore(int line) {
 	currentEditor()->setCursorPosition(line,0);
-	currentEditor()->insertTextAtCursor("\n");
+	currentEditor()->insertText("\n");
 	currentEditor()->setCursorPosition(line,0);
 	editPaste();
 	//UpdateStructure();
@@ -2134,7 +2134,7 @@ void Texmaker::InsertTag(QString Entity, int dx, int dy) {
 	if (!currentEditorView())	return;
 	int curline,curindex;
 	currentEditor()->getCursorPosition(curline,curindex);
-	currentEditor()->insertTextAtCursor(Entity);
+	currentEditor()->insertText(Entity);
 	if (dy==0) currentEditor()->setCursorPosition(curline,curindex+dx);
 	else if (dx==0) currentEditor()->setCursorPosition(curline+dy,0);
 	else currentEditor()->setCursorPosition(curline+dy,curindex+dx);
@@ -2454,7 +2454,7 @@ void Texmaker::QuickDocument() {
 	startDlg->Init();
 	if (startDlg->exec()) {
 		Q_ASSERT(currentEditor());
-		currentEditor()->insertTextAtCursor(startDlg->getNewDocumentText());
+		currentEditor()->insertText(startDlg->getNewDocumentText());
 		QTextCodec* codec = LatexParser::QTextCodecForLatexName(startDlg->document_encoding);
 		if (codec && codec != currentEditor()->document()->codec()){
 			currentEditor()->document()->setCodec(codec);
@@ -3715,11 +3715,11 @@ void Texmaker::editPasteRef() {
 	QAction *action = qobject_cast<QAction *>(sender());
 	QString name=action->text();
 	if (name==tr("Insert")) {
-		currentEditor()->insertTextAtCursor(entry->title);
+		currentEditor()->insertText(entry->title);
 	} else {
 		name.remove(0,name.indexOf("\\"));
 		name.chop(name.length()-name.indexOf("{"));
-		currentEditor()->insertTextAtCursor(name+"{"+entry->title+"}");
+		currentEditor()->insertText(name+"{"+entry->title+"}");
 	}
 }
 
@@ -3818,7 +3818,7 @@ void Texmaker::showPreview(const QString text){
 	QString mLine=dLine.text();
 	QRegExp rx("\\\\label\\{(.*)\\}");
 	if(rx.indexIn(mLine)>-1){
-		currentEditor()->insertTextAtCursor("\\ref{"+rx.cap(1)+"}");
+		currentEditor()->insertText("\\ref{"+rx.cap(1)+"}");
 	}
 }
 void Texmaker::editInsertRefToPrevLabel() {

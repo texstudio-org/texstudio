@@ -37,6 +37,11 @@ UserMenuDialog::UserMenuDialog(QWidget* parent,  QString name)
 	connect(ui.comboBox, SIGNAL(activated(int)),this,SLOT(change(int)));
 
 	connect(ui.okButton, SIGNAL(clicked()), SLOT(slotOk()));
+
+	connect(ui.tagEdit, SIGNAL(textChanged()), SLOT(textChanged()));
+	connect(ui.radioButtonNormal, SIGNAL(clicked()), SLOT(changeTypeToNormal()));
+	connect(ui.radioButtonEnvironment, SIGNAL(clicked()), SLOT(changeTypeToEnvironment()));
+	connect(ui.radioButtonScript, SIGNAL(clicked()), SLOT(changeTypeToScript()));
 }
 
 UserMenuDialog::~UserMenuDialog() {
@@ -63,4 +68,29 @@ void UserMenuDialog::slotOk() {
 	Name[previous_index]=ui.itemEdit->text();
         Abbrev[previous_index]=ui.abbrevEdit->text();
 	accept();
+}
+void UserMenuDialog::changeTypeToNormal(){
+	QString cur = ui.tagEdit->document()->toPlainText();
+	if (cur.startsWith("%SCRIPT\n")) ui.tagEdit->document()->setPlainText(cur.mid(8));
+	else if (cur.startsWith("%")) ui.tagEdit->document()->setPlainText(cur.mid(1));
+}
+void UserMenuDialog::changeTypeToEnvironment(){
+	QString cur = ui.tagEdit->document()->toPlainText();
+	if (cur.startsWith("%SCRIPT")) ui.tagEdit->document()->setPlainText("%"+cur.mid(8));
+	else {
+		if (cur.startsWith("%")) return;
+		ui.tagEdit->document()->setPlainText("%"+cur);
+	}
+}
+void UserMenuDialog::changeTypeToScript(){
+	QString cur = ui.tagEdit->document()->toPlainText();
+	if (cur.startsWith("%SCRIPT\n")) return;
+	if (cur.startsWith("%")) cur = cur.mid(1);
+	ui.tagEdit->document()->setPlainText("%SCRIPT\n"+cur);
+}
+void UserMenuDialog::textChanged(){
+	QString line = ui.tagEdit->document()->firstBlock().text();
+	if (line=="%SCRIPT") ui.radioButtonScript->setChecked(true);
+	else if (line.startsWith("%")) ui.radioButtonEnvironment->setChecked(true);
+	else ui.radioButtonNormal->setChecked(true);
 }
