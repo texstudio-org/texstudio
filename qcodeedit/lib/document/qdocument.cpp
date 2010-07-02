@@ -5375,7 +5375,7 @@ QDocumentPrivate::QDocumentPrivate(QDocument *d)
 	_mac(0),
 	m_lineEnding(m_defaultLineEnding),
 	m_codec(m_defaultCodec),
-	oldOffset(0)
+	m_oldLineCacheOffset(0), m_oldLineCacheWidth(0)
 {
 	m_documents << this;
 }
@@ -5556,10 +5556,14 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
 	bool currentLine=false;
 
-	if(oldOffset!=cxt.xoffset) {
+	int lineCacheWidth = m_oldLineCacheWidth;
+	if(m_oldLineCacheOffset!=cxt.xoffset || m_oldLineCacheWidth < cxt.width) {
 		m_LineCache.clear();
-                //qDebug("clear");
+		if (m_width) lineCacheWidth = cxt.width;
+		else lineCacheWidth = (cxt.width+15) & (~16);         //a little bit larger if not wrapped
+		//qDebug("clear");
 	}
+
 
 	QBrush bg,
 		base = cxt.palette.base(),
@@ -5735,7 +5739,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		//p->fillRect(cxt.xoffset, pos + 1,
 		//			cxt.width, m_lineHeight,
 		//			bg);
-		bool curSelectionState=inSel || (!m_selectionBoundaries.empty());
+		bool curSelectionState=inSel || (!m_selectionBoundaries.empty()) || (!m_cursorLines.empty());
 
 		if(fullSel && h->lineHasSelection!=QDocumentLineHandle::fullSel) {
 			h->setFlag(QDocumentLine::LayoutDirty,true);
@@ -5760,16 +5764,17 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
 		if(!currentLine&&!h->hasFlag(QDocumentLine::LayoutDirty)&&h->hasFlag(QDocumentLine::FormatsApplied)&&m_LineCache.contains(h)){
 			px=m_LineCache.object(h);
-			p->drawPixmap(oldOffset,0,*px);
+			p->drawPixmap(m_oldLineCacheOffset,0,*px);
 		} else {
 			int ht=m_lineSpacing*(wrap+1);
 			int yoff= (currentLine && cxt.yoffset-pos>0) ? cxt.yoffset-pos : 0;
 			if(currentLine){
-			    ht= ht > cxt.yoffset+cxt.height-pos ? cxt.yoffset+cxt.height-pos : ht;
-				if(ht<=0) ht=m_lineSpacing;
-			    px=new QPixmap(cxt.width,ht-yoff);
+				ht= ht > cxt.yoffset+cxt.height-pos ? cxt.yoffset+cxt.height-pos : ht;
+				if( ht <= 0 )
+					ht=m_lineSpacing;
+				px = new QPixmap(lineCacheWidth,ht-yoff);
 			}else{
-			    px=new QPixmap(cxt.width,ht-yoff);
+				px = new QPixmap(lineCacheWidth,ht-yoff);
 			}
 			//px->fill(base.color());//fullSel ? selbg.color() : bg.color());
 			px->fill(fullSel ? selbg.color() : bg.color());
@@ -5780,13 +5785,13 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 									m_leftMargin, ht,
 									base); // fillrect executed twice, to be optimized
 			/*pnt.fillRect(qMax(cxt.xoffset, m_leftMargin), 0,
-						cxt.width, m_lineSpacing,
+						lineCacheWidth, m_lineSpacing,
 						fullSel ? selbg : bg); // fillrect executed twice, to be optimized
 
 			if ( wrapped )
 				pnt.fillRect(qMax(cxt.xoffset, m_leftMargin), m_lineSpacing,
-							 cxt.width, m_lineSpacing * wrap, fullSel ? selbg : bg);*/
-			h->draw(&pnt, cxt.xoffset, cxt.width, m_selectionBoundaries, m_cursorLines, cxt.palette, fullSel,yoff,ht);
+							 lineCacheWidth, m_lineSpacing * wrap, fullSel ? selbg : bg);*/
+			h->draw(&pnt, cxt.xoffset, lineCacheWidth, m_selectionBoundaries, m_cursorLines, cxt.palette, fullSel,yoff,ht);
 			p->drawPixmap(cxt.xoffset,yoff,*px);
 			pnt.end();
 			if(!currentLine) m_LineCache.insert(h,px);
@@ -5827,7 +5832,8 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		//qDebug("drawing line %i in %i ms", i, t.elapsed());
 	}
 
-	oldOffset=cxt.xoffset;
+	m_oldLineCacheOffset = cxt.xoffset;
+	m_oldLineCacheWidth = lineCacheWidth;
 	//qDebug("painting done"); // in %i ms...", t.elapsed());
 }
 
