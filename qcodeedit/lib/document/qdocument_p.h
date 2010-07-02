@@ -236,7 +236,7 @@ class QCE_EXPORT QDocumentPrivate
 		QVector<QDocumentLineHandle*> m_lines;
 
 		QCache<QDocumentLineHandle*,QPixmap> m_LineCache;
-		int oldOffset;
+		int m_oldLineCacheOffset, m_oldLineCacheWidth;
 
 		QList<QDocumentCursorHandle*> m_autoUpdatedCursorList;
 		QHash<QDocumentCursorHandle*, int> m_autoUpdatedCursorIndex;
