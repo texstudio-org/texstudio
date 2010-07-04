@@ -542,6 +542,8 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "config",tr("Configure TexMakerX"), SLOT(GeneralOptions()), 0,":/images/configure.png");
 
 	menu->addSeparator();
+	newManagedAction(menu, "loadProfile",tr("load Profile"), SLOT(loadProfile()));
+	menu->addSeparator();
 	ToggleAct=newManagedAction(menu, "masterdocument",tr("Define Current Document as 'Master Document'"), SLOT(ToggleMode()));
 	ToggleRememberAct=newManagedAction(menu, "remembersession",tr("Automatically restore session at next start"));
 	ToggleRememberAct->setCheckable(true);
@@ -4295,4 +4297,38 @@ void Texmaker::cursorHovered(){
 	currentEditorView()->document->m_mirrorInLine=currentEditorView()->editor->cursor().lineNumber();
     }
 
+}
+
+void Texmaker::loadProfile(){
+    bool customEnvironmentExisted = !configManager.customEnvironments.isEmpty();
+    QString currentDir=QDir::homePath();
+    QString file = QFileDialog::getOpenFileName(this,tr("Load Profile"),currentDir,"TmX Profile(*.tmxprofile);;All files (*)");
+    configManager.readProfile(file);
+
+    if (currentEditorView()) {
+	    for (int i=0; i<EditorView->count();i++) {
+		    LatexEditorView* edView=qobject_cast<LatexEditorView*>(EditorView->widget(i));
+		    if (edView) edView->updateSettings();
+	    }
+	    UpdateCaption();
+    }
+    //custom toolbar
+    setupToolBars();
+
+    // custom evironments
+    if(customEnvironmentExisted || !configManager.customEnvironments.isEmpty()){
+	    QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)Tex");
+
+	    QFile f(findResourceFile("qxs/tex.qnfa"));
+	    QDomDocument doc;
+	    doc.setContent(&f);
+
+	    QMap<QString, QVariant>::const_iterator i;
+	    for (i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i){
+		    QString mode=configManager.enviromentModes.value(i.value().toInt(),"verbatim");
+		    addEnvironmentToDom(doc,i.key(),mode);
+	    }
+	    QNFADefinition::load(doc,&m_lang,dynamic_cast<QFormatScheme*>(m_formats));
+	    m_languages->addLanguage(m_lang);
+    }
 }

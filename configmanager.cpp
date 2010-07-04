@@ -314,44 +314,43 @@ QSettings* ConfigManager::readProfile(QString fname) {
 
 	config->beginGroup("texmaker");
 
-	//------------------files--------------------
-	newFileEncoding=QTextCodec::codecForName(newFileEncodingName.toAscii().data());
-
 	//----------managed properties--------------------
 	for (int i=0;i<managedProperties.size();i++){
-		if(managedProperties[i].name.startsWith("Editor"))
-			managedProperties[i].valueFromQVariant(config->value(managedProperties[i].name, managedProperties[i].def));
-	}
-
-
-	//----------------------------editor--------------------
-	if (editorConfig->showlinemultiples==-1) {
-		if (config->value("Editor/Line Numbers",true).toBool()) editorConfig->showlinemultiples=1;  //texmaker import
-		else editorConfig->showlinemultiples=0;
+	    if(managedProperties[i].name.startsWith("Editor")){
+		if(config->contains(managedProperties[i].name)){
+		    managedProperties[i].valueFromQVariant(config->value(managedProperties[i].name, managedProperties[i].def));
+		}
+	    }
 	}
 
 
 	//menu shortcuts
-	int size = config->beginReadArray("keysetting");
-	for (int i = 0; i < size; ++i) {
+	if(config->contains("keysetting")){
+	    int size = config->beginReadArray("keysetting");
+	    for (int i = 0; i < size; ++i) {
 		config->setArrayIndex(i);
 		managedMenuNewShortcuts.append(QPair<QString, QString> (config->value("id").toString(), config->value("key").toString()));
+	    }
+	    config->endArray();
 	}
-	config->endArray();
 
 	//changed latex menus
-	manipulatedMenus=config->value("changedLatexMenus").toMap();
+	if(config->contains("changedLatexMenus"))
+	    manipulatedMenus=config->value("changedLatexMenus").toMap();
 
 	//custom toolbar
 	for (int i=0; i<managedToolBars.size();i++){
 		ManagedToolBar& mtb=managedToolBars[i];
-		mtb.actualActions=config->value(mtb.name+"ToolBar").toStringList();
-		if (mtb.actualActions.empty()) mtb.actualActions=mtb.defaults;
+		if(config->contains(mtb.name+"ToolBar"))
+		    mtb.actualActions=config->value(mtb.name+"ToolBar").toStringList();
 	}
-	replacedIconsOnMenus=config->value("customIcons").toMap();
+
+	if(config->contains("customIcons"))
+	    replacedIconsOnMenus=config->value("customIcons").toMap();
 
 	//custom highlighting
-	customEnvironments=config->value("customHighlighting").toMap();
+	if(config->contains("customHighlighting"))
+	    customEnvironments=config->value("customHighlighting").toMap();
 
 	config->endGroup();
 
