@@ -345,9 +345,6 @@ QSettings* ConfigManager::readProfile(QString fname) {
 		    mtb.actualActions=config->value(mtb.name+"ToolBar").toStringList();
 	}
 
-	if(config->contains("customIcons"))
-	    replacedIconsOnMenus=config->value("customIcons").toMap();
-
 	//custom highlighting
 	if(config->contains("customHighlighting"))
 	    customEnvironments=config->value("customHighlighting").toMap();
