@@ -360,6 +360,7 @@ private slots:
 
 	bool generateMirror(bool setCur=false);
 	void cursorHovered();
+	void loadProfile();
 
 protected:
 	void dragEnterEvent(QDragEnterEvent *event);
