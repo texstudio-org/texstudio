@@ -694,7 +694,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				newSection->lineHandle=line(i).handle();
 				if(header+1<parent_level.size()) parent_level[header+1]=newSection;
 				for(int j=header+2;j<parent_level.size();j++)
-					parent_level[j]=parent_level[header];
+					parent_level[j]=newSection;
 
 				if(!reuse) {
 					emit addElementFinished();
@@ -720,8 +720,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 #ifndef QT_NO_DEBUG
 		removeFromStructureContent(se);
 #endif
-		qDebug("Structure deleted! %p %d",se,toBeDeleted[se]);
-		qDebug() << se->title;
+		//qDebug("Structure deleted! %p %d",se,toBeDeleted[se]);
+		//qDebug() << se->title;
 		delete se;
 		emit removeElementFinished();
 	}
