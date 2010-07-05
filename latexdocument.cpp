@@ -1397,7 +1397,7 @@ void LatexDocument::splitStructure(StructureEntry* se,QVector<StructureEntry*> &
 
 	// store remainder of children
 	if(back && (end>-1))
-		remainingChildren[lvl]<<se->children.mid(end);
+		remainingChildren[se->children.at(end)->level]<<se->children.mid(end);
 	// get StructureEntry to look deeper in
 	StructureEntry *next=0;
 	if(end>0) {
