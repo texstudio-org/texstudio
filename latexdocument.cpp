@@ -435,6 +435,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 	if (!baseStructure) return;
 
+	emit toBeChanged();
+
 	bool completerNeedsUpdate=false;
 	bool bibTeXFilesNeedsUpdate=false;
 
@@ -668,6 +670,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			if (header>-1) {
 				bool reuse=false;
 				StructureEntry *newSection;
+				StructureEntry* parent=header == 0 ? baseStructure : parent_level[header];
 				if(MapOfElements.contains(dlh)){
 					newSection=MapOfElements.value(dlh);
 					newSection->type=StructureEntry::SE_SECTION;
@@ -675,12 +678,12 @@ void LatexDocument::patchStructure(int linenr, int count) {
 					MapOfElements.remove(dlh,newSection);
 					reuse=true;
 				}else{
+					emit addElement(parent,parent->children.size());
 					newSection=new StructureEntry(this,StructureEntry::SE_SECTION);
 #ifndef QT_NO_DEBUG
 					StructureContent.insert(newSection);
 #endif
 				}
-				StructureEntry* parent=header == 0 ? baseStructure : parent_level[header];
 				parent->add(newSection);
 
 				if(mAppendixLine &&mAppendixLine->line()<i) newSection->appendix=true;
@@ -693,7 +696,9 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				for(int j=header+2;j<parent_level.size();j++)
 					parent_level[j]=parent_level[header];
 
-				if(!reuse) emit addElement(parent,parent->children.size()-1);
+				if(!reuse) {
+					emit addElementFinished();
+				}
 			}
 		}// for each command
 	}//for each line handle
@@ -706,7 +711,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	    }
 	    parent_level[i]->children << remainingChildren[i];
 	    foreach(StructureEntry *elem,remainingChildren[i]){
-		elem->parent=parent_level[i];
+			elem->parent=parent_level[i];
 	    }
 	}
 	// purge unconnected elements
@@ -715,10 +720,11 @@ void LatexDocument::patchStructure(int linenr, int count) {
 #ifndef QT_NO_DEBUG
 		removeFromStructureContent(se);
 #endif
+		qDebug("Structure deleted! %p %d",se,toBeDeleted[se]);
+		qDebug() << se->title;
 		delete se;
 		emit removeElementFinished();
 	}
-	
 	int tempPos = -1;
 	tempPos = baseStructure->children.indexOf(bibTeXList);
 	if (tempPos != -1) baseStructure->children.removeAt(tempPos);
@@ -1082,6 +1088,7 @@ void LatexDocumentsModel::structureUpdated(LatexDocument* document,StructureEntr
 	    mHighlightIndex=QModelIndex();
 	}
 	emit layoutChanged();
+	//emit resetAll();
 }
 void LatexDocumentsModel::structureLost(LatexDocument* document){
 	Q_UNUSED(document);
@@ -1118,8 +1125,14 @@ void LatexDocumentsModel::removeElementFinished(){
 }
 
 void LatexDocumentsModel::addElement(StructureEntry *se,int row){
-	insertRow(row,index(se));
+	//insertRow(row,index(se));
+	beginInsertRows(index(se),row,row);
 }
+
+void LatexDocumentsModel::addElementFinished(){
+	endInsertRows();
+}
+
 void LatexDocumentsModel::updateElement(StructureEntry *se){
     emit dataChanged(index(se),index(se));
 }
@@ -1136,9 +1149,11 @@ void LatexDocuments::addDocument(LatexDocument* document){
 	connect(document, SIGNAL(updateBibTeXFiles()), SLOT(bibTeXFilesNeedUpdate()));
 	connect(document,SIGNAL(structureLost(LatexDocument*)),model,SLOT(structureLost(LatexDocument*)));
 	connect(document,SIGNAL(structureUpdated(LatexDocument*,StructureEntry*)),model,SLOT(structureUpdated(LatexDocument*,StructureEntry*)));
+	connect(document,SIGNAL(toBeChanged()),model,SIGNAL(layoutAboutToBeChanged()));
 	connect(document,SIGNAL(removeElement(StructureEntry*,int)),model,SLOT(removeElement(StructureEntry*,int)));
 	connect(document,SIGNAL(removeElementFinished()),model,SLOT(removeElementFinished()));
 	connect(document,SIGNAL(addElement(StructureEntry*,int)),model,SLOT(addElement(StructureEntry*,int)));
+	connect(document,SIGNAL(addElementFinished()),model,SLOT(addElementFinished()));
 	connect(document,SIGNAL(updateElement(StructureEntry*)),model,SLOT(updateElement(StructureEntry*)));
 	document->parent=this;
 	if(masterDocument){
