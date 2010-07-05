@@ -108,6 +108,12 @@ void StructureViewTest::script_data(){
 	QTest::newRow("change heading in line 2 up")
 			<< "cursor.moveTo(1,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\chapter{b}\")";
 
+	QTest::newRow("set sequence of sections/subsec")
+			<< "editor.setText(\"\\\\section{a}\\n\\\\subsection{b}\\n\")";
+
+	QTest::newRow("change heading in line 2 up")
+			<< "cursor.moveTo(0,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\chapter{a}\")";
+
 }
 
 void StructureViewTest::script(){
