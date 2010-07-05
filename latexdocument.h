@@ -161,9 +161,11 @@ signals:
 	void removeElement(StructureEntry *se,int row);
 	void removeElementFinished();
 	void addElement(StructureEntry *se,int row);
+	void addElementFinished();
 	void updateElement(StructureEntry *se);
 	void updateCompleter();
 	void updateBibTeXFiles();
+	void toBeChanged();
 	
 };
 
@@ -197,6 +199,7 @@ private slots:
 	void removeElement(StructureEntry *se,int row);
 	void removeElementFinished();
 	void addElement(StructureEntry *se,int row);
+	void addElementFinished();
 	void updateElement(StructureEntry *se);
 
 	friend class LatexDocuments;
