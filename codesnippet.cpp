@@ -104,7 +104,7 @@ void CodeSnippet::insert(QEditor* editor){
 	QDocumentCursor c=editor->cursor();
 	insertAt(editor,&c);
 }
-void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePlaceholders) const{
+void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePlaceholders, bool byCompleter) const{
 	if (lines.empty()||!editor||!cursor) return;
 	
 	QStringList mLines=lines;
@@ -207,7 +207,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
         editor->insertText(*cursor,line); //don't use cursor->insertText to keep autoindentation working
 
 		// on single line commands only: replace command
-		if(autoReplaceCommands && mLines.size()==1 && line.startsWith('\\')){
+		if(byCompleter && autoReplaceCommands && mLines.size()==1 && line.startsWith('\\')){
 			if(cursor->nextChar().isLetterOrNumber()){
 				QString curLine=cursor->line().text();
 				int wordBreak=curLine.indexOf(QRegExp("\\W"),cursor->columnNumber());

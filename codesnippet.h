@@ -29,7 +29,7 @@ public:
 	QList<QList<QPair<int, int> > > placeHolders; //used to draw
 
 	void insert(QEditor* editor);
-	void insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePlaceholders=true) const;
+	void insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePlaceholders=true,bool byCompleter=false) const;
 
 	void setCut(bool cut) {m_cut=cut;}
 
