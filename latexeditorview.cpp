@@ -1053,6 +1053,9 @@ void References::updateByKeys(const QStringList& refs,References* altRefs){
 				int offset=0;
 				while(rxRef.indexIn(text)!=-1){
 					int cnt=count(ref);
+					mLine.removeOverlay(QFormatRange(rxRef.pos(2)+offset,rxRef.cap(2).length(),referenceMultipleFormat));
+					mLine.removeOverlay(QFormatRange(rxRef.pos(2)+offset,rxRef.cap(2).length(),referencePresentFormat));
+					mLine.removeOverlay(QFormatRange(rxRef.pos(2)+offset,rxRef.cap(2).length(),referenceMissingFormat));
 					if (cnt>1) {
 						mLine.addOverlay(QFormatRange(rxRef.pos(2)+offset,rxRef.cap(2).length(),referenceMultipleFormat));
 					} else if (cnt==1) mLine.addOverlay(QFormatRange(rxRef.pos(2)+offset,rxRef.cap(2).length(),referencePresentFormat));
@@ -1071,6 +1074,9 @@ void References::updateByKeys(const QStringList& refs,References* altRefs){
 			int offset=0;
 			while(rxLabel.indexIn(text)!=-1){
 				int cnt=count(ref);
+				mLine.removeOverlay(QFormatRange(rxLabel.pos(2)+offset,rxLabel.cap(2).length(),referenceMultipleFormat));
+				mLine.removeOverlay(QFormatRange(rxLabel.pos(2)+offset,rxLabel.cap(2).length(),referenceMissingFormat));
+				mLine.removeOverlay(QFormatRange(rxLabel.pos(2)+offset,rxLabel.cap(2).length(),referencePresentFormat));
 				if(cnt>1) {
 					mLine.addOverlay(QFormatRange(rxLabel.pos(2)+offset,rxLabel.cap(2).length(),referenceMultipleFormat));
 				} else if (cnt==1) mLine.addOverlay(QFormatRange(rxLabel.pos(2)+offset,rxLabel.cap(2).length(),referencePresentFormat));
