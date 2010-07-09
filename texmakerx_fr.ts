@@ -67,7 +67,7 @@
     <message>
         <location filename="bibtexdialog.ui" line="20"/>
         <source>Insert in file:</source>
-        <translation>Insérer dans le fichier:</translation>
+        <translation>Insérer dans le fichier :</translation>
     </message>
     <message>
         <location filename="bibtexdialog.ui" line="27"/>
@@ -263,7 +263,8 @@
         <location filename="configdialog.ui" line="307"/>
         <source>Ignore most system colors</source>
         <oldsource>ignore most system colors</oldsource>
-        <translation type="unfinished">ignorer le thème couleurs du système</translation>
+        <translatorcomment>Ignorer la plupart des couleurs système</translatorcomment>
+        <translation>ignorer le thème couleurs du système</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="317"/>
@@ -310,7 +311,7 @@
         <location filename="configdialog.ui" line="441"/>
         <source>Inline checking</source>
         <oldsource>inline checking</oldsource>
-        <translation type="unfinished">Vérification à la volée</translation>
+        <translation>Vérification à la volée</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="448"/>
@@ -321,19 +322,19 @@
         <location filename="configdialog.ui" line="472"/>
         <source>Inline spell checking</source>
         <oldsource>inline spell checking</oldsource>
-        <translation type="unfinished">Vérifier l&apos;orthographe à la volée</translation>
+        <translation>Vérifier l&apos;orthographe à la volée</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="482"/>
         <source>Inline citation checking</source>
         <oldsource>inline citation checking</oldsource>
-        <translation type="unfinished">Vérifier les citations à la volée</translation>
+        <translation>Vérifier les citations à la volée</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="492"/>
         <source>Inline reference checking</source>
         <oldsource>inline reference checking</oldsource>
-        <translation type="unfinished">Vérifier les références à la volée</translation>
+        <translation>Vérifier les références à la volée</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="505"/>
@@ -416,12 +417,12 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="696"/>
         <source>LaTeX + Asymptote + LaTeX + View DVI</source>
-        <translation type="unfinished"></translation>
+        <translation>LaTeX + Asymptote + LaTeX + Afficheur DVI</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="703"/>
         <source>PdfLaTeX + Asymptote + PdfLaTeX + View PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>PdfLaTeX + Asymptote + PdfLaTeX + Afficheur PDF</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="710"/>
@@ -440,12 +441,12 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="748"/>
         <source>Execute before compiling:</source>
-        <translation>Avant compilation:</translation>
+        <translation>Avant compilation :</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="788"/>
         <source>Assume that every error is in the current document:</source>
-        <translation>Supposer que toutes les erreurs sont dans le document courant:</translation>
+        <translation>Supposer que toutes les erreurs sont dans le document courant :</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="802"/>
@@ -480,12 +481,12 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="1216"/>
         <source>Tab space:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabulation (nb d&apos;espaces) :</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1244"/>
         <source>Auto Replace Latex-Commands</source>
-        <translation type="unfinished"></translation>
+        <translation>Remplacement automatique des commandes LaTeX</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1363"/>
@@ -506,12 +507,12 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="727"/>
         <source>(The commands must be separated by &apos;|&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Les commandes doivent être séparées par « | » ---sans les guillemets)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="830"/>
         <source>Run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</source>
-        <translation type="unfinished"></translation>
+        <translation>Lancer latex+bibtex+latex avant compilation si le ou les fichiers .bib ont été modifiés</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="871"/>
@@ -539,7 +540,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="894"/>
         <source>Close Log-View with Esc-Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Fermer la fenêtre de log au moyen de la touche Esc</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="905"/>
@@ -587,72 +588,72 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="1082"/>
         <source>Show preview as tool tip if panel is hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher la prévisualisation en info-bulle si le panneau est caché</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1087"/>
         <source>Always show preview in preview panel</source>
-        <translation type="unfinished"></translation>
+        <translation>Toujours afficher la prévisualisation dans le panneau de prévisualisation</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1092"/>
         <source>Always show preview as tool tip</source>
-        <translation type="unfinished"></translation>
+        <translation>Toujours afficher la prévisualisation en info-bulle</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1097"/>
         <source>Always show both</source>
-        <translation type="unfinished"></translation>
+        <translation>Toujours afficher les deux</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1109"/>
         <source>Preview with dvipng</source>
-        <translation type="unfinished"></translation>
+        <translation>Prévisualisation avec dvipng</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1114"/>
         <source>Preview with dvipng --follow (parallel)</source>
-        <translation type="unfinished"></translation>
+        <translation>Prévisualisation avec dvipng --follow (en parallèle)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1119"/>
         <source>Preview with dvips/ghostscript</source>
-        <translation type="unfinished"></translation>
+        <translation>Prévisualisation avec dvips/ghostscript</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1152"/>
         <source>Close search and replace panel together</source>
-        <translation type="unfinished"></translation>
+        <translation>Fermer simultanément les boîtes de dialogue « Rechercher » et « Remplacer » </translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1166"/>
         <source>Ignore indentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorer l&apos;indentation</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1171"/>
         <source>Keep indentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Conserver l&apos;indentation</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1176"/>
         <source>Indent and unindent automatically</source>
-        <translation type="unfinished"></translation>
+        <translation>Indenter et désindenter automatiquement</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1181"/>
         <source>Keep indentation with spaces only</source>
-        <translation type="unfinished"></translation>
+        <translation>Conserver l&apos;indentation sous forme d&apos;espaces seulement</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1186"/>
         <source>Indent and unindent automatically with spaces only</source>
-        <translation type="unfinished"></translation>
+        <translation>Indenter et désindenter automatiquement sous forme d&apos;espaces seulement</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1207"/>
         <source>Auto detect encoding of loaded files</source>
-        <translation type="unfinished"></translation>
+        <translation>Détecter automatiquement le codage d&apos;entrée des fichiers chargés</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1251"/>
@@ -776,7 +777,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="1288"/>
         <source>Use Tab for Move To Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser la touche Tab pour se déplacer au paramètre fictif suivant</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1348"/>
@@ -827,7 +828,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="1493"/>
         <source>Use following completion files:</source>
-        <translation>Utiliser les fichiers de complétion suivants:</translation>
+        <translation>Utiliser les fichiers de complétion suivants :</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1511"/>
@@ -842,12 +843,12 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="1525"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>En cas de « svn add », exécuter « svn propset svn:keywords &quot;Date Author Revision HeadURL&quot; »</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1528"/>
         <source>Substitue Keywords with Properties (on svn add)</source>
-        <translation type="unfinished"></translation>
+        <translation>Remplacer Keywords par Properties (en cas de « svn add »)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1535"/>
@@ -857,13 +858,13 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="1544"/>
         <source>SVN Directory Search Depth: </source>
-        <translation>Profondeur de recherche dans les répertoires SVN:</translation>
+        <translation>Profondeur de recherche dans les répertoires SVN :</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="118"/>
         <source>Show advanced options</source>
         <oldsource>show advanced options</oldsource>
-        <translation type="unfinished">afficher les options avancées</translation>
+        <translation>Afficher les options avancées</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="104"/>
@@ -881,7 +882,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.cpp" line="125"/>
         <source>The shortcut you entered is the same as the one of this command:</source>
-        <translation>Ce raccourci est deja utilisé pour:</translation>
+        <translation>Ce raccourci est deja utilisé pour :</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="125"/>
@@ -997,7 +998,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configmanager.cpp" line="742"/>
         <source>New column meaning:</source>
-        <translation>Signification de la nouvelle colonne:</translation>
+        <translation>Signification de la nouvelle colonne :</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="742"/>
@@ -1045,7 +1046,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configmanager.cpp" line="785"/>
         <source>Special Tags</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="990"/>
@@ -1060,7 +1061,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configmanager.cpp" line="1004"/>
         <source>Master Document: </source>
-        <translation>Document maître:</translation>
+        <translation>Document maître :</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1204"/>
@@ -1092,510 +1093,510 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="additionaltranslations.cpp" line="7"/>
         <source>&amp;Latex</source>
-        <translation type="unfinished">&amp;LaTeX</translation>
+        <translation>&amp;LaTeX</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="9"/>
         <source>AMS packages</source>
-        <translation type="unfinished"></translation>
+        <translation>Packages AMS</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="11"/>
         <source>\begin{document}</source>
         <oldsource><byte value="x8"/>egin{document}</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\begin{document}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="13"/>
         <source>&amp;Sectioning</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sectionement</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="15"/>
         <source>part</source>
-        <translation type="unfinished"></translation>
+        <translation>part</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="17"/>
         <source>chapter</source>
-        <translation type="unfinished"></translation>
+        <translation>chapter</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="19"/>
         <source>section</source>
-        <translation type="unfinished"></translation>
+        <translation>section</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="21"/>
         <source>subsection</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="23"/>
         <source>subsubsection</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="25"/>
         <source>paragraph</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="27"/>
         <source>subparagraph</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="29"/>
         <source>part*</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="31"/>
         <source>chapter*</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="33"/>
         <source>section*</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="35"/>
         <source>subsection*</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="37"/>
         <source>subsubsection*</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="39"/>
         <source>paragraph*</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="41"/>
         <source>subparagraph*</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="43"/>
         <source>&amp;Environments</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Environnements</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="45"/>
         <source>\begin{&lt;environment&gt;} [selection]</source>
         <oldsource><byte value="x8"/>egin{&lt;environment&gt;} [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\begin{&lt;environment&gt;} [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="47"/>
         <source>\begin{center} [selection]</source>
         <oldsource><byte value="x8"/>egin{center} [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\begin{center} [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="49"/>
         <source>\begin{flushleft} [selection]</source>
         <oldsource><byte value="x8"/>egin{flushleft} [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\begin{flushleft} [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="51"/>
         <source>\begin{flushright}  [selection]</source>
         <oldsource><byte value="x8"/>egin{flushright}  [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\begin{flushright}  [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="53"/>
         <source>\begin{quote}  [selection]</source>
         <oldsource><byte value="x8"/>egin{quote}  [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\begin{quote}  [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="55"/>
         <source>\begin{quotation}  [selection]</source>
         <oldsource><byte value="x8"/>egin{quotation}  [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\begin{quotation}  [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="57"/>
         <source>\begin{verse}  [selection]</source>
         <oldsource><byte value="x8"/>egin{verse}  [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\begin{verse}  [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="59"/>
         <source>\begin{verbatim}  [selection]</source>
         <oldsource><byte value="x8"/>egin{verbatim}  [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\begin{verbatim}  [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="61"/>
         <source>\begin{table}  [selection]</source>
         <oldsource><byte value="x8"/>egin{table}  [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\begin{table}  [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="63"/>
         <source>\begin{figure}  [selection]</source>
         <oldsource><byte value="x8"/>egin{figure}  [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\begin{figure}  [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="65"/>
         <source>\begin{titlepage}  [selection]</source>
         <oldsource><byte value="x8"/>egin{titlepage}  [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\begin{titlepage}  [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="67"/>
         <source>&amp;List Environments</source>
-        <translation type="unfinished"></translation>
+        <translation>Environnements de &amp;listes</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="69"/>
         <source>\begin{itemize}</source>
         <oldsource><byte value="x8"/>egin{itemize}</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\begin{itemize} (liste à puces)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="71"/>
         <source>\begin{enumerate}</source>
         <oldsource><byte value="x8"/>egin{enumerate}</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\begin{enumerate} (liste numérotée)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="73"/>
         <source>\begin{description}</source>
         <oldsource><byte value="x8"/>egin{description}</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\begin{description} (liste de description)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="75"/>
         <source>\begin{list}</source>
         <oldsource><byte value="x8"/>egin{list}</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\begin{list} (liste générique)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="77"/>
         <source>Font St&amp;yles</source>
-        <translation type="unfinished"></translation>
+        <translation>St&amp;yles de caractères</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="79"/>
         <source>\emph - Emphasis  [selection]</source>
         <oldsource>emph - Emphasis  [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\emph - Emphase  [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="81"/>
         <source>\textit - Italics  [selection]</source>
         <oldsource>	extit - Italics  [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\textit - Italique  [selection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="83"/>
         <source>\textsl - Slanted  [selection]</source>
         <oldsource>	extsl - Slanted  [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\textsl - Incliné  [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="85"/>
         <source>\textbf - Boldface  [selection]</source>
         <oldsource>	extbf - Boldface  [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\textbf - Gras  [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="87"/>
         <source>\texttt - Typewriter  [selection]</source>
         <oldsource>	exttt - Typewriter  [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\texttt - Chasse fixe (type machine à écrire)  [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="89"/>
         <source>\textsc - Small caps  [selection]</source>
         <oldsource>	extsc - Small caps  [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\textsc - Petites capitales  [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="91"/>
         <source>\textsf - Sans Serif  [selection]</source>
         <oldsource>	extsf - Sans Serif  [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\textsf - Sans Serif (sans empatement)  [selection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="93"/>
         <source>Font Sizes</source>
-        <translation type="unfinished"></translation>
+        <translation>Tailles des caractères</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="95"/>
         <source>tiny</source>
-        <translation type="unfinished"></translation>
+        <translation>tiny</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="97"/>
         <source>scriptsize</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="99"/>
         <source>footnotesize</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="101"/>
         <location filename="additionaltranslations.cpp" line="187"/>
         <source>small</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="103"/>
         <source>normalsize</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="105"/>
         <location filename="additionaltranslations.cpp" line="191"/>
         <source>large</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="107"/>
         <source>Large</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="109"/>
         <source>LARGE</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="111"/>
         <source>Huge</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="113"/>
         <source>&amp;Tabular Environment</source>
-        <translation type="unfinished"></translation>
+        <translation>Environnements de &amp;tableaux</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="115"/>
         <source>\begin{tabbing}</source>
         <oldsource><byte value="x8"/>egin{tabbing}</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\begin{tabbing} (tabulations)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="117"/>
         <source>\begin{tabular}</source>
         <oldsource><byte value="x8"/>egin{tabular}</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\begin{tabular}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="119"/>
         <source>S&amp;pacing</source>
-        <translation type="unfinished"></translation>
+        <translation>Es&amp;pacement</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="121"/>
         <source>New line</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouvelle ligne</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="123"/>
         <source>International &amp;Accents</source>
-        <translation type="unfinished"></translation>
+        <translation>International &amp;Accents</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="125"/>
         <source>\includegraphics{file}</source>
         <oldsource>includegraphics{file}</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\includegraphics{fichier}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="127"/>
         <source>\include{file}</source>
         <oldsource>include{file}</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\include{fichier}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="129"/>
         <source>\input{file}</source>
         <oldsource>input{file}</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\input{fichier}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="131"/>
         <source>Cross References</source>
-        <translation type="unfinished"></translation>
+        <translation>Références croisées</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="133"/>
         <source>label</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="135"/>
         <source>ref</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="137"/>
         <source>pageref</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="139"/>
         <source>index</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="141"/>
         <source>cite</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="143"/>
         <source>footnote</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="145"/>
         <source>&amp;Math</source>
-        <translation type="unfinished">&amp;Math</translation>
+        <translation>&amp;Maths</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="147"/>
         <source>Inline math mode $...$</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode math.en ligne $...$</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="149"/>
         <source>Display math mode \[...\]</source>
         <oldsource>Display math mode [...]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Mode math.hors ligne \[...\]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="151"/>
         <source>Numbered equations \begin{equation}</source>
         <oldsource>Numbered equations <byte value="x8"/>egin{equation}</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Équations numérotées \begin{equation}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="153"/>
         <source>\begin{align}</source>
         <oldsource><byte value="x8"/>egin{align}</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\begin{align}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="155"/>
         <source>\begin{eqnarray}</source>
         <oldsource><byte value="x8"/>egin{eqnarray}</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\begin{eqnarray}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="157"/>
         <source>_{} - subscript</source>
-        <translation type="unfinished"></translation>
+        <translation>_{} - indice</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="159"/>
         <source>^{} - superscript</source>
-        <translation type="unfinished"></translation>
+        <translation>^{} - exposant</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="161"/>
         <source>\begin{array}</source>
         <oldsource><byte value="x8"/>egin{array}</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\begin{array}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="163"/>
         <source>Math &amp;Functions</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fonctions mathématiques</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="165"/>
         <source>Math Font St&amp;yles</source>
-        <translation type="unfinished"></translation>
+        <translation>St&amp;yles des caractères mathématiques</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="167"/>
         <source>\mathrm{} [selection]</source>
         <oldsource>mathrm{} [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\mathrm{} [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="169"/>
         <source>\mathit{} [selection]</source>
         <oldsource>mathit{} [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\mathit{} [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="171"/>
         <source>\mathbf{} [selection]</source>
         <oldsource>mathbf{} [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\mathbf{} [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="173"/>
         <source>\mathsf{} [selection]</source>
         <oldsource>mathsf{} [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\mathsf{} [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="175"/>
         <source>\mathtt{} [selection]</source>
         <oldsource>mathtt{} [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\mathtt{} [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="177"/>
         <source>\mathcal{} [selection]</source>
         <oldsource>mathcal{} [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\mathcal{} [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="179"/>
         <source>\mathbb{} [selection]</source>
         <oldsource>mathbb{} [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\mathbb{} [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="181"/>
         <source>\mathfrak{} [selection]</source>
         <oldsource>mathfrak{} [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\mathfrak{} [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="183"/>
         <source>Math &amp;Accents</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Accents mathématiques</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="185"/>
         <source>Math S&amp;paces</source>
-        <translation type="unfinished"></translation>
+        <translation>Es&amp;paces mathématiques</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="189"/>
         <source>medium</source>
-        <translation type="unfinished"></translation>
+        <translation>medium</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="193"/>
         <source>quad</source>
-        <translation type="unfinished"></translation>
+        <translation>quad</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="195"/>
         <source>qquad</source>
-        <translation type="unfinished"></translation>
+        <translation>qquad</translation>
     </message>
     <message>
         <source>&amp;User</source>
@@ -1775,7 +1776,7 @@ Continuer tout de même?</translation>
     <message>
         <location filename="qcodeedit/lib/widgets/formatconfig.ui" line="35"/>
         <source>Scheme :</source>
-        <translation>Thème:</translation>
+        <translation>Thème :</translation>
     </message>
     <message>
         <source>Identifier</source>
@@ -1792,7 +1793,7 @@ Continuer tout de même?</translation>
     <message>
         <location filename="qcodeedit/lib/widgets/gotolinedialog.ui" line="31"/>
         <source>Select the line you want to go to :</source>
-        <translation>Selectionner la ligne où aller:</translation>
+        <translation>Selectionner la ligne où aller :</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/gotolinedialog.ui" line="57"/>
@@ -1811,7 +1812,7 @@ Continuer tout de même?</translation>
     <message>
         <location filename="qcodeedit/lib/widgets/gotoline.ui" line="27"/>
         <source>&amp;Go to line :</source>
-        <translation>Aller à la li&amp;gne:</translation>
+        <translation>Aller à la li&amp;gne :</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/gotoline.ui" line="53"/>
@@ -1824,97 +1825,97 @@ Continuer tout de même?</translation>
     <message>
         <location filename="insertgraphics.cpp" line="25"/>
         <source>Insert Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>Insertion d&apos;image</translation>
     </message>
     <message>
         <location filename="insertgraphics.cpp" line="41"/>
         <source>Select a File</source>
-        <translation type="unfinished">Sélectionner un fichier</translation>
+        <translation>Sélectionner un fichier</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="37"/>
         <source>File</source>
-        <translation type="unfinished">Fichier</translation>
+        <translation>Fichier</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="84"/>
         <source>Scale: </source>
         <oldsource>scale: </oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Échelle :</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="91"/>
         <source>width=\linewidth</source>
-        <translation type="unfinished"></translation>
+        <translation>width=\linewidth</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="105"/>
         <source>Caption: </source>
         <oldsource>caption: </oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Légende : </translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="112"/>
         <source>Label: </source>
         <oldsource>label: </oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Étiquette : </translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="126"/>
         <source>Above</source>
         <oldsource>above</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Au-dessus</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="131"/>
         <source>Below</source>
         <oldsource>below</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Au-dessous</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="141"/>
         <source>Place in figure environment</source>
         <oldsource>place in figure environment</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Faire flotter l&apos;image</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="154"/>
         <source>Placement</source>
-        <translation type="unfinished"></translation>
+        <translation>Placement (préférences de ---)</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="160"/>
         <source>Here</source>
         <oldsource>here</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Ici</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="170"/>
         <source>Bottom</source>
         <oldsource>bottom</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>En bas (de la page)</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="180"/>
         <source>Top</source>
         <oldsource>top</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>En haut (de la page)</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="190"/>
         <source>Page</source>
         <oldsource>page</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Sur une page à part</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="237"/>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="244"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Abandon</translation>
     </message>
 </context>
 <context>
@@ -1927,18 +1928,18 @@ Continuer tout de même?</translation>
     <message>
         <location filename="latexcompleter.cpp" line="678"/>
         <source>label missing!</source>
-        <translation type="unfinished">étiquette manquante!</translation>
+        <translation>étiquette manquante !</translation>
     </message>
     <message>
         <location filename="latexcompleter.cpp" line="680"/>
         <source>label multiple times defined!</source>
-        <translation type="unfinished">étiquette définie à différentes reprises!</translation>
+        <translation>étiquette déjà utilisée !</translation>
     </message>
     <message>
         <location filename="latexcompleter.cpp" line="688"/>
         <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
-        <translation type="unfinished">&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nom de fichier: %1&lt;/b&gt;</translation>
+        <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nom de fichier : %1&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -2429,20 +2430,23 @@ Cliquer sur &quot;Ignorer&quot; pour ignorer cet avertissement.</translation>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1001"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1005"/>
         <source>File deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichier supprimé</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1001"/>
         <source>The file %1 has been deleted on disk.
 Should I save the document as it is to restore the file?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Le fichier %1 a été supprimé sur le disque
+Le document soit-il être sauvé tel quel pour restaurer le fichier ?
+</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1005"/>
         <source>Well, this is strange: The file %1 is not deleted anymore.
 Probably someone else restored it and therefore I&apos;m not going to override the (possible modified) version on the disk.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiens, c&apos;est étrange : le fichier %1 n&apos;est désormais plus supprimé
+Peut-être quelqu&apos;un d&apos;autre l&apos;a-t-il restauré et, de ce fait, je ne vais pas écraser la version (peut-être modifiée) sur le disque.</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1030"/>
@@ -2507,107 +2511,107 @@ Rafraichir en rouvrant le fichier?</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="197"/>
         <source>comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Commentaire</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="199"/>
         <source>keyword</source>
-        <translation type="unfinished"></translation>
+        <translation>Mot clé</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="201"/>
         <source>extra-keyword</source>
-        <translation type="unfinished"></translation>
+        <translation>Mot clé supplémentaire</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="203"/>
         <source>math-keyword</source>
-        <translation type="unfinished"></translation>
+        <translation>Mot clé mathématique</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="205"/>
         <source>verbatim</source>
-        <translation type="unfinished"></translation>
+        <translation>Texte verbatim</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="207"/>
         <source>braceMatch</source>
-        <translation type="unfinished"></translation>
+        <translation>Accolades appariées</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="209"/>
         <source>braceMismatch</source>
-        <translation type="unfinished"></translation>
+        <translation>Accolades non appariées</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="211"/>
         <source>search</source>
-        <translation type="unfinished"></translation>
+        <translation>Chercher</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="213"/>
         <source>numbers</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombres</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="215"/>
         <source>text</source>
-        <translation type="unfinished"></translation>
+        <translation>Texte</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="217"/>
         <source>spellingMistake</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur d&apos;orthographe</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="219"/>
         <source>temporaryCodeCompletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Complétion de code temporaire</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="221"/>
         <source>environment</source>
-        <translation type="unfinished"></translation>
+        <translation>Environnement</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="223"/>
         <source>referencePresent</source>
-        <translation type="unfinished"></translation>
+        <translation>Référence présente</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="225"/>
         <source>referenceMissing</source>
-        <translation type="unfinished"></translation>
+        <translation>Référence manquante</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="227"/>
         <source>referenceMultiple</source>
-        <translation type="unfinished"></translation>
+        <translation>Référence définie plusieurs fois</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="229"/>
         <source>citationPresent</source>
-        <translation type="unfinished"></translation>
+        <translation>Citation présente</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="231"/>
         <source>citationMissing</source>
-        <translation type="unfinished"></translation>
+        <translation>Citation manquante</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="233"/>
         <source>current</source>
-        <translation type="unfinished"></translation>
+        <translation>Courant</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="235"/>
         <source>selection</source>
-        <translation type="unfinished">sélection</translation>
+        <translation>Sélection</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="56"/>
         <source>Identifier</source>
-        <translation type="unfinished">Identifiant</translation>
+        <translation>Identifiant</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="299"/>
@@ -2657,17 +2661,17 @@ Rafraichir en rouvrant le fichier?</translation>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="347"/>
         <source>Font family</source>
-        <translation type="unfinished"></translation>
+        <translation>Famille de fonte</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="353"/>
         <source>Point size</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille en points</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="359"/>
         <source>Priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Priorité</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="499"/>
@@ -2709,17 +2713,17 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="latexoutputfilter.cpp" line="37"/>
         <source>BadBox: </source>
-        <translation>Dépassement de marge:</translation>
+        <translation>Dépassement de marge :</translation>
     </message>
     <message>
         <location filename="latexoutputfilter.cpp" line="40"/>
         <source>Warning: </source>
-        <translation>Avertissement:</translation>
+        <translation>Avertissement :</translation>
     </message>
     <message>
         <location filename="latexoutputfilter.cpp" line="43"/>
         <source>Error: </source>
-        <translation>Erreur:</translation>
+        <translation>Erreur :</translation>
     </message>
 </context>
 <context>
@@ -2755,7 +2759,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="quickdocumentdialog.ui" line="64"/>
         <source>Class Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Options de classe</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="84"/>
@@ -2813,17 +2817,17 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="quickdocumentdialog.ui" line="238"/>
         <source>Geometry</source>
-        <translation type="unfinished"></translation>
+        <translation>Géométrie</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="266"/>
         <source>Page</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="272"/>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Largeur :</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="282"/>
@@ -2839,7 +2843,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="quickdocumentdialog.ui" line="560"/>
         <location filename="quickdocumentdialog.ui" line="577"/>
         <source>mm</source>
-        <translation type="unfinished"></translation>
+        <translation>Hauteur</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="301"/>
@@ -2849,7 +2853,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="quickdocumentdialog.ui" line="520"/>
         <location filename="quickdocumentdialog.ui" line="582"/>
         <source>cm</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="306"/>
@@ -2859,7 +2863,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="quickdocumentdialog.ui" line="525"/>
         <location filename="quickdocumentdialog.ui" line="587"/>
         <source>pt</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="311"/>
@@ -2869,7 +2873,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="quickdocumentdialog.ui" line="530"/>
         <location filename="quickdocumentdialog.ui" line="592"/>
         <source>bp</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="316"/>
@@ -2879,37 +2883,37 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="quickdocumentdialog.ui" line="535"/>
         <location filename="quickdocumentdialog.ui" line="597"/>
         <source>in</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="369"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>hauteur :</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="379"/>
         <source>Margins</source>
-        <translation type="unfinished"></translation>
+        <translation>Marges</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="385"/>
         <source>Left:</source>
-        <translation type="unfinished"></translation>
+        <translation>Gauche :</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="440"/>
         <source>Right:</source>
-        <translation type="unfinished"></translation>
+        <translation>Droite :</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="543"/>
         <source>Top:</source>
-        <translation type="unfinished"></translation>
+        <translation>En haut :</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="550"/>
         <source>Bottom:</source>
-        <translation type="unfinished"></translation>
+        <translation>En bas :</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="44"/>
@@ -2932,7 +2936,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="quickdocumentdialog.cpp" line="416"/>
         <location filename="quickdocumentdialog.cpp" line="426"/>
         <source>New:</source>
-        <translation>Nouveau:</translation>
+        <translation>Nouveau :</translation>
     </message>
 </context>
 <context>
@@ -2965,7 +2969,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="randomtextgenerator.ui" line="65"/>
         <source>Length:</source>
-        <translation>Longueur:</translation>
+        <translation>Longueur :</translation>
     </message>
     <message>
         <location filename="randomtextgenerator.ui" line="85"/>
@@ -2981,7 +2985,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="randomtextgenerator.ui" line="109"/>
         <location filename="randomtextgenerator.ui" line="147"/>
         <source>Higher Order:</source>
-        <translation>Ordre supérieur:</translation>
+        <translation>Ordre supérieur :</translation>
     </message>
     <message>
         <location filename="randomtextgenerator.ui" line="126"/>
@@ -3205,7 +3209,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="spellerdialog.ui" line="20"/>
         <source>Unknown word:</source>
-        <translation>Mot inconnu:</translation>
+        <translation>Mot inconnu :</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="34"/>
@@ -3215,7 +3219,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="spellerdialog.ui" line="44"/>
         <source>Replace with:</source>
-        <translation>Remplacer par:</translation>
+        <translation>Remplacer par :</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="54"/>
@@ -3303,17 +3307,17 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="symbolgridwidget.cpp" line="75"/>
         <source>Command: </source>
-        <translation>Commande:</translation>
+        <translation>Commande :</translation>
     </message>
     <message>
         <location filename="symbolgridwidget.cpp" line="94"/>
         <source>Package: </source>
-        <translation>Paquet:</translation>
+        <translation>Paquet :</translation>
     </message>
     <message>
         <location filename="symbolgridwidget.cpp" line="96"/>
         <source>Packages: </source>
-        <translation>Paquets:</translation>
+        <translation>Paquets :</translation>
     </message>
 </context>
 <context>
@@ -3546,7 +3550,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="texmaker.cpp" line="323"/>
         <source>Save &amp;As</source>
         <oldsource>Save All</oldsource>
-        <translation type="unfinished">Enregistrer tout</translation>
+        <translation>Enregistrer &amp;sous</translation>
     </message>
     <message>
         <source>Make Template</source>
@@ -3568,7 +3572,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="texmaker.cpp" line="330"/>
         <source>&amp;Close</source>
         <oldsource>Close All</oldsource>
-        <translation type="unfinished">Fermer tout</translation>
+        <translation>&amp;Fermer tout</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="334"/>
@@ -3625,7 +3629,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="texmaker.cpp" line="353"/>
         <source>Pas&amp;te as Latex</source>
         <oldsource>Convert to Latex</oldsource>
-        <translation type="unfinished">Changer en Latex</translation>
+        <translation>Coller en LaTeX</translation>
     </message>
     <message>
         <source>Preview Selection/Parantheses</source>
@@ -3640,7 +3644,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="texmaker.cpp" line="361"/>
         <source>Co&amp;mment</source>
         <oldsource>Uncomment</oldsource>
-        <translation type="unfinished">Décommenter</translation>
+        <translation>Co&amp;mmenter</translation>
     </message>
     <message>
         <source>Indent</source>
@@ -3650,7 +3654,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="texmaker.cpp" line="363"/>
         <source>In&amp;dent</source>
         <oldsource>Unindent</oldsource>
-        <translation type="unfinished">Désindenter</translation>
+        <translation>In&amp;denter</translation>
     </message>
     <message>
         <source>Hard Line Break</source>
@@ -3660,7 +3664,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="texmaker.cpp" line="365"/>
         <source>Hard Line &amp;Break</source>
         <oldsource>Repeat Hard Line Break</oldsource>
-        <translation type="unfinished">Répéter retours à la ligne</translation>
+        <translation>&amp;Répéter retours à la ligne</translation>
     </message>
     <message>
         <source>Find</source>
@@ -3670,13 +3674,13 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="texmaker.cpp" line="369"/>
         <source>&amp;Find</source>
         <oldsource>Find Next</oldsource>
-        <translation type="unfinished">Chercher suivant</translation>
+        <translation>&amp;Chercher</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="370"/>
         <source>Find &amp;Next</source>
         <oldsource>Find Dialog</oldsource>
-        <translation type="unfinished">Assistant recherche</translation>
+        <translation>Chercher suivant</translation>
     </message>
     <message>
         <source>Replace</source>
@@ -3858,31 +3862,31 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="texmaker.cpp" line="446"/>
         <source>&amp;View Dvi</source>
         <oldsource>Dvi-&gt;PS</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Afficher &amp;DVI</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="447"/>
         <source>&amp;Dvi-&gt;PS</source>
         <oldsource>View PS</oldsource>
-        <translation type="unfinished">Afficher PS</translation>
+        <translation>&amp;DVI→PS</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="448"/>
         <source>Vie&amp;w PS</source>
         <oldsource>PDFLaTeX</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Afficher P&amp;S</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="449"/>
         <source>&amp;PDFLaTeX</source>
         <oldsource>View PDF</oldsource>
-        <translation type="unfinished">Afficher PDF</translation>
+        <translation>&amp;PDFLaTeX</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="451"/>
         <source>P&amp;S-&gt;PDF</source>
         <oldsource>DVI-&gt;PDF</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>P&amp;S→PDF</translation>
     </message>
     <message>
         <source>View Log</source>
@@ -3947,7 +3951,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="texmaker.cpp" line="479"/>
         <source>Quick &amp;Start</source>
         <oldsource>Quick Letter</oldsource>
-        <translation type="unfinished">Assistant lettre</translation>
+        <translation>A&amp;ssistant nouveau document</translation>
     </message>
     <message>
         <source>Quick Tabular</source>
@@ -3957,13 +3961,13 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="texmaker.cpp" line="483"/>
         <source>Quick &amp;Tabular</source>
         <oldsource>Quick Tabbing</oldsource>
-        <translation type="unfinished">Assistant tabulation</translation>
+        <translation>Assistant &amp;tableau</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="484"/>
         <source>Quick T&amp;abbing</source>
         <oldsource>Quick Array</oldsource>
-        <translation type="unfinished">Assistant matrice</translation>
+        <translation>Assistant t&amp;abulation</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="488"/>
@@ -3977,217 +3981,217 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="texmaker.cpp" line="314"/>
         <source>&amp;New</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nouveau</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="315"/>
         <source>New from &amp;template</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouveau à par&amp;tir d&apos;un canevas</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="316"/>
         <source>&amp;Open</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ouvrir</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="322"/>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregi&amp;strer</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="324"/>
         <source>Save A&amp;ll</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer tous &amp;les fichiers</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="325"/>
         <source>&amp;Make Template</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Créer un canevas (à partir du fichier courant)</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="326"/>
         <source>Check &amp;in</source>
-        <translation type="unfinished"></translation>
+        <translation>Pr&amp;opager (SVN)</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="327"/>
         <source>Sh&amp;ow old Revisions</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les révisi&amp;ons antérieures (SVN)</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="331"/>
         <source>Clos&amp;e All</source>
-        <translation type="unfinished"></translation>
+        <translation>F&amp;ermer tous les fichiers</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="342"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished">&amp;Défaire</translation>
+        <translation>&amp;Défaire</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="343"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished">&amp;Refaire</translation>
+        <translation>&amp;Refaire</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="346"/>
         <source>&amp;Copy</source>
-        <translation type="unfinished">&amp;Copier</translation>
+        <translation>&amp;Copier</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="347"/>
         <source>C&amp;ut</source>
-        <translation type="unfinished"></translation>
+        <translation>Co&amp;uper</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="348"/>
         <source>&amp;Paste</source>
-        <translation type="unfinished">C&amp;oller</translation>
+        <translation>C&amp;oller</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="349"/>
         <source>Select &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>Tout s&amp;électionner</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="350"/>
         <source>Erase &amp;Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Effacer la &amp;ligne</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="351"/>
         <source>Erase &amp;Word/Cmd/Env</source>
-        <translation type="unfinished"></translation>
+        <translation>Effacer le (ou la) &amp;mot/commande/environnement</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="354"/>
         <source>Co&amp;nvert to Latex</source>
-        <translation type="unfinished"></translation>
+        <translation>Co&amp;nvertir en LaTeX</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="355"/>
         <source>Pre&amp;view Selection/Parantheses</source>
-        <translation type="unfinished"></translation>
+        <translation>Pré&amp;visualiser la sélection/les parenthèses</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="362"/>
         <source>&amp;Uncomment</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Décommenter</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="364"/>
         <source>Unind&amp;ent</source>
-        <translation type="unfinished"></translation>
+        <translation>Désind&amp;enter</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="366"/>
         <source>R&amp;epeat Hard Line Break</source>
-        <translation type="unfinished"></translation>
+        <translation>Répét&amp;er les changements de lignes</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="371"/>
         <source>Find D&amp;ialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Chercher (boîte de d&amp;ialogue)</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="372"/>
         <source>&amp;Replace</source>
-        <translation type="unfinished">&amp;Remplacer</translation>
+        <translation>&amp;Remplacer</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="373"/>
         <source>Re&amp;name Environment</source>
-        <translation type="unfinished"></translation>
+        <translation>Re&amp;nommer l&apos;environnement</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="445"/>
         <source>&amp;LaTeX</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;LaTeX</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="450"/>
         <source>View PD&amp;F</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher PD&amp;F</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="452"/>
         <source>DV&amp;I-&gt;PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>DV&amp;I→PDF</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="453"/>
         <source>View &amp;Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher &amp;Log</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="454"/>
         <source>&amp;BibTeX</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;BibTeX</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="455"/>
         <source>&amp;MakeIndex</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;MakeIndex</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="456"/>
         <source>&amp;Clear Markers</source>
-        <translation type="unfinished"></translation>
+        <translation>Effa&amp;cer les marqueurs</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="459"/>
         <source>&amp;MetaPost</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;MetaPost</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="460"/>
         <source>&amp;Asymptote</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Asymptote</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="462"/>
         <source>Cle&amp;an</source>
-        <translation type="unfinished"></translation>
+        <translation>Netto&amp;yer</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="464"/>
         <source>C&amp;onvert to Html</source>
-        <translation type="unfinished"></translation>
+        <translation>C&amp;onvertir en Html</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="466"/>
         <source>A&amp;nalyse Text</source>
-        <translation type="unfinished"></translation>
+        <translation>A&amp;nalyser le texte</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="467"/>
         <source>Generate &amp;Random Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Générer du texte aléatoi&amp;re</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="480"/>
         <source>Quick &amp;Letter</source>
-        <translation type="unfinished"></translation>
+        <translation>Assistant &amp;Lettre</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="485"/>
         <source>Quick &amp;Array</source>
-        <translation type="unfinished"></translation>
+        <translation>Assistant m&amp;atrice</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="486"/>
         <source>Insert &amp;Graphic</source>
-        <translation type="unfinished"></translation>
+        <translation>Insertion de &amp;graphique</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="492"/>
         <source>&amp;Clean</source>
-        <translation type="unfinished"></translation>
+        <translation>Netto&amp;yer</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="494"/>
         <source>BibTeX &amp;insert dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Formula&amp;ire BibTeX</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="498"/>
@@ -4282,7 +4286,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="texmaker.cpp" line="545"/>
         <source>load Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Charger le &amp;profile</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="547"/>
@@ -4493,7 +4497,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="texmaker.cpp" line="2647"/>
         <source>could not start the command:</source>
-        <translation>Impossible de lancer la commande:</translation>
+        <translation>Impossible de lancer la commande :</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="2649"/>
@@ -4519,18 +4523,19 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="texmaker.cpp" line="2723"/>
         <source>Process exited with error(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur(s) rencontrée(s) pendant la compilation</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="2723"/>
         <source>Process exited normally</source>
-        <translation type="unfinished"></translation>
+        <translation>Compilation terminée normalement</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="2739"/>
         <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
-        <translation type="unfinished">Nom de fichier introuvable</translation>
+        <translation>Nom de fichier introuvable
+Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="2780"/>
@@ -4609,17 +4614,17 @@ You have to save a document before you can compile it.</source>
     <message>
         <location filename="texmaker.cpp" line="3663"/>
         <source>Close document</source>
-        <translation type="unfinished"></translation>
+        <translation>Fermer le document</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3664"/>
         <source>Set this document as master document</source>
-        <translation type="unfinished"></translation>
+        <translation>Déclarer le document courant comme document maître</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3666"/>
         <source>Remove master document role</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer le rôle de document maître</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3672"/>
@@ -4662,7 +4667,7 @@ You have to save a document before you can compile it.</source>
     <message>
         <location filename="texmaker.cpp" line="3994"/>
         <source>commit comment:</source>
-        <translation>Commentaire d&apos;envoi:</translation>
+        <translation>Commentaire d&apos;envoi :</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="4160"/>
@@ -4672,7 +4677,7 @@ You have to save a document before you can compile it.</source>
     <message>
         <location filename="texmaker.cpp" line="4305"/>
         <source>Load Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Charger le profil</translation>
     </message>
 </context>
 <context>
@@ -4686,38 +4691,38 @@ You have to save a document before you can compile it.</source>
         <location filename="textanalysis.ui" line="20"/>
         <source>Actions</source>
         <oldsource>actions</oldsource>
-        <translation type="unfinished">actions</translation>
+        <translation>Actions</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="26"/>
         <source>Count</source>
         <oldsource>count</oldsource>
         <extracomment>count as verb</extracomment>
-        <translation type="unfinished">décompter</translation>
+        <translation>Compter</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="33"/>
         <source>Search selection in the document</source>
         <oldsource>search selection in the document</oldsource>
-        <translation type="unfinished">Sélectionner dans le document</translation>
+        <translation>Chercher la sélection dans le document</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="40"/>
         <source>Close</source>
         <oldsource>close</oldsource>
-        <translation type="unfinished">Fermer</translation>
+        <translation>Fermer</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="50"/>
         <source>Info</source>
         <oldsource>info</oldsource>
-        <translation type="unfinished">Information</translation>
+        <translation>Information</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="56"/>
         <source>Total lines</source>
         <oldsource>total lines</oldsource>
-        <translation type="unfinished">Nombre de lignes</translation>
+        <translation>Nombre de lignes</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="63"/>
@@ -4733,37 +4738,37 @@ You have to save a document before you can compile it.</source>
         <location filename="textanalysis.ui" line="70"/>
         <source>Text lines</source>
         <oldsource>text lines</oldsource>
-        <translation type="unfinished">Lignes de texte</translation>
+        <translation>Lignes de texte</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="77"/>
         <source>Total shown phrases</source>
         <oldsource>total shown phrases</oldsource>
-        <translation type="unfinished">Nombre de phrases visibles</translation>
+        <translation>Nombre de phrases visibles</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="84"/>
         <source>Comment lines</source>
         <oldsource>comment lines</oldsource>
-        <translation type="unfinished">Lignes de commentaire</translation>
+        <translation>Lignes de commentaire</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="112"/>
         <source>Different phrases</source>
         <oldsource>different phrases</oldsource>
-        <translation type="unfinished">Autres phrases</translation>
+        <translation>Phrases différentes</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="126"/>
         <source>Characters in phrases</source>
         <oldsource>characters in phrases</oldsource>
-        <translation type="unfinished">Lettres par phrase</translation>
+        <translation>Lettres par phrase</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="159"/>
         <source>Options</source>
         <oldsource>options</oldsource>
-        <translation type="unfinished">options</translation>
+        <translation>Options</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="165"/>
@@ -4774,7 +4779,7 @@ You have to save a document before you can compile it.</source>
         <location filename="textanalysis.ui" line="168"/>
         <source>Analyse normal text</source>
         <oldsource>analyse normal text</oldsource>
-        <translation type="unfinished">Analyse du texte normal</translation>
+        <translation>Analyser le texte normal</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="178"/>
@@ -4785,7 +4790,7 @@ You have to save a document before you can compile it.</source>
         <location filename="textanalysis.ui" line="181"/>
         <source>Analyse comments</source>
         <oldsource>analyse comments</oldsource>
-        <translation type="unfinished">analyser les commentaires</translation>
+        <translation>Analyser les commentaires</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="188"/>
@@ -4796,7 +4801,7 @@ You have to save a document before you can compile it.</source>
         <location filename="textanalysis.ui" line="191"/>
         <source>Analyse commands</source>
         <oldsource>analyse commands</oldsource>
-        <translation type="unfinished">Analyser les commandes</translation>
+        <translation>Analyser les commandes</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="204"/>
@@ -4818,37 +4823,37 @@ Si &quot;ignorer complètement&quot; est sélectionné, les mots plus courts son
         <location filename="textanalysis.ui" line="216"/>
         <source>Show all phrases</source>
         <oldsource>show all phrases</oldsource>
-        <translation type="unfinished">afficher toutes les phrases</translation>
+        <translation>Afficher toutes les phrases</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="221"/>
         <source>Minimum phrase length:</source>
         <oldsource>minimum phrase length:</oldsource>
-        <translation type="unfinished">longueur de phrase min.:</translation>
+        <translation>Longueur minimale des phrases :</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="226"/>
         <source>Minimum word length (one):</source>
         <oldsource>minimum word length (one):</oldsource>
-        <translation type="unfinished">longueur de mot min. (un):</translation>
+        <translation>Longueur minimale des mots (un) :</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="231"/>
         <source>Minimum word length (all):</source>
         <oldsource>minimum word length (all):</oldsource>
-        <translation type="unfinished">Longueur minimum de mot (tous):</translation>
+        <translation>Longueur minimale des mots (tous) :</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="236"/>
         <source>Fully ignore shorter words:</source>
         <oldsource>fully ignore shorter words:</oldsource>
-        <translation type="unfinished">ignorer complètement mots plus courts:</translation>
+        <translation>Ignorer complètement les mots plus courts :</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="271"/>
         <source>Minimum occurence count:</source>
         <oldsource>minimum occurence count:</oldsource>
-        <translation type="unfinished">nombre minimum d&apos;occurrences:</translation>
+        <translation>Nombre minimum d&apos;occurrences :</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="290"/>
@@ -4861,15 +4866,15 @@ Si &quot;ignorer complètement&quot; est sélectionné, les mots plus courts son
         <source>The controls in this row determine how many consecuting words are treated as a single phrase.
 If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
 If only maximum is selected, words at the beginning are also taken. (e.g.  &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
-        <translation>Les paramètres de cette ligne déterminent combien de mots consécutifs déterminent une même phrase.
-Si &quot;min&amp; max&quot;. est sélectionné, le nombre exact de mots est considéré  (par ex avec 2 pour la phrase précédente: &quot;Les paramètres&quot;, &quot;paramètres de&quot;,...)
-Si seul &quot;max.&quot; est sélectionné, les mots initaux sont aussi inclus (par ex.: &quot;Les&quot;, &quot;Les paramètres&quot;, &quot;paramètres de&quot;,...)</translation>
+        <translation>Les paramètres de cette ligne déterminent combien de mots consécutifs constituent une même phrase.
+Si &quot;min et max&quot;. est sélectionné, le nombre exact de mots est considéré (par ex. avec 2 pour la phrase précédente : &quot;Les paramètres&quot;, &quot;paramètres de&quot;,...)
+Si seul &quot;max.&quot; est sélectionné, les mots initaux sont aussi inclus (par ex. : &quot;Les&quot;, &quot;Les paramètres&quot;, &quot;paramètres de&quot;,...)</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="324"/>
         <source>Source:</source>
         <oldsource>source:</oldsource>
-        <translation type="unfinished">source:</translation>
+        <translation>Source :</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="343"/>
@@ -4888,19 +4893,19 @@ Sinon la ponctuation est ignorée.</translation>
         <location filename="textanalysis.ui" line="358"/>
         <source>Respect phrase end chars:</source>
         <oldsource>respect phrase end chars:</oldsource>
-        <translation type="unfinished">considérer la ponctuation:</translation>
+        <translation>Considérer la ponctuation :</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="371"/>
         <source>Maximum words per phrase:</source>
         <oldsource>maximum words per phrase:</oldsource>
-        <translation type="unfinished">Nb. max. de mots par phrase:</translation>
+        <translation>Nb max. de mots par phrase :</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="376"/>
         <source>Min&amp;max words per phrase:</source>
         <oldsource>min&amp;max words per phrase:</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Min. et &amp;max. de mots par phrase :</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="391"/>
@@ -4931,32 +4936,32 @@ Sinon la ponctuation est ignorée.</translation>
         <location filename="textanalysis.ui" line="429"/>
         <source>Whole document</source>
         <oldsource>whole document</oldsource>
-        <translation type="unfinished">document entier</translation>
+        <translation>Document entier</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="434"/>
         <source>Selection</source>
         <oldsource>selection</oldsource>
-        <translation type="unfinished">sélection</translation>
+        <translation>Sélection</translation>
     </message>
     <message>
         <location filename="textanalysis.cpp" line="47"/>
         <source>Word/Phrase</source>
         <oldsource>word/phrase</oldsource>
-        <translation type="unfinished">mot/phrase</translation>
+        <translation>Mot/phrase</translation>
     </message>
     <message>
         <location filename="textanalysis.cpp" line="48"/>
         <source>Count</source>
         <oldsource>count</oldsource>
         <comment>count as noun</comment>
-        <translation type="unfinished">Nombre</translation>
+        <translation>Décompte</translation>
     </message>
     <message>
         <location filename="textanalysis.cpp" line="49"/>
         <source>Count relative</source>
         <oldsource>count relative</oldsource>
-        <translation type="unfinished">Nombre relatif</translation>
+        <translation>Décompte relatif</translation>
     </message>
 </context>
 <context>
@@ -5040,22 +5045,22 @@ Sinon la ponctuation est ignorée.</translation>
     <message>
         <location filename="usermenudialog.ui" line="101"/>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="108"/>
         <source>Script</source>
-        <translation type="unfinished"></translation>
+        <translation>Script</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="115"/>
         <source>Environment</source>
-        <translation type="unfinished">Environnement</translation>
+        <translation>Environnement</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="122"/>
         <source>Type</source>
-        <translation type="unfinished">Type</translation>
+        <translation>Type</translation>
     </message>
 </context>
 <context>
@@ -5304,7 +5309,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="findGlobalDialog.ui" line="23"/>
         <source>Scope:</source>
-        <translation>Portée:</translation>
+        <translation>Portée :</translation>
     </message>
     <message>
         <location filename="findGlobalDialog.ui" line="34"/>
@@ -5319,7 +5324,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="findGlobalDialog.ui" line="53"/>
         <source>Find:</source>
-        <translation>Chercher:</translation>
+        <translation>Chercher :</translation>
     </message>
     <message>
         <location filename="findGlobalDialog.ui" line="63"/>
@@ -5342,38 +5347,45 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="scriptengine.cpp" line="24"/>
         <source>no arguments to alert</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>I don&apos;t understand well the context</translatorcomment>
+        <translation>Pas d&apos;argument à signaler</translation>
     </message>
     <message>
         <location filename="scriptengine.cpp" line="28"/>
         <source>too much arguments to alert</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>I don&apos;t understand well the context</translatorcomment>
+        <translation>Trop d&apos;arguments à signaler</translation>
     </message>
     <message>
         <location filename="scriptengine.cpp" line="31"/>
         <source>Script-Message</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>I don&apos;t understand well the context</translatorcomment>
+        <translation>Message de script</translation>
     </message>
     <message>
         <location filename="scriptengine.cpp" line="45"/>
         <source>File Chooser</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>I don&apos;t understand well the context</translatorcomment>
+        <translation>Sélectionneur de fichiers</translation>
     </message>
     <message>
         <location filename="scriptengine.cpp" line="53"/>
         <source>Uncaught exception at line %1: %2
 </source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>I don&apos;t understand well the context</translatorcomment>
+        <translation>Exception manquée à la ligne %1: %2
+</translation>
     </message>
     <message>
         <location filename="scriptengine.cpp" line="54"/>
         <source>Backtrace %1</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>I don&apos;t understand well the context</translatorcomment>
+        <translation>Traçage %1</translation>
     </message>
     <message>
         <location filename="scriptengine.cpp" line="56"/>
         <source>Script-Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur de script</translation>
     </message>
 </context>
 <context>
