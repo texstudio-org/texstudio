@@ -24,12 +24,12 @@
     <message>
         <location filename="arraydialog.ui" line="30"/>
         <source>Num of Columns</source>
-        <translation>Nb. colonnes</translation>
+        <translation>Nombre de colonnes</translation>
     </message>
     <message>
         <location filename="arraydialog.ui" line="47"/>
         <source>Columns Alignment</source>
-        <translation>Align. colonnes</translation>
+        <translation>Alignement des colonnes</translation>
     </message>
     <message>
         <location filename="arraydialog.ui" line="61"/>
@@ -39,7 +39,7 @@
     <message>
         <location filename="arraydialog.ui" line="81"/>
         <source>Num of Rows</source>
-        <translation>Nb. lignes</translation>
+        <translation>Nombre de lignes</translation>
     </message>
     <message>
         <location filename="arraydialog.ui" line="114"/>
@@ -372,7 +372,8 @@
 &lt;i&gt;&quot;&lt;/i&gt;: enclose with &quot;..&quot;, . (point): ends placeholder with a point, (space): ends placeholder and add a space, &lt;i&gt;)&lt;/i&gt;: ends placeholder &lt;br /&gt;
 examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just the extension (without leading point), &lt;br /&gt;
 ?m&quot; (filename without extension, identical to %) ?me (filename with extension like example.tex)</source>
-        <translation>&lt;i&gt;a&lt;/i&gt;: chemin absolu, &lt;!--&lt;i&gt;r&lt;/i&gt;: chemin relatif, --&gt;&lt;i&gt;m&lt;/i&gt;: nom de fichier sans extension,&lt;i&gt;e&lt;/i&gt;: extension&lt;br /&gt;
+        <translatorcomment>In the source text, there should be a space before &apos;&lt;i&gt;e&lt;/i&gt;&apos;</translatorcomment>
+        <translation>&lt;i&gt;a&lt;/i&gt;: chemin absolu, &lt;!--&lt;i&gt;r&lt;/i&gt;: chemin relatif, --&gt;&lt;i&gt;m&lt;/i&gt;: nom de fichier sans extension, &lt;i&gt;e&lt;/i&gt;: extension&lt;br /&gt;
 &lt;i&gt;&quot;&lt;/i&gt;: met l&apos;expression entre guillemets, . (point): finit avec un point, (espace): finit et ajoute une espace, &lt;i&gt;)&lt;/i&gt;: finit simplement&lt;br /&gt;
 exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de guillemets, ?e) extension seule (sans point), &lt;br /&gt;
 ?m&quot; (nom de fichier sans extension, identique à %) ?me (nom de fichier avec extension comme par exemple: exemple.tex)</translation>
@@ -480,12 +481,12 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="1216"/>
         <source>Tab space:</source>
-        <translation>Tabulation (nb d&apos;espaces) :</translation>
+        <translation>Tab. (nb d&apos;espaces) :</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1244"/>
         <source>Auto Replace Latex-Commands</source>
-        <translation>Remplacement automatique des commandes LaTeX</translation>
+        <translation>Auto-remplacement des commandes LaTeX</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1363"/>
@@ -506,7 +507,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="727"/>
         <source>(The commands must be separated by &apos;|&apos;)</source>
-        <translation>(Les commandes doivent être séparées par « | » ---sans les guillemets)</translation>
+        <translation>(les commandes doivent être séparées par « | » ---sans les guillemets)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="830"/>
@@ -612,7 +613,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="1114"/>
         <source>Preview with dvipng --follow (parallel)</source>
-        <translation>Prévisualisation avec dvipng --follow (en parallèle)</translation>
+        <translation>Prévisualisation avec « dvipng --follow » (en parallèle)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1119"/>
@@ -622,7 +623,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="1152"/>
         <source>Close search and replace panel together</source>
-        <translation>Fermer simultanément les boîtes de dialogue « Rechercher » et « Remplacer » </translation>
+        <translation>Fermer ensemble « Rechercher » et « Remplacer » </translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1166"/>
@@ -652,7 +653,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="1207"/>
         <source>Auto detect encoding of loaded files</source>
-        <translation>Détecter automatiquement le codage d&apos;entrée des fichiers chargés</translation>
+        <translation>Auto-détection du codage d&apos;entrée des fichiers chargés</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1251"/>
@@ -677,12 +678,12 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="1307"/>
         <source>Show line numbers</source>
-        <translation>Afficher numéros de ligne</translation>
+        <translation>Afficher les numéros de ligne</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1312"/>
         <source>Show important line numbers</source>
-        <translation>Afficher numéros de ligne importants</translation>
+        <translation>Afficher les numéros de ligne importants</translation>
     </message>
     <message>
         <source>show preview as tool tip if panel is hidden</source>
@@ -776,7 +777,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="1288"/>
         <source>Use Tab for Move To Placeholder</source>
-        <translation>Utiliser la touche Tab pour se déplacer au paramètre fictif suivant</translation>
+        <translation>Touche Tab pour se déplacer au paramètre fictif suivant</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1348"/>
@@ -837,7 +838,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="1518"/>
         <source>Uses SVN revisions to undo before last saved version ?</source>
-        <translation>Utiliser les révisions SVN pour « Défaire » avant la dernière version sauvée ?</translation>
+        <translation>Utiliser les révisions SVN pour « défaire » avant la dernière version sauvée ?</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1525"/>
@@ -896,7 +897,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.cpp" line="227"/>
         <source>Get dictionaries at: %1</source>
-        <translation>Télécharger dictionnaire : %1</translation>
+        <translation>Télécharger le dictionnaire : %1</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="246"/>
@@ -957,7 +958,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <location filename="configdialog.cpp" line="326"/>
         <location filename="configdialog.cpp" line="329"/>
         <source>Get dictionary at: %1</source>
-        <translation>Téléchargement dictionnaire: %1</translation>
+        <translation>Téléchargement du dictionnaire: %1</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="329"/>
@@ -1035,7 +1036,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configmanager.cpp" line="783"/>
         <source>Latex/Math menus</source>
-        <translation>Menus LaTeX/Maths</translation>
+        <translation>Menus LaTeX/maths</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="784"/>
@@ -1260,19 +1261,19 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <location filename="additionaltranslations.cpp" line="69"/>
         <source>\begin{itemize}</source>
         <oldsource><byte value="x8"/>egin{itemize}</oldsource>
-        <translation>\begin{itemize} (liste à puces)</translation>
+        <translation>\begin{itemize} (liste à p&amp;uces)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="71"/>
         <source>\begin{enumerate}</source>
         <oldsource><byte value="x8"/>egin{enumerate}</oldsource>
-        <translation>\begin{enumerate} (liste numérotée)</translation>
+        <translation>\begin{enumerate} (liste &amp;numérotée)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="73"/>
         <source>\begin{description}</source>
         <oldsource><byte value="x8"/>egin{description}</oldsource>
-        <translation>\begin{description} (liste de description)</translation>
+        <translation>\begin{description} (liste de &amp;description)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="75"/>
@@ -1472,13 +1473,13 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="additionaltranslations.cpp" line="147"/>
         <source>Inline math mode $...$</source>
-        <translation>Mode math.en ligne $...$</translation>
+        <translation>Mode math. en ligne $...$</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="149"/>
         <source>Display math mode \[...\]</source>
         <oldsource>Display math mode [...]</oldsource>
-        <translation>Mode math.hors ligne \[...\]</translation>
+        <translation>Mode math. hors ligne \[...\]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="151"/>
@@ -1617,7 +1618,8 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="113"/>
         <source>Tabulators &amp;&amp; Whitespaces</source>
-        <translation>Tabulations &amp;&amp; Espaces</translation>
+        <translatorcomment>In source text, shouldn&apos;t it be &apos;Tabulators &amp; &amp;Whitespaces&apos;?</translatorcomment>
+        <translation>Tabulations &amp; &amp;Espaces</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="130"/>
@@ -1881,7 +1883,7 @@ Continuer tout de même ?</translation>
     <message>
         <location filename="insertgraphics.ui" line="154"/>
         <source>Placement</source>
-        <translation>Placement (préférences de ---)</translation>
+        <translation>Placement (préférences)</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="160"/>
@@ -1923,7 +1925,7 @@ Continuer tout de même ?</translation>
     <message>
         <location filename="latexcompleter.cpp" line="521"/>
         <source> (Usertag)</source>
-        <translation>(Balise Utilisateur)</translation>
+        <translation>(Commande utilisateur)</translation>
     </message>
     <message>
         <location filename="latexcompleter.cpp" line="678"/>
@@ -2546,7 +2548,7 @@ Rafraîchir en rouvrant le fichier ?</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="211"/>
         <source>search</source>
-        <translation>Chercher</translation>
+        <translation>Recherche</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="213"/>
@@ -2606,7 +2608,7 @@ Rafraîchir en rouvrant le fichier ?</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="235"/>
         <source>selection</source>
-        <translation>sélection</translation>
+        <translation>Sélection</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="56"/>
@@ -3475,7 +3477,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="263"/>
         <source>Most used symbols</source>
-        <translation>Symboles fréquents</translation>
+        <translation>Symboles fréquement utilisés</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="264"/>
@@ -3704,12 +3706,12 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="378"/>
         <source>last change</source>
-        <translation>changement précédent</translation>
+        <translation>Changement précédent</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="379"/>
         <source>&quot;next&quot; change</source>
-        <translation>changement suivant</translation>
+        <translation>Changement suivant</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="381"/>
@@ -3785,7 +3787,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="406"/>
         <source>normal</source>
-        <translation>normal</translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="407"/>
@@ -3795,7 +3797,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="408"/>
         <source>normal text</source>
-        <translation>texte normal</translation>
+        <translation>Texte normal</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="411"/>
@@ -3820,7 +3822,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="427"/>
         <source>Setup Encoding</source>
-        <translation>Sélectionner codage d&apos;entrée</translation>
+        <translation>Sélectionner le codage d&apos;entrée</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="431"/>
@@ -3835,12 +3837,12 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="435"/>
         <source>Refresh Structure</source>
-        <translation>Rafraîchir structure</translation>
+        <translation>Rafraîchir la structure</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="436"/>
         <source>Remove Placeholders</source>
-        <translation>Supprimer paramètres fictifs</translation>
+        <translation>Supprimer les paramètres fictifs</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="441"/>
@@ -3873,7 +3875,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
         <location filename="texmaker.cpp" line="447"/>
         <source>&amp;Dvi-&gt;PS</source>
         <oldsource>View PS</oldsource>
-        <translation>&amp;DVI→PS</translation>
+        <translation>D&amp;VI → PS</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="448"/>
@@ -3891,7 +3893,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
         <location filename="texmaker.cpp" line="451"/>
         <source>P&amp;S-&gt;PDF</source>
         <oldsource>DVI-&gt;PDF</oldsource>
-        <translation>P&amp;S→PDF</translation>
+        <translation>P&amp;S → PDF</translation>
     </message>
     <message>
         <source>View Log</source>
@@ -4121,12 +4123,12 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="452"/>
         <source>DV&amp;I-&gt;PDF</source>
-        <translation>DV&amp;I→PDF</translation>
+        <translation>DV&amp;I → PDF</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="453"/>
         <source>View &amp;Log</source>
-        <translation>Afficher &amp;Log</translation>
+        <translation>Afficher le fichier de &amp;log</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="454"/>
@@ -4161,7 +4163,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="464"/>
         <source>C&amp;onvert to Html</source>
-        <translation>C&amp;onvertir en Html</translation>
+        <translation>C&amp;onvertir en html</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="466"/>
@@ -4176,7 +4178,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="480"/>
         <source>Quick &amp;Letter</source>
-        <translation>Assistant &amp;Lettre</translation>
+        <translation>Assistant &amp;lettre</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="485"/>
@@ -4206,24 +4208,26 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="499"/>
         <source>User &amp;Tags</source>
-        <translation>&amp;Balises Utilisateur</translation>
+        <translatorcomment>In French, tags are called « commandes »</translatorcomment>
+        <translation>&amp;Commandes utilisateur</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="504"/>
         <location filename="texmaker.cpp" line="2542"/>
         <source>Edit User &amp;Tags</source>
-        <translation>Éditer &amp;Balises Utilisateur</translation>
+        <translatorcomment>In French, tags are called « commandes »</translatorcomment>
+        <translation>Éditer &amp;commandes utilisateur</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="506"/>
         <source>User &amp;Commands</source>
-        <translation>&amp;Commandes Utilisateur</translation>
+        <translation>&amp;Compilations utilisateur</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="511"/>
         <location filename="texmaker.cpp" line="2922"/>
         <source>Edit User &amp;Commands</source>
-        <translation>Éditer &amp;Commandes Utilisateur</translation>
+        <translation>Éditer &amp;compilations utilisateur</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="514"/>
@@ -4291,13 +4295,13 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="545"/>
         <source>load Profile</source>
-        <translation>Charger le &amp;profile</translation>
+        <translation>Charger le &amp;profil</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="547"/>
         <location filename="texmaker.cpp" line="3441"/>
         <source>Define Current Document as &apos;Master Document&apos;</source>
-        <translation>Définir le document courant comme &apos;maître&apos;</translation>
+        <translation>Définir le document courant comme « maître »</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="548"/>
@@ -4317,7 +4321,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="554"/>
         <source>User Manual</source>
-        <translation>Manuel de Texmaker</translation>
+        <translation>Manuel de TexMakerX</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="557"/>
@@ -4507,7 +4511,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="2649"/>
         <source>Process started</source>
-        <translation>Processus initié</translation>
+        <translation>Compilation en cours</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="2678"/>
@@ -4533,7 +4537,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="2723"/>
         <source>Process exited normally</source>
-        <translation>Compilation terminée normalement</translation>
+        <translation>Compilation achevée normalement</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="2739"/>
@@ -4545,12 +4549,12 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     <message>
         <location filename="texmaker.cpp" line="2780"/>
         <source>Could not start PdfLaTeX.</source>
-        <translation>Impossible de lancer la PdfLaTeX.</translation>
+        <translation>Impossible de lancer PdfLaTeX.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="2893"/>
         <source>Delete the output files generated by LaTeX?</source>
-        <translation>Supprimer les fichiers générés par Latex ?</translation>
+        <translation>Supprimer les fichiers générés par LaTeX ?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="2893"/>
@@ -4904,28 +4908,28 @@ Sinon la ponctuation est ignorée.</translation>
         <location filename="textanalysis.ui" line="371"/>
         <source>Maximum words per phrase:</source>
         <oldsource>maximum words per phrase:</oldsource>
-        <translation>Nb max. de mots par phrase :</translation>
+        <translation>Nombre maximum de mots par phrase :</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="376"/>
         <source>Min&amp;max words per phrase:</source>
         <oldsource>min&amp;max words per phrase:</oldsource>
-        <translation>Min. et &amp;max. de mots par phrase :</translation>
+        <translation>Minum et maximum de mots par phrase :</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="391"/>
         <source>None (.*)</source>
-        <translation></translation>
+        <translation>Aucun (.*)</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="396"/>
         <source>No Numbers (.*[^0-9].*)</source>
-        <translation>Pas de Numéros (.*[^0-9].*)</translation>
+        <translation>Pas de numéros (.*[^0-9].*)</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="401"/>
         <source>No Digits ([^0-9]*)</source>
-        <translation>Pas de Chiffre ([^0-9]*)</translation>
+        <translation>Pas de chiffre ([^0-9]*)</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="409"/>
@@ -5020,7 +5024,7 @@ Sinon la ponctuation est ignorée.</translation>
     <message>
         <location filename="usermenudialog.ui" line="14"/>
         <source>Edit User Tags</source>
-        <translation>Modifier les balises utilisateur</translation>
+        <translation>Modifier les commandes utilisateur</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="47"/>
@@ -5107,7 +5111,7 @@ Sinon la ponctuation est ignorée.</translation>
         <location filename="webpublishdialog.ui" line="13"/>
         <location filename="webpublishdialog.cpp" line="22"/>
         <source>Convert to Html</source>
-        <translation>Exporter vers Html</translation>
+        <translation>Exporter vers html</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="28"/>
@@ -5119,7 +5123,7 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Bitstream Vera Sans&apos;;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;Outil de conversion LaTeX vers Html&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Bitstream Vera Sans&apos;;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;Outil de conversion LaTeX vers html&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Bitstream Vera Sans&apos;; color:#000000;&quot;&gt;Copyright 2004-2006 P. Brachet &amp;amp; J. Amblard&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
@@ -5136,7 +5140,7 @@ p, li { white-space: pre-wrap; }
         <location filename="webpublishdialog.ui" line="85"/>
         <source>Content name :</source>
         <translatorcomment>Code sommaire :</translatorcomment>
-        <translation></translation>
+        <translation>Titre de la table des matières :</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="92"/>
@@ -5146,7 +5150,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="webpublishdialog.ui" line="99"/>
         <source>Tocdepth :</source>
-        <translation></translation>
+        <translation>Profondeur de la table des matières :</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="106"/>
@@ -5166,12 +5170,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="webpublishdialog.ui" line="145"/>
         <source>Number of compilations :</source>
-        <translation>Nb. de compilations :</translation>
+        <translation>Nombre de compilations :</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="157"/>
         <source>Html options</source>
-        <translation>Options Html</translation>
+        <translation>Options html</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="177"/>
@@ -5286,7 +5290,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="webpublishdialog.cpp" line="29"/>
         <source>Page numbers</source>
-        <translation>Numéros page</translation>
+        <translation>Numéros de page</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="30"/>
