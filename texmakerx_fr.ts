@@ -107,7 +107,7 @@
     <message>
         <location filename="bibtexdialog.cpp" line="14"/>
         <source>Article in a Collection</source>
-        <translation>Article dans une Collection</translation>
+        <translation>Article dans une collection</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="17"/>
@@ -170,17 +170,17 @@
     <message>
         <location filename="buildmanager.cpp" line="439"/>
         <source>Dvi Viewer</source>
-        <translation>Afficheur Dvi</translation>
+        <translation>Afficheur DVI</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="440"/>
         <source>Ps Viewer</source>
-        <translation>Afficheur Ps</translation>
+        <translation>Afficheur PS</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="441"/>
         <source>Pdf Viewer</source>
-        <translation>Afficheur Pdf</translation>
+        <translation>Afficheur PDF</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="491"/>
@@ -263,7 +263,6 @@
         <location filename="configdialog.ui" line="307"/>
         <source>Ignore most system colors</source>
         <oldsource>ignore most system colors</oldsource>
-        <translatorcomment>Ignorer la plupart des couleurs système</translatorcomment>
         <translation>ignorer le thème couleurs du système</translation>
     </message>
     <message>
@@ -551,7 +550,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="936"/>
         <source>Toolbar Customization</source>
-        <translation>Barre d&apos;outils personnalisée</translation>
+        <translation>personnalisation de la barre d&apos;outils</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="255"/>
@@ -578,12 +577,12 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="1030"/>
         <source>Editor Font Family</source>
-        <translation>Famille de Police</translation>
+        <translation>Famille de police de l&apos;éditeur</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1044"/>
         <source>Word Wrap</source>
-        <translation>Retour à la ligne</translation>
+        <translation>Retour à la ligne automatique</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1082"/>
@@ -658,7 +657,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="1251"/>
         <source>Editor Font Size</source>
-        <translation>Taille de Police</translation>
+        <translation>Taille de police de l&apos;éditeur</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1061"/>
@@ -668,7 +667,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="1068"/>
         <source>Editor Font Encoding</source>
-        <translation>Encodage des caractères</translation>
+        <translation>Codage d&apos;entrée des caractères</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1302"/>
@@ -753,7 +752,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="1278"/>
         <source>Show State Panel</source>
-        <translation>Afficher le panneau d&apos;État</translation>
+        <translation>Afficher le panneau d&apos;état</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1268"/>
@@ -782,12 +781,12 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="1348"/>
         <source>Custom Environment</source>
-        <translation>Environnements personnalisée</translation>
+        <translation>Environnement personnalisé</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1353"/>
         <source>Type of Environment</source>
-        <translation>Type de environnement</translation>
+        <translation>Type d&apos;environnement</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1396"/>
@@ -813,12 +812,12 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="1463"/>
         <source>Complete selected text when non-word character is pressed</source>
-        <translation>Compléter le texte sélectionné si un caractère de ponctuation est pressé</translation>
+        <translation>Compléter le texte sélectionné si un caractère de ponctuation est saisi</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1473"/>
         <source>Enable ToolTip-Help</source>
-        <translation>Activer les bulles d&apos;aide</translation>
+        <translation>Activer les info-bulles</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1483"/>
@@ -833,12 +832,12 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="1511"/>
         <source>Automatically check in after save ?</source>
-        <translation>Soumettre les modifications automatiquement après la sauvegarde?</translation>
+        <translation>Vérifier automatiquement après l&apos;enregistrement ?</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1518"/>
         <source>Uses SVN revisions to undo before last saved version ?</source>
-        <translation>Utiliser les révisions SVN pour &apos;Défaire&apos; avant la dernière version sauvée?</translation>
+        <translation>Utiliser les révisions SVN pour « Défaire » avant la dernière version sauvée ?</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1525"/>
@@ -882,22 +881,22 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.cpp" line="125"/>
         <source>The shortcut you entered is the same as the one of this command:</source>
-        <translation>Ce raccourci est deja utilisé pour :</translation>
+        <translation>Ce raccourci est déjà utilisé pour :</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="125"/>
         <source>Should I delete this other shortcut?</source>
-        <translation>Supprimer l&apos;autre raccourci?</translation>
+        <translation>Supprimer l&apos;autre raccourci ?</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="180"/>
         <source>Do you really want to delete this row?</source>
-        <translation>Supprimer cette ligne?</translation>
+        <translation>Supprimer cette ligne ?</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="227"/>
         <source>Get dictionaries at: %1</source>
-        <translation>Télécharger dictionnaire: %1</translation>
+        <translation>Télécharger dictionnaire : %1</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="246"/>
@@ -968,7 +967,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.cpp" line="365"/>
         <source>Browse thesaurus database</source>
-        <translation>Sélectionner thésaurus</translation>
+        <translation>Localiser thésaurus</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="378"/>
@@ -1041,17 +1040,17 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configmanager.cpp" line="784"/>
         <source>All menus</source>
-        <translation>Tout menus</translation>
+        <translation>Tous les menus</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="785"/>
         <source>Special Tags</source>
-        <translation></translation>
+        <translation>Étiquette spéciale</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="990"/>
         <source>Recent &apos;Master Document&apos; %1</source>
-        <translation>&apos;Document maître&apos; récent %1</translation>
+        <translation>« Document maître » récent %1</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="996"/>
@@ -1088,7 +1087,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configmanager.cpp" line="1343"/>
         <source>Math</source>
-        <translation>Math</translation>
+        <translation>Maths</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="7"/>
@@ -1109,22 +1108,22 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="additionaltranslations.cpp" line="13"/>
         <source>&amp;Sectioning</source>
-        <translation>&amp;Sectionement</translation>
+        <translation>&amp;Sectionnement</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="15"/>
         <source>part</source>
-        <translation>part</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="17"/>
         <source>chapter</source>
-        <translation>chapter</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="19"/>
         <source>section</source>
-        <translation>section</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="21"/>
@@ -1331,7 +1330,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="additionaltranslations.cpp" line="93"/>
         <source>Font Sizes</source>
-        <translation>Tailles des caractères</translation>
+        <translation>Tailles des &amp;caractères</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="95"/>
@@ -1433,7 +1432,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="additionaltranslations.cpp" line="131"/>
         <source>Cross References</source>
-        <translation>Références croisées</translation>
+        <translation>Références &amp;croisées</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="133"/>
@@ -1491,7 +1490,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <location filename="additionaltranslations.cpp" line="153"/>
         <source>\begin{align}</source>
         <oldsource><byte value="x8"/>egin{align}</oldsource>
-        <translation>\begin{align}</translation>
+        <translation>\begin{&amp;align}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="155"/>
@@ -1648,12 +1647,13 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="202"/>
         <source>Load &amp;&amp; Save</source>
-        <translation>Ouvrir &amp;&amp; Sauver</translation>
+        <translatorcomment>The original source text shouldn&apos;t it be: &quot;Load &amp; &amp;Save&quot;</translatorcomment>
+        <translation>Ouvrir &amp; &amp;Sauver</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="208"/>
         <source>Default encoding</source>
-        <translation>Encodage par défaut</translation>
+        <translation>Codage d&apos;entrée par défaut</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="218"/>
@@ -1698,7 +1698,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="encodingdialog.ui" line="14"/>
         <source>Setup Encoding</source>
-        <translation>Sélectionner l&apos;encodage</translation>
+        <translation>Sélectionner le codage d&apos;entrée</translation>
     </message>
     <message>
         <location filename="encodingdialog.ui" line="20"/>
@@ -1729,8 +1729,8 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <location filename="encodingdialog.cpp" line="33"/>
         <source>If the new and old encodings are incompatible, some characters may be destroyed.
 Are you sure you want accept data loss?</source>
-        <translation>Si le nouvel et l&apos;ancien encodage sont incompatibles des caractères sont suceptibles d&apos;être perdus.
-Continuer tout de même?</translation>
+        <translation>Si le nouvel et l&apos;ancien codage d&apos;entrée sont incompatibles, des caractères sont suceptibles d&apos;être perdus.
+Continuer tout de même ?</translation>
     </message>
     <message>
         <location filename="encodingdialog.cpp" line="46"/>
@@ -1738,8 +1738,8 @@ Continuer tout de même?</translation>
 These changes will be lost, if you reload it with the new encoding.
 Are you sure you want to undo all changes?</source>
         <translation>Le document a été modifié.
-Ces changements seront perdus s&apos;il est rouvert avec le nouvel encodage.
-Continuer tout de même?</translation>
+Ces changements seront perdus s&apos;il est rouvert avec le nouveau codage.d&apos;entrée
+Continuer tout de même ?</translation>
     </message>
 </context>
 <context>
@@ -1966,7 +1966,7 @@ Continuer tout de même?</translation>
         <location filename="latexdocument.cpp" line="34"/>
         <location filename="latexdocument.cpp" line="180"/>
         <source>BLOCKS</source>
-        <translation>BLOCKS</translation>
+        <translation>BLOCS</translation>
     </message>
 </context>
 <context>
@@ -1998,24 +1998,24 @@ Continuer tout de même?</translation>
     <message>
         <location filename="latexeditorview.cpp" line="160"/>
         <source>New BibTeX Entry %1</source>
-        <translation>Nouvel elément BibTeX %1</translation>
+        <translation>Nouvel entrée BibTeX %1</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="831"/>
         <source>label missing!</source>
-        <translation>étiquette manquante!</translation>
+        <translation>étiquette manquante !</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="833"/>
         <location filename="latexeditorview.cpp" line="851"/>
         <source>label multiple times defined!</source>
-        <translation>étiquette définie à différentes reprises!</translation>
+        <translation>étiquette déjà définie !</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="839"/>
         <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
-        <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nom de fichier: %1&lt;/b&gt;</translation>
+        <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nom de fichier : %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="latexeditorview.cpp" line="854"/>
@@ -2033,7 +2033,7 @@ Continuer tout de même?</translation>
     <message>
         <location filename="latexeditorview.cpp" line="860"/>
         <source>citation missing!</source>
-        <translation>citation manquante!</translation>
+        <translation>citation manquante !</translation>
     </message>
 </context>
 <context>
@@ -2094,17 +2094,17 @@ Continuer tout de même?</translation>
     <message>
         <location filename="letterdialog.ui" line="56"/>
         <source>Encoding</source>
-        <translation>Encodage</translation>
+        <translation>Codage d&apos;entrée</translation>
     </message>
     <message>
         <location filename="letterdialog.ui" line="63"/>
         <source>AMS Packages</source>
-        <translation>Paquets AMS</translation>
+        <translation>Packages AMS</translation>
     </message>
     <message>
         <location filename="letterdialog.ui" line="84"/>
         <source>Paper Size</source>
-        <translation>Format papier</translation>
+        <translation>Format de papier</translation>
     </message>
     <message>
         <location filename="letterdialog.ui" line="114"/>
@@ -2155,12 +2155,12 @@ Continuer tout de même?</translation>
     <message>
         <location filename="toolwidgets.cpp" line="95"/>
         <source>zoom in </source>
-        <translation>zoomer</translation>
+        <translation>zoom avant</translation>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="96"/>
         <source>zoom out</source>
-        <translation>dézoomer</translation>
+        <translation>zoom arrière</translation>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="97"/>
@@ -2197,7 +2197,7 @@ Continuer tout de même?</translation>
         <location filename="qcodeedit/lib/qcodecompletionengine.cpp" line="35"/>
         <location filename="qcodeedit/lib/qcodecompletionengine.cpp" line="63"/>
         <source>&amp;Trigger completion</source>
-        <translation>In&amp;terrupteur de complétion</translation>
+        <translation>Commu&amp;tateur de complétion</translation>
     </message>
 </context>
 <context>
@@ -2213,19 +2213,19 @@ Continuer tout de même?</translation>
         <source>End of matches reached.
 Restart from the begining ?</source>
         <translation>Dernière occurrence.
-Reprendre du début?</translation>
+Reprendre du début ?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="242"/>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="869"/>
         <source>Replacement prompt</source>
-        <translation>Dialogue de remplacement</translation>
+        <translation>Boîte de dialogue de remplacement</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="243"/>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="870"/>
         <source>Shall it be replaced?</source>
-        <translation>Remplacer?</translation>
+        <translation>Remplacer ?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="875"/>
@@ -2235,14 +2235,14 @@ Reprendre du début?</translation>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="875"/>
         <source>%1 (of %2 found so far) occurences have been replaced</source>
-        <translation>%1 (sur %2 occurrences trouvées) remplacée(s)</translation>
+        <translation>%1 remplacée(s) (sur %2 occurrences trouvées)</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="913"/>
         <source>End of scope reached with no match.
 Restart from the beginning ?</source>
         <translation>Fin de la recherche sans résultat.
-Reprendre du début?</translation>
+Reprendre du début ?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="936"/>
@@ -2259,7 +2259,7 @@ Reprendre du début?</translation>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="938"/>
         <source>Do you want to continue replacing from the beginning?</source>
-        <translation>Continer à remplacer à partir du début?</translation>
+        <translation>Continer à remplacer à partir du début ?</translation>
     </message>
 </context>
 <context>
@@ -2374,8 +2374,7 @@ Reprendre du début?</translation>
         <location filename="qcodeedit/lib/qeditor.cpp" line="654"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1290"/>
         <source>Input binding</source>
-        <translatorcomment>certainement à corriger!</translatorcomment>
-        <translation>Reliure d&apos;entrée</translation>
+        <translation>Entrée obligatoire</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="679"/>
@@ -2385,7 +2384,8 @@ Reprendre du début?</translation>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="686"/>
         <source>Conservative</source>
-        <translation>Conservateur</translation>
+        <translatorcomment>I&apos;m not sure!</translatorcomment>
+        <translation>Traditionnel</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="687"/>
@@ -2410,7 +2410,7 @@ Reprendre du début?</translation>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="850"/>
         <source>Conflict!</source>
-        <translation>Conflit!</translation>
+        <translation>Conflit !</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="851"/>
@@ -2423,7 +2423,7 @@ Press &quot;Ignore&quot; to ignore this warning.
         <translation>Le document %1 
 a été modifié par un autre programme.
 Cliquer sur &quot;Enregistrer&quot; pour sauver le document courant.
-Cliquer sur &quot;Réinitialiser&quot; pour réouvrir le fichier.
+Cliquer sur &quot;Réinitialiser&quot; pour rouvrir le fichier.
 Cliquer sur &quot;Ignorer&quot; pour ignorer cet avertissement.</translation>
     </message>
     <message>
@@ -2464,7 +2464,7 @@ Do you wish to keep up to date by reloading the file?</source>
 a été modifié par un autre programme.
 
 L&apos;historique Défaire/Refaire sera perdu avec le rafraichissement automatique.
-Rafraichir en rouvrant le fichier?</translation>
+Rafraîchir en rouvrant le fichier ?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1296"/>
@@ -2606,7 +2606,7 @@ Rafraichir en rouvrant le fichier?</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="235"/>
         <source>selection</source>
-        <translation>Sélection</translation>
+        <translation>sélection</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="56"/>
@@ -2641,7 +2641,7 @@ Rafraichir en rouvrant le fichier?</translation>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="329"/>
         <source>Wave underline</source>
-        <translation>soulignement ondulé</translation>
+        <translation>Soulignement ondulé</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="333"/>
@@ -2656,7 +2656,7 @@ Rafraichir en rouvrant le fichier?</translation>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="341"/>
         <source>Lines color (used by all lines formatting : underline, overline, ...)</source>
-        <translation>Couleur des lignes (utilisé pour tous formats: souligné, raturé, ...)</translation>
+        <translation>Couleur des lignes (utilisé par tous les formats: souligné, ligne au-dessus, ...)</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="347"/>
@@ -2677,7 +2677,7 @@ Rafraichir en rouvrant le fichier?</translation>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="499"/>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="522"/>
         <source>Unsaved changes</source>
-        <translation>Modifications non sauvées</translation>
+        <translation>Modifications non enregistrées</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="500"/>
@@ -2685,7 +2685,7 @@ Rafraichir en rouvrant le fichier?</translation>
         <source>There are unsaved changes in this format scheme.
 Do you want them to be saved?</source>
         <translation>Le schéma de formatage a été modifié.
-Voulez-vous l&apos;enregistrer?</translation>
+Voulez-vous l&apos;enregistrer ?</translation>
     </message>
 </context>
 <context>
@@ -2787,7 +2787,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="quickdocumentdialog.ui" line="140"/>
         <source>AMS Packages</source>
-        <translation>Paquets AMS</translation>
+        <translation>Packages AMS</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="166"/>
@@ -2797,7 +2797,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="quickdocumentdialog.ui" line="182"/>
         <source>Paper Size</source>
-        <translation>Format papier</translation>
+        <translation>Format de papier</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="195"/>
@@ -2807,12 +2807,12 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="quickdocumentdialog.ui" line="211"/>
         <source>Encoding</source>
-        <translation>Encodage</translation>
+        <translation>Codage d&apos;entrée</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="218"/>
         <source>makeidx Package</source>
-        <translation>Paquet makeidx</translation>
+        <translation>Packages makeidx</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="238"/>
@@ -2843,7 +2843,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="quickdocumentdialog.ui" line="560"/>
         <location filename="quickdocumentdialog.ui" line="577"/>
         <source>mm</source>
-        <translation>Hauteur</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="301"/>
@@ -2888,7 +2888,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="quickdocumentdialog.ui" line="369"/>
         <source>Height:</source>
-        <translation>hauteur :</translation>
+        <translation>Hauteur :</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="379"/>
@@ -3011,17 +3011,18 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="randomtextgenerator.cpp" line="42"/>
         <source>Reading all words
 (This will take a while but only on the first generation)</source>
-        <translation>Lecture de tous les mots (peut prendre du temps, mais seulement lors du premier appel)</translation>
+        <translation>Lecture de tous les mots
+(peut prendre du temps, mais seulement lors du premier appel)</translation>
     </message>
     <message>
         <location filename="randomtextgenerator.cpp" line="58"/>
         <source>The current document contains no words, but we need some phrases as a base to create the random text from</source>
-        <translation>Le document est vide de mots, or du texte est necessaire à la génération aléatoire</translation>
+        <translation>Le document ne contient aucun mot, alors que du texte est nécessaire à la génération aléatoire</translation>
     </message>
     <message>
         <location filename="randomtextgenerator.cpp" line="82"/>
         <source>You didn&apos;t select an order!</source>
-        <translation>Veuillez sélectionner un ordre!</translation>
+        <translation>Veuillez sélectionner un ordre !</translation>
     </message>
     <message>
         <location filename="randomtextgenerator.cpp" line="85"/>
@@ -3034,7 +3035,8 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="randomtextgenerator.cpp" line="109"/>
         <location filename="randomtextgenerator.cpp" line="142"/>
         <source>Couldn&apos;t find possible extension word</source>
-        <translation></translation>
+        <translatorcomment>Probably incorrect: I don&apos;t understand the context</translatorcomment>
+        <translation>Impossible de trouver une extension de mot</translation>
     </message>
 </context>
 <context>
@@ -3050,7 +3052,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="318"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="321"/>
         <source>Find next occurence</source>
-        <translation>en avant</translation>
+        <translation>Cherche l&apos;occurence suivante</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="82"/>
@@ -3058,7 +3060,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="319"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="322"/>
         <source>Find previous occurence</source>
-        <translation>en arrière</translation>
+        <translation>Cherche l&apos;occurence précédente</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="102"/>
@@ -3070,7 +3072,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="130"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="343"/>
         <source>Prompt on replace</source>
-        <translation>demander confirmation</translation>
+        <translation>Demander confirmation</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="146"/>
@@ -3082,7 +3084,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="159"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="345"/>
         <source>Escape sequences</source>
-        <translation>séquences d&apos;échappement</translation>
+        <translation>Séquences d&apos;échappement</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="193"/>
@@ -3100,7 +3102,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="234"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="334"/>
         <source>Regexp</source>
-        <translation>Exp. rég</translation>
+        <translation>Exp. rég.</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="253"/>
@@ -3136,6 +3138,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="392"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="326"/>
         <source> Find :</source>
+        <translatorcomment>In the source text, there shouldn&apos;t be a space before &apos;:&apos;</translatorcomment>
         <translation>Chercher :</translation>
     </message>
     <message>
@@ -3148,12 +3151,13 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="445"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="317"/>
         <source>Text or pattern to search for</source>
-        <translation>Texte à chercher</translation>
+        <translation>Texte ou motif à chercher</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="461"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="346"/>
         <source>Replace :</source>
+        <translatorcomment>In the source text, there shouldn&apos;t be a space before &apos;:&apos;</translatorcomment>
         <translation>Remplacer :</translation>
     </message>
 </context>
@@ -3186,17 +3190,17 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="configdialog.cpp" line="88"/>
         <source>Only single characters are allowed as key</source>
-        <translation>caractères uniques seulement</translation>
+        <translation>Seuls les caractères uniques sont autorisés en tant que clés</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="150"/>
         <source>delete row</source>
-        <translation>Supprimer ligne</translation>
+        <translation>supprimer ligne</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="156"/>
         <source>add row</source>
-        <translation>Ajouter ligne</translation>
+        <translation>ajouter ligne</translation>
     </message>
 </context>
 <context>
@@ -3234,6 +3238,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="spellerdialog.ui" line="81"/>
         <source>Suggested words :</source>
+        <translatorcomment>In the source text, there shouldn&apos;t be a space before &apos;:&apos;</translatorcomment>
         <translation>Mots suggérés :</translation>
     </message>
     <message>
@@ -3245,7 +3250,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="spellerdialog.ui" line="128"/>
         <location filename="spellerdialog.cpp" line="192"/>
         <source>Show Ignore List \/</source>
-        <translation>Afficher la liste de mots ignorés \/</translation>
+        <translation>Afficher la liste des mots ignorés \/</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="163"/>
@@ -3283,8 +3288,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="structdialog.ui" line="36"/>
         <source>Numeration</source>
-        <translatorcomment>???</translatorcomment>
-        <translation>Comptage</translation>
+        <translation>Numérotation</translation>
     </message>
     <message>
         <location filename="structdialog.ui" line="54"/>
@@ -3307,17 +3311,17 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="symbolgridwidget.cpp" line="75"/>
         <source>Command: </source>
-        <translation>Commande :</translation>
+        <translation>Commande : </translation>
     </message>
     <message>
         <location filename="symbolgridwidget.cpp" line="94"/>
         <source>Package: </source>
-        <translation>Paquet :</translation>
+        <translation>Package: </translation>
     </message>
     <message>
         <location filename="symbolgridwidget.cpp" line="96"/>
         <source>Packages: </source>
-        <translation>Paquets :</translation>
+        <translation>Packages: </translation>
     </message>
 </context>
 <context>
@@ -3330,12 +3334,12 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="tabdialog.ui" line="40"/>
         <source>Num of Columns</source>
-        <translation>Nb. colonnes</translation>
+        <translation>Nombre de colonnes</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="57"/>
         <source>Columns Alignment</source>
-        <translation>Align. colonnes</translation>
+        <translation>Alignement des colonnes</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="71"/>
@@ -3345,7 +3349,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="tabdialog.ui" line="91"/>
         <source>Num of Rows</source>
-        <translation>Nb. lignes</translation>
+        <translation>Nombre de lignes</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="124"/>
@@ -3383,12 +3387,12 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="tabbingdialog.ui" line="90"/>
         <source>Num of Rows</source>
-        <translation>Nb. lignes</translation>
+        <translation>Nombre de lignes</translation>
     </message>
     <message>
         <location filename="tabbingdialog.ui" line="105"/>
         <source>Num of Columns</source>
-        <translation>Nb. colonnes</translation>
+        <translation>Nombre de colonnes</translation>
     </message>
     <message>
         <location filename="tabbingdialog.cpp" line="25"/>
@@ -3421,17 +3425,17 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="texmaker.cpp" line="252"/>
         <source>Operator symbols</source>
-        <translation>Opérateurs</translation>
+        <translation>Symboles d&apos;opérateurs</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="253"/>
         <source>Relation symbols</source>
-        <translation>Symboles et opérateurs</translation>
+        <translation>Symboles de relation</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="254"/>
         <source>Arrow symbols</source>
-        <translation>Flèches</translation>
+        <translation>Symboles de flèches</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="255"/>
@@ -3481,22 +3485,23 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="texmaker.cpp" line="267"/>
         <source>Left/Right Brackets</source>
-        <translation>Délimiteurs Gauche/Droite</translation>
+        <translation>Délimiteurs gauche/droite</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="268"/>
         <source>Pstricks Commands</source>
-        <translation>Commandes Pstricks</translation>
+        <translation>Commandes PSTricks</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="269"/>
         <source>MetaPost Commands</source>
-        <translation>Commandes metapost</translation>
+        <translation>Commandes Metapost</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="270"/>
         <source>Tikz Commands</source>
-        <translation>Commandes Tikz</translation>
+        <translatorcomment>In the source text, shouldn&apos;t it be &apos;TikZ&apos; (as spelled by the author the package)?</translatorcomment>
+        <translation>Commandes TikZ</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="271"/>
@@ -3507,7 +3512,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="texmaker.cpp" line="297"/>
         <location filename="texmaker.cpp" line="520"/>
         <source>Messages / Log File</source>
-        <translation>Messages / Fichier log</translation>
+        <translation>Messages/Fichier log</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="313"/>
@@ -3529,7 +3534,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="texmaker.cpp" line="318"/>
         <source>Open Recent</source>
-        <translation>Récemment ouverts</translation>
+        <translation>Ouvrir fichiers &amp;récemment utilisés</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="319"/>
@@ -3572,7 +3577,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="texmaker.cpp" line="330"/>
         <source>&amp;Close</source>
         <oldsource>Close All</oldsource>
-        <translation>&amp;Fermer tout</translation>
+        <translation>&amp;Fermer</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="334"/>
@@ -3664,7 +3669,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="texmaker.cpp" line="365"/>
         <source>Hard Line &amp;Break</source>
         <oldsource>Repeat Hard Line Break</oldsource>
-        <translation>&amp;Répéter retours à la ligne</translation>
+        <translation>&amp;Retours à la ligne</translation>
     </message>
     <message>
         <source>Find</source>
@@ -3680,7 +3685,7 @@ Voulez-vous l&apos;enregistrer?</translation>
         <location filename="texmaker.cpp" line="370"/>
         <source>Find &amp;Next</source>
         <oldsource>Find Dialog</oldsource>
-        <translation>Chercher suivant</translation>
+        <translation>Chercher suiva&amp;nt</translation>
     </message>
     <message>
         <source>Replace</source>
@@ -3689,7 +3694,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="texmaker.cpp" line="376"/>
         <source>Go to</source>
-        <translation>Aller à</translation>
+        <translation>Aller &amp;à</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="377"/>
@@ -3754,7 +3759,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="texmaker.cpp" line="393"/>
         <source>Goto Bookmark</source>
-        <translation>Aller au signet</translation>
+        <translation>Aller au &amp;signet</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="395"/>
@@ -3765,7 +3770,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="texmaker.cpp" line="398"/>
         <source>Toggle Bookmark</source>
-        <translation>Fixer un signet</translation>
+        <translation>Cr&amp;éer/supprimer un signet</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="399"/>
@@ -3775,7 +3780,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="texmaker.cpp" line="405"/>
         <source>Complete</source>
-        <translation>Compléter</translation>
+        <translation>Com&amp;pléter</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="406"/>
@@ -3790,12 +3795,12 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="texmaker.cpp" line="408"/>
         <source>normal text</source>
-        <translation>Texte normal</translation>
+        <translation>texte normal</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="411"/>
         <source>Line Ending</source>
-        <translation>Fin de ligne</translation>
+        <translation>Fin de &amp;ligne</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="413"/>
@@ -3810,12 +3815,12 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="texmaker.cpp" line="421"/>
         <source>Old Mac (CR)</source>
-        <translation></translation>
+        <translation>Mac antérieur (CR)</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="427"/>
         <source>Setup Encoding</source>
-        <translation>Sélectionner Encodage</translation>
+        <translation>Sélectionner codage d&apos;entrée</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="431"/>
@@ -3825,7 +3830,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="texmaker.cpp" line="432"/>
         <source>Thesaurus</source>
-        <translation>Synonymes</translation>
+        <translation>Thésaurus</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="435"/>
@@ -4393,7 +4398,7 @@ Voulez-vous l&apos;enregistrer?</translation>
     <message>
         <location filename="texmaker.cpp" line="981"/>
         <source>Are you sure to remove that template permanently ?</source>
-        <translation>Éliminer le modèle définitivement?</translation>
+        <translation>Éliminer le modèle définitivement ?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="986"/>
@@ -4545,7 +4550,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     <message>
         <location filename="texmaker.cpp" line="2893"/>
         <source>Delete the output files generated by LaTeX?</source>
-        <translation>Supprimer les fichiers générés par Latex?</translation>
+        <translation>Supprimer les fichiers générés par Latex ?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="2893"/>
@@ -4570,7 +4575,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     <message>
         <location filename="texmaker.cpp" line="3032"/>
         <source>Log File not found !</source>
-        <translation>Fichier log introuvable!</translation>
+        <translation>Fichier log introuvable !</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3116"/>
@@ -4582,13 +4587,13 @@ Vous devez enregistrer le document avant de le compiler.</translation>
         <location filename="texmaker.cpp" line="3124"/>
         <location filename="texmaker.cpp" line="3127"/>
         <source>No LaTeX warnings detected !</source>
-        <translation>Aucun avertissement LaTeX détecté!</translation>
+        <translation>Aucun avertissement LaTeX détecté !</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3131"/>
         <location filename="texmaker.cpp" line="3134"/>
         <source>No bad boxes detected !</source>
-        <translation>Aucun dépassement de marge détecté!</translation>
+        <translation>Aucun dépassement de marge détecté !</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3156"/>
@@ -4672,7 +4677,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     <message>
         <location filename="texmaker.cpp" line="4160"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
-        <translation>Attention: dialogue fermé automatiquement si le texte est modifié!</translation>
+        <translation>Attention: dialogue fermé automatiquement si le texte est modifié !</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="4305"/>
