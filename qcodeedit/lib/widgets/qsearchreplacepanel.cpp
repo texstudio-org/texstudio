@@ -434,25 +434,34 @@ void QSearchReplacePanel::display(int mode, bool replace)
 
 	if ( visible )
 	{
-		cbReplace->setChecked(replace);
 		//frameReplace->setVisible(replace);
-		leFind->setFocus();
-
+		bool focusFindEdit = true;
 		if (m_search){
 			if(editor()->cursor().hasSelection()){
 				if(editor()->cursor().anchorLineNumber()!=editor()->cursor().lineNumber() || !editor()->UseLineForSearch() ||cbSelection->isChecked()){
 					if(cbSelection->isChecked()) on_cbSelection_toggled(true);
 					else cbSelection->setChecked(true);
-				}else{
+				} if ( (leFind->hasFocus() || leReplace->hasFocus()) && visible) {
+					//don't copy selection to leFind, if the panel is in use
+					if ( leFind->hasFocus() && replace )
+						focusFindEdit = false; //switch to replace edit, if the cursor is in the find edit (sideeffect: ctrl+r toggles active edit)
+				} else {
 					// single line selection
 					// copy content to leFind
-				leFind->setText(editor()->cursor().selectedText());
+					leFind->setText(editor()->cursor().selectedText());
 				}
 			}
 			if (cbHighlight->isChecked() && !m_search->hasOption(QDocumentSearch::HighlightAll))
 				m_search->setOption(QDocumentSearch::HighlightAll, true);
 		}
-		leFind->selectAll();
+		cbReplace->setChecked(replace);
+		if (focusFindEdit) {
+			leFind->setFocus();
+			leFind->selectAll();
+		} else {
+			leReplace->setFocus();
+			leReplace->selectAll();
+		}
 		//show();
 	}else closeEvent(0);
 
