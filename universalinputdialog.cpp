@@ -72,6 +72,7 @@ void UniversalInputDialog::addVariable(int* var, QString description){
 	Q_ASSERT(var);
 	QSpinBox* spinBox = new QSpinBox(this);
 	spinBox->setValue(*var);
+	spinBox->setMaximum(10000000);
 	addWidget(spinBox,description,var);
 }
 void UniversalInputDialog::addVariable(QString* var, QString description){
