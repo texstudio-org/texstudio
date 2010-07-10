@@ -106,6 +106,7 @@
 QT_TRANSLATE_NOOP("QFormatConfig", "search"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "numbers"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "text"), 
+QT_TRANSLATE_NOOP("QFormatConfig", "escapeseq"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "spellingMistake"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "temporaryCodeCompletion"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "environment"), 
@@ -116,6 +117,7 @@
 QT_TRANSLATE_NOOP("QFormatConfig", "citationMissing"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "current"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "selection"), 
+QT_TRANSLATE_NOOP("QFormatConfig", "normal")
 ""};
 #endif
 
