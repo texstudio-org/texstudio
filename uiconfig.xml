@@ -47,7 +47,7 @@
     <insert id="enumerate" text="\begin{enumerate}" insert="\begin{enumerate}%n\item %|%n\end{enumerate}" info="The enumerate environment produces a numbered list.%nEach item of an enumerated list begins with an \item command." icon=":/images/enumerate.png"/>
     <insert id="description" text="\begin{description}" insert="\begin{description}%n\item[%&lt;label%>] %|%n\end{description}" info="The description environment is used to make labelled lists.%nEach item of the list begins with an \item[label] command."/>
     <insert id="list" text="\begin{list}" insert="\begin{list}{%&lt;label%>}{%&lt;spacing%>}%n\item %|%n\end{list}" info="The {label} argument is a piece of text that is inserted in a box to form the label.%nThe {spacing} argument contains commands to change the spacing parameters for the list.%nEach item of the list begins with an \item command."/>
-    <insert id="item" text="\item" insert="\item" info="\item[label] Hello" icon=":/images/item.png" shortcut="Ctrl+Shift+I"/>
+    <insert id="item" text="\item" insert="\item " info="\item[label] Hello" icon=":/images/item.png" shortcut="Ctrl+Shift+I"/>
   </menu>
   
 
