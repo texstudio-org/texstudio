@@ -3314,7 +3314,7 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 			QDomNodeList formats=xml.documentElement().elementsByTagName("format");
 			for (int i=0;i<formats.size();i++)
 				translations << "QT_TRANSLATE_NOOP(\"QFormatConfig\", \""+formats.at(i).attributes().namedItem("id").nodeValue()+"\"), ";
-
+			translations << "QT_TRANSLATE_NOOP(\"QFormatConfig\", \"normal\")";
 			translations << "\"\"};";
 			translations << "#endif\n\n";
 

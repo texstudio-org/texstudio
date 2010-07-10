@@ -280,14 +280,14 @@
         <translation>Compilazione Veloce</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="857"/>
         <location filename="configdialog.cpp" line="253"/>
+        <location filename="configdialog.ui" line="857"/>
         <source>Shortcuts</source>
         <translation>Scorciatoie da Tastiera</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="905"/>
         <location filename="configdialog.cpp" line="254"/>
+        <location filename="configdialog.ui" line="905"/>
         <source>Latex Menus</source>
         <translation type="unfinished"></translation>
     </message>
@@ -297,8 +297,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1024"/>
         <location filename="configdialog.cpp" line="256"/>
+        <location filename="configdialog.ui" line="1024"/>
         <location filename="configmanager.cpp" line="739"/>
         <source>Editor</source>
         <translation>Editor</translation>
@@ -2507,6 +2507,11 @@ Vioi aggiornare ricaricando il file?</translation>
 <context>
     <name>QFormatConfig</name>
     <message>
+        <location filename="additionaltranslations.cpp" line="239"/>
+        <source>normal</source>
+        <translation type="unfinished">normale</translation>
+    </message>
+    <message>
         <location filename="additionaltranslations.cpp" line="197"/>
         <source>comment</source>
         <translation type="unfinished"></translation>
@@ -2558,51 +2563,56 @@ Vioi aggiornare ricaricando il file?</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="217"/>
-        <source>spellingMistake</source>
+        <source>escapeseq</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="219"/>
-        <source>temporaryCodeCompletion</source>
+        <source>spellingMistake</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="221"/>
-        <source>environment</source>
+        <source>temporaryCodeCompletion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="223"/>
-        <source>referencePresent</source>
+        <source>environment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="225"/>
-        <source>referenceMissing</source>
+        <source>referencePresent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="227"/>
-        <source>referenceMultiple</source>
+        <source>referenceMissing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="229"/>
-        <source>citationPresent</source>
+        <source>referenceMultiple</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="231"/>
-        <source>citationMissing</source>
+        <source>citationPresent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="233"/>
-        <source>current</source>
+        <source>citationMissing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="235"/>
+        <source>current</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="237"/>
         <source>selection</source>
         <translation type="unfinished">selezione</translation>
     </message>
@@ -3058,96 +3068,96 @@ Vuoi salvarli?</translation>
         <translation>Forma</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="102"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="342"/>
+        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="102"/>
         <source>all</source>
         <translation>tutti</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="340"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="315"/>
+        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="340"/>
         <source>Close search/replace panel</source>
         <translation>Chiudi il pannello trova/sostituisci</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="372"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="316"/>
+        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="372"/>
         <source>Refresh search underlying context (as an attempt to correct search behavior)</source>
         <translation>Aggiorna la ricerca sottolineando il contesto (tentativo di correggere il comportamento della ricerca)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="392"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="326"/>
+        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="392"/>
         <source> Find :</source>
         <translation>Trova:</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="445"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="317"/>
+        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="445"/>
         <source>Text or pattern to search for</source>
         <translation>Testo o modello da ricercare</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="50"/>
-        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="521"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="318"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="321"/>
+        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="50"/>
+        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="521"/>
         <source>Find next occurence</source>
         <translation>Trova occorrenza successiva</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="82"/>
-        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="489"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="319"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="322"/>
+        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="82"/>
+        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="489"/>
         <source>Find previous occurence</source>
         <translation>Trova occorrenza precedente</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="215"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="332"/>
+        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="215"/>
         <source>Words</source>
         <translation>Parole</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="266"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="338"/>
+        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="266"/>
         <source>Cursor</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="282"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="340"/>
+        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="282"/>
         <source>Selection</source>
         <translation>Selezione</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="253"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="336"/>
+        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="253"/>
         <source>Highlight all</source>
         <translation>Evidenzia Tutto</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="234"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="334"/>
+        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="234"/>
         <source>Regexp</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="193"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="330"/>
+        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="193"/>
         <source>Case</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="461"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="346"/>
+        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="461"/>
         <source>Replace :</source>
         <translation>Sostituisci :</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="426"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="320"/>
+        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="426"/>
         <source>Replacement text</source>
         <translation>Sostituisci testo</translation>
     </message>
@@ -3160,20 +3170,20 @@ Vuoi salvarli?</translation>
         <translation type="obsolete">sostituisci tutto</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="130"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="343"/>
+        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="130"/>
         <source>Prompt on replace</source>
         <translation>Chiedi prima di sostituire</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="146"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="344"/>
+        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="146"/>
         <source>Replace all</source>
         <translation>Sostituisci Tutto</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="159"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="345"/>
+        <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="159"/>
         <source>Escape sequences</source>
         <translation></translation>
     </message>
@@ -3238,8 +3248,8 @@ Vuoi salvarli?</translation>
         <translation>Non ci sono più parole sbagliate</translation>
     </message>
     <message>
-        <location filename="spellerdialog.ui" line="128"/>
         <location filename="spellerdialog.cpp" line="192"/>
+        <location filename="spellerdialog.ui" line="128"/>
         <source>Show Ignore List \/</source>
         <translation>Mostra la lista delle parole ignorate \/</translation>
     </message>
@@ -5197,8 +5207,8 @@ If not, end characters are ignored.</source>
         <translation>Apri File</translation>
     </message>
     <message>
-        <location filename="webpublishdialog.ui" line="13"/>
         <location filename="webpublishdialog.cpp" line="22"/>
+        <location filename="webpublishdialog.ui" line="13"/>
         <source>Convert to Html</source>
         <translation>Converti in HTML</translation>
     </message>
