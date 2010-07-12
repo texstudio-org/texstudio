@@ -63,9 +63,9 @@ QFormatConfig::QFormatConfig(QWidget *w)
 	m_table->horizontalHeaderItem(7)->setIcon(QIcon(":/images/qcodeedit/textcolor.png"));
 	m_table->horizontalHeaderItem(8)->setIcon(QIcon(":/images/qcodeedit/fillcolor.png"));
 	m_table->horizontalHeaderItem(9)->setIcon(QIcon(":/images/qcodeedit/strokecolor.png"));
-	m_table->horizontalHeaderItem(10)->setText("font");
-	m_table->horizontalHeaderItem(11)->setText("size");
-	m_table->horizontalHeaderItem(12)->setText("prio");  //TODO: images
+	m_table->horizontalHeaderItem(10)->setText(tr("font"));
+	m_table->horizontalHeaderItem(11)->setText(tr("size"));
+	m_table->horizontalHeaderItem(12)->setText(tr("prio"));  //TODO: images
 
 	connect(m_table, SIGNAL( itemSelectionChanged() ),
 			m_table, SLOT  ( clearSelection() ) );
