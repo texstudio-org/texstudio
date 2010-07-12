@@ -616,7 +616,7 @@ void Texmaker::setupToolBars() {
 	for (int i=0;i<configManager.managedToolBars.size();i++){
 		ManagedToolBar &mtb = configManager.managedToolBars[i];
 		if (!mtb.toolbar) { //create actual toolbar on first call
-			mtb.toolbar = addToolBar(tr(toolbarnames[i]));
+			mtb.toolbar = addToolBar(tr(qPrintable(mtb.name)));
 			mtb.toolbar->setObjectName(mtb.name);
 		} else mtb.toolbar->clear();
 		foreach (const QString& actionName, mtb.actualActions){
