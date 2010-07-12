@@ -13,7 +13,8 @@
 
 #include "manhattanstyle.h"
 
-ManagedToolBar::ManagedToolBar(const QString &newName, const QStringList &defs): name(newName), defaults(defs), toolbar(0){}
+ManagedToolBar::ManagedToolBar(const QString &newName, const QStringList &defs): name(newName), defaults(defs), toolbar(0), translatedName(newName){}
+ManagedToolBar::ManagedToolBar(const QString &newName, const QString &newTranslatedName, const QStringList &defs): name(newName), defaults(defs), toolbar(0), translatedName(newTranslatedName){}
 
 ManagedProperty::ManagedProperty():storage(0),type(PT_VOID),widgetOffset(0){
 }
@@ -178,14 +179,14 @@ bool ManagedProperty::readFromWidget(const QWidget* w){
 ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	buildManager(0),editorConfig(new LatexEditorViewConfig), completerConfig (new LatexCompleterConfig), webPublishDialogConfig (new WebPublishDialogConfig), menuParent(0), menuParentsBar(0){
 
-	managedToolBars.append(ManagedToolBar("Custom", QStringList()));
-	managedToolBars.append(ManagedToolBar("File", QStringList() << "main/file/new" << "main/file/open" << "main/file/save" << "main/file/close"));
-	managedToolBars.append(ManagedToolBar("Edit", QStringList() << "main/edit/undo" << "main/edit/redo" << "main/edit/copy" << "main/edit/cut" << "main/edit/paste"));
-	managedToolBars.append(ManagedToolBar("Tools", QStringList() << "main/tools/viewlog" << "main/edit/goto/errorprev" << "main/edit/goto/errornext"	<< "separator"
+	managedToolBars.append(ManagedToolBar("Custom",tr("Custom"), QStringList()));
+	managedToolBars.append(ManagedToolBar("File",tr("File"), QStringList() << "main/file/new" << "main/file/open" << "main/file/save" << "main/file/close"));
+	managedToolBars.append(ManagedToolBar("Edit",tr("Edit"), QStringList() << "main/edit/undo" << "main/edit/redo" << "main/edit/copy" << "main/edit/cut" << "main/edit/paste"));
+	managedToolBars.append(ManagedToolBar("Tools",tr("Tools"), QStringList() << "main/tools/viewlog" << "main/edit/goto/errorprev" << "main/edit/goto/errornext"	<< "separator"
 	    << "main/tools/quickbuild" << "main/tools/latex" << "main/tools/viewdvi" << "main/tools/dvi2ps" << "main/tools/viewps" << "main/tools/pdflatex" << "main/tools/viewpdf"));
-	managedToolBars.append(ManagedToolBar("Math", QStringList() << "main/math/mathmode" << "main/math/subscript" << "main/math/superscript" << "main/math/frac" << "main/math/dfrac" << "main/math/sqrt" << "separator"
+	managedToolBars.append(ManagedToolBar("Math",tr("Math"), QStringList() << "main/math/mathmode" << "main/math/subscript" << "main/math/superscript" << "main/math/frac" << "main/math/dfrac" << "main/math/sqrt" << "separator"
 			<< "tags/brackets/left" << "separator" << "tags/brackets/right"));
-	managedToolBars.append(ManagedToolBar("Format", QStringList() << "main/latex/sectioning" << "separator" << "main/latex/references" <<"separator" <<
+	managedToolBars.append(ManagedToolBar("Format",tr("Format"), QStringList() << "main/latex/sectioning" << "separator" << "main/latex/references" <<"separator" <<
 					      "main/latex/fontsizes" << "separator" <<
 					      "main/latex/fontstyles/textbf" << "main/latex/fontstyles/textit" << "main/latex/fontstyles/underline" << "main/latex/environment/flushleft" << "main/latex/environment/center" << "main/latex/environment/flushright"
 					      << "separator" << "main/latex/spacing/newline"));
