@@ -777,7 +777,7 @@ bool ConfigManager::execConfigDialog() {
 	foreach (const ManagedToolBar &mtb, managedToolBars){
 		Q_ASSERT(mtb.toolbar);
 		confDlg->customizableToolbars.append(mtb.actualActions);
-		confDlg->ui.comboBoxToolbars->addItem(mtb.name);
+		confDlg->ui.comboBoxToolbars->addItem(mtb.translatedName);
 	}
 	confDlg->allMenus=managedMenus;
 	confDlg->standardToolbarMenus=QList<QMenu*>()<< getManagedMenu("main/latex") << getManagedMenu("main/math") << getManagedMenu("main/user");
