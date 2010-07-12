@@ -574,6 +574,15 @@ void Texmaker::setupMenus() {
 	configManager.modifyManagedShortcuts();
 }
 
+static const char *toolbarnames[] = {
+	 QT_TRANSLATE_NOOP("Texmaker","Custom"),
+	 QT_TRANSLATE_NOOP("Texmaker","File"),
+	 QT_TRANSLATE_NOOP("Texmaker","Edit"),
+	 QT_TRANSLATE_NOOP("Texmaker","Tools"),
+	 QT_TRANSLATE_NOOP("Texmaker","Math"),
+	 QT_TRANSLATE_NOOP("Texmaker","Format")
+ };
+
 void Texmaker::setupToolBars() {
 	//This method will be called multiple times and must not create something if this something already exists
 // spelling language
@@ -607,7 +616,7 @@ void Texmaker::setupToolBars() {
 	for (int i=0;i<configManager.managedToolBars.size();i++){
 		ManagedToolBar &mtb = configManager.managedToolBars[i];
 		if (!mtb.toolbar) { //create actual toolbar on first call
-			mtb.toolbar = addToolBar(mtb.translatedName);
+			mtb.toolbar = addToolBar(tr(toolbarnames[i]));
 			mtb.toolbar->setObjectName(mtb.name);
 		} else mtb.toolbar->clear();
 		foreach (const QString& actionName, mtb.actualActions){
