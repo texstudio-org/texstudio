@@ -255,7 +255,7 @@
         <location filename="configdialog.ui" line="307"/>
         <source>Ignore most system colors</source>
         <oldsource>ignore most system colors</oldsource>
-        <translation type="unfinished">A legtöbb rendszerszín mellőzése</translation>
+        <translation>A legtöbb rendszerszín mellőzése</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="317"/>
@@ -301,7 +301,7 @@
         <location filename="configdialog.ui" line="441"/>
         <source>Inline checking</source>
         <oldsource>inline checking</oldsource>
-        <translation type="unfinished">Azonnali ellenőrzés</translation>
+        <translation>Azonnali ellenőrzés</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="448"/>
@@ -312,19 +312,19 @@
         <location filename="configdialog.ui" line="472"/>
         <source>Inline spell checking</source>
         <oldsource>inline spell checking</oldsource>
-        <translation type="unfinished">Azonnali helyesírás-ellenőrzés</translation>
+        <translation>Azonnali helyesírás-ellenőrzés</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="482"/>
         <source>Inline citation checking</source>
         <oldsource>inline citation checking</oldsource>
-        <translation type="unfinished">Azonnali hivatkozás ellenőrzés</translation>
+        <translation>Azonnali hivatkozás ellenőrzés</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="492"/>
         <source>Inline reference checking</source>
         <oldsource>inline reference checking</oldsource>
-        <translation type="unfinished">Azonnali referencia ellenőrzés</translation>
+        <translation>Azonnali referencia ellenőrzés</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="505"/>
@@ -406,12 +406,12 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <location filename="configdialog.ui" line="696"/>
         <source>LaTeX + Asymptote + LaTeX + View DVI</source>
-        <translation type="unfinished"></translation>
+        <translation>LaTeX + Asymptote + LaTeX + DVI megjelenítése</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="703"/>
         <source>PdfLaTeX + Asymptote + PdfLaTeX + View PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>PdfLaTeX + Asymptote + PdfLaTeX + PDF megjelenítése</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="710"/>
@@ -462,8 +462,8 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation type="obsolete">&quot;latex bibtex latex&quot; futtatása fordítás előtt, ha a bib-fájlok megváltoztak</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="253"/>
         <location filename="configdialog.ui" line="857"/>
+        <location filename="configdialog.cpp" line="253"/>
         <source>Shortcuts</source>
         <translation>Billentyűkombinációk</translation>
     </message>
@@ -491,8 +491,8 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>4</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="254"/>
         <location filename="configdialog.ui" line="905"/>
+        <location filename="configdialog.cpp" line="254"/>
         <source>Latex Menus</source>
         <translation>LaTeX menük</translation>
     </message>
@@ -512,8 +512,8 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="256"/>
         <location filename="configdialog.ui" line="1024"/>
+        <location filename="configdialog.cpp" line="256"/>
         <location filename="configmanager.cpp" line="739"/>
         <source>Editor</source>
         <translation>Szerkesztő</translation>
@@ -633,6 +633,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <location filename="configdialog.ui" line="1194"/>
         <source>Use single line selection as Search Word</source>
+        <translatorcomment>??</translatorcomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -662,87 +663,88 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <location filename="configdialog.ui" line="727"/>
         <source>(The commands must be separated by &apos;|&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>(A parancsokat &apos;|&apos; jellel kell elválasztani)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="830"/>
         <source>Run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</source>
-        <translation type="unfinished"></translation>
+        <translation>Ha a bib-fájlok megváltoztak, &quot;latex bibtex latex&quot; futtatása fordítás előtt</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="894"/>
         <source>Close Log-View with Esc-Key</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>nem is találom hol van</translatorcomment>
+        <translation type="unfinished">A napló bezárása Escape-pel</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1082"/>
         <source>Show preview as tool tip if panel is hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Előnézetet mutasson tippként, ha a panel rejtve van</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1087"/>
         <source>Always show preview in preview panel</source>
-        <translation type="unfinished"></translation>
+        <translation>Mindig mutasson előnézetet az előnézet panelen</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1092"/>
         <source>Always show preview as tool tip</source>
-        <translation type="unfinished"></translation>
+        <translation>Mindig mutasson előnézetet tippként</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1097"/>
         <source>Always show both</source>
-        <translation type="unfinished"></translation>
+        <translation>Mindig mutassa mindkettőt</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1109"/>
         <source>Preview with dvipng</source>
-        <translation type="unfinished"></translation>
+        <translation>Előnézet dvipng-vel</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1114"/>
         <source>Preview with dvipng --follow (parallel)</source>
-        <translation type="unfinished"></translation>
+        <translation>Előnézet dvipng --follow segítségével (párhuzamosan)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1119"/>
         <source>Preview with dvips/ghostscript</source>
-        <translation type="unfinished"></translation>
+        <translation>Előnézet dvips/ghostscript-tel</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1152"/>
         <source>Close search and replace panel together</source>
-        <translation type="unfinished"></translation>
+        <translation>Keresés és csere panelek együttes bezárása</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1166"/>
         <source>Ignore indentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Behúzás mellőzése</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1171"/>
         <source>Keep indentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Behúzás megtartása</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1176"/>
         <source>Indent and unindent automatically</source>
-        <translation type="unfinished"></translation>
+        <translation>Behúzás és annak megszüntetése automatikusan</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1181"/>
         <source>Keep indentation with spaces only</source>
-        <translation type="unfinished"></translation>
+        <translation>Behúzás megtartása szóközökkel</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1186"/>
         <source>Indent and unindent automatically with spaces only</source>
-        <translation type="unfinished"></translation>
+        <translation>Behúzás és annak megszüntetése automatikusan szóközökkel</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1207"/>
         <source>Auto detect encoding of loaded files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fájlkódolás automatikus felismerése</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1244"/>
@@ -817,11 +819,12 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <location filename="configdialog.ui" line="1518"/>
         <source>Uses SVN revisions to undo before last saved version ?</source>
-        <translation type="unfinished">Használja az SVN kiadásokat a visszavonáshoz a legutóbbi mentett verzió előtt?</translation>
+        <translation>Használja az SVN kiadásokat a visszavonáshoz a legutóbbi mentett verzió előtt?</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1525"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
+        <translatorcomment>??</translatorcomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -843,7 +846,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <location filename="configdialog.ui" line="118"/>
         <source>Show advanced options</source>
         <oldsource>show advanced options</oldsource>
-        <translation type="unfinished">haladó beállítások megjelenítése</translation>
+        <translation>haladó beállítások megjelenítése</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="104"/>
@@ -1076,7 +1079,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <location filename="additionaltranslations.cpp" line="7"/>
         <source>&amp;Latex</source>
-        <translation type="unfinished">&amp;LaTeX</translation>
+        <translation>&amp;LaTeX</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="9"/>
@@ -1086,459 +1089,461 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <location filename="additionaltranslations.cpp" line="11"/>
         <source>\begin{document}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{document}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="13"/>
         <source>&amp;Sectioning</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Szakaszok</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="15"/>
         <source>part</source>
-        <translation type="unfinished"></translation>
+        <translation>rész (\part{cím})</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="17"/>
         <source>chapter</source>
-        <translation type="unfinished"></translation>
+        <translation>fejezet (\chapter{cím})</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="19"/>
         <source>section</source>
-        <translation type="unfinished"></translation>
+        <translation>szakasz (\section{cím})</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="21"/>
         <source>subsection</source>
-        <translation type="unfinished"></translation>
+        <translation>alszakasz (\subsection{cím})</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="23"/>
         <source>subsubsection</source>
-        <translation type="unfinished"></translation>
+        <translation>alalszakasz (\subsubsection{cím})</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="25"/>
         <source>paragraph</source>
-        <translation type="unfinished"></translation>
+        <translation>paragrafus (\paragraph{cím})</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="27"/>
         <source>subparagraph</source>
-        <translation type="unfinished"></translation>
+        <translation>alparagrafus (\subparagraph{cím})</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="29"/>
         <source>part*</source>
-        <translation type="unfinished"></translation>
+        <translation>rész sorszám nélkül (\part*{cím})</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="31"/>
         <source>chapter*</source>
-        <translation type="unfinished"></translation>
+        <translation>fejezet sorszám nélkül (\chapter*{cím})</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="33"/>
         <source>section*</source>
-        <translation type="unfinished"></translation>
+        <translation>szakasz sorszám nélkül (\section*{cím})</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="35"/>
         <source>subsection*</source>
-        <translation type="unfinished"></translation>
+        <translation>alszakasz sorszám nélkül (\subsection*{cím})</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="37"/>
         <source>subsubsection*</source>
-        <translation type="unfinished"></translation>
+        <translation>alalszakasz sorszám nélkül (\subsubsection*{cím})</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="39"/>
         <source>paragraph*</source>
-        <translation type="unfinished"></translation>
+        <translation>paragrafus sorszám nélkül (\paragraph*{cím})</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="41"/>
         <source>subparagraph*</source>
-        <translation type="unfinished"></translation>
+        <translation>alparagrafus sorszám nélkül (\subparagraph*{cím})</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="43"/>
         <source>&amp;Environments</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Környezetek</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="45"/>
         <source>\begin{&lt;environment&gt;} [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{&lt;környezet&gt;}  [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="47"/>
         <source>\begin{center} [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{center}  [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="49"/>
         <source>\begin{flushleft} [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{flushleft}  [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="51"/>
         <source>\begin{flushright}  [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{flushright}  [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="53"/>
         <source>\begin{quote}  [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{quote}  [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="55"/>
         <source>\begin{quotation}  [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{quotation}  [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="57"/>
         <source>\begin{verse}  [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{verse}  [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="59"/>
         <source>\begin{verbatim}  [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{verbatim}  [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="61"/>
         <source>\begin{table}  [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{table}  [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="63"/>
         <source>\begin{figure}  [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{figure}  [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="65"/>
         <source>\begin{titlepage}  [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{titlepage}  [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="67"/>
         <source>&amp;List Environments</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lista környezetek</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="69"/>
         <source>\begin{itemize}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{itemize}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="71"/>
         <source>\begin{enumerate}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{enumerate}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="73"/>
         <source>\begin{description}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{description}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="75"/>
         <source>\begin{list}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{list}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="77"/>
         <source>Font St&amp;yles</source>
-        <translation type="unfinished"></translation>
+        <translation>B&amp;etűváltozatok</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="79"/>
         <source>\emph - Emphasis  [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\emph - Kiemelés  [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="81"/>
         <source>\textit - Italics  [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\textit - Kurzív  [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="83"/>
         <source>\textsl - Slanted  [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\textsl - Döntött  [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="85"/>
         <source>\textbf - Boldface  [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\textbf - Félkövér  [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="87"/>
         <source>\texttt - Typewriter  [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\texttt - Írógép  [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="89"/>
         <source>\textsc - Small caps  [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\textsc - Kiskapitális  [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="91"/>
         <source>\textsf - Sans Serif  [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\textsf - Groteszk  [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="93"/>
         <source>Font Sizes</source>
-        <translation type="unfinished"></translation>
+        <translation>Betűmértek</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="95"/>
         <source>tiny</source>
-        <translation type="unfinished"></translation>
+        <translation>pici (tiny)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="97"/>
         <source>scriptsize</source>
-        <translation type="unfinished"></translation>
+        <translation>indexméret (scriptsize)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="99"/>
         <source>footnotesize</source>
-        <translation type="unfinished"></translation>
+        <translation>lábjegyzet méretű (footnotesize)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="101"/>
         <location filename="additionaltranslations.cpp" line="187"/>
         <source>small</source>
-        <translation type="unfinished"></translation>
+        <translation>kicsi (small)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="103"/>
         <source>normalsize</source>
-        <translation type="unfinished"></translation>
+        <translation>normál méret (normalsize)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="105"/>
         <location filename="additionaltranslations.cpp" line="191"/>
         <source>large</source>
-        <translation type="unfinished"></translation>
+        <translation>nagy (large)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="107"/>
         <source>Large</source>
-        <translation type="unfinished"></translation>
+        <translation>Nagy (Large)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="109"/>
         <source>LARGE</source>
-        <translation type="unfinished"></translation>
+        <translation>NAGY (LARGE)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="111"/>
         <source>Huge</source>
-        <translation type="unfinished"></translation>
+        <translation>Hatalmas (Huge)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="113"/>
         <source>&amp;Tabular Environment</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tabulátor környezetek</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="115"/>
         <source>\begin{tabbing}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{tabbing}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="117"/>
         <source>\begin{tabular}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{tabular}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="119"/>
         <source>S&amp;pacing</source>
-        <translation type="unfinished"></translation>
+        <translation>H&amp;elykihagyás</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="121"/>
         <source>New line</source>
-        <translation type="unfinished"></translation>
+        <translation>Új sor</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="123"/>
         <source>International &amp;Accents</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemzetközi é&amp;kezetek</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="125"/>
         <source>\includegraphics{file}</source>
-        <translation type="unfinished"></translation>
+        <translation>\includegraphics{fájlnév}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="127"/>
         <source>\include{file}</source>
-        <translation type="unfinished"></translation>
+        <translation>\include{fájlnév}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="129"/>
         <source>\input{file}</source>
-        <translation type="unfinished"></translation>
+        <translation>\input{fájlnév}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="131"/>
         <source>Cross References</source>
-        <translation type="unfinished"></translation>
+        <translation>Kereszthivatkozások</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="133"/>
         <source>label</source>
-        <translation type="unfinished"></translation>
+        <translation>címke (label)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="135"/>
         <source>ref</source>
-        <translation type="unfinished"></translation>
+        <translation>hivatkozás (ref)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="137"/>
         <source>pageref</source>
-        <translation type="unfinished"></translation>
+        <translation>laphivatkozás (pageref)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="139"/>
         <source>index</source>
-        <translation type="unfinished"></translation>
+        <translation>index (index)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="141"/>
         <source>cite</source>
-        <translation type="unfinished"></translation>
+        <translation>idézet (cite)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="143"/>
         <source>footnote</source>
-        <translation type="unfinished"></translation>
+        <translation>lábjegyzet (footnote)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="145"/>
         <source>&amp;Math</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Matematika</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="147"/>
         <source>Inline math mode $...$</source>
-        <translation type="unfinished"></translation>
+        <translation>Matematikai mód $...$ (sorok között)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="149"/>
         <source>Display math mode \[...\]</source>
-        <translation type="unfinished"></translation>
+        <translation>Matematikai mód \[...\] (kirakatban)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="151"/>
         <source>Numbered equations \begin{equation}</source>
-        <translation type="unfinished"></translation>
+        <translation>Számozott egyenlőségek \begin{equation}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="153"/>
         <source>\begin{align}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{align}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="155"/>
         <source>\begin{eqnarray}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{eqnarray}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="157"/>
         <source>_{} - subscript</source>
-        <translation type="unfinished"></translation>
+        <translation>_{} - alsó index</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="159"/>
         <source>^{} - superscript</source>
-        <translation type="unfinished"></translation>
+        <translation>^{} -felső index (hatvány)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="161"/>
         <source>\begin{array}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{array}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="163"/>
         <source>Math &amp;Functions</source>
-        <translation type="unfinished"></translation>
+        <translation>Matematikai &amp;függvények</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="165"/>
         <source>Math Font St&amp;yles</source>
-        <translation type="unfinished"></translation>
+        <translation>Matematikai b&amp;etűváltozatok</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="167"/>
         <source>\mathrm{} [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\mathrm{} [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="169"/>
         <source>\mathit{} [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\mathit{} [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="171"/>
         <source>\mathbf{} [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\mathbf{} [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="173"/>
         <source>\mathsf{} [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\mathsf{} [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="175"/>
         <source>\mathtt{} [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\mathtt{} [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="177"/>
         <source>\mathcal{} [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\mathcal{} [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="179"/>
         <source>\mathbb{} [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\mathbb{} [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="181"/>
         <source>\mathfrak{} [selection]</source>
-        <translation type="unfinished"></translation>
+        <translation>\mathfrak{} [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="183"/>
         <source>Math &amp;Accents</source>
-        <translation type="unfinished"></translation>
+        <translation>Matematikai é&amp;kezetek</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="185"/>
         <source>Math S&amp;paces</source>
-        <translation type="unfinished"></translation>
+        <translation>Matematikai h&amp;elykihagyás</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="189"/>
         <source>medium</source>
-        <translation type="unfinished"></translation>
+        <translation>közepes (medium)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="193"/>
         <source>quad</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>??</translatorcomment>
+        <translation>\quad</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="195"/>
         <source>qquad</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>??</translatorcomment>
+        <translation>\qquad</translation>
     </message>
 </context>
 <context>
@@ -1844,7 +1849,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <location filename="insertgraphics.cpp" line="25"/>
         <source>Insert Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>Kép beszúrása</translation>
     </message>
     <message>
         <location filename="insertgraphics.cpp" line="41"/>
@@ -2282,8 +2287,7 @@ Restart from the beginning ?</source>
         <location filename="qcodeedit/lib/qeditor.cpp" line="610"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1281"/>
         <source>Fin&amp;d next</source>
-        <translatorcomment>nem jelenik meg a magyar fordítás</translatorcomment>
-        <translation type="unfinished">Kö&amp;vetkező</translation>
+        <translation>Kö&amp;vetkező</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="618"/>
@@ -2443,12 +2447,12 @@ Naprakészen kívánja tartani a fájlt egy újratöltéssel?</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="239"/>
         <source>normal</source>
-        <translation type="unfinished">Normál</translation>
+        <translation type="unfinished">normál</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="56"/>
         <source>Identifier</source>
-        <translation type="unfinished">Azonosító</translation>
+        <translation>Azonosító</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="299"/>
@@ -2498,17 +2502,17 @@ Naprakészen kívánja tartani a fájlt egy újratöltéssel?</translation>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="347"/>
         <source>Font family</source>
-        <translation type="unfinished"></translation>
+        <translation>Betűkészlet</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="353"/>
         <source>Point size</source>
-        <translation type="unfinished"></translation>
+        <translation>Pontméret</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="359"/>
         <source>Priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Prioritás</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="499"/>
@@ -2527,107 +2531,108 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="197"/>
         <source>comment</source>
-        <translation type="unfinished"></translation>
+        <translation>megjegyzés</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="199"/>
         <source>keyword</source>
-        <translation type="unfinished"></translation>
+        <translation>kulcsszó</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="201"/>
         <source>extra-keyword</source>
-        <translation type="unfinished"></translation>
+        <translation>extra kulcsszó</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="203"/>
         <source>math-keyword</source>
-        <translation type="unfinished"></translation>
+        <translation>matematikai kulcsszó</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="205"/>
         <source>verbatim</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">formázott</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="207"/>
         <source>braceMatch</source>
-        <translation type="unfinished"></translation>
+        <translation>zárójel párral</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="209"/>
         <source>braceMismatch</source>
-        <translation type="unfinished"></translation>
+        <translation>zárójel pár nélkül</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="211"/>
         <source>search</source>
-        <translation type="unfinished"></translation>
+        <translation>keresés</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="213"/>
         <source>numbers</source>
-        <translation type="unfinished"></translation>
+        <translation>számok</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="215"/>
         <source>text</source>
-        <translation type="unfinished"></translation>
+        <translation>szöveg</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="217"/>
         <source>escapeseq</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>??</translatorcomment>
+        <translation type="unfinished">escape szekvencia</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="219"/>
         <source>spellingMistake</source>
-        <translation type="unfinished"></translation>
+        <translation>helyesírási hiba</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="221"/>
         <source>temporaryCodeCompletion</source>
-        <translation type="unfinished"></translation>
+        <translation>ideiglenes kódkiegészítés</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="223"/>
         <source>environment</source>
-        <translation type="unfinished"></translation>
+        <translation>környezet</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="225"/>
         <source>referencePresent</source>
-        <translation type="unfinished"></translation>
+        <translation>rendben lévő hivatkozás</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="227"/>
         <source>referenceMissing</source>
-        <translation type="unfinished"></translation>
+        <translation>hiányzó hivatkozás</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="229"/>
         <source>referenceMultiple</source>
-        <translation type="unfinished"></translation>
+        <translation>többszörös hivatkozás</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="231"/>
         <source>citationPresent</source>
-        <translation type="unfinished"></translation>
+        <translation>rendben lévő idézés</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="233"/>
         <source>citationMissing</source>
-        <translation type="unfinished"></translation>
+        <translation>hiányzó idézés</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="235"/>
         <source>current</source>
-        <translation type="unfinished"></translation>
+        <translation>jelenlegi</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="237"/>
         <source>selection</source>
-        <translation type="unfinished"></translation>
+        <translation>kiválasztott</translation>
     </message>
 </context>
 <context>
@@ -2701,7 +2706,7 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="quickdocumentdialog.ui" line="64"/>
         <source>Class Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Osztály beállítások</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="84"/>
@@ -2759,17 +2764,17 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="quickdocumentdialog.ui" line="238"/>
         <source>Geometry</source>
-        <translation type="unfinished"></translation>
+        <translation>Geometria</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="266"/>
         <source>Page</source>
-        <translation type="unfinished">Lap</translation>
+        <translation>Lap</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="272"/>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Szélesség:</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="282"/>
@@ -2785,7 +2790,7 @@ Akarja menteni ezeket?</translation>
         <location filename="quickdocumentdialog.ui" line="560"/>
         <location filename="quickdocumentdialog.ui" line="577"/>
         <source>mm</source>
-        <translation type="unfinished"></translation>
+        <translation>mm</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="301"/>
@@ -2795,7 +2800,7 @@ Akarja menteni ezeket?</translation>
         <location filename="quickdocumentdialog.ui" line="520"/>
         <location filename="quickdocumentdialog.ui" line="582"/>
         <source>cm</source>
-        <translation type="unfinished"></translation>
+        <translation>cm</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="306"/>
@@ -2805,7 +2810,7 @@ Akarja menteni ezeket?</translation>
         <location filename="quickdocumentdialog.ui" line="525"/>
         <location filename="quickdocumentdialog.ui" line="587"/>
         <source>pt</source>
-        <translation type="unfinished"></translation>
+        <translation>pt</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="311"/>
@@ -2815,7 +2820,7 @@ Akarja menteni ezeket?</translation>
         <location filename="quickdocumentdialog.ui" line="530"/>
         <location filename="quickdocumentdialog.ui" line="592"/>
         <source>bp</source>
-        <translation type="unfinished"></translation>
+        <translation>bp</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="316"/>
@@ -2825,37 +2830,37 @@ Akarja menteni ezeket?</translation>
         <location filename="quickdocumentdialog.ui" line="535"/>
         <location filename="quickdocumentdialog.ui" line="597"/>
         <source>in</source>
-        <translation type="unfinished"></translation>
+        <translation>in</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="369"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Magasság:</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="379"/>
         <source>Margins</source>
-        <translation type="unfinished"></translation>
+        <translation>Margó</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="385"/>
         <source>Left:</source>
-        <translation type="unfinished"></translation>
+        <translation>Balra:</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="440"/>
         <source>Right:</source>
-        <translation type="unfinished"></translation>
+        <translation>Jobbra:</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="543"/>
         <source>Top:</source>
-        <translation type="unfinished"></translation>
+        <translation>Teteje:</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="550"/>
         <source>Bottom:</source>
-        <translation type="unfinished"></translation>
+        <translation>Alja:</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="44"/>
@@ -2988,114 +2993,115 @@ Akarja menteni ezeket?</translation>
         <translation>Űrlap</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="318"/>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="321"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="50"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="521"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="318"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="321"/>
         <source>Find next occurence</source>
         <translation>Következő előfordulás</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="319"/>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="322"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="82"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="489"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="319"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="322"/>
         <source>Find previous occurence</source>
         <translation>Előző előfordulás</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="342"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="102"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="342"/>
         <source>all</source>
         <translation>mind</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="343"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="130"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="343"/>
         <source>Prompt on replace</source>
         <translation>Kérdezzen csere előtt</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="344"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="146"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="344"/>
         <source>Replace all</source>
         <translation>Cserélje mind</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="345"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="159"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="345"/>
         <source>Escape sequences</source>
         <translation>Escape szekvenciák</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="330"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="193"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="330"/>
         <source>Case</source>
         <translation>Kis-/nagybetű</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="332"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="215"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="332"/>
         <source>Words</source>
         <translation>Szavak</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="334"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="234"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="334"/>
         <source>Regexp</source>
         <translation>Reg. kif.</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="336"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="253"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="336"/>
         <source>Highlight all</source>
         <translation>Mind kiemelése</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="338"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="266"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="338"/>
         <source>Cursor</source>
-        <translation type="unfinished">Kurzortól</translation>
+        <translation>Kurzortól</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="340"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="282"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="340"/>
         <source>Selection</source>
         <translation>Kiválasztás</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="315"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="340"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="315"/>
         <source>Close search/replace panel</source>
         <translation>Keresés/csere panel bezárása</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="316"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="372"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="316"/>
         <source>Refresh search underlying context (as an attempt to correct search behavior)</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>??</translatorcomment>
+        <translation></translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="326"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="392"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="326"/>
         <source> Find :</source>
         <translation>Keresendő:</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="320"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="426"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="320"/>
         <source>Replacement text</source>
         <translation>Csereszöveg</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="317"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="445"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="317"/>
         <source>Text or pattern to search for</source>
         <translation>Keresendő szöveg vagy minta</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="346"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="461"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="346"/>
         <source>Replace :</source>
         <translation>Csere:</translation>
     </message>
@@ -3185,8 +3191,8 @@ Akarja menteni ezeket?</translation>
         <translation>Bezár</translation>
     </message>
     <message>
-        <location filename="spellerdialog.cpp" line="192"/>
         <location filename="spellerdialog.ui" line="128"/>
+        <location filename="spellerdialog.cpp" line="192"/>
         <source>Show Ignore List \/</source>
         <translation>Mellőzési lista megjelenítése \/</translation>
     </message>
@@ -3701,7 +3707,7 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="texmaker.cpp" line="405"/>
         <source>Complete</source>
-        <translation type="unfinished">Kiegészítés</translation>
+        <translation>Kiegészítés</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="406"/>
@@ -3927,7 +3933,8 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="texmaker.cpp" line="326"/>
         <source>Check &amp;in</source>
-        <translation type="unfinished">&amp;Bejelentkezés</translation>
+        <translatorcomment>maradjon ??</translatorcomment>
+        <translation type="unfinished">&amp;SVN Commit</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="327"/>
@@ -3997,8 +4004,8 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="texmaker.cpp" line="355"/>
         <source>Pre&amp;view Selection/Parantheses</source>
-        <translatorcomment>mi ez??</translatorcomment>
-        <translation type="unfinished">Kiválasztás/Zárójelek e&amp;lőnézete</translation>
+        <translatorcomment>A kiválasztás előnézetét értem, de mi van a zárójelezéssel???</translatorcomment>
+        <translation type="unfinished">Kiválasztás/Zárójelezés e&amp;lőnézete</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="361"/>
@@ -4123,7 +4130,7 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="texmaker.cpp" line="460"/>
         <source>&amp;Asymptote</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Asymptote</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="462"/>
@@ -4263,7 +4270,7 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="texmaker.cpp" line="537"/>
         <source>Fullscreen Mode</source>
-        <translation type="unfinished">Teljes képernyős üzemmód</translation>
+        <translation>Teljes képernyős üzemmód</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="541"/>
@@ -4278,7 +4285,7 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="texmaker.cpp" line="545"/>
         <source>load Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil betöltése</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="547"/>
@@ -4670,7 +4677,7 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
     <message>
         <location filename="texmaker.cpp" line="4305"/>
         <source>Load Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil betöltése</translation>
     </message>
 </context>
 <context>
@@ -5038,22 +5045,22 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
     <message>
         <location filename="usermenudialog.ui" line="101"/>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Normál</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="108"/>
         <source>Script</source>
-        <translation type="unfinished"></translation>
+        <translation>Parancsfájl</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="115"/>
         <source>Environment</source>
-        <translation type="unfinished">Környezet</translation>
+        <translation>Környezet</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="122"/>
         <source>Type</source>
-        <translation type="unfinished">Típus</translation>
+        <translation>Típus</translation>
     </message>
 </context>
 <context>
@@ -5092,8 +5099,8 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
 <context>
     <name>WebPublishDialog</name>
     <message>
-        <location filename="webpublishdialog.cpp" line="22"/>
         <location filename="webpublishdialog.ui" line="13"/>
+        <location filename="webpublishdialog.cpp" line="22"/>
         <source>Convert to Html</source>
         <translation>Konvertálás Html-re</translation>
     </message>
@@ -5339,38 +5346,41 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="scriptengine.cpp" line="24"/>
         <source>no arguments to alert</source>
-        <translation type="unfinished"></translation>
+        <translation>az értesítésnek nincs argumentuma</translation>
     </message>
     <message>
         <location filename="scriptengine.cpp" line="28"/>
         <source>too much arguments to alert</source>
-        <translation type="unfinished"></translation>
+        <translation>az értesítésnek túl sok argumentuma van</translation>
     </message>
     <message>
         <location filename="scriptengine.cpp" line="31"/>
         <source>Script-Message</source>
-        <translation type="unfinished"></translation>
+        <translation>Parancsfájl üzenet</translation>
     </message>
     <message>
         <location filename="scriptengine.cpp" line="45"/>
         <source>File Chooser</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>??</translatorcomment>
+        <translation type="unfinished">Fájl kiválasztó</translation>
     </message>
     <message>
         <location filename="scriptengine.cpp" line="53"/>
         <source>Uncaught exception at line %1: %2
 </source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>??</translatorcomment>
+        <translation type="unfinished">A kivételt nem sikerült elkapni a(z) %1 sorban: %2</translation>
     </message>
     <message>
         <location filename="scriptengine.cpp" line="54"/>
         <source>Backtrace %1</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>?? nyomkövetés ??</translatorcomment>
+        <translation type="unfinished">Backtrace %1</translation>
     </message>
     <message>
         <location filename="scriptengine.cpp" line="56"/>
         <source>Script-Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Parancsfájl hiba</translation>
     </message>
 </context>
 <context>
