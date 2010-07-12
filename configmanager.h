@@ -16,9 +16,7 @@ struct ManagedToolBar{
 	QStringList defaults;
 	QStringList actualActions;
 	QToolBar *toolbar;
-	QString translatedName;
 	ManagedToolBar(const QString &newName, const QStringList &defs);
-	ManagedToolBar(const QString &newName, const QString &newTranslatedName, const QStringList &defs);
 };
 
 
