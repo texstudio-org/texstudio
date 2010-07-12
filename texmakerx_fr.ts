@@ -18,6 +18,41 @@
         <translatorcomment>OK</translatorcomment>
         <translation></translation>
     </message>
+    <message>
+        <location filename="aboutdialog.cpp" line="25"/>
+        <source>&lt;b&gt;TexMakerX 1.9.9a (SVN </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="aboutdialog.cpp" line="26"/>
+        <source>TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;html conversion: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="aboutdialog.cpp" line="27"/>
+        <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) and KILE (GPL) program.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="aboutdialog.cpp" line="28"/>
+        <source>Thanks to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="aboutdialog.cpp" line="29"/>
+        <source>Project home site : &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="aboutdialog.cpp" line="30"/>
+        <source>Home site of original Texmaker: &lt;a href=&quot;http://www.xm1math.net/texmaker/&quot;&gt;http://www.xm1math.net/texmaker/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="aboutdialog.cpp" line="31"/>
+        <source>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ArrayDialog</name>
@@ -441,7 +476,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="748"/>
         <source>Execute before compiling:</source>
-        <translation>Avant compilation :</translation>
+        <translation>Exécuter avant compilation :</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="788"/>
@@ -499,8 +534,8 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <translation>Supprimer ligne</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="253"/>
         <location filename="configdialog.ui" line="857"/>
+        <location filename="configdialog.cpp" line="253"/>
         <source>Shortcuts</source>
         <translation>Raccourcis clavier</translation>
     </message>
@@ -543,8 +578,8 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <translation>Fermer la fenêtre de log au moyen de la touche Esc</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="254"/>
         <location filename="configdialog.ui" line="905"/>
+        <location filename="configdialog.cpp" line="254"/>
         <source>Latex Menus</source>
         <translation>Menus LaTeX</translation>
     </message>
@@ -569,8 +604,8 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <translation></translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="256"/>
         <location filename="configdialog.ui" line="1024"/>
+        <location filename="configdialog.cpp" line="256"/>
         <location filename="configmanager.cpp" line="739"/>
         <source>Editor</source>
         <translation>Éditeur</translation>
@@ -2511,11 +2546,6 @@ Rafraîchir en rouvrant le fichier ?</translation>
 <context>
     <name>QFormatConfig</name>
     <message>
-        <location filename="additionaltranslations.cpp" line="239"/>
-        <source>normal</source>
-        <translation type="unfinished">Normal</translation>
-    </message>
-    <message>
         <location filename="additionaltranslations.cpp" line="197"/>
         <source>comment</source>
         <translation>Commentaire</translation>
@@ -2619,6 +2649,11 @@ Rafraîchir en rouvrant le fichier ?</translation>
         <location filename="additionaltranslations.cpp" line="237"/>
         <source>selection</source>
         <translation>Sélection</translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="239"/>
+        <source>normal</source>
+        <translation type="unfinished">Normal</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="56"/>
@@ -3059,115 +3094,115 @@ Voulez-vous l&apos;enregistrer ?</translation>
         <translation>Formulaire</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="318"/>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="321"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="50"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="521"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="318"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="321"/>
         <source>Find next occurence</source>
         <translation>Cherche l&apos;occurence suivante</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="319"/>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="322"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="82"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="489"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="319"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="322"/>
         <source>Find previous occurence</source>
         <translation>Cherche l&apos;occurence précédente</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="342"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="102"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="342"/>
         <source>all</source>
         <translation>tout</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="343"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="130"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="343"/>
         <source>Prompt on replace</source>
         <translation>Demander confirmation</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="344"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="146"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="344"/>
         <source>Replace all</source>
         <translation>Remplacer tout</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="345"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="159"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="345"/>
         <source>Escape sequences</source>
         <translation>Séquences d&apos;échappement</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="330"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="193"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="330"/>
         <source>Case</source>
         <translation>Sensible à la casse</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="332"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="215"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="332"/>
         <source>Words</source>
         <translation>Mots</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="334"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="234"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="334"/>
         <source>Regexp</source>
         <translation>Exp. rég.</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="336"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="253"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="336"/>
         <source>Highlight all</source>
         <translation>Surligner tout</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="338"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="266"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="338"/>
         <source>Cursor</source>
         <translation>Curseur</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="340"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="282"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="340"/>
         <source>Selection</source>
         <translation>Sélection</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="315"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="340"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="315"/>
         <source>Close search/replace panel</source>
         <translation>Fermer panneau chercher/remplacer</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="316"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="372"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="316"/>
         <source>Refresh search underlying context (as an attempt to correct search behavior)</source>
         <translation>Actualiser le contexte de recherche (essai pour corriger le comportement)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="326"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="392"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="326"/>
         <source> Find :</source>
         <translatorcomment>In the source text, there shouldn&apos;t be a space before &apos;:&apos;</translatorcomment>
         <translation>Chercher :</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="320"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="426"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="320"/>
         <source>Replacement text</source>
         <translation>Texte de remplacement</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="317"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="445"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="317"/>
         <source>Text or pattern to search for</source>
         <translation>Texte ou motif à chercher</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="346"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="461"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="346"/>
         <source>Replace :</source>
         <translatorcomment>In the source text, there shouldn&apos;t be a space before &apos;:&apos;</translatorcomment>
         <translation>Remplacer :</translation>
@@ -3259,8 +3294,8 @@ Voulez-vous l&apos;enregistrer ?</translation>
         <translation>Fermer</translation>
     </message>
     <message>
-        <location filename="spellerdialog.cpp" line="192"/>
         <location filename="spellerdialog.ui" line="128"/>
+        <location filename="spellerdialog.cpp" line="192"/>
         <source>Show Ignore List \/</source>
         <translation>Afficher la liste des mots ignorés \/</translation>
     </message>
@@ -4521,7 +4556,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="2649"/>
         <source>Process started</source>
-        <translation>Compilation en cours</translation>
+        <translation>Processus en cours</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="2678"/>
@@ -4542,12 +4577,12 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="2723"/>
         <source>Process exited with error(s)</source>
-        <translation>Erreur(s) rencontrée(s) pendant la compilation</translation>
+        <translation>Processus terminé avec une ou plusieurs erreurs</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="2723"/>
         <source>Process exited normally</source>
-        <translation>Compilation achevée normalement</translation>
+        <translation>Processus terminé normalement</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="2739"/>
@@ -5118,8 +5153,8 @@ Sinon la ponctuation est ignorée.</translation>
 <context>
     <name>WebPublishDialog</name>
     <message>
-        <location filename="webpublishdialog.cpp" line="22"/>
         <location filename="webpublishdialog.ui" line="13"/>
+        <location filename="webpublishdialog.cpp" line="22"/>
         <source>Convert to Html</source>
         <translation>Exporter vers html</translation>
     </message>
