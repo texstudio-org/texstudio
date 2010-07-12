@@ -13,8 +13,7 @@
 
 #include "manhattanstyle.h"
 
-ManagedToolBar::ManagedToolBar(const QString &newName, const QStringList &defs): name(newName), defaults(defs), toolbar(0), translatedName(newName){}
-ManagedToolBar::ManagedToolBar(const QString &newName, const QString &newTranslatedName, const QStringList &defs): name(newName), defaults(defs), toolbar(0), translatedName(newTranslatedName){}
+ManagedToolBar::ManagedToolBar(const QString &newName, const QStringList &defs): name(newName), defaults(defs), toolbar(0){}
 
 ManagedProperty::ManagedProperty():storage(0),type(PT_VOID),widgetOffset(0){
 }
