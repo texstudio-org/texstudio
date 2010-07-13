@@ -16,37 +16,38 @@
     <message>
         <location filename="aboutdialog.cpp" line="25"/>
         <source>&lt;b&gt;TexMakerX 1.9.9a (SVN </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;TexMakerX 1.9.9a (SVN </translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="26"/>
         <source>TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;html conversion: </source>
-        <translation type="unfinished"></translation>
+        <translation>TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;Html konvertálás: </translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="27"/>
         <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) and KILE (GPL) program.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>A TexMakerX felhasznál az alábbi programok kódjaiból: Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) és KILE (GPL).&lt;br&gt; A TexMakerX a DSingleApplication (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL) osztályt használja.&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="28"/>
         <source>Thanks to </source>
-        <translation type="unfinished"></translation>
+        <translation>Köszönettel az alábbiaknak: </translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="29"/>
         <source>Project home site : &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>A project honlapja: &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="30"/>
         <source>Home site of original Texmaker: &lt;a href=&quot;http://www.xm1math.net/texmaker/&quot;&gt;http://www.xm1math.net/texmaker/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Az eredeti Texmaker honlapja: &lt;a href=&quot;http://www.xm1math.net/texmaker/&quot;&gt;http://www.xm1math.net/texmaker/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="31"/>
         <source>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Ez egy szabad szoftver, terjesztheti és/vagy módosíthatja a Free Software Foundation által kiadott GNU General Public License második (vagy bármely későbbi) változatában foglaltak alapján.</translatorcomment>
+        <translation>Ez egy szabad szoftver, terjesztheti és/vagy módosíthatja a Free Software Foundation által kiadott GNU General Public License második (vagy bármely későbbi) változatában foglaltak alapján.</translation>
     </message>
 </context>
 <context>
@@ -454,10 +455,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Felhasználói: (%: fájlnév kiterjesztés nélkül)</translation>
     </message>
     <message>
-        <source>(the commands must be separated by &apos;|&apos;)</source>
-        <translation type="obsolete">(a parancsok &apos;|&apos; jellel választandóak el)</translation>
-    </message>
-    <message>
         <location filename="configdialog.ui" line="739"/>
         <source>More</source>
         <translation>Tovább</translation>
@@ -491,10 +488,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <location filename="configdialog.ui" line="820"/>
         <source>Show log after compiling if there are errors</source>
         <translation>Napló mutatása hibák esetén</translation>
-    </message>
-    <message>
-        <source>run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</source>
-        <translation type="obsolete">&quot;latex bibtex latex&quot; futtatása fordítás előtt, ha a bib-fájlok megváltoztak</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="857"/>
@@ -549,7 +542,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <location filename="configdialog.ui" line="1024"/>
         <location filename="configdialog.cpp" line="256"/>
-        <location filename="configmanager.cpp" line="741"/>
+        <location filename="configmanager.cpp" line="740"/>
         <source>Editor</source>
         <translation>Szerkesztő</translation>
     </message>
@@ -594,61 +587,9 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Fontos sorok számának mutatása</translation>
     </message>
     <message>
-        <source>show preview as tool tip if panel is hidden</source>
-        <translation type="obsolete">Előnézetet mutasson tippként, ha a panel rejtve van</translation>
-    </message>
-    <message>
-        <source>always show preview in preview panel</source>
-        <translation type="obsolete">Mindig mutasson előnézetet az előnézet panelen</translation>
-    </message>
-    <message>
-        <source>always show preview as tool tip</source>
-        <translation type="obsolete">Mindig mutasson előnézetet tippként</translation>
-    </message>
-    <message>
-        <source>always show both</source>
-        <translation type="obsolete">Mindig mutassa mindkettőt</translation>
-    </message>
-    <message>
-        <source>preview with dvipng</source>
-        <translation type="obsolete">Előnézet dvipng-vel</translation>
-    </message>
-    <message>
-        <source>preview with dvipng --follow (parallel)</source>
-        <translation type="obsolete">Előnézet dvipng --follow segítségével (párhuzamosan)</translation>
-    </message>
-    <message>
-        <source>preview with dvips/ghostscript</source>
-        <translation type="obsolete">Előnézet dvips/ghostscript-tel</translation>
-    </message>
-    <message>
         <location filename="configdialog.ui" line="1145"/>
         <source>Formats</source>
         <translation>Formátumok</translation>
-    </message>
-    <message>
-        <source>close search and replace panel together</source>
-        <translation type="obsolete">Keresés és csere panelek együttes bezárása</translation>
-    </message>
-    <message>
-        <source>ignore indentation</source>
-        <translation type="obsolete">Behúzás mellőzése</translation>
-    </message>
-    <message>
-        <source>keep indentation</source>
-        <translation type="obsolete">Behúzás megtartása</translation>
-    </message>
-    <message>
-        <source>indent and unindent automatically</source>
-        <translation type="obsolete">Behúzás és annak megszüntetése automatikusan</translation>
-    </message>
-    <message>
-        <source>keep indentation with spaces only</source>
-        <translation type="obsolete">Behúzás megtartása szóközökkel</translation>
-    </message>
-    <message>
-        <source>indent and unindent automatically with spaces only</source>
-        <translation type="obsolete">Behúzás és annak megszüntetése automatikusan szóközökkel</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1258"/>
@@ -675,10 +616,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <location filename="configdialog.ui" line="1204"/>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
         <translation>Csak utf16/utf-8 és ISO 8859-1 közül tud választani!</translation>
-    </message>
-    <message>
-        <source>auto detect encoding of loaded files</source>
-        <translation type="obsolete">Fájlkódolás automatikus felismerése</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1288"/>
@@ -708,8 +645,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <location filename="configdialog.ui" line="894"/>
         <source>Close Log-View with Esc-Key</source>
-        <translatorcomment>nem is találom hol van</translatorcomment>
-        <translation type="unfinished">A napló bezárása Escape-pel</translation>
+        <translation>A napló bezárása Escape-pel</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1082"/>
@@ -881,7 +817,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <location filename="configdialog.ui" line="118"/>
         <source>Show advanced options</source>
         <oldsource>show advanced options</oldsource>
-        <translation>haladó beállítások megjelenítése</translation>
+        <translation>Haladó beállítások megjelenítése</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="104"/>
@@ -1012,27 +948,27 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Képek (*.png *.xpm *.jpg *.bmp *.svg)</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="743"/>
+        <location filename="configmanager.cpp" line="742"/>
         <source>Special Key Replacement</source>
         <translation>Különleges kulcs csere</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="744"/>
+        <location filename="configmanager.cpp" line="743"/>
         <source>New column meaning:</source>
         <translation>Új oszlop jelentése:</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="744"/>
+        <location filename="configmanager.cpp" line="743"/>
         <source>Key to replace</source>
         <translation>Cserélendő kulcs</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="744"/>
+        <location filename="configmanager.cpp" line="743"/>
         <source>Text to insert before word</source>
         <translation>Szöveg beillesztése a szó elé</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="744"/>
+        <location filename="configmanager.cpp" line="743"/>
         <source>Text to insert after word</source>
         <translation>Szöveg beillesztése a szó után</translation>
     </message>
@@ -1040,82 +976,74 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
 <context>
     <name>ConfigManager</name>
     <message>
-        <source>File</source>
-        <translation type="obsolete">Fájl</translation>
-    </message>
-    <message>
-        <source>Edit</source>
-        <translation type="obsolete">Szerkesztés</translation>
-    </message>
-    <message>
+        <location filename="configmanager.cpp" line="639"/>
         <location filename="configmanager.cpp" line="640"/>
-        <location filename="configmanager.cpp" line="641"/>
-        <location filename="configmanager.cpp" line="791"/>
-        <location filename="configmanager.cpp" line="793"/>
-        <location filename="configmanager.cpp" line="932"/>
-        <location filename="configmanager.cpp" line="944"/>
+        <location filename="configmanager.cpp" line="790"/>
+        <location filename="configmanager.cpp" line="792"/>
+        <location filename="configmanager.cpp" line="931"/>
+        <location filename="configmanager.cpp" line="943"/>
         <source>default</source>
         <translation>Alapértelmezett</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="735"/>
+        <location filename="configmanager.cpp" line="734"/>
         <source>Menus</source>
         <translation>Menük</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="785"/>
+        <location filename="configmanager.cpp" line="784"/>
         <source>Latex/Math menus</source>
         <translation>LaTeX/Matematika menük</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="786"/>
+        <location filename="configmanager.cpp" line="785"/>
         <source>All menus</source>
         <translation>Minden menü</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="787"/>
+        <location filename="configmanager.cpp" line="786"/>
         <source>Special Tags</source>
         <translation>Speciális elemek</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="992"/>
+        <location filename="configmanager.cpp" line="991"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>Legutóbbi &apos;Mesterdokumentum&apos;: %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="998"/>
+        <location filename="configmanager.cpp" line="997"/>
         <source>Recent File %1</source>
         <translation>Legutóbbi fájl %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1006"/>
+        <location filename="configmanager.cpp" line="1005"/>
         <source>Master Document: </source>
         <translation>Mesterdokumentum:</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1206"/>
-        <location filename="configmanager.cpp" line="1213"/>
+        <location filename="configmanager.cpp" line="1205"/>
+        <location filename="configmanager.cpp" line="1212"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;nincs&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1207"/>
-        <location filename="configmanager.cpp" line="1214"/>
+        <location filename="configmanager.cpp" line="1206"/>
+        <location filename="configmanager.cpp" line="1213"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;alapértelmezett&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1325"/>
+        <location filename="configmanager.cpp" line="1324"/>
         <source>Browse program</source>
         <translation>Program megadása</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1345"/>
+        <location filename="configmanager.cpp" line="1344"/>
         <source>Latex</source>
         <translation>LaTeX</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1345"/>
+        <location filename="configmanager.cpp" line="1344"/>
         <source>Math</source>
         <translation>Matematika</translation>
     </message>
@@ -1142,72 +1070,72 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <location filename="additionaltranslations.cpp" line="15"/>
         <source>part</source>
-        <translation>rész (\part{cím})</translation>
+        <translation>Rész</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="17"/>
         <source>chapter</source>
-        <translation>fejezet (\chapter{cím})</translation>
+        <translation>Fejezet</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="19"/>
         <source>section</source>
-        <translation>szakasz (\section{cím})</translation>
+        <translation>Szakasz</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="21"/>
         <source>subsection</source>
-        <translation>alszakasz (\subsection{cím})</translation>
+        <translation>Alszakasz</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="23"/>
         <source>subsubsection</source>
-        <translation>alalszakasz (\subsubsection{cím})</translation>
+        <translation>Alalszakasz</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="25"/>
         <source>paragraph</source>
-        <translation>paragrafus (\paragraph{cím})</translation>
+        <translation>Paragrafus</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="27"/>
         <source>subparagraph</source>
-        <translation>alparagrafus (\subparagraph{cím})</translation>
+        <translation>Alparagrafus</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="29"/>
         <source>part*</source>
-        <translation>rész sorszám nélkül (\part*{cím})</translation>
+        <translation>Rész*</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="31"/>
         <source>chapter*</source>
-        <translation>fejezet sorszám nélkül (\chapter*{cím})</translation>
+        <translation>Fejezet*</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="33"/>
         <source>section*</source>
-        <translation>szakasz sorszám nélkül (\section*{cím})</translation>
+        <translation>Szakasz*</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="35"/>
         <source>subsection*</source>
-        <translation>alszakasz sorszám nélkül (\subsection*{cím})</translation>
+        <translation>Alszakasz*</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="37"/>
         <source>subsubsection*</source>
-        <translation>alalszakasz sorszám nélkül (\subsubsection*{cím})</translation>
+        <translation>Alalszakasz*</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="39"/>
         <source>paragraph*</source>
-        <translation>paragrafus sorszám nélkül (\paragraph*{cím})</translation>
+        <translation>Paragrafus*</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="41"/>
         <source>subparagraph*</source>
-        <translation>alparagrafus sorszám nélkül (\subparagraph*{cím})</translation>
+        <translation>Alparagrafus*</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="43"/>
@@ -1342,49 +1270,49 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <location filename="additionaltranslations.cpp" line="95"/>
         <source>tiny</source>
-        <translation>pici (tiny)</translation>
+        <translation>Pici</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="97"/>
         <source>scriptsize</source>
-        <translation>indexméret (scriptsize)</translation>
+        <translation>Indexméret</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="99"/>
         <source>footnotesize</source>
-        <translation>lábjegyzet méretű (footnotesize)</translation>
+        <translation>Lábjegyzetméret</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="101"/>
         <location filename="additionaltranslations.cpp" line="187"/>
         <source>small</source>
-        <translation>kicsi (small)</translation>
+        <translation>Kicsi</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="103"/>
         <source>normalsize</source>
-        <translation>normál méret (normalsize)</translation>
+        <translation>Normálméret</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="105"/>
         <location filename="additionaltranslations.cpp" line="191"/>
         <source>large</source>
-        <translation>nagy (large)</translation>
+        <translation>nagy</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="107"/>
         <source>Large</source>
-        <translation>Nagy (Large)</translation>
+        <translation>Nagy</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="109"/>
         <source>LARGE</source>
-        <translation>NAGY (LARGE)</translation>
+        <translation>NAGY</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="111"/>
         <source>Huge</source>
-        <translation>Hatalmas (Huge)</translation>
+        <translation>Hatalmas</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="113"/>
@@ -1439,32 +1367,32 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <location filename="additionaltranslations.cpp" line="133"/>
         <source>label</source>
-        <translation>címke (label)</translation>
+        <translation>Címke</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="135"/>
         <source>ref</source>
-        <translation>hivatkozás (ref)</translation>
+        <translation>Hivatkozás</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="137"/>
         <source>pageref</source>
-        <translation>laphivatkozás (pageref)</translation>
+        <translation>Laphivatkozás</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="139"/>
         <source>index</source>
-        <translation>index (index)</translation>
+        <translation>Index</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="141"/>
         <source>cite</source>
-        <translation>idézet (cite)</translation>
+        <translation>Idézet</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="143"/>
         <source>footnote</source>
-        <translation>lábjegyzet (footnote)</translation>
+        <translation>Lábjegyzet</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="145"/>
@@ -1574,7 +1502,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <location filename="additionaltranslations.cpp" line="189"/>
         <source>medium</source>
-        <translation>közepes (medium)</translation>
+        <translation>Közepes</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="193"/>
@@ -1760,10 +1688,6 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <location filename="qcodeedit/lib/widgets/formatconfig.ui" line="35"/>
         <source>Scheme :</source>
         <translation>Séma:</translation>
-    </message>
-    <message>
-        <source>Identifier</source>
-        <translation type="obsolete">Azonosító</translation>
     </message>
 </context>
 <context>
@@ -2490,7 +2414,7 @@ Naprakészen kívánja tartani a fájlt egy újratöltéssel?</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="239"/>
         <source>normal</source>
-        <translation type="unfinished">normál</translation>
+        <translation>normál</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="56"/>
@@ -2500,17 +2424,17 @@ Naprakészen kívánja tartani a fájlt egy újratöltéssel?</translation>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="66"/>
         <source>font</source>
-        <translation type="unfinished"></translation>
+        <translation>betű</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="67"/>
         <source>size</source>
-        <translation type="unfinished"></translation>
+        <translation>méret</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="68"/>
         <source>prio</source>
-        <translation type="unfinished"></translation>
+        <translation>prioritás</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="299"/>
@@ -2609,7 +2533,7 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="205"/>
         <source>verbatim</source>
-        <translation type="unfinished">formázott</translation>
+        <translation>formázott</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="207"/>
@@ -2639,8 +2563,7 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="217"/>
         <source>escapeseq</source>
-        <translatorcomment>??</translatorcomment>
-        <translation type="unfinished">escape szekvencia</translation>
+        <translation>escape szekvencia</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="219"/>
@@ -3521,18 +3444,6 @@ Akarja menteni ezeket?</translation>
         <translation>&amp;Fájl</translation>
     </message>
     <message>
-        <source>New</source>
-        <translation type="obsolete">Új</translation>
-    </message>
-    <message>
-        <source>New from template</source>
-        <translation type="obsolete">Új, sablon alapján</translation>
-    </message>
-    <message>
-        <source>Open</source>
-        <translation type="obsolete">Megnyitás</translation>
-    </message>
-    <message>
         <location filename="texmaker.cpp" line="318"/>
         <source>Open Recent</source>
         <translation>Legutóbbi megnyitása</translation>
@@ -3543,34 +3454,10 @@ Akarja menteni ezeket?</translation>
         <translation>Előző munkamenet helyreállítása</translation>
     </message>
     <message>
-        <source>Save</source>
-        <translation type="obsolete">Mentés</translation>
-    </message>
-    <message>
         <location filename="texmaker.cpp" line="969"/>
         <location filename="texmaker.cpp" line="1158"/>
         <source>Save As</source>
         <translation>Mentés másként</translation>
-    </message>
-    <message>
-        <source>Save All</source>
-        <translation type="obsolete">Minden mentése</translation>
-    </message>
-    <message>
-        <source>Make Template</source>
-        <translation type="obsolete">Sablon létrehozása</translation>
-    </message>
-    <message>
-        <source>Check in</source>
-        <translation type="obsolete">Bejelentkezés</translation>
-    </message>
-    <message>
-        <source>Show old Revisions</source>
-        <translation type="obsolete">Régi kiadások megjelenítése</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="obsolete">Bezár</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="324"/>
@@ -3594,14 +3481,6 @@ Akarja menteni ezeket?</translation>
         <translation>&amp;Szerkesztés</translation>
     </message>
     <message>
-        <source>Undo</source>
-        <translation type="obsolete">Vissza</translation>
-    </message>
-    <message>
-        <source>Redo</source>
-        <translation type="obsolete">Újra</translation>
-    </message>
-    <message>
         <location filename="texmaker.cpp" line="562"/>
         <location filename="texmaker.cpp" line="3688"/>
         <source>Copy</source>
@@ -3612,66 +3491,6 @@ Akarja menteni ezeket?</translation>
         <location filename="texmaker.cpp" line="3689"/>
         <source>Cut</source>
         <translation>Kivágás</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="obsolete">Összes kijelölése</translation>
-    </message>
-    <message>
-        <source>Erase Line</source>
-        <translation type="obsolete">Sor törlése</translation>
-    </message>
-    <message>
-        <source>Paste as Latex</source>
-        <translation type="obsolete">Beillesztés LaTeX-ként</translation>
-    </message>
-    <message>
-        <source>Convert to Latex</source>
-        <translation type="obsolete">Konvertálás LaTeX-re</translation>
-    </message>
-    <message>
-        <source>Preview Selection/Parantheses</source>
-        <translation type="obsolete">Kijelölés/zárójelek előnézete</translation>
-    </message>
-    <message>
-        <source>Comment</source>
-        <translation type="obsolete">Megjegyzés</translation>
-    </message>
-    <message>
-        <source>Uncomment</source>
-        <translation type="obsolete">Megjegyzés visszavonása</translation>
-    </message>
-    <message>
-        <source>Indent</source>
-        <translation type="obsolete">Behúzás</translation>
-    </message>
-    <message>
-        <source>Unindent</source>
-        <translation type="obsolete">Behúzás eltávolítása</translation>
-    </message>
-    <message>
-        <source>Hard Line Break</source>
-        <translation type="obsolete">&quot;Kemény&quot; sortörés</translation>
-    </message>
-    <message>
-        <source>Repeat Hard Line Break</source>
-        <translation type="obsolete">Ismételt &quot;kemény&quot; sortörés</translation>
-    </message>
-    <message>
-        <source>Find</source>
-        <translation type="obsolete">Keresés</translation>
-    </message>
-    <message>
-        <source>Find Next</source>
-        <translation type="obsolete">Következő keresése</translation>
-    </message>
-    <message>
-        <source>Find Dialog</source>
-        <translation type="obsolete">Keresési párbeszédablak</translation>
-    </message>
-    <message>
-        <source>Replace</source>
-        <translation type="obsolete">Csere</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="376"/>
@@ -3847,66 +3666,14 @@ Akarja menteni ezeket?</translation>
         <translation>LaTeX</translation>
     </message>
     <message>
-        <source>View Dvi</source>
-        <translation type="obsolete">Dvi megjelenítése</translation>
-    </message>
-    <message>
-        <source>Dvi-&gt;PS</source>
-        <translation type="obsolete">Dvi-&gt;PS</translation>
-    </message>
-    <message>
-        <source>View PS</source>
-        <translation type="obsolete">Ps megjelenítése</translation>
-    </message>
-    <message>
-        <source>PDFLaTeX</source>
-        <translation type="obsolete">PDFLaTeX</translation>
-    </message>
-    <message>
-        <source>View PDF</source>
-        <translation type="obsolete">PDF megjelenítése</translation>
-    </message>
-    <message>
-        <source>PS-&gt;PDF</source>
-        <translation type="obsolete">PS-&gt;PDF</translation>
-    </message>
-    <message>
-        <source>View Log</source>
-        <translation type="obsolete">Napló megjelenítése</translation>
-    </message>
-    <message>
         <location filename="texmaker.cpp" line="2700"/>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <source>MakeIndex</source>
-        <translation type="obsolete">MakeIndex</translation>
-    </message>
-    <message>
-        <source>Clear Markers</source>
-        <translation type="obsolete">Jelölők törlése</translation>
-    </message>
-    <message>
-        <source>MetaPost</source>
-        <translation type="obsolete">MetaPost</translation>
-    </message>
-    <message>
         <location filename="texmaker.cpp" line="2908"/>
         <source>Clean</source>
         <translation>Tisztítás</translation>
-    </message>
-    <message>
-        <source>Convert to Html</source>
-        <translation type="obsolete">Konvertálás Html-re</translation>
-    </message>
-    <message>
-        <source>Analyse Text</source>
-        <translation type="obsolete">Szöveg elemzése</translation>
-    </message>
-    <message>
-        <source>Generate Random Text</source>
-        <translation type="obsolete">Véletlen szöveg létrehozása</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="472"/>
@@ -3934,29 +3701,9 @@ Akarja menteni ezeket?</translation>
         <translation>Gyors kezdés</translation>
     </message>
     <message>
-        <source>Quick Letter</source>
-        <translation type="obsolete">Gyors levél</translation>
-    </message>
-    <message>
-        <source>Quick Tabular</source>
-        <translation type="obsolete">Gyors táblázat</translation>
-    </message>
-    <message>
-        <source>Quick Tabbing</source>
-        <translation type="obsolete">Gyors tagolás</translation>
-    </message>
-    <message>
-        <source>Quick Array</source>
-        <translation type="obsolete">Gyors tömb</translation>
-    </message>
-    <message>
         <location filename="texmaker.cpp" line="488"/>
         <source>&amp;Bibliography</source>
         <translation>&amp;Bibliográfia</translation>
-    </message>
-    <message>
-        <source>BibTeX insert dialog</source>
-        <translation type="obsolete">BibTeX beillesztés</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="314"/>
@@ -3991,8 +3738,7 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="texmaker.cpp" line="326"/>
         <source>Check &amp;in</source>
-        <translatorcomment>maradjon ??</translatorcomment>
-        <translation type="unfinished">&amp;SVN Commit</translation>
+        <translation>&amp;SVN megjegyzés</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="327"/>
@@ -4062,8 +3808,7 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="texmaker.cpp" line="355"/>
         <source>Pre&amp;view Selection/Parantheses</source>
-        <translatorcomment>A kiválasztás előnézetét értem, de mi van a zárójelezéssel???</translatorcomment>
-        <translation type="unfinished">Kiválasztás/Zárójelezés e&amp;lőnézete</translation>
+        <translation>Kiválasztott/zárójelezett rész e&amp;lőnézete</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="361"/>
@@ -4359,7 +4104,7 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="texmaker.cpp" line="552"/>
         <source>&amp;Help</source>
-        <translation>&amp;Segítség</translation>
+        <translation>&amp;Súgó</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="553"/>
@@ -4403,32 +4148,32 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="texmaker.cpp" line="578"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>Egyéni</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="579"/>
         <source>File</source>
-        <translation type="unfinished">Fájl</translation>
+        <translation>Fájl</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="581"/>
         <source>Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Eszközök</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="582"/>
         <source>Math</source>
-        <translation type="unfinished">Matematika</translation>
+        <translation>Matematika</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="583"/>
         <source>Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Formázás</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="590"/>
         <source>Spelling</source>
-        <translation type="unfinished"></translation>
+        <translation>Helyesírás</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="676"/>
@@ -5090,29 +4835,6 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
         <source>&lt;all&gt;</source>
         <translation>&lt;mind&gt;</translation>
     </message>
-    <message>
-        <source>Error</source>
-        <translation type="obsolete">Hiba</translation>
-    </message>
-    <message>
-        <source>You do not have read permission to this file.</source>
-        <translation type="obsolete">Nincs olvasási jogosultsága a fájlra.</translation>
-    </message>
-</context>
-<context>
-    <name>Toolbar</name>
-    <message>
-        <source>File</source>
-        <translation type="obsolete">Fájl</translation>
-    </message>
-    <message>
-        <source>Edit</source>
-        <translation type="obsolete">Szerkesztés</translation>
-    </message>
-    <message>
-        <source>Math</source>
-        <translation type="obsolete">Matematika</translation>
-    </message>
 </context>
 <context>
     <name>UserMenuDialog</name>
@@ -5279,7 +5001,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="webpublishdialog.ui" line="184"/>
         <source>Title of the html files</source>
-        <translation>A html fájlok címe</translation>
+        <translation>A Html fájlok címe</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="191"/>
@@ -5309,12 +5031,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="webpublishdialog.ui" line="226"/>
         <source>Text displayed at the bottom of each html files </source>
-        <translation>A html fájlok alján megjelenő szöveg</translation>
+        <translation>A Html fájlok alján megjelenő szöveg</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="233"/>
         <source>Alignment in the html files</source>
-        <translation>Igazítás a html fájlokban</translation>
+        <translation>Igazítás a Html fájlokban</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="240"/>
@@ -5466,20 +5188,20 @@ p, li { white-space: pre-wrap; }
         <location filename="scriptengine.cpp" line="45"/>
         <source>File Chooser</source>
         <translatorcomment>??</translatorcomment>
-        <translation type="unfinished">Fájl kiválasztó</translation>
+        <translation>Fájl kiválasztó</translation>
     </message>
     <message>
         <location filename="scriptengine.cpp" line="53"/>
         <source>Uncaught exception at line %1: %2
 </source>
         <translatorcomment>??</translatorcomment>
-        <translation type="unfinished">A kivételt nem sikerült elkapni a(z) %1 sorban: %2</translation>
+        <translation>A kivételt nem sikerült elkapni a(z) %1 sorban: %2</translation>
     </message>
     <message>
         <location filename="scriptengine.cpp" line="54"/>
         <source>Backtrace %1</source>
-        <translatorcomment>?? nyomkövetés ??</translatorcomment>
-        <translation type="unfinished">Backtrace %1</translation>
+        <translatorcomment>??</translatorcomment>
+        <translation>Visszakövetés %1</translation>
     </message>
     <message>
         <location filename="scriptengine.cpp" line="56"/>
