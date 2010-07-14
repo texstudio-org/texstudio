@@ -3785,7 +3785,7 @@ Wollen Sie es speichern?</translation>
         <location filename="texmaker.cpp" line="330"/>
         <source>&amp;Close</source>
         <oldsource>Close All</oldsource>
-        <translation>Alles s&amp;chließen</translation>
+        <translation>S&amp;chließen</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="334"/>
