@@ -15,7 +15,7 @@ EncodingDialog::EncodingDialog(QWidget *parent, QEditor *editor) :
 			it->setFont(font);
 		}
 	}
-	label->setText("Select Encoding for \""+edit->fileName()+"\"");
+	label->setText(tr("Select Encoding for")+" \""+edit->fileName()+"\"");
 	if (!QFileInfo(edit->fileName()).exists()) reload->setEnabled(false);
 }
 

@@ -18,11 +18,11 @@ UserToolDialog::UserToolDialog(QWidget *parent, QString name) : QDialog(parent) 
 
 	previous_index=0;
 
-	ui.comboBox->insertItem(0, "Command 1");
-	ui.comboBox->insertItem(1, "Command 2");
-	ui.comboBox->insertItem(2, "Command 3");
-	ui.comboBox->insertItem(3, "Command 4");
-	ui.comboBox->insertItem(4, "Command 5");
+	ui.comboBox->insertItem(0, tr("Command %1").arg("1"));
+	ui.comboBox->insertItem(1, tr("Command %1").arg("2"));
+	ui.comboBox->insertItem(2, tr("Command %1").arg("3"));
+	ui.comboBox->insertItem(3, tr("Command %1").arg("4"));
+	ui.comboBox->insertItem(4, tr("Command %1").arg("5"));
 	connect(ui.comboBox, SIGNAL(activated(int)),this,SLOT(change(int)));
 
 	connect(ui.okButton, SIGNAL(clicked()), SLOT(slotOk()));
