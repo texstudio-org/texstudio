@@ -87,6 +87,21 @@
         <translation>Abandon</translation>
     </message>
     <message>
+        <location filename="arraydialog.cpp" line="31"/>
+        <source>Center</source>
+        <translation type="unfinished">Centrer</translation>
+    </message>
+    <message>
+        <location filename="arraydialog.cpp" line="32"/>
+        <source>Left</source>
+        <translation type="unfinished">Justifier à gauche</translation>
+    </message>
+    <message>
+        <location filename="arraydialog.cpp" line="33"/>
+        <source>Right</source>
+        <translation type="unfinished">Justifier à droite</translation>
+    </message>
+    <message>
         <location filename="arraydialog.cpp" line="41"/>
         <source>Quick Array</source>
         <translation>Assistant Matrice</translation>
@@ -606,7 +621,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.ui" line="1024"/>
         <location filename="configdialog.cpp" line="256"/>
-        <location filename="configmanager.cpp" line="741"/>
+        <location filename="configmanager.cpp" line="740"/>
         <source>Editor</source>
         <translation>Éditeur</translation>
     </message>
@@ -1026,27 +1041,27 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <translation></translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="743"/>
+        <location filename="configmanager.cpp" line="742"/>
         <source>Special Key Replacement</source>
         <translation>Remplacement de touche spéciale</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="744"/>
+        <location filename="configmanager.cpp" line="743"/>
         <source>New column meaning:</source>
         <translation>Signification de la nouvelle colonne :</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="744"/>
+        <location filename="configmanager.cpp" line="743"/>
         <source>Key to replace</source>
         <translation>Touche à remplacer</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="744"/>
+        <location filename="configmanager.cpp" line="743"/>
         <source>Text to insert before word</source>
         <translation>Texte à insérer devant le mot</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="744"/>
+        <location filename="configmanager.cpp" line="743"/>
         <source>Text to insert after word</source>
         <translation>Texte à insérer après le mot</translation>
     </message>
@@ -1058,74 +1073,74 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <translation type="obsolete">Fichier</translation>
     </message>
     <message>
+        <location filename="configmanager.cpp" line="639"/>
         <location filename="configmanager.cpp" line="640"/>
-        <location filename="configmanager.cpp" line="641"/>
-        <location filename="configmanager.cpp" line="791"/>
-        <location filename="configmanager.cpp" line="793"/>
-        <location filename="configmanager.cpp" line="932"/>
-        <location filename="configmanager.cpp" line="944"/>
+        <location filename="configmanager.cpp" line="790"/>
+        <location filename="configmanager.cpp" line="792"/>
+        <location filename="configmanager.cpp" line="931"/>
+        <location filename="configmanager.cpp" line="943"/>
         <source>default</source>
         <translation>par défaut</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="735"/>
+        <location filename="configmanager.cpp" line="734"/>
         <source>Menus</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="785"/>
+        <location filename="configmanager.cpp" line="784"/>
         <source>Latex/Math menus</source>
         <translation>Menus LaTeX/maths</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="786"/>
+        <location filename="configmanager.cpp" line="785"/>
         <source>All menus</source>
         <translation>Tous les menus</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="787"/>
+        <location filename="configmanager.cpp" line="786"/>
         <source>Special Tags</source>
         <translation>Étiquette spéciale</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="992"/>
+        <location filename="configmanager.cpp" line="991"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>« Document maître » récent %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="998"/>
+        <location filename="configmanager.cpp" line="997"/>
         <source>Recent File %1</source>
         <translation>Fichier récent %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1006"/>
+        <location filename="configmanager.cpp" line="1005"/>
         <source>Master Document: </source>
         <translation>Document maître :</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1206"/>
-        <location filename="configmanager.cpp" line="1213"/>
+        <location filename="configmanager.cpp" line="1205"/>
+        <location filename="configmanager.cpp" line="1212"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;aucun&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1207"/>
-        <location filename="configmanager.cpp" line="1214"/>
+        <location filename="configmanager.cpp" line="1206"/>
+        <location filename="configmanager.cpp" line="1213"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;défaut&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1325"/>
+        <location filename="configmanager.cpp" line="1324"/>
         <source>Browse program</source>
         <translation>Localiser le programme</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1345"/>
+        <location filename="configmanager.cpp" line="1344"/>
         <source>Latex</source>
         <translation>LaTeX</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1345"/>
+        <location filename="configmanager.cpp" line="1344"/>
         <source>Math</source>
         <translation>Maths</translation>
     </message>
@@ -1765,6 +1780,11 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <location filename="encodingdialog.ui" line="64"/>
         <source>Cancel</source>
         <translation>Abandon</translation>
+    </message>
+    <message>
+        <location filename="encodingdialog.cpp" line="18"/>
+        <source>Select Encoding for</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="encodingdialog.cpp" line="33"/>
@@ -5177,6 +5197,12 @@ Sinon la ponctuation est ignorée.</translation>
         <source>Type</source>
         <translation>Type</translation>
     </message>
+    <message>
+        <location filename="usermenudialog.cpp" line="33"/>
+        <location filename="usermenudialog.cpp" line="38"/>
+        <source>Menu %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserToolDialog</name>
@@ -5209,6 +5235,15 @@ Sinon la ponctuation est ignorée.</translation>
         <location filename="usertooldialog.ui" line="93"/>
         <source>Command (% : filename without extension)</source>
         <translation>Commande (% : nom de fichier sans extension)</translation>
+    </message>
+    <message>
+        <location filename="usertooldialog.cpp" line="21"/>
+        <location filename="usertooldialog.cpp" line="22"/>
+        <location filename="usertooldialog.cpp" line="23"/>
+        <location filename="usertooldialog.cpp" line="24"/>
+        <location filename="usertooldialog.cpp" line="25"/>
+        <source>Command %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
