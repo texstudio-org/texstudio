@@ -71,6 +71,21 @@
 <context>
     <name>ArrayDialog</name>
     <message>
+        <location filename="arraydialog.cpp" line="31"/>
+        <source>Center</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="arraydialog.cpp" line="32"/>
+        <source>Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="arraydialog.cpp" line="33"/>
+        <source>Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="arraydialog.cpp" line="41"/>
         <source>Quick Array</source>
         <translation>Pomocník s uspořádáním</translation>
@@ -309,7 +324,7 @@
     <message>
         <location filename="configdialog.ui" line="1024"/>
         <location filename="configdialog.cpp" line="256"/>
-        <location filename="configmanager.cpp" line="741"/>
+        <location filename="configmanager.cpp" line="740"/>
         <source>Editor</source>
         <translation>Editor</translation>
     </message>
@@ -1168,27 +1183,27 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
         <translation>Zadaná klávesová zkratka je tatáž jako ta pro tento příkaz:</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="743"/>
+        <location filename="configmanager.cpp" line="742"/>
         <source>Special Key Replacement</source>
         <translation>Nahrazení zvláštních kláves</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="744"/>
+        <location filename="configmanager.cpp" line="743"/>
         <source>New column meaning:</source>
         <translation>Nový význam sloupce:</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="744"/>
+        <location filename="configmanager.cpp" line="743"/>
         <source>Key to replace</source>
         <translation>Klávesa k nahrazení</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="744"/>
+        <location filename="configmanager.cpp" line="743"/>
         <source>Text to insert before word</source>
         <translation>Nahrazující text k vložení před slovo</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="744"/>
+        <location filename="configmanager.cpp" line="743"/>
         <source>Text to insert after word</source>
         <translation>Nahrazující text k vložení za slovo</translation>
     </message>
@@ -1204,74 +1219,74 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
         <translation type="obsolete">Upravit</translation>
     </message>
     <message>
+        <location filename="configmanager.cpp" line="639"/>
         <location filename="configmanager.cpp" line="640"/>
-        <location filename="configmanager.cpp" line="641"/>
-        <location filename="configmanager.cpp" line="791"/>
-        <location filename="configmanager.cpp" line="793"/>
-        <location filename="configmanager.cpp" line="932"/>
-        <location filename="configmanager.cpp" line="944"/>
+        <location filename="configmanager.cpp" line="790"/>
+        <location filename="configmanager.cpp" line="792"/>
+        <location filename="configmanager.cpp" line="931"/>
+        <location filename="configmanager.cpp" line="943"/>
         <source>default</source>
         <translation>Výchozí</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="735"/>
+        <location filename="configmanager.cpp" line="734"/>
         <source>Menus</source>
         <translation>Nabídky</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="785"/>
+        <location filename="configmanager.cpp" line="784"/>
         <source>Latex/Math menus</source>
         <translation>Nabídky Latex/Matematika</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="786"/>
+        <location filename="configmanager.cpp" line="785"/>
         <source>All menus</source>
         <translation>Všechny nabídky</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="787"/>
+        <location filename="configmanager.cpp" line="786"/>
         <source>Special Tags</source>
         <translation>Zvláštní značky</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="992"/>
+        <location filename="configmanager.cpp" line="991"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>Poslední &apos;Hlavní dokument&apos; %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="998"/>
+        <location filename="configmanager.cpp" line="997"/>
         <source>Recent File %1</source>
         <translation>Naposledy otevřený soubor %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1006"/>
+        <location filename="configmanager.cpp" line="1005"/>
         <source>Master Document: </source>
         <translation>Hlavní dokument:</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1206"/>
-        <location filename="configmanager.cpp" line="1213"/>
+        <location filename="configmanager.cpp" line="1205"/>
+        <location filename="configmanager.cpp" line="1212"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;Žádný&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1207"/>
-        <location filename="configmanager.cpp" line="1214"/>
+        <location filename="configmanager.cpp" line="1206"/>
+        <location filename="configmanager.cpp" line="1213"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;Výchozí&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1325"/>
+        <location filename="configmanager.cpp" line="1324"/>
         <source>Browse program</source>
         <translation>Prohlížeč</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1345"/>
+        <location filename="configmanager.cpp" line="1344"/>
         <source>Latex</source>
         <translation>Latex</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1345"/>
+        <location filename="configmanager.cpp" line="1344"/>
         <source>Math</source>
         <translation>Matematika</translation>
     </message>
@@ -1878,6 +1893,11 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
 </context>
 <context>
     <name>EncodingDialog</name>
+    <message>
+        <location filename="encodingdialog.cpp" line="18"/>
+        <source>Select Encoding for</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="encodingdialog.cpp" line="33"/>
         <source>If the new and old encodings are incompatible, some characters may be destroyed.
@@ -5745,6 +5765,12 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
         <source>Type</source>
         <translation type="unfinished">Typ</translation>
     </message>
+    <message>
+        <location filename="usermenudialog.cpp" line="33"/>
+        <location filename="usermenudialog.cpp" line="38"/>
+        <source>Menu %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserToolDialog</name>
@@ -5777,6 +5803,15 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
         <location filename="usertooldialog.ui" line="93"/>
         <source>Command (% : filename without extension)</source>
         <translation>Příkaz (%: název souboru bez přípony)</translation>
+    </message>
+    <message>
+        <location filename="usertooldialog.cpp" line="21"/>
+        <location filename="usertooldialog.cpp" line="22"/>
+        <location filename="usertooldialog.cpp" line="23"/>
+        <location filename="usertooldialog.cpp" line="24"/>
+        <location filename="usertooldialog.cpp" line="25"/>
+        <source>Command %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

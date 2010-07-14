@@ -83,6 +83,21 @@
         <translation>Mégsem</translation>
     </message>
     <message>
+        <location filename="arraydialog.cpp" line="31"/>
+        <source>Center</source>
+        <translation type="unfinished">Közép</translation>
+    </message>
+    <message>
+        <location filename="arraydialog.cpp" line="32"/>
+        <source>Left</source>
+        <translation type="unfinished">Bal</translation>
+    </message>
+    <message>
+        <location filename="arraydialog.cpp" line="33"/>
+        <source>Right</source>
+        <translation type="unfinished">Jobb</translation>
+    </message>
+    <message>
         <location filename="arraydialog.cpp" line="41"/>
         <source>Quick Array</source>
         <translation>Gyors tömb</translation>
@@ -1634,6 +1649,11 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <location filename="encodingdialog.ui" line="64"/>
         <source>Cancel</source>
         <translation>Mégsem</translation>
+    </message>
+    <message>
+        <location filename="encodingdialog.cpp" line="18"/>
+        <source>Select Encoding for</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="encodingdialog.cpp" line="33"/>
@@ -4886,6 +4906,12 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
         <source>Type</source>
         <translation>Típus</translation>
     </message>
+    <message>
+        <location filename="usermenudialog.cpp" line="33"/>
+        <location filename="usermenudialog.cpp" line="38"/>
+        <source>Menu %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserToolDialog</name>
@@ -4918,6 +4944,15 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
         <location filename="usertooldialog.ui" line="93"/>
         <source>Command (% : filename without extension)</source>
         <translation>Parancs (%: fájlnév kiterjesztés nélkül)</translation>
+    </message>
+    <message>
+        <location filename="usertooldialog.cpp" line="21"/>
+        <location filename="usertooldialog.cpp" line="22"/>
+        <location filename="usertooldialog.cpp" line="23"/>
+        <location filename="usertooldialog.cpp" line="24"/>
+        <location filename="usertooldialog.cpp" line="25"/>
+        <source>Command %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
