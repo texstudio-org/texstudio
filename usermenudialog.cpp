@@ -29,20 +29,14 @@ UserMenuDialog::UserMenuDialog(QWidget* parent,  QString name, QLanguageFactory*
 
 	previous_index=0;
 
-	ui.comboBox->insertItem(0, "Menu 1");
-	ui.comboBox->insertItem(1, "Menu 2");
-	ui.comboBox->insertItem(2, "Menu 3");
-	ui.comboBox->insertItem(3, "Menu 4");
-	ui.comboBox->insertItem(4, "Menu 5");
-	ui.comboBox->insertItem(5, "Menu 6");
-	ui.comboBox->insertItem(6, "Menu 7");
-	ui.comboBox->insertItem(7, "Menu 8");
-	ui.comboBox->insertItem(8, "Menu 9");
-	ui.comboBox->insertItem(9, "Menu 10");
-        if(Tag.size()>10) {
-            for(int i=10;i<Tag.size();i++)
-                   ui.comboBox->insertItem(i, QString("Menu %1").arg(i));
-        }
+	for(int i=1;i<11;i++){
+		ui.comboBox->insertItem(i-1, tr("Menu %1").arg(i));
+	}
+
+	if(Tag.size()>10) {
+		for(int i=10;i<Tag.size();i++)
+			ui.comboBox->insertItem(i, tr("Menu %1").arg(i));
+	}
 	connect(ui.comboBox, SIGNAL(activated(int)),this,SLOT(change(int)));
 
 	connect(ui.okButton, SIGNAL(clicked()), SLOT(slotOk()));
