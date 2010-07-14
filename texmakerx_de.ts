@@ -1508,305 +1508,311 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <location filename="additionaltranslations.cpp" line="81"/>
         <source>\textit - Italics  [selection]</source>
         <oldsource>	extit - Italics  [selection]</oldsource>
-        <translation></translation>
+        <translation>\textit - Schräggestellt  [Selektion]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="83"/>
         <source>\textsl - Slanted  [selection]</source>
         <oldsource>	extsl - Slanted  [selection]</oldsource>
-        <translation></translation>
+        <translation>\textsl - Slanted  [Selektion]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="85"/>
         <source>\textbf - Boldface  [selection]</source>
         <oldsource>	extbf - Boldface  [selection]</oldsource>
-        <translation></translation>
+        <translation>\textbf - Fett  [Selektion]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="87"/>
         <source>\texttt - Typewriter  [selection]</source>
         <oldsource>	exttt - Typewriter  [selection]</oldsource>
-        <translation></translation>
+        <translation>\texttt - Typewriter  [Selektion]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="89"/>
         <source>\textsc - Small caps  [selection]</source>
         <oldsource>	extsc - Small caps  [selection]</oldsource>
-        <translation></translation>
+        <translation>\textsc - Small caps  [Selektion]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="91"/>
         <source>\textsf - Sans Serif  [selection]</source>
         <oldsource>	extsf - Sans Serif  [selection]</oldsource>
-        <translation></translation>
+        <translation>\textsf - Serifenlos  [Selektion]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="93"/>
+        <source>\underline - Underline [selection]</source>
+        <oldsource>\underline - Underline  [selection]</oldsource>
+        <translation type="unfinished">\underline - Unterstreichen [Selektion]</translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="95"/>
         <source>Font Sizes</source>
         <translation>Schriftgröße</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="95"/>
+        <location filename="additionaltranslations.cpp" line="97"/>
         <source>tiny</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="97"/>
+        <location filename="additionaltranslations.cpp" line="99"/>
         <source>scriptsize</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="99"/>
+        <location filename="additionaltranslations.cpp" line="101"/>
         <source>footnotesize</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="101"/>
-        <location filename="additionaltranslations.cpp" line="187"/>
+        <location filename="additionaltranslations.cpp" line="103"/>
+        <location filename="additionaltranslations.cpp" line="189"/>
         <source>small</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="103"/>
+        <location filename="additionaltranslations.cpp" line="105"/>
         <source>normalsize</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="105"/>
-        <location filename="additionaltranslations.cpp" line="191"/>
+        <location filename="additionaltranslations.cpp" line="107"/>
+        <location filename="additionaltranslations.cpp" line="193"/>
         <source>large</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="107"/>
+        <location filename="additionaltranslations.cpp" line="109"/>
         <source>Large</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="109"/>
+        <location filename="additionaltranslations.cpp" line="111"/>
         <source>LARGE</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="111"/>
+        <location filename="additionaltranslations.cpp" line="113"/>
         <source>Huge</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="113"/>
+        <location filename="additionaltranslations.cpp" line="115"/>
         <source>&amp;Tabular Environment</source>
         <translation>&amp;Tabellen</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="115"/>
+        <location filename="additionaltranslations.cpp" line="117"/>
         <source>\begin{tabbing}</source>
         <oldsource><byte value="x8"/>egin{tabbing}</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="117"/>
+        <location filename="additionaltranslations.cpp" line="119"/>
         <source>\begin{tabular}</source>
         <oldsource><byte value="x8"/>egin{tabular}</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="119"/>
+        <location filename="additionaltranslations.cpp" line="121"/>
         <source>S&amp;pacing</source>
         <translation>A&amp;bstand</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="121"/>
+        <location filename="additionaltranslations.cpp" line="123"/>
         <source>New line</source>
         <translation>Neue Zeile</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="123"/>
+        <location filename="additionaltranslations.cpp" line="125"/>
         <source>International &amp;Accents</source>
         <translation>&amp;Akzente</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="125"/>
+        <location filename="additionaltranslations.cpp" line="127"/>
         <source>\includegraphics{file}</source>
         <oldsource>includegraphics{file}</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="127"/>
+        <location filename="additionaltranslations.cpp" line="129"/>
         <source>\include{file}</source>
         <oldsource>include{file}</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="129"/>
+        <location filename="additionaltranslations.cpp" line="131"/>
         <source>\input{file}</source>
         <oldsource>input{file}</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="131"/>
+        <location filename="additionaltranslations.cpp" line="133"/>
         <source>Cross References</source>
         <translation>&amp;Querverweise</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="133"/>
+        <location filename="additionaltranslations.cpp" line="135"/>
         <source>label</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="135"/>
+        <location filename="additionaltranslations.cpp" line="137"/>
         <source>ref</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="137"/>
+        <location filename="additionaltranslations.cpp" line="139"/>
         <source>pageref</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="139"/>
+        <location filename="additionaltranslations.cpp" line="141"/>
         <source>index</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="141"/>
+        <location filename="additionaltranslations.cpp" line="143"/>
         <source>cite</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="143"/>
+        <location filename="additionaltranslations.cpp" line="145"/>
         <source>footnote</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="145"/>
+        <location filename="additionaltranslations.cpp" line="147"/>
         <source>&amp;Math</source>
         <translation>&amp;Mathe</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="147"/>
+        <location filename="additionaltranslations.cpp" line="149"/>
         <source>Inline math mode $...$</source>
         <translation>Mathematikmodus im Text $ ... $</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="149"/>
+        <location filename="additionaltranslations.cpp" line="151"/>
         <source>Display math mode \[...\]</source>
         <oldsource>Display math mode [...]</oldsource>
         <translation>Abgesetzer Mathematikmodus \[ ... \]</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="151"/>
+        <location filename="additionaltranslations.cpp" line="153"/>
         <source>Numbered equations \begin{equation}</source>
         <oldsource>Numbered equations <byte value="x8"/>egin{equation}</oldsource>
         <translation>Nummerierte Gleichungen \begin{equation}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="153"/>
+        <location filename="additionaltranslations.cpp" line="155"/>
         <source>\begin{align}</source>
         <oldsource><byte value="x8"/>egin{align}</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="155"/>
+        <location filename="additionaltranslations.cpp" line="157"/>
         <source>\begin{eqnarray}</source>
         <oldsource><byte value="x8"/>egin{eqnarray}</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="157"/>
+        <location filename="additionaltranslations.cpp" line="159"/>
         <source>_{} - subscript</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="159"/>
+        <location filename="additionaltranslations.cpp" line="161"/>
         <source>^{} - superscript</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="161"/>
+        <location filename="additionaltranslations.cpp" line="163"/>
         <source>\begin{array}</source>
         <oldsource><byte value="x8"/>egin{array}</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="163"/>
+        <location filename="additionaltranslations.cpp" line="165"/>
         <source>Math &amp;Functions</source>
         <translation>Mathematische &amp;Funktionen</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="165"/>
+        <location filename="additionaltranslations.cpp" line="167"/>
         <source>Math Font St&amp;yles</source>
         <translation>&amp;Schriftart im Mathematikmodus</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="167"/>
+        <location filename="additionaltranslations.cpp" line="169"/>
         <source>\mathrm{} [selection]</source>
         <oldsource>mathrm{} [selection]</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="169"/>
+        <location filename="additionaltranslations.cpp" line="171"/>
         <source>\mathit{} [selection]</source>
         <oldsource>mathit{} [selection]</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="171"/>
+        <location filename="additionaltranslations.cpp" line="173"/>
         <source>\mathbf{} [selection]</source>
         <oldsource>mathbf{} [selection]</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="173"/>
+        <location filename="additionaltranslations.cpp" line="175"/>
         <source>\mathsf{} [selection]</source>
         <oldsource>mathsf{} [selection]</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="175"/>
+        <location filename="additionaltranslations.cpp" line="177"/>
         <source>\mathtt{} [selection]</source>
         <oldsource>mathtt{} [selection]</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="177"/>
+        <location filename="additionaltranslations.cpp" line="179"/>
         <source>\mathcal{} [selection]</source>
         <oldsource>mathcal{} [selection]</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="179"/>
+        <location filename="additionaltranslations.cpp" line="181"/>
         <source>\mathbb{} [selection]</source>
         <oldsource>mathbb{} [selection]</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="181"/>
+        <location filename="additionaltranslations.cpp" line="183"/>
         <source>\mathfrak{} [selection]</source>
         <oldsource>mathfrak{} [selection]</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="183"/>
+        <location filename="additionaltranslations.cpp" line="185"/>
         <source>Math &amp;Accents</source>
         <translation>&amp;Akzente im Mathematikmodus</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="185"/>
+        <location filename="additionaltranslations.cpp" line="187"/>
         <source>Math S&amp;paces</source>
         <translation>A&amp;bstände im Mathematikmodus</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="189"/>
+        <location filename="additionaltranslations.cpp" line="191"/>
         <source>medium</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="193"/>
+        <location filename="additionaltranslations.cpp" line="195"/>
         <source>quad</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="195"/>
+        <location filename="additionaltranslations.cpp" line="197"/>
         <source>qquad</source>
         <translation></translation>
     </message>
@@ -2735,112 +2741,112 @@ Soll die Datei neugeladen werden?
 <context>
     <name>QFormatConfig</name>
     <message>
-        <location filename="additionaltranslations.cpp" line="239"/>
+        <location filename="additionaltranslations.cpp" line="241"/>
         <source>normal</source>
         <translation>normal</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="197"/>
+        <location filename="additionaltranslations.cpp" line="199"/>
         <source>comment</source>
         <translation>Kommentar</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="199"/>
+        <location filename="additionaltranslations.cpp" line="201"/>
         <source>keyword</source>
         <translation>Schlüsselwort</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="201"/>
+        <location filename="additionaltranslations.cpp" line="203"/>
         <source>extra-keyword</source>
         <translation>wichtiges Schlüsselwort</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="203"/>
+        <location filename="additionaltranslations.cpp" line="205"/>
         <source>math-keyword</source>
         <translation>mathematisches Schlüsselwort</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="205"/>
+        <location filename="additionaltranslations.cpp" line="207"/>
         <source>verbatim</source>
         <translation>verbatim</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="207"/>
+        <location filename="additionaltranslations.cpp" line="209"/>
         <source>braceMatch</source>
         <translation>Klammermarkierung</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="209"/>
+        <location filename="additionaltranslations.cpp" line="211"/>
         <source>braceMismatch</source>
         <translation>Klammerfehler</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="211"/>
+        <location filename="additionaltranslations.cpp" line="213"/>
         <source>search</source>
         <translation>Suchtextmarkierung</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="213"/>
+        <location filename="additionaltranslations.cpp" line="215"/>
         <source>numbers</source>
         <translation>Mathematisch</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="215"/>
+        <location filename="additionaltranslations.cpp" line="217"/>
         <source>text</source>
         <translation>Textstring</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="217"/>
+        <location filename="additionaltranslations.cpp" line="219"/>
         <source>escapeseq</source>
         <translation>Escape-Sequenz (Skript)</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="219"/>
+        <location filename="additionaltranslations.cpp" line="221"/>
         <source>spellingMistake</source>
         <translation>Rechtschreibfehler</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="221"/>
+        <location filename="additionaltranslations.cpp" line="223"/>
         <source>temporaryCodeCompletion</source>
         <translation>(veraltet)</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="223"/>
+        <location filename="additionaltranslations.cpp" line="225"/>
         <source>environment</source>
         <translation>Umgebung</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="225"/>
+        <location filename="additionaltranslations.cpp" line="227"/>
         <source>referencePresent</source>
         <translation>korrekte Referenz</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="227"/>
+        <location filename="additionaltranslations.cpp" line="229"/>
         <source>referenceMissing</source>
         <translation>fehlende Referenz</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="229"/>
+        <location filename="additionaltranslations.cpp" line="231"/>
         <source>referenceMultiple</source>
         <translation>mehrfaches Label</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="231"/>
+        <location filename="additionaltranslations.cpp" line="233"/>
         <source>citationPresent</source>
         <translation>korrekte Zitatid</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="233"/>
+        <location filename="additionaltranslations.cpp" line="235"/>
         <source>citationMissing</source>
         <translation>ungültige Zitatid</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="235"/>
+        <location filename="additionaltranslations.cpp" line="237"/>
         <source>current</source>
         <translation>aktuelle Zeile</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="237"/>
+        <location filename="additionaltranslations.cpp" line="239"/>
         <source>selection</source>
         <translation>Suchbereich</translation>
     </message>
