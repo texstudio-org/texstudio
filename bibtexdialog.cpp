@@ -134,6 +134,7 @@ QString BibTeXDialog::textToInsert(const QString& entryName){
 
 
 QList<BibTeXType> BibTeXDialog::getPossibleBibTeXTypes(){
+	types.clear(); //remove old types to allow translation change without restart
 	needTypes();
 	return types;
 }

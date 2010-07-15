@@ -4399,8 +4399,10 @@ Voulez-vous l&apos;enregistrer ?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="545"/>
-        <source>load Profile</source>
-        <translation>Charger le &amp;profil</translation>
+        <location filename="texmaker.cpp" line="4314"/>
+        <source>Load Profile</source>
+        <oldsource>load Profile</oldsource>
+        <translation type="unfinished">Charger le &amp;profil</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="547"/>
@@ -4823,11 +4825,6 @@ Vous devez enregistrer le document avant de le compiler.</translation>
         <location filename="texmaker.cpp" line="4169"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>Attention: dialogue fermé automatiquement si le texte est modifié !</translation>
-    </message>
-    <message>
-        <location filename="texmaker.cpp" line="4314"/>
-        <source>Load Profile</source>
-        <translation>Charger le profil</translation>
     </message>
 </context>
 <context>
