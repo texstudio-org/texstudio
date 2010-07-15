@@ -4877,6 +4877,11 @@ Wollen Sie es speichern?</translation>
         <translation>Lade Profil</translation>
     </message>
     <message>
+        <location filename="texmaker.cpp" line="4314"/>
+        <source>All files</source>
+        <translation>Alle Dateien</translation>
+    </message>
+    <message>
         <location filename="texmaker.cpp" line="446"/>
         <source>&amp;View Dvi</source>
         <oldsource>Dvi-&gt;PS</oldsource>

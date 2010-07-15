@@ -4876,6 +4876,11 @@ Různé textové symboly</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="texmaker.cpp" line="4314"/>
+        <source>All files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="texmaker.cpp" line="446"/>
         <source>&amp;View Dvi</source>
         <oldsource>Dvi-&gt;PS</oldsource>

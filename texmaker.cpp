@@ -4311,7 +4311,7 @@ void Texmaker::cursorHovered(){
 void Texmaker::loadProfile(){
     bool customEnvironmentExisted = !configManager.customEnvironments.isEmpty();
     QString currentDir=QDir::homePath();
-    QString file = QFileDialog::getOpenFileName(this,tr("Load Profile"),currentDir,"TmX Profile(*.tmxprofile);;All files (*)");
+	QString file = QFileDialog::getOpenFileName(this,tr("Load Profile"),currentDir,"TmX Profile(*.tmxprofile);;"+tr("All files")+" (*)");
     configManager.readProfile(file);
 
     if (currentEditorView()) {

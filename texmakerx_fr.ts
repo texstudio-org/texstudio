@@ -4560,6 +4560,11 @@ Voulez-vous l&apos;enregistrer ?</translation>
         <translation>Modèles</translation>
     </message>
     <message>
+        <location filename="texmaker.cpp" line="4314"/>
+        <source>All files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="texmaker.cpp" line="580"/>
         <location filename="texmaker.cpp" line="1015"/>
         <source>Edit</source>
