@@ -3437,6 +3437,21 @@ Vuoi salvarli?</translation>
 <context>
     <name>TabDialog</name>
     <message>
+        <location filename="tabdialog.cpp" line="31"/>
+        <source>Center</source>
+        <translation type="unfinished">Centro</translation>
+    </message>
+    <message>
+        <location filename="tabdialog.cpp" line="32"/>
+        <source>Left</source>
+        <translation type="unfinished">Sinistra</translation>
+    </message>
+    <message>
+        <location filename="tabdialog.cpp" line="33"/>
+        <source>Right</source>
+        <translation type="unfinished">Destra</translation>
+    </message>
+    <message>
         <location filename="tabdialog.cpp" line="40"/>
         <source>Quick Tabular</source>
         <translation>Tabella Veloce</translation>

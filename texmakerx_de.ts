@@ -1544,7 +1544,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <location filename="additionaltranslations.cpp" line="93"/>
         <source>\underline - Underline [selection]</source>
         <oldsource>\underline - Underline  [selection]</oldsource>
-        <translation type="unfinished">\underline - Unterstreichen [Selektion]</translation>
+        <translation>\underline - Unterstreichen [Selektion]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="95"/>
@@ -3602,6 +3602,21 @@ Wollen Sie es speichern?</translation>
 </context>
 <context>
     <name>TabDialog</name>
+    <message>
+        <location filename="tabdialog.cpp" line="31"/>
+        <source>Center</source>
+        <translation>Zentriert</translation>
+    </message>
+    <message>
+        <location filename="tabdialog.cpp" line="32"/>
+        <source>Left</source>
+        <translation>Linksbündig</translation>
+    </message>
+    <message>
+        <location filename="tabdialog.cpp" line="33"/>
+        <source>Right</source>
+        <translation>Rechtsbündig</translation>
+    </message>
     <message>
         <location filename="tabdialog.cpp" line="40"/>
         <source>Quick Tabular</source>

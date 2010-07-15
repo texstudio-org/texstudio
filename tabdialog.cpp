@@ -28,9 +28,9 @@ TabDialog::TabDialog(QWidget *parent, const char *name)
 	ui.spinBoxColumns->setRange(1,99);
 	connect(ui.spinBoxColumns, SIGNAL(valueChanged(int)),this, SLOT(NewColumns(int)));
 
-	ui.comboAlignment->insertItem(0,"Center");
-	ui.comboAlignment->insertItem(1,"Left");
-	ui.comboAlignment->insertItem(2,"Right");
+	ui.comboAlignment->insertItem(0,tr("Center"));
+	ui.comboAlignment->insertItem(1,tr("Left"));
+	ui.comboAlignment->insertItem(2,tr("Right"));
 	ui.comboAlignment->insertItem(3, "p{}");
 
 	ui.comboSeparator->insertItem(0,"|");
