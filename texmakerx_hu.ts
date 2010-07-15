@@ -85,17 +85,17 @@
     <message>
         <location filename="arraydialog.cpp" line="31"/>
         <source>Center</source>
-        <translation type="unfinished">Közép</translation>
+        <translation>Középre</translation>
     </message>
     <message>
         <location filename="arraydialog.cpp" line="32"/>
         <source>Left</source>
-        <translation type="unfinished">Bal</translation>
+        <translation>Balra</translation>
     </message>
     <message>
         <location filename="arraydialog.cpp" line="33"/>
         <source>Right</source>
-        <translation type="unfinished">Jobb</translation>
+        <translation>Jobbra</translation>
     </message>
     <message>
         <location filename="arraydialog.cpp" line="41"/>
@@ -405,7 +405,7 @@
     <message>
         <location filename="configdialog.ui" line="585"/>
         <source>&lt;b&gt;?&lt;/b&gt; followed by &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: extended filename; prepend &lt;i&gt;c:&lt;/i&gt; for current file instead of master file</source>
-        <translation>&lt;b&gt;?&lt;/b&gt;-t követő &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: kiterjesztett fájlnév; elejéhez fűzott &lt;i&gt;c:&lt;/i&gt; jelenlegi fájl a mesterfájl helyett</translation>
+        <translation>&lt;b&gt;?&lt;/b&gt;-t követő &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: kiterjesztett fájlnév; elejéhez fűzött &lt;i&gt;c:&lt;/i&gt; jelenlegi fájl a mesterfájl helyett</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="595"/>
@@ -1279,12 +1279,12 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <location filename="additionaltranslations.cpp" line="93"/>
         <source>\underline - Underline [selection]</source>
         <oldsource>\underline - Underline  [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\underline - Aláhúzás  [kijelölés]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="95"/>
         <source>Font Sizes</source>
-        <translation>B&amp;etűmértek</translation>
+        <translation>B&amp;etűméretek</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="97"/>
@@ -1659,7 +1659,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <location filename="encodingdialog.cpp" line="18"/>
         <source>Select Encoding for</source>
-        <translation type="unfinished"></translation>
+        <translation>Kódolás kiválasztása a következő fájlhoz: </translation>
     </message>
     <message>
         <location filename="encodingdialog.cpp" line="33"/>
@@ -3083,8 +3083,7 @@ Akarja menteni ezeket?</translation>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="372"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="316"/>
         <source>Refresh search underlying context (as an attempt to correct search behavior)</source>
-        <translatorcomment>??</translatorcomment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="392"/>
@@ -4264,7 +4263,7 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="texmaker.cpp" line="1007"/>
         <source>You can not edit built-in templates.</source>
-        <translation>Beépített sablonok nem szerkeszthetőek.</translation>
+        <translation>Beépített sablonok nem szerkeszthetők.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="1014"/>
@@ -4482,7 +4481,7 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
     <message>
         <location filename="texmaker.cpp" line="3675"/>
         <source>Remove master document role</source>
-        <translation></translation>
+        <translation>A mesterdokumentum szerep megvonása</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3681"/>
@@ -4673,7 +4672,7 @@ If &quot;completely ignore&quot; is selected, shorter words are completely ignor
         <translation>Ha az &quot;összes megjelenítése&quot; van kiválasztva, minden mondat látszik.
 Ha a &quot;minimális mondathossz&quot; van kiválasztva, csak azon mondatok látszanak, melyek legalább annyi karaktert tartalmaznak. (pl. az &quot;a test&quot; mondat 6 karakteres)
 Ha a &quot;minimális szóhossz (egy)&quot; van kiválasztva, csak azon mondatok látszanak, melyeknek egy szava legalább ilyen hosszú (pl. &quot;a test&quot; négykarakteres)
-Ha a &quot;minimális szóhossz (mind)&quot; van kiválasztva, csak azon mondatok látsznak, melyeknek minden szava legalább ilyen hosszú (pl. &quot;a test&quot; egykarakteres)
+Ha a &quot;minimális szóhossz (mind)&quot; van kiválasztva, csak azon mondatok látszanak, melyeknek minden szava legalább ilyen hosszú (pl. &quot;a test&quot; egykarakteres)
 Ha a &quot;teljes mellőzés&quot; van kiválasztva, minden rövidebb szó mellőzve lesz.
 (pl. 3 hosszúsággal a &quot;this is a test&quot; egyenlő a &quot;this test&quot;-tel, mivel a többi opciók szétválasztják &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;-re, akkor is, ha egyik mondat sem látszana)</translation>
     </message>
@@ -4916,7 +4915,7 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
         <location filename="usermenudialog.cpp" line="33"/>
         <location filename="usermenudialog.cpp" line="38"/>
         <source>Menu %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1. menü</translation>
     </message>
 </context>
 <context>
@@ -4958,7 +4957,7 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
         <location filename="usertooldialog.cpp" line="24"/>
         <location filename="usertooldialog.cpp" line="25"/>
         <source>Command %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1. parancs</translation>
     </message>
 </context>
 <context>
