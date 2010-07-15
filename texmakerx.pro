@@ -250,8 +250,8 @@ unix {
         texmakerx_it.qm \
         texmakerx_cs.qm \
         texmakerx_hu.qm \
-        utilities/qt_fr.qm \
-        utilities/qt_de.qm \
+        qt_fr.qm \
+        qt_de.qm \
         templates/template_Article.tex \
         templates/template_Beamer.tex \
         templates/template_Book.tex \
