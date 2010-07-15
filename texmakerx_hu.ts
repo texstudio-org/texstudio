@@ -3310,6 +3310,21 @@ Akarja menteni ezeket?</translation>
         <translation>Mégsem</translation>
     </message>
     <message>
+        <location filename="tabdialog.cpp" line="31"/>
+        <source>Center</source>
+        <translation type="unfinished">Közép</translation>
+    </message>
+    <message>
+        <location filename="tabdialog.cpp" line="32"/>
+        <source>Left</source>
+        <translation type="unfinished">Bal</translation>
+    </message>
+    <message>
+        <location filename="tabdialog.cpp" line="33"/>
+        <source>Right</source>
+        <translation type="unfinished">Jobb</translation>
+    </message>
+    <message>
         <location filename="tabdialog.cpp" line="40"/>
         <source>Quick Tabular</source>
         <translation>Gyors táblázat</translation>

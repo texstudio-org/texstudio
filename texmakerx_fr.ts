@@ -3454,6 +3454,21 @@ Voulez-vous l&apos;enregistrer ?</translation>
         <translation>Abandon</translation>
     </message>
     <message>
+        <location filename="tabdialog.cpp" line="31"/>
+        <source>Center</source>
+        <translation type="unfinished">Centrer</translation>
+    </message>
+    <message>
+        <location filename="tabdialog.cpp" line="32"/>
+        <source>Left</source>
+        <translation type="unfinished">Justifier à gauche</translation>
+    </message>
+    <message>
+        <location filename="tabdialog.cpp" line="33"/>
+        <source>Right</source>
+        <translation type="unfinished">Justifier à droite</translation>
+    </message>
+    <message>
         <location filename="tabdialog.cpp" line="40"/>
         <source>Quick Tabular</source>
         <translation>Assistant tableau</translation>
