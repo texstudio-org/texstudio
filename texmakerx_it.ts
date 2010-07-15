@@ -4226,6 +4226,11 @@ Vuoi salvarli?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="texmaker.cpp" line="4314"/>
+        <source>All files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>View Dvi</source>
         <translation type="obsolete">Visualizza Dvi</translation>
     </message>
