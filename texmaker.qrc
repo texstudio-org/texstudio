@@ -208,6 +208,7 @@
         <file>completion/multicol.cwl</file>
         <file>completion/multido.cwl</file>
         <file>completion/nicefrac.cwl</file>
+		<file>completion/nomencl.cwl</file>
         <file>completion/pdfpages.cwl</file>
         <file>completion/psfrag.cwl</file>
         <file>completion/pst-3d.cwl</file>
@@ -239,6 +240,7 @@
         <file>completion/texmakerx.cwl</file>
         <file>completion/textcomp.cwl</file>
         <file>completion/todonotes.cwl</file>
+		<file>completion/units.cwl</file>
         <file>completion/url.cwl</file>
         <file>completion/varioref.cwl</file>
         <file>completion/verse.cwl</file>
