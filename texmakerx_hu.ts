@@ -4125,8 +4125,10 @@ Akarja menteni ezeket?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="545"/>
-        <source>load Profile</source>
-        <translation>&amp;Profil betöltése...</translation>
+        <location filename="texmaker.cpp" line="4314"/>
+        <source>Load Profile</source>
+        <oldsource>load Profile</oldsource>
+        <translation type="unfinished">&amp;Profil betöltése...</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="547"/>
@@ -4550,11 +4552,6 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
         <location filename="texmaker.cpp" line="4169"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>Figyelem! A párbeszédablak automatikusan bezáródik, ha a szöveget kézzel szerkeszti!</translation>
-    </message>
-    <message>
-        <location filename="texmaker.cpp" line="4314"/>
-        <source>Load Profile</source>
-        <translation>Profil betöltése</translation>
     </message>
 </context>
 <context>

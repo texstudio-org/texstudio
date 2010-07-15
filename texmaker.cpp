@@ -542,7 +542,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "config",tr("Configure TexMakerX"), SLOT(GeneralOptions()), 0,":/images/configure.png");
 
 	menu->addSeparator();
-	newManagedAction(menu, "loadProfile",tr("load Profile"), SLOT(loadProfile()));
+	newManagedAction(menu, "loadProfile",tr("Load Profile"), SLOT(loadProfile()));
 	menu->addSeparator();
 	ToggleAct=newManagedAction(menu, "masterdocument",tr("Define Current Document as 'Master Document'"), SLOT(ToggleMode()));
 	ToggleRememberAct=newManagedAction(menu, "remembersession",tr("Automatically restore session at next start"));

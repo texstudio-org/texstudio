@@ -4831,7 +4831,9 @@ Různé textové symboly</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="545"/>
-        <source>load Profile</source>
+        <location filename="texmaker.cpp" line="4314"/>
+        <source>Load Profile</source>
+        <oldsource>load Profile</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4869,11 +4871,6 @@ Různé textové symboly</translation>
         <location filename="texmaker.cpp" line="2703"/>
         <source>LaTeX</source>
         <translation>LaTeX</translation>
-    </message>
-    <message>
-        <location filename="texmaker.cpp" line="4314"/>
-        <source>Load Profile</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="4314"/>

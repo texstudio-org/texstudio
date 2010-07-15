@@ -205,7 +205,7 @@
     <message>
         <location filename="bibtexdialog.ui" line="20"/>
         <source>Insert in file:</source>
-        <translation>Einfügin in Datei:</translation>
+        <translation>Einfügen in Datei:</translation>
     </message>
     <message>
         <location filename="bibtexdialog.ui" line="27"/>
@@ -4832,8 +4832,10 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="545"/>
-        <source>load Profile</source>
-        <translation>lade Profil</translation>
+        <location filename="texmaker.cpp" line="4314"/>
+        <source>Load Profile</source>
+        <oldsource>load Profile</oldsource>
+        <translation>Lade Profil</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="578"/>
@@ -4870,11 +4872,6 @@ Wollen Sie es speichern?</translation>
         <location filename="texmaker.cpp" line="2703"/>
         <source>LaTeX</source>
         <translation>LaTeX</translation>
-    </message>
-    <message>
-        <location filename="texmaker.cpp" line="4314"/>
-        <source>Load Profile</source>
-        <translation>Lade Profil</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="4314"/>
