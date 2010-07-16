@@ -539,22 +539,22 @@ void Texmaker::setupMenus() {
 
 //---options---
 	menu=newManagedMenu("main/options",tr("&Options"));
-	newManagedAction(menu, "config",tr("Configure TexMakerX"), SLOT(GeneralOptions()), 0,":/images/configure.png");
+	newManagedAction(menu, "config",tr("&Configure TexMakerX"), SLOT(GeneralOptions()), 0,":/images/configure.png");
 
 	menu->addSeparator();
-	newManagedAction(menu, "loadProfile",tr("Load Profile"), SLOT(loadProfile()));
+	newManagedAction(menu, "loadProfile",tr("&Load Profile","menu"), SLOT(loadProfile()));
 	menu->addSeparator();
-	ToggleAct=newManagedAction(menu, "masterdocument",tr("Define Current Document as 'Master Document'"), SLOT(ToggleMode()));
-	ToggleRememberAct=newManagedAction(menu, "remembersession",tr("Automatically restore session at next start"));
+	ToggleAct=newManagedAction(menu, "masterdocument",tr("Define Current Document as '&Master Document'"), SLOT(ToggleMode()));
+	ToggleRememberAct=newManagedAction(menu, "remembersession",tr("Automatically restore &session at next start"));
 	ToggleRememberAct->setCheckable(true);
 
 //---help---
 	menu=newManagedMenu("main/help",tr("&Help"));
-	newManagedAction(menu, "latexreference",tr("LaTeX Reference"), SLOT(LatexHelp()), 0,":/images/help.png");
-	newManagedAction(menu, "usermanual",tr("User Manual"), SLOT(UserManualHelp()), 0,":/images/help.png");
+	newManagedAction(menu, "latexreference",tr("LaTeX &Reference"), SLOT(LatexHelp()), 0,":/images/help.png");
+	newManagedAction(menu, "usermanual",tr("&User Manual"), SLOT(UserManualHelp()), 0,":/images/help.png");
 
 	menu->addSeparator();
-	newManagedAction(menu, "appinfo",tr("About TexMakerX"), SLOT(HelpAbout()), 0,":/images/appicon.png");
+	newManagedAction(menu, "appinfo",tr("&About TexMakerX"), SLOT(HelpAbout()), 0,":/images/appicon.png");
 
 //-----context menus-----
 	structureTreeView->setObjectName("StructureTree");
@@ -4311,7 +4311,7 @@ void Texmaker::cursorHovered(){
 void Texmaker::loadProfile(){
     bool customEnvironmentExisted = !configManager.customEnvironments.isEmpty();
     QString currentDir=QDir::homePath();
-	QString file = QFileDialog::getOpenFileName(this,tr("Load Profile"),currentDir,"TmX Profile(*.tmxprofile);;"+tr("All files")+" (*)");
+	QString file = QFileDialog::getOpenFileName(this,tr("Load Profile"),currentDir,tr("TmX Profile")+"(*.tmxprofile);;"+tr("All files")+" (*)");
     configManager.readProfile(file);
 
     if (currentEditorView()) {
