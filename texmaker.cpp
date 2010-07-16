@@ -312,18 +312,18 @@ void Texmaker::setupMenus() {
 //file
 	QMenu *menu=newManagedMenu("main/file",tr("&File"));
 	newManagedAction(menu, "new",tr("&New"), SLOT(fileNew()), Qt::CTRL+Qt::Key_N, ":/images/filenew.png");
-	newManagedAction(menu, "newfromtemplate",tr("New from &template"), SLOT(fileNewFromTemplate()));
-	newManagedAction(menu, "open",tr("&Open"), SLOT(fileOpen()), Qt::CTRL+Qt::Key_O, ":/images/fileopen.png");
+	newManagedAction(menu, "newfromtemplate",tr("New from &template..."), SLOT(fileNewFromTemplate()));
+	newManagedAction(menu, "open",tr("&Open..."), SLOT(fileOpen()), Qt::CTRL+Qt::Key_O, ":/images/fileopen.png");
 
 	QMenu *submenu=newManagedMenu(menu, "openrecent",tr("Open Recent")); //only create the menu here, actions are created by config manager
 	newManagedAction(menu, "restoresession",tr("Restore previous session"), SLOT(fileRestoreSession()));
 
 	menu->addSeparator();
 	newManagedAction(menu,"save",tr("&Save"), SLOT(fileSave()), Qt::CTRL+Qt::Key_S, ":/images/filesave.png");
-	newManagedAction(menu,"saveas",tr("Save &As"), SLOT(fileSaveAs()), Qt::CTRL+Qt::ALT+Qt::Key_S);
+	newManagedAction(menu,"saveas",tr("Save &As..."), SLOT(fileSaveAs()), Qt::CTRL+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu,"saveall",tr("Save A&ll"), SLOT(fileSaveAll()), Qt::CTRL+Qt::SHIFT+Qt::ALT+Qt::Key_S);
-	newManagedAction(menu, "maketemplate",tr("&Make Template"), SLOT(fileMakeTemplate()));
-	newManagedAction(menu, "checkin",tr("Check &in"), SLOT(fileCheckin()));
+	newManagedAction(menu, "maketemplate",tr("&Make Template..."), SLOT(fileMakeTemplate()));
+	newManagedAction(menu, "checkin",tr("Check &in..."), SLOT(fileCheckin()));
 	newManagedAction(menu, "showrevisions",tr("Sh&ow old Revisions"), SLOT(showOldRevisions()));
 
 	menu->addSeparator();
@@ -331,7 +331,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"closeall",tr("Clos&e All"), SLOT(fileCloseAll()));
 
 	menu->addSeparator();
-	newManagedAction(menu, "print",tr("Print"), SLOT(filePrint()), Qt::CTRL+Qt::Key_P);
+	newManagedAction(menu, "print",tr("Print..."), SLOT(filePrint()), Qt::CTRL+Qt::Key_P);
 
 	menu->addSeparator();
 	newManagedAction(menu,"exit",tr("Exit"), SLOT(fileExit()), Qt::CTRL+Qt::Key_Q);
@@ -350,8 +350,8 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"eraseLine",tr("Erase &Line"), SLOT(editEraseLine()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_K));
 	newManagedAction(menu,"eraseWord",tr("Erase &Word/Cmd/Env"), SLOT(editEraseWordCmdEnv()), Qt::ALT+Qt::Key_Delete);
 	menu->addSeparator();
-	newManagedAction(menu,"pasteAsLatex",tr("Pas&te as Latex"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, ":/images/editpaste.png");
-	newManagedAction(menu,"convertToLatex",tr("Co&nvert to Latex"), SLOT(convertToLatex()));
+	newManagedAction(menu,"pasteAsLatex",tr("Pas&te as LaTeX"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, ":/images/editpaste.png");
+	newManagedAction(menu,"convertTo",tr("Co&nvert to LaTeX"), SLOT(convertToLatex()));
 	newManagedAction(menu,"previewLatex",tr("Pre&view Selection/Parantheses"), SLOT(previewLatex()),Qt::ALT+Qt::Key_P);
 
 	if (LatexEditorView::getBaseActions().empty()) //only called at first menu created
@@ -362,13 +362,13 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"uncomment",tr("&Uncomment"), SLOT(editUncomment()));
 	newManagedAction(menu,"indent",tr("In&dent"), SLOT(editIndent()));
 	newManagedAction(menu,"unindent",tr("Unind&ent"), SLOT(editUnindent()));
-	newManagedAction(menu,"hardbreak",tr("Hard Line &Break"), SLOT(editHardLineBreak()));
+	newManagedAction(menu,"hardbreak",tr("Hard Line &Break..."), SLOT(editHardLineBreak()));
 	newManagedAction(menu,"hardbreakrepeat",tr("R&epeat Hard Line Break"), SLOT(editHardLineBreakRepeat()));
 
 	menu->addSeparator();
 	newManagedAction(menu,"find", tr("&Find"), SLOT(editFind()), Qt::CTRL+Qt::Key_F);
 	newManagedAction(menu,"findnext",tr("Find &Next"), SLOT(editFindNext()), Qt::CTRL+Qt::Key_M);
-	newManagedAction(menu,"findglobal",tr("Find D&ialog"), SLOT(editFindGlobal()));
+	newManagedAction(menu,"findglobal",tr("Find D&ialog..."), SLOT(editFindGlobal()));
 	newManagedAction(menu,"replace",tr("&Replace"), SLOT(editReplace()), Qt::CTRL+Qt::Key_R);
 	newManagedAction(menu,"generateMirror",tr("Re&name Environment"), SLOT(generateMirror()));
 
@@ -424,12 +424,12 @@ void Texmaker::setupMenus() {
 	lineEndingGroup->addAction(act);
 
 
-	newManagedAction(menu,"encoding",tr("Setup Encoding"),SLOT(editSetupEncoding()));
+	newManagedAction(menu,"encoding",tr("Setup Encoding..."),SLOT(editSetupEncoding()));
 
 
 	menu->addSeparator();
-	newManagedAction(menu,"spelling",tr("Check Spelling"),SLOT(editSpell()),Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
-	newManagedAction(menu,"thesaurus",tr("Thesaurus"),SLOT(editThesaurus()),Qt::CTRL+Qt::SHIFT+Qt::Key_F8);
+	newManagedAction(menu,"spelling",tr("Check Spelling..."),SLOT(editSpell()),Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
+	newManagedAction(menu,"thesaurus",tr("Thesaurus..."),SLOT(editThesaurus()),Qt::CTRL+Qt::SHIFT+Qt::Key_F8);
 
 	menu->addSeparator();
 	newManagedAction(menu,"reparse",tr("Refresh Structure"),SLOT(updateStructure()));
@@ -461,29 +461,29 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	newManagedAction(menu, "clean",tr("Cle&an"), SLOT(CleanAll()));
 	menu->addSeparator();
-	newManagedAction(menu, "htmlexport",tr("C&onvert to Html"), SLOT(WebPublish()));
+	newManagedAction(menu, "htmlexport",tr("C&onvert to Html..."), SLOT(WebPublish()));
 	menu->addSeparator();
-	newManagedAction(menu, "analysetext",tr("A&nalyse Text"), SLOT(AnalyseText()));
-	newManagedAction(menu, "generaterandomtext",tr("Generate &Random Text"), SLOT(GenerateRandomText()));
+	newManagedAction(menu, "analysetext",tr("A&nalyse Text..."), SLOT(AnalyseText()));
+	newManagedAction(menu, "generaterandomtext",tr("Generate &Random Text..."), SLOT(GenerateRandomText()));
 
 //  Latex/Math external
 	configManager.loadManagedMenus(":/uiconfig.xml");
 	// add some additional items
-	menu=newManagedMenu("main/latex",tr("&Latex"));
+	menu=newManagedMenu("main/latex",tr("&LaTeX"));
 	newManagedAction(menu, "insertrefnextlabel",tr("Insert \\ref to next label"), SLOT(editInsertRefToNextLabel()), Qt::ALT+Qt::CTRL+Qt::Key_R);
 	newManagedAction(menu, "insertrefprevlabel",tr("Insert \\ref to previous label"), SLOT(editInsertRefToPrevLabel()));
 
 //wizards
 
 	menu=newManagedMenu("main/wizards",tr("&Wizards"));
-	newManagedAction(menu, "start",tr("Quick &Start"), SLOT(QuickDocument()));
-	newManagedAction(menu, "letter",tr("Quick &Letter"), SLOT(QuickLetter()));
+	newManagedAction(menu, "start",tr("Quick &Start..."), SLOT(QuickDocument()));
+	newManagedAction(menu, "letter",tr("Quick &Letter..."), SLOT(QuickLetter()));
 
 	menu->addSeparator();
-	newManagedAction(menu, "tabular",tr("Quick &Tabular"), SLOT(QuickTabular()));
-	newManagedAction(menu, "tabbing",tr("Quick T&abbing"), SLOT(QuickTabbing()));
-	newManagedAction(menu, "array",tr("Quick &Array"), SLOT(QuickArray()));
-	newManagedAction(menu, "graphic",tr("Insert &Graphic"), SLOT(QuickGraphics()));
+	newManagedAction(menu, "tabular",tr("Quick &Tabular..."), SLOT(QuickTabular()));
+	newManagedAction(menu, "tabbing",tr("Quick T&abbing..."), SLOT(QuickTabbing()));
+	newManagedAction(menu, "array",tr("Quick &Array..."), SLOT(QuickArray()));
+	newManagedAction(menu, "graphic",tr("Insert &Graphic..."), SLOT(QuickGraphics()));
 
 	menu=newManagedMenu("main/bibtex",tr("&Bibliography"));
 	foreach (const BibTeXType& bt, BibTeXDialog::getPossibleBibTeXTypes())
@@ -491,7 +491,7 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	newManagedAction(menu, "clean", tr("&Clean"), SLOT(CleanBib()));
 	menu->addSeparator();
-	newManagedAction(menu, "dialog", tr("BibTeX &insert dialog"), SLOT(InsertBibEntry()));
+	newManagedAction(menu, "dialog", tr("BibTeX &insert dialog..."), SLOT(InsertBibEntry()));
 
 
 //  User
@@ -539,22 +539,22 @@ void Texmaker::setupMenus() {
 
 //---options---
 	menu=newManagedMenu("main/options",tr("&Options"));
-	newManagedAction(menu, "config",tr("&Configure TexMakerX"), SLOT(GeneralOptions()), 0,":/images/configure.png");
+	newManagedAction(menu, "config",tr("&Configure TexMakerX..."), SLOT(GeneralOptions()), 0,":/images/configure.png");
 
 	menu->addSeparator();
-	newManagedAction(menu, "loadProfile",tr("&Load Profile","menu"), SLOT(loadProfile()));
+	newManagedAction(menu, "loadProfile",tr("Load &Profile..."), SLOT(loadProfile()));
 	menu->addSeparator();
 	ToggleAct=newManagedAction(menu, "masterdocument",tr("Define Current Document as '&Master Document'"), SLOT(ToggleMode()));
-	ToggleRememberAct=newManagedAction(menu, "remembersession",tr("Automatically restore &session at next start"));
+	ToggleRememberAct=newManagedAction(menu, "remembersession",tr("Automatically Restore &Session at Next Start"));
 	ToggleRememberAct->setCheckable(true);
 
 //---help---
 	menu=newManagedMenu("main/help",tr("&Help"));
-	newManagedAction(menu, "latexreference",tr("LaTeX &Reference"), SLOT(LatexHelp()), 0,":/images/help.png");
-	newManagedAction(menu, "usermanual",tr("&User Manual"), SLOT(UserManualHelp()), 0,":/images/help.png");
+	newManagedAction(menu, "latexreference",tr("LaTeX Reference..."), SLOT(LatexHelp()), 0,":/images/help.png");
+	newManagedAction(menu, "usermanual",tr("User Manual..."), SLOT(UserManualHelp()), 0,":/images/help.png");
 
 	menu->addSeparator();
-	newManagedAction(menu, "appinfo",tr("&About TexMakerX"), SLOT(HelpAbout()), 0,":/images/appicon.png");
+	newManagedAction(menu, "appinfo",tr("About TexMakerX..."), SLOT(HelpAbout()), 0,":/images/appicon.png");
 
 //-----context menus-----
 	structureTreeView->setObjectName("StructureTree");
@@ -4311,7 +4311,7 @@ void Texmaker::cursorHovered(){
 void Texmaker::loadProfile(){
     bool customEnvironmentExisted = !configManager.customEnvironments.isEmpty();
     QString currentDir=QDir::homePath();
-	QString file = QFileDialog::getOpenFileName(this,tr("Load Profile"),currentDir,tr("TmX Profile")+"(*.tmxprofile);;"+tr("All files")+" (*)");
+	QString file = QFileDialog::getOpenFileName(this,tr("Load Profile"),currentDir,"TmX Profile(*.tmxprofile);;"+tr("All files")+" (*)");
     configManager.readProfile(file);
 
     if (currentEditorView()) {
