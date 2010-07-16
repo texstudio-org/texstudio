@@ -21,37 +21,38 @@
     <message>
         <location filename="aboutdialog.cpp" line="25"/>
         <source>&lt;b&gt;TexMakerX 1.9.9a (SVN </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;TexMakerX 1.9.9a (SVN </translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="26"/>
         <source>TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;html conversion: </source>
-        <translation type="unfinished"></translation>
+        <translation>TexMakerX : Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;html conversion : </translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="27"/>
         <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) and KILE (GPL) program.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>TexMakerX contient du code venant des programmes Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) et KILE (GPL). &lt;br&gt; TexMakerX utilise la classe DSingleApplication (auteur: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="28"/>
         <source>Thanks to </source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>grâce à?</translatorcomment>
+        <translation>Merci à </translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="29"/>
         <source>Project home site : &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Site internet du projet TexMakerX : &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="30"/>
         <source>Home site of original Texmaker: &lt;a href=&quot;http://www.xm1math.net/texmaker/&quot;&gt;http://www.xm1math.net/texmaker/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Site internet originel de Texmaker : &lt;a href=&quot;http://www.xm1math.net/texmaker/index_fr.html&quot;&gt;http://www.xm1math.net/texmaker/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="31"/>
         <source>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ce programme distribué avec la license &apos;GNU General Public License Version 2&apos; telle qu&apos;elle est publiée par la Free Software Foundation.</translation>
     </message>
 </context>
 <context>
@@ -89,17 +90,17 @@
     <message>
         <location filename="arraydialog.cpp" line="31"/>
         <source>Center</source>
-        <translation type="unfinished">Centrer</translation>
+        <translation>Centrer</translation>
     </message>
     <message>
         <location filename="arraydialog.cpp" line="32"/>
         <source>Left</source>
-        <translation type="unfinished">Justifier à gauche</translation>
+        <translation>Aligner à gauche</translation>
     </message>
     <message>
         <location filename="arraydialog.cpp" line="33"/>
         <source>Right</source>
-        <translation type="unfinished">Justifier à droite</translation>
+        <translation>Aligner à droite</translation>
     </message>
     <message>
         <location filename="arraydialog.cpp" line="41"/>
@@ -549,8 +550,8 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <translation>Supprimer ligne</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="253"/>
         <location filename="configdialog.ui" line="857"/>
+        <location filename="configdialog.cpp" line="253"/>
         <source>Shortcuts</source>
         <translation>Raccourcis clavier</translation>
     </message>
@@ -593,8 +594,8 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <translation>Fermer la fenêtre de log au moyen de la touche Esc</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="254"/>
         <location filename="configdialog.ui" line="905"/>
+        <location filename="configdialog.cpp" line="254"/>
         <source>Latex Menus</source>
         <translation>Menus LaTeX</translation>
     </message>
@@ -619,8 +620,8 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <translation></translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="256"/>
         <location filename="configdialog.ui" line="1024"/>
+        <location filename="configdialog.cpp" line="256"/>
         <location filename="configmanager.cpp" line="740"/>
         <source>Editor</source>
         <translation>Éditeur</translation>
@@ -987,7 +988,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="configdialog.cpp" line="257"/>
         <source>Custom Highlighting</source>
-        <translation>Surligneur personnalisée</translation>
+        <translation>Surligneur personnalisé</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="258"/>
@@ -1068,10 +1069,6 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
 </context>
 <context>
     <name>ConfigManager</name>
-    <message>
-        <source>File</source>
-        <translation type="obsolete">Fichier</translation>
-    </message>
     <message>
         <location filename="configmanager.cpp" line="639"/>
         <location filename="configmanager.cpp" line="640"/>
@@ -1350,7 +1347,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <location filename="additionaltranslations.cpp" line="81"/>
         <source>\textit - Italics  [selection]</source>
         <oldsource>	extit - Italics  [selection]</oldsource>
-        <translation>\textit - Italique  [selection]</translation>
+        <translation>\textit - Italique  [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="83"/>
@@ -1380,13 +1377,12 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <location filename="additionaltranslations.cpp" line="91"/>
         <source>\textsf - Sans Serif  [selection]</source>
         <oldsource>	extsf - Sans Serif  [selection]</oldsource>
-        <translation>\textsf - Sans Serif (sans empatement)  [selection]</translation>
+        <translation>\textsf - Sans Serif (sans empatement)  [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="93"/>
         <source>\underline - Underline [selection]</source>
-        <oldsource>\underline - Underline  [selection]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>\underline - Souligner [sélection]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="95"/>
@@ -1790,7 +1786,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <location filename="encodingdialog.cpp" line="18"/>
         <source>Select Encoding for</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir codage pour</translation>
     </message>
     <message>
         <location filename="encodingdialog.cpp" line="33"/>
@@ -2628,7 +2624,7 @@ Rafraîchir en rouvrant le fichier ?</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="219"/>
         <source>escapeseq</source>
-        <translation type="unfinished"></translation>
+        <translation>Antislash</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="221"/>
@@ -2683,7 +2679,7 @@ Rafraîchir en rouvrant le fichier ?</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="241"/>
         <source>normal</source>
-        <translation type="unfinished">Normal</translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="56"/>
@@ -2693,16 +2689,17 @@ Rafraîchir en rouvrant le fichier ?</translation>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="66"/>
         <source>font</source>
-        <translation type="unfinished"></translation>
+        <translation>Police</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="67"/>
         <source>size</source>
-        <translation type="unfinished"></translation>
+        <translation>taille</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="68"/>
         <source>prio</source>
+        <translatorcomment>what the hell?</translatorcomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3139,115 +3136,115 @@ Voulez-vous l&apos;enregistrer ?</translation>
         <translation>Formulaire</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="318"/>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="321"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="50"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="521"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="318"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="321"/>
         <source>Find next occurence</source>
         <translation>Cherche l&apos;occurence suivante</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="319"/>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="322"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="82"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="489"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="319"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="322"/>
         <source>Find previous occurence</source>
         <translation>Cherche l&apos;occurence précédente</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="342"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="102"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="342"/>
         <source>all</source>
         <translation>tout</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="343"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="130"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="343"/>
         <source>Prompt on replace</source>
         <translation>Demander confirmation</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="344"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="146"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="344"/>
         <source>Replace all</source>
         <translation>Remplacer tout</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="345"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="159"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="345"/>
         <source>Escape sequences</source>
-        <translation>Séquences d&apos;échappement</translation>
+        <translation>Antislash</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="330"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="193"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="330"/>
         <source>Case</source>
         <translation>Sensible à la casse</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="332"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="215"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="332"/>
         <source>Words</source>
         <translation>Mots</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="334"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="234"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="334"/>
         <source>Regexp</source>
         <translation>Exp. rég.</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="336"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="253"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="336"/>
         <source>Highlight all</source>
         <translation>Surligner tout</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="338"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="266"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="338"/>
         <source>Cursor</source>
         <translation>Curseur</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="340"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="282"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="340"/>
         <source>Selection</source>
         <translation>Sélection</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="315"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="340"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="315"/>
         <source>Close search/replace panel</source>
         <translation>Fermer panneau chercher/remplacer</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="316"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="372"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="316"/>
         <source>Refresh search underlying context (as an attempt to correct search behavior)</source>
         <translation>Actualiser le contexte de recherche (essai pour corriger le comportement)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="326"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="392"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="326"/>
         <source> Find :</source>
         <translatorcomment>In the source text, there shouldn&apos;t be a space before &apos;:&apos;</translatorcomment>
         <translation>Chercher :</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="320"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="426"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="320"/>
         <source>Replacement text</source>
         <translation>Texte de remplacement</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="317"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="445"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="317"/>
         <source>Text or pattern to search for</source>
         <translation>Texte ou motif à chercher</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="346"/>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="461"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="346"/>
         <source>Replace :</source>
         <translatorcomment>In the source text, there shouldn&apos;t be a space before &apos;:&apos;</translatorcomment>
         <translation>Remplacer :</translation>
@@ -3339,8 +3336,8 @@ Voulez-vous l&apos;enregistrer ?</translation>
         <translation>Fermer</translation>
     </message>
     <message>
-        <location filename="spellerdialog.cpp" line="192"/>
         <location filename="spellerdialog.ui" line="128"/>
+        <location filename="spellerdialog.cpp" line="192"/>
         <source>Show Ignore List \/</source>
         <translation>Afficher la liste des mots ignorés \/</translation>
     </message>
@@ -3456,17 +3453,17 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="tabdialog.cpp" line="31"/>
         <source>Center</source>
-        <translation type="unfinished">Centrer</translation>
+        <translation>Centrer</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="32"/>
         <source>Left</source>
-        <translation type="unfinished">Justifier à gauche</translation>
+        <translation>Aligner à gauche</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="33"/>
         <source>Right</source>
-        <translation type="unfinished">Justifier à droite</translation>
+        <translation>Aligner à droite</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="40"/>
@@ -3646,7 +3643,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="319"/>
         <source>Restore previous session</source>
-        <translation>Restaurer la session précédente</translation>
+        <translation>Rest&amp;aurer la session précédente</translation>
     </message>
     <message>
         <source>Save</source>
@@ -3656,13 +3653,13 @@ Voulez-vous l&apos;enregistrer ?</translation>
         <location filename="texmaker.cpp" line="969"/>
         <location filename="texmaker.cpp" line="1158"/>
         <source>Save As</source>
-        <translation>Enregistrer sous</translation>
+        <translation>&amp;Enregistrer sous</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="323"/>
         <source>Save &amp;As</source>
         <oldsource>Save All</oldsource>
-        <translation>Enregistrer &amp;sous</translation>
+        <translation>&amp;Enregistrer sous</translation>
     </message>
     <message>
         <source>Make Template</source>
@@ -3689,12 +3686,12 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="334"/>
         <source>Print</source>
-        <translation>Imprimer</translation>
+        <translation>Im&amp;primer</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="337"/>
         <source>Exit</source>
-        <translation>Quitter</translation>
+        <translation>&amp;Quitter</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="341"/>
@@ -3741,7 +3738,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
         <location filename="texmaker.cpp" line="353"/>
         <source>Pas&amp;te as Latex</source>
         <oldsource>Convert to Latex</oldsource>
-        <translation>Coller en LaTeX</translation>
+        <translation>Coller en La&amp;TeX</translation>
     </message>
     <message>
         <source>Preview Selection/Parantheses</source>
@@ -3756,7 +3753,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
         <location filename="texmaker.cpp" line="361"/>
         <source>Co&amp;mment</source>
         <oldsource>Uncomment</oldsource>
-        <translation>Co&amp;mmenter</translation>
+        <translation>Commen&amp;ter</translation>
     </message>
     <message>
         <source>Indent</source>
@@ -3766,7 +3763,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
         <location filename="texmaker.cpp" line="363"/>
         <source>In&amp;dent</source>
         <oldsource>Unindent</oldsource>
-        <translation>In&amp;denter</translation>
+        <translation>&amp;Indenter</translation>
     </message>
     <message>
         <source>Hard Line Break</source>
@@ -4098,7 +4095,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="315"/>
         <source>New from &amp;template</source>
-        <translation>Nouveau à par&amp;tir d&apos;un canevas</translation>
+        <translation>Nouveau à par&amp;tir d&apos;un modèle</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="316"/>
@@ -4118,17 +4115,17 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="325"/>
         <source>&amp;Make Template</source>
-        <translation>&amp;Créer un canevas (à partir du fichier courant)</translation>
+        <translation>&amp;Créer un modèle (à partir du fichier courant)</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="326"/>
         <source>Check &amp;in</source>
-        <translation>Pr&amp;opager (SVN)</translation>
+        <translation>Propa&amp;ger (SVN)</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="327"/>
         <source>Sh&amp;ow old Revisions</source>
-        <translation>Afficher les révisi&amp;ons antérieures (SVN)</translation>
+        <translation>Afficher les ré&amp;visions antérieures (SVN)</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="331"/>
@@ -4168,7 +4165,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="350"/>
         <source>Erase &amp;Line</source>
-        <translation>Effacer la &amp;ligne</translation>
+        <translation>Ef&amp;facer la ligne</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="351"/>
@@ -4188,7 +4185,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="362"/>
         <source>&amp;Uncomment</source>
-        <translation>&amp;Décommenter</translation>
+        <translation>Décommen&amp;ter</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="364"/>
@@ -4402,7 +4399,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
         <location filename="texmaker.cpp" line="4314"/>
         <source>Load Profile</source>
         <oldsource>load Profile</oldsource>
-        <translation type="unfinished">Charger le &amp;profil</translation>
+        <translation>Charger le &amp;profil</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="547"/>
@@ -4462,32 +4459,32 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="578"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>Personnalisé</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="579"/>
         <source>File</source>
-        <translation type="unfinished">Fichier</translation>
+        <translation>Fichier</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="581"/>
         <source>Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Outils</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="582"/>
         <source>Math</source>
-        <translation type="unfinished">Maths</translation>
+        <translation>Maths</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="583"/>
         <source>Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Format</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="590"/>
         <source>Spelling</source>
-        <translation type="unfinished"></translation>
+        <translation>Orthographe</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="676"/>
@@ -4564,7 +4561,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="4314"/>
         <source>All files</source>
-        <translation type="unfinished"></translation>
+        <translation>Tous les fichiers</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="580"/>
@@ -5052,7 +5049,7 @@ Sinon la ponctuation est ignorée.</translation>
         <location filename="textanalysis.ui" line="376"/>
         <source>Min&amp;max words per phrase:</source>
         <oldsource>min&amp;max words per phrase:</oldsource>
-        <translation>Minum et maximum de mots par phrase :</translation>
+        <translation>&amp;Minimum et maximum de mots par phrase :</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="391"/>
@@ -5224,7 +5221,7 @@ Sinon la ponctuation est ignorée.</translation>
         <location filename="usermenudialog.cpp" line="33"/>
         <location filename="usermenudialog.cpp" line="38"/>
         <source>Menu %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Menu %1</translation>
     </message>
 </context>
 <context>
@@ -5266,14 +5263,14 @@ Sinon la ponctuation est ignorée.</translation>
         <location filename="usertooldialog.cpp" line="24"/>
         <location filename="usertooldialog.cpp" line="25"/>
         <source>Command %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Commande %1</translation>
     </message>
 </context>
 <context>
     <name>WebPublishDialog</name>
     <message>
-        <location filename="webpublishdialog.cpp" line="22"/>
         <location filename="webpublishdialog.ui" line="13"/>
+        <location filename="webpublishdialog.cpp" line="22"/>
         <source>Convert to Html</source>
         <translation>Exporter vers html</translation>
     </message>
