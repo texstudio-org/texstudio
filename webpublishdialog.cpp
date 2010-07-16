@@ -117,24 +117,24 @@ void WebPublishDialog::convert(const QString &fileName) {
 		if (!config->noindex) writepages("index");
 		if (ttwperr || errprocess) return;
 		clean();
-		ui.messagetextEdit->append("Conversion done.\nThe html files are located in the "+htmldir+" directory.");
+		ui.messagetextEdit->append(tr("Conversion done.\nThe html files are located in the %1 directory.").arg(htmldir));
 		if (!config->noindex) firstpage=htmldir+"/index.html";
 		else firstpage=htmldir+"/page1.html";
 		QFileInfo fip(firstpage);
 		if (fip.exists() && fip.isReadable() && (!config->browser.isEmpty()) && (!errprocess)) {
-			ui.messagetextEdit->append("Running browser .");
+			ui.messagetextEdit->append(tr("Running browser ."));
 			proc=new QProcess(this);
 			connect(proc, SIGNAL(finished(int)),proc, SLOT(deleteLater())); //will free proc after the process has ended
 			proc->setWorkingDirectory(workdir);
 			
 			proc->start(config->browser+" "+firstpage);
 			if (!proc->waitForStarted(1000)) {
-				ui.messagetextEdit->append("Error : could not start the command");
+				ui.messagetextEdit->append(tr("Error")+" : "+tr("could not start the command"));
 				errprocess=true;
 			}
 		}
 	} else {
-		ui.messagetextEdit->append("Input file not found.");
+		ui.messagetextEdit->append(tr("Input file not found."));
 	}
 }
 
@@ -154,7 +154,7 @@ void WebPublishDialog::closeEvent(QCloseEvent* ce) {
 void WebPublishDialog::RunCommand(const BuildManager::LatexCommand &cmd, const QString& addParams, const QString& file, const bool waitendprocess, const char* stdErrSlot){
 	ProcessX* proc= buildManager->newProcess(cmd, addParams, file);
 	this->proc=proc;
-	ui.messagetextEdit->append("  Running this command: "+proc->getCommandLine());
+	ui.messagetextEdit->append(tr("  Running this command: ")+proc->getCommandLine());
 	curLog="";
 	proc->setWorkingDirectory(workdir);
 	if (stdErrSlot)	connect(proc, SIGNAL(readyReadStandardError()),this, stdErrSlot);
@@ -162,7 +162,7 @@ void WebPublishDialog::RunCommand(const BuildManager::LatexCommand &cmd, const Q
 	connect(proc, SIGNAL(finished(int)),this, SLOT(SlotEndProcess(int)));
 	proc->startCommand();
 	if (!proc->waitForStarted(1000)) {
-		ui.messagetextEdit->append("Error : could not start the command");
+		ui.messagetextEdit->append(tr("Error")+" : "+tr("could not start the command"));
 		errprocess=true;
 	}
 	procfinished=false;
@@ -175,7 +175,7 @@ void WebPublishDialog::RunCommand(const BuildManager::LatexCommand &cmd, const Q
 
 void WebPublishDialog::SlotEndProcess(int err) {
 	if (err) {
-		ui.messagetextEdit->append("Error : a process has failed");
+		ui.messagetextEdit->append(tr("Error")+" : "+tr("a process has failed"));
 		if (curLog!="") ui.messagetextEdit->append(curLog);
 		errprocess=true;
 	}

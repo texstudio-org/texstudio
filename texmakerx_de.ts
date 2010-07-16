@@ -4297,6 +4297,7 @@ Wollen Sie es speichern?</translation>
         <location filename="texmaker.cpp" line="1039"/>
         <location filename="texmaker.cpp" line="1610"/>
         <location filename="texmaker.cpp" line="2631"/>
+        <location filename="texmaker.cpp" line="2656"/>
         <location filename="texmaker.cpp" line="2695"/>
         <location filename="texmaker.cpp" line="2748"/>
         <location filename="texmaker.cpp" line="2760"/>
@@ -5903,6 +5904,46 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
         <location filename="webpublishdialog.cpp" line="31"/>
         <source>No</source>
         <translation>Nein</translation>
+    </message>
+    <message>
+        <location filename="webpublishdialog.cpp" line="120"/>
+        <source>Conversion done.
+The html files are located in the %1 directory.</source>
+        <translation>Erstellung abgeschlossen.
+Die HTML-Dateien befinden sich in Verzeichnis %1.</translation>
+    </message>
+    <message>
+        <location filename="webpublishdialog.cpp" line="125"/>
+        <source>Running browser .</source>
+        <translation>Starte Browser.</translation>
+    </message>
+    <message>
+        <location filename="webpublishdialog.cpp" line="132"/>
+        <location filename="webpublishdialog.cpp" line="165"/>
+        <location filename="webpublishdialog.cpp" line="178"/>
+        <source>Error</source>
+        <translation>Fehler</translation>
+    </message>
+    <message>
+        <location filename="webpublishdialog.cpp" line="132"/>
+        <location filename="webpublishdialog.cpp" line="165"/>
+        <source>could not start the command</source>
+        <translation>Programm konnte nicht gestartet werden.</translation>
+    </message>
+    <message>
+        <location filename="webpublishdialog.cpp" line="137"/>
+        <source>Input file not found.</source>
+        <translation>Datei nicht gefunden.</translation>
+    </message>
+    <message>
+        <location filename="webpublishdialog.cpp" line="157"/>
+        <source>  Running this command: </source>
+        <translation>Starte folgendes Programm:</translation>
+    </message>
+    <message>
+        <location filename="webpublishdialog.cpp" line="178"/>
+        <source>a process has failed</source>
+        <translation>ein Prozeß meldete einen Fehler</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="829"/>
