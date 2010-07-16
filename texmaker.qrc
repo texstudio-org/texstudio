@@ -1362,6 +1362,7 @@
         <file>symbols/wasysym/img111wasysym.png</file>
         <file>symbols/wasysym/img112wasysym.png</file>
         <file>templates/template_Article.tex</file>
+		<file>templates/template_Article(French).tex</file>
         <file>templates/template_Beamer.tex</file>
         <file>templates/template_Book.tex</file>
         <file>templates/template_HA-prosper.tex</file>
