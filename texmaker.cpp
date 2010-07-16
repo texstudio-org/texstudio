@@ -2653,7 +2653,7 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool 
 	procX->startCommand();
 	if (!procX->waitForStarted(1000)) {
 		ERRPROCESS=true;
-		outputView->insertMessageLine("Error: "+tr("could not start the command:")+" "+commandline+"\n");
+		outputView->insertMessageLine(tr("Error")+": "+tr("could not start the command:")+" "+commandline+"\n");
 		return;
 	} else outputView->insertMessageLine(tr("Process started")+"\n");
 

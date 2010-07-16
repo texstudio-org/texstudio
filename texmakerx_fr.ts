@@ -4538,6 +4538,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
         <location filename="texmaker.cpp" line="1039"/>
         <location filename="texmaker.cpp" line="1610"/>
         <location filename="texmaker.cpp" line="2631"/>
+        <location filename="texmaker.cpp" line="2656"/>
         <location filename="texmaker.cpp" line="2695"/>
         <location filename="texmaker.cpp" line="2748"/>
         <location filename="texmaker.cpp" line="2760"/>
@@ -5496,6 +5497,45 @@ p, li { white-space: pre-wrap; }
         <location filename="webpublishdialog.cpp" line="31"/>
         <source>No</source>
         <translation>Non</translation>
+    </message>
+    <message>
+        <location filename="webpublishdialog.cpp" line="120"/>
+        <source>Conversion done.
+The html files are located in the %1 directory.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="webpublishdialog.cpp" line="125"/>
+        <source>Running browser .</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="webpublishdialog.cpp" line="132"/>
+        <location filename="webpublishdialog.cpp" line="165"/>
+        <location filename="webpublishdialog.cpp" line="178"/>
+        <source>Error</source>
+        <translation type="unfinished">Erreur</translation>
+    </message>
+    <message>
+        <location filename="webpublishdialog.cpp" line="132"/>
+        <location filename="webpublishdialog.cpp" line="165"/>
+        <source>could not start the command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="webpublishdialog.cpp" line="137"/>
+        <source>Input file not found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="webpublishdialog.cpp" line="157"/>
+        <source>  Running this command: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="webpublishdialog.cpp" line="178"/>
+        <source>a process has failed</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="829"/>
