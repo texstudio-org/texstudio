@@ -4391,26 +4391,37 @@ Voulez-vous l&apos;enregistrer ?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="542"/>
-        <source>Configure TexMakerX</source>
-        <translation>Configurer TexMakerX</translation>
+        <source>&amp;Configure TexMakerX</source>
+        <oldsource>Configure TexMakerX</oldsource>
+        <translation type="unfinished">Configurer TexMakerX</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="545"/>
+        <source>&amp;Load Profile</source>
+        <comment>menu</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="texmaker.cpp" line="547"/>
+        <source>Define Current Document as &apos;&amp;Master Document&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="texmaker.cpp" line="4314"/>
         <source>Load Profile</source>
         <oldsource>load Profile</oldsource>
         <translation>Charger le &amp;profil</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="547"/>
         <location filename="texmaker.cpp" line="3450"/>
         <source>Define Current Document as &apos;Master Document&apos;</source>
         <translation>Définir le document courant comme « maître »</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="548"/>
-        <source>Automatically restore session at next start</source>
-        <translation>Restaurer cette session au prochain démarrage</translation>
+        <source>Automatically restore &amp;session at next start</source>
+        <oldsource>Automatically restore session at next start</oldsource>
+        <translation type="unfinished">Restaurer cette session au prochain démarrage</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="552"/>
@@ -4419,18 +4430,21 @@ Voulez-vous l&apos;enregistrer ?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="553"/>
-        <source>LaTeX Reference</source>
-        <translation>Aide LaTeX</translation>
+        <source>LaTeX &amp;Reference</source>
+        <oldsource>LaTeX Reference</oldsource>
+        <translation type="unfinished">Aide LaTeX</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="554"/>
-        <source>User Manual</source>
-        <translation>Manuel de TexMakerX</translation>
+        <source>&amp;User Manual</source>
+        <oldsource>User Manual</oldsource>
+        <translation type="unfinished">Manuel de TexMakerX</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="557"/>
-        <source>About TexMakerX</source>
-        <translation>À propos de TexMakerX</translation>
+        <source>&amp;About TexMakerX</source>
+        <oldsource>About TexMakerX</oldsource>
+        <translation type="unfinished">À propos de TexMakerX</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="564"/>
