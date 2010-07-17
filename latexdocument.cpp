@@ -464,6 +464,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfElements;
 	StructureEntry* se=baseStructure;
 	splitStructure(se,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count);
+	bool sectionAdded=false;
 
 	//TODO: This assumes one command per line, which is not necessary true
 	for (int i=linenr; i<linenr+count; i++) {
@@ -577,13 +578,11 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				}
 				//write bib tex in tree
 				foreach (const QString& bibFile, bibs) {
-					bool reuse=false;
 					StructureEntry *newFile;
 					if(MapOfBibtex.contains(dlh)){
 						newFile=MapOfBibtex.value(dlh);
 						newFile->type=StructureEntry::SE_BIBTEX;
 						MapOfBibtex.remove(dlh,newFile);
-						reuse=true;
 					}else{
 						newFile=new StructureEntry(this, StructureEntry::SE_BIBTEX);
 #ifndef QT_NO_DEBUG
@@ -603,13 +602,11 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			if (cmd=="\\label") {
 				mLabelItem.insert(line(i).handle(),name);
 				completerNeedsUpdate=true;
-				bool reuse=false;
 				StructureEntry *newLabel;
 				if(MapOfLabels.contains(dlh)){
 					newLabel=MapOfLabels.value(dlh);
 					newLabel->type=StructureEntry::SE_LABEL;
 					MapOfLabels.remove(dlh,newLabel);
-					reuse=true;
 				}else{
 					newLabel=new StructureEntry(this, StructureEntry::SE_LABEL);
 #ifndef QT_NO_DEBUG
@@ -628,13 +625,11 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 			if (cmd=="\\begin" && name=="block") {
 				QString s=extractSectionName(remainder,true);
-				bool reuse=false;
 				StructureEntry *newBlock;
 				if(MapOfBlock.contains(dlh)){
 					newBlock=MapOfBlock.value(dlh);
 					newBlock->type=StructureEntry::SE_BLOCK;
 					MapOfBlock.remove(dlh,newBlock);
-					reuse=true;
 				}else{
 					newBlock=new StructureEntry(this, StructureEntry::SE_BLOCK);
 #ifndef QT_NO_DEBUG
@@ -668,7 +663,6 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			if(cmd.endsWith("*")) cmd.left(cmd.length()-1);
 			int header=LatexParser::structureCommands.indexOf(cmd);
 			if (header>-1) {
-				bool reuse=false;
 				StructureEntry *newSection;
 				StructureEntry* parent=header == 0 ? baseStructure : parent_level[header];
 				if(MapOfElements.contains(dlh)){
@@ -676,10 +670,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 					newSection->type=StructureEntry::SE_SECTION;
 					toBeDeleted.remove(newSection);
 					MapOfElements.remove(dlh,newSection);
-					reuse=true;
 				}else{
 					emit addElement(parent,parent->children.size());
 					newSection=new StructureEntry(this,StructureEntry::SE_SECTION);
+					sectionAdded=true;
 #ifndef QT_NO_DEBUG
 					StructureContent.insert(newSection);
 #endif
@@ -696,9 +690,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				for(int j=header+2;j<parent_level.size();j++)
 					parent_level[j]=newSection;
 
-				if(!reuse) {
-					emit addElementFinished();
-				}
+
 			}
 		}// for each command
 	}//for each line handle
@@ -713,6 +705,9 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	    foreach(StructureEntry *elem,remainingChildren[i]){
 			elem->parent=parent_level[i];
 	    }
+	}
+	if(sectionAdded) {
+		emit addElementFinished();
 	}
 	// purge unconnected elements
 	foreach(se,toBeDeleted.keys()){
