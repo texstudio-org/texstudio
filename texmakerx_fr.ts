@@ -2624,7 +2624,7 @@ Rafraîchir en rouvrant le fichier ?</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="219"/>
         <source>escapeseq</source>
-        <translation>Antislash</translation>
+        <translation>Séq. d&apos;échappement</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="221"/>
@@ -2700,7 +2700,7 @@ Rafraîchir en rouvrant le fichier ?</translation>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="68"/>
         <source>prio</source>
         <translatorcomment>what the hell? priority!</translatorcomment>
-        <translation></translation>
+        <translation>priorité</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="299"/>
@@ -3173,7 +3173,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="159"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="345"/>
         <source>Escape sequences</source>
-        <translation>Antislash</translation>
+        <translation>Séq. d&apos;échappement</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/searchreplace.ui" line="193"/>
@@ -4424,7 +4424,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
         <location filename="texmaker.cpp" line="4314"/>
         <source>TmX Profile</source>
         <comment>filter</comment>
-        <translation type="unfinished"></translation>
+        <translation>Profile TmX</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="4314"/>
@@ -4441,7 +4441,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
         <location filename="texmaker.cpp" line="548"/>
         <source>Automatically Restore &amp;Session at Next Start</source>
         <oldsource>Automatically Restore Session at Next Start</oldsource>
-        <translation type="unfinished">Restaurer cette session au prochain démarrage</translation>
+        <translation>Restaurer cette &amp;session au prochain démarrage</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="552"/>
@@ -4681,7 +4681,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <location filename="texmaker.cpp" line="2656"/>
         <source>could not start the command:</source>
-        <translation>Impossible de lancer la commande :</translation>
+        <translation>impossible de lancer la commande :</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="2658"/>
@@ -5502,40 +5502,41 @@ p, li { white-space: pre-wrap; }
         <location filename="webpublishdialog.cpp" line="120"/>
         <source>Conversion done.
 The html files are located in the %1 directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Conversion effectuée
+Les fichiers html sont situés dans le répertoire %1.</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="125"/>
         <source>Running browser .</source>
-        <translation type="unfinished"></translation>
+        <translation>Lancer le navigateur.</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="132"/>
         <location filename="webpublishdialog.cpp" line="165"/>
         <location filename="webpublishdialog.cpp" line="178"/>
         <source>Error</source>
-        <translation type="unfinished">Erreur</translation>
+        <translation>Erreur</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="132"/>
         <location filename="webpublishdialog.cpp" line="165"/>
         <source>could not start the command</source>
-        <translation type="unfinished"></translation>
+        <translation>la commande ne peut pas être lancée</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="137"/>
         <source>Input file not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichier importé non trouvé.</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="157"/>
         <source>  Running this command: </source>
-        <translation type="unfinished"></translation>
+        <translation>  Lancer cette commande :</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="178"/>
         <source>a process has failed</source>
-        <translation type="unfinished"></translation>
+        <translation>un processus a échoué</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="829"/>
