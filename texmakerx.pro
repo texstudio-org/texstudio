@@ -244,6 +244,15 @@ unix {
         utilities/doc7.png \
         utilities/doc8.png \
         utilities/doc9.png \
+	utilities/configure_completion.png \
+	utilities/configure_customizeMenu.png \
+	utilities/configure_customToolbar.png \
+	utilities/configure_editor.png \
+	utilities/configure_general.png \
+	utilities/configure_shortcuts.png \
+	utilities/configure_svn.png \
+	utilities/template.png \
+	utilities/thesaurus.png \
         utilities/latexhelp.html \
         texmakerx_fr.qm \
         texmakerx_de.qm \
