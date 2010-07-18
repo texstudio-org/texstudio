@@ -151,21 +151,21 @@ void QuickDocumentDialog::registerOptions(ConfigManagerInterface& configManager)
 	configManager.registerOption("Quick/AMS",&ams_packages, true);
 	configManager.registerOption("Quick/MakeIndex",&makeidx_package, false);
 	configManager.registerOption("Quick/Author",&author, "");
-	
+
 	configManager.registerOption("Quick/Geometry Page Width",&geometryPageWidth, 0.0f);
 	configManager.registerOption("Quick/Geometry Page Height",&geometryPageHeight, 0.0f);
 	configManager.registerOption("Quick/Geometry Margin Left",&geometryMarginLeft, 0.0f);
 	configManager.registerOption("Quick/Geometry Margin Right",&geometryMarginRight, 0.0f);
 	configManager.registerOption("Quick/Geometry Margin Top",&geometryMarginTop, 0.0f);
 	configManager.registerOption("Quick/Geometry Margin Bottom",&geometryMarginBottom, 0.0f);
-	
+
 	configManager.registerOption("Quick/Geometry Page Width Unit",&geometryPageWidthUnit, "cm");
 	configManager.registerOption("Quick/Geometry Page Height Unit",&geometryPageHeightUnit, "cm");
 	configManager.registerOption("Quick/Geometry Margin Left Unit",&geometryMarginLeftUnit, "cm");
 	configManager.registerOption("Quick/Geometry Margin Right Unit",&geometryMarginRightUnit, "cm");
 	configManager.registerOption("Quick/Geometry Margin Top Unit",&geometryMarginTopUnit, "cm");
 	configManager.registerOption("Quick/Geometry Margin Bottom Unit",&geometryMarginBottomUnit, "cm");
-	
+
 	configManager.registerOption("Quick/Geometry Page Width Enabled",&geometryPageWidthEnabled, false);
 	configManager.registerOption("Quick/Geometry Page Height Enabled",&geometryPageHeightEnabled, false);
 	configManager.registerOption("Quick/Geometry Margin Left Enabled",&geometryMarginLeftEnabled, false);
@@ -375,7 +375,7 @@ void QuickDocumentDialog::geometryValuesChanged(){
 
 	QPainter painter(&preview);
 
-	painter.setTransform(QTransform::fromScale(resolution, resolution)*QTransform::fromTranslate(2,2));
+	painter.setTransform(QTransform().scale(resolution, resolution)*QTransform().translate(2,2));
 
 	preview.fill(QColor(0,0,0));
 	painter.setBrush(QBrush(QColor(255,255,255),Qt::SolidPattern));

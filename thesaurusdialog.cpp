@@ -1,8 +1,8 @@
 #include "thesaurusdialog.h"
 #include <QMutex>
+#if QT_VERSION >= 0x040500
 #include <QFuture>
 
-#if QT_VERSION >= 0x040500
 #include <QtConcurrentRun>
 #endif
 
@@ -35,7 +35,9 @@ QString ThesaurusDatabaseType::TinyStringRef::toStringWithBuffer(const QString* 
 
 static ThesaurusDatabaseType globalThesaurus;
 static QMutex thesaurusLock;
+#if QT_VERSION >= 0x040500
 static QFuture<void> thesaurusFuture;
+#endif
 static QString globalThesaurusNeededFileName;
 
 
