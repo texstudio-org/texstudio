@@ -7,7 +7,7 @@ TexMakerX 1.9.9 -> TexMakerX 1.9.9a
 - a cut buffer was added. If selected text is replaced with a command via completion, the removed text is used as argument for the inserted command (if applicable)
 - tool tip in completer shows the surrounding of the label to which the selected reference is pointing
 - profiles containg predefined short cuts, menu redefinition, editor settings can be imported from a file
-- when waiting with text cursor on an environmnt name, a mirror cursor is generated which allows the renaming of the environment (\begin and \end simultaneously)
+- when waiting with text cursor on an environment name, a mirror cursor is generated which allows the renaming of the environment (\begin and \end simultaneously)
 - delete word, a command or an environment by typing ALT-del
 - spell checking is only done in known text commands
 - some dialogs adapted to cope better with small screen sizes

@@ -30,17 +30,17 @@
     <message>
         <location filename="aboutdialog.cpp" line="27"/>
         <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) and KILE (GPL) program.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
-        <translation>TexMakerX enthält Code aus den Programmen Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) und KILE (GPL).&lt;br&gt; TexMakerX nutzt die  DSingleApplication Klasse (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Lizenz: GPL)&lt;br&gt;</translation>
+        <translation>TexMakerX enthält Code aus den Programmen Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) und KILE (GPL).&lt;br&gt; TexMakerX nutzt die  DSingleApplication Klasse (Autor: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Lizenz: GPL)&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="28"/>
         <source>Thanks to </source>
-        <translation>Dank an</translation>
+        <translation>Dank an </translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="29"/>
         <source>Project home site : &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation>Projektseit: &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
+        <translation>Projektseite: &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="30"/>
