@@ -21,8 +21,10 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
 	QString base = dic.left(dic.length()-4);
 	QString dicFile = base+".dic";
 	QString affFile = base+".aff";
-	if (!QFileInfo(dicFile).exists()) return false;
-	if (!QFileInfo(affFile).exists()) return false;
+	if (!QFileInfo(dicFile).exists() || !QFileInfo(affFile).exists()) {
+		emit reloadDictionary(); //remove spelling error marks from errors with previous dictionary (because these marks could lead to crashes if not removed)
+		return false;
+	}
 	currentDic=dic;
 	pChecker = new Hunspell(affFile.toLocal8Bit(),dicFile.toLocal8Bit());
 	if (!pChecker) {
@@ -33,6 +35,7 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
 	spellCodec = QTextCodec::codecForName(spell_encoding.toLatin1());
 	if (spellCodec==0) {
 		unload();
+		emit reloadDictionary();
 		return false;
 	}
 
@@ -131,6 +134,8 @@ bool SpellerUtility::check(QString word) {
 	return result;
 }
 QStringList SpellerUtility::suggest(QString word) {
+	Q_ASSERT(pChecker);
+	if (currentDic=="" || pChecker==0) return QStringList(); //no speller => everything is correct
 	QByteArray encodedString = spellCodec->fromUnicode(word);
 	char ** wlst;
 	int ns = pChecker->suggest(&wlst,encodedString.data());
