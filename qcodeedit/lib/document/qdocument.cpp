@@ -2609,6 +2609,15 @@ void QDocumentLineHandle::clearOverlays()
 	//applyOverlays();
 }
 
+void QDocumentLineHandle::clearOverlays(int format){
+	int oldsize = m_overlays.size();
+	for ( int i = m_overlays.size()-1; i>=0; i-- )
+		if ( m_overlays[i].format == format )
+			m_overlays.removeAt(i);
+	if (oldsize != m_overlays.size())
+		setFlag(QDocumentLine::FormatsApplied, false);
+}
+
 void QDocumentLineHandle::addOverlay(const QFormatRange& over)
 {
 	m_overlays << over;
@@ -2638,11 +2647,14 @@ bool QDocumentLineHandle::hasOverlay(int id){
 }
 
 QList<QFormatRange> QDocumentLineHandle::getOverlays(int preferredFormat){
-    if (preferredFormat==-1) return m_overlays;
-    QList<QFormatRange> result=m_overlays;
-    for (int i=result.size()-1;i>=0;i--)
-        if (result[i].format!=preferredFormat) result.removeAt(i);
-    return result;
+	if (preferredFormat==-1) return m_overlays;
+	/*QList<QFormatRange> result=m_overlays;
+	    for (int i=result.size()-1;i>=0;i--)
+		if (result[i].format!=preferredFormat) result.removeAt(i);*/
+	QList<QFormatRange> result;
+	for (int i=0;i<m_overlays.size();i++)
+		if (m_overlays[i].format==preferredFormat) result.append(m_overlays[i]);
+	return result;
 }
 
 QFormatRange QDocumentLineHandle::getOverlayAt(int index, int preferredFormat){

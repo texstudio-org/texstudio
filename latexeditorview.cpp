@@ -555,7 +555,15 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		containedLabels->removeUpdateByHandle(dlh,containedReferences);
 		containedReferences->removeUpdateByHandle(dlh,0);
 
-		line.clearOverlays();
+		//remove all overlays used for latex things, in descending frequency
+		line.clearOverlays(speller->spellcheckErrorFormat);
+		line.clearOverlays(referencePresentFormat);
+		line.clearOverlays(citationPresentFormat);
+		line.clearOverlays(referenceMissingFormat);
+		line.clearOverlays(referenceMultipleFormat);
+		line.clearOverlays(citationMissingFormat);
+		line.clearOverlays(environmentFormat);
+
 		if (line.length()<=3) continue;
 		//if (!config->realtimespellchecking) continue;
 

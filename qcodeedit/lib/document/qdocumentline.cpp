@@ -540,6 +540,13 @@ void QDocumentLine::clearOverlays()
 	m_handle->clearOverlays();
 }
 
+void QDocumentLine::clearOverlays(int formatToClear){
+	if ( !m_handle )
+		return;
+
+	m_handle->clearOverlays(formatToClear);
+}
+
 /*!
 	\brief Add an overlay to the line
 	

@@ -49,7 +49,8 @@ class QCE_EXPORT QDocumentSearch: public QObject
 			Prompt			= 16,
 			Silent			= 32,
 			HighlightAll	= 64,
-			EscapeSeq		= 128 
+			EscapeSeq		= 128,
+			HighlightReplacements	= 64
 		};
 		
 		Q_DECLARE_FLAGS(Options, Option);
@@ -97,6 +98,7 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		bool nextMatch(bool backward, bool again=false,  bool allowWrapAround=true);
 		void searchMatches(const QDocumentCursor& subHighlightScope=QDocumentCursor(), bool clearAll=true);
 		void clearMatches();
+		void clearReplacements();
 		
 		QRegExp currentRegExp();
 		
@@ -107,10 +109,12 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		QPointer<QEditor> m_editor;
 		QDocumentCursor m_cursor, m_scope, m_highlightedScope, m_origin;
 		QList<QDocumentCursor*> m_highlight;
+		QSet<QDocumentLineHandle*> m_highlightedReplacements;
 
 		int m_replaced,m_replaceDeltaLength,m_replaceDeltaLines;
 	private slots:
 		void documentContentChanged(int line, int n);
+		void lineDeleted(QDocumentLineHandle* line);
 };
 Q_DECLARE_OPERATORS_FOR_FLAGS(QDocumentSearch::Options)
 #endif // !_QDOCUMENT_SEARCH_H_
