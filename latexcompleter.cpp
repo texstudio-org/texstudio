@@ -233,12 +233,14 @@ public:
 				handled=true;
 			} else if (LatexCompleter::config && LatexCompleter::config->eowCompletes && 
 		           event->text().length()==1 && getCommonEOW().contains(event->text().at(0))) {
+				int curLength = getCurWord().length();
 				insertCompletedWord();
 				resetBinding();
-				return false; //return false to let the default implementation handle it and insert the new character
+				return curLength >= 2 &&  oldBinding->keyPressEvent(event,editor); //call old input binding for long words (=> key replacements after completions, but the user can still write \")
 			} else {
+				int curLength = getCurWord().length();
 				resetBinding();
-				return false;
+				return curLength >= 2 &&  oldBinding->keyPressEvent(event,editor); //call old input binding for long words (=> key replacements after completions, but the user can still write \")
 			}
 		}
 		completer->filterList(getCurWord());

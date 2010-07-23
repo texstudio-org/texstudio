@@ -69,7 +69,7 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 		LatexEditorView::completer->complete(editor,false);
 		return true;
 	}
-	if (event->modifiers()==Qt::ControlModifier && (event->key()==Qt::Key_Left || event->key()==Qt::Key_Right)) {
+	if (event->modifiers()==Qt::ControlModifier && (event->key()==Qt::Key_Left || event->key()==Qt::Key_Right))	 {
 		int tccFormat=QDocument::formatFactory()->id("temporaryCodeCompletion");
 		if (editor->cursor().line().hasOverlay(tccFormat) || editor->cursor().line().next().hasOverlay(tccFormat) || editor->cursor().line().previous().hasOverlay(tccFormat)) {
 			int cn=editor->cursor().columnNumber();
