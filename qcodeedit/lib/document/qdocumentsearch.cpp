@@ -43,8 +43,11 @@ QDocumentSearch::QDocumentSearch(QEditor *e, const QString& f, Options opt, cons
  : m_option(opt), m_string(f),  m_editor(e), m_replaced(0), m_replaceDeltaLength(0)
 {
 	m_replace=r;
-	if (m_editor && hasOption(HighlightAll))
+	if (m_editor && hasOption(HighlightAll)){
 		connect(m_editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
+		connect(m_editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)), SLOT(lineDeleted(QDocumentLineHandle*)));
+		connect(m_editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)), SLOT(lineDeleted(QDocumentLineHandle*)));
+	}
 }
 
 QDocumentSearch::~QDocumentSearch()
@@ -333,11 +336,14 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 	QDocumentSelection boundaries=hscope.selection();
 	QRegExp m_regexp = currentRegExp();
 	
+	for ( int l = boundaries.startLine; l <= boundaries.endLine; l++)
+		d->line(l).clearOverlays(sid);
+
 	while ( !hc.atEnd() && hscope.isWithinSelection(hc))
 	{
 		int ln = hc.lineNumber();
 		const QDocumentLine &l = hc.line();
-		
+
 		const QString &s = boundaries.endLine != ln ? l.text() : l.text().left(boundaries.end);
 
 		int column=m_regexp.indexIn(s, hc.columnNumber());
@@ -400,9 +406,26 @@ void QDocumentSearch::clearMatches()
 		c->line().removeOverlay(QFormatRange(c->anchorColumnNumber(), c->columnNumber()-c->anchorColumnNumber(), sid));
 		delete c;
 	}
-	m_editor->viewport()->update();
+
+	clearReplacements();
+	//m_editor->viewport()->update();
 
 	m_highlight.clear();
+}
+
+void QDocumentSearch::clearReplacements(){
+	QDocument* doc= currentDocument();
+	if ( !doc )
+		return;
+
+	QFormatScheme *f = doc->formatScheme() ? doc->formatScheme() : QDocument::formatFactory();
+	int sid = f ? f->id("replacement") : 0;
+
+	foreach (QDocumentLineHandle* l, m_highlightedReplacements)
+		QDocumentLine(l).clearOverlays(sid);
+	m_editor->viewport()->update();
+
+	m_highlightedReplacements.clear();
 }
 
 /*
@@ -454,6 +477,7 @@ QString QDocumentSearch::searchText() const
 */
 void QDocumentSearch::setSearchText(const QString& f)
 {
+	clearReplacements();
 	m_string = f;
 	
 	if (hasOption(HighlightAll) && !m_string.isEmpty()) 
@@ -477,8 +501,10 @@ bool QDocumentSearch::hasOption(Option opt) const
 */
 void QDocumentSearch::setOption(Option opt, bool on)
 {
-	if ( (m_option & opt) == on)
+	if ( ((m_option & opt) != 0) == on)
 		return; //no change, option already set
+
+	clearReplacements();
 
 	if ( on )
 		m_option |= opt;
@@ -490,8 +516,13 @@ void QDocumentSearch::setOption(Option opt, bool on)
 		//prevent multiple connections
 		if (m_editor->document()) {
 			disconnect(m_editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
-			if (on) //connect if highlighting is on
+			disconnect(m_editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)), this, SLOT(lineDeleted(QDocumentLineHandle*)));
+			disconnect(m_editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)), this, SLOT(lineDeleted(QDocumentLineHandle*)));
+			if (on) {//connect if highlighting is on
 				connect(m_editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
+				connect(m_editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)), SLOT(lineDeleted(QDocumentLineHandle*)));
+				connect(m_editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)), SLOT(lineDeleted(QDocumentLineHandle*)));
+			}
 		}
 		if ( !on  )
 			clearMatches();
@@ -992,7 +1023,32 @@ void QDocumentSearch::replaceCursorText(QRegExp& m_regexp,bool backward){
 		for ( int i = m_regexp.numCaptures(); i >= 0; --i )
 			replacement.replace(QString("\\") + QString::number(i),
 								m_regexp.cap(i));
-	
+
+	//highlight replacement, save old overlays
+	//old overlays
+	QDocument* d = m_cursor.document();
+	int rid = 0;
+	QList<QFormatRange> oldOverlaysBefore, oldOverlaysAfter;
+	QDocumentSelection boundaries;
+	if (hasOption(HighlightReplacements)) {
+		QFormatScheme *f = d ? d->formatScheme() : QDocument::formatFactory();
+		rid = f ? f->id("replacement") : 0;
+		if (rid) {
+			boundaries = m_cursor.selection();
+			QDocumentLine startLine = d->line(boundaries.startLine);
+			QDocumentLine endLine = d->line(boundaries.endLine);
+			oldOverlaysBefore = startLine.getOverlays(rid);
+			for (int i=oldOverlaysBefore.size()-1;i>=0;i--)
+				if (oldOverlaysBefore[i].offset + oldOverlaysBefore[i].length > boundaries.start)
+					oldOverlaysBefore.removeAt(i);
+			oldOverlaysAfter = endLine.getOverlays(rid);
+			for (int i=oldOverlaysAfter.size()-1;i>=0;i--)
+				if (oldOverlaysAfter[i].offset < boundaries.end)
+					oldOverlaysAfter.removeAt(i);
+			startLine.clearOverlays(rid);
+			endLine.clearOverlays(rid);
+		}
+	}
 	/*m_replaced=2;
 	int n=replacement.lastIndexOf("\n");
 	QString replacement_lastLine=replacement.mid(n+1);
@@ -1000,14 +1056,33 @@ void QDocumentSearch::replaceCursorText(QRegExp& m_regexp,bool backward){
 	m_replaceDeltaLines=replacement.count("\n");*/
 	m_cursor.replaceSelectedText(replacement);
 
-	
+	//highlight replacement
+	if (rid) {
+		//restore old
+		int shift = -boundaries.end;
+		QDocumentSelection boundaries = m_cursor.selection();
+		shift += boundaries.end;
+
+		QDocumentLine startLine = d->line(boundaries.startLine);
+		QDocumentLine endLine = d->line(boundaries.endLine);
+		foreach (const QFormatRange& frb, oldOverlaysBefore)
+			startLine.addOverlay(frb);
+		foreach (const QFormatRange& fra, oldOverlaysAfter)
+			endLine.addOverlay(QFormatRange(fra.offset+shift,fra.length,fra.format));
+
+		//add new overlay
+		m_highlightedReplacements.insert(m_cursor.line().handle());
+		startLine.addOverlay(QFormatRange(boundaries.start, boundaries.end - boundaries.start, rid));
+		//TODO: multi line replacement
+	}
+
 	//make sure that the cursor if  the correct side of the selection is used
 	//(otherwise the cursor could be moved out of the searched scope by a long 
 	//replacement text)
-        if (m_cursor.hasSelection()) {
+	if (m_cursor.hasSelection()) {
 		if (backward) m_cursor=m_cursor.selectionStart();
 		else m_cursor=m_cursor.selectionEnd();
-            }
+	}
 }
 
 void QDocumentSearch::documentContentChanged(int line, int n){
@@ -1070,4 +1145,8 @@ void QDocumentSearch::highlightSelection(const QDocumentCursor& subHighlightScop
 		m_highlightedScope.setAutoUpdated(true);
 	}
 	//m_editor->viewport()->update();
+}
+
+void QDocumentSearch::lineDeleted(QDocumentLineHandle* line){
+	m_highlightedReplacements.remove(line);
 }

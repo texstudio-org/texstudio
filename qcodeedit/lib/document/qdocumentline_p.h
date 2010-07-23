@@ -100,6 +100,7 @@ class QCE_EXPORT QDocumentLineHandle
 		void setFormats(const QVector<int>& formats);
 		
 		void clearOverlays();
+		void clearOverlays(int format);
 		void addOverlay(const QFormatRange& over);
 		void removeOverlay(const QFormatRange& over);
 		bool hasOverlay(int id);

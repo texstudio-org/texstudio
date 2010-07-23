@@ -167,6 +167,7 @@ class QCE_EXPORT QDocumentLine
 		QList<QFormatRange> overlays() const;
 		
 		void clearOverlays();
+		void clearOverlays(int formatToClear);
 		void addOverlay(const QFormatRange& over);
 		void removeOverlay(const QFormatRange& over);
 		bool hasOverlay(int id);

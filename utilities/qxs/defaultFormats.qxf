@@ -173,4 +173,7 @@
 	<format id="selection" >
 		<background>#AAFFFF</background>
 	</format>
+	<format id="replacement" >
+		<background>#FFAAAA</background>
+	</format>
 </QXF>
