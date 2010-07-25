@@ -4251,11 +4251,19 @@ bool Texmaker::generateMirror(bool setCur){
 			//move cursor to env name
 			//currentEditorView()->editor->document()->beginMacro();
 			if(result==LatexParser::Environment){
-				cursor.select(QDocumentCursor::WordUnderCursor);
+				int pos=c;
+				while(pos>-1 && line[pos]!='{'){
+				    pos--;
+				}
+				pos++;
+				cursor.movePosition(c-pos,QDocumentCursor::PreviousCharacter);
+				cursor.movePosition(value.length(),QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
+				//cursor.select(QDocumentCursor::WordUnderCursor);
 			}else{
 				cursor.movePosition(1,QDocumentCursor::EndOfWord);
 				cursor.movePosition(1,QDocumentCursor::NextWord);
-				cursor.movePosition(1,QDocumentCursor::NextWord,QDocumentCursor::KeepAnchor);
+				//cursor.movePosition(1,QDocumentCursor::NextWord,QDocumentCursor::KeepAnchor);
+				cursor.movePosition(value.length(),QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 			}
 			//currentEditorView()->editor->setCursor(cursor);
 			LatexDocument* doc=currentEditorView()->document;
