@@ -803,7 +803,9 @@ bool ConfigManager::execConfigDialog() {
 	    confDlg->ui.twHighlighEnvirons->setRowCount(customEnvironments.size()+1);
 	    QMap<QString, QVariant>::const_iterator i;
 	    for (i = customEnvironments.constBegin(); i != customEnvironments.constEnd(); ++i){
-		QTableWidgetItem *item=new QTableWidgetItem(i.key());
+		QString env=i.key();
+		env.remove('\\');
+		QTableWidgetItem *item=new QTableWidgetItem(env);
 		confDlg->ui.twHighlighEnvirons->setItem(l,0,item);
 		//item=new QTableWidgetItem(i.value());
 		QComboBox *cb=new QComboBox(0);
@@ -949,6 +951,10 @@ bool ConfigManager::execConfigDialog() {
 		    QString env=confDlg->ui.twHighlighEnvirons->item(i,0)->text();
 		    if(!env.isEmpty()){
 			QComboBox *cb=qobject_cast<QComboBox*>(confDlg->ui.twHighlighEnvirons->cellWidget(i,1));
+			env.replace('*',"\\*");
+			env.replace('?',"\\?");
+			env.replace('(',"\\(");
+			env.replace(')',"\\)");
 			customEnvironments.insert(env,cb->currentIndex());
 		    }
 		}
