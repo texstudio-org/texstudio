@@ -36,7 +36,7 @@ int x11desktop_env();
 //there are these possible kind of tokens % (which starts a comment), { or } (as parantheses), \.* (command) or .* (text)
 //index returns the index of the first character after the word
 //return: start index of the token (or -1 if last)
-int nextToken(const QString &line,int &index,bool abbreviation=false);
+int nextToken(const QString &line,int &index,bool abbreviation=false,bool inOption=false);
 
 
 enum NextWordFlag {
