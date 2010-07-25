@@ -465,14 +465,14 @@ void WebPublishDialog::writepages(QString mode) {
 	if (mode=="content") {
 		QFile outf(workdir+"/"+base+"_"+mode+".tex");
 		if (!outf.open(QIODevice::WriteOnly)) {
-			fatalerror("Can't open "+workdir+"/"+base+"_"+mode+".tex");
+			fatalerror(tr("Can't open")+" "+workdir+"/"+base+"_"+mode+".tex");
 			return;
 		} else {
 			QTextStream outts(&outf);
 			outts.setCodec(codec);
 			QFile texf(workdir+"/"+base+".tex");
 			if (!texf.open(QIODevice::ReadOnly)) {
-				fatalerror(workdir+"/"+base+".tex"+" not found.");
+				fatalerror(workdir+"/"+base+".tex "+tr("not found")+".");
 				return;
 			} else {
 				QTextStream texts(&texf);
@@ -489,7 +489,7 @@ void WebPublishDialog::writepages(QString mode) {
 				}
 				texf.close();
 				outf.close();
-				ui.messagetextEdit->append("Compiling input file. Please wait...");
+				ui.messagetextEdit->append(tr("Compiling input file. Please wait..."));
 				while (counter <= config->compil) {
 					if (!errprocess) 
 						RunCommand(BuildManager::CMD_LATEX, "", workdir+"/"+base+"_"+mode+".tex", true);
@@ -502,7 +502,7 @@ void WebPublishDialog::writepages(QString mode) {
 				if (ttwperr  || errprocess) return;
 				QFile auxf(workdir+"/"+base+"_content.aux");
 				if (!auxf.open(QIODevice::ReadOnly)) {
-					fatalerror(mode+workdir+"/"+base+"_content.aux"+" not found.");
+					fatalerror(mode+workdir+"/"+base+"_content.aux "+tr("not found")+".");
 					return;
 				} else {
 					QTextStream auxts(&auxf);
@@ -523,14 +523,14 @@ void WebPublishDialog::writepages(QString mode) {
 	} else if (mode=="index") {
 		QFile outf(workdir+"/"+base+"_"+mode+".tex");
 		if (!outf.open(QIODevice::WriteOnly)) {
-			fatalerror("Can't open "+workdir+"/"+base+"_"+mode+".tex");
+			fatalerror(tr("Can't open")+" "+workdir+"/"+base+"_"+mode+".tex");
 			return;
 		} else {
 			QTextStream outts(&outf);
 			outts.setCodec(codec);
 			QFile texf(workdir+"/"+base+".tex");
 			if (!texf.open(QIODevice::ReadOnly)) {
-				fatalerror(workdir+"/"+base+".tex"+" not found.");
+				fatalerror(workdir+"/"+base+".tex "+tr("not found")+".");
 				return;
 			} else {
 				QTextStream texts(&texf);
@@ -556,7 +556,7 @@ void WebPublishDialog::writepages(QString mode) {
 				outts << "\\makeatletter\n\\parindent = 0.0 in\n";
 				QFile auxf(workdir+"/"+base+"_content.aux");
 				if (!auxf.open(QIODevice::ReadOnly)) {
-					fatalerror(mode+workdir+"/"+base+"_content.aux"+" not found.");
+					fatalerror(mode+workdir+"/"+base+"_content.aux "+tr("not found")+".");
 					return;
 				} else {
 					QTextStream auxts(&auxf);
@@ -599,7 +599,7 @@ void WebPublishDialog::writepages(QString mode) {
 	nb_pages=nbpagesps(workdir+"/"+base+"_"+mode+".ps");
 	if (ttwperr  || errprocess) return;
 	id_page=1;
-	ui.messagetextEdit->append("Scanning files. Please wait...");
+	ui.messagetextEdit->append(tr("Scanning files. Please wait..."));
 	while (id_page <= nb_pages) {
 		if (!errprocess) extractpage(base+"_"+mode+".ps",id_page);
 		if (ttwperr  || errprocess) return;
@@ -607,7 +607,7 @@ void WebPublishDialog::writepages(QString mode) {
 		if (ttwperr  || errprocess) return;
 		QFile bboxf(workdir+"/bbox.txt");
 		if (!bboxf.open(QIODevice::ReadOnly)) {
-			fatalerror(workdir+"/bbox.txt"+" not found.");
+			fatalerror(workdir+"/bbox.txt "+tr("not found")+".");
 			return;
 		} else {
 			QTextStream bboxts(&bboxf);
@@ -643,7 +643,7 @@ void WebPublishDialog::writepages(QString mode) {
 		id_page=1;
 		nb_content_pages=nb_pages;
 		while (id_page <= nb_pages) {
-			ui.messagetextEdit->append("Writing page "+QString::number(id_page)+" of "+QString::number(nb_pages));
+			ui.messagetextEdit->append(tr("Writing page")+" "+QString::number(id_page)+" "+tr("of")+" "+QString::number(nb_pages));
 			x1=x1box[id_page-1];
 			y1=y1box[id_page-1];
 			x2=x2box[id_page-1];
@@ -654,7 +654,7 @@ void WebPublishDialog::writepages(QString mode) {
 			if (ttwperr || errprocess) return;
 			QFile htmf(htmldir+"/page"+QString::number(id_page)+".html");
 			if (!htmf.open(QIODevice::WriteOnly)) {
-				fatalerror("Can't open "+htmldir+"/page"+QString::number(id_page)+".html");
+				fatalerror(tr("Can't open")+" "+htmldir+"/page"+QString::number(id_page)+".html");
 				return;
 			} else {
 				QTextStream htmts(&htmf);
@@ -666,7 +666,7 @@ void WebPublishDialog::writepages(QString mode) {
 				}
 				QFile linkf(workdir+"/link.txt");
 				if (!linkf.open(QIODevice::ReadOnly)) {
-					fatalerror(workdir+"/link.txt"+" not found.");
+					fatalerror(workdir+"/link.txt"+" "+tr("not found")+".");
 					return;
 				} else {
 					QTextStream LINK(&linkf);
@@ -716,10 +716,10 @@ void WebPublishDialog::writepages(QString mode) {
 			id_page++;
 		}
 	} else if (mode=="index") {
-		ui.messagetextEdit->append("Writing index page");
+		ui.messagetextEdit->append(tr("Writing index page"));
 		QFile htmf(htmldir+"/index.html");
 		if (!htmf.open(QIODevice::WriteOnly)) {
-			fatalerror("Can't open "+htmldir+"/index.html");
+			fatalerror(tr("Can't open")+" "+htmldir+"/index.html");
 			return;
 		} else {
 			QTextStream htmts(&htmf);
@@ -737,7 +737,7 @@ void WebPublishDialog::writepages(QString mode) {
 				if (ttwperr || errprocess) return;
 				QFile linkf(workdir+"/link.txt");
 				if (!linkf.open(QIODevice::ReadOnly)) {
-					fatalerror(workdir+"/link.txt"+" not found.");
+					fatalerror(workdir+"/link.txt "+tr("not found")+".");
 					return;
 				} else {
 					QTextStream LINK(&linkf);
@@ -783,7 +783,7 @@ void WebPublishDialog::writepages(QString mode) {
 
 void WebPublishDialog::fatalerror(QString msg) {
 	clean();
-	ui.messagetextEdit->append("Fatal error : "+msg);
+	ui.messagetextEdit->append(tr("Fatal error : ")+msg);
 	ttwperr=true;
 }
 
@@ -803,7 +803,7 @@ void WebPublishDialog::latexerror(QString logfile) {
 	QString line;
 	QFile logf(logfile);
 	if (!logf.open(QIODevice::ReadOnly)) {
-		fatalerror(logfile+" not found.");
+		fatalerror(logfile+" "+tr("not found")+".");
 	} else {
 		QTextStream LOG(&logf);
 		while (!LOG.atEnd()) {
@@ -813,7 +813,7 @@ void WebPublishDialog::latexerror(QString logfile) {
 			}
 		}
 		logf.close();
-		if (!ok) fatalerror("LaTeX errors detected.");
+		if (!ok) fatalerror(tr("LaTeX errors detected."));
 	}
 }
 
@@ -826,7 +826,7 @@ void WebPublishDialog::proceedSlot() {
 }
 
 void WebPublishDialog::browseSlot() {
-	QString fn = QFileDialog::getOpenFileName(this,tr("Open File"),config->lastdir,"TeX files (*.tex);;All files (*.*)");
+	QString fn = QFileDialog::getOpenFileName(this,tr("Open File"),config->lastdir,tr("TeX files (*.tex);;All files (*.*)"));
 	if (!fn.isEmpty()) {
 		ui.inputfileEdit->setText(fn);
 	}
