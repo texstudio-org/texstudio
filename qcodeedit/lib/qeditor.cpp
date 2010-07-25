@@ -1841,9 +1841,10 @@ void QEditor::removePlaceHolder(int id)
 	
 	PlaceHolder& ph = m_placeHolders[id];
 	
-	for ( int i = 0; i < ph.mirrors.count(); ++i )
+	for ( int i = 0; i < ph.mirrors.count(); ++i ){
 		ph.mirrors[i].setAutoUpdated(false);
-	
+		ph.mirrors[i].line().setFlag(QDocumentLine::LayoutDirty,true);
+	    }
 	ph.mirrors.clear();
 	ph.cursor.setAutoUpdated(false);
 	m_placeHolders.removeAt(id);
@@ -1855,6 +1856,7 @@ void QEditor::removePlaceHolder(int id)
 	else if ( id == m_lastPlaceHolder )
 		m_lastPlaceHolder=-1;
 	
+	viewport()->update();
 }
 
 /*!
