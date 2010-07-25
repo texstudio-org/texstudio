@@ -276,6 +276,8 @@ unix {
         utilities/usermanual_fr.html \
         utilities/en_GB.aff \
         utilities/en_GB.dic \
+	utilities/en_US.aff \
+        utilities/en_US.dic \
         utilities/fr_FR.aff \
         utilities/fr_FR.dic \
         utilities/de_DE.aff \
