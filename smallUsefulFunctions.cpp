@@ -211,7 +211,7 @@ bool localAwareLessThan(const QString &s1, const QString &s2) {
 }
 
 
-int nextToken(const QString &line,int &index,bool abbreviation) {
+int nextToken(const QString &line,int &index,bool abbreviation,bool inOption) {
 	bool inWord=false;
 	bool inCmd=false;
 	//bool reparse=false;
@@ -259,7 +259,10 @@ int nextToken(const QString &line,int &index,bool abbreviation) {
 			} else if (cur=='.' && abbreviation) {
 				i++; //take '.' into word, so that abbreviations, at least German ones, are checked correctly
 				break;
-			} else if (CommonEOW.indexOf(cur)>=0) break;
+			} else if (CommonEOW.indexOf(cur)>=0 && !inOption) {
+				break;
+			    } else if(cur=='}' || cur==']') break;
+
 		} else if (cur=='\\') {
 			if (i+1<line.size() && (EscapedChars.indexOf(line.at(i+1))>=0||CharacterAlteringChars.indexOf(line.at(i+1))>=0))  {
 				inWord=true;
@@ -290,7 +293,7 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 	int reference=-1;
 	QString lastCommand="";
 	bool inOption=false;
-	while ((wordStartIndex = nextToken(line, index,abbreviations))!=-1) {
+	while ((wordStartIndex = nextToken(line, index,abbreviations,inOption))!=-1) {
 		outWord=line.mid(wordStartIndex,index-wordStartIndex);
 		if (outWord.length()==0) return NW_NOTHING; //should never happen
 		switch (outWord.at(0).toAscii()) {
