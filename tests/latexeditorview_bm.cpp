@@ -91,6 +91,8 @@ void LatexEditorViewBenchmark::linePaint(){
 	QFETCH(QString, text);
 	QFETCH(int, start);
 	QFETCH(int, count);
+        Q_UNUSED(start);
+        Q_UNUSED(count);
 
 	edView->editor->document()->setText(text);
 	LatexDocument *doc=edView->document;
@@ -164,6 +166,8 @@ void LatexEditorViewBenchmark::paintEvent(){
 	QFETCH(QString, text);
 	QFETCH(int, start);
 	QFETCH(int, count);
+        Q_UNUSED(start);
+        Q_UNUSED(count);
 
 	edView->editor->document()->setText(text);
 	edView->editor->setCursorPosition(0,0);
