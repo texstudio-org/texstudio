@@ -993,8 +993,8 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <location filename="configmanager.cpp" line="640"/>
         <location filename="configmanager.cpp" line="790"/>
         <location filename="configmanager.cpp" line="792"/>
-        <location filename="configmanager.cpp" line="931"/>
-        <location filename="configmanager.cpp" line="943"/>
+        <location filename="configmanager.cpp" line="933"/>
+        <location filename="configmanager.cpp" line="945"/>
         <source>default</source>
         <translation>Alapértelmezett</translation>
     </message>
@@ -1019,44 +1019,44 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Speciális elemek</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="991"/>
+        <location filename="configmanager.cpp" line="997"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>Legutóbbi &apos;Mesterdokumentum&apos;: %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="997"/>
+        <location filename="configmanager.cpp" line="1003"/>
         <source>Recent File %1</source>
         <translation>Legutóbbi fájl %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1005"/>
+        <location filename="configmanager.cpp" line="1011"/>
         <source>Master Document: </source>
         <translation>Mesterdokumentum:</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1205"/>
-        <location filename="configmanager.cpp" line="1212"/>
+        <location filename="configmanager.cpp" line="1211"/>
+        <location filename="configmanager.cpp" line="1218"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;nincs&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1206"/>
-        <location filename="configmanager.cpp" line="1213"/>
+        <location filename="configmanager.cpp" line="1212"/>
+        <location filename="configmanager.cpp" line="1219"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;alapértelmezett&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1324"/>
+        <location filename="configmanager.cpp" line="1330"/>
         <source>Browse program</source>
         <translation>Program megadása</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1344"/>
+        <location filename="configmanager.cpp" line="1350"/>
         <source>Latex</source>
         <translation>LaTeX</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1344"/>
+        <location filename="configmanager.cpp" line="1350"/>
         <source>Math</source>
         <translation>Matematika</translation>
     </message>
@@ -2112,7 +2112,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
 <context>
     <name>QApplication</name>
     <message>
-        <location filename="smallUsefulFunctions.cpp" line="464"/>
+        <location filename="smallUsefulFunctions.cpp" line="467"/>
         <source>none</source>
         <translation>nincs</translation>
     </message>
@@ -5223,7 +5223,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="webpublishdialog.cpp" line="125"/>
         <source>Running browser .</source>
-        <translation>Böngésző futtatása</translation>
+        <translation>Böngésző futtatása.</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="132"/>
@@ -5241,7 +5241,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="webpublishdialog.cpp" line="137"/>
         <source>Input file not found.</source>
-        <translation>Az input fájl nem található</translation>
+        <translation>A bemeneti fájl nem található.</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="157"/>
@@ -5259,7 +5259,7 @@ The html files are located in the %1 directory.</source>
         <location filename="webpublishdialog.cpp" line="657"/>
         <location filename="webpublishdialog.cpp" line="722"/>
         <source>Can&apos;t open</source>
-        <translation type="unfinished"></translation>
+        <translation>Nem lehet megnyitni</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="475"/>
@@ -5271,42 +5271,42 @@ The html files are located in the %1 directory.</source>
         <location filename="webpublishdialog.cpp" line="740"/>
         <location filename="webpublishdialog.cpp" line="806"/>
         <source>not found</source>
-        <translation type="unfinished"></translation>
+        <translation>Nem található</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="492"/>
         <source>Compiling input file. Please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>A bemeneti fájl fordítása. Kérem várjon...</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="602"/>
         <source>Scanning files. Please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Fájlok tallózása. Kérem várjon...</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="646"/>
         <source>Writing page</source>
-        <translation type="unfinished"></translation>
+        <translation>Lap írása:</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="646"/>
         <source>of</source>
-        <translation type="unfinished"></translation>
+        <translation>\</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="719"/>
         <source>Writing index page</source>
-        <translation type="unfinished"></translation>
+        <translation>Index lap írása.</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="786"/>
         <source>Fatal error : </source>
-        <translation type="unfinished"></translation>
+        <translation>Végzetes hiba: </translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="816"/>
         <source>LaTeX errors detected.</source>
-        <translation type="unfinished"></translation>
+        <translation>LaTeX hiba.</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="829"/>
@@ -5316,7 +5316,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="webpublishdialog.cpp" line="829"/>
         <source>TeX files (*.tex);;All files (*.*)</source>
-        <translation type="unfinished"></translation>
+        <translation>TeX fájlok (*.tex);;Minden fájl (*.*)</translation>
     </message>
 </context>
 <context>
