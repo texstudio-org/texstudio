@@ -337,6 +337,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"exit",tr("Exit"), SLOT(fileExit()), Qt::CTRL+Qt::Key_Q);
 
 //edit
+	QList<QAction*> latexEditorContextMenu;
 
 	menu=newManagedMenu("main/edit",tr("&Edit"));
 	newManagedAction(menu, "undo",tr("&Undo"), SLOT(editUndo()), Qt::CTRL+Qt::Key_Z, ":/images/undo.png");
@@ -348,29 +349,14 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"paste",tr("&Paste"), SLOT(editPaste()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, ":/images/editpaste.png");
 	newManagedAction(menu,"selectall",tr("Select &All"), SLOT(editSelectAll()), Qt::CTRL+Qt::Key_A);
 	newManagedAction(menu,"eraseLine",tr("Erase &Line"), SLOT(editEraseLine()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_K));
-	newManagedAction(menu,"eraseWord",tr("Erase &Word/Cmd/Env"), SLOT(editEraseWordCmdEnv()), Qt::ALT+Qt::Key_Delete);
-	menu->addSeparator();
-	newManagedAction(menu,"pasteAsLatex",tr("Pas&te as LaTeX"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, ":/images/editpaste.png");
-	newManagedAction(menu,"convertTo",tr("Co&nvert to LaTeX"), SLOT(convertToLatex()));
-	newManagedAction(menu,"previewLatex",tr("Pre&view Selection/Parantheses"), SLOT(previewLatex()),Qt::ALT+Qt::Key_P);
 
-	if (LatexEditorView::getBaseActions().empty()) //only called at first menu created
-		LatexEditorView::setBaseActions(menu->actions());
-
-	menu->addSeparator();
-	newManagedAction(menu,"comment", tr("Co&mment"), SLOT(editComment()));
-	newManagedAction(menu,"uncomment",tr("&Uncomment"), SLOT(editUncomment()));
-	newManagedAction(menu,"indent",tr("In&dent"), SLOT(editIndent()));
-	newManagedAction(menu,"unindent",tr("Unind&ent"), SLOT(editUnindent()));
-	newManagedAction(menu,"hardbreak",tr("Hard Line &Break..."), SLOT(editHardLineBreak()));
-	newManagedAction(menu,"hardbreakrepeat",tr("R&epeat Hard Line Break"), SLOT(editHardLineBreakRepeat()));
+	latexEditorContextMenu = menu->actions();
 
 	menu->addSeparator();
 	newManagedAction(menu,"find", tr("&Find"), SLOT(editFind()), Qt::CTRL+Qt::Key_F);
 	newManagedAction(menu,"findnext",tr("Find &Next"), SLOT(editFindNext()), Qt::CTRL+Qt::Key_M);
 	newManagedAction(menu,"findglobal",tr("Find D&ialog..."), SLOT(editFindGlobal()));
 	newManagedAction(menu,"replace",tr("&Replace"), SLOT(editReplace()), Qt::CTRL+Qt::Key_R);
-	newManagedAction(menu,"generateMirror",tr("Re&name Environment"), SLOT(generateMirror()));
 
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "goto",tr("Go to"));
@@ -380,15 +366,6 @@ void Texmaker::setupMenus() {
 	submenu->addSeparator();
 	newManagedAction(submenu,"markprev",tr("Previous mark"),SLOT(PreviousMark()),Qt::CTRL+Qt::Key_Up);//, ":/images/errorprev.png");
 	newManagedAction(submenu,"marknext",tr("Next mark"),SLOT(NextMark()),Qt::CTRL+Qt::Key_Down);//, ":/images/errornext.png");
-	submenu->addSeparator();
-	newManagedAction(submenu,"errorprev",tr("Previous error"),SLOT(PreviousError()),Qt::CTRL+Qt::SHIFT+Qt::Key_Up, ":/images/errorprev.png");
-	newManagedAction(submenu,"errornext",tr("Next error"),SLOT(NextError()),Qt::CTRL+Qt::SHIFT+Qt::Key_Down, ":/images/errornext.png");
-	newManagedAction(submenu,"warningprev",tr("Previous warning"),SLOT(PreviousWarning()),Qt::CTRL+Qt::ALT+Qt::Key_Up);//, ":/images/errorprev.png");
-	newManagedAction(submenu,"warningnext",tr("Next warning"),SLOT(NextWarning()),Qt::CTRL+Qt::ALT+Qt::Key_Down);//, ":/images/errornext.png");
-	newManagedAction(submenu,"badboxprev",tr("Previous bad box"),SLOT(PreviousBadBox()),Qt::SHIFT+Qt::ALT+Qt::Key_Up);//, ":/images/errorprev.png");
-	newManagedAction(submenu,"badboxnext",tr("Next bad box"),SLOT(NextBadBox()),Qt::SHIFT+Qt::ALT+Qt::Key_Down);//, ":/images/errornext.png");
-	submenu->addSeparator();
-	newManagedAction(submenu,"definition",tr("Definition"),SLOT(editGotoDefinition()),Qt::CTRL+Qt::ALT+Qt::Key_F);
 
 	submenu=newManagedMenu(menu, "gotoBookmark",tr("Goto Bookmark"));
 	for (int i=0; i<=9; i++)
@@ -402,10 +379,6 @@ void Texmaker::setupMenus() {
 		newManagedAction(submenu,QString("bookmark%1").arg(i),tr("Bookmark %1").arg(i),SLOT(toggleBookmark()),Qt::CTRL+Qt::SHIFT+Qt::Key_0+i)
 		->setData(i);
 
-	submenu=newManagedMenu(menu, "complete",tr("Complete"));
-	newManagedAction(submenu, "normal", tr("normal"), SLOT(NormalCompletion()),Qt::CTRL+Qt::Key_Space);
-	newManagedAction(submenu, "environment", tr("\\begin{ completion"), SLOT(InsertEnvironmentCompletion()),Qt::CTRL+Qt::ALT+Qt::Key_Space);
-	newManagedAction(submenu, "text", tr("normal text"), SLOT(InsertTextCompletion()),Qt::SHIFT+Qt::ALT+Qt::Key_Space);
 
 	menu->addSeparator();
 	submenu=newManagedMenu(menu,"lineend",tr("Line Ending"));
@@ -427,14 +400,49 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"encoding",tr("Setup Encoding..."),SLOT(editSetupEncoding()));
 
 
+
+//Edit 2 (for LaTeX related things)
+	menu=newManagedMenu("main/edit2",tr("&Idefix (?)"));
+	latexEditorContextMenu << newManagedAction(menu,"eraseWord",tr("Erase &Word/Cmd/Env"), SLOT(editEraseWordCmdEnv()), Qt::ALT+Qt::Key_Delete);
+
+	latexEditorContextMenu << menu->addSeparator();
+	latexEditorContextMenu << newManagedAction(menu,"pasteAsLatex",tr("Pas&te as LaTeX"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, ":/images/editpaste.png");
+	latexEditorContextMenu << newManagedAction(menu,"convertTo",tr("Co&nvert to LaTeX"), SLOT(convertToLatex()));
+	latexEditorContextMenu << newManagedAction(menu,"previewLatex",tr("Pre&view Selection/Parantheses"), SLOT(previewLatex()),Qt::ALT+Qt::Key_P);
+
+	if (LatexEditorView::getBaseActions().empty()) //only called at first menu created
+		LatexEditorView::setBaseActions(latexEditorContextMenu);
+
 	menu->addSeparator();
-	newManagedAction(menu,"spelling",tr("Check Spelling..."),SLOT(editSpell()),Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
-	newManagedAction(menu,"thesaurus",tr("Thesaurus..."),SLOT(editThesaurus()),Qt::CTRL+Qt::SHIFT+Qt::Key_F8);
+	newManagedAction(menu,"comment", tr("Co&mment"), SLOT(editComment()));
+	newManagedAction(menu,"uncomment",tr("&Uncomment"), SLOT(editUncomment()));
+	newManagedAction(menu,"indent",tr("In&dent"), SLOT(editIndent()));
+	newManagedAction(menu,"unindent",tr("Unind&ent"), SLOT(editUnindent()));
+	newManagedAction(menu,"hardbreak",tr("Hard Line &Break..."), SLOT(editHardLineBreak()));
+	newManagedAction(menu,"hardbreakrepeat",tr("R&epeat Hard Line Break"), SLOT(editHardLineBreakRepeat()));
+
+	menu->addSeparator();
+	submenu=newManagedMenu(menu, "goto",tr("Go to"));
+	newManagedAction(submenu,"errorprev",tr("Previous error"),SLOT(PreviousError()),Qt::CTRL+Qt::SHIFT+Qt::Key_Up, ":/images/errorprev.png");
+	newManagedAction(submenu,"errornext",tr("Next error"),SLOT(NextError()),Qt::CTRL+Qt::SHIFT+Qt::Key_Down, ":/images/errornext.png");
+	newManagedAction(submenu,"warningprev",tr("Previous warning"),SLOT(PreviousWarning()),Qt::CTRL+Qt::ALT+Qt::Key_Up);//, ":/images/errorprev.png");
+	newManagedAction(submenu,"warningnext",tr("Next warning"),SLOT(NextWarning()),Qt::CTRL+Qt::ALT+Qt::Key_Down);//, ":/images/errornext.png");
+	newManagedAction(submenu,"badboxprev",tr("Previous bad box"),SLOT(PreviousBadBox()),Qt::SHIFT+Qt::ALT+Qt::Key_Up);//, ":/images/errorprev.png");
+	newManagedAction(submenu,"badboxnext",tr("Next bad box"),SLOT(NextBadBox()),Qt::SHIFT+Qt::ALT+Qt::Key_Down);//, ":/images/errornext.png");
+	submenu->addSeparator();
+	newManagedAction(submenu,"definition",tr("Definition"),SLOT(editGotoDefinition()),Qt::CTRL+Qt::ALT+Qt::Key_F);
+
+	menu->addSeparator();
+	newManagedAction(menu,"generateMirror",tr("Re&name Environment"), SLOT(generateMirror()));
+
+	submenu=newManagedMenu(menu, "complete",tr("Complete"));
+	newManagedAction(submenu, "normal", tr("normal"), SLOT(NormalCompletion()),Qt::CTRL+Qt::Key_Space);
+	newManagedAction(submenu, "environment", tr("\\begin{ completion"), SLOT(InsertEnvironmentCompletion()),Qt::CTRL+Qt::ALT+Qt::Key_Space);
+	newManagedAction(submenu, "text", tr("normal text"), SLOT(InsertTextCompletion()),Qt::SHIFT+Qt::ALT+Qt::Key_Space);
 
 	menu->addSeparator();
 	newManagedAction(menu,"reparse",tr("Refresh Structure"),SLOT(updateStructure()));
 	newManagedAction(menu,"removePlaceHolders",tr("Remove Placeholders"),SLOT(editRemovePlaceHolders()),Qt::CTRL+Qt::SHIFT+Qt::Key_K);
-
 
 //tools
 
@@ -465,6 +473,9 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	newManagedAction(menu, "analysetext",tr("A&nalyse Text..."), SLOT(AnalyseText()));
 	newManagedAction(menu, "generaterandomtext",tr("Generate &Random Text..."), SLOT(GenerateRandomText()));
+	menu->addSeparator();
+	newManagedAction(menu,"spelling",tr("Check Spelling..."),SLOT(editSpell()),Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
+	newManagedAction(menu,"thesaurus",tr("Thesaurus..."),SLOT(editThesaurus()),Qt::CTRL+Qt::SHIFT+Qt::Key_F8);
 
 //  Latex/Math external
 	configManager.loadManagedMenus(":/uiconfig.xml");
