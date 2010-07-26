@@ -3015,7 +3015,7 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <source>Pas&amp;te as LaTeX</source>
-        <translation>Zu La&amp;TeX umwandeln</translation>
+        <translation>Als LaTeX &amp;einfügen</translation>
     </message>
     <message>
         <source>Comment</source>
@@ -3031,7 +3031,7 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <source>In&amp;dent</source>
-        <translation>Ausrücken</translation>
+        <translation>Einrücken</translation>
     </message>
     <message>
         <source>Find</source>
@@ -3933,7 +3933,7 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <source>Co&amp;nvert to LaTeX</source>
-        <translation>&amp;Konvertiere zu LaTeX</translation>
+        <translation>In &amp;LaTeX umwandeln</translation>
     </message>
     <message>
         <source>Pre&amp;view Selection/Parantheses</source>
