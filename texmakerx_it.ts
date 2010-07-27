@@ -3294,7 +3294,7 @@ Vuoi salvarli?</translation>
     </message>
     <message>
         <source>LaTeX</source>
-        <translation>LaTeX</translation>
+        <translation type="obsolete">LaTeX</translation>
     </message>
     <message>
         <source>All files</source>
@@ -3784,6 +3784,15 @@ You have to save a document before you can compile it.</source>
     <message>
         <source>Insert as %1</source>
         <translation>Inserisci come %1</translation>
+    </message>
+    <message>
+        <source>LaTeX</source>
+        <comment>Status</comment>
+        <translation type="unfinished">LaTeX</translation>
+    </message>
+    <message>
+        <source>&amp;Idefix (?)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

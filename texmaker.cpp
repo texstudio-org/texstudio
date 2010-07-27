@@ -2700,7 +2700,7 @@ void Texmaker::RunPreCompileCommand() {
 	}
 	if (documents.bibTeXFilesModified && configManager.runLaTeXBibTeXLaTeX) {
 		ERRPROCESS=false;
-		stat2->setText(QString(" %1 ").arg(tr("LaTeX")));
+		stat2->setText(QString(" %1 ").arg(tr("LaTeX","Status")));
 		runCommand(BuildManager::CMD_LATEX,true,false);
 		if (ERRPROCESS && !LogExists()) {
 			QMessageBox::warning(this,tr("Error"),tr("Could not start LaTeX."));
@@ -2711,7 +2711,7 @@ void Texmaker::RunPreCompileCommand() {
 			stat2->setText(QString(" %1 ").arg(tr("BibTeX")));
 			runCommand(BuildManager::CMD_BIBTEX,true,false);
 			if (!ERRPROCESS) {
-				stat2->setText(QString(" %1 ").arg(tr("LaTeX")));
+				stat2->setText(QString(" %1 ").arg(tr("LaTeX","Status")));
 				runCommand(BuildManager::CMD_LATEX,true,false);
 			}
 		}
@@ -2851,7 +2851,7 @@ void Texmaker::QuickBuild() {
 			stat2->setText(QString(" %1 ").arg("Asymptote"));
 			if (!ERRPROCESS) runCommand(BuildManager::CMD_ASY,true,false);
 			else return;
-			stat2->setText(QString(" %1 ").arg("LaTeX"));
+			stat2->setText(QString(" %1 ").arg("LaTeX","Status"));
 			if (!ERRPROCESS) runCommand(BuildManager::CMD_LATEX,true,false);
 			else return;
 			if (!ERRPROCESS) runCommand(BuildManager::CMD_VIEWDVI, false, false);
