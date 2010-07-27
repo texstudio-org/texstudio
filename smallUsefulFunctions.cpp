@@ -293,7 +293,8 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 	int reference=-1;
 	QString lastCommand="";
 	bool inOption=false;
-	while ((wordStartIndex = nextToken(line, index,abbreviations,inOption))!=-1) {
+	bool inEnv=false;
+	while ((wordStartIndex = nextToken(line, index,abbreviations,inEnv))!=-1) {
 		outWord=line.mid(wordStartIndex,index-wordStartIndex);
 		if (outWord.length()==0) return NW_NOTHING; //should never happen
 		switch (outWord.at(0).toAscii()) {
@@ -309,6 +310,7 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 			if (reference!=-1)
 				reference=wordStartIndex+1;
 			if(!lastCommand.isEmpty()) inOption=true;
+			if(LatexParser::environmentCommands.contains(lastCommand)) inEnv=true;
 			break; //ignore
 		case '}':
 			if (reference!=-1) {
@@ -335,6 +337,7 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 			}
 			lastCommand="";
 			inOption=false;
+			inEnv=false;
 			break;//command doesn't matter anymore
 		case '\\':
 			if (outWord.length()==1 || !(EscapedChars.contains(outWord.at(1)) || CharacterAlteringChars.contains(outWord.at(1)))) {
