@@ -3850,7 +3850,7 @@ Chcete, aby byly uloženy?</translation>
     </message>
     <message>
         <source>LaTeX</source>
-        <translation>LaTeX</translation>
+        <translation type="obsolete">LaTeX</translation>
     </message>
     <message>
         <source>All files</source>
@@ -4217,6 +4217,15 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     <message>
         <source>No document open</source>
         <translation>Neotevřen žádný dokument</translation>
+    </message>
+    <message>
+        <source>LaTeX</source>
+        <comment>Status</comment>
+        <translation type="unfinished">LaTeX</translation>
+    </message>
+    <message>
+        <source>&amp;Idefix (?)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

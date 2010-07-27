@@ -3853,7 +3853,7 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <source>LaTeX</source>
-        <translation>LaTeX</translation>
+        <translation type="obsolete">LaTeX</translation>
     </message>
     <message>
         <source>All files</source>
@@ -4220,6 +4220,15 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es compilern könn
     <message>
         <source>No document open</source>
         <translation>Kein Dokument geöffnet</translation>
+    </message>
+    <message>
+        <source>LaTeX</source>
+        <comment>Status</comment>
+        <translation>LaTeX</translation>
+    </message>
+    <message>
+        <source>&amp;Idefix (?)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

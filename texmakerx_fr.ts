@@ -3053,10 +3053,6 @@ Voulez-vous l&apos;enregistrer ?</translation>
         <translation>Compilation rapide</translation>
     </message>
     <message>
-        <source>LaTeX</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>View Dvi</source>
         <translation type="obsolete">Afficher DVI</translation>
     </message>
@@ -3702,6 +3698,15 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     <message>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>Attention: dialogue fermé automatiquement si le texte est modifié !</translation>
+    </message>
+    <message>
+        <source>LaTeX</source>
+        <comment>Status</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Idefix (?)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
