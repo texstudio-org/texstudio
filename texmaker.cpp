@@ -2899,7 +2899,9 @@ void Texmaker::commandFromAction(){
 	bool compileLatex=(cmd==BuildManager::CMD_LATEX || cmd==BuildManager::CMD_PDFLATEX);
 	if (compileLatex)
 		RunPreCompileCommand();
-	stat2->setText(QString(" %1 ").arg(act->text()));
+	QString status=act->text();
+	status.remove(QChar('&'));
+	stat2->setText(QString(" %1 ").arg(status));
 	runCommand(cmd, false, false);
 }
 
