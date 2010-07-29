@@ -292,7 +292,6 @@ void QSearchReplacePanelTest::findReplace(){
 				widget->leReplace->setText(move[3]);
 				widget->bReplaceNext->click();
 				QString newText=move[4];
-				if (!newText.endsWith("\n")) newText+="\n";
 				QEQUAL2(ed->document()->text(),newText,QString("%1 highlight-run: %2").arg(movements[i]).arg(highlightRun));
 			} else {
 				bool mes=false;

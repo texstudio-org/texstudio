@@ -75,14 +75,14 @@ void QDocumentCursorTest::constMethods_data(){
 		<< false << ""
 		<< '\0' << 't';
 	QTest::newRow("simple cursor at doc end")  //TODO: check if this is right
-		<< "2|12"
-		<< false << true << false << true
-		<< 13+65+12
-		<< 2 << 12 << 2 << 12
-		<< "2|12" << "2|12" //TODO: qce documentation says << "" << ""
+		<< "3|0"
+		<< false << true << true << true
+		<< 13+65+13
+		<< 3 << 0 << 3 << 0
+		<< "3|0" << "3|0" //TODO: qce documentation says << "" << ""
 		<< false << ""
-		//<< '\n' << '\0';
-		<< '3' << '\n';
+		<< '\n' << '\0';
+		//<< '3' << '\n';
 	
 	//--------------cursor with selection-------------
 	QTest::newRow("selection mid in a line") 
@@ -149,14 +149,14 @@ void QDocumentCursorTest::constMethods_data(){
 		<< "0|0" << "0|4"
 		<< true << "test"
 		<< '\0' << 't';
-	QTest::newRow("selection from line mid to document end") //TODO: is 2|12 really the document end?
-		<< "2|6|2|12"
-		<< false << true << false << true
-		<< 13+65+12
-		<< 2 << 6 << 2 << 12
-		<< "2|6" << "2|12"
-		<< true << "line 3"
-		<< '3' << '\n';
+	QTest::newRow("selection from line mid to document end")
+		<< "2|6|3|0"
+		<< false << true << true << true
+		<< 13+65+13
+		<< 2 << 6 << 3 << 0
+		<< "2|6" << "3|0"
+		<< true << "line 3\n"
+		<< '\n' << '\0';
 	QTest::newRow("selection from line mid to document end reversed") //TODO: is 2|12 really the document end?
 		<< "2|12|2|6"
 		<< false << false << false << false
@@ -182,13 +182,13 @@ void QDocumentCursorTest::constMethods_data(){
 		<< true << "test: line 2, hello world! abcdefghijklmnopqrstuvwxyzABCDE...XYZ"
 		<< '\n' << 't';
 	QTest::newRow("multi line selection from document start to document end") //TODO: is 2|12 really the document end?
-		<< "0|0|2|12"
-		<< false << true << false << true
-		<< 13+65+12
-		<< 0 << 0 << 2 << 12
-		<< "0|0" << "2|12"
-		<< true << "test: line 1\ntest: line 2, hello world! abcdefghijklmnopqrstuvwxyzABCDE...XYZ\ntest: line 3" //no \n at end?
-		<< '3' << '\n';
+		<< "0|0|3|0"
+		<< false << true << true << true
+		<< 13+65+13
+		<< 0 << 0 << 3 << 0
+		<< "0|0" << "3|0"
+		<< true << "test: line 1\ntest: line 2, hello world! abcdefghijklmnopqrstuvwxyzABCDE...XYZ\ntest: line 3\n"
+		<< '\n' << '\0';
 	QTest::newRow("multi line selection from document start to document end reversed") //TODO: is 2|12 really the document end?
 		<< "2|12|0|0"
 		<< true << false << true << false

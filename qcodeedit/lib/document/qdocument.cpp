@@ -305,7 +305,8 @@ QString QDocument::text(int mode) const
 	{
 		prevIndent = curIndent;
 		curIndent = nextIndent;
-		nextIndent = ++line < m_impl->m_lines.count() ? m_impl->m_lines.at(line)->nextNonSpaceChar(0) : 0;
+		bool notLastLine = ++line < m_impl->m_lines.count();
+		nextIndent = notLastLine ? m_impl->m_lines.at(line)->nextNonSpaceChar(0) : 0;
 
 		if ( nextIndent < 0 )
 			nextIndent = 0;
@@ -334,7 +335,10 @@ QString QDocument::text(int mode) const
 				buf.remove(idx, len);
 		}
 
-		s += buf + m_impl->m_lineEndingString;
+		if (notLastLine)
+			s += buf + m_impl->m_lineEndingString;
+		else if (!buf.isEmpty())
+			s += buf; //last line doesn't ends with \n (it must be possible to create a single line string)
 	}
 
 	//s.chop(m_impl->m_lineEndingString.count());
@@ -404,9 +408,6 @@ void QDocument::setText(const QString& s)
 
 	m_impl->m_deleting = false;
 
-	if ( s.isEmpty() )
-		m_impl->m_lines << new QDocumentLineHandle(QString(), this);
-
 	m_impl->_nix = 0;
 	m_impl->_dos = 0;
 	m_impl->_mac = 0;
@@ -414,25 +415,25 @@ void QDocument::setText(const QString& s)
 	while ( idx < s.length() )
 	{
 		if ( s.at(idx) == '\r') {
-            m_impl->m_lines << new QDocumentLineHandle(
-                                    s.mid(last, idx - last),
-                                    this
-                                );
-            ++idx;
-		    if (idx < s.length() && s.at(idx) == '\n') {
-                ++(m_impl->_dos);
-                ++idx;
-		    } else ++(m_impl->_mac);
+			m_impl->m_lines << new QDocumentLineHandle(
+						s.mid(last, idx - last),
+						this
+					);
+			++idx;
+			if (idx < s.length() && s.at(idx) == '\n') {
+				++(m_impl->_dos);
+				++idx;
+			} else ++(m_impl->_mac);
 			last = idx;
 		} else if ( s.at(idx) == '\n') {
-            ++(m_impl->_nix);
+			++(m_impl->_nix);
 
-            m_impl->m_lines << new QDocumentLineHandle(
-										s.mid(last, idx - last),
-										this
-                                );
+			m_impl->m_lines << new QDocumentLineHandle(
+						s.mid(last, idx - last),
+						this
+					);
 			last = ++idx;
-        } else {
+		} else {
 			++idx;
 		}
 	}
@@ -444,6 +445,9 @@ void QDocument::setText(const QString& s)
 								this
 							);
 
+	} else {
+		Q_ASSERT(s.isEmpty() || s.endsWith("\n") || s.endsWith("\r"));
+		m_impl->m_lines << new QDocumentLineHandle(this); //last character was \n, or empty string
 	}
 //
 //	if ( (idx > 0) && ((idx - 1) < s.length()) && ((s.at(idx - 1) == '\n') || (s.at(idx - 1) == '\r')) )
@@ -627,7 +631,7 @@ void QDocument::stopChunkLoading()
 		m_leftOver.clear();
 
 	} else {
-		//m_impl->m_lines << new QDocumentLineHandle(this);
+		m_impl->m_lines << new QDocumentLineHandle(this);
 	}
 
 	//qDebug("[chunk] dos : %i; nix : %i", m_impl->_dos, m_impl->_nix);
@@ -4650,7 +4654,7 @@ QChar QDocumentCursorHandle::nextChar() const
 	if ( !l.isValid() )
 		return QChar();
 
-	return m_begOffset < l.length() ? l.text().at(m_begOffset) : QLatin1Char('\n');
+	return m_begOffset < l.length() ? l.text().at(m_begOffset) : (atEnd()?QLatin1Char('\0'):QLatin1Char('\n'));
 }
 
 QChar QDocumentCursorHandle::previousChar() const
