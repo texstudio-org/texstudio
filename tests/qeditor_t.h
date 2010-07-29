@@ -15,6 +15,8 @@ private:
 	bool allTests;
 	QEditor* editor;
 private slots:
+	void setText_data();
+	void setText();
 	void loadSave_data();
 	void loadSave();
 	void foldedText_data();

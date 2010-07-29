@@ -309,7 +309,6 @@ void CodeSnippetTest::insert_data(){
 void CodeSnippetTest::insert(){
 	QFETCH(QString, editorText);
 	QFETCH(QString, newText);
-	if (!newText.endsWith("\n")) newText+="\n";
 	QFETCH(int, editorFlags);
 	QFETCH(int, editorFlagMask);
 	QFETCH(int, cy);
@@ -520,7 +519,6 @@ void CodeSnippetTest::nestedInsert(){
 	QFETCH(int, placeholderChange);
 	QFETCH(QString, insert2);
 	QFETCH(QString, newText);
-	if (!newText.endsWith("\n")) newText+="\n";
 	QFETCH(CP, npos);
 	const QList<CP> &placeholder=npos.mirrors;
 

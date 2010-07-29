@@ -66,7 +66,6 @@ void LatexEditorViewTest::insertHardLineBreaks(){
 	QFETCH(int, end);
 	QFETCH(int, length);
 	QFETCH(QString, newText);
-	if (!newText.endsWith("\n")) newText+="\n";
 	
 	edView->editor->document()->setText(text);
 	if (start==end) 

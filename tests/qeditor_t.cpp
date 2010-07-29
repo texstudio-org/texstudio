@@ -12,6 +12,28 @@ QEditorTest::QEditorTest(QEditor* ed, bool executeAllTests):allTests(executeAllT
 }
 QEditorTest::~QEditorTest(){
 }
+
+void QEditorTest::setText_data(){
+	//reason is to test if the last new line ending is preserved
+	QTest::addColumn<QString>("text");
+	QTest::newRow("empty") << "";
+	QTest::newRow("single word") << "hallo";
+	QTest::newRow("single line") << "hallo welt\n";
+	QTest::newRow("two lines") << "hallo welt\njipjipiu";
+	QTest::newRow("three lines") << "hallo welt\njipjipiu\n";
+	QTest::newRow("many lines a") << "hallo welt\njipjipiu\n\n\n\n";
+	QTest::newRow("many lines b") << "hallo welt\njipjipiu\n\n\n\nb";
+}
+
+void QEditorTest::setText(){
+	Q_ASSERT(editor);
+	QFETCH(QString, text);
+	editor->setText(text);
+	QString restext = editor->text();
+	QEQUAL(restext,text);
+}
+
+
 void QEditorTest::loadSave_data(){
 	QTest::addColumn<QString>("outCodecName");
 	QTest::addColumn<QString>("outLineEnding");
@@ -69,7 +91,7 @@ void QEditorTest::loadSave(){
 	QString writtenText=outCodec->toUnicode( tf.readAll());
 	tf.close();
 
-	QEQUAL2(writtenText, testTextWithLineEndings+"Save test"+outLineEnding, "file text check, file:"+tfn);
+	QEQUAL2(writtenText, testTextWithLineEndings+"Save test", "file text check, file:"+tfn);
 	QVERIFY2(writtenText.contains(outLineEnding), qPrintable("file don't contain right line ending, file"+tfn));
 	
 	editor->setFileName(""); //reset filename so it won't get panically if the file is deleted

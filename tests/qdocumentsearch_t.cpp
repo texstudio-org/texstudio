@@ -19,7 +19,6 @@ public:
 	CM(): l(-1){}
 	CM(bool adir, int line, int anchorOffset, int cursorOffset,const QString &replaceText,const QString& newText):
 		dir(adir),rep(replaceText!="\1"),l(line),ax(anchorOffset),cx(cursorOffset),rt(replaceText),nt(newText){
-		if (!nt.endsWith("\n")) nt.append("\n");
 	}
 	bool dir, rep;
 	int l,ax,cx;
@@ -371,7 +370,6 @@ void QDocumentSearchTest::replaceAll(){
 	QFETCH(int, sx);
 	
 	QFETCH(QString, newtext);
-	if (!newtext.endsWith("\n")) newtext+="\n";
 	
 	for (int loop=0; loop<2; loop++){
 		ed->document()->setText(editorText);

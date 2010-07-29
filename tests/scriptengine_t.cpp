@@ -63,7 +63,6 @@ void ScriptEngineTest::script_data(){
 void ScriptEngineTest::script(){
 	QFETCH(QString, script);
 	QFETCH(QString, newText);
-	if (!newText.endsWith("\n")) newText+="\n";
 	
 	scriptengine eng(this);
 	eng.setEditor(ed);
