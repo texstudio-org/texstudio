@@ -53,7 +53,7 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="../../../texmaker.qrc">
+      <iconset>
        <normaloff>:/down.png</normaloff>:/down.png</iconset>
      </property>
     </widget>
@@ -85,7 +85,7 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="../../../texmaker.qrc">
+      <iconset>
        <normaloff>:/up.png</normaloff>:/up.png</iconset>
      </property>
     </widget>
@@ -343,40 +343,8 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../../../texmaker.qrc">
+         <iconset>
           <normaloff>:/closeall.png</normaloff>:/closeall.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="bRefresh">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>20</width>
-          <height>20</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>20</width>
-          <height>20</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string>Refresh search underlying context (as an attempt to correct search behavior)</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="../../../texmaker.qrc">
-          <normaloff>:/reload.png</normaloff>:/reload.png</iconset>
         </property>
        </widget>
       </item>
@@ -492,7 +460,7 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="../../../texmaker.qrc">
+      <iconset>
        <normaloff>:/images/qcodeedit/replaceup.png</normaloff>:/images/qcodeedit/replaceup.png</iconset>
      </property>
     </widget>
@@ -524,16 +492,14 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="../../../texmaker.qrc">
+      <iconset>
        <normaloff>:/images/qcodeedit/replacedown.png</normaloff>:/images/qcodeedit/replacedown.png</iconset>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../../../texmaker.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>cbReplace</sender>

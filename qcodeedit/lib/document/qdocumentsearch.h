@@ -58,9 +58,7 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		QDocumentSearch(QEditor *e, const QString& f, Options opt, const QString& r = QString());
 		~QDocumentSearch();
 		
-		int currentMatchIndex() const;
 		int indexedMatchCount() const;
-		QDocumentCursor match(int idx) const;
 		
 		QString searchText() const;
 		void setSearchText(const QString& f);
@@ -93,8 +91,6 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		bool end(bool backward) const;
 		bool end(bool backward,QDocumentLine l) const;
 		
-		int matchLowerBoundUnequal(int begline, int begcol);
-		int matchUpperBoundUnequal(int endline, int endcol, int startFrom=0);
 		bool nextMatch(bool backward, bool again=false,  bool allowWrapAround=true);
 		void searchMatches(const QDocumentCursor& subHighlightScope=QDocumentCursor(), bool clearAll=true);
 		void clearMatches();
@@ -102,14 +98,13 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		
 		QRegExp currentRegExp();
 		
-		int m_index;
+//		int m_index;
 		Options m_option;
 		QString m_string;
 		QString m_replace;
 		QPointer<QEditor> m_editor;
 		QDocumentCursor m_cursor, m_scope, m_highlightedScope, m_origin;
-		QList<QDocumentCursor*> m_highlight;
-		QSet<QDocumentLineHandle*> m_highlightedReplacements;
+		QSet<QDocumentLineHandle*> m_highlights, m_highlightedReplacements;
 
 		int m_replaced,m_replaceDeltaLength,m_replaceDeltaLines;
 	private slots:

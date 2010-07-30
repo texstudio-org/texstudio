@@ -51,35 +51,6 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 			return m_search;
 		}
 
-                // public to give tests direct access
-                QGridLayout *gridLayout;
-                QFrame *frame_2;
-                QHBoxLayout *hboxLayout;
-                QToolButton *bClose;
-                QToolButton *bRefresh;
-                QLabel *label;
-                QLineEdit *leFind;
-                QToolButton *bNext;
-                QToolButton *bPrevious;
-                QFrame *frame_6;
-                QGridLayout *gridLayout1;
-                QCheckBox *cbCase;
-                QCheckBox *cbWords;
-                QCheckBox *cbRegExp;
-                QCheckBox *cbHighlight;
-                QCheckBox *cbCursor;
-                QCheckBox *cbSelection;
-                QPushButton *bReplaceAll;
-                QFrame *frame;
-                QHBoxLayout *hboxLayout1;
-                QCheckBox *cbPrompt;
-                QCheckBox *cbReplaceAll;
-                QCheckBox *cbEscapeSeq;
-                QCheckBox *cbReplace;
-                QLineEdit *leReplace;
-                QToolButton *bReplaceNext;
-                QToolButton *bReplacePrevious;
-
 	public slots:
 		void display(int mode, bool replace);
 		
@@ -117,8 +88,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		void on_cbEscapeSeq_toggled(bool on);
 		void on_cbPrompt_toggled(bool on);
 		
-		void on_bRefresh_clicked();
-		
+
 		void on_bNext_clicked();
 		void on_bPrevious_clicked();
 
@@ -134,7 +104,37 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		void on_leReplace_returnPressed(bool backward);
 		QDocumentSearch *m_search;
 		bool m_lastDirection;
-                int minimum_width;
+		int minimum_width;
+
+	protected:
+		//protected to give unit tests access
+		QGridLayout *gridLayout;
+		QFrame *frame_2;
+		QHBoxLayout *hboxLayout;
+		QToolButton *bClose;
+		QLabel *label;
+		QLineEdit *leFind;
+		QToolButton *bNext;
+		QToolButton *bPrevious;
+		QFrame *frame_6;
+		QGridLayout *gridLayout1;
+		QCheckBox *cbCase;
+		QCheckBox *cbWords;
+		QCheckBox *cbRegExp;
+		QCheckBox *cbHighlight;
+		QCheckBox *cbCursor;
+		QCheckBox *cbSelection;
+		QPushButton *bReplaceAll;
+		QFrame *frame;
+		QHBoxLayout *hboxLayout1;
+		QCheckBox *cbPrompt;
+		QCheckBox *cbReplaceAll;
+		QCheckBox *cbEscapeSeq;
+		QCheckBox *cbReplace;
+		QLineEdit *leReplace;
+		QToolButton *bReplaceNext;
+		QToolButton *bReplacePrevious;
+
 };
 
 #endif // _QSEARCH_REPLACE_PANEL_H_
