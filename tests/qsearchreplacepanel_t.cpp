@@ -13,6 +13,11 @@
 #include "testutil.h"
 #include <QtTest/QtTest>
 
+class QSearchReplacePanelProtectedBreaker: public QSearchReplacePanel{
+	friend class QSearchReplacePanelTest;
+};
+
+
 //must return void to be able to use QEQUAL,...
 void getHighlightedSelectionIntern(QEditor* ed, int &minLine, int& minCol, int& maxLine, int& maxCol, const QString& message){
 	int f=QDocument::formatFactory()->id("selection");	
@@ -80,12 +85,13 @@ QSearchReplacePanelTest::QSearchReplacePanelTest(QCodeEdit* codeedit, bool execu
 		QObject(0), ed(codeedit->editor()), panel(0), allTests(executeAllTests){
 	if (!codeedit->hasPanel("Search")) return;
 	panel=qobject_cast<QSearchReplacePanel*>(codeedit->panels("Search")[0]);
+	Q_ASSERT(panel);
 }
 
 
 void QSearchReplacePanelTest::initTestCase(){
 	QVERIFY(panel);
-        widget=panel;
+	widget=static_cast<QSearchReplacePanelProtectedBreaker*>(panel);
 	//QVERIFY(widget);
 }
 
