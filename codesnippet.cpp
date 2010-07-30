@@ -118,6 +118,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 		beginMagicLine=mLines.count()-1; 
 		
 	QString savedSelection;
+	bool alwaysSelect = false;
 	if (cursor->hasSelection()) {
 		savedSelection=cursor->selectedText();
 		cursor->removeSelectedText();
@@ -126,6 +127,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 			savedSelection=editor->cutBuffer;
 			editor->cutBuffer.clear();
 			editor->cutLineNumber=-1;
+			alwaysSelect = true;
 		}
 	}
 	QDocumentCursor selector=*cursor;
@@ -298,8 +300,15 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 			ok=selector.movePosition(anchorOffset-cursorOffset,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
 		if (!ok) return;
 		editor->setCursor(selector);
-		if (!savedSelection.isEmpty()) editor->cursor().insertText(savedSelection,true);
-	}	else editor->setCursor(*cursor); //place after insertion
+		if (!savedSelection.isEmpty()) {
+			QDocumentCursor oldCursor = editor->cursor();
+			editor->cursor().insertText(savedSelection,true);
+			if (!editor->cursor().hasSelection() && alwaysSelect) {
+				oldCursor.movePosition(savedSelection.length(), QDocumentCursor::Right, QDocumentCursor::KeepAnchor);
+				editor->setCursor(oldCursor);
+			}
+		}
+	} else editor->setCursor(*cursor); //place after insertion
 	if (magicPlaceHolder!=-1)  //select magic placeholder if there (must be last line because there may be insertion
 		editor->setPlaceHolder(magicPlaceHolder); //at another cursor position necessary)
 }
