@@ -1,0 +1,16 @@
+<!DOCTYPE QNFA>
+<QNFA language="(La-)TeX Macro" defaultLineMark="">
+	<sequence id="specialchars" format="escapeseq" >%[(&lt;&gt;)n|]</sequence> <!-- problem: \% is highlighted wrong -->
+
+	<embed target="(La-)TeX"/>
+<!-- TODO: doesn't work, because it would be overriden by the comment definiotion of standard LaTeX
+     moving it over the embed, also doesn't work, because then it will override verbatim
+     Possible solutions, copy/paster LaTeX definition in this file (maintaince nightmare), or split LaTeX definition into multiple files (ugly)
+	<context id="comment/single" format="comment" stayOnLine="true" >
+		<start>%%</start>
+		<stop exclusive="false">\n</stop>
+		<stop>%n</stop>
+	</context>
+	-->
+</QNFA>
+

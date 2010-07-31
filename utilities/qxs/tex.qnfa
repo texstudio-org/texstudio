@@ -1,5 +1,5 @@
 <!DOCTYPE QNFA>
-<QNFA language="(La-)Tex" extensions="tex;sty;cls" defaultLineMark="">
+<QNFA language="(La-)TeX" extensions="tex;sty;cls" defaultLineMark="">
 <!--
 parenthesis weights:
 40: \[ \]  $   \(  \[
