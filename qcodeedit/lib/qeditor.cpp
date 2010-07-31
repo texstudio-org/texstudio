@@ -1793,9 +1793,6 @@ void QEditor::clearPlaceHolders()
 */
 void QEditor::addPlaceHolder(const PlaceHolder& p, bool autoUpdate)
 {
-	// remove unused parameter warning
-	(void) autoUpdate;
-
 	m_placeHolders << p;
 
 	PlaceHolder& ph = m_placeHolders.last();
@@ -2863,12 +2860,12 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 				}
 				
 
-                                if(!m_blockKey)
-                                   bHandled = processCursor(m_cursor, e, bOk);
-                                else {
-                                    bHandled=true;
-                                    m_blockKey=false;
-                                }
+				if(!m_blockKey)
+					bHandled = processCursor(m_cursor, e, bOk);
+				else {
+					bHandled=true;
+					m_blockKey=false;
+				}
 				
 				if ( m_curPlaceHolder >= 0 && m_curPlaceHolder<m_placeHolders.count() ) //hasPH is invalid
 				{
@@ -4257,7 +4254,7 @@ void QEditor::preInsert(QDocumentCursor& c, const QString& s)
 */
 void QEditor::insertText(QDocumentCursor& c, const QString& text)
 {
-	if ( protectedCursor(c) )
+	if ( protectedCursor(c) || text.isEmpty())
 		return;
 
 	QStringList lines = text.split('\n', QString::KeepEmptyParts);
@@ -4272,12 +4269,23 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		cutBuffer=c.selectedText();
 		cutLineNumber=c.lineNumber();
 		c.removeSelectedText();
+	} else if ( flag(Overwrite) && !c.atLineEnd() )
+		c.deleteChar();
+	else {
+		bool autoOverridePlaceHolder = false;
+		for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
+			if ( m_placeHolders[i].autoOverride && m_placeHolders[i].cursor.lineNumber() == c.lineNumber() &&
+			     m_placeHolders[i].cursor.anchorColumnNumber() == c.anchorColumnNumber() &&
+			     m_placeHolders[i].cursor.selectedText().startsWith(text) ) {
+			autoOverridePlaceHolder = true;
+			if (m_placeHolders[i].cursor.selectedText() == text) removePlaceHolder(i);
+		}
+		if (autoOverridePlaceHolder)
+			for (int i=0; i<text.length(); i++)
+				c.deleteChar();
 	}
 	
-	if ( !hasSelection && flag(Overwrite) && !c.atLineEnd() )
-		c.deleteChar();
-	
-	
+
 	if ( (lines.count() == 1) || !flag(AdjustIndent)  || !flag(AutoIndent)) //|| flag(WeakIndent) || !flag(AdjustIndent)  || !flag(AutoIndent))
 	{
 		preInsert(c, lines.first());
@@ -4335,6 +4343,23 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 			
 			c.insertText(l);
 		}
+	}
+
+
+	//experimental bracket auto insertion
+	QString autoBracket = "";
+	if (text == "(") autoBracket = ")";
+	else if (text == "[") autoBracket = "]";
+	else if (text == "{") autoBracket = "}";
+	if (!autoBracket.isEmpty()) {
+		QDocumentCursor copiedCursor = c.selectionEnd();
+		PlaceHolder ph(1,copiedCursor);
+		ph.autoOverride = true;
+		ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepBegin);
+		ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepEnd);
+		copiedCursor.insertText(autoBracket);
+		addPlaceHolder(ph);
+		m_cursor.movePosition(1, QDocumentCursor::Left, QDocumentCursor::MoveAnchor);
 	}
 
 	if (beginNewMacro)
