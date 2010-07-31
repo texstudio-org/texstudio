@@ -81,7 +81,10 @@ void UserMenuDialog::init() {
 	ui.itemEdit->setText(Name[0]);
 	ui.abbrevEdit->setText(Abbrev[0]);
 	ui.comboBox->setCurrentIndex(0);
-	if (languages) languages->setLanguage(codeedit->editor(), codeedit->editor()->text(0)!="%SCRIPT"?".tex":".qs");
+	if (languages)
+		if (codeedit->editor()->text(0)=="%SCRIPT") languages->setLanguage(codeedit->editor(), ".qs");
+		else if (codeedit->editor()->text(0).startsWith("%")) languages->setLanguage(codeedit->editor(), "");
+		else languages->setLanguage(codeedit->editor(), "(La-)TeX Macro");
 }
 
 void UserMenuDialog::change(int index) {
@@ -91,7 +94,10 @@ void UserMenuDialog::change(int index) {
 	ui.itemEdit->setText(Name[index]);
 	ui.abbrevEdit->setText(Abbrev[index]);
 	previous_index=index;
-	if (languages) languages->setLanguage(codeedit->editor(), codeedit->editor()->text(0)!="%SCRIPT"?".tex":".qs");
+	if (languages)
+		if (codeedit->editor()->text(0)=="%SCRIPT") languages->setLanguage(codeedit->editor(), ".qs");
+		else if (codeedit->editor()->text(0).startsWith("%")) languages->setLanguage(codeedit->editor(), "");
+		else languages->setLanguage(codeedit->editor(), "(La-)TeX Macro");
 }
 
 void UserMenuDialog::slotOk() {
@@ -102,13 +108,13 @@ void UserMenuDialog::slotOk() {
 }
 void UserMenuDialog::changeTypeToNormal(){
 	QString cur = codeedit->editor()->text();
-	if (languages) languages->setLanguage(codeedit->editor(), ".tex");
+	if (languages) languages->setLanguage(codeedit->editor(), "(La-)TeX Macro");
 	if (cur.startsWith("%SCRIPT\n")) codeedit->editor()->setText(cur.mid(8));
 	else if (cur.startsWith("%")) codeedit->editor()->setText(cur.mid(1));
 }
 void UserMenuDialog::changeTypeToEnvironment(){
 	QString cur = codeedit->editor()->text();
-	if (languages) languages->setLanguage(codeedit->editor(), ".tex");
+	if (languages) languages->setLanguage(codeedit->editor(), "");
 	if (cur.startsWith("%SCRIPT")) {
 		codeedit->editor()->setText("%"+cur.mid(8));
 	} else {
