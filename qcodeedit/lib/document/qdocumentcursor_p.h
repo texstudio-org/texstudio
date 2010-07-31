@@ -55,7 +55,9 @@ class QCE_EXPORT QDocumentCursorHandle
 			ColumnMemory		= 2,
 			MoveWithinWrapped	= 4,
 			AutoErasable		= 0x100,
-			AutoUpdated		= 0x200
+			AutoUpdated		= 0x200,
+			AutoUpdateKeepBegin	= 0x400,
+			AutoUpdateKeepEnd	= 0x800
 		};
 
 		QDocument* document() const;

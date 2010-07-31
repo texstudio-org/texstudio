@@ -240,6 +240,34 @@ void QDocumentCommand::insertLines(int after, const QList<QDocumentLineHandle*>&
 	m_doc->impl()->insertLines(after, l);
 }
 
+inline void growPosOnInsertion(int *moveLine, int *moveOffset, int line, int column, int prefixLength, int numLines, int suffixLength){
+	if ( numLines )
+	{
+		if ( *moveLine == line )
+			*moveOffset -= column;
+		*moveLine += numLines;
+		*moveOffset += suffixLength;
+	} else if ( *moveLine == line ) {
+		*moveOffset += prefixLength;
+	}
+}
+
+inline void movePosOnInsertion(int *moveLine, int *moveOffset, int line, int column, int prefixLength, int numLines, int suffixLength){
+	if ( *moveLine > line )
+	{
+		*moveLine += numLines;
+	} else if ( *moveLine == line && *moveOffset >= column ) {
+		if ( numLines )
+		{
+			*moveLine += numLines;
+			*moveOffset -= column;
+			*moveOffset += suffixLength;
+		} else {
+			*moveOffset += prefixLength;
+		}
+	}
+}
+
 void QDocumentCommand::updateCursorsOnInsertion(int line, int column, int prefixLength, int numLines, int suffixLength)
 {
 	//qDebug("inserting %i lines at (%i, %i) with (%i : %i) bounds", numLines, line, column, prefixLength, suffixLength);
@@ -253,6 +281,18 @@ void QDocumentCommand::updateCursorsOnInsertion(int line, int column, int prefix
 		// TODO : better selection handling
 		if ( ch->hasSelection() )
 		{
+			if (ch->hasFlag(QDocumentCursorHandle::AutoUpdateKeepBegin) &&
+			    line == ch->m_begLine && column == ch->m_begOffset) {
+				movePosOnInsertion(&ch->m_begLine, &ch->m_begOffset, line, column, prefixLength, numLines, suffixLength);
+				movePosOnInsertion(&ch->m_endLine, &ch->m_endOffset, line, column, prefixLength, numLines, suffixLength);
+				continue;
+			}
+			if (ch->hasFlag(QDocumentCursorHandle::AutoUpdateKeepEnd) &&
+			    line == ch->m_endLine && column == ch->m_endOffset) {
+				movePosOnInsertion(&ch->m_begLine, &ch->m_begOffset, line, column, prefixLength, numLines, suffixLength);
+				movePosOnInsertion(&ch->m_endLine, &ch->m_endOffset, line, column, prefixLength, numLines, suffixLength);
+				continue;
+			}
 			int lbeg = line, cbeg = column, lend = line, cend = column;
 
 			ch->intersectBoundaries(lbeg, cbeg, lend, cend);
@@ -261,60 +301,17 @@ void QDocumentCommand::updateCursorsOnInsertion(int line, int column, int prefix
 			{
 				//qDebug("expand (%i, %i : %i, %i)", ch->m_begLine, ch->m_begOffset, ch->m_endLine, ch->m_endOffset);
 				if ( (ch->m_begLine > ch->m_endLine) || (ch->m_begLine == ch->m_endLine && ch->m_begOffset >= ch->m_endOffset) )
-				{
-					if ( numLines )
-					{
-						if ( ch->m_begLine == line )
-							ch->m_begOffset -= column;
-						ch->m_begLine += numLines;
-						ch->m_begOffset += suffixLength;
-					} else if ( ch->m_begLine == line ) {
-						ch->m_begOffset += prefixLength;
-					}
-				} else {
-					if ( numLines )
-					{
-						if ( ch->m_endLine == line )
-							ch->m_endOffset -= column;
-						ch->m_endLine += numLines;
-						ch->m_endOffset += suffixLength;
-					} else if ( ch->m_endLine == line ) {
-						ch->m_endOffset += prefixLength;
-					}
-				}
+					growPosOnInsertion(&ch->m_begLine, &ch->m_begOffset, line, column, prefixLength, numLines, suffixLength);
+				 else
+					growPosOnInsertion(&ch->m_endLine, &ch->m_endOffset, line, column, prefixLength, numLines, suffixLength);
 				//qDebug("into (%i, %i : %i, %i)", ch->m_begLine, ch->m_begOffset, ch->m_endLine, ch->m_endOffset);
 				continue;
 			}
 		}
 
 		// move
-		if ( ch->m_begLine > line )
-		{
-			ch->m_begLine += numLines;
-		} else if ( ch->m_begLine == line && ch->m_begOffset >= column ) {
-			if ( numLines )
-			{
-				ch->m_begLine += numLines;
-				ch->m_begOffset -= column;
-				ch->m_begOffset += suffixLength;
-			} else {
-				ch->m_begOffset += prefixLength;
-			}
-		}
-
-		if ( ch->m_endLine > line )
-		{
-			ch->m_endLine += numLines;
-		} else if ( ch->m_endLine == line && ch->m_endOffset >= column ) {
-			if ( numLines )
-			{
-				ch->m_endLine += numLines;
-				ch->m_endOffset -= column;
-				ch->m_endOffset += suffixLength;
-			} else {
-				ch->m_endOffset += prefixLength;
-			}
-		}
+		movePosOnInsertion(&ch->m_begLine, &ch->m_begOffset, line, column, prefixLength, numLines, suffixLength);
+		movePosOnInsertion(&ch->m_endLine, &ch->m_endOffset, line, column, prefixLength, numLines, suffixLength);
 	}
 }
 

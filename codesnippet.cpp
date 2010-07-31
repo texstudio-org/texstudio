@@ -133,117 +133,117 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 	QDocumentCursor selector=*cursor;
 	QDocumentLine curLine=cursor->line();
 
-        //find filechooser escape %(   %)
-        QString line=mLines.join("\n");
-        QRegExp rx("%\\((.+)%\\)");
-        int pos=rx.indexIn(line,0);
-        if(pos>-1){
-            FileChooser *sfDlg = new FileChooser(0,"Select an image File");
-            sfDlg->setFilter(rx.cap(1));
-			LatexDocument *doc=qobject_cast<LatexDocument*>(cursor->document());
-			QString path=doc->parent->getCompileFileName();
-			path=getPathfromFilename(path);
-			QString directory;
-			if(path.isEmpty()) directory=QDir::homePath();
-			else directory=path;
-			sfDlg->setDir(directory);
-            if (sfDlg->exec()) {
-                    QString fn=sfDlg->fileName();
-					line.replace(rx,getRelativeBaseNameToPath(fn,path));
-            }
-            delete sfDlg;
-        }
+	//find filechooser escape %(   %)
+	QString line=mLines.join("\n");
+	QRegExp rx("%\\((.+)%\\)");
+	int pos=rx.indexIn(line,0);
+	if(pos>-1){
+		FileChooser *sfDlg = new FileChooser(0,"Select an image File");
+		sfDlg->setFilter(rx.cap(1));
+		LatexDocument *doc=qobject_cast<LatexDocument*>(cursor->document());
+		QString path=doc->parent->getCompileFileName();
+		path=getPathfromFilename(path);
+		QString directory;
+		if(path.isEmpty()) directory=QDir::homePath();
+		else directory=path;
+		sfDlg->setDir(directory);
+		if (sfDlg->exec()) {
+			QString fn=sfDlg->fileName();
+			line.replace(rx,getRelativeBaseNameToPath(fn,path));
+		}
+		delete sfDlg;
+	}
 
-		// on multi line commands, replace environments only
-		if(autoReplaceCommands && mLines.size()>1 && line.contains("\\begin{")){
+	// on multi line commands, replace environments only
+	if(autoReplaceCommands && mLines.size()>1 && line.contains("\\begin{")){
+		QString curLine=cursor->line().text();
+		int wordBreak=curLine.indexOf(QRegExp("\\W"),cursor->columnNumber());
+		int closeCurl=curLine.indexOf("}",cursor->columnNumber());
+		int openCurl=curLine.indexOf("{",cursor->columnNumber());
+		int openBracket=curLine.indexOf("[",cursor->columnNumber());
+		if(closeCurl>0){
+			if(openBracket<0) openBracket=1e9;
+			if(openCurl<0) openCurl=1e9;
+			if(wordBreak<0) wordBreak=1e9;
+			if(closeCurl<openBracket && (closeCurl<=wordBreak || openCurl<=wordBreak)){
+				QString oldEnv;
+				if(closeCurl<openCurl)
+					oldEnv=curLine.mid(cursor->columnNumber(),closeCurl-cursor->columnNumber());
+				else
+					oldEnv=curLine.mid(openCurl+1,closeCurl-openCurl-1);
+				QRegExp rx("\\\\begin\\{(.+)\\}");
+				rx.setMinimal(true);
+				rx.indexIn(line);
+				QString newEnv=rx.cap(1);
+				// remove curly brakets as well
+				QDocument* doc=cursor->document();
+				QString searchWord="\\end{"+oldEnv+"}";
+				QString inhibitor="\\begin{"+oldEnv+"}";
+				bool backward=false;
+				int step=1;
+				int startLine=cursor->lineNumber();
+				//int startCol=cursor.columnNumber();
+				int endLine=doc->findLineContaining(searchWord,startLine+step,Qt::CaseSensitive,backward);
+				int inhibitLine=doc->findLineContaining(inhibitor,startLine+step,Qt::CaseSensitive,backward); // not perfect (same line end/start ...)
+				while (inhibitLine>0 && endLine>0 && inhibitLine*step<endLine*step) {
+					endLine=doc->findLineContaining(searchWord,endLine+step,Qt::CaseSensitive,backward); // not perfect (same line end/start ...)
+					inhibitLine=doc->findLineContaining(inhibitor,inhibitLine+step,Qt::CaseSensitive,backward);
+				}
+				QString endText=doc->line(endLine).text();
+				int start=endText.indexOf(searchWord);
+				int offset=searchWord.indexOf("{");
+				int length=searchWord.length()-offset-1;
+				selector.moveTo(endLine,start+1+offset);
+				selector.movePosition(length-1,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+				selector.replaceSelectedText(newEnv);
+				cursor->movePosition(closeCurl-cursor->columnNumber()+1,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+				editor->insertText(*cursor,mLines.first());
+				return;
+			}
+		}
+	}
+
+	int baseLine=cursor->lineNumber();
+	int baseLineIndent = cursor->columnNumber(); //text before inserted word moves placeholders to the right
+	int lastLineRemainingLength = curLine.text().length()-baseLineIndent; //last line will has length: indentation + codesnippet + lastLineRemainingLength
+	editor->insertText(*cursor,line); //don't use cursor->insertText to keep autoindentation working
+
+	// on single line commands only: replace command
+	if(byCompleter && autoReplaceCommands && mLines.size()==1 && line.startsWith('\\')){
+		if(cursor->nextChar().isLetterOrNumber()){
 			QString curLine=cursor->line().text();
 			int wordBreak=curLine.indexOf(QRegExp("\\W"),cursor->columnNumber());
 			int closeCurl=curLine.indexOf("}",cursor->columnNumber());
 			int openCurl=curLine.indexOf("{",cursor->columnNumber());
 			int openBracket=curLine.indexOf("[",cursor->columnNumber());
-			if(closeCurl>0){
+			if(!line.contains("{")){
 				if(openBracket<0) openBracket=1e9;
+				if(closeCurl<0) closeCurl=1e9;
 				if(openCurl<0) openCurl=1e9;
-				if(wordBreak<0) wordBreak=1e9;
-				if(closeCurl<openBracket && (closeCurl<=wordBreak || openCurl<=wordBreak)){
-					QString oldEnv;
-					if(closeCurl<openCurl)
-						oldEnv=curLine.mid(cursor->columnNumber(),closeCurl-cursor->columnNumber());
+				if(wordBreak<openBracket && wordBreak<closeCurl &&wordBreak<openCurl){
+					if(wordBreak<0)
+						cursor->movePosition(wordBreak-cursor->columnNumber(),QDocumentCursor::EndOfLine,QDocumentCursor::KeepAnchor);
 					else
-						oldEnv=curLine.mid(openCurl+1,closeCurl-openCurl-1);
-					QRegExp rx("\\\\begin\\{(.+)\\}");
-					rx.setMinimal(true);
-					rx.indexIn(line);
-					QString newEnv=rx.cap(1);
-					// remove curly brakets as well
-					QDocument* doc=cursor->document();
-					QString searchWord="\\end{"+oldEnv+"}";
-					QString inhibitor="\\begin{"+oldEnv+"}";
-					bool backward=false;
-					int step=1;
-					int startLine=cursor->lineNumber();
-					//int startCol=cursor.columnNumber();
-					int endLine=doc->findLineContaining(searchWord,startLine+step,Qt::CaseSensitive,backward);
-					int inhibitLine=doc->findLineContaining(inhibitor,startLine+step,Qt::CaseSensitive,backward); // not perfect (same line end/start ...)
-					while (inhibitLine>0 && endLine>0 && inhibitLine*step<endLine*step) {
-						endLine=doc->findLineContaining(searchWord,endLine+step,Qt::CaseSensitive,backward); // not perfect (same line end/start ...)
-						inhibitLine=doc->findLineContaining(inhibitor,inhibitLine+step,Qt::CaseSensitive,backward);
-					}
-					QString endText=doc->line(endLine).text();
-					int start=endText.indexOf(searchWord);
-					int offset=searchWord.indexOf("{");
-					int length=searchWord.length()-offset-1;
-					selector.moveTo(endLine,start+1+offset);
-					selector.movePosition(length-1,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
-					selector.replaceSelectedText(newEnv);
-					cursor->movePosition(closeCurl-cursor->columnNumber()+1,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
-					editor->insertText(*cursor,mLines.first());
+						cursor->movePosition(wordBreak-cursor->columnNumber(),QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+					cursor->removeSelectedText();
 					return;
 				}
-			}
-		}
-
-	int baseLine=cursor->lineNumber();
-	int baseLineIndent = cursor->columnNumber(); //text before inserted word moves placeholders to the right
-	int lastLineRemainingLength = curLine.text().length()-baseLineIndent; //last line will has length: indentation + codesnippet + lastLineRemainingLength
-        editor->insertText(*cursor,line); //don't use cursor->insertText to keep autoindentation working
-
-		// on single line commands only: replace command
-		if(byCompleter && autoReplaceCommands && mLines.size()==1 && line.startsWith('\\')){
-			if(cursor->nextChar().isLetterOrNumber()){
-				QString curLine=cursor->line().text();
-				int wordBreak=curLine.indexOf(QRegExp("\\W"),cursor->columnNumber());
-				int closeCurl=curLine.indexOf("}",cursor->columnNumber());
-				int openCurl=curLine.indexOf("{",cursor->columnNumber());
-				int openBracket=curLine.indexOf("[",cursor->columnNumber());
-				if(!line.contains("{")){
+			}else{
+				if(openCurl>-1){
 					if(openBracket<0) openBracket=1e9;
 					if(closeCurl<0) closeCurl=1e9;
-					if(openCurl<0) openCurl=1e9;
-					if(wordBreak<openBracket && wordBreak<closeCurl &&wordBreak<openCurl){
-						if(wordBreak<0)
-							cursor->movePosition(wordBreak-cursor->columnNumber(),QDocumentCursor::EndOfLine,QDocumentCursor::KeepAnchor);
-						else
-							cursor->movePosition(wordBreak-cursor->columnNumber(),QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+					if(openCurl<openBracket && openCurl<closeCurl &&openCurl<=wordBreak){
+						cursor->movePosition(openCurl-cursor->columnNumber(),QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+						cursor->removeSelectedText();
+						int curl=line.length()-line.indexOf("{");
+						cursor->movePosition(curl,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
 						cursor->removeSelectedText();
 						return;
 					}
-				}else{
-					if(openCurl>-1){
-						if(openBracket<0) openBracket=1e9;
-						if(closeCurl<0) closeCurl=1e9;
-						if(openCurl<openBracket && openCurl<closeCurl &&openCurl<=wordBreak){
-							cursor->movePosition(openCurl-cursor->columnNumber(),QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
-							cursor->removeSelectedText();
-							int curl=line.length()-line.indexOf("{");
-							cursor->movePosition(curl,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
-							cursor->removeSelectedText();
-							return;
-						}
-					}
 				}
 			}
 		}
+	}
 
 
 	int magicPlaceHolder=-1;
