@@ -138,7 +138,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 	QRegExp rx("%\\((.+)%\\)");
 	int pos=rx.indexIn(line,0);
 	if(pos>-1){
-		FileChooser *sfDlg = new FileChooser(0,"Select an image File");
+	    FileChooser *sfDlg = new FileChooser(0,QApplication::tr("Select a File"));
 		sfDlg->setFilter(rx.cap(1));
 		LatexDocument *doc=qobject_cast<LatexDocument*>(cursor->document());
 		QString path=doc->parent->getCompileFileName();
