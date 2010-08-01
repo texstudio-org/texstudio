@@ -1590,9 +1590,9 @@ void Texmaker::editUnindent() {
 void Texmaker::editHardLineBreak(){
 	if (!currentEditorView()) return;
 	UniversalInputDialog dialog;
-	dialog.addVariable(&configManager.lastHardWrapColumn, "Insert hard line breaks after so many characters:");
-	dialog.addVariable(&configManager.lastHardWrapSmartScopeSelection, "Smart scope selecting");
-	dialog.addVariable(&configManager.lastHardWrapJoinLines, "Join lines before wrapping");
+	dialog.addVariable(&configManager.lastHardWrapColumn, tr("Insert hard line breaks after so many characters:"));
+	dialog.addVariable(&configManager.lastHardWrapSmartScopeSelection, tr("Smart scope selecting"));
+	dialog.addVariable(&configManager.lastHardWrapJoinLines, tr("Join lines before wrapping"));
 	if (dialog.exec()==QDialog::Accepted)
 		currentEditorView()->insertHardLineBreaks(configManager.lastHardWrapColumn, configManager.lastHardWrapSmartScopeSelection, configManager.lastHardWrapJoinLines);
 }
