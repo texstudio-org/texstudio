@@ -1110,7 +1110,7 @@ void Texmaker::fileOpen() {
 		QFileInfo fi(configManager.lastDocument);
 		if (fi.exists() && fi.isReadable()) currentDir=fi.absolutePath();
 	}
-        QStringList files = QFileDialog::getOpenFileNames(this,tr("Open Files"),currentDir,tr("TeX files")+" (*.tex *.bib *.sty *.cls *.mp);;All files (*)");
+	QStringList files = QFileDialog::getOpenFileNames(this,tr("Open Files"),currentDir,tr("TeX files")+" (*.tex *.bib *.sty *.cls *.mp);;"+tr("All files")+" (*)");
 	foreach (const QString& fn, files)
 		load(fn);
 }
@@ -1166,7 +1166,7 @@ void Texmaker::fileSaveAs(QString fileName) {
 	}
 
 	// get a file name
-        QString fn = QFileDialog::getSaveFileName(this,tr("Save As"),currentDir,tr("TeX files")+" (*.tex *.bib *.sty *.cls *.mp);;All files (*.*)");
+	QString fn = QFileDialog::getSaveFileName(this,tr("Save As"),currentDir,tr("TeX files")+" (*.tex *.bib *.sty *.cls *.mp);;"+tr("All files")+" (*.*)");
 	if (!fn.isEmpty()) {
 		int lastsep=qMax(fn.lastIndexOf("/"),fn.lastIndexOf("\\"));
 		int lastpoint=fn.lastIndexOf(".");
