@@ -1921,6 +1921,10 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
         <source>none</source>
         <translation>nichts</translation>
     </message>
+    <message>
+        <source>Select a File</source>
+        <translation>Datei auswählen</translation>
+    </message>
 </context>
 <context>
     <name>QCodeCompletionEngine</name>
@@ -2611,7 +2615,7 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <source>Refresh search underlying context (as an attempt to correct search behavior)</source>
-        <translation>Suchspeicher aktualisieren (um fehlerhaftes Suchverhalten zu berichtigen)</translation>
+        <translation type="obsolete">Suchspeicher aktualisieren (um fehlerhaftes Suchverhalten zu berichtigen)</translation>
     </message>
     <message>
         <source> Find :</source>
@@ -4163,7 +4167,7 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es compilern könn
     </message>
     <message>
         <source>Insert hard line breaks after so many characters:</source>
-        <translation type="obsolete">Fügte den harten Zeilenumbruch nach so vielen Zeichen ein:</translation>
+        <translation>Fügte den harten Zeilenumbruch nach so vielen Zeichen ein:</translation>
     </message>
     <message>
         <source>&lt;current file&gt;</source>
@@ -4229,6 +4233,18 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es compilern könn
     <message>
         <source>&amp;Idefix (?)</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeX files</source>
+        <translation>TeX Dateien</translation>
+    </message>
+    <message>
+        <source>Smart scope selecting</source>
+        <translation>Intelligente Bereichsauswahl</translation>
+    </message>
+    <message>
+        <source>Join lines before wrapping</source>
+        <translation>Füge Zeilen vor dem Umbruch wieder zusammen</translation>
     </message>
 </context>
 <context>

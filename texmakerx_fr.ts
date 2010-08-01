@@ -1752,6 +1752,10 @@ Continuer tout de même ?</translation>
         <source>none</source>
         <translation>aucun</translation>
     </message>
+    <message>
+        <source>Select a File</source>
+        <translation type="unfinished">Sélectionner un fichier</translation>
+    </message>
 </context>
 <context>
     <name>QCodeCompletionEngine</name>
@@ -2466,7 +2470,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     </message>
     <message>
         <source>Refresh search underlying context (as an attempt to correct search behavior)</source>
-        <translation>Actualiser le contexte de recherche (essai pour corriger le comportement)</translation>
+        <translation type="obsolete">Actualiser le contexte de recherche (essai pour corriger le comportement)</translation>
     </message>
     <message>
         <source> Find :</source>
@@ -3706,6 +3710,22 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>&amp;Idefix (?)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeX files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert hard line breaks after so many characters:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Smart scope selecting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Join lines before wrapping</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

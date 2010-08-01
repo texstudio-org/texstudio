@@ -1912,6 +1912,10 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
         <source>none</source>
         <translation>Žádný</translation>
     </message>
+    <message>
+        <source>Select a File</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QCodeCompletionEngine</name>
@@ -2604,7 +2608,7 @@ Chcete, aby byly uloženy?</translation>
     </message>
     <message>
         <source>Refresh search underlying context (as an attempt to correct search behavior)</source>
-        <translation>Obnovit zásobník hledání (kvůli opravě chybného chování při hledání)</translation>
+        <translation type="obsolete">Obnovit zásobník hledání (kvůli opravě chybného chování při hledání)</translation>
     </message>
     <message>
         <source> Find :</source>
@@ -4160,7 +4164,7 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     </message>
     <message>
         <source>Insert hard line breaks after so many characters:</source>
-        <translation type="obsolete">Fügte den harten Zeilenumbruch nach so vielen Zeichen ein:</translation>
+        <translation type="unfinished">Fügte den harten Zeilenumbruch nach so vielen Zeichen ein:</translation>
     </message>
     <message>
         <source>&lt;current file&gt;</source>
@@ -4225,6 +4229,18 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     </message>
     <message>
         <source>&amp;Idefix (?)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeX files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Smart scope selecting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Join lines before wrapping</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

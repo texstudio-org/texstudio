@@ -1765,6 +1765,10 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
         <source>none</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Select a File</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QCodeCompletionEngine</name>
@@ -2453,7 +2457,7 @@ Vuoi salvarli?</translation>
     </message>
     <message>
         <source>Refresh search underlying context (as an attempt to correct search behavior)</source>
-        <translation>Aggiorna la ricerca sottolineando il contesto (tentativo di correggere il comportamento della ricerca)</translation>
+        <translation type="obsolete">Aggiorna la ricerca sottolineando il contesto (tentativo di correggere il comportamento della ricerca)</translation>
     </message>
     <message>
         <source> Find :</source>
@@ -3792,6 +3796,22 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <source>&amp;Idefix (?)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeX files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert hard line breaks after so many characters:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Smart scope selecting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Join lines before wrapping</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
