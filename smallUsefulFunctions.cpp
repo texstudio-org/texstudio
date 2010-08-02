@@ -61,28 +61,37 @@ QStringList findResourceFiles(const QString& dirName, const QString& filter) {
 	return result;
 }
 
-QString findResourceFile(const QString& fileName) {
+QString findResourceFile(const QString& fileName, bool allowOverride, QStringList additionalPreferredPaths, QStringList additionalFallbackPaths) {
 	QStringList searchFiles;
 
-	searchFiles<<":/"+fileName; //resource fall back
-	searchFiles<<QCoreApplication::applicationDirPath() + "/../Resources/"+fileName; //macx
-	searchFiles<<QCoreApplication::applicationDirPath() + "/"+fileName; //windows old
-	searchFiles<<QCoreApplication::applicationDirPath() + "/dictionaries/"+fileName; //windows new
-	searchFiles<<QCoreApplication::applicationDirPath() + "/translations/"+fileName; //windows new
-	searchFiles<<QCoreApplication::applicationDirPath() + "/help/"+fileName; //windows new
-	searchFiles<<QCoreApplication::applicationDirPath() + "/utilities/"+fileName; //windows new
-	// searchFiles<<QCoreApplication::applicationDirPath() + "/data/"+fileName; //windows new
-#if defined( Q_WS_X11 )
-	searchFiles<<PREFIX"/share/texmakerx/"+fileName; //X_11
-#endif
+	if (!allowOverride) searchFiles<<":/"; //search first in included resources (much faster)
 
+	foreach (const QString& s, additionalPreferredPaths)
+		if (s.endsWith('/') || s.endsWith('\\')) searchFiles << s;
+		else searchFiles << s + "/";
+#ifdef Q_WS_X11
+	searchFiles<<PREFIX"/share/texmakerx/"; //X_11
+#endif
+#ifdef Q_WS_MAC
+	searchFiles<<QCoreApplication::applicationDirPath() + "/../Resources/"; //macx
+#endif
+	searchFiles<<QCoreApplication::applicationDirPath() + "/"; //windows old
+	searchFiles<<QCoreApplication::applicationDirPath() + "/dictionaries/"; //windows new
+	searchFiles<<QCoreApplication::applicationDirPath() + "/translations/"; //windows new
+	searchFiles<<QCoreApplication::applicationDirPath() + "/help/"; //windows new
+	searchFiles<<QCoreApplication::applicationDirPath() + "/utilities/"; //windows new
+	// searchFiles<<QCoreApplication::applicationDirPath() + "/data/"; //windows new
+
+	if (allowOverride) searchFiles<<":/"; //resource fall back
+
+	foreach (const QString& s, additionalFallbackPaths)
+		if (s.endsWith('/') || s.endsWith('\\')) searchFiles << s;
+		else searchFiles << s + "/";
 
 	foreach(const QString& fn, searchFiles) {
-		QFileInfo fic(fn);
-		if (fic.exists() && fic.isReadable()) {
-			return fn;
-			break;
-		}
+		QFileInfo fic(fn + fileName);
+		if (fic.exists() && fic.isReadable())
+			return fn + fileName;
 	}
 	return "";
 }
