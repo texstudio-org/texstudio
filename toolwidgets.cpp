@@ -1,5 +1,6 @@
 #include "toolwidgets.h"
 #include "math.h"
+#include "smallUsefulFunctions.h"
 
 void adjustScrollBar(QScrollBar *scrollBar, double factor)
 {
@@ -27,7 +28,7 @@ PreviewWidget::PreviewWidget(QWidget * parent): QScrollArea(parent){
 
 void PreviewWidget::scaleImage(double factor)
 {
-	Q_ASSERT(preViewer->pixmap());
+	REQUIRE(preViewer->pixmap());
 	pvscaleFactor *= factor;
 	preViewer->resize(pvscaleFactor * preViewer->pixmap()->size());
 
@@ -43,6 +44,7 @@ void PreviewWidget::previewLatex(const QPixmap& previewImage){
 }
 
 void PreviewWidget::fitImage(){
+	REQUIRE(preViewer->pixmap());
 	// needs to be improved
 	QSize m_size=size()-QSize(2,2);
 	QSize m_labelSize=preViewer->size();
@@ -82,6 +84,7 @@ void PreviewWidget::resetZoom(){
 }
 
 void PreviewWidget::wheelEvent(QWheelEvent *event){
+	if (!preViewer->pixmap()) return;
 	if(event->modifiers()==Qt::ControlModifier){
 		int numDegrees = event->delta() / 8;
 		int numSteps = numDegrees / 15;
@@ -91,6 +94,7 @@ void PreviewWidget::wheelEvent(QWheelEvent *event){
 }
 
 void PreviewWidget::contextMenu(QPoint point) {
+	if (!preViewer->pixmap()) return;
 	QMenu menu;
 	menu.addAction(tr("zoom in "),this, SLOT(zoomIn()));
 	menu.addAction(tr("zoom out"),this, SLOT(zoomOut()));
