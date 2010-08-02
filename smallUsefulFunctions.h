@@ -18,8 +18,8 @@
 QString getCommonEOW();
 
 QStringList findResourceFiles(const QString& dirName, const QString& filter);
-//returns the real name of a resource file (allowing the user to override resource files with local files)
-QString findResourceFile(const QString& fileName);
+//returns the real name of a resource file
+QString findResourceFile(const QString& fileName, bool allowOverride = false, QStringList additionalPreferredPaths = QStringList(), QStringList additionalFallbackPaths = QStringList());
 //returns if the file is writable (QFileInfo.isWritable works in different ways on Windows and Linux)
 bool isFileRealWritable(const QString& filename);
 //returns if the file exists and is writable

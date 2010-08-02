@@ -358,11 +358,13 @@ QSettings* ConfigManager::readProfile(QString fname) {
 
 QSettings* ConfigManager::readSettings() {
 	//load config
+	bool importTexmakerSettings = false;
 	bool usbMode = isExistingFileRealWritable(QCoreApplication::applicationDirPath()+"/texmakerx.ini");
 	if (!usbMode)
 		if (isExistingFileRealWritable(QCoreApplication::applicationDirPath()+"/texmaker.ini")) {
 			//import texmaker usb settings
 			usbMode=(QFile(QCoreApplication::applicationDirPath()+"/texmaker.ini")).copy(QCoreApplication::applicationDirPath()+"/texmakerx.ini");
+			importTexmakerSettings = true;
 		}
 	QSettings *config;
 	if (usbMode) {
@@ -374,6 +376,7 @@ QSettings* ConfigManager::readSettings() {
 			QSettings oldconfig(QSettings::IniFormat,QSettings::UserScope,"xm1","texmaker");
 			QStringList keys=oldconfig.allKeys();
 			foreach(QString key, keys) config->setValue(key,oldconfig.value(key,""));
+			importTexmakerSettings = true;
 		}
 	}
 	configFileName=config->fileName();
@@ -390,12 +393,17 @@ QSettings* ConfigManager::readSettings() {
 		managedProperties[i].valueFromQVariant(config->value(managedProperties[i].name, managedProperties[i].def));
 
 	//----------------------------dictionaries-------------------------
-	if (spell_dic=="<dic not found>") {
-		spell_dic=findResourceFile(QString(QLocale::system().name())+".dic");
-		if (spell_dic=="") spell_dic=findResourceFile("en_US.dic");
-		if (spell_dic=="") spell_dic=findResourceFile("en_GB.dic");
-		if (spell_dic=="") spell_dic=findResourceFile("fr_FR.dic");
-		if (spell_dic=="") spell_dic=findResourceFile("de_DE.dic");
+	if (spell_dic=="<dic not found>" || (importTexmakerSettings && !QFileInfo(spell_dic).exists())) {
+		QStringList temp;
+		QStringList fallBackPaths;
+#ifndef Q_WS_WIN
+		fallBackPaths << "/usr/share/hunspell";
+#endif
+		spell_dic=findResourceFile(QString(QLocale::system().name())+".dic", true, temp, fallBackPaths);
+		if (spell_dic=="") spell_dic=findResourceFile("en_US.dic", true, temp, fallBackPaths);
+		if (spell_dic=="") spell_dic=findResourceFile("en_GB.dic", true, temp, fallBackPaths);
+		if (spell_dic=="") spell_dic=findResourceFile("fr_FR.dic", true, temp, fallBackPaths);
+		if (spell_dic=="") spell_dic=findResourceFile("de_DE.dic", true, temp, fallBackPaths);
 	}
 
 	if (thesaurus_database=="<dic not found>"||thesaurus_database=="") {
