@@ -90,7 +90,8 @@ HEADERS += texmaker.h \
     tmxtabwidget.h \
     configmanagerinterface.h \
     qcodeedit/lib/qformat.h \
-    mostQtHeaders.h
+    mostQtHeaders.h \
+    qcodeedit/lib/qnfa/xml2qnfa.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -244,15 +245,15 @@ unix {
         utilities/doc7.png \
         utilities/doc8.png \
         utilities/doc9.png \
-	utilities/configure_completion.png \
-	utilities/configure_customizeMenu.png \
-	utilities/configure_customToolbar.png \
-	utilities/configure_editor.png \
-	utilities/configure_general.png \
-	utilities/configure_shortcuts.png \
-	utilities/configure_svn.png \
-	utilities/template.png \
-	utilities/thesaurus.png \
+        utilities/configure_completion.png \
+        utilities/configure_customizeMenu.png \
+        utilities/configure_customToolbar.png \
+        utilities/configure_editor.png \
+        utilities/configure_general.png \
+        utilities/configure_shortcuts.png \
+        utilities/configure_svn.png \
+        utilities/template.png \
+        utilities/thesaurus.png \
         utilities/latexhelp.html \
         texmakerx_fr.qm \
         texmakerx_de.qm \
@@ -276,7 +277,7 @@ unix {
         utilities/usermanual_fr.html \
         utilities/en_GB.aff \
         utilities/en_GB.dic \
-	utilities/en_US.aff \
+        utilities/en_US.aff \
         utilities/en_US.dic \
         utilities/fr_FR.aff \
         utilities/fr_FR.dic \

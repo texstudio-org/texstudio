@@ -92,6 +92,7 @@ QString QLanguageDefinition::singleLineComment() const
 	return QString();
 }
 
+
 /*!
 	\brief Let language specify which line mark should be toggled by left clicking a line mark panel
 */

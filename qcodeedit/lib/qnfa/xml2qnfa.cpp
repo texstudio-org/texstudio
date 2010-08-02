@@ -23,6 +23,8 @@
 
 #include "qformatscheme.h"
 
+#include "xml2qnfa.h"
+
 #include <QVariant>
 #include <QDomText>
 #include <QDomElement>
@@ -44,7 +46,11 @@
 	</QNFA>
 */
 
-QString *_singleLineCommentTarget = 0;
+QXml2NFAParser::QXml2NFAParser(QFormatScheme *formatScheme, QHash<QString, int>& parenthesisIds, QHash<int, int>& parenthesisWeights, QStringList& openingParenthesis, QStringList& closingParenthesis):
+	f(formatScheme), pids(parenthesisIds), parenWeight(parenthesisWeights), parenOpening(openingParenthesis), parenClosing(closingParenthesis)
+{
+	singleLineCommentTarget = 0;
+}
 
 bool stringToBool(const QString& s, bool previous)
 {
@@ -67,7 +73,7 @@ bool stringToBool(const QString& s, bool previous)
 			);
 }
 
-int pid(const QString& s, QHash<QString, int>& pids)
+int QXml2NFAParser::pid(const QString& s)
 {
 	if ( pids.contains(s) )
 		return pids.value(s);
@@ -75,11 +81,11 @@ int pid(const QString& s, QHash<QString, int>& pids)
 	int id = (pids.count() + 1) << 12;
 	
 	pids[s] = id;
-	
+
 	return id;
 }
 
-int action(QDomElement c, QFormatScheme *f, QHash<QString, int>& pids, QHash<int, int>& parenWeight, int fid = 0)
+int QXml2NFAParser::action(QDomElement c, int fid)
 {
 	QString paren, spid, spt, sfid;
 	
@@ -119,7 +125,7 @@ int action(QDomElement c, QFormatScheme *f, QHash<QString, int>& pids, QHash<int
 			else if ( spt == "boundary" )
 				fid |= QNFAAction::ParenOpen | QNFAAction::ParenClose;
 
-			int cid=pid(spid, pids);
+			int cid=pid(spid);
 			fid |= QNFAAction::parenthesis(cid);
 			
 			/*
@@ -190,11 +196,8 @@ void embed(QNFA *src, QNFA *dest, int idx = 0)
 	copy(src->tree, dest->tree);
 }
 
-void fillContext(QNFA *cxt, QDomElement e, QFormatScheme *f, QHash<QString, int>& pids, QHash<int, int>& parenWeight, bool cs);
-void fillContext(QNFA *cxt, QDomNodeList l, QFormatScheme *f, QHash<QString, int>& pids, QHash<int, int>& parenWeight, bool cs);
 
-void addToContext(	QNFA *cxt, QDomElement c, int fid,
-					QFormatScheme *f, QHash<QString, int>& pids, QHash<int, int>& parenWeight,
+void QXml2NFAParser::addToContext(	QNFA *cxt, QDomElement c, int fid,
 					const QStringList& pref,
 					const QStringList& suff,
 					bool cs)
@@ -281,7 +284,7 @@ void addToContext(	QNFA *cxt, QDomElement c, int fid,
 			else if ( role == "suffix" )
 				suffixes << value;
 			else
-				addToContext(cxt, cc, action(cc, f, pids, parenWeight, fid), f, pids, parenWeight, prefixes, suffixes, cs);
+				addToContext(cxt, cc, action(cc, fid), prefixes, suffixes, cs);
 		}
 		//qDebug("ending list");
 		
@@ -300,7 +303,7 @@ void addToContext(	QNFA *cxt, QDomElement c, int fid,
 		QList<QNFA*> lStart, lStop, lEscape;
 		
 		QString attr;
-		int defact = action(c, f, pids, parenWeight);
+		int defact = action(c);
 		QDomNodeList children = c.childNodes();
 		
 		QString _id = c.attribute("id");
@@ -316,7 +319,7 @@ void addToContext(	QNFA *cxt, QDomElement c, int fid,
 			
 			bool tcs = stringToBool(child.attribute("caseSensitive"), cs);
 			
-			int act = action(child, f, pids,parenWeight);
+			int act = action(child);
 			
 			if ( !(act & QNFAAction::Highlight) )
 				act |= QNFAAction::Highlight | QNFAAction::format(defact);
@@ -339,8 +342,8 @@ void addToContext(	QNFA *cxt, QDomElement c, int fid,
 					cstart->out.branch = new QNFABranch;
 					
 					// only the first sequence comes
-					if ( _singleLineCommentTarget && (_id == "comment/single") )
-						*_singleLineCommentTarget = value;
+					if ( singleLineCommentTarget && (_id == "comment/single") )
+						*singleLineCommentTarget = value;
 					
 				}
 				
@@ -380,7 +383,7 @@ void addToContext(	QNFA *cxt, QDomElement c, int fid,
 				
 				nfa = new QNFA;
 				nfa->type = EscapeSeq;
-				nfa->actionid = action(child, f, pids,parenWeight);
+				nfa->actionid = action(child);
 				//nfa->out.branch = new QNFABranch;
 				
 				hescape->out.next = nfa;
@@ -411,7 +414,7 @@ void addToContext(	QNFA *cxt, QDomElement c, int fid,
 			cstart->out.branch = new QNFABranch;
 		}
 		
-		fillContext(cstart, c, f, pids, parenWeight, cs);
+		fillContext(cstart, c, cs);
 		
 		if ( c.hasAttribute("id") )
 		{
@@ -450,14 +453,14 @@ void addToContext(	QNFA *cxt, QDomElement c, int fid,
 	}
 }
 
-void fillContext(QNFA *cxt, QDomElement e, QFormatScheme *f, QHash<QString, int>& pids, QHash<int, int>& parenWeight, bool cs)
+void QXml2NFAParser::fillContext(QNFA *cxt, QDomElement e, bool cs)
 {
 	cs = stringToBool(e.attribute("caseSensitive"), cs);
 	
-	fillContext(cxt, e.childNodes(), f, pids, parenWeight, cs);
+	fillContext(cxt, e.childNodes(), cs);
 }
 
-void fillContext(QNFA *cxt, QDomNodeList l, QFormatScheme *f, QHash<QString, int>& pids, QHash<int, int>& parenWeight, bool cs)
+void QXml2NFAParser::fillContext(QNFA *cxt, QDomNodeList l, bool cs)
 {
 	//qDebug("filling context from %i nodes", l.count());
 	
@@ -468,7 +471,7 @@ void fillContext(QNFA *cxt, QDomNodeList l, QFormatScheme *f, QHash<QString, int
 		if ( c.isNull() )
 			continue;
 		
-		addToContext(cxt, c, action(c, f, pids, parenWeight), f, pids, parenWeight, QStringList(), QStringList(), cs);
+		addToContext(cxt, c, action(c), QStringList(), QStringList(), cs);
 	}
 	
 	//qDebug("context filled");

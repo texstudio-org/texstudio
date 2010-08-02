@@ -66,10 +66,12 @@ class QCE_EXPORT QLanguageDefinition
 		virtual int tokenize(QDocument *d, int line, int count);
 		
 		virtual QString singleLineComment() const;
-		
+
 		virtual QString defaultLineMark() const;
 
 		virtual int parenthesisWeight(int id) const;
+		virtual const QStringList& openingParenthesis() const = 0;
+		virtual const QStringList& closingParenthesis() const = 0;
 
 		virtual void match(QDocumentCursor& c);
 		virtual void clearMatches(QDocument *d);
