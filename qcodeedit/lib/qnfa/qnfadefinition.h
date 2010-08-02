@@ -76,10 +76,12 @@ class QCE_EXPORT QNFADefinition : public QLanguageDefinition
 		virtual int tokenize(QDocument *d, int line, int count);
 		
 		virtual QString singleLineComment() const;
-		
+
 		virtual QString defaultLineMark() const;
 		
 		virtual int parenthesisWeight(int id) const;
+		virtual const QStringList& openingParenthesis() const;
+		virtual const QStringList& closingParenthesis() const;
 
 		virtual void clearMatches(QDocument *d);
 		virtual void match(QDocumentCursor& c);
@@ -115,7 +117,9 @@ class QCE_EXPORT QNFADefinition : public QLanguageDefinition
 		static QHash<QString, int> m_paren;
 		static QHash<int, int> m_parenWeight;
 		static QHash<QString, QNFA*> m_contexts;
-		
+		QStringList m_openingParenthesis;
+		QStringList m_closingParenthesis;
+
 		struct PMatch
 		{
 			PMatch() : type(Invalid)

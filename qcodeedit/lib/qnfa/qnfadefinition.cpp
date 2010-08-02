@@ -26,6 +26,8 @@
 
 #include "qlinemarksinfocenter.h"
 
+#include "xml2qnfa.h"
+
 #include "qdocument.h"
 #include "qdocument_p.h"
 #include "qdocumentline.h"
@@ -143,9 +145,7 @@ class QNFANotifier : public QNFAMatchHandler
 		QVector<QParenthesis> m_parens;
 };
 
-extern QString *_singleLineCommentTarget;
 void embed(QNFA *src, QNFA *dest, int index);
-void fillContext(QNFA *cxt, QDomElement e, QFormatScheme *f, QHash<QString, int>& pids, QHash<int, int>& parenWeight, bool cs);
 
 static inline bool match(const QParenthesis& open, const QParenthesis& close)
 {
@@ -201,9 +201,9 @@ void QNFADefinition::load(const QDomDocument& doc, QLanguageFactory::LangData *d
 	// create root entity
 	nd->m_root = lexer();
 
-	_singleLineCommentTarget = &(nd->m_singleLineComment);
-	fillContext(nd->m_root, root, s, m_paren, m_parenWeight, true);
-	_singleLineCommentTarget = 0;
+	QXml2NFAParser parser(s, m_paren, m_parenWeight, nd->m_openingParenthesis, nd->m_closingParenthesis);
+	parser.singleLineCommentTarget = &(nd->m_singleLineComment);
+	parser.fillContext(nd->m_root, root, true);
 
 	squeeze(nd->m_root);
 
@@ -308,6 +308,14 @@ QString QNFADefinition::singleLineComment() const
 {
 	return m_singleLineComment;
 }
+
+const QStringList& QNFADefinition::openingParenthesis() const{
+	return m_openingParenthesis;
+}
+const QStringList& QNFADefinition::closingParenthesis() const{
+	return m_closingParenthesis;
+}
+
 
 QString QNFADefinition::defaultLineMark() const
 {
