@@ -435,6 +435,8 @@ void LatexEditorView::updateSettings(){
 	editor->setFlag(QEditor::AutoIndent,config->autoindent);
 	editor->setFlag(QEditor::WeakIndent,config->weakindent);
 	editor->setFlag(QEditor::ReplaceTabs,config->indentWithSpaces);
+	//TODO: parenmatch
+	editor->setFlag(QEditor::AutoCloseChars, config->parenComplete);;
 	lineMarkPanelAction->setChecked((config->showlinemultiples!=0) ||config->folding||config->showlinestate);
 	lineNumberPanelAction->setChecked(config->showlinemultiples!=0);
 	lineFoldPanelAction->setChecked(config->folding);

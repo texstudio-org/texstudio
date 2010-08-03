@@ -222,6 +222,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	//editor
 	registerOption("Editor/WordWrap", &editorConfig->wordwrap, true, &pseudoDialog->checkBoxWordwrap);
 	registerOption("Editor/Parentheses Matching", &editorConfig->parenmatch, true); //TODO: checkbox?
+	registerOption("Editor/Parentheses Completion", &editorConfig->parenComplete, true);//TODO: checkbox?
 	registerOption("Editor/Line Number Multiples", &editorConfig->showlinemultiples, -1);
 	registerOption("Editor/Auto Indent", &editorConfig->autoindent, true);
 	registerOption("Editor/Weak Indent", &editorConfig->weakindent, true);

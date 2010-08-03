@@ -46,7 +46,7 @@
 	</QNFA>
 */
 
-QXml2NFAParser::QXml2NFAParser(QFormatScheme *formatScheme, QHash<QString, int>& parenthesisIds, QHash<int, int>& parenthesisWeights, QStringList& openingParenthesis, QStringList& closingParenthesis):
+QXml2NFAParser::QXml2NFAParser(QFormatScheme *formatScheme, QHash<QString, int>& parenthesisIds, QHash<int, int>& parenthesisWeights, QHash<QString, int>& openingParenthesis, QHash<int, QString>& closingParenthesis):
 	f(formatScheme), pids(parenthesisIds), parenWeight(parenthesisWeights), parenOpening(openingParenthesis), parenClosing(closingParenthesis)
 {
 	singleLineCommentTarget = 0;
@@ -71,6 +71,27 @@ bool stringToBool(const QString& s, bool previous)
 			&&
 				QVariant(s).toBool()
 			);
+}
+
+QString regexpUnescape(const QString& s){
+	//regexp chars: \ $, (,), *, +, ., ?, [, ,], ^, {, | and }.
+	//used by qce: ( ) * + . ? [ ] | not used: \ $ ^ { }
+	QString result;
+	result.reserve(s.length());
+	for (int i=0;i<s.length(); i++){
+		QChar cur = s.at(i);
+		if (cur == '\\') {
+			i++;
+			cur = s[i];
+			if (cur == '\\' || cur == '(' || cur == ')' || cur == '*' || cur == '+' || cur == '.' || cur == '?' || cur == '[' || cur == ']' || cur == '|' || cur == '{' || cur == '}' || cur == '$' || cur == '^')
+				result += cur;
+			else
+				return "";
+		} else if (!(cur == '(' || cur == ')' || cur == '*' || cur == '+' || cur == '.' || cur == '?' || cur == '[' || cur == ']' || cur == '|'))
+			result += cur;
+		else return "";
+	}
+	return result;
 }
 
 int QXml2NFAParser::pid(const QString& s)
@@ -103,12 +124,17 @@ int QXml2NFAParser::action(QDomElement c, int fid)
 		spid = paren.section(':', 0, -2);
 		spt = paren.section(':', -1, -1);
 		
-		if ( spt.endsWith("@nomatch") )
-		{
-			spt.chop(8);
-		} else {
-			fid |= QNFAAction::MatchParen;
+		fid |= QNFAAction::MatchParen;
+		bool autoComplete = true;
+
+		int atsep = spt.lastIndexOf('@');
+		if (atsep > 0) {
+			QString options = spt.mid(atsep+1);
+			if (options.contains("nomatch")) fid = fid & ~QNFAAction::MatchParen;
+			if (options.contains("nocomplete")) autoComplete = false;
+			spt.chop(spt.length() - atsep);
 		}
+
 
 		
 		if ( spid.count() )
@@ -139,6 +165,20 @@ int QXml2NFAParser::action(QDomElement c, int fid)
 				parenWeight.insert((cid & QNFAAction::ParenMask) >> 8, weight.toInt());
 			}
 
+			if (autoComplete){
+				QString paren;
+				switch ( fid & (QNFAAction::ParenOpen | QNFAAction::ParenClose) ) {
+					case QNFAAction::ParenOpen:
+						paren = regexpUnescape(c.firstChild().isText() ? c.firstChild().nodeValue() : "");
+						if ( paren != "" && !parenOpening.contains(paren) ) parenOpening.insert(paren, cid);
+						break;
+					case QNFAAction::ParenClose:
+						if (!parenClosing.contains(cid) ) {
+							paren = regexpUnescape(c.firstChild().isText() ? c.firstChild().nodeValue() : "");
+							if ( paren != "" ) parenClosing.insert(cid, paren);
+						}
+				}
+			}
 		}
 
 	}
