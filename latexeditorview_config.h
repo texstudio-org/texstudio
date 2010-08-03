@@ -8,7 +8,7 @@
 class LatexEditorViewConfig
 {
 public:
-	bool wordwrap, parenmatch;
+	bool wordwrap, parenmatch, parenComplete;
 	bool autoindent, weakindent;
 	bool indentWithSpaces;
 	bool showWhitespace;

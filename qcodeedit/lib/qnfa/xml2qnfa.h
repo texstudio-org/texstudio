@@ -7,7 +7,7 @@ class QFormatScheme;
 class QNFA;
 class QXml2NFAParser{
 public:
-	QXml2NFAParser(QFormatScheme *formatScheme, QHash<QString, int>& parenthesisIds, QHash<int, int>& parenthesisWeights, QStringList& openingParenthesis, QStringList& closingParenthesis);
+	QXml2NFAParser(QFormatScheme *formatScheme, QHash<QString, int>& parenthesisIds, QHash<int, int>& parenthesisWeights, QHash<QString, int>& openingParenthesis, QHash<int, QString>& closingParenthesis);
 	QString *singleLineCommentTarget;
 
 	void fillContext(QNFA *cxt, QDomElement e, bool cs);
@@ -27,8 +27,8 @@ private:
 	QHash<QString, int>& pids;
 	QHash<int, int>& parenWeight;
 
-	QStringList& parenOpening;
-	QStringList& parenClosing;
+	QHash<QString, int>& parenOpening;
+	QHash<int, QString>& parenClosing;
 };
 
 #endif // XML2QNFA_H

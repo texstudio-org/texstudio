@@ -11,15 +11,15 @@
 	</context>
 	
 	<context id="data/string1" format="text" >
-		<start>&quot;</start>
-		<stop>&quot;</stop>
+		<start parenthesis="string:open">&quot;</start>
+		<stop parenthesis="string:close">&quot;</stop>
 		<stop exclusive="false">\n</stop>
 		<sequence id="escape" format="escapeseq" >\\[nrtvf\\"'\n]</sequence>
 	</context>
 	
 	<context id="data/string2" format="text" >
-		<start>&apos;</start>
-		<stop>&apos;</stop>
+		<start parenthesis="simplestring:open">&apos;</start>
+		<stop parenthesis="simplestring:close">&apos;</stop>
 		<stop exclusive="false">\n</stop>
 		<sequence id="escape" format="escapeseq" >\\[nrtvf\\"'\n]</sequence>
 	</context>
@@ -31,10 +31,10 @@
 		<sequence id="escape" format="escapeseq" >\\[nrtvf\\"'\n]</sequence>
 	</context>
 
-	<sequence parenthesis="round:open">(</sequence>
-	<sequence parenthesis="round:close">)</sequence>
-	<sequence parenthesis="curly:open">{</sequence>
-	<sequence parenthesis="curly:close">}</sequence>
+	<sequence parenthesis="round:open">\(</sequence>
+	<sequence parenthesis="round:close">\)</sequence>
+	<sequence parenthesis="curly:open">\{</sequence>
+	<sequence parenthesis="curly:close">\}</sequence>
 	<sequence parenthesis="square:open">\[</sequence>
 	<sequence parenthesis="square:close">\]</sequence>
 	

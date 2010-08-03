@@ -283,8 +283,8 @@ void QDocumentCommand::updateCursorsOnInsertion(int line, int column, int prefix
 		{
 			if (ch->hasFlag(QDocumentCursorHandle::AutoUpdateKeepBegin) &&
 			    line == ch->m_begLine && column == ch->m_begOffset) {
-				movePosOnInsertion(&ch->m_begLine, &ch->m_begOffset, line, column, prefixLength, numLines, suffixLength);
-				movePosOnInsertion(&ch->m_endLine, &ch->m_endOffset, line, column, prefixLength, numLines, suffixLength);
+				//movePosOnInsertion(&ch->m_begLine, &ch->m_begOffset, line, column, prefixLength, numLines, suffixLength);
+				//movePosOnInsertion(&ch->m_endLine, &ch->m_endOffset, line, column, prefixLength, numLines, suffixLength);
 				continue;
 			}
 			if (ch->hasFlag(QDocumentCursorHandle::AutoUpdateKeepEnd) &&

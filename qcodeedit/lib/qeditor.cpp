@@ -243,7 +243,7 @@ QReliableFileWatch* QEditor::watcher()
 
 ////////////////////////////////////////////////////////////////////////
 
-int QEditor::m_defaultFlags = QEditor::AutoIndent | QEditor::AdjustIndent;
+int QEditor::m_defaultFlags = QEditor::AutoIndent | QEditor::AdjustIndent | QEditor::AutoCloseChars;
 
 /*!
 	\return The default flags set to every QEditor upon construction
@@ -1947,7 +1947,8 @@ bool QEditor::nextPlaceHolder()
 	int np=-1;
 	for (int i=0; i< m_placeHolders.count();i++){
 		if (m_placeHolders[i].cursor.beginBoundaryLarger(m_cursor) && 
-			(np==-1 || m_placeHolders[i].cursor<=m_placeHolders[np].cursor))
+			(np==-1 || m_placeHolders[i].cursor<=m_placeHolders[np].cursor) &&
+			!m_placeHolders[i].autoOverride)
 				np=i;
 	}
 
@@ -1973,7 +1974,8 @@ bool QEditor::previousPlaceHolder()
 	int np=-1;
 	for (int i=0; i< m_placeHolders.count();i++){
 		if (m_cursor.endBoundaryLarger(m_placeHolders[i].cursor) && 
-			(np==-1 || m_placeHolders[i].cursor>=m_placeHolders[np].cursor))
+			(np==-1 || m_placeHolders[i].cursor>=m_placeHolders[np].cursor) &&
+			!m_placeHolders[i].autoOverride)
 				np=i;
 	}	
 
@@ -2560,7 +2562,7 @@ void QEditor::paintEvent(QPaintEvent *e)
 	//TODO: documentRegion is too large, isn't correctly redrawn (especially with a non fixed width font)
 	//draw placeholders
 	for (int i=0; i < m_placeHolders.count(); i++)
-		if (i != m_curPlaceHolder && i!=m_lastPlaceHolder && !m_placeHolders[i].cursor.line().isHidden())
+		if (i != m_curPlaceHolder && i!=m_lastPlaceHolder && !m_placeHolders[i].autoOverride &&  !m_placeHolders[i].cursor.line().isHidden())
 			p.drawConvexPolygon(m_placeHolders[i].cursor.documentRegion());
 	
 	//mark active placeholder
@@ -2579,14 +2581,17 @@ void QEditor::paintEvent(QPaintEvent *e)
 		}
 	}
 	//mark placeholder which will probably be removed 
+	p.setPen(QColor(0,0,0));
+	p.setPen(Qt::DotLine);
 	if (m_lastPlaceHolder >=0 && m_lastPlaceHolder < m_placeHolders.count() && m_lastPlaceHolder != m_curPlaceHolder){
 		const PlaceHolder& ph = m_placeHolders.at(m_lastPlaceHolder);
-		if (!ph.cursor.line().isHidden()) {
-			p.setPen(QColor(0,0,0));
-			p.setPen(Qt::DotLine);
+		if (!ph.cursor.line().isHidden())
 			p.drawConvexPolygon(ph.cursor.documentRegion());
-		}
 	}
+	for (int i=0; i < m_placeHolders.count(); i++)
+		if (m_placeHolders[i].autoOverride &&  !m_placeHolders[i].cursor.line().isHidden())
+			p.drawConvexPolygon(m_placeHolders[i].cursor.documentRegion());
+
 	/*
 	debug code for cursor direction: 
 	p.setPen(QColor(0,128,0));
@@ -4265,6 +4270,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	if (beginNewMacro)
 		m_doc->beginMacro();
 
+	bool autoOverridePlaceHolder = false;
 	if ( hasSelection ){
 		cutBuffer=c.selectedText();
 		cutLineNumber=c.lineNumber();
@@ -4272,7 +4278,6 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	} else if ( flag(Overwrite) && !c.atLineEnd() )
 		c.deleteChar();
 	else {
-		bool autoOverridePlaceHolder = false;
 		for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
 			if ( m_placeHolders[i].autoOverride && m_placeHolders[i].cursor.lineNumber() == c.lineNumber() &&
 			     m_placeHolders[i].cursor.anchorColumnNumber() == c.anchorColumnNumber() &&
@@ -4346,20 +4351,26 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	}
 
 
-	//experimental bracket auto insertion
-	QString autoBracket = "";
-	if (text == "(") autoBracket = ")";
-	else if (text == "[") autoBracket = "]";
-	else if (text == "{") autoBracket = "}";
-	if (!autoBracket.isEmpty()) {
-		QDocumentCursor copiedCursor = c.selectionEnd();
-		PlaceHolder ph(1,copiedCursor);
-		ph.autoOverride = true;
-		ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepBegin);
-		ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepEnd);
-		copiedCursor.insertText(autoBracket);
-		addPlaceHolder(ph);
-		m_cursor.movePosition(1, QDocumentCursor::Left, QDocumentCursor::MoveAnchor);
+	//bracket auto insertion
+	if (flag(AutoCloseChars) && !autoOverridePlaceHolder && languageDefinition()) { //don't add auto bracket, if such a bracket was just overriden (e.g. "")
+		//TODO: optimize?
+		QString autoBracket = "";
+		const QString& lineText = c.line().text().mid(0, c.columnNumber());
+		foreach (const QString& s, languageDefinition()->openingParenthesis())
+			if (lineText.endsWith(s)){
+				autoBracket = languageDefinition()->getClosingParenthesis(s);
+				break;
+			}
+		if (!autoBracket.isEmpty()) {
+			QDocumentCursor copiedCursor = c.selectionEnd();
+			PlaceHolder ph(autoBracket.length(),copiedCursor);
+			ph.autoOverride = true;
+			ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepBegin);
+			ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepEnd);
+			copiedCursor.insertText(autoBracket);
+			addPlaceHolder(ph);
+			m_cursor.movePosition(autoBracket.length(), QDocumentCursor::Left, QDocumentCursor::MoveAnchor);
+		}
 	}
 
 	if (beginNewMacro)
@@ -5015,6 +5026,7 @@ void QEditor::updateContent (int i, int n)
 		//look which placeholder has been modified
 		if (m_mirrors.count()==0){
 			for (int i=0;i<m_placeHolders.count();i++){
+				if (m_placeHolders[i].autoOverride) continue;
 				bool found=false;
 				if (m_placeHolders[i].cursor.isWithinSelection(m_cursor))
 					found=true;

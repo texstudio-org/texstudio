@@ -377,7 +377,8 @@ FORMS += qcodeedit/lib/widgets/searchreplace.ui \
 DEFINES += QNFA_BUILD
 HEADERS += qcodeedit/lib/qnfa/qnfa.h \
     qcodeedit/lib/qnfa/qnfadefinition.h \
-    qcodeedit/lib/qnfa/light_vector.h
+    qcodeedit/lib/qnfa/light_vector.h \
+    qcodeedit/lib/qnfa/xml2qnfa.h
 SOURCES += qcodeedit/lib/qnfa/qnfa.cpp \
     qcodeedit/lib/qnfa/qnfadefinition.cpp \
     qcodeedit/lib/qnfa/xml2qnfa.cpp

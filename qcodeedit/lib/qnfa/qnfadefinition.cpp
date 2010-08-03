@@ -156,6 +156,8 @@ extern bool stringToBool(const QString& s, bool previous);
 
 QHash<QString, int> QNFADefinition::m_paren;
 QHash<int, int> QNFADefinition::m_parenWeight;
+QHash<QString, int> QNFADefinition::m_openingParenthesis;
+QHash<int, QString> QNFADefinition::m_closingParenthesis;
 QHash<QString, QNFA*> QNFADefinition::m_contexts;
 //QHash<QString, QNFADefinition*> QNFADefinition::m_definitions;
 QHash<QString, QNFADefinition::EmbedRequestList> QNFADefinition::m_pendingEmbeds;
@@ -201,9 +203,21 @@ void QNFADefinition::load(const QDomDocument& doc, QLanguageFactory::LangData *d
 	// create root entity
 	nd->m_root = lexer();
 
-	QXml2NFAParser parser(s, m_paren, m_parenWeight, nd->m_openingParenthesis, nd->m_closingParenthesis);
+	QHash<QString, int> tempOpening;
+	QHash<int, QString> tempClosing;
+
+	QXml2NFAParser parser(s, m_paren, m_parenWeight, tempOpening, tempClosing);
 	parser.singleLineCommentTarget = &(nd->m_singleLineComment);
 	parser.fillContext(nd->m_root, root, true);
+
+	foreach (QString s, tempOpening.keys())
+		if (!nd->m_openingParenthesisList.contains(s))
+			nd->m_openingParenthesisList.append(s);
+
+	for (QHash<QString, int>::iterator i = tempOpening.begin(); i != tempOpening.end(); ++i)
+		m_openingParenthesis.insert(i.key(),i.value());
+	for (QHash<int, QString>::iterator i = tempClosing.begin(); i != tempClosing.end(); ++i)
+		m_closingParenthesis.insert(i.key(),i.value());
 
 	squeeze(nd->m_root);
 
@@ -310,11 +324,14 @@ QString QNFADefinition::singleLineComment() const
 }
 
 const QStringList& QNFADefinition::openingParenthesis() const{
-	return m_openingParenthesis;
+	return m_openingParenthesisList;
 }
-const QStringList& QNFADefinition::closingParenthesis() const{
+QString QNFADefinition::getClosingParenthesis(const QString& opening) const{
+	return m_closingParenthesis.value(m_openingParenthesis.value(opening, -1), "");
+}
+/*const QHash<int, QString>& QNFADefinition::closingParenthesis() const{
 	return m_closingParenthesis;
-}
+}*/
 
 
 QString QNFADefinition::defaultLineMark() const
