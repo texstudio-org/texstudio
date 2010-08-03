@@ -96,7 +96,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 	// custom evironments
 	if(!configManager.customEnvironments.isEmpty()){
-	    QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)Tex");
+	    QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)TeX");
 
 	    QFile f(findResourceFile("qxs/tex.qnfa"));
 	    QDomDocument doc;
@@ -3220,7 +3220,7 @@ void Texmaker::GeneralOptions() {
 
 		// custom evironments
 		if(customEnvironmentExisted || !configManager.customEnvironments.isEmpty()){
-			QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)Tex");
+			QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)TeX");
 
 			QFile f(findResourceFile("qxs/tex.qnfa"));
 			QDomDocument doc;
@@ -4347,7 +4347,7 @@ void Texmaker::loadProfile(){
 
     // custom evironments
     if(customEnvironmentExisted || !configManager.customEnvironments.isEmpty()){
-	    QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)Tex");
+	    QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)TeX");
 
 	    QFile f(findResourceFile("qxs/tex.qnfa"));
 	    QDomDocument doc;
