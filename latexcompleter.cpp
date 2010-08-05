@@ -223,11 +223,13 @@ public:
 					curStart=edc.columnNumber();
 					maxWritten=curStart+1;
 				}
-				editor->insertText(written);
+				editor->cursor().insertText(written);
+				//editor->insertText(written);
 				handled=true;
 			} else if (completer->acceptChar(written,editor->cursor().columnNumber()-curStart)) {
 				maxWritten++;
-				editor->insertText(written);
+				editor->cursor().insertText(written);
+				//editor->insertText(written);
 				if (editor->cursor().columnNumber()+1>curStart)
 					completer->list->show();
 				handled=true;

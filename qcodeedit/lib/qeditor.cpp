@@ -4345,7 +4345,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 			c.insertText(indent);
 			
 			preInsert(c, l);
-			
+
 			c.insertText(l);
 		}
 	}
@@ -4361,7 +4361,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 				autoBracket = languageDefinition()->getClosingParenthesis(s);
 				break;
 			}
-		if (!autoBracket.isEmpty()) {
+		if (!autoBracket.isEmpty() && (!text.endsWith(autoBracket) || text == autoBracket) ) {
 			QDocumentCursor copiedCursor = c.selectionEnd();
 			PlaceHolder ph(autoBracket.length(),copiedCursor);
 			ph.autoOverride = true;

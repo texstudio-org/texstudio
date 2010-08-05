@@ -183,6 +183,12 @@ void QNFADefinition::load(QFile *f, QLanguageFactory::LangData *d, QFormatScheme
 	load(doc, d, s);
 }
 
+bool lengthLessThan(const QString &s1, const QString &s2)
+{
+	return s1.length() > s2.length();
+}
+
+
 void QNFADefinition::load(const QDomDocument& doc, QLanguageFactory::LangData *d, QFormatScheme *s)
 {
 	QDomElement root = doc.documentElement();
@@ -213,6 +219,8 @@ void QNFADefinition::load(const QDomDocument& doc, QLanguageFactory::LangData *d
 	foreach (QString s, tempOpening.keys())
 		if (!nd->m_openingParenthesisList.contains(s))
 			nd->m_openingParenthesisList.append(s);
+
+	qSort(nd->m_openingParenthesisList.begin(), nd->m_openingParenthesisList.end(), lengthLessThan);
 
 	for (QHash<QString, int>::iterator i = tempOpening.begin(); i != tempOpening.end(); ++i)
 		m_openingParenthesis.insert(i.key(),i.value());
