@@ -4285,9 +4285,10 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 			autoOverridePlaceHolder = true;
 			if (m_placeHolders[i].cursor.selectedText() == text) removePlaceHolder(i);
 		}
-		if (autoOverridePlaceHolder)
+		if (autoOverridePlaceHolder) {
 			for (int i=0; i<text.length(); i++)
 				c.deleteChar();
+		}
 	}
 	
 
@@ -4350,18 +4351,53 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		}
 	}
 
-
 	//bracket auto insertion
-	if (flag(AutoCloseChars) && !autoOverridePlaceHolder && languageDefinition()) { //don't add auto bracket, if such a bracket was just overriden (e.g. "")
-		//TODO: optimize?
+	if (flag(AutoCloseChars) && !autoOverridePlaceHolder && languageDefinition()){
+		QString writtenBracket;
 		QString autoBracket = "";
 		const QString& lineText = c.line().text().mid(0, c.columnNumber());
 		foreach (const QString& s, languageDefinition()->openingParenthesis())
 			if (lineText.endsWith(s)){
+				writtenBracket = s;
 				autoBracket = languageDefinition()->getClosingParenthesis(s);
 				break;
 			}
-		if (!autoBracket.isEmpty() && (!text.endsWith(autoBracket) || text == autoBracket) ) {
+		//a opening parenthesis was written, perform checks if it should be auto closed
+		bool autoComplete = false;
+		if (!autoBracket.isEmpty() ) {
+			//check if there don't exists following closing brackets
+			//TODO: use qnfa parser (but i don't understand it yet)
+			if (writtenBracket != autoBracket) {
+				int cline = c.lineNumber();
+				int closingCount = 0;
+				int id = 0;
+				for (int l = cline; l < m_doc->lines(); l++) {
+					QString lineText = m_doc->line(l).text();
+					if (l == cline) lineText.remove(0, c.columnNumber());
+					int open = lineText.indexOf(writtenBracket);
+					if (open >= 0) lineText.chop(lineText.length() - open);
+					closingCount += lineText.count(autoBracket);
+					if (open >= 0) break;
+				}
+				if (closingCount > 0){
+					cline = c.lineNumber();
+					for (int l = cline; l >= 0; l--) {
+						QString lineText = m_doc->line(l).text();
+						if (l == cline) lineText.chop(lineText.length() - c.columnNumber() + text.length());
+						int close = lineText.indexOf(autoBracket);
+						if (close >= 0) lineText.remove(0, close + autoBracket.length());
+						closingCount -= lineText.count(writtenBracket);
+						if (close >= 0) break;
+					}
+				}
+				autoComplete = closingCount  <= 0;
+			} //else //if ( text.endsWith(autoBracket) && text != autoBracket)
+			//	autoComplete = false; //TODO: figure out how to check if there is a closing or opening parenthese following
+			/*else {
+			??
+			}*/
+		}
+		if (autoComplete) { //don't add auto bracket, if such a bracket was just overriden (e.g. "")
 			QDocumentCursor copiedCursor = c.selectionEnd();
 			PlaceHolder ph(autoBracket.length(),copiedCursor);
 			ph.autoOverride = true;
