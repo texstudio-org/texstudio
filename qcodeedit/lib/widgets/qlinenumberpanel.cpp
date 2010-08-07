@@ -132,7 +132,7 @@ bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
 	#endif
 	
 	int max = e->document()->lines();
-	if(max<99) max=100; // always reserve 3 line number columns to avoid ugly jumping of width
+	if(max<100) max=100; // always reserve 3 line number columns to avoid ugly jumping of width
 	QString s_width=QString::number(max);
 	s_width.fill('6');
 	const int panelWidth = sfm.width(s_width) + 5;
