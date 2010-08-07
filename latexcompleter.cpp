@@ -195,8 +195,8 @@ public:
 		} else if (event->key()==Qt::Key_Return || event->key()==Qt::Key_Enter) {
 			if (!insertCompletedWord()) {
 				editor->insertText("\n");
-				curLine=editor->document()->line(curLine.lineNumber()+1);
-				editor->setCursorPosition(curLine.lineNumber(),curLine.length());
+				//curLine=editor->document()->line(curLine.lineNumber()+1);
+				//editor->setCursorPosition(curLine.lineNumber(),curLine.length());
 			}
 			resetBinding();
 			return true;
