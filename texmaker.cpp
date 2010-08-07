@@ -4255,7 +4255,7 @@ bool Texmaker::generateMirror(bool setCur){
 	QString command, value;
 	LatexParser::ContextType result=LatexParser::findContext(line, cursor.columnNumber(), command, value);
 	if(result==LatexParser::Command || result==LatexParser::Environment){
-		if (command=="\\begin" || command=="\\end"){
+		if ((command=="\\begin" || command=="\\end")&& !value.isEmpty()){
 			int l=cursor.lineNumber();
 			int c=cursor.columnNumber();
 			if (currentEditor()->currentPlaceHolder()!=-1 &&

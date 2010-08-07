@@ -624,7 +624,8 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
 	} else {
 		int a=line.indexOf("{",column);
 		int b=line.indexOf("}",column);
-		value=line.mid(a+1,b-a-1);
+		if(a<0 || b<0) value="";
+		else value=line.mid(a+1,b-a-1);
 	}
 	switch (temp) {
 		case 0: return Unknown;
