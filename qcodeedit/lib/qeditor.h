@@ -99,6 +99,72 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			Accessible				= 0xfffff000
 		};
 		
+		enum EditOperation{
+			NoOperation = 0,
+			Invalid = -1,
+
+			EnumForCursorStart = 0x100,
+
+			CursorUp,
+			CursorDown,
+			CursorLeft,
+			CursorRight,
+			CursorWordLeft,
+			CursorWordRight,
+			CursorStartOfLine,
+			CursorEndOfLine,
+			CursorStartOfDocument,
+			CursorEndOfDocument,
+
+			CursorPageUp,
+			CursorPageDown,
+
+			EnumForSelectionStart,
+
+			SelectCursorUp,
+			SelectCursorDown,
+			SelectCursorLeft,
+			SelectCursorRight,
+			SelectCursorWordLeft,
+			SelectCursorWordRight,
+			SelectCursorStartOfLine,
+			SelectCursorEndOfLine,
+			SelectCursorStartOfDocument,
+			SelectCursorEndOfDocument,
+
+			SelectPageUp,
+			SelectPageDown,
+
+			EnumForCursorEnd,
+
+			DeleteLeft,
+			DeleteRight,
+			DeleteLeftWord,
+			DeleteRightWord,
+			NewLine,
+
+			ChangeOverwrite,
+			Undo,
+			Redo,
+			Copy,
+			Paste,
+			Cut,
+			Print,
+			SelectAll,
+			Find,
+			FindNext,
+			Replace,
+
+			CreateMirrorUp,
+			CreateMirrorDown,
+			NextPlaceHolder,
+			PreviousPlaceHolder,
+			NextPlaceHolderOrWord,
+			PreviousPlaceHolderOrWord,
+			IndentSelection,
+			UnindentSelection
+		};
+
 		Q_DECLARE_FLAGS(State, EditFlag)
 		
 		struct PlaceHolder
@@ -366,9 +432,12 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		virtual bool focusNextPrevChild(bool next);
 		
-		virtual bool moveKeyEvent(QDocumentCursor& c, QKeyEvent *e, bool *leave);
-		virtual bool isProcessingKeyEvent(QKeyEvent *e);
-		virtual bool processCursor(QDocumentCursor& c, QKeyEvent *e, bool& b);
+		virtual void addEditOperation(const EditOperation& op, const Qt::KeyboardModifiers& modifiers, const Qt::Key& key);
+		virtual void addEditOperation(const EditOperation& op, const QKeySequence::StandardKey& key);
+		virtual EditOperation getEditOperation(const Qt::KeyboardModifiers& modifiers, const Qt::Key& key);
+
+		virtual void cursorMoveOperation(QDocumentCursor &cursor, EditOperation op);
+		virtual void processEditOperation(QDocumentCursor& c, const QKeyEvent* e, EditOperation op);
 		
 		virtual void startDrag();
 		virtual QMimeData* createMimeDataFromSelection() const;
@@ -382,9 +451,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 	public slots:
 		void pageUp(QDocumentCursor::MoveMode moveMode);
 		void pageDown(QDocumentCursor::MoveMode moveMode);
-		
-		void selectionChange(bool force = false);
-		
+
 		void repaintCursor();
 		void ensureVisible(int line);
 		void ensureVisible(const QRect &rect);
@@ -500,6 +567,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		static QEditorInputBindingInterface *m_defaultBinding;
 		static QHash<QString, QEditorInputBindingInterface*> m_registeredBindings;
 		
+		QHash<int, EditOperation> m_registeredKeys;
+
 		static int m_manageMenu;
 
 		bool m_UseLineForSearch;

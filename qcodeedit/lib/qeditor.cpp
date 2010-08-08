@@ -709,6 +709,154 @@ void QEditor::init(bool actions,QDocument *doc)
 		*/
 	}
 
+
+#ifndef Q_WS_MAC  // Use the default Windows bindings.
+	addEditOperation(CursorUp, Qt::NoModifier, Qt::Key_Up);
+	addEditOperation(CursorDown, Qt::NoModifier, Qt::Key_Down);
+	addEditOperation(SelectCursorUp, Qt::ShiftModifier, Qt::Key_Up);
+	addEditOperation(SelectCursorDown, Qt::ShiftModifier, Qt::Key_Down);
+
+	addEditOperation(CursorLeft, Qt::NoModifier, Qt::Key_Left);
+	addEditOperation(CursorRight, Qt::NoModifier, Qt::Key_Right);
+	addEditOperation(SelectCursorLeft, Qt::ShiftModifier, Qt::Key_Left);
+	addEditOperation(SelectCursorRight, Qt::ShiftModifier, Qt::Key_Right);
+
+	addEditOperation(CursorWordLeft, Qt::ControlModifier, Qt::Key_Left);
+	addEditOperation(CursorWordRight, Qt::ControlModifier, Qt::Key_Right);
+	addEditOperation(SelectCursorWordLeft, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_Left);
+	addEditOperation(SelectCursorWordRight, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_Right);
+
+	addEditOperation(CursorStartOfLine, Qt::NoModifier, Qt::Key_Home);
+	addEditOperation(CursorEndOfLine, Qt::NoModifier, Qt::Key_End);
+	addEditOperation(SelectCursorStartOfLine, Qt::ShiftModifier, Qt::Key_Home);
+	addEditOperation(SelectCursorEndOfLine, Qt::ShiftModifier, Qt::Key_End);
+
+	addEditOperation(CursorStartOfDocument, Qt::ControlModifier, Qt::Key_Home);
+	addEditOperation(CursorEndOfDocument, Qt::ControlModifier, Qt::Key_End);
+	addEditOperation(SelectCursorStartOfDocument, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_Home);
+	addEditOperation(SelectCursorEndOfDocument, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_End);
+#else
+/*
+	Except for pageup and pagedown, Mac OS X has very different behavior, we
+	don't do it all, but here's the breakdown:
+
+	Shift still works as an anchor, but only one of the other keys can be dow
+	Ctrl (Command), Alt (Option), or Meta (Control).
+
+	Command/Control + Left/Right -- Move to left or right of the line
+					+ Up/Down -- Move to top bottom of the file.
+					(Control doesn't move the cursor)
+
+	Option	+ Left/Right -- Move one word Left/right.
+			+ Up/Down  -- Begin/End of Paragraph.
+
+	Home/End Top/Bottom of file. (usually don't move the cursor, but will select)
+
+	There can be only one modifier (+ shift), but we also need to make sure
+	that we have a "move key" pressed before we reject it.
+*/
+	QList<Qt::KeyboardModifiers> modifierPairs;
+	modifierPairs <<  Qt::ControlModifier | Qt::AltModifier << Qt::ControlModifier | Qt::MetaModifier << Qt::AltModifier | Qt::MetaModifier;
+	QList<Qt::Key> movementKeys;
+	movementKeys << Qt::Key_Up << Qt::Key_Down << Qt::Key_Left << Qt::Key_Right;
+	foreach (Qt::KeyboardModifier mod, modifierPairs) foreach (Qt::Key key, movementKeys)
+		addEditOperation(Invalid, mod , key);
+	modifierPairs <<  Qt::ControlModifier << Qt::AltModifier << Qt::MetaModifier;
+	modifierPairs <<  Qt::ControlModifier | Qt::AltModifier | Qt::MetaModifier;
+	movementKeys = QList<Qt::Key>() << Qt::Key_Home << Qt::Key_End;
+	foreach (Qt::KeyboardModifier mod, modifierPairs) foreach (Qt::Key key, movementKeys)
+		addEditOperation(Invalid, mod , key);
+
+
+	addEditOperation(CursorUp, Qt::NoModifier, Qt::Key_Up);
+	addEditOperation(CursorDown, Qt::NoModifier, Qt::Key_Down);
+	addEditOperation(SelectCursorUp, Qt::ShiftModifier, Qt::Key_Up);
+	addEditOperation(SelectCursorDown, Qt::ShiftModifier, Qt::Key_Down);
+
+	addEditOperation(CursorStartOfLine, Qt::AltModifier, Qt::Key_Up);
+	addEditOperation(CursorEndOfLine, Qt::AltModifier, Qt::Key_Down);
+	addEditOperation(SelectCursorStartOfLine, Qt::ShiftModifier | Qt::AltModifier, Qt::Key_Up);
+	addEditOperation(SelectCursorEndOfLine, Qt::ShiftModifier | Qt::AltModifier, Qt::Key_Down);
+
+	addEditOperation(CursorStartOfDocument, Qt::ControlModifier, Qt::Key_Up);
+	addEditOperation(CursorStartOfDocument, Qt::MetaModifier, Qt::Key_Up);
+	addEditOperation(SelectCursorStartOfDocument, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Up);
+	addEditOperation(SelectCursorStartOfDocument, Qt::ShiftModifier | Qt::MetaModifier, Qt::Key_Up);
+
+	addEditOperation(CursorEndOfDocument, Qt::ControlModifier, Qt::Key_Down);
+	addEditOperation(CursorEndOfDocument, Qt::MetaModifier, Qt::Key_Down);
+	addEditOperation(SelectCursorEndOfDocument, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Down);
+	addEditOperation(SelectCursorEndOfDocument, Qt::ShiftModifier | Qt::MetaModifier, Qt::Key_Down);
+
+
+	addEditOperation(CursorStartOfLine, Qt::ControlModifier, Qt::Key_Left);
+	addEditOperation(CursorEndOfLine, Qt::ControlModifier, Qt::Key_Right);
+	addEditOperation(SelectCursorStartOfLine, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Left);
+	addEditOperation(SelectCursorEndOfLine, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Right);
+
+	addEditOperation(CursorStartOfLine, Qt::MetaModifier, Qt::Key_Left);
+	addEditOperation(CursorEndOfLine, Qt::MetaModifier, Qt::Key_Right);
+	addEditOperation(SelectCursorStartOfLine, Qt::ShiftModifier | Qt::MetaModifier, Qt::Key_Left);
+	addEditOperation(SelectCursorEndOfLine, Qt::ShiftModifier | Qt::MetaModifier, Qt::Key_Right);
+
+	addEditOperation(CursorWordLeft, Qt::AltModifier, Qt::Key_Left);
+	addEditOperation(CursorWordRight, Qt::AltModifier, Qt::Key_Right);
+	addEditOperation(SelectCursorWordLeft, Qt::ShiftModifier | Qt::AltModifier, Qt::Key_Left);
+	addEditOperation(SelectCursorWordRight, Qt::ShiftModifier | Qt::AltModifier, Qt::Key_Right);
+
+	addEditOperation(CursorLeft, Qt::NoModifier, Qt::Key_Left);
+	addEditOperation(CursorRight, Qt::NoModifier, Qt::Key_Right);
+	addEditOperation(SelectCursorLeft, Qt::ShiftModifier, Qt::Key_Left);
+	addEditOperation(SelectCursorRight, Qt::ShiftModifier, Qt::Key_Right);
+
+	addEditOperation(CursorStartOfDocument, Qt::NoModifier, Qt::Key_Home);
+	addEditOperation(CursorEndOfDocument, Qt::NoModifier, Qt::Key_End);
+	addEditOperation(SelectCursorStartOfDocument, Qt::ShiftModifier, Qt::Key_Home);
+	addEditOperation(SelectCursorEndOfDocument, Qt::ShiftModifier, Qt::Key_End);
+#endif
+
+	addEditOperation(CursorPageUp, Qt::NoModifier, Qt::Key_PageUp);
+	addEditOperation(SelectPageUp, Qt::ShiftModifier, Qt::Key_PageUp);
+	addEditOperation(CursorPageDown, Qt::NoModifier, Qt::Key_PageDown);
+	addEditOperation(SelectPageDown, Qt::ShiftModifier, Qt::Key_PageDown);
+
+	addEditOperation(DeleteLeft, Qt::NoModifier, Qt::Key_Backspace);
+	addEditOperation(DeleteRight, Qt::NoModifier, Qt::Key_Delete);
+	addEditOperation(DeleteLeftWord, Qt::ControlModifier, Qt::Key_Backspace);
+	addEditOperation(DeleteRightWord, Qt::ControlModifier, Qt::Key_Delete);
+
+	addEditOperation(NewLine, Qt::NoModifier, Qt::Key_Enter);
+	addEditOperation(NewLine, Qt::NoModifier, Qt::Key_Return);
+
+	addEditOperation(ChangeOverwrite, Qt::NoModifier, Qt::Key_Insert);
+
+	addEditOperation(CreateMirrorUp, Qt::AltModifier | Qt::ControlModifier, Qt::Key_Up);
+	addEditOperation(CreateMirrorDown, Qt::AltModifier | Qt::ControlModifier, Qt::Key_Down);
+
+	//TODO: make all operations customizable (m_UseTabforMoveToPlaceholder is then not longer needed)
+	//if (m_UseTabforMoveToPlaceholder) {
+		addEditOperation(NextPlaceHolder, Qt::ControlModifier, Qt::Key_Tab);
+		addEditOperation(PreviousPlaceHolder, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Backtab);
+	//} else {
+		//addEditOperation(NextPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Down);
+		addEditOperation(NextPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Right);
+		//addEditOperation(PreviousPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Up);
+		addEditOperation(PreviousPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Left);
+	//}
+	addEditOperation(IndentSelection, Qt::NoModifier, Qt::Key_Tab);
+	addEditOperation(UnindentSelection, Qt::ShiftModifier, Qt::Key_Backtab);
+
+	addEditOperation(Undo, QKeySequence::Undo);
+	addEditOperation(Redo, QKeySequence::Redo);
+	addEditOperation(Copy, QKeySequence::Copy);
+	addEditOperation(Paste, QKeySequence::Paste);
+	addEditOperation(Cut, QKeySequence::Cut);
+	addEditOperation(Print, QKeySequence::Print);
+	addEditOperation(SelectAll, QKeySequence::SelectAll);
+	addEditOperation(Find, QKeySequence::Find);
+	addEditOperation(FindNext, QKeySequence::FindNext);
+	addEditOperation(Replace, QKeySequence::Replace);
+
 	setWindowTitle("[*]"); //remove warning of setWindowModified
 }
 
@@ -1708,7 +1856,6 @@ void QEditor::setCursor(const QDocumentCursor& c)
 	setFlag(CursorOn, true);
 	repaintCursor();
 	ensureCursorVisible();
-	selectionChange();
 
 	updateMicroFocus();
 }
@@ -2113,7 +2260,6 @@ void QEditor::undo()
 
 		m_doc->undo();
 
-		selectionChange();
 		ensureCursorVisible();
 		setFlag(CursorOn, true);
 		emitCursorPositionChanged();
@@ -2133,7 +2279,6 @@ void QEditor::redo()
 
 		m_doc->redo();
 
-		selectionChange();
 		ensureCursorVisible();
 		setFlag(CursorOn, true);
 		emitCursorPositionChanged();
@@ -2455,7 +2600,6 @@ void QEditor::selectAll()
 	m_cursor.movePosition(1, QDocumentCursor::End, QDocumentCursor::KeepAnchor);
 
 	emitCursorPositionChanged();
-	selectionChange(true);
 
 	viewport()->update();
 }
@@ -2705,252 +2849,224 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 		if ( b->keyPressEvent(e, this) )
 			return;
 
-	forever
-	{
-		bool leave = false;
-
-		// try mirrors bindings first
-		if ( (e->modifiers() & Qt::AltModifier) && (e->modifiers() & Qt::ControlModifier) )
-		{
-			int ln = - 1;
-			QDocumentLine l;
-
-			if ( e->key() == Qt::Key_Up )
-			{
-				ln = m_cursor.lineNumber();
-
-				if ( m_mirrors.count() )
-					ln = qMin(ln, min(m_mirrors));
-
-				//qDebug("first %i", ln);
-
-				l = m_doc->line(--ln);
-			} else if ( e->key() == Qt::Key_Down ) {
-				ln = m_cursor.lineNumber();
-
-				if ( m_mirrors.count() )
-					ln = qMax(ln, max(m_mirrors));
-
-				l = m_doc->line(++ln);
-			}
-
-			if ( l.isValid() )
-			{
-				addCursorMirror(QDocumentCursor(m_doc, ln, m_cursor.anchorColumnNumber()));
-				repaintCursor();
-				emitCursorPositionChanged();
-
-				break;
-			}
-		}
-
-		selectionChange();
-
-		// placeholders handling
-		bool bHandled = false;
-
-		if(m_UseTabforMoveToPlaceholder &&((e->modifiers() == Qt::ControlModifier)||(e->modifiers() == (Qt::ControlModifier|Qt::KeypadModifier)))&&e->key() == Qt::Key_Tab){
-			nextPlaceHolder();
-			bHandled=true;
-		}
-		if(m_UseTabforMoveToPlaceholder &&((e->modifiers() == (Qt::ControlModifier|Qt::ShiftModifier))||(e->modifiers() == (Qt::ControlModifier|Qt::ShiftModifier|Qt::KeypadModifier)))&&e->key() == Qt::Key_Backtab){
-			previousPlaceHolder();
-			bHandled=true;
-		}
-		if(!bHandled && e->modifiers() == Qt::NoModifier &&e->key() == Qt::Key_Tab){
-		    if(m_cursor.hasSelection()) {
-			indentSelection();
-			bHandled=true;
-		    }
-		}
-		if(!bHandled && e->modifiers() == Qt::ShiftModifier &&e->key() == Qt::Key_Backtab){
-		    if(m_cursor.hasSelection()) {
-			unindentSelection();
-			bHandled=true;
-		    }
-		}
-		if (!m_UseTabforMoveToPlaceholder && m_placeHolders.count() && ((e->modifiers() == Qt::ControlModifier)||(e->modifiers() == (Qt::ControlModifier|Qt::KeypadModifier)) ))
-		{
-			if ( e->key() == Qt::Key_Up || e->key() == Qt::Key_Left )
-			{
-				bHandled=previousPlaceHolder();
-			} else if ( e->key() == Qt::Key_Down || e->key() == Qt::Key_Right ) {
-				bHandled=nextPlaceHolder();
-			}
-		}
-
-		// default shortcuts
-		if ( e->matches(QKeySequence::Undo) )
-		{
-			undo();
-			break;
-		} else if ( e->matches(QKeySequence::Redo) ) {
-			redo();
-			break;
-		} else if ( e->matches(QKeySequence::Copy) ) {
-			copy();
-			break;
-		} else if ( e->matches(QKeySequence::Paste) ) {
-			paste();
-			break;
-		} else if ( e->matches(QKeySequence::Cut) ) {
-			cut();
-			break;
-		} else if ( e->matches(QKeySequence::Print) ) {
-			print();
-			break;
-		} else if ( e->matches(QKeySequence::SelectAll) ) {
-			selectAll();
-			break;
-		} else if ( e->matches(QKeySequence::Find) ) {
-			find();
-			break;
-		} else if ( e->matches(QKeySequence::FindNext) ) {
-			findNext();
-			break;
-		} else if ( e->matches(QKeySequence::Replace) ) {
-			replace();
-			break;
-		}
-		
-		// regular moves
-		if ( !bHandled )
-		{
-			if ( moveKeyEvent(m_cursor, e, &leave) )
-			{
-				e->accept();
-
-				//setFlag(CursorOn, true);
-				//ensureCursorVisible();
-
-				if ( !leave )
-					for ( int i = 0; !leave && (i < m_mirrors.count()); ++i )
-						moveKeyEvent(m_mirrors[i], e, &leave);
-
-				if ( leave && m_mirrors.count() )
-				{
-					for ( int i = 0; i < m_mirrors.count(); ++i )
-					{
-						m_mirrors[i].setAutoUpdated(false);
-					}
-
-					clearCursorMirrors();
-					viewport()->update();
-				} else {
-					repaintCursor();
-					selectionChange();
-				}
-
-				bHandled = true;
-			}
-		}
-
-		bool bOk = true;
-		if ( !bHandled )
-		{
-			bool pke = isProcessingKeyEvent(e);
-			bool prot = protectedCursor(m_cursor);
-
-			foreach ( const QDocumentCursor& c, m_mirrors ){
-				prot |= protectedCursor(c);
-			}
-
-			if ( !pke || prot )
-			{
-				bHandled = false;
-			} else {
-
-				// clear matches to avoid offsetting and subsequent remanence of matches
-				if ( m_definition )
-					m_definition->clearMatches(m_doc);
-
-				bool hasPH = m_curPlaceHolder >= 0 && m_curPlaceHolder<m_placeHolders.count();
-				bool macroing = hasPH || m_mirrors.count();
-				
-				if ( macroing )
-					m_doc->beginMacro();
-				
-				QStringList prevText;
-				
-				if ( hasPH )
-				{
-					for ( int k = 0; k < m_placeHolders.count(); ++k )
-						prevText << m_placeHolders.at(k).cursor.selectedText();
-					
-				}
-				
-
-				if(!m_blockKey)
-					bHandled = processCursor(m_cursor, e, bOk);
-				else {
-					bHandled=true;
-					m_blockKey=false;
-				}
-				
-				if ( m_curPlaceHolder >= 0 && m_curPlaceHolder<m_placeHolders.count() ) //hasPH is invalid
-				{
-					PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
-					
-					QString baseText = ph.cursor.selectedText();
-					
-					for ( int phm = 0; phm < ph.mirrors.count(); ++phm )
-					{
-						QString s = baseText;
-						
-						if ( ph.affector )
-							ph.affector->affect(prevText, m_curPlaceHolder, e, phm, s);
-						
-						ph.mirrors[phm].replaceSelectedText(s);
-					}
-				}
-				
-				if ( m_mirrors.isEmpty() )
-				{
-					// this signal is NOT emitted when cursor mirrors are used ON PURPOSE
-					// as it is the "standard" entry point for code completion, which cannot
-					// work properly with cursor mirrors (art least not always and not simply)
-					if ( bHandled )
-						emit textEdited(e);
-					
-				} else {
-
-					for ( int i = 0; bOk && (i < m_mirrors.count()); ++i )
-						processCursor(m_mirrors[i], e, bOk);
-
-				}
-				
-				if ( macroing )
-					m_doc->endMacro();
-				
-				}
-
-			}
-
-		if ( !bHandled )
-		{
-			QAbstractScrollArea::keyPressEvent(e);
-
-			break;
-		}
+	EditOperation op = getEditOperation(e->modifiers(), (Qt::Key)e->key());
+	bool handled = op != NoOperation;
+	if (op >= EnumForCursorStart && op <= EnumForCursorEnd ){
+		int curLine = m_cursor.lineNumber();
+		cursorMoveOperation(m_cursor, op);
+		bool leftLine = curLine != m_cursor.lineNumber();
 
 		e->accept();
-		emitCursorPositionChanged();
-		setFlag(CursorOn, true);
-		ensureCursorVisible();
-#ifdef  Q_WS_MAC
-                //repaintCursor(); // squeeze for a little speed
-                m_blink.start(QApplication::cursorFlashTime() / 2, this);
-#else
-                repaintCursor();
-#endif
 
-		selectionChange();
+		//setFlag(CursorOn, true);
+		//ensureCursorVisible();
+
+		if ( !leftLine )
+			for ( int i = 0; !leftLine && (i < m_mirrors.count()); ++i ) {
+				curLine = m_mirrors[i].lineNumber();
+				cursorMoveOperation(m_mirrors[i], op);
+				leftLine = m_mirrors[i].lineNumber() != curLine;
+			}
+
+		if ( leftLine )
+			m_curPlaceHolder = -1;
+			/*if ( m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.count() )
+			{
+				// allow mirror movement out of line while in placeholder
+				PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
+				if ( ph.cursor.isWithinSelection(cursor) )
+					return true;
+				for ( int i = 0; i < ph.mirrors.count(); ++i )
+					if ( ph.mirrors.at(i).isWithinSelection(cursor) )
+						return true;
+				if ( prev == cursor.lineNumber() && m_mirrors.empty()) {
+					//mark placeholder as leaved
+					m_curPlaceHolder = -1;
+					return false;
+				}
+			}*/
+
+		if ( leftLine && m_mirrors.count() )
+		{
+			clearCursorMirrors();
+			viewport()->update();
+		} else {
+			repaintCursor();
+		}
+	} else switch (op) {
+	case CreateMirrorUp: case CreateMirrorDown:{
+		int ln = - 1;
+		QDocumentLine l;
+
+		if (op == CreateMirrorUp )
+		{
+			ln = m_cursor.lineNumber();
+
+			if ( m_mirrors.count() )
+				ln = qMin(ln, min(m_mirrors));
+
+			//qDebug("first %i", ln);
+
+			l = m_doc->line(--ln);
+		} else if ( op == CreateMirrorDown ) {
+			ln = m_cursor.lineNumber();
+
+			if ( m_mirrors.count() )
+				ln = qMax(ln, max(m_mirrors));
+
+			l = m_doc->line(++ln);
+		}
+
+		if ( l.isValid() )
+		{
+			addCursorMirror(QDocumentCursor(m_doc, ln, m_cursor.anchorColumnNumber()));
+			repaintCursor();
+			emitCursorPositionChanged();
+
+			break;
+		}
 		break;
 	}
 
+	case ChangeOverwrite:
+		setFlag(Overwrite, !flag(Overwrite));
+
+		// hack to make sure status panel gets updated...
+		// TODO : emit signals on flag change?
+		emitCursorPositionChanged();
+		break;
+
+
+	case NextPlaceHolder: nextPlaceHolder(); break;
+	case PreviousPlaceHolder: previousPlaceHolder(); break;
+
+
+	case IndentSelection: indentSelection(); break;
+	case UnindentSelection: unindentSelection(); break;
+
+	case Undo: undo(); break;
+	case Redo: redo(); break;
+	case Copy: copy(); break;
+	case Paste: paste(); break;
+	case Cut: cut(); break;
+	case Print: print();break;
+	case SelectAll: selectAll(); break;
+	case Find: find(); break;
+	case FindNext: findNext(); break;
+	case Replace: replace(); break;
+
+	case NoOperation:
+	case DeleteLeft:
+	case DeleteRight:
+	case NewLine:
+	default: {
+		bool bOk = true;
+
+		if (op == NoOperation) {
+			QString text = e->text();
+
+			if ( text.isEmpty() || !(text.at(0).isPrint() || (text.at(0) == '\t')) )
+				break;
+		}
+
+		bool prot = protectedCursor(m_cursor);
+
+		foreach ( const QDocumentCursor& c, m_mirrors )
+			prot |= protectedCursor(c);
+
+
+		if ( prot ) break;
+
+		handled = true;
+
+		// clear matches to avoid offsetting and subsequent remanence of matches
+		if ( m_definition )
+			m_definition->clearMatches(m_doc);
+
+		bool hasPH = m_curPlaceHolder >= 0 && m_curPlaceHolder<m_placeHolders.count();
+		bool macroing = hasPH || m_mirrors.count();
+
+		if ( macroing )
+			m_doc->beginMacro();
+
+		QStringList prevText;
+
+		if ( hasPH )
+		{
+			for ( int k = 0; k < m_placeHolders.count(); ++k )
+				prevText << m_placeHolders.at(k).cursor.selectedText();
+
+		}
+
+		//TODO: blocked key
+		if(!m_blockKey)
+			processEditOperation(m_cursor, e, op);
+		else
+			m_blockKey=false;
+
+		if ( m_curPlaceHolder >= 0 && m_curPlaceHolder<m_placeHolders.count() ) //hasPH is invalid
+		{
+			PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
+
+			QString baseText = ph.cursor.selectedText();
+
+			for ( int phm = 0; phm < ph.mirrors.count(); ++phm )
+			{
+				QString s = baseText;
+
+				if ( ph.affector )
+					ph.affector->affect(prevText, m_curPlaceHolder, e, phm, s);
+
+				ph.mirrors[phm].replaceSelectedText(s);
+			}
+		}
+
+		if ( m_mirrors.isEmpty() )
+		{
+			// this signal is NOT emitted when cursor mirrors are used ON PURPOSE
+			// as it is the "standard" entry point for code completion, which cannot
+			// work properly with cursor mirrors (art least not always and not simply)
+			if ( handled )
+				emit textEdited(e);
+
+		} else {
+
+			for ( int i = 0; bOk && (i < m_mirrors.count()); ++i )
+				processEditOperation(m_mirrors[i], e, op);
+
+		}
+
+		if ( macroing )
+			m_doc->endMacro();
+
+	}
+
+	}
+
+
+
+	if ( !handled)
+	{
+		QAbstractScrollArea::keyPressEvent(e);
+
+		foreach ( QEditorInputBindingInterface *b, m_bindings )
+			b->postKeyPressEvent(e, this);
+		return;
+	}
+
+	e->accept();
+	emitCursorPositionChanged();
+	setFlag(CursorOn, true);
+	ensureCursorVisible();
+#ifdef  Q_WS_MAC
+	//repaintCursor(); // squeeze for a little speed
+	m_blink.start(QApplication::cursorFlashTime() / 2, this);
+#else
+	repaintCursor();
+#endif
+
 	foreach ( QEditorInputBindingInterface *b, m_bindings )
-		b->postKeyPressEvent(e, this);
-	
+		b->postKeyPressEvent(e, this);	
 }
 
 /*!
@@ -3016,7 +3132,6 @@ void QEditor::mouseMoveEvent(QMouseEvent *e)
 		}
 
 		repaintCursor();
-		selectionChange();
 
 		const QPoint mousePos = mapToContents(e->pos());
 
@@ -3070,7 +3185,6 @@ void QEditor::mouseMoveEvent(QMouseEvent *e)
 			m_cursor.setSelectionBoundary(newCursor);
 		}
 
-		selectionChange(true);
 		ensureCursorVisible();
 		//emit clearAutoCloseStack();
 		emitCursorPositionChanged();
@@ -3104,7 +3218,6 @@ void QEditor::mousePressEvent(QMouseEvent *e)
 		setFlag(MaybeDrag, false);
 
 		repaintCursor();
-		selectionChange();
 
 		if ( m_click.isActive() &&
 			(( e->globalPos() - m_clickPoint).manhattanLength() <
@@ -3205,7 +3318,6 @@ void QEditor::mousePressEvent(QMouseEvent *e)
 		//emit clearAutoCloseStack();
 		emitCursorPositionChanged();
 		repaintCursor();
-		selectionChange();
 		break;
 	}
 
@@ -3226,7 +3338,6 @@ void QEditor::mouseReleaseEvent(QMouseEvent *e)
 	m_scroll.stop();
 
 	repaintCursor();
-	selectionChange();
 
 	if ( flag(MaybeDrag) )
 	{
@@ -3258,8 +3369,6 @@ void QEditor::mouseReleaseEvent(QMouseEvent *e)
 	if ( m_drag.isActive() )
 		m_drag.stop();
 
-	selectionChange();
-
 	foreach ( QEditorInputBindingInterface *b, m_bindings )
 		b->postMouseReleaseEvent(e, this);
 	
@@ -3285,7 +3394,6 @@ void QEditor::mouseDoubleClickEvent(QMouseEvent *e)
 		setFlag(MaybeDrag, false);
 
 		repaintCursor();
-		selectionChange();
 		clearCursorMirrors();
 		setCursorPosition(mapToContents(e->pos()));
 
@@ -3298,7 +3406,6 @@ void QEditor::mouseDoubleClickEvent(QMouseEvent *e)
 			emitCursorPositionChanged();
 
 			repaintCursor();
-			selectionChange();
 		} else {
 			//qDebug("invalid cursor");
 		}
@@ -3461,8 +3568,6 @@ void QEditor::dropEvent(QDropEvent *e)
 	//m_cursor.endEditBlock();
 
 	//m_doc->endMacro();
-
-	selectionChange();
 }
 
 /*!
@@ -3603,8 +3708,6 @@ void QEditor::contextMenuEvent(QContextMenuEvent *e)
 		e->ignore();
 		return;
 	}
-
-	selectionChange();
 
 	e->accept();
 
@@ -3759,6 +3862,47 @@ bool QEditor::focusNextPrevChild(bool)
 	return false;
 }
 
+void QEditor::addEditOperation(const EditOperation& op, const Qt::KeyboardModifiers& modifiers, const Qt::Key& key){
+	m_registeredKeys.insert(modifiers | key, op);
+}
+
+void QEditor::addEditOperation(const EditOperation& op, const QKeySequence::StandardKey& key){
+	QList<QKeySequence> sc = QKeySequence::keyBindings(key);
+	foreach (const QKeySequence& seq, sc){
+		if (!seq.count()) continue;
+		addEditOperation(op, (Qt::KeyboardModifiers)(seq[0] & Qt::KeyboardModifierMask), (Qt::Key)(seq[0] & ~Qt::KeyboardModifierMask));
+	}
+}
+
+QEditor::EditOperation QEditor::getEditOperation(const Qt::KeyboardModifiers& modifiers, const Qt::Key& key){
+	EditOperation op = m_registeredKeys.value((int)modifiers | (int)key, NoOperation);
+	switch (op){
+	case IndentSelection: case UnindentSelection:
+		if (!m_cursor.hasSelection()) op = NoOperation;
+		break;
+	case NextPlaceHolder: case PreviousPlaceHolder:
+		if (m_placeHolders.isEmpty()) op = NoOperation;
+		break;
+	case NextPlaceHolderOrWord:
+		op = CursorWordRight;
+		foreach (const PlaceHolder& ph, m_placeHolders)
+			if (ph.cursor > m_cursor && !ph.autoOverride){
+				op = NextPlaceHolder;
+				break;
+			}
+		break;
+	case PreviousPlaceHolderOrWord:
+		op = CursorWordLeft;
+		foreach (const PlaceHolder& ph, m_placeHolders)
+			if (ph.cursor < m_cursor && !ph.autoOverride){
+				op = PreviousPlaceHolder;
+				break;
+			}
+	default:;
+	}
+	return op;
+}
+
 /*!
 	\brief Start a drag and drop operation using the current selection
 */
@@ -3785,240 +3929,58 @@ void QEditor::startDrag()
 /*!
 	\brief Handle cursor movements upon key event
 */
-bool QEditor::moveKeyEvent(QDocumentCursor& cursor, QKeyEvent *e, bool *leave)
-{
-	QDocumentCursor::MoveMode mode = e->modifiers() & Qt::ShiftModifier
-								? QDocumentCursor::KeepAnchor
-								: QDocumentCursor::MoveAnchor;
 
+void QEditor::cursorMoveOperation(QDocumentCursor &cursor, EditOperation eop){
+	QDocumentCursor::MoveMode mode = eop >= EnumForSelectionStart ? QDocumentCursor::KeepAnchor : QDocumentCursor::MoveAnchor;
 	if ( flag(LineWrap) && flag(CursorJumpPastWrap) )
 		mode |= QDocumentCursor::ThroughWrap;
-
 	QDocumentCursor::MoveOperation op = QDocumentCursor::NoMove;
-#ifdef Q_WS_MAC
-	// There can be only one modifier (+ shift), but we also need to make sure
-	// that we have a "move key" pressed before we reject it.
-	bool twoModifiers
-		= ((e->modifiers() & (Qt::ControlModifier | Qt::AltModifier))
-			== (Qt::ControlModifier | Qt::AltModifier))
-		|| ((e->modifiers() & (Qt::ControlModifier | Qt::MetaModifier))
-			== (Qt::ControlModifier | Qt::MetaModifier))
-		|| ((e->modifiers() & (Qt::AltModifier | Qt::MetaModifier))
-			== (Qt::AltModifier | Qt::MetaModifier));
-#else
-	if (e->modifiers() & (Qt::AltModifier |
-		Qt::MetaModifier | Qt::KeypadModifier) )
-	{
-		e->ignore();
-		if ( leave ) *leave = false;
-		return false;
+	switch (eop){
+	case CursorUp: case SelectCursorUp:
+		op = QDocumentCursor::Up;
+		break;
+	case CursorDown: case SelectCursorDown:
+		op = QDocumentCursor::Down;
+		break;
+	case CursorLeft: case SelectCursorLeft:
+		op = QDocumentCursor::Left;
+		break;
+	case CursorRight: case SelectCursorRight:
+		op = QDocumentCursor::Right;
+		break;
+	case CursorWordLeft: case SelectCursorWordLeft:
+		op = QDocumentCursor::WordLeft;
+		break;
+	case CursorWordRight: case SelectCursorWordRight:
+		op = QDocumentCursor::WordRight;
+		break;
+	case CursorStartOfLine: case SelectCursorStartOfLine:
+		op = QDocumentCursor::StartOfLine;
+		break;
+	case CursorEndOfLine: case SelectCursorEndOfLine:
+		op = QDocumentCursor::EndOfLine;
+		break;
+	case CursorStartOfDocument: case SelectCursorStartOfDocument:
+		op = QDocumentCursor::Start;
+		break;
+	case CursorEndOfDocument: case SelectCursorEndOfDocument:
+		op = QDocumentCursor::End;
+		break;
+
+	case CursorPageUp: case SelectPageUp:
+		pageUp(mode);
+		return;
+	case CursorPageDown: case SelectPageDown:
+		pageDown(mode);
+		return;
+	default:
+		return;
 	}
-#endif
 
-	switch ( e->key() )
-	{
-#ifndef Q_WS_MAC  // Use the default Windows bindings.
-        case Qt::Key_Up:
-            op = QDocumentCursor::Up;
-            break;
-        case Qt::Key_Down:
-            op = QDocumentCursor::Down;
-            /*
-            if (mode == QDocumentCursor::KeepAnchor) {
-                QTextBlock block = cursor.block();
-                QTextLine line = currentTextLine(cursor);
-                if (!block.next().isValid()
-                    && line.isValid()
-                    && line.lineNumber() == block.layout()->lineCount() - 1)
-                    op = QDocumentCursor::End;
-            }
-            */
-            break;
-        case Qt::Key_Left:
-            op = e->modifiers() & Qt::ControlModifier
-                 ? QDocumentCursor::WordLeft
-                 : QDocumentCursor::Left;
-            break;
-        case Qt::Key_Right:
-            op = e->modifiers() & Qt::ControlModifier
-                 ? QDocumentCursor::WordRight
-                 : QDocumentCursor::Right;
-            break;
-        case Qt::Key_Home:
-            op = e->modifiers() & Qt::ControlModifier
-                 ? QDocumentCursor::Start
-                 : QDocumentCursor::StartOfLine;
-            break;
-        case Qt::Key_End:
-            op = e->modifiers() & Qt::ControlModifier
-                 ? QDocumentCursor::End
-                 : QDocumentCursor::EndOfLine;
-            break;
-#else
-/*
-	Except for pageup and pagedown, Mac OS X has very different behavior, we
-	don't do it all, but here's the breakdown:
-
-	Shift still works as an anchor, but only one of the other keys can be dow
-	Ctrl (Command), Alt (Option), or Meta (Control).
-
-	Command/Control + Left/Right -- Move to left or right of the line
-					+ Up/Down -- Move to top bottom of the file.
-					(Control doesn't move the cursor)
-
-	Option	+ Left/Right -- Move one word Left/right.
-			+ Up/Down  -- Begin/End of Paragraph.
-
-	Home/End Top/Bottom of file. (usually don't move the cursor, but will select)
-*/
-        case Qt::Key_Up:
-            if (twoModifiers) {
-                QApplication::beep();
-                if ( leave ) *leave = false;
-                return true;
-            } else {
-                if (e->modifiers() & (Qt::ControlModifier | Qt::MetaModifier))
-                    op = QDocumentCursor::Start;
-                else if (e->modifiers() & Qt::AltModifier)
-                    op = QDocumentCursor::StartOfBlock;
-                else
-                    op = QDocumentCursor::Up;
-            }
-            break;
-        case Qt::Key_Down:
-            if (twoModifiers) {
-                QApplication::beep();
-                if ( leave ) *leave = false;
-                return true;
-            } else {
-                if (e->modifiers() & (Qt::ControlModifier | Qt::MetaModifier))
-                {
-                    op = QDocumentCursor::End;
-                } else if (e->modifiers() & Qt::AltModifier) {
-                    op = QDocumentCursor::EndOfBlock;
-                } else {
-                    op = QDocumentCursor::Down;
-                    /*
-                    if (mode == QDocumentCursor::KeepAnchor) {
-                        QTextBlock block = cursor.block();
-                        QTextLine line = currentTextLine(cursor);
-                        if (!block.next().isValid()
-                            && line.isValid()
-                            && line.lineNumber() ==
-                            	block.layout()->lineCount() - 1)
-                            op = QDocumentCursor::End;
-                    }
-                    */
-                }
-            }
-            break;
-        case Qt::Key_Left:
-            if (twoModifiers) {
-                QApplication::beep();
-                if ( leave ) *leave = false;
-                return true;
-            } else {
-                if (e->modifiers() & (Qt::ControlModifier | Qt::MetaModifier))
-                    op = QDocumentCursor::StartOfLine;
-                else if (e->modifiers() & Qt::AltModifier)
-                    op = QDocumentCursor::WordLeft;
-                else
-                    op = QDocumentCursor::Left;
-            }
-            break;
-        case Qt::Key_Right:
-            if ( twoModifiers )
-            {
-                QApplication::beep();
-                if ( leave ) *leave = false;
-                return true;
-            } else {
-                if (e->modifiers() & (Qt::ControlModifier | Qt::MetaModifier))
-                    op = QDocumentCursor::EndOfLine;
-                else if (e->modifiers() & Qt::AltModifier)
-                    op = QDocumentCursor::WordRight;
-                else
-                    op = QDocumentCursor::Right;
-            }
-            break;
-        case Qt::Key_Home:
-            if (e->modifiers() & (Qt::ControlModifier |
-            	Qt::MetaModifier | Qt::AltModifier) )
-            {
-                QApplication::beep();
-                if ( leave ) *leave = false;
-                return true;
-            } else {
-                op = QDocumentCursor::Start;
-            }
-            break;
-        case Qt::Key_End:
-            if (e->modifiers() & (Qt::ControlModifier |
-            	Qt::MetaModifier | Qt::AltModifier))
-            {
-                QApplication::beep();
-                if ( leave ) *leave = false;
-                return true;
-            } else {
-                op = QDocumentCursor::End;
-            }
-            break;
-#endif
-		case Qt::Key_PageDown:
-			if ( leave ) *leave = true;
-			pageDown(mode);
-			return true;
-
-		case Qt::Key_PageUp:
-			if ( leave ) *leave = true;
-			pageUp(mode);
-			return true;
-
-		case Qt::Key_Insert :
-			if ( !e->modifiers() )
-			{
-				if ( leave ) *leave = false;
-				setFlag(Overwrite, !flag(Overwrite));
-
-				// hack to make sure status panel gets updated...
-				// TODO : emit signals on flag change?
-				emitCursorPositionChanged();
-				return false;
-			}
-
-		default:
-			return false;
-	}
-	
-	int prev = cursor.lineNumber();
-	
-	//const bool moved = 
 	cursor.movePosition(1, op, mode);
-	
-	if ( prev != cursor.lineNumber() )
-		if ( m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.count() ) 
-		{
-			// allow mirror movement out of line while in placeholder
-			PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
-			if ( ph.cursor.isWithinSelection(cursor) )
-				return true;
-			for ( int i = 0; i < ph.mirrors.count(); ++i )
-				if ( ph.mirrors.at(i).isWithinSelection(cursor) )
-					return true;
-			if ( prev == cursor.lineNumber() && m_mirrors.empty()) {
-				//mark placeholder as leaved
-				m_curPlaceHolder = -1;
-				return false;
-			}
-		}
-	if ( prev != cursor.lineNumber() )
-	{
-		//moved = true;
-		if ( leave ) *leave = true;
-		m_curPlaceHolder = -1;
-	} 
-	return true;
 }
+
+
 
 /*!
 	\brief Go up by one page
@@ -4066,146 +4028,54 @@ void QEditor::pageDown(QDocumentCursor::MoveMode moveMode)
 }
 
 /*!
-	\brief Determine whether a given key event is an editing operation
-*/
-bool QEditor::isProcessingKeyEvent(QKeyEvent *e)
-{
-	switch ( e->key() )
-	{
-		case Qt::Key_Backspace :
-		case Qt::Key_Delete :
-		case Qt::Key_Enter :
-		case Qt::Key_Return :
-			break;
-
-		default :
-		{
-			QString text = e->text();
-
-			if ( text.isEmpty() || !(text.at(0).isPrint() || (text.at(0) == '\t')) )
-				return false;
-
-			break;
-		}
-	}
-
-	return true;
-}
-
-/*!
 	\internal
 	\brief Process a key event for a given cursor
 
 	This method only take care of editing operations, not movements.
 */
-bool QEditor::processCursor(QDocumentCursor& c, QKeyEvent *e, bool& b)
+void QEditor::processEditOperation(QDocumentCursor& c, const QKeyEvent* e, EditOperation op)
 {
-	if ( !b )
-		return false;
-
 	bool hasSelection = c.hasSelection();
 
-	switch ( e->key() )
+	if ( hasSelection ) c.removeSelectedText();
+
+	switch ( op )
 	{
-		case Qt::Key_Backspace :
-			if ( hasSelection )
-				c.removeSelectedText();
-			else {
-				if(e->modifiers()==Qt::ControlModifier) {
-					c.movePosition(1,QDocumentCursor::PreviousWord,QDocumentCursor::KeepAnchor);
-					c.removeSelectedText();
-				} else
-					c.deletePreviousChar();
-			}
+	case DeleteLeft :
+		c.deletePreviousChar();
+		break;
+	case DeleteRight :
+		c.deleteChar();
+		break;
 
-			break;
+	case DeleteLeftWord :
+		c.movePosition(1,QDocumentCursor::PreviousWord,QDocumentCursor::KeepAnchor);
+		c.removeSelectedText();
+		break;
 
-		case Qt::Key_Delete :
-			if ( hasSelection )
+	case DeleteRightWord :
+		c.movePosition(1,QDocumentCursor::NextWord,QDocumentCursor::KeepAnchor);
+		c.removeSelectedText();
+		break;
 
-				c.removeSelectedText();
-			else
-				if(e->modifiers()==Qt::ControlModifier) {
-					c.movePosition(1,QDocumentCursor::NextWord,QDocumentCursor::KeepAnchor);
-					c.removeSelectedText();
-				} else
-					c.deleteChar();
+	case NewLine:
+		insertText("\n");
+		break;
 
-			//emit clearAutoCloseStack();
-			break;
+	default :
+	{
+		QString text = e->text();
 
-		case Qt::Key_Enter :
-		case Qt::Key_Return :
+		if ( flag(ReplaceTabs) )
 		{
-			insertText("\n"); //I don't think there should be a difference between pressing enter and pasting a "\n"
-/*
-			c.beginEditBlock();
-
-			if ( hasSelection )
-				c.removeSelectedText();
-			// else if ( flag(Overwrite) )
-			//	c.deleteChar();  very unusual behaviour
-
-
-			QString indent;
-
-			if ( flag(AutoIndent) && (m_curPlaceHolder == -1) )
-			{
-				if ( m_definition && !flag(WeakIndent) )
-				{
-					indent = m_definition->indent(c);
-				} else {
-					// default : keep leading ws from previous line...
-					QDocumentLine l = c.line();
-					const int idx = qMin(l.firstChar(), c.columnNumber());
-
-					indent = l.text();
-
-					if ( idx != -1 )
-						indent.resize(idx);
-
-				}
-			}
-
-			if ( indent.count() )
-			{
-				indent.prepend("\n");
-				c.insertText(indent);
-			} else {
-				c.insertLine();
-			}
-
-			c.endEditBlock();*/
-
-			break;
+			text.replace("\t", QString(m_doc->tabStop(), ' '));
 		}
 
-		default :
-		{
-			QString text = e->text();
+		insertText(c, text);
 
-			if ( text.isEmpty() || !(text.at(0).isPrint() || (text.at(0) == '\t')) )
-			{
-				b = false;
-				return false;
-			}
-
-			if ( flag(ReplaceTabs) )
-			{
-				text.replace("\t", QString(m_doc->tabStop(), ' '));
-			}
-
-			//c.beginEditBlock(); //sdm
-			insertText(c, text);
-			//c.endEditBlock();
-
-			break;
-		}
+		break;
 	}
-
-	selectionChange();
-	
-	return true;
+	}
 }
 
 void QEditor::preInsert(QDocumentCursor& c, const QString& s)
@@ -4385,7 +4255,6 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 			if (writtenBracket != autoBracket) {
 				int cline = c.lineNumber();
 				int closingCount = 0;
-				int id = 0;
 				for (int l = cline; l < m_doc->lines(); l++) {
 					QString lineText = m_doc->line(l).text();
 					if (l == cline) lineText.remove(0, c.columnNumber());
@@ -4456,7 +4325,6 @@ void QEditor::write(const QString& s)
 	setFlag(CursorOn, true);
 	ensureCursorVisible();
 	repaintCursor();
-	selectionChange();
 }
 
 /*!
@@ -4509,26 +4377,6 @@ void QEditor::setPanelMargins(int l, int t, int r, int b)
 	}
 }
 
-/*!
-	\deprecated
-	\brief Does not do anything anymore...
-*/
-void QEditor::selectionChange(bool force)
-{
-	Q_UNUSED(force)
-	// TODO : repaint only selection rect
-	/*
-	if ( false )//force )
-	{
-		//qDebug("repainting selection... [%i]", force);
-		viewport()->update();
-	} else if ( m_cursor.hasSelection() ) {
-		viewport()->update(selectionRect());
-	}
-
-	m_selection = m_cursor.hasSelection();
-	*/
-}
 
 /*!
 	\brief Request repaint (using QWidget::update()) for the region occupied by the cursor
