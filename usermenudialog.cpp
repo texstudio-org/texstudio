@@ -81,10 +81,11 @@ void UserMenuDialog::init() {
 	ui.itemEdit->setText(Name[0]);
 	ui.abbrevEdit->setText(Abbrev[0]);
 	ui.comboBox->setCurrentIndex(0);
-	if (languages)
+	if (languages){
 		if (codeedit->editor()->text(0)=="%SCRIPT") languages->setLanguage(codeedit->editor(), ".qs");
 		else if (codeedit->editor()->text(0).startsWith("%")) languages->setLanguage(codeedit->editor(), "");
 		else languages->setLanguage(codeedit->editor(), "(La-)TeX Macro");
+	}
 }
 
 void UserMenuDialog::change(int index) {
@@ -94,10 +95,11 @@ void UserMenuDialog::change(int index) {
 	ui.itemEdit->setText(Name[index]);
 	ui.abbrevEdit->setText(Abbrev[index]);
 	previous_index=index;
-	if (languages)
+	if (languages){
 		if (codeedit->editor()->text(0)=="%SCRIPT") languages->setLanguage(codeedit->editor(), ".qs");
 		else if (codeedit->editor()->text(0).startsWith("%")) languages->setLanguage(codeedit->editor(), "");
 		else languages->setLanguage(codeedit->editor(), "(La-)TeX Macro");
+	}
 }
 
 void UserMenuDialog::slotOk() {
