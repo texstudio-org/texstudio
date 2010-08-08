@@ -216,10 +216,14 @@ void QNFADefinition::load(const QDomDocument& doc, QLanguageFactory::LangData *d
 	parser.singleLineCommentTarget = &(nd->m_singleLineComment);
 	parser.fillContext(nd->m_root, root, true);
 
-	foreach (QString s, tempOpening.keys())
-		if (!nd->m_openingParenthesisList.contains(s))
+	memset(nd->m_openingParenthesisEnd, 0, sizeof(nd->m_openingParenthesisEnd));
+	foreach (QString s, tempOpening.keys()) {
+		Q_ASSERT(!s.isEmpty());
+		if (!nd->m_openingParenthesisList.contains(s)){
 			nd->m_openingParenthesisList.append(s);
-
+			nd->m_openingParenthesisEnd[(int)(s.at(s.length()-1).toLatin1())] = true;
+		}
+	}
 	qSort(nd->m_openingParenthesisList.begin(), nd->m_openingParenthesisList.end(), lengthLessThan);
 
 	for (QHash<QString, int>::iterator i = tempOpening.begin(); i != tempOpening.end(); ++i)
@@ -337,6 +341,14 @@ const QStringList& QNFADefinition::openingParenthesis() const{
 QString QNFADefinition::getClosingParenthesis(const QString& opening) const{
 	return m_closingParenthesis.value(m_openingParenthesis.value(opening, -1), "");
 }
+bool QNFADefinition::possibleEndingOfOpeningParenthesis(const QString& text) const{
+	if (text.isEmpty()) return false;
+	QChar last = text.at(text.length()-1);
+	char l = last.toLatin1();
+	Q_ASSERT(l >=0 && l <= 255);
+	return m_openingParenthesisEnd[(int)l];
+}
+
 /*const QHash<int, QString>& QNFADefinition::closingParenthesis() const{
 	return m_closingParenthesis;
 }*/

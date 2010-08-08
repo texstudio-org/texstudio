@@ -73,6 +73,7 @@ class QCE_EXPORT QLanguageDefinition
 		virtual const QStringList& openingParenthesis() const = 0;
 		//virtual const QHash<int, QString>& closingParenthesis() const = 0;
 		virtual QString getClosingParenthesis(const QString& opening) const = 0;
+		virtual bool possibleEndingOfOpeningParenthesis(const QString& text) const;
 
 		virtual void match(QDocumentCursor& c);
 		virtual void clearMatches(QDocument *d);

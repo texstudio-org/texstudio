@@ -105,6 +105,10 @@ int QLanguageDefinition::parenthesisWeight(int id) const{
 	Q_UNUSED(id);
 	return 0;
 }
+
+bool QLanguageDefinition::possibleEndingOfOpeningParenthesis(const QString& text) const{
+	return false;
+}
 /*!
 	\brief Brace matching entry point
 */
