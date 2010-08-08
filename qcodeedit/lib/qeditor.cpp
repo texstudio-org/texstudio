@@ -2182,7 +2182,10 @@ void QEditor::copy()
 	QMimeData *d = createMimeDataFromSelection();
 	QApplication::clipboard()->setMimeData(d);
 
-	//qDebug("%s", qPrintable(m_cursor.selectedText()));
+	qDebug("%s", qPrintable(m_cursor.selectedText()));
+	QString test=m_cursor.selectedText();
+	qDebug("%d",test.at(0).row());
+	qDebug("%d",test.at(0).category());
 	//QApplication::clipboard()->setText(m_cursor.selectedText());
 }
 
@@ -2753,6 +2756,18 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 		if(m_UseTabforMoveToPlaceholder &&((e->modifiers() == (Qt::ControlModifier|Qt::ShiftModifier))||(e->modifiers() == (Qt::ControlModifier|Qt::ShiftModifier|Qt::KeypadModifier)))&&e->key() == Qt::Key_Backtab){
 			previousPlaceHolder();
 			bHandled=true;
+		}
+		if(!bHandled && e->modifiers() == Qt::NoModifier &&e->key() == Qt::Key_Tab){
+		    if(m_cursor.hasSelection()) {
+			indentSelection();
+			bHandled=true;
+		    }
+		}
+		if(!bHandled && e->modifiers() == Qt::ShiftModifier &&e->key() == Qt::Key_Backtab){
+		    if(m_cursor.hasSelection()) {
+			unindentSelection();
+			bHandled=true;
+		    }
 		}
 		if (!m_UseTabforMoveToPlaceholder && m_placeHolders.count() && ((e->modifiers() == Qt::ControlModifier)||(e->modifiers() == (Qt::ControlModifier|Qt::KeypadModifier)) ))
 		{
