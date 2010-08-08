@@ -4367,7 +4367,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	}
 
 	//bracket auto insertion
-	if (flag(AutoCloseChars) && !autoOverridePlaceHolder && languageDefinition()){
+	if (flag(AutoCloseChars) && !autoOverridePlaceHolder && languageDefinition() && languageDefinition()->possibleEndingOfOpeningParenthesis(text)){
 		QString writtenBracket;
 		QString autoBracket = "";
 		const QString& lineText = c.line().text().mid(0, c.columnNumber());

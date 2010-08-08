@@ -83,6 +83,7 @@ class QCE_EXPORT QNFADefinition : public QLanguageDefinition
 		virtual const QStringList& openingParenthesis() const;
 		//virtual const QHash<int, QString> & closingParenthesis() const;
 		virtual QString getClosingParenthesis(const QString& opening) const;
+		virtual bool possibleEndingOfOpeningParenthesis(const QString& text) const;
 
 		virtual void clearMatches(QDocument *d);
 		virtual void match(QDocumentCursor& c);
@@ -121,6 +122,7 @@ class QCE_EXPORT QNFADefinition : public QLanguageDefinition
 		static QHash<QString, int> m_openingParenthesis;
 		static QHash<int, QString> m_closingParenthesis;
 		QStringList m_openingParenthesisList;
+		bool m_openingParenthesisEnd[256];
 
 		struct PMatch
 		{
