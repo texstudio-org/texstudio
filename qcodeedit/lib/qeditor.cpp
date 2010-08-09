@@ -3863,7 +3863,7 @@ bool QEditor::focusNextPrevChild(bool)
 }
 
 void QEditor::addEditOperation(const EditOperation& op, const Qt::KeyboardModifiers& modifiers, const Qt::Key& key){
-	m_registeredKeys.insert(modifiers | key, op);
+	m_registeredKeys.insert((modifiers | key) & ~Qt::KeypadModifier, op);
 }
 
 void QEditor::addEditOperation(const EditOperation& op, const QKeySequence::StandardKey& key){
@@ -3875,7 +3875,7 @@ void QEditor::addEditOperation(const EditOperation& op, const QKeySequence::Stan
 }
 
 QEditor::EditOperation QEditor::getEditOperation(const Qt::KeyboardModifiers& modifiers, const Qt::Key& key){
-	EditOperation op = m_registeredKeys.value((int)modifiers | (int)key, NoOperation);
+	EditOperation op = m_registeredKeys.value(((int)modifiers | (int)key ) & ~Qt::KeypadModifier, NoOperation);
 	switch (op){
 	case IndentSelection: case UnindentSelection:
 		if (!m_cursor.hasSelection()) op = NoOperation;
