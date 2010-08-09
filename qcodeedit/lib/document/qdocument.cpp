@@ -119,6 +119,14 @@ inline static bool isDelimiter(QChar c)
 	return delimiters.contains(c);
 }
 
+void QDocument::overwriteFixedPitch(bool newValue){
+    m_impl->overwriteFixedPitch(newValue);
+}
+
+bool QDocument::getFixedPitch(){
+    return m_impl->getFixedPitch();
+}
+
 int QDocument::screenLength(const QChar *d, int l, int tabStop)
 {
 	if ( tabStop == 1 )

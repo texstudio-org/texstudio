@@ -543,7 +543,20 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 	}
 
 
-
+        // check for asian letters
+	if(editor->document()->getFixedPitch()){
+	    for (int i=linenr; i<linenr+count; i++) {
+		QDocumentLine line = editor->document()->line(i);
+		if (!line.isValid()) continue;
+                foreach(QChar c,line.text()){
+		    if(c.category()==QChar::Letter_Other){
+			document->overwriteFixedPitch(false);
+			qDebug("Asian letter detected!");
+                        break;
+                    }
+                }
+	    }
+	}
 	// checking
 	if (!QDocument::formatFactory()) return;
 	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)

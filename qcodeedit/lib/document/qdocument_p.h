@@ -146,6 +146,13 @@ class QCE_EXPORT QDocumentPrivate
 		void addAutoUpdatedCursor(QDocumentCursorHandle* c);
 		void removeAutoUpdatedCursor(QDocumentCursorHandle* c);
 		void discardAutoUpdatedCursors(bool documentDeleted=false);
+                void overwriteFixedPitch(bool newValue){
+                  m_fixedPitch=newValue;
+                }
+                bool getFixedPitch(){
+                    return m_fixedPitch;
+                }
+
 	protected:
 		void updateHidden(int line, int count);
 		void updateWrapped(int line, int count);

@@ -251,6 +251,9 @@ class QCE_EXPORT QDocument : public QObject
 		bool linesPartiallyFolded(int fromInc, int toInc);
 		void correctFolding(int fromInc, int toInc);
 
+                void overwriteFixedPitch(bool newValue);
+                bool getFixedPitch();
+
 	public slots:
 		void clear();
 		
