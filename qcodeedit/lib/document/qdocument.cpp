@@ -5372,6 +5372,7 @@ QFormatScheme* QDocumentPrivate::m_defaultFormatScheme = getStaticDefault<QForma
 QList<QDocumentPrivate*> QDocumentPrivate::m_documents;
 
 bool QDocumentPrivate::m_fixedPitch;
+bool QDocumentPrivate::m_overWritten=false;
 int QDocumentPrivate::m_ascent;// = m_fontMetrics.ascent();
 int QDocumentPrivate::m_descent;// = m_fontMetrics.descent();
 int QDocumentPrivate::m_leading;// = m_fontMetrics.leading();
@@ -6178,7 +6179,7 @@ int QDocumentPrivate::textWidth(int fid, const QString& text){
 
 void QDocumentPrivate::updateFormatCache()
 {
-	m_fixedPitch = QFontInfo(*m_font).fixedPitch();
+	if(!m_overWritten) m_fixedPitch = QFontInfo(*m_font).fixedPitch();
 
 	m_fonts.clear();
 	m_fontMetrics.clear();

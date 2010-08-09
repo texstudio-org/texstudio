@@ -146,12 +146,13 @@ class QCE_EXPORT QDocumentPrivate
 		void addAutoUpdatedCursor(QDocumentCursorHandle* c);
 		void removeAutoUpdatedCursor(QDocumentCursorHandle* c);
 		void discardAutoUpdatedCursors(bool documentDeleted=false);
-                void overwriteFixedPitch(bool newValue){
-                  m_fixedPitch=newValue;
-                }
-                bool getFixedPitch(){
-                    return m_fixedPitch;
-                }
+		void overwriteFixedPitch(bool newValue){
+		  m_fixedPitch=newValue;
+		  m_overWritten=true;
+		}
+		bool getFixedPitch(){
+		    return m_fixedPitch;
+		}
 
 	protected:
 		void updateHidden(int line, int count);
@@ -206,6 +207,7 @@ class QCE_EXPORT QDocumentPrivate
 		
 		static QFont *m_font;
 		static bool m_fixedPitch;
+		static bool m_overWritten;
 		static int m_leftMargin;
 		static QDocument::WhiteSpaceMode m_showSpaces;
 		static QDocument::LineEnding m_defaultLineEnding;
