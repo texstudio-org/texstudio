@@ -37,6 +37,10 @@
 
 #include "qreliablefilewatch.h"
 
+#ifdef Q_WS_MACX
+#include <QSysInfo>
+#endif
+
 #include <QPrinter>
 #include <QPrintDialog>
 //#define Q_GL_EDITOR
@@ -756,15 +760,17 @@ void QEditor::init(bool actions,QDocument *doc)
 	that we have a "move key" pressed before we reject it.
 */
 	QList<Qt::KeyboardModifiers> modifierPairs;
-	modifierPairs <<  Qt::ControlModifier | Qt::AltModifier << Qt::ControlModifier | Qt::MetaModifier << Qt::AltModifier | Qt::MetaModifier;
+        modifierPairs <<  (Qt::ControlModifier | Qt::AltModifier) << (Qt::ControlModifier | Qt::MetaModifier) << (Qt::AltModifier | Qt::MetaModifier);
 	QList<Qt::Key> movementKeys;
 	movementKeys << Qt::Key_Up << Qt::Key_Down << Qt::Key_Left << Qt::Key_Right;
-	foreach (Qt::KeyboardModifier mod, modifierPairs) foreach (Qt::Key key, movementKeys)
-		addEditOperation(Invalid, mod , key);
+        foreach (Qt::KeyboardModifiers mod, modifierPairs)
+            foreach (Qt::Key key, movementKeys)
+                addEditOperation(Invalid, mod , key);
 	modifierPairs <<  Qt::ControlModifier << Qt::AltModifier << Qt::MetaModifier;
-	modifierPairs <<  Qt::ControlModifier | Qt::AltModifier | Qt::MetaModifier;
+        modifierPairs <<  (Qt::ControlModifier | Qt::AltModifier | Qt::MetaModifier);
 	movementKeys = QList<Qt::Key>() << Qt::Key_Home << Qt::Key_End;
-	foreach (Qt::KeyboardModifier mod, modifierPairs) foreach (Qt::Key key, movementKeys)
+        foreach (Qt::KeyboardModifiers mod, modifierPairs)
+            foreach (Qt::Key key, movementKeys)
 		addEditOperation(Invalid, mod , key);
 
 
@@ -2821,6 +2827,7 @@ static int min(const QList<QDocumentCursor>& l)
 
 bool QEditor::protectedCursor(const QDocumentCursor& c) const
 {
+        Q_UNUSED(c);
 	/*if ( c.hasSelection() )
 	{
 		int line = qMin(c.lineNumber(), c.anchorLineNumber()), end = qMax(c.lineNumber(), c.anchorLineNumber());
@@ -3091,7 +3098,8 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
         if ( e->commitString().count() ){
 		m_cursor.insertText(e->commitString());
 #ifdef Q_WS_MACX
-                m_blockKey=true;
+		if(QSysInfo::MacintoshVersion<QSysInfo::MV_10_6)
+		    m_blockKey=true;
 #endif
             }
 	m_cursor.endEditBlock();
