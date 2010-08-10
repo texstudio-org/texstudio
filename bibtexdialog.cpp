@@ -5,50 +5,50 @@ QList<BibTeXType> BibTeXDialog::types;
 
 void BibTeXDialog::needTypes(){
 	if (!types.empty()) return;
-	types << BibTeXType(tr("Article in Journal"), "@Article", 
+	types << BibTeXType(tr("Article in &Journal"), "@Article",
 						QStringList() << "author" << "title" << "journal" << "year",
 						QStringList() << "key" << "volume" << "number" << "pages" << "month" << "note" << "annote");
-	types << BibTeXType(tr("Article in Conference Proceedings"), "@InProceedings", 
+	types << BibTeXType(tr("Article in Conference &Proceedings"), "@InProceedings",
 						QStringList() <<"author" << "title" << "booktitle",
 						QStringList() <<"crossref" << "key" << "pages" << "year" << "editor" <<"volume" << "number" << "series" << "address" << "month" << "organization" << "publisher" << "note" << "annote");
-	types << BibTeXType(tr("Article in a Collection"), "@InCollection", 
+	types << BibTeXType(tr("Article in a &Collection"), "@InCollection",
 						QStringList() << "author" << "title" << "booktitle",
 						QStringList() <<"crossref" << "key" << "pages" << "publisher" << "year" <<  "editor" << "volume" << "number" << "series" << "type" << "chapter" << "address" << "edition" << "month" << "note" << "annote");
-	types << BibTeXType(tr("Chapter or Pages in a Book"), "@InBook", 
+	types << BibTeXType(tr("Chapter or &Pages in a Book"), "@InBook",
 						QStringList() << "author/editor" << "title" << "chapter" << "publisher" << "year",
 						QStringList() << "key" << "volume" << "number" << "series" << "type" << "address" << "edition" << "month" << "pages" << "note" <<  "annote");
-	types << BibTeXType(tr("Conference Proceedings"), "@Proceedings", 
+	types << BibTeXType(tr("Conference Pr&oceedings"), "@Proceedings",
 						QStringList() << "title" << "year",
 						QStringList() << "key" << "editor" << "volume" << "number" <<
  "series" << "address" << "month" << "organization" << "publisher" << "note" <<
  "annote");
-	types << BibTeXType(tr("Book"), "@Book", 
+	types << BibTeXType(tr("&Book"), "@Book",
 						QStringList() << "author/editor" << "title" << "publisher" << "year",
 						QStringList() <<  "key" << "volume" << "number" << "series" << "address" <<
  "edition" << "month" << "note" << "annote");
-	types << BibTeXType(tr("Booklet"), "@Booklet", 
+	types << BibTeXType(tr("Book&let"), "@Booklet",
 						QStringList() << "title",
 						QStringList() << "key" << "author" << "howpublished" << "address" << "month" << "year" << "note" << "annote");
-	types << BibTeXType(tr("PhD. Thesis"), "@PhdThesis", 
+	types << BibTeXType(tr("PhD. &Thesis"), "@PhdThesis",
 						QStringList() << "author" << "title" << "school" << "year",
 						QStringList() << "key" << "type" << "address" << "month" << "note" <<
  "annote");
-	types << BibTeXType(tr("Master's Thesis"), "@MastersThesis", 
+	types << BibTeXType(tr("&Master's Thesis"), "@MastersThesis",
 						QStringList() << "author" << "title" << "school" << "year",
 						QStringList() <<  "key" << "type" << "address" << "month" <<  "note" <<
  "annote");
-	types << BibTeXType(tr("Technical Report"), "@TechReport", 
+	types << BibTeXType(tr("Technical &Report"), "@TechReport",
 						   QStringList() << "author" << "title" << "institution" << "year",
 						   QStringList() <<  "key" << "type" << "number" << "address" << "month" <<
  "note" << "annote");
-	types << BibTeXType(tr("Technical Manual"), "@Manual", 
+	types << BibTeXType(tr("Technical Ma&nual"), "@Manual",
 						QStringList() << "title",
 						QStringList() << "key" << "author" << "organization" << "address" << "edition" << "month" << "year" << "note" << "annote");
  
-	types << BibTeXType(tr("Unpublished"), "@Unpublished", 
+	types << BibTeXType(tr("&Unpublished"), "@Unpublished",
 						QStringList() << "author" << "title" << "note",
 						QStringList() << "key" << "month" << "year" << "annote");
-	types << BibTeXType(tr("Miscellaneous"), "@Misc", 
+	types << BibTeXType(tr("Miscellan&eous"), "@Misc",
 						   QStringList(),
 						   QStringList() << "key" << "author" << "title" << "howpublished" << "month" << "year" << "note" << "annote");
 }
@@ -73,8 +73,11 @@ BibTeXDialog::BibTeXDialog(QWidget *parent, const QStringList& fileList, int cur
 		m_ui->fieldTable->setItem(0,0,item);
 		m_ui->fieldTable->setItem(0,1,new QTableWidgetItem(id));
 	}
-	foreach (const BibTeXType& bt, types)
-		m_ui->typeList->addItem(bt.description);
+	foreach (const BibTeXType& bt, types){
+	    QString zw=bt.description;
+	    zw.remove("&");
+	    m_ui->typeList->addItem(zw);
+	}
 	connect(m_ui->typeList,SIGNAL(itemSelectionChanged()),this,SLOT(typeSelectionChanged()));
 }
 
