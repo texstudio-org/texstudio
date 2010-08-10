@@ -199,7 +199,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	setModal(true);
 	ui.setupUi(this);
 
-	ui.contentsWidget->setIconSize(QSize(96, 96));
+	ui.contentsWidget->setIconSize(QSize(96, 112));
 	ui.contentsWidget->setViewMode(QListView::IconMode);
 	ui.contentsWidget->setMovement(QListView::Static);
 
