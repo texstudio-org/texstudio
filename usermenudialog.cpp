@@ -50,22 +50,28 @@ UserMenuDialog::UserMenuDialog(QWidget* parent,  QString name, QLanguageFactory*
 	codeedit = new QCodeEdit(ui.tagEdit);
 	QLineMarkPanel* lineMarkPanel=new QLineMarkPanel;
 	QAction* lineMarkPanelAction=codeedit->addPanel(lineMarkPanel, QCodeEdit::West, false);
+	Q_UNUSED(lineMarkPanelAction)
 	QLineNumberPanel* lineNumberPanel=new QLineNumberPanel;
 	QAction* lineNumberPanelAction=codeedit->addPanel(lineNumberPanel, QCodeEdit::West, false);;
+	Q_UNUSED(lineNumberPanelAction)
 	QAction* lineFoldPanelAction=codeedit->addPanel(new QFoldPanel, QCodeEdit::West, false);
+	Q_UNUSED(lineFoldPanelAction)
 	//QAction* vlineChangePanelAction=codeedit->addPanel(new QLineChangePanel, QCodeEdit::West, false);
 
 	QStatusPanel* statusPanel=new QStatusPanel;
 	statusPanel->setFont(QApplication::font());
 	QAction* statusPanelAction=codeedit->addPanel(statusPanel, QCodeEdit::South, false);
+	Q_UNUSED(statusPanelAction)
 
 	QGotoLinePanel* gotoLinePanel=new QGotoLinePanel;
 	gotoLinePanel->setFont(QApplication::font());
 	QAction* gotoLinePanelAction=codeedit->addPanel(gotoLinePanel, QCodeEdit::South, false);
+	Q_UNUSED(gotoLinePanelAction)
 
 	QSearchReplacePanel* searchReplacePanel=new QSearchReplacePanel;
 	searchReplacePanel->setFont(QApplication::font());
 	QAction* searchReplacePanelAction=codeedit->addPanel(searchReplacePanel, QCodeEdit::South,false);
+	Q_UNUSED(searchReplacePanelAction)
 
 	ui.tagEdit->layout()->addWidget(codeedit->editor());
 
