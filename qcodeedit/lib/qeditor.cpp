@@ -3412,6 +3412,7 @@ void QEditor::mouseDoubleClickEvent(QMouseEvent *e)
 			setClipboardSelection();
 			//emit clearAutoCloseStack();
 			emitCursorPositionChanged();
+			emitWordDoubleClicked();
 
 			repaintCursor();
 		} else {
@@ -4050,10 +4051,10 @@ void QEditor::processEditOperation(QDocumentCursor& c, const QKeyEvent* e, EditO
 	switch ( op )
 	{
 	case DeleteLeft :
-		c.deletePreviousChar();
+		if(!hasSelection) c.deletePreviousChar();
 		break;
 	case DeleteRight :
-		c.deleteChar();
+		if(!hasSelection) c.deleteChar();
 		break;
 
 	case DeleteLeftWord :

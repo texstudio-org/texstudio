@@ -799,6 +799,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(NewDocumentStatus(bool)));
 	connect(edit->editor, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
 	connect(edit->editor, SIGNAL(cursorHovered()), this, SLOT(cursorHovered()));
+	connect(edit->editor, SIGNAL(emitWordDoubleClicked()), this, SLOT(cursorHovered()));
 	connect(edit, SIGNAL(showMarkTooltipForLogMessage(int)),this,SLOT(showMarkTooltipForLogMessage(int)));
 	connect(edit, SIGNAL(needCitation(const QString&)),this,SLOT(InsertBibEntry(const QString&)));
 	connect(edit, SIGNAL(showPreview(QString)),this,SLOT(showPreview(QString)));
@@ -4251,12 +4252,13 @@ QStringList Texmaker::svnLog(){
 bool Texmaker::generateMirror(bool setCur){
 	if (!currentEditorView()) return false;
 	QDocumentCursor cursor = currentEditorView()->editor->cursor();
+	QDocumentCursor oldCursor = cursor;
 	QString line=cursor.line().text();
 	QString command, value;
 	LatexParser::ContextType result=LatexParser::findContext(line, cursor.columnNumber(), command, value);
 	if(result==LatexParser::Command || result==LatexParser::Environment){
 		if ((command=="\\begin" || command=="\\end")&& !value.isEmpty()){
-			int l=cursor.lineNumber();
+			//int l=cursor.lineNumber();
 			int c=cursor.columnNumber();
 			if (currentEditor()->currentPlaceHolder()!=-1 &&
 				currentEditor()->getPlaceHolder(currentEditor()->currentPlaceHolder()).cursor.isWithinSelection(cursor))
@@ -4312,12 +4314,11 @@ bool Texmaker::generateMirror(bool setCur){
 				currentEditor()->addPlaceHolderMirror(doc->m_magicPlaceHolder,ph.cursor);
 			}
 			currentEditor()->setPlaceHolder(doc->m_magicPlaceHolder);
-			if(setCur) currentEditor()->setCursorPosition(l,c);
+			if(setCur) {
+			    currentEditorView()->editor->setCursor(oldCursor);
+			}
 			return true;
 		}
-
-		//currentEditorView()->editor->document()->endMacro();
-		//currentEditorView()->editor->setCursor(cursor);
 	}
 	return false;
 }

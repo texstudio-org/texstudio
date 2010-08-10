@@ -383,6 +383,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void updateCompleter();
 
 		void cursorHovered();
+
+		void emitWordDoubleClicked();
 		
 	public slots:
 		void checkClipboard();
