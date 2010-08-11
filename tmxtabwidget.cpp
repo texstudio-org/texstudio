@@ -11,6 +11,7 @@ TmxTabWidget::TmxTabWidget(QWidget *parent) :
 }
 
 void TmxTabWidget::moveTab(int from,int to){
+    Q_UNUSED(to)
     QString text=tabText(from);
     QWidget *wdg=widget(from);
     removeTab(from);
