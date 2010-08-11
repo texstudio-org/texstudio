@@ -345,8 +345,10 @@ bool QNFADefinition::possibleEndingOfOpeningParenthesis(const QString& text) con
 	if (text.isEmpty()) return false;
 	QChar last = text.at(text.length()-1);
 	char l = last.toLatin1();
-	Q_ASSERT(l >=0 && l <= 255);
+	if(l>0) {
+	//Q_ASSERT(l >=0 && l <= 255); // leads to crashes here when special charcters are put in (ä = -28)
 	return m_openingParenthesisEnd[(int)l];
+	} else return false;
 }
 
 /*const QHash<int, QString>& QNFADefinition::closingParenthesis() const{
