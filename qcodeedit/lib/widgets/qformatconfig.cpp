@@ -48,8 +48,8 @@ QFormatConfig::QFormatConfig(QWidget *w)
 
 	m_table->verticalHeader()->hide();
 
-	m_table->setColumnCount(13);
-	for  (int i=0;i<13;i++)
+	m_table->setColumnCount(11); // instead of 13
+	for  (int i=0;i<11;i++)
 		if ( !m_table->horizontalHeaderItem(i) )
 			m_table->setHorizontalHeaderItem(i, new QTableWidgetItem());
 	Q_ASSERT(m_table->horizontalHeaderItem(0)!=0);
@@ -64,8 +64,8 @@ QFormatConfig::QFormatConfig(QWidget *w)
 	m_table->horizontalHeaderItem(8)->setIcon(QIcon(":/images/qcodeedit/fillcolor.png"));
 	m_table->horizontalHeaderItem(9)->setIcon(QIcon(":/images/qcodeedit/strokecolor.png"));
 	m_table->horizontalHeaderItem(10)->setText(tr("font"));
-	m_table->horizontalHeaderItem(11)->setText(tr("size"));
-	m_table->horizontalHeaderItem(12)->setText(tr("prio"));  //TODO: images
+	//m_table->horizontalHeaderItem(11)->setText(tr("size")); // don't vary point size as the drwaing engine can't cope with it
+	//m_table->horizontalHeaderItem(12)->setText(tr("prio"));  //TODO: images
 
 	connect(m_table, SIGNAL( itemSelectionChanged() ),
 			m_table, SLOT  ( clearSelection() ) );
@@ -237,14 +237,18 @@ void QFormatConfig::apply()
 			if ( cp )
 				fmt.linescolor = cp->color();
 
-			item = m_table->item(i,10);
-			fmt.fontFamily = item->text();
+			QComboBox *fcb;
+			fcb = qobject_cast<QComboBox*>(m_table->cellWidget(i, 10));
+			fmt.fontFamily = fcb->currentText()==tr("<default>") ? "" : fcb->currentText();
 
+			/*
 			item = m_table->item(i,11);
 			fmt.pointSize = item->text().toInt();
+			*/
 
-			item = m_table->item(i,12);
+			/*item = m_table->item(i,12);
 			fmt.setPriority(item->text().toInt());
+			*/
 		}
 
 		// TODO : save scheme and update editors
@@ -341,23 +345,36 @@ void QFormatConfig::cancel()
 			m_table->cellWidget(i, 9)->setToolTip(tr("Lines color (used by all lines formatting : underline, overline, ...)"));
 			//m_table->cellWidget(i, 9)->setMaximumSize(22, 22);
 
-			item = new QTableWidgetItem;
-			item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
-			item->setText(fmt.fontFamily);
-			item->setToolTip(tr("Font family"));
-			m_table->setItem(i, 10, item);
+			//item = new QTableWidgetItem;
+			QComboBox *fcmb=new QComboBox();
+			fcmb->insertItem(0,tr("<default>"));
+			QFontDatabase database;
+			fcmb->addItems(database.families());
+			int ind=fcmb->findText(fmt.fontFamily);
+			if(ind>-1) fcmb->setCurrentIndex(ind);
+			else fcmb->setCurrentIndex(0);
+			m_table->setCellWidget(i, 10, fcmb);
+			//item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
+			//item->setText(fmt.fontFamily);
+			m_table->cellWidget(i, 10)->setToolTip(tr("Font family"));
+			//m_table->setItem(i, 10, item);
 
+			/*
+			don't vary point size as the drawing engine can't cope
 			item = new QTableWidgetItem;
 			item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
 			item->setText(QString::number(fmt.pointSize));
 			item->setToolTip(tr("Point size"));
 			m_table->setItem(i, 11, item);
+			*/
 
+			/*
 			item = new QTableWidgetItem;
 			item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
 			item->setText(QString::number(fmt.priority));
 			item->setToolTip(tr("Priority"));
 			m_table->setItem(i, 12, item);
+			*/
 
 		}
 	}
@@ -459,23 +476,30 @@ QList<int> QFormatConfig::modifiedFormats() const
 				continue;
 			}
 
-			item = m_table->item(i, 10);
-			if (item->text() != fmt.fontFamily){
+			QComboBox *fcb;
+			//item = m_table->item(i, 10);
+			fcb = qobject_cast<QComboBox*>(m_table->cellWidget(i, 10));
+			QString newFont=fcb->currentText()==tr("<default>") ? "" : fcb->currentText();
+			if (newFont != fmt.fontFamily){
 				hasModif << i;
 				continue;
 			}
 
+			/*
 			item = m_table->item(i, 11);
 			if (item->text().toInt() != fmt.pointSize){
 				hasModif << i;
 				continue;
 			}
+			*/
 
+			/*
 			item = m_table->item(i, 12);
 			if (item->text().toInt() != fmt.priority){
 				hasModif << i;
 				continue;
 			}
+			*/
 		}
 	}
 

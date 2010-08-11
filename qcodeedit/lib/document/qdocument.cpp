@@ -2092,7 +2092,7 @@ void QDocumentLineHandle::updateWrap() const
 		QChar c;
 		int indent = 0;
 		int fmt = 0;
-		const QVector<QFont>& fonts = m_doc->impl()->m_fonts;
+		//const QVector<QFont>& fonts = m_doc->impl()->m_fonts; // unused
 
 		QDocumentPrivate *d = m_doc->impl();
 
@@ -2545,7 +2545,7 @@ void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
 
 		int tempFmts[FORMAT_MAX_COUNT]; QFormat tempFormats[FORMAT_MAX_COUNT];
 		int lastFont = -1;
-		int lastIdx;
+		//int lastIdx;
 		while ( idx < cpos )
 		{
 			int newFont = lastFont;
