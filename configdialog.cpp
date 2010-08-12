@@ -199,7 +199,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	setModal(true);
 	ui.setupUi(this);
 
-	ui.contentsWidget->setIconSize(QSize(96, 112));
+	ui.contentsWidget->setIconSize(QSize(96, 96));
 	ui.contentsWidget->setViewMode(QListView::IconMode);
 	ui.contentsWidget->setMovement(QListView::Static);
 
@@ -254,6 +254,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	createIcon(tr("Latex Menus"),QIcon(":/images/configkeys.png"), true);
 	createIcon(tr("Custom Toolbar"),QIcon(":/images/configkeys.png"), true);
 	createIcon(tr("Editor"),QIcon(":/images/configeditor.png"));
+	createIcon(tr("Editor2"),QIcon(":/images/configeditor.png"));
 	createIcon(tr("Custom Highlighting"),QIcon(":/images/configeditor.png"), true);
 	createIcon(tr("Completion"),QIcon(":/images/configcompletion.png"));
 	createIcon(tr("SVN"),QIcon(":/images/configtools.png"));

@@ -432,6 +432,13 @@ void LatexEditorView::updateSettings(){
 	lineNumberPanel->setVerboseMode(config->showlinemultiples!=10);
 	editor->setFont(QFont(config->fontFamily, config->fontSize));
 	editor->setLineWrapping(config->wordwrap);
+	editor->setHardLineWrapping(config->hardwordwrap);
+	if(config->hardwordwrap){
+	    int w=QFontMetrics(QFont(config->fontFamily, config->fontSize)).averageCharWidth()*config->lineWidth;
+	    editor->setWrapLineWidth(w);
+	}else{
+	    editor->setWrapLineWidth(0);
+	}
 	editor->setFlag(QEditor::AutoIndent,config->autoindent);
 	editor->setFlag(QEditor::WeakIndent,config->weakindent);
 	editor->setFlag(QEditor::ReplaceTabs,config->indentWithSpaces);

@@ -303,7 +303,7 @@ QEditor::QEditor(QWidget *p)
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-                mDisplayModifyTime(true),m_UseLineForSearch(false),m_blockKey(false)
+		mDisplayModifyTime(true),m_UseLineForSearch(false),m_blockKey(false),m_LineWidth(0)
 {
 	m_editors << this;
 
@@ -322,7 +322,7 @@ QEditor::QEditor(bool actions, QWidget *p,QDocument *doc)
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-                mDisplayModifyTime(true),m_UseLineForSearch(false),m_blockKey(false)
+		mDisplayModifyTime(true),m_UseLineForSearch(false),m_blockKey(false),m_LineWidth(0)
 {
 	m_editors << this;
 
@@ -344,7 +344,7 @@ QEditor::QEditor(const QString& s, QWidget *p)
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-                mDisplayModifyTime(true),m_UseLineForSearch(false),m_blockKey(false)
+		mDisplayModifyTime(true),m_UseLineForSearch(false),m_blockKey(false),m_LineWidth(0)
 {
 	m_editors << this;
 
@@ -367,7 +367,7 @@ QEditor::QEditor(const QString& s, bool actions, QWidget *p)
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-                mDisplayModifyTime(true),m_UseLineForSearch(false),m_blockKey(false)
+		mDisplayModifyTime(true),m_UseLineForSearch(false),m_blockKey(false),m_LineWidth(0)
 {
 	m_editors << this;
 
@@ -916,6 +916,25 @@ void QEditor::setFlag(EditFlag f, bool b)
 	if ( f == LineWrap )
 		ensureCursorVisible();
 
+	if( f == HardLineWrap){
+	    m_doc->impl()->setHardLineWrap(b);
+	    if(b) {
+		if(m_LineWidth>0)
+		    m_doc->setWidthConstraint(m_LineWidth);
+		else
+		    m_doc->setWidthConstraint(wrapWidth());
+	    }else{
+		if(m_state&LineWrap>0){
+		    if ( isVisible() )
+			m_doc->setWidthConstraint(wrapWidth());
+		}else{
+		    if ( isVisible() )
+			m_doc->clearWidthConstraint();
+		}
+		m_cursor.refreshColumnMemory();
+	    }
+	}
+
 }
 
 /*!
@@ -945,6 +964,18 @@ void QEditor::setLineWrapping(bool on)
 {
 	setFlag(LineWrap, on);
 	setFlag(CursorJumpPastWrap, on);
+}
+
+void QEditor::setHardLineWrapping(bool on)
+{
+	setFlag(HardLineWrap, on);
+}
+
+void QEditor::setWrapLineWidth(int l){
+    m_LineWidth=l;
+    if(flag(HardLineWrap)){
+	m_doc->setWidthConstraint(m_LineWidth);
+    }
 }
 
 /*!
@@ -3658,14 +3689,17 @@ void QEditor::resizeEvent(QResizeEvent *)
 {
 	const QSize viewportSize = viewport()->size();
 
-	if ( flag(LineWrap) )
+	if ( flag(HardLineWrap) ){
+	    horizontalScrollBar()->setMaximum(qMax(0, m_LineWidth - viewportSize.width()));
+	    horizontalScrollBar()->setPageStep(viewportSize.width());
+	} else if ( flag(LineWrap) )
 	{
-		//qDebug("resize t (2) : wrapping to %i", viewport()->width());
+	    //qDebug("resize t (2) : wrapping to %i", viewport()->width());
 
-		m_doc->setWidthConstraint(wrapWidth());
+	    m_doc->setWidthConstraint(wrapWidth());
 	} else {
-		horizontalScrollBar()->setMaximum(qMax(0, m_doc->width() - viewportSize.width()));
-		horizontalScrollBar()->setPageStep(viewportSize.width());
+	    horizontalScrollBar()->setMaximum(qMax(0, m_doc->width() - viewportSize.width()));
+	    horizontalScrollBar()->setPageStep(viewportSize.width());
 	}
 
 	const int ls = m_doc->getLineSpacing();
@@ -4799,7 +4833,7 @@ int QEditor::wrapWidth() const
 	//if ( verticalScrollBar()->isVisible() )
 	//	return viewport()->width() - verticalScrollBar()->width();
 	#endif
-	return viewport()->width();
+	return m_LineWidth==0 ? viewport()->width() : m_LineWidth;
 }
 
 /*!
@@ -4812,13 +4846,18 @@ int QEditor::wrapWidth() const
 */
 void QEditor::documentWidthChanged(int newWidth)
 {
-	if ( flag(LineWrap) )
+	if ( flag(LineWrap)&&!flag(HardLineWrap) )
 	{
 		horizontalScrollBar()->setMaximum(0);
 		return;
 	}
 
 	int nv = qMax(0, newWidth - wrapWidth());
+
+	if ( flag(HardLineWrap) ){
+	    const QSize viewportSize = viewport()->size();
+	    nv=(qMax(0, m_LineWidth - viewportSize.width()));
+	}
 
 	horizontalScrollBar()->setMaximum(nv);
 

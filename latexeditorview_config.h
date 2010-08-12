@@ -8,7 +8,7 @@
 class LatexEditorViewConfig
 {
 public:
-	bool wordwrap, parenmatch, parenComplete;
+	bool wordwrap, hardwordwrap, parenmatch, parenComplete;
 	bool autoindent, weakindent;
 	bool indentWithSpaces;
 	bool showWhitespace;
@@ -17,6 +17,7 @@ public:
 	bool folding, showlinestate, showcursorstate, realtimeChecking;	
 	bool inlineSpellChecking, inlineCitationChecking, inlineReferenceChecking;
 	QString fontFamily;
+	int lineWidth;
 	int fontSize;
 	bool displayModifyTime;
 	bool closeSearchAndReplace;
