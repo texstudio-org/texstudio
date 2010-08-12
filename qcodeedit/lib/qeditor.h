@@ -104,7 +104,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			NoOperation = 0,
 			Invalid = -1,
 
-			EnumForCursorStart = 0x100,
+			EnumForCursorStart = 0x1000,
 
 			CursorUp,
 			CursorDown,
@@ -120,7 +120,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			CursorPageUp,
 			CursorPageDown,
 
-			EnumForSelectionStart,
+			EnumForSelectionStart = 0x2000,
 
 			SelectCursorUp,
 			SelectCursorDown,
@@ -136,7 +136,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			SelectPageUp,
 			SelectPageDown,
 
-			EnumForCursorEnd,
+			EnumForCursorEnd = 0x3000,
 
 			DeleteLeft,
 			DeleteRight,
@@ -144,7 +144,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			DeleteRightWord,
 			NewLine,
 
-			ChangeOverwrite,
+			ChangeOverwrite = 0x4000,
 			Undo,
 			Redo,
 			Copy,
@@ -156,7 +156,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			FindNext,
 			Replace,
 
-			CreateMirrorUp,
+			CreateMirrorUp = 0x5000,
 			CreateMirrorDown,
 			NextPlaceHolder,
 			PreviousPlaceHolder,
@@ -281,6 +281,10 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		static void setDefaultInputBinding(QEditorInputBindingInterface *b);
 		static void setDefaultInputBinding(const QString& b);
 		static inline const QList<QEditor*>& editors() { return m_editors; }		
+
+		static QString translateEditOperation(const EditOperation& op);
+		static void setEditOperations(const QHash<int, int>& newOptions);
+		static QHash<int, int> getEditOperations(bool excludeDefault=false);
 	public slots:
 		void undo();
 		void redo();
@@ -437,9 +441,10 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		virtual bool focusNextPrevChild(bool next);
 		
-		virtual void addEditOperation(const EditOperation& op, const Qt::KeyboardModifiers& modifiers, const Qt::Key& key);
-		virtual void addEditOperation(const EditOperation& op, const QKeySequence::StandardKey& key);
-		virtual EditOperation getEditOperation(const Qt::KeyboardModifiers& modifiers, const Qt::Key& key);
+		static void addEditOperation(const EditOperation& op, const Qt::KeyboardModifiers& modifiers, const Qt::Key& key);
+		static void addEditOperation(const EditOperation& op, const QKeySequence::StandardKey& key);
+		EditOperation getEditOperation(const Qt::KeyboardModifiers& modifiers, const Qt::Key& key);
+
 
 		virtual void cursorMoveOperation(QDocumentCursor &cursor, EditOperation op);
 		virtual void processEditOperation(QDocumentCursor& c, const QKeyEvent* e, EditOperation op);
@@ -572,7 +577,9 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		static QEditorInputBindingInterface *m_defaultBinding;
 		static QHash<QString, QEditorInputBindingInterface*> m_registeredBindings;
 		
-		QHash<int, EditOperation> m_registeredKeys;
+		static bool m_defaultKeysSet;
+		static QHash<int, int> m_registeredKeys;
+		static QHash<int, int> m_registeredDefaultKeys;
 
 		static int m_manageMenu;
 

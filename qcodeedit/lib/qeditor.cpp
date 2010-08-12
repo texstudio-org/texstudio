@@ -160,6 +160,10 @@
 QList<QEditor*> QEditor::m_editors;
 QEditorInputBindingInterface* QEditor::m_defaultBinding = 0;
 QHash<QString, QEditorInputBindingInterface*> QEditor::m_registeredBindings;
+bool QEditor::m_defaultKeysSet = false;
+QHash<int, int> QEditor::m_registeredKeys;
+QHash<int, int> QEditor::m_registeredDefaultKeys;
+
 
 /*!
 	\return A list of available input bindings
@@ -713,155 +717,7 @@ void QEditor::init(bool actions,QDocument *doc)
 		*/
 	}
 
-
-#ifndef Q_WS_MAC  // Use the default Windows bindings.
-	addEditOperation(CursorUp, Qt::NoModifier, Qt::Key_Up);
-	addEditOperation(CursorDown, Qt::NoModifier, Qt::Key_Down);
-	addEditOperation(SelectCursorUp, Qt::ShiftModifier, Qt::Key_Up);
-	addEditOperation(SelectCursorDown, Qt::ShiftModifier, Qt::Key_Down);
-
-	addEditOperation(CursorLeft, Qt::NoModifier, Qt::Key_Left);
-	addEditOperation(CursorRight, Qt::NoModifier, Qt::Key_Right);
-	addEditOperation(SelectCursorLeft, Qt::ShiftModifier, Qt::Key_Left);
-	addEditOperation(SelectCursorRight, Qt::ShiftModifier, Qt::Key_Right);
-
-	addEditOperation(CursorWordLeft, Qt::ControlModifier, Qt::Key_Left);
-	addEditOperation(CursorWordRight, Qt::ControlModifier, Qt::Key_Right);
-	addEditOperation(SelectCursorWordLeft, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_Left);
-	addEditOperation(SelectCursorWordRight, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_Right);
-
-	addEditOperation(CursorStartOfLine, Qt::NoModifier, Qt::Key_Home);
-	addEditOperation(CursorEndOfLine, Qt::NoModifier, Qt::Key_End);
-	addEditOperation(SelectCursorStartOfLine, Qt::ShiftModifier, Qt::Key_Home);
-	addEditOperation(SelectCursorEndOfLine, Qt::ShiftModifier, Qt::Key_End);
-
-	addEditOperation(CursorStartOfDocument, Qt::ControlModifier, Qt::Key_Home);
-	addEditOperation(CursorEndOfDocument, Qt::ControlModifier, Qt::Key_End);
-	addEditOperation(SelectCursorStartOfDocument, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_Home);
-	addEditOperation(SelectCursorEndOfDocument, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_End);
-#else
-/*
-	Except for pageup and pagedown, Mac OS X has very different behavior, we
-	don't do it all, but here's the breakdown:
-
-	Shift still works as an anchor, but only one of the other keys can be dow
-	Ctrl (Command), Alt (Option), or Meta (Control).
-
-	Command/Control + Left/Right -- Move to left or right of the line
-					+ Up/Down -- Move to top bottom of the file.
-					(Control doesn't move the cursor)
-
-	Option	+ Left/Right -- Move one word Left/right.
-			+ Up/Down  -- Begin/End of Paragraph.
-
-	Home/End Top/Bottom of file. (usually don't move the cursor, but will select)
-
-	There can be only one modifier (+ shift), but we also need to make sure
-	that we have a "move key" pressed before we reject it.
-*/
-	QList<Qt::KeyboardModifiers> modifierPairs;
-        modifierPairs <<  (Qt::ControlModifier | Qt::AltModifier) << (Qt::ControlModifier | Qt::MetaModifier) << (Qt::AltModifier | Qt::MetaModifier);
-	QList<Qt::Key> movementKeys;
-	movementKeys << Qt::Key_Up << Qt::Key_Down << Qt::Key_Left << Qt::Key_Right;
-        foreach (Qt::KeyboardModifiers mod, modifierPairs)
-            foreach (Qt::Key key, movementKeys)
-                addEditOperation(Invalid, mod , key);
-	modifierPairs <<  Qt::ControlModifier << Qt::AltModifier << Qt::MetaModifier;
-        modifierPairs <<  (Qt::ControlModifier | Qt::AltModifier | Qt::MetaModifier);
-	movementKeys = QList<Qt::Key>() << Qt::Key_Home << Qt::Key_End;
-        foreach (Qt::KeyboardModifiers mod, modifierPairs)
-            foreach (Qt::Key key, movementKeys)
-		addEditOperation(Invalid, mod , key);
-
-
-	addEditOperation(CursorUp, Qt::NoModifier, Qt::Key_Up);
-	addEditOperation(CursorDown, Qt::NoModifier, Qt::Key_Down);
-	addEditOperation(SelectCursorUp, Qt::ShiftModifier, Qt::Key_Up);
-	addEditOperation(SelectCursorDown, Qt::ShiftModifier, Qt::Key_Down);
-
-	addEditOperation(CursorStartOfLine, Qt::AltModifier, Qt::Key_Up);
-	addEditOperation(CursorEndOfLine, Qt::AltModifier, Qt::Key_Down);
-	addEditOperation(SelectCursorStartOfLine, Qt::ShiftModifier | Qt::AltModifier, Qt::Key_Up);
-	addEditOperation(SelectCursorEndOfLine, Qt::ShiftModifier | Qt::AltModifier, Qt::Key_Down);
-
-	addEditOperation(CursorStartOfDocument, Qt::ControlModifier, Qt::Key_Up);
-	addEditOperation(CursorStartOfDocument, Qt::MetaModifier, Qt::Key_Up);
-	addEditOperation(SelectCursorStartOfDocument, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Up);
-	addEditOperation(SelectCursorStartOfDocument, Qt::ShiftModifier | Qt::MetaModifier, Qt::Key_Up);
-
-	addEditOperation(CursorEndOfDocument, Qt::ControlModifier, Qt::Key_Down);
-	addEditOperation(CursorEndOfDocument, Qt::MetaModifier, Qt::Key_Down);
-	addEditOperation(SelectCursorEndOfDocument, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Down);
-	addEditOperation(SelectCursorEndOfDocument, Qt::ShiftModifier | Qt::MetaModifier, Qt::Key_Down);
-
-
-	addEditOperation(CursorStartOfLine, Qt::ControlModifier, Qt::Key_Left);
-	addEditOperation(CursorEndOfLine, Qt::ControlModifier, Qt::Key_Right);
-	addEditOperation(SelectCursorStartOfLine, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Left);
-	addEditOperation(SelectCursorEndOfLine, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Right);
-
-	addEditOperation(CursorStartOfLine, Qt::MetaModifier, Qt::Key_Left);
-	addEditOperation(CursorEndOfLine, Qt::MetaModifier, Qt::Key_Right);
-	addEditOperation(SelectCursorStartOfLine, Qt::ShiftModifier | Qt::MetaModifier, Qt::Key_Left);
-	addEditOperation(SelectCursorEndOfLine, Qt::ShiftModifier | Qt::MetaModifier, Qt::Key_Right);
-
-	addEditOperation(CursorWordLeft, Qt::AltModifier, Qt::Key_Left);
-	addEditOperation(CursorWordRight, Qt::AltModifier, Qt::Key_Right);
-	addEditOperation(SelectCursorWordLeft, Qt::ShiftModifier | Qt::AltModifier, Qt::Key_Left);
-	addEditOperation(SelectCursorWordRight, Qt::ShiftModifier | Qt::AltModifier, Qt::Key_Right);
-
-	addEditOperation(CursorLeft, Qt::NoModifier, Qt::Key_Left);
-	addEditOperation(CursorRight, Qt::NoModifier, Qt::Key_Right);
-	addEditOperation(SelectCursorLeft, Qt::ShiftModifier, Qt::Key_Left);
-	addEditOperation(SelectCursorRight, Qt::ShiftModifier, Qt::Key_Right);
-
-	addEditOperation(CursorStartOfDocument, Qt::NoModifier, Qt::Key_Home);
-	addEditOperation(CursorEndOfDocument, Qt::NoModifier, Qt::Key_End);
-	addEditOperation(SelectCursorStartOfDocument, Qt::ShiftModifier, Qt::Key_Home);
-	addEditOperation(SelectCursorEndOfDocument, Qt::ShiftModifier, Qt::Key_End);
-#endif
-
-	addEditOperation(CursorPageUp, Qt::NoModifier, Qt::Key_PageUp);
-	addEditOperation(SelectPageUp, Qt::ShiftModifier, Qt::Key_PageUp);
-	addEditOperation(CursorPageDown, Qt::NoModifier, Qt::Key_PageDown);
-	addEditOperation(SelectPageDown, Qt::ShiftModifier, Qt::Key_PageDown);
-
-	addEditOperation(DeleteLeft, Qt::NoModifier, Qt::Key_Backspace);
-	addEditOperation(DeleteRight, Qt::NoModifier, Qt::Key_Delete);
-	addEditOperation(DeleteLeftWord, Qt::ControlModifier, Qt::Key_Backspace);
-	addEditOperation(DeleteRightWord, Qt::ControlModifier, Qt::Key_Delete);
-
-	addEditOperation(NewLine, Qt::NoModifier, Qt::Key_Enter);
-	addEditOperation(NewLine, Qt::NoModifier, Qt::Key_Return);
-
-	addEditOperation(ChangeOverwrite, Qt::NoModifier, Qt::Key_Insert);
-
-	addEditOperation(CreateMirrorUp, Qt::AltModifier | Qt::ControlModifier, Qt::Key_Up);
-	addEditOperation(CreateMirrorDown, Qt::AltModifier | Qt::ControlModifier, Qt::Key_Down);
-
-	//TODO: make all operations customizable (m_UseTabforMoveToPlaceholder is then not longer needed)
-	//if (m_UseTabforMoveToPlaceholder) {
-		addEditOperation(NextPlaceHolder, Qt::ControlModifier, Qt::Key_Tab);
-		addEditOperation(PreviousPlaceHolder, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Backtab);
-	//} else {
-		//addEditOperation(NextPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Down);
-		addEditOperation(NextPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Right);
-		//addEditOperation(PreviousPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Up);
-		addEditOperation(PreviousPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Left);
-	//}
-	addEditOperation(IndentSelection, Qt::NoModifier, Qt::Key_Tab);
-	addEditOperation(UnindentSelection, Qt::ShiftModifier, Qt::Key_Backtab);
-
-	addEditOperation(Undo, QKeySequence::Undo);
-	addEditOperation(Redo, QKeySequence::Redo);
-	addEditOperation(Copy, QKeySequence::Copy);
-	addEditOperation(Paste, QKeySequence::Paste);
-	addEditOperation(Cut, QKeySequence::Cut);
-	addEditOperation(Print, QKeySequence::Print);
-	addEditOperation(SelectAll, QKeySequence::SelectAll);
-	addEditOperation(Find, QKeySequence::Find);
-	addEditOperation(FindNext, QKeySequence::FindNext);
-	addEditOperation(Replace, QKeySequence::Replace);
+	if (!m_defaultKeysSet) getEditOperations();
 
 	setWindowTitle("[*]"); //remove warning of setWindowModified
 }
@@ -3906,7 +3762,7 @@ bool QEditor::focusNextPrevChild(bool)
 }
 
 void QEditor::addEditOperation(const EditOperation& op, const Qt::KeyboardModifiers& modifiers, const Qt::Key& key){
-	m_registeredKeys.insert((modifiers | key) & ~Qt::KeypadModifier, op);
+	m_registeredKeys.insert(((int)modifiers & (Qt::ShiftModifier | Qt::AltModifier | Qt::ControlModifier | Qt::MetaModifier)) | (int)key, op);
 }
 
 void QEditor::addEditOperation(const EditOperation& op, const QKeySequence::StandardKey& key){
@@ -3918,7 +3774,7 @@ void QEditor::addEditOperation(const EditOperation& op, const QKeySequence::Stan
 }
 
 QEditor::EditOperation QEditor::getEditOperation(const Qt::KeyboardModifiers& modifiers, const Qt::Key& key){
-	EditOperation op = m_registeredKeys.value(((int)modifiers | (int)key ) & ~Qt::KeypadModifier, NoOperation);
+	EditOperation op = (EditOperation) m_registeredKeys.value(((int)modifiers & (Qt::ShiftModifier | Qt::AltModifier | Qt::ControlModifier | Qt::MetaModifier)) | (int)key , NoOperation);
 	switch (op){
 	case IndentSelection: case UnindentSelection:
 		if (!m_cursor.hasSelection()) op = NoOperation;
@@ -3944,6 +3800,245 @@ QEditor::EditOperation QEditor::getEditOperation(const Qt::KeyboardModifiers& mo
 	default:;
 	}
 	return op;
+}
+
+QHash<int, int> QEditor::getEditOperations(bool excludeDefault){
+	if (!m_defaultKeysSet) { //todo: thread safe lock
+		m_defaultKeysSet = true;
+	#ifndef Q_WS_MAC  // Use the default Windows bindings.
+		addEditOperation(CursorUp, Qt::NoModifier, Qt::Key_Up);
+		addEditOperation(CursorDown, Qt::NoModifier, Qt::Key_Down);
+		addEditOperation(SelectCursorUp, Qt::ShiftModifier, Qt::Key_Up);
+		addEditOperation(SelectCursorDown, Qt::ShiftModifier, Qt::Key_Down);
+
+		addEditOperation(CursorLeft, Qt::NoModifier, Qt::Key_Left);
+		addEditOperation(CursorRight, Qt::NoModifier, Qt::Key_Right);
+		addEditOperation(SelectCursorLeft, Qt::ShiftModifier, Qt::Key_Left);
+		addEditOperation(SelectCursorRight, Qt::ShiftModifier, Qt::Key_Right);
+
+		addEditOperation(CursorWordLeft, Qt::ControlModifier, Qt::Key_Left);
+		addEditOperation(CursorWordRight, Qt::ControlModifier, Qt::Key_Right);
+		addEditOperation(SelectCursorWordLeft, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_Left);
+		addEditOperation(SelectCursorWordRight, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_Right);
+
+		addEditOperation(CursorStartOfLine, Qt::NoModifier, Qt::Key_Home);
+		addEditOperation(CursorEndOfLine, Qt::NoModifier, Qt::Key_End);
+		addEditOperation(SelectCursorStartOfLine, Qt::ShiftModifier, Qt::Key_Home);
+		addEditOperation(SelectCursorEndOfLine, Qt::ShiftModifier, Qt::Key_End);
+
+		addEditOperation(CursorStartOfDocument, Qt::ControlModifier, Qt::Key_Home);
+		addEditOperation(CursorEndOfDocument, Qt::ControlModifier, Qt::Key_End);
+		addEditOperation(SelectCursorStartOfDocument, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_Home);
+		addEditOperation(SelectCursorEndOfDocument, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_End);
+	#else
+	/*
+		Except for pageup and pagedown, Mac OS X has very different behavior, we
+		don't do it all, but here's the breakdown:
+
+		Shift still works as an anchor, but only one of the other keys can be dow
+		Ctrl (Command), Alt (Option), or Meta (Control).
+
+		Command/Control + Left/Right -- Move to left or right of the line
+						+ Up/Down -- Move to top bottom of the file.
+						(Control doesn't move the cursor)
+
+		Option	+ Left/Right -- Move one word Left/right.
+				+ Up/Down  -- Begin/End of Paragraph.
+
+		Home/End Top/Bottom of file. (usually don't move the cursor, but will select)
+
+		There can be only one modifier (+ shift), but we also need to make sure
+		that we have a "move key" pressed before we reject it.
+	*/
+		QList<Qt::KeyboardModifiers> modifierPairs;
+		modifierPairs <<  (Qt::ControlModifier | Qt::AltModifier) << (Qt::ControlModifier | Qt::MetaModifier) << (Qt::AltModifier | Qt::MetaModifier);
+		QList<Qt::Key> movementKeys;
+		movementKeys << Qt::Key_Up << Qt::Key_Down << Qt::Key_Left << Qt::Key_Right;
+		foreach (Qt::KeyboardModifiers mod, modifierPairs)
+		    foreach (Qt::Key key, movementKeys)
+			addEditOperation(Invalid, mod , key);
+		modifierPairs <<  Qt::ControlModifier << Qt::AltModifier << Qt::MetaModifier;
+		modifierPairs <<  (Qt::ControlModifier | Qt::AltModifier | Qt::MetaModifier);
+		movementKeys = QList<Qt::Key>() << Qt::Key_Home << Qt::Key_End;
+		foreach (Qt::KeyboardModifiers mod, modifierPairs)
+		    foreach (Qt::Key key, movementKeys)
+			addEditOperation(Invalid, mod , key);
+
+
+		addEditOperation(CursorUp, Qt::NoModifier, Qt::Key_Up);
+		addEditOperation(CursorDown, Qt::NoModifier, Qt::Key_Down);
+		addEditOperation(SelectCursorUp, Qt::ShiftModifier, Qt::Key_Up);
+		addEditOperation(SelectCursorDown, Qt::ShiftModifier, Qt::Key_Down);
+
+		addEditOperation(CursorStartOfLine, Qt::AltModifier, Qt::Key_Up);
+		addEditOperation(CursorEndOfLine, Qt::AltModifier, Qt::Key_Down);
+		addEditOperation(SelectCursorStartOfLine, Qt::ShiftModifier | Qt::AltModifier, Qt::Key_Up);
+		addEditOperation(SelectCursorEndOfLine, Qt::ShiftModifier | Qt::AltModifier, Qt::Key_Down);
+
+		addEditOperation(CursorStartOfDocument, Qt::ControlModifier, Qt::Key_Up);
+		addEditOperation(CursorStartOfDocument, Qt::MetaModifier, Qt::Key_Up);
+		addEditOperation(SelectCursorStartOfDocument, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Up);
+		addEditOperation(SelectCursorStartOfDocument, Qt::ShiftModifier | Qt::MetaModifier, Qt::Key_Up);
+
+		addEditOperation(CursorEndOfDocument, Qt::ControlModifier, Qt::Key_Down);
+		addEditOperation(CursorEndOfDocument, Qt::MetaModifier, Qt::Key_Down);
+		addEditOperation(SelectCursorEndOfDocument, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Down);
+		addEditOperation(SelectCursorEndOfDocument, Qt::ShiftModifier | Qt::MetaModifier, Qt::Key_Down);
+
+
+		addEditOperation(CursorStartOfLine, Qt::ControlModifier, Qt::Key_Left);
+		addEditOperation(CursorEndOfLine, Qt::ControlModifier, Qt::Key_Right);
+		addEditOperation(SelectCursorStartOfLine, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Left);
+		addEditOperation(SelectCursorEndOfLine, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Right);
+
+		addEditOperation(CursorStartOfLine, Qt::MetaModifier, Qt::Key_Left);
+		addEditOperation(CursorEndOfLine, Qt::MetaModifier, Qt::Key_Right);
+		addEditOperation(SelectCursorStartOfLine, Qt::ShiftModifier | Qt::MetaModifier, Qt::Key_Left);
+		addEditOperation(SelectCursorEndOfLine, Qt::ShiftModifier | Qt::MetaModifier, Qt::Key_Right);
+
+		addEditOperation(CursorWordLeft, Qt::AltModifier, Qt::Key_Left);
+		addEditOperation(CursorWordRight, Qt::AltModifier, Qt::Key_Right);
+		addEditOperation(SelectCursorWordLeft, Qt::ShiftModifier | Qt::AltModifier, Qt::Key_Left);
+		addEditOperation(SelectCursorWordRight, Qt::ShiftModifier | Qt::AltModifier, Qt::Key_Right);
+
+		addEditOperation(CursorLeft, Qt::NoModifier, Qt::Key_Left);
+		addEditOperation(CursorRight, Qt::NoModifier, Qt::Key_Right);
+		addEditOperation(SelectCursorLeft, Qt::ShiftModifier, Qt::Key_Left);
+		addEditOperation(SelectCursorRight, Qt::ShiftModifier, Qt::Key_Right);
+
+		addEditOperation(CursorStartOfDocument, Qt::NoModifier, Qt::Key_Home);
+		addEditOperation(CursorEndOfDocument, Qt::NoModifier, Qt::Key_End);
+		addEditOperation(SelectCursorStartOfDocument, Qt::ShiftModifier, Qt::Key_Home);
+		addEditOperation(SelectCursorEndOfDocument, Qt::ShiftModifier, Qt::Key_End);
+	#endif
+
+		addEditOperation(CursorPageUp, Qt::NoModifier, Qt::Key_PageUp);
+		addEditOperation(SelectPageUp, Qt::ShiftModifier, Qt::Key_PageUp);
+		addEditOperation(CursorPageDown, Qt::NoModifier, Qt::Key_PageDown);
+		addEditOperation(SelectPageDown, Qt::ShiftModifier, Qt::Key_PageDown);
+
+		addEditOperation(DeleteLeft, Qt::NoModifier, Qt::Key_Backspace);
+		addEditOperation(DeleteRight, Qt::NoModifier, Qt::Key_Delete);
+		addEditOperation(DeleteLeftWord, Qt::ControlModifier, Qt::Key_Backspace);
+		addEditOperation(DeleteRightWord, Qt::ControlModifier, Qt::Key_Delete);
+
+		addEditOperation(NewLine, Qt::NoModifier, Qt::Key_Enter);
+		addEditOperation(NewLine, Qt::NoModifier, Qt::Key_Return);
+
+		addEditOperation(ChangeOverwrite, Qt::NoModifier, Qt::Key_Insert);
+
+		addEditOperation(CreateMirrorUp, Qt::AltModifier | Qt::ControlModifier, Qt::Key_Up);
+		addEditOperation(CreateMirrorDown, Qt::AltModifier | Qt::ControlModifier, Qt::Key_Down);
+
+		//TODO: make all operations customizable (m_UseTabforMoveToPlaceholder is then not longer needed)
+		//if (m_UseTabforMoveToPlaceholder) {
+			addEditOperation(NextPlaceHolder, Qt::ControlModifier, Qt::Key_Tab);
+			addEditOperation(PreviousPlaceHolder, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Backtab);
+		//} else {
+			//addEditOperation(NextPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Down);
+			addEditOperation(NextPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Right);
+			//addEditOperation(PreviousPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Up);
+			addEditOperation(PreviousPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Left);
+		//}
+		addEditOperation(IndentSelection, Qt::NoModifier, Qt::Key_Tab);
+		addEditOperation(UnindentSelection, Qt::ShiftModifier, Qt::Key_Backtab);
+
+		addEditOperation(Undo, QKeySequence::Undo);
+		addEditOperation(Redo, QKeySequence::Redo);
+		addEditOperation(Copy, QKeySequence::Copy);
+		addEditOperation(Paste, QKeySequence::Paste);
+		addEditOperation(Cut, QKeySequence::Cut);
+		addEditOperation(Print, QKeySequence::Print);
+		addEditOperation(SelectAll, QKeySequence::SelectAll);
+		addEditOperation(Find, QKeySequence::Find);
+		addEditOperation(FindNext, QKeySequence::FindNext);
+		addEditOperation(Replace, QKeySequence::Replace);
+
+		m_registeredDefaultKeys = m_registeredKeys;
+	}
+	if (!excludeDefault) return m_registeredKeys;
+	else {
+		QHash<int,int> result;
+		result = m_registeredKeys;
+
+		QHash<int, int>::const_iterator i = m_registeredDefaultKeys.begin();
+		while (i != m_registeredDefaultKeys.constEnd()) {
+			QHash<int, int>::iterator j = result.find(i.key());
+			if (j!=result.end() && j.value() == i.value()) result.erase(j);
+			++i;
+		}
+		return result;
+	}
+}
+
+QString QEditor::translateEditOperation(const EditOperation& op){
+	switch (op){
+	case NoOperation: return tr("none");
+	case Invalid: return tr("ungültig");
+
+	case EnumForCursorStart: return tr("internal");
+
+	case CursorUp: return tr("move cursor up");
+	case CursorDown: return tr("move cursor down");
+	case CursorLeft: return tr("move cursor left (1 character)");
+	case CursorRight: return tr("move cursor right (1 character)");
+	case CursorWordLeft: return tr("move cursor left (1 word)");
+	case CursorWordRight: return tr("move cursor right (1 word)");
+	case CursorStartOfLine: return tr("move cursor to line start");
+	case CursorEndOfLine: return tr("move cursor to line end");
+	case CursorStartOfDocument: return tr("move cursor to document start");
+	case CursorEndOfDocument: return tr("move cursor to document end");
+
+	case CursorPageUp: return tr("move cursor one page up");
+	case CursorPageDown: return tr("move cursor one page down");
+
+	case EnumForSelectionStart: return tr("internal");
+
+	case SelectCursorUp: return tr("select up");
+	case SelectCursorDown: return tr("select down");
+	case SelectCursorLeft: return tr("select left (1 character)");
+	case SelectCursorRight: return tr("select right (1 character)");
+	case SelectCursorWordLeft: return tr("select left (1 word)");
+	case SelectCursorWordRight: return tr("select right (1 word)");
+	case SelectCursorStartOfLine: return tr("select to line start");
+	case SelectCursorEndOfLine: return tr("select to line end");
+	case SelectCursorStartOfDocument: return tr("select to document start");
+	case SelectCursorEndOfDocument: return tr("select to document end");
+
+	case SelectPageUp: return tr("select page up");
+	case SelectPageDown: return tr("select page down");
+
+	case EnumForCursorEnd: return tr("internal");
+
+	case DeleteLeft: return tr("Delete left character");
+	case DeleteRight: return tr("Delete right character");
+	case DeleteLeftWord: return tr("Delete left word");
+	case DeleteRightWord: return tr("Delete right word");
+	case NewLine: return tr("New line");
+
+	case ChangeOverwrite: return tr("Change overwrite mode");
+	case Undo: return tr("Undo");
+	case Redo: return tr("Redo");
+	case Copy: return tr("Copy");
+	case Paste: return tr("Paste");
+	case Cut: return tr("Cut");
+	case Print: return tr("Print");
+	case SelectAll: return tr("Select all");
+	case Find: return tr("Find");
+	case FindNext: return tr("Find next");
+	case Replace: return tr("Replace");
+
+	case CreateMirrorUp: return tr("Create cursor mirror up");
+	case CreateMirrorDown: return tr("Create cursor mirror down");
+	case NextPlaceHolder: return tr("Next placeholder");
+	case PreviousPlaceHolder: return tr("Previous placeholder");
+	case NextPlaceHolderOrWord: return tr("Next placeholder or one word right");
+	case PreviousPlaceHolderOrWord: return tr("Previous placeholder or one word left");
+	case IndentSelection: return tr("Indent selection");
+	case UnindentSelection: return tr("Unindent selection");
+
+	}
+	return tr("unknown");
 }
 
 /*!

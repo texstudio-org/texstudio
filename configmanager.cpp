@@ -749,6 +749,22 @@ bool ConfigManager::execConfigDialog() {
 	menuShortcuts->setExpanded(true);
 
 	QTreeWidgetItem * editorItem=new QTreeWidgetItem((QTreeWidget*)0, QStringList() << ConfigDialog::tr("Editor"));
+	QTreeWidgetItem * editorKeys = new QTreeWidgetItem(editorItem, QStringList() << ConfigDialog::tr("Basic Key Mapping"));
+
+	Q_ASSERT(Qt::CTRL == Qt::ControlModifier && Qt::ALT == Qt::AltModifier && Qt::SHIFT == Qt::ShiftModifier && Qt::META == Qt::MetaModifier);
+	QMultiMap<int, int> keysReversed;
+	QHash<int, int>::const_iterator it = this->editorKeys.constBegin();
+	while (it != this->editorKeys.constEnd()) {
+		keysReversed.insertMulti(it.value(), it.key());
+		++it;
+	}
+	QMultiMap<int, int>::const_iterator it2 = keysReversed.begin();
+	while (it2 != keysReversed.constEnd()) {
+		QTreeWidgetItem * twi = new QTreeWidgetItem(editorKeys, QStringList() << LatexEditorViewConfig::translateEditOperation(it2.key()) << "" << QKeySequence(it2.value()).toString());
+		twi->setData(0, Qt::UserRole, it2.key());
+		++it2;
+	}
+
 	//add special key replacements
 	QTreeWidgetItem * keyReplacements = new QTreeWidgetItem(editorItem, QStringList() << ConfigDialog::tr("Special Key Replacement"));
 	QTreeWidgetItem * columnItem=new QTreeWidgetItem(keyReplacements, QStringList() << ConfigDialog::tr("New column meaning:") << ConfigDialog::tr("Key to replace") << ConfigDialog::tr("Text to insert before word") << ConfigDialog::tr("Text to insert after word"));
@@ -765,6 +781,7 @@ bool ConfigManager::execConfigDialog() {
 	new QTreeWidgetItem(keyReplacements, QStringList() << ShortcutDelegate::addRowButton);
 	confDlg->ui.shortcutTree->addTopLevelItem(editorItem);
 	editorItem->setExpanded(true);
+
 
 	ShortcutDelegate delegate;
 	delegate.treeWidget=confDlg->ui.shortcutTree;
@@ -923,7 +940,10 @@ bool ConfigManager::execConfigDialog() {
 		}
 		confDlg->fmConfig->apply();
 
-		
+		this->editorKeys.clear();
+		for (int i=0;i<editorKeys->childCount();i++)
+			this->editorKeys.insert(QKeySequence::fromString(editorKeys->child(i)->text(2)), editorKeys->child(i)->data(0, Qt::UserRole).toInt());
+
 		//menus
 		managedMenuNewShortcuts.clear();
 		treeWidgetToManagedMenuTo(menuShortcuts);
