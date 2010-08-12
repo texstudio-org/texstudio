@@ -1137,3 +1137,7 @@ void References::purgeLinksTo(QDocument *doc){
 	 }
 }
 
+
+QString LatexEditorViewConfig::translateEditOperation(int key){
+	return QEditor::translateEditOperation((QEditor::EditOperation)key);
+}

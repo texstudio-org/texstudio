@@ -1868,6 +1868,9 @@ void Texmaker::ReadSettings() {
 	m_formats->load(*config,true); //load customized formats
 	config->endGroup();
 
+	configManager.editorKeys = QEditor::getEditOperations(false);
+
+
 	delete config;
 
 	documents.settingsRead();

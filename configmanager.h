@@ -55,7 +55,8 @@ public:
 	int ignoreLogFileNames; //0: never, 1: in single mode, 2: always | see LatexLog::parseDocument for reason
 
 	QStringList keyReplace, keyReplaceAfterWord, keyReplaceBeforeWord;
-	
+	QHash<int, int> editorKeys;
+
 	//build
 	BuildManager* buildManager; 
 	bool showLogAfterCompiling;
