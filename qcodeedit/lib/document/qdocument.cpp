@@ -1976,6 +1976,15 @@ QDocumentLineHandle* QDocumentLineHandle::previous() const
 	return (m_doc && m_doc->impl()) ? m_doc->impl()->previous(this) : 0;
 }
 
+QList<int> QDocumentLineHandle::getBreaks(){
+    QList<int> res;
+    QPair<int, int> elem;
+    foreach(elem,m_frontiers){
+	res << elem.first;
+    }
+    return res;
+}
+
 void QDocumentLineHandle::updateWrap() const
 {
 	m_indent = 0;
@@ -3053,6 +3062,13 @@ void QDocumentLineHandle::draw(	QPainter *p,
 						QDocumentPrivate::m_leftMargin,
 						QDocumentPrivate::m_lineSpacing
 						);
+		// draw line width when hard wrapping is activated
+		if(m_doc->impl()->hardLineWrap()){
+		    p->save();
+		    p->setPen(Qt::lightGray);
+		    p->drawLine(m_doc->impl()->width(), 0,m_doc->impl()->width() , QDocumentPrivate::m_lineSpacing);
+		    p->restore();
+		}
 
 	} else {
 		QVector<int> merged;
@@ -3584,15 +3600,24 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 			}
 #endif
+			if(m_doc->impl()->hardLineWrap()){
+			    p->setPen(Qt::lightGray);
+			    p->drawLine(m_doc->impl()->width(), yStart,m_doc->impl()->width() , yEnd);
+			}
 			p->setPen(oldpen);
 		}
 
-		if ( unbounded )
-			p->fillRect(
-							xpos, ypos,
-							maxWidth - xpos, QDocumentPrivate::m_lineSpacing,
-							pal.highlight()
-						);
+		if ( unbounded ){
+		    p->fillRect(
+			    xpos, ypos,
+			    maxWidth - xpos, QDocumentPrivate::m_lineSpacing,
+			    pal.highlight()
+			    );
+		    if(m_doc->impl()->hardLineWrap()){
+			p->setPen(Qt::lightGray);
+			p->drawLine(m_doc->impl()->width(), yStart,m_doc->impl()->width() , yEnd);
+		    }
+		}
 
 	}
 }
@@ -5391,6 +5416,7 @@ QDocumentPrivate::QDocumentPrivate(QDocument *d)
 	m_editCursor(0),
 	m_lastGroupId(-1),
 	m_constrained(false),
+	m_hardLineWrap(false),
 	m_width(0),
 	m_height(0),
 	m_tabStop(m_defaultTabStop),
@@ -5891,6 +5917,11 @@ QDocumentLineHandle* QDocumentPrivate::lineForPosition(int& position) const
 	return 0;
 }
 
+void QDocumentPrivate::setHardLineWrap(bool wrap)
+{
+    m_hardLineWrap=wrap;
+}
+
 void QDocumentPrivate::setWidth(int width)
 {
 	int oldConstraint = m_constrained;
@@ -5949,6 +5980,10 @@ void QDocumentPrivate::setWidth(int width)
 
 	emitFormatsChanged();
 	markFormatCacheDirty();
+}
+
+void QDocumentPrivate::removeWrap(int i){
+    m_wrapped.remove(i);
 }
 
 void QDocumentPrivate::setWidth()

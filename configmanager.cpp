@@ -221,6 +221,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 
 	//editor
 	registerOption("Editor/WordWrap", &editorConfig->wordwrap, true, &pseudoDialog->checkBoxWordwrap);
+	registerOption("Editor/HardWordWrap", &editorConfig->hardwordwrap, false, &pseudoDialog->checkBoxHardWordWrap);
+	registerOption("Editor/WrapLineWidth", &editorConfig->lineWidth, 80, &pseudoDialog->spinBoxWrapLineWidth);
 	registerOption("Editor/Parentheses Matching", &editorConfig->parenmatch, true); //TODO: checkbox?
 	registerOption("Editor/Parentheses Completion", &editorConfig->parenComplete, true);//TODO: checkbox?
 	registerOption("Editor/Line Number Multiples", &editorConfig->showlinemultiples, -1);

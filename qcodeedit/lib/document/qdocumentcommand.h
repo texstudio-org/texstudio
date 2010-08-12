@@ -46,7 +46,7 @@ class QCE_EXPORT QDocumentCommand : public QUndoCommand
 		struct TextCommandData
 		{
 			QString begin, end;
-			int lineNumber, startOffset, endOffset;
+			int lineNumber, startOffset, endOffset, beforeOffset;
 			QList<QDocumentLineHandle*> handles;
 		};
 		

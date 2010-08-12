@@ -128,6 +128,7 @@ class QCE_EXPORT QDocumentPrivate
 		void showEvent(int line, int count);
 		
 		void setWidth(int width);
+		void setHardLineWrap(bool wrap);
 		
 		void emitFormatsChanged();
 		void emitContentsChanged();
@@ -153,6 +154,16 @@ class QCE_EXPORT QDocumentPrivate
 		bool getFixedPitch(){
 		    return m_fixedPitch;
 		}
+
+		bool hardLineWrap(){
+		    return m_hardLineWrap;
+		}
+		void removeWrap(int i);
+
+		int width(){
+		    return m_width;
+		}
+
 
 	protected:
 		void updateHidden(int line, int count);
@@ -200,6 +211,7 @@ class QCE_EXPORT QDocumentPrivate
 		QHash<int, MatchList> m_matches;
 		
 		bool m_constrained;
+		bool m_hardLineWrap;
 		int m_width, m_height;
 		
 		int m_tabStop;

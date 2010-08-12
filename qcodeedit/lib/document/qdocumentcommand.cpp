@@ -532,6 +532,7 @@ QDocumentInsertCommand::QDocumentInsertCommand(	int l, int offset,
 
 	m_data.begin = lines.takeAt(0);
 	m_data.endOffset = lines.count() ? lines.last().length() : -1;
+	m_data.beforeOffset=0;
 
 	foreach ( const QString& s, lines )
 		m_data.handles << new QDocumentLineHandle(s, m_doc);
@@ -593,10 +594,65 @@ void QDocumentInsertCommand::redo()
 
 	if ( m_data.handles.count() )
 	{
-		removeText(m_data.lineNumber, m_data.startOffset, m_data.end.count());
+		removeText(m_data.lineNumber, m_data.startOffset-m_data.beforeOffset, m_data.end.count());
 	}
 
-	insertText(m_data.lineNumber, m_data.startOffset, m_data.begin);
+	QString rel_end;
+	QString rel_start;
+	if(m_doc->impl()->hardLineWrap()){
+	    rel_end=hl->text().mid(m_data.startOffset);
+	    rel_start=hl->text().left(m_data.startOffset);
+	}
+
+	if(m_data.beforeOffset==0) insertText(m_data.lineNumber, m_data.startOffset, m_data.begin);
+
+	int rel_cur_offset=0;
+	int cur_line=0;
+
+	if((m_doc->impl()->hardLineWrap())){
+	    int cur_offset=m_data.startOffset+m_data.begin.length();
+	    rel_cur_offset=cur_offset;
+	    QList<int>breaks=hl->getBreaks();
+	    if(!breaks.isEmpty()){
+		QString text=hl->text();
+		int c=0,b=0;
+		for(int i=0;i<breaks.count();i++){
+		    b=c;
+		    c=breaks.at(i);
+		    if(c<cur_offset){
+			rel_cur_offset=cur_offset-c;
+			cur_line++;
+		    }
+		    QString part=text.mid(b,c-b);
+		    if(i==0) {
+			QString &txt=hl->textBuffer();
+			txt=part;
+			hl->clearFrontiers();
+		    } else {
+			if(m_first){ // calculation only once , avoid in real redo.
+			    QDocumentLineHandle *nhl=new QDocumentLineHandle(part, m_doc);
+			    m_data.handles.insert(0,nhl);
+			}
+		    }
+		}
+		if(m_first){ // calculation only once , avoid in real redo.
+		    QString part=text.mid(c);
+		    QDocumentLineHandle *nhl=new QDocumentLineHandle(part, m_doc);
+		    m_data.handles.insert(0,nhl);
+		    if(m_data.endOffset<0) {
+			m_data.endOffset=part.length();
+			m_data.end=rel_end;
+			if(cur_line>0){
+			    QString before=rel_start.mid(breaks.at(0));
+			    m_data.end=before+rel_end;
+			    m_data.beforeOffset=before.length();
+			}
+		    }
+		}
+		m_doc->impl()->removeWrap(m_data.lineNumber);
+
+	    }
+	}
 
 	insertLines(m_data.lineNumber, m_data.handles);
 
@@ -605,7 +661,11 @@ void QDocumentInsertCommand::redo()
 		QDocumentLineHandle *h = m_data.handles.last();
 
 		//updateTarget(h, h->text().length() - m_data.end.length());
-		updateTarget(m_data.lineNumber + m_data.handles.count(), h->text().length() - m_data.end.length() + m_redoOffset);
+		if(m_doc->impl()->hardLineWrap()){
+		    updateTarget(m_data.lineNumber + cur_line, rel_cur_offset );
+		}else{
+		    updateTarget(m_data.lineNumber + m_data.handles.count(), h->text().length() - m_data.end.length() + m_redoOffset);
+		}
 	} else {
 		updateTarget(m_data.lineNumber, m_data.startOffset + m_data.begin.length() + m_redoOffset);
 	}
@@ -642,10 +702,10 @@ void QDocumentInsertCommand::undo()
 
 	if ( m_data.handles.count() )
 	{
-		insertText(m_data.lineNumber, m_data.startOffset, m_data.end);
+		insertText(m_data.lineNumber, m_data.startOffset - m_data.beforeOffset, m_data.end);
 	}
 
-	updateTarget(m_data.lineNumber, m_data.startOffset + m_undoOffset);
+	updateTarget(m_data.lineNumber, m_data.startOffset - m_undoOffset);
 
 	updateCursorsOnDeletion(m_data.lineNumber, m_data.startOffset, m_data.begin.length(), m_data.handles.count(), m_data.endOffset);
 
@@ -659,6 +719,7 @@ void QDocumentInsertCommand::undo()
 	if (commandAffectsFolding)
 		m_doc->correctFolding(m_data.lineNumber, m_data.lineNumber+m_data.handles.count());
 	//m_doc->impl()->emitContentsChanged();
+
 }
 
 ///////////////////////////

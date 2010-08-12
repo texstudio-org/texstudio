@@ -125,8 +125,12 @@ class QCE_EXPORT QDocumentLineHandle
 		
 		inline void ref() { m_ref.ref(); }
 		inline void deref() { if ( m_ref ) m_ref.deref(); if ( !m_ref ) delete this; }
+
+		QList<int> getBreaks();
+		void clearFrontiers(){
+		    m_frontiers.clear();
+		}
 		
-	protected:
 		~QDocumentLineHandle();
 		
 	private:

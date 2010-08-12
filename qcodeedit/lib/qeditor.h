@@ -83,6 +83,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			Internal				= 0x00000fff,
 			
 			LineWrap				= 0x00001000,
+			HardLineWrap				= 0x00002000,
 			
 			CtrlNavigation			= 0x00010000,
 			CursorJumpPastWrap		= 0x00020000,
@@ -306,6 +307,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void uncommentSelection();
 		
 		void setLineWrapping(bool on);
+		void setHardLineWrapping(bool on);
+		void setWrapLineWidth(int l);
 		
 		virtual void save();
 		void save(const QString& filename);
@@ -579,6 +582,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
                 bool m_blockKey;
 
 		int m_lastLine,m_lastColumn,m_hoverCount;
+
+		int m_LineWidth;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(QEditor::State);
