@@ -241,8 +241,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 
 	registerOption("Editor/Display Modifytime", &editorConfig->displayModifyTime, true, &pseudoDialog->checkBoxDisplayModifyTime);
 	registerOption("Editor/Close Search Replace Together", &editorConfig->closeSearchAndReplace, false, &pseudoDialog->checkBoxCloseSearchReplaceTogether);
-	registerOption("Editor/Use Line For Search", &editorConfig->useLineForSearch, true, &pseudoDialog->checkBoxUseLineForSearch);
-	registerOption("Editor/Use Tab for Move to Placeholder", &editorConfig->useTabforMoveToPlaceholder, false, &pseudoDialog->checkBoxTabforMoveToPlaceholder);
+	registerOption("Editor/Use Line For Search", &editorConfig->useLineForSearch, true, &pseudoDialog->checkBoxUseLineForSearch);	
 	registerOption("Editor/Auto Replace Commands", &CodeSnippet::autoReplaceCommands, true, &pseudoDialog->checkBoxAutoReplaceCommands);
 
 	registerOption("Editor/Font Family", &editorConfig->fontFamily, "", &pseudoDialog->comboBoxFont);
@@ -751,7 +750,7 @@ bool ConfigManager::execConfigDialog() {
 	QTreeWidgetItem * editorItem=new QTreeWidgetItem((QTreeWidget*)0, QStringList() << ConfigDialog::tr("Editor"));
 	QTreeWidgetItem * editorKeys = new QTreeWidgetItem(editorItem, QStringList() << ConfigDialog::tr("Basic Key Mapping"));
 
-	Q_ASSERT(Qt::CTRL == Qt::ControlModifier && Qt::ALT == Qt::AltModifier && Qt::SHIFT == Qt::ShiftModifier && Qt::META == Qt::MetaModifier);
+	Q_ASSERT((int)Qt::CTRL == (int)Qt::ControlModifier && (int)Qt::ALT == (int)Qt::AltModifier && (int)Qt::SHIFT == (int)Qt::ShiftModifier && (int)Qt::META == (int)Qt::MetaModifier);
 	QMultiMap<int, int> keysReversed;
 	QHash<int, int>::const_iterator it = this->editorKeys.constBegin();
 	while (it != this->editorKeys.constEnd()) {
@@ -760,8 +759,9 @@ bool ConfigManager::execConfigDialog() {
 	}
 	QMultiMap<int, int>::const_iterator it2 = keysReversed.begin();
 	while (it2 != keysReversed.constEnd()) {
-		QTreeWidgetItem * twi = new QTreeWidgetItem(editorKeys, QStringList() << LatexEditorViewConfig::translateEditOperation(it2.key()) << "" << QKeySequence(it2.value()).toString());
+		QTreeWidgetItem * twi = new QTreeWidgetItem(editorKeys, QStringList() << LatexEditorViewConfig::translateEditOperation(it2.key()) << "" << QKeySequence(it2.value()).toString(QKeySequence::NativeText));
 		twi->setData(0, Qt::UserRole, it2.key());
+		twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
 		++it2;
 	}
 
@@ -942,7 +942,7 @@ bool ConfigManager::execConfigDialog() {
 
 		this->editorKeys.clear();
 		for (int i=0;i<editorKeys->childCount();i++)
-			this->editorKeys.insert(QKeySequence::fromString(editorKeys->child(i)->text(2)), editorKeys->child(i)->data(0, Qt::UserRole).toInt());
+			this->editorKeys.insert(QKeySequence::fromString(editorKeys->child(i)->text(2),QKeySequence::NativeText), editorKeys->child(i)->data(0, Qt::UserRole).toInt());
 
 		//menus
 		managedMenuNewShortcuts.clear();

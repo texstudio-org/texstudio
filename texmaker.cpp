@@ -1861,14 +1861,27 @@ void Texmaker::ReadSettings() {
 	hiddenLeftPanelWidgets=config->value("Symbols/hiddenlists","").toString();
 	symbolFavorites=config->value("Symbols/Favorite IDs",QStringList()).toStringList();
 
+	configManager.editorKeys = QEditor::getEditOperations(false);
+	config->beginGroup("Editor Key Mapping");
+	QStringList sl = config->childKeys();
+	if (config->value("Editor/Use Tab for Move to Placeholder",false).toBool()) {
+		//import deprecated option
+		QEditor::addEditOperation(QEditor::NextPlaceHolder, Qt::ControlModifier, Qt::Key_Tab);
+		QEditor::addEditOperation(QEditor::PreviousPlaceHolder, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Backtab);
+		QEditor::addEditOperation(QEditor::CursorWordLeft, Qt::ControlModifier, Qt::Key_Right);
+		QEditor::addEditOperation(QEditor::CursorWordRight, Qt::ControlModifier, Qt::Key_Left);
+	};
+	if (!sl.empty()) {
+		foreach (const QString& key, sl)
+			configManager.editorKeys.insert(key.toInt(), config->value(key).toInt());
+		QEditor::setEditOperations(configManager.editorKeys);
+	}
 	config->endGroup();
 
 	config->beginGroup("formats");
 	m_formats = new QFormatFactory(":/qxs/defaultFormats.qxf", this); //load default formats from resource file
 	m_formats->load(*config,true); //load customized formats
 	config->endGroup();
-
-	configManager.editorKeys = QEditor::getEditOperations(false);
 
 
 	delete config;
@@ -1943,6 +1956,21 @@ void Texmaker::SaveSettings() {
 	config->setValue("Symbols/Favorite IDs",symbolFavorites);
 
 	config->setValue("Symbols/hiddenlists",leftPanel->hiddenWidgets());
+
+
+	QHash<int, int> keys = QEditor::getEditOperations(true);
+	config->remove("Editor/Use Tab for Move to Placeholder");
+	if (!keys.empty()) {
+		config->beginGroup("Editor Key Mapping");
+		config->remove("");
+		QHash<int, int>::const_iterator i = keys.begin();
+		while (i != keys.constEnd()) {
+			config->setValue(QString::number(i.key()), i.value());
+			++i;
+		}
+		config->endGroup();
+	}
+
 	config->endGroup();
 
 	config->beginGroup("formats");
@@ -3243,6 +3271,7 @@ void Texmaker::GeneralOptions() {
 		updateCompleter();
 
 		// update all docuemnts views as spellcheck may be different
+		QEditor::setEditOperations(configManager.editorKeys,true);
 		for (int i=0; i<EditorView->count();i++) {
 			LatexEditorView* edView=qobject_cast<LatexEditorView*>(EditorView->widget(i));
 			if (edView) {

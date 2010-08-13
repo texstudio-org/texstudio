@@ -283,8 +283,11 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		static inline const QList<QEditor*>& editors() { return m_editors; }		
 
 		static QString translateEditOperation(const EditOperation& op);
-		static void setEditOperations(const QHash<int, int>& newOptions);
+		static void setEditOperations(const QHash<int, int>& newOptions, bool mergeWithDefault=false);
 		static QHash<int, int> getEditOperations(bool excludeDefault=false);
+		static void addEditOperation(const EditOperation& op, const Qt::KeyboardModifiers& modifiers, const Qt::Key& key);
+		static void addEditOperation(const EditOperation& op, const QKeySequence::StandardKey& key);
+		EditOperation getEditOperation(const Qt::KeyboardModifiers& modifiers, const Qt::Key& key);
 	public slots:
 		void undo();
 		void redo();
@@ -441,11 +444,6 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		virtual bool focusNextPrevChild(bool next);
 		
-		static void addEditOperation(const EditOperation& op, const Qt::KeyboardModifiers& modifiers, const Qt::Key& key);
-		static void addEditOperation(const EditOperation& op, const QKeySequence::StandardKey& key);
-		EditOperation getEditOperation(const Qt::KeyboardModifiers& modifiers, const Qt::Key& key);
-
-
 		virtual void cursorMoveOperation(QDocumentCursor &cursor, EditOperation op);
 		virtual void processEditOperation(QDocumentCursor& c, const QKeyEvent* e, EditOperation op);
 		
@@ -490,13 +488,6 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		{m_UseLineForSearch=b;}
 		bool UseLineForSearch()
 		{return m_UseLineForSearch;}
-
-		void setUseTabforMoveToPlaceholder(bool b){
-			m_UseTabforMoveToPlaceholder=b;
-		}
-		bool UseTabforMoveToPlaceholder(){
-			return m_UseTabforMoveToPlaceholder;
-		}
 
 		QString cutBuffer;
 		int cutLineNumber;

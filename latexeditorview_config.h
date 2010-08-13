@@ -22,7 +22,6 @@ public:
 	bool displayModifyTime;
 	bool closeSearchAndReplace;
 	bool useLineForSearch;
-	bool useTabforMoveToPlaceholder;
 	static QString translateEditOperation(int key);
 private:
 };
