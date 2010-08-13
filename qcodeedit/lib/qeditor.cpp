@@ -3802,6 +3802,19 @@ QEditor::EditOperation QEditor::getEditOperation(const Qt::KeyboardModifiers& mo
 	return op;
 }
 
+void QEditor::setEditOperations(const QHash<int, int> &newOptions, bool mergeWithDefault){
+	if (!mergeWithDefault) {
+		m_registeredKeys = newOptions;
+		return;
+	}
+	m_registeredKeys = m_registeredDefaultKeys;
+	QHash<int, int>::const_iterator i = newOptions.begin();
+	while (i != newOptions.constEnd()) {
+		m_registeredKeys.insert(i.key(),i.value());
+		++i;
+	}
+}
+
 QHash<int, int> QEditor::getEditOperations(bool excludeDefault){
 	if (!m_defaultKeysSet) { //todo: thread safe lock
 		m_defaultKeysSet = true;
@@ -3930,16 +3943,11 @@ QHash<int, int> QEditor::getEditOperations(bool excludeDefault){
 		addEditOperation(CreateMirrorUp, Qt::AltModifier | Qt::ControlModifier, Qt::Key_Up);
 		addEditOperation(CreateMirrorDown, Qt::AltModifier | Qt::ControlModifier, Qt::Key_Down);
 
-		//TODO: make all operations customizable (m_UseTabforMoveToPlaceholder is then not longer needed)
-		//if (m_UseTabforMoveToPlaceholder) {
-			addEditOperation(NextPlaceHolder, Qt::ControlModifier, Qt::Key_Tab);
-			addEditOperation(PreviousPlaceHolder, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Backtab);
-		//} else {
-			//addEditOperation(NextPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Down);
-			addEditOperation(NextPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Right);
-			//addEditOperation(PreviousPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Up);
-			addEditOperation(PreviousPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Left);
-		//}
+		//addEditOperation(NextPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Down);
+		addEditOperation(NextPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Right);
+		//addEditOperation(PreviousPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Up);
+		addEditOperation(PreviousPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Left);
+
 		addEditOperation(IndentSelection, Qt::NoModifier, Qt::Key_Tab);
 		addEditOperation(UnindentSelection, Qt::ShiftModifier, Qt::Key_Backtab);
 

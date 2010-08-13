@@ -29,7 +29,8 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
 
 	if (!index.isValid()) return 0;
 	const QAbstractItemModel *model = index.model();
-	if (model->index(index.row(),0,index.parent()).isValid() && model->data(model->index(index.row(),0,index.parent()),Qt::DisplayRole) == deleteRowButton) {
+	if (model->index(index.row(),0,index.parent()).isValid() &&
+	    model->data(model->index(index.row(),0,index.parent()),Qt::DisplayRole) == deleteRowButton) {
 		//editor key replacement
 		if (index.column()==0) return 0;
 		return new QLineEdit(parent);

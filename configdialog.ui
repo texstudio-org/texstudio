@@ -137,7 +137,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>7</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -151,8 +151,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>756</width>
-            <height>563</height>
+            <width>764</width>
+            <height>577</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -1273,16 +1273,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            <widget class="QCheckBox" name="checkBoxState">
             <property name="text">
              <string>Show State Panel</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="2" colspan="2">
-           <widget class="QCheckBox" name="checkBoxTabforMoveToPlaceholder">
-            <property name="text">
-             <string>Use Tab for Move To Placeholder</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
