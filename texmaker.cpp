@@ -1861,16 +1861,16 @@ void Texmaker::ReadSettings() {
 	hiddenLeftPanelWidgets=config->value("Symbols/hiddenlists","").toString();
 	symbolFavorites=config->value("Symbols/Favorite IDs",QStringList()).toStringList();
 
-	configManager.editorKeys = QEditor::getEditOperations(false);
-	config->beginGroup("Editor Key Mapping");
-	QStringList sl = config->childKeys();
+	configManager.editorKeys = QEditor::getEditOperations(false); //this will also initialize the default keys
 	if (config->value("Editor/Use Tab for Move to Placeholder",false).toBool()) {
 		//import deprecated option
 		QEditor::addEditOperation(QEditor::NextPlaceHolder, Qt::ControlModifier, Qt::Key_Tab);
 		QEditor::addEditOperation(QEditor::PreviousPlaceHolder, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Backtab);
-		QEditor::addEditOperation(QEditor::CursorWordLeft, Qt::ControlModifier, Qt::Key_Right);
-		QEditor::addEditOperation(QEditor::CursorWordRight, Qt::ControlModifier, Qt::Key_Left);
+		QEditor::addEditOperation(QEditor::CursorWordLeft, Qt::ControlModifier, Qt::Key_Left);
+		QEditor::addEditOperation(QEditor::CursorWordRight, Qt::ControlModifier, Qt::Key_Right);
 	};
+	config->beginGroup("Editor Key Mapping");
+	QStringList sl = config->childKeys();
 	if (!sl.empty()) {
 		foreach (const QString& key, sl)
 			configManager.editorKeys.insert(key.toInt(), config->value(key).toInt());
@@ -1960,16 +1960,16 @@ void Texmaker::SaveSettings() {
 
 	QHash<int, int> keys = QEditor::getEditOperations(true);
 	config->remove("Editor/Use Tab for Move to Placeholder");
-	if (!keys.empty()) {
-		config->beginGroup("Editor Key Mapping");
+	config->beginGroup("Editor Key Mapping");
+	if (!keys.empty() || !config->childKeys().empty()) {
 		config->remove("");
 		QHash<int, int>::const_iterator i = keys.begin();
 		while (i != keys.constEnd()) {
 			config->setValue(QString::number(i.key()), i.value());
 			++i;
 		}
-		config->endGroup();
 	}
+	config->endGroup();
 
 	config->endGroup();
 
