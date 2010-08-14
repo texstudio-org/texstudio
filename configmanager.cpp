@@ -757,7 +757,7 @@ bool ConfigManager::execConfigDialog() {
 		keysReversed.insertMulti(it.value(), it.key());
 		++it;
 	}
-	QMultiMap<int, int>::const_iterator it2 = keysReversed.begin();
+	QMultiMap<int, int>::const_iterator it2 = keysReversed.constBegin();
 	while (it2 != keysReversed.constEnd()) {
 		QTreeWidgetItem * twi = new QTreeWidgetItem(editorKeys, QStringList() << LatexEditorViewConfig::translateEditOperation(it2.key()) << "" << QKeySequence(it2.value()).toString(QKeySequence::NativeText));
 		twi->setData(0, Qt::UserRole, it2.key());
