@@ -738,23 +738,10 @@ void QEditor::setFlag(EditFlag f, bool b)
 	if ( b )
 	{
 		m_state |= f;
-
-		if ( f == LineWrap )
-		{
-			if ( isVisible() )
-				m_doc->setWidthConstraint(wrapWidth());
-
-			m_cursor.refreshColumnMemory();
-
-			QAction *a = m_actions.value("wrap");
-
-			if ( a && !a->isChecked() )
-				a->setChecked(true);
-		}
 	} else {
 		m_state &= ~f;
 
-		if ( f == LineWrap )
+		if ( f == LineWrap || f == HardLineWrap )
 		{
 			if ( isVisible() )
 				m_doc->clearWidthConstraint();
@@ -768,27 +755,29 @@ void QEditor::setFlag(EditFlag f, bool b)
 		}
 	}
 
-	// TODO : only update cpos if cursor used to be visible?
-	if ( f == LineWrap )
-		ensureCursorVisible();
+	if ( f == LineWrap || f == HardLineWrap )
+	{
+		m_doc->impl()->setHardLineWrap(flag(HardLineWrap));
 
-	if( f == HardLineWrap){
-	    m_doc->impl()->setHardLineWrap(b);
-	    if(b) {
-		if(m_LineWidth>0)
-		    m_doc->setWidthConstraint(m_LineWidth);
-		else
-		    m_doc->setWidthConstraint(wrapWidth());
-	    }else{
-		if(m_state&LineWrap>0){
-		    if ( isVisible() )
-			m_doc->setWidthConstraint(wrapWidth());
-		}else{
-		    if ( isVisible() )
-			m_doc->clearWidthConstraint();
+
+		if ( isVisible() ) {
+			if ( flag(HardLineWrap) )
+				m_doc->setWidthConstraint( m_LineWidth > 0 ? m_LineWidth : wrapWidth() );
+			else if ( flag(LineWrap) )
+				m_doc->setWidthConstraint( wrapWidth() );
+			else
+				m_doc->clearWidthConstraint();
 		}
+
 		m_cursor.refreshColumnMemory();
-	    }
+
+		QAction *a = m_actions.value("wrap");
+
+		if ( a && !a->isChecked() )
+			a->setChecked(flag(LineWrap));
+
+		// TODO : only update cpos if cursor used to be visible?
+		ensureCursorVisible();
 	}
 
 }
@@ -3503,11 +3492,13 @@ void QEditor::showEvent(QShowEvent *e)
 
 	QAbstractScrollArea::showEvent(e);
 	
-	if ( flag(LineWrap) )
-	{
-		m_doc->setWidthConstraint(wrapWidth());
-	}
-	
+	if ( flag(HardLineWrap) )
+		m_doc->setWidthConstraint( m_LineWidth > 0 ? m_LineWidth : wrapWidth() );
+	else if ( flag(LineWrap) )
+		m_doc->setWidthConstraint( wrapWidth() );
+	else
+		m_doc->clearWidthConstraint();
+
 	if ( flag(EnsureVisible) )
 		ensureCursorVisible();
 	

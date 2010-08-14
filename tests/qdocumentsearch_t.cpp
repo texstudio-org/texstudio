@@ -8,6 +8,7 @@
 #include "testutil.h"
 #include <QtTest/QtTest>
 QDocumentSearchTest::QDocumentSearchTest(QEditor* editor): QObject(0), 	ed(editor){
+	ed->setFlag(QEditor::HardLineWrap, false);
 }
 void QDocumentSearchTest::initTestCase(){
 	ds=new QDocumentSearch(ed,"",0);

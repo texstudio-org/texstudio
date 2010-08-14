@@ -84,6 +84,7 @@ QDocumentCursor getHighlightedSelectionIntern(QEditor* ed, const QString& str){
 QSearchReplacePanelTest::QSearchReplacePanelTest(QCodeEdit* codeedit, bool executeAllTests):
 		QObject(0), ed(codeedit->editor()), panel(0), allTests(executeAllTests){
 	if (!codeedit->hasPanel("Search")) return;
+	ed->setFlag(QEditor::HardLineWrap, false);
 	panel=qobject_cast<QSearchReplacePanel*>(codeedit->panels("Search")[0]);
 	Q_ASSERT(panel);
 }

@@ -44,6 +44,7 @@ CodeSnippetTest::CodeSnippetTest(QEditor* editor): QObject(0), 	ed(editor){
 
 void CodeSnippetTest::initTestCase(){
 	ed->setFlag(QEditor::WeakIndent, false); 
+	ed->setFlag(QEditor::HardLineWrap, false);
 }
 
 void CodeSnippetTest::insert_data(){

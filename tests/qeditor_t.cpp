@@ -9,6 +9,7 @@ Q_DECLARE_METATYPE(QList<int>);
 QEditorTest::QEditorTest(QEditor* ed, bool executeAllTests):allTests(executeAllTests)
 {
 	editor=ed;
+	ed->setFlag(QEditor::HardLineWrap, false);
 }
 QEditorTest::~QEditorTest(){
 }
