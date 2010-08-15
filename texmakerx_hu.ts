@@ -519,7 +519,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <location filename="configdialog.ui" line="857"/>
-        <location filename="configdialog.cpp" line="253"/>
+        <location filename="configdialog.cpp" line="254"/>
         <source>Shortcuts</source>
         <translation>Billentyűkombinációk</translation>
     </message>
@@ -548,7 +548,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <location filename="configdialog.ui" line="905"/>
-        <location filename="configdialog.cpp" line="254"/>
+        <location filename="configdialog.cpp" line="255"/>
         <source>Latex Menus</source>
         <translation>LaTeX menük</translation>
     </message>
@@ -569,8 +569,8 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <location filename="configdialog.ui" line="1021"/>
-        <location filename="configdialog.cpp" line="256"/>
-        <location filename="configmanager.cpp" line="751"/>
+        <location filename="configdialog.cpp" line="257"/>
+        <location filename="configmanager.cpp" line="750"/>
         <source>Editor</source>
         <translation>Szerkesztő</translation>
     </message>
@@ -600,17 +600,17 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Szerkesztő karakterkódolása</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1299"/>
+        <location filename="configdialog.ui" line="1289"/>
         <source>No line numbers</source>
         <translation>Ne legyenek a sorok számozva</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1304"/>
+        <location filename="configdialog.ui" line="1294"/>
         <source>Show line numbers</source>
         <translation>Sorok számának mutatása</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1309"/>
+        <location filename="configdialog.ui" line="1299"/>
         <source>Show important line numbers</source>
         <translation>Fontos sorok számának mutatása</translation>
     </message>
@@ -637,7 +637,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <location filename="configdialog.ui" line="1191"/>
         <source>Use single line selection as Search Word</source>
-        <translation>Kijelölt szöveg használata keresőszónként</translation>
+        <translation>Kijelölt szöveg használata keresőszóként</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1201"/>
@@ -645,12 +645,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Csak utf16/utf-8 és ISO 8859-1 közül tud választani!</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1285"/>
-        <source>Use Tab for Move To Placeholder</source>
-        <translation>Tab használata a helykitöltők közti mozgásra</translation>
-    </message>
-    <message>
-        <location filename="configdialog.ui" line="1317"/>
+        <location filename="configdialog.ui" line="1307"/>
         <source>Show Whitespace</source>
         <translation>Térközök megjelenítése</translation>
     </message>
@@ -672,7 +667,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <location filename="configdialog.ui" line="894"/>
         <source>Close Log-View with Esc-Key</source>
-        <translation>A napló bezárása Escape-pel</translation>
+        <translation>Napló bezárása Escape-pel</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1079"/>
@@ -750,102 +745,102 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Latex parancsok automatikus cseréje</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1337"/>
+        <location filename="configdialog.ui" line="1327"/>
         <source>Hard Line Wrap</source>
-        <translation>Kemény sortörés</translation>
+        <translation>Sortörés</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1351"/>
+        <location filename="configdialog.ui" line="1341"/>
         <source>max. Characters:</source>
         <translation>Karakterek maximális száma:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1373"/>
+        <location filename="configdialog.ui" line="1363"/>
         <source>Custom Environment</source>
         <translation>Egyéni környezet</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1378"/>
+        <location filename="configdialog.ui" line="1368"/>
         <source>Type of Environment</source>
         <translation>Környezet típusa</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1388"/>
+        <location filename="configdialog.ui" line="1378"/>
         <source>Add line</source>
         <translation>Sor hozzáadása</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1395"/>
+        <location filename="configdialog.ui" line="1385"/>
         <source>Remove line</source>
         <translation>Sor eltávolítása</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1421"/>
+        <location filename="configdialog.ui" line="1411"/>
         <source>Completion Enabled</source>
         <translation>Kiegészítés engedélyezése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1428"/>
+        <location filename="configdialog.ui" line="1418"/>
         <source>Case Sensitive</source>
         <translation>Kis/nagybetű érzékeny</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1453"/>
+        <location filename="configdialog.ui" line="1443"/>
         <source>In first character</source>
         <translation>Az első karakterben</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1478"/>
+        <location filename="configdialog.ui" line="1468"/>
         <source>Auto Complete Common Prefix</source>
         <translation>Általános prefixek automatikus kiegészítése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1488"/>
+        <location filename="configdialog.ui" line="1478"/>
         <source>Complete selected text when non-word character is pressed</source>
         <translation>A kiválasztott szöveg kiegészítése nem-szó karakter lenyomására</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1498"/>
+        <location filename="configdialog.ui" line="1488"/>
         <source>Enable ToolTip-Help</source>
         <translation>Felugró-súgó engedélyezése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1508"/>
+        <location filename="configdialog.ui" line="1498"/>
         <source>Use placeholders</source>
         <translation>Helykitöltők engedélyezése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1518"/>
+        <location filename="configdialog.ui" line="1508"/>
         <source>Use following completion files:</source>
         <translation>Használja a következő kiegészítésfájlokat:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1536"/>
+        <location filename="configdialog.ui" line="1526"/>
         <source>Automatically check in after save ?</source>
         <translation>Jelentkezzen be automatikusan mentés után?</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1543"/>
+        <location filename="configdialog.ui" line="1533"/>
         <source>Uses SVN revisions to undo before last saved version ?</source>
         <translation>Használja az SVN kiadásokat a visszavonáshoz a legutóbbi mentett verzió előtt?</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1550"/>
+        <location filename="configdialog.ui" line="1540"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation>Az svn add futtatásakor végrehajtódik az svn propset svn:keyword &quot;Date Author Revision HeadURL&quot;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1553"/>
+        <location filename="configdialog.ui" line="1543"/>
         <source>Substitue Keywords with Properties (on svn add)</source>
         <translation>Kulcsszavak helyettesítése Tulajdonságokkal (svn add esetén)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1560"/>
+        <location filename="configdialog.ui" line="1550"/>
         <source>SVN Commands</source>
         <translation>SVN parancsok</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1569"/>
+        <location filename="configdialog.ui" line="1559"/>
         <source>SVN Directory Search Depth: </source>
         <translation>SVN könyvtár keresési mélység:</translation>
     </message>
@@ -853,164 +848,168 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <location filename="configdialog.ui" line="118"/>
         <source>Show advanced options</source>
         <oldsource>show advanced options</oldsource>
-        <translation>haladó beállítások megjelenítése</translation>
+        <translation>Haladó beállítások megjelenítése</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="104"/>
-        <location filename="configdialog.cpp" line="124"/>
-        <location filename="configdialog.cpp" line="179"/>
+        <location filename="configdialog.cpp" line="105"/>
+        <location filename="configdialog.cpp" line="125"/>
+        <location filename="configdialog.cpp" line="180"/>
         <source>TexMakerX</source>
         <translation>TexMakerX</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="105"/>
+        <location filename="configdialog.cpp" line="106"/>
         <source>The shortcut you entered is invalid.</source>
         <translation>A megadott billentyűkombináció érvénytelen.</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="125"/>
+        <location filename="configdialog.cpp" line="126"/>
         <source>The shortcut you entered is the same as the one of this command:</source>
         <translation>A megadott billentyűkombináció ugyanaz, mint ezen a parancsok egyike:</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="125"/>
+        <location filename="configdialog.cpp" line="126"/>
         <source>Should I delete this other shortcut?</source>
         <translation>Töröljem ezt a másik billentyűkombinációt?</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="180"/>
+        <location filename="configdialog.cpp" line="181"/>
         <source>Do you really want to delete this row?</source>
         <translation>Biztosan törölni akarja ezt a sort?</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="227"/>
+        <location filename="configdialog.cpp" line="228"/>
         <source>Get dictionaries at: %1</source>
         <translation>Szótárak beszerzése: %1</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="246"/>
+        <location filename="configdialog.cpp" line="247"/>
         <source>Command</source>
         <translation>Parancs</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="246"/>
+        <location filename="configdialog.cpp" line="247"/>
         <source>Default Shortcut</source>
         <translation>Alapértelmezett billentyűkombináció</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="246"/>
+        <location filename="configdialog.cpp" line="247"/>
         <source>Current Shortcut</source>
         <translation>Jelenlegi billentyűkombináció</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="246"/>
+        <location filename="configdialog.cpp" line="247"/>
         <source>Additional Shortcut</source>
         <translation>További billentyűkombinációk</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="250"/>
+        <location filename="configdialog.cpp" line="251"/>
         <source>General</source>
         <translation>Általános</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="251"/>
+        <location filename="configdialog.cpp" line="252"/>
         <source>Commands</source>
         <translation>Parancsok</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="252"/>
+        <location filename="configdialog.cpp" line="253"/>
         <source>Quick Build</source>
         <translation>Gyors fordítás</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="255"/>
+        <location filename="configdialog.cpp" line="256"/>
         <source>Custom Toolbar</source>
         <translation>Egyéni eszköztár</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="257"/>
+        <location filename="configdialog.cpp" line="258"/>
         <source>Editor2</source>
-        <translatorcomment>?</translatorcomment>
-        <translation type="unfinished">2. Szerkesztő</translation>
+        <translation>Sortörés</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="258"/>
+        <location filename="configdialog.cpp" line="259"/>
         <source>Custom Highlighting</source>
         <translation>Egyéni kiemelés</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="259"/>
+        <location filename="configdialog.cpp" line="260"/>
         <source>Completion</source>
         <translation>Kiegészítés</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="260"/>
+        <location filename="configdialog.cpp" line="261"/>
         <source>SVN</source>
         <translation>SVN</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="317"/>
+        <location filename="configdialog.cpp" line="318"/>
         <source>Browse dictionary</source>
         <translation>Szótár megadása</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="327"/>
-        <location filename="configdialog.cpp" line="330"/>
+        <location filename="configdialog.cpp" line="328"/>
+        <location filename="configdialog.cpp" line="331"/>
         <source>Get dictionary at: %1</source>
         <translation>Szótár beszerzése: %1</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="330"/>
+        <location filename="configdialog.cpp" line="331"/>
         <source>(Dictionary doesn&apos;t exists)</source>
         <translation>(A szótár nem létezik)</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="366"/>
+        <location filename="configdialog.cpp" line="367"/>
         <source>Browse thesaurus database</source>
         <translation>Tezaurusz adatbázis megadása</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="379"/>
+        <location filename="configdialog.cpp" line="380"/>
         <source>Browse program</source>
         <translation>Program megadása</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="466"/>
+        <location filename="configdialog.cpp" line="467"/>
         <source>Load other icon</source>
         <translation>Másik ikon betöltése</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="471"/>
+        <location filename="configdialog.cpp" line="472"/>
         <source>Select a File</source>
         <translation>Fájl kiválasztása</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="471"/>
+        <location filename="configdialog.cpp" line="472"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.svg)</source>
         <translation>Képek (*.png *.xpm *.jpg *.bmp *.svg)</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="753"/>
+        <location filename="configmanager.cpp" line="751"/>
+        <source>Basic Key Mapping</source>
+        <translation>Alapvető billenyűparancsok</translation>
+    </message>
+    <message>
+        <location filename="configmanager.cpp" line="769"/>
         <source>Special Key Replacement</source>
         <translation>Különleges kulcs csere</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="754"/>
+        <location filename="configmanager.cpp" line="770"/>
         <source>New column meaning:</source>
         <translation>Új oszlop jelentése:</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="754"/>
+        <location filename="configmanager.cpp" line="770"/>
         <source>Key to replace</source>
         <translation>Cserélendő kulcs</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="754"/>
+        <location filename="configmanager.cpp" line="770"/>
         <source>Text to insert before word</source>
         <translation>Szöveg beillesztése a szó elé</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="754"/>
+        <location filename="configmanager.cpp" line="770"/>
         <source>Text to insert after word</source>
         <translation>Szöveg beillesztése a szó után</translation>
     </message>
@@ -1018,74 +1017,74 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
 <context>
     <name>ConfigManager</name>
     <message>
+        <location filename="configmanager.cpp" line="649"/>
         <location filename="configmanager.cpp" line="650"/>
-        <location filename="configmanager.cpp" line="651"/>
-        <location filename="configmanager.cpp" line="801"/>
-        <location filename="configmanager.cpp" line="803"/>
-        <location filename="configmanager.cpp" line="943"/>
-        <location filename="configmanager.cpp" line="955"/>
+        <location filename="configmanager.cpp" line="818"/>
+        <location filename="configmanager.cpp" line="820"/>
+        <location filename="configmanager.cpp" line="963"/>
+        <location filename="configmanager.cpp" line="975"/>
         <source>default</source>
         <translation>Alapértelmezett</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="745"/>
+        <location filename="configmanager.cpp" line="744"/>
         <source>Menus</source>
         <translation>Menük</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="795"/>
+        <location filename="configmanager.cpp" line="812"/>
         <source>Latex/Math menus</source>
         <translation>LaTeX/Matematika menük</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="796"/>
+        <location filename="configmanager.cpp" line="813"/>
         <source>All menus</source>
         <translation>Minden menü</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="797"/>
+        <location filename="configmanager.cpp" line="814"/>
         <source>Special Tags</source>
         <translation>Speciális elemek</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1005"/>
+        <location filename="configmanager.cpp" line="1025"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>Legutóbbi &apos;Mesterdokumentum&apos;: %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1011"/>
+        <location filename="configmanager.cpp" line="1031"/>
         <source>Recent File %1</source>
         <translation>Legutóbbi fájl %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1019"/>
+        <location filename="configmanager.cpp" line="1039"/>
         <source>Master Document: </source>
         <translation>Mesterdokumentum:</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1219"/>
-        <location filename="configmanager.cpp" line="1226"/>
+        <location filename="configmanager.cpp" line="1239"/>
+        <location filename="configmanager.cpp" line="1246"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;nincs&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1220"/>
-        <location filename="configmanager.cpp" line="1227"/>
+        <location filename="configmanager.cpp" line="1240"/>
+        <location filename="configmanager.cpp" line="1247"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;alapértelmezett&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1338"/>
+        <location filename="configmanager.cpp" line="1358"/>
         <source>Browse program</source>
         <translation>Program megadása</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1358"/>
+        <location filename="configmanager.cpp" line="1378"/>
         <source>Latex</source>
         <translation>LaTeX</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1358"/>
+        <location filename="configmanager.cpp" line="1378"/>
         <source>Math</source>
         <translation>Matematika</translation>
     </message>
@@ -1941,7 +1940,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <name>LatexEditorView</name>
     <message>
         <location filename="latexeditorview.cpp" line="139"/>
-        <location filename="latexeditorview.cpp" line="709"/>
+        <location filename="latexeditorview.cpp" line="708"/>
         <source>shift pressed =&gt; suggestions hidden</source>
         <translation>shift lenyomva =&gt; javaslatok rejtve</translation>
     </message>
@@ -1956,37 +1955,37 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <translation>Új BibTeX bejegyzés %1</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="861"/>
+        <location filename="latexeditorview.cpp" line="860"/>
         <source>label missing!</source>
         <translation>címke hiányzik!</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="863"/>
-        <location filename="latexeditorview.cpp" line="881"/>
+        <location filename="latexeditorview.cpp" line="862"/>
+        <location filename="latexeditorview.cpp" line="880"/>
         <source>label multiple times defined!</source>
         <translation>címke többszörösen definiálva!</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="869"/>
+        <location filename="latexeditorview.cpp" line="868"/>
         <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Fájlnév: %1&lt;/b&gt;
 </translation>
     </message>
     <message numerus="yes">
-        <location filename="latexeditorview.cpp" line="884"/>
+        <location filename="latexeditorview.cpp" line="883"/>
         <source>%n reference(s) to this label</source>
         <translation>
             <numerusform>%n hivatkozás erre a címkére</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="890"/>
+        <location filename="latexeditorview.cpp" line="889"/>
         <source>citation correct</source>
         <translation>forrásmegjelölés helyes</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="890"/>
+        <location filename="latexeditorview.cpp" line="889"/>
         <source>citation missing!</source>
         <translation>forrásmegjelölés hiányzik!</translation>
     </message>
@@ -2236,144 +2235,144 @@ Restart from the beginning ?</source>
         <translation>&amp;Nézet</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="180"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="665"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1478"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="184"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="669"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1323"/>
         <source>Default</source>
         <translation>Alapértelmezett</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="490"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1451"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="494"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1296"/>
         <source>&amp;Undo</source>
         <translation>&amp;Vissza</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="501"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1452"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="505"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1297"/>
         <source>&amp;Redo</source>
         <translation>Újr&amp;a</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="516"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1454"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="520"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1299"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Kivágás</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="527"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1455"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="531"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1300"/>
         <source>&amp;Copy</source>
         <translation>&amp;Másolás</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="538"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1456"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="542"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1301"/>
         <source>&amp;Paste</source>
         <translation>&amp;Beillesztés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="554"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1458"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="558"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1303"/>
         <source>&amp;Indent</source>
         <translation>Be&amp;húzás</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="562"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1459"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="566"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1304"/>
         <source>&amp;Unindent</source>
         <translation>Behúzás me&amp;gszüntetése</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="574"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1460"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="578"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1305"/>
         <source>Co&amp;mment</source>
         <translation>Meg&amp;jegyzés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="582"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1461"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="586"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1306"/>
         <source>Unc&amp;omment</source>
         <translation>Megjegyzés &amp;visszavonása</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="594"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1463"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="598"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1308"/>
         <source>&amp;Select all</source>
         <translation>Ö&amp;sszes kijelölése</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="606"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1465"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="610"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1310"/>
         <source>&amp;Find</source>
         <translation>&amp;Keresés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="614"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1466"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="618"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1311"/>
         <source>Fin&amp;d next</source>
         <translation>Kö&amp;vetkező</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="622"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1467"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="626"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1312"/>
         <source>&amp;Replace</source>
         <translation>&amp;Csere</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="634"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1469"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="638"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1314"/>
         <source>&amp;Goto line...</source>
         <translation>&amp;Ugrás sorra...</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="646"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="650"/>
         <source>Dynamic line wrapping</source>
         <translation>Dinamikus sortörés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="658"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1475"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="662"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1320"/>
         <source>Input binding</source>
         <translation>Bemenet kötés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="683"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="687"/>
         <source>Line endings</source>
         <translation>Sorvégek</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="690"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="694"/>
         <source>Conservative</source>
         <translation>Konzervatív</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="691"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="695"/>
         <source>Local</source>
         <translation>Helyi</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="692"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="696"/>
         <source>Unix/Linux</source>
         <translation>Unix/Linux</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="693"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="697"/>
         <source>Dos/Windows</source>
         <translation>Dos/Windows</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="694"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="698"/>
         <source>Old Mac</source>
         <translation>Régi Mac</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1035"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="880"/>
         <source>Conflict!</source>
         <translation>Ütközés!</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1036"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="881"/>
         <source>%1
 has been modified by another application.
 Press &quot;Save&quot; to overwrite the file on disk
@@ -2388,13 +2387,13 @@ Nyomja a &quot;Mellőz&quot; gombot a figyelmeztetés mellőzéséhez.
 </translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1186"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1190"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1031"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1035"/>
         <source>File deleted</source>
         <translation>Fájl törölve</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1186"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1031"/>
         <source>The file %1 has been deleted on disk.
 Should I save the document as it is to restore the file?
 </source>
@@ -2403,19 +2402,19 @@ Mentsem a dokumentumot, ezzel helyreállítva a fájlt?
 </translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1190"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1035"/>
         <source>Well, this is strange: The file %1 is not deleted anymore.
 Probably someone else restored it and therefore I&apos;m not going to override the (possible modified) version on the disk.</source>
         <translation>Nos, ez elég furcsa, de a(z) %1 fájl már nincs törölve.
 Valószínűleg valaki helyreállította, így nem fogom felülírni (a valószínűleg módosított) változatot a lemezen.</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1215"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1060"/>
         <source>File changed</source>
         <translation>Fájl módosult</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1216"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1061"/>
         <source>%1
 has been modified by another application.
 
@@ -2428,34 +2427,296 @@ A visszavonás/újra verem elveszne az automatikus újratöltéstől.
 Naprakészen kívánja tartani a fájlt egy újratöltéssel?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1481"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1326"/>
         <source>&amp;Edit</source>
         <translation>&amp;Szerkesztés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1482"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1327"/>
         <source>&amp;Search</source>
         <translation>&amp;Keresés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1484"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1329"/>
         <source>Edit</source>
         <translation>Szerkesztés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1485"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1330"/>
         <source>Search</source>
         <translation>Keresés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1607"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1452"/>
         <source>Windows</source>
         <translation>Windows</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1609"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1454"/>
         <source>Unix</source>
         <translation>Unix</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="3975"/>
+        <source>none</source>
+        <translation>nincs</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="3976"/>
+        <source>ungÃ¼ltig</source>
+        <translation>Érvénytelen</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="3978"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="3994"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4010"/>
+        <source>internal</source>
+        <translation>Belső</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="3980"/>
+        <source>move cursor up</source>
+        <translation>Kurzor fel</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="3981"/>
+        <source>move cursor down</source>
+        <translation>Kurzor le</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="3982"/>
+        <source>move cursor left (1 character)</source>
+        <translation>Kurzor balra (egy karakterrel)</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="3983"/>
+        <source>move cursor right (1 character)</source>
+        <translation>Kurzor jobbra (egy karakterrel)</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="3984"/>
+        <source>move cursor left (1 word)</source>
+        <translation>Kurzor balra (egy szóval)</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="3985"/>
+        <source>move cursor right (1 word)</source>
+        <translation>Kurzor jobbra (egy szóval)</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="3986"/>
+        <source>move cursor to line start</source>
+        <translation>Kurzor a sorelejére</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="3987"/>
+        <source>move cursor to line end</source>
+        <translation>Kurzor a sor végére</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="3988"/>
+        <source>move cursor to document start</source>
+        <translation>Kurzor a dokumentum elejére</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="3989"/>
+        <source>move cursor to document end</source>
+        <translation>Kurzor a dokumentum végére</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="3991"/>
+        <source>move cursor one page up</source>
+        <translation>Kurzor fel (egy lappal)</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="3992"/>
+        <source>move cursor one page down</source>
+        <translation>Kurzor le (egy lappal)</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="3996"/>
+        <source>select up</source>
+        <translation>Kiválasztás felfelé</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="3997"/>
+        <source>select down</source>
+        <translation>Kiválasztás lefelé</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="3998"/>
+        <source>select left (1 character)</source>
+        <translation>Balra lévő karakter kiválasztása</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="3999"/>
+        <source>select right (1 character)</source>
+        <translation>Jobbra lévő karakter kiválasztása</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4000"/>
+        <source>select left (1 word)</source>
+        <translation>Balra lévő szó kiválasztása</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4001"/>
+        <source>select right (1 word)</source>
+        <translation>Jobbra lévő szó kiválasztása</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4002"/>
+        <source>select to line start</source>
+        <translation>Kijelölés a sor elejéig</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4003"/>
+        <source>select to line end</source>
+        <translation>Kijelölés a sor végéig</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4004"/>
+        <source>select to document start</source>
+        <translation>Kijelölés a dokumentum elejéig</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4005"/>
+        <source>select to document end</source>
+        <translation>Kijelölés a dokumentum végéig</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4007"/>
+        <source>select page up</source>
+        <translation>Előző lap kijelölése</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4008"/>
+        <source>select page down</source>
+        <translation>Következő lap kijelölése</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4012"/>
+        <source>Delete left character</source>
+        <translation>Bal karakter törlése</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4013"/>
+        <source>Delete right character</source>
+        <translation>Jobb karakter törlése</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4014"/>
+        <source>Delete left word</source>
+        <translation>Bal oldali szó törlése</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4015"/>
+        <source>Delete right word</source>
+        <translation>Jobb oldali szó törlése</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4016"/>
+        <source>New line</source>
+        <translation>Új sor</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4018"/>
+        <source>Change overwrite mode</source>
+        <translation>Felülírás mód megváltoztatása</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4019"/>
+        <source>Undo</source>
+        <translation>Vissza</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4020"/>
+        <source>Redo</source>
+        <translation>Újra</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4021"/>
+        <source>Copy</source>
+        <translation>Másolás</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4022"/>
+        <source>Paste</source>
+        <translation>Beillesztés</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4023"/>
+        <source>Cut</source>
+        <translation>Kivágás</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4024"/>
+        <source>Print</source>
+        <translation>Nyomtatás</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4025"/>
+        <source>Select all</source>
+        <translation>Összes kijelölése</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4026"/>
+        <source>Find</source>
+        <translation>Keresés</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4027"/>
+        <source>Find next</source>
+        <translation>Következő keresés</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4028"/>
+        <source>Replace</source>
+        <translation>Csere</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4030"/>
+        <source>Create cursor mirror up</source>
+        <translation>Előző hiba/figyelmeztetés</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4031"/>
+        <source>Create cursor mirror down</source>
+        <translation>Következő hiba/figyelmeztetés</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4032"/>
+        <source>Next placeholder</source>
+        <translation>Következő helykitöltő</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4033"/>
+        <source>Previous placeholder</source>
+        <translation>Előző helykitöltő</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4034"/>
+        <source>Next placeholder or one word right</source>
+        <translation>Következő helykitöltő vagy egy szó jobbra</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4035"/>
+        <source>Previous placeholder or one word left</source>
+        <translation>Előző helykitöltő vagy egy szó balra</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4036"/>
+        <source>Indent selection</source>
+        <translation>Behúzás kiválasztása</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4037"/>
+        <source>Unindent selection</source>
+        <translation>Behúzás megszüntetésének kiválasztása</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4040"/>
+        <source>unknown</source>
+        <translation>Ismeretlen</translation>
     </message>
 </context>
 <context>
@@ -2483,14 +2744,6 @@ Naprakészen kívánja tartani a fájlt egy újratöltéssel?</translation>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="66"/>
         <source>font</source>
         <translation>betű</translation>
-    </message>
-    <message>
-        <source>size</source>
-        <translation type="obsolete">méret</translation>
-    </message>
-    <message>
-        <source>prio</source>
-        <translation type="obsolete">prioritás</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="242"/>
@@ -2548,14 +2801,6 @@ Naprakészen kívánja tartani a fájlt egy újratöltéssel?</translation>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="359"/>
         <source>Font family</source>
         <translation>Betűkészlet</translation>
-    </message>
-    <message>
-        <source>Point size</source>
-        <translation type="obsolete">Pontméret</translation>
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation type="obsolete">Prioritás</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="523"/>
@@ -2694,8 +2939,8 @@ Akarja menteni ezeket?</translation>
     <name>QObject</name>
     <message>
         <location filename="codesnippet.cpp" line="22"/>
-        <location filename="tests/codesnippet_t.cpp" line="130"/>
-        <location filename="tests/codesnippet_t.cpp" line="422"/>
+        <location filename="tests/codesnippet_t.cpp" line="131"/>
+        <location filename="tests/codesnippet_t.cpp" line="423"/>
         <source>content...</source>
         <translation>tartalom...</translation>
     </message>
@@ -3157,28 +3402,28 @@ Akarja menteni ezeket?</translation>
 <context>
     <name>ShortcutDelegate</name>
     <message>
-        <location filename="configdialog.cpp" line="40"/>
+        <location filename="configdialog.cpp" line="41"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;alapértelmezett&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="41"/>
-        <location filename="configdialog.cpp" line="99"/>
+        <location filename="configdialog.cpp" line="42"/>
+        <location filename="configdialog.cpp" line="100"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;nincs&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="88"/>
+        <location filename="configdialog.cpp" line="89"/>
         <source>Only single characters are allowed as key</source>
         <translation>Csak önálló karakterek lehetnek kulcsok</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="150"/>
+        <location filename="configdialog.cpp" line="151"/>
         <source>delete row</source>
         <translation>sor törlése</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="156"/>
+        <location filename="configdialog.cpp" line="157"/>
         <source>add row</source>
         <translation>sor hozzáadása</translation>
     </message>
@@ -3398,14 +3643,14 @@ Akarja menteni ezeket?</translation>
     <name>Texmaker</name>
     <message>
         <location filename="texmaker.cpp" line="153"/>
-        <location filename="texmaker.cpp" line="3466"/>
+        <location filename="texmaker.cpp" line="3498"/>
         <source>Normal Mode</source>
         <translation>Normál mód</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="154"/>
-        <location filename="texmaker.cpp" line="2747"/>
-        <location filename="texmaker.cpp" line="2925"/>
+        <location filename="texmaker.cpp" line="2778"/>
+        <location filename="texmaker.cpp" line="2956"/>
         <source>Ready</source>
         <translation>Kész</translation>
     </message>
@@ -3552,13 +3797,13 @@ Akarja menteni ezeket?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="573"/>
-        <location filename="texmaker.cpp" line="3702"/>
+        <location filename="texmaker.cpp" line="3734"/>
         <source>Copy</source>
         <translation>Másolás</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="574"/>
-        <location filename="texmaker.cpp" line="3703"/>
+        <location filename="texmaker.cpp" line="3735"/>
         <source>Cut</source>
         <translation>Kivágás</translation>
     </message>
@@ -3729,17 +3974,17 @@ Akarja menteni ezeket?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="450"/>
-        <location filename="texmaker.cpp" line="2765"/>
+        <location filename="texmaker.cpp" line="2796"/>
         <source>Quick Build</source>
         <translation>&amp;Gyors fordítás</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2712"/>
+        <location filename="texmaker.cpp" line="2743"/>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2922"/>
+        <location filename="texmaker.cpp" line="2953"/>
         <source>Clean</source>
         <translation>Tisztítás</translation>
     </message>
@@ -3766,7 +4011,7 @@ Akarja menteni ezeket?</translation>
         <translation>&amp;Varázslók</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2476"/>
+        <location filename="texmaker.cpp" line="2507"/>
         <source>Quick Start</source>
         <translation>Gyors kezdés</translation>
     </message>
@@ -3911,12 +4156,12 @@ Akarja menteni ezeket?</translation>
         <location filename="texmaker.cpp" line="421"/>
         <source>Hard Line &amp;Break...</source>
         <oldsource>Hard Line &amp;Break</oldsource>
-        <translation>&quot;Kemé&amp;ny&quot; sortörés...</translation>
+        <translation>S&amp;ortörés...</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="422"/>
         <source>R&amp;epeat Hard Line Break</source>
-        <translation>Ismétel&amp;t &quot;kemény&quot; sortörés</translation>
+        <translation>Ismétel&amp;t sortörés</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="356"/>
@@ -3942,7 +4187,7 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="texmaker.cpp" line="405"/>
         <source>&amp;Idefix (?)</source>
-        <translation>Ú&amp;j menü</translation>
+        <translation>Elő&amp;készítés</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="436"/>
@@ -4096,7 +4341,7 @@ Akarja menteni ezeket?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="515"/>
-        <location filename="texmaker.cpp" line="2563"/>
+        <location filename="texmaker.cpp" line="2594"/>
         <source>Edit User &amp;Tags</source>
         <translation>&amp;Felhasználói elemek szerkesztése...</translation>
     </message>
@@ -4107,7 +4352,7 @@ Akarja menteni ezeket?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="522"/>
-        <location filename="texmaker.cpp" line="2945"/>
+        <location filename="texmaker.cpp" line="2976"/>
         <source>Edit User &amp;Commands</source>
         <translation>&amp;Felhasználói parancsok szerkesztése...</translation>
     </message>
@@ -4196,13 +4441,13 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="texmaker.cpp" line="1594"/>
         <source>Insert hard line breaks after so many characters:</source>
-        <translation>&quot;Kemény&quot; sortörés beszúrása ennyi karakter után:</translation>
+        <translation>Sortörés ennyi karakter után:</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="1595"/>
         <source>Smart scope selecting</source>
         <translatorcomment>?</translatorcomment>
-        <translation type="unfinished">Okos hatókör-kiválasztás</translation>
+        <translation>Hatékony hatókör-kiválasztás</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="1596"/>
@@ -4210,19 +4455,19 @@ Akarja menteni ezeket?</translation>
         <translation>Sorok összefűzése törés előtt</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4336"/>
+        <location filename="texmaker.cpp" line="4368"/>
         <source>TmX Profile</source>
         <comment>filter</comment>
         <translation>TmX profil</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4336"/>
+        <location filename="texmaker.cpp" line="4368"/>
         <source>Load Profile</source>
         <oldsource>load Profile</oldsource>
         <translation>Profil betöltése</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3464"/>
+        <location filename="texmaker.cpp" line="3496"/>
         <source>Define Current Document as &apos;Master Document&apos;</source>
         <translation>&amp;Legyen a jelenlegi dokumentum a &apos;Mesterdokumentum&apos;</translation>
     </message>
@@ -4257,25 +4502,25 @@ Akarja menteni ezeket?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="575"/>
-        <location filename="texmaker.cpp" line="3704"/>
+        <location filename="texmaker.cpp" line="3736"/>
         <source>Paste before</source>
         <translation>Beillesztés elé</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="576"/>
-        <location filename="texmaker.cpp" line="3705"/>
+        <location filename="texmaker.cpp" line="3737"/>
         <source>Paste after</source>
         <translation>Beillesztés utána</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="580"/>
-        <location filename="texmaker.cpp" line="3707"/>
+        <location filename="texmaker.cpp" line="3739"/>
         <source>Indent Section</source>
         <translation>Fejezet behúzása</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="581"/>
-        <location filename="texmaker.cpp" line="3708"/>
+        <location filename="texmaker.cpp" line="3740"/>
         <source>Unindent Section</source>
         <translation>Fejezet behúzásának megszüntetése</translation>
     </message>
@@ -4326,23 +4571,23 @@ Akarja menteni ezeket?</translation>
         <location filename="texmaker.cpp" line="1019"/>
         <location filename="texmaker.cpp" line="1051"/>
         <location filename="texmaker.cpp" line="1622"/>
-        <location filename="texmaker.cpp" line="2643"/>
-        <location filename="texmaker.cpp" line="2668"/>
-        <location filename="texmaker.cpp" line="2707"/>
-        <location filename="texmaker.cpp" line="2760"/>
-        <location filename="texmaker.cpp" line="2772"/>
-        <location filename="texmaker.cpp" line="2788"/>
-        <location filename="texmaker.cpp" line="2801"/>
-        <location filename="texmaker.cpp" line="2814"/>
-        <location filename="texmaker.cpp" line="2830"/>
-        <location filename="texmaker.cpp" line="2848"/>
-        <location filename="texmaker.cpp" line="2866"/>
-        <location filename="texmaker.cpp" line="2912"/>
-        <location filename="texmaker.cpp" line="3034"/>
-        <location filename="texmaker.cpp" line="3055"/>
-        <location filename="texmaker.cpp" line="3179"/>
-        <location filename="texmaker.cpp" line="3187"/>
-        <location filename="texmaker.cpp" line="3365"/>
+        <location filename="texmaker.cpp" line="2674"/>
+        <location filename="texmaker.cpp" line="2699"/>
+        <location filename="texmaker.cpp" line="2738"/>
+        <location filename="texmaker.cpp" line="2791"/>
+        <location filename="texmaker.cpp" line="2803"/>
+        <location filename="texmaker.cpp" line="2819"/>
+        <location filename="texmaker.cpp" line="2832"/>
+        <location filename="texmaker.cpp" line="2845"/>
+        <location filename="texmaker.cpp" line="2861"/>
+        <location filename="texmaker.cpp" line="2879"/>
+        <location filename="texmaker.cpp" line="2897"/>
+        <location filename="texmaker.cpp" line="2943"/>
+        <location filename="texmaker.cpp" line="3065"/>
+        <location filename="texmaker.cpp" line="3086"/>
+        <location filename="texmaker.cpp" line="3210"/>
+        <location filename="texmaker.cpp" line="3218"/>
+        <location filename="texmaker.cpp" line="3397"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
@@ -4385,7 +4630,7 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="texmaker.cpp" line="1114"/>
         <location filename="texmaker.cpp" line="1170"/>
-        <location filename="texmaker.cpp" line="4336"/>
+        <location filename="texmaker.cpp" line="4368"/>
         <source>All files</source>
         <translation>Minden fájl</translation>
     </message>
@@ -4397,7 +4642,7 @@ Akarja menteni ezeket?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="1030"/>
-        <location filename="texmaker.cpp" line="3858"/>
+        <location filename="texmaker.cpp" line="3890"/>
         <source>Remove</source>
         <translation>Eltávolítás</translation>
     </message>
@@ -4429,7 +4674,7 @@ Akarja menteni ezeket?</translation>
         <location filename="texmaker.cpp" line="1248"/>
         <location filename="texmaker.cpp" line="1274"/>
         <location filename="texmaker.cpp" line="1310"/>
-        <location filename="texmaker.cpp" line="2916"/>
+        <location filename="texmaker.cpp" line="2947"/>
         <source>Cancel</source>
         <translation>Mégsem</translation>
     </message>
@@ -4442,8 +4687,8 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="texmaker.cpp" line="1608"/>
         <location filename="texmaker.cpp" line="1618"/>
-        <location filename="texmaker.cpp" line="2962"/>
-        <location filename="texmaker.cpp" line="2979"/>
+        <location filename="texmaker.cpp" line="2993"/>
+        <location filename="texmaker.cpp" line="3010"/>
         <source>No document open</source>
         <translation>Nincs dokumentum megnyitva</translation>
     </message>
@@ -4453,206 +4698,206 @@ Akarja menteni ezeket?</translation>
         <translation>Tezaurusz betöltése nem lehetséges</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2514"/>
+        <location filename="texmaker.cpp" line="2545"/>
         <source>&lt;current file&gt;</source>
         <translation>&lt;jelenlegi fájl&gt;</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2592"/>
-        <location filename="texmaker.cpp" line="2612"/>
+        <location filename="texmaker.cpp" line="2623"/>
+        <location filename="texmaker.cpp" line="2643"/>
         <source>Labels:</source>
         <translation>Címkék:</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2643"/>
-        <location filename="texmaker.cpp" line="2912"/>
+        <location filename="texmaker.cpp" line="2674"/>
+        <location filename="texmaker.cpp" line="2943"/>
         <source>Can&apos;t detect the file name</source>
         <translation>A fájlnév nem állapítható meg</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2668"/>
+        <location filename="texmaker.cpp" line="2699"/>
         <source>could not start the command:</source>
         <translation>parancs nem indítható:</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2670"/>
+        <location filename="texmaker.cpp" line="2701"/>
         <source>Process started</source>
         <translation>A művelet elindult</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2699"/>
+        <location filename="texmaker.cpp" line="2730"/>
         <source>Pre-LaTeX</source>
         <translation>Pre-LaTeX</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2707"/>
-        <location filename="texmaker.cpp" line="2772"/>
-        <location filename="texmaker.cpp" line="2788"/>
-        <location filename="texmaker.cpp" line="2814"/>
-        <location filename="texmaker.cpp" line="2830"/>
-        <location filename="texmaker.cpp" line="2848"/>
-        <location filename="texmaker.cpp" line="2866"/>
+        <location filename="texmaker.cpp" line="2738"/>
+        <location filename="texmaker.cpp" line="2803"/>
+        <location filename="texmaker.cpp" line="2819"/>
+        <location filename="texmaker.cpp" line="2845"/>
+        <location filename="texmaker.cpp" line="2861"/>
+        <location filename="texmaker.cpp" line="2879"/>
+        <location filename="texmaker.cpp" line="2897"/>
         <source>Could not start LaTeX.</source>
         <translation>A LaTeX nem indítható.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2744"/>
+        <location filename="texmaker.cpp" line="2775"/>
         <source>Process exited with error(s)</source>
         <translation>A művelet hibával leállt</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2744"/>
+        <location filename="texmaker.cpp" line="2775"/>
         <source>Process exited normally</source>
         <translation>A művelet sikeres volt</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2760"/>
+        <location filename="texmaker.cpp" line="2791"/>
         <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>A fájlnév nem állapítható meg.
 El kell mentenie a dokumentumot fordítás előtt.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2801"/>
+        <location filename="texmaker.cpp" line="2832"/>
         <source>Could not start PdfLaTeX.</source>
         <translation>A PdfLaTeX nem indítható.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2916"/>
+        <location filename="texmaker.cpp" line="2947"/>
         <source>Delete the output files generated by LaTeX?</source>
         <translation>Törli a LaTeX által előállított kimeneti fájlokat?</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2916"/>
+        <location filename="texmaker.cpp" line="2947"/>
         <source>Delete Files</source>
         <translation>Fájlok törlése</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2983"/>
+        <location filename="texmaker.cpp" line="3014"/>
         <source>Text Analysis</source>
         <translation>Szöveganalízis</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3000"/>
+        <location filename="texmaker.cpp" line="3031"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation>A véletlen szöveg-generátor új szövegeket hoz létre létező szavakból, úgyhogy meg kell nyitni néhány szövegfájlt</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3034"/>
+        <location filename="texmaker.cpp" line="3065"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>A fájlt menteni és fordítani kell a napló megtekintése előtt</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3055"/>
+        <location filename="texmaker.cpp" line="3086"/>
         <source>Log File not found !</source>
         <translation>A naplófájl nem található!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3139"/>
-        <location filename="texmaker.cpp" line="3143"/>
+        <location filename="texmaker.cpp" line="3170"/>
+        <location filename="texmaker.cpp" line="3174"/>
         <source>No LaTeX errors detected !</source>
         <translation>Nincs LaTeX hiba!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3147"/>
-        <location filename="texmaker.cpp" line="3150"/>
+        <location filename="texmaker.cpp" line="3178"/>
+        <location filename="texmaker.cpp" line="3181"/>
         <source>No LaTeX warnings detected !</source>
         <translation>Nincs LaTeX figyelmeztetés!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3154"/>
-        <location filename="texmaker.cpp" line="3157"/>
+        <location filename="texmaker.cpp" line="3185"/>
+        <location filename="texmaker.cpp" line="3188"/>
         <source>No bad boxes detected !</source>
         <translation>Nincsenek rossz szövegdobozok!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3179"/>
-        <location filename="texmaker.cpp" line="3187"/>
+        <location filename="texmaker.cpp" line="3210"/>
+        <location filename="texmaker.cpp" line="3218"/>
         <source>File not found</source>
         <translation>A fájl nem található</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3365"/>
+        <location filename="texmaker.cpp" line="3397"/>
         <source>You must save the file before switching to master mode.</source>
         <translatorcomment>vajon kell-e pont a végére?</translatorcomment>
         <translation>El kell mentenie a fájlt mester módba váltás előtt.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3469"/>
+        <location filename="texmaker.cpp" line="3501"/>
         <source>Normal Mode (current master document :</source>
         <translation>&amp;Normál mód (jelenlegi mesterdokumentum: </translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3470"/>
+        <location filename="texmaker.cpp" line="3502"/>
         <source>Master Document</source>
         <translation>Mesterdokumentum</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3686"/>
+        <location filename="texmaker.cpp" line="3718"/>
         <source>Close document</source>
         <translation>Dokumentum bezárása</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3687"/>
+        <location filename="texmaker.cpp" line="3719"/>
         <source>Set this document as master document</source>
         <translation>Jelenlegi dokumentum beállítása &apos;Mesterdokumentum&apos;-ként</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3689"/>
+        <location filename="texmaker.cpp" line="3721"/>
         <source>Remove master document role</source>
         <translation>A mesterdokumentum szerep megvonása</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3695"/>
-        <location filename="texmaker.cpp" line="3742"/>
+        <location filename="texmaker.cpp" line="3727"/>
+        <location filename="texmaker.cpp" line="3774"/>
         <source>Insert</source>
         <translation>Beillesztés</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3696"/>
-        <location filename="texmaker.cpp" line="3697"/>
+        <location filename="texmaker.cpp" line="3728"/>
+        <location filename="texmaker.cpp" line="3729"/>
         <source>Insert as %1</source>
         <translation>Beillesztés %1-ként</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3857"/>
-        <location filename="texmaker.cpp" line="3868"/>
+        <location filename="texmaker.cpp" line="3889"/>
+        <location filename="texmaker.cpp" line="3900"/>
         <source>Add to favorites</source>
         <translation>Kedvencekhez</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3859"/>
+        <location filename="texmaker.cpp" line="3891"/>
         <source>Remove all</source>
         <translation>Összes eltávolítása</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3863"/>
+        <location filename="texmaker.cpp" line="3895"/>
         <source>Remove from favorites</source>
         <translation>Eltávolítás a kedvencek közül</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3864"/>
+        <location filename="texmaker.cpp" line="3896"/>
         <source>Remove all favorites</source>
         <translation>Az összes kedvenc eltávolítása</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3900"/>
+        <location filename="texmaker.cpp" line="3932"/>
         <source>remove</source>
         <translation>eltávolítás</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4017"/>
+        <location filename="texmaker.cpp" line="4049"/>
         <source>commit comment:</source>
         <translation>Megjegyzés bevitele:</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4183"/>
+        <location filename="texmaker.cpp" line="4215"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>Figyelem! A párbeszédablak automatikusan bezáródik, ha a szöveget kézzel szerkeszti!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2704"/>
-        <location filename="texmaker.cpp" line="2715"/>
+        <location filename="texmaker.cpp" line="2735"/>
+        <location filename="texmaker.cpp" line="2746"/>
         <source>LaTeX</source>
         <comment>Status</comment>
         <translation>LaTeX</translation>
