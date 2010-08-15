@@ -2458,139 +2458,168 @@ Naprakészen kívánja tartani a fájlt egy újratöltéssel?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="3975"/>
-        <source>none</source>
-        <translation>nincs</translation>
+        <source>None</source>
+        <oldsource>none</oldsource>
+        <translation>Nincs</translation>
+    </message>
+    <message>
+        <source>ungÃ¼ltig</source>
+        <translation type="obsolete">Érvénytelen</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="3976"/>
-        <source>ungÃ¼ltig</source>
+        <source>Invalid</source>
         <translation>Érvénytelen</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="3978"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="3994"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4010"/>
-        <source>internal</source>
+        <source>Internal</source>
+        <oldsource>internal</oldsource>
         <translation>Belső</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="3980"/>
-        <source>move cursor up</source>
+        <source>Move cursor up</source>
+        <oldsource>move cursor up</oldsource>
         <translation>Kurzor fel</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="3981"/>
-        <source>move cursor down</source>
+        <source>Move cursor down</source>
+        <oldsource>move cursor down</oldsource>
         <translation>Kurzor le</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="3982"/>
-        <source>move cursor left (1 character)</source>
+        <source>Move cursor left (1 character)</source>
+        <oldsource>move cursor left (1 character)</oldsource>
         <translation>Kurzor balra (egy karakterrel)</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="3983"/>
-        <source>move cursor right (1 character)</source>
+        <source>Move cursor right (1 character)</source>
+        <oldsource>move cursor right (1 character)</oldsource>
         <translation>Kurzor jobbra (egy karakterrel)</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="3984"/>
-        <source>move cursor left (1 word)</source>
+        <source>Move cursor left (1 word)</source>
+        <oldsource>move cursor left (1 word)</oldsource>
         <translation>Kurzor balra (egy szóval)</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="3985"/>
-        <source>move cursor right (1 word)</source>
+        <source>Move cursor right (1 word)</source>
+        <oldsource>move cursor right (1 word)</oldsource>
         <translation>Kurzor jobbra (egy szóval)</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="3986"/>
-        <source>move cursor to line start</source>
+        <source>Move cursor to line start</source>
+        <oldsource>move cursor to line start</oldsource>
         <translation>Kurzor a sorelejére</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="3987"/>
-        <source>move cursor to line end</source>
+        <source>Move cursor to line end</source>
+        <oldsource>move cursor to line end</oldsource>
         <translation>Kurzor a sor végére</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="3988"/>
-        <source>move cursor to document start</source>
+        <source>Move cursor to document start</source>
+        <oldsource>move cursor to document start</oldsource>
         <translation>Kurzor a dokumentum elejére</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="3989"/>
-        <source>move cursor to document end</source>
+        <source>Move cursor to document end</source>
+        <oldsource>move cursor to document end</oldsource>
         <translation>Kurzor a dokumentum végére</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="3991"/>
-        <source>move cursor one page up</source>
+        <source>Move cursor one page up</source>
+        <oldsource>move cursor one page up</oldsource>
         <translation>Kurzor fel (egy lappal)</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="3992"/>
-        <source>move cursor one page down</source>
+        <source>Move cursor one page down</source>
+        <oldsource>move cursor one page down</oldsource>
         <translation>Kurzor le (egy lappal)</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="3996"/>
-        <source>select up</source>
+        <source>Select up</source>
+        <oldsource>select up</oldsource>
         <translation>Kiválasztás felfelé</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="3997"/>
-        <source>select down</source>
+        <source>Select down</source>
+        <oldsource>select down</oldsource>
         <translation>Kiválasztás lefelé</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="3998"/>
-        <source>select left (1 character)</source>
+        <source>Select left (1 character)</source>
+        <oldsource>select left (1 character)</oldsource>
         <translation>Balra lévő karakter kiválasztása</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="3999"/>
-        <source>select right (1 character)</source>
+        <source>Select right (1 character)</source>
+        <oldsource>select right (1 character)</oldsource>
         <translation>Jobbra lévő karakter kiválasztása</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4000"/>
-        <source>select left (1 word)</source>
+        <source>Select left (1 word)</source>
+        <oldsource>select left (1 word)</oldsource>
         <translation>Balra lévő szó kiválasztása</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4001"/>
-        <source>select right (1 word)</source>
+        <source>Select right (1 word)</source>
+        <oldsource>select right (1 word)</oldsource>
         <translation>Jobbra lévő szó kiválasztása</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4002"/>
-        <source>select to line start</source>
+        <source>Select to line start</source>
+        <oldsource>select to line start</oldsource>
         <translation>Kijelölés a sor elejéig</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4003"/>
-        <source>select to line end</source>
+        <source>Select to line end</source>
+        <oldsource>select to line end</oldsource>
         <translation>Kijelölés a sor végéig</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4004"/>
-        <source>select to document start</source>
+        <source>Select to document start</source>
+        <oldsource>select to document start</oldsource>
         <translation>Kijelölés a dokumentum elejéig</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4005"/>
-        <source>select to document end</source>
+        <source>Select to document end</source>
+        <oldsource>select to document end</oldsource>
         <translation>Kijelölés a dokumentum végéig</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4007"/>
-        <source>select page up</source>
+        <source>Select page up</source>
+        <oldsource>select page up</oldsource>
         <translation>Előző lap kijelölése</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4008"/>
-        <source>select page down</source>
+        <source>Select page down</source>
+        <oldsource>select page down</oldsource>
         <translation>Következő lap kijelölése</translation>
     </message>
     <message>
@@ -2715,7 +2744,8 @@ Naprakészen kívánja tartani a fájlt egy újratöltéssel?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4040"/>
-        <source>unknown</source>
+        <source>Unknown</source>
+        <oldsource>unknown</oldsource>
         <translation>Ismeretlen</translation>
     </message>
 </context>
