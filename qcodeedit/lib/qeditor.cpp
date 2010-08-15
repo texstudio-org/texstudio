@@ -3972,42 +3972,42 @@ QHash<int, int> QEditor::getEditOperations(bool excludeDefault){
 
 QString QEditor::translateEditOperation(const EditOperation& op){
 	switch (op){
-	case NoOperation: return tr("none");
-	case Invalid: return tr("ungültig");
+	case NoOperation: return tr("None");
+	case Invalid: return tr("Invalid");
 
-	case EnumForCursorStart: return tr("internal");
+	case EnumForCursorStart: return tr("Internal");
 
-	case CursorUp: return tr("move cursor up");
-	case CursorDown: return tr("move cursor down");
-	case CursorLeft: return tr("move cursor left (1 character)");
-	case CursorRight: return tr("move cursor right (1 character)");
-	case CursorWordLeft: return tr("move cursor left (1 word)");
-	case CursorWordRight: return tr("move cursor right (1 word)");
-	case CursorStartOfLine: return tr("move cursor to line start");
-	case CursorEndOfLine: return tr("move cursor to line end");
-	case CursorStartOfDocument: return tr("move cursor to document start");
-	case CursorEndOfDocument: return tr("move cursor to document end");
+	case CursorUp: return tr("Move cursor up");
+	case CursorDown: return tr("Move cursor down");
+	case CursorLeft: return tr("Move cursor left (1 character)");
+	case CursorRight: return tr("Move cursor right (1 character)");
+	case CursorWordLeft: return tr("Move cursor left (1 word)");
+	case CursorWordRight: return tr("Move cursor right (1 word)");
+	case CursorStartOfLine: return tr("Move cursor to line start");
+	case CursorEndOfLine: return tr("Move cursor to line end");
+	case CursorStartOfDocument: return tr("Move cursor to document start");
+	case CursorEndOfDocument: return tr("Move cursor to document end");
 
-	case CursorPageUp: return tr("move cursor one page up");
-	case CursorPageDown: return tr("move cursor one page down");
+	case CursorPageUp: return tr("Move cursor one page up");
+	case CursorPageDown: return tr("Move cursor one page down");
 
-	case EnumForSelectionStart: return tr("internal");
+	case EnumForSelectionStart: return tr("Mnternal");
 
-	case SelectCursorUp: return tr("select up");
-	case SelectCursorDown: return tr("select down");
-	case SelectCursorLeft: return tr("select left (1 character)");
-	case SelectCursorRight: return tr("select right (1 character)");
-	case SelectCursorWordLeft: return tr("select left (1 word)");
-	case SelectCursorWordRight: return tr("select right (1 word)");
-	case SelectCursorStartOfLine: return tr("select to line start");
-	case SelectCursorEndOfLine: return tr("select to line end");
-	case SelectCursorStartOfDocument: return tr("select to document start");
-	case SelectCursorEndOfDocument: return tr("select to document end");
+	case SelectCursorUp: return tr("Select up");
+	case SelectCursorDown: return tr("Select down");
+	case SelectCursorLeft: return tr("Select left (1 character)");
+	case SelectCursorRight: return tr("Select right (1 character)");
+	case SelectCursorWordLeft: return tr("Select left (1 word)");
+	case SelectCursorWordRight: return tr("Select right (1 word)");
+	case SelectCursorStartOfLine: return tr("Select to line start");
+	case SelectCursorEndOfLine: return tr("Select to line end");
+	case SelectCursorStartOfDocument: return tr("Select to document start");
+	case SelectCursorEndOfDocument: return tr("Select to document end");
 
-	case SelectPageUp: return tr("select page up");
-	case SelectPageDown: return tr("select page down");
+	case SelectPageUp: return tr("Select page up");
+	case SelectPageDown: return tr("Select page down");
 
-	case EnumForCursorEnd: return tr("internal");
+	case EnumForCursorEnd: return tr("Internal");
 
 	case DeleteLeft: return tr("Delete left character");
 	case DeleteRight: return tr("Delete right character");
@@ -4037,7 +4037,7 @@ QString QEditor::translateEditOperation(const EditOperation& op){
 	case UnindentSelection: return tr("Unindent selection");
 
 	}
-	return tr("unknown");
+	return tr("Unknown");
 }
 
 /*!
