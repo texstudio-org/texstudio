@@ -179,7 +179,8 @@ TRANSLATIONS += texmakerx_fr.ts \
     texmakerx_de.ts \
     texmakerx_it.ts \
     texmakerx_cs.ts \
-    texmakerx_hu.ts
+    texmakerx_hu.ts \
+    texmakerx_uk.ts
 
 # ###############################
 win32:RC_FILE = win.rc
