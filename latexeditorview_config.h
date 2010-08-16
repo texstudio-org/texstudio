@@ -23,6 +23,7 @@ public:
 	bool closeSearchAndReplace;
 	bool useLineForSearch;
 	static QString translateEditOperation(int key);
+	static QList<int> possibleEditOperations();
 private:
 };
 

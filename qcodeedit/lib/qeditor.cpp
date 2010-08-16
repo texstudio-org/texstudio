@@ -2777,6 +2777,9 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 			repaintCursor();
 		}
 	} else switch (op) {
+	case Invalid:
+		QApplication::beep();
+		break;
 	case CreateMirrorUp: case CreateMirrorDown:{
 		int ln = - 1;
 		QDocumentLine l;

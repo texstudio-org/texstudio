@@ -764,6 +764,7 @@ bool ConfigManager::execConfigDialog() {
 		twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
 		++it2;
 	}
+	new QTreeWidgetItem(editorKeys, QStringList() << ShortcutDelegate::addRowButton);
 
 	//add special key replacements
 	QTreeWidgetItem * keyReplacements = new QTreeWidgetItem(editorItem, QStringList() << ConfigDialog::tr("Special Key Replacement"));
@@ -942,7 +943,8 @@ bool ConfigManager::execConfigDialog() {
 
 		this->editorKeys.clear();
 		for (int i=0;i<editorKeys->childCount();i++)
-			this->editorKeys.insert(QKeySequence::fromString(editorKeys->child(i)->text(2),QKeySequence::NativeText), editorKeys->child(i)->data(0, Qt::UserRole).toInt());
+			if (editorKeys->child(i)->data(0, Qt::UserRole).toInt() != /*QEditor::None*/0)
+				this->editorKeys.insert(QKeySequence::fromString(editorKeys->child(i)->text(2),QKeySequence::NativeText), editorKeys->child(i)->data(0, Qt::UserRole).toInt());
 
 		//menus
 		managedMenuNewShortcuts.clear();
@@ -1217,7 +1219,7 @@ void ConfigManager::managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu
 	for (int i=0; i<acts.size(); i++)
 		if (acts[i]->menu()) managedMenuToTreeWidget(menuitem, acts[i]->menu());
 		else {
-			QTreeWidgetItem* twi=new QTreeWidgetItem(menuitem, QStringList() << acts[i]->text()
+			QTreeWidgetItem* twi=new QTreeWidgetItem(menuitem, QStringList() << acts[i]->text().replace("&","")
 					<< managedMenuShortcuts.value(acts[i]->objectName()+"0", QKeySequence())
 					<< acts[i]->shortcut().toString(QKeySequence::NativeText));
 			twi->setIcon(0,acts[i]->icon());

@@ -1141,3 +1141,70 @@ void References::purgeLinksTo(QDocument *doc){
 QString LatexEditorViewConfig::translateEditOperation(int key){
 	return QEditor::translateEditOperation((QEditor::EditOperation)key);
 }
+
+QList<int> LatexEditorViewConfig::possibleEditOperations(){
+	int  temp[] = {
+		QEditor::NoOperation,
+		QEditor::Invalid,
+		
+		QEditor::CursorUp,
+		QEditor::CursorDown,
+		QEditor::CursorLeft,
+		QEditor::CursorRight,
+		QEditor::CursorWordLeft,
+		QEditor::CursorWordRight,
+		QEditor::CursorStartOfLine,
+		QEditor::CursorEndOfLine,
+		QEditor::CursorStartOfDocument,
+		QEditor::CursorEndOfDocument,
+
+		QEditor::CursorPageUp,
+		QEditor::CursorPageDown,
+
+		QEditor::SelectCursorUp,
+		QEditor::SelectCursorDown,
+		QEditor::SelectCursorLeft,
+		QEditor::SelectCursorRight,
+		QEditor::SelectCursorWordLeft,
+		QEditor::SelectCursorWordRight,
+		QEditor::SelectCursorStartOfLine,
+		QEditor::SelectCursorEndOfLine,
+		QEditor::SelectCursorStartOfDocument,
+		QEditor::SelectCursorEndOfDocument,
+
+		QEditor::SelectPageUp,
+		QEditor::SelectPageDown,
+
+		QEditor::EnumForCursorEnd,
+
+		QEditor::DeleteLeft,
+		QEditor::DeleteRight,
+		QEditor::DeleteLeftWord,
+		QEditor::DeleteRightWord,
+		QEditor::NewLine,
+
+		QEditor::ChangeOverwrite,
+		QEditor::Undo,
+		QEditor::Redo,
+		QEditor::Copy,
+		QEditor::Paste,
+		QEditor::Cut,
+		QEditor::Print,
+		QEditor::SelectAll,
+		QEditor::Find,
+		QEditor::FindNext,
+		QEditor::Replace,
+
+		QEditor::CreateMirrorUp,
+		QEditor::CreateMirrorDown,
+		QEditor::NextPlaceHolder,
+		QEditor::PreviousPlaceHolder,
+		QEditor::NextPlaceHolderOrWord,
+		QEditor::PreviousPlaceHolderOrWord,
+		QEditor::IndentSelection,
+		QEditor::UnindentSelection};
+	QList<int> res;
+	for (int i=0;i<sizeof(temp)/sizeof(int);i++) //sizeof(array) is possible with c-arrays
+		res << temp[i];
+	return res;
+}
