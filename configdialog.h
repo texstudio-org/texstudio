@@ -38,6 +38,8 @@ public:
 
 	void drawDisplay(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QString & text) const;
 
+	bool isBasicEditorKey(const QModelIndex& index) const;
+
 	QTreeWidget * treeWidget; //tree widget to remove duplicates from, not necessary
 
 	static const QString deleteRowButton;
