@@ -137,7 +137,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>7</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -151,8 +151,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>764</width>
-            <height>577</height>
+            <width>756</width>
+            <height>563</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -1330,6 +1330,9 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        </item>
        <item row="0" column="2">
         <widget class="QSpinBox" name="spinBoxWrapLineWidth">
+         <property name="minimum">
+          <number>20</number>
+         </property>
          <property name="maximum">
           <number>999</number>
          </property>

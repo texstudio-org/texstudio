@@ -434,7 +434,8 @@ void LatexEditorView::updateSettings(){
 	editor->setLineWrapping(config->wordwrap);
 	editor->setHardLineWrapping(config->hardwordwrap);
 	if(config->hardwordwrap){
-	    int w=QFontMetrics(QFont(config->fontFamily, config->fontSize)).averageCharWidth()*config->lineWidth;
+	    int lw=config->lineWidth<20?20:config->lineWidth;
+	    int w=QFontMetrics(QFont(config->fontFamily, config->fontSize)).averageCharWidth()*lw;
 	    editor->setWrapLineWidth(w);
 	}else{
 	    editor->setWrapLineWidth(0);
