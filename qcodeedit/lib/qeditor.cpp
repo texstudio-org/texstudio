@@ -4011,7 +4011,7 @@ QString QEditor::translateEditOperation(const EditOperation& op){
 	case CursorPageUp: return tr("Move cursor one page up");
 	case CursorPageDown: return tr("Move cursor one page down");
 
-	case EnumForSelectionStart: return tr("Mnternal");
+	case EnumForSelectionStart: return tr("Internal");
 
 	case SelectCursorUp: return tr("Select up");
 	case SelectCursorDown: return tr("Select down");
