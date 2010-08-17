@@ -924,6 +924,24 @@ void QEditor::save()
 
 	//QTextStream s(&f);
 	//s << text();
+	// insert hard line breaks on modified lines (if desired)
+	if(flag(HardLineWrap)){
+	    QList<QDocumentLineHandle*> handles = m_doc->impl()->getStatus().keys();
+	    QDocumentCursor cur(m_doc);
+
+	    foreach ( QDocumentLineHandle* dlh,handles )
+	    {
+		QList<int> lineBreaks=dlh->getBreaks();
+		if(!lineBreaks.isEmpty()){
+		    while(!lineBreaks.isEmpty()){
+			cur.moveTo(dlh->line(),lineBreaks.takeLast());
+			cur.insertText("\n");
+		    }
+		}
+	    }
+	    cur.endEditBlock();
+	}
+
 	QString txt = m_doc->text(flag(RemoveTrailing), flag(PreserveTrailingIndent));
 
 	if ( m_doc->codec())
@@ -2120,7 +2138,6 @@ void QEditor::emitCursorPositionChanged()
 		cutBuffer.clear();
 		cutLineNumber=-1;
 	}
-
 
 	if ( m_definition )
 		m_definition->match(m_cursor);

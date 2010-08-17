@@ -491,6 +491,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 
 		QString cutBuffer;
 		int cutLineNumber;
+
 	protected slots:
 		void documentWidthChanged(int newWidth);
 		void documentHeightChanged(int newWidth);
