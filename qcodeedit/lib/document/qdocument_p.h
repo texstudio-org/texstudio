@@ -164,6 +164,10 @@ class QCE_EXPORT QDocumentPrivate
 		    return m_width;
 		}
 
+		QHash<QDocumentLineHandle*, QPair<int, int> > getStatus(){
+		    return m_status;
+		}
+
 
 	protected:
 		void updateHidden(int line, int count);
