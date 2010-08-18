@@ -745,13 +745,18 @@ QTextCodec* LatexParser::QTextCodecForLatexName(QString str){
 	return 0;
 }
 
-QTextCodec* LatexParser::guessEncoding(const QByteArray& data){
+void LatexParser::guessEncoding(const QByteArray& data, QTextCodec *&guess, int &sure){
+	if (guess && (guess->mibEnum() == MIB_UTF16LE || guess->mibEnum() == MIB_UTF16BE)) {
+		sure = 100;
+		return;
+	}
+
 	int headerSize = data.indexOf("\\begin{document}");
 	if (headerSize == -1) headerSize = data.size();
 	//search for \usepackage[.*]{inputenc} outside of a comment
 	int index = data.indexOf("]{inputenc}");
 	while (index >= 0) {
-		if (index >= headerSize) return 0;
+		if (index >= headerSize) return;
 		int previous = data.lastIndexOf("\\usepackage[",index);
 		if (previous >= 0){
 			int commentStart = data.lastIndexOf('%',index);
@@ -759,7 +764,11 @@ QTextCodec* LatexParser::guessEncoding(const QByteArray& data){
 			if (commentStart <= commentEnd) {
 				QString encoding = QString(data.mid(previous+12, index - (previous + 12)));
 				QTextCodec* codec = QTextCodecForLatexName(encoding);
-				if (codec) return codec;
+				if (codec) {
+					sure = 100;
+					guess = codec;
+					return;
+				}
 			}
 		}
 		index = data.indexOf("]{inputenc}", index + 1);
@@ -767,7 +776,7 @@ QTextCodec* LatexParser::guessEncoding(const QByteArray& data){
 	//search for \usepackage[.*]{inputenx} outside of a comment
 	index = data.indexOf("]{inputenx}");
 	while (index >= 0) {
-		if (index >= headerSize) return 0;
+		if (index >= headerSize) return;
 		int previous = data.lastIndexOf("\\usepackage[",index);
 		if (previous >= 0){
 			int commentStart = data.lastIndexOf('%',index);
@@ -775,10 +784,14 @@ QTextCodec* LatexParser::guessEncoding(const QByteArray& data){
 			if (commentStart <= commentEnd) {
 				QString encoding = QString(data.mid(previous+12, index - (previous + 12)));
 				QTextCodec* codec = QTextCodecForLatexName(encoding);
-				if (codec) return codec;
+				if (codec) {
+					sure = 100;
+					guess = codec;
+					return;
+				}
 			}
 		}
 		index = data.indexOf("]{inputenx}", index + 1);
 	}
-	return 0;
+	return;
 }

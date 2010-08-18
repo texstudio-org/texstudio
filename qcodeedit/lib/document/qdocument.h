@@ -62,7 +62,7 @@ typedef QMap<QChar,int> WCache;
 Q_DECLARE_METATYPE(QDocumentIterator)
 Q_DECLARE_METATYPE(QDocumentConstIterator)
 
-typedef QTextCodec* (*GuessEncodingCallback) (const QByteArray& data);
+typedef void (*GuessEncodingCallback) (const QByteArray& data, QTextCodec *&guess, int &sure);
 
 class QCE_EXPORT QDocument : public QObject
 {

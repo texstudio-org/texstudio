@@ -3,6 +3,7 @@
 #include "qeditor.h"
 #include "qdocumentline.h"
 #include "testutil.h"
+#include "smallUsefulFunctions.h"
 #include <QtTest/QtTest>
 Q_DECLARE_METATYPE(QList<int>);
 
@@ -54,7 +55,15 @@ void QEditorTest::loadSave_data(){
 					<< endings[j]
 					<< false;
 		}
+	Q_ASSERT(QTextCodec::codecForName("UTF-8")==QTextCodec::codecForMib(MIB_UTF8));
+	Q_ASSERT(QTextCodec::codecForName("UTF-16LE")==QTextCodec::codecForMib(MIB_UTF16LE));
+	Q_ASSERT(QTextCodec::codecForName("UTF-16BE")==QTextCodec::codecForMib(MIB_UTF16BE));
+	Q_ASSERT(QTextCodec::codecForName("ISO-8859-1")==QTextCodec::codecForMib(MIB_LATIN1));
 
+	Q_ASSERT(QTextCodec::codecForMib(MIB_UTF8)->mibEnum() == MIB_UTF8);
+	Q_ASSERT(QTextCodec::codecForMib(MIB_UTF16LE)->mibEnum() == MIB_UTF16LE);
+	Q_ASSERT(QTextCodec::codecForMib(MIB_UTF16BE)->mibEnum() == MIB_UTF16BE);
+	Q_ASSERT(QTextCodec::codecForMib(MIB_LATIN1)->mibEnum() == MIB_LATIN1);
 }
 //checks if load/saving preserves encoding and line endings
 void QEditorTest::loadSave(){
@@ -68,7 +77,7 @@ void QEditorTest::loadSave(){
 		return;
 	}
 
-	const QString testText = "hallo\n\xE4\xF6\xFC\n";
+	const QString testText = QString::fromLatin1("hallo\n\xE4\xF6\xFC\n");
 	QString testTextWithLineEndings=testText;
 	testTextWithLineEndings.replace("\n",outLineEnding);
 	QTemporaryFile tf;//uncomment if you need to look at the files &tf=*(new QTemporaryFile);

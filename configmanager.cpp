@@ -175,6 +175,7 @@ bool ManagedProperty::readFromWidget(const QWidget* w){
 }
 
 
+QTextCodec* ConfigManager::newFileEncoding = 0;
 
 ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	buildManager(0),editorConfig(new LatexEditorViewConfig), completerConfig (new LatexCompleterConfig), webPublishDialogConfig (new WebPublishDialogConfig), menuParent(0), menuParentsBar(0){
@@ -387,12 +388,12 @@ QSettings* ConfigManager::readSettings() {
 
 	config->beginGroup("texmaker");
 
-	//------------------files--------------------
-	newFileEncoding=QTextCodec::codecForName(newFileEncodingName.toAscii().data());
-
 	//----------managed properties--------------------
 	for (int i=0;i<managedProperties.size();i++)
 		managedProperties[i].valueFromQVariant(config->value(managedProperties[i].name, managedProperties[i].def));
+
+	//------------------files--------------------
+	newFileEncoding=QTextCodec::codecForName(newFileEncodingName.toAscii().data());
 
 	//----------------------------dictionaries-------------------------
 	if (spell_dic=="<dic not found>" || (importTexmakerSettings && !QFileInfo(spell_dic).exists())) {
@@ -1500,6 +1501,31 @@ ManagedProperty* ConfigManager::getManagedProperty(const void* storage){
 		if (managedProperties[i].storage == storage) return &managedProperties[i];
 	return 0;
 }
+void ConfigManager::getDefaultEncoding(const QByteArray&, QTextCodec*&guess, int &sure){
+	if (sure >= 100) return;
+	if (!newFileEncoding) return;
+	//guess is utf-8 or latin1, no latex encoding definition detected
+	if (guess && guess->mibEnum() == MIB_UTF8) return; //trust utf8 detection
+	//guess is latin1, no latex encoding definition detected
+	if (sure == 0) {
+		//ascii file
+		if (newFileEncoding->mibEnum() == MIB_UTF16BE || newFileEncoding->mibEnum() == MIB_UTF16LE) {
+			guess = QTextCodec::codecForMib(MIB_UTF8);
+			return;
+		}
+		guess = newFileEncoding;
+		return;
+	} else {
+		//file containing invalid utf-8 characters
+		if (newFileEncoding->mibEnum() == MIB_UTF16BE || newFileEncoding->mibEnum() == MIB_UTF16LE || newFileEncoding->mibEnum() == MIB_UTF8) {
+			guess = QTextCodec::codecForMib(MIB_LATIN1);
+			return;
+		}
+		guess = newFileEncoding;
+		return;
+	}
+}
+
 void ConfigManager::managedOptionDialogAccepted(){
 	QDialog* dialog = qobject_cast<QDialog*>(sender());
 	REQUIRE(dialog);
