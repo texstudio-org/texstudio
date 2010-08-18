@@ -526,7 +526,7 @@ ProcessX* BuildManager::newProcess(const QString &unparsedCommandLine, const QSt
 	proc->setWorkingDirectory(mfi.absolutePath());
 
 #ifdef Q_WS_MACX
-#if (QT_VERSION >= 0x0406)
+#if (QT_VERSION >= 0x040600)
         QProcess *myProcess = new QProcess();
         myProcess->start("bash -l -c \"echo $PATH\"");
         myProcess->waitForFinished(3000);
