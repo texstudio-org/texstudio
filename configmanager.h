@@ -49,7 +49,7 @@ public:
 
 //public configuration
 
-	QTextCodec* newFileEncoding;
+	static QTextCodec* newFileEncoding;
 	QString newFileEncodingName;
 	bool autodetectLoadedFile;
 	int ignoreLogFileNames; //0: never, 1: in single mode, 2: always | see LatexLog::parseDocument for reason
@@ -187,6 +187,8 @@ public:
 	virtual void registerOption(const QString& name, QDateTime* storage, QVariant def=QVariant());
 	virtual void registerOption(const QString& name, double* storage, QVariant def=QVariant());
 	virtual void linkOptionToWidget(const void* optionStorage, QWidget* widget);
+
+	static void getDefaultEncoding(const QByteArray& unused, QTextCodec* &guess, int &sure);
 private:
 	void setInterfaceStyle();
 

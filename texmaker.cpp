@@ -172,7 +172,26 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 		ToggleRememberAct->setChecked(true);
 	}
 
+	/* The encoding detection works as follow:
+	   If QDocument detects the file is UTF16LE/BE, use that encoding
+	   Else If QDocument detects UTF-8 {
+	      If LatexParser::guessEncoding finds an encoding, use that
+	      Else use UTF-8
+	   } Else {
+	     If LatexParser::guessEncoding finds an encoding use that
+	     Else if QDocument detects ascii (only 7bit characters) {
+		     if default encoding == utf16: use utf-8 as fallback (because utf16 can be reliable detected and the user seems to like unicode)
+		     else use default encoding
+	     }
+	     Else {
+		     if default encoding == utf16/8: use latin1 (because the file contains invalid unicode characters )
+		     else use default encoding
+	     }
+	   }
+
+	*/
 	QDocument::addGuessEncodingCallback(&LatexParser::guessEncoding);
+	QDocument::addGuessEncodingCallback(&ConfigManager::getDefaultEncoding);
 }
 
 QMenu* Texmaker::newManagedMenu(QMenu* menu, const QString &id,const QString &text){
@@ -721,7 +740,6 @@ void Texmaker::UpdateCaption() {
 			default:
 				getManagedAction("main/edit/lineend/lf")->setChecked(true);
 			}
-			//input_encoding=current	EditorView()->editor->getEncoding();
 			currentEditorView()->editor->setFocus();
 		}
 	}

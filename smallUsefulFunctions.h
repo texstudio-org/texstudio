@@ -103,6 +103,14 @@ bool hasAtLeastQt(int major, int minor);
 QString getRelativeBaseNameToPath(const QString & file,QString basepath);
 QString getPathfromFilename(const QString &compFile);
 
+enum {
+	MIB_LATIN1 = 4,
+	MIB_UTF8 = 106,
+	MIB_UTF16BE = 1013,
+	MIB_UTF16LE = 1014
+
+};
+
 class LatexParser{
 public:
 	enum ContextType {Unknown, Command, Environment, Label, Reference, Citation};
@@ -125,7 +133,7 @@ public:
 	static QStringList structureCommands;
 
 	static QTextCodec* QTextCodecForLatexName(QString str);
-	static QTextCodec* guessEncoding(const QByteArray& data);
+	static void guessEncoding(const QByteArray& data, QTextCodec *&guess, int &sure);
 };
 
 #endif
