@@ -2225,11 +2225,6 @@ void QEditor::copy()
 
 	QMimeData *d = createMimeDataFromSelection();
 	QApplication::clipboard()->setMimeData(d);
-
-	qDebug("%s", qPrintable(m_cursor.selectedText()));
-	QString test=m_cursor.selectedText();
-	qDebug("%d",test.at(0).row());
-	qDebug("%d",test.at(0).category());
 	//QApplication::clipboard()->setText(m_cursor.selectedText());
 }
 
