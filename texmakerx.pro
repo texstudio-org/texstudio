@@ -91,7 +91,8 @@ HEADERS += texmaker.h \
     configmanagerinterface.h \
     qcodeedit/lib/qformat.h \
     mostQtHeaders.h \
-    qcodeedit/lib/qnfa/xml2qnfa.h
+    qcodeedit/lib/qnfa/xml2qnfa.h \
+    tablemanipulation.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -153,7 +154,8 @@ SOURCES += main.cpp \
     scriptengine.cpp \
     insertgraphics.cpp \
     tmxtabwidget.cpp \
-    additionaltranslations.cpp
+    additionaltranslations.cpp \
+    tablemanipulation.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
