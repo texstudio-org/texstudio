@@ -2631,11 +2631,15 @@ void QEditor::paintEvent(QPaintEvent *e)
 	
 	if ( viewport()->height() > m_doc->height() )
 	{
+		QBrush bg = palette().base();
+		if ( m_doc->getBackground().isValid() )
+			bg.setColor(m_doc->getBackground());
+
 		p.fillRect(	0,
 					m_doc->height(),
 					viewport()->width(),
 					viewport()->height() - m_doc->height(),
-					palette().base()
+					bg
 				);
 	}
 }

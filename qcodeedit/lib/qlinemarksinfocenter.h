@@ -98,7 +98,7 @@ struct QLineMarkType
 	bool focus;
 	QString id;
 	QPixmap icon;
-	QColor color;
+	QColor color, defaultColor;
 	int priority;
 	int persistency;
 	QStringList rules;
@@ -121,20 +121,22 @@ class QCE_EXPORT QLineMarksInfoCenter : public QObject
 		static QLineMarksInfoCenter* instance();
 		static void destroy();
 		
-		QLineMarkList marks(const QString& file = QString());
-		
-		QString markTypeId(int id);
-		int markTypeId(const QString& id);
-		
-		QLineMarkType markType(int id);
-		QLineMarkType markType(const QString& id);
+		QLineMarkTypeList& markTypes();
 
-        int priority(int id);
-        int priority(const QList<int>& marks);
-		QString priority(const QStringList& marks);
+		QLineMarkList marks(const QString& file = QString()) const;
 		
-		QStringList availableMarkTypes(const QString& context = QString());
-		QList<QStringList> marksLayout(const QString& context = QString());
+		QString markTypeId(int id) const;
+		int markTypeId(const QString& id) const;
+		
+		QLineMarkType markType(int id) const;
+		QLineMarkType markType(const QString& id) const;
+
+		int priority(int id) const;
+		int priority(const QList<int>& marks) const;
+		QString priority(const QStringList& marks) const;
+		
+		QStringList availableMarkTypes(const QString& context = QString()) const;
+		QList<QStringList> marksLayout(const QString& context = QString()) const;
 		
 	public slots:
 		void loadMarks(const QString& f);

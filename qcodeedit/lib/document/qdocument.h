@@ -204,6 +204,7 @@ class QCE_EXPORT QDocument : public QObject
 		
 		QFormatScheme* formatScheme() const;
 		void setFormatScheme(QFormatScheme *f);
+		QColor getBackground() const;
 		
 		int getNextGroupId();
 		void releaseGroupId(int groupId);

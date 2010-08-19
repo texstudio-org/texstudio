@@ -71,6 +71,7 @@ class QCE_EXPORT QFormatScheme : public QObject
 		
 		static void mergeFormats(int &oldFormat, int newFormat);
 		void extractFormats(int mergedFormat, int* fmt, QFormat* formats, int &fontFormat) const;
+
 	public slots:
 		virtual void setFormat(const QString& fid, const QFormat& fmt);
 		

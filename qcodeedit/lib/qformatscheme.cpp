@@ -384,16 +384,22 @@ void QFormatScheme::save(QSettings& s) const
 		if ( fmt.foreground.isValid() )
 		{
 			s.setValue("foreground", fmt.foreground.name());
+		} else {
+			s.remove("foreground");
 		}
 		
 		if ( fmt.background.isValid() )
 		{
 			s.setValue("background", fmt.background.name());
+		} else {
+			s.remove("background");
 		}
 		
 		if ( fmt.linescolor.isValid() )
 		{
 			s.setValue("linescolor", fmt.linescolor.name());
+		} else {
+			s.remove("linescolor");
 		}
 		
 		s.setValue("fontFamily", fmt.fontFamily);
@@ -528,6 +534,7 @@ void QFormatScheme::extractFormats(int mergedFormat, int* fmt, QFormat* formats,
 		else fontFormat = fmt[0];
 	}
 }
+
 
 /*! @} */
 
