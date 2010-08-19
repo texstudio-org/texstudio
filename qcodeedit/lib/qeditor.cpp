@@ -740,19 +740,6 @@ void QEditor::setFlag(EditFlag f, bool b)
 		m_state |= f;
 	} else {
 		m_state &= ~f;
-
-		if ( f == LineWrap || f == HardLineWrap )
-		{
-			if ( isVisible() )
-				m_doc->clearWidthConstraint();
-
-			m_cursor.refreshColumnMemory();
-
-			QAction *a = m_actions.value("wrap");
-
-			if ( a && a->isChecked() )
-				a->setChecked(false);
-		}
 	}
 
 	if ( f == LineWrap || f == HardLineWrap )
@@ -4942,7 +4929,7 @@ int QEditor::wrapWidth() const
 	//if ( verticalScrollBar()->isVisible() )
 	//	return viewport()->width() - verticalScrollBar()->width();
 	#endif
-	return m_LineWidth==0 ? viewport()->width() : m_LineWidth;
+	return flag(HardLineWrap)&&m_LineWidth>0 ? m_LineWidth : viewport()->width();
 }
 
 /*!
