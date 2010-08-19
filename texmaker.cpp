@@ -113,6 +113,10 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	}
 
 	QLineMarksInfoCenter::instance()->loadMarkTypes(qxsPath+"/marks.qxm");
+	QList<QLineMarkType> &marks = QLineMarksInfoCenter::instance()->markTypes();
+	for (int i=0;i<marks.size();i++)
+		if (m_formats->format("line:"+marks[i].id).background.isValid())
+			marks[i].color = m_formats->format("line:"+marks[i].id).background;
 
 
 // TAB WIDGET EDITEUR
@@ -1895,6 +1899,7 @@ void Texmaker::ReadSettings() {
 		QEditor::setEditOperations(configManager.editorKeys);
 	}
 	config->endGroup();
+	config->endGroup();
 
 	config->beginGroup("formats");
 	m_formats = new QFormatFactory(":/qxs/defaultFormats.qxf", this); //load default formats from resource file
@@ -3287,6 +3292,14 @@ void Texmaker::GeneralOptions() {
 
 		//completion
 		updateCompleter();
+
+		//update changed line mark colors
+		QList<QLineMarkType> &marks = QLineMarksInfoCenter::instance()->markTypes();
+		for (int i=0;i<marks.size();i++)
+			if (m_formats->format("line:"+marks[i].id).background.isValid())
+				marks[i].color = m_formats->format("line:"+marks[i].id).background;
+			else
+				marks[i].color = marks[i].defaultColor;
 
 		// update all docuemnts views as spellcheck may be different
 		QEditor::setEditOperations(configManager.editorKeys,true);

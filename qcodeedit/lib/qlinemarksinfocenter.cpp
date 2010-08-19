@@ -62,6 +62,11 @@ void QLineMarksInfoCenter::destroy()
 	m_instance = 0;
 }
 
+QLineMarkTypeList &QLineMarksInfoCenter::markTypes(){
+	return m_lineMarkTypes;
+}
+
+
 QLineMarksInfoCenter::QLineMarksInfoCenter()
  : QObject(0)
 {
@@ -76,7 +81,7 @@ QLineMarksInfoCenter::~QLineMarksInfoCenter()
 /*!
 	\return the list of line marks set on a given file
 */
-QLineMarkList QLineMarksInfoCenter::marks(const QString& file)
+QLineMarkList QLineMarksInfoCenter::marks(const QString& file) const
 {
 	QLineMarkList l;
 	bool check = file.count();
@@ -399,6 +404,7 @@ void QLineMarksInfoCenter::loadMarkTypes(const QString& f)
 				} else {
 					t.color = QColor(value);
 				}
+				t.defaultColor = t.color; //remember color, so it can be restored if color is modified
 			} else if ( field == "priority" ) {
 				t.priority = value.toUInt();
 			} else if ( field == "persistency" ) {
@@ -418,7 +424,7 @@ void QLineMarksInfoCenter::loadMarkTypes(const QString& f)
 /*!
 	\brief int -> string mark type identifier conversion
 */
-QString QLineMarksInfoCenter::markTypeId(int id)
+QString QLineMarksInfoCenter::markTypeId(int id) const
 {
 	return ((id >= 0) && (id < m_lineMarkTypes.count())) ? m_lineMarkTypes.at(id).id : QString();
 }
@@ -426,7 +432,7 @@ QString QLineMarksInfoCenter::markTypeId(int id)
 /*!
 	\brief string -> int mark type identifier conversion
 */
-int QLineMarksInfoCenter::markTypeId(const QString& id)
+int QLineMarksInfoCenter::markTypeId(const QString& id) const
 {
 	for ( int idx = 0; idx < m_lineMarkTypes.count(); ++idx )
 		if ( m_lineMarkTypes.at(idx).id == id )
@@ -438,7 +444,7 @@ int QLineMarksInfoCenter::markTypeId(const QString& id)
 /*!
 	\return The mark type definition associated with a given id
 */
-QLineMarkType QLineMarksInfoCenter::markType(int id)
+QLineMarkType QLineMarksInfoCenter::markType(int id) const
 {
 	return ((id >= 0) && (id < m_lineMarkTypes.count())) ? m_lineMarkTypes.at(id) : QLineMarkType();
 }
@@ -446,7 +452,7 @@ QLineMarkType QLineMarksInfoCenter::markType(int id)
 /*!
 	\return the mark type definition associated with a given id
 */
-QLineMarkType QLineMarksInfoCenter::markType(const QString& id)
+QLineMarkType QLineMarksInfoCenter::markType(const QString& id) const
 {
 	foreach ( QLineMarkType t, m_lineMarkTypes )
 		if ( t.id == id )
@@ -459,7 +465,7 @@ QLineMarkType QLineMarksInfoCenter::markType(const QString& id)
 	\return A list of available mark types
 	\param context context filter (no filtering is performed if empty)
 */
-QStringList QLineMarksInfoCenter::availableMarkTypes(const QString& context)
+QStringList QLineMarksInfoCenter::availableMarkTypes(const QString& context) const
 {
 	QStringList l;
 	
@@ -494,14 +500,14 @@ QStringList QLineMarksInfoCenter::availableMarkTypes(const QString& context)
 	return l;
 }
 
-int QLineMarksInfoCenter::priority(int id){
+int QLineMarksInfoCenter::priority(int id) const{
     return id>=0 &&  id<m_lineMarkTypes.size()?m_lineMarkTypes[id].priority : 0;
 }
 
 /*!
 	\return the mark that has the highest priority among a list of marks
 */
-int QLineMarksInfoCenter::priority(const QList<int>& marks)
+int QLineMarksInfoCenter::priority(const QList<int>& marks) const
 {
 	int higher = -1;
 	int mark = marks.isEmpty() ? -1 : marks.at(0);
@@ -521,7 +527,7 @@ int QLineMarksInfoCenter::priority(const QList<int>& marks)
 /*!
 	\return the mark that has the highest priority among a list of marks
 */
-QString QLineMarksInfoCenter::priority(const QStringList& marks)
+QString QLineMarksInfoCenter::priority(const QStringList& marks) const
 {
 	QString mark;
 	int higher = -1;
@@ -541,7 +547,7 @@ QString QLineMarksInfoCenter::priority(const QStringList& marks)
 /*!
 	\brief Useless for now
 */
-QList<QStringList> QLineMarksInfoCenter::marksLayout(const QString& context)
+QList<QStringList> QLineMarksInfoCenter::marksLayout(const QString& context) const
 {
 	QList<QStringList> l;
 	

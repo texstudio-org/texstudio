@@ -1,5 +1,21 @@
 <!DOCTYPE QXF>
 <QXF version="1.0" >
+    <format id="background" >
+    </format>
+    <format id="line:error"></format>
+    <format id="line:warning"></format>
+    <format id="line:badbox"></format>
+    <format id="line:bookmark"></format>
+    <format id="line:bookmark0"></format>
+    <format id="line:bookmark1"></format>
+    <format id="line:bookmark2"></format>
+    <format id="line:bookmark3"></format>
+    <format id="line:bookmark4"></format>
+    <format id="line:bookmark5"></format>
+    <format id="line:bookmark6"></format>
+    <format id="line:bookmark7"></format>
+    <format id="line:bookmark8"></format>
+    <format id="line:bookmark9"></format>
     <format id="comment" >
         <bold>false</bold>
         <italic>false</italic>
@@ -176,4 +192,6 @@
 	<format id="replacement" >
 		<background>#FFAAAA</background>
 	</format>
+	
+	
 </QXF>

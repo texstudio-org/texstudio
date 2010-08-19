@@ -684,6 +684,16 @@ void QDocument::setFormatScheme(QFormatScheme *f)
 		m_impl->setFormatScheme(f);
 }
 
+QColor QDocument::getBackground() const{
+	if (m_impl && m_impl->m_formatScheme) {
+		if (m_impl->m_formatScheme->format("background").background.isValid())
+			return m_impl->m_formatScheme->format("background").background; //independent of "normal" format (otherwise it can't be merged with the current line)
+		else if (m_impl->m_formatScheme->format("normal").background.isValid())
+			return m_impl->m_formatScheme->format("normal").background;
+	}
+	return QColor();
+}
+
 /*!
 	\return the language definition set to the document
 */
@@ -5636,7 +5646,13 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		base = cxt.palette.base(),
 		selbg = cxt.palette.highlight(),
 		//alternate = QLineMarksInfoCenter::instance()->markType("current").color;
-		alternate = QDocument::formatFactory()->format("current").toTextCharFormat().background();
+		alternate = QDocument::formatFactory()->format("current").toTextCharFormat().background(); //current line
+
+
+	QColor repBackground = m_doc->getBackground();
+	if ( repBackground.isValid() )
+		base.setColor(repBackground);
+
 
 	if ( !alternate.color().isValid() )
 		alternate = cxt.palette.alternateBase();
