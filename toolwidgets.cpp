@@ -145,6 +145,18 @@ OutputViewWidget::OutputViewWidget(QWidget * parent): QDockWidget(parent), logMo
 	
 		table->horizontalHeader()->setStretchLastSection(true);
 		table->setMinimumHeight(5*(fm.lineSpacing()+4));
+
+		QAction * act = new QAction("&Copy",table);
+		connect(act, SIGNAL(triggered()), SLOT(copyMessage()));
+		table->addAction(act);
+		act = new QAction("&Copy all",table);
+		connect(act, SIGNAL(triggered()), SLOT(copyAllMessages()));
+		table->addAction(act);
+		act = new QAction("&Show in log",table);
+		connect(act, SIGNAL(triggered()), SLOT(showMessageInLog()));;
+		table->addAction(act);
+
+		table->setContextMenuPolicy(Qt::ActionsContextMenu);
 	}
 
 	OutputTextEdit = new LogEditor(this);
@@ -319,6 +331,29 @@ void OutputViewWidget::clickedOnLogModelIndex(const QModelIndex& index){
 void OutputViewWidget::gotoLogLine(int logLine){
 	gotoLogEntry(logModel->logLineNumberToLogEntryNumber(logLine));
 }
+
+void OutputViewWidget::copyMessage(){
+	QModelIndex curMessage = tabbedLogView ? OutputTable2->currentIndex() : OutputTable->currentIndex();
+	if (!curMessage.isValid()) return;
+	curMessage = logModel->index(curMessage.row(), 3);
+	REQUIRE(QApplication::clipboard());
+	QApplication::clipboard()->setText(logModel->data(curMessage, Qt::DisplayRole).toString());
+}
+void OutputViewWidget::copyAllMessages(){
+	QStringList result;
+	for (int i=0;i<logModel->count();i++)
+		result << logModel->data(logModel->index(i, 3), Qt::DisplayRole).toString();
+	REQUIRE(QApplication::clipboard());
+	QApplication::clipboard()->setText(result.join("\n"));
+}
+void OutputViewWidget::showMessageInLog(){
+	logViewerTabBar->setCurrentIndex(LAYOUT_PAGE_LOG);
+	QModelIndex curMessage = tabbedLogView ? OutputTable2->currentIndex() : OutputTable->currentIndex();
+	if (!curMessage.isValid()) return;
+	gotoLogEntry(curMessage.row());
+}
+
+
 void OutputViewWidget::addSearch(QList<QDocumentLineHandle *> search,QString name){
 	searchResultModel->addSearch(search,name);
 }
