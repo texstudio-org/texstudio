@@ -57,9 +57,7 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		
 		QDocumentSearch(QEditor *e, const QString& f, Options opt, const QString& r = QString());
 		~QDocumentSearch();
-		
-		int indexedMatchCount() const;
-		
+
 		QString searchText() const;
 		void setSearchText(const QString& f);
 		

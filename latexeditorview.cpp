@@ -99,12 +99,14 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 		}
 	}
 	if (!keyToReplace) return false;
-	int pos;
-	if (!event->text().isEmpty() && (pos=keyToReplace->indexOf(event->text()))>=0) {
-		QString whitespace(" \t\n");
-		QChar prev=editor->cursor().previousChar();
-		editor->insertText(whitespace.contains(prev)||prev==QChar(0)?keyReplaceBeforeWord->at(pos):keyReplaceAfterWord->at(pos));
-		return true;
+	if (!event->text().isEmpty()) {
+		int pos=keyToReplace->indexOf(event->text());
+		if (pos >=0) {
+			QString whitespace(" \t\n");
+			QChar prev=editor->cursor().previousChar();
+			editor->insertText(whitespace.contains(prev)||prev==QChar(0)?keyReplaceBeforeWord->at(pos):keyReplaceAfterWord->at(pos));
+			return true;
+		}
 	}
 	if (LatexEditorView::hideTooltipWhenLeavingLine!=-1 && editor->cursor().lineNumber()!=LatexEditorView::hideTooltipWhenLeavingLine) {
 		LatexEditorView::hideTooltipWhenLeavingLine=-1;
@@ -1204,7 +1206,8 @@ QList<int> LatexEditorViewConfig::possibleEditOperations(){
 		QEditor::IndentSelection,
 		QEditor::UnindentSelection};
 	QList<int> res;
-	for (int i=0;i<sizeof(temp)/sizeof(int);i++) //sizeof(array) is possible with c-arrays
+	int operationCount = (int)(sizeof(temp)/sizeof(int)); //sizeof(array) is possible with c-arrays
+	for (int i=0;i<operationCount;i++)
 		res << temp[i];
 	return res;
 }
