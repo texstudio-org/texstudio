@@ -46,7 +46,6 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		virtual QString type() const;
 		bool isReplaceModeActive() const;
 		QDocumentCursor getSearchScope() const;
-		int numberOfFindings();
 		QDocumentSearch * search(){
 			return m_search;
 		}

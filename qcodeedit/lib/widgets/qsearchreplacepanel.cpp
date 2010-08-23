@@ -880,12 +880,4 @@ void QSearchReplacePanel::cursorPositionChanged()
 	}
 }
 
-int QSearchReplacePanel::numberOfFindings(){
-	if ( m_search )
-	{
-		m_search->setOption(QDocumentSearch::HighlightAll, true);
-		return m_search->indexedMatchCount();
-	} else return 0;
-}
-
 /*! @} */

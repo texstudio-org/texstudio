@@ -60,20 +60,10 @@ QDocumentSearch::Options QDocumentSearch::options() const
 	return m_option;
 }
 
-/*!
-	\brief Number of availables indexed matches
-	
-	Indexed matches are only available when the whole scope is searched,
-	i.e when either the HighlightAll option is set to true or when next()
-	is called with the all parameter set to true.
-*/
-int QDocumentSearch::indexedMatchCount() const
-{
-	Q_ASSERT(false);//return m_highlight.count();
-}
 
 //equal to next but needs matches
 bool QDocumentSearch::nextMatch(bool backward, bool again,  bool allowWrapAround){
+	Q_UNUSED(backward);Q_UNUSED(again);Q_UNUSED(allowWrapAround);
 #if 0
 	if (!hasOption(HighlightAll))
 		return false;
@@ -912,13 +902,14 @@ void QDocumentSearch::replaceCursorText(QRegExp& m_regexp,bool backward){
 	//old overlays
 	QDocument* d = m_cursor.document();
 	int rid = 0;
+	int shift = 0;
 	QList<QFormatRange> oldOverlaysBefore, oldOverlaysAfter;
-	QDocumentSelection boundaries;
 	if (hasOption(HighlightReplacements)) {
 		QFormatScheme *f = d ? d->formatScheme() : QDocument::formatFactory();
 		rid = f ? f->id("replacement") : 0;
 		if (rid) {
-			boundaries = m_cursor.selection();
+			QDocumentSelection boundaries = m_cursor.selection();
+			shift = -boundaries.end;
 			QDocumentLine startLine = d->line(boundaries.startLine);
 			QDocumentLine endLine = d->line(boundaries.endLine);
 			oldOverlaysBefore = startLine.getOverlays(rid);
@@ -943,7 +934,6 @@ void QDocumentSearch::replaceCursorText(QRegExp& m_regexp,bool backward){
 	//highlight replacement
 	if (rid) {
 		//restore old
-		int shift = -boundaries.end;
 		QDocumentSelection boundaries = m_cursor.selection();
 		shift += boundaries.end;
 
