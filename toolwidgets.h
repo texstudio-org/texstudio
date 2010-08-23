@@ -86,6 +86,10 @@ private slots:
 	void clickedOnLogModelIndex(const QModelIndex& index);
 	void clickedSearchResult(const QModelIndex& index);
 	void gotoLogLine(int logLine);
+
+	void copyMessage();
+	void copyAllMessages();
+	void showMessageInLog();
 };
 
 class SearchTreeDelegate: public QItemDelegate {
