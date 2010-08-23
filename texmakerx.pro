@@ -265,6 +265,7 @@ unix {
         texmakerx_hu.qm \
         qt_fr.qm \
         qt_de.qm \
+        qt_hu.qm \
         templates/template_Article.tex \
         templates/template_Beamer.tex \
         templates/template_Book.tex \
