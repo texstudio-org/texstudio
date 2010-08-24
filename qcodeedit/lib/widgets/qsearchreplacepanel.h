@@ -53,7 +53,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		void display(int mode, bool replace);
 		
 		void findNext();
-		void findReplace(bool backward, bool replace=false, bool replaceAll=false);
+		void findReplace(bool backward, bool replace=false, bool replaceAll=false, bool countOnly = false);
 		void find(QString text, bool backward, bool highlight, bool regex, bool word, bool caseSensitive);
                 void find(QString text, bool backward, bool highlight, bool regex, bool word, bool caseSensitive, bool fromCursor, bool selection);
 		void setOptions(int searchOptions, bool cursor, bool selection);
@@ -89,6 +89,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 
 		void on_bNext_clicked();
 		void on_bPrevious_clicked();
+		void on_bCount_clicked();
 
 		void on_bReplaceNext_clicked();
 		void on_bReplacePrevious_clicked();
@@ -112,8 +113,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		QToolButton *bClose;
 		QLabel *label;
 		QLineEdit *leFind;
-		QToolButton *bNext;
-		QToolButton *bPrevious;
+		QToolButton *bNext, *bPrevious, *bCount;
 		QFrame *frame_6;
 		QGridLayout *gridLayout1;
 		QCheckBox *cbCase;
