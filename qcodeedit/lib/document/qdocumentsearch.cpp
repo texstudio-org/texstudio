@@ -519,7 +519,7 @@ QDocumentCursor QDocumentSearch::scope() const
 */
 void QDocumentSearch::setScope(const QDocumentCursor& c)
 {
-	if ( c == m_scope )
+	if ( c.selectionStart() == m_scope.selectionStart() && c.selectionEnd() == m_scope.selectionEnd() )
 		return;
 	
 	if ( c.hasSelection() ){
@@ -533,7 +533,8 @@ void QDocumentSearch::setScope(const QDocumentCursor& c)
 	} else
 		m_scope = QDocumentCursor();
 	highlightSelection();
-	searchMatches();
+	if (hasOption(HighlightAll)) searchMatches();
+	else m_editor->viewport()->update();
 	//clearMatches();
 }
 
@@ -1011,12 +1012,8 @@ void QDocumentSearch::highlightSelection(const QDocumentCursor& subHighlightScop
 		m_highlightedScope.boundaries(begLine, begCol, endLine, endCol);
 		if (subHighlightScope.isValid() && subHighlightScope.hasSelection())
 			subHighlightScope.intersectBoundaries(begLine, begCol, endLine, endCol);
-		for(int i=begLine;i<=endLine;i++){
-			//we can't remove a overlay with the line length because the line length could changed
-			QList<QFormatRange> overlays=m_editor->document()->line(i).getOverlays(sid);
-			if (!overlays.empty())
-				m_editor->document()->line(i).removeOverlay(overlays.first());
-		}
+		for(int i=begLine;i<=endLine;i++)
+			m_editor->document()->line(i).clearOverlays(sid);
 		m_highlightedScope = QDocumentCursor();
 	}
 
