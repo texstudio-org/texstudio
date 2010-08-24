@@ -450,6 +450,7 @@ void QDocumentSearch::setReplaceText(const QString& r)
 	\return The current cursor position
 	
 	This is useful to examine matches after performing a search.
+	\todo DOCU IS WRONG!  remove origin? and replace it with cursor()?
 */
 QDocumentCursor QDocumentSearch::origin() const
 {
@@ -462,6 +463,8 @@ QDocumentCursor QDocumentSearch::origin() const
 	If the related option is set, search will start from that cursor position
 	
 	This also changes the cursor()
+
+	\todo DOCU IS WRONG!  remove setOrigin? and replace it with setCursor()?
 */
 void QDocumentSearch::setOrigin(const QDocumentCursor& c)
 {
@@ -592,10 +595,11 @@ bool QDocumentSearch::end(bool backward,QDocumentLine l) const
 	\param backward whether to go backward or forward
 	\param all if true, the whole document will be searched first, all matches recorded and available for further navigation
 	\param again if a search match is selected it will be replaced, than a normal search (no replace) will be performed
+	\return The number of found occurences
 
 	\note The search will start at the first character left/right from the selected text
 */
-bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAround)
+int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAround)
 {
 	if ( m_string.isEmpty() )
 		return true;
@@ -627,10 +631,10 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 	}
 
 
-	if (all && !hasOption(Replace)) {
+	/*if (all && !hasOption(Replace)) {
 		all=false;
 		qWarning("QDocumentSearch:next: all without replace is meaningless");
-	}
+	}*/
 
 	QRegExp m_regexp=currentRegExp();
 	
@@ -779,7 +783,7 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 						if (ret==QMessageBox::Cancel) {
 							QMessageBox::information(m_editor,tr("Replacing Canceled"),tr("%1 (of %2 found so far) occurences have been replaced").arg(replaceCount).arg(foundCount),QMessageBox::Ok);
 							//rep=all=false;//return false;
-							return false;
+							return foundCount;
 						}
 					}
 					
@@ -849,13 +853,13 @@ bool QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAr
 			{
 				m_cursor = QDocumentCursor();
 				m_origin = QDocumentCursor();
-				return next(backward, all, again, false);
+				return foundCount + next(backward, all, again, false);
 			}
 		} else QMessageBox::information(m_editor,tr("Replacing Finished"),tr("%1 (of %2) occurences have been replaced").arg(replaceCount).arg(foundCount),QMessageBox::Ok);
 	}
 	
 	
-	return false;
+	return foundCount;
 }
 /*! @} */
 

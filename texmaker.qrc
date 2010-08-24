@@ -1377,5 +1377,6 @@
         <file>completion/natbib.cwl</file>
         <file>images/masterdoc.png</file>
         <file>images/qcodeedit/replaceall.png</file>
+        <file>images/qcodeedit/count.png</file>
     </qresource>
 </RCC>

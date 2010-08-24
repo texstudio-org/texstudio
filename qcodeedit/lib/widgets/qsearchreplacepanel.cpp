@@ -126,6 +126,14 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 
 	gridLayout->addWidget(bPrevious, 0, 4, 1, 1);
 
+	bCount = new QToolButton(this);
+	bCount->setObjectName(QString::fromUtf8("bCount"));
+	bCount->setMinimumSize(buttonSize);
+	bCount->setMaximumSize(buttonSize);
+	bCount->setIcon(QIcon(":/images/qcodeedit/count.png"));
+
+	gridLayout->addWidget(bCount, 0, 5, 1, 1);
+
 	frame_6 = new QFrame(this);
 	frame_6->setObjectName(QString::fromUtf8("frame_6"));
 	sizePolicy1.setHeightForWidth(frame_6->sizePolicy().hasHeightForWidth());
@@ -183,7 +191,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	gridLayout1->addWidget(cbSelection, 0, 5, 1, 1);
 
 
-	gridLayout->addWidget(frame_6, 0, 5, 2, 2,Qt::AlignTop);
+	gridLayout->addWidget(frame_6, 0, 6, 2, 2,Qt::AlignTop);
 
 	bReplaceAll = new QToolButton(this);
 	bReplaceAll->setObjectName(QString::fromUtf8("bReplaceAll"));
@@ -273,7 +281,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	QObject::connect(cbReplace, SIGNAL(toggled(bool)), bReplaceAll, SLOT(setVisible(bool)));
 	QObject::connect(bClose, SIGNAL(clicked()), this, SLOT(close()));
 
-	// coonect by name ????
+	// connect by name
 	QMetaObject::connectSlotsByName(this);
 
 	// set texts
@@ -436,8 +444,11 @@ void QSearchReplacePanel::findNext(){
 /*!
 
 */
-void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceAll)
+void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceAll, bool countOnly)
 {
+	Q_ASSERT(!(replace && countOnly));
+	Q_ASSERT(!(replaceAll && !replace));
+
 	if ( !m_search )
 	{
 		if ( !isVisible() )
@@ -457,7 +468,29 @@ void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceA
 	if (replace && m_search->replaceText()!=leReplace->text())
 		m_search->setReplaceText(leReplace->text());
 	m_search->setOption(QDocumentSearch::Replace,replace);
-	m_search->next(backward, replaceAll, !cbPrompt->isChecked(), true);
+	if (!countOnly)  m_search->next(backward, replaceAll, !cbPrompt->isChecked(), true);
+	else {
+		m_search->setOption(QDocumentSearch::Silent, true);
+		QDocumentCursor startCur = m_search->cursor();
+		QDocumentCursor origin = m_search->origin();
+		int question = QMessageBox::Yes;
+		if (startCur.isValid() && cbCursor->isChecked() &&
+		    ((startCur.selectionStart() > m_search->scope().selectionStart() && startCur.selectionEnd() < m_search->scope().selectionEnd()) || !m_search->scope().isValid())) {
+			m_search->setOrigin(m_search->cursor().selectionEnd());
+			m_search->setCursor(m_search->origin());
+			int count = m_search->next(false, true, true, false);
+			question = QMessageBox::information(this,tr("Count result"),tr("The search text occurs %1 times after the current cursor. Do you want to restart from the beginning of the scope?").arg(count),QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+		}
+		if (question == QMessageBox::Yes) {
+			m_search->setCursor(QDocumentCursor());
+			m_search->setOrigin(QDocumentCursor());
+			int count = m_search->next(false, true, true, false);
+			QMessageBox::information(this,tr("Count result"),tr("The search text occurs %1 times within the search scope.").arg(count),QMessageBox::Ok);
+		}
+		m_search->setCursor(startCur);
+		m_search->setOrigin(origin);
+		m_search->setOption(QDocumentSearch::Silent, false);
+	}
         if (isVisible() && !leFind->hasFocus() && !leReplace->hasFocus() ) {
 		if (replace) leReplace->setFocus();
 		else leFind->setFocus();
@@ -765,15 +798,21 @@ void QSearchReplacePanel::on_bPrevious_clicked()
 	findReplace(true);
 }
 
+void QSearchReplacePanel::on_bCount_clicked()
+{
+	leFind->setStyleSheet(QString());
+	findReplace(false, false, false, true);
+}
+
 void QSearchReplacePanel::on_bReplaceNext_clicked()
 {
-        leFind->setStyleSheet(QString());
-        findReplace(false,true);
+	leFind->setStyleSheet(QString());
+	findReplace(false,true);
 }
 void QSearchReplacePanel::on_bReplacePrevious_clicked()
 {
-        leFind->setStyleSheet(QString());
-        findReplace(true,true);
+	leFind->setStyleSheet(QString());
+	findReplace(true,true);
 }
 
 void QSearchReplacePanel::on_bReplaceAll_clicked()
