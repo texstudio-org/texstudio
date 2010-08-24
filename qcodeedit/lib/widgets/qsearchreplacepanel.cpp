@@ -74,18 +74,14 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	hboxLayout = new QHBoxLayout(frame_2);
 	hboxLayout->setObjectName(QString::fromUtf8("hboxLayout"));
 	hboxLayout->setContentsMargins(-1, 0, -1, 0);
+
+	QSize buttonSize(22,22);
+
 	bClose = new QToolButton(frame_2);
 	bClose->setObjectName(QString::fromUtf8("bClose"));
-	QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Preferred);
-	sizePolicy2.setHorizontalStretch(0);
-	sizePolicy2.setVerticalStretch(0);
-	sizePolicy2.setHeightForWidth(bClose->sizePolicy().hasHeightForWidth());
-	bClose->setSizePolicy(sizePolicy2);
-	bClose->setMinimumSize(QSize(20, 20));
-	bClose->setMaximumSize(QSize(20, 20));
-	QIcon icon;
-	icon.addFile(QString::fromUtf8(":/closeall.png"), QSize(), QIcon::Normal, QIcon::Off);
-	bClose->setIcon(icon);
+	bClose->setMinimumSize(buttonSize);
+	bClose->setMaximumSize(buttonSize);
+	bClose->setIcon(QIcon(":/closeall.png"));
 
 	hboxLayout->addWidget(bClose);
 
@@ -116,25 +112,17 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 
 	bNext = new QToolButton(this);
 	bNext->setObjectName(QString::fromUtf8("bNext"));
-	sizePolicy2.setHeightForWidth(bNext->sizePolicy().hasHeightForWidth());
-	bNext->setSizePolicy(sizePolicy2);
-	bNext->setMinimumSize(QSize(20, 20));
-	bNext->setMaximumSize(QSize(20, 20));
-	QIcon icon2;
-	icon2.addFile(QString::fromUtf8(":/down.png"), QSize(), QIcon::Normal, QIcon::Off);
-	bNext->setIcon(icon2);
+	bNext->setMinimumSize(buttonSize);
+	bNext->setMaximumSize(buttonSize);
+	bNext->setIcon(QIcon(":/down.png"));
 
 	gridLayout->addWidget(bNext, 0, 3, 1, 1);
 
 	bPrevious = new QToolButton(this);
 	bPrevious->setObjectName(QString::fromUtf8("bPrevious"));
-	sizePolicy2.setHeightForWidth(bPrevious->sizePolicy().hasHeightForWidth());
-	bPrevious->setSizePolicy(sizePolicy2);
-	bPrevious->setMinimumSize(QSize(20, 20));
-	bPrevious->setMaximumSize(QSize(20, 20));
-	QIcon icon3;
-	icon3.addFile(QString::fromUtf8(":/up.png"), QSize(), QIcon::Normal, QIcon::Off);
-	bPrevious->setIcon(icon3);
+	bPrevious->setMinimumSize(buttonSize);
+	bPrevious->setMaximumSize(buttonSize);
+	bPrevious->setIcon(QIcon(":/up.png"));
 
 	gridLayout->addWidget(bPrevious, 0, 4, 1, 1);
 
@@ -197,13 +185,11 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 
 	gridLayout->addWidget(frame_6, 0, 5, 2, 2,Qt::AlignTop);
 
-	bReplaceAll = new QPushButton(this);
+	bReplaceAll = new QToolButton(this);
 	bReplaceAll->setObjectName(QString::fromUtf8("bReplaceAll"));
-	QSizePolicy sizePolicy6(QSizePolicy::Maximum, QSizePolicy::Fixed);
-	sizePolicy6.setHorizontalStretch(0);
-	sizePolicy6.setVerticalStretch(0);
-	sizePolicy6.setHeightForWidth(bReplaceAll->sizePolicy().hasHeightForWidth());
-	bReplaceAll->setSizePolicy(sizePolicy6);
+	bReplaceAll->setMinimumSize(buttonSize);
+	bReplaceAll->setMaximumSize(buttonSize);
+	bReplaceAll->setIcon(QIcon(":/images/qcodeedit/replaceall.png"));
 
 	gridLayout->addWidget(bReplaceAll, 2, 5, 1, 1);
 
@@ -263,25 +249,17 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 
 	bReplaceNext = new QToolButton(this);
 	bReplaceNext->setObjectName(QString::fromUtf8("bReplaceNext"));
-	sizePolicy2.setHeightForWidth(bReplaceNext->sizePolicy().hasHeightForWidth());
-	bReplaceNext->setSizePolicy(sizePolicy2);
-	bReplaceNext->setMinimumSize(QSize(20, 20));
-	bReplaceNext->setMaximumSize(QSize(20, 20));
-	QIcon icon4;
-	icon4.addFile(QString::fromUtf8(":/images/qcodeedit/replacedown.png"), QSize(), QIcon::Normal, QIcon::Off);
-	bReplaceNext->setIcon(icon4);
+	bReplaceNext->setMinimumSize(buttonSize);
+	bReplaceNext->setMaximumSize(buttonSize);
+	bReplaceNext->setIcon(QIcon(":/images/qcodeedit/replacedown.png"));
 
 	gridLayout->addWidget(bReplaceNext, 2, 3, 1, 1);
 
 	bReplacePrevious = new QToolButton(this);
 	bReplacePrevious->setObjectName(QString::fromUtf8("bReplacePrevious"));
-	sizePolicy2.setHeightForWidth(bReplacePrevious->sizePolicy().hasHeightForWidth());
-	bReplacePrevious->setSizePolicy(sizePolicy2);
-	bReplacePrevious->setMinimumSize(QSize(20, 20));
-	bReplacePrevious->setMaximumSize(QSize(20, 20));
-	QIcon icon5;
-	icon5.addFile(QString::fromUtf8(":/images/qcodeedit/replaceup.png"), QSize(), QIcon::Normal, QIcon::Off);
-	bReplacePrevious->setIcon(icon5);
+	bReplacePrevious->setMinimumSize(buttonSize);
+	bReplacePrevious->setMaximumSize(buttonSize);
+	bReplacePrevious->setIcon(QIcon(":/images/qcodeedit/replaceup.png"));
 
 	gridLayout->addWidget(bReplacePrevious, 2, 4, 1, 1);
 
@@ -299,7 +277,6 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	QMetaObject::connectSlotsByName(this);
 
 	// set texts
-#ifndef QT_NO_TOOLTIP
 	bClose->setToolTip(QApplication::translate("SearchReplace", "Close search/replace panel", 0, QApplication::UnicodeUTF8));
 	leFind->setToolTip(QApplication::translate("SearchReplace", "Text or pattern to search for", 0, QApplication::UnicodeUTF8));
 	bNext->setToolTip(QApplication::translate("SearchReplace", "Find next occurence", 0, QApplication::UnicodeUTF8));
@@ -307,12 +284,10 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	leReplace->setToolTip(QApplication::translate("SearchReplace", "Replacement text", 0, QApplication::UnicodeUTF8));
 	bReplaceNext->setToolTip(QApplication::translate("SearchReplace", "Find next occurence", 0, QApplication::UnicodeUTF8));
 	bReplacePrevious->setToolTip(QApplication::translate("SearchReplace", "Find previous occurence", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_TOOLTIP
-	bClose->setText(QString());
+	bReplaceAll->setToolTip(QApplication::translate("SearchReplace", "Replace all", 0, QApplication::UnicodeUTF8));
+
 	label->setText(QApplication::translate("SearchReplace", " Find :", 0, QApplication::UnicodeUTF8));
 	label->setMinimumWidth(label->sizeHint().width());
-	bNext->setText(QString());
-	bPrevious->setText(QString());
 	cbCase->setText(QApplication::translate("SearchReplace", "Case", 0, QApplication::UnicodeUTF8));
 	cbCase->setMinimumWidth(cbCase->sizeHint().width());
 	cbWords->setText(QApplication::translate("SearchReplace", "Words", 0, QApplication::UnicodeUTF8));
@@ -325,13 +300,11 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	cbCursor->setMinimumWidth(cbCursor->sizeHint().width());
 	cbSelection->setText(QApplication::translate("SearchReplace", "Selection", 0, QApplication::UnicodeUTF8));
 	cbSelection->setMinimumWidth(cbSelection->sizeHint().width());
-	bReplaceAll->setText(QApplication::translate("SearchReplace", "all", 0, QApplication::UnicodeUTF8));
+	//bReplaceAll->setText(QApplication::translate("SearchReplace", "all", 0, QApplication::UnicodeUTF8));
 	cbPrompt->setText(QApplication::translate("SearchReplace", "Prompt on replace", 0, QApplication::UnicodeUTF8));
-	cbReplaceAll->setText(QApplication::translate("SearchReplace", "Replace all", 0, QApplication::UnicodeUTF8));
 	cbEscapeSeq->setText(QApplication::translate("SearchReplace", "Escape sequences", 0, QApplication::UnicodeUTF8));
 	cbReplace->setText(QApplication::translate("SearchReplace", "Replace :", 0, QApplication::UnicodeUTF8));
-	bReplaceNext->setText(QString());
-	bReplacePrevious->setText(QString());
+	cbReplaceAll->setText(QApplication::translate("SearchReplace", "Replace all", 0, QApplication::UnicodeUTF8));
 
 	minimum_width=frame_2->sizeHint().width()+leFind->sizeHint().width()+2*bNext->sizeHint().width()+5*hboxLayout->spacing();
 	//
@@ -344,7 +317,6 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	leReplace->installEventFilter(this);
 	
 	cbReplaceAll->setVisible(false);
-
 
 }
 

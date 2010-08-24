@@ -27,7 +27,6 @@
 	\see QSearchReplacePanel
 */
 
-//#include "ui_searchreplace.h"
 
 class QDocumentCursor;
 class QDocumentLine;
@@ -123,7 +122,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		QCheckBox *cbHighlight;
 		QCheckBox *cbCursor;
 		QCheckBox *cbSelection;
-		QPushButton *bReplaceAll;
+		QToolButton *bReplaceAll;
 		QFrame *frame;
 		QHBoxLayout *hboxLayout1;
 		QCheckBox *cbPrompt;

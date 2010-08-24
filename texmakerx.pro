@@ -373,8 +373,7 @@ SOURCES += qcodeedit/lib/qeditor.cpp \
     qcodeedit/lib/widgets/qformatconfig.cpp \
     qcodeedit/lib/widgets/qsimplecolorpicker.cpp \
     qcodeedit/lib/widgets/qcalltip.cpp
-FORMS += qcodeedit/lib/widgets/searchreplace.ui \
-    qcodeedit/lib/widgets/gotoline.ui \
+FORMS += qcodeedit/lib/widgets/gotoline.ui \
     qcodeedit/lib/widgets/gotolinedialog.ui \
     qcodeedit/lib/widgets/editconfig.ui \
     qcodeedit/lib/widgets/formatconfig.ui
