@@ -768,11 +768,11 @@ void QSearchReplacePanel::on_cbSelection_toggled(bool on)
 	if ( m_search ) {
 		m_search->setOrigin(QDocumentCursor());
 		m_search->setScope(on ? editor()->cursor() : QDocumentCursor());
-		if ( m_search && cbHighlight->isChecked())
+		/*if ( m_search && cbHighlight->isChecked())
 		{
 			m_search->setOption(QDocumentSearch::HighlightAll, false);
 			m_search->setOption(QDocumentSearch::HighlightAll, true);
-		}
+		}*/
 	}
 	leFind->setFocus();
 }
