@@ -1,18 +1,18 @@
 <RCC>
-    <qresource prefix="/" >
+    <qresource prefix="/">
         <file>uiconfig.xml</file>
-        <file alias="qxs/defaultFormats.qxf" >utilities/qxs/defaultFormats.qxf</file>
-        <file alias="qxs/marks.qxm" >utilities/qxs/marks.qxm</file>
-        <file alias="qxs/bibtex.qnfa" >utilities/qxs/bibtex.qnfa</file>
+        <file alias="qxs/defaultFormats.qxf">utilities/qxs/defaultFormats.qxf</file>
+        <file alias="qxs/marks.qxm">utilities/qxs/marks.qxm</file>
+        <file alias="qxs/bibtex.qnfa">utilities/qxs/bibtex.qnfa</file>
         <file alias="qxs/qtscript.qnfa">utilities/qxs/qtscript.qnfa</file>
-        <file alias="qxs/tex.qnfa" >utilities/qxs/tex.qnfa</file>
-        <file alias="qxs/tmxmacro.qnfa" >utilities/qxs/tmxmacro.qnfa</file>
-        <file alias="qxs/xml.qnfa" >utilities/qxs/xml.qnfa</file>
-        <file alias="closeall.png" >images/qcodeedit/closeall.png</file>
-        <file alias="down.png" >images/qcodeedit/down.png</file>
-        <file alias="up.png" >images/qcodeedit/up.png</file>
-        <file alias="reload.png" >images/qcodeedit/reload.png</file>
-        <file alias="warning.png" >images/qcodeedit/warning.png</file>
+        <file alias="qxs/tex.qnfa">utilities/qxs/tex.qnfa</file>
+        <file alias="qxs/tmxmacro.qnfa">utilities/qxs/tmxmacro.qnfa</file>
+        <file alias="qxs/xml.qnfa">utilities/qxs/xml.qnfa</file>
+        <file alias="closeall.png">images/qcodeedit/closeall.png</file>
+        <file alias="down.png">images/qcodeedit/down.png</file>
+        <file alias="up.png">images/qcodeedit/up.png</file>
+        <file alias="reload.png">images/qcodeedit/reload.png</file>
+        <file alias="warning.png">images/qcodeedit/warning.png</file>
         <file>images/qcodeedit/bold.png</file>
         <file>images/qcodeedit/italic.png</file>
         <file>images/qcodeedit/underline.png</file>
@@ -38,15 +38,15 @@
         <file>images/lbook8.png</file>
         <file>images/lbook9.png</file>
         <file>images/leftright.png</file>
-        <file alias="blank.png" >utilities/blank.png</file>
-        <file alias="next.gif" >utilities/next.gif</file>
-        <file alias="next_d.gif" >utilities/next_d.gif</file>
-        <file alias="prev.gif" >utilities/prev.gif</file>
-        <file alias="prev_d.gif" >utilities/prev_d.gif</file>
-        <file alias="psheader.txt" >utilities/psheader.txt</file>
-        <file alias="style.css" >utilities/style.css</file>
-        <file alias="up.gif" >utilities/up.gif</file>
-        <file alias="up_d.gif" >utilities/up_d.gif</file>
+        <file alias="blank.png">utilities/blank.png</file>
+        <file alias="next.gif">utilities/next.gif</file>
+        <file alias="next_d.gif">utilities/next_d.gif</file>
+        <file alias="prev.gif">utilities/prev.gif</file>
+        <file alias="prev_d.gif">utilities/prev_d.gif</file>
+        <file alias="psheader.txt">utilities/psheader.txt</file>
+        <file alias="style.css">utilities/style.css</file>
+        <file alias="up.gif">utilities/up.gif</file>
+        <file alias="up_d.gif">utilities/up_d.gif</file>
         <file>images/logo128.png</file>
         <file>images/pstricks.png</file>
         <file>images/accent1.png</file>
@@ -209,7 +209,7 @@
         <file>completion/multicol.cwl</file>
         <file>completion/multido.cwl</file>
         <file>completion/nicefrac.cwl</file>
-		<file>completion/nomencl.cwl</file>
+        <file>completion/nomencl.cwl</file>
         <file>completion/pdfpages.cwl</file>
         <file>completion/psfrag.cwl</file>
         <file>completion/pst-3d.cwl</file>
@@ -241,7 +241,7 @@
         <file>completion/texmakerx.cwl</file>
         <file>completion/textcomp.cwl</file>
         <file>completion/todonotes.cwl</file>
-		<file>completion/units.cwl</file>
+        <file>completion/units.cwl</file>
         <file>completion/url.cwl</file>
         <file>completion/varioref.cwl</file>
         <file>completion/verse.cwl</file>
@@ -1363,7 +1363,7 @@
         <file>symbols/wasysym/img111wasysym.png</file>
         <file>symbols/wasysym/img112wasysym.png</file>
         <file>templates/template_Article.tex</file>
-		<file>templates/template_Article(French).tex</file>
+        <file>templates/template_Article(French).tex</file>
         <file>templates/template_Beamer.tex</file>
         <file>templates/template_Book.tex</file>
         <file>templates/template_HA-prosper.tex</file>
@@ -1376,5 +1376,6 @@
         <file>templates/template_Scrreprt.tex</file>
         <file>completion/natbib.cwl</file>
         <file>images/masterdoc.png</file>
+        <file>images/qcodeedit/replaceall.png</file>
     </qresource>
 </RCC>
