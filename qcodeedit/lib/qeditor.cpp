@@ -897,6 +897,7 @@ void QEditor::save()
 	m_saveState = Saving;
 
 	//remove all watches (on old and new file name (setfilename above could have create one!) )
+	Q_ASSERT(watcher());
 	watcher()->removeWatch(QString(), this); 
 
 	QFile f(fileName());
@@ -913,20 +914,20 @@ void QEditor::save()
 	//s << text();
 	// insert hard line breaks on modified lines (if desired)
 	if(flag(HardLineWrap)){
-	    QList<QDocumentLineHandle*> handles = m_doc->impl()->getStatus().keys();
-	    QDocumentCursor cur(m_doc);
+		QList<QDocumentLineHandle*> handles = m_doc->impl()->getStatus().keys();
+		QDocumentCursor cur(m_doc);
 
-	    foreach ( QDocumentLineHandle* dlh,handles )
-	    {
-		QList<int> lineBreaks=dlh->getBreaks();
-		if(!lineBreaks.isEmpty()){
-		    while(!lineBreaks.isEmpty()){
-			cur.moveTo(dlh->line(),lineBreaks.takeLast());
-			cur.insertText("\n");
-		    }
+		foreach ( QDocumentLineHandle* dlh,handles )
+		{
+			QList<int> lineBreaks=dlh->getBreaks();
+			if(!lineBreaks.isEmpty()){
+				while(!lineBreaks.isEmpty()){
+					cur.moveTo(dlh->line(),lineBreaks.takeLast());
+					cur.insertText("\n");
+				}
+			}
 		}
-	    }
-	    cur.endEditBlock();
+		cur.endEditBlock();
 	}
 
 	QString txt = m_doc->text(flag(RemoveTrailing), flag(PreserveTrailingIndent));

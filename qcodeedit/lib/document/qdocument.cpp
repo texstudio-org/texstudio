@@ -7122,6 +7122,7 @@ void QDocumentPrivate::emitLineDeleted(QDocumentLineHandle *h)
 	if ( !m_deleting )
 	{
 		m_marks.remove(h);
+		m_status.remove(h);
 
 		int idx = m_lines.indexOf(h);
 

@@ -1224,9 +1224,11 @@ void Texmaker::fileSaveAll() {
 void Texmaker::fileSaveAll(bool alsoUnnamedFiles) {
 //LatexEditorView *temp = new LatexEditorView(EditorView,colorMath,colorCommand,colorKeyword);
 //temp=currentEditorView();
+	REQUIRE(EditorView);
 	int currentIndex=EditorView->indexOf(currentEditorView());
 	for (int i=0;i<EditorView->count(); i++){
 		LatexEditorView *edView = qobject_cast<LatexEditorView*>(EditorView->widget(i));
+		REQUIRE(edView);REQUIRE(edView->editor);
 		if (edView->editor->fileName().isEmpty()){
 			if ((i==currentIndex || alsoUnnamedFiles) ) {
 				EditorView->setCurrentIndex(i);
