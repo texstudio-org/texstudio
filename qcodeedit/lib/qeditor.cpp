@@ -896,20 +896,6 @@ void QEditor::save()
 
 	m_saveState = Saving;
 
-	//remove all watches (on old and new file name (setfilename above could have create one!) )
-	Q_ASSERT(watcher());
-	watcher()->removeWatch(QString(), this); 
-
-	QFile f(fileName());
-
-	if ( !f.open(QFile::WriteOnly) )
-	{
-		m_saveState = Undefined;
-		reconnectWatcher();
-
-		return;
-	}
-
 	//QTextStream s(&f);
 	//s << text();
 	// insert hard line breaks on modified lines (if desired)
@@ -930,14 +916,30 @@ void QEditor::save()
 		cur.endEditBlock();
 	}
 
-	QString txt = m_doc->text(flag(RemoveTrailing), flag(PreserveTrailingIndent));
+	{
+		QString txt = m_doc->text(flag(RemoveTrailing), flag(PreserveTrailingIndent));
+		QByteArray data =  m_doc->codec() ? m_doc->codec()->fromUnicode(txt) : txt.toLocal8Bit();
 
-	if ( m_doc->codec())
-		f.write(m_doc->codec()->fromUnicode(txt));
-	else
-		f.write(txt.toLocal8Bit());
-	f.close(); //explicitly close for watcher
 
+		//remove all watches (on old and new file name (setfilename above could have create one!) )
+		Q_ASSERT(watcher());
+		watcher()->removeWatch(QString(), this);
+
+		QFile f(fileName());
+
+		if ( !f.open(QFile::WriteOnly) )
+		{
+			m_saveState = Undefined;
+			reconnectWatcher();
+
+			return;
+		}
+
+		f.write(data);
+
+		f.close(); //explicitly close for watcher
+
+	}
 	m_doc->setClean();
 
 	emit saved(this, fileName());
