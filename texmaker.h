@@ -156,6 +156,7 @@ private slots:
 	void fileCloseAll();
 	void fileExit();
 	void fileOpenRecent();
+	void fileOpenAllRecent();
 	void fileOpenRecentProject();
 	void MarkCurrentFileAsRecent();
 	void filePrint();

@@ -1018,7 +1018,7 @@ bool ConfigManager::addRecentFile(const QString & fileName, bool asMaster){
 
 void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 	QMenu* recentMenu = getManagedMenu("main/file/openrecent");
-	if (alwaysRecreateMenuItems || (recentMenu->actions().count()!=maxRecentFiles+maxRecentProjects+1)) {
+	if (alwaysRecreateMenuItems || (recentMenu->actions().count()!=maxRecentFiles+maxRecentProjects+2)) {
 		QList<QAction*> actions=recentMenu->actions(); //recentMenu->clear() doesn't seem to delete the actions (why?)
 		for (int i = 0; i< actions.count(); i++)
 			recentMenu->removeAction(actions[i]); //neccessary or it crashes
@@ -1033,7 +1033,8 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 			if (old!=NULL) recentMenu->addAction(old);
 			else newManagedAction(recentMenu, QString::number(i), tr("Recent File %1").arg(i), SLOT(fileOpenRecent()))->setVisible(false);		
 		}
-        }
+		newManagedAction(recentMenu, "allFiles", tr("Open all files"), SLOT(fileOpenAllRecent()));
+	}
 
 	for (int i=0; i < maxRecentProjects; i++) {
 		QAction* act = getManagedAction(QString("main/file/openrecent/p%1").arg(i));
