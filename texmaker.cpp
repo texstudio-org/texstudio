@@ -1120,11 +1120,18 @@ void Texmaker::fileNewFromTemplate() {
 
 void Texmaker::fileOpen() {
 	QString currentDir=QDir::homePath();
+	int filter = 0;
 	if (!configManager.lastDocument.isEmpty()) {
 		QFileInfo fi(configManager.lastDocument);
-		if (fi.exists() && fi.isReadable()) currentDir=fi.absolutePath();
+		if (fi.exists() && fi.isReadable()) {
+			currentDir=fi.absolutePath();
+			if (fi.suffix()=="") filter = 1;
+		}
 	}
-	QStringList files = QFileDialog::getOpenFileNames(this,tr("Open Files"),currentDir,tr("TeX files")+" (*.tex *.bib *.sty *.cls *.mp);;"+tr("All files")+" (*)");
+	QStringList filters;
+	filters << tr("TeX files")+" (*.tex *.bib *.sty *.cls *.mp)";
+	filters << tr("All files")+" (*)";
+	QStringList files = QFileDialog::getOpenFileNames(this,tr("Open Files"),currentDir,filters.join(";;"), &filters[filter]);
 	foreach (const QString& fn, files)
 		load(fn);
 }
