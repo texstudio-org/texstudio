@@ -1365,6 +1365,10 @@ void Texmaker::fileOpenRecent() {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (action) load(action->data().toString());
 }
+void Texmaker::fileOpenAllRecent() {
+	foreach (const QString& s, configManager.recentFilesList)
+		load(s);
+}
 
 void Texmaker::fileOpenRecentProject() {
 	QAction *action = qobject_cast<QAction *>(sender());
