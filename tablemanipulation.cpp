@@ -19,6 +19,7 @@ void addRow(QDocument *doc,const int afterLine,const int numberOfColumns ){
 
 void removeRow(QDocument *doc,const int afterLine ){
     QDocumentCursor cur(doc);
+    cur.beginEditBlock();
     cur.moveTo(afterLine,0);
     const QStringList tokens("\\\\");
     bool breakLoop=(findNextToken(cur,tokens,true)==-1);
@@ -26,6 +27,7 @@ void removeRow(QDocument *doc,const int afterLine ){
 	cur.removeSelectedText();
 	if(cur.line().text().isEmpty()) cur.deleteChar();
     }
+    cur.endEditBlock();
 }
 
 void addColumn(QDocument *doc,const int lineNumber,const int afterColumn,QStringList *cutBuffer){
@@ -71,8 +73,6 @@ void removeColumn(QDocument *doc,const int lineNumber,const int column,QStringLi
     while(!breakLoop){
 	int result=2;
 	for(int col=0;col<column;col++){
-
-
 	    do{
 		result=findNextToken(cur,nTokens);
 	    }while(result==1);

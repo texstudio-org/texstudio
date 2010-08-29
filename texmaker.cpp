@@ -507,10 +507,10 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "insertrefnextlabel",tr("Insert \\ref to next label"), SLOT(editInsertRefToNextLabel()), Qt::ALT+Qt::CTRL+Qt::Key_R);
 	newManagedAction(menu, "insertrefprevlabel",tr("Insert \\ref to previous label"), SLOT(editInsertRefToPrevLabel()));
 	submenu=newManagedMenu(menu, "tabularmanipulation",tr("Manipulate tables"));
-	newManagedAction(submenu, "addColumn",tr("add column"), SLOT(addColumnCB()));
-	newManagedAction(submenu, "addRow",tr("add row"), SLOT(addRowCB()));
-	newManagedAction(submenu, "removeRow",tr("remove row"), SLOT(removeRowCB()));
-	newManagedAction(submenu, "removeColumn",tr("remove column"), SLOT(removeColumnCB()));
+	newManagedAction(submenu, "addRow",tr("add row"), SLOT(addRowCB()),QKeySequence(),":/images/addRow.png");
+	newManagedAction(submenu, "addColumn",tr("add column"), SLOT(addColumnCB()),QKeySequence(),":/images/addCol.png");
+	newManagedAction(submenu, "removeRow",tr("remove row"), SLOT(removeRowCB()),QKeySequence(),":/images/remRow.png");
+	newManagedAction(submenu, "removeColumn",tr("remove column"), SLOT(removeColumnCB()),QKeySequence(),":/images/remCol.png");
 
 //wizards
 
