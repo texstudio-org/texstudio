@@ -506,6 +506,11 @@ void Texmaker::setupMenus() {
 	menu=newManagedMenu("main/latex",tr("&LaTeX"));
 	newManagedAction(menu, "insertrefnextlabel",tr("Insert \\ref to next label"), SLOT(editInsertRefToNextLabel()), Qt::ALT+Qt::CTRL+Qt::Key_R);
 	newManagedAction(menu, "insertrefprevlabel",tr("Insert \\ref to previous label"), SLOT(editInsertRefToPrevLabel()));
+	submenu=newManagedMenu(menu, "tabularmanipulation",tr("Manipulate tables"));
+	newManagedAction(submenu, "addColumn",tr("add column"), SLOT(addColumnCB()));
+	newManagedAction(submenu, "addRow",tr("add row"), SLOT(addRowCB()));
+	newManagedAction(submenu, "removeRow",tr("remove row"), SLOT(removeRowCB()));
+	newManagedAction(submenu, "removeColumn",tr("remove column"), SLOT(removeColumnCB()));
 
 //wizards
 
@@ -589,6 +594,9 @@ void Texmaker::setupMenus() {
 
 	menu->addSeparator();
 	newManagedAction(menu, "appinfo",tr("About TexMakerX..."), SLOT(HelpAbout()), 0,":/images/appicon.png");
+
+	//additional elements for development
+
 
 //-----context menus-----
 	structureTreeView->setObjectName("StructureTree");
@@ -4433,4 +4441,32 @@ void Texmaker::loadProfile(){
 	    QNFADefinition::load(doc,&m_lang,dynamic_cast<QFormatScheme*>(m_formats));
 	    m_languages->addLanguage(m_lang);
     }
+}
+
+void Texmaker::addRowCB(){
+    if (!currentEditorView()) return;
+    addRow(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),4);
+}
+
+void Texmaker::addColumnCB(){
+    if (!currentEditorView()) return;
+    QDocumentCursor cur=currentEditorView()->editor->cursor();
+
+    int col=getColumn(cur)+1;
+    if(col==1 &&cur.atLineStart()) col=0;
+    addColumn(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),col);
+}
+
+void Texmaker::removeColumnCB(){
+    if (!currentEditorView()) return;
+    QStringList cutBuffer;
+    QDocumentCursor cur=currentEditorView()->editor->cursor();
+    int col=getColumn(cur);
+    removeColumn(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),col,&cutBuffer);
+}
+
+void Texmaker::removeRowCB(){
+    if (!currentEditorView()) return;
+
+    removeRow(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber());
 }
