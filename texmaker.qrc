@@ -1378,5 +1378,9 @@
         <file>images/masterdoc.png</file>
         <file>images/qcodeedit/replaceall.png</file>
         <file>images/qcodeedit/count.png</file>
+        <file>images/addCol.png</file>
+        <file>images/addRow.png</file>
+        <file>images/remCol.png</file>
+        <file>images/remRow.png</file>
     </qresource>
 </RCC>
