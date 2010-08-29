@@ -33,6 +33,7 @@
 #include "toolwidgets.h"
 #include "scriptengine.h"
 #include "tmxtabwidget.h"
+#include "tablemanipulation.h"
 
 
 #include "qformatfactory.h"
@@ -362,6 +363,11 @@ private slots:
 	bool generateMirror(bool setCur=false);
 	void cursorHovered();
 	void loadProfile();
+
+	void addRowCB();
+	void addColumnCB();
+	void removeColumnCB();
+	void removeRowCB();
 
 protected:
 	void dragEnterEvent(QDragEnterEvent *event);

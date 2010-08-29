@@ -3,8 +3,11 @@
 
 #include "qdocument.h"
 
-void addRow(const QDocument *doc,const int afterLine,const int numberOfColumns );
-void addColumn(const QDocument *doc,const int afterColumn,QStringList &cutBuffer);
-void removeColmun(const QDocument *doc,const int column,QStringList &cutBuffer);
+void addRow(QDocument *doc,const int afterLine,const int numberOfColumns );
+void addColumn(QDocument *doc,const int lineNumber,const int afterColumn,QStringList *cutBuffer=0);
+void removeColumn(QDocument *doc,const int lineNumber,const int column,QStringList *cutBuffer=0);
+void removeRow(QDocument *doc,const int afterLine );
+int findNextToken(QDocumentCursor &cur,QStringList tokens,bool keepAnchor=false,bool backwards=false);
+int getColumn(QDocumentCursor &cur);
 
 #endif // TABLEMANIPULATION_H
