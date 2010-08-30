@@ -35,10 +35,13 @@ void LatexTables::addRow(QDocumentCursor &c,const int numberOfColumns ){
 
 void LatexTables::removeRow(QDocumentCursor &c){
     QDocumentCursor cur(c);
-    cur.beginEditBlock();
     const QStringList tokens("\\\\");
+    int result=findNextToken(cur,tokens,false,true);
+    if(result==0) cur.movePosition(2,QDocumentCursor::Right);
+    if(result==-2) cur.movePosition(1,QDocumentCursor::EndOfLine);
     bool breakLoop=(findNextToken(cur,tokens,true)==-1);
     if(!breakLoop) {
+	cur.beginEditBlock();
 	cur.removeSelectedText();
 	if(cur.line().text().isEmpty()) cur.deleteChar();
     }
@@ -54,6 +57,7 @@ void LatexTables::addColumn(QDocument *doc,const int lineNumber,const int afterC
 	cur.endEditBlock();
 	return; // begin not found
     }
+    cur.movePosition(1,QDocumentCursor::Right);
     QString line;
     bool breakLoop=false;
     result=2;
