@@ -49,9 +49,14 @@ void LatexTables::addColumn(QDocument *doc,const int lineNumber,const int afterC
     QDocumentCursor cur(doc);
     cur.beginEditBlock();
     cur.moveTo(lineNumber,0);
+    int result=findNextToken(cur,QStringList(),false,true); // move to \begin{...}
+    if(result!=-2) {
+	cur.endEditBlock();
+	return; // begin not found
+    }
     QString line;
     bool breakLoop=false;
-    int result=2;
+    result=2;
     while(!breakLoop){
 	for(int col=0;col<afterColumn;col++){
 	    QStringList nTokens;
@@ -65,6 +70,10 @@ void LatexTables::addColumn(QDocument *doc,const int lineNumber,const int afterC
 	// add element
 	if(result==2){
 	    cur.insertText(" &");
+	}
+	if(result==0){
+	    cur.movePosition(2,QDocumentCursor::Left);
+	    cur.insertText("& ");
 	}
 	const QStringList tokens("\\\\");
 	breakLoop=(findNextToken(cur,tokens)==-1);
@@ -83,6 +92,11 @@ void LatexTables::removeColumn(QDocument *doc,const int lineNumber,const int col
 
     cur.beginEditBlock();
     cur.moveTo(lineNumber,0);
+    int result=findNextToken(cur,QStringList(),false,true); // move to \begin{...}
+    if(result!=-2) {
+	cur.endEditBlock();
+	return; // begin not found
+    }
     QString line;
     bool breakLoop=false;
     while(!breakLoop){
