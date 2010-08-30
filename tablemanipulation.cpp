@@ -94,13 +94,13 @@ void LatexTables::removeColumn(QDocument *doc,const int lineNumber,const int col
     QStringList nTokens;
     nTokens << "\\\\" << "\\&" << "&";
 
-    cur.beginEditBlock();
     cur.moveTo(lineNumber,0);
     int result=findNextToken(cur,QStringList(),false,true); // move to \begin{...}
+    cur.movePosition(1,QDocumentCursor::Right);
     if(result!=-2) {
-	cur.endEditBlock();
 	return; // begin not found
     }
+    cur.beginEditBlock();
     QString line;
     bool breakLoop=false;
     while(!breakLoop){
@@ -269,6 +269,7 @@ bool LatexTables::inTableEnv(QDocumentCursor &cur){
     QDocumentCursor c(cur);
     int result=findNextToken(c,QStringList(),false,true);
     if(result!=-2) return false;
+    if(c.lineNumber()==cur.lineNumber()) return false;
     QString line=c.line().text();
     int pos=line.indexOf("\\begin");
     if(pos>-1){
