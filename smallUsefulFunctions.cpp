@@ -576,6 +576,51 @@ void addEnvironmentToDom(QDomDocument& doc,const QString EnvironName,const QStri
 	root.insertBefore(tag,insertAt);
 }
 
+void LatexParser::resolveCommandOptions(const QString &line, int column, QStringList &values){
+    const QString BracketsOpen("[{");
+    const QString BracketsClose("]}");
+    int start=column;
+    int stop=-1;
+    int type;
+    while(start<line.length()){
+	// find first available bracket after position start
+	int found=-1;
+	type=-1;
+	for(int i=0;i<BracketsOpen.size();i++){
+	    int zw=line.indexOf(BracketsOpen[i],start);
+	    if(zw>-1 && (zw<found||found==-1)){
+		found=zw;
+		type=i;
+	    }
+	}
+	// check wether a word letter appears before (next command text ...)
+	if(stop>-1){
+	    stop=line.indexOf(QRegExp("\\S+"),start);
+	}
+	if(stop<found && stop>-1) break;
+	// find apropriate closing bracket.
+	int lvl=0;
+	stop=-1;
+	for(int i=found+1;i<line.length();i++){
+	    QChar c=line[i];
+	    if(lvl==0 && c==BracketsClose[type]){
+		stop=i;
+		break;
+	    }
+	    if(BracketsOpen.contains(c)){
+		lvl++;
+	    }
+	    if(lvl>0 && BracketsClose.contains(c)){
+		lvl--;
+	    }
+	}
+	if(found>-1 && stop>-1){
+	    values << line.mid(found,stop-found+1);
+	    start=stop+1;
+	} else break;
+    }
+}
+
 int LatexParser::findContext(QString &line,int col){
 	int start_command=col;
 	int start_ref=col;

@@ -3,21 +3,37 @@
 #include "smallUsefulFunctions.h"
 #include "tablemanipulation.h"
 
-void addRow(QDocument *doc,const int afterLine,const int numberOfColumns ){
-    QDocumentCursor cur(doc);
-    cur.moveTo(afterLine,0);
-    cur.movePosition(1,QDocumentCursor::EndOfLine);
-    cur.insertText("\n");
-    QString str("& ");
-    QString outStr(" ");
-    for(int i=1;i<numberOfColumns;i++){
-	outStr+=str;
+QStringList LatexTables::tabularNames = QStringList() << "tabular";
+QStringList LatexTables::tabularNamesWithOneOption = QStringList() << "tabular*" << "tabularx";
+
+void LatexTables::addRow(QDocumentCursor &c,const int numberOfColumns ){
+    QDocumentCursor cur(c);
+    bool stopSearch=false;
+    if(cur.columnNumber()>1){
+	cur.movePosition(2,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+	QString res=cur.selectedText();
+	if(res=="\\\\") stopSearch=true;
+	cur.movePosition(2,QDocumentCursor::Right);
     }
-    cur.insertText(outStr);
-    cur.insertText("\\\\");
+    const QStringList tokens("\\\\");
+    int result=0;
+    if(!stopSearch) result=findNextToken(cur,tokens);
+    if(result==0 || result==-2){
+	cur.beginEditBlock();
+	if(result>-2) cur.insertText("\n");
+	QString str("& ");
+	QString outStr(" ");
+	for(int i=1;i<numberOfColumns;i++){
+	    outStr+=str;
+	}
+	cur.insertText(outStr);
+	cur.insertText("\\\\");
+	if(!cur.atLineEnd()) cur.insertText("\n");
+	cur.endEditBlock();
+    }
 }
 
-void removeRow(QDocument *doc,const int afterLine ){
+void LatexTables::removeRow(QDocument *doc,const int afterLine ){
     QDocumentCursor cur(doc);
     cur.beginEditBlock();
     cur.moveTo(afterLine,0);
@@ -30,7 +46,7 @@ void removeRow(QDocument *doc,const int afterLine ){
     cur.endEditBlock();
 }
 
-void addColumn(QDocument *doc,const int lineNumber,const int afterColumn,QStringList *cutBuffer){
+void LatexTables::addColumn(QDocument *doc,const int lineNumber,const int afterColumn,QStringList *cutBuffer){
     QDocumentCursor cur(doc);
     cur.beginEditBlock();
     cur.moveTo(lineNumber,0);
@@ -60,7 +76,7 @@ void addColumn(QDocument *doc,const int lineNumber,const int afterColumn,QString
     cur.endEditBlock();
 }
 
-void removeColumn(QDocument *doc,const int lineNumber,const int column,QStringList *cutBuffer){
+void LatexTables::removeColumn(QDocument *doc,const int lineNumber,const int column,QStringList *cutBuffer){
     QDocumentCursor cur(doc);
     //preparations for search
     QStringList nTokens;
@@ -107,21 +123,34 @@ void removeColumn(QDocument *doc,const int lineNumber,const int column,QStringLi
 }
 
 
-int findNextToken(QDocumentCursor &cur,QStringList tokens,bool keepAnchor,bool backwards){
+int LatexTables::findNextToken(QDocumentCursor &cur,QStringList tokens,bool keepAnchor,bool backwards){
     int pos=-1;
     int nextToken=-1;
+    int offset=0;
     QDocumentCursor::MoveOperation mvNextLine= backwards ? QDocumentCursor::PreviousLine : QDocumentCursor::NextLine;
     QDocumentCursor::MoveOperation mvNextChar= backwards ? QDocumentCursor::Left : QDocumentCursor::Right;
     QDocumentCursor::MoveOperation mvStartOfLine= backwards ? QDocumentCursor::EndOfLine : QDocumentCursor::StartOfLine;
     QDocumentCursor::MoveFlag mvFlag= keepAnchor ? QDocumentCursor::KeepAnchor : QDocumentCursor::MoveAnchor;
     do{
 	QString line=cur.line().text();
+	if(backwards){
+	    offset=line.length();
+	}
 	line=LatexParser::cutComment(line);
+	if(backwards){
+	    offset=offset-line.length();
+	    QString help;
+	    foreach(QChar elem,line){
+		help.prepend(elem);
+	    }
+	    line=help;
+	}
+
 	if(line.contains("\\end")&&!backwards) {
 	    nextToken=-2;
 	    break;
 	}
-	if(line.contains("\\begin")&&backwards) {
+	if(line.contains("nigeb\\")&&backwards) {
 	    nextToken=-2;
 	    break;
 	}
@@ -129,7 +158,9 @@ int findNextToken(QDocumentCursor &cur,QStringList tokens,bool keepAnchor,bool b
 	pos=-1;
 	for(int i=0;i<tokens.count();i++){
 	    QString elem=tokens.at(i);
-	    int zw=line.indexOf(elem,cur.columnNumber());
+	    int colNumber= cur.columnNumber();
+	    if(backwards) colNumber=line.length()+offset-colNumber ;
+	    int zw=line.indexOf(elem,colNumber);
 	    if(zw>-1) {
 		if(pos>zw || pos==-1){
 		    pos=zw;
@@ -140,23 +171,23 @@ int findNextToken(QDocumentCursor &cur,QStringList tokens,bool keepAnchor,bool b
 	if(pos<0){
 	    if(cur.lineNumber()>=cur.document()->lineCount()-1) break;
 	    cur.movePosition(1,mvNextLine,mvFlag);
-	    cur.movePosition(1,QDocumentCursor::StartOfLine,mvFlag);
+	    cur.movePosition(1,mvStartOfLine,mvFlag);
 	}
     }while(pos<0);
     if(pos>-1) {
 	cur.movePosition(1,mvStartOfLine,mvFlag);
-	cur.movePosition(pos+tokens.at(nextToken).length(),mvNextChar,mvFlag);
+	cur.movePosition(pos+tokens.at(nextToken).length()+offset,mvNextChar,mvFlag);
     }
     return nextToken;
 }
 
-int getColumn(QDocumentCursor &cur){
+int LatexTables::getColumn(QDocumentCursor &cur){
     QDocumentCursor c(cur);
     QStringList tokens("\\\\");
-    bool breakLoop=(findNextToken(c,tokens,false,true)==-1);
+    int result=findNextToken(c,tokens,false,true);
+    if(result==0) c.movePosition(2,QDocumentCursor::Right);
 
     tokens << "\\&" << "&";
-    int result;
     int col=0;
 
     do{
@@ -165,4 +196,54 @@ int getColumn(QDocumentCursor &cur){
 	if(result==2) col++;
     }while(result>0);
     return col;
+}
+
+int LatexTables::getNumberOfColumns(QDocumentCursor &cur){
+    QDocumentCursor c(cur);
+    int result=findNextToken(c,QStringList(),false,true);
+    if(result!=-2) return -1;
+    QString line=c.line().text();
+    int pos=line.indexOf("\\begin");
+    if(pos>-1){
+	QStringList values;
+	LatexParser::resolveCommandOptions(line,pos,values);
+	QString env=values.takeFirst();
+	if(!env.startsWith("{")||!env.endsWith("}")) return -1;
+	env=env.mid(1);
+	env.chop(1);
+	if(tabularNames.contains(env)){
+	    while(!values.isEmpty()){
+		QString opt=values.takeFirst();
+		if(opt.startsWith("[")&&opt.endsWith("]")) continue;
+		if(!opt.startsWith("{")||!opt.endsWith("}")) return -1;
+		opt=opt.mid(1);
+		opt.chop(1);
+		//calculate number of columns ...
+		int cols=0;
+		//remove filler
+		QRegExp rx("\\*\\{(.+)\\}\\{(.+)\\}");
+		int pos=0;
+		while ((pos = rx.indexIn(opt, pos)) != -1) {
+		    QString m=rx.cap(1);
+		    bool ok;
+		    int mult=m.toInt(&ok);
+		    if(!ok) break;
+		    QString rep=rx.cap(2);
+		    QString repl;
+		    for(int i=0;i<mult;i++){
+			repl+=rep;
+		    }
+		    opt.replace(pos,rx.matchedLength(),repl);
+		}
+		opt.replace(QRegExp("@\\{.+\\}"),"");
+		opt.replace(QRegExp("p\\{.+\\}"),"p");
+		opt.replace("|","");
+		cols=opt.length();
+		//return result
+		return cols;
+	    }
+	    return -1;
+	}else return -1; //maybe this needs to be changed
+    }
+    return -1;
 }

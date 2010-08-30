@@ -124,6 +124,7 @@ public:
 	static QString cutComment(const QString& text);
 
 	static ContextType findContext(const QString &line, int column, QString &command, QString& value);
+	static void resolveCommandOptions(const QString &line, int column, QStringList &values);
 
 	static QSet<QString> refCommands;
 	static QSet<QString> labelCommands;
