@@ -33,10 +33,9 @@ void LatexTables::addRow(QDocumentCursor &c,const int numberOfColumns ){
     }
 }
 
-void LatexTables::removeRow(QDocument *doc,const int afterLine ){
-    QDocumentCursor cur(doc);
+void LatexTables::removeRow(QDocumentCursor &c){
+    QDocumentCursor cur(c);
     cur.beginEditBlock();
-    cur.moveTo(afterLine,0);
     const QStringList tokens("\\\\");
     bool breakLoop=(findNextToken(cur,tokens,true)==-1);
     if(!breakLoop) {
@@ -246,4 +245,26 @@ int LatexTables::getNumberOfColumns(QDocumentCursor &cur){
 	}else return -1; //maybe this needs to be changed
     }
     return -1;
+}
+
+bool LatexTables::inTableEnv(QDocumentCursor &cur){
+    QDocumentCursor c(cur);
+    int result=findNextToken(c,QStringList(),false,true);
+    if(result!=-2) return false;
+    QString line=c.line().text();
+    int pos=line.indexOf("\\begin");
+    if(pos>-1){
+	QStringList values;
+	LatexParser::resolveCommandOptions(line,pos,values);
+	QString env=values.takeFirst();
+	if(!env.startsWith("{")||!env.endsWith("}")) return -1;
+	env=env.mid(1);
+	env.chop(1);
+	if(tabularNames.contains(env,Qt::CaseSensitive)||tabularNamesWithOneOption.contains(env,Qt::CaseSensitive)){
+	    int result=findNextToken(c,QStringList());
+	    if(result!=-2) return false;
+	    if(c.lineNumber()>cur.lineNumber()) return true;
+	}
+    }
+    return false;
 }
