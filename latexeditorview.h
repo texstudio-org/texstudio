@@ -118,7 +118,7 @@ private:
 
 	QPoint m_point;
 	
-	int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat, citationMissingFormat, citationPresentFormat;
+	int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat, citationMissingFormat, citationPresentFormat,structureFormat;
 	friend class DefaultInputBinding;
 	static int bookMarkId(int bookmarkNumber);
 
