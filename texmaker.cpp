@@ -4446,14 +4446,16 @@ void Texmaker::loadProfile(){
 void Texmaker::addRowCB(){
     if (!currentEditorView()) return;
     QDocumentCursor cur=currentEditorView()->editor->cursor();
+    if(!LatexTables::inTableEnv(cur)) return;
     int cols=LatexTables::getNumberOfColumns(cur);
+    if(cols<1) return;
     LatexTables::addRow(cur,cols);
 }
 
 void Texmaker::addColumnCB(){
     if (!currentEditorView()) return;
     QDocumentCursor cur=currentEditorView()->editor->cursor();
-
+    if(!LatexTables::inTableEnv(cur)) return;
     int col=LatexTables::getColumn(cur)+1;
     if(col==1 &&cur.atLineStart()) col=0;
     LatexTables::addColumn(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),col);
@@ -4463,12 +4465,14 @@ void Texmaker::removeColumnCB(){
     if (!currentEditorView()) return;
     QStringList cutBuffer;
     QDocumentCursor cur=currentEditorView()->editor->cursor();
+    if(!LatexTables::inTableEnv(cur)) return;
     int col=LatexTables::getColumn(cur);
     LatexTables::removeColumn(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),col,&cutBuffer);
 }
 
 void Texmaker::removeRowCB(){
     if (!currentEditorView()) return;
-
-    LatexTables::removeRow(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber());
+    QDocumentCursor cur=currentEditorView()->editor->cursor();
+    if(!LatexTables::inTableEnv(cur)) return;
+    LatexTables::removeRow(cur);
 }
