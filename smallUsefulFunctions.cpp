@@ -593,6 +593,7 @@ void LatexParser::resolveCommandOptions(const QString &line, int column, QString
 		type=i;
 	    }
 	}
+	if(type<0) break;
 	// check wether a word letter appears before (next command text ...)
 	if(stop>-1){
 	    stop=line.indexOf(QRegExp("\\S+"),start);
