@@ -183,6 +183,15 @@
 		<waveUnderline>true</waveUnderline>
 		<foreground>#008000</foreground>
 	</format>
+	<format id="structure" >
+		<bold>true</bold>
+		<italic>false</italic>
+		<overline>false</overline>
+		<underline>false</underline>
+		<strikeout>false</strikeout>
+		<waveUnderline>false</waveUnderline>
+		<foreground>#000000</foreground>
+	</format>
 	<format id="current" >
 		<background>#EEEEFF</background>
 	</format>

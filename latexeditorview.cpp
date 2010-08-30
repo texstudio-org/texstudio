@@ -233,6 +233,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	containedLabels=new References("(\\\\label)\\{(.+)\\}");
 	containedReferences=new References("(\\\\ref|\\\\pageref)\\{(.+)\\}");
 	environmentFormat=0;
+	structureFormat=0;
 	//containedLabels.setPattern("(\\\\label)\\{(.+)\\}");
 	//containedReferences.setPattern("(\\\\ref|\\\\pageref)\\{(.+)\\}");
 	updateSettings();
@@ -463,6 +464,7 @@ void LatexEditorView::updateSettings(){
 	referenceMissingFormat=QDocument::formatFactory()->id("referenceMissing");
 	citationPresentFormat=QDocument::formatFactory()->id("citationPresent");
 	citationMissingFormat=QDocument::formatFactory()->id("citationMissing");
+	structureFormat=QDocument::formatFactory()->id("structure");
 	containedLabels->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
 	containedReferences->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
 }
@@ -597,56 +599,65 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		int start=0;
 		int wordstart;
 		int status;
-		while ((status=nextWord(lineText,start,word,wordstart,false,true)))
-			// hack to color the environment given in \begin{environment}...
-			if (status==NW_ENVIRONMENT) {
-				line.addOverlay(QFormatRange(wordstart,start-wordstart,environmentFormat));
-				QRegExp rx("[ ]*(\\[.*\\])*\\{.+\\}");
-				rx.setMinimal(true);
-				int l=rx.indexIn(lineText,start);
-				if (l==start+1) start=start+rx.cap(0).length();
-			} else if (status==NW_REFERENCE && config->inlineReferenceChecking) {
-				QString ref=word;//lineText.mid(wordstart,start-wordstart);
-				containedReferences->insert(ref,dlh);
-				int cnt=containedLabels->count(ref);
-				if(cnt>1) {
-					line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMultipleFormat));
-				}else if (cnt==1) line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
-				else line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMissingFormat));
-			} else if (status==NW_LABEL && config->inlineReferenceChecking) {
-				QString ref=word;//lineText.mid(wordstart,start-wordstart);
-				containedLabels->insert(ref,dlh);
-				int cnt=containedLabels->count(ref);
-				if(cnt>1) {
-					line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMultipleFormat));
-				}else line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
-				// look for corresponding reeferences and adapt format respectively
-				containedLabels->updateByKeys(QStringList(ref),containedReferences);
-			} else if (status==NW_CITATION && config->inlineCitationChecking) {
-				if (bibTeXIds) {
-					QStringList citations=word.split(",");
-					int pos=wordstart;
-					foreach ( const QString &cit, citations) {
-						QString rcit =  cit;
-						//trim left (left spaces are ignored by \cite, right space not)
-						for (int j=0; j<cit.length();j++)
-							if (cit[j]!=' '){
-								if (j!=0) rcit=cit.mid(j);
-								break;
-							}
-						//check and highlight
-						if (bibTeXIds->contains(rcit))
-							line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationPresentFormat));
-						else
-							line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationMissingFormat));
-						pos+=cit.length()+1;
-					}
+		bool inStructure=false;
+		while ((status=nextWord(lineText,start,word,wordstart,false,true,&inStructure))){
+		    // hack to color the environment given in \begin{environment}...
+		    if (inStructure){
+			line.addOverlay(QFormatRange(wordstart,start-wordstart,structureFormat));
+		    }
+		    if (status==NW_ENVIRONMENT) {
+			line.addOverlay(QFormatRange(wordstart,start-wordstart,environmentFormat));
+			QRegExp rx("[ ]*(\\[.*\\])*\\{.+\\}");
+			rx.setMinimal(true);
+			int l=rx.indexIn(lineText,start);
+			if (l==start+1) start=start+rx.cap(0).length();
+		    }
+		    if (status==NW_REFERENCE && config->inlineReferenceChecking) {
+			QString ref=word;//lineText.mid(wordstart,start-wordstart);
+			containedReferences->insert(ref,dlh);
+			int cnt=containedLabels->count(ref);
+			if(cnt>1) {
+			    line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMultipleFormat));
+			}else if (cnt==1) line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
+			else line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMissingFormat));
+		    }
+		    if (status==NW_LABEL && config->inlineReferenceChecking) {
+			QString ref=word;//lineText.mid(wordstart,start-wordstart);
+			containedLabels->insert(ref,dlh);
+			int cnt=containedLabels->count(ref);
+			if(cnt>1) {
+			    line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMultipleFormat));
+			}else line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
+			// look for corresponding reeferences and adapt format respectively
+			containedLabels->updateByKeys(QStringList(ref),containedReferences);
+		    }
+		    if (status==NW_CITATION && config->inlineCitationChecking) {
+			if (bibTeXIds) {
+			    QStringList citations=word.split(",");
+			    int pos=wordstart;
+			    foreach ( const QString &cit, citations) {
+				QString rcit =  cit;
+				//trim left (left spaces are ignored by \cite, right space not)
+				for (int j=0; j<cit.length();j++)
+				    if (cit[j]!=' '){
+				    if (j!=0) rcit=cit.mid(j);
+				    break;
 				}
-			} else if (status==NW_COMMENT) break;
-			else if (status==NW_TEXT && word.length()>=3 && !speller->check(word) && config->inlineSpellChecking) {
-				if(word.endsWith('.')) start--;
-				line.addOverlay(QFormatRange(wordstart,start-wordstart,speller->spellcheckErrorFormat));
+				//check and highlight
+				if (bibTeXIds->contains(rcit))
+				    line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationPresentFormat));
+				else
+				    line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationMissingFormat));
+				pos+=cit.length()+1;
+			    }
 			}
+		    }
+		    if (status==NW_COMMENT) break;
+		    if (status==NW_TEXT && word.length()>=3 && !speller->check(word) && config->inlineSpellChecking) {
+			if(word.endsWith('.')) start--;
+			line.addOverlay(QFormatRange(wordstart,start-wordstart,speller->spellcheckErrorFormat));
+		    }
+		}// while
 	}
 	editor->document()->markViewDirty();
 }
@@ -761,6 +772,7 @@ void LatexEditorView::resetReferenceDatabase(){
 	referenceMissingFormat=QDocument::formatFactory()->id("referenceMissing");
 	citationPresentFormat=QDocument::formatFactory()->id("citationPresent");
 	citationMissingFormat=QDocument::formatFactory()->id("citationMissing");
+	structureFormat=QDocument::formatFactory()->id("structure");
 	containedLabels->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
 	containedReferences->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
 

@@ -228,10 +228,17 @@ int LatexTables::getNumberOfColumns(QDocumentCursor &cur){
 	if(!env.startsWith("{")||!env.endsWith("}")) return -1;
 	env=env.mid(1);
 	env.chop(1);
-	if(tabularNames.contains(env)){
+	int numberOfOptions=-1;
+	if(tabularNames.contains(env)) numberOfOptions=0;
+	if(tabularNamesWithOneOption.contains(env)) numberOfOptions=1;
+	if(numberOfOptions>=0){
 	    while(!values.isEmpty()){
 		QString opt=values.takeFirst();
 		if(opt.startsWith("[")&&opt.endsWith("]")) continue;
+		if(numberOfOptions>0) {
+		    numberOfOptions--;
+		    continue;
+		}
 		if(!opt.startsWith("{")||!opt.endsWith("}")) return -1;
 		opt=opt.mid(1);
 		opt.chop(1);

@@ -58,7 +58,7 @@ enum NextWordFlag {
 //                "    "  is false it only returns normal text (NW_TEXT, without things like filenames after \include), environment names
 //                          (NW_ENVIRONMENT, they are treated as text in the other mode) and % (NW_COMMENT)       [or NW_NOTHING at the end]
 //returns the type of outWord
-NextWordFlag nextWord(const QString & line, int &index, QString &outWord, int &wordStartIndex, bool returnCommands,bool abbreviations=false);
+NextWordFlag nextWord(const QString & line, int &index, QString &outWord, int &wordStartIndex, bool returnCommands,bool abbreviations=false,bool *inStructure=0);
 
 //searches the next text words and ignores command options, environments or comments
 //returns false if none is found

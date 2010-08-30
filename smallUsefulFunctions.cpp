@@ -298,7 +298,7 @@ int nextToken(const QString &line,int &index,bool abbreviation,bool inOption) {
 }
 
 
-NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordStartIndex, bool returnCommands,bool abbreviations) {
+NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordStartIndex, bool returnCommands,bool abbreviations,bool *inStructure) {
 	int reference=-1;
 	QString lastCommand="";
 	bool inOption=false;
@@ -320,6 +320,7 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 				reference=wordStartIndex+1;
 			if(!lastCommand.isEmpty()) inOption=true;
 			if(LatexParser::environmentCommands.contains(lastCommand)) inEnv=true;
+			if(inStructure && LatexParser::structureCommands.contains(lastCommand)) *inStructure=true;
 			break; //ignore
 		case '}':
 			if (reference!=-1) {
@@ -347,6 +348,7 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 			lastCommand="";
 			inOption=false;
 			inEnv=false;
+			if(inStructure) *inStructure=false;
 			break;//command doesn't matter anymore
 		case '\\':
 			if (outWord.length()==1 || !(EscapedChars.contains(outWord.at(1)) || CharacterAlteringChars.contains(outWord.at(1)))) {
