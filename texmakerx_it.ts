@@ -107,55 +107,47 @@
     <name>BibTeXDialog</name>
     <message>
         <source>Article in Journal</source>
-        <translation>Articolo di giornale</translation>
+        <translation type="obsolete">Articolo di giornale</translation>
     </message>
     <message>
         <source>Article in Conference Proceedings</source>
-        <translation>Articolo in una Conferenza in corso</translation>
-    </message>
-    <message>
-        <source>Article in a Collection</source>
-        <translation></translation>
+        <translation type="obsolete">Articolo in una Conferenza in corso</translation>
     </message>
     <message>
         <source>Chapter or Pages in a Book</source>
-        <translation>Capitolo o Pagine in un libro</translation>
+        <translation type="obsolete">Capitolo o Pagine in un libro</translation>
     </message>
     <message>
         <source>Conference Proceedings</source>
-        <translation>Conference Proceedings</translation>
+        <translation type="obsolete">Conference Proceedings</translation>
     </message>
     <message>
         <source>Book</source>
-        <translation>Libro</translation>
-    </message>
-    <message>
-        <source>Booklet</source>
-        <translation></translation>
+        <translation type="obsolete">Libro</translation>
     </message>
     <message>
         <source>PhD. Thesis</source>
-        <translation>Tesi di Dottorato</translation>
+        <translation type="obsolete">Tesi di Dottorato</translation>
     </message>
     <message>
         <source>Master&apos;s Thesis</source>
-        <translation>Tesi</translation>
+        <translation type="obsolete">Tesi</translation>
     </message>
     <message>
         <source>Technical Report</source>
-        <translation>Report Scientifico</translation>
+        <translation type="obsolete">Report Scientifico</translation>
     </message>
     <message>
         <source>Technical Manual</source>
-        <translation>Manuale Tecnico</translation>
+        <translation type="obsolete">Manuale Tecnico</translation>
     </message>
     <message>
         <source>Unpublished</source>
-        <translation>Non pubblicato</translation>
+        <translation type="obsolete">Non pubblicato</translation>
     </message>
     <message>
         <source>Miscellaneous</source>
-        <translation>Altro</translation>
+        <translation type="obsolete">Altro</translation>
     </message>
     <message>
         <source>&lt;new file&gt;</source>
@@ -188,6 +180,58 @@
     <message>
         <source>insert empty, optional fields</source>
         <translation>Inserisci campi opzionali</translation>
+    </message>
+    <message>
+        <source>Article in &amp;Journal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Article in Conference &amp;Proceedings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Article in a &amp;Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Chapter or &amp;Pages in a Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Conference Pr&amp;oceedings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book&amp;let</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PhD. &amp;Thesis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Master&apos;s Thesis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Technical &amp;Report</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Technical Ma&amp;nual</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Unpublished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Miscellan&amp;eous</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -668,10 +712,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use Tab for Move To Placeholder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Show Whitespace</source>
         <translation type="unfinished"></translation>
     </message>
@@ -854,6 +894,22 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     <message>
         <source>Text to insert after word</source>
         <translation>Testo da interire dopo la parola</translation>
+    </message>
+    <message>
+        <source>Hard Line Wrap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>max. Characters:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Basic Key Mapping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Editor2</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1298,6 +1354,10 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <source>&amp;User</source>
         <translation type="obsolete">&amp;Utente</translation>
     </message>
+    <message>
+        <source>Open all files</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -1627,6 +1687,7 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
         <source>%n reference(s) to this label</source>
         <translation type="unfinished">
             <numerusform>
+        
         </numerusform>
         </translation>
     </message>
@@ -2005,6 +2066,214 @@ Vioi aggiornare ricaricando il file?</translation>
         <source>Unix</source>
         <translation>Unix</translation>
     </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor left (1 character)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor right (1 character)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor left (1 word)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor right (1 word)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor to line start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor to line end</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor to document start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor to document end</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor one page up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor one page down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select left (1 character)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select right (1 character)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select left (1 word)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select right (1 word)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select to line start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select to line end</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select to document start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select to document end</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select page up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select page down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete left character</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete right character</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete left word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete right word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change overwrite mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Undo</source>
+        <translation type="unfinished">Annulla</translation>
+    </message>
+    <message>
+        <source>Redo</source>
+        <translation type="unfinished">Ripeti</translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation type="unfinished">Copia</translation>
+    </message>
+    <message>
+        <source>Paste</source>
+        <translation type="unfinished">Incolla</translation>
+    </message>
+    <message>
+        <source>Cut</source>
+        <translation type="unfinished">Taglia</translation>
+    </message>
+    <message>
+        <source>Print</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find</source>
+        <translation type="unfinished">Trova</translation>
+    </message>
+    <message>
+        <source>Find next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace</source>
+        <translation type="unfinished">Sostituisci</translation>
+    </message>
+    <message>
+        <source>Create cursor mirror up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create cursor mirror down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next placeholder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous placeholder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next placeholder or one word right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous placeholder or one word left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Indent selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unindent selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QEditorFactory</name>
@@ -2112,14 +2381,6 @@ Vioi aggiornare ricaricando il file?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>prio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Bold</source>
         <translation>Grassetto</translation>
     </message>
@@ -2160,14 +2421,6 @@ Vioi aggiornare ricaricando il file?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Point size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Unsaved changes</source>
         <translation>Cambiamenti non salvati</translation>
     </message>
@@ -2176,6 +2429,74 @@ Vioi aggiornare ricaricando il file?</translation>
 Do you want them to be saved?</source>
         <translation>Ci sono cambiamenti non salvati
 Vuoi salvarli?</translation>
+    </message>
+    <message>
+        <source>background</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:badbox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark7</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark8</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark9</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>replacement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;default&gt;</source>
+        <translation type="unfinished">&lt;default&gt;</translation>
     </message>
 </context>
 <context>
@@ -2205,6 +2526,21 @@ Vuoi salvarli?</translation>
     </message>
     <message>
         <source>content...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QSearchReplacePanel</name>
+    <message>
+        <source>Count result</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The search text occurs %1 times after the current cursor. Do you want to restart from the beginning of the scope?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The search text occurs %1 times within the search scope.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2445,15 +2781,15 @@ Vuoi salvarli?</translation>
     <name>SearchReplace</name>
     <message>
         <source>Form</source>
-        <translation>Forma</translation>
+        <translation type="obsolete">Forma</translation>
     </message>
     <message>
         <source>all</source>
-        <translation>tutti</translation>
+        <translation type="obsolete">tutti</translation>
     </message>
     <message>
         <source>Close search/replace panel</source>
-        <translation>Chiudi il pannello trova/sostituisci</translation>
+        <translation type="unfinished">Chiudi il pannello trova/sostituisci</translation>
     </message>
     <message>
         <source>Refresh search underlying context (as an attempt to correct search behavior)</source>
@@ -2461,51 +2797,39 @@ Vuoi salvarli?</translation>
     </message>
     <message>
         <source> Find :</source>
-        <translation>Trova:</translation>
+        <translation type="unfinished">Trova:</translation>
     </message>
     <message>
         <source>Text or pattern to search for</source>
-        <translation>Testo o modello da ricercare</translation>
+        <translation type="unfinished">Testo o modello da ricercare</translation>
     </message>
     <message>
         <source>Find next occurence</source>
-        <translation>Trova occorrenza successiva</translation>
+        <translation type="unfinished">Trova occorrenza successiva</translation>
     </message>
     <message>
         <source>Find previous occurence</source>
-        <translation>Trova occorrenza precedente</translation>
+        <translation type="unfinished">Trova occorrenza precedente</translation>
     </message>
     <message>
         <source>Words</source>
-        <translation>Parole</translation>
-    </message>
-    <message>
-        <source>Cursor</source>
-        <translation></translation>
+        <translation type="unfinished">Parole</translation>
     </message>
     <message>
         <source>Selection</source>
-        <translation>Selezione</translation>
+        <translation type="unfinished">Selezione</translation>
     </message>
     <message>
         <source>Highlight all</source>
-        <translation>Evidenzia Tutto</translation>
-    </message>
-    <message>
-        <source>Regexp</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Case</source>
-        <translation></translation>
+        <translation type="unfinished">Evidenzia Tutto</translation>
     </message>
     <message>
         <source>Replace :</source>
-        <translation>Sostituisci :</translation>
+        <translation type="unfinished">Sostituisci :</translation>
     </message>
     <message>
         <source>Replacement text</source>
-        <translation>Sostituisci testo</translation>
+        <translation type="unfinished">Sostituisci testo</translation>
     </message>
     <message>
         <source>replace</source>
@@ -2517,15 +2841,31 @@ Vuoi salvarli?</translation>
     </message>
     <message>
         <source>Prompt on replace</source>
-        <translation>Chiedi prima di sostituire</translation>
+        <translation type="unfinished">Chiedi prima di sostituire</translation>
     </message>
     <message>
         <source>Replace all</source>
-        <translation>Sostituisci Tutto</translation>
+        <translation type="unfinished">Sostituisci Tutto</translation>
+    </message>
+    <message>
+        <source>Count occurences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Case</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Regexp</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cursor</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Escape sequences</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3812,6 +4152,38 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <source>Join lines before wrapping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manipulate tables</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>add row</source>
+        <translation type="unfinished">aggiungi riga</translation>
+    </message>
+    <message>
+        <source>add column</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove column</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cut column</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>paste column</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Table</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
