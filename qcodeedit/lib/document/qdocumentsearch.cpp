@@ -591,6 +591,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 		}
 	}
 
+	QDocumentCursor startCursor = m_cursor;
 
 	/*if (all && !hasOption(Replace)) {
 		all=false;
@@ -610,19 +611,19 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 		}
 
 	//ensure that the current selection isn't searched
-        if ( m_cursor.hasSelection() ) {
+	if ( m_cursor.hasSelection() ) {
 		if (m_cursor.selectionStart() == m_scope.selectionStart() &&
 			m_cursor.selectionEnd() == m_scope.selectionEnd()) {
 			//search whole scope
 			if (backward) m_cursor=m_scope.selectionEnd();
 			else m_cursor=m_scope.selectionStart();
-                    } else {
-                        if (backward ^ all) //let all search in the selection
-                            m_cursor=m_cursor.selectionStart();
-                        else
-                            m_cursor=m_cursor.selectionEnd();
-                    }
-                }
+		} else {
+			if (backward ^ all) //let all search in the selection
+				m_cursor=m_cursor.selectionStart();
+			else
+				m_cursor=m_cursor.selectionEnd();
+		}
+	}
 	
 	QDocumentSelection boundaries;
 	bool bounded = m_scope.isValid() && m_scope.hasSelection();
@@ -809,8 +810,16 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 							);
 			if ( ret == QMessageBox::Yes )
 			{
+				QDocumentCursor oldScope(m_scope, true);
+				if ( !backward )
+					m_scope = currentDocument()->cursor(0,0,startCursor.selectionStart().lineNumber(),startCursor.selectionStart().columnNumber());
+				else
+					m_scope = currentDocument()->cursor(startCursor.selectionEnd().lineNumber(),startCursor.selectionEnd().columnNumber(), currentDocument()->lines(), 0);
 				m_cursor = QDocumentCursor();
-				return foundCount + next(backward, all, again, false);
+				int result = foundCount + next(backward, all, again, false);
+				m_scope = oldScope;
+				m_scope.setAutoUpdated(true);
+				return result;
 			}
 		} else QMessageBox::information(m_editor,tr("Replacing Finished"),tr("%1 (of %2) occurences have been replaced").arg(replaceCount).arg(foundCount),QMessageBox::Ok);
 	}
