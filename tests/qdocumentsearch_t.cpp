@@ -217,7 +217,7 @@ void QDocumentSearchTest::next_sameText(){
 			ds=new QDocumentSearch(ed,searchText,(QDocumentSearch::Options)options); 
 		else
 			ds=new QDocumentSearch(ed,searchText,(QDocumentSearch::Options)options|QDocumentSearch::HighlightAll); 
-		ds->setOrigin(ed->document()->cursor(sy,sx));
+		ds->setCursor(ed->document()->cursor(sy,sx));
 		for (int i=0;i< cms.size();i++){
 			QString sel;
 			if (cms[i].l>=0) {
@@ -379,7 +379,7 @@ void QDocumentSearchTest::replaceAll(){
 		if (loop) 
 			options|=QDocumentSearch::HighlightAll; //highlighting shouldn't change anything
 		ds->setOptions((QDocumentSearch::Options)options);
-		ds->setOrigin(ed->document()->cursor(sy,sx));
+		ds->setCursor(ed->document()->cursor(sy,sx));
 		ds->setScope(ed->document()->cursor(scopey,scopex,scopey2,scopex2));
 		ds->next(dir, true);
 		QVERIFY2(ed->document()->text()== newtext,qPrintable(QString("%1 != %2 loop: %3, dir: %4").arg(ed->document()->text()).arg(newtext).arg(loop).arg(dir)));
