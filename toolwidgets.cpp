@@ -152,6 +152,9 @@ OutputViewWidget::OutputViewWidget(QWidget * parent): QDockWidget(parent), logMo
 		act = new QAction("&Copy all",table);
 		connect(act, SIGNAL(triggered()), SLOT(copyAllMessages()));
 		table->addAction(act);
+		act = new QAction("&Copy all with line numbers",table);
+		connect(act, SIGNAL(triggered()), SLOT(copyAllMessagesWithLineNumbers()));
+		table->addAction(act);
 		act = new QAction("&Show in log",table);
 		connect(act, SIGNAL(triggered()), SLOT(showMessageInLog()));;
 		table->addAction(act);
@@ -346,6 +349,14 @@ void OutputViewWidget::copyAllMessages(){
 	REQUIRE(QApplication::clipboard());
 	QApplication::clipboard()->setText(result.join("\n"));
 }
+void OutputViewWidget::copyAllMessagesWithLineNumbers(){
+	QStringList result;
+	for (int i=0;i<logModel->count();i++)
+		result << logModel->data(logModel->index(i, 2), Qt::DisplayRole).toString() +": "+logModel->data(logModel->index(i, 3), Qt::DisplayRole).toString();
+	REQUIRE(QApplication::clipboard());
+	QApplication::clipboard()->setText(result.join("\n"));
+}
+
 void OutputViewWidget::showMessageInLog(){
 	logViewerTabBar->setCurrentIndex(LAYOUT_PAGE_LOG);
 	QModelIndex curMessage = tabbedLogView ? OutputTable2->currentIndex() : OutputTable->currentIndex();
