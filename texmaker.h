@@ -368,6 +368,8 @@ private slots:
 	void addColumnCB();
 	void removeColumnCB();
 	void removeRowCB();
+	void cutColumnCB();
+	void pasteColumnCB();
 
 protected:
 	void dragEnterEvent(QDragEnterEvent *event);
@@ -387,6 +389,8 @@ protected:
 
 	QDialog *svndlg;
 	QComboBox *cmbLog;
+
+	QStringList m_columnCutBuffer;
 };
 
 
