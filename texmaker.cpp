@@ -57,7 +57,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	previewEquation=false;
 	svndlg=0;
 	mCompleterNeedsUpdate=false;
-	m_columnCutBuffer.clear();
 
 	ReadSettings();
 	setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
@@ -97,20 +96,20 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 	// custom evironments
 	if(!configManager.customEnvironments.isEmpty()){
-	    QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)TeX");
+		QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)TeX");
 
-	    QFile f(findResourceFile("qxs/tex.qnfa"));
-	    QDomDocument doc;
-	    doc.setContent(&f);
+		QFile f(findResourceFile("qxs/tex.qnfa"));
+		QDomDocument doc;
+		doc.setContent(&f);
 
-	    QMap<QString, QVariant>::const_iterator i;
-	    for (i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i){
-		QString mode=configManager.enviromentModes.value(i.value().toInt(),"verbatim");
-		addEnvironmentToDom(doc,i.key(),mode);
-	    }
-	    QNFADefinition::load(doc,&m_lang,dynamic_cast<QFormatScheme*>(m_formats));
+		QMap<QString, QVariant>::const_iterator i;
+		for (i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i){
+			QString mode=configManager.enviromentModes.value(i.value().toInt(),"verbatim");
+			addEnvironmentToDom(doc,i.key(),mode);
+		}
+		QNFADefinition::load(doc,&m_lang,m_formats);
 
-	    m_languages->addLanguage(m_lang);
+		m_languages->addLanguage(m_lang);
 	}
 
 	QLineMarksInfoCenter::instance()->loadMarkTypes(qxsPath+"/marks.qxm");
@@ -118,7 +117,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	for (int i=0;i<marks.size();i++)
 		if (m_formats->format("line:"+marks[i].id).background.isValid())
 			marks[i].color = m_formats->format("line:"+marks[i].id).background;
-
 
 // TAB WIDGET EDITEUR
 	connect(&documents,SIGNAL(masterDocumentChanged(LatexDocument *)), SLOT(masterDocumentChanged(LatexDocument *)));
@@ -643,9 +641,7 @@ void Texmaker::setupToolBars() {
 		QVariant zw=i.value();
 		QObject *obj=configManager.menuParent->findChild<QObject*>(id);
 		QAction *act=qobject_cast<QAction*>(obj);
-		if (act) {
-			if(zw.canConvert<QString>()) act->setIcon(QIcon(zw.toString()));
-		}
+		if (act && zw.canConvert<QString>()) act->setIcon(QIcon(zw.toString()));
 		i++;
 	}
 	//setup customizable toolbars
@@ -720,8 +716,8 @@ void Texmaker::createStatusBar() {
 void Texmaker::UpdateCaption() {
 	if (!currentEditorView()) documents.currentDocument=0;
 	else {
-	    documents.currentDocument=currentEditorView()->document;
-	    documents.updateStructure();
+		documents.currentDocument=currentEditorView()->document;
+		documents.updateStructure();
 	}
 	QString title;
 	if (!currentEditorView())	{
@@ -761,8 +757,8 @@ void Texmaker::UpdateCaption() {
 }
 
 void Texmaker::EditorTabMoved(int from,int to){
-    documents.documents.move(from,to);
-    documents.updateLayout();
+	documents.documents.move(from,to);
+	documents.updateLayout();
 }
 
 void Texmaker::CloseEditorTab(int tab) {
@@ -776,6 +772,7 @@ void Texmaker::CloseEditorTab(int tab) {
 }
 void Texmaker::showMarkTooltipForLogMessage(int error){
 	if (!currentEditorView()) return;
+	REQUIRE(outputView->getLogModel());
 	if (error<0 || error >= outputView->getLogModel()->count()) return;
 	currentEditorView()->setLineMarkToolTip(outputView->getLogModel()->at(error).niceMessage());
 
@@ -814,7 +811,7 @@ QEditor* Texmaker::currentEditor() const{
 	return edView->editor;
 }
 void Texmaker::configureNewEditorView(LatexEditorView *edit) {
-
+	REQUIRE(m_languages);REQUIRE(edit->codeeditor);
 	m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
 	//EditorView->setCurrentWidget(edit);
 
@@ -828,7 +825,29 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(needCitation(const QString&)),this,SLOT(InsertBibEntry(const QString&)));
 	connect(edit, SIGNAL(showPreview(QString)),this,SLOT(showPreview(QString)));
 
+	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
+	connect(edit->editor,SIGNAL(fileAutoReloading(QString)),this,SLOT(fileAutoReloading(QString)));
+
 	edit->setBibTeXIds(&documents.allBibTeXIds);
+}
+
+//complete the new editor view configuration (edit->document is set)
+void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit){
+	REQUIRE(edit->document);
+	//patch Structure
+	connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
+	connect(edit->editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
+	connect(edit->editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
+	connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(completerNeedsUpdate()));
+	connect(edit->document,SIGNAL(updateCompleter()),edit->editor,SLOT(completerNeedsUpdate()));
+	connect(edit->editor,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
+
+	EditorView->addTab(edit, "?bug?");
+	EditorView->setCurrentWidget(edit);
+
+	edit->editor->setFocus();
+	UpdateCaption();
+	NewDocumentStatus(!edit->editor->document()->isClean());
 }
 
 LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName){
@@ -900,16 +919,13 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 		edit->document->setEditorView(edit);
 		documents.addDocument(edit->document);
 	} else edit->document->setEditorView(edit);
-	EditorView->addTab(edit, "[*] "+QFileInfo(f_real).fileName());
-	EditorView->setCurrentWidget(edit);
-	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
-        connect(edit->editor,SIGNAL(fileAutoReloading(QString)),this,SLOT(fileAutoReloading(QString)));
 
 	QFile file(f_real);
 	if (!file.open(QIODevice::ReadOnly)) {
 		QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
 		return 0;
 	}
+	file.close();
 
 	if (edit->editor->fileInfo().suffix()!="tex")
 		m_languages->setLanguage(edit->editor, f_real);
@@ -917,21 +933,13 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	edit->editor->load(f_real,QDocument::defaultCodec());
 	edit->editor->document()->setLineEnding(edit->editor->document()->originalLineEnding());
 
-	edit->editor->setFocus();
 	edit->document->setEditorView(edit); //update file name (if document didn't exist)
-	UpdateCaption();
-	NewDocumentStatus(false);
+
+	configureNewEditorViewEnd(edit);
+
 	MarkCurrentFileAsRecent();
 	updateStructure();
 	ShowStructure();
-
-	//patch Structure
-	connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
-	connect(edit->editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
-	connect(edit->editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
-	connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(completerNeedsUpdate()));
-	connect(edit->document,SIGNAL(updateCompleter()),edit->editor,SLOT(completerNeedsUpdate()));
-	connect(edit->editor,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
 
 	if (asProject) documents.setMasterDocument(edit->document);
 
@@ -952,6 +960,7 @@ void Texmaker::fileNew(QString fileName) {
 		edit->editor->setFileCodec(configManager.newFileEncoding);
 	else
 		edit->editor->setFileCodec(QTextCodec::codecForName("utf-8"));
+	edit->editor->setFileName(fileName);
 
 	configureNewEditorView(edit);
 
@@ -959,27 +968,12 @@ void Texmaker::fileNew(QString fileName) {
 	edit->document->setEditorView(edit);
 	documents.addDocument(edit->document);
 
-	connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
-	connect(edit->editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
-	connect(edit->editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
-	connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(completerNeedsUpdate()));
-	connect(edit->document,SIGNAL(updateCompleter()),edit->editor,SLOT(completerNeedsUpdate()));
-	connect(edit->editor,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
-
-	EditorView->addTab(edit, fileName);
-	EditorView->setCurrentWidget(edit);
-
-	UpdateCaption();
-	NewDocumentStatus(false);
-
-	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
-
-	edit->editor->setFocus();
+	configureNewEditorViewEnd(edit);
 }
 
 void Texmaker::fileAutoReloading(QString fname){
-    LatexDocument* document=documents.findDocument(fname);
-    if (!document) return;
+	LatexDocument* document=documents.findDocument(fname);
+	if (!document) return;
 	document->clearStructure();
 }
 
@@ -1002,7 +996,7 @@ void Texmaker::fileMakeTemplate() {
 	QString currentDir=configManager.configFileNameBase;
 
 	// get a file name
-        QString fn = QFileDialog::getSaveFileName(this,tr("Save As"),currentDir,tr("TeX files")+" (*.tex)");
+	QString fn = QFileDialog::getSaveFileName(this,tr("Save As"),currentDir,tr("TeX files")+" (*.tex)");
 	if (!fn.isEmpty()) {
 		int lastsep=qMax(fn.lastIndexOf("/"),fn.lastIndexOf("\\"));
 		int lastpoint=fn.lastIndexOf(".");
@@ -1089,15 +1083,7 @@ void Texmaker::fileNewFromTemplate() {
 		edit->document->setEditorView(edit);
 		documents.addDocument(edit->document);
 
-		connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
-		connect(edit->editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
-		connect(edit->editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
-		connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(completerNeedsUpdate()));
-		connect(edit->document,SIGNAL(updateCompleter()),edit->editor,SLOT(completerNeedsUpdate()));
-		connect(edit->editor,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
-
-		EditorView->addTab(edit, "untitled");
-		EditorView->setCurrentWidget(edit);
+		configureNewEditorViewEnd(edit);
 
 		QString mTemplate;
 		QTextStream in(&file);
@@ -1114,17 +1100,6 @@ void Texmaker::fileNewFromTemplate() {
 		edit->editor->setCursorPosition(0,0);
 		edit->editor->nextPlaceHolder();
 		edit->editor->ensureCursorVisible();
-		/*if (configManager.autodetectLoadedFile) edit->editor->load(f_real,QDocument::defaultcodec);
-		else edit->editor->load(f_real,configManager.newfile_encoding);
-		edit->editor->document()->setLineEnding(edit->editor->document()->originalLineEnding());
-		*/
-
-		//edit->editor->setFileName("untitled");
-		UpdateCaption();
-		NewDocumentStatus(true);
-
-		edit->editor->setFocus();
-
 	}
 }
 
@@ -1298,31 +1273,7 @@ void Texmaker::fileClose() {
 }
 
 void Texmaker::fileCloseAll() {
-	bool go=true;
-	while (currentEditorView() && go) {
-		if (currentEditorView()->editor->isContentModified()) {
-			switch (QMessageBox::warning(this, "TexMakerX",
-						     tr("The document contains unsaved work. "
-							"Do you want to save it before exiting?"),
-						     tr("Save and Close"), tr("Don't Save and Close"), tr("Cancel"),
-						     0,
-						     2)) {
-			case 0:
-				fileSave();
-				documents.deleteDocument(currentEditorView()->document);
-				break;
-			case 1:
-				documents.deleteDocument(currentEditorView()->document);
-				break;
-			case 2:
-			default:
-				go=false;
-				return;
-				break;
-			}
-		} else
-			documents.deleteDocument(currentEditorView()->document);
-	}
+	closeAllFilesAsking();
 	documents.setMasterDocument(0);
 	UpdateCaption();
 }
@@ -1332,14 +1283,12 @@ void Texmaker::fileExit() {
 		qApp->quit();
 }
 
-bool Texmaker::canCloseNow(){
-	SaveSettings();
-	bool accept=true;
-	while (currentEditorView() && accept) {
+bool Texmaker::closeAllFilesAsking(){
+	while (currentEditorView()) {
 		if (currentEditorView()->editor->isContentModified()) {
 			switch (QMessageBox::warning(this, "TexMakerX",
 						     tr("The document contains unsaved work. "
-							"Do you want to save it before exiting?"),
+							"Do you want to save it before closing?"),
 						     tr("Save and Close"), tr("Don't Save and Close"), tr("Cancel"),
 						     0,
 						     2)) {
@@ -1352,12 +1301,17 @@ bool Texmaker::canCloseNow(){
 				break;
 			case 2:
 			default:
-				accept=false;
-				break;
+				return false;
 			}
 		} else
 			documents.deleteDocument(currentEditorView()->document);
 	}
+	return true;
+}
+
+bool Texmaker::canCloseNow(){
+	SaveSettings();
+	bool accept = closeAllFilesAsking();
 	if (accept){
 		if (mainSpeller) {
 			delete mainSpeller; //this saves the ignore list
@@ -2115,15 +2069,15 @@ void Texmaker::NormalCompletion() {
 			j++;
 		}
 		if(c.previousChar()==QChar('\\')){
-                        QString cmd=word.mid(col-i-j);
-                        if(cmd.startsWith("ref{")||cmd.startsWith("pageref{")){
+			QString cmd=word.mid(col-i-j);
+			if(cmd.startsWith("ref{")||cmd.startsWith("pageref{")){
 				currentEditorView()->complete(true,false,true);
 				return;
 			}
-                        if(cmd.startsWith("begin{")||cmd.startsWith("end{")){
-                                currentEditorView()->complete(true,false,false);
-                                return;
-                        }
+			if(cmd.startsWith("begin{")||cmd.startsWith("end{")){
+				currentEditorView()->complete(true,false,false);
+				return;
+			}
 		}
 		if (i>1) {
 			QString my_text=currentEditorView()->editor->text();
@@ -3444,7 +3398,7 @@ void Texmaker::ToggleMode() {
 		if (getCurrentFileName()=="")
 			fileSave();
 		if (getCurrentFileName()=="") {
-			QMessageBox::warning(this,tr("Error"),tr("You must save the file before switching to master mode."));
+			QMessageBox::warning(this,tr("Error"),tr("You have to save the file before switching to master mode!"));
 			return;
 		}
 		documents.setMasterDocument(currentEditorView()->document);
@@ -3697,19 +3651,19 @@ void Texmaker::tabChanged(int i) {
 }
 
 void Texmaker::jumpToSearch(QString filename,int lineNumber){
-    if(currentEditor()->fileName()==filename && currentEditor()->cursor().lineNumber()==lineNumber)
-    {
-	QDocumentCursor c=currentEditor()->cursor();
-	int col=c.columnNumber();
-	gotoLine(lineNumber);
-	col=outputView->getNextSearchResultColumn(c.line().text() ,col+1);
-	currentEditor()->setCursorPosition(lineNumber,col);
-    } else {
-	gotoLocation(lineNumber,filename);
-	int col=outputView->getNextSearchResultColumn(currentEditor()->document()->line(lineNumber).text() ,0);
-	currentEditor()->setCursorPosition(lineNumber,col);
-	outputView->showSearchResults();
-    }
+	if(currentEditor()->fileName()==filename && currentEditor()->cursor().lineNumber()==lineNumber)
+	{
+		QDocumentCursor c=currentEditor()->cursor();
+		int col=c.columnNumber();
+		gotoLine(lineNumber);
+		col=outputView->getNextSearchResultColumn(c.line().text() ,col+1);
+		currentEditor()->setCursorPosition(lineNumber,col);
+	} else {
+		gotoLocation(lineNumber,filename);
+		int col=outputView->getNextSearchResultColumn(currentEditor()->document()->line(lineNumber).text() ,0);
+		currentEditor()->setCursorPosition(lineNumber,col);
+		outputView->showSearchResults();
+	}
 }
 
 void Texmaker::gotoLine(int line) {
@@ -4397,7 +4351,7 @@ bool Texmaker::generateMirror(bool setCur){
 			}
 			currentEditor()->setPlaceHolder(doc->m_magicPlaceHolder);
 			if(setCur) {
-			    currentEditorView()->editor->setCursor(oldCursor);
+				currentEditorView()->editor->setCursor(oldCursor);
 			}
 			return true;
 		}
@@ -4406,93 +4360,92 @@ bool Texmaker::generateMirror(bool setCur){
 }
 
 void Texmaker::cursorHovered(){
-    if(generateMirror(true)){
-	currentEditorView()->document->m_mirrorInLine=currentEditorView()->editor->cursor().lineNumber();
-    }
-
+	if(generateMirror(true)){
+		currentEditorView()->document->m_mirrorInLine=currentEditorView()->editor->cursor().lineNumber();
+	}
 }
 
 void Texmaker::loadProfile(){
-    bool customEnvironmentExisted = !configManager.customEnvironments.isEmpty();
-    QString currentDir=QDir::homePath();
+	bool customEnvironmentExisted = !configManager.customEnvironments.isEmpty();
+	QString currentDir=QDir::homePath();
 	QString file = QFileDialog::getOpenFileName(this,tr("Load Profile"),currentDir,tr("TmX Profile","filter")+"(*.tmxprofile);;"+tr("All files")+" (*)");
-    configManager.readProfile(file);
+	configManager.readProfile(file);
 
-    if (currentEditorView()) {
-	    for (int i=0; i<EditorView->count();i++) {
-		    LatexEditorView* edView=qobject_cast<LatexEditorView*>(EditorView->widget(i));
-		    if (edView) edView->updateSettings();
-	    }
-	    UpdateCaption();
-    }
-    //custom toolbar
-    setupToolBars();
+	if (currentEditorView()) {
+		for (int i=0; i<EditorView->count();i++) {
+			LatexEditorView* edView=qobject_cast<LatexEditorView*>(EditorView->widget(i));
+			if (edView) edView->updateSettings();
+		}
+		UpdateCaption();
+	}
+	//custom toolbar
+	setupToolBars();
 
-    // custom evironments
-    if(customEnvironmentExisted || !configManager.customEnvironments.isEmpty()){
-	    QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)TeX");
+	// custom evironments
+	if(customEnvironmentExisted || !configManager.customEnvironments.isEmpty()){
+		QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)TeX");
 
-	    QFile f(findResourceFile("qxs/tex.qnfa"));
-	    QDomDocument doc;
-	    doc.setContent(&f);
+		QFile f(findResourceFile("qxs/tex.qnfa"));
+		QDomDocument doc;
+		doc.setContent(&f);
 
-	    QMap<QString, QVariant>::const_iterator i;
-	    for (i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i){
-		    QString mode=configManager.enviromentModes.value(i.value().toInt(),"verbatim");
-		    addEnvironmentToDom(doc,i.key(),mode);
-	    }
-	    QNFADefinition::load(doc,&m_lang,dynamic_cast<QFormatScheme*>(m_formats));
-	    m_languages->addLanguage(m_lang);
-    }
+		QMap<QString, QVariant>::const_iterator i;
+		for (i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i){
+			QString mode=configManager.enviromentModes.value(i.value().toInt(),"verbatim");
+			addEnvironmentToDom(doc,i.key(),mode);
+		}
+		QNFADefinition::load(doc,&m_lang,dynamic_cast<QFormatScheme*>(m_formats));
+		m_languages->addLanguage(m_lang);
+	}
 }
 
 void Texmaker::addRowCB(){
-    if (!currentEditorView()) return;
-    QDocumentCursor cur=currentEditorView()->editor->cursor();
-    if(!LatexTables::inTableEnv(cur)) return;
-    int cols=LatexTables::getNumberOfColumns(cur);
-    if(cols<1) return;
-    LatexTables::addRow(cur,cols);
+	if (!currentEditorView()) return;
+	QDocumentCursor cur=currentEditorView()->editor->cursor();
+	if(!LatexTables::inTableEnv(cur)) return;
+	int cols=LatexTables::getNumberOfColumns(cur);
+	if(cols<1) return;
+	LatexTables::addRow(cur,cols);
 }
 
 void Texmaker::addColumnCB(){
-    if (!currentEditorView()) return;
-    QDocumentCursor cur=currentEditorView()->editor->cursor();
-    if(!LatexTables::inTableEnv(cur)) return;
-    int col=LatexTables::getColumn(cur)+1;
-    if(col==1 &&cur.atLineStart()) col=0;
-    LatexTables::addColumn(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),col);
+	if (!currentEditorView()) return;
+	QDocumentCursor cur=currentEditorView()->editor->cursor();
+	if(!LatexTables::inTableEnv(cur)) return;
+	int col=LatexTables::getColumn(cur)+1;
+	if(col==1 &&cur.atLineStart()) col=0;
+	LatexTables::addColumn(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),col);
 }
 
 void Texmaker::removeColumnCB(){
-    if (!currentEditorView()) return;
-    QDocumentCursor cur=currentEditorView()->editor->cursor();
-    if(!LatexTables::inTableEnv(cur)) return;
-    int col=LatexTables::getColumn(cur);
-    LatexTables::removeColumn(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),col,0);
+	if (!currentEditorView()) return;
+	QDocumentCursor cur=currentEditorView()->editor->cursor();
+	if(!LatexTables::inTableEnv(cur)) return;
+	int col=LatexTables::getColumn(cur);
+	LatexTables::removeColumn(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),col,0);
 }
 
 void Texmaker::removeRowCB(){
-    if (!currentEditorView()) return;
-    QDocumentCursor cur=currentEditorView()->editor->cursor();
-    if(!LatexTables::inTableEnv(cur)) return;
-    LatexTables::removeRow(cur);
+	if (!currentEditorView()) return;
+	QDocumentCursor cur=currentEditorView()->editor->cursor();
+	if(!LatexTables::inTableEnv(cur)) return;
+	LatexTables::removeRow(cur);
 }
 
 void Texmaker::cutColumnCB(){
-    if (!currentEditorView()) return;
-    QDocumentCursor cur=currentEditorView()->editor->cursor();
-    if(!LatexTables::inTableEnv(cur)) return;
-    m_columnCutBuffer.clear();
-    int col=LatexTables::getColumn(cur);
-    LatexTables::removeColumn(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),col,&m_columnCutBuffer);
+	if (!currentEditorView()) return;
+	QDocumentCursor cur=currentEditorView()->editor->cursor();
+	if(!LatexTables::inTableEnv(cur)) return;
+	m_columnCutBuffer.clear();
+	int col=LatexTables::getColumn(cur);
+	LatexTables::removeColumn(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),col,&m_columnCutBuffer);
 }
 
 void Texmaker::pasteColumnCB(){
-    if (!currentEditorView()) return;
-    QDocumentCursor cur=currentEditorView()->editor->cursor();
-    if(!LatexTables::inTableEnv(cur)) return;
-    int col=LatexTables::getColumn(cur)+1;
-    if(col==1 &&cur.atLineStart()) col=0;
-    LatexTables::addColumn(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),col,&m_columnCutBuffer);
+	if (!currentEditorView()) return;
+	QDocumentCursor cur=currentEditorView()->editor->cursor();
+	if(!LatexTables::inTableEnv(cur)) return;
+	int col=LatexTables::getColumn(cur)+1;
+	if(col==1 &&cur.atLineStart()) col=0;
+	LatexTables::addColumn(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),col,&m_columnCutBuffer);
 }
