@@ -19,6 +19,22 @@ void LatexTables::addRow(QDocumentCursor &c,const int numberOfColumns ){
     int result=0;
     if(!stopSearch) result=findNextToken(cur,tokens);
     if(result==0 || result==-2){
+	//if last line before end, check whether the user was too lazy to put in a linebreak
+	if(result==-2){
+	    QDocumentCursor ch(cur);
+	    int res=findNextToken(ch,tokens,true,true);
+	    if(res==-2){
+		cur.movePosition(1,QDocumentCursor::Left);
+		cur.insertText("\\\\\n");
+	    }else{
+		if(ch.selectedText().contains(QRegExp("\\S+"))){
+		    cur.movePosition(1,QDocumentCursor::Left);
+		    cur.insertText("\\\\\n");
+		}
+	    }
+	}
+	//
+	//result=findNextToken(cur,tokens);
 	cur.beginEditBlock();
 	if(result>-2) cur.insertText("\n");
 	QString str("& ");
