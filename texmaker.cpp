@@ -4411,12 +4411,13 @@ void Texmaker::addRowCB(){
 }
 
 void Texmaker::addColumnCB(){
-	if (!currentEditorView()) return;
-	QDocumentCursor cur=currentEditorView()->editor->cursor();
-	if(!LatexTables::inTableEnv(cur)) return;
-	int col=LatexTables::getColumn(cur)+1;
-	if(col==1 &&cur.atLineStart()) col=0;
-	LatexTables::addColumn(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),col);
+    if (!currentEditorView()) return;
+    QDocumentCursor cur=currentEditorView()->editor->cursor();
+    if(!LatexTables::inTableEnv(cur)) return;
+    int col=LatexTables::getColumn(cur)+1;
+    if(col<1) return;
+    if(col==1 &&cur.atLineStart()) col=0;
+    LatexTables::addColumn(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),col);
 }
 
 void Texmaker::removeColumnCB(){
