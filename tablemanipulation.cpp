@@ -3,7 +3,7 @@
 #include "smallUsefulFunctions.h"
 #include "tablemanipulation.h"
 
-QStringList LatexTables::tabularNames = QStringList() << "tabular" << "array" << "longtable";
+QStringList LatexTables::tabularNames = QStringList() << "tabular" << "array" << "longtable" << "supertabular";
 QStringList LatexTables::tabularNamesWithOneOption = QStringList() << "tabular*" << "tabularx";
 
 void LatexTables::addRow(QDocumentCursor &c,const int numberOfColumns ){
