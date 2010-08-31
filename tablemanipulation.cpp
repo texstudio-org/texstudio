@@ -149,11 +149,12 @@ void LatexTables::removeColumn(QDocument *doc,const int lineNumber,const int col
 	    do{
 		result=findNextToken(cur,nTokens);
 	    }while(result==1);
-	    if(result<1) breakLoop=true;
+	    breakLoop=(result<0); // end of tabular reached (eof or \end)
+	    if(result<1) break; //end of tabular line reached
 	}
 	if(result==-1) break;
 	// add element
-	if(result>-1){
+	if(result>0){
 	    do{
 		result=findNextToken(cur,nTokens,true);
 	    }while(result==1);
@@ -174,9 +175,9 @@ void LatexTables::removeColumn(QDocument *doc,const int lineNumber,const int col
 		cur.movePosition(1,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
 		cur.removeSelectedText();
 	    }
+	    const QStringList tokens("\\\\");
+	    breakLoop=(findNextToken(cur,tokens)==-1);
 	}
-	const QStringList tokens("\\\\");
-	breakLoop=(findNextToken(cur,tokens)==-1);
 	if(cur.atLineEnd()) cur.movePosition(1,QDocumentCursor::Right);
 	line=cur.line().text();
 	if(line.contains("\\end")) breakLoop=true;
