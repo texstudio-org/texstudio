@@ -50,6 +50,8 @@ void LatexTables::removeRow(QDocumentCursor &c){
 
 void LatexTables::addColumn(QDocument *doc,const int lineNumber,const int afterColumn,QStringList *cutBuffer){
     QDocumentCursor cur(doc);
+    QStringList pasteBuffer;
+    if(cutBuffer) pasteBuffer=*cutBuffer;
     cur.beginEditBlock();
     cur.moveTo(lineNumber,0);
     int result=findNextToken(cur,QStringList(),false,true); // move to \begin{...}
@@ -73,11 +75,19 @@ void LatexTables::addColumn(QDocument *doc,const int lineNumber,const int afterC
 	if(result<0) break;
 	// add element
 	if(result==2){
-	    cur.insertText(" &");
+	    if(pasteBuffer.isEmpty()) {
+		cur.insertText(" &");
+	    }else{
+		cur.insertText(pasteBuffer.takeFirst()+"&");
+	    }
 	}
 	if(result==0){
 	    cur.movePosition(2,QDocumentCursor::Left);
-	    cur.insertText("& ");
+	    if(pasteBuffer.isEmpty()) {
+		cur.insertText("& ");
+	    }else{
+		cur.insertText("&"+pasteBuffer.takeFirst());
+	    }
 	}
 	const QStringList tokens("\\\\");
 	breakLoop=(findNextToken(cur,tokens)==-1);
@@ -123,6 +133,11 @@ void LatexTables::removeColumn(QDocument *doc,const int lineNumber,const int col
 	    }
 	    if(result==0) {
 		cur.movePosition(2,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+	    }
+	    if(cutBuffer){
+		QString zw=cur.selectedText();
+		if(column==0) zw.chop(1);
+		cutBuffer->append(zw);
 	    }
 	    cur.removeSelectedText();
 	    if(column>0) {

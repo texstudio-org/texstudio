@@ -57,6 +57,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	previewEquation=false;
 	svndlg=0;
 	mCompleterNeedsUpdate=false;
+	m_columnCutBuffer.clear();
 
 	ReadSettings();
 	setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
@@ -511,6 +512,8 @@ void Texmaker::setupMenus() {
 	newManagedAction(submenu, "addColumn",tr("add column"), SLOT(addColumnCB()),QKeySequence(),":/images/addCol.png");
 	newManagedAction(submenu, "removeRow",tr("remove row"), SLOT(removeRowCB()),QKeySequence(),":/images/remRow.png");
 	newManagedAction(submenu, "removeColumn",tr("remove column"), SLOT(removeColumnCB()),QKeySequence(),":/images/remCol.png");
+	newManagedAction(submenu, "cutColumn",tr("cut column"), SLOT(cutColumnCB()),QKeySequence(),":/images/remCol.png");
+	newManagedAction(submenu, "pasteColumn",tr("paste column"), SLOT(pasteColumnCB()),QKeySequence(),":/images/addCol.png");
 
 //wizards
 
@@ -4463,11 +4466,10 @@ void Texmaker::addColumnCB(){
 
 void Texmaker::removeColumnCB(){
     if (!currentEditorView()) return;
-    QStringList cutBuffer;
     QDocumentCursor cur=currentEditorView()->editor->cursor();
     if(!LatexTables::inTableEnv(cur)) return;
     int col=LatexTables::getColumn(cur);
-    LatexTables::removeColumn(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),col,&cutBuffer);
+    LatexTables::removeColumn(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),col,0);
 }
 
 void Texmaker::removeRowCB(){
@@ -4475,4 +4477,22 @@ void Texmaker::removeRowCB(){
     QDocumentCursor cur=currentEditorView()->editor->cursor();
     if(!LatexTables::inTableEnv(cur)) return;
     LatexTables::removeRow(cur);
+}
+
+void Texmaker::cutColumnCB(){
+    if (!currentEditorView()) return;
+    QDocumentCursor cur=currentEditorView()->editor->cursor();
+    if(!LatexTables::inTableEnv(cur)) return;
+    m_columnCutBuffer.clear();
+    int col=LatexTables::getColumn(cur);
+    LatexTables::removeColumn(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),col,&m_columnCutBuffer);
+}
+
+void Texmaker::pasteColumnCB(){
+    if (!currentEditorView()) return;
+    QDocumentCursor cur=currentEditorView()->editor->cursor();
+    if(!LatexTables::inTableEnv(cur)) return;
+    int col=LatexTables::getColumn(cur)+1;
+    if(col==1 &&cur.atLineStart()) col=0;
+    LatexTables::addColumn(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),col,&m_columnCutBuffer);
 }
