@@ -503,19 +503,19 @@ void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool
 }
 
 void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool regex, bool word, bool caseSensitive){
-    if (!isVisible()) display(1,false);
-    if (m_search && m_search->searchText()!=text) {
-        delete m_search;
-        m_search=0;
-    }
+	if (!isVisible()) display(1,false);
+	if (m_search && m_search->searchText()!=text) {
+		delete m_search;
+		m_search=0;
+	}
 	//if (!m_search) editor()->setCursorPosition(0,0); ??
 	if(!m_search) init();
-    leFind->setText(text);
-    cbHighlight->setChecked(highlight);
-    cbRegExp->setChecked(regex);
+	leFind->setText(text);
+	cbHighlight->setChecked(highlight);
+	cbRegExp->setChecked(regex);
 	cbCase->setChecked(caseSensitive);
 	cbWords->setChecked(word);
-    findReplace(backward);
+	findReplace(backward);
 }
 void QSearchReplacePanel::setOptions(int searchOptions, bool cursor, bool selection){
 	cbRegExp->setChecked(searchOptions & QDocumentSearch::RegExp);
