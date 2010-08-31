@@ -106,55 +106,55 @@
     <name>BibTeXDialog</name>
     <message>
         <source>Article in Journal</source>
-        <translation>Článek v časopise</translation>
+        <translation type="obsolete">Článek v časopise</translation>
     </message>
     <message>
         <source>Article in Conference Proceedings</source>
-        <translation>Článek ve sborníku ze zasedání</translation>
+        <translation type="obsolete">Článek ve sborníku ze zasedání</translation>
     </message>
     <message>
         <source>Article in a Collection</source>
-        <translation>Článek ve sbírce</translation>
+        <translation type="obsolete">Článek ve sbírce</translation>
     </message>
     <message>
         <source>Chapter or Pages in a Book</source>
-        <translation>Kapitola nebo strany v knize</translation>
+        <translation type="obsolete">Kapitola nebo strany v knize</translation>
     </message>
     <message>
         <source>Conference Proceedings</source>
-        <translation>Sborník ze zasedání</translation>
+        <translation type="obsolete">Sborník ze zasedání</translation>
     </message>
     <message>
         <source>Book</source>
-        <translation>Kniha</translation>
+        <translation type="obsolete">Kniha</translation>
     </message>
     <message>
         <source>Booklet</source>
-        <translation>Knížečka</translation>
+        <translation type="obsolete">Knížečka</translation>
     </message>
     <message>
         <source>PhD. Thesis</source>
-        <translation>Doktorská práce</translation>
+        <translation type="obsolete">Doktorská práce</translation>
     </message>
     <message>
         <source>Master&apos;s Thesis</source>
-        <translation>Diplomová práce (magisterská)</translation>
+        <translation type="obsolete">Diplomová práce (magisterská)</translation>
     </message>
     <message>
         <source>Technical Report</source>
-        <translation>Technická zpráva</translation>
+        <translation type="obsolete">Technická zpráva</translation>
     </message>
     <message>
         <source>Technical Manual</source>
-        <translation>Technická příručka</translation>
+        <translation type="obsolete">Technická příručka</translation>
     </message>
     <message>
         <source>Unpublished</source>
-        <translation>Nezveřejněný</translation>
+        <translation type="obsolete">Nezveřejněný</translation>
     </message>
     <message>
         <source>Miscellaneous</source>
-        <translation>Různé</translation>
+        <translation type="obsolete">Různé</translation>
     </message>
     <message>
         <source>&lt;new file&gt;</source>
@@ -191,6 +191,58 @@
     <message>
         <source>insert empty, optional fields</source>
         <translation>Vložit prázdná, volitelná pole</translation>
+    </message>
+    <message>
+        <source>Article in &amp;Journal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Article in Conference &amp;Proceedings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Article in a &amp;Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Chapter or &amp;Pages in a Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Conference Pr&amp;oceedings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book&amp;let</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PhD. &amp;Thesis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Master&apos;s Thesis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Technical &amp;Report</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Technical Ma&amp;nual</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Unpublished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Miscellan&amp;eous</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -590,7 +642,7 @@
     </message>
     <message>
         <source>Use Tab for Move To Placeholder</source>
-        <translation>Použít tabulátor pro posunutí se na zástupný znak</translation>
+        <translation type="obsolete">Použít tabulátor pro posunutí se na zástupný znak</translation>
     </message>
     <message>
         <source>Show Whitespace</source>
@@ -990,6 +1042,22 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     <message>
         <source>Text to insert after word</source>
         <translation>Nahrazující text k vložení za slovo</translation>
+    </message>
+    <message>
+        <source>Hard Line Wrap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>max. Characters:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Basic Key Mapping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Editor2</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1434,6 +1502,10 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
         <source>&amp;User</source>
         <translation type="obsolete">&amp;Uživatel</translation>
     </message>
+    <message>
+        <source>Open all files</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -1762,6 +1834,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
         <source>%n reference(s) to this label</source>
         <translation type="unfinished">
             <numerusform>%n odkazy k tomuto štítku
+        
         </numerusform>
         </translation>
     </message>
@@ -2155,6 +2228,214 @@ Má se soubor nahrát znovu?</translation>
         <source>Unix</source>
         <translation>Unix</translation>
     </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor left (1 character)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor right (1 character)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor left (1 word)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor right (1 word)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor to line start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor to line end</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor to document start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor to document end</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor one page up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move cursor one page down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select left (1 character)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select right (1 character)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select left (1 word)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select right (1 word)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select to line start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select to line end</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select to document start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select to document end</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select page up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select page down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete left character</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete right character</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete left word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete right word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New line</source>
+        <translation type="unfinished">Neue Zeile</translation>
+    </message>
+    <message>
+        <source>Change overwrite mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Undo</source>
+        <translation type="unfinished">Zpět</translation>
+    </message>
+    <message>
+        <source>Redo</source>
+        <translation type="unfinished">Znovu</translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation type="unfinished">Kopírovat</translation>
+    </message>
+    <message>
+        <source>Paste</source>
+        <translation type="unfinished">Vložit</translation>
+    </message>
+    <message>
+        <source>Cut</source>
+        <translation type="unfinished">Vyjmout</translation>
+    </message>
+    <message>
+        <source>Print</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find</source>
+        <translation type="unfinished">Najít</translation>
+    </message>
+    <message>
+        <source>Find next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace</source>
+        <translation type="unfinished">Nahradit</translation>
+    </message>
+    <message>
+        <source>Create cursor mirror up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create cursor mirror down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next placeholder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous placeholder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next placeholder or one word right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous placeholder or one word left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Indent selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unindent selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QEditorFactory</name>
@@ -2262,14 +2543,6 @@ Má se soubor nahrát znovu?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>prio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Bold</source>
         <translation>Tučné</translation>
     </message>
@@ -2310,14 +2583,6 @@ Má se soubor nahrát znovu?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Point size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Unsaved changes</source>
         <translation>Neuložené změny</translation>
     </message>
@@ -2326,6 +2591,74 @@ Má se soubor nahrát znovu?</translation>
 Do you want them to be saved?</source>
         <translation>V tomto znázornění uspořádání jsou neuložené změny.
 Chcete, aby byly uloženy?</translation>
+    </message>
+    <message>
+        <source>background</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:badbox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark7</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark8</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>line:bookmark9</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>replacement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;default&gt;</source>
+        <translation type="unfinished">&lt;Výchozí&gt;</translation>
     </message>
 </context>
 <context>
@@ -2356,6 +2689,21 @@ Chcete, aby byly uloženy?</translation>
     <message>
         <source>content...</source>
         <translation>Obsah...</translation>
+    </message>
+</context>
+<context>
+    <name>QSearchReplacePanel</name>
+    <message>
+        <source>Count result</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The search text occurs %1 times after the current cursor. Do you want to restart from the beginning of the scope?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The search text occurs %1 times within the search scope.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2596,15 +2944,15 @@ Chcete, aby byly uloženy?</translation>
     <name>SearchReplace</name>
     <message>
         <source>Form</source>
-        <translation>Formulář</translation>
+        <translation type="obsolete">Formulář</translation>
     </message>
     <message>
         <source>all</source>
-        <translation>Vše</translation>
+        <translation type="obsolete">Vše</translation>
     </message>
     <message>
         <source>Close search/replace panel</source>
-        <translation>Zavřít panel hledání/nahrazení</translation>
+        <translation type="unfinished">Zavřít panel hledání/nahrazení</translation>
     </message>
     <message>
         <source>Refresh search underlying context (as an attempt to correct search behavior)</source>
@@ -2612,51 +2960,51 @@ Chcete, aby byly uloženy?</translation>
     </message>
     <message>
         <source> Find :</source>
-        <translation> Najít:</translation>
+        <translation type="unfinished"> Najít:</translation>
     </message>
     <message>
         <source>Text or pattern to search for</source>
-        <translation>Hledaný text nebo pravidelný výraz</translation>
+        <translation type="unfinished">Hledaný text nebo pravidelný výraz</translation>
     </message>
     <message>
         <source>Find next occurence</source>
-        <translation>Najít další výskyt</translation>
+        <translation type="unfinished">Najít další výskyt</translation>
     </message>
     <message>
         <source>Find previous occurence</source>
-        <translation>Najít předchozí výskyt</translation>
+        <translation type="unfinished">Najít předchozí výskyt</translation>
     </message>
     <message>
         <source>Words</source>
-        <translation>Celé slovo</translation>
+        <translation type="unfinished">Celé slovo</translation>
     </message>
     <message>
         <source>Cursor</source>
-        <translation>Ukazovátko</translation>
+        <translation type="unfinished">Ukazovátko</translation>
     </message>
     <message>
         <source>Selection</source>
-        <translation>Výběr</translation>
+        <translation type="unfinished">Výběr</translation>
     </message>
     <message>
         <source>Highlight all</source>
-        <translation>Zvýraznit vše</translation>
+        <translation type="unfinished">Zvýraznit vše</translation>
     </message>
     <message>
         <source>Regexp</source>
-        <translation>Pravidelný výraz</translation>
+        <translation type="unfinished">Pravidelný výraz</translation>
     </message>
     <message>
         <source>Case</source>
-        <translation>Psaní velkých/malých počátečních písmen</translation>
+        <translation type="unfinished">Psaní velkých/malých počátečních písmen</translation>
     </message>
     <message>
         <source>Replace :</source>
-        <translation>Nahradit:</translation>
+        <translation type="unfinished">Nahradit:</translation>
     </message>
     <message>
         <source>Replacement text</source>
-        <translation>Text nahrazení</translation>
+        <translation type="unfinished">Text nahrazení</translation>
     </message>
     <message>
         <source>replace</source>
@@ -2668,15 +3016,19 @@ Chcete, aby byly uloženy?</translation>
     </message>
     <message>
         <source>Prompt on replace</source>
-        <translation>Ptát se při nahrazení</translation>
+        <translation type="unfinished">Ptát se při nahrazení</translation>
     </message>
     <message>
         <source>Replace all</source>
-        <translation>Nahradit vše</translation>
+        <translation type="unfinished">Nahradit vše</translation>
     </message>
     <message>
         <source>Escape sequences</source>
-        <translation>Únikové znaky (např.: \n)</translation>
+        <translation type="unfinished">Únikové znaky (např.: \n)</translation>
+    </message>
+    <message>
+        <source>Count occurences</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4241,6 +4593,38 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     </message>
     <message>
         <source>Join lines before wrapping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manipulate tables</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>add row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>add column</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove row</source>
+        <translation type="unfinished">Zeile entfernen</translation>
+    </message>
+    <message>
+        <source>remove column</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cut column</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>paste column</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Table</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
