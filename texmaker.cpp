@@ -691,6 +691,7 @@ void Texmaker::setupToolBars() {
 				}
 			}
 		}
+		mtb.toolbar->setVisible(!mtb.actualActions.empty());
 	}
 }
 
