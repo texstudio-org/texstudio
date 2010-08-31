@@ -27,7 +27,8 @@ void LatexTables::addRow(QDocumentCursor &c,const int numberOfColumns ){
 		cur.movePosition(1,QDocumentCursor::Left);
 		cur.insertText("\\\\\n");
 	    }else{
-		if(ch.selectedText().contains(QRegExp("\\S+"))){
+		ch.movePosition(2,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+		if(ch.selectedText().contains(QRegExp("^\\S+$"))){
 		    cur.movePosition(1,QDocumentCursor::Left);
 		    cur.insertText("\\\\\n");
 		}
@@ -88,7 +89,18 @@ void LatexTables::addColumn(QDocument *doc,const int lineNumber,const int afterC
 	    }while(result==1);
 	    if(result<1) breakLoop=true;
 	}
-	if(result<0) break;
+	if(result==-1) break;
+	//if last line before end, check whether the user was too lazy to put in a linebreak
+	if(result==-2){
+	    QDocumentCursor ch(cur);
+	    QStringList tokens("\\\\");
+	    int res=findNextToken(ch,tokens,true,true);
+	    if(res==0){
+		ch.movePosition(2,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+		if(ch.selectedText().contains(QRegExp("^\\S+$")))
+		    break;
+	    }
+	}
 	// add element
 	if(result==2){
 	    if(pasteBuffer.isEmpty()) {
@@ -97,8 +109,9 @@ void LatexTables::addColumn(QDocument *doc,const int lineNumber,const int afterC
 		cur.insertText(pasteBuffer.takeFirst()+"&");
 	    }
 	}
-	if(result==0){
-	    cur.movePosition(2,QDocumentCursor::Left);
+	if(result<=0){
+	    int count= result==0 ? 2 : 1;
+	    cur.movePosition(count,QDocumentCursor::Left);
 	    if(pasteBuffer.isEmpty()) {
 		cur.insertText("& ");
 	    }else{
