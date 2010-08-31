@@ -87,7 +87,8 @@ void LatexTables::addColumn(QDocument *doc,const int lineNumber,const int afterC
 	    do{
 		result=findNextToken(cur,nTokens);
 	    }while(result==1);
-	    if(result<1) breakLoop=true;
+	    breakLoop=(result<0); // end of tabular reached (eof or \end)
+	    if(result<1) break; //end of tabular line reached
 	}
 	if(result==-1) break;
 	//if last line before end, check whether the user was too lazy to put in a linebreak
