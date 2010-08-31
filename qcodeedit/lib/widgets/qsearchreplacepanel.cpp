@@ -473,23 +473,19 @@ void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceA
 	else {
 		m_search->setOption(QDocumentSearch::Silent, true);
 		QDocumentCursor startCur = m_search->cursor();
-		QDocumentCursor origin = m_search->origin();
 		int question = QMessageBox::Yes;
 		if (startCur.isValid() && cbCursor->isChecked() &&
 		    ((startCur.selectionStart() > m_search->scope().selectionStart() && startCur.selectionEnd() < m_search->scope().selectionEnd()) || !m_search->scope().isValid())) {
-			m_search->setOrigin(m_search->cursor().selectionEnd());
-			m_search->setCursor(m_search->origin());
+			m_search->setCursor(m_search->cursor().selectionEnd());
 			int count = m_search->next(false, true, true, false);
 			question = QMessageBox::information(this,tr("Count result"),tr("The search text occurs %1 times after the current cursor. Do you want to restart from the beginning of the scope?").arg(count),QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
 		}
 		if (question == QMessageBox::Yes) {
 			m_search->setCursor(QDocumentCursor());
-			m_search->setOrigin(QDocumentCursor());
 			int count = m_search->next(false, true, true, false);
 			QMessageBox::information(this,tr("Count result"),tr("The search text occurs %1 times within the search scope.").arg(count),QMessageBox::Ok);
 		}
 		m_search->setCursor(startCur);
-		m_search->setOrigin(origin);
 		m_search->setOption(QDocumentSearch::Silent, false);
 	}
         if (isVisible() && !leFind->hasFocus() && !leReplace->hasFocus() ) {
@@ -547,7 +543,8 @@ void QSearchReplacePanel::closeEvent(QCloseEvent *)
 		m_search->setOption(QDocumentSearch::HighlightAll, false);
 		//reset search scope
 		m_search->setScope(QDocumentCursor());
-		m_search->setOrigin(QDocumentCursor());
+		if (!cbCursor->isChecked())
+			m_search->setCursor(QDocumentCursor());
 		emit onClose();
 		//delete m_search;
 		//m_search=0;
@@ -741,9 +738,9 @@ void QSearchReplacePanel::on_cbCursor_toggled(bool on)
 	if ( m_search )
 	{
 		if ( on && !cbSelection->isChecked())
-			m_search->setOrigin(editor()->cursor());
+			m_search->setCursor(editor()->cursor());
 		else
-			m_search->setOrigin(QDocumentCursor());
+			m_search->setCursor(QDocumentCursor());
 	}
 
 	if ( leFind->isVisible() )
@@ -767,7 +764,6 @@ void QSearchReplacePanel::on_cbHighlight_toggled(bool on)
 void QSearchReplacePanel::on_cbSelection_toggled(bool on)
 {
 	if ( m_search ) {
-		m_search->setOrigin(QDocumentCursor());
 		m_search->setScope(on ? editor()->cursor() : QDocumentCursor());
 		/*if ( m_search && cbHighlight->isChecked())
 		{
@@ -866,7 +862,6 @@ void QSearchReplacePanel::init()
 
 	if ( cbSelection->isChecked() && editor()->cursor().hasSelection()){
 		m_search->setScope(editor()->cursor());
-		m_search->setOrigin(QDocumentCursor());
 	} else if ( cbCursor->isChecked() )
 		m_search->setCursor(editor()->cursor());
 
@@ -883,10 +878,9 @@ void QSearchReplacePanel::cursorPositionChanged()
 
 		if ( cbSelection->isChecked() && editor()->cursor().hasSelection() && isVisible()){
 			m_search->setScope(editor()->cursor());
-			m_search->setOrigin(QDocumentCursor());
 		} else {
 			if ( cbCursor->isChecked() )
-				m_search->setOrigin(editor()->cursor());
+				m_search->setCursor(editor()->cursor());
 		}
 		m_search->setCursor(editor()->cursor());
 	}

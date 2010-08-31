@@ -69,9 +69,6 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		QString replaceText() const;
 		void setReplaceText(const QString& r);
 		
-		QDocumentCursor origin() const;
-		void setOrigin(const QDocumentCursor& c);
-		
 		QDocumentCursor cursor() const;
 		void setCursor(const QDocumentCursor& c);
 		
@@ -101,7 +98,7 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		QString m_string;
 		QString m_replace;
 		QPointer<QEditor> m_editor;
-		QDocumentCursor m_cursor, m_scope, m_highlightedScope, m_origin;
+		QDocumentCursor m_cursor, m_scope, m_highlightedScope;
 		QSet<QDocumentLineHandle*> m_highlights, m_highlightedReplacements;
 
 		int m_replaced,m_replaceDeltaLength,m_replaceDeltaLines;
