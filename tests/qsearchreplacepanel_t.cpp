@@ -127,6 +127,25 @@ void QSearchReplacePanelTest::incrementalsearch_data(){
 			<< 0 << 0
 			<< (QStringList() << "0|14|[aeiou]|o" << "0|14|[aeiou]|o" << "0|14|[aeiou]|o" << "1|1|o{2,}|oo" << "1|1|[aeiou]|o" << "1|22|u" << "1|22|u.|ul" << "1|23|l " << "1|23|l t" << "1|25|tr[aeoiu]*|trea" << "2|1|h.y|hey" << "1|26|re")
 			<< 0 << 9 << 2 << 7;
+
+	QTest::newRow("simple, cursor off")
+			<< "hello world!\nhello world!\nyeah!"
+			<< 0 << false
+			<< 1 << 0
+			<< (QStringList() << "0|0|h" << "he" << "hel" << "hell" << "hello" << "0|6|world!")
+			<< -1 << -1 << -1 << -1;
+	QTest::newRow("whole words, cursor off")
+			<< "hello world!\nhello hell hel he h!\nyeah!"
+			<< (int)QDocumentSearch::WholeWords << false
+			<< 1 << 0
+			<< (QStringList() << "1|18|h" << "1|15|he" << "1|11|hel" << "1|6|hell" << "0|0|hello" << "0|6|world")
+			<< -1 << -1 << -1 << -1;
+	QTest::newRow("regexp scoped, cursor off")
+			<< "seven dwarfs go around\nlooking for the worthful treasure\nthey are digging at the beach"
+			<< (int)QDocumentSearch::RegExp << false
+			<< 0 << 0
+			<< (QStringList() << "0|14|[aeiou]|o" << "0|14|[aeiou]|o" << "0|14|[aeiou]|o" << "1|1|o{2,}|oo" << "1|1|[aeiou]|o" << "1|22|u" << "1|22|u.|ul" << "1|23|l " << "1|23|l t" << "1|25|tr[aeoiu]*|trea" << "2|1|h.y|hey" << "1|26|re")
+			<< 0 << 9 << 2 << 7;
 }
 void QSearchReplacePanelTest::incrementalsearch(){
 	QFETCH(QString, editorText);
@@ -143,7 +162,7 @@ void QSearchReplacePanelTest::incrementalsearch(){
 	QFETCH(int, scopey2);
 	QFETCH(int, scopex2);
 	
-	
+
 	for (int loop=0; loop<2; loop++) {
 		panel->display(1,loop==1);
 		ed->document()->setText(editorText);
@@ -152,6 +171,10 @@ void QSearchReplacePanelTest::incrementalsearch(){
 			ed->setCursor(ed->document()->cursor(scopey1,scopex1,scopey2,scopex2));
 			//test if the set search scope is correctly highlighted
 			QCEMULTIEQUAL(getHighlightedSelection(ed), panel->getSearchScope(), ed->document()->cursor(scopey1,scopex1,scopey2,scopex2));
+		}
+		if (!cursor && loop!=0){ //reset, so it won't continue previous search
+			panel->setOptions((QDocumentSearch::Options)options, true, scopey1!=-1);
+			ed->setCursorPosition(0,0);
 		}
 		panel->setOptions((QDocumentSearch::Options)options, cursor, scopey1!=-1);
 		ed->setCursorPosition(sy,sx);
@@ -181,7 +204,7 @@ void QSearchReplacePanelTest::incrementalsearch(){
 				QTest::keyClick(widget->leFind,search[search.length()-1].toLatin1());
 			}
 			QDocumentCursor s=ed->cursor().selectionStart();
-			QEQUAL2(s.lineNumber(), cy, search+" "+ed->cursor().selectedText());
+			QEQUAL2(s.lineNumber(), cy, search+" "+ed->cursor().selectedText()+"  "+QString::number(loop));
 			QEQUAL2(s.columnNumber(), cx, search+" "+ed->cursor().selectedText());
 			QEQUAL2(ed->cursor().selectedText(), res, search+" "+ed->cursor().selectedText());
 			//searching shouldn't change highlighted selection
@@ -347,8 +370,8 @@ void QSearchReplacePanelTest::findReplaceSpecialCase(){
 //this tests how the search panel reacts to an already existing selection
 void QSearchReplacePanelTest::findSpecialCase2(){
 	ed->document()->setText("sela\nseli\nselo\nSSSSSSSSSSNAKE\nsnape");
-	for (int useCursor=0; useCursor<2; useCursor++) {
-		widget->cbCursor->setChecked(useCursor!=0); //doesn't depend on cursor
+	for (int useCursor=1; useCursor<2; useCursor++) {
+		widget->cbCursor->setChecked(useCursor!=0); //doesn't depend on cursor (old, now it does depend, TODO: think about it)
 		widget->cbSelection->setChecked(false);
 		//init (necessary because find does changes the cursor if search text is changed)
 		panel->find("el", false, false, false, false, false);

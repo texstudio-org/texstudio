@@ -89,6 +89,7 @@ private slots:
 
 	void copyMessage();
 	void copyAllMessages();
+	void copyAllMessagesWithLineNumbers();
 	void showMessageInLog();
 };
 

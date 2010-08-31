@@ -462,11 +462,13 @@ void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceA
 	}
 	m_lastDirection=backward;
 
-	if (cbCursor->isChecked() && !m_search->cursor().isValid())
+	if ( cbCursor->isChecked() && !m_search->cursor().isValid() )
 		m_search->setCursor(editor()->cursor());  //start from current cursor if no known cursor
-	if (m_search->searchText()!=leFind->text())
+	if ( !cbCursor->isChecked() && replaceAll )
+		m_search->setCursor(QDocumentCursor());
+	if ( m_search->searchText()!=leFind->text() )
 		m_search->setSearchText(leFind->text());
-	if (replace && m_search->replaceText()!=leReplace->text())
+	if ( replace && m_search->replaceText()!=leReplace->text() )
 		m_search->setReplaceText(leReplace->text());
 	m_search->setOption(QDocumentSearch::Replace,replace);
 	if (!countOnly)  m_search->next(backward, replaceAll, !cbPrompt->isChecked(), true);
@@ -506,7 +508,7 @@ void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool
         delete m_search;
         m_search=0;
     }
-	if (!m_search) editor()->setCursorPosition(0,0);
+	//if (!m_search) editor()->setCursorPosition(0,0); ??
 	if(!m_search) init();
     leFind->setText(text);
     cbHighlight->setChecked(highlight);
@@ -878,11 +880,12 @@ void QSearchReplacePanel::cursorPositionChanged()
 
 		if ( cbSelection->isChecked() && editor()->cursor().hasSelection() && isVisible()){
 			m_search->setScope(editor()->cursor());
-		} else {
+		} /*else {
 			if ( cbCursor->isChecked() )
 				m_search->setCursor(editor()->cursor());
-		}
-		m_search->setCursor(editor()->cursor());
+		}*/
+		if ( cbCursor->isChecked() )
+				m_search->setCursor(editor()->cursor());
 	}
 }
 
