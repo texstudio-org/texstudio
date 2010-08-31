@@ -201,7 +201,8 @@ int LatexTables::findNextToken(QDocumentCursor &cur,QStringList tokens,bool keep
 	    }
 	}
 	if(pos<0){
-	    if(cur.lineNumber()>=cur.document()->lineCount()-1) break;
+	    if(!backwards&&cur.lineNumber()>=cur.document()->lineCount()-1) break;
+	    if(backwards&&cur.lineNumber()==0) break;
 	    cur.movePosition(1,mvNextLine,mvFlag);
 	    cur.movePosition(1,mvStartOfLine,mvFlag);
 	}
