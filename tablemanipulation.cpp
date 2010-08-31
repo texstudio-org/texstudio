@@ -145,35 +145,62 @@ void LatexTables::removeColumn(QDocument *doc,const int lineNumber,const int col
     bool breakLoop=false;
     while(!breakLoop){
 	int result=2;
+	int off=0;
 	for(int col=0;col<column;col++){
+	    if(off>0) off--;
+	    cur.clearSelection();
+	    QDocumentCursor oldCur(cur);
 	    do{
-		result=findNextToken(cur,nTokens);
+		result=findNextToken(cur,nTokens,true);
 	    }while(result==1);
+	    QString selText=cur.selectedText();
+	    if(selText.startsWith("\\multicolumn")){
+		int add=getNumOfColsInMultiColumn(selText);
+		if(off==0) off=add;
+		if(off>1) cur=oldCur;
+	    }
 	    breakLoop=(result<0); // end of tabular reached (eof or \end)
 	    if(result<1) break; //end of tabular line reached
 	}
+	cur.clearSelection();
 	if(result==-1) break;
 	// add element
 	if(result>0){
 	    do{
 		result=findNextToken(cur,nTokens,true);
 	    }while(result==1);
-
-	    if(result==2 && column>0) {
+	    QString selText=cur.selectedText();
+	    int add=0;
+	    if(selText.startsWith("\\multicolumn")){
+		add=getNumOfColsInMultiColumn(selText);
+	    }
+	    if(add>1) {
+		//multicolumn handling
+		QStringList values;
+		LatexParser::resolveCommandOptions(selText,0,values);
+		values.takeFirst();
+		values.prepend(QString("{%1}").arg(add-1));
 		cur.movePosition(1,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
-	    }
-	    if(result==0) {
-		cur.movePosition(2,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
-	    }
-	    if(cutBuffer){
-		QString zw=cur.selectedText();
-		if(column==0) zw.chop(1);
-		cutBuffer->append(zw);
-	    }
-	    cur.removeSelectedText();
-	    if(column>0) {
-		cur.movePosition(1,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+		if(result==0) cur.movePosition(1,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+		cur.insertText("\\multicolumn"+values.join(""));
+	    }else{
+		//normal handling
+		if(result==2 && column>0) {
+		    cur.movePosition(1,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+		}
+		if(result==0) {
+		    cur.movePosition(2,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+		}
+		if(cutBuffer){
+		    QString zw=cur.selectedText();
+		    if(column==0) zw.chop(1);
+		    cutBuffer->append(zw);
+		}
 		cur.removeSelectedText();
+		if(column>0) {
+		    cur.movePosition(1,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+		    cur.removeSelectedText();
+		}
 	    }
 	    const QStringList tokens("\\\\");
 	    breakLoop=(findNextToken(cur,tokens)==-1);
@@ -347,4 +374,21 @@ bool LatexTables::inTableEnv(QDocumentCursor &cur){
 	}
     }
     return false;
+}
+
+int LatexTables::getNumOfColsInMultiColumn(const QString &str){
+    //return the number of columsn in mulitcolumn command
+    QStringList values;
+    LatexParser::resolveCommandOptions(str,0,values);
+    if(!values.isEmpty()){
+	QString zw=values.takeFirst();
+	if(zw.startsWith("{")&&zw.endsWith("}")){
+	    zw.chop(1);
+	    zw=zw.mid(1);
+	    bool ok;
+	    int col=zw.toInt(&ok);
+	    if(ok) return col;
+	}
+    }
+    return -1;
 }

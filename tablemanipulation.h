@@ -13,6 +13,8 @@ public:
     static int getColumn(QDocumentCursor &cur);
     static int getNumberOfColumns(QDocumentCursor &cur);
     static bool inTableEnv(QDocumentCursor &cur);
+    static int getNumOfColsInMultiColumn(const QString &str);
+    static int incNumOfColsInMultiColumn(const QString &str,int add);
 
     static QStringList tabularNames;
     static QStringList tabularNamesWithOneOption;
