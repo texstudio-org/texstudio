@@ -308,7 +308,7 @@ void QDocumentSearch::clearReplacements(){
   returns the document the search should be performed
   */
 QDocument* QDocumentSearch::currentDocument(){
-	return m_editor ? m_editor->document() : m_origin.document();
+	return m_editor ? m_editor->document() : m_cursor.document();
 }
 
 /*
@@ -450,40 +450,6 @@ void QDocumentSearch::setReplaceText(const QString& r)
 	\return The current cursor position
 	
 	This is useful to examine matches after performing a search.
-	\todo DOCU IS WRONG!  remove origin? and replace it with cursor()?
-*/
-QDocumentCursor QDocumentSearch::origin() const
-{
-	return m_origin;
-}
-
-/*!
-	\brief Set the cursor
-	
-	If the related option is set, search will start from that cursor position
-	
-	This also changes the cursor()
-
-	\todo DOCU IS WRONG!  remove setOrigin? and replace it with setCursor()?
-*/
-void QDocumentSearch::setOrigin(const QDocumentCursor& c)
-{
-	m_cursor = QDocumentCursor();
-	
-	if ( c == m_origin )
-		return;
-	
-	m_origin = c;
-	if (m_origin.hasSelection())
-		m_origin = m_origin.selectionStart();
-		
-//	clearMatches();
-}
-
-/*!
-	\return The current cursor position
-	
-	This is useful to examine matches after performing a search.
 */
 QDocumentCursor QDocumentSearch::cursor() const
 {
@@ -604,12 +570,6 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 {
 	if ( m_string.isEmpty() )
 		return true;
-	
-	
-	if ( m_cursor.isNull() )
-	{
-		m_cursor = m_origin;
-	}
 	
 	if ( m_cursor.isNull() )
 	{
@@ -830,10 +790,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 						);
 		}
 		if ( ret == QMessageBox::Yes )
-		{
-			m_origin = QDocumentCursor();
 			return next(backward, all, again, false);
-		}
 	}
 	
 	if ( !foundCount )
@@ -853,7 +810,6 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 			if ( ret == QMessageBox::Yes )
 			{
 				m_cursor = QDocumentCursor();
-				m_origin = QDocumentCursor();
 				return foundCount + next(backward, all, again, false);
 			}
 		} else QMessageBox::information(m_editor,tr("Replacing Finished"),tr("%1 (of %2) occurences have been replaced").arg(replaceCount).arg(foundCount),QMessageBox::Ok);
