@@ -235,7 +235,7 @@ void QDocumentSearchTest::next_sameText(){
 				ds->setOptions((QDocumentSearch::Options)options | QDocumentSearch::Replace);
 				ds->setReplaceText(cms[i].rt);
 			}
-			ds->next(cms[i].dir,false,cms[i].rep);
+			int foundCount = ds->next(cms[i].dir,false,cms[i].rep);
 			QByteArray emba=QString("%1: %2 %3 %4  \"%5\" \"%6\" expected %7 %8 %9 %10 %11  %12").arg(i).arg(ds->cursor().lineNumber()).arg(ds->cursor().anchorColumnNumber()).arg(ds->cursor().columnNumber()).arg(ds->cursor().selectedText()).arg(ed->document()->text()).arg(cms[i].l).arg(cms[i].ax).arg(cms[i].cx).arg(sel).arg(cms[i].nt).arg(loop?"(highlight-run)":"").toLatin1();//make sure the message stays in memory for the next few lines
 			const char* errorMessage=emba.constData();
 			QVERIFY2(ds->cursor().selectedText()== sel,errorMessage);
@@ -246,6 +246,8 @@ void QDocumentSearchTest::next_sameText(){
 			if (cms[i].rep){
 				QVERIFY2(ed->document()->text()== cms[i].nt,errorMessage);
 			}
+			if (cms[i].l==-1) QEQUAL(foundCount, 0);
+			else QEQUAL(foundCount, 1);
 			/*if (options & QDocumentSearch::Replace)
 				QVERIFY(ed->document()->text()== newText[i]);*/
 		}
@@ -267,6 +269,7 @@ void QDocumentSearchTest::replaceAll_data(){
 	QTest::addColumn<int>("sy");
 	QTest::addColumn<int>("sx");
 	QTest::addColumn<QString >("newtext");
+	QTest::addColumn<int>("foundCount");
 	
 	QTest::newRow("simple")
 		<< "hell!\nes ist hell, die Sonne scheint\nHello World\nHello!!!\nhell!"
@@ -276,7 +279,8 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< 1 << 7
 		<< 3 << 4
 		<< 0 << 0
-		<< "hell!\nes ist Heaven, die Sonne scheint\nHeaveno World\nHeaveno!!!\nhell!";
+		<< "hell!\nes ist Heaven, die Sonne scheint\nHeaveno World\nHeaveno!!!\nhell!"
+		<< 3;
 	QTest::newRow("simple backward")
 		<< "hell!\nes ist hell, die Sonne scheint\nHello World\nxxHello!!!\nhell!"
 		<< "hell"
@@ -285,7 +289,8 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< 1 << 7
 		<< 3 << 6
 		<< 99 << 99
-		<< "hell!\nes ist Heaven, die Sonne scheint\nHeaveno World\nxxHeaveno!!!\nhell!";
+		<< "hell!\nes ist Heaven, die Sonne scheint\nHeaveno World\nxxHeaveno!!!\nhell!"
+		<< 3;
 	QTest::newRow("whole words backward")
 		<< "abc abc \nabc abc abc \nabc abcabcabcabc \nabc\nabc abc abc\nabc"
 		<< "abc"
@@ -294,7 +299,8 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< 0 << 5
 		<< 5 << 3
 		<< 5 << 0
-		<< "abc abc \nuvxyz uvxyz uvxyz \nuvxyz abcabcabcabc \nuvxyz\nuvxyz uvxyz uvxyz\nabc";
+		<< "abc abc \nuvxyz uvxyz uvxyz \nuvxyz abcabcabcabc \nuvxyz\nuvxyz uvxyz uvxyz\nabc"
+		<< 8;
 	QTest::newRow("whole words backward")
 		<< "abc abc \nabc abc abc \nabc abcabcabcabc \nabc\nabc abc abc\nabc"
 		<< "abc"
@@ -303,7 +309,8 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< 0 << 5
 		<< 5 << 3
 		<< 5 << 0
-		<< "abc abc \nuvxyz uvxyz uvxyz \nuvxyz abcabcabcabc \nuvxyz\nuvxyz uvxyz uvxyz\nuvxyz";
+		<< "abc abc \nuvxyz uvxyz uvxyz \nuvxyz abcabcabcabc \nuvxyz\nuvxyz uvxyz uvxyz\nuvxyz"
+		<< 9;
 	QTest::newRow("whole words backward")
 		<< "abc abc \nabc abc abc \nabc abcabcabcabc \nabc\nabc abc abc\nabc"
 		<< "abc"
@@ -312,7 +319,8 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< 0 << 5
 		<< 5 << 0
 		<< 5 << 0
-		<< "abc abc \nuvxyz uvxyz uvxyz \nuvxyz abcabcabcabc \nuvxyz\nuvxyz uvxyz uvxyz\nabc";
+		<< "abc abc \nuvxyz uvxyz uvxyz \nuvxyz abcabcabcabc \nuvxyz\nuvxyz uvxyz uvxyz\nabc"
+		<< 8;
 
 	QTest::newRow("replaces leading to new search result")
 		<< "abc abc abc"
@@ -322,7 +330,8 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< -1 << -1
 		<< -1 << -1
 		<< 0 << 0
-		<< "ajbc ajbc ajbc";
+		<< "ajbc ajbc ajbc"
+		<< 3;
 		
 	QTest::newRow("replaces leading to new search result ending with o")
 		<< "abc abc abc"
@@ -332,7 +341,8 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< -1 << -1
 		<< -1 << -1
 		<< 0 << 0
-		<< "aobc aobc aobc";
+		<< "aobc aobc aobc"
+		<< 3;
 		
 	QTest::newRow("replaces leading to new search result ending with o backward, in scope")
 		<< "abc abc abc"
@@ -342,7 +352,8 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< 0 << 0
 		<< 0 << 8
 		<< 0 << 8
-		<< "aobc aobc abc";
+		<< "aobc aobc abc"
+		<< 2;
 
 	QTest::newRow("replaces leading to new search result ending with o backward, after scope")
 		<< "abc abc abc"
@@ -352,7 +363,8 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< 0 << 0
 		<< 0 << 5
 		<< 0 << 8
-		<< "aobc aobc abc";
+		<< "aobc aobc abc"
+		<< 2;
 
 	QTest::newRow("replaces leading to new search result ending with o backward wrap around")
 		<< "abc abc abc"
@@ -362,7 +374,8 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< -1 << -1
 		<< -1 << -1
 		<< 0 << 8
-		<< "aobc aobc aobc";
+		<< "aobc aobc aobc"
+		<< 3;
 
 	QTest::newRow("replaces all matching regexp")
 		<< "abc a12b34c abc"
@@ -372,7 +385,8 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< -1 << -1
 		<< -1 << -1
 		<< 0 << 0
-		<< "abc axbxc abc";
+		<< "abc axbxc abc"
+		<< 2;
 
 	QTest::newRow("replaces all matching regexp backward") //correct? no greedy replace with backward search
 		<< "abc a12b34c abc"
@@ -382,7 +396,8 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< -1 << -1
 		<< -1 << -1
 		<< 0 << 8
-		<< "abc a12b34c abc";
+		<< "abc a12b34c abc"
+		<< 0;
 	QTest::newRow("replaces number matching regexp backward, in scope")
 		<< "abc a12b34c abc"
 		<< "[0-9]+"
@@ -391,7 +406,8 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< 0 << 0
 		<< 0 << 8
 		<< 0 << 8
-		<< "abc a!!b34c abc";
+		<< "abc a!!b34c abc"
+		<< 2;
 	QTest::newRow("replaces number matching regexp backward, out scope")
 		<< "abc a12b34c abc"
 		<< "[0-9]+"
@@ -400,7 +416,8 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< 0 << 0
 		<< 0 << 8
 		<< 0 << 16
-		<< "abc a!!b34c abc";
+		<< "abc a!!b34c abc"
+		<< 2;
 	QTest::newRow("replaces number matching regexp backward, all/wrap around")
 		<< "abc a12b34c abc"
 		<< "[0-9]+"
@@ -409,7 +426,8 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< -1 << -1
 		<< -1 << -1
 		<< 0 << 8
-		<< "abc a!!b!!c abc";
+		<< "abc a!!b!!c abc"
+		<< 4;
 
 	QTest::newRow("replaces all wrap around")
 		<< "abc\nabc\nabc\nabc"
@@ -419,7 +437,38 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< -1 << -1
 		<< -1 << -1
 		<< 1 << 0
-		<< "abcabc\nabcabc\nabcabc\nabcabc";
+		<< "abcabc\nabcabc\nabcabc\nabcabc"
+		<< 4;
+	QTest::newRow("replaces all, no wrap around")
+		<< "abc\nabc\nabc\nabc"
+		<< "abc"
+		<< "abcabc"
+		<< 0 << false << false
+		<< -1 << -1
+		<< -1 << -1
+		<< 1 << 0
+		<< "abc\nabcabc\nabcabc\nabcabc"
+		<< 3;
+	QTest::newRow("replaces all 2, wrap around")
+		<< "abc\nabc\nabc\nabc"
+		<< "abc"
+		<< "abcabc"
+		<< 0 << false << true
+		<< -1 << -1
+		<< -1 << -1
+		<< 1 << 1
+		<< "abcabc\nabcabc\nabcabc\nabcabc"
+		<< 4;
+	QTest::newRow("replaces all 2, no wrap around")
+		<< "abc\nabc\nabc\nabc"
+		<< "abc"
+		<< "abcabc"
+		<< 0 << false << false
+		<< -1 << -1
+		<< -1 << -1
+		<< 1 << 1
+		<< "abc\nabc\nabcabc\nabcabc"
+		<< 2;
 }
 void QDocumentSearchTest::replaceAll(){
 	QFETCH(QString, editorText);
@@ -439,7 +488,8 @@ void QDocumentSearchTest::replaceAll(){
 	QFETCH(int, sx);
 	
 	QFETCH(QString, newtext);
-	
+	QFETCH(int, foundCount);
+
 	for (int loop=0; loop<2; loop++){
 		ed->document()->setText(editorText);
 		ds->setSearchText(searchText);
@@ -449,8 +499,9 @@ void QDocumentSearchTest::replaceAll(){
 		ds->setOptions((QDocumentSearch::Options)options);
 		ds->setCursor(ed->document()->cursor(sy,sx));
 		ds->setScope(ed->document()->cursor(scopey,scopex,scopey2,scopex2));
-		ds->next(dir, true, false, wrapAround);
+		int count=ds->next(dir, true, false, wrapAround);
 		QVERIFY2(ed->document()->text()== newtext,qPrintable(QString("%1 != %2 loop: %3, dir: %4").arg(ed->document()->text()).arg(newtext).arg(loop).arg(dir)));
+		QEQUAL(count, foundCount);
 	}
 }
 void QDocumentSearchTest::searchAndFolding_data(){
@@ -593,13 +644,14 @@ void QDocumentSearchTest::searchAndFolding(){
 		ds->setCursor(ed->document()->cursor(searchFrom));
 		ds->setOptions((QDocumentSearch::Options)(options|(loop?QDocumentSearch::HighlightAll:0))); //highlighting shouldn't change anything
 		ds->setSearchText(searchText);
-		ds->next(movement.dir);
+		int foundCount=ds->next(movement.dir);
 
 		QEQUAL(ds->cursor().lineNumber(),movement.l);
 		QEQUAL(ds->cursor().columnNumber(),movement.cx);
 		QEQUAL(ds->cursor().anchorColumnNumber(),movement.ax);
 		for (int i=0;i<ed->document()->lines();i++)
 			QVERIFY2(ed->document()->line(i).isHidden()==hiddenLinesAfterwards.contains(i),qPrintable(QString::number(i)));
+		QEQUAL(foundCount, 1);
 	}
 }
 
