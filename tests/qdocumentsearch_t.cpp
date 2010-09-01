@@ -259,6 +259,7 @@ void QDocumentSearchTest::replaceAll_data(){
 	QTest::addColumn<QString >("replaceText");
 	QTest::addColumn<int>("options");
 	QTest::addColumn<bool>("dir");
+	QTest::addColumn<bool>("wrapAround");
 	QTest::addColumn<int>("scopey");
 	QTest::addColumn<int >("scopex");
 	QTest::addColumn<int>("scopey2");
@@ -271,7 +272,7 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< "hell!\nes ist hell, die Sonne scheint\nHello World\nHello!!!\nhell!"
 		<< "hell"
 		<< "Heaven"
-		<< 0 << false
+		<< 0 << false << true
 		<< 1 << 7
 		<< 3 << 4
 		<< 0 << 0
@@ -280,7 +281,7 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< "hell!\nes ist hell, die Sonne scheint\nHello World\nxxHello!!!\nhell!"
 		<< "hell"
 		<< "Heaven"
-		<< 0 << true
+		<< 0 << true << true
 		<< 1 << 7
 		<< 3 << 6
 		<< 99 << 99
@@ -289,9 +290,27 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< "abc abc \nabc abc abc \nabc abcabcabcabc \nabc\nabc abc abc\nabc"
 		<< "abc"
 		<< "uvxyz"
-		<< (int)QDocumentSearch::WholeWords << true
+		<< (int)QDocumentSearch::WholeWords << true << false
 		<< 0 << 5
 		<< 5 << 3
+		<< 5 << 0
+		<< "abc abc \nuvxyz uvxyz uvxyz \nuvxyz abcabcabcabc \nuvxyz\nuvxyz uvxyz uvxyz\nabc";
+	QTest::newRow("whole words backward")
+		<< "abc abc \nabc abc abc \nabc abcabcabcabc \nabc\nabc abc abc\nabc"
+		<< "abc"
+		<< "uvxyz"
+		<< (int)QDocumentSearch::WholeWords << true << true
+		<< 0 << 5
+		<< 5 << 3
+		<< 5 << 0
+		<< "abc abc \nuvxyz uvxyz uvxyz \nuvxyz abcabcabcabc \nuvxyz\nuvxyz uvxyz uvxyz\nuvxyz";
+	QTest::newRow("whole words backward")
+		<< "abc abc \nabc abc abc \nabc abcabcabcabc \nabc\nabc abc abc\nabc"
+		<< "abc"
+		<< "uvxyz"
+		<< (int)QDocumentSearch::WholeWords << true << true
+		<< 0 << 5
+		<< 5 << 0
 		<< 5 << 0
 		<< "abc abc \nuvxyz uvxyz uvxyz \nuvxyz abcabcabcabc \nuvxyz\nuvxyz uvxyz uvxyz\nabc";
 
@@ -299,7 +318,7 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< "abc abc abc"
 		<< "a"
 		<< "aj"
-		<< 0 << false
+		<< 0 << false << true
 		<< -1 << -1
 		<< -1 << -1
 		<< 0 << 0
@@ -309,27 +328,47 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< "abc abc abc"
 		<< "a"
 		<< "ao"
-		<< 0 << false
+		<< 0 << false << true
 		<< -1 << -1
 		<< -1 << -1
 		<< 0 << 0
 		<< "aobc aobc aobc";
 		
-	QTest::newRow("replaces leading to new search result ending with o backward")
+	QTest::newRow("replaces leading to new search result ending with o backward, in scope")
 		<< "abc abc abc"
 		<< "a"
 		<< "ao"
-		<< 0 << true
+		<< 0 << true << true
+		<< 0 << 0
+		<< 0 << 8
+		<< 0 << 8
+		<< "aobc aobc abc";
+
+	QTest::newRow("replaces leading to new search result ending with o backward, after scope")
+		<< "abc abc abc"
+		<< "a"
+		<< "ao"
+		<< 0 << true << true
+		<< 0 << 0
+		<< 0 << 5
+		<< 0 << 8
+		<< "aobc aobc abc";
+
+	QTest::newRow("replaces leading to new search result ending with o backward wrap around")
+		<< "abc abc abc"
+		<< "a"
+		<< "ao"
+		<< 0 << true << true
 		<< -1 << -1
 		<< -1 << -1
 		<< 0 << 8
-		<< "aobc aobc abc";
+		<< "aobc aobc aobc";
 
 	QTest::newRow("replaces all matching regexp")
 		<< "abc a12b34c abc"
 		<< "[0-9]*"
 		<< "x"
-		<< (int)QDocumentSearch::RegExp << false
+		<< (int)QDocumentSearch::RegExp << false << true
 		<< -1 << -1
 		<< -1 << -1
 		<< 0 << 0
@@ -339,20 +378,48 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< "abc a12b34c abc"
 		<< "[0-9]*"
 		<< "!"
-		<< (int)QDocumentSearch::RegExp << true
+		<< (int)QDocumentSearch::RegExp << true << true
 		<< -1 << -1
 		<< -1 << -1
 		<< 0 << 8
 		<< "abc a12b34c abc";
-	QTest::newRow("replaces number matching regexp backward") //correct? no greedy replace with backward search
+	QTest::newRow("replaces number matching regexp backward, in scope")
 		<< "abc a12b34c abc"
 		<< "[0-9]+"
 		<< "!"
-		<< (int)QDocumentSearch::RegExp << true
+		<< (int)QDocumentSearch::RegExp << true << true
+		<< 0 << 0
+		<< 0 << 8
+		<< 0 << 8
+		<< "abc a!!b34c abc";
+	QTest::newRow("replaces number matching regexp backward, out scope")
+		<< "abc a12b34c abc"
+		<< "[0-9]+"
+		<< "!"
+		<< (int)QDocumentSearch::RegExp << true << true
+		<< 0 << 0
+		<< 0 << 8
+		<< 0 << 16
+		<< "abc a!!b34c abc";
+	QTest::newRow("replaces number matching regexp backward, all/wrap around")
+		<< "abc a12b34c abc"
+		<< "[0-9]+"
+		<< "!"
+		<< (int)QDocumentSearch::RegExp << true << true
 		<< -1 << -1
 		<< -1 << -1
 		<< 0 << 8
-		<< "abc a!!b34c abc";
+		<< "abc a!!b!!c abc";
+
+	QTest::newRow("replaces all wrap around")
+		<< "abc\nabc\nabc\nabc"
+		<< "abc"
+		<< "abcabc"
+		<< 0 << false << true
+		<< -1 << -1
+		<< -1 << -1
+		<< 1 << 0
+		<< "abcabc\nabcabc\nabcabc\nabcabc";
 }
 void QDocumentSearchTest::replaceAll(){
 	QFETCH(QString, editorText);
@@ -362,7 +429,8 @@ void QDocumentSearchTest::replaceAll(){
 	options |= QDocumentSearch::Silent ;
 	options |= QDocumentSearch::Replace;
 	QFETCH(bool, dir);
-	
+	QFETCH(bool, wrapAround);
+
 	QFETCH(int, scopey);
 	QFETCH(int, scopex);
 	QFETCH(int, scopey2);
@@ -381,7 +449,7 @@ void QDocumentSearchTest::replaceAll(){
 		ds->setOptions((QDocumentSearch::Options)options);
 		ds->setCursor(ed->document()->cursor(sy,sx));
 		ds->setScope(ed->document()->cursor(scopey,scopex,scopey2,scopex2));
-		ds->next(dir, true);
+		ds->next(dir, true, false, wrapAround);
 		QVERIFY2(ed->document()->text()== newtext,qPrintable(QString("%1 != %2 loop: %3, dir: %4").arg(ed->document()->text()).arg(newtext).arg(loop).arg(dir)));
 	}
 }
