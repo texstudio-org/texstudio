@@ -58,10 +58,10 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	sizePolicy.setHeightForWidth(this->sizePolicy().hasHeightForWidth());
 	this->setSizePolicy(sizePolicy);
 	gridLayout = new QGridLayout(this);
-	gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+	gridLayout->setObjectName(("gridLayout"));
 	gridLayout->setContentsMargins(-1, 4, -1, 4);
 	frame_2 = new QFrame(this);
-	frame_2->setObjectName(QString::fromUtf8("frame_2"));
+	frame_2->setObjectName(("frame_2"));
 	QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
 	sizePolicy1.setHorizontalStretch(0);
 	sizePolicy1.setVerticalStretch(0);
@@ -72,13 +72,13 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	frame_2->setFrameShadow(QFrame::Raised);
 	frame_2->setLineWidth(0);
 	hboxLayout = new QHBoxLayout(frame_2);
-	hboxLayout->setObjectName(QString::fromUtf8("hboxLayout"));
+	hboxLayout->setObjectName(("hboxLayout"));
 	hboxLayout->setContentsMargins(-1, 0, -1, 0);
 
 	QSize buttonSize(22,22);
 
 	bClose = new QToolButton(frame_2);
-	bClose->setObjectName(QString::fromUtf8("bClose"));
+	bClose->setObjectName(("bClose"));
 	bClose->setMinimumSize(buttonSize);
 	bClose->setMaximumSize(buttonSize);
 	bClose->setIcon(QIcon(":/closeall.png"));
@@ -86,7 +86,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	hboxLayout->addWidget(bClose);
 
 	label = new QLabel(frame_2);
-	label->setObjectName(QString::fromUtf8("label"));
+	label->setObjectName(("label"));
 	QSizePolicy sizePolicy3(QSizePolicy::Minimum, QSizePolicy::Preferred);
 	sizePolicy3.setHorizontalStretch(0);
 	sizePolicy3.setVerticalStretch(0);
@@ -100,7 +100,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	gridLayout->addWidget(frame_2, 0, 0, 1, 1);
 
 	leFind = new QLineEdit(this);
-	leFind->setObjectName(QString::fromUtf8("leFind"));
+	leFind->setObjectName(("leFind"));
 	QSizePolicy sizePolicy4(QSizePolicy::Preferred, QSizePolicy::Fixed);
 	sizePolicy4.setHorizontalStretch(2);
 	sizePolicy4.setVerticalStretch(0);
@@ -111,7 +111,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	gridLayout->addWidget(leFind, 0, 1, 1, 1);
 
 	bNext = new QToolButton(this);
-	bNext->setObjectName(QString::fromUtf8("bNext"));
+	bNext->setObjectName(("bNext"));
 	bNext->setMinimumSize(buttonSize);
 	bNext->setMaximumSize(buttonSize);
 	bNext->setIcon(QIcon(":/down.png"));
@@ -119,7 +119,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	gridLayout->addWidget(bNext, 0, 3, 1, 1);
 
 	bPrevious = new QToolButton(this);
-	bPrevious->setObjectName(QString::fromUtf8("bPrevious"));
+	bPrevious->setObjectName(("bPrevious"));
 	bPrevious->setMinimumSize(buttonSize);
 	bPrevious->setMaximumSize(buttonSize);
 	bPrevious->setIcon(QIcon(":/up.png"));
@@ -127,7 +127,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	gridLayout->addWidget(bPrevious, 0, 4, 1, 1);
 
 	bCount = new QToolButton(this);
-	bCount->setObjectName(QString::fromUtf8("bCount"));
+	bCount->setObjectName(("bCount"));
 	bCount->setMinimumSize(buttonSize);
 	bCount->setMaximumSize(buttonSize);
 	bCount->setIcon(QIcon(":/images/qcodeedit/count.png"));
@@ -135,58 +135,51 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	gridLayout->addWidget(bCount, 0, 5, 1, 1);
 
 	frame_6 = new QFrame(this);
-	frame_6->setObjectName(QString::fromUtf8("frame_6"));
+	frame_6->setObjectName(("frame_6"));
 	sizePolicy1.setHeightForWidth(frame_6->sizePolicy().hasHeightForWidth());
 	frame_6->setSizePolicy(sizePolicy1);
 	frame_6->setFrameShape(QFrame::NoFrame);
 	frame_6->setFrameShadow(QFrame::Raised);
 	gridLayout1 = new QGridLayout(frame_6);
 	gridLayout1->setContentsMargins(0, 0, 0, 0);
-	gridLayout1->setObjectName(QString::fromUtf8("gridLayout1"));
+	gridLayout1->setObjectName(("gridLayout1"));
 	cbCase = new QCheckBox(frame_6);
-	cbCase->setObjectName(QString::fromUtf8("cbCase"));
-	QSizePolicy sizePolicy5(QSizePolicy::Maximum, QSizePolicy::Preferred);
-	sizePolicy5.setHorizontalStretch(0);
-	sizePolicy5.setVerticalStretch(0);
-	sizePolicy5.setHeightForWidth(cbCase->sizePolicy().hasHeightForWidth());
-	cbCase->setSizePolicy(sizePolicy5);
+	cbCase->setObjectName(("cbCase"));
+	cbCase->setToolTip(tr("Enables case sensitive search."));
 	cbCase->setChecked(true);
 
 	gridLayout1->addWidget(cbCase, 0, 0, 1, 1);
 
 	cbWords = new QCheckBox(frame_6);
-	cbWords->setObjectName(QString::fromUtf8("cbWords"));
-	sizePolicy5.setHeightForWidth(cbWords->sizePolicy().hasHeightForWidth());
-	cbWords->setSizePolicy(sizePolicy5);
+	cbWords->setToolTip(tr("Only searches for whole words."));
+	cbWords->setObjectName(("cbWords"));
 
 	gridLayout1->addWidget(cbWords, 0, 1, 1, 1);
 
 	cbRegExp = new QCheckBox(frame_6);
-	cbRegExp->setObjectName(QString::fromUtf8("cbRegExp"));
-	sizePolicy5.setHeightForWidth(cbRegExp->sizePolicy().hasHeightForWidth());
-	cbRegExp->setSizePolicy(sizePolicy5);
+	cbRegExp->setToolTip(tr("This interprets the search text as a regular expression.\nSome common regexps:\n r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,\n () groups expressions together, [xyz] will find x,y, or z, . matches everything, \\. matches .\nYou can use \\1 to \\9 in the replace text to insert a submatch."));
+	cbRegExp->setObjectName(("cbRegExp"));
 
 	gridLayout1->addWidget(cbRegExp, 0, 2, 1, 1);
 
 	cbHighlight = new QCheckBox(frame_6);
-	cbHighlight->setObjectName(QString::fromUtf8("cbHighlight"));
+	cbHighlight->setObjectName(("cbHighlight"));
+	cbHighlight->setToolTip(tr("Highlights search matches and replaced text."));
 	sizePolicy3.setHeightForWidth(cbHighlight->sizePolicy().hasHeightForWidth());
 	cbHighlight->setSizePolicy(sizePolicy3);
 
 	gridLayout1->addWidget(cbHighlight, 0, 3, 1, 1);
 
 	cbCursor = new QCheckBox(frame_6);
-	cbCursor->setObjectName(QString::fromUtf8("cbCursor"));
-	sizePolicy5.setHeightForWidth(cbCursor->sizePolicy().hasHeightForWidth());
-	cbCursor->setSizePolicy(sizePolicy5);
+	cbCursor->setToolTip(tr("Starts the search from the current cursor position."));
+	cbCursor->setObjectName(("cbCursor"));
 	cbCursor->setChecked(true);
 
 	gridLayout1->addWidget(cbCursor, 0, 4, 1, 1);
 
 	cbSelection = new QCheckBox(frame_6);
-	cbSelection->setObjectName(QString::fromUtf8("cbSelection"));
-	sizePolicy5.setHeightForWidth(cbSelection->sizePolicy().hasHeightForWidth());
-	cbSelection->setSizePolicy(sizePolicy5);
+	cbSelection->setToolTip(tr("Only searches in the selected text."));
+	cbSelection->setObjectName(("cbSelection"));
 
 	gridLayout1->addWidget(cbSelection, 0, 5, 1, 1);
 
@@ -194,7 +187,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	gridLayout->addWidget(frame_6, 0, 6, 2, 2,Qt::AlignTop);
 
 	bReplaceAll = new QToolButton(this);
-	bReplaceAll->setObjectName(QString::fromUtf8("bReplaceAll"));
+	bReplaceAll->setObjectName(("bReplaceAll"));
 	bReplaceAll->setMinimumSize(buttonSize);
 	bReplaceAll->setMaximumSize(buttonSize);
 	bReplaceAll->setIcon(QIcon(":/images/qcodeedit/replaceall.png"));
@@ -202,31 +195,27 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	gridLayout->addWidget(bReplaceAll, 2, 5, 1, 1);
 
 	frame = new QFrame(this);
-	frame->setObjectName(QString::fromUtf8("frame"));
+	frame->setObjectName(("frame"));
 	frame->setFrameShape(QFrame::NoFrame);
 	frame->setFrameShadow(QFrame::Raised);
 	hboxLayout1 = new QHBoxLayout(frame);
-	hboxLayout1->setObjectName(QString::fromUtf8("hboxLayout1"));
+	hboxLayout1->setObjectName(("hboxLayout1"));
 	hboxLayout1->setContentsMargins(-1, 0, -1, 0);
 	cbPrompt = new QCheckBox(frame);
-	cbPrompt->setObjectName(QString::fromUtf8("cbPrompt"));
-	sizePolicy5.setHeightForWidth(cbPrompt->sizePolicy().hasHeightForWidth());
-	cbPrompt->setSizePolicy(sizePolicy5);
+	cbPrompt->setToolTip(tr("Ask before any match is replaced."));
+	cbPrompt->setObjectName(("cbPrompt"));
 	cbPrompt->setChecked(false);
 
 	hboxLayout1->addWidget(cbPrompt);
 
 	cbReplaceAll = new QCheckBox(frame);
-	cbReplaceAll->setObjectName(QString::fromUtf8("cbReplaceAll"));
-	sizePolicy5.setHeightForWidth(cbReplaceAll->sizePolicy().hasHeightForWidth());
-	cbReplaceAll->setSizePolicy(sizePolicy5);
+	cbReplaceAll->setObjectName(("cbReplaceAll"));
 
 	hboxLayout1->addWidget(cbReplaceAll);
 
 	cbEscapeSeq = new QCheckBox(frame);
-	cbEscapeSeq->setObjectName(QString::fromUtf8("cbEscapeSeq"));
-	sizePolicy5.setHeightForWidth(cbEscapeSeq->sizePolicy().hasHeightForWidth());
-	cbEscapeSeq->setSizePolicy(sizePolicy5);
+	cbEscapeSeq->setToolTip(tr("Enables the use of escape characters. These are:\n \\n = new line, \\r = carriage return, \\t = tab, \\\\ = \\, \\0 = ascii 0 "));
+	cbEscapeSeq->setObjectName(("cbEscapeSeq"));
 
 	hboxLayout1->addWidget(cbEscapeSeq);
 
@@ -234,16 +223,13 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	gridLayout->addWidget(frame, 2, 6, 1, 1);
 
 	cbReplace = new QCheckBox(this);
-	cbReplace->setObjectName(QString::fromUtf8("cbReplace"));
-	sizePolicy5.setHeightForWidth(cbReplace->sizePolicy().hasHeightForWidth());
-	cbReplace->setSizePolicy(sizePolicy5);
-	cbReplace->setLayoutDirection(Qt::LeftToRight);
+	cbReplace->setObjectName(("cbReplace"));
 	cbReplace->setChecked(true);
 
 	gridLayout->addWidget(cbReplace, 2, 0, 1, 1);
 
 	leReplace = new QLineEdit(this);
-	leReplace->setObjectName(QString::fromUtf8("leReplace"));
+	leReplace->setObjectName(("leReplace"));
 	leReplace->setEnabled(true);
 	QSizePolicy sizePolicy7(QSizePolicy::Minimum, QSizePolicy::Fixed);
 	sizePolicy7.setHorizontalStretch(2);
@@ -256,7 +242,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	gridLayout->addWidget(leReplace, 2, 1, 1, 1);
 
 	bReplaceNext = new QToolButton(this);
-	bReplaceNext->setObjectName(QString::fromUtf8("bReplaceNext"));
+	bReplaceNext->setObjectName(("bReplaceNext"));
 	bReplaceNext->setMinimumSize(buttonSize);
 	bReplaceNext->setMaximumSize(buttonSize);
 	bReplaceNext->setIcon(QIcon(":/images/qcodeedit/replacedown.png"));
@@ -264,7 +250,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	gridLayout->addWidget(bReplaceNext, 2, 3, 1, 1);
 
 	bReplacePrevious = new QToolButton(this);
-	bReplacePrevious->setObjectName(QString::fromUtf8("bReplacePrevious"));
+	bReplacePrevious->setObjectName(("bReplacePrevious"));
 	bReplacePrevious->setMinimumSize(buttonSize);
 	bReplacePrevious->setMaximumSize(buttonSize);
 	bReplacePrevious->setIcon(QIcon(":/images/qcodeedit/replaceup.png"));
