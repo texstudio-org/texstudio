@@ -591,7 +591,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 		}
 	}
 
-	QDocumentCursor startCursor = m_cursor;
+	QDocumentCursor firstMatch;
 
 	/*if (all && !hasOption(Replace)) {
 		all=false;
@@ -728,6 +728,10 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 					m_editor->setCursor(m_cursor);
 				
 				foundCount++;
+				if ( foundCount == 1 ) {
+					firstMatch = m_cursor;
+					firstMatch.setAutoUpdated(true);
+				}
 				
 				if ( realReplace )
 				{
@@ -813,7 +817,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 			if ( ret == QMessageBox::Yes )
 			{
 				QDocumentCursor oldScope(m_scope, true);
-				QDocumentCursor newScope(backward?startCursor.selectionEnd():startCursor.selectionStart());
+				QDocumentCursor newScope(backward?firstMatch.selectionEnd():firstMatch.selectionStart());
 				if ( !backward ) newScope.movePosition(0,QDocumentCursor::Start,QDocumentCursor::KeepAnchor);
 				else newScope.movePosition(0,QDocumentCursor::End,QDocumentCursor::KeepAnchor);
 				if (m_scope.isValid() && m_scope.hasSelection()) m_scope = m_scope.intersect(newScope);
