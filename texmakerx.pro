@@ -400,6 +400,7 @@ SOURCES += tests/testmanager.cpp \
     tests/qeditor_t.cpp \
     tests/latexeditorview_t.cpp \
     tests/latexeditorview_bm.cpp \
+    tests/tablemanipulation_t.cpp \
     tests/structureview_t.cpp
 HEADERS += tests/testmanager.h \
     tests/testutil.h \
@@ -414,6 +415,7 @@ HEADERS += tests/testmanager.h \
     tests/qeditor_t.h \
     tests/latexeditorview_t.h \
     tests/latexeditorview_bm.h \
+    tests/tablemanipulation_t.h \
     tests/structureview_t.h
 
 # win32:LIBS += -lQtTest4
