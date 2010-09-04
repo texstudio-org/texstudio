@@ -13,6 +13,8 @@ class TableManipulationTest: public QObject{
 	private slots:
 		void addCol_data();
 		void addCol();
+		void addRow_data();
+		void addRow();
 };
 
 #endif
