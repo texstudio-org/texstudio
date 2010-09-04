@@ -51,5 +51,48 @@ void TableManipulationTest::addCol(){
 	QEQUAL(ed->document()->text(), newText);
 	
 }
+
+void TableManipulationTest::addRow_data(){
+	QTest::addColumn<QString>("text");
+	QTest::addColumn<int>("row");
+	QTest::addColumn<int>("col");
+	QTest::addColumn<QString>("newText");
+
+	//-------------cursor without selection--------------
+	QTest::newRow("add row")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0
+		<< "\\begin{tabular}{ll}\na&b\\\\\n & \\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("add row, cursor at end of line")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 5
+		<< "\\begin{tabular}{ll}\na&b\\\\\n & \\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("add row")
+		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0
+		<< "\\begin{tabular}{ll}\na&b\\\\\n & \\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("add row")
+		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 6
+		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\n & \\\\\ne&f\\\\\n\\end{tabular}\n";
+
+}
+void TableManipulationTest::addRow(){
+	QFETCH(QString, text);
+	QFETCH(int, row);
+	QFETCH(int, col);
+	QFETCH(QString, newText);
+
+	ed->document()->setText(text);
+	ed->setCursorPosition(row,col);
+	QDocumentCursor c(ed->cursor());
+	LatexTables::addRow(c,2);
+
+	QEQUAL(ed->document()->text(), newText);
+
+}
 #endif
 
