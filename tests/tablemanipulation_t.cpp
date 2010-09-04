@@ -122,6 +122,25 @@ void TableManipulationTest::remCol_data(){
 		<< 1 << 1
 		<< "\\begin{tabular}{ll}\na\\\\\n\\multicolumn{1}{c}\\\\\ne\\\\\n\\end{tabular}\n";
 
+	QTest::newRow("rem col 1, multicolumn plus col")
+		<< "\\begin{tabular}{ll}\na&b\\\\\n\\multicolumn{2}{c}&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 1
+		<< "\\begin{tabular}{ll}\na\\\\\n\\multicolumn{1}{c}&d\\\\\ne\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("rem col 1, multicolumn")
+		<< "\\begin{tabular}{ll}\na&b\\\\\n\\multicolumn{2}{c}&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 2
+		<< "\\begin{tabular}{ll}\na&b\\\\\n\\multicolumn{2}{c}\\\\\ne&f\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("rem col 0, row over multiple lines")
+		<< "\\begin{tabular}{ll}\na&\nb\\\\\nc\n&\nd\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0
+		<< "\\begin{tabular}{ll}\n\nb\\\\\n\nd\\\\\nf\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("rem col 1, row over multiple lines")
+		<< "\\begin{tabular}{ll}\na&\nb\\\\\nc\n&\nd\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 1
+		<< "\\begin{tabular}{ll}\na\\\\\nc\n\\\\\ne\\\\\n\\end{tabular}\n";
 
 }
 void TableManipulationTest::remCol(){
@@ -173,6 +192,17 @@ void TableManipulationTest::remRow_data(){
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 6
 		<< "\\begin{tabular}{ll}\na&b\\\\\ne&f\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("rem row, multi rows in one line 3")
+		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 2 << 6
+		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("rem row, multi rows in one line 4")
+		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 3 << 6
+		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n";
+
 
 }
 void TableManipulationTest::remRow(){
