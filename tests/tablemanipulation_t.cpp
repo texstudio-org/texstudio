@@ -94,5 +94,100 @@ void TableManipulationTest::addRow(){
 	QEQUAL(ed->document()->text(), newText);
 
 }
+
+void TableManipulationTest::remCol_data(){
+	QTest::addColumn<QString>("text");
+	QTest::addColumn<int>("row");
+	QTest::addColumn<int>("col");
+	QTest::addColumn<QString>("newText");
+
+	//-------------cursor without selection--------------
+	QTest::newRow("rem col 0")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0
+		<< "\\begin{tabular}{ll}\nb\\\\\nd\\\\\nf\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("rem col 1")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 1
+		<< "\\begin{tabular}{ll}\na\\\\\nc\\\\\ne\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("rem col 0, multicolumn")
+		<< "\\begin{tabular}{ll}\na&b\\\\\n\\multicolumn{2}{c}\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0
+		<< "\\begin{tabular}{ll}\nb\\\\\n\\multicolumn{1}{c}\\\\\nf\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("rem col 1, multicolumn")
+		<< "\\begin{tabular}{ll}\na&b\\\\\n\\multicolumn{2}{c}\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 1
+		<< "\\begin{tabular}{ll}\na\\\\\n\\multicolumn{1}{c}\\\\\ne\\\\\n\\end{tabular}\n";
+
+
+}
+void TableManipulationTest::remCol(){
+	QFETCH(QString, text);
+	QFETCH(int, row);
+	QFETCH(int, col);
+	QFETCH(QString, newText);
+
+	ed->document()->setText(text);
+	LatexTables::removeColumn(ed->document(),row,col);
+
+	QEQUAL(ed->document()->text(), newText);
+
+}
+
+void TableManipulationTest::remRow_data(){
+	QTest::addColumn<QString>("text");
+	QTest::addColumn<int>("row");
+	QTest::addColumn<int>("col");
+	QTest::addColumn<QString>("newText");
+
+	//-------------cursor without selection--------------
+	QTest::newRow("rem row")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0
+		<< "\\begin{tabular}{ll}\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("rem row, cursor at end of line")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 5
+		<< "\\begin{tabular}{ll}\na&b\\\\\ne&f\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("rem row, second row")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 2 << 0
+		<< "\\begin{tabular}{ll}\na&b\\\\\ne&f\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("rem row, third row")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 3 << 0
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("rem row, multi rows in one line 1")
+		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0
+		<< "\\begin{tabular}{ll}\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("rem row, multi rows in one line 2")
+		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 6
+		<< "\\begin{tabular}{ll}\na&b\\\\\ne&f\\\\\n\\end{tabular}\n";
+
+}
+void TableManipulationTest::remRow(){
+	QFETCH(QString, text);
+	QFETCH(int, row);
+	QFETCH(int, col);
+	QFETCH(QString, newText);
+
+	ed->document()->setText(text);
+	ed->setCursorPosition(row,col);
+	QDocumentCursor c(ed->cursor());
+	LatexTables::removeRow(c);
+
+	QEQUAL(ed->document()->text(), newText);
+
+}
 #endif
 

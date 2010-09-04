@@ -58,11 +58,18 @@ void LatexTables::removeRow(QDocumentCursor &c){
     if(result==-2) cur.movePosition(1,QDocumentCursor::EndOfLine);
     bool breakLoop=(findNextToken(cur,tokens,true)==-1);
     if(!breakLoop) {
+	// check if end of cursor is at line end
+	QDocumentCursor c2(cur.document(),cur.anchorLineNumber(),cur.anchorColumnNumber());
+	if(c2.atLineEnd()) {
+	    c2.movePosition(1,QDocumentCursor::Right);
+	    cur.moveTo(c2,QDocumentCursor::KeepAnchor);
+	}
+	// remove text
 	cur.beginEditBlock();
 	cur.removeSelectedText();
-	if(cur.line().text().isEmpty()) cur.deleteChar();
+	if(cur.line().text().isEmpty()) cur.deleteChar(); // don't leave empty lines
+	cur.endEditBlock();
     }
-    cur.endEditBlock();
 }
 
 void LatexTables::addColumn(QDocument *doc,const int lineNumber,const int afterColumn,QStringList *cutBuffer){
@@ -165,7 +172,7 @@ void LatexTables::removeColumn(QDocument *doc,const int lineNumber,const int col
 	cur.clearSelection();
 	if(result==-1) break;
 	// add element
-	if(result>0){
+	if(result>0 || off){
 	    do{
 		result=findNextToken(cur,nTokens,true);
 	    }while(result==1);

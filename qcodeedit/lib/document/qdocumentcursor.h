@@ -169,9 +169,9 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		Q_INVOKABLE void setPosition(int pos, MoveMode m = MoveAnchor);
 		Q_INVOKABLE bool movePosition(int offset, MoveOperation op = NextCharacter, MoveMode m = MoveAnchor);
 		
-		Q_INVOKABLE void moveTo(int line, int column);
-		void moveTo(const QDocumentCursor &c);
-		void moveTo(const QDocumentLine &l, int column);
+		Q_INVOKABLE void moveTo(int line, int column, MoveMode m = MoveAnchor);
+		void moveTo(const QDocumentCursor &c, MoveMode m = MoveAnchor);
+		void moveTo(const QDocumentLine &l, int column, MoveMode m = MoveAnchor);
 		
 		Q_INVOKABLE void eraseLine();
 		Q_INVOKABLE void insertLine(bool keepAnchor = false);

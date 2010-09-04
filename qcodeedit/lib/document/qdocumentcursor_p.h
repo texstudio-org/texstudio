@@ -146,8 +146,8 @@ class QCE_EXPORT QDocumentCursorHandle
 		void beginEditBlock();
 		void endEditBlock();
 		
-		void moveTo(int line, int column);
-		void moveTo(const QDocumentCursor &c);
+		void moveTo(int line, int column, int m=0);
+		void moveTo(const QDocumentCursor &c, int m=0);
 		
 		void copy(const QDocumentCursorHandle *c);
 		

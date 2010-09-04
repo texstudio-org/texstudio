@@ -4618,27 +4618,37 @@ bool QDocumentCursorHandle::movePosition(int count, int op, int m)
 	return true;
 }
 
-void QDocumentCursorHandle::moveTo(const QDocumentCursor &c)
+void QDocumentCursorHandle::moveTo(const QDocumentCursor &c, int m)
 {
 	if ( !c.isValid() || !m_doc )
 		return;
 
-	m_begLine = c.handle()->m_begLine;
-	m_begOffset = c.handle()->m_begOffset;
+	if(!(m&QDocumentCursor::KeepAnchor)){
+	    m_begLine = c.handle()->m_begLine;
+	    m_begOffset = c.handle()->m_begOffset;
 
-	m_endLine = -1;
-	m_endOffset = 0;
+	    m_endLine = -1;
+	    m_endOffset = 0;
+	}else{
+	    m_endLine = c.handle()->m_begLine;
+	    m_endOffset = c.handle()->m_begOffset;
+	}
 
 	refreshColumnMemory();
 }
 
-void QDocumentCursorHandle::moveTo(int line, int column)
+void QDocumentCursorHandle::moveTo(int line, int column, int m)
 {
+    if(!(m&QDocumentCursor::KeepAnchor)){
 	m_begLine = line;
 	m_begOffset = column;
 
 	m_endLine = -1;
 	m_endOffset = 0;
+    }else{
+	m_endLine = line;
+	m_endOffset = column;
+    }
 
 	refreshColumnMemory();
 }

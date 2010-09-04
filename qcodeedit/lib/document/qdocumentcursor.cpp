@@ -548,20 +548,20 @@ bool QDocumentCursor::movePosition(int offset, MoveOperation op, MoveMode m)
 	\param line target line number
 	\param colum target text column
 */
-void QDocumentCursor::moveTo(int line, int column)
+void QDocumentCursor::moveTo(int line, int column, MoveMode m)
 {
 	if ( m_handle )
-		m_handle->moveTo(line, column);
+		m_handle->moveTo(line, column,m);
 }
 
 /*!
 	\brief Jump to the position of another cursor
 	\param c target cursor
 */
-void QDocumentCursor::moveTo(const QDocumentCursor &c)
+void QDocumentCursor::moveTo(const QDocumentCursor &c, MoveMode m)
 {
 	if ( m_handle )
-		m_handle->moveTo(c);
+		m_handle->moveTo(c,m);
 }
 
 /*!
@@ -571,10 +571,10 @@ void QDocumentCursor::moveTo(const QDocumentCursor &c)
 	
 	\note Calls QDocumentLine::lineNumber() => SLOW : avoid whenever possible
 */
-void QDocumentCursor::moveTo(const QDocumentLine &l, int column)
+void QDocumentCursor::moveTo(const QDocumentLine &l, int column, MoveMode m)
 {
 	if ( m_handle )
-		m_handle->moveTo(l.lineNumber(), column);
+		m_handle->moveTo(l.lineNumber(), column, m);
 }
 
 /*!
