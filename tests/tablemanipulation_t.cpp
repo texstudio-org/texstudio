@@ -219,5 +219,79 @@ void TableManipulationTest::remRow(){
 	QEQUAL(ed->document()->text(), newText);
 
 }
+
+void TableManipulationTest::getCol_data(){
+	QTest::addColumn<QString>("text");
+	QTest::addColumn<int>("row");
+	QTest::addColumn<int>("col");
+	QTest::addColumn<int>("colFound");
+
+	//-------------cursor without selection--------------
+	QTest::newRow("col 0")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0
+		<< 0;
+
+	QTest::newRow("col 0")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 1
+		<< 0;
+
+	QTest::newRow("col 1")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 2
+		<< 1;
+
+	QTest::newRow("col 1")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 3
+		<< 1;
+
+	QTest::newRow("col 1")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 4
+		<< 1;
+
+	QTest::newRow("col -1")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 5
+		<< -1;
+
+	QTest::newRow("row 2,col 1")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 2 << 0
+		<< 0;
+
+	QTest::newRow("row 3,col 1")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 3 << 0
+		<< 0;
+
+	QTest::newRow("row 2,col 2")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 3 << 2
+		<< 1;
+
+	QTest::newRow("row 2,col -1")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 3 << 5
+		<< -1;
+
+}
+void TableManipulationTest::getCol(){
+	QFETCH(QString, text);
+	QFETCH(int, row);
+	QFETCH(int, col);
+	QFETCH(int, colFound);
+
+	ed->document()->setText(text);
+	ed->setCursorPosition(row,col);
+	QDocumentCursor c(ed->cursor());
+	int nc=LatexTables::getColumn(c);
+
+	QEQUAL(nc,colFound);
+
+}
+
 #endif
 

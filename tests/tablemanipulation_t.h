@@ -19,6 +19,8 @@ class TableManipulationTest: public QObject{
 		void remCol();
 		void remRow_data();
 		void remRow();
+		void getCol_data();
+		void getCol();
 };
 
 #endif
