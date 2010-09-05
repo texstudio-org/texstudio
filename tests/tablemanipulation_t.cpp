@@ -277,6 +277,36 @@ void TableManipulationTest::getCol_data(){
 		<< 3 << 5
 		<< -1;
 
+	QTest::newRow("row 1,col 1,multi row per line")
+		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0
+		<< 0;
+
+	QTest::newRow("row 1,col 1,multi row per line")
+		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 5
+		<< 0;
+
+	QTest::newRow("row 1,col 2,multi row per line")
+		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 7
+		<< 1;
+
+	QTest::newRow("no row")
+		<< "\\begin{tabular}{ll}\na\n\\end{tabular}\n"
+		<< 1 << 1
+		<< 0;
+
+	QTest::newRow("no row, col 1")
+		<< "\\begin{tabular}{ll}\na&b\n\\end{tabular}\n"
+		<< 1 << 2
+		<< 1;
+
+	QTest::newRow("no row, col 1")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\n\\end{tabular}\n"
+		<< 2 << 2
+		<< 1;
+
 }
 void TableManipulationTest::getCol(){
 	QFETCH(QString, text);
