@@ -82,6 +82,8 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		QDocument* currentDocument();
 
 	private:
+		void connectToEditor();
+
 		void replaceCursorText(QRegExp& m_regexp, bool backward);
 		bool end(bool backward) const;
 		bool end(bool backward,QDocumentLine l) const;
@@ -98,12 +100,13 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		QString m_string;
 		QString m_replace;
 		QPointer<QEditor> m_editor;
-		QDocumentCursor m_cursor, m_scope, m_highlightedScope;
+		QDocumentCursor m_cursor, m_scope, m_highlightedScope, m_searchedScope;
 		QSet<QDocumentLineHandle*> m_highlights, m_highlightedReplacements;
 
 		int m_replaced,m_replaceDeltaLength,m_replaceDeltaLines;
 	private slots:
 		void documentContentChanged(int line, int n);
+		void visibleLinesChanged();
 		void lineDeleted(QDocumentLineHandle* line);
 };
 Q_DECLARE_OPERATORS_FOR_FLAGS(QDocumentSearch::Options)

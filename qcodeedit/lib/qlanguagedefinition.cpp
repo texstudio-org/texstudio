@@ -107,6 +107,7 @@ int QLanguageDefinition::parenthesisWeight(int id) const{
 }
 
 bool QLanguageDefinition::possibleEndingOfOpeningParenthesis(const QString& text) const{
+	Q_UNUSED(text);
 	return false;
 }
 /*!
