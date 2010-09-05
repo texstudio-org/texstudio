@@ -2084,27 +2084,27 @@ Biztos benne, hogy visszavon minden változást?</translation>
 <context>
     <name>OutputViewWidget</name>
     <message>
-        <location filename="toolwidgets.cpp" line="200"/>
+        <location filename="toolwidgets.cpp" line="203"/>
         <source>messages</source>
         <translation>Üzenetek</translation>
     </message>
     <message>
-        <location filename="toolwidgets.cpp" line="201"/>
+        <location filename="toolwidgets.cpp" line="204"/>
         <source>log file</source>
         <translation>Naplófájl</translation>
     </message>
     <message>
-        <location filename="toolwidgets.cpp" line="202"/>
+        <location filename="toolwidgets.cpp" line="205"/>
         <source>errors</source>
         <translation>Hibák</translation>
     </message>
     <message>
-        <location filename="toolwidgets.cpp" line="203"/>
+        <location filename="toolwidgets.cpp" line="206"/>
         <source>preview</source>
         <translation>Előnézet</translation>
     </message>
     <message>
-        <location filename="toolwidgets.cpp" line="204"/>
+        <location filename="toolwidgets.cpp" line="207"/>
         <source>search results</source>
         <translation>Keresési eredmények</translation>
     </message>
@@ -2168,7 +2168,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <name>QDocumentSearch</name>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="126"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="782"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="787"/>
         <source>Failure</source>
         <translation>Hiba</translation>
     </message>
@@ -2181,48 +2181,48 @@ Restart from the begining ?</source>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="173"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="739"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="744"/>
         <source>Replacement prompt</source>
         <translation>Csere párbeszédablak</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="174"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="740"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="745"/>
         <source>Shall it be replaced?</source>
         <translation>Cseréli?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="745"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="750"/>
         <source>Replacing Canceled</source>
         <translation>Csere megszakítva</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="745"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="750"/>
         <source>%1 (of %2 found so far) occurences have been replaced</source>
         <translation>%1 / %2 előfordulás cserélve</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="783"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="788"/>
         <source>End of scope reached with no match.
 Restart from the beginning ?</source>
         <translation>Nincs találat a keresési környezetben.
 Újrakezdi az elejéről?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="803"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="815"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="810"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="836"/>
         <source>Replacing Finished</source>
         <translation>A cserék befejeződtek</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="804"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="815"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="811"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="836"/>
         <source>%1 (of %2) occurences have been replaced</source>
         <translatorcomment>angolul nincs pont a végén</translatorcomment>
         <translation>%1 / %2 előfordulás cserélve.</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="805"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="812"/>
         <source>Do you want to continue replacing from the beginning?</source>
         <translation>Folytatja az elejéről?</translation>
     </message>
@@ -3075,18 +3075,68 @@ Akarja menteni ezeket?</translation>
 <context>
     <name>QSearchReplacePanel</name>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="481"/>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="486"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="148"/>
+        <source>Enables case sensitive search.</source>
+        <translation>A keresést kis- és nagybetűérzékenyre állítja</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="154"/>
+        <source>Only searches for whole words.</source>
+        <translation>Csak egész szavakat keres</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="160"/>
+        <source>This interprets the search text as a regular expression.
+Some common regexps:
+ r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,
+ () groups expressions together, [xyz] will find x,y, or z, . matches everything, \. matches .
+You can use \1 to \9 in the replace text to insert a submatch.</source>
+        <translation type="unfinished">A keresési szöveget reguláris kifejezésként értelmezi.
+Néhány példa:
+ r* az összes r-rel kezdődő szót jelenti, r+ egyenlő az rr* kifejezéssel, a? will matches a or nothing,
+ () groups expressions together, [xyz] will find x,y, or z, . matches everything, \. matches .
+You can use \1 to \9 in the replace text to insert a submatch.</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="167"/>
+        <source>Highlights search matches and replaced text.</source>
+        <translation>A keresési találatokat és helyettesített szövegeket kiemeli</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="174"/>
+        <source>Starts the search from the current cursor position.</source>
+        <translation>A jelenlegi kurzorpozíciótól indítja a keresést</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="181"/>
+        <source>Only searches in the selected text.</source>
+        <translation>Csak a kiválasztott szövegben keres</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="205"/>
+        <source>Ask before any match is replaced.</source>
+        <translation>Csere előtt rákérdez</translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="217"/>
+        <source>Enables the use of escape characters. These are:
+ \n = new line, \r = carriage return, \t = tab, \\ = \, \0 = ascii 0 </source>
+        <translation>Escape karakterek használatának engedélyezése. Ezek az alábbiak:
+ \n = új sor, \r = kocsivissza, \t = tab, \\ = \, \0 = ascii 0 </translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="469"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="474"/>
         <source>Count result</source>
         <translation>Találatok száma</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="481"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="469"/>
         <source>The search text occurs %1 times after the current cursor. Do you want to restart from the beginning of the scope?</source>
         <translation>A keresett szöveg %1 alkalommal található meg a jelenlegi kurzor után. Szeretné újraindítani a keresést a hatókör kezdetétől?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="486"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="474"/>
         <source>The search text occurs %1 times within the search scope.</source>
         <translation>A keresett szöveg %1 alkalommal található meg a keresési környezetben.</translation>
     </message>
@@ -3406,90 +3456,90 @@ Akarja menteni ezeket?</translation>
 <context>
     <name>SearchReplace</name>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="290"/>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="293"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="276"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="279"/>
         <source>Find next occurence</source>
         <translation>Következő előfordulás</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="291"/>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="294"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="277"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="280"/>
         <source>Find previous occurence</source>
         <translation>Előző előfordulás</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="313"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="299"/>
         <source>Prompt on replace</source>
         <translation>Kérdezzen csere előtt</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="295"/>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="316"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="281"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="302"/>
         <source>Replace all</source>
         <translation>Cserélje mind</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="314"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="300"/>
         <source>Escape sequences</source>
         <translation>Escape szekvenciák</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="300"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="286"/>
         <source>Case</source>
         <translation>Kis-/nagybetű</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="296"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="282"/>
         <source>Count occurences</source>
         <translation>Előfordulások száma</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="302"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="288"/>
         <source>Words</source>
         <translation>Szavak</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="304"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="290"/>
         <source>Regexp</source>
         <translation>Reg. kif.</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="306"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="292"/>
         <source>Highlight all</source>
         <translation>Mind kiemelése</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="308"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="294"/>
         <source>Cursor</source>
         <translation>Kurzortól</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="310"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="296"/>
         <source>Selection</source>
         <translation>Kiválasztás</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="288"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="274"/>
         <source>Close search/replace panel</source>
         <translation>Keresés/csere panel bezárása</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="298"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="284"/>
         <source> Find :</source>
         <translation>Keresendő:</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="292"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="278"/>
         <source>Replacement text</source>
         <translation>Csereszöveg</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="289"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="275"/>
         <source>Text or pattern to search for</source>
         <translation>Keresendő szöveg vagy minta</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="315"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="301"/>
         <source>Replace :</source>
         <translation>Csere:</translation>
     </message>
