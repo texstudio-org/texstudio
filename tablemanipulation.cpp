@@ -361,6 +361,7 @@ int LatexTables::getNumberOfColumns(QDocumentCursor &cur){
 		opt.replace(QRegExp("@\\{.+\\}"),"");
 		opt.replace(QRegExp("p\\{.+\\}"),"p");
 		opt.replace("|","");
+		opt.replace(" ","");
 		cols=opt.length();
 		//return result
 		return cols;
