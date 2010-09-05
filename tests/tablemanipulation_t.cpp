@@ -508,5 +508,62 @@ void TableManipulationTest::findNextTokenBackwards(){
 
 }
 
+void TableManipulationTest::addHLine_data(){
+	QTest::addColumn<QString>("text");
+	QTest::addColumn<int>("row");
+	QTest::addColumn<int>("col");
+	QTest::addColumn<int>("numberOfLines");
+	QTest::addColumn<bool>("remove");
+	QTest::addColumn<QString>("newText");
+
+	//-------------cursor without selection--------------
+	QTest::newRow("add to all")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0 << -1 << false
+		<< "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\ \\hline\ne&f\\\\ \\hline\n\\end{tabular}\n";
+
+	QTest::newRow("add to 2 (in single line)")
+		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0 << 2 << false
+		<< "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\ \\hline\ne&f\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("remove all, none present")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0 << -1 << true
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("remove all")
+		<< "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\ \\hline\ne&f\\\\ \\hline\n\\end{tabular}\n"
+		<< 1 << 0 << -1 << true
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("remove all, missing hlines")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\ \\hline\ne&f\\\\ \\hline\n\\end{tabular}\n"
+		<< 1 << 0 << -1 << true
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("remove some")
+		<< "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\\\hline\ne&f\\\\ \\hline\n\\end{tabular}\n"
+		<< 1 << 0 << 2 << true
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\ \\hline\n\\end{tabular}\n";
+
+}
+void TableManipulationTest::addHLine(){
+	QFETCH(QString, text);
+	QFETCH(int, row);
+	QFETCH(int, col);
+	QFETCH(int, numberOfLines);
+	QFETCH(bool, remove);
+	QFETCH(QString, newText);
+
+	ed->document()->setText(text);
+	ed->setCursorPosition(row,col);
+	QDocumentCursor c(ed->cursor());
+	LatexTables::addHLine(c,numberOfLines,remove);
+
+	QEQUAL(ed->document()->text(), newText);
+
+}
+
 #endif
 

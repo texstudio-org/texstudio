@@ -512,6 +512,8 @@ void Texmaker::setupMenus() {
 	newManagedAction(submenu, "removeColumn",tr("remove column"), SLOT(removeColumnCB()),QKeySequence(),":/images/remCol.png");
 	newManagedAction(submenu, "cutColumn",tr("cut column"), SLOT(cutColumnCB()),QKeySequence(),":/images/remCol.png");
 	newManagedAction(submenu, "pasteColumn",tr("paste column"), SLOT(pasteColumnCB()),QKeySequence(),":/images/addCol.png");
+	newManagedAction(submenu, "addHLine",tr("add \\hline"), SLOT(addHLineCB()));
+	newManagedAction(submenu, "remHLine",tr("remove \\hline"), SLOT(remHLineCB()));
 
 //wizards
 
@@ -4452,3 +4454,19 @@ void Texmaker::pasteColumnCB(){
 	if(col==1 &&cur.atLineStart()) col=0;
 	LatexTables::addColumn(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),col,&m_columnCutBuffer);
 }
+
+void Texmaker::addHLineCB(){
+	if (!currentEditorView()) return;
+	QDocumentCursor cur=currentEditorView()->editor->cursor();
+	if(!LatexTables::inTableEnv(cur)) return;
+	LatexTables::addHLine(cur);
+}
+
+void Texmaker::remHLineCB(){
+	if (!currentEditorView()) return;
+	QDocumentCursor cur=currentEditorView()->editor->cursor();
+	if(!LatexTables::inTableEnv(cur)) return;
+	LatexTables::addHLine(cur,-1,true);
+}
+
+

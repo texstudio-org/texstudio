@@ -27,6 +27,8 @@ class TableManipulationTest: public QObject{
 		void findNextToken();
 		void findNextTokenBackwards_data();
 		void findNextTokenBackwards();
+		void addHLine_data();
+		void addHLine();
 };
 
 #endif

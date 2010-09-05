@@ -372,6 +372,8 @@ private slots:
 	void removeRowCB();
 	void cutColumnCB();
 	void pasteColumnCB();
+	void addHLineCB();
+	void remHLineCB();
 
 protected:
 	void dragEnterEvent(QDragEnterEvent *event);
