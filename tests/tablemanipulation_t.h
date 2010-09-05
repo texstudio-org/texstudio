@@ -23,6 +23,10 @@ class TableManipulationTest: public QObject{
 		void getCol();
 		void getNumberOfCol_data();
 		void getNumberOfCol();
+		void findNextToken_data();
+		void findNextToken();
+		void findNextTokenBackwards_data();
+		void findNextTokenBackwards();
 };
 
 #endif

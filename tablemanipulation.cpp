@@ -223,6 +223,8 @@ void LatexTables::removeColumn(QDocument *doc,const int lineNumber,const int col
 // return >=0 : position of stringlist which was detected
 // return -1 : end of file was found, no element detected
 // return -2 : \end{...} was detected (the env-name is not tested)
+//
+// the cursor is moved right behind the detected token ! (or in front in case of backward search)
 
 int LatexTables::findNextToken(QDocumentCursor &cur,QStringList tokens,bool keepAnchor,bool backwards){
     int pos=-1;
