@@ -283,7 +283,7 @@ int LatexTables::getColumn(QDocumentCursor &cur){
     QDocumentCursor c(cur);
     QStringList tokens("\\\\");
     int result=findNextToken(c,tokens,true,true);
-    if(result==0) c.movePosition(2,QDocumentCursor::Right);
+    if(result==0) c.movePosition(2,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
     if(c.lineNumber()==cur.lineNumber() && c.selectedText().contains(QRegExp("^\\s*$"))){
 	c.movePosition(1,QDocumentCursor::EndOfLine,QDocumentCursor::KeepAnchor);
 	QString zw=c.selectedText();
