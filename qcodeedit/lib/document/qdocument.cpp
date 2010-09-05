@@ -6238,7 +6238,7 @@ int QDocumentPrivate::textWidth(int fid, const QString& text){
 		wCache=new WCache;
 		m_fmtWidthCache.insert(fid,wCache);
 	}
-	foreach(QChar c, text){
+	foreach(const QChar& c, text){
 		if(wCache->contains(c)){
 			rwidth+=wCache->value(c);
 		}else {
@@ -6279,6 +6279,7 @@ void QDocumentPrivate::updateFormatCache()
 		QFormat fmt = m_formatScheme->format(i);
 
 		QFont f(*m_font);
+		Q_ASSERT(!f.kerning());
 		f.setWeight(fmt.weight);
 		f.setItalic(fmt.italic);
 		if ( !fmt.fontFamily.isEmpty() ){
