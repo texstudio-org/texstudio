@@ -417,3 +417,32 @@ int LatexTables::getNumOfColsInMultiColumn(const QString &str){
     }
     return -1;
 }
+
+// add \hline and end of rows (remove==true => remove instead)
+// start from cursor position for numberOfLines ( until end if -1 )
+
+void LatexTables::addHLine(QDocumentCursor &cur,const int numberOfLines,const bool remove){
+    QDocumentCursor c(cur);
+    c.beginEditBlock();
+    QStringList tokens("\\\\");
+    QStringList hline("\\hline");
+    int ln=numberOfLines;
+    while(ln!=0){
+	int result=findNextToken(c,tokens);
+	if(result<0) break;
+	if(remove){
+	    QDocumentCursor c2(c);
+	    result=findNextToken(c,hline,true);
+	    if(c.selectedText().contains(QRegExp("^\\s*\\\\hline$"))){
+		c.removeSelectedText();
+	    }else{
+		c=c2;
+	    }
+	}else{
+	    c.insertText(" \\hline");
+	    if(!c.atLineEnd()) c.insertText("\n");
+	}
+	ln--;
+    }
+    c.endEditBlock();
+}
