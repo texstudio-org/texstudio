@@ -345,6 +345,11 @@ void TableManipulationTest::getNumberOfCol_data(){
 		<< 1 << 0
 		<< 0;
 
+	QTest::newRow("spaced in definition")
+		<< "\\begin{tabular}{l l c}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0
+		<< 3;
+
 	QTest::newRow("no Table")
 		<< "test\na&b\\\\\nc&d\\\\\ne&f\\\\\ntest\n"
 		<< 1 << 0
