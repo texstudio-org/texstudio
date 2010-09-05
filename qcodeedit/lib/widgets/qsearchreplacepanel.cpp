@@ -164,6 +164,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 
 	cbHighlight = new QCheckBox(frame_6);
 	cbHighlight->setObjectName(("cbHighlight"));
+	cbHighlight->setChecked(true);
 	cbHighlight->setToolTip(tr("Highlights search matches and replaced text."));
 	sizePolicy3.setHeightForWidth(cbHighlight->sizePolicy().hasHeightForWidth());
 	cbHighlight->setSizePolicy(sizePolicy3);

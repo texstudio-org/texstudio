@@ -185,7 +185,7 @@ bool QDocumentSearch::nextMatch(bool backward, bool again,  bool allowWrapAround
 #endif
 	return true;
 }
-void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bool clearAll){
+void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bool clearAll, bool clearSelection){
 	if ( !hasOption(HighlightAll) )
 		return;
 	
@@ -216,15 +216,55 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 		if (!hscope.isValid() || !hscope.hasSelection()) return;
 	}
 	
+	//limit search scope to visible lines
 	hscope = hscope.intersect(currentDocument()->cursor(m_editor->getFirstVisibleLine(), 0, m_editor->getLastVisibleLine()));
+
+	if (!hscope.hasSelection()) return;
+
+	//remove already searched lines from scope
+	QDocumentCursor hss = hscope.selectionStart();
+	QDocumentCursor hse = hscope.selectionEnd();
+	if (m_searchedScope.isValid() && m_searchedScope.hasSelection()){
+		//invariant: m_searchedScope.anchorLineNumber() <= m_searchedScope.lineNumber()
+		bool startInOld = m_searchedScope.isWithinSelection(hss);
+		bool endInOld = m_searchedScope.isWithinSelection(hse);
+		if (!clearSelection) {
+			if (startInOld && endInOld) return; //no need to update
+			if (startInOld) {
+				hscope = QDocumentCursor(m_searchedScope.selectionEnd(), hse);
+				m_searchedScope.setLineNumber(hse.lineNumber(), QDocumentCursor::KeepAnchor);
+				m_searchedScope.setColumnNumber(hse.columnNumber(), QDocumentCursor::KeepAnchor);
+			} else if (endInOld) {
+				hscope = QDocumentCursor(hss, m_searchedScope.selectionStart());
+				m_searchedScope.setAnchorLineNumber(hss.lineNumber());
+				m_searchedScope.setAnchorColumnNumber(hss.columnNumber());
+			} else m_searchedScope = QDocumentCursor(hss, hse);;
+		} else if (!startInOld || !endInOld){
+			if (startInOld) {
+				m_searchedScope.setLineNumber(hse.lineNumber());
+				m_searchedScope.setColumnNumber(hse.columnNumber());
+			} else if (endInOld) {
+				m_searchedScope.setAnchorLineNumber(hss.lineNumber());
+				m_searchedScope.setAnchorColumnNumber(hss.columnNumber());
+			} else m_searchedScope = QDocumentCursor(hss, hse);;
+		}
+	} else m_searchedScope = QDocumentCursor(hscope.selectionStart(), hscope.selectionEnd());
+
+	qDebug() << "shs: " << subHighlightScope.anchorLineNumber() << ":" << subHighlightScope.anchorColumnNumber() << "->" << subHighlightScope.lineNumber() << ":" << subHighlightScope.columnNumber();
+	qDebug() << "search scope: " << m_searchedScope.anchorLineNumber() << ":" << m_searchedScope.anchorColumnNumber() << "->" << m_searchedScope.lineNumber() << ":" << m_searchedScope.columnNumber();
+	qDebug() << "hscope: " << hscope.anchorLineNumber() << ":" << hscope.anchorColumnNumber() << "->" << hscope.lineNumber() << ":" << hscope.columnNumber();
 
 	QDocumentCursor hc = hscope.selectionStart();
 	QDocumentSelection boundaries=hscope.selection();
 	QRegExp m_regexp = currentRegExp();
 	
-	foreach (QDocumentLineHandle* h, m_highlights)
-		QDocumentLine(h).clearOverlays(sid);
-
+	if (!clearAll) {//otherwise it was already cleaned above
+		int from = boundaries.startLine, to = boundaries.endLine;
+		if (boundaries.start == d->line(boundaries.startLine).length()) from++;
+		if (boundaries.end == 0) to--;
+		for ( int i=from; i<=to;i++ )
+			d->line(i).clearOverlays(sid);
+	}
 
 	while ( !hc.atEnd() && hscope.isWithinSelection(hc))
 	{
@@ -984,7 +1024,7 @@ void QDocumentSearch::documentContentChanged(int line, int n){
 
 void QDocumentSearch::visibleLinesChanged(){
 	if (!hasOption(HighlightAll)) return;
-	searchMatches(QDocumentCursor(), false);
+	searchMatches(QDocumentCursor(), false, false);
 }
 
 void QDocumentSearch::highlightSelection(const QDocumentCursor& subHighlightScope)

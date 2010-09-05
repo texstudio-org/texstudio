@@ -96,7 +96,9 @@ class QCE_EXPORT QDocumentCursorHandle
 		
 		void setLineNumber(int l, int m = QDocumentCursor::MoveAnchor);
 		void setColumnNumber(int c, int m = QDocumentCursor::MoveAnchor);
-		
+		void setAnchorLineNumber(int l);
+		void setAnchorColumnNumber(int c);
+
 		QPoint documentPosition() const;
 		QPoint anchorDocumentPosition() const;
 		
@@ -178,7 +180,7 @@ class QCE_EXPORT QDocumentCursorHandle
 #else
 		QAtomicInt m_ref;
 #endif
-		int m_begOffset, m_endOffset, m_max, m_begLine, m_endLine;
+		int m_begOffset, m_endOffset, m_max, m_begLine, m_endLine; //beg: cursor position, end: anchor position
 		QStack<QDocumentCommandBlock*> m_blocks;
 };
 

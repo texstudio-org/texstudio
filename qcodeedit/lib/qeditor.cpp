@@ -4671,7 +4671,7 @@ int QEditor::getFirstVisibleLine(){
 
 int QEditor::getLastVisibleLine(){
 	if (!document()) return 0;
-	return qMin(document()->lines()-1, document()->lineNumber(verticalOffset() + viewport()->height()));
+	return qMin(document()->lines()-1, document()->lineNumber(verticalOffset() + viewport()->height()) + 1);
 }
 
 

@@ -86,6 +86,20 @@ QDocumentCursor::QDocumentCursor(QDocument *doc)
 	m_handle->ref();
 }
 
+QDocumentCursor::QDocumentCursor(const QDocumentCursor& from, const QDocumentCursor& to): QObject(0){
+	Q_ASSERT(from.document() == to.document());
+	Q_ASSERT(from.handle());
+	Q_ASSERT(to.handle());
+	Q_ASSERT(from.hasSelection() == false);
+	Q_ASSERT(to.hasSelection() == false);
+
+	m_handle = new QDocumentCursorHandle(from.document());
+	m_handle->m_endLine = from.lineNumber();
+	m_handle->m_endOffset = from.columnNumber();
+	m_handle->m_begLine = to.lineNumber();
+	m_handle->m_begOffset = to.columnNumber();
+}
+
 QDocumentCursor::QDocumentCursor(const QDocumentCursor& cursor)
  : QObject(0),m_handle(0)
 {
@@ -435,6 +449,17 @@ void QDocumentCursor::setColumnNumber(int c, MoveMode m)
 	if ( m_handle )
 		m_handle->setColumnNumber(c, m);
 }
+
+void QDocumentCursor::setAnchorLineNumber(int c) const{
+	if ( m_handle )
+		m_handle->setAnchorLineNumber(c);
+}
+
+void QDocumentCursor::setAnchorColumnNumber(int c) const{
+	if ( m_handle )
+		m_handle->setAnchorColumnNumber(c);
+}
+
 
 /*!
 	\return The line number to which the cursor points
@@ -870,7 +895,7 @@ void QDocumentCursor::setSelectionBoundary(const QDocumentCursor& c)
 }
 
 /*!
-	\return whether a given cursor is within the selection (ignores selection of c)
+	\return whether the given cursor c is within the selection of this (ignores selection of c)
 */
 bool QDocumentCursor::isWithinSelection(const QDocumentCursor& c) const
 {

@@ -95,7 +95,8 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		QDocumentCursor(QDocument *doc, int line, int column = 0);
 		//QDocumentCursor(const QDocumentLine& line, int column = 0);
 		QDocumentCursor(QDocumentCursorHandle* handle = 0);
-		
+		QDocumentCursor(const QDocumentCursor& from, const QDocumentCursor& to);
+
 		~QDocumentCursor();
 		
 		QDocumentCursor clone(bool cloneAutoUpdatedFlag) const;
@@ -153,7 +154,9 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		
 		Q_INVOKABLE void setLineNumber(int c, MoveMode m = MoveAnchor);
 		Q_INVOKABLE void setColumnNumber(int c, MoveMode m = MoveAnchor);
-		
+		Q_INVOKABLE void setAnchorLineNumber(int c) const;
+		Q_INVOKABLE void setAnchorColumnNumber(int c) const;
+
 		int wrappedLineOffset() const;
 		int anchorWrappedLineOffset() const;
 		

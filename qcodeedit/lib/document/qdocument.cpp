@@ -3921,6 +3921,21 @@ void QDocumentCursorHandle::setColumnNumber(int c, int m)
 	refreshColumnMemory();
 }
 
+void QDocumentCursorHandle::setAnchorLineNumber(int l){
+	if ( !m_doc )
+		return;
+
+	if ( m_doc->line(l).isNull() )
+		return;
+
+	m_endLine = l;
+}
+
+void QDocumentCursorHandle::setAnchorColumnNumber(int c){
+	m_endOffset = c;
+}
+
+
 QPoint QDocumentCursorHandle::documentPosition() const
 {
 	if ( !m_doc )
