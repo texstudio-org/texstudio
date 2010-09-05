@@ -376,5 +376,117 @@ void TableManipulationTest::getNumberOfCol(){
 
 }
 
+void TableManipulationTest::findNextToken_data(){
+	QTest::addColumn<QString>("text");
+	QTest::addColumn<int>("row");
+	QTest::addColumn<int>("col");
+	QTest::addColumn<int>("result");
+	QTest::addColumn<int>("newRow");
+	QTest::addColumn<int>("newCol");
+
+	QTest::newRow("find &")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0
+		<< 2 << 1 << 2;
+
+	QTest::newRow("find \\")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 2
+		<< 0 << 1 << 5;
+
+	QTest::newRow("find \\, multi line")
+		<< "\\begin{tabular}{ll}\na&\nb\n\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 2
+		<< 0 << 3 << 2;
+
+	QTest::newRow("run into \\end")
+		<< "\\begin{tabular}{ll}\na\ncd\n\\end{tabular}\n"
+		<< 1 << 2
+		<< -2 << 3 << 0;
+
+	QTest::newRow("run into eof")
+		<< "\\begin{tabular}{ll}\na\ncd\nnd{tabular}\n"
+		<< 1 << 2
+		<< -1 << 4 << 0;
+
+}
+void TableManipulationTest::findNextToken(){
+	QFETCH(QString, text);
+	QFETCH(int, row);
+	QFETCH(int, col);
+	QFETCH(int, result);
+	QFETCH(int, newRow);
+	QFETCH(int, newCol);
+
+
+	ed->document()->setText(text);
+	ed->setCursorPosition(row,col);
+	QDocumentCursor c(ed->cursor());
+	QStringList tokens;
+	tokens<<"\\\\"<<"\\&"<<"&";
+	int res=LatexTables::findNextToken(c,tokens);
+
+	QEQUAL(res,result);
+	QEQUAL(c.lineNumber(),newRow);
+	QEQUAL(c.columnNumber(),newCol);
+
+}
+
+void TableManipulationTest::findNextTokenBackwards_data(){
+	QTest::addColumn<QString>("text");
+	QTest::addColumn<int>("row");
+	QTest::addColumn<int>("col");
+	QTest::addColumn<int>("result");
+	QTest::addColumn<int>("newRow");
+	QTest::addColumn<int>("newCol");
+
+	QTest::newRow("find &")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 3
+		<< 2 << 1 << 1;
+
+	QTest::newRow("find \\")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 2 << 1
+		<< 0 << 1 << 3;
+
+	QTest::newRow("find &, multi line")
+		<< "\\begin{tabular}{ll}\na&\nb\n\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 3 << 0
+		<< 2 << 1 << 1;
+
+	QTest::newRow("run into \\begin")
+		<< "\\begin{tabular}{ll}\na\ncd\n\\end{tabular}\n"
+		<< 1 << 1
+		<< -2 << 0 << 19;
+
+	QTest::newRow("run into eof")
+		<< "egin{tabular}{ll}\na\ncd\nnd{tabular}\n"
+		<< 1 << 1
+		<< -1 << 0 << 17;
+
+}
+void TableManipulationTest::findNextTokenBackwards(){
+	QFETCH(QString, text);
+	QFETCH(int, row);
+	QFETCH(int, col);
+	QFETCH(int, result);
+	QFETCH(int, newRow);
+	QFETCH(int, newCol);
+
+
+	ed->document()->setText(text);
+	ed->setCursorPosition(row,col);
+	QDocumentCursor c(ed->cursor());
+	QStringList tokens;
+	tokens<<"\\\\"<<"\\&"<<"&";
+	int res=LatexTables::findNextToken(c,tokens,false,true);
+
+	QEQUAL(res,result);
+	QEQUAL(c.lineNumber(),newRow);
+	QEQUAL(c.columnNumber(),newCol);
+
+}
+
 #endif
 
