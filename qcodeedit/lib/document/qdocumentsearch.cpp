@@ -43,10 +43,14 @@ QDocumentSearch::QDocumentSearch(QEditor *e, const QString& f, Options opt, cons
  : m_option(opt), m_string(f),  m_editor(e), m_replaced(0), m_replaceDeltaLength(0)
 {
 	m_replace=r;
-	if (m_editor && hasOption(HighlightAll)){
+	connectToEditor();
+}
+void QDocumentSearch::connectToEditor(){
+	if (m_editor && hasOption(HighlightAll)){ //connect if highlighting is on
 		connect(m_editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
 		connect(m_editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)), SLOT(lineDeleted(QDocumentLineHandle*)));
 		connect(m_editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)), SLOT(lineDeleted(QDocumentLineHandle*)));
+		connect(m_editor,SIGNAL(visibleLinesChanged()), SLOT(visibleLinesChanged()));
 	}
 }
 
@@ -212,6 +216,8 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 		if (!hscope.isValid() || !hscope.hasSelection()) return;
 	}
 	
+	hscope = hscope.intersect(currentDocument()->cursor(m_editor->getFirstVisibleLine(), 0, m_editor->getLastVisibleLine()));
+
 	QDocumentCursor hc = hscope.selectionStart();
 	QDocumentSelection boundaries=hscope.selection();
 	QRegExp m_regexp = currentRegExp();
@@ -282,6 +288,7 @@ void QDocumentSearch::clearMatches()
 		QDocumentLine(h).clearOverlays(sid);
 
 	m_highlights.clear();
+	m_searchedScope = QDocumentCursor();
 	//qDebug("clearing matches");
 	//m_cursor = QDocumentCursor();
 
@@ -394,11 +401,7 @@ void QDocumentSearch::setOption(Option opt, bool on)
 			disconnect(m_editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
 			disconnect(m_editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)), this, SLOT(lineDeleted(QDocumentLineHandle*)));
 			disconnect(m_editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)), this, SLOT(lineDeleted(QDocumentLineHandle*)));
-			if (on) {//connect if highlighting is on
-				connect(m_editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
-				connect(m_editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)), SLOT(lineDeleted(QDocumentLineHandle*)));
-				connect(m_editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)), SLOT(lineDeleted(QDocumentLineHandle*)));
-			}
+			connectToEditor();
 		}
 		if ( !on  )
 			clearMatches();
@@ -418,6 +421,7 @@ void QDocumentSearch::setOption(Option opt, bool on)
 	{
 		// matches may have become invalid : update them
 		searchMatches();
+		visibleLinesChanged();
 	}
 }
 
@@ -805,7 +809,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 		if ( allowWrapAround ) {
 			int ret = QMessageBox::Yes; //different to qce, see above
 			if ( !hasOption(Silent) )
-				int ret=QMessageBox::question(
+				ret=QMessageBox::question(
 								m_editor,
 								tr("Replacing Finished"),
 								tr("%1 (of %2) occurences have been replaced").arg(replaceCount).arg(foundCount)+"\n\n"+
@@ -976,6 +980,11 @@ void QDocumentSearch::documentContentChanged(int line, int n){
 	highlightSelection(c);
 	searchMatches(c,false);
 	//searchMatches();
+}
+
+void QDocumentSearch::visibleLinesChanged(){
+	if (!hasOption(HighlightAll)) return;
+	searchMatches(QDocumentCursor(), false);
 }
 
 void QDocumentSearch::highlightSelection(const QDocumentCursor& subHighlightScope)

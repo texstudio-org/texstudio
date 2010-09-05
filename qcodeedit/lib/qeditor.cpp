@@ -3562,6 +3562,7 @@ void QEditor::resizeEvent(QResizeEvent *)
 	verticalScrollBar()->setMaximum(qMax(0, 1 + (m_doc->height() - viewportSize.height()) / ls));
 	verticalScrollBar()->setPageStep(viewportSize.height() / ls);
 
+	emit visibleLinesChanged();
 	//qDebug("page step : %i", viewportSize.height() / ls);
 
 	//if ( isCursorVisible() && flag(LineWrap) )
@@ -4663,6 +4664,17 @@ QRect QEditor::cursorRect() const
 	return m_cursor.hasSelection() ? selectionRect() : cursorRect(m_cursor);
 }
 
+int QEditor::getFirstVisibleLine(){
+	if (!document()) return 0;
+	return document()->lineNumber(verticalOffset());
+}
+
+int QEditor::getLastVisibleLine(){
+	if (!document()) return 0;
+	return qMin(document()->lines()-1, document()->lineNumber(verticalOffset() + viewport()->height()));
+}
+
+
 /*!
 	\return the rectangle occupied by the selection in viewport coordinates
 
@@ -4923,6 +4935,9 @@ void QEditor::scrollContentsBy(int dx, int dy)
 	const int ls = document()->getLineSpacing();
 	viewport()->scroll(dx, dy * ls);
 	#endif
+
+	if (dy != 0)
+		emit visibleLinesChanged();
 }
 
 /*!

@@ -1206,12 +1206,13 @@ QDocumentLine QDocument::line(QDocumentConstIterator iterator) const
 */
 QDocumentCursor QDocument::cursor(int line, int column, int lineTo, int columnTo) const
 {
-	if (lineTo == -1 || columnTo == -1) 
+	if ( lineTo == -1 )
 		return QDocumentCursor(const_cast<QDocument*>(this), line, column);
 	else {
 		QDocumentCursor c(const_cast<QDocument*>(this), line, column);
 		c.setLineNumber(lineTo, QDocumentCursor::KeepAnchor);
-		c.setColumnNumber(columnTo, QDocumentCursor::KeepAnchor);
+		if (columnTo != -1) c.setColumnNumber(columnTo, QDocumentCursor::KeepAnchor);
+		else c.setColumnNumber(this->line(lineTo).length(), QDocumentCursor::KeepAnchor);
 		return c;
 	}
 }

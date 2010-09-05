@@ -228,6 +228,9 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		virtual QRect lineRect(const QDocumentLine& l) const;
 		virtual QRect cursorRect(const QDocumentCursor& c) const;
 		
+		virtual int getFirstVisibleLine();
+		virtual int getLastVisibleLine();
+
 		#ifndef _QMDI_
 		QString name() const;
 		QString fileName() const;
@@ -396,6 +399,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 
 		void emitWordDoubleClicked();
 		
+		void visibleLinesChanged();
 	public slots:
 		void checkClipboard();
 		void reconnectWatcher();
