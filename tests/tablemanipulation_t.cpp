@@ -350,6 +350,21 @@ void TableManipulationTest::getNumberOfCol_data(){
 		<< 1 << 0
 		<< 3;
 
+	QTest::newRow("p")
+		<< "\\begin{tabular}{llp{3cm}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0
+		<< 3;
+
+	QTest::newRow("p")
+		<< "\\begin{tabular}{llm{3cm}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0
+		<< 3;
+
+	QTest::newRow("col commands (array)")
+		<< "\\begin{tabular}{>{\\bfseries}ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0
+		<< 2;
+
 	QTest::newRow("no Table")
 		<< "test\na&b\\\\\nc&d\\\\\ne&f\\\\\ntest\n"
 		<< 1 << 0
