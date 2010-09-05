@@ -323,5 +323,58 @@ void TableManipulationTest::getCol(){
 
 }
 
+void TableManipulationTest::getNumberOfCol_data(){
+	QTest::addColumn<QString>("text");
+	QTest::addColumn<int>("row");
+	QTest::addColumn<int>("col");
+	QTest::addColumn<int>("colFound");
+
+	//-------------cursor without selection--------------
+	QTest::newRow("cols 2")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0
+		<< 2;
+
+	QTest::newRow("cols 4")
+		<< "\\begin{tabular}{|l|l|cc}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 2 << 0
+		<< 4;
+
+	QTest::newRow("cols 0")
+		<< "\\begin{tabular}{}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0
+		<< 0;
+
+	QTest::newRow("no Table")
+		<< "test\na&b\\\\\nc&d\\\\\ne&f\\\\\ntest\n"
+		<< 1 << 0
+		<< -1;
+
+	QTest::newRow("separators")
+		<< "\\begin{tabular}{|l|l|@{ll}cc}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 2 << 0
+		<< 4;
+
+	QTest::newRow("multipliers")
+		<< "\\begin{tabular}{|l|l|@{ll}c*{2}{lc}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 2 << 0
+		<< 7;
+
+}
+void TableManipulationTest::getNumberOfCol(){
+	QFETCH(QString, text);
+	QFETCH(int, row);
+	QFETCH(int, col);
+	QFETCH(int, colFound);
+
+	ed->document()->setText(text);
+	ed->setCursorPosition(row,col);
+	QDocumentCursor c(ed->cursor());
+	int nc=LatexTables::getNumberOfColumns(c);
+
+	QEQUAL(nc,colFound);
+
+}
+
 #endif
 

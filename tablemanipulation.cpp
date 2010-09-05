@@ -219,6 +219,10 @@ void LatexTables::removeColumn(QDocument *doc,const int lineNumber,const int col
     cur.endEditBlock();
 }
 
+// find next element starting from cursor whhich is in the string list "tokens". The element which is closest to the cursor is returned
+// return >=0 : position of stringlist which was detected
+// return -1 : end of file was found, no element detected
+// return -2 : \end{...} was detected (the env-name is not tested)
 
 int LatexTables::findNextToken(QDocumentCursor &cur,QStringList tokens,bool keepAnchor,bool backwards){
     int pos=-1;
@@ -279,6 +283,9 @@ int LatexTables::findNextToken(QDocumentCursor &cur,QStringList tokens,bool keep
     return nextToken;
 }
 
+// get column in which the cursor is positioned.
+// is determined by number of "&" before last line break (\\)
+
 int LatexTables::getColumn(QDocumentCursor &cur){
     QDocumentCursor c(cur);
     QStringList tokens("\\\\");
@@ -302,6 +309,8 @@ int LatexTables::getColumn(QDocumentCursor &cur){
     }while(result>0);
     return col;
 }
+
+// get the number of columns which are defined by the the tabular (or alike) env
 
 int LatexTables::getNumberOfColumns(QDocumentCursor &cur){
     QDocumentCursor c(cur);
@@ -360,6 +369,8 @@ int LatexTables::getNumberOfColumns(QDocumentCursor &cur){
     return -1;
 }
 
+// check whether the cursor is inside a table environemnt
+
 bool LatexTables::inTableEnv(QDocumentCursor &cur){
     QDocumentCursor c(cur);
     int result=findNextToken(c,QStringList(),false,true);
@@ -382,6 +393,8 @@ bool LatexTables::inTableEnv(QDocumentCursor &cur){
     }
     return false;
 }
+
+// return number of columns a \multicolumn command spans (number in first braces)
 
 int LatexTables::getNumOfColsInMultiColumn(const QString &str){
     //return the number of columsn in mulitcolumn command
