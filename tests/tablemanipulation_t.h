@@ -21,6 +21,8 @@ class TableManipulationTest: public QObject{
 		void remRow();
 		void getCol_data();
 		void getCol();
+		void getNumberOfCol_data();
+		void getNumberOfCol();
 };
 
 #endif
