@@ -510,8 +510,8 @@ void Texmaker::setupMenus() {
 	newManagedAction(submenu, "addColumn",tr("add column"), SLOT(addColumnCB()),QKeySequence(),":/images/addCol.png");
 	newManagedAction(submenu, "removeRow",tr("remove row"), SLOT(removeRowCB()),QKeySequence(),":/images/remRow.png");
 	newManagedAction(submenu, "removeColumn",tr("remove column"), SLOT(removeColumnCB()),QKeySequence(),":/images/remCol.png");
-	newManagedAction(submenu, "cutColumn",tr("cut column"), SLOT(cutColumnCB()),QKeySequence(),":/images/remCol.png");
-	newManagedAction(submenu, "pasteColumn",tr("paste column"), SLOT(pasteColumnCB()),QKeySequence(),":/images/addCol.png");
+	newManagedAction(submenu, "cutColumn",tr("cut column"), SLOT(cutColumnCB()),QKeySequence(),":/images/cutCol.png");
+	newManagedAction(submenu, "pasteColumn",tr("paste column"), SLOT(pasteColumnCB()),QKeySequence(),":/images/pasteCol.png");
 	newManagedAction(submenu, "addHLine",tr("add \\hline"), SLOT(addHLineCB()));
 	newManagedAction(submenu, "remHLine",tr("remove \\hline"), SLOT(remHLineCB()));
 
