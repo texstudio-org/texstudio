@@ -1382,5 +1382,7 @@
         <file>images/addRow.png</file>
         <file>images/remCol.png</file>
         <file>images/remRow.png</file>
+        <file>images/cutCol.png</file>
+        <file>images/pasteCol.png</file>
     </qresource>
 </RCC>
