@@ -3091,7 +3091,7 @@ Some common regexps:
  r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,
  () groups expressions together, [xyz] will find x,y, or z, . matches everything, \. matches .
 You can use \1 to \9 in the replace text to insert a submatch.</source>
-        <translation type="unfinished">A keresési szöveget reguláris kifejezésként értelmezi.
+        <translation>A keresési szöveget reguláris kifejezésként értelmezi.
 Néhány példa:
  r* megadja r akárhányszori előfordulását, r+ egyenlő az rr* kifejezéssel, a? az a-t vagy a semmit jelenti,
  () kifejezések csoportosítására szolgál, [xyz] jelenti az x, y vagy z egyikét, a . bármit jelenthet, a \. pedig a .-ot.
@@ -4047,7 +4047,7 @@ Néhány példa:
     <message>
         <location filename="texmaker.cpp" line="397"/>
         <source>Toggle Bookmark</source>
-        <translation>Könyvjelző kapcs&amp;olása</translation>
+        <translation>Könyvjelző k&amp;ijelölése</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="398"/>
