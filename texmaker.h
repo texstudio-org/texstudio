@@ -146,7 +146,7 @@ private:
 	QAction* outputViewAction, *fullscreenModeAction;
 private slots:
 
-	void fileNew(QString fileName="untitled");
+	void fileNew(QString fileName="");
 	void fileNewFromTemplate();
 	void fileMakeTemplate();
 	void fileOpen();
