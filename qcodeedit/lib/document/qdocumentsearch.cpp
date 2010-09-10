@@ -250,9 +250,9 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 		}
 	} else m_searchedScope = QDocumentCursor(hscope.selectionStart(), hscope.selectionEnd());
 
-	qDebug() << "shs: " << subHighlightScope.anchorLineNumber() << ":" << subHighlightScope.anchorColumnNumber() << "->" << subHighlightScope.lineNumber() << ":" << subHighlightScope.columnNumber();
-	qDebug() << "search scope: " << m_searchedScope.anchorLineNumber() << ":" << m_searchedScope.anchorColumnNumber() << "->" << m_searchedScope.lineNumber() << ":" << m_searchedScope.columnNumber();
-	qDebug() << "hscope: " << hscope.anchorLineNumber() << ":" << hscope.anchorColumnNumber() << "->" << hscope.lineNumber() << ":" << hscope.columnNumber();
+	//qDebug() << "shs: " << subHighlightScope.anchorLineNumber() << ":" << subHighlightScope.anchorColumnNumber() << "->" << subHighlightScope.lineNumber() << ":" << subHighlightScope.columnNumber();
+	//qDebug() << "search scope: " << m_searchedScope.anchorLineNumber() << ":" << m_searchedScope.anchorColumnNumber() << "->" << m_searchedScope.lineNumber() << ":" << m_searchedScope.columnNumber();
+	//qDebug() << "hscope: " << hscope.anchorLineNumber() << ":" << hscope.anchorColumnNumber() << "->" << hscope.lineNumber() << ":" << hscope.columnNumber();
 
 	QDocumentCursor hc = hscope.selectionStart();
 	QDocumentSelection boundaries=hscope.selection();
