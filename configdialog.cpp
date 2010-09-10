@@ -258,6 +258,8 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	connect(ui.comboBoxDictionaryFileName, SIGNAL(editTextChanged(QString)), this, SLOT(lineEditAspellChanged(QString)));
 	connect(ui.comboBoxDictionaryFileName, SIGNAL(editTextChanged(QString)), this, SLOT(comboBoxWithPathEdited(QString)));
 	connect(ui.comboBoxThesaurusFileName, SIGNAL(editTextChanged(QString)), this, SLOT(comboBoxWithPathEdited(QString)));
+	connect(ui.comboBoxDictionaryFileName, SIGNAL(highlighted(QString)), this, SLOT(comboBoxWithPathHighlighted(QString)));
+	connect(ui.comboBoxThesaurusFileName, SIGNAL(highlighted(QString)), this, SLOT(comboBoxWithPathHighlighted(QString)));
 
 
 	ui.labelGetDic->setText(tr("Get dictionaries at: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>"));
@@ -372,9 +374,17 @@ void ConfigDialog::lineEditAspellChanged(const QString &newText) {
 //is the current text of the combobox
 void ConfigDialog::comboBoxWithPathEdited(const QString& newText){
 	if (newText.isEmpty()) return;
-	QString path=newText.mid(0,qMax(newText.lastIndexOf("/"),qMax(newText.lastIndexOf("\\"),newText.lastIndexOf(QDir::separator()))));
 	QComboBox* box=qobject_cast<QComboBox*>(sender());
 	if (!box) return;
+	if (box->property("lastDirInDropDown").toString() == newText && !newText.endsWith("/") && !newText.endsWith(QDir::separator())) {
+		box->setEditText(newText+QDir::separator());
+		box->setProperty("lastDirInDropDown", "");
+		return;
+	}
+	QString path;
+	int lastSep = qMax(newText.lastIndexOf("/"),newText.lastIndexOf(QDir::separator()));
+	if ((lastSep > 0) || (newText == "") || (QDir::separator()!='/') ) path=newText.mid(0,lastSep);
+	else path="/";
 	QString oldPath=box->property("dir").toString();
 	if (path==oldPath) return;
 	//prevent endless recursion + dir caching
@@ -385,7 +395,7 @@ void ConfigDialog::comboBoxWithPathEdited(const QString& newText){
 	QDir dir(path);
 	QString absPath=dir.absolutePath();
 	if (absPath==oldPath || (absPath+QDir::separator())==oldPath) return;
-	if (!absPath.endsWith("/") || absPath.endsWith(QDir::separator())) absPath+=QDir::separator();
+	if (!absPath.endsWith("/") && !absPath.endsWith(QDir::separator())) absPath+=QDir::separator();
 	QStringList entries=dir.entryList(QStringList() << box->property("dirFilter").toString(), QDir::Files);
 	foreach (const QString& file, entries)
 		if (absPath+file!=newText)
@@ -393,8 +403,20 @@ void ConfigDialog::comboBoxWithPathEdited(const QString& newText){
 	entries=dir.entryList(QStringList(), QDir::AllDirs);
 	foreach (const QString& file, entries)
 		if (absPath+file!=newText && file!=".")
-			box->addItem(absPath+file+QDir::separator());
+			box->addItem(absPath+file);
 }
+
+void ConfigDialog::comboBoxWithPathHighlighted(const QString& newText){
+	QComboBox* cb = qobject_cast<QComboBox*> (sender());
+	Q_ASSERT(cb);
+	if (!cb) return;
+	if (!QFileInfo(newText).isDir()) {
+		cb->setProperty("lastDirInDropDown", "");
+		return;
+	}
+	cb->setProperty("lastDirInDropDown", newText);
+}
+
 
 void ConfigDialog::browseThesaurus() {
 	QString path=ui.comboBoxThesaurusFileName->currentText();
