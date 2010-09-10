@@ -78,7 +78,7 @@ BibTeXDialog::BibTeXDialog(QWidget *parent, const QStringList& fileList, int cur
 	    zw.remove("&");
 	    m_ui->typeList->addItem(zw);
 	}
-	connect(m_ui->typeList,SIGNAL(itemSelectionChanged()),this,SLOT(typeSelectionChanged()));
+	connect(m_ui->typeList,SIGNAL(currentRowChanged(int)), SLOT(typeSelectionChanged()));
 }
 
 BibTeXDialog::~BibTeXDialog()
