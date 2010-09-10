@@ -119,16 +119,17 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 		
 	QString savedSelection;
 	bool alwaysSelect = false;
+	bool editBlockOpened = false;
 	if (cursor->hasSelection()) {
 		savedSelection=cursor->selectedText();
+		editBlockOpened = true;
+		cursor->beginEditBlock();
 		cursor->removeSelectedText();
-	}else{
-		if(!editor->cutBuffer.isEmpty()){
-			savedSelection=editor->cutBuffer;
-			editor->cutBuffer.clear();
-			editor->cutLineNumber=-1;
-			alwaysSelect = true;
-		}
+	}else if(!editor->cutBuffer.isEmpty()){
+		savedSelection=editor->cutBuffer;
+		editor->cutBuffer.clear();
+		editor->cutLineNumber=-1;
+		alwaysSelect = true;
 	}
 	QDocumentCursor selector=*cursor;
 	QDocumentLine curLine=cursor->line();
@@ -198,6 +199,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 				selector.replaceSelectedText(newEnv);
 				cursor->movePosition(closeCurl-cursor->columnNumber()+1,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
 				editor->insertText(*cursor,mLines.first());
+				if (editBlockOpened) cursor->endEditBlock();
 				return;
 			}
 		}
@@ -207,6 +209,8 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 	int baseLineIndent = cursor->columnNumber(); //text before inserted word moves placeholders to the right
 	int lastLineRemainingLength = curLine.text().length()-baseLineIndent; //last line will has length: indentation + codesnippet + lastLineRemainingLength
 	editor->insertText(*cursor,line); //don't use cursor->insertText to keep autoindentation working
+
+	if (editBlockOpened) cursor->endEditBlock();
 
 	// on single line commands only: replace command
 	if(byCompleter && autoReplaceCommands && mLines.size()==1 && line.startsWith('\\')){
