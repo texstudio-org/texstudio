@@ -1770,6 +1770,29 @@ void QEditor::getCursorPosition(int &line, int &index)
 }
 
 /*!
+	\brief
+*/
+bool QEditor::getPositionBelowCursor(QPoint& offset, int width, int height){
+	QDocumentCursor c(m_cursor, false);
+	QDocumentLine line=c.line();
+	if (!c.line().isValid()) return false;
+	if (c.columnNumber()<0 || c.columnNumber()>line.length()) return false;
+
+	offset=line.cursorToDocumentOffset(c.columnNumber()-1);
+	offset.setY(offset.y()+document()->y(c.lineNumber())+document()->getLineSpacing());
+	offset=mapFromContents(offset);
+	int left;
+	int temp;
+	getPanelMargins(&left,&temp,&temp,&temp);
+	offset.setX(offset.x()+left);
+	if (offset.y()+height>this->height())
+		offset.setY(offset.y()-document()->getLineSpacing() - height);
+	if(offset.x()+width>this->width())
+		offset.setX(this->width() - width);
+	return true;
+}
+
+/*!
 	\return the number of cursor mirrors currently used
 */
 int QEditor::cursorMirrorCount() const

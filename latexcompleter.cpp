@@ -532,6 +532,7 @@ void LatexCompleter::setAbbreviations(const QStringList &Abbrevs,const QStringLi
 }
 
 void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool normalText, bool forceRef) {
+	Q_ASSERT(list); Q_ASSERT(listModel); Q_ASSERT(completerInputBinding);
 	if (editor != newEditor) {
 		if (editor) disconnect(editor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
 		if (newEditor) connect(newEditor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
@@ -544,27 +545,16 @@ void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool nor
 		c.setColumnNumber(qMax(c.columnNumber(),c.anchorColumnNumber()));
 		editor->setCursor(c);
 	}
-	QDocumentLine line=c.line();
-	if (c.columnNumber()<0 || c.columnNumber()>line.length()) return;
-	QPoint offset=line.cursorToDocumentOffset(c.columnNumber()-1);
-	offset.setY(offset.y()+line.document()->y(c.lineNumber())+line.document()->getLineSpacing());
-	offset=editor->mapFromContents(offset);
-	int left;
-	int temp;
-        editor->getPanelMargins(&left,&temp,&temp,&temp);
-	offset.setX(offset.x()+left);
-	//list->resize(200>maxWordLen?200:maxWordLen,100);
-	//list->setParent(editor);
-	if (offset.y()+list->height()>editor->height()) {
-		offset.setY(offset.y()-line.document()->getLineSpacing() - list->height());
-	}
-        if(offset.x()+list->width()>editor->width()) offset.setX(editor->width() - list->width());
+	QPoint offset;
+	if (!editor->getPositionBelowCursor(offset, list->width(), list->height()))
+		return;
+
 	list->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
 	//list->show();
 	if (normalText) listModel->baselist=listModel->wordsText;
 	else listModel->baselist=listModel->wordsCommands;
-        listModel->baselist+=listModel->wordsAbbrev;
-        qSort(listModel->baselist.begin(),listModel->baselist.end());
+	listModel->baselist+=listModel->wordsAbbrev;
+	qSort(listModel->baselist.begin(),listModel->baselist.end());
 	if (c.previousChar()!='\\' || forceVisibleList) {
 		int start=c.columnNumber()-1;
 		if (normalText) start=0;

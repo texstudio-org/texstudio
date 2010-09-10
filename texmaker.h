@@ -213,6 +213,7 @@ private slots:
 	void editThesaurus();
 	void editChangeLineEnding();
 	void editSetupEncoding();
+	void editInsertUnicode();
 	void editInsertRefToNextLabel(bool backward=false);
 	void editInsertRefToPrevLabel();
 	void editFindGlobal();

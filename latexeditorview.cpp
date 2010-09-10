@@ -257,6 +257,7 @@ void LatexEditorView::viewActivated(){
 
 void LatexEditorView::complete(bool forceVisibleList, bool normalText, bool forceRef) {
 	if (!LatexEditorView::completer) return;
+	REQUIRE(containedLabels);
 	setFocus();
 	LatexEditorView::completer->setLabelDatabase(containedLabels);
 	LatexEditorView::completer->complete(editor,forceVisibleList,normalText,forceRef);
