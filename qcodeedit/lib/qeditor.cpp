@@ -3472,16 +3472,20 @@ void QEditor::dropEvent(QDropEvent *e)
 		for ( int i = 0; i < m_mirrors.count(); ++i )
 			m_mirrors[i].removeSelectedText();
 			
+		clearCursorMirrors();
+		m_cursor=insertCursor;//.moveTo(cursorForPosition(mapToContents(e->pos())));
+		insertFromMimeData(e->mimeData());
+
 		m_doc->endMacro();
 		insertCursor.setAutoUpdated(false);
 	} else {
 		//qDebug("action : %i", e->dropAction());
 		m_cursor.clearSelection();
+		clearCursorMirrors();
+		m_cursor=insertCursor;//.moveTo(cursorForPosition(mapToContents(e->pos())));
+		insertFromMimeData(e->mimeData());
 	}
 
-	clearCursorMirrors();
-	m_cursor=insertCursor;//.moveTo(cursorForPosition(mapToContents(e->pos())));
-	insertFromMimeData(e->mimeData());
 	//m_cursor.endEditBlock();
 
 	//m_doc->endMacro();
@@ -4085,7 +4089,7 @@ void QEditor::startDrag()
 	drag->setMimeData(data);
 
 	Qt::DropActions actions = Qt::CopyAction | Qt::MoveAction;
-	Qt::DropAction action = drag->start(actions);
+	Qt::DropAction action = drag->exec(actions, Qt::MoveAction);
 
 	if ( (action == Qt::MoveAction) && (drag->target() != this) )
 	{
