@@ -35,6 +35,7 @@
 #include "qsearchreplacepanel.h"
 #include "latexcompleter_config.h"
 #include "universalinputdialog.h"
+#include "unicodeinsertion.h"
 #include "insertgraphics.h"
 
 #ifndef QT_NO_DEBUG
@@ -420,6 +421,7 @@ void Texmaker::setupMenus() {
 
 
 	newManagedAction(menu,"encoding",tr("Setup Encoding..."),SLOT(editSetupEncoding()));
+	newManagedAction(menu,"unicodeChar",tr("Insert Unicode Character..."),SLOT(editInsertUnicode()), Qt::ALT + Qt::CTRL + Qt::Key_U);
 
 
 
@@ -1648,6 +1650,30 @@ void Texmaker::editSetupEncoding() {
 	EncodingDialog enc(this,currentEditorView()->editor);
 	enc.exec();
 	UpdateCaption();
+}
+void Texmaker::editInsertUnicode(){
+	if (!currentEditorView()) return;
+	QDocumentCursor c=currentEditor()->cursor();
+	if (!c.isValid()) return;
+	if (c.hasSelection()) {
+		c.removeSelectedText();
+		currentEditor()->setCursor(c);
+	}
+	QPoint offset;
+	UnicodeInsertion * uid = new UnicodeInsertion (currentEditorView());
+	if (!currentEditor()->getPositionBelowCursor(offset, uid->width(), uid->height())){
+		delete uid;
+		return;
+	}
+	connect(uid, SIGNAL(insertCharacter(QString)), currentEditor(), SLOT(insertText(QString)));
+	connect(uid, SIGNAL(destroyed()), currentEditor(), SLOT(setFocus()));
+	connect(currentEditor(), SIGNAL(cursorPositionChanged()), uid, SLOT(close()));
+	connect(currentEditor(), SIGNAL(visibleLinesChanged()), uid, SLOT(close()));
+	connect(currentEditor()->document(), SIGNAL(contentsChanged()), uid, SLOT(close()));
+
+	uid->move(currentEditor()->mapTo(uid->parentWidget(), offset));
+	uid->show();
+	uid->setFocus();
 }
 
 void Texmaker::editIndentSection() {

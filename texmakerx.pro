@@ -83,6 +83,7 @@ HEADERS += texmaker.h \
     searchresultmodel.h \
     bibtexparser.h \
     latexdocument.h \
+    unicodeinsertion.h \
     universalinputdialog.h \
     hunspell/replist.hxx \
     scriptengine.h \
@@ -150,6 +151,7 @@ SOURCES += main.cpp \
     searchresultmodel.cpp \
     bibtexparser.cpp \
     latexdocument.cpp \
+    unicodeinsertion.cpp \
     universalinputdialog.cpp \
     scriptengine.cpp \
     insertgraphics.cpp \

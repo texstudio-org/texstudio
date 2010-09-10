@@ -484,6 +484,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		void setCursorPosition(int line, int index);
 		void getCursorPosition(int &line, int &index);
+		bool getPositionBelowCursor(QPoint& offset, int width=0, int height=0);
 		
 		void clearCursorMirrors();
 		void addCursorMirror(const QDocumentCursor& c);
