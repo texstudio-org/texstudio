@@ -853,7 +853,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <source>Complete selected text when non-word character is pressed</source>
-        <translation>Vervollständige aktuellen Befehl, wenn ein Sonderzeichen wird</translation>
+        <translation>Vervollständige aktuellen Befehl bei Eingabe eines Sonderzeichens</translation>
     </message>
     <message>
         <source>Enable ToolTip-Help</source>
