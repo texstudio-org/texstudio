@@ -102,7 +102,10 @@ void PreviewWidget::contextMenu(QPoint point) {
 	menu.addAction(tr("fit"),this, SLOT(fitImage()));
 	if(mCenter) menu.addAction(tr("left-align image"),this, SLOT(centerImage()));
 	else menu.addAction(tr("center image"),this, SLOT(centerImage()));
-	menu.exec(preViewer->mapToGlobal(point));
+	QWidget* menuParent = qobject_cast<QWidget*>(sender());
+	Q_ASSERT(menuParent);
+	if (!menuParent) menuParent = preViewer;
+	menu.exec(menuParent->mapToGlobal(point));
 }
 
 
