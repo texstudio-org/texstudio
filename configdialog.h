@@ -72,6 +72,7 @@ private slots:
 	QListWidgetItem * createIcon(const QString &caption, const QIcon &icon, bool advancedOption=false);
 	void lineEditAspellChanged(const QString& newText);
 	void comboBoxWithPathEdited(const QString& newText);
+	void comboBoxWithPathHighlighted(const QString& newText);
 	void browseAspell();
 	void browseThesaurus();
 	void browsePrecompiling();
