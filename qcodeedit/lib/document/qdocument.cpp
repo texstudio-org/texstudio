@@ -2114,7 +2114,7 @@ void QDocumentLineHandle::updateWrap() const
 			++idx;
 		}
 	} else {
-		QMediumArray composited = compose();
+		QVector<int> composited = compose();
 
 		int idx = 0, minx = 0, lastBreak = 0, lastWidth = 0, lastX = 0, rx,
 			x = QDocumentPrivate::m_leftMargin, column = 0, cwidth;
@@ -2256,7 +2256,7 @@ int QDocumentLineHandle::cursorToX(int cpos) const
 
 	//qDebug("c->x(%i) unsafe computations...", cpos);
 
-	QMediumArray composited = compose();
+	QVector<int> composited = compose();
 	const QVector<QFont>& fonts = m_doc->impl()->m_fonts;
 
 	if ( (composited.count() < cpos) || fonts.isEmpty() )
@@ -2355,7 +2355,7 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 		if ( screenx <= QDocumentPrivate::m_leftMargin )
 			return 0;
 
-		QMediumArray composited = compose();
+		QVector<int> composited = compose();
 
 		int idx = 0, x = 0, column = 0, cwidth;
 		screenx -= QDocumentPrivate::m_leftMargin;
@@ -2774,7 +2774,7 @@ void QDocumentLineHandle::setFormats(const QVector<int>& fmts)
 	//applyOverlays();
 }
 
-QMediumArray QDocumentLineHandle::compose() const
+QVector<int> QDocumentLineHandle::compose() const
 {
 	//QMediumArray m_composited(m_text.length());
 	if ( hasFlag(QDocumentLine::FormatsApplied) )
@@ -2984,6 +2984,7 @@ void QDocumentLineHandle::layout() const
 	setFlag(QDocumentLine::LayoutDirty, false);
 }
 
+
 struct RenderRange
 {
 	int position;
@@ -2992,11 +2993,114 @@ struct RenderRange
 	int wrap;
 };
 
+void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const QVector<int>* sel) const{
+	QVector<int> m_composited = compose();
+
+	QVector<int> merged;
+	merged.fill(0, m_text.count());
+
+	// merge selection ranges with the rest (formats + overlays)
+	//int max = qMin(m_text.count(), m_composited.count());
+
+	for ( int i = 0; i < m_text.count(); ++i )
+	{
+		if ( m_composited.count() > i )
+			merged[i] = m_composited.at(i);
+
+		// separate spaces to ease rendering loop
+		if ( m_text.at(i).isSpace() )
+			merged[i] |= FORMAT_SPACE;
+	}
+
+	if (sel) {
+		for ( int i = 0; i < sel->count(); i += 2 )
+		{
+			int max = m_text.length();
+
+			if ( (i + 1) < sel->count() )
+				max = qMin(sel->at(i + 1), max);
+
+			for ( int j = sel->at(i); j < max; ++j )
+				merged[j] |= FORMAT_SELECTION;
+		}
+	}
+
+	// generate render ranges
+	if ( merged.count() )
+	{
+		int i = 0, wrap = 0, max = m_text.count(),
+			frontier = m_frontiers.count() ? m_frontiers.first().first : max;
+
+		while ( i < max )
+		{
+			RenderRange r;
+			r.position = i;
+			r.length = 1;
+			r.wrap = wrap;
+			r.format = merged.at(i);
+
+			while ( ((i + 1) < frontier) && (merged.at(i + 1) == r.format) )
+			{
+				++r.length;
+				++i;
+			}
+
+			*ranges << r;
+			++i;
+
+			if ( i == frontier )
+			{
+				++wrap;
+				frontier = wrap < m_frontiers.count() ? m_frontiers.at(wrap).first : max;
+			}
+		}
+	} else if ( m_frontiers.count() ) {
+		//TODO: is this branch ever reached?
+		Q_ASSERT(false);
+
+		// no formatting (nor selection) : simpler
+		int i = 0, wrap = 0, max = m_text.count(),
+			frontier = m_frontiers.count() ? m_frontiers.first().first : max;
+
+		while ( i < max )
+		{
+			RenderRange r;
+			r.position = i;
+			r.length = 1;
+			r.wrap = wrap;
+			r.format = fullSel ? FORMAT_SELECTION : 0;
+
+			while ( ((i + 1) < frontier) )
+			{
+				++r.length;
+				++i;
+			}
+
+			*ranges << r;
+			++i;
+
+			if ( i == frontier )
+			{
+				++wrap;
+				frontier = wrap < m_frontiers.count() ? m_frontiers.at(wrap).first : max;
+			}
+		}
+	} else {
+		// neither formatting nor line wrapping : simple drawText()
+		RenderRange r;
+		r.position = 0;
+		r.length = m_text.length();
+		r.format = fullSel ? FORMAT_SELECTION : 0;
+
+		*ranges << r;
+	}
+}
+
 void QDocumentLineHandle::draw(	QPainter *p,
 								int xOffset,
 								int vWidth,
-								const QSmallArray& sel,
-								const QSmallArray& cursor,
+								const QVector<int>& sel,
+								const QVector<int>& cursor,
 								const QPalette& pal,
 								bool fullSel,
 								int yStart,
@@ -3005,13 +3109,12 @@ void QDocumentLineHandle::draw(	QPainter *p,
 	if ( hasFlag(QDocumentLine::LayoutDirty) )
 		layout();
 
-	if ( m_layout && !hasFlag(QDocumentLine::FormatsApplied) )
-		m_layout->setAdditionalFormats(decorations());
-
-	QMediumArray m_composited = compose();
 
 	if ( m_layout )
 	{
+		if ( !hasFlag(QDocumentLine::FormatsApplied) )
+			m_layout->setAdditionalFormats(decorations());
+
 		//if ( !hasFlag(QDocumentLine::FormatsApplied) )
 		//	applyOverlays();
 
@@ -3092,10 +3195,8 @@ void QDocumentLineHandle::draw(	QPainter *p,
 		}
 
 	} else {
-		QVector<int> merged;
-		merged.fill(0, m_text.count());
-
 		QList<RenderRange> ranges;
+		splitAtFormatChanges(&ranges, &sel);
 
 		// find start of trailing whitespaces
 		int last = m_text.length();
@@ -3103,101 +3204,6 @@ void QDocumentLineHandle::draw(	QPainter *p,
 		while ( (last > 0) && m_text.at(last - 1).isSpace() )
 			--last;
 
-		// TODO : format-level (not format id) merging of formats and opverlays...
-
-		// merge selection ranges with the rest (formats + overlays)
-		if ( true ) //m_composited.count() || sel.count() )
-		{
-			//int max = qMin(m_text.count(), m_composited.count());
-
-			for ( int i = 0; i < m_text.count(); ++i )
-			{
-				if ( m_composited.count() > i )
-					merged[i] = m_composited.at(i);
-
-				// separate spaces to ease rendering loop
-				if ( m_text.at(i).isSpace() )
-					merged[i] |= FORMAT_SPACE;
-			}
-
-			for ( int i = 0; i < sel.count(); i += 2 )
-			{
-				int max = m_text.length();
-
-				if ( (i + 1) < sel.count() )
-					max = qMin(sel[i + 1], max);
-
-				for ( int j = sel[i]; j < max; ++j )
-					merged[j] |= FORMAT_SELECTION;
-			}
-		}
-
-		// generate render ranges
-		if ( merged.count() )
-		{
-			int i = 0, wrap = 0, max = m_text.count(),
-				frontier = m_frontiers.count() ? m_frontiers.first().first : max;
-
-			while ( i < max )
-			{
-				RenderRange r;
-				r.position = i;
-				r.length = 1;
-				r.wrap = wrap;
-				r.format = merged.at(i);
-
-				while ( ((i + 1) < frontier) && (merged.at(i + 1) == r.format) )
-				{
-					++r.length;
-					++i;
-				}
-
-				ranges << r;
-				++i;
-
-				if ( i == frontier )
-				{
-					++wrap;
-					frontier = wrap < m_frontiers.count() ? m_frontiers.at(wrap).first : max;
-				}
-			}
-		} else if ( m_frontiers.count() ) {
-			// no formatting (nor selection) : simpler
-			int i = 0, wrap = 0, max = m_text.count(),
-				frontier = m_frontiers.count() ? m_frontiers.first().first : max;
-
-			while ( i < max )
-			{
-				RenderRange r;
-				r.position = i;
-				r.length = 1;
-				r.wrap = wrap;
-				r.format = fullSel ? FORMAT_SELECTION : 0;
-
-				while ( ((i + 1) < frontier) )
-				{
-					++r.length;
-					++i;
-				}
-
-				ranges << r;
-				++i;
-
-				if ( i == frontier )
-				{
-					++wrap;
-					frontier = wrap < m_frontiers.count() ? m_frontiers.at(wrap).first : max;
-				}
-			}
-		} else {
-			// neither formatting nor line wrapping : simple drawText()
-			RenderRange r;
-			r.position = 0;
-			r.length = m_text.length();
-			r.format = fullSel ? FORMAT_SELECTION : 0;
-
-			ranges << r;
-		}
 
 		int fmt = fullSel ? FORMAT_SELECTION : 0;
 		int lastFont = 0;
@@ -3268,7 +3274,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 				}
 			}
-			if(ypos<yStart) continue;
+			if ( ypos < yStart ) continue;
 
 			if ( leading && !(r.format & FORMAT_SPACE) )
 			{
@@ -3279,11 +3285,8 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 			// TODO : clip more accurately (i.e inside ranges)
 			if ( xpos > maxWidth ){
-			    if(d->hardLineWrap()){
-				continue;
-			    }else{
-				break;
-			    }
+				if( d->hardLineWrap() ) continue;
+				else break;
 			}
 
 			fmt = r.format;
@@ -5683,7 +5686,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	if ( !alternate.color().isValid() )
 		alternate = cxt.palette.alternateBase();
 
-	QSmallArray m_cursorLines(0), m_selectionBoundaries(0);
+	QVector<int> m_cursorLines(0), m_selectionBoundaries(0);
 
 	int wrap = 0;
 	i = textLine(firstLine, &wrap);

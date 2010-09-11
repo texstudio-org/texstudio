@@ -105,7 +105,7 @@ void LatexEditorViewBenchmark::linePaint(){
 	cxt.fillCursorRect = false;
 	cxt.blinkingCursor = false;
 
-	QSmallArray m_cursorLines(0), m_selectionBoundaries(0);
+	QVector<int> m_cursorLines(0), m_selectionBoundaries(0);
 
 	QBrush bg = cxt.palette.base();
 
