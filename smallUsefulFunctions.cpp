@@ -250,10 +250,12 @@ int nextToken(const QString &line,int &index,bool abbreviation,bool inOption) {
 			}
 		} else if (inWord) {
 			if (cur=='\\') {
-				if (i+1<line.size() && (line.at(i+1)=='-'||EscapedChars.indexOf(line.at(i+1))>=0||CharacterAlteringChars.indexOf(line.at(i+1))>=0))  {
-					if(CharacterAlteringChars.indexOf(line.at(i+1))>=0) ignoreBrace=true;
-					i++;//ignore word separation marker and _ respectively
-					//reparse=true;
+				if (i+1>=line.size()) break;
+				const QChar& c = line.at(i+1);
+				if (c=='-' || c == '&') i++; //allow \& in the middle/end of words, e.g. C&A
+				else if (CharacterAlteringChars.contains(c)) {
+					ignoreBrace=true;
+					i++;//ignore word separation marker
 				} else break;
 			} else if (cur=='"') {  //ignore " like in "-, "", "| "a
 				if (i+1<line.size()){
@@ -273,25 +275,30 @@ int nextToken(const QString &line,int &index,bool abbreviation,bool inOption) {
 			    } else if(cur=='}' || cur==']') break;
 
 		} else if (cur=='\\') {
-			if (i+1<line.size() && (EscapedChars.indexOf(line.at(i+1))>=0||CharacterAlteringChars.indexOf(line.at(i+1))>=0))  {
+			if (i+1>=line.size()) break;
+			const QChar& nextc = line.at(i+1);
+			if (CharacterAlteringChars.contains(nextc))  {
 				inWord=true;
 				start=i;
-				if(CharacterAlteringChars.indexOf(line.at(i+1))>=0) ignoreBrace=true;
+				ignoreBrace=true;
 				i++;
-			}else{
+			} else if (EscapedChars.contains(nextc)) {
+				i++;
+				Q_ASSERT(start==-1);
+			} else {
 				start=i;
 				inCmd=true;
 			}
 		} else if (cur=='{' || cur=='}' || cur=='%' || cur=='[' || cur==']') {
 			index=i+1;
 			return i;
-                } else if ((CommonEOW.indexOf(cur)<0 && cur!='\'' )|| cur=='"') {
+		} else if ((CommonEOW.indexOf(cur)<0 && cur!='\'' )|| cur=='"') {
 			start=i;
 			inWord=true;
 			doubleQuoteChar= ( cur == '"');
 		}
 	}
-	if (singleQuoteChar && i-1<line.size() && line.at(i-1)=='\'') 
+	if (singleQuoteChar && i-1<line.size() && i > 0 && line.at(i-1)=='\'')
 		i--; //remove ' when a word ends with it  (starting is handled because ' does not start a word)
 	index=i;
 	return start;
