@@ -42,8 +42,6 @@
 #include <QAtomicInt>
 #endif
 
-typedef QVector<int> QSmallArray;
-typedef QVector<int> QMediumArray;
 
 class QPoint;
 
@@ -51,6 +49,7 @@ class QDocument;
 class QDocumentLine;
 class QDocumentBuffer;
 class QDocumentPrivate;
+class RenderRange;
 
 class QCE_EXPORT QDocumentLineHandle
 {
@@ -111,11 +110,13 @@ class QCE_EXPORT QDocumentLineHandle
 		
 		void shiftOverlays(int position, int offset);
 		
+		void splitAtFormatChanges(QList<RenderRange>* ranges, const QVector<int>* sel) const;
+
 		void draw(	QPainter *p,
 					int xOffset,
 					int vWidth,
-					const QSmallArray& sel,
-					const QSmallArray& cursors,
+					const QVector<int>& sel,
+					const QVector<int>& cursors,
 					const QPalette& pal,
 					bool fullSel,
 					int yStart=0,
@@ -137,7 +138,7 @@ class QCE_EXPORT QDocumentLineHandle
 		void layout() const;
 		void applyOverlays() const;
 		
-		QMediumArray compose() const;
+		QVector<int> compose() const;
 		QList<QTextLayout::FormatRange> decorations() const;
 		
 		QString m_text;
