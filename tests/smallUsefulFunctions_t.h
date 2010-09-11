@@ -6,7 +6,7 @@
 #include "testutil.h"
 #include <QtTest/QtTest>
 
-const int NW_IGNORED_TOKEN=-2; //token with are no words,  { and }
+const int NW_IGNORED_TOKEN=-2; //token that are not words,  { and }
 const int NW_OPTION=-3; //option text like in \include
 
 class TestToken: public QString{
@@ -107,6 +107,8 @@ class SmallUsefulFunctionsTest: public QObject{
 
 		addRow("simple whitespace", filter,
 			QList<TestToken>() << "abcde" << "    " << "fghik" << "\t" << "Mice");
+		addRow("simple eow", filter,
+		       QList<TestToken>() << "abcde" << TestToken(".;:;", NW_IGNORED_TOKEN) << "fghik" << TestToken("##", NW_IGNORED_TOKEN) << "Mice" << TestToken("///", NW_IGNORED_TOKEN) << "\\\\" << TestToken("+++", NW_IGNORED_TOKEN) << "axy" << TestToken("---", NW_IGNORED_TOKEN));
 		addRow("environment+comment",filter,
 			QList<TestToken>() << "Test1234" << "\\begin" << "{" << env("environment") << "}" << "{" << "add" << "}" << "XYZ" << "!!!" << "\\command" << "%"     << "comment" << "\\COMMENT");
 		addRow("some environments", filter,
@@ -115,8 +117,9 @@ class SmallUsefulFunctionsTest: public QObject{
 			QList<TestToken>() << "hallo" << " " << "welt" << "\\section" << "{" << "text" << "}" << "     " << "\\begin" << "{" << env("I'mXnotXthere") << "}" << " *" << "g"  << "* " << "%"     << " " << "more" << " " << "\\comment");
 		addRow("command as option", filter,
 			QList<TestToken>() << "\\includegraphics" << "[" << option("ab") << "." << "\\linewidth" << "]" << "{" << "\\abc" << " " << option("dfdf") << "\\xyz" << "}" << "continue");
-		addRow("comments", filter, QList<TestToken>() << "hallo" << " " << "welt" <<  "  " << "\\\\" << "normaltext" <<  "  " << TestToken("\\%","%",NW_TEXT) << "!!!" << "stillNoComment" << "\\\\" << TestToken("\\%","%",NW_TEXT) <<"  "<< "none" << "\\\\" << "%" << "comment" << "   " << "more" << " " << "comment");
-		addRow("escaped characters", filter, QList<TestToken>() << TestToken("hallo\\%abc","hallo%abc",NW_TEXT));
+		addRow("comments", filter, QList<TestToken>() << "hallo" << " " << "welt" <<  "  " << "\\\\" << "normaltext" <<  "  " << TestToken("\\%",NW_IGNORED_TOKEN) << "!!!" << "stillNoComment" << "\\\\" << TestToken("\\%","%",NW_IGNORED_TOKEN) <<"  "<< "none" << "\\\\" << "%" << "comment" << "   " << "more" << " " << "comment");
+		addRow("escaped characters", filter, QList<TestToken>() << "hallo" << TestToken("\\%",NW_IGNORED_TOKEN) << "abc");
+		addRow("escaped characters", filter, QList<TestToken>() << "1234" << TestToken("\\%\\&\\_",NW_IGNORED_TOKEN)  << "567890");
 		addRow("special characters", filter,
 			   QList<TestToken>() << "lösbar" << " " << TestToken("l\"osbar","lösbar",NW_TEXT) << " " << TestToken("l\\\"osbar","lösbar",NW_TEXT) << " " << TestToken("l\\\"{o}sbar","lösbar",NW_TEXT) << " " << "örtlich" <<" " <<TestToken("\"ortlich","örtlich",NW_TEXT)<<" " <<TestToken("\\\"ortlich","örtlich",NW_TEXT)<<" " <<TestToken("\\\"{o}rtlich","örtlich",NW_TEXT) );
 	}
