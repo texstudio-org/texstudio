@@ -1283,8 +1283,12 @@ LatexDocument* LatexDocuments::findDocument(const QDocument *qDoc){
 	return 0;
 }
 
-LatexDocument* LatexDocuments::findDocument(const QString& fileName){
+LatexDocument* LatexDocuments::findDocument(const QString& fileName, bool checkTemporaryNames){
 	if (fileName=="") return 0;
+	if (checkTemporaryNames) {
+		LatexDocument* temp = findDocument(fileName, false);
+		if (temp) return temp;
+	}
 	QString fnorm = fileName;
 	fnorm.replace("/",QDir::separator()).replace("\\",QDir::separator());
 	//fast check for absolute file names
@@ -1296,6 +1300,12 @@ LatexDocument* LatexDocuments::findDocument(const QString& fileName){
 	foreach (LatexDocument* document, documents)
 		if (document->getFileName().compare(fnorm,cs)==0)
 			return document;
+
+	if (checkTemporaryNames)
+		foreach (LatexDocument* document, documents)
+			if (document->getFileName().isEmpty() &&
+			    document->getTemporaryFileName().compare(fnorm,cs)==0)
+				return document;
 
 	//check for relative file names
 	QFileInfo fi(getAbsoluteFilePath(fileName));

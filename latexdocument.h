@@ -230,7 +230,7 @@ public:
 	QString getTemporaryCompileFileName(); //returns the absolute file name of the file to be compiled (master or current)
 	QString getAbsoluteFilePath(const QString & relName, const QString &extension="");
 
-	LatexDocument* findDocument(const QString& fileName);
+	LatexDocument* findDocument(const QString& fileName, bool checkTemporaryNames = false);
 	LatexDocument* findDocument(const QDocument *qDoc);
 
 	void settingsRead();

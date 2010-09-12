@@ -76,7 +76,7 @@ private:
 	void setupMenus();
 	void setupToolBars();
 	void createStatusBar();
-	bool FileAlreadyOpen(QString f);
+	bool FileAlreadyOpen(QString f, bool checkTemporaryNames = false);
 	bool closeAllFilesAsking(); //asks the user and close all files
 	bool canCloseNow(); //asks the user and close all files, and prepares to exit tmx
 	void closeEvent(QCloseEvent *e);
@@ -137,7 +137,7 @@ private:
 	QEditor* currentEditor() const;
 	void configureNewEditorView(LatexEditorView *edit);
 	void configureNewEditorViewEnd(LatexEditorView *edit);
-	LatexEditorView* getEditorViewFromFileName(const QString &fileName);
+	LatexEditorView* getEditorViewFromFileName(const QString &fileName, bool checkTemporaryNames = false);
 	
 	QAction* outputViewAction, *fullscreenModeAction;
 private slots:
