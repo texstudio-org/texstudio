@@ -856,8 +856,8 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit){
 	NewDocumentStatus(!edit->editor->document()->isClean());
 }
 
-LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName){
-	LatexDocument* document=documents.findDocument(fileName);
+LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName, bool checkTemporaryNames){
+	LatexDocument* document=documents.findDocument(fileName, checkTemporaryNames);
 	if (!document) return 0;
 	return document->getEditorView();
 }
@@ -870,8 +870,8 @@ QString Texmaker::getAbsoluteFilePath(const QString & relName, const QString &ex
 	return documents.getAbsoluteFilePath(relName, extension);
 }
 
-bool Texmaker::FileAlreadyOpen(QString f) {
-	LatexEditorView* edView = getEditorViewFromFileName(f);
+bool Texmaker::FileAlreadyOpen(QString f, bool checkTemporaryNames) {
+	LatexEditorView* edView = getEditorViewFromFileName(f, checkTemporaryNames);
 	if (!edView) return false;
 	EditorView->setCurrentWidget(edView);
 	return true;
@@ -3157,7 +3157,7 @@ void Texmaker::DisplayLatexError() {
 			LatexEditorView* edView;
 			if (tempFilenames.contains(logModel->at(i).file)) edView=tempFilenames.value(logModel->at(i).file);
 			else{
-				edView=getEditorViewFromFileName(logModel->at(i).file);
+				edView=getEditorViewFromFileName(logModel->at(i).file, true);
 				tempFilenames[logModel->at(i).file]=edView;
 			}
 			if (edView) {
@@ -3716,13 +3716,16 @@ void Texmaker::gotoLine(int line) {
 	}
 }
 void Texmaker::gotoLocation(int line, const QString &fileName){
-	if (!load(fileName)) return;
+	if (!FileAlreadyOpen(fileName, true))
+		if (!load(fileName)) return;
 	gotoLine(line);
 }
 
 void Texmaker::gotoLogEntryEditorOnly(int logEntryNumber) {
 	if (logEntryNumber<0 || logEntryNumber>=outputView->getLogModel()->count()) return;
-	if (!load(outputView->getLogModel()->at(logEntryNumber).file)) return;
+	QString fileName = outputView->getLogModel()->at(logEntryNumber).file;
+	if (!FileAlreadyOpen(fileName, true))
+		if (!load(fileName)) return;
 	//get line
 	QDocumentLineHandle* lh = currentEditorView()->logEntryToLine.value(logEntryNumber, 0);
 	if (!lh) return;
