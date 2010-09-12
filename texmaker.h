@@ -48,12 +48,8 @@ class Texmaker : public QMainWindow {
 public:
 	Texmaker(QWidget *parent = 0, Qt::WFlags flags = 0);
 
-	QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opened
-	QString getCompileFileName(); //returns the absolute file name of the file to be compiled (master or current)  
-	QString getCompilePath(); //returns the absolute file path of the file to be compiled (master or current) 
-	QString getPreferredPath(); //returns getCompilePath() if not empty or QDir::homePath (for dialogs)
+	QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opene
 	QString getAbsoluteFilePath(const QString & relName, const QString &extension=""); //treats the path relative to the compiled .tex file
-	QString getRelativeBaseName(const QString & file);//get completebasename with path relative to the compiled file for a given file 
 	QByteArray windowstate;
 	bool tobemaximized,tobefullscreen;
 
@@ -153,7 +149,7 @@ private slots:
 	void fileRestoreSession();
 	void fileSave();
 	void fileSaveAll();
-	void fileSaveAll(bool alsoUnnamedFiles);
+	void fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile);
 	void fileSaveAs(QString fileName = "");
 	void fileClose();
 	void fileCloseAll();

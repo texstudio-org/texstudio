@@ -842,6 +842,15 @@ StructureEntry * LatexDocument::findSectionForLine(int currentLine){
     return newSection;
 }
 
+void LatexDocument::setTemporaryFileName(const QString& fileName){
+	temporaryFileName=fileName;
+}
+
+QString LatexDocument::getTemporaryFileName(){
+	return temporaryFileName;
+}
+
+
 /*
 void LatexDocument::includeDocument(LatexDocument* includedDocument){
 	includedDocument->deleteLater();
@@ -1245,12 +1254,20 @@ QString LatexDocuments::getCompileFileName(){
 	if (!masterDocument) return getCurrentFileName();
 	else return masterDocument->getFileName();
 }
+QString LatexDocuments::getTemporaryCompileFileName(){
+	QString temp = getCompileFileName();
+	if (!temp.isEmpty()) return temp;
+	if (masterDocument) return masterDocument->getTemporaryFileName();
+	else if (currentDocument) return currentDocument->getTemporaryFileName();
+	return "";
+}
+
 QString LatexDocuments::getAbsoluteFilePath(const QString & relName, const QString &extension){
 	QString s=relName;
 	if (!s.endsWith(extension,Qt::CaseInsensitive)) s+=extension;
 	QFileInfo fi(s);
 	if (!fi.isRelative()) return s;
-	QString compileFileName=getCompileFileName();
+	QString compileFileName=getTemporaryCompileFileName();
 	if (compileFileName.isEmpty()) return s; //what else can we do?
 	QString compilePath=QFileInfo(compileFileName).absolutePath();
 	if (!compilePath.endsWith("\\") && !compilePath.endsWith("/"))

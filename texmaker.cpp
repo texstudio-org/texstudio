@@ -866,24 +866,8 @@ LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName){
 QString Texmaker::getCurrentFileName() {
 	return documents.getCurrentFileName();
 }
-QString Texmaker::getCompileFileName(){
-	return documents.getCompileFileName();
-}
-QString Texmaker::getCompilePath(){
-	QString compFile=getCompileFileName();
-	return getPathfromFilename(compFile);
-}
-QString Texmaker::getPreferredPath(){
-	QString dir=getCompilePath();
-	if (!dir.isEmpty()) return dir;
-	return QDir::homePath();
-}
 QString Texmaker::getAbsoluteFilePath(const QString & relName, const QString &extension){
 	return documents.getAbsoluteFilePath(relName, extension);
-}
-QString Texmaker::getRelativeBaseName(const QString & file){
-	QString basepath=getCompilePath();
-	return getRelativeBaseNameToPath(file,basepath);
 }
 
 bool Texmaker::FileAlreadyOpen(QString f) {
@@ -1218,9 +1202,9 @@ void Texmaker::fileSaveAs(QString fileName) {
 }
 
 void Texmaker::fileSaveAll() {
-	fileSaveAll(true);
+	fileSaveAll(true,true);
 }
-void Texmaker::fileSaveAll(bool alsoUnnamedFiles) {
+void Texmaker::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile) {
 //LatexEditorView *temp = new LatexEditorView(EditorView,colorMath,colorCommand,colorKeyword);
 //temp=currentEditorView();
 	REQUIRE(EditorView);
@@ -1229,10 +1213,11 @@ void Texmaker::fileSaveAll(bool alsoUnnamedFiles) {
 		LatexEditorView *edView = qobject_cast<LatexEditorView*>(EditorView->widget(i));
 		REQUIRE(edView);REQUIRE(edView->editor);
 		if (edView->editor->fileName().isEmpty()){
-			if ((i==currentIndex || alsoUnnamedFiles) ) {
+			if ((alsoUnnamedFiles || (alwaysCurrentFile && i==currentIndex) ) ) {
 				EditorView->setCurrentIndex(i);
 				fileSaveAs();
-			}
+			} else if (!edView->document->getTemporaryFileName().isEmpty())
+				edView->editor->saveCopy(edView->document->getTemporaryFileName());
 		//else if (edView->editor->isInConflict()) {
 		//edView->editor->save();
 		//}
@@ -2689,7 +2674,7 @@ void Texmaker::runCommand(BuildManager::LatexCommand cmd,bool waitendprocess,boo
 	runCommand(buildManager.getLatexCommand(cmd),waitendprocess,showStdout,compileLatex);
 }
 void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool compileLatex,QString *buffer) {
-	QString finame=getCompileFileName();
+	QString finame=documents.getTemporaryCompileFileName();
 	QString commandline=comd;
 	QByteArray result;
 	if (finame=="") {
@@ -2808,10 +2793,16 @@ void Texmaker::SlotEndProcess(int err) {
 }
 
 void Texmaker::QuickBuild() {
-	fileSaveAll(buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ALWAYS);
-	if (getCompileFileName()=="") {
-		QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name.\nYou have to save a document before you can compile it."));
-		return;
+	fileSaveAll(buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ALWAYS, buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ONLY_CURRENT_OR_NAMED);
+	if (documents.getTemporaryCompileFileName()=="") {
+		if (buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ONLY_NAMED && currentEditorView()){
+			QString tmpName = buildManager.createTemporaryFileName();
+			currentEditor()->saveCopy(tmpName);
+			currentEditorView()->document->setTemporaryFileName(tmpName);
+		} else {
+			QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name.\nYou have to save a document before you can compile it."));
+			return;
+		}
 	}
 
 	RunPreCompileCommand();
@@ -2948,7 +2939,17 @@ void Texmaker::QuickBuild() {
 void Texmaker::commandFromAction(){
 	QAction* act = qobject_cast<QAction*>(sender());
 	if (!act) return;
-	fileSaveAll(buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ALWAYS);
+	fileSaveAll(buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ALWAYS, buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ONLY_CURRENT_OR_NAMED);
+	if (documents.getTemporaryCompileFileName()=="") {
+		if (buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ONLY_NAMED && currentEditorView()){
+			QString tmpName = buildManager.createTemporaryFileName();
+			currentEditor()->saveCopy(tmpName);
+			currentEditorView()->document->setTemporaryFileName(tmpName);
+		} else {
+			QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name.\nYou have to save a document before you can compile it."));
+			return;
+		}
+	}
 	BuildManager::LatexCommand cmd=(BuildManager::LatexCommand) act->data().toInt();
 	bool compileLatex=(cmd==BuildManager::CMD_LATEX || cmd==BuildManager::CMD_PDFLATEX);
 	if (compileLatex)
@@ -2960,7 +2961,7 @@ void Texmaker::commandFromAction(){
 }
 
 void Texmaker::CleanAll() {
-	QString finame=getCompileFileName();
+	QString finame=documents.getCompileFileName();
 	if (finame=="") {
 		QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name"));
 		return;
@@ -2985,7 +2986,18 @@ void Texmaker::UserTool() {
 	if (action->data().toInt()<0 || action->data().toInt()>=5) return;
 	QString cmd=UserToolCommand[action->data().toInt()];
 	if (cmd.isEmpty()) return;
-	fileSaveAll(buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ALWAYS);
+	fileSaveAll(buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ALWAYS, buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ONLY_CURRENT_OR_NAMED);
+	if (documents.getTemporaryCompileFileName()=="") {
+		if (buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ONLY_NAMED && currentEditorView()){
+			QString tmpName = buildManager.createTemporaryFileName();
+			currentEditor()->saveCopy(tmpName);
+			currentEditorView()->document->setTemporaryFileName(tmpName);
+		} else {
+			QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name.\nYou have to save a document before you can compile it."));
+			return;
+		}
+	}
+
 	QStringList commandList=cmd.split("|");
 	ERRPROCESS=false;
 	for (int i = 0; i < commandList.size(); ++i)
@@ -3017,7 +3029,7 @@ void Texmaker::WebPublish() {
 	}
 	if (!currentEditorView()->editor->getFileCodec()) return;
 	fileSave();
-	QString finame=getCompileFileName();
+	QString finame=documents.getCompileFileName();
 
 	WebPublishDialog *ttwpDlg = new WebPublishDialog(this,configManager.webPublishDialogConfig, &buildManager,
 		currentEditorView()->editor->getFileCodec());
@@ -3063,7 +3075,7 @@ void Texmaker::GenerateRandomText(){
 
 //////////////// MESSAGES - LOG FILE///////////////////////
 bool Texmaker::LogExists() {
-	QString finame=getCompileFileName();
+	QString finame=documents.getTemporaryCompileFileName();
 	if (finame=="")
 		return false;
 	QString logname=getAbsoluteFilePath(QFileInfo(finame).completeBaseName(),".log");
@@ -3082,7 +3094,7 @@ void Texmaker::RealViewLog(bool noTabChange) {
 //shows the log if there are errors
 void Texmaker::ViewLog(bool noTabChange) {
 	outputView->resetLog(noTabChange);
-	QString finame=getCompileFileName();
+	QString finame=documents.getTemporaryCompileFileName();
 	if (finame=="") {
 		QMessageBox::warning(this,tr("Error"),tr("File must be saved and compiling before you can view the log"));
 		ERRPROCESS=true;
@@ -3096,7 +3108,7 @@ void Texmaker::ViewLog(bool noTabChange) {
 		QString overrideFileName=""; //workaround, see parseLogDocument for reason
 		if (configManager.ignoreLogFileNames==2 ||
 			(configManager.ignoreLogFileNames==1 && documents.singleMode())) overrideFileName=getCurrentFileName();
-		outputView->loadLogFile(logname,getCompileFileName(),overrideFileName);
+		outputView->loadLogFile(logname,documents.getTemporaryCompileFileName(),overrideFileName);
 		//display errors in editor
 		DisplayLatexError();
 		if (outputView->getLogModel()->found(LT_ERROR))
@@ -3848,7 +3860,7 @@ void Texmaker::previewLatex(){
 	if (originalText=="") return;
     // get document definitions
     //preliminary code ...
-	LatexEditorView* edView=getEditorViewFromFileName(getCompileFileName());
+	LatexEditorView* edView=getEditorViewFromFileName(documents.getCompileFileName()); //todo: temporary compile name
 	if (!edView) return;
     int m_endingLine=edView->editor->document()->findLineContaining("\\begin{document}",0,Qt::CaseSensitive);
     if (m_endingLine<0) return; // can't create header
@@ -3886,7 +3898,7 @@ void Texmaker::previewAvailable(const QString& imageFile, const QString& /*text*
 }
 
 void Texmaker::showPreview(const QString text){
-	LatexEditorView* edView=getEditorViewFromFileName(getCompileFileName());
+	LatexEditorView* edView=getEditorViewFromFileName(documents.getCompileFileName()); //todo: temporary compi
 	if (!edView) return;
 	int m_endingLine=edView->editor->document()->findLineContaining("\\begin{document}",0,Qt::CaseSensitive);
 	if (m_endingLine<0) return; // can't create header

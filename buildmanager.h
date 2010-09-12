@@ -59,14 +59,14 @@ public:
 	ProcessX* newProcess(const QString &unparsedCommandLine, const QString &mainFile, const QString &currentFile, int currentLine=0);
 	ProcessX* newProcess(const QString &unparsedCommandLine, const QString &mainFile, int currentLine=0);
 	
-	static QTemporaryFile* temporaryTexFile(); //don't forget to remove the file!
+	static QString createTemporaryFileName(); //don't forget to remove the file!
 					
 	void preview(const QString &preamble, const QString &text, QTextCodec *outputCodec=0);
 
 	int quickmode;
 	enum Dvi2PngMode { DPM_DVIPNG, DPM_DVIPNG_FOLLOW, DPM_DVIPS_GHOSTSCRIPT};
 	Dvi2PngMode dvi2pngMode;
-	enum SaveFilesBeforeCompiling {SFBC_ALWAYS, SFBC_ONLY_CURRENT_OR_NAMED};
+	enum SaveFilesBeforeCompiling {SFBC_ALWAYS, SFBC_ONLY_CURRENT_OR_NAMED, SFBC_ONLY_NAMED};
 	SaveFilesBeforeCompiling saveFilesBeforeCompiling;
 private slots:	
 	void latexPreviewCompleted(int status);

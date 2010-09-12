@@ -916,30 +916,17 @@ void QEditor::save()
 		cur.endEditBlock();
 	}
 
-	{
-		QString txt = m_doc->text(flag(RemoveTrailing), flag(PreserveTrailingIndent));
-		QByteArray data =  m_doc->codec() ? m_doc->codec()->fromUnicode(txt) : txt.toLocal8Bit();
+	//remove all watches (on old and new file name (setfilename above could have create one!) )
+	Q_ASSERT(watcher());
+	watcher()->removeWatch(QString(), this);
 
+	if (!saveCopy(fileName())) {
+		m_saveState = Undefined;
+		reconnectWatcher();
 
-		//remove all watches (on old and new file name (setfilename above could have create one!) )
-		Q_ASSERT(watcher());
-		watcher()->removeWatch(QString(), this);
-
-		QFile f(fileName());
-
-		if ( !f.open(QFile::WriteOnly) )
-		{
-			m_saveState = Undefined;
-			reconnectWatcher();
-
-			return;
-		}
-
-		f.write(data);
-
-		f.close(); //explicitly close for watcher
-
+		return;
 	}
+
 	m_doc->setClean();
 
 	emit saved(this, fileName());
@@ -948,6 +935,23 @@ void QEditor::save()
 	QTimer::singleShot(100, this, SLOT( reconnectWatcher() ));
 	
 	update();
+}
+
+
+bool QEditor::saveCopy(const QString& filename){
+	Q_ASSERT(m_doc);
+	QString txt = m_doc->text(flag(RemoveTrailing), flag(PreserveTrailingIndent));
+	QByteArray data =  m_doc->codec() ? m_doc->codec()->fromUnicode(txt) : txt.toLocal8Bit();
+
+	QFile f(filename);
+
+	if ( !f.open(QFile::WriteOnly) ) return false;
+
+	f.write(data);
+
+	f.close(); //explicite close for watcher
+
+	return true;
 }
 
 /*!

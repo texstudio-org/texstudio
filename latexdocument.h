@@ -117,8 +117,13 @@ public:
 
 	int m_magicPlaceHolder;
 	int m_mirrorInLine;
+
+
+	void setTemporaryFileName(const QString& fileName);
+	QString getTemporaryFileName();
 private:
 	QString fileName; //absolute
+	QString temporaryFileName; //absolute, temporary
 	QFileInfo fileInfo;
 
 	LatexEditorView* edView;
@@ -141,7 +146,7 @@ private:
 	void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QMap<StructureEntry*,int> &toBeDeleted,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count,int lvl=0,bool front=true,bool back=true);
 
 
-	#ifndef QT_NO_DEBUG
+#ifndef QT_NO_DEBUG
 	QSet<StructureEntry*> StructureContent;
 	void removeFromStructureContent(StructureEntry* se);
 	void checkForLeak();
@@ -222,6 +227,7 @@ public:
 
 	QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opened
 	QString getCompileFileName(); //returns the absolute file name of the file to be compiled (master or current)
+	QString getTemporaryCompileFileName(); //returns the absolute file name of the file to be compiled (master or current)
 	QString getAbsoluteFilePath(const QString & relName, const QString &extension="");
 
 	LatexDocument* findDocument(const QString& fileName);

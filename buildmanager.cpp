@@ -547,11 +547,11 @@ ProcessX* BuildManager::newProcess(const QString &unparsedCommandLine, const QSt
 	return newProcess(unparsedCommandLine, mainFile, mainFile, currentLine);
 }
 
-QTemporaryFile* BuildManager::temporaryTexFile(){
+QString BuildManager::createTemporaryFileName(){
 	QTemporaryFile *temp=new QTemporaryFile(QDir::tempPath ()+"/texmakerx_XXXXXX.tex");
 	temp->open();
 	temp->setAutoRemove(false);
-	return temp;
+	return temp->fileName();
 }
 
 //there are 3 ways to generate a preview png:
