@@ -53,10 +53,17 @@ void LatexTables::addRow(QDocumentCursor &c,const int numberOfColumns ){
 void LatexTables::removeRow(QDocumentCursor &c){
     QDocumentCursor cur(c);
     const QStringList tokens("\\\\");
+    if(cur.hasSelection()){
+	if(cur.lineNumber()>cur.anchorLineNumber()||(cur.lineNumber()==cur.anchorLineNumber() && cur.columnNumber()>cur.anchorColumnNumber())){
+	    cur.moveTo(cur.anchorLineNumber(),cur.anchorColumnNumber());
+	}
+    }
     int result=findNextToken(cur,tokens,false,true);
     if(result==0) cur.movePosition(2,QDocumentCursor::Right);
     if(result==-2) cur.movePosition(1,QDocumentCursor::EndOfLine);
-    bool breakLoop=(findNextToken(cur,tokens,true)==-1);
+    bool breakLoop=false;
+    while(!(breakLoop=(findNextToken(cur,tokens,true)==-1)) && c.isWithinSelection(cur) ){
+    }
     if(!breakLoop) {
 	// check if end of cursor is at line end
 	QDocumentCursor c2(cur.document(),cur.anchorLineNumber(),cur.anchorColumnNumber());
