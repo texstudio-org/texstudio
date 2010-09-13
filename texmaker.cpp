@@ -4467,8 +4467,23 @@ void Texmaker::removeColumnCB(){
 	if (!currentEditorView()) return;
 	QDocumentCursor cur=currentEditorView()->editor->cursor();
 	if(!LatexTables::inTableEnv(cur)) return;
+	// check if cursor has selection
+	int numberOfColumns=1;
 	int col=LatexTables::getColumn(cur);
-	LatexTables::removeColumn(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),col,0);
+	if(cur.hasSelection()){
+	    // if selection span within one row, romove all touched columns
+	    QDocumentCursor c2(cur.document(),cur.anchorLineNumber(),cur.anchorColumnNumber());
+	    if(!LatexTables::inTableEnv(c2)) return;
+	    QString res=cur.selectedText();
+	    if(res.contains("\\\\")) return;
+	    int col2=LatexTables::getColumn(c2);
+	    numberOfColumns=abs(col-col2)+1;
+	    if(col2<col) col=col2;
+	}
+	int ln=cur.lineNumber();
+	for(int i=0;i<numberOfColumns;i++){
+	    LatexTables::removeColumn(currentEditorView()->document,ln,col,0);
+	}
 }
 
 void Texmaker::removeRowCB(){
@@ -4482,9 +4497,36 @@ void Texmaker::cutColumnCB(){
 	if (!currentEditorView()) return;
 	QDocumentCursor cur=currentEditorView()->editor->cursor();
 	if(!LatexTables::inTableEnv(cur)) return;
-	m_columnCutBuffer.clear();
+	// check if cursor has selection
+	int numberOfColumns=1;
 	int col=LatexTables::getColumn(cur);
-	LatexTables::removeColumn(currentEditorView()->document,currentEditorView()->editor->cursor().lineNumber(),col,&m_columnCutBuffer);
+	if(cur.hasSelection()){
+	    // if selection span within one row, romove all touched columns
+	    QDocumentCursor c2(cur.document(),cur.anchorLineNumber(),cur.anchorColumnNumber());
+	    if(!LatexTables::inTableEnv(c2)) return;
+	    QString res=cur.selectedText();
+	    if(res.contains("\\\\")) return;
+	    int col2=LatexTables::getColumn(c2);
+	    numberOfColumns=abs(col-col2)+1;
+	    if(col2<col) col=col2;
+	}
+	int ln=cur.lineNumber();
+	m_columnCutBuffer.clear();
+	QStringList lst;
+	for(int i=0;i<numberOfColumns;i++){
+	    lst.clear();
+	    LatexTables::removeColumn(currentEditorView()->document,ln,col,&lst);
+	    if(m_columnCutBuffer.isEmpty()){
+		m_columnCutBuffer=lst;
+	    }else{
+		for(int i=0;i<m_columnCutBuffer.size();i++){
+		    QString add="&";
+		    if(!lst.isEmpty()) add+=lst.takeFirst();
+		    m_columnCutBuffer[i]+=add;
+		}
+	    }
+	}
+
 }
 
 void Texmaker::pasteColumnCB(){
