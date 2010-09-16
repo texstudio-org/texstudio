@@ -7,19 +7,62 @@
 #include "latexdocument.h"
 #include "smallUsefulFunctions.h"
 
+int CodeSnippetPlaceHolder::offsetEnd(){
+	return offset + length;
+}
+
+void parseSnippetPlaceHolder(const QString& snippet, int& i, QString& curLine, CodeSnippetPlaceHolder& ph){
+	ph.offset = curLine.length();
+	ph.length = 0;
+	ph.id = -1;
+	ph.flags = 0;
+	for (;i<snippet.length(); i++){
+		if (snippet.at(i) == '%' && i+1<snippet.length()) {
+			i++;
+			switch (snippet.at(i).toAscii()){
+				case'|': ph.flags |= CodeSnippetPlaceHolder::AutoSelect; break;
+				case '>': return;
+				case '%': curLine+='%'; ph.length++; break;
+				case ':': goto secondLevelBreak;
+				default: curLine+="%"; curLine+=snippet.at(i); ph.length++;
+			}
+		} else {
+			curLine += snippet.at(i);
+			ph.length++;
+		}
+	}
+	secondLevelBreak:
+	if (i>=snippet.length()) return;
+	if (snippet.at(i)!=':') return;
+
+	int snippetEnd = snippet.indexOf("%>", i);
+	if (snippetEnd == -1) return;
+	QString options = snippet.mid(i+1, snippetEnd-i-1);
+	i = snippetEnd+1;
+	foreach (const QString& s, options.split(",")) {
+		QString t = s.trimmed();
+		if (t == "mirror") ph.flags|=CodeSnippetPlaceHolder::Mirror;
+		else if (t == "multiline") ph.flags|=CodeSnippetPlaceHolder::PreferredMultiline;
+		else if (t.startsWith("id:")) ph.id = t.remove(0,3).toInt();
+	}
+}
+
 bool CodeSnippet::autoReplaceCommands=true;
 
 CodeSnippet::CodeSnippet(const QString &newWord) {
-	m_cut=false;
 	QString realNewWord=newWord;
 	// \begin magic
-	if (realNewWord.startsWith("\\begin{")&&
+	if (newWord == "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>"){
+		realNewWord = "\\begin{%<"+QObject::tr("environment-name")+"%:id:2%>}\n"
+			      "%<"+QObject::tr("content...")+"%:multiline%>\n"
+			      "\\end{%<"+QObject::tr("environment-name")+"%:mirror,id:2%>}";
+	} else if (realNewWord.startsWith("\\begin{")&&
 		!realNewWord.contains("\n")&&!realNewWord.contains("%n") //only a single line
 	    && realNewWord.lastIndexOf("\\") == 0) //only one latex command in the line
 	{
 		int p=newWord.indexOf("{");
 		QString environmentName=realNewWord.mid(p,newWord.indexOf("}")-p+1); //contains the {}
-		QString content="%<"+QObject::tr("content...")+"%>";
+		QString content="%<"+QObject::tr("content...")+"%:multiline%>";
 		realNewWord+="\n"+content+"\n\\end"+environmentName;
 	}
 
@@ -31,19 +74,20 @@ CodeSnippet::CodeSnippet(const QString &newWord) {
 	curLine.reserve(realNewWord.length());
 	word.reserve(realNewWord.length());
 	bool escape=false;
-	bool inDescription=false;bool foundDescription=false;
-	int formatStart=0;
-	placeHolders.append(QList<QPair<int,int> >()); //during the creation this contains a line more than lines
+	bool hasPlaceHolder, hasMirrors = false, hasAutoSelectPlaceHolder = false;
+	placeHolders.append(QList<CodeSnippetPlaceHolder>()); //during the creation this contains a line more than lines
+
+	CodeSnippetPlaceHolder tempPlaceholder;
 	for (int i=0; i<realNewWord.length(); i++)
 		if (!escape) {
 			if (realNewWord.at(i)==QChar('\n')) {
 				lines.append(curLine);
-				placeHolders.append(QList<QPair<int,int> >());
+				placeHolders.append(QList<CodeSnippetPlaceHolder>());
 				curLine.clear();
 			} else if (realNewWord.at(i)==QChar('%')) escape=true;
 			else {
 				curLine+=realNewWord.at(i);
-				if (!inDescription) word.append(realNewWord.at(i));
+				word.append(realNewWord.at(i));
 			}
 		} else {
 			escape=false;
@@ -54,43 +98,59 @@ CodeSnippet::CodeSnippet(const QString &newWord) {
 				break;
 			case '|':
 				cursorLine=lines.count(); //first line is 0
-				if (inDescription && cursorOffset==-1) anchorOffset=formatStart;
-				else anchorOffset=cursorOffset;
+				anchorOffset=cursorOffset;
 				cursorOffset=curLine.length();
 				break;
 			case '<':
-				inDescription=true;
-				formatStart=curLine.length();
-				break;
-			case '>': 
-				inDescription=false;
-				foundDescription=true;
-				placeHolders.last().append(QPair<int, int>(formatStart, curLine.length()-formatStart));
+				i++;
+				parseSnippetPlaceHolder(realNewWord, i, curLine, tempPlaceholder);
+				hasPlaceHolder = true;
+				if (tempPlaceholder.flags & CodeSnippetPlaceHolder::AutoSelect) hasAutoSelectPlaceHolder = true;
+				if (tempPlaceholder.flags & CodeSnippetPlaceHolder::Mirror) hasMirrors = true;
+				placeHolders.last().append(tempPlaceholder);
+			//	foundDescription = true;
 				break;
 			case 'n':
 				lines.append(curLine);
-				placeHolders.append(QList<QPair<int,int> >());
+				placeHolders.append(QList<CodeSnippetPlaceHolder>());
 				curLine.clear();
 				//curLine+="\n";
 				break;	
 			default: // escape was not an escape character ...
 				curLine+='%';
 				curLine+=realNewWord.at(i);
-				if (!inDescription) {
-					word.append('%');
-					word.append(realNewWord.at(i));
-				}
+				word.append('%');
+				word.append(realNewWord.at(i));
 			}
 		}
 	lines.append(curLine);
-	if (cursorLine==-1 && foundDescription) 
+	if (cursorLine == -1 && hasPlaceHolder && !hasAutoSelectPlaceHolder) //use first placeholder at new selection if nothing else is set
+		for (int i=0;i<placeHolders.count();i++)
+			if (placeHolders[i].count()>0)
+				placeHolders[i].first().flags |= CodeSnippetPlaceHolder::AutoSelect;
+
+	/*if (cursorLine==-1 && foundDescription)
 		for (int i=0;i<placeHolders.count();i++)
 			if (placeHolders[i].count()>0) {
 				cursorLine=i;
-				anchorOffset =placeHolders[i][0].first;
-				cursorOffset =placeHolders[i][0].first+placeHolders[i][0].second;
+				anchorOffset =placeHolders[i][0].offset;
+				cursorOffset =placeHolders[i][0].offset+placeHolders[i][0].length;
 				break;
-			}
+			}*/
+	if (hasMirrors){
+		for (int l=0;l<placeHolders.count();l++)
+			for (int i=0;i<placeHolders[l].size();i++)
+				if (placeHolders[l][i].flags & CodeSnippetPlaceHolder::Mirror) {
+					for (int lm=0;lm<placeHolders.count();lm++)
+						for (int im=0;im<placeHolders[lm].size();im++)
+							if ((placeHolders[l][i].id == placeHolders[lm][im].id) &&
+							    !(placeHolders[lm][im].flags & CodeSnippetPlaceHolder::Mirrored)){
+								placeHolders[lm][im].flags |= CodeSnippetPlaceHolder::Mirrored;
+								goto secondLevelBreak;
+							}
+					secondLevelBreak:;
+				}
+	}
 	if (anchorOffset==-1) anchorOffset=cursorOffset;
 	sortWord=word.toLower();
 	sortWord.replace("{","!");//js: still using dirty hack, however order should be ' '{[* abcde...
@@ -98,6 +158,14 @@ CodeSnippet::CodeSnippet(const QString &newWord) {
 	sortWord.replace("[","\"");//(first is a space->) !"# follow directly in the ascii table
 	sortWord.replace("*","#");
 }
+
+bool CodeSnippet::operator< (const CodeSnippet &cw) const {
+	return cw.sortWord > sortWord;
+}
+bool CodeSnippet::operator== (const CodeSnippet &cw) const {
+	return cw.word == word;
+}
+
 
 void CodeSnippet::insert(QEditor* editor){
 	if (!editor) return;
@@ -107,16 +175,8 @@ void CodeSnippet::insert(QEditor* editor){
 void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePlaceholders, bool byCompleter) const{
 	if (lines.empty()||!editor||!cursor) return;
 	
-	QStringList mLines=lines;
+	QStringList curLines=lines;
 
-	if(m_cut){
-		Q_ASSERT(mLines.size()>1);
-		mLines.removeFirst();
-	}
-	int beginMagicLine=-1;//hack will made every placeholder in this line a mirror of the first placeholder and select this placeholder afterwards
-	if (mLines.value(0,"")=="\\begin{environment-name}") //useful in this case (TODO: mirrors in code snippet language) (when changed, update unit test!)
-		beginMagicLine=mLines.count()-1; 
-		
 	QString savedSelection;
 	bool alwaysSelect = false;
 	bool editBlockOpened = false;
@@ -135,7 +195,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 	QDocumentLine curLine=cursor->line();
 
 	//find filechooser escape %(   %)
-	QString line=mLines.join("\n");
+	QString line=lines.join("\n");
 	QRegExp rx("%\\((.+)%\\)");
 	int pos=rx.indexIn(line,0);
 	if(pos>-1){
@@ -156,7 +216,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 	}
 
 	// on multi line commands, replace environments only
-	if(autoReplaceCommands && mLines.size()>1 && line.contains("\\begin{")){
+	if(autoReplaceCommands && lines.size()>1 && line.contains("\\begin{")){
 		QString curLine=cursor->line().text();
 		int wordBreak=curLine.indexOf(QRegExp("\\W"),cursor->columnNumber());
 		int closeCurl=curLine.indexOf("}",cursor->columnNumber());
@@ -198,7 +258,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 				selector.movePosition(length-1,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
 				selector.replaceSelectedText(newEnv);
 				cursor->movePosition(closeCurl-cursor->columnNumber()+1,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
-				editor->insertText(*cursor,mLines.first());
+				editor->insertText(*cursor,lines.first());
 				if (editBlockOpened) cursor->endEditBlock();
 				return;
 			}
@@ -213,7 +273,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 	if (editBlockOpened) cursor->endEditBlock();
 
 	// on single line commands only: replace command
-	if(byCompleter && autoReplaceCommands && mLines.size()==1 && line.startsWith('\\')){
+	if(byCompleter && autoReplaceCommands && lines.size()==1 && line.startsWith('\\')){
 		if(cursor->nextChar().isLetterOrNumber()){
 			QString curLine=cursor->line().text();
 			int wordBreak=curLine.indexOf(QRegExp("\\W"),cursor->columnNumber());
@@ -250,37 +310,37 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 	}
 
 
-	int magicPlaceHolder=-1;
-	Q_ASSERT(placeHolders.size()==mLines.count());
+	Q_ASSERT(placeHolders.size()==lines.count());
 	if (usePlaceholders) {
 		//check if there actually are placeholders to insert
 		usePlaceholders=false;
-		for (int l=0;l< mLines.count();l++)
+		for (int l=0;l< lines.count();l++)
 			usePlaceholders|=placeHolders[l].size();
 	}
+	int autoSelectPlaceholder = -1;
 	if (usePlaceholders) {
 		if (editor->currentPlaceHolder()!=-1 && 
 			editor->getPlaceHolder(editor->currentPlaceHolder()).cursor.isWithinSelection(*cursor))
 			editor->removePlaceHolder(editor->currentPlaceHolder()); //remove currentplaceholder to prevent nesting
-		if (beginMagicLine!=-1)	
-			magicPlaceHolder=editor->placeHolderCount();
-		for (int l=0;l< mLines.count();l++){
+		for (int l=0;l< lines.count();l++){
 			//if (l<mLines.count()-1) cursor->insertLine();
 			for (int i=0; i<placeHolders[l].size(); i++) {
+				if (placeHolders[l][i].flags & CodeSnippetPlaceHolder::Mirror) continue;
 				QEditor::PlaceHolder ph;
-				ph.length=placeHolders[l][i].second;
-				ph.cursor=editor->document()->cursor(baseLine+l,placeHolders[l][i].first);
-				if (l==0) ph.cursor.movePosition(baseLineIndent,QDocumentCursor::NextCharacter);
-				else {
-					ph.cursor.movePosition(ph.cursor.line().length()-mLines[l].length(),QDocumentCursor::NextCharacter);
-					if (l+1==mLines.size())	
-						ph.cursor.movePosition(lastLineRemainingLength,QDocumentCursor::PreviousCharacter);
-				} 
-				if (l!=beginMagicLine) {
-					if (ph.cursor.isValid())
-						editor->addPlaceHolder(ph);
-				}	else 
-					editor->addPlaceHolderMirror(magicPlaceHolder,ph.cursor);
+				ph.length=placeHolders[l][i].length;
+				ph.cursor = getCursor(editor, placeHolders[l][i], l, baseLine, baseLineIndent, lastLineRemainingLength);
+				if (!ph.cursor.isValid()) continue;
+				editor->addPlaceHolder(ph);
+				if (placeHolders[l][i].flags & CodeSnippetPlaceHolder::Mirrored) {
+					int phId = editor->placeHolderCount()-1;
+					for (int lm=0; lm<placeHolders.size(); lm++)
+						for (int im=0; im < placeHolders[lm].size(); im++)
+							if (placeHolders[lm][im].flags & CodeSnippetPlaceHolder::Mirror &&
+							    placeHolders[lm][im].id == placeHolders[l][i].id)
+							editor->addPlaceHolderMirror(phId, getCursor(editor, placeHolders[lm][im], lm, baseLine, baseLineIndent, lastLineRemainingLength));
+				}
+				if ((placeHolders[l][i].flags & CodeSnippetPlaceHolder::AutoSelect) &&
+				    autoSelectPlaceholder == -1) autoSelectPlaceholder = editor->placeHolderCount()-1;
 			}
 		}
 	}
@@ -288,12 +348,12 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 	if (cursorOffset!=-1) {
 		int realAnchorOffset=anchorOffset; //will be moved to the right if text is already inserted on this line
 		if (cursorLine>0) {
-			if (cursorLine>=mLines.size()) return;
+			if (cursorLine>=lines.size()) return;
 			if (!selector.movePosition(cursorLine,QDocumentCursor::Down,QDocumentCursor::MoveAnchor))
 				return;
 			//if (editor->flag(QEditor::AutoIndent))
-			realAnchorOffset += selector.line().length()-mLines[cursorLine].length();
-			if (cursorLine + 1 == mLines.size())
+			realAnchorOffset += selector.line().length()-lines[cursorLine].length();
+			if (cursorLine + 1 == lines.size())
 				realAnchorOffset-=lastLineRemainingLength;
 		} else realAnchorOffset += baseLineIndent;
 		selector.setColumnNumber(realAnchorOffset);
@@ -304,16 +364,36 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 			ok=selector.movePosition(anchorOffset-cursorOffset,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
 		if (!ok) return;
 		editor->setCursor(selector);
-		if (!savedSelection.isEmpty()) {
-			QDocumentCursor oldCursor = editor->cursor();
-			editor->cursor().insertText(savedSelection,true);
-			if (!editor->cursor().hasSelection() && alwaysSelect) {
-				oldCursor.movePosition(savedSelection.length(), QDocumentCursor::Right, QDocumentCursor::KeepAnchor);
-				editor->setCursor(oldCursor);
-			}
+	} else if (autoSelectPlaceholder!=-1) editor->setPlaceHolder(autoSelectPlaceholder, true); //this moves the cursor to that placeholder
+	else {
+		editor->setCursor(*cursor); //place after insertion
+		return;
+	}
+	if (!savedSelection.isEmpty()) {
+		QDocumentCursor oldCursor = editor->cursor();
+		editor->cursor().insertText(savedSelection,true);
+		if (!editor->cursor().hasSelection() && alwaysSelect) {
+			oldCursor.movePosition(savedSelection.length(), QDocumentCursor::Right, QDocumentCursor::KeepAnchor);
+			editor->setCursor(oldCursor);
 		}
-	} else editor->setCursor(*cursor); //place after insertion
-	if (magicPlaceHolder!=-1)  //select magic placeholder if there (must be last line because there may be insertion
-		editor->setPlaceHolder(magicPlaceHolder); //at another cursor position necessary)
+		if (autoSelectPlaceholder!=-1) editor->setPlaceHolder(autoSelectPlaceholder, true); //this synchronizes the placeholder mirrors with the current placeholder text
+	}
 }
 
+void CodeSnippet::setName(const QString& name){
+	sortWord.prepend(name);
+}
+QString CodeSnippet::getName(){
+	return name;
+}
+
+QDocumentCursor CodeSnippet::getCursor(QEditor * editor, const CodeSnippetPlaceHolder &ph, int snippetLine, int baseLine, int baseLineIndent, int lastLineRemainingLength) const{
+	QDocumentCursor cursor=editor->document()->cursor(baseLine+snippetLine, ph.offset);
+	if (snippetLine==0) cursor.movePosition(baseLineIndent,QDocumentCursor::NextCharacter);
+	else {
+		cursor.movePosition(cursor.line().length()-lines[snippetLine].length(),QDocumentCursor::NextCharacter);
+		if (snippetLine+1==lines.size())
+			cursor.movePosition(lastLineRemainingLength,QDocumentCursor::PreviousCharacter);
+	}
+	return cursor;
+}

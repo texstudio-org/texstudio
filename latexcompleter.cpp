@@ -330,22 +330,27 @@ public:
 		}
 		QRect r=option.rect;
 		r.setLeft(r.left()+2);
+		bool drawPlaceholder = cw.placeHolders.empty();
 		QString firstLine=cw.lines[0];
-		if (cw.placeHolders.empty())
+		if (!cw.getName().isEmpty()) {
+			drawPlaceholder = false;
+			firstLine = cw.getName();
+		}
+		if (!drawPlaceholder)
 			painter->drawText(r,Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, firstLine);
 		else {
 			QFontMetrics fmn(fNormal);
 			QFontMetrics fmi(fItalic);
 			int p=0;
 			for (int i=0; i<cw.placeHolders[0].size(); i++) {
-				QString temp=firstLine.mid(p,cw.placeHolders[0][i].first-p);
+				QString temp=firstLine.mid(p,cw.placeHolders[0][i].offset-p);
 				painter->drawText(r,Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, temp);
 				r.setLeft(r.left()+fmn.width(temp));
-				temp=firstLine.mid(cw.placeHolders[0][i].first,cw.placeHolders[0][i].second);
+				temp=firstLine.mid(cw.placeHolders[0][i].offset,cw.placeHolders[0][i].length);
 				painter->setFont(fItalic);
 				painter->drawText(r,Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, temp);
 				r.setLeft(r.left()+fmi.width(temp)+1);
-				p=cw.placeHolders[0][i].first+cw.placeHolders[0][i].second;
+				p=cw.placeHolders[0][i].offset+cw.placeHolders[0][i].length;
 				painter->setFont(fNormal);
 				if (p>firstLine.length()) break;
 			}
@@ -451,7 +456,7 @@ void CompletionListModel::setBaseWords(const QList<CompletionWord> &newwords, bo
 }
 
 void CompletionListModel::setAbbrevWords(const QList<CompletionWord> &newwords) {
-        wordsAbbrev=newwords;
+	wordsAbbrev=newwords;
 }
 
 //------------------------------completer-----------------------------------
@@ -502,11 +507,11 @@ void LatexCompleter::setAdditionalWords(const QStringList &newwords, bool normal
 }
 
 void LatexCompleter::setAbbreviations(const QStringList &Abbrevs,const QStringList &Tags){
-    QList<CompletionWord> wordsAbbrev;
-    wordsAbbrev.clear();
-    for(int i=0;i<Abbrevs.size();i++){
-        QString abbr=Abbrevs.value(i,"");
-        if(!abbr.isEmpty()){
+	QList<CompletionWord> wordsAbbrev;
+	wordsAbbrev.clear();
+	for(int i=0;i<Abbrevs.size();i++){
+		QString abbr=Abbrevs.value(i,"");
+		if(!abbr.isEmpty()){
 			//CompletionWord cw(abbr);
 			// for compatibility to texmaker ...
 			QString s=Tags.value(i);
@@ -522,13 +527,11 @@ void LatexCompleter::setAbbreviations(const QStringList &Abbrevs,const QStringLi
 			cw.sortWord.replace("}","!");// needs to be replaced as well for sorting \bgein{abc*} after \bgein{abc}
 			cw.sortWord.replace("[","\"");//(first is a space->) !"# follow directly in the ascii table
 			cw.sortWord.replace("*","#");
-			cw.lines.prepend(abbr+tr(" (Usertag)"));
-			//cw.placeHolders.prepend(QList<QPair<int,int> >());
-            cw.setCut(true);
-            wordsAbbrev << cw;
-        }
-    }
-    listModel->setAbbrevWords(wordsAbbrev);
+			cw.setName(abbr+tr(" (Usertag)"));
+			wordsAbbrev << cw;
+		}
+	}
+	listModel->setAbbrevWords(wordsAbbrev);
 }
 
 void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool normalText, bool forceRef) {

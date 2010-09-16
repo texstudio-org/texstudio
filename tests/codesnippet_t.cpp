@@ -149,11 +149,11 @@ void CodeSnippetTest::insert_data(){
 		QTest::newRow(qPrintable(withIndent.arg("begin magic of environment mirror")))
 			<< "abcd\nefgh"
 			<< i*(int)QEditor::AutoIndent << (int)(QEditor::AutoIndent|QEditor::ReplaceTabs) << 0 << 2
-			<< "\\begin{%<environment-name%>}" 
+			<< "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>"
 			<< "ab\\begin{environment-name}\n"+content+"\n\\end{environment-name}cd\nefgh"
 			<< CP(0,9,25,
 			   QList<CP>() << CP(0,9,25, QList<CP>() << CP(2,5,21))
-			               << CP(1,i,content.length()));
+				       << CP(1,i,content.length()));
 	}
 
 	//placeholder indentation tests
@@ -477,7 +477,7 @@ void CodeSnippetTest::nestedInsert_data(){
 		QTest::newRow(qPrintable(withIndent.arg("begin magic with mirror changing another placeholder"))) 
 			<< "testi\nng"
 			<< 2*i-1 << 0 << 4
-			<< "\\begin{%<environment-name%>}" 
+			<< "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>"
 			<< 1
 			<< "testenv"
 			<< "test\\begin{environment-name}\n"+indent+"testenv\n\\end{environment-name}i\nng"
@@ -486,7 +486,7 @@ void CodeSnippetTest::nestedInsert_data(){
 		QTest::newRow(qPrintable(withIndent.arg("begin magic with mirror changing/inserting another placehoder"))) 
 			<< "testi\nng"
 			<< 2*i-1 << 0 << 4
-			<< "\\begin{%<environment-name%>}" 
+			<< "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>"
 			<< 1
 			<< "\\miau{%<testenv%>}"
 			<< "test\\begin{environment-name}\n"+indent+"\\miau{"+content+"}\n\\end{environment-name}i\nng"
@@ -496,9 +496,9 @@ void CodeSnippetTest::nestedInsert_data(){
 		QTest::newRow(qPrintable(withIndent.arg("begin magic with nested mirrors"))) 
 			<< "testi\nng"
 			<< 2*i-1 << 0 << 4
-			<< "\\begin{%<environment-name%>}" 
+			<< "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>"
 			<< 1
-			<< "\\begin{%<environment-name%>}" 
+			<< "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>"
 			<< "test\\begin{environment-name}\n"+
 			    indent+"\\begin{"+content+"}\n"+ //selected text (content) is pasted to new placeholder
 				indent+indent+content+"\n"+
@@ -506,7 +506,7 @@ void CodeSnippetTest::nestedInsert_data(){
 				"\\end{environment-name}i\nng"
 			<< CP(1,i+7,i+7+content.length(),
 			   QList<CP>() << CP(0,11,11+16, QList<CP>() << CP(4,5,5+16)) 
-			               << CP(1,i+7,i+7+content.length(), QList<CP>() << CP(3,i+5+content.length(),i+5)) //should be i+5,i+5+content.length())) 
+				       << CP(1,i+7,i+7+content.length(), QList<CP>() << CP(3,i+5,i+5+content.length()))
 			               << CP(2,2*i,2*i+content.length())); 
 		
 	}
