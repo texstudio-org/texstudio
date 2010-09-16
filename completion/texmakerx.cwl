@@ -10,7 +10,7 @@
 \author{names}
 \bar{a}
 \because
-\begin{%<environment-name%>}
+%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>
 \begin{abstract}
 \begin{array}{columns}
 \begin{array}[position]{columns}
