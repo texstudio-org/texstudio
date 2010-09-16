@@ -11,7 +11,7 @@ class Texmaker;
 struct CodeSnippetPlaceHolder{
 	int offset, length;
 	int id;
-	enum Flag{AutoSelect = 1, Mirrored = 2, Mirror = 4, PreferredMultiline = 8};
+	enum Flag{AutoSelect = 1, Mirrored = 2, Mirror = 4, PreferredMultilineAutoSelect = 8};
 	int flags;
 	int offsetEnd();
 };
