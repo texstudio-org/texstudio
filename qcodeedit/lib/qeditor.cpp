@@ -303,7 +303,7 @@ void QEditor::setDefaultFlags(int flags)
 	\note Creates builtin menus/actions
 */
 QEditor::QEditor(QWidget *p)
- : QAbstractScrollArea(p), cutLineNumber(-1),
+ : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
@@ -322,7 +322,7 @@ QEditor::QEditor(QWidget *p)
 	\param actions Whether builtin actions and menus should be created
 */
 QEditor::QEditor(bool actions, QWidget *p,QDocument *doc)
- : QAbstractScrollArea(p), cutLineNumber(-1),
+ : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
@@ -344,7 +344,7 @@ QEditor::QEditor(bool actions, QWidget *p,QDocument *doc)
 	\note Creates builtin menus/actions
 */
 QEditor::QEditor(const QString& s, QWidget *p)
- : QAbstractScrollArea(p), cutLineNumber(-1),
+ : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
@@ -367,7 +367,7 @@ QEditor::QEditor(const QString& s, QWidget *p)
 	\note Creates builtin menus/action
 */
 QEditor::QEditor(const QString& s, bool actions, QWidget *p)
- : QAbstractScrollArea(p), cutLineNumber(-1),
+ : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
@@ -2150,11 +2150,6 @@ void QEditor::emitCursorPositionChanged()
 {
 	emit cursorPositionChanged();
 	emit copyAvailable(m_cursor.hasSelection());
-
-	if(cutLineNumber>-1 && cursorHandle()->lineNumber()!=cutLineNumber) {
-		cutBuffer.clear();
-		cutLineNumber=-1;
-	}
 
 	if ( m_definition )
 		m_definition->match(m_cursor);
@@ -4336,7 +4331,6 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	bool autoOverridePlaceHolder = false;
 	if ( hasSelection ){
 		cutBuffer=c.selectedText();
-		cutLineNumber=c.lineNumber();
 		c.removeSelectedText();
 	} else if ( flag(Overwrite) && !c.atLineEnd() )
 		c.deleteChar();

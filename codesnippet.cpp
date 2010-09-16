@@ -42,8 +42,9 @@ void parseSnippetPlaceHolder(const QString& snippet, int& i, QString& curLine, C
 	foreach (const QString& s, options.split(",")) {
 		QString t = s.trimmed();
 		if (t == "mirror") ph.flags|=CodeSnippetPlaceHolder::Mirror;
-		else if (t == "multiline") ph.flags|=CodeSnippetPlaceHolder::PreferredMultiline;
+		else if (t == "multiline") ph.flags|=CodeSnippetPlaceHolder::PreferredMultilineAutoSelect;
 		else if (t.startsWith("id:")) ph.id = t.remove(0,3).toInt();
+		else if (t.startsWith("select")) ph.flags|=CodeSnippetPlaceHolder::AutoSelect;
 	}
 }
 
@@ -53,8 +54,8 @@ CodeSnippet::CodeSnippet(const QString &newWord) {
 	QString realNewWord=newWord;
 	// \begin magic
 	if (newWord == "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>"){
-		realNewWord = "\\begin{%<"+QObject::tr("environment-name")+"%:id:2%>}\n"
-			      "%<"+QObject::tr("content...")+"%:multiline%>\n"
+		realNewWord = "\\begin{%<"+QObject::tr("environment-name")+"%:select,id:2%>}\n"
+			      "%<"+QObject::tr("content...")+"%:select,multiline%>\n"
 			      "\\end{%<"+QObject::tr("environment-name")+"%:mirror,id:2%>}";
 	} else if (realNewWord.startsWith("\\begin{")&&
 		!realNewWord.contains("\n")&&!realNewWord.contains("%n") //only a single line
@@ -188,9 +189,9 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 	}else if(!editor->cutBuffer.isEmpty()){
 		savedSelection=editor->cutBuffer;
 		editor->cutBuffer.clear();
-		editor->cutLineNumber=-1;
 		alwaysSelect = true;
 	}
+	bool multiLineSavedSelection = savedSelection.contains("\n");
 	QDocumentCursor selector=*cursor;
 	QDocumentLine curLine=cursor->line();
 
@@ -340,7 +341,10 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 							editor->addPlaceHolderMirror(phId, getCursor(editor, placeHolders[lm][im], lm, baseLine, baseLineIndent, lastLineRemainingLength));
 				}
 				if ((placeHolders[l][i].flags & CodeSnippetPlaceHolder::AutoSelect) &&
-				    autoSelectPlaceholder == -1) autoSelectPlaceholder = editor->placeHolderCount()-1;
+				      ((autoSelectPlaceholder == -1) ||
+					(multiLineSavedSelection && (placeHolders[l][i].flags & CodeSnippetPlaceHolder::PreferredMultilineAutoSelect))))
+					autoSelectPlaceholder = editor->placeHolderCount()-1;
+
 			}
 		}
 	}
