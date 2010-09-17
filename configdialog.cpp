@@ -15,6 +15,7 @@
 
 #include "latexeditorview_config.h"
 
+#include "smallUsefulFunctions.h"
 const QString ShortcutDelegate::addRowButton="<internal: add row>";
 const QString ShortcutDelegate::deleteRowButton="<internal: delete row>";
 
@@ -102,6 +103,7 @@ void ShortcutDelegate::setEditorData(QWidget *editor,
 }
 void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
                                     const QModelIndex &index) const {
+	REQUIRE(model);
 	QComboBox *box = qobject_cast<QComboBox*>(editor);
 	//basic editor key
 	if (box && isBasicEditorKey(index) && index.column() == 0){
@@ -143,14 +145,18 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 		        }*/
 		if (treeWidget) {
 			QList<QTreeWidgetItem *> li=treeWidget->findItems(value, Qt::MatchRecursive |Qt::MatchFixedString, 2);
-			if (!li.empty() && li[0]->text(0) == model->data(model->index(index.row(),0,index.parent()))) li.removeFirst();
+			if (!li.empty() && li[0] && li[0]->text(0) == model->data(model->index(index.row(),0,index.parent()))) li.removeFirst();
 			QList<QTreeWidgetItem *> li2=treeWidget->findItems(value, Qt::MatchRecursive |Qt::MatchFixedString, 3);
-			if (!li2.empty() && li2[0]->text(0) == model->data(model->index(index.row(),0,index.parent()))) li2.removeFirst();
+			if (!li2.empty() && li2[0] && li2[0]->text(0) == model->data(model->index(index.row(),0,index.parent()))) li2.removeFirst();
 			li << li2;
+			REQUIRE(treeWidget->topLevelItem(1));
+			Q_ASSERT(treeWidget->topLevelItem(1)->childCount()>=2)
 			QTreeWidgetItem* editorKeys = treeWidget->topLevelItem(1)->child(0);
+			REQUIRE(editorKeys);
 			QTreeWidgetItem* editorKeysReplacements = treeWidget->topLevelItem(1)->child(1);
-			if (!li.empty() && (li.first()->parent() != editorKeys || isBasicEditorKey(index)) && (li.first()->parent() != editorKeysReplacements)) {
-				QString duplicate=li[0]->text(0);//model->data(model->index(mil[0].row(),0,mil[0].parent()),Qt::DisplayRole).toString();
+			REQUIRE(editorKeysReplacements);
+			if (!li.empty() && li.first() && (li.first()->parent() != editorKeys || isBasicEditorKey(index)) && (li.first()->parent() != editorKeysReplacements)) {
+				QString duplicate=li.first()->text(0);//model->data(model->index(mil[0].row(),0,mil[0].parent()),Qt::DisplayRole).toString();
 				switch (QMessageBox::warning(editor, ConfigDialog::tr("TexMakerX"),
 				                             ConfigDialog::tr("The shortcut you entered is the same as the one of this command:") +"\n"+duplicate+"\n"+ConfigDialog::tr("Should I delete this other shortcut?"),
 				                             QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes)) {
@@ -191,7 +197,8 @@ void ShortcutDelegate::drawDisplay(QPainter * painter, const QStyleOptionViewIte
 }
 
 void ShortcutDelegate::treeWidgetItemClicked(QTreeWidgetItem * item, int column) {
-	if (column!=0) return;
+	Q_ASSERT(item);
+	if (column!=0 || !item) return;
 	/*QStyle *style = QApplication::style ();
 	QPainter p(item->treeWidget ());
 	QStyleOptionButton sob;
@@ -210,12 +217,17 @@ void ShortcutDelegate::treeWidgetItemClicked(QTreeWidgetItem * item, int column)
 		                              ConfigDialog::tr("Do you really want to delete this row?"),
 		                              QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes)) {
 		case QMessageBox::Yes:
+			Q_ASSERT(item->parent());
+			if (!item->parent()) return;
 			item->parent()->removeChild(item);
 			break;
 		default:
 			;
 		}
 	} else if (item->text(0)==addRowButton) {
+		REQUIRE(item->parent());
+		REQUIRE(item->treeWidget());
+		REQUIRE(item->treeWidget()->topLevelItem(1));
 		QString newText = item->parent() == item->treeWidget()->topLevelItem(1)->child(1) ? deleteRowButton : "";
 		QTreeWidgetItem *twi = new QTreeWidgetItem((QTreeWidgetItem*)0,QStringList() << newText);
 		twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
