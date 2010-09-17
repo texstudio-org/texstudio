@@ -669,27 +669,27 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 		i=value.indexOf("}");
 		value=value.left(i);
 		if(containedLabels){
-		    QList<QDocumentLineHandle*> lst=containedLabels->values(value);
-		    topic="";
-		    if(lst.isEmpty()){
-			topic=tr("label missing!");
-		    } else if(lst.count()>1) {
-			topic=tr("label multiple times defined!");
-		    } else {
-			QDocumentLineHandle *mLine=lst.first();
-			int l=mLine->line();
-			if(mLine->document()!=editor->document()){
-			    //LatexDocument *doc=document->parent->findDocument(mLine->document());
-			    LatexDocument *doc=qobject_cast<LatexDocument *>(mLine->document());
-			    Q_ASSERT_X(doc,"missing latexdoc","qdoc is not latex document !");
-			    if(doc) topic=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
+			QList<QDocumentLineHandle*> lst=containedLabels->values(value);
+			topic="";
+			if(lst.isEmpty()){
+				topic=tr("label missing!");
+			} else if(lst.count()>1) {
+				topic=tr("label multiple times defined!");
+			} else {
+				QDocumentLineHandle *mLine=lst.first();
+				int l=mLine->line();
+				if(mLine->document()!=editor->document()){
+					//LatexDocument *doc=document->parent->findDocument(mLine->document());
+					LatexDocument *doc=qobject_cast<LatexDocument *>(mLine->document());
+					Q_ASSERT_X(doc,"missing latexdoc","qdoc is not latex document !");
+					if(doc) topic=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
+				}
+				for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
+					topic+=mLine->document()->line(i).text().left(80);
+					if(mLine->document()->line(i).text().length()>80) topic+="...";
+					if(i<l+2) topic+="\n";
+				}
 			}
-			for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
-			    topic+=mLine->document()->line(i).text().left(80);
-			    if(mLine->document()->line(i).text().length()>80) topic+="...";
-			    if(i<l+2) topic+="\n";
-			}
-		    }
 		}
 	}else{
 		QString aim="<a name=\""+id;
@@ -712,6 +712,7 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 			topic=topic.left(nextpos);
 		}
 	}
+	topic.replace("\t","    "); //if there are tabs at the position in the string, qt crashes. (13707)
 	QRect r = list->visualRect(index);
 	QDocumentCursor c=editor->cursor();
 	QRect screen = QApplication::desktop()->availableGeometry();
