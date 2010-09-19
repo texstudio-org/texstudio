@@ -947,14 +947,14 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 		case Qt::DisplayRole:
 		if (entry->type==StructureEntry::SE_DOCUMENT_ROOT){ //show only base file name
 				QString title=entry->title.mid(1+qMax(entry->title.lastIndexOf("/"), entry->title.lastIndexOf(QDir::separator())));
-				if(title.isEmpty()) title="untitled";
+				if(title.isEmpty()) title=tr("untitled");
 				return QVariant(title);
 			}
 			//fall through to show full title in other cases
 		case Qt::ToolTipRole:
 			//qDebug("data %x",entry);
 			if (entry->lineNumber>-1)
-				return QVariant(entry->title+QString(" (%1 %2)").arg(tr("Line")).arg(entry->getRealLineNumber()+1));
+				return QVariant(entry->title+QString(tr(" (Line %1)").arg(entry->getRealLineNumber()+1)));
 			else
 				return QVariant(entry->title);
 		case Qt::DecorationRole:
