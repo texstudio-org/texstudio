@@ -478,7 +478,7 @@ void ConfigDialog::toolbarChanged(int toolbar){
 	foreach (const QString& actName, customizableToolbars[toolbar]){
 		QAction* act=menuParent->findChild<QAction*>(actName);
 		QListWidgetItem *item;
-		if (act) item=new QListWidgetItem(act->icon(),act->text());
+		if (act) item=new QListWidgetItem(act->icon(),act->text().replace("&",""));
 		else item=new QListWidgetItem(actName);
 		item->setData(Qt::UserRole,actName);
 		ui.listCustomToolBar->addItem(item);
@@ -512,7 +512,7 @@ void ConfigDialog::toToolbarClicked(){
 	QString actName=twi->data(0,Qt::UserRole).toString();
 	QAction* act=menuParent->findChild<QAction*>(actName);
 	QListWidgetItem *item;
-	if (act) item=new QListWidgetItem(twi->icon(0),act->text());
+	if (act) item=new QListWidgetItem(twi->icon(0),act->text().replace("&",""));
 	else item=new QListWidgetItem(twi->icon(0),actName);
 	item->setData(Qt::UserRole,actName);
 	ui.listCustomToolBar->addItem(item);
@@ -566,7 +566,7 @@ void ConfigDialog::populatePossibleActions(QTreeWidgetItem* parent, const QMenu*
 		if (acts[i]->menu()) populatePossibleActions(parent, acts[i]->menu(),keepHierarchy);
 		else {
 			//if(acts[i]->data().isValid()){
-			QTreeWidgetItem* twi = new QTreeWidgetItem(parent,QStringList() << acts[i]->text());
+			QTreeWidgetItem* twi = new QTreeWidgetItem(parent,QStringList() << acts[i]->text().replace("&",""));
 			if (!acts[i]->isSeparator()){
 				if(!acts[i]->icon().isNull()) twi->setIcon(0,acts[i]->icon());
 				else twi->setIcon(0,QIcon(":/images/appicon.png"));
