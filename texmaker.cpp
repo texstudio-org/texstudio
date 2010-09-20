@@ -329,8 +329,6 @@ void Texmaker::setupMenus() {
 	//But not a bad one, because no one is expected to change the language multiple times
 	//TODO: correct somewhen
 
-	QCoreApplication::setAttribute(Qt::AA_DontShowIconsInMenus,!configManager.showIconsInMenus);
-
 	configManager.menuParent=this;
 	configManager.menuParentsBar=menuBar();
 

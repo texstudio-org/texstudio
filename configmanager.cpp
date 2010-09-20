@@ -296,8 +296,6 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("LogView/Tabbed", &tabbedLogView, true, &pseudoDialog->checkBoxTabbedLogView);
 	registerOption("Interface/New Left Panel Layout", &newLeftPanelLayout, true);
 
-	registerOption("GUI/Show Icons In Menus", &showIconsInMenus, true);
-
 	//language
 	registerOption("Interface/Language", &language, "", &pseudoDialog->comboBoxLanguage);
 
