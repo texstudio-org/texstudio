@@ -1817,11 +1817,19 @@ Are you sure you want to undo all changes?</source>
     <name>LatexDocumentsModel</name>
     <message>
         <source>Line</source>
-        <translation>Рядок</translation>
+        <translation type="obsolete">Рядок</translation>
     </message>
     <message>
         <source>Zeile</source>
         <translation type="obsolete">Рядок</translation>
+    </message>
+    <message>
+        <source>untitled</source>
+        <translation type="unfinished">без назви</translation>
+    </message>
+    <message>
+        <source> (Line %1)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2675,6 +2683,10 @@ Do you want them to be saved?</source>
         <source>Font family</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>structure</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QLanguageFactory</name>
@@ -2705,6 +2717,10 @@ Do you want them to be saved?</source>
         <source>content...</source>
         <translation>вміст...</translation>
     </message>
+    <message>
+        <source>environment-name</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QSearchReplacePanel</name>
@@ -2718,6 +2734,43 @@ Do you want them to be saved?</source>
     </message>
     <message>
         <source>The search text occurs %1 times within the search scope.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enables case sensitive search.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only searches for whole words.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This interprets the search text as a regular expression.
+Some common regexps:
+ r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,
+ () groups expressions together, [xyz] will find x,y, or z, . matches everything, \. matches .
+You can use \1 to \9 in the replace text to insert a submatch.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Highlights search matches and replaced text.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starts the search from the current cursor position.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only searches in the selected text.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ask before any match is replaced.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enables the use of escape characters. These are:
+ \n = new line, \r = carriage return, \t = tab, \\ = \, \0 = ascii 0 </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3783,7 +3836,7 @@ Do you want them to be saved?</source>
     </message>
     <message>
         <source>The document contains unsaved work. Do you want to save it before exiting?</source>
-        <translation>Документ був змінений. Чи потрібно зберегти його перед виходом?</translation>
+        <translation type="obsolete">Документ був змінений. Чи потрібно зберегти його перед виходом?</translation>
     </message>
     <message>
         <source>line</source>
@@ -4318,7 +4371,7 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <source>You must save the file before switching to master mode.</source>
-        <translation>Щоб перейти у головний режим, потрібно зберегти файл.</translation>
+        <translation type="obsolete">Щоб перейти у головний режим, потрібно зберегти файл.</translation>
     </message>
     <message>
         <source>Insert</source>
@@ -4744,6 +4797,26 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <source>Table</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Unicode Character...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>add \hline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove \hline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save all current settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have to save the file before switching to master mode!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

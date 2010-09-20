@@ -1813,7 +1813,15 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <name>LatexDocumentsModel</name>
     <message>
         <source>Line</source>
-        <translation>Zeile</translation>
+        <translation type="obsolete">Zeile</translation>
+    </message>
+    <message>
+        <source>untitled</source>
+        <translation>unbenannt</translation>
+    </message>
+    <message>
+        <source> (Line %1)</source>
+        <translation>(Zeile %1)</translation>
     </message>
 </context>
 <context>
@@ -2682,6 +2690,10 @@ Wollen Sie es speichern?</translation>
         <source>&lt;default&gt;</source>
         <translation>&lt;Vorgabe&gt;</translation>
     </message>
+    <message>
+        <source>structure</source>
+        <translation>Strukturbefehl</translation>
+    </message>
 </context>
 <context>
     <name>QLanguageFactory</name>
@@ -2712,6 +2724,10 @@ Wollen Sie es speichern?</translation>
         <source>content...</source>
         <translation>Inhalt...</translation>
     </message>
+    <message>
+        <source>environment-name</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QSearchReplacePanel</name>
@@ -2726,6 +2742,48 @@ Wollen Sie es speichern?</translation>
     <message>
         <source>The search text occurs %1 times within the search scope.</source>
         <translation>Der Suchtext kommt %1 Mal innerhalb des Suchbereichs vor.</translation>
+    </message>
+    <message>
+        <source>Enables case sensitive search.</source>
+        <translation>Berücksichtigt die Groß- und Kleinschreibung.</translation>
+    </message>
+    <message>
+        <source>Only searches for whole words.</source>
+        <translation>Sucht nur nach ganzen Wörtern.</translation>
+    </message>
+    <message>
+        <source>This interprets the search text as a regular expression.
+Some common regexps:
+ r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,
+ () groups expressions together, [xyz] will find x,y, or z, . matches everything, \. matches .
+You can use \1 to \9 in the replace text to insert a submatch.</source>
+        <translation>Dies aktiviert die Suche nach regulären Ausdrücken.
+Einige wichtige reguläre Ausdrücke:
+ r* akzeptiert beliebige Wiederholungen von r, r+ bedeutet rr+, r? akzeptiert ein einmaliges oder keinmaliges Vorkommen von r,
+ () gruppiert Ausdrücke, [xyz] akzeptiert x, y, oder z. . akzeptiert alles, \. akzeptiert .
+Im Ersetzungstext werden \1 bis \9 durch die Fundstelle der entsprechenden Gruppe ersetzt.</translation>
+    </message>
+    <message>
+        <source>Highlights search matches and replaced text.</source>
+        <translation>Markiert alle Fundstellen und Ersetzungen.</translation>
+    </message>
+    <message>
+        <source>Starts the search from the current cursor position.</source>
+        <translation>Beginnt die Suche von der aktuellen Cursorposition.</translation>
+    </message>
+    <message>
+        <source>Only searches in the selected text.</source>
+        <translation>Sucht nur im markierten Bereich.</translation>
+    </message>
+    <message>
+        <source>Ask before any match is replaced.</source>
+        <translation>Fragt vor jeder Ersetzung</translation>
+    </message>
+    <message>
+        <source>Enables the use of escape characters. These are:
+ \n = new line, \r = carriage return, \t = tab, \\ = \, \0 = ascii 0 </source>
+        <translation>Erlaubt die Benutzung von Escapezeichen im Ersetzungstext. Diese sind:
+ \n = neue Zeile, \r = Zeilenvorsprung, \t = Tabulator, \\ = \ und \0 = ascii 0</translation>
     </message>
 </context>
 <context>
@@ -3790,7 +3848,7 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <source>The document contains unsaved work. Do you want to save it before exiting?</source>
-        <translation>Das Dokument ist verändert worden. Wollen Sie es vor dem Beenden speichern?</translation>
+        <translation type="obsolete">Das Dokument ist verändert worden. Wollen Sie es vor dem Beenden speichern?</translation>
     </message>
     <message>
         <source>line</source>
@@ -4550,7 +4608,7 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es compilern könn
     </message>
     <message>
         <source>You must save the file before switching to master mode.</source>
-        <translation>Die Datei muss gespeichert werden bevor zum Master Mode gewechselt werden kann</translation>
+        <translation type="obsolete">Die Datei muss gespeichert werden bevor zum Master Mode gewechselt werden kann</translation>
     </message>
     <message>
         <source>Insert</source>
@@ -4644,6 +4702,26 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es compilern könn
     <message>
         <source>Table</source>
         <translation>Tabellen</translation>
+    </message>
+    <message>
+        <source>Insert Unicode Character...</source>
+        <translation>Unicodezeichen einfügen...</translation>
+    </message>
+    <message>
+        <source>add \hline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove \hline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save all current settings</source>
+        <translation>Speichere aktuelle Konfiguration</translation>
+    </message>
+    <message>
+        <source>You have to save the file before switching to master mode!</source>
+        <translation>Die Datei muss gespeichert sein, bevor sie als Masterdokument verwendet werden kann.</translation>
     </message>
 </context>
 <context>
