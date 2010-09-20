@@ -137,7 +137,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>7</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -151,8 +151,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>756</width>
-            <height>563</height>
+            <width>796</width>
+            <height>597</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -411,7 +411,7 @@
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="texmaker.qrc">
+                 <iconset>
                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
                 </property>
                </widget>
@@ -461,38 +461,8 @@
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="texmaker.qrc">
+                 <iconset>
                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1">
-               <widget class="QCheckBox" name="checkBoxInlineSpellCheck">
-                <property name="text">
-                 <string>Inline spell checking</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="2">
-               <widget class="QCheckBox" name="checkBoxInlineCitationCheck">
-                <property name="text">
-                 <string>Inline citation checking</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="3">
-               <widget class="QCheckBox" name="checkBoxInlineReferenceCheck">
-                <property name="text">
-                 <string>Inline reference checking</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -513,6 +483,43 @@
                 </property>
                 <property name="dirFilter" stdset="0">
                  <string>*.dat</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QCheckBox" name="checkBoxInlineSpellCheck">
+                <property name="text">
+                 <string>Inline spell checking</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QCheckBox" name="checkBoxInlineCitationCheck">
+                <property name="text">
+                 <string>Inline citation checking</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="2">
+               <widget class="QCheckBox" name="checkBoxInlineReferenceCheck">
+                <property name="text">
+                 <string>Inline reference checking</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="3" colspan="2">
+               <widget class="QCheckBox" name="checkBoxInlineSyntaxCheck">
+                <property name="text">
+                 <string>Inline syntax checking</string>
                 </property>
                </widget>
               </item>
@@ -771,7 +778,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="texmaker.qrc">
+             <iconset>
               <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
             </property>
             <property name="iconSize">
@@ -1620,9 +1627,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
   <tabstop>pushButtonAspell</tabstop>
   <tabstop>checkBoxRealTimeCheck</tabstop>
   <tabstop>btSelectThesaurusFileName</tabstop>
-  <tabstop>checkBoxInlineSpellCheck</tabstop>
-  <tabstop>checkBoxInlineCitationCheck</tabstop>
-  <tabstop>checkBoxInlineReferenceCheck</tabstop>
   <tabstop>lineEditExecuteBeforeCompiling</tabstop>
   <tabstop>pushButtonExecuteBeforeCompiling</tabstop>
   <tabstop>checkBoxShowLog</tabstop>
@@ -1647,9 +1651,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
   <tabstop>cancelButton</tabstop>
   <tabstop>checkBoxShowAdvancedOptions</tabstop>
  </tabstops>
- <resources>
-  <include location="texmaker.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>okButton</sender>

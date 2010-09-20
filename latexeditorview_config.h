@@ -15,7 +15,7 @@ public:
 	int tabStop;
 	int showlinemultiples;
 	bool folding, showlinestate, showcursorstate, realtimeChecking;	
-	bool inlineSpellChecking, inlineCitationChecking, inlineReferenceChecking;
+        bool inlineSpellChecking, inlineCitationChecking, inlineReferenceChecking, inlineSyntaxChecking;
 	QString fontFamily;
 	int lineWidth;
 	int fontSize;
