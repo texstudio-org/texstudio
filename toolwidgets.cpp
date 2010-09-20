@@ -465,6 +465,16 @@ void CustomWidgetList::setWidgetText(QWidget* widget, const QString& text){
 	if (newStyle) actions()[pos]->setToolTip(text);
 	else toolbox->setItemText(pos,text);
 }
+void CustomWidgetList::setWidgetIcon(const QString& id, const QString& icon){
+	setWidgetIcon(widget(id), icon);
+}
+
+void CustomWidgetList::setWidgetIcon(QWidget* widget, const QString& icon){
+	int pos=widgets.indexOf(widget);
+	if (pos<0) return;
+	widget->setProperty("iconName",icon);
+}
+
 void CustomWidgetList::showPageFromAction(){
 	QAction* act=qobject_cast<QAction*>(sender());
 	if (!act) return;

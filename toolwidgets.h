@@ -110,6 +110,8 @@ public:
 	void addWidget(QWidget* widget, const QString& id, const QString& text, const QString& iconName);
 	void setWidgetText(const QString& id, const QString& text);
 	void setWidgetText(QWidget* widget, const QString& text);
+	void setWidgetIcon(const QString& id, const QString& icon);
+	void setWidgetIcon(QWidget* widget, const QString& icon);
 	int widgetCount() const;
 	void setHiddenWidgets(const QString& hidden); 
 	QString hiddenWidgets() const; 

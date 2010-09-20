@@ -372,6 +372,7 @@ private slots:
 	void addHLineCB();
 	void remHLineCB();
 
+
 protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
