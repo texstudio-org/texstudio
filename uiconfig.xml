@@ -30,9 +30,9 @@
 
   <menu id="environment" text="&amp;Environments">
     <insert id="common" text="\begin{&lt;environment>} [selection]" insert="\begin{%&lt;environment-name%>}%n%|%n\end{%&lt;environment-name%>}" shortcut="Ctrl+E"/>
-    <insert id="center" text="\begin{center} [selection]" insert="\begin{center}%n%|%n\end{center}" icon="text_center.png"/>
-    <insert id="flushleft" text="\begin{flushleft} [selection]" insert="\begin{flushleft}%n%|%n\end{flushleft}" icon="text_left.png"/>
-    <insert id="flushright" text="\begin{flushright}  [selection]" insert="\begin{flushright}%n%|%n\end{flushright}" icon="text_right.png"/>
+    <insert id="center" text="\begin{center} [selection]" insert="\begin{center}%n%|%n\end{center}" icon="format-justify-center"/>
+    <insert id="flushleft" text="\begin{flushleft} [selection]" insert="\begin{flushleft}%n%|%n\end{flushleft}" icon="format-justify-left"/>
+    <insert id="flushright" text="\begin{flushright}  [selection]" insert="\begin{flushright}%n%|%n\end{flushright}" icon="format-justify-right"/>
     <insert id="quote" text="\begin{quote}  [selection]" insert="\begin{quote}%n%|%n\end{quote}"/>
     <insert id="quotation" text="\begin{quotation}  [selection]" insert="\begin{quotation}%n%|%n\end{quotation}"/>
     <insert id="verse" text="\begin{verse}  [selection]" insert="\begin{verse}%n%|%n\end{verse}"/>
@@ -53,13 +53,13 @@
 
   <menu id="fontstyles" text="Font St&amp;yles">
     <insert id="emph" text="\emph - Emphasis  [selection]" insert="\emph{%|}" shortcut="Ctrl+Shift+E"/>
-    <insert id="textit" text="\textit - Italics  [selection]" insert="\textit{%|}" icon="text_italic.png" shortcut="Ctrl+I"/>
+    <insert id="textit" text="\textit - Italics  [selection]" insert="\textit{%|}" icon="text_italic" shortcut="Ctrl+I"/>
     <insert id="textsl" text="\textsl - Slanted  [selection]" insert="\textsl{%|}" shortcut="Ctrl+Shift+S"/>
-    <insert id="textbf" text="\textbf - Boldface  [selection]" insert="\textbf{%|}" icon="text_bold.png" shortcut="Ctrl+B"/>
+    <insert id="textbf" text="\textbf - Boldface  [selection]" insert="\textbf{%|}" icon="text_bold" shortcut="Ctrl+B"/>
     <insert id="texttt" text="\texttt - Typewriter  [selection]" insert="\texttt{%|}" shortcut="Ctrl+Shift+T"/>
     <insert id="textsc" text="\textsc - Small caps  [selection]" insert="\textsc{%|}" shortcut="Ctrl+Shift+C"/>
     <insert id="textsf" text="\textsf - Sans Serif  [selection]" insert="\textsf{%|}" shortcut="Ctrl+Shift+A"/>
-    <insert id="underline" text="\underline - Underline [selection]" insert="\underline{%|}" icon="text_under.png"/>
+    <insert id="underline" text="\underline - Underline [selection]" insert="\underline{%|}" icon="text_under"/>
   </menu>
 
   <menu id="fontsizes" text="Font Sizes">

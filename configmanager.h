@@ -77,6 +77,7 @@ public:
 	bool tabbedLogView;
 	bool newLeftPanelLayout;
 	bool configShowAdvancedOptions;
+	bool useSystemTheme;
 	
 	//language
 	QString language, lastLanguage;
@@ -139,6 +140,7 @@ public:
 	QList<QPair<QString,QString> > managedMenuNewShortcuts;
 		
 	QString getRealIconFile(const QString& icon);
+	QIcon getRealIcon(const QString& icon);
 	QMenu* newManagedMenu(const QString &id,const QString &text);
 	QMenu* newManagedMenu(QMenu* menu, const QString &id,const QString &text);
 	QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts = QList<QKeySequence>(), const QString & iconFile="");

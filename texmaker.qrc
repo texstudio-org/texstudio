@@ -149,17 +149,17 @@
         <file>images/subsection.png</file>
         <file>images/subsubsection.png</file>
         <file>images/classic/text_bold.png</file>
-        <file>images/classic/text_center.png</file>
         <file>images/classic/text_italic.png</file>
-        <file>images/classic/text_left.png</file>
-        <file>images/classic/text_right.png</file>
         <file>images/classic/text_under.png</file>
+        <file>images/classic/format-justify-center.png</file>
+        <file>images/classic/format-justify-left.png</file>
+        <file>images/classic/format-justify-right.png</file>
         <file>images/modern/text_bold.png</file>
-        <file>images/modern/text_center.png</file>
         <file>images/modern/text_italic.png</file>
-        <file>images/modern/text_left.png</file>
-        <file>images/modern/text_right.png</file>
         <file>images/modern/text_under.png</file>
+        <file>images/modern/format-justify-center.png</file>
+        <file>images/modern/format-justify-left.png</file>
+        <file>images/modern/format-justify-right.png</file>
         <file>images/tilde.png</file>
         <file>images/tikz.png</file>
         <file>images/vec.png</file>

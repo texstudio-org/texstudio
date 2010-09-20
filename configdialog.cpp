@@ -329,11 +329,15 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	connect(ui.comboBoxActions,SIGNAL(currentIndexChanged(int)), SLOT(actionsChanged(int)));
 	connect(ui.treePossibleToolbarActions,SIGNAL(doubleClicked(QModelIndex)), SLOT(toToolbarClicked()));
 
-  #if QT_VERSION >= 0x040400
-  ui.treePossibleToolbarActions->setHeaderHidden(true);
-  #endif
+	#if QT_VERSION >= 0x040400
+	ui.treePossibleToolbarActions->setHeaderHidden(true);
+	#endif
 //	ui.listCustomToolBar->setSelectionMode(QAbstractItemView::ExtendedSelection);
 //	ui.treePossibleToolbarActions->setSelectionMode(QAbstractItemView::ExtendedSelection);
+
+	#if (QT_VERSION < 0x040600) || (!defined(Q_WS_X11))
+	ui.checkBoxUseSystemTheme->setVisible(false);
+	#endif
 }
 
 ConfigDialog::~ConfigDialog() {

@@ -289,6 +289,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	interfaceStyle="";
 #endif
 	registerOption("GUI/Texmaker Palette", &useTexmakerPalette, useTexmakerPalette, &pseudoDialog->checkBoxUseTexmakerPalette);
+	registerOption("GUI/Use System Theme", &useSystemTheme, true, &pseudoDialog->checkBoxUseSystemTheme);
 	registerOption("X11/Font Family", &interfaceFontFamily, interfaceFontFamily, &pseudoDialog->comboBoxInterfaceFont); //named X11 for backward compatibility
 	registerOption("X11/Font Size", &interfaceFontSize, QApplication::font().pointSize(), &pseudoDialog->spinBoxInterfaceFontSize);
 	registerOption("X11/Style", &interfaceStyle, interfaceStyle, &pseudoDialog->comboBoxInterfaceStyle);
@@ -1065,6 +1066,15 @@ QString ConfigManager::getRealIconFile(const QString& icon){
 	return icon;
 }
 
+QIcon ConfigManager::getRealIcon(const QString& icon){
+	if (icon.isEmpty()) return QIcon();
+	if (icon.startsWith(":/")) return QIcon(icon);
+#if QT_VERSION >= 0x040600
+	if (useSystemTheme && QIcon::hasThemeIcon(icon)) return QIcon::fromTheme(icon);
+#endif
+	return QIcon(getRealIconFile(icon.contains(".")?icon:(icon+".png")));
+}
+
 QMenu* ConfigManager::newManagedMenu(const QString &id,const QString &text) {
 	if (!menuParentsBar) qFatal("No menu parent bar!");
 	if (!menuParent) qFatal("No menu parent!");
@@ -1103,13 +1113,13 @@ QAction* ConfigManager::newManagedAction(QWidget* menu, const QString &id,const 
 	QAction *old=menuParent->findChild<QAction*>(completeId);
 	if (old) {
 		old->setText(text);
-		old->setIcon(QIcon(getRealIconFile(iconFile)));
+		old->setIcon(getRealIcon(iconFile));
 		return old;
 	}
 
 	QAction *act;
 	if (iconFile.isEmpty()) act=new QAction(text, menuParent);
-	else act=new QAction(QIcon(getRealIconFile(iconFile)), text, menuParent);
+	else act=new QAction(getRealIcon(iconFile), text, menuParent);
 
 	act->setObjectName(completeId);
 	act->setShortcuts(shortCuts);
