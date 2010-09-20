@@ -78,64 +78,90 @@
         <file>images/check.png</file>
         <file>images/configure.png</file>
         <file>images/ddot.png</file>
-        <file>images/dfrac.png</file>
+        <file>images/modern/dfrac.png</file>
+        <file>images/classic/dfrac.png</file>
         <file>images/doc.png</file>
         <file>images/dot.png</file>
         <file>images/dvipdf.png</file>
         <file>images/dvips.png</file>
-        <file>images/editcopy.png</file>
-        <file>images/editcut.png</file>
-        <file>images/editpaste.png</file>
+        <file>images/classic/editcopy.png</file>
+        <file>images/classic/editcut.png</file>
+        <file>images/classic/editpaste.png</file>
+        <file>images/classic/redo.png</file>
+        <file>images/classic/undo.png</file>
+        <file>images/modern/editcopy.png</file>
+        <file>images/modern/editcut.png</file>
+        <file>images/modern/editpaste.png</file>
+        <file>images/modern/redo.png</file>
+        <file>images/modern/undo.png</file>
         <file>images/empty.png</file>
         <file>images/enumerate.png</file>
         <file>images/errornext.png</file>
         <file>images/errorprev.png</file>
         <file>images/exit.png</file>
         <file>images/fileclose.png</file>
-        <file>images/filenew.png</file>
-        <file>images/fileopen.png</file>
-        <file>images/filesave.png</file>
+        <file>images/classic/filenew.png</file>
+        <file>images/classic/fileopen.png</file>
+        <file>images/classic/filesave.png</file>
+        <file>images/modern/filenew.png</file>
+        <file>images/modern/fileopen.png</file>
+        <file>images/modern/filesave.png</file>
         <file>images/goto.png</file>
         <file>images/grave.png</file>
         <file>images/hat.png</file>
         <file>images/help.png</file>
         <file>images/include.png</file>
-        <file>images/indice.png</file>
+        <file>images/classic/indice.png</file>
+        <file>images/modern/indice.png</file>
         <file>images/item.png</file>
         <file>images/itemize.png</file>
         <file>images/latex.png</file>
-        <file>images/math1.png</file>
-        <file>images/math2.png</file>
-        <file>images/math3.png</file>
-        <file>images/math4.png</file>
-        <file>images/math5.png</file>
+        <file>images/classic/math1.png</file>
+        <file>images/classic/math2.png</file>
+        <file>images/classic/math3.png</file>
+        <file>images/classic/math4.png</file>
+        <file>images/classic/math5.png</file>
+        <file>images/modern/math1.png</file>
+        <file>images/modern/math2.png</file>
+        <file>images/modern/math3.png</file>
+        <file>images/modern/math4.png</file>
+        <file>images/modern/math5.png</file>
         <file>images/math6.png</file>
         <file>images/math7.png</file>
-        <file>images/mathmode.png</file>
+        <file>images/classic/mathmode.png</file>
+        <file>images/modern/mathmode.png</file>
         <file>images/metapost.png</file>
         <file>images/modified.png</file>
-        <file>images/newline.png</file>
+        <file>images/classic/newline.png</file>
+        <file>images/modern/newline.png</file>
         <file>images/part.png</file>
         <file>images/pdflatex.png</file>
         <file>images/ps2pdf.png</file>
-        <file>images/puissance.png</file>
+        <file>images/classic/puissance.png</file>
+        <file>images/modern/puissance.png</file>
         <file>images/quick.png</file>
-        <file>images/racine.png</file>
-        <file>images/redo.png</file>
+        <file>images/classic/racine.png</file>
+        <file>images/modern/racine.png</file>
         <file>images/section.png</file>
-        <file>images/smallfrac.png</file>
+        <file>images/classic/smallfrac.png</file>
+        <file>images/modern/smallfrac.png</file>
         <file>images/structure.png</file>
         <file>images/subsection.png</file>
         <file>images/subsubsection.png</file>
-        <file>images/text_bold.png</file>
-        <file>images/text_center.png</file>
-        <file>images/text_italic.png</file>
-        <file>images/text_left.png</file>
-        <file>images/text_right.png</file>
-        <file>images/text_under.png</file>
+        <file>images/classic/text_bold.png</file>
+        <file>images/classic/text_center.png</file>
+        <file>images/classic/text_italic.png</file>
+        <file>images/classic/text_left.png</file>
+        <file>images/classic/text_right.png</file>
+        <file>images/classic/text_under.png</file>
+        <file>images/modern/text_bold.png</file>
+        <file>images/modern/text_center.png</file>
+        <file>images/modern/text_italic.png</file>
+        <file>images/modern/text_left.png</file>
+        <file>images/modern/text_right.png</file>
+        <file>images/modern/text_under.png</file>
         <file>images/tilde.png</file>
         <file>images/tikz.png</file>
-        <file>images/undo.png</file>
         <file>images/vec.png</file>
         <file>images/bookmark1.png</file>
         <file>images/bookmark2.png</file>
@@ -257,9 +283,14 @@
         <file>tags/tikz_tags.xml</file>
         <file>images/qcodeedit/replaceup.png</file>
         <file>images/qcodeedit/replacedown.png</file>
-        <file>images/hi16-action-math5.png</file>
-        <file>images/hi16-action-math10.png</file>
-        <file>images/hi16-action-math1.png</file>
+        <file>images/modern/math-accent.png</file>
+        <file>images/modern/hi16-action-math5.png</file>
+        <file>images/modern/hi16-action-math10.png</file>
+        <file>images/modern/hi16-action-math1.png</file>
+        <file>images/classic/math-accent.png</file>
+        <file>images/classic/hi16-action-math5.png</file>
+        <file>images/classic/hi16-action-math10.png</file>
+        <file>images/classic/hi16-action-math1.png</file>
         <file>symbols/arrows/img001arrows.png</file>
         <file>symbols/arrows/img002arrows.png</file>
         <file>symbols/arrows/img003arrows.png</file>

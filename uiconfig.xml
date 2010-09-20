@@ -30,9 +30,9 @@
 
   <menu id="environment" text="&amp;Environments">
     <insert id="common" text="\begin{&lt;environment>} [selection]" insert="\begin{%&lt;environment-name%>}%n%|%n\end{%&lt;environment-name%>}" shortcut="Ctrl+E"/>
-    <insert id="center" text="\begin{center} [selection]" insert="\begin{center}%n%|%n\end{center}" icon=":/images/text_center.png"/>
-    <insert id="flushleft" text="\begin{flushleft} [selection]" insert="\begin{flushleft}%n%|%n\end{flushleft}" icon=":/images/text_left.png"/>
-    <insert id="flushright" text="\begin{flushright}  [selection]" insert="\begin{flushright}%n%|%n\end{flushright}" icon=":/images/text_right.png"/>
+    <insert id="center" text="\begin{center} [selection]" insert="\begin{center}%n%|%n\end{center}" icon="text_center.png"/>
+    <insert id="flushleft" text="\begin{flushleft} [selection]" insert="\begin{flushleft}%n%|%n\end{flushleft}" icon="text_left.png"/>
+    <insert id="flushright" text="\begin{flushright}  [selection]" insert="\begin{flushright}%n%|%n\end{flushright}" icon="text_right.png"/>
     <insert id="quote" text="\begin{quote}  [selection]" insert="\begin{quote}%n%|%n\end{quote}"/>
     <insert id="quotation" text="\begin{quotation}  [selection]" insert="\begin{quotation}%n%|%n\end{quotation}"/>
     <insert id="verse" text="\begin{verse}  [selection]" insert="\begin{verse}%n%|%n\end{verse}"/>
@@ -53,13 +53,13 @@
 
   <menu id="fontstyles" text="Font St&amp;yles">
     <insert id="emph" text="\emph - Emphasis  [selection]" insert="\emph{%|}" shortcut="Ctrl+Shift+E"/>
-    <insert id="textit" text="\textit - Italics  [selection]" insert="\textit{%|}" icon=":/images/text_italic.png" shortcut="Ctrl+I"/>
+    <insert id="textit" text="\textit - Italics  [selection]" insert="\textit{%|}" icon="text_italic.png" shortcut="Ctrl+I"/>
     <insert id="textsl" text="\textsl - Slanted  [selection]" insert="\textsl{%|}" shortcut="Ctrl+Shift+S"/>
-    <insert id="textbf" text="\textbf - Boldface  [selection]" insert="\textbf{%|}" icon=":/images/text_bold.png" shortcut="Ctrl+B"/>
+    <insert id="textbf" text="\textbf - Boldface  [selection]" insert="\textbf{%|}" icon="text_bold.png" shortcut="Ctrl+B"/>
     <insert id="texttt" text="\texttt - Typewriter  [selection]" insert="\texttt{%|}" shortcut="Ctrl+Shift+T"/>
     <insert id="textsc" text="\textsc - Small caps  [selection]" insert="\textsc{%|}" shortcut="Ctrl+Shift+C"/>
     <insert id="textsf" text="\textsf - Sans Serif  [selection]" insert="\textsf{%|}" shortcut="Ctrl+Shift+A"/>
-    <insert id="underline" text="\underline - Underline [selection]" insert="\underline{%|}" icon=":/images/text_under.png"/>
+    <insert id="underline" text="\underline - Underline [selection]" insert="\underline{%|}" icon="text_under.png"/>
   </menu>
 
   <menu id="fontsizes" text="Font Sizes">
@@ -90,7 +90,7 @@
     <insert id="pagebreak" text="\pagebreak" insert="\pagebreak" info="The \pagebreak command tells LaTeX to break the current page at the point of the command."/>
     <insert id="bigskip" text="\bigskip" insert="\bigskip" info="The \bigskip command adds a 'big' vertical space."/>
     <insert id="medskip" text="\medskip" insert="\medskip" info="The \medskip command adds a 'medium' vertical space."/>
-    <insert id="newline" text="New line" insert="\\%n" info="The \newline command breaks the line right where it is." icon=":/images/newline.png" shortcut="Ctrl+Return"/>
+    <insert id="newline" text="New line" insert="\\%n" info="The \newline command breaks the line right where it is." icon="newline.png" shortcut="Ctrl+Return"/>
   </menu>
   
   <menu id="accents" text="International &amp;Accents">
@@ -128,16 +128,16 @@
 
 <menu id="main/math" text="&amp;Math">
   
-  <insert id="mathmode" text="Inline math mode $...$" insert="$ %| $" info="The math environment can be used in both paragraph and LR mode" icon=":/images/mathmode.png" shortcut="Ctrl+Shift+M"/>
+  <insert id="mathmode" text="Inline math mode $...$" insert="$ %| $" info="The math environment can be used in both paragraph and LR mode" icon="mathmode.png" shortcut="Ctrl+Shift+M"/>
   <insert id="displaymath" text="Display math mode \[...\]" insert="\[ %| \]" info="The displaymath environment can be used only in paragraph mode" shortcut="Alt+Shift+M"/>
   <insert id="equation" text="Numbered equations \begin{equation}" insert="\begin{equation}%n%|%n\end{equation}" info="The equation environment centres your equation on the page and places the equation number in the right margin." shortcut="Ctrl+Shift+N"/>  
   <insert id="align" text="\begin{align}" insert="\begin{align}%n%|%n\end{align}" info="The eqnarray environment is used to display a sequence of equations or inequalities. Needs the package amsmath" package="amsmath"/>  
   <insert id="eqnarray" text="\begin{eqnarray}" insert="\begin{eqnarray}%n%|%n\end{eqnarray}" info="The eqnarray environment is used to display a sequence of equations or inequalities. (deprecated: use ams align instead)"/>  
-  <insert id="subscript" text="_{} - subscript" insert="_{%|}" icon=":/images/indice.png" shortcut="Ctrl+Shift+D"/>  
-  <insert id="superscript" text="^{} - superscript" insert="^{%|}"  icon=":/images/puissance.png" shortcut="Ctrl+Shift+U"/>  
-  <insert id="frac" text="\frac{}{}" insert="\frac{%&lt;numerator%|%>}{%&lt;denominator%>}" icon=":/images/smallfrac.png" shortcut="Alt+Shift+F"/>    
-  <insert id="dfrac" text="\dfrac{}{}" insert="\dfrac{%&lt;numerator%|%>}{%&lt;denominator%>}" icon=":/images/dfrac.png" shortcut="Ctrl+Shift+F"/>  
-  <insert id="sqrt" text="\sqrt{}" insert="\sqrt{%|}" icon=":/images/racine.png" shortcut="Ctrl+Shift+Q"/>  
+  <insert id="subscript" text="_{} - subscript" insert="_{%|}" icon="indice.png" shortcut="Ctrl+Shift+D"/>  
+  <insert id="superscript" text="^{} - superscript" insert="^{%|}"  icon="puissance.png" shortcut="Ctrl+Shift+U"/>  
+  <insert id="frac" text="\frac{}{}" insert="\frac{%&lt;numerator%|%>}{%&lt;denominator%>}" icon="smallfrac.png" shortcut="Alt+Shift+F"/>    
+  <insert id="dfrac" text="\dfrac{}{}" insert="\dfrac{%&lt;numerator%|%>}{%&lt;denominator%>}" icon="dfrac.png" shortcut="Ctrl+Shift+F"/>  
+  <insert id="sqrt" text="\sqrt{}" insert="\sqrt{%|}" icon="racine.png" shortcut="Ctrl+Shift+Q"/>  
   <insert id="left" text="\left" insert="\left " shortcut="Ctrl+Shift+L"/>  
   <insert id="right" text="\right" insert="\right " shortcut="Ctrl+Shift+R"/>  
   <insert id="array" text="\begin{array}" insert="\begin{array}{%&lt;columns%>}%n%&lt;content%|%>%n\end{array}" info="\begin{array}{col1col2...coln}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{array}"/>  
@@ -190,6 +190,7 @@
     <insert id="acute" text="\acute{}" insert="\acute{%|}" icon=":/images/acute.png"/>
     <insert id="grave" text="\grave{}" insert="\grave{%|}" icon=":/images/grave.png"/>
     <insert id="tilde" text="\tilde{}" insert="\tilde{%|}" icon=":/images/tilde.png"/>
+
     <insert id="bar" text="\bar{}" insert="\bar{%|}" icon=":/images/bar.png"/>
     <insert id="vec" text="\vec{}" insert="\vec{%|}" icon=":/images/vec.png"/>
     <insert id="hat" text="\hat{}" insert="\hat{%|}" icon=":/images/hat.png"/>

@@ -1055,6 +1055,15 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 	}
 }
 
+QString ConfigManager::getRealIconFile(const QString& icon){
+	if (icon.isEmpty() || icon.startsWith(":/")) return icon;
+	if (modernStyle && QFileInfo(":/images/modern/"+icon).exists())
+		return ":/images/modern/"+icon;
+	else if (!modernStyle && QFileInfo(":/images/classic/"+icon).exists())
+		return ":/images/classic/"+icon;
+	return icon;
+}
+
 QMenu* ConfigManager::newManagedMenu(const QString &id,const QString &text) {
 	if (!menuParentsBar) qFatal("No menu parent bar!");
 	if (!menuParent) qFatal("No menu parent!");
@@ -1093,12 +1102,14 @@ QAction* ConfigManager::newManagedAction(QWidget* menu, const QString &id,const 
 	QAction *old=menuParent->findChild<QAction*>(completeId);
 	if (old) {
 		old->setText(text);
+		old->setIcon(QIcon(getRealIconFile(iconFile)));
 		return old;
 	}
 
 	QAction *act;
 	if (iconFile.isEmpty()) act=new QAction(text, menuParent);
-	else act=new QAction(QIcon(iconFile), text, menuParent);
+	else act=new QAction(QIcon(getRealIconFile(iconFile)), text, menuParent);
+
 	act->setObjectName(completeId);
 	act->setShortcuts(shortCuts);
 	if (slotName) connect(act, SIGNAL(triggered()), menuParent, slotName);
@@ -1144,6 +1155,7 @@ void ConfigManager::triggerManagedAction(QString id){
 	QAction* act = getManagedAction(id);
 	if (act) act->trigger();
 }
+
 void ConfigManager::modifyManagedShortcuts(){
 	//modify shortcuts
 	for (int i=0; i< managedMenuNewShortcuts.size(); i++) {

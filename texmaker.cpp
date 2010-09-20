@@ -224,8 +224,11 @@ SymbolGridWidget* Texmaker::addSymbolGrid(const QString& SymbolList,  const QStr
 		list->setProperty("isSymbolGrid",true);
 		connect(list, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
 		connect(list, SIGNAL(itemPressed(QTableWidgetItem*)), this, SLOT(InsertSymbolPressed(QTableWidgetItem*)));
-		leftPanel->addWidget(list, SymbolList, text, iconName);
-	} else leftPanel->setWidgetText(list,text);
+		leftPanel->addWidget(list, SymbolList, text, configManager.getRealIconFile(iconName));
+	} else {
+		leftPanel->setWidgetText(list,text);
+		leftPanel->setWidgetIcon(list,configManager.getRealIconFile(iconName));
+	}
 	return list;
 }
 
@@ -272,16 +275,16 @@ void Texmaker::setupDockWidgets(){
 		leftPanel->addWidget(structureTreeView, "structureTreeView", tr("Structure"), ":/images/structure.png");
 	} else leftPanel->setWidgetText(structureTreeView,tr("Structure"));
 
-	addSymbolGrid("operators", ":/images/math1.png",tr("Operator symbols"));
-	addSymbolGrid("relation", ":/images/hi16-action-math1.png",tr("Relation symbols"));
-	addSymbolGrid("arrows", ":/images/math2.png",tr("Arrow symbols"));
-	addSymbolGrid("delimiters",":/images/math4.png",tr("Delimiters"));
-	addSymbolGrid("greek", ":/images/math5.png",tr("Greek letters"));
-	addSymbolGrid("cyrillic", ":/images/hi16-action-math10.png",tr("Cyrillic letters"));
-	addSymbolGrid("misc-math", ":/images/math3.png",tr("Miscellaneous math symbols"));
-	addSymbolGrid("misc-text", ":/images/hi16-action-math5.png",tr("Miscellaneous text symbols"));
-	addSymbolGrid("wasysym", ":/images/hi16-action-math5.png",tr("Miscellaneous text symbols (wasysym)"));
-	addSymbolGrid("special", ":/images/accent1.png",tr("Accented letters"));
+	addSymbolGrid("operators", "math1.png",tr("Operator symbols"));
+	addSymbolGrid("relation", "hi16-action-math1.png",tr("Relation symbols"));
+	addSymbolGrid("arrows", "math2.png",tr("Arrow symbols"));
+	addSymbolGrid("delimiters","math4.png",tr("Delimiters"));
+	addSymbolGrid("greek", "math5.png",tr("Greek letters"));
+	addSymbolGrid("cyrillic", "hi16-action-math10.png",tr("Cyrillic letters"));
+	addSymbolGrid("misc-math", "math3.png",tr("Miscellaneous math symbols"));
+	addSymbolGrid("misc-text", "hi16-action-math5.png",tr("Miscellaneous text symbols"));
+	addSymbolGrid("wasysym", "hi16-action-math5.png",tr("Miscellaneous text symbols (wasysym)"));
+	addSymbolGrid("special", "math-accent.png",tr("Accented letters"));
 
 	MostUsedSymbolWidget=addSymbolGrid("!mostused",":/images/math6.png",tr("Most used symbols"));
 	FavoriteSymbolWidget=addSymbolGrid("!favorite",":/images/math7.png",tr("Favorites"));
@@ -334,15 +337,15 @@ void Texmaker::setupMenus() {
 
 //file
 	QMenu *menu=newManagedMenu("main/file",tr("&File"));
-	newManagedAction(menu, "new",tr("&New"), SLOT(fileNew()), Qt::CTRL+Qt::Key_N, ":/images/filenew.png");
+	newManagedAction(menu, "new",tr("&New"), SLOT(fileNew()), Qt::CTRL+Qt::Key_N, "filenew.png");
 	newManagedAction(menu, "newfromtemplate",tr("New from &template..."), SLOT(fileNewFromTemplate()));
-	newManagedAction(menu, "open",tr("&Open..."), SLOT(fileOpen()), Qt::CTRL+Qt::Key_O, ":/images/fileopen.png");
+	newManagedAction(menu, "open",tr("&Open..."), SLOT(fileOpen()), Qt::CTRL+Qt::Key_O, "fileopen.png");
 
 	QMenu *submenu=newManagedMenu(menu, "openrecent",tr("Open Recent")); //only create the menu here, actions are created by config manager
 	newManagedAction(menu, "restoresession",tr("Restore previous session"), SLOT(fileRestoreSession()));
 
 	menu->addSeparator();
-	newManagedAction(menu,"save",tr("&Save"), SLOT(fileSave()), Qt::CTRL+Qt::Key_S, ":/images/filesave.png");
+	newManagedAction(menu,"save",tr("&Save"), SLOT(fileSave()), Qt::CTRL+Qt::Key_S, "filesave.png");
 	newManagedAction(menu,"saveas",tr("Save &As..."), SLOT(fileSaveAs()), Qt::CTRL+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu,"saveall",tr("Save A&ll"), SLOT(fileSaveAll()), Qt::CTRL+Qt::SHIFT+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu, "maketemplate",tr("&Make Template..."), SLOT(fileMakeTemplate()));
@@ -363,13 +366,13 @@ void Texmaker::setupMenus() {
 	QList<QAction*> latexEditorContextMenu;
 
 	menu=newManagedMenu("main/edit",tr("&Edit"));
-	newManagedAction(menu, "undo",tr("&Undo"), SLOT(editUndo()), Qt::CTRL+Qt::Key_Z, ":/images/undo.png");
-	newManagedAction(menu, "redo",tr("&Redo"), SLOT(editRedo()), Qt::CTRL+Qt::Key_Y, ":/images/redo.png");
+	newManagedAction(menu, "undo",tr("&Undo"), SLOT(editUndo()), Qt::CTRL+Qt::Key_Z, "undo.png");
+	newManagedAction(menu, "redo",tr("&Redo"), SLOT(editRedo()), Qt::CTRL+Qt::Key_Y, "redo.png");
 
 	menu->addSeparator();
-	newManagedAction(menu,"copy",tr("&Copy"), SLOT(editCopy()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_C)<<Qt::CTRL+Qt::Key_Insert, ":/images/editcopy.png");
-	newManagedAction(menu,"cut",tr("C&ut"), SLOT(editCut()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_X)<<Qt::SHIFT+Qt::Key_Delete, ":/images/editcut.png");
-	newManagedAction(menu,"paste",tr("&Paste"), SLOT(editPaste()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, ":/images/editpaste.png");
+	newManagedAction(menu,"copy",tr("&Copy"), SLOT(editCopy()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_C)<<Qt::CTRL+Qt::Key_Insert, "editcopy.png");
+	newManagedAction(menu,"cut",tr("C&ut"), SLOT(editCut()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_X)<<Qt::SHIFT+Qt::Key_Delete, "editcut.png");
+	newManagedAction(menu,"paste",tr("&Paste"), SLOT(editPaste()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, "editpaste.png");
 	newManagedAction(menu,"selectall",tr("Select &All"), SLOT(editSelectAll()), Qt::CTRL+Qt::Key_A);
 	newManagedAction(menu,"eraseLine",tr("Erase &Line"), SLOT(editEraseLine()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_K));
 
@@ -430,7 +433,7 @@ void Texmaker::setupMenus() {
 	latexEditorContextMenu << newManagedAction(menu,"eraseWord",tr("Erase &Word/Cmd/Env"), SLOT(editEraseWordCmdEnv()), Qt::ALT+Qt::Key_Delete);
 
 	latexEditorContextMenu << menu->addSeparator();
-	latexEditorContextMenu << newManagedAction(menu,"pasteAsLatex",tr("Pas&te as LaTeX"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, ":/images/editpaste.png");
+	latexEditorContextMenu << newManagedAction(menu,"pasteAsLatex",tr("Pas&te as LaTeX"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, "editpaste.png");
 	latexEditorContextMenu << newManagedAction(menu,"convertTo",tr("Co&nvert to LaTeX"), SLOT(convertToLatex()));
 	latexEditorContextMenu << newManagedAction(menu,"previewLatex",tr("Pre&view Selection/Parantheses"), SLOT(previewLatex()),Qt::ALT+Qt::Key_P);
 
@@ -3259,6 +3262,7 @@ void Texmaker::HelpAbout() {
 ////////////// OPTIONS //////////////////////////////////////
 void Texmaker::GeneralOptions() {
 	bool customEnvironmentExisted = !configManager.customEnvironments.isEmpty();
+	bool oldModernStyle = configManager.modernStyle;
 	if (configManager.execConfigDialog()) {
 		mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);
 		// refresh quick language selection combobox
@@ -3322,6 +3326,11 @@ void Texmaker::GeneralOptions() {
 				ed->document()->markFormatCacheDirty();
 				ed->update();
 			}
+		}
+
+		if (oldModernStyle != configManager.modernStyle) {
+			setupMenus();
+			setupDockWidgets();
 		}
 	}
 }
