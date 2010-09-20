@@ -337,15 +337,15 @@ void Texmaker::setupMenus() {
 
 //file
 	QMenu *menu=newManagedMenu("main/file",tr("&File"));
-	newManagedAction(menu, "new",tr("&New"), SLOT(fileNew()), Qt::CTRL+Qt::Key_N, "filenew.png");
+	newManagedAction(menu, "new",tr("&New"), SLOT(fileNew()), Qt::CTRL+Qt::Key_N, "filenew");
 	newManagedAction(menu, "newfromtemplate",tr("New from &template..."), SLOT(fileNewFromTemplate()));
-	newManagedAction(menu, "open",tr("&Open..."), SLOT(fileOpen()), Qt::CTRL+Qt::Key_O, "fileopen.png");
+	newManagedAction(menu, "open",tr("&Open..."), SLOT(fileOpen()), Qt::CTRL+Qt::Key_O, "fileopen");
 
 	QMenu *submenu=newManagedMenu(menu, "openrecent",tr("Open Recent")); //only create the menu here, actions are created by config manager
 	newManagedAction(menu, "restoresession",tr("Restore previous session"), SLOT(fileRestoreSession()));
 
 	menu->addSeparator();
-	newManagedAction(menu,"save",tr("&Save"), SLOT(fileSave()), Qt::CTRL+Qt::Key_S, "filesave.png");
+	newManagedAction(menu,"save",tr("&Save"), SLOT(fileSave()), Qt::CTRL+Qt::Key_S, "filesave");
 	newManagedAction(menu,"saveas",tr("Save &As..."), SLOT(fileSaveAs()), Qt::CTRL+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu,"saveall",tr("Save A&ll"), SLOT(fileSaveAll()), Qt::CTRL+Qt::SHIFT+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu, "maketemplate",tr("&Make Template..."), SLOT(fileMakeTemplate()));
@@ -366,13 +366,13 @@ void Texmaker::setupMenus() {
 	QList<QAction*> latexEditorContextMenu;
 
 	menu=newManagedMenu("main/edit",tr("&Edit"));
-	newManagedAction(menu, "undo",tr("&Undo"), SLOT(editUndo()), Qt::CTRL+Qt::Key_Z, "undo.png");
-	newManagedAction(menu, "redo",tr("&Redo"), SLOT(editRedo()), Qt::CTRL+Qt::Key_Y, "redo.png");
+	newManagedAction(menu, "undo",tr("&Undo"), SLOT(editUndo()), Qt::CTRL+Qt::Key_Z, "undo");
+	newManagedAction(menu, "redo",tr("&Redo"), SLOT(editRedo()), Qt::CTRL+Qt::Key_Y, "redo");
 
 	menu->addSeparator();
-	newManagedAction(menu,"copy",tr("&Copy"), SLOT(editCopy()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_C)<<Qt::CTRL+Qt::Key_Insert, "editcopy.png");
-	newManagedAction(menu,"cut",tr("C&ut"), SLOT(editCut()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_X)<<Qt::SHIFT+Qt::Key_Delete, "editcut.png");
-	newManagedAction(menu,"paste",tr("&Paste"), SLOT(editPaste()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, "editpaste.png");
+	newManagedAction(menu,"copy",tr("&Copy"), SLOT(editCopy()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_C)<<Qt::CTRL+Qt::Key_Insert, "editcopy");
+	newManagedAction(menu,"cut",tr("C&ut"), SLOT(editCut()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_X)<<Qt::SHIFT+Qt::Key_Delete, "editcut");
+	newManagedAction(menu,"paste",tr("&Paste"), SLOT(editPaste()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, "editpaste");
 	newManagedAction(menu,"selectall",tr("Select &All"), SLOT(editSelectAll()), Qt::CTRL+Qt::Key_A);
 	newManagedAction(menu,"eraseLine",tr("Erase &Line"), SLOT(editEraseLine()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_K));
 
@@ -3263,6 +3263,7 @@ void Texmaker::HelpAbout() {
 void Texmaker::GeneralOptions() {
 	bool customEnvironmentExisted = !configManager.customEnvironments.isEmpty();
 	bool oldModernStyle = configManager.modernStyle;
+	bool oldSystemTheme = configManager.useSystemTheme;
 	if (configManager.execConfigDialog()) {
 		mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);
 		// refresh quick language selection combobox
@@ -3328,7 +3329,7 @@ void Texmaker::GeneralOptions() {
 			}
 		}
 
-		if (oldModernStyle != configManager.modernStyle) {
+		if (oldModernStyle != configManager.modernStyle || oldSystemTheme != configManager.useSystemTheme) {
 			setupMenus();
 			setupDockWidgets();
 		}
