@@ -237,6 +237,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	//containedLabels.setPattern("(\\\\label)\\{(.+)\\}");
 	//containedReferences.setPattern("(\\\\ref|\\\\pageref)\\{(.+)\\}");
 	updateSettings();
+	SynChecker.start();
 }
 
 LatexEditorView::~LatexEditorView() {
@@ -247,6 +248,7 @@ LatexEditorView::~LatexEditorView() {
 		delete containedLabels;
 		delete containedReferences;
 	}
+	SynChecker.quit();
 }
 
 void LatexEditorView::viewActivated(){
@@ -577,6 +579,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 	for (int i=linenr; i<linenr+count; i++) {
 		QDocumentLine line = editor->document()->line(i);
 		if (!line.isValid()) continue;
+                if(line.length()>3 && config->inlineSyntaxChecking) SynChecker.putLine(line.text());
 		QDocumentLineHandle* dlh = line.handle();
 		// remove all labels/references of current line
 		containedLabels->removeUpdateByHandle(dlh,containedReferences);
@@ -659,6 +662,13 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			line.addOverlay(QFormatRange(wordstart,start-wordstart,speller->spellcheckErrorFormat));
 		    }
 		}// while
+                if(config->inlineSyntaxChecking){
+                    SyntaxCheck::Ranges rng=SynChecker.getResult();
+                    QPair<int,int> elem;
+                    foreach(elem,rng){
+                        line.addOverlay(QFormatRange(elem.first,elem.second,speller->spellcheckErrorFormat));
+                    }
+                }
 	}
 	editor->document()->markViewDirty();
 }

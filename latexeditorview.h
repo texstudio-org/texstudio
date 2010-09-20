@@ -13,6 +13,7 @@
 #define LATEXEDITORVIEW_H
 #include "mostQtHeaders.h"
 #include "qdocument.h"
+#include "syntaxcheck.h"
 
 class QDocumentLineHandle;
 class References {
@@ -131,6 +132,8 @@ private:
 
 	References *containedLabels,*containedReferences;
 	LatexEditorViewConfig* config;
+
+	SyntaxCheck SynChecker;
 private slots:
 	void requestCitation(); //emits needCitation with selected text
 	void lineMarkClicked(int line);

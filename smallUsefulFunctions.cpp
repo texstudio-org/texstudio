@@ -14,6 +14,8 @@ QSet<QString> LatexParser::labelCommands = QSet<QString>::fromList(QStringList()
 QSet<QString> LatexParser::citeCommands = QSet<QString>::fromList(QStringList() << "\\cite" << "\\citet" << "\\citetitle" << "\\citep" << "\\citeauthor" << "\\footcite" << "\\nocite"  << "\\nptextcite" << "\\parencite" << "\\textcite");
 QSet<QString> LatexParser::environmentCommands = QSet<QString>::fromList(QStringList() << "\\begin" << "\\end" << "\\newenvironment" << "\\renewenvironment");
 QSet<QString> LatexParser::optionCommands; // = QSet<QString>::fromList(QStringList() << LatexParser::refCommands.toList() << LatexParser::labelCommands.toList() << "\\includegraphics" << "\\usepackage" << "\\documentclass" << "\\include" << "\\input" << "\\hspace" << "\\vspace");
+QSet<QString> LatexParser::normalCommands = QSet<QString>::fromList(QStringList() << "\\\\");
+QSet<QString> LatexParser::mathCommands;
 QStringList LatexParser::structureCommands = QStringList(); //see texmaker.cpp
 
 QString getCommonEOW() {

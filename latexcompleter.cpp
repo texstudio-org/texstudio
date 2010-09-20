@@ -787,6 +787,9 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
 					if(keywords.contains(rxCom.cap(3))){
 						LatexParser::optionCommands << rxCom.cap(1);
 					}
+                                        // normal commands for syntax checking
+                                        // will be extended to distinguish between normal and math commands
+                                        LatexParser::normalCommands << rxCom.cap(1);
 					// normal parsing for completer
 					if (line.startsWith("\\pageref")||line.startsWith("\\ref")) continue;
 					if (!line.contains("%")){
