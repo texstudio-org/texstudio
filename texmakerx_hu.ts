@@ -1942,12 +1942,12 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <location filename="latexdocument.cpp" line="950"/>
         <source>untitled</source>
-        <translation type="unfinished">névtelen</translation>
+        <translation>névtelen</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="957"/>
         <source> (Line %1)</source>
-        <translation type="unfinished"></translation>
+        <translation> (%1. sor)</translation>
     </message>
 </context>
 <context>
@@ -3030,7 +3030,7 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="267"/>
         <source>structure</source>
-        <translation type="unfinished"></translation>
+        <translation>struktúra</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="269"/>
@@ -3067,7 +3067,7 @@ Akarja menteni ezeket?</translation>
         <location filename="codesnippet.cpp" line="57"/>
         <location filename="codesnippet.cpp" line="59"/>
         <source>environment-name</source>
-        <translation type="unfinished"></translation>
+        <translation>környezet-név</translation>
     </message>
     <message>
         <location filename="codesnippet.cpp" line="58"/>
