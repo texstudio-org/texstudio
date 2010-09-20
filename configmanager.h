@@ -77,7 +77,6 @@ public:
 	bool tabbedLogView;
 	bool newLeftPanelLayout;
 	bool configShowAdvancedOptions;
-	bool showIconsInMenus;
 	
 	//language
 	QString language, lastLanguage;
