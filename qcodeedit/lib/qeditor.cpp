@@ -4362,22 +4362,15 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	} else {
 		
 		preInsert(c, lines.first());
-		// int n=c.columnNumber();
+
+		// FIXME ? work on strings to make sure command grouping does not interfere with cursor state...
+		QString indent;
+		int firstChar = c.line().firstChar();
+		if (firstChar == -1) firstChar = c.line().length(); //line contains only spaces
+		indent = c.line().text().left(qMax(0, qMin(firstChar, c.columnNumber())));
+
 		c.insertText(lines.takeFirst());
 		
-		QString indent;
-		// FIXME ? work on strings to make sure command grouping does not interfere with cursor state...
-		//if(!flag(WeakIndent)){
-			int firstChar = c.line().firstChar();
-			if (firstChar == -1) firstChar = c.line().length(); //line contains only spaces
-			indent = c.line().text().left(qMax(0, qMin(firstChar, c.columnNumber())));
-		/*}else{
-			indent = c.line().text().left(n);
-			n=0;
-			for(n=0; n < indent.count();n++){
-				if(!indent.at(n).isSpace()) indent[n]=' ';
-			}
-		}*/
 		
 		foreach ( QString l, lines )
 			{
