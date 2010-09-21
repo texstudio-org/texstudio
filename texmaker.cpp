@@ -122,7 +122,19 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 // TAB WIDGET EDITEUR
 	connect(&documents,SIGNAL(masterDocumentChanged(LatexDocument *)), SLOT(masterDocumentChanged(LatexDocument *)));
 
-	EditorView=new TmxTabWidget(this);
+	QFrame *centralFrame=new QFrame(this);
+	centralFrame->setLineWidth(0);
+	centralFrame->setFrameShape(QFrame::NoFrame);
+	centralFrame->setFrameShadow(QFrame::Plain);
+
+	//edit
+	centralToolBar=new QToolBar("Central",centralFrame);
+	centralToolBar->setFloatable(false);
+	centralToolBar->setOrientation(Qt::Vertical);
+	centralToolBar->setMovable(false);
+	centralToolBar->setIconSize(QSize(16,16));
+
+	EditorView=new TmxTabWidget(centralFrame);
 	EditorView->setFocusPolicy(Qt::ClickFocus);
 	EditorView->setFocus();
 	connect(EditorView, SIGNAL(currentChanged(int)), this, SLOT(UpdateCaption()));
@@ -132,7 +144,14 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 		connect(EditorView, SIGNAL(tabCloseRequested(int)), this, SLOT(CloseEditorTab(int)));
 		connect(EditorView, SIGNAL(tabMoved(int,int)), this, SLOT(EditorTabMoved(int,int)));
 	}
-	setCentralWidget(EditorView);
+
+	QLayout* centralLayout= new QHBoxLayout(centralFrame);
+	centralLayout->setSpacing(0);
+	centralLayout->setMargin(0);
+	centralLayout->addWidget(centralToolBar);
+	centralLayout->addWidget(EditorView);
+
+	setCentralWidget(centralFrame);
 
 	symbolMostused.clear();
 	setupDockWidgets();
@@ -655,6 +674,7 @@ void Texmaker::setupToolBars() {
 	//setup customizable toolbars
 		for (int i=0;i<configManager.managedToolBars.size();i++){
 		ManagedToolBar &mtb = configManager.managedToolBars[i];
+		if (mtb.name == "Central") mtb.toolbar = centralToolBar;
 		if (!mtb.toolbar) { //create actual toolbar on first call
 			mtb.toolbar = addToolBar(tr(qPrintable(mtb.name)));
 			mtb.toolbar->setObjectName(mtb.name);
