@@ -322,106 +322,106 @@
         <translation>A legtöbb rendszerszín mellőzése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="317"/>
+        <location filename="configdialog.ui" line="324"/>
         <source>Files</source>
         <translation>Fájlok</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="332"/>
+        <location filename="configdialog.ui" line="339"/>
         <source>Max. Recent Documents</source>
         <translation>Legutóbbi dokumentumok max. száma</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="355"/>
+        <location filename="configdialog.ui" line="362"/>
         <source>Max. Recent Master Documents</source>
         <translation>Legutóbbi mesterdokumentumok max. száma</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="372"/>
+        <location filename="configdialog.ui" line="379"/>
         <source>Parse BibTeX</source>
         <translation>BibTeX feldolgozása</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="379"/>
+        <location filename="configdialog.ui" line="386"/>
         <source>Always show structure of master document</source>
         <translation>Mindig mutassa a mesterdokumentum struktúráját</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="392"/>
+        <location filename="configdialog.ui" line="399"/>
         <source>Dictionaries</source>
         <translation>Szótárak</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="398"/>
+        <location filename="configdialog.ui" line="405"/>
         <source>Spelling dictionary</source>
         <translation>Helyesírási szótár</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="428"/>
+        <location filename="configdialog.ui" line="435"/>
         <source>TextLabel</source>
         <translation>Szövegcímke</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="441"/>
+        <location filename="configdialog.ui" line="448"/>
         <source>Inline checking</source>
         <oldsource>inline checking</oldsource>
         <translation>Azonnali ellenőrzés</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="448"/>
+        <location filename="configdialog.ui" line="455"/>
         <source>Thesaurus Database</source>
         <translation>Tezaurusz adatbázis</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="472"/>
+        <location filename="configdialog.ui" line="499"/>
         <source>Inline spell checking</source>
         <oldsource>inline spell checking</oldsource>
         <translation>Azonnali helyesírás-ellenőrzés</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="482"/>
+        <location filename="configdialog.ui" line="509"/>
         <source>Inline citation checking</source>
         <oldsource>inline citation checking</oldsource>
         <translation>Azonnali hivatkozás ellenőrzés</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="492"/>
+        <location filename="configdialog.ui" line="519"/>
         <source>Inline reference checking</source>
         <oldsource>inline reference checking</oldsource>
         <translation>Azonnali referencia ellenőrzés</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="505"/>
+        <location filename="configdialog.ui" line="482"/>
         <source>*.dic</source>
         <translation>*.dic</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="515"/>
+        <location filename="configdialog.ui" line="492"/>
         <source>*.dat</source>
         <translation>*.dat</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="561"/>
+        <location filename="configdialog.ui" line="575"/>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
         <translation>Parancsok (%: fájlnév kiterjesztés nélkül - @: sor száma - ?: kiterjesztett fájlnév opciók)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="568"/>
+        <location filename="configdialog.ui" line="582"/>
         <source>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</source>
         <translation>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Speciális karakterek&lt;/span&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="575"/>
+        <location filename="configdialog.ui" line="589"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension &lt;b&gt;@&lt;/b&gt;: line number </source>
         <translation>&lt;b&gt;%&lt;/b&gt;: fájlnév kiterjesztés nélkül &lt;b&gt;@&lt;/b&gt;: sor száma </translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="585"/>
+        <location filename="configdialog.ui" line="599"/>
         <source>&lt;b&gt;?&lt;/b&gt; followed by &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: extended filename; prepend &lt;i&gt;c:&lt;/i&gt; for current file instead of master file</source>
         <translation>&lt;b&gt;?&lt;/b&gt;-t követő &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: kiterjesztett fájlnév; elejéhez fűzött &lt;i&gt;c:&lt;/i&gt; jelenlegi fájl a mesterfájl helyett</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="595"/>
+        <location filename="configdialog.ui" line="609"/>
         <source>&lt;i&gt;a&lt;/i&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;i&gt;m&lt;/i&gt;: basefile name without extension,&lt;i&gt;e&lt;/i&gt;: extension&lt;br /&gt;
 &lt;i&gt;&quot;&lt;/i&gt;: enclose with &quot;..&quot;, . (point): ends placeholder with a point, (space): ends placeholder and add a space, &lt;i&gt;)&lt;/i&gt;: ends placeholder &lt;br /&gt;
 examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just the extension (without leading point), &lt;br /&gt;
@@ -432,415 +432,425 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
 ?m&quot; (fájlnév kiterjesztés nélkül, megegyezik a %-lel) ?me (fájlnév kiterjesztéssel mint pelda.tex)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="611"/>
+        <location filename="configdialog.ui" line="625"/>
         <source>%%, @@ or ?? become: %, @ or ?
 </source>
         <translation>%%, @@ vagy ?? ezekké válik: %, @ or ?</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="641"/>
+        <location filename="configdialog.ui" line="655"/>
         <source>Quick Build Command</source>
         <translation>Gyors fordítás parancsa</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="661"/>
+        <location filename="configdialog.ui" line="675"/>
         <source>LaTeX + dvips + View PS</source>
         <translation>LaTeX + dvips + PS megjelenítése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="668"/>
+        <location filename="configdialog.ui" line="682"/>
         <source>LaTeX + View DVI</source>
         <translation>LaTeX + DVI megjelenítése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="675"/>
+        <location filename="configdialog.ui" line="689"/>
         <source>PdfLaTeX + View PDF</source>
         <translation>PdfLaTeX + PDF megjelenítése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="682"/>
+        <location filename="configdialog.ui" line="696"/>
         <source>LaTeX + dvipdfm + View PDF</source>
         <translation>LaTeX + dvipdfm + PDF megjelenítése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="689"/>
+        <location filename="configdialog.ui" line="703"/>
         <source>LaTeX + dvips + ps2pdf + View PDF</source>
         <translation>LaTeX + dvips + ps2pdf + PDF megjelenítése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="696"/>
+        <location filename="configdialog.ui" line="710"/>
         <source>LaTeX + Asymptote + LaTeX + View DVI</source>
         <translation>LaTeX + Asymptote + LaTeX + DVI megjelenítése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="703"/>
+        <location filename="configdialog.ui" line="717"/>
         <source>PdfLaTeX + Asymptote + PdfLaTeX + View PDF</source>
         <translation>PdfLaTeX + Asymptote + PdfLaTeX + PDF megjelenítése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="710"/>
+        <location filename="configdialog.ui" line="724"/>
         <source>User : (% : filename without extension)</source>
         <translation>Felhasználói: (%: fájlnév kiterjesztés nélkül)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="739"/>
+        <location filename="configdialog.ui" line="753"/>
         <source>More</source>
         <translation>Tovább</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="748"/>
+        <location filename="configdialog.ui" line="762"/>
         <source>Execute before compiling:</source>
         <translation>Fordítás előtt végrehajtandó:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="788"/>
+        <location filename="configdialog.ui" line="802"/>
         <source>Assume that every error is in the current document:</source>
         <translation>Feltételezze, hogy minden hiba a jelenlegi dokumentumban van:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="802"/>
+        <location filename="configdialog.ui" line="816"/>
         <source>Never (only use the file names in the log)</source>
         <translation>Soha (csak a naplóban lévő fájlnevek használata)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="807"/>
+        <location filename="configdialog.ui" line="821"/>
         <source>Only when there is no master document</source>
         <translation>Csak ha nincs mesterdokumentum</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="812"/>
+        <location filename="configdialog.ui" line="826"/>
         <source>Always (ignore file names in the log)</source>
         <translation>Mindig (a naplóban lévő fájlnevek mellőzése)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="820"/>
+        <location filename="configdialog.ui" line="834"/>
         <source>Show log after compiling if there are errors</source>
         <translation>Napló mutatása hibák esetén</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="857"/>
+        <location filename="configdialog.ui" line="871"/>
         <location filename="configdialog.cpp" line="303"/>
         <source>Shortcuts</source>
         <translation>Billentyűkombinációk</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="871"/>
-        <location filename="configdialog.ui" line="919"/>
-        <location filename="configdialog.ui" line="995"/>
+        <location filename="configdialog.ui" line="885"/>
+        <location filename="configdialog.ui" line="933"/>
+        <location filename="configdialog.ui" line="1009"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="876"/>
-        <location filename="configdialog.ui" line="924"/>
+        <location filename="configdialog.ui" line="890"/>
+        <location filename="configdialog.ui" line="938"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="881"/>
+        <location filename="configdialog.ui" line="895"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="886"/>
+        <location filename="configdialog.ui" line="900"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="905"/>
+        <location filename="configdialog.ui" line="919"/>
         <location filename="configdialog.cpp" line="304"/>
         <source>Latex Menus</source>
         <translation>LaTeX menük</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="936"/>
+        <location filename="configdialog.ui" line="950"/>
         <source>Toolbar Customization</source>
         <translation>Eszköztár testreszabása</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="950"/>
+        <location filename="configdialog.ui" line="964"/>
         <source>&lt;</source>
         <translation>&lt;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="957"/>
+        <location filename="configdialog.ui" line="971"/>
         <source>&gt;</source>
         <translation>&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1021"/>
+        <location filename="configdialog.ui" line="1035"/>
         <location filename="configdialog.cpp" line="306"/>
-        <location filename="configmanager.cpp" line="752"/>
+        <location filename="configmanager.cpp" line="757"/>
         <source>Editor</source>
         <translation>Szerkesztő</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1027"/>
+        <location filename="configdialog.ui" line="1041"/>
         <source>Editor Font Family</source>
         <translation>Szerkesztő betűcsalád</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1041"/>
+        <location filename="configdialog.ui" line="1055"/>
         <source>Word Wrap</source>
         <translation>Elválasztás</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1248"/>
+        <location filename="configdialog.ui" line="1262"/>
         <source>Editor Font Size</source>
         <translation>Szerkesztő betűmérete</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1058"/>
+        <location filename="configdialog.ui" line="1072"/>
         <source>Folding</source>
         <translation>Ö&amp;sszezárás</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1065"/>
+        <location filename="configdialog.ui" line="1079"/>
         <source>Editor Font Encoding</source>
         <translation>Szerkesztő karakterkódolása</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1289"/>
+        <location filename="configdialog.ui" line="1303"/>
         <source>No line numbers</source>
         <translation>Ne legyenek a sorok számozva</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1294"/>
+        <location filename="configdialog.ui" line="1308"/>
         <source>Show line numbers</source>
         <translation>Sorok számának mutatása</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1299"/>
+        <location filename="configdialog.ui" line="1313"/>
         <source>Show important line numbers</source>
         <translation>Fontos sorok számának mutatása</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1142"/>
+        <location filename="configdialog.ui" line="1156"/>
         <source>Formats</source>
         <translation>Formátumok</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1255"/>
+        <location filename="configdialog.ui" line="1269"/>
         <source>Show Line Change State</source>
         <translation>Sor módosítási állapotának megjelenítése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1275"/>
+        <location filename="configdialog.ui" line="1289"/>
         <source>Show State Panel</source>
         <translation>Állapotpanel megjelenítése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1265"/>
+        <location filename="configdialog.ui" line="1279"/>
         <source>Show Modify Time</source>
         <translation>Módosítás időpontjának megjelenítése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1191"/>
+        <location filename="configdialog.ui" line="1205"/>
         <source>Use single line selection as Search Word</source>
         <translation>Kijelölt szöveg használata keresőszóként</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1201"/>
+        <location filename="configdialog.ui" line="1215"/>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
         <translation>Csak utf16/utf-8 és ISO 8859-1 közül tud választani!</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1307"/>
+        <location filename="configdialog.ui" line="1321"/>
         <source>Show Whitespace</source>
         <translation>Térközök megjelenítése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1213"/>
+        <location filename="configdialog.ui" line="1227"/>
         <source>Tab space:</source>
         <translation>Tabulátor szélesség:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="727"/>
+        <location filename="configdialog.ui" line="314"/>
+        <source>Use system theme icons</source>
+        <translation>Rendszertéma ikonok használata</translation>
+    </message>
+    <message>
+        <location filename="configdialog.ui" line="529"/>
+        <source>Inline syntax checking</source>
+        <translation>Azonnali szintaktikai ellenőrzés</translation>
+    </message>
+    <message>
+        <location filename="configdialog.ui" line="741"/>
         <source>(The commands must be separated by &apos;|&apos;)</source>
         <translation>(A parancsokat &apos;|&apos; jellel kell elválasztani)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="830"/>
+        <location filename="configdialog.ui" line="844"/>
         <source>Run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</source>
         <translation>Ha a bib-fájlok megváltoztak, &quot;latex bibtex latex&quot; futtatása fordítás előtt</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="894"/>
+        <location filename="configdialog.ui" line="908"/>
         <source>Close Log-View with Esc-Key</source>
         <translation>Napló bezárása Escape-pel</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1079"/>
+        <location filename="configdialog.ui" line="1093"/>
         <source>Show preview as tool tip if panel is hidden</source>
         <translation>Előnézetet mutasson tippként, ha a panel rejtve van</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1084"/>
+        <location filename="configdialog.ui" line="1098"/>
         <source>Always show preview in preview panel</source>
         <translation>Mindig mutasson előnézetet az előnézet panelen</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1089"/>
+        <location filename="configdialog.ui" line="1103"/>
         <source>Always show preview as tool tip</source>
         <translation>Mindig mutasson előnézetet tippként</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1094"/>
+        <location filename="configdialog.ui" line="1108"/>
         <source>Always show both</source>
         <translation>Mindig mutassa mindkettőt</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1106"/>
+        <location filename="configdialog.ui" line="1120"/>
         <source>Preview with dvipng</source>
         <translation>Előnézet dvipng-vel</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1111"/>
+        <location filename="configdialog.ui" line="1125"/>
         <source>Preview with dvipng --follow (parallel)</source>
         <translation>Előnézet dvipng --follow segítségével (párhuzamosan)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1116"/>
+        <location filename="configdialog.ui" line="1130"/>
         <source>Preview with dvips/ghostscript</source>
         <translation>Előnézet dvips/ghostscript-tel</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1149"/>
+        <location filename="configdialog.ui" line="1163"/>
         <source>Close search and replace panel together</source>
         <translation>Keresés és csere panelek együttes bezárása</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1163"/>
+        <location filename="configdialog.ui" line="1177"/>
         <source>Ignore indentation</source>
         <translation>Behúzás mellőzése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1168"/>
+        <location filename="configdialog.ui" line="1182"/>
         <source>Keep indentation</source>
         <translation>Behúzás megtartása</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1173"/>
+        <location filename="configdialog.ui" line="1187"/>
         <source>Indent and unindent automatically</source>
         <translation>Behúzás és annak megszüntetése automatikusan</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1178"/>
+        <location filename="configdialog.ui" line="1192"/>
         <source>Keep indentation with spaces only</source>
         <translation>Behúzás megtartása szóközökkel</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1183"/>
+        <location filename="configdialog.ui" line="1197"/>
         <source>Indent and unindent automatically with spaces only</source>
         <translation>Behúzás és annak megszüntetése automatikusan szóközökkel</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1204"/>
+        <location filename="configdialog.ui" line="1218"/>
         <source>Auto detect encoding of loaded files</source>
         <translation>Fájlkódolás automatikus felismerése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1241"/>
+        <location filename="configdialog.ui" line="1255"/>
         <source>Auto Replace Latex-Commands</source>
         <translation>Latex parancsok automatikus cseréje</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1327"/>
+        <location filename="configdialog.ui" line="1341"/>
         <source>Hard Line Wrap</source>
         <translation>Sortörés</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1344"/>
+        <location filename="configdialog.ui" line="1358"/>
         <source>max. Characters:</source>
         <translation>Karakterek maximális száma:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1366"/>
+        <location filename="configdialog.ui" line="1380"/>
         <source>Custom Environment</source>
         <translation>Egyéni környezet</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1371"/>
+        <location filename="configdialog.ui" line="1385"/>
         <source>Type of Environment</source>
         <translation>Környezet típusa</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1381"/>
+        <location filename="configdialog.ui" line="1395"/>
         <source>Add line</source>
         <translation>Sor hozzáadása</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1388"/>
+        <location filename="configdialog.ui" line="1402"/>
         <source>Remove line</source>
         <translation>Sor eltávolítása</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1414"/>
+        <location filename="configdialog.ui" line="1428"/>
         <source>Completion Enabled</source>
         <translation>Kiegészítés engedélyezése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1421"/>
+        <location filename="configdialog.ui" line="1435"/>
         <source>Case Sensitive</source>
         <translation>Kis/nagybetű érzékeny</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1446"/>
+        <location filename="configdialog.ui" line="1460"/>
         <source>In first character</source>
         <translation>Az első karakterben</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1471"/>
+        <location filename="configdialog.ui" line="1485"/>
         <source>Auto Complete Common Prefix</source>
         <translation>Általános prefixek automatikus kiegészítése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1481"/>
+        <location filename="configdialog.ui" line="1495"/>
         <source>Complete selected text when non-word character is pressed</source>
         <translation>A kiválasztott szöveg kiegészítése nem-szó karakter lenyomására</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1491"/>
+        <location filename="configdialog.ui" line="1505"/>
         <source>Enable ToolTip-Help</source>
         <translation>Felugró-súgó engedélyezése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1501"/>
+        <location filename="configdialog.ui" line="1515"/>
         <source>Use placeholders</source>
         <translation>Helykitöltők engedélyezése</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1511"/>
+        <location filename="configdialog.ui" line="1525"/>
         <source>Use following completion files:</source>
         <translation>Használja a következő kiegészítésfájlokat:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1529"/>
+        <location filename="configdialog.ui" line="1543"/>
         <source>Automatically check in after save ?</source>
         <translation>Jelentkezzen be automatikusan mentés után?</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1536"/>
+        <location filename="configdialog.ui" line="1550"/>
         <source>Uses SVN revisions to undo before last saved version ?</source>
         <translation>Használja az SVN kiadásokat a visszavonáshoz a legutóbbi mentett verzió előtt?</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1543"/>
+        <location filename="configdialog.ui" line="1557"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation>Az svn add futtatásakor végrehajtódik az svn propset svn:keyword &quot;Date Author Revision HeadURL&quot;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1546"/>
+        <location filename="configdialog.ui" line="1560"/>
         <source>Substitue Keywords with Properties (on svn add)</source>
         <translation>Kulcsszavak helyettesítése Tulajdonságokkal (svn add esetén)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1553"/>
+        <location filename="configdialog.ui" line="1567"/>
         <source>SVN Commands</source>
         <translation>SVN parancsok</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="1562"/>
+        <location filename="configdialog.ui" line="1576"/>
         <source>SVN Directory Search Depth: </source>
         <translation>SVN könyvtár keresési mélység:</translation>
     </message>
@@ -943,73 +953,73 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>SVN</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="367"/>
+        <location filename="configdialog.cpp" line="371"/>
         <source>Browse dictionary</source>
         <translation>Szótár megadása</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="377"/>
-        <location filename="configdialog.cpp" line="380"/>
+        <location filename="configdialog.cpp" line="381"/>
+        <location filename="configdialog.cpp" line="384"/>
         <source>Get dictionary at: %1</source>
         <translation>Szótár beszerzése: %1</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="380"/>
+        <location filename="configdialog.cpp" line="384"/>
         <source>(Dictionary doesn&apos;t exists)</source>
         <translation>(A szótár nem létezik)</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="436"/>
+        <location filename="configdialog.cpp" line="440"/>
         <source>Browse thesaurus database</source>
         <translation>Tezaurusz adatbázis megadása</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="449"/>
+        <location filename="configdialog.cpp" line="453"/>
         <source>Browse program</source>
         <translation>Program megadása</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="536"/>
+        <location filename="configdialog.cpp" line="540"/>
         <source>Load other icon</source>
         <translation>Másik ikon betöltése</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="541"/>
+        <location filename="configdialog.cpp" line="545"/>
         <source>Select a File</source>
         <translation>Fájl kiválasztása</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="541"/>
+        <location filename="configdialog.cpp" line="545"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.svg)</source>
         <translation>Képek (*.png *.xpm *.jpg *.bmp *.svg)</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="753"/>
+        <location filename="configmanager.cpp" line="758"/>
         <source>Basic Key Mapping</source>
         <translation>Alapvető billenyűparancsok</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="772"/>
+        <location filename="configmanager.cpp" line="777"/>
         <source>Special Key Replacement</source>
         <translation>Különleges kulcs csere</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="773"/>
+        <location filename="configmanager.cpp" line="778"/>
         <source>New column meaning:</source>
         <translation>Új oszlop jelentése:</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="773"/>
+        <location filename="configmanager.cpp" line="778"/>
         <source>Key to replace</source>
         <translation>Cserélendő kulcs</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="773"/>
+        <location filename="configmanager.cpp" line="778"/>
         <source>Text to insert before word</source>
         <translation>Szöveg beillesztése a szó elé</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="773"/>
+        <location filename="configmanager.cpp" line="778"/>
         <source>Text to insert after word</source>
         <translation>Szöveg beillesztése a szó után</translation>
     </message>
@@ -1017,79 +1027,79 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
 <context>
     <name>ConfigManager</name>
     <message>
-        <location filename="configmanager.cpp" line="651"/>
-        <location filename="configmanager.cpp" line="652"/>
-        <location filename="configmanager.cpp" line="821"/>
-        <location filename="configmanager.cpp" line="823"/>
-        <location filename="configmanager.cpp" line="967"/>
-        <location filename="configmanager.cpp" line="979"/>
+        <location filename="configmanager.cpp" line="656"/>
+        <location filename="configmanager.cpp" line="657"/>
+        <location filename="configmanager.cpp" line="826"/>
+        <location filename="configmanager.cpp" line="828"/>
+        <location filename="configmanager.cpp" line="972"/>
+        <location filename="configmanager.cpp" line="984"/>
         <source>default</source>
         <translation>Alapértelmezett</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="746"/>
+        <location filename="configmanager.cpp" line="751"/>
         <source>Menus</source>
         <translation>Menük</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="815"/>
+        <location filename="configmanager.cpp" line="820"/>
         <source>Latex/Math menus</source>
         <translation>LaTeX/Matematika menük</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="816"/>
+        <location filename="configmanager.cpp" line="821"/>
         <source>All menus</source>
         <translation>Minden menü</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="817"/>
+        <location filename="configmanager.cpp" line="822"/>
         <source>Special Tags</source>
         <translation>Speciális elemek</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1029"/>
+        <location filename="configmanager.cpp" line="1034"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>Legutóbbi &apos;Mesterdokumentum&apos;: %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1035"/>
+        <location filename="configmanager.cpp" line="1040"/>
         <source>Recent File %1</source>
         <translation>Legutóbbi fájl %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1037"/>
+        <location filename="configmanager.cpp" line="1042"/>
         <source>Open all files</source>
         <translation>Minden fájl megnyitása</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1044"/>
+        <location filename="configmanager.cpp" line="1049"/>
         <source>Master Document: </source>
         <translation>Mesterdokumentum:</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1244"/>
-        <location filename="configmanager.cpp" line="1251"/>
+        <location filename="configmanager.cpp" line="1270"/>
+        <location filename="configmanager.cpp" line="1277"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;nincs&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1245"/>
-        <location filename="configmanager.cpp" line="1252"/>
+        <location filename="configmanager.cpp" line="1271"/>
+        <location filename="configmanager.cpp" line="1278"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;alapértelmezett&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1363"/>
+        <location filename="configmanager.cpp" line="1389"/>
         <source>Browse program</source>
         <translation>Program megadása</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1383"/>
+        <location filename="configmanager.cpp" line="1409"/>
         <source>Latex</source>
         <translation>LaTeX</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1383"/>
+        <location filename="configmanager.cpp" line="1409"/>
         <source>Math</source>
         <translation>Matematika</translation>
     </message>
@@ -1954,7 +1964,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <name>LatexEditorView</name>
     <message>
         <location filename="latexeditorview.cpp" line="141"/>
-        <location filename="latexeditorview.cpp" line="723"/>
+        <location filename="latexeditorview.cpp" line="733"/>
         <source>shift pressed =&gt; suggestions hidden</source>
         <translation>shift lenyomva =&gt; javaslatok rejtve</translation>
     </message>
@@ -1969,37 +1979,37 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <translation>Új BibTeX bejegyzés %1</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="876"/>
+        <location filename="latexeditorview.cpp" line="886"/>
         <source>label missing!</source>
         <translation>címke hiányzik!</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="878"/>
-        <location filename="latexeditorview.cpp" line="896"/>
+        <location filename="latexeditorview.cpp" line="888"/>
+        <location filename="latexeditorview.cpp" line="906"/>
         <source>label multiple times defined!</source>
         <translation>címke többszörösen definiálva!</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="884"/>
+        <location filename="latexeditorview.cpp" line="894"/>
         <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Fájlnév: %1&lt;/b&gt;
 </translation>
     </message>
     <message numerus="yes">
-        <location filename="latexeditorview.cpp" line="899"/>
+        <location filename="latexeditorview.cpp" line="909"/>
         <source>%n reference(s) to this label</source>
         <translation>
             <numerusform>%n hivatkozás erre a címkére</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="905"/>
+        <location filename="latexeditorview.cpp" line="915"/>
         <source>citation correct</source>
         <translation>forrásmegjelölés helyes</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="905"/>
+        <location filename="latexeditorview.cpp" line="915"/>
         <source>citation missing!</source>
         <translation>forrásmegjelölés hiányzik!</translation>
     </message>
@@ -2154,7 +2164,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
 <context>
     <name>QApplication</name>
     <message>
-        <location filename="smallUsefulFunctions.cpp" line="488"/>
+        <location filename="smallUsefulFunctions.cpp" line="490"/>
         <source>none</source>
         <translation>nincs</translation>
     </message>
@@ -3821,945 +3831,945 @@ Néhány példa:
 <context>
     <name>Texmaker</name>
     <message>
-        <location filename="texmaker.cpp" line="157"/>
-        <location filename="texmaker.cpp" line="3544"/>
+        <location filename="texmaker.cpp" line="178"/>
+        <location filename="texmaker.cpp" line="3581"/>
         <source>Normal Mode</source>
         <translation>Normál mód</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="158"/>
-        <location filename="texmaker.cpp" line="2785"/>
-        <location filename="texmaker.cpp" line="2979"/>
+        <location filename="texmaker.cpp" line="179"/>
+        <location filename="texmaker.cpp" line="2815"/>
+        <location filename="texmaker.cpp" line="3009"/>
         <source>Ready</source>
         <translation>Kész</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="248"/>
         <location filename="texmaker.cpp" line="272"/>
-        <location filename="texmaker.cpp" line="273"/>
+        <location filename="texmaker.cpp" line="297"/>
+        <location filename="texmaker.cpp" line="298"/>
         <source>Structure</source>
         <translation>&amp;Struktúra</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="275"/>
+        <location filename="texmaker.cpp" line="300"/>
         <source>Operator symbols</source>
         <translation>Operátor szimbólumok</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="276"/>
+        <location filename="texmaker.cpp" line="301"/>
         <source>Relation symbols</source>
         <translation>Relációs szimbólumok</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="277"/>
+        <location filename="texmaker.cpp" line="302"/>
         <source>Arrow symbols</source>
         <translation>Nyílszimbólumok</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="278"/>
+        <location filename="texmaker.cpp" line="303"/>
         <source>Delimiters</source>
         <translation>Elválasztók</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="279"/>
+        <location filename="texmaker.cpp" line="304"/>
         <source>Greek letters</source>
         <translation>Görög betűk</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="280"/>
+        <location filename="texmaker.cpp" line="305"/>
         <source>Cyrillic letters</source>
         <translation>Cirill betűk</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="281"/>
+        <location filename="texmaker.cpp" line="306"/>
         <source>Miscellaneous math symbols</source>
         <translation>Vegyes matematikai szimbólumok</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="282"/>
+        <location filename="texmaker.cpp" line="307"/>
         <source>Miscellaneous text symbols</source>
         <translation>Vegyes szövegszimbólumok</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="283"/>
+        <location filename="texmaker.cpp" line="308"/>
         <source>Miscellaneous text symbols (wasysym)</source>
         <translation>Vegyes szövegszimbólumok (wasysym)</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="284"/>
+        <location filename="texmaker.cpp" line="309"/>
         <source>Accented letters</source>
         <translation>Ékezetes betűk</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="286"/>
+        <location filename="texmaker.cpp" line="311"/>
         <source>Most used symbols</source>
         <translation>Legtöbbet használt szimbólumok</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="287"/>
+        <location filename="texmaker.cpp" line="312"/>
         <source>Favorites</source>
         <translation>Kedvencek</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="290"/>
+        <location filename="texmaker.cpp" line="315"/>
         <source>Left/Right Brackets</source>
         <translation>Bal/jobb zárójelek</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="291"/>
+        <location filename="texmaker.cpp" line="316"/>
         <source>Pstricks Commands</source>
         <translation>Pstricks parancsok</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="292"/>
+        <location filename="texmaker.cpp" line="317"/>
         <source>MetaPost Commands</source>
         <translation>MetaPost parancsok</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="293"/>
+        <location filename="texmaker.cpp" line="318"/>
         <source>Tikz Commands</source>
         <translation>Tikz parancsok</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="294"/>
+        <location filename="texmaker.cpp" line="319"/>
         <source>Asymptote Commands</source>
         <translation>Asymptote parancsok</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="320"/>
-        <location filename="texmaker.cpp" line="564"/>
+        <location filename="texmaker.cpp" line="348"/>
+        <location filename="texmaker.cpp" line="592"/>
         <source>Messages / Log File</source>
         <translation>Ü&amp;zenet- / naplófájl</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="336"/>
+        <location filename="texmaker.cpp" line="364"/>
         <source>&amp;File</source>
         <translation>&amp;Fájl</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="341"/>
+        <location filename="texmaker.cpp" line="369"/>
         <source>Open Recent</source>
         <translation>Le&amp;gutóbbi megnyitása</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="342"/>
+        <location filename="texmaker.cpp" line="370"/>
         <source>Restore previous session</source>
         <translation>E&amp;lőző munkamenet helyreállítása</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="989"/>
-        <location filename="texmaker.cpp" line="1166"/>
+        <location filename="texmaker.cpp" line="1019"/>
+        <location filename="texmaker.cpp" line="1196"/>
         <source>Save As</source>
         <translation>Mentés másként</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="347"/>
+        <location filename="texmaker.cpp" line="375"/>
         <source>Save A&amp;ll</source>
         <oldsource>Close All</oldsource>
         <translation>Összes men&amp;tése</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="357"/>
+        <location filename="texmaker.cpp" line="385"/>
         <source>Print...</source>
         <oldsource>Print</oldsource>
         <translation>N&amp;yomtatás...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="360"/>
+        <location filename="texmaker.cpp" line="388"/>
         <source>Exit</source>
         <translation>Kilé&amp;pés</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="365"/>
+        <location filename="texmaker.cpp" line="393"/>
         <source>&amp;Edit</source>
         <translation>&amp;Szerkesztés</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="610"/>
-        <location filename="texmaker.cpp" line="3783"/>
+        <location filename="texmaker.cpp" line="638"/>
+        <location filename="texmaker.cpp" line="3820"/>
         <source>Copy</source>
         <translation>Másolás</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="611"/>
-        <location filename="texmaker.cpp" line="3784"/>
+        <location filename="texmaker.cpp" line="639"/>
+        <location filename="texmaker.cpp" line="3821"/>
         <source>Cut</source>
         <translation>Kivágás</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="385"/>
-        <location filename="texmaker.cpp" line="449"/>
+        <location filename="texmaker.cpp" line="413"/>
+        <location filename="texmaker.cpp" line="477"/>
         <source>Go to</source>
         <translation>&amp;Ugrás</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="386"/>
+        <location filename="texmaker.cpp" line="414"/>
         <source>Line</source>
         <translation>Sor</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="387"/>
+        <location filename="texmaker.cpp" line="415"/>
         <source>last change</source>
         <translatorcomment>angolul kicsivel kezdődik</translatorcomment>
         <translation>Legutóbbi változtatás</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="388"/>
+        <location filename="texmaker.cpp" line="416"/>
         <source>&quot;next&quot; change</source>
         <translatorcomment>angolul kicsivel kezdődik</translatorcomment>
         <translation>&quot;Következő&quot; változtatás</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="390"/>
+        <location filename="texmaker.cpp" line="418"/>
         <source>Previous mark</source>
         <translation>Előző jelölés</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="391"/>
+        <location filename="texmaker.cpp" line="419"/>
         <source>Next mark</source>
         <translation>Következő jelölés</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="450"/>
+        <location filename="texmaker.cpp" line="478"/>
         <source>Previous error</source>
         <translation>Előző hiba</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="451"/>
+        <location filename="texmaker.cpp" line="479"/>
         <source>Next error</source>
         <translation>Következő hiba</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="452"/>
+        <location filename="texmaker.cpp" line="480"/>
         <source>Previous warning</source>
         <translation>Előző figyelmeztetés</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="453"/>
+        <location filename="texmaker.cpp" line="481"/>
         <source>Next warning</source>
         <translation>Következő figyelmeztetés</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="454"/>
+        <location filename="texmaker.cpp" line="482"/>
         <source>Previous bad box</source>
         <translation>Előző rossz szövegdoboz</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="455"/>
+        <location filename="texmaker.cpp" line="483"/>
         <source>Next bad box</source>
         <translation>Következő rossz szövegdoboz</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="457"/>
+        <location filename="texmaker.cpp" line="485"/>
         <source>Definition</source>
         <translation>Definíció</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="393"/>
+        <location filename="texmaker.cpp" line="421"/>
         <source>Goto Bookmark</source>
         <translation>U&amp;grás könyvjelzőre</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="395"/>
-        <location filename="texmaker.cpp" line="402"/>
+        <location filename="texmaker.cpp" line="423"/>
+        <location filename="texmaker.cpp" line="430"/>
         <source>Bookmark %1</source>
         <translation>Könyvjelző %1</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="398"/>
+        <location filename="texmaker.cpp" line="426"/>
         <source>Toggle Bookmark</source>
         <translation>Könyvjelző k&amp;ijelölése</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="399"/>
+        <location filename="texmaker.cpp" line="427"/>
         <source>unnamed bookmark</source>
         <translatorcomment>angolul kicsivel kezdődik</translatorcomment>
         <translation>Névtelen könyvjelző</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="462"/>
+        <location filename="texmaker.cpp" line="490"/>
         <source>Complete</source>
         <translation>&amp;Kiegészítés</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="463"/>
+        <location filename="texmaker.cpp" line="491"/>
         <source>normal</source>
         <translatorcomment>kis-nagy betű</translatorcomment>
         <translation>Normál</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="464"/>
+        <location filename="texmaker.cpp" line="492"/>
         <source>\begin{ completion</source>
         <translation>\begin{ kiegészítés</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="465"/>
+        <location filename="texmaker.cpp" line="493"/>
         <source>normal text</source>
         <translatorcomment>kis-nagy betű</translatorcomment>
         <translation>Normál szöveg</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="407"/>
+        <location filename="texmaker.cpp" line="435"/>
         <source>Line Ending</source>
         <translation>So&amp;rvég</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="409"/>
+        <location filename="texmaker.cpp" line="437"/>
         <source>DOS/Windows (CR LF)</source>
         <translation>DOS/Windows (CR LF)</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="413"/>
+        <location filename="texmaker.cpp" line="441"/>
         <source>Unix (LF)</source>
         <translation>Unix (LF)</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="417"/>
+        <location filename="texmaker.cpp" line="445"/>
         <source>Old Mac (CR)</source>
         <translation>Régi Mac (CR)</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="423"/>
+        <location filename="texmaker.cpp" line="451"/>
         <source>Setup Encoding...</source>
         <oldsource>Setup Encoding</oldsource>
         <translation>Kó&amp;dolás beállítása...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="501"/>
+        <location filename="texmaker.cpp" line="529"/>
         <source>Check Spelling...</source>
         <oldsource>Check Spelling</oldsource>
         <translation>Helyesírás-ellen&amp;őrzés...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="502"/>
+        <location filename="texmaker.cpp" line="530"/>
         <source>Thesaurus...</source>
         <oldsource>Thesaurus</oldsource>
         <translation>Te&amp;zaurusz...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="468"/>
+        <location filename="texmaker.cpp" line="496"/>
         <source>Refresh Structure</source>
         <translation>&amp;Struktúra frissítése</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="469"/>
+        <location filename="texmaker.cpp" line="497"/>
         <source>Remove Placeholders</source>
         <translation>H&amp;elykitöltők eltávolítása</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="473"/>
+        <location filename="texmaker.cpp" line="501"/>
         <source>&amp;Tools</source>
         <translation>&amp;Eszközök</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="474"/>
-        <location filename="texmaker.cpp" line="2809"/>
+        <location filename="texmaker.cpp" line="502"/>
+        <location filename="texmaker.cpp" line="2839"/>
         <source>Quick Build</source>
         <translation>&amp;Gyors fordítás</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2750"/>
+        <location filename="texmaker.cpp" line="2780"/>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2976"/>
+        <location filename="texmaker.cpp" line="3006"/>
         <source>Clean</source>
         <translation>Tisztítás</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="477"/>
-        <location filename="texmaker.cpp" line="507"/>
+        <location filename="texmaker.cpp" line="505"/>
+        <location filename="texmaker.cpp" line="535"/>
         <source>&amp;LaTeX</source>
         <oldsource>&amp;Latex</oldsource>
         <translation>&amp;LaTeX</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="508"/>
+        <location filename="texmaker.cpp" line="536"/>
         <source>Insert \ref to next label</source>
         <translation>\ref beillesztése a következő címkére</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="509"/>
+        <location filename="texmaker.cpp" line="537"/>
         <source>Insert \ref to previous label</source>
         <translation>\ref beillesztése az előző címkére</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="522"/>
+        <location filename="texmaker.cpp" line="550"/>
         <source>&amp;Wizards</source>
         <translation>&amp;Varázslók</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2514"/>
+        <location filename="texmaker.cpp" line="2544"/>
         <source>Quick Start</source>
         <translation>Gyors kezdés</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="532"/>
+        <location filename="texmaker.cpp" line="560"/>
         <source>&amp;Bibliography</source>
         <translation>&amp;Bibliográfia</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="337"/>
+        <location filename="texmaker.cpp" line="365"/>
         <source>&amp;New</source>
         <translation>Ú&amp;j</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="338"/>
+        <location filename="texmaker.cpp" line="366"/>
         <source>New from &amp;template...</source>
         <oldsource>New from &amp;template</oldsource>
         <translation>Új, &amp;sablonból...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="339"/>
+        <location filename="texmaker.cpp" line="367"/>
         <source>&amp;Open...</source>
         <oldsource>&amp;Open</oldsource>
         <translation>&amp;Megnyitás...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="345"/>
+        <location filename="texmaker.cpp" line="373"/>
         <source>&amp;Save</source>
         <translation>Me&amp;ntés</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="346"/>
+        <location filename="texmaker.cpp" line="374"/>
         <source>Save &amp;As...</source>
         <oldsource>Save &amp;As</oldsource>
         <translation>M&amp;entés másként...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="348"/>
+        <location filename="texmaker.cpp" line="376"/>
         <source>&amp;Make Template...</source>
         <oldsource>&amp;Make Template</oldsource>
         <translation>Sablon &amp;készítése...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="349"/>
+        <location filename="texmaker.cpp" line="377"/>
         <source>Check &amp;in...</source>
         <oldsource>Check &amp;in</oldsource>
         <translation>S&amp;VN feltöltése...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="350"/>
+        <location filename="texmaker.cpp" line="378"/>
         <source>Sh&amp;ow old Revisions</source>
         <translation>&amp;Régi kiadások megjelenítése</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="353"/>
+        <location filename="texmaker.cpp" line="381"/>
         <source>&amp;Close</source>
         <translation>&amp;Bezár</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="354"/>
+        <location filename="texmaker.cpp" line="382"/>
         <source>Clos&amp;e All</source>
         <translation>Minden be&amp;zárása</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="366"/>
+        <location filename="texmaker.cpp" line="394"/>
         <source>&amp;Undo</source>
         <translation>&amp;Vissza</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="367"/>
+        <location filename="texmaker.cpp" line="395"/>
         <source>&amp;Redo</source>
         <translation>Ú&amp;jra</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="370"/>
+        <location filename="texmaker.cpp" line="398"/>
         <source>&amp;Copy</source>
         <translation>&amp;Másolás</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="371"/>
+        <location filename="texmaker.cpp" line="399"/>
         <source>C&amp;ut</source>
         <translation>&amp;Kivágás</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="372"/>
+        <location filename="texmaker.cpp" line="400"/>
         <source>&amp;Paste</source>
         <translation>&amp;Beillesztés</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="373"/>
+        <location filename="texmaker.cpp" line="401"/>
         <source>Select &amp;All</source>
         <translation>Ö&amp;sszes kijelölése</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="374"/>
+        <location filename="texmaker.cpp" line="402"/>
         <source>Erase &amp;Line</source>
         <translation>Sor törlés&amp;e</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="430"/>
+        <location filename="texmaker.cpp" line="458"/>
         <source>Erase &amp;Word/Cmd/Env</source>
         <translation>Szó/&amp;Par./Körny. törlése</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="433"/>
+        <location filename="texmaker.cpp" line="461"/>
         <source>Pas&amp;te as LaTeX</source>
         <oldsource>Pas&amp;te as Latex</oldsource>
         <translation>Beillesztés &amp;LaTeX-ként</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="434"/>
+        <location filename="texmaker.cpp" line="462"/>
         <source>Co&amp;nvert to LaTeX</source>
         <oldsource>Co&amp;nvert to Latex</oldsource>
         <translation>LaTeX-&amp;re alakít</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="435"/>
+        <location filename="texmaker.cpp" line="463"/>
         <source>Pre&amp;view Selection/Parantheses</source>
         <translation>K&amp;iválasztott/zárójelezett rész előnézete</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="441"/>
+        <location filename="texmaker.cpp" line="469"/>
         <source>Co&amp;mment</source>
         <translation>Meg&amp;jegyzés</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="442"/>
+        <location filename="texmaker.cpp" line="470"/>
         <source>&amp;Uncomment</source>
         <translation>Megjeg&amp;yzés eltávolítása</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="443"/>
+        <location filename="texmaker.cpp" line="471"/>
         <source>In&amp;dent</source>
         <translation>Be&amp;húzás</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="444"/>
+        <location filename="texmaker.cpp" line="472"/>
         <source>Unind&amp;ent</source>
         <translation>Behúzás me&amp;gszüntetése</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="445"/>
+        <location filename="texmaker.cpp" line="473"/>
         <source>Hard Line &amp;Break...</source>
         <oldsource>Hard Line &amp;Break</oldsource>
         <translation>S&amp;ortörés...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="446"/>
+        <location filename="texmaker.cpp" line="474"/>
         <source>R&amp;epeat Hard Line Break</source>
         <translation>Ismétel&amp;t sortörés</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="379"/>
+        <location filename="texmaker.cpp" line="407"/>
         <source>&amp;Find</source>
         <translation>K&amp;eresés</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="380"/>
+        <location filename="texmaker.cpp" line="408"/>
         <source>Find &amp;Next</source>
         <translation>Köve&amp;tkező</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="381"/>
+        <location filename="texmaker.cpp" line="409"/>
         <source>Find D&amp;ialog...</source>
         <oldsource>Find D&amp;ialog</oldsource>
         <translation>Keresési párbes&amp;zédablak...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="382"/>
+        <location filename="texmaker.cpp" line="410"/>
         <source>&amp;Replace</source>
         <translation>&amp;Csere</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="424"/>
+        <location filename="texmaker.cpp" line="452"/>
         <source>Insert Unicode Character...</source>
         <translation>Unikód karakter beszúrása...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="429"/>
+        <location filename="texmaker.cpp" line="457"/>
         <source>&amp;Idefix (?)</source>
         <translation>Elő&amp;készítés</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="460"/>
+        <location filename="texmaker.cpp" line="488"/>
         <source>Re&amp;name Environment</source>
         <translation>Környezet átne&amp;vezése</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="478"/>
+        <location filename="texmaker.cpp" line="506"/>
         <source>&amp;View Dvi</source>
         <translation>&amp;Dvi megjelenítése</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="479"/>
+        <location filename="texmaker.cpp" line="507"/>
         <source>&amp;Dvi-&gt;PS</source>
         <translation>D&amp;vi-&gt;PS</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="480"/>
+        <location filename="texmaker.cpp" line="508"/>
         <source>Vie&amp;w PS</source>
         <translation>&amp;Ps megjelenítése</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="481"/>
+        <location filename="texmaker.cpp" line="509"/>
         <source>&amp;PDFLaTeX</source>
         <translation>PDFLaTe&amp;X</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="482"/>
+        <location filename="texmaker.cpp" line="510"/>
         <source>View PD&amp;F</source>
         <translation>PDF meg&amp;jelenítése</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="483"/>
+        <location filename="texmaker.cpp" line="511"/>
         <source>P&amp;S-&gt;PDF</source>
         <translation>P&amp;S-&gt;PDF</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="484"/>
+        <location filename="texmaker.cpp" line="512"/>
         <source>DV&amp;I-&gt;PDF</source>
         <translation>DVI-&gt;PD&amp;F</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="485"/>
+        <location filename="texmaker.cpp" line="513"/>
         <source>View &amp;Log</source>
         <translation>&amp;Napló megjelenítése</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="486"/>
+        <location filename="texmaker.cpp" line="514"/>
         <source>&amp;BibTeX</source>
         <translation>&amp;BibTeX</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="487"/>
+        <location filename="texmaker.cpp" line="515"/>
         <source>&amp;MakeIndex</source>
         <translation>Ma&amp;keIndex</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="488"/>
+        <location filename="texmaker.cpp" line="516"/>
         <source>&amp;Clear Markers</source>
         <translation>Jelzők &amp;törlése</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="491"/>
+        <location filename="texmaker.cpp" line="519"/>
         <source>&amp;MetaPost</source>
         <translation>&amp;MetaPost</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="492"/>
+        <location filename="texmaker.cpp" line="520"/>
         <source>&amp;Asymptote</source>
         <translation>&amp;Asymptote</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="494"/>
+        <location filename="texmaker.cpp" line="522"/>
         <source>Cle&amp;an</source>
         <translation>T&amp;isztítás</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="496"/>
+        <location filename="texmaker.cpp" line="524"/>
         <source>C&amp;onvert to Html...</source>
         <oldsource>C&amp;onvert to Html</oldsource>
         <translation>K&amp;onvertálás Html-re...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="498"/>
+        <location filename="texmaker.cpp" line="526"/>
         <source>A&amp;nalyse Text...</source>
         <oldsource>A&amp;nalyse Text</oldsource>
         <translation>Szöveg &amp;elemzése...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="499"/>
+        <location filename="texmaker.cpp" line="527"/>
         <source>Generate &amp;Random Text...</source>
         <oldsource>Generate &amp;Random Text</oldsource>
         <translation>Véletlen szöveg létre&amp;hozása...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="510"/>
+        <location filename="texmaker.cpp" line="538"/>
         <source>Manipulate tables</source>
         <translation>Táblázatok módosítása</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="511"/>
+        <location filename="texmaker.cpp" line="539"/>
         <source>add row</source>
         <translation>Sor hozzáadása</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="512"/>
+        <location filename="texmaker.cpp" line="540"/>
         <source>add column</source>
         <translation>Oszlop hozzáadása</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="513"/>
+        <location filename="texmaker.cpp" line="541"/>
         <source>remove row</source>
         <translation>Sor törlése</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="514"/>
+        <location filename="texmaker.cpp" line="542"/>
         <source>remove column</source>
         <translation>Oszlop törlése</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="515"/>
+        <location filename="texmaker.cpp" line="543"/>
         <source>cut column</source>
         <translation>Oszlop kivágása</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="516"/>
+        <location filename="texmaker.cpp" line="544"/>
         <source>paste column</source>
         <translation>Oszlop beillesztése</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="517"/>
+        <location filename="texmaker.cpp" line="545"/>
         <source>add \hline</source>
         <translation>\hline hozzáadása</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="518"/>
+        <location filename="texmaker.cpp" line="546"/>
         <source>remove \hline</source>
         <translation>\hline eltávolítása</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="523"/>
+        <location filename="texmaker.cpp" line="551"/>
         <source>Quick &amp;Start...</source>
         <oldsource>Quick &amp;Start</oldsource>
         <translation>&amp;Gyors kezdés...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="524"/>
+        <location filename="texmaker.cpp" line="552"/>
         <source>Quick &amp;Letter...</source>
         <oldsource>Quick &amp;Letter</oldsource>
         <translation>G&amp;yors levél...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="527"/>
+        <location filename="texmaker.cpp" line="555"/>
         <source>Quick &amp;Tabular...</source>
         <oldsource>Quick &amp;Tabular</oldsource>
         <translation>Gy&amp;ors táblázat...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="528"/>
+        <location filename="texmaker.cpp" line="556"/>
         <source>Quick T&amp;abbing...</source>
         <oldsource>Quick T&amp;abbing</oldsource>
         <translation>Gyo&amp;rs tagolás...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="529"/>
+        <location filename="texmaker.cpp" line="557"/>
         <source>Quick &amp;Array...</source>
         <oldsource>Quick &amp;Array</oldsource>
         <translation>Gyor&amp;s tömb...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="530"/>
+        <location filename="texmaker.cpp" line="558"/>
         <source>Insert &amp;Graphic...</source>
         <oldsource>Insert &amp;Graphic</oldsource>
         <translation>Gr&amp;afika beillesztése...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="536"/>
+        <location filename="texmaker.cpp" line="564"/>
         <source>&amp;Clean</source>
         <translation>&amp;Tisztítás</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="538"/>
+        <location filename="texmaker.cpp" line="566"/>
         <source>BibTeX &amp;insert dialog...</source>
         <oldsource>BibTeX &amp;insert dialog</oldsource>
         <translation>&amp;BibTeX beillesztés...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="542"/>
+        <location filename="texmaker.cpp" line="570"/>
         <source>&amp;User</source>
         <translation>Fel&amp;használó</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="543"/>
+        <location filename="texmaker.cpp" line="571"/>
         <source>User &amp;Tags</source>
         <translation>&amp;Felhasználói elemek</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="548"/>
-        <location filename="texmaker.cpp" line="2601"/>
+        <location filename="texmaker.cpp" line="576"/>
+        <location filename="texmaker.cpp" line="2631"/>
         <source>Edit User &amp;Tags</source>
         <translation>&amp;Felhasználói elemek szerkesztése...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="550"/>
+        <location filename="texmaker.cpp" line="578"/>
         <source>User &amp;Commands</source>
         <translation>F&amp;elhasználói parancsok</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="555"/>
-        <location filename="texmaker.cpp" line="3010"/>
+        <location filename="texmaker.cpp" line="583"/>
+        <location filename="texmaker.cpp" line="3040"/>
         <source>Edit User &amp;Commands</source>
         <translation>&amp;Felhasználói parancsok szerkesztése...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="558"/>
+        <location filename="texmaker.cpp" line="586"/>
         <source>&amp;View</source>
         <translation>&amp;Nézet</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="559"/>
+        <location filename="texmaker.cpp" line="587"/>
         <source>Next Document</source>
         <translation>&amp;Következő dokumentum</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="560"/>
+        <location filename="texmaker.cpp" line="588"/>
         <source>Previous Document</source>
         <translation>&amp;Előző dokumentum</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="566"/>
+        <location filename="texmaker.cpp" line="594"/>
         <source>Close Something</source>
         <translation>&amp;Bezárások</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="569"/>
+        <location filename="texmaker.cpp" line="597"/>
         <source>Collapse</source>
         <translation>Összezá&amp;rás</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="570"/>
-        <location filename="texmaker.cpp" line="575"/>
+        <location filename="texmaker.cpp" line="598"/>
+        <location filename="texmaker.cpp" line="603"/>
         <source>Everything</source>
         <translation>Minden</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="571"/>
-        <location filename="texmaker.cpp" line="576"/>
+        <location filename="texmaker.cpp" line="599"/>
+        <location filename="texmaker.cpp" line="604"/>
         <source>Nearest block</source>
         <translation>Legközelebbi blokk</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="573"/>
-        <location filename="texmaker.cpp" line="578"/>
+        <location filename="texmaker.cpp" line="601"/>
+        <location filename="texmaker.cpp" line="606"/>
         <source>Level %1</source>
         <translation>%1. szint</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="574"/>
+        <location filename="texmaker.cpp" line="602"/>
         <source>Expand</source>
         <translation>Szé&amp;tnyitás</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="581"/>
+        <location filename="texmaker.cpp" line="609"/>
         <source>Fullscreen Mode</source>
         <translation>Te&amp;ljes képernyős üzemmód</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="585"/>
+        <location filename="texmaker.cpp" line="613"/>
         <source>&amp;Options</source>
         <translation>Beállí&amp;tások</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="586"/>
+        <location filename="texmaker.cpp" line="614"/>
         <source>&amp;Configure TexMakerX...</source>
         <oldsource>&amp;Configure TexMakerX</oldsource>
         <translation>&amp;A TexMakerX beállításai...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="589"/>
+        <location filename="texmaker.cpp" line="617"/>
         <source>Load &amp;Profile...</source>
         <oldsource>Load &amp;Profile</oldsource>
         <translation>&amp;Profil betöltése...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="590"/>
+        <location filename="texmaker.cpp" line="618"/>
         <source>Save all current settings</source>
         <translation>Minden jelenlegi beállítás mentése</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="592"/>
+        <location filename="texmaker.cpp" line="620"/>
         <source>Define Current Document as &apos;&amp;Master Document&apos;</source>
         <translation>&amp;Legyen a jelenlegi dokumentum a &apos;Mesterdokumentum&apos;</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="989"/>
-        <location filename="texmaker.cpp" line="1108"/>
-        <location filename="texmaker.cpp" line="1166"/>
+        <location filename="texmaker.cpp" line="1019"/>
+        <location filename="texmaker.cpp" line="1138"/>
+        <location filename="texmaker.cpp" line="1196"/>
         <source>TeX files</source>
         <translation>TeX fájlok</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1576"/>
+        <location filename="texmaker.cpp" line="1606"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation>Sortörés ennyi karakter után:</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1577"/>
+        <location filename="texmaker.cpp" line="1607"/>
         <source>Smart scope selecting</source>
         <translatorcomment>?</translatorcomment>
         <translation>Hatékony hatókör-kiválasztás</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1578"/>
+        <location filename="texmaker.cpp" line="1608"/>
         <source>Join lines before wrapping</source>
         <translation>Sorok összefűzése törés előtt</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3443"/>
+        <location filename="texmaker.cpp" line="3480"/>
         <source>You have to save the file before switching to master mode!</source>
         <translation>Mentse a fájlt mester módba váltás előtt!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4416"/>
+        <location filename="texmaker.cpp" line="4453"/>
         <source>TmX Profile</source>
         <comment>filter</comment>
         <translation>TmX profil</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4416"/>
+        <location filename="texmaker.cpp" line="4453"/>
         <source>Load Profile</source>
         <oldsource>load Profile</oldsource>
         <translation>Profil betöltése</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3542"/>
+        <location filename="texmaker.cpp" line="3579"/>
         <source>Define Current Document as &apos;Master Document&apos;</source>
         <translation>&amp;Legyen a jelenlegi dokumentum a &apos;Mesterdokumentum&apos;</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="593"/>
+        <location filename="texmaker.cpp" line="621"/>
         <source>Automatically Restore &amp;Session at Next Start</source>
         <oldsource>Automatically Restore Session at Next Start</oldsource>
         <translation>A&amp;utomatikusan állítsa vissza a munkamenetet a következő indításkor</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="597"/>
+        <location filename="texmaker.cpp" line="625"/>
         <source>&amp;Help</source>
         <translation>Sú&amp;gó</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="598"/>
+        <location filename="texmaker.cpp" line="626"/>
         <source>LaTeX Reference...</source>
         <oldsource>LaTeX Reference</oldsource>
         <translation>&amp;LaTeX referencia...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="599"/>
+        <location filename="texmaker.cpp" line="627"/>
         <source>User Manual...</source>
         <oldsource>User Manual</oldsource>
         <translation>&amp;Felhasználói kézikönyv...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="602"/>
+        <location filename="texmaker.cpp" line="630"/>
         <source>About TexMakerX...</source>
         <oldsource>About TexMakerX</oldsource>
         <translation>&amp;A TexMakerX névjegye...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="612"/>
-        <location filename="texmaker.cpp" line="3785"/>
+        <location filename="texmaker.cpp" line="640"/>
+        <location filename="texmaker.cpp" line="3822"/>
         <source>Paste before</source>
         <translation>Beillesztés elé</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="613"/>
-        <location filename="texmaker.cpp" line="3786"/>
+        <location filename="texmaker.cpp" line="641"/>
+        <location filename="texmaker.cpp" line="3823"/>
         <source>Paste after</source>
         <translation>Beillesztés utána</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="617"/>
-        <location filename="texmaker.cpp" line="3788"/>
+        <location filename="texmaker.cpp" line="645"/>
+        <location filename="texmaker.cpp" line="3825"/>
         <source>Indent Section</source>
         <translation>Fejezet behúzása</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="618"/>
-        <location filename="texmaker.cpp" line="3789"/>
+        <location filename="texmaker.cpp" line="646"/>
+        <location filename="texmaker.cpp" line="3826"/>
         <source>Unindent Section</source>
         <translation>Fejezet behúzásának megszüntetése</translation>
     </message>
@@ -4794,344 +4804,344 @@ Néhány példa:
         <translation>Táblázat</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="629"/>
+        <location filename="texmaker.cpp" line="657"/>
         <source>Spelling</source>
         <translation>Helyesírás</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="714"/>
+        <location filename="texmaker.cpp" line="744"/>
         <source>Click to jump to the bookmark</source>
         <translation>A könyvjelzőre ugráshoz kattintson</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="806"/>
+        <location filename="texmaker.cpp" line="836"/>
         <source>untitled</source>
         <translation>névtelen</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="915"/>
-        <location filename="texmaker.cpp" line="1015"/>
-        <location filename="texmaker.cpp" line="1017"/>
-        <location filename="texmaker.cpp" line="1027"/>
-        <location filename="texmaker.cpp" line="1059"/>
-        <location filename="texmaker.cpp" line="1604"/>
-        <location filename="texmaker.cpp" line="2681"/>
-        <location filename="texmaker.cpp" line="2706"/>
-        <location filename="texmaker.cpp" line="2745"/>
-        <location filename="texmaker.cpp" line="2803"/>
-        <location filename="texmaker.cpp" line="2816"/>
-        <location filename="texmaker.cpp" line="2832"/>
-        <location filename="texmaker.cpp" line="2845"/>
-        <location filename="texmaker.cpp" line="2858"/>
-        <location filename="texmaker.cpp" line="2874"/>
-        <location filename="texmaker.cpp" line="2892"/>
-        <location filename="texmaker.cpp" line="2910"/>
-        <location filename="texmaker.cpp" line="2949"/>
-        <location filename="texmaker.cpp" line="2966"/>
+        <location filename="texmaker.cpp" line="945"/>
+        <location filename="texmaker.cpp" line="1045"/>
+        <location filename="texmaker.cpp" line="1047"/>
+        <location filename="texmaker.cpp" line="1057"/>
+        <location filename="texmaker.cpp" line="1089"/>
+        <location filename="texmaker.cpp" line="1634"/>
+        <location filename="texmaker.cpp" line="2711"/>
+        <location filename="texmaker.cpp" line="2736"/>
+        <location filename="texmaker.cpp" line="2775"/>
+        <location filename="texmaker.cpp" line="2833"/>
+        <location filename="texmaker.cpp" line="2846"/>
+        <location filename="texmaker.cpp" line="2862"/>
+        <location filename="texmaker.cpp" line="2875"/>
+        <location filename="texmaker.cpp" line="2888"/>
+        <location filename="texmaker.cpp" line="2904"/>
+        <location filename="texmaker.cpp" line="2922"/>
+        <location filename="texmaker.cpp" line="2940"/>
+        <location filename="texmaker.cpp" line="2979"/>
         <location filename="texmaker.cpp" line="2996"/>
-        <location filename="texmaker.cpp" line="3099"/>
-        <location filename="texmaker.cpp" line="3120"/>
-        <location filename="texmaker.cpp" line="3244"/>
-        <location filename="texmaker.cpp" line="3252"/>
-        <location filename="texmaker.cpp" line="3443"/>
+        <location filename="texmaker.cpp" line="3026"/>
+        <location filename="texmaker.cpp" line="3129"/>
+        <location filename="texmaker.cpp" line="3150"/>
+        <location filename="texmaker.cpp" line="3274"/>
+        <location filename="texmaker.cpp" line="3282"/>
+        <location filename="texmaker.cpp" line="3480"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="915"/>
-        <location filename="texmaker.cpp" line="1059"/>
+        <location filename="texmaker.cpp" line="945"/>
+        <location filename="texmaker.cpp" line="1089"/>
         <source>You do not have read permission to this file.</source>
         <translation>Nincs olvasási jogosultsága a fájlra.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1010"/>
+        <location filename="texmaker.cpp" line="1040"/>
         <source>Please Confirm</source>
         <translation>Kérem erősítse meg</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1010"/>
+        <location filename="texmaker.cpp" line="1040"/>
         <source>Are you sure to remove that template permanently ?</source>
         <translation>Biztos benne, hogy véglegesen eltávolítja a sablont?</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1015"/>
+        <location filename="texmaker.cpp" line="1045"/>
         <source>You do not have permission to remove this file.</source>
         <translation>Nincs jogosultsága törölni a fájlt.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1017"/>
+        <location filename="texmaker.cpp" line="1047"/>
         <source>You can not remove built-in templates.</source>
         <translation>Beépített sablonok nem távolíthatóak el.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1027"/>
+        <location filename="texmaker.cpp" line="1057"/>
         <source>You can not edit built-in templates.</source>
         <translation>Beépített sablonok nem szerkeszthetők.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1034"/>
+        <location filename="texmaker.cpp" line="1064"/>
         <source>Templates</source>
         <translation>Sablonok</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1109"/>
-        <location filename="texmaker.cpp" line="1166"/>
-        <location filename="texmaker.cpp" line="4416"/>
+        <location filename="texmaker.cpp" line="1139"/>
+        <location filename="texmaker.cpp" line="1196"/>
+        <location filename="texmaker.cpp" line="4453"/>
         <source>All files</source>
         <translation>Minden fájl</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="281"/>
-        <location filename="texmaker.cpp" line="1035"/>
+        <location filename="texmaker.cpp" line="1065"/>
         <source>Edit</source>
         <translation>Szerkesztés</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1038"/>
-        <location filename="texmaker.cpp" line="3939"/>
+        <location filename="texmaker.cpp" line="1068"/>
+        <location filename="texmaker.cpp" line="3976"/>
         <source>Remove</source>
         <translation>Eltávolítás</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1110"/>
+        <location filename="texmaker.cpp" line="1140"/>
         <source>Open Files</source>
         <translation>Fájlok megnyitása</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1245"/>
-        <location filename="texmaker.cpp" line="1281"/>
+        <location filename="texmaker.cpp" line="1275"/>
+        <location filename="texmaker.cpp" line="1311"/>
         <source>The document contains unsaved work. Do you want to save it before closing?</source>
         <translation>A dokumentum mentetlen munkát tartalmaz. Szeretné menteni bezárás előtt?</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1247"/>
-        <location filename="texmaker.cpp" line="1283"/>
+        <location filename="texmaker.cpp" line="1277"/>
+        <location filename="texmaker.cpp" line="1313"/>
         <source>Save and Close</source>
         <translation>Mentés és bezárás</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1247"/>
-        <location filename="texmaker.cpp" line="1283"/>
+        <location filename="texmaker.cpp" line="1277"/>
+        <location filename="texmaker.cpp" line="1313"/>
         <source>Don&apos;t Save and Close</source>
         <translation>Bezárás mentés nélkül</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1247"/>
-        <location filename="texmaker.cpp" line="1283"/>
-        <location filename="texmaker.cpp" line="2970"/>
+        <location filename="texmaker.cpp" line="1277"/>
+        <location filename="texmaker.cpp" line="1313"/>
+        <location filename="texmaker.cpp" line="3000"/>
         <source>Cancel</source>
         <translation>Mégsem</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1590"/>
-        <location filename="texmaker.cpp" line="1600"/>
-        <location filename="texmaker.cpp" line="3027"/>
-        <location filename="texmaker.cpp" line="3044"/>
+        <location filename="texmaker.cpp" line="1620"/>
+        <location filename="texmaker.cpp" line="1630"/>
+        <location filename="texmaker.cpp" line="3057"/>
+        <location filename="texmaker.cpp" line="3074"/>
         <source>No document open</source>
         <translation>Nincs dokumentum megnyitva</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="1604"/>
+        <location filename="texmaker.cpp" line="1634"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>Tezaurusz betöltése nem lehetséges</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2552"/>
+        <location filename="texmaker.cpp" line="2582"/>
         <source>&lt;current file&gt;</source>
         <translation>&lt;jelenlegi fájl&gt;</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2630"/>
-        <location filename="texmaker.cpp" line="2650"/>
+        <location filename="texmaker.cpp" line="2660"/>
+        <location filename="texmaker.cpp" line="2680"/>
         <source>Labels:</source>
         <translation>Címkék:</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2681"/>
-        <location filename="texmaker.cpp" line="2966"/>
+        <location filename="texmaker.cpp" line="2711"/>
+        <location filename="texmaker.cpp" line="2996"/>
         <source>Can&apos;t detect the file name</source>
         <translation>A fájlnév nem állapítható meg</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2706"/>
+        <location filename="texmaker.cpp" line="2736"/>
         <source>could not start the command:</source>
         <translation>parancs nem indítható:</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2708"/>
+        <location filename="texmaker.cpp" line="2738"/>
         <source>Process started</source>
         <translation>A művelet elindult</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2737"/>
+        <location filename="texmaker.cpp" line="2767"/>
         <source>Pre-LaTeX</source>
         <translation>Pre-LaTeX</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2745"/>
-        <location filename="texmaker.cpp" line="2816"/>
-        <location filename="texmaker.cpp" line="2832"/>
-        <location filename="texmaker.cpp" line="2858"/>
-        <location filename="texmaker.cpp" line="2874"/>
-        <location filename="texmaker.cpp" line="2892"/>
-        <location filename="texmaker.cpp" line="2910"/>
+        <location filename="texmaker.cpp" line="2775"/>
+        <location filename="texmaker.cpp" line="2846"/>
+        <location filename="texmaker.cpp" line="2862"/>
+        <location filename="texmaker.cpp" line="2888"/>
+        <location filename="texmaker.cpp" line="2904"/>
+        <location filename="texmaker.cpp" line="2922"/>
+        <location filename="texmaker.cpp" line="2940"/>
         <source>Could not start LaTeX.</source>
         <translation>A LaTeX nem indítható.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2782"/>
+        <location filename="texmaker.cpp" line="2812"/>
         <source>Process exited with error(s)</source>
         <translation>A művelet hibával leállt</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2782"/>
+        <location filename="texmaker.cpp" line="2812"/>
         <source>Process exited normally</source>
         <translation>A művelet sikeres volt</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2803"/>
-        <location filename="texmaker.cpp" line="2949"/>
-        <location filename="texmaker.cpp" line="2996"/>
+        <location filename="texmaker.cpp" line="2833"/>
+        <location filename="texmaker.cpp" line="2979"/>
+        <location filename="texmaker.cpp" line="3026"/>
         <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>A fájlnév nem állapítható meg.
 El kell mentenie a dokumentumot fordítás előtt.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2845"/>
+        <location filename="texmaker.cpp" line="2875"/>
         <source>Could not start PdfLaTeX.</source>
         <translation>A PdfLaTeX nem indítható.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2970"/>
+        <location filename="texmaker.cpp" line="3000"/>
         <source>Delete the output files generated by LaTeX?</source>
         <translation>Törli a LaTeX által előállított kimeneti fájlokat?</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2970"/>
+        <location filename="texmaker.cpp" line="3000"/>
         <source>Delete Files</source>
         <translation>Fájlok törlése</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3048"/>
+        <location filename="texmaker.cpp" line="3078"/>
         <source>Text Analysis</source>
         <translation>Szöveganalízis</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3065"/>
+        <location filename="texmaker.cpp" line="3095"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation>A véletlen szöveg-generátor új szövegeket hoz létre létező szavakból, úgyhogy meg kell nyitni néhány szövegfájlt</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3099"/>
+        <location filename="texmaker.cpp" line="3129"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>A fájlt menteni és fordítani kell a napló megtekintése előtt</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3120"/>
+        <location filename="texmaker.cpp" line="3150"/>
         <source>Log File not found !</source>
         <translation>A naplófájl nem található!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3204"/>
-        <location filename="texmaker.cpp" line="3208"/>
+        <location filename="texmaker.cpp" line="3234"/>
+        <location filename="texmaker.cpp" line="3238"/>
         <source>No LaTeX errors detected !</source>
         <translation>Nincs LaTeX hiba!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3212"/>
-        <location filename="texmaker.cpp" line="3215"/>
+        <location filename="texmaker.cpp" line="3242"/>
+        <location filename="texmaker.cpp" line="3245"/>
         <source>No LaTeX warnings detected !</source>
         <translation>Nincs LaTeX figyelmeztetés!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3219"/>
-        <location filename="texmaker.cpp" line="3222"/>
+        <location filename="texmaker.cpp" line="3249"/>
+        <location filename="texmaker.cpp" line="3252"/>
         <source>No bad boxes detected !</source>
         <translation>Nincsenek rossz szövegdobozok!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3244"/>
-        <location filename="texmaker.cpp" line="3252"/>
+        <location filename="texmaker.cpp" line="3274"/>
+        <location filename="texmaker.cpp" line="3282"/>
         <source>File not found</source>
         <translation>A fájl nem található</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3547"/>
+        <location filename="texmaker.cpp" line="3584"/>
         <source>Normal Mode (current master document :</source>
         <translation>&amp;Normál mód (jelenlegi mesterdokumentum: </translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3548"/>
+        <location filename="texmaker.cpp" line="3585"/>
         <source>Master Document</source>
         <translation>Mesterdokumentum</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3767"/>
+        <location filename="texmaker.cpp" line="3804"/>
         <source>Close document</source>
         <translation>Dokumentum bezárása</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3768"/>
+        <location filename="texmaker.cpp" line="3805"/>
         <source>Set this document as master document</source>
         <translation>Jelenlegi dokumentum beállítása &apos;Mesterdokumentum&apos;-ként</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3770"/>
+        <location filename="texmaker.cpp" line="3807"/>
         <source>Remove master document role</source>
         <translation>A mesterdokumentum szerep megvonása</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3776"/>
-        <location filename="texmaker.cpp" line="3823"/>
+        <location filename="texmaker.cpp" line="3813"/>
+        <location filename="texmaker.cpp" line="3860"/>
         <source>Insert</source>
         <translation>Beillesztés</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3777"/>
-        <location filename="texmaker.cpp" line="3778"/>
+        <location filename="texmaker.cpp" line="3814"/>
+        <location filename="texmaker.cpp" line="3815"/>
         <source>Insert as %1</source>
         <translation>Beillesztés %1-ként</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3938"/>
-        <location filename="texmaker.cpp" line="3949"/>
+        <location filename="texmaker.cpp" line="3975"/>
+        <location filename="texmaker.cpp" line="3986"/>
         <source>Add to favorites</source>
         <translation>Kedvencekhez</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3940"/>
+        <location filename="texmaker.cpp" line="3977"/>
         <source>Remove all</source>
         <translation>Összes eltávolítása</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3944"/>
+        <location filename="texmaker.cpp" line="3981"/>
         <source>Remove from favorites</source>
         <translation>Eltávolítás a kedvencek közül</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3945"/>
+        <location filename="texmaker.cpp" line="3982"/>
         <source>Remove all favorites</source>
         <translation>Az összes kedvenc eltávolítása</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="3981"/>
+        <location filename="texmaker.cpp" line="4018"/>
         <source>remove</source>
         <translation>eltávolítás</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4098"/>
+        <location filename="texmaker.cpp" line="4135"/>
         <source>commit comment:</source>
         <translation>Megjegyzés bevitele:</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4264"/>
+        <location filename="texmaker.cpp" line="4301"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>Figyelem! A párbeszédablak automatikusan bezáródik, ha a szöveget kézzel szerkeszti!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="2742"/>
-        <location filename="texmaker.cpp" line="2753"/>
+        <location filename="texmaker.cpp" line="2772"/>
+        <location filename="texmaker.cpp" line="2783"/>
         <source>LaTeX</source>
         <comment>Status</comment>
         <translation>LaTeX</translation>
