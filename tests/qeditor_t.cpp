@@ -503,11 +503,41 @@ void QEditorTest::indentation_data(){
 		<< true << 0 << 2
 		<< "\n"
 		<< "  \n   \nworld\n";
-/*
+
+	QTest::newRow("space test + weak")
+		<< "   \nworld\n"
+		<< true << 0 << 2
+		<< "\n"
+		<< "  \n   \nworld\n";
+
+	QTest::newRow("block indentation")
+		<< "   hello\nworld\n"
+		<< true << 0 << 6
+		<< "  x\n y\n  z"
+		<< "   hel  x\n    y\n     zlo\nworld\n";
+
+	QTest::newRow("block indentation")
+		<< "   hello\nworld\n"
+		<< true << 0 << 6
+		<< "  \\begin{abc}\n    abcdef\n  \\end{abc}"
+		<< "   hel  \\begin{abc}\n       abcdef\n     \\end{abc}lo\nworld\n";
+
+	QTest::newRow("block indentation + 3 space")
+		<< "   hello\nworld\n"
+		<< false << 0 << 6
+		<< "  \\begin{abc}\n             abcdef\n  \\end{abc}"
+		<< "   hel  \\begin{abc}\n   \tabcdef\n   \\end{abc}lo\nworld\n";
+
+	QTest::newRow("block indentation + 4 space")
+		<< "    hello\nworld\n"
+		<< false << 0 << 7
+		<< " \\begin{abc}\n             abcdef\n               \\end{abc}"
+		<< "    hel \\begin{abc}\n    \tabcdef\n    \\end{abc}lo\nworld\n";
+	/*
   this is broken:
 	QTest::newRow("trivial 2")
 		<< "hello\nworld\n"
-		<< 0 << 5
+		<< false << 0 << 5
 		<< "{{\na\n}}"
 		<< "hello{{\n\t\ta\n}}\nworld\n";
 */
