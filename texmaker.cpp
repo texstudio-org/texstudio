@@ -128,7 +128,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	centralFrame->setFrameShadow(QFrame::Plain);
 
 	//edit
-	centralToolBar=new QToolBar("Central",centralFrame);
+	centralToolBar=new QToolBar("Central",this);
 	centralToolBar->setFloatable(false);
 	centralToolBar->setOrientation(Qt::Vertical);
 	centralToolBar->setMovable(false);
@@ -152,6 +152,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	centralLayout->addWidget(EditorView);
 
 	setCentralWidget(centralFrame);
+
+	setContextMenuPolicy(Qt::ActionsContextMenu);
 
 	symbolMostused.clear();
 	setupDockWidgets();
@@ -279,6 +281,7 @@ void Texmaker::setupDockWidgets(){
 		}
 
 		connect(leftPanel,SIGNAL(widgetContextMenuRequested(QWidget*, QPoint)),this,SLOT(SymbolGridContextMenu(QWidget*, QPoint)));
+		addAction(leftPanel->toggleViewAction());
 	}
 
 	if (!structureTreeView) {
@@ -338,6 +341,9 @@ void Texmaker::setupDockWidgets(){
 		connect(outputView,SIGNAL(jumpToSearch(QString,int)),this,SLOT(jumpToSearch(QString,int)));
 		connect(&configManager,SIGNAL(tabbedLogViewChanged(bool)),outputView,SLOT(setTabbedLogView(bool)));
 		connect(&buildManager,SIGNAL(previewAvailable(const QString&, const QString&)),this,SLOT(previewAvailable	(const QString&,const QString&)));
+		addAction(outputView->toggleViewAction());
+		QAction* temp = new QAction(this); temp->setSeparator(true);
+		addAction(temp);
 	}
 	outputView->setWindowTitle(tr("Messages / Log File"));
 
@@ -673,11 +679,12 @@ void Texmaker::setupToolBars() {
 	}
 	//setup customizable toolbars
 		for (int i=0;i<configManager.managedToolBars.size();i++){
-		ManagedToolBar &mtb = configManager.managedToolBars[i];
-		if (mtb.name == "Central") mtb.toolbar = centralToolBar;
+		ManagedToolBar &mtb = configManager.managedToolBars[i];		
 		if (!mtb.toolbar) { //create actual toolbar on first call
-			mtb.toolbar = addToolBar(tr(qPrintable(mtb.name)));
+			if (mtb.name == "Central") mtb.toolbar = centralToolBar;
+			else mtb.toolbar = addToolBar(tr(qPrintable(mtb.name)));
 			mtb.toolbar->setObjectName(mtb.name);
+			addAction(mtb.toolbar->toggleViewAction());
 		} else mtb.toolbar->clear();
 		foreach (const QString& actionName, mtb.actualActions){
 			if (actionName == "separator") mtb.toolbar->addSeparator(); //Case 1: Separator
