@@ -86,7 +86,8 @@ private:
 	LatexCompleter* completer;
 
 //gui
-        TmxTabWidget *EditorView;
+	TmxTabWidget *EditorView;
+	QToolBar* centralToolBar;
 	CustomWidgetList *leftPanel;
 	SymbolGridWidget *MostUsedSymbolWidget, *FavoriteSymbolWidget;
 	QString hiddenLeftPanelWidgets;
