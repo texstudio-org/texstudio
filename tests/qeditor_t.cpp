@@ -533,6 +533,18 @@ void QEditorTest::indentation_data(){
 		<< false << 0 << 7
 		<< " \\begin{abc}\n             abcdef\n               \\end{abc}"
 		<< "    hel \\begin{abc}\n    \tabcdef\n    \\end{abc}lo\nworld\n";
+
+	QTest::newRow("block indentation + tabs")
+		<< "\thello\nworld\n"
+		<< true << 0 << 4
+		<< "\t\\begin{abc}\n\t\tabcdef\n\t\\end{abc}"
+		<< "\thel\t\\begin{abc}\n\t\t\tabcdef\n\t\t\\end{abc}lo\nworld\n";
+
+	QTest::newRow("block indentation + tabs simple")
+		<< "hello\nworld\n"
+		<< true << 0 << 3
+		<< "\t\\begin{abc}\n\t\tabcdef\n\t\\end{abc}"
+		<< "hel\t\\begin{abc}\n\t\tabcdef\n\t\\end{abc}lo\nworld\n";
 	/*
   this is broken:
 	QTest::newRow("trivial 2")
