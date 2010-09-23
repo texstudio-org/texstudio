@@ -36,6 +36,7 @@
 #include "qlinemarksinfocenter.h"
 
 #include "qreliablefilewatch.h"
+#include "smallUsefulFunctions.h"
 
 #ifdef Q_WS_MACX
 #include <QSysInfo>
@@ -906,10 +907,17 @@ void QEditor::save()
 		foreach ( QDocumentLineHandle* dlh,handles )
 		{
 			QList<int> lineBreaks=dlh->getBreaks();
+                        // only valid for latex ... check for that !!!! (To be done)
+                        QString line=dlh->text();
+                        int commentStart=LatexParser::commentStart(line);
+
 			if(!lineBreaks.isEmpty()){
 				while(!lineBreaks.isEmpty()){
-					cur.moveTo(dlh->line(),lineBreaks.takeLast());
+                                        int last;
+                                        cur.moveTo(dlh->line(),last=lineBreaks.takeLast());
 					cur.insertText("\n");
+                                        if(last>commentStart && commentStart>-1)
+                                            cur.insertText("%");
 				}
 			}
 		}
