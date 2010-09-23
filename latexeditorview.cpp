@@ -467,6 +467,7 @@ void LatexEditorView::updateSettings(){
 	referenceMissingFormat=QDocument::formatFactory()->id("referenceMissing");
 	citationPresentFormat=QDocument::formatFactory()->id("citationPresent");
 	citationMissingFormat=QDocument::formatFactory()->id("citationMissing");
+        syntaxErrorFormat=QDocument::formatFactory()->id("latexSyntaxMistake");
 	structureFormat=QDocument::formatFactory()->id("structure");
 	containedLabels->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
 	containedReferences->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
@@ -593,6 +594,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		line.clearOverlays(referenceMultipleFormat);
 		line.clearOverlays(citationMissingFormat);
 		line.clearOverlays(environmentFormat);
+                line.clearOverlays(syntaxErrorFormat);
 
 		if (line.length()<=3) continue;
 		//if (!config->realtimespellchecking) continue;
@@ -666,7 +668,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
                     SyntaxCheck::Ranges rng=SynChecker.getResult();
                     QPair<int,int> elem;
                     foreach(elem,rng){
-                        line.addOverlay(QFormatRange(elem.first,elem.second,speller->spellcheckErrorFormat));
+                        line.addOverlay(QFormatRange(elem.first,elem.second,syntaxErrorFormat));
                     }
                 }
 	}

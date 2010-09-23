@@ -16,6 +16,7 @@ QSet<QString> LatexParser::environmentCommands = QSet<QString>::fromList(QString
 QSet<QString> LatexParser::optionCommands; // = QSet<QString>::fromList(QStringList() << LatexParser::refCommands.toList() << LatexParser::labelCommands.toList() << "\\includegraphics" << "\\usepackage" << "\\documentclass" << "\\include" << "\\input" << "\\hspace" << "\\vspace");
 QSet<QString> LatexParser::normalCommands = QSet<QString>::fromList(QStringList() << "\\\\");
 QSet<QString> LatexParser::mathCommands;
+QSet<QString> LatexParser::userdefinedCommands;
 QStringList LatexParser::structureCommands = QStringList(); //see texmaker.cpp
 
 QString getCommonEOW() {
@@ -710,7 +711,7 @@ int LatexParser::commentStart(const QString& text){
 }
 
 QString LatexParser::cutComment(const QString& text){
-	return text.left(LatexParser::commentStart(text)); // remove comments
+        return text.left(LatexParser::commentStart(text)); // remove comments
 }
 
 QString getRelativeBaseNameToPath(const QString & file,QString basepath){

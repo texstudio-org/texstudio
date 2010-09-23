@@ -783,13 +783,14 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
 				line = tagsfile.readLine();
 				if (!line.isEmpty() && !line.startsWith("#") && !line.startsWith(" ")) {
 					// parse for spell checkable commands
-					rxCom.indexIn(line);
+                                        int res=rxCom.indexIn(line);
 					if(keywords.contains(rxCom.cap(3))){
 						LatexParser::optionCommands << rxCom.cap(1);
 					}
                                         // normal commands for syntax checking
                                         // will be extended to distinguish between normal and math commands
-                                        LatexParser::normalCommands << rxCom.cap(1);
+                                        if(res>-1) LatexParser::normalCommands << rxCom.cap(1);
+                                            else LatexParser::normalCommands << line.left(line.length()-1);
 					// normal parsing for completer
 					if (line.startsWith("\\pageref")||line.startsWith("\\ref")) continue;
 					if (!line.contains("%")){
