@@ -49,7 +49,7 @@ void SyntaxCheck::run(){
 	     mLinesLock.lock();
 	     QString line=mLines.dequeue();
 	     mLinesLock.unlock();
-             LatexParser::cutComment(line);
+             line=LatexParser::cutComment(line);
 	     Ranges* newRanges=new Ranges;
 	     // do syntax check on that lien
              QString word;
@@ -59,7 +59,7 @@ void SyntaxCheck::run(){
              bool inStructure=false;
              while ((status=nextWord(line,start,word,wordstart,true,true,&inStructure))){
                  if(status==NW_COMMAND){
-                     if(!LatexParser::normalCommands.contains(word)){ // extend for math coammnds
+                     if(!LatexParser::normalCommands.contains(word) && !LatexParser::userdefinedCommands.contains(word)){ // extend for math coammnds
                          QPair<int,int> elem(wordstart,word.length());
                          newRanges->append(elem);
                      }

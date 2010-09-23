@@ -199,6 +199,18 @@ void LatexDocument::updateStructure() {
 					else name.append(QString("{%<arg%1%>}").arg(j+1));
 				}
 				mUserCommandList.insert(line(i).handle(),name);
+                                LatexParser::userdefinedCommands.insert(name);
+                                // remove obsolete Overlays (maybe this can be refined
+                                for (int i=0; i<lines(); i++) {
+                                        QList<QFormatRange> li=line(i).getOverlays(edView->syntaxErrorFormat);
+                                        QString curLineText=line(i).text();
+                                        for (int j=0; j<li.size(); j++)
+                                                if (curLineText.mid(li[j].offset,li[j].length)==name){
+                                                        line(i).removeOverlay(li[j]);
+                                                        line(i).setFlag(QDocumentLine::LayoutDirty,true);
+                                                }
+                                }
+                                //editor->viewport()->update();
 			}
 		}
 		//// newenvironment ////
@@ -533,6 +545,18 @@ void LatexDocument::patchStructure(int linenr, int count) {
 					else name.append(QString("{%<arg%1%>}").arg(j+1));
 				}
 				mUserCommandList.insert(line(i).handle(),name);
+                                LatexParser::userdefinedCommands.insert(name);
+                                // remove obsolete Overlays (maybe this can be refined
+                                for (int i=0; i<lines(); i++) {
+                                        QList<QFormatRange> li=line(i).getOverlays(edView->syntaxErrorFormat);
+                                        QString curLineText=line(i).text();
+                                        for (int j=0; j<li.size(); j++)
+                                                if (curLineText.mid(li[j].offset,li[j].length)==name){
+                                                        line(i).removeOverlay(li[j]);
+                                                        line(i).setFlag(QDocumentLine::LayoutDirty,true);
+                                                }
+                                }
+                                //editor->viewport()->update();
 				continue;
 			}
 

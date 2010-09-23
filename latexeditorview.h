@@ -108,6 +108,8 @@ public:
 	void resetReferenceDatabase();
 	void purgeLinksTo(QDocument *doc);
 
+        int syntaxErrorFormat;
+
 private:
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 
 	*statusPanelAction, *searchReplacePanelAction, *gotoLinePanelAction;
@@ -118,8 +120,9 @@ private:
 	QStatusPanel* statusPanel;
 
 	QPoint m_point;
+
+        int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat, citationMissingFormat, citationPresentFormat,structureFormat;
 	
-	int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat, citationMissingFormat, citationPresentFormat,structureFormat;
 	friend class DefaultInputBinding;
 	static int bookMarkId(int bookmarkNumber);
 

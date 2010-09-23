@@ -133,6 +133,7 @@ public:
 	static QSet<QString> optionCommands;
         static QSet<QString> normalCommands;
         static QSet<QString> mathCommands;
+        static QSet<QString> userdefinedCommands;
 	static QStringList structureCommands;
 
 	static QTextCodec* QTextCodecForLatexName(QString str);
