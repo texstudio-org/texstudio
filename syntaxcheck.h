@@ -14,6 +14,11 @@ class SyntaxCheck : public QThread
 
 public:
     typedef QList<QPair<int,int> > Ranges;
+    enum Environemt {
+        ENV_normal,
+        ENV_math,
+        ENV_tabular
+    };
 
     explicit SyntaxCheck(QObject *parent = 0);
 

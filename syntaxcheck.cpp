@@ -57,9 +57,23 @@ void SyntaxCheck::run(){
              int wordstart;
              int status;
              bool inStructure=false;
+             QStack<Environemt> activeEnv;
+             activeEnv.push(ENV_normal);
              while ((status=nextWord(line,start,word,wordstart,true,true,&inStructure))){
                  if(status==NW_COMMAND){
-                     if(!LatexParser::normalCommands.contains(word) && !LatexParser::userdefinedCommands.contains(word)){ // extend for math coammnds
+                     if(LatexParser::mathStartCommands.contains(word)&&activeEnv.top()!=ENV_math){
+                         activeEnv.push(ENV_math);
+                         continue;
+                     }
+                     if(LatexParser::mathStopCommands.contains(word)&&activeEnv.top()==ENV_math){
+                         activeEnv.pop();
+                         continue;
+                     }
+                     if(activeEnv.top()==ENV_normal&&!LatexParser::normalCommands.contains(word) && !LatexParser::userdefinedCommands.contains(word)){ // extend for math coammnds
+                         QPair<int,int> elem(wordstart,word.length());
+                         newRanges->append(elem);
+                     }
+                     if(activeEnv.top()==ENV_math&&!LatexParser::mathCommands.contains(word) && !LatexParser::userdefinedCommands.contains(word)){ // extend for math coammnds
                          QPair<int,int> elem(wordstart,word.length());
                          newRanges->append(elem);
                      }
