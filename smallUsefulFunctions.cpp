@@ -15,9 +15,11 @@ QSet<QString> LatexParser::citeCommands = QSet<QString>::fromList(QStringList() 
 QSet<QString> LatexParser::environmentCommands = QSet<QString>::fromList(QStringList() << "\\begin" << "\\end" << "\\newenvironment" << "\\renewenvironment");
 QSet<QString> LatexParser::optionCommands; // = QSet<QString>::fromList(QStringList() << LatexParser::refCommands.toList() << LatexParser::labelCommands.toList() << "\\includegraphics" << "\\usepackage" << "\\documentclass" << "\\include" << "\\input" << "\\hspace" << "\\vspace");
 QSet<QString> LatexParser::normalCommands = QSet<QString>::fromList(QStringList() << "\\\\" << "$" << "$$");
-QSet<QString> LatexParser::mathCommands = QSet<QString>::fromList(QStringList() << "_");
+QSet<QString> LatexParser::mathCommands = QSet<QString>::fromList(QStringList() << "_" << "^");
 QSet<QString> LatexParser::mathStartCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\(" << "\\[" << "\\begin{math}" << "\\begin{equation}" << "\\begin{displaymath}");
 QSet<QString> LatexParser::mathStopCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\)" << "\\]" << "\\end{math}" << "\\end{equation}" << "\\end{displaymath}");
+QSet<QString> LatexParser::tabularCommands;
+QSet<QString> LatexParser::tabularEnvirons = QSet<QString>::fromList(QStringList() << "tabular" << "tabularx" << "longtable");
 QSet<QString> LatexParser::userdefinedCommands;
 QStringList LatexParser::structureCommands = QStringList(); //see texmaker.cpp
 
@@ -306,7 +308,7 @@ int nextToken(const QString &line,int &index,bool abbreviation,bool inOption,boo
                         start=i;
                         inCmd=true;
                         inMath=true;
-                } else if (detectMath && cur=='_'){
+                } else if (detectMath && (cur=='_' || cur=='^')){
                         start=i;
                         i++;
                         break;
@@ -379,6 +381,9 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
                         return NW_COMMAND;
                         break;
                 case '_':
+                        return NW_COMMAND;
+                        break;
+                case '^':
                         return NW_COMMAND;
                         break;
 		case '\\':
