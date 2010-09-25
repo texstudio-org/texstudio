@@ -467,6 +467,7 @@ void LatexEditorView::updateSettings(){
 	referenceMissingFormat=QDocument::formatFactory()->id("referenceMissing");
 	citationPresentFormat=QDocument::formatFactory()->id("citationPresent");
 	citationMissingFormat=QDocument::formatFactory()->id("citationMissing");
+        styleHintFormat=QDocument::formatFactory()->id("styleHint");
         syntaxErrorFormat=QDocument::formatFactory()->id("latexSyntaxMistake");
 	structureFormat=QDocument::formatFactory()->id("structure");
 	containedLabels->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
@@ -595,6 +596,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		line.clearOverlays(citationMissingFormat);
 		line.clearOverlays(environmentFormat);
                 line.clearOverlays(syntaxErrorFormat);
+                line.clearOverlays(styleHintFormat);
 
 		if (line.length()<=3) continue;
 		//if (!config->realtimespellchecking) continue;
@@ -606,6 +608,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		int wordstart;
 		int status;
 		bool inStructure=false;
+                QString previousTextWord;
 		while ((status=nextWord(lineText,start,word,wordstart,false,true,&inStructure))){
 		    // hack to color the environment given in \begin{environment}...
 		    if (inStructure){
@@ -659,6 +662,14 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			}
 		    }
 		    if (status==NW_COMMENT) break;
+                    if (status==NW_TEXT && config->inlineSpellChecking){
+                        if(!previousTextWord.isEmpty() && previousTextWord==word){
+                            line.addOverlay(QFormatRange(wordstart,start-wordstart,styleHintFormat));
+                        }
+                        previousTextWord=word;
+                    }else{
+                        previousTextWord.clear();
+                    }
 		    if (status==NW_TEXT && word.length()>=3 && !speller->check(word) && config->inlineSpellChecking) {
 			if(word.endsWith('.')) start--;
 			line.addOverlay(QFormatRange(wordstart,start-wordstart,speller->spellcheckErrorFormat));

@@ -121,6 +121,10 @@
         <waveUnderline>false</waveUnderline>
         <foreground>#ff0088</foreground>
     </format>
+    <format id="styleHint" >
+        <waveUnderline>true</waveUnderline>
+        <linescolor>#00FF00</linescolor>
+    </format>
     <format id="spellingMistake" >
         <waveUnderline>true</waveUnderline>
         <linescolor>#FF0000</linescolor>
