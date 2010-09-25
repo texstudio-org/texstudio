@@ -287,6 +287,11 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 
 
 	fmConfig=new QFormatConfig(ui.formatConfigBox);
+	fmConfig->addCategory(tr("Basic highlighting")) <<"background" <<"comment" <<"keyword" <<"extra-keyword" <<"math-keyword" <<"verbatim" <<"numbers" <<"text" <<"environment" <<"structure" <<"escapeseq" ;
+	fmConfig->addCategory(tr("Inline checking")) <<"braceMatch" <<"braceMismatch" <<"styleHint" <<"spellingMistake" <<"latexSyntaxMistake" <<"referencePresent" <<"referenceMissing" <<"referenceMultiple" <<"citationPresent" <<"citationMissing"  <<"temporaryCodeCompletion";
+	fmConfig->addCategory(tr("Line highlighting"))     <<"line:error" <<"line:warning" <<"line:badbox" <<"line:bookmark" <<"line:bookmark0" <<"line:bookmark1" <<"line:bookmark2" <<"line:bookmark3" <<"line:bookmark4" <<"line:bookmark5" <<"line:bookmark6"  <<"line:bookmark7" <<"line:bookmark8"<<"line:bookmark9"<<"current";
+	fmConfig->addCategory(tr("Search")) <<"search"<<"replacement"<<"selection";
+
 	fmConfig->addScheme("",QDocument::formatFactory());
 //fmConfig->setMaximumSize(490,300);
 //fmConfig->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Ignored);
