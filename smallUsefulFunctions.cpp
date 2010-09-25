@@ -14,8 +14,10 @@ QSet<QString> LatexParser::labelCommands = QSet<QString>::fromList(QStringList()
 QSet<QString> LatexParser::citeCommands = QSet<QString>::fromList(QStringList() << "\\cite" << "\\citet" << "\\citetitle" << "\\citep" << "\\citeauthor" << "\\footcite" << "\\nocite"  << "\\nptextcite" << "\\parencite" << "\\textcite");
 QSet<QString> LatexParser::environmentCommands = QSet<QString>::fromList(QStringList() << "\\begin" << "\\end" << "\\newenvironment" << "\\renewenvironment");
 QSet<QString> LatexParser::optionCommands; // = QSet<QString>::fromList(QStringList() << LatexParser::refCommands.toList() << LatexParser::labelCommands.toList() << "\\includegraphics" << "\\usepackage" << "\\documentclass" << "\\include" << "\\input" << "\\hspace" << "\\vspace");
-QSet<QString> LatexParser::normalCommands = QSet<QString>::fromList(QStringList() << "\\\\");
-QSet<QString> LatexParser::mathCommands;
+QSet<QString> LatexParser::normalCommands = QSet<QString>::fromList(QStringList() << "\\\\" << "$" << "$$");
+QSet<QString> LatexParser::mathCommands = QSet<QString>::fromList(QStringList() << "_");
+QSet<QString> LatexParser::mathStartCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\(" << "\\[" << "\\begin{math}" << "\\begin{equation}" << "\\begin{displaymath}");
+QSet<QString> LatexParser::mathStopCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\)" << "\\]" << "\\end{math}" << "\\end{equation}" << "\\end{displaymath}");
 QSet<QString> LatexParser::userdefinedCommands;
 QStringList LatexParser::structureCommands = QStringList(); //see texmaker.cpp
 
@@ -223,9 +225,10 @@ bool localAwareLessThan(const QString &s1, const QString &s2) {
 }
 
 
-int nextToken(const QString &line,int &index,bool abbreviation,bool inOption) {
+int nextToken(const QString &line,int &index,bool abbreviation,bool inOption,bool detectMath) {
 	bool inWord=false;
 	bool inCmd=false;
+        bool inMath=false;
 	//bool reparse=false;
 	bool singleQuoteChar=false;
 	bool doubleQuoteChar=false;
@@ -247,6 +250,10 @@ int nextToken(const QString &line,int &index,bool abbreviation,bool inOption) {
 		if(doubleQuoteChar && cur=='\'') break; // check for words staring with "' (german quotation mark)
 		else doubleQuoteChar=false;
 		if (inCmd) {
+                        if (detectMath && inMath){
+                            if(cur=='$') i++; //detect $$
+                            break;
+                        }
 			if (CommonEOW.indexOf(cur)>=0) {
 				if (i-start==1) i++;
 				break;
@@ -295,6 +302,14 @@ int nextToken(const QString &line,int &index,bool abbreviation,bool inOption) {
 		} else if (cur=='{' || cur=='}' || cur=='%' || cur=='[' || cur==']') {
 			index=i+1;
 			return i;
+                } else if (detectMath && cur=='$'){
+                        start=i;
+                        inCmd=true;
+                        inMath=true;
+                } else if (detectMath && cur=='_'){
+                        start=i;
+                        i++;
+                        break;
 		} else if ((CommonEOW.indexOf(cur)<0 && cur!='\'' )|| cur=='"') {
 			start=i;
 			inWord=true;
@@ -313,7 +328,7 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 	QString lastCommand="";
 	bool inOption=false;
 	bool inEnv=false;
-	while ((wordStartIndex = nextToken(line, index,abbreviations,inEnv))!=-1) {
+        while ((wordStartIndex = nextToken(line, index,abbreviations,inEnv,true))!=-1) {
 		outWord=line.mid(wordStartIndex,index-wordStartIndex);
 		if (outWord.length()==0) return NW_NOTHING; //should never happen
 		switch (outWord.at(0).toAscii()) {
@@ -360,6 +375,12 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 			inEnv=false;
 			if(inStructure) *inStructure=false;
 			break;//command doesn't matter anymore
+                case '$':
+                        return NW_COMMAND;
+                        break;
+                case '_':
+                        return NW_COMMAND;
+                        break;
 		case '\\':
 			if (outWord.length()==1 || !(EscapedChars.contains(outWord.at(1)) || CharacterAlteringChars.contains(outWord.at(1)))) {
 				if (returnCommands) return NW_COMMAND;

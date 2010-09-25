@@ -35,8 +35,9 @@ int x11desktop_env();
 //searches the next token in the line line after/at the index index
 //there are these possible kind of tokens % (which starts a comment), { or } (as parantheses), \.* (command) or .* (text)
 //index returns the index of the first character after the word
+//detectMath==true: return $ $$ _ as commands
 //return: start index of the token (or -1 if last)
-int nextToken(const QString &line,int &index,bool abbreviation=false,bool inOption=false);
+int nextToken(const QString &line,int &index,bool abbreviation=false,bool inOption=false,bool detectMath=false);
 
 
 enum NextWordFlag {
@@ -133,6 +134,8 @@ public:
 	static QSet<QString> optionCommands;
         static QSet<QString> normalCommands;
         static QSet<QString> mathCommands;
+        static QSet<QString> mathStartCommands;
+        static QSet<QString> mathStopCommands;
         static QSet<QString> userdefinedCommands;
 	static QStringList structureCommands;
 
