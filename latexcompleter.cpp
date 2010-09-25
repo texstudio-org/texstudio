@@ -782,6 +782,13 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
 			while (!tagsfile.atEnd()) {
 				line = tagsfile.readLine();
 				if (!line.isEmpty() && !line.startsWith("#") && !line.startsWith(" ")) {
+                                        //hints for commands usage (e.g. in mathmode only) are separated by #
+                                        int sep=line.indexOf('#');
+                                        QString valid;
+                                        if(sep>-1){
+                                            valid=line.mid(sep+1);
+                                            line=line.left(sep);
+                                        }
 					// parse for spell checkable commands
                                         int res=rxCom.indexIn(line);
 					if(keywords.contains(rxCom.cap(3))){
@@ -789,8 +796,20 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
 					}
                                         // normal commands for syntax checking
                                         // will be extended to distinguish between normal and math commands
-                                        if(res>-1) LatexParser::normalCommands << rxCom.cap(1);
-                                            else LatexParser::normalCommands << line.left(line.length()-1);
+                                        if(valid.isEmpty() || valid.contains('n')){
+                                            if(res>-1){
+                                                LatexParser::normalCommands << rxCom.cap(1);
+                                            } else {
+                                                LatexParser::normalCommands << line.left(line.length()-1);
+                                            }
+                                        }
+                                        if(valid.contains('m')){
+                                            if(res>-1){
+                                                LatexParser::mathCommands << rxCom.cap(1);
+                                            } else {
+                                                LatexParser::mathCommands << line.left(line.length()-1);
+                                            }
+                                        }
 					// normal parsing for completer
 					if (line.startsWith("\\pageref")||line.startsWith("\\ref")) continue;
 					if (!line.contains("%")){
