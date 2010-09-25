@@ -405,8 +405,10 @@ void ConfigDialog::comboBoxWithPathEdited(const QString& newText){
 	if (path==oldPath) return;
 	//prevent endless recursion + dir caching
 	box->setProperty("dir",path);
-	box->clear();
-	box->addItem(newText); //adding a new item in the empty list will set the edit text to it
+        int curPos=box->lineEdit()->cursorPosition();
+        box->clear();
+        box->addItem(newText); //adding a new item in the empty list will set the edit text to it
+        box->lineEdit()->setCursorPosition(curPos); // set Cursor to position before clearing
 
 	QDir dir(path);
 	QString absPath=dir.absolutePath();
