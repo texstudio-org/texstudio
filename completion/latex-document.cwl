@@ -117,7 +117,7 @@
 \circle*{diameter}
 \cleardoublepage
 \clearpage
-\cline{i-j}
+\cline{i-j}#t
 \contentsline{type}{text}{page}
 \contentsname{name}
 \date{text}
@@ -163,7 +163,7 @@
 \glqq
 \grq
 \grqq
-\hline
+\hline#t
 \hlinefill
 \hspace*{length}
 \hspace{length}

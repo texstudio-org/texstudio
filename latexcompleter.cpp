@@ -810,6 +810,13 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
                                                 LatexParser::mathCommands << line.left(line.length()-1);
                                             }
                                         }
+                                        if(valid.contains('t')){
+                                            if(res>-1){
+                                                LatexParser::tabularCommands << rxCom.cap(1);
+                                            } else {
+                                                LatexParser::tabularCommands << line.left(line.length()-1);
+                                            }
+                                        }
 					// normal parsing for completer
 					if (line.startsWith("\\pageref")||line.startsWith("\\ref")) continue;
 					if (!line.contains("%")){
