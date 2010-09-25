@@ -44,6 +44,8 @@ class QCE_EXPORT QFormatConfig : public QWidget, private Ui::FormatConfig
 		
 		QList<QFormatScheme*> schemes() const;
 		
+		QList<QString>& addCategory(const QString& name);
+
 	public slots:
 		void retranslate();
 		
@@ -66,6 +68,7 @@ class QCE_EXPORT QFormatConfig : public QWidget, private Ui::FormatConfig
 		
 	private:
 		QList<int> modifiedFormats() const;
+		QList<QList<QString> > m_categories;
 		
 		bool m_autonomous;
 		QFormatScheme *m_currentScheme;

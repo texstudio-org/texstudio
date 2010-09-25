@@ -116,6 +116,13 @@ QList<QFormatScheme*> QFormatConfig::schemes() const
 	return m_schemes;
 }
 
+
+QList<QString>& QFormatConfig::addCategory(const QString& name){
+	m_categories.append(QList<QString>());
+	m_categories.last() << name;
+	return m_categories.last();
+}
+
 /*!
 	\brief Add a format scheme to the config widget
 
@@ -194,16 +201,13 @@ void QFormatConfig::apply()
 {
 	if ( m_currentScheme )
 	{
-		const int n = m_currentScheme->formatCount();
-
-		m_table->setRowCount(n);
-
-		for ( int i = 0 ; i < n; ++i )
+		for ( int i = 0 ; i < m_table->rowCount(); ++i )
 		{
-			QString fid = m_currentScheme->id(i);
-			QFormat& fmt = m_currentScheme->formatRef(i);
-
-			QTableWidgetItem *item;
+			QTableWidgetItem *item = m_table->item(i,0);
+			if (!item) continue;
+			QString fid = item->data(Qt::UserRole).toString();
+			if (fid == "") continue;
+			QFormat fmt = m_currentScheme->format(fid);
 
 			item = m_table->item(i, 1);
 			fmt.weight = item->checkState() == Qt::Checked ? QFont::Bold : QFont::Normal;
@@ -249,6 +253,7 @@ void QFormatConfig::apply()
 			/*item = m_table->item(i,12);
 			fmt.setPriority(item->text().toInt());
 			*/
+			m_currentScheme->setFormat(fid, fmt);
 		}
 
 		// TODO : save scheme and update editors
@@ -282,100 +287,118 @@ void QFormatConfig::cancel()
 
 	if ( m_currentScheme )
 	{
-		const int n = m_currentScheme->formatCount();
+		if (m_categories.isEmpty()) {
+			QList<QString> &temp=addCategory("");
+			for ( int i = 0; i < m_currentScheme->formatCount(); i++ )
+				temp.append(m_currentScheme->id(i));
+		}
 
+
+		int n = 0;
+		foreach ( const QList<QString> c, m_categories)
+			n+=c.size();
+		n+=m_categories.size()-1;
 		m_table->setRowCount(n);
 
-		for ( int i = 0 ; i < n; ++i )
-		{
-			QString fid = m_currentScheme->id(i);
-			const QFormat& fmt = m_currentScheme->formatRef(i);
+		int r = 0;
+		for ( int c = 0; c < m_categories.size(); c++ ) {
+			if (c!=0)
+				m_table->setItem(r++, 0, new QTableWidgetItem());
+			QTableWidgetItem *item = new QTableWidgetItem(tr(qPrintable(m_categories[c][0])));
+			QFont f = item->font(); f.setBold(true); item->setFont(f);
+			m_table->setItem(r++, 0, item);
 
-			QTableWidgetItem *item;
+			for ( int f = 1; f < m_categories[c].size(); f++ ) {
+				QString fid = m_categories[c][f];
+				const QFormat& fmt = m_currentScheme->format(fid);
 
-			item = new QTableWidgetItem(tr(qPrintable(fid)));
-			item->setFlags(Qt::ItemIsEnabled);
-			m_table->setItem(i, 0, item);
+				QTableWidgetItem *item;
 
-			item = new QTableWidgetItem;
-			item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
-			item->setCheckState(fmt.weight == QFont::Bold ? Qt::Checked : Qt::Unchecked);
-			item->setToolTip(tr("Bold"));
-			m_table->setItem(i, 1, item);
+				item = new QTableWidgetItem(tr(qPrintable(fid)));
+				item->setData(Qt::UserRole, fid);
+				item->setFlags(Qt::ItemIsEnabled);
+				m_table->setItem(r, 0, item);
 
-			item = new QTableWidgetItem;
-			item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
-			item->setCheckState(fmt.italic ? Qt::Checked : Qt::Unchecked);
-			item->setToolTip(tr("Italic"));
-			m_table->setItem(i, 2, item);
+				item = new QTableWidgetItem;
+				item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
+				item->setCheckState(fmt.weight == QFont::Bold ? Qt::Checked : Qt::Unchecked);
+				item->setToolTip(tr("Bold"));
+				m_table->setItem(r, 1, item);
 
-			item = new QTableWidgetItem;
-			item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
-			item->setCheckState(fmt.underline ? Qt::Checked : Qt::Unchecked);
-			item->setToolTip(tr("Underline"));
-			m_table->setItem(i, 3, item);
+				item = new QTableWidgetItem;
+				item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
+				item->setCheckState(fmt.italic ? Qt::Checked : Qt::Unchecked);
+				item->setToolTip(tr("Italic"));
+				m_table->setItem(r, 2, item);
 
-			item = new QTableWidgetItem;
-			item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
-			item->setCheckState(fmt.overline ? Qt::Checked : Qt::Unchecked);
-			item->setToolTip(tr("Overline"));
-			m_table->setItem(i, 4, item);
+				item = new QTableWidgetItem;
+				item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
+				item->setCheckState(fmt.underline ? Qt::Checked : Qt::Unchecked);
+				item->setToolTip(tr("Underline"));
+				m_table->setItem(r, 3, item);
 
-			item = new QTableWidgetItem;
-			item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
-			item->setCheckState(fmt.strikeout ? Qt::Checked : Qt::Unchecked);
-			item->setToolTip(tr("Strikeout"));
-			m_table->setItem(i, 5, item);
+				item = new QTableWidgetItem;
+				item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
+				item->setCheckState(fmt.overline ? Qt::Checked : Qt::Unchecked);
+				item->setToolTip(tr("Overline"));
+				m_table->setItem(r, 4, item);
 
-			item = new QTableWidgetItem;
-			item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
-			item->setCheckState(fmt.waveUnderline ? Qt::Checked : Qt::Unchecked);
-			item->setToolTip(tr("Wave underline"));
-			m_table->setItem(i, 6, item);
+				item = new QTableWidgetItem;
+				item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
+				item->setCheckState(fmt.strikeout ? Qt::Checked : Qt::Unchecked);
+				item->setToolTip(tr("Strikeout"));
+				m_table->setItem(r, 5, item);
 
-			m_table->setCellWidget(i, 7, new QSimpleColorPicker(fmt.foreground));
-			m_table->cellWidget(i, 7)->setToolTip(tr("Text color (aka foreground)"));
-			//m_table->cellWidget(i, 7)->setMaximumSize(22, 22);
+				item = new QTableWidgetItem;
+				item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
+				item->setCheckState(fmt.waveUnderline ? Qt::Checked : Qt::Unchecked);
+				item->setToolTip(tr("Wave underline"));
+				m_table->setItem(r, 6, item);
 
-			m_table->setCellWidget(i, 8, new QSimpleColorPicker(fmt.background));
-			m_table->cellWidget(i, 8)->setToolTip(tr("Background color"));
-			//m_table->cellWidget(i, 8)->setMaximumSize(22, 22);
+				m_table->setCellWidget(r, 7, new QSimpleColorPicker(fmt.foreground));
+				m_table->cellWidget(r, 7)->setToolTip(tr("Text color (aka foreground)"));
+				//m_table->cellWidget(i, 7)->setMaximumSize(22, 22);
 
-			m_table->setCellWidget(i, 9, new QSimpleColorPicker(fmt.linescolor));
-			m_table->cellWidget(i, 9)->setToolTip(tr("Lines color (used by all lines formatting : underline, overline, ...)"));
-			//m_table->cellWidget(i, 9)->setMaximumSize(22, 22);
+				m_table->setCellWidget(r, 8, new QSimpleColorPicker(fmt.background));
+				m_table->cellWidget(r, 8)->setToolTip(tr("Background color"));
+				//m_table->cellWidget(i, 8)->setMaximumSize(22, 22);
 
-			//item = new QTableWidgetItem;
-			QComboBox *fcmb=new QComboBox();
-			fcmb->insertItem(0,tr("<default>"));
-			QFontDatabase database;
-			fcmb->addItems(database.families());
-			int ind=fcmb->findText(fmt.fontFamily);
-			if(ind>-1) fcmb->setCurrentIndex(ind);
-			else fcmb->setCurrentIndex(0);
-			m_table->setCellWidget(i, 10, fcmb);
-			//item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
-			//item->setText(fmt.fontFamily);
-			m_table->cellWidget(i, 10)->setToolTip(tr("Font family"));
-			//m_table->setItem(i, 10, item);
+				m_table->setCellWidget(r, 9, new QSimpleColorPicker(fmt.linescolor));
+				m_table->cellWidget(r, 9)->setToolTip(tr("Lines color (used by all lines formatting : underline, overline, ...)"));
+				//m_table->cellWidget(i, 9)->setMaximumSize(22, 22);
 
-			/*
-			don't vary point size as the drawing engine can't cope
-			item = new QTableWidgetItem;
-			item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
-			item->setText(QString::number(fmt.pointSize));
-			item->setToolTip(tr("Point size"));
-			m_table->setItem(i, 11, item);
-			*/
+				//item = new QTableWidgetItem;
+				QComboBox *fcmb=new QComboBox();
+				fcmb->insertItem(0,tr("<default>"));
+				QFontDatabase database;
+				fcmb->addItems(database.families());
+				int ind=fcmb->findText(fmt.fontFamily);
+				if(ind>-1) fcmb->setCurrentIndex(ind);
+				else fcmb->setCurrentIndex(0);
+				m_table->setCellWidget(r, 10, fcmb);
+				//item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
+				//item->setText(fmt.fontFamily);
+				m_table->cellWidget(r, 10)->setToolTip(tr("Font family"));
+				//m_table->setItem(i, 10, item);
 
-			/*
-			item = new QTableWidgetItem;
-			item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
-			item->setText(QString::number(fmt.priority));
-			item->setToolTip(tr("Priority"));
-			m_table->setItem(i, 12, item);
-			*/
+				/*
+				don't vary point size as the drawing engine can't cope
+				item = new QTableWidgetItem;
+				item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
+				item->setText(QString::number(fmt.pointSize));
+				item->setToolTip(tr("Point size"));
+				m_table->setItem(i, 11, item);
+				*/
 
+				/*
+				item = new QTableWidgetItem;
+				item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
+				item->setText(QString::number(fmt.priority));
+				item->setToolTip(tr("Priority"));
+				m_table->setItem(i, 12, item);
+				*/
+				r++;
+			}
 		}
 	}
 
