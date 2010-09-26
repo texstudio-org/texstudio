@@ -363,6 +363,7 @@
     </message>
     <message>
         <location filename="configdialog.ui" line="448"/>
+        <location filename="configdialog.cpp" line="291"/>
         <source>Inline checking</source>
         <oldsource>inline checking</oldsource>
         <translation>Azonnali ellenőrzés</translation>
@@ -519,7 +520,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <location filename="configdialog.ui" line="871"/>
-        <location filename="configdialog.cpp" line="303"/>
+        <location filename="configdialog.cpp" line="308"/>
         <source>Shortcuts</source>
         <translation>Billentyűkombinációk</translation>
     </message>
@@ -548,7 +549,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <location filename="configdialog.ui" line="919"/>
-        <location filename="configdialog.cpp" line="304"/>
+        <location filename="configdialog.cpp" line="309"/>
         <source>Latex Menus</source>
         <translation>LaTeX menük</translation>
     </message>
@@ -569,7 +570,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <location filename="configdialog.ui" line="1035"/>
-        <location filename="configdialog.cpp" line="306"/>
+        <location filename="configdialog.cpp" line="311"/>
         <location filename="configmanager.cpp" line="757"/>
         <source>Editor</source>
         <translation>Szerkesztő</translation>
@@ -893,103 +894,118 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Szótárak beszerzése: %1</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="296"/>
+        <location filename="configdialog.cpp" line="290"/>
+        <source>Basic highlighting</source>
+        <translation>Alapvető kiemelések</translation>
+    </message>
+    <message>
+        <location filename="configdialog.cpp" line="292"/>
+        <source>Line highlighting</source>
+        <translation>Sorkiemelések</translation>
+    </message>
+    <message>
+        <location filename="configdialog.cpp" line="293"/>
+        <source>Search</source>
+        <translation>Keresés</translation>
+    </message>
+    <message>
+        <location filename="configdialog.cpp" line="301"/>
         <source>Command</source>
         <translation>Parancs</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="296"/>
+        <location filename="configdialog.cpp" line="301"/>
         <source>Default Shortcut</source>
         <translation>Alapértelmezett billentyűkombináció</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="296"/>
+        <location filename="configdialog.cpp" line="301"/>
         <source>Current Shortcut</source>
         <translation>Jelenlegi billentyűkombináció</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="296"/>
+        <location filename="configdialog.cpp" line="301"/>
         <source>Additional Shortcut</source>
         <translation>További billentyűkombinációk</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="300"/>
+        <location filename="configdialog.cpp" line="305"/>
         <source>General</source>
         <translation>Általános</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="301"/>
+        <location filename="configdialog.cpp" line="306"/>
         <source>Commands</source>
         <translation>Parancsok</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="302"/>
+        <location filename="configdialog.cpp" line="307"/>
         <source>Quick Build</source>
         <translation>Gyors fordítás</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="305"/>
+        <location filename="configdialog.cpp" line="310"/>
         <source>Custom Toolbar</source>
         <translation>Egyéni eszköztár</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="307"/>
+        <location filename="configdialog.cpp" line="312"/>
         <source>Editor2</source>
         <translation>Sortörés</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="308"/>
+        <location filename="configdialog.cpp" line="313"/>
         <source>Custom Highlighting</source>
         <translation>Egyéni kiemelés</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="309"/>
+        <location filename="configdialog.cpp" line="314"/>
         <source>Completion</source>
         <translation>Kiegészítés</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="310"/>
+        <location filename="configdialog.cpp" line="315"/>
         <source>SVN</source>
         <translation>SVN</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="371"/>
+        <location filename="configdialog.cpp" line="376"/>
         <source>Browse dictionary</source>
         <translation>Szótár megadása</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="381"/>
-        <location filename="configdialog.cpp" line="384"/>
+        <location filename="configdialog.cpp" line="386"/>
+        <location filename="configdialog.cpp" line="389"/>
         <source>Get dictionary at: %1</source>
         <translation>Szótár beszerzése: %1</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="384"/>
+        <location filename="configdialog.cpp" line="389"/>
         <source>(Dictionary doesn&apos;t exists)</source>
         <translation>(A szótár nem létezik)</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="440"/>
+        <location filename="configdialog.cpp" line="447"/>
         <source>Browse thesaurus database</source>
         <translation>Tezaurusz adatbázis megadása</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="453"/>
+        <location filename="configdialog.cpp" line="460"/>
         <source>Browse program</source>
         <translation>Program megadása</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="540"/>
+        <location filename="configdialog.cpp" line="547"/>
         <source>Load other icon</source>
         <translation>Másik ikon betöltése</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="545"/>
+        <location filename="configdialog.cpp" line="552"/>
         <source>Select a File</source>
         <translation>Fájl kiválasztása</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="545"/>
+        <location filename="configdialog.cpp" line="552"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.svg)</source>
         <translation>Képek (*.png *.xpm *.jpg *.bmp *.svg)</translation>
     </message>
@@ -1950,12 +1966,12 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <translation type="obsolete">Sor</translation>
     </message>
     <message>
-        <location filename="latexdocument.cpp" line="950"/>
+        <location filename="latexdocument.cpp" line="974"/>
         <source>untitled</source>
         <translation>névtelen</translation>
     </message>
     <message>
-        <location filename="latexdocument.cpp" line="957"/>
+        <location filename="latexdocument.cpp" line="981"/>
         <source> (Line %1)</source>
         <translation> (%1. sor)</translation>
     </message>
@@ -1964,7 +1980,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <name>LatexEditorView</name>
     <message>
         <location filename="latexeditorview.cpp" line="141"/>
-        <location filename="latexeditorview.cpp" line="733"/>
+        <location filename="latexeditorview.cpp" line="746"/>
         <source>shift pressed =&gt; suggestions hidden</source>
         <translation>shift lenyomva =&gt; javaslatok rejtve</translation>
     </message>
@@ -1979,37 +1995,37 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <translation>Új BibTeX bejegyzés %1</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="886"/>
+        <location filename="latexeditorview.cpp" line="899"/>
         <source>label missing!</source>
         <translation>címke hiányzik!</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="888"/>
-        <location filename="latexeditorview.cpp" line="906"/>
+        <location filename="latexeditorview.cpp" line="901"/>
+        <location filename="latexeditorview.cpp" line="919"/>
         <source>label multiple times defined!</source>
         <translation>címke többszörösen definiálva!</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="894"/>
+        <location filename="latexeditorview.cpp" line="907"/>
         <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Fájlnév: %1&lt;/b&gt;
 </translation>
     </message>
     <message numerus="yes">
-        <location filename="latexeditorview.cpp" line="909"/>
+        <location filename="latexeditorview.cpp" line="922"/>
         <source>%n reference(s) to this label</source>
         <translation>
             <numerusform>%n hivatkozás erre a címkére</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="915"/>
+        <location filename="latexeditorview.cpp" line="928"/>
         <source>citation correct</source>
         <translation>forrásmegjelölés helyes</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="915"/>
+        <location filename="latexeditorview.cpp" line="928"/>
         <source>citation missing!</source>
         <translation>forrásmegjelölés hiányzik!</translation>
     </message>
@@ -2164,7 +2180,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
 <context>
     <name>QApplication</name>
     <message>
-        <location filename="smallUsefulFunctions.cpp" line="490"/>
+        <location filename="smallUsefulFunctions.cpp" line="517"/>
         <source>none</source>
         <translation>nincs</translation>
     </message>
@@ -2259,144 +2275,144 @@ Restart from the beginning ?</source>
         <translation>&amp;Nézet</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="184"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="669"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1335"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="185"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="670"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1343"/>
         <source>Default</source>
         <translation>Alapértelmezett</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="494"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1308"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="495"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1316"/>
         <source>&amp;Undo</source>
         <translation>&amp;Vissza</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="505"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1309"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="506"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1317"/>
         <source>&amp;Redo</source>
         <translation>Újr&amp;a</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="520"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1311"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="521"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1319"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Kivágás</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="531"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1312"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="532"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1320"/>
         <source>&amp;Copy</source>
         <translation>&amp;Másolás</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="542"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1313"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="543"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1321"/>
         <source>&amp;Paste</source>
         <translation>&amp;Beillesztés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="558"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1315"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="559"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1323"/>
         <source>&amp;Indent</source>
         <translation>Be&amp;húzás</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="566"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1316"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="567"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1324"/>
         <source>&amp;Unindent</source>
         <translation>Behúzás me&amp;gszüntetése</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="578"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1317"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="579"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1325"/>
         <source>Co&amp;mment</source>
         <translation>Meg&amp;jegyzés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="586"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1318"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="587"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1326"/>
         <source>Unc&amp;omment</source>
         <translation>Megjegyzés &amp;visszavonása</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="598"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1320"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="599"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1328"/>
         <source>&amp;Select all</source>
         <translation>Ö&amp;sszes kijelölése</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="610"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1322"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="611"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1330"/>
         <source>&amp;Find</source>
         <translation>&amp;Keresés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="618"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1323"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="619"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1331"/>
         <source>Fin&amp;d next</source>
         <translation>Kö&amp;vetkező</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="626"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1324"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="627"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1332"/>
         <source>&amp;Replace</source>
         <translation>&amp;Csere</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="638"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1326"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="639"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1334"/>
         <source>&amp;Goto line...</source>
         <translation>&amp;Ugrás sorra...</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="650"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="651"/>
         <source>Dynamic line wrapping</source>
         <translation>Dinamikus sortörés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="662"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1332"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="663"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1340"/>
         <source>Input binding</source>
         <translation>Bemenet kötés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="687"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="688"/>
         <source>Line endings</source>
         <translation>Sorvégek</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="694"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="695"/>
         <source>Conservative</source>
         <translation>Konzervatív</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="695"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="696"/>
         <source>Local</source>
         <translation>Helyi</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="696"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="697"/>
         <source>Unix/Linux</source>
         <translation>Unix/Linux</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="697"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="698"/>
         <source>Dos/Windows</source>
         <translation>Dos/Windows</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="698"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="699"/>
         <source>Old Mac</source>
         <translation>Régi Mac</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="867"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="868"/>
         <source>Conflict!</source>
         <translation>Ütközés!</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="868"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="869"/>
         <source>%1
 has been modified by another application.
 Press &quot;Save&quot; to overwrite the file on disk
@@ -2411,13 +2427,13 @@ Nyomja a &quot;Mellőz&quot; gombot a figyelmeztetés mellőzéséhez.
 </translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1043"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1047"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1051"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1055"/>
         <source>File deleted</source>
         <translation>Fájl törölve</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1043"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1051"/>
         <source>The file %1 has been deleted on disk.
 Should I save the document as it is to restore the file?
 </source>
@@ -2426,19 +2442,19 @@ Mentsem a dokumentumot, ezzel helyreállítva a fájlt?
 </translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1047"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1055"/>
         <source>Well, this is strange: The file %1 is not deleted anymore.
 Probably someone else restored it and therefore I&apos;m not going to override the (possible modified) version on the disk.</source>
         <translation>Nos, ez elég furcsa, de a(z) %1 fájl már nincs törölve.
 Valószínűleg valaki helyreállította, így nem fogom felülírni (a valószínűleg módosított) változatot a lemezen.</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1072"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1080"/>
         <source>File changed</source>
         <translation>Fájl módosult</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1073"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1081"/>
         <source>%1
 has been modified by another application.
 
@@ -2451,320 +2467,320 @@ A visszavonás/újra verem elveszne az automatikus újratöltéstől.
 Naprakészen kívánja tartani a fájlt egy újratöltéssel?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1338"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1346"/>
         <source>&amp;Edit</source>
         <translation>&amp;Szerkesztés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1339"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1347"/>
         <source>&amp;Search</source>
         <translation>&amp;Keresés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1341"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1349"/>
         <source>Edit</source>
         <translation>Szerkesztés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1342"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1350"/>
         <source>Search</source>
         <translation>Keresés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1464"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1472"/>
         <source>Windows</source>
         <translation>Windows</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1466"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1474"/>
         <source>Unix</source>
         <translation>Unix</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4011"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4019"/>
         <source>None</source>
         <oldsource>none</oldsource>
         <translation>Nincs</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4012"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4020"/>
         <source>Invalid</source>
         <translation>Érvénytelen</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4014"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4030"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4046"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4022"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4038"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4054"/>
         <source>Internal</source>
         <oldsource>internal</oldsource>
         <translation>Belső</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4016"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4024"/>
         <source>Move cursor up</source>
         <oldsource>move cursor up</oldsource>
         <translation>Kurzor fel</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4017"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4025"/>
         <source>Move cursor down</source>
         <oldsource>move cursor down</oldsource>
         <translation>Kurzor le</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4018"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4026"/>
         <source>Move cursor left (1 character)</source>
         <oldsource>move cursor left (1 character)</oldsource>
         <translation>Kurzor balra (egy karakterrel)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4019"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4027"/>
         <source>Move cursor right (1 character)</source>
         <oldsource>move cursor right (1 character)</oldsource>
         <translation>Kurzor jobbra (egy karakterrel)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4020"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4028"/>
         <source>Move cursor left (1 word)</source>
         <oldsource>move cursor left (1 word)</oldsource>
         <translation>Kurzor balra (egy szóval)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4021"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4029"/>
         <source>Move cursor right (1 word)</source>
         <oldsource>move cursor right (1 word)</oldsource>
         <translation>Kurzor jobbra (egy szóval)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4022"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4030"/>
         <source>Move cursor to line start</source>
         <oldsource>move cursor to line start</oldsource>
         <translation>Kurzor a sorelejére</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4023"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4031"/>
         <source>Move cursor to line end</source>
         <oldsource>move cursor to line end</oldsource>
         <translation>Kurzor a sor végére</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4024"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4032"/>
         <source>Move cursor to document start</source>
         <oldsource>move cursor to document start</oldsource>
         <translation>Kurzor a dokumentum elejére</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4025"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4033"/>
         <source>Move cursor to document end</source>
         <oldsource>move cursor to document end</oldsource>
         <translation>Kurzor a dokumentum végére</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4027"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4035"/>
         <source>Move cursor one page up</source>
         <oldsource>move cursor one page up</oldsource>
         <translation>Kurzor fel (egy lappal)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4028"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4036"/>
         <source>Move cursor one page down</source>
         <oldsource>move cursor one page down</oldsource>
         <translation>Kurzor le (egy lappal)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4032"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4040"/>
         <source>Select up</source>
         <oldsource>select up</oldsource>
         <translation>Kiválasztás felfelé</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4033"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4041"/>
         <source>Select down</source>
         <oldsource>select down</oldsource>
         <translation>Kiválasztás lefelé</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4034"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4042"/>
         <source>Select left (1 character)</source>
         <oldsource>select left (1 character)</oldsource>
         <translation>Balra lévő karakter kiválasztása</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4035"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4043"/>
         <source>Select right (1 character)</source>
         <oldsource>select right (1 character)</oldsource>
         <translation>Jobbra lévő karakter kiválasztása</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4036"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4044"/>
         <source>Select left (1 word)</source>
         <oldsource>select left (1 word)</oldsource>
         <translation>Balra lévő szó kiválasztása</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4037"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4045"/>
         <source>Select right (1 word)</source>
         <oldsource>select right (1 word)</oldsource>
         <translation>Jobbra lévő szó kiválasztása</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4038"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4046"/>
         <source>Select to line start</source>
         <oldsource>select to line start</oldsource>
         <translation>Kijelölés a sor elejéig</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4039"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4047"/>
         <source>Select to line end</source>
         <oldsource>select to line end</oldsource>
         <translation>Kijelölés a sor végéig</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4040"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4048"/>
         <source>Select to document start</source>
         <oldsource>select to document start</oldsource>
         <translation>Kijelölés a dokumentum elejéig</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4041"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4049"/>
         <source>Select to document end</source>
         <oldsource>select to document end</oldsource>
         <translation>Kijelölés a dokumentum végéig</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4043"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4051"/>
         <source>Select page up</source>
         <oldsource>select page up</oldsource>
         <translation>Előző lap kijelölése</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4044"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4052"/>
         <source>Select page down</source>
         <oldsource>select page down</oldsource>
         <translation>Következő lap kijelölése</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4048"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4056"/>
         <source>Delete left character</source>
         <translation>Bal karakter törlése</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4049"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4057"/>
         <source>Delete right character</source>
         <translation>Jobb karakter törlése</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4050"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4058"/>
         <source>Delete left word</source>
         <translation>Bal oldali szó törlése</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4051"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4059"/>
         <source>Delete right word</source>
         <translation>Jobb oldali szó törlése</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4052"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4060"/>
         <source>New line</source>
         <translation>Új sor</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4054"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4062"/>
         <source>Change overwrite mode</source>
         <translation>Felülírás mód megváltoztatása</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4055"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4063"/>
         <source>Undo</source>
         <translation>Vissza</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4056"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4064"/>
         <source>Redo</source>
         <translation>Újra</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4057"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4065"/>
         <source>Copy</source>
         <translation>Másolás</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4058"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4066"/>
         <source>Paste</source>
         <translation>Beillesztés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4059"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4067"/>
         <source>Cut</source>
         <translation>Kivágás</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4060"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4068"/>
         <source>Print</source>
         <translation>Nyomtatás</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4061"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4069"/>
         <source>Select all</source>
         <translation>Összes kijelölése</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4062"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4070"/>
         <source>Find</source>
         <translation>Keresés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4063"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4071"/>
         <source>Find next</source>
         <translation>Következő keresés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4064"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4072"/>
         <source>Replace</source>
         <translation>Csere</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4066"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4074"/>
         <source>Create cursor mirror up</source>
         <translation>Előző hiba/figyelmeztetés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4067"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4075"/>
         <source>Create cursor mirror down</source>
         <translation>Következő hiba/figyelmeztetés</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4068"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4076"/>
         <source>Next placeholder</source>
         <translation>Következő helykitöltő</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4069"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4077"/>
         <source>Previous placeholder</source>
         <translation>Előző helykitöltő</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4070"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4078"/>
         <source>Next placeholder or one word right</source>
         <translation>Következő helykitöltő vagy egy szó jobbra</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4071"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4079"/>
         <source>Previous placeholder or one word left</source>
         <translation>Előző helykitöltő vagy egy szó balra</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4072"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4080"/>
         <source>Indent selection</source>
         <translation>Behúzás kiválasztása</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4073"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4081"/>
         <source>Unindent selection</source>
         <translation>Behúzás megszüntetésének kiválasztása</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4076"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4084"/>
         <source>Unknown</source>
         <oldsource>unknown</oldsource>
         <translation>Ismeretlen</translation>
@@ -2797,71 +2813,71 @@ Naprakészen kívánja tartani a fájlt egy újratöltéssel?</translation>
         <translation>betű</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="242"/>
-        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="350"/>
-        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="482"/>
+        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="246"/>
+        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="372"/>
+        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="505"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;alapértelmezett&gt;</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="303"/>
+        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="325"/>
         <source>Bold</source>
         <translation>Kövér</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="309"/>
+        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="331"/>
         <source>Italic</source>
         <translation>Dőlt</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="315"/>
+        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="337"/>
         <source>Underline</source>
         <translation>Aláhúzott</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="321"/>
+        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="343"/>
         <source>Overline</source>
         <translation>Felső vonal</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="327"/>
+        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="349"/>
         <source>Strikeout</source>
         <translation>Áthúzott</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="333"/>
+        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="355"/>
         <source>Wave underline</source>
         <translation>Hullámos aláhúzás</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="337"/>
+        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="359"/>
         <source>Text color (aka foreground)</source>
         <translation>Szövegszín (előtér)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="341"/>
+        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="363"/>
         <source>Background color</source>
         <translation>Háttérszín</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="345"/>
+        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="367"/>
         <source>Lines color (used by all lines formatting : underline, overline, ...)</source>
         <translation>Vonalak színe (minden vonalhoz: aláhúzás, felső vonal, ...)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="359"/>
+        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="381"/>
         <source>Font family</source>
         <translation>Betűkészlet</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="523"/>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="546"/>
+        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="569"/>
         <source>Unsaved changes</source>
         <translation>Mentetlen változások</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="524"/>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="547"/>
+        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="570"/>
         <source>There are unsaved changes in this format scheme.
 Do you want them to be saved?</source>
         <translation>Mentetlen változtatások vannak a formátum sémában.
