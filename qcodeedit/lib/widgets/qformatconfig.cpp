@@ -304,7 +304,7 @@ void QFormatConfig::cancel()
 		for ( int c = 0; c < m_categories.size(); c++ ) {
 			if (c!=0)
 				m_table->setItem(r++, 0, new QTableWidgetItem());
-			QTableWidgetItem *item = new QTableWidgetItem(tr(qPrintable(m_categories[c][0])));
+                        QTableWidgetItem *item = new QTableWidgetItem(m_categories[c][0]);
 			QFont f = item->font(); f.setBold(true); item->setFont(f);
 			m_table->setItem(r++, 0, item);
 
