@@ -479,7 +479,7 @@ void BuildManager::readSettings(const QSettings &settings){
 			quickmode=7;
 		else quickmode=1; //texmaker default
 	}
-	if (reinterpret_cast<Dvi2PngMode&>(quickmode)<0) {
+	if (reinterpret_cast<int&>(dvi2pngMode)<0) {
 		if (hasLatexCommand(CMD_DVIPNG)) dvi2pngMode = DPM_DVIPNG_FOLLOW; //best/fastest mode
 		else if (hasLatexCommand(CMD_DVIPS) && hasLatexCommand(CMD_GHOSTSCRIPT)) dvi2pngMode = DPM_DVIPS_GHOSTSCRIPT; //compatible mode
 		else dvi2pngMode = DPM_DVIPNG_FOLLOW; //won't work
