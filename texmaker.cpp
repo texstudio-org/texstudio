@@ -4442,6 +4442,7 @@ bool Texmaker::generateMirror(bool setCur){
 }
 
 void Texmaker::cursorHovered(){
+	if(completer->isVisible()) return;
 	if(generateMirror(true)){
 		currentEditorView()->document->m_mirrorInLine=currentEditorView()->editor->cursor().lineNumber();
 	}

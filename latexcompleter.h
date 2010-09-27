@@ -49,6 +49,9 @@ public:
 	}
 	
 	bool close();
+	bool isVisible(){
+	    return list->isVisible();
+	}
 private:
 	friend class CompleterInputBinding;
 	friend class CompletionListModel;
