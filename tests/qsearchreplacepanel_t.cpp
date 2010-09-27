@@ -4,7 +4,6 @@
 #include "qsearchreplacepanel.h"
 #include "qdocumentcursor.h"
 #include "qdocumentsearch.h"
-#include "ui_searchreplace.h"
 #include "qformatscheme.h"
 #include "qdocumentline.h"
 #include "qeditor.h"
