@@ -260,6 +260,8 @@ public:
 	void resetBinding() {
 		if (!active) return;
 		QToolTip::hideText();
+		//reenable auto close chars
+		editor->setFlag(QEditor::AutoCloseChars,completer->editorAutoCloseChars);
 		editor->setInputBinding(oldBinding);
 		editor->setFocus();
 		if (completer) {
@@ -551,6 +553,10 @@ void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool nor
 	QPoint offset;
 	if (!editor->getPositionBelowCursor(offset, list->width(), list->height()))
 		return;
+
+	//disable auto close char while completer is open
+	editorAutoCloseChars=editor->flag(QEditor::AutoCloseChars);
+	editor->setFlag(QEditor::AutoCloseChars,false);
 
 	list->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
 	//list->show();
