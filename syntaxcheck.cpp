@@ -86,6 +86,10 @@ void SyntaxCheck::run(){
                          QPair<int,int> elem(wordstart,word.length());
                          newRanges->append(elem);
                      }
+                     if(activeEnv.top()==ENV_tabular&&!LatexParser::normalCommands.contains(word) && !LatexParser::tabularCommands.contains(word) && !LatexParser::userdefinedCommands.contains(word)){ // extend for math coammnds
+                         QPair<int,int> elem(wordstart,word.length());
+                         newRanges->append(elem);
+                     }
                  }
 
 	     }
