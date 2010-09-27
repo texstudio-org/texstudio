@@ -783,6 +783,7 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
 		if (tagsfile.open(QFile::ReadOnly)) {
 			QString line;
 			QRegExp rxCom("^(\\\\\\w+)(\\[.+\\])*\\{(.+)\\}");
+                        rxCom.setMinimal(true);
 			QStringList keywords;
 			keywords << "text" << "title";
 			while (!tagsfile.atEnd()) {
@@ -806,7 +807,7 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
                                             int off= valid.isEmpty() ? 1 : 0;
                                             if(res>-1){
                                                 if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
-                                                    LatexParser::normalCommands << line.left(line.length()-off);
+                                                    LatexParser::normalCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
                                                 } else {
                                                     LatexParser::normalCommands << rxCom.cap(1);
                                                 }
@@ -817,7 +818,7 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
                                         if(valid.contains('m')){
                                             if(res>-1){
                                                 if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
-                                                    LatexParser::mathCommands << line.left(line.length());
+                                                    LatexParser::mathCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
                                                 } else {
                                                     LatexParser::mathCommands << rxCom.cap(1);
                                                 }
@@ -828,7 +829,7 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
                                         if(valid.contains('t')){
                                             if(res>-1){
                                                 if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
-                                                    LatexParser::tabularCommands << line.left(line.length());
+                                                    LatexParser::tabularCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
                                                 } else {
                                                     LatexParser::tabularCommands << rxCom.cap(1);
                                                 }
