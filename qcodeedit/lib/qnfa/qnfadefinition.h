@@ -103,6 +103,10 @@ class QCE_EXPORT QNFADefinition : public QLanguageDefinition
 		static void addContext(const QString& id, QNFA *nfa);
 		static void addEmbedRequest(const QString& lang, QNFA *dest);
 		static void shareEmbedRequests(QNFA *src, QNFA *dest, int offset);
+
+                static QString getContextName(QNFA* cxt){
+                    return m_contexts.key(cxt);
+                }
 		
 	private:
 		bool m_indentFold;

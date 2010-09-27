@@ -24,6 +24,8 @@
 #include "qlinemarksinfocenter.h"
 #include "qformatfactory.h"
 #include "qlanguagedefinition.h"
+#include "qnfadefinition.h"
+#include "qnfa.h"
 
 #include "qcodeedit.h"
 #include "qeditor.h"
@@ -581,7 +583,21 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 	for (int i=linenr; i<linenr+count; i++) {
 		QDocumentLine line = editor->document()->line(i);
 		if (!line.isValid()) continue;
-                if(line.length()>3 && config->inlineSyntaxChecking) SynChecker.putLine(line.text());
+                if(line.length()>3 && config->inlineSyntaxChecking) {
+                    SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
+                    QDocumentLine prev=line.previous();
+                    if(prev.isValid()){
+                        QNFA* cxt=line.previous().matchContext()->context;
+                        QString cxtDef=QNFADefinition::getContextName(cxt);
+                        if(!cxtDef.isEmpty()){
+                            int sep=cxtDef.indexOf(":");
+                            cxtDef=cxtDef.mid(sep+1);
+                            if(cxtDef.startsWith("math")) env=SyntaxCheck::ENV_math;
+                            if(cxtDef.startsWith("tabular")) env=SyntaxCheck::ENV_tabular;
+                        }
+                    }
+                    SynChecker.putLine(line.text(),env);
+                }
 		QDocumentLineHandle* dlh = line.handle();
 		// remove all labels/references of current line
 		containedLabels->removeUpdateByHandle(dlh,containedReferences);

@@ -14,7 +14,7 @@ class SyntaxCheck : public QThread
 
 public:
     typedef QList<QPair<int,int> > Ranges;
-    enum Environemt {
+    enum Environment {
         ENV_normal,
         ENV_math,
         ENV_tabular
@@ -23,7 +23,7 @@ public:
     explicit SyntaxCheck(QObject *parent = 0);
 
     QList<QPair<int,int> > getResult();
-    void putLine(QString line);
+    void putLine(QString line,Environment previous=ENV_normal);
     bool isEmpty();
 
 protected:
@@ -32,6 +32,7 @@ protected:
 private:
      QQueue<Ranges *> mResults;
      QQueue<QString> mLines;
+     QQueue<Environment> mPreviousEnvs,mDetectedEnvs;
      QSemaphore mLinesAvailable;
      QMutex mLinesLock;
      QMutex mResultLock;
