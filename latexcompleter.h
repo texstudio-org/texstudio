@@ -61,6 +61,8 @@ private:
 	CompletionListModel* listModel;
 	QEditor *editor;
 
+	bool editorAutoCloseChars;
+
 	void filterList(QString word);
 	bool acceptChar(QChar c,int pos);
 
