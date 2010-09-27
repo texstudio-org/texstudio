@@ -141,35 +141,92 @@ int x11desktop_env() {
 	return 0;
 }
 
+/*
+QList<QPair<QString,QString> > latexToPlainWordReplaceList =
+	QList<QPair<QString,QString> >()
+	<< QPair<QString, QString> ("\\-","") //Trennung [separation] (german-babel-package also: \")
+	<< QPair<QString, QString> ("\\/","") //ligatur preventing (german-package also: "|)
+	<< QPair<QString, QString> ("\"~","-") //- ohne Trennung (without separation)
+//german-babel-package: "- (\- but also normal break),  "= ( like - but also normal break), "" (umbruch ohne bindestrich)
+	<< QPair<QString, QString> ("\"-","")
+	<< QPair<QString, QString> ("\"a","\xE4")
+	<< QPair<QString, QString> ("\"o","\xF6")
+	<< QPair<QString, QString> ("\"u","\xFC")
+	<< QPair<QString, QString> ("\"s","\xDF")
+	<< QPair<QString, QString> ("\"A","\xC4")
+	<< QPair<QString, QString> ("\"O","\xD6")
+	<< QPair<QString, QString> ("\"U","\xDC")
+	<< QPair<QString, QString> ("\\\"{a}","\xE4")
+	<< QPair<QString, QString> ("\\\"{o}","\xF6")
+	<< QPair<QString, QString> ("\\\"{u}","\xFC")
+	<< QPair<QString, QString> ("\\\"{A}","\xC4")
+	<< QPair<QString, QString> ("\\\"{O}","\xD6")
+	<< QPair<QString, QString> ("\\\"{U}","\xDC")
+	<< QPair<QString, QString> ("\"|","")
+	<< QPair<QString, QString> ("\"","")
+//	<< QPair<QString, QString> ("\"\"","") redunant
+	<< QPair<QString, QString> ("\\",""); // eliminating backslash which might remain from accents like \"a ...
+*/
+QChar transformCharacter(const QChar& c){
+	switch (c.toAscii()){
+		case 'a': return QChar(0xE4);
+		case 'o': return QChar(0xF6);
+		case 'u': return QChar(0xFC);
+		case 'A': return QChar(0xC4);
+		case 'O': return QChar(0xD6);
+		case 'U': return QChar(0xDC);
+		case 's': return QChar(0xDF);
+		default: return c;
+	}
+}
 
 QString latexToPlainWord(const QString& word) {
-	QList<QPair<QString,QString> > replaceList;
-	replaceList.append(QPair<QString, QString> ("\\-","")); //Trennung [separation] (german-babel-package also: \")
-	replaceList.append(QPair<QString, QString> ("\\/","")); //ligatur preventing (german-package also: "|)
-	replaceList.append(QPair<QString, QString> ("\"~","-")); //- ohne Trennung (without separation)
-	//german-babel-package: "- (\- but also normal break),  "= ( like - but also normal break), "" (umbruch ohne bindestrich)
-	replaceList.append(QPair<QString, QString> ("\"-",""));
-	replaceList.append(QPair<QString, QString> ("\"a","\xE4"));
-	replaceList.append(QPair<QString, QString> ("\"o","\xF6"));
-	replaceList.append(QPair<QString, QString> ("\"u","\xFC"));
-	replaceList.append(QPair<QString, QString> ("\"s","\xDF"));
-	replaceList.append(QPair<QString, QString> ("\"A","\xC4"));
-	replaceList.append(QPair<QString, QString> ("\"O","\xD6"));
-	replaceList.append(QPair<QString, QString> ("\"U","\xDC"));
-	replaceList.append(QPair<QString, QString> ("\\\"{a}","\xE4"));
-	replaceList.append(QPair<QString, QString> ("\\\"{o}","\xF6"));
-	replaceList.append(QPair<QString, QString> ("\\\"{u}","\xFC"));
-	replaceList.append(QPair<QString, QString> ("\\\"{A}","\xC4"));
-	replaceList.append(QPair<QString, QString> ("\\\"{O}","\xD6"));
-	replaceList.append(QPair<QString, QString> ("\\\"{U}","\xDC"));
-	replaceList.append(QPair<QString, QString> ("\"|",""));
-	replaceList.append(QPair<QString, QString> ("\"",""));
-	//replaceList.append(QPair<QString, QString> ("\"\"","")); redunant
-	replaceList.append(QPair<QString, QString> ("\\","")); // eliminating backslash which might remain from accents like \"a ...
+/*	QString result=word;
+	for (QList<QPair<QString,QString> >::const_iterator it=latexToPlainWordReplaceList.begin(); it!=latexToPlainWordReplaceList.end(); ++it)
+		result.replace(it->first,it->second);*/
+	QString result;
+	result.reserve(word.length());
+	for (int i=0;i<word.length();i++){
+		if (word[i] == '\\') {
+			//decode all meta characters starting with a backslash (c++ syntax: don't use an actual backslash there or it creates a multi line comment)
+			i++;
+			if (i>=word.length()) break;
+			switch (word[i].toAscii()) {
+				case '-': //Trennung [separation] (german-babel-package also: \")
+				case '/': //ligatur preventing (german-package also: "|)
+					break;
 
-	QString result=word;
-	for (QList<QPair<QString,QString> >::const_iterator it=replaceList.begin(); it!=replaceList.end(); ++it)
-		result.replace(it->first,it->second);
+				case '"':
+					if (i+3 < word.length()) {
+						if (word[i+1] == '{' && word[i+3] == '}') {
+							result.append(transformCharacter(word[i+2]));
+							i+=3;
+						} else if (word[i+1] == '\\' || word[i+1] == '"');  //ignore "
+						else i--; //repeat with "
+					} else if (i +1 < word.length() && (word[i+1] == '\\' || word[i+1] == '"'));  //ignore "
+					else i--; //repeat with "
+					break;
+				default:
+					i--; //repeat with current char
+			}
+		} else if (word[i] == '"') {
+			//decode all meta characters starting with "
+			i++;
+			if (i>=word.length()) break;
+			switch (word[i].toAscii()) {
+				case '~':
+					result.append('-'); //- ohne Trennung (without separation)
+					break;
+				case '-':
+				case '|': //babel package, separation
+				case '"':  //ignore ""
+					break;
+				default:
+					result.append(transformCharacter(word[i]));
+
+			}
+		} else result.append(word[i]);
+	}
 
 	return result;
 }
