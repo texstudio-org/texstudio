@@ -226,6 +226,12 @@ private slots:
 		QTest::newRow("sepchar2")  << " la\"-tex " << 0 << false << false << (int)NW_TEXT << 8 << "latex" << 1;
 		QTest::newRow("sepchar3")  << "!ab\"\"xyz!" << 0 << false << false << (int)NW_TEXT << 8 << "abxyz" << 1;
 		QTest::newRow("sepchar4")  << "?oz\"|di?" << 0 << false << false << (int)NW_TEXT << 7 << "ozdi" << 1;
+		QTest::newRow("sepchar5")  << "?oz\"adi?" << 0 << false << false << (int)NW_TEXT << 7 << QString("oz%1di").arg(QChar(0xE4)) << 1;
+		QTest::newRow("sepchar6")  << "?oz\\\"{a}di?" << 0 << false << false << (int)NW_TEXT << 10 << QString("oz%1di").arg(QChar(0xE4)) << 1;
+		QTest::newRow("sepchar7")  << "?oz\\\"adi?" << 0 << false << false << (int)NW_TEXT << 8 << QString("oz%1di").arg(QChar(0xE4)) << 1;
+		QTest::newRow("sepchar8")  << "?oz\"\"adi?" << 0 << false << false << (int)NW_TEXT << 8 << "ozadi" << 1;
+		QTest::newRow("sepchar8")  << "?oz\"yxdi?" << 0 << false << false << (int)NW_TEXT << 8 << "ozyxdi" << 1;
+		QTest::newRow("sepchar8")  << "?oz\"y?" << 0 << false << false << (int)NW_TEXT << 5 << "ozy" << 1;
 		QTest::newRow("word end")  << "?no\"<di?" << 0 << false << false << (int)NW_TEXT << 3 << "no" << 1;
 		QTest::newRow("word end")  << "?yi''di?" << 0 << false << false << (int)NW_TEXT << 3 << "yi" << 1;
 		QTest::newRow("umlauts")  << "\"a\"o\"u\"A\"O\"U\\\"{a}\\\"{o}\\\"{u}\\\"{A}\\\"{O}\\\"{U}" << 0 << false << false << (int)NW_TEXT << 42 << (QString(QChar(0xE4))+QString(QChar(0xF6))+QString(QChar(0xFC))+QString(QChar(0xC4))+QString(QChar(0xD6))+QString(QChar(0xDC))+QString(QChar(0xE4))+QString(QChar(0xF6))+QString(QChar(0xFC))+QString(QChar(0xC4))+QString(QChar(0xD6))+QString(QChar(0xDC))) << 0; //unicode to be independent from c++ character encoding
