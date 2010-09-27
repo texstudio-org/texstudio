@@ -7,13 +7,15 @@ SyntaxCheck::SyntaxCheck(QObject *parent) :
     mLinesLock.lock();
     mLines.clear();
     mResults.clear();
+    mPreviousEnvs.clear();
     mLinesLock.unlock();
     mResultLock.unlock();
 }
 
-void SyntaxCheck::putLine(QString line){
+void SyntaxCheck::putLine(QString line,Environment previous){
     mLinesLock.lock();
     mLines.enqueue(line);
+    mPreviousEnvs.enqueue(previous);
     mLinesLock.unlock();
     //avoid reading of any results before this execution is stopped
     mResultLock.lock();
@@ -48,6 +50,8 @@ void SyntaxCheck::run(){
 	     // copy line
 	     mLinesLock.lock();
 	     QString line=mLines.dequeue();
+             QStack<Environment> activeEnv;
+             activeEnv.push(mPreviousEnvs.dequeue());
 	     mLinesLock.unlock();
              line=LatexParser::cutComment(line);
 	     Ranges* newRanges=new Ranges;
@@ -57,10 +61,15 @@ void SyntaxCheck::run(){
              int wordstart;
              int status;
              bool inStructure=false;
-             QStack<Environemt> activeEnv;
-             activeEnv.push(ENV_normal);
              while ((status=nextWord(line,start,word,wordstart,true,true,&inStructure))){
                  if(status==NW_COMMAND){
+                     if(word=="\\begin"||word=="\\end"){
+                         QStringList options;
+                         LatexParser::resolveCommandOptions(line,wordstart,options);
+                         if(options.size()>0){
+                             word+=options.first();
+                         }
+                     }
                      if(LatexParser::mathStartCommands.contains(word)&&activeEnv.top()!=ENV_math){
                          activeEnv.push(ENV_math);
                          continue;

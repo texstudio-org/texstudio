@@ -129,11 +129,28 @@ environments in smallUsefulFunctions.cpp)
 		<stop parenthesis="mathEA4:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{align\*}</stop>
 
 		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
-	</context>
-	
+        </context>
+
+        <context id="tabular" format="normal" transparency="true">
+                <start parenthesis="tabularN1:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{tabular}</start>
+                <stop parenthesis="tabularN1:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{tabular}</stop>
+                <start parenthesis="tabularN2:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{tabular*}</start>
+                <stop parenthesis="tabularN2:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{tabular*}</stop>
+                <start parenthesis="tabularN3:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{tabularx}</start>
+                <stop parenthesis="tabularN3:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{tabularx}</stop>
+        </context>
+
 	<word parenthesis="block:open@nocomplete" parenthesisWeight="30" fold="1" indent="1" ambiguous="true" format="extra-keyword">\\begin{[^}]*}</word>
 	<word parenthesis="block:close@nocomplete" parenthesisWeight="30" fold="1" indent="1" format="extra-keyword" >\\end{[^}]*}</word>
+<!--
+        <context id="env" format="normal" transparency="true">
+                <start parenthesis="env:open@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{[^}]*}</start>
+                <stop parenthesis="env:close@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{[^}]*}</stop>
 
+                <sequence parenthesis="curly:open" parenthesisWeight="10">\{</sequence>
+                <sequence parenthesis="curly:close" parenthesisWeight="10">\}</sequence>
+        </context>
+-->
 	<list id="keywords/block" format="extra-keyword">
 		<word parenthesis="part:boundary@nomatch" parenthesisWeight="8" fold="true">\\part</word>
 		<word parenthesis="chapter:boundary@nomatch" parenthesisWeight="7" fold="true">\\chapter</word>
