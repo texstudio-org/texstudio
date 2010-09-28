@@ -25,7 +25,7 @@ void SyntaxCheck::putLine(QString line,Environment previous){
 bool SyntaxCheck::isEmpty(){
     mResultLock.lock();
     bool res=mResults.isEmpty();
-    mResultLock.lock();
+    mResultLock.unlock();
     return res;
 }
 
@@ -76,6 +76,7 @@ void SyntaxCheck::run(){
                      }
                      if(LatexParser::mathStopCommands.contains(word)&&activeEnv.top()==ENV_math){
                          activeEnv.pop();
+			 if(activeEnv.isEmpty()) activeEnv.push(ENV_normal);
                          continue;
                      }
                      if(activeEnv.top()==ENV_normal&&!LatexParser::normalCommands.contains(word) && !LatexParser::userdefinedCommands.contains(word)){ // extend for math coammnds
