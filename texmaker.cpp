@@ -528,6 +528,7 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	newManagedAction(menu,"spelling",tr("Check Spelling..."),SLOT(editSpell()),Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
 	newManagedAction(menu,"thesaurus",tr("Thesaurus..."),SLOT(editThesaurus()),Qt::CTRL+Qt::SHIFT+Qt::Key_F8);
+        newManagedAction(menu,"wordrepetions",tr("Find word repetitions..."),SLOT(findWordRepetions()));
 
 //  Latex/Math external
 	configManager.loadManagedMenus(":/uiconfig.xml");
@@ -4590,4 +4591,59 @@ void Texmaker::remHLineCB(){
 	LatexTables::addHLine(cur,-1,true);
 }
 
+void Texmaker::findWordRepetions(){
+    if (!currentEditorView()) return;
+    QDialog *dlg=new QDialog(this);
+    dlg->setAttribute(Qt::WA_DeleteOnClose,true);
+    QGridLayout *layout = new QGridLayout;
+    layout->setColumnStretch(1, 1);
+    layout->setColumnStretch(0, 1);
+    QPushButton *but= new QPushButton(tr("&Find next"), dlg);
+    but->setObjectName("next");
+    QPushButton *but2= new QPushButton(tr("&Find previous"), dlg);
+    but2->setObjectName("prev");
+    layout->addWidget(but,0,0);
+    layout->addWidget(but2,0,1);
+    dlg->setLayout(layout);
+    connect(but,SIGNAL(clicked()),this,SLOT(findNextWordRepetion()));
+    connect(but2,SIGNAL(clicked()),this,SLOT(findNextWordRepetion()));
+    dlg->setModal(false);
+    dlg->show();
+    dlg->raise();
 
+}
+
+void Texmaker::findNextWordRepetion(){
+    QPushButton *mButton = qobject_cast<QPushButton *>(sender());
+    bool backward=mButton->objectName()=="prev";
+    if (!currentEditorView()) return;
+    QDocumentCursor cur=currentEditor()->cursor();
+    bool breaking=false;
+    for(QDocumentLine line=cur.line();line.isValid();){
+        if(line.hasOverlay(QDocument::formatFactory()->id("styleHint"))){
+            QList<QFormatRange> ranges=line.getOverlays(QDocument::formatFactory()->id("styleHint"));
+            for(int i=0;i<ranges.size();i++){
+                if(!backward&&(line.lineNumber()>cur.lineNumber()||(ranges[i].offset+ranges[i].length>cur.columnNumber()&&ranges[i].offset+ranges[i].length>cur.anchorColumnNumber()))){
+                    cur.moveTo(line,ranges[i].offset);
+                    cur.movePosition(ranges[i].length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+                    breaking=true;
+                    break;
+                }
+                if(backward&&(line.lineNumber()<cur.lineNumber()||(ranges[i].offset<cur.columnNumber()&&ranges[i].offset<cur.anchorColumnNumber()))){
+                    cur.moveTo(line,ranges[i].offset);
+                    cur.movePosition(ranges[i].length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+                    breaking=true;
+                    break;
+                }
+            }
+            if(breaking) break;
+        }
+        if(backward)
+            line--;
+        else
+            line++;
+    }
+    if(breaking){
+        currentEditor()->setCursor(cur);
+    }
+}
