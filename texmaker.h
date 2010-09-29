@@ -215,6 +215,9 @@ private slots:
 	void editInsertRefToPrevLabel();
 	void editFindGlobal();
 
+        void findWordRepetions();
+        void findNextWordRepetion();
+
 	void StructureContextMenu(const QPoint& point);
 	void structureContextMenuCloseDocument();
 	void structureContextMenuSwitchMasterDocument();
