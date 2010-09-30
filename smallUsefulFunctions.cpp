@@ -387,7 +387,8 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 	QString lastCommand="";
 	bool inOption=false;
 	bool inEnv=false;
-        while ((wordStartIndex = nextToken(line, index,abbreviations,inEnv,true))!=-1) {
+        bool inReferenz=false;
+        while ((wordStartIndex = nextToken(line, index,abbreviations,inEnv,!inReferenz))!=-1) {
 		outWord=line.mid(wordStartIndex,index-wordStartIndex);
 		if (outWord.length()==0) return NW_NOTHING; //should never happen
 		switch (outWord.at(0).toAscii()) {
@@ -449,6 +450,7 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 				if (LatexParser::refCommands.contains(outWord)||LatexParser::labelCommands.contains(outWord)||LatexParser::citeCommands.contains(outWord)){
 					reference=index; //todo: support for nested brackets like \cite[\xy{\ab{s}}]{miau}
 					lastCommand=outWord;
+                                        inReferenz=true;
 				}
 				if (LatexParser::optionCommands.contains(lastCommand)||lastCommand.isEmpty()) {
 					lastCommand=outWord;
