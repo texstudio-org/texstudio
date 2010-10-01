@@ -3901,7 +3901,7 @@ void Texmaker::previewLatex(){
 	if (originalText=="") return;
     // get document definitions
     //preliminary code ...
-	LatexEditorView* edView=getEditorViewFromFileName(documents.getCompileFileName()); //todo: temporary compile name
+	LatexEditorView* edView=(documents.masterDocument && documents.masterDocument->getEditorView())?documents.masterDocument->getEditorView():currentEditorView();
 	if (!edView) return;
     int m_endingLine=edView->editor->document()->findLineContaining("\\begin{document}",0,Qt::CaseSensitive);
     if (m_endingLine<0) return; // can't create header
