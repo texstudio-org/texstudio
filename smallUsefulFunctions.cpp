@@ -5,7 +5,7 @@
 #include <CoreFoundation/CFBundle.h>
 #endif
 
-const QString CommonEOW="~!@#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`+ï¿½´";
+const QString CommonEOW="~!@#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`+";
 const QString EscapedChars="%&_";
 const QString CharacterAlteringChars="\"";
 
