@@ -107,6 +107,7 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 			QString whitespace(" \t\n");
 			QChar prev=editor->cursor().previousChar();
 			editor->insertText(whitespace.contains(prev)||prev==QChar(0)?keyReplaceBeforeWord->at(pos):keyReplaceAfterWord->at(pos));
+			editor->emitCursorPositionChanged(); //prevent rogue parenthesis highlightations
 			return true;
 		}
 	}

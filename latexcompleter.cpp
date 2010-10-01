@@ -132,6 +132,8 @@ public:
 	}	
 	
 	virtual bool keyPressEvent(QKeyEvent *event, QEditor *editor) {
+		Q_ASSERT (completer && completer->listModel);
+		if (!completer || !completer->listModel) return false;
                 if (event->key()==Qt::Key_Shift || event->key()==Qt::Key_Alt || event->key()==Qt::Key_AltGr || event->key()==Qt::Key_Control)
 			return false;
 		if (!active) return false; //we should never have been called
@@ -233,12 +235,28 @@ public:
 				if (editor->cursor().columnNumber()+1>curStart)
 					completer->list->show();
 				handled=true;
-			} else if (LatexCompleter::config && LatexCompleter::config->eowCompletes && 
-		           event->text().length()==1 && getCommonEOW().contains(event->text().at(0))) {
-				int curLength = getCurWord().length();
-				insertCompletedWord();
-				resetBinding();
-				return curLength >= 2 &&  oldBinding->keyPressEvent(event,editor); //call old input binding for long words (=> key replacements after completions, but the user can still write \")
+			} else if (event->text().length()==1 && getCommonEOW().contains(event->text().at(0))) {
+				const QList<CompletionWord> &words=completer->listModel->getWords();
+				QString curWord = getCurWord();
+				QChar eow = event->text().at(0);
+				QString newWord;
+				foreach (const CodeSnippet& w, words)
+					if (w.word.startsWith(curWord) && (w.word.indexOf(eow, curWord.length()) >= 0)){
+						newWord = w.word;
+						break;
+					}
+				if (!newWord.isEmpty()){
+					QString insertion = newWord.mid(curWord.length(), newWord.indexOf(eow, curWord.length()) - curWord.length() + 1);
+					maxWritten += insertion.length();
+					editor->cursor().insertText(insertion);
+					completer->list->show();
+					handled = true;
+				} else if (LatexCompleter::config && LatexCompleter::config->eowCompletes) {
+					int curLength = getCurWord().length();
+					insertCompletedWord();
+					resetBinding();
+					return curLength >= 2 &&  oldBinding->keyPressEvent(event,editor); //call old input binding for long words (=> key replacements after completions, but the user can still write \")
+				}
 			} else {
 				int curLength = getCurWord().length();
 				resetBinding();
@@ -643,8 +661,8 @@ bool LatexCompleter::acceptChar(QChar c,int pos) {
 	if (pos<=1) return false;
 	if (!listModel->getAcceptedChars().contains(c)) 
 		return false; //if no word contains the character don't accept it
-	if (listModel->isNextCharPossible(c)) 
-		return true; //only accept non standard character, if one of the current words contains it
+	//if (listModel->isNextCharPossible(c))
+	//	return true; //only accept non standard character, if one of the current words contains it
 	return false;
 }
 
