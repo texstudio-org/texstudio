@@ -9,7 +9,10 @@
 #include "qeditor.h"
 #include "testutil.h"
 #include <QtTest/QtTest>
-ScriptEngineTest::ScriptEngineTest(QEditor* editor): ed(editor){}
+ScriptEngineTest::ScriptEngineTest(QEditor* editor): ed(editor){
+	ed->setCursorPosition(0,0);
+	ed->setText("");
+}
 
 void ScriptEngineTest::script_data(){
 	QTest::addColumn<QString>("script");
@@ -63,7 +66,7 @@ void ScriptEngineTest::script_data(){
 void ScriptEngineTest::script(){
 	QFETCH(QString, script);
 	QFETCH(QString, newText);
-	
+	qDebug() << ed->cursor().position();
 	scriptengine eng(this);
 	eng.setEditor(ed);
 	eng.setScript(script);

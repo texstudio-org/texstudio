@@ -411,6 +411,10 @@ void LatexEditorView::setSpeller(SpellerUtility* speller) {
 void LatexEditorView::setCompleter(LatexCompleter* newCompleter) {
 	LatexEditorView::completer=newCompleter;
 }
+LatexCompleter* LatexEditorView::getCompleter(){
+	return LatexEditorView::completer;
+}
+
 void LatexEditorView::setBibTeXIds(QSet<QString>* newIds){
 	bibTeXIds=newIds;
 
