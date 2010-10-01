@@ -37,6 +37,13 @@ public:
 		return curLine.text().mid(curStart,editor->cursor().columnNumber()-curStart);
 	}
 
+	void insertText(const QString& text){
+		maxWritten += text.length();
+		editor->cursor().insertText(text);
+		if (editor->cursor().columnNumber()+1>curStart)
+			completer->list->show();
+	}
+
 	bool insertCompletedWord() {
 		if (completer->list->isVisible() && maxWritten>curStart && completer->list->currentIndex().isValid()) {
 			QDocumentCursor cursor=editor->cursor();
@@ -211,8 +218,8 @@ public:
 			QChar written=event->text().at(0);
 			if (written=='\\') {
 				if (getCurWord()=="\\") {
-					curStart+=2;
-					maxWritten=curStart;
+					resetBinding();
+					return false;
 				} else if (getCurWord()=="") {
 					maxWritten=curStart+1;
 				} else {
@@ -229,29 +236,23 @@ public:
 				//editor->insertText(written);
 				handled=true;
 			} else if (completer->acceptChar(written,editor->cursor().columnNumber()-curStart)) {
-				maxWritten++;
-				editor->cursor().insertText(written);
-				//editor->insertText(written);
-				if (editor->cursor().columnNumber()+1>curStart)
-					completer->list->show();
+				insertText(written);
 				handled=true;
 			} else if (event->text().length()==1 && getCommonEOW().contains(event->text().at(0))) {
 				const QList<CompletionWord> &words=completer->listModel->getWords();
 				QString curWord = getCurWord();
-				QChar eow = event->text().at(0);
 				QString newWord;
-				foreach (const CodeSnippet& w, words)
-					if (w.word.startsWith(curWord) && (w.word.indexOf(eow, curWord.length()) >= 0)){
-						newWord = w.word;
-						break;
-					}
-				if (!newWord.isEmpty()){
-					QString insertion = newWord.mid(curWord.length(), newWord.indexOf(eow, curWord.length()) - curWord.length() + 1);
-					maxWritten += insertion.length();
-					editor->cursor().insertText(insertion);
-					completer->list->show();
+				if (curWord != "\\")
+					foreach (const CodeSnippet& w, words)
+						if (w.word.startsWith(curWord) && (w.word.indexOf(written, curWord.length()) >= 0)){
+							newWord = w.word;
+							break;
+						}
+				if (!newWord.isEmpty()) {
+					QString insertion = newWord.mid(curWord.length(), newWord.indexOf(written, curWord.length()) - curWord.length() + 1);
+					insertText(insertion);
 					handled = true;
-				} else if (LatexCompleter::config && LatexCompleter::config->eowCompletes) {
+				} else if (curWord == "\\" || (LatexCompleter::config && LatexCompleter::config->eowCompletes)) {
 					int curLength = getCurWord().length();
 					insertCompletedWord();
 					resetBinding();
