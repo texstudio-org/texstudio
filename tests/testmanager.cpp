@@ -8,6 +8,7 @@
 #include "qdocumentsearch_t.h"
 #include "qsearchreplacepanel_t.h"
 #include "qeditor_t.h"
+#include "latexcompleter_t.h"
 #include "latexeditorview_t.h"
 #include "latexeditorview_bm.h"
 #include "scriptengine_t.h"
@@ -47,6 +48,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 		<< new QSearchReplacePanelTest(codeedit,level==TL_ALL)
 		<< new QEditorTest(editor,level==TL_ALL)
 		<< new LatexEditorViewTest(edView)
+		<< new LatexCompleterTest(edView)
 		<< new ScriptEngineTest(editor)
 		<< new LatexEditorViewBenchmark(edView)
 		<< new StructureViewTest(editor,edView->document)

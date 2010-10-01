@@ -94,7 +94,8 @@ HEADERS += texmaker.h \
     mostQtHeaders.h \
     qcodeedit/lib/qnfa/xml2qnfa.h \
     tablemanipulation.h \
-    syntaxcheck.h
+    syntaxcheck.h \
+    tests/latexcompleter_t.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -159,7 +160,8 @@ SOURCES += main.cpp \
     tmxtabwidget.cpp \
     additionaltranslations.cpp \
     tablemanipulation.cpp \
-    syntaxcheck.cpp
+    syntaxcheck.cpp \
+    tests/latexcompleter_t.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \

@@ -90,6 +90,7 @@ public:
 	static void setBaseActions(QList<QAction *> baseActions);
 	static void setSpeller(SpellerUtility* mainSpeller);
 	static void setCompleter(LatexCompleter* newCompleter);
+	static LatexCompleter* getCompleter();
 	void setBibTeXIds(QSet<QString>* newIds);
 	
 	QMultiHash<QDocumentLineHandle*, int> lineToLogEntries;

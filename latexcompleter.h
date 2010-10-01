@@ -42,6 +42,7 @@ public:
 	bool acceptTriggerString(const QString& trigger);
 	
 	void setConfig(const LatexCompleterConfig* config);
+	const LatexCompleterConfig* getConfig() const;
 
 	QString lookupWord(QString id);
 	void setLabelDatabase(References *Label){

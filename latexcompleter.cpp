@@ -643,6 +643,9 @@ bool LatexCompleter::acceptTriggerString(const QString& trigger){
 void LatexCompleter::setConfig(const LatexCompleterConfig* config){
 	this->config=config;
 }
+const LatexCompleterConfig* LatexCompleter::getConfig() const{
+	return config;
+}
 
 void LatexCompleter::filterList(QString word) {
 	QString cur=""; //needed to preserve selection
