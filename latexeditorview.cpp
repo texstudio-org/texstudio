@@ -689,9 +689,12 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
                             if(!lineText.mid(previousTextWordIndex,wordstart-previousTextWordIndex).contains(QRegExp("\\S")))
                                 line.addOverlay(QFormatRange(wordstart,start-wordstart,styleHintFormat));
                         }
-                        if(!word.at(0).isNumber())
+                        if(!word.at(0).isNumber()){
                             previousTextWord=word;
                             previousTextWordIndex=start;
+                        } else {
+                            previousTextWord.clear();
+                        }
                     }else{
                         previousTextWord.clear();
                     }
