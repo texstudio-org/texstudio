@@ -1627,29 +1627,26 @@ void Texmaker::editSpell() {
 }
 
 void Texmaker::editThesaurus() {
-	if (!currentEditorView()) {
-		QMessageBox::information(this,"TexMakerX",tr("No document open"),0);
-		return;
-	}
 	if (!ThesaurusDialog::retrieveDatabase()) {
 		QMessageBox::warning(this,tr("Error"), tr("Can't load Thesaurus Database"));
 		return;
 	}
-	QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
 	ThesaurusDialog *thesaurusDialog=new ThesaurusDialog(this);
 	QString word;
-	if(m_cursor.hasSelection()){
-		word=m_cursor.selectedText();
-	} else {
-		m_cursor.select(QDocumentCursor::WordUnderCursor);
-		word=m_cursor.selectedText();
+	if (currentEditorView()) {
+		QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
+		if(m_cursor.hasSelection()) word=m_cursor.selectedText();
+		else {
+			m_cursor.select(QDocumentCursor::WordUnderCursor);
+			word=m_cursor.selectedText();
+		}
+		word=latexToPlainWord(word);
 	}
-	if(word.isEmpty()) return;
-	word=latexToPlainWord(word);
 	thesaurusDialog->setSearchWord(word);
-	if(thesaurusDialog->exec()){
+	if (thesaurusDialog->exec()){
 		QString replace=thesaurusDialog->getReplaceWord();
-		currentEditor()->insertText(replace);
+		if (currentEditor())
+			currentEditor()->insertText(replace);
 	}
 	delete thesaurusDialog;
 }
