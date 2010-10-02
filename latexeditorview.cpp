@@ -478,6 +478,7 @@ void LatexEditorView::updateSettings(){
         styleHintFormat=QDocument::formatFactory()->id("styleHint");
         syntaxErrorFormat=QDocument::formatFactory()->id("latexSyntaxMistake");
 	structureFormat=QDocument::formatFactory()->id("structure");
+        verbatimFormat=QDocument::formatFactory()->id("verbatim");
 	containedLabels->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
 	containedReferences->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
 }
@@ -704,7 +705,10 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			SyntaxCheck::Ranges rng=SynChecker.getResult();
 			QPair<int,int> elem;
 			foreach(elem,rng){
+                            QVector<int> rngAtLetter=dlh->compose();
+                            if(rngAtLetter.at(elem.first)!=verbatimFormat){
 				line.addOverlay(QFormatRange(elem.first,elem.second,syntaxErrorFormat));
+                            }
 			}
 		}
 	}
@@ -822,6 +826,7 @@ void LatexEditorView::resetReferenceDatabase(){
 	citationPresentFormat=QDocument::formatFactory()->id("citationPresent");
 	citationMissingFormat=QDocument::formatFactory()->id("citationMissing");
 	structureFormat=QDocument::formatFactory()->id("structure");
+        verbatimFormat=QDocument::formatFactory()->id("verbatim");
 	containedLabels->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
 	containedReferences->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
 

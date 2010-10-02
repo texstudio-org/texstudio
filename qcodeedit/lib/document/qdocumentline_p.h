@@ -133,12 +133,13 @@ class QCE_EXPORT QDocumentLineHandle
 		}
 		
 		~QDocumentLineHandle();
+
+                QVector<int> compose() const;
 		
 	private:
 		void layout() const;
 		void applyOverlays() const;
 		
-		QVector<int> compose() const;
 		QList<QTextLayout::FormatRange> decorations() const;
 		
 		QString m_text;
