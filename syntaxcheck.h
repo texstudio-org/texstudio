@@ -25,6 +25,7 @@ public:
     QList<QPair<int,int> > getResult();
     void putLine(QString line,Environment previous=ENV_normal);
     bool isEmpty();
+    void stop();
 
 protected:
      void run();
@@ -36,6 +37,7 @@ private:
      QSemaphore mLinesAvailable;
      QMutex mLinesLock;
      QMutex mResultLock;
+     bool stopped;
 };
 
 #endif // SYNTAXCHECK_H
