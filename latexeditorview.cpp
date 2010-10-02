@@ -630,6 +630,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		int status;
 		bool inStructure=false;
                 QString previousTextWord;
+                int previousTextWordIndex=-1;
 		while ((status=nextWord(lineText,start,word,wordstart,false,true,&inStructure))){
 		    // hack to color the environment given in \begin{environment}...
 		    if (inStructure){
@@ -685,9 +686,12 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		    if (status==NW_COMMENT) break;
                     if (status==NW_TEXT && config->inlineSpellChecking){
                         if(!previousTextWord.isEmpty() && previousTextWord==word){
-                            line.addOverlay(QFormatRange(wordstart,start-wordstart,styleHintFormat));
+                            if(!lineText.mid(previousTextWordIndex,wordstart-previousTextWordIndex).contains(QRegExp("\\S")))
+                                line.addOverlay(QFormatRange(wordstart,start-wordstart,styleHintFormat));
                         }
-                        previousTextWord=word;
+                        if(!word.at(0).isNumber())
+                            previousTextWord=word;
+                            previousTextWordIndex=start;
                     }else{
                         previousTextWord.clear();
                     }
