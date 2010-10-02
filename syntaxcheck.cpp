@@ -5,6 +5,7 @@ SyntaxCheck::SyntaxCheck(QObject *parent) :
 {
     mResultLock.lock();
     mLinesLock.lock();
+    stopped=false;
     mLines.clear();
     mResults.clear();
     mPreviousEnvs.clear();
@@ -29,6 +30,13 @@ bool SyntaxCheck::isEmpty(){
     return res;
 }
 
+void SyntaxCheck::stop(){
+    mResultLock.lock();
+    stopped=true;
+    mResultLock.unlock();
+    mLinesAvailable.release();
+}
+
 QList<QPair<int,int> > SyntaxCheck::getResult(){
     mResultLock.lock();
     Ranges *rng;
@@ -46,7 +54,7 @@ void SyntaxCheck::run(){
     forever {
 	     //wait for enqueued lines
 	     mLinesAvailable.acquire();
-
+             if(stopped) break;
 	     // copy line
 	     mLinesLock.lock();
 	     QString line=mLines.dequeue();

@@ -251,7 +251,8 @@ LatexEditorView::~LatexEditorView() {
 		delete containedLabels;
 		delete containedReferences;
 	}
-	SynChecker.quit();
+        SynChecker.stop();
+        SynChecker.wait();
 }
 
 void LatexEditorView::viewActivated(){
