@@ -837,7 +837,7 @@ void LatexDocument::checkForLeak(){
 	if(zw.count()>0){
 		qDebug("Memory leak in structure");
 		foreach(StructureEntry* se,zw){
-			qDebug("se: %s",qPrintable(se->title));
+                        qDebug("se: %s %p",qPrintable(se->title),se);
 		}
 	}
 }

@@ -123,7 +123,9 @@
 QT_TRANSLATE_NOOP("QFormatConfig", "numbers"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "text"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "escapeseq"), 
+QT_TRANSLATE_NOOP("QFormatConfig", "styleHint"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "spellingMistake"), 
+QT_TRANSLATE_NOOP("QFormatConfig", "latexSyntaxMistake"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "temporaryCodeCompletion"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "environment"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "referencePresent"), 
@@ -143,6 +145,7 @@
 QT_TRANSLATE_NOOP("Texmaker","Math"),
 QT_TRANSLATE_NOOP("Texmaker","Format"),
 QT_TRANSLATE_NOOP("Texmaker","Table"),
+QT_TRANSLATE_NOOP("Texmaker","Central"),
 ""};
 #endif
 

@@ -1067,6 +1067,30 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <source>Editor2</source>
         <translation>Editor2</translation>
     </message>
+    <message>
+        <source>Use system theme icons</source>
+        <translation>Nutze Systemicons</translation>
+    </message>
+    <message>
+        <source>Inline syntax checking</source>
+        <translation>LaTeX-Syntaxprüfung</translation>
+    </message>
+    <message>
+        <source>Wizard</source>
+        <translation>Assistent</translation>
+    </message>
+    <message>
+        <source>Basic highlighting</source>
+        <translation>Grundlegende Hervorhebung</translation>
+    </message>
+    <message>
+        <source>Line highlighting</source>
+        <translation>Zeilenhervorhebung</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Suche</translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -2264,35 +2288,35 @@ Soll die Datei neugeladen werden?
     </message>
     <message>
         <source>Move cursor left (1 character)</source>
-        <translation>Bewegege Cursor nach links (1 Zeichen)</translation>
+        <translation>Bewege Cursor nach links (1 Zeichen)</translation>
     </message>
     <message>
         <source>Move cursor right (1 character)</source>
-        <translation>Bewegege Cursor nach rechts (1 Zeichen)</translation>
+        <translation>Bewege Cursor nach rechts (1 Zeichen)</translation>
     </message>
     <message>
         <source>Move cursor left (1 word)</source>
-        <translation>Bewegege Cursor nach links (1 Wort)</translation>
+        <translation>Bewege Cursor nach links (1 Wort)</translation>
     </message>
     <message>
         <source>Move cursor right (1 word)</source>
-        <translation>Bewegege Cursor nach rechts (1 Wort)</translation>
+        <translation>Bewege Cursor nach rechts (1 Wort)</translation>
     </message>
     <message>
         <source>Move cursor to line start</source>
-        <translation>Bewegege Cursor zum Zeilenanfang</translation>
+        <translation>Bewege Cursor zum Zeilenanfang</translation>
     </message>
     <message>
         <source>Move cursor to line end</source>
-        <translation>Bewegege Cursor zum Zeilenende</translation>
+        <translation>Bewege Cursor zum Zeilenende</translation>
     </message>
     <message>
         <source>Move cursor to document start</source>
-        <translation>Bewegege Cursor zum Dokumentenanfang</translation>
+        <translation>Bewege Cursor zum Dokumentenanfang</translation>
     </message>
     <message>
         <source>Move cursor to document end</source>
-        <translation>Bewegege Cursor zum Dokumentenende</translation>
+        <translation>Bewege Cursor zum Dokumentenende</translation>
     </message>
     <message>
         <source>Move cursor one page up</source>
@@ -2304,67 +2328,67 @@ Soll die Datei neugeladen werden?
     </message>
     <message>
         <source>Select up</source>
-        <translation type="unfinished"></translation>
+        <translation>Bewege und selektiere nach oben</translation>
     </message>
     <message>
         <source>Select down</source>
-        <translation type="unfinished"></translation>
+        <translation>Bewege und selektiere nach unten</translation>
     </message>
     <message>
         <source>Select left (1 character)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bewege Cursor nach rechts und selektiere (1 Zeichen)</translation>
     </message>
     <message>
         <source>Select right (1 character)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bewege Cursor nach links und selektiere (1 Zeichen)</translation>
     </message>
     <message>
         <source>Select left (1 word)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bewege Cursor nach links und selektiere (1 Wort)</translation>
     </message>
     <message>
         <source>Select right (1 word)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bewege Cursor nach rechts und selektiere (1 Wort)</translation>
     </message>
     <message>
         <source>Select to line start</source>
-        <translation type="unfinished"></translation>
+        <translation>Selektiere bis zum Zeilenanfang</translation>
     </message>
     <message>
         <source>Select to line end</source>
-        <translation type="unfinished"></translation>
+        <translation>Selektiere bis zum Zeilenende</translation>
     </message>
     <message>
         <source>Select to document start</source>
-        <translation type="unfinished"></translation>
+        <translation>Selektiere bis zum Dokumentenanfang</translation>
     </message>
     <message>
         <source>Select to document end</source>
-        <translation type="unfinished"></translation>
+        <translation>Selektiere bis zum Dokumentenende</translation>
     </message>
     <message>
         <source>Select page up</source>
-        <translation type="unfinished"></translation>
+        <translation>Bewege Cursor eine Seite aufwärts und selektiere</translation>
     </message>
     <message>
         <source>Select page down</source>
-        <translation type="unfinished"></translation>
+        <translation>Bewege Cursor eine Seite abwärts und selektiere</translation>
     </message>
     <message>
         <source>Delete left character</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösche linken Buchstaben</translation>
     </message>
     <message>
         <source>Delete right character</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösche rechten Buchstaben</translation>
     </message>
     <message>
         <source>Delete left word</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösche linkes Wort</translation>
     </message>
     <message>
         <source>Delete right word</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösche rechtes Wort</translation>
     </message>
     <message>
         <source>New line</source>
@@ -2372,7 +2396,7 @@ Soll die Datei neugeladen werden?
     </message>
     <message>
         <source>Change overwrite mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändere Überschreibemodus</translation>
     </message>
     <message>
         <source>Undo</source>
@@ -2416,35 +2440,35 @@ Soll die Datei neugeladen werden?
     </message>
     <message>
         <source>Create cursor mirror up</source>
-        <translation type="unfinished"></translation>
+        <translation>Generiere einen Spiegelcursor nach oben</translation>
     </message>
     <message>
         <source>Create cursor mirror down</source>
-        <translation type="unfinished"></translation>
+        <translation>Generiere einen Spiegelcursor nach unten</translation>
     </message>
     <message>
         <source>Next placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Nächster Platzhalter</translation>
     </message>
     <message>
         <source>Previous placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorheriger Platzhalter</translation>
     </message>
     <message>
         <source>Next placeholder or one word right</source>
-        <translation type="unfinished"></translation>
+        <translation>Nächster Platzhalter oder ein Wort nach rechts</translation>
     </message>
     <message>
         <source>Previous placeholder or one word left</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorheriger Platzhalter oder ein Wort nach links</translation>
     </message>
     <message>
         <source>Indent selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Selektion einrücken</translation>
     </message>
     <message>
         <source>Unindent selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Selektion ausrücken</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -2694,6 +2718,14 @@ Wollen Sie es speichern?</translation>
         <source>structure</source>
         <translation>Strukturbefehl</translation>
     </message>
+    <message>
+        <source>styleHint</source>
+        <translation>Stilhinweis</translation>
+    </message>
+    <message>
+        <source>latexSyntaxMistake</source>
+        <translation>latexSyntaxFehler</translation>
+    </message>
 </context>
 <context>
     <name>QLanguageFactory</name>
@@ -2726,7 +2758,7 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <source>environment-name</source>
-        <translation type="unfinished"></translation>
+        <translation>Umgebungsname</translation>
     </message>
 </context>
 <context>
@@ -4709,11 +4741,11 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es compilern könn
     </message>
     <message>
         <source>add \hline</source>
-        <translation type="unfinished"></translation>
+        <translation>Füge \hline ein</translation>
     </message>
     <message>
         <source>remove \hline</source>
-        <translation type="unfinished"></translation>
+        <translation>Entferne \hline</translation>
     </message>
     <message>
         <source>Save all current settings</source>
@@ -4721,7 +4753,23 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es compilern könn
     </message>
     <message>
         <source>You have to save the file before switching to master mode!</source>
-        <translation>Die Datei muss gespeichert sein, bevor sie als Masterdokument verwendet werden kann.</translation>
+        <translation>Die Datei muss gespeichert sein, bevor sie als Masterdokument verwendet werden kann!</translation>
+    </message>
+    <message>
+        <source>Central</source>
+        <translation>Zentral</translation>
+    </message>
+    <message>
+        <source>Find word repetitions...</source>
+        <translation>Finde Wortwiederholungen...</translation>
+    </message>
+    <message>
+        <source>&amp;Find next</source>
+        <translation>&amp;Finde nächste</translation>
+    </message>
+    <message>
+        <source>&amp;Find previous</source>
+        <translation>F&amp;inde vorherige</translation>
     </message>
 </context>
 <context>
@@ -5086,6 +5134,37 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
     </message>
 </context>
 <context>
+    <name>UserQuickDialog</name>
+    <message>
+        <source>Quick Build Command</source>
+        <translation>Befehl für schnelles Erzeugen</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Zufügen</translation>
+    </message>
+    <message>
+        <source>Ordered list of commands :</source>
+        <translation>geordnete Liste der Kommandos:</translation>
+    </message>
+    <message>
+        <source>Up</source>
+        <translation>Hoch</translation>
+    </message>
+    <message>
+        <source>Down</source>
+        <translation>Runter</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <source>User</source>
+        <translation>Nutzer</translation>
+    </message>
+</context>
+<context>
     <name>UserToolDialog</name>
     <message>
         <source>Edit User Commands</source>
@@ -5190,7 +5269,7 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Bitstream Vera Sans&apos;;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;LaTeX to Html conversion tool&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Bitstream Vera Sans&apos;; color:#000000;&quot;&gt;Copyright 2004-2006 P.Brachet &amp;amp; J.Amblard&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Bitstream Vera Sans&apos;;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;LaTeX zu Html Übersetzungswerkzeug&lt;/span&gt;&lt;/p&gt;
@@ -5347,6 +5426,15 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>TeX files (*.tex);;All files (*.*)</source>
         <translation>TeX Dateien (*.tex);;Alle Dateien (*.*)</translation>
+    </message>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;LaTeX to Html conversion tool&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; color:#000000;&quot;&gt;Copyright 2004-2006 P.Brachet &amp;amp; J.Amblard&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
