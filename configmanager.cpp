@@ -686,10 +686,10 @@ bool ConfigManager::execConfigDialog() {
 		QLineEdit *e = new QLineEdit(confDlg);
 		e->setText(buildManager->getLatexCommandForDisplay(cmd));
 		QPushButton *b = new QPushButton(confDlg);
-		b->setIcon(QIcon(":/images/fileopen.png"));
+		b->setIcon(getRealIcon("fileopen"));
 		connect(b,SIGNAL(clicked()),this,SLOT(browseCommand()));
 		QPushButton *bdefault = new QPushButton(confDlg);
-		bdefault->setIcon(QIcon(":/images/undo.png"));
+		bdefault->setIcon(getRealIcon("undo"));
 		connect(bdefault,SIGNAL(clicked()),this,SLOT(undoCommand()));
 		l->setMinimumHeight(l->sizeHint().height());
 		b->setMinimumHeight(b->sizeHint().height());
@@ -716,10 +716,10 @@ bool ConfigManager::execConfigDialog() {
 		QLineEdit *e = new QLineEdit(confDlg);
 		e->setText(buildManager->getLatexCommandForDisplay(cmd));
 		QPushButton *b = new QPushButton(confDlg);
-		b->setIcon(QIcon(":/images/fileopen.png"));
+		b->setIcon(getRealIcon("fileopen"));
 		connect(b,SIGNAL(clicked()),this,SLOT(browseCommand()));
 		QPushButton *bdefault = new QPushButton(confDlg);
-		bdefault->setIcon(QIcon(":/images/undo.png"));
+		bdefault->setIcon(getRealIcon("undo"));
 		connect(bdefault,SIGNAL(clicked()),this,SLOT(undoCommand()));
 		l->setMinimumHeight(l->sizeHint().height());
 		b->setMinimumHeight(b->sizeHint().height());
@@ -746,6 +746,11 @@ bool ConfigManager::execConfigDialog() {
 	confDlg->ui.lineEditUserquick->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_QUICK));
 	
 	confDlg->ui.checkBoxRunAfterBibTeXChange->setChecked(runLaTeXBibTeXLaTeX);
+
+	QIcon fileOpenIcon = getRealIcon("fileopen");
+	confDlg->ui.pushButtonAspell->setIcon(fileOpenIcon);
+	confDlg->ui.btSelectThesaurusFileName->setIcon(fileOpenIcon);
+	confDlg->ui.pushButtonExecuteBeforeCompiling->setIcon(fileOpenIcon);
 
 	//menu shortcuts
 	QTreeWidgetItem * menuShortcuts=new QTreeWidgetItem((QTreeWidget*)0, QStringList() << QString(tr("Menus")));
