@@ -93,8 +93,9 @@ ThesaurusDialog::ThesaurusDialog(QWidget *parent)
 	connect(startsWithBt, SIGNAL(clicked()), this, SLOT(startsWithClicked()));
 	connect(containsBt, SIGNAL(clicked()), this, SLOT(containsClicked()));
 	connect(cancelBt, SIGNAL(clicked()), this, SLOT(reject()));
-	connect(classlistWidget, SIGNAL(itemClicked(QListWidgetItem*)),this,SLOT(classClicked(QListWidgetItem*)));
-	connect(replacelistWidget, SIGNAL(itemClicked(QListWidgetItem*)),this,SLOT(wordClicked(QListWidgetItem*)));
+	//connect(classlistWidget, SIGNAL(itemClicked(QListWidgetItem*)),this,SLOT(classClicked(QListWidgetItem*)));
+	connect(classlistWidget, SIGNAL(currentRowChanged(int)),SLOT(classChanged(int)));
+	connect(replacelistWidget, SIGNAL(currentRowChanged(int)),SLOT(wordChanged(int)));
 
 	thesaurus = retrieveDatabase();
 }
@@ -131,7 +132,7 @@ void ThesaurusDialog::setSearchWord(const QString word)
 	classlistWidget->clear();
 	replacelistWidget->clear();
 	// do all the other calculations
-	QString lowerWord = word.toLower();
+	QString lowerWord = word.trimmed().toLower();
 	QList<ThesaurusDatabaseType::TinyStringRef> result=thesaurus->thesaurus.values(QStringRef(&lowerWord, 0, lowerWord.length()));
 	// set word classes
 	QString first;
@@ -142,7 +143,7 @@ void ThesaurusDialog::setSearchWord(const QString word)
 		classlistWidget->addItem(first);
 	}
 	classlistWidget->setCurrentRow(0);
-	classClicked(classlistWidget->item(0));
+	classChanged(0);
 }
 
 QString ThesaurusDialog::getReplaceWord()
@@ -153,12 +154,12 @@ QString ThesaurusDialog::getReplaceWord()
 }
 
 
-void ThesaurusDialog::classClicked(QListWidgetItem *item)
+void ThesaurusDialog::classChanged(int row)
 {
-	if(!item || !thesaurus) return;
-	int row=classlistWidget->row(item);
-	QString lowerWord=searchWrdLe->text().toLower();
+	if (!thesaurus || row<0) return;
+	QString lowerWord=searchWrdLe->text().trimmed().toLower();
 	QList<ThesaurusDatabaseType::TinyStringRef> result=thesaurus->thesaurus.values(QStringRef(&lowerWord,0,lowerWord.length()));
+	if (row >= result.size()) return;
 	replacelistWidget->clear();
 
 	if(row==0){
@@ -168,9 +169,10 @@ void ThesaurusDialog::classClicked(QListWidgetItem *item)
 	}else replacelistWidget->addItems(result[row-1].toStringWithBuffer(thesaurus->buffer).split("|"));
 }
 
-void ThesaurusDialog::wordClicked(QListWidgetItem *item)
+void ThesaurusDialog::wordChanged(int row)
 {
-	replaceWrdLe->setText(item->text());
+	if (row < 0 || row >= replacelistWidget->count()) return;
+	replaceWrdLe->setText(replacelistWidget->item(row)->text());
 }
 
 void ThesaurusDialog::lookupClicked()
@@ -183,7 +185,7 @@ void ThesaurusDialog::lookupClicked()
 void ThesaurusDialog::containsClicked()
 {
 	if (!thesaurus) return;
-	QString word=replaceWrdLe->text().toLower();
+	QString word=replaceWrdLe->text().trimmed().toLower();
 	word.replace(QRegExp(" \\(.*"), "");
 	classlistWidget->clear();
 	replacelistWidget->clear();
@@ -199,7 +201,7 @@ void ThesaurusDialog::containsClicked()
 void ThesaurusDialog::startsWithClicked()
 {
 	if (!thesaurus) return;
-	QString word=replaceWrdLe->text().toLower();
+	QString word=replaceWrdLe->text().trimmed().toLower();
 	word.replace(QRegExp(" \\(.*"), "");
 	classlistWidget->clear();
 	replacelistWidget->clear();

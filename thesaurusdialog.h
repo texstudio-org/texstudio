@@ -19,8 +19,8 @@ public:
 	static void prepareDatabase(const QString& fileName);
 	static ThesaurusDatabaseType * retrieveDatabase();
 private slots:
-	void classClicked(QListWidgetItem *item);
-	void wordClicked(QListWidgetItem *item);
+	void classChanged(int row);
+	void wordChanged(int row);
 	void lookupClicked();
 	void containsClicked();
 	void startsWithClicked();
