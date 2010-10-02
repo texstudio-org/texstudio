@@ -15,6 +15,8 @@
 
 #define REQUIRE(x)  Q_ASSERT((x)); if (!(x)) return;
 
+typedef QString (QObject::*StringToStringCallback)(const QString&) ;
+
 QString getCommonEOW();
 
 QStringList findResourceFiles(const QString& dirName, const QString& filter);

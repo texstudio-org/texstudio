@@ -3,6 +3,8 @@
 #include "smallUsefulFunctions.h"
 #include "configmanagerinterface.h"
 
+#include "userquickdialog.h"
+
 #ifdef Q_WS_WIN
 #include "windows.h"
 #endif
@@ -594,6 +596,19 @@ void BuildManager::preview(const QString &preamble, const QString &text, QTextCo
 		connect(p2,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
 		p2->startCommand();
 	}
+}
+
+QString BuildManager::editCommandList(const QString& list){
+	QStringList names, commands;
+	for (int i=CMD_LATEX; i <= CMD_ASY; i++) {
+		names.append(commandDisplayName((LatexCommand)(i)));
+		commands.append(getLatexCommandForDisplay((LatexCommand)(i)));
+	}
+
+	UserQuickDialog uqd(0, names, commands);
+	uqd.setCommandList(list);
+	if (uqd.exec() == QDialog::Accepted) return uqd.getCommandList();
+	else return list;
 }
 
 //latex has finished the dvi creation

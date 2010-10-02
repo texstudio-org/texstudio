@@ -48,6 +48,7 @@ public slots:
 	void treeWidgetItemClicked(QTreeWidgetItem * item, int column);
 };
 
+class BuildManager;
 class ConfigDialog : public QDialog {
 	Q_OBJECT
 
@@ -66,6 +67,8 @@ public:
 	QList<QMenu*> standardToolbarMenus;
 
 	QStringList * environModes;
+
+	BuildManager * buildManager;
 public slots:
 	void changePage(QListWidgetItem *current, QListWidgetItem *previous);
 private slots:
@@ -76,6 +79,7 @@ private slots:
 	void browseAspell();
 	void browseThesaurus();
 	void browsePrecompiling();
+	void quickBuildWizard();
 	void advancedOptionsToggled(bool on);
 	void toolbarChanged(int toolbar);
 	void actionsChanged(int actionClass);

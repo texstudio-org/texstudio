@@ -63,6 +63,8 @@ public:
 					
 	void preview(const QString &preamble, const QString &text, QTextCodec *outputCodec=0);
 
+	QString editCommandList(const QString& list);
+
 	int quickmode;
 	enum Dvi2PngMode { DPM_DVIPNG, DPM_DVIPNG_FOLLOW, DPM_DVIPS_GHOSTSCRIPT};
 	Dvi2PngMode dvi2pngMode;

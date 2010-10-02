@@ -95,7 +95,8 @@ HEADERS += texmaker.h \
     qcodeedit/lib/qnfa/xml2qnfa.h \
     tablemanipulation.h \
     syntaxcheck.h \
-    tests/latexcompleter_t.h
+    tests/latexcompleter_t.h \
+    userquickdialog.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -161,7 +162,8 @@ SOURCES += main.cpp \
     additionaltranslations.cpp \
     tablemanipulation.cpp \
     syntaxcheck.cpp \
-    tests/latexcompleter_t.cpp
+    tests/latexcompleter_t.cpp \
+    userquickdialog.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
@@ -182,7 +184,8 @@ FORMS += structdialog.ui \
     randomtextgenerator.ui \
     templateselector.ui \
     bibtexdialog.ui \
-    findGlobalDialog.ui
+    findGlobalDialog.ui \
+    userquickdialog.ui
 TRANSLATIONS += texmakerx_fr.ts \
     texmakerx_de.ts \
     texmakerx_it.ts \
