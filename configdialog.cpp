@@ -14,8 +14,9 @@
 #include "qdocument.h"
 
 #include "latexeditorview_config.h"
-
 #include "smallUsefulFunctions.h"
+#include "buildmanager.h"
+
 const QString ShortcutDelegate::addRowButton="<internal: add row>";
 const QString ShortcutDelegate::deleteRowButton="<internal: delete row>";
 
@@ -243,7 +244,7 @@ bool ShortcutDelegate::isBasicEditorKey(const QModelIndex& index) const{
 }
 
 
-ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
+ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), buildManager(0) {
 	setModal(true);
 	ui.setupUi(this);
 
@@ -281,7 +282,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent) {
 	connect(ui.pbRemoveLine, SIGNAL(clicked()), this, SLOT(custEnvRemoveLine()));
 	environModes=0;
 //pagequick
-	connect(ui.radioButton6, SIGNAL(toggled(bool)),ui.lineEditUserquick, SLOT(setEnabled(bool)));
+	connect(ui.pushButtonQuickBuildWizard, SIGNAL(clicked()), SLOT(quickBuildWizard()));
 
 	connect(ui.pushButtonExecuteBeforeCompiling, SIGNAL(clicked()), this, SLOT(browsePrecompiling()));
 
@@ -463,6 +464,12 @@ void ConfigDialog::browsePrecompiling() {
 		location="\""+location+"\"";
 		ui.lineEditExecuteBeforeCompiling->setText(location);
 	}
+}
+
+
+void ConfigDialog::quickBuildWizard(){
+	REQUIRE(buildManager);
+	ui.lineEditUserquick->setText(buildManager->editCommandList(ui.lineEditUserquick->text()));
 }
 
 void hideShowAdvancedOptions(QWidget* w, bool on){

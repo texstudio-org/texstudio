@@ -3904,9 +3904,9 @@ void Texmaker::previewLatex(){
     //preliminary code ...
 	LatexEditorView* edView=(documents.masterDocument && documents.masterDocument->getEditorView())?documents.masterDocument->getEditorView():currentEditorView();
 	if (!edView) return;
-    int m_endingLine=edView->editor->document()->findLineContaining("\\begin{document}",0,Qt::CaseSensitive);
-    if (m_endingLine<0) return; // can't create header
-    QStringList header;
+	int m_endingLine=edView->editor->document()->findLineContaining("\\begin{document}",0,Qt::CaseSensitive);
+	if (m_endingLine<0) return; // can't create header
+	QStringList header;
 	for (int l=0; l<m_endingLine; l++)
 		header << edView->editor->document()->line(l).text();
 	header << "\\pagestyle{empty}";// << "\\begin{document}";

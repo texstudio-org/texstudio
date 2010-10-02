@@ -733,6 +733,7 @@ bool ConfigManager::execConfigDialog() {
 		commandsToEdits.insert(cmd,e);
 	}
 	//quickbuild/more page	
+	confDlg->buildManager = buildManager;
 	if (buildManager->quickmode==1) confDlg->ui.radioButton1->setChecked(true);
 	else if (buildManager->quickmode==2) confDlg->ui.radioButton2->setChecked(true);
 	else if (buildManager->quickmode==3) confDlg->ui.radioButton3->setChecked(true);
@@ -741,7 +742,6 @@ bool ConfigManager::execConfigDialog() {
 	else if (buildManager->quickmode==6) confDlg->ui.radioButton6_2->setChecked(true);
 	else if (buildManager->quickmode==7) confDlg->ui.radioButton7->setChecked(true);
 	else if (buildManager->quickmode==8) confDlg->ui.radioButton6->setChecked(true);
-	confDlg->ui.lineEditUserquick->setEnabled(buildManager->quickmode==6);
 	confDlg->ui.lineEditExecuteBeforeCompiling->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_PRECOMPILE));
 	confDlg->ui.lineEditUserquick->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_QUICK));
 	
