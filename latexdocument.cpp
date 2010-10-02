@@ -1548,6 +1548,7 @@ bool LatexDocument::fileExits(QString fname){
 	QString curPath=ensureTrailingDirSeparator(getFileInfo().absolutePath());
 	bool exist=QFile(parent->getAbsoluteFilePath(fname,".tex")).exists();
 	if (!exist) exist=QFile(parent->getAbsoluteFilePath(curPath+fname,".tex")).exists();
+        if (!exist) exist=QFile(parent->getAbsoluteFilePath(curPath+fname,"")).exists();
 	return exist;
 }
 

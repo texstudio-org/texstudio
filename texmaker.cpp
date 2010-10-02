@@ -2078,6 +2078,7 @@ void Texmaker::clickedOnStructureEntry(const QModelIndex & index){
 			QString curPath=ensureTrailingDirSeparator(entry->document->getFileInfo().absolutePath());
 			if (load(getAbsoluteFilePath(entry->title,defaultExt)));
 			else if (load(getAbsoluteFilePath(curPath+entry->title,defaultExt)));
+                        else if (load(getAbsoluteFilePath(curPath+entry->title,"")));
 			else QMessageBox::warning(this,"TexMakerX","Sorry, I couldn't find the file \""+entry->title+"\"",QMessageBox::Ok);
 			break;
 		}
