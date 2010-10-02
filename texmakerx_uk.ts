@@ -1083,6 +1083,30 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <source>Editor2</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Use system theme icons</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inline syntax checking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wizard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Basic highlighting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Line highlighting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Пошук</translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -2685,6 +2709,14 @@ Do you want them to be saved?</source>
     </message>
     <message>
         <source>structure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>styleHint</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>latexSyntaxMistake</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4819,6 +4851,22 @@ You have to save a document before you can compile it.</source>
         <source>You have to save the file before switching to master mode!</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Central</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find word repetitions...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Find next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Find previous</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -5292,6 +5340,37 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
     </message>
 </context>
 <context>
+    <name>UserQuickDialog</name>
+    <message>
+        <source>Quick Build Command</source>
+        <translation type="unfinished">Команда швидкої збірки</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ordered list of commands :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>UserToolDialog</name>
     <message>
         <source>Edit User Commands</source>
@@ -5366,7 +5445,7 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Bitstream Vera Sans&apos;;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;LaTeX to Html conversion tool&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Bitstream Vera Sans&apos;; color:#000000;&quot;&gt;Copyright 2004-2006 P.Brachet &amp;amp; J.Amblard&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Bitstream Vera Sans&apos;;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;Конвертер LaTeX у HTML&lt;/span&gt;&lt;/p&gt;
@@ -5551,6 +5630,15 @@ The html files are located in the %1 directory.</source>
     </message>
     <message>
         <source>TeX files (*.tex);;All files (*.*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;LaTeX to Html conversion tool&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; color:#000000;&quot;&gt;Copyright 2004-2006 P.Brachet &amp;amp; J.Amblard&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
