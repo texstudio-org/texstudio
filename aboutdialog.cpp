@@ -22,7 +22,7 @@ AboutDialog::AboutDialog(QWidget *parent)
 		:QDialog(parent) {
 	ui.setupUi(this);
 	ui.textBrowser->setOpenExternalLinks(true);
-	ui.textBrowser->setHtml(tr("<b>TexMakerX 1.9.9a (SVN " SVN_REVISION_NUMBER ")</b><br>Copyright (c) (original TexMaker) 2004-2008 by Pascal Brachet<br>")+
+	ui.textBrowser->setHtml(tr("<b>TexMakerX 2.0 (SVN " SVN_REVISION_NUMBER ")</b><br>Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet<br>")+
 							tr("TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun<br>QCodeEdit: Luc Bruant <br>html conversion: ")+QString::fromUtf8("Joël Amblard.</i><br>")+
 							tr("TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) and KILE (GPL) program.<br> TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)<br>")+
 							tr("Thanks to ")+QString::fromUtf8("Frederic Devernay, Denis Bitouzé, Jean-Côme Charpentier, Luis Silvestre, Enrico Vittorini, Aleksandr Zolotarev, David Sichau, Grigory Mozhaev, mattgk, A. Weder, Pavel Fric, András Somogyi & István Blahota.<br><br>")+
