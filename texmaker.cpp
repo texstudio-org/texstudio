@@ -2356,6 +2356,7 @@ void Texmaker::QuickTabular() {
 	QString hs="";
 	QString tag;
 	TabDialog *quickDlg = new TabDialog(this,"Tabular");
+	//TODO: move this in tabdialog.h
 	QTableWidgetItem *item=new QTableWidgetItem();
 	if (quickDlg->exec()) {
 		int y = quickDlg->ui.spinBoxRows->value();
@@ -2369,7 +2370,12 @@ void Texmaker::QuickTabular() {
 		if ((quickDlg->ui.comboAlignment->currentIndex())==1) al=QString("l")+vs;
 		if ((quickDlg->ui.comboAlignment->currentIndex())==2) al=QString("r")+vs;
 		if ((quickDlg->ui.comboAlignment->currentIndex())==3) al=QString("p{}")+vs;
-		if (quickDlg->ui.checkBox->isChecked()) hs=QString("\\hline ");
+		if ((quickDlg->ui.comboAlignment->currentIndex())==4) al=QString(">{\\centering\\arraybackslash}p{}")+vs;
+		if ((quickDlg->ui.comboAlignment->currentIndex())==5) al=QString(">{\\raggedleft\\arraybackslash}p{}")+vs;
+		if (quickDlg->ui.checkBox->isChecked()) {
+			hs=QString("\\hline ");
+			if (quickDlg->ui.checkBoxMargin->isChecked()) hs+="\\rule[-2ex]{0pt}{5.5ex} ";
+		}
 		for (int j=0; j<x; j++) {
 			tag +=al;
 		}
@@ -2385,7 +2391,7 @@ void Texmaker::QuickTabular() {
 			if (item) tag +=item->text()+ QString(" \\\\ \n");
 			else tag +=QString(" \\\\ \n");
 		}
-		if (quickDlg->ui.checkBox->isChecked()) tag +=hs+QString("\n\\end{tabular} ");
+		if (quickDlg->ui.checkBox->isChecked()) tag +=QString("\\hline \n\\end{tabular} ");
 		else tag +=QString("\\end{tabular} ");
 		InsertTag(tag,0,0);
 	}
@@ -2394,6 +2400,7 @@ void Texmaker::QuickTabular() {
 
 void Texmaker::QuickArray() {
 	if (!currentEditorView())	return;
+	//TODO: move this in arraydialog class
 	QString al;
 	ArrayDialog *arrayDlg = new ArrayDialog(this,"Array");
 	QTableWidgetItem *item=new QTableWidgetItem();
