@@ -96,7 +96,10 @@ HEADERS += texmaker.h \
     tablemanipulation.h \
     syntaxcheck.h \
     tests/latexcompleter_t.h \
-    userquickdialog.h
+    userquickdialog.h \
+    pdfviewer.h \
+    pdfscrollarea.h \
+    pdfdocumentwidget.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -163,7 +166,10 @@ SOURCES += main.cpp \
     tablemanipulation.cpp \
     syntaxcheck.cpp \
     tests/latexcompleter_t.cpp \
-    userquickdialog.cpp
+    userquickdialog.cpp \
+    pdfviewer.cpp \
+    pdfscrollarea.cpp \
+    pdfdocumentwidget.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
@@ -194,7 +200,11 @@ TRANSLATIONS += texmakerx_fr.ts \
     texmakerx_uk.ts
 
 # ###############################
-win32:RC_FILE = win.rc
+win32 {
+    RC_FILE = win.rc
+    LIBS +=  -lpoppler-qt4
+    LIBS += -lpoppler
+}
 
 # ##############################
 macx { 
@@ -212,6 +222,10 @@ macx {
     QMAKE_BUNDLE_DATA += utilities
     ICON = texmaker.icns
     QMAKE_INFO_PLIST = Info.plist
+
+    INCLUDEPATH += /usr/local/include/poppler/qt4
+    LIBS += -L/usr/local/lib -lpoppler-qt4
+    LIBS += -L/usr/local/lib -lpoppler
 }
 
 # ###############################
@@ -230,6 +244,10 @@ unix:!macx {
     applicationmenu.path = $${PREFIX}/share/applications
     applicationmenu.files = utilities/texmakerx.desktop
     INSTALLS += applicationmenu
+
+    INCLUDEPATH += /usr/include/poppler/qt4
+    LIBS += -L/usr/lib -lpoppler-qt4
+    LIBS += -L/usr/lib -lpoppler
 }
 
 # ##########UNIX + MACX###############

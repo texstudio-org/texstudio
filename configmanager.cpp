@@ -268,6 +268,11 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Dialogs/Last Hard Wrap Smart Scope Selection", &lastHardWrapSmartScopeSelection, false);
 	registerOption("Dialogs/Last Hard Wrap Join Lines", &lastHardWrapJoinLines, false);
 
+	QRect screen = QApplication::desktop()->screenGeometry();
+	registerOption("Geometries/PdfViewerWidth", &pdfViewerWidth, screen.width()/3);
+	registerOption("Geometries/PdfViewerHeight", &pdfViewerHeight, screen.height()/3);
+
+
 	//preview
 	registerOption("Preview/Mode", (int*)&previewMode, 0, &pseudoDialog->comboBoxPreviewMode);
 

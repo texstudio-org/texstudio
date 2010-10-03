@@ -22,6 +22,12 @@
         <file>images/qcodeedit/textcolor.png</file>
         <file>images/qcodeedit/fillcolor.png</file>
         <file>images/qcodeedit/strokecolor.png</file>
+	<file>images/down.png</file>
+	<file>images/up.png</file>
+	<file>images/zoom-fit-width.png</file>
+	<file>images/zoom-fit-best.png</file>
+	<file>images/zoom-in.png</file>
+	<file>images/zoom-out.png</file>
         <file>images/warning.png</file>
         <file>images/error.png</file>
         <file>images/asymptote.png</file>
@@ -106,6 +112,7 @@
         <file>images/modern/filenew.png</file>
         <file>images/modern/fileopen.png</file>
         <file>images/modern/filesave.png</file>
+		<file>images/previous.png</file>
         <file>images/goto.png</file>
         <file>images/grave.png</file>
         <file>images/hat.png</file>
