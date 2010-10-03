@@ -28,10 +28,12 @@ TabDialog::TabDialog(QWidget *parent, const char *name)
 	ui.spinBoxColumns->setRange(1,99);
 	connect(ui.spinBoxColumns, SIGNAL(valueChanged(int)),this, SLOT(NewColumns(int)));
 
-	ui.comboAlignment->insertItem(0,tr("Center"));
-	ui.comboAlignment->insertItem(1,tr("Left"));
-	ui.comboAlignment->insertItem(2,tr("Right"));
-	ui.comboAlignment->insertItem(3, "p{}");
+	ui.comboAlignment->addItem(tr("Center"));
+	ui.comboAlignment->addItem(tr("Left"));
+	ui.comboAlignment->addItem(tr("Right"));
+	ui.comboAlignment->addItem("p{} (fixed width - left)");
+	ui.comboAlignment->addItem("p{} (fixed width - center - package tabularx)");
+	ui.comboAlignment->addItem("p{} (fixed width - right - package tabularx)");
 
 	ui.comboSeparator->insertItem(0,"|");
 	ui.comboSeparator->insertItem(1,"||");
