@@ -3036,16 +3036,16 @@ void Texmaker::UserTool() {
 
 
 void Texmaker::EditUserTool() {
-	UserToolDialog *utDlg = new UserToolDialog(this,tr("Edit User &Commands"));
+	UserToolDialog utDlg(this,tr("Edit User &Commands"), &buildManager);
 	for (int i = 0; i <= 4; i++) {
-		utDlg->Name[i]=UserToolName[i];
-		utDlg->Tool[i]=UserToolCommand[i];
-		utDlg->init();
+		utDlg.Name[i]=UserToolName[i];
+		utDlg.Tool[i]=UserToolCommand[i];
+		utDlg.init();
 	}
-	if (utDlg->exec())
+	if (utDlg.exec())
 		for (int i = 0; i <= 4; i++) {
-			UserToolName[i]=utDlg->Name[i];
-			UserToolCommand[i]=utDlg->Tool[i];
+			UserToolName[i]=utDlg.Name[i];
+			UserToolCommand[i]=utDlg.Tool[i];
 			QAction * act=getManagedAction("main/user/commands/cmd"+QString::number(i));
 			if (act) act->setText(QString::number(i+1)+": "+UserToolName[i]);
 		}
