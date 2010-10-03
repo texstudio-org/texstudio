@@ -56,7 +56,7 @@ public:
 	//like above, but will add (TODO: override) the given parameters (they will be parsed, e.g % will replaced by the file name) 
 	ProcessX* newProcess(LatexCommand cmd, const QString &additionalParameters, const QString &fileToCompile, int currentLine=0);
 	//creates a process object with the given command line (after it is changed by an implcit call to parseExtendedCommandLine)
-	ProcessX* newProcess(const QString &unparsedCommandLine, const QString &mainFile, const QString &currentFile, int currentLine=0);
+	ProcessX* newProcess(const QString &unparsedCommandLine, const QString &mainFile, const QString &currentFile, int currentLine=0, bool singleInstance = false);
 	ProcessX* newProcess(const QString &unparsedCommandLine, const QString &mainFile, int currentLine=0);
 	
 	static QString createTemporaryFileName(); //don't forget to remove the file!
@@ -71,16 +71,17 @@ public:
 	enum SaveFilesBeforeCompiling {SFBC_ALWAYS, SFBC_ONLY_CURRENT_OR_NAMED, SFBC_ONLY_NAMED};
 	SaveFilesBeforeCompiling saveFilesBeforeCompiling;
 private slots:	
+	void singleInstanceCompleted(int status);
 	void latexPreviewCompleted(int status);
 	void dvi2psPreviewCompleted(int status);
 	void conversionPreviewCompleted(int status); 
-	
 	
 signals:
 	void previewAvailable(const QString& filename, const QString& text);
 private:
 	friend class ProcessX;
 	QStringList previewFileNames;
+	QMap<QString, ProcessX*> runningCommands;
 	QMap<QString, QString> previewFileNameToText;
 	QHash<LatexCommand, QString> commands;
 #ifdef Q_WS_WIN

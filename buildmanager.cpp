@@ -517,28 +517,36 @@ ProcessX* BuildManager::newProcess(LatexCommand cmd, const QString &additionalPa
 	return newProcess(cmdStr, fileToCompile, currentLine);
 }
 
-ProcessX* BuildManager::newProcess(const QString &unparsedCommandLine, const QString &mainFile, const QString &currentFile, int currentLine){
+ProcessX* BuildManager::newProcess(const QString &unparsedCommandLine, const QString &mainFile, const QString &currentFile, int currentLine, bool singleInstance){
 	QFileInfo mfi(mainFile);
 	QFileInfo cfi;
 	if (mainFile==currentFile) cfi=mfi;
 	else cfi=QFileInfo(currentFile);
-	QString cmd=BuildManager::parseExtendedCommandLine(unparsedCommandLine,mfi,cfi,currentLine);
+	QString cmd=BuildManager::parseExtendedCommandLine(unparsedCommandLine,mfi,cfi,currentLine).trimmed();
+
+	if (singleInstance && runningCommands.contains(cmd))
+		return 0;
+
 	ProcessX* proc = new ProcessX(this, cmd, mainFile);
 	connect(proc, SIGNAL(finished(int)),proc, SLOT(deleteLater())); //will free proc after the process has ended
+	if (singleInstance){
+		connect(proc, SIGNAL(finished(int)), SLOT(singleInstanceCompleted(int))); //will free proc after the process has ended
+		runningCommands.insert(cmd, proc);
+	}
 	proc->setWorkingDirectory(mfi.absolutePath());
 
 #ifdef Q_WS_MACX
 #if (QT_VERSION >= 0x040600)
-        QProcess *myProcess = new QProcess();
-        myProcess->start("bash -l -c \"echo $PATH\"");
-        myProcess->waitForFinished(3000);
-        if(myProcess->exitStatus()==QProcess::NormalExit){
-            QByteArray res=myProcess->readAllStandardOutput();
-            delete myProcess;
-            QString path(res);
-            QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-            env.insert("PATH", env.value("PATH") + ":"+path); //apply user path as well
-            proc->setProcessEnvironment(env);
+	QProcess *myProcess = new QProcess();
+	myProcess->start("bash -l -c \"echo $PATH\"");
+	myProcess->waitForFinished(3000);
+	if(myProcess->exitStatus()==QProcess::NormalExit){
+		QByteArray res=myProcess->readAllStandardOutput();
+		delete myProcess;
+		QString path(res);
+		QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+		env.insert("PATH", env.value("PATH") + ":"+path); //apply user path as well
+		proc->setProcessEnvironment(env);
         }
 #endif
 #endif
@@ -609,6 +617,13 @@ QString BuildManager::editCommandList(const QString& list){
 	uqd.setCommandList(list);
 	if (uqd.exec() == QDialog::Accepted) return uqd.getCommandList();
 	else return list;
+}
+
+void BuildManager::singleInstanceCompleted(int status){
+	Q_UNUSED(status);
+	ProcessX* procX = qobject_cast<ProcessX*>(sender());
+	REQUIRE(procX);
+	runningCommands.remove(procX->getCommandLine());
 }
 
 //latex has finished the dvi creation

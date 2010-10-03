@@ -275,7 +275,7 @@ private slots:
 	void QuickGraphics();
 
 	void runCommand(BuildManager::LatexCommand cmd,bool waitendprocess,bool showStdout);
-	void runCommand(QString comd,bool waitendprocess,bool showStdout, bool compileLatex=false,QString *buffer=0);
+	void runCommand(QString comd,bool waitendprocess,bool showStdout, bool compileLatex=false, QString *buffer=0, bool singleInstance = false);
 	void RunPreCompileCommand();
 	void readFromStderr();
 	void readFromStdoutput();
