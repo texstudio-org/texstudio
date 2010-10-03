@@ -1328,6 +1328,7 @@ bool Texmaker::closeAllFilesAsking(){
 		} else
 			documents.deleteDocument(currentEditorView()->document);
 	}
+	if (pdfviewerWindow) pdfviewerWindow->close();
 	return true;
 }
 
