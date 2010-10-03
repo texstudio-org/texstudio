@@ -128,7 +128,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	centralFrame->setFrameShadow(QFrame::Plain);
 
 	//edit
-	centralToolBar=new QToolBar("Central",this);
+	centralToolBar=new QToolBar(tr("Central"),this);
 	centralToolBar->setFloatable(false);
 	centralToolBar->setOrientation(Qt::Vertical);
 	centralToolBar->setMovable(false);
