@@ -2707,9 +2707,10 @@ void Texmaker::SpellingLanguageChanged() {
 void Texmaker::runCommand(BuildManager::LatexCommand cmd,bool waitendprocess,bool showStdout){
 	bool compileLatex=cmd==BuildManager::CMD_LATEX||cmd==BuildManager::CMD_PDFLATEX;
 	if(compileLatex) ClearMarkers();
-	runCommand(buildManager.getLatexCommand(cmd),waitendprocess,showStdout,compileLatex);
+	bool startViewer = cmd==BuildManager::CMD_VIEWDVI || cmd==BuildManager::CMD_VIEWPS || cmd==BuildManager::CMD_VIEWPDF;
+	runCommand(buildManager.getLatexCommand(cmd),waitendprocess,showStdout,compileLatex,0,startViewer && configManager.singleViewerInstance);
 }
-void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool compileLatex,QString *buffer) {
+void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool compileLatex, QString *buffer, bool singleInstance) {
 	QString finame=documents.getTemporaryCompileFileName();
 	QString commandline=comd;
 	QByteArray result;
@@ -2724,7 +2725,9 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool 
 		return;
 	}
 
-	ProcessX* procX = buildManager.newProcess(comd,finame,getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1);
+	ProcessX* procX = buildManager.newProcess(comd,finame,getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1,singleInstance);
+
+	if (!procX) return; //a singleInstance that is already running
 
 	procX->setBuffer(buffer);
 
@@ -2764,7 +2767,7 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool 
 		}
 		PROCESSRUNNING=false;
 		QApplication::restoreOverrideCursor();
-	}
+	} else stat2->setText(QString(" %1 ").arg(tr("Ready")));
 }
 
 void Texmaker::RunPreCompileCommand() {

@@ -59,6 +59,7 @@ public:
 
 	//build
 	BuildManager* buildManager; 
+	bool singleViewerInstance;
 	bool showLogAfterCompiling;
 	bool runLaTeXBibTeXLaTeX;
 

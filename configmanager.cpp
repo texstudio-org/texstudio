@@ -272,6 +272,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Preview/Mode", (int*)&previewMode, 0, &pseudoDialog->comboBoxPreviewMode);
 
 	//build commands
+	registerOption("Tools/SingleViewerInstance", &singleViewerInstance, false, &pseudoDialog->checkBoxSingleInstanceViewer);
 	registerOption("Tools/Show Log After Compiling", &showLogAfterCompiling, true, &pseudoDialog->checkBoxShowLog);
 
 	//SVN
