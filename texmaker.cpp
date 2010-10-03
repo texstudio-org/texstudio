@@ -2725,6 +2725,24 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool 
 		return;
 	}
 
+	if (commandline == "tmx://intern-pdf-viewer") {
+		QString pdfFile = BuildManager::parseExtendedCommandLine("?am.pdf", finame);
+		QString externalViewer = BuildManager::parseExtendedCommandLine(buildManager.getLatexCommand(BuildManager::CMD_VIEWPDF), finame, getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1);
+		if (pdfviewerWindow) {		
+			pdfviewerWindow->openFile(pdfFile,externalViewer);
+			pdfviewerWindow->raise();
+			pdfviewerWindow->show();
+			configManager.pdfViewerWidth=pdfviewerWindow->width();
+			configManager.pdfViewerHeight=pdfviewerWindow->height();
+		} else {
+			pdfviewerWindow=new PdfViewer(pdfFile,externalViewer, 0);
+			pdfviewerWindow->raise();
+			pdfviewerWindow->show();
+			pdfviewerWindow->resize(configManager.pdfViewerWidth,configManager.pdfViewerHeight);
+		}
+		return;
+	}
+
 	ProcessX* procX = buildManager.newProcess(comd,finame,getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1,singleInstance);
 
 	if (!procX) return; //a singleInstance that is already running

@@ -34,13 +34,14 @@
 #include "scriptengine.h"
 #include "tmxtabwidget.h"
 #include "tablemanipulation.h"
-
+#include "pdfviewer.h"
 
 #include "qformatfactory.h"
 #include "qlanguagefactory.h"
 #include "qlinemarksinfocenter.h"
 
 typedef QHash<QString,int> SymbolList;
+
 
 class Texmaker : public QMainWindow {
 	Q_OBJECT
@@ -97,7 +98,7 @@ private:
 
 	OutputViewWidget *outputView; //contains output widgets (over OutputLayout)
 	
-
+	QPointer<PdfViewer> pdfviewerWindow;
 //toolbars
 //
 	QToolBar *spellToolBar;

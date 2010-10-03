@@ -79,6 +79,7 @@ public:
 	bool newLeftPanelLayout;
 	bool configShowAdvancedOptions;
 	bool useSystemTheme;
+	int pdfViewerWidth, pdfViewerHeight;
 	
 	//language
 	QString language, lastLanguage;
