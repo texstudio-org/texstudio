@@ -18,16 +18,16 @@
 
 typedef QString userCd[5];
 
-
+class BuildManager;
 class UserToolDialog : public QDialog  {
 	Q_OBJECT
 public:
-	UserToolDialog(QWidget *parent=0, QString name="");
+	UserToolDialog(QWidget *parent=0, QString name="", BuildManager* bm = 0);
 	~UserToolDialog();
 	Ui::UserToolDialog ui;
 
 	userCd Name,Tool;
-
+	BuildManager* buildManager;
 private:
 	int previous_index;
 
@@ -37,6 +37,7 @@ public slots:
 private slots:
 	void change(int index);
 	void slotOk();
+	void openWizard();
 };
 
 #endif

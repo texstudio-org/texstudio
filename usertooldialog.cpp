@@ -10,8 +10,9 @@
  ***************************************************************************/
 
 #include "usertooldialog.h"
+#include "buildmanager.h"
 
-UserToolDialog::UserToolDialog(QWidget *parent, QString name) : QDialog(parent) {
+UserToolDialog::UserToolDialog(QWidget *parent, QString name, BuildManager* bm) : QDialog(parent), buildManager(bm) {
 	setWindowTitle(name);
 	setModal(true);
 	ui.setupUi(this);
@@ -23,7 +24,9 @@ UserToolDialog::UserToolDialog(QWidget *parent, QString name) : QDialog(parent) 
 	ui.comboBox->insertItem(2, tr("Command %1").arg("3"));
 	ui.comboBox->insertItem(3, tr("Command %1").arg("4"));
 	ui.comboBox->insertItem(4, tr("Command %1").arg("5"));
-	connect(ui.comboBox, SIGNAL(activated(int)),this,SLOT(change(int)));
+	connect(ui.comboBox, SIGNAL(activated(int)), SLOT(change(int)));
+
+	connect(ui.pushButtonWizard, SIGNAL(clicked()), SLOT(openWizard()));
 
 	connect(ui.okButton, SIGNAL(clicked()), SLOT(slotOk()));
 }
@@ -49,4 +52,8 @@ void UserToolDialog::slotOk() {
 	Tool[previous_index]=ui.toolEdit->text();
 	Name[previous_index]=ui.itemEdit->text();
 	accept();
+}
+void UserToolDialog::openWizard(){
+	if (!buildManager) return;
+	ui.toolEdit->setText(buildManager->editCommandList(ui.toolEdit->text()));
 }
