@@ -130,8 +130,7 @@
         <linescolor>#FF0000</linescolor>
     </format>
     <format id="latexSyntaxMistake" >
-        <waveUnderline>true</waveUnderline>
-        <linescolor>#FFA000</linescolor>
+        <background>#FFA000</background>
     </format>
     <format id="temporaryCodeCompletion" >
         <italic>true</italic>
