@@ -212,11 +212,9 @@ macx {
     config += unix
     
     # #universal tiger
-    CONFIG += link_prl \
-        x86 \
-        ppc
-    QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
-    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.4
+    CONFIG += link_prl x86 ppc
+#    QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
+#    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.4
     target.path = /Applications
     utilities.path = Contents/Resources
     QMAKE_BUNDLE_DATA += utilities
