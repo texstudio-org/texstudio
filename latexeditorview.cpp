@@ -636,7 +636,9 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		while ((status=nextWord(lineText,start,word,wordstart,false,true,&inStructure))){
 			// hack to color the environment given in \begin{environment}...
 			if (inStructure){
-				line.addOverlay(QFormatRange(wordstart,start-wordstart,structureFormat));
+                                QString secName=extractSectionName(lineText.mid(wordstart),true);
+                                line.addOverlay(QFormatRange(wordstart,secName.length(),structureFormat));
+                                inStructure=false;
 			}
 			if (status==NW_ENVIRONMENT) {
 				line.addOverlay(QFormatRange(wordstart,start-wordstart,environmentFormat));
