@@ -102,7 +102,7 @@ void TableManipulationTest::remCol_data(){
 	QTest::addColumn<QString>("newText");
 
 	//-------------cursor without selection--------------
-	QTest::newRow("rem col 0")
+        /*QTest::newRow("rem col 0")
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 0
 		<< "\\begin{tabular}{ll}\nb\\\\\nd\\\\\nf\\\\\n\\end{tabular}\n";
@@ -131,16 +131,21 @@ void TableManipulationTest::remCol_data(){
 		<< "\\begin{tabular}{ll}\na&b\\\\\n\\multicolumn{2}{c}&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 2
 		<< "\\begin{tabular}{ll}\na&b\\\\\n\\multicolumn{2}{c}\\\\\ne&f\\\\\n\\end{tabular}\n";
-
+*/
 	QTest::newRow("rem col 0, row over multiple lines")
 		<< "\\begin{tabular}{ll}\na&\nb\\\\\nc\n&\nd\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 0
-		<< "\\begin{tabular}{ll}\n\nb\\\\\n\nd\\\\\nf\\\\\n\\end{tabular}\n";
+                << "\\begin{tabular}{ll}\n\nb\\\\\n\nd\\\\\nf\\\\\n\\end{tabular}\n";
 
 	QTest::newRow("rem col 1, row over multiple lines")
 		<< "\\begin{tabular}{ll}\na&\nb\\\\\nc\n&\nd\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 1
 		<< "\\begin{tabular}{ll}\na\\\\\nc\n\\\\\ne\\\\\n\\end{tabular}\n";
+
+        QTest::newRow("rem col 0 containing \\hline")
+                        << "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+                        << 1 << 0
+                        << "\\begin{tabular}{ll}\nb\\\\ \\hline\nd\\\\\nf\\\\\n\\end{tabular}\n";
 
 }
 void TableManipulationTest::remCol(){
@@ -152,7 +157,7 @@ void TableManipulationTest::remCol(){
 	ed->document()->setText(text);
 	LatexTables::removeColumn(ed->document(),row,col);
 
-	QEQUAL(ed->document()->text(), newText);
+        QEQUAL(ed->document()->text(),newText);
 
 }
 
