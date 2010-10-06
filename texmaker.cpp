@@ -37,6 +37,7 @@
 #include "universalinputdialog.h"
 #include "unicodeinsertion.h"
 #include "insertgraphics.h"
+#include "latexeditorview_config.h"
 
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
@@ -48,6 +49,8 @@
 #include "qdocumentline_p.h"
 
 #include "qnfadefinition.h"
+
+#include <QMessageBox>
 
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
@@ -4620,6 +4623,10 @@ void Texmaker::remHLineCB(){
 
 void Texmaker::findWordRepetions(){
     if (!currentEditorView()) return;
+    if(configManager.editorConfig && !configManager.editorConfig->inlineSpellChecking){
+        QMessageBox::information(this,tr("Problem"),tr("Finding word repetitions only works with activated online spell checking !"),QMessageBox::Ok);
+        return;
+    }
     QDialog *dlg=new QDialog(this);
     dlg->setAttribute(Qt::WA_DeleteOnClose,true);
     QGridLayout *layout = new QGridLayout;
