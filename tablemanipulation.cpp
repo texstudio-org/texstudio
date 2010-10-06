@@ -147,7 +147,7 @@ void LatexTables::addColumn(QDocument *doc,const int lineNumber,const int afterC
 	breakLoop=(findNextToken(cur,tokens)==-1);
 	if(cur.atLineEnd()) cur.movePosition(1,QDocumentCursor::Right);
 	line=cur.line().text();
-	if(line.contains("\\end")) breakLoop=true;
+        if(line.contains("\\end{")) breakLoop=true;
     }
     cur.endEditBlock();
 }
@@ -215,23 +215,46 @@ void LatexTables::removeColumn(QDocument *doc,const int lineNumber,const int col
 		if(result==0) {
 		    cur.movePosition(2,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
 		}
+                QString zw=cur.selectedText();
 		if(cutBuffer){
-		    QString zw=cur.selectedText();
 		    if(column==0 && result!=0) zw.chop(1);
 		    cutBuffer->append(zw);
 		}
+                // detect elements which need to be kept like \hline
+                QString keep;
+                if(column==0){
+                    QStringList elementsToKeep;
+                    elementsToKeep << "\\hline" << "\\endhead" << "\\endfoot" << "\\endfirsthead" << "\\endlastfoot";
+                    for(int i=0;i<zw.length();i++){
+                        if(zw.at(i)=='\n') {
+                            if(!keep.endsWith('\n'))
+                                keep += "\n";
+                        }
+                        //commands
+                        if(zw.at(i)=='\\') {
+                            QRegExp rx("\\w+");
+                            int out=rx.indexIn(zw,i+1);
+                            QString cmd="\\"+rx.cap();
+                            if(elementsToKeep.contains(cmd)){
+                                keep += " " + cmd;
+                            }
+                        }
+                    }
+                    if(keep.length()==1) keep.clear();;
+                }
 		cur.removeSelectedText();
 		if(column>0) {
 		    cur.movePosition(1,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
 		    cur.removeSelectedText();
 		}
+                cur.insertText(keep);
 	    }
 	    const QStringList tokens("\\\\");
 	    breakLoop=(findNextToken(cur,tokens)==-1);
 	}
 	if(cur.atLineEnd()) cur.movePosition(1,QDocumentCursor::Right);
 	line=cur.line().text();
-	if(line.contains("\\end")) breakLoop=true;
+        if(line.contains("\\end{")) breakLoop=true;
     }
     cur.endEditBlock();
 }
@@ -266,11 +289,11 @@ int LatexTables::findNextToken(QDocumentCursor &cur,QStringList tokens,bool keep
 	    line=help;
 	}
 
-	if(line.contains("\\end")&&!backwards) {
+        if(line.contains("\\end{")&&!backwards) {
 	    nextToken=-2;
 	    break;
 	}
-	if(line.contains("nigeb\\")&&backwards) {
+        if(line.contains("{nigeb\\")&&backwards) {
 	    nextToken=-2;
 	    break;
 	}
