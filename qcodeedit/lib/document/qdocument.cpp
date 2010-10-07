@@ -1219,9 +1219,14 @@ QDocumentCursor QDocument::cursor(int line, int column, int lineTo, int columnTo
 		return QDocumentCursor(const_cast<QDocument*>(this), line, column);
 	else {
 		QDocumentCursor c(const_cast<QDocument*>(this), line, column);
-		c.setLineNumber(lineTo, QDocumentCursor::KeepAnchor);
-		if (columnTo != -1) c.setColumnNumber(columnTo, QDocumentCursor::KeepAnchor);
-		else c.setColumnNumber(this->line(lineTo).length(), QDocumentCursor::KeepAnchor);
+		if (lineTo != lineCount()) {
+			c.setLineNumber(lineTo, QDocumentCursor::KeepAnchor);
+			if (columnTo != -1) c.setColumnNumber(columnTo, QDocumentCursor::KeepAnchor);
+			else c.setColumnNumber(this->line(lineTo).length(), QDocumentCursor::KeepAnchor);
+		} else {
+			c.setLineNumber(lineCount()-1, QDocumentCursor::KeepAnchor);
+			c.setColumnNumber(this->line(lineTo).length(), QDocumentCursor::KeepAnchor);
+		}
 		return c;
 	}
 }
@@ -5990,20 +5995,29 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	//qDebug("painting done"); // in %i ms...", t.elapsed());
 }
 
-QString QDocumentPrivate::exportAsHtml(const QDocumentCursor& range, bool includeFullHeader, bool simplifyCSS) const{
-	QString result = "<html><head>";
-	if ( includeFullHeader && m_formatScheme )
-		result += QString("<style type=\"text/css\">") + (simplifyCSS?"":"pre { margin:1px }\n") + m_formatScheme->exportAsCSS(simplifyCSS) + "</style>";
-	result += "</head><body>";
+QString QDocumentPrivate::exportAsHtml(const QDocumentCursor& range, bool includeHeader, bool simplifyCSS) const{
+	QString result;
+	if (includeHeader) {
+		result += "<html><head>";
+		if ( m_formatScheme ) {
+			result += "<style type=\"text/css\">";
+			result += QString("pre { margin: %1px }\n").arg(simplifyCSS?0:1);
+			result += m_formatScheme->exportAsCSS(simplifyCSS);
+			result += "</style>";
+		}
+		result += "</head><body>";
+	}
 	QDocumentSelection sel = range.selection();
 	REQUIRE_RET(sel.startLine >= 0 && sel.startLine < m_lines.size(),"");
 	REQUIRE_RET(sel.endLine >= 0 && sel.endLine < m_lines.size(),"");
 	result += m_lines[sel.startLine]->exportAsHtml(sel.start)+"\n";
 	for (int i=sel.startLine+1; i<sel.endLine; i++)
 		result += m_lines[i]->exportAsHtml() + "\n";
-	result += m_lines[sel.endLine]->exportAsHtml(0,sel.end);
+	if (sel.startLine != sel.endLine)
+		result += m_lines[sel.endLine]->exportAsHtml(0,sel.end);
 
-	result += "</body></html>";
+	if (includeHeader)
+		result += "</body></html>";
 	return result;
 }
 

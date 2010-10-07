@@ -255,7 +255,16 @@ bool QFoldPanel::event(QEvent *e) {
 		if ( def && doc && line != -1 && doc->line(line).hasFlag(QDocumentLine::CollapsedBlockStart) ){
 			QFoldedLineIterator it = def->foldedLineIterator(doc, line);
 			it.incrementUntilBlockEnd();
-			QString tooltip = doc->exportAsHtml(doc->cursor(line,0,it.lineNr));
+			QString tooltip;
+			if (it.lineNr - line < 16)
+				tooltip = doc->exportAsHtml(doc->cursor(line,0,it.lineNr),true,true);
+			else {
+				tooltip = doc->exportAsHtml(doc->cursor(line,0,line+7),true,true);
+				tooltip.replace("</body></html>","");
+				tooltip += "<br>...<br>";
+				tooltip += doc->exportAsHtml(doc->cursor(it.lineNr-7,0,it.lineNr),false);
+				tooltip +=  "</body></html>";
+			}
 			if (tooltip.isEmpty()) QToolTip::hideText();
 			else QToolTip::showText(helpEvent->globalPos(), tooltip);
 			e->setAccepted(true);
