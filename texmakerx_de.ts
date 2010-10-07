@@ -17,7 +17,7 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 1.9.9a (SVN </source>
-        <translation>&lt;b&gt;TexMakerX 1.9.9a (SVN </translation>
+        <translation type="obsolete">&lt;b&gt;TexMakerX 1.9.9a (SVN </translation>
     </message>
     <message>
         <source>TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;html conversion: </source>
@@ -42,6 +42,18 @@
     <message>
         <source>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.</source>
         <translation>Dieses Programm ist lizensiert unter den Bedingungen der GNU General Public License Version 2 wie sie von der Free Software Foundation veröffentlicht wurde.</translation>
+    </message>
+    <message>
+        <source>Using Qt Version %1, compiled with Qt %2</source>
+        <translation>Nutze Qt-Version %1, kompiliert mit QT %2</translation>
+    </message>
+    <message>
+        <source>Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet&lt;br&gt;</source>
+        <translation>Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet&lt;br&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;TexMakerX 2.0 (SVN </source>
+        <translation>&lt;b&gt;TexMakerX 2.0 (SVN </translation>
     </message>
 </context>
 <context>
@@ -1091,6 +1103,10 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <source>Search</source>
         <translation>Suche</translation>
     </message>
+    <message>
+        <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
+        <translation>Starte keine neue Instanz des Betrachters falls die dvi/ps/pdf-Datei schon geöffnet wurde</translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1990,6 +2006,65 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <message>
         <source>search results</source>
         <translation>Suchergebnisse</translation>
+    </message>
+</context>
+<context>
+    <name>PdfViewer</name>
+    <message>
+        <source>Pages</source>
+        <translation>Seiten</translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation>&amp;Datei</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation>Beenden</translation>
+    </message>
+    <message>
+        <source>Previous</source>
+        <translation>Vorheriger</translation>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation>Nächster</translation>
+    </message>
+    <message>
+        <source>Fit Width</source>
+        <translation>auf Breite anpassen</translation>
+    </message>
+    <message>
+        <source>Fit Page</source>
+        <translation>auf Seite anpassen</translation>
+    </message>
+    <message>
+        <source>Zoom In</source>
+        <translation>Vergrößern</translation>
+    </message>
+    <message>
+        <source>Zoom Out</source>
+        <translation>Verkleinern</translation>
+    </message>
+    <message>
+        <source>Find</source>
+        <translation>Suchen</translation>
+    </message>
+    <message>
+        <source>External Viewer</source>
+        <translation>Externer Betrachter</translation>
+    </message>
+    <message>
+        <source>Page</source>
+        <translation>Seite</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>Fehler</translation>
+    </message>
+    <message>
+        <source>File not found</source>
+        <translation>Datei nicht gefunden</translation>
     </message>
 </context>
 <context>
@@ -3319,6 +3394,10 @@ Im Ersetzungstext werden \1 bis \9 durch die Fundstelle der entsprechenden Grupp
     <message>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
+    </message>
+    <message>
+        <source>add a margin with the horizontal line</source>
+        <translation>Füge einen Rand mit der horizontalen Linie hinzu</translation>
     </message>
 </context>
 <context>
@@ -4705,31 +4784,31 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es compilern könn
     </message>
     <message>
         <source>Manipulate tables</source>
-        <translation>Manipuliere Tabellen</translation>
+        <translation type="obsolete">Manipuliere Tabellen</translation>
     </message>
     <message>
         <source>add row</source>
-        <translation>Zeile hinzufügen</translation>
+        <translation type="obsolete">Zeile hinzufügen</translation>
     </message>
     <message>
         <source>add column</source>
-        <translation>Spalte hinzufügen</translation>
+        <translation type="obsolete">Spalte hinzufügen</translation>
     </message>
     <message>
         <source>remove row</source>
-        <translation>Zeile entfernen</translation>
+        <translation type="obsolete">Zeile entfernen</translation>
     </message>
     <message>
         <source>remove column</source>
-        <translation>Spalte entfernen</translation>
+        <translation type="obsolete">Spalte entfernen</translation>
     </message>
     <message>
         <source>cut column</source>
-        <translation>Spalte ausschneiden</translation>
+        <translation type="obsolete">Spalte ausschneiden</translation>
     </message>
     <message>
         <source>paste column</source>
-        <translation>Spalte einfügen</translation>
+        <translation type="obsolete">Spalte einfügen</translation>
     </message>
     <message>
         <source>Table</source>
@@ -4741,15 +4820,15 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es compilern könn
     </message>
     <message>
         <source>add \hline</source>
-        <translation>Füge \hline ein</translation>
+        <translation type="obsolete">Füge \hline ein</translation>
     </message>
     <message>
         <source>remove \hline</source>
-        <translation>Entferne \hline</translation>
+        <translation type="obsolete">Entferne \hline</translation>
     </message>
     <message>
         <source>Save all current settings</source>
-        <translation>Speichere aktuelle Konfiguration</translation>
+        <translation type="obsolete">Speichere aktuelle Konfiguration</translation>
     </message>
     <message>
         <source>You have to save the file before switching to master mode!</source>
@@ -4770,6 +4849,68 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es compilern könn
     <message>
         <source>&amp;Find previous</source>
         <translation>F&amp;inde vorherige</translation>
+    </message>
+    <message>
+        <source>C&amp;onvert Source to Html...</source>
+        <translation>&amp;Quelltext als HTML exportieren...</translation>
+    </message>
+    <message>
+        <source>Problem</source>
+        <translation>Problem</translation>
+    </message>
+    <message>
+        <source>Finding word repetitions only works with activated online spell checking !</source>
+        <translation>Wortwiederholungen werden nur bei aktivierter Rechtschreibkontrolle gefunden !</translation>
+    </message>
+    <message>
+        <source>Save all current settings</source>
+        <comment>menu</comment>
+        <translation>Speichere aktuelle Konfiguration</translation>
+    </message>
+    <message>
+        <source>Manipulate tables</source>
+        <comment>table</comment>
+        <translation>Manipuliere Tabellen</translation>
+    </message>
+    <message>
+        <source>add row</source>
+        <comment>table</comment>
+        <translation>Zeile hinzufügen</translation>
+    </message>
+    <message>
+        <source>add column</source>
+        <comment>table</comment>
+        <translation>Spalte hinzufügen</translation>
+    </message>
+    <message>
+        <source>remove row</source>
+        <comment>table</comment>
+        <translation>Zeile entfernen</translation>
+    </message>
+    <message>
+        <source>remove column</source>
+        <comment>table</comment>
+        <translation>Spalte entfernen</translation>
+    </message>
+    <message>
+        <source>cut column</source>
+        <comment>table</comment>
+        <translation>Spalte ausschneiden</translation>
+    </message>
+    <message>
+        <source>paste column</source>
+        <comment>table</comment>
+        <translation>Spalte einfügen</translation>
+    </message>
+    <message>
+        <source>add \hline</source>
+        <comment>table</comment>
+        <translation>Füge \hline ein</translation>
+    </message>
+    <message>
+        <source>remove \hline</source>
+        <comment>table</comment>
+        <translation>Entferne \hline</translation>
     </message>
 </context>
 <context>
@@ -5193,6 +5334,10 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
     <message>
         <source>Command %1</source>
         <translation>Befehl %1</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
     </message>
 </context>
 <context>

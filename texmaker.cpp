@@ -536,19 +536,19 @@ void Texmaker::setupMenus() {
 
 //  Latex/Math external
 	configManager.loadManagedMenus(":/uiconfig.xml");
-	// add some additional items
+        // add some additional items
 	menu=newManagedMenu("main/latex",tr("&LaTeX"));
 	newManagedAction(menu, "insertrefnextlabel",tr("Insert \\ref to next label"), SLOT(editInsertRefToNextLabel()), Qt::ALT+Qt::CTRL+Qt::Key_R);
 	newManagedAction(menu, "insertrefprevlabel",tr("Insert \\ref to previous label"), SLOT(editInsertRefToPrevLabel()));
-	submenu=newManagedMenu(menu, "tabularmanipulation",tr("Manipulate tables"));
-	newManagedAction(submenu, "addRow",tr("add row"), SLOT(addRowCB()),QKeySequence(),":/images/addRow.png");
-	newManagedAction(submenu, "addColumn",tr("add column"), SLOT(addColumnCB()),QKeySequence(),":/images/addCol.png");
-	newManagedAction(submenu, "removeRow",tr("remove row"), SLOT(removeRowCB()),QKeySequence(),":/images/remRow.png");
-	newManagedAction(submenu, "removeColumn",tr("remove column"), SLOT(removeColumnCB()),QKeySequence(),":/images/remCol.png");
-	newManagedAction(submenu, "cutColumn",tr("cut column"), SLOT(cutColumnCB()),QKeySequence(),":/images/cutCol.png");
-	newManagedAction(submenu, "pasteColumn",tr("paste column"), SLOT(pasteColumnCB()),QKeySequence(),":/images/pasteCol.png");
-	newManagedAction(submenu, "addHLine",tr("add \\hline"), SLOT(addHLineCB()));
-	newManagedAction(submenu, "remHLine",tr("remove \\hline"), SLOT(remHLineCB()));
+        submenu=newManagedMenu(menu, "tabularmanipulation",tr("Manipulate tables","table"));
+        newManagedAction(submenu, "addRow",tr("add row","table"), SLOT(addRowCB()),QKeySequence(),":/images/addRow.png");
+        newManagedAction(submenu, "addColumn",tr("add column","table"), SLOT(addColumnCB()),QKeySequence(),":/images/addCol.png");
+        newManagedAction(submenu, "removeRow",tr("remove row","table"), SLOT(removeRowCB()),QKeySequence(),":/images/remRow.png");
+        newManagedAction(submenu, "removeColumn",tr("remove column","table"), SLOT(removeColumnCB()),QKeySequence(),":/images/remCol.png");
+        newManagedAction(submenu, "cutColumn",tr("cut column","table"), SLOT(cutColumnCB()),QKeySequence(),":/images/cutCol.png");
+        newManagedAction(submenu, "pasteColumn",tr("paste column","table"), SLOT(pasteColumnCB()),QKeySequence(),":/images/pasteCol.png");
+        newManagedAction(submenu, "addHLine",tr("add \\hline","table"), SLOT(addHLineCB()));
+        newManagedAction(submenu, "remHLine",tr("remove \\hline","table"), SLOT(remHLineCB()));
 
 //wizards
 
@@ -620,7 +620,7 @@ void Texmaker::setupMenus() {
 
 	menu->addSeparator();
 	newManagedAction(menu, "loadProfile",tr("Load &Profile..."), SLOT(loadProfile()));
-	newManagedAction(menu, "saveSettings",tr("Save all current settings"), SLOT(SaveSettings()));
+        newManagedAction(menu, "saveSettings",tr("Save all current settings","menu"), SLOT(SaveSettings()));
 	menu->addSeparator();
 	ToggleAct=newManagedAction(menu, "masterdocument",tr("Define Current Document as '&Master Document'"), SLOT(ToggleMode()));
 	ToggleRememberAct=newManagedAction(menu, "remembersession",tr("Automatically Restore &Session at Next Start"));

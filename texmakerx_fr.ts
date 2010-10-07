@@ -17,7 +17,7 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 1.9.9a (SVN </source>
-        <translation type="unfinished">&lt;b&gt;TexMakerX 1.9.9a (SVN </translation>
+        <translation type="obsolete">&lt;b&gt;TexMakerX 1.9.9a (SVN </translation>
     </message>
     <message>
         <source>TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;html conversion: </source>
@@ -42,6 +42,18 @@
     <message>
         <source>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.</source>
         <translation>Ce programme distribué avec la license &apos;GNU General Public License Version 2&apos; telle qu&apos;elle est publiée par la Free Software Foundation.</translation>
+    </message>
+    <message>
+        <source>Using Qt Version %1, compiled with Qt %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;TexMakerX 2.0 (SVN </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -938,6 +950,10 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <source>Search</source>
         <translation type="unfinished">Chercher</translation>
     </message>
+    <message>
+        <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1719,6 +1735,7 @@ Continuer tout de même ?</translation>
         <translation type="unfinished">
             <numerusform>%n références à cette étiquette
         
+        
         </numerusform>
         </translation>
     </message>
@@ -1822,6 +1839,65 @@ Continuer tout de même ?</translation>
     <message>
         <source>search results</source>
         <translation>résultats de recherche</translation>
+    </message>
+</context>
+<context>
+    <name>PdfViewer</name>
+    <message>
+        <source>Pages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation type="unfinished">&amp;Fichier</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished">&amp;Quitter</translation>
+    </message>
+    <message>
+        <source>Previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit Width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom In</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom Out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find</source>
+        <translation type="unfinished">Chercher</translation>
+    </message>
+    <message>
+        <source>External Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page</source>
+        <translation type="unfinished">Sur une page à part</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished">Erreur</translation>
+    </message>
+    <message>
+        <source>File not found</source>
+        <translation type="unfinished">Fichier introuvable</translation>
     </message>
 </context>
 <context>
@@ -3119,6 +3195,10 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <source>Quick Tabular</source>
         <translation>Assistant tableau</translation>
     </message>
+    <message>
+        <source>add a margin with the horizontal line</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TabbingDialog</name>
@@ -4182,32 +4262,8 @@ Vous devez enregistrer le document avant de le compiler.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Manipulate tables</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>add row</source>
-        <translation type="unfinished">ajouter ligne</translation>
-    </message>
-    <message>
-        <source>add column</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>remove row</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>remove column</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>cut column</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>paste column</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">ajouter ligne</translation>
     </message>
     <message>
         <source>Table</source>
@@ -4215,18 +4271,6 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>Insert Unicode Character...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>add \hline</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>remove \hline</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save all current settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4247,6 +4291,68 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>&amp;Find previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>C&amp;onvert Source to Html...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Problem</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Finding word repetitions only works with activated online spell checking !</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save all current settings</source>
+        <comment>menu</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manipulate tables</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>add row</source>
+        <comment>table</comment>
+        <translation type="unfinished">ajouter ligne</translation>
+    </message>
+    <message>
+        <source>add column</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove row</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove column</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cut column</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>paste column</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>add \hline</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove \hline</source>
+        <comment>table</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4608,6 +4714,10 @@ Sinon la ponctuation est ignorée.</translation>
     <message>
         <source>Command %1</source>
         <translation>Commande %1</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
