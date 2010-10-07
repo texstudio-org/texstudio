@@ -41,7 +41,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;b&gt;TexMakerX 1.9.9a (SVN </source>
+        <source>Using Qt Version %1, compiled with Qt %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;TexMakerX 2.0 (SVN </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -935,6 +943,10 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <source>Search</source>
         <translation type="unfinished">Trova</translation>
     </message>
+    <message>
+        <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1720,6 +1732,7 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
         <translation type="unfinished">
             <numerusform>
         
+        
         </numerusform>
         </translation>
     </message>
@@ -1823,6 +1836,65 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     <message>
         <source>search results</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PdfViewer</name>
+    <message>
+        <source>Pages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation type="unfinished">&amp;File</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished">Esci</translation>
+    </message>
+    <message>
+        <source>Previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit Width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom In</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom Out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find</source>
+        <translation type="unfinished">Trova</translation>
+    </message>
+    <message>
+        <source>External Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished">Errore</translation>
+    </message>
+    <message>
+        <source>File not found</source>
+        <translation type="unfinished">File non trovato</translation>
     </message>
 </context>
 <context>
@@ -3130,6 +3202,10 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <source>Cancel</source>
         <translation>Annulla</translation>
     </message>
+    <message>
+        <source>add a margin with the horizontal line</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TabbingDialog</name>
@@ -4236,32 +4312,8 @@ You have to save a document before you can compile it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Manipulate tables</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>add row</source>
-        <translation type="unfinished">aggiungi riga</translation>
-    </message>
-    <message>
-        <source>add column</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>remove row</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>remove column</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>cut column</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>paste column</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">aggiungi riga</translation>
     </message>
     <message>
         <source>Table</source>
@@ -4269,18 +4321,6 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <source>Insert Unicode Character...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>add \hline</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>remove \hline</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save all current settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4301,6 +4341,68 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <source>&amp;Find previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>C&amp;onvert Source to Html...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Problem</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Finding word repetitions only works with activated online spell checking !</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save all current settings</source>
+        <comment>menu</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manipulate tables</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>add row</source>
+        <comment>table</comment>
+        <translation type="unfinished">aggiungi riga</translation>
+    </message>
+    <message>
+        <source>add column</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove row</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove column</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cut column</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>paste column</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>add \hline</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove \hline</source>
+        <comment>table</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4657,6 +4759,10 @@ If not, end characters are ignored.</source>
     </message>
     <message>
         <source>Command %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
