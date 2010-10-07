@@ -1,10 +1,10 @@
 #!/bin/sh
 echo "TexMakerX compilation :"
 echo "----------------------------------------"
-echo "Enter path to QT4 (/usr/lib/qt4 or ...):"
-read QTDIR
 echo "Enter SYSTEM (1: UNIX ; 2: MACOSX) :"
 read SYSTEM
+echo "Enter path to QT4 (e.g. /usr/lib/qt4, you can leave it empty):"
+read QTDIR
 PATH=$QTDIR/bin:$PATH
 LD_LIBRARY_PATH=$QTDIR/lib:$LD_LIBRARY_PATH
 DYLD_LIBRARY_PATH=$QTDIR/lib:$DYLD_LIBRARY_PATH

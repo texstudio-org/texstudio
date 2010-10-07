@@ -525,6 +525,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "clean",tr("Cle&an"), SLOT(CleanAll()));
 	menu->addSeparator();
 	newManagedAction(menu, "htmlexport",tr("C&onvert to Html..."), SLOT(WebPublish()));
+	newManagedAction(menu, "htmlsourceexport",tr("C&onvert Source to Html..."), SLOT(WebPublishSource()));
 	menu->addSeparator();
 	newManagedAction(menu, "analysetext",tr("A&nalyse Text..."), SLOT(AnalyseText()));
 	newManagedAction(menu, "generaterandomtext",tr("Generate &Random Text..."), SLOT(GenerateRandomText()));
@@ -3097,6 +3098,17 @@ void Texmaker::WebPublish() {
 	ttwpDlg->ui.inputfileEdit->setText(finame);
 	ttwpDlg->exec();
 	delete ttwpDlg;
+}
+
+void Texmaker::WebPublishSource(){
+	if (!currentEditor()) return;
+	QDocumentCursor cur = currentEditor()->cursor();
+	QString	html = currentEditor()->document()->exportAsHtml(cur.hasSelection()?cur:QDocumentCursor(), true);
+	fileNew(getCurrentFileName()+".html");
+	currentEditor()->insertText(html);
+	/*QLabel* htmll = new QLabel(html, this);
+	htmll->show();
+	htmll->resize(300,300);*/
 }
 
 

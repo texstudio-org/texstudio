@@ -14,6 +14,7 @@
 #include "mostQtHeaders.h"
 
 #define REQUIRE(x)  Q_ASSERT((x)); if (!(x)) return;
+#define REQUIRE_RET(x,e)  Q_ASSERT((x)); if (!(x)) return (e);
 
 typedef QString (QObject::*StringToStringCallback)(const QString&) ;
 

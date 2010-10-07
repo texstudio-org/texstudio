@@ -122,6 +122,8 @@ class QCE_EXPORT QDocumentLineHandle
 					int yStart=0,
 					int yEnd=-1) const;
 		
+		QString exportAsHtml(int fromOffset=0, int toOffset = -1) const;
+
 		inline QString& textBuffer() { setFlag(QDocumentLine::LayoutDirty, true); return m_text; }
 		
 		inline void ref() { m_ref.ref(); }

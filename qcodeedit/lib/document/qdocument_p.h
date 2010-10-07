@@ -68,7 +68,9 @@ class QCE_EXPORT QDocumentPrivate
 		void execute(QDocumentCommand *cmd);
 		
 		void draw(QPainter *p, QDocument::PaintContext& cxt);
-		
+
+		QString exportAsHtml(const QDocumentCursor& range, bool includeFullHeader, bool simplifyCSS) const;
+
 		QDocumentLineHandle* lineForPosition(int& position) const;
 		int position(const QDocumentLineHandle *l) const;
 		
