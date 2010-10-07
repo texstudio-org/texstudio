@@ -77,30 +77,20 @@ void QFoldPanel::mousePressEvent(QMouseEvent *e)
 		return;
 	}
 
-	bool act = false;
+
 	QDocument *doc = editor()->document();
 	QLanguageDefinition *def = editor()->languageDefinition();
 
-	for ( int i = 0; i < m_rects.count(); ++i )
-	{
-		if ( !m_rects.at(i).contains(e->pos()) )
-			continue;
-
-		int ln = m_lines.at(i);
-
+	int ln = mapRectPosToLine(e->pos());
+	if ( ln != -1 ){
 		QDocumentLine b = doc->line(ln);
 
 		if ( b.hasFlag(QDocumentLine::CollapsedBlockStart) )
 			def->expand(doc, ln);
 		else //if ( def->blockFlags(doc, ln, 0) & QLanguageDefinition::Collapsible ) collapse checks if it can collapse the line
 			def->collapse(doc, ln);
-
-		act = true;
-	}
-
-	if ( act )
 		editor()->setFocus();
-	else
+	} else
 		QPanel::mousePressEvent(e);
 
 }
@@ -254,6 +244,37 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 	
 	return true;
 }
+
+bool QFoldPanel::event(QEvent *e) {
+	if (e->type() == QEvent::ToolTip) {		
+		QDocument *doc = editor()->document();
+		QLanguageDefinition *def = doc->languageDefinition();
+
+		QHelpEvent* helpEvent = static_cast<QHelpEvent*>(e);
+		int line = mapRectPosToLine(helpEvent->pos());
+		if ( def && doc && line != -1 && doc->line(line).hasFlag(QDocumentLine::CollapsedBlockStart) ){
+			QFoldedLineIterator it = def->foldedLineIterator(doc, line);
+			it.incrementUntilBlockEnd();
+			QString tooltip = doc->exportAsHtml(doc->cursor(line,0,it.lineNr));
+			if (tooltip.isEmpty()) QToolTip::hideText();
+			else QToolTip::showText(helpEvent->globalPos(), tooltip);
+			e->setAccepted(true);
+		}
+	}
+	return QWidget::event(e);
+}
+
+int QFoldPanel::mapRectPosToLine(const QPoint& p){
+	for ( int i = 0; i < m_rects.count(); ++i )
+	{
+		if ( !m_rects.at(i).contains(p) )
+			continue;
+
+		return m_lines.at(i);
+	}
+	return -1;
+}
+
 
 QRect QFoldPanel::drawIcon(	QPainter *p, QEditor *,
 							int x, int y, bool toExpand)

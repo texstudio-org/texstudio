@@ -44,7 +44,10 @@ class QCE_EXPORT QFoldPanel : public QPanel
 	protected:
 		virtual void mousePressEvent(QMouseEvent *e);
 		virtual bool paint(QPainter *p, QEditor *e);
-		
+		bool event(QEvent *e);
+
+		int mapRectPosToLine(const QPoint& p);
+
 		QRect drawIcon(	QPainter *p, QEditor *e,
 						int x, int y, bool expand);
 		

@@ -128,6 +128,9 @@ public:
 	//goto next line and update parentheses values
 	QFoldedLineIterator& operator++();
 
+	//calls ++ until the iterator reaches the line that ends the block which is opened on the current line
+	void incrementUntilBlockEnd();
+
 	bool lineFlagsInvalid() const;
 private:
 	friend class QLanguageDefinition;
