@@ -261,4 +261,15 @@ bool QFoldedLineIterator::lineFlagsInvalid() const{
 
 }
 
+void QFoldedLineIterator::incrementUntilBlockEnd(){
+	int firstParenthesisPos = openParentheses.size() - open;
+	const FoldedParenthesis firstParenthesis = openParentheses[firstParenthesisPos];
+
+	while ( lineNr < doc->lines() &&
+		firstParenthesisPos < openParentheses.size() &&
+		openParentheses[firstParenthesisPos] == firstParenthesis ){
+		++(*this);
+	}
+}
+
 /*! @} */
