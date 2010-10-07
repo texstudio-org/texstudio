@@ -536,6 +536,14 @@ void QFormatScheme::extractFormats(int mergedFormat, int* fmt, QFormat* formats,
 }
 
 
+QString QFormatScheme::exportAsCSS(bool simplifyCSS){
+	Q_ASSERT( m_formatKeys.size() == m_formatValues.size() );
+	QString result;
+	for (int i = 0; i < m_formatValues.size(); i++ )
+		result += QString(".fmt%1 { %2 } /* %3 */\n").arg(i).arg(m_formatValues[i].toCSS(simplifyCSS)).arg(m_formatKeys[i]);
+	return result;
+}
+
 /*! @} */
 
 

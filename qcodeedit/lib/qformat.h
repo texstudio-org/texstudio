@@ -133,48 +133,13 @@ struct QFormat
 				;
 	}
 	
-	QTextCharFormat toTextCharFormat() const
-	{
-		QTextCharFormat f;
-		f.setFontWeight(weight);
-		f.setFontItalic(italic);
-		f.setFontOverline(overline);
-		f.setFontUnderline(underline);
-		f.setFontStrikeOut(strikeout);
-		f.setUnderlineColor(linescolor);
-		
-		if ( waveUnderline )
-		{
-		    f.setUnderlineStyle(QTextCharFormat::WaveUnderline);
-		}
-		
-		if ( foreground.isValid() )
-			f.setForeground(foreground);
-		
-		if ( background.isValid() )
-			f.setBackground(background);
-		
-		if ( !fontFamily.isEmpty() )
-			f.setFontFamily(fontFamily);
+	QTextCharFormat toTextCharFormat() const;
+	QString toCSS(bool simplifyCSS) const;
 
-		if ( pointSize )
-			f.setFontPointSize(pointSize);
-
-		return f;
-	}
-	
-	void setPriority(int p){
-		priority = p;
-		int minPriority = 0;
-		if ( italic ) minPriority++;
-		if ( weight == QFont::Bold ) minPriority++;
-		if ( ! fontFamily.isEmpty() ) minPriority++;
-		if ( pointSize ) minPriority++;
-		realPriority = qMax(priority,minPriority);
-	}
+	void setPriority(int p);
 
 	int priority, realPriority;
-	int weight;
+	int weight; //: 50 normal, 75: bold
 	bool italic;
 	bool overline;
 	bool underline;

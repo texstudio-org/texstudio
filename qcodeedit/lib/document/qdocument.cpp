@@ -1201,11 +1201,20 @@ QDocumentLine QDocument::line(QDocumentConstIterator iterator) const
 
 /*!
 	\return A cursor operating on the document, placed at a given position
-	\param line target line number (text line)
-	\param column target text column
+	This method has three functions:
+	  cursor(l, c)           Creates a cursor at (l, c)
+	  cursor(la, ca, lt)     Creates a cursor with anchor (la, ca) selecting to (lt, length of lt)
+	  cursor(la, ca, lt, ct) Creates a cursor with anchor (la, ca) selecting to (lt, lc)
+
+	\param line cursor line number (text line)
+	\param column cursor text column
+	\param lineTo selection ending line. If this is not given, it is set to line
+	\param columnTo selection ending column. If this is not given it is set to the end of lineTo (if that is given) or to column
 */
 QDocumentCursor QDocument::cursor(int line, int column, int lineTo, int columnTo) const
 {
+	//Q_ASSERT(line >= 0);
+	//Q_ASSERT(lineTo < lineCount() );
 	if ( lineTo == -1 )
 		return QDocumentCursor(const_cast<QDocument*>(this), line, column);
 	else {
@@ -1417,6 +1426,10 @@ void QDocument::draw(QPainter *p, PaintContext& cxt)
 	m_impl->draw(p, cxt);
 }
 
+
+QString QDocument::exportAsHtml(const QDocumentCursor& range, bool includeFullHeader, bool simplifyCSS) const{
+	return m_impl->exportAsHtml(range.isValid()?range:cursor(0,0,lineCount()-1), includeFullHeader, simplifyCSS);
+}
 /*!
 	\brief Execute a document command (editing operation)
 */
@@ -3649,6 +3662,34 @@ void QDocumentLineHandle::draw(	QPainter *p,
 		}
 
 	}
+}
+
+QString QDocumentLineHandle::exportAsHtml(int fromOffset, int toOffset) const{
+	if ( !document()->formatScheme() ) return text();
+	if (toOffset == -1) toOffset = m_text.length();
+	QList<RenderRange> ranges;
+	splitAtFormatChanges(&ranges,0);
+	QString result = "<pre>";
+	foreach ( const RenderRange& r, ranges ) {
+		if ( r.position + r.length < fromOffset ) continue;
+		if ( r.position > toOffset ) break;
+
+		int fmt = r.format;
+		int fmts[FORMAT_MAX_COUNT];
+		QFormat formats[FORMAT_MAX_COUNT];
+		int newFont;
+		document()->formatScheme()->extractFormats(fmt, fmts, formats, newFont);
+		for (int i=2;i>=0;i--)
+			if ( fmts[i] )
+				result+=QString("<span class=\"fmt%1\">").arg(fmts[i]);
+		//result += QString("<span class=\"fmt%1\">").arg(newFont);
+		result += m_text.mid(r.position, r.length);
+		//result += "</span>";
+		for ( int i=0; i<FORMAT_MAX_COUNT; i++)
+			if ( fmts[i])
+				result+=QString("</span>");
+	}
+	return result+" </pre>";
 }
 
 //////////////////
@@ -5948,6 +5989,24 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	m_oldLineCacheWidth = lineCacheWidth;
 	//qDebug("painting done"); // in %i ms...", t.elapsed());
 }
+
+QString QDocumentPrivate::exportAsHtml(const QDocumentCursor& range, bool includeFullHeader, bool simplifyCSS) const{
+	QString result = "<html><head>";
+	if ( includeFullHeader && m_formatScheme )
+		result += QString("<style type=\"text/css\">") + (simplifyCSS?"":"pre { margin:1px }\n") + m_formatScheme->exportAsCSS(simplifyCSS) + "</style>";
+	result += "</head><body>";
+	QDocumentSelection sel = range.selection();
+	REQUIRE_RET(sel.startLine >= 0 && sel.startLine < m_lines.size(),"");
+	REQUIRE_RET(sel.endLine >= 0 && sel.endLine < m_lines.size(),"");
+	result += m_lines[sel.startLine]->exportAsHtml(sel.start)+"\n";
+	for (int i=sel.startLine+1; i<sel.endLine; i++)
+		result += m_lines[i]->exportAsHtml() + "\n";
+	result += m_lines[sel.endLine]->exportAsHtml(0,sel.end);
+
+	result += "</body></html>";
+	return result;
+}
+
 
 int QDocumentPrivate::position(const QDocumentLineHandle *l) const
 {

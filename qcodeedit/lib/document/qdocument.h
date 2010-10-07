@@ -187,6 +187,8 @@ class QCE_EXPORT QDocument : public QObject
 		bool hasLineEverBeenModified(const QDocumentLine& l) const;
 		
 		virtual void draw(QPainter *p, PaintContext& cxt);
+
+		virtual QString exportAsHtml(const QDocumentCursor &range, bool includeFullHeader=true, bool simplifyCSS = false) const;
 		
 		void execute(QDocumentCommand *cmd);
 		

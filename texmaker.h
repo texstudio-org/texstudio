@@ -288,6 +288,7 @@ private slots:
 	void EditUserTool();
 
 	void WebPublish();
+	void WebPublishSource();
 	void AnalyseText();
 	void AnalyseTextFormDestroyed();
 	void GenerateRandomText();
