@@ -3688,7 +3688,7 @@ QString QDocumentLineHandle::exportAsHtml(int fromOffset, int toOffset) const{
 			if ( fmts[i] )
 				result+=QString("<span class=\"fmt%1\">").arg(fmts[i]);
 		//result += QString("<span class=\"fmt%1\">").arg(newFont);
-		result += m_text.mid(r.position, r.length);
+		result += m_text.mid(r.position, r.length).replace("&","&amp;").replace("<","&lt;");
 		//result += "</span>";
 		for ( int i=0; i<FORMAT_MAX_COUNT; i++)
 			if ( fmts[i])
