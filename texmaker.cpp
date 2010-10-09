@@ -220,6 +220,12 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	*/
 	QDocument::addGuessEncodingCallback(&LatexParser::guessEncoding);
 	QDocument::addGuessEncodingCallback(&ConfigManager::getDefaultEncoding);
+
+        //setup autosave timer
+        connect(&autosaveTimer,SIGNAL(timeout()),this,SLOT(fileSaveAll()));
+        if(configManager.autosaveEveryMinutes>0){
+            autosaveTimer.start(configManager.autosaveEveryMinutes*1000*60);
+        }
 }
 
 QMenu* Texmaker::newManagedMenu(QMenu* menu, const QString &id,const QString &text){
@@ -3334,6 +3340,7 @@ void Texmaker::GeneralOptions() {
 	bool customEnvironmentExisted = !configManager.customEnvironments.isEmpty();
 	bool oldModernStyle = configManager.modernStyle;
 	bool oldSystemTheme = configManager.useSystemTheme;
+        autosaveTimer.stop();
 	if (configManager.execConfigDialog()) {
 		mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);
 		// refresh quick language selection combobox
@@ -3404,6 +3411,9 @@ void Texmaker::GeneralOptions() {
 			setupDockWidgets();
 		}
 	}
+        if(configManager.autosaveEveryMinutes>0){
+            autosaveTimer.start(configManager.autosaveEveryMinutes*1000*60);
+        }
 }
 void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	// parse command line

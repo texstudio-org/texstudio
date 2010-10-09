@@ -117,6 +117,9 @@ public:
 	QString sessionMaster;
 	QString sessionCurrent;
 	bool parseBibTeX, parseMaster;
+
+        //autosave
+        int autosaveEveryMinutes;
 	
 	bool addRecentFile(const QString & fileName, bool asMaster); //adds a recent file
 	void updateRecentFiles(bool alwaysRecreateMenuItems=false);
