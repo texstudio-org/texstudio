@@ -76,7 +76,145 @@ const int kSelectImage = 4;
 // duration of highlighting in PDF view (might make configurable?)
 const int kPDFHighlightDuration = 2000;
 
-#pragma mark === PDFMagnifier ===
+//====================Zoom utils==========================
+
+void zoomToScreen(QWidget *window)
+{
+	QDesktopWidget *desktop = QApplication::desktop();
+	QRect screenRect = desktop->availableGeometry(window);
+	screenRect.setTop(screenRect.top() + window->geometry().y() - window->y());
+	window->setGeometry(screenRect);
+}
+
+void zoomToHalfScreen(QWidget *window, bool rhs)
+{
+	QDesktopWidget *desktop = QApplication::desktop();
+	QRect r = desktop->availableGeometry(window);
+	int wDiff = window->frameGeometry().width() - window->width();
+	int hDiff = window->frameGeometry().height() - window->height();
+
+	if (hDiff == 0 && wDiff == 0) {
+		// window may not be decorated yet, so we don't know how large
+		// the title bar etc. is. Try to extrapolate from other top-level
+		// windows (if some are available). We assume that if either
+		// hDiff or wDiff is non-zero, we have found a decorated window
+		// and can use its values.
+		foreach (QWidget * widget, QApplication::topLevelWidgets()) {
+			if (!qobject_cast<QMainWindow*>(widget))
+				continue;
+			hDiff = widget->frameGeometry().height() - widget->height();
+			wDiff = widget->frameGeometry().width() - widget->width();
+			if (hDiff != 0 || wDiff != 0)
+				break;
+		}
+		// If we still have no valid value for hDiff/wDiff, just guess (on some
+		// platforms)
+		if (hDiff == 0 && wDiff == 0) {
+			// (these values were determined on WinXP with default theme)
+			hDiff = 34;
+			wDiff = 8;
+		}
+	}
+
+	if (rhs) {
+		r.setLeft(r.left() + r.right() / 2);
+		window->move(r.left(), r.top());
+		window->resize(r.width() - wDiff, r.height() - hDiff);
+	}
+	else {
+		r.setRight(r.left() + r.right() / 2 - 1);
+		window->move(r.left(), r.top());
+		window->resize(r.width() - wDiff, r.height() - hDiff);
+	}
+}
+
+void windowsSideBySide(QWidget *window1, QWidget *window2)
+{
+	QDesktopWidget *desktop = QApplication::desktop();
+
+	// if the windows reside on the same screen zoom each so that it occupies
+	// half of that screen
+	if (desktop->screenNumber(window1) == desktop->screenNumber(window2)) {
+		int window1left = window1->pos().x() <= window2->pos().x();
+		zoomToHalfScreen(window1, !window1left);
+		zoomToHalfScreen(window2, window1left);
+	}
+	// if the windows reside on different screens zoom each so that it uses
+	// its whole screen
+	else {
+		zoomToScreen(window1);
+		zoomToScreen(window2);
+	}
+}
+
+void tileWindowsInRect(const QWidgetList& windows, const QRect& bounds)
+{
+	int numWindows = windows.count();
+	int rows = 1, cols = 1;
+	while (rows * cols < numWindows)
+		if (rows == cols)
+			++cols;
+		else
+			++rows;
+	QRect r;
+	r.setWidth(bounds.width() / cols);
+	r.setHeight(bounds.height() / rows);
+	r.moveLeft(bounds.left());
+	r.moveTop(bounds.top());
+	int x = 0, y = 0;
+	foreach (QWidget* window, windows) {
+		int wDiff = window->frameGeometry().width() - window->width();
+		int hDiff = window->frameGeometry().height() - window->height();
+		window->move(r.left(), r.top());
+		window->resize(r.width() - wDiff, r.height() - hDiff);
+		if (window->isMinimized())
+			window->showNormal();
+		if (++x == cols) {
+			x = 0;
+			++y;
+			r.moveLeft(bounds.left());
+			r.moveTop(bounds.top() + (bounds.height() * y) / rows);
+		}
+		else
+			r.moveLeft(bounds.left() + (bounds.width() * x) / cols);
+	}
+}
+
+void stackWindowsInRect(const QWidgetList& windows, const QRect& bounds)
+{
+	const int kStackingOffset = 20;
+	QRect r(bounds);
+	r.setWidth(r.width() / 2);
+	int index = 0;
+	foreach (QWidget* window, windows) {
+		int wDiff = window->frameGeometry().width() - window->width();
+		int hDiff = window->frameGeometry().height() - window->height();
+		window->move(r.left(), r.top());
+		window->resize(r.width() - wDiff, r.height() - hDiff);
+		if (window->isMinimized())
+			window->showNormal();
+		r.moveLeft(r.left() + kStackingOffset);
+		if (r.right() > bounds.right()) {
+			r = bounds;
+			r.setWidth(r.width() / 2);
+			index = 0;
+		}
+		else if (++index == 10) {
+			r.setTop(bounds.top());
+			index = 0;
+		}
+		else {
+			r.setTop(r.top() + kStackingOffset);
+			if (r.height() < bounds.height() / 2) {
+				r.setTop(bounds.top());
+				index = 0;
+			}
+		}
+	}
+}
+
+
+//================== PDFMagnifier ========================
 
 const int kMagFactor = 2;
 
@@ -182,9 +320,9 @@ PDFWidget::PDFWidget()
 	}*/
 fixedScale(1.0);
 	if (magnifierCursor == NULL) {
-		magnifierCursor = new QCursor(QPixmap(":/images/images/magnifiercursor.png"));
-		zoomInCursor = new QCursor(QPixmap(":/images/images/zoomincursor.png"));
-		zoomOutCursor = new QCursor(QPixmap(":/images/images/zoomoutcursor.png"));
+		magnifierCursor = new QCursor(QPixmap(":/images/magnifiercursor.png"));
+		zoomInCursor = new QCursor(QPixmap(":/images/zoomincursor.png"));
+		zoomOutCursor = new QCursor(QPixmap(":/images/zoomoutcursor.png"));
 	}
 	
 	ctxZoomInAction = new QAction(tr("Zoom In"), this);
@@ -1070,7 +1208,6 @@ PDFDocument::PDFDocument(const ConfigManagerInterface &configManager, const QStr
 */
 	if (texDoc != NULL) {
 		//TODO stackUnder((QWidget*)texDoc);
-		actionSide_by_Side->setEnabled(true);
 		actionGo_to_Source->setEnabled(true);
 		sourceDocList.append(texDoc);
 	}
@@ -1120,6 +1257,7 @@ PDFDocument::init(const ConfigManagerInterface& configManager)
 	actionPaste->setIcon(configManager.getRealIcon("paste"));
 	actionMagnify->setIcon(configManager.getRealIcon("zoom-in"));
 	actionScroll->setIcon(configManager.getRealIcon("hand"));
+	actionTypeset->setIcon(QIcon(":/images/quick.png"));
 
 	setContextMenuPolicy(Qt::NoContextMenu);
 
@@ -1153,17 +1291,14 @@ PDFDocument::init(const ConfigManagerInterface& configManager)
 
 	document = NULL;
 	
-	connect(actionAbout_TW, SIGNAL(triggered()), qApp, SLOT(about()));
-	connect(actionGoToHomePage, SIGNAL(triggered()), qApp, SLOT(goToHomePage()));
-	connect(actionWriteToMailingList, SIGNAL(triggered()), qApp, SLOT(writeToMailingList()));
+	connect(actionAbout_TW, SIGNAL(triggered()), SIGNAL(triggeredAbout()));
+	connect(actionAbout_TW, SIGNAL(triggered()), SLOT(setFocus()));
+	connect(actionUserManual, SIGNAL(triggered()), SIGNAL(triggeredManual()));
 
-	connect(actionNew, SIGNAL(triggered()), qApp, SLOT(newFile()));
-	connect(actionNew_from_Template, SIGNAL(triggered()), qApp, SLOT(newFromTemplate()));
-	connect(actionOpen, SIGNAL(triggered()), qApp, SLOT(open()));
 
-//TODO	connect(actionQuit_TeXworks, SIGNAL(triggered()), TWApp::instance(), SLOT(maybeQuit()));
+	connect(actionQuit_TeXworks, SIGNAL(triggered()), SIGNAL(triggeredQuit()));
 
-	connect(actionFind, SIGNAL(triggered()), this, SLOT(doFindDialog()));
+	//TODO:	connect(actionFind, SIGNAL(triggered()), this, SLOT(doFindDialog()));
 
 	connect(actionFirst_Page, SIGNAL(triggered()), pdfWidget, SLOT(goFirst()));
 	connect(actionPrevious_Page, SIGNAL(triggered()), pdfWidget, SLOT(goPrev()));
@@ -1185,33 +1320,17 @@ PDFDocument::init(const ConfigManagerInterface& configManager)
 	if (actionZoom_In->shortcut() == QKeySequence("Ctrl++"))
 		new QShortcut(QKeySequence("Ctrl+="), pdfWidget, SLOT(zoomIn()));
 	
-	connect(actionTypeset, SIGNAL(triggered()), this, SLOT(retypeset()));
+	connect(actionTypeset, SIGNAL(triggered()), SIGNAL(triggeredQuickBuild()));
 	
-	connect(actionStack, SIGNAL(triggered()), qApp, SLOT(stackWindows()));
-	connect(actionTile, SIGNAL(triggered()), qApp, SLOT(tileWindows()));
+	connect(actionStack, SIGNAL(triggered()), SLOT(stackWindows()));
+	connect(actionTile, SIGNAL(triggered()), SLOT(tileWindows()));
 	connect(actionSide_by_Side, SIGNAL(triggered()), this, SLOT(sideBySide()));
-	connect(actionPlace_on_Left, SIGNAL(triggered()), this, SLOT(placeOnLeft()));
-	connect(actionPlace_on_Right, SIGNAL(triggered()), this, SLOT(placeOnRight()));
 	connect(actionGo_to_Source, SIGNAL(triggered()), this, SLOT(goToSource()));
 	
-	connect(actionFind_Again, SIGNAL(triggered()), this, SLOT(doFindAgain()));
+//	connect(actionFind_Again, SIGNAL(triggered()), this, SLOT(doFindAgain()));
 
-	menuRecent = new QMenu(tr("Open Recent"), this);
-	updateRecentFileActions();
-	menuFile->insertMenu(actionOpen_Recent, menuRecent);
-	menuFile->removeAction(actionOpen_Recent);
-
-	connect(qApp, SIGNAL(recentFileActionsChanged()), this, SLOT(updateRecentFileActions()));
-	connect(qApp, SIGNAL(windowListChanged()), this, SLOT(updateWindowMenu()));
-
-	connect(qApp, SIGNAL(hideFloatersExcept(QWidget*)), this, SLOT(hideFloatersUnlessThis(QWidget*)));
-	connect(this, SIGNAL(activatedWindow(QWidget*)), qApp, SLOT(activatedWindow(QWidget*)));
-
-	connect(actionPreferences, SIGNAL(triggered()), qApp, SLOT(preferences()));
-
-	connect(this, SIGNAL(destroyed()), qApp, SLOT(updateWindowMenus()));
-
-	connect(qApp, SIGNAL(syncPdf(const QString&, int, bool)), this, SLOT(syncFromSource(const QString&, int, bool)));
+	connect(actionPreferences, SIGNAL(triggered()), SIGNAL(triggeredConfigure()));
+	connect(actionPreferences, SIGNAL(triggered()), SLOT(setFocus()));
 
 	menuShow->addAction(toolBar->toggleViewAction());
 	menuShow->addSeparator();
@@ -1298,13 +1417,16 @@ void PDFDocument::updateWindowMenu()
 
 void PDFDocument::sideBySide()
 {
-/*	if (sourceDocList.count() > 0) {
-//TODO		TWUtils::sideBySide(sourceDocList[0], this);
-//TODO		sourceDocList[0]->selectWindow(false);
-//TODO		selectWindow();
+	QWidget* mainWindow = 0;
+	foreach (QWidget *widget, QApplication::topLevelWidgets())
+		if (!widget->isHidden() && widget != this &&  qobject_cast<QMainWindow*>(widget) != 0){
+			mainWindow = widget;
+			break;
+		}
+	if (mainWindow){
+		windowsSideBySide(mainWindow, this);
+		windowsSideBySide(mainWindow, this); //???first call fails on linux with qt4.6.3???? (position is correct, but move doesn't move there, although it works in texworks)
 	}
-	else
-		placeOnRight();*/
 }
 
 bool PDFDocument::event(QEvent *event)
@@ -1312,7 +1434,6 @@ bool PDFDocument::event(QEvent *event)
 	switch (event->type()) {
 		case QEvent::WindowActivate:
 //TODO			showFloaters();
-			emit activatedWindow(this);
 			break;
 		default:
 			break;
@@ -1406,6 +1527,27 @@ void PDFDocument::reloadWhenIdle()
 	reloadTimer->start();
 }
 
+void PDFDocument::tileWindows(){
+	arrangeWindows(true);
+}
+
+void PDFDocument::stackWindows(){
+	arrangeWindows(false);
+}
+
+void PDFDocument::arrangeWindows(bool tile){
+	QDesktopWidget *desktop = QApplication::desktop();
+	for (int screenIndex = 0; screenIndex < desktop->numScreens(); ++screenIndex) {
+		QWidgetList windows;
+		foreach (QWidget* widget, QApplication::topLevelWidgets())
+			if (!widget->isHidden() && qobject_cast<QMainWindow*>(widget))
+				windows << widget;
+		if (windows.size() > 0)
+			(*(tile?&tileWindowsInRect:&stackWindowsInRect)) (windows, desktop->availableGeometry(screenIndex));
+	}
+}
+
+
 void PDFDocument::loadSyncData()
 {
 	scanner = synctex_scanner_new_with_output_file(curFile.toUtf8().data(), NULL, 1);
@@ -1428,7 +1570,7 @@ void PDFDocument::syncClick(int pageIndex, const QPointF& pos)
 		while ((node = synctex_next_result(scanner)) != NULL) {
 			QString filename = QString::fromUtf8(synctex_scanner_get_name(scanner, synctex_node_tag(node)));
 			QDir curDir(QFileInfo(curFile).canonicalPath());
-			//TODO:			TeXDocument::openDocument(QFileInfo(curDir, filename).canonicalFilePath(), true, true, synctex_node_line(node));
+			emit syncSource(QFileInfo(curDir, filename).canonicalFilePath(), synctex_node_line(node)-1); //-1 because tmx is 0 based, but synctex seems to be 1 based
 			break; // FIXME: currently we just take the first hit
 		}
 	}
@@ -1476,8 +1618,12 @@ void PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool act
 			path.setFillRule(Qt::WindingFill);
 			pdfWidget->setHighlightPath(path);
 			pdfWidget->update();
-//TODO			if (activatePreview)
-//				selectWindow();
+			if (activatePreview) {
+				show();
+				raise();
+				activateWindow();
+				if (isMinimized()) showNormal();
+			}
 		}
 	}
 }
