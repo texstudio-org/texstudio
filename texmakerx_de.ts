@@ -25,7 +25,7 @@
     </message>
     <message>
         <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) and KILE (GPL) program.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
-        <translation>TexMakerX enthält Code aus den Programmen Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) und KILE (GPL).&lt;br&gt; TexMakerX nutzt die  DSingleApplication Klasse (Autor: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Lizenz: GPL)&lt;br&gt;</translation>
+        <translation type="obsolete">TexMakerX enthält Code aus den Programmen Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) und KILE (GPL).&lt;br&gt; TexMakerX nutzt die  DSingleApplication Klasse (Autor: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Lizenz: GPL)&lt;br&gt;</translation>
     </message>
     <message>
         <source>Thanks to </source>
@@ -54,6 +54,10 @@
     <message>
         <source>&lt;b&gt;TexMakerX 2.0 (SVN </source>
         <translation>&lt;b&gt;TexMakerX 2.0 (SVN </translation>
+    </message>
+    <message>
+        <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) and KILE (GPL) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
+        <translation>TexMakerX enthält Code aus den Programmen Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) und KILE (GPL).&lt;br&gt; TexMakerX nutzt den PDF-Betrachter von TeXworks.&lt;br&gt;TexMakerX nutzt die  DSingleApplication Klasse (Autor: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Lizenz: GPL)&lt;br&gt;</translation>
     </message>
 </context>
 <context>
@@ -1107,6 +1111,30 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
         <translation>Starte keine neue Instanz des Betrachters falls die dvi/ps/pdf-Datei schon geöffnet wurde</translation>
     </message>
+    <message>
+        <source>Auto save all files </source>
+        <translation>Alle Dateien automatisch speichern </translation>
+    </message>
+    <message>
+        <source>never</source>
+        <translation>niemals</translation>
+    </message>
+    <message>
+        <source>5 minutes</source>
+        <translation>5 Minuten</translation>
+    </message>
+    <message>
+        <source>10 minutes</source>
+        <translation>10 Minuten</translation>
+    </message>
+    <message>
+        <source>20 minutes</source>
+        <translation>20 Minuten</translation>
+    </message>
+    <message>
+        <source>60 minutes</source>
+        <translation>60 Minuten</translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1906,6 +1934,10 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
         <source>shift pressed =&gt; suggestions hidden</source>
         <translation>shift gedrückt =&gt; keine Vorschläge</translation>
     </message>
+    <message>
+        <source>Open %1</source>
+        <translation>Öffne %1</translation>
+    </message>
 </context>
 <context>
     <name>LatexLogModel</name>
@@ -2009,35 +2041,428 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
 </context>
 <context>
-    <name>PdfViewer</name>
+    <name>PDFDocument</name>
     <message>
-        <source>Pages</source>
-        <translation>Seiten</translation>
+        <source>untitled.pdf[*]</source>
+        <translation>unbenannt.pdf[*]</translation>
     </message>
     <message>
-        <source>&amp;File</source>
-        <translation>&amp;Datei</translation>
+        <source>Help</source>
+        <translation>Hilfe</translation>
     </message>
     <message>
-        <source>Exit</source>
-        <translation>Beenden</translation>
+        <source>File</source>
+        <translation>Datei</translation>
     </message>
     <message>
-        <source>Previous</source>
-        <translation>Vorheriger</translation>
+        <source>Edit</source>
+        <translation>Bearbeiten</translation>
     </message>
     <message>
-        <source>Next</source>
-        <translation>Nächster</translation>
+        <source>View</source>
+        <translation>Ansicht</translation>
     </message>
     <message>
-        <source>Fit Width</source>
-        <translation>auf Breite anpassen</translation>
+        <source>Window</source>
+        <translation>Fenster</translation>
     </message>
     <message>
-        <source>Fit Page</source>
-        <translation>auf Seite anpassen</translation>
+        <source>Show</source>
+        <translation>Zeige</translation>
     </message>
+    <message>
+        <source>Toolbar</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>About TexMakerX...</source>
+        <translation>Über TexMakerX...</translation>
+    </message>
+    <message>
+        <source>First Page</source>
+        <translation>Erste Seite</translation>
+    </message>
+    <message>
+        <source>Home</source>
+        <comment>shortcut key name, do not translate</comment>
+        <translation>Dokumentenanfang</translation>
+    </message>
+    <message>
+        <source>Previous Page</source>
+        <translation>Vorherige Seite</translation>
+    </message>
+    <message>
+        <source>PgUp</source>
+        <comment>shortcut key name, do not translate</comment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Next Page</source>
+        <translation>Nächste Seite</translation>
+    </message>
+    <message>
+        <source>PgDown</source>
+        <comment>shortcut key name, do not translate</comment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Last Page</source>
+        <translation>Letzte Seite</translation>
+    </message>
+    <message>
+        <source>End</source>
+        <comment>shortcut key name, do not translate</comment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Go to Page...</source>
+        <translation>Gehe zu Seite...</translation>
+    </message>
+    <message>
+        <source>Ctrl+J</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Zoom In</source>
+        <translation>Vergrößern</translation>
+    </message>
+    <message>
+        <source>Ctrl++</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Zoom Out</source>
+        <translation>Verkleinern</translation>
+    </message>
+    <message>
+        <source>Ctrl+-</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Fit to Window</source>
+        <translation>Ins Fenster anpassen</translation>
+    </message>
+    <message>
+        <source>Ctrl+3</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Actual Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Fit to Width</source>
+        <translation>Auf Breite anpassen</translation>
+    </message>
+    <message>
+        <source>Ctrl+2</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>New</source>
+        <translation>Neu</translation>
+    </message>
+    <message>
+        <source>Ctrl+N</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Open...</source>
+        <translation>Öffnen...</translation>
+    </message>
+    <message>
+        <source>Ctrl+O</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Open Recent</source>
+        <translation>Zuletzt geöffnet</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Schließen</translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Undo</source>
+        <translation>Rückgängig</translation>
+    </message>
+    <message>
+        <source>Ctrl+Z</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Redo</source>
+        <translation>Wiederherstellen</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+Z</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Cut</source>
+        <translation>Ausschneiden</translation>
+    </message>
+    <message>
+        <source>Ctrl+X</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation>Kopieren</translation>
+    </message>
+    <message>
+        <source>Ctrl+C</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Paste</source>
+        <translation>Einfügen</translation>
+    </message>
+    <message>
+        <source>Ctrl+V</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <source>Ctrl+Backspace</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Quick Build</source>
+        <translation>Schnelles Erzeugen</translation>
+    </message>
+    <message>
+        <source>Ctrl+T</source>
+        <comment>action</comment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Preferences...</source>
+        <translation>Optionen</translation>
+    </message>
+    <message>
+        <source>Stack</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go to Source</source>
+        <translation>Gehe zum Quelltext</translation>
+    </message>
+    <message>
+        <source>Ctrl+&apos;</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>New from Template...</source>
+        <translation>Neues File aus Template</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+N</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Full Screen</source>
+        <translation>Vollbildmodus</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+F</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Magnify</source>
+        <translation>Vergrößern</translation>
+    </message>
+    <message>
+        <source>Scroll</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Text</source>
+        <translation>Selektiere Text</translation>
+    </message>
+    <message>
+        <source>Select Image</source>
+        <translation>Selektiere Bild</translation>
+    </message>
+    <message>
+        <source>User Manual...</source>
+        <translation>Benutzerhandbuch...</translation>
+    </message>
+    <message>
+        <source>Email to the mailing list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Side by Side</source>
+        <translation>Nebeneinander</translation>
+    </message>
+    <message>
+        <source>Place on Left</source>
+        <translation>Links platzieren</translation>
+    </message>
+    <message>
+        <source>Place on Right</source>
+        <translation>Rechts platzieren</translation>
+    </message>
+    <message>
+        <source>Quit TexMakerX</source>
+        <translation>Beende TexMakerX</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Find...</source>
+        <translation>Suche...</translation>
+    </message>
+    <message>
+        <source>Ctrl+F</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Find Again</source>
+        <translation>Weitersuchen</translation>
+    </message>
+    <message>
+        <source>Ctrl+G</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Reload Script List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage Scripts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Scripts Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About Scripts...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF file &quot;%1&quot; is locked; this is not currently supported.</source>
+        <translation>PDF-Datei &quot;%1&quot; ist gesperrt; Dies wird zur Zeit nicht unterstützt.</translation>
+    </message>
+    <message>
+        <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
+        <translation>&quot;%1&quot; nicht geladen. Vielleicht ist es keine gültige PDF-Datei ?</translation>
+    </message>
+    <message>
+        <source>No SyncTeX data available</source>
+        <translation>Keine SyncTeX-Daten verfügbar</translation>
+    </message>
+    <message>
+        <source>SyncTeX: &quot;%1&quot;</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>%1[*] - %2</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>TexMakerX</source>
+        <translation>TexMakerX</translation>
+    </message>
+    <message>
+        <source>page %1 of %2</source>
+        <translation>Seite %1 von %2</translation>
+    </message>
+    <message>
+        <source>%1%</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Abort typesetting</source>
+        <translation>Bildaufbau abbrechen</translation>
+    </message>
+    <message>
+        <source>Typeset</source>
+        <translation>Bild aufbauen</translation>
+    </message>
+</context>
+<context>
+    <name>PDFFontsDock</name>
+    <message>
+        <source>Name</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Art</translation>
+    </message>
+    <message>
+        <source>Subset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File</source>
+        <translation>Datei</translation>
+    </message>
+    <message>
+        <source>[none]</source>
+        <translation>[kein]</translation>
+    </message>
+    <message>
+        <source>yes</source>
+        <translation>ja</translation>
+    </message>
+    <message>
+        <source>no</source>
+        <translation>nein</translation>
+    </message>
+    <message>
+        <source>[embedded]</source>
+        <translation>[integriert]</translation>
+    </message>
+    <message>
+        <source>Fonts</source>
+        <translation>Schriften</translation>
+    </message>
+</context>
+<context>
+    <name>PDFInfoDock</name>
+    <message>
+        <source>PDF Info</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>PDFOutlineDock</name>
+    <message>
+        <source>No TOC</source>
+        <translation>Keine Inhaltsverzeichnis</translation>
+    </message>
+    <message>
+        <source>Contents</source>
+        <translation>Inhalt</translation>
+    </message>
+</context>
+<context>
+    <name>PDFWidget</name>
     <message>
         <source>Zoom In</source>
         <translation>Vergrößern</translation>
@@ -2047,24 +2472,87 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
         <translation>Verkleinern</translation>
     </message>
     <message>
+        <source>Actual Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to Width</source>
+        <translation>Auf Breite anpassen</translation>
+    </message>
+    <message>
+        <source>Fit to Window</source>
+        <translation>Ins Fenster anpassen</translation>
+    </message>
+    <message>
+        <source>Jump to Source</source>
+        <translation>Gehe zum Quelltext</translation>
+    </message>
+    <message>
+        <source>Go to Page</source>
+        <translation>Gehe zu Seite</translation>
+    </message>
+    <message>
+        <source>Page number:</source>
+        <translation>Seitenzahl:</translation>
+    </message>
+</context>
+<context>
+    <name>PdfViewer</name>
+    <message>
+        <source>Pages</source>
+        <translation type="obsolete">Seiten</translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation type="obsolete">&amp;Datei</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="obsolete">Beenden</translation>
+    </message>
+    <message>
+        <source>Previous</source>
+        <translation type="obsolete">Vorheriger</translation>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation type="obsolete">Nächster</translation>
+    </message>
+    <message>
+        <source>Fit Width</source>
+        <translation type="obsolete">auf Breite anpassen</translation>
+    </message>
+    <message>
+        <source>Fit Page</source>
+        <translation type="obsolete">auf Seite anpassen</translation>
+    </message>
+    <message>
+        <source>Zoom In</source>
+        <translation type="obsolete">Vergrößern</translation>
+    </message>
+    <message>
+        <source>Zoom Out</source>
+        <translation type="obsolete">Verkleinern</translation>
+    </message>
+    <message>
         <source>Find</source>
-        <translation>Suchen</translation>
+        <translation type="obsolete">Suchen</translation>
     </message>
     <message>
         <source>External Viewer</source>
-        <translation>Externer Betrachter</translation>
+        <translation type="obsolete">Externer Betrachter</translation>
     </message>
     <message>
         <source>Page</source>
-        <translation>Seite</translation>
+        <translation type="obsolete">Seite</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation>Fehler</translation>
+        <translation type="obsolete">Fehler</translation>
     </message>
     <message>
         <source>File not found</source>
-        <translation>Datei nicht gefunden</translation>
+        <translation type="obsolete">Datei nicht gefunden</translation>
     </message>
 </context>
 <context>
