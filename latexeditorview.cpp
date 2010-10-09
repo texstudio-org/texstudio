@@ -167,6 +167,19 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			contextMenu->addAction(act);
 			contextMenu->addSeparator();
 		}
+                //check input/include
+                //find context of cursor
+                QString line=cursor.line().text();
+                QString command, value;
+                LatexParser::ContextType result=LatexParser::findContext(line, cursor.columnNumber(), command, value);
+                static const QStringList inputTokens = QStringList() << "\\input" << "\\include";
+                if( (result==LatexParser::Command || result==LatexParser::Option) && inputTokens.contains(command)){
+                    QAction* act=new QAction(LatexEditorView::tr("Open %1").arg(value),contextMenu);
+                    act->setData(value);
+                    edView->connect(act,SIGNAL(triggered()),edView,SLOT(openExternalFile()));
+                    contextMenu->addAction(act);
+                }
+
 	}
 	contextMenu->addActions(baseActions);
 	if (event->reason()==QContextMenuEvent::Mouse) contextMenu->exec(event->globalPos());
@@ -486,6 +499,13 @@ void LatexEditorView::updateSettings(){
 void LatexEditorView::requestCitation(){
 	QString id = editor->cursor().selectedText();
 	emit needCitation(id);
+}
+
+void LatexEditorView::openExternalFile(){
+        QAction *act = qobject_cast<QAction*>(sender());
+        QString name=act->data().toString();
+        if(!name.isEmpty())
+            emit openFile(name);
 }
 
 void LatexEditorView::lineMarkClicked(int line) {

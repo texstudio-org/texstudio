@@ -782,6 +782,7 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
 				return Reference;
 			else if (LatexParser::citeCommands.contains(command))
 				return Citation;
+                        else return Option;
 		default: return Unknown;
 	}
 }
