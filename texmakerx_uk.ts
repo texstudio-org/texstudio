@@ -20,10 +20,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) and KILE (GPL) program.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Thanks to </source>
         <translation type="unfinished"></translation>
     </message>
@@ -49,6 +45,10 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.0 (SVN </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) and KILE (GPL) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1119,6 +1119,30 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Auto save all files </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>never</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>5 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>10 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>20 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>60 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1911,6 +1935,10 @@ Are you sure you want to undo all changes?</source>
         <source>shift pressed =&gt; suggestions hidden</source>
         <translation>натиснути shift =&gt; приховати пропозиції</translation>
     </message>
+    <message>
+        <source>Open %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LatexLogModel</name>
@@ -2014,35 +2042,428 @@ Are you sure you want to undo all changes?</source>
     </message>
 </context>
 <context>
-    <name>PdfViewer</name>
+    <name>PDFDocument</name>
     <message>
-        <source>Pages</source>
+        <source>untitled.pdf[*]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;File</source>
-        <translation type="unfinished">&amp;Файл</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation type="unfinished">Вийти</translation>
-    </message>
-    <message>
-        <source>Previous</source>
+        <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Next</source>
+        <source>File</source>
+        <translation type="unfinished">Файл</translation>
+    </message>
+    <message>
+        <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Fit Width</source>
+        <source>View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Fit Page</source>
+        <source>Window</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Show</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About TexMakerX...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>First Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Home</source>
+        <comment>shortcut key name, do not translate</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PgUp</source>
+        <comment>shortcut key name, do not translate</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PgDown</source>
+        <comment>shortcut key name, do not translate</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Last Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>End</source>
+        <comment>shortcut key name, do not translate</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go to Page...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+J</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom In</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl++</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom Out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+-</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Actual Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to Width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New</source>
+        <translation type="unfinished">Новий</translation>
+    </message>
+    <message>
+        <source>Ctrl+N</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Recent</source>
+        <translation type="unfinished">Відкрити недавні файли</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished">Закрити</translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Undo</source>
+        <translation type="unfinished">Відмінити останню дію</translation>
+    </message>
+    <message>
+        <source>Ctrl+Z</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Redo</source>
+        <translation type="unfinished">Повторити відмінену дію</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+Z</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cut</source>
+        <translation type="unfinished">Вирізати</translation>
+    </message>
+    <message>
+        <source>Ctrl+X</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation type="unfinished">Копіювати</translation>
+    </message>
+    <message>
+        <source>Ctrl+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Paste</source>
+        <translation type="unfinished">Вставити</translation>
+    </message>
+    <message>
+        <source>Ctrl+V</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Backspace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quick Build</source>
+        <translation type="unfinished">Швидка збірка</translation>
+    </message>
+    <message>
+        <source>Ctrl+T</source>
+        <comment>action</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preferences...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stack</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go to Source</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New from Template...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+N</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full Screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+F</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magnify</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scroll</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Manual...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Email to the mailing list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Side by Side</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Place on Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Place on Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quit TexMakerX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+F</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find Again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+G</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reload Script List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage Scripts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Scripts Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About Scripts...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF file &quot;%1&quot; is locked; this is not currently supported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No SyncTeX data available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SyncTeX: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1[*] - %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TexMakerX</source>
+        <translation type="unfinished">TexMakerX</translation>
+    </message>
+    <message>
+        <source>page %1 of %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Abort typesetting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Typeset</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PDFFontsDock</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished">Тип</translation>
+    </message>
+    <message>
+        <source>Subset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File</source>
+        <translation type="unfinished">Файл</translation>
+    </message>
+    <message>
+        <source>[none]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>no</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[embedded]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fonts</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PDFInfoDock</name>
+    <message>
+        <source>PDF Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PDFOutlineDock</name>
+    <message>
+        <source>No TOC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contents</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PDFWidget</name>
     <message>
         <source>Zoom In</source>
         <translation type="unfinished"></translation>
@@ -2052,24 +2473,51 @@ Are you sure you want to undo all changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Actual Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to Width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jump to Source</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go to Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PdfViewer</name>
+    <message>
+        <source>&amp;File</source>
+        <translation type="obsolete">&amp;Файл</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="obsolete">Вийти</translation>
+    </message>
+    <message>
         <source>Find</source>
-        <translation type="unfinished">Знайти</translation>
-    </message>
-    <message>
-        <source>External Viewer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Page</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Знайти</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished">Помилка</translation>
+        <translation type="obsolete">Помилка</translation>
     </message>
     <message>
         <source>File not found</source>
-        <translation type="unfinished">Файл не знайдено</translation>
+        <translation type="obsolete">Файл не знайдено</translation>
     </message>
 </context>
 <context>
