@@ -2747,6 +2747,12 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool 
 			configManager.pdfViewerHeight=pdfviewerWindow->height();
 		} else {
 			pdfviewerWindow=new PDFDocument(configManager, pdfFile/*,externalViewer, */,0);
+			connect(pdfviewerWindow, SIGNAL(triggeredAbout()), SLOT(HelpAbout()));
+			connect(pdfviewerWindow, SIGNAL(triggeredManual()), SLOT(UserManualHelp()));
+			connect(pdfviewerWindow, SIGNAL(triggeredQuit()), SLOT(fileExit()));
+			connect(pdfviewerWindow, SIGNAL(triggeredConfigure()), SLOT(GeneralOptions()));
+			connect(pdfviewerWindow, SIGNAL(triggeredQuickBuild()), SLOT(QuickBuild()));
+			connect(pdfviewerWindow, SIGNAL(syncSource(const QString&, int)), SLOT(syncFromViewer(const QString &, int)));
 			pdfviewerWindow->raise();
 			pdfviewerWindow->show();
 			pdfviewerWindow->resize(configManager.pdfViewerWidth,configManager.pdfViewerHeight);
@@ -3846,6 +3852,17 @@ bool Texmaker::gotoMark(bool backward, int id) {
 		return gotoLogEntryAt(currentEditorView()->editor->document()->findPreviousMark(id,qMax(0,currentEditorView()->editor->cursor().lineNumber()-1),0));
 	else
 		return gotoLogEntryAt(currentEditorView()->editor->document()->findNextMark(id,currentEditorView()->editor->cursor().lineNumber()+1));
+}
+
+void Texmaker::syncFromViewer(const QString &fileName, int line){
+	if (!FileAlreadyOpen(fileName, true))
+		if (!load(fileName)) return;
+	gotoLine(line);
+	raise();
+	show();
+	activateWindow();
+	if (isMinimized()) showNormal();
+
 }
 
 void Texmaker::StructureContextMenu(const QPoint& point) {

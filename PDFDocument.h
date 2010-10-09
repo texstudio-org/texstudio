@@ -263,9 +263,21 @@ private slots:
 	void syncClick(int page, const QPointF& pos);
 	void reloadWhenIdle();
 
+
+	void tileWindows();
+	void stackWindows();
+	void arrangeWindows(bool tile);
 signals:
 	void reloaded();
-	void activatedWindow(QWidget*);
+	void syncSource(const QString& sourceFile, int line);
+
+
+	void triggeredAbout();
+	void triggeredManual();
+	void triggeredQuit();
+	void triggeredPlaceOnLeft();
+	void triggeredConfigure();
+	void triggeredQuickBuild();
 
 private:
 	void init(const ConfigManagerInterface& configManager);

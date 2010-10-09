@@ -30,8 +30,7 @@
     <property name="title">
      <string>Help</string>
     </property>
-    <addaction name="actionGoToHomePage"/>
-    <addaction name="actionWriteToMailingList"/>
+    <addaction name="actionUserManual"/>
     <addaction name="separator"/>
     <addaction name="actionAbout_TW"/>
    </widget>
@@ -39,11 +38,6 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionNew"/>
-    <addaction name="actionNew_from_Template"/>
-    <addaction name="actionOpen"/>
-    <addaction name="actionOpen_Recent"/>
-    <addaction name="separator"/>
     <addaction name="actionClose"/>
     <addaction name="separator"/>
     <addaction name="actionQuit_TeXworks"/>
@@ -95,8 +89,6 @@
     <addaction name="actionStack"/>
     <addaction name="actionTile"/>
     <addaction name="actionSide_by_Side"/>
-    <addaction name="actionPlace_on_Left"/>
-    <addaction name="actionPlace_on_Right"/>
     <addaction name="separator"/>
     <addaction name="actionGo_to_Source"/>
    </widget>
@@ -148,7 +140,7 @@
   </widget>
   <action name="actionAbout_TW">
    <property name="text">
-    <string>About TeXworks...</string>
+    <string>About TexMakerX...</string>
    </property>
    <property name="menuRole">
     <enum>QAction::AboutRole</enum>
@@ -465,7 +457,10 @@
      <normaloff>:/images/images/runtool.png</normaloff>:/images/images/runtool.png</iconset>
    </property>
    <property name="text">
-    <string>Typeset</string>
+    <string>Quick Build</string>
+   </property>
+   <property name="iconText">
+    <string>Quick Build</string>
    </property>
    <property name="shortcut">
     <string comment="action">Ctrl+T</string>
@@ -592,9 +587,9 @@
     <string>Select Image</string>
    </property>
   </action>
-  <action name="actionGoToHomePage">
+  <action name="actionUserManual">
    <property name="text">
-    <string>Go to TeXworks home page</string>
+    <string>User Manual...</string>
    </property>
   </action>
   <action name="actionWriteToMailingList">
@@ -604,7 +599,7 @@
   </action>
   <action name="actionSide_by_Side">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="text">
     <string>Side by Side</string>
@@ -693,6 +688,11 @@
    </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionS">
+   <property name="text">
+    <string>s</string>
    </property>
   </action>
  </widget>

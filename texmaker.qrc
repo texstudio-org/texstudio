@@ -29,6 +29,9 @@
 	<file>images/zoom-original.png</file>
 	<file>images/zoom-in.png</file>
 	<file>images/zoom-out.png</file>
+	<file>images/zoomincursor.png</file>
+	<file>images/zoomoutcursor.png</file>
+	<file>images/magnifiercursor.png</file>
 	<file>images/hand.png</file>
 	<file>images/go-first.png</file>
 	<file>images/go-last.png</file>

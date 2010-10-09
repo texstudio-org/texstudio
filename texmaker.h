@@ -349,6 +349,7 @@ private slots:
 	void gotoLogEntryEditorOnly(int logEntryNumber);
 	bool gotoLogEntryAt(int newLineNumber);
 	bool gotoMark(bool backward, int id);
+	void syncFromViewer(const QString &fileName, int line);  //0 based, absolute file name, raise window
 	
 	void previewLatex();
 	void previewAvailable(const QString& imageFile, const QString& text);
