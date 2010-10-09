@@ -1071,16 +1071,18 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 	}
 }
 
-QString ConfigManager::getRealIconFile(const QString& icon){
+QString ConfigManager::getRealIconFile(const QString& icon) const{
 	if (icon.isEmpty() || icon.startsWith(":/")) return icon;
 	if (modernStyle && QFileInfo(":/images/modern/"+icon).exists())
 		return ":/images/modern/"+icon;
 	else if (!modernStyle && QFileInfo(":/images/classic/"+icon).exists())
 		return ":/images/classic/"+icon;
+	else if (QFileInfo(":/images/"+icon).exists())
+		return ":/images/"+icon;
 	return icon;
 }
 
-QIcon ConfigManager::getRealIcon(const QString& icon){
+QIcon ConfigManager::getRealIcon(const QString& icon) const{
 	if (icon.isEmpty()) return QIcon();
 	if (icon.startsWith(":/")) return QIcon(icon);
 #if QT_VERSION >= 0x040600

@@ -50,6 +50,8 @@
 
 #include <math.h>
 
+#include "configmanagerinterface.h"
+
 //#include "GlobalParams.h"
 
 #include "poppler-link.h"
@@ -1042,10 +1044,10 @@ QScrollArea* PDFWidget::getScrollArea()
 
 QList<PDFDocument*> PDFDocument::docList;
 
-PDFDocument::PDFDocument(const QString &fileName, TeXDocument *texDoc)
+PDFDocument::PDFDocument(const ConfigManagerInterface &configManager, const QString &fileName, TeXDocument *texDoc)
 	: watcher(NULL), reloadTimer(NULL), scanner(NULL), openedManually(false)
 {
-	init();
+	init(configManager);
 
 	if (texDoc == NULL) {
 		openedManually = true;
@@ -1054,6 +1056,8 @@ PDFDocument::PDFDocument(const QString &fileName, TeXDocument *texDoc)
 	}
 
 	loadFile(fileName);
+
+
 
 /*TODO	QMap<QString,QVariant> properties = TWApp::instance()->getFileProperties(curFile);
 	if (properties.contains("geometry"))
@@ -1082,7 +1086,7 @@ PDFDocument::~PDFDocument()
 }
 
 void
-PDFDocument::init()
+PDFDocument::init(const ConfigManagerInterface& configManager)
 {
 	docList.append(this);
 
@@ -1093,8 +1097,30 @@ PDFDocument::init()
 
 	setAttribute(Qt::WA_DeleteOnClose, true);
 	setAttribute(Qt::WA_MacNoClickThrough, true);
-	setWindowIcon(QIcon(":/images/images/TeXworks-doc.png"));
+
+	//load icons
+	//TODO setWindowIcon(QIcon(":/images/images/TeXworks-doc.png"));
 	
+	actionFirst_Page->setIcon(configManager.getRealIcon("go-first"));
+	actionPrevious_Page->setIcon(configManager.getRealIcon("go-previous"));
+	actionNext_Page->setIcon(configManager.getRealIcon("go-next"));
+	actionLast_Page->setIcon(configManager.getRealIcon("go-last"));
+	actionZoom_In->setIcon(configManager.getRealIcon("zoom-in"));
+	actionZoom_Out->setIcon(configManager.getRealIcon("zoom-out"));
+	actionFit_to_Window->setIcon(configManager.getRealIcon("zoom-fit-best"));
+	actionActual_Size->setIcon(configManager.getRealIcon("zoom-original"));
+	actionFit_to_Width->setIcon(configManager.getRealIcon("zoom-fit-width"));
+	actionNew->setIcon(configManager.getRealIcon("filenew"));
+	actionOpen->setIcon(configManager.getRealIcon("fileopen"));
+	actionClose->setIcon(configManager.getRealIcon("fileclose"));
+	actionUndo->setIcon(configManager.getRealIcon("undo"));
+	actionRedo->setIcon(configManager.getRealIcon("redo"));
+	actionCut->setIcon(configManager.getRealIcon("cut"));
+	actionCopy->setIcon(configManager.getRealIcon("copy"));
+	actionPaste->setIcon(configManager.getRealIcon("paste"));
+	actionMagnify->setIcon(configManager.getRealIcon("zoom-in"));
+	actionScroll->setIcon(configManager.getRealIcon("hand"));
+
 	setContextMenuPolicy(Qt::NoContextMenu);
 
 	pdfWidget = new PDFWidget;
