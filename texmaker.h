@@ -399,6 +399,8 @@ protected:
 	QComboBox *cmbLog;
 
 	QStringList m_columnCutBuffer;
+
+        QTimer autosaveTimer;
 };
 
 

@@ -137,7 +137,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>7</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -151,8 +151,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>793</width>
-            <height>577</height>
+            <width>796</width>
+            <height>597</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -1374,7 +1374,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
          </property>
         </widget>
        </item>
-       <item row="0" column="2">
+       <item row="0" column="3">
         <widget class="QSpinBox" name="spinBoxWrapLineWidth">
          <property name="minimum">
           <number>20</number>
@@ -1384,7 +1384,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
+       <item row="0" column="2">
         <widget class="QLabel" name="label_23">
          <property name="text">
           <string>max. Characters:</string>
@@ -1393,6 +1393,55 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
         </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_24">
+         <property name="text">
+          <string>Auto save all files </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QComboBox" name="comboBoxAutoSave">
+         <item>
+          <property name="text">
+           <string>never</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5 minutes</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10 minutes</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>20 minutes</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>60 minutes</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
