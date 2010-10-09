@@ -871,6 +871,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(showMarkTooltipForLogMessage(int)),this,SLOT(showMarkTooltipForLogMessage(int)));
 	connect(edit, SIGNAL(needCitation(const QString&)),this,SLOT(InsertBibEntry(const QString&)));
 	connect(edit, SIGNAL(showPreview(QString)),this,SLOT(showPreview(QString)));
+        connect(edit, SIGNAL(openFile(QString)),this,SLOT(openExternalFile(QString)));
 
 	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
 	connect(edit->editor,SIGNAL(fileAutoReloading(QString)),this,SLOT(fileAutoReloading(QString)));
@@ -4510,6 +4511,17 @@ bool Texmaker::generateMirror(bool setCur){
 	}
 	return false;
 }
+
+void Texmaker::openExternalFile(const QString name){
+    LatexDocument* doc=dynamic_cast<LatexDocument*>(currentEditor()->document());
+    if(!doc) return;
+    QString curPath=ensureTrailingDirSeparator(doc->getFileInfo().absolutePath());
+    if (load(getAbsoluteFilePath(name,".tex")));
+    else if (load(getAbsoluteFilePath(curPath+name,".tex")));
+    else if (load(getAbsoluteFilePath(curPath+name,"")));
+    else QMessageBox::warning(this,"TexMakerX","Sorry, I couldn't find the file \""+name+"\"",QMessageBox::Ok);
+}
+
 
 void Texmaker::cursorHovered(){
 	if(completer->isVisible()) return;

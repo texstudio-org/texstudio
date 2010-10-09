@@ -140,6 +140,7 @@ private:
 	SyntaxCheck SynChecker;
 private slots:
 	void requestCitation(); //emits needCitation with selected text
+        void openExternalFile();
 	void lineMarkClicked(int line);
 	void lineMarkToolTip(int line, int mark);
 public slots:
@@ -159,6 +160,7 @@ signals:
 	void showMarkTooltipForLogMessage(int logMessage);
 	void needCitation(const QString& id);//request a new citation 
 	void showPreview(const QString text);
+        void openFile(const QString name);
 };
 
 #endif
