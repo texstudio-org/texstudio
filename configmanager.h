@@ -141,8 +141,8 @@ public:
 	QHash<QString,QKeySequence> managedMenuShortcuts;
 	QList<QPair<QString,QString> > managedMenuNewShortcuts;
 		
-	QString getRealIconFile(const QString& icon);
-	QIcon getRealIcon(const QString& icon);
+	QString getRealIconFile(const QString& icon) const;
+	QIcon getRealIcon(const QString& icon) const;
 	QMenu* newManagedMenu(const QString &id,const QString &text);
 	QMenu* newManagedMenu(QMenu* menu, const QString &id,const QString &text);
 	QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts = QList<QKeySequence>(), const QString & iconFile="");

@@ -44,6 +44,7 @@ class QScrollArea;
 class TeXDocument;
 class QShortcut;
 class QFileSystemWatcher;
+class ConfigManagerInterface;
 
 class PDFMagnifier : public QLabel
 {
@@ -197,7 +198,7 @@ class PDFDocument : public QMainWindow, private Ui::PDFDocument
     Q_PROPERTY(QString fileName READ fileName)
 
 public:
-	PDFDocument(const QString &fileName, TeXDocument *sourceDoc = NULL);
+	PDFDocument(const ConfigManagerInterface &configManager, const QString &fileName, TeXDocument *sourceDoc = NULL);
 	virtual ~PDFDocument();
 
 	static PDFDocument *findDocument(const QString &fileName);
@@ -267,7 +268,7 @@ signals:
 	void activatedWindow(QWidget*);
 
 private:
-	void init();
+	void init(const ConfigManagerInterface& configManager);
 	void setCurrentFile(const QString &fileName);
 	void loadSyncData();
 	void saveRecentFileInfo();

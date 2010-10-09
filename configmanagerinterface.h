@@ -24,6 +24,10 @@ public:
 	//shows the value of an registered option in the passed widget
 	//if the dialog containing widget is accepted (and not rejected), the value from the widget will be written to the option
 	virtual void linkOptionToWidget(const void* optionStorage, QWidget* widget) = 0;
+
+
+	//put only functions here that are needed in many different places/dialogs and called several times
+	virtual QIcon getRealIcon(const QString& icon) const = 0;
 };
 
 #endif // CONFIGMANAGERINTERFACE_H

@@ -2740,7 +2740,7 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool 
 			configManager.pdfViewerWidth=pdfviewerWindow->width();
 			configManager.pdfViewerHeight=pdfviewerWindow->height();
 		} else {
-			pdfviewerWindow=new PDFDocument(pdfFile/*,externalViewer, */,0);
+			pdfviewerWindow=new PDFDocument(configManager, pdfFile/*,externalViewer, */,0);
 			pdfviewerWindow->raise();
 			pdfviewerWindow->show();
 			pdfviewerWindow->resize(configManager.pdfViewerWidth,configManager.pdfViewerHeight);
