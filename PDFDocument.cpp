@@ -1375,10 +1375,8 @@ void PDFDocument::changeEvent(QEvent *event)
 	if (event->type() == QEvent::LanguageChange) {
 		QString title = windowTitle();
 		retranslateUi(this);
-		menuRecent->setTitle(tr("Open Recent"));
-//TODO		TWUtils::insertHelpMenuItems(menuHelp);
 		setWindowTitle(title);
-		if (pdfWidget)
+		if (pdfWidget && pdfWidget->isVisible())
 			pdfWidget->updateStatusBar();
 	}
 	else
@@ -1660,6 +1658,8 @@ void PDFDocument::zoomToRight(QWidget *otherWindow)
 
 void PDFDocument::showPage(int page)
 {
+	Q_ASSERT(document);
+	if (!document) return;
 	pageLabel->setText(tr("page %1 of %2").arg(page).arg(document->numPages()));
 }
 

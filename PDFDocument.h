@@ -298,7 +298,6 @@ private:
 	QLabel *pageLabel;
 	QLabel *scaleLabel;
 	QList<QAction*> recentFileActions;
-	QMenu *menuRecent;
 	QShortcut *exitFullscreen;
 
 	QFileSystemWatcher *watcher;
