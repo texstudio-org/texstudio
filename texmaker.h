@@ -34,7 +34,7 @@
 #include "scriptengine.h"
 #include "tmxtabwidget.h"
 #include "tablemanipulation.h"
-#include "pdfviewer.h"
+#include "PDFDocument.h"
 
 #include "qformatfactory.h"
 #include "qlanguagefactory.h"
@@ -98,7 +98,7 @@ private:
 
 	OutputViewWidget *outputView; //contains output widgets (over OutputLayout)
 	
-	QPointer<PdfViewer> pdfviewerWindow;
+	QPointer<PDFDocument> pdfviewerWindow;
 //toolbars
 //
 	QToolBar *spellToolBar;

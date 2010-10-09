@@ -2734,13 +2734,13 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool 
 		QString pdfFile = BuildManager::parseExtendedCommandLine("?am.pdf", finame);
 		QString externalViewer = BuildManager::parseExtendedCommandLine(buildManager.getLatexCommand(BuildManager::CMD_VIEWPDF), finame, getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1);
 		if (pdfviewerWindow) {		
-			pdfviewerWindow->openFile(pdfFile,externalViewer);
+			pdfviewerWindow->loadFile(pdfFile/*TODO,externalViewer*/);
 			pdfviewerWindow->raise();
 			pdfviewerWindow->show();
 			configManager.pdfViewerWidth=pdfviewerWindow->width();
 			configManager.pdfViewerHeight=pdfviewerWindow->height();
 		} else {
-			pdfviewerWindow=new PdfViewer(pdfFile,externalViewer, 0);
+			pdfviewerWindow=new PDFDocument(pdfFile/*,externalViewer, */,0);
 			pdfviewerWindow->raise();
 			pdfviewerWindow->show();
 			pdfviewerWindow->resize(configManager.pdfViewerWidth,configManager.pdfViewerHeight);
