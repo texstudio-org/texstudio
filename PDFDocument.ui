@@ -23,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -100,41 +100,9 @@
     <addaction name="separator"/>
     <addaction name="actionGo_to_Source"/>
    </widget>
-   <widget class="QMenu" name="menuTypeset">
-    <property name="title">
-     <string comment="menu title">Typeset</string>
-    </property>
-    <addaction name="actionTypeset"/>
-   </widget>
-   <widget class="QMenu" name="menuSearch">
-    <property name="title">
-     <string>Search</string>
-    </property>
-    <addaction name="actionFind"/>
-    <addaction name="actionFind_Again"/>
-   </widget>
-   <widget class="QMenu" name="menuScripts">
-    <property name="title">
-     <string>Scripts</string>
-    </property>
-    <widget class="QMenu" name="menuScripting_TeXworks">
-     <property name="title">
-      <string>Scripting TeXworks</string>
-     </property>
-     <addaction name="actionAbout_Scripts"/>
-     <addaction name="actionManage_Scripts"/>
-     <addaction name="actionUpdate_Scripts"/>
-     <addaction name="actionShow_Scripts_Folder"/>
-    </widget>
-    <addaction name="menuScripting_TeXworks"/>
-    <addaction name="separator"/>
-   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
-   <addaction name="menuSearch"/>
    <addaction name="menuView"/>
-   <addaction name="menuTypeset"/>
-   <addaction name="menuScripts"/>
    <addaction name="menuWindow"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -177,8 +145,6 @@
    <addaction name="separator"/>
    <addaction name="actionMagnify"/>
    <addaction name="actionScroll"/>
-   <addaction name="separator"/>
-   <addaction name="actionFind"/>
   </widget>
   <action name="actionAbout_TW">
    <property name="text">
@@ -190,7 +156,7 @@
   </action>
   <action name="actionFirst_Page">
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/tango/go-first.png</normaloff>:/images/tango/go-first.png</iconset>
    </property>
    <property name="text">
@@ -205,7 +171,7 @@
   </action>
   <action name="actionPrevious_Page">
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/tango/go-previous.png</normaloff>:/images/tango/go-previous.png</iconset>
    </property>
    <property name="text">
@@ -220,7 +186,7 @@
   </action>
   <action name="actionNext_Page">
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/tango/go-next.png</normaloff>:/images/tango/go-next.png</iconset>
    </property>
    <property name="text">
@@ -235,7 +201,7 @@
   </action>
   <action name="actionLast_Page">
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/tango/go-last.png</normaloff>:/images/tango/go-last.png</iconset>
    </property>
    <property name="text">
@@ -261,7 +227,7 @@
   </action>
   <action name="actionZoom_In">
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/images/zoomin.png</normaloff>:/images/images/zoomin.png</iconset>
    </property>
    <property name="text">
@@ -276,7 +242,7 @@
   </action>
   <action name="actionZoom_Out">
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/images/zoomout.png</normaloff>:/images/images/zoomout.png</iconset>
    </property>
    <property name="text">
@@ -294,7 +260,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/images/fitwindow.png</normaloff>:/images/images/fitwindow.png</iconset>
    </property>
    <property name="text">
@@ -309,7 +275,7 @@
   </action>
   <action name="actionActual_Size">
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/images/actualsize.png</normaloff>:/images/images/actualsize.png</iconset>
    </property>
    <property name="text">
@@ -327,7 +293,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/images/fitwidth.png</normaloff>:/images/images/fitwidth.png</iconset>
    </property>
    <property name="text">
@@ -342,7 +308,7 @@
   </action>
   <action name="actionNew">
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/tango/document-new.png</normaloff>:/images/tango/document-new.png</iconset>
    </property>
    <property name="text">
@@ -357,7 +323,7 @@
   </action>
   <action name="actionOpen">
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/tango/document-open.png</normaloff>:/images/tango/document-open.png</iconset>
    </property>
    <property name="text">
@@ -394,7 +360,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/tango/edit-undo.png</normaloff>:/images/tango/edit-undo.png</iconset>
    </property>
    <property name="text">
@@ -412,7 +378,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/tango/edit-redo.png</normaloff>:/images/tango/edit-redo.png</iconset>
    </property>
    <property name="text">
@@ -430,7 +396,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/tango/edit-cut.png</normaloff>:/images/tango/edit-cut.png</iconset>
    </property>
    <property name="text">
@@ -448,7 +414,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/tango/edit-copy.png</normaloff>:/images/tango/edit-copy.png</iconset>
    </property>
    <property name="text">
@@ -466,7 +432,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/tango/edit-paste.png</normaloff>:/images/tango/edit-paste.png</iconset>
    </property>
    <property name="text">
@@ -495,7 +461,7 @@
   </action>
   <action name="actionTypeset">
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/images/runtool.png</normaloff>:/images/images/runtool.png</iconset>
    </property>
    <property name="text">
@@ -510,7 +476,7 @@
   </action>
   <action name="actionPreferences">
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/tango/preferences-system.png</normaloff>:/images/tango/preferences-system.png</iconset>
    </property>
    <property name="text">
@@ -583,7 +549,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/images/zoomin.png</normaloff>:/images/images/zoomin.png</iconset>
    </property>
    <property name="text">
@@ -595,7 +561,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/images/hand.png</normaloff>:/images/images/hand.png</iconset>
    </property>
    <property name="text">
@@ -607,7 +573,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/images/text-tool.png</normaloff>:/images/images/text-tool.png</iconset>
    </property>
    <property name="text">
@@ -619,7 +585,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/images/rect-select.png</normaloff>:/images/images/rect-select.png</iconset>
    </property>
    <property name="text">
@@ -656,7 +622,7 @@
   </action>
   <action name="actionQuit_TeXworks">
    <property name="text">
-    <string>Quit TeXworks</string>
+    <string>Quit TexMakerX</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -667,7 +633,7 @@
   </action>
   <action name="actionFind">
    <property name="icon">
-    <iconset resource="../res/resources.qrc">
+    <iconset>
      <normaloff>:/images/tango/edit-find.png</normaloff>:/images/tango/edit-find.png</iconset>
    </property>
    <property name="text">
@@ -730,9 +696,7 @@
    </property>
   </action>
  </widget>
- <resources>
-  <include location="../res/resources.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>actionClose</sender>
