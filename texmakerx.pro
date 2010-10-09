@@ -97,9 +97,10 @@ HEADERS += texmaker.h \
     syntaxcheck.h \
     tests/latexcompleter_t.h \
     userquickdialog.h \
-    pdfviewer.h \
-    pdfscrollarea.h \
-    pdfdocumentwidget.h
+    PDFDocument.h \
+    PDFDocks.h \
+    synctex_parser_utils.h \
+    synctex_parser.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -167,9 +168,10 @@ SOURCES += main.cpp \
     syntaxcheck.cpp \
     tests/latexcompleter_t.cpp \
     userquickdialog.cpp \
-    pdfviewer.cpp \
-    pdfscrollarea.cpp \
-    pdfdocumentwidget.cpp
+    PDFDocument.cpp \
+    PDFDocks.cpp \
+    synctex_parser_utils.c \
+    synctex_parser.c
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
@@ -191,7 +193,8 @@ FORMS += structdialog.ui \
     templateselector.ui \
     bibtexdialog.ui \
     findGlobalDialog.ui \
-    userquickdialog.ui
+    userquickdialog.ui \
+    PDFDocument.ui
 TRANSLATIONS += texmakerx_fr.ts \
     texmakerx_de.ts \
     texmakerx_it.ts \
@@ -200,9 +203,9 @@ TRANSLATIONS += texmakerx_fr.ts \
     texmakerx_uk.ts
 
 # ###############################
-win32 {
+win32 { 
     RC_FILE = win.rc
-    LIBS +=  -lpoppler-qt4
+    LIBS += -lpoppler-qt4
     LIBS += -lpoppler
 }
 
@@ -212,18 +215,22 @@ macx {
     config += unix
     
     # #universal tiger
-    CONFIG += link_prl x86 ppc
-#    QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
-#    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.4
+    CONFIG += link_prl \
+        x86 \
+        ppc
+    
+    # QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
+    # QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.4
     target.path = /Applications
     utilities.path = Contents/Resources
     QMAKE_BUNDLE_DATA += utilities
     ICON = texmaker.icns
     QMAKE_INFO_PLIST = Info.plist
-
     INCLUDEPATH += /usr/local/include/poppler/qt4
-    LIBS += -L/usr/local/lib -lpoppler-qt4
-    LIBS += -L/usr/local/lib -lpoppler
+    LIBS += -L/usr/local/lib \
+        -lpoppler-qt4
+    LIBS += -L/usr/local/lib \
+        -lpoppler
 }
 
 # ###############################
@@ -242,10 +249,11 @@ unix:!macx {
     applicationmenu.path = $${PREFIX}/share/applications
     applicationmenu.files = utilities/texmakerx.desktop
     INSTALLS += applicationmenu
-
     INCLUDEPATH += /usr/include/poppler/qt4
-    LIBS += -L/usr/lib -lpoppler-qt4
-    LIBS += -L/usr/lib -lpoppler
+    LIBS += -L/usr/lib \
+        -lpoppler-qt4
+    LIBS += -L/usr/lib \
+        -lpoppler
 }
 
 # ##########UNIX + MACX###############
