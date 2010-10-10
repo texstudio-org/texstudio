@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.0" language="hu_HU" sourcelanguage="hu_HU">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -13,7 +13,7 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.0 (SVN </source>
-        <translation type="unfinished">&lt;b&gt;TexMakerX 2.0 (SVN </translation>
+        <translation>&lt;b&gt;TexMakerX 2.0 (SVN </translation>
     </message>
     <message>
         <source>Using Qt Version %1, compiled with Qt %2</source>
@@ -26,10 +26,6 @@
     <message>
         <source>TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;html conversion: </source>
         <translation>TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;Html konvertálás: </translation>
-    </message>
-    <message>
-        <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) and KILE (GPL) program.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
-        <translation type="obsolete">A TexMakerX felhasznál az alábbi programok kódjaiból: Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) és KILE (GPL).&lt;br&gt; A TexMakerX a DSingleApplication (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL) osztályt használja.&lt;br&gt;</translation>
     </message>
     <message>
         <source>Thanks to </source>
@@ -49,7 +45,7 @@
     </message>
     <message>
         <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) and KILE (GPL) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>A TexMakerX felhasznál az alábbi programok kódjaiból: Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) és KILE (GPL).&lt;br&gt;A TexMakerX a TeXworks PDF-megjelenítőt használja.&lt;br&gt; A TexMakerX a DSingleApplication (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL) osztályt használja.&lt;br&gt;</translation>
     </message>
 </context>
 <context>
@@ -832,27 +828,27 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>Auto save all files </source>
-        <translation type="unfinished"></translation>
+        <translation>Minden fájl automatikus mentése</translation>
     </message>
     <message>
         <source>never</source>
-        <translation type="unfinished"></translation>
+        <translation>Soha</translation>
     </message>
     <message>
         <source>5 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>5 perc</translation>
     </message>
     <message>
         <source>10 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>10 perc</translation>
     </message>
     <message>
         <source>20 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>20 perc</translation>
     </message>
     <message>
         <source>60 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>60 perc</translation>
     </message>
 </context>
 <context>
@@ -1580,10 +1576,6 @@ Biztos benne, hogy visszavon minden változást?</translation>
 <context>
     <name>LatexDocumentsModel</name>
     <message>
-        <source>Line</source>
-        <translation type="obsolete">Sor</translation>
-    </message>
-    <message>
         <source>untitled</source>
         <translation>névtelen</translation>
     </message>
@@ -1622,9 +1614,8 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message numerus="yes">
         <source>%n reference(s) to this label</source>
-        <translation type="unfinished">
-            <numerusform>%n hivatkozás erre a címkére
-        </numerusform>
+        <translation>
+            <numerusform>%n hivatkozás erre a címkére</numerusform>
         </translation>
     </message>
     <message>
@@ -1634,10 +1625,6 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>citation missing!</source>
         <translation>forrásmegjelölés hiányzik!</translation>
-    </message>
-    <message>
-        <source>Open %1</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1737,515 +1724,456 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <name>PDFDocument</name>
     <message>
         <source>untitled.pdf[*]</source>
-        <translation type="unfinished"></translation>
+        <translation>névtelen.pdf[*]</translation>
     </message>
     <message>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Súgó</translation>
     </message>
     <message>
         <source>File</source>
-        <translation type="unfinished">Fájl</translation>
+        <translation>Fájl</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished">Szerkesztés</translation>
+        <translation>Szerkesztés</translation>
     </message>
     <message>
         <source>View</source>
-        <translation type="unfinished"></translation>
+        <translation>Megjelenítés</translation>
     </message>
     <message>
         <source>Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Ablak</translation>
     </message>
     <message>
         <source>Show</source>
-        <translation type="unfinished"></translation>
+        <translation>Megjelenít</translation>
     </message>
     <message>
         <source>Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Eszköztár</translation>
     </message>
     <message>
         <source>About TexMakerX...</source>
-        <translation type="unfinished">&amp;A TexMakerX névjegye...</translation>
+        <translation>&amp;A TexMakerX névjegye...</translation>
     </message>
     <message>
         <source>First Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Első lap</translation>
     </message>
     <message>
         <source>Home</source>
         <comment>shortcut key name, do not translate</comment>
-        <translation type="unfinished"></translation>
+        <translation>Home</translation>
     </message>
     <message>
         <source>Previous Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Előző lap</translation>
     </message>
     <message>
         <source>PgUp</source>
         <comment>shortcut key name, do not translate</comment>
-        <translation type="unfinished"></translation>
+        <translation>PgUp</translation>
     </message>
     <message>
         <source>Next Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Következő lap</translation>
     </message>
     <message>
         <source>PgDown</source>
         <comment>shortcut key name, do not translate</comment>
-        <translation type="unfinished"></translation>
+        <translation>PgDown</translation>
     </message>
     <message>
         <source>Last Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Utolsó lap</translation>
     </message>
     <message>
         <source>End</source>
         <comment>shortcut key name, do not translate</comment>
-        <translation type="unfinished"></translation>
+        <translation>End</translation>
     </message>
     <message>
         <source>Go to Page...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugrás lapra...</translation>
     </message>
     <message>
         <source>Ctrl+J</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+J</translation>
     </message>
     <message>
         <source>Zoom In</source>
-        <translation type="unfinished">Nagyítás</translation>
+        <translation>Nagyítás</translation>
     </message>
     <message>
         <source>Ctrl++</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl++</translation>
     </message>
     <message>
         <source>Zoom Out</source>
-        <translation type="unfinished">Kicsinyítés</translation>
+        <translation>Kicsinyítés</translation>
     </message>
     <message>
         <source>Ctrl+-</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+-</translation>
     </message>
     <message>
         <source>Fit to Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Képernyőhöz igazít</translation>
     </message>
     <message>
         <source>Ctrl+3</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+3</translation>
     </message>
     <message>
         <source>Actual Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuális méret</translation>
     </message>
     <message>
         <source>Ctrl+1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+1</translation>
     </message>
     <message>
         <source>Fit to Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Teljes szélesség</translation>
     </message>
     <message>
         <source>Ctrl+2</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+2</translation>
     </message>
     <message>
         <source>New</source>
-        <translation type="unfinished"></translation>
+        <translation>Új</translation>
     </message>
     <message>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
         <source>Open...</source>
-        <translation type="unfinished"></translation>
+        <translation>Megnyitás...</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <source>Open Recent</source>
-        <translation type="unfinished">Le&amp;gutóbbi megnyitása</translation>
+        <translation>Le&amp;gutóbbi megnyitása</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished">Bezár</translation>
+        <translation>Bezár</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>Undo</source>
-        <translation type="unfinished">Vissza</translation>
+        <translation>Vissza</translation>
     </message>
     <message>
         <source>Ctrl+Z</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Z</translation>
     </message>
     <message>
         <source>Redo</source>
-        <translation type="unfinished">Újra</translation>
+        <translation>Újra</translation>
     </message>
     <message>
         <source>Ctrl+Shift+Z</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Z</translation>
     </message>
     <message>
         <source>Cut</source>
-        <translation type="unfinished">Kivágás</translation>
+        <translation>Kivágás</translation>
     </message>
     <message>
         <source>Ctrl+X</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+X</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished">Másolás</translation>
+        <translation>Másolás</translation>
     </message>
     <message>
         <source>Ctrl+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+C</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation type="unfinished">Beillesztés</translation>
+        <translation>Beillesztés</translation>
     </message>
     <message>
         <source>Ctrl+V</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+V</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Tisztítás</translation>
     </message>
     <message>
         <source>Ctrl+Backspace</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Backspace</translation>
     </message>
     <message>
         <source>Quick Build</source>
-        <translation type="unfinished"></translation>
+        <translation>Gyors fordítás</translation>
     </message>
     <message>
         <source>Ctrl+T</source>
         <comment>action</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+T</translation>
     </message>
     <message>
         <source>Preferences...</source>
-        <translation type="unfinished"></translation>
+        <translation>Beállítások...</translation>
     </message>
     <message>
         <source>Stack</source>
-        <translation type="unfinished"></translation>
+        <translation>Verem</translation>
     </message>
     <message>
         <source>Tile</source>
-        <translation type="unfinished"></translation>
+        <translation>Csempe(?!)</translation>
     </message>
     <message>
         <source>Go to Source</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugrás a forrásra</translation>
     </message>
     <message>
         <source>Ctrl+&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+&apos;</translation>
     </message>
     <message>
         <source>New from Template...</source>
-        <translation type="unfinished"></translation>
+        <translation>Új, sablonból...</translation>
     </message>
     <message>
         <source>Ctrl+Shift+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+N</translation>
     </message>
     <message>
         <source>Full Screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Teljes képernyő</translation>
     </message>
     <message>
         <source>Ctrl+Shift+F</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+F</translation>
     </message>
     <message>
         <source>Magnify</source>
-        <translation type="unfinished"></translation>
+        <translation>Átméretezés</translation>
     </message>
     <message>
         <source>Scroll</source>
-        <translation type="unfinished"></translation>
+        <translation>Görgetés</translation>
     </message>
     <message>
         <source>Select Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Szöveg kiválasztása</translation>
     </message>
     <message>
         <source>Select Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Kép kiválasztása</translation>
     </message>
     <message>
         <source>User Manual...</source>
-        <translation type="unfinished">&amp;Felhasználói kézikönyv...</translation>
+        <translation>&amp;Felhasználói kézikönyv...</translation>
     </message>
     <message>
         <source>Email to the mailing list</source>
-        <translation type="unfinished"></translation>
+        <translation>E-mail küldése a levelezőlistára</translation>
     </message>
     <message>
         <source>Side by Side</source>
-        <translation type="unfinished"></translation>
+        <translation>Egymás mellett</translation>
     </message>
     <message>
         <source>Place on Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Balra helyez</translation>
     </message>
     <message>
         <source>Place on Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Jobbra helyez</translation>
     </message>
     <message>
         <source>Quit TexMakerX</source>
-        <translation type="unfinished"></translation>
+        <translation>Kilépés aTexMakerX-ből</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <source>Find...</source>
-        <translation type="unfinished"></translation>
+        <translation>Keresés...</translation>
     </message>
     <message>
         <source>Ctrl+F</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+F</translation>
     </message>
     <message>
         <source>Find Again</source>
-        <translation type="unfinished"></translation>
+        <translation>Újrakeresés</translation>
     </message>
     <message>
         <source>Ctrl+G</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+G</translation>
     </message>
     <message>
         <source>Reload Script List</source>
-        <translation type="unfinished"></translation>
+        <translation>Szkript lista újratöltése</translation>
     </message>
     <message>
         <source>Manage Scripts</source>
-        <translation type="unfinished"></translation>
+        <translation>Szkriptek kezelése</translation>
     </message>
     <message>
         <source>Show Scripts Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Szkript könyvtár</translation>
     </message>
     <message>
         <source>About Scripts...</source>
-        <translation type="unfinished"></translation>
+        <translation>Szkriptekről...</translation>
     </message>
     <message>
         <source>s</source>
-        <translation type="unfinished"></translation>
+        <translation>s</translation>
     </message>
     <message>
         <source>PDF file &quot;%1&quot; is locked; this is not currently supported.</source>
-        <translation type="unfinished"></translation>
+        <translation>A(z) &quot;%1&quot; PDF fájl zárolva, jelenleg nem támogatott.</translation>
     </message>
     <message>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nem sikerült betölteni a &quot;%1&quot; fájlt, talán nem szabványos PDF dokumentum.</translation>
     </message>
     <message>
         <source>No SyncTeX data available</source>
-        <translation type="unfinished"></translation>
+        <translation>Nincs megfelelő SyncTeX adat</translation>
     </message>
     <message>
         <source>SyncTeX: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>SyncTeX: &quot;%1&quot;</translation>
     </message>
     <message>
         <source>%1[*] - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1[*] - %2</translation>
     </message>
     <message>
         <source>TexMakerX</source>
-        <translation type="unfinished">TexMakerX</translation>
+        <translation>TexMakerX</translation>
     </message>
     <message>
         <source>page %1 of %2</source>
-        <translation type="unfinished"></translation>
+        <translation>A(z) %1\%2 lap</translation>
     </message>
     <message>
         <source>%1%</source>
-        <translation type="unfinished"></translation>
+        <translation>%1%</translation>
     </message>
     <message>
         <source>Abort typesetting</source>
-        <translation type="unfinished"></translation>
+        <translation>Gépelés megszakítása</translation>
     </message>
     <message>
         <source>Typeset</source>
-        <translation type="unfinished"></translation>
+        <translation>Gépelés</translation>
     </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished">Típus</translation>
+        <translation>Típus</translation>
     </message>
     <message>
         <source>Subset</source>
-        <translation type="unfinished"></translation>
+        <translation>Felhasznált karakterek</translation>
     </message>
     <message>
         <source>File</source>
-        <translation type="unfinished">Fájl</translation>
+        <translation>Fájl</translation>
     </message>
     <message>
         <source>[none]</source>
-        <translation type="unfinished"></translation>
+        <translation>[nincs]</translation>
     </message>
     <message>
         <source>yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Igen</translation>
     </message>
     <message>
         <source>no</source>
-        <translation type="unfinished"></translation>
+        <translation>Nem</translation>
     </message>
     <message>
         <source>[embedded]</source>
-        <translation type="unfinished"></translation>
+        <translation>[beágyazott]</translation>
     </message>
     <message>
         <source>Fonts</source>
-        <translation type="unfinished"></translation>
+        <translation>Betűkészletek</translation>
     </message>
 </context>
 <context>
     <name>PDFInfoDock</name>
     <message>
         <source>PDF Info</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF információ</translation>
     </message>
 </context>
 <context>
     <name>PDFOutlineDock</name>
     <message>
         <source>No TOC</source>
-        <translation type="unfinished"></translation>
+        <translation>Nincs tartalomjegyzék PDF fájl</translation>
     </message>
     <message>
         <source>Contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Tartalmak</translation>
     </message>
 </context>
 <context>
     <name>PDFWidget</name>
     <message>
         <source>Zoom In</source>
-        <translation type="unfinished">Nagyítás</translation>
+        <translation>Nagyítás</translation>
     </message>
     <message>
         <source>Zoom Out</source>
-        <translation type="unfinished">Kicsinyítés</translation>
+        <translation>Kicsinyítés</translation>
     </message>
     <message>
         <source>Actual Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuális méret</translation>
     </message>
     <message>
         <source>Fit to Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Teljes szélesség</translation>
     </message>
     <message>
         <source>Fit to Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Képernyőhöz igazít</translation>
     </message>
     <message>
         <source>Jump to Source</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugrás a forrásra</translation>
     </message>
     <message>
         <source>Go to Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugrás oldalra</translation>
     </message>
     <message>
         <source>Page number:</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>PdfViewer</name>
-    <message>
-        <source>Pages</source>
-        <translation type="obsolete">Lapok</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation type="obsolete">&amp;Fájl</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation type="obsolete">Kilépés</translation>
-    </message>
-    <message>
-        <source>Previous</source>
-        <translation type="obsolete">Előző</translation>
-    </message>
-    <message>
-        <source>Next</source>
-        <translation type="obsolete">Következő</translation>
-    </message>
-    <message>
-        <source>Fit Width</source>
-        <translation type="obsolete">Teljes szélesség</translation>
-    </message>
-    <message>
-        <source>Fit Page</source>
-        <translation type="obsolete">Teljes lap</translation>
-    </message>
-    <message>
-        <source>Zoom In</source>
-        <translation type="obsolete">Nagyítás</translation>
-    </message>
-    <message>
-        <source>Zoom Out</source>
-        <translation type="obsolete">Kicsinyítés</translation>
-    </message>
-    <message>
-        <source>Find</source>
-        <translation type="obsolete">Keresés</translation>
-    </message>
-    <message>
-        <source>External Viewer</source>
-        <translation type="obsolete">Külső megjelenítő</translation>
-    </message>
-    <message>
-        <source>Page</source>
-        <translation type="obsolete">Lap</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation type="obsolete">Hiba</translation>
-    </message>
-    <message>
-        <source>File not found</source>
-        <translation type="obsolete">A fájl nem található</translation>
+        <translation>Oldalszám:</translation>
     </message>
 </context>
 <context>
@@ -3277,71 +3205,71 @@ Néhány példa:
     <name>SearchReplace</name>
     <message>
         <source>Find next occurence</source>
-        <translation type="unfinished">Következő előfordulás</translation>
+        <translation>Következő előfordulás</translation>
     </message>
     <message>
         <source>Find previous occurence</source>
-        <translation type="unfinished">Előző előfordulás</translation>
+        <translation>Előző előfordulás</translation>
     </message>
     <message>
         <source>Prompt on replace</source>
-        <translation type="unfinished">Kérdezzen csere előtt</translation>
+        <translation>Kérdezzen csere előtt</translation>
     </message>
     <message>
         <source>Replace all</source>
-        <translation type="unfinished">Cserélje mind</translation>
+        <translation>Cserélje mind</translation>
     </message>
     <message>
         <source>Escape sequences</source>
-        <translation type="unfinished">Escape szekvenciák</translation>
+        <translation>Escape szekvenciák</translation>
     </message>
     <message>
         <source>Case</source>
-        <translation type="unfinished">Kis-/nagybetű</translation>
+        <translation>Kis-/nagybetű</translation>
     </message>
     <message>
         <source>Count occurences</source>
-        <translation type="unfinished">Előfordulások száma</translation>
+        <translation>Előfordulások száma</translation>
     </message>
     <message>
         <source>Words</source>
-        <translation type="unfinished">Szavak</translation>
+        <translation>Szavak</translation>
     </message>
     <message>
         <source>Regexp</source>
-        <translation type="unfinished">Reg. kif.</translation>
+        <translation>Reg. kif.</translation>
     </message>
     <message>
         <source>Highlight all</source>
-        <translation type="unfinished">Mind kiemelése</translation>
+        <translation>Mind kiemelése</translation>
     </message>
     <message>
         <source>Cursor</source>
-        <translation type="unfinished">Kurzortól</translation>
+        <translation>Kurzortól</translation>
     </message>
     <message>
         <source>Selection</source>
-        <translation type="unfinished">Kiválasztás</translation>
+        <translation>Kiválasztás</translation>
     </message>
     <message>
         <source>Close search/replace panel</source>
-        <translation type="unfinished">Keresés/csere panel bezárása</translation>
+        <translation>Keresés/csere panel bezárása</translation>
     </message>
     <message>
         <source> Find :</source>
-        <translation type="unfinished">Keresendő:</translation>
+        <translation>Keresendő:</translation>
     </message>
     <message>
         <source>Replacement text</source>
-        <translation type="unfinished">Csereszöveg</translation>
+        <translation>Csereszöveg</translation>
     </message>
     <message>
         <source>Text or pattern to search for</source>
-        <translation type="unfinished">Keresendő szöveg vagy minta</translation>
+        <translation>Keresendő szöveg vagy minta</translation>
     </message>
     <message>
         <source>Replace :</source>
-        <translation type="unfinished">Csere:</translation>
+        <translation>Csere:</translation>
     </message>
 </context>
 <context>
@@ -4037,7 +3965,7 @@ Néhány példa:
     </message>
     <message>
         <source>C&amp;onvert Source to Html...</source>
-        <translation>Fo&amp;rrás konvertálása Html-re...</translation>
+        <translation>Fo&amp;rrás konvertálása Html-re</translation>
     </message>
     <message>
         <source>A&amp;nalyse Text...</source>
@@ -4050,42 +3978,6 @@ Néhány példa:
     <message>
         <source>Find word repetitions...</source>
         <translation>S&amp;zóismétlés keresése...</translation>
-    </message>
-    <message>
-        <source>Manipulate tables</source>
-        <translation type="obsolete">Táblázatok módosítása</translation>
-    </message>
-    <message>
-        <source>add row</source>
-        <translation type="obsolete">Sor hozzáadása</translation>
-    </message>
-    <message>
-        <source>add column</source>
-        <translation type="obsolete">Oszlop hozzáadása</translation>
-    </message>
-    <message>
-        <source>remove row</source>
-        <translation type="obsolete">Sor törlése</translation>
-    </message>
-    <message>
-        <source>remove column</source>
-        <translation type="obsolete">Oszlop törlése</translation>
-    </message>
-    <message>
-        <source>cut column</source>
-        <translation type="obsolete">Oszlop kivágása</translation>
-    </message>
-    <message>
-        <source>paste column</source>
-        <translation type="obsolete">Oszlop beillesztése</translation>
-    </message>
-    <message>
-        <source>add \hline</source>
-        <translation type="obsolete">\hline hozzáadása</translation>
-    </message>
-    <message>
-        <source>remove \hline</source>
-        <translation type="obsolete">\hline eltávolítása</translation>
     </message>
     <message>
         <source>Quick &amp;Start...</source>
@@ -4190,10 +4082,6 @@ Néhány példa:
     <message>
         <source>Load &amp;Profile...</source>
         <translation>&amp;Profil betöltése...</translation>
-    </message>
-    <message>
-        <source>Save all current settings</source>
-        <translation type="obsolete">Minden jelenlegi beállítás mentése</translation>
     </message>
     <message>
         <source>Define Current Document as &apos;&amp;Master Document&apos;</source>
@@ -4546,52 +4434,52 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
     <message>
         <source>Save all current settings</source>
         <comment>menu</comment>
-        <translation type="unfinished">Minden jelenlegi beállítás mentése</translation>
+        <translation>Minden jelenlegi beállítás mentése</translation>
     </message>
     <message>
         <source>Manipulate tables</source>
         <comment>table</comment>
-        <translation type="unfinished">Táblázatok módosítása</translation>
+        <translation>Táblázatok módosítása</translation>
     </message>
     <message>
         <source>add row</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sor hozzáadása</translation>
     </message>
     <message>
         <source>add column</source>
         <comment>table</comment>
-        <translation type="unfinished">Oszlop hozzáadása</translation>
+        <translation>Oszlop hozzáadása</translation>
     </message>
     <message>
         <source>remove row</source>
         <comment>table</comment>
-        <translation type="unfinished">Sor törlése</translation>
+        <translation>Sor törlése</translation>
     </message>
     <message>
         <source>remove column</source>
         <comment>table</comment>
-        <translation type="unfinished">Oszlop törlése</translation>
+        <translation>Oszlop törlése</translation>
     </message>
     <message>
         <source>cut column</source>
         <comment>table</comment>
-        <translation type="unfinished">Oszlop kivágása</translation>
+        <translation>Oszlop kivágása</translation>
     </message>
     <message>
         <source>paste column</source>
         <comment>table</comment>
-        <translation type="unfinished">Oszlop beillesztése</translation>
+        <translation>Oszlop beillesztése</translation>
     </message>
     <message>
         <source>add \hline</source>
         <comment>table</comment>
-        <translation type="unfinished">\hline hozzáadása</translation>
+        <translation>\hline hozzáadása</translation>
     </message>
     <message>
         <source>remove \hline</source>
         <comment>table</comment>
-        <translation type="unfinished">\hline eltávolítása</translation>
+        <translation>\hline eltávolítása</translation>
     </message>
 </context>
 <context>
@@ -4944,18 +4832,6 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
     <message>
         <source>Convert to Html</source>
         <translation>Konvertálás Html-re</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Bitstream Vera Sans&apos;;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;LaTeX to Html conversion tool&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Bitstream Vera Sans&apos;; color:#000000;&quot;&gt;Copyright 2004-2006 P.Brachet &amp;amp; J.Amblard&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Bitstream Vera Sans&apos;;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;LaTeX - Html konvertáló eszköz&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Bitstream Vera Sans&apos;; color:#000000;&quot;&gt;Copyright 2004-2006 P.Brachet &amp;amp; J.Amblard&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
