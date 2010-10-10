@@ -34,7 +34,7 @@ private:
      QQueue<Ranges *> mResults;
      QQueue<QString> mLines;
      QQueue<Environment> mPreviousEnvs,mDetectedEnvs;
-     QSemaphore mLinesAvailable;
+     QSemaphore mLinesAvailable,mResultsAvailable;
      QMutex mLinesLock;
      QMutex mResultLock;
      bool stopped;
