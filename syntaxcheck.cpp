@@ -19,7 +19,7 @@ void SyntaxCheck::putLine(QString line,Environment previous){
     mPreviousEnvs.enqueue(previous);
     mLinesLock.unlock();
     //avoid reading of any results before this execution is stopped
-    mResultLock.lock();
+    //mResultLock.lock(); not possible under windows
     mLinesAvailable.release();
 }
 
@@ -38,6 +38,7 @@ void SyntaxCheck::stop(){
 }
 
 QList<QPair<int,int> > SyntaxCheck::getResult(){
+    mResultsAvailable.acquire();
     mResultLock.lock();
     Ranges *rng;
     QList<QPair<int,int> > result;
@@ -112,6 +113,6 @@ void SyntaxCheck::run(){
 	     }
 	     // place results
 	     mResults.enqueue(newRanges);
-	     mResultLock.unlock();
+	     mResultsAvailable.release();
 	 }
 }
