@@ -1863,7 +1863,8 @@ void Texmaker::ReadSettings() {
 	int y= config->value("Geometries/MainwindowY",10).toInt() ;
 	resize(w,h);
 	// in case desktop has changed since last run
-	while(x>screen.width() && screen.width() > 0) x-=screen.width();
+	while (x>screen.width() && screen.width() > 0) x-=screen.width();
+	while (y>screen.height() && screen.height() > 0) y-=screen.height();
 	move(x,y);
 	windowstate=config->value("MainWindowState").toByteArray();
 	stateFullScreen=config->value("MainWindowFullssscreenState").toByteArray();
@@ -2742,21 +2743,14 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool 
 		QString externalViewer = BuildManager::parseExtendedCommandLine(buildManager.getLatexCommand(BuildManager::CMD_VIEWPDF), finame, getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1);
 		if (pdfviewerWindow) {		
 			pdfviewerWindow->loadFile(pdfFile/*TODO,externalViewer*/);
-			pdfviewerWindow->raise();
-			pdfviewerWindow->show();
-			configManager.pdfViewerWidth=pdfviewerWindow->width();
-			configManager.pdfViewerHeight=pdfviewerWindow->height();
 		} else {
-			pdfviewerWindow=new PDFDocument(configManager, pdfFile/*,externalViewer, */,0);
+			pdfviewerWindow=new PDFDocument(configManager, configManager.pdfDocumentConfig, pdfFile/*,externalViewer, */);
 			connect(pdfviewerWindow, SIGNAL(triggeredAbout()), SLOT(HelpAbout()));
 			connect(pdfviewerWindow, SIGNAL(triggeredManual()), SLOT(UserManualHelp()));
 			connect(pdfviewerWindow, SIGNAL(triggeredQuit()), SLOT(fileExit()));
 			connect(pdfviewerWindow, SIGNAL(triggeredConfigure()), SLOT(GeneralOptions()));
 			connect(pdfviewerWindow, SIGNAL(triggeredQuickBuild()), SLOT(QuickBuild()));
 			connect(pdfviewerWindow, SIGNAL(syncSource(const QString&, int)), SLOT(syncFromViewer(const QString &, int)));
-			pdfviewerWindow->raise();
-			pdfviewerWindow->show();
-			pdfviewerWindow->resize(configManager.pdfViewerWidth,configManager.pdfViewerHeight);
 		}
 		return;
 	}
@@ -3326,16 +3320,20 @@ void Texmaker::ClearMarkers(){
 //////////////// HELP /////////////////
 void Texmaker::LatexHelp() {
 	QString latexHelp=findResourceFile("latexhelp.html");
-	if (latexHelp!="") QDesktopServices::openUrl("file:///"+latexHelp);
-	else QMessageBox::warning(this,tr("Error"),tr("File not found"));
+	if (latexHelp=="")
+		QMessageBox::warning(this,tr("Error"),tr("File not found"));
+	else if (!QDesktopServices::openUrl("file:///"+latexHelp))
+		QMessageBox::warning(this,tr("Error"),tr("Could not open browser"));
 }
 
 void Texmaker::UserManualHelp() {
 	QString locale = QString(QLocale::system().name()).left(2);
 	if (locale.length() < 2 || locale!="fr") locale = "en";
 	QString latexHelp=findResourceFile("usermanual_"+locale+".html");
-	if (latexHelp!="") QDesktopServices::openUrl("file:///"+latexHelp);
-	else QMessageBox::warning(this,tr("Error"),tr("File not found"));
+	if (latexHelp=="")
+		QMessageBox::warning(this,tr("Error"),tr("File not found"));
+	else if (!QDesktopServices::openUrl("file:///"+latexHelp))
+		QMessageBox::warning(this,tr("Error"),tr("Could not open browser"));
 }
 
 void Texmaker::HelpAbout() {

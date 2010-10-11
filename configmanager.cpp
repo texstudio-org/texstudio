@@ -6,6 +6,7 @@
 #include "latexcompleter_config.h"
 #include "latexeditorview_config.h"
 #include "webpublishdialog_config.h"
+#include "PDFDocument_config.h"
 #include "smallUsefulFunctions.h"
 #include "codesnippet.h"
 
@@ -27,6 +28,7 @@ QVariant ManagedProperty::valueToQVariant() const{
 		case PT_STRINGLIST: return QVariant(*((QStringList*)storage));
 		case PT_DATETIME: return QVariant(*((QDateTime*)storage));
 		case PT_DOUBLE: return QVariant(*((double*)storage));
+		case PT_BYTEARRAY: return QVariant(*((QByteArray*)storage));
 		default:
 			Q_ASSERT(false);
 			return QVariant();
@@ -42,6 +44,7 @@ void ManagedProperty::valueFromQVariant(const QVariant v){
 		case PT_STRINGLIST: *((QStringList*)storage) = v.toStringList(); break;
 		case PT_DATETIME: *((QDateTime*)storage) = v.toDateTime(); break;
 		case PT_DOUBLE: *((double*)storage) = v.toDouble(); break;
+		case PT_BYTEARRAY: *((QByteArray*)storage) = v.toByteArray(); break;
 		default:
 			Q_ASSERT(false);
 	}
@@ -178,7 +181,11 @@ bool ManagedProperty::readFromWidget(const QWidget* w){
 QTextCodec* ConfigManager::newFileEncoding = 0;
 
 ConfigManager::ConfigManager(QObject *parent): QObject (parent),
-	buildManager(0),editorConfig(new LatexEditorViewConfig), completerConfig (new LatexCompleterConfig), webPublishDialogConfig (new WebPublishDialogConfig), menuParent(0), menuParentsBar(0){
+	buildManager(0),editorConfig(new LatexEditorViewConfig),
+	completerConfig (new LatexCompleterConfig),
+	webPublishDialogConfig (new WebPublishDialogConfig),
+	pdfDocumentConfig(new PDFDocumentConfig),
+	menuParent(0), menuParentsBar(0){
 
 	managedToolBars.append(ManagedToolBar("Custom", QStringList()));
 	managedToolBars.append(ManagedToolBar("File", QStringList() << "main/file/new" << "main/file/open" << "main/file/save" << "main/file/close"));
@@ -269,10 +276,6 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Dialogs/Last Hard Wrap Smart Scope Selection", &lastHardWrapSmartScopeSelection, false);
 	registerOption("Dialogs/Last Hard Wrap Join Lines", &lastHardWrapJoinLines, false);
 
-	QRect screen = QApplication::desktop()->screenGeometry();
-	registerOption("Geometries/PdfViewerWidth", &pdfViewerWidth, screen.width()/3);
-	registerOption("Geometries/PdfViewerHeight", &pdfViewerHeight, screen.height()/3);
-
 
 	//preview
 	registerOption("Preview/Mode", (int*)&previewMode, 0, &pseudoDialog->comboBoxPreviewMode);
@@ -311,10 +314,27 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	//language
 	registerOption("Interface/Language", &language, "", &pseudoDialog->comboBoxLanguage);
 
+
+	//pdf preview
+	QRect screen = QApplication::desktop()->screenGeometry();
+	registerOption("Geometries/PdfViewerLeft", &pdfDocumentConfig->windowLeft, screen.width()/3);
+	registerOption("Geometries/PdfViewerTop", &pdfDocumentConfig->windowTop, screen.height()/3);
+	registerOption("Geometries/PdfViewerWidth", &pdfDocumentConfig->windowWidth, screen.width()/3);
+	registerOption("Geometries/PdfViewerHeight", &pdfDocumentConfig->windowHeight, screen.height()/3);
+	registerOption("Geometries/PdfViewerState", &pdfDocumentConfig->windowState, QByteArray());
+
+	registerOption("Preview/DPI", &pdfDocumentConfig->dpi, QApplication::desktop()->logicalDpiX());
+	registerOption("Preview/Scale Option", &pdfDocumentConfig->scaleOption, 1);
+	registerOption("Preview/Scale", &pdfDocumentConfig->scaleOption, 200);
+	registerOption("Preview/Magnifier Size", &pdfDocumentConfig->magnifierSize, 2);
+	registerOption("Preview/Magnifier Shape", &pdfDocumentConfig->magnifierShape, 1);
+
 	#ifndef QT_NO_DEBUG
 	registerOption("Debug/Last Application Modification", &debugLastFileModification);
 	registerOption("Debug/Last Full Test Run", &debugLastFullTestRun);
 	#endif
+
+
 }
 
 ConfigManager::~ConfigManager(){
@@ -1506,6 +1526,9 @@ void ConfigManager::registerOption(const QString& name, QDateTime *storage, QVar
 void ConfigManager::registerOption(const QString& name, double *storage, QVariant def, void* displayWidgetOffset){
 	registerOption(name, storage, PT_DOUBLE, def, displayWidgetOffset);
 }
+void ConfigManager::registerOption(const QString& name, QByteArray *storage, QVariant def, void* displayWidgetOffset){
+	registerOption(name, storage, PT_BYTEARRAY, def, displayWidgetOffset);
+}
 
 void ConfigManager::registerOption(const QString& name, void* storage, PropertyType type, QVariant def){
 	registerOption(name, storage, type, def, 0);
@@ -1527,6 +1550,9 @@ void ConfigManager::registerOption(const QString& name, QDateTime* storage, QVar
 	registerOption(name, storage, def, 0);
 }
 void ConfigManager::registerOption(const QString& name, double* storage, QVariant def){
+	registerOption(name, storage, def, 0);
+}
+void ConfigManager::registerOption(const QString& name, QByteArray* storage, QVariant def){
 	registerOption(name, storage, def, 0);
 }
 

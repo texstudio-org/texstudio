@@ -30,18 +30,12 @@
 
 #include "ui_PDFDocument.h"
 
-const int kDefault_MagnifierSize = 2;
-const bool kDefault_CircularMagnifier = true;
-const int kDefault_PreviewScaleOption = 1;
-const int kDefault_PreviewScale = 200;
-
 const int kPDFWindowStateVersion = 1;
 
 class QAction;
 class QMenu;
 class QToolBar;
 class QScrollArea;
-class TeXDocument;
 class QShortcut;
 class QFileSystemWatcher;
 class ConfigManagerInterface;
@@ -192,13 +186,14 @@ private:
 };
 
 
+class PDFDocumentConfig;
 class PDFDocument : public QMainWindow, private Ui::PDFDocument
 {
 	Q_OBJECT
     Q_PROPERTY(QString fileName READ fileName)
 
 public:
-	PDFDocument(const ConfigManagerInterface &configManager, const QString &fileName, TeXDocument *sourceDoc = NULL);
+	PDFDocument(const ConfigManagerInterface &configManager, PDFDocumentConfig* const pdfConfig, const QString &fileName);
 	virtual ~PDFDocument();
 
 	static PDFDocument *findDocument(const QString &fileName);
@@ -218,7 +213,6 @@ public:
 	void enableTypesetAction(bool enabled);
 	void updateTypesettingAction(bool processRunning);
 	void goToDestination(const QString& destName);
-	void linkToSource(TeXDocument *texDoc);
 	bool hasSyncData()
 		{
 			return scanner != NULL;
@@ -236,13 +230,11 @@ public:
 
 protected:
 	virtual void changeEvent(QEvent *event);
-	virtual bool event(QEvent *event);
 	virtual void closeEvent(QCloseEvent *event);
 	virtual void dragEnterEvent(QDragEnterEvent *event);
 	virtual void dropEvent(QDropEvent *event);
 
 public slots:
-	void texClosed(QObject *obj);
 	void reload();
 	void retypeset();
 	void interrupt();
@@ -255,7 +247,6 @@ public slots:
 	void loadFile(const QString &fileName);
 
 private slots:
-	void updateRecentFileActions();
 	void updateWindowMenu();
 	void enablePageActions(int);
 	void enableZoomActions(qreal);
@@ -283,7 +274,6 @@ private:
 	void init(const ConfigManagerInterface& configManager);
 	void setCurrentFile(const QString &fileName);
 	void loadSyncData();
-	void saveRecentFileInfo();
 
 	QString curFile;
 	
@@ -292,8 +282,6 @@ private:
 	PDFWidget	*pdfWidget;
 	QScrollArea	*scrollArea;
 	QButtonGroup	*toolButtonGroup;
-
-	QList<TeXDocument*> sourceDocList;
 
 	QLabel *pageLabel;
 	QLabel *scaleLabel;
@@ -304,8 +292,6 @@ private:
 	QTimer *reloadTimer;
 	
 	synctex_scanner_t scanner;
-
-	bool openedManually;
 	
 	static QList<PDFDocument*> docList;
 	

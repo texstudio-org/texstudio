@@ -20,7 +20,6 @@
 */
 
 #include "PDFDocument.h"
-//#include "TeXDocument.h"
 #include "PDFDocks.h"
 //#include "FindDialog.h"
 
@@ -51,7 +50,7 @@
 #include <math.h>
 
 #include "configmanagerinterface.h"
-
+#include "PDFDocument_config.h"
 //#include "GlobalParams.h"
 
 #include "poppler-link.h"
@@ -75,6 +74,8 @@ const int kSelectImage = 4;
 
 // duration of highlighting in PDF view (might make configurable?)
 const int kPDFHighlightDuration = 2000;
+
+static PDFDocumentConfig* globalConfig = 0;
 
 //====================Zoom utils==========================
 
@@ -269,12 +270,18 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 
 void PDFMagnifier::resizeEvent(QResizeEvent * /*event*/)
 {
-/*TODO	QSETTINGS_OBJECT(settings);
-	if (settings.value("circularMagnifier", kDefault_CircularMagnifier).toBool()) {
-		int side = qMin(width(), height());
-		QRegion maskedRegion(width() / 2 - side / 2, height() / 2 - side / 2, side, side, QRegion::Ellipse);
-		setMask(maskedRegion);
-	}*/
+	Q_ASSERT(globalConfig);
+	if (!globalConfig) return;
+
+	switch (globalConfig->magnifierShape) {
+	case 1: { //circular
+			int side = qMin(width(), height());
+			QRegion maskedRegion(width() / 2 - side / 2, height() / 2 - side / 2, side, side, QRegion::Ellipse);
+			setMask(maskedRegion);
+			break;
+		}
+	default:; //rectangular
+	}
 }
 
 #pragma mark === PDFWidget ===
@@ -295,8 +302,12 @@ PDFWidget::PDFWidget()
 	, magnifier(NULL)
 	, usingTool(kNone)
 {
-/*TODO	QSETTINGS_OBJECT(settings);
-	dpi = settings.value("previewResolution", QApplication::desktop()->logicalDpiX()).toInt();
+	Q_ASSERT(globalConfig);
+	if (!globalConfig) return;
+
+
+	dpi = globalConfig->dpi;
+	if (dpi<=0) dpi = 72; //it crashes if dpi=0
 	
 	setBackgroundRole(QPalette::Base);
 	setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
@@ -304,7 +315,7 @@ PDFWidget::PDFWidget()
 	setScaledContents(true);
 	setMouseTracking(true);
 
-	switch (settings.value("scaleOption", kDefault_PreviewScaleOption).toInt()) {
+	switch (globalConfig->scaleOption) {
 		default:
 			fixedScale(1.0);
 			break;
@@ -315,10 +326,10 @@ PDFWidget::PDFWidget()
 			fitWindow(true);
 			break;
 		case 4:
-			fixedScale(settings.value("previewScale", kDefault_PreviewScale).toInt() / 100.0);
+			fixedScale(globalConfig->scale / 100.0);
 			break;
-	}*/
-fixedScale(1.0);
+	}
+
 	if (magnifierCursor == NULL) {
 		magnifierCursor = new QCursor(QPixmap(":/images/magnifiercursor.png"));
 		zoomInCursor = new QCursor(QPixmap(":/images/zoomincursor.png"));
@@ -404,14 +415,17 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 
 void PDFWidget::useMagnifier(const QMouseEvent *inEvent)
 {
+	Q_ASSERT(globalConfig);
+	if (!globalConfig) return;
+
 	if (!magnifier) {
 		magnifier = new PDFMagnifier(this, dpi);
-		/*TODOQSETTINGS_OBJECT(settings);
-		int magnifierSize = settings.value("magnifierSize", kDefault_MagnifierSize).toInt();
+
+		int magnifierSize = globalConfig->magnifierSize;
 		if (magnifierSize <= 0 || magnifierSize > (int)(sizeof(magSizes) / sizeof(int)))
-			magnifierSize = kDefault_MagnifierSize;
+			magnifierSize = 2;
 		magnifierSize = magSizes[magnifierSize - 1];
-		magnifier->setFixedSize(magnifierSize * 4 / 3, magnifierSize);*/
+		magnifier->setFixedSize(magnifierSize * 4 / 3, magnifierSize);
 	}
 	magnifier->setPage(page, scaleFactor);
 	// this was in the hope that if the mouse is released before the image is ready,
@@ -591,7 +605,8 @@ void PDFWidget::doLink(const Poppler::Link *link)
 						url = QUrl::fromLocalFile(fi.canonicalFilePath());
 					}
 				}
-				//TODO TWApp::instance()->openUrl(url);
+				if (!QDesktopServices::openUrl(url))
+						QMessageBox::warning(this,tr("Error"),tr("Could not open browser"));
 			}
 			break;
 // unsupported link types:
@@ -1182,35 +1197,36 @@ QScrollArea* PDFWidget::getScrollArea()
 
 QList<PDFDocument*> PDFDocument::docList;
 
-PDFDocument::PDFDocument(const ConfigManagerInterface &configManager, const QString &fileName, TeXDocument *texDoc)
-	: watcher(NULL), reloadTimer(NULL), scanner(NULL), openedManually(false)
+PDFDocument::PDFDocument(const ConfigManagerInterface &configManager, PDFDocumentConfig* const pdfConfig, const QString &fileName)
+	: watcher(NULL), reloadTimer(NULL), scanner(NULL)
 {
+	Q_ASSERT(pdfConfig);
+	Q_ASSERT(!globalConfig || (globalConfig == pdfConfig));
+	globalConfig = pdfConfig,
+
 	init(configManager);
 
-	if (texDoc == NULL) {
-		openedManually = true;
-/*TODO		watcher = new QFileSystemWatcher(this);
-		connect(watcher, SIGNAL(fileChanged(const QString&)), this, SLOT(reloadWhenIdle()));*/
-	}
+	watcher = new QFileSystemWatcher(this);
+	connect(watcher, SIGNAL(fileChanged(const QString&)), this, SLOT(reloadWhenIdle()));
 
 	loadFile(fileName);
 
+	//setGeometry(config);
 
+	raise();
+	show();
 
-/*TODO	QMap<QString,QVariant> properties = TWApp::instance()->getFileProperties(curFile);
-	if (properties.contains("geometry"))
-		restoreGeometry(properties.value("geometry").toByteArray());
-	else
-		TWUtils::zoomToHalfScreen(this, true);
+	QRect screen = QApplication::desktop()->screenGeometry();
+	while (globalConfig->windowLeft > screen.width() && screen.width() > 0)
+		globalConfig->windowLeft-=screen.width();
+	while (globalConfig->windowTop > screen.height() && screen.height() > 0)
+		globalConfig->windowTop-=screen.height();
 
-	if (properties.contains("state"))
-		restoreState(properties.value("state").toByteArray(), kPDFWindowStateVersion);
-*/
-	if (texDoc != NULL) {
-		//TODO stackUnder((QWidget*)texDoc);
-		actionGo_to_Source->setEnabled(true);
-		sourceDocList.append(texDoc);
-	}
+	setWindowState(Qt::WindowNoState);
+	resize(globalConfig->windowWidth, globalConfig->windowHeight); //important to first resize then move
+	move(globalConfig->windowLeft, globalConfig->windowTop);
+	Q_ASSERT(x() == globalConfig->windowLeft);
+	if (!globalConfig->windowState.isEmpty()) restoreState(globalConfig->windowState);
 }
 
 PDFDocument::~PDFDocument()
@@ -1383,30 +1399,6 @@ void PDFDocument::changeEvent(QEvent *event)
 		QMainWindow::changeEvent(event);
 }
 
-void PDFDocument::linkToSource(TeXDocument *texDoc)
-{
-	if (texDoc != NULL) {
-		if (!sourceDocList.contains(texDoc))
-			sourceDocList.append(texDoc);
-		actionGo_to_Source->setEnabled(true);
-	}
-}
-
-void PDFDocument::texClosed(QObject *obj)
-{
-	TeXDocument *texDoc = reinterpret_cast<TeXDocument*>(obj);
-		// can't use qobject_cast here as the object's metadata is already gone!
-	if (texDoc != 0) {
-		sourceDocList.removeAll(texDoc);
-		if (sourceDocList.count() == 0)
-			close();
-	}
-}
-
-void PDFDocument::updateRecentFileActions()
-{
-//TODO	TWUtils::updateRecentFileActions(this, recentFileActions, menuRecent);
-}
 
 void PDFDocument::updateWindowMenu()
 {
@@ -1427,34 +1419,18 @@ void PDFDocument::sideBySide()
 	}
 }
 
-bool PDFDocument::event(QEvent *event)
-{
-	switch (event->type()) {
-		case QEvent::WindowActivate:
-//TODO			showFloaters();
-			break;
-		default:
-			break;
-	}
-	return QMainWindow::event(event);
-}
-
 void PDFDocument::closeEvent(QCloseEvent *event)
 {
-	event->accept();
-	if (openedManually) {
-		saveRecentFileInfo();
+	Q_ASSERT(globalConfig);
+	if (isVisible()) {
+		globalConfig->windowLeft = x();
+		globalConfig->windowTop = y();
+		globalConfig->windowWidth = width();
+		globalConfig->windowHeight = height();
+		globalConfig->windowState = saveState();
 	}
+	event->accept();
 	deleteLater();
-}
-
-void PDFDocument::saveRecentFileInfo()
-{
-	QMap<QString,QVariant> fileProperties;
-	fileProperties.insert("path", curFile);
-	fileProperties.insert("geometry", saveGeometry());
-	fileProperties.insert("state", saveState(kPDFWindowStateVersion));
-//TODO	TWApp::instance()->addToRecentFiles(fileProperties);
 }
 
 void PDFDocument::loadFile(const QString &fileName)
@@ -1467,6 +1443,9 @@ void PDFDocument::loadFile(const QString &fileName)
 			watcher->removePaths(files); // in case we ever load different files into the same widget
 		watcher->addPath(curFile);
 	}
+	raise();
+	show();
+	setFocus();
 }
 
 void PDFDocument::reload()
