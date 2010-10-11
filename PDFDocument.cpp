@@ -355,6 +355,14 @@ PDFWidget::PDFWidget()
 	shortcutLeft = new QShortcut(QKeySequence("Left"), this, SLOT(leftOrPrev()));
 	shortcutDown = new QShortcut(QKeySequence("Down"), this, SLOT(downOrNext()));
 	shortcutRight = new QShortcut(QKeySequence("Right"), this, SLOT(rightOrNext()));
+	shortcutPageUp1 = new QShortcut(QKeySequence(Qt::Key_PageUp), this, SLOT(pageUpOrPrev()));
+	shortcutPageUp2 = new QShortcut(QKeySequence(Qt::SHIFT | Qt::Key_Space), this, SLOT(pageUpOrPrev()));
+	shortcutPageUp3 = new QShortcut(QKeySequence(Qt::SHIFT | Qt::Key_Enter), this, SLOT(pageUpOrPrev()));
+	shortcutPageUp4 = new QShortcut(QKeySequence(Qt::SHIFT | Qt::Key_Return), this, SLOT(pageUpOrPrev()));
+	shortcutPageDown1 = new QShortcut(QKeySequence(Qt::Key_PageDown), this, SLOT(pageDownOrNext()));
+	shortcutPageDown2 = new QShortcut(QKeySequence(Qt::Key_Space), this, SLOT(pageDownOrNext()));
+	shortcutPageDown3 = new QShortcut(QKeySequence(Qt::Key_Enter), this, SLOT(pageDownOrNext()));
+	shortcutPageDown4 = new QShortcut(QKeySequence(Qt::Key_Return), this, SLOT(pageDownOrNext()));
 
 	highlightRemover.setSingleShot(true);
 	connect(&highlightRemover, SIGNAL(timeout()), this, SLOT(clearHighlight()));
@@ -517,11 +525,9 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 			case kNone:
 				// Ctrl-click to sync
 				if (mouseDownModifiers & Qt::ControlModifier) {
-					if (event->modifiers() & Qt::ControlModifier) {
-						QPointF pagePos(event->pos().x() / scaleFactor * 72.0 / dpi,
-										event->pos().y() / scaleFactor * 72.0 / dpi);
-						emit syncClick(pageIndex, pagePos);
-					}
+					if (event->modifiers() & Qt::ControlModifier)
+						syncWindowClick(event->pos().x(), event->pos().y());
+
 					break;
 				}
 				// check whether to zoom
@@ -780,6 +786,13 @@ void PDFWidget::setTool(int tool)
 	updateCursor();
 }
 
+void PDFWidget::syncWindowClick(int x, int y, int page){
+	QPointF pagePos(x / scaleFactor * 72.0 / dpi,
+			y / scaleFactor * 72.0 / dpi);
+	if (page == -1) page = pageIndex;
+	emit syncClick(pageIndex, pagePos);
+}
+
 void PDFWidget::updateCursor()
 {
 	if (usingTool != kNone)
@@ -983,6 +996,23 @@ void PDFWidget::leftOrPrev()
 	shortcutLeft->setAutoRepeat(scrollBar->value() > scrollBar->minimum());
 }
 
+
+void PDFWidget::pageUpOrPrev()
+{
+	if (document == NULL)
+		return;
+	QScrollBar* scrollBar = getScrollArea()->verticalScrollBar();
+	if (scrollBar->value() > scrollBar->minimum())
+		scrollBar->triggerAction(QAbstractSlider::SliderPageStepSub);
+	else {
+		if (pageIndex > 0) {
+			goPrev();
+			scrollBar->triggerAction(QAbstractSlider::SliderToMaximum);
+		}
+	}
+	//shortcutPageUp->setAutoRepeat(scrollBar->value() > scrollBar->minimum());
+}
+
 void PDFWidget::downOrNext()
 {
 	if (document == NULL)
@@ -1014,6 +1044,23 @@ void PDFWidget::rightOrNext()
 	}
 	shortcutRight->setAutoRepeat(scrollBar->value() < scrollBar->maximum());
 }
+
+void PDFWidget::pageDownOrNext()
+{
+	if (document == NULL)
+		return;
+	QScrollBar*		scrollBar = getScrollArea()->verticalScrollBar();
+	if (scrollBar->value() < scrollBar->maximum())
+		scrollBar->triggerAction(QAbstractSlider::SliderPageStepAdd);
+	else {
+		if (pageIndex < document->numPages() - 1) {
+			goNext();
+			scrollBar->triggerAction(QAbstractSlider::SliderToMinimum);
+		}
+	}
+	//shortcutPageDown->setAutoRepeat(scrollBar->value() < scrollBar->maximum());
+}
+
 
 void PDFWidget::doPageDialog()
 {
@@ -1252,7 +1299,7 @@ PDFDocument::init(const ConfigManagerInterface& configManager)
 	setAttribute(Qt::WA_MacNoClickThrough, true);
 
 	//load icons
-	//TODO setWindowIcon(QIcon(":/images/images/TeXworks-doc.png"));
+	setWindowIcon(QIcon(":/images/previewicon.png"));
 	
 	actionFirst_Page->setIcon(configManager.getRealIcon("go-first"));
 	actionPrevious_Page->setIcon(configManager.getRealIcon("go-previous"));
@@ -1374,16 +1421,6 @@ PDFDocument::init(const ConfigManagerInterface& configManager)
 
 	exitFullscreen = NULL;
 	
-/*TODO	QSETTINGS_OBJECT(settings);
-	TWUtils::applyToolbarOptions(this, settings.value("toolBarIconSize", 2).toInt(), settings.value("toolBarShowText", false).toBool());
-
-	TWApp::instance()->updateWindowMenus();
-	
-	initScriptable(menuScripts, actionAbout_Scripts, actionManage_Scripts,
-				   actionUpdate_Scripts, actionShow_Scripts_Folder);
-	
-	TWUtils::insertHelpMenuItems(menuHelp);
-	TWUtils::installCustomShortcuts(this);*/
 }
 
 void PDFDocument::changeEvent(QEvent *event)
@@ -1399,11 +1436,6 @@ void PDFDocument::changeEvent(QEvent *event)
 		QMainWindow::changeEvent(event);
 }
 
-
-void PDFDocument::updateWindowMenu()
-{
-//TODO	TWUtils::updateWindowMenu(this, menuWindow);
-}
 
 void PDFDocument::sideBySide()
 {
@@ -1439,7 +1471,7 @@ void PDFDocument::loadFile(const QString &fileName)
 	reload();
 	if (watcher) {
 		const QStringList files = watcher->files();
-		if (files.isEmpty())
+		if (!files.isEmpty())
 			watcher->removePaths(files); // in case we ever load different files into the same widget
 		watcher->addPath(curFile);
 	}
@@ -1529,10 +1561,10 @@ void PDFDocument::loadSyncData()
 {
 	scanner = synctex_scanner_new_with_output_file(curFile.toUtf8().data(), NULL, 1);
 	if (scanner == NULL)
-		statusBar()->showMessage(tr("No SyncTeX data available")/*TODO, kStatusMessageDuration*/);
+		statusBar()->showMessage(tr("No SyncTeX data available"), 3000);
 	else {
 		QString synctexName = QString::fromUtf8(synctex_scanner_get_synctex(scanner));
-		statusBar()->showMessage(tr("SyncTeX: \"%1\"").arg(synctexName) /*TODO, kStatusMessageDuration*/);
+		statusBar()->showMessage(tr("SyncTeX: \"%1\"").arg(synctexName), 3000);
 	}
 }
 
@@ -1608,8 +1640,8 @@ void PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool act
 void PDFDocument::setCurrentFile(const QString &fileName)
 {
 	curFile = QFileInfo(fileName).canonicalFilePath();
-	setWindowTitle(tr("%1[*] - %2").arg(/*TODOTWUtils::strippedName*/(curFile)).arg(tr("TexMakerX")));
-//TODO	TWApp::instance()->updateWindowMenus();
+	QString niceFile = QFileInfo(curFile).fileName();
+	setWindowTitle(tr("%1[*] - %2").arg(niceFile).arg(tr("TexMakerX")));
 }
  
 PDFDocument *PDFDocument::findDocument(const QString &fileName)
@@ -1647,25 +1679,12 @@ void PDFDocument::showScale(qreal scale)
 	scaleLabel->setText(tr("%1%").arg(ROUND(scale * 10000.0) / 100.0));
 }
 
-void PDFDocument::retypeset()
-{
-//TODO	if (sourceDocList.count() > 0)
-//TODO		sourceDocList[0]->typeset();
-}
-
-void PDFDocument::interrupt()
-{
-//TODO	if (sourceDocList.count() > 0)
-//TODO		sourceDocList[0]->interrupt();
-}
 
 void PDFDocument::goToSource()
 {
-/*TODO	if (sourceDocList.count() > 0)
-		sourceDocList[0]->selectWindow();
-	else
-		// should not occur, the action is supposed to be disabled
-		actionGo_to_Source->setEnabled(false);*/
+	Q_ASSERT(pdfWidget);
+	if (!pdfWidget) return;
+	pdfWidget->syncWindowClick(pdfWidget->width()/2, pdfWidget->height()/2);
 }
 
 void PDFDocument::enablePageActions(int pageIndex)
@@ -1727,28 +1746,6 @@ void PDFDocument::setResolution(int res)
 		pdfWidget->setResolution(res);
 }
 
-void PDFDocument::enableTypesetAction(bool enabled)
-{
-	actionTypeset->setEnabled(enabled);
-}
-
-void PDFDocument::updateTypesettingAction(bool processRunning)
-{
-	if (processRunning) {
-		disconnect(actionTypeset, SIGNAL(triggered()), this, SLOT(retypeset()));
-		actionTypeset->setIcon(QIcon(":/images/tango/process-stop.png"));
-		actionTypeset->setText(tr("Abort typesetting"));
-		connect(actionTypeset, SIGNAL(triggered()), this, SLOT(interrupt()));
-		enableTypesetAction(true);
-	}
-	else {
-		disconnect(actionTypeset, SIGNAL(triggered()), this, SLOT(interrupt()));
-		actionTypeset->setIcon(QIcon(":/images/images/runtool.png"));
-		actionTypeset->setText(tr("Typeset"));
-		connect(actionTypeset, SIGNAL(triggered()), this, SLOT(retypeset()));
-	}
-}
-
 void PDFDocument::goToDestination(const QString& destName)
 {
 	if (pdfWidget)
@@ -1775,9 +1772,11 @@ void PDFDocument::dropEvent(QDropEvent *event)
 	event->ignore();
 	if (event->mimeData()->hasUrls()) {
 		const QList<QUrl> urls = event->mimeData()->urls();
-/*TODO		foreach (const QUrl& url, urls)
-			if (url.scheme() == "file")
-				TWApp::instance()->openFile(url.toLocalFile());*/
+		foreach (const QUrl& url, urls)
+			if (url.scheme() == "file") {
+				if (url.path().endsWith("pdf")) loadFile(url.toLocalFile());
+				else emit fileDropped(url);
+			}
 		event->acceptProposedAction();
 	}
 }

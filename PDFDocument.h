@@ -106,8 +106,11 @@ private slots:
 	
 	void upOrPrev();
 	void leftOrPrev();
+	void pageUpOrPrev();
+
 	void downOrNext();
 	void rightOrNext();
+	void pageDownOrNext();
 
 	void clearHighlight();
 	
@@ -115,12 +118,13 @@ public slots:
 	void windowResized();
 	void fitWindow(bool checked = true);
 	void setTool(int tool);
+	void syncWindowClick(int x, int y, int page = -1);
 
 signals:
 	void changedPage(int);
 	void changedZoom(qreal);
 	void changedScaleOption(autoScaleOption);
-	void syncClick(int, const QPointF&);
+	void syncClick(int, const QPointF&); //page position in page coordinates
 
 protected:
 	virtual void paintEvent(QPaintEvent *event);
@@ -167,7 +171,15 @@ private:
 	QShortcut *shortcutLeft;
 	QShortcut *shortcutDown;
 	QShortcut *shortcutRight;
-	
+	QShortcut *shortcutPageUp1;
+	QShortcut *shortcutPageUp2;
+	QShortcut *shortcutPageUp3;
+	QShortcut *shortcutPageUp4;
+	QShortcut *shortcutPageDown1;
+	QShortcut *shortcutPageDown2;
+	QShortcut *shortcutPageDown3;
+	QShortcut *shortcutPageDown4;
+
 	QImage	image;
 	QRect	imageRect;
 	qreal	imageDpi;
@@ -210,8 +222,6 @@ public:
 	void showPage(int page);
 	void setResolution(int res);
 	void resetMagnifier();
-	void enableTypesetAction(bool enabled);
-	void updateTypesettingAction(bool processRunning);
 	void goToDestination(const QString& destName);
 	bool hasSyncData()
 		{
@@ -236,8 +246,6 @@ protected:
 
 public slots:
 	void reload();
-	void retypeset();
-	void interrupt();
 	void sideBySide();
 	void doFindDialog();
 	void doFindAgain(bool newSearch = false);
@@ -247,7 +255,6 @@ public slots:
 	void loadFile(const QString &fileName);
 
 private slots:
-	void updateWindowMenu();
 	void enablePageActions(int);
 	void enableZoomActions(qreal);
 	void adjustScaleActions(autoScaleOption);
@@ -261,6 +268,7 @@ private slots:
 signals:
 	void reloaded();
 	void syncSource(const QString& sourceFile, int line);
+	void fileDropped(const QUrl& url);
 
 
 	void triggeredAbout();
