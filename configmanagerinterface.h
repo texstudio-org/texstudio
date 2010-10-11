@@ -1,12 +1,13 @@
 #ifndef CONFIGMANAGERINTERFACE_H
 #define CONFIGMANAGERINTERFACE_H
 
-enum PropertyType {PT_VOID = 0, PT_INT, PT_BOOL, PT_STRING, PT_STRINGLIST, PT_DATETIME, PT_DOUBLE};
+enum PropertyType {PT_VOID = 0, PT_INT, PT_BOOL, PT_STRING, PT_STRINGLIST, PT_DATETIME, PT_DOUBLE, PT_BYTEARRAY};
 #include <QString>
 #include <QStringList>
 #include <QDateTime>
 #include <QVariant>
 #include <QWidget>
+#include <QByteArray>
 class ConfigManagerInterface
 {
 public:
@@ -20,6 +21,7 @@ public:
 	virtual void registerOption(const QString& name, QStringList* storage, QVariant def=QVariant()) = 0;
 	virtual void registerOption(const QString& name, QDateTime* storage, QVariant def=QVariant()) = 0;
 	virtual void registerOption(const QString& name, double* storage, QVariant def=QVariant()) = 0;
+	virtual void registerOption(const QString& name, QByteArray* storage, QVariant def=QVariant()) = 0;
 
 	//shows the value of an registered option in the passed widget
 	//if the dialog containing widget is accepted (and not rejected), the value from the widget will be written to the option

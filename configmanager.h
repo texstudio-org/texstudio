@@ -10,6 +10,7 @@ class ConfigDialog;
 class LatexCompleterConfig;
 class LatexEditorViewConfig;
 class WebPublishDialogConfig;
+class PDFDocumentConfig;
 
 struct ManagedToolBar{
 	QString name;
@@ -79,7 +80,6 @@ public:
 	bool newLeftPanelLayout;
 	bool configShowAdvancedOptions;
 	bool useSystemTheme;
-	int pdfViewerWidth, pdfViewerHeight;
 	
 	//language
 	QString language, lastLanguage;
@@ -92,6 +92,8 @@ public:
 	LatexCompleterConfig * const completerConfig;
 	//webpublish dialog
 	WebPublishDialogConfig * const webPublishDialogConfig;
+	//pdf preview
+	PDFDocumentConfig * const pdfDocumentConfig;
 
 	//other dialogs
 	int lastHardWrapColumn;
@@ -187,6 +189,7 @@ public:
 	void registerOption(const QString& name, QStringList* storage, QVariant def, void* displayWidgetOffset);
 	void registerOption(const QString& name, QDateTime* storage, QVariant def, void* displayWidgetOffset);
 	void registerOption(const QString& name, double* storage, QVariant def, void* displayWidgetOffset);
+	void registerOption(const QString& name, QByteArray* storage, QVariant def, void* displayWidgetOffset);
 	virtual void registerOption(const QString& name, void* storage, PropertyType type, QVariant def);
 	virtual void registerOption(const QString& name, bool* storage, QVariant def=QVariant());
 	virtual void registerOption(const QString& name, int* storage, QVariant def=QVariant());
@@ -194,6 +197,7 @@ public:
 	virtual void registerOption(const QString& name, QStringList* storage, QVariant def=QVariant());
 	virtual void registerOption(const QString& name, QDateTime* storage, QVariant def=QVariant());
 	virtual void registerOption(const QString& name, double* storage, QVariant def=QVariant());
+	virtual void registerOption(const QString& name, QByteArray* storage, QVariant def=QVariant());
 	virtual void linkOptionToWidget(const void* optionStorage, QWidget* widget);
 
 	static void getDefaultEncoding(const QByteArray& unused, QTextCodec* &guess, int &sure);
