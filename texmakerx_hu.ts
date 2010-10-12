@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="hu_HU" sourcelanguage="hu_HU">
+<TS version="2.0" language="hu_HU" sourcelanguage="en">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1175,7 +1175,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>pageref</source>
-        <translation>Laphivatkozás</translation>
+        <translation>Oldalhivatkozás</translation>
     </message>
     <message>
         <source>index</source>
@@ -1284,6 +1284,10 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <source>qquad</source>
         <translation>\qquad</translation>
+    </message>
+    <message>
+        <source>Internal viewer</source>
+        <translation>Belső megjelenítő</translation>
     </message>
 </context>
 <context>
@@ -1514,7 +1518,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>Page</source>
-        <translation>Lap</translation>
+        <translation>Oldal</translation>
     </message>
     <message>
         <source>OK</source>
@@ -1625,6 +1629,10 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>citation missing!</source>
         <translation>forrásmegjelölés hiányzik!</translation>
+    </message>
+    <message>
+        <source>Open %1</source>
+        <translation>%1 megnyitása</translation>
     </message>
 </context>
 <context>
@@ -1760,7 +1768,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>First Page</source>
-        <translation>Első lap</translation>
+        <translation>Első oldal</translation>
     </message>
     <message>
         <source>Home</source>
@@ -1769,25 +1777,25 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>Previous Page</source>
-        <translation>Előző lap</translation>
+        <translation>Előző oldal</translation>
     </message>
     <message>
         <source>PgUp</source>
         <comment>shortcut key name, do not translate</comment>
-        <translation>PgUp</translation>
+        <translation type="obsolete">PgUp</translation>
     </message>
     <message>
         <source>Next Page</source>
-        <translation>Következő lap</translation>
+        <translation>Következő oldal</translation>
     </message>
     <message>
         <source>PgDown</source>
         <comment>shortcut key name, do not translate</comment>
-        <translation>PgDown</translation>
+        <translation type="obsolete">PgDown</translation>
     </message>
     <message>
         <source>Last Page</source>
-        <translation>Utolsó lap</translation>
+        <translation>Utolsó oldal</translation>
     </message>
     <message>
         <source>End</source>
@@ -1796,7 +1804,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>Go to Page...</source>
-        <translation>Ugrás lapra...</translation>
+        <translation>Ugrás oldalra...</translation>
     </message>
     <message>
         <source>Ctrl+J</source>
@@ -1937,7 +1945,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>Tile</source>
-        <translation>Csempe(?!)</translation>
+        <translation>Csempe</translation>
     </message>
     <message>
         <source>Go to Source</source>
@@ -1965,7 +1973,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>Magnify</source>
-        <translation>Átméretezés</translation>
+        <translation>Nagyító</translation>
     </message>
     <message>
         <source>Scroll</source>
@@ -2069,7 +2077,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>page %1 of %2</source>
-        <translation>A(z) %1\%2 lap</translation>
+        <translation>%1\%2 oldal</translation>
     </message>
     <message>
         <source>%1%</source>
@@ -2077,11 +2085,15 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>Abort typesetting</source>
-        <translation>Gépelés megszakítása</translation>
+        <translation type="obsolete">Gépelés megszakítása</translation>
     </message>
     <message>
         <source>Typeset</source>
-        <translation>Gépelés</translation>
+        <translation type="obsolete">Gépelés</translation>
+    </message>
+    <message>
+        <source>External Viewer</source>
+        <translation>Külső megjelenítő</translation>
     </message>
 </context>
 <context>
@@ -2174,6 +2186,14 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>Page number:</source>
         <translation>Oldalszám:</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>Hiba</translation>
+    </message>
+    <message>
+        <source>Could not open browser</source>
+        <translation>A böngésző nem futtatható</translation>
     </message>
 </context>
 <context>
@@ -2500,11 +2520,11 @@ Naprakészen kívánja tartani a fájlt egy újratöltéssel?</translation>
     </message>
     <message>
         <source>Move cursor one page up</source>
-        <translation>Kurzor fel (egy lappal)</translation>
+        <translation>Kurzor fel (egy oldallal)</translation>
     </message>
     <message>
         <source>Move cursor one page down</source>
-        <translation>Kurzor le (egy lappal)</translation>
+        <translation>Kurzor le (egy oldallal)</translation>
     </message>
     <message>
         <source>Select up</source>
@@ -2548,11 +2568,11 @@ Naprakészen kívánja tartani a fájlt egy újratöltéssel?</translation>
     </message>
     <message>
         <source>Select page up</source>
-        <translation>Előző lap kijelölése</translation>
+        <translation>Előző oldal kijelölése</translation>
     </message>
     <message>
         <source>Select page down</source>
-        <translation>Következő lap kijelölése</translation>
+        <translation>Következő oldal kijelölése</translation>
     </message>
     <message>
         <source>Delete left character</source>
@@ -3057,7 +3077,7 @@ Néhány példa:
     </message>
     <message>
         <source>Page</source>
-        <translation>Lap</translation>
+        <translation>Oldal</translation>
     </message>
     <message>
         <source>Width:</source>
@@ -4481,6 +4501,10 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
         <comment>table</comment>
         <translation>\hline eltávolítása</translation>
     </message>
+    <message>
+        <source>Could not open browser</source>
+        <translation>A böngésző nem futtatható</translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -4977,7 +5001,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Page numbers</source>
-        <translation>Lapszámozás</translation>
+        <translation>Oldalszámozás</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -5034,7 +5058,7 @@ The html files are located in the %1 directory.</source>
     </message>
     <message>
         <source>Writing page</source>
-        <translation>Lap írása:</translation>
+        <translation>Oldal írása</translation>
     </message>
     <message>
         <source>of</source>
@@ -5042,7 +5066,7 @@ The html files are located in the %1 directory.</source>
     </message>
     <message>
         <source>Writing index page</source>
-        <translation>Index lap írása.</translation>
+        <translation>Indexlap írása</translation>
     </message>
     <message>
         <source>Fatal error : </source>
