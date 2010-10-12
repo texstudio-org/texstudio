@@ -205,7 +205,7 @@ class PDFDocument : public QMainWindow, private Ui::PDFDocument
     Q_PROPERTY(QString fileName READ fileName)
 
 public:
-	PDFDocument(const ConfigManagerInterface &configManager, PDFDocumentConfig* const pdfConfig, const QString &fileName);
+	PDFDocument(const ConfigManagerInterface &configManager, PDFDocumentConfig* const pdfConfig );
 	virtual ~PDFDocument();
 
 	static PDFDocument *findDocument(const QString &fileName);
@@ -251,8 +251,8 @@ public slots:
 	void doFindAgain(bool newSearch = false);
 	void goToSource();
 	void toggleFullScreen();
-	void syncFromSource(const QString& sourceFile, int lineNo, bool activatePreview);
-	void loadFile(const QString &fileName);
+	void syncFromSource(const QString& sourceFile, int lineNo, bool activatePreview); //lineNo 0 based
+	void loadFile(const QString &fileName, const QString& externalViewer);
 
 private slots:
 	void enablePageActions(int);
@@ -261,6 +261,7 @@ private slots:
 	void syncClick(int page, const QPointF& pos);
 	void reloadWhenIdle();
 
+	void runExternalViewer();
 
 	void tileWindows();
 	void stackWindows();
@@ -270,6 +271,7 @@ signals:
 	void syncSource(const QString& sourceFile, int line);
 	void fileDropped(const QUrl& url);
 
+	void runCommand(const QString& command, bool waitForEnd, bool showStdout);
 
 	void triggeredAbout();
 	void triggeredManual();
@@ -284,7 +286,8 @@ private:
 	void loadSyncData();
 
 	QString curFile;
-	
+	QString externalViewerCmdLine;
+
 	Poppler::Document	*document;
 	
 	PDFWidget	*pdfWidget;

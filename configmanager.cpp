@@ -12,8 +12,9 @@
 
 #include <QDomElement>
 
-#include "manhattanstyle.h"
+#include "qformatconfig.h"
 
+#include "manhattanstyle.h"
 ManagedToolBar::ManagedToolBar(const QString &newName, const QStringList &defs): name(newName), defaults(defs), toolbar(0){}
 
 ManagedProperty::ManagedProperty():storage(0),type(PT_VOID),widgetOffset(0){
@@ -700,12 +701,12 @@ bool ConfigManager::execConfigDialog() {
 	//preview
 	confDlg->ui.comboBoxDvi2PngMode->setCurrentIndex(buildManager->dvi2pngMode);
 
-        //Autosave
-        if(autosaveEveryMinutes==0) confDlg->ui.comboBoxAutoSave->setCurrentIndex(0);
-        if(0<autosaveEveryMinutes && autosaveEveryMinutes<6) confDlg->ui.comboBoxAutoSave->setCurrentIndex(1);
-        if(5<autosaveEveryMinutes && autosaveEveryMinutes<11) confDlg->ui.comboBoxAutoSave->setCurrentIndex(2);
-        if(10<autosaveEveryMinutes && autosaveEveryMinutes<21) confDlg->ui.comboBoxAutoSave->setCurrentIndex(3);
-        if(20<autosaveEveryMinutes) confDlg->ui.comboBoxAutoSave->setCurrentIndex(4);
+	//Autosave
+	if(autosaveEveryMinutes==0) confDlg->ui.comboBoxAutoSave->setCurrentIndex(0);
+	if(0<autosaveEveryMinutes && autosaveEveryMinutes<6) confDlg->ui.comboBoxAutoSave->setCurrentIndex(1);
+	if(5<autosaveEveryMinutes && autosaveEveryMinutes<11) confDlg->ui.comboBoxAutoSave->setCurrentIndex(2);
+	if(10<autosaveEveryMinutes && autosaveEveryMinutes<21) confDlg->ui.comboBoxAutoSave->setCurrentIndex(3);
+	if(20<autosaveEveryMinutes) confDlg->ui.comboBoxAutoSave->setCurrentIndex(4);
 	//--build things
 	//normal commands
 	QVBoxLayout *verticalLayout = new QVBoxLayout(confDlg->ui.groupBoxCommands);
@@ -728,9 +729,18 @@ bool ConfigManager::execConfigDialog() {
 		b->setMinimumHeight(b->sizeHint().height());
 		e->setMinimumHeight(e->sizeHint().height());
  		gl->addWidget(l,(int)cmd,0);
-		gl->addWidget(e,(int)cmd,1);
-		gl->addWidget(b,(int)cmd,2);
-		gl->addWidget(bdefault,(int)cmd,3);
+		int off =  0;
+		if (cmd == BuildManager::CMD_VIEWPDF) {
+			confDlg->checkboxInternalPDFViewer = new QCheckBox(confDlg);
+			confDlg->checkboxInternalPDFViewer->setObjectName("internal");
+			confDlg->checkboxInternalPDFViewer->setText(tr("Internal viewer"));
+			confDlg->checkboxInternalPDFViewer->setChecked(buildManager->getLatexCommand(cmd).startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER));
+			gl->addWidget(confDlg->checkboxInternalPDFViewer, (int)cmd, 1);
+			off++;
+		}
+		gl->addWidget(e,(int)cmd,1+off,1,2-off);
+		gl->addWidget(b,(int)cmd,3);
+		gl->addWidget(bdefault,(int)cmd,4);
 		buttonsToCommands.insert(b,cmd);
 		buttonsToCommands.insert(bdefault,cmd);
 		commandsToEdits.insert(cmd,e);
@@ -964,6 +974,19 @@ bool ConfigManager::execConfigDialog() {
 		for (BuildManager::LatexCommand cmd=BuildManager::CMD_SVN; cmd <= BuildManager::CMD_SVNADMIN; ++cmd){
 			if (!commandsToEdits.value(cmd)) continue;
 			buildManager->setLatexCommand(cmd,commandsToEdits.value(cmd)->text());;
+		}
+
+
+		Q_ASSERT(confDlg->checkboxInternalPDFViewer);
+		QString curPdfViewer = buildManager->getLatexCommand(BuildManager::CMD_VIEWPDF);
+		if (confDlg->checkboxInternalPDFViewer && confDlg->checkboxInternalPDFViewer->isChecked() != curPdfViewer.startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER)) {
+			//prepend/remove tmx://internal-pdf-viewer
+			if (confDlg->checkboxInternalPDFViewer->isChecked())
+				buildManager->setLatexCommand(BuildManager::CMD_VIEWPDF , BuildManager::TMX_INTERNAL_PDF_VIEWER + "/" + curPdfViewer);
+			else if (curPdfViewer.startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER+"/"))
+				buildManager->setLatexCommand(BuildManager::CMD_VIEWPDF , curPdfViewer.mid(BuildManager::TMX_INTERNAL_PDF_VIEWER.length() + 1));
+			else
+				buildManager->setLatexCommand(BuildManager::CMD_VIEWPDF , curPdfViewer.mid(BuildManager::TMX_INTERNAL_PDF_VIEWER.length()));
 		}
 
 		buildManager->setLatexCommand(BuildManager::CMD_USER_PRECOMPILE,confDlg->ui.lineEditExecuteBeforeCompiling->text());

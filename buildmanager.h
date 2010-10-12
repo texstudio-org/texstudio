@@ -42,6 +42,7 @@ public:
 	static QString baseCommandName(LatexCommand cmd); //returns a platform independent base name if it exists
 	static QString defaultCommandOptions(LatexCommand cmd);
 	static QString commandDisplayName(LatexCommand cmd);
+	static QString TMX_INTERNAL_PDF_VIEWER;
 
 	void registerOptions(ConfigManagerInterface& cmi);
 	void readSettings(const QSettings &settings);

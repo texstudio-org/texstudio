@@ -2738,20 +2738,26 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool 
 		return;
 	}
 
-	if (commandline == "tmx://intern-pdf-viewer") {
+	if (commandline.startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER)) {
 		QString pdfFile = BuildManager::parseExtendedCommandLine("?am.pdf", finame);
-		QString externalViewer = BuildManager::parseExtendedCommandLine(buildManager.getLatexCommand(BuildManager::CMD_VIEWPDF), finame, getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1);
-		if (pdfviewerWindow) {		
-			pdfviewerWindow->loadFile(pdfFile/*TODO,externalViewer*/);
-		} else {
-			pdfviewerWindow=new PDFDocument(configManager, configManager.pdfDocumentConfig, pdfFile/*,externalViewer, */);
+		QString externalViewer = buildManager.getLatexCommand(BuildManager::CMD_VIEWPDF);
+		if (externalViewer.startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER)) {
+			externalViewer.remove(0,BuildManager::TMX_INTERNAL_PDF_VIEWER.length());
+			if (externalViewer.startsWith('/')) externalViewer.remove(0,1);
+		}
+		externalViewer = BuildManager::parseExtendedCommandLine(externalViewer, finame, getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1);
+		if (!pdfviewerWindow) {
+			pdfviewerWindow=new PDFDocument(configManager, configManager.pdfDocumentConfig);
 			connect(pdfviewerWindow, SIGNAL(triggeredAbout()), SLOT(HelpAbout()));
 			connect(pdfviewerWindow, SIGNAL(triggeredManual()), SLOT(UserManualHelp()));
 			connect(pdfviewerWindow, SIGNAL(triggeredQuit()), SLOT(fileExit()));
 			connect(pdfviewerWindow, SIGNAL(triggeredConfigure()), SLOT(GeneralOptions()));
 			connect(pdfviewerWindow, SIGNAL(triggeredQuickBuild()), SLOT(QuickBuild()));
 			connect(pdfviewerWindow, SIGNAL(syncSource(const QString&, int)), SLOT(syncFromViewer(const QString &, int)));
+			connect(pdfviewerWindow, SIGNAL(runCommand(const QString&, bool, bool)), SLOT(runCommand(const QString&, bool, bool)));
 		}
+		pdfviewerWindow->loadFile(pdfFile,externalViewer);
+		pdfviewerWindow->syncFromSource(getCurrentFileName(), currentEditorView()->editor->cursor().lineNumber(), true);
 		return;
 	}
 
@@ -3337,15 +3343,16 @@ void Texmaker::UserManualHelp() {
 }
 
 void Texmaker::HelpAbout() {
-	AboutDialog *abDlg = new AboutDialog(this);
+	AboutDialog *abDlg = new AboutDialog(0); //if parent!=0 the focus is wrong after pdf viewer about call
 	abDlg->exec();
+	delete abDlg;
 }
 ////////////// OPTIONS //////////////////////////////////////
 void Texmaker::GeneralOptions() {
 	bool customEnvironmentExisted = !configManager.customEnvironments.isEmpty();
 	bool oldModernStyle = configManager.modernStyle;
 	bool oldSystemTheme = configManager.useSystemTheme;
-        autosaveTimer.stop();
+	autosaveTimer.stop();
 	if (configManager.execConfigDialog()) {
 		mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);
 		// refresh quick language selection combobox
@@ -3416,9 +3423,9 @@ void Texmaker::GeneralOptions() {
 			setupDockWidgets();
 		}
 	}
-        if(configManager.autosaveEveryMinutes>0){
-            autosaveTimer.start(configManager.autosaveEveryMinutes*1000*60);
-        }
+	if(configManager.autosaveEveryMinutes>0){
+		autosaveTimer.start(configManager.autosaveEveryMinutes*1000*60);
+	}
 }
 void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	// parse command line

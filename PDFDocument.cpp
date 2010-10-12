@@ -1244,7 +1244,7 @@ QScrollArea* PDFWidget::getScrollArea()
 
 QList<PDFDocument*> PDFDocument::docList;
 
-PDFDocument::PDFDocument(const ConfigManagerInterface &configManager, PDFDocumentConfig* const pdfConfig, const QString &fileName)
+PDFDocument::PDFDocument(const ConfigManagerInterface &configManager, PDFDocumentConfig* const pdfConfig)
 	: watcher(NULL), reloadTimer(NULL), scanner(NULL)
 {
 	Q_ASSERT(pdfConfig);
@@ -1255,13 +1255,6 @@ PDFDocument::PDFDocument(const ConfigManagerInterface &configManager, PDFDocumen
 
 	watcher = new QFileSystemWatcher(this);
 	connect(watcher, SIGNAL(fileChanged(const QString&)), this, SLOT(reloadWhenIdle()));
-
-	loadFile(fileName);
-
-	//setGeometry(config);
-
-	raise();
-	show();
 
 	QRect screen = QApplication::desktop()->screenGeometry();
 	while (globalConfig->windowLeft > screen.width() && screen.width() > 0)
@@ -1321,6 +1314,7 @@ PDFDocument::init(const ConfigManagerInterface& configManager)
 	actionMagnify->setIcon(configManager.getRealIcon("zoom-in"));
 	actionScroll->setIcon(configManager.getRealIcon("hand"));
 	actionTypeset->setIcon(QIcon(":/images/quick.png"));
+	actionExternalViewer->setIcon(QIcon(":/images/viewpdf.png"));
 
 	setContextMenuPolicy(Qt::NoContextMenu);
 
@@ -1355,7 +1349,6 @@ PDFDocument::init(const ConfigManagerInterface& configManager)
 	document = NULL;
 	
 	connect(actionAbout_TW, SIGNAL(triggered()), SIGNAL(triggeredAbout()));
-	connect(actionAbout_TW, SIGNAL(triggered()), SLOT(setFocus()));
 	connect(actionUserManual, SIGNAL(triggered()), SIGNAL(triggeredManual()));
 
 
@@ -1384,7 +1377,9 @@ PDFDocument::init(const ConfigManagerInterface& configManager)
 		new QShortcut(QKeySequence("Ctrl+="), pdfWidget, SLOT(zoomIn()));
 	
 	connect(actionTypeset, SIGNAL(triggered()), SIGNAL(triggeredQuickBuild()));
-	
+
+	connect(actionExternalViewer, SIGNAL(triggered()), SLOT(runExternalViewer()));
+
 	connect(actionStack, SIGNAL(triggered()), SLOT(stackWindows()));
 	connect(actionTile, SIGNAL(triggered()), SLOT(tileWindows()));
 	connect(actionSide_by_Side, SIGNAL(triggered()), this, SLOT(sideBySide()));
@@ -1393,7 +1388,6 @@ PDFDocument::init(const ConfigManagerInterface& configManager)
 //	connect(actionFind_Again, SIGNAL(triggered()), this, SLOT(doFindAgain()));
 
 	connect(actionPreferences, SIGNAL(triggered()), SIGNAL(triggeredConfigure()));
-	connect(actionPreferences, SIGNAL(triggered()), SLOT(setFocus()));
 
 	menuShow->addAction(toolBar->toggleViewAction());
 	menuShow->addSeparator();
@@ -1465,8 +1459,9 @@ void PDFDocument::closeEvent(QCloseEvent *event)
 	deleteLater();
 }
 
-void PDFDocument::loadFile(const QString &fileName)
+void PDFDocument::loadFile(const QString &fileName, const QString& externalViewer)
 {
+	externalViewerCmdLine = externalViewer;
 	setCurrentFile(fileName);
 	reload();
 	if (watcher) {
@@ -1536,6 +1531,10 @@ void PDFDocument::reloadWhenIdle()
 	reloadTimer->start();
 }
 
+void PDFDocument::runExternalViewer(){
+	emit runCommand(externalViewerCmdLine, false, false);
+}
+
 void PDFDocument::tileWindows(){
 	arrangeWindows(true);
 }
@@ -1589,6 +1588,8 @@ void PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool act
 {
 	if (scanner == NULL)
 		return;
+
+	lineNo++; //input 0 based, synctex 1 based
 
 	// find the name synctex is using for this source file...
 	const QFileInfo sourceFileInfo(sourceFile);
@@ -1774,7 +1775,7 @@ void PDFDocument::dropEvent(QDropEvent *event)
 		const QList<QUrl> urls = event->mimeData()->urls();
 		foreach (const QUrl& url, urls)
 			if (url.scheme() == "file") {
-				if (url.path().endsWith("pdf")) loadFile(url.toLocalFile());
+				if (url.path().endsWith("pdf")) loadFile(url.toLocalFile(), externalViewerCmdLine);
 				else emit fileDropped(url);
 			}
 		event->acceptProposedAction();

@@ -16,6 +16,7 @@
 #include "latexeditorview_config.h"
 #include "smallUsefulFunctions.h"
 #include "buildmanager.h"
+#include "qformatconfig.h"
 
 const QString ShortcutDelegate::addRowButton="<internal: add row>";
 const QString ShortcutDelegate::deleteRowButton="<internal: delete row>";
@@ -244,7 +245,7 @@ bool ShortcutDelegate::isBasicEditorKey(const QModelIndex& index) const{
 }
 
 
-ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), buildManager(0) {
+ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPDFViewer(0), buildManager(0) {
 	setModal(true);
 	ui.setupUi(this);
 
