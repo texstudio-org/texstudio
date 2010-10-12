@@ -17,7 +17,6 @@
 #include "ui_configdialog.h"
 
 #include "qformat.h"
-#include "qformatconfig.h"
 
 
 class ShortcutDelegate : public QItemDelegate {
@@ -49,6 +48,7 @@ public slots:
 };
 
 class BuildManager;
+class QFormatConfig;
 class ConfigDialog : public QDialog {
 	Q_OBJECT
 
@@ -56,6 +56,7 @@ public:
 	ConfigDialog(QWidget* parent = 0);
 	~ConfigDialog();
 	Ui::ConfigDialog ui;
+	QCheckBox * checkboxInternalPDFViewer;
 
 	QMap<QString,QFormat> editorFormats;
 	QFormatConfig * fmConfig;

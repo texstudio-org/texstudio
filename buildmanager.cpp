@@ -9,6 +9,9 @@
 #include "windows.h"
 #endif
 
+
+QString BuildManager::TMX_INTERNAL_PDF_VIEWER = "tmx://internal-pdf-viewer";
+
 BuildManager::BuildManager()
 #ifdef Q_WS_WIN
 		:

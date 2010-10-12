@@ -125,6 +125,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionTypeset"/>
+   <addaction name="actionExternalViewer"/>
    <addaction name="separator"/>
    <addaction name="actionFirst_Page"/>
    <addaction name="actionPrevious_Page"/>
@@ -147,10 +148,6 @@
    </property>
   </action>
   <action name="actionFirst_Page">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/tango/go-first.png</normaloff>:/images/tango/go-first.png</iconset>
-   </property>
    <property name="text">
     <string>First Page</string>
    </property>
@@ -162,10 +159,6 @@
    </property>
   </action>
   <action name="actionPrevious_Page">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/tango/go-previous.png</normaloff>:/images/tango/go-previous.png</iconset>
-   </property>
    <property name="text">
     <string>Previous Page</string>
    </property>
@@ -174,10 +167,6 @@
    </property>
   </action>
   <action name="actionNext_Page">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/tango/go-next.png</normaloff>:/images/tango/go-next.png</iconset>
-   </property>
    <property name="text">
     <string>Next Page</string>
    </property>
@@ -186,10 +175,6 @@
    </property>
   </action>
   <action name="actionLast_Page">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/tango/go-last.png</normaloff>:/images/tango/go-last.png</iconset>
-   </property>
    <property name="text">
     <string>Last Page</string>
    </property>
@@ -212,10 +197,6 @@
    </property>
   </action>
   <action name="actionZoom_In">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/images/zoomin.png</normaloff>:/images/images/zoomin.png</iconset>
-   </property>
    <property name="text">
     <string>Zoom In</string>
    </property>
@@ -227,10 +208,6 @@
    </property>
   </action>
   <action name="actionZoom_Out">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/images/zoomout.png</normaloff>:/images/images/zoomout.png</iconset>
-   </property>
    <property name="text">
     <string>Zoom Out</string>
    </property>
@@ -245,10 +222,6 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/images/fitwindow.png</normaloff>:/images/images/fitwindow.png</iconset>
-   </property>
    <property name="text">
     <string>Fit to Window</string>
    </property>
@@ -260,10 +233,6 @@
    </property>
   </action>
   <action name="actionActual_Size">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/images/actualsize.png</normaloff>:/images/images/actualsize.png</iconset>
-   </property>
    <property name="text">
     <string>Actual Size</string>
    </property>
@@ -278,10 +247,6 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/images/fitwidth.png</normaloff>:/images/images/fitwidth.png</iconset>
-   </property>
    <property name="text">
     <string>Fit to Width</string>
    </property>
@@ -293,10 +258,6 @@
    </property>
   </action>
   <action name="actionNew">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/tango/document-new.png</normaloff>:/images/tango/document-new.png</iconset>
-   </property>
    <property name="text">
     <string>New</string>
    </property>
@@ -308,10 +269,6 @@
    </property>
   </action>
   <action name="actionOpen">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/tango/document-open.png</normaloff>:/images/tango/document-open.png</iconset>
-   </property>
    <property name="text">
     <string>Open...</string>
    </property>
@@ -345,10 +302,6 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/tango/edit-undo.png</normaloff>:/images/tango/edit-undo.png</iconset>
-   </property>
    <property name="text">
     <string>Undo</string>
    </property>
@@ -362,10 +315,6 @@
   <action name="actionRedo">
    <property name="enabled">
     <bool>false</bool>
-   </property>
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/tango/edit-redo.png</normaloff>:/images/tango/edit-redo.png</iconset>
    </property>
    <property name="text">
     <string>Redo</string>
@@ -381,10 +330,6 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/tango/edit-cut.png</normaloff>:/images/tango/edit-cut.png</iconset>
-   </property>
    <property name="text">
     <string>Cut</string>
    </property>
@@ -399,10 +344,6 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/tango/edit-copy.png</normaloff>:/images/tango/edit-copy.png</iconset>
-   </property>
    <property name="text">
     <string>Copy</string>
    </property>
@@ -416,10 +357,6 @@
   <action name="actionPaste">
    <property name="enabled">
     <bool>false</bool>
-   </property>
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/tango/edit-paste.png</normaloff>:/images/tango/edit-paste.png</iconset>
    </property>
    <property name="text">
     <string>Paste</string>
@@ -446,10 +383,6 @@
    </property>
   </action>
   <action name="actionTypeset">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/images/runtool.png</normaloff>:/images/images/runtool.png</iconset>
-   </property>
    <property name="text">
     <string>Quick Build</string>
    </property>
@@ -463,11 +396,18 @@
     <enum>QAction::NoRole</enum>
    </property>
   </action>
-  <action name="actionPreferences">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/tango/preferences-system.png</normaloff>:/images/tango/preferences-system.png</iconset>
+  <action name="actionExternalViewer">
+   <property name="text">
+    <string>External Viewer</string>
    </property>
+   <property name="iconText">
+    <string>External Viewer</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionPreferences">
    <property name="text">
     <string>Preferences...</string>
    </property>
@@ -537,10 +477,6 @@
    <property name="checked">
     <bool>true</bool>
    </property>
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/images/zoomin.png</normaloff>:/images/images/zoomin.png</iconset>
-   </property>
    <property name="text">
     <string>Magnify</string>
    </property>
@@ -548,10 +484,6 @@
   <action name="actionScroll">
    <property name="checkable">
     <bool>true</bool>
-   </property>
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/images/hand.png</normaloff>:/images/images/hand.png</iconset>
    </property>
    <property name="text">
     <string>Scroll</string>
@@ -561,10 +493,6 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/images/text-tool.png</normaloff>:/images/images/text-tool.png</iconset>
-   </property>
    <property name="text">
     <string>Select Text</string>
    </property>
@@ -572,10 +500,6 @@
   <action name="actionSelect_Image">
    <property name="checkable">
     <bool>true</bool>
-   </property>
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/images/rect-select.png</normaloff>:/images/images/rect-select.png</iconset>
    </property>
    <property name="text">
     <string>Select Image</string>
@@ -621,10 +545,6 @@
    </property>
   </action>
   <action name="actionFind">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/images/tango/edit-find.png</normaloff>:/images/tango/edit-find.png</iconset>
-   </property>
    <property name="text">
     <string>Find...</string>
    </property>
