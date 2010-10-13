@@ -1380,6 +1380,7 @@ PDFDocument::init(const ConfigManagerInterface& configManager)
 
 	connect(actionExternalViewer, SIGNAL(triggered()), SLOT(runExternalViewer()));
 
+	connect(actionCloseSomething, SIGNAL(triggered()), SLOT(closeSomething()));
 	connect(actionStack, SIGNAL(triggered()), SLOT(stackWindows()));
 	connect(actionTile, SIGNAL(triggered()), SLOT(tileWindows()));
 	connect(actionSide_by_Side, SIGNAL(triggered()), this, SLOT(sideBySide()));
@@ -1392,21 +1393,21 @@ PDFDocument::init(const ConfigManagerInterface& configManager)
 	menuShow->addAction(toolBar->toggleViewAction());
 	menuShow->addSeparator();
 
-	QDockWidget *dw = new PDFOutlineDock(this);
+	QDockWidget *dw = dwOutline = new PDFOutlineDock(this);
 	dw->hide();
 	addDockWidget(Qt::LeftDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
 	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
 	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(pageChanged(int)));
 
-	dw = new PDFInfoDock(this);
+	dw = dwInfo = new PDFInfoDock(this);
 	dw->hide();
 	addDockWidget(Qt::LeftDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
 	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
 	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(pageChanged(int)));
 
-	dw = new PDFFontsDock(this);
+	dw = dwFonts = new PDFFontsDock(this);
 	dw->hide();
 	addDockWidget(Qt::BottomDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
@@ -1533,6 +1534,13 @@ void PDFDocument::reloadWhenIdle()
 
 void PDFDocument::runExternalViewer(){
 	emit runCommand(externalViewerCmdLine, false, false);
+}
+
+void PDFDocument::closeSomething(){
+	if (dwFonts && dwFonts->isVisible()) dwFonts->hide();
+	else if (dwInfo && dwInfo->isVisible()) dwInfo->hide();
+	else if (dwOutline && dwOutline->isVisible()) dwOutline->hide();
+	else actionClose->trigger();
 }
 
 void PDFDocument::tileWindows(){
