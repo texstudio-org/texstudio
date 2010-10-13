@@ -311,7 +311,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	createIcon(tr("Latex Menus"),QIcon(":/images/configkeys.png"), true);
 	createIcon(tr("Custom Toolbar"),QIcon(":/images/configkeys.png"), true);
 	createIcon(tr("Editor"),QIcon(":/images/configeditor.png"));
-	createIcon(tr("Adv. Editor"),QIcon(":/images/configeditor.png"));
+	createIcon(tr("Adv. Editor"),QIcon(":/images/configeditor.png"), true);
 	createIcon(tr("Custom Highlighting"),QIcon(":/images/configeditor.png"), true);
 	createIcon(tr("Completion"),QIcon(":/images/configcompletion.png"));
 	createIcon(tr("Preview"),QIcon(":/images/configeditor.png"));
