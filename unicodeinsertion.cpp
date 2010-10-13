@@ -1,5 +1,11 @@
 #include "unicodeinsertion.h"
 
+QString unicodePointToString(unsigned int u){
+//	if (u < 0x10000) return QChar(u);
+//	else //return QString(QChar(QChar::highSurrogate(u))) + QChar(QChar::lowSurrogate(u));
+	return QString::fromUcs4(&u, 1);
+}
+
 UnicodeInsertion::UnicodeInsertion(QWidget* parent): QWidget(parent)
 {
 	QLayout* lay = new QVBoxLayout();
@@ -52,10 +58,10 @@ void UnicodeInsertion::editChanged(const QString& newText){
 	else if (newText.startsWith("x",Qt::CaseInsensitive)) nt.remove(0,1);
 	else base=10;
 
-	int c = QString(nt).toInt(0,base);
-	setTableText(0,8,QChar(c));
+	unsigned int c = QString(nt).toUInt(0,base);
+	setTableText(0,8,unicodePointToString(c));
 	for (int i=0;i<base;i++)
-		setTableText(2,i,QChar(c*base+i));	
+		setTableText(2,i,unicodePointToString(c*base+i));
 	table->resizeRowsToContents();
 	table->resizeColumnsToContents();
 	//for (int i=0;i<16;i++)
