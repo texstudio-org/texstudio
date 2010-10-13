@@ -199,6 +199,7 @@ private:
 
 
 class PDFDocumentConfig;
+class PDFDock;
 class PDFDocument : public QMainWindow, private Ui::PDFDocument
 {
 	Q_OBJECT
@@ -263,6 +264,7 @@ private slots:
 
 	void runExternalViewer();
 
+	void closeSomething();
 	void tileWindows();
 	void stackWindows();
 	void arrangeWindows(bool tile);
@@ -306,6 +308,8 @@ private:
 	
 	static QList<PDFDocument*> docList;
 	
+	PDFDock *dwOutline, *dwFonts, *dwInfo;
+
 //	PDFSearchResult lastSearchResult;
 	// stores the page idx a search was started on
 	// after wrapping the search will continue only up to this page

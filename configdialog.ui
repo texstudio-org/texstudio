@@ -137,7 +137,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>7</number>
+      <number>10</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -151,7 +151,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>796</width>
+            <width>797</width>
             <height>597</height>
            </rect>
           </property>
@@ -1115,56 +1115,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="2" column="1" colspan="2">
            <widget class="QComboBox" name="comboBoxEncoding"/>
           </item>
-          <item row="10" column="0" colspan="3">
-           <widget class="QComboBox" name="comboBoxPreviewMode">
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-            <item>
-             <property name="text">
-              <string>Show preview as tool tip if panel is hidden</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Always show preview in preview panel</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Always show preview as tool tip</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Always show both</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="10" column="3" colspan="2">
-           <widget class="QComboBox" name="comboBoxDvi2PngMode">
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-            <item>
-             <property name="text">
-              <string>Preview with dvipng</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Preview with dvipng --follow (parallel)</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Preview with dvips/ghostscript</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="13" column="0" colspan="5">
+          <item row="12" column="0" colspan="5">
            <widget class="QGroupBox" name="formatConfigBox">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
@@ -1189,7 +1140,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="11" column="0" colspan="2">
+          <item row="10" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxCloseSearchReplaceTogether">
             <property name="text">
              <string>Close search and replace panel together</string>
@@ -1231,7 +1182,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </item>
            </widget>
           </item>
-          <item row="11" column="2" colspan="2">
+          <item row="10" column="2" colspan="2">
            <widget class="QCheckBox" name="checkBoxUseLineForSearch">
             <property name="text">
              <string>Use single line selection as Search Word</string>
@@ -1251,7 +1202,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="11" column="4">
+          <item row="10" column="4">
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
              <widget class="QLabel" name="label_22">
@@ -1616,6 +1567,147 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="page_8">
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QGroupBox" name="groupBox_5">
+         <property name="title">
+          <string>Segment preview</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QComboBox" name="comboBoxDvi2PngMode">
+            <property name="advancedOption" stdset="0">
+             <bool>false</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>Preview with dvipng</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Preview with dvipng --follow (parallel)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Preview with dvips/ghostscript</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBoxPreviewMode">
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>Show preview as tool tip if panel is hidden</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Always show preview in preview panel</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Always show preview as tool tip</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Always show both</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_8">
+         <property name="title">
+          <string>Full page pdf preview</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_27">
+            <property name="text">
+             <string>Screen resolution:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBox"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_25">
+            <property name="text">
+             <string>Magnifier size:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="comboBox">
+            <item>
+             <property name="text">
+              <string>Small</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Normal</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Large</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_26">
+            <property name="text">
+             <string>Magnifier shape:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QComboBox" name="comboBox_2">
+            <item>
+             <property name="text">
+              <string>Square</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Circle</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>359</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="page_5">
       <layout class="QVBoxLayout">
        <item>
@@ -1725,8 +1817,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
   <tabstop>checkBoxLineState</tabstop>
   <tabstop>comboBoxAutoIndent</tabstop>
   <tabstop>comboboxLineNumbers</tabstop>
-  <tabstop>comboBoxPreviewMode</tabstop>
-  <tabstop>comboBoxDvi2PngMode</tabstop>
   <tabstop>checkBoxCloseSearchReplaceTogether</tabstop>
   <tabstop>checkBoxCompletion</tabstop>
   <tabstop>checkBoxCaseSensitive</tabstop>
