@@ -7,9 +7,9 @@ struct PDFDocumentConfig{
 	int windowWidth, windowHeight;
 	QByteArray windowState;
 
-	int dpi;//QApplication::desktop()->logicalDpiX()
-	int scaleOption;//kDefault_PreviewScaleOption
-	int scale; //kDefault_PreviewScale
+	int dpi;
+	int scaleOption;
+	int scale;
 
 
 	int magnifierSize, magnifierShape;

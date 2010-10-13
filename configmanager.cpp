@@ -278,9 +278,6 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Dialogs/Last Hard Wrap Join Lines", &lastHardWrapJoinLines, false);
 
 
-	//preview
-	registerOption("Preview/Mode", (int*)&previewMode, 0, &pseudoDialog->comboBoxPreviewMode);
-
 	//build commands
 	registerOption("Tools/SingleViewerInstance", &singleViewerInstance, false, &pseudoDialog->checkBoxSingleInstanceViewer);
 	registerOption("Tools/Show Log After Compiling", &showLogAfterCompiling, true, &pseudoDialog->checkBoxShowLog);
@@ -315,6 +312,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	//language
 	registerOption("Interface/Language", &language, "", &pseudoDialog->comboBoxLanguage);
 
+	//preview
+	registerOption("Preview/Mode", (int*)&previewMode, 0, &pseudoDialog->comboBoxPreviewMode);
 
 	//pdf preview
 	QRect screen = QApplication::desktop()->screenGeometry();
@@ -324,11 +323,11 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Geometries/PdfViewerHeight", &pdfDocumentConfig->windowHeight, screen.height()/3);
 	registerOption("Geometries/PdfViewerState", &pdfDocumentConfig->windowState, QByteArray());
 
-	registerOption("Preview/DPI", &pdfDocumentConfig->dpi, QApplication::desktop()->logicalDpiX());
-	registerOption("Preview/Scale Option", &pdfDocumentConfig->scaleOption, 1);
-	registerOption("Preview/Scale", &pdfDocumentConfig->scaleOption, 200);
-	registerOption("Preview/Magnifier Size", &pdfDocumentConfig->magnifierSize, 2);
-	registerOption("Preview/Magnifier Shape", &pdfDocumentConfig->magnifierShape, 1);
+	registerOption("Preview/DPI", &pdfDocumentConfig->dpi, QApplication::desktop()->logicalDpiX(), &pseudoDialog->spinBoxPreviewDPI);
+	registerOption("Preview/Scale Option", &pdfDocumentConfig->scale, 1, &pseudoDialog->comboBoxPreviewScale);
+	registerOption("Preview/Scale", &pdfDocumentConfig->scaleOption, 100, &pseudoDialog->spinBoxPreviewScale);
+	registerOption("Preview/Magnifier Size", &pdfDocumentConfig->magnifierSize, 300, &pseudoDialog->spinBoxPreviewMagnifierSize);
+	registerOption("Preview/Magnifier Shape", &pdfDocumentConfig->magnifierShape, 1, &pseudoDialog->comboBoxPreviewMagnifierShape);
 
 	#ifndef QT_NO_DEBUG
 	registerOption("Debug/Last Application Modification", &debugLastFileModification);

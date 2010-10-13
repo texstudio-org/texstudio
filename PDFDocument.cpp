@@ -63,8 +63,6 @@
 const qreal kMaxScaleFactor = 8.0;
 const qreal kMinScaleFactor = 0.125;
 
-const int magSizes[] = { 200, 300, 400 };
-
 // tool codes
 const int kNone = 0;
 const int kMagnifier = 1;
@@ -319,13 +317,13 @@ PDFWidget::PDFWidget()
 		default:
 			fixedScale(1.0);
 			break;
-		case 2:
+		case 1:
 			fitWidth(true);
 			break;
-		case 3:
+		case 2:
 			fitWindow(true);
 			break;
-		case 4:
+		case 3:
 			fixedScale(globalConfig->scale / 100.0);
 			break;
 	}
@@ -430,9 +428,6 @@ void PDFWidget::useMagnifier(const QMouseEvent *inEvent)
 		magnifier = new PDFMagnifier(this, dpi);
 
 		int magnifierSize = globalConfig->magnifierSize;
-		if (magnifierSize <= 0 || magnifierSize > (int)(sizeof(magSizes) / sizeof(int)))
-			magnifierSize = 2;
-		magnifierSize = magSizes[magnifierSize - 1];
 		magnifier->setFixedSize(magnifierSize * 4 / 3, magnifierSize);
 	}
 	magnifier->setPage(page, scaleFactor);
