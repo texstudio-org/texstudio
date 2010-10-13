@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="hu_HU" sourcelanguage="en">
+<TS version="2.0" language="hu_HU">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -476,11 +476,11 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>Show line numbers</source>
-        <translation>Sorok számának mutatása</translation>
+        <translation>A sorok legyenek számozva</translation>
     </message>
     <message>
         <source>Show important line numbers</source>
-        <translation>Fontos sorok számának mutatása</translation>
+        <translation>A fontos sorok legyenek számozva</translation>
     </message>
     <message>
         <source>Formats</source>
@@ -755,10 +755,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Egyéni eszköztár</translation>
     </message>
     <message>
-        <source>Editor2</source>
-        <translation>Sortörés</translation>
-    </message>
-    <message>
         <source>Custom Highlighting</source>
         <translation>Egyéni kiemelés</translation>
     </message>
@@ -836,19 +832,107 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>5 minutes</source>
-        <translation>5 perc</translation>
+        <translation>5 percenként</translation>
     </message>
     <message>
         <source>10 minutes</source>
-        <translation>10 perc</translation>
+        <translation>10 percenként</translation>
     </message>
     <message>
         <source>20 minutes</source>
-        <translation>20 perc</translation>
+        <translation>20 percenként</translation>
     </message>
     <message>
         <source>60 minutes</source>
-        <translation>60 perc</translation>
+        <translation>óránként</translation>
+    </message>
+    <message>
+        <source>Indentation mode:</source>
+        <translation>Behúzás mód:</translation>
+    </message>
+    <message>
+        <source>Line numbers:</source>
+        <translation>Sorok számozása:</translation>
+    </message>
+    <message>
+        <source>Segment preview</source>
+        <translation>Részleges előnézet</translation>
+    </message>
+    <message>
+        <source>Command:</source>
+        <translation>Parancs:</translation>
+    </message>
+    <message>
+        <source>Display mode:</source>
+        <translation>Megjelenítési mód:</translation>
+    </message>
+    <message>
+        <source>Full page pdf preview</source>
+        <translation>Teljes oldal pdf előnézete</translation>
+    </message>
+    <message>
+        <source>Screen resolution:</source>
+        <translation>Képernyő felbontás:</translation>
+    </message>
+    <message>
+        <source>dpi</source>
+        <translation>dpi</translation>
+    </message>
+    <message>
+        <source>Magnifier size:</source>
+        <translation>Nagyítás mértéke:</translation>
+    </message>
+    <message>
+        <source>Scale option:</source>
+        <translation>Méret tulajdonságok:</translation>
+    </message>
+    <message>
+        <source>Scaling:</source>
+        <translation>Méret:</translation>
+    </message>
+    <message>
+        <source>Original size</source>
+        <translation>Eredeti méret</translation>
+    </message>
+    <message>
+        <source>Fit to window width</source>
+        <translation>Igazítás az ablak széléhez</translation>
+    </message>
+    <message>
+        <source>Fit to window size</source>
+        <translation>Igazítás az ablak méretéhez</translation>
+    </message>
+    <message>
+        <source>Scaled size</source>
+        <translation>Egyéni méret</translation>
+    </message>
+    <message>
+        <source>%</source>
+        <translation>%</translation>
+    </message>
+    <message>
+        <source>Magnifier shape:</source>
+        <translation>Nagyító alakja:</translation>
+    </message>
+    <message>
+        <source>Square</source>
+        <translation>Téglalap</translation>
+    </message>
+    <message>
+        <source>Circle</source>
+        <translation>Kör</translation>
+    </message>
+    <message>
+        <source>px</source>
+        <translation>px</translation>
+    </message>
+    <message>
+        <source>Adv. Editor</source>
+        <translation>Haladó szerkesztő</translation>
+    </message>
+    <message>
+        <source>Preview</source>
+        <translation>Előnézet</translation>
     </message>
 </context>
 <context>
@@ -1735,26 +1819,6 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <translation>névtelen.pdf[*]</translation>
     </message>
     <message>
-        <source>Help</source>
-        <translation>Súgó</translation>
-    </message>
-    <message>
-        <source>File</source>
-        <translation>Fájl</translation>
-    </message>
-    <message>
-        <source>Edit</source>
-        <translation>Szerkesztés</translation>
-    </message>
-    <message>
-        <source>View</source>
-        <translation>Megjelenítés</translation>
-    </message>
-    <message>
-        <source>Window</source>
-        <translation>Ablak</translation>
-    </message>
-    <message>
         <source>Show</source>
         <translation>Megjelenít</translation>
     </message>
@@ -1763,39 +1827,9 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <translation>Eszköztár</translation>
     </message>
     <message>
-        <source>About TexMakerX...</source>
-        <translation>&amp;A TexMakerX névjegye...</translation>
-    </message>
-    <message>
-        <source>First Page</source>
-        <translation>Első oldal</translation>
-    </message>
-    <message>
         <source>Home</source>
         <comment>shortcut key name, do not translate</comment>
         <translation>Home</translation>
-    </message>
-    <message>
-        <source>Previous Page</source>
-        <translation>Előző oldal</translation>
-    </message>
-    <message>
-        <source>PgUp</source>
-        <comment>shortcut key name, do not translate</comment>
-        <translation type="obsolete">PgUp</translation>
-    </message>
-    <message>
-        <source>Next Page</source>
-        <translation>Következő oldal</translation>
-    </message>
-    <message>
-        <source>PgDown</source>
-        <comment>shortcut key name, do not translate</comment>
-        <translation type="obsolete">PgDown</translation>
-    </message>
-    <message>
-        <source>Last Page</source>
-        <translation>Utolsó oldal</translation>
     </message>
     <message>
         <source>End</source>
@@ -1803,48 +1837,24 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <translation>End</translation>
     </message>
     <message>
-        <source>Go to Page...</source>
-        <translation>Ugrás oldalra...</translation>
-    </message>
-    <message>
         <source>Ctrl+J</source>
         <translation>Ctrl+J</translation>
-    </message>
-    <message>
-        <source>Zoom In</source>
-        <translation>Nagyítás</translation>
     </message>
     <message>
         <source>Ctrl++</source>
         <translation>Ctrl++</translation>
     </message>
     <message>
-        <source>Zoom Out</source>
-        <translation>Kicsinyítés</translation>
-    </message>
-    <message>
         <source>Ctrl+-</source>
         <translation>Ctrl+-</translation>
-    </message>
-    <message>
-        <source>Fit to Window</source>
-        <translation>Képernyőhöz igazít</translation>
     </message>
     <message>
         <source>Ctrl+3</source>
         <translation>Ctrl+3</translation>
     </message>
     <message>
-        <source>Actual Size</source>
-        <translation>Aktuális méret</translation>
-    </message>
-    <message>
         <source>Ctrl+1</source>
         <translation>Ctrl+1</translation>
-    </message>
-    <message>
-        <source>Fit to Width</source>
-        <translation>Teljes szélesség</translation>
     </message>
     <message>
         <source>Ctrl+2</source>
@@ -1871,56 +1881,28 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <translation>Le&amp;gutóbbi megnyitása</translation>
     </message>
     <message>
-        <source>Close</source>
-        <translation>Bezár</translation>
-    </message>
-    <message>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
-    </message>
-    <message>
-        <source>Undo</source>
-        <translation>Vissza</translation>
     </message>
     <message>
         <source>Ctrl+Z</source>
         <translation>Ctrl+Z</translation>
     </message>
     <message>
-        <source>Redo</source>
-        <translation>Újra</translation>
-    </message>
-    <message>
         <source>Ctrl+Shift+Z</source>
         <translation>Ctrl+Shift+Z</translation>
-    </message>
-    <message>
-        <source>Cut</source>
-        <translation>Kivágás</translation>
     </message>
     <message>
         <source>Ctrl+X</source>
         <translation>Ctrl+X</translation>
     </message>
     <message>
-        <source>Copy</source>
-        <translation>Másolás</translation>
-    </message>
-    <message>
         <source>Ctrl+C</source>
         <translation>Ctrl+C</translation>
     </message>
     <message>
-        <source>Paste</source>
-        <translation>Beillesztés</translation>
-    </message>
-    <message>
         <source>Ctrl+V</source>
         <translation>Ctrl+V</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation>Tisztítás</translation>
     </message>
     <message>
         <source>Ctrl+Backspace</source>
@@ -1936,22 +1918,6 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <translation>Ctrl+T</translation>
     </message>
     <message>
-        <source>Preferences...</source>
-        <translation>Beállítások...</translation>
-    </message>
-    <message>
-        <source>Stack</source>
-        <translation>Verem</translation>
-    </message>
-    <message>
-        <source>Tile</source>
-        <translation>Csempe</translation>
-    </message>
-    <message>
-        <source>Go to Source</source>
-        <translation>Ugrás a forrásra</translation>
-    </message>
-    <message>
         <source>Ctrl+&apos;</source>
         <translation>Ctrl+&apos;</translation>
     </message>
@@ -1962,10 +1928,6 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>Ctrl+Shift+N</source>
         <translation>Ctrl+Shift+N</translation>
-    </message>
-    <message>
-        <source>Full Screen</source>
-        <translation>Teljes képernyő</translation>
     </message>
     <message>
         <source>Ctrl+Shift+F</source>
@@ -1988,16 +1950,8 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <translation>Kép kiválasztása</translation>
     </message>
     <message>
-        <source>User Manual...</source>
-        <translation>&amp;Felhasználói kézikönyv...</translation>
-    </message>
-    <message>
         <source>Email to the mailing list</source>
         <translation>E-mail küldése a levelezőlistára</translation>
-    </message>
-    <message>
-        <source>Side by Side</source>
-        <translation>Egymás mellett</translation>
     </message>
     <message>
         <source>Place on Left</source>
@@ -2006,10 +1960,6 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>Place on Right</source>
         <translation>Jobbra helyez</translation>
-    </message>
-    <message>
-        <source>Quit TexMakerX</source>
-        <translation>Kilépés aTexMakerX-ből</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -2084,16 +2034,140 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <translation>%1%</translation>
     </message>
     <message>
-        <source>Abort typesetting</source>
-        <translation type="obsolete">Gépelés megszakítása</translation>
-    </message>
-    <message>
-        <source>Typeset</source>
-        <translation type="obsolete">Gépelés</translation>
-    </message>
-    <message>
         <source>External Viewer</source>
         <translation>Külső megjelenítő</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>Sú&amp;gó</translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation>&amp;Fájl</translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation>&amp;Szerkesztés</translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation>&amp;Nézet</translation>
+    </message>
+    <message>
+        <source>&amp;Window</source>
+        <translation>&amp;Ablak</translation>
+    </message>
+    <message>
+        <source>&amp;About TexMakerX...</source>
+        <translation>&amp;A TexMakerX névjegye...</translation>
+    </message>
+    <message>
+        <source>&amp;First Page</source>
+        <translation>&amp;Első oldal</translation>
+    </message>
+    <message>
+        <source>&amp;Previous Page</source>
+        <translation>E&amp;lőző oldal</translation>
+    </message>
+    <message>
+        <source>&amp;Next Page</source>
+        <translation>&amp;Következő oldal</translation>
+    </message>
+    <message>
+        <source>&amp;Last Page</source>
+        <translation>&amp;Utolsó oldal</translation>
+    </message>
+    <message>
+        <source>&amp;Go to Page...</source>
+        <translation>U&amp;grás az oldalra...</translation>
+    </message>
+    <message>
+        <source>Zoom &amp;In</source>
+        <translation>&amp;Nagyítás</translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Out</source>
+        <translation>K&amp;icsinyítés</translation>
+    </message>
+    <message>
+        <source>Fit to &amp;Window</source>
+        <translation>Ké&amp;pernyőhöz igazít</translation>
+    </message>
+    <message>
+        <source>&amp;Actual Size</source>
+        <translation>&amp;Tényleges méret</translation>
+    </message>
+    <message>
+        <source>Fit to Wi&amp;dth</source>
+        <translation>Tel&amp;jes szélesség</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation>&amp;Bezárás</translation>
+    </message>
+    <message>
+        <source>&amp;Undo</source>
+        <translation>&amp;Visszavonás</translation>
+    </message>
+    <message>
+        <source>&amp;Redo</source>
+        <translation>Ú&amp;jbóli végrehajtás</translation>
+    </message>
+    <message>
+        <source>C&amp;ut</source>
+        <translation>&amp;Kivágás</translation>
+    </message>
+    <message>
+        <source>&amp;Copy</source>
+        <translation>&amp;Másolás</translation>
+    </message>
+    <message>
+        <source>&amp;Paste</source>
+        <translation>&amp;Beillesztés</translation>
+    </message>
+    <message>
+        <source>C&amp;lear</source>
+        <translation>&amp;Törlés</translation>
+    </message>
+    <message>
+        <source>&amp;Preferences...</source>
+        <translation>B&amp;eállítások...</translation>
+    </message>
+    <message>
+        <source>Stac&amp;k</source>
+        <translation>&amp;Verem</translation>
+    </message>
+    <message>
+        <source>&amp;Tile</source>
+        <translation>&amp;Csempe</translation>
+    </message>
+    <message>
+        <source>&amp;Go to Source</source>
+        <translation>&amp;Ugrás a forrásra</translation>
+    </message>
+    <message>
+        <source>Full &amp;Screen</source>
+        <translation>Telje&amp;s képernyő</translation>
+    </message>
+    <message>
+        <source>User &amp;Manual...</source>
+        <translation>&amp;Felhasználói kézikönyv...</translation>
+    </message>
+    <message>
+        <source>&amp;Side by Side</source>
+        <translation>&amp;Egymás mellett</translation>
+    </message>
+    <message>
+        <source>&amp;Quit TexMakerX</source>
+        <translation>&amp;Kilépés aTexMakerX-ből</translation>
+    </message>
+    <message>
+        <source>&amp;Close something</source>
+        <translation>&amp;Bezárás</translation>
+    </message>
+    <message>
+        <source>Esc</source>
+        <translation>Esc</translation>
     </message>
 </context>
 <context>
@@ -2181,7 +2255,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>Go to Page</source>
-        <translation>Ugrás oldalra</translation>
+        <translation>Ugrás az oldalra</translation>
     </message>
     <message>
         <source>Page number:</source>
@@ -3176,7 +3250,7 @@ Néhány példa:
     </message>
     <message>
         <source>Close</source>
-        <translation>Bezár</translation>
+        <translation>Bezárás</translation>
     </message>
     <message>
         <source>Higher Order:</source>
@@ -3358,7 +3432,7 @@ Néhány példa:
     </message>
     <message>
         <source>Close</source>
-        <translation>Bezár</translation>
+        <translation>Bezárás</translation>
     </message>
     <message>
         <source>Show Ignore List \/</source>
@@ -3821,7 +3895,7 @@ Néhány példa:
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Bezár</translation>
+        <translation>&amp;Bezárás</translation>
     </message>
     <message>
         <source>Clos&amp;e All</source>
@@ -3829,11 +3903,11 @@ Néhány példa:
     </message>
     <message>
         <source>&amp;Undo</source>
-        <translation>&amp;Vissza</translation>
+        <translation>&amp;Visszavonás</translation>
     </message>
     <message>
         <source>&amp;Redo</source>
-        <translation>Ú&amp;jra</translation>
+        <translation>Ú&amp;jbóli végrehajtás</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
@@ -4065,7 +4139,7 @@ Néhány példa:
     </message>
     <message>
         <source>Close Something</source>
-        <translation>&amp;Bezárások</translation>
+        <translation>Bezárás</translation>
     </message>
     <message>
         <source>Collapse</source>
@@ -4527,7 +4601,7 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation>Bezár</translation>
+        <translation>Bezárás</translation>
     </message>
     <message>
         <source>Info</source>
@@ -4965,7 +5039,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Close</source>
-        <translation>Bezár</translation>
+        <translation>Bezárás</translation>
     </message>
     <message>
         <source>Browser :</source>
