@@ -1409,12 +1409,18 @@ PDFDocument::init(const ConfigManagerInterface& configManager)
 	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
 	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(pageChanged(int)));
 
+	dw = dwSearch = new PDFSearchDock(this);
+	connect(dwSearch, SIGNAL(search(bool,bool)),  SLOT(search(bool,bool)));
+	addDockWidget(Qt::BottomDockWidgetArea, dw);
+	menuShow->addAction(dw->toggleViewAction());
+
 	dw = dwFonts = new PDFFontsDock(this);
 	dw->hide();
 	addDockWidget(Qt::BottomDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
 	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
 	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(pageChanged(int)));
+
 
 	exitFullscreen = NULL;
 	
@@ -1577,6 +1583,80 @@ void PDFDocument::followingToggled(){
 	globalConfig->followFromScroll = actionCursor_follows_scrolling->isChecked();
 }
 
+void PDFDocument::search(bool backwards, bool incremental){
+	if (!document)
+		return;
+
+	int pageIdx;
+	Poppler::Page *page;
+	Poppler::Page::SearchMode searchMode = Poppler::Page::CaseInsensitive;
+	Poppler::Page::SearchDirection searchDir; // = Poppler::Page::FromTop;
+	int deltaPage, firstPage, lastPage;
+	int run, runs;
+
+	QString	searchText = dwSearch->getSearchText();
+	if (searchText.isEmpty())
+		return;
+
+	if (dwSearch->hasFlagCaseSensitive())
+		searchMode = Poppler::Page::CaseSensitive;
+
+	deltaPage = (backwards ? -1 : +1);
+
+//	if (!incremental) { //TODO
+//		lastSearchResult.selRect = QRectF();
+//		firstSearchPage = pdfWidget->getCurrentPageIndex();
+//	}
+	searchDir = (backwards ? Poppler::Page::PreviousResult : Poppler::Page::NextResult);
+
+	runs = (true ? 2 : 1); //true = always wrap around
+
+	if (incremental) {
+		lastSearchResult.selRect.setLeft(lastSearchResult.selRect.left()-2);
+		lastSearchResult.selRect.setRight(lastSearchResult.selRect.left());
+	}
+
+	for (run = 0; run < runs; ++run) {
+		switch (run) {
+			case 0:
+				// first run = normal search
+				lastPage = (backwards ? -1 : document->numPages());
+				firstPage = pdfWidget->getCurrentPageIndex();
+				break;
+			case 1:
+				// second run = after wrap
+				lastPage = (backwards ? -1 : document->numPages());
+				firstPage = (backwards ? document->numPages() - 1 : 0);
+				break;
+			default:
+				// should not happen
+				return;
+		}
+
+		for (pageIdx = firstPage; pageIdx != lastPage; pageIdx += deltaPage) {
+			page = document->page(pageIdx);
+
+			if (page->search(searchText, lastSearchResult.selRect, searchDir, searchMode)) {
+				lastSearchResult.doc = this;
+				lastSearchResult.pageIdx = pageIdx;
+				QPainterPath p;
+				p.addRect(lastSearchResult.selRect);
+
+				if (hasSyncData() && dwSearch->hasFlagSync())
+					emit syncClick(pageIdx, lastSearchResult.selRect.center(), false);
+
+
+				pdfWidget->goToPage(lastSearchResult.pageIdx);
+				pdfWidget->setHighlightPath(p);
+				pdfWidget->update();
+
+				return;
+			}
+			lastSearchResult.selRect = QRectF();
+			searchDir = (backwards ? Poppler::Page::PreviousResult : Poppler::Page::NextResult);
+		}
+	}
+}
 
 void PDFDocument::loadSyncData()
 {
@@ -1820,78 +1900,6 @@ void PDFDocument::doFindDialog()
 
 void PDFDocument::doFindAgain(bool newSearch /*= false*/)
 {
-/*TODO	QSETTINGS_OBJECT(settings);
-	int pageIdx;
-	Poppler::Page *page;
-	Poppler::Page::SearchMode searchMode = Poppler::Page::CaseInsensitive;
-	Poppler::Page::SearchDirection searchDir; // = Poppler::Page::FromTop;
-	int deltaPage, firstPage, lastPage;
-	int run, runs;
-	bool backwards = false;
-
-	if (!document)
-		return;
-	
-	QString	searchText = settings.value("searchText").toString();
-	if (searchText.isEmpty())
-		return;
-
-	QTextDocument::FindFlags flags = (QTextDocument::FindFlags)settings.value("searchFlags").toInt();
-
-	if ((flags & QTextDocument::FindCaseSensitively) != 0)
-		searchMode = Poppler::Page::CaseSensitive;
-	if ((flags & QTextDocument::FindBackward) != 0)
-		backwards = true;
-
-	deltaPage = (backwards ? -1 : +1);
-
-	if (newSearch) {
-		lastSearchResult.selRect = QRectF();
-		firstSearchPage = pdfWidget->getCurrentPageIndex();
-	}
-	searchDir = (backwards ? Poppler::Page::PreviousResult : Poppler::Page::NextResult);
-	
-	runs = (settings.value("searchWrap").toBool() ? 2 : 1);
-
-	for (run = 0; run < runs; ++run) {
-		switch (run) {
-			case 0:
-				// first run = normal search
-				lastPage = (backwards ? -1 : document->numPages());
-				firstPage = pdfWidget->getCurrentPageIndex();
-				break;
-			case 1:
-				// second run = after wrap
-				lastPage = (backwards ? -1 : document->numPages());
-				firstPage = (backwards ? document->numPages() - 1 : 0);
-				break;
-			default:
-				// should not happen
-				return;
-		}
-		
-		for (pageIdx = firstPage; pageIdx != lastPage; pageIdx += deltaPage) {
-			page = document->page(pageIdx);
-
-			if (page->search(searchText, lastSearchResult.selRect, searchDir, searchMode)) {
-				lastSearchResult.doc = this;
-				lastSearchResult.pageIdx = pageIdx;
-				QPainterPath p;
-				p.addRect(lastSearchResult.selRect);
-
-				if (hasSyncData() && settings.value("searchPdfSync").toBool()) {
-					emit syncClick(pageIdx, lastSearchResult.selRect.center());
-				}
-
-				pdfWidget->goToPage(lastSearchResult.pageIdx);
-				pdfWidget->setHighlightPath(p);
-				pdfWidget->update();
-				selectWindow();
-				return;
-			}
-			lastSearchResult.selRect = QRectF();
-			searchDir = (backwards ? Poppler::Page::PreviousResult : Poppler::Page::NextResult);
-		}
-	}*/
+	//TODO
 }
 

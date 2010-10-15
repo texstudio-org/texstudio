@@ -198,8 +198,23 @@ private:
 };
 
 
+class PDFDocument;
+class PDFSearchResult {
+public:
+	PDFSearchResult(const PDFDocument* pdfdoc = NULL, int page = -1, QRectF rect = QRectF())
+		: doc(pdfdoc), pageIdx(page), selRect(rect)
+		{ }
+
+	const PDFDocument* doc;
+	int pageIdx;
+	QRectF selRect;
+};
+
+
+
 class PDFDocumentConfig;
 class PDFDock;
+class PDFSearchDock;
 class PDFDocument : public QMainWindow, private Ui::PDFDocument
 {
 	Q_OBJECT
@@ -272,6 +287,8 @@ private slots:
 	void arrangeWindows(bool tile);
 
 	void followingToggled();
+
+	void search(bool backward, bool incremental);
 signals:
 	void reloaded();
 	void syncSource(const QString& sourceFile, int line, bool activate);
@@ -313,11 +330,12 @@ private:
 	static QList<PDFDocument*> docList;
 	
 	PDFDock *dwOutline, *dwFonts, *dwInfo;
+	PDFSearchDock *dwSearch;
 
-//	PDFSearchResult lastSearchResult;
+	PDFSearchResult lastSearchResult;
 	// stores the page idx a search was started on
 	// after wrapping the search will continue only up to this page
-//	int firstSearchPage;
+	int firstSearchPage;
 };
 
 #endif

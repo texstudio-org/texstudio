@@ -159,6 +159,58 @@ private:
 };
 
 
+class QToolButton;
+class QGridLayout;
+class QCheckBox;
+class PDFBaseSearchDock : public QDockWidget{
+	Q_OBJECT
+	//TODO: some how merge this with the qce search panel
+public:
+	PDFBaseSearchDock(PDFDocument* doc = 0);
+
+	QString getSearchText() const;
+	bool hasFlagCaseSensitive() const;
+
+
+public: signals:
+	void search(bool backward, bool incremental);
+protected:
+	virtual void resizeEvent(QResizeEvent *e);
+	virtual bool eventFilter(QObject *o, QEvent *e);
+
+	QList<QWidget*> listOfWidget;
+	QGridLayout *gridLayout1;
+
+private slots:
+	void on_leFind_textEdited(const QString& text);
+	void on_bNext_clicked();
+	void on_bPrevious_clicked();
+private:
+	PDFDocument *document;
+
+	int minimum_width;
+	QToolButton *bClose;
+	QLineEdit *leFind;
+	QToolButton *bNext, *bPrevious, *bCount;
+	QCheckBox *cbCase;
+	/*QCheckBox *cbWords;
+	QCheckBox *cbRegExp;*/
+/*	QCheckBox *cbHighlight;
+	QCheckBox *cbCursor;
+	QCheckBox *cbSelection;*/
+};
+
+class PDFSearchDock : public PDFBaseSearchDock {
+	Q_OBJECT
+public:
+	PDFSearchDock(PDFDocument* doc = 0);
+
+	bool hasFlagSync() const;
+private:
+	QCheckBox *cbSync;
+};
+
+
 class PDFScrollArea : public QScrollArea
 {
 	Q_OBJECT

@@ -55,7 +55,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		void findNext();
 		void findReplace(bool backward, bool replace=false, bool replaceAll=false, bool countOnly = false);
 		void find(QString text, bool backward, bool highlight, bool regex, bool word, bool caseSensitive);
-                void find(QString text, bool backward, bool highlight, bool regex, bool word, bool caseSensitive, bool fromCursor, bool selection);
+		void find(QString text, bool backward, bool highlight, bool regex, bool word, bool caseSensitive, bool fromCursor, bool selection);
 		void setOptions(int searchOptions, bool cursor, bool selection);
 		
 	signals:
@@ -69,7 +69,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		virtual void hideEvent(QHideEvent *e);
 		virtual void closeEvent(QCloseEvent *e);
 
-                virtual void resizeEvent(QResizeEvent *e);
+		virtual void resizeEvent(QResizeEvent *e);
 
 	private slots:
 		void on_leFind_textEdited(const QString& text);
