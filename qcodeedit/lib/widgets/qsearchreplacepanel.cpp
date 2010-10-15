@@ -289,8 +289,6 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	minimum_width=frame_2->sizeHint().width()+leFind->sizeHint().width()+2*bNext->sizeHint().width()+5*hboxLayout->spacing();
 	//
 
-	setDefaultVisibility(false);
-
 	cbCase->setChecked(false);
 
 	leFind->installEventFilter(this);
@@ -526,27 +524,27 @@ void QSearchReplacePanel::closeEvent(QCloseEvent *)
 
 
 void QSearchReplacePanel::resizeEvent(QResizeEvent *e){
-    int w=e->size().width();
-    w=w-minimum_width; // remaining space
-    QList<QWidget*> listOfWidget;
-    listOfWidget << cbCase << cbWords << cbRegExp << cbHighlight << cbCursor << cbSelection;
-    int row=0;
-    int col=0;
-    int remaining_space=w;
-    foreach(QWidget *wdg,listOfWidget){
-        remaining_space=remaining_space-wdg->minimumWidth();
-        if(remaining_space>0){
-            gridLayout1->addWidget(wdg, row, col, 1, 1);
-            col++;
-        }else{
-            col=0;
-            row++;
-            gridLayout1->addWidget(wdg, row, col, 1, 1);
-            col++;
-            remaining_space=w-wdg->minimumWidth();
-        }
-    }
-    QPanel::resizeEvent(e);
+	int w=e->size().width();
+	w=w-minimum_width; // remaining space
+	QList<QWidget*> listOfWidget;
+	listOfWidget << cbCase << cbWords << cbRegExp << cbHighlight << cbCursor << cbSelection;
+	int row=0;
+	int col=0;
+	int remaining_space=w;
+	foreach(QWidget *wdg,listOfWidget){
+		remaining_space=remaining_space-wdg->minimumWidth();
+		if(remaining_space>0){
+			gridLayout1->addWidget(wdg, row, col, 1, 1);
+			col++;
+		}else{
+			col=0;
+			row++;
+			gridLayout1->addWidget(wdg, row, col, 1, 1);
+			col++;
+			remaining_space=w-wdg->minimumWidth();
+		}
+	}
+	QPanel::resizeEvent(e);
 }
 
 
