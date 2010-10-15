@@ -49,7 +49,9 @@ void UnicodeInsertion::keyPressEvent(QKeyEvent * k){
 		emit insertCharacter(table->item(0,8)->text());
 		close();
 	}
+	if (k->key()==Qt::Key_Escape) close();
 }
+
 
 void UnicodeInsertion::editChanged(const QString& newText){
 	QString nt = newText;

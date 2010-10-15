@@ -1389,7 +1389,7 @@ PDFDocument::init(const ConfigManagerInterface& configManager)
 	menuShow->addSeparator();
 
 	QDockWidget *dw = dwOutline = new PDFOutlineDock(this);
-	dw->hide();
+//	dw->hide();
 	addDockWidget(Qt::LeftDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
 	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
