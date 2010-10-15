@@ -107,14 +107,9 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 
 	protected:
 		//protected to give unit tests access
-		QGridLayout *gridLayout;
-		QFrame *frame_2;
-		QHBoxLayout *hboxLayout;
 		QToolButton *bClose;
-		QLabel *label;
 		QLineEdit *leFind;
 		QToolButton *bNext, *bPrevious, *bCount;
-		QFrame *frame_6;
 		QGridLayout *gridLayout1;
 		QCheckBox *cbCase;
 		QCheckBox *cbWords;
@@ -123,8 +118,6 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		QCheckBox *cbCursor;
 		QCheckBox *cbSelection;
 		QToolButton *bReplaceAll;
-		QFrame *frame;
-		QHBoxLayout *hboxLayout1;
 		QCheckBox *cbPrompt;
 		QCheckBox *cbReplaceAll;
 		QCheckBox *cbEscapeSeq;
