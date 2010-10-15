@@ -52,26 +52,16 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
         //setupUi(this);
         // do it completely programatic
 	this->resize(801, 71);
-	QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
-	sizePolicy.setHorizontalStretch(0);
-	sizePolicy.setVerticalStretch(0);
-	sizePolicy.setHeightForWidth(this->sizePolicy().hasHeightForWidth());
-	this->setSizePolicy(sizePolicy);
-	gridLayout = new QGridLayout(this);
-	gridLayout->setObjectName(("gridLayout"));
+	QGridLayout *gridLayout = new QGridLayout(this);
 	gridLayout->setContentsMargins(-1, 4, -1, 4);
-	frame_2 = new QFrame(this);
+	QFrame* frame_2 = new QFrame(this);
 	frame_2->setObjectName(("frame_2"));
 	QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
-	sizePolicy1.setHorizontalStretch(0);
-	sizePolicy1.setVerticalStretch(0);
-	sizePolicy1.setHeightForWidth(frame_2->sizePolicy().hasHeightForWidth());
 	frame_2->setSizePolicy(sizePolicy1);
 	frame_2->setMinimumSize(QSize(0, 22));
 	frame_2->setFrameShape(QFrame::NoFrame);
-	frame_2->setFrameShadow(QFrame::Raised);
 	frame_2->setLineWidth(0);
-	hboxLayout = new QHBoxLayout(frame_2);
+	QHBoxLayout* hboxLayout = new QHBoxLayout(frame_2);
 	hboxLayout->setObjectName(("hboxLayout"));
 	hboxLayout->setContentsMargins(-1, 0, -1, 0);
 
@@ -85,7 +75,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 
 	hboxLayout->addWidget(bClose);
 
-	label = new QLabel(frame_2);
+	QLabel* label = new QLabel(frame_2);
 	label->setObjectName(("label"));
 	QSizePolicy sizePolicy3(QSizePolicy::Minimum, QSizePolicy::Preferred);
 	sizePolicy3.setHorizontalStretch(0);
@@ -103,8 +93,6 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	leFind->setObjectName(("leFind"));
 	QSizePolicy sizePolicy4(QSizePolicy::Preferred, QSizePolicy::Fixed);
 	sizePolicy4.setHorizontalStretch(2);
-	sizePolicy4.setVerticalStretch(0);
-	sizePolicy4.setHeightForWidth(leFind->sizePolicy().hasHeightForWidth());
 	leFind->setSizePolicy(sizePolicy4);
 	leFind->setMinimumSize(QSize(120, 22));
 
@@ -134,15 +122,12 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 
 	gridLayout->addWidget(bCount, 0, 5, 1, 1);
 
-	frame_6 = new QFrame(this);
-	frame_6->setObjectName(("frame_6"));
+	QFrame* frame_6 = new QFrame(this);
 	sizePolicy1.setHeightForWidth(frame_6->sizePolicy().hasHeightForWidth());
 	frame_6->setSizePolicy(sizePolicy1);
 	frame_6->setFrameShape(QFrame::NoFrame);
-	frame_6->setFrameShadow(QFrame::Raised);
 	gridLayout1 = new QGridLayout(frame_6);
 	gridLayout1->setContentsMargins(0, 0, 0, 0);
-	gridLayout1->setObjectName(("gridLayout1"));
 	cbCase = new QCheckBox(frame_6);
 	cbCase->setObjectName(("cbCase"));
 	cbCase->setToolTip(tr("Enables case sensitive search."));
@@ -195,12 +180,11 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 
 	gridLayout->addWidget(bReplaceAll, 2, 5, 1, 1);
 
-	frame = new QFrame(this);
+	QFrame* frame = new QFrame(this);
 	frame->setObjectName(("frame"));
 	frame->setFrameShape(QFrame::NoFrame);
 	frame->setFrameShadow(QFrame::Raised);
-	hboxLayout1 = new QHBoxLayout(frame);
-	hboxLayout1->setObjectName(("hboxLayout1"));
+	QHBoxLayout* hboxLayout1 = new QHBoxLayout(frame);
 	hboxLayout1->setContentsMargins(-1, 0, -1, 0);
 	cbPrompt = new QCheckBox(frame);
 	cbPrompt->setToolTip(tr("Ask before any match is replaced."));
