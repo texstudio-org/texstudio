@@ -48,7 +48,7 @@
     </property>
     <addaction name="actionPreferences"/>
     <addaction name="separator"/>
-    <addaction name="actionScroll_with_cursor"/>
+    <addaction name="actionScrolling_follows_cursor"/>
     <addaction name="actionCursor_follows_scrolling"/>
    </widget>
    <widget class="QMenu" name="menuView">
@@ -613,7 +613,7 @@
     <string>Esc</string>
    </property>
   </action>
-  <action name="actionScroll_with_cursor">
+  <action name="actionScrolling_follows_cursor">
    <property name="checkable">
     <bool>true</bool>
    </property>

@@ -118,13 +118,13 @@ public slots:
 	void windowResized();
 	void fitWindow(bool checked = true);
 	void setTool(int tool);
-	void syncWindowClick(int x, int y, int page = -1);
+	void syncWindowClick(int x, int y, bool activate, int page = -1);
 
 signals:
 	void changedPage(int);
 	void changedZoom(qreal);
 	void changedScaleOption(autoScaleOption);
-	void syncClick(int, const QPointF&); //page position in page coordinates
+	void syncClick(int, const QPointF&, bool activate); //page position in page coordinates
 
 protected:
 	virtual void paintEvent(QPaintEvent *event);
@@ -239,6 +239,8 @@ public:
 			return pdfWidget;
 		}
 
+	bool followCursor() const;
+
 protected:
 	virtual void changeEvent(QEvent *event);
 	virtual void closeEvent(QCloseEvent *event);
@@ -259,7 +261,7 @@ private slots:
 	void enablePageActions(int);
 	void enableZoomActions(qreal);
 	void adjustScaleActions(autoScaleOption);
-	void syncClick(int page, const QPointF& pos);
+	void syncClick(int page, const QPointF& pos, bool activate);
 	void reloadWhenIdle();
 
 	void runExternalViewer();
@@ -268,9 +270,11 @@ private slots:
 	void tileWindows();
 	void stackWindows();
 	void arrangeWindows(bool tile);
+
+	void followingToggled();
 signals:
 	void reloaded();
-	void syncSource(const QString& sourceFile, int line);
+	void syncSource(const QString& sourceFile, int line, bool activate);
 	void fileDropped(const QUrl& url);
 
 	void runCommand(const QString& command, bool waitForEnd, bool showStdout);

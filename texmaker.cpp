@@ -2753,7 +2753,7 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool 
 			connect(pdfviewerWindow, SIGNAL(triggeredQuit()), SLOT(fileExit()));
 			connect(pdfviewerWindow, SIGNAL(triggeredConfigure()), SLOT(GeneralOptions()));
 			connect(pdfviewerWindow, SIGNAL(triggeredQuickBuild()), SLOT(QuickBuild()));
-			connect(pdfviewerWindow, SIGNAL(syncSource(const QString&, int)), SLOT(syncFromViewer(const QString &, int)));
+			connect(pdfviewerWindow, SIGNAL(syncSource(const QString&, int, bool)), SLOT(syncFromViewer(const QString &, int, bool)));
 			connect(pdfviewerWindow, SIGNAL(runCommand(const QString&, bool, bool)), SLOT(runCommand(const QString&, bool, bool)));
 		}
 		pdfviewerWindow->loadFile(pdfFile,externalViewer);
@@ -3860,14 +3860,16 @@ bool Texmaker::gotoMark(bool backward, int id) {
 		return gotoLogEntryAt(currentEditorView()->editor->document()->findNextMark(id,currentEditorView()->editor->cursor().lineNumber()+1));
 }
 
-void Texmaker::syncFromViewer(const QString &fileName, int line){
+void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate){
 	if (!FileAlreadyOpen(fileName, true))
 		if (!load(fileName)) return;
 	gotoLine(line);
-	raise();
-	show();
-	activateWindow();
-	if (isMinimized()) showNormal();
+	if (activate) {
+		raise();
+		show();
+		activateWindow();
+		if (isMinimized()) showNormal();
+	}
 
 }
 
@@ -4201,6 +4203,9 @@ void Texmaker::cursorPositionChanged(){
 	model->setHighlightedEntry(newSection);
 	if(!mDontScrollToItem)
 		structureTreeView->scrollTo(model->highlightedEntry());
+
+	if (pdfviewerWindow && pdfviewerWindow->followCursor())
+		pdfviewerWindow->syncFromSource(getCurrentFileName(), currentLine, false);
 }
 
 void Texmaker::fileCheckin(QString filename){

@@ -329,6 +329,9 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Preview/Magnifier Size", &pdfDocumentConfig->magnifierSize, 300, &pseudoDialog->spinBoxPreviewMagnifierSize);
 	registerOption("Preview/Magnifier Shape", &pdfDocumentConfig->magnifierShape, 1, &pseudoDialog->comboBoxPreviewMagnifierShape);
 
+	registerOption("Preview/Scrolling Follows Cursor", &pdfDocumentConfig->followFromCursor, false);
+	registerOption("Preview/Cursor Follows Scrolling", &pdfDocumentConfig->followFromScroll, false);
+
 	#ifndef QT_NO_DEBUG
 	registerOption("Debug/Last Application Modification", &debugLastFileModification);
 	registerOption("Debug/Last Full Test Run", &debugLastFullTestRun);
