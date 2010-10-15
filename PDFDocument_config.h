@@ -13,6 +13,9 @@ struct PDFDocumentConfig{
 
 
 	int magnifierSize, magnifierShape;
+
+
+	bool followFromCursor, followFromScroll;
 };
 
 #endif // PDFDOCUMENT_CONFIG_H

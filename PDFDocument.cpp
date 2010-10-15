@@ -282,7 +282,7 @@ void PDFMagnifier::resizeEvent(QResizeEvent * /*event*/)
 	}
 }
 
-#pragma mark === PDFWidget ===
+//#pragma mark === PDFWidget ===
 
 QCursor *PDFWidget::magnifierCursor = NULL;
 QCursor *PDFWidget::zoomInCursor = NULL;
@@ -521,7 +521,7 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 				// Ctrl-click to sync
 				if (mouseDownModifiers & Qt::ControlModifier) {
 					if (event->modifiers() & Qt::ControlModifier)
-						syncWindowClick(event->pos().x(), event->pos().y());
+						syncWindowClick(event->pos().x(), event->pos().y(), true);
 
 					break;
 				}
@@ -738,7 +738,7 @@ void PDFWidget::jumpToSource()
 		QPoint eventPos = act->data().toPoint();
 		QPointF pagePos(eventPos.x() / scaleFactor * 72.0 / dpi,
 						eventPos.y() / scaleFactor * 72.0 / dpi);
-		emit syncClick(pageIndex, pagePos);
+		emit syncClick(pageIndex, pagePos, true);
 	}
 }
 
@@ -781,11 +781,11 @@ void PDFWidget::setTool(int tool)
 	updateCursor();
 }
 
-void PDFWidget::syncWindowClick(int x, int y, int page){
+void PDFWidget::syncWindowClick(int x, int y, bool activate, int page){
 	QPointF pagePos(x / scaleFactor * 72.0 / dpi,
 			y / scaleFactor * 72.0 / dpi);
 	if (page == -1) page = pageIndex;
-	emit syncClick(pageIndex, pagePos);
+	emit syncClick(pageIndex, pagePos, activate);
 }
 
 void PDFWidget::updateCursor()
@@ -1235,7 +1235,7 @@ QScrollArea* PDFWidget::getScrollArea()
 }
 
 
-#pragma mark === PDFDocument ===
+//#pragma mark === PDFDocument ===
 
 QList<PDFDocument*> PDFDocument::docList;
 
@@ -1311,6 +1311,10 @@ PDFDocument::init(const ConfigManagerInterface& configManager)
 	actionTypeset->setIcon(QIcon(":/images/quick.png"));
 	actionExternalViewer->setIcon(QIcon(":/images/viewpdf.png"));
 
+	actionScrolling_follows_cursor->setChecked(globalConfig->followFromCursor);
+	actionCursor_follows_scrolling->setChecked(globalConfig->followFromScroll);
+
+
 	setContextMenuPolicy(Qt::NoContextMenu);
 
 	pdfWidget = new PDFWidget;
@@ -1366,7 +1370,7 @@ PDFDocument::init(const ConfigManagerInterface& configManager)
 	connect(actionFull_Screen, SIGNAL(triggered()), this, SLOT(toggleFullScreen()));
 	connect(pdfWidget, SIGNAL(changedZoom(qreal)), this, SLOT(enableZoomActions(qreal)));
 	connect(pdfWidget, SIGNAL(changedScaleOption(autoScaleOption)), this, SLOT(adjustScaleActions(autoScaleOption)));
-	connect(pdfWidget, SIGNAL(syncClick(int, const QPointF&)), this, SLOT(syncClick(int, const QPointF&)));
+	connect(pdfWidget, SIGNAL(syncClick(int, const QPointF&, bool)), this, SLOT(syncClick(int, const QPointF&, bool)));
 
 	if (actionZoom_In->shortcut() == QKeySequence("Ctrl++"))
 		new QShortcut(QKeySequence("Ctrl+="), pdfWidget, SLOT(zoomIn()));
@@ -1381,7 +1385,10 @@ PDFDocument::init(const ConfigManagerInterface& configManager)
 	connect(actionSide_by_Side, SIGNAL(triggered()), this, SLOT(sideBySide()));
 	connect(actionGo_to_Source, SIGNAL(triggered()), this, SLOT(goToSource()));
 	
-//	connect(actionFind_Again, SIGNAL(triggered()), this, SLOT(doFindAgain()));
+	connect(actionScrolling_follows_cursor, SIGNAL(toggled(bool)), SLOT(followingToggled()));
+	connect(actionCursor_follows_scrolling, SIGNAL(toggled(bool)), SLOT(followingToggled()));
+
+	//	connect(actionFind_Again, SIGNAL(triggered()), this, SLOT(doFindAgain()));
 
 	connect(actionPreferences, SIGNAL(triggered()), SIGNAL(triggeredConfigure()));
 
@@ -1411,6 +1418,12 @@ PDFDocument::init(const ConfigManagerInterface& configManager)
 
 	exitFullscreen = NULL;
 	
+}
+
+bool PDFDocument::followCursor() const{
+	Q_ASSERT(globalConfig);
+	if (!globalConfig) return false;
+	return globalConfig->followFromCursor;
 }
 
 void PDFDocument::changeEvent(QEvent *event)
@@ -1558,6 +1571,12 @@ void PDFDocument::arrangeWindows(bool tile){
 	}
 }
 
+void PDFDocument::followingToggled(){
+	Q_ASSERT(globalConfig);
+	globalConfig->followFromCursor = actionScrolling_follows_cursor->isChecked();
+	globalConfig->followFromScroll = actionCursor_follows_scrolling->isChecked();
+}
+
 
 void PDFDocument::loadSyncData()
 {
@@ -1570,7 +1589,7 @@ void PDFDocument::loadSyncData()
 	}
 }
 
-void PDFDocument::syncClick(int pageIndex, const QPointF& pos)
+void PDFDocument::syncClick(int pageIndex, const QPointF& pos, bool activate)
 {
 	if (scanner == NULL)
 		return;
@@ -1581,7 +1600,7 @@ void PDFDocument::syncClick(int pageIndex, const QPointF& pos)
 		while ((node = synctex_next_result(scanner)) != NULL) {
 			QString filename = QString::fromUtf8(synctex_scanner_get_name(scanner, synctex_node_tag(node)));
 			QDir curDir(QFileInfo(curFile).canonicalPath());
-			emit syncSource(QFileInfo(curDir, filename).canonicalFilePath(), synctex_node_line(node)-1); //-1 because tmx is 0 based, but synctex seems to be 1 based
+			emit syncSource(QFileInfo(curDir, filename).canonicalFilePath(), synctex_node_line(node)-1, activate); //-1 because tmx is 0 based, but synctex seems to be 1 based
 			break; // FIXME: currently we just take the first hit
 		}
 	}
@@ -1688,11 +1707,13 @@ void PDFDocument::goToSource()
 {
 	Q_ASSERT(pdfWidget);
 	if (!pdfWidget) return;
-	pdfWidget->syncWindowClick(pdfWidget->width()/2, pdfWidget->height()/2);
+	pdfWidget->syncWindowClick(pdfWidget->width()/2, pdfWidget->height()/2, true);
 }
 
 void PDFDocument::enablePageActions(int pageIndex)
 {
+	//current page has changed
+
 //#ifndef Q_WS_MAC
 // On Mac OS X, disabling these leads to a crash if we hit the end of document while auto-repeating a key
 // (seems like a Qt bug, but needs further investigation)
@@ -1702,6 +1723,12 @@ void PDFDocument::enablePageActions(int pageIndex)
 	actionNext_Page->setEnabled(pageIndex < document->numPages() - 1);
 	actionLast_Page->setEnabled(pageIndex < document->numPages() - 1);
 //#endif
+
+
+	Q_ASSERT(pdfWidget && globalConfig);
+	if (!pdfWidget || !globalConfig) return;
+	if (globalConfig->followFromScroll)
+		pdfWidget->syncWindowClick(pdfWidget->width()/2, pdfWidget->height()/2, false);
 }
 
 void PDFDocument::enableZoomActions(qreal scaleFactor)
