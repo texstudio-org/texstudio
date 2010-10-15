@@ -126,6 +126,7 @@ void PDFOutlineDock::changeLanguage()
 void PDFOutlineDock::fillInfo()
 {
 	tree->clear();
+	if (!document || !document->popplerDoc()) return;
 	const QDomDocument *toc = document->popplerDoc()->toc();
 	if (toc) {
 		fillToc(*toc, tree, 0);
@@ -189,6 +190,7 @@ PDFInfoDock::~PDFInfoDock()
 void PDFInfoDock::fillInfo()
 {
 	list->clear();
+	if (!document || !document->popplerDoc()) return;
 	Poppler::Document *doc = document->popplerDoc();
 	QStringList keys = doc->infoKeys();
 	QStringList dateKeys;
@@ -278,6 +280,7 @@ void PDFFontsDock::setHorizontalHeaderLabels()
 
 void PDFFontsDock::fillInfo()
 {
+	if (!document || !document->popplerDoc()) return;
 	if (!scannedFonts) {
 		fonts = document->popplerDoc()->fonts();
 		scannedFonts = true;

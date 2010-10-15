@@ -54,6 +54,7 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
 	}
 
 	//menu shortcut key
+	if (index.column()==1) QMessageBox::warning(0,"TexMakerX",tr("Sorry, you clicked in the wrong column.\nTo change a shortcut, you have to edit the third or fourth column."),QMessageBox::Ok);
 	if (index.column()!=2 && index.column()!=3) return 0;
 	QComboBox *editor = new QComboBox(parent);
 	editor->addItem(tr("<default>"));
