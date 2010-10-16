@@ -84,8 +84,16 @@ void SyntaxCheck::run(){
                          LatexParser::resolveCommandOptions(line,wordstart,options);
                          if(options.size()>0){
                              QString first=options.takeFirst();
-                             if(!first.startsWith("[")){  //handling of includegraphics should be improve !!!
+                             if(!first.startsWith("[")){  //handling of includegraphics should be improved !!!
                                  start+=first.length();
+                             }else{
+                                 if(!options.isEmpty()){
+                                    QString second=options.first();
+                                    if(second.startsWith("{")){
+                                        second.fill(' ');
+                                        line.replace(start+first.length(),second.length(),second);
+                                    }
+                                }
                              }
                          }
                      }
