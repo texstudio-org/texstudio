@@ -689,54 +689,54 @@ void Texmaker::setupToolBars() {
 		i++;
 	}
 	//setup customizable toolbars
-		for (int i=0;i<configManager.managedToolBars.size();i++){
-		ManagedToolBar &mtb = configManager.managedToolBars[i];		
-		if (!mtb.toolbar) { //create actual toolbar on first call
-			if (mtb.name == "Central") mtb.toolbar = centralToolBar;
-			else mtb.toolbar = addToolBar(tr(qPrintable(mtb.name)));
-			mtb.toolbar->setObjectName(mtb.name);
-			addAction(mtb.toolbar->toggleViewAction());
-		} else mtb.toolbar->clear();
-		foreach (const QString& actionName, mtb.actualActions){
-			if (actionName == "separator") mtb.toolbar->addSeparator(); //Case 1: Separator
-			else if (actionName.startsWith("tags/")) {
-				//Case 2: One of the xml tag widgets mapped on a toolbutton
-				int tagCategorySep=actionName.indexOf("/",5);
-				XmlTagsListWidget* tagsWidget = findChild<XmlTagsListWidget*>(actionName.left(tagCategorySep));
-				if (!tagsWidget) continue;
-				QStringList list=tagsWidget->tagsTxtFromCategory(actionName.mid(tagCategorySep+1));
-				if (list.isEmpty()) continue;
-				QFontMetrics fontMetrics(mtb.toolbar->font());
-				QToolButton* combo=createComboToolButton(mtb.toolbar,list,mtb.toolbar->height()-2,fontMetrics,this,SLOT(insertXmlTagFromToolButtonAction()));
-				combo->setProperty("tagsID", actionName);
-				mtb.toolbar->addWidget(combo);
-			} else {
-				QObject *obj=configManager.menuParent->findChild<QObject*>(actionName);
-				QAction *act=qobject_cast<QAction*>(obj);
-				if (act) {
-					//Case 3: A normal QAction
-					if(act->icon().isNull())
-						act->setIcon(QIcon(":/images/appicon.png"));
-					mtb.toolbar->addAction(act);
-				} else {
-					QMenu* menu=qobject_cast<QMenu*>(obj);
-					if (!menu) {
-						qWarning("Unkown toolbar command %s", qPrintable(actionName));
-						continue;
-					}
-					//Case 4: A submenu mapped on a toolbutton
-					QFontMetrics fontMetrics(mtb.toolbar->font());
-					QStringList list;
-					foreach (const QAction* act, menu->actions())
-						if (!act->isSeparator())
-							list.append(act->text());
-					QToolButton* combo=createComboToolButton(mtb.toolbar,list,mtb.toolbar->height()-2,fontMetrics,this,SLOT(insertFromActionFromToolButtonAction()));
-					combo->setProperty("menuID", actionName);
-					mtb.toolbar->addWidget(combo);
-				}
-			}
-		}
-		mtb.toolbar->setVisible(!mtb.actualActions.empty());
+        for (int i=0;i<configManager.managedToolBars.size();i++){
+            ManagedToolBar &mtb = configManager.managedToolBars[i];
+            if (!mtb.toolbar) { //create actual toolbar on first call
+                if (mtb.name == "Central") mtb.toolbar = centralToolBar;
+                else mtb.toolbar = addToolBar(tr(qPrintable(mtb.name)));
+                mtb.toolbar->setObjectName(mtb.name);
+                addAction(mtb.toolbar->toggleViewAction());
+            } else mtb.toolbar->clear();
+            foreach (const QString& actionName, mtb.actualActions){
+                if (actionName == "separator") mtb.toolbar->addSeparator(); //Case 1: Separator
+                else if (actionName.startsWith("tags/")) {
+                    //Case 2: One of the xml tag widgets mapped on a toolbutton
+                    int tagCategorySep=actionName.indexOf("/",5);
+                    XmlTagsListWidget* tagsWidget = findChild<XmlTagsListWidget*>(actionName.left(tagCategorySep));
+                    if (!tagsWidget) continue;
+                    QStringList list=tagsWidget->tagsTxtFromCategory(actionName.mid(tagCategorySep+1));
+                    if (list.isEmpty()) continue;
+                    QFontMetrics fontMetrics(mtb.toolbar->font());
+                    QToolButton* combo=createComboToolButton(mtb.toolbar,list,mtb.toolbar->height()-2,fontMetrics,this,SLOT(insertXmlTagFromToolButtonAction()));
+                    combo->setProperty("tagsID", actionName);
+                    mtb.toolbar->addWidget(combo);
+                } else {
+                    QObject *obj=configManager.menuParent->findChild<QObject*>(actionName);
+                    QAction *act=qobject_cast<QAction*>(obj);
+                    if (act) {
+                        //Case 3: A normal QAction
+                        if(act->icon().isNull())
+                            act->setIcon(QIcon(":/images/appicon.png"));
+                        mtb.toolbar->addAction(act);
+                    } else {
+                        QMenu* menu=qobject_cast<QMenu*>(obj);
+                        if (!menu) {
+                            qWarning("Unkown toolbar command %s", qPrintable(actionName));
+                            continue;
+                        }
+                        //Case 4: A submenu mapped on a toolbutton
+                        QFontMetrics fontMetrics(mtb.toolbar->font());
+                        QStringList list;
+                        foreach (const QAction* act, menu->actions())
+                            if (!act->isSeparator())
+                                list.append(act->text());
+                        QToolButton* combo=createComboToolButton(mtb.toolbar,list,mtb.toolbar->height()-2,fontMetrics,this,SLOT(insertFromActionFromToolButtonAction()));
+                        combo->setProperty("menuID", actionName);
+                        mtb.toolbar->addWidget(combo);
+                    }
+                }
+            }
+            if(mtb.actualActions.empty()) mtb.toolbar->setVisible(false);
 	}
 }
 
@@ -3352,8 +3352,8 @@ void Texmaker::GeneralOptions() {
 	bool customEnvironmentExisted = !configManager.customEnvironments.isEmpty();
 	bool oldModernStyle = configManager.modernStyle;
 	bool oldSystemTheme = configManager.useSystemTheme;
-	autosaveTimer.stop();
-	if (configManager.execConfigDialog()) {
+        autosaveTimer.stop();
+        if (configManager.execConfigDialog()) {
 		mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);
 		// refresh quick language selection combobox
 		QFontMetrics fontMetrics(spellToolBar->font());
@@ -3376,7 +3376,7 @@ void Texmaker::GeneralOptions() {
 			UpdateCaption();
 		}
 		//custom toolbar
-		setupToolBars();
+                setupToolBars();
 
 		// custom evironments
 		if(customEnvironmentExisted || !configManager.customEnvironments.isEmpty()){
