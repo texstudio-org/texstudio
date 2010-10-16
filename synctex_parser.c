@@ -51,6 +51,9 @@ Thu Jun 19 09:39:21 UTC 2008
 
 */
 
+#ifndef NO_POPPLER_PREVIEW
+
+
 /*  We assume that high level application like pdf viewers will want
  *  to embed this code as is. We assume that they also have locale.h and setlocale.
  *  For other tools such as TeXLive tools, you must define SYNCTEX_USE_LOCAL_HEADER,
@@ -4155,3 +4158,5 @@ void synctex_updater_free(synctex_updater_t updater){
 	printf("... done.\n");
 	return;
 }
+
+#endif

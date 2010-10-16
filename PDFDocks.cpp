@@ -19,6 +19,8 @@
 	see <http://texworks.org/>.
 */
 
+#ifndef NO_POPPLER_PREVIEW
+
 // Based on code by Pino Toscano from Poppler / qt4 / Demos, released under GPL 2 or later
 
 #include "PDFDocks.h"
@@ -593,3 +595,5 @@ PDFScrollArea::resizeEvent(QResizeEvent *event)
 	QScrollArea::resizeEvent(event);
 	emit resized();
 }
+
+#endif

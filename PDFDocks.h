@@ -18,9 +18,11 @@
 	For links to further information, or to contact the author,
 	see <http://texworks.org/>.
 */
-
 #ifndef PDFDOCKS_H
 #define PDFDOCKS_H
+
+#ifndef NO_POPPLER_PREVIEW
+
 
 #include <QDockWidget>
 #include <QTreeWidget>
@@ -225,5 +227,7 @@ protected:
 signals:
 	void resized();
 };
+
+#endif
 
 #endif

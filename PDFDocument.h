@@ -22,6 +22,9 @@
 #ifndef PDFDocument_H
 #define PDFDocument_H
 
+#ifndef NO_POPPLER_PREVIEW
+
+
 #include "mostQtHeaders.h"
 
 //#include "FindDialog.h"
@@ -337,5 +340,7 @@ private:
 	// after wrapping the search will continue only up to this page
 	int firstSearchPage;
 };
+
+#endif
 
 #endif
