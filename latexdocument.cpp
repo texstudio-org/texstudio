@@ -533,7 +533,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			oldLine=mAppendixLine;
 			mAppendixLine=0;
 		}
-
+                //let %\include be processed
+                if(curLine.startsWith("%\\include")||curLine.startsWith("%\\input")){
+                    curLine.replace(0,1,' ');
+                }
 		while(findCommandWithArg(curLine,cmd,name,arg,remainder)){
 			curLine=remainder;
 			//// newcommand ////
@@ -684,6 +687,9 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				newInclude->lineNumber=i;
 				newInclude->level=fileExits(name)? 0 : 1;
 				newInclude->lineHandle=line(i).handle();
+                                //new parent for following sections is base !
+                                for(int j=0;j<parent_level.size();j++)
+                                        parent_level[j]=baseStructure;
 				continue;
 			}
 			//// all sections ////
