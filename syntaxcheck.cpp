@@ -79,12 +79,14 @@ void SyntaxCheck::run(){
                              word+=options.first();
                          }
                      }
-                     if(LatexParser::refCommands.contains(word)||LatexParser::labelCommands.contains(word)){ //don't check syntax in reference
+                     if(LatexParser::refCommands.contains(word)||LatexParser::labelCommands.contains(word)||LatexParser::fileCommands.contains(word)){ //don't check syntax in reference, label or include
                          QStringList options;
                          LatexParser::resolveCommandOptions(line,wordstart,options);
                          if(options.size()>0){
-                             QString first=options.first();
-                             start+=first.length();
+                             QString first=options.takeFirst();
+                             if(!first.startsWith("[")){  //handling of includegraphics should be improve !!!
+                                 start+=first.length();
+                             }
                          }
                      }
                      if(LatexParser::mathStartCommands.contains(word)&&activeEnv.top()!=ENV_math){

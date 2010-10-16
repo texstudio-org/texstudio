@@ -141,6 +141,7 @@ public:
         static QSet<QString> mathStopCommands;
         static QSet<QString> tabularCommands;
         static QSet<QString> tabularEnvirons;
+        static QSet<QString> fileCommands;
         static QSet<QString> userdefinedCommands;
 	static QStringList structureCommands;
 
