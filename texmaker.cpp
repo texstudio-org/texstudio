@@ -1339,7 +1339,9 @@ bool Texmaker::closeAllFilesAsking(){
 		} else
 			documents.deleteDocument(currentEditorView()->document);
 	}
+#ifndef NO_POPPLER_PREVIEW
 	if (pdfviewerWindow) pdfviewerWindow->close();
+#endif
 	return true;
 }
 
@@ -2739,6 +2741,7 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool 
 	}
 
 	if (commandline.startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER)) {
+#ifndef NO_POPPLER_PREVIEW
 		QString pdfFile = BuildManager::parseExtendedCommandLine("?am.pdf", finame);
 		QString externalViewer = buildManager.getLatexCommand(BuildManager::CMD_VIEWPDF);
 		if (externalViewer.startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER)) {
@@ -2758,6 +2761,9 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool 
 		}
 		pdfviewerWindow->loadFile(pdfFile,externalViewer);
 		pdfviewerWindow->syncFromSource(getCurrentFileName(), currentEditorView()->editor->cursor().lineNumber(), true);
+#else
+		QMessageBox::critical(this, "TexMakerX", tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of TexMakerX that was compiled without the internal pdf viewer."), QMessageBox::Ok);
+#endif
 		return;
 	}
 
@@ -4204,8 +4210,10 @@ void Texmaker::cursorPositionChanged(){
 	if(!mDontScrollToItem)
 		structureTreeView->scrollTo(model->highlightedEntry());
 
+#ifndef NO_POPPLER_PREVIEW
 	if (pdfviewerWindow && pdfviewerWindow->followCursor())
 		pdfviewerWindow->syncFromSource(getCurrentFileName(), currentLine, false);
+#endif
 }
 
 void Texmaker::fileCheckin(QString filename){

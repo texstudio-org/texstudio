@@ -97,8 +97,10 @@ private:
 	LatexDocuments documents;
 
 	OutputViewWidget *outputView; //contains output widgets (over OutputLayout)
-	
+
+#ifndef NO_POPPLER_PREVIEW
 	QPointer<PDFDocument> pdfviewerWindow;
+#endif
 //toolbars
 //
 	QToolBar *spellToolBar;

@@ -54,6 +54,9 @@ Thu Jun 19 09:39:21 UTC 2008
 #ifndef __SYNCTEX_PARSER__
 #   define __SYNCTEX_PARSER__
 
+#ifndef NO_POPPLER_PREVIEW
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -340,6 +343,8 @@ void synctex_updater_free(synctex_updater_t updater);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif
 
 #endif

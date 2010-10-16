@@ -205,8 +205,6 @@ TRANSLATIONS += texmakerx_fr.ts \
 # ###############################
 win32 { 
     RC_FILE = win.rc
-    LIBS += -lpoppler-qt4
-    LIBS += -lpoppler
 }
 
 # ##############################
@@ -226,11 +224,6 @@ macx {
     QMAKE_BUNDLE_DATA += utilities
     ICON = texmaker.icns
     QMAKE_INFO_PLIST = Info.plist
-    INCLUDEPATH += /usr/local/include/poppler/qt4
-    LIBS += -L/usr/local/lib \
-        -lpoppler-qt4
-    LIBS += -L/usr/local/lib \
-        -lpoppler
 }
 
 # ###############################
@@ -249,12 +242,10 @@ unix:!macx {
     applicationmenu.path = $${PREFIX}/share/applications
     applicationmenu.files = utilities/texmakerx.desktop
     INSTALLS += applicationmenu
-    INCLUDEPATH += /usr/include/poppler/qt4
-    LIBS += -L/usr/lib \
-        -lpoppler-qt4
-    LIBS += -L/usr/lib \
-        -lpoppler
+        
 }
+
+
 
 # ##########UNIX + MACX###############
 unix { 
@@ -459,6 +450,28 @@ macx:LIBS += -framework \
 macx:LIBS += -framework \
     CoreFoundation
 
+#################################
+#Poppler PDF Preview, will only be used if NO_POPPLER_PREVIEW is not set
+
+isEmpty(NO_POPPLER_PREVIEW){
+    unix:!macx{
+        INCLUDEPATH += /usr/include/poppler/qt4
+        LIBS += -L/usr/lib -lpoppler-qt4 -lpoppler -lz
+    }
+    macx {
+        INCLUDEPATH += /usr/local/include/poppler/qt4
+        LIBS += -L/usr/local/lib -lpoppler-qt4 -lpoppler -lz
+    }
+    win32 { 
+        LIBS += -lpoppler-qt4
+        LIBS += -lpoppler
+    }
+}
+
+!isEmpty(NO_POPPLER_PREVIEW){
+    DEFINES += NO_POPPLER_PREVIEW
+}
+
 # ###############################
 # add files to svn if team is set
 CONFIG(team):!CONFIG(build_pass) { 
@@ -507,3 +520,6 @@ else {
 }
 HEADERS += $$svn_revision.target
 QMAKE_EXTRA_TARGETS += svn_revision
+
+
+

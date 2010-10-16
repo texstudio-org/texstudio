@@ -19,6 +19,8 @@
 	see <http://texworks.org/>.
 */
 
+#ifndef NO_POPPLER_PREVIEW
+
 #include "PDFDocument.h"
 #include "PDFDocks.h"
 //#include "FindDialog.h"
@@ -1909,3 +1911,5 @@ void PDFDocument::doFindAgain()
 	search(false, false);
 }
 
+
+#endif

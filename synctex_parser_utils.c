@@ -40,6 +40,8 @@ authorization from the copyright holder.
 
 /*  In this file, we find all the functions that may depend on the operating system. */
 
+#ifndef NO_POPPLER_PREVIEW
+
 #include <synctex_parser_utils.h>
 #include <stdlib.h>
 #include <string.h>
@@ -449,3 +451,5 @@ int _synctex_get_name(const char * output, const char * build_directory, char **
 	return -2;
 }
 
+
+#endif

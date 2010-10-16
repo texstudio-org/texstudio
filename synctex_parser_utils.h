@@ -42,6 +42,8 @@ authorization from the copyright holder.
  *  The problem mainly comes from file name management: path separator, encoding...
  */
 
+#ifndef NO_POPPLER_PREVIEW
+
 #	define synctex_bool_t int
 #	define synctex_YES -1
 #	define synctex_NO 0
@@ -118,6 +120,8 @@ int _synctex_get_name(const char * output, const char * build_directory, char **
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif
 
 #endif
