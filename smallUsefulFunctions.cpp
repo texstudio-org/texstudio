@@ -20,6 +20,7 @@ QSet<QString> LatexParser::mathStartCommands = QSet<QString>::fromList(QStringLi
 QSet<QString> LatexParser::mathStopCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\)" << "\\]" << "\\end{math}" << "\\end{equation}" << "\\end{displaymath}");
 QSet<QString> LatexParser::tabularCommands;
 QSet<QString> LatexParser::tabularEnvirons = QSet<QString>::fromList(QStringList() << "tabular" << "tabularx" << "longtable");
+QSet<QString> LatexParser::fileCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input" << "\\includegraphics");
 QSet<QString> LatexParser::userdefinedCommands;
 QStringList LatexParser::structureCommands = QStringList(); //see texmaker.cpp
 
