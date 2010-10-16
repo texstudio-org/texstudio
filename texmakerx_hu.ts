@@ -198,14 +198,6 @@
     </message>
 </context>
 <context>
-    <name>CodeSnippetTest</name>
-    <message>
-        <source>environment-name</source>
-        <comment>snippet</comment>
-        <translation type="obsolete">környezet-név</translation>
-    </message>
-</context>
-<context>
     <name>ConfigDialog</name>
     <message>
         <source>Configure TexMakerX</source>
@@ -1824,11 +1816,11 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <name>PDFBaseSearchDock</name>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Keresés</translation>
+        <translation>Keresés</translation>
     </message>
     <message>
         <source>Enables case sensitive search.</source>
-        <translation type="unfinished">A keresést kis- és nagybetűérzékenyre állítja</translation>
+        <translation>A keresést kis- és nagybetűérzékenyre állítja</translation>
     </message>
 </context>
 <context>
@@ -2065,10 +2057,6 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <translation>&amp;Fájl</translation>
     </message>
     <message>
-        <source>&amp;Edit</source>
-        <translation type="obsolete">&amp;Szerkesztés</translation>
-    </message>
-    <message>
         <source>&amp;View</source>
         <translation>&amp;Nézet</translation>
     </message>
@@ -2149,10 +2137,6 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <translation>&amp;Törlés</translation>
     </message>
     <message>
-        <source>&amp;Preferences...</source>
-        <translation type="obsolete">B&amp;eállítások...</translation>
-    </message>
-    <message>
         <source>Stac&amp;k</source>
         <translation>&amp;Verem</translation>
     </message>
@@ -2190,19 +2174,19 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>&amp;Configure</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Beállítások</translation>
     </message>
     <message>
         <source>&amp;Configure TexMakerX</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;A TexMakerX beállításai</translation>
     </message>
     <message>
         <source>Scrolling follows cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>A görgetés követi a kurzort</translation>
     </message>
     <message>
         <source>Cursor follows scrolling</source>
-        <translation type="unfinished"></translation>
+        <translation>A kurzor követi a görgetést</translation>
     </message>
 </context>
 <context>
@@ -2266,7 +2250,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <name>PDFSearchDock</name>
     <message>
         <source>Sync</source>
-        <translation type="unfinished"></translation>
+        <translation>Hangolás</translation>
     </message>
 </context>
 <context>
@@ -3042,7 +3026,7 @@ Akarja menteni ezeket?</translation>
     <name>QObject</name>
     <message>
         <source>environment-name</source>
-        <translation type="obsolete">környezet-név</translation>
+        <translation>környezet-név</translation>
     </message>
     <message>
         <source>content...</source>
@@ -3059,11 +3043,6 @@ Akarja menteni ezeket?</translation>
     <message>
         <source>Error: </source>
         <translation>Hiba:</translation>
-    </message>
-    <message>
-        <source>environment-name</source>
-        <comment>snippet</comment>
-        <translation type="unfinished">környezet-név</translation>
     </message>
 </context>
 <context>
@@ -3449,7 +3428,8 @@ Néhány példa:
     <message>
         <source>Sorry, you clicked in the wrong column.
 To change a shortcut, you have to edit the third or fourth column.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sajnos rossz oszlopra kattintottál!
+A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerkeszteni!</translation>
     </message>
 </context>
 <context>
