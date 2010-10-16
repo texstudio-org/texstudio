@@ -198,6 +198,14 @@
     </message>
 </context>
 <context>
+    <name>CodeSnippetTest</name>
+    <message>
+        <source>environment-name</source>
+        <comment>snippet</comment>
+        <translation type="obsolete">környezet-név</translation>
+    </message>
+</context>
+<context>
     <name>ConfigDialog</name>
     <message>
         <source>Configure TexMakerX</source>
@@ -1813,6 +1821,17 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
 </context>
 <context>
+    <name>PDFBaseSearchDock</name>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Keresés</translation>
+    </message>
+    <message>
+        <source>Enables case sensitive search.</source>
+        <translation type="unfinished">A keresést kis- és nagybetűérzékenyre állítja</translation>
+    </message>
+</context>
+<context>
     <name>PDFDocument</name>
     <message>
         <source>untitled.pdf[*]</source>
@@ -2047,7 +2066,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation>&amp;Szerkesztés</translation>
+        <translation type="obsolete">&amp;Szerkesztés</translation>
     </message>
     <message>
         <source>&amp;View</source>
@@ -2131,7 +2150,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>&amp;Preferences...</source>
-        <translation>B&amp;eállítások...</translation>
+        <translation type="obsolete">B&amp;eállítások...</translation>
     </message>
     <message>
         <source>Stac&amp;k</source>
@@ -2168,6 +2187,22 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>Esc</source>
         <translation>Esc</translation>
+    </message>
+    <message>
+        <source>&amp;Configure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Configure TexMakerX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scrolling follows cursor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cursor follows scrolling</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2225,6 +2260,13 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>Contents</source>
         <translation>Tartalmak</translation>
+    </message>
+</context>
+<context>
+    <name>PDFSearchDock</name>
+    <message>
+        <source>Sync</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3000,7 +3042,7 @@ Akarja menteni ezeket?</translation>
     <name>QObject</name>
     <message>
         <source>environment-name</source>
-        <translation>környezet-név</translation>
+        <translation type="obsolete">környezet-név</translation>
     </message>
     <message>
         <source>content...</source>
@@ -3017,6 +3059,11 @@ Akarja menteni ezeket?</translation>
     <message>
         <source>Error: </source>
         <translation>Hiba:</translation>
+    </message>
+    <message>
+        <source>environment-name</source>
+        <comment>snippet</comment>
+        <translation type="unfinished">környezet-név</translation>
     </message>
 </context>
 <context>
@@ -3398,6 +3445,11 @@ Néhány példa:
     <message>
         <source>add row</source>
         <translation>sor hozzáadása</translation>
+    </message>
+    <message>
+        <source>Sorry, you clicked in the wrong column.
+To change a shortcut, you have to edit the third or fourth column.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

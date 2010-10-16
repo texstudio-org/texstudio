@@ -916,10 +916,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Editor2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Use system theme icons</source>
         <translation type="unfinished"></translation>
     </message>
@@ -969,6 +965,94 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     </message>
     <message>
         <source>60 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Indentation mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Line numbers:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Segment preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Command:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full page pdf preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Screen resolution:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dpi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magnifier size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scale option:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scaling:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Original size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to window width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to window size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scaled size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magnifier shape:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Square</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Circle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>px</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Adv. Editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1416,6 +1500,10 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     </message>
     <message>
         <source>Open all files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal viewer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1867,30 +1955,29 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
 </context>
 <context>
+    <name>PDFBaseSearchDock</name>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Trova</translation>
+    </message>
+    <message>
+        <source>Enables case sensitive search.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PDFDocument</name>
     <message>
         <source>untitled.pdf[*]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Help</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>File</source>
-        <translation type="unfinished">File</translation>
+        <translation type="obsolete">File</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished">Edita</translation>
-    </message>
-    <message>
-        <source>View</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Window</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Edita</translation>
     </message>
     <message>
         <source>Show</source>
@@ -1902,37 +1989,11 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>About TexMakerX...</source>
-        <translation type="unfinished">Informazioni su TexMakerX...</translation>
-    </message>
-    <message>
-        <source>First Page</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Informazioni su TexMakerX...</translation>
     </message>
     <message>
         <source>Home</source>
         <comment>shortcut key name, do not translate</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Previous Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PgUp</source>
-        <comment>shortcut key name, do not translate</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Next Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PgDown</source>
-        <comment>shortcut key name, do not translate</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Last Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1941,15 +2002,7 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Go to Page...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ctrl+J</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Zoom In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1957,15 +2010,7 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ctrl+-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fit to Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1973,15 +2018,7 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Actual Size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ctrl+1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fit to Width</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2009,16 +2046,12 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
         <translation type="unfinished">Apri Recente</translation>
     </message>
     <message>
-        <source>Close</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ctrl+W</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Undo</source>
-        <translation type="unfinished">Annulla</translation>
+        <translation type="obsolete">Annulla</translation>
     </message>
     <message>
         <source>Ctrl+Z</source>
@@ -2026,7 +2059,7 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>Redo</source>
-        <translation type="unfinished">Ripeti</translation>
+        <translation type="obsolete">Ripeti</translation>
     </message>
     <message>
         <source>Ctrl+Shift+Z</source>
@@ -2034,7 +2067,7 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>Cut</source>
-        <translation type="unfinished">Taglia</translation>
+        <translation type="obsolete">Taglia</translation>
     </message>
     <message>
         <source>Ctrl+X</source>
@@ -2042,7 +2075,7 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished">Copia</translation>
+        <translation type="obsolete">Copia</translation>
     </message>
     <message>
         <source>Ctrl+C</source>
@@ -2050,14 +2083,10 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation type="unfinished">Incolla</translation>
+        <translation type="obsolete">Incolla</translation>
     </message>
     <message>
         <source>Ctrl+V</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2074,22 +2103,6 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Preferences...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stack</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Tile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Go to Source</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ctrl+&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2099,10 +2112,6 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>Ctrl+Shift+N</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Full Screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2127,14 +2136,10 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>User Manual...</source>
-        <translation type="unfinished">Manuale Utente...</translation>
+        <translation type="obsolete">Manuale Utente...</translation>
     </message>
     <message>
         <source>Email to the mailing list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Side by Side</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2143,10 +2148,6 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>Place on Right</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Quit TexMakerX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2222,11 +2223,147 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Abort typesetting</source>
+        <source>&amp;Help</source>
+        <translation type="unfinished">&amp;Aiuto</translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation type="unfinished">&amp;File</translation>
+    </message>
+    <message>
+        <source>&amp;Configure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Typeset</source>
+        <source>&amp;View</source>
+        <translation type="unfinished">&amp;Visualizza</translation>
+    </message>
+    <message>
+        <source>&amp;Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;About TexMakerX...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;First Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Previous Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Next Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Last Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Go to Page...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;In</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to &amp;Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Actual Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to Wi&amp;dth</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">Chiudi</translation>
+    </message>
+    <message>
+        <source>&amp;Undo</source>
+        <translation type="unfinished">&amp;Annulla</translation>
+    </message>
+    <message>
+        <source>&amp;Redo</source>
+        <translation type="unfinished">&amp;Ripeti</translation>
+    </message>
+    <message>
+        <source>C&amp;ut</source>
+        <translation type="unfinished">Taglia</translation>
+    </message>
+    <message>
+        <source>&amp;Copy</source>
+        <translation type="unfinished">&amp;Copia</translation>
+    </message>
+    <message>
+        <source>&amp;Paste</source>
+        <translation type="unfinished">&amp;Incolla</translation>
+    </message>
+    <message>
+        <source>C&amp;lear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>External Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Configure TexMakerX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stac&amp;k</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Tile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Go to Source</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full &amp;Screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User &amp;Manual...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Side by Side</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Quit TexMakerX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close something</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Esc</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scrolling follows cursor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cursor follows scrolling</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2288,6 +2425,13 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
 </context>
 <context>
+    <name>PDFSearchDock</name>
+    <message>
+        <source>Sync</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PDFWidget</name>
     <message>
         <source>Zoom In</source>
@@ -2319,6 +2463,14 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>Page number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished">Errore</translation>
+    </message>
+    <message>
+        <source>Could not open browser</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3094,6 +3246,7 @@ Vuoi salvarli?</translation>
     </message>
     <message>
         <source>environment-name</source>
+        <comment>snippet</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3505,6 +3658,11 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <source>add row</source>
         <translation>aggiungi riga</translation>
+    </message>
+    <message>
+        <source>Sorry, you clicked in the wrong column.
+To change a shortcut, you have to edit the third or fourth column.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4851,6 +5009,10 @@ You have to save a document before you can compile it.</source>
     <message>
         <source>remove \hline</source>
         <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not open browser</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
