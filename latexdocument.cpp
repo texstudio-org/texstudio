@@ -194,12 +194,12 @@ void LatexDocument::updateStructure() {
 			QString arg;
 			if (findTokenWithArg(curLine,commandTokens[j],name,arg)) {
 				int options=arg.toInt(); //returns 0 if conversion fails
+                                LatexParser::userdefinedCommands.insert(name);
 				for (int j=0; j<options; j++) {
 					if (j==0) name.append("{%<arg1%|%>}");
 					else name.append(QString("{%<arg%1%>}").arg(j+1));
 				}
 				mUserCommandList.insert(line(i).handle(),name);
-                                LatexParser::userdefinedCommands.insert(name);
                                 // remove obsolete Overlays (maybe this can be refined
                                 for (int i=0; i<lines(); i++) {
                                         QList<QFormatRange> li=line(i).getOverlays(edView->syntaxErrorFormat);
@@ -540,12 +540,12 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			if (commandTokens.contains(cmd)) {
 				completerNeedsUpdate=true;
 				int options=arg.toInt(); //returns 0 if conversion fails
+                                LatexParser::userdefinedCommands.insert(name);
 				for (int j=0; j<options; j++) {
 					if (j==0) name.append("{%<arg1%|%>}");
 					else name.append(QString("{%<arg%1%>}").arg(j+1));
 				}
 				mUserCommandList.insert(line(i).handle(),name);
-                                LatexParser::userdefinedCommands.insert(name);
                                 // remove obsolete Overlays (maybe this can be refined
                                 for (int i=0; i<lines(); i++) {
                                         QList<QFormatRange> li=line(i).getOverlays(edView->syntaxErrorFormat);
