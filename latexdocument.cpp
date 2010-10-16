@@ -319,6 +319,9 @@ void LatexDocument::updateStructure() {
 				newInclude->level=fileExits(s)? 0 : 1;
 				if (!temporaryLoadedDocument)
 					newInclude->lineHandle=line(i).handle();
+                                //all following sections are children to base again !
+                                for (int i=0;i<parent_level.size();i++)
+                                        parent_level[i]=baseStructure;
 			}
 		}//for
 		//// all sections ////
