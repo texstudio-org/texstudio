@@ -266,7 +266,7 @@ public slots:
 	void reload();
 	void sideBySide();
 	void doFindDialog();
-	void doFindAgain(bool newSearch = false);
+	void doFindAgain();
 	void goToSource();
 	void toggleFullScreen();
 	void syncFromSource(const QString& sourceFile, int lineNo, bool activatePreview); //lineNo 0 based
