@@ -1611,10 +1611,16 @@ void PDFDocument::search(bool backwards, bool incremental){
 
 	runs = (true ? 2 : 1); //true = always wrap around
 
+	Q_ASSERT(!backwards || !incremental);
 	if (incremental) {
-		lastSearchResult.selRect.setLeft(lastSearchResult.selRect.left()-2);
+		//make sure that we find the current match again
+		lastSearchResult.selRect.setLeft(lastSearchResult.selRect.left()-0.01);
 		lastSearchResult.selRect.setRight(lastSearchResult.selRect.left());
 	}
+
+	if (lastSearchResult.pageIdx != pdfWidget->getCurrentPageIndex())
+		lastSearchResult.selRect = backwards ? QRectF(0,100000,1,1) : QRectF();
+
 
 	for (run = 0; run < runs; ++run) {
 		switch (run) {
@@ -1630,6 +1636,7 @@ void PDFDocument::search(bool backwards, bool incremental){
 				break;
 			default:
 				// should not happen
+				Q_ASSERT(false);
 				return;
 		}
 
@@ -1652,7 +1659,7 @@ void PDFDocument::search(bool backwards, bool incremental){
 
 				return;
 			}
-			lastSearchResult.selRect = QRectF();
+			lastSearchResult.selRect = backwards ? QRectF(0,100000,1,1) : QRectF();
 			searchDir = (backwards ? Poppler::Page::PreviousResult : Poppler::Page::NextResult);
 		}
 	}
@@ -1894,12 +1901,11 @@ void PDFDocument::dropEvent(QDropEvent *event)
 
 void PDFDocument::doFindDialog()
 {
-/*TODO	if (PDFFindDialog::doFindDialog(this) == QDialog::Accepted)
-		doFindAgain(true);*/
+	dwSearch->show();
 }
 
-void PDFDocument::doFindAgain(bool newSearch /*= false*/)
+void PDFDocument::doFindAgain()
 {
-	//TODO
+	search(false, false);
 }
 
