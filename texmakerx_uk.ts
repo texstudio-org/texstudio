@@ -1088,10 +1088,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Editor2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Use system theme icons</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1141,6 +1137,94 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     </message>
     <message>
         <source>60 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Indentation mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Line numbers:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Segment preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Command:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full page pdf preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Screen resolution:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dpi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magnifier size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scale option:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scaling:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Original size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to window width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to window size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scaled size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magnifier shape:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Square</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Circle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>px</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Adv. Editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1580,6 +1664,10 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     </message>
     <message>
         <source>qquad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal viewer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2042,30 +2130,25 @@ Are you sure you want to undo all changes?</source>
     </message>
 </context>
 <context>
+    <name>PDFBaseSearchDock</name>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Пошук</translation>
+    </message>
+    <message>
+        <source>Enables case sensitive search.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PDFDocument</name>
     <message>
         <source>untitled.pdf[*]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Help</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>File</source>
-        <translation type="unfinished">Файл</translation>
-    </message>
-    <message>
-        <source>Edit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>View</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Window</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Файл</translation>
     </message>
     <message>
         <source>Show</source>
@@ -2076,38 +2159,8 @@ Are you sure you want to undo all changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>About TexMakerX...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>First Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Home</source>
         <comment>shortcut key name, do not translate</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Previous Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PgUp</source>
-        <comment>shortcut key name, do not translate</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Next Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PgDown</source>
-        <comment>shortcut key name, do not translate</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Last Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2116,15 +2169,7 @@ Are you sure you want to undo all changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Go to Page...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ctrl+J</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Zoom In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2132,15 +2177,7 @@ Are you sure you want to undo all changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ctrl+-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fit to Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2148,15 +2185,7 @@ Are you sure you want to undo all changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Actual Size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ctrl+1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fit to Width</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2185,7 +2214,7 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished">Закрити</translation>
+        <translation type="obsolete">Закрити</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
@@ -2193,7 +2222,7 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <source>Undo</source>
-        <translation type="unfinished">Відмінити останню дію</translation>
+        <translation type="obsolete">Відмінити останню дію</translation>
     </message>
     <message>
         <source>Ctrl+Z</source>
@@ -2201,7 +2230,7 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <source>Redo</source>
-        <translation type="unfinished">Повторити відмінену дію</translation>
+        <translation type="obsolete">Повторити відмінену дію</translation>
     </message>
     <message>
         <source>Ctrl+Shift+Z</source>
@@ -2209,7 +2238,7 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <source>Cut</source>
-        <translation type="unfinished">Вирізати</translation>
+        <translation type="obsolete">Вирізати</translation>
     </message>
     <message>
         <source>Ctrl+X</source>
@@ -2217,7 +2246,7 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished">Копіювати</translation>
+        <translation type="obsolete">Копіювати</translation>
     </message>
     <message>
         <source>Ctrl+C</source>
@@ -2225,14 +2254,10 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <source>Paste</source>
-        <translation type="unfinished">Вставити</translation>
+        <translation type="obsolete">Вставити</translation>
     </message>
     <message>
         <source>Ctrl+V</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2249,22 +2274,6 @@ Are you sure you want to undo all changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Preferences...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stack</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Tile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Go to Source</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ctrl+&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2274,10 +2283,6 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <source>Ctrl+Shift+N</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Full Screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2301,15 +2306,7 @@ Are you sure you want to undo all changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>User Manual...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Email to the mailing list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Side by Side</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2318,10 +2315,6 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <source>Place on Right</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Quit TexMakerX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2397,11 +2390,147 @@ Are you sure you want to undo all changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Abort typesetting</source>
+        <source>&amp;Help</source>
+        <translation type="unfinished">&amp;Допомога</translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation type="unfinished">&amp;Файл</translation>
+    </message>
+    <message>
+        <source>&amp;Configure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Typeset</source>
+        <source>&amp;View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;About TexMakerX...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;First Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Previous Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Next Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Last Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Go to Page...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;In</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to &amp;Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Actual Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to Wi&amp;dth</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Undo</source>
+        <translation type="unfinished">Відмінити останню дію</translation>
+    </message>
+    <message>
+        <source>&amp;Redo</source>
+        <translation type="unfinished">Повторити відмінену дію</translation>
+    </message>
+    <message>
+        <source>C&amp;ut</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copy</source>
+        <translation type="unfinished">Копіювати</translation>
+    </message>
+    <message>
+        <source>&amp;Paste</source>
+        <translation type="unfinished">Вставити</translation>
+    </message>
+    <message>
+        <source>C&amp;lear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>External Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Configure TexMakerX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stac&amp;k</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Tile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Go to Source</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full &amp;Screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User &amp;Manual...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Side by Side</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Quit TexMakerX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close something</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Esc</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scrolling follows cursor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cursor follows scrolling</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2463,6 +2592,13 @@ Are you sure you want to undo all changes?</source>
     </message>
 </context>
 <context>
+    <name>PDFSearchDock</name>
+    <message>
+        <source>Sync</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PDFWidget</name>
     <message>
         <source>Zoom In</source>
@@ -2494,6 +2630,14 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <source>Page number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished">Помилка</translation>
+    </message>
+    <message>
+        <source>Could not open browser</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3271,6 +3415,7 @@ Do you want them to be saved?</source>
     </message>
     <message>
         <source>environment-name</source>
+        <comment>snippet</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3683,6 +3828,11 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <source>Only single characters are allowed as key</source>
         <translation>Тільки окремі символи дозволені в якості ключа</translation>
+    </message>
+    <message>
+        <source>Sorry, you clicked in the wrong column.
+To change a shortcut, you have to edit the third or fourth column.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5415,6 +5565,10 @@ You have to save a document before you can compile it.</source>
     <message>
         <source>remove \hline</source>
         <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not open browser</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

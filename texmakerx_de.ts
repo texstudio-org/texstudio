@@ -281,6 +281,14 @@
     </message>
 </context>
 <context>
+    <name>CodeSnippetTest</name>
+    <message>
+        <source>environment-name</source>
+        <comment>snippet</comment>
+        <translation type="obsolete">Umgebungsname</translation>
+    </message>
+</context>
+<context>
     <name>ConfigDialog</name>
     <message>
         <source>Do you really want to delete this row?</source>
@@ -1081,7 +1089,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <source>Editor2</source>
-        <translation>Editor2</translation>
+        <translation type="obsolete">Editor2</translation>
     </message>
     <message>
         <source>Use system theme icons</source>
@@ -1134,6 +1142,94 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     <message>
         <source>60 minutes</source>
         <translation>60 Minuten</translation>
+    </message>
+    <message>
+        <source>Indentation mode:</source>
+        <translation>Einrückungsmodus:</translation>
+    </message>
+    <message>
+        <source>Line numbers:</source>
+        <translation>Zeilennummern:</translation>
+    </message>
+    <message>
+        <source>Segment preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Command:</source>
+        <translation>Befehl:</translation>
+    </message>
+    <message>
+        <source>Display mode:</source>
+        <translation>Anzeigemodus:</translation>
+    </message>
+    <message>
+        <source>Full page pdf preview</source>
+        <translation>Ganze Seite pdf Vorschau</translation>
+    </message>
+    <message>
+        <source>Screen resolution:</source>
+        <translation>Bildschirmauflösung:</translation>
+    </message>
+    <message>
+        <source>dpi</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Magnifier size:</source>
+        <translation>Lupengröße:</translation>
+    </message>
+    <message>
+        <source>Scale option:</source>
+        <translation>Skalierungsopton:</translation>
+    </message>
+    <message>
+        <source>Scaling:</source>
+        <translation>Skalierung:</translation>
+    </message>
+    <message>
+        <source>Original size</source>
+        <translation>Originalgröße</translation>
+    </message>
+    <message>
+        <source>Fit to window width</source>
+        <translation>Auf Breite anpassen</translation>
+    </message>
+    <message>
+        <source>Fit to window size</source>
+        <translation>Ins Fenster anpassen</translation>
+    </message>
+    <message>
+        <source>Scaled size</source>
+        <translation>Skalierte Größe</translation>
+    </message>
+    <message>
+        <source>%</source>
+        <translation>%</translation>
+    </message>
+    <message>
+        <source>Magnifier shape:</source>
+        <translation>Lupenform:</translation>
+    </message>
+    <message>
+        <source>Square</source>
+        <translation>Quadratisch</translation>
+    </message>
+    <message>
+        <source>Circle</source>
+        <translation>Kreis</translation>
+    </message>
+    <message>
+        <source>px</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Adv. Editor</source>
+        <translation>Fortgeschrittener Editor</translation>
+    </message>
+    <message>
+        <source>Preview</source>
+        <translation>Vorschau</translation>
     </message>
 </context>
 <context>
@@ -1585,6 +1681,10 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     <message>
         <source>Open all files</source>
         <translation>Alle Dateien öffnen</translation>
+    </message>
+    <message>
+        <source>Internal viewer</source>
+        <translation>Interner Betrachter</translation>
     </message>
 </context>
 <context>
@@ -2041,6 +2141,17 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
 </context>
 <context>
+    <name>PDFBaseSearchDock</name>
+    <message>
+        <source>Search</source>
+        <translation>Suche</translation>
+    </message>
+    <message>
+        <source>Enables case sensitive search.</source>
+        <translation>Berücksichtigt die Groß- und Kleinschreibung.</translation>
+    </message>
+</context>
+<context>
     <name>PDFDocument</name>
     <message>
         <source>untitled.pdf[*]</source>
@@ -2048,23 +2159,23 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Help</source>
-        <translation>Hilfe</translation>
+        <translation type="obsolete">Hilfe</translation>
     </message>
     <message>
         <source>File</source>
-        <translation>Datei</translation>
+        <translation type="obsolete">Datei</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Bearbeiten</translation>
+        <translation type="obsolete">Bearbeiten</translation>
     </message>
     <message>
         <source>View</source>
-        <translation>Ansicht</translation>
+        <translation type="obsolete">Ansicht</translation>
     </message>
     <message>
         <source>Window</source>
-        <translation>Fenster</translation>
+        <translation type="obsolete">Fenster</translation>
     </message>
     <message>
         <source>Show</source>
@@ -2076,11 +2187,11 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>About TexMakerX...</source>
-        <translation>Über TexMakerX...</translation>
+        <translation type="obsolete">Über TexMakerX...</translation>
     </message>
     <message>
         <source>First Page</source>
-        <translation>Erste Seite</translation>
+        <translation type="obsolete">Erste Seite</translation>
     </message>
     <message>
         <source>Home</source>
@@ -2089,25 +2200,15 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Previous Page</source>
-        <translation>Vorherige Seite</translation>
-    </message>
-    <message>
-        <source>PgUp</source>
-        <comment>shortcut key name, do not translate</comment>
-        <translation></translation>
+        <translation type="obsolete">Vorherige Seite</translation>
     </message>
     <message>
         <source>Next Page</source>
-        <translation>Nächste Seite</translation>
-    </message>
-    <message>
-        <source>PgDown</source>
-        <comment>shortcut key name, do not translate</comment>
-        <translation></translation>
+        <translation type="obsolete">Nächste Seite</translation>
     </message>
     <message>
         <source>Last Page</source>
-        <translation>Letzte Seite</translation>
+        <translation type="obsolete">Letzte Seite</translation>
     </message>
     <message>
         <source>End</source>
@@ -2116,7 +2217,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Go to Page...</source>
-        <translation>Gehe zu Seite...</translation>
+        <translation type="obsolete">Gehe zu Seite...</translation>
     </message>
     <message>
         <source>Ctrl+J</source>
@@ -2124,7 +2225,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Zoom In</source>
-        <translation>Vergrößern</translation>
+        <translation type="obsolete">Vergrößern</translation>
     </message>
     <message>
         <source>Ctrl++</source>
@@ -2132,7 +2233,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Zoom Out</source>
-        <translation>Verkleinern</translation>
+        <translation type="obsolete">Verkleinern</translation>
     </message>
     <message>
         <source>Ctrl+-</source>
@@ -2140,15 +2241,11 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Fit to Window</source>
-        <translation>Ins Fenster anpassen</translation>
+        <translation type="obsolete">Ins Fenster anpassen</translation>
     </message>
     <message>
         <source>Ctrl+3</source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Actual Size</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+1</source>
@@ -2156,7 +2253,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Fit to Width</source>
-        <translation>Auf Breite anpassen</translation>
+        <translation type="obsolete">Auf Breite anpassen</translation>
     </message>
     <message>
         <source>Ctrl+2</source>
@@ -2184,7 +2281,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation>Schließen</translation>
+        <translation type="obsolete">Schließen</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
@@ -2192,7 +2289,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Undo</source>
-        <translation>Rückgängig</translation>
+        <translation type="obsolete">Rückgängig</translation>
     </message>
     <message>
         <source>Ctrl+Z</source>
@@ -2200,7 +2297,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Redo</source>
-        <translation>Wiederherstellen</translation>
+        <translation type="obsolete">Wiederherstellen</translation>
     </message>
     <message>
         <source>Ctrl+Shift+Z</source>
@@ -2208,7 +2305,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Cut</source>
-        <translation>Ausschneiden</translation>
+        <translation type="obsolete">Ausschneiden</translation>
     </message>
     <message>
         <source>Ctrl+X</source>
@@ -2216,7 +2313,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Kopieren</translation>
+        <translation type="obsolete">Kopieren</translation>
     </message>
     <message>
         <source>Ctrl+C</source>
@@ -2224,7 +2321,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation>Einfügen</translation>
+        <translation type="obsolete">Einfügen</translation>
     </message>
     <message>
         <source>Ctrl+V</source>
@@ -2232,7 +2329,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation>Löschen</translation>
+        <translation type="obsolete">Löschen</translation>
     </message>
     <message>
         <source>Ctrl+Backspace</source>
@@ -2249,19 +2346,11 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Preferences...</source>
-        <translation>Optionen</translation>
-    </message>
-    <message>
-        <source>Stack</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Tile</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Optionen</translation>
     </message>
     <message>
         <source>Go to Source</source>
-        <translation>Gehe zum Quelltext</translation>
+        <translation type="obsolete">Gehe zum Quelltext</translation>
     </message>
     <message>
         <source>Ctrl+&apos;</source>
@@ -2277,7 +2366,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Full Screen</source>
-        <translation>Vollbildmodus</translation>
+        <translation type="obsolete">Vollbildmodus</translation>
     </message>
     <message>
         <source>Ctrl+Shift+F</source>
@@ -2289,7 +2378,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Scroll</source>
-        <translation type="unfinished"></translation>
+        <translation>Scroll</translation>
     </message>
     <message>
         <source>Select Text</source>
@@ -2301,15 +2390,15 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>User Manual...</source>
-        <translation>Benutzerhandbuch...</translation>
+        <translation type="obsolete">Benutzerhandbuch...</translation>
     </message>
     <message>
         <source>Email to the mailing list</source>
-        <translation type="unfinished"></translation>
+        <translation>Email zur Mailingliste</translation>
     </message>
     <message>
         <source>Side by Side</source>
-        <translation>Nebeneinander</translation>
+        <translation type="obsolete">Nebeneinander</translation>
     </message>
     <message>
         <source>Place on Left</source>
@@ -2321,7 +2410,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Quit TexMakerX</source>
-        <translation>Beende TexMakerX</translation>
+        <translation type="obsolete">Beende TexMakerX</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -2345,23 +2434,23 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Reload Script List</source>
-        <translation type="unfinished"></translation>
+        <translation>Script Liste erneut laden</translation>
     </message>
     <message>
         <source>Manage Scripts</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwalte Scripte</translation>
     </message>
     <message>
         <source>Show Scripts Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige Script-Verzeichnis</translation>
     </message>
     <message>
         <source>About Scripts...</source>
-        <translation type="unfinished"></translation>
+        <translation>Über Scripts...</translation>
     </message>
     <message>
         <source>s</source>
-        <translation type="unfinished"></translation>
+        <translation>s</translation>
     </message>
     <message>
         <source>PDF file &quot;%1&quot; is locked; this is not currently supported.</source>
@@ -2397,11 +2486,155 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Abort typesetting</source>
-        <translation>Bildaufbau abbrechen</translation>
+        <translation type="obsolete">Bildaufbau abbrechen</translation>
     </message>
     <message>
         <source>Typeset</source>
-        <translation>Bild aufbauen</translation>
+        <translation type="obsolete">Bild aufbauen</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>&amp;Hilfe</translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation>&amp;Datei</translation>
+    </message>
+    <message>
+        <source>&amp;Configure</source>
+        <translation>&amp;Optionen</translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation>&amp;Anzeige</translation>
+    </message>
+    <message>
+        <source>&amp;Window</source>
+        <translation>&amp;Fenster</translation>
+    </message>
+    <message>
+        <source>&amp;About TexMakerX...</source>
+        <translation>Ü&amp;ber TexMakerX...</translation>
+    </message>
+    <message>
+        <source>&amp;First Page</source>
+        <translation>&amp;Erste Seite</translation>
+    </message>
+    <message>
+        <source>&amp;Previous Page</source>
+        <translation>&amp;Vorherige Seite</translation>
+    </message>
+    <message>
+        <source>&amp;Next Page</source>
+        <translation>&amp;Nächste Seite</translation>
+    </message>
+    <message>
+        <source>&amp;Last Page</source>
+        <translation>&amp;Letzte Seite</translation>
+    </message>
+    <message>
+        <source>&amp;Go to Page...</source>
+        <translation>&amp;Gehe zu Seite...</translation>
+    </message>
+    <message>
+        <source>Zoom &amp;In</source>
+        <translation>Ver&amp;größern</translation>
+    </message>
+    <message>
+        <source>Zoom &amp;Out</source>
+        <translation>Ver&amp;kleinern</translation>
+    </message>
+    <message>
+        <source>Fit to &amp;Window</source>
+        <translation>Ins &amp;Fenster anpassen</translation>
+    </message>
+    <message>
+        <source>&amp;Actual Size</source>
+        <translation>Ori&amp;ginalgröße</translation>
+    </message>
+    <message>
+        <source>Fit to Wi&amp;dth</source>
+        <translation>Auf &amp;Breite anpassen</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation>S&amp;chließen</translation>
+    </message>
+    <message>
+        <source>&amp;Undo</source>
+        <translation>&amp;Rückgängig</translation>
+    </message>
+    <message>
+        <source>&amp;Redo</source>
+        <translation>&amp;Wiederherstellen</translation>
+    </message>
+    <message>
+        <source>C&amp;ut</source>
+        <translation>&amp;Ausschneiden</translation>
+    </message>
+    <message>
+        <source>&amp;Copy</source>
+        <translation>&amp;Kopieren</translation>
+    </message>
+    <message>
+        <source>&amp;Paste</source>
+        <translation>&amp;Einfügen</translation>
+    </message>
+    <message>
+        <source>C&amp;lear</source>
+        <translation>L&amp;eeren</translation>
+    </message>
+    <message>
+        <source>External Viewer</source>
+        <translation>E&amp;xterner Betrachter</translation>
+    </message>
+    <message>
+        <source>&amp;Configure TexMakerX</source>
+        <translation>TexMakerX einri&amp;chten...</translation>
+    </message>
+    <message>
+        <source>Stac&amp;k</source>
+        <translation>Sta&amp;peln</translation>
+    </message>
+    <message>
+        <source>&amp;Tile</source>
+        <translation>Kache&amp;ln</translation>
+    </message>
+    <message>
+        <source>&amp;Go to Source</source>
+        <translation>&amp;Gehe zum Quelltext</translation>
+    </message>
+    <message>
+        <source>Full &amp;Screen</source>
+        <translation>&amp;Vollbildmodus</translation>
+    </message>
+    <message>
+        <source>User &amp;Manual...</source>
+        <translation>&amp;Benutzerhandbuch...</translation>
+    </message>
+    <message>
+        <source>&amp;Side by Side</source>
+        <translation>&amp;Nebeneinander</translation>
+    </message>
+    <message>
+        <source>&amp;Quit TexMakerX</source>
+        <translation>Be&amp;ende TexMakerX</translation>
+    </message>
+    <message>
+        <source>&amp;Close something</source>
+        <translation>&amp;Schließe etwas</translation>
+    </message>
+    <message>
+        <source>Esc</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Scrolling follows cursor</source>
+        <translation>Scrollen folgt dem Cursor</translation>
+    </message>
+    <message>
+        <source>Cursor follows scrolling</source>
+        <translation>Cursor folgt dem Scrollen</translation>
     </message>
 </context>
 <context>
@@ -2416,7 +2649,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Subset</source>
-        <translation type="unfinished"></translation>
+        <translation>Untergruppe</translation>
     </message>
     <message>
         <source>File</source>
@@ -2462,6 +2695,13 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
 </context>
 <context>
+    <name>PDFSearchDock</name>
+    <message>
+        <source>Sync</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
     <name>PDFWidget</name>
     <message>
         <source>Zoom In</source>
@@ -2473,7 +2713,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Actual Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Originalgröße</translation>
     </message>
     <message>
         <source>Fit to Width</source>
@@ -2494,6 +2734,14 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <message>
         <source>Page number:</source>
         <translation>Seitenzahl:</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>Fehler</translation>
+    </message>
+    <message>
+        <source>Could not open browser</source>
+        <translation>Konnte Browser nicht öffnen</translation>
     </message>
 </context>
 <context>
@@ -3321,6 +3569,11 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <source>environment-name</source>
+        <translation type="obsolete">Umgebungsname</translation>
+    </message>
+    <message>
+        <source>environment-name</source>
+        <comment>snippet</comment>
         <translation>Umgebungsname</translation>
     </message>
 </context>
@@ -3738,6 +3991,12 @@ Im Ersetzungstext werden \1 bis \9 durch die Fundstelle der entsprechenden Grupp
     <message>
         <source>Only single characters are allowed as key</source>
         <translation>Nur einzelne Zeichen sind in der Tastespalte erlaubt</translation>
+    </message>
+    <message>
+        <source>Sorry, you clicked in the wrong column.
+To change a shortcut, you have to edit the third or fourth column.</source>
+        <translation>Die falsche Spalte wurde angegclickt.
+Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geändert werden.</translation>
     </message>
 </context>
 <context>
@@ -5399,6 +5658,10 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es compilern könn
         <source>remove \hline</source>
         <comment>table</comment>
         <translation>Entferne \hline</translation>
+    </message>
+    <message>
+        <source>Could not open browser</source>
+        <translation>Konnte Browser nicht öffnen</translation>
     </message>
 </context>
 <context>
