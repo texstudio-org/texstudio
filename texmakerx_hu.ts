@@ -45,7 +45,11 @@
     </message>
     <message>
         <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) and KILE (GPL) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
-        <translation>A TexMakerX felhasznál az alábbi programok kódjaiból: Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) és KILE (GPL).&lt;br&gt;A TexMakerX a TeXworks PDF-megjelenítőt használja.&lt;br&gt; A TexMakerX a DSingleApplication (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL) osztályt használja.&lt;br&gt;</translation>
+        <translation type="obsolete">A TexMakerX felhasznál az alábbi programok kódjaiból: Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) és KILE (GPL).&lt;br&gt;A TexMakerX a TeXworks PDF-megjelenítőt használja.&lt;br&gt; A TexMakerX a DSingleApplication (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL) osztályt használja.&lt;br&gt;</translation>
+    </message>
+    <message>
+        <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
+        <translation>A TexMakerX felhasznál az alábbi programok kódjaiból: Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL).és SyncTeX (szerző: Jerome Laurens)&lt;br&gt;A TexMakerX a TeXworks PDF-megjelenítőt használja.&lt;br&gt; A TexMakerX a DSingleApplication (szerző: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL) osztályt használja.&lt;br&gt;</translation>
     </message>
 </context>
 <context>
@@ -4610,6 +4614,11 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
     <message>
         <source>Could not open browser</source>
         <translation>A böngésző nem futtatható</translation>
+    </message>
+    <message>
+        <source>You have called the command to open the internal pdf viewer.
+However, you are using a version of TexMakerX that was compiled without the internal pdf viewer.</source>
+        <translation>Belső pdf megjelenítőt szeretett volna használni, de az ön által használt TexMakerX verzió anélkül lett fordítva</translation>
     </message>
 </context>
 <context>
