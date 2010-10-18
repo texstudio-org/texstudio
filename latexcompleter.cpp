@@ -931,6 +931,7 @@ bool LatexCompleter::close(){
 	if (completerInputBinding->isActive()){
 		completerInputBinding->resetBinding();
 		list->setVisible(false);
+		listModel->curWord="";
 		return true;
 	} else return false;
 }
