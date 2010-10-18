@@ -4235,7 +4235,7 @@ void Texmaker::checkin(QString fn, QString text, bool blocking){
 	runCommand(cmd, blocking, true,false);
 	LatexEditorView *edView=getEditorViewFromFileName(fn);
 	if(edView)
-	    edView->editor->setProperty("undoRevision",0);
+		edView->editor->setProperty("undoRevision",0);
 }
 
 bool Texmaker::svnadd(QString fn,int stage){

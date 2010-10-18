@@ -356,13 +356,13 @@ PDFWidget::PDFWidget()
 	shortcutDown = new QShortcut(QKeySequence("Down"), this, SLOT(downOrNext()));
 	shortcutRight = new QShortcut(QKeySequence("Right"), this, SLOT(rightOrNext()));
 	shortcutPageUp1 = new QShortcut(QKeySequence(Qt::Key_PageUp), this, SLOT(pageUpOrPrev()));
-	shortcutPageUp2 = new QShortcut(QKeySequence(Qt::SHIFT | Qt::Key_Space), this, SLOT(pageUpOrPrev()));
-	shortcutPageUp3 = new QShortcut(QKeySequence(Qt::SHIFT | Qt::Key_Enter), this, SLOT(pageUpOrPrev()));
-	shortcutPageUp4 = new QShortcut(QKeySequence(Qt::SHIFT | Qt::Key_Return), this, SLOT(pageUpOrPrev()));
+	//shortcutPageUp2 = new QShortcut(QKeySequence(Qt::SHIFT | Qt::Key_Space), this, SLOT(pageUpOrPrev()));
+	//shortcutPageUp3 = new QShortcut(QKeySequence(Qt::SHIFT | Qt::Key_Enter), this, SLOT(pageUpOrPrev()));
+	//shortcutPageUp4 = new QShortcut(QKeySequence(Qt::SHIFT | Qt::Key_Return), this, SLOT(pageUpOrPrev()));
 	shortcutPageDown1 = new QShortcut(QKeySequence(Qt::Key_PageDown), this, SLOT(pageDownOrNext()));
-	shortcutPageDown2 = new QShortcut(QKeySequence(Qt::Key_Space), this, SLOT(pageDownOrNext()));
-	shortcutPageDown3 = new QShortcut(QKeySequence(Qt::Key_Enter), this, SLOT(pageDownOrNext()));
-	shortcutPageDown4 = new QShortcut(QKeySequence(Qt::Key_Return), this, SLOT(pageDownOrNext()));
+	//shortcutPageDown2 = new QShortcut(QKeySequence(Qt::Key_Space), this, SLOT(pageDownOrNext()));
+	//shortcutPageDown3 = new QShortcut(QKeySequence(Qt::Key_Enter), this, SLOT(pageDownOrNext()));
+	//shortcutPageDown4 = new QShortcut(QKeySequence(Qt::Key_Return), this, SLOT(pageDownOrNext()));
 
 	highlightRemover.setSingleShot(true);
 	connect(&highlightRemover, SIGNAL(timeout()), this, SLOT(clearHighlight()));
@@ -693,6 +693,10 @@ void PDFWidget::keyPressEvent(QKeyEvent *event)
 void PDFWidget::keyReleaseEvent(QKeyEvent *event)
 {
 	updateCursor(mapFromGlobal(QCursor::pos()));
+	if (event->key() == Qt::Key_Space || event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return ){
+		if (event->modifiers() & Qt::SHIFT) pageUpOrPrev();
+		else pageDownOrNext();
+	}
 	event->ignore();
 }
 
@@ -1554,6 +1558,7 @@ void PDFDocument::runExternalViewer(){
 
 void PDFDocument::closeSomething(){
 	if (dwFonts && dwFonts->isVisible()) dwFonts->hide();
+	else if (dwSearch && dwFonts->isVisible()) dwSearch->hide();
 	else if (dwInfo && dwInfo->isVisible()) dwInfo->hide();
 	else if (dwOutline && dwOutline->isVisible()) dwOutline->hide();
 	else actionClose->trigger();
