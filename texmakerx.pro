@@ -460,7 +460,7 @@ isEmpty(NO_POPPLER_PREVIEW){
     }
     macx {
         INCLUDEPATH += /usr/local/include/poppler/qt4
-        LIBS += -L/usr/local/lib -lpoppler-qt4 -lpoppler -lz
+        LIBS += -L/usr/lib -L/usr/local/lib -lpoppler-qt4 -lpoppler -lz
     }
     win32 { 
         LIBS += -lpoppler-qt4
