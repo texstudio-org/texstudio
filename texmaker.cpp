@@ -4234,7 +4234,8 @@ void Texmaker::checkin(QString fn, QString text, bool blocking){
 	stat2->setText(QString(" svn check in "));
 	runCommand(cmd, blocking, true,false);
 	LatexEditorView *edView=getEditorViewFromFileName(fn);
-	edView->editor->setProperty("undoRevision",0);
+	if(edView)
+	    edView->editor->setProperty("undoRevision",0);
 }
 
 bool Texmaker::svnadd(QString fn,int stage){

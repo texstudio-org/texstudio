@@ -1074,12 +1074,14 @@ QModelIndex LatexDocumentsModel::parent ( const QModelIndex & index ) const{
 	const StructureEntry* entry = (StructureEntry*) index.internalPointer();
 	if (!entry) return QModelIndex();
 	if (!entry->parent) return QModelIndex();
-	if(entry->level>LatexParser::structureCommands.count() || entry->level<0){
+        if(entry->level>LatexParser::structureCommands.count() || entry->level<0|| entry->level>5){
 		qDebug("Structure broken! %p",entry);
+                qDebug("Title %s",entry->title);
 		return QModelIndex();
 	}
-	if(entry->parent->level>LatexParser::structureCommands.count() || entry->parent->level<0){
+        if(entry->parent->level>LatexParser::structureCommands.count() || entry->parent->level<0|| entry->parent->level>5){
 		qDebug("Structure broken! %p",entry);
+                qDebug("Title %s",entry->title);
 		return QModelIndex();
 	}
 	if (entry->parent->parent)
