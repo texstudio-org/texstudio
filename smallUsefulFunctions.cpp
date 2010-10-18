@@ -462,7 +462,7 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 				break;
 			} else {;} //first character is escaped, fall through to default case
 		default:
-			if (reference==-1) {
+			//if (reference==-1) {
 				if(!inOption && !lastCommand.isEmpty()){
 					inOption=false;
 					lastCommand="";
@@ -473,7 +473,7 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 					return NW_ENVIRONMENT;
 				if (LatexParser::optionCommands.contains(lastCommand)||lastCommand.isEmpty())
 					return NW_TEXT;
-			}
+			//}
 		}
 	}
 	return NW_NOTHING;
