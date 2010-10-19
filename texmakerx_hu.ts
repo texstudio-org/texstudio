@@ -2192,6 +2192,14 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <source>Cursor follows scrolling</source>
         <translation>A kurzor követi a görgetést</translation>
     </message>
+    <message>
+        <source>Ctrl+PgUp</source>
+        <translation>Ctrl+PgUp</translation>
+    </message>
+    <message>
+        <source>Ctrl+PgDown</source>
+        <translation>Ctrl+PgDown</translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
