@@ -112,7 +112,15 @@ class QCE_EXPORT QDocument : public QObject
 		};
 		
 		Q_DECLARE_FLAGS(WhiteSpaceMode, WhiteSpaceFlag)
-		
+
+		enum WorkAroundFlag
+		{
+			DisableFixedPitchMode	= 0x01,
+			DisableWidthCache		= 0x02
+		};
+
+		Q_DECLARE_FLAGS(WorkAroundMode, WorkAroundFlag)
+
 		explicit QDocument(QObject *p = 0);
 		virtual ~QDocument();
 		
@@ -254,8 +262,10 @@ class QCE_EXPORT QDocument : public QObject
 		bool linesPartiallyFolded(int fromInc, int toInc);
 		void correctFolding(int fromInc, int toInc);
 
-		void overwriteFixedPitch(bool newValue);
-		bool getFixedPitch();
+		static void setWorkAround(WorkAroundFlag workAround, bool newValue);
+		static bool hasWorkAround(WorkAroundFlag workAround);
+
+		bool getFixedPitch() const;
 
 	public slots:
 		void clear();

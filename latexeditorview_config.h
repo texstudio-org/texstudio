@@ -15,7 +15,7 @@ public:
 	int tabStop;
 	int showlinemultiples;
 	bool folding, showlinestate, showcursorstate, realtimeChecking;	
-        bool inlineSpellChecking, inlineCitationChecking, inlineReferenceChecking, inlineSyntaxChecking;
+	bool inlineSpellChecking, inlineCitationChecking, inlineReferenceChecking, inlineSyntaxChecking;
 	QString fontFamily;
 	int lineWidth;
 	int fontSize;
@@ -24,6 +24,8 @@ public:
 	bool useLineForSearch;
 	static QString translateEditOperation(int key);
 	static QList<int> possibleEditOperations();
+	bool hackDisableFixedPitch, hackDisableWidthCache, hackDisableFixedPitchOverride;
+
 private:
 };
 

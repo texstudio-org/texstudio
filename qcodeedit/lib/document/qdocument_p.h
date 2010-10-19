@@ -149,21 +149,20 @@ class QCE_EXPORT QDocumentPrivate
 		void addAutoUpdatedCursor(QDocumentCursorHandle* c);
 		void removeAutoUpdatedCursor(QDocumentCursorHandle* c);
 		void discardAutoUpdatedCursors(bool documentDeleted=false);
-		void overwriteFixedPitch(bool newValue){
-		  m_fixedPitch=newValue;
-		  m_overWritten=true;
-		}
-		bool getFixedPitch(){
-		    return m_fixedPitch;
-		}
 
-		bool hardLineWrap(){
-		    return m_hardLineWrap;
+		static void setWorkAround(QDocument::WorkAroundFlag workAround, bool newValue);
+		static bool hasWorkAround(QDocument::WorkAroundFlag workAround);
+
+
+		static bool getFixedPitch();
+
+		bool hardLineWrap() const{
+			return m_hardLineWrap;
 		}
 		void removeWrap(int i);
 
-		int width(){
-		    return m_width;
+		int width() const{
+			return m_width;
 		}
 
 		QHash<QDocumentLineHandle*, QPair<int, int> > getStatus(){
@@ -225,7 +224,7 @@ class QCE_EXPORT QDocumentPrivate
 		
 		static QFont *m_font;
 		static bool m_fixedPitch;
-		static bool m_overWritten;
+		static QDocument::WorkAroundMode m_workArounds;
 		static int m_leftMargin;
 		static QDocument::WhiteSpaceMode m_showSpaces;
 		static QDocument::LineEnding m_defaultLineEnding;

@@ -488,12 +488,15 @@ void LatexEditorView::updateSettings(){
 	referenceMissingFormat=QDocument::formatFactory()->id("referenceMissing");
 	citationPresentFormat=QDocument::formatFactory()->id("citationPresent");
 	citationMissingFormat=QDocument::formatFactory()->id("citationMissing");
-        styleHintFormat=QDocument::formatFactory()->id("styleHint");
-        syntaxErrorFormat=QDocument::formatFactory()->id("latexSyntaxMistake");
+	styleHintFormat=QDocument::formatFactory()->id("styleHint");
+	syntaxErrorFormat=QDocument::formatFactory()->id("latexSyntaxMistake");
 	structureFormat=QDocument::formatFactory()->id("structure");
-        verbatimFormat=QDocument::formatFactory()->id("verbatim");
+	verbatimFormat=QDocument::formatFactory()->id("verbatim");
 	containedLabels->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
 	containedReferences->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
+
+	QDocument::setWorkAround(QDocument::DisableFixedPitchMode, config->hackDisableFixedPitch || config->hackDisableFixedPitchOverride);
+	QDocument::setWorkAround(QDocument::DisableWidthCache, config->hackDisableWidthCache);
 }
 
 void LatexEditorView::requestCitation(){
@@ -502,10 +505,10 @@ void LatexEditorView::requestCitation(){
 }
 
 void LatexEditorView::openExternalFile(){
-        QAction *act = qobject_cast<QAction*>(sender());
-        QString name=act->data().toString();
-        if(!name.isEmpty())
-            emit openFile(name);
+	QAction *act = qobject_cast<QAction*>(sender());
+	QString name=act->data().toString();
+	if(!name.isEmpty())
+		emit openFile(name);
 }
 
 void LatexEditorView::lineMarkClicked(int line) {
@@ -588,19 +591,20 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 	}
 
 
-        // check for asian letters
+	 // check for asian letters
 	if(editor->document()->getFixedPitch()){
-	    for (int i=linenr; i<linenr+count; i++) {
-		QDocumentLine line = editor->document()->line(i);
-		if (!line.isValid()) continue;
-                foreach(QChar c,line.text()){
-		    if(c.category()==QChar::Letter_Other){
-			document->overwriteFixedPitch(false);
-			qDebug("Asian letter detected!");
-                        break;
-                    }
-                }
-	    }
+		for (int i=linenr; i<linenr+count; i++) {
+			QDocumentLine line = editor->document()->line(i);
+			if (!line.isValid()) continue;
+			foreach(QChar c,line.text()){
+				if(c.category()==QChar::Letter_Other){
+					document->setWorkAround(QDocument::DisableFixedPitchMode, true);
+					if (config) config->hackDisableFixedPitchOverride = true;
+					qDebug("Asian letter detected!");
+					break;
+				}
+			}
+		}
 	}
 	// checking
 	if (!QDocument::formatFactory()) return;

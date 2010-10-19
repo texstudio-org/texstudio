@@ -119,12 +119,16 @@ inline static bool isDelimiter(QChar c)
 	return delimiters.contains(c);
 }
 
-void QDocument::overwriteFixedPitch(bool newValue){
-    m_impl->overwriteFixedPitch(newValue);
+void QDocument::setWorkAround(QDocument::WorkAroundFlag workAround, bool newValue){
+	QDocumentPrivate::setWorkAround(workAround, newValue);
 }
 
-bool QDocument::getFixedPitch(){
-    return m_impl->getFixedPitch();
+bool QDocument::hasWorkAround(QDocument::WorkAroundFlag workAround){
+	return QDocumentPrivate::hasWorkAround(workAround);
+}
+
+bool QDocument::getFixedPitch() const{
+	return m_impl && m_impl->getFixedPitch();
 }
 
 int QDocument::screenLength(const QChar *d, int l, int tabStop)
@@ -5497,7 +5501,7 @@ QFormatScheme* QDocumentPrivate::m_defaultFormatScheme = getStaticDefault<QForma
 QList<QDocumentPrivate*> QDocumentPrivate::m_documents;
 
 bool QDocumentPrivate::m_fixedPitch;
-bool QDocumentPrivate::m_overWritten=false;
+QDocument::WorkAroundMode QDocumentPrivate::m_workArounds=0;
 int QDocumentPrivate::m_ascent;// = m_fontMetrics.ascent();
 int QDocumentPrivate::m_descent;// = m_fontMetrics.descent();
 int QDocumentPrivate::m_leading;// = m_fontMetrics.leading();
@@ -6347,7 +6351,7 @@ int QDocumentPrivate::textWidth(int fid, const QString& text){
 
 void QDocumentPrivate::updateFormatCache()
 {
-	if(!m_overWritten) m_fixedPitch = QFontInfo(*m_font).fixedPitch();
+	m_fixedPitch = !hasWorkAround(QDocument::DisableFixedPitchMode) && QFontInfo(*m_font).fixedPitch();
 
 	m_fonts.clear();
 	m_fontMetrics.clear();
@@ -7208,6 +7212,23 @@ void QDocumentPrivate::discardAutoUpdatedCursors(bool documentDeleted){
 		if (documentDeleted) h->m_doc = 0;
 	}
 	m_autoUpdatedCursorList.clear();
+}
+
+void QDocumentPrivate::setWorkAround(QDocument::WorkAroundFlag workAround, bool newValue){
+	if (!!(m_workArounds & workAround) == newValue) return;
+	if (newValue) m_workArounds |= workAround;
+	else m_workArounds &= ~workAround;
+	if (workAround == QDocument::DisableFixedPitchMode)
+		updateFormatCache();
+
+}
+
+bool QDocumentPrivate::hasWorkAround(QDocument::WorkAroundFlag workAround){
+	return (m_workArounds & workAround);
+}
+
+bool QDocumentPrivate::getFixedPitch(){
+	return m_fixedPitch;
 }
 
 void QDocumentPrivate::emitFormatsChanged()
