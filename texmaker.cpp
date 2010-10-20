@@ -3552,9 +3552,8 @@ void Texmaker::ToggleMode() {
 			return;
 		}
 		documents.setMasterDocument(currentEditorView()->document);
-		updateCompleter();
-		return;
 	}
+	updateCompleter();
 }
 ////////////////// VIEW ////////////////
 
