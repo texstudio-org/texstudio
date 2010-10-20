@@ -174,6 +174,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	}
 
 	createStatusBar();
+	completer=0;
 	UpdateCaption();
 
 	show();
@@ -766,6 +767,7 @@ void Texmaker::UpdateCaption() {
 		documents.currentDocument=currentEditorView()->document;
 		documents.updateStructure();
 	}
+	if(completer && completer->isVisible()) completer->close();
 	QString title;
 	if (!currentEditorView())	{
 		title="TexMakerX";
