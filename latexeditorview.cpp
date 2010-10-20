@@ -495,7 +495,7 @@ void LatexEditorView::updateSettings(){
 	containedLabels->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
 	containedReferences->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
 
-	QDocument::setWorkAround(QDocument::DisableFixedPitchMode, config->hackDisableFixedPitch || config->hackDisableFixedPitchOverride);
+	QDocument::setWorkAround(QDocument::DisableFixedPitchMode, config->hackDisableFixedPitch);
 	QDocument::setWorkAround(QDocument::DisableWidthCache, config->hackDisableWidthCache);
 }
 
@@ -590,22 +590,6 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		}
 	}
 
-
-	 // check for asian letters
-	if(editor->document()->getFixedPitch()){
-		for (int i=linenr; i<linenr+count; i++) {
-			QDocumentLine line = editor->document()->line(i);
-			if (!line.isValid()) continue;
-			foreach(QChar c,line.text()){
-				if(c.category()==QChar::Letter_Other){
-					document->setWorkAround(QDocument::DisableFixedPitchMode, true);
-					if (config) config->hackDisableFixedPitchOverride = true;
-					qDebug("Asian letter detected!");
-					break;
-				}
-			}
-		}
-	}
 	// checking
 	if (!QDocument::formatFactory()) return;
 	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)

@@ -24,7 +24,7 @@ public:
 	bool useLineForSearch;
 	static QString translateEditOperation(int key);
 	static QList<int> possibleEditOperations();
-	bool hackDisableFixedPitch, hackDisableWidthCache, hackDisableFixedPitchOverride;
+	bool hackDisableFixedPitch, hackDisableWidthCache;
 
 private:
 };

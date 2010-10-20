@@ -96,10 +96,6 @@
 #include <QVarLengthArray>
 #include <QMessageBox>
 
-//#ifdef Q_OS_MAC
-#define USE_FORMAT_WIDTH_CACHE
-//#endif
-
 static QList<GuessEncodingCallback> guessEncodingCallbacks;
 
 static int m_spaceSignOffset = 2;
@@ -6322,11 +6318,40 @@ void QDocumentPrivate::tunePainter(QPainter *p, int fid)
 }
 
 int QDocumentPrivate::textWidth(int fid, const QString& text){
-	if ( fid < 0 || fid >= m_fonts.size() ) return 0;
-	if ( QDocumentPrivate::m_fixedPitch )
-		return QDocumentPrivate::m_spaceWidth * text.length();
+	if ( fid < 0 || fid >= m_fonts.size() || text.isEmpty()) return 0;
+
+	/*
+	  There are three different ways to calculate the width:
+	  1. String length * Character Width           if fixedPitch && no surrogates && no asian characters
+	  2. Sum of all character widths               if !DisableWidthCache && no surrogates
+	  3. QFontMetric::width                        else
+	*/
+	bool containsSurrogates = false;
+	if ( QDocumentPrivate::m_fixedPitch ) {
+		bool containsAsianChars = false;
+		foreach (const QChar& c, text){
+			const QChar::Category cat = c.category();
+			if (cat == QChar::Letter_Other)
+				containsAsianChars = true; //character which can have a different width even in fixed pitch fonts
+			else if (cat == QChar::Other_Surrogate || cat == QChar::Mark_Enclosing || cat == QChar::Mark_NonSpacing || cat == QChar::Mark_SpacingCombining)
+				containsSurrogates = true; //strange characters (e.g.  0xbcd, 0x1d164)
+		}
+		if (!containsAsianChars && !containsSurrogates)
+			return text.length() * QDocumentPrivate::m_spaceWidth;
+	} else {
+		//only check for the strange characters
+		foreach (const QChar& c, text){
+			const QChar::Category cat = c.category();
+			if (cat == QChar::Other_Surrogate || cat == QChar::Mark_Enclosing || cat == QChar::Mark_NonSpacing || cat == QChar::Mark_SpacingCombining)
+				containsSurrogates = true;
+		}
+	}
+
+	if ( containsSurrogates || (m_workArounds & QDocument::DisableWidthCache) )
+		return m_fontMetrics[fid].width(text);
+
 	int rwidth=0;
-#ifdef USE_FORMAT_WIDTH_CACHE
+
 	WCache *wCache;
 	if(m_fmtWidthCache.contains(fid)){
 		wCache=m_fmtWidthCache.value(fid);
@@ -6343,9 +6368,6 @@ int QDocumentPrivate::textWidth(int fid, const QString& text){
 			rwidth+=cwidth;
 		}
 	}
-#else
-	rwidth = m_fontMetrics[fid].width(text);
-#endif
 	return rwidth;
 }
 
