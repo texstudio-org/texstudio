@@ -551,6 +551,13 @@ bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QStr
 		i=start>-1 ? start : 0;
 		int stop=line.indexOf("}",i);
 		i=line.indexOf("{",i+1);
+		int startOption=line.indexOf("[",tagStart);
+		//int stopOption=line.indexOf("]",i);
+		int startNonSpace=line.indexOf(QRegExp("\\S"),tagStart);
+		if(startNonSpace>-1 && startNonSpace<start && (startOption<0||startOption>startNonSpace)){
+		    remainder=line.mid(tagStart);
+		    return true;
+		}
 		while (i>0 && stop>0 && i<stop) {
 			stop=line.indexOf("}",stop+1);
 			i=line.indexOf("{",i+1);
