@@ -612,7 +612,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>max. Characters:</source>
-        <translation>Karakterek maximális száma:</translation>
+        <translation type="obsolete">Karakterek maximális száma:</translation>
     </message>
     <message>
         <source>Custom Environment</source>
@@ -937,6 +937,30 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <source>Preview</source>
         <translation>Előnézet</translation>
+    </message>
+    <message>
+        <source>Search Panel</source>
+        <translation>Keresés panel</translation>
+    </message>
+    <message>
+        <source>Special options</source>
+        <translation>Különleges beállítások</translation>
+    </message>
+    <message>
+        <source>Maximal characters:</source>
+        <translation>Karakterek maximális száma:</translation>
+    </message>
+    <message>
+        <source>Hacks/Workarounds</source>
+        <translation>Buherálás/Kerülő megoldások</translation>
+    </message>
+    <message>
+        <source>Disable fixed pitch mode</source>
+        <translation>Rögzített szélességű mód kiiktatása</translation>
+    </message>
+    <message>
+        <source>Disable cache of character width</source>
+        <translation>Karakterszélesség tárolójának kiiktatása</translation>
     </message>
 </context>
 <context>
