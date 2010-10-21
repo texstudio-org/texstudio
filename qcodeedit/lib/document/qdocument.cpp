@@ -2063,30 +2063,29 @@ void QDocumentLineHandle::updateWrap() const
 		return;
 
 	int idx = 0, column = 0, indent = 0;
-	int x = QDocumentPrivate::m_leftMargin;
+	int minx = QDocumentPrivate::m_leftMargin;
 
 	int tempFmts[3]; QFormat tempFormats[3]; int fontFormat;
 
 	if ( ranges.first().format & FORMAT_SPACE ) {
 		d->m_formatScheme->extractFormats(ranges.first().format, tempFmts, tempFormats, fontFormat);
 		int columnDelta;
-		x += d->getRenderRangeWidth(columnDelta, column, ranges.first(), fontFormat, m_text);
-		column += columnDelta;
+		minx += d->getRenderRangeWidth(columnDelta, column, ranges.first(), fontFormat, m_text);
 		indent = ranges.first().length;
 	}
 
-	int minx = x, rx = x;
+	int x = QDocumentPrivate::m_leftMargin;
+	int rx = x;
 
 	if ( (minx + QDocumentPrivate::m_spaceWidth) >= maxWidth )
 	{
 		//qWarning("Please stop shrinking so aggressively.\nNo attempt will be made to show something decent");
 
 		indent = idx = 0;
-		minx = rx = x = QDocumentPrivate::m_leftMargin;
+		minx = QDocumentPrivate::m_leftMargin;
 	}
 
 	m_indent = minx - QDocumentPrivate::m_leftMargin;
-
 
 	int lastBreak = 0, lastX = 0, lastWidth = 0;
 	for (int i = 0; i < ranges.size(); i++) {
@@ -2161,6 +2160,10 @@ void QDocumentLineHandle::updateWrap() const
 			}
 		}
 	}
+
+	qDebug("indent: %i frontiers:", m_indent);
+	for (int i=0;i< m_frontiers.size();i++)
+		qDebug("<%i, %i>", m_frontiers[i].first, m_frontiers[i].second);
 /*
 	int idx = 0, minx = 0, lastBreak = 0, lastWidth = 0, lastX = 0, rx,
 		x = , column = 0, cwidth;
