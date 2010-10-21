@@ -96,6 +96,14 @@
 #include <QVarLengthArray>
 #include <QMessageBox>
 
+struct RenderRange
+{
+	int position;
+	int length;
+	int format;
+	int wrap;
+};
+
 static QList<GuessEncodingCallback> guessEncodingCallbacks;
 
 static int m_spaceSignOffset = 2;
@@ -127,16 +135,16 @@ bool QDocument::getFixedPitch() const{
 	return m_impl && m_impl->getFixedPitch();
 }
 
-int QDocument::screenLength(const QChar *d, int l, int tabStop)
+int QDocument::screenColumn(const QChar *d, int l, int tabStop, int column)
 {
 	if ( tabStop == 1 )
 		return l;
 
-	int idx, column = idx = 0;
+	int idx = 0;
 
 	while ( idx < l )
 	{
-		QChar c = d[idx];
+		const QChar& c = d[idx];
 
 		if ( c == QLatin1Char('\t') )
 		{
@@ -154,13 +162,13 @@ int QDocument::screenLength(const QChar *d, int l, int tabStop)
 	return column;
 }
 
-QString QDocument::screenable(const QChar *d, int l, int tabStop)
+QString QDocument::screenable(const QChar *d, int l, int tabStop, int column)
 {
 	if ( tabStop == 1 )
 		return QString(d, l);
 
 	QString fragment;
-	int idx, column = idx = 0;
+	int idx = 0;
 
 	while ( idx < l )
 	{
@@ -1950,7 +1958,7 @@ QString QDocumentLineHandle::text() const
 int QDocumentLineHandle::indent() const
 {
 	int l = nextNonSpaceChar(0);
-	return QDocument::screenLength(m_text.constData(), l == -1 ? m_text.length() : l, m_doc->tabStop());
+	return QDocument::screenColumn(m_text.constData(), l == -1 ? m_text.length() : l, m_doc->tabStop());
 }
 
 int QDocumentLineHandle::nextNonSpaceChar(uint pos) const
@@ -2267,7 +2275,7 @@ int QDocumentLineHandle::cursorToX(int cpos) const
 
 	if ( QDocumentPrivate::m_fixedPitch )
 	{
-		return QDocument::screenLength(m_text.constData(), cpos, tabStop)
+		return QDocument::screenColumn(m_text.constData(), cpos, tabStop)
 				* QDocumentPrivate::m_spaceWidth
 				+ QDocumentPrivate::m_leftMargin;
 	}
@@ -2444,6 +2452,13 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 		x = qMin(x, m_doc->widthConstraint());
 	}
 
+	x -= QDocumentPrivate::m_leftMargin;
+
+	if ( m_layout )
+	{
+		return m_layout->lineAt(wrap).xToCursor(x);
+	}
+
 	int cpos = 0;
 	int max = m_text.length();
 
@@ -2453,87 +2468,61 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 	if ( wrap > 0 )
 		cpos = m_frontiers.at(wrap - 1).first;
 
-	x -= QDocumentPrivate::m_leftMargin;
+	if ( wrap )
+		x -= m_indent;
 
-	int idx = cpos, column = 0;
-	const int ts = m_doc->tabStop();
 
-	if ( m_layout )
-	{
-		cpos = m_layout->lineAt(wrap).xToCursor(x);
-	} else if ( QDocumentPrivate::m_fixedPitch ) {
-		if ( wrap )
-			x -= m_indent;
+	int rx = 0, column = 0;
+	QList<RenderRange> ranges;
+	splitAtFormatChanges(&ranges, 0, cpos, max);
 
-		while ( (idx < max) && (x > 0) )
-		{
-			bool tab = m_text.at(idx).unicode() == '\t';
-			int cwidth = QDocumentPrivate::m_spaceWidth;
+	QDocumentPrivate *d = m_doc->impl();
 
-			if ( tab )
-			{
-				int coff = ts - (column % ts);
-				column += coff;
-				cwidth *= coff;
-			} else {
-				++column;
+	foreach ( const RenderRange& r, ranges ) {
+		int oldcolumn = column, oldrx = rx;
+		int tempFmts[FORMAT_MAX_COUNT]; QFormat tempFormats[FORMAT_MAX_COUNT]; int newFont;
+		d->m_formatScheme->extractFormats(r.format, tempFmts, tempFormats, newFont);
+		d->calcPositionAfterRenderRange(rx, column, r, newFont, m_text);
+
+		if ( rx > x ) {
+			const QString& subText = m_text.mid(r.position, r.length);
+			RenderRange rcopied = r;
+			for ( int i = 0; i < r.length; i++ ) {
+				rx = oldrx;
+				column = oldcolumn;
+				rcopied.length = i;
+				d->calcPositionAfterRenderRange(rx, column, rcopied, newFont, m_text);
+				if ( rx >= x ) break;
 			}
-
-			int thresold = (2 * cwidth) / 3;
-
-			if ( x <= thresold )
-				break;
-
-			x -= cwidth;
-			++idx;
-		}
-
-		cpos = idx;
-	} else {
-		if ( !hasFlag(QDocumentLine::FormatsApplied) )
-			compose();
-
-		if ( wrap )
-			x -= m_indent;
-
-		QDocumentPrivate* d = m_doc->impl();
-		int fmts[3];
-		int newFont;
-		QFormat formats[3];
-
-		while ( (idx < max) && (x > 0) )
-		{
-			int fid = idx < m_cache.count() ? m_cache[idx] : 0;
-
-			d->m_formatScheme->extractFormats(fid, fmts, formats, newFont);
-
-			QChar c = m_text.at(idx);
-			bool tab = c.unicode() == '\t';
-			int cwidth = 0;
-
-			if ( tab )
-			{
-				int coff = ts - (column % ts);
-				column += coff;
-				cwidth = d->textWidth(newFont, " ");
-				cwidth *= coff;
+			cpos += rcopied.length;
+			/*for (int i = 0;)
+			if ( r.format & FORMAT_SPACE ) {
+				for (int i =  const QChar& c, subText ) {
+					int len = QDocument::screenColumn(&c, 1, d->m_tabStop, column) - column;
+					if ( rx + cw*len/2 >= x ) break;
+					rx += cw*len;
+					column += len;
+					cpos++;
+				}
 			} else {
-				++column;
-				cwidth = d->textWidth(newFont, c);
-			}
+				foreach ( const QChar& c, subText ){
+					int cw = d->textWidth(newFont, c);
+					if ( rx + 2*cw/3 >= x ) break;
+					rx += cw;
+					cpos++;
+				}
+			}*/
 
-			int thresold = (2 * cwidth) / 3;
+			//move the cursor out of multi-byte ucs-2 characters
+			while (cpos < m_text.length() && m_text.at(cpos).category() == QChar::Mark_NonSpacing)
+				cpos++;
+			if (cpos < m_text.length() && m_text.at(cpos).isLowSurrogate() && cpos > 0 && m_text.at(cpos - 1).isHighSurrogate())
+				cpos++;
 
-			if ( x <= thresold )
-				break;
-
-			x -= cwidth;
-			++idx;
+			return cpos;
 		}
-
-		cpos = idx;
+		cpos += r.length;
 	}
-
 	return cpos;
 }
 
@@ -2556,66 +2545,23 @@ void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
 	}
 
 	int column = 0;
-	const int ts = m_doc->tabStop();
 
 	if ( m_layout )
 	{
 		x += int(m_layout->lineAt(wrap).cursorToX(cpos));
-	} else if ( QDocumentPrivate::m_fixedPitch ) {
-		if ( wrap )
-			x += m_indent;
-
-		while ( idx < cpos )
-		{
-			bool tab = m_text.at(idx).unicode() == '\t';
-			int cwidth = QDocumentPrivate::m_spaceWidth;
-
-			if ( tab )
-			{
-				int coff = ts - (column % ts);
-				column += coff;
-				cwidth *= coff;
-			} else {
-				++column;
-			}
-
-			x += cwidth;
-			++idx;
-		}
 	} else {
-		if ( !hasFlag(QDocumentLine::FormatsApplied) )
-			compose();
-
 		if ( wrap )
 			x += m_indent;
+
+		QList<RenderRange> ranges;
+		splitAtFormatChanges(&ranges, 0, idx, qMin(text().length(), cpos));
 
 		QDocumentPrivate *d = m_doc->impl();
 
-		int tempFmts[FORMAT_MAX_COUNT]; QFormat tempFormats[FORMAT_MAX_COUNT];
-		int lastFont = -1;
-		//int lastIdx;
-		while ( idx < cpos )
-		{
-			int newFont = lastFont;
-			d->m_formatScheme->extractFormats(m_cache[idx], tempFmts, tempFormats, newFont);
-
-			QChar c = m_text.at(idx);
-			bool tab = c.unicode() == '\t';
-			int cwidth = 0;
-
-			if ( tab )
-			{
-				int coff = ts - (column % ts);
-				column += coff;
-				cwidth = d->textWidth(newFont, " ");
-				cwidth *= coff;
-			} else {
-				++column;
-				cwidth = d->textWidth(newFont,c);
-			}
-
-			x += cwidth;
-			++idx;
+		foreach (const RenderRange& r, ranges) {
+			int tempFmts[FORMAT_MAX_COUNT]; QFormat tempFormats[FORMAT_MAX_COUNT]; int newFont;
+			d->m_formatScheme->extractFormats(r.format, tempFmts, tempFormats, newFont);
+			d->calcPositionAfterRenderRange(x, column, r, newFont, m_text);
 		}
 	}
 }
@@ -2625,39 +2571,6 @@ QPoint QDocumentLineHandle::cursorToDocumentOffset(int cpos) const
 	QPoint p;
 	cursorToDocumentOffset(cpos, p.rx(), p.ry());
 	return p;
-	#if 0
-	int y = 0;
-	int x = cursorToX(cpos);
-
-	if ( m_frontiers.isEmpty() )
-		return QPoint(x, y);
-
-	int first = m_frontiers.at(0).first;
-
-	if ( cpos < first )
-		return QPoint(x, y);
-
-	int wrappedX = 0;
-	int fns = nextNonSpaceChar(0), off = 0;
-
-	if ( fns != -1 && fns < first )
-		off = cursorToX(fns);
-	else
-		off = QDocumentPrivate::m_leftMargin;
-
-	for ( int j = 0; j < m_frontiers.count(); ++j )
-	{
-		if ( m_frontiers[j].first <= cpos )
-		{
-			wrappedX = m_frontiers[j].second;
-			y += QDocumentPrivate::m_lineSpacing;
-		} else {
-			break;
-		}
-	}
-
-	return QPoint(x - wrappedX + off, y);
-	#endif
 }
 
 void QDocumentLineHandle::clearOverlays()
@@ -3003,24 +2916,23 @@ void QDocumentLineHandle::layout() const
 }
 
 
-struct RenderRange
-{
-	int position;
-	int length;
-	int format;
-	int wrap;
-};
 
-void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const QVector<int>* sel) const{
+void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const QVector<int>* sel, int from, int until) const{
+	if (until == -1 || until > m_text.count())
+		until = m_text.count();
+
+	if (from == until)
+		return;
+
 	QVector<int> m_composited = compose();
 
 	QVector<int> merged;
-	merged.fill(0, m_text.count());
+	merged.fill(0, until);
 
 	// merge selection ranges with the rest (formats + overlays)
 	//int max = qMin(m_text.count(), m_composited.count());
 
-	for ( int i = 0; i < m_text.count(); ++i )
+	for ( int i = from; i < until; ++i )
 	{
 		if ( m_composited.count() > i )
 			merged[i] = m_composited.at(i);
@@ -3046,10 +2958,17 @@ void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const
 	// generate render ranges
 	if ( merged.count() )
 	{
-		int i = 0, wrap = 0, max = m_text.count(),
-			frontier = m_frontiers.count() ? m_frontiers.first().first : max;
+		int i = from, wrap = 0;
+		int frontier = qMin(until,m_frontiers.count() ? m_frontiers.first().first : until);
 
-		while ( i < max )
+		if (from != 0)
+			while (i > frontier) {
+				++wrap;
+				frontier = wrap < m_frontiers.count() ? m_frontiers.at(wrap).first : until;
+			}
+
+
+		while ( i < until )
 		{
 			RenderRange r;
 			r.position = i;
@@ -3069,7 +2988,7 @@ void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const
 			if ( i == frontier )
 			{
 				++wrap;
-				frontier = wrap < m_frontiers.count() ? m_frontiers.at(wrap).first : max;
+				frontier = wrap < m_frontiers.count() ? m_frontiers.at(wrap).first : until;
 			}
 		}
 	} else if ( m_frontiers.count() ) {
@@ -3902,7 +3821,7 @@ int QDocumentCursorHandle::anchorColumnNumber() const
 
 int QDocumentCursorHandle::visualColumnNumber() const
 {
-	return QDocument::screenLength(
+	return QDocument::screenColumn(
 						line().text().constData(),
 						m_begOffset,
 						QDocument::tabStop()
@@ -6369,6 +6288,18 @@ int QDocumentPrivate::textWidth(int fid, const QString& text){
 		}
 	}
 	return rwidth;
+}
+
+void QDocumentPrivate::calcPositionAfterRenderRange(int &xpos, int &column, const RenderRange& r, const int newFont, const QString& text){
+	const QString& subText = text.mid(r.position, r.length);
+	if (r.format & FORMAT_SPACE) {
+		int realLength = QDocument::screenColumn(subText.constData(), subText.length(), m_tabStop, column) - column;
+		column += realLength;
+		xpos += textWidth(newFont, " ") * realLength;
+	} else {
+		column += r.length;
+		xpos += textWidth(newFont, subText);
+	}
 }
 
 void QDocumentPrivate::updateFormatCache()

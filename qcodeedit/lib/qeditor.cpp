@@ -4308,7 +4308,7 @@ void QEditor::preInsert(QDocumentCursor& c, const QString& s)
 				{
 					--firstNS;
 					c.movePosition(1, QDocumentCursor::Left, QDocumentCursor::KeepAnchor);
-				} while ( QDocument::screenLength(txt.constData(), firstNS, ts) % ts );
+				} while ( QDocument::screenColumn(txt.constData(), firstNS, ts) % ts );
 		}
 			
 		c.removeSelectedText();

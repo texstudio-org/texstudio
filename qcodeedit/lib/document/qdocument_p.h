@@ -183,7 +183,9 @@ class QCE_EXPORT QDocumentPrivate
 		static void updateFormatCache();
 		void setFormatScheme(QFormatScheme *f);
 		void tunePainter(QPainter *p, int fid);
+
 		int textWidth(int fid, const QString& text);
+		void calcPositionAfterRenderRange(int &xpos, int &column, const RenderRange& r, const int newFont, const QString& text);
 	private:
 		QDocument *m_doc;
 		QUndoStack m_commands;
