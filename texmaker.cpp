@@ -166,6 +166,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	setupToolBars();
 
 	restoreState(windowstate, 0);
+	//workaround as toolbar central seems not be be handled by windowstate
+	centralToolBar->setVisible(configManager.centralVisible);
 	if(tobemaximized) showMaximized();
 	if(tobefullscreen) {
 		showFullScreen();
@@ -1942,6 +1944,7 @@ void Texmaker::ReadSettings() {
 }
 
 void Texmaker::SaveSettings() {
+	configManager.centralVisible=centralToolBar->isVisible();
 	QSettings *config=configManager.saveSettings();
 
 	config->beginGroup("texmaker");
