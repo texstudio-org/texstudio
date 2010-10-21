@@ -2161,9 +2161,9 @@ void QDocumentLineHandle::updateWrap() const
 		}
 	}
 
-	qDebug("indent: %i frontiers:", m_indent);
+/*qDebug("indent: %i frontiers:", m_indent);
 	for (int i=0;i< m_frontiers.size();i++)
-		qDebug("<%i, %i>", m_frontiers[i].first, m_frontiers[i].second);
+		qDebug("<%i, %i>", m_frontiers[i].first, m_frontiers[i].second);*/
 /*
 	int idx = 0, minx = 0, lastBreak = 0, lastWidth = 0, lastX = 0, rx,
 		x = , column = 0, cwidth;
@@ -2466,19 +2466,38 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 
 	QDocumentPrivate *d = m_doc->impl();
 
+	int lastCharacterWidth = QDocumentPrivate::m_spaceWidth;
+
 	foreach ( const RenderRange& r, ranges ) {
 		int xDelta, columnDelta;
 		int tempFmts[FORMAT_MAX_COUNT]; QFormat tempFormats[FORMAT_MAX_COUNT]; int newFont;
 		d->m_formatScheme->extractFormats(r.format, tempFmts, tempFormats, newFont);
 		xDelta = d->getRenderRangeWidth(columnDelta, column, r, newFont, m_text);
 
-		if ( rx + xDelta > x ) {
+		if ( !d->m_fixedPitch && rx + xDelta >= x) {
+			//update threshold if the render range is close to the position
+			int newcw = 0;
+			for (int i=r.length+r.position-1; i>=r.position && newcw == 0 ; i-- )
+				newcw = d->textWidth(newFont, m_text.at(i));
+			if (newcw > 1)
+				lastCharacterWidth = newcw;
+		}
+
+		if ( rx + xDelta - lastCharacterWidth/3 >= x ) {
 			const QString& subText = m_text.mid(r.position, r.length);
 			RenderRange rcopied = r;
+			int oldxDelta = 0, newthreshold = 0;
 			for ( int i = 0; i < r.length; i++ ) {
 				rcopied.length = i;
 				xDelta = d->getRenderRangeWidth(columnDelta, column, rcopied, newFont, m_text);
-				if ( rx + xDelta >= x ) break;
+				int cwidth = xDelta - oldxDelta;
+				oldxDelta = xDelta;
+				if ( cwidth > 1 )
+					lastCharacterWidth = cwidth;
+				if ( rx + xDelta - lastCharacterWidth / 3 >= x ) {
+					rcopied.length--;
+					break;
+				}
 			}
 			cpos += rcopied.length;
 			/*for (int i = 0;)
