@@ -227,6 +227,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	searchReplacePanel=new QSearchReplacePanel;
 	searchReplacePanel->setFont(QApplication::font());
 	searchReplacePanelAction=codeeditor->addPanel(searchReplacePanel, QCodeEdit::South,false);
+	searchReplacePanel->hide();
 
 
 	connect(lineMarkPanel,SIGNAL(lineClicked(int)),this,SLOT(lineMarkClicked(int)));
