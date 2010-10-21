@@ -612,8 +612,15 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
                             if(cxtDef.startsWith("tabular")) env=SyntaxCheck::ENV_tabular;
                         }
                     }
-                    SynChecker.putLine(line.text(),env);
-                }
+		    QString text=line.text();
+		    QVector<int>fmts=line.getFormats();
+		    for(int i=0;i<text.length();i++){
+			if(fmts[i]==verbatimFormat){
+			    text[i]=QChar(' ');
+			}
+		    }
+		    SynChecker.putLine(text,env);
+		}
 		QDocumentLineHandle* dlh = line.handle();
 		// remove all labels/references of current line
 		containedLabels->removeUpdateByHandle(dlh,containedReferences);
@@ -645,11 +652,13 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		while ((status=nextWord(lineText,start,word,wordstart,false,true,&inStructure))){
 			// hack to color the environment given in \begin{environment}...
 			if (inStructure){
+				if(line.getFormatAt(wordstart)==verbatimFormat) continue;
                                 QString secName=extractSectionName(lineText.mid(wordstart),true);
                                 line.addOverlay(QFormatRange(wordstart,secName.length(),structureFormat));
                                 inStructure=false;
 			}
 			if (status==NW_ENVIRONMENT) {
+				if(line.getFormatAt(wordstart)==verbatimFormat) continue;
 				line.addOverlay(QFormatRange(wordstart,start-wordstart,environmentFormat));
 				QRegExp rx("[ ]*(\\[.*\\])*\\{.+\\}");
 				rx.setMinimal(true);
@@ -657,6 +666,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				if (l==start+1) start=start+rx.cap(0).length();
 			}
 			if (status==NW_REFERENCE && config->inlineReferenceChecking) {
+				if(line.getFormatAt(wordstart)==verbatimFormat) continue;
 				QString ref=word;//lineText.mid(wordstart,start-wordstart);
 				containedReferences->insert(ref,dlh);
 				int cnt=containedLabels->count(ref);
@@ -666,6 +676,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				else line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMissingFormat));
 			}
 			if (status==NW_LABEL && config->inlineReferenceChecking) {
+				if(line.getFormatAt(wordstart)==verbatimFormat) continue;
 				QString ref=word;//lineText.mid(wordstart,start-wordstart);
 				containedLabels->insert(ref,dlh);
 				int cnt=containedLabels->count(ref);

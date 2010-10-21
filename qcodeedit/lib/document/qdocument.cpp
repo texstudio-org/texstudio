@@ -2695,6 +2695,11 @@ void QDocumentLineHandle::setFormats(const QVector<int>& fmts)
 	//applyOverlays();
 }
 
+QVector<int> QDocumentLineHandle::getFormats() const
+{
+    return m_formats;
+}
+
 QVector<int> QDocumentLineHandle::compose() const
 {
 	//QMediumArray m_composited(m_text.length());

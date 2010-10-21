@@ -503,6 +503,23 @@ void QDocumentLine::setFormats(const QVector<int>& formats)
 	m_handle->setFormats(formats);
 }
 
+QVector<int> QDocumentLine::compose(){
+    if(!m_handle) return QVector<int> ();
+    return m_handle->compose();
+}
+
+QVector<int> QDocumentLine::getFormats(){
+    if(!m_handle) return QVector<int> ();
+    return m_handle->getFormats();
+}
+
+int QDocumentLine::getFormatAt(int pos){
+    if(!m_handle) return -1;
+    if(pos>length()||pos<0) return -1;
+    return m_handle->getFormats().at(pos);
+}
+
+
 /*!
 	\return whether the line has at least one overlay of a given format id
 */
