@@ -2500,6 +2500,7 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 				}
 			}
 			cpos += rcopied.length;
+			if (cpos < 0) cpos = 0;
 			/*for (int i = 0;)
 			if ( r.format & FORMAT_SPACE ) {
 				for (int i =  const QChar& c, subText ) {
