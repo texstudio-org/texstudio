@@ -204,6 +204,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 					      "main/latex/spacing/newline" << "separator" <<
 					       "main/math/mathmode" << "main/math/subscript" << "main/math/superscript" << "main/math/frac" << "main/math/dfrac" << "main/math/sqrt"));
 
+	registerOption("ToolBar/CentralVisible", &centralVisible, true);
+
 	enviromentModes << "verbatim" << "numbers";
 
 

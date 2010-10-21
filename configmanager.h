@@ -80,6 +80,7 @@ public:
 	bool newLeftPanelLayout;
 	bool configShowAdvancedOptions;
 	bool useSystemTheme;
+	bool centralVisible;
 	
 	//language
 	QString language, lastLanguage;
