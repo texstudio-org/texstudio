@@ -2051,196 +2051,181 @@ void QDocumentLineHandle::updateWrap() const
 	if ( m_layout )
 	{
 		layout();
-	} else if ( QDocumentPrivate::m_fixedPitch ) {
+		return;
+	}
 
-		int idx = 0, minx = 0, lastBreak = 0, lastWidth = 0, lastX = 0, rx,
-			x = QDocumentPrivate::m_leftMargin, column = 0, cwidth;
+	QDocumentPrivate *d = m_doc->impl();
 
-		QChar c;
-		int indent = 0;
-		const int sw = QDocumentPrivate::m_spaceWidth;
+	QList<RenderRange> ranges;
+	splitAtFormatChanges(&ranges);
 
-		while ( idx < m_text.length() && m_text.at(idx).isSpace() )
-		{
-			c = m_text.at(idx);
+	if (ranges.isEmpty())
+		return;
 
-			if ( c.unicode() == '\t' )
-			{
-				int taboffset = tabStop - (column % tabStop);
+	int idx = 0, column = 0, indent = 0;
+	int x = QDocumentPrivate::m_leftMargin;
 
-				column += taboffset;
-				cwidth = sw * taboffset;
-			} else {
-				++column;
-				cwidth = sw;
-			}
+	int tempFmts[3]; QFormat tempFormats[3]; int fontFormat;
 
-			x += cwidth;
-			++idx;
-		}
+	if ( ranges.first().format & FORMAT_SPACE ) {
+		d->m_formatScheme->extractFormats(ranges.first().format, tempFmts, tempFormats, fontFormat);
+		int columnDelta;
+		x += d->getRenderRangeWidth(columnDelta, column, ranges.first(), fontFormat, m_text);
+		column += columnDelta;
+		indent = ranges.first().length;
+	}
 
-		indent = idx;
-		minx = rx = x;
+	int minx = x, rx = x;
 
-		if ( (minx + sw) >= maxWidth )
-		{
-			//qWarning("Please stop shrinking so aggressively.\nNo attempt will be made to show something decent");
-			// shrinking too aggresively (or too much spaces...) ungraceful fallback
+	if ( (minx + QDocumentPrivate::m_spaceWidth) >= maxWidth )
+	{
+		//qWarning("Please stop shrinking so aggressively.\nNo attempt will be made to show something decent");
 
-			indent = idx = 0;
-			minx = rx = x = QDocumentPrivate::m_leftMargin;
-		}
+		indent = idx = 0;
+		minx = rx = x = QDocumentPrivate::m_leftMargin;
+	}
 
-		m_indent = minx - QDocumentPrivate::m_leftMargin;
+	m_indent = minx - QDocumentPrivate::m_leftMargin;
 
-		while ( idx < m_text.length() )
-		{
-			if ( c.isSpace() )  //!isWord(c) || !isWord(m_text.at(idx)) )
-			{
+
+	int lastBreak = 0, lastX = 0, lastWidth = 0;
+	for (int i = 0; i < ranges.size(); i++) {
+		const RenderRange& r = ranges[i];
+		d->m_formatScheme->extractFormats(r.format, tempFmts, tempFormats, fontFormat);
+		int columnDelta;
+		int xDelta = d->getRenderRangeWidth(columnDelta, column, r, fontFormat, m_text);
+
+		if ( x + xDelta > maxWidth ) {
+			if (r.format & FORMAT_SPACE) {
+				//cut in space range
+				int cwidth = d->textWidth(fontFormat, " ");
+				foreach (const QChar& c, m_text.mid(r.position, r.length)) {
+					int coff = QDocument::screenColumn(&c, 1, d->m_tabStop, column) - column;
+					int xoff = coff * cwidth;
+					if (x + xoff > maxWidth) {
+						m_frontiers << qMakePair(idx, rx);
+						x = minx;
+					}
+					rx += xoff;
+					x += xoff;
+					column += coff;
+					idx++;
+				}
+				lastBreak = idx;
 				lastX = rx;
 				lastWidth = x;
-				lastBreak = idx;
-			}
+				continue;
+			}			
 
-			c = m_text.at(idx);
-
-			if ( c.unicode() == '\t' )
+			while ( idx < r.position + r.length )
 			{
-				int taboffset = tabStop - (column % tabStop);
+				QChar c = m_text.at(idx);
 
-				column += taboffset;
-				cwidth = sw * taboffset;
-			} else {
 				++column;
-				cwidth = sw;
-			}
+				int cwidth = d->textWidth(fontFormat, c);
 
-			if ( x + cwidth > maxWidth )
-			{
-				if ( lastBreak == (m_frontiers.count() ? m_frontiers.last().first : indent) )
+				if ( x + cwidth > maxWidth )
 				{
-					// perfect cut or fallback to aggressive cut
-					m_frontiers << qMakePair(idx, rx);
-					lastBreak = idx;
-					lastWidth = x;
-					lastX = rx;
-					x = minx;
-				} else if ( lastBreak < idx ) {
-					// word cut at a non-ideal position
-					m_frontiers << qMakePair(lastBreak, lastX);
-					x = minx + (x - lastWidth);
-				} else {
-					m_frontiers << qMakePair(idx, rx);
-					x = minx;
+					if ( lastBreak == (m_frontiers.count() ? m_frontiers.last().first : indent) )
+					{
+						// perfect cut or fallback to aggressive cut
+						m_frontiers << qMakePair(idx, rx);
+						lastBreak = idx;
+						lastWidth = x;
+						lastX = rx;
+						x = minx;
+					} else if ( lastBreak < idx ) {
+						// word cut at a non-ideal position
+						m_frontiers << qMakePair(lastBreak, lastX);
+						x = minx + (x - lastWidth);
+					} else {
+						m_frontiers << qMakePair(idx, rx);
+						x = minx;
+					}
 				}
+
+				rx += cwidth;
+				x += cwidth;
+				++idx;
 			}
+		} else {
+			rx += xDelta;
+			x += xDelta;
+			column += columnDelta;
+			idx += r.length;
 
-			rx += cwidth;
-			x += cwidth;
-			++idx;
-		}
-	} else {
-		QVector<int> composited = compose();
-
-		int idx = 0, minx = 0, lastBreak = 0, lastWidth = 0, lastX = 0, rx,
-			x = QDocumentPrivate::m_leftMargin, column = 0, cwidth;
-
-		QChar c;
-		int indent = 0;
-		int fmt = 0;
-		//const QVector<QFont>& fonts = m_doc->impl()->m_fonts; // unused
-
-		QDocumentPrivate *d = m_doc->impl();
-
-		while ( idx < m_text.length() && m_text.at(idx).isSpace() )
-		{
-			c = m_text.at(idx);
-			fmt = idx < composited.count() ? composited[idx] : 0;
-			//QFontMetrics fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
-
-			if ( c.unicode() == '\t' )
-			{
-				int taboffset = tabStop - (column % tabStop);
-
-				column += taboffset;
-				cwidth = d->textWidth(fmt," ") * taboffset;
-				//cwidth = fm.width(' ') * taboffset;
-			} else {
-				++column;
-				cwidth = d->textWidth(fmt,QString(c));
-				//cwidth = fm.width(c);
-			}
-
-			x += cwidth;
-			++idx;
-		}
-
-		indent = idx;
-		minx = rx = x;
-
-		if ( (minx + QDocumentPrivate::m_spaceWidth) >= maxWidth )
-		{
-			//qWarning("Please stop shrinking so aggressively.\nNo attempt will be made to show something decent");
-
-			indent = idx = 0;
-			minx = rx = x = QDocumentPrivate::m_leftMargin;
-		}
-
-		m_indent = minx - QDocumentPrivate::m_leftMargin;
-		int fmts[3];
-		QFormat formats[3];
-
-		while ( idx < m_text.length() )
-		{
-			if ( c.isSpace() )  //!isWord(c) || !isWord(m_text.at(idx)) )
-			{
+			if ( r.format & FORMAT_SPACE ){
+				lastBreak = idx;
 				lastX = rx;
 				lastWidth = x;
-				lastBreak = idx;
 			}
-
-			c = m_text.at(idx);
-			fmt = idx < composited.count() ? composited[idx] : 0;
-			int fontFormat;
-			d->m_formatScheme->extractFormats(fmt, fmts, formats, fontFormat);
-
-			if ( c.unicode() == '\t' )
-			{
-				int taboffset = tabStop - (column % tabStop);
-
-				column += taboffset;
-				cwidth = d->textWidth(fontFormat, " ");
-				cwidth = cwidth * taboffset;
-			} else {
-				++column;
-				cwidth = d->textWidth(fontFormat, c);
-			}
-
-			if ( x + cwidth > maxWidth )
-			{
-				if ( lastBreak == (m_frontiers.count() ? m_frontiers.last().first : indent) )
-				{
-					// perfect cut or fallback to aggressive cut
-					m_frontiers << qMakePair(idx, rx);
-					lastBreak = idx;
-					lastWidth = x;
-					lastX = rx;
-					x = minx;
-				} else if ( lastBreak < idx ) {
-					// word cut at a non-ideal position
-					m_frontiers << qMakePair(lastBreak, lastX);
-					x = minx + (x - lastWidth);
-				} else {
-					m_frontiers << qMakePair(idx, rx);
-					x = minx;
-				}
-			}
-
-			rx += cwidth;
-			x += cwidth;
-			++idx;
 		}
 	}
+/*
+	int idx = 0, minx = 0, lastBreak = 0, lastWidth = 0, lastX = 0, rx,
+		x = , column = 0, cwidth;
+
+	QChar c;
+	int indent = 0;
+	int fmt = 0;
+	//const QVector<QFont>& fonts = m_doc->impl()->m_fonts; // unused
+
+
+	indent = idx;
+	minx = rx = x;
+
+
+
+	while ( idx < m_text.length() )
+	{
+		if ( c.isSpace() )  //!isWord(c) || !isWord(m_text.at(idx)) )
+		{
+			lastX = rx;
+			lastWidth = x;
+			lastBreak = idx;
+		}
+
+		c = m_text.at(idx);
+		fmt = idx < composited.count() ? composited[idx] : 0;
+		int fontFormat;
+		d->m_formatScheme->extractFormats(fmt, fmts, formats, fontFormat);
+
+		if ( c.unicode() == '\t' )
+		{
+			int taboffset = tabStop - (column % tabStop);
+
+			column += taboffset;
+			cwidth = d->textWidth(fontFormat, " ");
+			cwidth = cwidth * taboffset;
+		} else {
+			++column;
+			cwidth = d->textWidth(fontFormat, c);
+		}
+
+		if ( x + cwidth > maxWidth )
+		{
+			if ( lastBreak == (m_frontiers.count() ? m_frontiers.last().first : indent) )
+			{
+				// perfect cut or fallback to aggressive cut
+				m_frontiers << qMakePair(idx, rx);
+				lastBreak = idx;
+				lastWidth = x;
+				lastX = rx;
+				x = minx;
+			} else if ( lastBreak < idx ) {
+				// word cut at a non-ideal position
+				m_frontiers << qMakePair(lastBreak, lastX);
+				x = minx + (x - lastWidth);
+			} else {
+				m_frontiers << qMakePair(idx, rx);
+				x = minx;
+			}
+		}
+
+		rx += cwidth;
+		x += cwidth;
+		++idx;
+	}*/
 }
 
 int QDocumentLineHandle::cursorToX(int cpos) const
@@ -2479,20 +2464,18 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 	QDocumentPrivate *d = m_doc->impl();
 
 	foreach ( const RenderRange& r, ranges ) {
-		int oldcolumn = column, oldrx = rx;
+		int xDelta, columnDelta;
 		int tempFmts[FORMAT_MAX_COUNT]; QFormat tempFormats[FORMAT_MAX_COUNT]; int newFont;
 		d->m_formatScheme->extractFormats(r.format, tempFmts, tempFormats, newFont);
-		d->calcPositionAfterRenderRange(rx, column, r, newFont, m_text);
+		xDelta = d->getRenderRangeWidth(columnDelta, column, r, newFont, m_text);
 
-		if ( rx > x ) {
+		if ( rx + xDelta > x ) {
 			const QString& subText = m_text.mid(r.position, r.length);
 			RenderRange rcopied = r;
 			for ( int i = 0; i < r.length; i++ ) {
-				rx = oldrx;
-				column = oldcolumn;
 				rcopied.length = i;
-				d->calcPositionAfterRenderRange(rx, column, rcopied, newFont, m_text);
-				if ( rx >= x ) break;
+				xDelta = d->getRenderRangeWidth(columnDelta, column, rcopied, newFont, m_text);
+				if ( rx + xDelta >= x ) break;
 			}
 			cpos += rcopied.length;
 			/*for (int i = 0;)
@@ -2522,6 +2505,8 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 			return cpos;
 		}
 		cpos += r.length;
+		column += columnDelta;
+		rx += xDelta;
 	}
 	return cpos;
 }
@@ -2561,7 +2546,9 @@ void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
 		foreach (const RenderRange& r, ranges) {
 			int tempFmts[FORMAT_MAX_COUNT]; QFormat tempFormats[FORMAT_MAX_COUNT]; int newFont;
 			d->m_formatScheme->extractFormats(r.format, tempFmts, tempFormats, newFont);
-			d->calcPositionAfterRenderRange(x, column, r, newFont, m_text);
+			int columnDelta;
+			x += d->getRenderRangeWidth(columnDelta, column, r, newFont, m_text);
+			column += columnDelta;
 		}
 	}
 }
@@ -6290,15 +6277,15 @@ int QDocumentPrivate::textWidth(int fid, const QString& text){
 	return rwidth;
 }
 
-void QDocumentPrivate::calcPositionAfterRenderRange(int &xpos, int &column, const RenderRange& r, const int newFont, const QString& text){
+int QDocumentPrivate::getRenderRangeWidth(int &columnDelta, int curColumn, const RenderRange& r, const int newFont, const QString& text){
 	const QString& subText = text.mid(r.position, r.length);
 	if (r.format & FORMAT_SPACE) {
-		int realLength = QDocument::screenColumn(subText.constData(), subText.length(), m_tabStop, column) - column;
-		column += realLength;
-		xpos += textWidth(newFont, " ") * realLength;
+		int realLength = QDocument::screenColumn(subText.constData(), subText.length(), m_tabStop, curColumn) - curColumn;
+		columnDelta = realLength;
+		return textWidth(newFont, " ") * realLength;
 	} else {
-		column += r.length;
-		xpos += textWidth(newFont, subText);
+		columnDelta = r.length;
+		return textWidth(newFont, subText);
 	}
 }
 

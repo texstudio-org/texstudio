@@ -110,7 +110,7 @@ class QCE_EXPORT QDocumentLineHandle
 		
 		void shiftOverlays(int position, int offset);
 		
-		void splitAtFormatChanges(QList<RenderRange>* ranges, const QVector<int>* sel, int from = 0, int until = -1) const;
+		void splitAtFormatChanges(QList<RenderRange>* ranges, const QVector<int>* sel = 0, int from = 0, int until = -1) const;
 
 		void draw(	QPainter *p,
 					int xOffset,
