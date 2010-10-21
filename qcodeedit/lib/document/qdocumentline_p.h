@@ -137,6 +137,7 @@ class QCE_EXPORT QDocumentLineHandle
 		~QDocumentLineHandle();
 
                 QVector<int> compose() const;
+		QVector<int> getFormats() const;
 		
 	private:
 		void layout() const;

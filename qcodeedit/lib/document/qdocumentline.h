@@ -177,6 +177,9 @@ class QCE_EXPORT QDocumentLine
 		QFormatRange getLastOverlayBetween(int start, int end, int preferredFormat = -1);
 		
 		void setFormats(const QVector<int>& formats);
+		QVector<int> compose();
+		QVector<int> getFormats();
+		int getFormatAt(int pos);
 		
 		const QVector<QParenthesis>& parentheses() const;
 		void setParentheses(const QVector<QParenthesis>& parentheses);

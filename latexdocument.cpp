@@ -1,5 +1,6 @@
 #include "latexdocument.h"
 #include "qdocument.h"
+#include "qformatscheme.h"
 #include "qdocumentline.h"
 #include "qdocumentline_p.h"
 #include "qdocumentcursor.h"
@@ -183,9 +184,19 @@ void LatexDocument::updateStructure() {
 	for (int i=0;i<parent_level.size();i++)
 		parent_level[i]=baseStructure;
 
+	int verbatimFormat=QDocument::formatFactory()->id("verbatim");
+
 	//TODO: This assumes one command per line, which is not necessary true
 	for (int i=0; i<lines(); i++) {
-		const QString curLine = line(i).text(); //TODO: use this instead of s
+		QString curLine = line(i).text(); //TODO: use this instead of s
+
+		QVector<int> fmts=line(i).getFormats();
+
+		for(int j=0;j<curLine.length();j++){
+		    if(fmts[j]==verbatimFormat){
+			curLine[j]=QChar(' ');
+		    }
+		}
 		//// newcommand ////
 		//TODO: handle optional arguments
 		static const QStringList commandTokens = QStringList() << "\\newcommand{" << "\\renewcommand{" << "\\providecommand{{";
@@ -480,10 +491,18 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	StructureEntry* se=baseStructure;
 	splitStructure(se,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count);
 	bool sectionAdded=false;
+	int verbatimFormat=QDocument::formatFactory()->id("verbatim");
 
 	//TODO: This assumes one command per line, which is not necessary true
 	for (int i=linenr; i<linenr+count; i++) {
 		QString curLine = line(i).text(); //TODO: use this instead of s
+		QVector<int> fmts=line(i).getFormats();
+
+		for(int j=0;j<curLine.length();j++){
+		    if(fmts[j]==verbatimFormat){
+			curLine[j]=QChar(' ');
+		    }
+		}
 
 		// remove command,bibtex,labels at from this line
 		QDocumentLineHandle* dlh=line(i).handle();
