@@ -248,8 +248,8 @@ class QCE_EXPORT QDocument : public QObject
 		static QFormatScheme* formatFactory();
 		static void setFormatFactory(QFormatScheme *f);
 		
-		static int screenLength(const QChar *d, int l, int tabStop);
-		static QString screenable(const QChar *d, int l, int tabStop);
+		static int screenColumn(const QChar *d, int l, int tabStop, int column = 0);
+		static QString screenable(const QChar *d, int l, int tabStop, int column = 0);
 		
 		inline void markViewDirty() { formatsChanged(); }
 		
