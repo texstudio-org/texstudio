@@ -515,7 +515,7 @@ QVector<int> QDocumentLine::getFormats(){
 
 int QDocumentLine::getFormatAt(int pos){
     if(!m_handle) return -1;
-    if(pos>length()||pos<0) return -1;
+    if(pos>=length()||pos<0) return -1;
     return m_handle->getFormats().at(pos);
 }
 

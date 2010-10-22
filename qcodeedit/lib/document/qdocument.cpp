@@ -2727,7 +2727,7 @@ void QDocumentLineHandle::setFormats(const QVector<int>& fmts)
 
 QVector<int> QDocumentLineHandle::getFormats() const
 {
-    return m_formats;
+	return m_formats;
 }
 
 QVector<int> QDocumentLineHandle::compose() const
