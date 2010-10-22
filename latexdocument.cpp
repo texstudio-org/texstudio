@@ -197,6 +197,12 @@ void LatexDocument::updateStructure() {
 				curLine[j]=QChar(' ');
 			}
 		}
+
+		//let %\include be processed
+		if(curLine.startsWith("%\\include")||curLine.startsWith("%\\input")){
+		    curLine.replace(0,1,' ');
+		}
+
 		//// newcommand ////
 		//TODO: handle optional arguments
 		static const QStringList commandTokens = QStringList() << "\\newcommand{" << "\\renewcommand{" << "\\providecommand{{";

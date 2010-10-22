@@ -490,7 +490,8 @@ bool nextTextWord(const QString & line, int &index, QString &outWord, int &wordS
 
 QString findToken(const QString &line,const QString &token){
 	int tagStart=line.indexOf(token);
-	if (tagStart!=-1) {
+	int commentStart=line.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
+	if (tagStart!=-1 && (commentStart>tagStart || commentStart==-1)) {
 		tagStart+=token.length();
 		int tagEnd=line.indexOf("}",tagStart);
 		if (tagEnd!=-1) return line.mid(tagStart,tagEnd-tagStart);
