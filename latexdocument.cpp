@@ -192,10 +192,10 @@ void LatexDocument::updateStructure() {
 
 		QVector<int> fmts=line(i).getFormats();
 
-		for(int j=0;j<curLine.length();j++){
-		    if(fmts[j]==verbatimFormat){
-			curLine[j]=QChar(' ');
-		    }
+		for(int j=0;j<curLine.length() &&  j < fmts.size();j++){
+			if(fmts[j]==verbatimFormat){
+				curLine[j]=QChar(' ');
+			}
 		}
 		//// newcommand ////
 		//TODO: handle optional arguments
@@ -498,7 +498,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		QString curLine = line(i).text(); //TODO: use this instead of s
 		QVector<int> fmts=line(i).getFormats();
 
-		for(int j=0;j<curLine.length();j++){
+		for(int j=0;j<curLine.length() && j < fmts.size();j++){
 		    if(fmts[j]==verbatimFormat){
 			curLine[j]=QChar(' ');
 		    }
