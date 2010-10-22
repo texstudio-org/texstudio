@@ -2118,10 +2118,18 @@ void QDocumentLineHandle::updateWrap() const
 
 			while ( idx < r.position + r.length )
 			{
-				QChar c = m_text.at(idx);
+				const QChar& c = m_text.at(idx);
+
+				const QChar::Category cat = c.category();
+
+				int cwidth;
+				if ( cat == QChar::Other_Surrogate || cat == QChar::Mark_Enclosing || cat == QChar::Mark_NonSpacing || cat == QChar::Mark_SpacingCombining ) {
+					int len = idx - r.position + 1;
+					cwidth = d->textWidth(fontFormat, m_text.mid(r.position, len)) - d->textWidth(fontFormat, m_text.mid(r.position, len - 1));
+				} else
+					cwidth = d->textWidth(fontFormat, c);
 
 				++column;
-				int cwidth = d->textWidth(fontFormat, c);
 
 				if ( x + cwidth > maxWidth )
 				{
@@ -2976,13 +2984,16 @@ void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const
 	if ( merged.count() )
 	{
 		int i = from, wrap = 0;
-		int frontier = qMin(until,m_frontiers.count() ? m_frontiers.first().first : until);
+		int frontier = m_frontiers.count() ? m_frontiers.first().first : until;
 
 		if (from != 0)
-			while (i > frontier) {
+			while (i >= frontier && frontier < until) {
 				++wrap;
 				frontier = wrap < m_frontiers.count() ? m_frontiers.at(wrap).first : until;
 			}
+
+		if ( frontier > until )
+			frontier = until;
 
 
 		while ( i < until )
