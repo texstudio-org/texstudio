@@ -2459,6 +2459,8 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 	if ( wrap )
 		x -= m_indent;
 
+	if ( x <= 0 )
+		return cpos;
 
 	int rx = 0, column = 0;
 	QList<RenderRange> ranges;
@@ -2474,7 +2476,7 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 		d->m_formatScheme->extractFormats(r.format, tempFmts, tempFormats, newFont);
 		xDelta = d->getRenderRangeWidth(columnDelta, column, r, newFont, m_text);
 
-		if ( !d->m_fixedPitch && rx + xDelta >= x) {
+		if ( !d->m_fixedPitch && rx + xDelta > x) {
 			//update threshold if the render range is close to the position
 			int newcw = 0;
 			for (int i=r.length+r.position-1; i>=r.position && newcw == 0 ; i-- )
@@ -2483,7 +2485,7 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 				lastCharacterWidth = newcw;
 		}
 
-		if ( rx + xDelta - lastCharacterWidth/3 >= x ) {
+		if ( rx + xDelta - lastCharacterWidth/3 > x ) {
 			const QString& subText = m_text.mid(r.position, r.length);
 			RenderRange rcopied = r;
 			int oldxDelta = 0, newthreshold = 0;
@@ -2494,7 +2496,7 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 				oldxDelta = xDelta;
 				if ( cwidth > 1 )
 					lastCharacterWidth = cwidth;
-				if ( rx + xDelta - lastCharacterWidth / 3 >= x ) {
+				if ( rx + xDelta - lastCharacterWidth / 3 > x ) {
 					rcopied.length--;
 					break;
 				}
