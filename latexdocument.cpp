@@ -120,17 +120,17 @@ void LatexDocument::clearStructure() {
 	mAppendixLine=0;
 
 	if(baseStructure){
-	    emit structureLost(this);
+		emit structureLost(this);
 
-	    if (!labelList->parent) delete labelList;
-	    if (!todoList->parent) delete todoList;
-	    if (!bibTeXList->parent) delete bibTeXList;
-	    if (!blockList->parent) delete blockList;
-	    int row=parent->documents.indexOf(this);
+		if (!labelList->parent) delete labelList;
+		if (!todoList->parent) delete todoList;
+		if (!bibTeXList->parent) delete bibTeXList;
+		if (!blockList->parent) delete blockList;
+		int row=parent->documents.indexOf(this);
 
-	    removeElement(baseStructure,row);
-	    delete baseStructure;
-	    removeElementFinished();
+		removeElement(baseStructure,row);
+		delete baseStructure;
+		removeElementFinished();
 	}
 	baseStructure=0;
 }
@@ -211,23 +211,23 @@ void LatexDocument::updateStructure() {
 			QString arg;
 			if (findTokenWithArg(curLine,commandTokens[j],name,arg)) {
 				int options=arg.toInt(); //returns 0 if conversion fails
-                                LatexParser::userdefinedCommands.insert(name);
+				LatexParser::userdefinedCommands.insert(name);
 				for (int j=0; j<options; j++) {
 					if (j==0) name.append("{%<arg1%|%>}");
 					else name.append(QString("{%<arg%1%>}").arg(j+1));
 				}
 				mUserCommandList.insert(line(i).handle(),name);
-                                // remove obsolete Overlays (maybe this can be refined
-                                for (int i=0; i<lines(); i++) {
-                                        QList<QFormatRange> li=line(i).getOverlays(edView->syntaxErrorFormat);
-                                        QString curLineText=line(i).text();
-                                        for (int j=0; j<li.size(); j++)
-                                                if (curLineText.mid(li[j].offset,li[j].length)==name){
-                                                        line(i).removeOverlay(li[j]);
-                                                        line(i).setFlag(QDocumentLine::LayoutDirty,true);
-                                                }
-                                }
-                                //editor->viewport()->update();
+				// remove obsolete Overlays (maybe this can be refined
+				for (int i=0; i<lines(); i++) {
+					QList<QFormatRange> li=line(i).getOverlays(edView->syntaxErrorFormat);
+					QString curLineText=line(i).text();
+					for (int j=0; j<li.size(); j++)
+						if (curLineText.mid(li[j].offset,li[j].length)==name){
+						line(i).removeOverlay(li[j]);
+						line(i).setFlag(QDocumentLine::LayoutDirty,true);
+					}
+				}
+				//editor->viewport()->update();
 			}
 		}
 		//// newenvironment ////
@@ -331,14 +331,14 @@ void LatexDocument::updateStructure() {
 				StructureContent.insert(newInclude);
 #endif
 				newInclude->title=s;
-//				newInclude.title=inputTokens.at(header); //texmaker distinguished include/input, doesn't seem necessary
+				//				newInclude.title=inputTokens.at(header); //texmaker distinguished include/input, doesn't seem necessary
 				newInclude->lineNumber=i;
 				newInclude->level=fileExits(s)? 0 : 1;
 				if (!temporaryLoadedDocument)
 					newInclude->lineHandle=line(i).handle();
-                                //all following sections are children to base again !
-                                for (int i=0;i<parent_level.size();i++)
-                                        parent_level[i]=baseStructure;
+				//all following sections are children to base again !
+				for (int i=0;i<parent_level.size();i++)
+					parent_level[i]=baseStructure;
 			}
 		}//for
 		//// all sections ////
@@ -359,7 +359,7 @@ void LatexDocument::updateStructure() {
 				if (!temporaryLoadedDocument){
 					newSection->lineHandle=line(i).handle();
 					if(mAppendixLine &&mAppendixLine->line()<i) newSection->appendix=true;
-				    }
+				}
 				parent_level[header]=newSection;
 				for(int j=header+1;j<parent_level.size();j++)
 					parent_level[j]=parent_level[header];
@@ -375,10 +375,10 @@ void LatexDocument::updateStructure() {
 	// rehighlight current cursor position
 	StructureEntry *newSection=0;
 	if(edView){
-	    int i=edView->editor->cursor().lineNumber();
-	    if(i>=0) {
-		newSection=findSectionForLine(i);
-	    }
+		int i=edView->editor->cursor().lineNumber();
+		if(i>=0) {
+			newSection=findSectionForLine(i);
+		}
 	}
 
 	//emit structureUpdated(this,newSection);
@@ -407,59 +407,59 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 
 	QList<StructureEntry*> categories=QList<StructureEntry*>() << labelList << todoList << blockList << bibTeXList;
 	foreach (StructureEntry* sec, categories) {
-	int l=0;
-	QMutableListIterator<StructureEntry*> iter(sec->children);
-	while (iter.hasNext()){
-	    StructureEntry* se=iter.next();
-	    if(dlh==se->lineHandle) {
-		emit removeElement(se,l);
-		iter.remove();
-		emit removeElementFinished();
-		#ifndef QT_NO_DEBUG
+		int l=0;
+		QMutableListIterator<StructureEntry*> iter(sec->children);
+		while (iter.hasNext()){
+			StructureEntry* se=iter.next();
+			if(dlh==se->lineHandle) {
+				emit removeElement(se,l);
+				iter.remove();
+				emit removeElementFinished();
+#ifndef QT_NO_DEBUG
+				StructureContent.remove(se);
+#endif
+				delete se;
+			} else l++;
+		}
+	}
+
+	QVector<StructureEntry*> parent_level(LatexParser::structureCommands.count());
+	QVector<QList<StructureEntry*> > remainingChildren(LatexParser::structureCommands.count());
+	QMap<StructureEntry*,int> toBeDeleted;
+	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfElements;
+	StructureEntry* se=baseStructure;
+	splitStructure(se,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,1);
+
+	// append structure remainder ...
+	for(int i=parent_level.size()-1;i>=0;i--){
+		while(!remainingChildren[i].isEmpty() && remainingChildren[i].first()->level>i){
+			se=remainingChildren[i].takeFirst();
+			parent_level[se->level]->add(se);
+		}
+		parent_level[i]->children << remainingChildren[i];
+		foreach(StructureEntry *elem,remainingChildren[i]){
+			elem->parent=parent_level[i];
+		}
+	}
+	// purge unconnected elements
+	foreach(se,toBeDeleted.keys()){
+		emit removeElement(se,toBeDeleted.value(se));
+#ifndef QT_NO_DEBUG
 		StructureContent.remove(se);
-		#endif
+#endif
 		delete se;
-	    } else l++;
+		emit removeElementFinished();
 	}
-    }
+	// rehighlight current cursor position
+	StructureEntry *newSection=0;
+	if(edView){
+		int i=edView->editor->cursor().lineNumber();
+		if(i>=0) {
+			newSection=findSectionForLine(i);
+		}
+	}
 
-    QVector<StructureEntry*> parent_level(LatexParser::structureCommands.count());
-    QVector<QList<StructureEntry*> > remainingChildren(LatexParser::structureCommands.count());
-    QMap<StructureEntry*,int> toBeDeleted;
-    QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfElements;
-    StructureEntry* se=baseStructure;
-    splitStructure(se,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,1);
-
-    // append structure remainder ...
-    for(int i=parent_level.size()-1;i>=0;i--){
-	while(!remainingChildren[i].isEmpty() && remainingChildren[i].first()->level>i){
-	    se=remainingChildren[i].takeFirst();
-	    parent_level[se->level]->add(se);
-	}
-	parent_level[i]->children << remainingChildren[i];
-	foreach(StructureEntry *elem,remainingChildren[i]){
-	    elem->parent=parent_level[i];
-	}
-    }
-    // purge unconnected elements
-    foreach(se,toBeDeleted.keys()){
-	emit removeElement(se,toBeDeleted.value(se));
-	#ifndef QT_NO_DEBUG
-	StructureContent.remove(se);
-	#endif
-	delete se;
-	emit removeElementFinished();
-    }
-    // rehighlight current cursor position
-    StructureEntry *newSection=0;
-    if(edView){
-	int i=edView->editor->cursor().lineNumber();
-	if(i>=0) {
-	    newSection=findSectionForLine(i);
-	}
-    }
-
-    emit structureUpdated(this,newSection);
+	emit structureUpdated(this,newSection);
 
 }
 
@@ -505,9 +505,9 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		QVector<int> fmts=line(i).getFormats();
 
 		for(int j=0;j<curLine.length() && j < fmts.size();j++){
-		    if(fmts[j]==verbatimFormat){
-			curLine[j]=QChar(' ');
-		    }
+			if(fmts[j]==verbatimFormat){
+				curLine[j]=QChar(' ');
+			}
 		}
 
 		// remove command,bibtex,labels at from this line
@@ -558,10 +558,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			oldLine=mAppendixLine;
 			mAppendixLine=0;
 		}
-                //let %\include be processed
-                if(curLine.startsWith("%\\include")||curLine.startsWith("%\\input")){
-                    curLine.replace(0,1,' ');
-                }
+		//let %\include be processed
+		if(curLine.startsWith("%\\include")||curLine.startsWith("%\\input")){
+			curLine.replace(0,1,' ');
+		}
 		while(findCommandWithArg(curLine,cmd,name,arg,remainder)){
 			curLine=remainder;
 			//// newcommand ////
@@ -571,23 +571,23 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			if (commandTokens.contains(cmd)) {
 				completerNeedsUpdate=true;
 				int options=arg.toInt(); //returns 0 if conversion fails
-                                LatexParser::userdefinedCommands.insert(name);
+				LatexParser::userdefinedCommands.insert(name);
 				for (int j=0; j<options; j++) {
 					if (j==0) name.append("{%<arg1%|%>}");
 					else name.append(QString("{%<arg%1%>}").arg(j+1));
 				}
 				mUserCommandList.insert(line(i).handle(),name);
-                                // remove obsolete Overlays (maybe this can be refined
-                                for (int i=0; i<lines(); i++) {
-                                        QList<QFormatRange> li=line(i).getOverlays(edView->syntaxErrorFormat);
-                                        QString curLineText=line(i).text();
-                                        for (int j=0; j<li.size(); j++)
-                                                if (curLineText.mid(li[j].offset,li[j].length)==name){
-                                                        line(i).removeOverlay(li[j]);
-                                                        line(i).setFlag(QDocumentLine::LayoutDirty,true);
-                                                }
-                                }
-                                //editor->viewport()->update();
+				// remove obsolete Overlays (maybe this can be refined
+				for (int i=0; i<lines(); i++) {
+					QList<QFormatRange> li=line(i).getOverlays(edView->syntaxErrorFormat);
+					QString curLineText=line(i).text();
+					for (int j=0; j<li.size(); j++)
+						if (curLineText.mid(li[j].offset,li[j].length)==name){
+						line(i).removeOverlay(li[j]);
+						line(i).setFlag(QDocumentLine::LayoutDirty,true);
+					}
+				}
+				//editor->viewport()->update();
 				continue;
 			}
 
@@ -712,9 +712,9 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				newInclude->lineNumber=i;
 				newInclude->level=fileExits(name)? 0 : 1;
 				newInclude->lineHandle=line(i).handle();
-                                //new parent for following sections is base !
-                                for(int j=0;j<parent_level.size();j++)
-                                        parent_level[j]=baseStructure;
+				//new parent for following sections is base !
+				for(int j=0;j<parent_level.size();j++)
+					parent_level[j]=baseStructure;
 				continue;
 			}
 			//// all sections ////
@@ -755,14 +755,14 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	// append structure remainder ...
 	for(int i=parent_level.size()-1;i>=0;i--){
 		if (!parent_level[i]) break;
-	    while(!remainingChildren[i].isEmpty() && remainingChildren[i].first()->level>i){
+		while(!remainingChildren[i].isEmpty() && remainingChildren[i].first()->level>i){
 			se=remainingChildren[i].takeFirst();
 			parent_level[se->level]->add(se);
-	    }
-	    parent_level[i]->children << remainingChildren[i];
-	    foreach(StructureEntry *elem,remainingChildren[i]){
+		}
+		parent_level[i]->children << remainingChildren[i];
+		foreach(StructureEntry *elem,remainingChildren[i]){
 			elem->parent=parent_level[i];
-	    }
+		}
 	}
 	if(sectionAdded) {
 		emit addElementFinished();
@@ -795,16 +795,16 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 	//update appendix change
 	if(oldLine!=mAppendixLine){
-	    updateAppendix(oldLine,mAppendixLine);
+		updateAppendix(oldLine,mAppendixLine);
 	}
 
 	// rehighlight current cursor position
 	StructureEntry *newSection=0;
 	if(edView){
-	    int i=edView->editor->cursor().lineNumber();
-	    if(i>=0) {
-		newSection=findSectionForLine(i);
-	    }
+		int i=edView->editor->cursor().lineNumber();
+		if(i>=0) {
+			newSection=findSectionForLine(i);
+		}
 	}
 
 	emit structureUpdated(this,newSection);
@@ -866,12 +866,12 @@ void LatexDocument::checkForLeak(){
 	// filter top level elements
 	QMutableSetIterator<StructureEntry *> i(zw);
 	while (i.hasNext())
-			if(i.next()->type==StructureEntry::SE_OVERVIEW) i.remove();
+		if(i.next()->type==StructureEntry::SE_OVERVIEW) i.remove();
 
 	if(zw.count()>0){
 		qDebug("Memory leak in structure");
 		foreach(StructureEntry* se,zw){
-                        qDebug("se: %s %p",qPrintable(se->title),se);
+			qDebug("se: %s %p",qPrintable(se->title),se);
 		}
 	}
 }
@@ -879,25 +879,25 @@ void LatexDocument::checkForLeak(){
 #endif
 
 StructureEntry * LatexDocument::findSectionForLine(int currentLine){
-    StructureEntryIterator iter(baseStructure);
-    StructureEntry *newSection=0;
+	StructureEntryIterator iter(baseStructure);
+	StructureEntry *newSection=0;
 
-    while (/*iter.hasNext()*/true){
-	StructureEntry *curSection=0;
-	while (iter.hasNext()){
-	    curSection=iter.next();
-	    if (curSection->type==StructureEntry::SE_SECTION)
-		break;
+	while (/*iter.hasNext()*/true){
+		StructureEntry *curSection=0;
+		while (iter.hasNext()){
+			curSection=iter.next();
+			if (curSection->type==StructureEntry::SE_SECTION)
+				break;
+		}
+		if (curSection==0 || curSection->type!=StructureEntry::SE_SECTION)
+			break;
+
+		if (curSection->getRealLineNumber() > currentLine) break; //curSection is after newSection where the cursor is
+		else newSection=curSection;
 	}
-	if (curSection==0 || curSection->type!=StructureEntry::SE_SECTION)
-	    break;
+	if(newSection && newSection->getRealLineNumber()>currentLine) newSection=0;
 
-	if (curSection->getRealLineNumber() > currentLine) break; //curSection is after newSection where the cursor is
-	else newSection=curSection;
-    }
-    if(newSection && newSection->getRealLineNumber()>currentLine) newSection=0;
-
-    return newSection;
+	return newSection;
 }
 
 void LatexDocument::setTemporaryFileName(const QString& fileName){
@@ -987,7 +987,7 @@ StructureEntry* StructureEntryIterator::next(){
 }
 
 LatexDocumentsModel::LatexDocumentsModel(LatexDocuments& docs):documents(docs),
-	iconDocument(":/images/doc.png"), iconMasterDocument(":/images/masterdoc.png"), iconBibTeX(":/images/bibtex.png"), iconInclude(":/images/include.png"){
+iconDocument(":/images/doc.png"), iconMasterDocument(":/images/masterdoc.png"), iconBibTeX(":/images/bibtex.png"), iconInclude(":/images/include.png"){
 	mHighlightIndex=QModelIndex();
 	iconSection.resize(LatexParser::structureCommands.count());
 	for (int i=0;i<LatexParser::structureCommands.count();i++)
@@ -1002,53 +1002,53 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 	StructureEntry* entry = (StructureEntry*) index.internalPointer();
 	if (!entry) return QVariant();
 	switch (role) {
-		case Qt::DisplayRole:
+	case Qt::DisplayRole:
 		if (entry->type==StructureEntry::SE_DOCUMENT_ROOT){ //show only base file name
-				QString title=entry->title.mid(1+qMax(entry->title.lastIndexOf("/"), entry->title.lastIndexOf(QDir::separator())));
-				if(title.isEmpty()) title=tr("untitled");
-				return QVariant(title);
-			}
-			//fall through to show full title in other cases
+			QString title=entry->title.mid(1+qMax(entry->title.lastIndexOf("/"), entry->title.lastIndexOf(QDir::separator())));
+			if(title.isEmpty()) title=tr("untitled");
+			return QVariant(title);
+		}
+		//fall through to show full title in other cases
 		case Qt::ToolTipRole:
-			//qDebug("data %x",entry);
-			if (entry->lineNumber>-1)
-				return QVariant(entry->title+QString(tr(" (Line %1)").arg(entry->getRealLineNumber()+1)));
-			else
-				return QVariant(entry->title);
+		//qDebug("data %x",entry);
+		if (entry->lineNumber>-1)
+			return QVariant(entry->title+QString(tr(" (Line %1)").arg(entry->getRealLineNumber()+1)));
+		else
+			return QVariant(entry->title);
 		case Qt::DecorationRole:
-			switch (entry->type){
-				case StructureEntry::SE_BIBTEX: return iconBibTeX;
-				case StructureEntry::SE_INCLUDE: return iconInclude;
-				case StructureEntry::SE_SECTION:
-					if (entry->level>=0 && entry->level<iconSection.count())
-						return iconSection[entry->level];
-					else
-						return QVariant();
-				case StructureEntry::SE_DOCUMENT_ROOT:
-					if (documents.masterDocument==entry->document)
-						return iconMasterDocument;
-					else
-						return iconDocument;
-				default: return QVariant();
-			}
+		switch (entry->type){
+		case StructureEntry::SE_BIBTEX: return iconBibTeX;
+		case StructureEntry::SE_INCLUDE: return iconInclude;
+		case StructureEntry::SE_SECTION:
+			if (entry->level>=0 && entry->level<iconSection.count())
+				return iconSection[entry->level];
+			else
+				return QVariant();
+		case StructureEntry::SE_DOCUMENT_ROOT:
+			if (documents.masterDocument==entry->document)
+				return iconMasterDocument;
+			else
+				return iconDocument;
+		default: return QVariant();
+		}
 		case Qt::BackgroundRole:
-			if (index==mHighlightIndex) return QVariant(Qt::lightGray);
-			if (entry->appendix) return QVariant(QColor(200,230,200));
-			else return QVariant();
+		if (index==mHighlightIndex) return QVariant(Qt::lightGray);
+		if (entry->appendix) return QVariant(QColor(200,230,200));
+		else return QVariant();
 		case Qt::ForegroundRole:
-			if((entry->type==StructureEntry::SE_INCLUDE) && (entry->level==1)) {
-				return QVariant(Qt::red);
-			}else return QVariant();
+		if((entry->type==StructureEntry::SE_INCLUDE) && (entry->level==1)) {
+			return QVariant(Qt::red);
+		}else return QVariant();
 		case Qt::FontRole:
-			if(entry->type==StructureEntry::SE_DOCUMENT_ROOT) {
-			    QFont f=QApplication::font();
-				if(entry->document==documents.currentDocument) f.setBold(true);
-				if(entry->title.isEmpty()) f.setItalic(true);
-			    return QVariant(f);
-			}
-			return QVariant();
+		if(entry->type==StructureEntry::SE_DOCUMENT_ROOT) {
+			QFont f=QApplication::font();
+			if(entry->document==documents.currentDocument) f.setBold(true);
+			if(entry->title.isEmpty()) f.setItalic(true);
+			return QVariant(f);
+		}
+		return QVariant();
 		default:
-			return QVariant();
+		return QVariant();
 	}
 }
 QVariant LatexDocumentsModel::headerData ( int section, Qt::Orientation orientation, int role ) const{
@@ -1099,14 +1099,14 @@ QModelIndex LatexDocumentsModel::parent ( const QModelIndex & index ) const{
 	const StructureEntry* entry = (StructureEntry*) index.internalPointer();
 	if (!entry) return QModelIndex();
 	if (!entry->parent) return QModelIndex();
-        if(entry->level>LatexParser::structureCommands.count() || entry->level<0|| entry->level>5){
+	if(entry->level>LatexParser::structureCommands.count() || entry->level<0|| entry->level>5){
 		qDebug("Structure broken! %p",entry);
-		  qDebug("Title %s",qPrintable(entry->title));
+		qDebug("Title %s",qPrintable(entry->title));
 		return QModelIndex();
 	}
-        if(entry->parent->level>LatexParser::structureCommands.count() || entry->parent->level<0|| entry->parent->level>5){
+	if(entry->parent->level>LatexParser::structureCommands.count() || entry->parent->level<0|| entry->parent->level>5){
 		qDebug("Structure broken! %p",entry);
-		  qDebug("Title %s",qPrintable(entry->title));
+		qDebug("Title %s",qPrintable(entry->title));
 		return QModelIndex();
 	}
 	if (entry->parent->parent)
@@ -1147,9 +1147,9 @@ void LatexDocumentsModel::structureUpdated(LatexDocument* document,StructureEntr
 	Q_UNUSED(document);
 	//resetAll();
 	if(highlight){
-	    mHighlightIndex=index(highlight);
+		mHighlightIndex=index(highlight);
 	}else{
-	    mHighlightIndex=QModelIndex();
+		mHighlightIndex=QModelIndex();
 	}
 	emit layoutChanged();
 	//emit resetAll();
@@ -1198,7 +1198,7 @@ void LatexDocumentsModel::addElementFinished(){
 }
 
 void LatexDocumentsModel::updateElement(StructureEntry *se){
-    emit dataChanged(index(se),index(se));
+	emit dataChanged(index(se),index(se));
 }
 
 LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)), masterDocument(0), currentDocument(0), bibTeXFilesModified(false),Label(0),Ref(0){
@@ -1303,7 +1303,7 @@ void LatexDocuments::setMasterDocument(LatexDocument* document){
 		}
 	}
 	model->resetAll();
-        emit masterDocumentChanged(masterDocument);
+	emit masterDocumentChanged(masterDocument);
 }
 
 QString LatexDocuments::getCurrentFileName() {
@@ -1430,9 +1430,9 @@ void LatexDocuments::updateBibFiles(){
 }
 
 void LatexDocument::findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count){
-    bool goBack=false;
+	bool goBack=false;
 	int l=0;
-    while(iter.hasNext()){
+	while(iter.hasNext()){
 		StructureEntry* se=iter.next();
 		QDocumentLineHandle* dlh=se->lineHandle;
 		if((dlh->line()>=linenr) && (dlh->line()<linenr+count) ){
@@ -1447,8 +1447,8 @@ void LatexDocument::findStructureEntryBefore(QMutableListIterator<StructureEntry
 			break;
 		}
 		l++;
-    }
-    if(goBack && iter.hasPrevious()) iter.previous();
+	}
+	if(goBack && iter.hasPrevious()) iter.previous();
 }
 
 void LatexDocument::splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QMap<StructureEntry*,int> &toBeDeleted,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count,int lvl,bool front,bool back){
@@ -1543,60 +1543,60 @@ void LatexDocument::splitStructure(StructureEntry* se,QVector<StructureEntry*> &
 }
 
 void LatexDocument::updateAppendix(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine){
-    int endLine=-1;
-    int startLine=-1;
-    if(newLine) endLine=newLine->line();
-    if(oldLine){
-	startLine=oldLine->line();
-	if(endLine<0 || endLine>startLine){
-	    // remove appendic marker
-	    StructureEntry *se=baseStructure;
-	    setAppendix(se,startLine,endLine,false);
+	int endLine=-1;
+	int startLine=-1;
+	if(newLine) endLine=newLine->line();
+	if(oldLine){
+		startLine=oldLine->line();
+		if(endLine<0 || endLine>startLine){
+			// remove appendic marker
+			StructureEntry *se=baseStructure;
+			setAppendix(se,startLine,endLine,false);
+		}
 	}
-    }
 
-    if(endLine>-1 && (endLine<startLine || startLine<0)){
-	StructureEntry *se=baseStructure;
-	setAppendix(se,endLine,startLine,true);
-    }
+	if(endLine>-1 && (endLine<startLine || startLine<0)){
+		StructureEntry *se=baseStructure;
+		setAppendix(se,endLine,startLine,true);
+	}
 }
 
 void LatexDocument::setAppendix(StructureEntry *se,int startLine,int endLine,bool state){
-    bool first=false;
-    for(int i=0;i<se->children.size();i++){
-	StructureEntry *elem=se->children[i];
-	if(endLine>=0 && elem->lineHandle && elem->lineHandle->line()>endLine) break;
-	if(elem->type==StructureEntry::SE_SECTION && elem->lineHandle->line()>startLine){
-	    if(!first && i>0) setAppendix(se->children[i-1],startLine,endLine,state);
-	    elem->appendix=state;
-	    emit updateElement(elem);
-	    setAppendix(se->children[i],startLine,endLine,state);
-	    first=true;
+	bool first=false;
+	for(int i=0;i<se->children.size();i++){
+		StructureEntry *elem=se->children[i];
+		if(endLine>=0 && elem->lineHandle && elem->lineHandle->line()>endLine) break;
+		if(elem->type==StructureEntry::SE_SECTION && elem->lineHandle->line()>startLine){
+			if(!first && i>0) setAppendix(se->children[i-1],startLine,endLine,state);
+			elem->appendix=state;
+			emit updateElement(elem);
+			setAppendix(se->children[i],startLine,endLine,state);
+			first=true;
+		}
 	}
-    }
-    if(!first && !se->children.isEmpty()) {
-	StructureEntry *elem=se->children.last();
-	if(elem->type==StructureEntry::SE_SECTION) setAppendix(elem,startLine,endLine,state);
-    }
+	if(!first && !se->children.isEmpty()) {
+		StructureEntry *elem=se->children.last();
+		if(elem->type==StructureEntry::SE_SECTION) setAppendix(elem,startLine,endLine,state);
+	}
 }
 
 bool LatexDocument::fileExits(QString fname){
 	QString curPath=ensureTrailingDirSeparator(getFileInfo().absolutePath());
 	bool exist=QFile(parent->getAbsoluteFilePath(fname,".tex")).exists();
 	if (!exist) exist=QFile(parent->getAbsoluteFilePath(curPath+fname,".tex")).exists();
-        if (!exist) exist=QFile(parent->getAbsoluteFilePath(curPath+fname,"")).exists();
+	if (!exist) exist=QFile(parent->getAbsoluteFilePath(curPath+fname,"")).exists();
 	return exist;
 }
 
 
 void LatexDocuments::updateStructure(){
-    foreach(LatexDocument* doc,documents){
-	model->updateElement(doc->baseStructure);
-    }
+	foreach(LatexDocument* doc,documents){
+		model->updateElement(doc->baseStructure);
+	}
 }
 
 void LatexDocuments::updateLayout(){
-    model->layoutChanged();
+	model->layoutChanged();
 }
 
 void LatexDocuments::bibTeXFilesNeedUpdate(){
