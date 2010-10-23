@@ -164,6 +164,7 @@ private slots:
 	void MarkCurrentFileAsRecent();
 	void filePrint();
 	void fileCheckin(QString filename="");
+	void fileUpdate(QString filename="");
 	void checkin(QString fn,QString text="tmx auto checkin",bool blocking=false);
 	bool svnadd(QString fn,int stage=0);
 	void svncreateRep(QString fn);

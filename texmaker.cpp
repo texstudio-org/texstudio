@@ -387,6 +387,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"saveall",tr("Save A&ll"), SLOT(fileSaveAll()), Qt::CTRL+Qt::SHIFT+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu, "maketemplate",tr("&Make Template..."), SLOT(fileMakeTemplate()));
 	newManagedAction(menu, "checkin",tr("Check &in..."), SLOT(fileCheckin()));
+	newManagedAction(menu, "svnupdate",tr("SVN &update..."), SLOT(fileUpdate()));
 	newManagedAction(menu, "showrevisions",tr("Sh&ow old Revisions"), SLOT(showOldRevisions()));
 
 	menu->addSeparator();
@@ -4231,6 +4232,16 @@ void Texmaker::fileCheckin(QString filename){
 		fileSave();
 		checkin(fn,text);
 	}
+}
+
+void Texmaker::fileUpdate(QString filename){
+	if (!currentEditorView()) return;
+	QString fn=filename.isEmpty() ? currentEditor()->fileName() : filename;
+	if(fn.isEmpty()) return;
+	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+	cmd+=" up  \""+fn+"\"";
+	stat2->setText(QString(" svn update "));
+	runCommand(cmd, true, true,false);
 }
 
 void Texmaker::checkin(QString fn, QString text, bool blocking){
