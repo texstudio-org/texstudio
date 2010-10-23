@@ -36,6 +36,8 @@
 
 #include <QTextLayout>
 
+#include <QReadWriteLock>
+
 #if QT_VERSION < 0x040400
 #include <QAtomic>
 #else
@@ -110,8 +112,6 @@ class QCE_EXPORT QDocumentLineHandle
 		
 		void shiftOverlays(int position, int offset);
 		
-		void splitAtFormatChanges(QList<RenderRange>* ranges, const QVector<int>* sel = 0, int from = 0, int until = -1) const;
-
 		void draw(	QPainter *p,
 					int xOffset,
 					int vWidth,
@@ -138,10 +138,29 @@ class QCE_EXPORT QDocumentLineHandle
 
                 QVector<int> compose() const;
 		QVector<int> getFormats() const;
+
+		void lockForRead() const {
+		    mLock.lockForRead();
+		}
+		void lockForWriteText() {
+		    mLock.lockForWrite();
+		    mTicket++;
+		}
+		void lockForWrite() {
+		    mLock.lockForWrite();
+		}
+		void unlock() const {
+		    mLock.unlock();
+		}
+
+		int getCurrentTicket(){
+		    return mTicket;
+		}
 		
 	private:
 		void layout() const;
 		void applyOverlays() const;
+		void splitAtFormatChanges(QList<RenderRange>* ranges, const QVector<int>* sel = 0, int from = 0, int until = -1) const;
 		
 		QList<QTextLayout::FormatRange> decorations() const;
 		
@@ -167,6 +186,8 @@ class QCE_EXPORT QDocumentLineHandle
 		enum SelectionState {noSel,partialSel,fullSel};
 		SelectionState lineHasSelection;
 		QBitmap wv;
+		mutable QReadWriteLock mLock;
+		int mTicket; // increment on each write access to detect obsolete info in parallel thread
 };
 
 Q_DECLARE_TYPEINFO(QDocumentLineHandle*, Q_PRIMITIVE_TYPE);

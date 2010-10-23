@@ -191,8 +191,10 @@ void QDocumentCommand::insertText(int line, int pos, const QString& s)
 	if ( !h )
 		return;
 	
+	h->lockForWriteText();
 	h->textBuffer().insert(pos, s);
 	h->shiftOverlays(pos, s.length());
+	h->unlock();
 	
 	pd->adjustWidth(line);
 }
@@ -217,8 +219,10 @@ void QDocumentCommand::removeText(int line, int pos, int length)
 	if ( !h || !length )
 		return;
 
+	h->lockForWriteText();
 	h->textBuffer().remove(pos, length);
 	h->shiftOverlays(pos, -length);
+	h->unlock();
 
 	pd->adjustWidth(line);
 }
@@ -541,7 +545,9 @@ QDocumentInsertCommand::QDocumentInsertCommand(	int l, int offset,
 	if ( m_data.handles.count() && (bl.length() > offset) )
 	{
 		m_data.end = bl.text().mid(offset);
+		m_data.handles.last()->lockForWriteText();
 		m_data.handles.last()->textBuffer().append(m_data.end);
+		m_data.handles.last()->unlock();
 	}
 
 	/*

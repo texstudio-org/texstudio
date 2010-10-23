@@ -8,11 +8,11 @@
 #include "qdocumentline.h"
 //#include "latexeditorview.h"
 //#include <QMessageBox>
-Word::Word(QString nw, int nc) {
+ClsWord::ClsWord(QString nw, int nc) {
 	word=nw;
 	count=nc;
 }
-bool Word::operator<(const  Word &cmpTo) const {
+bool ClsWord::operator<(const  ClsWord &cmpTo) const {
 	if (count > cmpTo.count) return true;
 	else if (count < cmpTo.count) return false;
 	else return word.localeAwareCompare(cmpTo.word)<0;
@@ -286,7 +286,7 @@ void TextAnalysisDialog::insertDisplayData(const QMap<QString,int> & map) {
 			if (it.value()>=minCount) {
 				if (it.key().size()>=minLen*phraseLength) {
 					if (filtered || wordFilter.exactMatch(it.key()))
-						displayed.words.append(Word(it.key(),it.value()));
+						displayed.words.append(ClsWord(it.key(),it.value()));
 				} else {
 					if (filtered && !wordFilter.exactMatch(it.key())) continue;
 					QString t=it.key();
@@ -295,11 +295,11 @@ void TextAnalysisDialog::insertDisplayData(const QMap<QString,int> & map) {
 					for (; i<t.size(); i++)
 						if (t.at(i)==' ') {
 							if (i-last>=minLen) {
-								displayed.words.append(Word(it.key(),it.value()));
+								displayed.words.append(ClsWord(it.key(),it.value()));
 								break;
 							} else last=i+1;
 						}
-					if (i==t.size() && i-last>=minLen) displayed.words.append(Word(it.key(),it.value()));
+					if (i==t.size() && i-last>=minLen) displayed.words.append(ClsWord(it.key(),it.value()));
 				}
 			}
 		break;
@@ -319,7 +319,7 @@ void TextAnalysisDialog::insertDisplayData(const QMap<QString,int> & map) {
 						} else last=i+1;
 					}
 				if (ok && t.size()-last>=minLen)
-					displayed.words.append(Word(it.key(),it.value()));
+					displayed.words.append(ClsWord(it.key(),it.value()));
 			}
 		break;
 	case 1:
@@ -328,11 +328,11 @@ void TextAnalysisDialog::insertDisplayData(const QMap<QString,int> & map) {
 		if (filtered) {
 			for (QMap<QString, int>::const_iterator it = map.constBegin(); it!=map.constEnd(); ++it)
 				if (it.value()>=minCount && it.key().size()>=minLen && wordFilter.exactMatch(it.key()))
-					displayed.words.append(Word(it.key(),it.value()));
+					displayed.words.append(ClsWord(it.key(),it.value()));
 		} else {
 			for (QMap<QString, int>::const_iterator it = map.constBegin(); it!=map.constEnd(); ++it)
 				if (it.value()>=minCount && it.key().size()>=minLen)
-					displayed.words.append(Word(it.key(),it.value()));
+					displayed.words.append(ClsWord(it.key(),it.value()));
 		}
 	}
 }

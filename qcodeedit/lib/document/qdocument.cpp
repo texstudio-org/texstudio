@@ -2024,16 +2024,19 @@ QDocumentLineHandle* QDocumentLineHandle::previous() const
 }
 
 QList<int> QDocumentLineHandle::getBreaks(){
+    lockForRead();
     QList<int> res;
     QPair<int, int> elem;
     foreach(elem,m_frontiers){
 	res << elem.first;
     }
+    unlock();
     return res;
 }
 
 void QDocumentLineHandle::updateWrap() const
 {
+	lockForRead();
 	m_indent = 0;
 	m_frontiers.clear();
 
@@ -2041,7 +2044,7 @@ void QDocumentLineHandle::updateWrap() const
 	{
 		if ( m_layout )
 			setFlag(QDocumentLine::LayoutDirty, true);
-
+		unlock();
 		return;
 	}
 
@@ -2059,8 +2062,10 @@ void QDocumentLineHandle::updateWrap() const
 	QList<RenderRange> ranges;
 	splitAtFormatChanges(&ranges);
 
-	if (ranges.isEmpty())
+	if (ranges.isEmpty()){
+		unlock();
 		return;
+	    }
 
 	int idx = 0, column = 0, indent = 0;
 	int minx = QDocumentPrivate::m_leftMargin;
@@ -2168,79 +2173,13 @@ void QDocumentLineHandle::updateWrap() const
 			}
 		}
 	}
+	unlock();
 
-/*qDebug("indent: %i frontiers:", m_indent);
-	for (int i=0;i< m_frontiers.size();i++)
-		qDebug("<%i, %i>", m_frontiers[i].first, m_frontiers[i].second);*/
-/*
-	int idx = 0, minx = 0, lastBreak = 0, lastWidth = 0, lastX = 0, rx,
-		x = , column = 0, cwidth;
-
-	QChar c;
-	int indent = 0;
-	int fmt = 0;
-	//const QVector<QFont>& fonts = m_doc->impl()->m_fonts; // unused
-
-
-	indent = idx;
-	minx = rx = x;
-
-
-
-	while ( idx < m_text.length() )
-	{
-		if ( c.isSpace() )  //!isWord(c) || !isWord(m_text.at(idx)) )
-		{
-			lastX = rx;
-			lastWidth = x;
-			lastBreak = idx;
-		}
-
-		c = m_text.at(idx);
-		fmt = idx < composited.count() ? composited[idx] : 0;
-		int fontFormat;
-		d->m_formatScheme->extractFormats(fmt, fmts, formats, fontFormat);
-
-		if ( c.unicode() == '\t' )
-		{
-			int taboffset = tabStop - (column % tabStop);
-
-			column += taboffset;
-			cwidth = d->textWidth(fontFormat, " ");
-			cwidth = cwidth * taboffset;
-		} else {
-			++column;
-			cwidth = d->textWidth(fontFormat, c);
-		}
-
-		if ( x + cwidth > maxWidth )
-		{
-			if ( lastBreak == (m_frontiers.count() ? m_frontiers.last().first : indent) )
-			{
-				// perfect cut or fallback to aggressive cut
-				m_frontiers << qMakePair(idx, rx);
-				lastBreak = idx;
-				lastWidth = x;
-				lastX = rx;
-				x = minx;
-			} else if ( lastBreak < idx ) {
-				// word cut at a non-ideal position
-				m_frontiers << qMakePair(lastBreak, lastX);
-				x = minx + (x - lastWidth);
-			} else {
-				m_frontiers << qMakePair(idx, rx);
-				x = minx;
-			}
-		}
-
-		rx += cwidth;
-		x += cwidth;
-		++idx;
-	}*/
 }
 
 int QDocumentLineHandle::cursorToX(int cpos) const
 {
+	lockForRead();
 	cpos = qBound(0, cpos, m_text.length());
 
 	if ( m_layout )
@@ -2264,16 +2203,20 @@ int QDocumentLineHandle::cursorToX(int cpos) const
 		}
 
 		//qDebug("c:%i (wrap:%i) => c2x(x - %i) + %i", cpos, line, coff, xoff);
-		return qRound(m_layout->lineAt(line).cursorToX(cpos - coff)) + xoff;
+		int result=qRound(m_layout->lineAt(line).cursorToX(cpos - coff)) + xoff;
+		unlock();
+		return result;
 	}
 
 	int tabStop = m_doc->impl()->m_tabStop;
 
 	if ( QDocumentPrivate::m_fixedPitch )
 	{
-		return QDocument::screenColumn(m_text.constData(), cpos, tabStop)
+		int result=QDocument::screenColumn(m_text.constData(), cpos, tabStop)
 				* QDocumentPrivate::m_spaceWidth
 				+ QDocumentPrivate::m_leftMargin;
+		unlock();
+		return result;
 	}
 
 	//qDebug("c->x(%i) unsafe computations...", cpos);
@@ -2281,8 +2224,11 @@ int QDocumentLineHandle::cursorToX(int cpos) const
 	QVector<int> composited = compose();
 	const QVector<QFont>& fonts = m_doc->impl()->m_fonts;
 
-	if ( (composited.count() < cpos) || fonts.isEmpty() )
-		return QFontMetrics(*QDocumentPrivate::m_font).width(m_text.left(cpos));
+	if ( (composited.count() < cpos) || fonts.isEmpty() ){
+		int result=QFontMetrics(*QDocumentPrivate::m_font).width(m_text.left(cpos));
+		unlock();
+		return result;
+	    }
 
 	int idx = 0, column = 0, cwidth;
 	int screenx = QDocumentPrivate::m_leftMargin;
@@ -2309,13 +2255,14 @@ int QDocumentLineHandle::cursorToX(int cpos) const
 	}
 
 	//qDebug("cursorToX(%i) = %i", cpos, screenx);
-
+	unlock();
 	return screenx;
 }
 
 int QDocumentLineHandle::xToCursor(int xpos) const
 {
 	//qDebug("x->c(%i) unsafe computations...", xpos);
+	lockForRead();
 	if ( m_layout )
 	{
 		int xoff = QDocumentPrivate::m_leftMargin, coff = 0, line = m_frontiers.count();
@@ -2337,7 +2284,9 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 		}
 
 		//qDebug("x:%i (wrap:%i) => x2c(x - %i) + %i", xpos, line, xoff, coff);
-		return m_layout->lineAt(line).xToCursor(xpos - xoff) + coff;
+		int result=m_layout->lineAt(line).xToCursor(xpos - xoff) + coff;
+		unlock();
+		return result;
 	}
 
 	int screenx = xpos;
@@ -2352,8 +2301,10 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 					QDocumentPrivate::m_spaceWidth
 				;
 
-		if ( tabStop == 1 )
+		if ( tabStop == 1 ){
+			unlock();
 			return screenPos;
+		    }
 
 		int idx = 0, column = 0;
 
@@ -2371,11 +2322,13 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 
 			++idx;
 		}
-
+		unlock();
 		return idx;
 	} else {
-		if ( screenx <= QDocumentPrivate::m_leftMargin )
+		if ( screenx <= QDocumentPrivate::m_leftMargin ){
+			unlock();
 			return 0;
+		    }
 
 		QVector<int> composited = compose();
 
@@ -2400,21 +2353,27 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 
 			int mid = (x + (cwidth / 2) + 1);
 
-			if ( screenx <= mid )
+			if ( screenx <= mid ){
+				unlock();
 				return idx;
-			else if ( screenx <= (x + cwidth) )
+			    }
+			else if ( screenx <= (x + cwidth) ){
+				unlock();
 				return idx + 1;
+			    }
 
 			x += cwidth;
 			++idx;
 		}
-
-		return m_text.length();
+		int result=m_text.length();
+		unlock();
+		return result;
 	}
 }
 
 int QDocumentLineHandle::wrappedLineForCursor(int cpos) const
 {
+	lockForRead();
 	int wrap = m_frontiers.count();
 
 	for ( int i = 0; i < m_frontiers.count(); ++i )
@@ -2425,12 +2384,13 @@ int QDocumentLineHandle::wrappedLineForCursor(int cpos) const
 			break;
 		}
 	}
-
+	unlock();
 	return wrap;
 }
 
 int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 {
+	lockForRead();
 	int wrap = y / QDocumentPrivate::m_lineSpacing;
 
 	if ( wrap > m_frontiers.count() )
@@ -2438,8 +2398,9 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 		// return an invalid value instead?
 		//qDebug("a bit too far : (%i, %i)", x, y);
 		//wrap = m_frontiers.count();
-
-		return m_text.length();
+		int result=m_text.length();;
+		unlock();
+		return result;
 	}
 
 	if ( m_frontiers.count() )
@@ -2452,7 +2413,9 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 
 	if ( m_layout )
 	{
-		return m_layout->lineAt(wrap).xToCursor(x);
+		int result=m_layout->lineAt(wrap).xToCursor(x);
+		unlock();
+		return result;
 	}
 
 	int cpos = 0;
@@ -2467,8 +2430,10 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 	if ( wrap )
 		x -= m_indent;
 
-	if ( x <= 0 )
+	if ( x <= 0 ){
+		unlock();
 		return cpos;
+	    }
 
 	int rx = 0, column = 0;
 	QList<RenderRange> ranges;
@@ -2535,17 +2500,20 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 			if (cpos < m_text.length() && m_text.at(cpos).isLowSurrogate() && cpos > 0 && m_text.at(cpos - 1).isHighSurrogate())
 				cpos++;
 
+			unlock();
 			return cpos;
 		}
 		cpos += r.length;
 		column += columnDelta;
 		rx += xDelta;
 	}
+	unlock();
 	return cpos;
 }
 
 void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
 {
+	lockForRead();
 	if ( cpos > m_text.length() )
 		cpos = m_text.length();
 	else if ( cpos < 0 )
@@ -2584,25 +2552,28 @@ void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
 			column += columnDelta;
 		}
 	}
+	unlock();
 }
 
 QPoint QDocumentLineHandle::cursorToDocumentOffset(int cpos) const
 {
 	QPoint p;
-	cursorToDocumentOffset(cpos, p.rx(), p.ry());
+	cursorToDocumentOffset(cpos, p.rx(), p.ry()); //locked here
 	return p;
 }
 
 void QDocumentLineHandle::clearOverlays()
 {
+	lockForWrite();
 	m_overlays.clear();
 
-	//setFlag(QDocumentLine::LayoutDirty, true);
 	setFlag(QDocumentLine::FormatsApplied, false);
-	//applyOverlays();
+
+	unlock();
 }
 
 void QDocumentLineHandle::clearOverlays(int format){
+	lockForWrite();
 	int oldsize = m_overlays.size();
 	for ( int i = m_overlays.size()-1; i>=0; i-- )
 		if ( m_overlays[i].format == format )
@@ -2610,67 +2581,84 @@ void QDocumentLineHandle::clearOverlays(int format){
 
 	if (oldsize != m_overlays.size())
 		setFlag(QDocumentLine::FormatsApplied, false);
+
+	unlock();
 }
 
 void QDocumentLineHandle::addOverlay(const QFormatRange& over)
 {
+	lockForWrite();
 	m_overlays << over;
 
-	//setFlag(QDocumentLine::LayoutDirty, true);
 	setFlag(QDocumentLine::FormatsApplied, false);
 
-	//applyOverlays();
+	unlock();
 }
 
 void QDocumentLineHandle::removeOverlay(const QFormatRange& over)
 {
+	lockForWrite();
 	int i = m_overlays.removeAll(over);
-	/*if ( !i )
-		qDebug("lost overlay");
-		*/
-	//setFlag(QDocumentLine::LayoutDirty, true);
+
 	if ( i )
 		setFlag(QDocumentLine::FormatsApplied, false);
-	//applyOverlays();
+	unlock();
 }
 
 bool QDocumentLineHandle::hasOverlay(int id){
-    for (int i =0; i<m_overlays.size();i++)
-        if (m_overlays[i].format==id) return true;
+    lockForRead();
+    for (int i =0; i<m_overlays.size();i++){
+	if (m_overlays[i].format==id) {
+	    unlock();
+	    return true;
+	}
+    }
+    unlock();
     return false;
 }
 
 QList<QFormatRange> QDocumentLineHandle::getOverlays(int preferredFormat){
-	if (preferredFormat==-1) return m_overlays;
-	/*QList<QFormatRange> result=m_overlays;
-	    for (int i=result.size()-1;i>=0;i--)
-		if (result[i].format!=preferredFormat) result.removeAt(i);*/
+	lockForRead();
 	QList<QFormatRange> result;
+	if (preferredFormat==-1) {
+	    result=m_overlays;
+	    unlock();
+	    return m_overlays;
+	}
+
 	for (int i=0;i<m_overlays.size();i++)
 		if (m_overlays[i].format==preferredFormat) result.append(m_overlays[i]);
+
+	unlock();
 	return result;
 }
 
 QFormatRange QDocumentLineHandle::getOverlayAt(int index, int preferredFormat){
+    lockForRead();
     QFormatRange best(0,0,0);
     foreach (QFormatRange fr, m_overlays)
         if (fr.offset<=index && fr.offset+fr.length>=index && (fr.format==preferredFormat || (preferredFormat==-1)))
             if (best.length<fr.length) best=fr;
+    unlock();
     return best;
 }
 
 QFormatRange QDocumentLineHandle::getFirstOverlayBetween(int start, int end, int preferredFormat){
+    lockForRead();
     QFormatRange best(0,0,0);
     foreach (QFormatRange fr, m_overlays)
         if (fr.offset<=end && fr.offset+fr.length>=start && (fr.format==preferredFormat || (preferredFormat==-1)))
             if (fr.offset<best.offset || best.length==0) best=fr;
+    unlock();
     return best;
 }
 QFormatRange QDocumentLineHandle::getLastOverlayBetween(int start, int end, int preferredFormat){
+    lockForRead();
     QFormatRange best(0,0,0);
     foreach (QFormatRange fr, m_overlays)
         if (fr.offset<=end && fr.offset+fr.length>=start && (fr.format==preferredFormat || (preferredFormat==-1)))
             if (fr.offset>best.offset|| best.length==0) best=fr;
+    unlock();
     return best;
 }
 
@@ -2712,6 +2700,7 @@ void QDocumentLineHandle::shiftOverlays(int position, int offset)
 
 void QDocumentLineHandle::setFormats(const QVector<int>& fmts)
 {
+	lockForWrite();
 	m_formats = fmts;
 
 	while ( m_formats.count() > m_text.length() )
@@ -2720,21 +2709,24 @@ void QDocumentLineHandle::setFormats(const QVector<int>& fmts)
 	while ( m_formats.count() < m_text.length() )
 		m_formats.append(0);
 
-	//setFlag(QDocumentLine::LayoutDirty, true);
 	setFlag(QDocumentLine::FormatsApplied, false);
-	//applyOverlays();
+	unlock();
 }
 
 QVector<int> QDocumentLineHandle::getFormats() const
 {
-	return m_formats;
+	lockForRead();
+	QVector<int>result=m_formats;
+	unlock();
+	return result;
 }
 
 QVector<int> QDocumentLineHandle::compose() const
 {
-	//QMediumArray m_composited(m_text.length());
-	if ( hasFlag(QDocumentLine::FormatsApplied) )
+	// don't do locking here as it is mainly called by draw !!!!
+	if ( hasFlag(QDocumentLine::FormatsApplied) ){
 		return m_cache;
+	    }
 
 	m_cache.resize(m_text.length());
 
@@ -2823,6 +2815,7 @@ void QDocumentLineHandle::applyOverlays() const
 
 void QDocumentLineHandle::layout() const
 {
+	lockForRead();
 	bool needLayout = false;
 	static QList<QChar::Direction> m_layoutRequirements = QList<QChar::Direction>()
 		<< QChar::DirR
@@ -2938,6 +2931,7 @@ void QDocumentLineHandle::layout() const
 	}
 
 	setFlag(QDocumentLine::LayoutDirty, false);
+	unlock();
 }
 
 
@@ -2946,8 +2940,9 @@ void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const
 	if (until == -1 || until > m_text.count())
 		until = m_text.count();
 
-	if (from == until)
+	if (from == until){
 		return;
+	    }
 
 	QVector<int> m_composited = compose();
 
@@ -3071,6 +3066,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 								int yStart,
 								int yEnd) const
 {
+	lockForRead();
 	if ( hasFlag(QDocumentLine::LayoutDirty) )
 		layout();
 
@@ -3225,7 +3221,10 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				++wrap;
 				column = 0;
 				ypos += QDocumentPrivate::m_lineSpacing;
-				if(ypos>yEnd) return;
+				if(ypos>yEnd) {
+				    unlock();
+				    return;
+				}
 				xpos = indent;
 
 				if ( r.format & FORMAT_SELECTION )
@@ -3614,10 +3613,15 @@ void QDocumentLineHandle::draw(	QPainter *p,
 		}
 
 	}
+	unlock();
 }
 
 QString QDocumentLineHandle::exportAsHtml(int fromOffset, int toOffset) const{
-	if ( !document()->formatScheme() ) return text();
+	lockForRead();
+	if ( !document()->formatScheme() ) {
+	    unlock();
+	    return text();
+	}
 	if (toOffset == -1) toOffset = m_text.length();
 	QList<RenderRange> ranges;
 	splitAtFormatChanges(&ranges,0);
@@ -3641,6 +3645,7 @@ QString QDocumentLineHandle::exportAsHtml(int fromOffset, int toOffset) const{
 			if ( fmts[i])
 				result+=QString("</span>");
 	}
+	unlock();
 	return result+" </pre>";
 }
 

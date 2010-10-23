@@ -491,6 +491,7 @@ void LatexEditorView::updateSettings(){
 	citationMissingFormat=QDocument::formatFactory()->id("citationMissing");
 	styleHintFormat=QDocument::formatFactory()->id("styleHint");
 	syntaxErrorFormat=QDocument::formatFactory()->id("latexSyntaxMistake");
+	SynChecker.setErrFormat(syntaxErrorFormat);
 	structureFormat=QDocument::formatFactory()->id("structure");
 	verbatimFormat=QDocument::formatFactory()->id("verbatim");
 	containedLabels->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
@@ -599,28 +600,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 	for (int i=linenr; i<linenr+count; i++) {
 		QDocumentLine line = editor->document()->line(i);
 		if (!line.isValid()) continue;
-                if(line.length()>3 && config->inlineSyntaxChecking) {
-                    SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
-                    QDocumentLine prev=line.previous();
-                    if(prev.isValid()){
-                        QNFA* cxt=line.previous().matchContext()->context;
-                        QString cxtDef=QNFADefinition::getContextName(cxt);
-                        if(!cxtDef.isEmpty()){
-                            int sep=cxtDef.indexOf(":");
-                            cxtDef=cxtDef.mid(sep+1);
-                            if(cxtDef.startsWith("math")) env=SyntaxCheck::ENV_math;
-                            if(cxtDef.startsWith("tabular")) env=SyntaxCheck::ENV_tabular;
-                        }
-                    }
-		    QString text=line.text();
-		    QVector<int>fmts=line.getFormats();
-		    for(int i=0;i<text.length() && i < fmts.size();i++){
-			if(fmts[i]==verbatimFormat){
-			    text[i]=QChar(' ');
-			}
-		    }
-		    SynChecker.putLine(text,env);
-		}
+
 		QDocumentLineHandle* dlh = line.handle();
 		// remove all labels/references of current line
 		containedLabels->removeUpdateByHandle(dlh,containedReferences);
@@ -636,6 +616,31 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		line.clearOverlays(environmentFormat);
                 line.clearOverlays(syntaxErrorFormat);
                 line.clearOverlays(styleHintFormat);
+
+		// start syntax checking
+		if(config->inlineSyntaxChecking) {
+		    SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
+		    QDocumentLine prev=line.previous();
+		    if(prev.isValid()){
+			QNFA* cxt=line.previous().matchContext()->context;
+			QString cxtDef=QNFADefinition::getContextName(cxt);
+			if(!cxtDef.isEmpty()){
+			    int sep=cxtDef.indexOf(":");
+			    cxtDef=cxtDef.mid(sep+1);
+			    if(cxtDef.startsWith("math")) env=SyntaxCheck::ENV_math;
+			    if(cxtDef.startsWith("tabular")) env=SyntaxCheck::ENV_tabular;
+			}
+		    }
+		    QString text=line.text();
+		    QVector<int>fmts=line.getFormats();
+		    for(int i=0;i<text.length() && i < fmts.size();i++){
+			if(fmts[i]==verbatimFormat){
+			    text[i]=QChar(' ');
+			}
+		    }
+		    SynChecker.putLine(line.handle(),env);
+		}
+
 
 		if (line.length()<=3) continue;
 		//if (!config->realtimespellchecking) continue;
@@ -723,16 +728,6 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				line.addOverlay(QFormatRange(wordstart,start-wordstart,speller->spellcheckErrorFormat));
 			}
 		}// while
-		if(config->inlineSyntaxChecking){
-			SyntaxCheck::Ranges rng=SynChecker.getResult();
-			QPair<int,int> elem;
-			foreach(elem,rng){
-                            QVector<int> rngAtLetter=dlh->compose();
-                            if(rngAtLetter.at(elem.first)!=verbatimFormat){
-				line.addOverlay(QFormatRange(elem.first,elem.second,syntaxErrorFormat));
-                            }
-			}
-		}
 	}
 	editor->document()->markViewDirty();
 }
