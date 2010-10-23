@@ -13,15 +13,16 @@ void SyntaxCheck::setErrFormat(int errFormat){
     syntaxErrorFormat=errFormat;
 }
 
-void SyntaxCheck::putLine(QString text,QDocumentLineHandle* dlh,Environment previous){
+void SyntaxCheck::putLine(QString text,QDocumentLineHandle* dlh,Environment previous,bool clearOverlay){
     SyntaxLine newLine;
+    dlh->ref(); // impede deletion of handle while in syntax check queue
     dlh->lockForRead();
-    newLine.text=text;
     newLine.ticket=dlh->getCurrentTicket();
     dlh->unlock();
+    newLine.text=text;
     newLine.dlh=dlh;
     newLine.prevEnv=previous;
-
+    newLine.clearOverlay=clearOverlay;
     mLinesLock.lock();
     mLines.enqueue(newLine);
     mLinesLock.unlock();
@@ -109,6 +110,7 @@ void SyntaxCheck::run(){
 
 	     }
 	     // place results
+	     if(newLine.clearOverlay) newLine.dlh->clearOverlays(syntaxErrorFormat);
 	     if(newRanges.isEmpty()) continue;
 	     newLine.dlh->lockForWrite();
 	     if(newLine.ticket==newLine.dlh->getCurrentTicket()){ // discard results if text has been changed meanwhile
@@ -118,5 +120,6 @@ void SyntaxCheck::run(){
 		 }
 	     }
 	     newLine.dlh->unlock();
+	     newLine.dlh->deref(); //if deleted, delete now
 	 }
 }
