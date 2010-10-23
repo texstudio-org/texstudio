@@ -25,12 +25,13 @@ public:
 	QString text;
 	Environment prevEnv;
 	int ticket;
+	bool clearOverlay;
 	QDocumentLineHandle* dlh;
     };
 
     explicit SyntaxCheck(QObject *parent = 0);
 
-    void putLine(QString text,QDocumentLineHandle *dlh,Environment previous=ENV_normal);
+    void putLine(QString text,QDocumentLineHandle *dlh,Environment previous=ENV_normal,bool clearOverlay=false);
     void stop();
     void setErrFormat(int errFormat);
 
