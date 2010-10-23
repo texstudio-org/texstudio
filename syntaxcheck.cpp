@@ -13,10 +13,10 @@ void SyntaxCheck::setErrFormat(int errFormat){
     syntaxErrorFormat=errFormat;
 }
 
-void SyntaxCheck::putLine(QDocumentLineHandle* dlh,Environment previous){
+void SyntaxCheck::putLine(QString text,QDocumentLineHandle* dlh,Environment previous){
     SyntaxLine newLine;
     dlh->lockForRead();
-    newLine.text=dlh->text();
+    newLine.text=text;
     newLine.ticket=dlh->getCurrentTicket();
     dlh->unlock();
     newLine.dlh=dlh;

@@ -30,7 +30,7 @@ public:
 
     explicit SyntaxCheck(QObject *parent = 0);
 
-    void putLine(QDocumentLineHandle *dlh,Environment previous=ENV_normal);
+    void putLine(QString text,QDocumentLineHandle *dlh,Environment previous=ENV_normal);
     void stop();
     void setErrFormat(int errFormat);
 
