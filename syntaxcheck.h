@@ -3,6 +3,7 @@
 
 #include "mostQtHeaders.h"
 #include "smallUsefulFunctions.h"
+#include "qdocumentline_p.h"
 #include <QThread>
 #include <QSemaphore>
 #include <QMutex>
@@ -20,24 +21,29 @@ public:
         ENV_tabular
     };
 
+    struct SyntaxLine{
+	QString text;
+	Environment prevEnv;
+	int ticket;
+	QDocumentLineHandle* dlh;
+    };
+
     explicit SyntaxCheck(QObject *parent = 0);
 
-    QList<QPair<int,int> > getResult();
-    void putLine(QString line,Environment previous=ENV_normal);
-    bool isEmpty();
+    void putLine(QDocumentLineHandle *dlh,Environment previous=ENV_normal);
     void stop();
+    void setErrFormat(int errFormat);
 
 protected:
      void run();
 
 private:
-     QQueue<Ranges *> mResults;
-     QQueue<QString> mLines;
-     QQueue<Environment> mPreviousEnvs,mDetectedEnvs;
-     QSemaphore mLinesAvailable,mResultsAvailable;
+     QQueue<SyntaxLine> mLines;
+     QQueue<Environment> mDetectedEnvs;
+     QSemaphore mLinesAvailable;
      QMutex mLinesLock;
-     QMutex mResultLock;
      bool stopped;
+     int syntaxErrorFormat;
 };
 
 #endif // SYNTAXCHECK_H

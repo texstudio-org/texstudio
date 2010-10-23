@@ -505,7 +505,10 @@ void QDocumentLine::setFormats(const QVector<int>& formats)
 
 QVector<int> QDocumentLine::compose(){
     if(!m_handle) return QVector<int> ();
-    return m_handle->compose();
+    m_handle->lockForRead();
+    QVector<int> result=m_handle->compose();
+    m_handle->unlock();
+    return result;
 }
 
 QVector<int> QDocumentLine::getFormats(){

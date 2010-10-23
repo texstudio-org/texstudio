@@ -3,52 +3,36 @@
 SyntaxCheck::SyntaxCheck(QObject *parent) :
     QThread(parent)
 {
-    mResultLock.lock();
     mLinesLock.lock();
     stopped=false;
     mLines.clear();
-    mResults.clear();
-    mPreviousEnvs.clear();
     mLinesLock.unlock();
-    mResultLock.unlock();
 }
 
-void SyntaxCheck::putLine(QString line,Environment previous){
+void SyntaxCheck::setErrFormat(int errFormat){
+    syntaxErrorFormat=errFormat;
+}
+
+void SyntaxCheck::putLine(QDocumentLineHandle* dlh,Environment previous){
+    SyntaxLine newLine;
+    dlh->lockForRead();
+    newLine.text=dlh->text();
+    newLine.ticket=dlh->getCurrentTicket();
+    dlh->unlock();
+    newLine.dlh=dlh;
+    newLine.prevEnv=previous;
+
     mLinesLock.lock();
-    mLines.enqueue(line);
-    mPreviousEnvs.enqueue(previous);
+    mLines.enqueue(newLine);
     mLinesLock.unlock();
     //avoid reading of any results before this execution is stopped
     //mResultLock.lock(); not possible under windows
     mLinesAvailable.release();
 }
 
-bool SyntaxCheck::isEmpty(){
-    mResultLock.lock();
-    bool res=mResults.isEmpty();
-    mResultLock.unlock();
-    return res;
-}
-
 void SyntaxCheck::stop(){
-    mResultLock.lock();
     stopped=true;
-    mResultLock.unlock();
     mLinesAvailable.release();
-}
-
-QList<QPair<int,int> > SyntaxCheck::getResult(){
-    mResultsAvailable.acquire();
-    mResultLock.lock();
-    Ranges *rng;
-    QList<QPair<int,int> > result;
-    if(!mResults.isEmpty()){
-	rng=mResults.dequeue();
-	result=*rng;
-	delete rng;
-    }
-    mResultLock.unlock();
-    return result;
 }
 
 void SyntaxCheck::run(){
@@ -58,12 +42,13 @@ void SyntaxCheck::run(){
              if(stopped) break;
 	     // copy line
 	     mLinesLock.lock();
-	     QString line=mLines.dequeue();
-             QStack<Environment> activeEnv;
-             activeEnv.push(mPreviousEnvs.dequeue());
+	     SyntaxLine newLine=mLines.dequeue();
 	     mLinesLock.unlock();
+	     QString line=newLine.text;
+             QStack<Environment> activeEnv;
+	     activeEnv.push(newLine.prevEnv);
              line=LatexParser::cutComment(line);
-	     Ranges* newRanges=new Ranges;
+	     Ranges newRanges;
 	     // do syntax check on that lien
              QString word;
              int start=0;
@@ -110,21 +95,23 @@ void SyntaxCheck::run(){
                      }
 		     if((activeEnv.top()==ENV_normal||end)&&!LatexParser::normalCommands.contains(word) && !LatexParser::userdefinedCommands.contains(word)){ // extend for math coammnds
                          QPair<int,int> elem(wordstart,word.length());
-                         newRanges->append(elem);
+			 newRanges.append(elem);
                      }
 		     if(activeEnv.top()==ENV_math&&!LatexParser::mathCommands.contains(word) && !LatexParser::userdefinedCommands.contains(word)&&!end){ // extend for math coammnds
                          QPair<int,int> elem(wordstart,word.length());
-                         newRanges->append(elem);
+			 newRanges.append(elem);
                      }
                      if(activeEnv.top()==ENV_tabular&&!LatexParser::normalCommands.contains(word) && !LatexParser::tabularCommands.contains(word) && !LatexParser::userdefinedCommands.contains(word)){ // extend for math coammnds
                          QPair<int,int> elem(wordstart,word.length());
-                         newRanges->append(elem);
+			 newRanges.append(elem);
                      }
                  }
 
 	     }
 	     // place results
-	     mResults.enqueue(newRanges);
-	     mResultsAvailable.release();
+	     QPair<int,int> elem;
+	     foreach(elem,newRanges){
+		newLine.dlh->addOverlay(QFormatRange(elem.first,elem.second,syntaxErrorFormat));
+	     }
 	 }
 }

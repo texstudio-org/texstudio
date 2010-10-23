@@ -11,20 +11,20 @@ class QEditor;
 class QDocument;
 struct StructureEntry;
 
-class Word {
+class ClsWord {
 public:
 	QString word;
 	int count;
-	Word() {}
-	Word(QString nw, int nc);
-	bool operator<(const Word &cmpTo) const;
+	ClsWord() {}
+	ClsWord(QString nw, int nc);
+	bool operator<(const ClsWord &cmpTo) const;
 };
 
 class TextAnalysisModel : public QAbstractTableModel {
 	Q_OBJECT
 
 public:
-	QVector<Word> words;
+	QVector<ClsWord> words;
 	int wordCount,characterInWords;
 	float relativeProzentMultipler;
 
