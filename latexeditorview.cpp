@@ -632,13 +632,15 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			}
 		    }
 		    QString text=line.text();
-		    QVector<int>fmts=line.getFormats();
-		    for(int i=0;i<text.length() && i < fmts.size();i++){
-			if(fmts[i]==verbatimFormat){
-			    text[i]=QChar(' ');
+		    if(!text.isEmpty()){
+			QVector<int>fmts=line.getFormats();
+			for(int i=0;i<text.length() && i < fmts.size();i++){
+			    if(fmts[i]==verbatimFormat){
+				text[i]=QChar(' ');
+			    }
 			}
+			SynChecker.putLine(text,line.handle(),env);
 		    }
-		    SynChecker.putLine(line.handle(),env);
 		}
 
 
