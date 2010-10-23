@@ -4083,6 +4083,13 @@ bool QDocumentCursorHandle::movePosition(int count, int op, int m)
 				if ( remaining >= count )
 				{
 					offset = remaining - count;
+
+					const QString& textline = m_doc->line(line).text();
+					if (offset < textline.length())
+						while ( offset > 0 && ((textline.at(offset).category() == QChar::Mark_NonSpacing) ||
+									  (textline.at(offset).isLowSurrogate() && textline.at(offset-1).isHighSurrogate())) )
+							offset--;
+
 					break;
 				} else if ( line == beg ) {
 					offset = 0;
@@ -4117,6 +4124,13 @@ bool QDocumentCursorHandle::movePosition(int count, int op, int m)
 				if ( remaining >= count )
 				{
 					offset += count;
+
+					const QString& textline = m_doc->line(line).text();
+					if (offset > 0)
+						while ( offset < textline.length() && ((textline.at(offset).category() == QChar::Mark_NonSpacing) ||
+											    (textline.at(offset).isLowSurrogate() && textline.at(offset-1).isHighSurrogate())) )
+							offset++;
+
 					break;
 				} else if ( (line + 1) == end ) {
 					offset = remaining;
