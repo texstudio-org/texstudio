@@ -857,6 +857,38 @@ void LatexEditorView::purgeLinksTo(QDocument *doc){
 	containedReferences->purgeLinksTo(doc);
 }
 
+void LatexEditorView::reCheckSyntax(){
+    // expensive function ... however if \newcommand is changed valid commands become invalid and vice versa
+    if(!config->inlineSyntaxChecking || !config->realtimeChecking) return;
+    QDocumentLine line=editor->document()->line(0);
+    QDocumentLine prev=line.previous();
+    for (int i=0; i<editor->document()->lineCount(); i++) {
+	SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
+	if(prev.isValid()){
+	    QNFA* cxt=prev.matchContext()->context;
+	    QString cxtDef=QNFADefinition::getContextName(cxt);
+	    if(!cxtDef.isEmpty()){
+		int sep=cxtDef.indexOf(":");
+		cxtDef=cxtDef.mid(sep+1);
+		if(cxtDef.startsWith("math")) env=SyntaxCheck::ENV_math;
+		if(cxtDef.startsWith("tabular")) env=SyntaxCheck::ENV_tabular;
+	    }
+	}
+	QString text=line.text();
+	if(!text.isEmpty()){
+	    QVector<int>fmts=line.getFormats();
+	    for(int i=0;i<text.length() && i < fmts.size();i++){
+		if(fmts[i]==verbatimFormat){
+		    text[i]=QChar(' ');
+		}
+	    }
+	    SynChecker.putLine(text,line.handle(),env,true);
+	}
+	prev=line;
+	line++;
+    }
+}
+
 void LatexEditorView::mouseHovered(QPoint pos){
 	// reimplement to what is necessary
 
