@@ -1963,6 +1963,7 @@ int QDocumentLineHandle::indent() const
 
 int QDocumentLineHandle::nextNonSpaceChar(uint pos) const
 {
+	QReadLocker locker(&mLock);
 	const int len = m_text.length();
 	const QChar *unicode = m_text.unicode();
 
@@ -1977,6 +1978,7 @@ int QDocumentLineHandle::nextNonSpaceChar(uint pos) const
 
 int QDocumentLineHandle::previousNonSpaceChar(int pos) const
 {
+	QReadLocker locker(&mLock);
 	const int len = m_text.length();
 	const QChar *unicode = m_text.unicode();
 
@@ -2024,19 +2026,18 @@ QDocumentLineHandle* QDocumentLineHandle::previous() const
 }
 
 QList<int> QDocumentLineHandle::getBreaks(){
-    lockForRead();
+    QReadLocker locker(&mLock);
     QList<int> res;
     QPair<int, int> elem;
     foreach(elem,m_frontiers){
 	res << elem.first;
     }
-    unlock();
     return res;
 }
 
 void QDocumentLineHandle::updateWrap() const
 {
-	lockForRead();
+	QReadLocker locker(&mLock);
 	m_indent = 0;
 	m_frontiers.clear();
 
@@ -2044,7 +2045,6 @@ void QDocumentLineHandle::updateWrap() const
 	{
 		if ( m_layout )
 			setFlag(QDocumentLine::LayoutDirty, true);
-		unlock();
 		return;
 	}
 
@@ -2063,7 +2063,6 @@ void QDocumentLineHandle::updateWrap() const
 	splitAtFormatChanges(&ranges);
 
 	if (ranges.isEmpty()){
-		unlock();
 		return;
 	    }
 
@@ -2173,13 +2172,11 @@ void QDocumentLineHandle::updateWrap() const
 			}
 		}
 	}
-	unlock();
-
 }
 
 int QDocumentLineHandle::cursorToX(int cpos) const
 {
-	lockForRead();
+	QReadLocker locker(&mLock);
 	cpos = qBound(0, cpos, m_text.length());
 
 	if ( m_layout )
@@ -2204,7 +2201,6 @@ int QDocumentLineHandle::cursorToX(int cpos) const
 
 		//qDebug("c:%i (wrap:%i) => c2x(x - %i) + %i", cpos, line, coff, xoff);
 		int result=qRound(m_layout->lineAt(line).cursorToX(cpos - coff)) + xoff;
-		unlock();
 		return result;
 	}
 
@@ -2215,7 +2211,6 @@ int QDocumentLineHandle::cursorToX(int cpos) const
 		int result=QDocument::screenColumn(m_text.constData(), cpos, tabStop)
 				* QDocumentPrivate::m_spaceWidth
 				+ QDocumentPrivate::m_leftMargin;
-		unlock();
 		return result;
 	}
 
@@ -2226,7 +2221,6 @@ int QDocumentLineHandle::cursorToX(int cpos) const
 
 	if ( (composited.count() < cpos) || fonts.isEmpty() ){
 		int result=QFontMetrics(*QDocumentPrivate::m_font).width(m_text.left(cpos));
-		unlock();
 		return result;
 	    }
 
@@ -2255,14 +2249,13 @@ int QDocumentLineHandle::cursorToX(int cpos) const
 	}
 
 	//qDebug("cursorToX(%i) = %i", cpos, screenx);
-	unlock();
 	return screenx;
 }
 
 int QDocumentLineHandle::xToCursor(int xpos) const
 {
 	//qDebug("x->c(%i) unsafe computations...", xpos);
-	lockForRead();
+	QReadLocker locker(&mLock);
 	if ( m_layout )
 	{
 		int xoff = QDocumentPrivate::m_leftMargin, coff = 0, line = m_frontiers.count();
@@ -2284,9 +2277,7 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 		}
 
 		//qDebug("x:%i (wrap:%i) => x2c(x - %i) + %i", xpos, line, xoff, coff);
-		int result=m_layout->lineAt(line).xToCursor(xpos - xoff) + coff;
-		unlock();
-		return result;
+		return m_layout->lineAt(line).xToCursor(xpos - xoff) + coff;
 	}
 
 	int screenx = xpos;
@@ -2302,7 +2293,6 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 				;
 
 		if ( tabStop == 1 ){
-			unlock();
 			return screenPos;
 		    }
 
@@ -2322,11 +2312,9 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 
 			++idx;
 		}
-		unlock();
 		return idx;
 	} else {
 		if ( screenx <= QDocumentPrivate::m_leftMargin ){
-			unlock();
 			return 0;
 		    }
 
@@ -2354,11 +2342,9 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 			int mid = (x + (cwidth / 2) + 1);
 
 			if ( screenx <= mid ){
-				unlock();
 				return idx;
 			    }
 			else if ( screenx <= (x + cwidth) ){
-				unlock();
 				return idx + 1;
 			    }
 
@@ -2366,14 +2352,14 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 			++idx;
 		}
 		int result=m_text.length();
-		unlock();
+
 		return result;
 	}
 }
 
 int QDocumentLineHandle::wrappedLineForCursor(int cpos) const
 {
-	lockForRead();
+	QReadLocker locker(&mLock);
 	int wrap = m_frontiers.count();
 
 	for ( int i = 0; i < m_frontiers.count(); ++i )
@@ -2384,13 +2370,12 @@ int QDocumentLineHandle::wrappedLineForCursor(int cpos) const
 			break;
 		}
 	}
-	unlock();
 	return wrap;
 }
 
 int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 {
-	lockForRead();
+	QReadLocker locker(&mLock);
 	int wrap = y / QDocumentPrivate::m_lineSpacing;
 
 	if ( wrap > m_frontiers.count() )
@@ -2398,9 +2383,7 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 		// return an invalid value instead?
 		//qDebug("a bit too far : (%i, %i)", x, y);
 		//wrap = m_frontiers.count();
-		int result=m_text.length();;
-		unlock();
-		return result;
+		return m_text.length();
 	}
 
 	if ( m_frontiers.count() )
@@ -2413,9 +2396,7 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 
 	if ( m_layout )
 	{
-		int result=m_layout->lineAt(wrap).xToCursor(x);
-		unlock();
-		return result;
+		return m_layout->lineAt(wrap).xToCursor(x);
 	}
 
 	int cpos = 0;
@@ -2431,7 +2412,6 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 		x -= m_indent;
 
 	if ( x <= 0 ){
-		unlock();
 		return cpos;
 	    }
 
@@ -2500,20 +2480,18 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 			if (cpos < m_text.length() && m_text.at(cpos).isLowSurrogate() && cpos > 0 && m_text.at(cpos - 1).isHighSurrogate())
 				cpos++;
 
-			unlock();
 			return cpos;
 		}
 		cpos += r.length;
 		column += columnDelta;
 		rx += xDelta;
 	}
-	unlock();
 	return cpos;
 }
 
 void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
 {
-	lockForRead();
+	QReadLocker locker(&mLock);
 	if ( cpos > m_text.length() )
 		cpos = m_text.length();
 	else if ( cpos < 0 )
@@ -2552,7 +2530,6 @@ void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
 			column += columnDelta;
 		}
 	}
-	unlock();
 }
 
 QPoint QDocumentLineHandle::cursorToDocumentOffset(int cpos) const
@@ -2564,16 +2541,15 @@ QPoint QDocumentLineHandle::cursorToDocumentOffset(int cpos) const
 
 void QDocumentLineHandle::clearOverlays()
 {
-	lockForWrite();
+	QWriteLocker locker(&mLock);
+
 	m_overlays.clear();
 
 	setFlag(QDocumentLine::FormatsApplied, false);
-
-	unlock();
 }
 
 void QDocumentLineHandle::clearOverlays(int format){
-	lockForWrite();
+	QWriteLocker locker(&mLock);
 	int oldsize = m_overlays.size();
 	for ( int i = m_overlays.size()-1; i>=0; i-- )
 		if ( m_overlays[i].format == format )
@@ -2582,14 +2558,12 @@ void QDocumentLineHandle::clearOverlays(int format){
 	if (oldsize != m_overlays.size())
 		setFlag(QDocumentLine::FormatsApplied, false);
 
-	unlock();
 }
 
 void QDocumentLineHandle::addOverlay(const QFormatRange& over)
 {
-	lockForWrite();
+	QWriteLocker locker(&mLock);
 	addOverlayNoLock(over);
-	unlock();
 }
 
 void QDocumentLineHandle::addOverlayNoLock(const QFormatRange& over)
@@ -2601,68 +2575,64 @@ void QDocumentLineHandle::addOverlayNoLock(const QFormatRange& over)
 
 void QDocumentLineHandle::removeOverlay(const QFormatRange& over)
 {
-	lockForWrite();
+	QWriteLocker locker(&mLock);
 	int i = m_overlays.removeAll(over);
 
 	if ( i )
 		setFlag(QDocumentLine::FormatsApplied, false);
-	unlock();
 }
 
 bool QDocumentLineHandle::hasOverlay(int id){
-    lockForRead();
+    QReadLocker locker(&mLock);
     for (int i =0; i<m_overlays.size();i++){
 	if (m_overlays[i].format==id) {
-	    unlock();
 	    return true;
 	}
     }
-    unlock();
     return false;
 }
 
 QList<QFormatRange> QDocumentLineHandle::getOverlays(int preferredFormat){
-	lockForRead();
+	QReadLocker locker(&mLock);
 	QList<QFormatRange> result;
 	if (preferredFormat==-1) {
-	    result=m_overlays;
-	    unlock();
 	    return m_overlays;
 	}
 
 	for (int i=0;i<m_overlays.size();i++)
 		if (m_overlays[i].format==preferredFormat) result.append(m_overlays[i]);
 
-	unlock();
 	return result;
 }
 
 QFormatRange QDocumentLineHandle::getOverlayAt(int index, int preferredFormat){
-    lockForRead();
+    QReadLocker locker(&mLock);
+
     QFormatRange best(0,0,0);
     foreach (QFormatRange fr, m_overlays)
         if (fr.offset<=index && fr.offset+fr.length>=index && (fr.format==preferredFormat || (preferredFormat==-1)))
             if (best.length<fr.length) best=fr;
-    unlock();
+
     return best;
 }
 
 QFormatRange QDocumentLineHandle::getFirstOverlayBetween(int start, int end, int preferredFormat){
-    lockForRead();
+    QReadLocker locker(&mLock);
+
     QFormatRange best(0,0,0);
     foreach (QFormatRange fr, m_overlays)
         if (fr.offset<=end && fr.offset+fr.length>=start && (fr.format==preferredFormat || (preferredFormat==-1)))
             if (fr.offset<best.offset || best.length==0) best=fr;
-    unlock();
+
     return best;
 }
 QFormatRange QDocumentLineHandle::getLastOverlayBetween(int start, int end, int preferredFormat){
-    lockForRead();
+    QReadLocker locker(&mLock);
     QFormatRange best(0,0,0);
     foreach (QFormatRange fr, m_overlays)
         if (fr.offset<=end && fr.offset+fr.length>=start && (fr.format==preferredFormat || (preferredFormat==-1)))
             if (fr.offset>best.offset|| best.length==0) best=fr;
-    unlock();
+
     return best;
 }
 
@@ -2704,7 +2674,7 @@ void QDocumentLineHandle::shiftOverlays(int position, int offset)
 
 void QDocumentLineHandle::setFormats(const QVector<int>& fmts)
 {
-	lockForWrite();
+	QWriteLocker locker(&mLock);
 	m_formats = fmts;
 
 	while ( m_formats.count() > m_text.length() )
@@ -2714,15 +2684,12 @@ void QDocumentLineHandle::setFormats(const QVector<int>& fmts)
 		m_formats.append(0);
 
 	setFlag(QDocumentLine::FormatsApplied, false);
-	unlock();
 }
 
 QVector<int> QDocumentLineHandle::getFormats() const
 {
-	lockForRead();
-	QVector<int>result=m_formats;
-	unlock();
-	return result;
+	QReadLocker locker(&mLock);
+	return m_formats;
 }
 
 QVector<int> QDocumentLineHandle::compose() const
@@ -2819,7 +2786,7 @@ void QDocumentLineHandle::applyOverlays() const
 
 void QDocumentLineHandle::layout() const
 {
-	lockForRead();
+	QReadLocker locker(&mLock);
 	bool needLayout = false;
 	static QList<QChar::Direction> m_layoutRequirements = QList<QChar::Direction>()
 		<< QChar::DirR
@@ -2935,7 +2902,6 @@ void QDocumentLineHandle::layout() const
 	}
 
 	setFlag(QDocumentLine::LayoutDirty, false);
-	unlock();
 }
 
 
@@ -3070,7 +3036,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 								int yStart,
 								int yEnd) const
 {
-	lockForRead();
+	QReadLocker locker(&mLock);
 	if ( hasFlag(QDocumentLine::LayoutDirty) )
 		layout();
 
@@ -3226,7 +3192,6 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				column = 0;
 				ypos += QDocumentPrivate::m_lineSpacing;
 				if(ypos>yEnd) {
-				    unlock();
 				    return;
 				}
 				xpos = indent;
@@ -3617,13 +3582,11 @@ void QDocumentLineHandle::draw(	QPainter *p,
 		}
 
 	}
-	unlock();
 }
 
 QString QDocumentLineHandle::exportAsHtml(int fromOffset, int toOffset) const{
-	lockForRead();
+	QReadLocker locker(&mLock);
 	if ( !document()->formatScheme() ) {
-	    unlock();
 	    return text();
 	}
 	if (toOffset == -1) toOffset = m_text.length();
@@ -3649,7 +3612,6 @@ QString QDocumentLineHandle::exportAsHtml(int fromOffset, int toOffset) const{
 			if ( fmts[i])
 				result+=QString("</span>");
 	}
-	unlock();
 	return result+" </pre>";
 }
 
