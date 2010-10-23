@@ -479,8 +479,14 @@ void LatexTables::addHLine(QDocumentCursor &cur,const int numberOfLines,const bo
 		c=c2;
 	    }
 	}else{
-	    c.insertText(" \\hline");
-	    if(!c.atLineEnd()) c.insertText("\n");
+	    // don't add \hline if already present
+	    QString text=c.line().text();
+	    int col=c.columnNumber();
+	    int pos_hline=text.indexOf(" \\hline",col);
+	    if(pos_hline<0 || !text.mid(col,pos_hline-col).contains(QRegExp("^\\s*$"))){
+		c.insertText(" \\hline");
+		if(!c.atLineEnd()) c.insertText("\n");
+	    }
 	}
 	ln--;
     }
