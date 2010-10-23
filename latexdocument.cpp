@@ -218,15 +218,7 @@ void LatexDocument::updateStructure() {
 				}
 				mUserCommandList.insert(line(i).handle(),name);
 				// remove obsolete Overlays (maybe this can be refined
-				for (int i=0; i<lines(); i++) {
-					QList<QFormatRange> li=line(i).getOverlays(edView->syntaxErrorFormat);
-					QString curLineText=line(i).text();
-					for (int j=0; j<li.size(); j++)
-						if (curLineText.mid(li[j].offset,li[j].length)==name){
-						line(i).removeOverlay(li[j]);
-						line(i).setFlag(QDocumentLine::LayoutDirty,true);
-					}
-				}
+				getEditorView()->reCheckSyntax();
 				//editor->viewport()->update();
 			}
 		}

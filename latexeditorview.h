@@ -111,6 +111,8 @@ public:
 
         int syntaxErrorFormat;
 
+	void reCheckSyntax();
+
 private:
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 
 	*statusPanelAction, *searchReplacePanelAction, *gotoLinePanelAction;
