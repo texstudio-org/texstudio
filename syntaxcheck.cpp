@@ -109,9 +109,14 @@ void SyntaxCheck::run(){
 
 	     }
 	     // place results
-	     QPair<int,int> elem;
-	     foreach(elem,newRanges){
-		newLine.dlh->addOverlay(QFormatRange(elem.first,elem.second,syntaxErrorFormat));
+	     if(newRanges.isEmpty()) continue;
+	     newLine.dlh->lockForWrite();
+	     if(newLine.ticket==newLine.dlh->getCurrentTicket()){ // discard results if text has been changed meanwhile
+		 QPair<int,int> elem;
+		 foreach(elem,newRanges){
+		     newLine.dlh->addOverlayNoLock(QFormatRange(elem.first,elem.second,syntaxErrorFormat));
+		 }
 	     }
+	     newLine.dlh->unlock();
 	 }
 }

@@ -2588,11 +2588,15 @@ void QDocumentLineHandle::clearOverlays(int format){
 void QDocumentLineHandle::addOverlay(const QFormatRange& over)
 {
 	lockForWrite();
+	addOverlayNoLock(over);
+	unlock();
+}
+
+void QDocumentLineHandle::addOverlayNoLock(const QFormatRange& over)
+{
 	m_overlays << over;
 
 	setFlag(QDocumentLine::FormatsApplied, false);
-
-	unlock();
 }
 
 void QDocumentLineHandle::removeOverlay(const QFormatRange& over)
