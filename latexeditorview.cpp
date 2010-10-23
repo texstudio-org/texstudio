@@ -865,6 +865,37 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	cursor=editor->cursorForPosition(editor->mapToContents(pos));
 	QString line=cursor.line().text();
 	QDocumentLine l=cursor.line();
+	// check for latex error
+	//syntax checking
+	int f=QDocument::formatFactory()->id("latexSyntaxMistake");
+	QFormatRange fr = cursor.line().getOverlayAt(cursor.columnNumber(),f);
+	if (fr.length>0 && fr.format==f) {
+	    SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
+	    QDocumentLine prev=l.previous();
+	    if(prev.isValid()){
+		QNFA* cxt=l.previous().matchContext()->context;
+		QString cxtDef=QNFADefinition::getContextName(cxt);
+		if(!cxtDef.isEmpty()){
+		    int sep=cxtDef.indexOf(":");
+		    cxtDef=cxtDef.mid(sep+1);
+		    if(cxtDef.startsWith("math")) env=SyntaxCheck::ENV_math;
+		    if(cxtDef.startsWith("tabular")) env=SyntaxCheck::ENV_tabular;
+		}
+	    }
+	    QString text=l.text();
+	    if(!text.isEmpty()){
+		QVector<int>fmts=l.getFormats();
+		for(int i=0;i<text.length() && i < fmts.size();i++){
+		    if(fmts[i]==verbatimFormat){
+			text[i]=QChar(' ');
+		    }
+		}
+		QString message=SynChecker.getErrorAt(text,cursor.columnNumber(),env);
+		QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),message);
+		return;
+	    }
+	}
+	// do rest
 	QString command, value;
 	QString topic;
 	QStringList MathEnvirons;
