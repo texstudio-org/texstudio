@@ -17,7 +17,8 @@ public:
     enum Environment {
         ENV_normal,
         ENV_math,
-        ENV_tabular
+	ENV_tabular,
+	ENV_matrix
     };
 
     enum ErrorType {

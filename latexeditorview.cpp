@@ -629,6 +629,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			    cxtDef=cxtDef.mid(sep+1);
 			    if(cxtDef.startsWith("math")) env=SyntaxCheck::ENV_math;
 			    if(cxtDef.startsWith("tabular")) env=SyntaxCheck::ENV_tabular;
+			    if(cxtDef.startsWith("mathmodeEqnArray")) env=SyntaxCheck::ENV_matrix;
 			}
 		    }
 		    QString text=line.text();
@@ -872,6 +873,7 @@ void LatexEditorView::reCheckSyntax(){
 		cxtDef=cxtDef.mid(sep+1);
 		if(cxtDef.startsWith("math")) env=SyntaxCheck::ENV_math;
 		if(cxtDef.startsWith("tabular")) env=SyntaxCheck::ENV_tabular;
+		if(cxtDef.startsWith("mathmodeEqnArray")) env=SyntaxCheck::ENV_matrix;
 	    }
 	}
 	QString text=line.text();
@@ -912,6 +914,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 		    cxtDef=cxtDef.mid(sep+1);
 		    if(cxtDef.startsWith("math")) env=SyntaxCheck::ENV_math;
 		    if(cxtDef.startsWith("tabular")) env=SyntaxCheck::ENV_tabular;
+		    if(cxtDef.startsWith("mathmodeEqnArray")) env=SyntaxCheck::ENV_matrix;
 		}
 	    }
 	    QString text=l.text();
