@@ -742,6 +742,7 @@ bool ConfigManager::execConfigDialog() {
 			confDlg->checkboxInternalPDFViewer->setObjectName("internal");
 			confDlg->checkboxInternalPDFViewer->setText(tr("Internal viewer"));
 			confDlg->checkboxInternalPDFViewer->setChecked(buildManager->getLatexCommand(cmd).startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER));
+			connect(confDlg->checkboxInternalPDFViewer,SIGNAL(toggled(bool)),this,SLOT(activateInternalViewer(bool)));
 			gl->addWidget(confDlg->checkboxInternalPDFViewer, (int)cmd, 1);
 			off++;
 		}
@@ -1094,6 +1095,23 @@ bool ConfigManager::addRecentFile(const QString & fileName, bool asMaster){
 	if (changed) updateRecentFiles();
 	
 	return changed;
+}
+
+void ConfigManager::activateInternalViewer(bool activated){
+    if(!activated) return;
+    QLineEdit *le=commandsToEdits.value(BuildManager::CMD_PDFLATEX);
+    if(le->text().contains("synctex")) return;
+    QMessageBox msgBox;
+     msgBox.setText("Internal Viewer");
+     msgBox.setInformativeText(tr("To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TexMakerX do it now?"));
+     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+     msgBox.setDefaultButton(QMessageBox::Yes);
+     int ret = msgBox.exec();
+     if(ret==QMessageBox::Yes){
+	 QString zw=le->text();
+	 zw.replace("pdflatex ","pdflatex -synctex=1 ",Qt::CaseSensitive);
+	 le->setText(zw);
+     }
 }
 
 void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
