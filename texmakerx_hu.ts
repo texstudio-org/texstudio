@@ -3566,6 +3566,37 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
 </context>
 <context>
+    <name>SyntaxCheck</name>
+    <message>
+        <source>no error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>unrecognized command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>unrecognized math command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>unrecognized tabular command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>tabular command outside tabular env</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>math command outside math env</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>TabDialog</name>
     <message>
         <source>Horizontal Separator</source>
@@ -4651,6 +4682,10 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TexMakerX that was compiled without the internal pdf viewer.</source>
         <translation>Belső pdf megjelenítőt szeretett volna használni, de az ön által használt TexMakerX verzió anélkül lett fordítva</translation>
+    </message>
+    <message>
+        <source>SVN &amp;update...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

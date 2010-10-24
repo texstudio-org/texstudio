@@ -57,6 +57,10 @@
     </message>
     <message>
         <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) and KILE (GPL) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
+        <translation type="obsolete">TexMakerX enthält Code aus den Programmen Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) und KILE (GPL).&lt;br&gt; TexMakerX nutzt den PDF-Betrachter von TeXworks.&lt;br&gt;TexMakerX nutzt die  DSingleApplication Klasse (Autor: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Lizenz: GPL)&lt;br&gt;</translation>
+    </message>
+    <message>
+        <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
         <translation>TexMakerX enthält Code aus den Programmen Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) und KILE (GPL).&lt;br&gt; TexMakerX nutzt den PDF-Betrachter von TeXworks.&lt;br&gt;TexMakerX nutzt die  DSingleApplication Klasse (Autor: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Lizenz: GPL)&lt;br&gt;</translation>
     </message>
 </context>
@@ -324,7 +328,7 @@
     </message>
     <message>
         <source>Commands</source>
-        <translation>Kommandos</translation>
+        <translation>Befehle</translation>
     </message>
     <message>
         <source>Quick Build</source>
@@ -530,7 +534,7 @@
     </message>
     <message>
         <source>Show log after compiling if there are errors</source>
-        <translation>Log nach Compilern zeigen, wenn es Fehler gibt</translation>
+        <translation>Zeige Log nach Erzeugen, wenn Fehler auftraten</translation>
     </message>
     <message>
         <source>run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</source>
@@ -770,7 +774,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Tabbed Structure/Symbol View</source>
-        <translation>Struktur/Symbolview mit Tabs</translation>
+        <translation>Struktur/Symbolansicht mit Tabs</translation>
     </message>
     <message>
         <source>Ignore most system colors</source>
@@ -1081,7 +1085,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <source>max. Characters:</source>
-        <translation>max. Zeichen:</translation>
+        <translation type="obsolete">max. Zeichen:</translation>
     </message>
     <message>
         <source>Basic Key Mapping</source>
@@ -1230,6 +1234,30 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     <message>
         <source>Preview</source>
         <translation>Vorschau</translation>
+    </message>
+    <message>
+        <source>Search Panel</source>
+        <translation>Suchpanel</translation>
+    </message>
+    <message>
+        <source>Special options</source>
+        <translation>Spzielle Optionen</translation>
+    </message>
+    <message>
+        <source>Maximal characters:</source>
+        <translation>max. Zeichen:</translation>
+    </message>
+    <message>
+        <source>Hacks/Workarounds</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Disable fixed pitch mode</source>
+        <translation>Konstante Buchstabenbreite-Modus ausschalten</translation>
+    </message>
+    <message>
+        <source>Disable cache of character width</source>
+        <translation>Cache für Buchstabenbreiten ausschalten</translation>
     </message>
 </context>
 <context>
@@ -2358,7 +2386,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>New from Template...</source>
-        <translation>Neues File aus Template</translation>
+        <translation>Neue Datei aus Template</translation>
     </message>
     <message>
         <source>Ctrl+Shift+N</source>
@@ -2635,6 +2663,14 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <message>
         <source>Cursor follows scrolling</source>
         <translation>Cursor folgt dem Scrollen</translation>
+    </message>
+    <message>
+        <source>Ctrl+PgUp</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Ctrl+PgDown</source>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -3569,12 +3605,12 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <source>environment-name</source>
-        <translation type="obsolete">Umgebungsname</translation>
+        <translation>Umgebungsname</translation>
     </message>
     <message>
         <source>environment-name</source>
         <comment>snippet</comment>
-        <translation>Umgebungsname</translation>
+        <translation type="obsolete">Umgebungsname</translation>
     </message>
 </context>
 <context>
@@ -4097,6 +4133,37 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
 </context>
 <context>
+    <name>SyntaxCheck</name>
+    <message>
+        <source>no error</source>
+        <translation>kein Fehler</translation>
+    </message>
+    <message>
+        <source>unrecognized command</source>
+        <translation>Befehl nicht erkannt</translation>
+    </message>
+    <message>
+        <source>unrecognized math command</source>
+        <translation>Mathematikbefehl nicht erkannt</translation>
+    </message>
+    <message>
+        <source>unrecognized tabular command</source>
+        <translation>Tabellenbefehl nicht erkannt</translation>
+    </message>
+    <message>
+        <source>tabular command outside tabular env</source>
+        <translation>Tabllenbefehl außerhalb einer Tabellenumgebung</translation>
+    </message>
+    <message>
+        <source>math command outside math env</source>
+        <translation>Mathematikbefehl außerhalb einer Mathematikumgebung</translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>unbekannt</translation>
+    </message>
+</context>
+<context>
     <name>TabDialog</name>
     <message>
         <source>Center</source>
@@ -4434,7 +4501,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Automatically Restore &amp;Session at Next Start</source>
-        <translation>&amp;Session automatisch beim nächsten Start wiederherstellen</translation>
+        <translation>&amp;Sitzung automatisch beim nächsten Start wiederherstellen</translation>
     </message>
     <message>
         <source>You can not remove built-in templates.</source>
@@ -4875,7 +4942,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Restore previous session</source>
-        <translation>Vorherige Session wieder herstellen</translation>
+        <translation>Vorherige Sitzung wieder herstellen</translation>
     </message>
     <message>
         <source>Make Template</source>
@@ -4907,7 +4974,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>R&amp;epeat Hard Line Break</source>
-        <translation>Z&amp;eilenumbrüche Wiederholen</translation>
+        <translation>Z&amp;eilenumbrüche wiederholen</translation>
     </message>
     <message>
         <source>Find &amp;Next</source>
@@ -4923,7 +4990,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Re&amp;name Environment</source>
-        <translation>&amp;Benenne Umgebung um</translation>
+        <translation>Umgebung um&amp;benennen</translation>
     </message>
     <message>
         <source>Go to</source>
@@ -5156,7 +5223,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>New from &amp;template...</source>
-        <translation>Neues File aus &amp;Template...</translation>
+        <translation>Neue Datei aus &amp;Vorlage...</translation>
     </message>
     <message>
         <source>&amp;Open...</source>
@@ -5172,7 +5239,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>&amp;Make Template...</source>
-        <translation>Erstelle Te&amp;mplate...</translation>
+        <translation>Erstelle Vo&amp;rlage...</translation>
     </message>
     <message>
         <source>Check &amp;in...</source>
@@ -5293,8 +5360,8 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     <message>
         <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
-        <translation>Der Dateiname der tex-Datei zum Compilern konnte nicht ermittelt werden.
-Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es compilern können.</translation>
+        <translation>Der Dateiname der tex-Datei zum Erzeugen konnte nicht ermittelt werden.
+Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen können.</translation>
     </message>
     <message>
         <source>Close document</source>
@@ -5662,6 +5729,16 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es compilern könn
     <message>
         <source>Could not open browser</source>
         <translation>Konnte Browser nicht öffnen</translation>
+    </message>
+    <message>
+        <source>SVN &amp;update...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>You have called the command to open the internal pdf viewer.
+However, you are using a version of TexMakerX that was compiled without the internal pdf viewer.</source>
+        <translation>Dieser Befehl wurde aufgerufen, um den internen PDF-Betrachter zu öffnen.
+Allerdings wird eine Version von TexMakerX benutzt, bei dem diese Funktion nicht aktiviert ist.</translation>
     </message>
 </context>
 <context>
