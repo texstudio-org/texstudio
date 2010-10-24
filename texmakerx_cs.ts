@@ -48,7 +48,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) and KILE (GPL) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
+        <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1056,10 +1056,6 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>max. Characters:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Basic Key Mapping</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1201,6 +1197,30 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search Panel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximal characters:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hacks/Workarounds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable fixed pitch mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable cache of character width</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2529,6 +2549,14 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
         <source>Cursor follows scrolling</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Ctrl+PgUp</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+PgDown</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
@@ -3412,7 +3440,6 @@ Chcete, aby byly uloženy?</translation>
     </message>
     <message>
         <source>environment-name</source>
-        <comment>snippet</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3927,6 +3954,37 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     <message>
         <source>Packages: </source>
         <translation>Balíky: </translation>
+    </message>
+</context>
+<context>
+    <name>SyntaxCheck</name>
+    <message>
+        <source>no error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>unrecognized command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>unrecognized math command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>unrecognized tabular command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>tabular command outside tabular env</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>math command outside math env</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5462,6 +5520,15 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     </message>
     <message>
         <source>Could not open browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SVN &amp;update...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have called the command to open the internal pdf viewer.
+However, you are using a version of TexMakerX that was compiled without the internal pdf viewer.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
