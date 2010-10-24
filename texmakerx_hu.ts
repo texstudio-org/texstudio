@@ -44,10 +44,6 @@
         <translation>Ez egy szabad szoftver, terjesztheti és/vagy módosíthatja a Free Software Foundation által kiadott GNU General Public License második (vagy bármely későbbi) változatában foglaltak alapján.</translation>
     </message>
     <message>
-        <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) and KILE (GPL) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
-        <translation type="obsolete">A TexMakerX felhasznál az alábbi programok kódjaiból: Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) és KILE (GPL).&lt;br&gt;A TexMakerX a TeXworks PDF-megjelenítőt használja.&lt;br&gt; A TexMakerX a DSingleApplication (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL) osztályt használja.&lt;br&gt;</translation>
-    </message>
-    <message>
         <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
         <translation>A TexMakerX felhasznál az alábbi programok kódjaiból: Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL).és SyncTeX (szerző: Jerome Laurens)&lt;br&gt;A TexMakerX a TeXworks PDF-megjelenítőt használja.&lt;br&gt; A TexMakerX a DSingleApplication (szerző: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL) osztályt használja.&lt;br&gt;</translation>
     </message>
@@ -609,10 +605,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <source>Hard Line Wrap</source>
         <translation>Sortörés</translation>
-    </message>
-    <message>
-        <source>max. Characters:</source>
-        <translation type="obsolete">Karakterek maximális száma:</translation>
     </message>
     <message>
         <source>Custom Environment</source>
@@ -3569,31 +3561,31 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     <name>SyntaxCheck</name>
     <message>
         <source>no error</source>
-        <translation type="unfinished"></translation>
+        <translation>Nincs hiba</translation>
     </message>
     <message>
         <source>unrecognized command</source>
-        <translation type="unfinished"></translation>
+        <translation>Ismeretlen parancs</translation>
     </message>
     <message>
         <source>unrecognized math command</source>
-        <translation type="unfinished"></translation>
+        <translation>Ismeretlen matematikai parancs</translation>
     </message>
     <message>
         <source>unrecognized tabular command</source>
-        <translation type="unfinished"></translation>
+        <translation>Ismeretlen tabulátor parancs</translation>
     </message>
     <message>
         <source>tabular command outside tabular env</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabulátor parancs a tabulátor környezeten kívül</translation>
     </message>
     <message>
         <source>math command outside math env</source>
-        <translation type="unfinished"></translation>
+        <translation>Matematikai parancs a matematikai környezeten kívül</translation>
     </message>
     <message>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Ismeretlen</translation>
     </message>
 </context>
 <context>
@@ -4685,7 +4677,7 @@ However, you are using a version of TexMakerX that was compiled without the inte
     </message>
     <message>
         <source>SVN &amp;update...</source>
-        <translation type="unfinished"></translation>
+        <translation>SVN &amp;frissítés...</translation>
     </message>
 </context>
 <context>
