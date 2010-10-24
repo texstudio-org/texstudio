@@ -234,6 +234,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	connect(lineMarkPanel,SIGNAL(toolTipRequested(int,int)),this,SLOT(lineMarkToolTip(int,int)));
 	connect(editor,SIGNAL(hovered(QPoint)),this,SLOT(mouseHovered(QPoint)));
 	connect(editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
+	connect(editor->document(),SIGNAL(formatsChange(int,int)),this,SLOT(documentFormatsChanged(int, int)));
 	connect(editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),this,SLOT(lineDeleted(QDocumentLineHandle*)));
 	connect(editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),this,SLOT(lineRemoved(QDocumentLineHandle*)));
 
@@ -558,6 +559,12 @@ void LatexEditorView::lineMarkToolTip(int line, int mark){
 		emit showMarkTooltipForLogMessage(error);
 }
 
+void LatexEditorView::documentFormatsChanged(int linenr, int count) {
+    if(config->realtimeChecking && config->inlineSyntaxChecking){
+	reCheckSyntax(linenr,count);
+    }
+}
+
 void LatexEditorView::documentContentChanged(int linenr, int count) {
 	QDocumentLine startline=editor->document()->line(linenr);
 	if ((linenr>=0 || count<editor->document()->lines()) && editor->cursor().isValid() &&
@@ -859,12 +866,13 @@ void LatexEditorView::purgeLinksTo(QDocument *doc){
 	containedReferences->purgeLinksTo(doc);
 }
 
-void LatexEditorView::reCheckSyntax(){
+void LatexEditorView::reCheckSyntax(int linenr, int count){
     // expensive function ... however if \newcommand is changed valid commands become invalid and vice versa
     if(!config->inlineSyntaxChecking || !config->realtimeChecking) return;
-    QDocumentLine line=editor->document()->line(0);
+    if(linenr<0&&linenr>=editor->document()->lineCount()) linenr=0;
+    QDocumentLine line=editor->document()->line(linenr);
     QDocumentLine prev=line.previous();
-    for (int i=0; i<editor->document()->lineCount(); i++) {
+    for (int i=0; i<editor->document()->lineCount()&&(i<count || count<0); i++) {
 	SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
 	if(prev.isValid()){
 	    QNFA* cxt=prev.matchContext()->context;

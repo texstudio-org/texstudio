@@ -111,7 +111,7 @@ public:
 
         int syntaxErrorFormat;
 
-	void reCheckSyntax();
+	void reCheckSyntax(int linenr=0, int count=-1);
 
 private:
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 
@@ -140,6 +140,7 @@ private:
 	LatexEditorViewConfig* config;
 
 	SyntaxCheck SynChecker;
+
 private slots:
 	void requestCitation(); //emits needCitation with selected text
         void openExternalFile();
@@ -147,6 +148,7 @@ private slots:
 	void lineMarkToolTip(int line, int mark);
 public slots:
 	void documentContentChanged(int linenr, int count);
+	void documentFormatsChanged(int linenr, int count);
 	void lineDeleted(QDocumentLineHandle* l);
 	void lineRemoved(QDocumentLineHandle* l);
 	void spellCheckingReplace();
