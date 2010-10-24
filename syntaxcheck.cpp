@@ -123,7 +123,8 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 		    elem.type=ERR_TabularCommandOutsideTab;
 		newRanges.append(elem);
 	    }
-	    if(activeEnv.top()==ENV_math&&!LatexParser::mathCommands.contains(word) && !LatexParser::userdefinedCommands.contains(word)&&!end){ // extend for math coammnds
+	    if(activeEnv.top()==ENV_matrix && (word=="&" || word=="\\\\")) continue;
+	    if((activeEnv.top()==ENV_math||activeEnv.top()==ENV_matrix)&&!LatexParser::mathCommands.contains(word) && !LatexParser::userdefinedCommands.contains(word)&&!end){ // extend for math coammnds
 		Error elem;
 		elem.range=QPair<int,int>(wordstart,word.length());
 		elem.type=ERR_unrecognizedMathCommand;
