@@ -14,8 +14,8 @@
 \begin{}
 \begin{abstract}
 \begin{alltt}
-\begin{array}{cols}
-\begin{array}[pos]{cols}
+\begin{array}{cols}#m
+\begin{array}[pos]{cols}#m
 \begin{center}
 \begin{description}\item
 \begin{displaymath}

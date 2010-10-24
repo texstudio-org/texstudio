@@ -12,8 +12,8 @@
 \because#m
 %<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>
 \begin{abstract}
-\begin{array}{columns}
-\begin{array}[position]{columns}
+\begin{array}{columns}#m
+\begin{array}[position]{columns}#m
 \begin{bmatrix}#m
 \begin{center}
 \begin{description}

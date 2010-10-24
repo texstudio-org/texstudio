@@ -132,6 +132,8 @@ environments in smallUsefulFunctions.cpp)
         </context>
 
 	<context id="mathmodeMatrix" format="numbers" transparency="true">
+		<start parenthesis="mathEA12:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{array}</start>
+		<stop parenthesis="mathEA12:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{array}</stop>
 		<start parenthesis="mathEA5:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{matrix}</start>
 		<stop parenthesis="mathEA5:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{matrix}</stop>
 		<start parenthesis="mathEA6:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{bmatrix}</start>
