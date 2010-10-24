@@ -191,7 +191,7 @@ private:
 	PDFDocument *document;
 
 	int minimum_width;
-	QToolButton *bClose;
+	//QToolButton *bClose;
 	QLineEdit *leFind;
 	QToolButton *bNext, *bPrevious, *bCount;
 	QCheckBox *cbCase;
