@@ -345,7 +345,7 @@ PDFBaseSearchDock::PDFBaseSearchDock(PDFDocument* doc): QDockWidget(doc), docume
 	hboxLayout->setContentsMargins(-1, 0, -1, 0);
 
 	QSize buttonSize(22,22);
-
+	/*
 	bClose = new QToolButton(frame_2);
 	bClose->setObjectName(("bClose"));
 	bClose->setMinimumSize(buttonSize);
@@ -353,7 +353,7 @@ PDFBaseSearchDock::PDFBaseSearchDock(PDFDocument* doc): QDockWidget(doc), docume
 	bClose->setIcon(QIcon(":/closeall.png"));
 
 	hboxLayout->addWidget(bClose);
-
+	*/
 	QLabel* label = new QLabel(frame_2);
 	label->setObjectName(("label"));
 	QSizePolicy sizePolicy3(QSizePolicy::Minimum, QSizePolicy::Preferred);
@@ -453,13 +453,13 @@ PDFBaseSearchDock::PDFBaseSearchDock(PDFDocument* doc): QDockWidget(doc), docume
 
 
 	//retranslateUi(this);
-	QObject::connect(bClose, SIGNAL(clicked()), this, SLOT(close()));
+	//QObject::connect(bClose, SIGNAL(clicked()), this, SLOT(close()));
 
 	// connect by name
 	QMetaObject::connectSlotsByName(this);
 
 	// set texts
-	bClose->setToolTip(QApplication::translate("SearchReplace", "Close search/replace panel", 0, QApplication::UnicodeUTF8));
+	//bClose->setToolTip(QApplication::translate("SearchReplace", "Close search/replace panel", 0, QApplication::UnicodeUTF8));
 	leFind->setToolTip(QApplication::translate("SearchReplace", "Text or pattern to search for", 0, QApplication::UnicodeUTF8));
 	bNext->setToolTip(QApplication::translate("SearchReplace", "Find next occurence", 0, QApplication::UnicodeUTF8));
 	bPrevious->setToolTip(QApplication::translate("SearchReplace", "Find previous occurence", 0, QApplication::UnicodeUTF8));
