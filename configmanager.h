@@ -217,6 +217,7 @@ private slots:
 	void browseCommand();
 	void undoCommand();
 	void latexTreeItemChanged(QTreeWidgetItem* item,int l);
+	void activateInternalViewer(bool activated);
 
 	void managedOptionDialogAccepted();
 };

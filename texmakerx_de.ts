@@ -1714,6 +1714,10 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <source>Internal viewer</source>
         <translation>Interner Betrachter</translation>
     </message>
+    <message>
+        <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TexMakerX do it now?</source>
+        <translation>Um den internen PDF-Betrachter vollständig nutzbar zu machen, muss synctex aktiviert sein. Soll dies TexMakerX nun ereldigen ?</translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
