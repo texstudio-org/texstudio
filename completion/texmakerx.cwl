@@ -14,7 +14,7 @@
 \begin{abstract}
 \begin{array}{columns}
 \begin{array}[position]{columns}
-\begin{bmatrix}
+\begin{bmatrix}#m
 \begin{center}
 \begin{description}
 \begin{displaymath}
@@ -34,11 +34,11 @@
 \begin{large}
 \begin{list}{label}{spacing}
 \begin{math}
-\begin{matrix}
+\begin{matrix}#m
 \begin{minipage}[position]{width}
 \begin{minipage}{width}
 \begin{normalsize}
-\begin{pmatrix}
+\begin{pmatrix}#m
 \begin{quotation}
 \begin{quote}
 \begin{scriptsize}
@@ -52,8 +52,8 @@
 \begin{titlepage}
 \begin{verbatim}
 \begin{verse}
-\begin{Vmatrix}
-\begin{vmatrix}
+\begin{Vmatrix}#m
+\begin{vmatrix}#m
 \beta#m
 \bibliography{file}
 \bibliographystyle{style}
