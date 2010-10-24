@@ -139,6 +139,7 @@ void LatexDocument::updateStructure() {
 
 
 	bool temporaryLoadedDocument=false;
+	bool updateSyntaxCheck=false;
 	/* how to fix this ? bool isLoaded() ???
 	if (!document) {
 		if (fileName=="" || !fileInfo.exists())
@@ -218,8 +219,7 @@ void LatexDocument::updateStructure() {
 				}
 				mUserCommandList.insert(line(i).handle(),name);
 				// remove obsolete Overlays (maybe this can be refined
-				getEditorView()->reCheckSyntax();
-				//editor->viewport()->update();
+				updateSyntaxCheck=true;
 			}
 		}
 		//// newenvironment ////
@@ -376,6 +376,7 @@ void LatexDocument::updateStructure() {
 	//emit structureUpdated(this,newSection);
 	emit structureLost(this);
 
+	if(updateSyntaxCheck) getEditorView()->reCheckSyntax();
 	/*
 	if (temporaryLoadedDocument)
 		delete document;
@@ -490,6 +491,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	splitStructure(se,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count);
 	bool sectionAdded=false;
 	int verbatimFormat=QDocument::formatFactory()->id("verbatim");
+	bool updateSyntaxCheck=false;
 
 	//TODO: This assumes one command per line, which is not necessary true
 	for (int i=linenr; i<linenr+count; i++) {
@@ -504,6 +506,12 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 		// remove command,bibtex,labels at from this line
 		QDocumentLineHandle* dlh=line(i).handle();
+		QStringList commands=mUserCommandList.values(dlh);
+		foreach(QString elem,commands){
+		    int i=elem.indexOf("{");
+		    if(i>=0) elem=elem.left(i);
+		    LatexParser::userdefinedCommands.remove(elem);
+		}
 		completerNeedsUpdate=completerNeedsUpdate || (mLabelItem.remove(dlh)>0);
 		bibTeXFilesNeedsUpdate=bibTeXFilesNeedsUpdate || (mMentionedBibTeXFiles.remove(dlh)>0);
 		completerNeedsUpdate=completerNeedsUpdate || (mUserCommandList.remove(dlh)>0);
@@ -562,7 +570,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 			if (commandTokens.contains(cmd)) {
 				completerNeedsUpdate=true;
-				int options=arg.toInt(); //returns 0 if conversion fails
+				QRegExp rx("^\\s*\\[(\\d+)\\]");
+				int options=0;
+				if(rx.indexIn(remainder)>-1)
+				    options=rx.cap(1).toInt(); //returns 0 if conversion fails
 				LatexParser::userdefinedCommands.insert(name);
 				for (int j=0; j<options; j++) {
 					if (j==0) name.append("{%<arg1%|%>}");
@@ -570,16 +581,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				}
 				mUserCommandList.insert(line(i).handle(),name);
 				// remove obsolete Overlays (maybe this can be refined
-				for (int i=0; i<lines(); i++) {
-					QList<QFormatRange> li=line(i).getOverlays(edView->syntaxErrorFormat);
-					QString curLineText=line(i).text();
-					for (int j=0; j<li.size(); j++)
-						if (curLineText.mid(li[j].offset,li[j].length)==name){
-						line(i).removeOverlay(li[j]);
-						line(i).setFlag(QDocumentLine::LayoutDirty,true);
-					}
-				}
-				//editor->viewport()->update();
+				updateSyntaxCheck=true;
 				continue;
 			}
 
@@ -831,6 +833,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 	if (completerNeedsUpdate || bibTeXFilesNeedsUpdate)
 		emit updateCompleter();
+
+	if(updateSyntaxCheck) getEditorView()->reCheckSyntax();
 
 
 #ifndef QT_NO_DEBUG
