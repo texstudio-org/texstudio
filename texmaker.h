@@ -33,6 +33,7 @@
 #include "toolwidgets.h"
 #include "scriptengine.h"
 #include "tmxtabwidget.h"
+#include "unicodeinsertion.h"
 #include "tablemanipulation.h"
 #include "PDFDocument.h"
 
@@ -85,6 +86,8 @@ private:
 	QFormatFactory *m_formats;
 	QLanguageFactory* m_languages;
 	LatexCompleter* completer;
+
+	QPointer<UnicodeInsertion> unicodeInsertionDialog;
 
 //gui
 	TmxTabWidget *EditorView;

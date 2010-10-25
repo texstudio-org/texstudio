@@ -27,6 +27,9 @@ UnicodeInsertion::UnicodeInsertion(QWidget* parent): QWidget(parent)
 	table->resizeColumnsToContents();
 	table->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	table->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	connect(table, SIGNAL(cellClicked(int,int)), SLOT(tableCellClicked(int,int)));
+	connect(table, SIGNAL(cellDoubleClicked(int,int)), SLOT(tableCellDoubleClicked(int,int)));
+
 	lay->addWidget(edit);
 	lay->addWidget(table);
 	resize(19*bw, 5*bh+2*edit->height());
@@ -64,8 +67,21 @@ void UnicodeInsertion::editChanged(const QString& newText){
 	setTableText(0,8,unicodePointToString(c));
 	for (int i=0;i<base;i++)
 		setTableText(2,i,unicodePointToString(c*base+i));
-	table->resizeRowsToContents();
-	table->resizeColumnsToContents();
+	if (newText.length() < 2)
+		table->resizeRowsToContents();
+	//table->resizeColumnsToContents();
 	//for (int i=0;i<16;i++)
 }
 
+void UnicodeInsertion::tableCellClicked(int r, int c){
+	if (r != 2) return;
+	QChar cc = c >= 10 ? QChar('A' + c - 10) : QChar('0' + c);
+	edit->setText(edit->text()+cc);
+	edit->setFocus();
+}
+
+void UnicodeInsertion::tableCellDoubleClicked(int r, int c){
+	if (r != 2 || !table->item(r,c)) return;
+	insertCharacter(table->item(0,8)->text()); //tricky, double click is reported as single click - double click and the single click sets the edit box (4.6.3 on debian)
+	close();
+}
