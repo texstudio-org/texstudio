@@ -35,7 +35,6 @@
 #include "qsearchreplacepanel.h"
 #include "latexcompleter_config.h"
 #include "universalinputdialog.h"
-#include "unicodeinsertion.h"
 #include "insertgraphics.h"
 #include "latexeditorview_config.h"
 
@@ -1704,6 +1703,7 @@ void Texmaker::editInsertUnicode(){
 	connect(currentEditor()->document(), SIGNAL(contentsChanged()), uid, SLOT(close()));
 
 	uid->move(currentEditor()->mapTo(uid->parentWidget(), offset));
+	this->unicodeInsertionDialog = uid;
 	uid->show();
 	uid->setFocus();
 }
@@ -3587,6 +3587,12 @@ void Texmaker::viewCloseSomething(){
 		KILLPROCESS=true;
 		return;
 	}
+	if (unicodeInsertionDialog) {
+		unicodeInsertionDialog->close();
+		return;
+	}
+	if (completer && completer->isVisible() && completer->close())
+		return;
 	if(windowState()==Qt::WindowFullScreen){
 	    stateFullScreen=saveState(1);
 	    setWindowState(Qt::WindowNoState);

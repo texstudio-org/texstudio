@@ -18,6 +18,9 @@ protected:
 private slots:
 	void editChanged(const QString& newtext);
 
+	void tableCellClicked(int r, int c);
+	void tableCellDoubleClicked(int r, int c);
+
 public: signals:
 	void insertCharacter(const QString& c);
 
