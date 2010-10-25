@@ -872,7 +872,7 @@ void LatexEditorView::reCheckSyntax(int linenr, int count){
     if(linenr<0&&linenr>=editor->document()->lineCount()) linenr=0;
     QDocumentLine line=editor->document()->line(linenr);
     QDocumentLine prev=line.previous();
-    for (int i=0; i<editor->document()->lineCount()&&(i<count || count<0); i++) {
+    for (int i=linenr; i<editor->document()->lineCount()&&(i<count || count<0); i++) {
 	SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
 	if(prev.isValid()){
 	    QNFA* cxt=prev.matchContext()->context;
@@ -897,7 +897,10 @@ void LatexEditorView::reCheckSyntax(int linenr, int count){
 	    SynChecker.putLine(text,line.handle(),env,true);
 	}
 	prev=line;
-	line++;
+	if(line.isValid()) //double check against crash
+	    line++;
+	else
+	    break;
     }
 }
 
