@@ -1395,7 +1395,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TexMakerX do it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>A belső pdf megjelenítő jobb kihasználásához ajánlatos lenne aktivizálni a synctex programot. Megtegye most a TexMakerX Ön helyett?</translation>
     </message>
 </context>
 <context>
