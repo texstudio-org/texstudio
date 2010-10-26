@@ -1638,11 +1638,25 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>Insert Graphics</source>
-        <translation>Kép beillesztése</translation>
+        <translation type="obsolete">Kép beillesztése</translation>
     </message>
     <message>
         <source>Select a File</source>
-        <translation>Fájl kiválasztása</translation>
+        <translation type="obsolete">Fájl kiválasztása</translation>
+    </message>
+    <message>
+        <source>Center figure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Graphics</source>
+        <comment>Wizard</comment>
+        <translation type="unfinished">Kép beillesztése</translation>
+    </message>
+    <message>
+        <source>Select a File</source>
+        <comment>Wizard</comment>
+        <translation type="unfinished">Fájl kiválasztása</translation>
     </message>
 </context>
 <context>
@@ -4682,6 +4696,10 @@ However, you are using a version of TexMakerX that was compiled without the inte
     <message>
         <source>SVN &amp;update...</source>
         <translation>SVN &amp;frissítés...</translation>
+    </message>
+    <message>
+        <source>Insert Graphic</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

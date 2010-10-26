@@ -1938,11 +1938,17 @@ Are you sure you want to undo all changes?</source>
         <translation type="unfinished">Відміна</translation>
     </message>
     <message>
+        <source>Center figure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Insert Graphics</source>
+        <comment>Wizard</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Select a File</source>
+        <comment>Wizard</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5640,6 +5646,10 @@ You have to save a document before you can compile it.</source>
     <message>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TexMakerX that was compiled without the internal pdf viewer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Graphic</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -1903,11 +1903,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <name>InsertGraphics</name>
     <message>
         <source>Insert Graphics</source>
-        <translation>&amp;Grafik einfügen</translation>
-    </message>
-    <message>
-        <source>Select a File</source>
-        <translation></translation>
+        <translation type="obsolete">&amp;Grafik einfügen</translation>
     </message>
     <message>
         <source>File</source>
@@ -1968,6 +1964,20 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <message>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
+    </message>
+    <message>
+        <source>Center figure</source>
+        <translation>Zentriere Bild</translation>
+    </message>
+    <message>
+        <source>Insert Graphics</source>
+        <comment>Wizard</comment>
+        <translation>Grafik einfügen</translation>
+    </message>
+    <message>
+        <source>Select a File</source>
+        <comment>Wizard</comment>
+        <translation>Datei auswählen</translation>
     </message>
 </context>
 <context>
@@ -5743,6 +5753,10 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
 However, you are using a version of TexMakerX that was compiled without the internal pdf viewer.</source>
         <translation>Dieser Befehl wurde aufgerufen, um den internen PDF-Betrachter zu öffnen.
 Allerdings wird eine Version von TexMakerX benutzt, bei dem diese Funktion nicht aktiviert ist.</translation>
+    </message>
+    <message>
+        <source>Insert Graphic</source>
+        <translation>Grafik einfügen</translation>
     </message>
 </context>
 <context>
