@@ -63,7 +63,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="texmaker.qrc">
+        <iconset>
          <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
        </property>
        <property name="iconSize">
@@ -145,6 +145,13 @@
      </property>
      <property name="tristate">
       <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="cbCentering">
+     <property name="text">
+      <string>Center figure</string>
      </property>
     </widget>
    </item>
@@ -255,9 +262,7 @@
   <tabstop>okButton</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>
- <resources>
-  <include location="texmaker.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>okButton</sender>
