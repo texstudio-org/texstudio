@@ -240,7 +240,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/HardWordWrap", &editorConfig->hardwordwrap, false, &pseudoDialog->checkBoxHardWordWrap);
 	registerOption("Editor/WrapLineWidth", &editorConfig->lineWidth, 80, &pseudoDialog->spinBoxWrapLineWidth);
 	registerOption("Editor/Parentheses Matching", &editorConfig->parenmatch, true); //TODO: checkbox?
-	registerOption("Editor/Parentheses Completion", &editorConfig->parenComplete, true);//TODO: checkbox?
+	registerOption("Editor/Parentheses Completion", &editorConfig->parenComplete, true, &pseudoDialog->checkBoxAutoCompleteParens);
 	registerOption("Editor/Line Number Multiples", &editorConfig->showlinemultiples, -1);
 	registerOption("Editor/Auto Indent", &editorConfig->autoindent, true);
 	registerOption("Editor/Weak Indent", &editorConfig->weakindent, true);
@@ -264,6 +264,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Font Family", &editorConfig->fontFamily, "", &pseudoDialog->comboBoxFont);
 	registerOption("Editor/Font Size", &editorConfig->fontSize, -1, &pseudoDialog->spinBoxSize);
 	registerOption("Editor/Esc for closing log", &useEscForClosingLog, false, &pseudoDialog->cb_CloseLogByEsc);
+
+	registerOption("Editor/Esc for closing log", &editorConfig->mouseWheelZoom, true, &pseudoDialog->checkBoxMouseWheelZoom);
 
 	registerOption("Editor/Hack Disable Fixed Pitch", &editorConfig->hackDisableFixedPitch, false, &pseudoDialog->checkBoxHackDisableFixedPitch);
 	registerOption("Editor/Hack Disable Width Cache", &editorConfig->hackDisableWidthCache, false, &pseudoDialog->checkBoxHackDisableWidthCache);

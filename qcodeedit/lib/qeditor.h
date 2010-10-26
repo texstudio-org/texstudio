@@ -86,8 +86,10 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			HardLineWrap				= 0x00002000,
 			
 			CtrlNavigation			= 0x00010000,
-			CursorJumpPastWrap		= 0x00020000,
-			
+			CursorJumpPastWrap			= 0x00020000,
+
+			MouseWheelZoom			= 0x00080000,
+
 			ReplaceTabs				= 0x00100000,
 			RemoveTrailing			= 0x00200000,
 			PreserveTrailingIndent	= 0x00400000,

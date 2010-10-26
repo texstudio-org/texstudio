@@ -252,7 +252,7 @@ QReliableFileWatch* QEditor::watcher()
 
 ////////////////////////////////////////////////////////////////////////
 
-int QEditor::m_defaultFlags = QEditor::AutoIndent | QEditor::AdjustIndent | QEditor::AutoCloseChars;
+int QEditor::m_defaultFlags = QEditor::MouseWheelZoom | QEditor::AutoIndent | QEditor::AdjustIndent | QEditor::AutoCloseChars;
 
 /*!
 	\return The default flags set to every QEditor upon construction
@@ -3553,7 +3553,7 @@ void QEditor::showEvent(QShowEvent *e)
 */
 void QEditor::wheelEvent(QWheelEvent *e)
 {
-	if ( e->modifiers() & Qt::ControlModifier )
+	if ( e->modifiers() & Qt::ControlModifier && flag(MouseWheelZoom))
 	{
 		const int delta = e->delta();
 
