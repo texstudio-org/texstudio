@@ -22,7 +22,7 @@ InsertGraphics::InsertGraphics(QWidget *parent, QString name)
 	connect(ui.lineEdit, SIGNAL(textChanged(const QString &)), this, SIGNAL(fileNameChanged(const QString &)));
 	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(chooseFile()));
 	connect(ui.cbFloat, SIGNAL(stateChanged(int)), this, SLOT(floatStateChanged(int)));
-	setWindowTitle(tr("Insert Graphics"));;
+	setWindowTitle(tr("Insert Graphics","Wizard"));
 }
 
 void InsertGraphics::setDir(const QString &di) {
@@ -38,7 +38,7 @@ QString InsertGraphics::fileName() const {
 
 void InsertGraphics::chooseFile() {
 	QString fn;
-	fn =QFileDialog::getOpenFileName(this,tr("Select a File"),dir,filter);
+	fn =QFileDialog::getOpenFileName(this,tr("Select a File","Wizard"),dir,filter);
 	if (!fn.isEmpty()) {
 		ui.lineEdit->setText(fn);
 		emit fileNameChanged(fn);

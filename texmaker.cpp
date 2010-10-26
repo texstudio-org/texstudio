@@ -2466,7 +2466,7 @@ void Texmaker::QuickArray() {
 void Texmaker::QuickGraphics(){
     if (!currentEditorView())	return;
 
-    InsertGraphics *graphicsDlg = new InsertGraphics(this,"Insert Graphic");
+    InsertGraphics *graphicsDlg = new InsertGraphics(this,tr("Insert Graphic"));
     if (graphicsDlg->exec()) {
 	QString insert;
 	if(graphicsDlg->ui.cbFloat->isChecked()){
@@ -2481,6 +2481,7 @@ void Texmaker::QuickGraphics(){
 	    }
 	    insert.append("\n");
 	}
+	if(graphicsDlg->ui.cbCentering->isChecked()) insert.append("\\centering\n");
 	if(graphicsDlg->ui.cbPosition->currentIndex()==0){
 	    if(!graphicsDlg->ui.leCaption->text().isEmpty()) insert.append("\\caption{"+graphicsDlg->ui.leCaption->text()+"}\n");
 	    if(!graphicsDlg->ui.leLabel->text().isEmpty()) insert.append("\\label{"+graphicsDlg->ui.leLabel->text()+"}\n");
