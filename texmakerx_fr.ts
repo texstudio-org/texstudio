@@ -1718,11 +1718,11 @@ Continuer tout de même ?</translation>
     <name>InsertGraphics</name>
     <message>
         <source>Insert Graphics</source>
-        <translation>Insertion d&apos;image</translation>
+        <translation type="obsolete">Insertion d&apos;image</translation>
     </message>
     <message>
         <source>Select a File</source>
-        <translation>Sélectionner un fichier</translation>
+        <translation type="obsolete">Sélectionner un fichier</translation>
     </message>
     <message>
         <source>File</source>
@@ -1783,6 +1783,20 @@ Continuer tout de même ?</translation>
     <message>
         <source>Cancel</source>
         <translation>Abandon</translation>
+    </message>
+    <message>
+        <source>Center figure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Graphics</source>
+        <comment>Wizard</comment>
+        <translation type="unfinished">Insertion d&apos;image</translation>
+    </message>
+    <message>
+        <source>Select a File</source>
+        <comment>Wizard</comment>
+        <translation type="unfinished">Sélectionner un fichier</translation>
     </message>
 </context>
 <context>
@@ -5042,6 +5056,10 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     <message>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TexMakerX that was compiled without the internal pdf viewer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Graphic</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

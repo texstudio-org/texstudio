@@ -1861,14 +1861,6 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
 <context>
     <name>InsertGraphics</name>
     <message>
-        <source>Insert Graphics</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select a File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>File</source>
         <translation type="unfinished">Soubor</translation>
     </message>
@@ -1926,6 +1918,20 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center figure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Graphics</source>
+        <comment>Wizard</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select a File</source>
+        <comment>Wizard</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5533,6 +5539,10 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     <message>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TexMakerX that was compiled without the internal pdf viewer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Graphic</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -1714,14 +1714,6 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
 <context>
     <name>InsertGraphics</name>
     <message>
-        <source>Insert Graphics</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select a File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>File</source>
         <translation type="unfinished">File</translation>
     </message>
@@ -1780,6 +1772,20 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     <message>
         <source>Cancel</source>
         <translation type="unfinished">Annulla</translation>
+    </message>
+    <message>
+        <source>Center figure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Graphics</source>
+        <comment>Wizard</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select a File</source>
+        <comment>Wizard</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5084,6 +5090,10 @@ You have to save a document before you can compile it.</source>
     <message>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TexMakerX that was compiled without the internal pdf viewer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Graphic</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
