@@ -870,10 +870,13 @@ void LatexEditorView::purgeLinksTo(QDocument *doc){
 void LatexEditorView::reCheckSyntax(int linenr, int count){
     // expensive function ... however if \newcommand is changed valid commands become invalid and vice versa
     if(!config->inlineSyntaxChecking || !config->realtimeChecking) return;
-    if(linenr<0&&linenr>=editor->document()->lineCount()) linenr=0;
+    if(linenr<0 || linenr>=editor->document()->lineCount()) linenr=0;
     QDocumentLine line=editor->document()->line(linenr);
-    QDocumentLine prev=line.previous();
-    for (int i=linenr; i<editor->document()->lineCount()&&(i<count+linenr || count<0); i++) {
+    QDocumentLine prev;
+    if (linenr > 0) prev = editor->document()->line(linenr - 1);
+    int lineNrEnd = count < 0 ? editor->document()->lineCount() : qMin(count + linenr, editor->document()->lineCount());
+    for (int i=linenr; i < lineNrEnd; i++) {
+		Q_ASSERT(line.isValid());
 	SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
 	if(prev.isValid()){
 	    QNFA* cxt=prev.matchContext()->context;
@@ -897,11 +900,8 @@ void LatexEditorView::reCheckSyntax(int linenr, int count){
 	    }
 	    SynChecker.putLine(text,line.handle(),env,true);
 	}
-	prev=line;
-	if(line.isValid()) //double check against crash
-	    line++;
-	else
-	    break;
+	prev = line;
+	line = editor->document()->line(i+1);
     }
 }
 
