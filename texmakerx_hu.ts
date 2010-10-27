@@ -954,6 +954,14 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <source>Disable cache of character width</source>
         <translation>Karakterszélesség tárolójának kiiktatása</translation>
     </message>
+    <message>
+        <source>Auto Complete Parentheses</source>
+        <translation>Zárójel automatikus bezárása</translation>
+    </message>
+    <message>
+        <source>Mouse Wheel Zoom</source>
+        <translation>Nagyítás az egérgörgővel</translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1646,17 +1654,17 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>Center figure</source>
-        <translation type="unfinished"></translation>
+        <translation>Kép középrehelyezése</translation>
     </message>
     <message>
         <source>Insert Graphics</source>
         <comment>Wizard</comment>
-        <translation type="unfinished">Kép beillesztése</translation>
+        <translation>Kép beillesztése</translation>
     </message>
     <message>
         <source>Select a File</source>
         <comment>Wizard</comment>
-        <translation type="unfinished">Fájl kiválasztása</translation>
+        <translation>Fájl kiválasztása</translation>
     </message>
 </context>
 <context>
@@ -4699,7 +4707,7 @@ However, you are using a version of TexMakerX that was compiled without the inte
     </message>
     <message>
         <source>Insert Graphic</source>
-        <translation type="unfinished"></translation>
+        <translation>Kép beszúrása</translation>
     </message>
 </context>
 <context>
