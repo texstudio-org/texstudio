@@ -511,6 +511,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		    int i=elem.indexOf("{");
 		    if(i>=0) elem=elem.left(i);
 		    LatexParser::userdefinedCommands.remove(elem);
+		    updateSyntaxCheck=true;
 		}
 		completerNeedsUpdate=completerNeedsUpdate || (mLabelItem.remove(dlh)>0);
 		bibTeXFilesNeedsUpdate=bibTeXFilesNeedsUpdate || (mMentionedBibTeXFiles.remove(dlh)>0);
