@@ -47,6 +47,7 @@ body { background: #ffffff; color: black; }
 	<li><a href="#SECTION16">2.6 Spacings</a></li>
 	<li><a href="#SECTION17">2.7 Inserting a list</a></li>
 	<li><a href="#SECTION18">2.8 Inserting a table</a></li>
+	<li><a href="#SECTION18a">2.8.1 Manipulating a table</a></li>
 	<li><a href="#SECTION19">2.9 Inserting a "tabbing" environment</a></li>
 	<li><a href="#SECTION110">2.10 Inserting a picture</a></li>
 	<li><a href="#SECTION111">2.11 Cross References and notes</a></li>
@@ -321,6 +322,17 @@ Section can be indented/unindented which means that the hiearachy level is chang
 <p>With the "Tabular" wizard ("Wizard" menu), the LaTeX code for a tabular environment can be quickly inserted :</p>
 <p><IMG src="doc7.png" border="1"></p>
 <p>You can set the main features of your table.<br>Note : this dialog allows you to type directly the code in the cells.<br>The corresponding LaTeX code is automatically inserted in the editor.</p>
+<h2><a name="SECTION18a">2.8.1 Manipulating tables</a></h2>
+TexMakerX provides some commands to ease handling of tables. For this a toolbar "tables" is offered which gives easy access to these commands.
+Please be aware that some unexpected results may arise, if the table constructing commands get to complex.
+Following commands are offered:
+<ul>
+<li>add row after the current row</li>
+<li>remove row: removes the table row in which the cursor </li>
+<li>add column: add a column in the complete table after current cursor position. If the cursor is positioned at start of line,first column, the column is added as new first column.</li>
+<li>remove column: remove current column</li>
+<li>add/remove \hline: add/remove \hline in all rows following the current row. If already a command \hline is present, no second command is placed.</li>
+</ul>
 <h2><a name="SECTION19">2.9 Inserting a "tabbing" environment</a></h2>
 <p>To help you to insert a "tabbing" code, you can use the "Tabbing" wizard ("Wizard" menu) :</p>
 <p><IMG src="doc8.png" border="1"></p>
@@ -803,6 +815,14 @@ Synopsis :<br>
 
 <h2><a name="SECTION37">4.8 "Forward/Inverse search" with TexMakerX</a></h2>
 <p>
+<h3>Integrated pdf-viewer</h3>
+TexMakerX provides an integarted pdf-viewer which offers forward- and inverse-search. Make sure that synctex is activated in the pdflatex command (option -synctex=1 needs to be added), though TexMakerX will ask you if it can correct the command itself if it is not set correctly.<br>
+Forward search is automatically done evry time the pdf-viewer is opened. TexMakerX will jump to the position where your cursor is currentyl positioned.
+Inverse can be activated by clicking in the pdf with CTRL+left mouse button or by slecting "jump to source" in the context menu, which is activated with a right mouse button click.
+Furthermore it is possible to enable "Scrolling follows Cursor" in pdf-viewer/configure. This will keep the pdf-viewer position synchronous to your cursor oposition in the editor.
+Likewise "Cursor follows Scrolling"  keeps the editor position synchronous to pdf-viewer position.
+
+<h3>General Set-up for external viewers</h3>
 Some (dvi) viewers can jump to (and visually highlight) a position in the DVI file that corresponds to a certain line number in the (La)TeX source file.<br>
 To enable this forward search, you can enter the command line of the corresponding viewer either as command line for an user tool in the User menu (User/User Commands/Edit...) or in the viewer command line in the config dialog  ("Options/Configure TexMakerX" -> "Commands").
 When the viewer is launched, the <b>@</b>-placeholder will be replaced by the current line number and <b>?c:ame</b> by the complete absolute filename of the current file.<br><br>
