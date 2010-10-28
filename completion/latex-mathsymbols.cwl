@@ -262,6 +262,8 @@
 \Vert#m
 \vert#m
 \wedge#m
+\widehat{a}#m
+\widetilde{a}#m
 \wp#m
 \wr#m
 \Xi#m
