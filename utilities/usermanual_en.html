@@ -50,6 +50,7 @@ body { background: #ffffff; color: black; }
 	<li><a href="#SECTION18a">2.8.1 Manipulating a table</a></li>
 	<li><a href="#SECTION19">2.9 Inserting a "tabbing" environment</a></li>
 	<li><a href="#SECTION110">2.10 Inserting a picture</a></li>
+	<li><a href="#SECTION110a">2.10.1 Inserting a picture using a "wizard"</a></li>  
 	<li><a href="#SECTION111">2.11 Cross References and notes</a></li>
 	<li><a href="#SECTION112">2.12 Inserting math formulae</a></li>
 	<li><a href="#SECTION113">2.13 Auto completion</a></li>
@@ -134,7 +135,7 @@ changed functionality:</P>
 <h2><a name="SECTIONNEW199">0.2 Version 1.9.3 -> Version 1.9.9</a></h2>
 <ul>
     <LI><p>User Tags can use java script to manipulate the current document. The manipulation is done via direct cursor handling. If further functionality is needed, feel free to open a feature request.</p>
-    <li><p>some performance issues on mac have been adressed. Still not perfect, but it should feel much faster on mac.</p>
+    <li><p>some performance issues on mac have been addressed. Still not perfect, but it should feel much faster on mac.</p>
     <li><p>math constructs can be previewed with mouse hover over the expression limit ($, begin{equation},...)</p>
     <li><p>a customizable tool bar is available</p>
     <li><p>the latex expressions in the Math/Latex-Menus can be changed to user preferred versions.</p>
@@ -155,8 +156,8 @@ changed functionality:</P>
 	<li><p>command replacement in completed commands was added</p>
 	<li><p>a cut buffer was added. If selected text is replaced with a command via completion, the removed text is used as argument for the inserted command (if applicable)</p>
 	<li><p>tool tip in completer shows the surrounding of the label to which the selected reference is pointing</p>
-	<li><p>profiles containg predefined short cuts, menu redefinition, editor settings can be imported from a file</p>
-	<li><p>when waiting with text cursor on an environmnt name, a mirror cursor is generated which allows the renaming of the environment (\begin and \end simultaneously)</p>
+	<li><p>profiles containing predefined short cuts, menu redefinition, editor settings can be imported from a file</p>
+	<li><p>when waiting with text cursor on an environment name, a mirror cursor is generated which allows the renaming of the environment (\begin and \end simultaneously)</p>
 	<li><p>delete word, a command or an environment by typing ALT-del</p>
 	<li><p>spell checking is only done in known text commands</p>
 	<li><p>some dialogs adapted to cope better with small screen sizes</p>
@@ -199,7 +200,7 @@ This panel allows the setting of some general aspects.
 <ul>
 <li>The "style" and "color scheme" of TexMakerX can be selected. The modern variant is closer to texmaker 1.9.
 <li>The symbol list can either appear "tabbed" (old behaviour, tabbed activated) or can have small symbol tabs besides the symbol lists which leaves more room for the symbols.
-<li>Also the log viewer can appear tabbed which allows faster chnage between error table, log view and previewer ...
+<li>Also the log viewer can appear tabbed which allows faster change between error table, log view and previewer ...
 <li>The language of the menus can be changed directly to ignore system settings.
 </ul>
 <p><IMG src="configure_general.png" border="1"></p>
@@ -249,7 +250,7 @@ For this menu items can be renamed and a new Latex-Code can be placed. The aprop
 <p><IMG src="configure_customizeMenu.png" border="1"></p>
 <h2><a name="SECTION07">1.7 Configuring the Custom Toolbar</a></h2>
 <p>One Custom Toolbar is present in TMX. This toolbar can be filled with actions from the Latex-, Math- and User-Menu.
-Since many of those item don't have icons, user icons can be loaded as well. This is achieved by applying "load other icon" from the context menu on a item in the cunstom toolbar list in the configure dialog.
+Since many of those item don't have icons, user icons can be loaded as well. This is achieved by applying "load other icon" from the context menu on a item in the custom toolbar list in the configure dialog.
 </p>
 <p><IMG src="configure_customToolbar.png" border="1"></p>
 <h2><a name="SECTION08">1.8 Configuring SVN support</a></h2>
@@ -265,7 +266,7 @@ Furthermore the user can choose the degree of automation, which TexMakerX provid
 Since text documents are rather small compared to disk spaces, size of the svn database should not be a problem.
 In addition newly saved files (save as) are automatically added to svn control,provided that the directory is alredy under svn control.
 If that is not the case, TexMakerX searches in "SVN Directory Search Depth" directory above the current diorectory for a svn controlled directory to which the subdirectories and the TeX-Document will be added.
-If no apropriate directory is found, a repository is automatically generated in a directory called "./repo" and the document is added.
+If no appropriate directory is found, a repository is automatically generated in a directory called "./repo" and the document is added.
 Thus the user does not need to look up the necessary commands to set up a repository. This functionality is only activated when "Auto checkin in" is enabled !
 </p>
 <p>
@@ -305,7 +306,7 @@ This can be used to create a kind of permanent bookmark in the text or just to n
 </p>
 <p>
 The structure view also offers a context menu which allows to copy/cut all text which belongs to a section (including subsection) and paste it before or after a section.
-Section can be indented/unindented which means that the hiearachy level is changed by one, i.e. \section is changed to \subsection, and all subsections are treated accordingly
+Section can be indented/unindented which means that the hierarchy level is changed by one, i.e. \section is changed to \subsection, and all subsections are treated accordingly
 
 </p>
 <p>For each file, three bookmarks can be used to speed up navigation : just click on a line number to add or remove a bookmark. When you have already defined three bookmarks, you must remove one of them to add a new bookmark. To jump to the line corresponding to a bookmark in the editor, just click on the buttons in the status bar.</p>
@@ -339,11 +340,14 @@ Following commands are offered:
 <h2><a name="SECTION110">2.10 Inserting a picture</a></h2>
 <p>To insert a picture in your document, just use the "\includegraphics" command in the "LaTeX" menu. Then, click on the "browser" button in the dialog to select the graphic file.<br>Note : you can insert a "figure" LaTeX environment ("LaTeX - Environments" menu) before inserting the picture.</p>
 <p><IMG src="doc9.png" border="1"></p>
+<h2><a name="SECTION110a">2.10.1 Inserting a picture using a "wizard"</a></h2>
+<p>TexMakerX offers a wizard for picture insertion in your document. Apart from selecting a file, you can also have TexMakerX include an appropriate figure-environment with label and caption correctly set.</p>
+<p><IMG src="wizard_figure.png" border="1"></p>
 <h2><a name="SECTION111">2.11 Cross References and notes</a></h2>
 <p>This toolbox in the toolbar allows you to insert quickly the label, cite, ref, footnote... code.<br>Note : the labels used in your documents are displayed in the "Structure View".</p>
 <p><IMG src="doc10.png" border="1"></p>
 <p><b>Additional option:</b>for the \ref command, a dialog box allows you to select directly the label.</p>
-<h2><a name="SECTION112">2.12 Inserting math formulae</a></h2>
+<h2><a name="SECTION112">2.12 Inserting math formula</a></h2>
 <p>You can toggle in the "in-line math" environment with the "f(x)" button in the toolbar (shortcut : Ctrl+Alt+M) or with the "Math" menu. The shortcut for the "display math" environment is : Alt+Shift+M.<br> The "Math" toolbar allows you to insert the most currents mathematical forms (frac, sqrt...) like the \left and \right tags.</p>
 <p><IMG src="doc11.png" border="1"></p>
 <p>With the "symbols panels" in the structure view, you can insert the code of 400 mathematical symbols.</p>
