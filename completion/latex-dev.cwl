@@ -175,3 +175,4 @@
 \parsep
 \lineskiplimits
 \footheight
+\DeclareMathSymbol
