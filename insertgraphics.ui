@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>402</width>
-    <height>380</height>
+    <height>404</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -63,8 +63,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+        <iconset resource="texmaker.qrc">
+         <normaloff>:/images/classic/fileopen.png</normaloff>:/images/classic/fileopen.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -262,7 +262,9 @@
   <tabstop>okButton</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="texmaker.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>okButton</sender>
