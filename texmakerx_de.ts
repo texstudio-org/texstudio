@@ -1259,6 +1259,14 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <source>Disable cache of character width</source>
         <translation>Cache für Buchstabenbreiten ausschalten</translation>
     </message>
+    <message>
+        <source>Auto Complete Parentheses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mouse Wheel Zoom</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>

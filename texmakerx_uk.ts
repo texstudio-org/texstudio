@@ -1247,6 +1247,14 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <source>Disable cache of character width</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Auto Complete Parentheses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mouse Wheel Zoom</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
