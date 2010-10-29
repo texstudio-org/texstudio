@@ -376,7 +376,7 @@ void LatexDocument::updateStructure() {
 	//emit structureUpdated(this,newSection);
 	emit structureLost(this);
 
-	if(updateSyntaxCheck) getEditorView()->reCheckSyntax();
+	if(updateSyntaxCheck) getEditorView()->reCheckSyntax(); //todo: signal
 	/*
 	if (temporaryLoadedDocument)
 		delete document;
