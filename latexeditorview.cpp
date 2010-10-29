@@ -71,35 +71,6 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 		LatexEditorView::completer->complete(editor,false);
 		return true;
 	}
-	if (event->modifiers()==Qt::ControlModifier && (event->key()==Qt::Key_Left || event->key()==Qt::Key_Right))	 {
-		int tccFormat=QDocument::formatFactory()->id("temporaryCodeCompletion");
-		if (editor->cursor().line().hasOverlay(tccFormat) || editor->cursor().line().next().hasOverlay(tccFormat) || editor->cursor().line().previous().hasOverlay(tccFormat)) {
-			int cn=editor->cursor().columnNumber();
-			int an=editor->cursor().anchorColumnNumber();
-			QFormatRange fr(0,0,0);
-			QDocumentCursor selector=editor->cursor();
-			if (event->key()==Qt::Key_Right) {
-				fr = selector.line().getFirstOverlayBetween((an>cn?an:cn)+1,editor->cursor().line().length(),tccFormat);
-				if (fr.length==0 && selector.line().next().isValid()) {
-					selector.movePosition(1,QDocumentCursor::Down,QDocumentCursor::MoveAnchor);
-					fr = selector.line().getFirstOverlayBetween(0,selector.line().length(),tccFormat);
-				}
-			} else {
-				fr = selector.line().getLastOverlayBetween(0,(an<cn?an:cn)-1,tccFormat);
-				if (fr.length==0 && selector.line().previous().isValid()) {
-					selector.movePosition(1,QDocumentCursor::Up,QDocumentCursor::MoveAnchor);
-					fr = selector.line().getLastOverlayBetween(0,selector.line().length(),tccFormat);
-				}
-			}
-			if (fr.length!=0) {
-				selector.setColumnNumber(fr.offset);
-				selector.movePosition(fr.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
-				editor->setCursor(selector);
-				return true;
-			}
-			return editor->cursor().line().hasOverlay(tccFormat);
-		}
-	}
 	if (!keyToReplace) return false;
 	if (!event->text().isEmpty()) {
 		int pos=keyToReplace->indexOf(event->text());
