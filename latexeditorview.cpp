@@ -567,6 +567,7 @@ void LatexEditorView::documentFormatsChanged(int linenr, int count) {
 }
 
 void LatexEditorView::documentContentChanged(int linenr, int count) {
+	Q_ASSERT(editor);
 	QDocumentLine startline=editor->document()->line(linenr);
 	if ((linenr>=0 || count<editor->document()->lines()) && editor->cursor().isValid() &&
 		!editor->cursor().atLineStart() && editor->cursor().line().text().trimmed().length()>0 &&
@@ -603,7 +604,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 	// checking
 	if (!QDocument::formatFactory()) return;
 	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)
-	if (editor && editor->languageDefinition() && editor->languageDefinition()->language()!="(La-)TeX") return; // no online checking in other files than tex
+	if (editor->languageDefinition() && editor->languageDefinition()->language()!="(La-)TeX") return; // no online checking in other files than tex
+	Q_ASSERT(speller && containedLabels && containedReferences);
 
 	for (int i=linenr; i<linenr+count; i++) {
 		QDocumentLine line = editor->document()->line(i);
@@ -627,30 +629,31 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 
 		// start syntax checking
 		if(config->inlineSyntaxChecking) {
-		    SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
-		    QDocumentLine prev=line.previous();
-		    if(prev.isValid()){
-			QNFA* cxt=line.previous().matchContext()->context;
-			QString cxtDef=QNFADefinition::getContextName(cxt);
-			if(!cxtDef.isEmpty()){
-			    int sep=cxtDef.indexOf(":");
-			    cxtDef=cxtDef.mid(sep+1);
-			    if(cxtDef.startsWith("math")) env=SyntaxCheck::ENV_math;
-			    if(cxtDef.startsWith("tabular")) env=SyntaxCheck::ENV_tabular;
-			    if(cxtDef.startsWith("mathmodeEqnArray")) env=SyntaxCheck::ENV_matrix;
-			    if(cxtDef.startsWith("mathmodeMatrix")) env=SyntaxCheck::ENV_matrix;
+			SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
+			if (i > 0) {
+				QDocumentLine prev = editor->document()->line(i - 1);
+				REQUIRE(prev.isValid() && prev.matchContext());
+				QNFA* cxt=line.previous().matchContext()->context;
+				QString cxtDef=QNFADefinition::getContextName(cxt);
+				if(!cxtDef.isEmpty()){
+					int sep=cxtDef.indexOf(":");
+					cxtDef=cxtDef.mid(sep+1);
+					if(cxtDef.startsWith("math")) env=SyntaxCheck::ENV_math;
+					if(cxtDef.startsWith("tabular")) env=SyntaxCheck::ENV_tabular;
+					if(cxtDef.startsWith("mathmodeEqnArray")) env=SyntaxCheck::ENV_matrix;
+					if(cxtDef.startsWith("mathmodeMatrix")) env=SyntaxCheck::ENV_matrix;
+				}
 			}
-		    }
-		    QString text=line.text();
-		    if(!text.isEmpty()){
-			QVector<int>fmts=line.getFormats();
-			for(int i=0;i<text.length() && i < fmts.size();i++){
-			    if(fmts[i]==verbatimFormat){
-				text[i]=QChar(' ');
-			    }
+			QString text=line.text();
+			if(!text.isEmpty()){
+				QVector<int>fmts=line.getFormats();
+				for(int i=0;i<text.length() && i < fmts.size();i++){
+					if(fmts[i]==verbatimFormat){
+						text[i]=QChar(' ');
+					}
+				}
+				SynChecker.putLine(text,line.handle(),env);
 			}
-			SynChecker.putLine(text,line.handle(),env);
-		    }
 		}
 
 

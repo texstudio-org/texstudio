@@ -14,6 +14,7 @@ void SyntaxCheck::setErrFormat(int errFormat){
 }
 
 void SyntaxCheck::putLine(QString text,QDocumentLineHandle* dlh,Environment previous,bool clearOverlay){
+	Q_ASSERT(dlh);
     SyntaxLine newLine;
     dlh->ref(); // impede deletion of handle while in syntax check queue
     dlh->lockForRead();
