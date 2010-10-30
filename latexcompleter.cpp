@@ -141,7 +141,7 @@ public:
 	virtual bool keyPressEvent(QKeyEvent *event, QEditor *editor) {
 		Q_ASSERT (completer && completer->listModel);
 		if (!completer || !completer->listModel) return false;
-                if (event->key()==Qt::Key_Shift || event->key()==Qt::Key_Alt || event->key()==Qt::Key_AltGr || event->key()==Qt::Key_Control)
+		if (event->key()==Qt::Key_Shift || event->key()==Qt::Key_Alt || event->key()==Qt::Key_AltGr || event->key()==Qt::Key_Control)
 			return false;
 		if (!active) return false; //we should never have been called
 		bool handled=false;
@@ -245,9 +245,9 @@ public:
 				if (curWord != "\\")
 					foreach (const CodeSnippet& w, words)
 						if (w.word.startsWith(curWord) && (w.word.indexOf(written, curWord.length()) >= 0)){
-							newWord = w.word;
-							break;
-						}
+					newWord = w.word;
+					break;
+				}
 				if (!newWord.isEmpty()) {
 					QString insertion = newWord.mid(curWord.length(), newWord.indexOf(written, curWord.length()) - curWord.length() + 1);
 					insertText(insertion);
@@ -404,7 +404,7 @@ QVariant CompletionListModel::data(const QModelIndex &index, int role) const {
 		return QVariant();
 }
 QVariant CompletionListModel::headerData(int section, Qt::Orientation orientation,
-        int role) const {
+					      int role) const {
 	// remove unused argument warnings
 	(void) role;
 	(void) orientation;
@@ -417,7 +417,7 @@ bool CompletionListModel::isNextCharPossible(const QChar &c){
 		return true; 
 	Qt::CaseSensitivity cs = Qt::CaseInsensitive;
 	if (LatexCompleter::config && 
-		LatexCompleter::config->caseSensitive==LatexCompleterConfig::CCS_CASE_SENSITIVE)
+	    LatexCompleter::config->caseSensitive==LatexCompleterConfig::CCS_CASE_SENSITIVE)
 		cs=Qt::CaseSensitive;
 	QString extension=curWord+c;
 	foreach (const CompletionWord & cw, words)
@@ -437,7 +437,7 @@ void CompletionListModel::filterList(const QString &word) {
 	for (int i=0; i<baselist.count(); i++) {
 		if (baselist[i].word.isEmpty()) continue;
 		if (baselist[i].word.startsWith(word,cs) &&
-			(!checkFirstChar || baselist[i].word[1] == word[1]) )
+		    (!checkFirstChar || baselist[i].word[1] == word[1]) )
 			words.append(baselist[i]);
 	}
 	/*if (words.size()>=2) //prefer matching case
@@ -487,7 +487,7 @@ QHash<QString, int> LatexCompleter::helpIndicesCache;
 const LatexCompleterConfig* LatexCompleter::config=0;
 
 LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0) {
-//   addTrigger("\\");
+	//   addTrigger("\\");
 	if (!qobject_cast<QWidget*>(parent()))
 		QMessageBox::critical(0,"Serious PROBLEM", QString("The completer has been created without a parent widget. This is impossible!\n")+
 		                      QString("Please report it ASAP to the bug tracker on texmakerx.sf.net and check if your computer is going to explode!\n")+
@@ -632,7 +632,7 @@ void LatexCompleter::parseHelpfile(QString text) {
 			pos += rx.matchedLength();
 		}
 	}
-//    QMessageBox::information(0,QString::number(helpIndices.size()),"",0);
+	//    QMessageBox::information(0,QString::number(helpIndices.size()),"",0);
 }
 bool LatexCompleter::hasHelpfile() {
 	return !helpFile.isEmpty();
@@ -660,8 +660,8 @@ void LatexCompleter::filterList(QString word) {
 bool LatexCompleter::acceptChar(QChar c,int pos) {
 	//always accept alpha numerical characters
 	if (((c>=QChar('a')) && (c<=QChar('z'))) ||
-	        ((c>=QChar('A')) && (c<=QChar('Z'))) ||
-	        ((c>=QChar('0')) && (c<=QChar('9')))) return true;
+	    ((c>=QChar('A')) && (c<=QChar('Z'))) ||
+	    ((c>=QChar('0')) && (c<=QChar('9')))) return true;
 	if (pos<=1) return false;
 	if (!listModel->getAcceptedChars().contains(c)) 
 		return false; //if no word contains the character don't accept it
@@ -805,60 +805,60 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
 		if (tagsfile.open(QFile::ReadOnly)) {
 			QString line;
 			QRegExp rxCom("^(\\\\\\w+)(\\[.+\\])*\\{(.+)\\}");
-                        rxCom.setMinimal(true);
+			rxCom.setMinimal(true);
 			QStringList keywords;
 			keywords << "text" << "title";
 			while (!tagsfile.atEnd()) {
 				line = tagsfile.readLine();
 				if (!line.isEmpty() && !line.startsWith("#") && !line.startsWith(" ")) {
-                                        //hints for commands usage (e.g. in mathmode only) are separated by #
-                                        int sep=line.indexOf('#');
-                                        QString valid;
-                                        if(sep>-1){
-                                            valid=line.mid(sep+1);
-                                            line=line.left(sep);
-                                        }
+					//hints for commands usage (e.g. in mathmode only) are separated by #
+					int sep=line.indexOf('#');
+					QString valid;
+					if(sep>-1){
+						valid=line.mid(sep+1);
+						line=line.left(sep);
+					}
 					// parse for spell checkable commands
-                                        int res=rxCom.indexIn(line);
+					int res=rxCom.indexIn(line);
 					if(keywords.contains(rxCom.cap(3))){
 						LatexParser::optionCommands << rxCom.cap(1);
 					}
-                                        // normal commands for syntax checking
-                                        // will be extended to distinguish between normal and math commands
-                                        if(valid.isEmpty() || valid.contains('n')){
-                                            int off= valid.isEmpty() ? 1 : 0;
-                                            if(res>-1){
-                                                if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
-                                                    LatexParser::normalCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
-                                                } else {
-                                                    LatexParser::normalCommands << rxCom.cap(1);
-                                                }
-                                            } else {
-                                                LatexParser::normalCommands << line.left(line.length()-off);
-                                            }
-                                        }
+					// normal commands for syntax checking
+					// will be extended to distinguish between normal and math commands
+					if(valid.isEmpty() || valid.contains('n')){
+						int off= valid.isEmpty() ? 1 : 0;
+						if(res>-1){
+							if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
+								LatexParser::normalCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
+							} else {
+								LatexParser::normalCommands << rxCom.cap(1);
+							}
+						} else {
+							LatexParser::normalCommands << line.left(line.length()-off);
+						}
+					}
 					if(valid.isEmpty() || valid.contains('m')){
-                                            if(res>-1){
-                                                if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
-                                                    LatexParser::mathCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
-                                                } else {
-                                                    LatexParser::mathCommands << rxCom.cap(1);
-                                                }
-                                            } else {
-                                                LatexParser::mathCommands << line.left(line.length());
-                                            }
-                                        }
+						if(res>-1){
+							if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
+								LatexParser::mathCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
+							} else {
+								LatexParser::mathCommands << rxCom.cap(1);
+							}
+						} else {
+							LatexParser::mathCommands << line.left(line.length());
+						}
+					}
 					if(valid.isEmpty() || valid.contains('t')){
-                                            if(res>-1){
-                                                if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
-                                                    LatexParser::tabularCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
-                                                } else {
-                                                    LatexParser::tabularCommands << rxCom.cap(1);
-                                                }
-                                            } else {
-                                                LatexParser::tabularCommands << line.left(line.length());
-                                            }
-                                        }
+						if(res>-1){
+							if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
+								LatexParser::tabularCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
+							} else {
+								LatexParser::tabularCommands << rxCom.cap(1);
+							}
+						} else {
+							LatexParser::tabularCommands << line.left(line.length());
+						}
+					}
 					// normal parsing for completer
 					if (line.startsWith("\\pageref")||line.startsWith("\\ref")) continue;
 					if (!line.contains("%")){
