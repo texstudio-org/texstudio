@@ -40,7 +40,7 @@
 
 //------------------------------Default Input Binding--------------------------------
 class DefaultInputBinding: public QEditorInputBinding {
-//  Q_OBJECT not possible because inputbinding is no qobject
+	//  Q_OBJECT not possible because inputbinding is no qobject
 public:
 	DefaultInputBinding():keyToReplace(0),contextMenu(0) {}
 	virtual QString id() const {
@@ -104,7 +104,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			if (fr.length>0 && fr.format==LatexEditorView::speller->spellcheckErrorFormat) {
 				QString word=cursor.line().text().mid(fr.offset,fr.length);
 				if (!(editor->cursor().hasSelection() && editor->cursor().selectedText().length()>0) || editor->cursor().selectedText()==word
-					|| editor->cursor().selectedText()==lastSpellCheckedWord) {
+				    || editor->cursor().selectedText()==lastSpellCheckedWord) {
 					lastSpellCheckedWord=word;
 					word=latexToPlainWord(word);
 					QDocumentCursor wordSelection(editor->document(),cursor.lineNumber(),fr.offset);
@@ -138,18 +138,18 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			contextMenu->addAction(act);
 			contextMenu->addSeparator();
 		}
-                //check input/include
-                //find context of cursor
-                QString line=cursor.line().text();
-                QString command, value;
-                LatexParser::ContextType result=LatexParser::findContext(line, cursor.columnNumber(), command, value);
-                static const QStringList inputTokens = QStringList() << "\\input" << "\\include";
-                if( (result==LatexParser::Command || result==LatexParser::Option) && inputTokens.contains(command)){
-                    QAction* act=new QAction(LatexEditorView::tr("Open %1").arg(value),contextMenu);
-                    act->setData(value);
-                    edView->connect(act,SIGNAL(triggered()),edView,SLOT(openExternalFile()));
-                    contextMenu->addAction(act);
-                }
+		//check input/include
+		//find context of cursor
+		QString line=cursor.line().text();
+		QString command, value;
+		LatexParser::ContextType result=LatexParser::findContext(line, cursor.columnNumber(), command, value);
+		static const QStringList inputTokens = QStringList() << "\\input" << "\\include";
+		if( (result==LatexParser::Command || result==LatexParser::Option) && inputTokens.contains(command)){
+			QAction* act=new QAction(LatexEditorView::tr("Open %1").arg(value),contextMenu);
+			act->setData(value);
+			edView->connect(act,SIGNAL(triggered()),edView,SLOT(openExternalFile()));
+			contextMenu->addAction(act);
+		}
 
 	}
 	contextMenu->addActions(baseActions);
@@ -237,8 +237,8 @@ LatexEditorView::~LatexEditorView() {
 		delete containedLabels;
 		delete containedReferences;
 	}
-        SynChecker.stop();
-        SynChecker.wait();
+	SynChecker.stop();
+	SynChecker.wait();
 }
 
 void LatexEditorView::viewActivated(){
@@ -258,9 +258,9 @@ void LatexEditorView::jumpChangePositionBackward() {
 	if (changePositions.size()==0) return;
 	for (int i=changePositions.size()-1; i>=0; i--)
 		if (!QDocumentLine(changePositions[i].first).isValid() || QDocumentLine(changePositions[i].first).lineNumber()<0) {
-			changePositions.removeAt(i);
-			if (i<=curChangePos) curChangePos--;
-		}
+		changePositions.removeAt(i);
+		if (i<=curChangePos) curChangePos--;
+	}
 	if (curChangePos >= changePositions.size()-1) curChangePos = changePositions.size()-1;
 	else if (curChangePos>=0 && curChangePos < changePositions.size()-1) curChangePos++;
 	else if (editor->cursor().line().handle()==changePositions.first().first) curChangePos=1;
@@ -271,9 +271,9 @@ void LatexEditorView::jumpChangePositionBackward() {
 void LatexEditorView::jumpChangePositionForward() {
 	for (int i=changePositions.size()-1; i>=0; i--)
 		if (!QDocumentLine(changePositions[i].first).isValid() || QDocumentLine(changePositions[i].first).lineNumber()<0) {
-			changePositions.removeAt(i);
-			if (i<=curChangePos) curChangePos--;
-		}
+		changePositions.removeAt(i);
+		if (i<=curChangePos) curChangePos--;
+	}
 	if (curChangePos>0) {
 		curChangePos--;
 		editor->setCursorPosition(QDocumentLine(changePositions[curChangePos].first).lineNumber(),changePositions[curChangePos].second);
@@ -384,7 +384,7 @@ void LatexEditorView::setKeyReplacements(QStringList *UserKeyReplace, QStringLis
 	defaultInputBinding->keyReplaceAfterWord=UserKeyReplaceAfterWord;
 	defaultInputBinding->keyReplaceBeforeWord=UserKeyReplaceBeforeWord;
 }
- QList<QAction *> LatexEditorView::getBaseActions(){
+QList<QAction *> LatexEditorView::getBaseActions(){
 	if (!defaultInputBinding) return QList<QAction *>();
 	return defaultInputBinding->baseActions;
 }
@@ -411,13 +411,13 @@ void LatexEditorView::setBibTeXIds(QSet<QString>* newIds){
 		QString curLineText=editor->document()->line(i).text();
 		for (int j=0; j<li.size(); j++)
 			if (li[j].format == citationPresentFormat || li[j].format == citationMissingFormat){
-				int newFormat=bibTeXIds->contains(curLineText.mid(li[j].offset,li[j].length))?citationPresentFormat:citationMissingFormat;
-				if (newFormat!=li[j].format) {
-					editor->document()->line(i).removeOverlay(li[j]);
-					li[j].format=newFormat;
-					editor->document()->line(i).addOverlay(li[j]);
-				}
+			int newFormat=bibTeXIds->contains(curLineText.mid(li[j].offset,li[j].length))?citationPresentFormat:citationMissingFormat;
+			if (newFormat!=li[j].format) {
+				editor->document()->line(i).removeOverlay(li[j]);
+				li[j].format=newFormat;
+				editor->document()->line(i).addOverlay(li[j]);
 			}
+		}
 	}
 }
 int LatexEditorView::bookMarkId(int bookmarkNumber) {
@@ -434,11 +434,11 @@ void LatexEditorView::updateSettings(){
 	editor->setLineWrapping(config->wordwrap);
 	editor->setHardLineWrapping(config->hardwordwrap);
 	if(config->hardwordwrap){
-	    int lw=config->lineWidth<20?20:config->lineWidth;
-	    int w=QFontMetrics(QFont(config->fontFamily, config->fontSize)).averageCharWidth()*lw;
-	    editor->setWrapLineWidth(w);
+		int lw=config->lineWidth<20?20:config->lineWidth;
+		int w=QFontMetrics(QFont(config->fontFamily, config->fontSize)).averageCharWidth()*lw;
+		editor->setWrapLineWidth(w);
 	}else{
-	    editor->setWrapLineWidth(0);
+		editor->setWrapLineWidth(0);
 	}
 	editor->setFlag(QEditor::AutoIndent,config->autoindent);
 	editor->setFlag(QEditor::WeakIndent,config->weakindent);
@@ -492,9 +492,9 @@ void LatexEditorView::lineMarkClicked(int line) {
 	//remove old mark (when possible)
 	for (int i=-1; i<10; i++)
 		if (l.hasMark(bookMarkId(i))) {
-			l.removeMark(bookMarkId(i));
-			return;
-		}
+		l.removeMark(bookMarkId(i));
+		return;
+	}
 	// remove error marks
 	if (l.hasMark(QLineMarksInfoCenter::instance()->markTypeId("error"))) {
 		l.removeMark(QLineMarksInfoCenter::instance()->markTypeId("error"));
@@ -511,9 +511,9 @@ void LatexEditorView::lineMarkClicked(int line) {
 	//add unused mark (1..3) (when possible)
 	for (int i=1; i<=3; i++)
 		if (editor->document()->findNextMark(bookMarkId(i))<0) {
-			l.addMark(bookMarkId(i));
-			return;
-		}
+		l.addMark(bookMarkId(i));
+		return;
+	}
 	//remove/add used mark
 	lastSetBookmark++;
 	if (lastSetBookmark<1 || lastSetBookmark>3) lastSetBookmark=1;
@@ -532,17 +532,17 @@ void LatexEditorView::lineMarkToolTip(int line, int mark){
 }
 
 void LatexEditorView::documentFormatsChanged(int linenr, int count) {
-    if(config->realtimeChecking && config->inlineSyntaxChecking){
-	reCheckSyntax(linenr,count);
-    }
+	if(config->realtimeChecking && config->inlineSyntaxChecking){
+		reCheckSyntax(linenr,count);
+	}
 }
 
 void LatexEditorView::documentContentChanged(int linenr, int count) {
 	Q_ASSERT(editor);
 	QDocumentLine startline=editor->document()->line(linenr);
 	if ((linenr>=0 || count<editor->document()->lines()) && editor->cursor().isValid() &&
-		!editor->cursor().atLineStart() && editor->cursor().line().text().trimmed().length()>0 &&
-		startline.isValid()) {
+	    !editor->cursor().atLineStart() && editor->cursor().line().text().trimmed().length()>0 &&
+	    startline.isValid()) {
 		/*if (curChangePos<1) {
 		    if (changePositions.size()==0 || changePositions.first.first<>linenr)
 			changePositions.insert(0,QPair<linenr,editor->cursor().columnNumber());
@@ -604,7 +604,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			if (i > 0) {
 				QDocumentLine prev = editor->document()->line(i - 1);
 				REQUIRE(prev.isValid() && prev.matchContext());
-				QNFA* cxt=line.previous().matchContext()->context;
+				QNFA* cxt=prev.matchContext()->context;
 				QString cxtDef=QNFADefinition::getContextName(cxt);
 				if(!cxtDef.isEmpty()){
 					int sep=cxtDef.indexOf(":");
@@ -644,9 +644,9 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			// hack to color the environment given in \begin{environment}...
 			if (inStructure){
 				if(line.getFormatAt(wordstart)==verbatimFormat) continue;
-                                QString secName=extractSectionName(lineText.mid(wordstart),true);
-                                line.addOverlay(QFormatRange(wordstart,secName.length(),structureFormat));
-                                inStructure=false;
+				QString secName=extractSectionName(lineText.mid(wordstart),true);
+				line.addOverlay(QFormatRange(wordstart,secName.length(),structureFormat));
+				inStructure=false;
 			}
 			if (status==NW_ENVIRONMENT) {
 				if(line.getFormatAt(wordstart)==verbatimFormat) continue;
@@ -742,7 +742,7 @@ void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {
 			else if (QDocumentLine(changePositions[i].first).next().isValid()) changePositions[i].first=QDocumentLine(changePositions[i].first).next().handle();
 			else  */ //creating a QDocumentLine with a deleted handle is not possible (it will modify the handle reference count which will trigger another delete event, leading to an endless loop)
 			changePositions.removeAt(i);
-			//    QMessageBox::information(0,"trig",0);
+	//    QMessageBox::information(0,"trig",0);
 
 	emit lineHandleDeleted(l);
 	editor->document()->markViewDirty();
@@ -764,9 +764,9 @@ void LatexEditorView::spellCheckingAlwaysIgnore() {
 			QString curLineText=editor->document()->line(i).text();
 			for (int j=0; j<li.size(); j++)
 				if (curLineText.mid(li[j].offset,li[j].length)==newToIgnore){
-					editor->document()->line(i).removeOverlay(li[j]);
-					editor->document()->line(i).setFlag(QDocumentLine::LayoutDirty,true);
-				}
+				editor->document()->line(i).removeOverlay(li[j]);
+				editor->document()->line(i).setFlag(QDocumentLine::LayoutDirty,true);
+			}
 		}
 		editor->viewport()->update();
 	}
@@ -829,7 +829,7 @@ void LatexEditorView::resetReferenceDatabase(){
 	citationPresentFormat=QDocument::formatFactory()->id("citationPresent");
 	citationMissingFormat=QDocument::formatFactory()->id("citationMissing");
 	structureFormat=QDocument::formatFactory()->id("structure");
-        verbatimFormat=QDocument::formatFactory()->id("verbatim");
+	verbatimFormat=QDocument::formatFactory()->id("verbatim");
 	containedLabels->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
 	containedReferences->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
 
@@ -842,41 +842,41 @@ void LatexEditorView::purgeLinksTo(QDocument *doc){
 }
 
 void LatexEditorView::reCheckSyntax(int linenr, int count){
-    // expensive function ... however if \newcommand is changed valid commands become invalid and vice versa
-    if(!config->inlineSyntaxChecking || !config->realtimeChecking) return;
-    if(linenr<0 || linenr>=editor->document()->lineCount()) linenr=0;
-    QDocumentLine line=editor->document()->line(linenr);
-    QDocumentLine prev;
-    if (linenr > 0) prev = editor->document()->line(linenr - 1);
-    int lineNrEnd = count < 0 ? editor->document()->lineCount() : qMin(count + linenr, editor->document()->lineCount());
-    for (int i=linenr; i < lineNrEnd; i++) {
+	// expensive function ... however if \newcommand is changed valid commands become invalid and vice versa
+	if(!config->inlineSyntaxChecking || !config->realtimeChecking) return;
+	if(linenr<0 || linenr>=editor->document()->lineCount()) linenr=0;
+	QDocumentLine line=editor->document()->line(linenr);
+	QDocumentLine prev;
+	if (linenr > 0) prev = editor->document()->line(linenr - 1);
+	int lineNrEnd = count < 0 ? editor->document()->lineCount() : qMin(count + linenr, editor->document()->lineCount());
+	for (int i=linenr; i < lineNrEnd; i++) {
 		Q_ASSERT(line.isValid());
-	SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
-	if(prev.isValid()){
-	    QNFA* cxt=prev.matchContext()->context;
-	    QString cxtDef=QNFADefinition::getContextName(cxt);
-	    if(!cxtDef.isEmpty()){
-		int sep=cxtDef.indexOf(":");
-		cxtDef=cxtDef.mid(sep+1);
-		if(cxtDef.startsWith("math")) env=SyntaxCheck::ENV_math;
-		if(cxtDef.startsWith("tabular")) env=SyntaxCheck::ENV_tabular;
-		if(cxtDef.startsWith("mathmodeEqnArray")) env=SyntaxCheck::ENV_matrix;
-		if(cxtDef.startsWith("mathmodeMatrix")) env=SyntaxCheck::ENV_matrix;
-	    }
-	}
-	QString text=line.text();
-	if(!text.isEmpty()){
-	    QVector<int>fmts=line.getFormats();
-	    for(int i=0;i<text.length() && i < fmts.size();i++){
-		if(fmts[i]==verbatimFormat){
-		    text[i]=QChar(' ');
+		SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
+		if(prev.isValid()){
+			QNFA* cxt=prev.matchContext()->context;
+			QString cxtDef=QNFADefinition::getContextName(cxt);
+			if(!cxtDef.isEmpty()){
+				int sep=cxtDef.indexOf(":");
+				cxtDef=cxtDef.mid(sep+1);
+				if(cxtDef.startsWith("math")) env=SyntaxCheck::ENV_math;
+				if(cxtDef.startsWith("tabular")) env=SyntaxCheck::ENV_tabular;
+				if(cxtDef.startsWith("mathmodeEqnArray")) env=SyntaxCheck::ENV_matrix;
+				if(cxtDef.startsWith("mathmodeMatrix")) env=SyntaxCheck::ENV_matrix;
+			}
 		}
-	    }
-	    SynChecker.putLine(text,line.handle(),env,true);
+		QString text=line.text();
+		if(!text.isEmpty()){
+			QVector<int>fmts=line.getFormats();
+			for(int i=0;i<text.length() && i < fmts.size();i++){
+				if(fmts[i]==verbatimFormat){
+					text[i]=QChar(' ');
+				}
+			}
+			SynChecker.putLine(text,line.handle(),env,true);
+		}
+		prev = line;
+		line = editor->document()->line(i+1);
 	}
-	prev = line;
-	line = editor->document()->line(i+1);
-    }
 }
 
 void LatexEditorView::mouseHovered(QPoint pos){
@@ -892,32 +892,32 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	int f=QDocument::formatFactory()->id("latexSyntaxMistake");
 	QFormatRange fr = cursor.line().getOverlayAt(cursor.columnNumber(),f);
 	if (fr.length>0 && fr.format==f) {
-	    SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
-	    QDocumentLine prev=l.previous();
-	    if(prev.isValid()){
-		QNFA* cxt=l.previous().matchContext()->context;
-		QString cxtDef=QNFADefinition::getContextName(cxt);
-		if(!cxtDef.isEmpty()){
-		    int sep=cxtDef.indexOf(":");
-		    cxtDef=cxtDef.mid(sep+1);
-		    if(cxtDef.startsWith("math")) env=SyntaxCheck::ENV_math;
-		    if(cxtDef.startsWith("tabular")) env=SyntaxCheck::ENV_tabular;
-		    if(cxtDef.startsWith("mathmodeEqnArray")) env=SyntaxCheck::ENV_matrix;
-		    if(cxtDef.startsWith("mathmodeMatrix")) env=SyntaxCheck::ENV_matrix;
+		SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
+		QDocumentLine prev=l.previous(); //todo: optimize
+		if(prev.isValid()){
+			QNFA* cxt=l.previous().matchContext()->context;
+			QString cxtDef=QNFADefinition::getContextName(cxt);
+			if(!cxtDef.isEmpty()){
+				int sep=cxtDef.indexOf(":");
+				cxtDef=cxtDef.mid(sep+1);
+				if(cxtDef.startsWith("math")) env=SyntaxCheck::ENV_math;
+				if(cxtDef.startsWith("tabular")) env=SyntaxCheck::ENV_tabular;
+				if(cxtDef.startsWith("mathmodeEqnArray")) env=SyntaxCheck::ENV_matrix;
+				if(cxtDef.startsWith("mathmodeMatrix")) env=SyntaxCheck::ENV_matrix;
+			}
 		}
-	    }
-	    QString text=l.text();
-	    if(!text.isEmpty()){
-		QVector<int>fmts=l.getFormats();
-		for(int i=0;i<text.length() && i < fmts.size();i++){
-		    if(fmts[i]==verbatimFormat){
-			text[i]=QChar(' ');
-		    }
+		QString text=l.text();
+		if(!text.isEmpty()){
+			QVector<int>fmts=l.getFormats();
+			for(int i=0;i<text.length() && i < fmts.size();i++){
+				if(fmts[i]==verbatimFormat){
+					text[i]=QChar(' ');
+				}
+			}
+			QString message=SynChecker.getErrorAt(text,cursor.columnNumber(),env);
+			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),message);
+			return;
 		}
-		QString message=SynChecker.getErrorAt(text,cursor.columnNumber(),env);
-		QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),message);
-		return;
-	    }
 	}
 	// do rest
 	QString command, value;
@@ -927,112 +927,112 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	int id_first;
 	QVector<QParenthesis> parens;
 	switch(LatexParser::findContext(line, cursor.columnNumber(), command, value)){
-		case LatexParser::Unknown:
-			if(cursor.nextChar()==QChar('$')){
-				i=cursor.columnNumber();
-				parens=l.parentheses();
-				first=i;
-				last=-1;
-				for(i=0;i<parens.size();i++){
-					if(parens[i].offset==first) {
-						last=i;
-						id_first=parens[i].id;
-						break;
-					}
+	case LatexParser::Unknown:
+		if(cursor.nextChar()==QChar('$')){
+			i=cursor.columnNumber();
+			parens=l.parentheses();
+			first=i;
+			last=-1;
+			for(i=0;i<parens.size();i++){
+				if(parens[i].offset==first) {
+					last=i;
+					id_first=parens[i].id;
+					break;
 				}
-				if(last>-1){
-					if(parens[i].role&1){
-						last=-1;
-						for(;i<parens.size();i++){
-							if(parens[i].id==id_first && parens[i].role&2) {
-								last=parens[i].offset;
-								break;
-							}
-						}
-						if(last>-1){
-							command=line.mid(first,last-first);
-							m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
-							emit showPreview(command);
+			}
+			if(last>-1){
+				if(parens[i].role&1){
+					last=-1;
+					for(;i<parens.size();i++){
+						if(parens[i].id==id_first && parens[i].role&2) {
+							last=parens[i].offset;
+							break;
 						}
 					}
-				}
-			} else {
-				QToolTip::hideText();
-			}
-			break;
-		case LatexParser::Command:
-			if (command=="\\begin" || command=="\\end")
-				command="\\begin{"+value+"}";
-
-			MathEnvirons << "equation" << "math" << "displaymath" << "eqnarray" << "eqnarray*";
-			if(MathEnvirons.contains(value)){
-				if(command.startsWith("\\begin")){
-					// find closing
-					if(value=="eqnarray"||value=="eqnarray*")
-						command="\\begin{eqnarray*}";
-					else command="\\begin{displaymath}";
-
-					int endingLine=editor->document()->findLineContaining(QString("\\end{%1}").arg(value),cursor.lineNumber(),Qt::CaseSensitive,false);
-					QString text;
-					text=command+"\n";
-					for(int i=cursor.lineNumber()+1;i<endingLine;i++){
-						text=text+editor->document()->line(i).text()+"\n";
-					}
-
-					if(value=="eqnarray"||value=="eqnarray*")
-						text+="\\end{eqnarray*}";
-					else text+="\\end{displaymath}";
-
-					emit showPreview(text);
-				}
-			} else {
-				topic=completer->lookupWord(command);
-				if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
-			}
-			break;
-		case LatexParser::Environment:
-			topic=completer->lookupWord("\\begin{"+value+"}");
-			if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
-			break;
-		case LatexParser::Reference:
-			{
-				//l=editor->document()->findLineContaining("\\label{"+ref+"}",0,Qt::CaseSensitive);
-				QList<QDocumentLineHandle*> lst=containedLabels->values(value);
-				QString mText="";
-				if(lst.isEmpty()){
-					mText=tr("label missing!");
-				} else if(lst.count()>1) {
-					mText=tr("label multiple times defined!");
-				} else {
-					QDocumentLineHandle *mLine=lst.first();
-					int l=mLine->line();
-					if(mLine->document()!=editor->document()){
-						LatexDocument *doc=document->parent->findDocument(mLine->document());
-						if(doc) mText=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
-					}
-					for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
-						mText+=mLine->document()->line(i).text();
-						if(i<l+2) mText+="\n";
+					if(last>-1){
+						command=line.mid(first,last-first);
+						m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
+						emit showPreview(command);
 					}
 				}
-				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), mText);
-				break;
 			}
-		case LatexParser::Label:
-			if(containedLabels->count(value)>1){
-				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("label multiple times defined!"));
-			} else {
-				int cnt=containedReferences->count(value);
-				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("%n reference(s) to this label","",cnt));
-			}
-			break;
-		case LatexParser::Citation:
-			if (bibTeXIds)
-				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),
-					bibTeXIds->contains(value)?tr("citation correct"):tr("citation missing!"));
-			break;
-		default:
+		} else {
 			QToolTip::hideText();
+		}
+		break;
+		case LatexParser::Command:
+		if (command=="\\begin" || command=="\\end")
+			command="\\begin{"+value+"}";
+
+		MathEnvirons << "equation" << "math" << "displaymath" << "eqnarray" << "eqnarray*";
+		if(MathEnvirons.contains(value)){
+			if(command.startsWith("\\begin")){
+				// find closing
+				if(value=="eqnarray"||value=="eqnarray*")
+					command="\\begin{eqnarray*}";
+				else command="\\begin{displaymath}";
+
+				int endingLine=editor->document()->findLineContaining(QString("\\end{%1}").arg(value),cursor.lineNumber(),Qt::CaseSensitive,false);
+				QString text;
+				text=command+"\n";
+				for(int i=cursor.lineNumber()+1;i<endingLine;i++){
+					text=text+editor->document()->line(i).text()+"\n";
+				}
+
+				if(value=="eqnarray"||value=="eqnarray*")
+					text+="\\end{eqnarray*}";
+				else text+="\\end{displaymath}";
+
+				emit showPreview(text);
+			}
+		} else {
+			topic=completer->lookupWord(command);
+			if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
+		}
+		break;
+		case LatexParser::Environment:
+		topic=completer->lookupWord("\\begin{"+value+"}");
+		if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
+		break;
+		case LatexParser::Reference:
+		{
+			//l=editor->document()->findLineContaining("\\label{"+ref+"}",0,Qt::CaseSensitive);
+			QList<QDocumentLineHandle*> lst=containedLabels->values(value);
+			QString mText="";
+			if(lst.isEmpty()){
+				mText=tr("label missing!");
+			} else if(lst.count()>1) {
+				mText=tr("label multiple times defined!");
+			} else {
+				QDocumentLineHandle *mLine=lst.first();
+				int l=mLine->line();
+				if(mLine->document()!=editor->document()){
+					LatexDocument *doc=document->parent->findDocument(mLine->document());
+					if(doc) mText=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
+				}
+				for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
+					mText+=mLine->document()->line(i).text();
+					if(i<l+2) mText+="\n";
+				}
+			}
+			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), mText);
+			break;
+		}
+		case LatexParser::Label:
+		if(containedLabels->count(value)>1){
+			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("label multiple times defined!"));
+		} else {
+			int cnt=containedReferences->count(value);
+			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("%n reference(s) to this label","",cnt));
+		}
+		break;
+		case LatexParser::Citation:
+		if (bibTeXIds)
+			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),
+					     bibTeXIds->contains(value)?tr("citation correct"):tr("citation missing!"));
+		break;
+		default:
+		QToolTip::hideText();
 	}
 	//QToolTip::showText(editor->mapToGlobal(pos), line);
 }
@@ -1150,9 +1150,9 @@ void LatexEditorView::insertHardLineBreaks(int newLength, bool smartScopeSelecti
 	bool areThereLinesToBreak=false;
 	for (int i=startLine;i<=endLine;i++)
 		if (doc->line(i).length()>newLength) {
-			areThereLinesToBreak=true;
-			break;
-		}
+		areThereLinesToBreak=true;
+		break;
+	}
 	if (!areThereLinesToBreak) return;
 	//remove all lines and reinsert them wrapped
 	if (endLine+1<doc->lines())
@@ -1264,19 +1264,19 @@ void References::updateByKeys(const QStringList& refs,References* altRefs){
 void References::appendTo(References *ref){
 	if(!ref) return;
 	QMultiHash<QString,QDocumentLineHandle*>::const_iterator i = mReferences.constBegin();
-	 while (i != mReferences.constEnd()) {
-		 ref->insert(i.key(),i.value());
-		 ++i;
-	 }
+	while (i != mReferences.constEnd()) {
+		ref->insert(i.key(),i.value());
+		++i;
+	}
 }
 
 void References::purgeLinksTo(QDocument *doc){
 	if(!doc) return;
 	QMutableHashIterator<QString,QDocumentLineHandle*> i(mReferences);
-	 while (i.hasNext()) {
-		 i.next();
-		 if(i.value()->document()==doc) i.remove();
-	 }
+	while (i.hasNext()) {
+		i.next();
+		if(i.value()->document()==doc) i.remove();
+	}
 }
 
 
