@@ -28,6 +28,7 @@ body { background: #ffffff; color: black; }
 	<li><a href="#SECTION030">1.3 Configuring some general issues</a></li>
 	<li><a href="#SECTION03">1.3.1 Configuring the spell checker</a></li>
 	<li><a href="#SECTION04">1.3.2 Configuring the thesaurus</a></li>
+	<li><a href="#SECTION041">1.3.3 Configuring the latex syntax checker</a></li>
 	<li><a href="#SECTION040">1.4 Configuring the autocompletion</a></li>
 	<li><a href="#SECTION05">1.5 Configuring shortcuts</a></li>
 	<li><a href="#SECTION06">1.6 Configuring the Latex/Math-Menu</a></li>
@@ -206,6 +207,8 @@ This panel allows the setting of some general aspects.
 <p><IMG src="configure_general.png" border="1"></p>
 <h2><a name="SECTION03">1.3.1 Configuring the spell checker</a></h2>
 <p>
+TexMakerX checks the spelling while you type. If the typed text is within a LaTeX-command, TexMakerX takes information from the command-completion-list to determine whether the text is natural language which needs to be checked or just command options which are left alone. Only known LaTeX-commands are considered to be checked in its options!
+Therefore make sure that all used packages are activated in the option/completion menu, see the corresponding <a href="#SECTION040">section</a> <br>
 The spell checker uses the OpenOffice.org dictionaries. Only GPL French and British dictionaries are distributed with TexMakerX.<br>
 Users can download others dictionaries here : <A href="http://wiki.services.openoffice.org/wiki/Dictionaries" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A><br>
 To configure the spell checker : "Configure TexMakerX" -> "Editor" -> "Spelling dictionary" -> click on the button at the end of the line to select the dictionary with the file browser. If you specify a non existing file the edit gets red.<br>
@@ -218,6 +221,10 @@ The ignore list is normally saved in the same directory as the dictionary with t
 The thesaurus uses OpenOffice.org 2.x databases. Only GPL French and US-English and German databases are distributed with TexMakerX.<br>
 Users can download others databases here : <A href="http://wiki.services.openoffice.org/wiki/Dictionaries" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A><br>
 </p>
+<h2><a name="SECTION041">1.3.3 Configuring latex syntax checker</a></h2>
+The latex syntax checker takes the list of possible completion commands to determine if a command is correct.
+Furthermore the completion list contains partially additional information to determine in which context a command is valid, whether it is valid only in math-mode or only in tabular-mode.<br>
+Therefore make sure that all used packages are activated in the option/completion menu, see the corresponding <a href="#SECTION040">section</a>
 <h2><a name="SECTION040">1.4 Configuring the autocompletion</a></h2>
 <p>
 TexMakerX has taken up completion word list from kile which extended the number of known commands for completion considerably.
