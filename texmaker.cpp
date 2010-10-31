@@ -982,6 +982,24 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	if (outputView->logPresent()) DisplayLatexError(); //show marks
 	if (!bibTeXmodified)
 		documents.bibTeXFilesModified=false; //loading a file can change the list of included bib files, but we won't consider that as a modification of them, because then they don't have to be recompiled
+
+#ifndef Q_WS_MACX
+	if (windowState() == Qt::WindowMinimized || !isVisible() || !QApplication::activeWindow()) {
+		show();
+		if (windowState()==Qt::WindowMinimized)
+			setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
+		show();
+		raise();
+		QApplication::setActiveWindow(this);
+		activateWindow();
+		setFocus();
+	}
+//raise();
+//#ifdef Q_WS_WIN
+//        if (IsIconic (this->winId())) ShowWindow(this->winId(), SW_RESTORE);
+//#endif
+#endif
+
 	return edit;
 }
 
