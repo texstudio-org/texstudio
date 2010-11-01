@@ -72,6 +72,11 @@ private:
 	QList<int> indexHierarchy; //for every element in entryHierarchy the index of this element in its parent children
 };
 
+struct FileNamePair{
+	QString relative, absolute;
+	FileNamePair(const QString& rel);
+};
+
 class LatexDocument: public QDocument
 {
 	Q_OBJECT
@@ -82,14 +87,13 @@ public:
 	void setFileName(const QString& fileName);
 	void setEditorView(LatexEditorView* edView);
 	LatexEditorView *getEditorView();
-	QString getFileName();
-	QFileInfo getFileInfo();
+	QString getFileName() const;
+	QFileInfo getFileInfo() const;
 	//QSet<QString> texFiles; //absolute file names, also contains fileName
 
 //	References containedLabels,containedReferences;
-	const QStringList mentionedBibTeXFiles() const{
-	    return mMentionedBibTeXFiles.values();
-	}
+	QMultiHash<QDocumentLineHandle*,FileNamePair>& mentionedBibTeXFiles();
+	const QMultiHash<QDocumentLineHandle*,FileNamePair>& mentionedBibTeXFiles() const;
 
 //	QMap<QString,DocumentLine> mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
 //	QSet<QString> allBibTeXIds;
@@ -133,9 +137,9 @@ private:
 	StructureEntry* bibTeXList;
 	StructureEntry* blockList;
 
-	QMultiHash<QDocumentLineHandle*,QString>mLabelItem;
-	QMultiHash<QDocumentLineHandle*,QString>mMentionedBibTeXFiles;
-	QMultiHash<QDocumentLineHandle*,QString>mUserCommandList;
+	QMultiHash<QDocumentLineHandle*,QString> mLabelItem;
+	QMultiHash<QDocumentLineHandle*,FileNamePair> mMentionedBibTeXFiles;
+	QMultiHash<QDocumentLineHandle*,QString> mUserCommandList;
 
 	QDocumentLineHandle *mAppendixLine;
 
@@ -248,7 +252,7 @@ public:
 	void updateStructure();
 	void updateLayout();
 signals:
-        void masterDocumentChanged(LatexDocument *masterDocument);
+	void masterDocumentChanged(LatexDocument *masterDocument);
 private slots:
 	void bibTeXFilesNeedUpdate();
 private:
