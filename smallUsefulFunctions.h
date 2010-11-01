@@ -134,6 +134,7 @@ public:
 	static QSet<QString> labelCommands;
 	static QSet<QString> citeCommands;
 	static QSet<QString> environmentCommands;
+	static QSet<QString> definitionCommands;
 	static QSet<QString> optionCommands;
         static QSet<QString> normalCommands;
         static QSet<QString> mathCommands;
@@ -142,6 +143,7 @@ public:
         static QSet<QString> tabularCommands;
         static QSet<QString> tabularEnvirons;
         static QSet<QString> fileCommands;
+	static QSet<QString> includeCommands;
         static QSet<QString> userdefinedCommands;
 	static QStringList structureCommands;
 

@@ -567,9 +567,9 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			curLine=remainder;
 			//// newcommand ////
 			//TODO: handle optional arguments
-			static const QStringList commandTokens = QStringList() << "\\newcommand" << "\\renewcommand" << "\\providecommand";
+			//static const QStringList commandTokens = QStringList() << "\\newcommand" << "\\renewcommand" << "\\providecommand";
 
-			if (commandTokens.contains(cmd)) {
+			if (LatexParser::definitionCommands.contains(cmd)) {
 				completerNeedsUpdate=true;
 				QRegExp rx("^\\s*\\[(\\d+)\\]");
 				int options=0;
@@ -649,7 +649,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			}
 			//// label ////
 			//TODO: Use label from dynamical reference checker
-			if (cmd=="\\label") {
+			if (LatexParser::labelCommands.contains(cmd)) {
 				mLabelItem.insert(line(i).handle(),name);
 				completerNeedsUpdate=true;
 				StructureEntry *newLabel;
@@ -695,9 +695,9 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			}
 
 			//// include,input ////
-			static const QStringList inputTokens = QStringList() << "\\input" << "\\include";
+			//static const QStringList inputTokens = QStringList() << "\\input" << "\\include";
 
-			if (inputTokens.contains(cmd)) {
+			if (LatexParser::includeCommands.contains(cmd)) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
 				baseStructure->add(newInclude);
 #ifndef QT_NO_DEBUG

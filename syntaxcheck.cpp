@@ -78,9 +78,8 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 	bool inStructure=false;
 	while ((status=nextWord(line,start,word,wordstart,true,true,&inStructure))){
 		if(status==NW_COMMAND){
-			bool end=false;
+			bool ignoreEnv=false;
 			if(word=="\\begin"||word=="\\end"){
-				end= (word=="\\end");
 				QStringList options;
 				LatexParser::resolveCommandOptions(line,wordstart,options);
 				if(options.size()>0){
@@ -114,7 +113,9 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 				if(activeEnv.isEmpty()) activeEnv.push(ENV_normal);
 				continue;
 			}
-			if((activeEnv.top()==ENV_normal||end)&&!LatexParser::normalCommands.contains(word) && !LatexParser::userdefinedCommands.contains(word)){ // extend for math coammnds
+			if(ignoreEnv&&(LatexParser::normalCommands.contains(word) || LatexParser::tabularCommands.contains(word) || LatexParser::userdefinedCommands.contains(word) || LatexParser::mathCommands.contains(word)) )
+			    continue;
+			if((activeEnv.top()==ENV_normal)&&!LatexParser::normalCommands.contains(word) && !LatexParser::userdefinedCommands.contains(word)){ // extend for math coammnds
 				Error elem;
 				elem.range=QPair<int,int>(wordstart,word.length());
 				elem.type=ERR_unrecognizedCommand;
@@ -125,7 +126,7 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 				newRanges.append(elem);
 			}
 			if(activeEnv.top()==ENV_matrix && (word=="&" || word=="\\\\")) continue;
-			if((activeEnv.top()==ENV_math||activeEnv.top()==ENV_matrix)&&!LatexParser::mathCommands.contains(word) && !LatexParser::userdefinedCommands.contains(word)&&!end){ // extend for math coammnds
+			if((activeEnv.top()==ENV_math||activeEnv.top()==ENV_matrix)&&!LatexParser::mathCommands.contains(word) && !LatexParser::userdefinedCommands.contains(word)&&!ignoreEnv){ // extend for math coammnds
 				Error elem;
 				elem.range=QPair<int,int>(wordstart,word.length());
 				elem.type=ERR_unrecognizedMathCommand;
