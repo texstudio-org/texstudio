@@ -7,6 +7,8 @@
 #include "qeditor.h"
 #include "smallUsefulFunctions.h"
 
+FileNamePair::FileNamePair(const QString& rel):relative(rel){};
+
 LatexDocument::LatexDocument(QObject *parent):QDocument(parent),edView(0),mAppendixLine(0)
 {
 	baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
@@ -71,11 +73,18 @@ LatexEditorView *LatexDocument::getEditorView(){
 	return this->edView;
 }
 
-QString LatexDocument::getFileName(){
+QString LatexDocument::getFileName() const{
 	return fileName;
 }
-QFileInfo LatexDocument::getFileInfo(){
+QFileInfo LatexDocument::getFileInfo() const{
 	return fileInfo;
+}
+
+QMultiHash<QDocumentLineHandle*,FileNamePair>& LatexDocument::mentionedBibTeXFiles(){
+	return mMentionedBibTeXFiles;
+}
+const QMultiHash<QDocumentLineHandle*,FileNamePair>& LatexDocument::mentionedBibTeXFiles() const{
+	return mMentionedBibTeXFiles;
 }
 
 QDocumentSelection LatexDocument::sectionSelection(StructureEntry* section){
@@ -249,8 +258,8 @@ void LatexDocument::updateStructure() {
 		s=findToken(curLine,"\\bibliography{");
 		if (s!="") {
 			QStringList bibs=s.split(',',QString::SkipEmptyParts);
-			foreach(QString elem,bibs){
-				mMentionedBibTeXFiles.insert(line(i).handle(),elem);
+			foreach(const QString& elem,bibs){
+				mMentionedBibTeXFiles.insert(line(i).handle(), FileNamePair(elem));
 			}
 			foreach (const QString& bibFile, bibs) {
 				StructureEntry *newFile=new StructureEntry(this, StructureEntry::SE_BIBTEX);
@@ -615,15 +624,17 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				//remove old bibs from hash, but keeps a temporary copy
 				QStringList oldBibs;
 				while (mMentionedBibTeXFiles.contains(curLineHandle)) {
-					QHash<QDocumentLineHandle*, QString>::iterator it = mMentionedBibTeXFiles.find(curLineHandle);
+					QMultiHash<QDocumentLineHandle*, FileNamePair>::iterator it = mMentionedBibTeXFiles.find(curLineHandle);
+					Q_ASSERT(it.key() == curLineHandle);
+					Q_ASSERT(it != mMentionedBibTeXFiles.end());
 					if (it == mMentionedBibTeXFiles.end()) break;
-					oldBibs.append(it.value());
-					mMentionedBibTeXFiles.remove(it.key(), it.value());
+					oldBibs.append(it.value().relative);
+					mMentionedBibTeXFiles.erase(it);
 				}
 				//add new bibs and set bibTeXFilesNeedsUpdate if there was any change
 				bibTeXFilesNeedsUpdate |= oldBibs.size() != bibs.size();
 				foreach(QString elem,bibs){
-					mMentionedBibTeXFiles.insert(line(i).handle(),elem);
+					mMentionedBibTeXFiles.insert(line(i).handle(),FileNamePair(elem));
 					bibTeXFilesNeedsUpdate |= !oldBibs.contains(elem);
 				}
 				//write bib tex in tree
@@ -1308,8 +1319,20 @@ QString LatexDocuments::getCurrentFileName() {
 	return currentDocument->getFileName();
 }
 QString LatexDocuments::getCompileFileName(){
-	if (!masterDocument) return getCurrentFileName();
-	else return masterDocument->getFileName();
+	if (masterDocument)
+		return masterDocument->getFileName();
+	if (!currentDocument)
+		return "";
+	QString curDocFile = currentDocument->getFileName();
+	if (curDocFile.endsWith(".bib"))
+		foreach (const LatexDocument* d, documents) {
+			QMultiHash<QDocumentLineHandle*,FileNamePair>::const_iterator it = d->mentionedBibTeXFiles().constBegin();
+			QMultiHash<QDocumentLineHandle*,FileNamePair>::const_iterator itend = d->mentionedBibTeXFiles().constEnd();
+			for (; it != itend; ++it)
+				if (it.value().absolute == curDocFile)
+					return d->getFileName();
+		}
+	return curDocFile;
 }
 QString LatexDocuments::getTemporaryCompileFileName(){
 	QString temp = getCompileFileName();
@@ -1397,12 +1420,17 @@ bool LatexDocuments::singleMode(){
 
 void LatexDocuments::updateBibFiles(){
 	mentionedBibTeXFiles.clear();
-	foreach (const LatexDocument* doc, documents)
-		mentionedBibTeXFiles << doc->mentionedBibTeXFiles();
+	foreach (LatexDocument* doc, documents) {
+		QMultiHash<QDocumentLineHandle*,FileNamePair>::iterator it = doc->mentionedBibTeXFiles().begin();
+		QMultiHash<QDocumentLineHandle*,FileNamePair>::iterator itend = doc->mentionedBibTeXFiles().end();
+		for (; it != itend; ++it){
+			if (it.value().absolute.isEmpty()) it.value().absolute = getAbsoluteFilePath(it.value().relative,".bib").replace(QDir::separator(), "/"); //store absolute
+			mentionedBibTeXFiles << it.value().absolute;
+		}
+	}
 
 	bool changed=false;
 	for (int i=0; i<mentionedBibTeXFiles.count();i++){
-		mentionedBibTeXFiles[i]=getAbsoluteFilePath(mentionedBibTeXFiles[i],".bib").replace(QDir::separator(), "/"); //store absolute
 		QString &fileName=mentionedBibTeXFiles[i];
 		QFileInfo fi(fileName);
 		if (!fi.isReadable()) continue; //ups...
