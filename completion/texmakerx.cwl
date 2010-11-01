@@ -235,8 +235,8 @@
 \multicolumn{count}{format}{text}
 \ne#m
 \neq#m
-\newcommand{name}{command}
-\newcommand{name}[args]{command}
+\newcommand{cmd}{def}
+\newcommand{cmd}[args]{def}
 \newenvironment{name}{begin}{end}
 \newenvironment{name}[args]{begin}{end}
 \newpage
@@ -277,8 +277,8 @@
 \rangle#m
 \rbrace#m
 \ref{}
-\renewcommand{name}{command}
-\renewcommand{name}[args]{command}
+\renewcommand{cmd}{def}
+\renewcommand{cmd}[args]{def}
 \renewenvironment{name}{begin}{end}
 \renewenvironment{name}[args]{begin}{end}
 \rho#m
