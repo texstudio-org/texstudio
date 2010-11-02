@@ -762,8 +762,19 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	for(int i=parent_level.size()-1;i>=0;i--){
 		if (!parent_level[i]) break;
 		while(!remainingChildren[i].isEmpty() && remainingChildren[i].first()->level>i){
-			se=remainingChildren[i].takeFirst();
-			parent_level[se->level]->add(se);
+		    se=remainingChildren[i].takeFirst();
+		    parent_level[se->level]->add(se);
+		}
+		int off=0;
+		int end=remainingChildren[i].size();
+		for(int j=0;j<end;j++){
+			se=remainingChildren[i].value(j-off);
+			if(se->level<i && parent_level[se->level]!=parent_level[i]){
+			    parent_level[se->level]->add(se);
+			    se->parent=parent_level[se->level];
+			    remainingChildren[i].removeAt(j-off);
+			    off++;
+			}
 		}
 		parent_level[i]->children << remainingChildren[i];
 		foreach(StructureEntry *elem,remainingChildren[i]){
