@@ -2360,6 +2360,11 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 int QDocumentLineHandle::wrappedLineForCursor(int cpos) const
 {
 	QReadLocker locker(&mLock);
+	return wrappedLineForCursorNoLock(cpos);
+}
+
+int QDocumentLineHandle::wrappedLineForCursorNoLock(int cpos) const
+{
 	int wrap = m_frontiers.count();
 
 	for ( int i = 0; i < m_frontiers.count(); ++i )
@@ -2498,7 +2503,7 @@ void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
 		cpos = 0;
 
 	int idx = 0;
-	int wrap = wrappedLineForCursor(cpos);
+	int wrap = wrappedLineForCursorNoLock(cpos);
 
 	x = QDocumentPrivate::m_leftMargin;
 	y = wrap * QDocumentPrivate::m_lineSpacing;
