@@ -77,6 +77,7 @@ class QCE_EXPORT QDocumentLineHandle
 		int cursorToX(int i) const;
 		
 		int wrappedLineForCursor(int cpos) const;
+		int wrappedLineForCursorNoLock(int cpos) const;
 		
 		int documentOffsetToCursor(int x, int y) const;
 		void cursorToDocumentOffset(int cpos, int& x, int& y) const;
