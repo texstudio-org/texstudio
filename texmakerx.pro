@@ -456,8 +456,8 @@ macx:LIBS += -framework \
 
 isEmpty(NO_POPPLER_PREVIEW){
     unix:!macx{
-        INCLUDEPATH += /usr/local/include/poppler/qt4
-        LIBS += -L/usr/local/lib -lpoppler-qt4 -lpoppler -lz
+        INCLUDEPATH += /usr/include/poppler/qt4
+        LIBS += -L/usr/lib -lpoppler-qt4 -lpoppler -lz
     }
     macx {
         INCLUDEPATH += /usr/local/include/poppler/qt4
