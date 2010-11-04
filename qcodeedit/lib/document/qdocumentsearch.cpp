@@ -224,6 +224,7 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 	//remove already searched lines from scope
 	QDocumentCursor hss = hscope.selectionStart();
 	QDocumentCursor hse = hscope.selectionEnd();
+	m_searchedScope.setColumnMemory(false);
 	if (m_searchedScope.isValid() && m_searchedScope.hasSelection()){
 		//invariant: m_searchedScope.anchorLineNumber() <= m_searchedScope.lineNumber()
 		bool startInOld = m_searchedScope.isWithinSelection(hss);
@@ -266,6 +267,7 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 			d->line(i).clearOverlays(sid);
 	}
 
+	hc.setColumnMemory(false);
 	while ( !hc.atEnd() && hscope.isWithinSelection(hc))
 	{
 		int ln = hc.lineNumber();
@@ -707,6 +709,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 	
 	int foundCount = 0;
 
+	m_cursor.setColumnMemory(false);
 	while ( !end(backward) )
 	{
 		if ( backward && !m_cursor.columnNumber() )
@@ -745,7 +748,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 				qPrintable(s), m_cursor.columnNumber(), 
 				column);
 		//*/
-		
+
 		if ( column != -1 && (backward || column >= m_cursor.columnNumber() ) )
 		{
 		//	m_cursor.setLineNumber(ln);
@@ -1015,6 +1018,7 @@ void QDocumentSearch::documentContentChanged(int line, int n){
 		return;
 	}
 	QDocumentCursor c = m_editor->document()->cursor(line);
+	c.setColumnMemory(false);
 	c.setLineNumber(lineend, QDocumentCursor::KeepAnchor);
 	c.setColumnNumber(le.length(), QDocumentCursor::KeepAnchor);
 	highlightSelection(c);

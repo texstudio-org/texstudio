@@ -1738,6 +1738,7 @@ void QEditor::setCursor(const QDocumentCursor& c)
 	repaintCursor();
 
 	m_cursor = c.isValid() ? c : QDocumentCursor(m_doc);
+	m_cursor.setColumnMemory(true);
 	m_cursor.setAutoUpdated(true);
 	m_cursor.setAutoErasable(false);
 	clearCursorMirrors();

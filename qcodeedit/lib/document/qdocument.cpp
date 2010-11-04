@@ -4021,10 +4021,13 @@ bool QDocumentCursorHandle::hasColumnMemory() const
 
 void QDocumentCursorHandle::setColumnMemory(bool y)
 {
+	if ( hasFlag(ColumnMemory) == y )
+		return;
 	if ( y )
 		setFlag(ColumnMemory);
 	else
 		clearFlag(ColumnMemory);
+	refreshColumnMemory();
 }
 
 void QDocumentCursorHandle::setPosition(int pos, int m)
