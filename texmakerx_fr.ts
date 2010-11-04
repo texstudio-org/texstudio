@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.0" language="fr_FR">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -45,19 +45,19 @@
     </message>
     <message>
         <source>Using Qt Version %1, compiled with Qt %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilise Qt version %1, compilé avec Qt %2</translation>
     </message>
     <message>
         <source>Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Copyright (c) (TexMaker originel) 2004-2010 par Pascal Brachet&lt;br&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.0 (SVN </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;TexMakerX 2.0 (SVN </translation>
     </message>
     <message>
         <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>TexMakerX contient du code provenant des programmes Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) et SyncTeX (par Jerôme Laurens). &lt;br&gt; TexMakerX utilise l&apos;afficheur PDF de Texworks &lt;br&gt; TexMakerX utilise la classe DSingleApplication (auteur: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</translation>
     </message>
 </context>
 <context>
@@ -187,59 +187,59 @@
     </message>
     <message>
         <source>&lt;new file&gt;</source>
-        <translation>&lt;Nouveau Fichier&gt;</translation>
+        <translation>&lt;Nouveau fichier&gt;</translation>
     </message>
     <message>
         <source>Article in &amp;Journal</source>
-        <translation type="unfinished"></translation>
+        <translation>Article de &amp;journal</translation>
     </message>
     <message>
         <source>Article in Conference &amp;Proceedings</source>
-        <translation type="unfinished"></translation>
+        <translation>Article et acte de &amp;conférence</translation>
     </message>
     <message>
         <source>Article in a &amp;Collection</source>
-        <translation type="unfinished"></translation>
+        <translation>Article dans une c&amp;ollection</translation>
     </message>
     <message>
         <source>Chapter or &amp;Pages in a Book</source>
-        <translation type="unfinished"></translation>
+        <translation>Chapitre ou extrait de &amp;livre</translation>
     </message>
     <message>
         <source>Conference Pr&amp;oceedings</source>
-        <translation type="unfinished"></translation>
+        <translation>Actes de c&amp;onférence</translation>
     </message>
     <message>
         <source>&amp;Book</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Livre</translation>
     </message>
     <message>
         <source>Book&amp;let</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>PhD. &amp;Thesis</source>
-        <translation type="unfinished"></translation>
+        <translation>Thèse de &amp;doctorat</translation>
     </message>
     <message>
         <source>&amp;Master&apos;s Thesis</source>
-        <translation type="unfinished"></translation>
+        <translation>Thèse de &amp;master</translation>
     </message>
     <message>
         <source>Technical &amp;Report</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rapport technique</translation>
     </message>
     <message>
         <source>Technical Ma&amp;nual</source>
-        <translation type="unfinished"></translation>
+        <translation>Docume&amp;ntation technique</translation>
     </message>
     <message>
         <source>&amp;Unpublished</source>
-        <translation type="unfinished"></translation>
+        <translation>Non p&amp;ublié</translation>
     </message>
     <message>
         <source>Miscellan&amp;eous</source>
-        <translation type="unfinished"></translation>
+        <translation>Div&amp;ers</translation>
     </message>
 </context>
 <context>
@@ -916,183 +916,185 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Hard Line Wrap</source>
-        <translation type="unfinished"></translation>
+        <translation>Coupure de ligne</translation>
     </message>
     <message>
         <source>Basic Key Mapping</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Assignation de touches de base</translation>
     </message>
     <message>
         <source>Use system theme icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser les icônes du thème du système</translation>
     </message>
     <message>
         <source>Inline syntax checking</source>
-        <translation type="unfinished"></translation>
+        <translation>Correction orthographique automatique</translation>
     </message>
     <message>
         <source>Wizard</source>
-        <translation type="unfinished"></translation>
+        <translation>Assistant</translation>
     </message>
     <message>
         <source>Basic highlighting</source>
-        <translation type="unfinished"></translation>
+        <translation>Surlignement de base</translation>
     </message>
     <message>
         <source>Line highlighting</source>
-        <translation type="unfinished"></translation>
+        <translation>Surlignement de ligne</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Chercher</translation>
+        <translation>Chercher</translation>
     </message>
     <message>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne pas lancer l&apos;afficheur si le fichier dvi/ps/pdf est déjà ouvert</translation>
     </message>
     <message>
         <source>Auto save all files </source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarde automatique de tous les fichiers</translation>
     </message>
     <message>
         <source>never</source>
-        <translation type="unfinished"></translation>
+        <translation>jamais</translation>
     </message>
     <message>
         <source>5 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>5 minutes</translation>
     </message>
     <message>
         <source>10 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>10 minutes</translation>
     </message>
     <message>
         <source>20 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>20 minutes</translation>
     </message>
     <message>
         <source>60 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>60 minutes</translation>
     </message>
     <message>
         <source>Indentation mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode indentation :</translation>
     </message>
     <message>
         <source>Line numbers:</source>
-        <translation type="unfinished"></translation>
+        <translation>Numéros de ligne :</translation>
     </message>
     <message>
         <source>Segment preview</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prévisualisation de la portion</translation>
     </message>
     <message>
         <source>Command:</source>
-        <translation type="unfinished"></translation>
+        <translation>Commande :</translation>
     </message>
     <message>
         <source>Display mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode &quot;display&quot; :</translation>
     </message>
     <message>
         <source>Full page pdf preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Prévisualisation du pdf en pleine page</translation>
     </message>
     <message>
         <source>Screen resolution:</source>
-        <translation type="unfinished"></translation>
+        <translation>Résolution de l&apos;écran :</translation>
     </message>
     <message>
         <source>dpi</source>
-        <translation type="unfinished"></translation>
+        <translation>dpi (pixels par pouce)</translation>
     </message>
     <message>
         <source>Magnifier size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Facteur de zoom :</translation>
     </message>
     <message>
         <source>Scale option:</source>
-        <translation type="unfinished"></translation>
+        <translation>Option d&apos;échelle :</translation>
     </message>
     <message>
         <source>Scaling:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mise à l&apos;échelle :</translation>
     </message>
     <message>
         <source>Original size</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille originale</translation>
     </message>
     <message>
         <source>Fit to window width</source>
-        <translation type="unfinished"></translation>
+        <translation>Adapter à la largeur de la fenêtre</translation>
     </message>
     <message>
         <source>Fit to window size</source>
-        <translation type="unfinished"></translation>
+        <translation>Adapter aux dimensions de la fenêtre</translation>
     </message>
     <message>
         <source>Scaled size</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>???</translatorcomment>
+        <translation type="unfinished">Taille d&apos;échelle</translation>
     </message>
     <message>
         <source>%</source>
-        <translation type="unfinished"></translation>
+        <translation>%</translation>
     </message>
     <message>
         <source>Magnifier shape:</source>
-        <translation type="unfinished"></translation>
+        <translation>Forme du zoom :</translation>
     </message>
     <message>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Carré</translation>
     </message>
     <message>
         <source>Circle</source>
-        <translation type="unfinished"></translation>
+        <translation>Cercle</translation>
     </message>
     <message>
         <source>px</source>
-        <translation type="unfinished"></translation>
+        <translation>px</translation>
     </message>
     <message>
         <source>Adv. Editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Édit. avancé</translation>
     </message>
     <message>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Prévisualisation</translation>
     </message>
     <message>
         <source>Search Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>Panneau de recherche</translation>
     </message>
     <message>
         <source>Special options</source>
-        <translation type="unfinished"></translation>
+        <translation>Options spéciales</translation>
     </message>
     <message>
         <source>Maximal characters:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nb. caractères maximal :</translation>
     </message>
     <message>
         <source>Hacks/Workarounds</source>
-        <translation type="unfinished"></translation>
+        <translation>Contournements</translation>
     </message>
     <message>
         <source>Disable fixed pitch mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Désactiver le mode à hauteur fixe</translation>
     </message>
     <message>
         <source>Disable cache of character width</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>?</translatorcomment>
+        <translation type="unfinished">Désactiver la taille du cache de caractère</translation>
     </message>
     <message>
         <source>Auto Complete Parentheses</source>
-        <translation type="unfinished"></translation>
+        <translation>Autocomplétion des parenthèses</translation>
     </message>
     <message>
         <source>Mouse Wheel Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom à la molette</translation>
     </message>
 </context>
 <context>
@@ -1327,7 +1329,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Font Sizes</source>
-        <translation>Tailles des &amp;caractères</translation>
+        <translation>Taille des &amp;caractères</translation>
     </message>
     <message>
         <source>tiny</source>
@@ -1531,15 +1533,15 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Open all files</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir tous les fichiers</translation>
     </message>
     <message>
         <source>Internal viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficheur intégré</translation>
     </message>
     <message>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TexMakerX do it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Pour une utilisation optimale de l&apos;afficheur pdf intégré, synctex doit être activé. TexMakerX doit-il le faire?</translation>
     </message>
 </context>
 <context>
@@ -1554,7 +1556,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Tabulators &amp;&amp; Whitespaces</source>
-        <translation>Tabulations &amp; &amp;Espaces</translation>
+        <translation>Tabulations &amp;&amp; Espaces</translation>
     </message>
     <message>
         <source>Tab width</source>
@@ -1578,7 +1580,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Load &amp;&amp; Save</source>
-        <translation>Ouvrir &amp; &amp;Sauver</translation>
+        <translation>Ouvrir &amp;&amp; Sauver</translation>
     </message>
     <message>
         <source>Default encoding</source>
@@ -1794,17 +1796,17 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Center figure</source>
-        <translation type="unfinished"></translation>
+        <translation>Centrer la figure</translation>
     </message>
     <message>
         <source>Insert Graphics</source>
         <comment>Wizard</comment>
-        <translation type="unfinished">Insertion d&apos;image</translation>
+        <translation>Insertion d&apos;image</translation>
     </message>
     <message>
         <source>Select a File</source>
         <comment>Wizard</comment>
-        <translation type="unfinished">Sélectionner un fichier</translation>
+        <translation>Sélectionner un fichier</translation>
     </message>
 </context>
 <context>
@@ -1858,11 +1860,11 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>untitled</source>
-        <translation type="unfinished">sans nom</translation>
+        <translation>sans nom</translation>
     </message>
     <message>
         <source> (Line %1)</source>
-        <translation type="unfinished"></translation>
+        <translation> (Ligne %1)</translation>
     </message>
 </context>
 <context>
@@ -1894,11 +1896,9 @@ Continuer tout de même ?</translation>
     </message>
     <message numerus="yes">
         <source>%n reference(s) to this label</source>
-        <translation type="unfinished">
-            <numerusform>%n références à cette étiquette
-        
-        
-        </numerusform>
+        <translation>
+            <numerusform>%n référence à cette étiquette</numerusform>
+            <numerusform>%n références à cette étiquette</numerusform>
         </translation>
     </message>
     <message>
@@ -1911,7 +1911,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Open %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir %1</translation>
     </message>
 </context>
 <context>
@@ -2011,18 +2011,18 @@ Continuer tout de même ?</translation>
     <name>PDFBaseSearchDock</name>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Chercher</translation>
+        <translation>Chercher</translation>
     </message>
     <message>
         <source>Enables case sensitive search.</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer la recherche sensible à la casse.</translation>
     </message>
 </context>
 <context>
     <name>PDFDocument</name>
     <message>
         <source>untitled.pdf[*]</source>
-        <translation type="unfinished"></translation>
+        <translation>sans_nom.pdf[*]</translation>
     </message>
     <message>
         <source>File</source>
@@ -2030,11 +2030,11 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Show</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer</translation>
     </message>
     <message>
         <source>Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Barre d&apos;outils</translation>
     </message>
     <message>
         <source>About TexMakerX...</source>
@@ -2043,56 +2043,56 @@ Continuer tout de même ?</translation>
     <message>
         <source>Home</source>
         <comment>shortcut key name, do not translate</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>End</source>
         <comment>shortcut key name, do not translate</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Ctrl+J</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Ctrl++</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Ctrl+-</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Ctrl+3</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Ctrl+1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Ctrl+2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>New</source>
-        <translation type="unfinished">Nouveau</translation>
+        <translation>Nouveau</translation>
     </message>
     <message>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Open...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir...</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Open Recent</source>
-        <translation type="unfinished">Ouvrir fichiers &amp;récemment utilisés</translation>
+        <translation>Ouvrir fichiers &amp;récemment utilisés</translation>
     </message>
     <message>
         <source>Close</source>
@@ -2100,7 +2100,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Undo</source>
@@ -2108,7 +2108,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Ctrl+Z</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Redo</source>
@@ -2116,7 +2116,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Ctrl+Shift+Z</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Cut</source>
@@ -2124,7 +2124,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Ctrl+X</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Copy</source>
@@ -2132,7 +2132,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Ctrl+C</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Paste</source>
@@ -2140,52 +2140,52 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Ctrl+V</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Ctrl+Backspace</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Espace</translation>
     </message>
     <message>
         <source>Quick Build</source>
-        <translation type="unfinished">Compilation rapide</translation>
+        <translation>Compilation rapide</translation>
     </message>
     <message>
         <source>Ctrl+T</source>
         <comment>action</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Ctrl+&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>New from Template...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouveau à partir d&apos;un modèle</translation>
     </message>
     <message>
         <source>Ctrl+Shift+N</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Ctrl+Shift+F</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Magnify</source>
-        <translation type="unfinished"></translation>
+        <translation>Agrandir</translation>
     </message>
     <message>
         <source>Scroll</source>
-        <translation type="unfinished"></translation>
+        <translation>Défiler</translation>
     </message>
     <message>
         <source>Select Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner le texte</translation>
     </message>
     <message>
         <source>Select Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner l&apos;image</translation>
     </message>
     <message>
         <source>User Manual...</source>
@@ -2193,346 +2193,347 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Email to the mailing list</source>
-        <translation type="unfinished"></translation>
+        <translation>Envoyer un courriel à la mailing list</translation>
     </message>
     <message>
         <source>Place on Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Placer à gauche</translation>
     </message>
     <message>
         <source>Place on Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Placer à droite</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Find...</source>
-        <translation type="unfinished"></translation>
+        <translation>Trouver...</translation>
     </message>
     <message>
         <source>Ctrl+F</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Find Again</source>
-        <translation type="unfinished"></translation>
+        <translation>Trouver encore</translation>
     </message>
     <message>
         <source>Ctrl+G</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Reload Script List</source>
-        <translation type="unfinished"></translation>
+        <translation>Recharger la liste de scripts</translation>
     </message>
     <message>
         <source>Manage Scripts</source>
-        <translation type="unfinished"></translation>
+        <translation>Gérer les scripts</translation>
     </message>
     <message>
         <source>Show Scripts Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer le dossier de scripts</translation>
     </message>
     <message>
         <source>About Scripts...</source>
-        <translation type="unfinished"></translation>
+        <translation>À propos des scripts...</translation>
     </message>
     <message>
         <source>s</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>PDF file &quot;%1&quot; is locked; this is not currently supported.</source>
-        <translation type="unfinished"></translation>
+        <translation>Le fichier PDF &quot;%1&quot; est verrouillé; cette action n&apos;est pas possible actuellement</translation>
     </message>
     <message>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"></translation>
+        <translation>Échec du chargement du fichier &quot;%1&quot;; ce n&apos;est peut-être pas un PDF valide.</translation>
     </message>
     <message>
         <source>No SyncTeX data available</source>
-        <translation type="unfinished"></translation>
+        <translation>Pas de données SyncTeX disponible</translation>
     </message>
     <message>
         <source>SyncTeX: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>%1[*] - %2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>TexMakerX</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>page %1 of %2</source>
-        <translation type="unfinished"></translation>
+        <translation>page %1 sur %2</translation>
     </message>
     <message>
         <source>%1%</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished">A&amp;ide</translation>
+        <translation>A&amp;ide</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished">&amp;Fichier</translation>
+        <translation>&amp;Fichier</translation>
     </message>
     <message>
         <source>&amp;Configure</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Configurer</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished">Affi&amp;chage</translation>
+        <translation>Affi&amp;chage</translation>
     </message>
     <message>
         <source>&amp;Window</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fenêtre</translation>
     </message>
     <message>
         <source>&amp;About TexMakerX...</source>
-        <translation type="unfinished"></translation>
+        <translation>À &amp;propos de TexMakerX...</translation>
     </message>
     <message>
         <source>&amp;First Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Pre&amp;mière Page</translation>
     </message>
     <message>
         <source>&amp;Previous Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Page P&amp;récédente</translation>
     </message>
     <message>
         <source>&amp;Next Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Page &amp;Suivante</translation>
     </message>
     <message>
         <source>&amp;Last Page</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Dernière page</translation>
     </message>
     <message>
         <source>&amp;Go to Page...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aller à la page...</translation>
     </message>
     <message>
         <source>Zoom &amp;In</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom a&amp;vant</translation>
     </message>
     <message>
         <source>Zoom &amp;Out</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom &amp;arrière</translation>
     </message>
     <message>
         <source>Fit to &amp;Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajuster à la &amp;fenêtre</translation>
     </message>
     <message>
         <source>&amp;Actual Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Dim&amp;ensions courantes</translation>
     </message>
     <message>
         <source>Fit to Wi&amp;dth</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajuster la &amp;largueur</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Fermer</translation>
+        <translation>&amp;Fermer</translation>
     </message>
     <message>
         <source>&amp;Undo</source>
-        <translation type="unfinished">&amp;Défaire</translation>
+        <translation>&amp;Défaire</translation>
     </message>
     <message>
         <source>&amp;Redo</source>
-        <translation type="unfinished">&amp;Refaire</translation>
+        <translation>&amp;Refaire</translation>
     </message>
     <message>
         <source>C&amp;ut</source>
-        <translation type="unfinished">Co&amp;uper</translation>
+        <translation>Co&amp;uper</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation type="unfinished">&amp;Copier</translation>
+        <translation>&amp;Copier</translation>
     </message>
     <message>
         <source>&amp;Paste</source>
-        <translation type="unfinished">C&amp;oller</translation>
+        <translation>C&amp;oller</translation>
     </message>
     <message>
         <source>C&amp;lear</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Effacer</translation>
     </message>
     <message>
         <source>External Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficheur externe</translation>
     </message>
     <message>
         <source>&amp;Configure TexMakerX</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Configurer TexMakerX</translation>
     </message>
     <message>
         <source>Stac&amp;k</source>
-        <translation type="unfinished"></translation>
+        <translation>Pi&amp;le</translation>
     </message>
     <message>
         <source>&amp;Tile</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>?</translatorcomment>
+        <translation>A&amp;juster</translation>
     </message>
     <message>
         <source>&amp;Go to Source</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aller à la Source</translation>
     </message>
     <message>
         <source>Full &amp;Screen</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Plein Écran</translation>
     </message>
     <message>
         <source>User &amp;Manual...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Manuel d&apos;utilisation</translation>
     </message>
     <message>
         <source>&amp;Side by Side</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Côte à Côte</translation>
     </message>
     <message>
         <source>&amp;Quit TexMakerX</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Quitter TexMakerX</translation>
     </message>
     <message>
         <source>&amp;Close something</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fermer quelque chose</translation>
     </message>
     <message>
         <source>Esc</source>
-        <translation type="unfinished"></translation>
+        <translation>Échap.</translation>
     </message>
     <message>
         <source>Scrolling follows cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>Le défilement suit le curseur</translation>
     </message>
     <message>
         <source>Cursor follows scrolling</source>
-        <translation type="unfinished"></translation>
+        <translation>Le curseur suit le défilement</translation>
     </message>
     <message>
         <source>Ctrl+PgUp</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Ctrl+PgDown</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished">Type</translation>
+        <translation>Type</translation>
     </message>
     <message>
         <source>Subset</source>
-        <translation type="unfinished"></translation>
+        <translation>Sous ensemble</translation>
     </message>
     <message>
         <source>File</source>
-        <translation type="unfinished">Fichier</translation>
+        <translation>Fichier</translation>
     </message>
     <message>
         <source>[none]</source>
-        <translation type="unfinished"></translation>
+        <translation>[aucun]</translation>
     </message>
     <message>
         <source>yes</source>
-        <translation type="unfinished"></translation>
+        <translation>oui</translation>
     </message>
     <message>
         <source>no</source>
-        <translation type="unfinished"></translation>
+        <translation>non</translation>
     </message>
     <message>
         <source>[embedded]</source>
-        <translation type="unfinished"></translation>
+        <translation>[encapsulé]</translation>
     </message>
     <message>
         <source>Fonts</source>
-        <translation type="unfinished"></translation>
+        <translation>Polices</translation>
     </message>
 </context>
 <context>
     <name>PDFInfoDock</name>
     <message>
         <source>PDF Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Info sur le PDF</translation>
     </message>
 </context>
 <context>
     <name>PDFOutlineDock</name>
     <message>
         <source>No TOC</source>
-        <translation type="unfinished"></translation>
+        <translation>Pas de table des matières</translation>
     </message>
     <message>
         <source>Contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Matières</translation>
     </message>
 </context>
 <context>
     <name>PDFSearchDock</name>
     <message>
         <source>Sync</source>
-        <translation type="unfinished"></translation>
+        <translation>Synchronisation</translation>
     </message>
 </context>
 <context>
     <name>PDFWidget</name>
     <message>
         <source>Zoom In</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom avant</translation>
     </message>
     <message>
         <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom arrière</translation>
     </message>
     <message>
         <source>Actual Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Dimensions courantes</translation>
     </message>
     <message>
         <source>Fit to Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajuster la largueur</translation>
     </message>
     <message>
         <source>Fit to Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajuster à la fenêtre</translation>
     </message>
     <message>
         <source>Jump to Source</source>
-        <translation type="unfinished"></translation>
+        <translation>Aller à la Source</translation>
     </message>
     <message>
         <source>Go to Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Aller à la page</translation>
     </message>
     <message>
         <source>Page number:</source>
-        <translation type="unfinished"></translation>
+        <translation>Numéros de page :</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished">Erreur</translation>
+        <translation>Erreur</translation>
     </message>
     <message>
         <source>Could not open browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossilbe d&apos;ouvrir le navigateur</translation>
     </message>
 </context>
 <context>
@@ -2597,7 +2598,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Select a File</source>
-        <translation type="unfinished">Sélectionner un fichier</translation>
+        <translation>Sélectionner un fichier</translation>
     </message>
 </context>
 <context>
@@ -2833,211 +2834,213 @@ Rafraîchir en rouvrant le fichier ?</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucun</translation>
     </message>
     <message>
         <source>Invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>Inadéquat</translation>
     </message>
     <message>
         <source>Internal</source>
-        <translation type="unfinished"></translation>
+        <translation>Interne</translation>
     </message>
     <message>
         <source>Move cursor up</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer le curseur vers le haut</translation>
     </message>
     <message>
         <source>Move cursor down</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer le curseur vers le bas</translation>
     </message>
     <message>
         <source>Move cursor left (1 character)</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer le curseur sur la gauche (1 caractère)</translation>
     </message>
     <message>
         <source>Move cursor right (1 character)</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer le curseur sur la droite (1 caractère)</translation>
     </message>
     <message>
         <source>Move cursor left (1 word)</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer le curseur sur la gauche (1 mot)</translation>
     </message>
     <message>
         <source>Move cursor right (1 word)</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer le curseur sur la droite (1 mot)</translation>
     </message>
     <message>
         <source>Move cursor to line start</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer le curseur en début de ligne</translation>
     </message>
     <message>
         <source>Move cursor to line end</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer le curseur en fin de ligne</translation>
     </message>
     <message>
         <source>Move cursor to document start</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer le curseur en début de document</translation>
     </message>
     <message>
         <source>Move cursor to document end</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer le curseur en fin de document</translation>
     </message>
     <message>
         <source>Move cursor one page up</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer le curseur à la page précédente</translation>
     </message>
     <message>
         <source>Move cursor one page down</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer le curseur à la page suivante</translation>
     </message>
     <message>
         <source>Select up</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner vers le haut</translation>
     </message>
     <message>
         <source>Select down</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner vers le bas</translation>
     </message>
     <message>
         <source>Select left (1 character)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner sur la gauche (1 caractère)</translation>
     </message>
     <message>
         <source>Select right (1 character)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner sur la droite (1 caractère)</translation>
     </message>
     <message>
         <source>Select left (1 word)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner sur la gauche (1 mot)</translation>
     </message>
     <message>
         <source>Select right (1 word)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner sur la droite (1 mot)</translation>
     </message>
     <message>
         <source>Select to line start</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner jusqu&apos;en début de ligne</translation>
     </message>
     <message>
         <source>Select to line end</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner jusqu&apos;en fin de ligne</translation>
     </message>
     <message>
         <source>Select to document start</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner jusqu&apos;au début du document</translation>
     </message>
     <message>
         <source>Select to document end</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner jusqu&apos;à la fin du document</translation>
     </message>
     <message>
         <source>Select page up</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner jusqu&apos;à la ligne précédente</translation>
     </message>
     <message>
         <source>Select page down</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner jusqu&apos;à la ligne suivante</translation>
     </message>
     <message>
         <source>Delete left character</source>
-        <translation type="unfinished"></translation>
+        <translation>Effacer le caractère précédent</translation>
     </message>
     <message>
         <source>Delete right character</source>
-        <translation type="unfinished"></translation>
+        <translation>Effacer le caractère suivant</translation>
     </message>
     <message>
         <source>Delete left word</source>
-        <translation type="unfinished"></translation>
+        <translation>Effacer le mot précédent</translation>
     </message>
     <message>
         <source>Delete right word</source>
-        <translation type="unfinished"></translation>
+        <translation>Effacer le mot suivant</translation>
     </message>
     <message>
         <source>New line</source>
-        <translation type="unfinished">Nouvelle ligne</translation>
+        <translation>Nouvelle ligne</translation>
     </message>
     <message>
         <source>Change overwrite mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Changer le mode de réécriture</translation>
     </message>
     <message>
         <source>Undo</source>
-        <translation type="unfinished">Défaire</translation>
+        <translation>Défaire</translation>
     </message>
     <message>
         <source>Redo</source>
-        <translation type="unfinished">Refaire</translation>
+        <translation>Refaire</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished">Copier</translation>
+        <translation>Copier</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation type="unfinished">Coller</translation>
+        <translation>Coller</translation>
     </message>
     <message>
         <source>Cut</source>
-        <translation type="unfinished">Couper</translation>
+        <translation>Couper</translation>
     </message>
     <message>
         <source>Print</source>
-        <translation type="unfinished"></translation>
+        <translation>Imprimer</translation>
     </message>
     <message>
         <source>Select all</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner tout</translation>
     </message>
     <message>
         <source>Find</source>
-        <translation type="unfinished">Chercher</translation>
+        <translation>Chercher</translation>
     </message>
     <message>
         <source>Find next</source>
-        <translation type="unfinished"></translation>
+        <translation>Chercher suivant</translation>
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished">Remplacer</translation>
+        <translation>Remplacer</translation>
     </message>
     <message>
         <source>Create cursor mirror up</source>
+        <translatorcomment>??</translatorcomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Create cursor mirror down</source>
+        <translatorcomment>???</translatorcomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Next placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouveau paramètre fictif</translation>
     </message>
     <message>
         <source>Previous placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Paramètre fictif précédent</translation>
     </message>
     <message>
         <source>Next placeholder or one word right</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouveau paramètre fictif ou mot à droite</translation>
     </message>
     <message>
         <source>Previous placeholder or one word left</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouveau paramètre fictif ou mot à gauche</translation>
     </message>
     <message>
         <source>Indent selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Mettre la sélection en alinéa</translation>
     </message>
     <message>
         <source>Unindent selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer l&apos;alinéa pour la sélection</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Inconnu</translation>
     </message>
 </context>
 <context>
@@ -3213,15 +3216,15 @@ Voulez-vous l&apos;enregistrer ?</translation>
     </message>
     <message>
         <source>background</source>
-        <translation type="unfinished"></translation>
+        <translation>fond</translation>
     </message>
     <message>
         <source>line:error</source>
-        <translation type="unfinished"></translation>
+        <translation>ligne:erreur</translation>
     </message>
     <message>
         <source>line:warning</source>
-        <translation type="unfinished"></translation>
+        <translation>ligne:avertissement</translation>
     </message>
     <message>
         <source>line:badbox</source>
@@ -3229,67 +3232,68 @@ Voulez-vous l&apos;enregistrer ?</translation>
     </message>
     <message>
         <source>line:bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>ligne:marque-page</translation>
     </message>
     <message>
         <source>line:bookmark0</source>
-        <translation type="unfinished"></translation>
+        <translation>ligne:marque-page0</translation>
     </message>
     <message>
         <source>line:bookmark1</source>
-        <translation type="unfinished"></translation>
+        <translation>ligne:marque-page1
+</translation>
     </message>
     <message>
         <source>line:bookmark2</source>
-        <translation type="unfinished"></translation>
+        <translation>ligne:marque-page2</translation>
     </message>
     <message>
         <source>line:bookmark3</source>
-        <translation type="unfinished"></translation>
+        <translation>ligne:marque-page3</translation>
     </message>
     <message>
         <source>line:bookmark4</source>
-        <translation type="unfinished"></translation>
+        <translation>ligne:marque-page4</translation>
     </message>
     <message>
         <source>line:bookmark5</source>
-        <translation type="unfinished"></translation>
+        <translation>ligne:marque-page5</translation>
     </message>
     <message>
         <source>line:bookmark6</source>
-        <translation type="unfinished"></translation>
+        <translation>ligne:marque-page6</translation>
     </message>
     <message>
         <source>line:bookmark7</source>
-        <translation type="unfinished"></translation>
+        <translation>ligne:marque-page7</translation>
     </message>
     <message>
         <source>line:bookmark8</source>
-        <translation type="unfinished"></translation>
+        <translation>ligne:marque-page8</translation>
     </message>
     <message>
         <source>line:bookmark9</source>
-        <translation type="unfinished"></translation>
+        <translation>ligne:marque-page9</translation>
     </message>
     <message>
         <source>replacement</source>
-        <translation type="unfinished"></translation>
+        <translation>remplacement</translation>
     </message>
     <message>
         <source>&lt;default&gt;</source>
-        <translation type="unfinished">&lt;défaut&gt;</translation>
+        <translation>&lt;défaut&gt;</translation>
     </message>
     <message>
         <source>structure</source>
-        <translation type="unfinished"></translation>
+        <translation>structure</translation>
     </message>
     <message>
         <source>styleHint</source>
-        <translation type="unfinished"></translation>
+        <translation>Conseil de Style</translation>
     </message>
     <message>
         <source>latexSyntaxMistake</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur de syntaxe LaTeX</translation>
     </message>
 </context>
 <context>
@@ -3323,30 +3327,30 @@ Voulez-vous l&apos;enregistrer ?</translation>
     </message>
     <message>
         <source>environment-name</source>
-        <translation type="unfinished"></translation>
+        <translation>nom-environnement</translation>
     </message>
 </context>
 <context>
     <name>QSearchReplacePanel</name>
     <message>
         <source>Count result</source>
-        <translation type="unfinished"></translation>
+        <translation>Compter les résultats</translation>
     </message>
     <message>
         <source>The search text occurs %1 times after the current cursor. Do you want to restart from the beginning of the scope?</source>
-        <translation type="unfinished"></translation>
+        <translation>Il existe %1 occurences après le curseur. Rechercher depuis le début du texte?</translation>
     </message>
     <message>
         <source>The search text occurs %1 times within the search scope.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il existe %1 occurence dans la zone de recherche.</translation>
     </message>
     <message>
         <source>Enables case sensitive search.</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche sensible à la casse.</translation>
     </message>
     <message>
         <source>Only searches for whole words.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chercher seulement les mots entiers.</translation>
     </message>
     <message>
         <source>This interprets the search text as a regular expression.
@@ -3354,28 +3358,33 @@ Some common regexps:
  r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,
  () groups expressions together, [xyz] will find x,y, or z, . matches everything, \. matches .
 You can use \1 to \9 in the replace text to insert a submatch.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceci interprète le texte à chercher comme un expression régulière.
+Quelques expressions régulières communes:
+ r* va trouver tous les r, r+ équivaut à rr*, a? va trouver les a seuls,
+ () groupe des expressions, [xyz] va trouver x,y, ou z, . trouve tout, \. trouve .
+Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une sous-occurence.</translation>
     </message>
     <message>
         <source>Highlights search matches and replaced text.</source>
-        <translation type="unfinished"></translation>
+        <translation>Surligne les occurences et le texte remplacé.</translation>
     </message>
     <message>
         <source>Starts the search from the current cursor position.</source>
-        <translation type="unfinished"></translation>
+        <translation>Commence la recherche à partir de la position actuelle du curseur.</translation>
     </message>
     <message>
         <source>Only searches in the selected text.</source>
-        <translation type="unfinished"></translation>
+        <translation>Limiter la recherche au texte sélectionné.</translation>
     </message>
     <message>
         <source>Ask before any match is replaced.</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirmer avant chaque remplacement.</translation>
     </message>
     <message>
         <source>Enables the use of escape characters. These are:
  \n = new line, \r = carriage return, \t = tab, \\ = \, \0 = ascii 0 </source>
-        <translation type="unfinished"></translation>
+        <translation>Activer l&apos;usage de caractères d&apos;échappement. A savoir:
+ \n = nouvelle ligne, \r = retour chariot, \t = tabulation, \\ = \, \0 = 0 ascii</translation>
     </message>
 </context>
 <context>
@@ -3605,11 +3614,11 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     </message>
     <message>
         <source>Find next occurence</source>
-        <translation type="unfinished">Cherche l&apos;occurence suivante</translation>
+        <translation>Chercher l&apos;occurence suivante</translation>
     </message>
     <message>
         <source>Find previous occurence</source>
-        <translation type="unfinished">Cherche l&apos;occurence précédente</translation>
+        <translation>Chercher l&apos;occurence précédente</translation>
     </message>
     <message>
         <source>all</source>
@@ -3617,43 +3626,44 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     </message>
     <message>
         <source>Prompt on replace</source>
-        <translation type="unfinished">Demander confirmation</translation>
+        <translation>Confirmer avant remplacement</translation>
     </message>
     <message>
         <source>Replace all</source>
-        <translation type="unfinished">Remplacer tout</translation>
+        <translation>Remplacer tout</translation>
     </message>
     <message>
         <source>Escape sequences</source>
-        <translation type="unfinished">Séq. d&apos;échappement</translation>
+        <translation>Séquences d&apos;échappement</translation>
     </message>
     <message>
         <source>Case</source>
-        <translation type="unfinished">Sensible à la casse</translation>
+        <translation>Sensible à la casse</translation>
     </message>
     <message>
         <source>Words</source>
-        <translation type="unfinished">Mots</translation>
+        <translation>Mots</translation>
     </message>
     <message>
         <source>Regexp</source>
-        <translation type="unfinished">Exp. rég.</translation>
+        <translatorcomment>Expression régulière?</translatorcomment>
+        <translation>Exp. rég.</translation>
     </message>
     <message>
         <source>Highlight all</source>
-        <translation type="unfinished">Surligner tout</translation>
+        <translation>Surligner tout</translation>
     </message>
     <message>
         <source>Cursor</source>
-        <translation type="unfinished">Curseur</translation>
+        <translation>Curseur</translation>
     </message>
     <message>
         <source>Selection</source>
-        <translation type="unfinished">Sélection</translation>
+        <translation>Sélection</translation>
     </message>
     <message>
         <source>Close search/replace panel</source>
-        <translation type="unfinished">Fermer panneau chercher/remplacer</translation>
+        <translation>Fermer le panneau chercher/remplacer</translation>
     </message>
     <message>
         <source>Refresh search underlying context (as an attempt to correct search behavior)</source>
@@ -3661,23 +3671,23 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     </message>
     <message>
         <source> Find :</source>
-        <translation type="unfinished">Chercher :</translation>
+        <translation>Chercher:</translation>
     </message>
     <message>
         <source>Replacement text</source>
-        <translation type="unfinished">Texte de remplacement</translation>
+        <translation>Texte de remplacement</translation>
     </message>
     <message>
         <source>Text or pattern to search for</source>
-        <translation type="unfinished">Texte ou motif à chercher</translation>
+        <translation>Texte ou motif à chercher</translation>
     </message>
     <message>
         <source>Replace :</source>
-        <translation type="unfinished">Remplacer :</translation>
+        <translation>Remplacer:</translation>
     </message>
     <message>
         <source>Count occurences</source>
-        <translation type="unfinished"></translation>
+        <translation>Compter les occurences</translation>
     </message>
 </context>
 <context>
@@ -3716,7 +3726,8 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <source>Sorry, you clicked in the wrong column.
 To change a shortcut, you have to edit the third or fourth column.</source>
-        <translation type="unfinished"></translation>
+        <translation>Désolé, vous avez cliqué dans la mauvaise colonne.
+Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</translation>
     </message>
 </context>
 <context>
@@ -3820,31 +3831,31 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     <name>SyntaxCheck</name>
     <message>
         <source>no error</source>
-        <translation type="unfinished"></translation>
+        <translation>pas d&apos;erreur</translation>
     </message>
     <message>
         <source>unrecognized command</source>
-        <translation type="unfinished"></translation>
+        <translation>commande inconnue</translation>
     </message>
     <message>
         <source>unrecognized math command</source>
-        <translation type="unfinished"></translation>
+        <translation>commande mathématique inconnue</translation>
     </message>
     <message>
         <source>unrecognized tabular command</source>
-        <translation type="unfinished"></translation>
+        <translation>commande de tabulation inconnue</translation>
     </message>
     <message>
         <source>tabular command outside tabular env</source>
-        <translation type="unfinished"></translation>
+        <translation>commande de tabulation en dehors de l&apos;environnement adéquat</translation>
     </message>
     <message>
         <source>math command outside math env</source>
-        <translation type="unfinished"></translation>
+        <translation>commande mathématique en dehors de l&apos;environnement adéquat</translation>
     </message>
     <message>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>inconnu</translation>
     </message>
 </context>
 <context>
@@ -3895,7 +3906,7 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     </message>
     <message>
         <source>add a margin with the horizontal line</source>
-        <translation type="unfinished"></translation>
+        <translation>ajouter une marge à la ligne horizontale</translation>
     </message>
 </context>
 <context>
@@ -4937,27 +4948,28 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     <message>
         <source>LaTeX</source>
         <comment>Status</comment>
-        <translation type="unfinished"></translation>
+        <translation>LaTeX</translation>
     </message>
     <message>
         <source>&amp;Idefix (?)</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>???</translatorcomment>
+        <translation>TeXédit</translation>
     </message>
     <message>
         <source>TeX files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers TeX</translation>
     </message>
     <message>
         <source>Insert hard line breaks after so many characters:</source>
-        <translation type="unfinished"></translation>
+        <translation>Forcer des changements de ligne après le nombre de caractères suivant:</translation>
     </message>
     <message>
         <source>Smart scope selecting</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélection intelligente</translation>
     </message>
     <message>
         <source>Join lines before wrapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Joindre les lignes avant d&apos;enrouler</translation>
     </message>
     <message>
         <source>add row</source>
@@ -4965,110 +4977,111 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>Table</source>
-        <translation type="unfinished"></translation>
+        <translation>Table</translation>
     </message>
     <message>
         <source>Insert Unicode Character...</source>
-        <translation type="unfinished"></translation>
+        <translation>Insérer un caractère unicode...</translation>
     </message>
     <message>
         <source>You have to save the file before switching to master mode!</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauver le document avant de passer en mode maître!</translation>
     </message>
     <message>
         <source>Central</source>
-        <translation type="unfinished"></translation>
+        <translation>Central</translation>
     </message>
     <message>
         <source>Find word repetitions...</source>
-        <translation type="unfinished"></translation>
+        <translation>Trouver les répétitions de mots...</translation>
     </message>
     <message>
         <source>&amp;Find next</source>
-        <translation type="unfinished"></translation>
+        <translation>Trouver &amp;Suivant</translation>
     </message>
     <message>
         <source>&amp;Find previous</source>
-        <translation type="unfinished"></translation>
+        <translation>Trouver &amp;Précédent</translation>
     </message>
     <message>
         <source>C&amp;onvert Source to Html...</source>
-        <translation type="unfinished"></translation>
+        <translation>C&amp;onvertir la source en Html...</translation>
     </message>
     <message>
         <source>Problem</source>
-        <translation type="unfinished"></translation>
+        <translation>Problème</translation>
     </message>
     <message>
         <source>Finding word repetitions only works with activated online spell checking !</source>
-        <translation type="unfinished"></translation>
+        <translation>La recherche de répétitions fonctionne seulement avec la vérification orthographique activée!</translation>
     </message>
     <message>
         <source>Save all current settings</source>
         <comment>menu</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sauver les réglages courants</translation>
     </message>
     <message>
         <source>Manipulate tables</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Manipuler des tableaux</translation>
     </message>
     <message>
         <source>add row</source>
         <comment>table</comment>
-        <translation type="unfinished">ajouter ligne</translation>
+        <translation>ajouter ligne</translation>
     </message>
     <message>
         <source>add column</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>ajouter colonne</translation>
     </message>
     <message>
         <source>remove row</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>supprimer ligne</translation>
     </message>
     <message>
         <source>remove column</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>supprimer colonne</translation>
     </message>
     <message>
         <source>cut column</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>couper colonne</translation>
     </message>
     <message>
         <source>paste column</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>coller colonne</translation>
     </message>
     <message>
         <source>add \hline</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>ajouter \hline</translation>
     </message>
     <message>
         <source>remove \hline</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>supprimer \hline</translation>
     </message>
     <message>
         <source>Could not open browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;ouvrir le navigateur</translation>
     </message>
     <message>
         <source>SVN &amp;update...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Mise à jour SVN...</translation>
     </message>
     <message>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TexMakerX that was compiled without the internal pdf viewer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous cherchez à ouvrir la visionneuse pdf interne.
+Cependant, cette version de TexMakerX a été compilée sans le support de cette fonction.</translation>
     </message>
     <message>
         <source>Insert Graphic</source>
-        <translation type="unfinished"></translation>
+        <translation>Insérer un graphe</translation>
     </message>
 </context>
 <context>
@@ -5373,31 +5386,31 @@ Sinon la ponctuation est ignorée.</translation>
     <name>UserQuickDialog</name>
     <message>
         <source>Quick Build Command</source>
-        <translation type="unfinished">Commande de compilation rapide</translation>
+        <translation>Commande de compilation rapide</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter</translation>
     </message>
     <message>
         <source>Ordered list of commands :</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste de commandes ordonnée:</translation>
     </message>
     <message>
         <source>Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Haut</translation>
     </message>
     <message>
         <source>Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Bas</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Effacer</translation>
     </message>
     <message>
         <source>User</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilisateur</translation>
     </message>
 </context>
 <context>
@@ -5432,7 +5445,7 @@ Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
 </context>
 <context>
@@ -5629,43 +5642,43 @@ Les fichiers html sont situés dans le répertoire %1.</translation>
     </message>
     <message>
         <source>Can&apos;t open</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouverture impossible</translation>
     </message>
     <message>
         <source>not found</source>
-        <translation type="unfinished"></translation>
+        <translation>introuvable</translation>
     </message>
     <message>
         <source>Compiling input file. Please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Compilation du fichier. Patientez s&apos;il vous plaît...</translation>
     </message>
     <message>
         <source>Scanning files. Please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Balayage des fichiers. Patientez s&apos;il vous plaît...</translation>
     </message>
     <message>
         <source>Writing page</source>
-        <translation type="unfinished"></translation>
+        <translation>Création de la page</translation>
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished"></translation>
+        <translation>de</translation>
     </message>
     <message>
         <source>Writing index page</source>
-        <translation type="unfinished"></translation>
+        <translation>Création de la page d&apos;index</translation>
     </message>
     <message>
         <source>Fatal error : </source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur fatale: </translation>
     </message>
     <message>
         <source>LaTeX errors detected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreurs LaTeX détectées </translation>
     </message>
     <message>
         <source>TeX files (*.tex);;All files (*.*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers TeX (*.tex);; Tous les fichiers (*.*)</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -5674,7 +5687,12 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;LaTeX to Html conversion tool&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; color:#000000;&quot;&gt;Copyright 2004-2006 P.Brachet &amp;amp; J.Amblard&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;Outil de conversion de LaTeX &amp;agrave; Html&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; color:#000000;&quot;&gt;Copyright 2004-2006 P. Brachet &amp;amp; J. Amblard&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
