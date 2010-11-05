@@ -3009,16 +3009,17 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
 	}
 	*/
 
-	m_cursor.beginEditBlock();
+	if ( e->commitString().count() ) {
+		m_cursor.beginEditBlock();
 
-        if ( e->commitString().count() ){
 		m_cursor.insertText(e->commitString());
 #ifdef Q_WS_MACX
 		if(QSysInfo::MacintoshVersion<QSysInfo::MV_10_6)
-		    m_blockKey=true;
+			m_blockKey=true;
 #endif
-            }
-	m_cursor.endEditBlock();
+
+		m_cursor.endEditBlock();
+	}
 
 	foreach ( QEditorInputBindingInterface *b, m_bindings )
 		b->postInputMethodEvent(e, this);

@@ -425,7 +425,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		virtual void timerEvent(QTimerEvent *e);
 		
 		virtual void keyPressEvent(QKeyEvent *e);
-		
+	public:
 		virtual void inputMethodEvent(QInputMethodEvent* e);
 		
 		virtual void mouseMoveEvent(QMouseEvent *e);

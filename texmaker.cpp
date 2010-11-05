@@ -1023,6 +1023,10 @@ void Texmaker::fileNew(QString fileName) {
 	documents.addDocument(edit->document);
 
 	configureNewEditorViewEnd(edit);
+
+	QInputMethodEvent e;
+	e.setCommitString("");
+	edit->editor->inputMethodEvent(&e);
 }
 
 void Texmaker::fileAutoReloading(QString fname){
