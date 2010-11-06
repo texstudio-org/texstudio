@@ -298,13 +298,20 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 		if (!def.isEmpty()) {
 			if (def.contains("yap.exe")) {
 				def=def.trimmed();
-				if (def.endsWith("\"?am.dvi\"")) def.replace("\"?am.dvi\"",yapOptions);
-				else if (def.endsWith("?am.dvi")) def.replace("?am.dvi",yapOptions);
+				if (def.endsWith("\"?am.dvi\"")){
+				    def.replace("\"?am.dvi\"",yapOptions);
+				} else if (def.endsWith("?am.dvi")) {
+				    def.replace("?am.dvi",yapOptions);
+				} else if (def.endsWith(" /dde")) {
+				    def.replace(" /dde",yapOptions);
+				}
 			}
 			return def;
 		}
 		def=searchBaseCommand("yap",yapOptions);//,true);
 		if (!def.isEmpty()) return def;
+		else if (QFileInfo("C:/Program Files/MiKTeX 2.9/miktex/bin/yap.exe").exists())
+			return "\"C:/Program Files/MiKTeX 2.9/miktex/bin/yap.exe\" " + yapOptions;
 		else if (QFileInfo("C:/Program Files/MiKTeX 2.8/miktex/bin/yap.exe").exists())
 			return "\"C:/Program Files/MiKTeX 2.8/miktex/bin/yap.exe\" " + yapOptions;
 		else if (QFileInfo("C:/Program Files/MiKTeX 2.7/miktex/bin/yap.exe").exists())
