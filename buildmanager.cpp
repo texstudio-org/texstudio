@@ -407,7 +407,7 @@ QString BuildManager::baseCommandName(LatexCommand cmd){
 }
 QString BuildManager::defaultCommandOptions(LatexCommand cmd){
 	switch (cmd){
-		case CMD_LATEX: return "-interaction=nonstopmode %.tex";
+		case CMD_LATEX: return "-src -interaction=nonstopmode %.tex";
 		case CMD_DVIPS: return "-o %.ps %.dvi";
 		case CMD_DVIPNG: return "-T tight -D 120 %.dvi";
 		case CMD_PS2PDF: return "%.ps";
