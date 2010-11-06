@@ -1261,11 +1261,11 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <source>Auto Complete Parentheses</source>
-        <translation type="unfinished"></translation>
+        <translation>Klammern automatisch schließen</translation>
     </message>
     <message>
         <source>Mouse Wheel Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Mausrad-Vergrößerung</translation>
     </message>
 </context>
 <context>
