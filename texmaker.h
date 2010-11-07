@@ -257,7 +257,7 @@ private slots:
 	void InsertSymbolPressed(QTableWidgetItem *item);
 	void InsertXmlTag(QListWidgetItem *item);	
 	void insertXmlTagFromToolButtonAction();
-	void insertFromActionFromToolButtonAction();
+	void callToolButtonAction();
 	void InsertFromAction();
 	void InsertBib();
 	void InsertStruct();
