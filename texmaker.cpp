@@ -733,7 +733,7 @@ void Texmaker::setupToolBars() {
                         foreach (const QAction* act, menu->actions())
                             if (!act->isSeparator())
                                 list.append(act->text());
-			QToolButton* combo=createComboToolButton(mtb.toolbar,list,comboSpell->height(),fontMetrics,this,SLOT(insertFromActionFromToolButtonAction()));
+			QToolButton* combo=createComboToolButton(mtb.toolbar,list,comboSpell->height(),fontMetrics,this,SLOT(callToolButtonAction()));
                         combo->setProperty("menuID", actionName);
                         mtb.toolbar->addWidget(combo);
                     }
@@ -2328,11 +2328,10 @@ void Texmaker::insertXmlTagFromToolButtonAction(){
 	currentEditorView()->editor->setFocus();
 }
 
-void Texmaker::insertFromActionFromToolButtonAction(){
-	if (!currentEditorView()) return;
+void Texmaker::callToolButtonAction(){
 	QAction *action = qobject_cast<QAction *>(sender());
 	QToolButton *button = comboToolButtonFromAction(action);
-	if (!button) return;
+	REQUIRE(button && button->defaultAction());
 	button->defaultAction()->setText(action->text());
 
 	QString menuID = button->property("menuID").toString();
