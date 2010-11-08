@@ -920,7 +920,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Basic Key Mapping</source>
-        <translation type="unfinished">Assignation de touches de base</translation>
+        <translation>Assignation de touches de base</translation>
     </message>
     <message>
         <source>Use system theme icons</source>
@@ -984,7 +984,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Segment preview</source>
-        <translation type="unfinished">Prévisualisation de la portion</translation>
+        <translation>Prévisualisation de la portion</translation>
     </message>
     <message>
         <source>Command:</source>
@@ -1033,7 +1033,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <source>Scaled size</source>
         <translatorcomment>???</translatorcomment>
-        <translation type="unfinished">Taille d&apos;échelle</translation>
+        <translation>Mise à l&apos;échelle</translation>
     </message>
     <message>
         <source>%</source>
@@ -1081,12 +1081,12 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Disable fixed pitch mode</source>
-        <translation type="unfinished">Désactiver le mode à hauteur fixe</translation>
+        <translation>Désactiver le mode à hauteur fixe</translation>
     </message>
     <message>
         <source>Disable cache of character width</source>
         <translatorcomment>?</translatorcomment>
-        <translation type="unfinished">Désactiver la taille du cache de caractère</translation>
+        <translation>Désactiver la taille du cache de caractère</translation>
     </message>
     <message>
         <source>Auto Complete Parentheses</source>
@@ -3006,13 +3006,12 @@ Rafraîchir en rouvrant le fichier ?</translation>
     </message>
     <message>
         <source>Create cursor mirror up</source>
-        <translatorcomment>??</translatorcomment>
-        <translation type="unfinished"></translation>
+        <translation>Créer un curseur miroir.au-dessus</translation>
     </message>
     <message>
         <source>Create cursor mirror down</source>
         <translatorcomment>???</translatorcomment>
-        <translation type="unfinished"></translation>
+        <translation>Créer un curseur miroir.au-dessous</translation>
     </message>
     <message>
         <source>Next placeholder</source>
@@ -3228,7 +3227,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     </message>
     <message>
         <source>line:badbox</source>
-        <translation type="unfinished"></translation>
+        <translation>ligne:dépassement de marge</translation>
     </message>
     <message>
         <source>line:bookmark</source>
