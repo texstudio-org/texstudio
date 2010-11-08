@@ -114,6 +114,8 @@ environments in smallUsefulFunctions.cpp)
 		<stop parenthesis="mathD2:close" parenthesisWeight="40" fold="1" >\\\]</stop>
 		<start parenthesis="mathD3:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{equation}</start>
 		<stop parenthesis="mathD3:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{equation}</stop>
+		<start parenthesis="mathD4:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{equation\*}</start>
+		<stop parenthesis="mathD4:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{equation\*}</stop>
 
 		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
 	</context>
