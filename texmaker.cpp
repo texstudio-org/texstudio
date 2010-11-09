@@ -2509,7 +2509,26 @@ void Texmaker::QuickGraphics(){
 	}
 	insert.append("\\includegraphics");
 	if(!graphicsDlg->ui.leScale->text().isEmpty()) insert.append("["+graphicsDlg->ui.leScale->text()+"]");
-	insert.append("{"+graphicsDlg->ui.lineEdit->text()+"}\n");
+	QString fname=graphicsDlg->ui.lineEdit->text();
+	QFileInfo info(fname);
+	if(info.isAbsolute()){
+	    QFileInfo docInfo=currentEditorView()->document->getFileInfo();
+	    QString path=docInfo.absolutePath();
+	    QString filepath=info.absolutePath();
+	    if(filepath.startsWith(path)){
+		fname=filepath.mid(path.length()+1)+"/"+info.completeBaseName();
+	    }
+	}
+	info.setFile(fname);
+	fname=info.path();
+	if(!fname.isEmpty()) fname+="/"+info.completeBaseName();
+#ifdef Q_OS_WIN
+	//restore native separators if original filename contains native separators
+	if(graphicsDlg->ui.lineEdit->text().contains(QDir::separator())){
+	    fname=QDir::toNativeSeparators(fname);
+	}
+#endif
+	insert.append("{"+fname+"}\n");
 	// caption below ?
 	if(graphicsDlg->ui.cbPosition->currentIndex()==1){
 	    if(!graphicsDlg->ui.leCaption->text().isEmpty()) insert.append("\\caption{"+graphicsDlg->ui.leCaption->text()+"}\n");
