@@ -151,8 +151,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>793</width>
-            <height>577</height>
+            <width>785</width>
+            <height>563</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -963,9 +963,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
          <attribute name="headerDefaultSectionSize">
           <number>250</number>
          </attribute>
-         <attribute name="headerDefaultSectionSize">
-          <number>250</number>
-         </attribute>
          <column>
           <property name="text">
            <string>1</string>
@@ -1454,6 +1451,13 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QCheckBox" name="checkBoxHackDisableAccentWorkaround">
+            <property name="text">
+             <string>Disable work-around on accent typing (mac os x only)</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -1482,9 +1486,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
          <property name="columnCount">
           <number>2</number>
          </property>
-         <attribute name="horizontalHeaderDefaultSectionSize">
-          <number>200</number>
-         </attribute>
          <attribute name="horizontalHeaderDefaultSectionSize">
           <number>200</number>
          </attribute>

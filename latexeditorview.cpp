@@ -212,6 +212,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	connect(LatexEditorView::speller,SIGNAL(reloadDictionary()),this,SLOT(dictionaryReloaded()));
 
 	//editor->setFlag(QEditor::CursorJumpPastWrap,false);
+	editor->disableAccentHack(config->hackDisableAccentWorkaround);
 
 	editor->setInputBinding(defaultInputBinding);
 	editor->document()->setLineEnding(QDocument::Local);
