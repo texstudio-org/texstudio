@@ -308,7 +308,7 @@ QEditor::QEditor(QWidget *p)
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-		mDisplayModifyTime(true),m_UseLineForSearch(false),m_blockKey(false),m_LineWidth(0)
+		mDisplayModifyTime(true),m_UseLineForSearch(false),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0)
 {
 	m_editors << this;
 
@@ -327,7 +327,7 @@ QEditor::QEditor(bool actions, QWidget *p,QDocument *doc)
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-		mDisplayModifyTime(true),m_UseLineForSearch(false),m_blockKey(false),m_LineWidth(0)
+		mDisplayModifyTime(true),m_UseLineForSearch(false),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0)
 {
 	m_editors << this;
 
@@ -349,7 +349,7 @@ QEditor::QEditor(const QString& s, QWidget *p)
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-		mDisplayModifyTime(true),m_UseLineForSearch(false),m_blockKey(false),m_LineWidth(0)
+		mDisplayModifyTime(true),m_UseLineForSearch(false),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0)
 {
 	m_editors << this;
 
@@ -372,7 +372,7 @@ QEditor::QEditor(const QString& s, bool actions, QWidget *p)
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-		mDisplayModifyTime(true),m_UseLineForSearch(false),m_blockKey(false),m_LineWidth(0)
+		mDisplayModifyTime(true),m_UseLineForSearch(false),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0)
 {
 	m_editors << this;
 
@@ -3014,7 +3014,7 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
 
 		m_cursor.insertText(e->commitString());
 #ifdef Q_WS_MACX
-		if(QSysInfo::MacintoshVersion<QSysInfo::MV_10_6)
+		if(QSysInfo::MacintoshVersion<QSysInfo::MV_10_6 && !m_disableAccentHack)
 			m_blockKey=true;
 #endif
 

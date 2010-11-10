@@ -293,6 +293,11 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		static void addEditOperation(const EditOperation& op, const Qt::KeyboardModifiers& modifiers, const Qt::Key& key);
 		static void addEditOperation(const EditOperation& op, const QKeySequence::StandardKey& key);
 		EditOperation getEditOperation(const Qt::KeyboardModifiers& modifiers, const Qt::Key& key);
+
+		void disableAccentHack(bool disable){
+		    m_disableAccentHack=disable;
+		}
+
 	public slots:
 		void undo();
 		void redo();
@@ -585,7 +590,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		bool m_UseLineForSearch;
 		bool m_UseTabforMoveToPlaceholder;
 
-                bool m_blockKey;
+		bool m_blockKey,m_disableAccentHack;
 
 		int m_lastLine,m_lastColumn,m_hoverCount;
 

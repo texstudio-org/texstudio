@@ -25,7 +25,7 @@ public:
 	static QString translateEditOperation(int key);
 	static QList<int> possibleEditOperations();
 	bool mouseWheelZoom;
-	bool hackDisableFixedPitch, hackDisableWidthCache;
+	bool hackDisableFixedPitch, hackDisableWidthCache,hackDisableAccentWorkaround;
 
 private:
 };
