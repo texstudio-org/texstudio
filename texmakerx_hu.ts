@@ -962,6 +962,10 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <source>Mouse Wheel Zoom</source>
         <translation>Nagyítás az egérgörgővel</translation>
     </message>
+    <message>
+        <source>Disable work-around on accent typing (mac os x only)</source>
+        <translation>Kerülő megoldás kiiktatása ékezetek gépelésekor (csak Mac OS X esetén)</translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
