@@ -1267,6 +1267,10 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <source>Mouse Wheel Zoom</source>
         <translation>Mausrad-Vergrößerung</translation>
     </message>
+    <message>
+        <source>Disable work-around on accent typing (mac os x only)</source>
+        <translation>Akzenttastenblockade deaktivieren (nur MacOSX)</translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -4399,7 +4403,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Co&amp;mment</source>
-        <translation>&amp;Kommentar</translation>
+        <translation type="obsolete">&amp;Kommentar</translation>
     </message>
     <message>
         <source>Indent</source>
@@ -4407,7 +4411,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>In&amp;dent</source>
-        <translation>Einrücken</translation>
+        <translation type="obsolete">Einrücken</translation>
     </message>
     <message>
         <source>Find</source>
@@ -4992,11 +4996,11 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Hard Line &amp;Break...</source>
-        <translation>Zeilenum&amp;brüche...</translation>
+        <translation>&amp;Zeilenumbrüche...</translation>
     </message>
     <message>
         <source>R&amp;epeat Hard Line Break</source>
-        <translation>Z&amp;eilenumbrüche wiederholen</translation>
+        <translation>Zeilenumbrüche wieder&amp;holen</translation>
     </message>
     <message>
         <source>Find &amp;Next</source>
@@ -5317,11 +5321,11 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>&amp;Uncomment</source>
-        <translation>Komme&amp;ntar entfernen</translation>
+        <translation>K&amp;ommentar entfernen</translation>
     </message>
     <message>
         <source>Unind&amp;ent</source>
-        <translation>A&amp;usrücken</translation>
+        <translation type="obsolete">A&amp;usrücken</translation>
     </message>
     <message>
         <source>Vie&amp;w PS</source>
@@ -5765,6 +5769,18 @@ Allerdings wird eine Version von TexMakerX benutzt, bei dem diese Funktion nicht
     <message>
         <source>Insert Graphic</source>
         <translation>Grafik einfügen</translation>
+    </message>
+    <message>
+        <source>&amp;Comment</source>
+        <translation>In &amp;Kommentar umwandeln</translation>
+    </message>
+    <message>
+        <source>&amp;Indent</source>
+        <translation>E&amp;inrücken</translation>
+    </message>
+    <message>
+        <source>Unin&amp;dent</source>
+        <translation>A&amp;usrücken</translation>
     </message>
 </context>
 <context>

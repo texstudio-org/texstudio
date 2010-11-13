@@ -1083,6 +1083,10 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <source>Mouse Wheel Zoom</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Disable work-around on accent typing (mac os x only)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -4112,11 +4116,11 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     </message>
     <message>
         <source>Co&amp;mment</source>
-        <translation type="unfinished">Commenta</translation>
+        <translation type="obsolete">Commenta</translation>
     </message>
     <message>
         <source>In&amp;dent</source>
-        <translation>Indent</translation>
+        <translation type="obsolete">Indent</translation>
     </message>
     <message>
         <source>Hard Line &amp;Break...</source>
@@ -4220,7 +4224,7 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     </message>
     <message>
         <source>Unind&amp;ent</source>
-        <translation>Unident</translation>
+        <translation type="obsolete">Unident</translation>
     </message>
     <message>
         <source>R&amp;epeat Hard Line Break</source>
@@ -5102,6 +5106,18 @@ However, you are using a version of TexMakerX that was compiled without the inte
     </message>
     <message>
         <source>Insert Graphic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Indent</source>
+        <translation type="unfinished">&amp;Indent</translation>
+    </message>
+    <message>
+        <source>Unin&amp;dent</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

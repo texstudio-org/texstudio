@@ -4068,7 +4068,7 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
     <message>
         <source>Co&amp;mment</source>
-        <translation>Meg&amp;jegyzés</translation>
+        <translation type="obsolete">Meg&amp;jegyzés</translation>
     </message>
     <message>
         <source>&amp;Uncomment</source>
@@ -4076,11 +4076,11 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
     <message>
         <source>In&amp;dent</source>
-        <translation>Be&amp;húzás</translation>
+        <translation type="obsolete">Be&amp;húzás</translation>
     </message>
     <message>
         <source>Unind&amp;ent</source>
-        <translation>Behúzás me&amp;gszüntetése</translation>
+        <translation type="obsolete">Behúzás me&amp;gszüntetése</translation>
     </message>
     <message>
         <source>Hard Line &amp;Break...</source>
@@ -4712,6 +4712,18 @@ However, you are using a version of TexMakerX that was compiled without the inte
     <message>
         <source>Insert Graphic</source>
         <translation>Kép beszúrása</translation>
+    </message>
+    <message>
+        <source>&amp;Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Indent</source>
+        <translation type="unfinished">Be&amp;húzás</translation>
+    </message>
+    <message>
+        <source>Unin&amp;dent</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
