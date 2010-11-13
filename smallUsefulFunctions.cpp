@@ -648,7 +648,7 @@ QRegExp generateRegExp(const QString &text,const bool isCase,const bool isWord, 
 void addEnvironmentToDom(QDomDocument& doc,const QString EnvironName,const QString EnvironMode){
 	QDomElement root= doc.documentElement();
 	QDomElement tag = doc.createElement("context");
-	tag.setAttribute("id","myVerb");
+	tag.setAttribute("id",EnvironMode=="numbers"?"mathMyEnv":"myVerb");
 	tag.setAttribute("format",EnvironMode);
 	tag.setAttribute("transparency","true");
 	QDomElement child1 = doc.createElement("start");
