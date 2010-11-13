@@ -471,6 +471,7 @@ isEmpty(NO_POPPLER_PREVIEW){
 
 !isEmpty(NO_POPPLER_PREVIEW){
     DEFINES += NO_POPPLER_PREVIEW
+    message("Internal pdf previewer disabled as you wish.")
 }
 
 # ###############################

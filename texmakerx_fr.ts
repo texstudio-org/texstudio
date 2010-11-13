@@ -1096,6 +1096,10 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <source>Mouse Wheel Zoom</source>
         <translation>Zoom à la molette</translation>
     </message>
+    <message>
+        <source>Disable work-around on accent typing (mac os x only)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -4135,7 +4139,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Co&amp;mment</source>
-        <translation>Commen&amp;ter</translation>
+        <translation type="obsolete">Commen&amp;ter</translation>
     </message>
     <message>
         <source>Indent</source>
@@ -4143,7 +4147,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>In&amp;dent</source>
-        <translation>&amp;Indenter</translation>
+        <translation type="obsolete">&amp;Indenter</translation>
     </message>
     <message>
         <source>Hard Line Break</source>
@@ -4479,7 +4483,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Unind&amp;ent</source>
-        <translation>Désind&amp;enter</translation>
+        <translation type="obsolete">Désind&amp;enter</translation>
     </message>
     <message>
         <source>R&amp;epeat Hard Line Break</source>
@@ -5081,6 +5085,18 @@ Cependant, cette version de TexMakerX a été compilée sans le support de cette
     <message>
         <source>Insert Graphic</source>
         <translation>Insérer un graphe</translation>
+    </message>
+    <message>
+        <source>&amp;Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Indent</source>
+        <translation>&amp;Indenter</translation>
+    </message>
+    <message>
+        <source>Unin&amp;dent</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

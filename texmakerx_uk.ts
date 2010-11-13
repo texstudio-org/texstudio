@@ -1255,6 +1255,10 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <source>Mouse Wheel Zoom</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Disable work-around on accent typing (mac os x only)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -5313,18 +5317,10 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <source>Co&amp;mment</source>
-        <translation type="unfinished">Закоментувати</translation>
+        <translation type="obsolete">Закоментувати</translation>
     </message>
     <message>
         <source>&amp;Uncomment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>In&amp;dent</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unind&amp;ent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5658,6 +5654,18 @@ However, you are using a version of TexMakerX that was compiled without the inte
     </message>
     <message>
         <source>Insert Graphic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Indent</source>
+        <translation type="unfinished">Відступ</translation>
+    </message>
+    <message>
+        <source>Unin&amp;dent</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

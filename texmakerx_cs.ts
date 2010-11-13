@@ -1231,6 +1231,10 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
         <source>Mouse Wheel Zoom</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Disable work-around on accent typing (mac os x only)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -4241,7 +4245,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Co&amp;mment</source>
-        <translation>Opatřit &amp;poznámkou</translation>
+        <translation type="obsolete">Opatřit &amp;poznámkou</translation>
     </message>
     <message>
         <source>Indent</source>
@@ -4249,7 +4253,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>In&amp;dent</source>
-        <translation>Odsadit</translation>
+        <translation type="obsolete">Odsadit</translation>
     </message>
     <message>
         <source>Find</source>
@@ -5167,7 +5171,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Unind&amp;ent</source>
-        <translation>Zrušit odsazení</translation>
+        <translation type="obsolete">Zrušit odsazení</translation>
     </message>
     <message>
         <source>Vie&amp;w PS</source>
@@ -5574,6 +5578,18 @@ Používáte ovšem verzi programu TexMakerX, která byla sestavena bez vnitřn�
     </message>
     <message>
         <source>Insert Graphic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Indent</source>
+        <translation type="unfinished">&amp;Odsadit</translation>
+    </message>
+    <message>
+        <source>Unin&amp;dent</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
