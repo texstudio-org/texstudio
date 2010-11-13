@@ -47,7 +47,10 @@ void CodeSnippetTest::initTestCase(){
 	ed->setFlag(QEditor::HardLineWrap, false);
 }
 
+
 void CodeSnippetTest::insert_data(){
+	const QString translatedEnvironmentName = QObject::tr("environment-name");
+
 	QTest::addColumn<QString>("editorText");
 	QTest::addColumn<int>("editorFlags");
 	QTest::addColumn<int>("editorFlagMask");
@@ -150,9 +153,9 @@ void CodeSnippetTest::insert_data(){
 			<< "abcd\nefgh"
 			<< i*(int)QEditor::AutoIndent << (int)(QEditor::AutoIndent|QEditor::ReplaceTabs) << 0 << 2
 			<< "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>"
-			<< "ab\\begin{environment-name}\n"+content+"\n\\end{environment-name}cd\nefgh"
-			<< CP(0,9,25,
-			   QList<CP>() << CP(0,9,25, QList<CP>() << CP(2,5,21))
+			<< "ab\\begin{"+translatedEnvironmentName+"}\n"+content+"\n\\end{"+translatedEnvironmentName+"}cd\nefgh"
+			<< CP(0,9,9 + translatedEnvironmentName.length(),
+			   QList<CP>() << CP(0,9,9+ translatedEnvironmentName.length(), QList<CP>() << CP(2,5,5+translatedEnvironmentName.length()))
 				       << CP(1,i,content.length()));
 	}
 
@@ -343,6 +346,8 @@ void CodeSnippetTest::insert(){
 	ed->clearPlaceHolders();
 }
 void CodeSnippetTest::nestedInsert_data(){
+	const QString translatedEnvironmentName = QObject::tr("environment-name");
+
 	QTest::addColumn<QString>("editorText");
 	QTest::addColumn<int>("editorAutoIndent");
 	QTest::addColumn<int>("cy");
@@ -480,18 +485,18 @@ void CodeSnippetTest::nestedInsert_data(){
 			<< "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>"
 			<< 1
 			<< "testenv"
-			<< "test\\begin{environment-name}\n"+indent+"testenv\n\\end{environment-name}i\nng"
+			<< "test\\begin{"+translatedEnvironmentName+"}\n"+indent+"testenv\n\\end{"+translatedEnvironmentName+"}i\nng"
 			<< CP(1,i+7,
-			   QList<CP>() << CP(0,11,27, QList<CP>() << CP(2,5,5+16)) << CP(1,i,i+7)); 
+			   QList<CP>() << CP(0,11,11+ translatedEnvironmentName.length(), QList<CP>() << CP(2,5,5+ translatedEnvironmentName.length())) << CP(1,i,i+7));
 		QTest::newRow(qPrintable(withIndent.arg("begin magic with mirror changing/inserting another placehoder"))) 
 			<< "testi\nng"
 			<< 2*i-1 << 0 << 4
 			<< "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>"
 			<< 1
 			<< "\\miau{%<testenv%>}"
-			<< "test\\begin{environment-name}\n"+indent+"\\miau{"+content+"}\n\\end{environment-name}i\nng"
+			<< "test\\begin{"+translatedEnvironmentName+"}\n"+indent+"\\miau{"+content+"}\n\\end{"+translatedEnvironmentName+"}i\nng"
 			<< CP(1,i+6,i+6+content.length(),
-			   QList<CP>() << CP(0,11,27, QList<CP>() << CP(2,5,5+16)) 
+			   QList<CP>() << CP(0,11,11+ translatedEnvironmentName.length(), QList<CP>() << CP(2,5,5+ translatedEnvironmentName.length()))
 			               << CP(1,i+6,i+6+content.length())); 
 		QTest::newRow(qPrintable(withIndent.arg("begin magic with nested mirrors"))) 
 			<< "testi\nng"
@@ -499,13 +504,13 @@ void CodeSnippetTest::nestedInsert_data(){
 			<< "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>"
 			<< 1
 			<< "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>"
-			<< "test\\begin{environment-name}\n"+
+			<< "test\\begin{"+translatedEnvironmentName+"}\n"+
 			    indent+"\\begin{"+content+"}\n"+ //selected text (content) is pasted to new placeholder
 				indent+indent+content+"\n"+
 				indent+"\\end{"+content+"}\n"+
-				"\\end{environment-name}i\nng"
+				"\\end{"+translatedEnvironmentName+"}i\nng"
 			<< CP(1,i+7,i+7+content.length(),
-			   QList<CP>() << CP(0,11,11+16, QList<CP>() << CP(4,5,5+16)) 
+			   QList<CP>() << CP(0,11,11+ translatedEnvironmentName.length(), QList<CP>() << CP(4,5,5+ translatedEnvironmentName.length()))
 				       << CP(1,i+7,i+7+content.length(), QList<CP>() << CP(3,i+5,i+5+content.length()))
 			               << CP(2,2*i,2*i+content.length())); 
 		
