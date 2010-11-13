@@ -3432,8 +3432,13 @@ void Texmaker::GeneralOptions() {
 		setupToolBars();
 
 		// custom evironments
-		if(customEnvironmentExisted || !configManager.customEnvironments.isEmpty()){
+		bool customEnvironmentChanged = customEnvironmentExisted || !configManager.customEnvironments.isEmpty();
+		QLanguageDefinition *oldLaTeX = 0, *newLaTeX = 0;
+		if (customEnvironmentChanged){
 			QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)TeX");
+
+			oldLaTeX = m_lang.d;
+			Q_ASSERT(oldLaTeX);
 
 			QFile f(findResourceFile("qxs/tex.qnfa"));
 			QDomDocument doc;
@@ -3446,6 +3451,9 @@ void Texmaker::GeneralOptions() {
 			}
 			QNFADefinition::load(doc,&m_lang,dynamic_cast<QFormatScheme*>(m_formats));
 			m_languages->addLanguage(m_lang);
+
+			newLaTeX = m_lang.d;
+			Q_ASSERT(oldLaTeX != newLaTeX);
 		}
 
 		//completion
@@ -3465,9 +3473,14 @@ void Texmaker::GeneralOptions() {
 			LatexEditorView* edView=qobject_cast<LatexEditorView*>(EditorView->widget(i));
 			if (edView) {
 				QEditor* ed = edView->editor;
-				ed->setLanguageDefinition(ed->languageDefinition());
-				ed->document()->markFormatCacheDirty();
-				ed->update();
+				//if (customEnvironmentChanged) ed->highlight();
+				if (ed->languageDefinition() == oldLaTeX) {
+					ed->setLanguageDefinition(newLaTeX);
+					ed->highlight();
+				} else {
+					ed->document()->markFormatCacheDirty();
+					ed->update();
+				}
 			}
 		}
 
