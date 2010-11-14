@@ -3013,8 +3013,8 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
 		m_cursor.beginEditBlock();
 
 		m_cursor.insertText(e->commitString());
-#ifdef Q_WS_MACX
-		if(QSysInfo::MacintoshVersion<QSysInfo::MV_10_6 && !m_disableAccentHack)
+#if (QT_VERSION < 0x040700) && (defined(Q_WS_MACX))
+		if(!m_disableAccentHack)
 			m_blockKey=true;
 #endif
 
