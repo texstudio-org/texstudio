@@ -18,7 +18,8 @@ public:
         ENV_normal,
         ENV_math,
 	ENV_tabular,
-	ENV_matrix
+	ENV_matrix,
+	ENV_tabbing
     };
 
     enum ErrorType {
@@ -27,7 +28,8 @@ public:
 	ERR_unrecognizedMathCommand,
 	ERR_unrecognizedTabularCommand,
 	ERR_TabularCommandOutsideTab,
-	ERR_MathCommandOutsideMath
+	ERR_MathCommandOutsideMath,
+	ERR_TabbingCommandOutside
     };
 
     struct SyntaxLine{

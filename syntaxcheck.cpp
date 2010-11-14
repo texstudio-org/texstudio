@@ -113,8 +113,18 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 				if(activeEnv.isEmpty()) activeEnv.push(ENV_normal);
 				continue;
 			}
-			if(ignoreEnv&&(LatexParser::normalCommands.contains(word) || LatexParser::tabularCommands.contains(word) || LatexParser::userdefinedCommands.contains(word) || LatexParser::mathCommands.contains(word)) )
+			if(ignoreEnv&&(LatexParser::normalCommands.contains(word) || LatexParser::tabularCommands.contains(word) || LatexParser::userdefinedCommands.contains(word) || LatexParser::mathCommands.contains(word)|| LatexParser::tabbingCommands.contains(word)) )
 			    continue;
+			if((activeEnv.top()==ENV_tabbing)&&!LatexParser::tabbingCommands.contains(word) &&!LatexParser::normalCommands.contains(word) && !LatexParser::userdefinedCommands.contains(word)){ // extend for math coammnds
+				Error elem;
+				elem.range=QPair<int,int>(wordstart,word.length());
+				elem.type=ERR_unrecognizedCommand;
+				if(LatexParser::mathCommands.contains(word))
+					elem.type=ERR_MathCommandOutsideMath;
+				if(LatexParser::tabularCommands.contains(word))
+					elem.type=ERR_TabularCommandOutsideTab;
+				newRanges.append(elem);
+			}
 			if((activeEnv.top()==ENV_normal)&&!LatexParser::normalCommands.contains(word) && !LatexParser::userdefinedCommands.contains(word)){ // extend for math coammnds
 				Error elem;
 				elem.range=QPair<int,int>(wordstart,word.length());
@@ -123,6 +133,8 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 					elem.type=ERR_MathCommandOutsideMath;
 				if(LatexParser::tabularCommands.contains(word))
 					elem.type=ERR_TabularCommandOutsideTab;
+				if(LatexParser::tabbingCommands.contains(word))
+					elem.type=ERR_TabbingCommandOutside;
 				newRanges.append(elem);
 			}
 			if(activeEnv.top()==ENV_matrix && (word=="&" || word=="\\\\")) continue;
@@ -140,6 +152,8 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 				elem.type=ERR_unrecognizedTabularCommand;
 				if(LatexParser::mathCommands.contains(word))
 					elem.type=ERR_MathCommandOutsideMath;
+				if(LatexParser::tabbingCommands.contains(word))
+					elem.type=ERR_TabbingCommandOutside;
 				newRanges.append(elem);
 			}
 		}
@@ -158,13 +172,13 @@ QString SyntaxCheck::getErrorAt(QString &text,int pos,Environment previous){
 	// find Error at Position
 	ErrorType result=ERR_none;
 	foreach(Error elem,newRanges){
-		if(elem.range.second<pos) continue;
+		if(elem.range.second+elem.range.first<pos) continue;
 		if(elem.range.first>pos) break;
 		result=elem.type;
 	}
 	// now generate Error message
 
 	QStringList messages;
-	messages << tr("no error")<< tr("unrecognized command")<< tr("unrecognized math command")<< tr("unrecognized tabular command")<< tr("tabular command outside tabular env")<< tr("math command outside math env");
+	messages << tr("no error")<< tr("unrecognized command")<< tr("unrecognized math command")<< tr("unrecognized tabular command")<< tr("tabular command outside tabular env")<< tr("math command outside math env") << tr("tabbing command outside tabbing env");
 	return messages.value(int(result),tr("unknown"));
 }

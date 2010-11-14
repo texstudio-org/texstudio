@@ -144,6 +144,7 @@ public:
         static QSet<QString> tabularEnvirons;
         static QSet<QString> fileCommands;
 	static QSet<QString> includeCommands;
+	static QSet<QString> tabbingCommands;
         static QSet<QString> userdefinedCommands;
 	static QStringList structureCommands;
 
