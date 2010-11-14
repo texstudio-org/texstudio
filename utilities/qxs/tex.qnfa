@@ -169,6 +169,13 @@ environments in smallUsefulFunctions.cpp)
                 <sequence id="keywords/single" ambiguous="true" format="keyword">\\[a-zA-Z]+</sequence>
         </context>
 
+	<context id="tabbing" format="normal" transparency="true">
+                <start parenthesis="tabbingN1:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{tabbing}</start>
+                <stop parenthesis="tabbingN1:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{tabbing}</stop>
+
+                <sequence id="keywords/single" ambiguous="true" format="keyword">\\[a-zA-Z]+</sequence>
+        </context>
+
 	<word parenthesis="block:open@nocomplete" parenthesisWeight="30" fold="1" indent="1" ambiguous="true" format="extra-keyword">\\begin{[^}]*}</word>
 	<word parenthesis="block:close@nocomplete" parenthesisWeight="30" fold="1" indent="1" format="extra-keyword" >\\end{[^}]*}</word>
 <!--
