@@ -3860,6 +3860,10 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
         <source>unknown</source>
         <translation>inconnu</translation>
     </message>
+    <message>
+        <source>tabbing command outside tabbing env</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TabDialog</name>

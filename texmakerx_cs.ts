@@ -4030,6 +4030,10 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
         <source>unknown</source>
         <translation>Neznámý</translation>
     </message>
+    <message>
+        <source>tabbing command outside tabbing env</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TabDialog</name>

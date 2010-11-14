@@ -784,16 +784,10 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 		QToolTip::showText(tt, topic, list,QRect(-300,-200,300,600));
 	}
 }
+
 void LatexCompleter::editorDestroyed() {
 	editor=0;
 }
-
-
-
-
-
-
-
 
 void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
 	files=newFiles;

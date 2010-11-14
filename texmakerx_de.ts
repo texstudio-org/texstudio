@@ -4188,6 +4188,10 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
+    <message>
+        <source>tabbing command outside tabbing env</source>
+        <translation>Tabbingbefehl außerhalb einer Tabbingumgebung</translation>
+    </message>
 </context>
 <context>
     <name>TabDialog</name>
