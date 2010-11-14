@@ -112,6 +112,7 @@ private:
 	QLabel *stat1, *stat2, *stat3;
 	
 	QToolButton *combo1,*combo2,*combo3,*comboSpell;
+        int comboSpellHeight; // necessaryfor mac
 
 //settings
 	ConfigManager configManager;

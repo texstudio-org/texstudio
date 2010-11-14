@@ -676,8 +676,8 @@ void Texmaker::setupToolBars() {
 		if (fic.exists() && fic.isReadable())
 				list << fic.entryList(QStringList("*.dic"),QDir::Files,QDir::Name);
 
-
-		comboSpell=createComboToolButton(spellToolBar,list,spellToolBar->height()-2,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName());
+                comboSpellHeight=spellToolBar->height()-2;
+                comboSpell=createComboToolButton(spellToolBar,list,comboSpellHeight,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName());
 		spellToolBar->addWidget(comboSpell);
 	}
 //customizable toolbars
@@ -710,7 +710,7 @@ void Texmaker::setupToolBars() {
                     QStringList list=tagsWidget->tagsTxtFromCategory(actionName.mid(tagCategorySep+1));
                     if (list.isEmpty()) continue;
                     QFontMetrics fontMetrics(mtb.toolbar->font());
-		    QToolButton* combo=createComboToolButton(mtb.toolbar,list,comboSpell->height(),fontMetrics,this,SLOT(insertXmlTagFromToolButtonAction()));
+                    QToolButton* combo=createComboToolButton(mtb.toolbar,list,comboSpellHeight,fontMetrics,this,SLOT(insertXmlTagFromToolButtonAction()));
                     combo->setProperty("tagsID", actionName);
                     mtb.toolbar->addWidget(combo);
                 } else {
@@ -733,7 +733,7 @@ void Texmaker::setupToolBars() {
                         foreach (const QAction* act, menu->actions())
                             if (!act->isSeparator())
                                 list.append(act->text());
-			QToolButton* combo=createComboToolButton(mtb.toolbar,list,comboSpell->height(),fontMetrics,this,SLOT(callToolButtonAction()));
+                        QToolButton* combo=createComboToolButton(mtb.toolbar,list,comboSpellHeight,fontMetrics,this,SLOT(callToolButtonAction()));
                         combo->setProperty("menuID", actionName);
                         mtb.toolbar->addWidget(combo);
                     }
