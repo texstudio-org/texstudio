@@ -184,7 +184,7 @@
 \item[label]
 \iterate
 \itshape
-\kill
+\kill#T
 \label{key}
 \language
 \LARGE
@@ -287,8 +287,9 @@
 \partname{name}
 \part{title}
 \plus
-\poptabs
+\poptabs#T
 \pounds
+\pushtabs#T
 \put(xcoord,ycoord){text}
 \ref{key}
 \refname{name}

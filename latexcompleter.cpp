@@ -837,7 +837,7 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
 							LatexParser::normalCommands << line.left(line.length()-off);
 						}
 					}
-					if(valid.isEmpty() || valid.contains('m')){
+					if(valid.contains('m')){ // math commands
 						if(res>-1){
 							if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
 								LatexParser::mathCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
@@ -848,7 +848,7 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
 							LatexParser::mathCommands << line.left(line.length());
 						}
 					}
-					if(valid.isEmpty() || valid.contains('t')){
+					if(valid.contains('t')){ // tabular commands
 						if(res>-1){
 							if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
 								LatexParser::tabularCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
@@ -857,6 +857,11 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
 							}
 						} else {
 							LatexParser::tabularCommands << line.left(line.length());
+						}
+					}
+					if(valid.contains('T')){ // tabbing support
+						if(res==-1){
+							LatexParser::tabbingCommands << line.left(line.length());
 						}
 					}
 					// normal parsing for completer
