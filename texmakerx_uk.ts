@@ -4011,6 +4011,10 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>tabbing command outside tabbing env</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TabDialog</name>

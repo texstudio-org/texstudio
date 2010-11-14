@@ -3617,6 +3617,10 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
         <source>unknown</source>
         <translation>Ismeretlen</translation>
     </message>
+    <message>
+        <source>tabbing command outside tabbing env</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TabDialog</name>
