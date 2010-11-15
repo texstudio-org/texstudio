@@ -242,22 +242,27 @@ public:
 				const QList<CompletionWord> &words=completer->listModel->getWords();
 				QString curWord = getCurWord();
 				QString newWord;
-				if (curWord != "\\")
-					foreach (const CodeSnippet& w, words)
-						if (w.word.startsWith(curWord) && (w.word.indexOf(written, curWord.length()) >= 0)){
-					newWord = w.word;
-					break;
+				if (curWord != "\\"){
+				    foreach (const CodeSnippet& w, words){
+					if (w.word.startsWith(curWord) && (w.word.indexOf(written, curWord.length()) >= 0)){
+					    newWord = w.word;
+					    break;
+					}
+				    }
 				}
 				if (!newWord.isEmpty()) {
 					QString insertion = newWord.mid(curWord.length(), newWord.indexOf(written, curWord.length()) - curWord.length() + 1);
 					insertText(insertion);
 					handled = true;
-				} else if (curWord == "\\" || (LatexCompleter::config && LatexCompleter::config->eowCompletes)) {
+				} else if (LatexCompleter::config && LatexCompleter::config->eowCompletes) {
 					int curLength = getCurWord().length();
 					insertCompletedWord();
 					resetBinding();
 					return curLength >= 2 &&  oldBinding->keyPressEvent(event,editor); //call old input binding for long words (=> key replacements after completions, but the user can still write \")
-				}
+				    } else {
+					resetBinding();
+					return false;
+				    }
 			} else {
 				int curLength = getCurWord().length();
 				resetBinding();
