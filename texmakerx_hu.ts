@@ -624,7 +624,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>Completion Enabled</source>
-        <translation>Kiegészítés engedélyezése</translation>
+        <translation type="obsolete">Kiegészítés engedélyezése</translation>
     </message>
     <message>
         <source>Case Sensitive</source>
@@ -965,6 +965,10 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <source>Disable work-around on accent typing (mac os x only)</source>
         <translation>Kerülő megoldás kiiktatása ékezetek gépelésekor (csak Mac OS X esetén)</translation>
+    </message>
+    <message>
+        <source>Automatically start completer when typing LaTeX-Commands</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

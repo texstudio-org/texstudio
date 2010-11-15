@@ -837,7 +837,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Completion Enabled</source>
-        <translation>Zapnout doplnění</translation>
+        <translation type="obsolete">Zapnout doplnění</translation>
     </message>
     <message>
         <source>Case Sensitive</source>
@@ -1233,6 +1233,10 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Disable work-around on accent typing (mac os x only)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

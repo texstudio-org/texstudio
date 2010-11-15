@@ -740,7 +740,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Completion Enabled</source>
-        <translation>Activer la complétion</translation>
+        <translation type="obsolete">Activer la complétion</translation>
     </message>
     <message>
         <source>Case Sensitive</source>
@@ -1098,6 +1098,10 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Disable work-around on accent typing (mac os x only)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
