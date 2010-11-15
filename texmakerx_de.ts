@@ -865,7 +865,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <source>Completion Enabled</source>
-        <translation>Vervollständigung aktivieren</translation>
+        <translation type="obsolete">Vervollständigung aktivieren</translation>
     </message>
     <message>
         <source>Case Sensitive</source>
@@ -1270,6 +1270,10 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     <message>
         <source>Disable work-around on accent typing (mac os x only)</source>
         <translation>Akzenttastenblockade deaktivieren (nur MacOSX)</translation>
+    </message>
+    <message>
+        <source>Automatically start completer when typing LaTeX-Commands</source>
+        <translation>Starte automatisch Vervollständigung wenn LaTeX-Kommandos eingegeben werden</translation>
     </message>
 </context>
 <context>

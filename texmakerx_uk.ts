@@ -745,7 +745,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     </message>
     <message>
         <source>Completion Enabled</source>
-        <translation>Застосувати завершення</translation>
+        <translation type="obsolete">Застосувати завершення</translation>
     </message>
     <message>
         <source>Case Sensitive</source>
@@ -1257,6 +1257,10 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     </message>
     <message>
         <source>Disable work-around on accent typing (mac os x only)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
