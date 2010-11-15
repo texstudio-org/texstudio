@@ -223,7 +223,9 @@ public:
 				} else if (getCurWord()=="") {
 					maxWritten=curStart+1;
 				} else {
-					insertCompletedWord();
+					if (LatexCompleter::config && LatexCompleter::config->eowCompletes) {
+					    insertCompletedWord();
+					}
 					QDocumentCursor edc=editor->cursor();
 					if (edc.hasSelection()) {
 						edc.removeSelectedText();
