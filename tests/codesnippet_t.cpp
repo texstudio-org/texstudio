@@ -27,7 +27,7 @@ public:
 		QEQUAL(c.columnNumber(), cx);
 	}
 	
-	void compareWithPlaceholder(const QEditor::PlaceHolder& ph) const{
+	void compareWithPlaceholder(const PlaceHolder& ph) const{
 		compareWithCursor(ph.cursor);
 		QEQUAL(ph.mirrors.count(),mirrors.count());
 		for (int i=0;i < mirrors.count();i++)

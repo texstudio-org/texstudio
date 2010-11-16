@@ -169,7 +169,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		};
 
 		Q_DECLARE_FLAGS(State, EditFlag)
-		
+		/*
 		struct PlaceHolder
 		{
 			class Affector
@@ -193,7 +193,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			QDocumentCursor cursor;
 			QList<QDocumentCursor> mirrors;
 		};
-		
+		*/
 		QEditor(QWidget *p = 0);
 		QEditor(bool actions, QWidget *p = 0, QDocument *doc=0);
 		QEditor(const QString& s, QWidget *p = 0);

@@ -34,6 +34,8 @@
 #include <QPalette>
 #include <QMetaType>
 
+#include "qdocumentcursor.h"
+
 class QFont;
 class QRect;
 class QPrinter;
@@ -48,7 +50,7 @@ struct QCE_EXPORT QDocumentSelection
 };
 
 class QDocumentLine;
-class QDocumentCursor;
+//class QDocumentCursor;
 class QDocumentPrivate;
 class QDocumentCommand;
 class QDocumentLineHandle;
@@ -63,6 +65,30 @@ Q_DECLARE_METATYPE(QDocumentIterator)
 Q_DECLARE_METATYPE(QDocumentConstIterator)
 
 typedef void (*GuessEncodingCallback) (const QByteArray& data, QTextCodec *&guess, int &sure);
+
+struct PlaceHolder
+{
+	/*class Affector
+	{
+		public:
+			virtual ~Affector() {}
+			virtual void affect(const QStringList& base, int ph, const QKeyEvent *e, int mirror, QString& after) const = 0;
+	};*/
+
+	PlaceHolder() : length(0), autoRemove(true), autoOverride(false) {}
+	PlaceHolder(const PlaceHolder& ph) : length(ph.length), autoRemove(ph.autoRemove), autoOverride(ph.autoOverride)
+	{
+		cursor = ph.cursor;
+		mirrors  << ph.mirrors;
+	}
+	PlaceHolder(int len, const QDocumentCursor &cur): length(len), autoRemove(true), autoOverride(false), cursor(cur) {}
+
+	int length;
+	bool autoRemove, autoOverride;
+	//Affector *affector;
+	QDocumentCursor cursor;
+	QList<QDocumentCursor> mirrors;
+};
 
 class QCE_EXPORT QDocument : public QObject
 {
@@ -85,6 +111,8 @@ class QCE_EXPORT QDocument : public QObject
 			QList<QDocumentCursorHandle*> extra;
 			QList<QDocumentCursorHandle*> cursors;
 			QList<QDocumentSelection> selections;
+			int curPlaceHolder, lastPlaceHolder;
+			QList<PlaceHolder> placeHolders;
 		};
 		
 		enum LineEnding
@@ -215,6 +243,7 @@ class QCE_EXPORT QDocument : public QObject
 		QFormatScheme* formatScheme() const;
 		void setFormatScheme(QFormatScheme *f);
 		QColor getBackground() const;
+		QColor getForeground() const;
 		
 		int getNextGroupId();
 		void releaseGroupId(int groupId);

@@ -1943,7 +1943,7 @@ int QEditor::currentPlaceHolder() const
 {
 	return m_curPlaceHolder;
 }
-const QEditor::PlaceHolder& QEditor::getPlaceHolder(int i) const{
+const PlaceHolder& QEditor::getPlaceHolder(int i) const{
 	return m_placeHolders.at(i);
 }
 /*!
@@ -2614,6 +2614,10 @@ void QEditor::paintEvent(QPaintEvent *e)
 	{
 		ctx.extra << m_dragAndDrop.handle();
 	}
+	// put placeholder info into paint context
+	ctx.placeHolders=m_placeHolders;
+	ctx.curPlaceHolder=m_curPlaceHolder;
+	ctx.lastPlaceHolder=m_lastPlaceHolder;
         //qDebug("elapsed %d ms",tm.elapsed());
 	p.save();
 	m_doc->draw(&p, ctx);
@@ -2622,37 +2626,7 @@ void QEditor::paintEvent(QPaintEvent *e)
 
 	//TODO: Customizable appearance
 	//TODO: documentRegion is too large, isn't correctly redrawn (especially with a non fixed width font)
-	//draw placeholders
-	for (int i=0; i < m_placeHolders.count(); i++)
-		if (i != m_curPlaceHolder && i!=m_lastPlaceHolder && !m_placeHolders[i].autoOverride &&  !m_placeHolders[i].cursor.line().isHidden())
-			p.drawConvexPolygon(m_placeHolders[i].cursor.documentRegion());
-	
-	//mark active placeholder
-	if ( m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.count() )
-	{
-		const PlaceHolder& ph = m_placeHolders.at(m_curPlaceHolder);
-		if (!ph.cursor.line().isHidden()){
-			p.setPen(QColor(255,0,0));
-			p.drawConvexPolygon(ph.cursor.documentRegion());
-		}
-		p.setPen(QColor(0,0,255));
-		foreach ( const QDocumentCursor& m, ph.mirrors )
-		{
-			if ( m.isValid() && !m.line().isHidden())
-				p.drawConvexPolygon(m.documentRegion());
-		}
-	}
-	//mark placeholder which will probably be removed 
-	p.setPen(QColor(0,0,0));
-	p.setPen(Qt::DotLine);
-	if (m_lastPlaceHolder >=0 && m_lastPlaceHolder < m_placeHolders.count() && m_lastPlaceHolder != m_curPlaceHolder){
-		const PlaceHolder& ph = m_placeHolders.at(m_lastPlaceHolder);
-		if (!ph.cursor.line().isHidden())
-			p.drawConvexPolygon(ph.cursor.documentRegion());
-	}
-	for (int i=0; i < m_placeHolders.count(); i++)
-		if (m_placeHolders[i].autoOverride &&  !m_placeHolders[i].cursor.line().isHidden())
-			p.drawConvexPolygon(m_placeHolders[i].cursor.documentRegion());
+
 
 	/*
 	debug code for cursor direction: 
@@ -2936,10 +2910,10 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 			for ( int phm = 0; phm < ph.mirrors.count(); ++phm )
 			{
 				QString s = baseText;
-
+				/*
 				if ( ph.affector )
 					ph.affector->affect(prevText, m_curPlaceHolder, e, phm, s);
-
+				*/
 				ph.mirrors[phm].replaceSelectedText(s);
 			}
 		}

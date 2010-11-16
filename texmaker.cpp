@@ -4568,7 +4568,7 @@ bool Texmaker::generateMirror(bool setCur){
 			LatexDocument* doc=currentEditorView()->document;
 
 			doc->m_magicPlaceHolder=currentEditor()->placeHolderCount();
-			QEditor::PlaceHolder ph;
+			PlaceHolder ph;
 			ph.cursor=cursor;
 			currentEditor()->addPlaceHolder(ph,true);
 			// remove curly brakets as well
@@ -4592,7 +4592,7 @@ bool Texmaker::generateMirror(bool setCur){
 				line=doc->line(endLine).text();
 				int start=line.indexOf(searchWord);
 				int offset=searchWord.indexOf("{");
-				QEditor::PlaceHolder ph;
+				PlaceHolder ph;
 				ph.length=searchWord.length()-offset-1;
 				ph.cursor=currentEditor()->document()->cursor(endLine,start+offset+1,endLine,start+searchWord.length()-1);
 				currentEditor()->addPlaceHolderMirror(doc->m_magicPlaceHolder,ph.cursor);
