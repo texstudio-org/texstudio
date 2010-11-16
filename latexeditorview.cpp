@@ -598,6 +598,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		line.clearOverlays(environmentFormat);
 		line.clearOverlays(syntaxErrorFormat);
 		line.clearOverlays(styleHintFormat);
+		line.clearOverlays(structureFormat);
 
 		// start syntax checking
 		if(config->inlineSyntaxChecking) {
