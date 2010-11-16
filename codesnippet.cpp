@@ -327,7 +327,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 			//if (l<mLines.count()-1) cursor->insertLine();
 			for (int i=0; i<placeHolders[l].size(); i++) {
 				if (placeHolders[l][i].flags & CodeSnippetPlaceHolder::Mirror) continue;
-				QEditor::PlaceHolder ph;
+				PlaceHolder ph;
 				ph.length=placeHolders[l][i].length;
 				ph.cursor = getCursor(editor, placeHolders[l][i], l, baseLine, baseLineIndent, lastLineRemainingLength);
 				if (!ph.cursor.isValid()) continue;

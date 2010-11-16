@@ -702,6 +702,14 @@ QColor QDocument::getBackground() const{
 	return QColor();
 }
 
+QColor QDocument::getForeground() const{
+	if (m_impl && m_impl->m_formatScheme) {
+	    if (m_impl->m_formatScheme->format("normal").foreground.isValid())
+			return m_impl->m_formatScheme->format("normal").foreground;
+	}
+	return QColor();
+}
+
 /*!
 	\return the language definition set to the document
 */
@@ -3099,8 +3107,10 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 		m_layout->draw(p, off, selections);
 
+		/* cursor drawing is done one hierarchy up
 		for ( int i = 0; i < cursor.count(); ++i )
 			m_layout->drawCursor(p, off, cursor[i]);
+		*/
 
 		//m_layout->clearAdditionalFormats();
 	} else if ( m_text.isEmpty() ) {
@@ -3113,7 +3123,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 						QDocumentPrivate::m_lineSpacing,
 						pal.highlight()
 						);
-
+		/* cursor drawing is done one hierarchy up
 		// enforce cursor drawing on empty lines
 		if ( cursor.count() && (xOffset < QDocumentPrivate::m_leftMargin) )
 			p->drawLine(
@@ -3122,6 +3132,8 @@ void QDocumentLineHandle::draw(	QPainter *p,
 						QDocumentPrivate::m_leftMargin,
 						QDocumentPrivate::m_lineSpacing
 						);
+		*/
+
 		// draw line width when hard wrapping is activated
 		if(m_doc->impl()->hardLineWrap()){
 		    p->save();
@@ -3321,6 +3333,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				int currentSpaceWidth = d->textWidth(newFont, " ");
 				for ( int i = r.position; i < max; ++i )
 				{
+					/* cursor drawing done one hierarchy up
 					while ( cidx < cursor.count() )
 					{
 						if ( cursor.at(cidx) == i )
@@ -3331,7 +3344,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 						} else {
 							break;
 						}
-					}
+					} */
 
 					if ( i == r.position + r.length )
 						break;
@@ -3405,7 +3418,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 			} else {
 				p->drawText(xpos, baseline, rng);
-
+				/*cursor drawibng done one hierarchy up
 				while ( cidx < cursor.count() )
 				{
 					const int xcoff = cursor.at(cidx) - r.position;
@@ -3431,7 +3444,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 					} else {
 						break;
 					}
-				}
+				}*/
 
 				xpos += rwidth;
 			}
@@ -5668,6 +5681,10 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	if ( repBackground.isValid() )
 		base.setColor(repBackground);
 
+	QColor repForeground = m_doc->getForeground(); // color for cursor line
+	if ( !repForeground.isValid() )
+		repForeground.setRgb(0,0,0); // Fallback = black
+
 
 	if ( !alternate.color().isValid() )
 		alternate = cxt.palette.alternateBase();
@@ -5784,7 +5801,8 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 					currentLine=true;
 				}
 
-				cit = cxt.cursors.erase(cit);
+				//cit = cxt.cursors.erase(cit);
+				++cit;
 			} else {
 				++cit;
 			}
@@ -5933,6 +5951,51 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	m_oldLineCacheOffset = cxt.xoffset;
 	m_oldLineCacheWidth = lineCacheWidth;
 	//qDebug("painting done"); // in %i ms...", t.elapsed());
+
+	//draw placeholders
+	for (int i=0; i < cxt.placeHolders.count(); i++)
+		if (i != cxt.curPlaceHolder && i!=cxt.lastPlaceHolder && !cxt.placeHolders[i].autoOverride &&  !cxt.placeHolders[i].cursor.line().isHidden())
+			p->drawConvexPolygon(cxt.placeHolders[i].cursor.documentRegion());
+
+	//mark active placeholder
+	if ( cxt.curPlaceHolder >= 0 && cxt.curPlaceHolder < cxt.placeHolders.count() )
+	{
+		const PlaceHolder& ph = cxt.placeHolders.at(cxt.curPlaceHolder);
+		if (!ph.cursor.line().isHidden()){
+			p->setPen(QColor(255,0,0));
+			p->drawConvexPolygon(ph.cursor.documentRegion());
+		}
+		p->setPen(QColor(0,0,255));
+		foreach ( const QDocumentCursor& m, ph.mirrors )
+		{
+			if ( m.isValid() && !m.line().isHidden())
+				p->drawConvexPolygon(m.documentRegion());
+		}
+	}
+	//mark placeholder which will probably be removed
+	p->setPen(QColor(0,0,0));
+	p->setPen(Qt::DotLine);
+	if (cxt.lastPlaceHolder >=0 && cxt.lastPlaceHolder < cxt.placeHolders.count() && cxt.lastPlaceHolder != cxt.curPlaceHolder){
+		const PlaceHolder& ph = cxt.placeHolders.at(cxt.lastPlaceHolder);
+		if (!ph.cursor.line().isHidden())
+			p->drawConvexPolygon(ph.cursor.documentRegion());
+	}
+	for (int i=0; i < cxt.placeHolders.count(); i++)
+		if (cxt.placeHolders[i].autoOverride &&  !cxt.placeHolders[i].cursor.line().isHidden())
+			p->drawConvexPolygon(cxt.placeHolders[i].cursor.documentRegion());
+	// draw cursor(s)
+	p->setPen(Qt::SolidLine);
+	p->setPen(repForeground);
+	foreach(QDocumentCursor cur,cxt.cursors){
+	    if (!cur.line().isHidden()){
+		if(cxt.blinkingCursor){
+		    QPoint pt=cur.documentPosition();
+		    QPoint curHt(0,QDocumentPrivate::m_lineSpacing);
+		    p->drawLine(pt,pt+curHt);
+		}
+	    }
+	}
+
 }
 
 QString QDocumentPrivate::exportAsHtml(const QDocumentCursor& range, bool includeHeader, bool simplifyCSS) const{
