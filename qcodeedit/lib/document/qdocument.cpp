@@ -5990,7 +5990,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	    if (!cur.line().isHidden()){
 		if(cxt.blinkingCursor){
 		    QPoint pt=cur.documentPosition();
-		    QPoint curHt(0,QDocumentPrivate::m_lineSpacing);
+		    QPoint curHt(0,QDocumentPrivate::m_lineSpacing-1);
 		    p->drawLine(pt,pt+curHt);
 		}
 	    }
