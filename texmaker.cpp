@@ -466,7 +466,7 @@ void Texmaker::setupMenus() {
 
 
 //Edit 2 (for LaTeX related things)
-	menu=newManagedMenu("main/edit2",tr("&Idefix (?)"));
+	menu=newManagedMenu("main/edit2",tr("&Idefix"));
 	latexEditorContextMenu << newManagedAction(menu,"eraseWord",tr("Erase &Word/Cmd/Env"), SLOT(editEraseWordCmdEnv()), Qt::ALT+Qt::Key_Delete);
 
 	latexEditorContextMenu << menu->addSeparator();
