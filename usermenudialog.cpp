@@ -71,6 +71,7 @@ UserMenuDialog::UserMenuDialog(QWidget* parent,  QString name, QLanguageFactory*
 	QSearchReplacePanel* searchReplacePanel=new QSearchReplacePanel;
 	searchReplacePanel->setFont(QApplication::font());
 	QAction* searchReplacePanelAction=codeedit->addPanel(searchReplacePanel, QCodeEdit::South,false);
+	searchReplacePanel->display(0,false);
 	Q_UNUSED(searchReplacePanelAction)
 
 	ui.tagEdit->layout()->addWidget(codeedit->editor());
