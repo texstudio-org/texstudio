@@ -275,7 +275,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 
 	// on single line commands only: replace command
 	if(byCompleter && autoReplaceCommands && lines.size()==1 && line.startsWith('\\')){
-		if(cursor->nextChar().isLetterOrNumber()){
+		if(cursor->nextChar().isLetterOrNumber()||cursor->nextChar()==QChar('{')){
 			QString curLine=cursor->line().text();
 			int wordBreak=curLine.indexOf(QRegExp("\\W"),cursor->columnNumber());
 			int closeCurl=curLine.indexOf("}",cursor->columnNumber());
