@@ -75,6 +75,7 @@ class QCE_EXPORT QDocumentLineHandle
 		
 		int xToCursor(int x) const;
 		int cursorToX(int i) const;
+		int cursorToXNoLock(int i) const;
 		
 		int wrappedLineForCursor(int cpos) const;
 		int wrappedLineForCursorNoLock(int cpos) const;
@@ -88,6 +89,8 @@ class QCE_EXPORT QDocumentLineHandle
 		
 		int nextNonSpaceChar(uint pos) const;
 		int previousNonSpaceChar(int pos) const;
+		int nextNonSpaceCharNoLock(uint pos) const;
+		int previousNonSpaceCharNoLock(int pos) const;
 		
 		bool hasFlag(int flag) const;
 		void setFlag(int flag, bool y = true) const;
