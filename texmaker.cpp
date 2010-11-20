@@ -974,7 +974,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	configureNewEditorViewEnd(edit);
 
 	MarkCurrentFileAsRecent();
-	updateStructure();
+	updateStructure(true);
 	ShowStructure();
 
 	if (asProject) documents.setMasterDocument(edit->document);
@@ -1038,11 +1038,12 @@ void Texmaker::fileAutoReloading(QString fname){
 void Texmaker::fileReloaded(){
 	QEditor *mEditor = qobject_cast<QEditor *>(sender());
 	if(mEditor==currentEditor()){
-		updateStructure();
+		updateStructure(true);
 	}else{
 		LatexDocument* document=documents.findDocument(mEditor->fileName());
 		if (!document) return;
-		document->updateStructure();
+		int len=document->lineCount();
+		document->patchStructure(0,len);
 	}
 }
 
@@ -2063,11 +2064,17 @@ void Texmaker::ShowStructure() {
 	leftPanel->setCurrentWidget(structureTreeView);
 }
 
-void Texmaker::updateStructure() {
+void Texmaker::updateStructure(bool initial) {
 // collect user define tex commands for completer
 // initialize List
 	if (!currentEditorView() || !currentEditorView()->document) return;
-	currentEditorView()->document->updateStructure();
+	if(initial){
+	    int len=currentEditorView()->document->lineCount();
+	    currentEditorView()->document->patchStructure(0,len);
+	}
+	else {
+	    currentEditorView()->document->updateStructure();
+	}
 
 	updateCompleter();
 	cursorPositionChanged();
@@ -2386,7 +2393,7 @@ void Texmaker::InsertStruct() {
 			tag +=stDlg->ui.TitlelineEdit->text();
 			tag +=QString("}\n");
 			InsertTag(tag,0,1);
-			updateStructure();
+			//updateStructure(); automatically done
 		}
 	}
 }
@@ -2713,7 +2720,7 @@ void Texmaker::EditUserMenu() {
 }
 
 void Texmaker::InsertRef() {
-	updateStructure();
+	//updateStructure();
 
 	LatexEditorView* edView=currentEditorView();
 	QStringList labels;
@@ -2734,7 +2741,7 @@ void Texmaker::InsertRef() {
 }
 
 void Texmaker::InsertPageRef() {
-	updateStructure();
+	//updateStructure();
 	LatexEditorView* edView=currentEditorView();
 	QStringList labels;
 	if(edView && edView->document){

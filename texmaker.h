@@ -245,7 +245,7 @@ private slots:
 	void CloseEditorTab(int tab);
         void EditorTabMoved(int from,int to);
 
-	void updateStructure();
+	void updateStructure(bool initial=false);
 	void ShowStructure();
 	void clickedOnStructureEntry(const QModelIndex & index);
 	void editRemovePlaceHolders();
