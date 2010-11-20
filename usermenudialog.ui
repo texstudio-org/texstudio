@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>502</width>
-    <height>371</height>
+    <width>621</width>
+    <height>448</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -66,7 +66,14 @@
       <number>6</number>
      </property>
      <item row="0" column="1" colspan="3">
-      <widget class="QComboBox" name="comboBox"/>
+      <widget class="QComboBox" name="comboBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label">
@@ -104,6 +111,12 @@
      </item>
      <item row="3" column="3">
       <widget class="QRadioButton" name="radioButtonScript">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="text">
         <string>Script</string>
        </property>
