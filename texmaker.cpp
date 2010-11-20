@@ -1329,7 +1329,7 @@ void Texmaker::fileClose() {
 			break;
 		}
 	} else documents.deleteDocument(currentEditorView()->document);
-	UpdateCaption();
+	//UpdateCaption(); unnecessary as called by tabChanged (signal)
 }
 
 void Texmaker::fileCloseAll() {

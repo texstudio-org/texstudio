@@ -1190,13 +1190,17 @@ void LatexDocumentsModel::removeElement(StructureEntry *se,int row){
 		qDebug("%x",ind.internalPointer());
 	}
 	*/
-	StructureEntry *par_se=se->parent;
+	if(!se){ // remove from root (documents)
+	    beginRemoveRows(QModelIndex(),row,row);
+	}else{
+	    StructureEntry *par_se=se->parent;
 
-	if(row<0){
-		row=par_se->children.indexOf(se);
+	    if(row<0){
+		    row=par_se->children.indexOf(se);
+	    }
+	    //removeRow(row,index(par_se));
+	    beginRemoveRows(index(par_se),row,row);
 	}
-	//removeRow(row,index(par_se));
-	beginRemoveRows(index(par_se),row,row);
 }
 
 void LatexDocumentsModel::removeElementFinished(){
@@ -1258,7 +1262,8 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 	if (document!=masterDocument) {
 		int row=documents.indexOf(document);
 		if(row>=0){
-			model->removeElement(document->baseStructure,row);
+			model->removeElement(0,row); //remove from root
+			//model->removeElement(document->baseStructure,row);
 		}
 		documents.removeAll(document);
 		if(row>=0){
