@@ -168,7 +168,7 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 		}
 	}
 
-	setFixedHeight(ls + 4);
+	setFixedHeight(fontMetrics().lineSpacing() + 4);
 	
 	if(!e->displayModifyTime() && timer){
 		disconnect(timer, SIGNAL(timeout()), this, SLOT(update()));

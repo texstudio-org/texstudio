@@ -6299,6 +6299,7 @@ void QDocumentPrivate::setFont(const QFont& f)
 	{
 		d->setWidth();
 		d->setHeight();
+		d->m_LineCache.clear();
 	}
 }
 
