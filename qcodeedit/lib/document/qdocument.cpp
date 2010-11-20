@@ -1972,6 +1972,11 @@ int QDocumentLineHandle::indent() const
 int QDocumentLineHandle::nextNonSpaceChar(uint pos) const
 {
 	QReadLocker locker(&mLock);
+	return nextNonSpaceCharNoLock(pos);
+}
+
+int QDocumentLineHandle::nextNonSpaceCharNoLock(uint pos) const
+{
 	const int len = m_text.length();
 	const QChar *unicode = m_text.unicode();
 
@@ -1987,6 +1992,11 @@ int QDocumentLineHandle::nextNonSpaceChar(uint pos) const
 int QDocumentLineHandle::previousNonSpaceChar(int pos) const
 {
 	QReadLocker locker(&mLock);
+	return previousNonSpaceCharNoLock(pos);
+}
+
+int QDocumentLineHandle::previousNonSpaceCharNoLock(int pos) const
+{
 	const int len = m_text.length();
 	const QChar *unicode = m_text.unicode();
 
@@ -2185,6 +2195,11 @@ void QDocumentLineHandle::updateWrap() const
 int QDocumentLineHandle::cursorToX(int cpos) const
 {
 	QReadLocker locker(&mLock);
+	return cursorToXNoLock(cpos);
+}
+
+int QDocumentLineHandle::cursorToXNoLock(int cpos) const
+	{
 	cpos = qBound(0, cpos, m_text.length());
 
 	if ( m_layout )
@@ -2651,6 +2666,7 @@ QFormatRange QDocumentLineHandle::getLastOverlayBetween(int start, int end, int 
 
 void QDocumentLineHandle::shiftOverlays(int position, int offset)
 {
+	// needs to be locked at calling function !!!
 	if ( offset > 0 )
 	{
 		for ( int i = 0; i < m_overlays.count(); ++i )
@@ -2738,6 +2754,7 @@ QVector<int> QDocumentLineHandle::compose() const
 
 QList<QTextLayout::FormatRange> QDocumentLineHandle::decorations() const
 {
+	// don't do locking here as it is mainly called by draw (and locked there) !!!!
 	if ( !hasFlag(QDocumentLine::FormatsApplied) )
 		compose();
 
@@ -2799,7 +2816,7 @@ void QDocumentLineHandle::applyOverlays() const
 
 void QDocumentLineHandle::layout() const
 {
-	QReadLocker locker(&mLock);
+	//needs locking at caller !
 	bool needLayout = false;
 	static QList<QChar::Direction> m_layoutRequirements = QList<QChar::Direction>()
 		<< QChar::DirR
@@ -2888,7 +2905,7 @@ void QDocumentLineHandle::layout() const
 				
 				if ( !i )
 				{
-					m_indent = minwidth = cursorToX(nextNonSpaceChar(0)) - QDocumentPrivate::m_leftMargin;
+					m_indent = minwidth = cursorToXNoLock(nextNonSpaceCharNoLock(0)) - QDocumentPrivate::m_leftMargin;
 					
 					if ( minwidth < 0 || minwidth >= m_doc->widthConstraint() )
 						minwidth = 0;
