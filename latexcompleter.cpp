@@ -838,7 +838,7 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
 							LatexParser::normalCommands << line.left(line.length()-off);
 						}
 					}
-					if(valid.contains('m')){ // math commands
+					if(valid.isEmpty() || valid.contains('m')){ // math commands
 						if(res>-1){
 							if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
 								LatexParser::mathCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
