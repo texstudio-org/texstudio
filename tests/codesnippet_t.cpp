@@ -20,11 +20,15 @@ public:
 	int ay, ax, cy, cx;
 	QList<CP> mirrors;
 	
-	void compareWithCursor(const QDocumentCursor& c) const{
-		QEQUAL(c.anchorLineNumber(), ay);
-		QEQUAL(c.anchorColumnNumber(), ax);
-		QEQUAL(c.lineNumber(), cy);
-		QEQUAL(c.columnNumber(), cx);
+	QString errMessage(const QDocumentCursor& c) const{
+		return QString("got %1:%2-%3:%4 expected. %5:%6-%7:%8").arg(c.anchorLineNumber()).arg(c.anchorColumnNumber()).arg(c.lineNumber()).arg(c.columnNumber()).arg(ay).arg(ax).arg(cy).arg(cx);
+	}
+
+	void compareWithCursor(const QDocumentCursor& c, const QString& additionalMessage="") const{
+		QEQUAL2(c.anchorLineNumber(), ay, errMessage(c) + additionalMessage);
+		QEQUAL2(c.anchorColumnNumber(), ax, errMessage(c)+ additionalMessage);
+		QEQUAL2(c.lineNumber(), cy, errMessage(c)+ additionalMessage);
+		QEQUAL2(c.columnNumber(), cx, errMessage(c)+ additionalMessage);
 	}
 	
 	void compareWithPlaceholder(const PlaceHolder& ph) const{
@@ -548,6 +552,113 @@ void CodeSnippetTest::nestedInsert(){
 	}
 	ed->clearPlaceHolders();
 }
+
+void CodeSnippetTest::undoRedo_data(){
+	QTest::addColumn<QString>("insertText1");
+	QTest::addColumn<CP>("expCursor1");
+	QTest::addColumn<QString>("expText1");
+	QTest::addColumn<int>("undoTimes");
+	QTest::addColumn<int>("redoTimes");
+	QTest::addColumn<CP>("expCursor2");
+	QTest::addColumn<QString>("expText2");
+	QTest::addColumn<QString>("insertText2");
+	QTest::addColumn<CP>("expCursor3");
+	QTest::addColumn<QString>("expText3");
+	QTest::addColumn<QString>("insertText3");
+	QTest::addColumn<CP>("expCursor4");
+	QTest::addColumn<QString>("expText4");
+
+	QTest::newRow("simple")
+			<< "simple"
+			<< CP(0, 6) << "simple"
+			<< 1 << 0
+			<< CP(0,0) << ""
+			<< "test"
+			<< CP(0,4) << "test"
+			<< "ing"
+			<< CP(0,7) << "testing";
+
+	QTest::newRow("simple redo")
+			<< "simple"
+			<< CP(0, 6) << "simple"
+			<< 1 << 1
+			<< CP(0,6) << "simple"
+			<< "test"
+			<< CP(0,10) << "simpletest"
+			<< "ing"
+			<< CP(0,13) << "simpletesting";
+
+/*	QTest::newRow("simple cursor redo")
+			<< "sim%|ple"
+			<< CP(0, 3) << "simple"
+			<< 1 << 1
+			<< CP(0,3) << "simple"
+			<< "test"
+			<< CP(0,7) << "simtestple"
+			<< "ing"
+			<< CP(0,10) << "simtestingple";
+	replaced by test below, I expected this, but the next also wouldn't be bad*/
+	/*failing tests:
+	QTest::newRow("simple cursor redo")
+			<< "sim%|ple"
+			<< CP(0, 3) << "simple"
+			<< 1 << 1
+			<< CP(0,6) << "simple"
+			<< "test"
+			<< CP(0,10) << "simpletest"
+			<< "ing"
+			<< CP(0,13) << "simpletesting";
+
+
+	QTest::newRow("mausi")
+			<< "hallo:%|welt%|:"
+			<< CP(0,6, 10) << "hallo:welt:"
+			<< 1 << 1
+			<< CP(0,6, 10) << "hallo:welt:"
+			<< "maus"
+			<< CP(0,10) << "hallo:maus:"
+			<< "hallo:%|welt%|:"
+			<< CP(0,16,20) << "hallo:maushallo:welt::";*/
+}
+
+void CodeSnippetTest::undoRedo(){
+	QFETCH(QString, insertText1);
+	QFETCH(CP, expCursor1);
+	QFETCH(QString, expText1);
+	QFETCH(int, undoTimes);
+	QFETCH(int, redoTimes);
+	QFETCH(CP, expCursor2);
+	QFETCH(QString, expText2);
+	QFETCH(QString, insertText2);
+	QFETCH(CP, expCursor3);
+	QFETCH(QString, expText3);
+	QFETCH(QString, insertText3);
+	QFETCH(CP, expCursor4);
+	QFETCH(QString, expText4);
+
+	//insert text 1
+	ed->setText("");
+	(CodeSnippet (insertText1)).insert(ed);
+	QEQUAL(ed->text(), expText1);
+	expCursor1.compareWithCursor(ed->cursor(), expText1);
+
+	//undo/redo
+	for (int i=0;i<undoTimes;i++) ed->undo();
+	for (int i=0;i<redoTimes;i++) ed->redo();
+	QEQUAL(ed->text(), expText2);
+	expCursor2.compareWithCursor(ed->cursor(), expText2);
+
+	//insert text 2
+	(CodeSnippet (insertText2)).insert(ed);
+	QEQUAL(ed->text(), expText3);
+	expCursor3.compareWithCursor(ed->cursor(), expText3);
+
+	//insert text 3
+	(CodeSnippet (insertText3)).insert(ed);
+	QEQUAL(ed->text(), expText4);
+	expCursor4.compareWithCursor(ed->cursor(), expText4);
+}
+
 #endif
 
 

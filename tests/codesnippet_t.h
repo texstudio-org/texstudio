@@ -17,6 +17,8 @@ class CodeSnippetTest: public QObject{
 		void insert();
 		void nestedInsert_data();
 		void nestedInsert();
+		void undoRedo_data();
+		void undoRedo();
 };
 
 #endif
