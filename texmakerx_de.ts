@@ -5615,10 +5615,6 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
         <translation>LaTeX</translation>
     </message>
     <message>
-        <source>&amp;Idefix (?)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>TeX files</source>
         <translation>TeX Dateien</translation>
     </message>
@@ -5789,6 +5785,10 @@ Allerdings wird eine Version von TexMakerX benutzt, bei dem diese Funktion nicht
     <message>
         <source>Unin&amp;dent</source>
         <translation>A&amp;usrücken</translation>
+    </message>
+    <message>
+        <source>&amp;Idefix</source>
+        <translation>&amp;Idefix</translation>
     </message>
 </context>
 <context>
