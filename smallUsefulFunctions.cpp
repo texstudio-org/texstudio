@@ -543,7 +543,7 @@ bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QStr
 	outName="";
 	outArg="";
 	remainder="";
-	QRegExp token("\\\\\\w+");
+	QRegExp token("\\\\\\w+\\*?");
 	int tagStart=token.indexIn(line);
 	int commentStart=line.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
 	if (tagStart!=-1 && (commentStart>tagStart || commentStart==-1)) {
