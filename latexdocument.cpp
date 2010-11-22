@@ -979,6 +979,7 @@ void LatexDocument::includeDocument(LatexDocument* includedDocument){
 StructureEntry::StructureEntry(LatexDocument* doc, Type newType):type(newType),level(0), lineNumber(-1), lineHandle(0), parent(0), document(doc),appendix(false){
 }
 StructureEntry::~StructureEntry(){
+	level=-1; //invalidate entry
 	foreach (StructureEntry* se, children)
 		delete se;
 }
