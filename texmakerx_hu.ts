@@ -4120,7 +4120,7 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
     <message>
         <source>&amp;Idefix (?)</source>
-        <translation>Elő&amp;készítés</translation>
+        <translation type="obsolete">Elő&amp;készítés</translation>
     </message>
     <message>
         <source>Re&amp;name Environment</source>
@@ -4731,6 +4731,10 @@ However, you are using a version of TexMakerX that was compiled without the inte
     </message>
     <message>
         <source>Unin&amp;dent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Idefix</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -5461,10 +5461,6 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
         <translation>LaTeX</translation>
     </message>
     <message>
-        <source>&amp;Idefix (?)</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>TeX files</source>
         <translation>Soubory TeX</translation>
     </message>
@@ -5598,6 +5594,10 @@ Používáte ovšem verzi programu TexMakerX, která byla sestavena bez vnitřn�
     </message>
     <message>
         <source>Unin&amp;dent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Idefix</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

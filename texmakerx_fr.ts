@@ -1098,11 +1098,11 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Disable work-around on accent typing (mac os x only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Désactiver l&apos;astuce pour les caractères accentués (seulement pour MacOs X)</translation>
     </message>
     <message>
         <source>Automatically start completer when typing LaTeX-Commands</source>
-        <translation type="unfinished"></translation>
+        <translation>Complétion automatique pour les commandes LaTeX</translation>
     </message>
 </context>
 <context>
@@ -3866,7 +3866,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>tabbing command outside tabbing env</source>
-        <translation type="unfinished"></translation>
+        <translation>Commande de tabulation hors de l&apos;environement adéquat</translation>
     </message>
 </context>
 <context>
@@ -4964,7 +4964,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     <message>
         <source>&amp;Idefix (?)</source>
         <translatorcomment>???</translatorcomment>
-        <translation>TeXédit</translation>
+        <translation type="obsolete">TeXédit</translation>
     </message>
     <message>
         <source>TeX files</source>
@@ -5096,7 +5096,7 @@ Cependant, cette version de TexMakerX a été compilée sans le support de cette
     </message>
     <message>
         <source>&amp;Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Commenter</translation>
     </message>
     <message>
         <source>&amp;Indent</source>
@@ -5104,7 +5104,11 @@ Cependant, cette version de TexMakerX a été compilée sans le support de cette
     </message>
     <message>
         <source>Unin&amp;dent</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Désindenter</translation>
+    </message>
+    <message>
+        <source>&amp;Idefix</source>
+        <translation>&amp;Idéfix</translation>
     </message>
 </context>
 <context>

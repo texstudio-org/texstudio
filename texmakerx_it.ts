@@ -4986,10 +4986,6 @@ You have to save a document before you can compile it.</source>
         <translation type="unfinished">LaTeX</translation>
     </message>
     <message>
-        <source>&amp;Idefix (?)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>TeX files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5126,6 +5122,10 @@ However, you are using a version of TexMakerX that was compiled without the inte
     </message>
     <message>
         <source>Unin&amp;dent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Idefix</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
