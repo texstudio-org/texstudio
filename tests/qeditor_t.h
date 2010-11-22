@@ -14,6 +14,7 @@ public:
 private:
 	bool allTests;
 	QEditor* editor;
+	QTextCodec* defaultCodec;
 private slots:
 	void setText_data();
 	void setText();
