@@ -129,7 +129,7 @@ void LatexDocument::clearStructure() {
 	mAppendixLine=0;
 
 	if(baseStructure){
-		emit structureLost(this);
+		//emit structureLost(this);
 
 		if (!labelList->parent) delete labelList;
 		if (!todoList->parent) delete todoList;
@@ -137,11 +137,44 @@ void LatexDocument::clearStructure() {
 		if (!blockList->parent) delete blockList;
 		int row=parent->documents.indexOf(this);
 
-		removeElement(baseStructure,row);
+		removeElement(0,row);
 		delete baseStructure;
 		removeElementFinished();
 	}
 	baseStructure=0;
+}
+
+void LatexDocument::initStructure(){
+    clearStructure();
+#ifndef QT_NO_DEBUG
+    StructureContent.clear();
+#endif
+
+    baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
+#ifndef QT_NO_DEBUG
+    StructureContent.insert(baseStructure);
+#endif
+    baseStructure->title=fileName;
+    labelList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
+#ifndef QT_NO_DEBUG
+    StructureContent.insert(labelList);
+#endif
+    labelList->title=tr("LABELS");
+    todoList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
+#ifndef QT_NO_DEBUG
+    StructureContent.insert(todoList);
+#endif
+    todoList->title=tr("TODO");
+    bibTeXList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
+#ifndef QT_NO_DEBUG
+    StructureContent.insert(bibTeXList);
+#endif
+    bibTeXList->title=tr("BIBTEX");
+    blockList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
+#ifndef QT_NO_DEBUG
+    StructureContent.insert(blockList);
+#endif
+    blockList->title=tr("BLOCKS");
 }
 
 void LatexDocument::updateStructure() {
