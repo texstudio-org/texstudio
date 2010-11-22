@@ -129,7 +129,7 @@ void LatexDocument::clearStructure() {
 	mAppendixLine=0;
 
 	if(baseStructure){
-		//emit structureLost(this);
+		emit structureUpdated(this,0);
 
 		if (!labelList->parent) delete labelList;
 		if (!todoList->parent) delete todoList;
