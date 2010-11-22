@@ -724,7 +724,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				continue;
 			}
 			//// all sections ////
-			if(cmd.endsWith("*")) cmd.left(cmd.length()-1);
+			if(cmd.endsWith("*"))
+			    cmd=cmd.left(cmd.length()-1);
 			int header=LatexParser::structureCommands.indexOf(cmd);
 			if (header>-1) {
 				StructureEntry *newSection;
