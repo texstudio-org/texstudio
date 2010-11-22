@@ -162,6 +162,7 @@ public slots:
 	void patchStructure(int linenr, int count);
 	void patchStructureRemoval(QDocumentLineHandle* dlh);
 	void clearStructure();
+	void initStructure();
 
 signals:
 	void hasBeenIncluded(const LatexDocument& newMasterDocument);
