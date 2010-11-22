@@ -10,6 +10,8 @@ Q_DECLARE_METATYPE(QList<int>);
 QEditorTest::QEditorTest(QEditor* ed, bool executeAllTests):allTests(executeAllTests)
 {
 	editor=ed;
+	if (editor->getFileCodec()!=0) defaultCodec = editor->getFileCodec();
+	else defaultCodec = QTextCodec::codecForName("latin1");
 	ed->setFlag(QEditor::HardLineWrap, false);
 }
 QEditorTest::~QEditorTest(){
@@ -41,7 +43,7 @@ void QEditorTest::loadSave_data(){
 	QTest::addColumn<QString>("outLineEnding");
 	QTest::addColumn<bool>("autodetect");
 	
-	QStringList codings = QStringList() << "latin1" << "utf-8" << "utf-16le" << "utf-16be" << "latin2";
+	QStringList codings = QStringList() << "latin1" << "utf-8" << "utf-16le" << "utf-16be" << "latin2"; //latin1 is not used
 	QStringList endings = QStringList() << "\n" << "\r" << "\r\n";
 	for (int i=0;i<codings.size();i++)
 		for (int j=0;j<endings.size();j++){
@@ -71,6 +73,7 @@ void QEditorTest::loadSave(){
 	QFETCH(QString, outLineEnding);
 	QFETCH(bool, autodetect);
 	QTextCodec* outCodec=QTextCodec::codecForName(qPrintable(outCodecName));
+	if (outCodecName=="latin1") outCodec = defaultCodec;
 
 	if (!allTests) {
 		qDebug("skipped load save test");
@@ -90,7 +93,7 @@ void QEditorTest::loadSave(){
 	editor->setFileCodec(QTextCodec::codecForName("iso-8859-5"));
 	editor->load(tfn,autodetect?0:outCodec);
 	editor->document()->setLineEnding(editor->document()->originalLineEnding()); //TODO: find out why this line is only needed iff the editor passed by the testmanager is used and not if a new QEditor(0) is created
-	QEQUAL2(editor->document()->text(),testTextWithLineEndings,"File: "+tfn);
+	QEQUAL2(editor->document()->text(),testTextWithLineEndings,QString("File: %1  Got file codec: %2 ").arg(tfn).arg(editor->getFileCodec()?QString::fromAscii(editor->getFileCodec()->name()):"<null>"));
 	QVERIFY2(editor->getFileCodec()==outCodec,qPrintable(QString("wrong encoding: got %1 wanted %2 by the sheriff %3").arg(QString::fromAscii(editor->getFileCodec()->name())).arg(QString::fromAscii(outCodec->name())).arg(autodetect)));
 	QEQUAL(editor->document()->lineEndingString(),outLineEnding);
 
