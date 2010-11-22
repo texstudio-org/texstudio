@@ -1197,6 +1197,10 @@ void LatexDocumentsModel::resetAll(){
 	reset();
 }
 
+void LatexDocumentsModel::resetHighlight(){
+	mHighlightIndex=QModelIndex();
+}
+
 void LatexDocumentsModel::structureUpdated(LatexDocument* document,StructureEntry *highlight){
 	Q_UNUSED(document);
 	//resetAll();
@@ -1297,6 +1301,7 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 	if (document!=masterDocument) {
 		int row=documents.indexOf(document);
 		if(row>=0){
+			model->resetHighlight();
 			model->removeElement(0,row); //remove from root
 			//model->removeElement(document->baseStructure,row);
 		}

@@ -203,6 +203,7 @@ public:
 	void setHighlightedEntry(StructureEntry* entry);
 
 	void resetAll();
+	void resetHighlight();
 private slots:
 	void structureUpdated(LatexDocument* document,StructureEntry *highlight=0);
 	void structureLost(LatexDocument* document);
