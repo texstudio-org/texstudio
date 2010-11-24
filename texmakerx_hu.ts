@@ -623,10 +623,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Sor eltávolítása</translation>
     </message>
     <message>
-        <source>Completion Enabled</source>
-        <translation type="obsolete">Kiegészítés engedélyezése</translation>
-    </message>
-    <message>
         <source>Case Sensitive</source>
         <translation>Kis/nagybetű érzékeny</translation>
     </message>
@@ -968,7 +964,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>Automatically start completer when typing LaTeX-Commands</source>
-        <translation type="unfinished"></translation>
+        <translation>A kiegészítő automatikusan működésbe lép LaTeX parancsok begépelésekor</translation>
     </message>
 </context>
 <context>
@@ -1651,14 +1647,6 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>Cancel</source>
         <translation>Mégsem</translation>
-    </message>
-    <message>
-        <source>Insert Graphics</source>
-        <translation type="obsolete">Kép beillesztése</translation>
-    </message>
-    <message>
-        <source>Select a File</source>
-        <translation type="obsolete">Fájl kiválasztása</translation>
     </message>
     <message>
         <source>Center figure</source>
@@ -3623,7 +3611,7 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
     <message>
         <source>tabbing command outside tabbing env</source>
-        <translation type="unfinished"></translation>
+        <translation>Tagolás parancs a tagolt környezeten kívül</translation>
     </message>
 </context>
 <context>
@@ -4075,20 +4063,8 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
         <translation>K&amp;iválasztott/zárójelezett rész előnézete</translation>
     </message>
     <message>
-        <source>Co&amp;mment</source>
-        <translation type="obsolete">Meg&amp;jegyzés</translation>
-    </message>
-    <message>
         <source>&amp;Uncomment</source>
         <translation>Megjeg&amp;yzés eltávolítása</translation>
-    </message>
-    <message>
-        <source>In&amp;dent</source>
-        <translation type="obsolete">Be&amp;húzás</translation>
-    </message>
-    <message>
-        <source>Unind&amp;ent</source>
-        <translation type="obsolete">Behúzás me&amp;gszüntetése</translation>
     </message>
     <message>
         <source>Hard Line &amp;Break...</source>
@@ -4117,10 +4093,6 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     <message>
         <source>Insert Unicode Character...</source>
         <translation>Unikód karakter beszúrása...</translation>
-    </message>
-    <message>
-        <source>&amp;Idefix (?)</source>
-        <translation type="obsolete">Elő&amp;készítés</translation>
     </message>
     <message>
         <source>Re&amp;name Environment</source>
@@ -4723,19 +4695,19 @@ However, you are using a version of TexMakerX that was compiled without the inte
     </message>
     <message>
         <source>&amp;Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Meg&amp;jegyzés</translation>
     </message>
     <message>
         <source>&amp;Indent</source>
-        <translation type="unfinished">Be&amp;húzás</translation>
+        <translation>&amp;Behúzás</translation>
     </message>
     <message>
         <source>Unin&amp;dent</source>
-        <translation type="unfinished"></translation>
+        <translation>B&amp;ehúzás megszüntetése</translation>
     </message>
     <message>
         <source>&amp;Idefix</source>
-        <translation type="unfinished"></translation>
+        <translation>Elő&amp;készítés</translation>
     </message>
 </context>
 <context>
