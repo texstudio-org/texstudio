@@ -520,7 +520,6 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfBlock;
 	QMutableListIterator<StructureEntry*> iter_block(blockList->children);
 	findStructureEntryBefore(iter_block,MapOfBlock,linenr,count);
-
 	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfBibtex;
 	QMutableListIterator<StructureEntry*> iter_bibTeX(bibTeXList->children);
 	findStructureEntryBefore(iter_bibTeX,MapOfBibtex,linenr,count);
@@ -555,9 +554,9 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		    LatexParser::userdefinedCommands.remove(elem);
 		    updateSyntaxCheck=true;
 		}
-		completerNeedsUpdate=completerNeedsUpdate || (mLabelItem.remove(dlh)>0);
-		bibTeXFilesNeedsUpdate=bibTeXFilesNeedsUpdate || (mMentionedBibTeXFiles.remove(dlh)>0);
-		completerNeedsUpdate=completerNeedsUpdate || (mUserCommandList.remove(dlh)>0);
+		if (mLabelItem.remove(dlh)>0) completerNeedsUpdate = true;
+		if (mUserCommandList.remove(dlh)>0) completerNeedsUpdate = true;
+		if (mMentionedBibTeXFiles.remove(dlh)>0) bibTeXFilesNeedsUpdate = true;
 		//find entries prior to changed lines
 
 		QString name;
