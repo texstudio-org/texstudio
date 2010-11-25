@@ -47,6 +47,9 @@ void EncodingDialog::on_reload_clicked() {
 			reject();
 			return;
 		}
+	LatexDocument *doc=qobject_cast<LatexDocument*>(edit->document());
+	doc->clearStructure();
+	doc->initStructure();
 	edit->load(edit->fileName(),QTextCodec::codecForMib(encodings->currentItem()->data(Qt::UserRole).toInt()));
 	accept();
 }
