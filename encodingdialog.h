@@ -6,6 +6,7 @@
 #include "ui_encodingdialog.h"
 
 #include "qeditor.h"
+#include "latexdocument.h"
 
 class EncodingDialog : public QDialog, private Ui::EncodingDialog {
 	Q_OBJECT
