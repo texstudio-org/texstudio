@@ -767,6 +767,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 					newSection->type=StructureEntry::SE_SECTION;
 					toBeDeleted.remove(newSection);
 					MapOfElements.remove(dlh,newSection);
+					for (int i=newSection->children.size()-1;i>=0;i--){
+						removeAndDeleteElement(newSection->children[i],i);
+						newSection->children.removeAt(i);
+					}
 				}else{
 					emit addElement(parent,parent->children.size());
 					newSection=new StructureEntry(this,StructureEntry::SE_SECTION);
@@ -818,16 +822,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		emit addElementFinished();
 	}
 	// purge unconnected elements
-	foreach(se,toBeDeleted.keys()){
-		emit removeElement(se,toBeDeleted[se]);
-#ifndef QT_NO_DEBUG
-		removeFromStructureContent(se);
-#endif
-		//qDebug("Structure deleted! %p %d",se,toBeDeleted[se]);
-		//qDebug() << se->title;
-		delete se;
-		emit removeElementFinished();
-	}
+	foreach(se,toBeDeleted.keys())
+		removeAndDeleteElement(se, toBeDeleted[se]);
 	int tempPos = -1;
 	tempPos = baseStructure->children.indexOf(bibTeXList);
 	if (tempPos != -1) baseStructure->children.removeAt(tempPos);
@@ -1551,6 +1547,7 @@ void LatexDocument::splitStructure(StructureEntry* se,QVector<StructureEntry*> &
 	int end=-1;
 	for(int l=0;l<se->children.size();l++){
 		StructureEntry *elem=se->children.at(l);
+		//TODO: remove line() call, it is too slow
 		if(!elem->lineHandle || elem->lineHandle->line()<linenr) {
 			start=l;
 			continue;
@@ -1620,6 +1617,18 @@ void LatexDocument::splitStructure(StructureEntry* se,QVector<StructureEntry*> &
 
 }
 
+void LatexDocument::removeAndDeleteElement(StructureEntry* se, int row){
+	emit removeElement(se,row);
+#ifndef QT_NO_DEBUG
+	removeFromStructureContent(se);
+#endif
+	//qDebug("Structure deleted! %p %d",se,toBeDeleted[se]);
+	//qDebug() << se->title;
+	delete se;
+	emit removeElementFinished();
+}
+
+
 void LatexDocument::updateAppendix(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine){
 	int endLine=-1;
 	int startLine=-1;
@@ -1680,3 +1689,4 @@ void LatexDocuments::updateLayout(){
 void LatexDocuments::bibTeXFilesNeedUpdate(){
 	bibTeXFilesModified=true;
 }
+
