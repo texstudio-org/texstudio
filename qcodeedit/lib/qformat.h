@@ -138,6 +138,8 @@ struct QFormat
 
 	void setPriority(int p);
 
+	bool widthChanging() const {return (weight != 50) || italic;}
+
 	int priority, realPriority;
 	int weight; //: 50 normal, 75: bold
 	bool italic;

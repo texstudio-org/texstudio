@@ -101,6 +101,7 @@ class QCE_EXPORT QDocumentLineHandle
 		QDocumentLineHandle* previous() const;
 		
 		void updateWrap() const;
+		void updateWrapAndNotifyDocument(int ownLineNumber) const;
 		
 		void setFormats(const QVector<int>& formats);
 		
