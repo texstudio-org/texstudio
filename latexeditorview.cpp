@@ -578,7 +578,6 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)
 	if (editor->languageDefinition() && editor->languageDefinition()->language()!="(La-)TeX") return; // no online checking in other files than tex
 	Q_ASSERT(speller && containedLabels && containedReferences);
-
 	for (int i=linenr; i<linenr+count; i++) {
 		QDocumentLine line = editor->document()->line(i);
 		if (!line.isValid()) continue;
@@ -599,6 +598,13 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		line.clearOverlays(syntaxErrorFormat);
 		line.clearOverlays(styleHintFormat);
 		line.clearOverlays(structureFormat);
+
+		bool addedOverlaySpellCheckError = false;
+		bool addedOverlayReference = false;
+		bool addedOverlayCitation = false;
+		bool addedOverlayEnvironment = false;
+		bool addedOverlayStyleHint = false;
+		bool addedOverlayStructure = false;
 
 		// start syntax checking
 		if(config->inlineSyntaxChecking) {
@@ -650,6 +656,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				QString secName=extractSectionName(lineText.mid(wordstart),true);
 				line.addOverlay(QFormatRange(wordstart,secName.length(),structureFormat));
 				inStructure=false;
+				addedOverlayStructure = true;
 			}
 			if (status==NW_ENVIRONMENT) {
 				if(line.getFormatAt(wordstart)==verbatimFormat) continue;
@@ -658,6 +665,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				rx.setMinimal(true);
 				int l=rx.indexIn(lineText,start);
 				if (l==start+1) start=start+rx.cap(0).length();
+				addedOverlayEnvironment = true;
 			}
 			if (status==NW_REFERENCE && config->inlineReferenceChecking) {
 				if(line.getFormatAt(wordstart)==verbatimFormat) continue;
@@ -668,6 +676,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 					line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMultipleFormat));
 				}else if (cnt==1) line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
 				else line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMissingFormat));
+				addedOverlayReference = true;
 			}
 			if (status==NW_LABEL && config->inlineReferenceChecking) {
 				if(line.getFormatAt(wordstart)==verbatimFormat) continue;
@@ -679,6 +688,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				}else line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
 				// look for corresponding reeferences and adapt format respectively
 				containedLabels->updateByKeys(QStringList(ref),containedReferences);
+				addedOverlayReference = true;
 			}
 			if (status==NW_CITATION && config->inlineCitationChecking) {
 				if (bibTeXIds) {
@@ -700,12 +710,15 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 						pos+=cit.length()+1;
 					}
 				}
+				addedOverlayCitation = true;
 			}
 			if (status==NW_COMMENT) break;
 			if (status==NW_TEXT && config->inlineSpellChecking){
 				if(!previousTextWord.isEmpty() && previousTextWord==word){
-					if(!lineText.mid(previousTextWordIndex,wordstart-previousTextWordIndex).contains(QRegExp("\\S")))
+					if(!lineText.mid(previousTextWordIndex,wordstart-previousTextWordIndex).contains(QRegExp("\\S"))){
 						line.addOverlay(QFormatRange(wordstart,start-wordstart,styleHintFormat));
+						addedOverlayStyleHint = true;
+					}
 				}
 				if(!word.isEmpty() && !word.at(0).isNumber()){
 					previousTextWord=word;
@@ -715,8 +728,25 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			if (status==NW_TEXT && word.length()>=3 && !speller->check(word) && config->inlineSpellChecking) {
 				if(word.endsWith('.')) start--;
 				line.addOverlay(QFormatRange(wordstart,start-wordstart,speller->spellcheckErrorFormat));
+				addedOverlaySpellCheckError = true;
 			}
 		}// while
+
+		//update wrapping if the an overlay changed the width of the text
+		//TODO: should be handled by qce to be consistent (with syntax check and search)
+		if (!editor->document()->getFixedPitch() && editor->flag(QEditor::LineWrap)) {
+			bool updateWrapping = false;
+			QFormatScheme* ff = QDocument::formatFactory();
+			updateWrapping |= addedOverlaySpellCheckError && ff->format(speller->spellcheckErrorFormat).widthChanging();
+			updateWrapping |= addedOverlayReference && (ff->format(referenceMissingFormat).widthChanging() || ff->format(referencePresentFormat).widthChanging() || ff->format(referenceMultipleFormat).widthChanging());
+			updateWrapping |= addedOverlayCitation && (ff->format(citationPresentFormat).widthChanging() || ff->format(citationMissingFormat).widthChanging());
+			updateWrapping |= addedOverlayEnvironment && ff->format(environmentFormat).widthChanging();
+			updateWrapping |= addedOverlayStyleHint && ff->format(styleHintFormat).widthChanging();
+			updateWrapping |= addedOverlayStructure && ff->format(structureFormat).widthChanging();
+			if (updateWrapping)
+				line.handle()->updateWrapAndNotifyDocument(i);
+
+		}
 	}
 	editor->document()->markViewDirty();
 }

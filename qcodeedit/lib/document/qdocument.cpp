@@ -2192,6 +2192,18 @@ void QDocumentLineHandle::updateWrap() const
 	}
 }
 
+void QDocumentLineHandle::updateWrapAndNotifyDocument(int line) const{
+	int oldLW = m_frontiers.count();
+	updateWrap();
+	int lw = m_frontiers.count();
+	if ( lw == oldLW ) return;
+	if ( !m_doc ) return;
+
+	if ( lw ) m_doc->impl()->m_wrapped[line] = lw;
+	else m_doc->impl()->m_wrapped.remove(line);
+	m_doc->impl()->m_height += (lw-oldLW)*m_doc->impl()->m_lineSpacing;
+}
+
 int QDocumentLineHandle::cursorToX(int cpos) const
 {
 	QReadLocker locker(&mLock);
