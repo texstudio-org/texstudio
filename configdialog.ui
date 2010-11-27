@@ -137,7 +137,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>7</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -151,8 +151,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>793</width>
-            <height>577</height>
+            <width>797</width>
+            <height>597</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -447,6 +447,9 @@
                 <property name="text">
                  <string>Inline checking</string>
                 </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
               <item row="2" column="0">
@@ -527,6 +530,9 @@
                <widget class="QCheckBox" name="checkBoxInlineSyntaxCheck">
                 <property name="text">
                  <string>Inline syntax checking</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -2061,12 +2067,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>312</x>
-     <y>444</y>
+     <x>982</x>
+     <y>501</y>
     </hint>
     <hint type="destinationlabel">
-     <x>312</x>
-     <y>444</y>
+     <x>383</x>
+     <y>569</y>
     </hint>
    </hints>
   </connection>
@@ -2077,12 +2083,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>312</x>
-     <y>444</y>
+     <x>982</x>
+     <y>501</y>
     </hint>
     <hint type="destinationlabel">
-     <x>312</x>
-     <y>444</y>
+     <x>561</x>
+     <y>569</y>
     </hint>
    </hints>
   </connection>
@@ -2093,12 +2099,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>312</x>
-     <y>444</y>
+     <x>982</x>
+     <y>501</y>
     </hint>
     <hint type="destinationlabel">
-     <x>312</x>
-     <y>444</y>
+     <x>753</x>
+     <y>569</y>
     </hint>
    </hints>
   </connection>
@@ -2109,12 +2115,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>293</x>
-     <y>38</y>
+     <x>514</x>
+     <y>261</y>
     </hint>
     <hint type="destinationlabel">
-     <x>293</x>
-     <y>38</y>
+     <x>991</x>
+     <y>294</y>
     </hint>
    </hints>
   </connection>
@@ -2125,12 +2131,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>293</x>
-     <y>38</y>
+     <x>514</x>
+     <y>261</y>
     </hint>
     <hint type="destinationlabel">
-     <x>293</x>
-     <y>38</y>
+     <x>514</x>
+     <y>293</y>
     </hint>
    </hints>
   </connection>
@@ -2147,6 +2153,22 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     <hint type="destinationlabel">
      <x>619</x>
      <y>53</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxRealTimeCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxInlineSyntaxCheck</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>844</x>
+     <y>492</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>859</x>
+     <y>558</y>
     </hint>
    </hints>
   </connection>
