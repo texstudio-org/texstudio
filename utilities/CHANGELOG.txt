@@ -1,4 +1,17 @@
 (look also at the usermanual)
+TexMakerX 1.9.9a -> TexMakerX 2.0  SVN 1495
+--------------------------------------
+- integrated pdf viewer with forward/reverse search based on Texworks
+- online latex syntax checking like spell checking(for simple errors)
+- support to manipulate tables (add/remove lines,columns or \hline)
+- inserted brackets are automatically closed
+- option to limit line length with hard wraps
+- word repetitions are marked as possible style error
+- faster search, highlight matches as default
+- basic editor key mapping become customizable
+- unicode insertion dialog
+- as always, bug fixes and small improvements
+
 TexMakerX 1.9.9 -> TexMakerX 1.9.9a
 --------------------------------------
 - some performance issues on mac have been adressed. It should feel faster for long sible lines on mac.
