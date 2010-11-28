@@ -43,6 +43,14 @@
 
 typedef QHash<QString,int> SymbolList;
 
+enum SVNSTATUS {
+        Unknown=0,
+        Unmanaged,
+        Modified,
+        Locked,
+        CheckedIn,
+        InConflict
+};
 
 class Texmaker : public QMainWindow {
 	Q_OBJECT
@@ -168,12 +176,16 @@ private slots:
 	void MarkCurrentFileAsRecent();
 	void filePrint();
 	void fileCheckin(QString filename="");
+        void fileLockPdf(QString filename="");
+        void fileCheckinPdf(QString filename="");
 	void fileUpdate(QString filename="");
 	void checkin(QString fn,QString text="tmx auto checkin",bool blocking=false);
 	bool svnadd(QString fn,int stage=0);
 	void svncreateRep(QString fn);
 	void svnUndo(bool redo=false);
 	void svnPatch(QEditor *ed,QString diff);
+        void svnLock(QString fn);
+        SVNSTATUS svnStatus(QString filename);
 	void showOldRevisions();
 	QStringList svnLog();
 	void changeToRevision(QString rev,QString old_rev="");
@@ -284,7 +296,7 @@ private slots:
 	void QuickGraphics();
 
 	void runCommand(BuildManager::LatexCommand cmd,bool waitendprocess,bool showStdout);
-	void runCommand(QString comd,bool waitendprocess,bool showStdout, bool compileLatex=false, QString *buffer=0, bool singleInstance = false);
+        void runCommand(QString comd,bool waitendprocess,bool showStdout, int compileLatex=0, QString *buffer=0, bool singleInstance = false);
 	void RunPreCompileCommand();
 	void readFromStderr();
 	void readFromStdoutput();
