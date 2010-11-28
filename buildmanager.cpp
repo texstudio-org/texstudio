@@ -509,7 +509,10 @@ QString BuildManager::getLatexCommand(LatexCommand cmd){
 }
 QString BuildManager::getLatexCommandForDisplay(LatexCommand cmd){
 	if (commands[cmd] == "") return tr("<unknown>");
-	else return commands[cmd];
+        QString res=commands[cmd];
+        if(cmd==CMD_VIEWPDF && res.startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER))
+            res=res.mid(BuildManager::TMX_INTERNAL_PDF_VIEWER.length() + 1);
+        return res;
 }
 bool BuildManager::hasLatexCommand(LatexCommand cmd){
 	return !commands[cmd].isEmpty();
