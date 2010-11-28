@@ -385,9 +385,12 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"saveas",tr("Save &As..."), SLOT(fileSaveAs()), Qt::CTRL+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu,"saveall",tr("Save A&ll"), SLOT(fileSaveAll()), Qt::CTRL+Qt::SHIFT+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu, "maketemplate",tr("&Make Template..."), SLOT(fileMakeTemplate()));
-	newManagedAction(menu, "checkin",tr("Check &in..."), SLOT(fileCheckin()));
-	newManagedAction(menu, "svnupdate",tr("SVN &update..."), SLOT(fileUpdate()));
-	newManagedAction(menu, "showrevisions",tr("Sh&ow old Revisions"), SLOT(showOldRevisions()));
+        QMenu *svnSubmenu=newManagedMenu(menu, "svn",tr("S&VN..."));
+        newManagedAction(svnSubmenu, "checkin",tr("Check &in..."), SLOT(fileCheckin()));
+        newManagedAction(svnSubmenu, "svnupdate",tr("SVN &update..."), SLOT(fileUpdate()));
+        newManagedAction(svnSubmenu, "showrevisions",tr("Sh&ow old Revisions"), SLOT(showOldRevisions()));
+        newManagedAction(svnSubmenu, "lockpdf",tr("Lock &PDF"), SLOT(fileLockPdf()));
+        newManagedAction(svnSubmenu, "checkinpdf",tr("Check in P&DF"), SLOT(fileCheckinPdf()));
 
 	menu->addSeparator();
 	newManagedAction(menu,"close",tr("&Close"), SLOT(fileClose()), Qt::CTRL+Qt::Key_W, ":/images/fileclose.png");
@@ -2777,15 +2780,23 @@ void Texmaker::SpellingLanguageChanged() {
 
 ///////////////TOOLS////////////////////
 void Texmaker::runCommand(BuildManager::LatexCommand cmd,bool waitendprocess,bool showStdout){
-	bool compileLatex=cmd==BuildManager::CMD_LATEX||cmd==BuildManager::CMD_PDFLATEX;
+        int compileLatex=0;
+        switch (cmd){
+            case BuildManager::CMD_LATEX: compileLatex=1;
+            break;
+            case BuildManager::CMD_PDFLATEX: compileLatex=2;
+            break;
+        default:
+            break;
+        }
 	if(compileLatex) ClearMarkers();
 	bool startViewer = cmd==BuildManager::CMD_VIEWDVI || cmd==BuildManager::CMD_VIEWPS || cmd==BuildManager::CMD_VIEWPDF;
 	runCommand(buildManager.getLatexCommand(cmd),waitendprocess,showStdout,compileLatex,0,startViewer && configManager.singleViewerInstance);
 }
-void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool compileLatex, QString *buffer, bool singleInstance) {
+void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,int compileLatex, QString *buffer, bool singleInstance) {
+        // compileLatex 0, no, 1 latex, 2 pdflatex
 	QString finame=documents.getTemporaryCompileFileName();
 	QString commandline=comd;
-	QByteArray result;
 	if (finame=="") {
 		QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name"));
 		return;
@@ -2823,6 +2834,20 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,bool 
 #endif
 		return;
 	}
+
+        // check for locking of pdf
+        if(compileLatex==2){
+            QFileInfo fi(finame);
+            QString basename=fi.baseName();
+            QString path=fi.path();
+            fi.setFile(path+"/"+basename+".pdf");
+            if(fi.exists() && !fi.isWritable()){
+                //pdf not writeable, needs locking ?
+                if(configManager.autoCheckinAfterSave){
+                    svnLock(fi.filePath());
+                }
+            }
+        }
 
 	ProcessX* procX = buildManager.newProcess(comd,finame,getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1,singleInstance);
 
@@ -4304,6 +4329,36 @@ void Texmaker::fileCheckin(QString filename){
 	}
 }
 
+void Texmaker::fileLockPdf(QString filename){
+        if (!currentEditorView()) return;
+        QString finame=filename;
+        if(finame.isEmpty())
+            finame=documents.getTemporaryCompileFileName();
+        QFileInfo fi(finame);
+        QString basename=fi.baseName();
+        QString path=fi.path();
+        fi.setFile(path+"/"+basename+".pdf");
+        if(!fi.isWritable()){
+            svnLock(fi.filePath());
+        }
+}
+
+void Texmaker::fileCheckinPdf(QString filename){
+        if (!currentEditorView()) return;
+        QString finame=filename;
+        if(finame.isEmpty())
+            finame=documents.getTemporaryCompileFileName();
+        QFileInfo fi(finame);
+        QString basename=fi.baseName();
+        QString path=fi.path();
+        QString fn=path+"/"+basename+".pdf";
+        SVNSTATUS status=svnStatus(fn);
+        if(status==CheckedIn) return;
+        if(status==Unmanaged)
+            svnadd(fn);
+        fileCheckin(fn);
+}
+
 void Texmaker::fileUpdate(QString filename){
 	if (!currentEditorView()) return;
 	QString fn=filename.isEmpty() ? currentEditor()->fileName() : filename;
@@ -4347,6 +4402,14 @@ bool Texmaker::svnadd(QString fn,int stage){
 	runCommand(cmd, false, true,false);
 	return true;
 }
+
+void Texmaker::svnLock(QString fn){
+        QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+        cmd+=" lock \""+fn+("\"");
+        stat2->setText(QString(" svn lock "));
+        runCommand(cmd, false, true,false);
+}
+
 
 void Texmaker::svncreateRep(QString fn){
 	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
@@ -4488,7 +4551,22 @@ void Texmaker::showOldRevisions(){
 }
 void Texmaker::svnDialogClosed(){
 	if(cmbLog->currentIndex()==0) currentEditor()->document()->setClean();
+        delete svndlg;
 	svndlg=0;
+}
+
+SVNSTATUS Texmaker::svnStatus(QString filename){
+        QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+        cmd+=" st \""+filename+("\"");
+        stat2->setText(QString(" svn status "));
+        QString buffer;
+        runCommand(cmd, true, false,false,&buffer);
+        if(buffer.isEmpty()) return CheckedIn;
+        if(buffer.startsWith("?")) return Unmanaged;
+        if(buffer.startsWith("M")) return Modified;
+        if(buffer.startsWith("C")) return InConflict;
+        if(buffer.startsWith("L")) return Locked;
+        return Unknown;
 }
 
 void Texmaker::changeToRevision(QString rev,QString old_rev){
