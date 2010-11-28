@@ -2719,6 +2719,7 @@ void Texmaker::EditUserMenu() {
 		if (act) act->setText(QString::number(i+1)+": "+UserMenuName[i]);
 	}
 	completer->setAbbreviations(UserMenuAbbrev,UserMenuTag);
+	delete umDlg; //must be deleted before the formatscheme is deleted
 }
 
 void Texmaker::InsertRef() {

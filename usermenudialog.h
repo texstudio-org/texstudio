@@ -20,6 +20,7 @@ typedef QStringList userlist;
 
 class QCodeEdit;
 class QLanguageFactory;
+class QSearchReplacePanel;
 class UserMenuDialog : public QDialog {
 	Q_OBJECT
 
@@ -34,6 +35,7 @@ private:
 	int previous_index;
 	QCodeEdit* codeedit;
 	QLanguageFactory* languages;
+	QSearchReplacePanel* searchReplacePanel;
 public slots:
 	void init();
 

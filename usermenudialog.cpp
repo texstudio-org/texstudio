@@ -68,7 +68,7 @@ UserMenuDialog::UserMenuDialog(QWidget* parent,  QString name, QLanguageFactory*
 	QAction* gotoLinePanelAction=codeedit->addPanel(gotoLinePanel, QCodeEdit::South, false);
 	Q_UNUSED(gotoLinePanelAction)
 
-	QSearchReplacePanel* searchReplacePanel=new QSearchReplacePanel;
+	searchReplacePanel=new QSearchReplacePanel;
 	searchReplacePanel->setFont(QApplication::font());
 	QAction* searchReplacePanelAction=codeedit->addPanel(searchReplacePanel, QCodeEdit::South,false);
 	searchReplacePanel->display(0,false);
@@ -80,6 +80,7 @@ UserMenuDialog::UserMenuDialog(QWidget* parent,  QString name, QLanguageFactory*
 }
 
 UserMenuDialog::~UserMenuDialog() {
+	delete searchReplacePanel;
 	delete codeedit;
 }
 
