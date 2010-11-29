@@ -2066,7 +2066,6 @@ void QDocumentLineHandle::updateWrap() const
 		return;
 	}
 
-	const int tabStop = m_doc->impl()->m_tabStop;
 	const int maxWidth = m_doc->widthConstraint();
 
 	if ( m_layout )
@@ -2479,9 +2478,8 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 		}
 
 		if ( rx + xDelta - lastCharacterWidth/3 > x ) {
-			const QString& subText = m_text.mid(r.position, r.length);
 			RenderRange rcopied = r;
-			int oldxDelta = 0, newthreshold = 0;
+			int oldxDelta = 0;
 			for ( int i = 0; i < r.length; i++ ) {
 				rcopied.length = i;
 				xDelta = d->getRenderRangeWidth(columnDelta, column, rcopied, newFont, m_text);
@@ -3072,7 +3070,6 @@ void QDocumentLineHandle::draw(	QPainter *p,
 								int xOffset,
 								int vWidth,
 								const QVector<int>& sel,
-								const QVector<int>& cursor,
 								const QPalette& pal,
 								bool fullSel,
 								int yStart,
@@ -3197,7 +3194,6 @@ void QDocumentLineHandle::draw(	QPainter *p,
 		//const int fns = nextNonSpaceChar(0);
 		int indent = qMax(0, m_indent) + QDocumentPrivate::m_leftMargin;
 
-		int cidx = 0;
 		int rngIdx = 0;
 		int column = 0;
 #ifdef Q_OS_LINUX
@@ -5936,7 +5932,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			if ( wrapped )
 				pnt.fillRect(qMax(cxt.xoffset, m_leftMargin), m_lineSpacing,
 							 lineCacheWidth, m_lineSpacing * wrap, fullSel ? selbg : bg);*/
-			h->draw(&pnt, cxt.xoffset, lineCacheWidth, m_selectionBoundaries, m_cursorLines, cxt.palette, fullSel,yoff,ht);
+			h->draw(&pnt, cxt.xoffset, lineCacheWidth, m_selectionBoundaries, cxt.palette, fullSel,yoff,ht);
 			p->drawPixmap(cxt.xoffset,yoff,*px);
 			pnt.end();
 			if(!currentLine) m_LineCache.insert(h,px);
