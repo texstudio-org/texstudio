@@ -388,6 +388,7 @@ void Texmaker::setupMenus() {
         QMenu *svnSubmenu=newManagedMenu(menu, "svn",tr("S&VN..."));
         newManagedAction(svnSubmenu, "checkin",tr("Check &in..."), SLOT(fileCheckin()));
         newManagedAction(svnSubmenu, "svnupdate",tr("SVN &update..."), SLOT(fileUpdate()));
+	newManagedAction(svnSubmenu, "svnupdatecwd",tr("SVN update &work directory"), SLOT(fileUpdateCWD()));
         newManagedAction(svnSubmenu, "showrevisions",tr("Sh&ow old Revisions"), SLOT(showOldRevisions()));
         newManagedAction(svnSubmenu, "lockpdf",tr("Lock &PDF"), SLOT(fileLockPdf()));
         newManagedAction(svnSubmenu, "checkinpdf",tr("Check in P&DF"), SLOT(fileCheckinPdf()));
@@ -4364,6 +4365,17 @@ void Texmaker::fileUpdate(QString filename){
 	QString fn=filename.isEmpty() ? currentEditor()->fileName() : filename;
 	if(fn.isEmpty()) return;
 	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+	cmd+=" up  \""+fn+"\"";
+	stat2->setText(QString(" svn update "));
+	runCommand(cmd, true, true,false);
+}
+
+void Texmaker::fileUpdateCWD(QString filename){
+	if (!currentEditorView()) return;
+	QString fn=filename.isEmpty() ? currentEditor()->fileName() : filename;
+	if(fn.isEmpty()) return;
+	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+	fn=QFileInfo(fn).path();
 	cmd+=" up  \""+fn+"\"";
 	stat2->setText(QString(" svn update "));
 	runCommand(cmd, true, true,false);

@@ -179,6 +179,7 @@ private slots:
         void fileLockPdf(QString filename="");
         void fileCheckinPdf(QString filename="");
 	void fileUpdate(QString filename="");
+	void fileUpdateCWD(QString filename="");
 	void checkin(QString fn,QString text="tmx auto checkin",bool blocking=false);
 	bool svnadd(QString fn,int stage=0);
 	void svncreateRep(QString fn);
