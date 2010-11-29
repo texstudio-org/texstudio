@@ -122,7 +122,6 @@ class QCE_EXPORT QDocumentLineHandle
 					int xOffset,
 					int vWidth,
 					const QVector<int>& sel,
-					const QVector<int>& cursors,
 					const QPalette& pal,
 					bool fullSel,
 					int yStart=0,

@@ -123,7 +123,7 @@ void LatexEditorViewBenchmark::linePaint(){
 
 	*/
 	QBENCHMARK {
-		dlh->draw(&pnt, cxt.xoffset, cxt.width, m_selectionBoundaries, m_cursorLines, cxt.palette, fullSel);
+		dlh->draw(&pnt, cxt.xoffset, cxt.width, m_selectionBoundaries, cxt.palette, fullSel);
 	}
 	pnt.end();
 	delete px;
