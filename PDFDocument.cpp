@@ -1909,7 +1909,7 @@ void PDFDocument::dropEvent(QDropEvent *event)
 void PDFDocument::doFindDialog()
 {
 	dwSearch->show();
-	dwSearch->leFind->setFocus();
+	dwSearch->setFocus();
 }
 
 void PDFDocument::doFindAgain()

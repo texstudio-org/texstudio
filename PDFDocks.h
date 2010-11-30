@@ -173,7 +173,7 @@ public:
 	QString getSearchText() const;
 	bool hasFlagCaseSensitive() const;
 
-	virtual void setFs
+	virtual void setFocus();
 
 signals:
 	void search(bool backward, bool incremental);

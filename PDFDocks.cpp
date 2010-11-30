@@ -497,7 +497,9 @@ QString PDFBaseSearchDock::getSearchText() const{
 bool PDFBaseSearchDock::hasFlagCaseSensitive() const{
 	return cbCase->isChecked();
 }
-
+void PDFBaseSearchDock::setFocus(){
+	leFind->setFocus();
+}
 
 void PDFBaseSearchDock::resizeEvent(QResizeEvent *e){
 	int w=e->size().width();
