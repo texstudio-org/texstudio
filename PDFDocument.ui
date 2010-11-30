@@ -88,7 +88,15 @@
     <addaction name="separator"/>
     <addaction name="actionGo_to_Source"/>
    </widget>
+   <widget class="QMenu" name="menuEdit_2">
+    <property name="title">
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="actionFind_2"/>
+    <addaction name="actionFind_again"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuEdit_2"/>
    <addaction name="menuView"/>
    <addaction name="menuWindow"/>
    <addaction name="menuEdit"/>
@@ -633,6 +641,22 @@
    </property>
    <property name="text">
     <string>Cursor follows scrolling</string>
+   </property>
+  </action>
+  <action name="actionFind_2">
+   <property name="text">
+    <string>&amp;Find...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionFind_again">
+   <property name="text">
+    <string>Find &amp;again</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+M, F3</string>
    </property>
   </action>
  </widget>
