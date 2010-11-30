@@ -1359,7 +1359,8 @@ PDFDocument::init(const ConfigManagerInterface& configManager)
 
 	connect(actionQuit_TeXworks, SIGNAL(triggered()), SIGNAL(triggeredQuit()));
 
-	//TODO:	connect(actionFind, SIGNAL(triggered()), this, SLOT(doFindDialog()));
+	connect(actionFind_2, SIGNAL(triggered()), this, SLOT(doFindDialog()));
+	connect(actionFind_again, SIGNAL(triggered()), this, SLOT(doFindAgain()));
 
 	connect(actionFirst_Page, SIGNAL(triggered()), pdfWidget, SLOT(goFirst()));
 	connect(actionPrevious_Page, SIGNAL(triggered()), pdfWidget, SLOT(goPrev()));
@@ -1394,7 +1395,6 @@ PDFDocument::init(const ConfigManagerInterface& configManager)
 	connect(actionScrolling_follows_cursor, SIGNAL(toggled(bool)), SLOT(followingToggled()));
 	connect(actionCursor_follows_scrolling, SIGNAL(toggled(bool)), SLOT(followingToggled()));
 
-	//	connect(actionFind_Again, SIGNAL(triggered()), this, SLOT(doFindAgain()));
 
 	connect(actionPreferences, SIGNAL(triggered()), SIGNAL(triggeredConfigure()));
 
@@ -1558,7 +1558,7 @@ void PDFDocument::runExternalViewer(){
 
 void PDFDocument::closeSomething(){
 	if (dwFonts && dwFonts->isVisible()) dwFonts->hide();
-	else if (dwSearch && dwFonts->isVisible()) dwSearch->hide();
+	else if (dwSearch && dwSearch->isVisible()) dwSearch->hide();
 	else if (dwInfo && dwInfo->isVisible()) dwInfo->hide();
 	else if (dwOutline && dwOutline->isVisible()) dwOutline->hide();
 	else actionClose->trigger();
@@ -1909,6 +1909,7 @@ void PDFDocument::dropEvent(QDropEvent *event)
 void PDFDocument::doFindDialog()
 {
 	dwSearch->show();
+	dwSearch->leFind->setFocus();
 }
 
 void PDFDocument::doFindAgain()
