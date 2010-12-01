@@ -239,6 +239,7 @@ public:
 
 	LatexDocument* findDocument(const QString& fileName, bool checkTemporaryNames = false);
 	LatexDocument* findDocument(const QDocument *qDoc);
+	LatexDocument* findDocumentFromName(const QString& fileName);
 
 	void settingsRead();
 
