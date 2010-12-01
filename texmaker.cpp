@@ -978,6 +978,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	configureNewEditorViewEnd(edit);
 
 	MarkCurrentFileAsRecent();
+	edit->document->initStructure();
 	updateStructure(true);
 	ShowStructure();
 
