@@ -290,6 +290,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		static QString translateEditOperation(const EditOperation& op);
 		static void setEditOperations(const QHash<int, int>& newOptions, bool mergeWithDefault=false);
 		static QHash<int, int> getEditOperations(bool excludeDefault=false);
+		static QSet<int> getAvailableOperations();
+		static void registerEditOperation(const EditOperation& op);
 		static void addEditOperation(const EditOperation& op, const Qt::KeyboardModifiers& modifiers, const Qt::Key& key);
 		static void addEditOperation(const EditOperation& op, const QKeySequence::StandardKey& key);
 		EditOperation getEditOperation(const Qt::KeyboardModifiers& modifiers, const Qt::Key& key);
@@ -583,6 +585,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		static bool m_defaultKeysSet;
 		static QHash<int, int> m_registeredKeys;
+		static QSet<int> m_registeredOperations;
 		static QHash<int, int> m_registeredDefaultKeys;
 
 		static int m_manageMenu;
