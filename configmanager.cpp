@@ -823,12 +823,23 @@ bool ConfigManager::execConfigDialog() {
 		keysReversed.insertMulti(it.value(), it.key());
 		++it;
 	}
-	QMultiMap<int, int>::const_iterator it2 = keysReversed.constBegin();
-	while (it2 != keysReversed.constEnd()) {
-		QTreeWidgetItem * twi = new QTreeWidgetItem(editorKeys, QStringList() << LatexEditorViewConfig::translateEditOperation(it2.key()) << "" << QKeySequence(it2.value()).toString(QKeySequence::NativeText));
-		twi->setData(0, Qt::UserRole, it2.key());
+	foreach(int elem, editorAvailableOperations){
+	    QList<int> keys=keysReversed.values(elem);
+	    bool listEmpty=false;
+	    if(keys.isEmpty()){
+		keys<< 0;
+		listEmpty=true;
+	    }
+	    foreach(int key,keys){
+		QTreeWidgetItem * twi=0;
+		if(listEmpty){
+		    twi = new QTreeWidgetItem(editorKeys, QStringList() << LatexEditorViewConfig::translateEditOperation(elem) << "" << tr("<none>"));
+		} else {
+		    twi = new QTreeWidgetItem(editorKeys, QStringList() << LatexEditorViewConfig::translateEditOperation(elem) << "" << QKeySequence(key).toString(QKeySequence::NativeText));
+		}
+		twi->setData(0, Qt::UserRole, elem);
 		twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
-		++it2;
+	    }
 	}
 	new QTreeWidgetItem(editorKeys, QStringList() << ShortcutDelegate::addRowButton);
 

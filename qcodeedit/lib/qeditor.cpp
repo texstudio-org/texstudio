@@ -163,6 +163,7 @@ QEditorInputBindingInterface* QEditor::m_defaultBinding = 0;
 QHash<QString, QEditorInputBindingInterface*> QEditor::m_registeredBindings;
 bool QEditor::m_defaultKeysSet = false;
 QHash<int, int> QEditor::m_registeredKeys;
+QSet<int> QEditor::m_registeredOperations;
 QHash<int, int> QEditor::m_registeredDefaultKeys;
 
 
@@ -3772,8 +3773,13 @@ bool QEditor::focusNextPrevChild(bool)
 	return false;
 }
 
+void QEditor::registerEditOperation(const EditOperation& op){
+	m_registeredOperations << op;
+}
+
 void QEditor::addEditOperation(const EditOperation& op, const Qt::KeyboardModifiers& modifiers, const Qt::Key& key){
 	m_registeredKeys.insert(((int)modifiers & (Qt::ShiftModifier | Qt::AltModifier | Qt::ControlModifier | Qt::MetaModifier)) | (int)key, op);
+	m_registeredOperations << op;
 }
 
 void QEditor::addEditOperation(const EditOperation& op, const QKeySequence::StandardKey& key){
@@ -3824,6 +3830,10 @@ void QEditor::setEditOperations(const QHash<int, int> &newOptions, bool mergeWit
 		m_registeredKeys.insert(i.key(),i.value());
 		++i;
 	}
+}
+
+QSet<int> QEditor::getAvailableOperations(){
+	return m_registeredOperations;
 }
 
 QHash<int, int> QEditor::getEditOperations(bool excludeDefault){
@@ -3954,9 +3964,9 @@ QHash<int, int> QEditor::getEditOperations(bool excludeDefault){
 		addEditOperation(CreateMirrorUp, Qt::AltModifier | Qt::ControlModifier, Qt::Key_Up);
 		addEditOperation(CreateMirrorDown, Qt::AltModifier | Qt::ControlModifier, Qt::Key_Down);
 
-		//addEditOperation(NextPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Down);
+		registerEditOperation(NextPlaceHolder);
 		addEditOperation(NextPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Right);
-		//addEditOperation(PreviousPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Up);
+		registerEditOperation(PreviousPlaceHolder);
 		addEditOperation(PreviousPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Left);
 
 		addEditOperation(IndentSelection, Qt::NoModifier, Qt::Key_Tab);

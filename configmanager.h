@@ -57,6 +57,7 @@ public:
 
 	QStringList keyReplace, keyReplaceAfterWord, keyReplaceBeforeWord;
 	QHash<int, int> editorKeys;
+	QSet<int> editorAvailableOperations;
 
 	//build
 	BuildManager* buildManager; 

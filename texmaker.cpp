@@ -1946,6 +1946,7 @@ void Texmaker::ReadSettings() {
 	symbolFavorites=config->value("Symbols/Favorite IDs",QStringList()).toStringList();
 
 	configManager.editorKeys = QEditor::getEditOperations(false); //this will also initialize the default keys
+	configManager.editorAvailableOperations=QEditor::getAvailableOperations();
 	if (config->value("Editor/Use Tab for Move to Placeholder",false).toBool()) {
 		//import deprecated option
 		QEditor::addEditOperation(QEditor::NextPlaceHolder, Qt::ControlModifier, Qt::Key_Tab);
