@@ -152,7 +152,7 @@ private:
 	LatexEditorView *currentEditorView() const;
 	QEditor* currentEditor() const;
 	void configureNewEditorView(LatexEditorView *edit);
-	void configureNewEditorViewEnd(LatexEditorView *edit);
+	void configureNewEditorViewEnd(LatexEditorView *edit,bool asMaster=false);
 	LatexEditorView* getEditorViewFromFileName(const QString &fileName, bool checkTemporaryNames = false);
 	
 	QAction* outputViewAction, *fullscreenModeAction;

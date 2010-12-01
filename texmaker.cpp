@@ -888,7 +888,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 }
 
 //complete the new editor view configuration (edit->document is set)
-void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit){
+void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool asMaster){
 	REQUIRE(edit->document);
 	//patch Structure
 	connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
@@ -898,7 +898,7 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit){
 	connect(edit->document,SIGNAL(updateCompleter()),edit->editor,SLOT(completerNeedsUpdate()));
 	connect(edit->editor,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
 
-	EditorView->addTab(edit, "?bug?");
+	EditorView->insertTab(asMaster ? 0 : -1,edit, "?bug?");
 	EditorView->setCurrentWidget(edit);
 
 	edit->editor->setFocus();
@@ -943,7 +943,26 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 		if (asProject) documents.setMasterDocument(existingView->document);
 		EditorView->setCurrentWidget(existingView);
 		return existingView;
-	}
+	    } else {
+		// find closed master doc
+		LatexDocument *doc=documents.findDocumentFromName(f_real);
+		if(doc){
+		    LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig,doc);
+		    edit->document=doc;
+		    edit->editor->setFileName(doc->getFileName());
+		    disconnect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
+		    configureNewEditorView(edit);
+
+		    doc->setLineEnding(edit->editor->document()->originalLineEnding());
+		    doc->setEditorView(edit); //update file name (if document didn't exist)
+
+		    configureNewEditorViewEnd(edit,true);
+		    //edit->document->initStructure();
+		    //updateStructure(true);
+		    ShowStructure();
+		    return edit;
+		}
+	    }
 
 	//load it otherwise
 	if (!QFile::exists(f_real)) return 0;
@@ -975,10 +994,10 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 
 	edit->document->setEditorView(edit); //update file name (if document didn't exist)
 
-	configureNewEditorViewEnd(edit);
+	configureNewEditorViewEnd(edit,asProject);
 
 	MarkCurrentFileAsRecent();
-	edit->document->initStructure();
+	//edit->document->initStructure();
 	updateStructure(true);
 	ShowStructure();
 
