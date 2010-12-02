@@ -1218,8 +1218,11 @@ void Texmaker::fileOpen() {
 
 void Texmaker::fileRestoreSession(){
 	fileCloseAll();
-	for (int i=0; i<configManager.sessionFilesToRestore.size(); i++)
-		load(configManager.sessionFilesToRestore[i], configManager.sessionFilesToRestore[i]==configManager.sessionMaster);
+	for (int i=0; i<configManager.sessionFilesToRestore.size(); i++){
+		LatexEditorView* edView=load(configManager.sessionFilesToRestore[i], configManager.sessionFilesToRestore[i]==configManager.sessionMaster);
+		edView->editor->setCursorPosition(configManager.sessionCurRowsToRestore.value(i,QVariant(0)).toInt(),configManager.sessionCurColsToRestore.value(i,0).toInt());
+		edView->editor->ensureVisible(configManager.sessionFirstLinesToRestore.value(i,0).toInt());
+	}
 	FileAlreadyOpen(configManager.sessionCurrent);
 }
 
@@ -2030,11 +2033,20 @@ void Texmaker::SaveSettings() {
 	config->setValue("Files/RestoreSession",ToggleRememberAct->isChecked());
 	//always store session for manual reload
 	QStringList curFiles;//store in order
+	QList<QVariant> firstLines,curCols,curRows;
 	for (int i=0; i<EditorView->count(); i++) {
 		LatexEditorView *ed=qobject_cast<LatexEditorView *>(EditorView->widget(i));
-		if (ed) curFiles.append(ed->editor->fileName());
+		if (ed) {
+		    curFiles.append(ed->editor->fileName());
+		    curCols.append(ed->editor->cursor().columnNumber());
+		    curRows.append(ed->editor->cursor().lineNumber());
+		    firstLines.append(ed->editor->getFirstVisibleLine());
+		}
 	}
 	config->setValue("Files/Session/Files",curFiles);
+	config->setValue("Files/Session/curCols",curCols);
+	config->setValue("Files/Session/curRows",curRows);
+	config->setValue("Files/Session/firstLines",firstLines);
 	config->setValue("Files/Session/CurrentFile",currentEditorView()?currentEditor()->fileName():"");
 	config->setValue("Files/Session/MasterFile",documents.singleMode()?"":documents.masterDocument->getFileName());
 

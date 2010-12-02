@@ -118,6 +118,7 @@ public:
 	int maxRecentFiles, maxRecentProjects;
 	bool sessionRestore;
 	QStringList sessionFilesToRestore;
+	QList<QVariant> sessionCurRowsToRestore,sessionCurColsToRestore,sessionFirstLinesToRestore;
 	QString sessionMaster;
 	QString sessionCurrent;
 	bool parseBibTeX, parseMaster;
@@ -192,6 +193,7 @@ public:
 	void registerOption(const QString& name, QDateTime* storage, QVariant def, void* displayWidgetOffset);
 	void registerOption(const QString& name, double* storage, QVariant def, void* displayWidgetOffset);
 	void registerOption(const QString& name, QByteArray* storage, QVariant def, void* displayWidgetOffset);
+	void registerOption(const QString& name, QList<QVariant>* storage, QVariant def, void* displayWidgetOffset);
 	virtual void registerOption(const QString& name, void* storage, PropertyType type, QVariant def);
 	virtual void registerOption(const QString& name, bool* storage, QVariant def=QVariant());
 	virtual void registerOption(const QString& name, int* storage, QVariant def=QVariant());
@@ -200,6 +202,7 @@ public:
 	virtual void registerOption(const QString& name, QDateTime* storage, QVariant def=QVariant());
 	virtual void registerOption(const QString& name, double* storage, QVariant def=QVariant());
 	virtual void registerOption(const QString& name, QByteArray* storage, QVariant def=QVariant());
+	virtual void registerOption(const QString& name, QList<QVariant>* storage, QVariant def=QVariant());
 	virtual void linkOptionToWidget(const void* optionStorage, QWidget* widget);
 
 	static void getDefaultEncoding(const QByteArray& unused, QTextCodec* &guess, int &sure);
