@@ -640,6 +640,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				}
 				mUserCommandList.insert(line(i).handle(),name);
 				mUserCommandList.insert(line(i).handle(),"\\begin{"+name);
+				LatexParser::userdefinedCommands.insert("\\begin{"+name);
+				LatexParser::userdefinedCommands.insert("\\end{"+name);
 				continue;
 			}
 			//// newtheorem ////
@@ -647,6 +649,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				completerNeedsUpdate=true;
 				mUserCommandList.insert(line(i).handle(),"\\begin{"+name+"}");
 				mUserCommandList.insert(line(i).handle(),"\\end{"+name+"}");
+				LatexParser::userdefinedCommands.insert("\\begin{"+name+"}");
+				LatexParser::userdefinedCommands.insert("\\end{"+name+"}");
 				continue;
 			}
 			//// bibliography ////
