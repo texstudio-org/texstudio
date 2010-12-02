@@ -888,7 +888,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 }
 
 //complete the new editor view configuration (edit->document is set)
-void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool asMaster){
+void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool reloadFromDoc){
 	REQUIRE(edit->document);
 	//patch Structure
 	connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
@@ -897,7 +897,7 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool asMaster){
 	connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(completerNeedsUpdate()));
 	connect(edit->editor,SIGNAL(needUpdatedCompleter()), this, SLOT(needUpdatedCompleter()));
 
-	EditorView->insertTab(asMaster ? 0 : -1,edit, "?bug?");
+	EditorView->insertTab(reloadFromDoc ? documents.documents.indexOf(edit->document,0) : -1,edit, "?bug?");
 	EditorView->setCurrentWidget(edit);
 
 	edit->editor->setFocus();
