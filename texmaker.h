@@ -353,7 +353,7 @@ private slots:
 	void viewExpandLevel();
 	void viewExpandBlock();
 
-        void masterDocumentChanged(LatexDocument * doc);
+	void masterDocumentChanged(LatexDocument * doc);
 
 	void gotoBookmark();
 	void toggleBookmark();
@@ -362,6 +362,7 @@ private slots:
 
 	void updateCompleter();
 	void completerNeedsUpdate();
+	void needUpdatedCompleter();
 
 	void tabChanged(int i);
 

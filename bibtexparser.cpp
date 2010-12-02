@@ -1,5 +1,5 @@
 #include "bibtexparser.h"
-bool BibTeXFileInfo::loadIfModified(const QFileInfo& fi){
+bool	BibTeXFileInfo::loadIfModified(const QFileInfo& fi){
 	QDateTime fileLastModified = fi.lastModified();
 	if (lastModified!=fileLastModified) { //load BibTeX iff modified
 		lastModified=fileLastModified;

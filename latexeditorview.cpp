@@ -66,7 +66,7 @@ private:
 bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 	if (LatexEditorView::completer && LatexEditorView::completer->acceptTriggerString(event->text()))  {
 		//update completer if necessary
-		editor->updateCompleterNow();
+		editor->emitNeedUpdatedCompleter();
 		editor->insertText(event->text());
 		LatexEditorView::completer->complete(editor,false);
 		return true;
