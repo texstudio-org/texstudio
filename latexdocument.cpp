@@ -425,6 +425,7 @@ void LatexDocument::updateStructure() {
 	*/
 }
 
+/* Removes a deleted line from the structure view */
 void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	if(!baseStructure) return;
 	mLabelItem.remove(dlh);
@@ -556,7 +557,18 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		}
 		if (mLabelItem.remove(dlh)>0) completerNeedsUpdate = true;
 		if (mUserCommandList.remove(dlh)>0) completerNeedsUpdate = true;
-		if (mMentionedBibTeXFiles.remove(dlh)>0) bibTeXFilesNeedsUpdate = true;
+
+		//remove old bibs files from hash, but keeps a temporary copy
+		QStringList oldBibs;
+		while (mMentionedBibTeXFiles.contains(dlh)) {
+			QMultiHash<QDocumentLineHandle*, FileNamePair>::iterator it = mMentionedBibTeXFiles.find(dlh);
+			Q_ASSERT(it.key() == dlh);
+			Q_ASSERT(it != mMentionedBibTeXFiles.end());
+			if (it == mMentionedBibTeXFiles.end()) break;
+			oldBibs.append(it.value().relative);
+			mMentionedBibTeXFiles.erase(it);
+		}
+
 		//find entries prior to changed lines
 
 		QString name;
@@ -656,22 +668,11 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			//// bibliography ////
 			if (cmd=="\\bibliography") {
 				QStringList bibs=name.split(',',QString::SkipEmptyParts);
-				QDocumentLineHandle* curLineHandle = line(i).handle();
-				//remove old bibs from hash, but keeps a temporary copy
-				QStringList oldBibs;
-				while (mMentionedBibTeXFiles.contains(curLineHandle)) {
-					QMultiHash<QDocumentLineHandle*, FileNamePair>::iterator it = mMentionedBibTeXFiles.find(curLineHandle);
-					Q_ASSERT(it.key() == curLineHandle);
-					Q_ASSERT(it != mMentionedBibTeXFiles.end());
-					if (it == mMentionedBibTeXFiles.end()) break;
-					oldBibs.append(it.value().relative);
-					mMentionedBibTeXFiles.erase(it);
-				}
 				//add new bibs and set bibTeXFilesNeedsUpdate if there was any change
-				bibTeXFilesNeedsUpdate |= oldBibs.size() != bibs.size();
-				foreach(QString elem,bibs){
-					mMentionedBibTeXFiles.insert(line(i).handle(),FileNamePair(elem));
-					bibTeXFilesNeedsUpdate |= !oldBibs.contains(elem);
+				foreach(const QString& elem,bibs){ //latex doesn't seem to allow any spaces in file names
+					mMentionedBibTeXFiles.insert(line(i).handle(),FileNamePair(elem));					
+					if (oldBibs.removeAll(elem) == 0)
+						bibTeXFilesNeedsUpdate = true;
 				}
 				//write bib tex in tree
 				foreach (const QString& bibFile, bibs) {
@@ -798,6 +799,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 			}
 		}// for each command
+
+		if (!oldBibs.isEmpty())
+			bibTeXFilesNeedsUpdate = true; //file name removed
+
 	}//for each line handle
 	// append structure remainder ...
 	for(int i=parent_level.size()-1;i>=0;i--){
