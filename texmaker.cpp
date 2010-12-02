@@ -805,7 +805,7 @@ void Texmaker::UpdateCaption() {
 	cursorPositionChanged();
 	if (documents.singleMode()) {
 		outputView->resetMessagesAndLog();
-		if(currentEditorView()) updateCompleter();
+		if(currentEditorView()) completerNeedsUpdate();
 	}
 	QString finame=getCurrentFileName();
 	if (finame!="") configManager.lastDocument=finame;
@@ -895,8 +895,7 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool asMaster){
 	connect(edit->editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
 	connect(edit->editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
 	connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(completerNeedsUpdate()));
-	//connect(edit->document,SIGNAL(updateCompleter()),edit->editor,SLOT(completerNeedsUpdate()));
-	connect(edit->editor,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
+	connect(edit->editor,SIGNAL(needUpdatedCompleter()), this, SLOT(needUpdatedCompleter()));
 
 	EditorView->insertTab(asMaster ? 0 : -1,edit, "?bug?");
 	EditorView->setCurrentWidget(edit);
@@ -1029,15 +1028,11 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 
 void Texmaker::completerNeedsUpdate(){
 	mCompleterNeedsUpdate=true;
-	if(documents.singleMode()){
-	    currentEditor()->completerNeedsUpdate();
-	}else{
-	    foreach(LatexDocument *doc,documents.documents){
-		LatexEditorView *edView=doc->getEditorView();
-		if(EditorView)
-		    edView->editor->completerNeedsUpdate();
-	    }
-	}
+}
+
+void Texmaker::needUpdatedCompleter(){
+	if (mCompleterNeedsUpdate)
+		updateCompleter();
 }
 
 void Texmaker::fileNew(QString fileName) {
@@ -3535,7 +3530,7 @@ void Texmaker::GeneralOptions() {
 		}
 
 		//completion
-		updateCompleter();
+		completerNeedsUpdate();
 
 		//update changed line mark colors
 		QList<QLineMarkType> &marks = QLineMarksInfoCenter::instance()->markTypes();
@@ -3691,7 +3686,7 @@ void Texmaker::ToggleMode() {
 		}
 		documents.setMasterDocument(currentEditorView()->document);
 	}
-	updateCompleter();
+	completerNeedsUpdate();
 }
 ////////////////// VIEW ////////////////
 

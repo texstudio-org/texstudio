@@ -1497,7 +1497,8 @@ void LatexDocuments::updateBibFiles(){
 		if (!bibTeXFiles.contains(fileName))
 			bibTeXFiles.insert(fileName,BibTeXFileInfo());
 		BibTeXFileInfo& bibTex=bibTeXFiles[mentionedBibTeXFiles[i]];
-		changed=changed|bibTex.loadIfModified(fileName);
+		if (bibTex.loadIfModified(fileName))
+			changed = true;
 		if (bibTex.ids.empty() && !bibTex.linksTo.isEmpty())
 			//handle obscure bib tex feature, a just line containing "link fileName"
 			mentionedBibTeXFiles.append(bibTex.linksTo);

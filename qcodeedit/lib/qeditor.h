@@ -403,7 +403,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 
 		void fileReloaded();
 		void fileAutoReloading(QString fname);
-		void updateCompleter();
+		void needUpdatedCompleter();
 
 		void cursorHovered();
 
@@ -422,8 +422,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		virtual void setContentModified(bool y);
 
-		void updateCompleterNow();
-		void completerNeedsUpdate();
+		void emitNeedUpdatedCompleter();
 		
 	protected:
 		virtual bool event(QEvent *e);
@@ -549,8 +548,6 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		char m_saveState;
 		quint16 m_checksum;
-		
-		bool mCompleterNeedsUpdate;
 
 		QDocument *m_doc;
 		QList<QEditorInputBindingInterface*> m_bindings;
