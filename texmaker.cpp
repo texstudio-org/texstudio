@@ -1216,7 +1216,7 @@ void Texmaker::fileRestoreSession(){
 	for (int i=0; i<configManager.sessionFilesToRestore.size(); i++){
 		LatexEditorView* edView=load(configManager.sessionFilesToRestore[i], configManager.sessionFilesToRestore[i]==configManager.sessionMaster);
 		edView->editor->setCursorPosition(configManager.sessionCurRowsToRestore.value(i,QVariant(0)).toInt(),configManager.sessionCurColsToRestore.value(i,0).toInt());
-		edView->editor->ensureVisible(configManager.sessionFirstLinesToRestore.value(i,0).toInt());
+		edView->editor->scrollToFirstLine(configManager.sessionFirstLinesToRestore.value(i,0).toInt());
 	}
 	FileAlreadyOpen(configManager.sessionCurrent);
 }
