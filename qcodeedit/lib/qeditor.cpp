@@ -4677,6 +4677,20 @@ int QEditor::getLastVisibleLine(){
 	return qMin(document()->lines()-1, document()->lineNumber(verticalOffset() + viewport()->height()) + 1);
 }
 
+void QEditor::scrollToFirstLine(int l){
+
+	const int ls = document()->getLineSpacing();
+	int ypos = m_doc->y(l-1);
+	int yval = verticalOffset();
+	int ylen = viewport()->height();
+	int yend = ypos + ylen;
+
+	if ( ypos < yval )
+	    verticalScrollBar()->setValue(ypos / ls);
+	else if ( yend > (yval + ylen) )
+	    verticalScrollBar()->setValue(1 + (yend - ylen) / ls);
+
+}
 
 /*!
 	\return the rectangle occupied by the selection in viewport coordinates

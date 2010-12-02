@@ -233,6 +233,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		virtual int getFirstVisibleLine();
 		virtual int getLastVisibleLine();
 
+		virtual void scrollToFirstLine(int l);
+
 		#ifndef _QMDI_
 		QString name() const;
 		QString fileName() const;
