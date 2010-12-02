@@ -895,7 +895,7 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool asMaster){
 	connect(edit->editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
 	connect(edit->editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
 	connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(completerNeedsUpdate()));
-	connect(edit->document,SIGNAL(updateCompleter()),edit->editor,SLOT(completerNeedsUpdate()));
+	//connect(edit->document,SIGNAL(updateCompleter()),edit->editor,SLOT(completerNeedsUpdate()));
 	connect(edit->editor,SIGNAL(updateCompleter()),this,SLOT(updateCompleter()));
 
 	EditorView->insertTab(asMaster ? 0 : -1,edit, "?bug?");
@@ -1029,6 +1029,15 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 
 void Texmaker::completerNeedsUpdate(){
 	mCompleterNeedsUpdate=true;
+	if(documents.singleMode()){
+	    currentEditor()->completerNeedsUpdate();
+	}else{
+	    foreach(LatexDocument *doc,documents.documents){
+		LatexEditorView *edView=doc->getEditorView();
+		if(EditorView)
+		    edView->editor->completerNeedsUpdate();
+	    }
+	}
 }
 
 void Texmaker::fileNew(QString fileName) {
