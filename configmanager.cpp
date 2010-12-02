@@ -30,6 +30,7 @@ QVariant ManagedProperty::valueToQVariant() const{
 		case PT_DATETIME: return QVariant(*((QDateTime*)storage));
 		case PT_DOUBLE: return QVariant(*((double*)storage));
 		case PT_BYTEARRAY: return QVariant(*((QByteArray*)storage));
+		case PT_LIST: return QVariant(*((QList<QVariant>*)storage));
 		default:
 			Q_ASSERT(false);
 			return QVariant();
@@ -46,6 +47,7 @@ void ManagedProperty::valueFromQVariant(const QVariant v){
 		case PT_DATETIME: *((QDateTime*)storage) = v.toDateTime(); break;
 		case PT_DOUBLE: *((double*)storage) = v.toDouble(); break;
 		case PT_BYTEARRAY: *((QByteArray*)storage) = v.toByteArray(); break;
+		case PT_LIST: *((QList<QVariant>*)storage) = v.toList(); break;
 		default:
 			Q_ASSERT(false);
 	}
@@ -225,6 +227,9 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Files/Recent Project Files", &recentProjectList);
 	registerOption("Files/RestoreSession", &sessionRestore);
 	registerOption("Files/Session/Files", &sessionFilesToRestore);
+	registerOption("Files/Session/curRows", &sessionCurRowsToRestore);
+	registerOption("Files/Session/curCols", &sessionCurColsToRestore);
+	registerOption("Files/Session/firstLines", &sessionFirstLinesToRestore);
 	registerOption("Files/Session/CurrentFile", &sessionCurrent);
 	registerOption("Files/Session/MasterFile", &sessionMaster);
 	registerOption("Files/Last Document", &lastDocument);
@@ -1591,6 +1596,9 @@ void ConfigManager::registerOption(const QString& name, double *storage, QVarian
 void ConfigManager::registerOption(const QString& name, QByteArray *storage, QVariant def, void* displayWidgetOffset){
 	registerOption(name, storage, PT_BYTEARRAY, def, displayWidgetOffset);
 }
+void ConfigManager::registerOption(const QString& name, QList<QVariant> *storage, QVariant def, void* displayWidgetOffset){
+	registerOption(name, storage, PT_LIST, def, displayWidgetOffset);
+}
 
 void ConfigManager::registerOption(const QString& name, void* storage, PropertyType type, QVariant def){
 	registerOption(name, storage, type, def, 0);
@@ -1615,6 +1623,9 @@ void ConfigManager::registerOption(const QString& name, double* storage, QVarian
 	registerOption(name, storage, def, 0);
 }
 void ConfigManager::registerOption(const QString& name, QByteArray* storage, QVariant def){
+	registerOption(name, storage, def, 0);
+}
+void ConfigManager::registerOption(const QString& name, QList<QVariant>* storage, QVariant def){
 	registerOption(name, storage, def, 0);
 }
 
