@@ -475,6 +475,16 @@ QSettings* ConfigManager::readSettings() {
 
 	//completion
 	completerConfig->loadFiles(config->value("Editor/Completion Files",QStringList() << "texmakerx.cwl" << "tex.cwl" << "latex-document.cwl" << "latex-mathsymbols.cwl").toStringList());
+	completerUsageHash=config->value("Editor/Completion Usage",QHash<QString,QVariant>()).toHash();
+	completerConfig->usage.clear();
+	QHashIterator<QString, QVariant> it(completerUsageHash);
+	while (it.hasNext()) {
+	    it.next();
+	    int i=completerConfig->words.indexOf(it.key());
+	    if(i>-1){
+		completerConfig->usage.insert(i,it.value().toInt());
+	    }
+	}
 	
 	//web publish dialog
 	webPublishDialogConfig->readSettings(*config);
@@ -611,6 +621,16 @@ QSettings* ConfigManager::saveSettings() {
 	if (!completerConfig->getLoadedFiles().isEmpty())
 		config->setValue("Editor/Completion Files",completerConfig->getLoadedFiles());
 
+	QMapIterator<int, int> it(completerConfig->usage);
+	while (it.hasNext()) {
+	    it.next();
+	    QString word=completerConfig->words.value(it.key());
+	    if(!word.isEmpty())
+		completerUsageHash.insert(word,it.value());
+	}
+
+	config->setValue("Editor/Completion Usage",completerUsageHash);
+
 	//web publish dialog
 	webPublishDialogConfig->saveSettings(*config);
 	
@@ -712,7 +732,16 @@ bool ConfigManager::execConfigDialog() {
 		if (loadedFiles.contains(elem)) item->setCheckState(Qt::Checked);
 		else  item->setCheckState(Qt::Unchecked);
 	}
-	
+	// get completion usage and translate to cwl string
+	{ // local declaration of it
+		QMapIterator<int, int> it(completerConfig->usage);
+		while (it.hasNext()) {
+		    it.next();
+		    QString word=completerConfig->words.value(it.key());
+		    if(!word.isEmpty())
+			completerUsageHash.insert(word,it.value());
+		}
+	}
 	//preview
 	confDlg->ui.comboBoxDvi2PngMode->setCurrentIndex(buildManager->dvi2pngMode);
 
@@ -987,6 +1016,16 @@ bool ConfigManager::execConfigDialog() {
 			if (elem->checkState()==Qt::Checked) newFiles.append(elem->text());
 		}
 		completerConfig->loadFiles(newFiles);
+
+		completerConfig->usage.clear();
+		QHashIterator<QString, QVariant> it(completerUsageHash);
+		while (it.hasNext()) {
+		    it.next();
+		    int i=completerConfig->words.indexOf(it.key());
+		    if(i>-1){
+			completerConfig->usage.insert(i,it.value().toInt());
+		    }
+		}
 		
 		//preview
 		previewMode=(PreviewMode) confDlg->ui.comboBoxPreviewMode->currentIndex();

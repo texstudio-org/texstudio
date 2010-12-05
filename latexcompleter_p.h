@@ -13,7 +13,7 @@ class CompletionListModel : public QAbstractListModel {
 	Q_OBJECT
 
 public:
-	CompletionListModel(QObject *parent = 0): QAbstractListModel(parent) {}
+	CompletionListModel(QObject *parent = 0): QAbstractListModel(parent),mostUsedUpdated(false) {}
 
 	int rowCount(const QModelIndex &parent = QModelIndex()) const;
 	QVariant data(const QModelIndex &index, int role) const;
@@ -22,10 +22,13 @@ public:
 	const QList<CompletionWord> & getWords(){return words;}
 	const QSet<QChar>& getAcceptedChars(){return acceptedChars;}
 	bool isNextCharPossible(const QChar &c); //does this character lead to a new possible word
-	void filterList(const QString &word);
+	void filterList(const QString &word,bool mostUsed=false);
 	void setBaseWords(const QStringList &newwords, bool normalTextList);
 	void setBaseWords(const QList<CompletionWord> &newwords, bool normalTextList);
 	void setAbbrevWords(const QList<CompletionWord> &newwords);
+	void incUsage(const QModelIndex &index);
+	QMap<int,int> getUsage();
+	void setUsage(const QMap<int,int> &usage);
 private:
 	friend class LatexCompleter; //TODO: make this unnecessary
 	QList<CompletionWord> words;
@@ -34,6 +37,7 @@ private:
 	QList<CompletionWord> baselist;
 	QList<CompletionWord> wordsText, wordsCommands,wordsAbbrev;
 	QSet<QChar> acceptedChars;
+	bool mostUsedUpdated;
 };
 
 #endif // LATEXCOMPLETER_P_H
