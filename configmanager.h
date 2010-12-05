@@ -92,6 +92,8 @@ public:
 	LatexEditorViewConfig * const editorConfig;
 	//completion
 	LatexCompleterConfig * const completerConfig;
+
+	QHash<QString,QVariant> completerUsageHash;
 	//webpublish dialog
 	WebPublishDialogConfig * const webPublishDialogConfig;
 	//pdf preview

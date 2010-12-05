@@ -15,7 +15,7 @@
 //------------------------------Default Input Binding--------------------------------
 class CompleterInputBinding: public QEditorInputBinding {
 public:
-	CompleterInputBinding():active(0) {}
+	CompleterInputBinding():active(0),showMostUsed(false) {}
 	virtual QString id() const {
 		return "TexMakerX::CompleteInputBinding";
 	}
@@ -51,6 +51,7 @@ public:
 			QVariant v=completer->list->model()->data(completer->list->currentIndex(),Qt::DisplayRole);
 			if (!v.isValid() || !v.canConvert<CompletionWord>()) return false;
 			CompletionWord cw= v.value<CompletionWord>();
+			completer->listModel->incUsage(completer->list->currentIndex());
 			//int alreadyWrittenLen=editor->cursor().columnNumber()-curStart;
 			//remove current text for correct case
 			for (int i=maxWritten-cursor.columnNumber(); i>0; i--) cursor.deleteChar();
@@ -201,6 +202,9 @@ public:
 			return true;
 		}  else if (event->key()==Qt::Key_Tab) {
 			return completeCommonPrefix();
+		}  else if (event->key()==Qt::Key_Space && event->modifiers()==Qt::ShiftModifier) {
+			showMostUsed=!showMostUsed;
+			handled=true;
 		} else if (event->key()==Qt::Key_Return || event->key()==Qt::Key_Enter) {
 			if (!insertCompletedWord()) {
 				editor->insertText("\n");
@@ -271,7 +275,7 @@ public:
 				return curLength >= 2 &&  oldBinding->keyPressEvent(event,editor); //call old input binding for long words (=> key replacements after completions, but the user can still write \")
 			}
 		}
-		completer->filterList(getCurWord());
+		completer->filterList(getCurWord(),showMostUsed);
 		if (!completer->list->currentIndex().isValid())
 			select(completer->list->model()->index(0,0,QModelIndex()));
 		return handled;
@@ -284,6 +288,7 @@ public:
 	}
 
 	void resetBinding() {
+		showMostUsed=false;
 		if (!active) return;
 		QToolTip::hideText();
 		//reenable auto close chars
@@ -324,6 +329,7 @@ public:
 private:
 	bool active;
 	bool showAlways;
+	bool showMostUsed;
 	LatexCompleter *completer;
 	QEditor * editor;
 	QEditorInputBindingInterface* oldBinding;
@@ -431,8 +437,9 @@ bool CompletionListModel::isNextCharPossible(const QChar &c){
 		if (cw.word.startsWith(extension,cs)) return true;
 	return false;
 }
-void CompletionListModel::filterList(const QString &word) {
-	if (word==curWord) return;
+void CompletionListModel::filterList(const QString &word,bool mostUsed) {
+	if (word==curWord && mostUsed==mostUsedUpdated) return; //don't return if mostUsed differnt from last call
+	mostUsedUpdated=mostUsed;
 	words.clear();
 	Qt::CaseSensitivity cs = Qt::CaseInsensitive;
 	bool checkFirstChar=false;
@@ -444,8 +451,10 @@ void CompletionListModel::filterList(const QString &word) {
 	for (int i=0; i<baselist.count(); i++) {
 		if (baselist[i].word.isEmpty()) continue;
 		if (baselist[i].word.startsWith(word,cs) &&
-		    (!checkFirstChar || baselist[i].word[1] == word[1]) )
-			words.append(baselist[i]);
+		    (!checkFirstChar || baselist[i].word[1] == word[1]) ){
+			if(!mostUsed || baselist[i].usageCount>0)
+			    words.append(baselist[i]);
+		    }
 	}
 	/*if (words.size()>=2) //prefer matching case
 	   if (!words[0].word.startsWith(word,Qt::CaseSensitive) && words[1].word.startsWith(word,Qt::CaseSensitive))
@@ -453,12 +462,43 @@ void CompletionListModel::filterList(const QString &word) {
 	curWord=word;
 	reset();
 }
+void CompletionListModel::incUsage(const QModelIndex &index){
+    if (!index.isValid())
+	    return ;
+
+    if (index.row() >= words.size())
+	    return ;
+
+    int j=index.row();
+    CompletionWord curWord=words.at(j);
+
+    for (int i=0; i<wordsCommands.count(); i++) {
+	if(wordsCommands[i].word==curWord.word){
+	    wordsCommands[i].usageCount++;
+	    break;
+	}
+    }
+}
+
+QMap<int,int> CompletionListModel::getUsage(){
+    QMap<int,int> result;
+    for (int i=0; i<wordsCommands.count(); i++) {
+	if(wordsCommands[i].usageCount>0){
+	    result.insert(wordsCommands[i].index,wordsCommands[i].usageCount);
+	}
+    }
+    return result;
+}
+
 void CompletionListModel::setBaseWords(const QStringList &newwords, bool normalTextList) {
 	QList<CompletionWord> newWordList;
 	acceptedChars.clear();
 	newWordList.clear();
-	foreach(QString str, newwords) {
-		newWordList.append(CompletionWord(str));
+	for(int i=0;i<newwords.count();i++) {
+		QString str=newwords.at(i);
+		CompletionWord cw=CompletionWord(str);
+		cw.index=i;
+		newWordList.append(cw);
 		foreach(QChar c, str) acceptedChars.insert(c);
 	}
 	qSort(newWordList.begin(), newWordList.end());
@@ -487,6 +527,13 @@ void CompletionListModel::setAbbrevWords(const QList<CompletionWord> &newwords) 
 	wordsAbbrev=newwords;
 }
 
+void CompletionListModel::setUsage(const QMap<int,int> &usage){
+    for (int i=0; i<wordsCommands.count(); i++) {
+	wordsCommands[i].usageCount=usage.value(wordsCommands[i].index,0);
+    }
+}
+
+
 //------------------------------completer-----------------------------------
 QString LatexCompleter::helpFile;
 QHash<QString, QString> LatexCompleter::helpIndices;
@@ -513,11 +560,30 @@ LatexCompleter::~LatexCompleter() {
 	//delete list;
 }
 
+QHash<QString,int> LatexCompleter::getUsageHash(){
+	QMap<int,int> lstUsage=listModel->getUsage();
+	QHash<QString,int> result;
+	foreach(int key,lstUsage){
+	    QString word=config->words.value(key);
+	    if(!word.isEmpty()){
+		result.insert(word,lstUsage.value(key));
+	    }
+	}
+
+	return result;
+}
+
+QMap<int,int> LatexCompleter::getUsage(){
+    QMap<int,int> lstUsage=listModel->getUsage();
+    return lstUsage;
+}
 
 void LatexCompleter::setAdditionalWords(const QStringList &newwords, bool normalTextList) {
-	QStringList concated = newwords;
+	QStringList concated;
 	if (config && !normalTextList) concated << config->words;
+	concated << newwords;
 	listModel->setBaseWords(concated,normalTextList);
+	listModel->setUsage(config->usage);
 	if (maxWordLen==0 && !normalTextList) {
 		int newWordMax=0;
 		QFont f=QApplication::font();
@@ -654,11 +720,11 @@ const LatexCompleterConfig* LatexCompleter::getConfig() const{
 	return config;
 }
 
-void LatexCompleter::filterList(QString word) {
+void LatexCompleter::filterList(QString word,bool showMostUsed) {
 	QString cur=""; //needed to preserve selection
 	if (list->isVisible() && list->currentIndex().isValid())
 		cur=list->model()->data(list->currentIndex(),Qt::DisplayRole).toString();
-	listModel->filterList(word);
+	listModel->filterList(word,showMostUsed);
 	if (cur!="") {
 		int p=listModel->getWords().indexOf(cur);
 		if (p>=0) list->setCurrentIndex(list->model()->index(p,0,QModelIndex()));

@@ -1916,6 +1916,7 @@ void Texmaker::ReadSettings() {
 
 	configManager.buildManager=&buildManager;
 	QSettings *config=configManager.readSettings();
+	completionBaseCommandsUpdated=true;
 
 	config->beginGroup("texmaker");
 
@@ -2003,6 +2004,10 @@ void Texmaker::ReadSettings() {
 
 void Texmaker::SaveSettings() {
 	configManager.centralVisible=centralToolBar->isVisible();
+	// update completion usage
+	LatexCompleterConfig *conf=configManager.completerConfig;
+	conf->usage=completer->getUsage();
+
 	QSettings *config=configManager.saveSettings();
 
 	config->beginGroup("texmaker");
@@ -3530,6 +3535,7 @@ void Texmaker::GeneralOptions() {
 		}
 
 		//completion
+		completionBaseCommandsUpdated=true;
 		completerNeedsUpdate();
 
 		//update changed line mark colors
@@ -3922,6 +3928,10 @@ void Texmaker::updateCompleter() {
 					words.append(temp.arg(bibTex.ids[i]));
 			}
 		}
+
+	if(!completionBaseCommandsUpdated)
+	    conf->usage=completer->getUsage();
+	completionBaseCommandsUpdated=false;
 
 	completer->setAdditionalWords(words);
 	if(edView) edView->viewActivated();

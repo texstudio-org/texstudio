@@ -423,7 +423,9 @@ protected:
 
 	QStringList m_columnCutBuffer;
 
-        QTimer autosaveTimer;
+	QTimer autosaveTimer;
+
+	bool completionBaseCommandsUpdated;
 };
 
 

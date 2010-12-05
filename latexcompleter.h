@@ -48,6 +48,9 @@ public:
 	void setLabelDatabase(References *Label){
 		containedLabels=Label;
 	}
+
+	QMap<int,int> getUsage();
+	QHash<QString,int> getUsageHash();
 	
 	bool close();
 	bool isVisible(){
@@ -64,7 +67,7 @@ private:
 
 	bool editorAutoCloseChars;
 
-	void filterList(QString word);
+	void filterList(QString word,bool showMostUsed=false);
 	bool acceptChar(QChar c,int pos);
 
 	static QString helpFile;
