@@ -683,6 +683,7 @@ void Texmaker::setupToolBars() {
                 comboSpellHeight=spellToolBar->height()-2;
                 comboSpell=createComboToolButton(spellToolBar,list,comboSpellHeight,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName());
 		spellToolBar->addWidget(comboSpell);
+		addAction(spellToolBar->toggleViewAction());
 	}
 //customizable toolbars
 	//first apply custom icons
