@@ -568,6 +568,7 @@ LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0) {
 	containedLabels=0;
 	widget=new QWidget(qobject_cast<QWidget*>(parent()));
 	QVBoxLayout *layout = new QVBoxLayout;
+	layout->setSpacing(0);
 	tbAbove=new QTabBar();
 	tbAbove->setShape(QTabBar::RoundedNorth);
 	tbAbove->addTab(tr("all"));
