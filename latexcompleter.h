@@ -65,6 +65,9 @@ private:
 	CompletionListModel* listModel;
 	QEditor *editor;
 
+	QWidget *widget;
+	QTabBar *tbBelow,*tbAbove;
+
 	bool editorAutoCloseChars;
 
 	void filterList(QString word,bool showMostUsed=false);
@@ -79,6 +82,8 @@ private slots:
 	void cursorPositionChanged();
 	void selectionChanged(const QModelIndex & index);
 	void editorDestroyed();
+	void changeView(int pos);
+	void listClicked(QModelIndex index);
 };
 
 #endif
