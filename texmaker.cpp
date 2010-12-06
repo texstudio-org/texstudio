@@ -60,6 +60,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	previewEquation=false;
 	svndlg=0;
 	mCompleterNeedsUpdate=false;
+	comboSpellHeight=0;
 
 	ReadSettings();
 	setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
@@ -670,21 +671,7 @@ void Texmaker::setupMenus() {
 
 void Texmaker::setupToolBars() {
 	//This method will be called multiple times and must not create something if this something already exists
-// spelling language
-	if (!spellToolBar){
-		spellToolBar = addToolBar(tr("Spelling"));
-		spellToolBar->setObjectName("Spelling");
-		QFontMetrics fontMetrics(spellToolBar->font());
-		QStringList list;
-		QDir fic=QFileInfo(configManager.spell_dic).absoluteDir();
-		if (fic.exists() && fic.isReadable())
-				list << fic.entryList(QStringList("*.dic"),QDir::Files,QDir::Name);
 
-                comboSpellHeight=spellToolBar->height()-2;
-                comboSpell=createComboToolButton(spellToolBar,list,comboSpellHeight,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName());
-		spellToolBar->addWidget(comboSpell);
-		addAction(spellToolBar->toggleViewAction());
-	}
 //customizable toolbars
 	//first apply custom icons
 	QMap<QString, QVariant>::const_iterator i = configManager.replacedIconsOnMenus.constBegin();
@@ -704,6 +691,25 @@ void Texmaker::setupToolBars() {
                 else mtb.toolbar = addToolBar(tr(qPrintable(mtb.name)));
                 mtb.toolbar->setObjectName(mtb.name);
                 addAction(mtb.toolbar->toggleViewAction());
+		if(mtb.name=="Math"){
+		    // spelling language
+		    if (!spellToolBar){
+			spellToolBar = addToolBar(tr("Spelling"));
+			spellToolBar->setObjectName("Spelling");
+			QFontMetrics fontMetrics(spellToolBar->font());
+			QStringList list;
+			QDir fic=QFileInfo(configManager.spell_dic).absoluteDir();
+			if (fic.exists() && fic.isReadable())
+			    list << fic.entryList(QStringList("*.dic"),QDir::Files,QDir::Name);
+
+			if(comboSpellHeight==0)
+			    comboSpellHeight=spellToolBar->height()-2;
+			comboSpell=createComboToolButton(spellToolBar,list,comboSpellHeight,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName());
+			spellToolBar->addWidget(comboSpell);
+			addAction(spellToolBar->toggleViewAction());
+		    }
+		    addToolBarBreak();
+		}
             } else mtb.toolbar->clear();
             foreach (const QString& actionName, mtb.actualActions){
                 if (actionName == "separator") mtb.toolbar->addSeparator(); //Case 1: Separator
@@ -715,6 +721,8 @@ void Texmaker::setupToolBars() {
                     QStringList list=tagsWidget->tagsTxtFromCategory(actionName.mid(tagCategorySep+1));
                     if (list.isEmpty()) continue;
                     QFontMetrics fontMetrics(mtb.toolbar->font());
+		    if(comboSpellHeight==0)
+			comboSpellHeight=mtb.toolbar->height()-2;
                     QToolButton* combo=createComboToolButton(mtb.toolbar,list,comboSpellHeight,fontMetrics,this,SLOT(insertXmlTagFromToolButtonAction()));
                     combo->setProperty("tagsID", actionName);
                     mtb.toolbar->addWidget(combo);
@@ -738,6 +746,8 @@ void Texmaker::setupToolBars() {
                         foreach (const QAction* act, menu->actions())
                             if (!act->isSeparator())
                                 list.append(act->text());
+			if(comboSpellHeight==0)
+			    comboSpellHeight=mtb.toolbar->height()-2;
                         QToolButton* combo=createComboToolButton(mtb.toolbar,list,comboSpellHeight,fontMetrics,this,SLOT(callToolButtonAction()));
                         combo->setProperty("menuID", actionName);
                         mtb.toolbar->addWidget(combo);
