@@ -40,8 +40,10 @@ public:
 	void insertText(const QString& text){
 		maxWritten += text.length();
 		editor->cursor().insertText(text);
-		if (editor->cursor().columnNumber()+1>curStart)
-			completer->list->show();
+		if (editor->cursor().columnNumber()+1>curStart){
+			completer->widget->show();
+		    }
+
 	}
 
 	bool insertCompletedWord() {
@@ -153,7 +155,7 @@ public:
 				resetBinding();
 				return true;
 			} else if (editor->cursor().columnNumber()+1<=curStart && !showAlways) {
-				completer->list->hide();
+				completer->widget->hide();
 				return true;
 			}
 			handled=true;
@@ -287,6 +289,13 @@ public:
 		if (c.line()!=curLine || c.columnNumber()<curStart) resetBinding();
 	}
 
+	void setMostUsed(bool mu){
+	    showMostUsed=mu;
+	    completer->filterList(getCurWord(),showMostUsed);
+	    if (!completer->list->currentIndex().isValid())
+		    select(completer->list->model()->index(0,0,QModelIndex()));
+	}
+
 	void resetBinding() {
 		showMostUsed=false;
 		if (!active) return;
@@ -296,7 +305,7 @@ public:
 		editor->setInputBinding(oldBinding);
 		editor->setFocus();
 		if (completer) {
-			completer->list->hide();
+			completer->widget->hide();
 			completer->disconnect(editor,SIGNAL(cursorPositionChanged()),completer,SLOT(cursorPositionChanged()));
 		}
 		active=false;
@@ -317,7 +326,7 @@ public:
 		showAlways=forced;//curWord!="\\";
 		completer->filterList(getCurWord());
 		if (showAlways) {
-			completer->list->show();
+			completer->widget->show();
 			select(completer->list->model()->index(0,0,QModelIndex()));
 		}
 	}
@@ -554,10 +563,41 @@ LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0) {
 	list->setItemDelegate(new CompletionItemDelegate(list));
 	editor=0;
 	containedLabels=0;
+	widget=new QWidget(qobject_cast<QWidget*>(parent()));
+	QVBoxLayout *layout = new QVBoxLayout;
+	tbAbove=new QTabBar();
+	tbAbove->setShape(QTabBar::RoundedNorth);
+	tbAbove->addTab(tr("all"));
+	tbAbove->addTab(tr("most used"));
+	tbAbove->setToolTip(tr("press shift+space to change view"));
+	layout->addWidget(tbAbove);
+	tbAbove->hide();
+	layout->addWidget(list);
+	tbBelow=new QTabBar();
+	tbBelow->setShape(QTabBar::RoundedSouth);
+	tbBelow->addTab(tr("all"));
+	tbBelow->addTab(tr("most used"));
+	tbBelow->setToolTip(tr("press shift+space to change view"));
+	layout->addWidget(tbBelow);
+	widget->setLayout(layout);
+	connect(list,SIGNAL(clicked(QModelIndex)),this,SLOT(listClicked(QModelIndex)));
+	//connect(tbBelow,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
+	//connect(tbAbove,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
 }
 
 LatexCompleter::~LatexCompleter() {
 	//delete list;
+}
+
+void LatexCompleter::changeView(int pos){
+	completerInputBinding->setMostUsed(pos>0);
+}
+
+void LatexCompleter::listClicked(QModelIndex index){
+    if (!completerInputBinding->insertCompletedWord()) {
+	editor->insertText("\n");
+    }
+    completerInputBinding->resetBinding();
 }
 
 QHash<QString,int> LatexCompleter::getUsageHash(){
@@ -596,7 +636,7 @@ void LatexCompleter::setAdditionalWords(const QStringList &newwords, bool normal
 			if (temp>newWordMax) newWordMax=temp;
 		}
 		maxWordLen=newWordMax;
-		list->resize(200>maxWordLen?200:maxWordLen,100);
+		widget->resize(200>maxWordLen?200:maxWordLen,200);
 	}
 }
 
@@ -643,15 +683,30 @@ void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool nor
 		editor->setCursor(c);
 	}
 	QPoint offset;
-	if (!editor->getPositionBelowCursor(offset, list->width(), list->height()))
+	bool above=false;
+	if (!editor->getPositionBelowCursor(offset, widget->width(), widget->height(),above))
 		return;
 
 	//disable auto close char while completer is open
 	editorAutoCloseChars=editor->flag(QEditor::AutoCloseChars);
 	editor->setFlag(QEditor::AutoCloseChars,false);
 
-	list->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
-	//list->show();
+	//list->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
+	disconnect(tbBelow,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
+	disconnect(tbAbove,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
+	if(above){
+	    tbAbove->show();
+	    tbBelow->hide();
+	    tbAbove->setCurrentIndex(0);
+	    connect(tbAbove,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
+	}else{
+	    tbAbove->hide();
+	    tbBelow->show();
+	    tbBelow->setCurrentIndex(0);
+	    connect(tbBelow,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
+	}
+	widget->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
+	//widget->show();
 	if (normalText) listModel->baselist=listModel->wordsText;
 	else listModel->baselist=listModel->wordsCommands;
 	listModel->baselist+=listModel->wordsAbbrev;
@@ -1002,7 +1057,7 @@ QString LatexCompleter::lookupWord(QString text){
 bool LatexCompleter::close(){
 	if (completerInputBinding->isActive()){
 		completerInputBinding->resetBinding();
-		list->setVisible(false);
+		widget->setVisible(false);
 		listModel->curWord="";
 		return true;
 	} else return false;

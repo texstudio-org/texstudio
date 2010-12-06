@@ -1778,6 +1778,11 @@ void QEditor::getCursorPosition(int &line, int &index)
 	\brief
 */
 bool QEditor::getPositionBelowCursor(QPoint& offset, int width, int height){
+    bool above;
+    return getPositionBelowCursor(offset,width,height,above);
+}
+
+bool QEditor::getPositionBelowCursor(QPoint& offset, int width, int height,bool& above){
 	QDocumentCursor c(m_cursor, false);
 	QDocumentLine line=c.line();
 	if (!c.line().isValid()) return false;
@@ -1790,8 +1795,12 @@ bool QEditor::getPositionBelowCursor(QPoint& offset, int width, int height){
 	int temp;
 	getPanelMargins(&left,&temp,&temp,&temp);
 	offset.setX(offset.x()+left);
-	if (offset.y()+height>this->height())
+	if (offset.y()+height>this->height()){
 		offset.setY(offset.y()-document()->getLineSpacing() - height);
+		above=true;
+	    } else {
+		above=false;
+	    }
 	if(offset.x()+width>this->width())
 		offset.setX(this->width() - width);
 	return true;
