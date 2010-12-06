@@ -205,8 +205,11 @@ public:
 		}  else if (event->key()==Qt::Key_Tab) {
 			return completeCommonPrefix();
 		}  else if (event->key()==Qt::Key_Space && event->modifiers()==Qt::ShiftModifier) {
-			showMostUsed=!showMostUsed;
-			handled=true;
+			//showMostUsed=!showMostUsed;
+			//handled=true;
+			completer->tbAbove->setCurrentIndex(showMostUsed ? 0 : 1 );
+			completer->tbBelow->setCurrentIndex(showMostUsed ? 0 : 1 );
+			return true;
 		} else if (event->key()==Qt::Key_Return || event->key()==Qt::Key_Enter) {
 			if (!insertCompletedWord()) {
 				editor->insertText("\n");
@@ -581,6 +584,7 @@ LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0) {
 	layout->addWidget(tbBelow);
 	widget->setLayout(layout);
 	connect(list,SIGNAL(clicked(QModelIndex)),this,SLOT(listClicked(QModelIndex)));
+	// todo: change tab when shift+space is pressed ...
 	//connect(tbBelow,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
 	//connect(tbAbove,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
 }
