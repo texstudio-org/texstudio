@@ -1299,6 +1299,8 @@ void LatexDocuments::addDocument(LatexDocument* document){
 }
 void LatexDocuments::deleteDocument(LatexDocument* document){
 	LatexEditorView *view=document->getEditorView();
+	if(view)
+	    view->closeCompleter();
 	if (document!=masterDocument) {
 		int row=documents.indexOf(document);
 		if(row>=0){

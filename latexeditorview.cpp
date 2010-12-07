@@ -874,6 +874,10 @@ void LatexEditorView::purgeLinksTo(QDocument *doc){
 	containedReferences->purgeLinksTo(doc);
 }
 
+void LatexEditorView::closeCompleter(){
+	completer->close();
+}
+
 void LatexEditorView::reCheckSyntax(int linenr, int count){
 	// expensive function ... however if \newcommand is changed valid commands become invalid and vice versa
 	if(!config->inlineSyntaxChecking || !config->realtimeChecking) return;

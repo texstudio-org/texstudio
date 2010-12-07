@@ -113,6 +113,8 @@ public:
 
 	void reCheckSyntax(int linenr=0, int count=-1);
 
+	void closeCompleter();
+
 private:
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 
 	*statusPanelAction, *searchReplacePanelAction, *gotoLinePanelAction;
