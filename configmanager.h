@@ -138,6 +138,9 @@ public:
 	QStringList enviromentModes;
 	QMap<QString,QVariant> customEnvironments;
 
+	//user macros
+	QStringList userMacroMenuName, userMacroTag, userMacroAbbrev, userToolMenuName, userToolCommand;
+
 	//debug
 	#ifndef QT_NO_DEBUG
 	QDateTime debugLastFileModification;

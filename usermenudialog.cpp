@@ -29,14 +29,6 @@ UserMenuDialog::UserMenuDialog(QWidget* parent,  QString name, QLanguageFactory*
 
 	previous_index=0;
 
-	for(int i=1;i<11;i++){
-		ui.comboBox->insertItem(i-1, tr("Menu %1").arg(i));
-	}
-
-	if(Tag.size()>10) {
-		for(int i=10;i<Tag.size();i++)
-			ui.comboBox->insertItem(i, tr("Menu %1").arg(i));
-	}
 	connect(ui.comboBox, SIGNAL(activated(int)),this,SLOT(change(int)));
 
 	connect(ui.okButton, SIGNAL(clicked()), SLOT(slotOk()));
@@ -85,9 +77,12 @@ UserMenuDialog::~UserMenuDialog() {
 }
 
 void UserMenuDialog::init() {
-	codeedit->editor()->setText(Tag[0]);
-	ui.itemEdit->setText(Name[0]);
-	ui.abbrevEdit->setText(Abbrev[0]);
+	for(int i=1;i<=qMax(10,Tag.size());i++)
+		ui.comboBox->insertItem(i-1, tr("Menu %1").arg(i));
+
+	codeedit->editor()->setText(Tag.value(0,""));
+	ui.itemEdit->setText(Name.value(0,""));
+	ui.abbrevEdit->setText(Abbrev.value(0,""));
 	ui.comboBox->setCurrentIndex(0);
 	if (languages){
 		if (codeedit->editor()->text(0)=="%SCRIPT") languages->setLanguage(codeedit->editor(), ".qs");
@@ -97,11 +92,17 @@ void UserMenuDialog::init() {
 }
 
 void UserMenuDialog::change(int index) {
-	Tag[previous_index]=codeedit->editor()->text();
-	Name[previous_index]=ui.itemEdit->text();
-	codeedit->editor()->setText(Tag[index]);
-	ui.itemEdit->setText(Name[index]);
-	ui.abbrevEdit->setText(Abbrev[index]);
+	if (Tag.isEmpty() || Name.isEmpty() || Abbrev.isEmpty())  return;
+	Q_ASSERT(previous_index < Tag.size() && previous_index < Name.size() && previous_index < Abbrev.size());
+
+	Tag[previous_index] = codeedit->editor()->text();
+	Name[previous_index] = ui.itemEdit->text();
+	Abbrev[previous_index] = ui.abbrevEdit->text();
+
+	codeedit->editor()->setText(Tag.value(index,""));
+	ui.itemEdit->setText(Name.value(index,""));
+	ui.abbrevEdit->setText(Abbrev.value(index,""));
+
 	previous_index=index;
 	if (languages){
 		if (codeedit->editor()->text(0)=="%SCRIPT") languages->setLanguage(codeedit->editor(), ".qs");
@@ -111,9 +112,12 @@ void UserMenuDialog::change(int index) {
 }
 
 void UserMenuDialog::slotOk() {
-	Tag[previous_index]=codeedit->editor()->text();
-	Name[previous_index]=ui.itemEdit->text();
-	Abbrev[previous_index]=ui.abbrevEdit->text();
+	if (!Tag.isEmpty() && !Name.isEmpty() && !Abbrev.isEmpty())  {
+		Q_ASSERT(previous_index < Tag.size() && previous_index < Name.size() && previous_index < Abbrev.size());
+		Tag[previous_index]=codeedit->editor()->text();
+		Name[previous_index]=ui.itemEdit->text();
+		Abbrev[previous_index]=ui.abbrevEdit->text();
+	}
 	accept();
 }
 void UserMenuDialog::changeTypeToNormal(){
