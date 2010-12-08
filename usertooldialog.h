@@ -16,8 +16,6 @@
 
 #include "ui_usertooldialog.h"
 
-typedef QString userCd[5];
-
 class BuildManager;
 class UserToolDialog : public QDialog  {
 	Q_OBJECT
@@ -26,7 +24,7 @@ public:
 	~UserToolDialog();
 	Ui::UserToolDialog ui;
 
-	userCd Name,Tool;
+	QStringList Name,Tool;
 	BuildManager* buildManager;
 private:
 	int previous_index;

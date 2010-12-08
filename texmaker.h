@@ -129,8 +129,6 @@ private:
 	QString spell_ignored_words;
 	QStringList struct_level;
 	QStringList labelitem;
-	QStringList UserMenuName, UserMenuTag, UserMenuAbbrev;
-	QStringList UserToolName, UserToolCommand;
 
 	QStringList userTemplatesList;
 

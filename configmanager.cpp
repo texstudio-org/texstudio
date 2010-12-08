@@ -240,6 +240,14 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Spell/Dic", &spell_dic, "<dic not found>", &pseudoDialog->comboBoxDictionaryFileName); //don't translate it
 	registerOption("Thesaurus/Database", &thesaurus_database, "<dic not found>", &pseudoDialog->comboBoxThesaurusFileName);
 
+	//user macros
+	registerOption("User/TagNames", &userMacroMenuName, QStringList());
+	registerOption("User/Tags", &userMacroTag, QStringList());
+	registerOption("User/TagAbbrevs", &userMacroAbbrev, QStringList());
+	registerOption("User/ToolNames", &userToolMenuName, QStringList());
+	registerOption("User/Tools", &userToolCommand, QStringList());
+	registerOption("User/TagAbbrevs", &userMacroAbbrev, QStringList());
+
 	//editor
 	registerOption("Editor/WordWrap", &editorConfig->wordwrap, true, &pseudoDialog->checkBoxWordwrap);
 	registerOption("Editor/HardWordWrap", &editorConfig->hardwordwrap, false, &pseudoDialog->checkBoxHardWordWrap);

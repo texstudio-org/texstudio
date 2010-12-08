@@ -1494,6 +1494,7 @@ void PDFDocument::loadFile(const QString &fileName, const QString& externalViewe
 	raise();
 	show();
 	setFocus();
+	if (scrollArea) scrollArea->setFocus();
 }
 
 void PDFDocument::reload()

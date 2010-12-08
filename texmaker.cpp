@@ -196,7 +196,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	completer->setConfig(configManager.completerConfig);
 	updateCompleter();
 	LatexEditorView::setCompleter(completer);
-	completer->setAbbreviations(UserMenuAbbrev,UserMenuTag);
+	completer->setAbbreviations(configManager.userMacroAbbrev, configManager.userMacroTag);
 
 	if (configManager.sessionRestore) {
 		fileRestoreSession();
@@ -588,15 +588,15 @@ void Texmaker::setupMenus() {
 //  User
 	menu=newManagedMenu("main/user",tr("&User"));
 	submenu=newManagedMenu(menu,"tags",tr("User &Tags"));
-	for (int i=0; i<10; i++)
-		newManagedAction(submenu, QString("tag%1").arg(i),QString("%1: %2").arg(i+1).arg(UserMenuName[i]), SLOT(InsertUserTag()), Qt::SHIFT+Qt::Key_F1+i)
+	for (int i=0; i<configManager.userMacroMenuName.size(); i++)
+		newManagedAction(submenu, QString("tag%1").arg(i),QString("%1: %2").arg(i+1).arg(configManager.userMacroMenuName.value(i,"")), SLOT(InsertUserTag()), (i<10?Qt::SHIFT+Qt::Key_F1+i:0))
 		->setData(i);
 	submenu->addSeparator();
 	newManagedAction(submenu, QString("manage"),tr("Edit User &Tags"), SLOT(EditUserMenu()));
 
 	submenu=newManagedMenu(menu,"commands",tr("User &Commands"));
-	for (int i=0; i<5; i++)
-		newManagedAction(submenu, QString("cmd%1").arg(i),QString("%1: %2").arg(i+1).arg(UserToolName[i]), SLOT(UserTool()), Qt::SHIFT+Qt::ALT+Qt::Key_F1+i)
+	for (int i=0; i<configManager.userToolCommand.size(); i++)
+		newManagedAction(submenu, QString("cmd%1").arg(i),QString("%1: %2").arg(i+1).arg(configManager.userToolMenuName.value(i,"")), SLOT(UserTool()), (i<10?Qt::SHIFT+Qt::ALT+Qt::Key_F1+i:0))
 		->setData(i);
 	submenu->addSeparator();
 	newManagedAction(submenu, QString("manage"),tr("Edit User &Commands"), SLOT(EditUserTool()));
@@ -1948,18 +1948,15 @@ void Texmaker::ReadSettings() {
 	tobemaximized=config->value("MainWindow/Maximized",false).toBool();
 	tobefullscreen=config->value("MainWindow/FullScreen",false).toBool();
 
-	/*for (int i=0; i<=9; i++) {
-		UserMenuName[i]=config->value(QString("User/Menu%1").arg(i+1),"").toString();
-		UserMenuTag[i]=config->value(QString("User/Tag%1").arg(i+1),"").toString();
-		}*/
-	UserMenuName=config->value("User/TagNames",QStringList()<<""<<""<<""<<""<<""<<""<<""<<""<<""<<"").toStringList();
-	UserMenuTag=config->value("User/Tags",QStringList()<<""<<""<<""<<""<<""<<""<<""<<""<<""<<"").toStringList();
-	UserMenuAbbrev=config->value("User/TagAbbrevs",QStringList()<<""<<""<<""<<""<<""<<""<<""<<""<<""<<"").toStringList();
-	UserToolName << ""<< ""<< ""<< ""<< "";
-	UserToolCommand<< ""<< ""<< ""<< ""<< "";
-	for (int i=0; i<=4; i++) {
-		UserToolName[i]=config->value(QString("User/ToolName%1").arg(i+1),"").toString();
-		UserToolCommand[i]=config->value(QString("User/Tool%1").arg(i+1),"").toString();
+	//import old
+	for (int i=1; i<=5; i++) {
+		QString temp = config->value(QString("User/Tool%1").arg(i),"").toString();
+		if (!temp.isEmpty()) {
+			configManager.userToolCommand << temp;
+			configManager.userToolMenuName << config->value(QString("User/ToolName%1").arg(i),"").toString();
+			config->remove(QString("User/Tool%1").arg(i));
+			config->remove(QString("User/ToolName%1").arg(i));
+		}
 	}
 
 	LatexParser::structureCommands.clear();
@@ -2063,14 +2060,6 @@ void Texmaker::SaveSettings() {
 	config->setValue("Files/Session/CurrentFile",currentEditorView()?currentEditor()->fileName():"");
 	config->setValue("Files/Session/MasterFile",documents.singleMode()?"":documents.masterDocument->getFileName());
 
-	config->setValue("User/TagNames",UserMenuName);
-	config->setValue("User/Tags",UserMenuTag);
-	config->setValue("User/TagAbbrevs",UserMenuAbbrev);
-
-	for (int i=0; i<=4; i++) {
-		config->setValue(QString("User/ToolName%1").arg(i+1),UserToolName[i]);
-		config->setValue(QString("User/Tool%1").arg(i+1),UserToolCommand[i]);
-	}
 
 	for(int i=0;i<struct_level.count();i++)
 	    config->setValue("Structure/Structure Level "+QString::number(i+1),struct_level[i]);
@@ -2746,8 +2735,8 @@ void Texmaker::InsertUserTag() {
 	if (!action) return;
 	if (!currentEditorView()) return;
 	int id = action->data().toInt();
-	if (id<0 || id>=10) return;
-	QString userTag=UserMenuTag[id];
+	QString userTag=configManager.userMacroTag.value(id,"");
+	if (userTag.isEmpty()) return;
 	if (userTag.left(8)=="%SCRIPT\n"){
 		scriptengine eng(this);
 		eng.setEditor(currentEditor());
@@ -2765,19 +2754,20 @@ void Texmaker::InsertUserTag() {
 
 void Texmaker::EditUserMenu() {
 	UserMenuDialog *umDlg = new UserMenuDialog(this,tr("Edit User &Tags"),m_languages);
-	umDlg->Name=UserMenuName;
-	umDlg->Tag=UserMenuTag;
-	umDlg->Abbrev=UserMenuAbbrev;
+	umDlg->Name=configManager.userMacroMenuName;
+	umDlg->Tag=configManager.userMacroTag;
+	umDlg->Abbrev=configManager.userMacroAbbrev;
 	umDlg->init();
-	if (umDlg->exec())
-		UserMenuName=umDlg->Name;
-		UserMenuTag=umDlg->Tag;
-		UserMenuAbbrev=umDlg->Abbrev;
+	if (umDlg->exec()) {
+		configManager.userMacroMenuName=umDlg->Name;
+		configManager.userMacroTag=umDlg->Tag;
+		configManager.userMacroAbbrev=umDlg->Abbrev;
 		for (int i = 0; i <= 9; i++) {
-		QAction * act=getManagedAction("main/user/tags/tag"+QString::number(i));
-		if (act) act->setText(QString::number(i+1)+": "+UserMenuName[i]);
+			QAction * act=getManagedAction("main/user/tags/tag"+QString::number(i));
+			if (act) act->setText(QString::number(i+1)+": "+configManager.userMacroMenuName.value(i,""));
+		}
 	}
-	completer->setAbbreviations(UserMenuAbbrev,UserMenuTag);
+	completer->setAbbreviations(configManager.userMacroAbbrev,configManager.userMacroTag);
 	delete umDlg; //must be deleted before the formatscheme is deleted
 }
 
@@ -3202,8 +3192,7 @@ void Texmaker::CleanAll() {
 void Texmaker::UserTool() {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (!action) return;
-	if (action->data().toInt()<0 || action->data().toInt()>=5) return;
-	QString cmd=UserToolCommand[action->data().toInt()];
+	QString cmd=configManager.userToolCommand.value(action->data().toInt(),"");
 	if (cmd.isEmpty()) return;
 	fileSaveAll(buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ALWAYS, buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ONLY_CURRENT_OR_NAMED);
 	if (documents.getTemporaryCompileFileName()=="") {
@@ -3227,18 +3216,17 @@ void Texmaker::UserTool() {
 
 void Texmaker::EditUserTool() {
 	UserToolDialog utDlg(this,tr("Edit User &Commands"), &buildManager);
-	for (int i = 0; i <= 4; i++) {
-		utDlg.Name[i]=UserToolName[i];
-		utDlg.Tool[i]=UserToolCommand[i];
-		utDlg.init();
-	}
-	if (utDlg.exec())
-		for (int i = 0; i <= 4; i++) {
-			UserToolName[i]=utDlg.Name[i];
-			UserToolCommand[i]=utDlg.Tool[i];
+	utDlg.Name = configManager.userToolMenuName;
+	utDlg.Tool = configManager.userToolCommand;
+	utDlg.init();
+	if (utDlg.exec()) {
+		configManager.userToolMenuName = utDlg.Name;
+		configManager.userToolCommand = utDlg.Tool;
+		for (int i = 0; i <= configManager.userToolCommand.size(); i++) {
 			QAction * act=getManagedAction("main/user/commands/cmd"+QString::number(i));
-			if (act) act->setText(QString::number(i+1)+": "+UserToolName[i]);
+			if (act) act->setText(QString::number(i+1)+": "+configManager.userToolMenuName.value(i,""));
 		}
+	}
 }
 
 void Texmaker::WebPublish() {

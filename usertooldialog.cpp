@@ -19,11 +19,6 @@ UserToolDialog::UserToolDialog(QWidget *parent, QString name, BuildManager* bm) 
 
 	previous_index=0;
 
-	ui.comboBox->insertItem(0, tr("Command %1").arg("1"));
-	ui.comboBox->insertItem(1, tr("Command %1").arg("2"));
-	ui.comboBox->insertItem(2, tr("Command %1").arg("3"));
-	ui.comboBox->insertItem(3, tr("Command %1").arg("4"));
-	ui.comboBox->insertItem(4, tr("Command %1").arg("5"));
 	connect(ui.comboBox, SIGNAL(activated(int)), SLOT(change(int)));
 
 	connect(ui.pushButtonWizard, SIGNAL(clicked()), SLOT(openWizard()));
@@ -35,20 +30,26 @@ UserToolDialog::~UserToolDialog() {
 }
 
 void UserToolDialog::init() {
-	ui.toolEdit->setText(Tool[0]);
-	ui.itemEdit->setText(Name[0]);
+	for (int i=0;i<qMax(3,Tool.size());i++)
+		ui.comboBox->insertItem(i, tr("Command %1").arg(i+1));
+	ui.toolEdit->setText(Tool.value(0,""));
+	ui.itemEdit->setText(Name.value(0,""));
 	ui.comboBox->setCurrentIndex(0);
 }
 
 void UserToolDialog::change(int index) {
+	while (Tool.size() <= previous_index) Tool << "";
+	while (Name.size() <= previous_index) Name << "";
 	Tool[previous_index]=ui.toolEdit->text();
 	Name[previous_index]=ui.itemEdit->text();
-	ui.toolEdit->setText(Tool[index]);
-	ui.itemEdit->setText(Name[index]);
+	ui.toolEdit->setText(Tool.value(index,""));
+	ui.itemEdit->setText(Name.value(index,""));
 	previous_index=index;
 }
 
 void UserToolDialog::slotOk() {
+	while (Tool.size() <= previous_index) Tool << "";
+	while (Name.size() <= previous_index) Name << "";
 	Tool[previous_index]=ui.toolEdit->text();
 	Name[previous_index]=ui.itemEdit->text();
 	accept();
