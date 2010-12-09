@@ -5,6 +5,7 @@
 #include "buildmanager_t.h"
 #include "codesnippet_t.h"
 #include "qdocumentcursor_t.h"
+#include "qdocumentline_t.h"
 #include "qdocumentsearch_t.h"
 #include "qsearchreplacepanel_t.h"
 #include "qeditor_t.h"
@@ -43,6 +44,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 		<< new SmallUsefulFunctionsTest()
 		<< new BuildManagerTest()
 		<< new CodeSnippetTest(editor)
+		<< new QDocumentLineTest()
 		<< new QDocumentCursorTest()
 		<< new QDocumentSearchTest(editor)
 		<< new QSearchReplacePanelTest(codeedit,level==TL_ALL)

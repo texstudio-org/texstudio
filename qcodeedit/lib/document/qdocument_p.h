@@ -237,7 +237,6 @@ class QCE_EXPORT QDocumentPrivate
 		static int m_ascent;
 		static int m_descent;
 		static int m_leading;
-		static int m_wrapMargin;
 				
 		static QVector<QFont> m_fonts;
 		static QList<QFontMetrics> m_fontMetrics;

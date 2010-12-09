@@ -567,6 +567,7 @@ void QSearchReplacePanelTest::selectionHighlighting(){
 	QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), QDocumentCursor());
 }
 void QSearchReplacePanelTest::cleanupTestCase(){
+	widget->cbSelection->setChecked(false); //this gets annoying later
 }
 #endif
 
