@@ -255,7 +255,7 @@ public:
 				QString newWord;
 				if (curWord != "\\"){
 				    foreach (const CodeSnippet& w, words){
-					if (w.word.startsWith(curWord) && (w.word.indexOf(written, curWord.length()) >= 0)){
+					if (w.word.startsWith(curWord)){
 					    newWord = w.word;
 					    break;
 					}
