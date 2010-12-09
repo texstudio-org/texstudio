@@ -2095,8 +2095,8 @@ void QDocumentLineHandle::updateWrap() const
 		indent = ranges.first().length;
 	}
 
-	int x = QDocumentPrivate::m_leftMargin;
-	int rx = x;
+	int x = QDocumentPrivate::m_leftMargin; //x position
+	int rx = x; //real x position (where it would be without word wrapping)
 
 	if ( (minx + QDocumentPrivate::m_spaceWidth) >= maxWidth )
 	{
@@ -2108,7 +2108,8 @@ void QDocumentLineHandle::updateWrap() const
 
 	m_indent = minx - QDocumentPrivate::m_leftMargin;
 
-	int lastBreak = 0, lastX = 0, lastWidth = 0;
+	int lastBreak = 0, lastX = 0; //last position a break would fit nicely
+	int lastActualBreak = indent; //last position a break was inserted (indent has nothing to do with m_indent)
 	for (int i = 0; i < ranges.size(); i++) {
 		const RenderRange& r = ranges[i];
 		d->m_formatScheme->extractFormats(r.format, tempFmts, tempFormats, fontFormat);
@@ -2117,6 +2118,18 @@ void QDocumentLineHandle::updateWrap() const
 
 		if ( x + xDelta > maxWidth ) {
 			if (r.format & FORMAT_SPACE) {
+				if (lastBreak > lastActualBreak) {
+					m_frontiers << qMakePair(lastBreak, lastX);
+					lastActualBreak = lastBreak;
+
+					rx += xDelta;
+					x = minx + (rx - lastX);
+					column += columnDelta;
+					idx += r.length;
+
+					continue;
+				}
+
 				//cut in space range
 				int cwidth = d->textWidth(fontFormat, " ");
 				foreach (const QChar& c, m_text.mid(r.position, r.length)) {
@@ -2124,6 +2137,7 @@ void QDocumentLineHandle::updateWrap() const
 					int xoff = coff * cwidth;
 					if (x + xoff > maxWidth) {
 						m_frontiers << qMakePair(idx, rx);
+						lastActualBreak = idx;
 						x = minx;
 					}
 					rx += xoff;
@@ -2133,7 +2147,6 @@ void QDocumentLineHandle::updateWrap() const
 				}
 				lastBreak = idx;
 				lastX = rx;
-				lastWidth = x;
 				continue;
 			}			
 
@@ -2154,21 +2167,22 @@ void QDocumentLineHandle::updateWrap() const
 
 				if ( x + cwidth > maxWidth )
 				{
-					if ( lastBreak == (m_frontiers.count() ? m_frontiers.last().first : indent) )
+
+					if ( lastBreak <= lastActualBreak )
 					{
 						// perfect cut or fallback to aggressive cut
 						m_frontiers << qMakePair(idx, rx);
+						lastActualBreak = idx;
 						lastBreak = idx;
-						lastWidth = x;
 						lastX = rx;
 						x = minx;
-					} else if ( lastBreak < idx ) {
+					} else {
+						Q_ASSERT(lastBreak <= idx);
+						Q_ASSERT(lastBreak > 0);
 						// word cut at a non-ideal position
 						m_frontiers << qMakePair(lastBreak, lastX);
-						x = minx + (x - lastWidth);
-					} else {
-						m_frontiers << qMakePair(idx, rx);
-						x = minx;
+						lastActualBreak = lastBreak;
+						x = minx + (rx - lastX);
 					}
 				}
 
@@ -2185,7 +2199,6 @@ void QDocumentLineHandle::updateWrap() const
 			if ( r.format & FORMAT_SPACE ){
 				lastBreak = idx;
 				lastX = rx;
-				lastWidth = x;
 			}
 		}
 	}
@@ -5486,8 +5499,6 @@ int QDocumentPrivate::m_lineSpacing;// = m_fontMetrics.lineSpacing();
 int QDocumentPrivate::m_leftMargin = 5;
 QDocument::WhiteSpaceMode QDocumentPrivate::m_showSpaces = QDocument::ShowNone;
 QDocument::LineEnding QDocumentPrivate::m_defaultLineEnding = QDocument::Conservative;
-
-int QDocumentPrivate::m_wrapMargin = 15;
 
 QDocumentPrivate::QDocumentPrivate(QDocument *d)
  : 	m_doc(d),

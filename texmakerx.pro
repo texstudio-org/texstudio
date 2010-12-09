@@ -100,7 +100,8 @@ HEADERS += texmaker.h \
     PDFDocument.h \
     PDFDocks.h \
     synctex_parser_utils.h \
-    synctex_parser.h
+    synctex_parser.h \
+    tests/qdocumentline_t.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -171,7 +172,8 @@ SOURCES += main.cpp \
     PDFDocument.cpp \
     PDFDocks.cpp \
     synctex_parser_utils.c \
-    synctex_parser.c
+    synctex_parser.c \
+    tests/qdocumentline_t.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
@@ -203,9 +205,7 @@ TRANSLATIONS += texmakerx_fr.ts \
     texmakerx_uk.ts
 
 # ###############################
-win32 { 
-    RC_FILE = win.rc
-}
+win32:RC_FILE = win.rc
 
 # ##############################
 macx { 
@@ -241,10 +241,7 @@ unix:!macx {
     applicationmenu.path = $${PREFIX}/share/applications
     applicationmenu.files = utilities/texmakerx.desktop
     INSTALLS += applicationmenu
-        
 }
-
-
 
 # ##########UNIX + MACX###############
 unix { 
@@ -450,25 +447,30 @@ macx:LIBS += -framework \
 macx:LIBS += -framework \
     CoreFoundation
 
-#################################
-#Poppler PDF Preview, will only be used if NO_POPPLER_PREVIEW is not set
-
-isEmpty(NO_POPPLER_PREVIEW){
-    unix:!macx{
+# ################################
+# Poppler PDF Preview, will only be used if NO_POPPLER_PREVIEW is not set
+isEmpty(NO_POPPLER_PREVIEW) { 
+    unix:!macx { 
         INCLUDEPATH += /usr/include/poppler/qt4
-        LIBS += -L/usr/lib -lpoppler-qt4 -lpoppler -lz
+        LIBS += -L/usr/lib \
+            -lpoppler-qt4 \
+            -lpoppler \
+            -lz
     }
-    macx {
+    macx { 
         INCLUDEPATH += /usr/local/include/poppler/qt4
-        LIBS += -L/usr/lib -L/usr/local/lib -lpoppler-qt4 -lpoppler -lz
+        LIBS += -L/usr/lib \
+            -L/usr/local/lib \
+            -lpoppler-qt4 \
+            -lpoppler \
+            -lz
     }
     win32 { 
         LIBS += -lpoppler-qt4
         LIBS += -lpoppler
     }
 }
-
-!isEmpty(NO_POPPLER_PREVIEW){
+!isEmpty(NO_POPPLER_PREVIEW) { 
     DEFINES += NO_POPPLER_PREVIEW
     message("Internal pdf previewer disabled as you wish.")
 }
@@ -521,6 +523,3 @@ else {
 }
 HEADERS += $$svn_revision.target
 QMAKE_EXTRA_TARGETS += svn_revision
-
-
-
