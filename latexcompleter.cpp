@@ -249,9 +249,9 @@ public:
 			} else if (completer->acceptChar(written,editor->cursor().columnNumber()-curStart)) {
 				insertText(written);
 				handled=true;
-			} else if (event->text().length()==1 && getCommonEOW().contains(event->text().at(0))) {
+			} else if (event->text().length()==1 && getCommonEOW().contains(event->text().at(0)) ) {
 				const QList<CompletionWord> &words=completer->listModel->getWords();
-				QString curWord = getCurWord();
+				QString curWord = getCurWord() + event->text() ;
 				QString newWord;
 				if (curWord != "\\"){
 				    foreach (const CodeSnippet& w, words){
@@ -262,8 +262,9 @@ public:
 				    }
 				}
 				if (!newWord.isEmpty()) {
-					QString insertion = newWord.mid(curWord.length(), newWord.indexOf(written, curWord.length()) - curWord.length() + 1);
-					insertText(insertion);
+					//QString insertion = newWord.mid(curWord.length(), newWord.indexOf(written, curWord.length()) - curWord.length() + 1); // don't get the intention of this line
+					//insertText(insertion);
+					insertText(written);
 					handled = true;
 				} else if (LatexCompleter::config && LatexCompleter::config->eowCompletes) {
 					int curLength = getCurWord().length();
