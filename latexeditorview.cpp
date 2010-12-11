@@ -653,8 +653,16 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			// hack to color the environment given in \begin{environment}...
 			if (inStructure){
 				if(line.getFormatAt(wordstart)==verbatimFormat) continue;
-				QString secName=extractSectionName(lineText.mid(wordstart),true);
-				line.addOverlay(QFormatRange(wordstart,secName.length(),structureFormat));
+				//QString secName=extractSectionName(lineText.mid(wordstart),true);
+				//line.addOverlay(QFormatRange(wordstart,secName.length(),structureFormat));
+				QStringList result;
+				QList<int> starts;
+				LatexParser::resolveCommandOptions(lineText,wordstart-1,result,&starts);
+				for(int j=0;j<starts.count() && j<2;j++){
+				    QString text=result.at(j);
+				    line.addOverlay(QFormatRange(starts.at(j)+1,text.length()-2,structureFormat));
+				    if(text.startsWith("{")) break;
+				}
 				inStructure=false;
 				addedOverlayStructure = true;
 			}

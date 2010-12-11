@@ -400,6 +400,7 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 			return NW_COMMENT; //return comment start
 		case '[':
 			if(!lastCommand.isEmpty()) inOption=true;
+			if(inStructure && LatexParser::structureCommands.contains(lastCommand)) *inStructure=true;
 			break;
 		case ']':
 			inOption=false;
@@ -688,7 +689,7 @@ void addEnvironmentToDom(QDomDocument& doc,const QString EnvironName,const QStri
 	root.insertBefore(tag,insertAt);
 }
 
-void LatexParser::resolveCommandOptions(const QString &line, int column, QStringList &values){
+void LatexParser::resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts){
     const QString BracketsOpen("[{");
     const QString BracketsClose("]}");
     int start=column;
@@ -729,6 +730,8 @@ void LatexParser::resolveCommandOptions(const QString &line, int column, QString
 	}
 	if(found>-1 && stop>-1){
 	    values << line.mid(found,stop-found+1);
+	    if(starts)
+		starts->append(found);
 	    start=stop+1;
 	} else break;
     }
