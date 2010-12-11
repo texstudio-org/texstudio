@@ -3826,7 +3826,7 @@ void Texmaker::dragEnterEvent(QDragEnterEvent *event) {
 }
 
 void Texmaker::dropEvent(QDropEvent *event) {
-	QRegExp rx("file://(.*\\.(?:tex|bib|sty|cls|mp))");
+	QRegExp rx("file://(.*)");
 	QList<QUrl> uris=event->mimeData()->urls();
 	QString uri;
 	for (int i = 0; i < uris.size(); ++i) {
@@ -3835,6 +3835,7 @@ void Texmaker::dropEvent(QDropEvent *event) {
 		if (rx.exactMatch(uri)) load(rx.cap(1));
 	}
 	event->acceptProposedAction();
+	raise();
 }
 
 void Texmaker::changeEvent(QEvent *e) {
