@@ -40,6 +40,7 @@ LatexDocument::LatexDocument(QObject *parent):QDocument(parent),edView(0),mAppen
 	mMentionedBibTeXFiles.clear();
 	m_magicPlaceHolder=-1;
 	m_mirrorInLine=-1;
+	masterDocument=0;
 }
 LatexDocument::~LatexDocument(){
 	if (!labelList->parent) delete labelList;
@@ -1383,6 +1384,9 @@ QString LatexDocuments::getCompileFileName(){
 		return masterDocument->getFileName();
 	if (!currentDocument)
 		return "";
+	LatexDocument* masterDoc=currentDocument->getMasterDocument();
+	if(masterDoc)
+	    return masterDoc->getFileName();
 	QString curDocFile = currentDocument->getFileName();
 	if (curDocFile.endsWith(".bib"))
 		foreach (const LatexDocument* d, documents) {
@@ -1694,6 +1698,17 @@ bool LatexDocument::fileExits(QString fname){
 	return exist;
 }
 
+QString LatexDocument::findFileName(QString fname){
+	QString curPath=ensureTrailingDirSeparator(getFileInfo().absolutePath());
+	QString result;
+	if(QFile(parent->getAbsoluteFilePath(fname,".tex")).exists())
+	    result=QFileInfo(parent->getAbsoluteFilePath(fname,".tex")).absoluteFilePath();
+	if (result.isEmpty() && QFile(parent->getAbsoluteFilePath(curPath+fname,".tex")).exists())
+	    result=QFileInfo(parent->getAbsoluteFilePath(curPath+fname,".tex")).absoluteFilePath();
+	if (result.isEmpty() && QFile(parent->getAbsoluteFilePath(curPath+fname,"")).exists())
+	    result=QFileInfo(parent->getAbsoluteFilePath(curPath+fname,"")).absoluteFilePath();
+	return result;
+}
 
 void LatexDocuments::updateStructure(){
 	foreach(LatexDocument* doc,documents){
@@ -1709,3 +1724,14 @@ void LatexDocuments::bibTeXFilesNeedUpdate(){
 	bibTeXFilesModified=true;
 }
 
+QStringList LatexDocument::includedFiles(){
+    QStringList result;
+    foreach(StructureEntry* se,baseStructure->children){
+	if(se->type==StructureEntry::SE_INCLUDE){
+	    QString fname=findFileName(se->title);
+	    if(!fname.isEmpty())
+		result << fname;
+	}
+    }
+    return result;
+}

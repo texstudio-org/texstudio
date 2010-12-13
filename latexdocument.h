@@ -125,12 +125,24 @@ public:
 
 	void setTemporaryFileName(const QString& fileName);
 	QString getTemporaryFileName();
+
+	void setMasterDocument(LatexDocument* doc){
+	    masterDocument=doc;
+	}
+	LatexDocument* getMasterDocument(){
+	    return masterDocument;
+	}
+
+	QStringList includedFiles();
+
 private:
 	QString fileName; //absolute
 	QString temporaryFileName; //absolute, temporary
 	QFileInfo fileInfo;
 
 	LatexEditorView* edView;
+
+	LatexDocument* masterDocument;
 
 	StructureEntry* labelList;
 	StructureEntry* todoList;
@@ -146,6 +158,7 @@ private:
 	void updateAppendix(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine);
 	void setAppendix(StructureEntry *se,int startLine,int endLine,bool state);
 	bool fileExits(QString fname);
+	QString findFileName(QString fname);
 	void findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElemnts,int linenr,int count);
 	void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QMap<StructureEntry*,int> &toBeDeleted,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count,int lvl=0,bool front=true,bool back=true);
 
