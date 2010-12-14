@@ -1303,6 +1303,12 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 	if(view)
 	    view->closeCompleter();
 	if (document!=masterDocument) {
+		// set document.masterdocument = 0
+		foreach(LatexDocument* elem,documents){
+		    if(elem->getMasterDocument()==document){
+			elem->setMasterDocument(0);
+		    }
+		}
 		int row=documents.indexOf(document);
 		if(row>=0){
 			model->resetHighlight();
