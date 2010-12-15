@@ -3500,7 +3500,7 @@ void Texmaker::HelpAbout() {
 }
 ////////////// OPTIONS //////////////////////////////////////
 void Texmaker::GeneralOptions() {
-	bool customEnvironmentExisted = !configManager.customEnvironments.isEmpty();
+	QMap<QString,QVariant> oldCustomEnvironments = configManager.customEnvironments;
 	bool oldModernStyle = configManager.modernStyle;
 	bool oldSystemTheme = configManager.useSystemTheme;
 	autosaveTimer.stop();
@@ -3533,7 +3533,7 @@ void Texmaker::GeneralOptions() {
 		setupToolBars();
 
 		// custom evironments
-		bool customEnvironmentChanged = customEnvironmentExisted || !configManager.customEnvironments.isEmpty();
+		bool customEnvironmentChanged = configManager.customEnvironments != oldCustomEnvironments;
 		QLanguageDefinition *oldLaTeX = 0, *newLaTeX = 0;
 		if (customEnvironmentChanged){
 			QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)TeX");
