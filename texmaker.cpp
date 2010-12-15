@@ -2283,12 +2283,13 @@ void Texmaker::InsertEnvironmentCompletion() {
 	QDocumentCursor c = currentEditorView()->editor->cursor();
 	QString eow=getCommonEOW();
 	while (c.columnNumber()>0 && !eow.contains(c.previousChar())) c.movePosition(1,QDocumentCursor::PreviousCharacter);
-	c.insertText("\\begin{");//remaining part is up to the completion engine
-	//c=currentEditorView()->editor->cursor();
-	//c.movePosition(QString("\\begin{)").length(), QDocumentCursor::NextCharacter);
-	//currentEditorView()->editor->setCursor(c);
-	//if (currentEditorView()->editor->completionEngine())
-	//    currentEditorView()->editor->completionEngine()->complete();
+
+	static const QString environmentStart = "\\begin{";
+
+	if (!c.line().text().left(c.columnNumber()).endsWith(environmentStart)){
+		c.insertText(environmentStart);//remaining part is up to the completion engine
+	}
+
 	currentEditorView()->complete(true);
 }
 // tries to complete normal text
