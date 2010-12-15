@@ -3503,8 +3503,9 @@ void Texmaker::GeneralOptions() {
 	bool customEnvironmentExisted = !configManager.customEnvironments.isEmpty();
 	bool oldModernStyle = configManager.modernStyle;
 	bool oldSystemTheme = configManager.useSystemTheme;
-        autosaveTimer.stop();
-        if (configManager.execConfigDialog()) {
+	autosaveTimer.stop();
+	m_formats->modified = false;
+	if (configManager.execConfigDialog()) {
 		mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);
 		// refresh quick language selection combobox
 		QFontMetrics fontMetrics(spellToolBar->font());
@@ -3524,6 +3525,8 @@ void Texmaker::GeneralOptions() {
 				LatexEditorView* edView=qobject_cast<LatexEditorView*>(EditorView->widget(i));
 				if (edView) edView->updateSettings();
 			}
+			if (m_formats->modified)
+				QDocument::setFont(QDocument::font());
 			UpdateCaption();
 		}
 		//custom toolbar

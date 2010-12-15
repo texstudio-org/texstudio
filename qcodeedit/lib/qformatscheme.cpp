@@ -496,6 +496,7 @@ void QFormatScheme::setFormat(const QString& fid, const QFormat& fmt)
 	
 	if ( idx != -1 )
 	{
+		modified |= (m_formatValues[idx] != fmt);
 		m_formatValues[idx] = fmt;
 	} else {
 		
