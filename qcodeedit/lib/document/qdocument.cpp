@@ -6294,6 +6294,9 @@ void QDocumentPrivate::setHeight()
 
 void QDocumentPrivate::setFont(const QFont& f)
 {
+	//also changes everything is f is equal to the old font (necessesary so setFont can be used to
+	//reset the width cache)
+
 	if ( !m_font )
 	{
 		m_font = new QFont;
