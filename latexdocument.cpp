@@ -754,7 +754,11 @@ void LatexDocument::patchStructure(int linenr, int count) {
 #endif
 				newInclude->title=name;
 				newInclude->lineNumber=i;
-				newInclude->level=fileExits(name)? 0 : 1;
+				QString fname=findFileName(name);
+				LatexDocument* dc=parent->findDocumentFromName(fname);
+				if(dc)
+				    dc->setMasterDocument(this);
+				newInclude->level=!fname.isEmpty()? 0 : 1;
 				newInclude->lineHandle=line(i).handle();
 				//new parent for following sections is base !
 				for(int j=0;j<parent_level.size();j++)
