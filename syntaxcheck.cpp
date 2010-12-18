@@ -84,12 +84,12 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 	    if(end>=0){
 		int pos=-1;
 		int count=0;
-		//QRegExp rxMultiColumn("\\\\multicolumn{(\\D+)}{.+}{.+}");
-		QRegExp rxMultiColumn("\\\\multicolumn\\{(.+)\\}\\{.+\\}\\{.+\\}");
+		QRegExp rxMultiColumn("\\\\multicolumn\\{(\\d+)\\}\\{.+\\}\\{.+\\}");
 		rxMultiColumn.setMinimal(true);
 		do{
 		    int res=rxMultiColumn.indexIn(line,pos+1);
-		    pos=line.indexOf(QRegExp("[^\\\\]&"),pos+1);
+		    //pos=line.indexOf(QRegExp("[^\\\\]&"),pos+1);
+		    pos=line.indexOf(QRegExp("([^\\\\]|^)&"),pos+1);
 		    if(res>-1 && (res<pos || pos<0) ){
 			// multicoulmn before &
 			bool ok;
