@@ -76,7 +76,8 @@ private:
 	inline QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile="");
 	inline QAction* newManagedAction(QWidget* menu, const QString &id, QAction* act);
 	inline QAction* getManagedAction(QString id);
-	
+	QAction* insertManagedAction(QAction* before, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="");
+
 	SymbolGridWidget* addSymbolGrid(const QString& SymbolList,  const QString& iconName, const QString& text);
 	void addTagList(const QString& id, const QString& iconName, const QString& text, const QString& tagFile);
 

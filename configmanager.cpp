@@ -1202,6 +1202,7 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 
 	for (int i=0; i < maxRecentProjects; i++) {
 		QAction* act = getManagedAction(QString("main/file/openrecent/p%1").arg(i));
+		REQUIRE(act);
 		if (i<recentProjectList.count()) {
 			act->setVisible(true);
 			act->setText(tr("Master Document: ")+recentProjectList.at(i));
@@ -1210,6 +1211,7 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 	}
 	for (int i=0; i < maxRecentFiles; i++) {
 		QAction* act = getManagedAction(QString("main/file/openrecent/%1").arg(i));
+		REQUIRE(act);
 		if (i<recentFilesList.count()) {
 			act->setVisible(true);
 			act->setText(recentFilesList.at(i));
@@ -1217,6 +1219,45 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 		} else act->setVisible(false);
 	}
 }
+
+QMenu* ConfigManager::updateListMenu(const QString& menuName, const QStringList& items, const QString& namePrefix, const QString& titleTemplate, const char* slotName, const int baseShortCut, bool alwaysRecreateMenuItems){
+	static const int additionalEntries = 2;
+	QMenu* menu = getManagedMenu(menuName);
+	REQUIRE_RET(menu, 0);
+	QList<QAction*> actions = menu->actions();
+	if (!alwaysRecreateMenuItems &&
+	    actions.count() == items.size() + additionalEntries) {
+		//set only title
+		for (int i = 0; i< items.size(); i++) {
+			Q_ASSERT(actions[i]->objectName() == menuName + "/" + namePrefix + QString::number(i));
+			actions[i]->setText(titleTemplate.arg(i).arg(items[i]));
+		}
+		return 0;
+	}
+	//recreate
+	for (int i = 0; i< actions.count(); i++)
+		menu->removeAction(actions[i]); //neccessary or it crashes
+	for (int i = 0; i<items.size(); i++)
+		newManagedAction(menu, namePrefix + QString::number(i), titleTemplate.arg(i+1).arg(items[i]), slotName,  i<10?(QList<QKeySequence>() << baseShortCut + i): QList<QKeySequence>())->setData(i);
+	return menu;
+}
+
+void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems){
+	QMenu* recreatedMenu = updateListMenu("main/user/tags", userMacroMenuName, "tag", "%1: %2", SLOT(InsertUserTag()), Qt::SHIFT+Qt::Key_F1, alwaysRecreateMenuItems);
+	if (recreatedMenu) {
+		recreatedMenu->addSeparator();
+		newManagedAction(recreatedMenu, "manage",QCoreApplication::translate("Texmaker", "Edit User &Tags"), SLOT(EditUserMenu()));
+	}
+}
+
+void ConfigManager::updateUserToolMenu(bool alwaysRecreateMenuItems){
+	QMenu* recreatedMenu = updateListMenu("main/user/commands", userToolMenuName, "cmd", "%1: %2", SLOT(UserTool()), Qt::SHIFT+Qt::ALT+Qt::Key_F1, alwaysRecreateMenuItems);
+	if (recreatedMenu) {
+		recreatedMenu->addSeparator();
+		newManagedAction(recreatedMenu, "manage", QCoreApplication::translate("Texmaker", "Edit User &Commands"), SLOT(EditUserTool()));
+	}
+}
+
 
 QString ConfigManager::getRealIconFile(const QString& icon) const{
 	if (icon.isEmpty() || icon.startsWith(":/")) return icon;

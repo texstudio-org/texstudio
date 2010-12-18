@@ -130,6 +130,9 @@ public:
 	
 	bool addRecentFile(const QString & fileName, bool asMaster); //adds a recent file
 	void updateRecentFiles(bool alwaysRecreateMenuItems=false);
+	QMenu* updateListMenu(const QString& menuName, const QStringList& items, const QString& namePrefix, const QString& titleTemplate, const char* slotName, const int baseShortCut, bool alwaysRecreateMenuItems=false);
+	void updateUserMacroMenu(bool alwaysRecreateMenuItems=false);
+	void updateUserToolMenu(bool alwaysRecreateMenuItems=false);
 	
 	//dictionaries
 	QString spell_dic, thesaurus_database;
