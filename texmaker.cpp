@@ -249,6 +249,14 @@ QAction* Texmaker::getManagedAction(QString id) {
 QMenu* Texmaker::newManagedMenu(const QString &id,const QString &text){
 	return configManager.newManagedMenu(id,text);
 }
+QAction* Texmaker::insertManagedAction(QAction* before, const QString &id,const QString &text, const char* slotName, const QKeySequence &shortCut, const QString & iconFile){
+	QMenu* menu = before->menu();
+	REQUIRE_RET(menu, 0);
+	QAction* inserted = newManagedAction(menu, id, text, slotName, shortCut, iconFile);
+	menu->removeAction(inserted);
+	menu->insertAction(before, inserted);
+	return inserted;
+}
 
 SymbolGridWidget* Texmaker::addSymbolGrid(const QString& SymbolList,  const QString& iconName, const QString& text){
 	SymbolGridWidget* list = qobject_cast<SymbolGridWidget*>(leftPanel->widget(SymbolList));
@@ -588,18 +596,10 @@ void Texmaker::setupMenus() {
 //  User
 	menu=newManagedMenu("main/user",tr("&User"));
 	submenu=newManagedMenu(menu,"tags",tr("User &Tags"));
-	for (int i=0; i<configManager.userMacroMenuName.size(); i++)
-		newManagedAction(submenu, QString("tag%1").arg(i),QString("%1: %2").arg(i+1).arg(configManager.userMacroMenuName.value(i,"")), SLOT(InsertUserTag()), (i<10?Qt::SHIFT+Qt::Key_F1+i:0))
-		->setData(i);
-	submenu->addSeparator();
-	newManagedAction(submenu, QString("manage"),tr("Edit User &Tags"), SLOT(EditUserMenu()));
+	configManager.updateUserMacroMenu();
 
 	submenu=newManagedMenu(menu,"commands",tr("User &Commands"));
-	for (int i=0; i<configManager.userToolCommand.size(); i++)
-		newManagedAction(submenu, QString("cmd%1").arg(i),QString("%1: %2").arg(i+1).arg(configManager.userToolMenuName.value(i,"")), SLOT(UserTool()), (i<10?Qt::SHIFT+Qt::ALT+Qt::Key_F1+i:0))
-		->setData(i);
-	submenu->addSeparator();
-	newManagedAction(submenu, QString("manage"),tr("Edit User &Commands"), SLOT(EditUserTool()));
+	configManager.updateUserToolMenu();
 
 //---view---
 	menu=newManagedMenu("main/view",tr("&View"));
@@ -2782,10 +2782,7 @@ void Texmaker::EditUserMenu() {
 		configManager.userMacroMenuName=umDlg->Name;
 		configManager.userMacroTag=umDlg->Tag;
 		configManager.userMacroAbbrev=umDlg->Abbrev;
-		for (int i = 0; i <= 9; i++) {
-			QAction * act=getManagedAction("main/user/tags/tag"+QString::number(i));
-			if (act) act->setText(QString::number(i+1)+": "+configManager.userMacroMenuName.value(i,""));
-		}
+		configManager.updateUserMacroMenu();
 	}
 	completer->setAbbreviations(configManager.userMacroAbbrev,configManager.userMacroTag);
 	delete umDlg; //must be deleted before the formatscheme is deleted
@@ -3239,13 +3236,10 @@ void Texmaker::EditUserTool() {
 	utDlg.Name = configManager.userToolMenuName;
 	utDlg.Tool = configManager.userToolCommand;
 	utDlg.init();
-	if (utDlg.exec()) {
+	if (utDlg.exec()) {configManager.updateRecentFiles();
 		configManager.userToolMenuName = utDlg.Name;
 		configManager.userToolCommand = utDlg.Tool;
-		for (int i = 0; i <= configManager.userToolCommand.size(); i++) {
-			QAction * act=getManagedAction("main/user/commands/cmd"+QString::number(i));
-			if (act) act->setText(QString::number(i+1)+": "+configManager.userToolMenuName.value(i,""));
-		}
+		configManager.updateUserToolMenu();
 	}
 }
 
