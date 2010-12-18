@@ -3909,36 +3909,30 @@ void Texmaker::updateCompleter() {
 
 	LatexEditorView* edView=currentEditorView();
 
-	if(documents.singleMode()){
-		if(edView && edView->document){
-			words << edView->document->userCommandList();
-		}
-	} else {
-		foreach (const LatexDocument* doc, documents.documents)
-			words << doc->userCommandList();
-	}
-
-
 	if(edView && edView->document){
-		QList<LatexDocument*> docs;
-		if (documents.singleMode()) {
-		    LatexDocument* mDoc=edView->document;
-		    if(mDoc->getMasterDocument()){
-			mDoc=edView->document->getMasterDocument();
-		    }
-		    foreach(LatexDocument* doc, documents.documents){
-			if(doc->getMasterDocument()==mDoc)
-			    docs.append(doc);
-		    }
-		    docs << mDoc;
+	    // determine from which docs data needs to be collected
+	    QList<LatexDocument*> docs;
+	    if (documents.singleMode()) {
+		LatexDocument* mDoc=edView->document;
+		if(mDoc->getMasterDocument()){
+		    mDoc=edView->document->getMasterDocument();
 		}
-		else docs << documents.documents;
-		foreach(const LatexDocument* doc,docs)
-			foreach(const QString& refCommand, LatexParser::refCommands){
-				QString temp=refCommand+"{%1}";
-				for (int i=0; i<doc->labelItem().count(); ++i)
-					words.append(temp.arg(doc->labelItem().at(i)));
-			}
+		foreach(LatexDocument* doc, documents.documents){
+		    if(doc->getMasterDocument()==mDoc)
+			docs.append(doc);
+		}
+		docs << mDoc;
+	    }
+	    else docs << documents.documents;
+	    // collect user commands and references
+	    foreach(const LatexDocument* doc,docs){
+		words << doc->userCommandList();
+		foreach(const QString& refCommand, LatexParser::refCommands){
+		    QString temp=refCommand+"{%1}";
+		    for (int i=0; i<doc->labelItem().count(); ++i)
+			words.append(temp.arg(doc->labelItem().at(i)));
+		}
+	    }
 	}
 
 	//add cite commands from the cwls to LatexParser::citeCommands
