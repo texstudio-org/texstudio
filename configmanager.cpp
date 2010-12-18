@@ -1186,17 +1186,11 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 		QList<QAction*> actions=recentMenu->actions(); //recentMenu->clear() doesn't seem to delete the actions (why?)
 		for (int i = 0; i< actions.count(); i++)
 			recentMenu->removeAction(actions[i]); //neccessary or it crashes
-		for (int i = 0; i < maxRecentProjects; ++i) {
-			QAction* old=menuParent->findChild<QAction*>("main/file/openrecent/p"+QString::number(i));
-			if (old!=NULL) recentMenu->addAction(old);
-			else newManagedAction(recentMenu, "p"+QString::number(i), tr("Recent 'Master Document' %1").arg(i), SLOT(fileOpenRecentProject()))->setVisible(false);
-		}
+		for (int i = 0; i < maxRecentProjects; ++i)
+			newOrOldManagedAction(recentMenu, "p"+QString::number(i), tr("Recent 'Master Document' %1").arg(i), SLOT(fileOpenRecentProject()))->setVisible(false);
 		recentMenu->addSeparator();
-		for (int i = 0; i < maxRecentFiles; ++i){
-			QAction* old=menuParent->findChild<QAction*>("main/file/openrecent/"+QString::number(i));
-			if (old!=NULL) recentMenu->addAction(old);
-			else newManagedAction(recentMenu, QString::number(i), tr("Recent File %1").arg(i), SLOT(fileOpenRecent()))->setVisible(false);		
-		}
+		for (int i = 0; i < maxRecentFiles; ++i)
+			newOrOldManagedAction(recentMenu, QString::number(i), tr("Recent File %1").arg(i), SLOT(fileOpenRecent()))->setVisible(false);
 		newManagedAction(recentMenu, "allFiles", tr("Open all files"), SLOT(fileOpenAllRecent()));
 	}
 
@@ -1223,6 +1217,7 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 QMenu* ConfigManager::updateListMenu(const QString& menuName, const QStringList& items, const QString& namePrefix, const QString& titleTemplate, const char* slotName, const int baseShortCut, bool alwaysRecreateMenuItems){
 	static const int additionalEntries = 2;
 	QMenu* menu = getManagedMenu(menuName);
+	Q_ASSERT(menu->objectName() == menuName);
 	REQUIRE_RET(menu, 0);
 	QList<QAction*> actions = menu->actions();
 	if (!alwaysRecreateMenuItems &&
@@ -1237,8 +1232,12 @@ QMenu* ConfigManager::updateListMenu(const QString& menuName, const QStringList&
 	//recreate
 	for (int i = 0; i< actions.count(); i++)
 		menu->removeAction(actions[i]); //neccessary or it crashes
-	for (int i = 0; i<items.size(); i++)
-		newManagedAction(menu, namePrefix + QString::number(i), titleTemplate.arg(i+1).arg(items[i]), slotName,  i<10?(QList<QKeySequence>() << baseShortCut + i): QList<QKeySequence>())->setData(i);
+	for (int i = 0; i<items.size(); i++){
+		QString id = namePrefix + QString::number(i);
+		QString completeId = menu->objectName()+"/"+ id;
+		Q_ASSERT(completeId == menuName + "/" + namePrefix + QString::number(i));
+		newOrOldManagedAction(menu, id, titleTemplate.arg(i+1).arg(items[i]), slotName,  i<10?(QList<QKeySequence>() << baseShortCut + i): QList<QKeySequence>())->setData(i);
+	}
 	return menu;
 }
 
@@ -1246,7 +1245,7 @@ void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems){
 	QMenu* recreatedMenu = updateListMenu("main/user/tags", userMacroMenuName, "tag", "%1: %2", SLOT(InsertUserTag()), Qt::SHIFT+Qt::Key_F1, alwaysRecreateMenuItems);
 	if (recreatedMenu) {
 		recreatedMenu->addSeparator();
-		newManagedAction(recreatedMenu, "manage",QCoreApplication::translate("Texmaker", "Edit User &Tags"), SLOT(EditUserMenu()));
+		newOrOldManagedAction(recreatedMenu, "manage",QCoreApplication::translate("Texmaker", "Edit User &Tags"), SLOT(EditUserMenu()));
 	}
 }
 
@@ -1254,7 +1253,7 @@ void ConfigManager::updateUserToolMenu(bool alwaysRecreateMenuItems){
 	QMenu* recreatedMenu = updateListMenu("main/user/commands", userToolMenuName, "cmd", "%1: %2", SLOT(UserTool()), Qt::SHIFT+Qt::ALT+Qt::Key_F1, alwaysRecreateMenuItems);
 	if (recreatedMenu) {
 		recreatedMenu->addSeparator();
-		newManagedAction(recreatedMenu, "manage", QCoreApplication::translate("Texmaker", "Edit User &Commands"), SLOT(EditUserTool()));
+		newOrOldManagedAction(recreatedMenu, "manage", QCoreApplication::translate("Texmaker", "Edit User &Commands"), SLOT(EditUserTool()));
 	}
 }
 
@@ -1333,6 +1332,15 @@ QAction* ConfigManager::newManagedAction(QWidget* menu, const QString &id,const 
 		managedMenuShortcuts.insert(act->objectName()+QString::number(i),shortCuts[i]);
 	return act;
 }
+QAction* ConfigManager::newOrOldManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile){
+	QAction* old = menuParent->findChild<QAction*>(menu->objectName() + "/" + id);
+	if (!old)
+		return newManagedAction(menu, id, text, slotName, shortCuts, iconFile);
+	menu->addAction(old);
+	old->setText(text);
+	return old;
+}
+
 QAction* ConfigManager::newManagedAction(QWidget* menu, const QString &id, QAction* act) {
 	if (!menuParent) qFatal("No menu parent!");
 	QString completeId = menu->objectName()+"/"+id;

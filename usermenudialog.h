@@ -16,8 +16,6 @@
 
 #include "ui_usermenudialog.h"
 
-typedef QStringList userlist;
-
 class QCodeEdit;
 class QLanguageFactory;
 class QSearchReplacePanel;
@@ -29,7 +27,7 @@ public:
 	~UserMenuDialog();
 	Ui::UserMenuDialog ui;
 
-	userlist Name,Tag,Abbrev;
+	QStringList Name,Tag,Abbrev;
 
 private:
 	int previous_index;
@@ -43,6 +41,8 @@ public slots:
 private slots:
 	void change(int index);
 	void slotOk();
+	void slotAdd();
+	void slotRemove();
 	void textChanged();
 	void changeTypeToNormal();
 	void changeTypeToEnvironment();
