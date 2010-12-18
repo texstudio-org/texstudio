@@ -3921,7 +3921,17 @@ void Texmaker::updateCompleter() {
 
 	if(edView && edView->document){
 		QList<LatexDocument*> docs;
-		if (documents.singleMode()) docs << edView->document;
+		if (documents.singleMode()) {
+		    LatexDocument* mDoc=edView->document;
+		    if(mDoc->getMasterDocument()){
+			mDoc=edView->document->getMasterDocument();
+		    }
+		    foreach(LatexDocument* doc, documents.documents){
+			if(doc->getMasterDocument()==mDoc)
+			    docs.append(doc);
+		    }
+		    docs << mDoc;
+		}
 		else docs << documents.documents;
 		foreach(const LatexDocument* doc,docs)
 			foreach(const QString& refCommand, LatexParser::refCommands){
