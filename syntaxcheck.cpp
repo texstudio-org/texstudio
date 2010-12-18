@@ -13,7 +13,7 @@ void SyntaxCheck::setErrFormat(int errFormat){
 	syntaxErrorFormat=errFormat;
 }
 
-void SyntaxCheck::putLine(QString text,QDocumentLineHandle* dlh,Environment previous,bool clearOverlay){
+void SyntaxCheck::putLine(QString text,QDocumentLineHandle* dlh,Environment previous,bool clearOverlay,int cols){
 	Q_ASSERT(dlh);
 	SyntaxLine newLine;
 	dlh->ref(); // impede deletion of handle while in syntax check queue
@@ -24,6 +24,7 @@ void SyntaxCheck::putLine(QString text,QDocumentLineHandle* dlh,Environment prev
 	newLine.dlh=dlh;
 	newLine.prevEnv=previous;
 	newLine.clearOverlay=clearOverlay;
+	newLine.cols=cols;
 	mLinesLock.lock();
 	mLines.enqueue(newLine);
 	mLinesLock.unlock();
@@ -52,7 +53,7 @@ void SyntaxCheck::run(){
 		activeEnv.push(newLine.prevEnv);
 		line=LatexParser::cutComment(line);
 		Ranges newRanges;
-		checkLine(line,newRanges,activeEnv);
+		checkLine(line,newRanges,activeEnv,newLine.cols);
 		// place results
 		if(newLine.clearOverlay) newLine.dlh->clearOverlays(syntaxErrorFormat);
 		if(newRanges.isEmpty()) continue;
@@ -69,13 +70,49 @@ void SyntaxCheck::run(){
 }
 
 
-void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> &activeEnv){
+void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> &activeEnv,int cols){
 	// do syntax check on that line
 	QString word;
 	int start=0;
 	int wordstart;
 	int status;
 	bool inStructure=false;
+	// do additional checks (not limited to commands)
+	// check tabular compliance (columns)
+	if(activeEnv.top()==ENV_tabular){
+	    int end=line.indexOf("\\\\");
+	    if(end>=0){
+		int pos=-1;
+		int count=0;
+		do{
+		    pos=line.indexOf(QRegExp("[^\\\\]&"),pos+1);
+		    count++;
+		} while(pos>=0 && count<cols && pos<end);
+		if(pos>end)
+		    pos=-1;
+		if(pos>=0){
+		    Error elem;
+		    elem.range=QPair<int,int>(pos+1,end-pos-1);
+		    elem.type=ERR_tooManyCols;
+		    newRanges.append(elem);
+		}
+		if(pos==-1 && count<cols){
+		    Error elem;
+		    elem.range=QPair<int,int>(end,2);
+		    elem.type=ERR_tooLittleCols;
+		    newRanges.append(elem);
+		}
+	    }else{
+		/* deactivated as a little too irritating
+		// missing newline
+		Error elem;
+		elem.range=QPair<int,int>(0,line.length());
+		elem.type=ERR_missingEndOfLine;
+		newRanges.append(elem);
+		*/
+	    }
+	}
+	// check command-words
 	while ((status=nextWord(line,start,word,wordstart,true,true,&inStructure))){
 		if(status==NW_COMMAND){
 			bool ignoreEnv=false;
@@ -159,16 +196,18 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 		}
 
 	}
-}
 
-QString SyntaxCheck::getErrorAt(QString &text,int pos,Environment previous){
+
+    }
+
+QString SyntaxCheck::getErrorAt(QString &text,int pos,Environment previous,int cols){
 	// do syntax check
 	QString line=text;
 	QStack<Environment> activeEnv;
 	activeEnv.push(previous);
 	line=LatexParser::cutComment(line);
 	Ranges newRanges;
-	checkLine(line,newRanges,activeEnv);
+	checkLine(line,newRanges,activeEnv,cols);
 	// find Error at Position
 	ErrorType result=ERR_none;
 	foreach(Error elem,newRanges){
@@ -179,6 +218,7 @@ QString SyntaxCheck::getErrorAt(QString &text,int pos,Environment previous){
 	// now generate Error message
 
 	QStringList messages;
-	messages << tr("no error")<< tr("unrecognized command")<< tr("unrecognized math command")<< tr("unrecognized tabular command")<< tr("tabular command outside tabular env")<< tr("math command outside math env") << tr("tabbing command outside tabbing env");
+	messages << tr("no error")<< tr("unrecognized command")<< tr("unrecognized math command")<< tr("unrecognized tabular command")<< tr("tabular command outside tabular env")<< tr("math command outside math env") << tr("tabbing command outside tabbing env") << tr("more cols in tabular than specified") << tr("cols in tabular missing")
+		 << tr("\\\\ missing");
 	return messages.value(int(result),tr("unknown"));
 }

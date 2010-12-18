@@ -29,13 +29,17 @@ public:
 	ERR_unrecognizedTabularCommand,
 	ERR_TabularCommandOutsideTab,
 	ERR_MathCommandOutsideMath,
-	ERR_TabbingCommandOutside
+	ERR_TabbingCommandOutside,
+	ERR_tooManyCols,
+	ERR_tooLittleCols,
+	ERR_missingEndOfLine
     };
 
     struct SyntaxLine{
 	QString text;
 	Environment prevEnv;
 	int ticket;
+	int cols;
 	bool clearOverlay;
 	QDocumentLineHandle* dlh;
     };
@@ -49,14 +53,14 @@ public:
 
     explicit SyntaxCheck(QObject *parent = 0);
 
-    void putLine(QString text,QDocumentLineHandle *dlh,Environment previous=ENV_normal,bool clearOverlay=false);
+    void putLine(QString text,QDocumentLineHandle *dlh,Environment previous=ENV_normal,bool clearOverlay=false,int cols=-1);
     void stop();
     void setErrFormat(int errFormat);
-    QString getErrorAt(QString &text,int pos,Environment previous);
+    QString getErrorAt(QString &text,int pos,Environment previous,int cols);
 
 protected:
      void run();
-     void checkLine(QString &line,Ranges &newRanges,QStack<Environment> &activeEnv);
+     void checkLine(QString &line,Ranges &newRanges,QStack<Environment> &activeEnv,int cols);
 
 private:
      QQueue<SyntaxLine> mLines;
