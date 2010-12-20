@@ -163,7 +163,7 @@ public:
 	QMenu* newManagedMenu(QMenu* menu, const QString &id,const QString &text);
 	QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts = QList<QKeySequence>(), const QString & iconFile="");
 	QAction* newManagedAction(QWidget* menu, const QString &id, QAction* act);
-	QAction* newOrOldManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts = QList<QKeySequence>(), const QString & iconFile="");
+	QAction* newOrLostOldManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts = QList<QKeySequence>(), const QString & iconFile="");
 	QAction* getManagedAction(QString id);
 	QMenu* getManagedMenu(QString id);
 	void removeManagedMenus();
@@ -180,6 +180,7 @@ public:
 
 	// custom toolbar
 	QList<ManagedToolBar> managedToolBars;
+	QStringList watchedMenus;  //list of all sub menus mapped on toolbars
 	QMap<QString,QVariant> replacedIconsOnMenus;
 
 	void populateCustomActions(QListWidget* parent, QMenu* menu, bool go=false);
@@ -187,6 +188,7 @@ public:
 signals:
 	void tabbedLogViewChanged(bool changed);
 	void newLeftPanelLayoutChanged(bool newValue);
+	void watchedMenuChanged();
 public:
 //private:
 	QString configFileName,configFileNameBase,defaultStyleName;

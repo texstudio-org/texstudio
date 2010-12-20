@@ -83,9 +83,11 @@ private:
 
 	QVariantMap *MapForSymbols;
 
-	void setupDockWidgets();
-	void setupMenus();
+private slots:
 	void setupToolBars();
+private:
+	void setupMenus();
+	void setupDockWidgets();
 	void createStatusBar();
 	bool FileAlreadyOpen(QString f, bool checkTemporaryNames = false);
 	bool closeAllFilesAsking(); //asks the user and close all files
