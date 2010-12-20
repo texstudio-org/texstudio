@@ -15,7 +15,7 @@ contains($$list($$[QT_VERSION]), 4.3.*):message("qt 4.3.x")
 else:include(qtsingleapplication/qtsingleapplication.pri)
 
 # ##############################
-PRECOMPILED_HEADER = mostQtHeaders.h
+unix: PRECOMPILED_HEADER = mostQtHeaders.h
 HEADERS += texmaker.h \
     buildmanager.h \
     dsingleapplication.h \
