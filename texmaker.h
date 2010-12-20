@@ -339,7 +339,8 @@ private slots:
 
 	void gotoNextDocument();
 	void gotoPrevDocument();
-	
+	void gotoOpenDocument();
+	void updateOpenDocumentMenu(bool localChange=false);
 	
 	void viewToggleOutputView();
 	void viewCloseSomething();

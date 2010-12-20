@@ -605,6 +605,7 @@ void Texmaker::setupMenus() {
 	menu=newManagedMenu("main/view",tr("&View"));
 	newManagedAction(menu, "nextdocument",tr("Next Document"), SLOT(gotoNextDocument()), Qt::ALT+Qt::Key_PageUp);
 	newManagedAction(menu, "prevdocument",tr("Previous Document"), SLOT(gotoPrevDocument()), Qt::ALT+Qt::Key_PageDown);
+	newManagedMenu(menu, "documents",tr("Open Documents"));
 
 	menu->addSeparator();
 	newManagedAction(menu, "structureview",leftPanel->toggleViewAction());
@@ -825,6 +826,7 @@ void Texmaker::UpdateCaption() {
 void Texmaker::EditorTabMoved(int from,int to){
 	documents.documents.move(from,to);
 	documents.updateLayout();
+	updateOpenDocumentMenu(false);
 }
 
 void Texmaker::CloseEditorTab(int tab) {
@@ -866,6 +868,7 @@ void Texmaker::NewDocumentStatus(bool m) {
 		EditorView->setTabText(index,tr("untitled"));
 	else
 		EditorView->setTabText(index,edView->editor->name());
+	updateOpenDocumentMenu(true);
 }
 
 LatexEditorView *Texmaker::currentEditorView() const {
@@ -909,6 +912,7 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool reloadFromDo
 	connect(edit->editor,SIGNAL(needUpdatedCompleter()), this, SLOT(needUpdatedCompleter()));
 
 	EditorView->insertTab(reloadFromDoc ? documents.documents.indexOf(edit->document,0) : -1,edit, "?bug?");
+	updateOpenDocumentMenu(false);
 	EditorView->setCurrentWidget(edit);
 
 	edit->editor->setFocus();
@@ -1081,10 +1085,6 @@ void Texmaker::fileNew(QString fileName) {
 	documents.addDocument(edit->document);
 
 	configureNewEditorViewEnd(edit);
-
-	QInputMethodEvent e;
-	e.setCommitString("");
-	edit->editor->inputMethodEvent(&e);
 }
 
 void Texmaker::fileAutoReloading(QString fname){
@@ -1326,7 +1326,8 @@ void Texmaker::fileSaveAs(QString fileName) {
 			}
 		}
 
-		EditorView->setTabText(EditorView->indexOf(currentEditorView()),currentEditor()->name());
+		EditorView->setTabText(EditorView->currentIndex(),currentEditor()->name());
+		updateOpenDocumentMenu(true);
 		if (currentEditor()->fileInfo().suffix()!="tex")
 			m_languages->setLanguage(currentEditor(), fn);
 
@@ -1394,6 +1395,7 @@ void Texmaker::fileClose() {
 			break;
 		}
 	} else documents.deleteDocument(currentEditorView()->document);
+	updateOpenDocumentMenu();
 	//UpdateCaption(); unnecessary as called by tabChanged (signal)
 }
 
@@ -1426,6 +1428,7 @@ bool Texmaker::closeAllFilesAsking(){
 				break;
 			case 2:
 			default:
+				updateOpenDocumentMenu();
 				return false;
 			}
 		} else
@@ -1434,6 +1437,7 @@ bool Texmaker::closeAllFilesAsking(){
 #ifndef NO_POPPLER_PREVIEW
 	if (pdfviewerWindow) pdfviewerWindow->close();
 #endif
+	updateOpenDocumentMenu();
 	return true;
 }
 
@@ -3715,18 +3719,43 @@ void Texmaker::ToggleMode() {
 ////////////////// VIEW ////////////////
 
 void Texmaker::gotoNextDocument() {
-	if (EditorView->count() < 2) return;
+	if (EditorView->count() <= 1) return;
 	int cPage = EditorView->currentIndex() + 1;
 	if (cPage >= EditorView->count()) EditorView->setCurrentIndex(0);
 	else EditorView->setCurrentIndex(cPage);
 }
 
 void Texmaker::gotoPrevDocument() {
-	if (EditorView->count() < 2) return;
+	if (EditorView->count() <= 1) return;
 	int cPage = EditorView->currentIndex() - 1;
 	if (cPage < 0) EditorView->setCurrentIndex(EditorView->count() - 1);
 	else EditorView->setCurrentIndex(cPage);
 }
+void Texmaker::gotoOpenDocument(){
+	QAction* act = qobject_cast<QAction*>(sender());
+	REQUIRE(act);
+	int doc = act->data().toInt();
+	EditorView->setCurrentIndex(doc);
+}
+void Texmaker::updateOpenDocumentMenu(bool localChange){
+	QEditor* ed = currentEditor();
+	if (!ed) return;
+	if (localChange) {
+		QAction* act = getManagedAction("main/view/documents/doc"+QString::number(EditorView->currentIndex()));
+		if (act) {
+			act->setText( ed->fileName().isEmpty() ? tr("untitled") : ed->name());
+			return;
+		}
+	}
+	QStringList sl;
+	for (int i=0; i<EditorView->count(); i++){
+		ed = qobject_cast<LatexEditorView*>(EditorView->widget(i))->editor;
+		REQUIRE(ed);
+		sl << (ed->fileName().isEmpty() ? tr("untitled") : ed->name());
+	}
+	configManager.updateListMenu("main/view/documents", sl, "doc", false, SLOT(gotoOpenDocument()), 0, false, 0);
+}
+
 void Texmaker::viewToggleOutputView(){
 	bool mVis=outputView->isVisible();
 	outputView->setVisible(!mVis);
