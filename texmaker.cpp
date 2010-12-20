@@ -160,10 +160,12 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 	symbolMostused.clear();
 	setupDockWidgets();
+
 	//SetMostUsedSymbols();
 	setupMenus();
 	configManager.updateRecentFiles(true);
 	setupToolBars();
+	connect(&configManager, SIGNAL(watchedMenuChanged()), SLOT(setupToolBars()));
 
 	restoreState(windowstate, 0);
 	//workaround as toolbar central seems not be be handled by windowstate
@@ -673,6 +675,8 @@ void Texmaker::setupMenus() {
 void Texmaker::setupToolBars() {
 	//This method will be called multiple times and must not create something if this something already exists
 
+	configManager.watchedMenus.clear();
+
 //customizable toolbars
 	//first apply custom icons
 	QMap<QString, QVariant>::const_iterator i = configManager.replacedIconsOnMenus.constBegin();
@@ -685,77 +689,78 @@ void Texmaker::setupToolBars() {
 		i++;
 	}
 	//setup customizable toolbars
-        for (int i=0;i<configManager.managedToolBars.size();i++){
-            ManagedToolBar &mtb = configManager.managedToolBars[i];
-            if (!mtb.toolbar) { //create actual toolbar on first call
-                if (mtb.name == "Central") mtb.toolbar = centralToolBar;
-                else mtb.toolbar = addToolBar(tr(qPrintable(mtb.name)));
-                mtb.toolbar->setObjectName(mtb.name);
-                addAction(mtb.toolbar->toggleViewAction());
-		if(mtb.name=="Math"){
-		    // spelling language
-		    if (!spellToolBar){
-			spellToolBar = addToolBar(tr("Spelling"));
-			spellToolBar->setObjectName("Spelling");
-			QFontMetrics fontMetrics(spellToolBar->font());
-			QStringList list;
-			QDir fic=QFileInfo(configManager.spell_dic).absoluteDir();
-			if (fic.exists() && fic.isReadable())
-			    list << fic.entryList(QStringList("*.dic"),QDir::Files,QDir::Name);
+	for (int i=0;i<configManager.managedToolBars.size();i++){
+		ManagedToolBar &mtb = configManager.managedToolBars[i];
+		if (!mtb.toolbar) { //create actual toolbar on first call
+			if (mtb.name == "Central") mtb.toolbar = centralToolBar;
+			else mtb.toolbar = addToolBar(tr(qPrintable(mtb.name)));
+			mtb.toolbar->setObjectName(mtb.name);
+			addAction(mtb.toolbar->toggleViewAction());
+			if(mtb.name=="Math"){
+				// spelling language
+				if (!spellToolBar){
+					spellToolBar = addToolBar(tr("Spelling"));
+					spellToolBar->setObjectName("Spelling");
+					QFontMetrics fontMetrics(spellToolBar->font());
+					QStringList list;
+					QDir fic=QFileInfo(configManager.spell_dic).absoluteDir();
+					if (fic.exists() && fic.isReadable())
+						list << fic.entryList(QStringList("*.dic"),QDir::Files,QDir::Name);
 
-			if(comboSpellHeight==0)
-			    comboSpellHeight=spellToolBar->height()-2;
-			comboSpell=createComboToolButton(spellToolBar,list,comboSpellHeight,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName());
-			spellToolBar->addWidget(comboSpell);
-			addAction(spellToolBar->toggleViewAction());
-		    }
-		    addToolBarBreak();
+					if(comboSpellHeight==0)
+						comboSpellHeight=spellToolBar->height()-2;
+					comboSpell=createComboToolButton(spellToolBar,list,comboSpellHeight,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName());
+					spellToolBar->addWidget(comboSpell);
+					addAction(spellToolBar->toggleViewAction());
+				}
+				addToolBarBreak();
+			}
+		} else mtb.toolbar->clear();
+		foreach (const QString& actionName, mtb.actualActions){
+			if (actionName == "separator") mtb.toolbar->addSeparator(); //Case 1: Separator
+			else if (actionName.startsWith("tags/")) {
+				//Case 2: One of the xml tag widgets mapped on a toolbutton
+				int tagCategorySep=actionName.indexOf("/",5);
+				XmlTagsListWidget* tagsWidget = findChild<XmlTagsListWidget*>(actionName.left(tagCategorySep));
+				if (!tagsWidget) continue;
+				QStringList list=tagsWidget->tagsTxtFromCategory(actionName.mid(tagCategorySep+1));
+				if (list.isEmpty()) continue;
+				QFontMetrics fontMetrics(mtb.toolbar->font());
+				if(comboSpellHeight==0)
+					comboSpellHeight=mtb.toolbar->height()-2;
+				QToolButton* combo=createComboToolButton(mtb.toolbar,list,comboSpellHeight,fontMetrics,this,SLOT(insertXmlTagFromToolButtonAction()));
+				combo->setProperty("tagsID", actionName);
+				mtb.toolbar->addWidget(combo);
+			} else {
+				QObject *obj=configManager.menuParent->findChild<QObject*>(actionName);
+				QAction *act=qobject_cast<QAction*>(obj);
+				if (act) {
+					//Case 3: A normal QAction
+					if(act->icon().isNull())
+						act->setIcon(QIcon(":/images/appicon.png"));
+					mtb.toolbar->addAction(act);
+				} else {
+					QMenu* menu=qobject_cast<QMenu*>(obj);
+					if (!menu) {
+						qWarning("Unkown toolbar command %s", qPrintable(actionName));
+						continue;
+					}
+					//Case 4: A submenu mapped on a toolbutton
+					configManager.watchedMenus << actionName;
+					QFontMetrics fontMetrics(mtb.toolbar->font());
+					QStringList list;
+					foreach (const QAction* act, menu->actions())
+						if (!act->isSeparator())
+							list.append(act->text());
+					if(comboSpellHeight==0)
+						comboSpellHeight=mtb.toolbar->height()-2;
+					QToolButton* combo=createComboToolButton(mtb.toolbar,list,comboSpellHeight,fontMetrics,this,SLOT(callToolButtonAction()));
+					combo->setProperty("menuID", actionName);
+					mtb.toolbar->addWidget(combo);
+				}
+			}
 		}
-            } else mtb.toolbar->clear();
-            foreach (const QString& actionName, mtb.actualActions){
-                if (actionName == "separator") mtb.toolbar->addSeparator(); //Case 1: Separator
-                else if (actionName.startsWith("tags/")) {
-                    //Case 2: One of the xml tag widgets mapped on a toolbutton
-                    int tagCategorySep=actionName.indexOf("/",5);
-                    XmlTagsListWidget* tagsWidget = findChild<XmlTagsListWidget*>(actionName.left(tagCategorySep));
-                    if (!tagsWidget) continue;
-                    QStringList list=tagsWidget->tagsTxtFromCategory(actionName.mid(tagCategorySep+1));
-                    if (list.isEmpty()) continue;
-                    QFontMetrics fontMetrics(mtb.toolbar->font());
-		    if(comboSpellHeight==0)
-			comboSpellHeight=mtb.toolbar->height()-2;
-                    QToolButton* combo=createComboToolButton(mtb.toolbar,list,comboSpellHeight,fontMetrics,this,SLOT(insertXmlTagFromToolButtonAction()));
-                    combo->setProperty("tagsID", actionName);
-                    mtb.toolbar->addWidget(combo);
-                } else {
-                    QObject *obj=configManager.menuParent->findChild<QObject*>(actionName);
-                    QAction *act=qobject_cast<QAction*>(obj);
-                    if (act) {
-                        //Case 3: A normal QAction
-                        if(act->icon().isNull())
-                            act->setIcon(QIcon(":/images/appicon.png"));
-                        mtb.toolbar->addAction(act);
-                    } else {
-                        QMenu* menu=qobject_cast<QMenu*>(obj);
-                        if (!menu) {
-                            qWarning("Unkown toolbar command %s", qPrintable(actionName));
-                            continue;
-                        }
-                        //Case 4: A submenu mapped on a toolbutton
-                        QFontMetrics fontMetrics(mtb.toolbar->font());
-                        QStringList list;
-                        foreach (const QAction* act, menu->actions())
-                            if (!act->isSeparator())
-                                list.append(act->text());
-			if(comboSpellHeight==0)
-			    comboSpellHeight=mtb.toolbar->height()-2;
-                        QToolButton* combo=createComboToolButton(mtb.toolbar,list,comboSpellHeight,fontMetrics,this,SLOT(callToolButtonAction()));
-                        combo->setProperty("menuID", actionName);
-                        mtb.toolbar->addWidget(combo);
-                    }
-                }
-            }
-            if(mtb.actualActions.empty()) mtb.toolbar->setVisible(false);
+		if(mtb.actualActions.empty()) mtb.toolbar->setVisible(false);
 	}
 }
 
@@ -864,11 +869,12 @@ void Texmaker::NewDocumentStatus(bool m) {
 		EditorView->setTabIcon(index,QIcon(":/images/modified.png"));
 	else
 		EditorView->setTabIcon(index,QIcon(":/images/empty.png"));
-	if (edView->editor->fileName().isEmpty())
-		EditorView->setTabText(index,tr("untitled"));
-	else
-		EditorView->setTabText(index,edView->editor->name());
-	updateOpenDocumentMenu(true);
+	QEditor * ed = edView->editor;
+	QString tabText = ed->fileName().isEmpty() ? tr("untitled") : ed->name();
+	if (EditorView->tabText(index) != tabText) {
+		EditorView->setTabText(index, tabText);
+		updateOpenDocumentMenu(true);
+	}
 }
 
 LatexEditorView *Texmaker::currentEditorView() const {
@@ -3741,11 +3747,10 @@ void Texmaker::updateOpenDocumentMenu(bool localChange){
 	QEditor* ed = currentEditor();
 	if (!ed) return;
 	if (localChange) {
-		QAction* act = getManagedAction("main/view/documents/doc"+QString::number(EditorView->currentIndex()));
-		if (act) {
-			act->setText( ed->fileName().isEmpty() ? tr("untitled") : ed->name());
-			return;
-		}
+		QString id = "doc"+QString::number(EditorView->currentIndex());
+		QMenu* menu = configManager.getManagedMenu("main/view/documents");
+		configManager.newManagedAction(menu, id, ed->fileName().isEmpty() ? tr("untitled") : ed->name(), SLOT(gotoOpenDocument()));
+		return;
 	}
 	QStringList sl;
 	for (int i=0; i<EditorView->count(); i++){
