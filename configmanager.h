@@ -130,7 +130,7 @@ public:
 	
 	bool addRecentFile(const QString & fileName, bool asMaster); //adds a recent file
 	void updateRecentFiles(bool alwaysRecreateMenuItems=false);
-	QMenu* updateListMenu(const QString& menuName, const QStringList& items, const QString& namePrefix, const QString& titleTemplate, const char* slotName, const int baseShortCut, bool alwaysRecreateMenuItems=false);
+	QMenu* updateListMenu(const QString& menuName, const QStringList& items, const QString& namePrefix, bool prefixNumber, const char* slotName, const int baseShortCut, bool alwaysRecreateMenuItems=false, int additionalEntries = 2);
 	void updateUserMacroMenu(bool alwaysRecreateMenuItems=false);
 	void updateUserToolMenu(bool alwaysRecreateMenuItems=false);
 	
