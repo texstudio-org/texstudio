@@ -179,19 +179,7 @@ void LatexDocument::initStructure(){
 }
 
 void LatexDocument::updateStructure() {
-
-
-	bool temporaryLoadedDocument=false;
 	bool updateSyntaxCheck=false;
-	/* how to fix this ? bool isLoaded() ???
-	if (!document) {
-		if (fileName=="" || !fileInfo.exists())
-			return;
-		temporaryLoadedDocument=true;
-		document=new QDocument();
-		load(fileName,QDocument::defaultCodec());
-	}
-	*/
 
 	clearStructure();
 #ifndef QT_NO_DEBUG
@@ -224,206 +212,13 @@ void LatexDocument::updateStructure() {
 #endif
 	blockList->title=tr("BLOCKS");
 
-	QVector<StructureEntry*> parent_level(LatexParser::structureCommands.count());
+/*	QVector<StructureEntry*> parent_level(LatexParser::structureCommands.count());
 	for (int i=0;i<parent_level.size();i++)
-		parent_level[i]=baseStructure;
+		parent_level[i]=baseStructure;*/
 
-	int verbatimFormat=QDocument::formatFactory()->id("verbatim");
+	patchStructure(0, lineCount());
 
-	//TODO: This assumes one command per line, which is not necessary true
-	for (int i=0; i<lines(); i++) {
-		QString curLine = line(i).text(); //TODO: use this instead of s
-
-		QVector<int> fmts=line(i).getFormats();
-
-		for(int j=0;j<curLine.length() &&  j < fmts.size();j++){
-			if(fmts[j]==verbatimFormat){
-				curLine[j]=QChar(' ');
-			}
-		}
-
-		//let %\include be processed
-		if(curLine.startsWith("%\\include")||curLine.startsWith("%\\input")){
-		    curLine.replace(0,1,' ');
-		}
-
-		//// newcommand ////
-		//TODO: handle optional arguments
-		static const QStringList commandTokens = QStringList() << "\\newcommand{" << "\\renewcommand{" << "\\providecommand{{";
-		for (int j=0; j< commandTokens.size();j++){
-			QString name;
-			QString arg;
-			if (findTokenWithArg(curLine,commandTokens[j],name,arg)) {
-				int options=arg.toInt(); //returns 0 if conversion fails
-				LatexParser::userdefinedCommands.insert(name);
-				for (int j=0; j<options; j++) {
-					if (j==0) name.append("{%<arg1%|%>}");
-					else name.append(QString("{%<arg%1%>}").arg(j+1));
-				}
-				mUserCommandList.insert(line(i).handle(),name);
-				// remove obsolete Overlays (maybe this can be refined
-				updateSyntaxCheck=true;
-			}
-		}
-		//// newenvironment ////
-		static const QStringList envTokens = QStringList() << "\\newenvironment{" << "\\renewenvironment{";
-		for (int j=0; j< envTokens.size();j++){
-			QString name;
-			QString arg;
-			if (findTokenWithArg(curLine,envTokens[j],name,arg)) {
-				int options=arg.toInt(); //returns 0 if conversion fails
-				name.append("}");
-				mUserCommandList.insert(line(i).handle(),"\\end{"+name);
-				for (int j=0; j<options; j++) {
-					if (j==0) name.append("{%<1%|%>}");
-					else name.append(QString("{%<%1%>}").arg(j+1));
-				}
-				mUserCommandList.insert(line(i).handle(),name);
-				mUserCommandList.insert(line(i).handle(),"\\begin{"+name);
-			}
-		}
-		//// newtheorem ////
-		QString s=findToken(curLine,"\\newtheorem{");
-		if (s!="") {
-			mUserCommandList.insert(line(i).handle(),"\\begin{"+s+"}");
-			mUserCommandList.insert(line(i).handle(),"\\end{"+s+"}");
-		}
-		//// bibliography ////
-		s=findToken(curLine,"\\bibliography{");
-		if (s!="") {
-			QStringList bibs=s.split(',',QString::SkipEmptyParts);
-			foreach(const QString& elem,bibs){
-				mMentionedBibTeXFiles.insert(line(i).handle(), FileNamePair(elem));
-			}
-			foreach (const QString& bibFile, bibs) {
-				StructureEntry *newFile=new StructureEntry(this, StructureEntry::SE_BIBTEX);
-				bibTeXList->add(newFile);
-#ifndef QT_NO_DEBUG
-				StructureContent.insert(newFile);
-#endif
-				newFile->title=bibFile;
-				newFile->lineNumber=i;
-				if (!temporaryLoadedDocument)
-					newFile->lineHandle=line(i).handle();
-			}
-		}
-		//// label ////
-		//TODO: Use label from dynamical reference checker
-		s=findToken(curLine,"\\label{");
-		if (s!="") {
-			mLabelItem.insert(line(i).handle(),s);
-			StructureEntry *newLabel=new StructureEntry(this, StructureEntry::SE_LABEL);
-			labelList->add(newLabel);
-#ifndef QT_NO_DEBUG
-			StructureContent.insert(newLabel);
-#endif
-			newLabel->title=s;
-			newLabel->lineNumber=i;
-			if (!temporaryLoadedDocument)
-				newLabel->lineHandle=line(i).handle();
-		}
-		//// TODO marker
-		s=curLine;
-		int l=s.indexOf("%TODO");
-		if (l>=0) {
-			s=s.mid(l+6,s.length());
-			StructureEntry *newTodo=new StructureEntry(this, StructureEntry::SE_TODO);
-			todoList->add(newTodo);
-#ifndef QT_NO_DEBUG
-			StructureContent.insert(newTodo);
-#endif
-			newTodo->title=s;
-			newTodo->lineNumber=i;
-			if (!temporaryLoadedDocument)
-				newTodo->lineHandle=line(i).handle();
-		}
-		//// Appendix keyword
-		if (curLine=="\\appendix") {
-			mAppendixLine=line(i).handle();
-		}
-		//// beamer blocks ////
-		s=findToken(curLine,"\\begin{block}{");
-		if (s!="") {
-			StructureEntry *newBlock=new StructureEntry(this, StructureEntry::SE_BLOCK);
-			blockList->add(newBlock);
-#ifndef QT_NO_DEBUG
-			StructureContent.insert(newBlock);
-#endif
-			newBlock->title=s;
-			newBlock->lineNumber=i;
-			if (!temporaryLoadedDocument)
-				newBlock->lineHandle=line(i).handle();
-		}
-
-		//// include,input ////
-		static const QStringList inputTokens = QStringList() << "input" << "include";
-		for(int header=0;header<inputTokens.count();header++){
-			s=findToken(curLine,"\\"+inputTokens.at(header)+"{");
-			if (s!="") {
-				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
-				baseStructure->add(newInclude);
-#ifndef QT_NO_DEBUG
-				StructureContent.insert(newInclude);
-#endif
-				newInclude->title=s;
-				//				newInclude.title=inputTokens.at(header); //texmaker distinguished include/input, doesn't seem necessary
-				newInclude->lineNumber=i;
-				newInclude->level=fileExits(s)? 0 : 1;
-				if (!temporaryLoadedDocument)
-					newInclude->lineHandle=line(i).handle();
-				//all following sections are children to base again !
-				for (int i=0;i<parent_level.size();i++)
-					parent_level[i]=baseStructure;
-			}
-		}//for
-		//// all sections ////
-		for(int header=0;header<LatexParser::structureCommands.count();header++){
-			QRegExp regexp = QRegExp("\\"+LatexParser::structureCommands[header]+"\\*?[\\{\\[]");
-			s=findToken(curLine,regexp);
-			if (s!="") {
-				s=extractSectionName(s,true);
-				StructureEntry *newSection=new StructureEntry(this,StructureEntry::SE_SECTION);
-				if (header == 0) baseStructure->add(newSection);
-				else parent_level[header-1]->add(newSection);
-#ifndef QT_NO_DEBUG
-				StructureContent.insert(newSection);
-#endif
-				newSection->title=s;
-				newSection->level=header;
-				newSection->lineNumber=i;
-				if (!temporaryLoadedDocument){
-					newSection->lineHandle=line(i).handle();
-					if(mAppendixLine &&mAppendixLine->line()<i) newSection->appendix=true;
-				}
-				parent_level[header]=newSection;
-				for(int j=header+1;j<parent_level.size();j++)
-					parent_level[j]=parent_level[header];
-			}
-		}
-	}
-
-	if (!bibTeXList->children.isEmpty()) baseStructure->insert(0, bibTeXList);
-	if (!todoList->children.isEmpty()) baseStructure->insert(0, todoList);
-	if (!labelList->children.isEmpty()) baseStructure->insert(0, labelList);
-	if (!blockList->children.isEmpty()) baseStructure->insert(0, blockList);
-
-	// rehighlight current cursor position
-	StructureEntry *newSection=0;
-	if(edView){
-		int i=edView->editor->cursor().lineNumber();
-		if(i>=0) {
-			newSection=findSectionForLine(i);
-		}
-	}
-
-	//emit structureUpdated(this,newSection);
 	emit structureLost(this);
-
-	if(updateSyntaxCheck) getEditorView()->reCheckSyntax(); //todo: signal
-	/*
-	if (temporaryLoadedDocument)
-		delete document;
-	*/
 }
 
 /* Removes a deleted line from the structure view */
@@ -600,7 +395,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			newTodo->lineNumber=i;
 			newTodo->lineHandle=line(i).handle();
 			newTodo->parent=todoList;
-			if(!reuse) emit addElement(todoList,todoList->children.size());
+			if(!reuse) emit addElement(todoList,todoList->children.size()); //todo: why here but not in label?
 			iter_todo.insert(newTodo);
 		}
 		//// Appendix keyword
@@ -621,8 +416,6 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			curLine=remainder;
 			//// newcommand ////
 			//TODO: handle optional arguments
-			//static const QStringList commandTokens = QStringList() << "\\newcommand" << "\\renewcommand" << "\\providecommand";
-
 			if (LatexParser::definitionCommands.contains(cmd)) {
 				completerNeedsUpdate=true;
 				QRegExp rx("^\\s*\\[(\\d+)\\]");
@@ -651,7 +444,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 					if (j==0) name.append("{%<1%|%>}");
 					else name.append(QString("{%<%1%>}").arg(j+1));
 				}
-				mUserCommandList.insert(line(i).handle(),name);
+				mUserCommandList.insert(line(i).handle(),name);//???
 				mUserCommandList.insert(line(i).handle(),"\\begin{"+name);
 				LatexParser::userdefinedCommands.insert("\\begin{"+name);
 				LatexParser::userdefinedCommands.insert("\\end{"+name);
@@ -900,7 +693,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	if (completerNeedsUpdate || bibTeXFilesNeedsUpdate)
 		emit updateCompleter();
 
-	if(updateSyntaxCheck) getEditorView()->reCheckSyntax();
+	if(updateSyntaxCheck) getEditorView()->reCheckSyntax();//todo: signal
 
 
 #ifndef QT_NO_DEBUG
