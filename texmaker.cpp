@@ -140,7 +140,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	EditorView=new TmxTabWidget(centralFrame);
 	EditorView->setFocusPolicy(Qt::ClickFocus);
 	EditorView->setFocus();
-	connect(EditorView, SIGNAL(currentChanged(int)), this, SLOT(UpdateCaption()));
+	connect(EditorView, SIGNAL(currentChanged(int)), SLOT(editorTabChanged(int)));
 	if (hasAtLeastQt(4,5)){
 		EditorView->setProperty("tabsClosable",true);
 		EditorView->setProperty("movable",true);
@@ -165,7 +165,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	setupMenus();
 	configManager.updateRecentFiles(true);
 	setupToolBars();
-	connect(&configManager, SIGNAL(watchedMenuChanged()), SLOT(setupToolBars()));
+	connect(&configManager, SIGNAL(watchedMenuChanged(QString)), SLOT(updateToolBarMenu(QString)));
 
 	restoreState(windowstate, 0);
 	//workaround as toolbar central seems not be be handled by windowstate
@@ -368,6 +368,33 @@ void Texmaker::setupDockWidgets(){
 		addAction(temp);
 	}
 	outputView->setWindowTitle(tr("Messages / Log File"));
+
+}
+
+void Texmaker::updateToolBarMenu(const QString& menuName){
+	QMenu* menu = configManager.getManagedMenu(menuName);
+	if (!menu) return;
+	foreach (const ManagedToolBar& tb, configManager.managedToolBars)
+		if (tb.toolbar && tb.actualActions.contains(menuName))
+			foreach (QObject* w, tb.toolbar->children())
+				if (w->property("menuID").toString() == menuName) {
+					QToolButton* combo = qobject_cast<QToolButton*>(w);
+					REQUIRE(combo);
+
+					QFontMetrics fontMetrics(tb.toolbar->font());
+					QStringList list;
+					foreach (const QAction* act, menu->actions())
+						if (!act->isSeparator())
+							list.append(act->text());
+					createComboToolButton(tb.toolbar,list,0,fontMetrics,this,SLOT(callToolButtonAction()),"",combo);
+
+					if (menuName == "main/view/documents") {
+						//workaround to seleect the current document
+						int index = EditorView->currentIndex();
+						if (index >= 0 && index < combo->menu()->actions().size())
+							combo->setDefaultAction(combo->menu()->actions()[index]);
+					}
+				}
 
 }
 
@@ -754,8 +781,9 @@ void Texmaker::setupToolBars() {
 							list.append(act->text());
 					if(comboSpellHeight==0)
 						comboSpellHeight=mtb.toolbar->height()-2;
+					//TODO: Is the callToolButtonAction()-slot really needed? Can't we just add the menu itself as the menu of the qtoolbutton, without creating a copy? (should be much faster)
 					QToolButton* combo=createComboToolButton(mtb.toolbar,list,comboSpellHeight,fontMetrics,this,SLOT(callToolButtonAction()));
-					combo->setProperty("menuID", actionName);
+					combo->setProperty("menuID", actionName);					
 					mtb.toolbar->addWidget(combo);
 				}
 			}
@@ -826,6 +854,13 @@ void Texmaker::UpdateCaption() {
 	}
 	QString finame=getCurrentFileName();
 	if (finame!="") configManager.lastDocument=finame;
+}
+
+void Texmaker::editorTabChanged(int index){
+	UpdateCaption();
+	if (index < 0) return; //happens if no tab is open
+	if (configManager.watchedMenus.contains("main/view/documents"))
+		updateToolBarMenu("main/view/documents");
 }
 
 void Texmaker::EditorTabMoved(int from,int to){
