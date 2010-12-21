@@ -1226,6 +1226,8 @@ QMenu* ConfigManager::updateListMenu(const QString& menuName, const QStringList&
 			Q_ASSERT(actions[i]->objectName() == menuName + "/" + namePrefix + QString::number(i));
 			actions[i]->setText(prefixNumber?QString("%1: %2").arg(i).arg(items[i]) : items[i]);
 		}
+		if (watchedMenus.contains(menuName))
+			emit watchedMenuChanged(menuName);
 		return 0;
 	}
 	//recreate
@@ -1318,7 +1320,7 @@ QAction* ConfigManager::newManagedAction(QWidget* menu, const QString &id,const 
 		old->setText(text);
 		old->setIcon(getRealIcon(iconFile));
 		if (watchedMenus.contains(menuId))
-			emit watchedMenuChanged();
+			emit watchedMenuChanged(menuId);
 		//don't set shortcut and slot!
 		return old;
 	}
@@ -1334,7 +1336,7 @@ QAction* ConfigManager::newManagedAction(QWidget* menu, const QString &id,const 
 	for (int i=0; i<shortCuts.size(); i++)
 		managedMenuShortcuts.insert(act->objectName()+QString::number(i),shortCuts[i]);
 	if (watchedMenus.contains(menuId))
-		emit watchedMenuChanged();
+		emit watchedMenuChanged(menuId);
 	return act;
 }
 
@@ -1345,6 +1347,8 @@ QAction* ConfigManager::newOrLostOldManagedAction(QWidget* menu, const QString &
 		return newManagedAction(menu, id, text, slotName, shortCuts, iconFile);
 	menu->addAction(old);
 	old->setText(text);
+	if (watchedMenus.contains(menu->objectName()))
+		emit watchedMenuChanged(menu->objectName());
 	return old;
 }
 

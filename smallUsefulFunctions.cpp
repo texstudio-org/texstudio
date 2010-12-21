@@ -579,9 +579,11 @@ bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QStr
 
 
 QToolButton* createComboToolButton(QWidget *parent,const QStringList& list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member,QString defaultElem,QToolButton *combo){
-	if(combo==0) combo=new QToolButton(parent);
+	if (combo==0)
+		combo=new QToolButton(parent);
+	if (height != 0)
+		combo->setMinimumHeight(height);
 	combo->setPopupMode(QToolButton::MenuButtonPopup);
-	combo->setMinimumHeight(height);
 
 	QAction *mAction=0;
 	// remove old actions
@@ -597,10 +599,10 @@ QToolButton* createComboToolButton(QWidget *parent,const QStringList& list,const
 	combo->setDefaultAction(mAction);
 	QMenu *mMenu=new QMenu(combo);
 	int max=0;
-	foreach(QString elem,list){
+	foreach(const QString& elem,list){
 		mAction=mMenu->addAction(elem,receiver,member);
 		max=qMax(max,fm.width(elem+"        "));
-		if(elem==defaultElem) combo->setDefaultAction(mAction);
+		if(elem==defaultElem) combo->setDefaultAction(mAction); //TODO: isn't this a memory leak (of the first mAction) if there is a defaultElem
 	}
 	combo->setMinimumWidth(max);
 	combo->setMenu(mMenu);

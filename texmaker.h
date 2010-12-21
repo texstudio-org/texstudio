@@ -84,10 +84,11 @@ private:
 	QVariantMap *MapForSymbols;
 
 private slots:
-	void setupToolBars();
+	void updateToolBarMenu(const QString& menuName);
 private:
 	void setupMenus();
 	void setupDockWidgets();
+	void setupToolBars();
 	void createStatusBar();
 	bool FileAlreadyOpen(QString f, bool checkTemporaryNames = false);
 	bool closeAllFilesAsking(); //asks the user and close all files
@@ -256,8 +257,9 @@ private slots:
 	void showMarkTooltipForLogMessage(int error);
 	void NewDocumentStatus(bool m);
 	void UpdateCaption();
+	void editorTabChanged(int index);
 	void CloseEditorTab(int tab);
-        void EditorTabMoved(int from,int to);
+	void EditorTabMoved(int from,int to);
 
 	void updateStructure(bool initial=false);
 	void ShowStructure();

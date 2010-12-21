@@ -188,7 +188,7 @@ public:
 signals:
 	void tabbedLogViewChanged(bool changed);
 	void newLeftPanelLayoutChanged(bool newValue);
-	void watchedMenuChanged();
+	void watchedMenuChanged(const QString& menuId);
 public:
 //private:
 	QString configFileName,configFileNameBase,defaultStyleName;
