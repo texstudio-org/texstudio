@@ -1224,7 +1224,7 @@ QMenu* ConfigManager::updateListMenu(const QString& menuName, const QStringList&
 		//set only title
 		for (int i = 0; i< items.size(); i++) {
 			Q_ASSERT(actions[i]->objectName() == menuName + "/" + namePrefix + QString::number(i));
-			actions[i]->setText(prefixNumber?QString("%1: %2").arg(i).arg(items[i]) : items[i]);
+			actions[i]->setText(prefixNumber?QString("%1: %2").arg(i+1).arg(items[i]) : items[i]);
 		}
 		if (watchedMenus.contains(menuName))
 			emit watchedMenuChanged(menuName);
@@ -1237,7 +1237,7 @@ QMenu* ConfigManager::updateListMenu(const QString& menuName, const QStringList&
 		QString id = namePrefix + QString::number(i);
 		QString completeId = menu->objectName()+"/"+ id;
 		Q_ASSERT(completeId == menuName + "/" + namePrefix + QString::number(i));
-		newOrLostOldManagedAction(menu, id, prefixNumber?QString("%1: %2").arg(i).arg(items[i]) : items[i], slotName,  (baseShortCut && i<10)?(QList<QKeySequence>() << baseShortCut + i): QList<QKeySequence>())->setData(i);
+		newOrLostOldManagedAction(menu, id, prefixNumber?QString("%1: %2").arg(i+1).arg(items[i]) : items[i], slotName,  (baseShortCut && i<10)?(QList<QKeySequence>() << baseShortCut + i): QList<QKeySequence>())->setData(i);
 	}
 	return menu;
 }
