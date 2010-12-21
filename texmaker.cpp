@@ -2453,18 +2453,17 @@ void Texmaker::insertXmlTagFromToolButtonAction(){
 void Texmaker::callToolButtonAction(){
 	QAction *action = qobject_cast<QAction *>(sender());
 	QToolButton *button = comboToolButtonFromAction(action);
-	REQUIRE(button && button->defaultAction());
+	REQUIRE(button && button->defaultAction() && button->menu());
 	button->defaultAction()->setText(action->text());
 
 	QString menuID = button->property("menuID").toString();
 	QMenu* menu=configManager.getManagedMenu(menuID);
 	if (!menu) return;
 
-	foreach (QAction* act, menu->actions())
-		if (act->text()==action->text()) {
-			act->trigger();
-			return;
-		}
+	int index = button->menu()->actions().indexOf(action);
+	REQUIRE(index >= 0);
+	REQUIRE(index < menu->actions().size());
+	menu->actions()[index]->trigger();
 }
 
 void Texmaker::InsertFromAction() {
