@@ -490,36 +490,16 @@ CONFIG(team):!CONFIG(build_pass) {
     }
 }
 OTHER_FILES += universalinputdialog.*
-svn_revision.target = svn_revision.h
-exists(./.svn/entries) { 
-    win32:svn_revision.commands = echo \
-        $${LITERAL_HASH}define \
-        SVN_REVISION_NUMBER \
-        \"$(shell svnversion)\" \
-        > \
-        $$svn_revision.target
-    else:svn_revision.commands = echo \
-        \"$${LITERAL_HASH}define \
-        SVN_REVISION_NUMBER \
-        \\\"$(shell svnversion)\\\"\" \
-        > \
-        $$svn_revision.target
-    svn_revision.depends = .svn/entries
-}
-else { 
-    win32:svn_revision.commands = echo \
-        $${LITERAL_HASH}define \
-        SVN_REVISION_NUMBER \
-        \"?\" \
-        > \
-        $$svn_revision.target
-    else:svn_revision.commands = echo \
-        \"$${LITERAL_HASH}define \
-        SVN_REVISION_NUMBER \
-        \\\"?\\\"\" \
-        > \
-        $$svn_revision.target
-    svn_revision.depends = 
-}
-HEADERS += $$svn_revision.target
-QMAKE_EXTRA_TARGETS += svn_revision
+
+
+exists(./.svn/entries): SVN_REVISION_NUMBER = $$system(svnversion)
+else: SVN_REVISION_NUMBER = ?
+win32: system(echo $${LITERAL_HASH}define \
+       SVN_REVISION_NUMBER \"$$SVN_REVISION_NUMBER\" \
+       > svn_revision.h)
+else:  system(echo $${LITERAL_HASH}define \
+       SVN_REVISION_NUMBER \\\"$$SVN_REVISION_NUMBER\\\" \
+       > svn_revision.h)
+HEADERS += svn_revision.h
+
+
