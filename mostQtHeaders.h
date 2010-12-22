@@ -7,6 +7,7 @@
 //TODO: try to split it into a gui and non-gui part, problem: gcc docu says there can only be one precompiled
 //      header per compilation, and qmake docu only mentions a way to create a single one
 
+#ifdef __cplusplus 
 
 #include <QAbstractItemDelegate>
 #include <QAbstractItemModel>
@@ -166,5 +167,8 @@
 
 #include <QDomElement>
 #include <QDomNode>
+
+#endif
+
 #endif
 
