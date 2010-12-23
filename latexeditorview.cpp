@@ -914,6 +914,7 @@ void LatexEditorView::reCheckSyntax(int linenr, int count){
 	for (int i=linenr; i < lineNrEnd; i++) {
 		Q_ASSERT(line.isValid());
 		SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
+		int cols=-1;
 		if(prev.isValid()){
 			QNFA* cxt=prev.matchContext()->context;
 			QString cxtDef=QNFADefinition::getContextName(cxt);
@@ -921,7 +922,22 @@ void LatexEditorView::reCheckSyntax(int linenr, int count){
 				int sep=cxtDef.indexOf(":");
 				cxtDef=cxtDef.mid(sep+1);
 				if(cxtDef.startsWith("math")) env=SyntaxCheck::ENV_math;
-				if(cxtDef.startsWith("tabular")) env=SyntaxCheck::ENV_tabular;
+				if(cxtDef.startsWith("tabular")){
+				    env=SyntaxCheck::ENV_tabular;
+				    //find start of env
+				    QDocumentLine current=prev;
+				    while(prev.isValid()){
+					if(cxt!=prev.matchContext()->context){
+					    break;
+					}
+					current=prev;
+					prev--;
+				    }
+				    if(current.isValid()){
+					QDocumentCursor cur(current.document(),current.lineNumber(),current.length());
+					cols=LatexTables::getNumberOfColumns(cur);
+				    }
+				}
 				if(cxtDef.startsWith("tabbing")) env=SyntaxCheck::ENV_tabbing;
 				if(cxtDef.startsWith("mathmodeEqnArray")) env=SyntaxCheck::ENV_matrix;
 				if(cxtDef.startsWith("mathmodeMatrix")) env=SyntaxCheck::ENV_matrix;
@@ -935,7 +951,7 @@ void LatexEditorView::reCheckSyntax(int linenr, int count){
 					text[i]=QChar(' ');
 				}
 			}
-			SynChecker.putLine(text,line.handle(),env,true);
+			SynChecker.putLine(text,line.handle(),env,true,cols);
 		}
 		prev = line;
 		line = editor->document()->line(i+1);
