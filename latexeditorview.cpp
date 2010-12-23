@@ -651,6 +651,35 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				}
 				SynChecker.putLine(text,line.handle(),env,false,cols);
 			}
+			if(env!=SyntaxCheck::ENV_tabular){
+			    //check whether the begin{tabular) was changed
+			    QNFA* cxt=line.matchContext()->context;
+			    QString cxtDef=QNFADefinition::getContextName(cxt);
+			    if(cxtDef.endsWith("tabular")){
+				QDocumentLine current=line;
+				QDocumentCursor cur(current.document(),current.lineNumber(),current.length());
+				cols=LatexTables::getNumberOfColumns(cur);
+				current++;
+				while(current.isValid()){ // not perfect ...
+				    QNFA* cxt=current.matchContext()->context;
+				    QString cxtDef=QNFADefinition::getContextName(cxt);
+				    if(!cxtDef.endsWith("tabular")){
+					break;
+				    }
+				    QString text=current.text();
+				    if(!text.isEmpty()){
+					QVector<int>fmts=line.getFormats();
+					for(int i=0;i<text.length() && i < fmts.size();i++){
+					    if(fmts[i]==verbatimFormat){
+						text[i]=QChar(' ');
+					    }
+					}
+					SynChecker.putLine(text,current.handle(),SyntaxCheck::ENV_tabular,true,cols);
+				    }
+				    current++;
+				}
+			    }
+			}
 		}
 
 
