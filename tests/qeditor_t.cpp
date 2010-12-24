@@ -13,6 +13,7 @@ QEditorTest::QEditorTest(QEditor* ed, bool executeAllTests):allTests(executeAllT
 	if (editor->getFileCodec()!=0) defaultCodec = editor->getFileCodec();
 	else defaultCodec = QTextCodec::codecForName("latin1");
 	ed->setFlag(QEditor::HardLineWrap, false);
+	ed->setFlag(QEditor::AutoCloseChars, true);
 }
 QEditorTest::~QEditorTest(){
 }
@@ -574,5 +575,41 @@ void QEditorTest::indentation(){
 	QEQUAL(editor->document()->text(), result);
 }
 
+void QEditorTest::autoClosing_data(){
+	editor->setFlag(QEditor::AutoIndent,true);
+	//editor->setFlag(QEditor::WeakIndent,false);
+	editor->setFlag(QEditor::ReplaceTabs,false);
+
+	QTest::addColumn<QString>("baseText");
+	QTest::addColumn<int>("line");
+	QTest::addColumn<int>("col");
+	QTest::addColumn<QString>("insert");
+	QTest::addColumn<QString>("result");
+
+	QTest::newRow("-(-") << "><" << 0 << 1 << "(" << ">()<";
+	QTest::newRow("-)-") << "><" << 0 << 1 << ")" << ">)<";
+	QTest::newRow("-{-") << "><" << 0 << 1 << "{" << ">{}<";
+	QTest::newRow("-$-") << "><" << 0 << 1 << "$" << ">$<"; //this test the absence of a feature
+	QTest::newRow("-\\begin{verbatim}-") << "><" << 0 << 1 << "\\begin{verbatim}" << ">\\begin{verbatim}<"; //too
+	QTest::newRow("existing )") << ">)<" << 0 << 1 << "(" << ">()<";
+	QTest::newRow("existing 2-)") << ">))<" << 0 << 1 << "(" << ">())<";
+	QTest::newRow("only last") << "><" << 0 << 1 << "((" << ">(()<";
+	//QTest::newRow("counting") << ">())<" << 0 << 1 << "(" << ">(())<";
+}
+
+void QEditorTest::autoClosing(){
+	QFETCH(QString, baseText);
+	QFETCH(int, line);
+	QFETCH(int, col);
+	QFETCH(QString, insert);
+	QFETCH(QString, result);
+
+
+	editor->setText(baseText);
+	QDocumentCursor c=editor->document()->cursor(line,col);
+	editor->insertText(c, insert);
+	QEQUAL(editor->document()->text(), result);
+}
 
 #endif
+

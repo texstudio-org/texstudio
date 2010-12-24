@@ -28,6 +28,8 @@ private slots:
 	void activeFolding();
 	void indentation_data();
 	void indentation();
+	void autoClosing_data();
+	void autoClosing();
 };
 #endif
 #endif // QEDITORTEST_H
