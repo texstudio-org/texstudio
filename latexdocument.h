@@ -165,8 +165,8 @@ private:
 	void removeAndDeleteElement(StructureEntry* se, int row);
 
 #ifndef QT_NO_DEBUG
+public:
 	QSet<StructureEntry*> StructureContent;
-	void removeFromStructureContent(StructureEntry* se);
 	void checkForLeak();
 #endif
 

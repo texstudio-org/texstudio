@@ -12,25 +12,11 @@ FileNamePair::FileNamePair(const QString& rel):relative(rel){};
 LatexDocument::LatexDocument(QObject *parent):QDocument(parent),edView(0),mAppendixLine(0)
 {
 	baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
-#ifndef QT_NO_DEBUG
-	StructureContent.insert(baseStructure);
-#endif
 	labelList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
-#ifndef QT_NO_DEBUG
-	StructureContent.insert(labelList);
-#endif
 	todoList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
-#ifndef QT_NO_DEBUG
-	StructureContent.insert(todoList);
-#endif
 	bibTeXList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
-#ifndef QT_NO_DEBUG
-	StructureContent.insert(bibTeXList);
-#endif
 	blockList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
-#ifndef QT_NO_DEBUG
-	StructureContent.insert(blockList);
-#endif
+
 	labelList->title=tr("LABELS");
 	todoList->title=tr("TODO");
 	bibTeXList->title=tr("BIBTEX");
@@ -142,74 +128,40 @@ void LatexDocument::clearStructure() {
 		delete baseStructure;
 		removeElementFinished();
 	}
+#ifndef QT_NO_DEBUG
+	Q_ASSERT(StructureContent.isEmpty());
+#endif
 	baseStructure=0;
+
 }
 
 void LatexDocument::initStructure(){
     clearStructure();
-#ifndef QT_NO_DEBUG
-    StructureContent.clear();
-#endif
 
     baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
-#ifndef QT_NO_DEBUG
-    StructureContent.insert(baseStructure);
-#endif
     baseStructure->title=fileName;
     labelList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-#ifndef QT_NO_DEBUG
-    StructureContent.insert(labelList);
-#endif
     labelList->title=tr("LABELS");
     todoList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-#ifndef QT_NO_DEBUG
-    StructureContent.insert(todoList);
-#endif
     todoList->title=tr("TODO");
     bibTeXList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-#ifndef QT_NO_DEBUG
-    StructureContent.insert(bibTeXList);
-#endif
     bibTeXList->title=tr("BIBTEX");
     blockList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-#ifndef QT_NO_DEBUG
-    StructureContent.insert(blockList);
-#endif
     blockList->title=tr("BLOCKS");
 }
 
 void LatexDocument::updateStructure() {
-	bool updateSyntaxCheck=false;
-
 	clearStructure();
-#ifndef QT_NO_DEBUG
-	StructureContent.clear();
-#endif
 
 	baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
-#ifndef QT_NO_DEBUG
-	StructureContent.insert(baseStructure);
-#endif
 	baseStructure->title=fileName;
 	labelList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-#ifndef QT_NO_DEBUG
-	StructureContent.insert(labelList);
-#endif
 	labelList->title=tr("LABELS");
 	todoList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-#ifndef QT_NO_DEBUG
-	StructureContent.insert(todoList);
-#endif
 	todoList->title=tr("TODO");
 	bibTeXList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-#ifndef QT_NO_DEBUG
-	StructureContent.insert(bibTeXList);
-#endif
 	bibTeXList->title=tr("BIBTEX");
 	blockList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-#ifndef QT_NO_DEBUG
-	StructureContent.insert(blockList);
-#endif
 	blockList->title=tr("BLOCKS");
 
 /*	QVector<StructureEntry*> parent_level(LatexParser::structureCommands.count());
@@ -247,9 +199,6 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 				emit removeElement(se,l);
 				iter.remove();
 				emit removeElementFinished();
-#ifndef QT_NO_DEBUG
-				StructureContent.remove(se);
-#endif
 				delete se;
 			} else l++;
 		}
@@ -276,9 +225,6 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	// purge unconnected elements
 	foreach(se,toBeDeleted.keys()){
 		emit removeElement(se,toBeDeleted.value(se));
-#ifndef QT_NO_DEBUG
-		StructureContent.remove(se);
-#endif
 		delete se;
 		emit removeElementFinished();
 	}
@@ -387,9 +333,6 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				reuse=true;
 			}else{
 				newTodo=new StructureEntry(this, StructureEntry::SE_TODO);
-#ifndef QT_NO_DEBUG
-				StructureContent.insert(newTodo);
-#endif
 			}
 			newTodo->title=s;
 			newTodo->lineNumber=i;
@@ -477,9 +420,6 @@ void LatexDocument::patchStructure(int linenr, int count) {
 						MapOfBibtex.remove(dlh,newFile);
 					}else{
 						newFile=new StructureEntry(this, StructureEntry::SE_BIBTEX);
-#ifndef QT_NO_DEBUG
-						StructureContent.insert(newFile);
-#endif
 					}
 					newFile->title=bibFile;
 					newFile->lineNumber=i;
@@ -501,9 +441,6 @@ void LatexDocument::patchStructure(int linenr, int count) {
 					MapOfLabels.remove(dlh,newLabel);
 				}else{
 					newLabel=new StructureEntry(this, StructureEntry::SE_LABEL);
-#ifndef QT_NO_DEBUG
-					StructureContent.insert(newLabel);
-#endif
 				}
 				newLabel->title=name;
 				newLabel->lineNumber=i;
@@ -524,9 +461,6 @@ void LatexDocument::patchStructure(int linenr, int count) {
 					MapOfBlock.remove(dlh,newBlock);
 				}else{
 					newBlock=new StructureEntry(this, StructureEntry::SE_BLOCK);
-#ifndef QT_NO_DEBUG
-					StructureContent.insert(newBlock);
-#endif
 				}
 				newBlock->title=s;
 				newBlock->lineNumber=i;
@@ -542,9 +476,6 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			if (LatexParser::includeCommands.contains(cmd)) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
 				baseStructure->add(newInclude);
-#ifndef QT_NO_DEBUG
-				StructureContent.insert(newInclude);
-#endif
 				newInclude->title=name;
 				newInclude->lineNumber=i;
 				QString fname=findFileName(name);
@@ -578,9 +509,6 @@ void LatexDocument::patchStructure(int linenr, int count) {
 					emit addElement(parent,parent->children.size());
 					newSection=new StructureEntry(this,StructureEntry::SE_SECTION);
 					sectionAdded=true;
-#ifndef QT_NO_DEBUG
-					StructureContent.insert(newSection);
-#endif
 				}
 				parent->add(newSection);
 
@@ -631,6 +559,9 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	// purge unconnected elements
 	foreach(se,toBeDeleted.keys())
 		removeAndDeleteElement(se, toBeDeleted[se]);
+
+	bibTeXList->parent = labelList->parent = todoList->parent = blockList->parent = 0;
+
 	int tempPos = -1;
 	tempPos = baseStructure->children.indexOf(bibTeXList);
 	if (tempPos != -1) baseStructure->children.removeAt(tempPos);
@@ -662,30 +593,17 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 	emit structureUpdated(this,newSection);
 
-	foreach(se,MapOfTodo.values()){
-#ifndef QT_NO_DEBUG
-		StructureContent.remove(se);
-#endif
+	foreach(se,MapOfTodo.values())
 		delete se;
-	}
-	foreach(se,MapOfBibtex.values()){
-#ifndef QT_NO_DEBUG
-		StructureContent.remove(se);
-#endif
+
+	foreach(se,MapOfBibtex.values())
 		delete se;
-	}
-	foreach(se,MapOfBlock.values()){
-#ifndef QT_NO_DEBUG
-		StructureContent.remove(se);
-#endif
+
+	foreach(se,MapOfBlock.values())
 		delete se;
-	}
-	foreach(se,MapOfLabels.values()){
-#ifndef QT_NO_DEBUG
-		StructureContent.remove(se);
-#endif
+
+	foreach(se,MapOfLabels.values())
 		delete se;
-	}
 
 	if (bibTeXFilesNeedsUpdate)
 		emit updateBibTeXFiles();
@@ -704,12 +622,6 @@ void LatexDocument::patchStructure(int linenr, int count) {
 }
 
 #ifndef QT_NO_DEBUG
-void LatexDocument::removeFromStructureContent(StructureEntry* se)	{
-	foreach(StructureEntry* entry,se->children){
-		removeFromStructureContent(entry);
-	}
-	StructureContent.remove(se);
-}
 
 void LatexDocument::checkForLeak(){
 	StructureEntryIterator iter(baseStructure);
@@ -776,11 +688,20 @@ void LatexDocument::includeDocument(LatexDocument* includedDocument){
 }
 */
 StructureEntry::StructureEntry(LatexDocument* doc, Type newType):type(newType),level(0), lineNumber(-1), lineHandle(0), parent(0), document(doc),appendix(false){
+#ifndef QT_NO_DEBUG
+	Q_ASSERT(document);
+	document->StructureContent.insert(this);
+#endif
 }
 StructureEntry::~StructureEntry(){
 	level=-1; //invalidate entry
 	foreach (StructureEntry* se, children)
 		delete se;
+#ifndef QT_NO_DEBUG
+	Q_ASSERT(document);
+	bool removed = document->StructureContent.remove(this);
+	Q_ASSERT(removed); //prevent double deletion
+#endif
 }
 void StructureEntry::add(StructureEntry* child){
 	Q_ASSERT(child!=0);
@@ -1445,9 +1366,6 @@ void LatexDocument::splitStructure(StructureEntry* se,QVector<StructureEntry*> &
 
 void LatexDocument::removeAndDeleteElement(StructureEntry* se, int row){
 	emit removeElement(se,row);
-#ifndef QT_NO_DEBUG
-	removeFromStructureContent(se);
-#endif
 	//qDebug("Structure deleted! %p %d",se,toBeDeleted[se]);
 	//qDebug() << se->title;
 	delete se;
