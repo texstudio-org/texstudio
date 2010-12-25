@@ -15,7 +15,7 @@ contains($$list($$[QT_VERSION]), 4.3.*):message("qt 4.3.x")
 else:include(qtsingleapplication/qtsingleapplication.pri)
 
 # ##############################
-unix: PRECOMPILED_HEADER = mostQtHeaders.h
+PRECOMPILED_HEADER = mostQtHeaders.h
 HEADERS += texmaker.h \
     buildmanager.h \
     dsingleapplication.h \
@@ -466,8 +466,13 @@ isEmpty(NO_POPPLER_PREVIEW) {
             -lz
     }
     win32 { 
-        LIBS += -lpoppler-qt4
-        LIBS += -lpoppler
+	#LIBS += -lpoppler-qt4
+	#LIBS += -lpoppler
+	INCLUDEPATH  += C:\Users\Geier\Documents\Programmieren\libs\include\poppler\qt4
+	LIBS         += C:\Users\Geier\Documents\Programmieren\libs\lib\libpoppler-qt4.dll.a
+	LIBS         += C:\Users\Geier\Documents\Programmieren\libs\lib\libpoppler.dll.a
+	INCLUDEPATH  += C:\MinGW\include
+	LIBS += C:\MinGW\lib\libzlib.dll.a
     }
 }
 !isEmpty(NO_POPPLER_PREVIEW) { 
