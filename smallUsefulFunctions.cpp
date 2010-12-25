@@ -540,10 +540,11 @@ bool findTokenWithArg(const QString &line,const QString &token, QString &outName
 	
 }
 
-bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QString &outArg, QString &remainder){
+bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QString &outArg, QString &remainder,int &optionStart){
 	outName="";
 	outArg="";
 	remainder="";
+	optionStart=-1;
 	QRegExp token("\\\\\\w+\\*?");
 	int tagStart=token.indexIn(line);
 	int commentStart=line.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
@@ -569,6 +570,7 @@ bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QStr
 		}
 		if (stop<0) stop=line.length();
 		outName=line.mid(start+1,stop-start-1);
+		optionStart=start+1;
 		remainder=line.mid(stop+1);
 		return true;
 	}

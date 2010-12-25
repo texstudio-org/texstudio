@@ -221,8 +221,6 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 
 	setFocusProxy(editor);
 
-	containedLabels=new References("(\\\\label)\\{(.+)\\}");
-	containedReferences=new References("(\\\\ref|\\\\pageref)\\{(.+)\\}");
 	environmentFormat=0;
 	structureFormat=0;
 	//containedLabels.setPattern("(\\\\label)\\{(.+)\\}");
@@ -234,26 +232,19 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 LatexEditorView::~LatexEditorView() {
 	delete searchReplacePanel; // to force deletion of m_search before document. Otherwise crashes can come up (linux)
 	delete codeeditor; //explicit call destructor of codeeditor (although it has a parent, it is no qobject itself, but passed it to editor)
-	containedLabels->numberOfViews--;
-	if(!containedLabels->numberOfViews){
-		delete containedLabels;
-		delete containedReferences;
-	}
+
 	SynChecker.stop();
 	SynChecker.wait();
 }
 
 void LatexEditorView::viewActivated(){
 	if (!LatexEditorView::completer) return;
-	LatexEditorView::completer->setLabelDatabase(containedLabels);
 }
 
 
 void LatexEditorView::complete(bool forceVisibleList, bool normalText, bool forceRef) {
 	if (!LatexEditorView::completer) return;
-	REQUIRE(containedLabels);
 	setFocus();
-	LatexEditorView::completer->setLabelDatabase(containedLabels);
 	LatexEditorView::completer->complete(editor,forceVisibleList,normalText,forceRef);
 }
 void LatexEditorView::jumpChangePositionBackward() {
@@ -302,9 +293,10 @@ void LatexEditorView::toggleBookmark(int bookmarkNumber) {
 }
 
 bool LatexEditorView::gotoToLabel(const QString& label){
-	QList<QDocumentLineHandle*> lst=containedLabels->values(label);
-	if (lst.empty()) return false;
-	QDocumentLine line(lst[0]);
+	int cnt=document->countLabels(label);
+	if (cnt==0) return false;
+	QMultiHash<QDocumentLineHandle*,int> result=document->getLabels(label);
+	QDocumentLine line(result.keys().first());
 	int ln=line.lineNumber();
 	if (ln<0) return false;
 	editor->setCursorPosition(ln, line.text().indexOf("\\label{"+label) + 7);
@@ -469,8 +461,6 @@ void LatexEditorView::updateSettings(){
 	SynChecker.setErrFormat(syntaxErrorFormat);
 	structureFormat=QDocument::formatFactory()->id("structure");
 	verbatimFormat=QDocument::formatFactory()->id("verbatim");
-	containedLabels->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
-	containedReferences->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
 
 	QDocument::setWorkAround(QDocument::DisableFixedPitchMode, config->hackDisableFixedPitch);
 	QDocument::setWorkAround(QDocument::DisableWidthCache, config->hackDisableWidthCache);
@@ -578,15 +568,10 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 	if (!QDocument::formatFactory()) return;
 	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)
 	if (editor->languageDefinition() && editor->languageDefinition()->language()!="(La-)TeX") return; // no online checking in other files than tex
-	Q_ASSERT(speller && containedLabels && containedReferences);
+	Q_ASSERT(speller);
 	for (int i=linenr; i<linenr+count; i++) {
 		QDocumentLine line = editor->document()->line(i);
 		if (!line.isValid()) continue;
-
-		QDocumentLineHandle* dlh = line.handle();
-		// remove all labels/references of current line
-		containedLabels->removeUpdateByHandle(dlh,containedReferences);
-		containedReferences->removeUpdateByHandle(dlh,0);
 
 		//remove all overlays used for latex things, in descending frequency
 		line.clearOverlays(speller->spellcheckErrorFormat);
@@ -724,8 +709,11 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			if (status==NW_REFERENCE && config->inlineReferenceChecking) {
 				if(line.getFormatAt(wordstart)==verbatimFormat) continue;
 				QString ref=word;//lineText.mid(wordstart,start-wordstart);
+				/*
 				containedReferences->insert(ref,dlh);
 				int cnt=containedLabels->count(ref);
+				*/
+				int cnt=document->countLabels(ref);
 				if(cnt>1) {
 					line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMultipleFormat));
 				}else if (cnt==1) line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
@@ -735,13 +723,17 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			if (status==NW_LABEL && config->inlineReferenceChecking) {
 				if(line.getFormatAt(wordstart)==verbatimFormat) continue;
 				QString ref=word;//lineText.mid(wordstart,start-wordstart);
+				/*
 				containedLabels->insert(ref,dlh);
 				int cnt=containedLabels->count(ref);
+				*/
+				int cnt=document->countLabels(ref);
 				if(cnt>1) {
 					line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMultipleFormat));
 				}else line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
 				// look for corresponding reeferences and adapt format respectively
-				containedLabels->updateByKeys(QStringList(ref),containedReferences);
+				//containedLabels->updateByKeys(QStringList(ref),containedReferences);
+				document->updateRefsLabels(ref);
 				addedOverlayReference = true;
 			}
 			if (status==NW_CITATION && config->inlineCitationChecking) {
@@ -806,10 +798,6 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 }
 
 void LatexEditorView::lineRemoved(QDocumentLineHandle* l) {
-	// delete References
-	containedReferences->removeByHandle(l);
-	// delete Labels and update referenced refs
-	containedLabels->removeUpdateByHandle(l,containedReferences);
 }
 
 void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {
@@ -887,45 +875,6 @@ void LatexEditorView::spellCheckingListSuggestions() {
 void LatexEditorView::dictionaryReloaded() {
 	//   QMessageBox::information(0,"trig","",0);
 	documentContentChanged(0,editor->document()->lines());
-}
-
-void LatexEditorView::setReferenceDatabase(References *Ref,References *Label){
-	containedLabels->appendTo(Label);
-	containedReferences->appendTo(Ref);
-	delete containedLabels;
-	delete containedReferences;
-	containedLabels=Label;
-	containedReferences=Ref;
-	containedLabels->numberOfViews++;
-	containedReferences->numberOfViews++;
-	if(completer){
-		completer->setLabelDatabase(Label);
-	}
-}
-void LatexEditorView::getReferenceDatabase(References *&Ref,References *&Label){
-	Label=containedLabels;
-	Ref=containedReferences;
-}
-void LatexEditorView::resetReferenceDatabase(){
-	containedLabels=new References("(\\\\label)\\{(.+)\\}");
-	containedReferences=new References("(\\\\ref|\\\\pageref)\\{(.+)\\}");
-	environmentFormat=QDocument::formatFactory()->id("environment");
-	referenceMultipleFormat=QDocument::formatFactory()->id("referenceMultiple");
-	referencePresentFormat=QDocument::formatFactory()->id("referencePresent");
-	referenceMissingFormat=QDocument::formatFactory()->id("referenceMissing");
-	citationPresentFormat=QDocument::formatFactory()->id("citationPresent");
-	citationMissingFormat=QDocument::formatFactory()->id("citationMissing");
-	structureFormat=QDocument::formatFactory()->id("structure");
-	verbatimFormat=QDocument::formatFactory()->id("verbatim");
-	containedLabels->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
-	containedReferences->setFormats(referenceMultipleFormat,referencePresentFormat,referenceMissingFormat);
-
-	documentContentChanged(0,editor->document()->lines());
-}
-
-void LatexEditorView::purgeLinksTo(QDocument *doc){
-	containedLabels->purgeLinksTo(doc);
-	containedReferences->purgeLinksTo(doc);
 }
 
 void LatexEditorView::closeCompleter(){
@@ -1122,14 +1071,16 @@ void LatexEditorView::mouseHovered(QPoint pos){
 		case LatexParser::Reference:
 		{
 			//l=editor->document()->findLineContaining("\\label{"+ref+"}",0,Qt::CaseSensitive);
-			QList<QDocumentLineHandle*> lst=containedLabels->values(value);
+			//QList<QDocumentLineHandle*> lst=containedLabels->values(value);
+			int cnt=document->countLabels(value);
 			QString mText="";
-			if(lst.isEmpty()){
+			if(cnt==0){
 				mText=tr("label missing!");
-			} else if(lst.count()>1) {
+			} else if(cnt>1) {
 				mText=tr("label multiple times defined!");
 			} else {
-				QDocumentLineHandle *mLine=lst.first();
+				QMultiHash<QDocumentLineHandle*,int> result=document->getLabels(value);
+				QDocumentLineHandle *mLine=result.keys().first();
 				int l=mLine->line();
 				if(mLine->document()!=editor->document()){
 					LatexDocument *doc=document->parent->findDocument(mLine->document());
@@ -1144,10 +1095,10 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			break;
 		}
 		case LatexParser::Label:
-		if(containedLabels->count(value)>1){
+		if(document->countLabels(value)>1){
 			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("label multiple times defined!"));
 		} else {
-			int cnt=containedReferences->count(value);
+			int cnt=document->countRefs(value);
 			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("%n reference(s) to this label","",cnt));
 		}
 		break;
@@ -1315,95 +1266,6 @@ void LatexEditorView::insertHardLineBreaks(int newLength, bool smartScopeSelecti
 
 	editor->setCursor(cur);
 }
-
-QStringList References::removeByHandle(QDocumentLineHandle* handle){
-	QStringList result;
-	QMultiHash<QString, QDocumentLineHandle*>::iterator mIt = mReferences.begin();
-	while (mIt != mReferences.end()) {
-		if (mIt.value() == handle){
-			result << mIt.key();
-			mIt = mReferences.erase(mIt);
-		} else
-			++mIt;
-	}
-	return result;
-}
-
-void References::removeUpdateByHandle(QDocumentLineHandle* handle,References* altRefs){
-	QStringList refs=removeByHandle(handle);
-	if(altRefs) updateByKeys(refs,altRefs);
-}
-
-void References::updateByKeys(const QStringList& refs,References* altRefs){
-	QRegExp rxRef(altRefs?altRefs->pattern():"");
-	QRegExp rxLabel(pattern());
-	rxLabel.setMinimal(true);
-	rxRef.setMinimal(true);
-	foreach(const QString &ref,refs){
-		QList<QDocumentLineHandle*> lst;
-		if(altRefs) {
-			lst=altRefs->values(ref);
-			foreach(QDocumentLineHandle* elem,lst){
-				QDocumentLine mLine(elem);
-				QString text=mLine.text();
-				text=LatexParser::cutComment(text);
-				int offset=0;
-				while(rxRef.indexIn(text)!=-1){
-					int cnt=count(ref);
-					mLine.removeOverlay(QFormatRange(rxRef.pos(2)+offset,rxRef.cap(2).length(),referenceMultipleFormat));
-					mLine.removeOverlay(QFormatRange(rxRef.pos(2)+offset,rxRef.cap(2).length(),referencePresentFormat));
-					mLine.removeOverlay(QFormatRange(rxRef.pos(2)+offset,rxRef.cap(2).length(),referenceMissingFormat));
-					if (cnt>1) {
-						mLine.addOverlay(QFormatRange(rxRef.pos(2)+offset,rxRef.cap(2).length(),referenceMultipleFormat));
-					} else if (cnt==1) mLine.addOverlay(QFormatRange(rxRef.pos(2)+offset,rxRef.cap(2).length(),referencePresentFormat));
-					else mLine.addOverlay(QFormatRange(rxRef.pos(2)+offset,rxRef.cap(2).length(),referenceMissingFormat));
-
-					text=text.mid(rxRef.pos(0)+rxRef.cap(0).length());
-					offset += rxRef.pos(0)+rxRef.cap(0).length();
-				}
-			}
-		}
-		lst=values(ref);
-		foreach(QDocumentLineHandle* elem,lst){
-			QDocumentLine mLine(elem);
-			QString text=mLine.text();
-			text=LatexParser::cutComment(text); // remove comments
-			int offset=0;
-			while(rxLabel.indexIn(text)!=-1){
-				int cnt=count(ref);
-				mLine.removeOverlay(QFormatRange(rxLabel.pos(2)+offset,rxLabel.cap(2).length(),referenceMultipleFormat));
-				mLine.removeOverlay(QFormatRange(rxLabel.pos(2)+offset,rxLabel.cap(2).length(),referenceMissingFormat));
-				mLine.removeOverlay(QFormatRange(rxLabel.pos(2)+offset,rxLabel.cap(2).length(),referencePresentFormat));
-				if(cnt>1) {
-					mLine.addOverlay(QFormatRange(rxLabel.pos(2)+offset,rxLabel.cap(2).length(),referenceMultipleFormat));
-				} else if (cnt==1) mLine.addOverlay(QFormatRange(rxLabel.pos(2)+offset,rxLabel.cap(2).length(),referencePresentFormat));
-				else mLine.addOverlay(QFormatRange(rxLabel.pos(2)+offset,rxLabel.cap(2).length(),referenceMissingFormat));
-
-				text=text.mid(rxLabel.pos(0)+rxLabel.cap(0).length());
-				offset += rxLabel.pos(0)+rxLabel.cap(0).length();
-			}
-		}
-	} //foreach
-}
-
-void References::appendTo(References *ref){
-	if(!ref) return;
-	QMultiHash<QString,QDocumentLineHandle*>::const_iterator i = mReferences.constBegin();
-	while (i != mReferences.constEnd()) {
-		ref->insert(i.key(),i.value());
-		++i;
-	}
-}
-
-void References::purgeLinksTo(QDocument *doc){
-	if(!doc) return;
-	QMutableHashIterator<QString,QDocumentLineHandle*> i(mReferences);
-	while (i.hasNext()) {
-		i.next();
-		if(i.value()->document()==doc) i.remove();
-	}
-}
-
 
 QString LatexEditorViewConfig::translateEditOperation(int key){
 	return QEditor::translateEditOperation((QEditor::EditOperation)key);

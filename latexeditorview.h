@@ -16,33 +16,6 @@
 #include "syntaxcheck.h"
 
 class QDocumentLineHandle;
-class References {
-public:
-	References():numberOfViews(1),mPattern("") {}
-	References(const QString& pattern) : numberOfViews(1),mPattern(pattern) {}
-	void insert(const QString& key,QDocumentLineHandle* handle) {mReferences.insert(key,handle);}
-	QList<QDocumentLineHandle*> values(QString key) {return mReferences.values(key);}
-	bool contains(const QString& key) {return mReferences.contains(key);}
-	int count(const QString& key) {return mReferences.count(key);}
-	QStringList removeByHandle(QDocumentLineHandle* handle);
-	void removeUpdateByHandle(QDocumentLineHandle* handle,References* altRefs=0);
-	void updateByKeys(const QStringList& refs,References* altRefs=0);
-	void setPattern(const QString& pattern) {mPattern=pattern;}
-	QString pattern() {return mPattern;}
-	void setFormats(int multiple,int single,int none) {
-		referenceMultipleFormat=multiple;
-		referencePresentFormat=single;
-		referenceMissingFormat=none;
-	}
-	void appendTo(References *ref);
-	void purgeLinksTo(QDocument *doc);
-	int numberOfViews;
-protected:
-	QMultiHash<QString,QDocumentLineHandle*> mReferences;
-	int referenceMultipleFormat,referencePresentFormat,referenceMissingFormat;
-	QString mPattern;
-};
-
 
 class LatexDocument;
 class QCodeEdit;
@@ -104,10 +77,6 @@ public:
 	QPoint getHoverPosistion(){
 		return m_point;
 	}
-	void setReferenceDatabase(References *Ref,References *Label);
-	void getReferenceDatabase(References *&Ref,References *&Label);
-	void resetReferenceDatabase();
-	void purgeLinksTo(QDocument *doc);
 
         int syntaxErrorFormat;
 
@@ -138,7 +107,6 @@ private:
 	int curChangePos;
 	int lastSetBookmark; //only looks at 1..3 (mouse range)
 
-	References *containedLabels,*containedReferences;
 	LatexEditorViewConfig* config;
 
 	SyntaxCheck SynChecker;
