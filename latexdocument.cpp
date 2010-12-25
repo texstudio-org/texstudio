@@ -177,6 +177,7 @@ void LatexDocument::updateStructure() {
 void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	if(!baseStructure) return;
 	mLabelItem.remove(dlh);
+	mRefItem.remove(dlh);
 	mMentionedBibTeXFiles.remove(dlh);
 
 	mUserCommandList.remove(dlh);
@@ -297,7 +298,15 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		    LatexParser::userdefinedCommands.remove(elem);
 		    updateSyntaxCheck=true;
 		}
-		if (mLabelItem.remove(dlh)>0) completerNeedsUpdate = true;
+		if (mLabelItem.contains(dlh)) {
+		    QList<ReferencePair> labels=mLabelItem.values(dlh);
+		    completerNeedsUpdate = true;
+		    mLabelItem.remove(dlh);
+		    foreach(ReferencePair rp,labels){
+			updateRefsLabels(rp.name);
+		    }
+		}
+		mRefItem.remove(dlh);
 		if (mUserCommandList.remove(dlh)>0) completerNeedsUpdate = true;
 
 		//remove old bibs files from hash, but keeps a temporary copy
@@ -317,6 +326,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		QString arg;
 		QString cmd;
 		QString remainder;
+		int optionStart;
 
 		//// TODO marker
 		QString s=curLine;
@@ -355,7 +365,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		if(curLine.startsWith("%\\include")||curLine.startsWith("%\\input")){
 			curLine.replace(0,1,' ');
 		}
-		while(findCommandWithArg(curLine,cmd,name,arg,remainder)){
+		while(findCommandWithArg(curLine,cmd,name,arg,remainder,optionStart)){
 			curLine=remainder;
 			//// newcommand ////
 			//TODO: handle optional arguments
@@ -432,7 +442,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			//// label ////
 			//TODO: Use label from dynamical reference checker
 			if (LatexParser::labelCommands.contains(cmd)) {
-				mLabelItem.insert(line(i).handle(),name);
+				ReferencePair elem;
+				elem.name=name;
+				elem.start=optionStart;
+				mLabelItem.insert(line(i).handle(),elem);
 				completerNeedsUpdate=true;
 				StructureEntry *newLabel;
 				if(MapOfLabels.contains(dlh)){
@@ -449,7 +462,15 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				iter_label.insert(newLabel);
 				continue;
 			}
-
+			//// Ref
+			if (LatexParser::refCommands.contains(cmd)) {
+				ReferencePair elem;
+				elem.name=name;
+				elem.start=optionStart;
+				mRefItem.insert(line(i).handle(),elem);
+				continue;
+			}
+			//for reference counting
 			//// beamer blocks ////
 
 			if (cmd=="\\begin" && name=="block") {
@@ -672,6 +693,182 @@ QString LatexDocument::getTemporaryFileName(){
 	return temporaryFileName;
 }
 
+int LatexDocument::countLabels(QString name){
+    QList<LatexDocument *>listOfDocs;
+    int result=0;
+    if(parent->masterDocument){
+	listOfDocs=parent->documents;
+    }else{
+	LatexDocument *master=this;
+	if(masterDocument){
+	    master=masterDocument;
+	}
+	foreach(LatexDocument *elem,parent->documents){
+	    if(elem!=master && elem->masterDocument!=master) continue;
+	    listOfDocs << elem;
+	}
+    }
+    foreach(LatexDocument *elem,listOfDocs){
+	QStringList items=elem->labelItem();
+	result+=items.count(name);
+    }
+    return result;
+}
+
+int LatexDocument::countRefs(QString name){
+    QList<LatexDocument *>listOfDocs;
+    int result=0;
+    if(parent->masterDocument){
+	listOfDocs=parent->documents;
+    }else{
+	LatexDocument *master=this;
+	if(masterDocument){
+	    master=masterDocument;
+	}
+	foreach(LatexDocument *elem,parent->documents){
+	    if(elem!=master && elem->masterDocument!=master) continue;
+	    listOfDocs << elem;
+	}
+    }
+    foreach(LatexDocument *elem,listOfDocs){
+	QStringList items=elem->refItem();
+	result+=items.count(name);
+    }
+    return result;
+}
+
+QMultiHash<QDocumentLineHandle*,int> LatexDocument::getLabels(QString name){
+    QList<LatexDocument *>listOfDocs;
+    QHash<QDocumentLineHandle*,int> result;
+    if(parent->masterDocument){
+	listOfDocs=parent->documents;
+    }else{
+	LatexDocument *master=this;
+	if(masterDocument){
+	    master=masterDocument;
+	}
+	foreach(LatexDocument *elem,parent->documents){
+	    if(elem!=master && elem->masterDocument!=master) continue;
+	    listOfDocs << elem;
+	}
+    }
+    foreach(LatexDocument *elem,listOfDocs){
+	QMultiHash<QDocumentLineHandle*,ReferencePair>::const_iterator it;
+	for (it = elem->mLabelItem.constBegin(); it != elem->mLabelItem.constEnd(); ++it){
+	    ReferencePair rp=it.value();
+	    if(rp.name==name){
+		result.insert(it.key(),rp.start);
+	    }
+	}
+    }
+    return result;
+}
+
+QMultiHash<QDocumentLineHandle*,int> LatexDocument::getRefs(QString name){
+    QList<LatexDocument *>listOfDocs;
+    QHash<QDocumentLineHandle*,int> result;
+    if(parent->masterDocument){
+	listOfDocs=parent->documents;
+    }else{
+	LatexDocument *master=this;
+	if(masterDocument){
+	    master=masterDocument;
+	}
+	foreach(LatexDocument *elem,parent->documents){
+	    if(elem!=master && elem->masterDocument!=master) continue;
+	    listOfDocs << elem;
+	}
+    }
+    foreach(LatexDocument *elem,listOfDocs){
+	QMultiHash<QDocumentLineHandle*,ReferencePair>::const_iterator it;
+	for (it = elem->mRefItem.constBegin(); it != elem->mRefItem.constEnd(); ++it){
+	    ReferencePair rp=it.value();
+	    if(rp.name==name){
+		result.insert(it.key(),rp.start);
+	    }
+	}
+    }
+    return result;
+}
+
+void LatexDocument::setMasterDocument(LatexDocument* doc){
+    masterDocument=doc;
+    QList<LatexDocument *>listOfDocs;
+    if(parent->masterDocument){
+	listOfDocs=parent->documents;
+    }else{
+	LatexDocument *master=this;
+	if(masterDocument){
+	    master=masterDocument;
+	}
+	foreach(LatexDocument *elem,parent->documents){
+	    if(elem!=master && elem->masterDocument!=master) continue;
+	    listOfDocs << elem;
+	}
+    }
+    foreach(LatexDocument *elem,listOfDocs){
+	elem->recheckRefsLabels();
+    }
+}
+
+void LatexDocument::recheckRefsLabels(){
+    // get occurences (refs)
+    int referenceMultipleFormat=QDocument::formatFactory()->id("referenceMultiple");
+    int referencePresentFormat=QDocument::formatFactory()->id("referencePresent");
+    int referenceMissingFormat=QDocument::formatFactory()->id("referenceMissing");
+
+    QMultiHash<QDocumentLineHandle*,ReferencePair>::const_iterator it;
+    for(it=mLabelItem.constBegin();it!=mLabelItem.constEnd();it++){
+	QDocumentLineHandle* dlh=it.key();
+	foreach(ReferencePair rp,mLabelItem.values(dlh)){
+	    int cnt=countLabels(rp.name);
+	    dlh->removeOverlay(QFormatRange(rp.start,rp.name.length(),referenceMultipleFormat));
+	    dlh->removeOverlay(QFormatRange(rp.start,rp.name.length(),referencePresentFormat));
+	    dlh->removeOverlay(QFormatRange(rp.start,rp.name.length(),referenceMissingFormat));
+	    if (cnt>1) {
+		dlh->addOverlay(QFormatRange(rp.start,rp.name.length(),referenceMultipleFormat));
+	    } else if (cnt==1) dlh->addOverlay(QFormatRange(rp.start,rp.name.length(),referencePresentFormat));
+	    else dlh->addOverlay(QFormatRange(rp.start,rp.name.length(),referenceMissingFormat));
+	}
+    }
+    for(it=mRefItem.constBegin();it!=mRefItem.constEnd();it++){
+	QDocumentLineHandle* dlh=it.key();
+	foreach(ReferencePair rp,mRefItem.values(dlh)){
+	    int cnt=countLabels(rp.name);
+	    dlh->removeOverlay(QFormatRange(rp.start,rp.name.length(),referenceMultipleFormat));
+	    dlh->removeOverlay(QFormatRange(rp.start,rp.name.length(),referencePresentFormat));
+	    dlh->removeOverlay(QFormatRange(rp.start,rp.name.length(),referenceMissingFormat));
+	    if (cnt>1) {
+		dlh->addOverlay(QFormatRange(rp.start,rp.name.length(),referenceMultipleFormat));
+	    } else if (cnt==1) dlh->addOverlay(QFormatRange(rp.start,rp.name.length(),referencePresentFormat));
+	    else dlh->addOverlay(QFormatRange(rp.start,rp.name.length(),referenceMissingFormat));
+	}
+    }
+}
+
+void LatexDocument::updateRefsLabels(const QString ref){
+    // get occurences (refs)
+    int referenceMultipleFormat=QDocument::formatFactory()->id("referenceMultiple");
+    int referencePresentFormat=QDocument::formatFactory()->id("referencePresent");
+    int referenceMissingFormat=QDocument::formatFactory()->id("referenceMissing");
+
+    int cnt=countLabels(ref);
+    QMultiHash<QDocumentLineHandle*,int> occurences=getLabels(ref);
+    occurences+=getRefs(ref);
+    QMultiHash<QDocumentLineHandle*,int>::const_iterator it;
+    for(it=occurences.constBegin();it!=occurences.constEnd();it++){
+	QDocumentLineHandle* dlh=it.key();
+	foreach(int pos,occurences.values(dlh)){
+	    dlh->removeOverlay(QFormatRange(pos,ref.length(),referenceMultipleFormat));
+	    dlh->removeOverlay(QFormatRange(pos,ref.length(),referencePresentFormat));
+	    dlh->removeOverlay(QFormatRange(pos,ref.length(),referenceMissingFormat));
+	    if (cnt>1) {
+		dlh->addOverlay(QFormatRange(pos,ref.length(),referenceMultipleFormat));
+	    } else if (cnt==1) dlh->addOverlay(QFormatRange(pos,ref.length(),referencePresentFormat));
+	    else dlh->addOverlay(QFormatRange(pos,ref.length(),referenceMissingFormat));
+	}
+    }
+}
 
 /*
 void LatexDocument::includeDocument(LatexDocument* includedDocument){
@@ -984,13 +1181,13 @@ void LatexDocumentsModel::updateElement(StructureEntry *se){
 	emit dataChanged(index(se),index(se));
 }
 
-LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)), masterDocument(0), currentDocument(0), bibTeXFilesModified(false),Label(0),Ref(0){
+LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)), masterDocument(0), currentDocument(0), bibTeXFilesModified(false){
 }
+
 LatexDocuments::~LatexDocuments(){
 	delete model;
-	delete Label;
-	delete Ref;
 }
+
 void LatexDocuments::addDocument(LatexDocument* document){
 	documents.append(document);
 	connect(document, SIGNAL(updateBibTeXFiles()), SLOT(bibTeXFilesNeedUpdate()));
@@ -1004,10 +1201,6 @@ void LatexDocuments::addDocument(LatexDocument* document){
 	connect(document,SIGNAL(updateElement(StructureEntry*)),model,SLOT(updateElement(StructureEntry*)));
 	document->parent=this;
 	if(masterDocument){
-		if(Ref && Label){
-			LatexEditorView *edView=document->getEditorView();
-			if (edView) edView->setReferenceDatabase(Ref,Label);
-		}
 		// repaint all docs
 		foreach(LatexDocument *doc,documents){
 			LatexEditorView *edView=doc->getEditorView();
@@ -1025,7 +1218,19 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 		foreach(LatexDocument* elem,documents){
 		    if(elem->getMasterDocument()==document){
 			elem->setMasterDocument(0);
+			elem->recheckRefsLabels();
 		    }
+		}
+		//check whether child document was deleted (and recheck labels on all remaining)
+		if(document->getMasterDocument()!=0){
+		    LatexDocument *md=document->getMasterDocument();
+		    document->setMasterDocument(0);
+		    foreach(LatexDocument* elem,documents){
+			if(elem->getMasterDocument()==md ||elem==md){
+			    elem->recheckRefsLabels();
+			}
+		    }
+
 		}
 		int row=documents.indexOf(document);
 		if(row>=0){
@@ -1038,10 +1243,6 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 			model->removeElementFinished();
 		}
 		//model->resetAll();
-		if(masterDocument){
-			Label->purgeLinksTo(view->editor->document());
-			Ref->purgeLinksTo(view->editor->document());
-		}
 		if (document==currentDocument)
 			currentDocument=0;
 		if (view) delete view;
@@ -1050,7 +1251,6 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 		document->setFileName(document->getFileName());
 		model->resetAll();
 		document->clearAppendix();
-		view->purgeLinksTo(view->editor->document()); // unsatisfying work around of crash ...
 		if (view) delete view;
 		if (document==currentDocument)
 			currentDocument=0;
@@ -1063,35 +1263,12 @@ void LatexDocuments::setMasterDocument(LatexDocument* document){
 		delete masterDocument;
 	}
 	masterDocument=document;
-	if(documents.size()>0){
-		foreach(LatexDocument *doc,documents){
-			LatexEditorView *edView=doc->getEditorView();
-			if (edView) edView->resetReferenceDatabase();
-		}
-		delete Label;
-		delete Ref;
-		Label=0;
-		Ref=0;
-	}
 	if (masterDocument!=0) {
 		documents.removeAll(masterDocument);
 		documents.prepend(masterDocument);
-		// set Ref/Labeldatabase to common database
-		LatexEditorView *edView=masterDocument->getEditorView();
-		Q_ASSERT(edView);
-		edView->getReferenceDatabase(Ref,Label);
-		Ref->numberOfViews++;
-		Label->numberOfViews++;
-		foreach(LatexDocument *doc,documents){
-			if(doc!=masterDocument){
-				edView=doc->getEditorView();
-				if (edView) edView->setReferenceDatabase(Ref,Label);
-				//edView->editor->document()->markFormatCacheDirty();
-			}
-		}
 		// repaint doc
 		foreach(LatexDocument *doc,documents){
-			edView=doc->getEditorView();
+			LatexEditorView *edView=doc->getEditorView();
 			if (edView) edView->documentContentChanged(0,edView->editor->document()->lines());
 		}
 	}

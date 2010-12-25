@@ -77,6 +77,11 @@ struct FileNamePair{
 	FileNamePair(const QString& rel);
 };
 
+struct ReferencePair{
+	QString name;
+	int start;
+};
+
 class LatexDocument: public QDocument
 {
 	Q_OBJECT
@@ -98,12 +103,49 @@ public:
 //	QMap<QString,DocumentLine> mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
 //	QSet<QString> allBibTeXIds;
 
-	QStringList labelItem() const{
-	    return mLabelItem.values();
+	QStringList labelItem()const {
+	    QList<ReferencePair> lst=mLabelItem.values();
+	    QStringList result;
+	    foreach(ReferencePair elem,lst){
+		result << elem.name;
+	    }
+
+	    return result;
+	}
+	QStringList labelItemAt(QDocumentLineHandle *dlh){
+	    QList<ReferencePair> lst=mLabelItem.values(dlh);
+	    QStringList result;
+	    foreach(ReferencePair elem,lst){
+		result << elem.name;
+	    }
+	    return result;
+	}
+	QStringList refItem() const{
+	    QList<ReferencePair> lst=mRefItem.values();
+	    QStringList result;
+	    foreach(ReferencePair elem,lst){
+		result << elem.name;
+	    }
+	    return result;
+	}
+	QStringList refItemAt(QDocumentLineHandle *dlh){
+	    QList<ReferencePair> lst=mRefItem.values(dlh);
+	    QStringList result;
+	    foreach(ReferencePair elem,lst){
+		result << elem.name;
+	    }
+	    return result;
 	}
 	const QStringList userCommandList() const{
 	    return mUserCommandList.values();
 	}
+	void updateRefsLabels(const QString ref);
+	void recheckRefsLabels();
+	int countLabels(QString name);
+	int countRefs(QString name);
+	QMultiHash<QDocumentLineHandle*,int> getLabels(QString name);
+	QMultiHash<QDocumentLineHandle*,int> getRefs(QString name);
+
 	//void includeDocument(LatexDocument* includedDocument);
 
 	//QString getAbsoluteFilePath(const QString& relativePath); //returns the absolute file path for an included file
@@ -126,9 +168,7 @@ public:
 	void setTemporaryFileName(const QString& fileName);
 	QString getTemporaryFileName();
 
-	void setMasterDocument(LatexDocument* doc){
-	    masterDocument=doc;
-	}
+	void setMasterDocument(LatexDocument* doc);
 	LatexDocument* getMasterDocument(){
 	    return masterDocument;
 	}
@@ -149,7 +189,8 @@ private:
 	StructureEntry* bibTeXList;
 	StructureEntry* blockList;
 
-	QMultiHash<QDocumentLineHandle*,QString> mLabelItem;
+	QMultiHash<QDocumentLineHandle*,ReferencePair> mLabelItem;
+	QMultiHash<QDocumentLineHandle*,ReferencePair> mRefItem;
 	QMultiHash<QDocumentLineHandle*,FileNamePair> mMentionedBibTeXFiles;
 	QMultiHash<QDocumentLineHandle*,QString> mUserCommandList;
 
@@ -273,7 +314,6 @@ signals:
 private slots:
 	void bibTeXFilesNeedUpdate();
 private:
-	References *Label,*Ref;
 };
 
 

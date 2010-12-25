@@ -45,9 +45,6 @@ public:
 	const LatexCompleterConfig* getConfig() const;
 
 	QString lookupWord(QString id);
-	void setLabelDatabase(References *Label){
-		containedLabels=Label;
-	}
 
 	QMap<int,int> getUsage();
 	QHash<QString,int> getUsageHash();
@@ -77,7 +74,6 @@ private:
 	static QHash<QString, QString> helpIndices;
 	static QHash<QString, int> helpIndicesCache;
 
-	References *containedLabels;
 private slots:
 	void cursorPositionChanged();
 	void selectionChanged(const QModelIndex & index);

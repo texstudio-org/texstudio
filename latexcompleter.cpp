@@ -566,7 +566,6 @@ LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0) {
 	list->setFocusPolicy(Qt::NoFocus);
 	list->setItemDelegate(new CompletionItemDelegate(list));
 	editor=0;
-	containedLabels=0;
 	widget=new QWidget(qobject_cast<QWidget*>(parent()));
 	QVBoxLayout *layout = new QVBoxLayout;
 	layout->setSpacing(0);
@@ -830,28 +829,28 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 		value.remove(0,i+1);
 		i=value.indexOf("}");
 		value=value.left(i);
-		if(containedLabels){
-			QList<QDocumentLineHandle*> lst=containedLabels->values(value);
-			topic="";
-			if(lst.isEmpty()){
-				topic=tr("label missing!");
-			} else if(lst.count()>1) {
-				topic=tr("label multiple times defined!");
-			} else {
-				QDocumentLineHandle *mLine=lst.first();
-				int l=mLine->line();
-				if(mLine->document()!=editor->document()){
-					//LatexDocument *doc=document->parent->findDocument(mLine->document());
-					LatexDocument *doc=qobject_cast<LatexDocument *>(mLine->document());
-					Q_ASSERT_X(doc,"missing latexdoc","qdoc is not latex document !");
-					if(doc) topic=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
-				}
-				for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
-					topic+=mLine->document()->line(i).text().left(80);
-					if(mLine->document()->line(i).text().length()>80) topic+="...";
-					if(i<l+2) topic+="\n";
-				}
-			}
+		LatexDocument *document=qobject_cast<LatexDocument *>(editor->document());
+		int cnt=document->countLabels(value);
+		topic="";
+		if(cnt==0){
+		    topic=tr("label missing!");
+		} else if(cnt>1) {
+		    topic=tr("label multiple times defined!");
+		} else {
+		    QMultiHash<QDocumentLineHandle*,int> result=document->getLabels(value);
+		    QDocumentLineHandle *mLine=result.keys().first();
+		    int l=mLine->line();
+		    if(mLine->document()!=editor->document()){
+			//LatexDocument *doc=document->parent->findDocument(mLine->document());
+			LatexDocument *doc=qobject_cast<LatexDocument *>(mLine->document());
+			Q_ASSERT_X(doc,"missing latexdoc","qdoc is not latex document !");
+			if(doc) topic=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
+		    }
+		    for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
+			topic+=mLine->document()->line(i).text().left(80);
+			if(mLine->document()->line(i).text().length()>80) topic+="...";
+			if(i<l+2) topic+="\n";
+		    }
 		}
 	}else{
 		QString aim="<a name=\""+id;
