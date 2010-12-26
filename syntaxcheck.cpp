@@ -107,12 +107,14 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 	    count=excessCols;
 	    int end=line.indexOf("\\\\");
 	    int pos=-1;
+	    int res=-1;
 	    int lastEnd=-1;
 	    while(end>=0){
 		QRegExp rxMultiColumn("\\\\multicolumn\\{(\\d+)\\}\\{.+\\}\\{.+\\}");
 		rxMultiColumn.setMinimal(true);
+		bool mc_found=false;
 		do{
-		    int res=rxMultiColumn.indexIn(line,pos+1);
+		    res=rxMultiColumn.indexIn(line,pos+1);
 		    //pos=line.indexOf(QRegExp("[^\\\\]&"),pos+1);
 		    pos=line.indexOf(QRegExp("([^\\\\]|^)&"),pos+1);
 		    if(res>-1 && (res<pos || pos<0) ){
@@ -120,13 +122,22 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 			bool ok;
 			int c=rxMultiColumn.cap(1).toInt(&ok);
 			if(ok){
-			    count+=c-1;
+			    count+=c-2;
 			}
-			pos=res+rxMultiColumn.cap().length()-1;
+			mc_found=true;
+			if(pos<0){
+			    count+=2;
+			    break;
+			}
+			pos=res+1;
+		    }else{
+			mc_found=false;
 		    }
 		    count++;
 		} while(pos>=0 && count<cols && pos<end);
-		if(pos>=0 && pos<end){
+		if((pos>=0 && pos<end &&!mc_found)||(count>cols)){
+		    if(mc_found)
+			pos=res-1;
 		    Error elem;
 		    elem.range=QPair<int,int>(pos+1,end-pos-1);
 		    elem.type=ERR_tooManyCols;

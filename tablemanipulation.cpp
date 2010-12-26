@@ -398,10 +398,14 @@ int LatexTables::getNumberOfColumns(QDocumentCursor &cur){
 		    }
 		    opt.replace(pos,rx.matchedLength(),repl);
 		}
-		opt.replace(QRegExp("@\\{.+\\}"),"");
+		QRegExp rx1("@\\{.+\\}");
+		rx1.setMinimal(true);
+		opt.replace(rx1,"");
 		opt.replace("<","");
 		opt.replace(">","");
-		opt.replace(QRegExp("\\{.+\\}"),"");
+		QRegExp rx2("\\{.+\\}");
+		rx2.setMinimal(true);
+		opt.replace(rx2,"");
 		opt.replace("|","");
 		opt.replace(" ","");
 		cols=opt.length();
