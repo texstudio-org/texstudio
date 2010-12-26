@@ -188,6 +188,9 @@ class QCE_EXPORT QDocumentLine
 		{ return m_handle; }
 		
 		QNFAMatchContext* matchContext();
+
+		QVariant getCookie(int type);
+		void setCookie(int type,QVariant data);
 		
 	private:
 		QDocumentLineHandle *m_handle;

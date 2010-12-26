@@ -53,24 +53,47 @@ void SyntaxCheck::run(){
 		activeEnv.push(newLine.prevEnv);
 		line=LatexParser::cutComment(line);
 		Ranges newRanges;
-		checkLine(line,newRanges,activeEnv,newLine.cols);
+		newLine.dlh->lockForRead();
+		QDocumentLineHandle *prev=newLine.dlh->previous();
+		newLine.dlh->unlock();
+		int excessCols=0;
+		if(prev){
+		    prev->lockForRead();
+		    excessCols=prev->getCookie(0).toInt();
+		    prev->unlock();
+		}
+		checkLine(line,newRanges,activeEnv,newLine.cols,excessCols);
 		// place results
 		if(newLine.clearOverlay) newLine.dlh->clearOverlays(syntaxErrorFormat);
-		if(newRanges.isEmpty()) continue;
+		//if(newRanges.isEmpty()) continue;
 		newLine.dlh->lockForWrite();
 		if(newLine.ticket==newLine.dlh->getCurrentTicket()){ // discard results if text has been changed meanwhile
 			Error elem;
 			foreach(elem,newRanges){
 				newLine.dlh->addOverlayNoLock(QFormatRange(elem.range.first,elem.range.second,syntaxErrorFormat));
 			}
+			int oldCookie=newLine.dlh->getCookie(0).toInt();
+			bool cookieChanged=(oldCookie!=excessCols);
+			//if excessCols has changed the subsequent lines need to be rechecked.
+			if(cookieChanged){
+			    newLine.dlh->setCookie(0,excessCols);
+			    QDocumentLineHandle *next=newLine.dlh->next();
+			    if(next){
+				next->lockForRead();
+				QString text=next->text();
+				next->unlock();
+				putLine(text,next,activeEnv.top(),true,newLine.cols);
+			    }
+			}
 		}
 		newLine.dlh->unlock();
+
 		newLine.dlh->deref(); //if deleted, delete now
 	}
 }
 
 
-void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> &activeEnv,int cols){
+void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> &activeEnv,int cols,int &excessCols){
 	// do syntax check on that line
 	QString word;
 	int start=0;
@@ -79,11 +102,13 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 	bool inStructure=false;
 	// do additional checks (not limited to commands)
 	// check tabular compliance (columns)
+	int count=0;
 	if(activeEnv.top()==ENV_tabular){
+	    count=excessCols;
 	    int end=line.indexOf("\\\\");
-	    if(end>=0){
-		int pos=-1;
-		int count=0;
+	    int pos=-1;
+	    int lastEnd=-1;
+	    while(end>=0){
 		QRegExp rxMultiColumn("\\\\multicolumn\\{(\\d+)\\}\\{.+\\}\\{.+\\}");
 		rxMultiColumn.setMinimal(true);
 		do{
@@ -101,9 +126,7 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 		    }
 		    count++;
 		} while(pos>=0 && count<cols && pos<end);
-		if(pos>end)
-		    pos=-1;
-		if(pos>=0){
+		if(pos>=0 && pos<end){
 		    Error elem;
 		    elem.range=QPair<int,int>(pos+1,end-pos-1);
 		    elem.type=ERR_tooManyCols;
@@ -115,16 +138,31 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 		    elem.type=ERR_tooLittleCols;
 		    newRanges.append(elem);
 		}
-	    }else{
-		/* deactivated as a little too irritating
-		// missing newline
-		Error elem;
-		elem.range=QPair<int,int>(0,line.length());
-		elem.type=ERR_missingEndOfLine;
-		newRanges.append(elem);
-		*/
+		lastEnd=end;
+		end=line.indexOf("\\\\",end+1);
+		count=0;
 	    }
-	}
+	    // check for columns beyond last newline
+	    pos=lastEnd;
+	    QRegExp rxMultiColumn("\\\\multicolumn\\{(\\d+)\\}\\{.+\\}\\{.+\\}");
+	    rxMultiColumn.setMinimal(true);
+	    do{
+		int res=rxMultiColumn.indexIn(line,pos+1);
+		//pos=line.indexOf(QRegExp("[^\\\\]&"),pos+1);
+		pos=line.indexOf(QRegExp("([^\\\\]|^)&"),pos+1);
+		if(res>-1 && (res<pos || pos<0) ){
+		    // multicoulmn before &
+		    bool ok;
+		    int c=rxMultiColumn.cap(1).toInt(&ok);
+		    if(ok){
+			count+=c-1;
+		    }
+		    pos=res+rxMultiColumn.cap().length()-1;
+		}
+		count++;
+	    } while(pos>=0);
+	    excessCols=count-1;
+	}// tabular checking
 	// check command-words
 	while ((status=nextWord(line,start,word,wordstart,true,true,&inStructure))){
 		if(status==NW_COMMAND){
@@ -220,7 +258,8 @@ QString SyntaxCheck::getErrorAt(QString &text,int pos,Environment previous,int c
 	activeEnv.push(previous);
 	line=LatexParser::cutComment(line);
 	Ranges newRanges;
-	checkLine(line,newRanges,activeEnv,cols);
+	int excessCols=0;
+	checkLine(line,newRanges,activeEnv,cols,excessCols);
 	// find Error at Position
 	ErrorType result=ERR_none;
 	foreach(Error elem,newRanges){

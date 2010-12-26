@@ -60,7 +60,7 @@ public:
 
 protected:
      void run();
-     void checkLine(QString &line,Ranges &newRanges,QStack<Environment> &activeEnv,int cols);
+     void checkLine(QString &line,Ranges &newRanges,QStack<Environment> &activeEnv,int cols,int &excessCols);
 
 private:
      QQueue<SyntaxLine> mLines;

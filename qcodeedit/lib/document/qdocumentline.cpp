@@ -524,6 +524,16 @@ int QDocumentLine::getFormatAt(int pos){
 	return formats.at(pos);
 }
 
+QVariant QDocumentLine::getCookie(int type){
+    if(!m_handle) return QVariant();
+    return m_handle->getCookie(type);
+}
+
+void QDocumentLine::setCookie(int type,QVariant data){
+    if(!m_handle) return;
+    m_handle->setCookie(type,data);
+}
+
 
 /*!
 	\return whether the line has at least one overlay of a given format id

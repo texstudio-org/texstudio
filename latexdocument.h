@@ -13,34 +13,6 @@ class QDocument;
 class QDocumentCursor;
 struct QDocumentSelection;
 
-/*class References {
-public:
-	References() {}
-	References(QString pattern) : mPattern(pattern) {}
-	void insert(QString key,QDocumentLineHandle* handle) {mReferences.insert(key,handle);}
-	QList<QDocumentLineHandle*> values(QString key) {return mReferences.values(key);}
-	bool contains(QString key) {return mReferences.contains(key);}
-	int count(QString key) {return mReferences.count(key);}
-	QStringList removeByHandle(QDocumentLineHandle* handle);
-	void removeUpdateByHandle(QDocumentLineHandle* handle,References* altRefs=0);
-	void updateByKeys(QStringList refs,References* altRefs=0);
-	void setPattern(QString pattern) {mPattern=pattern;}
-	QString pattern() {return mPattern;}
-	void setFormats(int multiple,int single,int none) {
-		referenceMultipleFormat=multiple;
-		referencePresentFormat=single;
-		referenceMissingFormat=none;
-	}
-	void unite(References others){
-		//TODO:
-	}
-protected:
-	QMultiHash<QString,QDocumentLineHandle*> mReferences;
-	int referenceMultipleFormat,referencePresentFormat,referenceMissingFormat;
-	QString mPattern;
-};*/
-
-
 struct StructureEntry{
 	enum Type {SE_DOCUMENT_ROOT,SE_OVERVIEW,SE_SECTION,SE_BIBTEX,SE_TODO,SE_INCLUDE,SE_LABEL,SE_BLOCK=SE_LABEL};
 	Type type;
@@ -89,6 +61,9 @@ public:
 	LatexDocument(QObject *parent=0);
 	~LatexDocument();
 
+	enum CookieType{
+	    CK_COLS=0
+	};
 	void setFileName(const QString& fileName);
 	void setEditorView(LatexEditorView* edView);
 	LatexEditorView *getEditorView();

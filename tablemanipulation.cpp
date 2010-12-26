@@ -442,7 +442,7 @@ bool LatexTables::inTableEnv(QDocumentCursor &cur){
 // return number of columns a \multicolumn command spans (number in first braces)
 
 int LatexTables::getNumOfColsInMultiColumn(const QString &str){
-    //return the number of columsn in mulitcolumn command
+    //return the number of columns in mulitcolumn command
     QStringList values;
     LatexParser::resolveCommandOptions(str,0,values);
     if(!values.isEmpty()){
