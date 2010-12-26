@@ -1055,16 +1055,6 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 
 	MarkCurrentFileAsRecent();
 	//edit->document->initStructure();
-	updateStructure(true);
-	ShowStructure();
-
-	// check for already open child documents (included in this file)
-	QStringList includedFiles=doc->includedFiles();
-	foreach(QString fname,includedFiles){
-	    LatexDocument* child=documents.findDocumentFromName(fname);
-	    if(child)
-		child->setMasterDocument(doc);
-	}
 	//check whether document is child of other docs
 	QString fname=QFileInfo(f_real).absoluteFilePath();
 	foreach(LatexDocument* elem,documents.documents){
@@ -1076,6 +1066,22 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 		break;
 	    }
 	}
+
+	updateStructure(true);
+	ShowStructure();
+
+	// check for already open child documents (included in this file)
+	QStringList includedFiles=doc->includedFiles();
+	foreach(QString fname,includedFiles){
+	    LatexDocument* child=documents.findDocumentFromName(fname);
+	    if(child){
+		child->setMasterDocument(doc);
+		LatexEditorView *edView=child->getEditorView();
+		if(edView)
+		   edView->reCheckSyntax(); // redo syntax checking (in case of defined commands)
+	    }
+	}
+
 
 	if (asProject) documents.setMasterDocument(edit->document);
 
