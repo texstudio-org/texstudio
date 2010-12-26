@@ -632,7 +632,13 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	if (completerNeedsUpdate || bibTeXFilesNeedsUpdate)
 		emit updateCompleter();
 
-	if(updateSyntaxCheck) getEditorView()->reCheckSyntax();//todo: signal
+	if(updateSyntaxCheck) {
+	    foreach(LatexDocument* elem,getListOfDocs()){
+		//getEditorView()->reCheckSyntax();//todo: signal
+		if(elem->edView)
+		    elem->edView->reCheckSyntax();
+	    }
+	}
 
 
 #ifndef QT_NO_DEBUG
