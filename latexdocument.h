@@ -149,6 +149,7 @@ public:
 	}
 
 	QStringList includedFiles();
+	QList<LatexDocument *> getListOfDocs();
 
 private:
 	QString fileName; //absolute

@@ -694,21 +694,8 @@ QString LatexDocument::getTemporaryFileName(){
 }
 
 int LatexDocument::countLabels(QString name){
-    QList<LatexDocument *>listOfDocs;
     int result=0;
-    if(parent->masterDocument){
-	listOfDocs=parent->documents;
-    }else{
-	LatexDocument *master=this;
-	if(masterDocument){
-	    master=masterDocument;
-	}
-	foreach(LatexDocument *elem,parent->documents){
-	    if(elem!=master && elem->masterDocument!=master) continue;
-	    listOfDocs << elem;
-	}
-    }
-    foreach(LatexDocument *elem,listOfDocs){
+    foreach(LatexDocument *elem,getListOfDocs()){
 	QStringList items=elem->labelItem();
 	result+=items.count(name);
     }
@@ -716,21 +703,8 @@ int LatexDocument::countLabels(QString name){
 }
 
 int LatexDocument::countRefs(QString name){
-    QList<LatexDocument *>listOfDocs;
     int result=0;
-    if(parent->masterDocument){
-	listOfDocs=parent->documents;
-    }else{
-	LatexDocument *master=this;
-	if(masterDocument){
-	    master=masterDocument;
-	}
-	foreach(LatexDocument *elem,parent->documents){
-	    if(elem!=master && elem->masterDocument!=master) continue;
-	    listOfDocs << elem;
-	}
-    }
-    foreach(LatexDocument *elem,listOfDocs){
+    foreach(LatexDocument *elem,getListOfDocs()){
 	QStringList items=elem->refItem();
 	result+=items.count(name);
     }
@@ -738,21 +712,8 @@ int LatexDocument::countRefs(QString name){
 }
 
 QMultiHash<QDocumentLineHandle*,int> LatexDocument::getLabels(QString name){
-    QList<LatexDocument *>listOfDocs;
     QHash<QDocumentLineHandle*,int> result;
-    if(parent->masterDocument){
-	listOfDocs=parent->documents;
-    }else{
-	LatexDocument *master=this;
-	if(masterDocument){
-	    master=masterDocument;
-	}
-	foreach(LatexDocument *elem,parent->documents){
-	    if(elem!=master && elem->masterDocument!=master) continue;
-	    listOfDocs << elem;
-	}
-    }
-    foreach(LatexDocument *elem,listOfDocs){
+    foreach(LatexDocument *elem,getListOfDocs()){
 	QMultiHash<QDocumentLineHandle*,ReferencePair>::const_iterator it;
 	for (it = elem->mLabelItem.constBegin(); it != elem->mLabelItem.constEnd(); ++it){
 	    ReferencePair rp=it.value();
@@ -765,21 +726,8 @@ QMultiHash<QDocumentLineHandle*,int> LatexDocument::getLabels(QString name){
 }
 
 QMultiHash<QDocumentLineHandle*,int> LatexDocument::getRefs(QString name){
-    QList<LatexDocument *>listOfDocs;
     QHash<QDocumentLineHandle*,int> result;
-    if(parent->masterDocument){
-	listOfDocs=parent->documents;
-    }else{
-	LatexDocument *master=this;
-	if(masterDocument){
-	    master=masterDocument;
-	}
-	foreach(LatexDocument *elem,parent->documents){
-	    if(elem!=master && elem->masterDocument!=master) continue;
-	    listOfDocs << elem;
-	}
-    }
-    foreach(LatexDocument *elem,listOfDocs){
+    foreach(LatexDocument *elem,getListOfDocs()){
 	QMultiHash<QDocumentLineHandle*,ReferencePair>::const_iterator it;
 	for (it = elem->mRefItem.constBegin(); it != elem->mRefItem.constEnd(); ++it){
 	    ReferencePair rp=it.value();
@@ -793,6 +741,13 @@ QMultiHash<QDocumentLineHandle*,int> LatexDocument::getRefs(QString name){
 
 void LatexDocument::setMasterDocument(LatexDocument* doc){
     masterDocument=doc;
+    QList<LatexDocument *>listOfDocs=getListOfDocs();
+    foreach(LatexDocument *elem,listOfDocs){
+	elem->recheckRefsLabels();
+    }
+}
+
+QList<LatexDocument *> LatexDocument::getListOfDocs(){
     QList<LatexDocument *>listOfDocs;
     if(parent->masterDocument){
 	listOfDocs=parent->documents;
@@ -806,9 +761,7 @@ void LatexDocument::setMasterDocument(LatexDocument* doc){
 	    listOfDocs << elem;
 	}
     }
-    foreach(LatexDocument *elem,listOfDocs){
-	elem->recheckRefsLabels();
-    }
+    return listOfDocs;
 }
 
 void LatexDocument::recheckRefsLabels(){
