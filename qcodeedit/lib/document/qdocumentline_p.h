@@ -161,6 +161,13 @@ class QCE_EXPORT QDocumentLineHandle
 		int getCurrentTicket(){
 		    return mTicket;
 		}
+
+		QVariant getCookie(int type){ //locking needs to be done externally !!!
+		    return mCookies.value(type,QVariant());
+		}
+		void setCookie(int type,QVariant data){ //locking needs to be done externally !!!
+		    mCookies.insert(type,data);
+		}
 		
 	private:
 		void layout() const;
@@ -193,6 +200,7 @@ class QCE_EXPORT QDocumentLineHandle
 		QBitmap wv;
 		mutable QReadWriteLock mLock;
 		int mTicket; // increment on each write access to detect obsolete info in parallel thread
+		QMap<int,QVariant> mCookies; // store additional info on lines. Helpful for to retrieve info on multiline commands
 };
 
 Q_DECLARE_TYPEINFO(QDocumentLineHandle*, Q_PRIMITIVE_TYPE);
