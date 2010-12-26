@@ -174,6 +174,19 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 					word+=options.first();
 				}
 			}
+			if(LatexParser::definitionCommands.contains(word)){ // don't check in command definition
+				QStringList options;
+				QList<int> starts;
+				LatexParser::resolveCommandOptions(line,wordstart,options,&starts);
+				for(int i=1;i<options.count()&&i<4;i++){
+				    QString option=options.at(i);
+				    if(option.startsWith("[")){
+					continue;
+				    }
+				    start=starts.at(i)+option.length();
+				    break;
+				}
+			}
 			if(LatexParser::refCommands.contains(word)||LatexParser::labelCommands.contains(word)||LatexParser::fileCommands.contains(word)){ //don't check syntax in reference, label or include
 				QStringList options;
 				LatexParser::resolveCommandOptions(line,wordstart,options);
