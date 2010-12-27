@@ -136,21 +136,6 @@ void LatexDocument::clearStructure() {
 }
 
 void LatexDocument::initStructure(){
-    clearStructure();
-
-    baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
-    baseStructure->title=fileName;
-    labelList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-    labelList->title=tr("LABELS");
-    todoList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-    todoList->title=tr("TODO");
-    bibTeXList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-    bibTeXList->title=tr("BIBTEX");
-    blockList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-    blockList->title=tr("BLOCKS");
-}
-
-void LatexDocument::updateStructure() {
 	clearStructure();
 
 	baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
@@ -163,10 +148,10 @@ void LatexDocument::updateStructure() {
 	bibTeXList->title=tr("BIBTEX");
 	blockList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
 	blockList->title=tr("BLOCKS");
+}
 
-/*	QVector<StructureEntry*> parent_level(LatexParser::structureCommands.count());
-	for (int i=0;i<parent_level.size();i++)
-		parent_level[i]=baseStructure;*/
+void LatexDocument::updateStructure() {
+	initStructure();
 
 	patchStructure(0, lineCount());
 
@@ -187,7 +172,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 		mAppendixLine=0;
 	}
 
-	int linenr=dlh->line();
+	int linenr = indexOf(dlh);
 	if (linenr==-1) linenr=lines();
 
 	QList<StructureEntry*> categories=QList<StructureEntry*>() << labelList << todoList << blockList << bibTeXList;
@@ -533,7 +518,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				}
 				parent->add(newSection);
 
-				if(mAppendixLine &&mAppendixLine->line()<i) newSection->appendix=true;
+				if(mAppendixLine &&indexOf(mAppendixLine)<i) newSection->appendix=true;
 				else newSection->appendix=false;
 				newSection->title=name;
 				newSection->level=header;
@@ -1392,14 +1377,16 @@ void LatexDocument::findStructureEntryBefore(QMutableListIterator<StructureEntry
 	while(iter.hasNext()){
 		StructureEntry* se=iter.next();
 		QDocumentLineHandle* dlh=se->lineHandle;
-		if((dlh->line()>=linenr) && (dlh->line()<linenr+count) ){
+		int realline = indexOf(dlh);
+		Q_ASSERT(realline >= 0);
+		if(realline>=linenr && (realline<linenr+count) ){
 			emit removeElement(se,l);
 			iter.remove();
 			emit removeElementFinished();
 			MapOfElements.insert(se->lineHandle,se);
 			l--;
 		}
-		if(dlh->line()>=linenr+count) {
+		if(realline>=linenr+count) {
 			goBack=true;
 			break;
 		}
@@ -1430,12 +1417,13 @@ void LatexDocument::splitStructure(StructureEntry* se,QVector<StructureEntry*> &
 	int end=-1;
 	for(int l=0;l<se->children.size();l++){
 		StructureEntry *elem=se->children.at(l);
-		//TODO: remove line() call, it is too slow
-		if(!elem->lineHandle || elem->lineHandle->line()<linenr) {
+		//TODO: remove line()/indexOf() call, it is too slow
+		int realline = elem->lineHandle?indexOf(elem->lineHandle):-1;
+		if(realline<linenr) {
 			start=l;
 			continue;
 		}
-		if(elem->lineHandle->line()>=linenr+count){
+		if(realline>=linenr+count){
 			end=l;
 			break;
 		}
@@ -1510,11 +1498,10 @@ void LatexDocument::removeAndDeleteElement(StructureEntry* se, int row){
 
 
 void LatexDocument::updateAppendix(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine){
-	int endLine=-1;
+	int endLine=newLine?indexOf(newLine):-1 ;
 	int startLine=-1;
-	if(newLine) endLine=newLine->line();
 	if(oldLine){
-		startLine=oldLine->line();
+		startLine=indexOf(oldLine);
 		if(endLine<0 || endLine>startLine){
 			// remove appendic marker
 			StructureEntry *se=baseStructure;
@@ -1532,8 +1519,8 @@ void LatexDocument::setAppendix(StructureEntry *se,int startLine,int endLine,boo
 	bool first=false;
 	for(int i=0;i<se->children.size();i++){
 		StructureEntry *elem=se->children[i];
-		if(endLine>=0 && elem->lineHandle && elem->lineHandle->line()>endLine) break;
-		if(elem->type==StructureEntry::SE_SECTION && elem->lineHandle->line()>startLine){
+		if(endLine>=0 && elem->lineHandle && indexOf(elem->lineHandle)>endLine) break;
+		if(elem->type==StructureEntry::SE_SECTION && indexOf(elem->lineHandle)>startLine){
 			if(!first && i>0) setAppendix(se->children[i-1],startLine,endLine,state);
 			elem->appendix=state;
 			emit updateElement(elem);
