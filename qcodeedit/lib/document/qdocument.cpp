@@ -1215,6 +1215,11 @@ QDocumentLine QDocument::line(QDocumentConstIterator iterator) const
 	return (m_impl && (m_impl->constEnd() != iterator)) ? QDocumentLine(*iterator) : QDocumentLine();
 }
 
+/*! \return Line number of an handle */
+int QDocument::indexOf(QDocumentLineHandle* h){
+	return m_impl->indexOf(h);
+}
+
 /*!
 	\return A cursor operating on the document, placed at a given position
 	This method has three functions:
