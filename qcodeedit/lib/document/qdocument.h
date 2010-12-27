@@ -339,6 +339,8 @@ class QCE_EXPORT QDocument : public QObject
 		
 		void lineEndingChanged(int lineEnding);
 		
+	protected:
+		int indexOf(QDocumentLineHandle* h);
 	private:
 		QString m_leftOver;
 		QDocumentPrivate *m_impl;
