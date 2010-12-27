@@ -193,6 +193,28 @@ QString getMiKTeXBinPath() {
 		mikPath+="\\"; //windows
 	return mikPath+"miktex\\bin\\";
 }
+QString getTeXLiveBinPath() {
+	//check for uninstall entry
+	foreach (const QString& baseKey, QStringList() << "HKEY_CURRENT_USER" << "HKEY_LOCAL_MACHINE") {
+		QSettings reg(baseKey+ "\\Software", QSettings::NativeFormat);
+		QString uninstall = reg.value("microsoft/windows/currentversion/uninstall/TeXLive2010/UninstallString", "").toString();
+		if (uninstall.isEmpty()) uninstall = reg.value("microsoft/windows/currentversion/uninstall/TeXLive2009/UninstallString", "").toString();
+		if (uninstall.isEmpty()) uninstall = reg.value("microsoft/windows/currentversion/uninstall/TeXLive2008/UninstallString", "").toString();
+		if (!uninstall.isEmpty()) {
+			int p = uninstall.indexOf("\\tlpkg\\", 0, Qt::CaseInsensitive);
+			QString path = p>0?uninstall.left(p):"";
+			if (QDir(path+"\\bin\\win32").exists())
+				return path+"\\bin\\win32\\";
+		}
+	}
+	//check for path
+	QString pdftex = findFileInPath("pdftex.exe");
+	int p = pdftex.indexOf("\\bin\\", 0, Qt::CaseInsensitive);
+	if (p<=0) return "";
+	QString path = pdftex.left(p);
+	if (!QFileInfo(path+"\\release-texlive.txt").exists()) return "";
+	return path+"\\bin\\win32\\";
+}
 QString findGhostscriptDLL() {
 	//registry
 	for (int type=0; type<=1; type++)
@@ -231,7 +253,11 @@ QString searchBaseCommand(const QString &cmd, QString options) {
 		//Windows MikTex
 		QString mikPath=getMiKTeXBinPath();
 		if (!mikPath.isEmpty() && QFileInfo(mikPath+fileName).exists())
-			return mikPath+fileName+options; //found
+			return "\""+mikPath+fileName+"\" "+options; //found
+		//Windows TeX Live
+		QString livePath=getTeXLiveBinPath();
+		if (!livePath.isEmpty() && QFileInfo(livePath+fileName).exists())
+			return "\""+livePath+fileName+"\" "+options; //found
 #endif
 #ifdef Q_WS_MACX
 		// comments from texmaker: /usr/local/teTeX/bin/i386-apple-darwin-current
@@ -326,6 +352,13 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 		QString def=W32_FileAssociation(".ps");
 		if (!def.isEmpty())
 			return def;
+
+		QString livePath = getTeXLiveBinPath();
+		if (!livePath.isEmpty())
+			if (QFileInfo(livePath+"psv.exe").exists())
+				return "\""+livePath+"psv.exe\"  \"?am.ps\"";
+
+
 		QString gsDll = findGhostscriptDLL().replace("/","\\"); //gsview contains gs so x
 		int pos;
 		while ((pos=gsDll.lastIndexOf("\\"))>-1) {
@@ -351,6 +384,13 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 		else break;
 	}
 	case CMD_GHOSTSCRIPT: {
+		QString livePath = getTeXLiveBinPath();
+		if (!livePath.isEmpty()){
+			if (QFileInfo(livePath+"rungs.exe").exists())
+				return "\""+livePath+"rungs.exe\"";
+			if (QFileInfo(livePath+"rungs.bat").exists()) //tl 2008 (?)
+				return "\""+livePath+"rungs.bat\"";
+		}
 		QString dll=findGhostscriptDLL().replace("gsdll32.dll","gswin32c.exe",Qt::CaseInsensitive);
 		if (dll.endsWith("gswin32c.exe")) return "\""+dll+"\"";
 		else if (QFileInfo("C:/Program Files/gs/gs8.64/bin/gswin32c.exe").exists())  //old behaviour
