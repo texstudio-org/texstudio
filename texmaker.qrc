@@ -187,7 +187,6 @@
         <file>images/viewlog.png</file>
         <file>images/viewpdf.png</file>
         <file>images/viewps.png</file>
-        <file>completion/yfonts.cwl</file>
         <file>completion/acronym.cwl</file>
         <file>completion/afterpage.cwl</file>
         <file>completion/allrunes.cwl</file>
@@ -220,14 +219,15 @@
         <file>completion/diagxy.cwl</file>
         <file>completion/doi.cwl</file>
         <file>completion/enumerate.cwl</file>
+        <file>completion/epigraph.cwl</file>
         <file>completion/fancybox.cwl</file>
         <file>completion/fancyhdr.cwl</file>
+        <file>completion/fancyunits-base.cwl</file>
         <file>completion/fancyunits_big-fractions.cwl</file>
         <file>completion/fancyunits_medium-fractions.cwl</file>
-        <file>completion/fancyunits_small-fractions.cwl</file>
-        <file>completion/fancyunits-base.cwl</file>
         <file>completion/fancyunits-np.cwl</file>
         <file>completion/fancyunits-per.cwl</file>
+        <file>completion/fancyunits_small-fractions.cwl</file>
         <file>completion/fancyvrb.cwl</file>
         <file>completion/float.cwl</file>
         <file>completion/fontspec.cwl</file>
@@ -248,9 +248,11 @@
         <file>completion/longtable.cwl</file>
         <file>completion/lscape.cwl</file>
         <file>completion/manyfoot.cwl</file>
+        <file>completion/marvosym.cwl</file>
         <file>completion/mdwlist.cwl</file>
         <file>completion/multicol.cwl</file>
         <file>completion/multido.cwl</file>
+        <file>completion/natbib.cwl</file>
         <file>completion/nicefrac.cwl</file>
         <file>completion/nomencl.cwl</file>
         <file>completion/pdfpages.cwl</file>
@@ -283,16 +285,20 @@
         <file>completion/tex.cwl</file>
         <file>completion/texmakerx.cwl</file>
         <file>completion/textcomp.cwl</file>
+        <file>completion/tocbibind.cwl</file>
+        <file>completion/tocloft.cwl</file>
         <file>completion/todonotes.cwl</file>
         <file>completion/units.cwl</file>
         <file>completion/url.cwl</file>
         <file>completion/varioref.cwl</file>
         <file>completion/verse.cwl</file>
-        <file>completion/wasysym.cwl</file>
         <file>completion/virginialake.cwl</file>
+        <file>completion/wasysym.cwl</file>
         <file>completion/xifthen.cwl</file>
         <file>completion/xltxtra.cwl</file>
+        <file>completion/xspace.cwl</file>
         <file>completion/xtab.cwl</file>
+        <file>completion/yfonts.cwl</file>
         <file>tags/asymptote_tags.xml</file>
         <file>tags/brackets_tags.xml</file>
         <file>tags/metapost_tags.xml</file>
@@ -1422,7 +1428,6 @@
         <file>templates/template_Scrbook.tex</file>
         <file>templates/template_Scrlttr2.tex</file>
         <file>templates/template_Scrreprt.tex</file>
-        <file>completion/natbib.cwl</file>
         <file>images/masterdoc.png</file>
         <file>images/qcodeedit/replaceall.png</file>
         <file>images/qcodeedit/count.png</file>
