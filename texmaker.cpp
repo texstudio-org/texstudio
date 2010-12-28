@@ -187,8 +187,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	stat2->setText(QString(" %1 ").arg(tr("Ready")));
 //connect(stat3, SIGNAL(itemClicked ( QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
 	// adapt menu output view visible;
-	bool mVis=outputView->isVisible();
-	outputViewAction->setChecked(mVis);
+	outputViewAction->setChecked(outputView->isVisible());
+	connect(outputView, SIGNAL(visibilityChanged(bool)), outputViewAction, SLOT(setChecked(bool)));  //synchronize toggle action and menu action (todo: insert toggle action in menu, but not that easy with the managed menus)
 
 	setAcceptDrops(true);
 	installEventFilter(this);
