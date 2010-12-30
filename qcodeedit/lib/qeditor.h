@@ -208,7 +208,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		Q_INVOKABLE QString text() const;
 		Q_INVOKABLE QString text(int line) const;
 		
-		QDocument* document() const;
+		Q_INVOKABLE QDocument* document() const;
 		
 		QList<QEditorInputBindingInterface*> inputBindings() const;
 		
