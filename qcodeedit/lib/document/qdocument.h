@@ -152,10 +152,10 @@ class QCE_EXPORT QDocument : public QObject
 		explicit QDocument(QObject *p = 0);
 		virtual ~QDocument();
 		
-		QString text(int mode) const;
-		QString text(bool removeTrailing = false, bool preserveIndent = true) const;
-		QStringList textLines() const;
-		void setText(const QString& s);
+		Q_INVOKABLE QString text(int mode) const;
+		Q_INVOKABLE QString text(bool removeTrailing = false, bool preserveIndent = true) const;
+		Q_INVOKABLE QStringList textLines() const;
+		Q_INVOKABLE void setText(const QString& s);
 		
 		void load(const QString& file, QTextCodec* codec);
 		void startChunkLoading();
@@ -164,7 +164,7 @@ class QCE_EXPORT QDocument : public QObject
 		
 		LineEnding lineEnding() const;
 		LineEnding originalLineEnding() const;
-		QString lineEndingString() const;
+		Q_INVOKABLE QString lineEndingString() const;
 		void setLineEnding(LineEnding le);
 		
 		QTextCodec* codec() const;
@@ -173,17 +173,17 @@ class QCE_EXPORT QDocument : public QObject
 		QDateTime lastModified() const;
 		void setLastModified(const QDateTime& d);
 		
-		bool canUndo() const;
-		bool canRedo() const;
+		Q_INVOKABLE bool canUndo() const;
+		Q_INVOKABLE bool canRedo() const;
 		
 		int width() const;
 		int height() const;
 		int widthConstraint() const;
 		
 		int lines() const;
-		int lineCount() const;
+		Q_INVOKABLE int lineCount() const;
 		int visualLines() const;
-		int visualLineCount() const;
+		Q_INVOKABLE int visualLineCount() const;
 		
 		int visualLineNumber(int textLineNumber) const;
 		int textLineNumber(int visualLineNumber) const;
@@ -213,7 +213,7 @@ class QCE_EXPORT QDocument : public QObject
 		QDocumentLine line(int line) const;
 		QDocumentLine line(QDocumentConstIterator iterator) const;
 		
-		QDocumentCursor cursor(int line, int column = 0, int lineTo=-1, int columnTo=-1) const;
+		Q_INVOKABLE QDocumentCursor cursor(int line, int column = 0, int lineTo=-1, int columnTo=-1) const;
 		
 		QDocumentLine findLine(int& position) const;
 		int findLineContaining(const QString &searchText,  const int& startLine=0, const Qt::CaseSensitivity cs = Qt::CaseSensitive, const bool backward=false) const;
@@ -284,10 +284,10 @@ class QCE_EXPORT QDocument : public QObject
 		
 		bool isClean() const;
 		
-		void expand(int line);
-		void collapse(int line);
-		void expandParents(int l);
-		void foldBlockAt(bool unFold, int line);
+		Q_INVOKABLE void expand(int line);
+		Q_INVOKABLE void collapse(int line);
+		Q_INVOKABLE void expandParents(int l);
+		Q_INVOKABLE void foldBlockAt(bool unFold, int line);
 		bool linesPartiallyFolded(int fromInc, int toInc);
 		void correctFolding(int fromInc, int toInc);
 

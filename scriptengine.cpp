@@ -1,10 +1,44 @@
 #include "scriptengine.h"
 #include "filechooser.h"
 
+Q_DECLARE_METATYPE(QDocument*);
+
+//copied from trolltech mailing list
+template <typename Tp> QScriptValue qScriptValueFromQObject(QScriptEngine *engine, Tp const &qobject)
+{
+	return engine->newQObject(qobject);
+}
+
+template <typename Tp> void qScriptValueToQObject(const QScriptValue &value, Tp &qobject) {
+	qobject = qobject_cast<Tp>(value.toQObject());
+}
+
+template <typename Tp> int qScriptRegisterQObjectMetaType( QScriptEngine *engine, const QScriptValue &prototype = QScriptValue(), Tp * /* dummy */ = 0)
+{
+    return qScriptRegisterMetaType<Tp>(engine, qScriptValueFromQObject, qScriptValueToQObject, prototype);
+}
+//
+
+
+QScriptValue qScriptValueFromDocumentCursor(QScriptEngine *engine, QDocumentCursor const &cursor)
+{
+	return engine->newQObject(new QDocumentCursor(cursor), QScriptEngine::ScriptOwnership);
+}
+void qScriptValueToDocumentCursor(const QScriptValue &value, QDocumentCursor &qobject) {
+	qobject = *qobject_cast<QDocumentCursor*>(value.toQObject());
+}
+
+
+
+
 scriptengine::scriptengine(QObject *parent) : QObject(parent),m_editor(0)
 {
-    engine=new QScriptEngine(this);
-	//qScriptRegisterMetaType<QDocumentCursor>(engine);
+	engine=new QScriptEngine(this);
+	qScriptRegisterQObjectMetaType<QDocument*>(engine);
+	qScriptRegisterMetaType<QDocumentCursor>(engine, qScriptValueFromDocumentCursor, qScriptValueToDocumentCursor, QScriptValue());
+//	qScriptRegisterMetaType<QDocumentCursor>(engine);
+//	engine->setDefaultPrototype(qMetaTypeId<QDocument*>(), QScriptValue());
+	//engine->setDefaultPrototype(qMetaTypeId<QDocumentCursor>(), QScriptValue());
 }
 
 scriptengine::~scriptengine(){
