@@ -127,7 +127,6 @@ public:
 
 	StructureEntry* baseStructure;
 
-
 	QDocumentSelection sectionSelection(StructureEntry* section);
 	void clearAppendix(){
 	    mAppendixLine=0;

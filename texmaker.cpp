@@ -1070,6 +1070,9 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	updateStructure(true);
 	ShowStructure();
 
+        //recheck references
+        doc->recheckRefsLabels();
+
 	// check for already open child documents (included in this file)
 	QStringList includedFiles=doc->includedFiles();
 	foreach(QString fname,includedFiles){
