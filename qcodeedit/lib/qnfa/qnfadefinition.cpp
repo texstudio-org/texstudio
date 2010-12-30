@@ -231,7 +231,7 @@ void QNFADefinition::load(const QDomDocument& doc, QLanguageFactory::LangData *d
 	for (QHash<int, QString>::iterator i = tempClosing.begin(); i != tempClosing.end(); ++i)
 		m_closingParenthesis.insert(i.key(),i.value());
 
-	squeeze(nd->m_root);
+	//squeeze(nd->m_root);
 
 	//m_definitions[m_language] = this;
 	m_contexts[nd->m_language] = nd->m_root;
