@@ -250,31 +250,33 @@ public:
 				insertText(written);
 				handled=true;
 			} else if (event->text().length()==1 && getCommonEOW().contains(event->text().at(0)) ) {
-				const QList<CompletionWord> &words=completer->listModel->getWords();
-				QString curWord = getCurWord() + event->text() ;
-				QString newWord;
-				if (curWord != "\\"){
-				    foreach (const CodeSnippet& w, words){
-					if (w.word.startsWith(curWord)){
-					    newWord = w.word;
-					    break;
-					}
-				    }
-				}
-				if (!newWord.isEmpty()) {
-					//QString insertion = newWord.mid(curWord.length(), newWord.indexOf(written, curWord.length()) - curWord.length() + 1); // don't get the intention of this line
-					//insertText(insertion);
-					insertText(written);
-					handled = true;
-				} else if (LatexCompleter::config && LatexCompleter::config->eowCompletes) {
-					int curLength = getCurWord().length();
-					insertCompletedWord();
-					resetBinding();
-					return curLength >= 2 &&  oldBinding->keyPressEvent(event,editor); //call old input binding for long words (=> key replacements after completions, but the user can still write \")
-				    } else {
+				QString curWord = getCurWord();
+				if (curWord=="\\" || !LatexCompleter::config || !LatexCompleter::config->eowCompletes) {
 					resetBinding();
 					return false;
-				    }
+				}
+				const QList<CompletionWord> &words=completer->listModel->getWords();
+				QString newWord;
+				foreach (const CodeSnippet& w, words){
+					if (w.word.startsWith(curWord) &&
+					    (w.word.length() == curWord.length() ||
+					     w.lines.first().indexOf(written, curWord.length()) >= 0)){
+						newWord = w.word;
+						break;
+					}
+				}
+
+				if (!newWord.isEmpty() && newWord.length()!=curWord.length()) {
+					QString insertion = newWord.mid(curWord.length(), newWord.indexOf(written, curWord.length()) - curWord.length() + 1); //choose text until written eow character
+					insertText(insertion);
+					//insertText(written);
+					handled = true;
+				} else {
+					int curLength = curWord.length();
+					insertCompletedWord();
+					resetBinding();
+					return false;//oldBinding->keyPressEvent(event,editor); //call old input binding for long words (=> key replacements after completions, but the user can still write \")
+				}
 			} else {
 				int curLength = getCurWord().length();
 				resetBinding();
