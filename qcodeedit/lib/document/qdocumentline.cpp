@@ -457,6 +457,7 @@ void QDocumentLine::toggleMark(int id)
 		return;
 	
 	document()->impl()->toggleMark(m_handle, id);
+	setFlag(QDocumentLine::LayoutDirty,true);
 }
 
 /*!
@@ -468,6 +469,7 @@ void QDocumentLine::removeMark(int id)
 		return;
 	
 	document()->impl()->removeMark(m_handle, id);
+	setFlag(QDocumentLine::LayoutDirty,true);
 }
 
 /*!
