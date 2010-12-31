@@ -1,14 +1,22 @@
 # tocbibind.sty
 # J. Sundermeyer
-\tocotherhead{headingname}#n
-\tocbibname#n
-\setindexname{name}#n
-\settocname{name}#n
-\setlotname{name}#n
-\setlofname{name}#n
-\settocbibname{name}#n
-\simplechapter[name]#n
-\restorechapter#n
-\tocchapter#n
-\tocsection#n
-\tocfile{text}{file-extension}#n
+# modified Edson 30-12-2010
+
+\tocotherhead{headingname}
+\tocbibname
+
+\setindexname{name}
+\settocname{name}
+\setlotname{name}
+\setlofname{name}
+\settocbibname{name}
+
+
+\simplechapter
+\simplechapter[name]
+\restorechapter
+\simplechapterdelim
+
+\tocchapter
+\tocsection
+\tocfile{text}{file-extension}
