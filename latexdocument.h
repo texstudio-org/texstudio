@@ -168,6 +168,7 @@ private:
 	QMultiHash<QDocumentLineHandle*,ReferencePair> mRefItem;
 	QMultiHash<QDocumentLineHandle*,FileNamePair> mMentionedBibTeXFiles;
 	QMultiHash<QDocumentLineHandle*,QString> mUserCommandList;
+	QMultiHash<QDocumentLineHandle*,QString> mUsepackageList;
 
 	QDocumentLineHandle *mAppendixLine;
 

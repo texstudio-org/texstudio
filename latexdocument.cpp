@@ -166,6 +166,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	mMentionedBibTeXFiles.remove(dlh);
 
 	mUserCommandList.remove(dlh);
+	mUsepackageList.remove(dlh);
 
 	if(dlh==mAppendixLine){
 		updateAppendix(mAppendixLine,0);
@@ -293,6 +294,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		}
 		mRefItem.remove(dlh);
 		if (mUserCommandList.remove(dlh)>0) completerNeedsUpdate = true;
+		if (mUsepackageList.remove(dlh)>0) completerNeedsUpdate = true;
 
 		//remove old bibs files from hash, but keeps a temporary copy
 		QStringList oldBibs;
@@ -336,6 +338,23 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			if(!reuse) emit addElement(todoList,todoList->children.size()); //todo: why here but not in label?
 			iter_todo.insert(newTodo);
 		}
+		////Ref
+		//for reference counting (can be placed in command options as well ...
+		foreach(QString cmd,LatexParser::refCommands){
+		    QString name;
+		    cmd.append('{');
+		    int start=0;
+		    do{
+			name=findToken(curLine,cmd,start);
+			if(!name.isEmpty()){
+			    ReferencePair elem;
+			    elem.name=name;
+			    elem.start=start;
+			    mRefItem.insert(line(i).handle(),elem);
+			}
+		    }while(start>=0);
+		}
+		// check also in command argument, als references might be put there as well...
 		//// Appendix keyword
 		if (curLine=="\\appendix") {
 			oldLine=mAppendixLine;
@@ -402,6 +421,15 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				LatexParser::userdefinedCommands.insert("\\end{"+name+"}");
 				continue;
 			}
+			///usepackage
+			if (LatexParser::usepackageCommands.contains(cmd)) {
+				completerNeedsUpdate=true;
+				QStringList packages=name.split(",");
+				foreach(QString elem,packages){
+				    mUsepackageList.insertMulti(dlh,elem);
+				}
+				continue;
+			}
 			//// bibliography ////
 			if (cmd=="\\bibliography") {
 				QStringList bibs=name.split(',',QString::SkipEmptyParts);
@@ -452,15 +480,6 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				iter_label.insert(newLabel);
 				continue;
 			}
-			//// Ref
-			if (LatexParser::refCommands.contains(cmd)) {
-				ReferencePair elem;
-				elem.name=name;
-				elem.start=optionStart+offset;
-				mRefItem.insert(line(i).handle(),elem);
-				continue;
-			}
-			//for reference counting
 			//// beamer blocks ////
 
 			if (cmd=="\\begin" && name=="block") {
