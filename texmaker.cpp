@@ -3555,6 +3555,10 @@ void Texmaker::GeneralOptions() {
 	bool oldSystemTheme = configManager.useSystemTheme;
 	autosaveTimer.stop();
 	m_formats->modified = false;
+	bool inlineSpellChecking=configManager.editorConfig->inlineSpellChecking;
+	bool inlineCitationChecking=configManager.editorConfig->inlineCitationChecking;
+	bool inlineReferenceChecking=configManager.editorConfig->inlineReferenceChecking;
+	bool inlineSyntaxChecking=configManager.editorConfig->inlineSyntaxChecking;
 	if (configManager.execConfigDialog()) {
 		mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);
 		// refresh quick language selection combobox
@@ -3570,10 +3574,22 @@ void Texmaker::GeneralOptions() {
 
 		ThesaurusDialog::prepareDatabase(configManager.thesaurus_database);
 
+		//update highlighting ???
+		bool updateHighlighting=(inlineSpellChecking!=configManager.editorConfig->inlineSpellChecking);
+		updateHighlighting|=(inlineCitationChecking!=configManager.editorConfig->inlineCitationChecking);
+		updateHighlighting|=(inlineReferenceChecking!=configManager.editorConfig->inlineReferenceChecking);
+		updateHighlighting|=(inlineSyntaxChecking!=configManager.editorConfig->inlineSyntaxChecking);
+
+
 		if (currentEditorView()) {
 			for (int i=0; i<EditorView->count();i++) {
 				LatexEditorView* edView=qobject_cast<LatexEditorView*>(EditorView->widget(i));
-				if (edView) edView->updateSettings();
+				if (edView) {
+				    edView->updateSettings();
+				    if(updateHighlighting){
+					edView->documentContentChanged(0,edView->document->lines());
+				    }
+				}
 			}
 			if (m_formats->modified)
 				QDocument::setFont(QDocument::font());
