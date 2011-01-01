@@ -82,6 +82,7 @@ bool localAwareLessThan(const QString &s1, const QString &s2);
 
 // find token (e.g. \label \input \section and return content (\section{content})
 QString findToken(const QString &line,const QString &token);
+QString findToken(const QString &line,const QString &token,int &start);
 QString findToken(const QString &line,QRegExp &token);
 // find token (e.g. \label \input \section and return content (\newcommand{name}[arg]), returns true if outName!=""
 bool findTokenWithArg(const QString &line,const QString &token, QString &outName, QString &outArg);
@@ -146,7 +147,9 @@ public:
 	static QSet<QString> includeCommands;
 	static QSet<QString> tabbingCommands;
         static QSet<QString> userdefinedCommands;
+	static QSet<QString> usepackageCommands;
 	static QStringList structureCommands;
+
 
 	static QTextCodec* QTextCodecForLatexName(QString str);
 	static void guessEncoding(const QByteArray& data, QTextCodec *&guess, int &sure);

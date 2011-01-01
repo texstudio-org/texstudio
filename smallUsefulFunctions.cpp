@@ -24,6 +24,7 @@ QSet<QString> LatexParser::tabbingCommands = QSet<QString>::fromList(QStringList
 QSet<QString> LatexParser::tabularEnvirons = QSet<QString>::fromList(QStringList() << "tabular" << "tabularx" << "longtable");
 QSet<QString> LatexParser::fileCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input" << "\\includegraphics");
 QSet<QString> LatexParser::includeCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input");
+QSet<QString> LatexParser::usepackageCommands = QSet<QString>::fromList(QStringList() << "\\usepackage");
 QSet<QString> LatexParser::userdefinedCommands;
 QStringList LatexParser::structureCommands = QStringList(); //see texmaker.cpp
 
@@ -501,6 +502,20 @@ QString findToken(const QString &line,const QString &token){
 		if (tagEnd!=-1) return line.mid(tagStart,tagEnd-tagStart);
 		else return line.mid(tagStart); //return everything after line if there is no }
 	}
+	return "";
+}
+
+QString findToken(const QString &line,const QString &token,int &start){
+	int tagStart=line.indexOf(token,start);
+	int commentStart=line.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
+	if (tagStart!=-1 && (commentStart>tagStart || commentStart==-1)) {
+		tagStart+=token.length();
+		int tagEnd=line.indexOf("}",tagStart);
+		start=tagStart;
+		if (tagEnd!=-1) return line.mid(tagStart,tagEnd-tagStart);
+		else return line.mid(tagStart); //return everything after line if there is no }
+	}
+	start=-2;
 	return "";
 }
 
