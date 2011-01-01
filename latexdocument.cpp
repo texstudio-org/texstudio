@@ -350,7 +350,12 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		if(curLine.startsWith("%\\include")||curLine.startsWith("%\\input")){
 			curLine.replace(0,1,' ');
 		}
+		int offset=0;
+		int totalLength=curLine.length();
 		while(findCommandWithArg(curLine,cmd,name,arg,remainder,optionStart)){
+			//update offset
+			offset=totalLength-curLine.length();
+			//copy remainder to curLine for next round
 			curLine=remainder;
 			//// newcommand ////
 			//TODO: handle optional arguments
@@ -429,7 +434,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			if (LatexParser::labelCommands.contains(cmd)) {
 				ReferencePair elem;
 				elem.name=name;
-				elem.start=optionStart;
+				elem.start=optionStart+offset;
 				mLabelItem.insert(line(i).handle(),elem);
 				completerNeedsUpdate=true;
 				StructureEntry *newLabel;
@@ -451,7 +456,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			if (LatexParser::refCommands.contains(cmd)) {
 				ReferencePair elem;
 				elem.name=name;
-				elem.start=optionStart;
+				elem.start=optionStart+offset;
 				mRefItem.insert(line(i).handle(),elem);
 				continue;
 			}
@@ -527,8 +532,6 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				if(header+1<parent_level.size()) parent_level[header+1]=newSection;
 				for(int j=header+2;j<parent_level.size();j++)
 					parent_level[j]=newSection;
-
-
 			}
 		}// for each command
 
