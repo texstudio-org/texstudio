@@ -955,7 +955,6 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
 					// normal commands for syntax checking
 					// will be extended to distinguish between normal and math commands
 					if(valid.isEmpty() || valid.contains('n')){
-						int off= valid.isEmpty() ? 1 : 0;
 						if(res>-1){
 							if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
 								LatexParser::normalCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
@@ -963,7 +962,7 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
 								LatexParser::normalCommands << rxCom.cap(1);
 							}
 						} else {
-							LatexParser::normalCommands << line.left(line.length()-off);
+							LatexParser::normalCommands << line.simplified();
 						}
 					}
 					if(valid.isEmpty() || valid.contains('m')){ // math commands
@@ -974,7 +973,7 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
 								LatexParser::mathCommands << rxCom.cap(1);
 							}
 						} else {
-							LatexParser::mathCommands << line.left(line.length());
+							LatexParser::mathCommands << line.simplified();
 						}
 					}
 					if(valid.contains('t')){ // tabular commands
@@ -985,12 +984,12 @@ void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
 								LatexParser::tabularCommands << rxCom.cap(1);
 							}
 						} else {
-							LatexParser::tabularCommands << line.left(line.length());
+							LatexParser::tabularCommands << line.simplified();
 						}
 					}
 					if(valid.contains('T')){ // tabbing support
 						if(res==-1){
-							LatexParser::tabbingCommands << line.left(line.length());
+							LatexParser::tabbingCommands << line.simplified();
 						}
 					}
 					// normal parsing for completer
