@@ -21,6 +21,42 @@
 const QString ShortcutDelegate::addRowButton="<internal: add row>";
 const QString ShortcutDelegate::deleteRowButton="<internal: delete row>";
 
+ShortcutComboBox::ShortcutComboBox(QWidget *parent):QComboBox(parent){
+	addItem(tr("<default>"));
+	addItem(tr("<none>"));
+	for (int k=Qt::Key_F1; k<=Qt::Key_F12; k++)
+		addItem(QKeySequence(k).toString(QKeySequence::NativeText));
+	for (int c=0; c<=1; c++)
+		for (int s=0; s<=1; s++)
+			for (int a=0; a<=1; a++) {
+				if (!c && !s && !a) continue;
+				for (int k=Qt::Key_F1; k<=Qt::Key_F12; k++)
+					addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
+				for (int k=Qt::Key_0; k<=Qt::Key_9; k++)
+					addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
+				for (int k=Qt::Key_A; k<=Qt::Key_Z; k++)
+					addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
+				if (a || (c&&s)){
+					for (int k=Qt::Key_PageUp; k<=Qt::Key_PageDown; k++)
+						addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
+				}
+			}
+	setEditable(true);
+}
+
+void ShortcutComboBox::keyPressEvent(QKeyEvent *e){
+	if ( (e->modifiers()!=0 && e->key() != Qt::Key_Alt && e->key() != Qt::Key_Shift && e->key() != Qt::Key_Control && e->key() != Qt::Key_AltGr && e->key() != Qt::Key_Meta && e->key() != 0 && e->key() != Qt::Key_Super_L && e->key() != Qt::Key_Super_R)
+	    || (e->key() >= Qt::Key_F1 &&  e->key() <= Qt::Key_F35)) {
+		QString newShortCut = QKeySequence(e->modifiers() | e->key()).toString(QKeySequence::NativeText);
+		int index = findText(newShortCut);
+		if (index != -1) setCurrentIndex(index);
+		else setEditText(newShortCut);
+		return;
+	}
+	QComboBox::keyPressEvent(e);
+}
+
+
 ShortcutDelegate::ShortcutDelegate(QObject *parent): treeWidget(0) {
 	// remove unused argument warning
 	(void) parent;
@@ -56,27 +92,7 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
 	//menu shortcut key
 	if (index.column()==1) QMessageBox::warning(0,"TexMakerX",tr("Sorry, you clicked in the wrong column.\nTo change a shortcut, you have to edit the third or fourth column."),QMessageBox::Ok);
 	if (index.column()!=2 && index.column()!=3) return 0;
-	QComboBox *editor = new QComboBox(parent);
-	editor->addItem(tr("<default>"));
-	editor->addItem(tr("<none>"));
-	for (int k=Qt::Key_F1; k<=Qt::Key_F12; k++)
-		editor->addItem(QKeySequence(k).toString(QKeySequence::NativeText));
-	for (int c=0; c<=1; c++)
-		for (int s=0; s<=1; s++)
-			for (int a=0; a<=1; a++) {
-				if (!c && !s && !a) continue;
-				for (int k=Qt::Key_F1; k<=Qt::Key_F12; k++)
-					editor->addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
-				for (int k=Qt::Key_0; k<=Qt::Key_9; k++)
-					editor->addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
-				for (int k=Qt::Key_A; k<=Qt::Key_Z; k++)
-					editor->addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
-				if (a || (c&&s)){
-					for (int k=Qt::Key_PageUp; k<=Qt::Key_PageDown; k++)
-						editor->addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
-				}
-			}
-	editor->setEditable(true);
+	ShortcutComboBox *editor = new ShortcutComboBox(parent);
 
 	return editor;
 }
