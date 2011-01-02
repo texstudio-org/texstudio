@@ -1823,6 +1823,18 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
 </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>all</source>
+        <translation type="unfinished">tutti</translation>
+    </message>
+    <message>
+        <source>most used</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>press shift+space to change view</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LatexDocument</name>
@@ -2418,6 +2430,22 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>Ctrl+PgDown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Find...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find &amp;again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+M, F3</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3849,6 +3877,18 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <source>tabbing command outside tabbing env</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>more cols in tabular than specified</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cols in tabular missing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\\ missing</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TabDialog</name>
@@ -5128,6 +5168,26 @@ However, you are using a version of TexMakerX that was compiled without the inte
         <source>&amp;Idefix</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>S&amp;VN...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SVN update &amp;work directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lock &amp;PDF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check in P&amp;DF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Documents</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -5422,6 +5482,14 @@ If not, end characters are ignored.</source>
         <source>Menu %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>-</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>+</source>
+        <translation type="unfinished">+</translation>
+    </message>
 </context>
 <context>
     <name>UserQuickDialog</name>
@@ -5486,6 +5554,14 @@ If not, end characters are ignored.</source>
     </message>
     <message>
         <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>+</source>
+        <translation type="unfinished">+</translation>
+    </message>
+    <message>
+        <source>-</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
