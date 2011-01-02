@@ -1683,6 +1683,18 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Fájlnév: %1&lt;/b&gt;
 </translation>
     </message>
+    <message>
+        <source>all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>most used</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>press shift+space to change view</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LatexDocument</name>
@@ -2237,6 +2249,22 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>Ctrl+PgDown</source>
         <translation>Ctrl+PgDown</translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation type="unfinished">&amp;Szerkesztés</translation>
+    </message>
+    <message>
+        <source>&amp;Find...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find &amp;again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+M, F3</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3613,6 +3641,18 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
         <source>tabbing command outside tabbing env</source>
         <translation>Tagolás parancs a tagolt környezeten kívül</translation>
     </message>
+    <message>
+        <source>more cols in tabular than specified</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cols in tabular missing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\\ missing</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TabDialog</name>
@@ -4709,6 +4749,26 @@ However, you are using a version of TexMakerX that was compiled without the inte
         <source>&amp;Idefix</source>
         <translation>Elő&amp;készítés</translation>
     </message>
+    <message>
+        <source>S&amp;VN...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SVN update &amp;work directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lock &amp;PDF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check in P&amp;DF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Documents</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -4988,6 +5048,14 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
         <source>Menu %1</source>
         <translation>%1. menü</translation>
     </message>
+    <message>
+        <source>-</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>+</source>
+        <translation type="unfinished">+</translation>
+    </message>
 </context>
 <context>
     <name>UserQuickDialog</name>
@@ -5053,6 +5121,14 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
     <message>
         <source>Command %1</source>
         <translation>%1. parancs</translation>
+    </message>
+    <message>
+        <source>+</source>
+        <translation type="unfinished">+</translation>
+    </message>
+    <message>
+        <source>-</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

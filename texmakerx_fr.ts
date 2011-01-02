@@ -1836,6 +1836,18 @@ Continuer tout de même ?</translation>
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nom de fichier : %1&lt;/b&gt;</translation>
     </message>
+    <message>
+        <source>all</source>
+        <translation type="unfinished">tout</translation>
+    </message>
+    <message>
+        <source>most used</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>press shift+space to change view</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LatexDocument</name>
@@ -2435,6 +2447,22 @@ Continuer tout de même ?</translation>
     <message>
         <source>Ctrl+PgDown</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation type="unfinished">&amp;Éditer</translation>
+    </message>
+    <message>
+        <source>&amp;Find...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find &amp;again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+M, F3</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3868,6 +3896,18 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
         <source>tabbing command outside tabbing env</source>
         <translation>Commande de tabulation hors de l&apos;environement adéquat</translation>
     </message>
+    <message>
+        <source>more cols in tabular than specified</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cols in tabular missing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\\ missing</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TabDialog</name>
@@ -5110,6 +5150,26 @@ Cependant, cette version de TexMakerX a été compilée sans le support de cette
         <source>&amp;Idefix</source>
         <translation>&amp;Idéfix</translation>
     </message>
+    <message>
+        <source>S&amp;VN...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SVN update &amp;work directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lock &amp;PDF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check in P&amp;DF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Documents</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -5408,6 +5468,14 @@ Sinon la ponctuation est ignorée.</translation>
         <source>Menu %1</source>
         <translation>Menu %1</translation>
     </message>
+    <message>
+        <source>-</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>+</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserQuickDialog</name>
@@ -5473,6 +5541,14 @@ Sinon la ponctuation est ignorée.</translation>
     <message>
         <source>...</source>
         <translation>...</translation>
+    </message>
+    <message>
+        <source>+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>-</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

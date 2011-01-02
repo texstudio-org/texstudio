@@ -1987,6 +1987,18 @@ Are you sure you want to undo all changes?</source>
 </source>
         <translation type="unfinished">&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Ім&apos;я файла: %1&lt;/b&gt;</translation>
     </message>
+    <message>
+        <source>all</source>
+        <translation type="unfinished">все</translation>
+    </message>
+    <message>
+        <source>most used</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>press shift+space to change view</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LatexDocument</name>
@@ -2585,6 +2597,22 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <source>Ctrl+PgDown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Find...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find &amp;again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+M, F3</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4017,6 +4045,18 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     </message>
     <message>
         <source>tabbing command outside tabbing env</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>more cols in tabular than specified</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cols in tabular missing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\\ missing</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5676,6 +5716,26 @@ However, you are using a version of TexMakerX that was compiled without the inte
         <source>&amp;Idefix</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>S&amp;VN...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SVN update &amp;work directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lock &amp;PDF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check in P&amp;DF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Documents</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -6147,6 +6207,14 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
         <source>Menu %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>-</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>+</source>
+        <translation type="unfinished">+</translation>
+    </message>
 </context>
 <context>
     <name>UserQuickDialog</name>
@@ -6211,6 +6279,14 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
     </message>
     <message>
         <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>+</source>
+        <translation type="unfinished">+</translation>
+    </message>
+    <message>
+        <source>-</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

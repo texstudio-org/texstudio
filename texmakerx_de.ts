@@ -2015,6 +2015,18 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dateiname: %1&lt;/b&gt;</translation>
     </message>
+    <message>
+        <source>all</source>
+        <translation>Alle</translation>
+    </message>
+    <message>
+        <source>most used</source>
+        <translation>Bisher benutzt</translation>
+    </message>
+    <message>
+        <source>press shift+space to change view</source>
+        <translation>Drücke shift+Leerzeichen, um die Ansicht zu wechseln</translation>
+    </message>
 </context>
 <context>
     <name>LatexDocument</name>
@@ -2700,6 +2712,22 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Ctrl+PgDown</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation>&amp;Bearbeiten</translation>
+    </message>
+    <message>
+        <source>&amp;Find...</source>
+        <translation>&amp;Suchen</translation>
+    </message>
+    <message>
+        <source>Find &amp;again</source>
+        <translation>&amp;Weitersuchen</translation>
+    </message>
+    <message>
+        <source>Ctrl+M, F3</source>
         <translation></translation>
     </message>
 </context>
@@ -4195,6 +4223,18 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     <message>
         <source>tabbing command outside tabbing env</source>
         <translation>Tabbingbefehl außerhalb einer Tabbingumgebung</translation>
+    </message>
+    <message>
+        <source>more cols in tabular than specified</source>
+        <translation>mehr Spalten in der Tabelle als spezifiziert</translation>
+    </message>
+    <message>
+        <source>cols in tabular missing</source>
+        <translation>Spalten in der Tabelle fehlen</translation>
+    </message>
+    <message>
+        <source>\\ missing</source>
+        <translation>\\ fehlt</translation>
     </message>
 </context>
 <context>
@@ -5790,6 +5830,26 @@ Allerdings wird eine Version von TexMakerX benutzt, bei dem diese Funktion nicht
         <source>&amp;Idefix</source>
         <translation>&amp;Idefix</translation>
     </message>
+    <message>
+        <source>S&amp;VN...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>SVN update &amp;work directory</source>
+        <translation>SVN update des &amp;Arbeitsverzeichnises</translation>
+    </message>
+    <message>
+        <source>Lock &amp;PDF</source>
+        <translation>Sperre &amp;PDF (SVN)</translation>
+    </message>
+    <message>
+        <source>Check in P&amp;DF</source>
+        <translation>Check in P&amp;DF</translation>
+    </message>
+    <message>
+        <source>Open Documents</source>
+        <translation>Offene Dokumente</translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -6151,6 +6211,14 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
         <source>Menu %1</source>
         <translation>Menü %1</translation>
     </message>
+    <message>
+        <source>-</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>+</source>
+        <translation>+</translation>
+    </message>
 </context>
 <context>
     <name>UserQuickDialog</name>
@@ -6216,6 +6284,14 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
     <message>
         <source>...</source>
         <translation>...</translation>
+    </message>
+    <message>
+        <source>+</source>
+        <translation>+</translation>
+    </message>
+    <message>
+        <source>-</source>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -6457,7 +6533,7 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;LaTeX to Html conversion tool&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; color:#000000;&quot;&gt;Copyright 2004-2006 P.Brachet &amp;amp; J.Amblard&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
