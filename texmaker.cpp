@@ -1351,6 +1351,10 @@ void Texmaker::fileSaveAs(QString fileName) {
 		int lastpoint=fn.lastIndexOf(".");
 		if (lastpoint <= lastsep) //if both aren't found or point is in directory name
 			fn.append(".tex");
+		if (getEditorViewFromFileName(fn))
+			if (QMessageBox::warning(this, "TexMakerX", tr("You are trying to save the file under the name %1, but a file with this name is already open.\nTexMakerX does not support multiple instances of the same file.\nAre you sure you want to continue?").arg(fn), QMessageBox::Yes|QMessageBox::No, QMessageBox::No) != QMessageBox::Yes)
+				return;
+
 		// save file
 		currentEditor()->save(fn);
 		currentEditorView()->document->setEditorView(currentEditorView()); //update file name
