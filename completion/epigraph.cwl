@@ -2,11 +2,11 @@
 # J. Sundermeyer
 # modified Edson 27-12-2010
 
-\epigraph{text}{source}
+\epigraph{text}{source}#n
 
-\begin{epigraphs}
-\end{epigraphs}
-\qitem{text}{source}
+\begin{epigraphs}#n
+\end{epigraphs}#n
+\qitem{text}{source}#n
 
 \epigraphwidth
 \textflush
