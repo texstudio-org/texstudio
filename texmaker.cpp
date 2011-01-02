@@ -68,11 +68,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
 	setCorner(Qt::BottomRightCorner, Qt::RightDockWidgetArea);
 
-#ifdef Q_WS_MACX
 	setWindowIcon(QIcon(":/images/logo128.png"));
-#else
-	setWindowIcon(QIcon(":/images/appicon.png"));
-#endif
 
 	setIconSize(QSize(22,22));
 
