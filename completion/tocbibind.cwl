@@ -2,21 +2,21 @@
 # J. Sundermeyer
 # modified Edson 30-12-2010
 
-\tocotherhead{headingname}
-\tocbibname
+\tocotherhead{headingname}#n
+\tocbibname#n
 
-\setindexname{name}
-\settocname{name}
-\setlotname{name}
-\setlofname{name}
-\settocbibname{name}
+\setindexname{name}#n
+\settocname{name}#n
+\setlotname{name}#n
+\setlofname{name}#n
+\settocbibname{name}#n
 
 
-\simplechapter
-\simplechapter[name]
-\restorechapter
-\simplechapterdelim
+\simplechapter#n
+\simplechapter[name]#n
+\restorechapter#n
+\simplechapterdelim#n
 
-\tocchapter
-\tocsection
-\tocfile{text}{file-extension}
+\tocchapter#n
+\tocsection#n
+\tocfile{text}{file-extension}#n

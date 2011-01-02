@@ -2,11 +2,17 @@
 # J. Sundermeyer
 # Edson 20-12-2010
 
-\addcontentsline{file}{kind}{title}
-\contentsline{kind}{title}{page}
-\addtocontents{file}{text}
+\addcontentsline{file}{kind}{title}#n
+\contentsline{kind}{title}{page}#n
+\addtocontents{file}{text}#n
 
-\tocloftpagestyle{style}
+\tocloftpagestyle{style}#n
+
+\addtocontents{file}{text}
+\cftbeforeZtitleskip#n
+\cftafterZtitleskip#n
+\cftZtitlefont#n
+\cftafterZtitle#n
 
 \cftmarktoc
 \cftmarklof
@@ -28,14 +34,14 @@
 \cftafterloftitle
 \cftafterlottitle
 
-\cftdot
-\cftdotsep
-\cftnodots
+\cftdot#n
+\cftdotsep#n
+\cftnodots#n
 \cftdotfill{sep}
 
-\cftsetpnumwidth{length}
-\cftsetrmarg{length}
-\cftparskip
+\cftsetpnumwidth{length}#n
+\cftsetrmarg{length}#n
+\cftparskip#n
 
 \cftbeforepartskip
 \cftbeforechapskip
@@ -48,6 +54,10 @@
 \cftbeforesubfigskip
 \cftbeforetabskip
 \cftbeforesubtabskip
+
+\cftbeforeXskip#n
+\cftXindent#n 	 
+\cftXnumwidth#n
 
 \cftpartindent
 \cftchapindent
@@ -170,8 +180,12 @@
 \cftsubtabafterpnum
 
 \cftsetindents{entry}{indent}{numwidth}
-\cftpagenumbersoff{entry}
-\cftpagenumberson{entry}
+\cftpagenumbersoff{entry}#n
+\cftpagenumberson{entry}#n
 
-\newlistof[within]{entry}{ext}{listofname}
-\newlistof{entry}{ext}{listofname}
+\newlistof[within]{entry}{ext}{listofname}#n
+\newlistof{entry}{ext}{listofname}#n
+
+\Zdepth#n
+\newlistentry[within]{entry}{ext}{level-1}#n
+
