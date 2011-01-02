@@ -18,6 +18,14 @@
 
 #include "qformat.h"
 
+//TODO: perhaps move each class in its own file?
+class ShortcutComboBox: public QComboBox{
+	Q_OBJECT
+public:
+	ShortcutComboBox(QWidget *parent = 0);
+protected:
+	virtual void keyPressEvent(QKeyEvent *e);
+};
 
 class ShortcutDelegate : public QItemDelegate {
 	Q_OBJECT
