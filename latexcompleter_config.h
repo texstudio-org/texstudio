@@ -18,7 +18,7 @@ public:
 	QStringList words;
 	QMap<int,int> usage;
 	
-	void loadFiles(const QStringList & newFiles);
+	void loadFiles(const QStringList & newFiles,const bool append=false);
 	const QStringList& getLoadedFiles();
 private:
 	QStringList files;

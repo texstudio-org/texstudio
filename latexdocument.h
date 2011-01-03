@@ -207,6 +207,7 @@ signals:
 	void updateCompleter();
 	void updateBibTeXFiles();
 	void toBeChanged();
+	void appendCompletionFiles(QStringList &addedUsepackages);
 	
 };
 

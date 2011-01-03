@@ -264,6 +264,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	int verbatimFormat=QDocument::formatFactory()->id("verbatim");
 	bool updateSyntaxCheck=false;
 
+	// usepackage list
+	QStringList removedUsepackages;
+	QStringList addedUsepackages;
+
 	//TODO: This assumes one command per line, which is not necessary true
 	for (int i=linenr; i<linenr+count; i++) {
 		QString curLine = line(i).text(); //TODO: use this instead of s
@@ -294,6 +298,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		}
 		mRefItem.remove(dlh);
 		if (mUserCommandList.remove(dlh)>0) completerNeedsUpdate = true;
+
+		removedUsepackages << mUsepackageList.values(dlh);
 		if (mUsepackageList.remove(dlh)>0) completerNeedsUpdate = true;
 
 		//remove old bibs files from hash, but keeps a temporary copy
@@ -426,6 +432,9 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				completerNeedsUpdate=true;
 				QStringList packages=name.split(",");
 				foreach(QString elem,packages){
+				    if(!removedUsepackages.removeAll(elem)){
+					addedUsepackages << elem;
+				    }
 				    mUsepackageList.insertMulti(dlh,elem);
 				}
 				continue;
@@ -632,6 +641,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 	foreach(se,MapOfLabels.values())
 		delete se;
+
+	if(!addedUsepackages.isEmpty()){
+		emit appendCompletionFiles(addedUsepackages);
+	}
 
 	if (bibTeXFilesNeedsUpdate)
 		emit updateBibTeXFiles();

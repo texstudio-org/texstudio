@@ -924,11 +924,13 @@ void LatexCompleter::editorDestroyed() {
 	editor=0;
 }
 
-void LatexCompleterConfig::loadFiles(const QStringList &newFiles) {
-	files=newFiles;
-	words.clear();
+void LatexCompleterConfig::loadFiles(const QStringList &newFiles,const bool append) {
+	if(!append){
+	    files=newFiles;
+	    words.clear();
+	}
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-	foreach(QString file, files) {
+	foreach(QString file, newFiles) {
 		QString fn=findResourceFile("completion/"+file);
 		QFile tagsfile(fn);
 		if (tagsfile.open(QFile::ReadOnly)) {
