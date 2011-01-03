@@ -3556,6 +3556,7 @@ void Texmaker::GeneralOptions() {
 	bool oldSystemTheme = configManager.useSystemTheme;
 	autosaveTimer.stop();
 	m_formats->modified = false;
+	bool realtimeChecking=configManager.editorConfig->realtimeChecking;
 	bool inlineSpellChecking=configManager.editorConfig->inlineSpellChecking;
 	bool inlineCitationChecking=configManager.editorConfig->inlineCitationChecking;
 	bool inlineReferenceChecking=configManager.editorConfig->inlineReferenceChecking;
@@ -3580,6 +3581,7 @@ void Texmaker::GeneralOptions() {
 		updateHighlighting|=(inlineCitationChecking!=configManager.editorConfig->inlineCitationChecking);
 		updateHighlighting|=(inlineReferenceChecking!=configManager.editorConfig->inlineReferenceChecking);
 		updateHighlighting|=(inlineSyntaxChecking!=configManager.editorConfig->inlineSyntaxChecking);
+		updateHighlighting|=(realtimeChecking!=configManager.editorConfig->realtimeChecking);
 
 
 		if (currentEditorView()) {
@@ -3588,7 +3590,11 @@ void Texmaker::GeneralOptions() {
 				if (edView) {
 				    edView->updateSettings();
 				    if(updateHighlighting){
-					edView->documentContentChanged(0,edView->document->lines());
+					if(configManager.editorConfig->realtimeChecking){
+					    edView->documentContentChanged(0,edView->document->lines());
+					}else{
+					    edView->clearOverlays();
+					}
 				    }
 				}
 			}
