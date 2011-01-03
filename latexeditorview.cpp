@@ -529,6 +529,25 @@ void LatexEditorView::documentFormatsChanged(int linenr, int count) {
 	}
 }
 
+void LatexEditorView::clearOverlays(){
+    for (int i=0; i<editor->document()->lineCount(); i++) {
+	    QDocumentLine line = editor->document()->line(i);
+	    if (!line.isValid()) continue;
+
+	    //remove all overlays used for latex things, in descending frequency
+	    line.clearOverlays(speller->spellcheckErrorFormat);
+	    line.clearOverlays(referencePresentFormat);
+	    line.clearOverlays(citationPresentFormat);
+	    line.clearOverlays(referenceMissingFormat);
+	    line.clearOverlays(referenceMultipleFormat);
+	    line.clearOverlays(citationMissingFormat);
+	    line.clearOverlays(environmentFormat);
+	    line.clearOverlays(syntaxErrorFormat);
+	    line.clearOverlays(styleHintFormat);
+	    line.clearOverlays(structureFormat);
+	}
+}
+
 void LatexEditorView::documentContentChanged(int linenr, int count) {
 	Q_ASSERT(editor);
 	QDocumentLine startline=editor->document()->line(linenr);
