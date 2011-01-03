@@ -948,6 +948,7 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool reloadFromDo
 	connect(edit->editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
 	connect(edit->editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
 	connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(completerNeedsUpdate()));
+	connect(edit->document,SIGNAL(appendCompletionFiles(QStringList&)),this,SLOT(appendCompletionFiles(QStringList&)));
 	connect(edit->editor,SIGNAL(needUpdatedCompleter()), this, SLOT(needUpdatedCompleter()));
 
 	EditorView->insertTab(reloadFromDoc ? documents.documents.indexOf(edit->document,0) : -1,edit, "?bug?");
@@ -5090,5 +5091,30 @@ void Texmaker::findNextWordRepetion(){
     }
     if(breaking){
         currentEditor()->setCursor(cur);
+    }
+}
+
+void Texmaker::appendCompletionFiles(QStringList &addedUsepackages){
+    LatexCompleterConfig *conf=configManager.completerConfig;
+    QStringList loadedFiles=conf->getLoadedFiles();
+    QStringList filtered;
+    foreach(QString elem,addedUsepackages){
+	if(loadedFiles.contains(elem))
+	    addedUsepackages.removeAll(elem);
+	elem.append(".cwl");
+	if(!filtered.contains(elem)){
+	    QString fn=findResourceFile("completion/"+elem);
+	    if(!fn.isEmpty())
+		filtered << elem;
+	}
+    }
+    if(!filtered.isEmpty()){
+	conf->loadFiles(filtered,true);
+	//recheck syntax of ALL documents ...
+	foreach(LatexDocument* elem,documents.documents){
+	    LatexEditorView *edView=elem->getEditorView();
+	    if(edView)
+		edView->reCheckSyntax();
+	}
     }
 }
