@@ -172,7 +172,8 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	    }
 	}
 	mRefItem.remove(dlh);
-	mMentionedBibTeXFiles.remove(dlh);
+	if(mMentionedBibTeXFiles.remove(dlh))
+	    bibTeXFilesNeedsUpdate=true;
 
 	mUserCommandList.remove(dlh);
 	mUsepackageList.remove(dlh);
@@ -234,6 +235,9 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	}
 
 	emit structureUpdated(this,newSection);
+
+	if (bibTeXFilesNeedsUpdate)
+		emit updateBibTeXFiles();
 
 	if (completerNeedsUpdate || bibTeXFilesNeedsUpdate)
 		emit updateCompleter();
