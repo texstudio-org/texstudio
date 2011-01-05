@@ -3561,6 +3561,7 @@ void Texmaker::GeneralOptions() {
 	bool inlineCitationChecking=configManager.editorConfig->inlineCitationChecking;
 	bool inlineReferenceChecking=configManager.editorConfig->inlineReferenceChecking;
 	bool inlineSyntaxChecking=configManager.editorConfig->inlineSyntaxChecking;
+	QStringList loadFiles=configManager.completerConfig->getLoadedFiles();
 	if (configManager.execConfigDialog()) {
 		mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);
 		// refresh quick language selection combobox
@@ -3582,7 +3583,16 @@ void Texmaker::GeneralOptions() {
 		updateHighlighting|=(inlineReferenceChecking!=configManager.editorConfig->inlineReferenceChecking);
 		updateHighlighting|=(inlineSyntaxChecking!=configManager.editorConfig->inlineSyntaxChecking);
 		updateHighlighting|=(realtimeChecking!=configManager.editorConfig->realtimeChecking);
-
+		// check for change in load completion files
+		QStringList newLoadedFiles=configManager.completerConfig->getLoadedFiles();
+		foreach(QString elem,newLoadedFiles){
+		    if(loadFiles.removeAll(elem)==0)
+			updateHighlighting=true;
+		    if(updateHighlighting)
+			break;
+		}
+		if(!loadFiles.isEmpty())
+		    updateHighlighting=true;
 
 		if (currentEditorView()) {
 			for (int i=0; i<EditorView->count();i++) {
