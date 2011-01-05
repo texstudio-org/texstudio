@@ -161,7 +161,16 @@ void LatexDocument::updateStructure() {
 /* Removes a deleted line from the structure view */
 void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	if(!baseStructure) return;
-	mLabelItem.remove(dlh);
+	bool completerNeedsUpdate=false;
+	bool bibTeXFilesNeedsUpdate=false;
+	if (mLabelItem.contains(dlh)) {
+	    QList<ReferencePair> labels=mLabelItem.values(dlh);
+	    completerNeedsUpdate = true;
+	    mLabelItem.remove(dlh);
+	    foreach(ReferencePair rp,labels){
+		updateRefsLabels(rp.name);
+	    }
+	}
 	mRefItem.remove(dlh);
 	mMentionedBibTeXFiles.remove(dlh);
 
@@ -225,6 +234,9 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	}
 
 	emit structureUpdated(this,newSection);
+
+	if (completerNeedsUpdate || bibTeXFilesNeedsUpdate)
+		emit updateCompleter();
 
 }
 
