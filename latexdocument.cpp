@@ -676,6 +676,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	    }
 	}
 
+	//update view
+	if(edView)
+	    edView->documentContentChanged(linenr, count);
+
 
 #ifndef QT_NO_DEBUG
 	checkForLeak();
