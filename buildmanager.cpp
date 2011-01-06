@@ -208,7 +208,7 @@ QString getTeXLiveBinPath() {
 		}
 	}
 	//check for path
-	QString pdftex = findFileInPath("pdftex.exe");
+	QString pdftex = BuildManager::findFileInPath("pdftex.exe");
 	int p = pdftex.indexOf("\\bin\\", 0, Qt::CaseInsensitive);
 	if (p<=0) return "";
 	QString path = pdftex.left(p);
