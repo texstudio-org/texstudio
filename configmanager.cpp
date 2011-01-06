@@ -718,7 +718,7 @@ bool ConfigManager::execConfigDialog() {
 	int langId=-1;
 	for (int i=0;i<languageFiles.count();i++){
 		//_gettext. 
-		QString cur=languageFiles[i].mid(languageFiles[i].lastIndexOf("_")+1);
+		QString cur=languageFiles[i].mid(languageFiles[i].indexOf("_")+1);
 		cur.truncate(cur.indexOf("."));
 		confDlg->ui.comboBoxLanguage->addItem(cur);
 		if (cur == language) langId=i;
