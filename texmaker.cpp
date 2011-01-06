@@ -2927,7 +2927,7 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,bool showStdout,int c
 		return;
 	}
 
-	if (commandline.startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER)) {
+	if (commandline.trimmed().startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER)) {
 #ifndef NO_POPPLER_PREVIEW
 		QString pdfFile = BuildManager::parseExtendedCommandLine("?am.pdf", finame);
 		QString externalViewer = buildManager.getLatexCommand(BuildManager::CMD_VIEWPDF);
