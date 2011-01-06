@@ -497,14 +497,16 @@ CONFIG(team):!CONFIG(build_pass) {
 OTHER_FILES += universalinputdialog.*
 
 
-exists(./.svn/entries): SVN_REVISION_NUMBER = $$system(svnversion)
-else: SVN_REVISION_NUMBER = ?
-win32: system(echo $${LITERAL_HASH}define \
-       SVN_REVISION_NUMBER \"$$SVN_REVISION_NUMBER\" \
-       > svn_revision.h)
-else:  system(echo $${LITERAL_HASH}define \
-       SVN_REVISION_NUMBER \\\"$$SVN_REVISION_NUMBER\\\" \
-       > svn_revision.h)
+exists(./.svn/entries){
+  svn_revision.target = svn_revision.h
+  svn_revision.depends = .svn/entries  
+  win32:svn_revision.commands = echo $${LITERAL_HASH}define SVN_REVISION_NUMBER \"$(shell svnversion)\" > $$svn_revision.target
+  else:svn_revision.commands = echo \"$${LITERAL_HASH}define SVN_REVISION_NUMBER \\\"$(shell svnversion)\\\"\" > $$svn_revision.target
+  QMAKE_EXTRA_TARGETS += svn_revision
+  !exists(./svn_revision.h): message("svn_revision.h was not found and will be created. Don't worry about the repeated warnings.")
+} else {
+  win32: system(echo $${LITERAL_HASH}define SVN_REVISION_NUMBER \"?\" > svn_revision.h)
+  else:  system(echo $${LITERAL_HASH}define SVN_REVISION_NUMBER \\\"?\\\" > svn_revision.h)
+}
 HEADERS += svn_revision.h
-
 
