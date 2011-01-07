@@ -202,6 +202,7 @@ TRANSLATIONS += texmakerx_fr.ts \
     texmakerx_it.ts \
     texmakerx_cs.ts \
     texmakerx_hu.ts \
+    texmakerx_pt_BR.ts \
     texmakerx_uk.ts
 
 # ###############################
@@ -283,6 +284,7 @@ unix {
         texmakerx_it.qm \
         texmakerx_cs.qm \
         texmakerx_hu.qm \
+        texmakerx_pt_BR.qm \
         qt_fr.qm \
         qt_de.qm \
         qt_hu.qm \
