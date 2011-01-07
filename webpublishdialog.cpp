@@ -183,7 +183,7 @@ void WebPublishDialog::SlotEndProcess(int err) {
 }
 
 void WebPublishDialog::bboxProcess() {
-	RunCommand(BuildManager::CMD_GHOSTSCRIPT, "-q -dBATCH -dNOPAUSE -sDEVICE=bbox page.ps", "", true, SLOT(readBboxOutput()));
+	RunCommand(BuildManager::CMD_GHOSTSCRIPT, "-q -dBATCH -dNOPAUSE -sDEVICE=bbox", workdir+"/page.ps", true, SLOT(readBboxOutput()));
 }
 
 void WebPublishDialog::readBboxOutput() {
@@ -208,9 +208,9 @@ void WebPublishDialog::readBboxOutput() {
 	}
 }
 
-void WebPublishDialog::imgProcess(const QString& params) {
+void WebPublishDialog::imgProcess(const QString& params, const QString& psFile) {
 	procfinished=false;
-	RunCommand(BuildManager::CMD_GHOSTSCRIPT, params, "", false, SLOT(readImgOutput())); //don't wait here, proceed until wait loop below
+	RunCommand(BuildManager::CMD_GHOSTSCRIPT, params, psFile, false, SLOT(readImgOutput())); //don't wait here, proceed until wait loop below
 	QFile linkf(workdir+"/link.txt");
 	if (!linkf.open(QIODevice::WriteOnly)) {
 		fatalerror(workdir+"/link.txt"+" not found.");
@@ -438,7 +438,7 @@ void WebPublishDialog::ps2gif(QString input,QString output,int id_page,int w,int
 			psf.close();
 			outf.close();
 			if (w!=0) {
-				if (!errprocess) imgProcess(" -q -dSAFER -dBATCH -dNOPAUSE -sDEVICE=png16m  -g"+QString::number(gx)+"x"+QString::number(gy)+" -r"+QString::number(resolution)+" -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -sOutputFile=\""+output+QString::number(id_page)+".png\" tmp.ps");
+				if (!errprocess) imgProcess(" -q -dSAFER -dBATCH -dNOPAUSE -sDEVICE=png16m  -g"+QString::number(gx)+"x"+QString::number(gy)+" -r"+QString::number(resolution)+" -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -sOutputFile=\""+output+QString::number(id_page)+".png\"", workdir+"/tmp.ps");
 				if (ttwperr || errprocess) return;
 			} else {
 				copyDataFile("blank.png",htmldir+"/"+output+QString::number(id_page)+".png");

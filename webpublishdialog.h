@@ -53,7 +53,7 @@ private slots:
 	void extractpage(QString psfile,int page);
 	void bboxProcess();
 	void readBboxOutput();
-	void imgProcess(const QString& params);
+	void imgProcess(const QString& params, const QString& psFile);
 	void readImgOutput();
 	void readOutputForLog();
 
