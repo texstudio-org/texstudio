@@ -474,6 +474,7 @@ QString BuildManager::defaultCommandOptions(LatexCommand cmd){
 		case CMD_SVN: return "";
 		case CMD_SVNADMIN: return "";
 		case CMD_ASY: return "%.asy";
+		case CMD_GHOSTSCRIPT: return "\"?am.ps\"";
 		default: return "";
 	}
 }
@@ -536,15 +537,32 @@ void BuildManager::readSettings(const QSettings &settings){
 		else if (hasLatexCommand(CMD_DVIPS) && hasLatexCommand(CMD_GHOSTSCRIPT)) dvi2pngMode = DPM_DVIPS_GHOSTSCRIPT; //compatible mode
 		else dvi2pngMode = DPM_DVIPNG_FOLLOW; //won't work
 	}
+
 }
 
 void BuildManager::setLatexCommand(LatexCommand cmd, const QString &cmdString){
 	if (cmdString=="<default>") commands[cmd]=guessCommandName(cmd);
 	else if (cmdString==tr("<unknown>")) commands[cmd]="";
-	else commands[cmd] = cmdString;
+	else {
+		//force commands to include options (e.g. file name)
+		QString baseName = baseCommandName(cmd);
+		QString trimmed = cmdString.trimmed();
+		QString unquote = trimmed;
+		if (trimmed.startsWith('"') && trimmed.endsWith('"')) unquote = trimmed.mid(1,trimmed.length()-2);
+		if (baseName != "" &&
+		    ((unquote == baseName) ||
+		     (   (unquote.endsWith(QDir::separator() + baseName) || unquote.endsWith("/" + baseName))
+		      && (!unquote.contains(" ") || (!unquote.contains('"') && unquote != trimmed)) //spaces mean options, if not everything is quoted
+		      && (QFileInfo(unquote).exists())		      
+		      )
+		     ))
+			commands[cmd] = cmdString + " " + defaultCommandOptions(cmd);
+		else
+			commands[cmd] = cmdString;
+	}
 }
 
-QString BuildManager::getLatexCommand(LatexCommand cmd){
+QString BuildManager::getLatexCommand(LatexCommand cmd){ 
 	return commands[cmd];
 }
 QString BuildManager::getLatexCommandForDisplay(LatexCommand cmd){
@@ -707,7 +725,7 @@ void BuildManager::dvi2psPreviewCompleted(int status){
 	ProcessX* p2=qobject_cast<ProcessX*> (sender());
 	if (!p2) return;
 	// ps -> png, ghostscript is quite, safe, will create 24-bit png
-	ProcessX *p3 = newProcess(CMD_GHOSTSCRIPT,"-q -dSAFER -dBATCH -dNOPAUSE -sDEVICE=png16m -dEPSCrop -sOutputFile=\"?am)1.png\"  \"?am.ps\"",p2->getFile());
+	ProcessX *p3 = newProcess(CMD_GHOSTSCRIPT,"-q -dSAFER -dBATCH -dNOPAUSE -sDEVICE=png16m -dEPSCrop -sOutputFile=\"?am)1.png\"",p2->getFile());
 	connect(p3,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
 	p3->startCommand();
 }
