@@ -3719,10 +3719,21 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     </message>
 </context>
 <context>
+    <name>ShortcutComboBox</name>
+    <message>
+        <source>&lt;default&gt;</source>
+        <translation type="unfinished">&lt;default&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;none&gt;</source>
+        <translation type="unfinished">&lt;none&gt;</translation>
+    </message>
+</context>
+<context>
     <name>ShortcutDelegate</name>
     <message>
         <source>&lt;default&gt;</source>
-        <translation>&lt;default&gt;</translation>
+        <translation type="obsolete">&lt;default&gt;</translation>
     </message>
     <message>
         <source>&lt;none&gt;</source>
@@ -5186,6 +5197,12 @@ However, you are using a version of TexMakerX that was compiled without the inte
     </message>
     <message>
         <source>Open Documents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You are trying to save the file under the name %1, but a file with this name is already open.
+TexMakerX does not support multiple instances of the same file.
+Are you sure you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
