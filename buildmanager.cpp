@@ -649,7 +649,9 @@ void BuildManager::preview(const QString &preamble, const QString &text, QTextCo
 
 	QTextStream out(tf);
 	if (outputCodec) out.setCodec(outputCodec);
-	out << preamble
+	QString preamble_mod = preamble;
+	preamble_mod.remove(QRegExp("\\\\input\\{[^/][^\\]?[^}]*\\}")); //remove all input commands that doesn't use an absolute path from the preamble
+	out << preamble_mod
 		<< "\n\\begin{document}\n"
 		<< text
 		<< "\n\\end{document}\n";
