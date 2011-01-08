@@ -1038,7 +1038,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 					last=-1;
 					for(;i<parens.size();i++){
 						if(parens[i].id==id_first && parens[i].role&2) {
-							last=parens[i].offset;
+							last=parens[i].offset + parens[i].length;
 							break;
 						}
 					}
