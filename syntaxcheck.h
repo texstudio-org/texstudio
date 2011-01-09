@@ -9,6 +9,8 @@
 #include <QMutex>
 #include <QQueue>
 
+class LatexDocument;
+
 class SyntaxCheck : public QThread
 {
     Q_OBJECT
@@ -36,7 +38,6 @@ public:
     };
 
     struct SyntaxLine{
-	QString text;
 	Environment prevEnv;
 	int ticket;
 	int cols;
@@ -53,10 +54,12 @@ public:
 
     explicit SyntaxCheck(QObject *parent = 0);
 
-    void putLine(QString text,QDocumentLineHandle *dlh,Environment previous=ENV_normal,bool clearOverlay=false,int cols=-1);
+    void putLine(QDocumentLineHandle *dlh,Environment previous=ENV_normal,bool clearOverlay=false,int cols=-1);
     void stop();
     void setErrFormat(int errFormat);
-    QString getErrorAt(QString &text,int pos,Environment previous,int cols);
+    QString getErrorAt(QDocumentLineHandle *dlh,int pos,Environment previous,int cols);
+    int verbatimFormat;
+    void setLtxCommands(LatexParser cmds);
 
 protected:
      void run();
@@ -66,8 +69,10 @@ private:
      QQueue<SyntaxLine> mLines;
      QSemaphore mLinesAvailable;
      QMutex mLinesLock;
+     QMutex mLtxCommandLock;
      bool stopped;
      int syntaxErrorFormat;
+     LatexParser ltxCommands;
 };
 
 #endif // SYNTAXCHECK_H

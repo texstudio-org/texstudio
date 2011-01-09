@@ -118,6 +118,8 @@ enum {
 
 class LatexParser{
 public:
+	LatexParser();
+
         enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Option};
 	// realizes whether col is in a \command or in a parameter {}
 	static int findContext(QString &line, int column);
@@ -137,22 +139,27 @@ public:
 	static QSet<QString> environmentCommands;
 	static QSet<QString> definitionCommands;
 	static QSet<QString> optionCommands;
-        static QSet<QString> normalCommands;
-        static QSet<QString> mathCommands;
-        static QSet<QString> mathStartCommands;
+	static QSet<QString> mathStartCommands;
         static QSet<QString> mathStopCommands;
-        static QSet<QString> tabularCommands;
         static QSet<QString> tabularEnvirons;
         static QSet<QString> fileCommands;
 	static QSet<QString> includeCommands;
-	static QSet<QString> tabbingCommands;
-        static QSet<QString> userdefinedCommands;
 	static QSet<QString> usepackageCommands;
 	static QStringList structureCommands;
+	// commands used for syntax check (per doc basis)
+	QSet<QString> tabularCommands;
+	QSet<QString> normalCommands;
+	QSet<QString> mathCommands;
+	QSet<QString> tabbingCommands;
+	QSet<QString> userdefinedCommands;
 
-
+	void append(LatexParser elem);
+	void substract(LatexParser elem);
+	void clear();
 	static QTextCodec* QTextCodecForLatexName(QString str);
 	static void guessEncoding(const QByteArray& data, QTextCodec *&guess, int &sure);
 };
+
+QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds);
 
 #endif

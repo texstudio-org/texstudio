@@ -114,6 +114,9 @@ public:
 	const QStringList userCommandList() const{
 	    return mUserCommandList.values();
 	}
+	const QStringList additionalCommandsList() const{
+	    return mCompleterWords;
+	}
 	void updateRefsLabels(const QString ref);
 	void recheckRefsLabels();
 	int countLabels(QString name);
@@ -150,6 +153,8 @@ public:
 	QStringList includedFiles();
 	QList<LatexDocument *> getListOfDocs();
 
+	LatexParser ltxCommands;
+
 private:
 	QString fileName; //absolute
 	QString temporaryFileName; //absolute, temporary
@@ -170,6 +175,8 @@ private:
 	QMultiHash<QDocumentLineHandle*,QString> mUserCommandList;
 	QMultiHash<QDocumentLineHandle*,QString> mUsepackageList;
 
+	QStringList mCompleterWords; // local list of completer words
+
 	QDocumentLineHandle *mAppendixLine;
 
 	void updateAppendix(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine);
@@ -181,12 +188,13 @@ private:
 
 	void removeAndDeleteElement(StructureEntry* se, int row);
 
+	void updateCompletionFiles(QStringList &added,QStringList &removed);
+
 #ifndef QT_NO_DEBUG
 public:
 	QSet<StructureEntry*> StructureContent;
 	void checkForLeak();
 #endif
-
 
 public slots:
 	void updateStructure();
@@ -207,8 +215,6 @@ signals:
 	void updateCompleter();
 	void updateBibTeXFiles();
 	void toBeChanged();
-	void appendCompletionFiles(QStringList &addedUsepackages);
-	
 };
 
 class LatexDocumentsModel: public QAbstractItemModel{
@@ -286,6 +292,8 @@ public:
 
 	void updateStructure();
 	void updateLayout();
+
+	LatexParser ltxCommands;
 signals:
 	void masterDocumentChanged(LatexDocument *masterDocument);
 private slots:

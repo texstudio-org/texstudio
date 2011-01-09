@@ -130,6 +130,7 @@ public slots:
 	void insertHardLineBreaks(int newLength, bool smartScopeSelection, bool joinLines);
 	void viewActivated();
 	void clearOverlays();
+	void updateLtxCommands();
 signals:
 	void lineHandleDeleted(QDocumentLineHandle* l);
 	void showMarkTooltipForLogMessage(int logMessage);
