@@ -15,18 +15,21 @@ QSet<QString> LatexParser::citeCommands = QSet<QString>::fromList(QStringList() 
 QSet<QString> LatexParser::environmentCommands = QSet<QString>::fromList(QStringList() << "\\begin" << "\\end" << "\\newenvironment" << "\\renewenvironment");
 QSet<QString> LatexParser::definitionCommands = QSet<QString>::fromList(QStringList() << "\\newcommand" << "\\renewcommand" << "\\providecommand" << "\\DeclareMathOperator");
 QSet<QString> LatexParser::optionCommands; // = QSet<QString>::fromList(QStringList() << LatexParser::refCommands.toList() << LatexParser::labelCommands.toList() << "\\includegraphics" << "\\usepackage" << "\\documentclass" << "\\include" << "\\input" << "\\hspace" << "\\vspace");
-QSet<QString> LatexParser::normalCommands = QSet<QString>::fromList(QStringList() << "\\\\" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" <<"\\." <<"\\u" <<"\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\oe" << "\\OE" << "\\ae" << "\\AE" << "\\aa" << "\\AA" << "\\o" << "\\O" << "\\l" << "\\L");
-QSet<QString> LatexParser::mathCommands = QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;");
 QSet<QString> LatexParser::mathStartCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\(" << "\\[" << "\\begin{math}" << "\\begin{equation}" << "\\begin{displaymath}");
 QSet<QString> LatexParser::mathStopCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\)" << "\\]" << "\\end{math}" << "\\end{equation}" << "\\end{displaymath}");
-QSet<QString> LatexParser::tabularCommands = QSet<QString>::fromList(QStringList() << "&" );
-QSet<QString> LatexParser::tabbingCommands = QSet<QString>::fromList(QStringList() << "\\<" << "\\>" << "\\=" << "\\+");
 QSet<QString> LatexParser::tabularEnvirons = QSet<QString>::fromList(QStringList() << "tabular" << "tabularx" << "longtable");
 QSet<QString> LatexParser::fileCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input" << "\\includegraphics");
 QSet<QString> LatexParser::includeCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input");
 QSet<QString> LatexParser::usepackageCommands = QSet<QString>::fromList(QStringList() << "\\usepackage");
-QSet<QString> LatexParser::userdefinedCommands;
 QStringList LatexParser::structureCommands = QStringList(); //see texmaker.cpp
+
+LatexParser::LatexParser(){
+    userdefinedCommands.clear();
+    tabularCommands = QSet<QString>::fromList(QStringList() << "&" );
+    tabbingCommands = QSet<QString>::fromList(QStringList() << "\\<" << "\\>" << "\\=" << "\\+");
+    normalCommands = QSet<QString>::fromList(QStringList() << "\\\\" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" <<"\\." <<"\\u" <<"\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\oe" << "\\OE" << "\\ae" << "\\AE" << "\\aa" << "\\AA" << "\\o" << "\\O" << "\\l" << "\\L");
+    mathCommands = QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;");
+}
 
 QString getCommonEOW() {
 	return CommonEOW;
@@ -975,4 +978,134 @@ void LatexParser::guessEncoding(const QByteArray& data, QTextCodec *&guess, int 
 		index = data.indexOf("]{inputenx}", index + 1);
 	}
 	return;
+}
+
+
+QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds) {
+	QStringList words;
+	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+	foreach(QString file, newFiles) {
+		QString fn=findResourceFile("completion/"+file);
+		QFile tagsfile(fn);
+		if (tagsfile.open(QFile::ReadOnly)) {
+			QString line;
+			QRegExp rxCom("^(\\\\\\w+)(\\[.+\\])*\\{(.+)\\}");
+			rxCom.setMinimal(true);
+			QStringList keywords;
+			keywords << "text" << "title";
+			while (!tagsfile.atEnd()) {
+				line = tagsfile.readLine();
+				if (!line.isEmpty() && !line.startsWith("#") && !line.startsWith(" ")) {
+					//hints for commands usage (e.g. in mathmode only) are separated by #
+					int sep=line.indexOf('#');
+					QString valid;
+					if(sep>-1){
+						valid=line.mid(sep+1);
+						line=line.left(sep);
+					}
+					// parse for spell checkable commands
+					int res=rxCom.indexIn(line);
+					if(keywords.contains(rxCom.cap(3))){
+						cmds->optionCommands << rxCom.cap(1);
+					}
+					// normal commands for syntax checking
+					// will be extended to distinguish between normal and math commands
+					if(valid.isEmpty() || valid.contains('n')){
+						if(res>-1){
+							if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
+								cmds->normalCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
+							} else {
+								cmds->normalCommands << rxCom.cap(1);
+							}
+						} else {
+							cmds->normalCommands << line.simplified();
+						}
+					}
+					if(valid.isEmpty() || valid.contains('m')){ // math commands
+						if(res>-1){
+							if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
+								cmds->mathCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
+							} else {
+								cmds->mathCommands << rxCom.cap(1);
+							}
+						} else {
+							cmds->mathCommands << line.simplified();
+						}
+					}
+					if(valid.contains('t')){ // tabular commands
+						if(res>-1){
+							if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
+								cmds->tabularCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
+							} else {
+								cmds->tabularCommands << rxCom.cap(1);
+							}
+						} else {
+							cmds->tabularCommands << line.simplified();
+						}
+					}
+					if(valid.contains('T')){ // tabbing support
+						if(res==-1){
+							cmds->tabbingCommands << line.simplified();
+						}
+					}
+					// normal parsing for completer
+					if (line.startsWith("\\pageref")||line.startsWith("\\ref")) continue;
+					if (!line.contains("%")){
+						if (line.contains("{")) {
+							line.replace("{","{%<");
+							line.replace("}","%>}");
+							line.replace("{%<%>}", "{%<something%>}");
+						}
+						if (line.contains("(")) {
+							line.replace("(","(%<");
+							line.replace(")","%>)");
+							line.replace("(%<%>)", "(%<something%>)");
+						}
+						if (line.contains("[")) {
+							line.replace("[","[%<");
+							line.replace("]","%>]");
+							line.replace("[%<%>]", "[%<something%>]");
+						}
+						int i;
+						if (line.startsWith("\\begin")||line.startsWith("\\end")) {
+							i=line.indexOf("%<",0);
+							line.replace(i,2,"");
+							i=line.indexOf("%>",0);
+							line.replace(i,2,"");
+							if (line.endsWith("\\item\n")) {
+								line.chop(6);
+							}
+						}
+					}
+					if(!words.contains(line.trimmed())) words.append(line.trimmed());
+				}
+			}
+		}
+	}
+	QApplication::restoreOverrideCursor();
+	return words;
+}
+
+void LatexParser::append(LatexParser elem){
+    normalCommands.unite(elem.normalCommands);
+    mathCommands.unite(elem.mathCommands);
+    userdefinedCommands.unite(elem.userdefinedCommands);
+    tabbingCommands.unite(elem.tabbingCommands);
+    tabularCommands.unite(elem.tabularCommands);
+}
+
+void LatexParser::clear(){
+    normalCommands.clear();
+    mathCommands.clear();
+    userdefinedCommands.clear();
+    tabbingCommands.clear();
+    tabularCommands.clear();
+}
+
+void LatexParser::substract(LatexParser elem){
+    normalCommands.subtract(elem.normalCommands);
+    mathCommands.subtract(elem.mathCommands);
+    userdefinedCommands.subtract(elem.userdefinedCommands);
+    tabbingCommands.subtract(elem.tabbingCommands);
+    tabularCommands.subtract(elem.tabularCommands);
 }

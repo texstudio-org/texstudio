@@ -948,7 +948,6 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool reloadFromDo
 	connect(edit->editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
 	connect(edit->editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
 	connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(completerNeedsUpdate()));
-	connect(edit->document,SIGNAL(appendCompletionFiles(QStringList&)),this,SLOT(appendCompletionFiles(QStringList&)));
 	connect(edit->editor,SIGNAL(needUpdatedCompleter()), this, SLOT(needUpdatedCompleter()));
 
 	EditorView->insertTab(reloadFromDoc ? documents.documents.indexOf(edit->document,0) : -1,edit, "?bug?");
@@ -1064,6 +1063,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	    }
 	}
 
+	edit->updateLtxCommands();
 	updateStructure(true);
 	ShowStructure();
 
@@ -1134,6 +1134,7 @@ void Texmaker::fileNew(QString fileName) {
 	documents.addDocument(edit->document);
 
 	configureNewEditorViewEnd(edit);
+	edit->updateLtxCommands();
 }
 
 void Texmaker::fileAutoReloading(QString fname){
@@ -1252,6 +1253,7 @@ void Texmaker::fileNewFromTemplate() {
 		documents.addDocument(edit->document);
 
 		configureNewEditorViewEnd(edit);
+		edit->updateLtxCommands();
 
 		QString mTemplate;
 		QTextStream in(&file);
@@ -2002,6 +2004,7 @@ void Texmaker::ReadSettings() {
 	QuickDocumentDialog::registerOptions(configManager);
 	buildManager.registerOptions(configManager);
 	configManager.registerOption("User/Templates",&userTemplatesList);
+	configManager.ltxCommands=&(documents.ltxCommands);
 
 	configManager.buildManager=&buildManager;
 	QSettings *config=configManager.readSettings();
@@ -3601,6 +3604,7 @@ void Texmaker::GeneralOptions() {
 				    edView->updateSettings();
 				    if(updateHighlighting){
 					if(configManager.editorConfig->realtimeChecking){
+					    edView->updateLtxCommands();
 					    edView->documentContentChanged(0,edView->document->lines());
 					}else{
 					    edView->clearOverlays();
@@ -4017,22 +4021,11 @@ void Texmaker::updateCompleter() {
 
 	if(edView && edView->document){
 	    // determine from which docs data needs to be collected
-	    QList<LatexDocument*> docs;
-	    if (documents.singleMode()) {
-		LatexDocument* mDoc=edView->document;
-		if(mDoc->getMasterDocument()){
-		    mDoc=edView->document->getMasterDocument();
-		}
-		foreach(LatexDocument* doc, documents.documents){
-		    if(doc->getMasterDocument()==mDoc)
-			docs.append(doc);
-		}
-		docs << mDoc;
-	    }
-	    else docs << documents.documents;
+	    QList<LatexDocument*> docs=edView->document->getListOfDocs();
 	    // collect user commands and references
 	    foreach(const LatexDocument* doc,docs){
 		words << doc->userCommandList();
+		words << doc->additionalCommandsList();
 		foreach(const QString& refCommand, LatexParser::refCommands){
 		    QString temp=refCommand+"{%1}";
 		    for (int i=0; i<doc->labelItem().count(); ++i)
@@ -5107,30 +5100,5 @@ void Texmaker::findNextWordRepetion(){
     }
     if(breaking){
         currentEditor()->setCursor(cur);
-    }
-}
-
-void Texmaker::appendCompletionFiles(QStringList &addedUsepackages){
-    LatexCompleterConfig *conf=configManager.completerConfig;
-    QStringList loadedFiles=conf->getLoadedFiles();
-    QStringList filtered;
-    foreach(QString elem,addedUsepackages){
-	if(loadedFiles.contains(elem))
-	    addedUsepackages.removeAll(elem);
-	elem.append(".cwl");
-	if(!filtered.contains(elem)){
-	    QString fn=findResourceFile("completion/"+elem);
-	    if(!fn.isEmpty())
-		filtered << elem;
-	}
-    }
-    if(!filtered.isEmpty()){
-	conf->loadFiles(filtered,true);
-	//recheck syntax of ALL documents ...
-	foreach(LatexDocument* elem,documents.documents){
-	    LatexEditorView *edView=elem->getEditorView();
-	    if(edView)
-		edView->reCheckSyntax();
-	}
     }
 }

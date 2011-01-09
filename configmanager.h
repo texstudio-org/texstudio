@@ -5,6 +5,7 @@
 
 #include "buildmanager.h"
 #include "configmanagerinterface.h"
+#include "smallUsefulFunctions.h"
 
 class ConfigDialog;
 class LatexCompleterConfig;
@@ -92,6 +93,9 @@ public:
 	LatexEditorViewConfig * const editorConfig;
 	//completion
 	LatexCompleterConfig * const completerConfig;
+
+	//LatexParser (commands for syntax check)
+	LatexParser *ltxCommands;
 
 	QHash<QString,QVariant> completerUsageHash;
 	//webpublish dialog

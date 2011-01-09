@@ -1,4 +1,5 @@
 #include "syntaxcheck.h"
+#include "latexdocument.h"
 
 SyntaxCheck::SyntaxCheck(QObject *parent) :
 		QThread(parent)
@@ -7,20 +8,21 @@ SyntaxCheck::SyntaxCheck(QObject *parent) :
 	stopped=false;
 	mLines.clear();
 	mLinesLock.unlock();
+	verbatimFormat=0;
+	mLtxCommandLock.unlock();
 }
 
 void SyntaxCheck::setErrFormat(int errFormat){
 	syntaxErrorFormat=errFormat;
 }
 
-void SyntaxCheck::putLine(QString text,QDocumentLineHandle* dlh,Environment previous,bool clearOverlay,int cols){
+void SyntaxCheck::putLine(QDocumentLineHandle* dlh,Environment previous,bool clearOverlay,int cols){
 	Q_ASSERT(dlh);
 	SyntaxLine newLine;
 	dlh->ref(); // impede deletion of handle while in syntax check queue
 	dlh->lockForRead();
 	newLine.ticket=dlh->getCurrentTicket();
 	dlh->unlock();
-	newLine.text=text;
 	newLine.dlh=dlh;
 	newLine.prevEnv=previous;
 	newLine.clearOverlay=clearOverlay;
@@ -48,14 +50,21 @@ void SyntaxCheck::run(){
 		SyntaxLine newLine=mLines.dequeue();
 		mLinesLock.unlock();
 		// do syntax check
-		QString line=newLine.text;
+		newLine.dlh->lockForRead();
+		QDocumentLineHandle *prev=newLine.dlh->previous();
+		QString line=newLine.dlh->text();
+		newLine.dlh->unlock();
+		QVector<int>fmts=newLine.dlh->getFormats();
+		for(int i=0;i<line.length() && i < fmts.size();i++){
+		    if(fmts[i]==verbatimFormat){
+			line[i]=QChar(' ');
+		    }
+		}
 		QStack<Environment> activeEnv;
 		activeEnv.push(newLine.prevEnv);
 		line=LatexParser::cutComment(line);
 		Ranges newRanges;
-		newLine.dlh->lockForRead();
-		QDocumentLineHandle *prev=newLine.dlh->previous();
-		newLine.dlh->unlock();
+
 		int excessCols=0;
 		if(prev){
 		    prev->lockForRead();
@@ -79,10 +88,7 @@ void SyntaxCheck::run(){
 			    newLine.dlh->setCookie(0,excessCols);
 			    QDocumentLineHandle *next=newLine.dlh->next();
 			    if(next){
-				next->lockForRead();
-				QString text=next->text();
-				next->unlock();
-				putLine(text,next,activeEnv.top(),true,newLine.cols);
+				putLine(next,activeEnv.top(),true,newLine.cols);
 			    }
 			}
 		}
@@ -95,6 +101,7 @@ void SyntaxCheck::run(){
 
 void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> &activeEnv,int cols,int &excessCols){
 	// do syntax check on that line
+	QMutexLocker locker(&mLtxCommandLock);
 	QString word;
 	int start=0;
 	int wordstart;
@@ -198,7 +205,7 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 				    break;
 				}
 			}
-			if(LatexParser::refCommands.contains(word)||LatexParser::labelCommands.contains(word)||LatexParser::fileCommands.contains(word)){ //don't check syntax in reference, label or include
+			if(ltxCommands.refCommands.contains(word)||LatexParser::labelCommands.contains(word)||LatexParser::fileCommands.contains(word)){ //don't check syntax in reference, label or include
 				QStringList options;
 				LatexParser::resolveCommandOptions(line,wordstart,options);
 				if(options.size()>0){
@@ -225,46 +232,46 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 				if(activeEnv.isEmpty()) activeEnv.push(ENV_normal);
 				continue;
 			}
-			if(ignoreEnv&&(LatexParser::normalCommands.contains(word) || LatexParser::tabularCommands.contains(word) || LatexParser::userdefinedCommands.contains(word) || LatexParser::mathCommands.contains(word)|| LatexParser::tabbingCommands.contains(word)) )
+			if(ignoreEnv&&(ltxCommands.normalCommands.contains(word) || ltxCommands.tabularCommands.contains(word) || ltxCommands.userdefinedCommands.contains(word) || ltxCommands.mathCommands.contains(word)|| ltxCommands.tabbingCommands.contains(word)) )
 			    continue;
-			if((activeEnv.top()==ENV_tabbing)&&!LatexParser::tabbingCommands.contains(word) &&!LatexParser::normalCommands.contains(word) && !LatexParser::userdefinedCommands.contains(word)){ // extend for math coammnds
+			if((activeEnv.top()==ENV_tabbing)&&!ltxCommands.tabbingCommands.contains(word) &&!ltxCommands.normalCommands.contains(word) && !ltxCommands.userdefinedCommands.contains(word)){ // extend for math coammnds
 				Error elem;
 				elem.range=QPair<int,int>(wordstart,word.length());
 				elem.type=ERR_unrecognizedCommand;
-				if(LatexParser::mathCommands.contains(word))
+				if(ltxCommands.mathCommands.contains(word))
 					elem.type=ERR_MathCommandOutsideMath;
-				if(LatexParser::tabularCommands.contains(word))
+				if(ltxCommands.tabularCommands.contains(word))
 					elem.type=ERR_TabularCommandOutsideTab;
 				newRanges.append(elem);
 			}
-			if((activeEnv.top()==ENV_normal)&&!LatexParser::normalCommands.contains(word) && !LatexParser::userdefinedCommands.contains(word)){ // extend for math coammnds
+			if((activeEnv.top()==ENV_normal)&&!ltxCommands.normalCommands.contains(word) && !ltxCommands.userdefinedCommands.contains(word)){ // extend for math coammnds
 				Error elem;
 				elem.range=QPair<int,int>(wordstart,word.length());
 				elem.type=ERR_unrecognizedCommand;
-				if(LatexParser::mathCommands.contains(word))
+				if(ltxCommands.mathCommands.contains(word))
 					elem.type=ERR_MathCommandOutsideMath;
-				if(LatexParser::tabularCommands.contains(word))
+				if(ltxCommands.tabularCommands.contains(word))
 					elem.type=ERR_TabularCommandOutsideTab;
-				if(LatexParser::tabbingCommands.contains(word))
+				if(ltxCommands.tabbingCommands.contains(word))
 					elem.type=ERR_TabbingCommandOutside;
 				newRanges.append(elem);
 			}
 			if(activeEnv.top()==ENV_matrix && (word=="&" || word=="\\\\")) continue;
-			if((activeEnv.top()==ENV_math||activeEnv.top()==ENV_matrix)&&!LatexParser::mathCommands.contains(word) && !LatexParser::userdefinedCommands.contains(word)&&!ignoreEnv){ // extend for math coammnds
+			if((activeEnv.top()==ENV_math||activeEnv.top()==ENV_matrix)&&!ltxCommands.mathCommands.contains(word) && !ltxCommands.userdefinedCommands.contains(word)&&!ignoreEnv){ // extend for math coammnds
 				Error elem;
 				elem.range=QPair<int,int>(wordstart,word.length());
 				elem.type=ERR_unrecognizedMathCommand;
-				if(LatexParser::tabularCommands.contains(word))
+				if(ltxCommands.tabularCommands.contains(word))
 					elem.type=ERR_TabularCommandOutsideTab;
 				newRanges.append(elem);
 			}
-			if(activeEnv.top()==ENV_tabular&&!LatexParser::normalCommands.contains(word) && !LatexParser::tabularCommands.contains(word) && !LatexParser::userdefinedCommands.contains(word)){ // extend for math coammnds
+			if(activeEnv.top()==ENV_tabular&&!ltxCommands.normalCommands.contains(word) && !ltxCommands.tabularCommands.contains(word) && !ltxCommands.userdefinedCommands.contains(word)){ // extend for math coammnds
 				Error elem;
 				elem.range=QPair<int,int>(wordstart,word.length());
 				elem.type=ERR_unrecognizedTabularCommand;
-				if(LatexParser::mathCommands.contains(word))
+				if(ltxCommands.mathCommands.contains(word))
 					elem.type=ERR_MathCommandOutsideMath;
-				if(LatexParser::tabbingCommands.contains(word))
+				if(ltxCommands.tabbingCommands.contains(word))
 					elem.type=ERR_TabbingCommandOutside;
 				newRanges.append(elem);
 			}
@@ -275,9 +282,15 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 
     }
 
-QString SyntaxCheck::getErrorAt(QString &text,int pos,Environment previous,int cols){
+QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh,int pos,Environment previous,int cols){
 	// do syntax check
-	QString line=text;
+	QString line=dlh->text();
+	QVector<int>fmts=dlh->getFormats();
+	for(int i=0;i<line.length() && i < fmts.size();i++){
+	    if(fmts[i]==verbatimFormat){
+		line[i]=QChar(' ');
+	    }
+	}
 	QStack<Environment> activeEnv;
 	activeEnv.push(previous);
 	line=LatexParser::cutComment(line);
@@ -297,4 +310,8 @@ QString SyntaxCheck::getErrorAt(QString &text,int pos,Environment previous,int c
 	messages << tr("no error")<< tr("unrecognized command")<< tr("unrecognized math command")<< tr("unrecognized tabular command")<< tr("tabular command outside tabular env")<< tr("math command outside math env") << tr("tabbing command outside tabbing env") << tr("more cols in tabular than specified") << tr("cols in tabular missing")
 		 << tr("\\\\ missing");
 	return messages.value(int(result),tr("unknown"));
+}
+void SyntaxCheck::setLtxCommands(LatexParser cmds){
+    QMutexLocker locker(&mLtxCommandLock);
+    ltxCommands=cmds;
 }

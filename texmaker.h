@@ -367,7 +367,6 @@ private slots:
 	void updateCompleter();
 	void completerNeedsUpdate();
 	void needUpdatedCompleter();
-	void appendCompletionFiles(QStringList &addedUsepackages);
 
 	void tabChanged(int i);
 

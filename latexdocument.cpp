@@ -27,6 +27,7 @@ LatexDocument::LatexDocument(QObject *parent):QDocument(parent),edView(0),mAppen
 	m_magicPlaceHolder=-1;
 	m_mirrorInLine=-1;
 	masterDocument=0;
+	this->parent=0;
 }
 LatexDocument::~LatexDocument(){
 	if (!labelList->parent) delete labelList;
@@ -301,7 +302,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		foreach(QString elem,commands){
 		    int i=elem.indexOf("{");
 		    if(i>=0) elem=elem.left(i);
-		    LatexParser::userdefinedCommands.remove(elem);
+		    ltxCommands.userdefinedCommands.remove(elem);
 		    updateSyntaxCheck=true;
 		}
 		if (mLabelItem.contains(dlh)) {
@@ -406,7 +407,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				int options=0;
 				if(rx.indexIn(remainder)>-1)
 				    options=rx.cap(1).toInt(); //returns 0 if conversion fails
-				LatexParser::userdefinedCommands.insert(name);
+				ltxCommands.userdefinedCommands.insert(name);
 				for (int j=0; j<options; j++) {
 					if (j==0) name.append("{%<arg1%|%>}");
 					else name.append(QString("{%<arg%1%>}").arg(j+1));
@@ -430,8 +431,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				}
 				mUserCommandList.insert(line(i).handle(),name);//???
 				mUserCommandList.insert(line(i).handle(),"\\begin{"+name);
-				LatexParser::userdefinedCommands.insert("\\begin{"+name);
-				LatexParser::userdefinedCommands.insert("\\end{"+name);
+				ltxCommands.userdefinedCommands.insert("\\begin{"+name);
+				ltxCommands.userdefinedCommands.insert("\\end{"+name);
 				continue;
 			}
 			//// newtheorem ////
@@ -439,8 +440,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				completerNeedsUpdate=true;
 				mUserCommandList.insert(line(i).handle(),"\\begin{"+name+"}");
 				mUserCommandList.insert(line(i).handle(),"\\end{"+name+"}");
-				LatexParser::userdefinedCommands.insert("\\begin{"+name+"}");
-				LatexParser::userdefinedCommands.insert("\\end{"+name+"}");
+				ltxCommands.userdefinedCommands.insert("\\begin{"+name+"}");
+				ltxCommands.userdefinedCommands.insert("\\end{"+name+"}");
 				continue;
 			}
 			///usepackage
@@ -658,8 +659,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	foreach(se,MapOfLabels.values())
 		delete se;
 
-	if(!addedUsepackages.isEmpty()){
-		emit appendCompletionFiles(addedUsepackages);
+	if(!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty()){
+		updateCompletionFiles(addedUsepackages,removedUsepackages);
 	}
 
 	if (bibTeXFilesNeedsUpdate)
@@ -793,7 +794,7 @@ void LatexDocument::setMasterDocument(LatexDocument* doc){
     }
 }
 
-QList<LatexDocument *> LatexDocument::getListOfDocs(){
+QList<LatexDocument *>LatexDocument::getListOfDocs(){
     QList<LatexDocument *>listOfDocs;
     if(parent->masterDocument){
 	listOfDocs=parent->documents;
@@ -1633,4 +1634,57 @@ QStringList LatexDocument::includedFiles(){
 	}
     }
     return result;
+}
+
+void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &removed){
+    // remove
+    QStringList filtered;
+    bool update=false;
+    foreach(QString elem,removed){
+	if(!mUsepackageList.keys(elem).isEmpty())
+	    continue;
+	elem.append(".cwl");
+	if(!filtered.contains(elem)){
+	    QString fn=findResourceFile("completion/"+elem);
+	    if(!fn.isEmpty())
+		filtered << elem;
+	}
+    }
+    if(!filtered.isEmpty()){
+	LatexParser cmds;
+	QStringList removedWords=loadCwlFiles(filtered,&cmds);
+	ltxCommands.substract(cmds);
+	foreach(QString elem,removedWords){
+	    mCompleterWords.removeAll(elem);
+	}
+	//recheck syntax of ALL documents ...
+	update=true;
+    }
+    // add
+    filtered.clear();
+    foreach(QString elem,added){
+	elem.append(".cwl");
+	if(!filtered.contains(elem)){
+	    QString fn=findResourceFile("completion/"+elem);
+	    if(!fn.isEmpty())
+		filtered << elem;
+	}
+    }
+    if(!filtered.isEmpty()){
+	LatexParser cmds;
+	QStringList addedWords=loadCwlFiles(filtered,&cmds);
+	ltxCommands.append(cmds);
+	mCompleterWords << addedWords;
+	//recheck syntax of ALL documents ...
+	update=true;
+    }
+    if(update){
+	foreach(LatexDocument* elem,getListOfDocs()){
+	    LatexEditorView *edView=elem->getEditorView();
+	    if(edView){
+		edView->updateLtxCommands();
+		edView->reCheckSyntax();
+	    }
+	}
+    }
 }

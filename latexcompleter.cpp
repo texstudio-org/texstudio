@@ -628,7 +628,11 @@ QMap<int,int> LatexCompleter::getUsage(){
 void LatexCompleter::setAdditionalWords(const QStringList &newwords, bool normalTextList) {
 	QStringList concated;
 	if (config && !normalTextList) concated << config->words;
-	concated << newwords;
+	//avoid duplicates !!!
+	foreach(QString elem,newwords){
+	    if(!concated.contains(elem))
+		concated << elem;
+	}
 	listModel->setBaseWords(concated,normalTextList);
 	listModel->setUsage(config->usage);
 	if (maxWordLen==0 && !normalTextList) {
@@ -924,111 +928,8 @@ void LatexCompleter::editorDestroyed() {
 	editor=0;
 }
 
-void LatexCompleterConfig::loadFiles(const QStringList &newFiles,const bool append) {
-	if(!append){
-	    files=newFiles;
-	    words.clear();
-	}
-	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-	foreach(QString file, newFiles) {
-		QString fn=findResourceFile("completion/"+file);
-		QFile tagsfile(fn);
-		if (tagsfile.open(QFile::ReadOnly)) {
-			QString line;
-			QRegExp rxCom("^(\\\\\\w+)(\\[.+\\])*\\{(.+)\\}");
-			rxCom.setMinimal(true);
-			QStringList keywords;
-			keywords << "text" << "title";
-			while (!tagsfile.atEnd()) {
-				line = tagsfile.readLine();
-				if (!line.isEmpty() && !line.startsWith("#") && !line.startsWith(" ")) {
-					//hints for commands usage (e.g. in mathmode only) are separated by #
-					int sep=line.indexOf('#');
-					QString valid;
-					if(sep>-1){
-						valid=line.mid(sep+1);
-						line=line.left(sep);
-					}
-					// parse for spell checkable commands
-					int res=rxCom.indexIn(line);
-					if(keywords.contains(rxCom.cap(3))){
-						LatexParser::optionCommands << rxCom.cap(1);
-					}
-					// normal commands for syntax checking
-					// will be extended to distinguish between normal and math commands
-					if(valid.isEmpty() || valid.contains('n')){
-						if(res>-1){
-							if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
-								LatexParser::normalCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
-							} else {
-								LatexParser::normalCommands << rxCom.cap(1);
-							}
-						} else {
-							LatexParser::normalCommands << line.simplified();
-						}
-					}
-					if(valid.isEmpty() || valid.contains('m')){ // math commands
-						if(res>-1){
-							if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
-								LatexParser::mathCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
-							} else {
-								LatexParser::mathCommands << rxCom.cap(1);
-							}
-						} else {
-							LatexParser::mathCommands << line.simplified();
-						}
-					}
-					if(valid.contains('t')){ // tabular commands
-						if(res>-1){
-							if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
-								LatexParser::tabularCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
-							} else {
-								LatexParser::tabularCommands << rxCom.cap(1);
-							}
-						} else {
-							LatexParser::tabularCommands << line.simplified();
-						}
-					}
-					if(valid.contains('T')){ // tabbing support
-						if(res==-1){
-							LatexParser::tabbingCommands << line.simplified();
-						}
-					}
-					// normal parsing for completer
-					if (line.startsWith("\\pageref")||line.startsWith("\\ref")) continue;
-					if (!line.contains("%")){
-						if (line.contains("{")) {
-							line.replace("{","{%<");
-							line.replace("}","%>}");
-							line.replace("{%<%>}", "{%<something%>}");
-						}
-						if (line.contains("(")) {
-							line.replace("(","(%<");
-							line.replace(")","%>)");
-							line.replace("(%<%>)", "(%<something%>)");
-						}
-						if (line.contains("[")) {
-							line.replace("[","[%<");
-							line.replace("]","%>]");
-							line.replace("[%<%>]", "[%<something%>]");
-						}
-						int i;
-						if (line.startsWith("\\begin")||line.startsWith("\\end")) {
-							i=line.indexOf("%<",0);
-							line.replace(i,2,"");
-							i=line.indexOf("%>",0);
-							line.replace(i,2,"");
-							if (line.endsWith("\\item\n")) {
-								line.chop(6);
-							}
-						}
-					}
-					if(!words.contains(line.trimmed())) words.append(line.trimmed());
-				}
-			}
-		}
-	}
-	QApplication::restoreOverrideCursor();
+void LatexCompleterConfig::setFiles(const QStringList &newFiles) {
+	files=newFiles;
 }
 
 const QStringList& LatexCompleterConfig::getLoadedFiles(){

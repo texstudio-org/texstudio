@@ -188,7 +188,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	completerConfig (new LatexCompleterConfig),
 	webPublishDialogConfig (new WebPublishDialogConfig),
 	pdfDocumentConfig(new PDFDocumentConfig),
-	menuParent(0), menuParentsBar(0){
+	menuParent(0), menuParentsBar(0), ltxCommands(0) {
 
 	managedToolBars.append(ManagedToolBar("Custom", QStringList()));
 	managedToolBars.append(ManagedToolBar("File", QStringList() << "main/file/new" << "main/file/open" << "main/file/save" << "main/file/close"));
@@ -482,7 +482,9 @@ QSettings* ConfigManager::readSettings() {
 	}
 
 	//completion
-	completerConfig->loadFiles(config->value("Editor/Completion Files",QStringList() << "texmakerx.cwl" << "tex.cwl" << "latex-document.cwl" << "latex-mathsymbols.cwl").toStringList());
+	QStringList cwlFiles=config->value("Editor/Completion Files",QStringList() << "texmakerx.cwl" << "tex.cwl" << "latex-document.cwl" << "latex-mathsymbols.cwl").toStringList();
+	completerConfig->words=loadCwlFiles(cwlFiles,ltxCommands);
+	completerConfig->setFiles(cwlFiles);
 	completerUsageHash=config->value("Editor/Completion Usage",QHash<QString,QVariant>()).toHash();
 	completerConfig->usage.clear();
 	QHashIterator<QString, QVariant> it(completerUsageHash);
@@ -1023,7 +1025,9 @@ bool ConfigManager::execConfigDialog() {
 			elem=confDlg->ui.completeListWidget->item(i);
 			if (elem->checkState()==Qt::Checked) newFiles.append(elem->text());
 		}
-		completerConfig->loadFiles(newFiles);
+		ltxCommands->clear();
+		completerConfig->words=loadCwlFiles(newFiles,ltxCommands);
+		completerConfig->setFiles(newFiles);
 
 		completerConfig->usage.clear();
 		QHashIterator<QString, QVariant> it(completerUsageHash);

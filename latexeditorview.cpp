@@ -226,6 +226,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	//containedLabels.setPattern("(\\\\label)\\{(.+)\\}");
 	//containedReferences.setPattern("(\\\\ref|\\\\pageref)\\{(.+)\\}");
 	updateSettings();
+	SynChecker.verbatimFormat=QDocument::formatFactory()->id("verbatim");
 	SynChecker.start();
 }
 
@@ -235,6 +236,19 @@ LatexEditorView::~LatexEditorView() {
 
 	SynChecker.stop();
 	SynChecker.wait();
+}
+
+void LatexEditorView::updateLtxCommands(){
+	if(!document)
+	    return;
+	if(!document->parent)
+	    return;
+
+	LatexParser ltxCommands=document->parent->ltxCommands;
+	foreach(LatexDocument *elem,document->getListOfDocs()){
+	    ltxCommands.append(elem->ltxCommands);
+	}
+	SynChecker.setLtxCommands(ltxCommands);
 }
 
 void LatexEditorView::viewActivated(){
@@ -653,7 +667,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 						text[i]=QChar(' ');
 					}
 				}
-				SynChecker.putLine(text,line.handle(),env,false,cols);
+				SynChecker.putLine(line.handle(),env,false,cols);
 			}
 			if(env!=SyntaxCheck::ENV_tabular){
 			    //check whether the begin{tabular) was changed
@@ -672,13 +686,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				    }
 				    QString text=current.text();
 				    if(!text.isEmpty()){
-					QVector<int>fmts=line.getFormats();
-					for(int i=0;i<text.length() && i < fmts.size();i++){
-					    if(fmts[i]==verbatimFormat){
-						text[i]=QChar(' ');
-					    }
-					}
-					SynChecker.putLine(text,current.handle(),SyntaxCheck::ENV_tabular,true,cols);
+					SynChecker.putLine(current.handle(),SyntaxCheck::ENV_tabular,true,cols);
 				    }
 				    current++;
 				}
@@ -942,13 +950,8 @@ void LatexEditorView::reCheckSyntax(int linenr, int count){
 		}
 		QString text=line.text();
 		if(!text.isEmpty()){
-			QVector<int>fmts=line.getFormats();
-			for(int i=0;i<text.length() && i < fmts.size();i++){
-				if(fmts[i]==verbatimFormat){
-					text[i]=QChar(' ');
-				}
-			}
-			SynChecker.putLine(text,line.handle(),env,true,cols);
+
+			SynChecker.putLine(line.handle(),env,true,cols);
 		}
 		prev = line;
 		line = editor->document()->line(i+1);
@@ -1001,13 +1004,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 		}
 		QString text=l.text();
 		if(!text.isEmpty()){
-			QVector<int>fmts=l.getFormats();
-			for(int i=0;i<text.length() && i < fmts.size();i++){
-				if(fmts[i]==verbatimFormat){
-					text[i]=QChar(' ');
-				}
-			}
-			QString message=SynChecker.getErrorAt(text,cursor.columnNumber(),env,cols);
+			QString message=SynChecker.getErrorAt(l.handle(),cursor.columnNumber(),env,cols);
 			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),message);
 			return;
 		}
