@@ -13,9 +13,12 @@ struct PDFDocumentConfig{
 
 
 	int magnifierSize, magnifierShape;
+	bool magnifierBorder;
 
 
 	bool followFromCursor, followFromScroll;
+
+	QString syncFileMask;
 };
 
 #endif // PDFDOCUMENT_CONFIG_H

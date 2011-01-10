@@ -349,9 +349,11 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Preview/Scale", &pdfDocumentConfig->scaleOption, 100, &pseudoDialog->spinBoxPreviewScale);
 	registerOption("Preview/Magnifier Size", &pdfDocumentConfig->magnifierSize, 300, &pseudoDialog->spinBoxPreviewMagnifierSize);
 	registerOption("Preview/Magnifier Shape", &pdfDocumentConfig->magnifierShape, 1, &pseudoDialog->comboBoxPreviewMagnifierShape);
+	registerOption("Preview/Magnifier Border", &pdfDocumentConfig->magnifierBorder, false, &pseudoDialog->checkBoxPreviewMagnifierBorder);
 
 	registerOption("Preview/Scrolling Follows Cursor", &pdfDocumentConfig->followFromCursor, false);
 	registerOption("Preview/Cursor Follows Scrolling", &pdfDocumentConfig->followFromScroll, false);
+	registerOption("Preview/Sync File Mask", &pdfDocumentConfig->syncFileMask, "*.tex", &pseudoDialog->lineEditPreviewSyncFileMask);
 
 	#ifndef QT_NO_DEBUG
 	registerOption("Debug/Last Application Modification", &debugLastFileModification);
