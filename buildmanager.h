@@ -110,11 +110,12 @@ public:
 	void setBuffer(QString *buffer) {
 		mBuffer=buffer;
 	}
+	bool showStdout() const;
 
 private:
 	QString cmd;
 	QString file;
-	bool started;
+	bool started, stdoutEnabled;
 	QString *mBuffer;
 };
 
