@@ -447,7 +447,16 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			///usepackage
 			if (LatexParser::usepackageCommands.contains(cmd)) {
 				completerNeedsUpdate=true;
-				QStringList packages=name.split(",");
+				QStringList packagesHelper=name.split(",");
+				QStringList packages;
+				foreach(QString elem,packagesHelper){
+				    if(LatexParser::packageAliases.contains(elem)){
+					packages << LatexParser::packageAliases.values(elem);
+				    }else{
+					packages << elem;
+				    }
+				}
+
 				foreach(QString elem,packages){
 				    if(!removedUsepackages.removeAll(elem)){
 					addedUsepackages << elem;

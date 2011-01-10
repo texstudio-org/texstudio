@@ -146,6 +146,7 @@ public:
 	static QSet<QString> includeCommands;
 	static QSet<QString> usepackageCommands;
 	static QStringList structureCommands;
+	static QMultiHash<QString,QString> packageAliases; // aliases for classes to packages e.g. article = latex-document, latex-mathsymbols, etc
 	// commands used for syntax check (per doc basis)
 	QSet<QString> tabularCommands;
 	QSet<QString> normalCommands;
@@ -161,5 +162,6 @@ public:
 };
 
 QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds);
+void importCwlAliases();
 
 #endif
