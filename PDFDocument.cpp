@@ -266,6 +266,18 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 	painter.drawImage(event->rect(), image,
 		event->rect().translated((x() * kMagFactor - imageLoc.x()) + width() / 2,
 								 (y() * kMagFactor - imageLoc.y()) + height() / 2));
+
+	if (globalConfig->magnifierBorder) {
+		painter.setPen(QPalette().mid().color());
+		switch (globalConfig->magnifierShape) {
+		case 1: { //circular
+				int side = qMin(width(), height()) ;
+				painter.drawEllipse(width() / 2 - side / 2 + 1, height() / 2 - side / 2 + 1, side-2, side-2);
+				break;
+			}
+		default: painter.drawRect(0,0,width()-1,height()-1); //rectangular
+		}
+	}
 }
 
 void PDFMagnifier::resizeEvent(QResizeEvent * /*event*/)
@@ -426,12 +438,9 @@ void PDFWidget::useMagnifier(const QMouseEvent *inEvent)
 	Q_ASSERT(globalConfig);
 	if (!globalConfig) return;
 
-	if (!magnifier) {
+	if (!magnifier)
 		magnifier = new PDFMagnifier(this, dpi);
-
-		int magnifierSize = globalConfig->magnifierSize;
-		magnifier->setFixedSize(magnifierSize * 4 / 3, magnifierSize);
-	}
+	magnifier->setFixedSize(globalConfig->magnifierSize * 4 / 3, globalConfig->magnifierSize);
 	magnifier->setPage(page, scaleFactor);
 	// this was in the hope that if the mouse is released before the image is ready,
 	// the magnifier wouldn't actually get shown. but it doesn't seem to work that way -
@@ -1692,7 +1701,17 @@ void PDFDocument::syncClick(int pageIndex, const QPointF& pos, bool activate)
 		while ((node = synctex_next_result(scanner)) != NULL) {
 			QString filename = QString::fromUtf8(synctex_scanner_get_name(scanner, synctex_node_tag(node)));
 			QDir curDir(QFileInfo(curFile).canonicalPath());
-			emit syncSource(QFileInfo(curDir, filename).canonicalFilePath(), synctex_node_line(node)-1, activate); //-1 because tmx is 0 based, but synctex seems to be 1 based
+			QString fullName = QFileInfo(curDir, filename).canonicalFilePath();
+			if (!globalConfig->syncFileMask.trimmed().isEmpty()) {
+				bool found = false;
+				foreach (const QString& s, globalConfig->syncFileMask.split(";"))
+					if (QRegExp(s.trimmed(), Qt::CaseSensitive, QRegExp::Wildcard).exactMatch(fullName)) {
+						found = true;
+						break;
+					}
+				if (!found) continue;
+			}
+			emit syncSource(fullName, synctex_node_line(node)-1, activate); //-1 because tmx is 0 based, but synctex seems to be 1 based
 			break; // FIXME: currently we just take the first hit
 		}
 	}
