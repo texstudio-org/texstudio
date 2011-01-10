@@ -310,9 +310,9 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 //Platform dependant
 #ifdef Q_WS_MACX
 	switch (cmd) {
-		case CMD_VIEWDVI: return "open %.dvi";
-		case CMD_VIEWPS: return "open %.ps";
-		case CMD_VIEWPDF: return "open %.pdf";
+		case CMD_VIEWDVI: return "open %.dvi > /dev/null";
+		case CMD_VIEWPS: return "open %.ps > /dev/null";
+		case CMD_VIEWPDF: return "open %.pdf > /dev/null";
 		default:;
 	}
 #endif
@@ -410,21 +410,21 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 	switch (cmd) {
 	case CMD_VIEWDVI:
 		switch (x11desktop_env()) {
-		case 3:	return "kdvi %.dvi";
-		case 4:	return "okular %.dvi";
-		default:return "evince %.dvi";
+		case 3:	return "kdvi %.dvi > /dev/null";
+		case 4:	return "okular %.dvi > /dev/null";
+		default:return "evince %.dvi > /dev/null";
 		};
 	case CMD_VIEWPS:
 		switch (x11desktop_env()) {
-		case 3: return "kghostview %.ps";
-		case 4:	return "okular %.ps";
-		default:return "evince %.ps";
+		case 3: return "kghostview %.ps > /dev/null";
+		case 4:	return "okular %.ps > /dev/null";
+		default:return "evince %.ps > /dev/null";
 		};
 	case CMD_VIEWPDF:
 		switch (x11desktop_env()) {
-		case 3: return "kpdf %.pdf";
-		case 4:	return "okular %.pdf";
-		default:return "evince %.pdf";
+		case 3: return "kpdf %.pdf > /dev/null";
+		case 4:	return "okular %.pdf > /dev/null";
+		default:return "evince %.pdf > /dev/null";
 		};
 	default:;
 	}
@@ -836,7 +836,11 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 #endif
 
 ProcessX::ProcessX(BuildManager* parent, const QString &assignedCommand, const QString& fileToCompile):
-		QProcess(parent), cmd(assignedCommand.trimmed()), file(fileToCompile), started(false), mBuffer(0) {
+		QProcess(parent), cmd(assignedCommand.trimmed()), file(fileToCompile), started(false), stdoutEnabled(true), mBuffer(0) {
+	if (cmd.mid(cmd.lastIndexOf(">") + 1).trimmed() == "/dev/null" )  {
+		cmd = cmd.left(cmd.lastIndexOf(">")).trimmed();
+		stdoutEnabled = false;
+	}
 }
 void ProcessX::startCommand() {
 	#ifdef Q_WS_WIN
@@ -866,4 +870,7 @@ const QString& ProcessX::getFile(){
 }
 const QString& ProcessX::getCommandLine(){
 	return cmd;
+}
+bool ProcessX::showStdout() const{
+	return stdoutEnabled;
 }

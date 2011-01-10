@@ -297,7 +297,7 @@ signals:
 	void syncSource(const QString& sourceFile, int line, bool activate);
 	void fileDropped(const QUrl& url);
 
-	void runCommand(const QString& command, bool waitForEnd, bool showStdout);
+	void runCommand(const QString& command, bool waitForEnd);
 
 	void triggeredAbout();
 	void triggeredManual();

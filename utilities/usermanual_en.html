@@ -873,6 +873,11 @@ To launch xdvi from TexMakerX and enable inverse search : <span class="command">
 <h3>kdvi</h3>
 To launch kdvi from TexMakerX : <span class="command">kdvi "file:%.dvi#src:@ ?c:m.tex"</span>
 
+<h3>Okular</h3>
+To launch okular from TexMakerX: <span class="command">okular --unique %.dvi#src:@?c:m.tex</span><br><br>
+To launch TexMakerX from Okular: <span class="command">texmakerx %f -line %l</span>
+
+
 <h3>Skim</h3>
 To launch Skim from TexMakerX: <span class="command">(your Skim path)/Contents/SharedSupport/displayline @ ?am.pdf ?c:ame</span><br><br>
 To launch TexMakerX from skim : Command: <span class="command">/applications/texmakerx.app/contents/macos/texmakerx</span> with arguments: <span class="command">"%file" -line %line </span><br><br>
@@ -884,7 +889,7 @@ A possible value for <i>(your Skim path)</i> is <span class="command">/Applicati
 TexMakerX file [-master] [-line xx] [--start-always]<br>
 With the "-master" option, the document will be automatically defined as a "master" document.<br>
 With the "-line xx" option, TexMakerX will ask you if you want to jump to the xx line after loading the document.<br>
-With the "--start-always" option, TexMakerX will start, even if another instance of it is already running
+With the "--start-always" option, TexMakerX will start, even if another instance of it is already running.
 </p>
 <h2><a name="SECTION39">4.10 Keyboard shortcuts</a></h2>
 <p>

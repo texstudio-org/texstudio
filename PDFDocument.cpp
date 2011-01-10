@@ -1560,7 +1560,7 @@ void PDFDocument::reloadWhenIdle()
 }
 
 void PDFDocument::runExternalViewer(){
-	emit runCommand(externalViewerCmdLine, false, false);
+	emit runCommand(externalViewerCmdLine, false);
 }
 
 void PDFDocument::closeSomething(){
