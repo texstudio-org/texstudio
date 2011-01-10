@@ -20,7 +20,8 @@ QSet<QString> LatexParser::mathStopCommands = QSet<QString>::fromList(QStringLis
 QSet<QString> LatexParser::tabularEnvirons = QSet<QString>::fromList(QStringList() << "tabular" << "tabularx" << "longtable");
 QSet<QString> LatexParser::fileCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input" << "\\includegraphics");
 QSet<QString> LatexParser::includeCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input");
-QSet<QString> LatexParser::usepackageCommands = QSet<QString>::fromList(QStringList() << "\\usepackage");
+QSet<QString> LatexParser::usepackageCommands = QSet<QString>::fromList(QStringList() << "\\usepackage" << "\\documentclass");
+QMultiHash<QString,QString> LatexParser::packageAliases;
 QStringList LatexParser::structureCommands = QStringList(); //see texmaker.cpp
 
 LatexParser::LatexParser(){
@@ -1108,4 +1109,25 @@ void LatexParser::substract(LatexParser elem){
     userdefinedCommands.subtract(elem.userdefinedCommands);
     tabbingCommands.subtract(elem.tabbingCommands);
     tabularCommands.subtract(elem.tabularCommands);
+}
+
+void importCwlAliases(){
+    QString fn=findResourceFile("completion/cwlAliases.dat");
+    QFile tagsfile(fn);
+    if (tagsfile.open(QFile::ReadOnly)) {
+	    QString line;
+	    QString alias;
+	    while (!tagsfile.atEnd()) {
+		    line = tagsfile.readLine().trimmed();
+		    if(line.startsWith("#"))
+			continue;
+		    if(line.endsWith(":")){
+			alias=line.left(line.length()-1);
+			continue;
+		    }
+		    if(!alias.isEmpty()){
+			LatexParser::packageAliases.insertMulti(alias,line);
+		    }
+	    }
+    }
 }

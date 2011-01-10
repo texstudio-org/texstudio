@@ -78,6 +78,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	outputView=0;
 	templateSelectorDialog=0;
 
+	importCwlAliases();
+
 	mainSpeller=new SpellerUtility();;
 	mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);
 
