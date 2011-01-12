@@ -42,7 +42,7 @@ public:
 		editor->cursor().insertText(text);
 		if (editor->cursor().columnNumber()+1>curStart){
 			completer->widget->show();
-		    }
+		}
 
 	}
 
@@ -58,6 +58,12 @@ public:
 			//remove current text for correct case
 			for (int i=maxWritten-cursor.columnNumber(); i>0; i--) cursor.deleteChar();
 			for (int i=cursor.columnNumber()-curStart; i>0; i--) cursor.deletePreviousChar();
+			if (!autoOverridenText.isEmpty()){
+				cursor.insertText(autoOverridenText);
+				cursor.movePosition(autoOverridenText.length(), QDocumentCursor::Left);
+				editor->resizeAutoOverridenPlaceholder(cursor, autoOverridenText.size());
+				autoOverridenText="";
+			}
 			//cursor.endEditBlock(); //doesn't work and lead to crash when auto indentation is enabled => TODO:figure out why
 			//  cursor.setColumnNumber(curStart);
 			cw.insertAt(editor,&cursor,LatexCompleter::config && LatexCompleter::config->usePlaceholders,true);
@@ -253,6 +259,13 @@ public:
 				QString curWord = getCurWord();
 				if (curWord=="\\" || !LatexCompleter::config || !LatexCompleter::config->eowCompletes) {
 					resetBinding();
+					if (!autoOverridenText.isEmpty() && !editor->isAutoOverrideText(written)) {
+						editor->insertText(autoOverridenText);
+						QDocumentCursor c = editor->cursor();
+						c.movePosition(autoOverridenText.length(), QDocumentCursor::Left);
+						editor->setCursor(c);
+						editor->resizeAutoOverridenPlaceholder(c, autoOverridenText.size());
+					}
 					return false;
 				}
 				const QList<CompletionWord> &words=completer->listModel->getWords();
@@ -304,6 +317,7 @@ public:
 
 	void resetBinding() {
 		showMostUsed=false;
+		QString curWord = getCurWord();
 		if (!active) return;
 		QToolTip::hideText();
 		//reenable auto close chars
@@ -341,6 +355,8 @@ public:
 	bool isActive() {
 		return active;
 	}
+
+	QString autoOverridenText;
 private:
 	bool active;
 	bool showAlways;
@@ -679,7 +695,7 @@ void LatexCompleter::setAbbreviations(const QStringList &Abbrevs,const QStringLi
 	listModel->setAbbrevWords(wordsAbbrev);
 }
 
-void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool normalText, bool forceRef) {
+void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) {
 	Q_ASSERT(list); Q_ASSERT(listModel); Q_ASSERT(completerInputBinding);
 	if (editor != newEditor) {
 		if (editor) disconnect(editor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
@@ -718,23 +734,23 @@ void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool nor
 	}
 	widget->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
 	//widget->show();
-	if (normalText) listModel->baselist=listModel->wordsText;
+	if (flags & CF_NORMAL_TEXT) listModel->baselist=listModel->wordsText;
 	else listModel->baselist=listModel->wordsCommands;
 	listModel->baselist+=listModel->wordsAbbrev;
 	qSort(listModel->baselist.begin(),listModel->baselist.end());
-	if (c.previousChar()!='\\' || forceVisibleList) {
+	if (c.previousChar()!='\\' || (flags & CF_FORCE_VISIBLE_LIST)) {
 		int start=c.columnNumber()-1;
-		if (normalText) start=0;
+		if (flags & CF_NORMAL_TEXT) start=0;
 		QString eow="~!@#$%^&*()_+}|:\"<>?,./;[]-= \n\r`+�\t";
-		if (normalText) eow+="{";
-		if(forceRef) eow="\\";
+		if (flags & CF_NORMAL_TEXT) eow+="{";
+		if (flags & CF_FORCE_REF) eow="\\";
 		QString lineText=c.line().text();
 		for (int i=c.columnNumber()-1; i>=0; i--) {
 			if (lineText.at(i)==QChar('\\')) {
 				start=i;
 				break;
 			} else if (eow.contains(lineText.at(i))) {
-				if (normalText) start=i+1;
+				if (flags & CF_NORMAL_TEXT) start=i+1;
 				break;
 			}
 		}
@@ -744,6 +760,8 @@ void LatexCompleter::complete(QEditor *newEditor,bool forceVisibleList, bool nor
 	//line.document()->cursor(0,0).insertText(QString::number(offset.x())+":"+QString::number(offset.y()));
 	connect(editor,SIGNAL(cursorPositionChanged()),this,SLOT(cursorPositionChanged()));
 	
+	completerInputBinding->autoOverridenText = (flags & CF_OVERRIDEN_BACKSLASH)?"\\":"";
+
 	if (config && config->completeCommonPrefix) completerInputBinding->completeCommonPrefix();
 }
 

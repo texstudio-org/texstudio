@@ -44,7 +44,7 @@ public:
 //  FindWidget *findwidget;
 	//Functions affecting the editor
 
-	void complete(bool forceVisibleList, bool normalText=false, bool forceRef=false);
+	void complete(int flags);
 	void jumpChangePositionBackward();
 	void jumpChangePositionForward();
 	void jumpToBookmark(int bookmarkNumber);

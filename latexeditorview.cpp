@@ -68,8 +68,10 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 	if (LatexEditorView::completer && LatexEditorView::completer->acceptTriggerString(event->text()))  {
 		//update completer if necessary
 		editor->emitNeedUpdatedCompleter();
+		bool autoOverriden = editor->isAutoOverrideText(event->text());
 		editor->insertText(event->text());
-		LatexEditorView::completer->complete(editor,false);
+		if (autoOverriden) LatexEditorView::completer->complete(editor,LatexCompleter::CF_OVERRIDEN_BACKSLASH);
+		else LatexEditorView::completer->complete(editor,0);
 		return true;
 	}
 	if (!keyToReplace) return false;
@@ -256,10 +258,10 @@ void LatexEditorView::viewActivated(){
 }
 
 
-void LatexEditorView::complete(bool forceVisibleList, bool normalText, bool forceRef) {
+void LatexEditorView::complete(int flags) {
 	if (!LatexEditorView::completer) return;
 	setFocus();
-	LatexEditorView::completer->complete(editor,forceVisibleList,normalText,forceRef);
+	LatexEditorView::completer->complete(editor,LatexCompleter::CompletionFlags(flags));
 }
 void LatexEditorView::jumpChangePositionBackward() {
 	if (changePositions.size()==0) return;
