@@ -1239,6 +1239,14 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation>Automaticky spustit doplňování při psaní LaTeXových příkazů</translation>
     </message>
+    <message>
+        <source>Border</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Synchronized files types:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1978,6 +1986,18 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Souborový název: %1&lt;/b&gt;</translation>
     </message>
+    <message>
+        <source>all</source>
+        <translation type="unfinished">Vše</translation>
+    </message>
+    <message>
+        <source>most used</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>press shift+space to change view</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LatexDocument</name>
@@ -2598,6 +2618,22 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <message>
         <source>Ctrl+PgDown</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation type="unfinished">&amp;Úpravy</translation>
+    </message>
+    <message>
+        <source>&amp;Find...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find &amp;again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+M, F3</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3879,10 +3915,21 @@ V nahrazovacím textu jsou \1 až \9 nahrazeny pomocí naleziště odpovídajíc
     </message>
 </context>
 <context>
+    <name>ShortcutComboBox</name>
+    <message>
+        <source>&lt;default&gt;</source>
+        <translation type="unfinished">&lt;Výchozí&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;none&gt;</source>
+        <translation type="unfinished">&lt;Žádný&gt;</translation>
+    </message>
+</context>
+<context>
     <name>ShortcutDelegate</name>
     <message>
         <source>&lt;default&gt;</source>
-        <translation>&lt;Výchozí&gt;</translation>
+        <translation type="obsolete">&lt;Výchozí&gt;</translation>
     </message>
     <message>
         <source>&lt;none&gt;</source>
@@ -4037,6 +4084,18 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     <message>
         <source>tabbing command outside tabbing env</source>
         <translation>Zarážkový příkaz vně zarážkového prostředí</translation>
+    </message>
+    <message>
+        <source>more cols in tabular than specified</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cols in tabular missing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\\ missing</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5600,6 +5659,32 @@ Používáte ovšem verzi programu TexMakerX, která byla sestavena bez vnitřn�
         <source>&amp;Idefix</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>S&amp;VN...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SVN update &amp;work directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lock &amp;PDF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check in P&amp;DF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Documents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You are trying to save the file under the name %1, but a file with this name is already open.
+TexMakerX does not support multiple instances of the same file.
+Are you sure you want to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -5965,6 +6050,14 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
         <source>Menu %1</source>
         <translation>Nabídka %1</translation>
     </message>
+    <message>
+        <source>-</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>+</source>
+        <translation type="unfinished">+</translation>
+    </message>
 </context>
 <context>
     <name>UserQuickDialog</name>
@@ -6030,6 +6123,14 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
     <message>
         <source>...</source>
         <translation>...</translation>
+    </message>
+    <message>
+        <source>+</source>
+        <translation type="unfinished">+</translation>
+    </message>
+    <message>
+        <source>-</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
