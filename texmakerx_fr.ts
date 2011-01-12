@@ -1104,6 +1104,14 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation>Complétion automatique pour les commandes LaTeX</translation>
     </message>
+    <message>
+        <source>Border</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Synchronized files types:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>

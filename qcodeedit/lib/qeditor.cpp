@@ -1947,6 +1947,9 @@ int QEditor::currentPlaceHolder() const
 const PlaceHolder& QEditor::getPlaceHolder(int i) const{
 	return m_placeHolders.at(i);
 }
+
+/*! Checks if there exists a placeholder that will be auto overriden by inserting string s
+*/
 bool QEditor::isAutoOverrideText(const QString& s) const{
 	const QDocumentCursor& c= m_cursor;
 	if (c.hasSelection() || (flag(Overwrite) && !c.atLineEnd()))
@@ -1959,6 +1962,11 @@ bool QEditor::isAutoOverrideText(const QString& s) const{
 	}
 	return false;
 }
+
+/*! Creates a temporary auto overriden placeholder at position start with length length, and
+    merges it with a directly following placeholder (equivalent to extending the following placeholder
+    by length characters to the left)
+*/
 void QEditor::resizeAutoOverridenPlaceholder(const QDocumentCursor& start, int length){
 	for (int i=0;i<m_placeHolders.size();i++) {
 		PlaceHolder& ph = m_placeHolders[i];
