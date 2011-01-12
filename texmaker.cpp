@@ -2284,7 +2284,7 @@ void Texmaker::NormalCompletion() {
 		i++;
 	}
 
-	if(c.previousChar()==QChar('\\')) currentEditorView()->complete(true);
+	if(c.previousChar()==QChar('\\')) currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
 	else {
 		// check further with reduced eow
 		eow="}\\ ";
@@ -2296,11 +2296,11 @@ void Texmaker::NormalCompletion() {
 		if(c.previousChar()==QChar('\\')){
 			QString cmd=word.mid(col-i-j);
 			if(cmd.startsWith("ref{")||cmd.startsWith("pageref{")){
-				currentEditorView()->complete(true,false,true);
+				currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_REF);
 				return;
 			}
 			if(cmd.startsWith("begin{")||cmd.startsWith("end{")){
-				currentEditorView()->complete(true,false,false);
+				currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
 				return;
 			}
 		}
@@ -2335,7 +2335,7 @@ void Texmaker::NormalCompletion() {
 			}
 
 			completer->setAdditionalWords(words, true);
-			currentEditorView()->complete(true,true);
+			currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_NORMAL_TEXT);
 		}
 	}
 }
@@ -2352,7 +2352,7 @@ void Texmaker::InsertEnvironmentCompletion() {
 		c.insertText(environmentStart);//remaining part is up to the completion engine
 	}
 
-	currentEditorView()->complete(true);
+	currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
 }
 // tries to complete normal text
 // only starts up if already 2 characters have been typed in
@@ -2398,7 +2398,7 @@ void Texmaker::InsertTextCompletion() {
 		}
 
 		completer->setAdditionalWords(words, true);
-		currentEditorView()->complete(true,true);
+		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_NORMAL_TEXT);
 	}
 }
 

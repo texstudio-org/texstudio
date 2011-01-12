@@ -29,10 +29,13 @@ class LatexCompleterConfig;
 class LatexCompleter : public QObject  {
 	Q_OBJECT
 public:
+	enum CompletionFlag { CF_FORCE_VISIBLE_LIST = 1, CF_NORMAL_TEXT = 2, CF_FORCE_REF = 4, CF_OVERRIDEN_BACKSLASH=8};
+	Q_DECLARE_FLAGS(CompletionFlags, CompletionFlag);
+
 	LatexCompleter(QObject *p = 0);
 	virtual ~LatexCompleter();
 
-	void complete(QEditor *newEditor, bool forceVisibleList, bool normalText=false, bool forceRef=false);
+	void complete(QEditor *newEditor, const CompletionFlags &flags);
 	void setAdditionalWords(const QStringList &newwords, bool normalTextList=false);
 	void setAbbreviations(const QStringList &Abbrevs,const QStringList &Tags);
 

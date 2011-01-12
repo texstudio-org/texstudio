@@ -377,7 +377,9 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		int placeHolderCount() const;
 		int currentPlaceHolder() const;
 		const PlaceHolder& getPlaceHolder(int i) const;
-		
+		bool isAutoOverrideText(const QString& s) const;
+		void resizeAutoOverridenPlaceholder(const QDocumentCursor& start, int length);
+
 		bool nextPlaceHolder();
 		bool previousPlaceHolder();
 		void setPlaceHolder(int i, bool selectCursors=true);

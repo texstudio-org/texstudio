@@ -192,7 +192,7 @@ void LatexCompleterTest::simple(){
 	edView->editor->document()->setText(text);
 	edView->editor->setCursor(edView->editor->document()->cursor(line,offset));
 	edView->getCompleter()->setAdditionalWords(QStringList() << "\\a{" << "\\b" << "\\begin{alignat}{n}\n\\end{alignat}"); //extra words needed for test
-	edView->complete(false);
+	edView->complete(0);
 	foreach (const QString& s, log){
 		char key = s.at(0).toAscii();
 		QTest::keyClick(edView->editor, key);

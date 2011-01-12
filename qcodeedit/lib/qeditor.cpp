@@ -1947,6 +1947,28 @@ int QEditor::currentPlaceHolder() const
 const PlaceHolder& QEditor::getPlaceHolder(int i) const{
 	return m_placeHolders.at(i);
 }
+bool QEditor::isAutoOverrideText(const QString& s) const{
+	const QDocumentCursor& c= m_cursor;
+	if (c.hasSelection() || (flag(Overwrite) && !c.atLineEnd()))
+		return false;
+	for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
+		if ( m_placeHolders[i].autoOverride && m_placeHolders[i].cursor.lineNumber() == c.lineNumber() &&
+		     m_placeHolders[i].cursor.anchorColumnNumber() == c.anchorColumnNumber() &&
+		     m_placeHolders[i].cursor.selectedText().startsWith(s) ) {
+		return true;
+	}
+	return false;
+}
+void QEditor::resizeAutoOverridenPlaceholder(const QDocumentCursor& start, int length){
+	for (int i=0;i<m_placeHolders.size();i++) {
+		PlaceHolder& ph = m_placeHolders[i];
+		if (ph.autoOverride &&
+		    ph.cursor.lineNumber() == start.lineNumber() &&
+		    ph.cursor.anchorColumnNumber() == start.columnNumber() + length) {
+			ph.cursor.setAnchorColumnNumber(start.columnNumber());
+		}
+	}
+}
 /*!
 	\brief Set the current placeholder to use
 
@@ -4328,7 +4350,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		c.removeSelectedText();
 	} else if ( flag(Overwrite) && !c.atLineEnd() )
 		c.deleteChar();
-	else {
+	else { //see isAutoOverrideText()
 		for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
 			if ( m_placeHolders[i].autoOverride && m_placeHolders[i].cursor.lineNumber() == c.lineNumber() &&
 			     m_placeHolders[i].cursor.anchorColumnNumber() == c.anchorColumnNumber() &&
