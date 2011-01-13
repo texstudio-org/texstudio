@@ -4039,6 +4039,7 @@ void Texmaker::updateCompleter() {
 	//add cite commands from the cwls to LatexParser::citeCommands
 	LatexCompleterConfig *conf=configManager.completerConfig;
 	QStringList citeCommands=conf->words;
+	citeCommands<<words;
 	citeCommands=citeCommands.filter(QRegExp("^\\\\[Cc]ite.*"));
 	foreach(QString elem,citeCommands)
 		LatexParser::citeCommands.insert(elem.remove("{%<keylist%>}"));
