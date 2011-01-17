@@ -41,3 +41,6 @@ class-beamer
 latex-document
 latex-mathsymbols
 tex
+hyperref:
+hyperref
+nameref
