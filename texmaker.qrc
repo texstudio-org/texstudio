@@ -258,6 +258,7 @@
         <file>completion/microtype.cwl</file>
         <file>completion/multicol.cwl</file>
         <file>completion/multido.cwl</file>
+	<file>completion/nameref.cwl</file>
         <file>completion/natbib.cwl</file>
         <file>completion/nicefrac.cwl</file>
         <file>completion/nomencl.cwl</file>
@@ -307,6 +308,7 @@
         <file>completion/xspace.cwl</file>
         <file>completion/xtab.cwl</file>
         <file>completion/yfonts.cwl</file>
+	<file>completion/cwlAliases.dat</file>
         <file>tags/asymptote_tags.xml</file>
         <file>tags/brackets_tags.xml</file>
         <file>tags/metapost_tags.xml</file>
