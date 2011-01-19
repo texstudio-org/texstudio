@@ -311,7 +311,8 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	fmConfig->addCategory(tr("Line highlighting"))     <<"line:error" <<"line:warning" <<"line:badbox" <<"line:bookmark" <<"line:bookmark0" <<"line:bookmark1" <<"line:bookmark2" <<"line:bookmark3" <<"line:bookmark4" <<"line:bookmark5" <<"line:bookmark6"  <<"line:bookmark7" <<"line:bookmark8"<<"line:bookmark9"<<"current";
 	fmConfig->addCategory(tr("Search")) <<"search"<<"replacement"<<"selection";
 
-	fmConfig->addScheme("",QDocument::formatFactory());
+	connect(ui.spinBoxSize, SIGNAL(valueChanged(int)), fmConfig, SLOT(setBasePointSize(int)));
+	
 //fmConfig->setMaximumSize(490,300);
 //fmConfig->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Ignored);
 	(new QBoxLayout(QBoxLayout::TopToBottom, ui.formatConfigBox))->insertWidget(0,fmConfig);

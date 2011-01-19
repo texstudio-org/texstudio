@@ -137,7 +137,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>10</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">

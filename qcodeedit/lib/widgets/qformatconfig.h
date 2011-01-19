@@ -60,6 +60,7 @@ class QCE_EXPORT QFormatConfig : public QWidget, private Ui::FormatConfig
 		
 		void setCurrentScheme(QFormatScheme *scheme);
 		
+		void setBasePointSize(int basePointSize);
 	protected:
 		virtual void hideEvent(QHideEvent *e);
 		
@@ -73,6 +74,8 @@ class QCE_EXPORT QFormatConfig : public QWidget, private Ui::FormatConfig
 		bool m_autonomous;
 		QFormatScheme *m_currentScheme;
 		QList<QFormatScheme*> m_schemes;
+
+		int basePointSize;
 };
 
 #endif // _QFORMAT_CONFIG_H_
