@@ -968,11 +968,11 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>Border</source>
-        <translation type="unfinished"></translation>
+        <translation>Szegély</translation>
     </message>
     <message>
         <source>Synchronized files types:</source>
-        <translation type="unfinished"></translation>
+        <translation>Szinkronizált fájltípusok:</translation>
     </message>
 </context>
 <context>
@@ -1693,15 +1693,15 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>all</source>
-        <translation type="unfinished"></translation>
+        <translation>mind</translation>
     </message>
     <message>
         <source>most used</source>
-        <translation type="unfinished"></translation>
+        <translation>leggyakrabban használt</translation>
     </message>
     <message>
         <source>press shift+space to change view</source>
-        <translation type="unfinished"></translation>
+        <translation>Nézetmód váltáshot nyomja meg a shift+space billentyűket</translation>
     </message>
 </context>
 <context>
@@ -2260,19 +2260,19 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation type="unfinished">&amp;Szerkesztés</translation>
+        <translation>&amp;Szerkesztés</translation>
     </message>
     <message>
         <source>&amp;Find...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Keresés...</translation>
     </message>
     <message>
         <source>Find &amp;again</source>
-        <translation type="unfinished"></translation>
+        <translation>Keresés &amp;újra</translation>
     </message>
     <message>
         <source>Ctrl+M, F3</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+M, F3</translation>
     </message>
 </context>
 <context>
@@ -3096,6 +3096,22 @@ Akarja menteni ezeket?</translation>
         <source>replacement</source>
         <translation>helyettesítés</translation>
     </message>
+    <message>
+        <source>size</source>
+        <translation>méret</translation>
+    </message>
+    <message>
+        <source>prio</source>
+        <translation>prio</translation>
+    </message>
+    <message>
+        <source>Point size</source>
+        <translation>Pontméret</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation>Elsődleges</translation>
+    </message>
 </context>
 <context>
     <name>QLanguageFactory</name>
@@ -3493,11 +3509,11 @@ Néhány példa:
     <name>ShortcutComboBox</name>
     <message>
         <source>&lt;default&gt;</source>
-        <translation type="unfinished">&lt;alapértelmezett&gt;</translation>
+        <translation>&lt;alapértelmezett&gt;</translation>
     </message>
     <message>
         <source>&lt;none&gt;</source>
-        <translation type="unfinished">&lt;nincs&gt;</translation>
+        <translation>&lt;nincs&gt;</translation>
     </message>
 </context>
 <context>
@@ -3662,15 +3678,15 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
     <message>
         <source>more cols in tabular than specified</source>
-        <translation type="unfinished"></translation>
+        <translation>A megadottól több oszlop a tabulátor környezetben</translation>
     </message>
     <message>
         <source>cols in tabular missing</source>
-        <translation type="unfinished"></translation>
+        <translation>A megadottól kevesebb oszlop a tabulátor környezetben</translation>
     </message>
     <message>
         <source>\\ missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiányzó \\</translation>
     </message>
 </context>
 <context>
@@ -4770,29 +4786,30 @@ However, you are using a version of TexMakerX that was compiled without the inte
     </message>
     <message>
         <source>S&amp;VN...</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;VN...</translation>
     </message>
     <message>
         <source>SVN update &amp;work directory</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;SVN frissítési- és munkakönyvtár</translation>
     </message>
     <message>
         <source>Lock &amp;PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;PDF bezárása</translation>
     </message>
     <message>
         <source>Check in P&amp;DF</source>
-        <translation type="unfinished"></translation>
+        <translation>Ellenőrzés P&amp;DF-ben</translation>
     </message>
     <message>
         <source>Open Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokumentumok megnyitása</translation>
     </message>
     <message>
         <source>You are trying to save the file under the name %1, but a file with this name is already open.
 TexMakerX does not support multiple instances of the same file.
 Are you sure you want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>A(z) %1 nevű fájlt próbálja menteni, de ilyen nevű fájl már létezik.
+Biztos, hogy folytatni akarja?</translation>
     </message>
 </context>
 <context>
@@ -5075,11 +5092,11 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
     </message>
     <message>
         <source>-</source>
-        <translation type="unfinished"></translation>
+        <translation>-</translation>
     </message>
     <message>
         <source>+</source>
-        <translation type="unfinished">+</translation>
+        <translation>+</translation>
     </message>
 </context>
 <context>
@@ -5149,11 +5166,11 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
     </message>
     <message>
         <source>+</source>
-        <translation type="unfinished">+</translation>
+        <translation>+</translation>
     </message>
     <message>
         <source>-</source>
-        <translation type="unfinished"></translation>
+        <translation>-</translation>
     </message>
 </context>
 <context>
