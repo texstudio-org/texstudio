@@ -64,7 +64,7 @@ void QFormat::setPriority(int p){
 	if ( weight == QFont::Bold ) minPriority++;
 	if ( ! fontFamily.isEmpty() ) minPriority++;
 	if ( pointSize ) minPriority++;
-	realPriority = qMax(priority,minPriority);
+	realPriority = priority + minPriority;
 }
 
 
