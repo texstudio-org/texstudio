@@ -948,6 +948,9 @@ bool ConfigManager::execConfigDialog() {
 	confDlg->ui.checkBoxTabbedLogView->setChecked(tabbedLogView);
 	confDlg->ui.checkBoxTabbedStructureView->setChecked(!newLeftPanelLayout);
 
+	confDlg->fmConfig->setBasePointSize( editorConfig->fontSize );
+	confDlg->fmConfig->addScheme("",QDocument::formatFactory());
+
 	// custom higlighting
 	{
 	    confDlg->environModes=&enviromentModes;

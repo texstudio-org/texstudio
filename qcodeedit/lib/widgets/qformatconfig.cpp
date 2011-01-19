@@ -48,8 +48,8 @@ QFormatConfig::QFormatConfig(QWidget *w)
 
 	m_table->verticalHeader()->hide();
 
-	m_table->setColumnCount(11); // instead of 13
-	for  (int i=0;i<11;i++)
+	m_table->setColumnCount(13);
+	for  (int i=0;i<m_table->columnCount();i++)
 		if ( !m_table->horizontalHeaderItem(i) )
 			m_table->setHorizontalHeaderItem(i, new QTableWidgetItem());
 	Q_ASSERT(m_table->horizontalHeaderItem(0)!=0);
@@ -64,12 +64,13 @@ QFormatConfig::QFormatConfig(QWidget *w)
 	m_table->horizontalHeaderItem(8)->setIcon(QIcon(":/images/qcodeedit/fillcolor.png"));
 	m_table->horizontalHeaderItem(9)->setIcon(QIcon(":/images/qcodeedit/strokecolor.png"));
 	m_table->horizontalHeaderItem(10)->setText(tr("font"));
-	//m_table->horizontalHeaderItem(11)->setText(tr("size")); // don't vary point size as the drwaing engine can't cope with it
-	//m_table->horizontalHeaderItem(12)->setText(tr("prio"));  //TODO: images
+	m_table->horizontalHeaderItem(11)->setText(tr("size")); // don't vary point size as the drwaing engine can't cope with it
+	m_table->horizontalHeaderItem(12)->setText(tr("prio"));  //TODO: images
 
 	connect(m_table, SIGNAL( itemSelectionChanged() ),
 			m_table, SLOT  ( clearSelection() ) );
 
+	basePointSize = 0;
 }
 
 /*!
@@ -194,6 +195,10 @@ void QFormatConfig::setCurrentScheme(QFormatScheme *s)
 	}
 }
 
+void QFormatConfig::setBasePointSize(int basePointSize){
+	this->basePointSize = basePointSize?basePointSize:10;
+}
+
 /*!
 	\brief Apply changes made to the currently edited scheme, if any
 */
@@ -245,14 +250,14 @@ void QFormatConfig::apply()
 			fcb = qobject_cast<QComboBox*>(m_table->cellWidget(i, 10));
 			fmt.fontFamily = fcb->currentText()==tr("<default>") ? "" : fcb->currentText();
 
-			/*
-			item = m_table->item(i,11);
-			fmt.pointSize = item->text().toInt();
-			*/
+			QDoubleSpinBox* sb= qobject_cast<QDoubleSpinBox*>(m_table->cellWidget(i, 11));
+			int newSize = qRound(sb->value()/100.0*basePointSize);
+			if (newSize == basePointSize) fmt.pointSize = 0;
+			else fmt.pointSize = newSize;
 
-			/*item = m_table->item(i,12);
+			item = m_table->item(i,12);
 			fmt.setPriority(item->text().toInt());
-			*/
+
 			m_currentScheme->setFormat(fid, fmt);
 		}
 
@@ -376,27 +381,22 @@ void QFormatConfig::cancel()
 				if(ind>-1) fcmb->setCurrentIndex(ind);
 				else fcmb->setCurrentIndex(0);
 				m_table->setCellWidget(r, 10, fcmb);
-				//item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
-				//item->setText(fmt.fontFamily);
-				m_table->cellWidget(r, 10)->setToolTip(tr("Font family"));
-				//m_table->setItem(i, 10, item);
+				fcmb->setToolTip(tr("Font family"));
 
-				/*
-				don't vary point size as the drawing engine can't cope
-				item = new QTableWidgetItem;
-				item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
-				item->setText(QString::number(fmt.pointSize));
-				item->setToolTip(tr("Point size"));
-				m_table->setItem(i, 11, item);
-				*/
+				QDoubleSpinBox* sb = new QDoubleSpinBox();
+				sb->setMaximum(100000);
+				sb->setMinimum(1);
+				sb->setSuffix("%");
+				double v = fmt.pointSize?100.0*fmt.pointSize/basePointSize:100;
+				sb->setValue(v);
+				sb->setToolTip(tr("Point size"));
+				m_table->setCellWidget(r, 11, sb);
 
-				/*
 				item = new QTableWidgetItem;
 				item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
 				item->setText(QString::number(fmt.priority));
 				item->setToolTip(tr("Priority"));
-				m_table->setItem(i, 12, item);
-				*/
+				m_table->setItem(r, 12, item);
 				r++;
 			}
 		}
@@ -508,21 +508,19 @@ QList<int> QFormatConfig::modifiedFormats() const
 				continue;
 			}
 
-			/*
-			item = m_table->item(i, 11);
-			if (item->text().toInt() != fmt.pointSize){
+			QDoubleSpinBox* sb= qobject_cast<QDoubleSpinBox*>(m_table->cellWidget(i, 11));
+			if (qRound(sb->value()/100.0*basePointSize) != fmt.pointSize &&
+			    (qRound(sb->value()/100.0*basePointSize) != basePointSize || fmt.pointSize != 0)){
 				hasModif << i;
 				continue;
 			}
-			*/
 
-			/*
+
 			item = m_table->item(i, 12);
 			if (item->text().toInt() != fmt.priority){
 				hasModif << i;
 				continue;
 			}
-			*/
 		}
 	}
 
