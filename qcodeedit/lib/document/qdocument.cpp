@@ -3198,7 +3198,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 
 		int fmt = fullSel ? FORMAT_SELECTION : 0;
-		int lastFont = 0;
+		int lastFont = -1;
 		QDocumentPrivate *d = m_doc->impl();
 		const int ts = d->m_tabStop;
 		const int maxWidth = xOffset + vWidth;
