@@ -122,8 +122,10 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 		bool mc_found=false;
 		do{
 		    res=rxMultiColumn.indexIn(line,pos+1);
-		    //pos=line.indexOf(QRegExp("[^\\\\]&"),pos+1);
-		    pos=line.indexOf(QRegExp("([^\\\\]|^)&"),pos+1);
+		    int wrongPos=line.indexOf("\\&",pos+1);
+		    pos=line.indexOf("&",pos+1);
+		    if(wrongPos>-1 && wrongPos+1==pos)
+			continue;
 		    if(res>-1 && (res<pos || pos<0) ){
 			// multicoulmn before &
 			bool ok;
