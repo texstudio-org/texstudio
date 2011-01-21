@@ -500,15 +500,19 @@ OTHER_FILES += universalinputdialog.*
 
 
 exists(./.svn/entries){
-  svn_revision.target = svn_revision.h
-  svn_revision.depends = .svn/entries  
-  win32:svn_revision.commands = echo $${LITERAL_HASH}define SVN_REVISION_NUMBER \"$(shell svnversion)\" > $$svn_revision.target
-  else:svn_revision.commands = echo \"$${LITERAL_HASH}define SVN_REVISION_NUMBER \\\"$(shell svnversion)\\\"\" > $$svn_revision.target
-  QMAKE_EXTRA_TARGETS += svn_revision
-  !exists(./svn_revision.h): message("svn_revision.h was not found and will be created. Don't worry about the repeated warnings.")
+  win32: {
+    QMAKE_PRE_LINK += svn_revision.bat $${QMAKE_CXX}
+    LIBS += svn_revision.o
+  } else: {
+    svn_revision.target = svn_revision.cpp
+    svn_revision.depends = .svn/entries  
+    svn_revision.commands = echo \"const char* TEXMAKERX_SVN_VERSION = \\\"$(shell svnversion)\\\";\" > $$svn_revision.target
+    QMAKE_EXTRA_TARGETS += svn_revision
+    !exists(./svn_revision.cpp): message("svn_revision.cpp was not found and will be created. Don't worry about repeated warnings.")
+    SOURCES += svn_revision.cpp
+  }
 } else {
-  win32: system(echo $${LITERAL_HASH}define SVN_REVISION_NUMBER \"?\" > svn_revision.h)
-  else:  system(echo $${LITERAL_HASH}define SVN_REVISION_NUMBER \\\"?\\\" > svn_revision.h)
+  system(echo const char * TEXMAKERX_SVN_VERSION = 0; > svn_revision.cpp)
+  SOURCES += svn_revision.cpp
 }
-HEADERS += svn_revision.h
 

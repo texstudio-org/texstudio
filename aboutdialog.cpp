@@ -11,18 +11,13 @@
 
 #include "aboutdialog.h"
 
-
-#include "svn_revision.h"
-#ifndef SVN_REVISION_NUMBER
-#define SVN_REVISION_NUMBER ""
-#endif
-
+extern const char* TEXMAKERX_SVN_VERSION;
 
 AboutDialog::AboutDialog(QWidget *parent)
 		:QDialog(parent) {
 	ui.setupUi(this);
 	ui.textBrowser->setOpenExternalLinks(true);
-	ui.textBrowser->setHtml(tr("<b>TexMakerX 2.0 (SVN " SVN_REVISION_NUMBER ")</b>")  + "<br>" +
+	ui.textBrowser->setHtml(tr("<b>TexMakerX 2.0 (SVN %1)</b>").arg(TEXMAKERX_SVN_VERSION?TEXMAKERX_SVN_VERSION:"??") + "<br>" +
 				tr("Using Qt Version %1, compiled with Qt %2").arg(qVersion()).arg(QT_VERSION_STR) + "<br>" +
 				tr("Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet<br>")+
 				tr("TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun<br>QCodeEdit: Luc Bruant <br>html conversion: ")+QString::fromUtf8("Joël Amblard.</i><br>")+
