@@ -512,7 +512,8 @@ exists(./.svn/entries){
     SOURCES += svn_revision.cpp
   }
 } else {
-  system(echo const char * TEXMAKERX_SVN_VERSION = 0; > svn_revision.cpp)
+  win32: system(echo const char * TEXMAKERX_SVN_VERSION = 0; > svn_revision.cpp)
+  else: system(echo \"const char * TEXMAKERX_SVN_VERSION = 0;\" > svn_revision.cpp)
   SOURCES += svn_revision.cpp
 }
 
