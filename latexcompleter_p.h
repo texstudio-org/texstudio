@@ -4,7 +4,7 @@
 #include "mostQtHeaders.h"
 
 #include "codesnippet.h"
-
+#include "latexcompleter_config.h"
 
 typedef CodeSnippet CompletionWord;
 
@@ -27,8 +27,7 @@ public:
 	void setBaseWords(const QList<CompletionWord> &newwords, bool normalTextList);
 	void setAbbrevWords(const QList<CompletionWord> &newwords);
 	void incUsage(const QModelIndex &index);
-	QMap<int,int> getUsage();
-	void setUsage(const QMap<int,int> &usage);
+	void setConfig(LatexCompleterConfig* newConfig);
 private:
 	friend class LatexCompleter; //TODO: make this unnecessary
 	QList<CompletionWord> words;
@@ -38,6 +37,8 @@ private:
 	QList<CompletionWord> wordsText, wordsCommands,wordsAbbrev;
 	QSet<QChar> acceptedChars;
 	bool mostUsedUpdated;
+
+	static LatexCompleterConfig* config;
 };
 
 #endif // LATEXCOMPLETER_P_H

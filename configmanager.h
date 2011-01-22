@@ -97,7 +97,6 @@ public:
 	//LatexParser (commands for syntax check)
 	LatexParser *ltxCommands;
 
-	QHash<QString,QVariant> completerUsageHash;
 	//webpublish dialog
 	WebPublishDialogConfig * const webPublishDialogConfig;
 	//pdf preview
