@@ -46,7 +46,6 @@ public:
 			completer->widget->show();
 			completer->adjustWidget();
 		}
-
 	}
 
 	bool insertCompletedWord() {
@@ -692,8 +691,7 @@ void LatexCompleter::adjustWidget(){
     int wd=200>maxWordLen?200:maxWordLen;
     QScrollBar *bar=list->verticalScrollBar();
     if(bar && bar->isVisible()){
-	wd+=bar->width();
-	wd+=list->spacing();
+	wd+=bar->width()*2;
     }
     widget->resize(wd,200);
 }
