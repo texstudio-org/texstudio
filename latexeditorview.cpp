@@ -662,7 +662,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				}
 			}
 			QString text=line.text();
-			if(!text.isEmpty()){
+			if(!text.isEmpty() || env==SyntaxCheck::ENV_tabular){
 				QVector<int>fmts=line.getFormats();
 				for(int i=0;i<text.length() && i < fmts.size();i++){
 					if(fmts[i]==verbatimFormat){
