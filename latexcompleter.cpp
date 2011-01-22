@@ -40,8 +40,11 @@ public:
 	void insertText(const QString& text){
 		maxWritten += text.length();
 		editor->cursor().insertText(text);
-		if (editor->cursor().columnNumber()+1>curStart){
+		if (editor->cursor().columnNumber()+1>curStart && !completer->isVisible()){
+			QString wrd=getCurWord();
+			completer->filterList(wrd,showMostUsed);
 			completer->widget->show();
+			completer->adjustWidget();
 		}
 
 	}
@@ -604,8 +607,10 @@ LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0) {
 	list->setModel(listModel);
 	list->setFocusPolicy(Qt::NoFocus);
 	list->setItemDelegate(new CompletionItemDelegate(list));
+	list->setAutoFillBackground(true);
 	editor=0;
 	widget=new QWidget(qobject_cast<QWidget*>(parent()));
+	//widget->setAutoFillBackground(true);
 	QVBoxLayout *layout = new QVBoxLayout;
 	layout->setSpacing(0);
 	tbAbove=new QTabBar();
@@ -653,7 +658,8 @@ void LatexCompleter::setAdditionalWords(const QStringList &newwords, bool normal
 		concated << elem;
 	}
 	listModel->setBaseWords(concated,normalTextList);
-	if (maxWordLen==0 && !normalTextList) {
+	widget->resize(200,200);
+	/*if (maxWordLen==0 && !normalTextList) {
 		int newWordMax=0;
 		QFont f=QApplication::font();
 		f.setItalic(true);
@@ -665,8 +671,31 @@ void LatexCompleter::setAdditionalWords(const QStringList &newwords, bool normal
 			if (temp>newWordMax) newWordMax=temp;
 		}
 		maxWordLen=newWordMax;
-		widget->resize(200>maxWordLen?200:maxWordLen,200);
-	}
+		int wd=200>maxWordLen?200:maxWordLen;
+		wd+=10;
+
+	}*/
+}
+
+void LatexCompleter::adjustWidget(){
+    int newWordMax=0;
+    QFont f=QApplication::font();
+    f.setItalic(true);
+    QFontMetrics fm(f);
+    const QList<CompletionWord> & words=listModel->getWords();
+    for (int i=0; i<words.size(); i++) {
+	    if (words[i].lines.empty() || words[i].placeHolders.empty()) continue;
+	    int temp=fm.width(words[i].lines[0])+words[i].placeHolders[0].size()+10;
+	    if (temp>newWordMax) newWordMax=temp;
+    }
+    maxWordLen=newWordMax;
+    int wd=200>maxWordLen?200:maxWordLen;
+    QScrollBar *bar=list->verticalScrollBar();
+    if(bar && bar->isVisible()){
+	wd+=bar->width();
+	wd+=list->spacing();
+    }
+    widget->resize(wd,200);
 }
 
 void LatexCompleter::setAbbreviations(const QStringList &Abbrevs,const QStringList &Tags){
@@ -757,6 +786,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 			}
 		}
 		completerInputBinding->bindTo(editor,this,true,start);
+		adjustWidget();
 	} else completerInputBinding->bindTo(editor,this,false,c.columnNumber()-1);
 
 	//line.document()->cursor(0,0).insertText(QString::number(offset.x())+":"+QString::number(offset.y()));
