@@ -69,6 +69,7 @@ private:
 
 	void filterList(QString word,bool showMostUsed=false);
 	bool acceptChar(QChar c,int pos);
+	void adjustWidget();
 
 	static QString helpFile;
 	static QHash<QString, QString> helpIndices;
