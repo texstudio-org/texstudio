@@ -2087,6 +2087,25 @@ void Texmaker::ReadSettings() {
 	m_formats->load(*config,true); //load customized formats
 	config->endGroup();
 
+	// read usageCount from file of its own.
+	LatexCompleterConfig *conf=configManager.completerConfig;
+	QFile file(configManager.configFileNameBase+"wordCount.usage");
+	if(file.open(QIODevice::ReadOnly)){
+	    QDataStream in(&file);
+	    quint32 magicNumer,version;
+	    in >>  magicNumer >> version;
+	    if (magicNumer==(quint32)0xA0B0C0D0 && version==1){
+		in.setVersion(QDataStream::Qt_4_0);
+		uint key;
+		int length,usage;
+
+		while (!in.atEnd()) {
+		    in >> key >> length >> usage;
+		    conf->usage.insert(key,qMakePair(length,usage));
+		}
+	    }
+	}
+
 
 	delete config;
 
@@ -2097,7 +2116,6 @@ void Texmaker::SaveSettings() {
 	configManager.centralVisible=centralToolBar->isVisible();
 	// update completion usage
 	LatexCompleterConfig *conf=configManager.completerConfig;
-	conf->usage=completer->getUsage();
 
 	QSettings *config=configManager.saveSettings();
 
@@ -2186,6 +2204,23 @@ void Texmaker::SaveSettings() {
 	config->beginGroup("formats");
 	m_formats->save(*config);
 	config->endGroup();
+
+	// save usageCount in file of its own.
+	QFile file(configManager.configFileNameBase+"wordCount.usage");
+	if(file.open(QIODevice::WriteOnly)){
+	    QDataStream out(&file);
+	    out << (quint32)0xA0B0C0D0;  //magic number
+	    out << (qint32)1; //version
+	    out.setVersion(QDataStream::Qt_4_0);
+	    QMap<uint, QPair<int,int> >::const_iterator i = conf->usage.constBegin();
+	    while (i != conf->usage.constEnd()) {
+		out << i.key();
+		QPair<int,int> elem=i.value();
+		out << elem.first;
+		out << elem.second;
+		++i;
+	    }
+	}
 
 	delete config;
 }
@@ -4060,8 +4095,6 @@ void Texmaker::updateCompleter() {
 			}
 		}
 
-	if(!completionBaseCommandsUpdated)
-	    conf->usage=completer->getUsage();
 	completionBaseCommandsUpdated=false;
 
 	completer->setAdditionalWords(words);

@@ -44,14 +44,11 @@ public:
 	
 	bool acceptTriggerString(const QString& trigger);
 	
-	void setConfig(const LatexCompleterConfig* config);
+	void setConfig(LatexCompleterConfig* config);
 	const LatexCompleterConfig* getConfig() const;
 
 	QString lookupWord(QString id);
 
-	QMap<int,int> getUsage();
-	QHash<QString,int> getUsageHash();
-	
 	bool close();
 	bool isVisible(){
 	    return list->isVisible();
@@ -59,7 +56,7 @@ public:
 private:
 	friend class CompleterInputBinding;
 	friend class CompletionListModel;
-	static const LatexCompleterConfig* config;
+	static LatexCompleterConfig* config;
 	int maxWordLen;
 	QListView * list;
 	CompletionListModel* listModel;

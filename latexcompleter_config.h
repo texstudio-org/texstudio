@@ -16,7 +16,7 @@ public:
 	bool tooltipHelp; // enable ToolTip-Help during completion
 	bool usePlaceholders;
 	QStringList words;
-	QMap<int,int> usage;
+	QMultiMap<uint,QPair<int,int> > usage;
 	
 	void setFiles(const QStringList & newFiles);
 	const QStringList& getLoadedFiles();

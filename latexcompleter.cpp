@@ -427,6 +427,7 @@ public:
 
 
 //----------------------------list model------------------------------------
+LatexCompleterConfig* CompletionListModel::config=0;
 int CompletionListModel::rowCount(const QModelIndex &parent) const {
 	// remove unused argument warning
 	(void) parent;
@@ -502,25 +503,32 @@ void CompletionListModel::incUsage(const QModelIndex &index){
 
     int j=index.row();
     CompletionWord curWord=words.at(j);
+    if(curWord.usageCount<0)
+	return; // don't count text words
 
     for (int i=0; i<wordsCommands.count(); i++) {
 	if(wordsCommands[i].word==curWord.word){
 	    wordsCommands[i].usageCount++;
+	    if(curWord.snippetLength<=0)
+		break; // no ref commands etc. are stored permanently
+	    bool replaced=false;
+	    QList<QPair<int,int> >res=config->usage.values(curWord.index);
+	    for (int j = 0; j < res.size(); ++j) {
+		if (res.at(j).first == curWord.snippetLength){
+		    config->usage.remove(curWord.index,res.at(j));
+		    config->usage.insert(curWord.index,qMakePair(curWord.snippetLength,wordsCommands[i].usageCount));
+		    replaced=true;
+		    break;
+		}
+	    }
+	    if(!replaced)
+		config->usage.insert(curWord.index,qMakePair(curWord.snippetLength,wordsCommands[i].usageCount)); // new word
 	    break;
 	}
     }
 }
 
-QMap<int,int> CompletionListModel::getUsage(){
-    QMap<int,int> result;
-    for (int i=0; i<wordsCommands.count(); i++) {
-	if(wordsCommands[i].usageCount>0){
-	    result.insert(wordsCommands[i].index,wordsCommands[i].usageCount);
-	}
-    }
-    return result;
-}
-
+typedef QPair<int,int> PairIntInt;
 void CompletionListModel::setBaseWords(const QStringList &newwords, bool normalTextList) {
 	QList<CompletionWord> newWordList;
 	acceptedChars.clear();
@@ -528,7 +536,22 @@ void CompletionListModel::setBaseWords(const QStringList &newwords, bool normalT
 	for(int i=0;i<newwords.count();i++) {
 		QString str=newwords.at(i);
 		CompletionWord cw=CompletionWord(str);
-		cw.index=i;
+		if(!normalTextList){
+		    cw.index=qHash(str);
+		    cw.snippetLength=str.length();
+		    cw.usageCount=0;
+		    QList<QPair<int,int> >res=config->usage.values(cw.index);
+		    foreach(PairIntInt elem,res){
+			if(elem.first==cw.snippetLength){
+			    cw.usageCount=elem.second;
+			    break;
+			}
+		    }
+		}else{
+		    cw.index=0;
+		    cw.usageCount=-1;
+		    cw.snippetLength=0;
+		}
 		newWordList.append(cw);
 		foreach(QChar c, str) acceptedChars.insert(c);
 	}
@@ -558,10 +581,8 @@ void CompletionListModel::setAbbrevWords(const QList<CompletionWord> &newwords) 
 	wordsAbbrev=newwords;
 }
 
-void CompletionListModel::setUsage(const QMap<int,int> &usage){
-    for (int i=0; i<wordsCommands.count(); i++) {
-	wordsCommands[i].usageCount=usage.value(wordsCommands[i].index,0);
-    }
+void CompletionListModel::setConfig(LatexCompleterConfig*newConfig){
+	config=newConfig;
 }
 
 
@@ -569,7 +590,7 @@ void CompletionListModel::setUsage(const QMap<int,int> &usage){
 QString LatexCompleter::helpFile;
 QHash<QString, QString> LatexCompleter::helpIndices;
 QHash<QString, int> LatexCompleter::helpIndicesCache;
-const LatexCompleterConfig* LatexCompleter::config=0;
+LatexCompleterConfig* LatexCompleter::config=0;
 
 LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0) {
 	//   addTrigger("\\");
@@ -623,24 +644,6 @@ void LatexCompleter::listClicked(QModelIndex index){
     completerInputBinding->resetBinding();
 }
 
-QHash<QString,int> LatexCompleter::getUsageHash(){
-	QMap<int,int> lstUsage=listModel->getUsage();
-	QHash<QString,int> result;
-	foreach(int key,lstUsage){
-	    QString word=config->words.value(key);
-	    if(!word.isEmpty()){
-		result.insert(word,lstUsage.value(key));
-	    }
-	}
-
-	return result;
-}
-
-QMap<int,int> LatexCompleter::getUsage(){
-    QMap<int,int> lstUsage=listModel->getUsage();
-    return lstUsage;
-}
-
 void LatexCompleter::setAdditionalWords(const QStringList &newwords, bool normalTextList) {
 	QStringList concated;
 	if (config && !normalTextList) concated << config->words;
@@ -650,7 +653,6 @@ void LatexCompleter::setAdditionalWords(const QStringList &newwords, bool normal
 		concated << elem;
 	}
 	listModel->setBaseWords(concated,normalTextList);
-	listModel->setUsage(config->usage);
 	if (maxWordLen==0 && !normalTextList) {
 		int newWordMax=0;
 		QFont f=QApplication::font();
@@ -797,8 +799,9 @@ bool LatexCompleter::hasHelpfile() {
 bool LatexCompleter::acceptTriggerString(const QString& trigger){
 	return trigger=="\\" && (!config || config->enabled);;
 }
-void LatexCompleter::setConfig(const LatexCompleterConfig* config){
+void LatexCompleter::setConfig(LatexCompleterConfig* config){
 	this->config=config;
+	listModel->setConfig(config);
 }
 const LatexCompleterConfig* LatexCompleter::getConfig() const{
 	return config;

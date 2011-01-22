@@ -487,17 +487,9 @@ QSettings* ConfigManager::readSettings() {
 	QStringList cwlFiles=config->value("Editor/Completion Files",QStringList() << "texmakerx.cwl" << "tex.cwl" << "latex-document.cwl" << "latex-mathsymbols.cwl").toStringList();
 	completerConfig->words=loadCwlFiles(cwlFiles,ltxCommands);
 	completerConfig->setFiles(cwlFiles);
-	completerUsageHash=config->value("Editor/Completion Usage",QHash<QString,QVariant>()).toHash();
-	completerConfig->usage.clear();
-	QHashIterator<QString, QVariant> it(completerUsageHash);
-	while (it.hasNext()) {
-	    it.next();
-	    int i=completerConfig->words.indexOf(it.key());
-	    if(i>-1){
-		completerConfig->usage.insert(i,it.value().toInt());
-	    }
-	}
-	
+	// remove old solution aus .ini
+	if(config->contains("Editor/Completion Usage"))
+	    config->remove("Editor/Completion Usage");
 	//web publish dialog
 	webPublishDialogConfig->readSettings(*config);
 
@@ -633,16 +625,6 @@ QSettings* ConfigManager::saveSettings() {
 	if (!completerConfig->getLoadedFiles().isEmpty())
 		config->setValue("Editor/Completion Files",completerConfig->getLoadedFiles());
 
-	QMapIterator<int, int> it(completerConfig->usage);
-	while (it.hasNext()) {
-	    it.next();
-	    QString word=completerConfig->words.value(it.key());
-	    if(!word.isEmpty())
-		completerUsageHash.insert(word,it.value());
-	}
-
-	config->setValue("Editor/Completion Usage",completerUsageHash);
-
 	//web publish dialog
 	webPublishDialogConfig->saveSettings(*config);
 	
@@ -743,16 +725,6 @@ bool ConfigManager::execConfigDialog() {
 		item->setFlags(Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
 		if (loadedFiles.contains(elem)) item->setCheckState(Qt::Checked);
 		else  item->setCheckState(Qt::Unchecked);
-	}
-	// get completion usage and translate to cwl string
-	{ // local declaration of it
-		QMapIterator<int, int> it(completerConfig->usage);
-		while (it.hasNext()) {
-		    it.next();
-		    QString word=completerConfig->words.value(it.key());
-		    if(!word.isEmpty())
-			completerUsageHash.insert(word,it.value());
-		}
 	}
 	//preview
 	confDlg->ui.comboBoxDvi2PngMode->setCurrentIndex(buildManager->dvi2pngMode);
@@ -1034,16 +1006,6 @@ bool ConfigManager::execConfigDialog() {
 		completerConfig->words=loadCwlFiles(newFiles,ltxCommands);
 		completerConfig->setFiles(newFiles);
 
-		completerConfig->usage.clear();
-		QHashIterator<QString, QVariant> it(completerUsageHash);
-		while (it.hasNext()) {
-		    it.next();
-		    int i=completerConfig->words.indexOf(it.key());
-		    if(i>-1){
-			completerConfig->usage.insert(i,it.value().toInt());
-		    }
-		}
-		
 		//preview
 		previewMode=(PreviewMode) confDlg->ui.comboBoxPreviewMode->currentIndex();
 		buildManager->dvi2pngMode=(BuildManager::Dvi2PngMode) confDlg->ui.comboBoxDvi2PngMode->currentIndex();

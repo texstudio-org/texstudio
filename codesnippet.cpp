@@ -71,7 +71,8 @@ CodeSnippet::CodeSnippet(const QString &newWord) {
 	cursorOffset=-1;
 	anchorOffset=-1;
 	usageCount=0;
-	index=-1;
+	index=0;
+	snippetLength=0;
 	QString curLine;
 
 	curLine.reserve(realNewWord.length());
