@@ -98,6 +98,7 @@ private:
         int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat, citationMissingFormat, citationPresentFormat,structureFormat,styleHintFormat,verbatimFormat;
 	
 	friend class DefaultInputBinding;
+	friend class SyntaxCheckTest;
 	static int bookMarkId(int bookmarkNumber);
 
 	static SpellerUtility* speller;
@@ -108,6 +109,8 @@ private:
 	int lastSetBookmark; //only looks at 1..3 (mouse range)
 
 	LatexEditorViewConfig* config;
+
+	void getEnv(int lineNumber,SyntaxCheck::Environment &env,int &cols); // get Environment for syntax checking
 
 	SyntaxCheck SynChecker;
 

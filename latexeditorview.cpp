@@ -631,36 +631,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		if(config->inlineSyntaxChecking) {
 			SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
 			int cols=-1;
-			if (i > 0) {
-				QDocumentLine prev = editor->document()->line(i - 1);
-				REQUIRE(prev.isValid() && prev.matchContext());
-				QNFA* cxt=prev.matchContext()->context;
-				QString cxtDef=QNFADefinition::getContextName(cxt);
-				if(!cxtDef.isEmpty()){
-					int sep=cxtDef.indexOf(":");
-					cxtDef=cxtDef.mid(sep+1);
-					if(cxtDef.startsWith("math")) env=SyntaxCheck::ENV_math;
-					if(cxtDef.startsWith("tabular")){
-					    env=SyntaxCheck::ENV_tabular;
-					    //find start of env
-					    QDocumentLine current=prev;
-					    while(prev.isValid()){
-						if(cxt!=prev.matchContext()->context){
-						    break;
-						}
-						current=prev;
-						prev--;
-					    }
-					    if(current.isValid()){
-						QDocumentCursor cur(current.document(),current.lineNumber(),current.length());
-						cols=LatexTables::getNumberOfColumns(cur);
-					    }
-					}
-					if(cxtDef.startsWith("tabbing")) env=SyntaxCheck::ENV_tabbing;
-					if(cxtDef.startsWith("mathmodeEqnArray")) env=SyntaxCheck::ENV_matrix;
-					if(cxtDef.startsWith("mathmodeMatrix")) env=SyntaxCheck::ENV_matrix;
-				}
-			}
+			getEnv(i,env,cols);
 			QString text=line.text();
 			if(!text.isEmpty() || env==SyntaxCheck::ENV_tabular){
 				QVector<int>fmts=line.getFormats();
@@ -922,34 +893,7 @@ void LatexEditorView::reCheckSyntax(int linenr, int count){
 		Q_ASSERT(line.isValid());
 		SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
 		int cols=-1;
-		if(prev.isValid()){
-			QNFA* cxt=prev.matchContext()->context;
-			QString cxtDef=QNFADefinition::getContextName(cxt);
-			if(!cxtDef.isEmpty()){
-				int sep=cxtDef.indexOf(":");
-				cxtDef=cxtDef.mid(sep+1);
-				if(cxtDef.startsWith("math")) env=SyntaxCheck::ENV_math;
-				if(cxtDef.startsWith("tabular")){
-				    env=SyntaxCheck::ENV_tabular;
-				    //find start of env
-				    QDocumentLine current=prev;
-				    while(prev.isValid()){
-					if(cxt!=prev.matchContext()->context){
-					    break;
-					}
-					current=prev;
-					prev--;
-				    }
-				    if(current.isValid()){
-					QDocumentCursor cur(current.document(),current.lineNumber(),current.length());
-					cols=LatexTables::getNumberOfColumns(cur);
-				    }
-				}
-				if(cxtDef.startsWith("tabbing")) env=SyntaxCheck::ENV_tabbing;
-				if(cxtDef.startsWith("mathmodeEqnArray")) env=SyntaxCheck::ENV_matrix;
-				if(cxtDef.startsWith("mathmodeMatrix")) env=SyntaxCheck::ENV_matrix;
-			}
-		}
+		getEnv(i,env,cols);
 		QString text=line.text();
 		if(!text.isEmpty()){
 
@@ -974,36 +918,8 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	QFormatRange fr = cursor.line().getOverlayAt(cursor.columnNumber(),f);
 	if (fr.length>0 && fr.format==f) {
 		SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
-		QDocumentLine prev=l.previous(); //todo: optimize
-		int cols=-1;
-		if(prev.isValid()){
-			QNFA* cxt=l.previous().matchContext()->context;
-			QString cxtDef=QNFADefinition::getContextName(cxt);
-			if(!cxtDef.isEmpty()){
-				int sep=cxtDef.indexOf(":");
-				cxtDef=cxtDef.mid(sep+1);
-				if(cxtDef.startsWith("math")) env=SyntaxCheck::ENV_math;
-				if(cxtDef.startsWith("tabular")){
-				    env=SyntaxCheck::ENV_tabular;
-				    //find start of env
-				    QDocumentLine current=prev;
-				    while(prev.isValid()){
-					if(cxt!=prev.matchContext()->context){
-					    break;
-					}
-					current=prev;
-					prev--;
-				    }
-				    if(current.isValid()){
-					QDocumentCursor cur(current.document(),current.lineNumber(),current.length());
-					cols=LatexTables::getNumberOfColumns(cur);
-				    }
-				}
-				if(cxtDef.startsWith("tabbing")) env=SyntaxCheck::ENV_tabbing;
-				if(cxtDef.startsWith("mathmodeEqnArray")) env=SyntaxCheck::ENV_matrix;
-				if(cxtDef.startsWith("mathmodeMatrix")) env=SyntaxCheck::ENV_matrix;
-			}
-		}
+		int cols;
+		getEnv(l.lineNumber(),env,cols);
 		QString text=l.text();
 		if(!text.isEmpty()){
 			QString message=SynChecker.getErrorAt(l.handle(),cursor.columnNumber(),env,cols);
@@ -1355,4 +1271,39 @@ QList<int> LatexEditorViewConfig::possibleEditOperations(){
 	for (int i=0;i<operationCount;i++)
 		res << temp[i];
 	return res;
+}
+
+void LatexEditorView::getEnv(int lineNumber,SyntaxCheck::Environment &env,int &cols){
+    env=SyntaxCheck::ENV_normal;
+    cols=-1;
+    if (lineNumber > 0) {
+	    QDocumentLine prev = editor->document()->line(lineNumber - 1);
+	    REQUIRE(prev.isValid() && prev.matchContext());
+	    QNFA* cxt=prev.matchContext()->context;
+	    QString cxtDef=QNFADefinition::getContextName(cxt);
+	    if(!cxtDef.isEmpty()){
+		    int sep=cxtDef.indexOf(":");
+		    cxtDef=cxtDef.mid(sep+1);
+		    if(cxtDef.startsWith("math")) env=SyntaxCheck::ENV_math;
+		    if(cxtDef.startsWith("tabular")){
+			env=SyntaxCheck::ENV_tabular;
+			//find start of env
+			QDocumentLine current=prev;
+			while(prev.isValid()){
+			    if(cxt!=prev.matchContext()->context){
+				break;
+			    }
+			    current=prev;
+			    prev--;
+			}
+			if(current.isValid()){
+			    QDocumentCursor cur(current.document(),current.lineNumber(),current.length());
+			    cols=LatexTables::getNumberOfColumns(cur);
+			}
+		    }
+		    if(cxtDef.startsWith("tabbing")) env=SyntaxCheck::ENV_tabbing;
+		    if(cxtDef.startsWith("mathmodeEqnArray")) env=SyntaxCheck::ENV_matrix;
+		    if(cxtDef.startsWith("mathmodeMatrix")) env=SyntaxCheck::ENV_matrix;
+	    }
+    }
 }
