@@ -377,6 +377,36 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			}
 		    }while(start>=0);
 		}
+		//// label ////
+		//TODO: Use label from dynamical reference checker
+		foreach(QString cmd,LatexParser::labelCommands){
+		    QString name;
+		    cmd.append('{');
+		    int start=0;
+		    do{
+			name=findToken(curLine,cmd,start);
+			if(!name.isEmpty()){
+			    ReferencePair elem;
+			    elem.name=name;
+			    elem.start=start;
+			    mLabelItem.insert(line(i).handle(),elem);
+			    completerNeedsUpdate=true;
+			    StructureEntry *newLabel;
+			    if(MapOfLabels.contains(dlh)){
+				    newLabel=MapOfLabels.value(dlh);
+				    newLabel->type=StructureEntry::SE_LABEL;
+				    MapOfLabels.remove(dlh,newLabel);
+			    }else{
+				    newLabel=new StructureEntry(this, StructureEntry::SE_LABEL);
+			    }
+			    newLabel->title=name;
+			    newLabel->lineNumber=i;
+			    newLabel->lineHandle=line(i).handle();
+			    newLabel->parent=labelList;
+			    iter_label.insert(newLabel);
+			}
+		    }while(start>=0);
+		}
 		// check also in command argument, als references might be put there as well...
 		//// Appendix keyword
 		if (curLine=="\\appendix") {
@@ -492,29 +522,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				}
 				continue;
 			}
-			//// label ////
-			//TODO: Use label from dynamical reference checker
-			if (LatexParser::labelCommands.contains(cmd)) {
-				ReferencePair elem;
-				elem.name=name;
-				elem.start=optionStart+offset;
-				mLabelItem.insert(line(i).handle(),elem);
-				completerNeedsUpdate=true;
-				StructureEntry *newLabel;
-				if(MapOfLabels.contains(dlh)){
-					newLabel=MapOfLabels.value(dlh);
-					newLabel->type=StructureEntry::SE_LABEL;
-					MapOfLabels.remove(dlh,newLabel);
-				}else{
-					newLabel=new StructureEntry(this, StructureEntry::SE_LABEL);
-				}
-				newLabel->title=name;
-				newLabel->lineNumber=i;
-				newLabel->lineHandle=line(i).handle();
-				newLabel->parent=labelList;
-				iter_label.insert(newLabel);
-				continue;
-			}
+
 			//// beamer blocks ////
 
 			if (cmd=="\\begin" && name=="block") {
