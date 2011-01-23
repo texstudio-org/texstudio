@@ -161,9 +161,10 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 		lastEnd=end;
 		end=line.indexOf("\\\\",end+1);
 		count=0;
+		pos=lastEnd;
 	    }
-	    // check for columns beyond last newline
 	    pos=lastEnd;
+	    // check for columns beyond last newline
 	    QRegExp rxMultiColumn("\\\\multicolumn\\{(\\d+)\\}\\{.+\\}\\{.+\\}");
 	    rxMultiColumn.setMinimal(true);
 	    do{
