@@ -152,7 +152,7 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 		    elem.type=ERR_tooManyCols;
 		    newRanges.append(elem);
 		}
-		if(pos==-1 && count<cols){
+		if((pos==-1 || pos>end) && count<cols){
 		    Error elem;
 		    elem.range=QPair<int,int>(end,2);
 		    elem.type=ERR_tooLittleCols;
@@ -299,6 +299,14 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh,int pos,Environment pre
 	line=LatexParser::cutComment(line);
 	Ranges newRanges;
 	int excessCols=0;
+	dlh->lockForRead();
+	QDocumentLineHandle *prev=dlh->previous();
+	dlh->unlock();
+	if(prev){
+	    prev->lockForRead();
+	    excessCols=prev->getCookie(0).toInt();
+	    prev->unlock();
+	}
 	checkLine(line,newRanges,activeEnv,cols,excessCols);
 	// find Error at Position
 	ErrorType result=ERR_none;
