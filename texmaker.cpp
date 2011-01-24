@@ -4535,8 +4535,14 @@ void Texmaker::fileCheckin(QString filename){
 	UniversalInputDialog dialog;
 	QString text;
 	dialog.addTextEdit(&text, tr("commit comment:"));
+	bool wholeDirectory;
+	dialog.addVariable(&wholeDirectory,tr("check in whole directory ?"));
 	if (dialog.exec()==QDialog::Accepted){
 		fileSave();
+		if(wholeDirectory){
+		    fn=QFileInfo(fn).absolutePath();
+		}
+		qDebug()<< fn;
 		checkin(fn,text);
 	}
 }
