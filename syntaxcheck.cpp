@@ -114,6 +114,7 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 	    count=excessCols;
 	    int end=line.indexOf("\\\\");
 	    int pos=-1;
+	    int wrongPos=-1;
 	    int res=-1;
 	    int lastEnd=-1;
 	    while(end>=0){
@@ -122,10 +123,10 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 		bool mc_found=false;
 		do{
 		    res=rxMultiColumn.indexIn(line,pos+1);
-		    int wrongPos=line.indexOf("\\&",pos+1);
-		    pos=line.indexOf("&",pos+1);
-		    if(wrongPos>-1 && wrongPos+1==pos)
-			continue;
+		    do{
+			wrongPos=line.indexOf("\\&",pos+1);
+			pos=line.indexOf("&",pos+1);
+		    } while(wrongPos>-1 && wrongPos+1==pos);
 		    if(res>-1 && (res<pos || pos<0) ){
 			// multicoulmn before &
 			bool ok;
@@ -148,7 +149,7 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 		    if(mc_found)
 			pos=res-1;
 		    Error elem;
-		    elem.range=QPair<int,int>(pos+1,end-pos-1);
+		    elem.range=QPair<int,int>(pos,end-pos);
 		    elem.type=ERR_tooManyCols;
 		    newRanges.append(elem);
 		}
@@ -167,10 +168,17 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 	    // check for columns beyond last newline
 	    QRegExp rxMultiColumn("\\\\multicolumn\\{(\\d+)\\}\\{.+\\}\\{.+\\}");
 	    rxMultiColumn.setMinimal(true);
+	    bool mc_found=false;
+	    end=line.length();
+	    int lastPos=0;
 	    do{
 		int res=rxMultiColumn.indexIn(line,pos+1);
 		//pos=line.indexOf(QRegExp("[^\\\\]&"),pos+1);
-		pos=line.indexOf(QRegExp("([^\\\\]|^)&"),pos+1);
+		//pos=line.indexOf(QRegExp("([^\\\\]|^)&"),pos+1);
+		do{
+		    wrongPos=line.indexOf("\\&",pos+1);
+		    pos=line.indexOf("&",pos+1);
+		} while(wrongPos>-1 && wrongPos+1==pos);
 		if(res>-1 && (res<pos || pos<0) ){
 		    // multicoulmn before &
 		    bool ok;
@@ -179,8 +187,20 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 			count+=c-1;
 		    }
 		    pos=res+rxMultiColumn.cap().length()-1;
+		    mc_found=true;
+		}else{
+		    mc_found=false;
 		}
 		count++;
+		if(count>cols && (res>-1 || lastPos>-1)){
+		    if(mc_found)
+			lastPos=res-1;
+		    Error elem;
+		    elem.range=QPair<int,int>(lastPos,end-lastPos);
+		    elem.type=ERR_tooManyCols;
+		    newRanges.append(elem);
+		}
+		lastPos=pos;
 	    } while(pos>=0);
 	    excessCols=count-1;
 	}// tabular checking
