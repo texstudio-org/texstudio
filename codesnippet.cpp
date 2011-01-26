@@ -179,7 +179,26 @@ void CodeSnippet::insert(QEditor* editor){
 void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePlaceholders, bool byCompleter) const{
 	if (lines.empty()||!editor||!cursor) return;
 	
-	QStringList curLines=lines;
+	//find filechooser escape %(   %)
+	QString line=lines.join("\n");
+	QRegExp rx("%\\((.+)%\\)");
+	int pos=rx.indexIn(line,0);
+	if(pos>-1){
+		FileChooser sfDlg(0,QApplication::tr("Select a File"));
+		sfDlg.setFilter(rx.cap(1));
+		LatexDocument *doc=qobject_cast<LatexDocument*>(cursor->document());
+		QString path=doc->parent->getCompileFileName();
+		path=getPathfromFilename(path);
+		QString directory;
+		if(path.isEmpty()) directory=QDir::homePath();
+		else directory=path;
+		sfDlg.setDir(directory);
+		if (sfDlg.exec()) {
+			QString fn=sfDlg.fileName();
+			line.replace(rx,getRelativeBaseNameToPath(fn,path));
+		} else return;
+	}
+
 
 	QString savedSelection;
 	bool alwaysSelect = false;
@@ -197,27 +216,6 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 	bool multiLineSavedSelection = savedSelection.contains("\n");
 	QDocumentCursor selector=*cursor;
 	QDocumentLine curLine=cursor->line();
-
-	//find filechooser escape %(   %)
-	QString line=lines.join("\n");
-	QRegExp rx("%\\((.+)%\\)");
-	int pos=rx.indexIn(line,0);
-	if(pos>-1){
-	    FileChooser *sfDlg = new FileChooser(0,QApplication::tr("Select a File"));
-		sfDlg->setFilter(rx.cap(1));
-		LatexDocument *doc=qobject_cast<LatexDocument*>(cursor->document());
-		QString path=doc->parent->getCompileFileName();
-		path=getPathfromFilename(path);
-		QString directory;
-		if(path.isEmpty()) directory=QDir::homePath();
-		else directory=path;
-		sfDlg->setDir(directory);
-		if (sfDlg->exec()) {
-			QString fn=sfDlg->fileName();
-			line.replace(rx,getRelativeBaseNameToPath(fn,path));
-		}
-		delete sfDlg;
-	}
 
 	// on multi line commands, replace environments only
 	if(autoReplaceCommands && lines.size()>1 && line.contains("\\begin{")){

@@ -51,7 +51,7 @@
 
 #include <math.h>
 
-#include "configmanagerinterface.h"
+#include "smallUsefulFunctions.h"
 #include "PDFDocument_config.h"
 //#include "GlobalParams.h"
 
@@ -1254,14 +1254,14 @@ QScrollArea* PDFWidget::getScrollArea()
 
 QList<PDFDocument*> PDFDocument::docList;
 
-PDFDocument::PDFDocument(const ConfigManagerInterface &configManager, PDFDocumentConfig* const pdfConfig)
+PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig)
 	: watcher(NULL), reloadTimer(NULL), scanner(NULL)
 {
 	Q_ASSERT(pdfConfig);
 	Q_ASSERT(!globalConfig || (globalConfig == pdfConfig));
 	globalConfig = pdfConfig,
 
-	init(configManager);
+	init();
 
 	watcher = new QFileSystemWatcher(this);
 	connect(watcher, SIGNAL(fileChanged(const QString&)), this, SLOT(reloadWhenIdle()));
@@ -1289,7 +1289,7 @@ PDFDocument::~PDFDocument()
 }
 
 void
-PDFDocument::init(const ConfigManagerInterface& configManager)
+PDFDocument::init()
 {
 	docList.append(this);
 
@@ -1301,25 +1301,25 @@ PDFDocument::init(const ConfigManagerInterface& configManager)
 	//load icons
 	setWindowIcon(QIcon(":/images/previewicon.png"));
 	
-	actionFirst_Page->setIcon(configManager.getRealIcon("go-first"));
-	actionPrevious_Page->setIcon(configManager.getRealIcon("go-previous"));
-	actionNext_Page->setIcon(configManager.getRealIcon("go-next"));
-	actionLast_Page->setIcon(configManager.getRealIcon("go-last"));
-	actionZoom_In->setIcon(configManager.getRealIcon("zoom-in"));
-	actionZoom_Out->setIcon(configManager.getRealIcon("zoom-out"));
-	actionFit_to_Window->setIcon(configManager.getRealIcon("zoom-fit-best"));
-	actionActual_Size->setIcon(configManager.getRealIcon("zoom-original"));
-	actionFit_to_Width->setIcon(configManager.getRealIcon("zoom-fit-width"));
-	actionNew->setIcon(configManager.getRealIcon("filenew"));
-	actionOpen->setIcon(configManager.getRealIcon("fileopen"));
-	actionClose->setIcon(configManager.getRealIcon("fileclose"));
-	actionUndo->setIcon(configManager.getRealIcon("undo"));
-	actionRedo->setIcon(configManager.getRealIcon("redo"));
-	actionCut->setIcon(configManager.getRealIcon("cut"));
-	actionCopy->setIcon(configManager.getRealIcon("copy"));
-	actionPaste->setIcon(configManager.getRealIcon("paste"));
-	actionMagnify->setIcon(configManager.getRealIcon("zoom-in"));
-	actionScroll->setIcon(configManager.getRealIcon("hand"));
+	actionFirst_Page->setIcon(getRealIcon("go-first"));
+	actionPrevious_Page->setIcon(getRealIcon("go-previous"));
+	actionNext_Page->setIcon(getRealIcon("go-next"));
+	actionLast_Page->setIcon(getRealIcon("go-last"));
+	actionZoom_In->setIcon(getRealIcon("zoom-in"));
+	actionZoom_Out->setIcon(getRealIcon("zoom-out"));
+	actionFit_to_Window->setIcon(getRealIcon("zoom-fit-best"));
+	actionActual_Size->setIcon(getRealIcon("zoom-original"));
+	actionFit_to_Width->setIcon(getRealIcon("zoom-fit-width"));
+	actionNew->setIcon(getRealIcon("filenew"));
+	actionOpen->setIcon(getRealIcon("fileopen"));
+	actionClose->setIcon(getRealIcon("fileclose"));
+	actionUndo->setIcon(getRealIcon("undo"));
+	actionRedo->setIcon(getRealIcon("redo"));
+	actionCut->setIcon(getRealIcon("cut"));
+	actionCopy->setIcon(getRealIcon("copy"));
+	actionPaste->setIcon(getRealIcon("paste"));
+	actionMagnify->setIcon(getRealIcon("zoom-in"));
+	actionScroll->setIcon(getRealIcon("hand"));
 	actionTypeset->setIcon(QIcon(":/images/quick.png"));
 	actionExternalViewer->setIcon(QIcon(":/images/viewpdf.png"));
 

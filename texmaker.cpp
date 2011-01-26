@@ -265,10 +265,10 @@ SymbolGridWidget* Texmaker::addSymbolGrid(const QString& SymbolList,  const QStr
 		list->setProperty("isSymbolGrid",true);
 		connect(list, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
 		connect(list, SIGNAL(itemPressed(QTableWidgetItem*)), this, SLOT(InsertSymbolPressed(QTableWidgetItem*)));
-		leftPanel->addWidget(list, SymbolList, text, configManager.getRealIconFile(iconName));
+		leftPanel->addWidget(list, SymbolList, text, getRealIconFile(iconName));
 	} else {
 		leftPanel->setWidgetText(list,text);
-		leftPanel->setWidgetIcon(list,configManager.getRealIconFile(iconName));
+		leftPanel->setWidgetIcon(list,getRealIconFile(iconName));
 	}
 	return list;
 }
@@ -2977,7 +2977,7 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,int compileLatex, QSt
 		}
 		externalViewer = BuildManager::parseExtendedCommandLine(externalViewer, finame, getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1);
 		if (!pdfviewerWindow) {
-			pdfviewerWindow=new PDFDocument(configManager, configManager.pdfDocumentConfig);
+			pdfviewerWindow=new PDFDocument(configManager.pdfDocumentConfig);
 			connect(pdfviewerWindow, SIGNAL(triggeredAbout()), SLOT(HelpAbout()));
 			connect(pdfviewerWindow, SIGNAL(triggeredManual()), SLOT(UserManualHelp()));
 			connect(pdfviewerWindow, SIGNAL(triggeredQuit()), SLOT(fileExit()));
@@ -3592,8 +3592,8 @@ void Texmaker::HelpAbout() {
 ////////////// OPTIONS //////////////////////////////////////
 void Texmaker::GeneralOptions() {
 	QMap<QString,QVariant> oldCustomEnvironments = configManager.customEnvironments;
-	bool oldModernStyle = configManager.modernStyle;
-	bool oldSystemTheme = configManager.useSystemTheme;
+	bool oldModernStyle = modernStyle;
+	bool oldSystemTheme = useSystemTheme;
 	autosaveTimer.stop();
 	m_formats->modified = false;
 	bool realtimeChecking=configManager.editorConfig->realtimeChecking;
@@ -3710,7 +3710,7 @@ void Texmaker::GeneralOptions() {
 			}
 		}
 
-		if (oldModernStyle != configManager.modernStyle || oldSystemTheme != configManager.useSystemTheme) {
+		if (oldModernStyle != modernStyle || oldSystemTheme != useSystemTheme) {
 			setupMenus();
 			setupDockWidgets();
 		}
