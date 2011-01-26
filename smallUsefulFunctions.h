@@ -23,6 +23,12 @@ QString getCommonEOW();
 QStringList findResourceFiles(const QString& dirName, const QString& filter);
 //returns the real name of a resource file
 QString findResourceFile(const QString& fileName, bool allowOverride = false, QStringList additionalPreferredPaths = QStringList(), QStringList additionalFallbackPaths = QStringList());
+
+extern bool modernStyle;
+extern bool useSystemTheme;
+QString getRealIconFile(const QString& icon);
+QIcon getRealIcon(const QString& icon);
+
 //returns if the file is writable (QFileInfo.isWritable works in different ways on Windows and Linux)
 bool isFileRealWritable(const QString& filename);
 //returns if the file exists and is writable

@@ -13,6 +13,7 @@
  
 #include "filechooser.h"
 
+#include "smallUsefulFunctions.h"
 
 FileChooser::FileChooser(QWidget *parent, QString name)
 		: QDialog(parent) {
@@ -21,6 +22,7 @@ FileChooser::FileChooser(QWidget *parent, QString name)
 	ui.setupUi(this);
 	connect(ui.lineEdit, SIGNAL(textChanged(const QString &)), this, SIGNAL(fileNameChanged(const QString &)));
 	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(chooseFile()));
+	ui.pushButton->setIcon(getRealIcon("fileopen"));
 	setWindowTitle(name);
 }
 

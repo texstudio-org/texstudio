@@ -1229,27 +1229,6 @@ void ConfigManager::updateUserToolMenu(bool alwaysRecreateMenuItems){
 	}
 }
 
-
-QString ConfigManager::getRealIconFile(const QString& icon) const{
-	if (icon.isEmpty() || icon.startsWith(":/")) return icon;
-	if (modernStyle && QFileInfo(":/images/modern/"+icon).exists())
-		return ":/images/modern/"+icon;
-	else if (!modernStyle && QFileInfo(":/images/classic/"+icon).exists())
-		return ":/images/classic/"+icon;
-	else if (QFileInfo(":/images/"+icon).exists())
-		return ":/images/"+icon;
-	return icon;
-}
-
-QIcon ConfigManager::getRealIcon(const QString& icon) const{
-	if (icon.isEmpty()) return QIcon();
-	if (icon.startsWith(":/")) return QIcon(icon);
-#if QT_VERSION >= 0x040600
-	if (useSystemTheme && QIcon::hasThemeIcon(icon)) return QIcon::fromTheme(icon);
-#endif
-	return QIcon(getRealIconFile(icon.contains(".")?icon:(icon+".png")));
-}
-
 QMenu* ConfigManager::newManagedMenu(const QString &id,const QString &text) {
 	if (!menuParentsBar) qFatal("No menu parent bar!");
 	if (!menuParent) qFatal("No menu parent!");

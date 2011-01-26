@@ -112,6 +112,28 @@ QString findResourceFile(const QString& fileName, bool allowOverride, QStringLis
 	return "";
 }
 
+bool modernStyle;
+bool useSystemTheme;
+QString getRealIconFile(const QString& icon){
+	if (icon.isEmpty() || icon.startsWith(":/")) return icon;
+	if (modernStyle && QFileInfo(":/images/modern/"+icon).exists())
+		return ":/images/modern/"+icon;
+	else if (!modernStyle && QFileInfo(":/images/classic/"+icon).exists())
+		return ":/images/classic/"+icon;
+	else if (QFileInfo(":/images/"+icon).exists())
+		return ":/images/"+icon;
+	return icon;
+}
+
+QIcon getRealIcon(const QString& icon){
+	if (icon.isEmpty()) return QIcon();
+	if (icon.startsWith(":/")) return QIcon(icon);
+#if QT_VERSION >= 0x040600
+	if (useSystemTheme && QIcon::hasThemeIcon(icon)) return QIcon::fromTheme(icon);
+#endif
+	return QIcon(getRealIconFile(icon.contains(".")?icon:(icon+".png")));
+}
+
 bool isFileRealWritable(const QString& filename) {
 #ifdef Q_WS_WIN
 	//thanks to Vistas virtual folders trying to open an unaccessable file can create it somewhere else

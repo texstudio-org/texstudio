@@ -224,7 +224,7 @@ class PDFDocument : public QMainWindow, private Ui::PDFDocument
     Q_PROPERTY(QString fileName READ fileName)
 
 public:
-	PDFDocument(const ConfigManagerInterface &configManager, PDFDocumentConfig* const pdfConfig );
+	PDFDocument(PDFDocumentConfig* const pdfConfig );
 	virtual ~PDFDocument();
 
 	static PDFDocument *findDocument(const QString &fileName);
@@ -307,7 +307,7 @@ signals:
 	void triggeredQuickBuild();
 
 private:
-	void init(const ConfigManagerInterface& configManager);
+	void init();
 	void setCurrentFile(const QString &fileName);
 	void loadSyncData();
 
