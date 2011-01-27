@@ -253,6 +253,32 @@ void LatexEditorView::updateLtxCommands(){
 	SynChecker.setLtxCommands(ltxCommands);
 }
 
+void LatexEditorView::paste(){
+    if(completer->isVisible()){
+	const QMimeData *d = QApplication::clipboard()->mimeData();
+
+	if ( d ) {
+	    QString txt;
+	    if ( d->hasFormat("text/plain") )
+		    txt = d->text();
+	    else if ( d->hasFormat("text/html") )
+		    txt = d->html();
+
+	    if(txt.contains("\n"))
+		txt.clear();
+
+	    if(txt.isEmpty()){
+		completer->close();
+		editor->paste();
+	    }else{
+		completer->insertText(txt);
+	    }
+	}
+    }else{
+	editor->paste();
+    }
+}
+
 void LatexEditorView::viewActivated(){
 	if (!LatexEditorView::completer) return;
 }

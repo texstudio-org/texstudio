@@ -134,6 +134,7 @@ public slots:
 	void viewActivated();
 	void clearOverlays();
 	void updateLtxCommands();
+	void paste();
 signals:
 	void lineHandleDeleted(QDocumentLineHandle* l);
 	void showMarkTooltipForLogMessage(int logMessage);
