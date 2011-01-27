@@ -1586,7 +1586,7 @@ void Texmaker::editCopy() {
 
 void Texmaker::editPaste() {
 	if (!currentEditorView()) return;
-	currentEditorView()->editor->paste();
+	currentEditorView()->paste();
 }
 
 void Texmaker::editPasteLatex() {
@@ -4542,7 +4542,6 @@ void Texmaker::fileCheckin(QString filename){
 		if(wholeDirectory){
 		    fn=QFileInfo(fn).absolutePath();
 		}
-		qDebug()<< fn;
 		checkin(fn,text);
 	}
 }

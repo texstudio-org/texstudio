@@ -53,6 +53,8 @@ public:
 	bool isVisible(){
 	    return list->isVisible();
 	}
+
+	void insertText(QString txt);
 private:
 	friend class CompleterInputBinding;
 	friend class CompletionListModel;

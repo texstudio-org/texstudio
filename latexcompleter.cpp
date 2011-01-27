@@ -289,6 +289,7 @@ public:
 				} else {
 					int curLength = curWord.length();
 					insertCompletedWord();
+					//insertText(written);
 					resetBinding();
 					return false;//oldBinding->keyPressEvent(event,editor); //call old input binding for long words (=> key replacements after completions, but the user can still write \")
 				}
@@ -315,6 +316,10 @@ public:
 	    completer->filterList(getCurWord(),showMostUsed);
 	    if (!completer->list->currentIndex().isValid())
 		    select(completer->list->model()->index(0,0,QModelIndex()));
+	}
+
+	bool getMostUsed(){
+	    return showMostUsed;
 	}
 
 	void resetBinding() {
@@ -646,6 +651,14 @@ void LatexCompleter::listClicked(QModelIndex index){
 	editor->insertText("\n");
     }
     completerInputBinding->resetBinding();
+}
+
+void LatexCompleter::insertText(QString txt){
+    if(!isVisible())
+	return;
+    completerInputBinding->insertText(txt);
+    QString cur=completerInputBinding->getCurWord();
+    filterList(cur,completerInputBinding->getMostUsed());
 }
 
 void LatexCompleter::setAdditionalWords(const QStringList &newwords, bool normalTextList) {
