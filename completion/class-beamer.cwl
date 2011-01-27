@@ -40,6 +40,7 @@
 \begin{alertenv}
 \end{alertenv}
 \begin{block}<action specification>{block title}<action specification>
+\begin{block}{title}
 \end{block}
 \begin{alertblock}<action specification>{block title}<action specification>
 \end{alertblock}

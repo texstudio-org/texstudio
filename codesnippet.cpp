@@ -156,7 +156,7 @@ CodeSnippet::CodeSnippet(const QString &newWord) {
 				}
 	}
 	if (anchorOffset==-1) anchorOffset=cursorOffset;
-	sortWord=word.toLower();
+	sortWord=lines.first().toLower(); //only sort by first line which is visible in completer (otherwise \begin{frame} comes after \begin{frame}[xy])
 	sortWord.replace("{","!");//js: still using dirty hack, however order should be ' '{[* abcde...
 	sortWord.replace("}","!");// needs to be replaced as well for sorting \bgein{abc*} after \bgein{abc}
 	sortWord.replace("[","\"");//(first is a space->) !"# follow directly in the ascii table
