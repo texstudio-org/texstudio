@@ -139,6 +139,8 @@ void SyntaxCheckTest::checktabular(){
 	QFETCH(int, col);
 	QFETCH(QString, expectedMessage);
 	
+	expectedMessage = QApplication::translate("SyntaxCheck", qPrintable(expectedMessage));
+
 	edView->document->setText(text);
 
 	int cols;
