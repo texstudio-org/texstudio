@@ -909,6 +909,36 @@ QString getPathfromFilename(const QString &compFile){
 	return dir;
 }
 
+QTextCodec* QTextCodecForTeXShopName(const QByteArray& enc){
+//copied and modified from texworks
+	if (enc == "utf-8 unicode") return QTextCodec::codecForName("UTF-8");
+	if (enc == "standard unicode") return QTextCodec::codecForName("UTF-16");
+	if (enc == "windows cyrillic") return QTextCodec::codecForName("Windows-1251");
+	if (enc == "isolatin") return QTextCodec::codecForName("ISO 8859-1");
+	if (enc == "isolatin2") return QTextCodec::codecForName("ISO 8859-2");
+	if (enc == "isolatin5") return QTextCodec::codecForName("ISO 8859-5");
+	if (enc == "isolatin9") return QTextCodec::codecForName("ISO 8859-9");
+	if (enc == "macosroman") return QTextCodec::codecForName("Apple Roman");
+//      "MacJapanese",          "",
+//      "DOSJapanese",          "",
+	if (enc == "sjis_x0213") return QTextCodec::codecForName("Shift-JIS");
+	if (enc == "euc_jp") return QTextCodec::codecForName("EUC-JP");
+//      "JISJapanese",          "",
+//      "MacKorean",            "",
+//      "Mac Cyrillic",         "",
+//      "DOS Cyrillic",         "",
+//      "DOS Russian",          "",
+	if (enc == "koi8_r") return QTextCodec::codecForName("KOI8-R");
+	if (enc == "gb 18030") return QTextCodec::codecForName("GB18030-0");
+//      "Mac Chinese Traditional",      "",
+//      "Mac Chinese Simplified",       "",
+//      "DOS Chinese Traditional",      "",
+//      "DOS Chinese Simplified",       "",
+//      "GBK",                          "",
+//      "GB 2312",                      "",
+	return 0;
+}
+
 QTextCodec* LatexParser::QTextCodecForLatexName(QString str){
 	if (str.contains(',')) { //multiple options are allowed
 		foreach (const QString& splitter, str.split(',')){
@@ -952,22 +982,61 @@ QTextCodec* LatexParser::QTextCodecForLatexName(QString str){
 	return 0;
 }
 
+int lineEnd(const QByteArray& data, int index){
+	int r = data.indexOf('\n',index);
+	if (r != -1) return r;
+	r = data.indexOf('\r',index);
+	if (r != -1) return r;
+	r = data.indexOf("\x20\x29",index);
+	if (r != -1) return r;
+	return data.size();
+}
+
 void LatexParser::guessEncoding(const QByteArray& data, QTextCodec *&guess, int &sure){
 	if (guess && (guess->mibEnum() == MIB_UTF16LE || guess->mibEnum() == MIB_UTF16BE)) {
 		sure = 100;
 		return;
 	}
-
 	int headerSize = data.indexOf("\\begin{document}");
 	if (headerSize == -1) headerSize = data.size();
+	//search for % *!TeX +encoding *= *...\n
+	//slow c like search, without encoding we can't get a qstring, and bytearray neither supports
+	//regexp nor case insensitive search
+	int index = data.indexOf('=');
+	static const char * searchedLC = "%!tex encoding";
+	static const char * searchedUC = "%!TEX ENCODING";
+	static const int searchedLast = 13; Q_ASSERT(searchedLC[searchedLast] == 'g');
+	while (index >= 0 && index < headerSize) {
+		int temp = index-1;
+		int sp = searchedLast;
+		const char * d = data.constData();
+		for (;temp >= 0 && sp >= 0; temp--)
+			if (searchedLC[sp] == d[temp]) sp--;
+			else if (searchedUC[sp] == d[temp]) sp--;
+			else if (d[temp] == ' ') ;
+			else break;
+		if (sp == -1) {
+			int end = lineEnd(data, index);
+			QByteArray encName = data.mid(index+1, end-index-1).trimmed();
+			QTextCodec* codec = QTextCodec::codecForName(encName);
+			if (!codec)
+				codec = QTextCodecForTeXShopName(encName.toLower());
+			if (codec) {
+				sure = 100;
+				guess = codec;
+				return;
+			}
+		}
+		index = data.indexOf('=', index + 1);
+	}
+
 	//search for \usepackage[.*]{inputenc} outside of a comment
-	int index = data.indexOf("]{inputenc}");
-	while (index >= 0) {
-		if (index >= headerSize) return;
+	index = data.indexOf("]{inputenc}");
+	while (index >= 0 && index < headerSize) {
 		int previous = data.lastIndexOf("\\usepackage[",index);
 		if (previous >= 0){
 			int commentStart = data.lastIndexOf('%',index);
-			int commentEnd = qMax(data.lastIndexOf('\n',index),data.lastIndexOf('\r',index));
+			int commentEnd = lineEnd(data, index);
 			if (commentStart <= commentEnd) {
 				QString encoding = QString(data.mid(previous+12, index - (previous + 12)));
 				QTextCodec* codec = QTextCodecForLatexName(encoding);
@@ -980,14 +1049,14 @@ void LatexParser::guessEncoding(const QByteArray& data, QTextCodec *&guess, int 
 		}
 		index = data.indexOf("]{inputenc}", index + 1);
 	}
+
 	//search for \usepackage[.*]{inputenx} outside of a comment
 	index = data.indexOf("]{inputenx}");
-	while (index >= 0) {
-		if (index >= headerSize) return;
+	while (index >= 0 && index < headerSize) {
 		int previous = data.lastIndexOf("\\usepackage[",index);
 		if (previous >= 0){
 			int commentStart = data.lastIndexOf('%',index);
-			int commentEnd = qMax(data.lastIndexOf('\n',index),data.lastIndexOf('\r',index));
+			int commentEnd = lineEnd(data,index);
 			if (commentStart <= commentEnd) {
 				QString encoding = QString(data.mid(previous+12, index - (previous + 12)));
 				QTextCodec* codec = QTextCodecForLatexName(encoding);
