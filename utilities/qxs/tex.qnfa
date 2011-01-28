@@ -86,6 +86,12 @@ environments in smallUsefulFunctions.cpp)
 		<stop parenthesis="verb_:close" parenthesisWeight="20" format="keyword">_</stop>
 	</context>
   
+	<context id="comment/single" format="commentTodo" stayOnLine="true" >
+		<start>%TODO</start>
+		<start>%todo</start>
+		<stop exclusive="false">\n</stop>
+	</context>
+
 	<context id="comment/single" format="comment" stayOnLine="true" >
 		<start>%</start>
 		<stop exclusive="false">\n</stop>
