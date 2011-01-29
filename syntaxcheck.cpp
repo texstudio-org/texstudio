@@ -9,7 +9,7 @@ SyntaxCheck::SyntaxCheck(QObject *parent) :
 	mLines.clear();
 	mLinesLock.unlock();
 	verbatimFormat=0;
-	mLtxCommandLock.unlock();
+	//mLtxCommandLock.unlock();
 }
 
 void SyntaxCheck::setErrFormat(int errFormat){
