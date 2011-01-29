@@ -2522,6 +2522,8 @@ void Texmaker::InsertFromAction() {
 	if (!currentEditorView())	return;
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (action)	{
+		if(completer->isVisible())
+		    completer->close();
 		QDocumentCursor c = currentEditorView()->editor->cursor();
 		CodeSnippet cs=CodeSnippet(action->data().toString());
 		cs.insertAt(currentEditorView()->editor,&c);
