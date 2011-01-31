@@ -71,15 +71,16 @@ body { background: #ffffff; color: black; }
 <li><a href="#SECTION3">4. Other features</a></li>
 	<ul>
 	<li><a href="#SECTION31">4.1 About documents separated in several files</a></li>
-	<li><a href="#SECTION32">4.2 Bibliography</a></li>
-	<li><a href="#SECTION33a">4.3 SVN Support</a></li>
-	<li><a href="#SECTION33">4.4 Personal tags and tools</a></li>
-	<li><a href="#SECTION34">4.5 Pstricks support</a></li>
-	<li><a href="#SECTION35">4.6 Metapost support</a></li>
-	<li><a href="#SECTION36">4.7 The "Convert to Html" command</a></li>
-	<li><a href="#SECTION37">4.8 "Forward/Inverse search" with TexMakerX</a></li>
-	<li><a href="#SECTION38">4.9 Synopsis of the TexMakerX command</a></li>
-	<li><a href="#SECTION39">4.10 Keyboard shortcuts</a></li>
+	<li><a href="#SECTION32a">4.2 Syntax Check</a></li>
+	<li><a href="#SECTION32">4.3 Bibliography</a></li>
+	<li><a href="#SECTION33a">4.4 SVN Support</a></li>
+	<li><a href="#SECTION33">4.5 Personal tags and tools</a></li>
+	<li><a href="#SECTION34">4.6 Pstricks support</a></li>
+	<li><a href="#SECTION35">4.7 Metapost support</a></li>
+	<li><a href="#SECTION36">4.8 The "Convert to Html" command</a></li>
+	<li><a href="#SECTION37">4.9 "Forward/Inverse search" with TexMakerX</a></li>
+	<li><a href="#SECTION38">4.10 Synopsis of the TexMakerX command</a></li>
+	<li><a href="#SECTION39">4.11 Keyboard shortcuts</a></li>
 	</ul>
 </ul>
 <hr>
@@ -183,7 +184,7 @@ changed functionality:</P>
 	      <li><p>\usepackage and \documentclass are interpreted to decide which commands are valid in the document</p>
 	    </ul>
 	 </p>
-	<li><p>tmx automatically detects parent/child relation in loaded documents and acts accordingsly. So normally no master mode is needed anymore.</p>
+	<li><p>tmx automatically detects parent/child relation in loaded documents and acts accordingly. So normally no master mode is needed anymore.</p>
 	<li><p>as always, bug fixes and small improvements</p>
 </ul>
 <h1><a name="SECTION0">1. Configuring TexMakerX</a></h1>
@@ -236,11 +237,11 @@ Users can download others databases here : <A href="http://wiki.services.openoff
 <h2><a name="SECTION041">1.3.3 Configuring latex syntax checker</a></h2>
 The latex syntax checker takes the list of possible completion commands to determine if a command is correct.
 Furthermore the completion list contains partially additional information to determine in which context a command is valid, whether it is valid only in math-mode or only in tabular-mode.<br>
-Therefore make sure that all used packages are activated in the option/completion menu, see the corresponding <a href="#SECTION040">section</a>
 <h2><a name="SECTION040">1.4 Configuring the autocompletion</a></h2>
 <p>
 TexMakerX has taken up completion word list from kile which extended the number of known commands for completion considerably.
-This probably not every command is useful in your document if the corresponding latex package is not used, TexMakerX allows to select the valid word list under 
+TexMakerX understands the use of \documentclass and \usepackage in order to select valid lists of commands for completion as well as syntax checking.
+However TexMakerX allows to select the additional word lists under 
 "Configure TexMakerX" -> "Editor" -> "". The names of the word lists corresponds to the package for which they are made. The list latex.cwl contains the standard latex commands. <br>
 Concerning auto completion, TexMakerX allows to adapt the behaviour to your liking.
 Following options are available:
@@ -420,13 +421,19 @@ A tool tip will show more details of the mistake if you jump to a line (it is al
 <h2><a name="SECTION31">4.1 About documents separated in several files</a></h2>
 <p>TexMakerX allows you to work onto documents separated in several files.<br>
 To include a TeX file into your document, just use the "\include{file}" command in the "LaTeX" menu. The file will appear in the "Structure View". With a click on his name, TexMakerX will open it.</p>
-<p>Then, you can define your "master document" with the "Options" menu. All the commands of the "Tools" menu will apply only to this document even when working on the "children" documents (you can even close the "master" document).<br>
+<p>TexMakerX now understands parent/child relations of loaded documents (1 level only !). Therefor, as in "master document mode", only the parent document is compiled if compilation is tarted while working on a child document. Likewise labels and usercommands are known in all corresponding documents.</p>
+<p>You can still define your "master document" with the "Options" menu. All the commands of the "Tools" menu will apply only to this document even when working on the "children" documents (you can even close the "master" document).<br>
 If a master document is set, labels and usercommands which are defined in any open document, can be used for completion in any open document. Thus you can insert easily a reference to a label which is defined in another subdocument, as long as that document is open in TexMakerX. 
 <br>Note : you can leave the "master" mode with the "Options" menu.</p>
-<h2><a name="SECTION32">4.2 Bibliography</a></h2>
+<h2><a name="SECTION32a">4.2 Syntax Check</a></h2>
+The latex syntax checker takes the list of possible completion commands to determine if a command is correct.
+The completion list contains partially additional information to determine in which context a command is valid, whether it is valid only in math-mode or only in tabular-mode.<br>
+Furthermore the correctness of tabulars is checked in a little  more detail.
+The number of columns is analyzed and checked in the subsequent rows. If more or less columns are given in a row, a warning maker is shown.<br>
+<h2><a name="SECTION32">4.3 Bibliography</a></h2>
 <p>For the "bib" files , the "Bibliography" menu enables you to directly insert the entries corresponding to the standard types of document.<br>Note: the optional fields can be automatically deleted with the "Clean" command of the "Bibliography" menu.</p>
 <p><IMG src="doc16.png" border="1"></p>
-<h2><a name="SECTION33a">4.3 SVN Support</a></h2>
+<h2><a name="SECTION33a">4.4 SVN Support</a></h2>
 <p>
 Apart from the supported svn features already describes in section 1.8, TexMakerX supports two more commands.
 </p>
@@ -438,7 +445,7 @@ Apart from the supported svn features already describes in section 1.8, TexMaker
 You can can select and copy old parts to transfer them to the most recent version of your document, by copying the parts and then going back to most recent version. If you start editing that document directly, the dialog is closed and the present text is your new 
 most recent version though yet unsaved.
 </p>
-<h2><a name="SECTION33">4.4 Personals tags and tools</a></h2>
+<h2><a name="SECTION33">4.5 Personals tags and tools</a></h2>
 <p>TexMakerX allows you to insert your own tags (shortcuts : Shift+F1...Shift+F10). These tags are defined with the "User - User Tags" menu.<br>Note : if the code of the menu is "%environment", TexMakerX will directly insert:<br>
 \begin{environment }<br>
 <br>
@@ -819,11 +826,11 @@ This will add to all selected coordinate pairs the offset of the first pair whic
 </ul>
 </p>
 <p>You can also launch your own commands (shortcuts : Alt+Shift+F1...Alt+Shift+F5). These commands are defined with the "User - User Commands" menu.</p>
-<h2><a name="SECTION34">4.5 Pstricks support</a></h2>
+<h2><a name="SECTION34">4.6 Pstricks support</a></h2>
 <p>The main pstricks commands can be inserted with the "Pstricks" panel in the "Structure View".</p>
-<h2><a name="SECTION35">4.6 Metapost support</a></h2>
+<h2><a name="SECTION35">4.7 Metapost support</a></h2>
 <p>The metapost keywords can be inserted with the "Metapost" panel in the "Structure View" and the "mpost" command can be launched via the "Tools" menu.</p>
-<h2><a name="SECTION36">4.7 The "Convert to Html" command</a></h2>
+<h2><a name="SECTION36">4.8 The "Convert to Html" command</a></h2>
 <p>This command (from the "Tools" menu ) produces a set of html pages from a LaTeX source file with one image for each html page. Each page in the slide presentation corresponds to one of the postscript pages you would obtain running LaTeX.<br>
 The command also produces an index page corresponding to the table of contents you would obtain with LaTeX. Each item of the index page includes a link to the corresponding html page.</p>
 <p>You can create links in the html pages by using the \ttwplink{}{} command in the tex file.<br>
@@ -836,7 +843,7 @@ Synopsis :<br>
 <p><IMG src="doc19.png" border="1"></p>
 
 
-<h2><a name="SECTION37">4.8 "Forward/Inverse search" with TexMakerX</a></h2>
+<h2><a name="SECTION37">4.9 "Forward/Inverse search" with TexMakerX</a></h2>
 <p>
 <h3>Integrated pdf-viewer</h3>
 TexMakerX provides an integarted pdf-viewer which offers forward- and inverse-search. Make sure that synctex is activated in the pdflatex command (option -synctex=1 needs to be added), though TexMakerX will ask you if it can correct the command itself if it is not set correctly.<br>
@@ -896,14 +903,14 @@ To launch TexMakerX from skim : Command: <span class="command">/applications/tex
 
 A possible value for <i>(your Skim path)</i> is <span class="command">/Applications/Skim.app</span>
 
-<h2><a name="SECTION38">4.9 Synopsis of the TexMakerX command</a></h2>
+<h2><a name="SECTION38">4.10 Synopsis of the TexMakerX command</a></h2>
 <p>
 TexMakerX file [-master] [-line xx] [--start-always]<br>
 With the "-master" option, the document will be automatically defined as a "master" document.<br>
 With the "-line xx" option, TexMakerX will ask you if you want to jump to the xx line after loading the document.<br>
 With the "--start-always" option, TexMakerX will start, even if another instance of it is already running.
 </p>
-<h2><a name="SECTION39">4.10 Keyboard shortcuts</a></h2>
+<h2><a name="SECTION39">4.11 Keyboard shortcuts</a></h2>
 <p>
 Defaults keyboard shortcuts <!--(*:can be modified - "Configure TexMakerX" -> "Editor") -->:
 <ul>
