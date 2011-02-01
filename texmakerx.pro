@@ -470,13 +470,10 @@ isEmpty(NO_POPPLER_PREVIEW) {
             -lz
     }
     win32 { 
-	#LIBS += -lpoppler-qt4
-	#LIBS += -lpoppler
-	INCLUDEPATH  += C:\Users\Geier\Documents\Programmieren\libs\include\poppler\qt4
-	LIBS         += C:\Users\Geier\Documents\Programmieren\libs\lib\libpoppler-qt4.dll.a
-	LIBS         += C:\Users\Geier\Documents\Programmieren\libs\lib\libpoppler.dll.a
-	INCLUDEPATH  += C:\MinGW\include
-	LIBS += C:\MinGW\lib\libzlib.dll.a
+	INCLUDEPATH  += ./include_win32
+	LIBS += -lzlib \
+	    -lpoppler-qt4 \
+	    -lpoppler
     }
 }
 !isEmpty(NO_POPPLER_PREVIEW) { 
