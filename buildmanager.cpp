@@ -507,6 +507,7 @@ void BuildManager::registerOptions(ConfigManagerInterface& cmi){
 	cmi.registerOption("Tools/Dvi2Png Mode",reinterpret_cast<int*>(&dvi2pngMode), -1);
 	cmi.registerOption("Files/Save Files Before Compiling", reinterpret_cast<int*>(&saveFilesBeforeCompiling), (int)SFBC_ALWAYS);
 	cmi.registerOption("Preview/Remove Beamer Class", &previewRemoveBeamer, true);
+	cmi.registerOption("Preview/Precompile Preamble", &previewPrecompilePreamble, true);
 }
 void BuildManager::readSettings(const QSettings &settings){
 	Q_UNUSED(settings);
@@ -534,9 +535,9 @@ void BuildManager::readSettings(const QSettings &settings){
 		else quickmode=1; //texmaker default
 	}
 	if (reinterpret_cast<int&>(dvi2pngMode)<0) {
-		if (hasLatexCommand(CMD_DVIPNG)) dvi2pngMode = DPM_DVIPNG_FOLLOW; //best/fastest mode
+		if (hasLatexCommand(CMD_DVIPNG)) dvi2pngMode = DPM_DVIPNG; //best/fastest mode
 		else if (hasLatexCommand(CMD_DVIPS) && hasLatexCommand(CMD_GHOSTSCRIPT)) dvi2pngMode = DPM_DVIPS_GHOSTSCRIPT; //compatible mode
-		else dvi2pngMode = DPM_DVIPNG_FOLLOW; //won't work
+		else dvi2pngMode = DPM_DVIPNG; //won't work
 	}
 
 }
@@ -573,6 +574,15 @@ QString BuildManager::getLatexCommandForDisplay(LatexCommand cmd){
             res=res.mid(BuildManager::TMX_INTERNAL_PDF_VIEWER.length() + 1);
         return res;
 }
+QString BuildManager::getLatexCommandExecutable(LatexCommand cmd){
+	QString cmdStr = getLatexCommand(cmd).trimmed();
+	int p=-1;
+	if (cmdStr.startsWith('"')) p = cmdStr.indexOf('"',1)+1;
+	else if (cmdStr.contains(' ')) p = cmdStr.indexOf(' ')+1;
+	if (p==-1) p = cmdStr.length(); //indexOf failed if it returns -1
+	return cmdStr.mid(0, p);
+}
+
 bool BuildManager::hasLatexCommand(LatexCommand cmd){
 	return !commands[cmd].isEmpty();
 }
@@ -642,36 +652,74 @@ QString BuildManager::createTemporaryFileName(){
 //3. latex is called => dvips converts .dvi to .ps => ghostscript is called and created final png
 //Then ghostscript to convert it to
 void BuildManager::preview(const QString &preamble, const QString &text, QTextCodec *outputCodec){
-  // write to temp file
-  // (place /./ after the temporary directory because it fails otherwise with qt4.3 on win and the tempdir "t:")
-	QTemporaryFile *tf=new QTemporaryFile(QDir::tempPath()+QDir::separator()+"."+QDir::separator()+"XXXXXX.tex");
-	if (!tf) return;
-	tf->open();
+	QString tempPath = QDir::tempPath()+QDir::separator()+"."+QDir::separator();
 
-	QTextStream out(tf);
-	if (outputCodec) out.setCodec(outputCodec);
+	//process preamble
 	QString preamble_mod = preamble;
 	static const QRegExp beamerClass("^(\\s*%[^\\n]*\\n)*\\s*\\\\documentclass(\\[[^\\]]*\\])?\\{beamer\\}"); //detect the usage of the beamer class
 	if (previewRemoveBeamer && preamble_mod.contains(beamerClass)){
 		//dvipng is very slow (>14s) and ghostscript is slow (1.4s) when handling beamer documents,
 		//after setting the class to article dvipng runs in 77ms
 		preamble_mod.remove(beamerClass);
-		preamble_mod.insert(0,"\\usepackage{article}\n\\usepackage{beamerarticle}");
+		preamble_mod.insert(0,"\\documentclass{article}\n\\usepackage{beamerarticle}");
 	}
 	preamble_mod.remove(QRegExp("\\\\input\\{[^/][^\\]?[^}]*\\}")); //remove all input commands that doesn't use an absolute path from the preamble
-	out << preamble_mod
-		<< "\n\\begin{document}\n"
-		<< text
-		<< "\n\\end{document}\n";
+
+	QString preambleFormatFile;
+	if (previewPrecompilePreamble) {
+		preambleFormatFile = preambleHash.value(preamble_mod, "");
+		if (!preambleFormatFile.isEmpty())
+			if (!QFile::exists(tempPath + preambleFormatFile + ".fmt"))
+				preambleFormatFile = "";
+		if (preambleFormatFile.isEmpty()) {
+			//write preamble
+			QTemporaryFile *tf=new QTemporaryFile(tempPath + "hXXXXXX.tex");
+			REQUIRE(tf);
+			tf->open();
+			QTextStream out(tf);
+			if (outputCodec) out.setCodec(outputCodec);
+			out << preamble_mod;
+			tf->setAutoRemove(false);
+			tf->close();
+
+			//compile
+			QFileInfo fi(*tf);
+			preambleFormatFile = fi.completeBaseName();
+			previewFileNames.append(fi.absoluteFilePath());
+			ProcessX *p = newProcess(QString("%1 -ini \"&latex %2 \\dump\"").arg(getLatexCommandExecutable(CMD_LATEX)).arg(preambleFormatFile), tf->fileName()); //no delete! goes automatically
+			REQUIRE(p);
+			p->startCommand();
+
+			if (p->waitForStarted()) {
+				if (p->waitForFinished())
+					preambleHash.insert(preamble_mod, preambleFormatFile);
+				else
+					preambleFormatFile = ""; //compiling failed
+			} else preambleFormatFile = ""; //compiling failed
+			delete tf; // tex file needs to be freed
+		}
+	}
+
+	// write to temp file
+  // (place /./ after the temporary directory because it fails otherwise with qt4.3 on win and the tempdir "t:")
+	QTemporaryFile *tf=new QTemporaryFile(tempPath + "XXXXXX.tex");
+	if (!tf) return;
+	tf->open();
+
+	QTextStream out(tf);
+	if (outputCodec) out.setCodec(outputCodec);
+	if (preambleFormatFile.isEmpty()) out << preamble_mod;
+	else out << "%&" << preambleFormatFile << "\n";
+	out << "\n\\begin{document}\n" << text << "\n\\end{document}\n";
 	// prepare commands/filenames
-	QString ffn=QFileInfo(*tf).absoluteFilePath();
+	QFileInfo fi(*tf);
+	QString ffn=fi.absoluteFilePath();
 	previewFileNames.append(ffn);
 	previewFileNameToText.insert(ffn,text);
 	tf->setAutoRemove(false);
 	tf->close();
 	delete tf; // tex file needs to be freed
 	// start conversion
-	// preliminary code
 	// tex -> dvi
 	ProcessX *p1 = newProcess(CMD_LATEX,ffn); //no delete! goes automatically
 	connect(p1,SIGNAL(finished(int)),this,SLOT(latexPreviewCompleted(int)));
@@ -868,6 +916,11 @@ void ProcessX::startCommand() {
 	#endif
 
 	QProcess::start(cmd);
+
+#ifdef PROFILE_PROCESSES
+	connect(this, SIGNAL(finished(int)), SLOT(finished()));
+	time.start();
+#endif
 }
 bool ProcessX::waitForStarted(int timeOut){
 	if (started) return true;
@@ -882,3 +935,8 @@ const QString& ProcessX::getCommandLine(){
 bool ProcessX::showStdout() const{
 	return stdoutEnabled;
 }
+#ifdef PROFILE_PROCESSES
+void ProcessX::finished(){
+	qDebug() << "Process: "<<qPrintable(cmd)<< "  Running time: " << time.elapsed();
+}
+#endif

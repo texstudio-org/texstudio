@@ -1759,6 +1759,19 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
+          <item row="3" column="1">
+           <widget class="QCheckBox" name="checkBoxPrecompilePreamble">
+            <property name="text">
+             <string>Precompile Preamble</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
