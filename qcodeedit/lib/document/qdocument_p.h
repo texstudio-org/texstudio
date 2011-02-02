@@ -156,6 +156,8 @@ class QCE_EXPORT QDocumentPrivate
 
 		static bool getFixedPitch();
 
+		void setForceLineWrapCalculation(bool v);
+
 		bool hardLineWrap() const{
 			return m_hardLineWrap;
 		}
@@ -267,6 +269,8 @@ class QCE_EXPORT QDocumentPrivate
 
 		QList<QDocumentCursorHandle*> m_autoUpdatedCursorList;
 		QHash<QDocumentCursorHandle*, int> m_autoUpdatedCursorIndex;
+
+		bool m_forceLineWrapCalculation;
 };
 
 #endif

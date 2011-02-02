@@ -108,6 +108,9 @@ static QList<GuessEncodingCallback> guessEncodingCallbacks;
 
 static int m_spaceSignOffset = 2;
 
+static int PICTURE_COOKIE = 42;
+static int PICTURE_BORDER = 2;
+
 static QPoint m_spaceSign[] = {
 	QPoint(2, -1),
 	QPoint(2, 0),
@@ -133,6 +136,12 @@ bool QDocument::hasWorkAround(QDocument::WorkAroundFlag workAround){
 
 bool QDocument::getFixedPitch() const{
 	return m_impl && m_impl->getFixedPitch();
+}
+bool QDocument::forceLineWrapCalculation() const{
+	return m_impl && m_impl->m_forceLineWrapCalculation;
+}
+void QDocument::setForceLineWrapCalculation(bool v){
+	if (m_impl) m_impl->setForceLineWrapCalculation(v);
 }
 
 int QDocument::screenColumn(const QChar *d, int l, int tabStop, int column)
@@ -1094,7 +1103,7 @@ int QDocument::height() const
 */
 int QDocument::widthConstraint() const
 {
-	return (m_impl && m_impl->m_constrained) ? m_impl->m_width : 0;
+	return (m_impl && m_impl->m_constrained) ? m_impl->m_width : 100000000;
 }
 
 /*!
@@ -1762,6 +1771,10 @@ void QDocument::correctFolding(int fromInc, int toInc){
 	m_impl->emitFormatsChanged();
 }
 
+void QDocument::adjustWidth(int line){
+	if (m_impl) m_impl->adjustWidth(line);
+}
+
 /*!
 	\brief Set the document to clean state
 
@@ -2064,7 +2077,7 @@ void QDocumentLineHandle::updateWrap() const
 	m_indent = 0;
 	m_frontiers.clear();
 
-	if ( !m_doc->impl()->m_constrained )
+	if ( !m_doc->impl()->m_constrained && !m_doc->impl()->m_forceLineWrapCalculation)
 	{
 		if ( m_layout )
 			setFlag(QDocumentLine::LayoutDirty, true);
@@ -2206,6 +2219,13 @@ void QDocumentLineHandle::updateWrap() const
 				lastX = rx;
 			}
 		}
+	}
+
+	if (hasCookie(PICTURE_COOKIE)) {
+		int h = 2*PICTURE_BORDER + getCookie(PICTURE_COOKIE).value<QPixmap>().height();
+		if (h % QDocumentPrivate::m_lineSpacing > 0) h += QDocumentPrivate::m_lineSpacing - h % QDocumentPrivate::m_lineSpacing;
+		QPair<int,int> l(text().length(), rx);
+		for (int i=0;i<h/QDocumentPrivate::m_lineSpacing;i++) { l.second++; l.first++; m_frontiers << l; }
 	}
 }
 
@@ -2918,7 +2938,7 @@ void QDocumentLineHandle::layout() const
 				break;
 			}
 
-			if ( m_doc->widthConstraint() )
+			if ( m_doc->impl()->m_constrained )
 				line.setLineWidth(m_doc->widthConstraint() - QDocumentPrivate::m_leftMargin);
 			else
 				line.setNumColumns(m_text.length());
@@ -2931,13 +2951,13 @@ void QDocumentLineHandle::layout() const
 			} else {
 				line.setPosition(QPoint(minwidth, height));
 				
-				if ( !i )
+				if ( !i && m_doc->impl()->m_constrained )
 				{
 					m_indent = minwidth = cursorToXNoLock(nextNonSpaceCharNoLock(0)) - QDocumentPrivate::m_leftMargin;
 					
 					if ( minwidth < 0 || minwidth >= m_doc->widthConstraint() )
 						minwidth = 0;
-			}
+				}
 			}
 
 			m_frontiers << qMakePair(line.textStart() + line.textLength(), rx);
@@ -3039,7 +3059,10 @@ void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const
 			if ( i == frontier )
 			{
 				++wrap;
-				frontier = wrap < m_frontiers.count() ? m_frontiers.at(wrap).first : until;
+				if (wrap < m_frontiers.count())
+					frontier = qMin(m_frontiers.at(wrap).first, until);
+				else
+					frontier = until;
 			}
 		}
 	} else if ( m_frontiers.count() ) {
@@ -4234,13 +4257,20 @@ bool QDocumentCursorHandle::movePosition(int count, int op, int m)
 
 				p.ry() -= QDocumentPrivate::m_lineSpacing * count;
 
-				if ( p.y() >= 0 )
-				{
+				while (p.y() >= 0) {
 					m_doc->cursorForDocumentPosition(p, line, offset);
-				} else {
+					if ( offset <= this->line().length() )
+						return true;
+					//pseudo wrapping
+					p.ry() -= QDocumentPrivate::m_lineSpacing; //todo: optimize with image height
+				}
+
+				if (p.y() < 0) {
 					line = 0;
 					offset = 0;
 				}
+
+
 
 				return true;
 			}
@@ -4296,6 +4326,11 @@ bool QDocumentCursorHandle::movePosition(int count, int op, int m)
 				m_doc->cursorForDocumentPosition(p, line, offset);
 				if ( oldLine == line && oldCol == offset )
 					offset = m_doc->line(line).length();
+				else  while (offset > this->line().length() && line < this->document()->lines() ) {
+					//pseudo wrapping, todo: optimize
+					p.ry() += QDocumentPrivate::m_lineSpacing;
+					m_doc->cursorForDocumentPosition(p, line, offset);
+				}
 				return true;
 			}
 
@@ -5919,11 +5954,23 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		// draw text with caching
 		QPixmap *px;
 
+		int pseudoWrap = 0;
+		if (h->hasCookie(PICTURE_COOKIE)){
+			const QPixmap& pm = h->getCookie(PICTURE_COOKIE).value<QPixmap>();
+
+			int ph = 2*PICTURE_BORDER + pm.height();
+			if (ph % m_lineSpacing > 0) ph += m_lineSpacing - ph % m_lineSpacing;
+
+			pseudoWrap = ph/m_lineSpacing;
+
+			p->drawPixmap((cxt.width - pm.width())/2, m_lineSpacing*(wrap+1-pseudoWrap) + (ph - pm.height()) / 2, pm);
+		}
+
 		if(!currentLine&&!h->hasFlag(QDocumentLine::LayoutDirty)&&h->hasFlag(QDocumentLine::FormatsApplied)&&m_LineCache.contains(h)){
 			px=m_LineCache.object(h);
 			p->drawPixmap(m_oldLineCacheOffset,0,*px);
 		} else {
-			int ht=m_lineSpacing*(wrap+1);
+			int ht=m_lineSpacing*(wrap+1 - pseudoWrap);
 			int yoff= (currentLine && cxt.yoffset-pos>0) ? cxt.yoffset-pos : 0;
 			if(currentLine){
 				ht= ht > cxt.yoffset+cxt.height-pos ? cxt.yoffset+cxt.height-pos : ht;
@@ -5963,6 +6010,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		// see above
 		p->translate(0, -pos);
 
+
 		// draw fold rect indicator
 		if ( h->hasFlag(QDocumentLine::CollapsedBlockStart) )
 		{
@@ -5977,7 +6025,6 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
 		}
 
-		p->restore();
 
 		pos += m_lineSpacing;
 
@@ -5986,6 +6033,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			pos += m_lineSpacing * wrap;
 		}
 
+		p->restore();
 		//qDebug("drawing line %i in %i ms", i, t.elapsed());
 	}
 
@@ -6102,15 +6150,15 @@ void QDocumentPrivate::setHardLineWrap(bool wrap)
 void QDocumentPrivate::setWidth(int width)
 {
 	int oldConstraint = m_constrained;
-	m_constrained = width > 0;
+	m_constrained = width > 0 ;
 
-	if ( m_constrained )
+	if ( m_constrained || m_forceLineWrapCalculation )
 	{
 		int oldWidth = m_width;
 
 		m_width = width;
 
-		if ( oldConstraint && oldWidth < width )
+		if ( oldConstraint && oldWidth < width && m_constrained )
 		{
 			// expand : simply remove old wraps if possible
 
@@ -6135,7 +6183,7 @@ void QDocumentPrivate::setWidth(int width)
 					it = m_wrapped.erase(it);
 				}
 			}
-		} else if ( oldWidth > width ) {
+		} else if ( oldWidth > width || m_forceLineWrapCalculation ) {
 			// shrink : scan whole document and create new wraps wherever needed
 			//qDebug("global width scan [constraint on]");
 			//m_wrapped.clear();
@@ -6168,7 +6216,7 @@ void QDocumentPrivate::setWidth()
 	m_largest.clear();
 	const int max = m_lines.count();
 
-	if ( m_constrained )
+	if ( m_constrained || m_forceLineWrapCalculation )
 	{
 		int first = -1;
 
@@ -6197,9 +6245,10 @@ void QDocumentPrivate::setWidth()
 				first = i;
 		}
 
-		if ( first != -1 )
+		if ( first != -1 && m_constrained )
 			emitFormatsChange(first, -1);
-	} else {
+	}
+	if (!m_constrained){
 		int oldWidth = m_width;
 
 		m_width = 0;
@@ -6209,7 +6258,8 @@ void QDocumentPrivate::setWidth()
 			if ( l->hasFlag(QDocumentLine::Hidden) )
 				continue;
 
-			l->m_frontiers.clear();
+			if (!m_forceLineWrapCalculation)
+				l->m_frontiers.clear();
 
 			int w = l->cursorToX(l->length());
 
@@ -6236,7 +6286,7 @@ void QDocumentPrivate::adjustWidth(int line)
 
 	QDocumentLineHandle *l = m_lines.at(line);
 
-	if ( m_constrained )
+	if ( m_constrained || m_forceLineWrapCalculation  )
 	{
 		int olw = l->m_frontiers.count();
 
@@ -6244,26 +6294,26 @@ void QDocumentPrivate::adjustWidth(int line)
 
 		int lw = l->m_frontiers.count();
 
-		if ( olw == lw )
-			return;
+		if ( olw != lw ) {
+			if ( l->m_layout )
+				l->setFlag(QDocumentLine::LayoutDirty);
 
-		if ( l->m_layout )
-			l->setFlag(QDocumentLine::LayoutDirty);
+			if ( lw )
+			{
+				//qDebug("added wrap on line %i", line);
+				m_wrapped[line] = lw;
+			} else {
+				//qDebug("removed wrap on line %i", line);
+				m_wrapped.remove(line);
+			}
 
-		if ( lw )
-		{
-			//qDebug("added wrap on line %i", line);
-			m_wrapped[line] = lw;
-		} else {
-			//qDebug("removed wrap on line %i", line);
-			m_wrapped.remove(line);
+			emitFormatsChange(line, -1);
+			setHeight();
 		}
-
-		emitFormatsChange(line, -1);
-		setHeight();
-
-	} else {
-		l->m_frontiers.clear();
+	}
+	if ( !m_constrained ) {
+		if ( !m_forceLineWrapCalculation )
+			l->m_frontiers.clear();
 
 		int w = l->cursorToX(l->length());
 
@@ -7311,6 +7361,13 @@ bool QDocumentPrivate::hasWorkAround(QDocument::WorkAroundFlag workAround){
 
 bool QDocumentPrivate::getFixedPitch(){
 	return m_fixedPitch;
+}
+
+void QDocumentPrivate::setForceLineWrapCalculation(bool v){
+	if (m_forceLineWrapCalculation == v) return;
+	m_forceLineWrapCalculation = v;
+	if (v && !m_constrained)
+		setWidth(0);
 }
 
 void QDocumentPrivate::emitFormatsChanged()

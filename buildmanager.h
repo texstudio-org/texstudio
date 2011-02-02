@@ -63,7 +63,7 @@ public:
 	
 	static QString createTemporaryFileName(); //don't forget to remove the file!
 					
-	void preview(const QString &preamble, const QString &text, QTextCodec *outputCodec=0);
+	void preview(const QString &preamble, const QString &text, int line, QTextCodec *outputCodec=0);
 
 	QString editCommandList(const QString& list);
 
@@ -80,12 +80,12 @@ private slots:
 	void conversionPreviewCompleted(int status); 
 	
 signals:
-	void previewAvailable(const QString& filename, const QString& text);
+	void previewAvailable(const QString& filename, const QString& text, int);
 private:
 	friend class ProcessX;
 	QStringList previewFileNames;
 	QMap<QString, ProcessX*> runningCommands;
-	QMap<QString, QString> previewFileNameToText;
+	QMap<QString, QPair<QString, int> > previewFileNameToText;
 	QHash<LatexCommand, QString> commands;
 	QHash<QString, QString> preambleHash;
 #ifdef Q_WS_WIN
@@ -98,7 +98,7 @@ inline void operator++(BuildManager::LatexCommand& cmd){
 	cmd = (BuildManager::LatexCommand)((int)cmd + 1);
 }
 
-#define PROFILE_PROCESSES
+//#define PROFILE_PROCESSES
 
 //this process can handle dde and normal commands
 class ProcessX: public QProcess{

@@ -228,7 +228,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
         connect(&autosaveTimer,SIGNAL(timeout()),this,SLOT(fileSaveAll()));
         if(configManager.autosaveEveryMinutes>0){
             autosaveTimer.start(configManager.autosaveEveryMinutes*1000*60);
-        }
+	 }
 }
 
 QMenu* Texmaker::newManagedMenu(QMenu* menu, const QString &id,const QString &text){
@@ -360,7 +360,7 @@ void Texmaker::setupDockWidgets(){
 		connect(outputView,SIGNAL(tabChanged(int)),this,SLOT(tabChanged(int)));
 		connect(outputView,SIGNAL(jumpToSearch(QString,int)),this,SLOT(jumpToSearch(QString,int)));
 		connect(&configManager,SIGNAL(tabbedLogViewChanged(bool)),outputView,SLOT(setTabbedLogView(bool)));
-		connect(&buildManager,SIGNAL(previewAvailable(const QString&, const QString&)),this,SLOT(previewAvailable	(const QString&,const QString&)));
+		connect(&buildManager,SIGNAL(previewAvailable(const QString&, const QString&, int)),this,SLOT(previewAvailable	(const QString&,const QString&, int)));
 		addAction(outputView->toggleViewAction());
 		QAction* temp = new QAction(this); temp->setSeparator(true);
 		addAction(temp);
@@ -1083,7 +1083,6 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 		   edView->reCheckSyntax(); // redo syntax checking (in case of defined commands)
 	    }
 	}
-
 
 	if (asProject) documents.setMasterDocument(edit->document);
 
@@ -4307,9 +4306,9 @@ void Texmaker::previewLatex(){
 	for (int l=0; l<m_endingLine; l++)
 		header << edView->editor->document()->line(l).text();
 	header << "\\pagestyle{empty}";// << "\\begin{document}";
-	buildManager.preview(header.join("\n"), originalText, edView->editor->document()->codec());
+	buildManager.preview(header.join("\n"), originalText, c.hasSelection()?c.selectionEnd().lineNumber():c.lineNumber(), edView->editor->document()->codec());
 }
-void Texmaker::previewAvailable(const QString& imageFile, const QString& /*text*/){
+void Texmaker::previewAvailable(const QString& imageFile, const QString& /*text*/, int line){
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
 		configManager.previewMode == ConfigManager::PM_PANEL||
 		(configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && outputView->isPreviewPanelVisible())) {
@@ -4319,7 +4318,8 @@ void Texmaker::previewAvailable(const QString& imageFile, const QString& /*text*
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
 		configManager.previewMode == ConfigManager::PM_TOOLTIP||
 		previewEquation||
-		(configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && !outputView->isPreviewPanelVisible())) {
+		(configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && !outputView->isPreviewPanelVisible()) ||
+		(line < 0)) {
 		QPoint p;
 		if(previewEquation)
 		    p=currentEditorView()->getHoverPosistion();
@@ -4333,10 +4333,18 @@ void Texmaker::previewAvailable(const QString& imageFile, const QString& /*text*
 		LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
 
 	}
+	if (configManager.previewMode == ConfigManager::PM_INLINE){
+		if (line >= currentEditor()->document()->lines())
+			line = currentEditor()->document()->lines()-1;
+		currentEditor()->document()->line(line).setCookie(42, QVariant::fromValue<QPixmap>(QPixmap(imageFile)));
+		currentEditor()->document()->setForceLineWrapCalculation(true);
+		currentEditor()->document()->adjustWidth(line);
+
+	}
 	previewEquation=false;
 }
 
-void Texmaker::showPreview(const QString text){
+void Texmaker::showPreview(const QString& text){
 	LatexEditorView* edView=getEditorViewFromFileName(documents.getCompileFileName()); //todo: temporary compi
 	if (!edView) return;
 	int m_endingLine=edView->editor->document()->findLineContaining("\\begin{document}",0,Qt::CaseSensitive);
@@ -4346,7 +4354,7 @@ void Texmaker::showPreview(const QString text){
 		header << edView->editor->document()->line(l).text();
 	header << "\\pagestyle{empty}";// << "\\begin{document}";
 	previewEquation=true;
-	buildManager.preview(header.join("\n"), text, edView->editor->document()->codec());
+	buildManager.preview(header.join("\n"), text, -1, edView->editor->document()->codec());
 }
 
  void Texmaker::editInsertRefToNextLabel(bool backward) {
