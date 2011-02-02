@@ -506,6 +506,7 @@ void BuildManager::registerOptions(ConfigManagerInterface& cmi){
 	Q_ASSERT(sizeof(dvi2pngMode) == sizeof(int));
 	cmi.registerOption("Tools/Dvi2Png Mode",reinterpret_cast<int*>(&dvi2pngMode), -1);
 	cmi.registerOption("Files/Save Files Before Compiling", reinterpret_cast<int*>(&saveFilesBeforeCompiling), (int)SFBC_ALWAYS);
+	cmi.registerOption("Preview/Remove Beamer Class", &previewRemoveBeamer, true);
 }
 void BuildManager::readSettings(const QSettings &settings){
 	Q_UNUSED(settings);
@@ -650,6 +651,13 @@ void BuildManager::preview(const QString &preamble, const QString &text, QTextCo
 	QTextStream out(tf);
 	if (outputCodec) out.setCodec(outputCodec);
 	QString preamble_mod = preamble;
+	static const QRegExp beamerClass("^(\\s*%[^\\n]*\\n)*\\s*\\\\documentclass(\\[[^\\]]*\\])?\\{beamer\\}"); //detect the usage of the beamer class
+	if (previewRemoveBeamer && preamble_mod.contains(beamerClass)){
+		//dvipng is very slow (>14s) and ghostscript is slow (1.4s) when handling beamer documents,
+		//after setting the class to article dvipng runs in 77ms
+		preamble_mod.remove(beamerClass);
+		preamble_mod.insert(0,"\\usepackage{article}\n\\usepackage{beamerarticle}");
+	}
 	preamble_mod.remove(QRegExp("\\\\input\\{[^/][^\\]?[^}]*\\}")); //remove all input commands that doesn't use an absolute path from the preamble
 	out << preamble_mod
 		<< "\n\\begin{document}\n"
