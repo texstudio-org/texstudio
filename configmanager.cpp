@@ -336,6 +336,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	//preview
 	registerOption("Preview/Mode", (int*)&previewMode, 0, &pseudoDialog->comboBoxPreviewMode);
 
+
 	//pdf preview
 	QRect screen = QApplication::desktop()->screenGeometry();
 	registerOption("Geometries/PdfViewerLeft", &pdfDocumentConfig->windowLeft, screen.width()/3);
@@ -817,6 +818,8 @@ bool ConfigManager::execConfigDialog() {
 	confDlg->ui.lineEditExecuteBeforeCompiling->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_PRECOMPILE));
 	confDlg->ui.lineEditUserquick->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_QUICK));
 	
+	confDlg->ui.checkBoxReplaceBeamer->setChecked(buildManager->previewRemoveBeamer);
+
 	confDlg->ui.checkBoxRunAfterBibTeXChange->setChecked(runLaTeXBibTeXLaTeX);
 
 	QIcon fileOpenIcon = getRealIcon("fileopen");
@@ -1045,6 +1048,8 @@ bool ConfigManager::execConfigDialog() {
 		if (confDlg->ui.radioButton6_2->isChecked()) buildManager->quickmode=6;
 		if (confDlg->ui.radioButton7->isChecked()) buildManager->quickmode=7;
 		if (confDlg->ui.radioButton6->isChecked()) buildManager->quickmode=8;
+
+		buildManager->previewRemoveBeamer = confDlg->ui.checkBoxReplaceBeamer->isChecked();
 
 		runLaTeXBibTeXLaTeX=confDlg->ui.checkBoxRunAfterBibTeXChange->isChecked();
 

@@ -71,6 +71,7 @@ public:
 	Dvi2PngMode dvi2pngMode;
 	enum SaveFilesBeforeCompiling {SFBC_ALWAYS, SFBC_ONLY_CURRENT_OR_NAMED, SFBC_ONLY_NAMED};
 	SaveFilesBeforeCompiling saveFilesBeforeCompiling;
+	bool previewRemoveBeamer;
 private slots:	
 	void singleInstanceCompleted(int status);
 	void latexPreviewCompleted(int status);
