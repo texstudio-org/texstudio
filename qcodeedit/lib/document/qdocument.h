@@ -291,11 +291,15 @@ class QCE_EXPORT QDocument : public QObject
 		bool linesPartiallyFolded(int fromInc, int toInc);
 		void correctFolding(int fromInc, int toInc);
 
+		void adjustWidth(int line);
+
 		static void setWorkAround(WorkAroundFlag workAround, bool newValue);
 		static bool hasWorkAround(WorkAroundFlag workAround);
 
 		bool getFixedPitch() const;
 
+		bool forceLineWrapCalculation() const;
+		void setForceLineWrapCalculation(bool v);
 	public slots:
 		void clear();
 		

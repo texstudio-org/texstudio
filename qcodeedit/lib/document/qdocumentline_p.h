@@ -162,11 +162,14 @@ class QCE_EXPORT QDocumentLineHandle
 		    return mTicket;
 		}
 
-		QVariant getCookie(int type){ //locking needs to be done externally !!!
-		    return mCookies.value(type,QVariant());
+		QVariant getCookie(int type) const{ //locking needs to be done externally !!!
+			return mCookies.value(type,QVariant());
 		}
 		void setCookie(int type,QVariant data){ //locking needs to be done externally !!!
-		    mCookies.insert(type,data);
+			mCookies.insert(type,data);
+		}
+		bool hasCookie(int type) const{
+			return mCookies.contains(type);
 		}
 		
 	private:
