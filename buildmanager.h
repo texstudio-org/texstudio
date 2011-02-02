@@ -50,6 +50,7 @@ public:
 	void setLatexCommand(LatexCommand cmd, const QString &cmdString);//sets a command (accepts tr("<unknown>"))
 	QString getLatexCommand(LatexCommand cmd); //returns the program+args for the command
 	QString getLatexCommandForDisplay(LatexCommand cmd); //returns program or tr("<unknown>") if no command exists
+	QString getLatexCommandExecutable(LatexCommand cmd); //returns the program without args for the command
 	bool hasLatexCommand(LatexCommand cmd); //returns if the command can be called
 	
 	//creates a process object for a predefined command, which will operate on the given file and line number
@@ -71,7 +72,7 @@ public:
 	Dvi2PngMode dvi2pngMode;
 	enum SaveFilesBeforeCompiling {SFBC_ALWAYS, SFBC_ONLY_CURRENT_OR_NAMED, SFBC_ONLY_NAMED};
 	SaveFilesBeforeCompiling saveFilesBeforeCompiling;
-	bool previewRemoveBeamer;
+	bool previewRemoveBeamer, previewPrecompilePreamble;
 private slots:	
 	void singleInstanceCompleted(int status);
 	void latexPreviewCompleted(int status);
@@ -86,6 +87,7 @@ private:
 	QMap<QString, ProcessX*> runningCommands;
 	QMap<QString, QString> previewFileNameToText;
 	QHash<LatexCommand, QString> commands;
+	QHash<QString, QString> preambleHash;
 #ifdef Q_WS_WIN
 	unsigned long int pidInst;
 	bool executeDDE(QString ddePseudoURL);
@@ -95,6 +97,8 @@ private:
 inline void operator++(BuildManager::LatexCommand& cmd){
 	cmd = (BuildManager::LatexCommand)((int)cmd + 1);
 }
+
+#define PROFILE_PROCESSES
 
 //this process can handle dde and normal commands
 class ProcessX: public QProcess{
@@ -112,12 +116,18 @@ public:
 		mBuffer=buffer;
 	}
 	bool showStdout() const;
-
+#ifdef PROFILE_PROCESSES
+public slots:
+	void finished();
+#endif
 private:
 	QString cmd;
 	QString file;
 	bool started, stdoutEnabled;
 	QString *mBuffer;
+#ifdef PROFILE_PROCESSES
+	QTime time;
+#endif
 };
 
 
