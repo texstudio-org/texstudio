@@ -13,7 +13,7 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.0 (SVN </source>
-        <translation>&lt;b&gt;TexMakerX 2.0 (SVN </translation>
+        <translation type="obsolete">&lt;b&gt;TexMakerX 2.0 (SVN </translation>
     </message>
     <message>
         <source>Using Qt Version %1, compiled with Qt %2</source>
@@ -46,6 +46,10 @@
     <message>
         <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
         <translation>A TexMakerX felhasznál az alábbi programok kódjaiból: Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL).és SyncTeX (szerző: Jerome Laurens)&lt;br&gt;A TexMakerX a TeXworks PDF-megjelenítőt használja.&lt;br&gt; A TexMakerX a DSingleApplication (szerző: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL) osztályt használja.&lt;br&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</source>
+        <translation>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -973,6 +977,34 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <source>Synchronized files types:</source>
         <translation>Szinkronizált fájltípusok:</translation>
+    </message>
+    <message>
+        <source>Inline</source>
+        <translation>Sorban</translation>
+    </message>
+    <message>
+        <source>Replace beamer class by article</source>
+        <translation>Beamer osztály article osztállyal helyettesít</translation>
+    </message>
+    <message>
+        <source>Precompile Preamble</source>
+        <translation>Preambulum előfordítása</translation>
+    </message>
+    <message>
+        <source>Auto preview:</source>
+        <translation>Automatikus előnézet:</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation>Soha</translation>
+    </message>
+    <message>
+        <source>Previously previewed text</source>
+        <translation>Szöveg korábbi előnézete</translation>
+    </message>
+    <message>
+        <source>Auto preview delay:</source>
+        <translation>Késleltetett automatikus előnézet:</translation>
     </message>
 </context>
 <context>
@@ -4810,6 +4842,10 @@ TexMakerX does not support multiple instances of the same file.
 Are you sure you want to continue?</source>
         <translation>A(z) %1 nevű fájlt próbálja menteni, de ilyen nevű fájl már létezik.
 Biztos, hogy folytatni akarja?</translation>
+    </message>
+    <message>
+        <source>check in whole directory ?</source>
+        <translation>Az egész könyvtárban legyen az ellenőrzés?</translation>
     </message>
 </context>
 <context>
