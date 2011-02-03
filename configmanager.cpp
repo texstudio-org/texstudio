@@ -334,8 +334,9 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Interface/Language", &language, "", &pseudoDialog->comboBoxLanguage);
 
 	//preview
-	registerOption("Preview/Mode", (int*)&previewMode, 0, &pseudoDialog->comboBoxPreviewMode);
-
+	registerOption("Preview/Mode", (int*)&previewMode, (int)PM_INLINE, &pseudoDialog->comboBoxPreviewMode);
+	registerOption("Preview/Auto Preview", (int*)&autoPreview, 1, &pseudoDialog->comboBoxAutoPreview);
+	registerOption("Preview/Auto Preview Delay", &autoPreviewDelay, 300, &pseudoDialog->spinBoxAutoPreviewDelay);
 
 	//pdf preview
 	QRect screen = QApplication::desktop()->screenGeometry();

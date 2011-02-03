@@ -380,6 +380,9 @@ private slots:
 	void previewLatex();
 	void previewAvailable(const QString& imageFile, const QString& text, int line);
 	void showPreview(const QString& text);
+	void showPreview(const QDocumentCursor& c);
+	void showPreview(const QDocumentCursor& c, bool addToList);
+	void showPreviewQueue();
 
 	void templateRemove();
 	void templateEdit();
@@ -430,6 +433,9 @@ protected:
 	QTimer autosaveTimer;
 
 	bool completionBaseCommandsUpdated;
+
+	QSet<int> previewQueue;
+	LatexEditorView* previewQueueOwner;
 };
 
 
