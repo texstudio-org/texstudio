@@ -2796,6 +2796,7 @@ QVector<int> QDocumentLineHandle::compose() const
 	}
 //qDebug("\n");
 	setFlag(QDocumentLine::FormatsApplied, true);
+	setFlag(QDocumentLine::LayoutDirty, true);
 
 	return m_cache;
 }
