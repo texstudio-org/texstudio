@@ -113,7 +113,10 @@ public:
 	
 	//preview
 	enum PreviewMode {PM_TOOLTIP_AS_FALLBACK=0, PM_PANEL,PM_TOOLTIP,PM_BOTH,PM_INLINE};
+	enum AutoPreviewMode {AP_NEVER = 0, AP_PREVIOUSLY = 1};
 	PreviewMode previewMode; 
+	AutoPreviewMode autoPreview;
+	int autoPreviewDelay;
 	
 	//files
 	QString lastDocument; //last opened document, for file open directory

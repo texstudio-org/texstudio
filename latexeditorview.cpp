@@ -625,6 +625,15 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		}
 	}
 
+	if (autoPreviewCursor.size() > 0) {
+		for (int i=0;i<autoPreviewCursor.size();i++) {
+			const QDocumentCursor& c = autoPreviewCursor[i];
+			if (c.lineNumber() >= linenr && c.lineNumber() < linenr+count)
+				emit showPreview(c); //may modify autoPreviewCursor
+		}
+
+	}
+
 	// checking
 	if (!QDocument::formatFactory()) return;
 	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)

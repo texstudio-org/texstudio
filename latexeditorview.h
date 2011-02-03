@@ -84,6 +84,7 @@ public:
 
 	void closeCompleter();
 
+	QList<QDocumentCursor> autoPreviewCursor;
 private:
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 
 	*statusPanelAction, *searchReplacePanelAction, *gotoLinePanelAction;
@@ -140,7 +141,8 @@ signals:
 	void showMarkTooltipForLogMessage(int logMessage);
 	void needCitation(const QString& id);//request a new citation 
 	void showPreview(const QString text);
-        void openFile(const QString name);
+	void showPreview(const QDocumentCursor& c);
+	void openFile(const QString name);
 };
 
 #endif

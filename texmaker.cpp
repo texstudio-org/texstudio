@@ -932,7 +932,8 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(showMarkTooltipForLogMessage(int)),this,SLOT(showMarkTooltipForLogMessage(int)));
 	connect(edit, SIGNAL(needCitation(const QString&)),this,SLOT(InsertBibEntry(const QString&)));
 	connect(edit, SIGNAL(showPreview(QString)),this,SLOT(showPreview(QString)));
-        connect(edit, SIGNAL(openFile(QString)),this,SLOT(openExternalFile(QString)));
+	connect(edit, SIGNAL(showPreview(QDocumentCursor)),this,SLOT(showPreview(QDocumentCursor)));
+	connect(edit, SIGNAL(openFile(QString)),this,SLOT(openExternalFile(QString)));
 
 	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
 	connect(edit->editor,SIGNAL(fileAutoReloading(QString)),this,SLOT(fileAutoReloading(QString)));
@@ -4268,9 +4269,9 @@ void Texmaker::previewLatex(){
     if (!currentEditorView()) return;
     // get selection
 	QDocumentCursor c = currentEditorView()->editor->cursor();
-    QString originalText="";
+	QDocumentCursor previewc;
 	if (c.hasSelection()) {
-		originalText = c.selectedText();
+		previewc = c; //X o riginalText = c.selectedText();
 	} else {
 		//search matching parantheses
 		//it will just get the ones with the greatest distance to each other
@@ -4292,21 +4293,14 @@ void Texmaker::previewLatex(){
 			}*/
 		//if (first==l.length() || last==-1) return;
 		//originalText=l.text().mid(first,last-first);
-		originalText=l.text().mid(first.offset,last.offset+last.length-first.offset);
+		previewc = currentEditor()->document()->cursor(c.lineNumber(), first.offset, c.lineNumber(), last.offset+last.length);
+		//XoriginalText=l.text().mid(first.offset,last.offset+last.length-first.offset);
 		//QMessageBox::information(0,originalText,originalText,0);
 	}
-	if (originalText=="") return;
-    // get document definitions
-    //preliminary code ...
-	LatexEditorView* edView=(documents.masterDocument && documents.masterDocument->getEditorView())?documents.masterDocument->getEditorView():currentEditorView();
-	if (!edView) return;
-	int m_endingLine=edView->editor->document()->findLineContaining("\\begin{document}",0,Qt::CaseSensitive);
-	if (m_endingLine<0) return; // can't create header
-	QStringList header;
-	for (int l=0; l<m_endingLine; l++)
-		header << edView->editor->document()->line(l).text();
-	header << "\\pagestyle{empty}";// << "\\begin{document}";
-	buildManager.preview(header.join("\n"), originalText, c.hasSelection()?c.selectionEnd().lineNumber():c.lineNumber(), edView->editor->document()->codec());
+	if (!previewc.hasSelection()) return;
+
+	showPreview(previewc,true);
+
 }
 void Texmaker::previewAvailable(const QString& imageFile, const QString& /*text*/, int line){
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
@@ -4357,7 +4351,62 @@ void Texmaker::showPreview(const QString& text){
 	buildManager.preview(header.join("\n"), text, -1, edView->editor->document()->codec());
 }
 
- void Texmaker::editInsertRefToNextLabel(bool backward) {
+void Texmaker::showPreview(const QDocumentCursor& previewc){
+	if (previewQueueOwner != currentEditorView())
+		previewQueue.clear();
+	previewQueueOwner = currentEditorView();
+	previewQueue.insert(previewc.lineNumber());
+	QTimer::singleShot(qMax(40,configManager.autoPreviewDelay),this, SLOT(showPreviewQueue())); //slow down or it could create thousands of images
+}
+
+void Texmaker::showPreview(const QDocumentCursor& previewc, bool addToList){
+	REQUIRE(currentEditor());
+	REQUIRE(previewc.document() == currentEditor()->document());
+
+	QString originalText = previewc.selectedText();
+	if (originalText=="") return;
+    // get document definitions
+    //preliminary code ...
+	LatexEditorView* edView=(documents.masterDocument && documents.masterDocument->getEditorView())?documents.masterDocument->getEditorView():currentEditorView();
+	if (!edView) return;
+	int m_endingLine=edView->editor->document()->findLineContaining("\\begin{document}",0,Qt::CaseSensitive);
+	if (m_endingLine<0) return; // can't create header
+	QStringList header;
+	for (int l=0; l<m_endingLine; l++)
+		header << edView->editor->document()->line(l).text();
+	header << "\\pagestyle{empty}";// << "\\begin{document}";
+	buildManager.preview(header.join("\n"), originalText, previewc.lineNumber(), edView->editor->document()->codec());
+
+	if (!addToList)
+		return;
+	if (configManager.autoPreview == ConfigManager::AP_PREVIOUSLY) {
+		QList<QDocumentCursor> & clist = currentEditorView()->autoPreviewCursor;
+		for (int i=clist.size()-1;i>=0;i--)
+			if (clist[i].lineNumber() == previewc.lineNumber() || clist[i].lineNumber() != clist[i].anchorLineNumber())
+				clist.removeAt(i);
+		QDocumentCursor c = previewc;
+		c.setAutoUpdated(true);
+		currentEditorView()->autoPreviewCursor.insert(0,c);
+	}
+}
+void Texmaker::showPreviewQueue(){
+	if (previewQueueOwner != currentEditorView()) {
+		previewQueue.clear();
+		return;
+	}
+	if (configManager.autoPreview == ConfigManager::AP_NEVER) {
+		previewQueueOwner->autoPreviewCursor.clear();
+		previewQueue.clear();
+		return;
+	}
+	foreach (int line, previewQueue)
+		foreach (const QDocumentCursor& c, previewQueueOwner->autoPreviewCursor)
+			if (c.lineNumber() == line)
+				showPreview(c,false);
+	previewQueue.clear();
+}
+
+void Texmaker::editInsertRefToNextLabel(bool backward) {
 	if (!currentEditorView()) return;
 	QDocumentCursor c = currentEditor()->cursor();
 	int l=c.lineNumber();
