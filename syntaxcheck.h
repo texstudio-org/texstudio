@@ -42,7 +42,8 @@ public:
 	int ticket;
 	int cols;
 	bool clearOverlay;
-	QDocumentLineHandle* dlh;
+	QDocumentLineHandle *dlh;
+	int excessCols;
     };
 
     struct Error {
@@ -54,13 +55,15 @@ public:
 
     explicit SyntaxCheck(QObject *parent = 0);
 
-    void putLine(QDocumentLineHandle *dlh,Environment previous=ENV_normal,bool clearOverlay=false,int cols=-1);
+    void putLine(QDocumentLineHandle *dlh, Environment previous=ENV_normal,bool clearOverlay=false,int cols=-1, int excessCols=0);
     void stop();
     void setErrFormat(int errFormat);
     QString getErrorAt(QDocumentLineHandle *dlh,int pos,Environment previous,int cols);
     int verbatimFormat;
     void setLtxCommands(LatexParser cmds);
 
+signals:
+	void checkNextLine(QDocumentLineHandle *dlh, int previousEnvironment ,bool clearOverlay,int cols, int excessCols);
 protected:
      void run();
      void checkLine(QString &line,Ranges &newRanges,QStack<Environment> &activeEnv,int cols,int &excessCols);

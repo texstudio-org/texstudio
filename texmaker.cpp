@@ -4327,11 +4327,11 @@ void Texmaker::previewAvailable(const QString& imageFile, const QString& /*text*
 		LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
 
 	}
-	if (configManager.previewMode == ConfigManager::PM_INLINE){
+	if (configManager.previewMode == ConfigManager::PM_INLINE && line >= 0){
 		if (line >= currentEditor()->document()->lines())
 			line = currentEditor()->document()->lines()-1;
-		currentEditor()->document()->line(line).setCookie(42, QVariant::fromValue<QPixmap>(QPixmap(imageFile)));
 		currentEditor()->document()->setForceLineWrapCalculation(true);
+		currentEditor()->document()->line(line).setCookie(42, QVariant::fromValue<QPixmap>(QPixmap(imageFile)));
 		currentEditor()->document()->adjustWidth(line);
 
 	}
@@ -4375,9 +4375,9 @@ void Texmaker::showPreview(const QDocumentCursor& previewc, bool addToList){
 	for (int l=0; l<m_endingLine; l++)
 		header << edView->editor->document()->line(l).text();
 	header << "\\pagestyle{empty}";// << "\\begin{document}";
-	buildManager.preview(header.join("\n"), originalText, previewc.lineNumber(), edView->editor->document()->codec());
+	buildManager.preview(header.join("\n"), originalText, previewc.selectionEnd().lineNumber(), edView->editor->document()->codec());
 
-	if (!addToList)
+	if (!addToList || previewc.lineNumber() != previewc.anchorLineNumber())
 		return;
 	if (configManager.autoPreview == ConfigManager::AP_PREVIOUSLY) {
 		QList<QDocumentCursor> & clist = currentEditorView()->autoPreviewCursor;

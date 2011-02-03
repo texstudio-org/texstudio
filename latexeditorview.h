@@ -120,6 +120,7 @@ private slots:
         void openExternalFile();
 	void lineMarkClicked(int line);
 	void lineMarkToolTip(int line, int mark);
+	void checkNextLine(QDocumentLineHandle *dlh, int previousEnvironment,bool clearOverlay,int cols, int excessCols);
 public slots:
 	void documentContentChanged(int linenr, int count);
 	void documentFormatsChanged(int linenr, int count);

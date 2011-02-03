@@ -230,6 +230,8 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	updateSettings();
 	SynChecker.verbatimFormat=QDocument::formatFactory()->id("verbatim");
 	SynChecker.start();
+
+	connect(&SynChecker, SIGNAL(checkNextLine(QDocumentLineHandle*,int,bool,int,int)), SLOT(checkNextLine(QDocumentLineHandle *, int,bool,int, int)), Qt::QueuedConnection);
 }
 
 LatexEditorView::~LatexEditorView() {
@@ -563,6 +565,13 @@ void LatexEditorView::lineMarkToolTip(int line, int mark){
 	int error = lineToLogEntries.value(editor->document()->line(line).handle(),-1);
 	if (error>=0)
 		emit showMarkTooltipForLogMessage(error);
+}
+void LatexEditorView::checkNextLine(QDocumentLineHandle *dlh,int previous,bool clearOverlay,int cols, int excessCols){
+	int index = document->indexOf(dlh);
+	if (index == -1) return; //deleted
+	REQUIRE(dlh->document() == document);
+	if (index + 1 >= document->lines()) return;
+	SynChecker.putLine(document->line(index+1).handle(), (SyntaxCheck::Environment)previous, clearOverlay, cols, excessCols);
 }
 
 void LatexEditorView::documentFormatsChanged(int linenr, int count) {
