@@ -188,7 +188,7 @@ private:
 
 	void removeAndDeleteElement(StructureEntry* se, int row);
 
-	void updateCompletionFiles(QStringList &added,QStringList &removed);
+	void updateCompletionFiles(QStringList &added,QStringList &removed,bool forceUpdate);
 
 #ifndef QT_NO_DEBUG
 public:

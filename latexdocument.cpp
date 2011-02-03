@@ -164,6 +164,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	if(!baseStructure) return;
 	bool completerNeedsUpdate=false;
 	bool bibTeXFilesNeedsUpdate=false;
+	bool updateSyntaxCheck;
 	if (mLabelItem.contains(dlh)) {
 	    QList<ReferencePair> labels=mLabelItem.values(dlh);
 	    completerNeedsUpdate = true;
@@ -176,7 +177,17 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	if(mMentionedBibTeXFiles.remove(dlh))
 	    bibTeXFilesNeedsUpdate=true;
 
+	QStringList commands=mUserCommandList.values(dlh);
+	foreach(QString elem,commands){
+	    int i=elem.indexOf("{");
+	    if(i>=0) elem=elem.left(i);
+	    ltxCommands.userdefinedCommands.remove(elem);
+	    updateSyntaxCheck=true;
+	}
 	mUserCommandList.remove(dlh);
+
+	QStringList removedUsepackages;
+	removedUsepackages << mUsepackageList.values(dlh);
 	mUsepackageList.remove(dlh);
 
 	if(dlh==mAppendixLine){
@@ -243,6 +254,10 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	if (completerNeedsUpdate || bibTeXFilesNeedsUpdate)
 		emit updateCompleter();
 
+	if(!removedUsepackages.isEmpty() || updateSyntaxCheck){
+		QStringList addedUsepackages;
+		updateCompletionFiles(addedUsepackages,removedUsepackages,updateSyntaxCheck);
+	}
 }
 
 void LatexDocument::patchStructure(int linenr, int count) {
@@ -284,6 +299,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	// usepackage list
 	QStringList removedUsepackages;
 	QStringList addedUsepackages;
+	QStringList removedUserCommands,addedUserCommands;
 
 	//TODO: This assumes one command per line, which is not necessary true
 	for (int i=linenr; i<linenr+count; i++) {
@@ -303,6 +319,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		    int i=elem.indexOf("{");
 		    if(i>=0) elem=elem.left(i);
 		    ltxCommands.userdefinedCommands.remove(elem);
+		    removedUserCommands << elem;
 		    updateSyntaxCheck=true;
 		}
 		if (mLabelItem.contains(dlh)) {
@@ -438,6 +455,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				if(rx.indexIn(remainder)>-1)
 				    options=rx.cap(1).toInt(); //returns 0 if conversion fails
 				ltxCommands.userdefinedCommands.insert(name);
+				addedUserCommands << name;
 				for (int j=0; j<options; j++) {
 					if (j==0) name.append("{%<arg1%|%>}");
 					else name.append(QString("{%<arg%1%>}").arg(j+1));
@@ -455,23 +473,34 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				int options=arg.toInt(); //returns 0 if conversion fails
 				name.append("}");
 				mUserCommandList.insert(line(i).handle(),"\\end{"+name);
+				QStringList lst;
+				lst << "\\begin{"+name << "\\end{"+name;
+				foreach(QString elem,lst){
+				    ltxCommands.userdefinedCommands.insert(elem);
+				    if(!removedUserCommands.removeAll(elem)){
+					addedUserCommands << elem;
+				    }
+				}
 				for (int j=0; j<options; j++) {
 					if (j==0) name.append("{%<1%|%>}");
 					else name.append(QString("{%<%1%>}").arg(j+1));
 				}
-				mUserCommandList.insert(line(i).handle(),name);//???
+				//mUserCommandList.insert(line(i).handle(),name);//???
 				mUserCommandList.insert(line(i).handle(),"\\begin{"+name);
-				ltxCommands.userdefinedCommands.insert("\\begin{"+name);
-				ltxCommands.userdefinedCommands.insert("\\end{"+name);
 				continue;
 			}
 			//// newtheorem ////
 			if (cmd=="\\newtheorem") {
 				completerNeedsUpdate=true;
-				mUserCommandList.insert(line(i).handle(),"\\begin{"+name+"}");
-				mUserCommandList.insert(line(i).handle(),"\\end{"+name+"}");
-				ltxCommands.userdefinedCommands.insert("\\begin{"+name+"}");
-				ltxCommands.userdefinedCommands.insert("\\end{"+name+"}");
+				QStringList lst;
+				lst << "\\begin{"+name+"}" << "\\end{"+name+"}";
+				foreach(QString elem,lst){
+				    mUserCommandList.insert(line(i).handle(),elem);
+				    ltxCommands.userdefinedCommands.insert(elem);
+				    if(!removedUserCommands.removeAll(elem)){
+					addedUserCommands << elem;
+				    }
+				}
 				continue;
 			}
 			///usepackage
@@ -676,8 +705,9 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	foreach(se,MapOfLabels.values())
 		delete se;
 
-	if(!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty()){
-		updateCompletionFiles(addedUsepackages,removedUsepackages);
+	if(!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty() || !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty()){
+		bool forceUpdate=!addedUserCommands.isEmpty() || !removedUserCommands.isEmpty();
+		updateCompletionFiles(addedUsepackages,removedUsepackages,forceUpdate);
 	}
 
 	if (bibTeXFilesNeedsUpdate)
@@ -1653,10 +1683,10 @@ QStringList LatexDocument::includedFiles(){
     return result;
 }
 
-void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &removed){
+void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &removed,bool forceUpdate){
     // remove
     QStringList filtered;
-    bool update=false;
+    bool update=forceUpdate;
     foreach(QString elem,removed){
 	if(!mUsepackageList.keys(elem).isEmpty())
 	    continue;
