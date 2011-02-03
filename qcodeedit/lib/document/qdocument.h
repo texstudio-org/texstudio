@@ -343,7 +343,7 @@ class QCE_EXPORT QDocument : public QObject
 		
 		void lineEndingChanged(int lineEnding);
 		
-	protected:
+	public:
 		int indexOf(QDocumentLineHandle* h);
 	private:
 		QString m_leftOver;

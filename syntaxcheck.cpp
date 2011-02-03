@@ -16,8 +16,8 @@ void SyntaxCheck::setErrFormat(int errFormat){
 	syntaxErrorFormat=errFormat;
 }
 
-void SyntaxCheck::putLine(QDocumentLineHandle* dlh,Environment previous,bool clearOverlay,int cols){
-	Q_ASSERT(dlh);
+void SyntaxCheck::putLine(QDocumentLineHandle* dlh,Environment previous,bool clearOverlay,int cols,int excessCols){
+	REQUIRE(dlh);
 	SyntaxLine newLine;
 	dlh->ref(); // impede deletion of handle while in syntax check queue
 	dlh->lockForRead();
@@ -27,6 +27,7 @@ void SyntaxCheck::putLine(QDocumentLineHandle* dlh,Environment previous,bool cle
 	newLine.prevEnv=previous;
 	newLine.clearOverlay=clearOverlay;
 	newLine.cols=cols;
+	newLine.excessCols = excessCols;
 	mLinesLock.lock();
 	mLines.enqueue(newLine);
 	mLinesLock.unlock();
@@ -51,7 +52,6 @@ void SyntaxCheck::run(){
 		mLinesLock.unlock();
 		// do syntax check
 		newLine.dlh->lockForRead();
-		QDocumentLineHandle *prev=newLine.dlh->previous();
 		QString line=newLine.dlh->text();
 		newLine.dlh->unlock();
 		QVector<int>fmts=newLine.dlh->getFormats();
@@ -65,12 +65,7 @@ void SyntaxCheck::run(){
 		line=LatexParser::cutComment(line);
 		Ranges newRanges;
 
-		int excessCols=0;
-		if(prev){
-		    prev->lockForRead();
-		    excessCols=prev->getCookie(0).toInt();
-		    prev->unlock();
-		}
+		int excessCols=newLine.excessCols;
 		checkLine(line,newRanges,activeEnv,newLine.cols,excessCols);
 		// place results
 		if(newLine.clearOverlay) newLine.dlh->clearOverlays(syntaxErrorFormat);
@@ -85,11 +80,8 @@ void SyntaxCheck::run(){
 			bool cookieChanged=(oldCookie!=excessCols);
 			//if excessCols has changed the subsequent lines need to be rechecked.
 			if(cookieChanged){
-			    newLine.dlh->setCookie(0,excessCols);
-			    QDocumentLineHandle *next=newLine.dlh->next();
-			    if(next){
-				putLine(next,activeEnv.top(),true,newLine.cols);
-			    }
+				newLine.dlh->setCookie(0,excessCols);
+				emit checkNextLine(newLine.dlh, activeEnv.top(), true, newLine.cols, excessCols);
 			}
 		}
 		newLine.dlh->unlock();
