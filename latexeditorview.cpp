@@ -684,7 +684,11 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 						text[i]=QChar(' ');
 					}
 				}
-				SynChecker.putLine(line.handle(),env,false,cols);
+				QDocumentLineHandle *previous=line.handle()->previous();
+				int excessCols=0;
+				if(previous)
+				    excessCols=previous->getCookie(0).toInt();
+				SynChecker.putLine(line.handle(),env,false,cols,excessCols);
 			}
 			if(env!=SyntaxCheck::ENV_tabular){
 			    //check whether the begin{tabular) was changed
@@ -703,7 +707,11 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				    }
 				    QString text=current.text();
 				    if(!text.isEmpty()){
-					SynChecker.putLine(current.handle(),SyntaxCheck::ENV_tabular,true,cols);
+					QDocumentLineHandle *previous=line.handle()->previous();
+					int excessCols=0;
+					if(previous)
+					    excessCols=previous->getCookie(0).toInt();
+					SynChecker.putLine(current.handle(),SyntaxCheck::ENV_tabular,true,cols,excessCols);
 				    }
 				    current++;
 				}
@@ -940,8 +948,11 @@ void LatexEditorView::reCheckSyntax(int linenr, int count){
 		getEnv(i,env,cols);
 		QString text=line.text();
 		if(!text.isEmpty()){
-
-			SynChecker.putLine(line.handle(),env,true,cols);
+		    QDocumentLineHandle *previous=line.handle()->previous();
+		    int excessCols=0;
+		    if(previous)
+			excessCols=previous->getCookie(0).toInt();
+		    SynChecker.putLine(line.handle(),env,true,cols,excessCols);
 		}
 		prev = line;
 		line = editor->document()->line(i+1);
