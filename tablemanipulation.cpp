@@ -496,3 +496,89 @@ void LatexTables::addHLine(QDocumentCursor &cur,const int numberOfLines,const bo
     }
     c.endEditBlock();
 }
+
+QStringList LatexTables::splitColDef(QString def){
+    QStringList result;
+    bool inDef=false;
+    bool inAt=false;
+    bool inMultiplier=false;
+    bool inMultiplied=false;
+    bool appendDef=false;
+    int multiplier=0;
+    QString multiplier_str;
+    QString before_multiplier_str;
+    int curl=0;
+    QString col;
+    for(int i=0;i<def.length();i++){
+	QChar ch=def.at(i);
+	if(ch=='*'){
+	    if(curl==0){
+		inMultiplier=true;
+		multiplier_str.clear();
+		multiplier=0;
+		before_multiplier_str=col;
+		continue;
+	    }
+	}
+	if(!inMultiplied && !inMultiplier)
+	    col.append(ch);
+	if(ch=='}'){
+	    curl--;
+	    if(curl==0){
+		if(appendDef){
+		    appendDef=false;
+		    result << col;
+		    col.clear();
+		}
+		if(inDef)
+		    inDef=false;
+		if(inAt)
+		    inAt=false;
+		if(inMultiplied){
+		    QStringList helper=splitColDef(multiplier_str);
+		    inMultiplied=false;
+		    if(!col.isEmpty())
+			result << col;
+		    for(int k=0;k<multiplier;k++)
+			result << helper;
+		    before_multiplier_str.clear();
+		    multiplier=0;
+		    multiplier_str.clear();
+		}
+		if(inMultiplier){
+		    bool ok;
+		    multiplier=multiplier_str.toInt(&ok);
+		    if(ok){
+			inMultiplied=true;
+		    }else{
+			multiplier=0;
+		    }
+		    multiplier_str.clear();
+		}
+	    }
+	}
+	if((inMultiplier||inMultiplied) && curl>0){
+	    multiplier_str.append(ch);
+	}
+	if(ch=='<' || ch=='>')
+	    inDef=true;
+	if(ch=='{')
+	    curl++;
+	if(ch.isLetter() && !inAt && !inDef && curl==0){
+	    if((i+1<def.length()) && def.at(i+1)=='{'){
+		appendDef=true;
+	    }else{
+		result << col;
+		col.clear();
+	    }
+	}
+
+
+
+    }
+    if(!col.isEmpty())
+	result << col;
+
+
+    return result;
+}

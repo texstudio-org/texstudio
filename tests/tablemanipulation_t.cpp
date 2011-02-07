@@ -102,7 +102,7 @@ void TableManipulationTest::remCol_data(){
 	QTest::addColumn<QString>("newText");
 
 	//-------------cursor without selection--------------
-        /*QTest::newRow("rem col 0")
+	QTest::newRow("rem col 0")
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 0
 		<< "\\begin{tabular}{ll}\nb\\\\\nd\\\\\nf\\\\\n\\end{tabular}\n";
@@ -131,7 +131,7 @@ void TableManipulationTest::remCol_data(){
 		<< "\\begin{tabular}{ll}\na&b\\\\\n\\multicolumn{2}{c}&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 2
 		<< "\\begin{tabular}{ll}\na&b\\\\\n\\multicolumn{2}{c}\\\\\ne&f\\\\\n\\end{tabular}\n";
-*/
+
 	QTest::newRow("rem col 0, row over multiple lines")
 		<< "\\begin{tabular}{ll}\na&\nb\\\\\nc\n&\nd\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 0
@@ -567,6 +567,58 @@ void TableManipulationTest::addHLine(){
 	LatexTables::addHLine(c,numberOfLines,remove);
 
 	QEQUAL(ed->document()->text(), newText);
+
+}
+
+void TableManipulationTest::splitCol_data(){
+	QTest::addColumn<QString>("text");
+	QTest::addColumn<int>("colFound");
+
+	//-------------cursor without selection--------------
+	QTest::newRow("cols 2")
+		<< "ll"
+		<< 2;
+
+	QTest::newRow("cols 4")
+		<< "|l|l|cc"
+		<< 4;
+
+	QTest::newRow("cols 0")
+		<< ""
+		<< 0;
+
+	QTest::newRow("spaced in definition")
+		<< "l l c"
+		<< 3;
+
+	QTest::newRow("p")
+		<< "llp{3cm}"
+		<< 3;
+
+	QTest::newRow("p")
+		<< "llm{3cm}"
+		<< 3;
+
+	QTest::newRow("col commands (array)")
+		<< ">{\\bfseries}ll"
+		<< 2;
+
+	QTest::newRow("separators")
+		<< "|l|l|@{ll}cc"
+		<< 4;
+
+	QTest::newRow("multipliers")
+		<< "|l|l|@{ll}c*{2}{lc}"
+		<< 7;
+}
+void TableManipulationTest::splitCol(){
+	QFETCH(QString, text);
+	QFETCH(int, colFound);
+
+
+	QStringList res=LatexTables::splitColDef(text);
+
+	QEQUAL(res.count(),colFound);
 
 }
 
