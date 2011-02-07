@@ -29,6 +29,8 @@ class TableManipulationTest: public QObject{
 		void findNextTokenBackwards();
 		void addHLine_data();
 		void addHLine();
+		void splitCol_data();
+		void splitCol();
 };
 
 #endif

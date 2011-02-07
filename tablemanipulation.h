@@ -16,6 +16,7 @@ public:
     static int getNumOfColsInMultiColumn(const QString &str);
     static int incNumOfColsInMultiColumn(const QString &str,int add);
     static void addHLine(QDocumentCursor &c,const int numberOfLines=-1,const bool remove=false);
+    static QStringList splitColDef(QString def);
 
     static QStringList tabularNames;
     static QStringList tabularNamesWithOneOption;
