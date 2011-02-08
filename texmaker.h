@@ -305,6 +305,7 @@ private slots:
 	void readFromStderr();
 	void readFromStdoutput();
 	void SlotEndProcess(int err);
+	void processNotification(const QString& message);
 	void QuickBuild();
 	void CleanAll();
 	void commandFromAction();  //calls a command given by sender.data, doesn't wait

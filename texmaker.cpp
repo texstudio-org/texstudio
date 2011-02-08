@@ -361,6 +361,7 @@ void Texmaker::setupDockWidgets(){
 		connect(outputView,SIGNAL(jumpToSearch(QString,int)),this,SLOT(jumpToSearch(QString,int)));
 		connect(&configManager,SIGNAL(tabbedLogViewChanged(bool)),outputView,SLOT(setTabbedLogView(bool)));
 		connect(&buildManager,SIGNAL(previewAvailable(const QString&, const QString&, int)),this,SLOT(previewAvailable	(const QString&,const QString&, int)));
+		connect(&buildManager, SIGNAL(processNotification(QString)), SLOT(processNotification(QString)));
 		addAction(outputView->toggleViewAction());
 		QAction* temp = new QAction(this); temp->setSeparator(true);
 		addAction(temp);
@@ -3027,9 +3028,8 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,int compileLatex, QSt
 	procX->startCommand();
 	if (!procX->waitForStarted(1000)) {
 		ERRPROCESS=true;
-		outputView->insertMessageLine(tr("Error")+": "+tr("could not start the command:")+" "+commandline+"\n");
 		return;
-	} else outputView->insertMessageLine(tr("Process started")+"\n");
+	}
 
 	if (compileLatex && configManager.showLogAfterCompiling)
 		connect(procX,SIGNAL(finished(int)),this,SLOT(ViewAndHighlightError()));
@@ -3103,9 +3103,7 @@ void Texmaker::readFromStdoutput() {
 void Texmaker::SlotEndProcess(int err) {
 	ProcessX* procX = qobject_cast<ProcessX*> (sender());
 	FINPROCESS=true;
-	QString result=((err) ? tr("Process exited with error(s)") : tr("Process exited normally"));
 	if (err) ERRPROCESS=true;
-	outputView->insertMessageLine(result);
 	stat2->setText(QString(" %1 ").arg(tr("Ready")));
 	if(!procX) return;
 	QString *buffer=procX->getBuffer();
@@ -3114,6 +3112,10 @@ void Texmaker::SlotEndProcess(int err) {
 		QString t=QString(result).trimmed();
 		buffer->append(t);
 	}
+}
+
+void Texmaker::processNotification(const QString& message){
+	outputView->insertMessageLine(message+"\n");
 }
 
 void Texmaker::QuickBuild() {
