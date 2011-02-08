@@ -611,6 +611,7 @@ ProcessX* BuildManager::newProcess(const QString &unparsedCommandLine, const QSt
 
 	ProcessX* proc = new ProcessX(this, cmd, mainFile);
 	connect(proc, SIGNAL(finished(int)),proc, SLOT(deleteLater())); //will free proc after the process has ended
+	connect(proc, SIGNAL(processNotification(QString)), SIGNAL(processNotification(QString)));
 	if (singleInstance){
 		connect(proc, SIGNAL(finished(int)), SLOT(singleInstanceCompleted(int))); //will free proc after the process has ended
 		runningCommands.insert(cmd, proc);
@@ -897,11 +898,14 @@ ProcessX::ProcessX(BuildManager* parent, const QString &assignedCommand, const Q
 		cmd = cmd.left(cmd.lastIndexOf(">")).trimmed();
 		stdoutEnabled = false;
 	}
+	connect(this, SIGNAL(started()), SLOT(onStarted()));
+	connect(this, SIGNAL(finished(int)), SLOT(onFinished(int)));
+	connect(this, SIGNAL(error(QProcess::ProcessError)), SLOT(onError(QProcess::ProcessError)));
 }
 void ProcessX::startCommand() {
 	#ifdef Q_WS_WIN
 	if (cmd.startsWith("dde://")) {
-		started=true;
+		onStarted();
 		BuildManager* manager = qobject_cast<BuildManager*>(parent());
 		if (!manager) {
 			emit finished(1);
@@ -935,6 +939,26 @@ const QString& ProcessX::getCommandLine(){
 bool ProcessX::showStdout() const{
 	return stdoutEnabled;
 }
+void ProcessX::onStarted(){
+	if (started) return; //why am I called twice?
+	started=true;
+	emit processNotification(tr("Process started: %1").arg(cmd));
+}
+
+void ProcessX::onError(ProcessError error){
+	if (error == FailedToStart)
+		emit processNotification(tr("Error: Could not start the command: %1").arg(cmd));
+	else if (error == Crashed)
+		emit processNotification(tr("Error: Command crashed: %1").arg(cmd));
+}
+
+void ProcessX::onFinished(int error){
+	if (error)
+		emit processNotification("Process exited with error(s)");
+	else
+		emit processNotification("Process exited normally");
+}
+
 #ifdef PROFILE_PROCESSES
 void ProcessX::finished(){
 	qDebug() << "Process: "<<qPrintable(cmd)<< "  Running time: " << time.elapsed();

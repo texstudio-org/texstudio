@@ -80,6 +80,7 @@ private slots:
 	void conversionPreviewCompleted(int status); 
 	
 signals:
+	void processNotification(const QString& message);
 	void previewAvailable(const QString& filename, const QString& text, int);
 private:
 	friend class ProcessX;
@@ -116,8 +117,14 @@ public:
 		mBuffer=buffer;
 	}
 	bool showStdout() const;
-#ifdef PROFILE_PROCESSES
+signals:
+	void processNotification(const QString& message);
+
 public slots:
+	void onStarted();
+	void onError(QProcess::ProcessError error);
+	void onFinished(int error);
+#ifdef PROFILE_PROCESSES
 	void finished();
 #endif
 private:
