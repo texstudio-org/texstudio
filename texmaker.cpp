@@ -388,7 +388,7 @@ void Texmaker::updateToolBarMenu(const QString& menuName){
 					createComboToolButton(tb.toolbar,list,0,fontMetrics,this,SLOT(callToolButtonAction()),"",combo);
 
 					if (menuName == "main/view/documents") {
-						//workaround to seleect the current document
+						//workaround to select the current document
 						int index = EditorView->currentIndex();
 						if (index >= 0 && index < combo->menu()->actions().size())
 							combo->setDefaultAction(combo->menu()->actions()[index]);
@@ -2507,7 +2507,7 @@ void Texmaker::callToolButtonAction(){
 	QAction *action = qobject_cast<QAction *>(sender());
 	QToolButton *button = comboToolButtonFromAction(action);
 	REQUIRE(button && button->defaultAction() && button->menu());
-	button->defaultAction()->setText(action->text());
+	button->setDefaultAction(action);
 
 	QString menuID = button->property("menuID").toString();
 	QMenu* menu=configManager.getManagedMenu(menuID);
@@ -2517,6 +2517,7 @@ void Texmaker::callToolButtonAction(){
 	REQUIRE(index >= 0);
 	REQUIRE(index < menu->actions().size());
 	menu->actions()[index]->trigger();
+
 }
 
 void Texmaker::InsertFromAction() {

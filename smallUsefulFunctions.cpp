@@ -628,25 +628,28 @@ QToolButton* createComboToolButton(QWidget *parent,const QStringList& list,const
 		combo->setMinimumHeight(height);
 	combo->setPopupMode(QToolButton::MenuButtonPopup);
 
-	QAction *mAction=0;
 	// remove old actions
-	foreach(mAction, combo->actions()){
+	foreach(QAction * mAction, combo->actions())
 		combo->removeAction(mAction);
-	}
-	if(list.isEmpty()){
-		mAction=new QAction("<"+QApplication::tr("none")+">",combo);
-	} else {
-		mAction=new QAction(list[0],combo);
-	}
-	QObject::connect(mAction, SIGNAL(triggered()),receiver,member);
-	combo->setDefaultAction(mAction);
+
 	QMenu *mMenu=new QMenu(combo);
 	int max=0;
+	bool defaultSet = false;
 	foreach(const QString& elem,list){
-		mAction=mMenu->addAction(elem,receiver,member);
+		QAction* mAction=mMenu->addAction(elem,receiver,member);
 		max=qMax(max,fm.width(elem+"        "));
-		if(elem==defaultElem) combo->setDefaultAction(mAction); //TODO: isn't this a memory leak (of the first mAction) if there is a defaultElem
+		if(elem==defaultElem) {
+			combo->setDefaultAction(mAction);
+			defaultSet = true;
+		}
 	}
+	if (!defaultSet){
+		if(list.isEmpty())
+			combo->setDefaultAction(new QAction("<"+QApplication::tr("none")+">",combo));
+		 else
+			combo->setDefaultAction(mMenu->actions().first());
+	}
+
 	combo->setMinimumWidth(max);
 	combo->setMenu(mMenu);
 	return combo;
