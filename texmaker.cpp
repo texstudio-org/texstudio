@@ -3251,7 +3251,8 @@ void Texmaker::QuickBuild() {
 	case 8: {
 		QStringList commandList=buildManager.getLatexCommand(BuildManager::CMD_USER_QUICK).split("|");
 		for (int i = 0; i < commandList.size(); ++i) {
-			if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) runCommand(commandList.at(i),true,true);
+			bool isLatex = commandList.at(i).contains("latex") || commandList.at(i)==buildManager.getLatexCommand(BuildManager::CMD_LATEX) || commandList.at(i)==buildManager.getLatexCommand(BuildManager::CMD_PDFLATEX);
+			if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) runCommand(commandList.at(i),isLatex || i != commandList.size()-1,isLatex);
 			else break;
 		}
 		ViewAndHighlightError();
