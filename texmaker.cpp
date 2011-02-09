@@ -4372,6 +4372,9 @@ void Texmaker::clearPreview(){
 	for (; i<=t; i++){
 		edit->document()->line(i).removeCookie(42);
 		edit->document()->adjustWidth(i);
+		for (int j=currentEditorView()->autoPreviewCursor.size()-1;j>=0;j--)
+			if (currentEditorView()->autoPreviewCursor[j].lineNumber() == i)
+				currentEditorView()->autoPreviewCursor.removeAt(j);
 	}
 }
 
