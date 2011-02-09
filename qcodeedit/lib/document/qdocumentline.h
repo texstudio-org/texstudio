@@ -191,6 +191,7 @@ class QCE_EXPORT QDocumentLine
 
 		QVariant getCookie(int type);
 		void setCookie(int type,QVariant data);
+		void removeCookie(int type);
 		
 	private:
 		QDocumentLineHandle *m_handle;
