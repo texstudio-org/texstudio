@@ -514,6 +514,7 @@ void Texmaker::setupMenus() {
 	latexEditorContextMenu << newManagedAction(menu,"pasteAsLatex",tr("Pas&te as LaTeX"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, "editpaste.png");
 	latexEditorContextMenu << newManagedAction(menu,"convertTo",tr("Co&nvert to LaTeX"), SLOT(convertToLatex()));
 	latexEditorContextMenu << newManagedAction(menu,"previewLatex",tr("Pre&view Selection/Parantheses"), SLOT(previewLatex()),Qt::ALT+Qt::Key_P);
+	latexEditorContextMenu << newManagedAction(menu,"removePreviewLatex",tr("C&lear Inline Preview"), SLOT(clearPreview()));
 
 	if (LatexEditorView::getBaseActions().empty()) //only called at first menu created
 		LatexEditorView::setBaseActions(latexEditorContextMenu);
@@ -4355,6 +4356,23 @@ void Texmaker::previewAvailable(const QString& imageFile, const QString& /*text*
 
 	}
 	previewEquation=false;
+}
+
+void Texmaker::clearPreview(){
+	QEditor* edit = currentEditor();
+	if (!edit) return;
+	int i,t;
+	if (edit->cursor().hasSelection()) {
+		i = edit->cursor().selectionStart().lineNumber();
+		t = edit->cursor().selectionEnd().lineNumber();
+	} else {
+		i = edit->cursor().lineNumber();
+		t = i;
+	}
+	for (; i<=t; i++){
+		edit->document()->line(i).removeCookie(42);
+		edit->document()->adjustWidth(i);
+	}
 }
 
 void Texmaker::showPreview(const QString& text){

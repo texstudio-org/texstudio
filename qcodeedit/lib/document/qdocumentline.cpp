@@ -532,10 +532,14 @@ QVariant QDocumentLine::getCookie(int type){
 }
 
 void QDocumentLine::setCookie(int type,QVariant data){
-    if(!m_handle) return;
-    m_handle->setCookie(type,data);
+	if(!m_handle) return;
+	m_handle->setCookie(type,data);
 }
 
+void QDocumentLine::removeCookie(int type){
+	if (!m_handle) return;
+	m_handle->removeCookie(type);
+}
 
 /*!
 	\return whether the line has at least one overlay of a given format id

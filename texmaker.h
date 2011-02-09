@@ -380,6 +380,7 @@ private slots:
 	
 	void previewLatex();
 	void previewAvailable(const QString& imageFile, const QString& text, int line);
+	void clearPreview();
 	void showPreview(const QString& text);
 	void showPreview(const QDocumentCursor& c);
 	void showPreview(const QDocumentCursor& c, bool addToList);

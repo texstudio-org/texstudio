@@ -171,7 +171,10 @@ class QCE_EXPORT QDocumentLineHandle
 		bool hasCookie(int type) const{
 			return mCookies.contains(type);
 		}
-		
+		bool removeCookie(int type){
+			return mCookies.remove(type);
+		}
+
 	private:
 		void layout() const;
 		void applyOverlays() const;
