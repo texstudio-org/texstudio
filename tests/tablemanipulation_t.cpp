@@ -18,24 +18,24 @@ void TableManipulationTest::addCol_data(){
 	
 	//-------------cursor without selection--------------
 	QTest::newRow("add first col")
-		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< "\\begin{tabular}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 0
-		<< "\\begin{tabular}{ll}\n &a&b\\\\\n &c&d\\\\\n &e&f\\\\\n\\end{tabular}\n";
+		<< "\\begin{tabular}{lxy}\n &a&b\\\\\n &c&d\\\\\n &e&f\\\\\n\\end{tabular}\n";
 
 	QTest::newRow("add second col")
-		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< "\\begin{tabular}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 1
-		<< "\\begin{tabular}{ll}\na& &b\\\\\nc& &d\\\\\ne& &f\\\\\n\\end{tabular}\n";
+		<< "\\begin{tabular}{xly}\na& &b\\\\\nc& &d\\\\\ne& &f\\\\\n\\end{tabular}\n";
 
 	QTest::newRow("add third col")
-		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< "\\begin{tabular}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 2
-		<< "\\begin{tabular}{ll}\na&b& \\\\\nc&d& \\\\\ne&f& \\\\\n\\end{tabular}\n";
+		<< "\\begin{tabular}{xyl}\na&b& \\\\\nc&d& \\\\\ne&f& \\\\\n\\end{tabular}\n";
 
 	QTest::newRow("add 4th col")
-		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< "\\begin{tabular}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 3
-		<< "\\begin{tabular}{ll}\na&b& \\\\\nc&d& \\\\\ne&f& \\\\\n\\end{tabular}\n";
+		<< "\\begin{tabular}{xyl}\na&b& \\\\\nc&d& \\\\\ne&f& \\\\\n\\end{tabular}\n";
 
 
 }
@@ -103,31 +103,31 @@ void TableManipulationTest::remCol_data(){
 
 	//-------------cursor without selection--------------
 	QTest::newRow("rem col 0")
-		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< "\\begin{tabular}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 0
-		<< "\\begin{tabular}{ll}\nb\\\\\nd\\\\\nf\\\\\n\\end{tabular}\n";
+		<< "\\begin{tabular}{y}\nb\\\\\nd\\\\\nf\\\\\n\\end{tabular}\n";
 
 	QTest::newRow("rem col 1")
-		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< "\\begin{tabular}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 1
-		<< "\\begin{tabular}{ll}\na\\\\\nc\\\\\ne\\\\\n\\end{tabular}\n";
+		<< "\\begin{tabular}{x}\na\\\\\nc\\\\\ne\\\\\n\\end{tabular}\n";
 
 	QTest::newRow("rem col 0, multicolumn")
 		<< "\\begin{tabular}{ll}\na&b\\\\\n\\multicolumn{2}{c}\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 0
-		<< "\\begin{tabular}{ll}\nb\\\\\n\\multicolumn{1}{c}\\\\\nf\\\\\n\\end{tabular}\n";
+		<< "\\begin{tabular}{l}\nb\\\\\n\\multicolumn{1}{c}\\\\\nf\\\\\n\\end{tabular}\n";
 
 	QTest::newRow("rem col 1, multicolumn")
 		<< "\\begin{tabular}{ll}\na&b\\\\\n\\multicolumn{2}{c}\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 1
-		<< "\\begin{tabular}{ll}\na\\\\\n\\multicolumn{1}{c}\\\\\ne\\\\\n\\end{tabular}\n";
+		<< "\\begin{tabular}{l}\na\\\\\n\\multicolumn{1}{c}\\\\\ne\\\\\n\\end{tabular}\n";
 
 	QTest::newRow("rem col 1, multicolumn plus col")
 		<< "\\begin{tabular}{ll}\na&b\\\\\n\\multicolumn{2}{c}&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 1
-		<< "\\begin{tabular}{ll}\na\\\\\n\\multicolumn{1}{c}&d\\\\\ne\\\\\n\\end{tabular}\n";
+		<< "\\begin{tabular}{l}\na\\\\\n\\multicolumn{1}{c}&d\\\\\ne\\\\\n\\end{tabular}\n";
 
-	QTest::newRow("rem col 1, multicolumn")
+	QTest::newRow("rem col 2, multicolumn")
 		<< "\\begin{tabular}{ll}\na&b\\\\\n\\multicolumn{2}{c}&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 2
 		<< "\\begin{tabular}{ll}\na&b\\\\\n\\multicolumn{2}{c}\\\\\ne&f\\\\\n\\end{tabular}\n";
@@ -135,17 +135,32 @@ void TableManipulationTest::remCol_data(){
 	QTest::newRow("rem col 0, row over multiple lines")
 		<< "\\begin{tabular}{ll}\na&\nb\\\\\nc\n&\nd\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 0
-                << "\\begin{tabular}{ll}\n\nb\\\\\n\nd\\\\\nf\\\\\n\\end{tabular}\n";
+		<< "\\begin{tabular}{l}\n\nb\\\\\n\nd\\\\\nf\\\\\n\\end{tabular}\n";
 
 	QTest::newRow("rem col 1, row over multiple lines")
 		<< "\\begin{tabular}{ll}\na&\nb\\\\\nc\n&\nd\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 1
-		<< "\\begin{tabular}{ll}\na\\\\\nc\n\\\\\ne\\\\\n\\end{tabular}\n";
+		<< "\\begin{tabular}{l}\na\\\\\nc\n\\\\\ne\\\\\n\\end{tabular}\n";
 
         QTest::newRow("rem col 0 containing \\hline")
                         << "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
                         << 1 << 0
-                        << "\\begin{tabular}{ll}\nb\\\\ \\hline\nd\\\\\nf\\\\\n\\end{tabular}\n";
+			<< "\\begin{tabular}{l}\nb\\\\ \\hline\nd\\\\\nf\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("rem col 0 containing \\hline")
+			<< "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\\ne&f\\\\ \\hline\n\\end{tabular}\n"
+			<< 1 << 0
+			<< "\\begin{tabular}{l}\nb\\\\ \\hline\nd\\\\\nf\\\\ \\hline\n\\end{tabular}\n";
+
+	QTest::newRow("rem col 0 containing \\hline")
+			<< "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\\ne&f\\\\\\hline\n\\end{tabular}\n"
+			<< 1 << 0
+			<< "\\begin{tabular}{l}\nb\\\\ \\hline\nd\\\\\nf\\\\ \\hline\n\\end{tabular}\n";
+
+	QTest::newRow("rem last col")
+			<< "\\begin{tabular}{l}\na\\\\ \\hline\nd\\\\\nf\\\\\\hline\n\\end{tabular}\n"
+			<< 1 << 0
+			<< "\\begin{tabular}{}\n\\\\ \\hline\n\\\\\n\\\\ \\hline\n\\end{tabular}\n";
 
 }
 void TableManipulationTest::remCol(){
@@ -619,6 +634,81 @@ void TableManipulationTest::splitCol(){
 	QStringList res=LatexTables::splitColDef(text);
 
 	QEQUAL(res.count(),colFound);
+
+}
+
+void TableManipulationTest::getDef_data(){
+	QTest::addColumn<QString>("text");
+	QTest::addColumn<int>("row");
+	QTest::addColumn<int>("col");
+	QTest::addColumn<QString>("def_soll");
+
+	//-------------cursor without selection--------------
+	QTest::newRow("cols 2")
+		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0
+		<< "ll";
+
+	QTest::newRow("cols 4")
+		<< "\\begin{tabular}{|l|l|cc}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 2 << 0
+		<< "|l|l|cc";
+
+	QTest::newRow("cols 0")
+		<< "\\begin{tabular}{}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0
+		<< "";
+
+	QTest::newRow("spaced in definition")
+		<< "\\begin{tabular}{l l c}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0
+		<< "l l c";
+
+	QTest::newRow("p")
+		<< "\\begin{tabular}{llp{3cm}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0
+		<< "llp{3cm}";
+
+	QTest::newRow("tabularx")
+		<< "\\begin{tabularx}{\\linewidth}{llm{3cm}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabularx}\n"
+		<< 1 << 0
+		<< "llm{3cm}";
+
+	QTest::newRow("col commands (array)")
+		<< "\\begin{tabular}{>{\\bfseries}ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 0
+		<< ">{\\bfseries}ll";
+
+	QTest::newRow("no Table")
+		<< "test\na&b\\\\\nc&d\\\\\ne&f\\\\\ntest\n"
+		<< 1 << 0
+		<< "";
+
+	QTest::newRow("separators")
+		<< "\\begin{tabular}{|l|l|@{ll}cc}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 2 << 0
+		<< "|l|l|@{ll}cc";
+
+	QTest::newRow("multipliers")
+		<< "\\begin{tabular}{|l|l|@{ll}c*{2}{lc}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 2 << 0
+		<< "|l|l|@{ll}c*{2}{lc}";
+
+}
+void TableManipulationTest::getDef(){
+	QFETCH(QString, text);
+	QFETCH(int, row);
+	QFETCH(int, col);
+	QFETCH(QString, def_soll);
+
+	ed->document()->setText(text);
+	ed->setCursorPosition(row,col);
+	QDocumentCursor c(ed->cursor());
+	QString def=LatexTables::getDef(c);
+	QString sel_def=c.selectedText();
+
+	QEQUAL(def,def_soll);
+	QEQUAL(sel_def,def_soll);
 
 }
 

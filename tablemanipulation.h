@@ -11,6 +11,7 @@ public:
     static void removeRow(QDocumentCursor &c);
     static int findNextToken(QDocumentCursor &cur,QStringList tokens,bool keepAnchor=false,bool backwards=false);
     static int getColumn(QDocumentCursor &cur);
+    static QString getDef(QDocumentCursor &cur);
     static int getNumberOfColumns(QDocumentCursor &cur);
     static bool inTableEnv(QDocumentCursor &cur);
     static int getNumOfColsInMultiColumn(const QString &str);

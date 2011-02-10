@@ -31,6 +31,8 @@ class TableManipulationTest: public QObject{
 		void addHLine();
 		void splitCol_data();
 		void splitCol();
+		void getDef_data();
+		void getDef();
 };
 
 #endif
