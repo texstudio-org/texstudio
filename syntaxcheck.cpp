@@ -152,7 +152,7 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 		    newRanges.append(elem);
 		}
 		lastEnd=end;
-		end=line.indexOf("\\\\",end+1);
+		end=line.indexOf("\\\\",end+2);
 		count=0;
 		pos=lastEnd;
 	    }

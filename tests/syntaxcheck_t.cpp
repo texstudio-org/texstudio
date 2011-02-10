@@ -132,6 +132,11 @@ void SyntaxCheckTest::checktabular_data(){
 		<< "\\begin{tabular}{lll}\na\\multicolumn{4}{c}{test}\na\\\\c&d&e&f\\\\\n\\end{tabular}\n"
 		<< 1 << 4
 		<< "more cols in tabular than specified";
+
+	QTest::newRow("hline")
+		<< "\\begin{tabular}{ll}\na&b\\\\\\hline\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 1 << 4
+		<< "no error";
 }
 void SyntaxCheckTest::checktabular(){
 	QFETCH(QString, text);
