@@ -168,7 +168,7 @@ private slots:
 	void fileSave();
 	void fileSaveAll();
 	void fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile);
-	void fileSaveAs(QString fileName = "");
+	void fileSaveAs(const QString& fileName = "");
 	void fileClose();
 	void fileCloseAll();
 	void fileExit();
@@ -438,6 +438,9 @@ protected:
 
 	QSet<int> previewQueue;
 	LatexEditorView* previewQueueOwner;
+
+	QString fileFilters;
+	QString selectedFileFilter;
 };
 
 
