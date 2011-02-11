@@ -593,7 +593,7 @@ void QEditorTest::autoClosing_data(){
 	QTest::newRow("-\\begin{verbatim}-") << "><" << 0 << 1 << "\\begin{verbatim}" << ">\\begin{verbatim}<"; //too
 	QTest::newRow("existing )") << ">)<" << 0 << 1 << "(" << ">()<";
 	QTest::newRow("existing 2-)") << ">))<" << 0 << 1 << "(" << ">())<";
-	QTest::newRow("only last") << "><" << 0 << 1 << "((" << ">(()<";
+	//QTest::newRow("only last") << "><" << 0 << 1 << "((" << ">(()<";
 	//QTest::newRow("counting") << ">())<" << 0 << 1 << "(" << ">(())<";
 }
 
