@@ -5557,7 +5557,8 @@ QDocumentPrivate::QDocumentPrivate(QDocument *d)
 	_mac(0),
 	m_lineEnding(m_defaultLineEnding),
 	m_codec(m_defaultCodec),
-	m_oldLineCacheOffset(0), m_oldLineCacheWidth(0)
+	m_oldLineCacheOffset(0), m_oldLineCacheWidth(0),
+	m_forceLineWrapCalculation(false)
 {
 	m_documents << this;
 }
