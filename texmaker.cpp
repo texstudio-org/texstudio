@@ -224,6 +224,13 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	QDocument::addGuessEncodingCallback(&LatexParser::guessEncoding);
 	QDocument::addGuessEncodingCallback(&ConfigManager::getDefaultEncoding);
 
+
+	QStringList filters;
+	filters << tr("TeX files")+" (*.tex *.bib *.sty *.cls *.mp)";
+	filters << tr("Plaintext files")+" (*.txt)";
+	filters << tr("All files")+" (*)";
+	fileFilters = filters.join(";;");
+
         //setup autosave timer
         connect(&autosaveTimer,SIGNAL(timeout()),this,SLOT(fileSaveAll()));
         if(configManager.autosaveEveryMinutes>0){
@@ -1280,18 +1287,7 @@ void Texmaker::fileNewFromTemplate() {
 
 void Texmaker::fileOpen() {
 	QString currentDir=QDir::homePath();
-	int filter = 0;
-	if (!configManager.lastDocument.isEmpty()) {
-		QFileInfo fi(configManager.lastDocument);
-		if (fi.exists() && fi.isReadable()) {
-			currentDir=fi.absolutePath();
-			if (fi.suffix()=="") filter = 1;
-		}
-	}
-	QStringList filters;
-	filters << tr("TeX files")+" (*.tex *.bib *.sty *.cls *.mp)";
-	filters << tr("All files")+" (*)";
-	QStringList files = QFileDialog::getOpenFileNames(this,tr("Open Files"),currentDir,filters.join(";;"), &filters[filter]);
+	QStringList files = QFileDialog::getOpenFileNames(this,tr("Open Files"),currentDir,fileFilters,  &selectedFileFilter);
 	foreach (const QString& fn, files)
 		load(fn);
 }
@@ -1333,7 +1329,7 @@ void Texmaker::fileSave() {
 	//updateStructure(); (not needed anymore for autoupdate)
 }
 
-void Texmaker::fileSaveAs(QString fileName) {
+void Texmaker::fileSaveAs(const QString& fileName) {
 	if (!currentEditorView())
 		return;
 
@@ -1352,13 +1348,17 @@ void Texmaker::fileSaveAs(QString fileName) {
 	}
 
 	// get a file name
-	QString fn = QFileDialog::getSaveFileName(this,tr("Save As"),currentDir,tr("TeX files")+" (*.tex *.bib *.sty *.cls *.mp);;"+tr("All files")+" (*.*)");
+	QString fn = QFileDialog::getSaveFileName(this,tr("Save As"),currentDir,fileFilters, &selectedFileFilter);
 	if (!fn.isEmpty()) {
-		int lastsep=qMax(fn.lastIndexOf("/"),fn.lastIndexOf("\\"));
-		int lastpoint=fn.lastIndexOf(".");
-		if (lastpoint <= lastsep) //if both aren't found or point is in directory name
-			fn.append(".tex");
-		if (getEditorViewFromFileName(fn))
+		static QRegExp fileExt("\\*(\\.[^ )]+)");
+		if (fileExt.indexIn(selectedFileFilter) > -1) {
+			//add
+			int lastsep=qMax(fn.lastIndexOf("/"),fn.lastIndexOf("\\"));
+			int lastpoint=fn.lastIndexOf(".");
+			if (lastpoint <= lastsep) //if both aren't found or point is in directory name
+				fn.append(fileExt.cap(1));
+		}
+		if (getEditorViewFromFileName(fn) && getEditorViewFromFileName(fn) != currentEditorView())
 			if (QMessageBox::warning(this, "TexMakerX", tr("You are trying to save the file under the name %1, but a file with this name is already open.\nTexMakerX does not support multiple instances of the same file.\nAre you sure you want to continue?").arg(fn), QMessageBox::Yes|QMessageBox::No, QMessageBox::No) != QMessageBox::Yes)
 				return;
 
