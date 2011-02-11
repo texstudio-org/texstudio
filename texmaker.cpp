@@ -1287,6 +1287,12 @@ void Texmaker::fileNewFromTemplate() {
 
 void Texmaker::fileOpen() {
 	QString currentDir=QDir::homePath();
+	if (!configManager.lastDocument.isEmpty()) {
+		QFileInfo fi(configManager.lastDocument);
+		if (fi.exists() && fi.isReadable()) {
+			currentDir=fi.absolutePath();
+		}
+	}
 	QStringList files = QFileDialog::getOpenFileNames(this,tr("Open Files"),currentDir,fileFilters,  &selectedFileFilter);
 	foreach (const QString& fn, files)
 		load(fn);
