@@ -1146,20 +1146,24 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds) {
 					// normal parsing for completer
 					if (line.startsWith("\\pageref")||line.startsWith("\\ref")) continue;
 					if (!line.contains("%")){
-						if (line.contains("{")) {
-							line.replace("{","{%<");
-							line.replace("}","%>}");
-							line.replace("{%<%>}", "{%<something%>}");
-						}
-						if (line.contains("(")) {
-							line.replace("(","(%<");
-							line.replace(")","%>)");
-							line.replace("(%<%>)", "(%<something%>)");
-						}
-						if (line.contains("[")) {
-							line.replace("[","[%<");
-							line.replace("]","%>]");
-							line.replace("[%<%>]", "[%<something%>]");
+						//add placeholders to brackets like () to (%<..%>)
+						const QString brackets = "{}[]()<>";
+						int l = -10;
+						for (int i = 0; i < line.size(); i++) {
+							int index = brackets.indexOf(line[i]);
+							if (index>=0) {
+								if (index % 2 == 0) {
+									line.insert(i+1, "%<");
+								} else {
+									line.insert(i, "%>");
+									if (l == i-1) {
+										line.insert(i, QApplication::tr("something", "CodeSnippet"));
+										i+=QApplication::tr("something", "CodeSnippet").length();
+									}
+								}
+								i+=2;
+								l=i;
+							}
 						}
 						int i;
 						if (line.startsWith("\\begin")||line.startsWith("\\end")) {
