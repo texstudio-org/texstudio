@@ -58,6 +58,12 @@ public:
 			completer->listModel->incUsage(completer->list->currentIndex());
 			//int alreadyWrittenLen=editor->cursor().columnNumber()-curStart;
 			//remove current text for correct case
+			if(completer->forcedRef){
+			    while(!cursor.atLineEnd() && cursor.nextChar()!='}')
+				cursor.deleteChar();
+			    if(cursor.nextChar()=='}')
+				cursor.deleteChar();
+			}
 			for (int i=maxWritten-cursor.columnNumber(); i>0; i--) cursor.deleteChar();
 			for (int i=cursor.columnNumber()-curStart; i>0; i--) cursor.deletePreviousChar();
 			if (!autoOverridenText.isEmpty()){
@@ -599,7 +605,7 @@ QHash<QString, QString> LatexCompleter::helpIndices;
 QHash<QString, int> LatexCompleter::helpIndicesCache;
 LatexCompleterConfig* LatexCompleter::config=0;
 
-LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0) {
+LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0),forcedRef(false) {
 	//   addTrigger("\\");
 	if (!qobject_cast<QWidget*>(parent()))
 		QMessageBox::critical(0,"Serious PROBLEM", QString("The completer has been created without a parent widget. This is impossible!\n")+
@@ -739,6 +745,7 @@ void LatexCompleter::setAbbreviations(const QStringList &Abbrevs,const QStringLi
 
 void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) {
 	Q_ASSERT(list); Q_ASSERT(listModel); Q_ASSERT(completerInputBinding);
+	forcedRef=flags & CF_FORCE_REF;
 	if (editor != newEditor) {
 		if (editor) disconnect(editor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
 		if (newEditor) connect(newEditor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
