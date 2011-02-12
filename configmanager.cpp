@@ -1170,7 +1170,7 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 		recentMenu->addSeparator();
 		for (int i = 0; i < maxRecentFiles; ++i)
 			newOrLostOldManagedAction(recentMenu, QString::number(i), tr("Recent File %1").arg(i), SLOT(fileOpenRecent()))->setVisible(false);
-		newManagedAction(recentMenu, "allFiles", tr("Open all files"), SLOT(fileOpenAllRecent()));
+		newOrLostOldManagedAction(recentMenu, "allFiles", tr("&* Open all files"), SLOT(fileOpenAllRecent()));
 	}
 
 	for (int i=0; i < maxRecentProjects; i++) {
@@ -1178,7 +1178,7 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 		REQUIRE(act);
 		if (i<recentProjectList.count()) {
 			act->setVisible(true);
-			act->setText(tr("Master Document: ")+recentProjectList.at(i));
+			act->setText(tr("Master Document: ")+(i<=13?QString("&%1 ").arg((char)('M'+i)):"")+ recentProjectList.at(i));
 			act->setData(recentProjectList.at(i));
 		} else act->setVisible(false);
 	}
@@ -1187,7 +1187,15 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 		REQUIRE(act);
 		if (i<recentFilesList.count()) {
 			act->setVisible(true);
-			act->setText(recentFilesList.at(i));
+			char schar = '\0';
+			if (i <= 9) schar = i+'0';
+			else if (i <= 9+12) schar = i + 'a' - 10;
+			else if (i <= 21+9) schar = i + '!' - 22;
+			else if (i <= 30+5) schar = i + '+' - 31;
+			else if (i <= 35+7) schar = i + ':' - 36;
+			else if (i <= 42+5) schar = i + '[' - 43;
+			else if (i <= 47+4) schar = i + '{' - 48;
+			act->setText((schar?QString("&%1 ").arg(schar):"")+recentFilesList.at(i));
 			act->setData(recentFilesList.at(i));
 		} else act->setVisible(false);
 	}
