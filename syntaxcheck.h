@@ -61,6 +61,7 @@ public:
     QString getErrorAt(QDocumentLineHandle *dlh,int pos,Environment previous,int cols);
     int verbatimFormat;
     void setLtxCommands(LatexParser cmds);
+    void waitForQueueProcess();
 
 signals:
 	void checkNextLine(QDocumentLineHandle *dlh, int previousEnvironment ,bool clearOverlay,int cols, int excessCols);

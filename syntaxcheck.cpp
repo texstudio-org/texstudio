@@ -338,3 +338,8 @@ void SyntaxCheck::setLtxCommands(LatexParser cmds){
     QMutexLocker locker(&mLtxCommandLock);
     ltxCommands=cmds;
 }
+
+void SyntaxCheck::waitForQueueProcess(){
+    while(mLinesAvailable.available()>0)
+	wait(100);
+}

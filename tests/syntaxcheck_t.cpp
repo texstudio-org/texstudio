@@ -147,7 +147,7 @@ void SyntaxCheckTest::checktabular(){
 	expectedMessage = QApplication::translate("SyntaxCheck", qPrintable(expectedMessage));
 
 	edView->document->setText(text);
-
+	edView->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
 	int cols;
 	SyntaxCheck::Environment env;
 	edView->getEnv(row,env,cols);
