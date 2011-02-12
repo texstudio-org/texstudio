@@ -2338,12 +2338,15 @@ void Texmaker::NormalCompletion() {
 		}
 		if(c.previousChar()==QChar('\\')){
 			QString cmd=word.mid(col-i-j);
-			if(cmd.startsWith("ref{")||cmd.startsWith("pageref{")){
-				currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_REF);
-				return;
-			}
 			if(cmd.startsWith("begin{")||cmd.startsWith("end{")){
 				currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
+				return;
+			}
+			int pos=cmd.indexOf('{');
+			cmd.remove(pos,cmd.length()-pos);
+			cmd.prepend('\\');
+			if(LatexParser::refCommands.contains(cmd)){
+				currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_REF);
 				return;
 			}
 		}

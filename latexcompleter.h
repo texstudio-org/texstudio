@@ -77,6 +77,8 @@ private:
 	static QHash<QString, QString> helpIndices;
 	static QHash<QString, int> helpIndicesCache;
 
+	bool forcedRef;
+
 private slots:
 	void cursorPositionChanged();
 	void selectionChanged(const QModelIndex & index);
