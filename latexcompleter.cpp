@@ -758,6 +758,13 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	if (!editor) return;
 	QDocumentCursor c=editor->cursor();
 	if (!c.isValid()) return;
+	int phId=editor->currentPlaceHolder();
+	if(phId>-1){
+	    PlaceHolder ph=editor->getPlaceHolder(phId);
+	    if(ph.cursor.isWithinSelection(c) && !ph.mirrors.isEmpty()){
+		editor->removePlaceHolder(phId);
+	    }
+	}
 	if (c.hasSelection()) {
 		c.setColumnNumber(qMax(c.columnNumber(),c.anchorColumnNumber()));
 		editor->setCursor(c);
