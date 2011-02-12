@@ -178,6 +178,10 @@ public:
 			return true;
 		} else if (event->key()==Qt::Key_Delete) {
 			if (editor->cursor().columnNumber()<maxWritten) maxWritten--;
+			if(completer->forcedRef){
+			    if(editor->cursor().nextChar()=='}')
+				completer->forcedRef=false;
+			}
 			editor->cursor().deleteChar();
 			handled=true;
 		} else if (event->key()==Qt::Key_Left) {
