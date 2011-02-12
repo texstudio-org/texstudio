@@ -260,7 +260,12 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 				selector.movePosition(length-1,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
 				selector.replaceSelectedText(newEnv);
 				cursor->movePosition(closeCurl-cursor->columnNumber()+1,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
-				editor->insertText(*cursor,lines.first());
+				QString first=lines.first();
+				int pos=first.indexOf('{');
+				pos=first.indexOf('{',pos+1); //pos of second {
+				if(pos>-1)
+				    first.remove(pos,first.length()-pos);
+				editor->insertText(*cursor,first);
 				if (editBlockOpened) cursor->endEditBlock();
 				return;
 			}
