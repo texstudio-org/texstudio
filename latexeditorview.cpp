@@ -231,7 +231,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	SynChecker.verbatimFormat=QDocument::formatFactory()->id("verbatim");
 	SynChecker.start();
 
-	connect(&SynChecker, SIGNAL(checkNextLine(QDocumentLineHandle*,int,bool,int,int)), SLOT(checkNextLine(QDocumentLineHandle *, int,bool,int, int)), Qt::QueuedConnection);
+	connect(&SynChecker, SIGNAL(checkNextLine(QDocumentLineHandle*,int,bool,int,int,int)), SLOT(checkNextLine(QDocumentLineHandle *, int,bool,int, int,int)), Qt::QueuedConnection);
 }
 
 LatexEditorView::~LatexEditorView() {
@@ -566,12 +566,15 @@ void LatexEditorView::lineMarkToolTip(int line, int mark){
 	if (error>=0)
 		emit showMarkTooltipForLogMessage(error);
 }
-void LatexEditorView::checkNextLine(QDocumentLineHandle *dlh,int previous,bool clearOverlay,int cols, int excessCols){
-	int index = document->indexOf(dlh);
-	if (index == -1) return; //deleted
-	REQUIRE(dlh->document() == document);
-	if (index + 1 >= document->lines()) return;
-	SynChecker.putLine(document->line(index+1).handle(), (SyntaxCheck::Environment)previous, clearOverlay, cols, excessCols);
+void LatexEditorView::checkNextLine(QDocumentLineHandle *dlh,int previous,bool clearOverlay,int cols, int excessCols,int ticket){
+	if(dlh->getRef()>1 && dlh->getCurrentTicket()==ticket){
+	    int index = document->indexOf(dlh);
+	    if (index == -1) return; //deleted
+	    REQUIRE(dlh->document() == document);
+	    if (index + 1 >= document->lines()) return;
+	    SynChecker.putLine(document->line(index+1).handle(), (SyntaxCheck::Environment)previous, clearOverlay, cols, excessCols);
+	}
+	dlh->deref();
 }
 
 void LatexEditorView::documentFormatsChanged(int linenr, int count) {

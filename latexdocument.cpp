@@ -164,7 +164,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	if(!baseStructure) return;
 	bool completerNeedsUpdate=false;
 	bool bibTeXFilesNeedsUpdate=false;
-	bool updateSyntaxCheck;
+	bool updateSyntaxCheck=false;
 	if (mLabelItem.contains(dlh)) {
 	    QList<ReferencePair> labels=mLabelItem.values(dlh);
 	    completerNeedsUpdate = true;
