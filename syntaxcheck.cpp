@@ -81,7 +81,8 @@ void SyntaxCheck::run(){
 			//if excessCols has changed the subsequent lines need to be rechecked.
 			if(cookieChanged){
 				newLine.dlh->setCookie(0,excessCols);
-				emit checkNextLine(newLine.dlh, activeEnv.top(), true, newLine.cols, excessCols);
+				newLine.dlh->ref(); // avoid being deleted while in queue
+				emit checkNextLine(newLine.dlh, activeEnv.top(), true, newLine.cols, excessCols,newLine.ticket);
 			}
 		}
 		newLine.dlh->unlock();
@@ -340,6 +341,7 @@ void SyntaxCheck::setLtxCommands(LatexParser cmds){
 }
 
 void SyntaxCheck::waitForQueueProcess(){
-    while(mLinesAvailable.available()>0)
-	wait(100);
+    while(mLinesAvailable.available()>0){
+	wait(1);
+    }
 }

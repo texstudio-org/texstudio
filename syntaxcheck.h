@@ -64,7 +64,7 @@ public:
     void waitForQueueProcess();
 
 signals:
-	void checkNextLine(QDocumentLineHandle *dlh, int previousEnvironment ,bool clearOverlay,int cols, int excessCols);
+	void checkNextLine(QDocumentLineHandle *dlh, int previousEnvironment ,bool clearOverlay,int cols, int excessCols, int ticket);
 protected:
      void run();
      void checkLine(QString &line,Ranges &newRanges,QStack<Environment> &activeEnv,int cols,int &excessCols);
