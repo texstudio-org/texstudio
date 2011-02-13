@@ -558,7 +558,7 @@ void CompletionListModel::setBaseWords(const QStringList &newwords, bool normalT
 		    cw.snippetLength=str.length();
 		    cw.usageCount=0;
 		    QList<QPair<int,int> >res=config->usage.values(cw.index);
-		    foreach(PairIntInt elem,res){
+		    foreach(const PairIntInt elem,res){
 			if(elem.first==cw.snippetLength){
 			    cw.usageCount=elem.second;
 			    break;
@@ -570,7 +570,7 @@ void CompletionListModel::setBaseWords(const QStringList &newwords, bool normalT
 		    cw.snippetLength=0;
 		}
 		newWordList.append(cw);
-		foreach(QChar c, str) acceptedChars.insert(c);
+		foreach(const QChar c, str) acceptedChars.insert(c);
 	}
 	qSort(newWordList.begin(), newWordList.end());
 
@@ -583,9 +583,9 @@ void CompletionListModel::setBaseWords(const QList<CompletionWord> &newwords, bo
 	QList<CompletionWord> newWordList;
 	acceptedChars.clear();
 	newWordList.clear();
-	foreach(CompletionWord cw, newwords) {
+	foreach(const CompletionWord cw, newwords) {
 		newWordList.append(cw);
-		foreach(QChar c, cw.word) acceptedChars.insert(c);
+		foreach(const QChar c, cw.word) acceptedChars.insert(c);
 	}
 	qSort(newWordList.begin(), newWordList.end());
 
@@ -675,7 +675,7 @@ void LatexCompleter::setAdditionalWords(const QStringList &newwords, bool normal
 	QStringList concated;
 	if (config && !normalTextList) concated << config->words;
 	//avoid duplicates !!!
-	foreach(QString elem,newwords){
+	foreach(const QString elem,newwords){
 	    if(!concated.contains(elem))
 		concated << elem;
 	}

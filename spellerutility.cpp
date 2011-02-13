@@ -61,7 +61,7 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
 	QByteArray encodedString;
 	QString spell_encoding=QString(pChecker->get_dic_encoding());
 	QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());
-	foreach(QString elem,ignoredWordList){
+	foreach(const QString elem,ignoredWordList){
 		encodedString = codec->fromUnicode(elem);
 		pChecker->add(encodedString.data());
 	}
@@ -79,7 +79,7 @@ void SpellerUtility::unload() {
 		if (f.open(QFile::WriteOnly)) {
 			QTextCodec* utf8=QTextCodec::codecForName("UTF-8");
 			f.write(utf8->fromUnicode("%Ignored-Words;encoding:utf-8;version:TexMakerX:1.8\n"));
-			foreach(QString str, ignoredWordList)
+			foreach(const QString str, ignoredWordList)
 			if (!str.startsWith("%"))
 				f.write(utf8->fromUnicode(str+"\n"));
 		}

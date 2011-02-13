@@ -27,7 +27,7 @@ BuildManager::~BuildManager() {
 		QStringList files;
 		files = currentDir.entryList(QStringList(elem+"*"),
 								  QDir::Files | QDir::NoSymLinks);
-		foreach(QString file,files) QFile::remove(currentDir.absolutePath()+"/"+file);
+		foreach(const QString file,files) QFile::remove(currentDir.absolutePath()+"/"+file);
 	}
 #ifdef Q_WS_WIN
 	if (pidInst) DdeUninitialize(pidInst);
@@ -155,7 +155,7 @@ QString BuildManager::findFileInPath(QString fileName) {
 	#else
 	QStringList paths=path.split(":"); //linux
 	#endif
-	foreach(QString p, paths)
+	foreach(const QString p, paths)
 		if (p.endsWith("/") && QFileInfo(p+fileName).exists()) return (p+fileName);
 		else if (p.endsWith("\\") && QFileInfo(p+fileName).exists()) return (p+fileName);
 		else if (QFileInfo(p+"/"+fileName).exists()) return (p+"\\"+fileName);
@@ -869,7 +869,7 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 	if (!hConv) return false;
 
 	//execute requests
-	foreach(QString s, commands) {
+	foreach(const QString s, commands) {
 		QString temp=("["+s.trimmed());
 		QByteArray ba= temp.toLocal8Bit();
 		HDDEDATA req= DdeCreateDataHandle(pidInst, (LPBYTE) ba.data(), ba.size()+1, 0, 0, CF_TEXT, 0);

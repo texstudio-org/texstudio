@@ -1079,7 +1079,7 @@ void LatexParser::guessEncoding(const QByteArray& data, QTextCodec *&guess, int 
 QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds) {
 	QStringList words;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-	foreach(QString file, newFiles) {
+	foreach(const QString file, newFiles) {
 		QString fn=findResourceFile("completion/"+file);
 		QFile tagsfile(fn);
 		if (tagsfile.open(QFile::ReadOnly)) {
