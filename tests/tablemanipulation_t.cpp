@@ -375,7 +375,7 @@ void TableManipulationTest::getNumberOfCol_data(){
 		<< 1 << 0
 		<< 3;
 
-	QTest::newRow("p")
+	QTest::newRow("m")
 		<< "\\begin{tabular}{llm{3cm}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 0
 		<< 3;
@@ -397,6 +397,11 @@ void TableManipulationTest::getNumberOfCol_data(){
 
 	QTest::newRow("multipliers")
 		<< "\\begin{tabular}{|l|l|@{ll}c*{2}{lc}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 2 << 0
+		<< 7;
+
+	QTest::newRow("multipliers, nested")
+		<< "\\begin{tabular}{|l|l|@{ll}c*{2}{*{2}{l}}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 2 << 0
 		<< 7;
 

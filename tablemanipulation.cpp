@@ -456,33 +456,8 @@ int LatexTables::getNumberOfColumns(QDocumentCursor &cur){
 		opt=opt.mid(1);
 		opt.chop(1);
 		//calculate number of columns ...
-		int cols=0;
-		//remove filler
-		QRegExp rx("\\*\\{(.+)\\}\\{(.+)\\}");
-		int pos=0;
-		while ((pos = rx.indexIn(opt, pos)) != -1) {
-		    QString m=rx.cap(1);
-		    bool ok;
-		    int mult=m.toInt(&ok);
-		    if(!ok) break;
-		    QString rep=rx.cap(2);
-		    QString repl;
-		    for(int i=0;i<mult;i++){
-			repl+=rep;
-		    }
-		    opt.replace(pos,rx.matchedLength(),repl);
-		}
-		QRegExp rx1("@\\{.+\\}");
-		rx1.setMinimal(true);
-		opt.replace(rx1,"");
-		opt.replace("<","");
-		opt.replace(">","");
-		QRegExp rx2("\\{.+\\}");
-		rx2.setMinimal(true);
-		opt.replace(rx2,"");
-		opt.replace("|","");
-		opt.replace(" ","");
-		cols=opt.length();
+		QStringList res=splitColDef(opt);
+		int cols=res.count();
 		//return result
 		return cols;
 	    }
@@ -650,8 +625,8 @@ QStringList LatexTables::splitColDef(QString def){
 
 
     }
-    if(!col.isEmpty())
-	result << col;
+    if(!result.isEmpty())
+	result.last().append(col);
 
 
     return result;
