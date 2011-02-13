@@ -318,7 +318,7 @@ int LatexTables::findNextToken(QDocumentCursor &cur,QStringList tokens,bool keep
 	if(backwards){
 	    offset=offset-line.length();
 	    QString help;
-	    foreach(QChar elem,line){
+	    foreach(const QChar elem,line){
 		help.prepend(elem);
 	    }
 	    line=help;

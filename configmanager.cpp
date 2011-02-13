@@ -439,7 +439,7 @@ QSettings* ConfigManager::readSettings() {
 			//import texmaker global settings
 			QSettings oldconfig(QSettings::IniFormat,QSettings::UserScope,"xm1","texmaker");
 			QStringList keys=oldconfig.allKeys();
-			foreach(QString key, keys) config->setValue(key,oldconfig.value(key,""));
+			foreach(const QString key, keys) config->setValue(key,oldconfig.value(key,""));
 			importTexmakerSettings = true;
 		}
 	}
@@ -722,7 +722,7 @@ bool ConfigManager::execConfigDialog() {
 	QStringList files=findResourceFiles("completion","*.cwl");
 	QListWidgetItem *item;
 	const QStringList& loadedFiles = completerConfig->getLoadedFiles();
-	foreach(QString elem,files) {
+	foreach(const QString elem,files) {
 		item=new QListWidgetItem(elem,confDlg->ui.completeListWidget);
 		item->setFlags(Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
 		if (loadedFiles.contains(elem)) item->setCheckState(Qt::Checked);
@@ -846,14 +846,14 @@ bool ConfigManager::execConfigDialog() {
 		keysReversed.insertMulti(it.value(), it.key());
 		++it;
 	}
-	foreach(int elem, editorAvailableOperations){
+	foreach(const int elem, editorAvailableOperations){
 	    QList<int> keys=keysReversed.values(elem);
 	    bool listEmpty=false;
 	    if(keys.isEmpty()){
 		keys<< 0;
 		listEmpty=true;
 	    }
-	    foreach(int key,keys){
+	    foreach(const int key,keys){
 		QTreeWidgetItem * twi=0;
 		if(listEmpty){
 		    twi = new QTreeWidgetItem(editorKeys, QStringList() << LatexEditorViewConfig::translateEditOperation(elem) << "" << tr("<none>"));

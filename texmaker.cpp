@@ -1084,7 +1084,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 
 	// check for already open child documents (included in this file)
 	QStringList includedFiles=doc->includedFiles();
-	foreach(QString fname,includedFiles){
+	foreach(const QString fname,includedFiles){
 	    LatexDocument* child=documents.findDocumentFromName(fname);
 	    if(child){
 		child->setMasterDocument(doc);
@@ -1882,7 +1882,7 @@ void Texmaker::editIndentSection() {
 		m_cursor=currentEditorView()->editor->cursor();
 		m_line=currentEditorView()->editor->cursor().line().text();
 		QString m_old="";
-		foreach(QString elem,m_replace) {
+		foreach(const QString elem,m_replace) {
 			if (m_old!="") m_line.replace(elem,m_old);
 			m_old=elem;
 		}
@@ -1912,7 +1912,7 @@ void Texmaker::editUnIndentSection() {
 		m_cursor=currentEditorView()->editor->cursor();
 		m_line=currentEditorView()->editor->cursor().line().text();
 		QString m_old="";
-		foreach(QString elem,m_replace) {
+		foreach(const QString elem,m_replace) {
 			if (m_old!="") m_line.replace(elem,m_old);
 			m_old=elem;
 		}
@@ -3322,11 +3322,11 @@ void Texmaker::CleanAll() {
 	if (query==0) {
 		//fileSave();
 		stat2->setText(QString(" %1 ").arg(tr("Clean")));
-		foreach(QString finame,finames){
+		foreach(const QString finame,finames){
 		    QFileInfo fi(finame);
 		    QString basename=fi.absolutePath()+"/"+fi.completeBaseName();
 		    QStringList extension=extensionStr.split(",");
-		    foreach(QString ext, extension)
+		    foreach(const QString ext, extension)
 			QFile::remove(basename+ext);
 		}
 		stat2->setText(QString(" %1 ").arg(tr("Ready")));
@@ -3656,7 +3656,7 @@ void Texmaker::GeneralOptions() {
 		updateHighlighting|=(realtimeChecking!=configManager.editorConfig->realtimeChecking);
 		// check for change in load completion files
 		QStringList newLoadedFiles=configManager.completerConfig->getLoadedFiles();
-		foreach(QString elem,newLoadedFiles){
+		foreach(const QString elem,newLoadedFiles){
 		    if(loadFiles.removeAll(elem)==0)
 			updateHighlighting=true;
 		    if(updateHighlighting)
@@ -3764,7 +3764,7 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	}
 
 	// execute command line
-	foreach(QString fileToLoad,filesToLoad){
+	foreach(const QString fileToLoad,filesToLoad){
 		QFileInfo ftl(fileToLoad);
 		if (fileToLoad != "") {
 			if (ftl.exists())
@@ -4448,7 +4448,7 @@ void Texmaker::showPreviewQueue(){
 		previewQueue.clear();
 		return;
 	}
-	foreach (int line, previewQueue)
+	foreach (const int line, previewQueue)
 		foreach (const QDocumentCursor& c, previewQueueOwner->autoPreviewCursor)
 			if (c.lineNumber() == line)
 				showPreview(c,false);
@@ -4814,7 +4814,7 @@ void Texmaker::svnPatch(QEditor *ed,QString diff){
 	int cur_line;
 	bool atDocEnd=false;
 	QDocumentCursor c=ed->cursor();
-	foreach(QString elem,lines){
+	foreach(const QString elem,lines){
 		QChar ch=elem.at(0);
 		if(ch=='@'){
 			if(rx.indexIn(elem)>-1){

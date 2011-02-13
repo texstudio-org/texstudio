@@ -2,10 +2,10 @@
 EncodingDialog::EncodingDialog(QWidget *parent, QEditor *editor) :
 		QDialog(parent), edit(editor) {
 	setupUi(this);
-	foreach(int mib, QTextCodec::availableMibs()) {
+	foreach(const int mib, QTextCodec::availableMibs()) {
 		QString name = QTextCodec::codecForMib(mib)->name();
-		foreach(QByteArray ba, QTextCodec::codecForMib(mib)->aliases())
-		name+=" / " + ba;
+		foreach(const QByteArray ba, QTextCodec::codecForMib(mib)->aliases())
+		    name+=" / " + ba;
 		QListWidgetItem* it = new QListWidgetItem(name, encodings);
 		it->setData(Qt::UserRole, mib);
 		if (mib==edit->getFileCodec()->mibEnum()) encodings->setCurrentItem(it);

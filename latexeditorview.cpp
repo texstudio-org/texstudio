@@ -249,7 +249,7 @@ void LatexEditorView::updateLtxCommands(){
 	    return;
 
 	LatexParser ltxCommands=document->parent->ltxCommands;
-	foreach(LatexDocument *elem,document->getListOfDocs()){
+	foreach(const LatexDocument *elem,document->getListOfDocs()){
 	    ltxCommands.append(elem->ltxCommands);
 	}
 	SynChecker.setLtxCommands(ltxCommands);

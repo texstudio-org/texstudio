@@ -57,7 +57,7 @@ void LatexDocument::setEditorView(LatexEditorView* edView){
 		emit updateElement(baseStructure);
 	}
 }
-LatexEditorView *LatexDocument::getEditorView(){
+LatexEditorView *LatexDocument::getEditorView() const{
 	return this->edView;
 }
 
@@ -169,7 +169,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	    QList<ReferencePair> labels=mLabelItem.values(dlh);
 	    completerNeedsUpdate = true;
 	    mLabelItem.remove(dlh);
-	    foreach(ReferencePair rp,labels){
+	    foreach(const ReferencePair rp,labels){
 		updateRefsLabels(rp.name);
 	    }
 	}
@@ -326,7 +326,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		    QList<ReferencePair> labels=mLabelItem.values(dlh);
 		    completerNeedsUpdate = true;
 		    mLabelItem.remove(dlh);
-		    foreach(ReferencePair rp,labels){
+		    foreach(const ReferencePair rp,labels){
 			updateRefsLabels(rp.name);
 		    }
 		}
@@ -475,7 +475,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				mUserCommandList.insert(line(i).handle(),"\\end{"+name);
 				QStringList lst;
 				lst << "\\begin{"+name << "\\end{"+name;
-				foreach(QString elem,lst){
+				foreach(const QString elem,lst){
 				    ltxCommands.userdefinedCommands.insert(elem);
 				    if(!removedUserCommands.removeAll(elem)){
 					addedUserCommands << elem;
@@ -494,7 +494,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				completerNeedsUpdate=true;
 				QStringList lst;
 				lst << "\\begin{"+name+"}" << "\\end{"+name+"}";
-				foreach(QString elem,lst){
+				foreach(const QString elem,lst){
 				    mUserCommandList.insert(line(i).handle(),elem);
 				    ltxCommands.userdefinedCommands.insert(elem);
 				    if(!removedUserCommands.removeAll(elem)){
@@ -508,7 +508,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				completerNeedsUpdate=true;
 				QStringList packagesHelper=name.split(",");
 				QStringList packages;
-				foreach(QString elem,packagesHelper){
+				foreach(const QString elem,packagesHelper){
 				    if(LatexParser::packageAliases.contains(elem)){
 					packages << LatexParser::packageAliases.values(elem);
 				    }else{
@@ -516,7 +516,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				    }
 				}
 
-				foreach(QString elem,packages){
+				foreach(const QString elem,packages){
 				    if(!removedUsepackages.removeAll(elem)){
 					addedUsepackages << elem;
 				    }
@@ -789,7 +789,7 @@ QString LatexDocument::getTemporaryFileName(){
 
 int LatexDocument::countLabels(QString name){
     int result=0;
-    foreach(LatexDocument *elem,getListOfDocs()){
+    foreach(const LatexDocument *elem,getListOfDocs()){
 	QStringList items=elem->labelItem();
 	result+=items.count(name);
     }
@@ -798,7 +798,7 @@ int LatexDocument::countLabels(QString name){
 
 int LatexDocument::countRefs(QString name){
     int result=0;
-    foreach(LatexDocument *elem,getListOfDocs()){
+    foreach(const LatexDocument *elem,getListOfDocs()){
 	QStringList items=elem->refItem();
 	result+=items.count(name);
     }
@@ -807,7 +807,7 @@ int LatexDocument::countRefs(QString name){
 
 QMultiHash<QDocumentLineHandle*,int> LatexDocument::getLabels(QString name){
     QHash<QDocumentLineHandle*,int> result;
-    foreach(LatexDocument *elem,getListOfDocs()){
+    foreach(const LatexDocument *elem,getListOfDocs()){
 	QMultiHash<QDocumentLineHandle*,ReferencePair>::const_iterator it;
 	for (it = elem->mLabelItem.constBegin(); it != elem->mLabelItem.constEnd(); ++it){
 	    ReferencePair rp=it.value();
@@ -821,7 +821,7 @@ QMultiHash<QDocumentLineHandle*,int> LatexDocument::getLabels(QString name){
 
 QMultiHash<QDocumentLineHandle*,int> LatexDocument::getRefs(QString name){
     QHash<QDocumentLineHandle*,int> result;
-    foreach(LatexDocument *elem,getListOfDocs()){
+    foreach(const LatexDocument *elem,getListOfDocs()){
 	QMultiHash<QDocumentLineHandle*,ReferencePair>::const_iterator it;
 	for (it = elem->mRefItem.constBegin(); it != elem->mRefItem.constEnd(); ++it){
 	    ReferencePair rp=it.value();
@@ -867,7 +867,7 @@ void LatexDocument::recheckRefsLabels(){
     QMultiHash<QDocumentLineHandle*,ReferencePair>::const_iterator it;
     for(it=mLabelItem.constBegin();it!=mLabelItem.constEnd();it++){
 	QDocumentLineHandle* dlh=it.key();
-	foreach(ReferencePair rp,mLabelItem.values(dlh)){
+	foreach(const ReferencePair rp,mLabelItem.values(dlh)){
 	    int cnt=countLabels(rp.name);
 	    dlh->removeOverlay(QFormatRange(rp.start,rp.name.length(),referenceMultipleFormat));
 	    dlh->removeOverlay(QFormatRange(rp.start,rp.name.length(),referencePresentFormat));
@@ -880,7 +880,7 @@ void LatexDocument::recheckRefsLabels(){
     }
     for(it=mRefItem.constBegin();it!=mRefItem.constEnd();it++){
 	QDocumentLineHandle* dlh=it.key();
-	foreach(ReferencePair rp,mRefItem.values(dlh)){
+	foreach(const ReferencePair rp,mRefItem.values(dlh)){
 	    int cnt=countLabels(rp.name);
 	    dlh->removeOverlay(QFormatRange(rp.start,rp.name.length(),referenceMultipleFormat));
 	    dlh->removeOverlay(QFormatRange(rp.start,rp.name.length(),referencePresentFormat));
@@ -905,7 +905,7 @@ void LatexDocument::updateRefsLabels(const QString ref){
     QMultiHash<QDocumentLineHandle*,int>::const_iterator it;
     for(it=occurences.constBegin();it!=occurences.constEnd();it++){
 	QDocumentLineHandle* dlh=it.key();
-	foreach(int pos,occurences.values(dlh)){
+	foreach(const int pos,occurences.values(dlh)){
 	    dlh->removeOverlay(QFormatRange(pos,ref.length(),referenceMultipleFormat));
 	    dlh->removeOverlay(QFormatRange(pos,ref.length(),referencePresentFormat));
 	    dlh->removeOverlay(QFormatRange(pos,ref.length(),referenceMissingFormat));
@@ -1249,7 +1249,7 @@ void LatexDocuments::addDocument(LatexDocument* document){
 	document->parent=this;
 	if(masterDocument){
 		// repaint all docs
-		foreach(LatexDocument *doc,documents){
+		foreach(const LatexDocument *doc,documents){
 			LatexEditorView *edView=doc->getEditorView();
 			if (edView) edView->documentContentChanged(0,edView->editor->document()->lines());
 		}
@@ -1658,7 +1658,7 @@ QString LatexDocument::findFileName(QString fname){
 }
 
 void LatexDocuments::updateStructure(){
-	foreach(LatexDocument* doc,documents){
+	foreach(const LatexDocument* doc,documents){
 		model->updateElement(doc->baseStructure);
 	}
 }
@@ -1673,7 +1673,7 @@ void LatexDocuments::bibTeXFilesNeedUpdate(){
 
 QStringList LatexDocument::includedFiles(){
     QStringList result;
-    foreach(StructureEntry* se,baseStructure->children){
+    foreach(const StructureEntry* se,baseStructure->children){
 	if(se->type==StructureEntry::SE_INCLUDE){
 	    QString fname=findFileName(se->title);
 	    if(!fname.isEmpty())
@@ -1701,7 +1701,7 @@ void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &remove
 	LatexParser cmds;
 	QStringList removedWords=loadCwlFiles(filtered,&cmds);
 	ltxCommands.substract(cmds);
-	foreach(QString elem,removedWords){
+	foreach(const QString elem,removedWords){
 	    mCompleterWords.removeAll(elem);
 	}
 	//recheck syntax of ALL documents ...

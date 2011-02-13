@@ -72,8 +72,7 @@ void SyntaxCheck::run(){
 		//if(newRanges.isEmpty()) continue;
 		newLine.dlh->lockForWrite();
 		if(newLine.ticket==newLine.dlh->getCurrentTicket()){ // discard results if text has been changed meanwhile
-			Error elem;
-			foreach(elem,newRanges){
+			foreach(const Error elem,newRanges){
 				newLine.dlh->addOverlayNoLock(QFormatRange(elem.range.first,elem.range.second,syntaxErrorFormat));
 			}
 			int oldCookie=newLine.dlh->getCookie(0).toInt();
@@ -323,7 +322,7 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh,int pos,Environment pre
 	checkLine(line,newRanges,activeEnv,cols,excessCols);
 	// find Error at Position
 	ErrorType result=ERR_none;
-	foreach(Error elem,newRanges){
+	foreach(const Error elem,newRanges){
 		if(elem.range.second+elem.range.first<pos) continue;
 		if(elem.range.first>pos) break;
 		result=elem.type;

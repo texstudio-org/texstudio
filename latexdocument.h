@@ -66,7 +66,7 @@ public:
 	};
 	void setFileName(const QString& fileName);
 	void setEditorView(LatexEditorView* edView);
-	LatexEditorView *getEditorView();
+	LatexEditorView *getEditorView() const;
 	QString getFileName() const;
 	QFileInfo getFileInfo() const;
 	//QSet<QString> texFiles; //absolute file names, also contains fileName
@@ -81,7 +81,7 @@ public:
 	QStringList labelItem()const {
 	    QList<ReferencePair> lst=mLabelItem.values();
 	    QStringList result;
-	    foreach(ReferencePair elem,lst){
+	    foreach(const ReferencePair elem,lst){
 		result << elem.name;
 	    }
 
@@ -90,7 +90,7 @@ public:
 	QStringList labelItemAt(QDocumentLineHandle *dlh){
 	    QList<ReferencePair> lst=mLabelItem.values(dlh);
 	    QStringList result;
-	    foreach(ReferencePair elem,lst){
+	    foreach(const ReferencePair elem,lst){
 		result << elem.name;
 	    }
 	    return result;
@@ -98,7 +98,7 @@ public:
 	QStringList refItem() const{
 	    QList<ReferencePair> lst=mRefItem.values();
 	    QStringList result;
-	    foreach(ReferencePair elem,lst){
+	    foreach(const ReferencePair elem,lst){
 		result << elem.name;
 	    }
 	    return result;
@@ -106,7 +106,7 @@ public:
 	QStringList refItemAt(QDocumentLineHandle *dlh){
 	    QList<ReferencePair> lst=mRefItem.values(dlh);
 	    QStringList result;
-	    foreach(ReferencePair elem,lst){
+	    foreach(const ReferencePair elem,lst){
 		result << elem.name;
 	    }
 	    return result;
@@ -146,7 +146,7 @@ public:
 	QString getTemporaryFileName();
 
 	void setMasterDocument(LatexDocument* doc);
-	LatexDocument* getMasterDocument(){
+	LatexDocument* getMasterDocument() const{
 	    return masterDocument;
 	}
 
