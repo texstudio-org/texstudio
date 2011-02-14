@@ -12,10 +12,6 @@
         <translation>OK</translation>
     </message>
     <message>
-        <source>&lt;b&gt;TexMakerX 2.0 (SVN </source>
-        <translation type="obsolete">&lt;b&gt;TexMakerX 2.0 (SVN </translation>
-    </message>
-    <message>
         <source>Using Qt Version %1, compiled with Qt %2</source>
         <translation>Használt Qt verzió: %1, fordítva a Qt %2 verzióval</translation>
     </message>
@@ -1038,10 +1034,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Legutóbbi fájl %1</translation>
     </message>
     <message>
-        <source>Open all files</source>
-        <translation>Minden fájl megnyitása</translation>
-    </message>
-    <message>
         <source>Master Document: </source>
         <translation>Mesterdokumentum:</translation>
     </message>
@@ -1448,6 +1440,10 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TexMakerX do it now?</source>
         <translation>A belső pdf megjelenítő jobb kihasználásához ajánlatos lenne aktivizálni a synctex programot. Megtegye most a TexMakerX Ön helyett?</translation>
+    </message>
+    <message>
+        <source>&amp;* Open all files</source>
+        <translation>&amp;* Minden fájl megnyitása</translation>
     </message>
 </context>
 <context>
@@ -2442,6 +2438,21 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
 </context>
 <context>
+    <name>ProcessX</name>
+    <message>
+        <source>Process started: %1</source>
+        <translation>%1. művelet elindult</translation>
+    </message>
+    <message>
+        <source>Error: Could not start the command: %1</source>
+        <translation>Hiba a(z) %1. parancs végrehajtása során</translation>
+    </message>
+    <message>
+        <source>Error: Command crashed: %1</source>
+        <translation>Hiba: a(z) %1. parancs összeomlást okozott</translation>
+    </message>
+</context>
+<context>
     <name>QApplication</name>
     <message>
         <source>none</source>
@@ -2450,6 +2461,11 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>Select a File</source>
         <translation>Fájl kiválasztása</translation>
+    </message>
+    <message>
+        <source>something</source>
+        <comment>CodeSnippet</comment>
+        <translation>valami</translation>
     </message>
 </context>
 <context>
@@ -3551,10 +3567,6 @@ Néhány példa:
 <context>
     <name>ShortcutDelegate</name>
     <message>
-        <source>&lt;default&gt;</source>
-        <translation type="obsolete">&lt;alapértelmezett&gt;</translation>
-    </message>
-    <message>
         <source>&lt;none&gt;</source>
         <translation>&lt;nincs&gt;</translation>
     </message>
@@ -3888,10 +3900,6 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     <message>
         <source>&amp;File</source>
         <translation>&amp;Fájl</translation>
-    </message>
-    <message>
-        <source>Open Recent</source>
-        <translation>Le&amp;gutóbbi megnyitása</translation>
     </message>
     <message>
         <source>Restore previous session</source>
@@ -4599,28 +4607,12 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
         <translation>A fájlnév nem állapítható meg</translation>
     </message>
     <message>
-        <source>could not start the command:</source>
-        <translation>parancs nem indítható:</translation>
-    </message>
-    <message>
-        <source>Process started</source>
-        <translation>A művelet elindult</translation>
-    </message>
-    <message>
         <source>Pre-LaTeX</source>
         <translation>Pre-LaTeX</translation>
     </message>
     <message>
         <source>Could not start LaTeX.</source>
         <translation>A LaTeX nem indítható.</translation>
-    </message>
-    <message>
-        <source>Process exited with error(s)</source>
-        <translation>A művelet hibával leállt</translation>
-    </message>
-    <message>
-        <source>Process exited normally</source>
-        <translation>A művelet sikeres volt</translation>
     </message>
     <message>
         <source>Can&apos;t detect the file name.
@@ -4846,6 +4838,18 @@ Biztos, hogy folytatni akarja?</translation>
     <message>
         <source>check in whole directory ?</source>
         <translation>Az egész könyvtárban legyen az ellenőrzés?</translation>
+    </message>
+    <message>
+        <source>Plaintext files</source>
+        <translation>Plaintext fájlok</translation>
+    </message>
+    <message>
+        <source>Open &amp;Recent</source>
+        <translation>&amp;Jelenlegi dokumentum megnyitása</translation>
+    </message>
+    <message>
+        <source>C&amp;lear Inline Preview</source>
+        <translation>&amp;Azonnali előnézet törlése</translation>
     </message>
 </context>
 <context>
