@@ -45,11 +45,15 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.0 (SVN </source>
-        <translation>&lt;b&gt;TexMakerX 2.0 (SVN </translation>
+        <translation type="obsolete">&lt;b&gt;TexMakerX 2.0 (SVN </translation>
     </message>
     <message>
         <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
         <translation>TexMakerX obsahuje kód z programů Hunspell (GPL), QtCreator (GPL, autorské právo (C) Nokia), KILE (GPL) a SyncTeX (od Jeromeho Laurense).&lt;br&gt;TexMakerX používá prohlížeč PDF TeXworks.&lt;br&gt; TexMakerX používá třídu DSingleApplication (Autor: Dima Fedorov Levit - autorské právo (C) BioImage Informatics - povolení: GPL)&lt;br&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1247,6 +1251,34 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
         <source>Synchronized files types:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Inline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace beamer class by article</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Precompile Preamble</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto preview:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previously previewed text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto preview delay:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1692,7 +1724,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Open all files</source>
-        <translation>Otevřít všechny soubory</translation>
+        <translation type="obsolete">Otevřít všechny soubory</translation>
     </message>
     <message>
         <source>Internal viewer</source>
@@ -1701,6 +1733,10 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     <message>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TexMakerX do it now?</source>
         <translation>Pro plné používání vnitřního prohlížeče PDF musí být zapnut synctex. Má to teď TexMakerX udělat?</translation>
+    </message>
+    <message>
+        <source>&amp;* Open all files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2794,6 +2830,21 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
 </context>
 <context>
+    <name>ProcessX</name>
+    <message>
+        <source>Process started: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error: Could not start the command: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error: Command crashed: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QApplication</name>
     <message>
         <source>none</source>
@@ -2802,6 +2853,11 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <message>
         <source>Select a File</source>
         <translation>Vybrat soubor</translation>
+    </message>
+    <message>
+        <source>something</source>
+        <comment>CodeSnippet</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3485,6 +3541,22 @@ Chcete, aby byly uloženy?</translation>
     <message>
         <source>latexSyntaxMistake</source>
         <translation>latexSkladebnáChyba</translation>
+    </message>
+    <message>
+        <source>size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>prio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Point size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4240,7 +4312,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Open Recent</source>
-        <translation>Naposledy otevřený</translation>
+        <translation type="obsolete">Naposledy otevřený</translation>
     </message>
     <message>
         <source>Save</source>
@@ -4801,11 +4873,11 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>could not start the command:</source>
-        <translation>Nepodařilo se spustit příkaz:</translation>
+        <translation type="obsolete">Nepodařilo se spustit příkaz:</translation>
     </message>
     <message>
         <source>Process started</source>
-        <translation>Postup spuštěn</translation>
+        <translation type="obsolete">Postup spuštěn</translation>
     </message>
     <message>
         <source>Delete the output files generated by LaTeX?</source>
@@ -5290,11 +5362,11 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Process exited with error(s)</source>
-        <translation>Proces ukončen s chybou(ami)</translation>
+        <translation type="obsolete">Proces ukončen s chybou(ami)</translation>
     </message>
     <message>
         <source>Process exited normally</source>
-        <translation>Proces ukončen jako obvykle</translation>
+        <translation type="obsolete">Proces ukončen jako obvykle</translation>
     </message>
     <message>
         <source>Can&apos;t detect the file name.
@@ -5683,6 +5755,22 @@ Používáte ovšem verzi programu TexMakerX, která byla sestavena bez vnitřn�
         <source>You are trying to save the file under the name %1, but a file with this name is already open.
 TexMakerX does not support multiple instances of the same file.
 Are you sure you want to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Plaintext files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open &amp;Recent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>C&amp;lear Inline Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>check in whole directory ?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
