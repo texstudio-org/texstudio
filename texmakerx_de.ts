@@ -53,7 +53,7 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.0 (SVN </source>
-        <translation>&lt;b&gt;TexMakerX 2.0 (SVN </translation>
+        <translation type="obsolete">&lt;b&gt;TexMakerX 2.0 (SVN </translation>
     </message>
     <message>
         <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) and KILE (GPL) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
@@ -62,6 +62,10 @@
     <message>
         <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
         <translation>TexMakerX enthält Code aus den Programmen Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) und KILE (GPL).&lt;br&gt; TexMakerX nutzt den PDF-Betrachter von TeXworks.&lt;br&gt;TexMakerX nutzt die  DSingleApplication Klasse (Autor: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Lizenz: GPL)&lt;br&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1283,6 +1287,34 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <source>Synchronized files types:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Inline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace beamer class by article</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Precompile Preamble</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto preview:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previously previewed text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto preview delay:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1732,7 +1764,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <source>Open all files</source>
-        <translation>Alle Dateien öffnen</translation>
+        <translation type="obsolete">Alle Dateien öffnen</translation>
     </message>
     <message>
         <source>Internal viewer</source>
@@ -1741,6 +1773,10 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     <message>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TexMakerX do it now?</source>
         <translation>Um den internen PDF-Betrachter vollständig nutzbar zu machen, muss synctex aktiviert sein. Soll dies TexMakerX nun ereldigen ?</translation>
+    </message>
+    <message>
+        <source>&amp;* Open all files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2933,6 +2969,21 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
 </context>
 <context>
+    <name>ProcessX</name>
+    <message>
+        <source>Process started: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error: Could not start the command: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error: Command crashed: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QApplication</name>
     <message>
         <source>none</source>
@@ -2941,6 +2992,11 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <message>
         <source>Select a File</source>
         <translation>Datei auswählen</translation>
+    </message>
+    <message>
+        <source>something</source>
+        <comment>CodeSnippet</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3495,11 +3551,11 @@ Soll die Datei neugeladen werden?
     </message>
     <message>
         <source>size</source>
-        <translation type="obsolete">Größe</translation>
+        <translation type="unfinished">Größe</translation>
     </message>
     <message>
         <source>prio</source>
-        <translation type="obsolete">Prio</translation>
+        <translation type="unfinished">Prio</translation>
     </message>
     <message>
         <source>Bold</source>
@@ -3543,11 +3599,11 @@ Soll die Datei neugeladen werden?
     </message>
     <message>
         <source>Point size</source>
-        <translation type="obsolete">Schriftgröße</translation>
+        <translation type="unfinished">Schriftgröße</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Priorität</translation>
+        <translation type="unfinished">Priorität</translation>
     </message>
     <message>
         <source>Unsaved changes</source>
@@ -4398,7 +4454,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Open Recent</source>
-        <translation>Zuletzt geöffnet</translation>
+        <translation type="obsolete">Zuletzt geöffnet</translation>
     </message>
     <message>
         <source>Save</source>
@@ -4959,11 +5015,11 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>could not start the command:</source>
-        <translation>Befehl konnte nicht gestartet werden:</translation>
+        <translation type="obsolete">Befehl konnte nicht gestartet werden:</translation>
     </message>
     <message>
         <source>Process started</source>
-        <translation>Prozeß gestartet</translation>
+        <translation type="obsolete">Prozeß gestartet</translation>
     </message>
     <message>
         <source>Delete the output files generated by LaTeX?</source>
@@ -5444,11 +5500,11 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Process exited with error(s)</source>
-        <translation>Prozeß endete mit Fehler(n)</translation>
+        <translation type="obsolete">Prozeß endete mit Fehler(n)</translation>
     </message>
     <message>
         <source>Process exited normally</source>
-        <translation>Prozeß endete normal</translation>
+        <translation type="obsolete">Prozeß endete normal</translation>
     </message>
     <message>
         <source>Can&apos;t detect the file name.
@@ -5873,6 +5929,22 @@ Allerdings wird eine Version von TexMakerX benutzt, bei dem diese Funktion nicht
         <source>You are trying to save the file under the name %1, but a file with this name is already open.
 TexMakerX does not support multiple instances of the same file.
 Are you sure you want to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Plaintext files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open &amp;Recent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>C&amp;lear Inline Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>check in whole directory ?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

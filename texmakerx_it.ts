@@ -45,11 +45,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;b&gt;TexMakerX 2.0 (SVN </source>
+        <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
+        <source>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1099,6 +1099,34 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <source>Synchronized files types:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Inline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace beamer class by article</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Precompile Preamble</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto preview:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previously previewed text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto preview delay:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1543,15 +1571,15 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">&amp;Utente</translation>
     </message>
     <message>
-        <source>Open all files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Internal viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TexMakerX do it now?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;* Open all files</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2615,6 +2643,21 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
 </context>
 <context>
+    <name>ProcessX</name>
+    <message>
+        <source>Process started: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error: Could not start the command: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error: Command crashed: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QApplication</name>
     <message>
         <source>none</source>
@@ -2622,6 +2665,11 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>Select a File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>something</source>
+        <comment>CodeSnippet</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3302,6 +3350,22 @@ Vuoi salvarli?</translation>
     </message>
     <message>
         <source>latexSyntaxMistake</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>prio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Point size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Priority</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4095,7 +4159,7 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     </message>
     <message>
         <source>Open Recent</source>
-        <translation>Apri Recente</translation>
+        <translation type="obsolete">Apri Recente</translation>
     </message>
     <message>
         <source>Restore previous session</source>
@@ -4711,14 +4775,6 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Process exited with error(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Process exited normally</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
         <translation type="unfinished"></translation>
@@ -4973,11 +5029,11 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <source>could not start the command:</source>
-        <translation>impossibile eseguire il comando:</translation>
+        <translation type="obsolete">impossibile eseguire il comando:</translation>
     </message>
     <message>
         <source>Process started</source>
-        <translation>Processo avviato</translation>
+        <translation type="obsolete">Processo avviato</translation>
     </message>
     <message>
         <source>Could not start the command.</source>
@@ -5211,6 +5267,22 @@ However, you are using a version of TexMakerX that was compiled without the inte
         <source>You are trying to save the file under the name %1, but a file with this name is already open.
 TexMakerX does not support multiple instances of the same file.
 Are you sure you want to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Plaintext files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open &amp;Recent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>C&amp;lear Inline Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>check in whole directory ?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

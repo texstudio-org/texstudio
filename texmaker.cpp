@@ -4981,12 +4981,16 @@ bool Texmaker::generateMirror(bool setCur){
 				pos++;
 				cursor.movePosition(c-pos,QDocumentCursor::PreviousCharacter);
 				cursor.movePosition(value.length(),QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
+                                if(cursor.atLineEnd()||cursor.nextChar()!='}')  // closing brace is missing
+                                    return false;
 				//cursor.select(QDocumentCursor::WordUnderCursor);
 			}else{
 				cursor.movePosition(1,QDocumentCursor::EndOfWord);
 				cursor.movePosition(1,QDocumentCursor::NextWord);
 				//cursor.movePosition(1,QDocumentCursor::NextWord,QDocumentCursor::KeepAnchor);
 				cursor.movePosition(value.length(),QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
+                                if(cursor.atLineEnd()||cursor.nextChar()!='}')   // closing brace is missing
+                                    return false;
 			}
 			//currentEditorView()->editor->setCursor(cursor);
 			LatexDocument* doc=currentEditorView()->document;

@@ -53,11 +53,15 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.0 (SVN </source>
-        <translation>&lt;b&gt;TexMakerX 2.0 (SVN </translation>
+        <translation type="obsolete">&lt;b&gt;TexMakerX 2.0 (SVN </translation>
     </message>
     <message>
         <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
         <translation>TexMakerX contient du code provenant des programmes Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) et SyncTeX (par Jerôme Laurens). &lt;br&gt; TexMakerX utilise l&apos;afficheur PDF de Texworks &lt;br&gt; TexMakerX utilise la classe DSingleApplication (auteur: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1112,6 +1116,34 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <source>Synchronized files types:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Inline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace beamer class by article</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Precompile Preamble</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto preview:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previously previewed text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto preview delay:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1549,7 +1581,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Open all files</source>
-        <translation>Ouvrir tous les fichiers</translation>
+        <translation type="obsolete">Ouvrir tous les fichiers</translation>
     </message>
     <message>
         <source>Internal viewer</source>
@@ -1558,6 +1590,10 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TexMakerX do it now?</source>
         <translation>Pour une utilisation optimale de l&apos;afficheur pdf intégré, synctex doit être activé. TexMakerX doit-il le faire?</translation>
+    </message>
+    <message>
+        <source>&amp;* Open all files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2635,6 +2671,21 @@ Continuer tout de même ?</translation>
     </message>
 </context>
 <context>
+    <name>ProcessX</name>
+    <message>
+        <source>Process started: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error: Could not start the command: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error: Command crashed: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QApplication</name>
     <message>
         <source>none</source>
@@ -2643,6 +2694,11 @@ Continuer tout de même ?</translation>
     <message>
         <source>Select a File</source>
         <translation>Sélectionner un fichier</translation>
+    </message>
+    <message>
+        <source>something</source>
+        <comment>CodeSnippet</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3193,11 +3249,11 @@ Rafraîchir en rouvrant le fichier ?</translation>
     </message>
     <message>
         <source>size</source>
-        <translation type="obsolete">taille</translation>
+        <translation type="unfinished">taille</translation>
     </message>
     <message>
         <source>prio</source>
-        <translation type="obsolete">priorité</translation>
+        <translation type="unfinished">priorité</translation>
     </message>
     <message>
         <source>Bold</source>
@@ -3241,11 +3297,11 @@ Rafraîchir en rouvrant le fichier ?</translation>
     </message>
     <message>
         <source>Point size</source>
-        <translation type="obsolete">Taille en points</translation>
+        <translation type="unfinished">Taille en points</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Priorité</translation>
+        <translation type="unfinished">Priorité</translation>
     </message>
     <message>
         <source>Unsaved changes</source>
@@ -4110,7 +4166,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Open Recent</source>
-        <translation>Ouvrir fichiers &amp;récemment utilisés</translation>
+        <translation type="obsolete">Ouvrir fichiers &amp;récemment utilisés</translation>
     </message>
     <message>
         <source>Restore previous session</source>
@@ -4883,11 +4939,11 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>could not start the command:</source>
-        <translation>impossible de lancer la commande :</translation>
+        <translation type="obsolete">impossible de lancer la commande :</translation>
     </message>
     <message>
         <source>Process started</source>
-        <translation>Processus en cours</translation>
+        <translation type="obsolete">Processus en cours</translation>
     </message>
     <message>
         <source>Pre-LaTeX</source>
@@ -4899,11 +4955,11 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Process exited with error(s)</source>
-        <translation>Processus terminé avec une ou plusieurs erreurs</translation>
+        <translation type="obsolete">Processus terminé avec une ou plusieurs erreurs</translation>
     </message>
     <message>
         <source>Process exited normally</source>
-        <translation>Processus terminé normalement</translation>
+        <translation type="obsolete">Processus terminé normalement</translation>
     </message>
     <message>
         <source>Can&apos;t detect the file name.
@@ -5193,6 +5249,22 @@ Cependant, cette version de TexMakerX a été compilée sans le support de cette
         <source>You are trying to save the file under the name %1, but a file with this name is already open.
 TexMakerX does not support multiple instances of the same file.
 Are you sure you want to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Plaintext files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open &amp;Recent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>C&amp;lear Inline Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>check in whole directory ?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
