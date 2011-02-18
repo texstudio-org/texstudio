@@ -282,12 +282,23 @@ public:
 				}
 				const QList<CompletionWord> &words=completer->listModel->getWords();
 				QString newWord;
+				int eowchars = 10000;
 				foreach (const CodeSnippet& w, words){
-					if (w.word.startsWith(curWord) &&
-					    (w.word.length() == curWord.length() ||
-					     w.lines.first().indexOf(written, curWord.length()) >= 0)){
+					if (!w.word.startsWith(curWord)) continue;
+					if (w.word.length() == curWord.length()) {
 						newWord = w.word;
 						break;
+					}
+					int newoffset = w.lines.first().indexOf(written, curWord.length());
+					if (newoffset < 0) continue;
+					int neweowchars=0;
+					for (int i=curWord.length(); i<newoffset; i++)
+						if (getCommonEOW().contains(w.lines.first()[i]))
+							neweowchars++;
+					if (neweowchars<eowchars) {
+						newWord = w.word;
+						eowchars = neweowchars;
+						if (eowchars==1) break;
 					}
 				}
 
