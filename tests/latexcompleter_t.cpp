@@ -170,6 +170,23 @@ void LatexCompleterTest::simple_data(){
 				<< "-:>>\\b{-}<<"
 				);
 
+	QTest::newRow("nearest eow +ec") << ">><<" << true << false << 0 << 2
+				<< (QStringList()
+				<< "\\:>>\\<<"
+				<< "o:>>\\o<<"
+				<< "n:>>\\on<<"
+				<< "l:>>\\onl<<"
+				<< "<:>>\\only<<<"
+				);
+	QTest::newRow("nearest eow +ec") << ">><<" << true << false << 0 << 2
+				<< (QStringList()
+				<< "\\:>>\\<<"
+				<< "o:>>\\o<<"
+				<< "n:>>\\on<<"
+				<< "l:>>\\onl<<"
+				<< "{:>>\\only{<<"
+				);
+
 	for (int a=0;a<2;a++) for (int b=0;b<2;b++)
 	QTest::newRow(qPrintable(QString("accent \\\" %1%2").arg(a).arg(b))) << ">><<" << !!a << !!b << 0 << 2
 				<< (QStringList()
@@ -191,7 +208,7 @@ void LatexCompleterTest::simple(){
 	edView->editor->setFlag(QEditor::AutoCloseChars, autoParenComplete);
 	edView->editor->document()->setText(text);
 	edView->editor->setCursor(edView->editor->document()->cursor(line,offset));
-	edView->getCompleter()->setAdditionalWords(QStringList() << "\\a{" << "\\b" << "\\begin{alignat}{n}\n\\end{alignat}"); //extra words needed for test
+	edView->getCompleter()->setAdditionalWords(QStringList() << "\\a{" << "\\b" << "\\begin{alignat}{n}\n\\end{alignat}" << "\\only<abc>{def}" << "\\only{abc}<def>"); //extra words needed for test
 	edView->complete(0);
 	foreach (const QString& s, log){
 		char key = s.at(0).toAscii();
