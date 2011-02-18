@@ -53,7 +53,7 @@ void CodeSnippetTest::initTestCase(){
 
 
 void CodeSnippetTest::insert_data(){
-	const QString translatedEnvironmentName = QObject::tr("environment-name");
+	const QString translatedEnvironmentName = QObject::tr("*environment-name*");
 
 	QTest::addColumn<QString>("editorText");
 	QTest::addColumn<int>("editorFlags");
@@ -350,7 +350,7 @@ void CodeSnippetTest::insert(){
 	ed->clearPlaceHolders();
 }
 void CodeSnippetTest::nestedInsert_data(){
-	const QString translatedEnvironmentName = QObject::tr("environment-name");
+	const QString translatedEnvironmentName = QObject::tr("*environment-name*");
 
 	QTest::addColumn<QString>("editorText");
 	QTest::addColumn<int>("editorAutoIndent");

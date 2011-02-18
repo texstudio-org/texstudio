@@ -1089,7 +1089,7 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds) {
 			QStringList keywords;
 			keywords << "text" << "title";
 			while (!tagsfile.atEnd()) {
-				line = tagsfile.readLine();
+				line = tagsfile.readLine().trimmed();
 				if (!line.isEmpty() && !line.startsWith("#") && !line.startsWith(" ")) {
 					//hints for commands usage (e.g. in mathmode only) are separated by #
 					int sep=line.indexOf('#');
@@ -1148,21 +1148,26 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds) {
 					if (!line.contains("%")){
 						//add placeholders to brackets like () to (%<..%>)
 						const QString brackets = "{}[]()<>";
-						int l = -10;
+						int lastOpen = -1, openType;
 						for (int i = 0; i < line.size(); i++) {
 							int index = brackets.indexOf(line[i]);
 							if (index>=0) {
 								if (index % 2 == 0) {
-									line.insert(i+1, "%<");
+									lastOpen = i;
+									openType = index/2;
 								} else {
+									if (lastOpen == -1 || openType != index/2)
+										continue;
+									line.insert(lastOpen+1, "%<");
+									i+=2;
 									line.insert(i, "%>");
-									if (l == i-1) {
+									if (lastOpen+2 == i-1) {
 										line.insert(i, QApplication::tr("something", "CodeSnippet"));
 										i+=QApplication::tr("something", "CodeSnippet").length();
 									}
+									lastOpen = -1;
+									i+=2;
 								}
-								i+=2;
-								l=i;
 							}
 						}
 						int i;
@@ -1176,7 +1181,7 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds) {
 							}
 						}
 					}
-					if(!words.contains(line.trimmed())) words.append(line.trimmed());
+					if(!words.contains(line)) words.append(line);
 				}
 			}
 		}
