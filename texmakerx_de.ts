@@ -3727,12 +3727,16 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <source>environment-name</source>
-        <translation>Umgebungsname</translation>
+        <translation type="obsolete">Umgebungsname</translation>
     </message>
     <message>
         <source>environment-name</source>
         <comment>snippet</comment>
         <translation type="obsolete">Umgebungsname</translation>
+    </message>
+    <message>
+        <source>*environment-name*</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

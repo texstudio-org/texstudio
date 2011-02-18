@@ -2142,41 +2142,41 @@ Você deseja desfazer as alterações?</translation>
 <context>
     <name>LatexCompleter</name>
     <message>
-        <location filename="latexcompleter.cpp" line="632"/>
-        <location filename="latexcompleter.cpp" line="640"/>
+        <location filename="latexcompleter.cpp" line="656"/>
+        <location filename="latexcompleter.cpp" line="664"/>
         <source>all</source>
         <translation>todos</translation>
     </message>
     <message>
-        <location filename="latexcompleter.cpp" line="633"/>
-        <location filename="latexcompleter.cpp" line="641"/>
+        <location filename="latexcompleter.cpp" line="657"/>
+        <location filename="latexcompleter.cpp" line="665"/>
         <source>most used</source>
         <translation>mais utilizado</translation>
     </message>
     <message>
-        <location filename="latexcompleter.cpp" line="634"/>
-        <location filename="latexcompleter.cpp" line="642"/>
+        <location filename="latexcompleter.cpp" line="658"/>
+        <location filename="latexcompleter.cpp" line="666"/>
         <source>press shift+space to change view</source>
         <translation>pressione shift+space para alternar visão</translation>
     </message>
     <message>
-        <location filename="latexcompleter.cpp" line="743"/>
+        <location filename="latexcompleter.cpp" line="767"/>
         <source> (Usertag)</source>
         <translation> (Etiqueta do Usuário)</translation>
     </message>
     <message>
-        <location filename="latexcompleter.cpp" line="922"/>
+        <location filename="latexcompleter.cpp" line="946"/>
         <source>label missing!</source>
         <translatorcomment>faltando rótulo!</translatorcomment>
         <translation>rótulo faltando!</translation>
     </message>
     <message>
-        <location filename="latexcompleter.cpp" line="924"/>
+        <location filename="latexcompleter.cpp" line="948"/>
         <source>label multiple times defined!</source>
         <translation>rótulo definido várias vezes!</translation>
     </message>
     <message>
-        <location filename="latexcompleter.cpp" line="933"/>
+        <location filename="latexcompleter.cpp" line="957"/>
         <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nome do arquivo: %1&lt;/b&gt;
@@ -3093,8 +3093,8 @@ Você deseja desfazer as alterações?</translation>
         <translation>nenhum</translation>
     </message>
     <message>
-        <location filename="smallUsefulFunctions.cpp" line="1160"/>
-        <location filename="smallUsefulFunctions.cpp" line="1161"/>
+        <location filename="smallUsefulFunctions.cpp" line="1165"/>
+        <location filename="smallUsefulFunctions.cpp" line="1166"/>
         <source>something</source>
         <comment>CodeSnippet</comment>
         <translation>algo</translation>
@@ -4006,8 +4006,9 @@ Deseja salvá-las?</translation>
         <location filename="codesnippet.cpp" line="59"/>
         <location filename="tests/codesnippet_t.cpp" line="56"/>
         <location filename="tests/codesnippet_t.cpp" line="353"/>
-        <source>environment-name</source>
-        <translation>nome-ambiente</translation>
+        <source>*environment-name*</source>
+        <oldsource>environment-name</oldsource>
+        <translation type="unfinished">nome-ambiente</translation>
     </message>
     <message>
         <location filename="codesnippet.cpp" line="58"/>
@@ -5892,7 +5893,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     </message>
     <message>
         <location filename="texmaker.cpp" line="231"/>
-        <location filename="texmaker.cpp" line="5057"/>
+        <location filename="texmaker.cpp" line="5061"/>
         <source>All files</source>
         <translation>Todos os arquivos</translation>
     </message>
@@ -6213,33 +6214,33 @@ Você tem que salvar um documento antes de compilá-lo.</translation>
         <translation>Atenção: diálogo é automaticamente fechado se o texto é manualmente editado!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="5057"/>
+        <location filename="texmaker.cpp" line="5061"/>
         <source>Load Profile</source>
         <translation>Carregar Perfil</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="5057"/>
+        <location filename="texmaker.cpp" line="5061"/>
         <source>TmX Profile</source>
         <comment>filter</comment>
         <translation>TmX Perfil</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="5199"/>
+        <location filename="texmaker.cpp" line="5203"/>
         <source>Problem</source>
         <translation>Problema</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="5199"/>
+        <location filename="texmaker.cpp" line="5203"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation>Encontrar palavras repetidas somente com verificador ortográfico ativo!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="5207"/>
+        <location filename="texmaker.cpp" line="5211"/>
         <source>&amp;Find next</source>
         <translation>&amp;Localizar Próxima</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="5209"/>
+        <location filename="texmaker.cpp" line="5213"/>
         <source>&amp;Find previous</source>
         <translation>&amp;Localizar anterior</translation>
     </message>
