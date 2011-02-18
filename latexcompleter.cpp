@@ -27,7 +27,7 @@ public:
 		// remove unused argument warnings
 		(void) mouse;
 		(void) editor;
-
+		simpleRestoreAutoOverride();
 		resetBinding();
 		return false;
 	}
@@ -155,6 +155,22 @@ public:
 		}
 	}	
 	
+	void simpleRestoreAutoOverride(const QString& written="????"){ //simple means without protecting the change from undo/redo
+		if (!autoOverridenText.isEmpty() && !editor->isAutoOverrideText(written)) {
+			int curpos = editor->cursor().columnNumber();
+			if (curpos < maxWritten) {
+				QDocumentCursor c = editor->cursor();
+				c.movePosition(maxWritten-curpos, QDocumentCursor::Right);
+				editor->setCursor(c);
+			}
+			editor->insertText(autoOverridenText);
+			QDocumentCursor c = editor->cursor();
+			c.movePosition(autoOverridenText.length() + (curpos<maxWritten?maxWritten-curpos:0), QDocumentCursor::Left);
+			editor->setCursor(c);
+			editor->resizeAutoOverridenPlaceholder(c, autoOverridenText.size());
+		}
+	}
+
 	virtual bool keyPressEvent(QKeyEvent *event, QEditor *editor) {
 		Q_ASSERT (completer && completer->listModel);
 		if (!completer || !completer->listModel) return false;
@@ -174,6 +190,7 @@ public:
 			}
 			handled=true;
 		} else if (event->key()==Qt::Key_Escape) {
+			simpleRestoreAutoOverride("");
 			resetBinding();
 			return true;
 		} else if (event->key()==Qt::Key_Delete) {
@@ -271,13 +288,7 @@ public:
 				QString curWord = getCurWord();
 				if (curWord=="\\" || !LatexCompleter::config || !LatexCompleter::config->eowCompletes) {
 					resetBinding();
-					if (!autoOverridenText.isEmpty() && !editor->isAutoOverrideText(written)) {
-						editor->insertText(autoOverridenText);
-						QDocumentCursor c = editor->cursor();
-						c.movePosition(autoOverridenText.length(), QDocumentCursor::Left);
-						editor->setCursor(c);
-						editor->resizeAutoOverridenPlaceholder(c, autoOverridenText.size());
-					}
+					simpleRestoreAutoOverride(written);
 					return false;
 				}
 				const QList<CompletionWord> &words=completer->listModel->getWords();
@@ -310,6 +321,8 @@ public:
 				} else {
 					int curLength = curWord.length();
 					insertCompletedWord();
+					if (newWord.isEmpty())
+						simpleRestoreAutoOverride(written);
 					//insertText(written);
 					resetBinding();
 					return false;//oldBinding->keyPressEvent(event,editor); //call old input binding for long words (=> key replacements after completions, but the user can still write \")
@@ -1056,6 +1069,7 @@ QString LatexCompleter::lookupWord(QString text){
 //ends completion (closes the list) and returns true if there was any
 bool LatexCompleter::close(){
 	if (completerInputBinding->isActive()){
+		completerInputBinding->simpleRestoreAutoOverride();
 		completerInputBinding->resetBinding();
 		widget->setVisible(false);
 		listModel->curWord="";
