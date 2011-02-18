@@ -54,9 +54,9 @@ CodeSnippet::CodeSnippet(const QString &newWord) {
 	QString realNewWord=newWord;
 	// \begin magic
 	if (newWord == "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>"){
-		realNewWord = "\\begin{%<"+QObject::tr("environment-name")+"%:select,id:2%>}\n"
+		realNewWord = "\\begin{%<"+QObject::tr("*environment-name*")+"%:select,id:2%>}\n"
 			      "%<"+QObject::tr("content...")+"%:select,multiline%>\n"
-			      "\\end{%<"+QObject::tr("environment-name")+"%:mirror,id:2%>}";
+			      "\\end{%<"+QObject::tr("*environment-name*")+"%:mirror,id:2%>}";
 	} else if (realNewWord.startsWith("\\begin{")&&
 		!realNewWord.contains("\n")&&!realNewWord.contains("%n") //only a single line
 	    && realNewWord.lastIndexOf("\\") == 0) //only one latex command in the line
