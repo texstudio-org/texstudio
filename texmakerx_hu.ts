@@ -3175,10 +3175,6 @@ Akarja menteni ezeket?</translation>
 <context>
     <name>QObject</name>
     <message>
-        <source>environment-name</source>
-        <translation>környezet-név</translation>
-    </message>
-    <message>
         <source>content...</source>
         <translation>tartalom...</translation>
     </message>
@@ -3193,6 +3189,10 @@ Akarja menteni ezeket?</translation>
     <message>
         <source>Error: </source>
         <translation>Hiba:</translation>
+    </message>
+    <message>
+        <source>*environment-name*</source>
+        <translation>*környezet-név*</translation>
     </message>
 </context>
 <context>
