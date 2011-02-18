@@ -1735,3 +1735,5 @@ void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &remove
 	}
     }
 }
+
+

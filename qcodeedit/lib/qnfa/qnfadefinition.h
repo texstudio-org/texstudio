@@ -88,6 +88,8 @@ class QCE_EXPORT QNFADefinition : public QLanguageDefinition
 		virtual void clearMatches(QDocument *d);
 		virtual void match(QDocumentCursor& c);
 		
+		virtual QList<QList<QDocumentCursor> > getMatches(const QDocumentCursor& c) const;
+
 		virtual QString indent(const QDocumentCursor& c);
 		virtual bool unindent (const QDocumentCursor& c, const QString& ktxt);
 		
@@ -156,9 +158,10 @@ class QCE_EXPORT QNFADefinition : public QLanguageDefinition
 			int length[2];
 			int weight[2];
 		};
-		
-		void matchOpen(QDocument *d, PMatch& m);
-		void matchClose(QDocument *d, PMatch& m);
+		virtual void getPMatches(const QDocumentCursor& c, QList<PMatch>& matches) const;
+
+		void matchOpen(QDocument *d, PMatch& m) const;
+		void matchClose(QDocument *d, PMatch& m) const;
 
 		static void flushEmbedRequests(const QString& lang);
 		

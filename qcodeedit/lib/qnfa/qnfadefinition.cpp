@@ -421,10 +421,11 @@ void QNFADefinition::match(QDocumentCursor& c)
 
 	int matchFID = s->id("braceMatch"), mismatchFID = s->id("braceMismatch");
 
-	int pos = c.columnNumber();
-	const QVector<QParenthesis>& m_parens = b.parentheses();
 
-	if ( m_parens.isEmpty() )
+	QList<PMatch> matches;
+	getPMatches(c, matches);
+
+	if ( matches.isEmpty() )
 	{
 		// required to properly update display
 		d->releaseGroupId(gid);
@@ -432,11 +433,38 @@ void QNFADefinition::match(QDocumentCursor& c)
 		return;
 	}
 
+
+	foreach (const PMatch&  m, matches) {
+		int mfid = m.type == PMatch::Match ? matchFID : mismatchFID;
+		d->addMatch(gid, m.line[0], m.column[0], m.length[0], mfid);
+		d->addMatch(gid, m.line[1], m.column[1], m.length[1], mfid);
+	}
+
+	d->flushMatches(gid);
+}
+
+void QNFADefinition::getPMatches(const QDocumentCursor& c, QList<QNFADefinition::PMatch>& matches) const{
+	QDocumentLine b = c.line();
+	QDocument *d = c.document();
+
+	matches.clear();
+
+	if ( !d || !b.isValid() )
+	{
+		qDebug("invalid cursor");
+		return;
+	}
+
+	int pos = c.columnNumber();
+	const QVector<QParenthesis>& m_parens = b.parentheses();
+
+	if ( m_parens.isEmpty() )
+		return;
+
 	QParenthesis p;
 
 	//qDebug("matching on line %i (fid is %i)", c.lineNumber(), fid);
 
-	int matchCount = 0;
 	foreach ( p, m_parens )
 	{
 		if ( (pos != p.offset) && (pos != (p.offset + p.length)) )
@@ -456,12 +484,7 @@ void QNFADefinition::match(QDocumentCursor& c)
 			matchOpen(d, m);
 
 			if ( m.type == PMatch::Match )
-			{
-				++matchCount;
-
-				d->addMatch(gid, m.line[0], m.column[0], m.length[0], matchFID);
-				d->addMatch(gid, m.line[1], m.column[1], m.length[1], matchFID);
-			}
+				matches << m;
 
 			m.line[0] = c.lineNumber();
 			m.column[0] = p.offset;
@@ -471,12 +494,7 @@ void QNFADefinition::match(QDocumentCursor& c)
 			matchClose(d, m);
 
 			if ( m.type == PMatch::Match )
-			{
-				++matchCount;
-
-				d->addMatch(gid, m.line[0], m.column[0], m.length[0], matchFID);
-				d->addMatch(gid, m.line[1], m.column[1], m.length[1], matchFID);
-			}
+				matches << m;
 
 			continue;
 		} else if ( p.role & QParenthesis::Open ) {
@@ -486,25 +504,28 @@ void QNFADefinition::match(QDocumentCursor& c)
 		}
 
 		if ( m.type != PMatch::Invalid )
-		{
-			++matchCount;
-
-			int mfid = m.type == PMatch::Match ? matchFID : mismatchFID;
-			d->addMatch(gid, m.line[0], m.column[0], m.length[0], mfid);
-			d->addMatch(gid, m.line[1], m.column[1], m.length[1], mfid);
-		}
+			matches << m;
 	}
 
-	if ( matchCount )
-	{
-		d->flushMatches(gid);
-	} else {
-		d->releaseGroupId(gid);
-		m_matchGroups.remove(d);
-	}
 }
 
-void QNFADefinition::matchOpen(QDocument *d, PMatch& m)
+QList<QList<QDocumentCursor> > QNFADefinition::getMatches(const QDocumentCursor& c) const{
+	QList<QList<QDocumentCursor> > res;
+	QDocument *d = c.document();
+	if (!d) return res;
+	QList<PMatch> matches;
+	getPMatches(c, matches);
+	if (matches.isEmpty())
+		return res;
+	foreach (const PMatch &m, matches)
+		res << (QList<QDocumentCursor> ()
+			 << d->cursor(m.line[0], m.column[0], m.line[0], m.column[0]+m.length[0])
+			 << d->cursor(m.line[1], m.column[1], m.line[1], m.column[1]+m.length[1]));
+	return res;
+}
+
+
+void QNFADefinition::matchOpen(QDocument *d, PMatch& m) const
 {
 	int line = m.line[0];
 	int pos = m.column[0];
@@ -637,7 +658,7 @@ void QNFADefinition::matchOpen(QDocument *d, PMatch& m)
 	//m.weight[1] = parenthesisWeight(.value(par.id, -1); would be more consistent, but weight[1] won't be used
 }
 
-void QNFADefinition::matchClose(QDocument *d, PMatch& m)
+void QNFADefinition::matchClose(QDocument *d, PMatch& m) const
 {
 	int line = m.line[0];
 	int pos = m.column[0];

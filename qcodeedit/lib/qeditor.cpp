@@ -2005,14 +2005,16 @@ void QEditor::setPlaceHolder(int i, bool selectCursors)
 	else if (m_cursor.hasColumnMemory()) 
 		m_cursor.setColumnMemory(false);
 
-	
+	QString base = cc.selectedText();
 	for ( int j=0; j< ph.mirrors.size(); j++)
 	{
 		QDocumentCursor &mc = ph.mirrors[j];
-		if (mc.selectedText()!=cc.selectedText()){
+		QString mirrored = base;
+		if (ph.affector) ph.affector->affect(0, base, i, j, mirrored);
+		if (mc.selectedText()!=mirrored){
 			//qDebug() << "resync placeholder mirror for " << m_curPlaceHolder << " mirror "<<j << " was: " << mc.selectedText() << " should be " << cc.selectedText() << " from " << cc.anchorLineNumber() << ":" << cc.anchorColumnNumber() << "->" << cc.lineNumber() << ":"<<cc.columnNumber()<<"\n";
 			//if mirror synchronization is broken => resyncronize
-			mc.replaceSelectedText(cc.selectedText());
+			mc.replaceSelectedText(mirrored);
 		}
 	}
 
@@ -2941,10 +2943,10 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 			for ( int phm = 0; phm < ph.mirrors.count(); ++phm )
 			{
 				QString s = baseText;
-				/*
+
 				if ( ph.affector )
-					ph.affector->affect(prevText, m_curPlaceHolder, e, phm, s);
-				*/
+					ph.affector->affect(e, baseText, m_curPlaceHolder, phm,  s);
+
 				ph.mirrors[phm].replaceSelectedText(s);
 			}
 		}
@@ -4426,7 +4428,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	}
 
 	//bracket auto insertion
-	if (flag(AutoCloseChars) && !autoOverridePlaceHolder && languageDefinition() && languageDefinition()->possibleEndingOfOpeningParenthesis(text)){
+	if (flag(AutoCloseChars) && !autoOverridePlaceHolder && (m_curPlaceHolder<0 || m_curPlaceHolder>=m_placeHolders.size() || m_placeHolders[m_curPlaceHolder].mirrors.isEmpty())  && languageDefinition() && languageDefinition()->possibleEndingOfOpeningParenthesis(text)){
 		QString writtenBracket;
 		QString autoBracket = "";
 		const QString& lineText = c.line().text().mid(0, c.columnNumber());

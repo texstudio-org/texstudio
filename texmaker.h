@@ -398,6 +398,7 @@ private slots:
 //	void treeWidgetChanged();
 
 	bool generateMirror(bool setCur=false);
+	void generateBracketInverterMirror();
 	void cursorHovered();
 	void loadProfile();
 

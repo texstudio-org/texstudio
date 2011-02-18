@@ -301,6 +301,4 @@ private slots:
 private:
 };
 
-
-
 #endif // LATEXDOCUMENT_H
