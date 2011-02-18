@@ -1176,9 +1176,9 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds) {
 							line.replace(i,2,"");
 							i=line.indexOf("%>",0);
 							line.replace(i,2,"");
-							if (line.endsWith("\\item\n")) {
-								line.chop(6);
-							}
+							if (line.endsWith("\\item"))
+								line.chop(5);
+
 						}
 					}
 					if(!words.contains(line)) words.append(line);
