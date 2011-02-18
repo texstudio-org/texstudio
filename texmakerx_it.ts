@@ -3399,7 +3399,7 @@ Vuoi salvarli?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>environment-name</source>
+        <source>*environment-name*</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

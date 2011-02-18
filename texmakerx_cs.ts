@@ -3590,7 +3590,11 @@ Chcete, aby byly uloženy?</translation>
     </message>
     <message>
         <source>environment-name</source>
-        <translation>Název prostředí</translation>
+        <translation type="obsolete">Název prostředí</translation>
+    </message>
+    <message>
+        <source>*environment-name*</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

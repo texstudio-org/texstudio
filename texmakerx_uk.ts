@@ -3568,7 +3568,7 @@ Do you want them to be saved?</source>
         <translation>вміст...</translation>
     </message>
     <message>
-        <source>environment-name</source>
+        <source>*environment-name*</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

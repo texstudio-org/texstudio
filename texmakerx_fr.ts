@@ -3426,7 +3426,11 @@ Voulez-vous l&apos;enregistrer ?</translation>
     </message>
     <message>
         <source>environment-name</source>
-        <translation>nom-environnement</translation>
+        <translation type="obsolete">nom-environnement</translation>
+    </message>
+    <message>
+        <source>*environment-name*</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
