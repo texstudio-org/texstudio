@@ -65,27 +65,27 @@ Q_DECLARE_METATYPE(QDocumentIterator)
 Q_DECLARE_METATYPE(QDocumentConstIterator)
 
 typedef void (*GuessEncodingCallback) (const QByteArray& data, QTextCodec *&guess, int &sure);
-
+class QKeyEvent;
 struct PlaceHolder
 {
-	/*class Affector
+	class Affector
 	{
 		public:
 			virtual ~Affector() {}
-			virtual void affect(const QStringList& base, int ph, const QKeyEvent *e, int mirror, QString& after) const = 0;
-	};*/
+			virtual void affect(const QKeyEvent *e, const QString& base, int ph, int mirror, QString& after) const = 0;
+	};
 
-	PlaceHolder() : length(0), autoRemove(true), autoOverride(false) {}
-	PlaceHolder(const PlaceHolder& ph) : length(ph.length), autoRemove(ph.autoRemove), autoOverride(ph.autoOverride)
+	PlaceHolder() : length(0), autoRemove(true), autoOverride(false), affector(0) {}
+	PlaceHolder(const PlaceHolder& ph) : length(ph.length), autoRemove(ph.autoRemove), autoOverride(ph.autoOverride), affector(ph.affector)
 	{
 		cursor = ph.cursor;
 		mirrors  << ph.mirrors;
 	}
-	PlaceHolder(int len, const QDocumentCursor &cur): length(len), autoRemove(true), autoOverride(false), cursor(cur) {}
+	PlaceHolder(int len, const QDocumentCursor &cur): length(len), autoRemove(true), autoOverride(false), affector(0), cursor(cur) {}
 
 	int length;
 	bool autoRemove, autoOverride;
-	//Affector *affector;
+	Affector *affector;
 	QDocumentCursor cursor;
 	QList<QDocumentCursor> mirrors;
 };

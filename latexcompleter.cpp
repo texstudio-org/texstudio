@@ -319,7 +319,6 @@ public:
 					//insertText(written);
 					handled = true;
 				} else {
-					int curLength = curWord.length();
 					insertCompletedWord();
 					if (newWord.isEmpty())
 						simpleRestoreAutoOverride(written);

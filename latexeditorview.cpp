@@ -65,7 +65,8 @@ private:
 
 };
 bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
-	if (LatexEditorView::completer && LatexEditorView::completer->acceptTriggerString(event->text()))  {
+	if (LatexEditorView::completer && LatexEditorView::completer->acceptTriggerString(event->text()) &&
+	    (editor->currentPlaceHolder() < 0 || editor->currentPlaceHolder() >= editor->placeHolderCount() || editor->getPlaceHolder(editor->currentPlaceHolder()).mirrors.isEmpty() ||  editor->getPlaceHolder(editor->currentPlaceHolder()).affector != BracketInvertAffector::instance()))  {
 		//update completer if necessary
 		editor->emitNeedUpdatedCompleter();
 		bool autoOverriden = editor->isAutoOverrideText(event->text());
@@ -210,7 +211,6 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	//connect(editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
 	connect(editor->document(),SIGNAL(formatsChange(int,int)),this,SLOT(documentFormatsChanged(int, int)));
 	connect(editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),this,SLOT(lineDeleted(QDocumentLineHandle*)));
-	connect(editor->document(),SIGNAL(lineRemoved(QDocumentLineHandle*)),this,SLOT(lineRemoved(QDocumentLineHandle*)));
 
 	connect(LatexEditorView::speller,SIGNAL(reloadDictionary()),this,SLOT(dictionaryReloaded()));
 
@@ -852,11 +852,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 	editor->document()->markViewDirty();
 }
 
-void LatexEditorView::lineRemoved(QDocumentLineHandle* l) {
-}
 
 void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {
-	lineRemoved(l);
 
 	QHash<QDocumentLineHandle*, int>::iterator it;
 	while ((it=lineToLogEntries.find(l))!=lineToLogEntries.end()) {
@@ -1364,4 +1361,26 @@ void LatexEditorView::getEnv(int lineNumber,SyntaxCheck::Environment &env,int &c
 		    if(cxtDef.startsWith("mathmodeMatrix")) env=SyntaxCheck::ENV_matrix;
 	    }
     }
+}
+
+
+
+void BracketInvertAffector::affect(const QKeyEvent *e, const QString& base, int ph, int mirror, QString& after) const{
+	static const QString& brackets = "<>()[]{}";
+	after.clear();
+	for (int i=0; i < base.length(); i++)
+		if (brackets.indexOf(base[i]) >= 0)
+			after += brackets[brackets.indexOf(base[i]) + 1 - 2*(brackets.indexOf(base[i]) & 1) ];
+	else if (base[i] == '\\' && base.mid(i, 7) == "\\begin{") {
+		after += "\\end{" + base.mid(i+7);
+		return;
+	} else if (base[i] == '\\' && base.mid(i, 5) == "\\end{") {
+		after += "\\begin{" + base.mid(i+5);
+		return;
+	} else after += base[i];
+}
+BracketInvertAffector* inverterSingleton = 0;
+BracketInvertAffector* BracketInvertAffector::instance(){
+	if (!inverterSingleton) inverterSingleton = new BracketInvertAffector();
+	return inverterSingleton;
 }

@@ -76,6 +76,7 @@ class QCE_EXPORT QLanguageDefinition
 		virtual bool possibleEndingOfOpeningParenthesis(const QString& text) const;
 
 		virtual void match(QDocumentCursor& c);
+		virtual QList<QList<QDocumentCursor> > getMatches(const QDocumentCursor& c) const = 0;
 		virtual void clearMatches(QDocument *d);
 		
 		virtual QString indent(const QDocumentCursor& c);

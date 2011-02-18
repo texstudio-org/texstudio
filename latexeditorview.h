@@ -125,7 +125,6 @@ public slots:
 	void documentContentChanged(int linenr, int count);
 	void documentFormatsChanged(int linenr, int count);
 	void lineDeleted(QDocumentLineHandle* l);
-	void lineRemoved(QDocumentLineHandle* l);
 	void spellCheckingReplace();
 	void spellCheckingAlwaysIgnore();
 	void spellCheckingListSuggestions();
@@ -146,4 +145,9 @@ signals:
 	void openFile(const QString name);
 };
 
+class BracketInvertAffector: public PlaceHolder::Affector{
+public:
+	virtual void affect(const QKeyEvent *e, const QString& base, int ph, int mirror, QString& after) const;
+	static BracketInvertAffector* instance();
+};
 #endif
