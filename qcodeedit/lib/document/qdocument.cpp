@@ -6094,8 +6094,15 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			QBrush brush(col);
 			p->setBrush(brush);
 			QPoint pt=cur.documentPosition();
-			QChar ch=cur.nextChar();
-			int wt=textWidth(0, ch);
+			QDocumentCursor curHelper(cur,false);
+			curHelper.movePosition(1);
+			QPoint pt2=curHelper.documentPosition();
+			int wt;
+			if(pt.y()==pt2.y()){
+			    wt=pt2.x()-pt.x();
+			}else{
+			    wt=textWidth(0," ");
+			}
 			QPoint curHt(wt,QDocumentPrivate::m_lineSpacing-1);
 			p->drawRect(pt.x(),pt.y(),curHt.x(),curHt.y());
 		    }else{
