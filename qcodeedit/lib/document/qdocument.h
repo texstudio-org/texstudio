@@ -300,6 +300,7 @@ class QCE_EXPORT QDocument : public QObject
 
 		bool forceLineWrapCalculation() const;
 		void setForceLineWrapCalculation(bool v);
+		void setOverwriteMode(bool overwrite);
 	public slots:
 		void clear();
 		
