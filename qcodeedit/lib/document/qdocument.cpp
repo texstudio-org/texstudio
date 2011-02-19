@@ -1901,6 +1901,12 @@ void QDocument::setLastModified(const QDateTime& d)
 		m_impl->m_lastModified = d;
 }
 
+void QDocument::setOverwriteMode(bool overwrite)
+{
+	if(m_impl)
+	    m_impl->setOverwriteMode(overwrite);
+}
+
 /////////////////////////
 //	QDocumentLineHandle
 /////////////////////////
@@ -5558,7 +5564,8 @@ QDocumentPrivate::QDocumentPrivate(QDocument *d)
 	m_lineEnding(m_defaultLineEnding),
 	m_codec(m_defaultCodec),
 	m_oldLineCacheOffset(0), m_oldLineCacheWidth(0),
-	m_forceLineWrapCalculation(false)
+	m_forceLineWrapCalculation(false),
+	m_overwrite(false)
 {
 	m_documents << this;
 }
@@ -6080,9 +6087,22 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	foreach(QDocumentCursor cur,cxt.cursors){
 	    if (!cur.line().isHidden()){
 		if(cxt.blinkingCursor){
-		    QPoint pt=cur.documentPosition();
-		    QPoint curHt(0,QDocumentPrivate::m_lineSpacing-1);
-		    p->drawLine(pt,pt+curHt);
+		    if(m_overwrite){
+			p->setPen(Qt::NoPen);
+			QColor col=repForeground;
+			col.setAlpha(160);
+			QBrush brush(col);
+			p->setBrush(brush);
+			QPoint pt=cur.documentPosition();
+			QChar ch=cur.nextChar();
+			int wt=textWidth(0, ch);
+			QPoint curHt(wt,QDocumentPrivate::m_lineSpacing-1);
+			p->drawRect(pt.x(),pt.y(),curHt.x(),curHt.y());
+		    }else{
+			QPoint pt=cur.documentPosition();
+			QPoint curHt(0,QDocumentPrivate::m_lineSpacing-1);
+			p->drawLine(pt,pt+curHt);
+		    }
 		}
 	    }
 	}

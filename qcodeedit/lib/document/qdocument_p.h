@@ -171,6 +171,10 @@ class QCE_EXPORT QDocumentPrivate
 		    return m_status;
 		}
 
+		void setOverwriteMode(bool overwrite){
+		    m_overwrite=overwrite;
+		}
+
 
 	protected:
 		void updateHidden(int line, int count);
@@ -271,6 +275,8 @@ class QCE_EXPORT QDocumentPrivate
 		QHash<QDocumentCursorHandle*, int> m_autoUpdatedCursorIndex;
 
 		bool m_forceLineWrapCalculation;
+
+		bool m_overwrite;
 };
 
 #endif

@@ -2860,6 +2860,8 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 
 	case ChangeOverwrite:
 		setFlag(Overwrite, !flag(Overwrite));
+		if(m_doc)
+		    m_doc->setOverwriteMode(flag(Overwrite));
 
 		// hack to make sure status panel gets updated...
 		// TODO : emit signals on flag change?
