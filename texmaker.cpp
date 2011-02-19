@@ -2390,6 +2390,10 @@ void Texmaker::InsertEnvironmentCompletion() {
 	if (!currentEditorView())	return;
 	if(mCompleterNeedsUpdate) updateCompleter();
 	QDocumentCursor c = currentEditorView()->editor->cursor();
+	if(c.hasSelection()){
+	    currentEditor()->cutBuffer=c.selectedText();
+	    c.removeSelectedText();
+	}
 	QString eow=getCommonEOW();
 	while (c.columnNumber()>0 && !eow.contains(c.previousChar())) c.movePosition(1,QDocumentCursor::PreviousCharacter);
 
