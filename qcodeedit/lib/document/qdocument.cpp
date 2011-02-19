@@ -6087,7 +6087,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	foreach(QDocumentCursor cur,cxt.cursors){
 	    if (!cur.line().isHidden()){
 		if(cxt.blinkingCursor){
-		    if(m_overwrite){
+		    if(m_overwrite && !cur.hasSelection()){
 			p->setPen(Qt::NoPen);
 			QColor col=repForeground;
 			col.setAlpha(160);
