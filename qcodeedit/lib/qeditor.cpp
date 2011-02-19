@@ -3241,6 +3241,7 @@ void QEditor::mousePressEvent(QMouseEvent *e)
 				}
 
 				m_doubleClick = QDocumentCursor();
+				cutBuffer.clear();
 				setCursor(cursor);
 				break;
 			}
@@ -3248,6 +3249,7 @@ void QEditor::mousePressEvent(QMouseEvent *e)
 
 		ensureCursorVisible();
 		//emit clearAutoCloseStack();
+		cutBuffer.clear();
 		emitCursorPositionChanged();
 		repaintCursor();
 		break;
@@ -4137,9 +4139,11 @@ void QEditor::cursorMoveOperation(QDocumentCursor &cursor, EditOperation eop){
 	switch (eop){
 	case CursorUp: case SelectCursorUp:
 		op = QDocumentCursor::Up;
+		cutBuffer.clear();
 		break;
 	case CursorDown: case SelectCursorDown:
 		op = QDocumentCursor::Down;
+		cutBuffer.clear();
 		break;
 	case CursorLeft: case SelectCursorLeft:
 		op = QDocumentCursor::Left;
@@ -4160,16 +4164,20 @@ void QEditor::cursorMoveOperation(QDocumentCursor &cursor, EditOperation eop){
 		op = QDocumentCursor::EndOfLine;
 		break;
 	case CursorStartOfDocument: case SelectCursorStartOfDocument:
+		cutBuffer.clear();
 		op = QDocumentCursor::Start;
 		break;
 	case CursorEndOfDocument: case SelectCursorEndOfDocument:
+		cutBuffer.clear();
 		op = QDocumentCursor::End;
 		break;
 
 	case CursorPageUp: case SelectPageUp:
+		cutBuffer.clear();
 		pageUp(mode);
 		return;
 	case CursorPageDown: case SelectPageDown:
+		cutBuffer.clear();
 		pageDown(mode);
 		return;
 	default:
@@ -4236,7 +4244,10 @@ void QEditor::processEditOperation(QDocumentCursor& c, const QKeyEvent* e, EditO
 {
 	bool hasSelection = c.hasSelection();
 
-	if ( hasSelection ) c.removeSelectedText();
+	if ( hasSelection ) {
+	    cutBuffer=c.selectedText();
+	    c.removeSelectedText();
+	}
 
 	switch ( op )
 	{
