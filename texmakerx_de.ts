@@ -65,7 +65,7 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -1161,7 +1161,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <source>Segment preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausschnittvorschau</translation>
     </message>
     <message>
         <source>Command:</source>
@@ -1281,39 +1281,39 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <source>Border</source>
-        <translation type="unfinished"></translation>
+        <translation>Rand</translation>
     </message>
     <message>
         <source>Synchronized files types:</source>
-        <translation type="unfinished"></translation>
+        <translation>Synchronisierte Datentypen:</translation>
     </message>
     <message>
         <source>Inline</source>
-        <translation type="unfinished"></translation>
+        <translation>Innerhalb der Zeile</translation>
     </message>
     <message>
         <source>Replace beamer class by article</source>
-        <translation type="unfinished"></translation>
+        <translation>Ersetzte &quot;Beamer-Klasse&quot; gegen &quot;Article&quot;</translation>
     </message>
     <message>
         <source>Precompile Preamble</source>
-        <translation type="unfinished"></translation>
+        <translation>Übersetzte Präambel vorher</translation>
     </message>
     <message>
         <source>Auto preview:</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatische Vorschau:</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>Niemals</translation>
     </message>
     <message>
         <source>Previously previewed text</source>
-        <translation type="unfinished"></translation>
+        <translation>Vormals als Vorschau übersetzter Text</translation>
     </message>
     <message>
         <source>Auto preview delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzögerung der automatischen Vorschau:</translation>
     </message>
 </context>
 <context>
@@ -1776,7 +1776,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <source>&amp;* Open all files</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;* Alle Dateien öffnen</translation>
     </message>
 </context>
 <context>
@@ -2972,15 +2972,15 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <name>ProcessX</name>
     <message>
         <source>Process started: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Prozeß gestartet: %1</translation>
     </message>
     <message>
         <source>Error: Could not start the command: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Befehl konnte nicht gestartet werden: %1</translation>
     </message>
     <message>
         <source>Error: Command crashed: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommando abgestürzt: %1</translation>
     </message>
 </context>
 <context>
@@ -2996,7 +2996,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <message>
         <source>something</source>
         <comment>CodeSnippet</comment>
-        <translation type="unfinished"></translation>
+        <translation>etwas</translation>
     </message>
 </context>
 <context>
@@ -3551,11 +3551,11 @@ Soll die Datei neugeladen werden?
     </message>
     <message>
         <source>size</source>
-        <translation type="unfinished">Größe</translation>
+        <translation>Größe</translation>
     </message>
     <message>
         <source>prio</source>
-        <translation type="unfinished">Prio</translation>
+        <translation>Prio</translation>
     </message>
     <message>
         <source>Bold</source>
@@ -3599,11 +3599,11 @@ Soll die Datei neugeladen werden?
     </message>
     <message>
         <source>Point size</source>
-        <translation type="unfinished">Schriftgröße</translation>
+        <translation>Schriftgröße</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Priorität</translation>
+        <translation>Priorität</translation>
     </message>
     <message>
         <source>Unsaved changes</source>
@@ -3736,7 +3736,7 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <source>*environment-name*</source>
-        <translation type="unfinished"></translation>
+        <translation>*Umgebungsname*</translation>
     </message>
 </context>
 <context>
@@ -4136,11 +4136,11 @@ Im Ersetzungstext werden \1 bis \9 durch die Fundstelle der entsprechenden Grupp
     <name>ShortcutComboBox</name>
     <message>
         <source>&lt;default&gt;</source>
-        <translation type="unfinished">&lt;Vorgabe&gt;</translation>
+        <translation>&lt;Vorgabe&gt;</translation>
     </message>
     <message>
         <source>&lt;none&gt;</source>
-        <translation type="unfinished">&lt;kein&gt;</translation>
+        <translation>&lt;kein&gt;</translation>
     </message>
 </context>
 <context>
@@ -5933,23 +5933,25 @@ Allerdings wird eine Version von TexMakerX benutzt, bei dem diese Funktion nicht
         <source>You are trying to save the file under the name %1, but a file with this name is already open.
 TexMakerX does not support multiple instances of the same file.
 Are you sure you want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sie versuchen eine Datei unter dem gleichen Namen &quot;%1&quot; zu sichern, aber eine Datei dieses Namens ist bereits in TmX geöffnet.
+TexMakerX unterstützt keine verfachen Instanzen der gleichen Datei.
+SInd Sie sicher, dass Sie weitermachen möchten ?</translation>
     </message>
     <message>
         <source>Plaintext files</source>
-        <translation type="unfinished"></translation>
+        <translation>Einfache Textdatei</translation>
     </message>
     <message>
         <source>Open &amp;Recent</source>
-        <translation type="unfinished"></translation>
+        <translation>Zuletzt &amp;geöffnet</translation>
     </message>
     <message>
         <source>C&amp;lear Inline Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösche &amp;Vorschau in Zeile</translation>
     </message>
     <message>
         <source>check in whole directory ?</source>
-        <translation type="unfinished"></translation>
+        <translation>Check-in im ganzen Verzeichnis ?</translation>
     </message>
 </context>
 <context>
