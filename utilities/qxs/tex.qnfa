@@ -26,8 +26,8 @@ environments in smallUsefulFunctions.cpp)
  		<sequence parenthesis="curly:close" parenthesisWeight="10">\}</sequence>
 	</context>
 	<context id="verbatimS" format="verbatim" transparency="true">
-		<start parenthesis="verbatimS:open@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{verbatim*}</start>
-		<stop parenthesis="verbatimS:close@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{verbatim*}</stop>
+		<start parenthesis="verbatimS:open@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{verbatim\*}</start>
+		<stop parenthesis="verbatimS:close@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{verbatim\*}</stop>
 
 		<sequence parenthesis="curly:open">\{</sequence>
  		<sequence parenthesis="curly:close">\}</sequence>
@@ -179,8 +179,8 @@ environments in smallUsefulFunctions.cpp)
         <context id="tabular" format="normal" transparency="true">
                 <start parenthesis="tabularN1:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{tabular}</start>
                 <stop parenthesis="tabularN1:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{tabular}</stop>
-                <start parenthesis="tabularN2:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{tabular*}</start>
-                <stop parenthesis="tabularN2:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{tabular*}</stop>
+                <start parenthesis="tabularN2:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{tabular\*}</start>
+                <stop parenthesis="tabularN2:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{tabular\*}</stop>
                 <start parenthesis="tabularN3:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{tabularx}</start>
                 <stop parenthesis="tabularN3:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{tabularx}</stop>
                 <start parenthesis="tabularN3:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{longtable}</start>
