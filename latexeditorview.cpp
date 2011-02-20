@@ -708,14 +708,11 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				    if(!cxtDef.endsWith("tabular")){
 					break;
 				    }
-				    QString text=current.text();
-				    if(!text.isEmpty()){
-					QDocumentLineHandle *previous=line.handle()->previous();
-					int excessCols=0;
-					if(previous)
-					    excessCols=previous->getCookie(0).toInt();
-					SynChecker.putLine(current.handle(),SyntaxCheck::ENV_tabular,true,cols,excessCols);
-				    }
+				    QDocumentLineHandle *previous=line.handle()->previous();
+				    int excessCols=0;
+				    if(previous)
+					excessCols=previous->getCookie(0).toInt();
+				    SynChecker.putLine(current.handle(),SyntaxCheck::ENV_tabular,true,cols,excessCols);
 				    current++;
 				}
 			    }
@@ -946,14 +943,11 @@ void LatexEditorView::reCheckSyntax(int linenr, int count){
 		SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
 		int cols=-1;
 		getEnv(i,env,cols);
-		QString text=line.text();
-		if(!text.isEmpty()){
-		    QDocumentLineHandle *previous=line.handle()->previous();
-		    int excessCols=0;
-		    if(previous)
-			excessCols=previous->getCookie(0).toInt();
-		    SynChecker.putLine(line.handle(),env,true,cols,excessCols);
-		}
+		QDocumentLineHandle *previous=line.handle()->previous();
+		int excessCols=0;
+		if(previous)
+		    excessCols=previous->getCookie(0).toInt();
+		SynChecker.putLine(line.handle(),env,true,cols,excessCols);
 		prev = line;
 		line = editor->document()->line(i+1);
 	}
