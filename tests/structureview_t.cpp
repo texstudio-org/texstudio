@@ -256,7 +256,7 @@ void StructureViewTest::benchmark(){
 	QFETCH(int, start);
 	QFETCH(int, count);
 
-	ed->document()->setText(text);
+	ed->setText(text);
 	QBENCHMARK {
 		document->patchStructure(start,count);
 	}

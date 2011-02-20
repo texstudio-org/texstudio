@@ -99,7 +99,7 @@ void QEditorTest::loadSave(){
 	QEQUAL(editor->document()->lineEndingString(),outLineEnding);
 
 	//Save
-	editor->document()->setText(editor->document()->text()+"Save test");
+	editor->setText(editor->document()->text()+"Save test");
 	editor->save();
 	tf.open();
 	QString writtenText=outCodec->toUnicode( tf.readAll());
@@ -309,7 +309,7 @@ void QEditorTest::passiveFolding(){
 	QFETCH(QList<int>, foldAtAgain);
 	QFETCH(QList<int>, hiddenLines3);
 
-	editor->document()->setText(editorText);
+	editor->setText(editorText);
 
 	foreach(const int &i, foldAt)
 		editor->document()->collapse(i);
@@ -426,7 +426,7 @@ void QEditorTest::activeFolding(){
 	QFETCH(QString, newEditorText);
 	QFETCH(QList<int>, newHiddenLines);
 
-	editor->document()->setText(editorText);
+	editor->setText(editorText);
 
 	foreach(const int &i, foldAt)
 		editor->document()->collapse(i);

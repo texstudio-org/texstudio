@@ -207,7 +207,7 @@ void QDocumentSearchTest::next_sameText(){
 	
 	for (int loop=0; loop<4; loop++){
 		//QWARN(qPrintable(QString("%1").arg(loop)));
-		ed->document()->setText(editorText);
+		ed->setText(editorText);
 		if (loop<2) {
 			ds->setSearchText(searchText);
 			if (loop) 
@@ -491,7 +491,7 @@ void QDocumentSearchTest::replaceAll(){
 	QFETCH(int, foundCount);
 
 	for (int loop=0; loop<2; loop++){
-		ed->document()->setText(editorText);
+		ed->setText(editorText);
 		ds->setSearchText(searchText);
 		ds->setReplaceText(replaceText);
 		if (loop) 
@@ -636,7 +636,7 @@ void QDocumentSearchTest::searchAndFolding(){
 	QFETCH(CM, movement);
 	QFETCH(QList<int>, hiddenLinesAfterwards);
 	for (int loop=0;loop<2;loop++){
-		ed->document()->setText(editorText);
+		ed->setText(editorText);
 		foreach (const int i, foldAt)
 			ed->document()->collapse(i);
 		for (int i=0;i<ed->document()->lines();i++)

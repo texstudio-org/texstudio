@@ -260,7 +260,7 @@ void LatexCompleterTest::simple(){
 	config->eowCompletes = eowCompletes;
 
 	edView->editor->setFlag(QEditor::AutoCloseChars, autoParenComplete);
-	edView->editor->document()->setText(text);
+	edView->editor->setText(text);
 	edView->editor->setCursor(edView->editor->document()->cursor(line,offset));
 	edView->getCompleter()->setAdditionalWords(QStringList() << "\\a{" << "\\b" << "\\begin{alignat}{n}\n\\end{alignat}" << "\\only<abc>{def}" << "\\only{abc}<def>"); //extra words needed for test
 	if (!preinsert.isEmpty()) {
