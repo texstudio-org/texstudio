@@ -164,7 +164,7 @@ void QSearchReplacePanelTest::incrementalsearch(){
 
 	for (int loop=0; loop<2; loop++) {
 		panel->display(1,loop==1);
-		ed->document()->setText(editorText);
+		ed->setText(editorText);
 		if (scopey1!=-1) {
 			widget->cbSelection->setChecked(true);
 			ed->setCursor(ed->document()->cursor(scopey1,scopex1,scopey2,scopex2));
@@ -234,7 +234,7 @@ void QSearchReplacePanelTest::findNext(){
 	QFETCH(QStringList, positions);
 	
 	for (int highlightRun=0; highlightRun<2; highlightRun++) {
-		ed->document()->setText(editorText);
+		ed->setText(editorText);
 		panel->setOptions(options,true,false);
 		ed->setCursorPosition(sy,sx);
 		//ed->find(search,highlightRun!=0,false);
@@ -309,7 +309,7 @@ void QSearchReplacePanelTest::findReplace(){
 	panel->display(1,true);
 	ed->document()->setLineEnding(QDocument::Unix);
 	for (int highlightRun=0; highlightRun<2; highlightRun++) {
-		ed->document()->setText(editorText);
+		ed->setText(editorText);
 		panel->setOptions(options | (highlightRun?QDocumentSearch::HighlightAll:0), true, false);
 		ed->setCursorPosition(sy,sx);
 		
@@ -341,7 +341,7 @@ void QSearchReplacePanelTest::findReplace(){
 }
 void QSearchReplacePanelTest::findReplaceSpecialCase(){
 	//test for a strange special case
-	ed->document()->setText("abc\n\n\nabc\n\n\nabc");
+	ed->setText("abc\n\n\nabc\n\n\nabc");
 	widget->leFind->setText("abc");
 	ed->setCursorPosition(0,0);
 	panel->setOptions(QDocumentSearch::HighlightAll, true, false);
@@ -368,7 +368,7 @@ void QSearchReplacePanelTest::findReplaceSpecialCase(){
 
 //this tests how the search panel reacts to an already existing selection
 void QSearchReplacePanelTest::findSpecialCase2(){
-	ed->document()->setText("sela\nseli\nselo\nSSSSSSSSSSNAKE\nsnape");
+	ed->setText("sela\nseli\nselo\nSSSSSSSSSSNAKE\nsnape");
 	for (int useCursor=1; useCursor<2; useCursor++) {
 		widget->cbCursor->setChecked(useCursor!=0); //doesn't depend on cursor (old, now it does depend, TODO: think about it)
 		widget->cbSelection->setChecked(false);
@@ -473,7 +473,7 @@ void QSearchReplacePanelTest::findSpecialCase2(){
 
 //test if the panel use the correct highlighting of the current selection 
 void QSearchReplacePanelTest::selectionHighlighting(){
-	ed->document()->setText("hallo welt\nhello world\nsalve mundus\nbounjoure ???\n");
+	ed->setText("hallo welt\nhello world\nsalve mundus\nbounjoure ???\n");
 	panel->display(1, false);
 	widget->cbSelection->setChecked(true);
 	QDocumentCursor sel=ed->document()->cursor(0,7,2,10);

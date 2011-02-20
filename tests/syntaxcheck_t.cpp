@@ -5,6 +5,7 @@
 #include "tablemanipulation.h"
 #include "qdocumentcursor.h"
 #include "qdocument.h"
+#include "qeditor.h"
 #include "latexdocument.h"
 //#include "syntaxcheck.h"
 #include "testutil.h"
@@ -146,7 +147,7 @@ void SyntaxCheckTest::checktabular(){
 	
 	expectedMessage = QApplication::translate("SyntaxCheck", qPrintable(expectedMessage));
 
-	edView->document->setText(text);
+	edView->editor->setText(text);
 	edView->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
 	int cols;
 	SyntaxCheck::Environment env;
