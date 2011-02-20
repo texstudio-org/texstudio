@@ -3902,7 +3902,7 @@ void Texmaker::gotoOpenDocument(){
 }
 void Texmaker::updateOpenDocumentMenu(bool localChange){
 	QEditor* ed = currentEditor();
-	if (!ed) return;
+	//if (!ed) return;
 	if (localChange) {
 		QString id = "doc"+QString::number(EditorView->currentIndex());
 		QMenu* menu = configManager.getManagedMenu("main/view/documents");
