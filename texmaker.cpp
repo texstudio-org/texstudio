@@ -3809,7 +3809,8 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 			if (configManager.debugLastFullTestRun.daysTo(myself.lastModified())>6) allTests=true;
 			if (allTests) configManager.debugLastFullTestRun=myself.lastModified();
 			QString result=TestManager::execute(allTests?TestManager::TL_ALL:TestManager::TL_FAST, currentEditorView(),currentEditorView()->codeeditor,currentEditorView()->editor);
-			currentEditorView()->editor->document()->setText(result);
+			//currentEditorView()->editor->document()->setText(result);
+			currentEditorView()->editor->setText(result);
 			configManager.debugLastFileModification=QFileInfo(QCoreApplication::applicationFilePath()).lastModified();
 		}
 
