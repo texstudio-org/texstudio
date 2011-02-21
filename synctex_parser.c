@@ -3316,9 +3316,13 @@ int synctex_display_query(synctex_scanner_t scanner,const char * name,int line,i
 				}
 				start_ref += 1;
 				SYNCTEX_END = (unsigned char *)start_ref;
+				// changed by sdm, as the parser sometimes does not find the corresponding location in pdf with given linenumber (esp. in included tex files)
+				SYNCTEX_CUR = NULL;
+				return (SYNCTEX_END-SYNCTEX_START)/sizeof(synctex_node_t);
+				// end
 			}
 			SYNCTEX_CUR = NULL;
-			return (SYNCTEX_END-SYNCTEX_START)/sizeof(synctex_node_t);
+			//return (SYNCTEX_END-SYNCTEX_START)/sizeof(synctex_node_t);
 		}
 #       if defined(__SYNCTEX_STRONG_DISPLAY_QUERY__)
 		break;
