@@ -4149,9 +4149,11 @@ void QEditor::cursorMoveOperation(QDocumentCursor &cursor, EditOperation eop){
 		break;
 	case CursorLeft: case SelectCursorLeft:
 		op = QDocumentCursor::Left;
+		cutBuffer.clear();
 		break;
 	case CursorRight: case SelectCursorRight:
 		op = QDocumentCursor::Right;
+		cutBuffer.clear();
 		break;
 	case CursorWordLeft: case SelectCursorWordLeft:
 		op = QDocumentCursor::WordLeft;
@@ -4255,23 +4257,28 @@ void QEditor::processEditOperation(QDocumentCursor& c, const QKeyEvent* e, EditO
 	{
 	case DeleteLeft :
 		if(!hasSelection) c.deletePreviousChar();
+		cutBuffer.clear();
 		break;
 	case DeleteRight :
 		if(!hasSelection) c.deleteChar();
+		cutBuffer.clear();
 		break;
 
 	case DeleteLeftWord :
 		c.movePosition(1,QDocumentCursor::PreviousWord,QDocumentCursor::KeepAnchor);
 		c.removeSelectedText();
+		cutBuffer.clear();
 		break;
 
 	case DeleteRightWord :
 		c.movePosition(1,QDocumentCursor::NextWord,QDocumentCursor::KeepAnchor);
 		c.removeSelectedText();
+		cutBuffer.clear();
 		break;
 
 	case NewLine:
 		insertText("\n");
+		cutBuffer.clear();
 		break;
 
 	default :
