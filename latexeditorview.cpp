@@ -708,7 +708,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				    if(!cxtDef.endsWith("tabular")){
 					break;
 				    }
-				    QDocumentLineHandle *previous=line.handle()->previous();
+				    QDocumentLineHandle *previous=current.handle()->previous();
 				    int excessCols=0;
 				    if(previous)
 					excessCols=previous->getCookie(0).toInt();
