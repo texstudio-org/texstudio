@@ -64,6 +64,7 @@ public:
 	static QString createTemporaryFileName(); //don't forget to remove the file!
 					
 	void preview(const QString &preamble, const QString &text, int line, QTextCodec *outputCodec=0);
+	void clearPreviewPreambleCache();
 
 	QString editCommandList(const QString& list);
 
@@ -75,6 +76,7 @@ public:
 	bool previewRemoveBeamer, previewPrecompilePreamble;
 private slots:	
 	void singleInstanceCompleted(int status);
+	void preamblePrecompileCompleted(int status);
 	void latexPreviewCompleted(int status);
 	void dvi2psPreviewCompleted(int status);
 	void conversionPreviewCompleted(int status); 
@@ -89,6 +91,7 @@ private:
 	QMap<QString, QPair<QString, int> > previewFileNameToText;
 	QHash<LatexCommand, QString> commands;
 	QHash<QString, QString> preambleHash;
+	void removePreviewFiles(QString elemName);
 #ifdef Q_WS_WIN
 	unsigned long int pidInst;
 	bool executeDDE(QString ddePseudoURL);
