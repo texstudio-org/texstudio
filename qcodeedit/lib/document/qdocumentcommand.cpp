@@ -195,8 +195,6 @@ void QDocumentCommand::insertText(int line, int pos, const QString& s)
 	h->textBuffer().insert(pos, s);
 	h->shiftOverlays(pos, s.length());
 	h->unlock();
-	
-	pd->adjustWidth(line);
 }
 
 /*!
@@ -223,8 +221,6 @@ void QDocumentCommand::removeText(int line, int pos, int length)
 	h->textBuffer().remove(pos, length);
 	h->shiftOverlays(pos, -length);
 	h->unlock();
-
-	pd->adjustWidth(line);
 }
 
 /*!

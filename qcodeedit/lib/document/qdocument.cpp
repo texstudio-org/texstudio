@@ -111,6 +111,7 @@ static int m_spaceSignOffset = 2;
 static int PICTURE_COOKIE = 42;
 static int PICTURE_BORDER = 2;
 
+
 static QPoint m_spaceSign[] = {
 	QPoint(2, -1),
 	QPoint(2, 0),
@@ -2104,8 +2105,13 @@ void QDocumentLineHandle::updateWrap() const
 	splitAtFormatChanges(&ranges);
 
 	if (ranges.isEmpty()){
+		if (hasCookie(PICTURE_COOKIE)) {
+			int h = getPictureCookieHeight();
+			QPair<int,int> l(text().length(), 0);
+			for (int i=0;i<h/QDocumentPrivate::m_lineSpacing;i++) { l.second++; l.first++; m_frontiers << l; }
+		}
 		return;
-	    }
+	}
 
 	int idx = 0, column = 0, indent = 0;
 	int minx = QDocumentPrivate::m_leftMargin;
@@ -2228,8 +2234,7 @@ void QDocumentLineHandle::updateWrap() const
 	}
 
 	if (hasCookie(PICTURE_COOKIE)) {
-		int h = 2*PICTURE_BORDER + getCookie(PICTURE_COOKIE).value<QPixmap>().height();
-		if (h % QDocumentPrivate::m_lineSpacing > 0) h += QDocumentPrivate::m_lineSpacing - h % QDocumentPrivate::m_lineSpacing;
+		int h = getPictureCookieHeight();
 		QPair<int,int> l(text().length(), rx);
 		for (int i=0;i<h/QDocumentPrivate::m_lineSpacing;i++) { l.second++; l.first++; m_frontiers << l; }
 	}
@@ -3072,7 +3077,7 @@ void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const
 					frontier = until;
 			}
 		}
-	} else if ( m_frontiers.count() ) {
+	} else/* else if ( m_frontiers.count() ) {
 		//TODO: is this branch ever reached?
 		Q_ASSERT(false);
 
@@ -3103,7 +3108,7 @@ void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const
 				frontier = wrap < m_frontiers.count() ? m_frontiers.at(wrap).first : max;
 			}
 		}
-	} else {
+	} else*/ {
 		// neither formatting nor line wrapping : simple drawText()
 		RenderRange r;
 		r.position = 0;
@@ -3113,6 +3118,14 @@ void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const
 		*ranges << r;
 	}
 }
+
+int QDocumentLineHandle::getPictureCookieHeight() const{
+	if (!hasCookie(PICTURE_COOKIE)) return 0;
+	int h = 2*PICTURE_BORDER + getCookie(PICTURE_COOKIE).value<QPixmap>().height();
+	if (h % QDocumentPrivate::m_lineSpacing > 0) h += QDocumentPrivate::m_lineSpacing - h % QDocumentPrivate::m_lineSpacing;
+	return h;
+}
+
 
 void QDocumentLineHandle::draw(	QPainter *p,
 								int xOffset,
@@ -5967,8 +5980,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		if (h->hasCookie(PICTURE_COOKIE)){
 			const QPixmap& pm = h->getCookie(PICTURE_COOKIE).value<QPixmap>();
 
-			int ph = 2*PICTURE_BORDER + pm.height();
-			if (ph % m_lineSpacing > 0) ph += m_lineSpacing - ph % m_lineSpacing;
+			int ph = h->getPictureCookieHeight();
 
 			pseudoWrap = ph/m_lineSpacing;
 
@@ -6618,13 +6630,10 @@ void QDocumentPrivate::insertLines(int after, const QList<QDocumentLineHandle*>&
 
 		m_lines.insert(after + i, l.at(i));
 
-		adjustWidth(after + i);
-
 		++i;
 	}
 
 	emit m_doc->lineCountChanged(m_lines.count());
-	setHeight();
 }
 
 void QDocumentPrivate::removeLines(int after, int n)
@@ -7327,6 +7336,10 @@ void QDocumentPrivate::emitContentsChange(int line, int lines)
 	{
 		n = m_language->tokenize(m_doc, line, lines);
 	}
+
+	for (int i=line; i<line+lines; i++)
+		adjustWidth(i);
+	if (lines > 1) setHeight();
 	//qDebug("%i, %i : %i", line, lines, n);
 
 	emit m_doc->contentsChange(line, lines);
