@@ -921,6 +921,15 @@ void QDocumentCursor::intersectBoundaries(int& lbeg, int& cbeg, int& lend, int& 
 		m_handle->intersectBoundaries(lbeg, cbeg, lend, cend);
 }
 
+
+void QDocumentCursor::getMatchingPair(QDocumentCursor& from, QDocumentCursor& to, bool maximal){
+	if (m_handle)
+		m_handle->getMatchingPair(from, to, maximal);
+	else
+		from = to = QDocumentCursor();
+
+}
+
 /*!
 	\return selection information
 	
@@ -968,6 +977,13 @@ QDocumentSelection QDocumentCursor::selection() const
 	}
 	
 	return s;
+}
+
+void QDocumentCursor::sort(QDocumentCursor& from, QDocumentCursor& to){
+	if (from < to) return;
+	QDocumentCursorHandle* temp = to.m_handle;
+	to.m_handle = from.m_handle;
+	from.m_handle = temp;
 }
 
 /*! @} */

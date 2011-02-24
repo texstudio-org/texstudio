@@ -399,6 +399,7 @@ private slots:
 
 	bool generateMirror(bool setCur=false);
 	void generateBracketInverterMirror();
+	void selectBracket();
 	void cursorHovered();
 	void loadProfile();
 

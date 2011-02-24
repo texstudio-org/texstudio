@@ -5473,6 +5473,46 @@ QDocumentCursor QDocumentCursorHandle::intersect(const QDocumentCursor& c) const
 	return QDocumentCursor();
 }
 
+void QDocumentCursorHandle::getMatchingPair(QDocumentCursor& from, QDocumentCursor& to, bool maximal){
+	if (!m_doc || !m_doc->languageDefinition()) {
+		from = to = QDocumentCursor();
+		return;
+	}
+	QDocumentCursor orig = hasSelection()?selectionEnd():QDocumentCursor(this);
+	QList<QList<QDocumentCursor> > matches = m_doc->languageDefinition()->getMatches(orig);
+	if (matches.isEmpty()) {
+		from = to = QDocumentCursor();
+		return;
+	}
+	Q_ASSERT(matches[0].size()==2);
+
+	int selMa = -1, selMaLD = 0, selMaCD = 0;
+	for (int i=0; i < matches.size(); i++) {
+		Q_ASSERT(matches[i].size()==2);
+		int ld = qAbs(matches[i][0].lineNumber()-matches[i][1].lineNumber());
+		int cd;
+		if (ld == 0) cd = qAbs(matches[i][0].columnNumber()-matches[i][1].columnNumber());
+		else if (matches[i][0].lineNumber()<matches[i][1].lineNumber())
+			cd = matches[i][0].line().length() - matches[i][0].columnNumber() + matches[i][1].columnNumber();
+		else
+			cd = matches[i][1].line().length() - matches[i][1].columnNumber() + matches[i][0].columnNumber();
+		if (selMa == -1 ||
+		    (maximal && (selMaLD < ld || (selMaLD == ld && selMaCD < cd))) ||
+		    (!maximal && (selMaLD > ld || (selMaLD == ld && selMaCD > cd)))){
+			selMa = i;
+			selMaLD = ld;
+			selMaCD = cd;
+		}
+	}
+	if (matches[selMa][1].isWithinSelection(orig))  {
+		from = matches[selMa][1];
+		to = matches[selMa][0];
+	} else {
+		from = matches[selMa][0];
+		to = matches[selMa][1];
+	}
+}
+
 void QDocumentCursorHandle::removeSelectedText(bool keepAnchor)
 {
 	if ( !m_doc )
@@ -5525,6 +5565,7 @@ void QDocumentCursorHandle::removeSelectedText(bool keepAnchor)
 	c->setTargetCursor(this);
 	execute(c);
 }
+
 
 //////////////////
 
