@@ -181,6 +181,8 @@ class QCE_EXPORT QDocumentLineHandle
 		void applyOverlays() const;
 		void splitAtFormatChanges(QList<RenderRange>* ranges, const QVector<int>* sel = 0, int from = 0, int until = -1) const;
 		
+		int getPictureCookieHeight() const;
+
 		QList<QTextLayout::FormatRange> decorations() const;
 		
 		QString m_text;

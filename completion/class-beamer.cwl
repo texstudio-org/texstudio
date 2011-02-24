@@ -404,6 +404,7 @@
 \onslide*<overlay specification>{text}
 \onslide<overlay specification>
 \onslide
+\only<overlay specification>{text}
 \only<overlay specification>{text}<overlay specification>
 \only{text}<overlay specification>
 \only{text}
