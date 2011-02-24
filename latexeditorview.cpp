@@ -1359,19 +1359,29 @@ void LatexEditorView::getEnv(int lineNumber,SyntaxCheck::Environment &env,int &c
 
 
 
-void BracketInvertAffector::affect(const QKeyEvent *e, const QString& base, int ph, int mirror, QString& after) const{
+QString BracketInvertAffector::affect(const QKeyEvent *e, const QString& base, int ph, int mirror) const{
 	static const QString& brackets = "<>()[]{}";
-	after.clear();
+	QString after;
 	for (int i=0; i < base.length(); i++)
 		if (brackets.indexOf(base[i]) >= 0)
 			after += brackets[brackets.indexOf(base[i]) + 1 - 2*(brackets.indexOf(base[i]) & 1) ];
-	else if (base[i] == '\\' && base.mid(i, 7) == "\\begin{") {
-		after += "\\end{" + base.mid(i+7);
-		return;
-	} else if (base[i] == '\\' && base.mid(i, 5) == "\\end{") {
-		after += "\\begin{" + base.mid(i+5);
-		return;
+	else if (base[i] == '\\') {
+		if (base.mid(i, 7) == "\\begin{") {
+			after += "\\end{" + base.mid(i+7);
+			return after;
+		} else if (base.mid(i, 5) == "\\end{") {
+			after += "\\begin{" + base.mid(i+5);
+			return after;
+		} else if (base.mid(i, 5) == "\\left") {
+			after += "\\right";
+			i+=4;
+		} else if (base.mid(i, 6) == "\\right") {
+			after += "\\left";
+			i+=5;
+		}
+		else after += '\\';
 	} else after += base[i];
+	return after;
 }
 BracketInvertAffector* inverterSingleton = 0;
 BracketInvertAffector* BracketInvertAffector::instance(){
