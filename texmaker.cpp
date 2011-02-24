@@ -547,7 +547,11 @@ void Texmaker::setupMenus() {
 
 	menu->addSeparator();
 	newManagedAction(menu,"generateMirror",tr("Re&name Environment"), SLOT(generateMirror()));
-	newManagedAction(menu,"generateInvertedBracketMirror",tr("Select parenthesis (inverting)"), SLOT(generateBracketInverterMirror()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_S));
+
+	submenu = newManagedMenu(menu, "parens", tr("Parenthesis"));
+	newManagedAction(submenu, "selectBracketInner", tr("Select (inner)"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_I))->setProperty("maximal", false);
+	newManagedAction(submenu, "selectBracketOuter", tr("Select (outer)"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_O))->setProperty("maximal", true);
+	newManagedAction(submenu, "generateInvertedBracketMirror", tr("Select (inverting)"), SLOT(generateBracketInverterMirror()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_S));
 
 	submenu=newManagedMenu(menu, "complete",tr("Complete"));
 	newManagedAction(submenu, "normal", tr("normal"), SLOT(NormalCompletion()),Qt::CTRL+Qt::Key_Space);
@@ -5045,25 +5049,32 @@ bool Texmaker::generateMirror(bool setCur){
 void Texmaker::generateBracketInverterMirror(){
 	if (!currentEditor()) return;
 	REQUIRE(currentEditor()->document() && currentEditor()->document()->languageDefinition());
-	QDocumentCursor orig = currentEditor()->cursor().hasSelection()?currentEditor()->cursor().selectionEnd():currentEditor()->cursor();
-	QList<QList<QDocumentCursor> > matches = currentEditor()->document()->languageDefinition()->getMatches(orig);
-	if (matches.isEmpty()) return;
-	REQUIRE(matches[0].size()==2);
-	QDocumentCursor to;
-	if (matches[0][1].isWithinSelection(orig))  {
-		orig = matches[0][1];
-		to = matches[0][0];
-	} else {
-		orig = matches[0][0];
-		to = matches[0][1];
-	}
+	QDocumentCursor orig, to;
+	currentEditor()->cursor().getMatchingPair(orig, to, false);
+
 	PlaceHolder ph;
 	ph.cursor = orig.selectionStart();
 	ph.mirrors << to.selectionStart();
-	ph.length = matches[0][0].selectedText().length();
+	ph.length = orig.selectedText().length();
 	ph.affector = BracketInvertAffector::instance();
 	currentEditor()->addPlaceHolder(ph);
 	currentEditor()->setPlaceHolder(currentEditor()->placeHolderCount()-1);
+}
+
+void Texmaker::selectBracket(){
+	if (!currentEditor()) return;
+	REQUIRE(sender() && currentEditor()->document() && currentEditor()->document()->languageDefinition());
+	QDocumentCursor orig, to;
+	currentEditor()->cursor().getMatchingPair(orig, to, sender()->property("maximal").toBool());
+	QDocumentCursor::sort(orig, to);
+	if (sender()->property("maximal").toBool()) {
+		if (orig.hasSelection()) orig = orig.selectionStart();
+		if (to.hasSelection()) to = to.selectionEnd();
+	} else {
+		if (orig.hasSelection()) orig = orig.selectionEnd();
+		if (to.hasSelection()) to = to.selectionStart();
+	}
+	currentEditor()->setCursor(currentEditor()->document()->cursor(orig.lineNumber(), orig.columnNumber(), to.lineNumber(), to.columnNumber()));
 }
 
 void Texmaker::openExternalFile(const QString name){

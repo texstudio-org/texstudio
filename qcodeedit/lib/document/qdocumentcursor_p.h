@@ -145,6 +145,8 @@ class QCE_EXPORT QDocumentCursorHandle
 		void intersectBoundaries(int& lbeg, int& cbeg, int& lend, int& cend) const;
 		void intersectBoundaries(QDocumentCursorHandle *h, int& lbeg, int& cbeg, int& lend, int& cend) const;
 		
+		void getMatchingPair(QDocumentCursor& from, QDocumentCursor& to, bool maximal);
+
 		void beginEditBlock();
 		void endEditBlock();
 		
@@ -165,7 +167,6 @@ class QCE_EXPORT QDocumentCursorHandle
 		inline bool hasFlag(int f) const { return m_flags & f; }
 		inline void setFlag(int f) { m_flags |= f; }
 		inline void clearFlag(int f) { m_flags &= ~f; }
-		
 	protected:
 		QDocumentCursorHandle(QDocument *d, int line = 0);
 		virtual ~QDocumentCursorHandle();

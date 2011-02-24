@@ -196,6 +196,8 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		QDocumentCursor intersect(const QDocumentCursor& c) const;
 		void intersectBoundaries(int& lbeg, int& cbeg, int& lend, int& cend) const;
 
+		void getMatchingPair(QDocumentCursor& from, QDocumentCursor& to, bool maximal = true);
+
 		QChar nextChar() const;
 		QChar previousChar() const;
 		
@@ -216,6 +218,8 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		inline QDocumentCursorHandle* handle() const
 		{ return m_handle; }
 		
+		static void sort(QDocumentCursor& from, QDocumentCursor& to);
+
 	private:
 		QDocumentCursorHandle *m_handle;
 };
