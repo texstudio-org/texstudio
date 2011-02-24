@@ -72,7 +72,7 @@ struct PlaceHolder
 	{
 		public:
 			virtual ~Affector() {}
-			virtual void affect(const QKeyEvent *e, const QString& base, int ph, int mirror, QString& after) const = 0;
+			virtual QString affect(const QKeyEvent *e, const QString& base, int ph, int mirror) const = 0;
 	};
 
 	PlaceHolder() : length(0), autoRemove(true), autoOverride(false), affector(0) {}

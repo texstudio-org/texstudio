@@ -147,7 +147,7 @@ signals:
 
 class BracketInvertAffector: public PlaceHolder::Affector{
 public:
-	virtual void affect(const QKeyEvent *e, const QString& base, int ph, int mirror, QString& after) const;
+	virtual QString affect(const QKeyEvent *e, const QString& base, int ph, int mirror) const;
 	static BracketInvertAffector* instance();
 };
 #endif

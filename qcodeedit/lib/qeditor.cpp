@@ -1877,9 +1877,14 @@ void QEditor::addPlaceHolder(const PlaceHolder& p, bool autoUpdate)
 
 	for ( int i = 0; i < ph.mirrors.count(); ++i )
 	{
+		int mirrorLen = ph.length;
+		if (ph.affector)
+			mirrorLen = ph.affector->affect(0, ph.cursor.selectedText(), m_placeHolders.size()-1, i).length();
+
+
 		ph.mirrors[i].setAutoUpdated(autoUpdate);
 		ph.mirrors[i].setAutoErasable(p.autoRemove);
-		ph.mirrors[i].movePosition(ph.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+		ph.mirrors[i].movePosition(mirrorLen, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 	}
 }
 /*!
@@ -1892,7 +1897,8 @@ void QEditor::addPlaceHolderMirror(int placeHolderId, const QDocumentCursor& c){
 	ph.mirrors << c;
 	ph.mirrors.last().setAutoUpdated(true);
 	ph.mirrors.last().setAutoErasable(true);
-	ph.mirrors.last().movePosition(ph.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+	int mirrorLen = ph.affector ? ph.affector->affect(0, ph.cursor.selectedText(), placeHolderId, ph.mirrors.size()-1).length() : ph.length;
+	ph.mirrors.last().movePosition(mirrorLen, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 }
 
 /*!
@@ -2009,8 +2015,7 @@ void QEditor::setPlaceHolder(int i, bool selectCursors)
 	for ( int j=0; j< ph.mirrors.size(); j++)
 	{
 		QDocumentCursor &mc = ph.mirrors[j];
-		QString mirrored = base;
-		if (ph.affector) ph.affector->affect(0, base, i, j, mirrored);
+		QString mirrored = ph.affector ? ph.affector->affect(0, base, i, j) : base;
 		if (mc.selectedText()!=mirrored){
 			//qDebug() << "resync placeholder mirror for " << m_curPlaceHolder << " mirror "<<j << " was: " << mc.selectedText() << " should be " << cc.selectedText() << " from " << cc.anchorLineNumber() << ":" << cc.anchorColumnNumber() << "->" << cc.lineNumber() << ":"<<cc.columnNumber()<<"\n";
 			//if mirror synchronization is broken => resyncronize
@@ -2944,10 +2949,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 
 			for ( int phm = 0; phm < ph.mirrors.count(); ++phm )
 			{
-				QString s = baseText;
-
-				if ( ph.affector )
-					ph.affector->affect(e, baseText, m_curPlaceHolder, phm,  s);
+				QString s = ph.affector ?  ph.affector->affect(e, baseText, m_curPlaceHolder, phm) : baseText;
 
 				ph.mirrors[phm].replaceSelectedText(s);
 			}
