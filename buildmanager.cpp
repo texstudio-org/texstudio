@@ -21,14 +21,8 @@ BuildManager::BuildManager()
 }
 BuildManager::~BuildManager() {
 	//remove preview file names
-	foreach(QString elem,previewFileNames){
-		QDir currentDir(QFileInfo(elem).absoluteDir());
-		elem=QFileInfo(elem).completeBaseName();
-		QStringList files;
-		files = currentDir.entryList(QStringList(elem+"*"),
-								  QDir::Files | QDir::NoSymLinks);
-		foreach(const QString file,files) QFile::remove(currentDir.absolutePath()+"/"+file);
-	}
+	foreach(const QString& elem,previewFileNames)
+		removePreviewFiles(elem);
 #ifdef Q_WS_WIN
 	if (pidInst) DdeUninitialize(pidInst);
 #endif
@@ -669,36 +663,48 @@ void BuildManager::preview(const QString &preamble, const QString &text, int lin
 	QString preambleFormatFile;
 	if (previewPrecompilePreamble) {
 		preambleFormatFile = preambleHash.value(preamble_mod, "");
-		if (!preambleFormatFile.isEmpty())
-			if (!QFile::exists(tempPath + preambleFormatFile + ".fmt"))
-				preambleFormatFile = "";
-		if (preambleFormatFile.isEmpty()) {
-			//write preamble
-			QTemporaryFile *tf=new QTemporaryFile(tempPath + "hXXXXXX.tex");
-			REQUIRE(tf);
-			tf->open();
-			QTextStream out(tf);
-			if (outputCodec) out.setCodec(outputCodec);
-			out << preamble_mod;
-			tf->setAutoRemove(false);
-			tf->close();
+		if (preambleFormatFile != "<failed>") {
+			if (!preambleFormatFile.isEmpty())
+				if (!QFile::exists(tempPath + preambleFormatFile + ".fmt"))
+					preambleFormatFile = "";
+			if (preambleFormatFile.isEmpty()) {
+				//write preamble
+				QTemporaryFile *tf=new QTemporaryFile(tempPath + "hXXXXXX.tex");
+				REQUIRE(tf);
+				tf->open();
+				QTextStream out(tf);
+				if (outputCodec) out.setCodec(outputCodec);
+				out << preamble_mod;
+				tf->setAutoRemove(false);
+				tf->close();
 
-			//compile
-			QFileInfo fi(*tf);
-			preambleFormatFile = fi.completeBaseName();
-			previewFileNames.append(fi.absoluteFilePath());
-			ProcessX *p = newProcess(QString("%1 -ini \"&latex %2 \\dump\"").arg(getLatexCommandExecutable(CMD_LATEX)).arg(preambleFormatFile), tf->fileName()); //no delete! goes automatically
-			REQUIRE(p);
-			p->startCommand();
+				//compile
+				QFileInfo fi(*tf);
+				preambleFormatFile = fi.completeBaseName();
+				previewFileNames.append(fi.absoluteFilePath());
+				ProcessX *p = newProcess(QString("%1 -interaction=nonstopmode -ini \"&latex %3 \\dump\"").arg(getLatexCommandExecutable(CMD_LATEX)).arg(preambleFormatFile), tf->fileName()); //no delete! goes automatically
+				p->setProperty("preamble", preamble_mod);
+				p->setProperty("preambleFile", preambleFormatFile);
+				connect(p,SIGNAL(finished(int)),this,SLOT(preamblePrecompileCompleted(int)));
+				tf->setParent(p); //free file when process is deleted
+				REQUIRE(p);
+				p->startCommand();
 
-			if (p->waitForStarted()) {
-				if (p->waitForFinished())
-					preambleHash.insert(preamble_mod, preambleFormatFile);
-				else
-					preambleFormatFile = ""; //compiling failed
-			} else preambleFormatFile = ""; //compiling failed
-			delete tf; // tex file needs to be freed
-		}
+				if (p->waitForStarted()) {
+					if (p->waitForFinished(800)) {
+						if (p->exitStatus() == QProcess::NormalExit && p->exitCode() == 0) {
+							preambleHash.insert(preamble_mod, preambleFormatFile);
+						} else {
+							preambleHash.insert(preamble_mod, "<failed>");
+							preambleFormatFile = "";
+						}
+					} else
+						preambleFormatFile = ""; //wait + normal compile while waiting
+
+				} else preambleFormatFile = ""; //compiling failed
+				//delete tf; // tex file needs to be freed
+			}
+		} else preambleFormatFile = "";
 	}
 
 	// write to temp file
@@ -736,6 +742,16 @@ void BuildManager::preview(const QString &preamble, const QString &text, int lin
 	}
 }
 
+void BuildManager::clearPreviewPreambleCache(){
+	QHash<QString, QString>::const_iterator it = preambleHash.constBegin();
+	while (it != preambleHash.constEnd()) {
+		removePreviewFiles(it.value());
+		previewFileNames.removeAll(it.value());
+		++it;
+	}
+	preambleHash.clear();
+}
+
 QString BuildManager::editCommandList(const QString& list){
 	QStringList names, commands;
 	for (int i=CMD_LATEX; i <= CMD_ASY; i++) {
@@ -754,6 +770,16 @@ void BuildManager::singleInstanceCompleted(int status){
 	ProcessX* procX = qobject_cast<ProcessX*>(sender());
 	REQUIRE(procX);
 	runningCommands.remove(procX->getCommandLine());
+}
+
+void BuildManager::preamblePrecompileCompleted(int status){
+	Q_UNUSED(status);
+	QProcess* p = qobject_cast<QProcess*>(sender());
+	REQUIRE(p);
+	if (p->exitCode() != 0 || p->exitStatus() != QProcess::NormalExit) {
+		preambleHash.insert(p->property("preamble").toString(), "<failed>");
+	} else
+		preambleHash.insert(p->property("preamble").toString(), p->property("preambleFile").toString());
 }
 
 //latex has finished the dvi creation
@@ -798,6 +824,16 @@ void BuildManager::conversionPreviewCompleted(int status){
 	QString fn=parseExtendedCommandLine("?am)1.png",processedFile);
 	if(QFileInfo(fn).exists())
 		emit previewAvailable(fn,previewFileNameToText[processedFile].first,previewFileNameToText[processedFile].second);
+}
+
+void BuildManager::removePreviewFiles(QString elem){
+	QDir currentDir(QFileInfo(elem).absoluteDir());
+	elem=QFileInfo(elem).completeBaseName();
+	QStringList files;
+	files = currentDir.entryList(QStringList(elem+"*"),
+							  QDir::Files | QDir::NoSymLinks);
+	foreach(const QString file,files)
+		QFile::remove(currentDir.absolutePath()+"/"+file);
 }
 
 

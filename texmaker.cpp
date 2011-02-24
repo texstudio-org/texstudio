@@ -3674,6 +3674,8 @@ void Texmaker::GeneralOptions() {
 		if(!loadFiles.isEmpty())
 		    updateHighlighting=true;
 
+		buildManager.clearPreviewPreambleCache();//possible changed latex command / preview behaviour
+
 		if (currentEditorView()) {
 			for (int i=0; i<EditorView->count();i++) {
 				LatexEditorView* edView=qobject_cast<LatexEditorView*>(EditorView->widget(i));
