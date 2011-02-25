@@ -1426,14 +1426,14 @@ void Texmaker::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile) {
 		//else if (edView->editor->isInConflict()) {
 		//edView->editor->save();
 		//}
-		} else if (!edView->editor->fileName().endsWith(".bib"))
-			edView->editor->save();
-		else if (edView->editor->isContentModified()){ //only save modified bib files, to prevent unecessary recompilations
-			edView->editor->save();
+		} else if (edView->editor->isContentModified() || edView->editor->isInConflict()){
+			edView->editor->save(); //only save modified documents
 
-			QString temp=edView->editor->fileName();
-			temp=temp.replace(QDir::separator(),"/");
-			documents.bibTeXFilesModified = documents.bibTeXFilesModified  || documents.mentionedBibTeXFiles.contains(temp);//call bibtex on next compilation (this would also set as soon as the user switch to a tex file, but he could compile before switching)
+			if (edView->editor->fileName().endsWith(".bib")) {
+				QString temp=edView->editor->fileName();
+				temp=temp.replace(QDir::separator(),"/");
+				documents.bibTeXFilesModified = documents.bibTeXFilesModified  || documents.mentionedBibTeXFiles.contains(temp);//call bibtex on next compilation (this would also set as soon as the user switch to a tex file, but he could compile before switching)
+			}
 		}
 		//currentEditor()->save();
 		//UpdateCaption();
