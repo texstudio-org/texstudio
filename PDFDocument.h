@@ -291,6 +291,8 @@ private slots:
 
 	void followingToggled();
 
+	void jumpToPage();
+
 	void search(bool backward, bool incremental);
 	void setZoom();
 signals:
@@ -321,6 +323,9 @@ private:
 	QScrollArea	*scrollArea;
 	QButtonGroup	*toolButtonGroup;
 	QToolButton *comboZoom;
+	QLineEdit *leCurrentPage;
+	QLabel *pageCountLabel;
+	QIntValidator *leCurrentPageValidator;
 
 	QLabel *pageLabel;
 	QLabel *scaleLabel;

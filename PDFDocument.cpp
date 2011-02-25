@@ -1355,6 +1355,18 @@ PDFDocument::init()
 	toolBar->addWidget(comboZoom);
 	addAction(toolBar->toggleViewAction());
 
+	leCurrentPage=new QLineEdit(toolBar);
+	leCurrentPage->setMaxLength(5);
+	leCurrentPage->setFixedWidth(fontMetrics.width("#####"));
+	leCurrentPageValidator=new QIntValidator(1,99999,leCurrentPage);
+	leCurrentPage->setValidator(leCurrentPageValidator);
+	leCurrentPage->setText("1");
+	connect(leCurrentPage,SIGNAL(returnPressed()),this,SLOT(jumpToPage()));
+	pageCountLabel=new QLabel(toolBar);
+	pageCountLabel->setText(tr("of %1").arg(1));
+	toolBar->addWidget(leCurrentPage);
+	toolBar->addWidget(pageCountLabel);
+
 	scaleLabel = new QLabel();
 	statusBar()->addPermanentWidget(scaleLabel);
 	scaleLabel->setFrameStyle(QFrame::StyledPanel);
@@ -1577,6 +1589,11 @@ void PDFDocument::reloadWhenIdle()
 
 void PDFDocument::runExternalViewer(){
 	emit runCommand(externalViewerCmdLine, false);
+}
+
+void PDFDocument::jumpToPage(){
+    int index=leCurrentPage->text().toInt();
+    pdfWidget->goToPage(index-1);
 }
 
 void PDFDocument::closeSomething(){
@@ -1822,6 +1839,9 @@ void PDFDocument::showPage(int page)
 	Q_ASSERT(document);
 	if (!document) return;
 	pageLabel->setText(tr("page %1 of %2").arg(page).arg(document->numPages()));
+	pageCountLabel->setText(tr("of %1").arg(document->numPages()));
+	leCurrentPage->setText(QString("%1").arg(page));
+	leCurrentPageValidator->setTop(document->numPages());
 }
 
 void PDFDocument::showScale(qreal scale)
