@@ -112,6 +112,7 @@ QDocumentSelection LatexDocument::sectionSelection(StructureEntry* section){
 void LatexDocument::clearStructure() {
 	mUserCommandList.clear();
 	mLabelItem.clear();
+        mRefItem.clear();
 	mMentionedBibTeXFiles.clear();
 
 	mAppendixLine=0;
