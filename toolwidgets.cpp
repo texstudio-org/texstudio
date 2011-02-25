@@ -280,6 +280,13 @@ void OutputViewWidget::setMessage(const QString &message){
 void OutputViewWidget::insertMessageLine(const QString &message){
 	OutputTextEdit->insertLine(message);
 }
+void OutputViewWidget::copy(){
+	if (tabbedLogView && OutputLayout->currentIndex() == LAYOUT_PAGE_ERRORS)
+		copyMessage();
+	else
+		OutputLogTextEdit->copy();
+}
+
 void OutputViewWidget::resetMessages(bool noTabChange){
 	OutputTextEdit->clear();
 	if(!noTabChange) logViewerTabBar->setCurrentIndex(0);
@@ -379,6 +386,9 @@ void OutputViewWidget::setSearchExpression(QString exp,bool isCase,bool isWord,b
 }
 int OutputViewWidget::getNextSearchResultColumn(QString text,int col){
         return searchResultModel->getNextSearchResultColumn(text,col);
+}
+bool OutputViewWidget::childHasFocus(){
+	return OutputLogTextEdit->hasFocus() || (tabbedLogView?OutputTable2->hasFocus():OutputTable->hasFocus());
 }
 
 //====================================================================

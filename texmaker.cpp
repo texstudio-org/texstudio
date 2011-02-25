@@ -1593,6 +1593,10 @@ void Texmaker::editCut() {
 }
 
 void Texmaker::editCopy() {
+	if ((!currentEditor() || !currentEditor()->hasFocus()) &&
+	    outputView->childHasFocus() ) {
+		outputView->copy();
+	}
 	if (!currentEditorView()) return;
 	currentEditorView()->editor->copy();
 }

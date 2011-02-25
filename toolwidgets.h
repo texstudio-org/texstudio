@@ -50,9 +50,11 @@ public:
 	bool isPreviewPanelVisible();
 	void setMessage(const QString &message); //set the message text (don't change page and no auto-show)
 	void insertMessageLine(const QString &message); //inserts the message text (don't change page and no auto-show)
-        void setSearchExpression(QString exp,bool isCase,bool isWord,bool isRegExp);
-        int getNextSearchResultColumn(QString text,int col);
+	void setSearchExpression(QString exp,bool isCase,bool isWord,bool isRegExp);
+	int getNextSearchResultColumn(QString text,int col);
+	bool childHasFocus();
 public slots:
+	void copy();
 	void resetMessages(bool noTabChange=false); //remove all messages and jumps to the message page (stays hidden if not visible)
 	void resetMessagesAndLog(bool noTabChange=false);
 	void resetLog(bool noTabChange=false);
