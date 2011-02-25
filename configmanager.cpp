@@ -1188,13 +1188,13 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 		if (i<recentFilesList.count()) {
 			act->setVisible(true);
 			char schar = '\0';
-			if (i <= 9) schar = i+'0';
-			else if (i <= 9+12) schar = i + 'a' - 10;
-			else if (i <= 21+9) schar = i + '!' - 22;
-			else if (i <= 30+5) schar = i + '+' - 31;
-			else if (i <= 35+7) schar = i + ':' - 36;
-			else if (i <= 42+5) schar = i + '[' - 43;
-			else if (i <= 47+4) schar = i + '{' - 48;
+			if (i+1 <= 9) schar = i+1+'0';
+			else if (i+1 <= 9+12) schar = i+1 + 'a' - 10;
+			else if (i+1 <= 21+9) schar = i+1 + '!' - 22;
+			else if (i+1 <= 30+5) schar = i+1 + '+' - 31;
+			else if (i+1 <= 35+7) schar = i+1 + ':' - 36;
+			else if (i+1 <= 42+5) schar = i+1 + '[' - 43;
+			else if (i+1 <= 47+4) schar = i+1 + '{' - 48;
 			act->setText((schar?QString("&%1 ").arg(schar):"")+recentFilesList.at(i));
 			act->setData(recentFilesList.at(i));
 		} else act->setVisible(false);
