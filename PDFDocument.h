@@ -101,7 +101,6 @@ private slots:
 	void goLast();
 	void doPageDialog();
 	
-	void fixedScale(qreal scale = 1.0);
 	void fitWidth(bool checked = true);
 	void zoomIn();
 	void zoomOut();
@@ -122,6 +121,7 @@ public slots:
 	void fitWindow(bool checked = true);
 	void setTool(int tool);
 	void syncWindowClick(int x, int y, bool activate, int page = -1);
+	void fixedScale(qreal scale = 1.0);
 
 signals:
 	void changedPage(int);
@@ -292,6 +292,7 @@ private slots:
 	void followingToggled();
 
 	void search(bool backward, bool incremental);
+	void setZoom();
 signals:
 	void reloaded();
 	void syncSource(const QString& sourceFile, int line, bool activate);
@@ -319,6 +320,7 @@ private:
 	PDFWidget	*pdfWidget;
 	QScrollArea	*scrollArea;
 	QButtonGroup	*toolButtonGroup;
+	QToolButton *comboZoom;
 
 	QLabel *pageLabel;
 	QLabel *scaleLabel;
