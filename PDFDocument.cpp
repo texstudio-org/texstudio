@@ -759,6 +759,14 @@ void PDFWidget::jumpToSource()
 
 void PDFWidget::wheelEvent(QWheelEvent *event)
 {
+    if(event->modifiers()==Qt::ControlModifier){
+        int numDegrees = event->delta() / 8;
+        if(numDegrees>0){
+            zoomIn();
+        }else{
+            zoomOut();
+        }
+    }else{
 	static QTime lastScrollTime = QTime::currentTime();
 	bool mayChangePage = true;
 	int numDegrees = event->delta() / 8;
@@ -788,6 +796,7 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 		lastScrollTime = QTime::currentTime();
 	}
 	event->accept();
+    }
 }
 
 void PDFWidget::setTool(int tool)
