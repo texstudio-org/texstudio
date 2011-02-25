@@ -1348,6 +1348,13 @@ PDFDocument::init()
 	connect(toolButtonGroup, SIGNAL(buttonClicked(int)), pdfWidget, SLOT(setTool(int)));
 	pdfWidget->setTool(kMagnifier);
 
+	QStringList lst;
+	lst << "25%" << "50%" << "75%" << "100%" << "150%" << "200%" << "300%" << "400%";
+	QFontMetrics fontMetrics(font());
+	comboZoom=createComboToolButton(toolBar,lst,0,fontMetrics,this,SLOT(setZoom()));
+	toolBar->addWidget(comboZoom);
+	addAction(toolBar->toggleViewAction());
+
 	scaleLabel = new QLabel();
 	statusBar()->addPermanentWidget(scaleLabel);
 	scaleLabel->setFrameStyle(QFrame::StyledPanel);
@@ -1889,6 +1896,18 @@ void PDFDocument::toggleFullScreen()
 void PDFDocument::resetMagnifier()
 {
 	pdfWidget->resetMagnifier();
+}
+
+void PDFDocument::setZoom(){
+    QAction *action=qobject_cast<QAction *>(sender());
+    QString text=action->text();
+    text.chop(1);
+    bool ok;
+    int factor=text.toInt(&ok);
+    if(ok){
+	pdfWidget->fixedScale(0.01*factor);
+    }
+    comboZoom->setDefaultAction(action);
 }
 
 void PDFDocument::setResolution(int res)
