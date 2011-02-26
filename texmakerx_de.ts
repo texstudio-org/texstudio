@@ -2774,6 +2774,10 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
         <source>Ctrl+M, F3</source>
         <translation></translation>
     </message>
+    <message>
+        <source>of %1</source>
+        <translation>von %1</translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
@@ -5952,6 +5956,22 @@ SInd Sie sicher, dass Sie weitermachen möchten ?</translation>
     <message>
         <source>check in whole directory ?</source>
         <translation>Check-in im ganzen Verzeichnis ?</translation>
+    </message>
+    <message>
+        <source>Parenthesis</source>
+        <translation>Klammer</translation>
+    </message>
+    <message>
+        <source>Select (inner)</source>
+        <translation>Wähle (innere)</translation>
+    </message>
+    <message>
+        <source>Select (outer)</source>
+        <translation>Wähle (äußere)</translation>
+    </message>
+    <message>
+        <source>Select (inverting)</source>
+        <translation>Wähle (invertieren)</translation>
     </message>
 </context>
 <context>

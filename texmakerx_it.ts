@@ -2484,6 +2484,10 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
         <source>Ctrl+M, F3</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>of %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
@@ -5283,6 +5287,22 @@ Are you sure you want to continue?</source>
     </message>
     <message>
         <source>check in whole directory ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Parenthesis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select (inner)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select (outer)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select (inverting)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
