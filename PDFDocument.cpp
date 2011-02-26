@@ -1351,7 +1351,7 @@ PDFDocument::init()
 	QStringList lst;
 	lst << "25%" << "50%" << "75%" << "100%" << "150%" << "200%" << "300%" << "400%";
 	QFontMetrics fontMetrics(font());
-	comboZoom=createComboToolButton(toolBar,lst,0,fontMetrics,this,SLOT(setZoom()));
+	comboZoom=createComboToolButton(toolBar,lst,0,fontMetrics,this,SLOT(setZoom()),"100%");
 	toolBar->addWidget(comboZoom);
 	addAction(toolBar->toggleViewAction());
 
