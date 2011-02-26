@@ -2302,6 +2302,10 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <source>Ctrl+M, F3</source>
         <translation>Ctrl+M, F3</translation>
     </message>
+    <message>
+        <source>of %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
@@ -4850,6 +4854,22 @@ Biztos, hogy folytatni akarja?</translation>
     <message>
         <source>C&amp;lear Inline Preview</source>
         <translation>&amp;Azonnali előnézet törlése</translation>
+    </message>
+    <message>
+        <source>Parenthesis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select (inner)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select (outer)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select (inverting)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
