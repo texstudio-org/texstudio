@@ -87,6 +87,8 @@
     <addaction name="actionSide_by_Side"/>
     <addaction name="separator"/>
     <addaction name="actionGo_to_Source"/>
+    <addaction name="separator"/>
+    <addaction name="actionNew_Window"/>
    </widget>
    <widget class="QMenu" name="menuEdit_2">
     <property name="title">
@@ -657,6 +659,11 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+M, F3</string>
+   </property>
+  </action>
+  <action name="actionNew_Window">
+   <property name="text">
+    <string>New Window</string>
    </property>
   </action>
  </widget>

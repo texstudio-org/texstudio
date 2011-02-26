@@ -1425,7 +1425,8 @@ PDFDocument::init()
 	connect(actionTile, SIGNAL(triggered()), SLOT(tileWindows()));
 	connect(actionSide_by_Side, SIGNAL(triggered()), this, SLOT(sideBySide()));
 	connect(actionGo_to_Source, SIGNAL(triggered()), this, SLOT(goToSource()));
-	
+	connect(actionNew_Window, SIGNAL(triggered()), SIGNAL(triggeredClone()));
+
 	connect(actionScrolling_follows_cursor, SIGNAL(toggled(bool)), SLOT(followingToggled()));
 	connect(actionCursor_follows_scrolling, SIGNAL(toggled(bool)), SLOT(followingToggled()));
 
@@ -1514,7 +1515,14 @@ void PDFDocument::closeEvent(QCloseEvent *event)
 	deleteLater();
 }
 
-void PDFDocument::loadFile(const QString &fileName, const QString& externalViewer)
+void PDFDocument::syncFromView(const QString& pdfFile, const QString& externalViewer, int page){
+	if (pdfFile != curFile || externalViewerCmdLine != externalViewer)
+		loadFile(pdfFile, externalViewer, false);
+	if (page != widget()->getCurrentPageIndex())
+		widget()->goToPage(page);
+}
+
+void PDFDocument::loadFile(const QString &fileName, const QString& externalViewer, bool alert)
 {
 	externalViewerCmdLine = externalViewer;
 	setCurrentFile(fileName);
@@ -1525,10 +1533,12 @@ void PDFDocument::loadFile(const QString &fileName, const QString& externalViewe
 			watcher->removePaths(files); // in case we ever load different files into the same widget
 		watcher->addPath(curFile);
 	}
-	raise();
-	show();
-	setFocus();
-	if (scrollArea) scrollArea->setFocus();
+	if (alert) {
+		raise();
+		show();
+		setFocus();
+		if (scrollArea) scrollArea->setFocus();
+	}
 }
 
 void PDFDocument::reload()
@@ -1876,6 +1886,7 @@ void PDFDocument::enablePageActions(int pageIndex)
 	if (!pdfWidget || !globalConfig) return;
 	if (globalConfig->followFromScroll)
 		pdfWidget->syncWindowClick(pdfWidget->width()/2, pdfWidget->height()/2, false);
+	emit syncView(curFile, externalViewerCmdLine, widget()->getCurrentPageIndex());;
 }
 
 void PDFDocument::enableZoomActions(qreal scaleFactor)
