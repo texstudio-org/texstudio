@@ -233,8 +233,8 @@ public:
 			return docList;
 		}
 
-	QString fileName() const
-		{ return curFile; }
+	QString fileName() const { return curFile; }
+	QString externalViewer() const { return externalViewerCmdLine; }
 
 	void zoomToRight(QWidget *otherWindow);
 	void showScale(qreal scale);
@@ -273,7 +273,8 @@ public slots:
 	void goToSource();
 	void toggleFullScreen();
 	void syncFromSource(const QString& sourceFile, int lineNo, bool activatePreview); //lineNo 0 based
-	void loadFile(const QString &fileName, const QString& externalViewer);
+	void syncFromView(const QString& pdfFile, const QString& externalViewer, int page);
+	void loadFile(const QString &fileName, const QString& externalViewer, bool alert = true);
 
 private slots:
 	void enablePageActions(int);
@@ -297,7 +298,8 @@ private slots:
 	void setZoom();
 signals:
 	void reloaded();
-	void syncSource(const QString& sourceFile, int line, bool activate);
+	void syncSource(const QString& sourceFile, int line, bool activate); //view -> source
+	void syncView(const QString& pdfFile, const QString& externalViewer, int page); //view -> other view
 	void fileDropped(const QUrl& url);
 
 	void runCommand(const QString& command, bool waitForEnd);
@@ -308,6 +310,8 @@ signals:
 	void triggeredPlaceOnLeft();
 	void triggeredConfigure();
 	void triggeredQuickBuild();
+
+	void triggeredClone();
 
 private:
 	void init();

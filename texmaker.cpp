@@ -1505,7 +1505,8 @@ bool Texmaker::closeAllFilesAsking(){
 			documents.deleteDocument(currentEditorView()->document);
 	}
 #ifndef NO_POPPLER_PREVIEW
-	if (pdfviewerWindow) pdfviewerWindow->close();
+	foreach (PDFDocument* viewer, PDFDocument::documentList())
+		viewer->close();
 #endif
 	updateOpenDocumentMenu();
 	return true;
@@ -3003,18 +3004,14 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,int compileLatex, QSt
 			if (externalViewer.startsWith('/')) externalViewer.remove(0,1);
 		}
 		externalViewer = BuildManager::parseExtendedCommandLine(externalViewer, finame, getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1);
-		if (!pdfviewerWindow) {
-			pdfviewerWindow=new PDFDocument(configManager.pdfDocumentConfig);
-			connect(pdfviewerWindow, SIGNAL(triggeredAbout()), SLOT(HelpAbout()));
-			connect(pdfviewerWindow, SIGNAL(triggeredManual()), SLOT(UserManualHelp()));
-			connect(pdfviewerWindow, SIGNAL(triggeredQuit()), SLOT(fileExit()));
-			connect(pdfviewerWindow, SIGNAL(triggeredConfigure()), SLOT(GeneralOptions()));
-			connect(pdfviewerWindow, SIGNAL(triggeredQuickBuild()), SLOT(QuickBuild()));
-			connect(pdfviewerWindow, SIGNAL(syncSource(const QString&, int, bool)), SLOT(syncFromViewer(const QString &, int, bool)));
-			connect(pdfviewerWindow, SIGNAL(runCommand(const QString&, bool)), SLOT(runCommand(const QString&, bool)));
+		if (PDFDocument::documentList().isEmpty()) {
+			newPdfPreviewer();
+			Q_ASSERT(!PDFDocument::documentList().isEmpty());
 		}
-		pdfviewerWindow->loadFile(pdfFile,externalViewer);
-		pdfviewerWindow->syncFromSource(getCurrentFileName(), currentEditorView()->editor->cursor().lineNumber(), true);
+		foreach (PDFDocument* viewer, PDFDocument::documentList()) {
+			viewer->loadFile(pdfFile,externalViewer);
+			viewer->syncFromSource(getCurrentFileName(), currentEditorView()->editor->cursor().lineNumber(), true);
+		}
 #else
 		QMessageBox::critical(this, "TexMakerX", tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of TexMakerX that was compiled without the internal pdf viewer."), QMessageBox::Ok);
 #endif
@@ -4007,6 +4004,29 @@ void Texmaker::viewExpandBlock() {
 	currentEditorView()->foldBlockAt(true,currentEditorView()->editor->cursor().lineNumber());
 }
 
+void Texmaker::newPdfPreviewer(){
+	PDFDocument* pdfviewerWindow=new PDFDocument(configManager.pdfDocumentConfig);
+	connect(pdfviewerWindow, SIGNAL(triggeredAbout()), SLOT(HelpAbout()));
+	connect(pdfviewerWindow, SIGNAL(triggeredManual()), SLOT(UserManualHelp()));
+	connect(pdfviewerWindow, SIGNAL(triggeredQuit()), SLOT(fileExit()));
+	connect(pdfviewerWindow, SIGNAL(triggeredConfigure()), SLOT(GeneralOptions()));
+	connect(pdfviewerWindow, SIGNAL(triggeredQuickBuild()), SLOT(QuickBuild()));
+	connect(pdfviewerWindow, SIGNAL(syncSource(const QString&, int, bool)), SLOT(syncFromViewer(const QString &, int, bool)));
+	connect(pdfviewerWindow, SIGNAL(runCommand(const QString&, bool)), SLOT(runCommand(const QString&, bool)));
+	connect(pdfviewerWindow, SIGNAL(triggeredClone()), SLOT(newPdfPreviewer()));
+	foreach (PDFDocument* doc, PDFDocument::documentList()) {
+		if (doc == pdfviewerWindow) continue;
+		connect(doc, SIGNAL(syncView(QString,QString,int)), pdfviewerWindow, SLOT(syncFromView(QString,QString,int)));
+		connect(pdfviewerWindow, SIGNAL(syncView(QString,QString,int)), doc, SLOT(syncFromView(QString,QString,int)));
+	}
+
+	PDFDocument* from = qobject_cast<PDFDocument*>(sender());
+	if (from) {
+		pdfviewerWindow->loadFile(from->fileName(), from->externalViewer(), true);
+		pdfviewerWindow->widget()->goToPage(from->widget()->getCurrentPageIndex());
+	}
+}
+
 void Texmaker::masterDocumentChanged(LatexDocument * doc){
 	Q_UNUSED(doc);
 	Q_ASSERT(documents.singleMode()==!documents.masterDocument);
@@ -4649,8 +4669,9 @@ void Texmaker::cursorPositionChanged(){
 		structureTreeView->scrollTo(model->highlightedEntry());
 
 #ifndef NO_POPPLER_PREVIEW
-	if (pdfviewerWindow && pdfviewerWindow->followCursor())
-		pdfviewerWindow->syncFromSource(getCurrentFileName(), currentLine, false);
+	foreach (PDFDocument* viewer, PDFDocument::documentList())
+		if (viewer->followCursor())
+			viewer->syncFromSource(getCurrentFileName(), currentLine, false);
 #endif
 }
 
