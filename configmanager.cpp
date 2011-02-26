@@ -1088,7 +1088,7 @@ bool ConfigManager::execConfigDialog() {
 		//  interface
 		if (changedProperties.contains(&interfaceFontFamily) || changedProperties.contains(&interfaceFontSize))
 			QApplication::setFont(QFont(interfaceFontFamily, interfaceFontSize));
-		if (changedProperties.contains(&displayedInterfaceStyle) || changedProperties.contains(&modernStyle) || changedProperties.contains(&useTexmakerPalette)){
+		if (changedProperties.contains(&interfaceStyle) || changedProperties.contains(&modernStyle) || changedProperties.contains(&useTexmakerPalette)){
 			if (interfaceStyle==tr("default")) interfaceStyle="";
 			setInterfaceStyle();
 		}
