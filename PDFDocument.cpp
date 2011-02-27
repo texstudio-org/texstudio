@@ -415,18 +415,19 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	qreal newDpi = dpi * scaleFactor;
 	QRect newRect = rect();
 	if (pages.size() > 0 && (pages.first() != imagePage || newDpi != imageDpi || newRect != imageRect)) {
-		if (pages.size() == 1) {
+		if (gridx<=1 && gridy<=1) {
 			image = pages.first()->renderToImage(dpi * scaleFactor, dpi * scaleFactor,
 							rect().x(), rect().y(), rect().width(), rect().height());
 		} else {
 			image = QImage(newRect.width(), newRect.height(), image.isNull()?QImage::Format_RGB32:image.format());
+			image.fill(QApplication::palette().color(QPalette::Dark).rgb());
 			QPainter p;
 			p.begin(&image);
 			for (int i=0;i<pages.size();i++){
 				QRect drawTo = gridPageRect(i);
 				QImage temp = pages[i]->renderToImage(
-							  dpi * scaleFactor * drawTo.width() / rect().width(),
-							  dpi * scaleFactor * drawTo.height() / rect().height(),
+							  dpi * scaleFactor,
+							  dpi * scaleFactor,
 							  0,0,drawTo.width(), drawTo.height());
 				p.drawImage(drawTo.left(), drawTo.top(), temp);
 			}
@@ -969,8 +970,12 @@ void PDFWidget::updateStatusBar()
 }
 
 void PDFWidget::setGridSize(int gx, int gy){
+	if (gridx == gx && gridy == gy)
+		return;
 	gridx = gx;
 	gridy = gy;
+	reloadPage();
+	update();
 }
 
 void PDFWidget::goFirst()
@@ -1317,11 +1322,9 @@ QSizeF PDFWidget::maxPageSizeF() const{
 	return maxPageSize;
 }
 QSizeF PDFWidget::gridSizeF() const{
-	int gridcols = qMin(pages.size(), gridx);
-	int gridrows = qMin(pages.size() / gridx, gridy);
 	QSizeF maxPageSize = maxPageSizeF();
-	return QSizeF(maxPageSize.width()*gridcols + GridBorder*(gridcols-1),
-			maxPageSize.height()*gridrows + GridBorder*(gridrows-1));
+	return QSizeF(maxPageSize.width()*gridx + GridBorder*(gridx-1),
+			maxPageSize.height()*gridy + GridBorder*(gridy-1));
 }
 
 
@@ -1501,6 +1504,14 @@ PDFDocument::init()
 	connect(actionActual_Size, SIGNAL(triggered()), pdfWidget, SLOT(fixedScale()));
 	connect(actionFit_to_Width, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWidth(bool)));
 	connect(actionFit_to_Window, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWindow(bool)));
+
+	connect(actionGrid11, SIGNAL(triggered()), SLOT(setGrid()));
+	connect(actionGrid12, SIGNAL(triggered()), SLOT(setGrid()));
+	connect(actionGrid21, SIGNAL(triggered()), SLOT(setGrid()));
+	connect(actionGrid22, SIGNAL(triggered()), SLOT(setGrid()));
+	connect(actionGrid23, SIGNAL(triggered()), SLOT(setGrid()));
+	connect(actionGrid33, SIGNAL(triggered()), SLOT(setGrid()));
+
 	connect(actionZoom_In, SIGNAL(triggered()), pdfWidget, SLOT(zoomIn()));
 	connect(actionZoom_Out, SIGNAL(triggered()), pdfWidget, SLOT(zoomOut()));
 	connect(actionFull_Screen, SIGNAL(triggered()), this, SLOT(toggleFullScreen()));
@@ -1695,6 +1706,14 @@ void PDFDocument::reloadWhenIdle()
 void PDFDocument::runExternalViewer(){
 	emit runCommand(externalViewerCmdLine, false);
 }
+
+void PDFDocument::setGrid(){
+	REQUIRE(pdfWidget && sender());
+	QString gs = sender()->property("grid").toString();
+	REQUIRE(gs.size()==2)
+	pdfWidget->setGridSize(gs.at(0).toAscii()-'0', gs.at(1).toAscii()-'0');
+}
+
 
 void PDFDocument::jumpToPage(){
     int index=leCurrentPage->text().toInt();
