@@ -3073,7 +3073,7 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,int compileLatex, QSt
 		}
 		PROCESSRUNNING=false;
 		QApplication::restoreOverrideCursor();
-	} else stat2->setText(QString(" %1 ").arg(tr("Ready")));
+	}
 }
 
 void Texmaker::RunPreCompileCommand() {
