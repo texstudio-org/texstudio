@@ -782,9 +782,9 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
     if(event->modifiers()==Qt::ControlModifier){
         int numDegrees = event->delta() / 8;
         if(numDegrees>0){
-            zoomIn();
+            doZoom(event->pos(), 1);
         }else{
-            zoomOut();
+            doZoom(event->pos(), -1);
         }
     }else{
 	static QTime lastScrollTime = QTime::currentTime();
