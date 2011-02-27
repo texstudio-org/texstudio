@@ -2778,6 +2778,78 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
         <source>of %1</source>
         <translation>von %1</translation>
     </message>
+    <message>
+        <source>Grid</source>
+        <translation>Raster</translation>
+    </message>
+    <message>
+        <source>New Window</source>
+        <translation>Neues Fenster</translation>
+    </message>
+    <message>
+        <source>1x1</source>
+        <translation>1x1</translation>
+    </message>
+    <message>
+        <source>11</source>
+        <translation>1111</translation>
+    </message>
+    <message>
+        <source>2x1</source>
+        <translation>2x1</translation>
+    </message>
+    <message>
+        <source>21</source>
+        <translation>21</translation>
+    </message>
+    <message>
+        <source>1x2</source>
+        <translation>1x2</translation>
+    </message>
+    <message>
+        <source>12</source>
+        <translation>1212</translation>
+    </message>
+    <message>
+        <source>2x2</source>
+        <translation>2x2</translation>
+    </message>
+    <message>
+        <source>22</source>
+        <translation>22</translation>
+    </message>
+    <message>
+        <source>2x3</source>
+        <translation>2x3</translation>
+    </message>
+    <message>
+        <source>23</source>
+        <translation>23</translation>
+    </message>
+    <message>
+        <source>3x3</source>
+        <translation>3x3</translation>
+    </message>
+    <message>
+        <source>33</source>
+        <translation>33</translation>
+    </message>
+    <message>
+        <source>Custom...</source>
+        <translation>Benutzerdefiniert ...</translation>
+    </message>
+    <message>
+        <source>xx</source>
+        <translation>xx</translation>
+    </message>
+    <message>
+        <source>Single Page Step</source>
+        <translation>Ein-Seiten Schritte</translation>
+    </message>
+    <message>
+        <source>pages %1 to %2 of %3</source>
+        <translation>Seiten %1 bis %2 von %3</translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
