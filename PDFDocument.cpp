@@ -50,6 +50,7 @@
 #include <QToolTip>
 
 #include <math.h>
+#include "universalinputdialog.h"
 
 #include "smallUsefulFunctions.h"
 #include "PDFDocument_config.h"
@@ -312,6 +313,7 @@ PDFWidget::PDFWidget()
 	, scaleOption(kFixedMag)
 	, magnifier(NULL)
 	, usingTool(kNone)
+	, singlePageStep(true)
 	, gridx(1), gridy(1)
 {
 	Q_ASSERT(globalConfig);
@@ -823,6 +825,7 @@ void PDFWidget::setTool(int tool)
 	updateCursor();
 }
 
+
 void PDFWidget::syncWindowClick(int x, int y, bool activate, int page){
 	QPointF pagePos(x / scaleFactor * 72.0 / dpi,
 			y / scaleFactor * 72.0 / dpi);
@@ -975,43 +978,45 @@ void PDFWidget::setGridSize(int gx, int gy){
 	gridx = gx;
 	gridy = gy;
 	reloadPage();
-	update();
+	//update();
 }
+
+int PDFWidget::visiblePages() const {
+	return pages.size();
+}
+
+int PDFWidget::pageStep() const {
+	if (singlePageStep) return 1;
+	return gridx*gridy;
+}
+
+void PDFWidget::setSinglePageStep(bool step){
+	if (singlePageStep == step)
+		return;
+	singlePageStep = step;
+	goToPage(pageIndex);
+}
+
 
 void PDFWidget::goFirst()
 {
-	if (pageIndex != 0) {
-		pageIndex = 0;
-		reloadPage();
-		update();
-	}
+	goToPage(0);
 }
 
 void PDFWidget::goPrev()
 {
-	if (pageIndex > 0) {
-		--pageIndex;
-		reloadPage();
-		update();
-	}
+	goToPage(pageIndex - pageStep());
 }
 
 void PDFWidget::goNext()
 {
-	if (document != NULL && pageIndex < document->numPages() - 1) {
-		++pageIndex;
-		reloadPage();
-		update();
-	}
+	goToPage(pageIndex + pageStep());
 }
 
 void PDFWidget::goLast()
 {
-	if (document != NULL && pageIndex != document->numPages() - 1) {
-		pageIndex = document->numPages() - 1;
-		reloadPage();
-		update();
-	}
+	if (!document) return;
+	goToPage(document->numPages() - 1);
 }
 
 void PDFWidget::upOrPrev()
@@ -1127,6 +1132,7 @@ void PDFWidget::doPageDialog()
 
 void PDFWidget::goToPage(int p)
 {
+	p -= p % pageStep();
 	if (p != pageIndex && document != NULL) {
 		if (p >= 0 && p < document->numPages()) {
 			pageIndex = p;
@@ -1511,6 +1517,9 @@ PDFDocument::init()
 	connect(actionGrid22, SIGNAL(triggered()), SLOT(setGrid()));
 	connect(actionGrid23, SIGNAL(triggered()), SLOT(setGrid()));
 	connect(actionGrid33, SIGNAL(triggered()), SLOT(setGrid()));
+	connect(actionCustom, SIGNAL(triggered()), SLOT(setGrid()));
+
+	connect(actionSinglePageStep, SIGNAL(toggled(bool)), pdfWidget, SLOT(setSinglePageStep(bool)));
 
 	connect(actionZoom_In, SIGNAL(triggered()), pdfWidget, SLOT(zoomIn()));
 	connect(actionZoom_Out, SIGNAL(triggered()), pdfWidget, SLOT(zoomOut()));
@@ -1710,10 +1719,18 @@ void PDFDocument::runExternalViewer(){
 void PDFDocument::setGrid(){
 	REQUIRE(pdfWidget && sender());
 	QString gs = sender()->property("grid").toString();
-	REQUIRE(gs.size()==2)
-	pdfWidget->setGridSize(gs.at(0).toAscii()-'0', gs.at(1).toAscii()-'0');
+	if (gs == "xx") {
+		UniversalInputDialog d;
+		int x=1,y=1;
+		d.addVariable(&x ,"X-Grid:");
+		d.addVariable(&y ,"Y-Grid:");
+		if (d.exec())
+			pdfWidget->setGridSize(x,y);
+	} else {
+		REQUIRE(gs.size()==2)
+		pdfWidget->setGridSize(gs.at(0).toAscii()-'0', gs.at(1).toAscii()-'0');
+	}
 }
-
 
 void PDFDocument::jumpToPage(){
     int index=leCurrentPage->text().toInt();
@@ -1962,7 +1979,8 @@ void PDFDocument::showPage(int page)
 {
 	Q_ASSERT(document);
 	if (!document) return;
-	pageLabel->setText(tr("page %1 of %2").arg(page).arg(document->numPages()));
+	if (pdfWidget->visiblePages() <= 1) pageLabel->setText(tr("page %1 of %2").arg(page).arg(document->numPages()));
+	else pageLabel->setText(tr("pages %1 to %2 of %3").arg(page).arg(page+pdfWidget->visiblePages()-1).arg(document->numPages()));
 	pageCountLabel->setText(tr("of %1").arg(document->numPages()));
 	leCurrentPage->setText(QString("%1").arg(page));
 	leCurrentPageValidator->setTop(document->numPages());

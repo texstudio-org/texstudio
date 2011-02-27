@@ -65,6 +65,9 @@
      <addaction name="actionGrid22"/>
      <addaction name="actionGrid23"/>
      <addaction name="actionGrid33"/>
+     <addaction name="actionCustom"/>
+     <addaction name="separator"/>
+     <addaction name="actionSinglePageStep"/>
     </widget>
     <addaction name="actionFirst_Page"/>
     <addaction name="actionPrevious_Page"/>
@@ -724,6 +727,25 @@
    </property>
    <property name="grid" stdset="0">
     <string>33</string>
+   </property>
+  </action>
+  <action name="actionCustom">
+   <property name="text">
+    <string>Custom...</string>
+   </property>
+   <property name="grid" stdset="0">
+    <string>xx</string>
+   </property>
+  </action>
+  <action name="actionSinglePageStep">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Single Page Step</string>
    </property>
   </action>
  </widget>

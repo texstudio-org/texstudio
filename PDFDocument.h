@@ -94,7 +94,8 @@ public:
 	void reloadPage();
 	void updateStatusBar();
 	void setGridSize(int gx, int gy);
-
+	int visiblePages() const;
+	int pageStep() const;
 private slots:
 	void goFirst();
 	void goPrev();
@@ -118,6 +119,7 @@ private slots:
 	void clearHighlight();
 	
 public slots:
+	void setSinglePageStep(bool step);
 	void windowResized();
 	void fitWindow(bool checked = true);
 	void setTool(int tool);
@@ -202,6 +204,7 @@ private:
 	PDFMagnifier	*magnifier;
 	int		currentTool;	// the current tool selected in the toolbar
 	int		usingTool;	// the tool actually being used in an ongoing mouse drag
+	bool		singlePageStep;
 
 	int gridx, gridy;
 
