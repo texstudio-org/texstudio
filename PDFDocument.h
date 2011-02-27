@@ -298,6 +298,8 @@ private slots:
 
 	void runExternalViewer();
 
+	void setGrid();
+
 	void closeSomething();
 	void tileWindows();
 	void stackWindows();
