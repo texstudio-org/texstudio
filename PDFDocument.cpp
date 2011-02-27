@@ -230,7 +230,7 @@ PDFMagnifier::PDFMagnifier(QWidget *parent, qreal inDpi)
 {
 }
 
-void PDFMagnifier::setPage(Poppler::Page *p, qreal scale)
+void PDFMagnifier::setPage(Poppler::Page *p, qreal scale, const QPoint& offset)
 {
 	page = p;
 	scaleFactor = scale * kMagFactor;
@@ -252,7 +252,7 @@ void PDFMagnifier::setPage(Poppler::Page *p, qreal scale)
 					image = page->renderToImage(dpi, dpi, loc.x(), loc.y(), size.width(), size.height());
 				imagePage = page;
 				imageDpi = dpi;
-				imageLoc = loc;
+				imageLoc = loc + offset * kMagFactor;
 				imageSize = size;
 			}
 		}
@@ -265,7 +265,7 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 	QPainter painter(this);
 	drawFrame(&painter);
 	painter.drawImage(event->rect(), image,
-		event->rect().translated((x() * kMagFactor - imageLoc.x()) + width() / 2,
+		event->rect().translated((x() * kMagFactor - imageLoc.x()) + width() / 2  ,
 								 (y() * kMagFactor - imageLoc.y()) + height() / 2));
 
 	if (globalConfig->magnifierBorder) {
@@ -456,11 +456,13 @@ void PDFWidget::useMagnifier(const QMouseEvent *inEvent)
 {
 	Q_ASSERT(globalConfig);
 	if (!globalConfig) return;
-
+	int pageIndex = gridPageIndex(inEvent->pos());
+	if (pageIndex < 0)
+		return;
 	if (!magnifier)
 		magnifier = new PDFMagnifier(this, dpi);
 	magnifier->setFixedSize(globalConfig->magnifierSize * 4 / 3, globalConfig->magnifierSize);
-	magnifier->setPage(pages.size()?0:pages.first(), scaleFactor); //TODO: multipages
+	magnifier->setPage(pages[pageIndex], scaleFactor, gridPagePosition(pageIndex));
 	// this was in the hope that if the mouse is released before the image is ready,
 	// the magnifier wouldn't actually get shown. but it doesn't seem to work that way -
 	// the MouseMove event that we're posting must end up ahead of the mouseUp
@@ -943,7 +945,7 @@ void PDFWidget::reloadPage()
 		delete page;
 	pages.clear();
 	if (magnifier != NULL)
-		magnifier->setPage(NULL, 0);
+		magnifier->setPage(NULL, 0, QPoint());
 	imagePage = NULL;
 	image = QImage();
 	highlightPath = QPainterPath();

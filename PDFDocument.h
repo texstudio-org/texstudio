@@ -49,7 +49,7 @@ class PDFMagnifier : public QLabel
 
 public:
 	PDFMagnifier(QWidget *parent, qreal inDpi);
-	void setPage(Poppler::Page *p, qreal scale);
+	void setPage(Poppler::Page *p, qreal scale, const QPoint& offset);
 
 protected:
 	virtual void paintEvent(QPaintEvent *event);
