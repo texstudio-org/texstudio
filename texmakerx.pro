@@ -471,9 +471,9 @@ isEmpty(NO_POPPLER_PREVIEW) {
     }
     win32 { 
 	INCLUDEPATH  += ./include_win32
-	LIBS += -lzlib \
-	    -lpoppler-qt4 \
-	    -lpoppler
+	LIBS += ./zlib1.dll \
+	    ./libpoppler-qt4.dll \
+	    ./libpoppler.dll
     }
 }
 !isEmpty(NO_POPPLER_PREVIEW) { 
