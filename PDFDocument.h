@@ -93,6 +93,7 @@ public:
 	int getCurrentPageIndex() { return pageIndex; }
 	void reloadPage();
 	void updateStatusBar();
+	void setGridSize(int gx, int gy);
 
 private slots:
 	void goFirst();
@@ -154,10 +155,20 @@ private:
 	void goToDestination(const Poppler::LinkDestination& dest);
 	void doLink(const Poppler::Link *link);
 	void doZoom(const QPoint& clickPos, int dir);
+
+	QPoint gridPagePosition(int pageIndex) const;
+	QRect gridPageRect(int pageIndex) const;
+	int gridPageIndex(const QPoint& position) const;
+	Poppler::Page* gridPage(const QPoint& position) const;
+	void gridMapToScaledPosition(const QPoint& position, Poppler::Page*& page, QPointF& scaledPos) const;
+	QPoint gridMapFromScaledPosition(const QPointF& scaledPos) const;
+	QSizeF maxPageSizeF() const;
+	QSizeF gridSizeF() const;
+
 	QScrollArea* getScrollArea();
 	
 	Poppler::Document	*document;
-	Poppler::Page		*page;
+	QList<Poppler::Page*> pages;
 	Poppler::Link		*clickedLink;
 
 	int pageIndex;
@@ -191,6 +202,8 @@ private:
 	PDFMagnifier	*magnifier;
 	int		currentTool;	// the current tool selected in the toolbar
 	int		usingTool;	// the tool actually being used in an ongoing mouse drag
+
+	int gridx, gridy;
 
 	QPainterPath	highlightPath;
 	QTimer highlightRemover;
