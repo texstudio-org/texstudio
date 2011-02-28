@@ -979,7 +979,10 @@ void PDFWidget::setGridSize(int gx, int gy){
 		return;
 	gridx = gx;
 	gridy = gy;
-	reloadPage();
+	int pi = pageIndex;
+	goToPage(pageIndex);
+	if (pi == pageIndex)
+		reloadPage();
 	//update();
 }
 
@@ -1135,7 +1138,7 @@ void PDFWidget::doPageDialog()
 void PDFWidget::goToPage(int p)
 {
 	p -= p % pageStep();
-	if (p != pageIndex && document != NULL) {
+	if (p != pageIndex && document != NULL) { //the first condition is important: it prevents a recursive sync crash
 		if (p >= 0 && p < document->numPages()) {
 			pageIndex = p;
 			reloadPage();
@@ -1633,6 +1636,8 @@ void PDFDocument::closeEvent(QCloseEvent *event)
 }
 
 void PDFDocument::syncFromView(const QString& pdfFile, const QString& externalViewer, int page){
+	if (!actionSynchronize_multiple_views->isChecked())
+		return;
 	if (pdfFile != curFile || externalViewerCmdLine != externalViewer)
 		loadFile(pdfFile, externalViewer, false);
 	if (page != widget()->getCurrentPageIndex())
@@ -2020,7 +2025,8 @@ void PDFDocument::enablePageActions(int pageIndex)
 	if (!pdfWidget || !globalConfig) return;
 	if (globalConfig->followFromScroll)
 		pdfWidget->syncWindowClick(pdfWidget->width()/2, pdfWidget->height()/2, false);
-	emit syncView(curFile, externalViewerCmdLine, widget()->getCurrentPageIndex());;
+	if (actionSynchronize_multiple_views->isChecked())
+		emit syncView(curFile, externalViewerCmdLine, widget()->getCurrentPageIndex());;
 }
 
 void PDFDocument::enableZoomActions(qreal scaleFactor)
