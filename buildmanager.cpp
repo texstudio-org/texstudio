@@ -990,9 +990,9 @@ void ProcessX::onError(ProcessError error){
 
 void ProcessX::onFinished(int error){
 	if (error)
-		emit processNotification("Process exited with error(s)");
+                emit processNotification(tr("Process exited with error(s)"));
 	else
-		emit processNotification("Process exited normally");
+                emit processNotification(tr("Process exited normally"));
 }
 
 #ifdef PROFILE_PROCESSES

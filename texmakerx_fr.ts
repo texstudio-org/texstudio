@@ -2760,6 +2760,14 @@ Continuer tout de même ?</translation>
         <source>Error: Command crashed: %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Process exited with error(s)</source>
+        <translation type="unfinished">Processus terminé avec une ou plusieurs erreurs</translation>
+    </message>
+    <message>
+        <source>Process exited normally</source>
+        <translation type="unfinished">Processus terminé normalement</translation>
+    </message>
 </context>
 <context>
     <name>QApplication</name>
