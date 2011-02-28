@@ -287,7 +287,7 @@ public slots:
 	void doFindDialog();
 	void doFindAgain();
 	void goToSource();
-	void toggleFullScreen();
+	void toggleFullScreen(const bool fullscreen);
 	void syncFromSource(const QString& sourceFile, int lineNo, bool activatePreview); //lineNo 0 based
 	void syncFromView(const QString& pdfFile, const QString& externalViewer, int page);
 	void loadFile(const QString &fileName, const QString& externalViewer, bool alert = true);
@@ -352,7 +352,7 @@ private:
 	QLabel *pageLabel;
 	QLabel *scaleLabel;
 	QList<QAction*> recentFileActions;
-	QShortcut *exitFullscreen;
+	QShortcut* exitFullscreen;
 
 	QFileSystemWatcher *watcher;
 	QTimer *reloadTimer;

@@ -1373,7 +1373,7 @@ QScrollArea* PDFWidget::getScrollArea()
 QList<PDFDocument*> PDFDocument::docList;
 
 PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig)
-	: watcher(NULL), reloadTimer(NULL), scanner(NULL)
+	: exitFullscreen(0), watcher(NULL), reloadTimer(NULL), scanner(NULL)
 {
 	Q_ASSERT(pdfConfig);
 	Q_ASSERT(!globalConfig || (globalConfig == pdfConfig));
@@ -1528,7 +1528,8 @@ PDFDocument::init()
 
 	connect(actionZoom_In, SIGNAL(triggered()), pdfWidget, SLOT(zoomIn()));
 	connect(actionZoom_Out, SIGNAL(triggered()), pdfWidget, SLOT(zoomOut()));
-	connect(actionFull_Screen, SIGNAL(triggered()), this, SLOT(toggleFullScreen()));
+	connect(actionFull_Screen, SIGNAL(triggered(bool)), this, SLOT(toggleFullScreen(bool)));
+	connect(actionPresentation, SIGNAL(triggered(bool)), this, SLOT(toggleFullScreen(bool)));
 	connect(pdfWidget, SIGNAL(changedZoom(qreal)), this, SLOT(enableZoomActions(qreal)));
 	connect(pdfWidget, SIGNAL(changedScaleOption(autoScaleOption)), this, SLOT(adjustScaleActions(autoScaleOption)));
 	connect(pdfWidget, SIGNAL(syncClick(int, const QPointF&, bool)), this, SLOT(syncClick(int, const QPointF&, bool)));
@@ -1580,11 +1581,7 @@ PDFDocument::init()
 	addDockWidget(Qt::BottomDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
 	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
-	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(pageChanged(int)));
-
-
-	exitFullscreen = NULL;
-	
+	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(pageChanged(int)));	
 }
 
 bool PDFDocument::followCursor() const{
@@ -1745,7 +1742,8 @@ void PDFDocument::jumpToPage(){
 }
 
 void PDFDocument::closeSomething(){
-	if (dwFonts && dwFonts->isVisible()) dwFonts->hide();
+	if (actionFull_Screen->isChecked() || actionPresentation->isChecked()) toggleFullScreen(false);
+	else if (dwFonts && dwFonts->isVisible()) dwFonts->hide();
 	else if (dwSearch && dwSearch->isVisible()) dwSearch->hide();
 	else if (dwInfo && dwInfo->isVisible()) dwInfo->hide();
 	else if (dwOutline && dwOutline->isVisible()) dwOutline->hide();
@@ -2041,26 +2039,42 @@ void PDFDocument::adjustScaleActions(autoScaleOption scaleOption)
 	actionFit_to_Width->setChecked(scaleOption == kFitWidth);
 }
 
-void PDFDocument::toggleFullScreen()
+void PDFDocument::toggleFullScreen(bool fullscreen)
 {
-	if (windowState() & Qt::WindowFullScreen) {
-		// exiting full-screen mode
-		statusBar()->show();
-		toolBar->show();
-		showNormal();
-		pdfWidget->restoreState();
-		actionFull_Screen->setChecked(false);
-		delete exitFullscreen;
-	}
-	else {
+	if (fullscreen) {
 		// entering full-screen mode
 		statusBar()->hide();
 		toolBar->hide();
 		showFullScreen();
 		pdfWidget->saveState();
 		pdfWidget->fitWindow(true);
-		actionFull_Screen->setChecked(true);
-		exitFullscreen = new QShortcut(Qt::Key_Escape, this, SLOT(toggleFullScreen()));
+		if (sender() == actionPresentation){
+			menuBar()->hide();
+			actionFull_Screen->setChecked(false);
+			actionPresentation->setChecked(true);
+			exitFullscreen = new QShortcut(Qt::Key_Escape, this, SLOT(closeSomething())); //hiding the menubar disables normal shortcut
+		} else {
+			actionFull_Screen->setChecked(true);
+			actionPresentation->setChecked(false);
+			if (exitFullscreen) {
+				delete exitFullscreen;
+				exitFullscreen = 0;
+			}
+		}
+		//actionFull_Screen->setChecked(true);
+	} else {
+		// exiting full-screen mode
+		menuBar()->show();
+		statusBar()->show();
+		toolBar->show();
+		showNormal();
+		pdfWidget->restoreState();
+		actionFull_Screen->setChecked(false);
+		actionPresentation->setChecked(false);
+		if (exitFullscreen) {
+			delete exitFullscreen;
+			exitFullscreen = 0;
+		}
 	}
 }
 

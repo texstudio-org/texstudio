@@ -85,6 +85,7 @@
     <addaction name="menuGrid"/>
     <addaction name="separator"/>
     <addaction name="actionFull_Screen"/>
+    <addaction name="actionPresentation"/>
    </widget>
    <widget class="QMenu" name="menuWindow">
     <property name="title">
@@ -758,6 +759,14 @@
    </property>
    <property name="text">
     <string>Synchronize multiple views</string>
+   </property>
+  </action>
+  <action name="actionPresentation">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Presentation</string>
    </property>
   </action>
  </widget>
