@@ -3058,6 +3058,14 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
         <source>Error: Command crashed: %1</source>
         <translation>Kommando abgestürzt: %1</translation>
     </message>
+    <message>
+        <source>Process exited with error(s)</source>
+        <translation>Prozeß endete mit Fehler(n)</translation>
+    </message>
+    <message>
+        <source>Process exited normally</source>
+        <translation>Prozeß endete normal</translation>
+    </message>
 </context>
 <context>
     <name>QApplication</name>

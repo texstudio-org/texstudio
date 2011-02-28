@@ -2732,6 +2732,14 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
         <source>Error: Command crashed: %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Process exited with error(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Process exited normally</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QApplication</name>

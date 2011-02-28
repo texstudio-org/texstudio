@@ -2528,6 +2528,14 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <source>Error: Command crashed: %1</source>
         <translation>Hiba: a(z) %1. parancs összeomlást okozott</translation>
     </message>
+    <message>
+        <source>Process exited with error(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Process exited normally</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QApplication</name>
