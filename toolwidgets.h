@@ -53,6 +53,10 @@ public:
 	void setSearchExpression(QString exp,bool isCase,bool isWord,bool isRegExp);
 	int getNextSearchResultColumn(QString text,int col);
 	bool childHasFocus();
+        int getShownPage(){
+            return OutputLayout->currentIndex();
+        }
+
 public slots:
 	void copy();
 	void resetMessages(bool noTabChange=false); //remove all messages and jumps to the message page (stays hidden if not visible)

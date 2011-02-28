@@ -3039,7 +3039,7 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,int compileLatex, QSt
 	procX->setBuffer(buffer);
 
 	connect(procX, SIGNAL(readyReadStandardError()),this, SLOT(readFromStderr()));
-	if (procX->showStdout()) connect(procX, SIGNAL(readyReadStandardOutput()),this, SLOT(readFromStdoutput()));
+        if (procX->showStdout()) connect(procX, SIGNAL(readyReadStandardOutput()),this, SLOT(readFromStdoutput()));
 	connect(procX, SIGNAL(finished(int)),this, SLOT(SlotEndProcess(int)));
 
 	outputView->resetMessages();
@@ -3118,7 +3118,8 @@ void Texmaker::readFromStdoutput() {
 	QString t=QString(result).trimmed();
 	QString *buffer=procX->getBuffer();
 	if(buffer) buffer->append(t);
-	if (!t.isEmpty()) outputView->insertMessageLine(t+"\n");
+        if (!t.isEmpty() && outputView->getShownPage()==1) // LAYOUT_PAGE_LOG
+            outputView->insertMessageLine(t+"\n"); // show instant messages only in log view
 }
 
 void Texmaker::SlotEndProcess(int err) {
