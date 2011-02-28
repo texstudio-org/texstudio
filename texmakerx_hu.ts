@@ -2304,79 +2304,80 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>of %1</source>
-        <translation type="unfinished"></translation>
+        <translation>/ %1</translation>
     </message>
     <message>
         <source>Grid</source>
-        <translation type="unfinished"></translation>
+        <translation>Háló</translation>
     </message>
     <message>
         <source>New Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Új ablak</translation>
     </message>
     <message>
         <source>1x1</source>
-        <translation type="unfinished"></translation>
+        <translation>1x1</translation>
     </message>
     <message>
         <source>11</source>
-        <translation type="unfinished">11</translation>
+        <translatorcomment>11</translatorcomment>
+        <translation>11</translation>
     </message>
     <message>
         <source>2x1</source>
-        <translation type="unfinished"></translation>
+        <translation>2x1</translation>
     </message>
     <message>
         <source>21</source>
-        <translation type="unfinished">21</translation>
+        <translation>21</translation>
     </message>
     <message>
         <source>1x2</source>
-        <translation type="unfinished"></translation>
+        <translation>1x2</translation>
     </message>
     <message>
         <source>12</source>
-        <translation type="unfinished">12</translation>
+        <translation>12</translation>
     </message>
     <message>
         <source>2x2</source>
-        <translation type="unfinished"></translation>
+        <translation>2x2</translation>
     </message>
     <message>
         <source>22</source>
-        <translation type="unfinished">22</translation>
+        <translation>22</translation>
     </message>
     <message>
         <source>2x3</source>
-        <translation type="unfinished"></translation>
+        <translation>2x3</translation>
     </message>
     <message>
         <source>23</source>
-        <translation type="unfinished">23</translation>
+        <translation>23</translation>
     </message>
     <message>
         <source>3x3</source>
-        <translation type="unfinished"></translation>
+        <translation>3x3</translation>
     </message>
     <message>
         <source>33</source>
-        <translation type="unfinished">33</translation>
+        <translation>33</translation>
     </message>
     <message>
         <source>Custom...</source>
-        <translation type="unfinished"></translation>
+        <translation>Custom...</translation>
     </message>
     <message>
         <source>xx</source>
-        <translation type="unfinished"></translation>
+        <translation>xx</translation>
     </message>
     <message>
         <source>Single Page Step</source>
-        <translation type="unfinished"></translation>
+        <translation>Lapozás egy oldallal</translation>
     </message>
     <message>
         <source>pages %1 to %2 of %3</source>
-        <translation type="unfinished"></translation>
+        <translation>%1-%2/%3 oldal</translation>
     </message>
 </context>
 <context>
@@ -4929,19 +4930,19 @@ Biztos, hogy folytatni akarja?</translation>
     </message>
     <message>
         <source>Parenthesis</source>
-        <translation type="unfinished"></translation>
+        <translation>Zárójel</translation>
     </message>
     <message>
         <source>Select (inner)</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiválasztás (belső)</translation>
     </message>
     <message>
         <source>Select (outer)</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiválasztás (külső)</translation>
     </message>
     <message>
         <source>Select (inverting)</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiválasztás (invertálás)</translation>
     </message>
 </context>
 <context>
