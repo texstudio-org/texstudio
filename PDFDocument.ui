@@ -50,6 +50,7 @@
     <addaction name="separator"/>
     <addaction name="actionScrolling_follows_cursor"/>
     <addaction name="actionCursor_follows_scrolling"/>
+    <addaction name="actionSynchronize_multiple_views"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -746,6 +747,17 @@
    </property>
    <property name="text">
     <string>Single Page Step</string>
+   </property>
+  </action>
+  <action name="actionSynchronize_multiple_views">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Synchronize multiple views</string>
    </property>
   </action>
  </widget>
