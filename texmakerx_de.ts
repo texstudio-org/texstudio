@@ -2792,7 +2792,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>11</source>
-        <translation>1111</translation>
+        <translation type="obsolete">1111</translation>
     </message>
     <message>
         <source>2x1</source>
@@ -2800,7 +2800,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>21</source>
-        <translation>21</translation>
+        <translation type="obsolete">21</translation>
     </message>
     <message>
         <source>1x2</source>
@@ -2808,7 +2808,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>12</source>
-        <translation>1212</translation>
+        <translation type="obsolete">1212</translation>
     </message>
     <message>
         <source>2x2</source>
@@ -2816,7 +2816,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>22</source>
-        <translation>22</translation>
+        <translation type="obsolete">22</translation>
     </message>
     <message>
         <source>2x3</source>
@@ -2824,7 +2824,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>23</source>
-        <translation>23</translation>
+        <translation type="obsolete">23</translation>
     </message>
     <message>
         <source>3x3</source>
@@ -2832,7 +2832,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>33</source>
-        <translation>33</translation>
+        <translation type="obsolete">33</translation>
     </message>
     <message>
         <source>Custom...</source>
@@ -2840,7 +2840,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>xx</source>
-        <translation>xx</translation>
+        <translation type="obsolete">xx</translation>
     </message>
     <message>
         <source>Single Page Step</source>
@@ -2849,6 +2849,14 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <message>
         <source>pages %1 to %2 of %3</source>
         <translation>Seiten %1 bis %2 von %3</translation>
+    </message>
+    <message>
+        <source>Synchronize multiple views</source>
+        <translation>Synchronisierte Vorschaufenster</translation>
+    </message>
+    <message>
+        <source>Presentation</source>
+        <translation>Präsentation</translation>
     </message>
 </context>
 <context>

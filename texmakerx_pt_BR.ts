@@ -1461,7 +1461,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="additionaltranslations.cpp" line="83"/>
         <source>\textsl - Slanted  [selection]</source>
-        <translation>\textsl - Inclinado  [selection]</translation>
+        <translation>\textsl - Inclinado  [seleção]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="85"/>
@@ -1775,7 +1775,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configmanager.cpp" line="914"/>
         <source>All menus</source>
-        <translation>Todos menus</translation>
+        <translation>Todos os menus</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="915"/>
@@ -2195,7 +2195,7 @@ Você deseja desfazer as alterações?</translation>
         <location filename="latexdocument.cpp" line="21"/>
         <location filename="latexdocument.cpp" line="148"/>
         <source>TODO</source>
-        <translation>To Do</translation>
+        <translation>A FAZER</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="22"/>
@@ -2433,564 +2433,567 @@ Você deseja desfazer as alterações?</translation>
         <translation>&amp;Configurar</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="56"/>
+        <location filename="PDFDocument.ui" line="57"/>
         <source>&amp;View</source>
         <translation>E&amp;xibir</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="60"/>
+        <location filename="PDFDocument.ui" line="61"/>
         <source>Grid</source>
-        <translation type="unfinished"></translation>
+        <translation>Grade</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="90"/>
+        <location filename="PDFDocument.ui" line="92"/>
         <source>&amp;Window</source>
         <translation>&amp;Janela</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="94"/>
+        <location filename="PDFDocument.ui" line="96"/>
         <source>Show</source>
         <translation>Mostrar</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="110"/>
+        <location filename="PDFDocument.ui" line="112"/>
         <source>&amp;Edit</source>
         <translation>&amp;Editar</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="131"/>
+        <location filename="PDFDocument.ui" line="133"/>
         <source>Toolbar</source>
         <translation>Barra de ferramentas</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="165"/>
+        <location filename="PDFDocument.ui" line="167"/>
         <source>&amp;About TexMakerX...</source>
         <translation>&amp;Sobre TexMakerX...</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="173"/>
+        <location filename="PDFDocument.ui" line="175"/>
         <source>&amp;First Page</source>
         <translation>&amp;Primeira Página</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="176"/>
+        <location filename="PDFDocument.ui" line="178"/>
         <source>Home</source>
         <comment>shortcut key name, do not translate</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="184"/>
+        <location filename="PDFDocument.ui" line="186"/>
         <source>&amp;Previous Page</source>
         <translation>Página &amp;Anterior</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="187"/>
+        <location filename="PDFDocument.ui" line="189"/>
         <source>Ctrl+PgUp</source>
         <translation>Ctrl+PgUp</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="195"/>
+        <location filename="PDFDocument.ui" line="197"/>
         <source>&amp;Next Page</source>
         <translation>Pró&amp;xima Página</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="198"/>
+        <location filename="PDFDocument.ui" line="200"/>
         <source>Ctrl+PgDown</source>
         <translation>Ctrl+PgDown</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="206"/>
+        <location filename="PDFDocument.ui" line="208"/>
         <source>&amp;Last Page</source>
         <translation>&amp;Última Página</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="209"/>
+        <location filename="PDFDocument.ui" line="211"/>
         <source>End</source>
         <comment>shortcut key name, do not translate</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="217"/>
+        <location filename="PDFDocument.ui" line="219"/>
         <source>&amp;Go to Page...</source>
         <translation>&amp;Ir para página...</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="220"/>
+        <location filename="PDFDocument.ui" line="222"/>
         <source>Ctrl+J</source>
         <translation>Ctrl+J</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="228"/>
+        <location filename="PDFDocument.ui" line="230"/>
         <source>Zoom &amp;In</source>
         <translation>A&amp;mpliar</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="231"/>
+        <location filename="PDFDocument.ui" line="233"/>
         <source>Ctrl++</source>
         <translation>Ctrl++</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="239"/>
+        <location filename="PDFDocument.ui" line="241"/>
         <source>Zoom &amp;Out</source>
         <translation>&amp;Reduzir</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="242"/>
+        <location filename="PDFDocument.ui" line="244"/>
         <source>Ctrl+-</source>
         <translation>Ctrl+-</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="253"/>
+        <location filename="PDFDocument.ui" line="255"/>
         <source>Fit to &amp;Window</source>
         <translation>Ajustar à &amp;Janela</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="256"/>
+        <location filename="PDFDocument.ui" line="258"/>
         <source>Ctrl+3</source>
         <translation>Ctrl+3</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="264"/>
+        <location filename="PDFDocument.ui" line="266"/>
         <source>&amp;Actual Size</source>
         <translation>Tamanho &amp;Real</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="267"/>
+        <location filename="PDFDocument.ui" line="269"/>
         <source>Ctrl+1</source>
         <translation>Ctrl+1</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="278"/>
+        <location filename="PDFDocument.ui" line="280"/>
         <source>Fit to Wi&amp;dth</source>
         <translation>Ajustar à &amp;Largura</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="281"/>
+        <location filename="PDFDocument.ui" line="283"/>
         <source>Ctrl+2</source>
         <translation>Ctrl+2</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="289"/>
+        <location filename="PDFDocument.ui" line="291"/>
         <source>New</source>
         <translation>Novo</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="292"/>
+        <location filename="PDFDocument.ui" line="294"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="300"/>
+        <location filename="PDFDocument.ui" line="302"/>
         <source>Open...</source>
         <translation>Abrir...</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="303"/>
+        <location filename="PDFDocument.ui" line="305"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="311"/>
+        <location filename="PDFDocument.ui" line="313"/>
         <source>Open Recent</source>
         <translation>Abrir Recente</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="319"/>
+        <location filename="PDFDocument.ui" line="321"/>
         <source>&amp;Close</source>
         <translation>&amp;Fechar</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="322"/>
+        <location filename="PDFDocument.ui" line="324"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="333"/>
+        <location filename="PDFDocument.ui" line="335"/>
         <source>&amp;Undo</source>
         <translation>&amp;Desfazer</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="336"/>
+        <location filename="PDFDocument.ui" line="338"/>
         <source>Ctrl+Z</source>
         <translation>Ctrl+Z</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="347"/>
+        <location filename="PDFDocument.ui" line="349"/>
         <source>&amp;Redo</source>
         <translation>&amp;Refazer</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="350"/>
+        <location filename="PDFDocument.ui" line="352"/>
         <source>Ctrl+Shift+Z</source>
         <translation>Ctrl+Shift+Z</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="361"/>
+        <location filename="PDFDocument.ui" line="363"/>
         <source>C&amp;ut</source>
         <translation>Cor&amp;tar</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="364"/>
+        <location filename="PDFDocument.ui" line="366"/>
         <source>Ctrl+X</source>
         <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="375"/>
+        <location filename="PDFDocument.ui" line="377"/>
         <source>&amp;Copy</source>
         <translation>&amp;Copiar</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="378"/>
+        <location filename="PDFDocument.ui" line="380"/>
         <source>Ctrl+C</source>
         <translation>Ctrl+C</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="389"/>
+        <location filename="PDFDocument.ui" line="391"/>
         <source>&amp;Paste</source>
         <translation>C&amp;olar</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="392"/>
+        <location filename="PDFDocument.ui" line="394"/>
         <source>Ctrl+V</source>
         <translation>Ctrl+V</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="403"/>
+        <location filename="PDFDocument.ui" line="405"/>
         <source>C&amp;lear</source>
         <translation>&amp;Limpar</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="406"/>
+        <location filename="PDFDocument.ui" line="408"/>
         <source>Ctrl+Backspace</source>
         <translation>Ctrl+Backspace</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="414"/>
-        <location filename="PDFDocument.ui" line="417"/>
+        <location filename="PDFDocument.ui" line="416"/>
+        <location filename="PDFDocument.ui" line="419"/>
         <source>Quick Build</source>
         <translation>Compilar</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="420"/>
+        <location filename="PDFDocument.ui" line="422"/>
         <source>Ctrl+T</source>
         <comment>action</comment>
         <translation>Ctrl+T</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="428"/>
-        <location filename="PDFDocument.ui" line="431"/>
+        <location filename="PDFDocument.ui" line="430"/>
+        <location filename="PDFDocument.ui" line="433"/>
         <source>External Viewer</source>
         <translation>Visualizador Externo</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="439"/>
+        <location filename="PDFDocument.ui" line="441"/>
         <source>&amp;Configure TexMakerX</source>
         <translation>&amp;Configurar TexMakerX</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="447"/>
+        <location filename="PDFDocument.ui" line="449"/>
         <source>Stac&amp;k</source>
         <translation>Pil&amp;ha</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="455"/>
+        <location filename="PDFDocument.ui" line="457"/>
         <source>&amp;Tile</source>
-        <translation>La&amp;do a Lado</translation>
+        <translation>&amp;Mosaico</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="466"/>
+        <location filename="PDFDocument.ui" line="468"/>
         <source>&amp;Go to Source</source>
         <translation>&amp;Ir para fonte</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="469"/>
+        <location filename="PDFDocument.ui" line="471"/>
         <source>Ctrl+&apos;</source>
         <translation>Ctrl+&apos;</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="477"/>
+        <location filename="PDFDocument.ui" line="479"/>
         <source>New from Template...</source>
         <translation>Novo a partir do modelo...</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="480"/>
+        <location filename="PDFDocument.ui" line="482"/>
         <source>Ctrl+Shift+N</source>
         <translation>Ctrl+Shift+N</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="491"/>
+        <location filename="PDFDocument.ui" line="493"/>
         <source>Full &amp;Screen</source>
         <translation>&amp;Tela cheia</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="494"/>
+        <location filename="PDFDocument.ui" line="496"/>
         <source>Ctrl+Shift+F</source>
         <translation>Ctrl+Shift+F</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="508"/>
+        <location filename="PDFDocument.ui" line="510"/>
         <source>Magnify</source>
         <translation>Lente de aumento</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="516"/>
+        <location filename="PDFDocument.ui" line="518"/>
         <source>Scroll</source>
         <translation>Rolagem</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="524"/>
+        <location filename="PDFDocument.ui" line="526"/>
         <source>Select Text</source>
         <translation>Selecionar Texto</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="532"/>
+        <location filename="PDFDocument.ui" line="534"/>
         <source>Select Image</source>
         <translation>Selecionar Imagem</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="537"/>
+        <location filename="PDFDocument.ui" line="539"/>
         <source>User &amp;Manual...</source>
         <translation>&amp;Manual do Usuário...</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="542"/>
+        <location filename="PDFDocument.ui" line="544"/>
         <source>Email to the mailing list</source>
         <translation>Email para lista de discussão</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="550"/>
+        <location filename="PDFDocument.ui" line="552"/>
         <source>&amp;Side by Side</source>
         <translation>&amp;Lado a lado</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="555"/>
+        <location filename="PDFDocument.ui" line="557"/>
         <source>Place on Left</source>
         <translation>Posicionar à Esquerda</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="560"/>
+        <location filename="PDFDocument.ui" line="562"/>
         <source>Place on Right</source>
         <translation>Posicionar à Direita</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="565"/>
+        <location filename="PDFDocument.ui" line="567"/>
         <source>&amp;Quit TexMakerX</source>
         <translation>&amp;Encerrar TexMakerX</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="568"/>
+        <location filename="PDFDocument.ui" line="570"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="576"/>
+        <location filename="PDFDocument.ui" line="578"/>
         <source>Find...</source>
         <translation>Localizar...</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="579"/>
-        <location filename="PDFDocument.ui" line="668"/>
+        <location filename="PDFDocument.ui" line="581"/>
+        <location filename="PDFDocument.ui" line="670"/>
         <source>Ctrl+F</source>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="590"/>
+        <location filename="PDFDocument.ui" line="592"/>
         <source>Find Again</source>
         <translation>Localizar Novamente</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="593"/>
+        <location filename="PDFDocument.ui" line="595"/>
         <source>Ctrl+G</source>
         <translation>Ctrl+G</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="604"/>
+        <location filename="PDFDocument.ui" line="606"/>
         <source>Reload Script List</source>
         <translation>Recarregar lista de scripts</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="612"/>
+        <location filename="PDFDocument.ui" line="614"/>
         <source>Manage Scripts</source>
         <translation>Gerenciar Scripts</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="620"/>
+        <location filename="PDFDocument.ui" line="622"/>
         <source>Show Scripts Folder</source>
         <translation>Mostrar Pasta de Scripts</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="628"/>
+        <location filename="PDFDocument.ui" line="630"/>
         <source>About Scripts...</source>
         <translation>Sobre Scripts...</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="636"/>
+        <location filename="PDFDocument.ui" line="638"/>
         <source>s</source>
         <translation>s</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="641"/>
+        <location filename="PDFDocument.ui" line="643"/>
         <source>&amp;Close something</source>
         <translation>&amp;Fechar Algo</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="644"/>
+        <location filename="PDFDocument.ui" line="646"/>
         <source>Esc</source>
         <translation>Esc</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="652"/>
+        <location filename="PDFDocument.ui" line="654"/>
         <source>Scrolling follows cursor</source>
         <translation>Rolagem Segue Cursor</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="660"/>
+        <location filename="PDFDocument.ui" line="662"/>
         <source>Cursor follows scrolling</source>
         <translation>Cursor Segue Rolagem</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="665"/>
+        <location filename="PDFDocument.ui" line="667"/>
         <source>&amp;Find...</source>
         <translation>&amp;Localizar...</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="673"/>
+        <location filename="PDFDocument.ui" line="675"/>
         <source>Find &amp;again</source>
         <translation>Localizar &amp;Novamente</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="676"/>
+        <location filename="PDFDocument.ui" line="678"/>
         <source>Ctrl+M, F3</source>
         <translation>Ctrl+M, F3</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="681"/>
+        <location filename="PDFDocument.ui" line="683"/>
         <source>New Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Nova Janela</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="686"/>
+        <location filename="PDFDocument.ui" line="688"/>
         <source>1x1</source>
-        <translation type="unfinished"></translation>
+        <translation>1x1</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="689"/>
         <source>11</source>
-        <translation type="unfinished">11</translation>
+        <translation type="obsolete">11</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="694"/>
+        <location filename="PDFDocument.ui" line="696"/>
         <source>2x1</source>
-        <translation type="unfinished"></translation>
+        <translation>2x1</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="697"/>
         <source>21</source>
-        <translation type="unfinished">21</translation>
+        <translation type="obsolete">21</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="702"/>
+        <location filename="PDFDocument.ui" line="704"/>
         <source>1x2</source>
-        <translation type="unfinished"></translation>
+        <translation>1x2</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="705"/>
         <source>12</source>
-        <translation type="unfinished">12</translation>
+        <translation type="obsolete">12</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="710"/>
+        <location filename="PDFDocument.ui" line="712"/>
         <source>2x2</source>
-        <translation type="unfinished"></translation>
+        <translation>2x2</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="713"/>
         <source>22</source>
-        <translation type="unfinished">22</translation>
+        <translation type="obsolete">22</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="718"/>
+        <location filename="PDFDocument.ui" line="720"/>
         <source>2x3</source>
-        <translation type="unfinished"></translation>
+        <translation>2x3</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="721"/>
         <source>23</source>
-        <translation type="unfinished">23</translation>
+        <translation type="obsolete">23</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="726"/>
+        <location filename="PDFDocument.ui" line="728"/>
         <source>3x3</source>
-        <translation type="unfinished"></translation>
+        <translation>3x3</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="729"/>
         <source>33</source>
-        <translation type="unfinished">33</translation>
+        <translation type="obsolete">33</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="734"/>
+        <location filename="PDFDocument.ui" line="736"/>
         <source>Custom...</source>
-        <translation type="unfinished"></translation>
+        <translation>Personalizado...</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="737"/>
         <source>xx</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">xx</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="748"/>
+        <location filename="PDFDocument.ui" line="750"/>
         <source>Single Page Step</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Página Única</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1472"/>
-        <location filename="PDFDocument.cpp" line="1986"/>
+        <location filename="PDFDocument.ui" line="761"/>
+        <source>Synchronize multiple views</source>
+        <translation>Sincronizar Exibições Múltiplas</translation>
+    </message>
+    <message>
+        <location filename="PDFDocument.ui" line="769"/>
+        <source>Presentation</source>
+        <translation>Apresentação</translation>
+    </message>
+    <message>
+        <location filename="PDFDocument.cpp" line="1478"/>
+        <location filename="PDFDocument.cpp" line="1992"/>
         <source>of %1</source>
-        <translation type="unfinished"></translation>
+        <translation>de %1</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1678"/>
+        <location filename="PDFDocument.cpp" line="1683"/>
         <source>PDF file &quot;%1&quot; is locked; this is not currently supported.</source>
         <translation>Arquivo PDF  &quot;%1&quot; está bloqueado; não há suporte para ele no momento.</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1697"/>
+        <location filename="PDFDocument.cpp" line="1702"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
         <translation>Falha ao carregar arquivo &quot;%1&quot;; talvez não seja um arquivo PDF válido.</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1862"/>
+        <location filename="PDFDocument.cpp" line="1868"/>
         <source>No SyncTeX data available</source>
         <translation>Dados SyncTeX não disponíveis</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1865"/>
+        <location filename="PDFDocument.cpp" line="1871"/>
         <source>SyncTeX: &quot;%1&quot;</source>
         <translation>SyncTeX: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1954"/>
+        <location filename="PDFDocument.cpp" line="1960"/>
         <source>%1[*] - %2</source>
         <translation>%1[*] - %2</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1954"/>
+        <location filename="PDFDocument.cpp" line="1960"/>
         <source>TexMakerX</source>
         <translation>TexMakerX</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1984"/>
+        <location filename="PDFDocument.cpp" line="1990"/>
         <source>page %1 of %2</source>
         <translation>página %1 de %2</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1985"/>
+        <location filename="PDFDocument.cpp" line="1991"/>
         <source>pages %1 to %2 of %3</source>
-        <translation type="unfinished"></translation>
+        <translation>páginas %1 a %2 de %3</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1993"/>
+        <location filename="PDFDocument.cpp" line="1999"/>
         <source>%1%</source>
         <translation>%1%</translation>
     </message>
@@ -3075,52 +3078,52 @@ Você deseja desfazer as alterações?</translation>
 <context>
     <name>PDFWidget</name>
     <message>
-        <location filename="PDFDocument.cpp" line="353"/>
+        <location filename="PDFDocument.cpp" line="354"/>
         <source>Zoom In</source>
         <translation>Ampliar</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="355"/>
+        <location filename="PDFDocument.cpp" line="356"/>
         <source>Zoom Out</source>
         <translation>Reduzir</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="358"/>
+        <location filename="PDFDocument.cpp" line="359"/>
         <source>Actual Size</source>
         <translation>Tamanho Real</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="361"/>
+        <location filename="PDFDocument.cpp" line="362"/>
         <source>Fit to Width</source>
         <translation>Ajustar à Largura</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="364"/>
+        <location filename="PDFDocument.cpp" line="365"/>
         <source>Fit to Window</source>
         <translation>Ajustar à Janela</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="643"/>
+        <location filename="PDFDocument.cpp" line="646"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="643"/>
+        <location filename="PDFDocument.cpp" line="646"/>
         <source>Could not open browser</source>
         <translation>Não foi possívl abrir o navegador</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="746"/>
+        <location filename="PDFDocument.cpp" line="749"/>
         <source>Jump to Source</source>
         <translation>Ir para Fonte</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1128"/>
+        <location filename="PDFDocument.cpp" line="1134"/>
         <source>Go to Page</source>
         <translation>Ir para página</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1129"/>
+        <location filename="PDFDocument.cpp" line="1135"/>
         <source>Page number:</source>
         <translation>Número da Paǵina:</translation>
     </message>
@@ -3178,12 +3181,12 @@ Você deseja desfazer as alterações?</translation>
     <message>
         <location filename="buildmanager.cpp" line="993"/>
         <source>Process exited with error(s)</source>
-        <translation type="unfinished">Processo concluído com erro(s)</translation>
+        <translation>Processo concluído com erro(s)</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="995"/>
         <source>Process exited normally</source>
-        <translation type="unfinished">Processo concluído com êxito</translation>
+        <translation>Processo concluído com êxito</translation>
     </message>
 </context>
 <context>
@@ -4114,7 +4117,7 @@ Deseja salvá-las?</translation>
         <location filename="tests/codesnippet_t.cpp" line="353"/>
         <source>*environment-name*</source>
         <oldsource>environment-name</oldsource>
-        <translation type="unfinished">nome-ambiente</translation>
+        <translation>*nome-ambiente*</translation>
     </message>
     <message>
         <location filename="codesnippet.cpp" line="58"/>
@@ -5009,7 +5012,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     </message>
     <message>
         <location filename="texmaker.cpp" line="184"/>
-        <location filename="texmaker.cpp" line="4037"/>
+        <location filename="texmaker.cpp" line="4039"/>
         <source>Normal Mode</source>
         <translation>Modo Normal</translation>
     </message>
@@ -5470,24 +5473,8 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <translation>Re&amp;nomear Ambiente</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="551"/>
-        <source>Parenthesis</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="texmaker.cpp" line="552"/>
-        <source>Select (inner)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="texmaker.cpp" line="553"/>
-        <source>Select (outer)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="texmaker.cpp" line="554"/>
-        <source>Select (inverting)</source>
-        <translation type="unfinished"></translation>
+        <source>Select parenthesis (inverting)</source>
+        <translation type="obsolete">Selecionar Parênteses</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="556"/>
@@ -5881,37 +5868,37 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     </message>
     <message>
         <location filename="texmaker.cpp" line="699"/>
-        <location filename="texmaker.cpp" line="4286"/>
+        <location filename="texmaker.cpp" line="4288"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="700"/>
-        <location filename="texmaker.cpp" line="4287"/>
+        <location filename="texmaker.cpp" line="4289"/>
         <source>Cut</source>
         <translation>Cortar</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="701"/>
-        <location filename="texmaker.cpp" line="4288"/>
+        <location filename="texmaker.cpp" line="4290"/>
         <source>Paste before</source>
         <translation>Colar antes</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="702"/>
-        <location filename="texmaker.cpp" line="4289"/>
+        <location filename="texmaker.cpp" line="4291"/>
         <source>Paste after</source>
         <translation>Colar depois</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="706"/>
-        <location filename="texmaker.cpp" line="4291"/>
+        <location filename="texmaker.cpp" line="4293"/>
         <source>Indent Section</source>
         <translation>Rebaixar seção um nível</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="707"/>
-        <location filename="texmaker.cpp" line="4292"/>
+        <location filename="texmaker.cpp" line="4294"/>
         <source>Unindent Section</source>
         <translation>Promover seção um nível</translation>
     </message>
@@ -6012,13 +5999,13 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     </message>
     <message>
         <location filename="texmaker.cpp" line="1233"/>
-        <location filename="texmaker.cpp" line="4519"/>
+        <location filename="texmaker.cpp" line="4521"/>
         <source>Remove</source>
         <translation>Remover</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="231"/>
-        <location filename="texmaker.cpp" line="5131"/>
+        <location filename="texmaker.cpp" line="5133"/>
         <source>All files</source>
         <translation>Todos os arquivos</translation>
     </message>
@@ -6026,6 +6013,26 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="texmaker.cpp" line="424"/>
         <source>Open &amp;Recent</source>
         <translation>A&amp;brir Recente</translation>
+    </message>
+    <message>
+        <location filename="texmaker.cpp" line="551"/>
+        <source>Parenthesis</source>
+        <translation>Parênteses</translation>
+    </message>
+    <message>
+        <location filename="texmaker.cpp" line="552"/>
+        <source>Select (inner)</source>
+        <translation>Selecionar (interior)</translation>
+    </message>
+    <message>
+        <location filename="texmaker.cpp" line="553"/>
+        <source>Select (outer)</source>
+        <translation>Selecionar (interior + par)</translation>
+    </message>
+    <message>
+        <location filename="texmaker.cpp" line="554"/>
+        <source>Select (inverting)</source>
+        <translation>Selecionar (par)</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="1301"/>
@@ -6256,116 +6263,116 @@ Você tem que salvar um documento antes de compilá-lo.</translation>
         <translation>Você tem que salvar o arquivo antes de mudar para o modo de &apos;documento mestre&apos;!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4035"/>
+        <location filename="texmaker.cpp" line="4037"/>
         <source>Define Current Document as &apos;Master Document&apos;</source>
         <translation>Definir o Documento Atual como &apos;Documento Mestre&apos;</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4040"/>
+        <location filename="texmaker.cpp" line="4042"/>
         <source>Normal Mode (current master document :</source>
         <translation>Modo Normal (documento mestre atual:</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4041"/>
+        <location filename="texmaker.cpp" line="4043"/>
         <source>Master Document</source>
         <translation>Documento Mestre</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4270"/>
+        <location filename="texmaker.cpp" line="4272"/>
         <source>Close document</source>
         <translation>Fechar Documento</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4271"/>
+        <location filename="texmaker.cpp" line="4273"/>
         <source>Set this document as master document</source>
         <translation>Definir este documento como documento mestre</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4273"/>
+        <location filename="texmaker.cpp" line="4275"/>
         <source>Remove master document role</source>
         <translation>Remover rótulo de Documento Mestre</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4279"/>
-        <location filename="texmaker.cpp" line="4326"/>
+        <location filename="texmaker.cpp" line="4281"/>
+        <location filename="texmaker.cpp" line="4328"/>
         <source>Insert</source>
         <translation>Inserir</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4280"/>
-        <location filename="texmaker.cpp" line="4281"/>
+        <location filename="texmaker.cpp" line="4282"/>
+        <location filename="texmaker.cpp" line="4283"/>
         <source>Insert as %1</source>
         <translation>Inserir como %1</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4518"/>
-        <location filename="texmaker.cpp" line="4529"/>
+        <location filename="texmaker.cpp" line="4520"/>
+        <location filename="texmaker.cpp" line="4531"/>
         <source>Add to favorites</source>
         <translation>Adicionar aos favoritos</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4520"/>
+        <location filename="texmaker.cpp" line="4522"/>
         <source>Remove all</source>
         <translation>Remover todos</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4524"/>
+        <location filename="texmaker.cpp" line="4526"/>
         <source>Remove from favorites</source>
         <translation>Remover dos favoritos</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4525"/>
+        <location filename="texmaker.cpp" line="4527"/>
         <source>Remove all favorites</source>
         <translation>Remover todos os favoritos</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4561"/>
+        <location filename="texmaker.cpp" line="4563"/>
         <source>remove</source>
         <translation>remover</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4684"/>
+        <location filename="texmaker.cpp" line="4686"/>
         <source>commit comment:</source>
         <translation>Comentário:</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4686"/>
+        <location filename="texmaker.cpp" line="4688"/>
         <source>check in whole directory ?</source>
         <translation>Enviar diretório inteiro?</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="4915"/>
+        <location filename="texmaker.cpp" line="4917"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>Atenção: diálogo é automaticamente fechado se o texto é manualmente editado!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="5131"/>
+        <location filename="texmaker.cpp" line="5133"/>
         <source>Load Profile</source>
         <translation>Carregar Perfil</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="5131"/>
+        <location filename="texmaker.cpp" line="5133"/>
         <source>TmX Profile</source>
         <comment>filter</comment>
         <translation>TmX Perfil</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="5273"/>
+        <location filename="texmaker.cpp" line="5275"/>
         <source>Problem</source>
         <translation>Problema</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="5273"/>
+        <location filename="texmaker.cpp" line="5275"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation>Encontrar palavras repetidas somente com verificador ortográfico ativo!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="5281"/>
+        <location filename="texmaker.cpp" line="5283"/>
         <source>&amp;Find next</source>
         <translation>&amp;Localizar Próxima</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="5283"/>
+        <location filename="texmaker.cpp" line="5285"/>
         <source>&amp;Find previous</source>
         <translation>&amp;Localizar anterior</translation>
     </message>
