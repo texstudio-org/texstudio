@@ -4015,17 +4015,19 @@ void Texmaker::newPdfPreviewer(){
 	connect(pdfviewerWindow, SIGNAL(syncSource(const QString&, int, bool)), SLOT(syncFromViewer(const QString &, int, bool)));
 	connect(pdfviewerWindow, SIGNAL(runCommand(const QString&, bool)), SLOT(runCommand(const QString&, bool)));
 	connect(pdfviewerWindow, SIGNAL(triggeredClone()), SLOT(newPdfPreviewer()));
+
+	PDFDocument* from = qobject_cast<PDFDocument*>(sender());
+	if (from) {
+		pdfviewerWindow->loadFile(from->fileName(), from->externalViewer(), true);
+		pdfviewerWindow->widget()->goToPage(from->widget()->getCurrentPageIndex());
+	}//load file before enabling sync or it will jump to the first page
+
 	foreach (PDFDocument* doc, PDFDocument::documentList()) {
 		if (doc == pdfviewerWindow) continue;
 		connect(doc, SIGNAL(syncView(QString,QString,int)), pdfviewerWindow, SLOT(syncFromView(QString,QString,int)));
 		connect(pdfviewerWindow, SIGNAL(syncView(QString,QString,int)), doc, SLOT(syncFromView(QString,QString,int)));
 	}
 
-	PDFDocument* from = qobject_cast<PDFDocument*>(sender());
-	if (from) {
-		pdfviewerWindow->loadFile(from->fileName(), from->externalViewer(), true);
-		pdfviewerWindow->widget()->goToPage(from->widget()->getCurrentPageIndex());
-	}
 }
 
 void Texmaker::masterDocumentChanged(LatexDocument * doc){
