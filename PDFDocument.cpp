@@ -1745,6 +1745,17 @@ void PDFDocument::jumpToPage(){
 }
 
 void PDFDocument::closeSomething(){
+	if(actionPresentation->isChecked()){
+	    //restore state of docks
+	    if(dwVisSearch)
+		dwSearch->show();
+	    if(dwVisFonts)
+		dwFonts->show();
+	    if(dwVisInfo)
+		dwInfo->show();
+	    if(dwVisOutline)
+		dwOutline->show();
+	}
 	if (actionFull_Screen->isChecked() || actionPresentation->isChecked()) toggleFullScreen(false);
 	else if (dwFonts && dwFonts->isVisible()) dwFonts->hide();
 	else if (dwSearch && dwSearch->isVisible()) dwSearch->hide();
@@ -2052,6 +2063,10 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 		showFullScreen();
 		pdfWidget->saveState();
 		pdfWidget->fitWindow(true);
+		dwVisOutline=dwOutline->isVisible();
+		dwVisFonts=dwFonts->isVisible();
+		dwVisSearch=dwSearch->isVisible();
+		dwVisInfo=dwInfo->isVisible();
 		if (sender() == actionPresentation){
 			menuBar()->hide();
 			actionFull_Screen->setChecked(false);
@@ -2059,6 +2074,10 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 			exitFullscreen = new QShortcut(Qt::Key_Escape, this, SLOT(closeSomething())); //hiding the menubar disables normal shortcut
 			pdfWidget->setTool(kPresentation);
 			pdfWidget->setContextMenuPolicy(Qt::NoContextMenu);
+			dwOutline->hide();
+			dwFonts->hide();
+			dwSearch->hide();
+			dwInfo->hide();
 			presentation = true;
 		} else
 			actionFull_Screen->setChecked(true);
