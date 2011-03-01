@@ -768,6 +768,9 @@
    <property name="text">
     <string>Presentation</string>
    </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
   </action>
  </widget>
  <resources/>

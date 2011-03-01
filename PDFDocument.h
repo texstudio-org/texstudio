@@ -362,6 +362,7 @@ private:
 	static QList<PDFDocument*> docList;
 	
 	PDFDock *dwOutline, *dwFonts, *dwInfo;
+	bool dwVisOutline,dwVisFonts,dwVisInfo,dwVisSearch;
 	PDFSearchDock *dwSearch;
 
 	PDFSearchResult lastSearchResult;
