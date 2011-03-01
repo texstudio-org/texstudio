@@ -2525,15 +2525,7 @@ Continuer tout de même ?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>11</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>2x1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>21</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2541,15 +2533,7 @@ Continuer tout de même ?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>12</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>2x2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>22</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2557,23 +2541,11 @@ Continuer tout de même ?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>23</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>3x3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>33</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Custom...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>xx</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2582,6 +2554,14 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>pages %1 to %2 of %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Synchronize multiple views</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Presentation</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

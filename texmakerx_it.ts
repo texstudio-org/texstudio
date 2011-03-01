@@ -2502,7 +2502,7 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>11</source>
-        <translation type="unfinished">11</translation>
+        <translation type="obsolete">11</translation>
     </message>
     <message>
         <source>2x1</source>
@@ -2510,7 +2510,7 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>21</source>
-        <translation type="unfinished">21</translation>
+        <translation type="obsolete">21</translation>
     </message>
     <message>
         <source>1x2</source>
@@ -2518,7 +2518,7 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>12</source>
-        <translation type="unfinished">12</translation>
+        <translation type="obsolete">12</translation>
     </message>
     <message>
         <source>2x2</source>
@@ -2526,7 +2526,7 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>22</source>
-        <translation type="unfinished">22</translation>
+        <translation type="obsolete">22</translation>
     </message>
     <message>
         <source>2x3</source>
@@ -2534,7 +2534,7 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>23</source>
-        <translation type="unfinished">23</translation>
+        <translation type="obsolete">23</translation>
     </message>
     <message>
         <source>3x3</source>
@@ -2542,14 +2542,10 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>33</source>
-        <translation type="unfinished">33</translation>
+        <translation type="obsolete">33</translation>
     </message>
     <message>
         <source>Custom...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>xx</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2558,6 +2554,14 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>pages %1 to %2 of %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Synchronize multiple views</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Presentation</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

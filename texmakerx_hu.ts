@@ -2321,7 +2321,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>11</source>
         <translatorcomment>11</translatorcomment>
-        <translation>11</translation>
+        <translation type="obsolete">11</translation>
     </message>
     <message>
         <source>2x1</source>
@@ -2329,7 +2329,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>21</source>
-        <translation>21</translation>
+        <translation type="obsolete">21</translation>
     </message>
     <message>
         <source>1x2</source>
@@ -2337,7 +2337,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>12</source>
-        <translation>12</translation>
+        <translation type="obsolete">12</translation>
     </message>
     <message>
         <source>2x2</source>
@@ -2345,7 +2345,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>22</source>
-        <translation>22</translation>
+        <translation type="obsolete">22</translation>
     </message>
     <message>
         <source>2x3</source>
@@ -2353,7 +2353,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>23</source>
-        <translation>23</translation>
+        <translation type="obsolete">23</translation>
     </message>
     <message>
         <source>3x3</source>
@@ -2361,7 +2361,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>33</source>
-        <translation>33</translation>
+        <translation type="obsolete">33</translation>
     </message>
     <message>
         <source>Custom...</source>
@@ -2369,7 +2369,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>xx</source>
-        <translation>xx</translation>
+        <translation type="obsolete">xx</translation>
     </message>
     <message>
         <source>Single Page Step</source>
@@ -2378,6 +2378,14 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>pages %1 to %2 of %3</source>
         <translation>%1-%2/%3 oldal</translation>
+    </message>
+    <message>
+        <source>Synchronize multiple views</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Presentation</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
