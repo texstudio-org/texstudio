@@ -72,6 +72,7 @@ const int kMagnifier = 1;
 const int kScroll = 2;
 const int kSelectText = 3;
 const int kSelectImage = 4;
+const int kPresentation = 5; //left-click: next, rclick: prev (for these presentation/mouse-pointer)
 
 // duration of highlighting in PDF view (might make configurable?)
 const int kPDFHighlightDuration = 2000;
@@ -507,7 +508,7 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 	if (mouseDownModifiers & Qt::ControlModifier) {
 		// ctrl key - this is a sync click, don't handle the mouseDown here
 	}
-	else {
+	else if (currentTool != kPresentation){
 		Poppler::Page *page;
 		QPointF scaledPos;
 		gridMapToScaledPosition(event->pos(), page, scaledPos);
@@ -549,8 +550,10 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 		if (page && clickedLink->linkArea().contains(scaledPos)) {
 			doLink(clickedLink);
 		}
-	}
-	else {
+	} else if (currentTool == kPresentation) {
+		if (event->button() == Qt::LeftButton) goNext();
+		else if (event->button() == Qt::RightButton) goPrev();
+	} else {
 		switch (usingTool) {
 			case kNone:
 				// Ctrl-click to sync
@@ -2041,6 +2044,7 @@ void PDFDocument::adjustScaleActions(autoScaleOption scaleOption)
 
 void PDFDocument::toggleFullScreen(bool fullscreen)
 {
+	bool presentation = false;
 	if (fullscreen) {
 		// entering full-screen mode
 		statusBar()->hide();
@@ -2053,24 +2057,26 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 			actionFull_Screen->setChecked(false);
 			actionPresentation->setChecked(true);
 			exitFullscreen = new QShortcut(Qt::Key_Escape, this, SLOT(closeSomething())); //hiding the menubar disables normal shortcut
-		} else {
+			pdfWidget->setTool(kPresentation);
+			pdfWidget->setContextMenuPolicy(Qt::NoContextMenu);
+			presentation = true;
+		} else
 			actionFull_Screen->setChecked(true);
-			actionPresentation->setChecked(false);
-			if (exitFullscreen) {
-				delete exitFullscreen;
-				exitFullscreen = 0;
-			}
-		}
+
 		//actionFull_Screen->setChecked(true);
 	} else {
-		// exiting full-screen mode
-		menuBar()->show();
+		// exiting full-screen mode		
 		statusBar()->show();
 		toolBar->show();
 		showNormal();
 		pdfWidget->restoreState();
 		actionFull_Screen->setChecked(false);
+	}
+	if (!presentation) { //disable presentation things that are neither used in fullscreen nor normal mode
+		menuBar()->show();
 		actionPresentation->setChecked(false);
+		pdfWidget->setTool(toolButtonGroup->checkedId());
+		pdfWidget->setContextMenuPolicy(Qt::CustomContextMenu);
 		if (exitFullscreen) {
 			delete exitFullscreen;
 			exitFullscreen = 0;
