@@ -3118,8 +3118,8 @@ void Texmaker::readFromStdoutput() {
 	QString t=QString(result).trimmed();
 	QString *buffer=procX->getBuffer();
 	if(buffer) buffer->append(t);
-        if (!t.isEmpty() && outputView->getShownPage()==1) // LAYOUT_PAGE_LOG
-            outputView->insertMessageLine(t+"\n"); // show instant messages only in log view
+	 if (!t.isEmpty() && outputView->getShownPage()==0)
+	     outputView->insertMessageLine(t+"\n"); // show instant messages only in message view
 }
 
 void Texmaker::SlotEndProcess(int err) {
