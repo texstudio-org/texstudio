@@ -537,7 +537,11 @@ void BuildManager::readSettings(const QSettings &settings){
 }
 
 void BuildManager::setLatexCommand(LatexCommand cmd, const QString &cmdString){
-	if (cmdString=="<default>") commands[cmd]=guessCommandName(cmd);
+	if (cmdString=="<default>") {
+	    commands[cmd]=guessCommandName(cmd);
+	    if(cmd==CMD_VIEWPDF)
+		commands[cmd].prepend(BuildManager::TMX_INTERNAL_PDF_VIEWER+"/");
+	}
 	else if (cmdString==tr("<unknown>")) commands[cmd]="";
 	else {
 		//force commands to include options (e.g. file name)
