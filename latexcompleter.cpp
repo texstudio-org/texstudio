@@ -905,8 +905,8 @@ bool LatexCompleter::acceptChar(QChar c,int pos) {
 	    ((c>=QChar('A')) && (c<=QChar('Z'))) ||
 	    ((c>=QChar('0')) && (c<=QChar('9')))) return true;
 	if (pos<=1) return false;
-	if (!listModel->getAcceptedChars().contains(c)) 
-		return false; //if no word contains the character don't accept it
+	if (listModel->getAcceptedChars().contains(c))
+		return true; //if no word contains the character don't accept it
 	//if (listModel->isNextCharPossible(c))
 	//	return true; //only accept non standard character, if one of the current words contains it
 	return false;
