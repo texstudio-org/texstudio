@@ -1,6 +1,6 @@
 #include "thesaurusdialog.h"
 #include <QMutex>
-#if QT_VERSION >= 0x040500
+#if QT_VERSION >= 0x040400
 #include <QFuture>
 
 #include <QtConcurrentRun>

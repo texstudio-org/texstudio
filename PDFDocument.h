@@ -32,6 +32,7 @@
 #include "synctex_parser.h"
 
 #include "ui_PDFDocument.h"
+#include <QMutex>
 
 const int kPDFWindowStateVersion = 1;
 
@@ -96,6 +97,9 @@ public:
 	void setGridSize(int gx, int gy);
 	int visiblePages() const;
 	int pageStep() const;
+
+	QMutex renderMutex;
+
 private slots:
 	void goFirst();
 	void goPrev();
@@ -258,6 +262,7 @@ public:
 	void setResolution(int res);
 	void resetMagnifier();
 	void goToDestination(const QString& destName);
+	void goToPage(const int page);
 	bool hasSyncData()
 		{
 			return scanner != NULL;
@@ -361,8 +366,8 @@ private:
 	
 	static QList<PDFDocument*> docList;
 	
-	PDFDock *dwOutline, *dwFonts, *dwInfo;
-	bool dwVisOutline,dwVisFonts,dwVisInfo,dwVisSearch;
+	PDFDock *dwOutline, *dwFonts, *dwInfo, *dwOverview;
+	bool dwVisOutline,dwVisFonts,dwVisInfo,dwVisSearch,dwVisOverview;
 	PDFSearchDock *dwSearch;
 
 	PDFSearchResult lastSearchResult;
