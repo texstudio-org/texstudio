@@ -242,8 +242,8 @@
         <translation>Visualizador PDF</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="541"/>
-        <location filename="buildmanager.cpp" line="565"/>
+        <location filename="buildmanager.cpp" line="545"/>
+        <location filename="buildmanager.cpp" line="569"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;desconhecido&gt;</translation>
     </message>
@@ -492,7 +492,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="727"/>
         <source>User : (% : filename without extension)</source>
-        <translation>Usuário:(% : nome arquivo sem extensão)</translation>
+        <translation>Usuário:(% : nome do arquivo sem extensão)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="744"/>
@@ -522,7 +522,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="822"/>
         <source>Show log after compiling if there are errors</source>
-        <translation>Mostrar log após compliar se existirem erros</translation>
+        <translation>Mostrar log após compilar se existirem erros</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="832"/>
@@ -659,7 +659,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="1172"/>
         <source>Auto detect encoding of loaded files</source>
-        <translation>Detectar codificação automática dos arquivos carregados</translation>
+        <translation>Detectar a codificação dos arquivos carregados</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1179"/>
@@ -749,7 +749,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="1366"/>
         <source>Auto save all files </source>
-        <translation>Salvar automaticamente todos os arquivos</translation>
+        <translation>Salvar automaticamente todos os arquivos:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1377"/>
@@ -805,7 +805,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="1455"/>
         <source>Disable fixed pitch mode</source>
-        <translation>Disabilitar modo de passo fixo</translation>
+        <translation>Desabilitar modo de passo fixo</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1462"/>
@@ -815,7 +815,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="1469"/>
         <source>Disable work-around on accent typing (mac os x only)</source>
-        <translation>Desabilitar acentos na digitação (mac os x somente)</translation>
+        <translation>Desabilitar acentuação alternativa (mac os x somente)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1510"/>
@@ -1055,12 +1055,12 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="1995"/>
         <source>Automatically check in after save ?</source>
-        <translation>Efetuar &apos;check in&apos; apoś salvar?</translation>
+        <translation>Efetuar &apos;check in&apos; apoś salvar</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2002"/>
         <source>Uses SVN revisions to undo before last saved version ?</source>
-        <translation>Utilizar revisões SVN para desfazer antes da última versão salva?</translation>
+        <translation>Utilizar revisões SVN para desfazer antes da última versão salva</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2009"/>
@@ -1243,7 +1243,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configmanager.cpp" line="870"/>
         <source>Special Key Replacement</source>
-        <translation>Substituição Especial de Teclas</translation>
+        <translation>Substituição Especial de Caracteres</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="871"/>
@@ -1253,7 +1253,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configmanager.cpp" line="871"/>
         <source>Key to replace</source>
-        <translation>Tecla para substituir</translation>
+        <translation>Caracter a substituir</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="871"/>
@@ -2874,8 +2874,9 @@ Você deseja desfazer as alterações?</translation>
         <translation>1x1</translation>
     </message>
     <message>
-        <source>11</source>
-        <translation type="obsolete">11</translation>
+        <location filename="PDFDocument.ui" line="772"/>
+        <source>F5</source>
+        <translation>F5</translation>
     </message>
     <message>
         <location filename="PDFDocument.ui" line="696"/>
@@ -2883,17 +2884,9 @@ Você deseja desfazer as alterações?</translation>
         <translation>2x1</translation>
     </message>
     <message>
-        <source>21</source>
-        <translation type="obsolete">21</translation>
-    </message>
-    <message>
         <location filename="PDFDocument.ui" line="704"/>
         <source>1x2</source>
         <translation>1x2</translation>
-    </message>
-    <message>
-        <source>12</source>
-        <translation type="obsolete">12</translation>
     </message>
     <message>
         <location filename="PDFDocument.ui" line="712"/>
@@ -2901,17 +2894,9 @@ Você deseja desfazer as alterações?</translation>
         <translation>2x2</translation>
     </message>
     <message>
-        <source>22</source>
-        <translation type="obsolete">22</translation>
-    </message>
-    <message>
         <location filename="PDFDocument.ui" line="720"/>
         <source>2x3</source>
         <translation>2x3</translation>
-    </message>
-    <message>
-        <source>23</source>
-        <translation type="obsolete">23</translation>
     </message>
     <message>
         <location filename="PDFDocument.ui" line="728"/>
@@ -2919,22 +2904,14 @@ Você deseja desfazer as alterações?</translation>
         <translation>3x3</translation>
     </message>
     <message>
-        <source>33</source>
-        <translation type="obsolete">33</translation>
-    </message>
-    <message>
         <location filename="PDFDocument.ui" line="736"/>
         <source>Custom...</source>
         <translation>Personalizado...</translation>
     </message>
     <message>
-        <source>xx</source>
-        <translation type="obsolete">xx</translation>
-    </message>
-    <message>
         <location filename="PDFDocument.ui" line="750"/>
         <source>Single Page Step</source>
-        <translation type="unfinished">Página Única</translation>
+        <translation>Página Única</translation>
     </message>
     <message>
         <location filename="PDFDocument.ui" line="761"/>
@@ -2948,7 +2925,7 @@ Você deseja desfazer as alterações?</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="1478"/>
-        <location filename="PDFDocument.cpp" line="1992"/>
+        <location filename="PDFDocument.cpp" line="2003"/>
         <source>of %1</source>
         <translation>de %1</translation>
     </message>
@@ -2963,37 +2940,37 @@ Você deseja desfazer as alterações?</translation>
         <translation>Falha ao carregar arquivo &quot;%1&quot;; talvez não seja um arquivo PDF válido.</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1868"/>
+        <location filename="PDFDocument.cpp" line="1879"/>
         <source>No SyncTeX data available</source>
         <translation>Dados SyncTeX não disponíveis</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1871"/>
+        <location filename="PDFDocument.cpp" line="1882"/>
         <source>SyncTeX: &quot;%1&quot;</source>
         <translation>SyncTeX: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1960"/>
+        <location filename="PDFDocument.cpp" line="1971"/>
         <source>%1[*] - %2</source>
         <translation>%1[*] - %2</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1960"/>
+        <location filename="PDFDocument.cpp" line="1971"/>
         <source>TexMakerX</source>
         <translation>TexMakerX</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1990"/>
+        <location filename="PDFDocument.cpp" line="2001"/>
         <source>page %1 of %2</source>
         <translation>página %1 de %2</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1991"/>
+        <location filename="PDFDocument.cpp" line="2002"/>
         <source>pages %1 to %2 of %3</source>
         <translation>páginas %1 a %2 de %3</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1999"/>
+        <location filename="PDFDocument.cpp" line="2010"/>
         <source>%1%</source>
         <translation>%1%</translation>
     </message>
@@ -3164,27 +3141,27 @@ Você deseja desfazer as alterações?</translation>
 <context>
     <name>ProcessX</name>
     <message>
-        <location filename="buildmanager.cpp" line="981"/>
+        <location filename="buildmanager.cpp" line="985"/>
         <source>Process started: %1</source>
         <translation>Processo iniciado: %1</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="986"/>
+        <location filename="buildmanager.cpp" line="990"/>
         <source>Error: Could not start the command: %1</source>
         <translation>Erro: Não foi possível iniciar o comando: %1</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="988"/>
+        <location filename="buildmanager.cpp" line="992"/>
         <source>Error: Command crashed: %1</source>
         <translation>Erro: Comando falhou: %1</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="993"/>
+        <location filename="buildmanager.cpp" line="997"/>
         <source>Process exited with error(s)</source>
         <translation>Processo concluído com erro(s)</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="995"/>
+        <location filename="buildmanager.cpp" line="999"/>
         <source>Process exited normally</source>
         <translation>Processo concluído com êxito</translation>
     </message>
