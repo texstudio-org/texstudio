@@ -29,6 +29,11 @@
 #include <QListWidget>
 #include <QScrollArea>
 
+#if QT_VERSION >= 0x040400
+#include <QFutureWatcher>
+#include <QtCore>
+#endif
+
 #include "poppler-qt4.h"
 
 class PDFDocument;
@@ -227,6 +232,38 @@ protected:
 
 signals:
 	void resized();
+};
+
+class PDFOverviewDock : public PDFDock
+{
+	Q_OBJECT
+
+public:
+	PDFOverviewDock(PDFDocument *doc = 0);
+	virtual ~PDFOverviewDock();
+
+public slots:
+	virtual void documentClosed();
+	virtual void pageChanged(int page);
+
+protected:
+	virtual void fillInfo();
+	virtual QString getTitle() { return tr("Overview"); }
+
+protected slots:
+	virtual void changeLanguage();
+
+private slots:
+	void followTocSelection();
+#if QT_VERSION >= 0x040400
+	void showImage(int num);
+#endif
+
+private:
+	QListWidget *list;
+#if QT_VERSION >= 0x040400
+	QFutureWatcher<QImage> *imageScaling;
+#endif
 };
 
 #endif

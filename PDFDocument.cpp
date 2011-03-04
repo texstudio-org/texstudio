@@ -249,8 +249,11 @@ void PDFMagnifier::setPage(Poppler::Page *p, qreal scale, const QPoint& offset)
 				QPoint br = parent->mapFromParent(viewport->rect().bottomRight());
 				QSize  size = QSize(br.x() - tl.x(), br.y() - tl.y()) * kMagFactor;
 				QPoint loc = tl * kMagFactor;
-				if (page != imagePage || dpi != imageDpi || loc != imageLoc || size != imageSize)
+				if (page != imagePage || dpi != imageDpi || loc != imageLoc || size != imageSize){
+					parent->renderMutex.lock();
 					image = page->renderToImage(dpi, dpi, loc.x(), loc.y(), size.width(), size.height());
+					parent->renderMutex.unlock();
+				}
 				imagePage = page;
 				imageDpi = dpi;
 				imageLoc = loc + offset * kMagFactor;
@@ -419,8 +422,10 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	QRect newRect = rect();
 	if (pages.size() > 0 && (pages.first() != imagePage || newDpi != imageDpi || newRect != imageRect)) {
 		if (gridx<=1 && gridy<=1) {
+			renderMutex.lock();
 			image = pages.first()->renderToImage(dpi * scaleFactor, dpi * scaleFactor,
 							rect().x(), rect().y(), rect().width(), rect().height());
+			renderMutex.unlock();
 		} else {
 			image = QImage(newRect.width(), newRect.height(), image.isNull()?QImage::Format_RGB32:image.format());
 			image.fill(QApplication::palette().color(QPalette::Dark).rgb());
@@ -428,10 +433,12 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 			p.begin(&image);
 			for (int i=0;i<pages.size();i++){
 				QRect drawTo = gridPageRect(i);
+				renderMutex.lock();
 				QImage temp = pages[i]->renderToImage(
 							  dpi * scaleFactor,
 							  dpi * scaleFactor,
 							  0,0,drawTo.width(), drawTo.height());
+				renderMutex.unlock();
 				p.drawImage(drawTo.left(), drawTo.top(), temp);
 			}
 			p.end();
@@ -1585,6 +1592,13 @@ PDFDocument::init()
 	menuShow->addAction(dw->toggleViewAction());
 	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
 	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(pageChanged(int)));	
+
+	dw = dwOverview = new PDFOverviewDock(this);
+	dw->hide();
+	addDockWidget(Qt::LeftDockWidgetArea, dw);
+	menuShow->addAction(dw->toggleViewAction());
+	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(pageChanged(int)));
 }
 
 bool PDFDocument::followCursor() const{
@@ -1755,12 +1769,15 @@ void PDFDocument::closeSomething(){
 		dwInfo->show();
 	    if(dwVisOutline)
 		dwOutline->show();
+	    if(dwVisOverview)
+		dwOverview->show();
 	}
 	if (actionFull_Screen->isChecked() || actionPresentation->isChecked()) toggleFullScreen(false);
 	else if (dwFonts && dwFonts->isVisible()) dwFonts->hide();
 	else if (dwSearch && dwSearch->isVisible()) dwSearch->hide();
 	else if (dwInfo && dwInfo->isVisible()) dwInfo->hide();
 	else if (dwOutline && dwOutline->isVisible()) dwOutline->hide();
+	else if (dwOverview && dwOverview->isVisible()) dwOverview->hide();
 	else actionClose->trigger();
 }
 
@@ -2064,6 +2081,7 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 		pdfWidget->saveState();
 		pdfWidget->fitWindow(true);
 		dwVisOutline=dwOutline->isVisible();
+		dwVisOverview=dwOverview->isVisible();
 		dwVisFonts=dwFonts->isVisible();
 		dwVisSearch=dwSearch->isVisible();
 		dwVisInfo=dwInfo->isVisible();
@@ -2130,6 +2148,12 @@ void PDFDocument::goToDestination(const QString& destName)
 {
 	if (pdfWidget)
 		pdfWidget->goToDestination(destName);
+}
+
+void PDFDocument::goToPage(const int page)
+{
+	if (pdfWidget)
+		pdfWidget->goToPage(page);
 }
 
 void PDFDocument::dragEnterEvent(QDragEnterEvent *event)

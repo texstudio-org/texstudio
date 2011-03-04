@@ -598,4 +598,140 @@ PDFScrollArea::resizeEvent(QResizeEvent *event)
 	emit resized();
 }
 
+//////////////// Overview ////////////////
+struct renderInfo{
+    Poppler::Page *page;
+    PDFWidget *widget;
+};
+
+
+QImage renderAsync(renderInfo info)
+{
+    QImage image=info.page->thumbnail();
+    if(image.isNull()){
+	info.widget->renderMutex.lock();
+	image=info.page->renderToImage();
+	info.widget->renderMutex.unlock();
+    }
+    //delete page;
+    return image.scaled(128,128,Qt::KeepAspectRatio,Qt::SmoothTransformation);
+}
+
+PDFOverviewDock::PDFOverviewDock(PDFDocument *doc)
+	: PDFDock(doc)
+{
+	setObjectName("outline");
+	setWindowTitle(getTitle());
+	list = new PDFDockListWidget(this);
+	list->setViewMode(QListView::IconMode);
+	list->setIconSize(QSize(128, 128));
+	list->setMovement(QListView::Static);
+	//list->setMaximumWidth(128);
+	list->setSpacing(12);
+	//list->setAutoFillBackground(true);
+	list->setBackgroundRole(QPalette::Mid);
+
+	//list->setAlternatingRowColors(true);
+	setWidget(list);
+
+#if QT_VERSION >= 0x040400
+	// async page rendering
+	imageScaling = new QFutureWatcher<QImage>(this);
+	connect(imageScaling, SIGNAL(resultReadyAt(int)), SLOT(showImage(int)));
+#endif
+}
+
+PDFOverviewDock::~PDFOverviewDock()
+{
+#if QT_VERSION >= 0x040400
+    if (imageScaling->isRunning()) {
+	imageScaling->cancel();
+	imageScaling->waitForFinished();
+    }
+#endif
+}
+
+void PDFOverviewDock::changeLanguage()
+{
+	PDFDock::changeLanguage();
+	if (filled)
+		fillInfo();
+}
+
+void PDFOverviewDock::fillInfo()
+{
+    list->clear();
+    if (!document || !document->popplerDoc()) return;
+    Poppler::Document *doc = document->popplerDoc();
+#if QT_VERSION >= 0x040400
+    QList<renderInfo >pages;
+    QPixmap pxMap(100,100);
+    pxMap.fill();
+#endif
+    for(int i=0;i<doc->numPages();i++){
+	    Poppler::Page* page=doc->page(i);
+#if QT_VERSION >= 0x040400
+	    renderInfo info;
+	    info.page=page;
+	    info.widget=document->widget();
+	    pages << info;
+#else
+	    QImage image=page->thumbnail();
+	    if(image.isNull()){
+		document->widget()->renderMutex.lock();
+		image=page->renderToImage();
+		document->widget()->renderMutex.unlock();
+	    }
+	    delete page;
+	    QPixmap pxMap=QPixmap::fromImage(image.scaled(128,128,Qt::KeepAspectRatio,Qt::SmoothTransformation));
+#endif
+	    QListWidgetItem *lw = new QListWidgetItem(list);
+	    lw->setIcon(QIcon(pxMap));
+	    lw->setBackgroundColor(Qt::gray);
+	    lw->setText(QString("%1").arg(i+1));
+	    connect(list, SIGNAL(itemSelectionChanged()), this, SLOT(followTocSelection()));
+    }
+#if QT_VERSION >= 0x040400
+    imageScaling->setFuture(QtConcurrent::mapped(pages, renderAsync));
+#endif
+
+    list->setCurrentRow(0);
+}
+
+void PDFOverviewDock::documentClosed()
+{
+#if QT_VERSION >= 0x040400
+    if (imageScaling->isRunning()) {
+	imageScaling->cancel();
+	imageScaling->waitForFinished();
+    }
+#endif
+    list->clear();
+    PDFDock::documentClosed();
+}
+
+void PDFOverviewDock::followTocSelection()
+{
+    QList<QListWidgetItem* >lst=list->selectedItems();
+    if(lst.isEmpty())
+	return;
+    int page=lst.first()->text().toInt();
+    document->goToPage(page-1);
+}
+
+void PDFOverviewDock::pageChanged(int page)
+{
+    list->setCurrentRow(page);
+}
+
+#if QT_VERSION >= 0x040400
+void PDFOverviewDock::showImage(int num){
+    QPixmap pxMap=QPixmap::fromImage(imageScaling->resultAt(num));
+    QListWidgetItem *lw = list->item(num);
+    lw->setIcon(QIcon(pxMap));
+}
+#endif
+
+
+
 #endif
