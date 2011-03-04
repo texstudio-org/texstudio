@@ -138,8 +138,8 @@ void LatexCompleterTest::simple_data(){
 				<< (QStringList()
 				<< "\\:>>\\<<"
 				<< "a:>>\\a<<"
-				<< "{:>>\\a{}<<"
-				<< "-:>>\\a{-}<<"
+				<< "{:>>\\a{<<" // pc does not work, as the defined command is \a{
+				<< "-:>>\\a{-<<"
 				);
 	QTest::newRow("small cmd +ec") << ">><<" << true << false << 0 << 2
 				<< "" << ""

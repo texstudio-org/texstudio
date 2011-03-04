@@ -498,8 +498,8 @@ QVariant CompletionListModel::headerData(int section, Qt::Orientation orientatio
 	return QVariant();
 }
 bool CompletionListModel::isNextCharPossible(const QChar &c){
-	if (words.count()>100) //probable that every char is there (especially since acceptedChars is already checked)
-		return true; 
+	//if (words.count()>100) //probable that every char is there (especially since acceptedChars is already checked)
+	//	return true;  -> leads to faulty behaviour (\b{ is supposed to be within list ...)
 	Qt::CaseSensitivity cs = Qt::CaseInsensitive;
 	if (LatexCompleter::config && 
 	    LatexCompleter::config->caseSensitive==LatexCompleterConfig::CCS_CASE_SENSITIVE)
