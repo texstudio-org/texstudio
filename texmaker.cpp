@@ -2782,7 +2782,7 @@ void Texmaker::QuickLetter() {
 		tag+=ltDlg->ui.comboBoxPaper->currentText()+QString("]{letter}");
 		tag+=QString("\n");
 		if (ltDlg->ui.comboBoxEncoding->currentText()!="NONE") tag+=QString("\\usepackage[")+ltDlg->ui.comboBoxEncoding->currentText()+QString("]{inputenc}");
-		if (ltDlg->ui.comboBoxEncoding->currentText().startsWith("utf8")) tag+=QString(" \\usepackage{ucs}");
+		if (ltDlg->ui.comboBoxEncoding->currentText().startsWith("utf8x")) tag+=QString(" \\usepackage{ucs}");
 		tag+=QString("\n");
 		if (ltDlg->ui.checkBox->isChecked()) tag+=QString("\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}\n");
 		tag+="\\address{your name and address} \n";
