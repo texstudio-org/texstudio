@@ -112,6 +112,7 @@
 QT_TRANSLATE_NOOP("QFormatConfig", "line:bookmark7"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "line:bookmark8"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "line:bookmark9"), 
+QT_TRANSLATE_NOOP("QFormatConfig", "commentTodo"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "comment"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "keyword"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "extra-keyword"), 
