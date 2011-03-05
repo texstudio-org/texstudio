@@ -2858,6 +2858,10 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
         <source>Presentation</source>
         <translation>Präsentation</translation>
     </message>
+    <message>
+        <source>F5</source>
+        <translation>F5</translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
@@ -2914,6 +2918,13 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <message>
         <source>Contents</source>
         <translation>Inhalt</translation>
+    </message>
+</context>
+<context>
+    <name>PDFOverviewDock</name>
+    <message>
+        <source>Overview</source>
+        <translation>Überblick</translation>
     </message>
 </context>
 <context>
@@ -3786,6 +3797,10 @@ Wollen Sie es speichern?</translation>
     <message>
         <source>latexSyntaxMistake</source>
         <translation>latexSyntaxFehler</translation>
+    </message>
+    <message>
+        <source>commentTodo</source>
+        <translation>KommentarTodo</translation>
     </message>
 </context>
 <context>

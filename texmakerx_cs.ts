@@ -2751,6 +2751,10 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
         <source>Presentation</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>F5</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
@@ -2807,6 +2811,13 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <message>
         <source>Contents</source>
         <translation>Obsah</translation>
+    </message>
+</context>
+<context>
+    <name>PDFOverviewDock</name>
+    <message>
+        <source>Overview</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3644,6 +3655,10 @@ Chcete, aby byly uloženy?</translation>
     </message>
     <message>
         <source>Priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>commentTodo</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

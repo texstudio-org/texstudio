@@ -2924,53 +2924,53 @@ Você deseja desfazer as alterações?</translation>
         <translation>Apresentação</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1478"/>
-        <location filename="PDFDocument.cpp" line="2003"/>
+        <location filename="PDFDocument.cpp" line="1485"/>
+        <location filename="PDFDocument.cpp" line="2020"/>
         <source>of %1</source>
         <translation>de %1</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1683"/>
+        <location filename="PDFDocument.cpp" line="1697"/>
         <source>PDF file &quot;%1&quot; is locked; this is not currently supported.</source>
         <translation>Arquivo PDF  &quot;%1&quot; está bloqueado; não há suporte para ele no momento.</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1702"/>
+        <location filename="PDFDocument.cpp" line="1716"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
         <translation>Falha ao carregar arquivo &quot;%1&quot;; talvez não seja um arquivo PDF válido.</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1879"/>
+        <location filename="PDFDocument.cpp" line="1896"/>
         <source>No SyncTeX data available</source>
         <translation>Dados SyncTeX não disponíveis</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1882"/>
+        <location filename="PDFDocument.cpp" line="1899"/>
         <source>SyncTeX: &quot;%1&quot;</source>
         <translation>SyncTeX: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1971"/>
+        <location filename="PDFDocument.cpp" line="1988"/>
         <source>%1[*] - %2</source>
         <translation>%1[*] - %2</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1971"/>
+        <location filename="PDFDocument.cpp" line="1988"/>
         <source>TexMakerX</source>
         <translation>TexMakerX</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2001"/>
+        <location filename="PDFDocument.cpp" line="2018"/>
         <source>page %1 of %2</source>
         <translation>página %1 de %2</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2002"/>
+        <location filename="PDFDocument.cpp" line="2019"/>
         <source>pages %1 to %2 of %3</source>
         <translation>páginas %1 a %2 de %3</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2010"/>
+        <location filename="PDFDocument.cpp" line="2027"/>
         <source>%1%</source>
         <translation>%1%</translation>
     </message>
@@ -3018,7 +3018,7 @@ Você deseja desfazer as alterações?</translation>
         <translation>[incorporado]</translation>
     </message>
     <message>
-        <location filename="PDFDocks.h" line="151"/>
+        <location filename="PDFDocks.h" line="156"/>
         <source>Fonts</source>
         <translation>Fontes</translation>
     </message>
@@ -3026,7 +3026,7 @@ Você deseja desfazer as alterações?</translation>
 <context>
     <name>PDFInfoDock</name>
     <message>
-        <location filename="PDFDocks.h" line="119"/>
+        <location filename="PDFDocks.h" line="124"/>
         <source>PDF Info</source>
         <translation>PDF Info</translation>
     </message>
@@ -3039,9 +3039,17 @@ Você deseja desfazer as alterações?</translation>
         <translation>Sem TOC</translation>
     </message>
     <message>
-        <location filename="PDFDocks.h" line="82"/>
+        <location filename="PDFDocks.h" line="87"/>
         <source>Contents</source>
         <translation>Sumário</translation>
+    </message>
+</context>
+<context>
+    <name>PDFOverviewDock</name>
+    <message>
+        <location filename="PDFDocks.h" line="251"/>
+        <source>Overview</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3055,52 +3063,52 @@ Você deseja desfazer as alterações?</translation>
 <context>
     <name>PDFWidget</name>
     <message>
-        <location filename="PDFDocument.cpp" line="354"/>
+        <location filename="PDFDocument.cpp" line="357"/>
         <source>Zoom In</source>
         <translation>Ampliar</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="356"/>
+        <location filename="PDFDocument.cpp" line="359"/>
         <source>Zoom Out</source>
         <translation>Reduzir</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="359"/>
+        <location filename="PDFDocument.cpp" line="362"/>
         <source>Actual Size</source>
         <translation>Tamanho Real</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="362"/>
+        <location filename="PDFDocument.cpp" line="365"/>
         <source>Fit to Width</source>
         <translation>Ajustar à Largura</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="365"/>
+        <location filename="PDFDocument.cpp" line="368"/>
         <source>Fit to Window</source>
         <translation>Ajustar à Janela</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="646"/>
+        <location filename="PDFDocument.cpp" line="653"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="646"/>
+        <location filename="PDFDocument.cpp" line="653"/>
         <source>Could not open browser</source>
         <translation>Não foi possívl abrir o navegador</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="749"/>
+        <location filename="PDFDocument.cpp" line="756"/>
         <source>Jump to Source</source>
         <translation>Ir para Fonte</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1134"/>
+        <location filename="PDFDocument.cpp" line="1141"/>
         <source>Go to Page</source>
         <translation>Ir para página</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1135"/>
+        <location filename="PDFDocument.cpp" line="1142"/>
         <source>Page number:</source>
         <translation>Número da Paǵina:</translation>
     </message>
@@ -3841,132 +3849,132 @@ mover cursor para a direita (1 caracter)</translation>
         <translation>linha: marcador 9</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="229"/>
+        <location filename="additionaltranslations.cpp" line="231"/>
         <source>comment</source>
         <translation>comentário</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="231"/>
+        <location filename="additionaltranslations.cpp" line="233"/>
         <source>keyword</source>
         <translation>palavara-chave</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="233"/>
+        <location filename="additionaltranslations.cpp" line="235"/>
         <source>extra-keyword</source>
         <translation>palavra-chave (extra)</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="235"/>
+        <location filename="additionaltranslations.cpp" line="237"/>
         <source>math-keyword</source>
         <translation>palavra-chave (mat)</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="237"/>
+        <location filename="additionaltranslations.cpp" line="239"/>
         <source>verbatim</source>
         <translation>verbatim</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="239"/>
+        <location filename="additionaltranslations.cpp" line="241"/>
         <source>braceMatch</source>
         <translation>parênteses coincidentes</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="241"/>
+        <location filename="additionaltranslations.cpp" line="243"/>
         <source>braceMismatch</source>
         <translation>parênteses não-coincidentes</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="243"/>
+        <location filename="additionaltranslations.cpp" line="245"/>
         <source>search</source>
         <translation>pesquisa</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="245"/>
+        <location filename="additionaltranslations.cpp" line="247"/>
         <source>numbers</source>
         <translation>números</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="247"/>
+        <location filename="additionaltranslations.cpp" line="249"/>
         <source>text</source>
         <translation>texto</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="249"/>
+        <location filename="additionaltranslations.cpp" line="251"/>
         <source>escapeseq</source>
         <translation>seq. escape</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="251"/>
+        <location filename="additionaltranslations.cpp" line="253"/>
         <source>styleHint</source>
         <translation>dica de estilo</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="253"/>
+        <location filename="additionaltranslations.cpp" line="255"/>
         <source>spellingMistake</source>
         <translation>erro ortográfico</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="255"/>
+        <location filename="additionaltranslations.cpp" line="257"/>
         <source>latexSyntaxMistake</source>
         <translation>erro latex</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="257"/>
+        <location filename="additionaltranslations.cpp" line="259"/>
         <source>temporaryCodeCompletion</source>
         <translation>código compl. temp.</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="259"/>
+        <location filename="additionaltranslations.cpp" line="261"/>
         <source>environment</source>
         <translation>ambiente</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="261"/>
+        <location filename="additionaltranslations.cpp" line="263"/>
         <source>referencePresent</source>
         <translation>referência presente</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="263"/>
+        <location filename="additionaltranslations.cpp" line="265"/>
         <source>referenceMissing</source>
         <translation>referência faltando</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="265"/>
+        <location filename="additionaltranslations.cpp" line="267"/>
         <source>referenceMultiple</source>
         <translation>referência múltipla</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="267"/>
+        <location filename="additionaltranslations.cpp" line="269"/>
         <source>citationPresent</source>
         <translation>citação presente</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="269"/>
+        <location filename="additionaltranslations.cpp" line="271"/>
         <source>citationMissing</source>
         <translation>citação faltando</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="271"/>
+        <location filename="additionaltranslations.cpp" line="273"/>
         <source>structure</source>
         <translation>estrutura</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="273"/>
+        <location filename="additionaltranslations.cpp" line="275"/>
         <source>current</source>
         <translation>linha: atual</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="275"/>
+        <location filename="additionaltranslations.cpp" line="277"/>
         <source>selection</source>
         <translation>seleção</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="277"/>
+        <location filename="additionaltranslations.cpp" line="279"/>
         <source>replacement</source>
         <translation>substituição</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="279"/>
+        <location filename="additionaltranslations.cpp" line="281"/>
         <source>normal</source>
         <translation>normal</translation>
     </message>
@@ -4934,43 +4942,43 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
 <context>
     <name>Texmaker</name>
     <message>
-        <location filename="additionaltranslations.cpp" line="281"/>
+        <location filename="additionaltranslations.cpp" line="283"/>
         <source>Custom</source>
         <translation>Personalizada</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="283"/>
+        <location filename="additionaltranslations.cpp" line="285"/>
         <source>File</source>
         <translation>Arquivo</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="285"/>
+        <location filename="additionaltranslations.cpp" line="287"/>
         <location filename="texmaker.cpp" line="1230"/>
         <source>Edit</source>
         <translation>Editar</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="287"/>
+        <location filename="additionaltranslations.cpp" line="289"/>
         <source>Tools</source>
         <translation>Ferramentas</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="289"/>
+        <location filename="additionaltranslations.cpp" line="291"/>
         <source>Math</source>
         <translation>Mat</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="291"/>
+        <location filename="additionaltranslations.cpp" line="293"/>
         <source>Format</source>
         <translation>Formatar</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="293"/>
+        <location filename="additionaltranslations.cpp" line="295"/>
         <source>Table</source>
         <translation>Tabelas</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="295"/>
+        <location filename="additionaltranslations.cpp" line="297"/>
         <location filename="texmaker.cpp" line="132"/>
         <source>Central</source>
         <translation>Central</translation>

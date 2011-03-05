@@ -2731,6 +2731,10 @@ Are you sure you want to undo all changes?</source>
         <source>Presentation</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>F5</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
@@ -2786,6 +2790,13 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <source>Contents</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PDFOverviewDock</name>
+    <message>
+        <source>Overview</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3623,6 +3634,10 @@ Do you want them to be saved?</source>
     </message>
     <message>
         <source>Priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>commentTodo</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

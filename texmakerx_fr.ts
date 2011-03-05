@@ -2564,6 +2564,10 @@ Continuer tout de même ?</translation>
         <source>Presentation</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>F5</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
@@ -2620,6 +2624,13 @@ Continuer tout de même ?</translation>
     <message>
         <source>Contents</source>
         <translation>Matières</translation>
+    </message>
+</context>
+<context>
+    <name>PDFOverviewDock</name>
+    <message>
+        <source>Overview</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3457,6 +3468,10 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <source>latexSyntaxMistake</source>
         <translation>Erreur de syntaxe LaTeX</translation>
+    </message>
+    <message>
+        <source>commentTodo</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
