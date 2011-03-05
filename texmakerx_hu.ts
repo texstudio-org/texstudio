@@ -2387,6 +2387,10 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <source>Presentation</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>F5</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
@@ -2443,6 +2447,13 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>Contents</source>
         <translation>Tartalmak</translation>
+    </message>
+</context>
+<context>
+    <name>PDFOverviewDock</name>
+    <message>
+        <source>Overview</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3252,6 +3263,10 @@ Akarja menteni ezeket?</translation>
     <message>
         <source>Priority</source>
         <translation>Elsődleges</translation>
+    </message>
+    <message>
+        <source>commentTodo</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

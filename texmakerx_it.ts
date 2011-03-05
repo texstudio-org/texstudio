@@ -2564,6 +2564,10 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
         <source>Presentation</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>F5</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
@@ -2619,6 +2623,13 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>Contents</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PDFOverviewDock</name>
+    <message>
+        <source>Overview</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3454,6 +3465,10 @@ Vuoi salvarli?</translation>
     </message>
     <message>
         <source>Priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>commentTodo</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
