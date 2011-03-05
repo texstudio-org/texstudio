@@ -613,7 +613,7 @@ QImage renderAsync(renderInfo info)
 	image=info.page->renderToImage();
 	info.widget->renderMutex.unlock();
     }
-    //delete page;
+    delete page;
     return image.scaled(128,128,Qt::KeepAspectRatio,Qt::SmoothTransformation);
 }
 
