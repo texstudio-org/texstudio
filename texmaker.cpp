@@ -994,6 +994,7 @@ bool Texmaker::FileAlreadyOpen(QString f, bool checkTemporaryNames) {
 	LatexEditorView* edView = getEditorViewFromFileName(f, checkTemporaryNames);
 	if (!edView) return false;
 	EditorView->setCurrentWidget(edView);
+	edView->editor->setFocus();
 	return true;
 }
 ///////////////////FILE//////////////////////////////////////
@@ -1308,7 +1309,17 @@ void Texmaker::fileRestoreSession(){
 	for (int i=0; i<configManager.sessionFilesToRestore.size(); i++){
 		LatexEditorView* edView=load(configManager.sessionFilesToRestore[i], configManager.sessionFilesToRestore[i]==configManager.sessionMaster);
 		if(edView){
-		    edView->editor->setCursorPosition(configManager.sessionCurRowsToRestore.value(i,QVariant(0)).toInt(),configManager.sessionCurColsToRestore.value(i,0).toInt());
+		    int row=configManager.sessionCurRowsToRestore.value(i,QVariant(0)).toInt();
+		    int col=configManager.sessionCurColsToRestore.value(i,0).toInt();
+		    if(row>=edView->document->lineCount()){
+			row=0;
+			col=0;
+		    }else{
+			if(edView->document->line(row).length()<col){
+			    col=0;
+			}
+		    }
+		    edView->editor->setCursorPosition(row,col);
 		    edView->editor->scrollToFirstLine(configManager.sessionFirstLinesToRestore.value(i,0).toInt());
 		}
 	}
