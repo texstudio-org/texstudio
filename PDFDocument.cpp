@@ -1285,7 +1285,7 @@ void PDFWidget::zoomOut()
 //TODO: optimize?
 static const int GridBorder = 5;
 QRect PDFWidget::gridPageRect(int pageIndex) const{
-	if (pages.size()<=1)
+	if (gridx*gridy <= 1)
 		return rect();
 	int totalBorderX = (gridx-1)*GridBorder;
 	int totalBorderY = (gridy-1)*GridBorder;
