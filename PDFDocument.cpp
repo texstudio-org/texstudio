@@ -927,20 +927,26 @@ void PDFWidget::setResolution(int res)
 	resetMagnifier();
 }
 
-void PDFWidget::setHighlightPath(const QPainterPath& path)
+void PDFWidget::setHighlightPath(const int page, const QPainterPath& path)
 {
 	highlightRemover.stop();
 	highlightPath = path;
 	if (!path.isEmpty()) {
+		if (gridx*gridy >= 1)
+			highlightPath.translate(QPointF(gridPagePosition(page - pageIndex)) / dpi * 72 / scaleFactor);
 		QScrollArea*	scrollArea = getScrollArea();
 		if (scrollArea) {
-			QRectF r = path.boundingRect();
+			QRectF r = highlightPath.boundingRect();
 			scrollArea->ensureVisible((int)((r.left() + r.right()) / 2 * dpi / 72 * scaleFactor),
 										(int)((r.top() + r.bottom()) / 2 * dpi / 72 * scaleFactor));
 		}
 		if (kPDFHighlightDuration > 0)
 			highlightRemover.start(kPDFHighlightDuration);
 	}
+}
+
+int PDFWidget::getHighlightPage() const{
+	return highlightPage;
 }
 
 void PDFWidget::clearHighlight()
@@ -1842,16 +1848,20 @@ void PDFDocument::search(bool backwards, bool incremental){
 		lastSearchResult.selRect.setRight(lastSearchResult.selRect.left());
 	}
 
-	if (lastSearchResult.pageIdx != pdfWidget->getCurrentPageIndex())
-		lastSearchResult.selRect = backwards ? QRectF(0,100000,1,1) : QRectF();
-
+	int startPage = lastSearchResult.pageIdx;
+	if (lastSearchResult.pageIdx != pdfWidget->getCurrentPageIndex()) {
+		if (pdfWidget->pageStep() == 1 || pdfWidget->getCurrentPageIndex() != lastSearchResult.pageIdx - lastSearchResult.pageIdx % pdfWidget->pageStep() ){			
+			startPage = pdfWidget->getCurrentPageIndex();
+			lastSearchResult.selRect = backwards ? QRectF(0,100000,1,1) : QRectF();
+		}
+	}
 
 	for (run = 0; run < runs; ++run) {
 		switch (run) {
 			case 0:
 				// first run = normal search
 				lastPage = (backwards ? -1 : document->numPages());
-				firstPage = pdfWidget->getCurrentPageIndex();
+				firstPage = startPage;
 				break;
 			case 1:
 				// second run = after wrap
@@ -1878,11 +1888,12 @@ void PDFDocument::search(bool backwards, bool incremental){
 
 
 				pdfWidget->goToPage(lastSearchResult.pageIdx);
-				pdfWidget->setHighlightPath(p);
+				pdfWidget->setHighlightPath(lastSearchResult.pageIdx, p);
 				pdfWidget->update();
 
 				return;
 			}
+
 			lastSearchResult.selRect = backwards ? QRectF(0,100000,1,1) : QRectF();
 			searchDir = (backwards ? Poppler::Page::PreviousResult : Poppler::Page::NextResult);
 		}
@@ -1904,7 +1915,7 @@ void PDFDocument::syncClick(int pageIndex, const QPointF& pos, bool activate)
 {
 	if (scanner == NULL)
 		return;
-	pdfWidget->setHighlightPath(QPainterPath());
+	pdfWidget->setHighlightPath(-1, QPainterPath());
 	pdfWidget->update();
 	if (synctex_edit_query(scanner, pageIndex + 1, pos.x(), pos.y()) > 0) {
 		synctex_node_t node;
@@ -1969,7 +1980,7 @@ void PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool act
 		if (page > 0) {
 			pdfWidget->goToPage(page - 1);
 			path.setFillRule(Qt::WindingFill);
-			pdfWidget->setHighlightPath(path);
+			pdfWidget->setHighlightPath(page-1, path);
 			pdfWidget->update();
 			if (activatePreview) {
 				show();
