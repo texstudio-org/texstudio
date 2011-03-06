@@ -227,23 +227,23 @@
 <context>
     <name>BuildManager</name>
     <message>
-        <location filename="buildmanager.cpp" line="486"/>
+        <location filename="buildmanager.cpp" line="488"/>
         <source>Dvi Viewer</source>
         <translation>Visualizador DVI</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="487"/>
+        <location filename="buildmanager.cpp" line="489"/>
         <source>Ps Viewer</source>
         <translation>Visualizador PS</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="488"/>
+        <location filename="buildmanager.cpp" line="490"/>
         <source>Pdf Viewer</source>
         <translation>Visualizador PDF</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="545"/>
-        <location filename="buildmanager.cpp" line="569"/>
+        <location filename="buildmanager.cpp" line="547"/>
+        <location filename="buildmanager.cpp" line="571"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;desconhecido&gt;</translation>
     </message>
@@ -532,7 +532,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="846"/>
         <source>Never (only use the file names in the log)</source>
-        <translation>Nunca (use somente os nomes dos arquivos no log)</translation>
+        <translation>Nunca (usar somente os nomes dos arquivos no log)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="851"/>
@@ -2364,7 +2364,7 @@ Você deseja desfazer as alterações?</translation>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="letterdialog.cpp" line="51"/>
+        <location filename="letterdialog.cpp" line="52"/>
         <source>Quick Letter</source>
         <translation>Assistente de Carta</translation>
     </message>
@@ -2911,7 +2911,7 @@ Você deseja desfazer as alterações?</translation>
     <message>
         <location filename="PDFDocument.ui" line="750"/>
         <source>Single Page Step</source>
-        <translation>Página Única</translation>
+        <translation>Avançar uma página</translation>
     </message>
     <message>
         <location filename="PDFDocument.ui" line="761"/>
@@ -2924,53 +2924,53 @@ Você deseja desfazer as alterações?</translation>
         <translation>Apresentação</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1485"/>
-        <location filename="PDFDocument.cpp" line="2020"/>
+        <location filename="PDFDocument.cpp" line="1492"/>
+        <location filename="PDFDocument.cpp" line="2038"/>
         <source>of %1</source>
         <translation>de %1</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1697"/>
+        <location filename="PDFDocument.cpp" line="1710"/>
         <source>PDF file &quot;%1&quot; is locked; this is not currently supported.</source>
         <translation>Arquivo PDF  &quot;%1&quot; está bloqueado; não há suporte para ele no momento.</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1716"/>
+        <location filename="PDFDocument.cpp" line="1729"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
         <translation>Falha ao carregar arquivo &quot;%1&quot;; talvez não seja um arquivo PDF válido.</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1896"/>
+        <location filename="PDFDocument.cpp" line="1914"/>
         <source>No SyncTeX data available</source>
         <translation>Dados SyncTeX não disponíveis</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1899"/>
+        <location filename="PDFDocument.cpp" line="1917"/>
         <source>SyncTeX: &quot;%1&quot;</source>
         <translation>SyncTeX: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1988"/>
+        <location filename="PDFDocument.cpp" line="2006"/>
         <source>%1[*] - %2</source>
         <translation>%1[*] - %2</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1988"/>
+        <location filename="PDFDocument.cpp" line="2006"/>
         <source>TexMakerX</source>
         <translation>TexMakerX</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2018"/>
+        <location filename="PDFDocument.cpp" line="2036"/>
         <source>page %1 of %2</source>
         <translation>página %1 de %2</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2019"/>
+        <location filename="PDFDocument.cpp" line="2037"/>
         <source>pages %1 to %2 of %3</source>
         <translation>páginas %1 a %2 de %3</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2027"/>
+        <location filename="PDFDocument.cpp" line="2045"/>
         <source>%1%</source>
         <translation>%1%</translation>
     </message>
@@ -3049,7 +3049,7 @@ Você deseja desfazer as alterações?</translation>
     <message>
         <location filename="PDFDocks.h" line="251"/>
         <source>Overview</source>
-        <translation type="unfinished"></translation>
+        <translation>Páginas</translation>
     </message>
 </context>
 <context>
@@ -3103,12 +3103,12 @@ Você deseja desfazer as alterações?</translation>
         <translation>Ir para Fonte</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1141"/>
+        <location filename="PDFDocument.cpp" line="1147"/>
         <source>Go to Page</source>
         <translation>Ir para página</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1142"/>
+        <location filename="PDFDocument.cpp" line="1148"/>
         <source>Page number:</source>
         <translation>Número da Paǵina:</translation>
     </message>
@@ -3149,27 +3149,27 @@ Você deseja desfazer as alterações?</translation>
 <context>
     <name>ProcessX</name>
     <message>
-        <location filename="buildmanager.cpp" line="985"/>
+        <location filename="buildmanager.cpp" line="987"/>
         <source>Process started: %1</source>
         <translation>Processo iniciado: %1</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="990"/>
+        <location filename="buildmanager.cpp" line="992"/>
         <source>Error: Could not start the command: %1</source>
         <translation>Erro: Não foi possível iniciar o comando: %1</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="992"/>
+        <location filename="buildmanager.cpp" line="994"/>
         <source>Error: Command crashed: %1</source>
         <translation>Erro: Comando falhou: %1</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="997"/>
+        <location filename="buildmanager.cpp" line="999"/>
         <source>Process exited with error(s)</source>
         <translation>Processo concluído com erro(s)</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="999"/>
+        <location filename="buildmanager.cpp" line="1001"/>
         <source>Process exited normally</source>
         <translation>Processo concluído com êxito</translation>
     </message>
@@ -3244,7 +3244,7 @@ Recomeçar a partir do início?</translation>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="835"/>
         <source>End of scope reached with no match.
 Restart from the beginning ?</source>
-        <translation>Fim do escopo alcançado com nenhuma ocorrência.
+        <translation>Fim do escopo alcançado sem nenhuma ocorrência.
 Recomeçar a partir do início?</translation>
     </message>
     <message>
@@ -3847,6 +3847,11 @@ mover cursor para a direita (1 caracter)</translation>
         <location filename="additionaltranslations.cpp" line="227"/>
         <source>line:bookmark9</source>
         <translation>linha: marcador 9</translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="229"/>
+        <source>commentTodo</source>
+        <translation>comentário ToDo</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="231"/>
@@ -6066,7 +6071,7 @@ Deseja realmente continuar?</translation>
     <message>
         <location filename="texmaker.cpp" line="1793"/>
         <source>Smart scope selecting</source>
-        <translation>Seleção de escopo inteligente</translation>
+        <translation>Seleção inteligente de escopo</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="1794"/>
