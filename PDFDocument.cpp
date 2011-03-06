@@ -1415,6 +1415,7 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig)
 
 PDFDocument::~PDFDocument()
 {
+	emit documentClosed();
 	if (scanner != NULL)
 		synctex_scanner_free(scanner);
 	docList.removeAll(this);
@@ -1578,6 +1579,7 @@ PDFDocument::init()
 	addDockWidget(Qt::LeftDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
 	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
 	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(pageChanged(int)));
 
 	dw = dwInfo = new PDFInfoDock(this);
@@ -1585,6 +1587,7 @@ PDFDocument::init()
 	addDockWidget(Qt::LeftDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
 	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
 	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(pageChanged(int)));
 
 	dw = dwSearch = new PDFSearchDock(this);
@@ -1597,13 +1600,15 @@ PDFDocument::init()
 	addDockWidget(Qt::BottomDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
 	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
-	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(pageChanged(int)));	
+	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
+	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(pageChanged(int)));
 
 	dw = dwOverview = new PDFOverviewDock(this);
 	dw->hide();
 	addDockWidget(Qt::LeftDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
 	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
 	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(pageChanged(int)));
 }
 
@@ -1692,6 +1697,8 @@ void PDFDocument::reload()
 		scanner = NULL;
 	}
 
+
+	emit documentClosed();
 	if (document != NULL)
 		delete document;
 

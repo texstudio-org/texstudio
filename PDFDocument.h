@@ -322,6 +322,7 @@ private slots:
 	void search(bool backward, bool incremental);
 	void setZoom();
 signals:
+	void documentClosed();
 	void reloaded();
 	void syncSource(const QString& sourceFile, int line, bool activate); //view -> source
 	void syncView(const QString& pdfFile, const QString& externalViewer, int page); //view -> other view
