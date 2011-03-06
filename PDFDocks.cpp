@@ -665,7 +665,7 @@ void PDFOverviewDock::fillInfo()
     Poppler::Document *doc = document->popplerDoc();
 #if QT_VERSION >= 0x040400
     QList<renderInfo >pages;
-    QPixmap pxMap(100,100);
+    QPixmap pxMap(128,128);
     pxMap.fill();
 #endif
     for(int i=0;i<doc->numPages();i++){
