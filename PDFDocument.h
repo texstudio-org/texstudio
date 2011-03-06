@@ -89,7 +89,8 @@ public:
 	void setResolution(int res);
 	void resetMagnifier();
 	void goToPage(int pageIndex);
-	void setHighlightPath(const QPainterPath& path);
+	void setHighlightPath(const int pageIndex, const QPainterPath& path);
+	int getHighlightPage() const;
 	void goToDestination(const QString& destName);
 	int getCurrentPageIndex() { return pageIndex; }
 	void reloadPage();
@@ -213,6 +214,7 @@ private:
 	int gridx, gridy;
 
 	QPainterPath	highlightPath;
+	int highlightPage;
 	QTimer highlightRemover;
 	
 	static QCursor	*magnifierCursor;
