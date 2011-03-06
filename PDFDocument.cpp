@@ -2114,6 +2114,7 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 			dwFonts->hide();
 			dwSearch->hide();
 			dwInfo->hide();
+			dwOverview->hide();
 			presentation = true;
 		} else
 			actionFull_Screen->setChecked(true);
