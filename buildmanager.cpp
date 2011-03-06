@@ -371,6 +371,8 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 		QString def=W32_FileAssociation(".pdf");
 		if (!def.isEmpty())
 			return def;
+		else if (QFileInfo("C:/Program Files/Adobe/Reader 10.0/Reader/AcroRd32.exe").exists())
+			return "\"C:/Program Files/Adobe/Reader 10.0/Reader/AcroRd32.exe\" \"?am.pdf\"";
 		else if (QFileInfo("C:/Program Files/Adobe/Reader 9.0/Reader/AcroRd32.exe").exists())
 			return "\"C:/Program Files/Adobe/Reader 9.0/Reader/AcroRd32.exe\" \"?am.pdf\"";
 		else if (QFileInfo("C:/Program Files/Adobe/Reader 8.0/Reader/AcroRd32.exe").exists())
