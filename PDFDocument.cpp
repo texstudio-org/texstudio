@@ -839,10 +839,23 @@ void PDFWidget::setTool(int tool)
 
 
 void PDFWidget::syncWindowClick(int x, int y, bool activate, int page){
+	if (page == -1) {
+		page = qMax(0,gridPageIndex(QPoint(x,y))); //page index in grid
+		QPoint p = gridPagePosition(page);
+		x -= p.x();
+		y -= p.y();
+		page +=  pageIndex;                        //page index in document
+	}
 	QPointF pagePos(x / scaleFactor * 72.0 / dpi,
 			y / scaleFactor * 72.0 / dpi);
-	if (page == -1) page = pageIndex;
-	emit syncClick(pageIndex, pagePos, activate);
+	emit syncClick(page, pagePos, activate);
+}
+
+void PDFWidget::syncCurrentPage(bool activate){
+	//single page step mode: jump to center of first page in grid; multi page step: jump to center of grid
+	int curPage = pageIndex + (pageStep()>1?pages.size()/2:0);
+	QRect r = gridPageRect(curPage);
+	syncWindowClick(r.width()/2, r.height()/2, activate, curPage);
 }
 
 void PDFWidget::updateCursor()
@@ -2050,7 +2063,7 @@ void PDFDocument::goToSource()
 {
 	Q_ASSERT(pdfWidget);
 	if (!pdfWidget) return;
-	pdfWidget->syncWindowClick(pdfWidget->width()/2, pdfWidget->height()/2, true);
+	pdfWidget->syncCurrentPage(true);
 }
 
 void PDFDocument::enablePageActions(int pageIndex)
@@ -2071,7 +2084,7 @@ void PDFDocument::enablePageActions(int pageIndex)
 	Q_ASSERT(pdfWidget && globalConfig);
 	if (!pdfWidget || !globalConfig) return;
 	if (globalConfig->followFromScroll)
-		pdfWidget->syncWindowClick(pdfWidget->width()/2, pdfWidget->height()/2, false);
+		pdfWidget->syncCurrentPage(false);
 	if (actionSynchronize_multiple_views->isChecked())
 		emit syncView(curFile, externalViewerCmdLine, widget()->getCurrentPageIndex());;
 }

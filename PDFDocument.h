@@ -127,8 +127,9 @@ public slots:
 	void setSinglePageStep(bool step);
 	void windowResized();
 	void fitWindow(bool checked = true);
-	void setTool(int tool);
+	void setTool(int tool);	
 	void syncWindowClick(int x, int y, bool activate, int page = -1);
+	void syncCurrentPage(bool activate);
 	void fixedScale(qreal scale = 1.0);
 
 signals:
