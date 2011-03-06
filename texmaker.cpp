@@ -2516,7 +2516,7 @@ void Texmaker::insertXmlTagFromToolButtonAction(){
 	if (!action) return;
 	QToolButton *button = comboToolButtonFromAction(action);
 	if (!button) return;
-	button->defaultAction()->setText(action->text());
+	button->setDefaultAction(action);
 
 	QString tagsID = button->property("tagsID").toString();
 	int tagCategorySep=tagsID.indexOf("/",5);
