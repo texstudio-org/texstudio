@@ -120,6 +120,7 @@ public:
 		mBuffer=buffer;
 	}
 	bool showStdout() const;
+	void setShowStdout(bool show);
 signals:
 	void processNotification(const QString& message);
 

@@ -137,7 +137,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>10</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -151,8 +151,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>793</width>
-            <height>577</height>
+            <width>797</width>
+            <height>597</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -826,14 +826,14 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="5" column="0" colspan="2">
+          <item row="6" column="0" colspan="2">
            <widget class="QLabel" name="label_11">
             <property name="text">
              <string>Assume that every error is in the current document:</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="2" colspan="3">
+          <item row="6" column="2" colspan="3">
            <widget class="QComboBox" name="comboBoxIgnoreLogFileNames">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -881,6 +881,38 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             <property name="text">
              <string>Don't launch a new instance of the viewer if the dvi/ps/pdf file is already opened</string>
             </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_37">
+            <property name="text">
+             <string>Show stdout</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2" colspan="3">
+           <widget class="QComboBox" name="comboBoxShowStdout">
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>Never</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Only for user commands</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Always (if not redirected &gt; /dev/null)</string>
+             </property>
+            </item>
            </widget>
           </item>
          </layout>

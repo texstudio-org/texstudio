@@ -2989,9 +2989,9 @@ void Texmaker::runCommand(BuildManager::LatexCommand cmd,bool waitendprocess){
         }
 	if(compileLatex) ClearMarkers();
 	bool startViewer = cmd==BuildManager::CMD_VIEWDVI || cmd==BuildManager::CMD_VIEWPS || cmd==BuildManager::CMD_VIEWPDF;
-	runCommand(buildManager.getLatexCommand(cmd),waitendprocess,compileLatex,0,startViewer && configManager.singleViewerInstance);
+	runCommand(buildManager.getLatexCommand(cmd),waitendprocess,compileLatex,0,0,startViewer && configManager.singleViewerInstance);
 }
-void Texmaker::runCommand(QString comd,bool waitendprocess,int compileLatex, QString *buffer, bool singleInstance) {
+void Texmaker::runCommand(QString comd,bool waitendprocess,int compileLatex, RunCommandFlags flags, QString *buffer, bool singleInstance) {
         // compileLatex 0, no, 1 latex, 2 pdflatex
 	QString finame=documents.getTemporaryCompileFileName();
 	QString commandline=comd;
@@ -3050,7 +3050,10 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,int compileLatex, QSt
 	procX->setBuffer(buffer);
 
 	connect(procX, SIGNAL(readyReadStandardError()),this, SLOT(readFromStderr()));
-        if (procX->showStdout()) connect(procX, SIGNAL(readyReadStandardOutput()),this, SLOT(readFromStdoutput()));
+	if (procX->showStdout())
+		procX->setShowStdout((configManager.showStdoutOption == 2) || (RCF_SHOW_STDOUT & flags));
+	if (procX->showStdout() || buffer)
+		 connect(procX, SIGNAL(readyReadStandardOutput()),this, SLOT(readFromStdoutput()));
 	connect(procX, SIGNAL(finished(int)),this, SLOT(SlotEndProcess(int)));
 
 	outputView->resetMessages();
@@ -3129,8 +3132,8 @@ void Texmaker::readFromStdoutput() {
 	QString t=QString(result).trimmed();
 	QString *buffer=procX->getBuffer();
 	if(buffer) buffer->append(t);
-	 if (!t.isEmpty() && outputView->getShownPage()==0)
-	     outputView->insertMessageLine(t+"\n"); // show instant messages only in message view
+	if (procX->showStdout())
+		outputView->insertMessageLine(t+"\n");
 }
 
 void Texmaker::SlotEndProcess(int err) {
@@ -3374,8 +3377,10 @@ void Texmaker::UserTool() {
 
 	QStringList commandList=cmd.split("|");
 	ERRPROCESS=false;
+	RunCommandFlags flags;
+	if (configManager.showStdoutOption >= 1) flags |= RCF_SHOW_STDOUT;
 	for (int i = 0; i < commandList.size(); ++i)
-		if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) runCommand(commandList.at(i),(i<(commandList.size()-1)),true);
+		if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) runCommand(commandList.at(i),(i<(commandList.size()-1)),true, flags);
 		else return;
 }
 
@@ -4823,7 +4828,7 @@ void Texmaker::svnUndo(bool redo){
 	// get revisions of current file
 	QString cmd=cmd_svn+" log "+fn;
 	QString buffer;
-	runCommand(cmd,true,false,&buffer);
+	runCommand(cmd,true,false,0,&buffer);
 	QStringList revisions=buffer.split("\n",QString::SkipEmptyParts);
 	buffer.clear();
 	QMutableStringListIterator i(revisions);
@@ -4948,7 +4953,7 @@ SVNSTATUS Texmaker::svnStatus(QString filename){
         cmd+=" st \""+filename+("\"");
         stat2->setText(QString(" svn status "));
         QString buffer;
-	 runCommand(cmd, true, false,&buffer);
+	 runCommand(cmd, true, false,0,&buffer);
         if(buffer.isEmpty()) return CheckedIn;
         if(buffer.startsWith("?")) return Unmanaged;
         if(buffer.startsWith("M")) return Modified;
@@ -4980,7 +4985,7 @@ void Texmaker::changeToRevision(QString rev,QString old_rev){
 	} else return;
 	QString cmd=cmd_svn+" diff -r "+old_revision+":"+new_revision+" "+fn;
 	QString buffer;
-	runCommand(cmd,true,false,&buffer);
+	runCommand(cmd,true,false,0,&buffer);
 	// patch
 	svnPatch(currentEditor(),buffer);
 	currentEditor()->setProperty("Revision",rev);
@@ -4995,7 +5000,7 @@ QStringList Texmaker::svnLog(){
 	// get revisions of current file
 	QString cmd=cmd_svn+" log "+fn;
 	QString buffer;
-	runCommand(cmd,true,false,&buffer);
+	runCommand(cmd,true,false,0,&buffer);
 	QStringList revisions=buffer.split("\n",QString::SkipEmptyParts);
 	buffer.clear();
 	QMutableStringListIterator i(revisions);
