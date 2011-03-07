@@ -52,6 +52,11 @@ enum SVNSTATUS {
         InConflict
 };
 
+enum RunCommandFlag{
+	RCF_SHOW_STDOUT = 1//low priority, overriden by configmanager always, both overriden by /dev/null redirection
+};
+Q_DECLARE_FLAGS(RunCommandFlags, RunCommandFlag);
+
 class Texmaker : public QMainWindow {
 	Q_OBJECT
 
@@ -297,7 +302,7 @@ private slots:
 	void QuickGraphics();
 
 	void runCommand(BuildManager::LatexCommand cmd,bool waitendprocess);
-	void runCommand(QString comd,bool waitendprocess, int compileLatex=0, QString *buffer=0, bool singleInstance = false);
+	void runCommand(QString comd,bool waitendprocess, int compileLatex=0, RunCommandFlags flags = 0, QString *buffer=0, bool singleInstance = false);
 	void RunPreCompileCommand();
 	void readFromStderr();
 	void readFromStdoutput();

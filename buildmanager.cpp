@@ -981,6 +981,10 @@ const QString& ProcessX::getCommandLine(){
 bool ProcessX::showStdout() const{
 	return stdoutEnabled;
 }
+void ProcessX::setShowStdout(bool show){
+	stdoutEnabled = show;
+}
+
 void ProcessX::onStarted(){
 	if (started) return; //why am I called twice?
 	started=true;

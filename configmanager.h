@@ -65,6 +65,8 @@ public:
 	bool singleViewerInstance;
 	bool showLogAfterCompiling;
 	bool runLaTeXBibTeXLaTeX;
+	int showStdoutOption; //never = 0, user commands, always
+
 
 	bool autoCheckinAfterSave;
 	bool svnUndo;
