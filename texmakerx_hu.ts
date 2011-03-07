@@ -1002,6 +1002,18 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <source>Auto preview delay:</source>
         <translation>Késleltetett automatikus előnézet:</translation>
     </message>
+    <message>
+        <source>Show stdout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only for user commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always (if not redirected &gt; /dev/null)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>

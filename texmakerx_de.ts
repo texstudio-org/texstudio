@@ -1315,6 +1315,18 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <source>Auto preview delay:</source>
         <translation>Verzögerung der automatischen Vorschau:</translation>
     </message>
+    <message>
+        <source>Show stdout</source>
+        <translation>Stdout-Nachrichten anzeigen</translation>
+    </message>
+    <message>
+        <source>Only for user commands</source>
+        <translation>Nur bei Benutzerbefehlen</translation>
+    </message>
+    <message>
+        <source>Always (if not redirected &gt; /dev/null)</source>
+        <translation>Immer (wenn nicht nach &gt; /dev/null geschickt)</translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>

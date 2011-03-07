@@ -1279,6 +1279,18 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
         <source>Auto preview delay:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Show stdout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only for user commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always (if not redirected &gt; /dev/null)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
