@@ -96,14 +96,47 @@ environments in smallUsefulFunctions.cpp)
 		<start>%</start>
 		<stop exclusive="false">\n</stop>
 	</context>
+	
+	
+	<context id="mathmodeMatrix" format="numbers" transparency="true">
+		<start parenthesis="mathEA12:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{array}</start>
+		<stop parenthesis="mathEA12:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{array}</stop>
+		<start parenthesis="mathEA5:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{matrix}</start>
+		<stop parenthesis="mathEA5:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{matrix}</stop>
+		<start parenthesis="mathEA6:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{bmatrix}</start>
+		<stop parenthesis="mathEA6:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{bmatrix}</stop>
+		<start parenthesis="mathEA7:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{pmatrix}</start>
+		<stop parenthesis="mathEA7:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{pmatrix}</stop>
+		<start parenthesis="mathEA8:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{vmatrix}</start>
+		<stop parenthesis="mathEA8:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{vmatrix}</stop>
+		<start parenthesis="mathEA9:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{Bmatrix}</start>
+		<stop parenthesis="mathEA9:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{Bmatrix}</stop>
+		<start parenthesis="mathEA10:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{Vmatrix}</start>
+		<stop parenthesis="mathEA10:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{Vmatrix}</stop>
+		<start parenthesis="mathEA11:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{smallmatrix}</start>
+		<stop parenthesis="mathEA11:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{smallmatrix}</stop>
 
-	<context id="mathmodeDisplay" format="numbers" transparency="true">
+		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
+        </context>
+
+	
+	<context id="mathmode$" format="numbers" transparency="true">
 		<start parenthesis="math:open" parenthesisWeight="40" fold="1" >\$</start>
 		<stop parenthesis="math:close" parenthesisWeight="40" fold="1" >\$</stop>
+    
+		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
+	</context>
+
+	<context id="mathmodeNormal" format="numbers" transparency="true">
 		<start parenthesis="mathN1:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{math}</start>
 		<stop parenthesis="mathN1:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{math}</stop>
 		<start parenthesis="mathN2:open" parenthesisWeight="40" fold="1" >\\\(</start>
 		<stop parenthesis="mathN2:close" parenthesisWeight="40" fold="1" >\\\)</stop>
+
+		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
+	</context>
+	
+	<context id="mathmodeDisplay" format="numbers" transparency="true">
 		<start parenthesis="mathD1:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{displaymath}</start>
 		<stop parenthesis="mathD1:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{displaymath}</stop>
 		<start parenthesis="mathD2:open" parenthesisWeight="40" fold="1" >\\\[</start>
@@ -112,29 +145,8 @@ environments in smallUsefulFunctions.cpp)
 		<stop parenthesis="mathD3:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{equation}</stop>
 		<start parenthesis="mathD4:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{equation\*}</start>
 		<stop parenthesis="mathD4:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{equation\*}</stop>
-		
-		<context id="mathmodeMatrix" format="numbers" transparency="true">
-			<start parenthesis="mathEA12:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{array}</start>
-			<stop parenthesis="mathEA12:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{array}</stop>
-			<start parenthesis="mathEA5:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{matrix}</start>
-			<stop parenthesis="mathEA5:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{matrix}</stop>
-			<start parenthesis="mathEA6:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{bmatrix}</start>
-			<stop parenthesis="mathEA6:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{bmatrix}</stop>
-			<start parenthesis="mathEA7:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{pmatrix}</start>
-			<stop parenthesis="mathEA7:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{pmatrix}</stop>
-			<start parenthesis="mathEA8:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{vmatrix}</start>
-			<stop parenthesis="mathEA8:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{vmatrix}</stop>
-			<start parenthesis="mathEA9:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{Bmatrix}</start>
-			<stop parenthesis="mathEA9:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{Bmatrix}</stop>
-			<start parenthesis="mathEA10:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{Vmatrix}</start>
-			<stop parenthesis="mathEA10:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{Vmatrix}</stop>
-			<start parenthesis="mathEA11:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{smallmatrix}</start>
-			<stop parenthesis="mathEA11:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{smallmatrix}</stop>
 
-			<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
-		</context>
-
-		<sequence id="keywords/single" format="math-keyword" transparency="true">\\[a-zA-Z]+</sequence>
+		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
 	</context>
 
 	<context id="mathmodeEqnArray" format="numbers" transparency="true">
@@ -165,8 +177,6 @@ environments in smallUsefulFunctions.cpp)
 
 		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
         </context>
-
-	
 
         <context id="tabular" format="normal" transparency="true">
                 <start parenthesis="tabularN1:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{tabular}</start>
@@ -214,4 +224,5 @@ environments in smallUsefulFunctions.cpp)
 	<!--sequence instead of word so things like \abc434 are correctly highlighted -->
 	<sequence id="keywords/single" ambiguous="true" format="keyword">\\[a-zA-Z]+</sequence>
 </QNFA>
+
 
