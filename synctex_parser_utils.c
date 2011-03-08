@@ -3,9 +3,9 @@ Copyright (c) 2008, 2009 jerome DOT laurens AT u-bourgogne DOT fr
 
 This file is part of the SyncTeX package.
 
-Latest Revision: Wed Jul  1 11:16:25 UTC 2009
+Latest Revision: Wed Nov  4 11:52:35 UTC 2009
 
-Version: 1.8
+Version: 1.9
 See synctex_parser_readme.txt for more details
 
 License:
@@ -40,8 +40,6 @@ authorization from the copyright holder.
 
 /*  In this file, we find all the functions that may depend on the operating system. */
 
-#ifndef NO_POPPLER_PREVIEW
-
 #include <synctex_parser_utils.h>
 #include <stdlib.h>
 #include <string.h>
@@ -54,29 +52,40 @@ authorization from the copyright holder.
 
 #include <sys/stat.h>
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(__WINDOWS__)
+#define SYNCTEX_WINDOWS 1
+#endif
+
+#ifdef _WIN32_WINNT_WINXP
+#define SYNCTEX_RECENT_WINDOWS 1
+#endif
+
+#ifdef SYNCTEX_WINDOWS
 #include <windows.h>
 #endif
 
 void *_synctex_malloc(size_t size) {
 	void * ptr = malloc(size);
 	if(ptr) {
-/*  In Visual C, bzero is not available */
-#ifdef _WIN32
+/*  There used to be a switch to use bzero because it is more secure. JL */
 		memset(ptr,0, size);
-#else
-		bzero(ptr,size);
-#endif
 	}
 	return (void *)ptr;
 }
 
-int _synctex_error(char * reason,...) {
+int _synctex_error(const char * reason,...) {
 	va_list arg;
 	int result;
 	va_start (arg, reason);
-#	ifdef _WIN32
-	{/*	This code is contributed by William Blum */
+#	ifdef SYNCTEX_RECENT_WINDOWS
+	{/*	This code is contributed by William Blum.
+        As it does not work on some older computers,
+        the _WIN32 conditional here is replaced with a SYNCTEX_RECENT_WINDOWS one.
+        According to http://msdn.microsoft.com/en-us/library/aa363362(VS.85).aspx
+        Minimum supported client	Windows 2000 Professional
+        Minimum supported server	Windows 2000 Server
+        People running Windows 2K standard edition will not have OutputDebugStringA.
+        JL.*/
 		char *buff;
 		size_t len;
 		OutputDebugStringA("SyncTeX ERROR: ");
@@ -87,11 +96,11 @@ int _synctex_error(char * reason,...) {
 		OutputDebugStringA("\n");
 		free(buff);
 	}
-#else
+#   else
 	result = fprintf(stderr,"SyncTeX ERROR: ");
 	result += vfprintf(stderr, reason, arg);
 	result += fprintf(stderr,"\n");
-#endif
+#   endif
 	va_end (arg);
 	return result;
 }
@@ -111,12 +120,12 @@ void _synctex_strip_last_path_extension(char * string) {
 				last_component = next+1;
 			}
 		}
-#ifdef	_WIN32
+#       ifdef	SYNCTEX_WINDOWS
 		/*  On Windows, the '\' is also a path separator. */
 		while((next = strstr(last_component,"\\"))){
 			last_component = next+1;
 		}
-#endif
+#       endif
 		/*  then we find the last path extension */
 		if((last_extension = strstr(last_component,"."))){
 			++last_extension;
@@ -133,7 +142,7 @@ void _synctex_strip_last_path_extension(char * string) {
 
 /*  Compare two file names, windows is sometimes case insensitive... */
 synctex_bool_t _synctex_is_equivalent_file_name(const char *lhs, const char *rhs) {
-#	if _WIN32
+#	if SYNCTEX_WINDOWS
     /*  On Windows, filename should be compared case insensitive.
 	 *  The characters '/' and '\' are both valid path separators.
 	 *  There will be a very serious problem concerning UTF8 because
@@ -165,7 +174,7 @@ synctex_bool_t _synctex_path_is_absolute(const char * name) {
 	if(!strlen(name)) {
 		return synctex_NO;
 	}
-#	if _WIN32
+#	if SYNCTEX_WINDOWS
 	if(strlen(name)>2) {
 		return (name[1]==':' && SYNCTEX_IS_PATH_SEPARATOR(name[2]))?synctex_YES:synctex_NO;
 	}
@@ -176,24 +185,24 @@ synctex_bool_t _synctex_path_is_absolute(const char * name) {
 }
 
 /*  We do not take care of UTF-8 */
-char * _synctex_last_path_component(const char * name) {
+const char * _synctex_last_path_component(const char * name) {
 	const char * c = name+strlen(name);
 	if(c>name) {
 		if(!SYNCTEX_IS_PATH_SEPARATOR(*c)) {
 			do {
 				--c;
 				if(SYNCTEX_IS_PATH_SEPARATOR(*c)) {
-					return (char *)c+1;
+					return c+1;
 				}
 			} while(c>name);
 		}
-		return (char *)c;/* the last path component is the void string*/
+		return c;/* the last path component is the void string*/
 	}
-	return (char *)c;
+	return c;
 }
 
 int _synctex_copy_with_quoting_last_path_component(const char * src, char ** dest_ref, size_t size) {
-  char * lpc;
+  const char * lpc;
   if(src && dest_ref) {
 #		define dest (*dest_ref)
 		dest = NULL;	/*	Default behavior: no change and sucess. */
@@ -206,17 +215,17 @@ int _synctex_copy_with_quoting_last_path_component(const char * src, char ** des
 				 *	or equivalently: strlen(dest)+2<size (see below) */
 				if(strlen(src)<size) {
 					if((dest = (char *)malloc(size+2))) {
+						char * dpc = dest + (lpc-src);	/*	dpc is the last path component of dest.	*/
 						if(dest != strncpy(dest,src,size)) {
 							_synctex_error("!  _synctex_copy_with_quoting_last_path_component: Copy problem");
 							free(dest);
 							dest = NULL;/*  Don't forget to reinitialize. */
 							return -2;
 						}
-						lpc += dest - src;	/*	Now lpc is the last path component of dest.	*/
-						memmove(lpc+1,lpc,strlen(lpc)+1);	/*	Also move the null terminating character. */
-						lpc[0]='"';
-						lpc[strlen(lpc)+1]='\0';/*	Consistency test */
-						lpc[strlen(lpc)]='"';
+						memmove(dpc+1,dpc,strlen(dpc)+1);	/*	Also move the null terminating character. */
+						dpc[0]='"';
+						dpc[strlen(dpc)+1]='\0';/*	Consistency test */
+						dpc[strlen(dpc)]='"';
 						return 0;	/*	Success. */
 					}
 					return -1;	/*	Memory allocation error.	*/
@@ -300,7 +309,7 @@ int _synctex_get_name(const char * output, const char * build_directory, char **
 		/*  Do we have a real base name ? */
 		if((size = strlen(basename))>0) {
 			/*  Yes, we do. */
-			char * temp = NULL;
+			const char * temp = NULL;
 			char * corename = NULL; /*  base name of output without path extension. */
 			char * dirname = NULL; /*  dir name of output */
 			char * quoted_corename = NULL;
@@ -376,7 +385,7 @@ int _synctex_get_name(const char * output, const char * build_directory, char **
 				}
 			}
 			if(!_synctex_path_is_absolute(output) && build_directory && (size = strlen(build_directory))) {
-				temp = (char *)build_directory + size - 1;
+				temp = build_directory + size - 1;
 				if(_synctex_path_is_absolute(temp)) {
 					build = _synctex_merge_strings(build_directory,none,NULL);
 					if(quoted_corename && strlen(quoted_corename)>0) {
@@ -425,7 +434,7 @@ int _synctex_get_name(const char * output, const char * build_directory, char **
 			TEST(build_quoted,synctex_compress_mode_none);
 			TEST(build_quoted_gz,synctex_compress_mode_gz);
 #			undef TEST
-			/*  Free all the intermediate filenames, except the on that will be used as returned value. */
+			/*  Free all the intermediate filenames, except the one that will be used as returned value. */
 #			define CLEAN_AND_REMOVE(FILENAME) \
 			if(FILENAME && (FILENAME!=synctex_name)) {\
 				remove(FILENAME);\
@@ -451,5 +460,3 @@ int _synctex_get_name(const char * output, const char * build_directory, char **
 	return -2;
 }
 
-
-#endif

@@ -42,8 +42,6 @@ authorization from the copyright holder.
  *  The problem mainly comes from file name management: path separator, encoding...
  */
 
-#ifndef NO_POPPLER_PREVIEW
-
 #	define synctex_bool_t int
 #	define synctex_YES -1
 #	define synctex_NO 0
@@ -70,7 +68,7 @@ void *_synctex_malloc(size_t size);
 /*  This is used to log some informational message to the standard error stream.
  *  On Windows, the stderr stream is not exposed and another method is used.
  *	The return value is the number of characters printed.	*/
-int _synctex_error(char * reason,...);
+int _synctex_error(const char * reason,...);
 
 /*  strip the last extension of the given string, this string is modified!
  *  This function depends on the OS because the path separator may differ.
@@ -88,7 +86,7 @@ synctex_bool_t _synctex_is_equivalent_file_name(const char *lhs, const char *rhs
 synctex_bool_t _synctex_path_is_absolute(const char * name);
 
 /*	Description forthcoming...*/
-char * _synctex_last_path_component(const char * name);
+const char * _synctex_last_path_component(const char * name);
 
 /*	If the core of the last path component of src is not already enclosed with double quotes ('"')
  *  and contains a space character (' '), then a new buffer is created, the src is copied and quotes are added.
@@ -102,8 +100,8 @@ char * _synctex_last_path_component(const char * name);
 int _synctex_copy_with_quoting_last_path_component(const char * src, char ** dest_ref, size_t size);
 
 /*  These are the possible extensions of the synctex file */
-static const char * synctex_suffix = ".synctex";
-static const char * synctex_suffix_gz = ".gz";
+extern const char * synctex_suffix;
+extern const char * synctex_suffix_gz;
 
 typedef enum {
 	synctex_io_mode_read = 0,
@@ -120,8 +118,6 @@ int _synctex_get_name(const char * output, const char * build_directory, char **
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif
 
 #endif
