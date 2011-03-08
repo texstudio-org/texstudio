@@ -552,17 +552,17 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="889"/>
         <source>Show stdout</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar stdout:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="908"/>
         <source>Only for user commands</source>
-        <translation type="unfinished"></translation>
+        <translation>Somente para comandos do usuário</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="913"/>
         <source>Always (if not redirected &gt; /dev/null)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sempre (se não redirecionado &gt; /dev/null)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="941"/>
