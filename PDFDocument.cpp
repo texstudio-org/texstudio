@@ -1623,6 +1623,13 @@ PDFDocument::init()
 	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
 	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
 	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(pageChanged(int)));
+
+	dw = dwClock = new PDFClockDock(this);
+	dw->hide();
+	addDockWidget(Qt::BottomDockWidgetArea, dw);
+	menuShow->addAction(dw->toggleViewAction());
+	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(pageChanged(int)));
+	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(update()));
 }
 
 bool PDFDocument::followCursor() const{

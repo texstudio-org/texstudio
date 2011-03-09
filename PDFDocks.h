@@ -28,6 +28,7 @@
 #include <QTreeWidget>
 #include <QListWidget>
 #include <QScrollArea>
+#include <QDateTime>
 
 #if QT_VERSION >= 0x040400
 #include <QFutureWatcher>
@@ -265,6 +266,30 @@ private:
 	QFutureWatcher<QImage> *imageScaling;
 #endif
 };
+
+
+class PDFClockDock: public PDFDock
+{
+	Q_OBJECT
+
+public:
+	PDFClockDock(PDFDocument *parent = NULL);
+	virtual ~PDFClockDock();
+
+private slots:
+	void onTimer();
+	void restart();
+	void setInterval();
+protected:
+	//virtual void pageChanged(int page);
+	virtual void fillInfo();
+	virtual QString getTitle();
+	virtual void paintEvent(QPaintEvent *event);
+
+	QDateTime start, end;
+	QTimer* timer;
+};
+
 
 #endif
 
