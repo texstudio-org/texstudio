@@ -734,4 +734,73 @@ void PDFOverviewDock::showImage(int num){
 
 
 
+PDFClockDock::PDFClockDock(PDFDocument *parent):PDFDock(parent){
+	setObjectName("clock");
+	setWindowTitle(getTitle());
+	start = QDateTime::currentDateTime();
+	end = QDateTime::currentDateTime() .addSecs(60*60);
+	timer = new QTimer(this);
+	connect(timer, SIGNAL(timeout()), SLOT(onTimer()));
+	timer->start(2000);
+
+	setContextMenuPolicy(Qt::ActionsContextMenu);
+	QAction* act = new QAction(tr("Set interval"),this);
+	connect(act, SIGNAL(triggered()), SLOT(setInterval()));
+	addAction(act);
+	act = new QAction(tr("Restart"),this);
+	connect(act, SIGNAL(triggered()), SLOT(restart()));
+	addAction(act);
+}
+
+PDFClockDock::~PDFClockDock(){
+
+}
+
+void PDFClockDock::fillInfo(){
+
+}
+
+QString PDFClockDock::getTitle(){
+	return "Clock";
+}
+
+void PDFClockDock::onTimer(){
+	if (isHidden()) return;
+	update();
+}
+
+void PDFClockDock::restart(){
+	int delta = start.secsTo(end);
+	start = QDateTime::currentDateTime();
+	end = start.addSecs(delta);
+	update();
+}
+
+void PDFClockDock::setInterval(){
+	bool ok;
+	int inter = QInputDialog::getInt(0, "TexMakerX", "New clock interval (in minutes)", 60, 1, 9999, 5, &ok);
+	if (!ok) return;
+	start = QDateTime::currentDateTime();
+	end = start.addSecs(inter * 60);
+	update();
+}
+
+
+void PDFClockDock::paintEvent(QPaintEvent *	){
+	if (!document) return;
+	QPainter p(this);
+	QRect r = rect();
+	p.fillRect(r, QColor::fromRgb(0,0,0));
+	p.fillRect(0, 0, r.width() * (start.secsTo(QDateTime::currentDateTime())) / qMax(start.secsTo(end), 1),  r.height() * 3 / 4,  QColor::fromRgb(255,0,0));
+	p.fillRect(0, r.height() * 3 / 4, r.width() * document->widget()->getCurrentPageIndex() / qMax(1, document->popplerDoc()->numPages()-1),  r.height()/4, QColor::fromRgb(0,0,255));
+	QFont f = p.font();
+	f.setPixelSize(r.height());
+	QFontMetrics met(f);
+	QString rem = tr("%1min").arg(qMax(0,QDateTime::currentDateTime().secsTo(end)/60));
+	p.setFont(f);
+	p.setPen(QColor::fromRgb(255,255,255));
+	p.drawText(r, Qt::AlignRight | Qt::AlignVCenter, rem);
+}
+
+
 #endif
