@@ -786,8 +786,11 @@ void PDFClockDock::setInterval(){
 }
 
 
-void PDFClockDock::paintEvent(QPaintEvent *	){
-	if (!document) return;
+void PDFClockDock::paintEvent(QPaintEvent * event){
+	if (!document || !document->popplerDoc() || !document->widget()) {
+		PDFDock::paintEvent(event);
+		return;
+	}
 	QPainter p(this);
 	QRect r = rect();
 	p.fillRect(r, QColor::fromRgb(0,0,0));
