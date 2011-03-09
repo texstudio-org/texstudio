@@ -5788,7 +5788,6 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	//t.start();
 	QDocumentLineHandle *h;
 	bool inSel = false, fullSel;
-	QList<QDocumentCursorHandle*>::iterator cit;
 	int i, realln, pos = 0, xOffset,
 		firstLine = qMax(0, cxt.yoffset / m_lineSpacing),
 		lastLine = qMax(0, firstLine + (cxt.height / m_lineSpacing));
@@ -5796,9 +5795,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	if ( cxt.height % m_lineSpacing )
 		++lastLine;
 
-	p->setFont(*m_font);
-
-	bool currentLine=false;
+	p->setFont(*m_font);	
 
 	int lineCacheWidth = m_oldLineCacheWidth;
 	if(m_oldLineCacheOffset!=cxt.xoffset || m_oldLineCacheWidth < cxt.width) {
@@ -5918,7 +5915,6 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		if ( wrapped )
 			realln += wrap;
 
-		m_cursorLines.clear();
 
 		bg = base;
 
@@ -5926,42 +5922,28 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		xOffset = m_leftMargin; // margin
 
 		// cursor(s) stuff
-		cit = cxt.cursors.begin();
+		bool cursorOnLine = false;
+		bool currentLine=false;
 
-		while ( cit != cxt.cursors.end() )
-		{
+		for (QList<QDocumentCursorHandle*>::iterator cit = cxt.cursors.begin(); cit != cxt.cursors.end() && !currentLine; ++cit)
 			if ( (*cit)->lineNumber() == i )
 			{
 				if ( cxt.blinkingCursor )
-					m_cursorLines.append((*cit)->columnNumber());
+					cursorOnLine = true;
 
 				if ( cxt.fillCursorRect ){
 					bg = alternate;
 					currentLine=true;
 				}
 
-				//cit = cxt.cursors.erase(cit);
-				++cit;
-			} else {
-				++cit;
+				break;
 			}
-		}
 
-		cit = cxt.extra.begin();
 
-		while ( cit != cxt.extra.end() )
-		{
-			if ( (*cit)->lineNumber() == i )
-			{
-				m_cursorLines.append((*cit)->columnNumber());
-
-				cit = cxt.extra.erase(cit);
-			} else {
-				++cit;
-			}
-		}
-
-		qSort(m_cursorLines);
+		if ( cxt.blinkingCursor)
+			for (QList<QDocumentCursorHandle*>::iterator cit = cxt.extra.begin(); cit != cxt.extra.end() && !cursorOnLine; ++cit)
+				if ( (*cit)->lineNumber() == i )
+					cursorOnLine = true;
 
 		QList<int> m = marks(h);
 
@@ -5994,7 +5976,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		//p->fillRect(cxt.xoffset, pos + 1,
 		//			cxt.width, m_lineHeight,
 		//			bg);
-		bool curSelectionState=inSel || (!m_selectionBoundaries.empty()) || (!m_cursorLines.empty());
+		bool curSelectionState=inSel || (!m_selectionBoundaries.empty()) || (cursorOnLine);
 
 		if(fullSel && h->lineHasSelection!=QDocumentLineHandle::fullSel) {
 			h->setFlag(QDocumentLine::LayoutDirty,true);
@@ -6136,8 +6118,8 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			p->drawConvexPolygon(cxt.placeHolders[i].cursor.documentRegion());
 	// draw cursor(s)
 	p->setPen(Qt::SolidLine);
-	p->setPen(repForeground);
-	foreach(QDocumentCursor cur,cxt.cursors){
+	p->setPen(repForeground);	
+	foreach(QDocumentCursor cur, QList<QDocumentCursorHandle*>() << cxt.cursors << cxt.extra){
 	    if (!cur.line().isHidden()){
 		if(cxt.blinkingCursor){
 		    if(m_overwrite && !cur.hasSelection()){
