@@ -455,8 +455,8 @@ macx:LIBS += -framework \
 # Poppler PDF Preview, will only be used if NO_POPPLER_PREVIEW is not set
 isEmpty(NO_POPPLER_PREVIEW) { 
     unix:!macx { 
-	INCLUDEPATH += /usr/local/include/poppler/qt4
-	LIBS += -L/usr/local/lib \
+        INCLUDEPATH += /usr/include/poppler/qt4
+        LIBS += -L/usr/lib \
             -lpoppler-qt4 \
             -lpoppler \
             -lz
