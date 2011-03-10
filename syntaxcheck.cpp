@@ -220,7 +220,7 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 				    break;
 				}
 			}
-			if(ltxCommands.refCommands.contains(word)||LatexParser::labelCommands.contains(word)||LatexParser::fileCommands.contains(word)){ //don't check syntax in reference, label or include
+                        if(ltxCommands.refCommands.contains(word)||LatexParser::labelCommands.contains(word)||LatexParser::fileCommands.contains(word)||LatexParser::citeCommands.contains(word)){ //don't check syntax in reference, label or include
 				QStringList options;
 				LatexParser::resolveCommandOptions(line,wordstart,options);
 				if(options.size()>0){
