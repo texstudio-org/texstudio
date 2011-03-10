@@ -256,15 +256,11 @@ protected slots:
 
 private slots:
 	void followTocSelection();
-#if QT_VERSION >= 0x040400
-	void showImage(int num);
-#endif
+        void showImage(int i=-1);
 
 private:
 	QListWidget *list;
-#if QT_VERSION >= 0x040400
-	QFutureWatcher<QImage> *imageScaling;
-#endif
+        int toGenerate;
 };
 
 

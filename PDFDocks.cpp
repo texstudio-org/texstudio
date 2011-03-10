@@ -605,18 +605,6 @@ struct renderInfo{
 };
 
 
-QImage renderAsync(renderInfo info)
-{
-    QImage image=info.page->thumbnail();
-    if(image.isNull()){
-	info.widget->renderMutex.lock();
-	image=info.page->renderToImage();
-	info.widget->renderMutex.unlock();
-    }
-    delete info.page;
-    return image.scaled(128,128,Qt::KeepAspectRatio,Qt::SmoothTransformation);
-}
-
 PDFOverviewDock::PDFOverviewDock(PDFDocument *doc)
 	: PDFDock(doc)
 {
@@ -626,29 +614,14 @@ PDFOverviewDock::PDFOverviewDock(PDFDocument *doc)
 	list->setViewMode(QListView::IconMode);
 	list->setIconSize(QSize(128, 128));
 	list->setMovement(QListView::Static);
-	//list->setMaximumWidth(128);
 	list->setSpacing(12);
-	//list->setAutoFillBackground(true);
 	list->setBackgroundRole(QPalette::Mid);
-
-	//list->setAlternatingRowColors(true);
 	setWidget(list);
 
-#if QT_VERSION >= 0x040400
-	// async page rendering
-	imageScaling = new QFutureWatcher<QImage>(this);
-	connect(imageScaling, SIGNAL(resultReadyAt(int)), SLOT(showImage(int)));
-#endif
 }
 
 PDFOverviewDock::~PDFOverviewDock()
 {
-#if QT_VERSION >= 0x040400
-    if (imageScaling->isRunning()) {
-	imageScaling->cancel();
-	imageScaling->waitForFinished();
-    }
-#endif
 }
 
 void PDFOverviewDock::changeLanguage()
@@ -661,51 +634,25 @@ void PDFOverviewDock::changeLanguage()
 void PDFOverviewDock::fillInfo()
 {
     list->clear();
+    toGenerate=0;
     if (!document || !document->popplerDoc()) return;
     Poppler::Document *doc = document->popplerDoc();
-#if QT_VERSION >= 0x040400
-    QList<renderInfo >pages;
     QPixmap pxMap(128,128);
     pxMap.fill();
-#endif
     for(int i=0;i<doc->numPages();i++){
-	    Poppler::Page* page=doc->page(i);
-#if QT_VERSION >= 0x040400
-	    renderInfo info;
-	    info.page=page;
-	    info.widget=document->widget();
-	    pages << info;
-#else
-	    QImage image=page->thumbnail();
-	    if(image.isNull()){
-		document->widget()->renderMutex.lock();
-		image=page->renderToImage();
-		document->widget()->renderMutex.unlock();
-	    }
-	    delete page;
-	    QPixmap pxMap=QPixmap::fromImage(image.scaled(128,128,Qt::KeepAspectRatio,Qt::SmoothTransformation));
-#endif
 	    QListWidgetItem *lw = new QListWidgetItem(list);
 	    lw->setIcon(QIcon(pxMap));
 	    lw->setBackgroundColor(Qt::gray);
 	    lw->setText(QString("%1").arg(i+1));
 	    connect(list, SIGNAL(itemSelectionChanged()), this, SLOT(followTocSelection()));
     }
-#if QT_VERSION >= 0x040400
-    imageScaling->setFuture(QtConcurrent::mapped(pages, renderAsync));
-#endif
 
     list->setCurrentRow(0);
+    QTimer::singleShot(20, this, SLOT(showImage()));
 }
 
 void PDFOverviewDock::documentClosed()
 {
-#if QT_VERSION >= 0x040400
-    if (imageScaling->isRunning()) {
-	imageScaling->cancel();
-	imageScaling->waitForFinished();
-    }
-#endif
     list->clear();
     PDFDock::documentClosed();
 }
@@ -724,13 +671,26 @@ void PDFOverviewDock::pageChanged(int page)
     list->setCurrentRow(page);
 }
 
-#if QT_VERSION >= 0x040400
 void PDFOverviewDock::showImage(int num){
-    QPixmap pxMap=QPixmap::fromImage(imageScaling->resultAt(num));
-    QListWidgetItem *lw = list->item(num);
+    int i=num;
+    if(i<0){
+        i=toGenerate;
+        toGenerate++;
+    }
+    Poppler::Document *doc = document->popplerDoc();
+    if(i<0 || i>=doc->numPages())
+        return;
+    Poppler::Page* page=doc->page(i);
+    QImage image=page->thumbnail();
+    if(image.isNull()){
+        image=page->renderToImage();
+    }
+    delete page;
+    QPixmap pxMap=QPixmap::fromImage(image.scaled(128,128,Qt::KeepAspectRatio,Qt::SmoothTransformation));
+    QListWidgetItem *lw = list->item(i);
     lw->setIcon(QIcon(pxMap));
+    QTimer::singleShot(20, this, SLOT(showImage()));
 }
-#endif
 
 
 
