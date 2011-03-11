@@ -271,7 +271,7 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 					elem.type=ERR_TabbingCommandOutside;
 				newRanges.append(elem);
 			}
-			if(activeEnv.top()==ENV_matrix && (word=="&" || word=="\\\\")) continue;
+			if(activeEnv.top()==ENV_matrix && (word=="&" || word=="\\\\" || ltxCommands.tabularCommands.contains(word))) continue;
 			if((activeEnv.top()==ENV_math||activeEnv.top()==ENV_matrix)&&!ltxCommands.mathCommands.contains(word) && !ltxCommands.userdefinedCommands.contains(word)&&!ignoreEnv){ // extend for math coammnds
 				Error elem;
 				elem.range=QPair<int,int>(wordstart,word.length());
