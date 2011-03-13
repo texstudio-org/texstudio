@@ -273,6 +273,13 @@
     </message>
 </context>
 <context>
+    <name>CodeSnippet</name>
+    <message>
+        <source>something</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ConfigDialog</name>
     <message>
         <source>Do you really want to delete this row?</source>
@@ -2247,6 +2254,21 @@ Are you sure you want to undo all changes?</source>
     </message>
 </context>
 <context>
+    <name>PDFClockDock</name>
+    <message>
+        <source>Set interval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1min</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PDFDocument</name>
     <message>
         <source>untitled.pdf[*]</source>
@@ -2943,11 +2965,6 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <source>Select a File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>something</source>
-        <comment>CodeSnippet</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>

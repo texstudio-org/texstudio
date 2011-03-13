@@ -198,6 +198,13 @@
     </message>
 </context>
 <context>
+    <name>CodeSnippet</name>
+    <message>
+        <source>something</source>
+        <translation type="unfinished">valami</translation>
+    </message>
+</context>
+<context>
     <name>ConfigDialog</name>
     <message>
         <source>Configure TexMakerX</source>
@@ -1926,6 +1933,21 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
 </context>
 <context>
+    <name>PDFClockDock</name>
+    <message>
+        <source>Set interval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1min</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PDFDocument</name>
     <message>
         <source>untitled.pdf[*]</source>
@@ -2581,7 +2603,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>something</source>
         <comment>CodeSnippet</comment>
-        <translation>valami</translation>
+        <translation type="obsolete">valami</translation>
     </message>
 </context>
 <context>

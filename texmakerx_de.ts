@@ -289,6 +289,13 @@
     </message>
 </context>
 <context>
+    <name>CodeSnippet</name>
+    <message>
+        <source>something</source>
+        <translation>etwas</translation>
+    </message>
+</context>
+<context>
     <name>CodeSnippetTest</name>
     <message>
         <source>environment-name</source>
@@ -2278,6 +2285,21 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
 </context>
 <context>
+    <name>PDFClockDock</name>
+    <message>
+        <source>Set interval</source>
+        <translation>Zeitdauer festlegen</translation>
+    </message>
+    <message>
+        <source>Restart</source>
+        <translation>Reset</translation>
+    </message>
+    <message>
+        <source>%1min</source>
+        <translation>%1min</translation>
+    </message>
+</context>
+<context>
     <name>PDFDocument</name>
     <message>
         <source>untitled.pdf[*]</source>
@@ -3111,7 +3133,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <message>
         <source>something</source>
         <comment>CodeSnippet</comment>
-        <translation>etwas</translation>
+        <translation type="obsolete">etwas</translation>
     </message>
 </context>
 <context>

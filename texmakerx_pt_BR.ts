@@ -249,6 +249,15 @@
     </message>
 </context>
 <context>
+    <name>CodeSnippet</name>
+    <message>
+        <location filename="smallUsefulFunctions.cpp" line="1165"/>
+        <location filename="smallUsefulFunctions.cpp" line="1166"/>
+        <source>something</source>
+        <translation type="unfinished">algo</translation>
+    </message>
+</context>
+<context>
     <name>ConfigDialog</name>
     <message>
         <location filename="configdialog.ui" line="14"/>
@@ -2427,6 +2436,24 @@ Você deseja desfazer as alterações?</translation>
     </message>
 </context>
 <context>
+    <name>PDFClockDock</name>
+    <message>
+        <location filename="PDFDocks.cpp" line="707"/>
+        <source>Set interval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="PDFDocks.cpp" line="710"/>
+        <source>Restart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="PDFDocks.cpp" line="762"/>
+        <source>%1min</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PDFDocument</name>
     <message>
         <location filename="PDFDocument.ui" line="17"/>
@@ -2941,52 +2968,52 @@ Você deseja desfazer as alterações?</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="1505"/>
-        <location filename="PDFDocument.cpp" line="2051"/>
+        <location filename="PDFDocument.cpp" line="2058"/>
         <source>of %1</source>
         <translation>de %1</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1723"/>
+        <location filename="PDFDocument.cpp" line="1730"/>
         <source>PDF file &quot;%1&quot; is locked; this is not currently supported.</source>
         <translation>Arquivo PDF  &quot;%1&quot; está bloqueado; não há suporte para ele no momento.</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1742"/>
+        <location filename="PDFDocument.cpp" line="1749"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
         <translation>Falha ao carregar arquivo &quot;%1&quot;; talvez não seja um arquivo PDF válido.</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1927"/>
+        <location filename="PDFDocument.cpp" line="1934"/>
         <source>No SyncTeX data available</source>
         <translation>Dados SyncTeX não disponíveis</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1930"/>
+        <location filename="PDFDocument.cpp" line="1937"/>
         <source>SyncTeX: &quot;%1&quot;</source>
         <translation>SyncTeX: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2019"/>
+        <location filename="PDFDocument.cpp" line="2026"/>
         <source>%1[*] - %2</source>
         <translation>%1[*] - %2</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2019"/>
+        <location filename="PDFDocument.cpp" line="2026"/>
         <source>TexMakerX</source>
         <translation>TexMakerX</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2049"/>
+        <location filename="PDFDocument.cpp" line="2056"/>
         <source>page %1 of %2</source>
         <translation>página %1 de %2</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2050"/>
+        <location filename="PDFDocument.cpp" line="2057"/>
         <source>pages %1 to %2 of %3</source>
         <translation>páginas %1 a %2 de %3</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2058"/>
+        <location filename="PDFDocument.cpp" line="2065"/>
         <source>%1%</source>
         <translation>%1%</translation>
     </message>
@@ -3034,7 +3061,7 @@ Você deseja desfazer as alterações?</translation>
         <translation>[incorporado]</translation>
     </message>
     <message>
-        <location filename="PDFDocks.h" line="156"/>
+        <location filename="PDFDocks.h" line="157"/>
         <source>Fonts</source>
         <translation>Fontes</translation>
     </message>
@@ -3042,7 +3069,7 @@ Você deseja desfazer as alterações?</translation>
 <context>
     <name>PDFInfoDock</name>
     <message>
-        <location filename="PDFDocks.h" line="124"/>
+        <location filename="PDFDocks.h" line="125"/>
         <source>PDF Info</source>
         <translation>PDF Info</translation>
     </message>
@@ -3055,7 +3082,7 @@ Você deseja desfazer as alterações?</translation>
         <translation>Sem TOC</translation>
     </message>
     <message>
-        <location filename="PDFDocks.h" line="87"/>
+        <location filename="PDFDocks.h" line="88"/>
         <source>Contents</source>
         <translation>Sumário</translation>
     </message>
@@ -3063,7 +3090,7 @@ Você deseja desfazer as alterações?</translation>
 <context>
     <name>PDFOverviewDock</name>
     <message>
-        <location filename="PDFDocks.h" line="251"/>
+        <location filename="PDFDocks.h" line="252"/>
         <source>Overview</source>
         <translation>Páginas</translation>
     </message>
@@ -3203,11 +3230,9 @@ Você deseja desfazer as alterações?</translation>
         <translation>nenhum</translation>
     </message>
     <message>
-        <location filename="smallUsefulFunctions.cpp" line="1165"/>
-        <location filename="smallUsefulFunctions.cpp" line="1166"/>
         <source>something</source>
         <comment>CodeSnippet</comment>
-        <translation>algo</translation>
+        <translation type="obsolete">algo</translation>
     </message>
 </context>
 <context>
