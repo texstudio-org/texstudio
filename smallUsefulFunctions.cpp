@@ -1162,8 +1162,8 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds) {
 									i+=2;
 									line.insert(i, "%>");
 									if (lastOpen+2 == i-1) {
-										line.insert(i, QApplication::tr("something", "CodeSnippet"));
-										i+=QApplication::tr("something", "CodeSnippet").length();
+										line.insert(i, QApplication::translate("CodeSnippet", "something"));
+										i+=QApplication::translate("CodeSnippet", "something").length();
 									}
 									lastOpen = -1;
 									i+=2;

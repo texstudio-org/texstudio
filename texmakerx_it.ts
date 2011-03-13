@@ -262,6 +262,13 @@
     </message>
 </context>
 <context>
+    <name>CodeSnippet</name>
+    <message>
+        <source>something</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ConfigDialog</name>
     <message>
         <source>TexMakerX</source>
@@ -2072,6 +2079,21 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
 </context>
 <context>
+    <name>PDFClockDock</name>
+    <message>
+        <source>Set interval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1min</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PDFDocument</name>
     <message>
         <source>untitled.pdf[*]</source>
@@ -2776,11 +2798,6 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>Select a File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>something</source>
-        <comment>CodeSnippet</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>

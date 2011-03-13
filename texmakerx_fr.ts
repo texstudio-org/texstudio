@@ -266,6 +266,13 @@
     </message>
 </context>
 <context>
+    <name>CodeSnippet</name>
+    <message>
+        <source>something</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ConfigDialog</name>
     <message>
         <source>Configure TexMakerX</source>
@@ -2095,6 +2102,21 @@ Continuer tout de même ?</translation>
     </message>
 </context>
 <context>
+    <name>PDFClockDock</name>
+    <message>
+        <source>Set interval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1min</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PDFDocument</name>
     <message>
         <source>untitled.pdf[*]</source>
@@ -2781,11 +2803,6 @@ Continuer tout de même ?</translation>
     <message>
         <source>Select a File</source>
         <translation>Sélectionner un fichier</translation>
-    </message>
-    <message>
-        <source>something</source>
-        <comment>CodeSnippet</comment>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
