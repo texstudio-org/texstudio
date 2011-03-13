@@ -254,7 +254,7 @@
         <location filename="smallUsefulFunctions.cpp" line="1165"/>
         <location filename="smallUsefulFunctions.cpp" line="1166"/>
         <source>something</source>
-        <translation type="unfinished">algo</translation>
+        <translation>algo</translation>
     </message>
 </context>
 <context>
@@ -2193,7 +2193,7 @@ Você deseja desfazer as alterações?</translation>
         <location filename="latexcompleter.cpp" line="945"/>
         <source>label missing!</source>
         <translatorcomment>faltando rótulo!</translatorcomment>
-        <translation>rótulo faltando!</translation>
+        <translation>rótulo inexistente!</translation>
     </message>
     <message>
         <location filename="latexcompleter.cpp" line="947"/>
@@ -2274,7 +2274,7 @@ Você deseja desfazer as alterações?</translation>
     <message>
         <location filename="latexeditorview.cpp" line="1061"/>
         <source>label missing!</source>
-        <translation>rótulo faltando!</translation>
+        <translation>rótulo inexistente!</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="1063"/>
@@ -2305,7 +2305,7 @@ Você deseja desfazer as alterações?</translation>
     <message>
         <location filename="latexeditorview.cpp" line="1091"/>
         <source>citation missing!</source>
-        <translation>citação faltando!</translation>
+        <translation>citação inexistente!</translation>
     </message>
 </context>
 <context>
@@ -2440,17 +2440,17 @@ Você deseja desfazer as alterações?</translation>
     <message>
         <location filename="PDFDocks.cpp" line="707"/>
         <source>Set interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Definir Intervalo</translation>
     </message>
     <message>
         <location filename="PDFDocks.cpp" line="710"/>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Reiniciar</translation>
     </message>
     <message>
         <location filename="PDFDocks.cpp" line="762"/>
         <source>%1min</source>
-        <translation type="unfinished"></translation>
+        <translation>%1min</translation>
     </message>
 </context>
 <context>
@@ -3892,7 +3892,7 @@ mover cursor para a direita (1 caracter)</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="229"/>
         <source>commentTodo</source>
-        <translation>comentário ToDo</translation>
+        <translation>comentário &apos;TODO&apos;</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="231"/>
@@ -3982,7 +3982,7 @@ mover cursor para a direita (1 caracter)</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="265"/>
         <source>referenceMissing</source>
-        <translation>referência faltando</translation>
+        <translation>referência inexistente</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="267"/>
@@ -3997,7 +3997,7 @@ mover cursor para a direita (1 caracter)</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="271"/>
         <source>citationMissing</source>
-        <translation>citação faltando</translation>
+        <translation>citação inexistente</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="273"/>
@@ -4042,7 +4042,7 @@ mover cursor para a direita (1 caracter)</translation>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="68"/>
         <source>prio</source>
-        <translation>Prioridade</translation>
+        <translation>Prior.</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="251"/>
