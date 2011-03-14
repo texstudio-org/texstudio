@@ -527,8 +527,8 @@ void Texmaker::setupMenus() {
 		LatexEditorView::setBaseActions(latexEditorContextMenu);
 
 	menu->addSeparator();
-	newManagedAction(menu,"comment", tr("&Comment"), SLOT(editComment()));
-	newManagedAction(menu,"uncomment",tr("&Uncomment"), SLOT(editUncomment()));
+	newManagedAction(menu,"comment", tr("&Comment"), SLOT(editComment()), Qt::CTRL+Qt::Key_T);
+	newManagedAction(menu,"uncomment",tr("&Uncomment"), SLOT(editUncomment()), Qt::CTRL+Qt::Key_U);
 	newManagedAction(menu,"indent",tr("&Indent"), SLOT(editIndent()));
 	newManagedAction(menu,"unindent",tr("Unin&dent"), SLOT(editUnindent()));
 	newManagedAction(menu,"hardbreak",tr("Hard Line &Break..."), SLOT(editHardLineBreak()));
