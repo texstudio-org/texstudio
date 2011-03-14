@@ -1672,6 +1672,45 @@ void LatexDocuments::bibTeXFilesNeedUpdate(){
 	bibTeXFilesModified=true;
 }
 
+void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc){
+	//update Master/Child relations
+	//remove old settings ...
+	doc->setMasterDocument(0);
+	foreach(LatexDocument* elem,this->documents){
+	    if(elem->getMasterDocument()==doc){
+		elem->setMasterDocument(0);
+		elem->recheckRefsLabels();
+	    }
+	}
+
+	//check whether document is child of other docs
+	QString fname=doc->getFileName();
+	foreach(LatexDocument* elem,this->documents){
+	    if(elem==doc)
+		continue;
+	    QStringList includedFiles=elem->includedFiles();
+	    if(includedFiles.contains(fname)){
+		doc->setMasterDocument(elem);
+		break;
+	    }
+	}
+
+	// check for already open child documents (included in this file)
+	QStringList includedFiles=doc->includedFiles();
+	foreach(const QString fname,includedFiles){
+	    LatexDocument* child=this->findDocumentFromName(fname);
+	    if(child){
+		child->setMasterDocument(doc);
+		LatexEditorView *edView=child->getEditorView();
+		if(edView)
+		   edView->reCheckSyntax(); // redo syntax checking (in case of defined commands)
+	    }
+	}
+
+	//recheck references
+	doc->recheckRefsLabels();
+}
+
 QStringList LatexDocument::includedFiles(){
     QStringList result;
     foreach(const StructureEntry* se,baseStructure->children){
