@@ -5996,9 +5996,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		// simplify line drawing
 		p->translate(0, pos);
 
-		// draw text with caching
-		QPixmap *px;
-
+		// draw inline image
 		int pseudoWrap = 0;
 		if (h->hasCookie(PICTURE_COOKIE)){
 			const QPixmap& pm = h->getCookie(PICTURE_COOKIE).value<QPixmap>();
@@ -6010,20 +6008,25 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			p->drawPixmap((cxt.width - pm.width())/2, m_lineSpacing*(wrap+1-pseudoWrap) + (ph - pm.height()) / 2, pm);
 		}
 
+		// draw text with caching
+		QPixmap *px = 0;
+		int ht=m_lineSpacing*(wrap+1 - pseudoWrap);
+		int yoff= (currentLine && cxt.yoffset-pos>0) ? cxt.yoffset-pos : 0;
+		if(currentLine){
+			ht= ht > cxt.yoffset+cxt.height-pos ? cxt.yoffset+cxt.height-pos : ht;
+			if( ht <= 0 )
+				ht=m_lineSpacing;
+		}
 		if(!currentLine&&!h->hasFlag(QDocumentLine::LayoutDirty)&&h->hasFlag(QDocumentLine::FormatsApplied)&&m_LineCache.contains(h)){
 			px=m_LineCache.object(h);
-			p->drawPixmap(m_oldLineCacheOffset,0,*px);
-		} else {
-			int ht=m_lineSpacing*(wrap+1 - pseudoWrap);
-			int yoff= (currentLine && cxt.yoffset-pos>0) ? cxt.yoffset-pos : 0;
-			if(currentLine){
-				ht= ht > cxt.yoffset+cxt.height-pos ? cxt.yoffset+cxt.height-pos : ht;
-				if( ht <= 0 )
-					ht=m_lineSpacing;
-				px = new QPixmap(lineCacheWidth,ht-yoff);
-			}else{
-				px = new QPixmap(lineCacheWidth,ht-yoff);
-			}
+			if (px->width() >= lineCacheWidth && px->height() >= ht-yoff)
+				p->drawPixmap(m_oldLineCacheOffset,0,*px);
+			else
+				px = 0;
+		}
+		if (!px) {
+			px = new QPixmap(lineCacheWidth,ht-yoff);
+
 			//px->fill(base.color());//fullSel ? selbg.color() : bg.color());
 			px->fill(fullSel ? selbg.color() : bg.color());
 			QPainter pnt(px);
