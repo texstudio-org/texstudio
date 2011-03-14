@@ -1389,6 +1389,36 @@ void Texmaker::fileSaveAs(const QString& fileName) {
 		currentEditorView()->document->setEditorView(currentEditorView()); //update file name
 		MarkCurrentFileAsRecent();
 
+		//update Master/Child relations
+		//check whether document is child of other docs
+		LatexDocument *doc=currentEditorView()->document;
+		QString fname=QFileInfo(fn).absoluteFilePath();
+		foreach(LatexDocument* elem,documents.documents){
+		    if(elem==doc)
+			continue;
+		    QStringList includedFiles=elem->includedFiles();
+		    if(includedFiles.contains(fname)){
+			doc->setMasterDocument(elem);
+			break;
+		    }
+		}
+
+		//recheck references
+		doc->recheckRefsLabels();
+
+		// check for already open child documents (included in this file)
+		QStringList includedFiles=doc->includedFiles();
+		foreach(const QString fname,includedFiles){
+		    LatexDocument* child=documents.findDocumentFromName(fname);
+		    if(child){
+			child->setMasterDocument(doc);
+			LatexEditorView *edView=child->getEditorView();
+			if(edView)
+			   edView->reCheckSyntax(); // redo syntax checking (in case of defined commands)
+		    }
+		}
+
+
 		if(configManager.autoCheckinAfterSave){
 			if(svnadd(currentEditor()->fileName())){
 				checkin(currentEditor()->fileName(),"tmx auto checkin",configManager.svnKeywordSubstitution);
