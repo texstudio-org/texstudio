@@ -71,6 +71,7 @@
     <insert id="large" text="large" insert="\begin{large}%n%|%n\end{large}"/>
     <insert id="Large" text="Large" insert="\begin{Large}%n%|%n\end{Large}"/>
     <insert id="LARGE" text="LARGE" insert="\begin{LARGE}%n%|%n\end{LARGE}"/>
+    <insert id="huge" text="huge" insert="\begin{huge}%n%|%n\end{huge}"/>
     <insert id="Huge" text="Huge" insert="\begin{Huge}%n%|%n\end{Huge}"/>
   </menu>
 
