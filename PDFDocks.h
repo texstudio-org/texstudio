@@ -30,11 +30,6 @@
 #include <QScrollArea>
 #include <QDateTime>
 
-#if QT_VERSION >= 0x040400
-#include <QFutureWatcher>
-#include <QtCore>
-#endif
-
 #include "poppler-qt4.h"
 
 class PDFDocument;

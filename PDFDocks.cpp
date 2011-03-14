@@ -25,6 +25,7 @@
 
 #include "PDFDocks.h"
 #include "PDFDocument.h"
+#include "math.h"
 
 #include <QTreeWidget>
 #include <QHeaderView>
@@ -637,10 +638,22 @@ void PDFOverviewDock::fillInfo()
     toGenerate=0;
     if (!document || !document->popplerDoc()) return;
     Poppler::Document *doc = document->popplerDoc();
-    QPixmap pxMap(128,128);
+    int sx=128;
+    int sy=128;
+    if(doc->numPages()>0){
+	Poppler::Page* page=doc->page(0);
+	QSize  sz=page->pageSize();
+	if(sz.width()>sz.height()){
+	    sy=floor(1.0*sz.height()/sz.width()*sx+0.5);
+	}else{
+	    sx=floor(1.0*sz.width()/sz.height()*sy+0.5);
+	}
+    }
+    QPixmap pxMap(sx,sy);
     pxMap.fill();
     for(int i=0;i<doc->numPages();i++){
 	    QListWidgetItem *lw = new QListWidgetItem(list);
+
 	    lw->setIcon(QIcon(pxMap));
 	    lw->setBackgroundColor(Qt::gray);
 	    lw->setText(QString("%1").arg(i+1));
