@@ -292,6 +292,7 @@ public:
 
 	void updateStructure();
 	void updateLayout();
+	void updateMasterSlaveRelations(LatexDocument *doc);
 
 	LatexParser ltxCommands;
 signals:
