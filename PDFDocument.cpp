@@ -1809,6 +1809,7 @@ void PDFDocument::closeSomething(){
 	else if (dwFonts && dwFonts->isVisible()) dwFonts->hide();
 	else if (dwSearch && dwSearch->isVisible()) dwSearch->hide();
 	else if (dwInfo && dwInfo->isVisible()) dwInfo->hide();
+	else if (dwClock && dwClock->isVisible()) dwClock->hide();
 	else if (dwOutline && dwOutline->isVisible()) dwOutline->hide();
 	else if (dwOverview && dwOverview->isVisible()) dwOverview->hide();
 	else actionClose->trigger();
