@@ -5996,7 +5996,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		// simplify line drawing
 		p->translate(0, pos);
 
-		// draw inline image
+		// draw text with caching
 		int pseudoWrap = 0;
 		if (h->hasCookie(PICTURE_COOKIE)){
 			const QPixmap& pm = h->getCookie(PICTURE_COOKIE).value<QPixmap>();
@@ -6008,47 +6008,34 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			p->drawPixmap((cxt.width - pm.width())/2, m_lineSpacing*(wrap+1-pseudoWrap) + (ph - pm.height()) / 2, pm);
 		}
 
-		// draw text with caching
-		QPixmap *px = 0;
-		int ht=m_lineSpacing*(wrap+1 - pseudoWrap);
-		int yoff= (currentLine && cxt.yoffset-pos>0) ? cxt.yoffset-pos : 0;
-		if(currentLine){
-			ht= ht > cxt.yoffset+cxt.height-pos ? cxt.yoffset+cxt.height-pos : ht;
-			if( ht <= 0 )
-				ht=m_lineSpacing;
-		}
 		if(!currentLine&&!h->hasFlag(QDocumentLine::LayoutDirty)&&h->hasFlag(QDocumentLine::FormatsApplied)&&m_LineCache.contains(h)){
-			px=m_LineCache.object(h);
-			if (px->width() >= lineCacheWidth && px->height() >= ht-yoff)
-				p->drawPixmap(m_oldLineCacheOffset,0,*px);
-			else
-				px = 0;
-		}
-		if (!px) {
-			px = new QPixmap(lineCacheWidth,ht-yoff);
-
-			//px->fill(base.color());//fullSel ? selbg.color() : bg.color());
-			px->fill(fullSel ? selbg.color() : bg.color());
-			QPainter pnt(px);
-			pnt.setFont(p->font());
-			pnt.translate(-cxt.xoffset,-yoff);
-			pnt.fillRect(0, 0,
-									m_leftMargin, ht,
-									base); // fillrect executed twice, to be optimized
-			/*pnt.fillRect(qMax(cxt.xoffset, m_leftMargin), 0,
-						lineCacheWidth, m_lineSpacing,
-						fullSel ? selbg : bg); // fillrect executed twice, to be optimized
-
-			if ( wrapped )
-				pnt.fillRect(qMax(cxt.xoffset, m_leftMargin), m_lineSpacing,
-							 lineCacheWidth, m_lineSpacing * wrap, fullSel ? selbg : bg);*/
-			h->draw(&pnt, cxt.xoffset, lineCacheWidth, m_selectionBoundaries, cxt.palette, fullSel,yoff,ht);
-			p->drawPixmap(cxt.xoffset,yoff,*px);
-			pnt.end();
-			if(!currentLine) m_LineCache.insert(h,px);
-			else {
+			QPixmap *px=m_LineCache.object(h);
+			p->drawPixmap(m_oldLineCacheOffset,0,*px);
+		} else {
+			int ht=m_lineSpacing*(wrap+1 - pseudoWrap);
+			QPixmap *px = 0;
+			QPainter *pr = 0;
+			if (!currentLine) {
+				px = new QPixmap(lineCacheWidth,ht);
+				//px->fill(base.color());//fullSel ? selbg.color() : bg.color());
+				px->fill(fullSel ? selbg.color() : bg.color());
+				pr = new QPainter(px);
+			} else {
+				pr = p;
+			}
+			pr->setFont(p->font());
+			if (!currentLine) {
+				pr->translate(-cxt.xoffset,0);
+				pr->fillRect(0, 0, m_leftMargin, ht, bg);
+			} else
+				pr->fillRect(0, 0, lineCacheWidth, ht, bg);
+			h->draw(pr, cxt.xoffset, lineCacheWidth, m_selectionBoundaries, cxt.palette, fullSel,0,ht);
+			if (!currentLine) {
+				p->drawPixmap(cxt.xoffset,0,*px);
+				delete pr;
+				m_LineCache.insert(h,px);
+			} else {
 				m_LineCache.remove(h);
-				delete px;
 			}
 		}
 
