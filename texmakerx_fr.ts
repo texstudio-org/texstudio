@@ -61,7 +61,7 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -269,7 +269,7 @@
     <name>CodeSnippet</name>
     <message>
         <source>something</source>
-        <translation type="unfinished"></translation>
+        <translation>quelque chose</translation>
     </message>
 </context>
 <context>
@@ -519,7 +519,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>(The commands must be separated by &apos;|&apos;)</source>
-        <translation>(les commandes doivent être séparées par « | » ---sans les guillemets)</translation>
+        <translation>(les commandes doivent être séparées par « | » -- sans les guillemets)</translation>
     </message>
     <message>
         <source>Run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</source>
@@ -1117,51 +1117,51 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Border</source>
-        <translation type="unfinished"></translation>
+        <translation>Bordure</translation>
     </message>
     <message>
         <source>Synchronized files types:</source>
-        <translation type="unfinished"></translation>
+        <translation>Types de fichiers synchronisés :</translation>
     </message>
     <message>
         <source>Inline</source>
-        <translation type="unfinished"></translation>
+        <translation>En ligne</translation>
     </message>
     <message>
         <source>Replace beamer class by article</source>
-        <translation type="unfinished"></translation>
+        <translation>Remplacer la classe beamer par la classe article</translation>
     </message>
     <message>
         <source>Precompile Preamble</source>
-        <translation type="unfinished"></translation>
+        <translation>Pré-compiler le préambule</translation>
     </message>
     <message>
         <source>Auto preview:</source>
-        <translation type="unfinished"></translation>
+        <translation>Prévisualisation automatique :</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>Jamais</translation>
     </message>
     <message>
         <source>Previously previewed text</source>
-        <translation type="unfinished"></translation>
+        <translation>Texte pré-visualisé précédent</translation>
     </message>
     <message>
         <source>Auto preview delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>Délai de prévisualisation automatique :</translation>
     </message>
     <message>
         <source>Show stdout</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher le flux de sortie</translation>
     </message>
     <message>
         <source>Only for user commands</source>
-        <translation type="unfinished"></translation>
+        <translation>Seulement pour les commandes utilisateur</translation>
     </message>
     <message>
         <source>Always (if not redirected &gt; /dev/null)</source>
-        <translation type="unfinished"></translation>
+        <translation>Toujours (si non redirigé vers &gt; /dev/null)</translation>
     </message>
 </context>
 <context>
@@ -1340,23 +1340,23 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>&amp;List Environments</source>
-        <translation>Environnements de &amp;listes</translation>
+        <translation>&amp;Listes</translation>
     </message>
     <message>
         <source>\begin{itemize}</source>
-        <translation>\begin{itemize} (liste à p&amp;uces)</translation>
+        <translation>\begin{itemize} - Liste à p&amp;uces</translation>
     </message>
     <message>
         <source>\begin{enumerate}</source>
-        <translation>\begin{enumerate} (liste &amp;numérotée)</translation>
+        <translation>\begin{enumerate} - Liste &amp;numérotée</translation>
     </message>
     <message>
         <source>\begin{description}</source>
-        <translation>\begin{description} (liste de &amp;description)</translation>
+        <translation>\begin{description} - Liste de &amp;description</translation>
     </message>
     <message>
         <source>\begin{list}</source>
-        <translation>\begin{list} (liste générique)</translation>
+        <translation>\begin{list} - Liste générique</translation>
     </message>
     <message>
         <source>Font St&amp;yles</source>
@@ -1400,7 +1400,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>tiny</source>
-        <translation>tiny</translation>
+        <translation></translation>
     </message>
     <message>
         <source>scriptsize</source>
@@ -1436,7 +1436,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>&amp;Tabular Environment</source>
-        <translation>Environnements de &amp;tableaux</translation>
+        <translation>&amp;Tableaux</translation>
     </message>
     <message>
         <source>\begin{tabbing}</source>
@@ -1456,7 +1456,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>International &amp;Accents</source>
-        <translation>International &amp;Accents</translation>
+        <translation>&amp;Accents internationaux</translation>
     </message>
     <message>
         <source>\includegraphics{file}</source>
@@ -1516,7 +1516,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>\begin{align}</source>
-        <translation>\begin{&amp;align}</translation>
+        <translation>\begin{&amp;align} - Équations alignées</translation>
     </message>
     <message>
         <source>\begin{eqnarray}</source>
@@ -1612,7 +1612,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>&amp;* Open all files</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;* Ouvrir tous les fichiers</translation>
     </message>
 </context>
 <context>
@@ -1901,15 +1901,16 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>all</source>
-        <translation type="unfinished">tout</translation>
+        <translatorcomment>ou « tout » ?</translatorcomment>
+        <translation>tous</translation>
     </message>
     <message>
         <source>most used</source>
-        <translation type="unfinished"></translation>
+        <translation>les plus utilisés</translation>
     </message>
     <message>
         <source>press shift+space to change view</source>
-        <translation type="unfinished"></translation>
+        <translation>Saisir maj+espace pour changer de vue</translation>
     </message>
 </context>
 <context>
@@ -2105,15 +2106,15 @@ Continuer tout de même ?</translation>
     <name>PDFClockDock</name>
     <message>
         <source>Set interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Fixer l&apos;intervalle</translation>
     </message>
     <message>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Relancer</translation>
     </message>
     <message>
         <source>%1min</source>
-        <translation type="unfinished"></translation>
+        <translation>%1min</translation>
     </message>
 </context>
 <context>
@@ -2259,7 +2260,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>New from Template...</source>
-        <translation>Nouveau à partir d&apos;un modèle</translation>
+        <translation>Nouveau à partir d&apos;un modèle...</translation>
     </message>
     <message>
         <source>Ctrl+Shift+N</source>
@@ -2343,7 +2344,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>PDF file &quot;%1&quot; is locked; this is not currently supported.</source>
-        <translation>Le fichier PDF &quot;%1&quot; est verrouillé; cette action n&apos;est pas possible actuellement</translation>
+        <translation>Le fichier PDF &quot;%1&quot; est verrouillé ; cette action n&apos;est pas possible actuellement.</translation>
     </message>
     <message>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
@@ -2492,7 +2493,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>User &amp;Manual...</source>
-        <translation>&amp;Manuel d&apos;utilisation</translation>
+        <translation>&amp;Manuel...</translation>
     </message>
     <message>
         <source>&amp;Side by Side</source>
@@ -2528,79 +2529,79 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation type="unfinished">&amp;Éditer</translation>
+        <translation>&amp;Éditer</translation>
     </message>
     <message>
         <source>&amp;Find...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rechercher...</translation>
     </message>
     <message>
         <source>Find &amp;again</source>
-        <translation type="unfinished"></translation>
+        <translation>Rechercher &amp;suivant</translation>
     </message>
     <message>
         <source>Ctrl+M, F3</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+M, F3</translation>
     </message>
     <message>
         <source>of %1</source>
-        <translation type="unfinished"></translation>
+        <translation>de %1</translation>
     </message>
     <message>
         <source>Grid</source>
-        <translation type="unfinished"></translation>
+        <translation>Grille</translation>
     </message>
     <message>
         <source>New Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouvelle fenêtre</translation>
     </message>
     <message>
         <source>1x1</source>
-        <translation type="unfinished"></translation>
+        <translation>1x1</translation>
     </message>
     <message>
         <source>2x1</source>
-        <translation type="unfinished"></translation>
+        <translation>2x1</translation>
     </message>
     <message>
         <source>1x2</source>
-        <translation type="unfinished"></translation>
+        <translation>1x2</translation>
     </message>
     <message>
         <source>2x2</source>
-        <translation type="unfinished"></translation>
+        <translation>2x2</translation>
     </message>
     <message>
         <source>2x3</source>
-        <translation type="unfinished"></translation>
+        <translation>2x3</translation>
     </message>
     <message>
         <source>3x3</source>
-        <translation type="unfinished"></translation>
+        <translation>3x3</translation>
     </message>
     <message>
         <source>Custom...</source>
-        <translation type="unfinished"></translation>
+        <translation>Personnalisation...</translation>
     </message>
     <message>
         <source>Single Page Step</source>
-        <translation type="unfinished"></translation>
+        <translation>Saut par pages uniques</translation>
     </message>
     <message>
         <source>pages %1 to %2 of %3</source>
-        <translation type="unfinished"></translation>
+        <translation>pages %1 à %2 de %3</translation>
     </message>
     <message>
         <source>Synchronize multiple views</source>
-        <translation type="unfinished"></translation>
+        <translation>Synchroniser les vues multiples</translation>
     </message>
     <message>
         <source>Presentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Présentation</translation>
     </message>
     <message>
         <source>F5</source>
-        <translation type="unfinished"></translation>
+        <translation>F5</translation>
     </message>
 </context>
 <context>
@@ -2664,7 +2665,7 @@ Continuer tout de même ?</translation>
     <name>PDFOverviewDock</name>
     <message>
         <source>Overview</source>
-        <translation type="unfinished"></translation>
+        <translation>Aperçu</translation>
     </message>
 </context>
 <context>
@@ -2775,23 +2776,23 @@ Continuer tout de même ?</translation>
     <name>ProcessX</name>
     <message>
         <source>Process started: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Processus en cours : %1</translation>
     </message>
     <message>
         <source>Error: Could not start the command: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur : impossible de lancer la commande %1</translation>
     </message>
     <message>
         <source>Error: Command crashed: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur : échec de la commande %1</translation>
     </message>
     <message>
         <source>Process exited with error(s)</source>
-        <translation type="unfinished">Processus terminé avec une ou plusieurs erreurs</translation>
+        <translation>Processus terminé avec une ou plusieurs erreurs</translation>
     </message>
     <message>
         <source>Process exited normally</source>
-        <translation type="unfinished">Processus terminé normalement</translation>
+        <translation>Processus terminé normalement</translation>
     </message>
 </context>
 <context>
@@ -3333,7 +3334,7 @@ Rafraîchir en rouvrant le fichier ?</translation>
     </message>
     <message>
         <source>current</source>
-        <translation>Courant</translation>
+        <translation>Ligne en cours</translation>
     </message>
     <message>
         <source>selection</source>
@@ -3353,11 +3354,11 @@ Rafraîchir en rouvrant le fichier ?</translation>
     </message>
     <message>
         <source>size</source>
-        <translation type="unfinished">taille</translation>
+        <translation>taille</translation>
     </message>
     <message>
         <source>prio</source>
-        <translation type="unfinished">priorité</translation>
+        <translation>prio.</translation>
     </message>
     <message>
         <source>Bold</source>
@@ -3401,11 +3402,11 @@ Rafraîchir en rouvrant le fichier ?</translation>
     </message>
     <message>
         <source>Point size</source>
-        <translation type="unfinished">Taille en points</translation>
+        <translation>Taille en points</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Priorité</translation>
+        <translation>Priorité</translation>
     </message>
     <message>
         <source>Unsaved changes</source>
@@ -3419,68 +3420,67 @@ Voulez-vous l&apos;enregistrer ?</translation>
     </message>
     <message>
         <source>background</source>
-        <translation>fond</translation>
+        <translation>Fond</translation>
     </message>
     <message>
         <source>line:error</source>
-        <translation>ligne:erreur</translation>
+        <translation>Ligne d&apos;erreur</translation>
     </message>
     <message>
         <source>line:warning</source>
-        <translation>ligne:avertissement</translation>
+        <translation>Ligne d&apos;avertissement</translation>
     </message>
     <message>
         <source>line:badbox</source>
-        <translation>ligne:dépassement de marge</translation>
+        <translation>Ligne de dépassement de marge</translation>
     </message>
     <message>
         <source>line:bookmark</source>
-        <translation>ligne:marque-page</translation>
+        <translation>Ligne de marque-page</translation>
     </message>
     <message>
         <source>line:bookmark0</source>
-        <translation>ligne:marque-page0</translation>
+        <translation>Ligne du marque-page 0</translation>
     </message>
     <message>
         <source>line:bookmark1</source>
-        <translation>ligne:marque-page1
-</translation>
+        <translation>Ligne du marque-page 1</translation>
     </message>
     <message>
         <source>line:bookmark2</source>
-        <translation>ligne:marque-page2</translation>
+        <translation>Ligne du marque-page 2</translation>
     </message>
     <message>
         <source>line:bookmark3</source>
-        <translation>ligne:marque-page3</translation>
+        <translation>Ligne du marque-page 3</translation>
     </message>
     <message>
         <source>line:bookmark4</source>
-        <translation>ligne:marque-page4</translation>
+        <translation>Ligne du marque-page 4</translation>
     </message>
     <message>
         <source>line:bookmark5</source>
-        <translation>ligne:marque-page5</translation>
+        <translation>Ligne du marque-page 5</translation>
     </message>
     <message>
         <source>line:bookmark6</source>
-        <translation>ligne:marque-page6</translation>
+        <translation>Ligne du marque-page 6</translation>
     </message>
     <message>
         <source>line:bookmark7</source>
-        <translation>ligne:marque-page7</translation>
+        <translation>Ligne du marque-page 7</translation>
     </message>
     <message>
         <source>line:bookmark8</source>
-        <translation>ligne:marque-page8</translation>
+        <translation>Ligne du marque-page 8</translation>
     </message>
     <message>
         <source>line:bookmark9</source>
-        <translation>ligne:marque-page9</translation>
+        <translation>Ligne du marque-page 9</translation>
     </message>
     <message>
         <source>replacement</source>
-        <translation>remplacement</translation>
+        <translation>Remplacement</translation>
     </message>
     <message>
         <source>&lt;default&gt;</source>
@@ -3488,7 +3488,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     </message>
     <message>
         <source>structure</source>
-        <translation>structure</translation>
+        <translation>Structure</translation>
     </message>
     <message>
         <source>styleHint</source>
@@ -3500,7 +3500,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     </message>
     <message>
         <source>commentTodo</source>
-        <translation type="unfinished"></translation>
+        <translation>Commentaire À FAIRE</translation>
     </message>
 </context>
 <context>
@@ -3538,7 +3538,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     </message>
     <message>
         <source>*environment-name*</source>
-        <translation type="unfinished"></translation>
+        <translation>*nom-d&apos;environnement*</translation>
     </message>
 </context>
 <context>
@@ -3569,7 +3569,7 @@ Some common regexps:
  r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,
  () groups expressions together, [xyz] will find x,y, or z, . matches everything, \. matches .
 You can use \1 to \9 in the replace text to insert a submatch.</source>
-        <translation>Ceci interprète le texte à chercher comme un expression régulière.
+        <translation>Ceci interprète le texte à chercher comme un expression rationnelle.
 Quelques expressions régulières communes:
  r* va trouver tous les r, r+ équivaut à rr*, a? va trouver les a seuls,
  () groupe des expressions, [xyz] va trouver x,y, ou z, . trouve tout, \. trouve .
@@ -3857,8 +3857,7 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     </message>
     <message>
         <source>Regexp</source>
-        <translatorcomment>Expression régulière?</translatorcomment>
-        <translation>Exp. rég.</translation>
+        <translation>Expression rationnelle</translation>
     </message>
     <message>
         <source>Highlight all</source>
@@ -3916,11 +3915,11 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     <name>ShortcutComboBox</name>
     <message>
         <source>&lt;default&gt;</source>
-        <translation type="unfinished">&lt;défaut&gt;</translation>
+        <translation>&lt;défaut&gt;</translation>
     </message>
     <message>
         <source>&lt;none&gt;</source>
-        <translation type="unfinished">&lt;aucun&gt;</translation>
+        <translation>&lt;aucun&gt;</translation>
     </message>
 </context>
 <context>
@@ -4085,15 +4084,15 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>more cols in tabular than specified</source>
-        <translation type="unfinished"></translation>
+        <translation>plus de colonnes dans le tableau que spécifié</translation>
     </message>
     <message>
         <source>cols in tabular missing</source>
-        <translation type="unfinished"></translation>
+        <translation>colonnes manquantes dans le tableau</translation>
     </message>
     <message>
         <source>\\ missing</source>
-        <translation type="unfinished"></translation>
+        <translation>\\ manquant</translation>
     </message>
 </context>
 <context>
@@ -4474,7 +4473,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>unnamed bookmark</source>
-        <translation>signet sans nom</translation>
+        <translation>Signet sans nom</translation>
     </message>
     <message>
         <source>Complete</source>
@@ -4838,7 +4837,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Close Something</source>
-        <translation>Cacher fenêtre</translation>
+        <translation>Fermer quelque chose</translation>
     </message>
     <message>
         <source>Collapse</source>
@@ -5243,7 +5242,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>C&amp;onvert Source to Html...</source>
-        <translation>C&amp;onvertir la source en Html...</translation>
+        <translation>C&amp;onvertir la source en html...</translation>
     </message>
     <message>
         <source>Problem</source>
@@ -5339,61 +5338,63 @@ Cependant, cette version de TexMakerX a été compilée sans le support de cette
     </message>
     <message>
         <source>S&amp;VN...</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;VN...</translation>
     </message>
     <message>
         <source>SVN update &amp;work directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoire de &amp;mise-à-jour SVN</translation>
     </message>
     <message>
         <source>Lock &amp;PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Verrouiller le &amp;PDF</translation>
     </message>
     <message>
         <source>Check in P&amp;DF</source>
-        <translation type="unfinished"></translation>
+        <translation>Contrôler le P&amp;DF</translation>
     </message>
     <message>
         <source>Open Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Documents ouverts</translation>
     </message>
     <message>
         <source>You are trying to save the file under the name %1, but a file with this name is already open.
 TexMakerX does not support multiple instances of the same file.
 Are you sure you want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous essayez de sauvegarder le fichier sous le nom %1, mais un fichier du même nom est déjà ouvert.
+TexMakerX n&apos;accepte pas d&apos;instances multiples d&apos;un même fichier.
+Êtes-vous certain de vouloir continuer ?</translation>
     </message>
     <message>
         <source>Plaintext files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers texte brut</translation>
     </message>
     <message>
         <source>Open &amp;Recent</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers &amp;récemment utilisés</translation>
     </message>
     <message>
         <source>C&amp;lear Inline Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Purger la pré-visualisation en &amp;ligne</translation>
     </message>
     <message>
         <source>check in whole directory ?</source>
-        <translation type="unfinished"></translation>
+        <translation>Contrôler tout le répertoire ?</translation>
     </message>
     <message>
         <source>Parenthesis</source>
-        <translation type="unfinished"></translation>
+        <translation>Parenthèses</translation>
     </message>
     <message>
         <source>Select (inner)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélection (intérieure)</translation>
     </message>
     <message>
         <source>Select (outer)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélection (extérieure)</translation>
     </message>
     <message>
         <source>Select (inverting)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélection (inversée)</translation>
     </message>
 </context>
 <context>
@@ -5695,11 +5696,11 @@ Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
         <source>-</source>
-        <translation type="unfinished"></translation>
+        <translation>-</translation>
     </message>
     <message>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation>+</translation>
     </message>
 </context>
 <context>
@@ -5769,11 +5770,11 @@ Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation>+</translation>
     </message>
     <message>
         <source>-</source>
-        <translation type="unfinished"></translation>
+        <translation>-</translation>
     </message>
 </context>
 <context>
@@ -6002,7 +6003,7 @@ Les fichiers html sont situés dans le répertoire %1.</translation>
     </message>
     <message>
         <source>LaTeX errors detected.</source>
-        <translation>Erreurs LaTeX détectées </translation>
+        <translation>Erreurs LaTeX détectées.</translation>
     </message>
     <message>
         <source>TeX files (*.tex);;All files (*.*)</source>
@@ -6019,7 +6020,7 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;Outil de conversion de LaTeX &amp;agrave; Html&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;Outil de conversion de LaTeX &amp;agrave; html&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; color:#000000;&quot;&gt;Copyright 2004-2006 P. Brachet &amp;amp; J. Amblard&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
