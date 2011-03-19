@@ -1,4 +1,13 @@
 (look also at the usermanual)
+TexMakerX 2.0 -> TexMakerX 2.1  SVN 1772
+--------------------------------------
+- improved latex syntax checking: auto detect used packages and more reliable
+- auto detect master/include relations, no master document should be needed anymore
+- extended internal pdf viewer, multiple pages and new features
+- preview of selection is much faster and shown directly in the text
+- easy parenthesis selection
+- as always, bug fixes and small improvements
+
 TexMakerX 1.9.9a -> TexMakerX 2.0  SVN 1495
 --------------------------------------
 - integrated pdf viewer with forward/reverse search based on Texworks
