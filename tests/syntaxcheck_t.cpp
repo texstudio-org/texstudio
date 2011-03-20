@@ -149,10 +149,9 @@ void SyntaxCheckTest::checktabular(){
 
 	edView->editor->setText(text);
 	edView->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
-	int cols;
-	SyntaxCheck::Environment env;
-	edView->getEnv(row,env,cols);
-	QString message=edView->SynChecker.getErrorAt(edView->document->line(row).handle(),col,env,cols);
+	StackEnvironment env;
+	edView->getEnv(row,env);
+	QString message=edView->SynChecker.getErrorAt(edView->document->line(row).handle(),col,env);
 	QEQUAL(message, expectedMessage);
 	
 }

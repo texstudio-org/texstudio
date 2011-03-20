@@ -2642,8 +2642,9 @@ void QDocumentLineHandle::clearOverlays(int format){
 		if ( m_overlays[i].format == format )
 			m_overlays.removeAt(i);
 
-	if (oldsize != m_overlays.size())
+	if (oldsize != m_overlays.size()){
 		setFlag(QDocumentLine::FormatsApplied, false);
+	}
 
 }
 

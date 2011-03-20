@@ -437,32 +437,41 @@ int LatexTables::getNumberOfColumns(QDocumentCursor &cur){
     if(pos>-1){
 	QStringList values;
 	LatexParser::resolveCommandOptions(line,pos,values);
-	QString env=values.takeFirst();
-	if(!env.startsWith("{")||!env.endsWith("}")) return -1;
-	env=env.mid(1);
-	env.chop(1);
-	int numberOfOptions=-1;
-	if(tabularNames.contains(env)) numberOfOptions=0;
-	if(tabularNamesWithOneOption.contains(env)) numberOfOptions=1;
-	if(numberOfOptions>=0){
-	    while(!values.isEmpty()){
-		QString opt=values.takeFirst();
-		if(opt.startsWith("[")&&opt.endsWith("]")) continue;
-		if(numberOfOptions>0) {
-		    numberOfOptions--;
-		    continue;
-		}
-		if(!opt.startsWith("{")||!opt.endsWith("}")) return -1;
-		opt=opt.mid(1);
-		opt.chop(1);
-		//calculate number of columns ...
-		QStringList res=splitColDef(opt);
-		int cols=res.count();
-		//return result
-		return cols;
+	return getNumberOfColumns(values);
+    }
+    return -1;
+}
+
+// get the number of columns which are defined by the the tabular (or alike) env, strings contain definition
+
+int LatexTables::getNumberOfColumns(QStringList values){
+    if(values.isEmpty())
+	return -1;
+    QString env=values.takeFirst();
+    if(!env.startsWith("{")||!env.endsWith("}")) return -1;
+    env=env.mid(1);
+    env.chop(1);
+    int numberOfOptions=-1;
+    if(tabularNames.contains(env)) numberOfOptions=0;
+    if(tabularNamesWithOneOption.contains(env)) numberOfOptions=1;
+    if(numberOfOptions>=0){
+	while(!values.isEmpty()){
+	    QString opt=values.takeFirst();
+	    if(opt.startsWith("[")&&opt.endsWith("]")) continue;
+	    if(numberOfOptions>0) {
+		numberOfOptions--;
+		continue;
 	    }
-	    return -1;
-	}else return -1; //maybe this needs to be changed
+	    if(!opt.startsWith("{")||!opt.endsWith("}")) return -1;
+	    opt=opt.mid(1);
+	    opt.chop(1);
+	    //calculate number of columns ...
+	    QStringList res=splitColDef(opt);
+	    int cols=res.count();
+	    //return result
+	    return cols;
+	}
+	return -1;
     }
     return -1;
 }
