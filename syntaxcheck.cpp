@@ -1,5 +1,6 @@
 #include "syntaxcheck.h"
 #include "latexdocument.h"
+#include "tablemanipulation.h"
 
 SyntaxCheck::SyntaxCheck(QObject *parent) :
 		QThread(parent)
@@ -16,7 +17,7 @@ void SyntaxCheck::setErrFormat(int errFormat){
 	syntaxErrorFormat=errFormat;
 }
 
-void SyntaxCheck::putLine(QDocumentLineHandle* dlh,Environment previous,bool clearOverlay,int cols,int excessCols){
+void SyntaxCheck::putLine(QDocumentLineHandle* dlh,StackEnvironment previous,bool clearOverlay,int excessCols){
 	REQUIRE(dlh);
 	SyntaxLine newLine;
 	dlh->ref(); // impede deletion of handle while in syntax check queue
@@ -26,7 +27,6 @@ void SyntaxCheck::putLine(QDocumentLineHandle* dlh,Environment previous,bool cle
 	newLine.dlh=dlh;
 	newLine.prevEnv=previous;
 	newLine.clearOverlay=clearOverlay;
-	newLine.cols=cols;
 	newLine.excessCols = excessCols;
 	mLinesLock.lock();
 	mLines.enqueue(newLine);
@@ -60,13 +60,12 @@ void SyntaxCheck::run(){
 			line[i]=QChar(' ');
 		    }
 		}
-		QStack<Environment> activeEnv;
-		activeEnv.push(newLine.prevEnv);
+		StackEnvironment activeEnv=newLine.prevEnv;
 		line=LatexParser::cutComment(line);
 		Ranges newRanges;
 
 		int excessCols=newLine.excessCols;
-		checkLine(line,newRanges,activeEnv,newLine.cols,excessCols);
+		checkLine(line,newRanges,activeEnv,excessCols);
 		// place results
 		if(newLine.clearOverlay) newLine.dlh->clearOverlays(syntaxErrorFormat);
 		//if(newRanges.isEmpty()) continue;
@@ -77,11 +76,21 @@ void SyntaxCheck::run(){
 			}
 			int oldCookie=newLine.dlh->getCookie(0).toInt();
 			bool cookieChanged=(oldCookie!=excessCols);
+			// active envs
+			QVariant oldEnvVar=newLine.dlh->getCookie(1);
+			StackEnvironment oldEnv;
+			if(oldEnvVar.isValid())
+			    oldEnv=oldEnvVar.value<StackEnvironment>();
+			if(!equalEnvStack(oldEnv,activeEnv))
+			    cookieChanged=true;
 			//if excessCols has changed the subsequent lines need to be rechecked.
 			if(cookieChanged){
 				newLine.dlh->setCookie(0,excessCols);
+				QVariant env;
+				env.setValue(activeEnv);
+				newLine.dlh->setCookie(1,env);
 				newLine.dlh->ref(); // avoid being deleted while in queue
-				emit checkNextLine(newLine.dlh, activeEnv.top(), true, newLine.cols, excessCols,newLine.ticket);
+				emit checkNextLine(newLine.dlh,true,excessCols,newLine.ticket);
 			}
 		}
 		newLine.dlh->unlock();
@@ -91,10 +100,11 @@ void SyntaxCheck::run(){
 }
 
 
-void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> &activeEnv,int cols,int &excessCols){
+void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &activeEnv,int &excessCols){
 	// do syntax check on that line
 	QMutexLocker locker(&mLtxCommandLock);
 	QString word;
+	int cols=containsEnv("tabular",activeEnv);
 	int start=0;
 	int wordstart;
 	int status;
@@ -102,7 +112,7 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 	// do additional checks (not limited to commands)
 	// check tabular compliance (columns)
 	int count=0;
-	if(activeEnv.top()==ENV_tabular){
+	if(containsEnv("tabular",activeEnv)){
 	    count=excessCols;
 	    int end=line.indexOf("\\\\");
 	    int pos=-1;
@@ -199,11 +209,38 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 	// check command-words
 	while ((status=nextWord(line,start,word,wordstart,true,true,&inStructure))){
 		if(status==NW_COMMAND){
-			bool ignoreEnv=false;
 			if(word=="\\begin"||word=="\\end"){
 				QStringList options;
 				LatexParser::resolveCommandOptions(line,wordstart,options);
 				if(options.size()>0){
+					// adapt env stack
+					QString env=options.first();
+					if(env.startsWith("{"))
+					    env=env.remove(0,1);
+					if(env.endsWith("}"))
+					    env.chop(1);
+					if(word=="\\begin"){
+					    Environment tp;
+					    tp.name=env;
+					    tp.id=1; //needs correction
+					    if(env=="tabular" || LatexParser::environmentAliases[env]=="tabular"){
+						// tabular env opened
+						// get cols !!!!
+						cols=LatexTables::getNumberOfColumns(options);
+						tp.id=cols;
+					    }
+					    activeEnv.push(tp);
+					}else{
+					    Environment tp=activeEnv.top();
+					    if(tp.name==env){
+						activeEnv.pop();
+						if(tp.name=="tabular" || LatexParser::environmentAliases[tp.name]=="tabular"){
+						    // get new cols
+						    cols=containsEnv("tabular",activeEnv);
+						}
+					    }
+					}
+					// add env-name for syntax checking to "word"
 					word+=options.first();
 				}
 			}
@@ -238,56 +275,27 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 					}
 				}
 			}
-			if(LatexParser::mathStartCommands.contains(word)&&activeEnv.top()!=ENV_math){
-				activeEnv.push(ENV_math);
+			if(LatexParser::mathStartCommands.contains(word)&&activeEnv.top().name!="math"){
+				Environment env;
+				env.name="math";
+				env.id=1; // to be changed
+				activeEnv.push(env);
 				continue;
 			}
-			if(LatexParser::mathStopCommands.contains(word)&&activeEnv.top()==ENV_math){
+			if(LatexParser::mathStopCommands.contains(word)&&activeEnv.top().name=="math"){
 				activeEnv.pop();
-				if(activeEnv.isEmpty()) activeEnv.push(ENV_normal);
 				continue;
 			}
-			if(ignoreEnv&&(ltxCommands.normalCommands.contains(word) || ltxCommands.tabularCommands.contains(word) || ltxCommands.userdefinedCommands.contains(word) || ltxCommands.mathCommands.contains(word)|| ltxCommands.tabbingCommands.contains(word)) )
-			    continue;
-			if((activeEnv.top()==ENV_tabbing)&&!ltxCommands.tabbingCommands.contains(word) &&!ltxCommands.normalCommands.contains(word) && !ltxCommands.userdefinedCommands.contains(word)){ // extend for math coammnds
+			if(!checkCommand(word,activeEnv)){
 				Error elem;
 				elem.range=QPair<int,int>(wordstart,word.length());
 				elem.type=ERR_unrecognizedCommand;
-				if(ltxCommands.mathCommands.contains(word))
+				/*
+				if(ltxCommands.possibleCommands.value("math").contains(word))
 					elem.type=ERR_MathCommandOutsideMath;
-				if(ltxCommands.tabularCommands.contains(word))
+				if(ltxCommands.possibleCommands.value("tabular").contains(word))
 					elem.type=ERR_TabularCommandOutsideTab;
-				newRanges.append(elem);
-			}
-			if((activeEnv.top()==ENV_normal)&&!ltxCommands.normalCommands.contains(word) && !ltxCommands.userdefinedCommands.contains(word)){ // extend for math coammnds
-				Error elem;
-				elem.range=QPair<int,int>(wordstart,word.length());
-				elem.type=ERR_unrecognizedCommand;
-				if(ltxCommands.mathCommands.contains(word))
-					elem.type=ERR_MathCommandOutsideMath;
-				if(ltxCommands.tabularCommands.contains(word))
-					elem.type=ERR_TabularCommandOutsideTab;
-				if(ltxCommands.tabbingCommands.contains(word))
-					elem.type=ERR_TabbingCommandOutside;
-				newRanges.append(elem);
-			}
-			if(activeEnv.top()==ENV_matrix && (word=="&" || word=="\\\\" || ltxCommands.tabularCommands.contains(word))) continue;
-			if((activeEnv.top()==ENV_math||activeEnv.top()==ENV_matrix)&&!ltxCommands.mathCommands.contains(word) && !ltxCommands.userdefinedCommands.contains(word)&&!ignoreEnv){ // extend for math coammnds
-				Error elem;
-				elem.range=QPair<int,int>(wordstart,word.length());
-				elem.type=ERR_unrecognizedMathCommand;
-				if(ltxCommands.tabularCommands.contains(word))
-					elem.type=ERR_TabularCommandOutsideTab;
-				newRanges.append(elem);
-			}
-			if(activeEnv.top()==ENV_tabular&&!ltxCommands.normalCommands.contains(word) && !ltxCommands.tabularCommands.contains(word) && !ltxCommands.userdefinedCommands.contains(word)){ // extend for math coammnds
-				Error elem;
-				elem.range=QPair<int,int>(wordstart,word.length());
-				elem.type=ERR_unrecognizedTabularCommand;
-				if(ltxCommands.mathCommands.contains(word))
-					elem.type=ERR_MathCommandOutsideMath;
-				if(ltxCommands.tabbingCommands.contains(word))
-					elem.type=ERR_TabbingCommandOutside;
+				*/ // needs to be improved
 				newRanges.append(elem);
 			}
 		}
@@ -297,7 +305,7 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,QStack<Environment> 
 
     }
 
-QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh,int pos,Environment previous,int cols){
+QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh,int pos,StackEnvironment previous){
 	// do syntax check
 	QString line=dlh->text();
 	QVector<int>fmts=dlh->getFormats();
@@ -306,8 +314,7 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh,int pos,Environment pre
 		line[i]=QChar(' ');
 	    }
 	}
-	QStack<Environment> activeEnv;
-	activeEnv.push(previous);
+	QStack<Environment> activeEnv=previous;
 	line=LatexParser::cutComment(line);
 	Ranges newRanges;
 	int excessCols=0;
@@ -319,7 +326,7 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh,int pos,Environment pre
 	    excessCols=prev->getCookie(0).toInt();
 	    prev->unlock();
 	}
-	checkLine(line,newRanges,activeEnv,cols,excessCols);
+	checkLine(line,newRanges,activeEnv,excessCols);
 	// find Error at Position
 	ErrorType result=ERR_none;
 	foreach(const Error elem,newRanges){
@@ -343,4 +350,46 @@ void SyntaxCheck::waitForQueueProcess(){
     while(mLinesAvailable.available()>0){
 	wait(1);
     }
+}
+
+int SyntaxCheck::containsEnv(const QString name,const StackEnvironment envs,const int id){
+    for (int i = envs.size()-1; i >-1; --i) {
+	Environment env=envs.at(i);
+	if(env.name==name){
+	    if(id<0 || env.id==id)
+		return env.id;
+	}
+	if(id<0 && LatexParser::environmentAliases.contains(env.name)){
+	    QString altEnv=LatexParser::environmentAliases.value(env.name);
+	    if(altEnv==name)
+		return env.id;
+	}
+    }
+    return 0;
+}
+
+bool SyntaxCheck::checkCommand(const QString &cmd,const StackEnvironment &envs){
+    for (int i = 0; i < envs.size(); ++i) {
+	Environment env=envs.at(i);
+	if(ltxCommands.possibleCommands.contains(env.name) && ltxCommands.possibleCommands.value(env.name).contains(cmd))
+	    return true;
+	if(LatexParser::environmentAliases.contains(env.name)){
+	    QString altEnv=LatexParser::environmentAliases.value(env.name);
+	    if(ltxCommands.possibleCommands.contains(altEnv) && ltxCommands.possibleCommands.value(altEnv).contains(cmd))
+		return true;
+	}
+    }
+    return false;
+}
+
+bool SyntaxCheck::equalEnvStack(StackEnvironment env1,StackEnvironment env2){
+    if(env1.isEmpty() || env2.isEmpty())
+	return env1.isEmpty() && env2.isEmpty();
+    if(env1.size()!=env2.size())
+	return false;
+    for(int i=0;i<env1.size();i++){
+	if(env1.value(i)!=env2.value(i))
+	    return false;
+    }
+    return true;
 }

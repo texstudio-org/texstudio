@@ -231,7 +231,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	SynChecker.verbatimFormat=QDocument::formatFactory()->id("verbatim");
 	SynChecker.start();
 
-	connect(&SynChecker, SIGNAL(checkNextLine(QDocumentLineHandle*,int,bool,int,int,int)), SLOT(checkNextLine(QDocumentLineHandle *, int,bool,int, int,int)), Qt::QueuedConnection);
+	connect(&SynChecker, SIGNAL(checkNextLine(QDocumentLineHandle*,bool,int,int)), SLOT(checkNextLine(QDocumentLineHandle *,bool,int,int)), Qt::QueuedConnection);
 }
 
 LatexEditorView::~LatexEditorView() {
@@ -566,13 +566,17 @@ void LatexEditorView::lineMarkToolTip(int line, int mark){
 	if (error>=0)
 		emit showMarkTooltipForLogMessage(error);
 }
-void LatexEditorView::checkNextLine(QDocumentLineHandle *dlh,int previous,bool clearOverlay,int cols, int excessCols,int ticket){
+void LatexEditorView::checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int excessCols,int ticket){
 	if(dlh->getRef()>1 && dlh->getCurrentTicket()==ticket){
+	    StackEnvironment env;
+	    QVariant envVar=dlh->getCookie(1);
+	    if(envVar.isValid())
+		env=envVar.value<StackEnvironment>();
 	    int index = document->indexOf(dlh);
 	    if (index == -1) return; //deleted
 	    REQUIRE(dlh->document() == document);
 	    if (index + 1 >= document->lines()) return;
-	    SynChecker.putLine(document->line(index+1).handle(), (SyntaxCheck::Environment)previous, clearOverlay, cols, excessCols);
+	    SynChecker.putLine(document->line(index+1).handle(), env, clearOverlay, excessCols);
 	}
 	dlh->deref();
 }
@@ -676,11 +680,10 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 
 		// start syntax checking
 		if(config->inlineSyntaxChecking) {
-			SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
-			int cols=-1;
-			getEnv(i,env,cols);
+			StackEnvironment env;
+			getEnv(i,env);
 			QString text=line.text();
-			if(!text.isEmpty() || env==SyntaxCheck::ENV_tabular){
+			if(!text.isEmpty() || SyntaxCheck::containsEnv("tabular",env)){
 				QVector<int>fmts=line.getFormats();
 				for(int i=0;i<text.length() && i < fmts.size();i++){
 					if(fmts[i]==verbatimFormat){
@@ -691,31 +694,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				int excessCols=0;
 				if(previous)
 				    excessCols=previous->getCookie(0).toInt();
-				SynChecker.putLine(line.handle(),env,false,cols,excessCols);
-			}
-			if(env!=SyntaxCheck::ENV_tabular){
-			    //check whether the begin{tabular) was changed
-			    QNFA* cxt=line.matchContext()->context;
-			    QString cxtDef=QNFADefinition::getContextName(cxt);
-			    if(cxtDef.endsWith("tabular")){
-				QDocumentLine current=line;
-				QDocumentCursor cur(current.document(),current.lineNumber(),current.length());
-				cols=LatexTables::getNumberOfColumns(cur);
-				current++;
-				while(current.isValid()){ // not perfect ...
-				    QNFA* cxt=current.matchContext()->context;
-				    QString cxtDef=QNFADefinition::getContextName(cxt);
-				    if(!cxtDef.endsWith("tabular")){
-					break;
-				    }
-				    QDocumentLineHandle *previous=current.handle()->previous();
-				    int excessCols=0;
-				    if(previous)
-					excessCols=previous->getCookie(0).toInt();
-				    SynChecker.putLine(current.handle(),SyntaxCheck::ENV_tabular,true,cols,excessCols);
-				    current++;
-				}
-			    }
+				SynChecker.putLine(line.handle(),env,false,excessCols);
 			}
 		}
 
@@ -940,14 +919,13 @@ void LatexEditorView::reCheckSyntax(int linenr, int count){
 	int lineNrEnd = count < 0 ? editor->document()->lineCount() : qMin(count + linenr, editor->document()->lineCount());
 	for (int i=linenr; i < lineNrEnd; i++) {
 		Q_ASSERT(line.isValid());
-		SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
-		int cols=-1;
-		getEnv(i,env,cols);
+		StackEnvironment env;
+		getEnv(i,env);
 		QDocumentLineHandle *previous=line.handle()->previous();
 		int excessCols=0;
 		if(previous)
 		    excessCols=previous->getCookie(0).toInt();
-		SynChecker.putLine(line.handle(),env,true,cols,excessCols);
+		SynChecker.putLine(line.handle(),env,true,excessCols);
 		prev = line;
 		line = editor->document()->line(i+1);
 	}
@@ -966,12 +944,11 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	int f=QDocument::formatFactory()->id("latexSyntaxMistake");
 	QFormatRange fr = cursor.line().getOverlayAt(cursor.columnNumber(),f);
 	if (fr.length>0 && fr.format==f) {
-		SyntaxCheck::Environment env=SyntaxCheck::ENV_normal;
-		int cols;
-		getEnv(l.lineNumber(),env,cols);
+		StackEnvironment env;
+		getEnv(l.lineNumber(),env);
 		QString text=l.text();
 		if(!text.isEmpty()){
-			QString message=SynChecker.getErrorAt(l.handle(),cursor.columnNumber(),env,cols);
+			QString message=SynChecker.getErrorAt(l.handle(),cursor.columnNumber(),env);
 			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),message);
 			return;
 		}
@@ -1322,38 +1299,17 @@ QList<int> LatexEditorViewConfig::possibleEditOperations(){
 	return res;
 }
 
-void LatexEditorView::getEnv(int lineNumber,SyntaxCheck::Environment &env,int &cols){
-    env=SyntaxCheck::ENV_normal;
-    cols=-1;
+void LatexEditorView::getEnv(int lineNumber,StackEnvironment &env){
+    Environment newEnv;
+    newEnv.name="normal";
+    newEnv.id=1;
+    env.push(newEnv);
     if (lineNumber > 0) {
 	    QDocumentLine prev = editor->document()->line(lineNumber - 1);
-	    REQUIRE(prev.isValid() && prev.matchContext());
-	    QNFA* cxt=prev.matchContext()->context;
-	    QString cxtDef=QNFADefinition::getContextName(cxt);
-	    if(!cxtDef.isEmpty()){
-		    int sep=cxtDef.indexOf(":");
-		    cxtDef=cxtDef.mid(sep+1);
-		    if(cxtDef.startsWith("math")) env=SyntaxCheck::ENV_math;
-		    if(cxtDef.startsWith("tabular")){
-			env=SyntaxCheck::ENV_tabular;
-			//find start of env
-			QDocumentLine current=prev;
-			while(prev.isValid()){
-			    if(cxt!=prev.matchContext()->context){
-				break;
-			    }
-			    current=prev;
-			    prev--;
-			}
-			if(current.isValid()){
-			    QDocumentCursor cur(current.document(),current.lineNumber(),current.length());
-			    cols=LatexTables::getNumberOfColumns(cur);
-			}
-		    }
-		    if(cxtDef.startsWith("tabbing")) env=SyntaxCheck::ENV_tabbing;
-		    if(cxtDef.startsWith("mathmodeEqnArray")) env=SyntaxCheck::ENV_matrix;
-		    if(cxtDef.startsWith("mathmodeMatrix")) env=SyntaxCheck::ENV_matrix;
-	    }
+	    REQUIRE(prev.isValid());
+	    QVariant result=prev.getCookie(1);
+	    if(result.isValid())
+		env=result.value<StackEnvironment>();
     }
 }
 

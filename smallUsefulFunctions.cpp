@@ -15,21 +15,47 @@ QSet<QString> LatexParser::citeCommands = QSet<QString>::fromList(QStringList() 
 QSet<QString> LatexParser::environmentCommands = QSet<QString>::fromList(QStringList() << "\\begin" << "\\end" << "\\newenvironment" << "\\renewenvironment");
 QSet<QString> LatexParser::definitionCommands = QSet<QString>::fromList(QStringList() << "\\newcommand" << "\\renewcommand" << "\\providecommand" << "\\DeclareMathOperator");
 QSet<QString> LatexParser::optionCommands; // = QSet<QString>::fromList(QStringList() << LatexParser::refCommands.toList() << LatexParser::labelCommands.toList() << "\\includegraphics" << "\\usepackage" << "\\documentclass" << "\\include" << "\\input" << "\\hspace" << "\\vspace");
-QSet<QString> LatexParser::mathStartCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\(" << "\\[" << "\\begin{math}" << "\\begin{equation}" << "\\begin{displaymath}");
-QSet<QString> LatexParser::mathStopCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\)" << "\\]" << "\\end{math}" << "\\end{equation}" << "\\end{displaymath}");
+QSet<QString> LatexParser::mathStartCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\(" << "\\[" );
+QSet<QString> LatexParser::mathStopCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\)" << "\\]" );
 QSet<QString> LatexParser::tabularEnvirons = QSet<QString>::fromList(QStringList() << "tabular" << "tabularx" << "longtable");
 QSet<QString> LatexParser::fileCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input" << "\\includegraphics");
 QSet<QString> LatexParser::includeCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input");
 QSet<QString> LatexParser::usepackageCommands = QSet<QString>::fromList(QStringList() << "\\usepackage" << "\\documentclass");
 QMultiHash<QString,QString> LatexParser::packageAliases;
 QStringList LatexParser::structureCommands = QStringList(); //see texmaker.cpp
+QHash<QString,QString> LatexParser::environmentAliases;
 
 LatexParser::LatexParser(){
-    userdefinedCommands.clear();
-    tabularCommands = QSet<QString>::fromList(QStringList() << "&" );
-    tabbingCommands = QSet<QString>::fromList(QStringList() << "\\<" << "\\>" << "\\=" << "\\+");
-    normalCommands = QSet<QString>::fromList(QStringList() << "\\\\" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" <<"\\." <<"\\u" <<"\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\oe" << "\\OE" << "\\ae" << "\\AE" << "\\aa" << "\\AA" << "\\o" << "\\O" << "\\l" << "\\L" << "\\~" << "\\ ");
-    mathCommands = QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;" << "\\:" << "\\\\" << "\\ ");
+    possibleCommands.clear();
+    possibleCommands["tabular"]=QSet<QString>::fromList(QStringList() << "&" );
+    possibleCommands["tabbing"]=QSet<QString>::fromList(QStringList() << "\\<" << "\\>" << "\\=" << "\\+");
+    possibleCommands["normal"]=QSet<QString>::fromList(QStringList() << "\\\\" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" <<"\\." <<"\\u" <<"\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\oe" << "\\OE" << "\\ae" << "\\AE" << "\\aa" << "\\AA" << "\\o" << "\\O" << "\\l" << "\\L" << "\\~" << "\\ ");
+    possibleCommands["math"]=QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;" << "\\:" << "\\\\" << "\\ ");
+    // set basic set of environemnt aliases (for math and tab)
+    environmentAliases["equation"]="math";
+    environmentAliases["displaymath"]="math";
+    environmentAliases["eqnarray"]="math";
+    environmentAliases["eqnarray*"]="math";
+    environmentAliases["align"]="math";
+    environmentAliases["align*"]="math";
+    environmentAliases["flalign"]="math";
+    environmentAliases["flalign*"]="math";
+    environmentAliases["alignat"]="math";
+    environmentAliases["alignat*"]="math";
+    environmentAliases["gather"]="math";
+    environmentAliases["gather*"]="math";
+    environmentAliases["multiline"]="math";
+    environmentAliases["multiline*"]="math";
+    environmentAliases["longtable"]="tabular";
+    environmentAliases["supertabular"]="tabular";
+    environmentAliases["array"]="tabular";
+    environmentAliases["matrix"]="tabular";
+    environmentAliases["bmatrix"]="tabular";
+    environmentAliases["pmatrix"]="tabular";
+    environmentAliases["vmatrix"]="tabular";
+    environmentAliases["Bmatrix"]="tabular";
+    environmentAliases["Vmatrix"]="tabular";
+    environmentAliases["smallmatrix"]="tabular";
 }
 
 QString getCommonEOW() {
@@ -1108,39 +1134,39 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds) {
 					if(valid.isEmpty() || valid.contains('n')){
 						if(res>-1){
 							if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
-								cmds->normalCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
+								cmds->possibleCommands["normal"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
 							} else {
-								cmds->normalCommands << rxCom.cap(1);
+								cmds->possibleCommands["normal"] << rxCom.cap(1);
 							}
 						} else {
-							cmds->normalCommands << line.simplified();
+							cmds->possibleCommands["normal"] << line.simplified();
 						}
 					}
 					if(valid.isEmpty() || valid.contains('m')){ // math commands
 						if(res>-1){
 							if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
-								cmds->mathCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
+								cmds->possibleCommands["math"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
 							} else {
-								cmds->mathCommands << rxCom.cap(1);
+								cmds->possibleCommands["math"] << rxCom.cap(1);
 							}
 						} else {
-							cmds->mathCommands << line.simplified();
+							cmds->possibleCommands["math"] << line.simplified();
 						}
 					}
 					if(valid.contains('t')){ // tabular commands
 						if(res>-1){
 							if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
-								cmds->tabularCommands << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
+								cmds->possibleCommands["tabular"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
 							} else {
-								cmds->tabularCommands << rxCom.cap(1);
+								cmds->possibleCommands["tabular"] << rxCom.cap(1);
 							}
 						} else {
-							cmds->tabularCommands << line.simplified();
+							cmds->possibleCommands["tabular"] << line.simplified();
 						}
 					}
 					if(valid.contains('T')){ // tabbing support
 						if(res==-1){
-							cmds->tabbingCommands << line.simplified();
+							cmds->possibleCommands["tabbing"] << line.simplified();
 						}
 					}
 					// normal parsing for completer
@@ -1191,27 +1217,27 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds) {
 }
 
 void LatexParser::append(LatexParser elem){
-    normalCommands.unite(elem.normalCommands);
-    mathCommands.unite(elem.mathCommands);
-    userdefinedCommands.unite(elem.userdefinedCommands);
-    tabbingCommands.unite(elem.tabbingCommands);
-    tabularCommands.unite(elem.tabularCommands);
+    QHash<QString, QSet<QString> >::iterator i = elem.possibleCommands.begin();
+    while (i != elem.possibleCommands.end()) {
+	QString key=i.key();
+	QSet<QString> set=i.value();
+	possibleCommands[key].unite(set);
+	i++;
+    }
 }
 
 void LatexParser::clear(){
-    normalCommands.clear();
-    mathCommands.clear();
-    userdefinedCommands.clear();
-    tabbingCommands.clear();
-    tabularCommands.clear();
+    possibleCommands.clear();
 }
 
 void LatexParser::substract(LatexParser elem){
-    normalCommands.subtract(elem.normalCommands);
-    mathCommands.subtract(elem.mathCommands);
-    userdefinedCommands.subtract(elem.userdefinedCommands);
-    tabbingCommands.subtract(elem.tabbingCommands);
-    tabularCommands.subtract(elem.tabularCommands);
+    QHash<QString, QSet<QString> >::iterator i = elem.possibleCommands.begin();
+    while (i != elem.possibleCommands.end()) {
+	QString key=i.key();
+	QSet<QString> set=i.value();
+	possibleCommands[key].subtract(set);
+	i++;
+    }
 }
 
 void importCwlAliases(){

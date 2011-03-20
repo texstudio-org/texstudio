@@ -182,7 +182,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	foreach(QString elem,commands){
 	    int i=elem.indexOf("{");
 	    if(i>=0) elem=elem.left(i);
-	    ltxCommands.userdefinedCommands.remove(elem);
+	    ltxCommands.possibleCommands["user"].remove(elem);
 	    updateSyntaxCheck=true;
 	}
 	mUserCommandList.remove(dlh);
@@ -319,7 +319,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		foreach(QString elem,commands){
 		    int i=elem.indexOf("{");
 		    if(i>=0) elem=elem.left(i);
-		    ltxCommands.userdefinedCommands.remove(elem);
+		    ltxCommands.possibleCommands["user"].remove(elem);
 		    removedUserCommands << elem;
 		    updateSyntaxCheck=true;
 		}
@@ -455,7 +455,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				int options=0;
 				if(rx.indexIn(remainder)>-1)
 				    options=rx.cap(1).toInt(); //returns 0 if conversion fails
-				ltxCommands.userdefinedCommands.insert(name);
+				ltxCommands.possibleCommands["user"].insert(name);
 				addedUserCommands << name;
 				for (int j=0; j<options; j++) {
 					if (j==0) name.append("{%<arg1%|%>}");
@@ -477,7 +477,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				QStringList lst;
 				lst << "\\begin{"+name << "\\end{"+name;
 				foreach(const QString elem,lst){
-				    ltxCommands.userdefinedCommands.insert(elem);
+				    ltxCommands.possibleCommands["user"].insert(elem);
 				    if(!removedUserCommands.removeAll(elem)){
 					addedUserCommands << elem;
 				    }
@@ -497,7 +497,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				lst << "\\begin{"+name+"}" << "\\end{"+name+"}";
 				foreach(const QString elem,lst){
 				    mUserCommandList.insert(line(i).handle(),elem);
-				    ltxCommands.userdefinedCommands.insert(elem);
+				    ltxCommands.possibleCommands["user"].insert(elem);
 				    if(!removedUserCommands.removeAll(elem)){
 					addedUserCommands << elem;
 				    }

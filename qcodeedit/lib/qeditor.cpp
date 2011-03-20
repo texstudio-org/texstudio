@@ -4597,8 +4597,20 @@ void QEditor::setPanelMargins(int l, int t, int r, int b)
 */
 void QEditor::repaintCursor()
 {
-	if ( m_mirrors.count() )
+	if ( m_mirrors.count() ){
 		viewport()->update();
+		return;
+	}
+	//check whether Format/Layout needs update
+	bool updateAll=false;
+	for(int i=getFirstVisibleLine();i<=getLastVisibleLine();i++){
+	    if(m_doc->line(i).hasFlag(QDocumentLine::LayoutDirty)||!m_doc->line(i).hasFlag(QDocumentLine::FormatsApplied))
+		updateAll=true;
+	}
+	if(updateAll){
+	    viewport()->update();
+	    return;
+	}
 
 	QRect r = cursorRect();
 

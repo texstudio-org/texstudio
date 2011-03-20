@@ -111,7 +111,7 @@ private:
 
 	LatexEditorViewConfig* config;
 
-	void getEnv(int lineNumber,SyntaxCheck::Environment &env,int &cols); // get Environment for syntax checking
+	void getEnv(int lineNumber,StackEnvironment &env); // get Environment for syntax checking, number of cols is now part of env
 
 	SyntaxCheck SynChecker;
 
@@ -120,7 +120,7 @@ private slots:
         void openExternalFile();
 	void lineMarkClicked(int line);
 	void lineMarkToolTip(int line, int mark);
-	void checkNextLine(QDocumentLineHandle *dlh, int previousEnvironment,bool clearOverlay,int cols, int excessCols,int ticket);
+	void checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int excessCols,int ticket);
 public slots:
 	void documentContentChanged(int linenr, int count);
 	void documentFormatsChanged(int linenr, int count);
