@@ -4396,7 +4396,42 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		}
 	}
 	
+	//prepare for auto bracket insertion
+	QString writtenBracket;
+	QString autoBracket;
+	QDocumentCursor previousBracketMatch;
+	bool autoComplete = false;
+	if (flag(AutoCloseChars) && !autoOverridePlaceHolder
+	    && (m_curPlaceHolder<0 || m_curPlaceHolder>=m_placeHolders.size() || m_placeHolders[m_curPlaceHolder].mirrors.isEmpty())
+	    && languageDefinition() && languageDefinition()->possibleEndingOfOpeningParenthesis(text)){
+		autoComplete = true;
+		foreach (const QString& s, languageDefinition()->openingParenthesis())
+			if (s == text){
+				writtenBracket = s;
+				autoBracket = languageDefinition()->getClosingParenthesis(s);
+				break;
+			}
+		if (autoBracket == writtenBracket)
+			autoComplete = false; //don't things like "" or $$ (assuming only single letter self closing brackets exists)
 
+		int prev = c.line().text().lastIndexOf(writtenBracket, c.columnNumber());
+		if (prev >= 0) {
+			QDocumentCursor prevc = c.document()->cursor(c.lineNumber(), prev, c.lineNumber(), prev + writtenBracket.size() );
+			QList<QList<QDocumentCursor> > matches = languageDefinition()->getMatches(prevc);
+			for (int i=0; i < matches.size(); i++) {
+				if (matches[i][0].selectedText() == writtenBracket) {
+					previousBracketMatch = matches[i][1].selectionEnd();
+					break;
+				} else if (matches[i][1].selectedText() == writtenBracket) {
+					previousBracketMatch = matches[i][0].selectionEnd();
+					break;
+				}
+			}
+			if (!previousBracketMatch.isNull()) previousBracketMatch.setAutoUpdated(true);
+		}
+	}
+
+	//insert
 	if ( (lines.count() == 1) || !flag(AdjustIndent)  || !flag(AutoIndent)) //|| flag(WeakIndent) || !flag(AdjustIndent)  || !flag(AutoIndent))
 	{
 		preInsert(c, lines.first());
@@ -4450,52 +4485,42 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	}
 
 	//bracket auto insertion
-	if (flag(AutoCloseChars) && !autoOverridePlaceHolder && (m_curPlaceHolder<0 || m_curPlaceHolder>=m_placeHolders.size() || m_placeHolders[m_curPlaceHolder].mirrors.isEmpty())  && languageDefinition() && languageDefinition()->possibleEndingOfOpeningParenthesis(text)){
-		QString writtenBracket;
-		QString autoBracket = "";
+	if (autoComplete){
+		QString newAutoBracket;
 		const QString& lineText = c.line().text().mid(0, c.columnNumber());
 		foreach (const QString& s, languageDefinition()->openingParenthesis())
 			if (s.length() >= text.length() &&  //don't complete bracket of pasted text or codesnippets
 			    lineText.endsWith(s)){
-				writtenBracket = s;
-				autoBracket = languageDefinition()->getClosingParenthesis(s);
+				newAutoBracket = languageDefinition()->getClosingParenthesis(s);
+				writtenBracket = s;				
 				break;
 			}
-		//a opening parenthesis was written, perform checks if it should be auto closed
-		bool autoComplete = false;
-		if (!autoBracket.isEmpty() ) {
-			//check if there don't exists following closing brackets
-			//TODO: use qnfa parser (but i don't understand it yet)
-			if (writtenBracket != autoBracket) {
-				int cline = c.lineNumber();
-				int closingCount = 0;
-				for (int l = cline; l < m_doc->lines(); l++) {
-					QString lineText = m_doc->line(l).text();
-					if (l == cline) lineText.remove(0, c.columnNumber());
-					int open = lineText.indexOf(writtenBracket);
-					if (open >= 0) lineText.chop(lineText.length() - open);
-					closingCount += lineText.count(autoBracket);
-					if (open >= 0) break;
-				}
-				if (closingCount > 0){
-					cline = c.lineNumber();
-					for (int l = cline; l >= 0; l--) {
-						QString lineText = m_doc->line(l).text();
-						if (l == cline) lineText.chop(lineText.length() - c.columnNumber() + text.length());
-						int close = lineText.indexOf(autoBracket);
-						if (close >= 0) lineText.remove(0, close + autoBracket.length());
-						closingCount -= lineText.count(writtenBracket);
-						if (close >= 0) break;
-					}
-				}
-				autoComplete = closingCount  <= 0;
-			} //else //if ( text.endsWith(autoBracket) && text != autoBracket)
-			//	autoComplete = false; //TODO: figure out how to check if there is a closing or opening parenthese following
-			/*else {
-			??
-			}*/
+		if (newAutoBracket != autoBracket) { //we complete a bracket which was already partly written
+			autoBracket = newAutoBracket;
+			previousBracketMatch = QDocumentCursor();
 		}
-		if (autoComplete) { //don't add auto bracket, if such a bracket was just overriden (e.g. "")
+		//a opening parenthesis was written, perform checks if it should be auto closed
+		autoComplete = false;
+		if (!autoBracket.isEmpty()) {
+			QList<QList<QDocumentCursor> > matches = languageDefinition()->getMatches(c);
+			QDocumentCursor cm;
+			for (int i=0; i < matches.size(); i++) {
+				if (matches[i][0].selectedText() == writtenBracket) {
+					cm = matches[i][1];
+					break;
+				} else if (matches[i][1].selectedText() == writtenBracket) {
+					cm = matches[i][0];
+					break;
+				}
+			}
+			autoComplete = cm.isNull()
+					 || cm.selectedText() != autoBracket //bracket mismatch
+					 || (!previousBracketMatch.isNull() &&
+					     cm.anchorLineNumber() == cm.lineNumber() &&
+					     cm.selectionEnd() == previousBracketMatch.selectionEnd());
+		}
+
+		if (autoComplete) {
 			QDocumentCursor copiedCursor = c.selectionEnd();
 			PlaceHolder ph(autoBracket.length(),copiedCursor);
 			ph.autoOverride = true;
