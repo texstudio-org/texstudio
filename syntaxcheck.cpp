@@ -292,12 +292,13 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 				Error elem;
 				elem.range=QPair<int,int>(wordstart,word.length());
 				elem.type=ERR_unrecognizedCommand;
-				/*
-				if(ltxCommands.possibleCommands.value("math").contains(word))
+
+				if(ltxCommands.possibleCommands["math"].contains(word))
 					elem.type=ERR_MathCommandOutsideMath;
-				if(ltxCommands.possibleCommands.value("tabular").contains(word))
+				if(ltxCommands.possibleCommands["tabular"].contains(word))
 					elem.type=ERR_TabularCommandOutsideTab;
-				*/ // needs to be improved
+				if(ltxCommands.possibleCommands["tabbing"].contains(word))
+					elem.type=ERR_TabbingCommandOutside;
 				newRanges.append(elem);
 			}
 		}
