@@ -104,32 +104,37 @@ void SyntaxCheckTest::checktabular_data(){
 		<< 2 << 1
 		<< "no error";
 
+	QTest::newRow("no error 3 cols,multiple lines 1/1")
+		<< "\\begin{tabular}{lll}\na&\n&\\\\c&d&e&f\\\\\n\\end{tabular}\n"
+		<< 2 << 1
+		<< "no error";
+
 	QTest::newRow("no error 3 cols,multiple lines")
 		<< "\\begin{tabular}{lll}\na&\n&\\\\c&d&e&f\\\\\n\\end{tabular}\n"
 		<< 2 << 2
 		<< "no error";
 
-	QTest::newRow("too little cols, 3 cols,multiple lines")
+	QTest::newRow("too little cols, 3 cols,multiple lines 1")
 		<< "\\begin{tabular}{lll}\na&\n\\\\c&d&e&f\\\\\n\\end{tabular}\n"
 		<< 2 << 1
 		<< "cols in tabular missing";
 
-	QTest::newRow("too many cols, 3 cols,multiple lines")
+	QTest::newRow("too many cols, 3 cols,multiple lines 2")
 		<< "\\begin{tabular}{lll}\na&\n&&a\\\\c&d&e&f\\\\\n\\end{tabular}\n"
 		<< 2 << 3
 		<< "more cols in tabular than specified";
 
-	QTest::newRow("too many cols, 3 cols,multiple lines")
+	QTest::newRow("too many cols, 3 cols,multiple lines 3")
 		<< "\\begin{tabular}{lll}\na&\n&&\na\\\\c&d&e&f\\\\\n\\end{tabular}\n"
 		<< 2 << 2
 		<< "more cols in tabular than specified";
 
-	QTest::newRow("too many cols, 3 cols,multiple lines")
+	QTest::newRow("too many cols, 3 cols,multiple lines 4")
 		<< "\\begin{tabular}{lll}\na&&\\multicolumn{2}{c}{test}\na\\\\c&d&e&f\\\\\n\\end{tabular}\n"
 		<< 1 << 4
 		<< "more cols in tabular than specified";
 
-	QTest::newRow("too many cols, 3 cols,multiple lines")
+	QTest::newRow("too many cols, 3 cols,multiple lines 5")
 		<< "\\begin{tabular}{lll}\na\\multicolumn{4}{c}{test}\na\\\\c&d&e&f\\\\\n\\end{tabular}\n"
 		<< 1 << 4
 		<< "more cols in tabular than specified";
@@ -148,7 +153,10 @@ void SyntaxCheckTest::checktabular(){
 	expectedMessage = QApplication::translate("SyntaxCheck", qPrintable(expectedMessage));
 
 	edView->editor->setText(text);
+	do{
 	edView->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+	QApplication::processEvents(QEventLoop::AllEvents,10); // SyntaxChecker posts events for rechecking other lines
+	}while(edView->SynChecker.queuedLines());
 	StackEnvironment env;
 	edView->getEnv(row,env);
 	QString message=edView->SynChecker.getErrorAt(edView->document->line(row).handle(),col,env);
