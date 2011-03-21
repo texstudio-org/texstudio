@@ -179,13 +179,33 @@ QString W32_FileAssociation(QString ext) {
 	FreeLibrary(mod);
 	return result;
 }
-QString getMiKTeXBinPath() {
+QString addPathDelimeter(const QString& s){
+	return ((a.endsWith("/") || a.endsWith("\\"))?a:(a+"\\"));
+}
+QStringList getProgramFilesPaths(){
+	QStringList res;
+	QString a=getenv("PROGRAMFILES");
+	if (!a.isEmpty()) res << addPathDelimeter(a);
+	if (a != "C:/Program Files" && QDir::exists("C:/Program Files")) res << "C:/Program Files/";
+	if (a != "C:/Program Files (x86)" && QDir::exists("C:/Program Files (x86)")) res << "C:/Program Files (x86)/";
+	if (a + " (x86)" != "C:/Program Files (x86)" && QDir::exists(a+" (x86)")) res << (a+" (x86)");
+	return res;
+}
+static QString miktexpath = "<search>";
+QString getMiKTeXBinPathReal() {
 	QSettings reg("HKEY_CURRENT_USER\\Software", QSettings::NativeFormat);
 	QString mikPath = reg.value("MiK/MikTeX/CurrentVersion/MiKTeX/Install Root", "").toString();
-	if (mikPath.isEmpty()) return "";
-	if (!mikPath.endsWith("\\") && !mikPath.endsWith("/"))
-		mikPath+="\\"; //windows
-	return mikPath+"miktex\\bin\\";
+	if (!mikPath.isEmpty())
+		return addPathDelimeter(mikPath)+"miktex\\bin\\";
+	foreach (const QString& d, getProgramFilesPaths())
+		foreach (const QString& p, QDir(d).entryList(QStringList(), QDir::AllDirs, QDir::Time))
+			if (p.toLower().contains("miktex") && QDir::exists(d+addPathDelimeter(p)+"miktex\\bin\\"))
+				return d+addPathDelimeter(p)+"miktex\\bin\\";
+	return "";
+}
+QString getMiKTeXBinPath() {
+	if (miktexpath == "<search>") miktexpath = getMiKTeXBinPathReal();
+	return miktexpath;
 }
 QString getTeXLiveBinPath() {
 	//check for uninstall entry
@@ -209,7 +229,7 @@ QString getTeXLiveBinPath() {
 	if (!QFileInfo(path+"\\release-texlive.txt").exists()) return "";
 	return path+"\\bin\\win32\\";
 }
-QString findGhostscriptDLL() {
+QString findGhostscriptDLL() { //called dll, may also find an exe
 	//registry
 	for (int type=0; type<=1; type++)
 		for (int pos=0; pos<=1; pos++) {
@@ -226,8 +246,15 @@ QString findGhostscriptDLL() {
 	//environment
 	QStringList env= QProcess::systemEnvironment();    //QMessageBox::information(0,env.join("  \n"),env.join("  \n"),0);
 	int i=env.indexOf(QRegExp("^GS_DLL=.*", Qt::CaseInsensitive));
-	if (i==-1) return ""; //not found
-	QString dll=env[i].mid(7); //skip gs_dll=
+	if (i>-1)
+		return env[i].mid(7); //skip gs_dll=
+	//file search
+	foreach (const QString& p, getProgramFilesPaths())
+		if (QDir::exists(p+"gs"))
+			foreach (const QString& gsv, QDir(p+"gs").entryList(QStringList() << "gs*.*", QDir::Dirs, QDir::Time)){
+				QString x = p+"gs/"+gsv+"/bin/gswin32c.exe";
+				if (QFile::exists(x)) return x;
+			}
 	return dll;
 }
 #endif
@@ -328,17 +355,12 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 			}
 			return def;
 		}
-		def=searchBaseCommand("yap",yapOptions);//,true);
+		def=searchBaseCommand("yap",yapOptions);//miktex
 		if (!def.isEmpty()) return def;
-		else if (QFileInfo("C:/Program Files/MiKTeX 2.9/miktex/bin/yap.exe").exists())
-			return "\"C:/Program Files/MiKTeX 2.9/miktex/bin/yap.exe\" " + yapOptions;
-		else if (QFileInfo("C:/Program Files/MiKTeX 2.8/miktex/bin/yap.exe").exists())
-			return "\"C:/Program Files/MiKTeX 2.8/miktex/bin/yap.exe\" " + yapOptions;
-		else if (QFileInfo("C:/Program Files/MiKTeX 2.7/miktex/bin/yap.exe").exists())
-			return "\"C:/Program Files/MiKTeX 2.7/miktex/bin/yap.exe\" " + yapOptions;
-		else if (QFileInfo("C:/Program Files/MiKTeX 2.5/miktex/bin/yap.exe").exists())
-			return "\"C:/Program Files/MiKTeX 2.5/miktex/bin/yap.exe\" " + yapOptions;
-		else if (QFileInfo("C:/texmf/miktex/bin/yap.exe").exists())
+		def=searchBaseCommand("dviout","%.dvi");//texlive
+		if (!def.isEmpty()) return def;
+
+		if (QFileInfo("C:/texmf/miktex/bin/yap.exe").exists())
 			return "C:/texmf/miktex/bin/yap.exe " + yapOptions;
 		else break;
 	}
@@ -363,21 +385,24 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 				return "\""+gsDll+"gsview.exe\" -e \"?am.ps\"";
 			gsDll=gsDll.mid(0,pos);
 		}
-		if (QFileInfo("\"C:/Program Files/Ghostgum/gsview/gsview32.exe\"").exists())
-			return "\"C:/Program Files/Ghostgum/gsview/gsview32.exe\" -e \"?am.ps\"";
+
+		foreach (const QString& p, getProgramFilesPaths())
+			if (QFile::exists(p+"Ghostgum/gsview/gsview32.exe"))
+				return "\""+p+"Ghostgum/gsview/gsview32.exe\" -e \"?am.ps\"";
 		break;
 	}
 	case CMD_VIEWPDF: {
 		QString def=W32_FileAssociation(".pdf");
 		if (!def.isEmpty())
 			return def;
-		else if (QFileInfo("C:/Program Files/Adobe/Reader 10.0/Reader/AcroRd32.exe").exists())
-			return "\"C:/Program Files/Adobe/Reader 10.0/Reader/AcroRd32.exe\" \"?am.pdf\"";
-		else if (QFileInfo("C:/Program Files/Adobe/Reader 9.0/Reader/AcroRd32.exe").exists())
-			return "\"C:/Program Files/Adobe/Reader 9.0/Reader/AcroRd32.exe\" \"?am.pdf\"";
-		else if (QFileInfo("C:/Program Files/Adobe/Reader 8.0/Reader/AcroRd32.exe").exists())
-			return "\"C:/Program Files/Adobe/Reader 8.0/Reader/AcroRd32.exe\" \"?am.pdf\"";
-		else break;
+
+		foreach (const QString& p, getProgramFilesPaths())
+			if (QDir::exists(p+"Adobe"))
+				foreach (const QString& rv, QDir(p+"Adobe").entryList(QStringList() << "Reader*", QDir::Dirs, QDir::Time)){
+					QString x = p+"Adobe/"+rv+"/Reader/AcroRd32.exe";
+					if (QFile::exists(x)) return "\""+x+"\" \"?am.pdf\"";
+				}
+		break;
 	}
 	case CMD_GHOSTSCRIPT: {
 		QString livePath = getTeXLiveBinPath();
@@ -838,7 +863,7 @@ void BuildManager::removePreviewFiles(QString elem){
 	QStringList files;
 	files = currentDir.entryList(QStringList(elem+"*"),
 							  QDir::Files | QDir::NoSymLinks);
-	foreach(const QString file,files)
+	foreach(const QString& file,files)
 		QFile::remove(currentDir.absolutePath()+"/"+file);
 }
 
