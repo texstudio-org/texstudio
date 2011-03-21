@@ -1120,9 +1120,15 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds) {
 					//hints for commands usage (e.g. in mathmode only) are separated by #
 					int sep=line.indexOf('#');
 					QString valid;
+					QString env;
 					if(sep>-1){
 						valid=line.mid(sep+1);
 						line=line.left(sep);
+						if(valid.startsWith("/")){
+						    env=valid.mid(1);
+						    valid="e";
+						}
+
 					}
 					// parse for spell checkable commands
 					int res=rxCom.indexIn(line);
@@ -1167,6 +1173,11 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds) {
 					if(valid.contains('T')){ // tabbing support
 						if(res==-1){
 							cmds->possibleCommands["tabbing"] << line.simplified();
+						}
+					}
+					if(valid.contains('e') && !env.isEmpty()){ // tabbing support
+						if(res==-1){
+							cmds->possibleCommands[env] << line.simplified();
 						}
 					}
 					// normal parsing for completer
