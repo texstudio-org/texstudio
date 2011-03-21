@@ -286,6 +286,8 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 				activeEnv.pop();
 				continue;
 			}
+			if(ltxCommands.possibleCommands["user"].contains(word))
+			    continue;
 			if(!checkCommand(word,activeEnv)){
 				Error elem;
 				elem.range=QPair<int,int>(wordstart,word.length());
