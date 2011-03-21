@@ -123,7 +123,6 @@ private slots:
 	void checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int excessCols,int ticket);
 public slots:
 	void documentContentChanged(int linenr, int count);
-	void documentFormatsChanged(int linenr, int count);
 	void lineDeleted(QDocumentLineHandle* l);
 	void spellCheckingReplace();
 	void spellCheckingAlwaysIgnore();
