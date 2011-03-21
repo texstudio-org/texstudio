@@ -179,16 +179,16 @@ QString W32_FileAssociation(QString ext) {
 	FreeLibrary(mod);
 	return result;
 }
-QString addPathDelimeter(const QString& s){
+QString addPathDelimeter(const QString& a){
 	return ((a.endsWith("/") || a.endsWith("\\"))?a:(a+"\\"));
 }
 QStringList getProgramFilesPaths(){
 	QStringList res;
 	QString a=getenv("PROGRAMFILES");
 	if (!a.isEmpty()) res << addPathDelimeter(a);
-	if (a != "C:/Program Files" && QDir::exists("C:/Program Files")) res << "C:/Program Files/";
-	if (a != "C:/Program Files (x86)" && QDir::exists("C:/Program Files (x86)")) res << "C:/Program Files (x86)/";
-	if (a + " (x86)" != "C:/Program Files (x86)" && QDir::exists(a+" (x86)")) res << (a+" (x86)");
+	if (a != "C:/Program Files" && QDir("C:/Program Files").exists()) res << "C:/Program Files/";
+	if (a != "C:/Program Files (x86)" && QDir("C:/Program Files (x86)").exists()) res << "C:/Program Files (x86)/";
+	if (a + " (x86)" != "C:/Program Files (x86)" && QDir(a+" (x86)").exists()) res << (a+" (x86)");
 	return res;
 }
 static QString miktexpath = "<search>";
@@ -199,7 +199,7 @@ QString getMiKTeXBinPathReal() {
 		return addPathDelimeter(mikPath)+"miktex\\bin\\";
 	foreach (const QString& d, getProgramFilesPaths())
 		foreach (const QString& p, QDir(d).entryList(QStringList(), QDir::AllDirs, QDir::Time))
-			if (p.toLower().contains("miktex") && QDir::exists(d+addPathDelimeter(p)+"miktex\\bin\\"))
+			if (p.toLower().contains("miktex") && QDir(d+addPathDelimeter(p)+"miktex\\bin\\").exists())
 				return d+addPathDelimeter(p)+"miktex\\bin\\";
 	return "";
 }
@@ -250,12 +250,12 @@ QString findGhostscriptDLL() { //called dll, may also find an exe
 		return env[i].mid(7); //skip gs_dll=
 	//file search
 	foreach (const QString& p, getProgramFilesPaths())
-		if (QDir::exists(p+"gs"))
+		if (QDir(p+"gs").exists())
 			foreach (const QString& gsv, QDir(p+"gs").entryList(QStringList() << "gs*.*", QDir::Dirs, QDir::Time)){
 				QString x = p+"gs/"+gsv+"/bin/gswin32c.exe";
 				if (QFile::exists(x)) return x;
 			}
-	return dll;
+	return "";
 }
 #endif
 
