@@ -1120,12 +1120,12 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds) {
 					//hints for commands usage (e.g. in mathmode only) are separated by #
 					int sep=line.indexOf('#');
 					QString valid;
-					QString env;
+					QStringList env;
 					if(sep>-1){
 						valid=line.mid(sep+1);
 						line=line.left(sep);
 						if(valid.startsWith("/")){
-						    env=valid.mid(1);
+						    env=valid.mid(1).split(',');
 						    valid="e";
 						}
 
@@ -1177,7 +1177,8 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds) {
 					}
 					if(valid.contains('e') && !env.isEmpty()){ // tabbing support
 						if(res==-1){
-							cmds->possibleCommands[env] << line.simplified();
+						    foreach(QString elem,env)
+							cmds->possibleCommands[elem] << line.simplified();
 						}
 					}
 					// normal parsing for completer
