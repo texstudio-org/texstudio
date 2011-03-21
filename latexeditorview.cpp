@@ -209,7 +209,6 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	connect(lineMarkPanel,SIGNAL(toolTipRequested(int,int)),this,SLOT(lineMarkToolTip(int,int)));
 	connect(editor,SIGNAL(hovered(QPoint)),this,SLOT(mouseHovered(QPoint)));
 	//connect(editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
-	connect(editor->document(),SIGNAL(formatsChange(int,int)),this,SLOT(documentFormatsChanged(int, int)));
 	connect(editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),this,SLOT(lineDeleted(QDocumentLineHandle*)));
 
 	connect(LatexEditorView::speller,SIGNAL(reloadDictionary()),this,SLOT(dictionaryReloaded()));
@@ -579,12 +578,6 @@ void LatexEditorView::checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,i
 	    SynChecker.putLine(document->line(index+1).handle(), env, clearOverlay, excessCols);
 	}
 	dlh->deref();
-}
-
-void LatexEditorView::documentFormatsChanged(int linenr, int count) {
-	if(config->realtimeChecking && config->inlineSyntaxChecking){
-		reCheckSyntax(linenr,count);
-	}
 }
 
 void LatexEditorView::clearOverlays(){
