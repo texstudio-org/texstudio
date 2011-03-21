@@ -3,10 +3,10 @@
 \begin{longtable}[alignment]{preamble}
 \begin{longtable}{preamble}
 \caption*{text}
-\endfirstfoot
-\endfirsthead
-\endfoot
-\endhead
+\endfirstfoot#/longtable
+\endfirsthead#/longtable
+\endfoot#/longtable
+\endhead#/longtable
 \end{longtable}
 \LTcapwidth
 \LTleft
