@@ -196,7 +196,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	completer->setConfig(configManager.completerConfig);
 	updateCompleter();
 	LatexEditorView::setCompleter(completer);
-	completer->setAbbreviations(configManager.userMacroAbbrev, configManager.userMacroTag);
+	completer->updateAbbreviations();
 
 	if (configManager.sessionRestore) {
 		fileRestoreSession();
@@ -2873,7 +2873,7 @@ void Texmaker::InsertUserTag() {
 	if (!action) return;
 	if (!currentEditorView()) return;
 	int id = action->data().toInt();
-	QString userTag=configManager.userMacroTag.value(id,"");
+	QString userTag=configManager.completerConfig->userMacro.value(id,Macro()).tag;
 	if (userTag.isEmpty()) return;
 	if (userTag.left(8)=="%SCRIPT\n"){
 		scriptengine eng(this);
@@ -2892,17 +2892,33 @@ void Texmaker::InsertUserTag() {
 
 void Texmaker::EditUserMenu() {
 	UserMenuDialog *umDlg = new UserMenuDialog(this,tr("Edit User &Tags"),m_languages);
-	umDlg->Name=configManager.userMacroMenuName;
-	umDlg->Tag=configManager.userMacroTag;
-	umDlg->Abbrev=configManager.userMacroAbbrev;
+	foreach (const Macro& m, configManager.completerConfig->userMacro) {
+		umDlg->names << m.name;
+		umDlg->tags << m.tag;
+		umDlg->abbrevs << m.abbrev;
+		umDlg->triggers << m.trigger.pattern().mid(1, m.trigger.pattern().length()-3);
+	}
 	umDlg->init();
 	if (umDlg->exec()) {
-		configManager.userMacroMenuName=umDlg->Name;
-		configManager.userMacroTag=umDlg->Tag;
-		configManager.userMacroAbbrev=umDlg->Abbrev;
+		configManager.completerConfig->userMacro.clear();
+		Q_ASSERT(umDlg->names.size() == umDlg->tags.size());
+		Q_ASSERT(umDlg->names.size() == umDlg->abbrevs.size());
+		Q_ASSERT(umDlg->names.size() == umDlg->triggers.size());
+		for (int i=0;i<umDlg->names.size();i++){
+			Macro m;
+			m.name = umDlg->names[i];
+			m.tag = umDlg->tags[i];
+			m.abbrev = umDlg->abbrevs[i];
+			if (umDlg->triggers[i].isEmpty())
+				m.trigger = QRegExp();
+			else
+				m.trigger = QRegExp("("+umDlg->triggers[i]+")$");
+			configManager.completerConfig->userMacro.append(m);
+
+		}
 		configManager.updateUserMacroMenu();
+		completer->updateAbbreviations();
 	}
-	completer->setAbbreviations(configManager.userMacroAbbrev,configManager.userMacroTag);
 	delete umDlg; //must be deleted before the formatscheme is deleted
 }
 

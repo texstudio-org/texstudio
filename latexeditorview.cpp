@@ -39,11 +39,13 @@
 #include "qstatuspanel.h"
 #include "qsearchreplacepanel.h"
 
+#include "latexcompleter_config.h"
+
 //------------------------------Default Input Binding--------------------------------
 class DefaultInputBinding: public QEditorInputBinding {
 	//  Q_OBJECT not possible because inputbinding is no qobject
 public:
-	DefaultInputBinding():keyToReplace(0),contextMenu(0) {}
+	DefaultInputBinding():completerConfig(0),keyToReplace(0),contextMenu(0) {}
 	virtual QString id() const {
 		return "TexMakerX::DefaultInputBinding";
 	}
@@ -55,6 +57,7 @@ public:
 	virtual bool contextMenuEvent(QContextMenuEvent *event, QEditor *editor);
 private:
 	friend class LatexEditorView;
+	const LatexCompleterConfig* completerConfig;
 	QStringList *keyToReplace;
 	QStringList *keyReplaceAfterWord;
 	QStringList *keyReplaceBeforeWord;
@@ -87,6 +90,30 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 			editor->emitCursorPositionChanged(); //prevent rogue parenthesis highlightations
 			return true;
 		}
+
+		Q_ASSERT(completerConfig); 
+		QString prev = editor->cursor().selectionStart().line().text().mid(0, editor->cursor().selectionStart().columnNumber())+event->text(); //TODO: optimize
+		for (int i=0;i<completerConfig->userMacro.size();i++) {
+			if (completerConfig->userMacro[i].trigger.isEmpty()) continue;
+			if (completerConfig->userMacro[i].trigger.indexIn(prev)!=-1){
+				QDocumentCursor c = editor->cursor();
+				bool block = false;
+				if (c.hasSelection() || completerConfig->userMacro[i].trigger.matchedLength() > 1)
+					block = true;
+				if (block) editor->document()->beginMacro();
+				if (c.hasSelection()) c.removeSelectedText();
+				if (completerConfig->userMacro[i].trigger.matchedLength() > 1) {
+					c.movePosition(completerConfig->userMacro[i].trigger.matchedLength()-1, QDocumentCursor::Left, QDocumentCursor::KeepAnchor);
+					c.removeSelectedText();
+				}
+				editor->insertText(c, completerConfig->userMacro[i].tag);
+				if (block) editor->document()->endMacro();
+				editor->emitCursorPositionChanged(); //prevent rogue parenthesis highlightations
+				return true;
+			}
+		}
+//		for (int i=0;i<LatexEditorView::completer)
+
 	}
 	if (LatexEditorView::hideTooltipWhenLeavingLine!=-1 && editor->cursor().lineNumber()!=LatexEditorView::hideTooltipWhenLeavingLine) {
 		LatexEditorView::hideTooltipWhenLeavingLine=-1;
@@ -186,6 +213,8 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	codeeditor = new QCodeEdit(false,this,doc);
 	editor=codeeditor->editor();
 
+	//editor->setProperty("latexEditor", this);
+
 	lineMarkPanel=new QLineMarkPanel;
 	lineMarkPanelAction=codeeditor->addPanel(lineMarkPanel, QCodeEdit::West, false);
 	lineNumberPanel=new QLineNumberPanel;
@@ -219,6 +248,8 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	editor->disableAccentHack(config->hackDisableAccentWorkaround);
 
 	editor->setInputBinding(defaultInputBinding);
+	defaultInputBinding->completerConfig = completer->getConfig();
+	Q_ASSERT(defaultInputBinding->completerConfig);
 	editor->document()->setLineEnding(QDocument::Local);
 	mainlay->addWidget(editor);
 

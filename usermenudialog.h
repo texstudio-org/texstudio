@@ -27,7 +27,7 @@ public:
 	~UserMenuDialog();
 	Ui::UserMenuDialog ui;
 
-	QStringList Name,Tag,Abbrev;
+	QStringList names, tags, abbrevs, triggers;
 
 private:
 	int previous_index;

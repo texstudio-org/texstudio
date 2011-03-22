@@ -81,12 +81,13 @@ UserMenuDialog::~UserMenuDialog() {
 }
 
 void UserMenuDialog::init() {
-	for(int i=1;i<=Tag.size();i++)
+	for(int i=1;i<=tags.size();i++)
 		ui.comboBox->insertItem(i-1, tr("Menu %1").arg(i));
 
-	codeedit->editor()->setText(Tag.value(0,""));
-	ui.itemEdit->setText(Name.value(0,""));
-	ui.abbrevEdit->setText(Abbrev.value(0,""));
+	codeedit->editor()->setText(tags.value(0,""));
+	ui.itemEdit->setText(names.value(0,""));
+	ui.abbrevEdit->setText(abbrevs.value(0,""));
+	ui.triggerEdit->setText(triggers.value(0,""));
 	ui.comboBox->setCurrentIndex(0);
 	if (languages){
 		if (codeedit->editor()->text(0)=="%SCRIPT") languages->setLanguage(codeedit->editor(), ".qs");
@@ -96,18 +97,20 @@ void UserMenuDialog::init() {
 }
 
 void UserMenuDialog::change(int index) {
-	if (Tag.isEmpty() || Name.isEmpty() || Abbrev.isEmpty())  return;
-	Q_ASSERT(previous_index < Tag.size() && previous_index < Name.size() && previous_index < Abbrev.size());
+	if (tags.isEmpty() || names.isEmpty() || abbrevs.isEmpty())  return;
+	Q_ASSERT(previous_index < tags.size() && previous_index < names.size() && previous_index < abbrevs.size() && previous_index < triggers.size());
 
 	if (previous_index != -1) {
-		Tag[previous_index] = codeedit->editor()->text();
-		Name[previous_index] = ui.itemEdit->text();
-		Abbrev[previous_index] = ui.abbrevEdit->text();
+		tags[previous_index] = codeedit->editor()->text();
+		names[previous_index] = ui.itemEdit->text();
+		abbrevs[previous_index] = ui.abbrevEdit->text();
+		triggers[previous_index] = ui.triggerEdit->text();
 	}
 
-	codeedit->editor()->setText(Tag.value(index,""));
-	ui.itemEdit->setText(Name.value(index,""));
-	ui.abbrevEdit->setText(Abbrev.value(index,""));
+	codeedit->editor()->setText(tags.value(index,""));
+	ui.itemEdit->setText(names.value(index,""));
+	ui.abbrevEdit->setText(abbrevs.value(index,""));
+	ui.triggerEdit->setText(triggers.value(index,""));
 
 	previous_index=index;
 	if (languages){
@@ -118,26 +121,29 @@ void UserMenuDialog::change(int index) {
 }
 
 void UserMenuDialog::slotOk() {
-	if (!Tag.isEmpty() && !Name.isEmpty() && !Abbrev.isEmpty() && previous_index != -1)  {
-		Q_ASSERT(previous_index < Tag.size() && previous_index < Name.size() && previous_index < Abbrev.size());
-		Tag[previous_index]=codeedit->editor()->text();
-		Name[previous_index]=ui.itemEdit->text();
-		Abbrev[previous_index]=ui.abbrevEdit->text();
+	if (!tags.isEmpty() && !names.isEmpty() && !abbrevs.isEmpty() && !triggers.isEmpty() && previous_index != -1)  {
+		Q_ASSERT(previous_index < tags.size() && previous_index < names.size() && previous_index < abbrevs.size() && previous_index < triggers.size());
+		tags[previous_index]=codeedit->editor()->text();
+		names[previous_index]=ui.itemEdit->text();
+		abbrevs[previous_index]=ui.abbrevEdit->text();
+		triggers[previous_index] = ui.triggerEdit->text();
 	}
 	accept();
 }
 void UserMenuDialog::slotAdd(){
-	Name << "";
-	Tag << "";
-	Abbrev << "";
+	names << "";
+	tags << "";
+	abbrevs << "";
+	triggers << "";
 	ui.comboBox->addItem(tr("Menu %1").arg(ui.comboBox->count()+1));
 }
 
 void UserMenuDialog::slotRemove(){
 	if (QMessageBox::question(this, "TexMakerX", "Do you really want to delete the current macro?", QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
-		Name.removeAt(ui.comboBox->currentIndex());
-		Tag.removeAt(ui.comboBox->currentIndex());
-		Abbrev.removeAt(ui.comboBox->currentIndex());
+		names.removeAt(ui.comboBox->currentIndex());
+		tags.removeAt(ui.comboBox->currentIndex());
+		abbrevs.removeAt(ui.comboBox->currentIndex());
+		triggers.removeAt(ui.comboBox->currentIndex());
 		previous_index = -1;
 		ui.comboBox->removeItem(ui.comboBox->currentIndex());
 		change(ui.comboBox->currentIndex());

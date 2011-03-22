@@ -36,6 +36,7 @@ struct ManagedProperty{ //TODO: Merge with the universal input dialog
 	bool readFromWidget(const QWidget* w);
 };
 
+
 class ConfigManager: public QObject, public ConfigManagerInterface {
 	Q_OBJECT
 public:
@@ -148,7 +149,7 @@ public:
 	QMap<QString,QVariant> customEnvironments;
 
 	//user macros
-	QStringList userMacroMenuName, userMacroTag, userMacroAbbrev, userToolMenuName, userToolCommand;
+	QStringList userToolMenuName, userToolCommand;
 
 	//debug
 	#ifndef QT_NO_DEBUG

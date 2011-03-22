@@ -742,30 +742,29 @@ void LatexCompleter::adjustWidget(){
     widget->resize(wd,200);
 }
 
-void LatexCompleter::setAbbreviations(const QStringList &Abbrevs,const QStringList &Tags){
+void LatexCompleter::updateAbbreviations(){
+	REQUIRE(config);
 	QList<CompletionWord> wordsAbbrev;
-	wordsAbbrev.clear();
-	for(int i=0;i<Abbrevs.size();i++){
-		QString abbr=Abbrevs.value(i,"");
-		if(!abbr.isEmpty()){
-			//CompletionWord cw(abbr);
-			// for compatibility to texmaker ...
-			QString s=Tags.value(i);
-			if (s.left(1)=="%") {
-				s=s.remove(0,1);
-				s="\\begin{"+s+"}";
-			}
-			CompletionWord cw(s);
-			// <!compatibility>
-			cw.word=abbr;
-			cw.sortWord=cw.word.toLower();
-			cw.sortWord.replace("{","!");//js: still using dirty hack, however order should be ' '{[* abcde...
-			cw.sortWord.replace("}","!");// needs to be replaced as well for sorting \bgein{abc*} after \bgein{abc}
-			cw.sortWord.replace("[","\"");//(first is a space->) !"# follow directly in the ascii table
-			cw.sortWord.replace("*","#");
-			cw.setName(abbr+tr(" (Usertag)"));
-			wordsAbbrev << cw;
+	for(int i=0;i<config->userMacro.size();i++){
+		if (config->userMacro[i].abbrev.isEmpty())
+			continue;
+		//CompletionWord cw(abbr);
+		// for compatibility to texmaker ...
+		QString s=config->userMacro[i].tag;
+		if (s.left(1)=="%") {
+			s=s.remove(0,1);
+			s="\\begin{"+s+"}";
 		}
+		CompletionWord cw(s);
+		// <!compatibility>
+		cw.word=config->userMacro[i].abbrev;
+		cw.sortWord=cw.word.toLower();
+		cw.sortWord.replace("{","!");//js: still using dirty hack, however order should be ' '{[* abcde...
+		cw.sortWord.replace("}","!");// needs to be replaced as well for sorting \bgein{abc*} after \bgein{abc}
+		cw.sortWord.replace("[","\"");//(first is a space->) !"# follow directly in the ascii table
+		cw.sortWord.replace("*","#");
+		cw.setName(config->userMacro[i].abbrev+tr(" (Usertag)"));
+		wordsAbbrev << cw;
 	}
 	listModel->setAbbrevWords(wordsAbbrev);
 }

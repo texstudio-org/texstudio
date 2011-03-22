@@ -5,6 +5,12 @@
 //without having a relationship between completer and configmanager
 //so modifying one doesn't lead to a recompilation of the other
 
+struct Macro{
+	QString name, tag, abbrev;
+	QRegExp trigger;
+};
+
+
 class LatexCompleterConfig
 {
 public:
@@ -18,11 +24,15 @@ public:
 	QStringList words;
 	QMultiMap<uint,QPair<int,int> > usage;
 	
+	QList<Macro> userMacro;
+
 	void setFiles(const QStringList & newFiles);
 	const QStringList& getLoadedFiles();
 private:
 	QStringList files;
 };
+
+
 
 //implementation lies in latexcompleter.cpp
 
