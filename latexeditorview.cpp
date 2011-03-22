@@ -81,6 +81,8 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 		if (pos >=0) {
 			QString whitespace(" \t\n");
 			QChar prev=editor->cursor().previousChar();
+			if (editor->languageDefinition())
+				editor->languageDefinition()->clearMatches(editor->document());
 			editor->insertText(whitespace.contains(prev)||prev==QChar(0)?keyReplaceBeforeWord->at(pos):keyReplaceAfterWord->at(pos));
 			editor->emitCursorPositionChanged(); //prevent rogue parenthesis highlightations
 			return true;

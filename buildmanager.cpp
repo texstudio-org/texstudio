@@ -397,7 +397,7 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 			return def;
 
 		foreach (const QString& p, getProgramFilesPaths())
-			if (QDir::exists(p+"Adobe"))
+			if (QDir(p+"Adobe").exists())
 				foreach (const QString& rv, QDir(p+"Adobe").entryList(QStringList() << "Reader*", QDir::Dirs, QDir::Time)){
 					QString x = p+"Adobe/"+rv+"/Reader/AcroRd32.exe";
 					if (QFile::exists(x)) return "\""+x+"\" \"?am.pdf\"";

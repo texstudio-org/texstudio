@@ -589,11 +589,12 @@ void QEditorTest::autoClosing_data(){
 	QTest::newRow("-(-") << "><" << 0 << 1 << "(" << ">()<";
 	QTest::newRow("-)-") << "><" << 0 << 1 << ")" << ">)<";
 	QTest::newRow("-{-") << "><" << 0 << 1 << "{" << ">{}<";
-	QTest::newRow("-$-") << "><" << 0 << 1 << "$" << ">$<"; //this test the absence of a feature
+	QTest::newRow("-$-") << "><" << 0 << 1 << "$" << ">$<"; //this tests the absence of a feature
 	QTest::newRow("-\\begin{verbatim}-") << "><" << 0 << 1 << "\\begin{verbatim}" << ">\\begin{verbatim}<"; //too
 	QTest::newRow("existing )") << ">)<" << 0 << 1 << "(" << ">()<";
 	QTest::newRow("existing 2-)") << ">))<" << 0 << 1 << "(" << ">())<";
-	//QTest::newRow("only last") << "><" << 0 << 1 << "((" << ">(()<"; disable to prevent clipboard completion
+	//QTest::newRow("only last") << "><" << 0 << 1 << "((" << ">(()<"; disabled to prevent clipboard completion
+	QTest::newRow("only last") << "><" << 0 << 1 << "((" << ">((<"; //disabled to prevent clipboard completion
 	QTest::newRow("counting 1") << ">())<" << 0 << 1 << "(" << ">(())<";
 	QTest::newRow("counting 2") << ">((())))<" << 0 << 1 << "(" << ">(((())))<";
 	QTest::newRow("counting 3") << ">((()()))())<" << 0 << 1 << "(" << ">(((()()))())<";
@@ -601,6 +602,7 @@ void QEditorTest::autoClosing_data(){
 	QTest::newRow("mixed") << ">[{}])<" << 0 << 1 << "(" << ">([{}])<";
 //	QTest::newRow("mixed") << ">([{}]))<" << 0 << 2 << "(" << ">(([{}]))<";
 	QTest::newRow("mixed") << ">([{}]))<" << 0 << 2 << "(" << ">(()[{}]))<"; //TODO: THIS IS A BUG!
+	QTest::newRow("mixed") << ">({[]}))<" << 0 << 2 << "(" << ">((){[]}))<";//TODO: THIS IS A BUG!
 	QTest::newRow("many") << "(((((())))))" << 0 << 1 << "(" << "((((((())))))";
 }
 
