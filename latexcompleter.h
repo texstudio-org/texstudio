@@ -37,7 +37,7 @@ public:
 
 	void complete(QEditor *newEditor, const CompletionFlags &flags);
 	void setAdditionalWords(const QStringList &newwords, bool normalTextList=false);
-	void setAbbreviations(const QStringList &Abbrevs,const QStringList &Tags);
+	void updateAbbreviations();
 
 	static void parseHelpfile(QString text);
 	static bool hasHelpfile();

@@ -241,12 +241,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Thesaurus/Database", &thesaurus_database, "<dic not found>", &pseudoDialog->comboBoxThesaurusFileName);
 
 	//user macros
-	registerOption("User/TagNames", &userMacroMenuName, QStringList());
-	registerOption("User/Tags", &userMacroTag, QStringList());
-	registerOption("User/TagAbbrevs", &userMacroAbbrev, QStringList());
 	registerOption("User/ToolNames", &userToolMenuName, QStringList());
 	registerOption("User/Tools", &userToolCommand, QStringList());
-	registerOption("User/TagAbbrevs", &userMacroAbbrev, QStringList());
 
 	//editor
 	registerOption("Editor/WordWrap", &editorConfig->wordwrap, true, &pseudoDialog->checkBoxWordwrap);
@@ -531,6 +527,20 @@ QSettings* ConfigManager::readSettings() {
 		}
 	LatexEditorView::setKeyReplacements(&keyReplace,&keyReplaceAfterWord,&keyReplaceBeforeWord);
 
+	//user macros
+	QStringList userTags = config->value("User/Tags").toStringList();
+	QStringList userNames = config->value("User/TagNames").toStringList();
+	QStringList userAbbrevs = config->value("User/TagAbbrevs").toStringList();
+	QStringList userTriggers = config->value("User/TagTriggers").toStringList();
+	for (int i=0;i<userTags.size();i++){
+		Macro m;
+		m.tag = userTags[i];
+		m.name = userNames.value(i,"");
+		m.abbrev = userAbbrevs.value(i,"");
+		m.trigger = QRegExp(userTriggers.value(i,""));
+		completerConfig->userMacro.append(m);
+	}
+
 	//menu shortcuts
 	int size = config->beginReadArray("keysetting");
 	for (int i = 0; i < size; ++i) {
@@ -642,6 +652,19 @@ QSettings* ConfigManager::saveSettings() {
 		config->setValue("User/KeyReplaceAfterWord"+QVariant(i).toString(),keyReplaceAfterWord[i]);
 		config->setValue("User/KeyReplaceBeforeWord"+QVariant(i).toString(),keyReplaceBeforeWord[i]);
 	}
+
+	//user macros
+	QStringList userTags, userNames, userAbbrevs, userTriggers;
+	foreach (const Macro&m, completerConfig->userMacro){
+		userNames << m.name;
+		userTags << m.tag;
+		userAbbrevs << m.abbrev;
+		userTriggers << m.trigger.pattern();
+	}
+	config->setValue("User/Tags", userTags);
+	config->setValue("User/TagNames", userNames);
+	config->setValue("User/TagAbbrevs", userAbbrevs);
+	config->setValue("User/TagTriggers", userTriggers);
 
 	//menu shortcuts
 	config->beginWriteArray("keysetting");
@@ -1231,7 +1254,10 @@ QMenu* ConfigManager::updateListMenu(const QString& menuName, const QStringList&
 }
 
 void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems){
-	QMenu* recreatedMenu = updateListMenu("main/user/tags", userMacroMenuName, "tag", true, SLOT(InsertUserTag()), Qt::SHIFT+Qt::Key_F1, alwaysRecreateMenuItems);
+	QStringList macronames;
+	foreach (const Macro&m , completerConfig->userMacro)
+		macronames<<m.name;
+	QMenu* recreatedMenu = updateListMenu("main/user/tags", macronames, "tag", true, SLOT(InsertUserTag()), Qt::SHIFT+Qt::Key_F1, alwaysRecreateMenuItems);
 	if (recreatedMenu) {
 		recreatedMenu->addSeparator();
 		newOrLostOldManagedAction(recreatedMenu, "manage",QCoreApplication::translate("Texmaker", "Edit User &Tags"), SLOT(EditUserMenu()));
