@@ -47,6 +47,8 @@ LatexParser::LatexParser(){
     environmentAliases["multiline"]="math";
     environmentAliases["multiline*"]="math";
     environmentAliases["longtable"]="tabular";
+    environmentAliases["tabularx"]="tabular";
+    environmentAliases["tabular*"]="tabular";
     environmentAliases["supertabular"]="tabular";
     environmentAliases["array"]="tabular";
     environmentAliases["matrix"]="tabular";

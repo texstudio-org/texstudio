@@ -355,6 +355,10 @@ void SyntaxCheck::waitForQueueProcess(){
     }
 }
 
+bool SyntaxCheck::queuedLines(){
+    return mLinesAvailable.available()>0;
+}
+
 int SyntaxCheck::containsEnv(const QString name,const StackEnvironment envs,const int id){
     for (int i = envs.size()-1; i >-1; --i) {
 	Environment env=envs.at(i);
