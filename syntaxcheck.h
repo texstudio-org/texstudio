@@ -77,6 +77,7 @@ public:
     static int containsEnv(const QString name,const StackEnvironment envs,const int id=-1);
     bool checkCommand(const QString &cmd,const StackEnvironment &envs);
     static bool equalEnvStack(StackEnvironment env1,StackEnvironment env2);
+    bool queuedLines();
 
 signals:
     void checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int excessCols, int ticket);
