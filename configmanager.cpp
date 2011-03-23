@@ -186,9 +186,10 @@ QTextCodec* ConfigManager::newFileEncoding = 0;
 ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	buildManager(0),editorConfig(new LatexEditorViewConfig),
 	completerConfig (new LatexCompleterConfig),
+	ltxCommands(0),
 	webPublishDialogConfig (new WebPublishDialogConfig),
 	pdfDocumentConfig(new PDFDocumentConfig),
-	ltxCommands(0), menuParent(0), menuParentsBar(0) {
+	menuParent(0), menuParentsBar(0) {
 
 	managedToolBars.append(ManagedToolBar("Custom", QStringList()));
 	managedToolBars.append(ManagedToolBar("File", QStringList() << "main/file/new" << "main/file/open" << "main/file/save" << "main/file/close"));
@@ -497,44 +498,51 @@ QSettings* ConfigManager::readSettings() {
 	buildManager->readSettings(*config);
 	runLaTeXBibTeXLaTeX=config->value("Tools/After BibTeX Change", "tmx://latex && tmx://bibtex && tmx://latex").toString()!="";
 	
-	//read user key replacements
-	keyReplace.clear();
-	keyReplaceAfterWord.clear();
-	keyReplaceBeforeWord.clear();
-	int keyReplaceCount = config->value("User/KeyReplaceCount",-1).toInt();
-	if (keyReplaceCount ==-1) {
-		//default
-		keyReplace.append("\"");
-		QString loc=QString(QLocale::system().name()).left(2);
-		if (loc=="de") {
-			keyReplaceBeforeWord.append("\">");
-			keyReplaceAfterWord.append("\"<");
-/*
-			keyReplace.append("'");
-			keyReplaceBeforeWord.append("''");
-			keyReplaceAfterWord.append("``");*/
-		} else {
-			keyReplaceAfterWord.append("''");
-			keyReplaceBeforeWord.append("``");
-		}
-		keyReplace.append("%");
-		keyReplaceBeforeWord.append("%");
-		keyReplaceAfterWord.append(" %");
-	} else for (int i=0; i<keyReplaceCount; i++) {
+	//import old key replacements or set default
+	QStringList keyReplace, keyReplaceAfterWord, keyReplaceBeforeWord;
+	if (!config->value("User/New Key Replacements Created",false).toBool()) {
+		int keyReplaceCount = config->value("User/KeyReplaceCount",-1).toInt();
+		if (keyReplaceCount ==-1) {
+			//default
+			keyReplace.append("\"");
+			QString loc=QString(QLocale::system().name()).left(2);
+			if (loc=="de") {
+				keyReplaceBeforeWord.append("\">");
+				keyReplaceAfterWord.append("\"<");
+			} else {
+				keyReplaceAfterWord.append("''");
+				keyReplaceBeforeWord.append("``");
+			}
+			keyReplace.append("%");
+			keyReplaceBeforeWord.append("%");
+			keyReplaceAfterWord.append(" %");
+		} else for (int i=0; i<keyReplaceCount; i++) {
 			keyReplace.append(config->value("User/KeyReplace"+QVariant(i).toString(),i!=0?"'":"\"").toString());
 			keyReplaceAfterWord.append(config->value("User/KeyReplaceAfterWord"+QVariant(i).toString(),i!=0?"":"").toString());
 			keyReplaceBeforeWord.append(config->value("User/KeyReplaceBeforeWord"+QVariant(i).toString(),i!=0?"":"\">").toString());
 		}
-	LatexEditorView::setKeyReplacements(&keyReplace,&keyReplaceAfterWord,&keyReplaceBeforeWord);
+	}
 
 	//user macros
 	QStringList userTags = config->value("User/Tags").toStringList();
 	QStringList userNames = config->value("User/TagNames").toStringList();
 	QStringList userAbbrevs = config->value("User/TagAbbrevs").toStringList();
 	QStringList userTriggers = config->value("User/TagTriggers").toStringList();
+
+	for (int i=0; i < keyReplace.size(); i++) {
+		userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg("before word"));
+		userTags.append(keyReplaceBeforeWord[i]);
+		userAbbrevs.append("");
+		userTriggers.append("(?<=\\s|^)"+QRegExp::escape(keyReplace[i]));
+
+		userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg("after word"));
+		userTags.append(keyReplaceAfterWord[i]);
+		userAbbrevs.append("");
+		userTriggers.append("(?<=\\S)"+QRegExp::escape(keyReplace[i]));
+	}
+
 	for (int i=0;i<userTags.size();i++)
 		completerConfig->userMacro.append(Macro(userNames.value(i,""),userTags[i], userAbbrevs.value(i,""),userTriggers.value(i,"")));
-
 
 	//menu shortcuts
 	int size = config->beginReadArray("keysetting");
@@ -640,13 +648,7 @@ QSettings* ConfigManager::saveSettings() {
 	config->setValue("Tools/After BibTeX Change",runLaTeXBibTeXLaTeX?"tmx://latex && tmx://bibtex && tmx://latex":"");
 	
 	//-------------------key replacements-----------------
-	int keyReplaceCount = keyReplace.count();
-	config->setValue("User/KeyReplaceCount",keyReplaceCount);
-	for (int i=0; i<keyReplaceCount; i++) {
-		config->setValue("User/KeyReplace"+QVariant(i).toString(),keyReplace[i]);
-		config->setValue("User/KeyReplaceAfterWord"+QVariant(i).toString(),keyReplaceAfterWord[i]);
-		config->setValue("User/KeyReplaceBeforeWord"+QVariant(i).toString(),keyReplaceBeforeWord[i]);
-	}
+	config->setValue("User/New Key Replacements Created", true);
 
 	//user macros
 	QStringList userTags, userNames, userAbbrevs, userTriggers;
@@ -885,23 +887,8 @@ bool ConfigManager::execConfigDialog() {
 	}
 	new QTreeWidgetItem(editorKeys, QStringList() << ShortcutDelegate::addRowButton);
 
-	//add special key replacements
-	QTreeWidgetItem * keyReplacements = new QTreeWidgetItem(editorItem, QStringList() << ConfigDialog::tr("Special Key Replacement"));
-	QTreeWidgetItem * columnItem=new QTreeWidgetItem(keyReplacements, QStringList() << ConfigDialog::tr("New column meaning:") << ConfigDialog::tr("Key to replace") << ConfigDialog::tr("Text to insert before word") << ConfigDialog::tr("Text to insert after word"));
-	QFont f;
-	f.setUnderline(true);
-	columnItem->setFont(0,f);
-	f.setBold(true);
-	columnItem->setFont(1,f);
-	columnItem->setFont(2,f);
-	columnItem->setFont(3,f);
-	for (int i=0; i<keyReplace.size(); i++)
-		(new QTreeWidgetItem(keyReplacements, QStringList() << ShortcutDelegate::deleteRowButton << keyReplace[i] << keyReplaceBeforeWord[i] << keyReplaceAfterWord[i]))
-		->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
-	new QTreeWidgetItem(keyReplacements, QStringList() << ShortcutDelegate::addRowButton);
 	confDlg->ui.shortcutTree->addTopLevelItem(editorItem);
 	editorItem->setExpanded(true);
-
 
 	ShortcutDelegate delegate;
 	delegate.treeWidget=confDlg->ui.shortcutTree;
@@ -1076,15 +1063,7 @@ bool ConfigManager::execConfigDialog() {
 		runLaTeXBibTeXLaTeX=confDlg->ui.checkBoxRunAfterBibTeXChange->isChecked();
 
 		
-		//key replacements
-		keyReplace.clear();
-		keyReplaceBeforeWord.clear();
-		keyReplaceAfterWord.clear();
-		for (int i=1; i<keyReplacements->childCount()-1; i++) {
-			keyReplace << keyReplacements->child(i)->text(1);
-			keyReplaceBeforeWord << keyReplacements->child(i)->text(2);
-			keyReplaceAfterWord << keyReplacements->child(i)->text(3);
-		}
+		//formats
 		confDlg->fmConfig->apply();
 
 		this->editorKeys.clear();

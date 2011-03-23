@@ -45,7 +45,7 @@
 class DefaultInputBinding: public QEditorInputBinding {
 	//  Q_OBJECT not possible because inputbinding is no qobject
 public:
-	DefaultInputBinding():completerConfig(0),keyToReplace(0),contextMenu(0) {}
+	DefaultInputBinding():completerConfig(0),contextMenu(0) {}
 	virtual QString id() const {
 		return "TexMakerX::DefaultInputBinding";
 	}
@@ -58,9 +58,6 @@ public:
 private:
 	friend class LatexEditorView;
 	const LatexCompleterConfig* completerConfig;
-	QStringList *keyToReplace;
-	QStringList *keyReplaceAfterWord;
-	QStringList *keyReplaceBeforeWord;
 	QList<QAction *> baseActions;
 
 	QMenu* contextMenu;
@@ -78,19 +75,7 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 		else LatexEditorView::completer->complete(editor,0);
 		return true;
 	}
-	if (!keyToReplace) return false;
 	if (!event->text().isEmpty()) {
-		int pos=keyToReplace->indexOf(event->text());
-		if (pos >=0) {
-			QString whitespace(" \t\n");
-			QChar prev=editor->cursor().previousChar();
-			if (editor->languageDefinition())
-				editor->languageDefinition()->clearMatches(editor->document());
-			editor->insertText(whitespace.contains(prev)||prev==QChar(0)?keyReplaceBeforeWord->at(pos):keyReplaceAfterWord->at(pos));
-			editor->emitCursorPositionChanged(); //prevent rogue parenthesis highlightations
-			return true;
-		}
-
 		Q_ASSERT(completerConfig); 
 		QString prev = editor->cursor().selectionStart().line().text().mid(0, editor->cursor().selectionStart().columnNumber())+event->text(); //TODO: optimize
 		for (int i=0;i<completerConfig->userMacro.size();i++) {
@@ -113,6 +98,9 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 				editor->insertText(c, completerConfig->userMacro[i].tag);
 				if (block) editor->document()->endMacro();
 				editor->emitCursorPositionChanged(); //prevent rogue parenthesis highlightations
+				/*			if (editor->languageDefinition())
+								editor->languageDefinition()->clearMatches(editor->document());
+*/
 				return true;
 			}
 		}
@@ -451,13 +439,6 @@ void LatexEditorView::cleanBib() {
 }
 
 
-
-void LatexEditorView::setKeyReplacements(QStringList *UserKeyReplace, QStringList *UserKeyReplaceAfterWord, QStringList *UserKeyReplaceBeforeWord) {
-	if (!defaultInputBinding) return;
-	defaultInputBinding->keyToReplace=UserKeyReplace;
-	defaultInputBinding->keyReplaceAfterWord=UserKeyReplaceAfterWord;
-	defaultInputBinding->keyReplaceBeforeWord=UserKeyReplaceBeforeWord;
-}
 QList<QAction *> LatexEditorView::getBaseActions(){
 	if (!defaultInputBinding) return QList<QAction *>();
 	return defaultInputBinding->baseActions;
