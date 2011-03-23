@@ -137,7 +137,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>7</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -151,8 +151,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>797</width>
-            <height>597</height>
+            <width>823</width>
+            <height>577</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -1001,9 +1001,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
          <attribute name="headerDefaultSectionSize">
           <number>250</number>
          </attribute>
-         <attribute name="headerDefaultSectionSize">
-          <number>250</number>
-         </attribute>
          <column>
           <property name="text">
            <string>1</string>
@@ -1344,7 +1341,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
              </sizepolicy>
             </property>
             <property name="minimum">
-             <number>1</number>
+             <number>2</number>
             </property>
             <property name="maximum">
              <number>10</number>
@@ -1530,9 +1527,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
          <property name="columnCount">
           <number>2</number>
          </property>
-         <attribute name="horizontalHeaderDefaultSectionSize">
-          <number>200</number>
-         </attribute>
          <attribute name="horizontalHeaderDefaultSectionSize">
           <number>200</number>
          </attribute>
