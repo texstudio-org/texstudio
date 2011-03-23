@@ -2896,7 +2896,7 @@ void Texmaker::EditUserMenu() {
 		umDlg->names << m.name;
 		umDlg->tags << m.tag;
 		umDlg->abbrevs << m.abbrev;
-		umDlg->triggers << m.trigger.pattern().mid(1, m.trigger.pattern().length()-3);
+		umDlg->triggers << m.trigger;
 	}
 	umDlg->init();
 	if (umDlg->exec()) {
@@ -2904,18 +2904,8 @@ void Texmaker::EditUserMenu() {
 		Q_ASSERT(umDlg->names.size() == umDlg->tags.size());
 		Q_ASSERT(umDlg->names.size() == umDlg->abbrevs.size());
 		Q_ASSERT(umDlg->names.size() == umDlg->triggers.size());
-		for (int i=0;i<umDlg->names.size();i++){
-			Macro m;
-			m.name = umDlg->names[i];
-			m.tag = umDlg->tags[i];
-			m.abbrev = umDlg->abbrevs[i];
-			if (umDlg->triggers[i].isEmpty())
-				m.trigger = QRegExp();
-			else
-				m.trigger = QRegExp("("+umDlg->triggers[i]+")$");
-			configManager.completerConfig->userMacro.append(m);
-
-		}
+		for (int i=0;i<umDlg->names.size();i++)
+			configManager.completerConfig->userMacro.append(Macro(umDlg->names[i], umDlg->tags[i], umDlg->abbrevs[i], umDlg->triggers[i]));
 		configManager.updateUserMacroMenu();
 		completer->updateAbbreviations();
 	}

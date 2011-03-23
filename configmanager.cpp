@@ -188,7 +188,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	completerConfig (new LatexCompleterConfig),
 	webPublishDialogConfig (new WebPublishDialogConfig),
 	pdfDocumentConfig(new PDFDocumentConfig),
-	menuParent(0), menuParentsBar(0), ltxCommands(0) {
+	ltxCommands(0), menuParent(0), menuParentsBar(0) {
 
 	managedToolBars.append(ManagedToolBar("Custom", QStringList()));
 	managedToolBars.append(ManagedToolBar("File", QStringList() << "main/file/new" << "main/file/open" << "main/file/save" << "main/file/close"));
@@ -532,14 +532,9 @@ QSettings* ConfigManager::readSettings() {
 	QStringList userNames = config->value("User/TagNames").toStringList();
 	QStringList userAbbrevs = config->value("User/TagAbbrevs").toStringList();
 	QStringList userTriggers = config->value("User/TagTriggers").toStringList();
-	for (int i=0;i<userTags.size();i++){
-		Macro m;
-		m.tag = userTags[i];
-		m.name = userNames.value(i,"");
-		m.abbrev = userAbbrevs.value(i,"");
-		m.trigger = QRegExp(userTriggers.value(i,""));
-		completerConfig->userMacro.append(m);
-	}
+	for (int i=0;i<userTags.size();i++)
+		completerConfig->userMacro.append(Macro(userNames.value(i,""),userTags[i], userAbbrevs.value(i,""),userTriggers.value(i,"")));
+
 
 	//menu shortcuts
 	int size = config->beginReadArray("keysetting");
@@ -659,7 +654,7 @@ QSettings* ConfigManager::saveSettings() {
 		userNames << m.name;
 		userTags << m.tag;
 		userAbbrevs << m.abbrev;
-		userTriggers << m.trigger.pattern();
+		userTriggers << m.trigger;
 	}
 	config->setValue("User/Tags", userTags);
 	config->setValue("User/TagNames", userNames);

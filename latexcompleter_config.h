@@ -6,8 +6,12 @@
 //so modifying one doesn't lead to a recompilation of the other
 
 struct Macro{
+	Macro();
+	Macro(const QString& nname, const QString& ntag, const QString& nabbrev, const QString& ntrigger);
 	QString name, tag, abbrev;
-	QRegExp trigger;
+	QString trigger;
+	QRegExp triggerRegex;
+	bool triggerLookBehind;
 };
 
 
