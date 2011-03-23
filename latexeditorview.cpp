@@ -41,6 +41,8 @@
 
 #include "latexcompleter_config.h"
 
+#include "scriptengine.h"
+
 //------------------------------Default Input Binding--------------------------------
 class DefaultInputBinding: public QEditorInputBinding {
 	//  Q_OBJECT not possible because inputbinding is no qobject
@@ -95,7 +97,11 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 					c.movePosition(realMatchLen-1, QDocumentCursor::Left, QDocumentCursor::KeepAnchor);
 					c.removeSelectedText();
 				}
-				editor->insertText(c, completerConfig->userMacro[i].tag);
+
+				LatexEditorView* view = editor->property("latexEditor").value<LatexEditorView*>();
+				Q_ASSERT(view);
+				view->insertMacro(completerConfig->userMacro[i].tag);
+				//editor->insertText(c, completerConfig->userMacro[i].tag);
 				if (block) editor->document()->endMacro();
 				editor->emitCursorPositionChanged(); //prevent rogue parenthesis highlightations
 				/*			if (editor->languageDefinition())
@@ -196,6 +202,8 @@ SpellerUtility* LatexEditorView::speller=0;
 LatexCompleter* LatexEditorView::completer=0;
 int LatexEditorView::hideTooltipWhenLeavingLine = -1;
 
+Q_DECLARE_METATYPE(LatexEditorView*);
+
 LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc) : QWidget(parent), bibTeXIds(0),curChangePos(-1),lastSetBookmark(0), config(aconfig) {
 	Q_ASSERT(config);
 	QVBoxLayout* mainlay = new QVBoxLayout(this);
@@ -205,7 +213,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	codeeditor = new QCodeEdit(false,this,doc);
 	editor=codeeditor->editor();
 
-	//editor->setProperty("latexEditor", this);
+	editor->setProperty("latexEditor", QVariant::fromValue<LatexEditorView*>(this));
 
 	lineMarkPanel=new QLineMarkPanel;
 	lineMarkPanelAction=codeeditor->addPanel(lineMarkPanel, QCodeEdit::West, false);
@@ -303,6 +311,21 @@ void LatexEditorView::paste(){
     }else{
 	editor->paste();
     }
+}
+
+void LatexEditorView::insertMacro(QString macro){
+	if (macro.isEmpty()) return;
+	if (macro.left(8)=="%SCRIPT\n"){
+		scriptengine eng(this);
+		eng.setEditor(editor);
+		macro=macro.remove(0,8);
+		eng.setScript(macro);
+		eng.run();
+	} else if (macro.size() > 1 && macro.left(1)=="%" && macro != "%%") {
+		macro=macro.remove(0,1);
+		CodeSnippet s("\\begin{"+macro+"}");
+		s.insert(editor);
+	} else CodeSnippet(macro).insert(editor);
 }
 
 void LatexEditorView::viewActivated(){

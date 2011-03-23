@@ -133,6 +133,7 @@ public slots:
 	void clearOverlays();
 	void updateLtxCommands();
 	void paste();
+	void insertMacro(QString macro);
 signals:
 	void lineHandleDeleted(QDocumentLineHandle* l);
 	void showMarkTooltipForLogMessage(int logMessage);
@@ -141,6 +142,7 @@ signals:
 	void showPreview(const QDocumentCursor& c);
 	void openFile(const QString name);
 };
+
 
 class BracketInvertAffector: public PlaceHolder::Affector{
 public:

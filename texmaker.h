@@ -31,7 +31,6 @@
 #include "spellerdialog.h"
 #include "textanalysis.h"
 #include "toolwidgets.h"
-#include "scriptengine.h"
 #include "tmxtabwidget.h"
 #include "unicodeinsertion.h"
 #include "tablemanipulation.h"
