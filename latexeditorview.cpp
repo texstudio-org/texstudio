@@ -94,16 +94,20 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 		Q_ASSERT(completerConfig); 
 		QString prev = editor->cursor().selectionStart().line().text().mid(0, editor->cursor().selectionStart().columnNumber())+event->text(); //TODO: optimize
 		for (int i=0;i<completerConfig->userMacro.size();i++) {
-			if (completerConfig->userMacro[i].trigger.isEmpty()) continue;
-			if (completerConfig->userMacro[i].trigger.indexIn(prev)!=-1){
+			const Macro& m = completerConfig->userMacro[i];
+			if (m.trigger.isEmpty()) continue;
+			QRegExp& r = const_cast<QRegExp&>(m.triggerRegex);//a const qregexp doesn't exist
+			if (r.indexIn(prev)!=-1){
 				QDocumentCursor c = editor->cursor();
 				bool block = false;
-				if (c.hasSelection() || completerConfig->userMacro[i].trigger.matchedLength() > 1)
+				int realMatchLen = r.matchedLength();
+				if (m.triggerLookBehind) realMatchLen -= r.cap(1).length();
+				if (c.hasSelection() || realMatchLen > 1)
 					block = true;
 				if (block) editor->document()->beginMacro();
 				if (c.hasSelection()) c.removeSelectedText();
-				if (completerConfig->userMacro[i].trigger.matchedLength() > 1) {
-					c.movePosition(completerConfig->userMacro[i].trigger.matchedLength()-1, QDocumentCursor::Left, QDocumentCursor::KeepAnchor);
+				if (completerConfig->userMacro[i].triggerRegex.matchedLength() > 1) {
+					c.movePosition(realMatchLen-1, QDocumentCursor::Left, QDocumentCursor::KeepAnchor);
 					c.removeSelectedText();
 				}
 				editor->insertText(c, completerConfig->userMacro[i].tag);
@@ -1341,7 +1345,7 @@ void LatexEditorView::getEnv(int lineNumber,StackEnvironment &env){
 
 
 
-QString BracketInvertAffector::affect(const QKeyEvent *e, const QString& base, int ph, int mirror) const{
+QString BracketInvertAffector::affect(const QKeyEvent *, const QString& base, int, int) const{
 	static const QString& brackets = "<>()[]{}";
 	QString after;
 	for (int i=0; i < base.length(); i++)

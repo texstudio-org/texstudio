@@ -1030,14 +1030,6 @@ void LatexCompleter::editorDestroyed() {
 	editor=0;
 }
 
-void LatexCompleterConfig::setFiles(const QStringList &newFiles) {
-	files=newFiles;
-}
-
-const QStringList& LatexCompleterConfig::getLoadedFiles(){
-	return files;
-}
-
 QString LatexCompleter::lookupWord(QString text){
 	QRegExp wordrx("^\\\\([^ {[*]+|begin\\{[^ {}]+)");
 	if (wordrx.indexIn(text)==-1) return "";
@@ -1073,4 +1065,39 @@ bool LatexCompleter::close(){
 		listModel->curWord="";
 		return true;
 	} else return false;
+}
+
+
+
+
+
+
+
+
+Macro::Macro():triggerLookBehind(false){
+}
+Macro::Macro(const QString& nname, const QString& ntag, const QString& nabbrev, const QString& ntrigger){
+	name = nname;
+	tag = ntag;
+	abbrev = nabbrev;
+	trigger = ntrigger;
+	triggerLookBehind = false;
+	if (ntrigger.isEmpty()) return;
+
+	QString realtrigger = ntrigger;
+	if (realtrigger.startsWith("(?<=")) {
+		triggerLookBehind = true;
+		realtrigger.remove(1,3); //qregexp doesn't support look behind, but we can emulate it by removing the first capture
+	}
+	triggerRegex = QRegExp("(?:"+realtrigger+")$"); // (?: non capturing)
+
+};
+
+
+void LatexCompleterConfig::setFiles(const QStringList &newFiles) {
+	files=newFiles;
+}
+
+const QStringList& LatexCompleterConfig::getLoadedFiles(){
+	return files;
 }
