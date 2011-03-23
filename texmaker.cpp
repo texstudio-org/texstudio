@@ -2869,25 +2869,12 @@ void Texmaker::InsertBibEntry(const QString& id){
 }
 
 void Texmaker::InsertUserTag() {
+	if (!currentEditorView()) return;
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (!action) return;
-	if (!currentEditorView()) return;
 	int id = action->data().toInt();
-	QString userTag=configManager.completerConfig->userMacro.value(id,Macro()).tag;
-	if (userTag.isEmpty()) return;
-	if (userTag.left(8)=="%SCRIPT\n"){
-		scriptengine eng(this);
-		eng.setEditor(currentEditor());
-		userTag=userTag.remove(0,8);
-		eng.setScript(userTag);
-		eng.run();
-	} else {
-		if (userTag.left(1)=="%") {
-			userTag=userTag.remove(0,1);
-			CodeSnippet s("\\begin{"+userTag+"}");
-			s.insert(currentEditorView()->editor);
-		} else CodeSnippet(userTag).insert(currentEditorView()->editor);
-	}
+	const QString& userTag=configManager.completerConfig->userMacro.value(id,Macro()).tag;
+	currentEditorView()->insertMacro(userTag);
 }
 
 void Texmaker::EditUserMenu() {

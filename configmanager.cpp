@@ -531,12 +531,12 @@ QSettings* ConfigManager::readSettings() {
 
 	for (int i=0; i < keyReplace.size(); i++) {
 		userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg("before word"));
-		userTags.append(keyReplaceBeforeWord[i]);
+		userTags.append(keyReplaceBeforeWord[i].replace("%", "%%"));
 		userAbbrevs.append("");
 		userTriggers.append("(?<=\\s|^)"+QRegExp::escape(keyReplace[i]));
 
 		userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg("after word"));
-		userTags.append(keyReplaceAfterWord[i]);
+		userTags.append(keyReplaceAfterWord[i].replace("%", "%%"));
 		userAbbrevs.append("");
 		userTriggers.append("(?<=\\S)"+QRegExp::escape(keyReplace[i]));
 	}
