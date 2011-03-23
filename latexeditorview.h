@@ -57,8 +57,6 @@ public:
 
 	void cleanBib();
 	
-	
-	static void setKeyReplacements(QStringList *UserKeyReplace, QStringList *UserKeyReplaceAfterWord, QStringList *UserKeyReplaceBeforeWord);
 	static QList<QAction *> getBaseActions();
 	static void setBaseActions(QList<QAction *> baseActions);
 	static void setSpeller(SpellerUtility* mainSpeller);
