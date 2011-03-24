@@ -528,6 +528,7 @@ QSettings* ConfigManager::readSettings() {
 	QStringList userNames = config->value("User/TagNames").toStringList();
 	QStringList userAbbrevs = config->value("User/TagAbbrevs").toStringList();
 	QStringList userTriggers = config->value("User/TagTriggers").toStringList();
+	while (userTriggers.size()<userTags.size()) userTriggers << "";
 
 	for (int i=0; i < keyReplace.size(); i++) {
 		userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg("before word"));
