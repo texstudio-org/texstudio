@@ -28,6 +28,7 @@ QHash<QString,QString> LatexParser::environmentAliases;
 LatexParser::LatexParser(){
     possibleCommands.clear();
     possibleCommands["tabular"]=QSet<QString>::fromList(QStringList() << "&" );
+    possibleCommands["array"]=QSet<QString>::fromList(QStringList() << "&" );
     possibleCommands["tabbing"]=QSet<QString>::fromList(QStringList() << "\\<" << "\\>" << "\\=" << "\\+");
     possibleCommands["normal"]=QSet<QString>::fromList(QStringList() << "\\\\" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" <<"\\." <<"\\u" <<"\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\oe" << "\\OE" << "\\ae" << "\\AE" << "\\aa" << "\\AA" << "\\o" << "\\O" << "\\l" << "\\L" << "\\~" << "\\ ");
     possibleCommands["math"]=QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;" << "\\:" << "\\\\" << "\\ ");
@@ -50,14 +51,23 @@ LatexParser::LatexParser(){
     environmentAliases["tabularx"]="tabular";
     environmentAliases["tabular*"]="tabular";
     environmentAliases["supertabular"]="tabular";
-    environmentAliases["array"]="tabular";
-    environmentAliases["matrix"]="tabular";
-    environmentAliases["bmatrix"]="tabular";
-    environmentAliases["pmatrix"]="tabular";
-    environmentAliases["vmatrix"]="tabular";
-    environmentAliases["Bmatrix"]="tabular";
-    environmentAliases["Vmatrix"]="tabular";
-    environmentAliases["smallmatrix"]="tabular";
+    environmentAliases["array"]="array";
+    environmentAliases["matrix"]="array";
+    environmentAliases["bmatrix"]="array";
+    environmentAliases["pmatrix"]="array";
+    environmentAliases["vmatrix"]="array";
+    environmentAliases["Bmatrix"]="array";
+    environmentAliases["Vmatrix"]="array";
+    environmentAliases["smallmatrix"]="array";
+    environmentAliases["eqnarray"]="array";
+    environmentAliases["eqnarray*"]="array";
+    environmentAliases["align"]="array";
+    environmentAliases["align*"]="array";
+    environmentAliases["flalign"]="array";
+    environmentAliases["flalign*"]="array";
+    environmentAliases["alignat"]="array";
+    environmentAliases["alignat*"]="array";
+    environmentAliases["split"]="array";
 }
 
 QString getCommonEOW() {
