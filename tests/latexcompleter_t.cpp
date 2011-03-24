@@ -61,6 +61,7 @@ void LatexCompleterTest::simple_data(){
 			    << "e:>>\\be<<"
 			    << "g:>>\\beg<<"
 			    << "{:>>\\begin{<<"
+			    << "a:>>\\begin{a<<"
 			    << "*:>>\\begin{align*<<");
 
 	QTest::newRow("begin +pc") << ">><<" << true << true << 0 << 2
@@ -71,6 +72,7 @@ void LatexCompleterTest::simple_data(){
 			    << "e:>>\\be<<"
 			    << "g:>>\\beg<<"
 			    << "{:>>\\begin{<<"
+			    << "a:>>\\begin{a<<"
 			    << "*:>>\\begin{align*<<");
 
 	QTest::newRow("begin no eowc") << ">><<" << false << false << 0 << 2
