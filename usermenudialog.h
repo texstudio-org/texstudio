@@ -19,6 +19,7 @@
 class QCodeEdit;
 class QLanguageFactory;
 class QSearchReplacePanel;
+class StringListTableModel;
 class UserMenuDialog : public QDialog {
 	Q_OBJECT
 
@@ -30,20 +31,23 @@ public:
 	QStringList names, tags, abbrevs, triggers;
 
 private:
-	int previous_index;
 	QCodeEdit* codeedit;
 	QLanguageFactory* languages;
 	QSearchReplacePanel* searchReplacePanel;
+	StringListTableModel* model;
 public slots:
 	void init();
 
 
 private slots:
-	void change(int index);
+	void change(const QModelIndex& nev,const QModelIndex& old);
 	void slotOk();
 	void slotAdd();
 	void slotRemove();
 	void textChanged();
+	void nameChanged();
+	void abbrevChanged();
+	void triggerChanged();
 	void changeTypeToNormal();
 	void changeTypeToEnvironment();
 	void changeTypeToScript();

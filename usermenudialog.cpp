@@ -21,15 +21,85 @@
 #include "qsearchreplacepanel.h"
 #include "qfoldpanel.h"
 
+class StringListTableModel: public QAbstractTableModel{
+public:
+	StringListTableModel(QObject* p):QAbstractTableModel(p){}
+	virtual int rowCount ( const QModelIndex & parent = QModelIndex() ) const;
+	virtual int columnCount ( const QModelIndex & parent = QModelIndex() ) const;
+	virtual QVariant data ( const QModelIndex & index, int role = Qt::DisplayRole) const;
+	virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+	void addStringList(QStringList* list, const QString& name);
+
+	virtual void insertRow(int row, const QModelIndex &parent=QModelIndex());
+	virtual void removeRow(int row, const QModelIndex &parent=QModelIndex());
+	virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
+
+	int listId(const QStringList* sl) const;
+private:
+	QList<QPair<QString, QStringList*> > lists;
+};
+
+int StringListTableModel::rowCount ( const QModelIndex & parent) const{
+	if (parent.isValid() || lists.isEmpty()) return 0;
+	return lists.first().second->size();
+}
+int StringListTableModel::columnCount ( const QModelIndex & parent) const{
+	return parent.isValid()?0:lists.size();
+}
+QVariant StringListTableModel::data ( const QModelIndex & index, int role) const{
+	if (role != Qt::DisplayRole) return QVariant();
+	if (index.column() >= lists.size()) return QVariant();
+	if (index.row() >= lists[index.column()].second->size()) return QVariant();
+	return lists[index.column()].second->at(index.row());
+}
+
+QVariant StringListTableModel::headerData(int section, Qt::Orientation orientation, int role) const{
+	if (orientation == Qt::Vertical || role != Qt::DisplayRole) {
+		return QAbstractTableModel::headerData(section,orientation,role);
+	}
+	if (section >= lists.size()) return QVariant();
+	return lists[section].first;
+}
+
+void StringListTableModel::insertRow(int row, const QModelIndex &parent){
+	if (parent.isValid()) return;
+	beginInsertRows(parent,row,row);
+	for (int i=0;i<lists.size();i++)
+		lists[i].second->insert(row, "");
+	endInsertRows();
+}
+
+void StringListTableModel::removeRow(int row, const QModelIndex &parent){
+	if (parent.isValid() || row < 0) return;
+	beginRemoveRows(parent,row,row);
+	for (int i=0;i<lists.size();i++)
+		lists[i].second->removeAt(row);
+	endRemoveRows();
+	//reset(); //begin/end removerows crashes
+}
+
+bool StringListTableModel::setData(const QModelIndex &index, const QVariant &value, int role){
+	if (!index.isValid()) return false;
+	lists[index.column()].second->replace(index.row(), value.toString());
+	emit dataChanged(index,index);
+	return true;
+}
+
+int StringListTableModel::listId(const QStringList* sl) const{
+	for (int i=0;i<lists.size();i++)
+		if (lists[i].second == sl) return i;
+	return -1;
+}
+
+void StringListTableModel::addStringList(QStringList* list, const QString& name){
+	lists << QPair<QString, QStringList*>(name,list);
+}
+
 UserMenuDialog::UserMenuDialog(QWidget* parent,  QString name, QLanguageFactory* languageFactory)
 		: QDialog(parent), languages(languageFactory) {
 	setWindowTitle(name);
 	setModal(true);
 	ui.setupUi(this);
-
-	previous_index=0;
-
-	connect(ui.comboBox, SIGNAL(activated(int)),this,SLOT(change(int)));
 
 	connect(ui.okButton, SIGNAL(clicked()), SLOT(slotOk()));
 
@@ -73,6 +143,10 @@ UserMenuDialog::UserMenuDialog(QWidget* parent,  QString name, QLanguageFactory*
 	ui.tagEdit->layout()->addWidget(codeedit->editor());
 
 	connect(codeedit->editor()->document(), SIGNAL(contentsChanged()), SLOT(textChanged()));
+	connect(ui.itemEdit, SIGNAL(textEdited(QString)), SLOT(nameChanged()));
+	connect(ui.abbrevEdit, SIGNAL(textEdited(QString)), SLOT(abbrevChanged()));
+	connect(ui.triggerEdit, SIGNAL(textEdited(QString)), SLOT(triggerChanged()));
+
 }
 
 UserMenuDialog::~UserMenuDialog() {
@@ -81,38 +155,34 @@ UserMenuDialog::~UserMenuDialog() {
 }
 
 void UserMenuDialog::init() {
-	for(int i=1;i<=tags.size();i++)
-		ui.comboBox->insertItem(i-1, tr("Menu %1").arg(i));
-
 	codeedit->editor()->setText(tags.value(0,""));
 	ui.itemEdit->setText(names.value(0,""));
 	ui.abbrevEdit->setText(abbrevs.value(0,""));
 	ui.triggerEdit->setText(triggers.value(0,""));
-	ui.comboBox->setCurrentIndex(0);
 	if (languages){
 		if (codeedit->editor()->text(0)=="%SCRIPT") languages->setLanguage(codeedit->editor(), ".qs");
 		else if (codeedit->editor()->text(0).startsWith("%")) languages->setLanguage(codeedit->editor(), "");
 		else languages->setLanguage(codeedit->editor(), "(La-)TeX Macro");
 	}
+
+	model = new StringListTableModel(this);
+	model->addStringList(&names,tr("Name"));
+	model->addStringList(&abbrevs,tr("Abbrev"));
+	model->addStringList(&triggers,tr("Trigger"));
+	model->addStringList(&tags,tr("Tag"));
+	ui.tableView->setModel(model);
+	ui.tableView->resizeColumnsToContents();
+	ui.tableView->resizeRowsToContents();
+	connect(ui.tableView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), SLOT(change(const QModelIndex&,const QModelIndex&)));
 }
 
-void UserMenuDialog::change(int index) {
-	if (tags.isEmpty() || names.isEmpty() || abbrevs.isEmpty())  return;
-	Q_ASSERT(previous_index < tags.size() && previous_index < names.size() && previous_index < abbrevs.size() && previous_index < triggers.size());
-
-	if (previous_index != -1) {
-		tags[previous_index] = codeedit->editor()->text();
-		names[previous_index] = ui.itemEdit->text();
-		abbrevs[previous_index] = ui.abbrevEdit->text();
-		triggers[previous_index] = ui.triggerEdit->text();
-	}
-
+void UserMenuDialog::change(const QModelIndex& modelIndex,const QModelIndex&) {
+	int index = modelIndex.row();
 	codeedit->editor()->setText(tags.value(index,""));
 	ui.itemEdit->setText(names.value(index,""));
 	ui.abbrevEdit->setText(abbrevs.value(index,""));
 	ui.triggerEdit->setText(triggers.value(index,""));
 
-	previous_index=index;
 	if (languages){
 		if (codeedit->editor()->text(0)=="%SCRIPT") languages->setLanguage(codeedit->editor(), ".qs");
 		else if (codeedit->editor()->text(0).startsWith("%")) languages->setLanguage(codeedit->editor(), "");
@@ -121,32 +191,19 @@ void UserMenuDialog::change(int index) {
 }
 
 void UserMenuDialog::slotOk() {
-	if (!tags.isEmpty() && !names.isEmpty() && !abbrevs.isEmpty() && !triggers.isEmpty() && previous_index != -1)  {
-		Q_ASSERT(previous_index < tags.size() && previous_index < names.size() && previous_index < abbrevs.size() && previous_index < triggers.size());
-		tags[previous_index]=codeedit->editor()->text();
-		names[previous_index]=ui.itemEdit->text();
-		abbrevs[previous_index]=ui.abbrevEdit->text();
-		triggers[previous_index] = ui.triggerEdit->text();
-	}
 	accept();
 }
 void UserMenuDialog::slotAdd(){
-	names << "";
-	tags << "";
-	abbrevs << "";
-	triggers << "";
-	ui.comboBox->addItem(tr("Menu %1").arg(ui.comboBox->count()+1));
+	model->insertRow(ui.tableView->currentIndex().row()+1);
+	ui.tableView->setCurrentIndex(model->index(ui.tableView->currentIndex().row()+1,0));
 }
 
 void UserMenuDialog::slotRemove(){
 	if (QMessageBox::question(this, "TexMakerX", "Do you really want to delete the current macro?", QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
-		names.removeAt(ui.comboBox->currentIndex());
-		tags.removeAt(ui.comboBox->currentIndex());
-		abbrevs.removeAt(ui.comboBox->currentIndex());
-		triggers.removeAt(ui.comboBox->currentIndex());
-		previous_index = -1;
-		ui.comboBox->removeItem(ui.comboBox->currentIndex());
-		change(ui.comboBox->currentIndex());
+		int index = ui.tableView->currentIndex().row();
+		if (index < 0) return;
+		model->removeRow(index);
+		change(ui.tableView->currentIndex(),QModelIndex());
 	}
 }
 
@@ -178,4 +235,23 @@ void UserMenuDialog::textChanged(){
 	if (line=="%SCRIPT") ui.radioButtonScript->setChecked(true);
 	else if (line.startsWith("%")) ui.radioButtonEnvironment->setChecked(true);
 	else ui.radioButtonNormal->setChecked(true);
+	if (!ui.tableView->currentIndex().isValid()) return;
+	int i = ui.tableView->currentIndex().row();
+	model->setData(model->index(i, model->listId(&tags)), codeedit->editor()->text());
+
+}
+void UserMenuDialog::nameChanged(){
+	if (!ui.tableView->currentIndex().isValid()) return;
+	int i = ui.tableView->currentIndex().row();
+	model->setData(model->index(i, model->listId(&names)), ui.itemEdit->text());
+}
+void UserMenuDialog::abbrevChanged(){
+	if (!ui.tableView->currentIndex().isValid()) return;
+	int i = ui.tableView->currentIndex().row();
+	model->setData(model->index(i, model->listId(&abbrevs)), ui.abbrevEdit->text());
+}
+void UserMenuDialog::triggerChanged(){
+	if (!ui.tableView->currentIndex().isValid()) return;
+	int i = ui.tableView->currentIndex().row();
+	model->setData(model->index(i, model->listId(&triggers)), ui.triggerEdit->text());
 }
