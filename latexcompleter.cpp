@@ -575,7 +575,7 @@ void CompletionListModel::setBaseWords(const QStringList &newwords, bool normalT
 	newWordList.clear();
 	for(int i=0;i<newwords.count();i++) {
 		QString str=newwords.at(i);
-		CompletionWord cw=CompletionWord(str);
+		CompletionWord cw(str);
 		if(!normalTextList){
 		    cw.index=qHash(str);
 		    cw.snippetLength=str.length();
