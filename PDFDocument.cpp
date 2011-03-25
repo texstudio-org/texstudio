@@ -2157,7 +2157,7 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 		menuBar()->show();
 		actionPresentation->setChecked(false);
 		pdfWidget->setTool(toolButtonGroup->checkedId());
-		pdfWidget->setContextMenuPolicy(Qt::CustomContextMenu);
+		pdfWidget->setContextMenuPolicy(Qt::DefaultContextMenu);
 		if (exitFullscreen) {
 			delete exitFullscreen;
 			exitFullscreen = 0;
