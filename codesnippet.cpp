@@ -78,7 +78,7 @@ CodeSnippet::CodeSnippet(const QString &newWord) {
 	curLine.reserve(realNewWord.length());
 	word.reserve(realNewWord.length());
 	bool escape=false;
-	bool hasPlaceHolder, hasMirrors = false, hasAutoSelectPlaceHolder = false;
+	bool hasPlaceHolder=false, hasMirrors = false, hasAutoSelectPlaceHolder = false;
 	placeHolders.append(QList<CodeSnippetPlaceHolder>()); //during the creation this contains a line more than lines
 
 	CodeSnippetPlaceHolder tempPlaceholder;

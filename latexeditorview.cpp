@@ -607,6 +607,7 @@ void LatexEditorView::lineMarkToolTip(int line, int mark){
 		emit showMarkTooltipForLogMessage(error);
 }
 void LatexEditorView::checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int excessCols,int ticket){
+	Q_ASSERT_X(dlh!=0,"empty dlh used in checkNextLine");
 	if(dlh->getRef()>1 && dlh->getCurrentTicket()==ticket){
 	    StackEnvironment env;
 	    QVariant envVar=dlh->getCookie(1);
