@@ -95,6 +95,7 @@
 \end{verse}
 \ensuremath{text}
 \bezier{n}(x1,y1)(x2,y2)(x3,y3)
+\bf
 \bfseries
 \bibitem{citekey}
 \bibitem[label]{citekey}
@@ -118,6 +119,7 @@
 \cleardoublepage
 \clearpage
 \cline{i-j}#t
+\columnwidth
 \contentsline{type}{text}{page}
 \contentsname{name}
 \date{text}
@@ -126,6 +128,7 @@
 \descriptionlabel{code}
 \documentclass[options]{style}
 \documentclass{style}
+\em
 \emph{text}
 \enlargethispage*{size}
 \enlargethispage{size}
@@ -171,6 +174,7 @@
 \huge
 \Huge
 \hyphenation{words}
+\i
 \include{file}
 \input{file}
 \includegraphics[options]{name}
@@ -180,6 +184,7 @@
 \indexspace
 \index{entry}
 \inputlineno
+\it
 \item
 \item[label]
 \iterate
@@ -303,6 +308,7 @@
 \rule{width}{thickness}
 \samepage
 \sbox{cmd}[text]
+\sc
 \scriptsize
 \scshape
 \section{title}
@@ -310,9 +316,11 @@
 \section[short]{title}
 \sectionmark{code}
 \selectfont
+\sf
 \sffamily
 \shortstack[position]{text\\text}
 \shortstack{text\\text}
+\sl
 \slshape
 \small
 \smash
@@ -393,6 +401,7 @@
 \tiny
 \title{text}
 \today
+\tt
 \ttfamily
 \twocolumn[text]
 \typein[cmd]{msg}
