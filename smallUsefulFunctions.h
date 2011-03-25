@@ -153,7 +153,7 @@ public:
 	static QSet<QString> usepackageCommands;
 	static QStringList structureCommands;
 	static QMultiHash<QString,QString> packageAliases; // aliases for classes to packages e.g. article = latex-document, latex-mathsymbols, etc
-	static QHash<QString,QString> environmentAliases; // aliases for environments, e.g. equation is math, supertabular is also tab etc.
+	static QMultiHash<QString,QString> environmentAliases; // aliases for environments, e.g. equation is math, supertabular is also tab etc.
 	// commands used for syntax check (per doc basis)
 	QHash<QString,QSet<QString> > possibleCommands;
 
