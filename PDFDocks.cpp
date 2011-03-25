@@ -648,6 +648,7 @@ void PDFOverviewDock::fillInfo()
 	}else{
 	    sx=floor(1.0*sz.width()/sz.height()*sy+0.5);
 	}
+	delete page;
     }
     QPixmap pxMap(sx,sy);
     pxMap.fill();
