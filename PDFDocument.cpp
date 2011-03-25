@@ -2116,6 +2116,7 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 		// entering full-screen mode
 		statusBar()->hide();
 		toolBar->hide();
+		wasMaximized=isMaximized();
 		showFullScreen();
 		pdfWidget->saveState();
 		pdfWidget->fitWindow(true);
@@ -2145,7 +2146,10 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 		// exiting full-screen mode		
 		statusBar()->show();
 		toolBar->show();
-		showNormal();
+		if(wasMaximized)
+		    showMaximized();
+		else
+		    showNormal();
 		pdfWidget->restoreState();
 		actionFull_Screen->setChecked(false);
 	}
