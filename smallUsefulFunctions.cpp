@@ -1175,11 +1175,14 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds) {
 						if(res>-1){
 							if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
 								cmds->possibleCommands["tabular"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
+								cmds->possibleCommands["array"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
 							} else {
 								cmds->possibleCommands["tabular"] << rxCom.cap(1);
+								cmds->possibleCommands["array"] << rxCom.cap(1);
 							}
 						} else {
 							cmds->possibleCommands["tabular"] << line.simplified();
+							cmds->possibleCommands["array"] << line.simplified();
 						}
 					}
 					if(valid.contains('T')){ // tabbing support
