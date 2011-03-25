@@ -223,7 +223,7 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 					    Environment tp;
 					    tp.name=env;
 					    tp.id=1; //needs correction
-					    if(env=="tabular" || LatexParser::environmentAliases[env]=="tabular"){
+					    if(env=="tabular" || LatexParser::environmentAliases.values(env).contains("tabular")){
 						// tabular env opened
 						// get cols !!!!
 						cols=LatexTables::getNumberOfColumns(options);
@@ -234,7 +234,7 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 					    Environment tp=activeEnv.top();
 					    if(tp.name==env){
 						activeEnv.pop();
-						if(tp.name=="tabular" || LatexParser::environmentAliases[tp.name]=="tabular"){
+						if(tp.name=="tabular" || LatexParser::environmentAliases.values(tp.name).contains("tabular")){
 						    // get new cols
 						    cols=containsEnv("tabular",activeEnv);
 						}
@@ -367,9 +367,11 @@ int SyntaxCheck::containsEnv(const QString name,const StackEnvironment envs,cons
 		return env.id;
 	}
 	if(id<0 && LatexParser::environmentAliases.contains(env.name)){
-	    QString altEnv=LatexParser::environmentAliases.value(env.name);
-	    if(altEnv==name)
-		return env.id;
+	    QStringList altEnvs=LatexParser::environmentAliases.values(env.name);
+	    foreach(QString altEnv,altEnvs){
+		if(altEnv==name)
+		    return env.id;
+	    }
 	}
     }
     return 0;
@@ -381,9 +383,11 @@ bool SyntaxCheck::checkCommand(const QString &cmd,const StackEnvironment &envs){
 	if(ltxCommands.possibleCommands.contains(env.name) && ltxCommands.possibleCommands.value(env.name).contains(cmd))
 	    return true;
 	if(LatexParser::environmentAliases.contains(env.name)){
-	    QString altEnv=LatexParser::environmentAliases.value(env.name);
-	    if(ltxCommands.possibleCommands.contains(altEnv) && ltxCommands.possibleCommands.value(altEnv).contains(cmd))
-		return true;
+	    QStringList altEnvs=LatexParser::environmentAliases.values(env.name);
+	    foreach(QString altEnv,altEnvs){
+		if(ltxCommands.possibleCommands.contains(altEnv) && ltxCommands.possibleCommands.value(altEnv).contains(cmd))
+		    return true;
+	    }
 	}
     }
     return false;
