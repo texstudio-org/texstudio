@@ -1919,11 +1919,15 @@ void PDFDocument::search(bool backwards, bool incremental){
 				pdfWidget->setHighlightPath(lastSearchResult.pageIdx, p);
 				pdfWidget->update();
 
+				delete page;
+
 				return;
 			}
 
 			lastSearchResult.selRect = backwards ? QRectF(0,100000,1,1) : QRectF();
 			searchDir = (backwards ? Poppler::Page::PreviousResult : Poppler::Page::NextResult);
+
+			delete page;
 		}
 	}
 }
