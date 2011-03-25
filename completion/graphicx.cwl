@@ -18,6 +18,7 @@
 \pagecolor[model]{specification}
 \reflectbox{text}
 \resizebox*{h-length}{v-length}{text}
+\resizebox{h-length}{v-length}{text}
 \rotatebox[key val list]{angle}{text}
 \scalebox{h-scale}{text}
 \scalebox{h-scale}[v-scale]{text}

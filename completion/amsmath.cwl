@@ -36,6 +36,7 @@
 \begin{xalignat*}
 \begin{xxalignat}
 \binom{above}{below}#m
+\boldsymbol{argument}#m
 \boxed{argument}
 \cfrac[align]{numerator}{denominator}#m
 \cfrac{numerator}{denominator}#m
