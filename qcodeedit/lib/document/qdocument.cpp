@@ -104,6 +104,25 @@ struct RenderRange
 	int wrap;
 };
 
+WCache::WCache(){
+	memset(fastMap, -1, sizeof(fastMap));
+}
+
+void WCache::insert(const QChar& c, int width){
+	if (c.unicode() > 0 && c.unicode() < 512) fastMap[c.unicode()] = width;
+	else slowMap.insert(c, width);
+}
+
+bool WCache::contains(const QChar& c) const{
+	if (c.unicode() > 0 && c.unicode() < 512) return fastMap[c.unicode()] >= 0;
+	return slowMap.contains(c);
+}
+int WCache::value(const QChar& c) const{
+	if (c.unicode() > 0 && c.unicode() < 512) return fastMap[c.unicode()];
+	return slowMap.value(c);
+}
+
+
 static QList<GuessEncodingCallback> guessEncodingCallbacks;
 
 static int m_spaceSignOffset = 2;
