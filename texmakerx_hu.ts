@@ -25,7 +25,7 @@
     </message>
     <message>
         <source>Thanks to </source>
-        <translation>Köszönettel az alábbiaknak: </translation>
+        <translation>Köszönet az alábbiaknak: </translation>
     </message>
     <message>
         <source>Project home site : &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
@@ -45,7 +45,11 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</source>
-        <translation>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</translation>
+        <translation type="obsolete">&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;TexMakerX 2.1 (SVN %1)&lt;/b&gt;</source>
+        <translation>&lt;b&gt;TexMakerX 2.1 (SVN %1)&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -201,7 +205,7 @@
     <name>CodeSnippet</name>
     <message>
         <source>something</source>
-        <translation type="unfinished">valami</translation>
+        <translation>valami</translation>
     </message>
 </context>
 <context>
@@ -803,23 +807,23 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>Special Key Replacement</source>
-        <translation>Különleges kulcs csere</translation>
+        <translation type="obsolete">Különleges kulcs csere</translation>
     </message>
     <message>
         <source>New column meaning:</source>
-        <translation>Új oszlop jelentése:</translation>
+        <translation type="obsolete">Új oszlop jelentése:</translation>
     </message>
     <message>
         <source>Key to replace</source>
-        <translation>Cserélendő kulcs</translation>
+        <translation type="obsolete">Cserélendő kulcs</translation>
     </message>
     <message>
         <source>Text to insert before word</source>
-        <translation>Szöveg beillesztése a szó elé</translation>
+        <translation type="obsolete">Szöveg beillesztése a szó elé</translation>
     </message>
     <message>
         <source>Text to insert after word</source>
-        <translation>Szöveg beillesztése a szó után</translation>
+        <translation type="obsolete">Szöveg beillesztése a szó után</translation>
     </message>
     <message>
         <source>Auto save all files </source>
@@ -1011,15 +1015,19 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>Show stdout</source>
-        <translation type="unfinished"></translation>
+        <translation>Megmutatja az alapértelmezet kimenetet</translation>
     </message>
     <message>
         <source>Only for user commands</source>
-        <translation type="unfinished"></translation>
+        <translation>Csak felhasználói parancsok</translation>
     </message>
     <message>
         <source>Always (if not redirected &gt; /dev/null)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mindig (ha nincs a /dev/null -ba irányítva)</translation>
+    </message>
+    <message>
+        <source>Additional Commands</source>
+        <translation>További parancsok</translation>
     </message>
 </context>
 <context>
@@ -1463,6 +1471,10 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <source>&amp;* Open all files</source>
         <translation>&amp;* Minden fájl megnyitása</translation>
+    </message>
+    <message>
+        <source>Key replacement: %1 %2</source>
+        <translation>Kulcs csere: %1 %2</translation>
     </message>
 </context>
 <context>
@@ -1936,15 +1948,15 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <name>PDFClockDock</name>
     <message>
         <source>Set interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervallum beállítása</translation>
     </message>
     <message>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Újraindítás</translation>
     </message>
     <message>
         <source>%1min</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 min</translation>
     </message>
 </context>
 <context>
@@ -2415,15 +2427,15 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>Synchronize multiple views</source>
-        <translation type="unfinished"></translation>
+        <translation>Többszörös nézet összehangolása</translation>
     </message>
     <message>
         <source>Presentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Bemutató</translation>
     </message>
     <message>
         <source>F5</source>
-        <translation type="unfinished"></translation>
+        <translation>F5</translation>
     </message>
 </context>
 <context>
@@ -2487,7 +2499,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <name>PDFOverviewDock</name>
     <message>
         <source>Overview</source>
-        <translation type="unfinished"></translation>
+        <translation>Áttekintés</translation>
     </message>
 </context>
 <context>
@@ -2583,11 +2595,11 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>Process exited with error(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>A folyamat hibával leállt</translation>
     </message>
     <message>
         <source>Process exited normally</source>
-        <translation type="unfinished"></translation>
+        <translation>A folyamat rendben befejeződött</translation>
     </message>
 </context>
 <context>
@@ -3300,7 +3312,7 @@ Akarja menteni ezeket?</translation>
     </message>
     <message>
         <source>commentTodo</source>
-        <translation type="unfinished"></translation>
+        <translation>megjegyzésTodo</translation>
     </message>
 </context>
 <context>
@@ -5258,7 +5270,7 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
     </message>
     <message>
         <source>Menu Item</source>
-        <translation>Menüelem</translation>
+        <translation type="obsolete">Menüelem</translation>
     </message>
     <message>
         <source>LaTeX Content</source>
@@ -5286,7 +5298,7 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
     </message>
     <message>
         <source>Menu %1</source>
-        <translation>%1. menü</translation>
+        <translation type="obsolete">%1. menü</translation>
     </message>
     <message>
         <source>-</source>
@@ -5295,6 +5307,38 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
     <message>
         <source>+</source>
         <translation>+</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Név</translation>
+    </message>
+    <message>
+        <source>Trigger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If this trigger string is written in any tex document, 
+it is replaced by the current tag.
+
+If the trigger starts with (?&lt;=something), this only happens 
+if something is written before the remaining part of the trigger.
+
+Since this trigger is not a plain string, but a regular expression, 
+(?&lt;=\S) can be used to mark replacements which should only occur after a word, 
+and (?&lt;=\s|^) to mark replacements which should only occur before a word.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>?</source>
+        <translation>?</translation>
+    </message>
+    <message>
+        <source>Abbrev</source>
+        <translation>Rövidítés</translation>
+    </message>
+    <message>
+        <source>Tag</source>
+        <translation>Címke</translation>
     </message>
 </context>
 <context>
