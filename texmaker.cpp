@@ -1060,7 +1060,10 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	if (edit->editor->fileInfo().suffix()!="tex")
 		m_languages->setLanguage(edit->editor, f_real);
 
+	//QTime time;
+	//time.start();
 	edit->editor->load(f_real,QDocument::defaultCodec());
+	//qDebug() << "Load time: " << time.elapsed();
 	edit->editor->document()->setLineEnding(edit->editor->document()->originalLineEnding());
 
 	edit->document->setEditorView(edit); //update file name (if document didn't exist)

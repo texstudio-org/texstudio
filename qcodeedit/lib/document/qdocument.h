@@ -59,7 +59,16 @@ class QDocumentCursorHandle;
 typedef QVector<QDocumentLineHandle*>::iterator QDocumentIterator;
 typedef QVector<QDocumentLineHandle*>::const_iterator QDocumentConstIterator;
 
-typedef QMap<QChar,int> WCache;
+class WCache{
+public:
+	WCache();
+	void insert(const QChar& c, int width);
+	bool contains(const QChar& c) const;
+	int value(const QChar& c) const;
+private:
+	int fastMap[512];
+	QMap<QChar, int> slowMap;
+};
 
 Q_DECLARE_METATYPE(QDocumentIterator)
 Q_DECLARE_METATYPE(QDocumentConstIterator)
