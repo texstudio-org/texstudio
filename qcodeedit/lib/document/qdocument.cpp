@@ -3242,7 +3242,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 		*/
 
 		// draw line width when hard wrapping is activated
-		if(m_doc->impl()->hardLineWrap()){
+		if(m_doc->impl()->lineWidthConstraint()){
 		    p->save();
 		    p->setPen(Qt::lightGray);
 		    p->drawLine(m_doc->impl()->width(), 0,m_doc->impl()->width() , QDocumentPrivate::m_lineSpacing);
@@ -3341,7 +3341,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 			// TODO : clip more accurately (i.e inside ranges)
 			if ( xpos > maxWidth ){
-				if( d->hardLineWrap() ) continue;
+				if( d->hardLineWrap()||d->lineWidthConstraint() ) continue;
 				else break;
 			}
 
@@ -3686,7 +3686,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 			}
 #endif
-			if(m_doc->impl()->hardLineWrap()){
+			if(m_doc->impl()->hardLineWrap()||m_doc->impl()->lineWidthConstraint()){
 			    p->setPen(Qt::lightGray);
 			    p->drawLine(m_doc->impl()->width(), yStart,m_doc->impl()->width() , yEnd);
 			}
@@ -3699,7 +3699,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 			    maxWidth - xpos, QDocumentPrivate::m_lineSpacing,
 			    pal.highlight()
 			    );
-		    if(m_doc->impl()->hardLineWrap()){
+		    if(m_doc->impl()->hardLineWrap()||m_doc->impl()->lineWidthConstraint()){
 			p->setPen(Qt::lightGray);
 			p->drawLine(m_doc->impl()->width(), yStart,m_doc->impl()->width() , yEnd);
 		    }
@@ -5627,6 +5627,7 @@ QDocumentPrivate::QDocumentPrivate(QDocument *d)
 	m_lastGroupId(-1),
 	m_constrained(false),
 	m_hardLineWrap(false),
+	m_lineWidthConstraint(false),
 	m_width(0),
 	m_height(0),
 	m_tabStop(m_defaultTabStop),
@@ -6220,6 +6221,11 @@ void QDocumentPrivate::setHardLineWrap(bool wrap)
 {
     m_hardLineWrap=wrap;
 }
+void QDocumentPrivate::setLineWidthConstraint(bool wrap)
+{
+    m_lineWidthConstraint=wrap;
+}
+
 
 void QDocumentPrivate::setWidth(int width)
 {

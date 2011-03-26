@@ -246,8 +246,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("User/Tools", &userToolCommand, QStringList());
 
 	//editor
-	registerOption("Editor/WordWrap", &editorConfig->wordwrap, true, &pseudoDialog->checkBoxWordwrap);
-	registerOption("Editor/HardWordWrap", &editorConfig->hardwordwrap, false, &pseudoDialog->checkBoxHardWordWrap);
+	registerOption("Editor/WordWrapMode", &editorConfig->wordwrap, 1, &pseudoDialog->comboBoxLineWrap);
 	registerOption("Editor/WrapLineWidth", &editorConfig->lineWidth, 80, &pseudoDialog->spinBoxWrapLineWidth);
 	registerOption("Editor/Parentheses Matching", &editorConfig->parenmatch, true); //TODO: checkbox?
 	registerOption("Editor/Parentheses Completion", &editorConfig->parenComplete, true, &pseudoDialog->checkBoxAutoCompleteParens);
