@@ -298,6 +298,8 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 //page custom environment
 	connect(ui.pbAddLine, SIGNAL(clicked()), this, SLOT(custEnvAddLine()));
 	connect(ui.pbRemoveLine, SIGNAL(clicked()), this, SLOT(custEnvRemoveLine()));
+	connect(ui.pbAddSyntaxLine, SIGNAL(clicked()), this, SLOT(custSyntaxAddLine()));
+	connect(ui.pbRemoveSyntaxLine, SIGNAL(clicked()), this, SLOT(custSyntaxRemoveLine()));
 	environModes=0;
 //pagequick
 	connect(ui.pushButtonQuickBuildWizard, SIGNAL(clicked()), SLOT(quickBuildWizard()));
@@ -636,6 +638,9 @@ void ConfigDialog::custEnvAddLine(){
 
 void ConfigDialog::custEnvRemoveLine(){
     int i=ui.twHighlighEnvirons->currentRow();
+    if(i<0)
+	i=ui.twHighlighEnvirons->rowCount()-1;
+
     ui.twHighlighEnvirons->removeRow(i);
 
     i=ui.twHighlighEnvirons->rowCount();
@@ -655,3 +660,27 @@ void ConfigDialog::custEnvRemoveLine(){
 	ui.twHighlighEnvirons->setCellWidget(i,1,cb);
     }
 }
+
+void ConfigDialog::custSyntaxAddLine(){
+    int i=ui.twCustomSyntax->rowCount();
+    ui.twCustomSyntax->setRowCount(i+1);
+
+    QTableWidgetItem *item=new QTableWidgetItem("");
+    ui.twCustomSyntax->setItem(i,0,item);
+}
+
+void ConfigDialog::custSyntaxRemoveLine(){
+    int i=ui.twCustomSyntax->currentRow();
+    if(i<0)
+	i=ui.twCustomSyntax->rowCount()-1;
+    ui.twCustomSyntax->removeRow(i);
+
+    i=ui.twCustomSyntax->rowCount();
+    if(i==0){
+	ui.twCustomSyntax->setRowCount(i+1);
+
+	QTableWidgetItem *item=new QTableWidgetItem("");
+	ui.twCustomSyntax->setItem(i,0,item);
+    }
+}
+

@@ -21,6 +21,7 @@ QSet<QString> LatexParser::tabularEnvirons = QSet<QString>::fromList(QStringList
 QSet<QString> LatexParser::fileCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input" << "\\includegraphics");
 QSet<QString> LatexParser::includeCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input");
 QSet<QString> LatexParser::usepackageCommands = QSet<QString>::fromList(QStringList() << "\\usepackage" << "\\documentclass");
+QSet<QString> LatexParser::customCommands;
 QMultiHash<QString,QString> LatexParser::packageAliases;
 QStringList LatexParser::structureCommands = QStringList(); //see texmaker.cpp
 QMultiHash<QString,QString> LatexParser::environmentAliases;

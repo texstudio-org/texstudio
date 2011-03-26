@@ -100,6 +100,8 @@ private slots:
 
 	void custEnvAddLine();
 	void custEnvRemoveLine();
+	void custSyntaxAddLine();
+	void custSyntaxRemoveLine();
 };
 
 Q_DECLARE_METATYPE(QAction*);

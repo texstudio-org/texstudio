@@ -90,6 +90,7 @@ void SyntaxCheck::run(){
 				env.setValue(activeEnv);
 				newLine.dlh->setCookie(1,env);
 				newLine.dlh->ref(); // avoid being deleted while in queue
+				//qDebug() << newLine.dlh->text() << ":" << activeEnv.size();
 				emit checkNextLine(newLine.dlh,true,excessCols,newLine.ticket);
 			}
 		}
@@ -286,8 +287,9 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 				activeEnv.pop();
 				continue;
 			}
-			if(ltxCommands.possibleCommands["user"].contains(word))
+			if(ltxCommands.possibleCommands["user"].contains(word)||LatexParser::customCommands.contains(word))
 			    continue;
+
 			if(!checkCommand(word,activeEnv)){
 				Error elem;
 				elem.range=QPair<int,int>(wordstart,word.length());

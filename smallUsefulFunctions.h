@@ -151,6 +151,7 @@ public:
         static QSet<QString> fileCommands;
 	static QSet<QString> includeCommands;
 	static QSet<QString> usepackageCommands;
+	static QSet<QString> customCommands;
 	static QStringList structureCommands;
 	static QMultiHash<QString,QString> packageAliases; // aliases for classes to packages e.g. article = latex-document, latex-mathsymbols, etc
 	static QMultiHash<QString,QString> environmentAliases; // aliases for environments, e.g. equation is math, supertabular is also tab etc.
