@@ -566,7 +566,7 @@ QSettings* ConfigManager::readSettings() {
 
 	//custom highlighting
 	customEnvironments=config->value("customHighlighting").toMap();
-	
+	LatexParser::customCommands=QSet<QString>::fromList(config->value("customCommands").toStringList());
 	
 	//--------------------appearance------------------------------------
 	QFontDatabase fdb;
@@ -684,6 +684,8 @@ QSettings* ConfigManager::saveSettings() {
 	config->setValue("customIcons",replacedIconsOnMenus);
 	// custom highlighting
 	config->setValue("customHighlighting",customEnvironments);
+	QStringList zw=LatexParser::customCommands.toList();
+	config->setValue("customCommands",zw);
 
 	config->endGroup();
 
@@ -958,6 +960,14 @@ bool ConfigManager::execConfigDialog() {
 	    QComboBox *cb=new QComboBox(0);
 	    cb->insertItems(0,enviromentModes);
 	    confDlg->ui.twHighlighEnvirons->setCellWidget(l,1,cb);
+
+	    confDlg->ui.twHighlighEnvirons->setRowCount(LatexParser::customCommands.count()+1);
+	    l=0;
+	    foreach(QString cmd,LatexParser::customCommands){
+		QTableWidgetItem *item=new QTableWidgetItem(cmd);
+		confDlg->ui.twCustomSyntax->setItem(l,0,item);
+		l++;
+	    }
 	}
 	
 	
@@ -1112,6 +1122,13 @@ bool ConfigManager::execConfigDialog() {
 				env.replace(env.length()-1,1,"\\*");
 			QComboBox *cb=qobject_cast<QComboBox*>(confDlg->ui.twHighlighEnvirons->cellWidget(i,1));
 			customEnvironments.insert(env,cb->currentIndex());
+		    }
+		}
+		LatexParser::customCommands.clear();
+		for(int i=0;i<confDlg->ui.twCustomSyntax->rowCount();i++){
+		    QString cmd=confDlg->ui.twCustomSyntax->item(i,0)->text();
+		    if(!cmd.isEmpty()){
+			LatexParser::customCommands.insert(cmd);
 		    }
 		}
 		
