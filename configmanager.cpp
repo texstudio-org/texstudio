@@ -961,13 +961,15 @@ bool ConfigManager::execConfigDialog() {
 	    cb->insertItems(0,enviromentModes);
 	    confDlg->ui.twHighlighEnvirons->setCellWidget(l,1,cb);
 
-	    confDlg->ui.twHighlighEnvirons->setRowCount(LatexParser::customCommands.count()+1);
+	    confDlg->ui.twCustomSyntax->setRowCount(LatexParser::customCommands.count()+1);
 	    l=0;
 	    foreach(QString cmd,LatexParser::customCommands){
 		QTableWidgetItem *item=new QTableWidgetItem(cmd);
 		confDlg->ui.twCustomSyntax->setItem(l,0,item);
 		l++;
 	    }
+	    item=new QTableWidgetItem("");
+	    confDlg->ui.twCustomSyntax->setItem(l,0,item);
 	}
 	
 	
