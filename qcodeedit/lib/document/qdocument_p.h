@@ -131,6 +131,7 @@ class QCE_EXPORT QDocumentPrivate
 		
 		void setWidth(int width);
 		void setHardLineWrap(bool wrap);
+		void setLineWidthConstraint(bool wrap);
 		
 		void emitFormatsChanged();
 		void emitContentsChanged();
@@ -160,6 +161,9 @@ class QCE_EXPORT QDocumentPrivate
 
 		bool hardLineWrap() const{
 			return m_hardLineWrap;
+		}
+		bool lineWidthConstraint() const{
+			return m_lineWidthConstraint;
 		}
 		void removeWrap(int i);
 
@@ -224,7 +228,7 @@ class QCE_EXPORT QDocumentPrivate
 		QHash<int, MatchList> m_matches;
 		
 		bool m_constrained;
-		bool m_hardLineWrap;
+		bool m_hardLineWrap,m_lineWidthConstraint;
 		int m_width, m_height;
 		
 		int m_tabStop;

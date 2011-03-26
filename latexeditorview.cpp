@@ -509,9 +509,9 @@ void LatexEditorView::setLineMarkToolTip(const QString& tooltip){
 void LatexEditorView::updateSettings(){
 	lineNumberPanel->setVerboseMode(config->showlinemultiples!=10);
 	editor->setFont(QFont(config->fontFamily, config->fontSize));
-	editor->setLineWrapping(config->wordwrap);
-	editor->setHardLineWrapping(config->hardwordwrap);
-	if(config->hardwordwrap){
+	editor->setLineWrapping(config->wordwrap>0);
+	editor->setHardLineWrapping(config->wordwrap>2);
+	if(config->wordwrap>1){
 		int lw=config->lineWidth<20?20:config->lineWidth;
 		int w=QFontMetrics(QFont(config->fontFamily, config->fontSize)).averageCharWidth()*lw;
 		editor->setWrapLineWidth(w);

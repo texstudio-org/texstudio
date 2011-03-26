@@ -740,13 +740,14 @@ void QEditor::setFlag(EditFlag f, bool b)
 		m_state &= ~f;
 	}
 
-	if ( f == LineWrap || f == HardLineWrap )
+	if ( f == LineWrap || f == HardLineWrap || f==LineWidthConstraint)
 	{
 		m_doc->impl()->setHardLineWrap(flag(HardLineWrap));
+		m_doc->impl()->setLineWidthConstraint(flag(LineWidthConstraint));
 
 
 		if ( isVisible() ) {
-			if ( flag(HardLineWrap) )
+		    if ( flag(HardLineWrap) || flag(LineWidthConstraint) )
 				m_doc->setWidthConstraint( m_LineWidth > 0 ? m_LineWidth : wrapWidth() );
 			else if ( flag(LineWrap) )
 				m_doc->setWidthConstraint( wrapWidth() );
@@ -803,9 +804,8 @@ void QEditor::setHardLineWrapping(bool on)
 
 void QEditor::setWrapLineWidth(int l){
     m_LineWidth=l;
-    if(flag(HardLineWrap)){
-	m_doc->setWidthConstraint(m_LineWidth);
-    }
+    m_doc->setWidthConstraint(m_LineWidth);
+    setFlag(LineWidthConstraint,l>0);
 }
 
 /*!
@@ -3550,7 +3550,7 @@ void QEditor::showEvent(QShowEvent *e)
 
 	QAbstractScrollArea::showEvent(e);
 	
-	if ( flag(HardLineWrap) )
+	if ( flag(HardLineWrap)||flag(LineWidthConstraint) )
 		m_doc->setWidthConstraint( m_LineWidth > 0 ? m_LineWidth : wrapWidth() );
 	else if ( flag(LineWrap) )
 		m_doc->setWidthConstraint( wrapWidth() );
@@ -3594,7 +3594,7 @@ void QEditor::resizeEvent(QResizeEvent *)
 {
 	const QSize viewportSize = viewport()->size();
 
-	if ( flag(HardLineWrap) ){
+	if ( flag(HardLineWrap)||flag(LineWidthConstraint) ){
 	    horizontalScrollBar()->setMaximum(qMax(0, m_LineWidth - viewportSize.width()));
 	    horizontalScrollBar()->setPageStep(viewportSize.width());
 	} else if ( flag(LineWrap) )
@@ -5069,7 +5069,7 @@ int QEditor::wrapWidth() const
 	//if ( verticalScrollBar()->isVisible() )
 	//	return viewport()->width() - verticalScrollBar()->width();
 	#endif
-	return flag(HardLineWrap)&&m_LineWidth>0 ? m_LineWidth : viewport()->width();
+	return (flag(HardLineWrap)||flag(LineWidthConstraint))&&m_LineWidth>0 ? m_LineWidth : viewport()->width();
 }
 
 /*!
@@ -5082,7 +5082,7 @@ int QEditor::wrapWidth() const
 */
 void QEditor::documentWidthChanged(int newWidth)
 {
-	if ( flag(LineWrap)&&!flag(HardLineWrap) )
+	if ( flag(LineWrap)&&!flag(HardLineWrap)&&!flag(LineWidthConstraint) )
 	{
 		horizontalScrollBar()->setMaximum(0);
 		return;
@@ -5090,7 +5090,7 @@ void QEditor::documentWidthChanged(int newWidth)
 
 	int nv = qMax(0, newWidth - wrapWidth());
 
-	if ( flag(HardLineWrap) ){
+	if ( flag(HardLineWrap)||flag(LineWidthConstraint) ){
 	    const QSize viewportSize = viewport()->size();
 	    nv=(qMax(0, m_LineWidth - viewportSize.width()));
 	}

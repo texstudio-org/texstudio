@@ -8,7 +8,7 @@
 class LatexEditorViewConfig
 {
 public:
-	bool wordwrap, hardwordwrap, parenmatch, parenComplete;
+	bool parenmatch, parenComplete;
 	bool autoindent, weakindent;
 	bool indentWithSpaces;
 	bool showWhitespace;
@@ -26,6 +26,7 @@ public:
 	static QList<int> possibleEditOperations();
 	bool mouseWheelZoom;
 	bool hackDisableFixedPitch, hackDisableWidthCache,hackDisableAccentWorkaround;
+	int wordwrap; // 0 off, 1 soft wrap, 2 soft wrap fixed line width, 3 hard wrap fixed line width
 
 private:
 };

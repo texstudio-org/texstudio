@@ -75,31 +75,32 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			Overwrite		= 0x001,
 			CursorOn		= 0x002,
 			ReadOnly		= 0x004,
-			MousePressed	= 0x008,
+			MousePressed		= 0x008,
 			MaybeDrag		= 0x010,
 			Selection		= 0x020,
-			EnsureVisible	= 0x040,
+			EnsureVisible		= 0x040,
 			
-			Internal				= 0x00000fff,
+			Internal		= 0x00000fff,
 			
-			LineWrap				= 0x00001000,
-			HardLineWrap				= 0x00002000,
+			LineWrap		= 0x00001000,
+			HardLineWrap		= 0x00002000,
+			LineWidthConstraint	= 0x00004000,
 			
-			CtrlNavigation			= 0x00010000,
-			CursorJumpPastWrap			= 0x00020000,
+			CtrlNavigation		= 0x00010000,
+			CursorJumpPastWrap	= 0x00020000,
 
-			MouseWheelZoom			= 0x00080000,
+			MouseWheelZoom		= 0x00080000,
 
-			ReplaceTabs				= 0x00100000,
-			RemoveTrailing			= 0x00200000,
+			ReplaceTabs		= 0x00100000,
+			RemoveTrailing		= 0x00200000,
 			PreserveTrailingIndent	= 0x00400000,
-			AdjustIndent			= 0x00800000,
+			AdjustIndent		= 0x00800000,
 			
-			AutoCloseChars			= 0x01000000,
-			AutoIndent				= 0x02000000,
-			WeakIndent				= 0x04000000,
+			AutoCloseChars		= 0x01000000,
+			AutoIndent		= 0x02000000,
+			WeakIndent		= 0x04000000,
 			
-			Accessible				= 0xfffff000
+			Accessible		= 0xfffff000
 		};
 		
 		enum EditOperation{

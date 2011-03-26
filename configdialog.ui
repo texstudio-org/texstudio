@@ -137,7 +137,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>8</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -152,7 +152,7 @@
             <x>0</x>
             <y>0</y>
             <width>823</width>
-            <height>577</height>
+            <height>579</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -1160,7 +1160,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="2" column="1" colspan="2">
            <widget class="QComboBox" name="comboBoxEncoding"/>
           </item>
-          <item row="6" column="1" colspan="4">
+          <item row="5" column="1" colspan="4">
            <widget class="QComboBox" name="comboBoxAutoIndent">
             <property name="advancedOption" stdset="0">
              <bool>false</bool>
@@ -1223,17 +1223,10 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="6" column="0">
+          <item row="5" column="0">
            <widget class="QLabel" name="label_30">
             <property name="text">
              <string>Indentation mode:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1" colspan="2">
-           <widget class="QCheckBox" name="checkBoxWordwrap">
-            <property name="text">
-             <string>Word Wrap</string>
             </property>
            </widget>
           </item>
@@ -1448,13 +1441,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
-           <widget class="QCheckBox" name="checkBoxHardWordWrap">
-            <property name="text">
-             <string>Hard Line Wrap</string>
-            </property>
-           </widget>
-          </item>
           <item row="3" column="0">
            <widget class="QCheckBox" name="checkBoxAutoCompleteParens">
             <property name="text">
@@ -1467,6 +1453,30 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             <property name="text">
              <string>Mouse Wheel Zoom</string>
             </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QComboBox" name="comboBoxLineWrap">
+            <item>
+             <property name="text">
+              <string>no line wrap</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>soft line wrap at window edge</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>soft line wrap after max. characters</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>hard line wrap after max. characters</string>
+             </property>
+            </item>
            </widget>
           </item>
          </layout>
