@@ -1515,7 +1515,7 @@ void ConfigManager::setInterfaceStyle(){
 	//default values are read from systemPalette and defaultStyleName
 
 	QString newStyle=interfaceStyle!=""?interfaceStyle:defaultStyleName;
-	#if QT_VERSION >= 0x040500
+        #if QT_VERSION >= 0x040500
 	if (modernStyle) {
 		ManhattanStyle* style=new ManhattanStyle(newStyle);
 		if (style->isValid()) QApplication::setStyle(style);
@@ -1547,6 +1547,10 @@ void ConfigManager::setInterfaceStyle(){
 		pal.setColor(QPalette::Active, QPalette::ButtonText, QColor("#000000"));
 		pal.setColor(QPalette::Inactive, QPalette::ButtonText, QColor("#000000"));
 		pal.setColor(QPalette::Disabled, QPalette::ButtonText, QColor("#000000"));
+
+                pal.setColor( QPalette::ToolTipText, QColor("#000000") );
+
+                pal.setColor( QPalette::ToolTipBase, QColor("#FFFFDC") );
 
 		if (x11desktop_env() ==4) {
 			pal.setColor(QPalette::Active, QPalette::Window, QColor("#eae9e9"));
