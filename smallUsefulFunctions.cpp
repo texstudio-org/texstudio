@@ -46,8 +46,8 @@ LatexParser::LatexParser(){
     environmentAliases.insert("alignat*","math");
     environmentAliases.insert("gather","math");
     environmentAliases.insert("gather*","math");
-    environmentAliases.insert("multiline","math");
-    environmentAliases.insert("multiline*","math");
+    environmentAliases.insert("multline","math");
+    environmentAliases.insert("multline*","math");
     environmentAliases.insert("longtable","tabular");
     environmentAliases.insert("tabularx","tabular");
     environmentAliases.insert("tabular*","tabular");
