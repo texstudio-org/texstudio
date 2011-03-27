@@ -149,9 +149,10 @@ public:
 	LatexDocument* getMasterDocument() const{
 	    return masterDocument;
 	}
+	LatexDocument* getTopMasterDocument(QSet<LatexDocument*> *visitedDocs=0);
 
 	QStringList includedFiles();
-	QList<LatexDocument *> getListOfDocs();
+	QList<LatexDocument *> getListOfDocs(QSet<LatexDocument*> *visitedDocs=0);
 
 	LatexParser ltxCommands;
 
