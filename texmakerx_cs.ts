@@ -53,7 +53,7 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -280,7 +280,7 @@
     <name>CodeSnippet</name>
     <message>
         <source>something</source>
-        <translation type="unfinished"></translation>
+        <translation>Něco</translation>
     </message>
 </context>
 <context>
@@ -1252,51 +1252,51 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Border</source>
-        <translation type="unfinished"></translation>
+        <translation>Okraj</translation>
     </message>
     <message>
         <source>Synchronized files types:</source>
-        <translation type="unfinished"></translation>
+        <translation>Seřízené typy souborů:</translation>
     </message>
     <message>
         <source>Inline</source>
-        <translation type="unfinished"></translation>
+        <translation>Řadový</translation>
     </message>
     <message>
         <source>Replace beamer class by article</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahradit třídu beamer article</translation>
     </message>
     <message>
         <source>Precompile Preamble</source>
-        <translation type="unfinished"></translation>
+        <translation>Předsestavit úvodní část</translation>
     </message>
     <message>
         <source>Auto preview:</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatický náhled:</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>Nikdy</translation>
     </message>
     <message>
         <source>Previously previewed text</source>
-        <translation type="unfinished"></translation>
+        <translation>Předtím nahlížený text</translation>
     </message>
     <message>
         <source>Auto preview delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zpoždění automatického náhledu:</translation>
     </message>
     <message>
         <source>Show stdout</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat běžný výstup (stdout)</translation>
     </message>
     <message>
         <source>Only for user commands</source>
-        <translation type="unfinished"></translation>
+        <translation>Pouze pro příkazy uživatele</translation>
     </message>
     <message>
         <source>Always (if not redirected &gt; /dev/null)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vždy (pokud není přesměrován &gt; /dev/null)</translation>
     </message>
 </context>
 <context>
@@ -1755,7 +1755,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>&amp;* Open all files</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;* Otevřít všechny soubory</translation>
     </message>
 </context>
 <context>
@@ -2043,15 +2043,15 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>all</source>
-        <translation type="unfinished">Vše</translation>
+        <translation>Vše</translation>
     </message>
     <message>
         <source>most used</source>
-        <translation type="unfinished"></translation>
+        <translation>Často používaný</translation>
     </message>
     <message>
         <source>press shift+space to change view</source>
-        <translation type="unfinished"></translation>
+        <translation>Stisknout  klávesu Shift+mezerník pro změnu pohledu</translation>
     </message>
 </context>
 <context>
@@ -2265,15 +2265,15 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <name>PDFClockDock</name>
     <message>
         <source>Set interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit období</translation>
     </message>
     <message>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Spustit znovu</translation>
     </message>
     <message>
         <source>%1min</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 min</translation>
     </message>
 </context>
 <context>
@@ -2691,35 +2691,35 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation type="unfinished">&amp;Úpravy</translation>
+        <translation>&amp;Upravit</translation>
     </message>
     <message>
         <source>&amp;Find...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hledat...</translation>
     </message>
     <message>
         <source>Find &amp;again</source>
-        <translation type="unfinished"></translation>
+        <translation>Hledat &amp;znovu</translation>
     </message>
     <message>
         <source>Ctrl+M, F3</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+M, F3</translation>
     </message>
     <message>
         <source>of %1</source>
-        <translation type="unfinished"></translation>
+        <translation>z %1</translation>
     </message>
     <message>
         <source>Grid</source>
-        <translation type="unfinished"></translation>
+        <translation>Mřížka</translation>
     </message>
     <message>
         <source>New Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Nové okno</translation>
     </message>
     <message>
         <source>1x1</source>
-        <translation type="unfinished"></translation>
+        <translation>1x1</translation>
     </message>
     <message>
         <source>11</source>
@@ -2727,7 +2727,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>2x1</source>
-        <translation type="unfinished"></translation>
+        <translation>2x1</translation>
     </message>
     <message>
         <source>21</source>
@@ -2735,7 +2735,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>1x2</source>
-        <translation type="unfinished"></translation>
+        <translation>1x2</translation>
     </message>
     <message>
         <source>12</source>
@@ -2743,7 +2743,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>2x2</source>
-        <translation type="unfinished"></translation>
+        <translation>2x2</translation>
     </message>
     <message>
         <source>22</source>
@@ -2751,7 +2751,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>2x3</source>
-        <translation type="unfinished"></translation>
+        <translation>2x3</translation>
     </message>
     <message>
         <source>23</source>
@@ -2759,7 +2759,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>3x3</source>
-        <translation type="unfinished"></translation>
+        <translation>3x3</translation>
     </message>
     <message>
         <source>33</source>
@@ -2767,27 +2767,27 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>Custom...</source>
-        <translation type="unfinished"></translation>
+        <translation>Vlastní...</translation>
     </message>
     <message>
         <source>Single Page Step</source>
-        <translation type="unfinished"></translation>
+        <translation>Jednoduchý stránkový krok</translation>
     </message>
     <message>
         <source>pages %1 to %2 of %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Strany %1 až %2 z %3</translation>
     </message>
     <message>
         <source>Synchronize multiple views</source>
-        <translation type="unfinished"></translation>
+        <translation>Seřídit více pohledů</translation>
     </message>
     <message>
         <source>Presentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Provedení</translation>
     </message>
     <message>
         <source>F5</source>
-        <translation type="unfinished"></translation>
+        <translation>F5</translation>
     </message>
 </context>
 <context>
@@ -2851,7 +2851,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <name>PDFOverviewDock</name>
     <message>
         <source>Overview</source>
-        <translation type="unfinished"></translation>
+        <translation>Přehled</translation>
     </message>
 </context>
 <context>
@@ -2958,23 +2958,23 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <name>ProcessX</name>
     <message>
         <source>Process started: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Proces spuštěn: %1</translation>
     </message>
     <message>
         <source>Error: Could not start the command: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba: Nepodařilo se spustit příkaz: %1</translation>
     </message>
     <message>
         <source>Error: Command crashed: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba: Příkaz spadl: %1</translation>
     </message>
     <message>
         <source>Process exited with error(s)</source>
-        <translation type="unfinished">Proces ukončen s chybou(ami)</translation>
+        <translation>Proces ukončen s chybou(ami)</translation>
     </message>
     <message>
         <source>Process exited normally</source>
-        <translation type="unfinished">Proces ukončen jako obvykle</translation>
+        <translation>Proces ukončen jako obvykle</translation>
     </message>
 </context>
 <context>
@@ -3672,23 +3672,23 @@ Chcete, aby byly uloženy?</translation>
     </message>
     <message>
         <source>size</source>
-        <translation type="unfinished"></translation>
+        <translation>Velikost:</translation>
     </message>
     <message>
         <source>prio</source>
-        <translation type="unfinished"></translation>
+        <translation>Přednost</translation>
     </message>
     <message>
         <source>Point size</source>
-        <translation type="unfinished"></translation>
+        <translation>Bodová velikost</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Přednost</translation>
     </message>
     <message>
         <source>commentTodo</source>
-        <translation type="unfinished"></translation>
+        <translation>PoznámkaCoDělet</translation>
     </message>
 </context>
 <context>
@@ -3726,7 +3726,7 @@ Chcete, aby byly uloženy?</translation>
     </message>
     <message>
         <source>*environment-name*</source>
-        <translation type="unfinished"></translation>
+        <translation>*Název prostředí*</translation>
     </message>
 </context>
 <context>
@@ -4126,11 +4126,11 @@ V nahrazovacím textu jsou \1 až \9 nahrazeny pomocí naleziště odpovídajíc
     <name>ShortcutComboBox</name>
     <message>
         <source>&lt;default&gt;</source>
-        <translation type="unfinished">&lt;Výchozí&gt;</translation>
+        <translation>&lt;Výchozí&gt;</translation>
     </message>
     <message>
         <source>&lt;none&gt;</source>
-        <translation type="unfinished">&lt;Žádný&gt;</translation>
+        <translation>&lt;Žádný&gt;</translation>
     </message>
 </context>
 <context>
@@ -4295,15 +4295,15 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>more cols in tabular than specified</source>
-        <translation type="unfinished"></translation>
+        <translation>Více sloupců v tabulce než zadáno</translation>
     </message>
     <message>
         <source>cols in tabular missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Sloupce v tabulce chybí</translation>
     </message>
     <message>
         <source>\\ missing</source>
-        <translation type="unfinished"></translation>
+        <translation>\\ chybí</translation>
     </message>
 </context>
 <context>
@@ -5390,7 +5390,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Check &amp;in...</source>
-        <translation>Zapsat (SVN)...</translation>
+        <translation>&amp;Zapsat (SVN)...</translation>
     </message>
     <message>
         <source>Sh&amp;ow old Revisions</source>
@@ -5865,65 +5865,67 @@ Používáte ovšem verzi programu TexMakerX, která byla sestavena bez vnitřn�
     </message>
     <message>
         <source>&amp;Idefix</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Idefix</translation>
     </message>
     <message>
         <source>S&amp;VN...</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;VN...</translation>
     </message>
     <message>
         <source>SVN update &amp;work directory</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Pracovní adresář pro aktualizaci SVN</translation>
     </message>
     <message>
         <source>Lock &amp;PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknout &amp;PDF</translation>
     </message>
     <message>
         <source>Check in P&amp;DF</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapsat &amp;PDF</translation>
     </message>
     <message>
         <source>Open Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít dokumenty</translation>
     </message>
     <message>
         <source>You are trying to save the file under the name %1, but a file with this name is already open.
 TexMakerX does not support multiple instances of the same file.
 Are you sure you want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokoušíte se o uložení souboru pod názvem %1, ale soubor s tímto názvem je již otevřen.
+TexMakerX nepodporuje více případů téhož souboru.
+Jste si jistý, že chcete pokračovat?</translation>
     </message>
     <message>
         <source>Plaintext files</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubory prostého textu</translation>
     </message>
     <message>
         <source>Open &amp;Recent</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít &amp;nedávné</translation>
     </message>
     <message>
         <source>C&amp;lear Inline Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;mazat řadový náhled</translation>
     </message>
     <message>
         <source>check in whole directory ?</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapsat celý adresář?</translation>
     </message>
     <message>
         <source>Parenthesis</source>
-        <translation type="unfinished"></translation>
+        <translation>Závorky</translation>
     </message>
     <message>
         <source>Select (inner)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrat (vnitřní)</translation>
     </message>
     <message>
         <source>Select (outer)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrat (vnější)</translation>
     </message>
     <message>
         <source>Select (inverting)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrat (převracející)</translation>
     </message>
 </context>
 <context>
@@ -6292,11 +6294,11 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
     </message>
     <message>
         <source>-</source>
-        <translation type="unfinished"></translation>
+        <translation>-</translation>
     </message>
     <message>
         <source>+</source>
-        <translation type="unfinished">+</translation>
+        <translation>+</translation>
     </message>
 </context>
 <context>
@@ -6366,11 +6368,11 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
     </message>
     <message>
         <source>+</source>
-        <translation type="unfinished">+</translation>
+        <translation>+</translation>
     </message>
     <message>
         <source>-</source>
-        <translation type="unfinished"></translation>
+        <translation>-</translation>
     </message>
 </context>
 <context>
