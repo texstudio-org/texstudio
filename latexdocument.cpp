@@ -842,20 +842,33 @@ void LatexDocument::setMasterDocument(LatexDocument* doc){
     }
 }
 
-QList<LatexDocument *>LatexDocument::getListOfDocs(){
+QList<LatexDocument *>LatexDocument::getListOfDocs(QSet<LatexDocument*> *visitedDocs){
     QList<LatexDocument *>listOfDocs;
+    bool deleteVisitedDocs=false;
     if(parent->masterDocument){
 	listOfDocs=parent->documents;
     }else{
 	LatexDocument *master=this;
-	if(masterDocument){
-	    master=masterDocument;
+	if(!visitedDocs){
+	    visitedDocs=new QSet<LatexDocument*>();
+	    deleteVisitedDocs=true;
 	}
-	foreach(LatexDocument *elem,parent->documents){
+	foreach(LatexDocument *elem,parent->documents){ // check children
 	    if(elem!=master && elem->masterDocument!=master) continue;
-	    listOfDocs << elem;
+	    if(visitedDocs && !visitedDocs->contains(elem)){
+		listOfDocs << elem;
+		visitedDocs->insert(elem);
+		listOfDocs << elem->getListOfDocs(visitedDocs);
+	    }
+	}
+	if(masterDocument){ //check masters
+	    master=masterDocument;
+	    if(!visitedDocs->contains(master))
+		listOfDocs << master->getListOfDocs(visitedDocs);
 	}
     }
+    if(deleteVisitedDocs)
+	delete visitedDocs;
     return listOfDocs;
 }
 
@@ -1262,23 +1275,18 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 	if(view)
 	    view->closeCompleter();
 	if (document!=masterDocument) {
+		// get list of all affected documents
+		QList<LatexDocument*> lstOfDocs=document->getListOfDocs();
 		// set document.masterdocument = 0
-		foreach(LatexDocument* elem,documents){
+		foreach(LatexDocument* elem,lstOfDocs){
 		    if(elem->getMasterDocument()==document){
 			elem->setMasterDocument(0);
-			elem->recheckRefsLabels();
 		    }
 		}
-		//check whether child document was deleted (and recheck labels on all remaining)
-		if(document->getMasterDocument()!=0){
-		    LatexDocument *md=document->getMasterDocument();
-		    document->setMasterDocument(0);
-		    foreach(LatexDocument* elem,documents){
-			if(elem->getMasterDocument()==md ||elem==md){
-			    elem->recheckRefsLabels();
-			}
-		    }
-
+		document->setMasterDocument(0);
+		//recheck labels in all open documents connected to this document
+		foreach(LatexDocument* elem,lstOfDocs){
+		    elem->recheckRefsLabels();
 		}
 		int row=documents.indexOf(document);
 		if(row>=0){
@@ -1333,10 +1341,11 @@ QString LatexDocuments::getCompileFileName(){
 		return masterDocument->getFileName();
 	if (!currentDocument)
 		return "";
-	LatexDocument* masterDoc=currentDocument->getMasterDocument();
-	if(masterDoc)
-	    return masterDoc->getFileName();
+	LatexDocument* masterDoc=currentDocument->getTopMasterDocument();
 	QString curDocFile = currentDocument->getFileName();
+	if(masterDoc)
+	    curDocFile=masterDoc->getFileName();
+
 	if (curDocFile.endsWith(".bib"))
 		foreach (const LatexDocument* d, documents) {
 			QMultiHash<QDocumentLineHandle*,FileNamePair>::const_iterator it = d->mentionedBibTeXFiles().constBegin();
@@ -1709,6 +1718,21 @@ void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc){
 
 	//recheck references
 	doc->recheckRefsLabels();
+}
+
+LatexDocument* LatexDocument::getTopMasterDocument(QSet<LatexDocument*> *visitedDocs){
+    LatexDocument *result=this;
+    bool deleteVisitedDocs=false;
+    if(!visitedDocs){
+	visitedDocs=new QSet<LatexDocument*>();
+	deleteVisitedDocs=true;
+    }
+    visitedDocs->insert(this);
+    if(masterDocument && !visitedDocs->contains(masterDocument))
+	result=masterDocument->getTopMasterDocument(visitedDocs);
+    if(deleteVisitedDocs)
+	delete visitedDocs;
+    return result;
 }
 
 QStringList LatexDocument::includedFiles(){
