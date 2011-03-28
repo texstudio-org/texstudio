@@ -173,6 +173,7 @@ void UserMenuDialog::init() {
 	ui.tableView->setModel(model);
 	ui.tableView->resizeColumnsToContents();
 	ui.tableView->resizeRowsToContents();
+	ui.tableView->setCurrentIndex(model->index(0,0));
 	connect(ui.tableView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), SLOT(change(const QModelIndex&,const QModelIndex&)));
 }
 
