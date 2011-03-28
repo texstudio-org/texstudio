@@ -2303,11 +2303,7 @@ void Texmaker::clickedOnStructureEntry(const QModelIndex & index){
 		case StructureEntry::SE_INCLUDE:
 		case StructureEntry::SE_BIBTEX:{
 			QString defaultExt=entry->type==StructureEntry::SE_BIBTEX?".bib":".tex";
-			QString curPath=ensureTrailingDirSeparator(entry->document->getFileInfo().absolutePath());
-			if (load(getAbsoluteFilePath(curPath+entry->title,defaultExt)));
-                        else if (load(getAbsoluteFilePath(curPath+entry->title,"")));
-			else if (load(getAbsoluteFilePath(entry->title,defaultExt)));
-			else QMessageBox::warning(this,"TexMakerX","Sorry, I couldn't find the file \""+entry->title+"\"",QMessageBox::Ok);
+			openExternalFile(entry->title,defaultExt,entry->document);
 			break;
 		}
 	}
@@ -5102,13 +5098,14 @@ void Texmaker::selectBracket(){
 	currentEditor()->setCursor(currentEditor()->document()->cursor(orig.lineNumber(), orig.columnNumber(), to.lineNumber(), to.columnNumber()));
 }
 
-void Texmaker::openExternalFile(const QString name){
-    LatexDocument* doc=dynamic_cast<LatexDocument*>(currentEditor()->document());
+void Texmaker::openExternalFile(const QString name,const QString defaultExt,LatexDocument *doc){
+    if(!doc)
+	doc=dynamic_cast<LatexDocument*>(currentEditor()->document());
     if(!doc) return;
     QString curPath=ensureTrailingDirSeparator(doc->getFileInfo().absolutePath());
-    if (load(getAbsoluteFilePath(curPath+name,".tex"))); // order changed as it is more likely that the relative path to the file path is meant instead of master file
+    if (load(getAbsoluteFilePath(curPath+name,defaultExt))); // order changed as it is more likely that the relative path to the file path is meant instead of master file
     else if (load(getAbsoluteFilePath(curPath+name,"")));
-    else if (load(getAbsoluteFilePath(name,".tex")));
+    else if (load(getAbsoluteFilePath(name,defaultExt)));
     //else if (load(getAbsoluteFilePath(curPath+name,".tex")));
 
     else QMessageBox::warning(this,"TexMakerX","Sorry, I couldn't find the file \""+name+"\"",QMessageBox::Ok);
