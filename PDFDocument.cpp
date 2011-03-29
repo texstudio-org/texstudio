@@ -2111,6 +2111,34 @@ void PDFDocument::adjustScaleActions(autoScaleOption scaleOption)
 {
 	actionFit_to_Window->setChecked(scaleOption == kFitWindow);
 	actionFit_to_Width->setChecked(scaleOption == kFitWidth);
+	Q_ASSERT(scrollArea);
+	if (scaleOption == kFitWidth) {
+		if (scrollArea->horizontalScrollBarPolicy() != Qt::ScrollBarAlwaysOff)
+			scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+		int minheight = scrollArea->viewport()->height();
+		int maxheight = scrollArea->viewport()->height();
+		if (scrollArea->horizontalScrollBar()->isVisible())
+			maxheight += scrollArea->horizontalScrollBar()->height() + 5;
+		else
+			minheight -= scrollArea->horizontalScrollBar()->height() + 5;
+		if (pdfWidget->height() < minheight) {
+			if (scrollArea->verticalScrollBarPolicy() != Qt::ScrollBarAlwaysOff)
+				scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+		} else if (pdfWidget->height() > maxheight) {
+			if (scrollArea->verticalScrollBarPolicy() != Qt::ScrollBarAlwaysOn)
+				scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+		}
+	} else if (scaleOption == kFitWindow) {
+		if (scrollArea->horizontalScrollBarPolicy() != Qt::ScrollBarAlwaysOff)
+			scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+		if (scrollArea->verticalScrollBarPolicy() != Qt::ScrollBarAlwaysOff)
+			scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	} else {
+		if (scrollArea->horizontalScrollBarPolicy() != Qt::ScrollBarAsNeeded)
+			scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+		if (scrollArea->verticalScrollBarPolicy() != Qt::ScrollBarAsNeeded)
+			scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+	}
 }
 
 void PDFDocument::toggleFullScreen(bool fullscreen)
