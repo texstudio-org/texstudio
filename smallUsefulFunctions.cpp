@@ -175,8 +175,14 @@ QIcon getRealIcon(const QString& icon){
 
 bool isFileRealWritable(const QString& filename) {
 #ifdef Q_WS_WIN
+#if QT_VERSION == 0x040700
+	//bug in 4.7
+	return (QFileInfo(filename).exists() && QFileInfo(filename).isWritable()) ||
+		(!QFileInfo(filename).exists() && QFileInfo(QFileInfo(filename).absolutePath()).isWritable());
+#else
 	//thanks to Vistas virtual folders trying to open an unaccessable file can create it somewhere else
 	return QFileInfo(filename).isWritable();
+#endif
 #endif
 	QFile fi(filename);
 	bool result=false;
