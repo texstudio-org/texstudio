@@ -155,16 +155,6 @@ UserMenuDialog::~UserMenuDialog() {
 }
 
 void UserMenuDialog::init() {
-	codeedit->editor()->setText(tags.value(0,""));
-	ui.itemEdit->setText(names.value(0,""));
-	ui.abbrevEdit->setText(abbrevs.value(0,""));
-	ui.triggerEdit->setText(triggers.value(0,""));
-	if (languages){
-		if (codeedit->editor()->text(0)=="%SCRIPT") languages->setLanguage(codeedit->editor(), ".qs");
-		else if (codeedit->editor()->text(0).startsWith("%")) languages->setLanguage(codeedit->editor(), "");
-		else languages->setLanguage(codeedit->editor(), "(La-)TeX Macro");
-	}
-
 	model = new StringListTableModel(this);
 	model->addStringList(&names,tr("Name"));
 	model->addStringList(&abbrevs,tr("Abbrev"));
@@ -173,12 +163,13 @@ void UserMenuDialog::init() {
 	ui.tableView->setModel(model);
 	ui.tableView->resizeColumnsToContents();
 	ui.tableView->resizeRowsToContents();
-	ui.tableView->setCurrentIndex(model->index(0,0));
 	connect(ui.tableView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), SLOT(change(const QModelIndex&,const QModelIndex&)));
+	if (model->rowCount()>0) ui.tableView->setCurrentIndex(model->index(0,0));
 }
 
 void UserMenuDialog::change(const QModelIndex& modelIndex,const QModelIndex&) {
 	int index = modelIndex.row();
+	if (index<0) return;
 	codeedit->editor()->setText(tags.value(index,""));
 	ui.itemEdit->setText(names.value(index,""));
 	ui.abbrevEdit->setText(abbrevs.value(index,""));
@@ -196,6 +187,12 @@ void UserMenuDialog::slotOk() {
 }
 void UserMenuDialog::slotAdd(){
 	model->insertRow(ui.tableView->currentIndex().row()+1);
+	if (model->rowCount() == 1) {
+		model->setData(model->index(0, model->listId(&tags)), codeedit->editor()->text());
+		model->setData(model->index(0, model->listId(&names)), ui.itemEdit->text());
+		model->setData(model->index(0, model->listId(&abbrevs)), ui.abbrevEdit->text());
+		model->setData(model->index(0, model->listId(&triggers)), ui.triggerEdit->text());
+	}
 	ui.tableView->setCurrentIndex(model->index(ui.tableView->currentIndex().row()+1,0));
 }
 
