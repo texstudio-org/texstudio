@@ -77,6 +77,7 @@ class QCE_EXPORT QLanguageFactory : public QObject
 		QList<QCodeCompletionEngine*> m_unusedEngines;
 		
 		QFormatScheme *m_defaultFormatScheme;
+		void deleteLangData(const LangData& d);
 };
 
 #endif // _QLANGUAGE_FACTORY_H_
