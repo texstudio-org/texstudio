@@ -61,16 +61,8 @@ QLanguageFactory::QLanguageFactory(QFormatScheme *fmt, QObject *p)
 */
 QLanguageFactory::~QLanguageFactory()
 {
-	foreach ( QString l, m_languages )
-	{
-		const LangData& d = m_data[l];
-
-		if ( d.s != m_defaultFormatScheme )
-			delete d.s;
-
-		delete d.d;
-		//delete d.e;
-	}
+	foreach ( const LangData& d, m_data.values() )
+		deleteLangData(d);
 }
 
 /*!
@@ -212,7 +204,10 @@ void QLanguageFactory::setLanguage(QEditor *e, const QString& file)
 */
 void QLanguageFactory::addLanguage(const QLanguageFactory::LangData& d)
 {
-	m_data[d.lang] = d;
+	if (m_data.contains(d.lang))
+		deleteLangData(m_data.value(d.lang));
+
+	m_data.insert(d.lang, d);
 
 	if ( !d.e )
 	{
@@ -303,12 +298,26 @@ void QLanguageFactory::addDefinitionPath(const QString& path)
 			LangData data;
 			QNFADefinition::load(d.filePath(f), &data, scheme);
 
+			//qDebug() << "load: "<<data.d;
+
 			//qDebug("%s : (%s | %s)", qPrintable(data.lang), qPrintable(data.mime), qPrintable(data.extensions.join(", ")));
 			addLanguage(data);
 			//addLanguageDefinition(new QNFADefinition(d.filePath(f), this));
 		}
 		#endif
 	}
+}
+
+void QLanguageFactory::deleteLangData(const LangData& d){
+{
+	if ( d.s != m_defaultFormatScheme && d.s)
+		delete d.s;
+
+	//qDebug() << "delete: "<<d.d;
+	if (d.d)
+		delete d.d;
+	//delete d.e;
+}
 }
 
 /*! @} */
