@@ -41,9 +41,12 @@ public slots:
 
 private slots:
 	void change(const QModelIndex& nev,const QModelIndex& old);
+	void modelDataChanged(const QModelIndex& from ,const QModelIndex& to);
 	void slotOk();
 	void slotAdd();
 	void slotRemove();
+	void slotMoveUp();
+	void slotMoveDown();
 	void textChanged();
 	void nameChanged();
 	void abbrevChanged();

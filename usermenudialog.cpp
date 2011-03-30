@@ -32,7 +32,10 @@ public:
 
 	virtual void insertRow(int row, const QModelIndex &parent=QModelIndex());
 	virtual void removeRow(int row, const QModelIndex &parent=QModelIndex());
+	void swapRows(int a, int b);
 	virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
+	Qt::ItemFlags flags ( const QModelIndex & index ) const;
+
 
 	int listId(const QStringList* sl) const;
 private:
@@ -47,7 +50,7 @@ int StringListTableModel::columnCount ( const QModelIndex & parent) const{
 	return parent.isValid()?0:lists.size();
 }
 QVariant StringListTableModel::data ( const QModelIndex & index, int role) const{
-	if (role != Qt::DisplayRole) return QVariant();
+	if (role != Qt::DisplayRole && role != Qt::EditRole) return QVariant();
 	if (index.column() >= lists.size()) return QVariant();
 	if (index.row() >= lists[index.column()].second->size()) return QVariant();
 	return lists[index.column()].second->at(index.row());
@@ -78,11 +81,30 @@ void StringListTableModel::removeRow(int row, const QModelIndex &parent){
 	//reset(); //begin/end removerows crashes
 }
 
+void StringListTableModel::swapRows(int a, int b){
+	if (a<0 || b<0 || a>=rowCount() || b>=rowCount()) return;
+	for (int i=0;i<lists.size();i++){
+		QString temp = lists[i].second->at(a);
+		setData(index(a, i), lists[i].second->at(b));
+		setData(index(b, i), temp);
+	}
+}
+
 bool StringListTableModel::setData(const QModelIndex &index, const QVariant &value, int role){
 	if (!index.isValid()) return false;
+	if (lists[index.column()].second->at(index.row()) == value.toString()) return true;
 	lists[index.column()].second->replace(index.row(), value.toString());
 	emit dataChanged(index,index);
 	return true;
+}
+
+Qt::ItemFlags StringListTableModel::flags ( const QModelIndex & index ) const{
+	if (!index.isValid() || index.row() < 0 || index.column() < 0 || index.column() >= lists.size() || index.row() >= lists.first().second->size())
+		return Qt::NoItemFlags;
+	if (index.column() < lists.size()-1 || !lists[index.column()].second->at(index.row()).contains("\n"))
+		return Qt::ItemIsEditable|Qt::ItemIsSelectable|Qt::ItemIsEnabled;
+	else
+		return Qt::ItemIsSelectable|Qt::ItemIsEnabled;
 }
 
 int StringListTableModel::listId(const QStringList* sl) const{
@@ -105,6 +127,8 @@ UserMenuDialog::UserMenuDialog(QWidget* parent,  QString name, QLanguageFactory*
 
 	connect(ui.pushButtonAdd, SIGNAL(clicked()), SLOT(slotAdd()));
 	connect(ui.pushButtonRemove, SIGNAL(clicked()), SLOT(slotRemove()));
+	connect(ui.pushButtonUp, SIGNAL(clicked()), SLOT(slotMoveUp()));
+	connect(ui.pushButtonDown, SIGNAL(clicked()), SLOT(slotMoveDown()));
 
 
 	connect(ui.radioButtonNormal, SIGNAL(clicked()), SLOT(changeTypeToNormal()));
@@ -165,21 +189,32 @@ void UserMenuDialog::init() {
 	ui.tableView->resizeRowsToContents();
 	connect(ui.tableView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), SLOT(change(const QModelIndex&,const QModelIndex&)));
 	if (model->rowCount()>0) ui.tableView->setCurrentIndex(model->index(0,0));
+	connect(model, SIGNAL(dataChanged(QModelIndex,QModelIndex)), SLOT(modelDataChanged(QModelIndex,QModelIndex)));
 }
 
 void UserMenuDialog::change(const QModelIndex& modelIndex,const QModelIndex&) {
 	int index = modelIndex.row();
 	if (index<0) return;
-	codeedit->editor()->setText(tags.value(index,""));
-	ui.itemEdit->setText(names.value(index,""));
-	ui.abbrevEdit->setText(abbrevs.value(index,""));
-	ui.triggerEdit->setText(triggers.value(index,""));
-
-	if (languages){
-		if (codeedit->editor()->text(0)=="%SCRIPT") languages->setLanguage(codeedit->editor(), ".qs");
-		else if (codeedit->editor()->text(0).startsWith("%")) languages->setLanguage(codeedit->editor(), "");
-		else languages->setLanguage(codeedit->editor(), "(La-)TeX Macro");
+	if (codeedit->editor()->text() != tags.value(index,"")) {
+		codeedit->editor()->setText(tags.value(index,""));
+		if (languages){
+			if (codeedit->editor()->text(0)=="%SCRIPT") languages->setLanguage(codeedit->editor(), ".qs");
+			else if (codeedit->editor()->text(0).startsWith("%")) languages->setLanguage(codeedit->editor(), "");
+			else languages->setLanguage(codeedit->editor(), "(La-)TeX Macro");
+		}
 	}
+	if (names.value(index,"") != ui.itemEdit->text())
+		ui.itemEdit->setText(names.value(index,""));
+	if (abbrevs.value(index,"") != ui.abbrevEdit->text())
+		ui.abbrevEdit->setText(abbrevs.value(index,""));
+	if (triggers.value(index,"") != ui.triggerEdit->text())
+		ui.triggerEdit->setText(triggers.value(index,""));
+
+}
+
+void UserMenuDialog::modelDataChanged(const QModelIndex& from ,const QModelIndex& to){
+	change(from, QModelIndex());
+	//better to set only changed column?
 }
 
 void UserMenuDialog::slotOk() {
@@ -204,6 +239,23 @@ void UserMenuDialog::slotRemove(){
 		change(ui.tableView->currentIndex(),QModelIndex());
 	}
 }
+
+void UserMenuDialog::slotMoveUp(){
+	int r = ui.tableView->currentIndex().row();
+	if (r<1) return;
+	ui.tableView->setCurrentIndex(QModelIndex()); //remove selection because otherwise the changed text creates a feedback loop removing one entry
+	model->swapRows(r,r-1);
+	ui.tableView->setCurrentIndex(model->index(r-1,0));
+}
+
+void UserMenuDialog::slotMoveDown(){
+	int r = ui.tableView->currentIndex().row();
+	if (r+1>=model->rowCount()) return;
+	ui.tableView->setCurrentIndex(QModelIndex());
+	model->swapRows(r, r+1);
+	ui.tableView->setCurrentIndex(model->index(r+1,0));
+}
+
 
 void UserMenuDialog::changeTypeToNormal(){
 	QString cur = codeedit->editor()->text();
