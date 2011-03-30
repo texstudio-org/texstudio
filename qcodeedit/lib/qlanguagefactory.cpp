@@ -204,8 +204,9 @@ void QLanguageFactory::setLanguage(QEditor *e, const QString& file)
 */
 void QLanguageFactory::addLanguage(const QLanguageFactory::LangData& d)
 {
-	if (m_data.contains(d.lang))
-		deleteLangData(m_data.value(d.lang));
+//TODO: disable, it causes a memory leak, enabled it crashes when an embed definition is used
+//	if (m_data.contains(d.lang))
+//		deleteLangData(m_data.value(d.lang));
 
 	m_data.insert(d.lang, d);
 
