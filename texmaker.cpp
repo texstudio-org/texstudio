@@ -4912,14 +4912,13 @@ void Texmaker::showOldRevisions(){
 	lay->addWidget(cmbLog);
 	connect(svndlg,SIGNAL(finished(int)),this,SLOT(svnDialogClosed()));
 	connect(cmbLog,SIGNAL(currentIndexChanged(QString)),this,SLOT(changeToRevision(QString)));
-	connect(currentEditor(),SIGNAL(textEdited(QKeyEvent*)),svndlg,SLOT(close()));
+	connect(currentEditor(),SIGNAL(textEdited(QKeyEvent *)),svndlg,SLOT(close()));
 	currentEditor()->setProperty("Revision",log.first());
 	svndlg->setAttribute(Qt::WA_DeleteOnClose,true);
 	svndlg->show();
 }
 void Texmaker::svnDialogClosed(){
 	if(cmbLog->currentIndex()==0) currentEditor()->document()->setClean();
-        delete svndlg;
 	svndlg=0;
 }
 
@@ -4964,9 +4963,6 @@ void Texmaker::changeToRevision(QString rev,QString old_rev){
 	// patch
 	svnPatch(currentEditor(),buffer);
 	currentEditor()->setProperty("Revision",rev);
-	if(old_rev.isEmpty()){
-		connect(currentEditor(),SIGNAL(textEdited(QKeyEvent*)),svndlg,SLOT(close()));
-	}
 }
 
 QStringList Texmaker::svnLog(){
