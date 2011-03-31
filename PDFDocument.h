@@ -380,6 +380,7 @@ private:
 	int firstSearchPage;
 
 	bool wasMaximized;
+	bool syncFromSourceBlock;  //temporary disable sync from source
 };
 
 #endif

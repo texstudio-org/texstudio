@@ -1402,7 +1402,7 @@ QScrollArea* PDFWidget::getScrollArea()
 QList<PDFDocument*> PDFDocument::docList;
 
 PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig)
-	: exitFullscreen(0), watcher(NULL), reloadTimer(NULL), scanner(NULL)
+	: exitFullscreen(0), watcher(NULL), reloadTimer(NULL), scanner(NULL), syncFromSourceBlock(false)
 {
 	Q_ASSERT(pdfConfig);
 	Q_ASSERT(!globalConfig || (globalConfig == pdfConfig));
@@ -1593,7 +1593,7 @@ PDFDocument::init()
 	menuShow->addAction(dw->toggleViewAction());
 	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
 	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
-	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(pageChanged(int)));
+	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
 	dw = dwInfo = new PDFInfoDock(this);
 	dw->hide();
@@ -1964,7 +1964,9 @@ void PDFDocument::syncClick(int pageIndex, const QPointF& pos, bool activate)
 					}
 				if (!found) continue;
 			}
+			syncFromSourceBlock = true;
 			emit syncSource(fullName, synctex_node_line(node)-1, activate); //-1 because tmx is 0 based, but synctex seems to be 1 based
+			syncFromSourceBlock = false;
 			break; // FIXME: currently we just take the first hit
 		}
 	}
@@ -1972,7 +1974,7 @@ void PDFDocument::syncClick(int pageIndex, const QPointF& pos, bool activate)
 
 void PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool activatePreview)
 {
-	if (scanner == NULL)
+	if (scanner == NULL || syncFromSourceBlock)
 		return;
 
 	lineNo++; //input 0 based, synctex 1 based
