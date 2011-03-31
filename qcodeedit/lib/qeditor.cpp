@@ -801,11 +801,16 @@ void QEditor::setHardLineWrapping(bool on)
 {
 	setFlag(HardLineWrap, on);
 }
+void QEditor::setSoftLimitedLineWrapping(bool on)
+{
+	setFlag(HardLineWrap, false);
+	setFlag(LineWidthConstraint, on);
+}
 
 void QEditor::setWrapLineWidth(int l){
     m_LineWidth=l;
-    m_doc->setWidthConstraint(m_LineWidth);
-    setFlag(LineWidthConstraint,l>0);
+    if(flag(HardLineWrap)||flag(LineWidthConstraint))
+	m_doc->setWidthConstraint(m_LineWidth);
 }
 
 /*!
