@@ -29,6 +29,7 @@
 \pageref*{label}
 
 \pdfstringdef{macroname}{TEXstring}
+\pdfbookmark[level]{text}{name}
 \currentpdfbookmark{text}{name}
 \subpdfbookmark{text}{name}
 \belowpdfbookmark{text}{name}
