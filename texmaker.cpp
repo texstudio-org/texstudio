@@ -5098,13 +5098,25 @@ void Texmaker::openExternalFile(const QString name,const QString defaultExt,Late
     if(!doc)
 	doc=dynamic_cast<LatexDocument*>(currentEditor()->document());
     if(!doc) return;
-    QString curPath=ensureTrailingDirSeparator(doc->getFileInfo().absolutePath());
-    if (load(getAbsoluteFilePath(curPath+name,defaultExt))); // order changed as it is more likely that the relative path to the file path is meant instead of master file
-    else if (load(getAbsoluteFilePath(curPath+name,"")));
-    else if (load(getAbsoluteFilePath(name,defaultExt)));
-    //else if (load(getAbsoluteFilePath(curPath+name,".tex")));
+    QStringList curPaths;
+    if(documents.masterDocument)
+	curPaths << ensureTrailingDirSeparator(documents.masterDocument->getFileInfo().absolutePath());
+    if(doc->getMasterDocument())
+	curPaths << ensureTrailingDirSeparator(doc->getMasterDocument()->getFileInfo().absolutePath());
+    curPaths << ensureTrailingDirSeparator(doc->getFileInfo().absolutePath());
+    bool loaded;
+    for(int i=0;i<curPaths.count();i++){
+	QString curPath=curPaths.value(i);
+	if (loaded=load(getAbsoluteFilePath(curPath+name,defaultExt)))
+	    break;
+	if (loaded=load(getAbsoluteFilePath(curPath+name,"")))
+	    break;
+	if (loaded=load(getAbsoluteFilePath(name,defaultExt)))
+	    break;
+    }
 
-    else QMessageBox::warning(this,"TexMakerX","Sorry, I couldn't find the file \""+name+"\"",QMessageBox::Ok);
+    if(!loaded)
+	QMessageBox::warning(this,"TexMakerX","Sorry, I couldn't find the file \""+name+"\"",QMessageBox::Ok);
 }
 
 
