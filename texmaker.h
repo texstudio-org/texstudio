@@ -252,7 +252,7 @@ private slots:
 	void symbolRemoveAllFavorites();
 
 	void ReadSettings();
-	void SaveSettings();
+	void SaveSettings(QString configName="");
 
 	void showMarkTooltipForLogMessage(int error);
 	void NewDocumentStatus(bool m);
@@ -404,6 +404,7 @@ private slots:
 	void selectBracket();
 	void cursorHovered();
 	void loadProfile();
+	void saveProfile();
 
 	void addRowCB();
 	void addColumnCB();

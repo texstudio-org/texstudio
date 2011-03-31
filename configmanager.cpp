@@ -368,55 +368,6 @@ ConfigManager::~ConfigManager(){
 	delete webPublishDialogConfig;
 }
 
-QSettings* ConfigManager::readProfile(QString fname) {
-
-	QSettings *config;
-
-	config=new QSettings(fname,QSettings::IniFormat);
-
-	config->beginGroup("texmaker");
-
-	//----------managed properties--------------------
-	for (int i=0;i<managedProperties.size();i++){
-	    if(managedProperties[i].name.startsWith("Editor")){
-		if(config->contains(managedProperties[i].name)){
-		    managedProperties[i].valueFromQVariant(config->value(managedProperties[i].name, managedProperties[i].def));
-		}
-	    }
-	}
-
-
-	//menu shortcuts
-	if(config->contains("keysetting")){
-	    int size = config->beginReadArray("keysetting");
-	    for (int i = 0; i < size; ++i) {
-		config->setArrayIndex(i);
-		managedMenuNewShortcuts.append(QPair<QString, QString> (config->value("id").toString(), config->value("key").toString()));
-	    }
-	    config->endArray();
-	}
-
-	//changed latex menus
-	if(config->contains("changedLatexMenus"))
-	    manipulatedMenus=config->value("changedLatexMenus").toMap();
-
-	//custom toolbar
-	for (int i=0; i<managedToolBars.size();i++){
-		ManagedToolBar& mtb=managedToolBars[i];
-		if(config->contains(mtb.name+"ToolBar"))
-		    mtb.actualActions=config->value(mtb.name+"ToolBar").toStringList();
-	}
-
-	//custom highlighting
-	if(config->contains("customHighlighting"))
-	    customEnvironments=config->value("customHighlighting").toMap();
-
-	config->endGroup();
-
-	return config;
-}
-
-
 QSettings* ConfigManager::readSettings() {
 	//load config
 	bool importTexmakerSettings = false;
@@ -627,8 +578,10 @@ QSettings* ConfigManager::readSettings() {
 
 	return config;
 }
-QSettings* ConfigManager::saveSettings() {
-	QSettings *config=new QSettings(configFileName, QSettings::IniFormat);
+QSettings* ConfigManager::saveSettings(QString saveName) {
+	if(saveName.isEmpty())
+	    saveName=configFileName;
+	QSettings *config=new QSettings(saveName, QSettings::IniFormat);
 	config->setValue("IniMode",true);
 
 	config->beginGroup("texmaker");

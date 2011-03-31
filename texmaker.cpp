@@ -676,6 +676,7 @@ void Texmaker::setupMenus() {
 
 	menu->addSeparator();
 	newManagedAction(menu, "loadProfile",tr("Load &Profile..."), SLOT(loadProfile()));
+	newManagedAction(menu, "saveProfile",tr("S&ave Profile..."), SLOT(saveProfile()));
         newManagedAction(menu, "saveSettings",tr("Save all current settings","menu"), SLOT(SaveSettings()));
 	menu->addSeparator();
 	ToggleAct=newManagedAction(menu, "masterdocument",tr("Define Current Document as '&Master Document'"), SLOT(ToggleMode()));
@@ -2127,38 +2128,39 @@ void Texmaker::ReadSettings() {
 	documents.settingsRead();
 }
 
-void Texmaker::SaveSettings() {
+void Texmaker::SaveSettings(QString configName) {
+	bool asProfile=!configName.isEmpty();
 	configManager.centralVisible=centralToolBar->isVisible();
 	// update completion usage
 	LatexCompleterConfig *conf=configManager.completerConfig;
 
-	QSettings *config=configManager.saveSettings();
+	QSettings *config=configManager.saveSettings(configName);
 
 	config->beginGroup("texmaker");
 	QList<int> sizes;
 	QList<int>::Iterator it;
-
-	if(isFullScreen()){
+	if(!asProfile){
+	    if(isFullScreen()){
 		config->setValue("MainWindowState",windowstate);
 		config->setValue("MainWindowFullssscreenState",saveState(1));
-	}else {
+	    }else {
 		config->setValue("MainWindowState",saveState(0));
 		config->setValue("MainWindowFullssscreenState",stateFullScreen);
-	}
-	config->setValue("MainWindow/Maximized", isMaximized());
-	config->setValue("MainWindow/FullScreen", isFullScreen());
+	    }
+	    config->setValue("MainWindow/Maximized", isMaximized());
+	    config->setValue("MainWindow/FullScreen", isFullScreen());
 
-	config->setValue("Geometries/MainwindowWidth", width());
+	    config->setValue("Geometries/MainwindowWidth", width());
 
-	config->setValue("Geometries/MainwindowHeight", height());
-	config->setValue("Geometries/MainwindowX", x());
-	config->setValue("Geometries/MainwindowY", y());
+	    config->setValue("Geometries/MainwindowHeight", height());
+	    config->setValue("Geometries/MainwindowX", x());
+	    config->setValue("Geometries/MainwindowY", y());
 
-	config->setValue("Files/RestoreSession",ToggleRememberAct->isChecked());
-	//always store session for manual reload
-	QStringList curFiles;//store in order
-	QList<QVariant> firstLines,curCols,curRows;
-	for (int i=0; i<EditorView->count(); i++) {
+	    config->setValue("Files/RestoreSession",ToggleRememberAct->isChecked());
+	    //always store session for manual reload
+	    QStringList curFiles;//store in order
+	    QList<QVariant> firstLines,curCols,curRows;
+	    for (int i=0; i<EditorView->count(); i++) {
 		LatexEditorView *ed=qobject_cast<LatexEditorView *>(EditorView->widget(i));
 		if (ed) {
 		    curFiles.append(ed->editor->fileName());
@@ -2166,13 +2168,14 @@ void Texmaker::SaveSettings() {
 		    curRows.append(ed->editor->cursor().lineNumber());
 		    firstLines.append(ed->editor->getFirstVisibleLine());
 		}
+	    }
+	    config->setValue("Files/Session/Files",curFiles);
+	    config->setValue("Files/Session/curCols",curCols);
+	    config->setValue("Files/Session/curRows",curRows);
+	    config->setValue("Files/Session/firstLines",firstLines);
+	    config->setValue("Files/Session/CurrentFile",currentEditorView()?currentEditor()->fileName():"");
+	    config->setValue("Files/Session/MasterFile",documents.singleMode()?"":documents.masterDocument->getFileName());
 	}
-	config->setValue("Files/Session/Files",curFiles);
-	config->setValue("Files/Session/curCols",curCols);
-	config->setValue("Files/Session/curRows",curRows);
-	config->setValue("Files/Session/firstLines",firstLines);
-	config->setValue("Files/Session/CurrentFile",currentEditorView()?currentEditor()->fileName():"");
-	config->setValue("Files/Session/MasterFile",documents.singleMode()?"":documents.masterDocument->getFileName());
 
 
 	for(int i=0;i<struct_level.count();i++)
@@ -2221,19 +2224,21 @@ void Texmaker::SaveSettings() {
 	config->endGroup();
 
 	// save usageCount in file of its own.
-	QFile file(configManager.configFileNameBase+"wordCount.usage");
-	if(file.open(QIODevice::WriteOnly)){
-	    QDataStream out(&file);
-	    out << (quint32)0xA0B0C0D0;  //magic number
-	    out << (qint32)1; //version
-	    out.setVersion(QDataStream::Qt_4_0);
-	    QMap<uint, QPair<int,int> >::const_iterator i = conf->usage.constBegin();
-	    while (i != conf->usage.constEnd()) {
-		out << i.key();
-		QPair<int,int> elem=i.value();
-		out << elem.first;
-		out << elem.second;
-		++i;
+	if(!asProfile){
+	    QFile file(configManager.configFileNameBase+"wordCount.usage");
+	    if(file.open(QIODevice::WriteOnly)){
+		QDataStream out(&file);
+		out << (quint32)0xA0B0C0D0;  //magic number
+		out << (qint32)1; //version
+		out.setVersion(QDataStream::Qt_4_0);
+		QMap<uint, QPair<int,int> >::const_iterator i = conf->usage.constBegin();
+		while (i != conf->usage.constEnd()) {
+		    out << i.key();
+		    QPair<int,int> elem=i.value();
+		    out << elem.first;
+		    out << elem.second;
+		    ++i;
+		}
 	    }
 	}
 
@@ -5127,38 +5132,29 @@ void Texmaker::cursorHovered(){
 	}
 }
 
+void Texmaker::saveProfile(){
+	QString currentDir=configManager.configFileNameBase;
+	QString fname = QFileDialog::getSaveFileName(this,tr("Save Profile"),currentDir,tr("TmX Profile","filter")+"(*.tmxprofile);;"+tr("All files")+" (*)");
+	QFileInfo info(fname);
+	if(info.suffix().isEmpty())
+	    fname+=".tmxprofile";
+	SaveSettings(fname);
+}
+
 void Texmaker::loadProfile(){
-	bool customEnvironmentExisted = !configManager.customEnvironments.isEmpty();
-	QString currentDir=QDir::homePath();
-	QString file = QFileDialog::getOpenFileName(this,tr("Load Profile"),currentDir,tr("TmX Profile","filter")+"(*.tmxprofile);;"+tr("All files")+" (*)");
-	configManager.readProfile(file);
-
-	if (currentEditorView()) {
-		for (int i=0; i<EditorView->count();i++) {
-			LatexEditorView* edView=qobject_cast<LatexEditorView*>(EditorView->widget(i));
-			if (edView) edView->updateSettings();
-		}
-		UpdateCaption();
+	QString currentDir=configManager.configFileNameBase;
+	QString fname = QFileDialog::getOpenFileName(this,tr("Load Profile"),currentDir,tr("TmX Profile","filter")+"(*.tmxprofile);;"+tr("All files")+" (*)");
+	QSettings *profile=new QSettings(fname,QSettings::IniFormat);
+	QSettings *config=new QSettings(QSettings::IniFormat,QSettings::UserScope,"benibela","texmakerx");
+	if(profile && config){
+	    QStringList keys = profile->allKeys();
+	    foreach(QString key,keys){
+		config->setValue(key,profile->value(key));
+	    }
 	}
-	//custom toolbar
-	setupToolBars();
-
-	// custom evironments
-	if(customEnvironmentExisted || !configManager.customEnvironments.isEmpty()){
-		QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)TeX");
-
-		QFile f(findResourceFile("qxs/tex.qnfa"));
-		QDomDocument doc;
-		doc.setContent(&f);
-
-		QMap<QString, QVariant>::const_iterator i;
-		for (i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i){
-			QString mode=configManager.enviromentModes.value(i.value().toInt(),"verbatim");
-			addEnvironmentToDom(doc,i.key(),mode);
-		}
-		QNFADefinition::load(doc,&m_lang,dynamic_cast<QFormatScheme*>(m_formats));
-		m_languages->addLanguage(m_lang);
-	}
+	delete profile;
+	delete config;
+	ReadSettings();
 }
 
 void Texmaker::addRowCB(){

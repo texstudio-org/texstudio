@@ -44,9 +44,7 @@ public:
 	~ConfigManager();
 
 	QSettings* readSettings();
-	QSettings* saveSettings();
-
-	QSettings* readProfile(QString fname);
+	QSettings* saveSettings(QString saveName="");
 
 	bool execConfigDialog();
 
