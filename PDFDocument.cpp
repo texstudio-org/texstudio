@@ -968,7 +968,7 @@ void PDFWidget::clearHighlight()
 	update();
 }
 
-void PDFWidget::reloadPage()
+void PDFWidget::reloadPage(bool sync)
 {
 	foreach (Poppler::Page* page, pages)
 		delete page;
@@ -990,7 +990,7 @@ void PDFWidget::reloadPage()
 	adjustSize();
 	update();
 	updateStatusBar();
-	emit changedPage(pageIndex);
+	emit changedPage(pageIndex, sync);
 }
 
 void PDFWidget::updateStatusBar()
@@ -1164,13 +1164,13 @@ void PDFWidget::doPageDialog()
 		goToPage(pageNo - 1);
 }
 
-void PDFWidget::goToPage(int p)
+void PDFWidget::goToPage(int p, bool sync)
 {
 	p -= p % pageStep();
 	if (p != pageIndex && document != NULL) { //the first condition is important: it prevents a recursive sync crash
 		if (p >= 0 && p < document->numPages()) {
 			pageIndex = p;
-			reloadPage();
+			reloadPage(sync);
 			update();
 		}
 	}
@@ -1540,7 +1540,7 @@ PDFDocument::init()
 	connect(actionNext_Page, SIGNAL(triggered()), pdfWidget, SLOT(goNext()));
 	connect(actionLast_Page, SIGNAL(triggered()), pdfWidget, SLOT(goLast()));
 	connect(actionGo_to_Page, SIGNAL(triggered()), pdfWidget, SLOT(doPageDialog()));
-	connect(pdfWidget, SIGNAL(changedPage(int)), this, SLOT(enablePageActions(int)));
+	connect(pdfWidget, SIGNAL(changedPage(int,bool)), this, SLOT(enablePageActions(int,bool)));
 
 	connect(actionActual_Size, SIGNAL(triggered()), pdfWidget, SLOT(fixedScale()));
 	connect(actionFit_to_Width, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWidth(bool)));
@@ -1601,7 +1601,7 @@ PDFDocument::init()
 	menuShow->addAction(dw->toggleViewAction());
 	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
 	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
-	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(pageChanged(int)));
+	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
 	dw = dwSearch = new PDFSearchDock(this);
 	connect(dwSearch, SIGNAL(search(bool,bool)),  SLOT(search(bool,bool)));
@@ -1614,7 +1614,7 @@ PDFDocument::init()
 	menuShow->addAction(dw->toggleViewAction());
 	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
 	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
-	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(pageChanged(int)));
+	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
 	dw = dwOverview = new PDFOverviewDock(this);
 	dw->hide();
@@ -1622,14 +1622,14 @@ PDFDocument::init()
 	menuShow->addAction(dw->toggleViewAction());
 	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
 	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
-	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(pageChanged(int)));
+	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
 	dw = dwClock = new PDFClockDock(this);
 	dw->hide();
 	addDockWidget(Qt::BottomDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
-	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(pageChanged(int)));
-	connect(pdfWidget, SIGNAL(changedPage(int)), dw, SLOT(update()));
+	connect(pdfWidget, SIGNAL(changedPage(int, bool)), dw, SLOT(pageChanged(int)));
+	connect(pdfWidget, SIGNAL(changedPage(int, bool)), dw, SLOT(update()));
 }
 
 bool PDFDocument::followCursor() const{
@@ -2010,7 +2010,7 @@ void PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool act
 			path.addRect(nodeRect);
 		}
 		if (page > 0) {
-			pdfWidget->goToPage(page - 1);
+			pdfWidget->goToPage(page - 1, false);
 			path.setFillRule(Qt::WindingFill);
 			pdfWidget->setHighlightPath(page-1, path);
 			pdfWidget->update();
@@ -2078,7 +2078,7 @@ void PDFDocument::goToSource()
 	pdfWidget->syncCurrentPage(true);
 }
 
-void PDFDocument::enablePageActions(int pageIndex)
+void PDFDocument::enablePageActions(int pageIndex, bool sync)
 {
 	//current page has changed
 
@@ -2095,9 +2095,9 @@ void PDFDocument::enablePageActions(int pageIndex)
 
 	Q_ASSERT(pdfWidget && globalConfig);
 	if (!pdfWidget || !globalConfig) return;
-	if (globalConfig->followFromScroll)
+	if (globalConfig->followFromScroll && sync)
 		pdfWidget->syncCurrentPage(false);
-	if (actionSynchronize_multiple_views->isChecked())
+	if (actionSynchronize_multiple_views->isChecked() && sync)
 		emit syncView(curFile, externalViewerCmdLine, widget()->getCurrentPageIndex());;
 }
 
