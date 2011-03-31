@@ -466,7 +466,6 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
         bool inReferenz=false;
         while ((wordStartIndex = nextToken(line, index,abbreviations,inEnv,!inReferenz))!=-1) {
 		outWord=line.mid(wordStartIndex,index-wordStartIndex);
-		qDebug()<< outWord;
 		if (outWord.length()==0) return NW_NOTHING; //should never happen
 		switch (outWord.at(0).toAscii()) {
 		case '%':
