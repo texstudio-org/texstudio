@@ -648,17 +648,6 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 	if ((linenr>=0 || count<editor->document()->lines()) && editor->cursor().isValid() &&
 	    !editor->cursor().atLineStart() && editor->cursor().line().text().trimmed().length()>0 &&
 	    startline.isValid()) {
-		/*if (curChangePos<1) {
-		    if (changePositions.size()==0 || changePositions.first.first<>linenr)
-			changePositions.insert(0,QPair<linenr,editor->cursor().columnNumber());
-		} else if (curChangePos==changePositions.size()-1) {
-		    if (changePositions[curChangePos].first!=linenr)
-			changePositions.append(QPair<linenr,editor->cursor().columnNumber());
-		} else {
-		    if (changePositions[curChangePos].first!=linenr && changePositions[curChangePos+1].first!=linenr)
-			changePositions.insert(curChangePos,QPair<linenr,editor->cursor().columnNumber());
-		}*/
-
 		bool add=false;
 		if (changePositions.size()<=0) add=true;
 		else if (curChangePos<1) {
