@@ -88,12 +88,12 @@ public:
 	void restoreState();
 	void setResolution(int res);
 	void resetMagnifier();
-	void goToPage(int pageIndex);
+	void goToPage(int pageIndex, bool sync = true);
 	void setHighlightPath(const int pageIndex, const QPainterPath& path);
 	int getHighlightPage() const;
 	void goToDestination(const QString& destName);
 	int getCurrentPageIndex() { return pageIndex; }
-	void reloadPage();
+	void reloadPage(bool sync = true);
 	void updateStatusBar();
 	void setGridSize(int gx, int gy);
 	int visiblePages() const;
@@ -133,7 +133,7 @@ public slots:
 	void fixedScale(qreal scale = 1.0);
 
 signals:
-	void changedPage(int);
+	void changedPage(int, bool);
 	void changedZoom(qreal);
 	void changedScaleOption(autoScaleOption);
 	void syncClick(int, const QPointF&, bool activate); //page position in page coordinates
@@ -301,7 +301,7 @@ public slots:
 	void loadFile(const QString &fileName, const QString& externalViewer, bool alert = true);
 
 private slots:
-	void enablePageActions(int);
+	void enablePageActions(int, bool);
 	void enableZoomActions(qreal);
 	void adjustScaleActions(autoScaleOption);
 	void syncClick(int page, const QPointF& pos, bool activate);
