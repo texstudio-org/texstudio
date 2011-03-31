@@ -294,6 +294,7 @@
 \plus
 \poptabs#T
 \pounds
+\printindex#n
 \pushtabs#T
 \put(xcoord,ycoord){text}
 \ref{key}

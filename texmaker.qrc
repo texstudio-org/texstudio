@@ -212,6 +212,7 @@
         <file>completion/cancel.cwl</file>
         <file>completion/caption.cwl</file>
         <file>completion/class-beamer.cwl</file>
+        <file>completion/class-book.cwl</file>
         <file>completion/class-letter.cwl</file>
         <file>completion/class-scrartcl,scrreprt,scrbook.cwl</file>
         <file>completion/class-scrlttr2.cwl</file>

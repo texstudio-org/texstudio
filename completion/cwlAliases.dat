@@ -11,6 +11,7 @@ book:
 latex-document
 latex-mathsymbols
 tex
+class-book
 letter:
 class-letter
 latex-document
@@ -44,3 +45,13 @@ tex
 hyperref:
 hyperref
 nameref
+fhgart:
+latex-document
+latex-mathsymbols
+tex
+graphicx
+fhgartneu:
+latex-document
+latex-mathsymbols
+tex
+graphicx
