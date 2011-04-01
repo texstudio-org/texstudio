@@ -5144,17 +5144,20 @@ void Texmaker::saveProfile(){
 void Texmaker::loadProfile(){
 	QString currentDir=configManager.configFileNameBase;
 	QString fname = QFileDialog::getOpenFileName(this,tr("Load Profile"),currentDir,tr("TmX Profile","filter")+"(*.tmxprofile);;"+tr("All files")+" (*)");
-	QSettings *profile=new QSettings(fname,QSettings::IniFormat);
-	QSettings *config=new QSettings(QSettings::IniFormat,QSettings::UserScope,"benibela","texmakerx");
-	if(profile && config){
-	    QStringList keys = profile->allKeys();
-	    foreach(QString key,keys){
-		config->setValue(key,profile->value(key));
+	if(QFileInfo(fname).isReadable()){
+	    SaveSettings();
+	    QSettings *profile=new QSettings(fname,QSettings::IniFormat);
+	    QSettings *config=new QSettings(QSettings::IniFormat,QSettings::UserScope,"benibela","texmakerx");
+	    if(profile && config){
+		QStringList keys = profile->allKeys();
+		foreach(QString key,keys){
+		    config->setValue(key,profile->value(key));
+		}
 	    }
+	    delete profile;
+	    delete config;
+	    ReadSettings();
 	}
-	delete profile;
-	delete config;
-	ReadSettings();
 }
 
 void Texmaker::addRowCB(){
