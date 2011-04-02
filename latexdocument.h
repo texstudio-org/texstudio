@@ -225,6 +225,7 @@ private:
 	QIcon iconDocument, iconMasterDocument, iconBibTeX, iconInclude;
 	QVector<QIcon> iconSection;
 	QModelIndex mHighlightIndex;
+	bool m_singleMode;
 
 public:
 	LatexDocumentsModel(LatexDocuments& docs);
@@ -243,6 +244,8 @@ public:
 
 	void resetAll();
 	void resetHighlight();
+	void setSingleDocMode(bool singleMode);
+	bool getSingleDocMode();
 private slots:
 	void structureUpdated(LatexDocument* document,StructureEntry *highlight=0);
 	void structureLost(LatexDocument* document);
@@ -251,6 +254,7 @@ private slots:
 	void addElement(StructureEntry *se,int row);
 	void addElementFinished();
 	void updateElement(StructureEntry *se);
+	void purgeElement(StructureEntry *se);
 
 	friend class LatexDocuments;
 };

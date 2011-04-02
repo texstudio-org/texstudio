@@ -2045,6 +2045,8 @@ void Texmaker::ReadSettings() {
 	tobemaximized=config->value("MainWindow/Maximized",false).toBool();
 	tobefullscreen=config->value("MainWindow/FullScreen",false).toBool();
 
+	documents.model->setSingleDocMode(config->value("StructureView/SingleDocMode",false).toBool());
+
 	//import old
 	for (int i=1; i<=5; i++) {
 		QString temp = config->value(QString("User/Tool%1").arg(i),"").toString();
@@ -2202,6 +2204,8 @@ void Texmaker::SaveSettings(QString configName) {
 	config->setValue("Symbols/Favorite IDs",symbolFavorites);
 
 	config->setValue("Symbols/hiddenlists",leftPanel->hiddenWidgets());
+
+	config->setValue("StructureView/SingleDocMode",documents.model->getSingleDocMode());
 
 
 	QHash<int, int> keys = QEditor::getEditOperations(true);
@@ -4269,6 +4273,11 @@ void Texmaker::StructureContextMenu(const QPoint& point) {
 			menu.addAction(tr("Set this document as master document"), this, SLOT(structureContextMenuSwitchMasterDocument()));
 		} else
 			menu.addAction(tr("Remove master document role"), this, SLOT(structureContextMenuSwitchMasterDocument()));
+		if(documents.model->getSingleDocMode()){
+		    menu.addAction(tr("Show all open documents in this tree"), this, SLOT(latexModelViewMode()));
+		}else{
+		    menu.addAction(tr("Show only current document in this tree"), this, SLOT(latexModelViewMode()));
+		}
 		menu.exec(structureTreeView->mapToGlobal(point));
 	}
 	if (!entry->parent) return;
@@ -5327,4 +5336,9 @@ void Texmaker::findNextWordRepetion(){
     if(breaking){
         currentEditor()->setCursor(cur);
     }
+}
+
+void Texmaker::latexModelViewMode(){
+    bool mode=documents.model->getSingleDocMode();
+    documents.model->setSingleDocMode(!mode);
 }
