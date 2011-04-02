@@ -254,7 +254,6 @@ private slots:
 	void addElement(StructureEntry *se,int row);
 	void addElementFinished();
 	void updateElement(StructureEntry *se);
-	void purgeElement(StructureEntry *se);
 
 	friend class LatexDocuments;
 };
