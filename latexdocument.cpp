@@ -1151,6 +1151,8 @@ QModelIndex LatexDocumentsModel::parent ( const QModelIndex & index ) const{
 	if (entry->parent->parent)
 		return createIndex(entry->parent->parent->children.indexOf(entry->parent), 0, entry->parent);
 	else {
+		if(m_singleMode)
+		    return createIndex(0, 0, entry->parent);
 		for (int i=0; i < documents.documents.count(); i++)
 			if (documents.documents.at(i)->baseStructure==entry->parent)
 				return createIndex(i, 0, entry->parent);
@@ -1234,11 +1236,19 @@ void LatexDocumentsModel::purgeElement(StructureEntry *se){
 	if(persistentIndexList().contains(ind)){// check if not already removed as child
 	    StructureEntry *entry=(StructureEntry*) ind.internalPointer();
 	    if(entry==se){
-		beginRemoveRows(index(se).parent(),ind.row(),ind.row());
+		//qDebug("to remove: %x %d %d",se,ind.row(),ind.column());
+		beginRemoveRows(index(entry->parent),ind.row(),ind.row());
 		endRemoveRows();
 	    }
 	}
     }
+
+    /*
+    foreach(QModelIndex ind,persistentIndexList()){
+	qDebug("%x %d %d",ind.internalPointer(),ind.row(),ind.column());
+	StructureEntry *entry=(StructureEntry*) ind.internalPointer();
+	qDebug()<<entry->title;
+    }*/
 }
 
 void LatexDocumentsModel::removeElementFinished(){
@@ -1338,11 +1348,6 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 			model->removeElementFinished();
 		}
 		//model->resetAll();
-		//if (document==currentDocument){
-		//	currentDocument=0;
-			/*if(model->getSingleDocMode())
-			    model->structureLost(0);*/
-		//}
 		if (view) delete view;
 		delete document;
 	} else {
