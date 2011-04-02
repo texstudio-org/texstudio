@@ -1231,26 +1231,6 @@ void LatexDocumentsModel::removeElement(StructureEntry *se,int row){
 	}
 }
 
-void LatexDocumentsModel::purgeElement(StructureEntry *se){
-    foreach(QModelIndex ind,persistentIndexList()){
-	if(persistentIndexList().contains(ind)){// check if not already removed as child
-	    StructureEntry *entry=(StructureEntry*) ind.internalPointer();
-	    if(entry==se){
-		//qDebug("to remove: %x %d %d",se,ind.row(),ind.column());
-		beginRemoveRows(index(entry->parent),ind.row(),ind.row());
-		endRemoveRows();
-	    }
-	}
-    }
-
-    /*
-    foreach(QModelIndex ind,persistentIndexList()){
-	qDebug("%x %d %d",ind.internalPointer(),ind.row(),ind.column());
-	StructureEntry *entry=(StructureEntry*) ind.internalPointer();
-	qDebug()<<entry->title;
-    }*/
-}
-
 void LatexDocumentsModel::removeElementFinished(){
 	endRemoveRows();
 	/*
@@ -1331,9 +1311,7 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 		}
 		int row=documents.indexOf(document);
 		if(model->getSingleDocMode()){
-		    row=-1;
-		    model->resetHighlight();
-		    model->purgeElement(document->baseStructure);
+		    row=0;
 		}
 		if(row>=0 ){//&& !model->getSingleDocMode()){
 			model->resetHighlight();
