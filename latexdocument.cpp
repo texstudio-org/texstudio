@@ -1255,7 +1255,7 @@ void LatexDocumentsModel::updateElement(StructureEntry *se){
 void LatexDocumentsModel::setSingleDocMode(bool singleMode){
     if(m_singleMode!=singleMode){
 	m_singleMode=singleMode;
-	structureUpdated(documents.currentDocument,0);
+	resetAll();
     }
 }
 
