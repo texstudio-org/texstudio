@@ -415,7 +415,7 @@ private slots:
 	void addHLineCB();
 	void remHLineCB();
 
-
+	void latexModelViewMode();
 protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);

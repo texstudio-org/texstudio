@@ -1019,7 +1019,7 @@ StructureEntry* StructureEntryIterator::next(){
 }
 
 LatexDocumentsModel::LatexDocumentsModel(LatexDocuments& docs):documents(docs),
-iconDocument(":/images/doc.png"), iconMasterDocument(":/images/masterdoc.png"), iconBibTeX(":/images/bibtex.png"), iconInclude(":/images/include.png"){
+    iconDocument(":/images/doc.png"), iconMasterDocument(":/images/masterdoc.png"), iconBibTeX(":/images/bibtex.png"), iconInclude(":/images/include.png"),m_singleMode(false){
 	mHighlightIndex=QModelIndex();
 	iconSection.resize(LatexParser::structureCommands.count());
 	for (int i=0;i<LatexParser::structureCommands.count();i++)
@@ -1035,52 +1035,52 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 	if (!entry) return QVariant();
 	switch (role) {
 	case Qt::DisplayRole:
-		if (entry->type==StructureEntry::SE_DOCUMENT_ROOT){ //show only base file name
-			QString title=entry->title.mid(1+qMax(entry->title.lastIndexOf("/"), entry->title.lastIndexOf(QDir::separator())));
-			if(title.isEmpty()) title=tr("untitled");
-			return QVariant(title);
-		}
-		//fall through to show full title in other cases
-		case Qt::ToolTipRole:
-		//qDebug("data %x",entry);
-		if (entry->lineNumber>-1)
-			return QVariant(entry->title+QString(tr(" (Line %1)").arg(entry->getRealLineNumber()+1)));
+	    if (entry->type==StructureEntry::SE_DOCUMENT_ROOT){ //show only base file name
+		QString title=entry->title.mid(1+qMax(entry->title.lastIndexOf("/"), entry->title.lastIndexOf(QDir::separator())));
+		if(title.isEmpty()) title=tr("untitled");
+		return QVariant(title);
+	    }
+	    //fall through to show full title in other cases
+	case Qt::ToolTipRole:
+	    //qDebug("data %x",entry);
+	    if (entry->lineNumber>-1)
+		return QVariant(entry->title+QString(tr(" (Line %1)").arg(entry->getRealLineNumber()+1)));
+	    else
+		return QVariant(entry->title);
+	case Qt::DecorationRole:
+	    switch (entry->type){
+	    case StructureEntry::SE_BIBTEX: return iconBibTeX;
+	    case StructureEntry::SE_INCLUDE: return iconInclude;
+	    case StructureEntry::SE_SECTION:
+		if (entry->level>=0 && entry->level<iconSection.count())
+		    return iconSection[entry->level];
 		else
-			return QVariant(entry->title);
-		case Qt::DecorationRole:
-		switch (entry->type){
-		case StructureEntry::SE_BIBTEX: return iconBibTeX;
-		case StructureEntry::SE_INCLUDE: return iconInclude;
-		case StructureEntry::SE_SECTION:
-			if (entry->level>=0 && entry->level<iconSection.count())
-				return iconSection[entry->level];
-			else
-				return QVariant();
-		case StructureEntry::SE_DOCUMENT_ROOT:
-			if (documents.masterDocument==entry->document)
-				return iconMasterDocument;
-			else
-				return iconDocument;
-		default: return QVariant();
-		}
-		case Qt::BackgroundRole:
-		if (index==mHighlightIndex) return QVariant(Qt::lightGray);
-		if (entry->appendix) return QVariant(QColor(200,230,200));
-		else return QVariant();
-		case Qt::ForegroundRole:
-		if((entry->type==StructureEntry::SE_INCLUDE) && (entry->level==1)) {
-			return QVariant(Qt::red);
-		}else return QVariant();
-		case Qt::FontRole:
-		if(entry->type==StructureEntry::SE_DOCUMENT_ROOT) {
-			QFont f=QApplication::font();
-			if(entry->document==documents.currentDocument) f.setBold(true);
-			if(entry->title.isEmpty()) f.setItalic(true);
-			return QVariant(f);
-		}
-		return QVariant();
-		default:
-		return QVariant();
+		    return QVariant();
+	    case StructureEntry::SE_DOCUMENT_ROOT:
+		if (documents.masterDocument==entry->document)
+		    return iconMasterDocument;
+		else
+		    return iconDocument;
+	    default: return QVariant();
+	    }
+	case Qt::BackgroundRole:
+	    if (index==mHighlightIndex) return QVariant(Qt::lightGray);
+	    if (entry->appendix) return QVariant(QColor(200,230,200));
+	    else return QVariant();
+	case Qt::ForegroundRole:
+	    if((entry->type==StructureEntry::SE_INCLUDE) && (entry->level==1)) {
+		return QVariant(Qt::red);
+	    }else return QVariant();
+	case Qt::FontRole:
+	    if(entry->type==StructureEntry::SE_DOCUMENT_ROOT) {
+		QFont f=QApplication::font();
+		if(entry->document==documents.currentDocument) f.setBold(true);
+		if(entry->title.isEmpty()) f.setItalic(true);
+		return QVariant(f);
+	    }
+	    return QVariant();
+	default:
+	    return QVariant();
 	}
 }
 QVariant LatexDocumentsModel::headerData ( int section, Qt::Orientation orientation, int role ) const{
@@ -1111,7 +1111,14 @@ QModelIndex LatexDocumentsModel::index ( int row, int column, const QModelIndex 
 		return createIndex(row,column, entry->children.at(row));
 	} else {
 		if (row>=documents.documents.size()) return QModelIndex();
-		return createIndex(row, column, documents.documents.at(row)->baseStructure);
+		if(m_singleMode){
+		    if(row!=0 || !documents.currentDocument )
+			return QModelIndex();
+		    else
+			return createIndex(row, column, documents.currentDocument->baseStructure);
+		}else{
+		    return createIndex(row, column, documents.documents.at(row)->baseStructure);
+		}
 	}
 }
 QModelIndex LatexDocumentsModel::index ( StructureEntry* entry ) const{
@@ -1202,11 +1209,13 @@ void LatexDocumentsModel::structureLost(LatexDocument* document){
 }
 
 void LatexDocumentsModel::removeElement(StructureEntry *se,int row){
-	/*
-	foreach(QModelIndex ind,persistentIndexList()){
-		qDebug("%x",ind.internalPointer());
-	}
-	*/
+
+	/*foreach(QModelIndex ind,persistentIndexList()){
+		qDebug("%x %d %d",ind.internalPointer(),ind.row(),ind.column());
+		StructureEntry *entry=(StructureEntry*) ind.internalPointer();
+		qDebug()<<entry->title;
+	}*/
+
 	if(!se){ // remove from root (documents)
 	    beginRemoveRows(QModelIndex(),row,row);
 	}else{
@@ -1218,6 +1227,18 @@ void LatexDocumentsModel::removeElement(StructureEntry *se,int row){
 	    //removeRow(row,index(par_se));
 	    beginRemoveRows(index(par_se),row,row);
 	}
+}
+
+void LatexDocumentsModel::purgeElement(StructureEntry *se){
+    foreach(QModelIndex ind,persistentIndexList()){
+	if(persistentIndexList().contains(ind)){// check if not already removed as child
+	    StructureEntry *entry=(StructureEntry*) ind.internalPointer();
+	    if(entry==se){
+		beginRemoveRows(index(se).parent(),ind.row(),ind.row());
+		endRemoveRows();
+	    }
+	}
+    }
 }
 
 void LatexDocumentsModel::removeElementFinished(){
@@ -1240,6 +1261,16 @@ void LatexDocumentsModel::addElementFinished(){
 
 void LatexDocumentsModel::updateElement(StructureEntry *se){
 	emit dataChanged(index(se),index(se));
+}
+void LatexDocumentsModel::setSingleDocMode(bool singleMode){
+    if(m_singleMode!=singleMode){
+	m_singleMode=singleMode;
+	structureUpdated(documents.currentDocument,0);
+    }
+}
+
+bool LatexDocumentsModel::getSingleDocMode(){
+    return m_singleMode;
 }
 
 LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)), masterDocument(0), currentDocument(0), bibTeXFilesModified(false){
@@ -1289,18 +1320,29 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 		    elem->recheckRefsLabels();
 		}
 		int row=documents.indexOf(document);
-		if(row>=0){
+		if(model->getSingleDocMode()){
+		    row=-1;
+		    model->resetHighlight();
+		    model->purgeElement(document->baseStructure);
+		}
+		if(row>=0 ){//&& !model->getSingleDocMode()){
 			model->resetHighlight();
 			model->removeElement(0,row); //remove from root
 			//model->removeElement(document->baseStructure,row);
 		}
 		documents.removeAll(document);
-		if(row>=0){
+		if (document==currentDocument){
+			currentDocument=0;
+		}
+		if(row>=0 ){//&& !model->getSingleDocMode()){
 			model->removeElementFinished();
 		}
 		//model->resetAll();
-		if (document==currentDocument)
-			currentDocument=0;
+		//if (document==currentDocument){
+		//	currentDocument=0;
+			/*if(model->getSingleDocMode())
+			    model->structureLost(0);*/
+		//}
 		if (view) delete view;
 		delete document;
 	} else {
@@ -1671,6 +1713,9 @@ void LatexDocuments::updateStructure(){
 	foreach(const LatexDocument* doc,documents){
 		model->updateElement(doc->baseStructure);
 	}
+	if(model->getSingleDocMode()){
+	    model->structureUpdated(currentDocument,0);
+	}
 }
 
 void LatexDocuments::updateLayout(){
@@ -1799,5 +1844,6 @@ void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &remove
 	}
     }
 }
+
 
 
