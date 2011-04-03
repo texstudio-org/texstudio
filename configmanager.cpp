@@ -437,7 +437,7 @@ QSettings* ConfigManager::readSettings() {
 	QStringList cwlFiles=config->value("Editor/Completion Files",QStringList() << "texmakerx.cwl" << "tex.cwl" << "latex-document.cwl" << "latex-mathsymbols.cwl").toStringList();
 	completerConfig->words=loadCwlFiles(cwlFiles,ltxCommands);
 	completerConfig->setFiles(cwlFiles);
-	// remove old solution aus .ini
+	// remove old solution from .ini
 	if(config->contains("Editor/Completion Usage"))
 	    config->remove("Editor/Completion Usage");
 	//web publish dialog

@@ -2120,7 +2120,9 @@ void Texmaker::ReadSettings() {
 
 		while (!in.atEnd()) {
 		    in >> key >> length >> usage;
-		    conf->usage.insert(key,qMakePair(length,usage));
+		    if(usage>0){
+			conf->usage.insert(key,qMakePair(length,usage));
+		    }
 		}
 	    }
 	}
@@ -2238,10 +2240,12 @@ void Texmaker::SaveSettings(QString configName) {
 		out.setVersion(QDataStream::Qt_4_0);
 		QMap<uint, QPair<int,int> >::const_iterator i = conf->usage.constBegin();
 		while (i != conf->usage.constEnd()) {
-		    out << i.key();
 		    QPair<int,int> elem=i.value();
-		    out << elem.first;
-		    out << elem.second;
+		    if(elem.second>0){
+			out << i.key();
+			out << elem.first;
+			out << elem.second;
+		    }
 		    ++i;
 		}
 	    }
