@@ -830,6 +830,7 @@ void Texmaker::UpdateCaption() {
 	else {
 		documents.currentDocument=currentEditorView()->document;
 		documents.updateStructure();
+		structureTreeView->setExpanded(documents.model->index(documents.currentDocument->baseStructure),true);
 	}
 	if(completer && completer->isVisible()) completer->close();
 	QString title;

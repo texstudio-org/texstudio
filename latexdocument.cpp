@@ -1125,6 +1125,9 @@ QModelIndex LatexDocumentsModel::index ( StructureEntry* entry ) const{
 	if (!entry) return QModelIndex();
 	if (entry->parent==0 && entry->type==StructureEntry::SE_DOCUMENT_ROOT) {
 		int row=documents.documents.indexOf(entry->document);
+		if(m_singleMode){
+		    row=0;
+		}
 		if (row<0) return QModelIndex();
 		return createIndex(row, 0, entry);
 	} else if (entry->parent!=0 && entry->type!=StructureEntry::SE_DOCUMENT_ROOT) {
@@ -1235,7 +1238,9 @@ void LatexDocumentsModel::removeElementFinished(){
 	endRemoveRows();
 	/*
 	foreach(QModelIndex ind,persistentIndexList()){
-		qDebug("%x",ind.internalPointer());
+		qDebug("%x %d %d",ind.internalPointer(),ind.row(),ind.column());
+		StructureEntry *entry=(StructureEntry*) ind.internalPointer();
+		qDebug()<<entry->title;
 	}
 	*/
 }
@@ -1254,9 +1259,20 @@ void LatexDocumentsModel::updateElement(StructureEntry *se){
 }
 void LatexDocumentsModel::setSingleDocMode(bool singleMode){
     if(m_singleMode!=singleMode){
+	//resetAll();
+	if(singleMode){
+	    foreach(LatexDocument *doc,documents.documents){
+		changePersistentIndex(index(doc->baseStructure),createIndex(0,0,doc->baseStructure));
+	    }
+	}else{
+	    for(int i=0;i<documents.documents.count();i++){
+		StructureEntry *se=documents.documents.at(i)->baseStructure;
+		changePersistentIndex(index(se),createIndex(i,0,se));
+	    }
+	}
 	m_singleMode=singleMode;
-	resetAll();
     }
+    structureUpdated(documents.currentDocument,0);
 }
 
 bool LatexDocumentsModel::getSingleDocMode(){
