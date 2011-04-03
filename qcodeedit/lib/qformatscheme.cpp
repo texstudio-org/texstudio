@@ -361,7 +361,7 @@ void QFormatScheme::load(QSettings& s, bool ignoreNewIds)
 /*!
 	\overload
 */
-void QFormatScheme::save(QSettings& s) const
+void QFormatScheme::save(QSettings& s,QFormatScheme *defaultFormats) const
 {
 	s.setValue("version", QFORMAT_VERSION);
 	
@@ -369,9 +369,13 @@ void QFormatScheme::save(QSettings& s) const
 	
 	for ( int i = 0; i < m_formatKeys.count(); ++i )
 	{
-		s.beginGroup(m_formatKeys.at(i));
-		
 		const QFormat& fmt = m_formatValues.at(i);
+		if(defaultFormats && fmt==defaultFormats->m_formatValues.at(i)){
+		    s.remove(m_formatKeys.at(i));
+		    continue;
+		}
+
+		s.beginGroup(m_formatKeys.at(i));
 		
 		s.setValue("priority", fmt.priority);
 		s.setValue("bold", (fmt.weight == QFont::Bold) ? "true" : "false");

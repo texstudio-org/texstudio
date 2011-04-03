@@ -2074,8 +2074,6 @@ void Texmaker::ReadSettings() {
 
 	ThesaurusDialog::prepareDatabase(configManager.thesaurus_database);
 
-	//for (int i=0; i <412 ; i++)
-	//	symbolScore[i]=config->value("Symbols/symbol"+QString::number(i),0).toInt();
 	MapForSymbols= new QVariantMap;
 	*MapForSymbols=config->value("Symbols/Quantity").toMap();
 
@@ -2186,9 +2184,6 @@ void Texmaker::SaveSettings(QString configName) {
 	for(int i=0;i<struct_level.count();i++)
 	    config->setValue("Structure/Structure Level "+QString::number(i+1),struct_level[i]);
 
-	//for (int i=0; i <412 ; i++) {
-	//	config->setValue("Symbols/symbol"+QString::number(i),symbolScore[i]);
-	//}
 	MapForSymbols= new QVariantMap;
 	for(int i=0;i<leftPanel->widgetCount();i++){
 		if (!leftPanel->widget(i)->property("isSymbolGrid").toBool()) continue;
@@ -2227,7 +2222,8 @@ void Texmaker::SaveSettings(QString configName) {
 	config->endGroup();
 
 	config->beginGroup("formats");
-	m_formats->save(*config);
+	QFormatFactory defaultFormats(":/qxs/defaultFormats.qxf", this); //load default formats from resource file
+	m_formats->save(*config,&defaultFormats);
 	config->endGroup();
 
 	// save usageCount in file of its own.
