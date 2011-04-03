@@ -45,7 +45,7 @@ public:
 	bool acceptTriggerString(const QString& trigger);
 	
 	void setConfig(LatexCompleterConfig* config);
-	const LatexCompleterConfig* getConfig() const;
+	LatexCompleterConfig* getConfig() const;
 
 	QString lookupWord(QString id);
 
@@ -69,7 +69,7 @@ private:
 
 	bool editorAutoCloseChars;
 
-	void filterList(QString word,bool showMostUsed=false);
+	void filterList(QString word,int showMostUsed=-1);
 	bool acceptChar(QChar c,int pos);
 	void adjustWidget();
 

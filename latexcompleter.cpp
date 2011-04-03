@@ -15,7 +15,7 @@
 //------------------------------Default Input Binding--------------------------------
 class CompleterInputBinding: public QEditorInputBinding {
 public:
-	CompleterInputBinding():active(0),showMostUsed(false) {}
+	CompleterInputBinding():active(0),showMostUsed(0) {}
 	virtual QString id() const {
 		return "TexMakerX::CompleteInputBinding";
 	}
@@ -242,8 +242,11 @@ public:
 		}  else if (event->key()==Qt::Key_Space && event->modifiers()==Qt::ShiftModifier) {
 			//showMostUsed=!showMostUsed;
 			//handled=true;
-			completer->tbAbove->setCurrentIndex(showMostUsed ? 0 : 1 );
-			completer->tbBelow->setCurrentIndex(showMostUsed ? 0 : 1 );
+			showMostUsed++;
+			if(showMostUsed>2)
+			    showMostUsed=0;
+			completer->tbAbove->setCurrentIndex(showMostUsed);
+			completer->tbBelow->setCurrentIndex(showMostUsed);
 			return true;
 		} else if (event->key()==Qt::Key_Return || event->key()==Qt::Key_Enter) {
 			if (!insertCompletedWord()) {
@@ -344,8 +347,10 @@ public:
 		if (c.line()!=curLine || c.columnNumber()<curStart) resetBinding();
 	}
 
-	void setMostUsed(bool mu){
+	void setMostUsed(int mu,bool quiet=false){
 	    showMostUsed=mu;
+	    if(quiet)
+		return;
 	    completer->filterList(getCurWord(),showMostUsed);
 	    if (!completer->list->currentIndex().isValid())
 		    select(completer->list->model()->index(0,0,QModelIndex()));
@@ -400,7 +405,7 @@ public:
 private:
 	bool active;
 	bool showAlways;
-	bool showMostUsed;
+	int showMostUsed;
 	LatexCompleter *completer;
 	QEditor * editor;
 	QEditorInputBindingInterface* oldBinding;
@@ -509,7 +514,9 @@ bool CompletionListModel::isNextCharPossible(const QChar &c){
 		if (cw.word.startsWith(extension,cs)) return true;
 	return false;
 }
-void CompletionListModel::filterList(const QString &word,bool mostUsed) {
+void CompletionListModel::filterList(const QString &word,int mostUsed) {
+	if(mostUsed<0)
+	    mostUsed=LatexCompleter::config->preferedCompletionTab;
 	if (word==curWord && mostUsed==mostUsedUpdated) return; //don't return if mostUsed differnt from last call
 	mostUsedUpdated=mostUsed;
 	words.clear();
@@ -524,7 +531,7 @@ void CompletionListModel::filterList(const QString &word,bool mostUsed) {
 		if (baselist[i].word.isEmpty()) continue;
 		if (baselist[i].word.startsWith(word,cs) &&
 		    (!checkFirstChar || baselist[i].word[1] == word[1]) ){
-			if(!mostUsed || baselist[i].usageCount>0)
+			if(mostUsed==2 || baselist[i].usageCount>=mostUsed)
 			    words.append(baselist[i]);
 		    }
 	}
@@ -543,7 +550,7 @@ void CompletionListModel::incUsage(const QModelIndex &index){
 
     int j=index.row();
     CompletionWord curWord=words.at(j);
-    if(curWord.usageCount<0)
+    if(curWord.usageCount<-1)
 	return; // don't count text words
 
     for (int i=0; i<wordsCommands.count(); i++) {
@@ -589,7 +596,7 @@ void CompletionListModel::setBaseWords(const QStringList &newwords, bool normalT
 		    }
 		}else{
 		    cw.index=0;
-		    cw.usageCount=-1;
+		    cw.usageCount=-2;
 		    cw.snippetLength=0;
 		}
 		newWordList.append(cw);
@@ -652,16 +659,18 @@ LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0),forcedRef(f
 	layout->setSpacing(0);
 	tbAbove=new QTabBar();
 	tbAbove->setShape(QTabBar::RoundedNorth);
-	tbAbove->addTab(tr("all"));
+	tbAbove->addTab(tr("typical"));
 	tbAbove->addTab(tr("most used"));
+	tbAbove->addTab(tr("all"));
 	tbAbove->setToolTip(tr("press shift+space to change view"));
 	layout->addWidget(tbAbove);
 	tbAbove->hide();
 	layout->addWidget(list);
 	tbBelow=new QTabBar();
 	tbBelow->setShape(QTabBar::RoundedSouth);
-	tbBelow->addTab(tr("all"));
+	tbBelow->addTab(tr("typical"));
 	tbBelow->addTab(tr("most used"));
+	tbBelow->addTab(tr("all"));
 	tbBelow->setToolTip(tr("press shift+space to change view"));
 	layout->addWidget(tbBelow);
 	widget->setLayout(layout);
@@ -676,10 +685,11 @@ LatexCompleter::~LatexCompleter() {
 }
 
 void LatexCompleter::changeView(int pos){
-	completerInputBinding->setMostUsed(pos>0);
+	completerInputBinding->setMostUsed(pos);
 }
 
 void LatexCompleter::listClicked(QModelIndex index){
+    Q_UNUSED(index);
     if (!completerInputBinding->insertCompletedWord()) {
 	editor->insertText("\n");
     }
@@ -806,14 +816,15 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	if(above){
 	    tbAbove->show();
 	    tbBelow->hide();
-	    tbAbove->setCurrentIndex(0);
+	    tbAbove->setCurrentIndex(config->preferedCompletionTab);
 	    connect(tbAbove,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
 	}else{
 	    tbAbove->hide();
 	    tbBelow->show();
-	    tbBelow->setCurrentIndex(0);
+	    tbBelow->setCurrentIndex(config->preferedCompletionTab);
 	    connect(tbBelow,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
 	}
+	completerInputBinding->setMostUsed(config->preferedCompletionTab,true);
 	widget->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
 	//widget->show();
 	if (flags & CF_NORMAL_TEXT) listModel->baselist=listModel->wordsText;
@@ -884,11 +895,11 @@ void LatexCompleter::setConfig(LatexCompleterConfig* config){
 	this->config=config;
 	listModel->setConfig(config);
 }
-const LatexCompleterConfig* LatexCompleter::getConfig() const{
+LatexCompleterConfig* LatexCompleter::getConfig() const{
 	return config;
 }
 
-void LatexCompleter::filterList(QString word,bool showMostUsed) {
+void LatexCompleter::filterList(QString word,int showMostUsed) {
 	QString cur=""; //needed to preserve selection
 	if (list->isVisible() && list->currentIndex().isValid())
 		cur=list->model()->data(list->currentIndex(),Qt::DisplayRole).toString();

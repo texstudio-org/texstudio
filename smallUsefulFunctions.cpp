@@ -1,4 +1,5 @@
 #include "smallUsefulFunctions.h"
+#include "latexcompleter_config.h"
 
 #ifdef Q_WS_MAC
 #include <CoreFoundation/CFURL.h>
@@ -1123,7 +1124,7 @@ void LatexParser::guessEncoding(const QByteArray& data, QTextCodec *&guess, int 
 }
 
 
-QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds) {
+QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexCompleterConfig *config) {
 	QStringList words;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	foreach(const QString file, newFiles) {
@@ -1142,9 +1143,14 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds) {
 					int sep=line.indexOf('#');
 					QString valid;
 					QStringList env;
+					bool uncommon=false;
 					if(sep>-1){
 						valid=line.mid(sep+1);
 						line=line.left(sep);
+						if(valid.startsWith("*")){
+						    valid=valid.mid(1);
+						    uncommon=true;
+						}
 						if(valid.startsWith("/")){
 						    env=valid.mid(1).split(',');
 						    valid="e";
@@ -1243,7 +1249,25 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds) {
 
 						}
 					}
-					if(!words.contains(line)) words.append(line);
+					if(!words.contains(line)){
+					    words.append(line);
+					    if(uncommon && config){
+						int hash=qHash(line);
+						int len=line.length();
+						QList<QPair<int,int> >res=config->usage.values(hash);
+						for(int i=0;i<res.count();i++){
+						    QPair<int,int> elem=res.at(i);
+						    if(elem.first==len){
+							uncommon=false;
+							break;
+						    }
+						}
+						if(uncommon){
+						    config->usage.insert(hash,qMakePair(len,-1));
+						}
+
+					    }
+					}
 				}
 			}
 		}
