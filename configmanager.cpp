@@ -288,6 +288,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Completion EOW Completes", &completerConfig->eowCompletes, true, &pseudoDialog->checkBoxEOWCompletes);
 	registerOption("Editor/Completion Enable Tooltip Help", &completerConfig->tooltipHelp, true, &pseudoDialog->checkBoxToolTipHelp);
 	registerOption("Editor/Completion Use Placeholders", &completerConfig->usePlaceholders, true, &pseudoDialog->checkBoxUsePlaceholders);
+	registerOption("Editor/Completion Prefered Tab", (int*)&completerConfig->preferedCompletionTab, 0,&pseudoDialog->comboBoxPreferedTab);
 
 	//other dialogs
 	registerOption("Dialogs/Last Hard Wrap Column", &lastHardWrapColumn, 80);
@@ -435,7 +436,7 @@ QSettings* ConfigManager::readSettings() {
 
 	//completion
 	QStringList cwlFiles=config->value("Editor/Completion Files",QStringList() << "texmakerx.cwl" << "tex.cwl" << "latex-document.cwl" << "latex-mathsymbols.cwl").toStringList();
-	completerConfig->words=loadCwlFiles(cwlFiles,ltxCommands);
+	completerConfig->words=loadCwlFiles(cwlFiles,ltxCommands,completerConfig);
 	completerConfig->setFiles(cwlFiles);
 	// remove old solution from .ini
 	if(config->contains("Editor/Completion Usage"))
@@ -979,7 +980,7 @@ bool ConfigManager::execConfigDialog() {
 			if (elem->checkState()==Qt::Checked) newFiles.append(elem->text());
 		}
 		ltxCommands->clear();
-		completerConfig->words=loadCwlFiles(newFiles,ltxCommands);
+		completerConfig->words=loadCwlFiles(newFiles,ltxCommands,completerConfig);
 		completerConfig->setFiles(newFiles);
 
 		//preview

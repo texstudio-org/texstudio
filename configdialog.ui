@@ -137,7 +137,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>9</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -1739,6 +1739,25 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
          <property name="text">
           <string>Auto Replace Latex-Commands</string>
          </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBoxPreferedTab">
+         <item>
+          <property name="text">
+           <string>Prefer &quot;Typical&quot;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Prefer &quot;Most Used&quot;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Prefer &quot;All&quot;</string>
+          </property>
+         </item>
         </widget>
        </item>
        <item>

@@ -5,6 +5,8 @@
 #include "qdocumentline_p.h"
 #include "qdocumentcursor.h"
 #include "qeditor.h"
+#include "latexcompleter.h"
+#include "latexcompleter_config.h"
 #include "smallUsefulFunctions.h"
 
 FileNamePair::FileNamePair(const QString& rel):relative(rel){};
@@ -1827,7 +1829,9 @@ void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &remove
     }
     if(!filtered.isEmpty()){
 	LatexParser cmds;
-	QStringList addedWords=loadCwlFiles(filtered,&cmds);
+	LatexEditorView *edView=getEditorView();
+	LatexCompleterConfig *config=edView->getCompleter()->getConfig();
+	QStringList addedWords=loadCwlFiles(filtered,&cmds,config);
 	ltxCommands.append(cmds);
 	mCompleterWords << addedWords;
 	//recheck syntax of ALL documents ...

@@ -25,6 +25,8 @@ public:
 	bool eowCompletes; //if a EOW character key is pressed, the current word is completed and the character added
 	bool tooltipHelp; // enable ToolTip-Help during completion
 	bool usePlaceholders;
+	enum PreferedCompletionTab {CPC_TYPICAL,CPC_MOSTUSED,CPC_ALL};
+	PreferedCompletionTab preferedCompletionTab;
 	QStringList words;
 	QMultiMap<uint,QPair<int,int> > usage;
 	

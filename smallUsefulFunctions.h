@@ -12,6 +12,9 @@
 #define SMALLUSEFULFUNCTIONS_H
 
 #include "mostQtHeaders.h"
+//#inlcude "latexcompleter_config.h"
+
+class LatexCompleterConfig;
 
 #define REQUIRE(x)  Q_ASSERT((x)); if (!(x)) return;
 #define REQUIRE_RET(x,e)  Q_ASSERT((x)); if (!(x)) return (e);
@@ -165,7 +168,7 @@ public:
 	static void guessEncoding(const QByteArray& data, QTextCodec *&guess, int &sure);
 };
 
-QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds);
+QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexCompleterConfig *config=0);
 void importCwlAliases();
 
 #endif
