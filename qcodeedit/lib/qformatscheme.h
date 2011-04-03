@@ -55,7 +55,7 @@ class QCE_EXPORT QFormatScheme : public QObject
 		virtual void save(QDomElement& elem) const;
 		
 		virtual void load(QSettings& s, bool ignoreNewIds = false);
-		virtual void save(QSettings& s) const;
+		virtual void save(QSettings& s,QFormatScheme *defaultFormats) const;
 		
 		int formatCount() const;
 		QStringList formats() const;
