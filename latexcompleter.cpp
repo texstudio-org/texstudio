@@ -664,6 +664,7 @@ LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0),forcedRef(f
 	tbAbove->addTab(tr("all"));
 	tbAbove->setToolTip(tr("press shift+space to change view"));
 	layout->addWidget(tbAbove);
+	tbAbove->setStyleSheet("QTabBar::tab { font: 8pt; margin: 2pt; }");
 	tbAbove->hide();
 	layout->addWidget(list);
 	tbBelow=new QTabBar();
@@ -673,6 +674,7 @@ LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0),forcedRef(f
 	tbBelow->addTab(tr("all"));
 	tbBelow->setToolTip(tr("press shift+space to change view"));
 	layout->addWidget(tbBelow);
+	tbBelow->setStyleSheet("QTabBar::tab { font: 8pt; margin: 2pt; }");
 	widget->setLayout(layout);
 	connect(list,SIGNAL(clicked(QModelIndex)),this,SLOT(listClicked(QModelIndex)));
 	// todo: change tab when shift+space is pressed ...
