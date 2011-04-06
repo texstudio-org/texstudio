@@ -158,6 +158,8 @@
 \flq
 \flqq
 \flushbottom
+\flushleft
+\flushright
 \fnsymbol{counter}#*
 \fontencoding{enc}
 \fontfamily{family}
