@@ -52,7 +52,11 @@ enum SVNSTATUS {
 };
 
 enum RunCommandFlag{
-	RCF_SHOW_STDOUT = 1//low priority, overriden by configmanager always, both overriden by /dev/null redirection
+	RCF_SHOW_STDOUT = 1,//low priority, overriden by configmanager always, both overriden by /dev/null redirection
+	RCF_WAIT_FOR_FINISHED = 2,
+	RCF_VIEW_LOG = 4, //previously called "running latex"
+	RCF_SINGLE_INSTANCE = 8, //single viewer only
+	RCF_CHECK_PDF_LOCK = 16
 };
 Q_DECLARE_FLAGS(RunCommandFlags, RunCommandFlag);
 
@@ -299,14 +303,15 @@ private slots:
 	void QuickDocument();
 	void QuickGraphics();
 
-	void runCommand(BuildManager::LatexCommand cmd,bool waitendprocess);
-	void runCommand(QString comd,bool waitendprocess, int compileLatex=0, RunCommandFlags flags = 0, QString *buffer=0, bool singleInstance = false);
+	void runCommand(BuildManager::LatexCommand cmd, RunCommandFlags flags);
+	void runCommand(QString comd, RunCommandFlags flags = 0, QString *buffer = 0); //default flags == 0 is necessary for pdf viewer
 	void RunPreCompileCommand();
 	void readFromStderr();
 	void readFromStdoutput();
 	void SlotEndProcess(int err);
 	void processNotification(const QString& message);
 	void QuickBuild();
+	void runCommandList(const QStringList& commandList, const RunCommandFlags& additionalFlags);
 	void CleanAll();
 	void commandFromAction();  //calls a command given by sender.data, doesn't wait
 	void UserTool();

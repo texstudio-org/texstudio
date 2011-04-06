@@ -329,7 +329,7 @@ signals:
 	void syncView(const QString& pdfFile, const QString& externalViewer, int page); //view -> other view
 	void fileDropped(const QUrl& url);
 
-	void runCommand(const QString& command, bool waitForEnd);
+	void runCommand(const QString& command);
 
 	void triggeredAbout();
 	void triggeredManual();
