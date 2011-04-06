@@ -22,22 +22,22 @@
         <file>images/qcodeedit/textcolor.png</file>
         <file>images/qcodeedit/fillcolor.png</file>
         <file>images/qcodeedit/strokecolor.png</file>
-	<file>images/down.png</file>
-	<file>images/up.png</file>
-	<file>images/zoom-fit-width.png</file>
-	<file>images/zoom-fit-best.png</file>
-	<file>images/zoom-original.png</file>
-	<file>images/zoom-in.png</file>
-	<file>images/zoom-out.png</file>
-	<file>images/zoomincursor.png</file>
-	<file>images/zoomoutcursor.png</file>
-	<file>images/magnifiercursor.png</file>
-	<file>images/hand.png</file>
-	<file>images/go-first.png</file>
-	<file>images/go-last.png</file>
-	<file>images/go-next.png</file>
-	<file>images/go-previous.png</file>
-	<file>images/warning.png</file>
+        <file>images/down.png</file>
+        <file>images/up.png</file>
+        <file>images/zoom-fit-width.png</file>
+        <file>images/zoom-fit-best.png</file>
+        <file>images/zoom-original.png</file>
+        <file>images/zoom-in.png</file>
+        <file>images/zoom-out.png</file>
+        <file>images/zoomincursor.png</file>
+        <file>images/zoomoutcursor.png</file>
+        <file>images/magnifiercursor.png</file>
+        <file>images/hand.png</file>
+        <file>images/go-first.png</file>
+        <file>images/go-last.png</file>
+        <file>images/go-next.png</file>
+        <file>images/go-previous.png</file>
+        <file>images/warning.png</file>
         <file>images/error.png</file>
         <file>images/asymptote.png</file>
         <file>images/badbox.png</file>
@@ -87,7 +87,7 @@
         <file>images/splash.png</file>
         <file>images/acute.png</file>
         <file>images/appicon.png</file>
-	<file>images/previewicon.png</file>
+        <file>images/previewicon.png</file>
         <file>images/bar.png</file>
         <file>images/breve.png</file>
         <file>images/chapter.png</file>
@@ -122,7 +122,7 @@
         <file>images/modern/filenew.png</file>
         <file>images/modern/fileopen.png</file>
         <file>images/modern/filesave.png</file>
-		<file>images/previous.png</file>
+        <file>images/previous.png</file>
         <file>images/goto.png</file>
         <file>images/grave.png</file>
         <file>images/hat.png</file>
@@ -259,7 +259,7 @@
         <file>completion/microtype.cwl</file>
         <file>completion/multicol.cwl</file>
         <file>completion/multido.cwl</file>
-	<file>completion/nameref.cwl</file>
+        <file>completion/nameref.cwl</file>
         <file>completion/natbib.cwl</file>
         <file>completion/nicefrac.cwl</file>
         <file>completion/nomencl.cwl</file>
@@ -309,7 +309,7 @@
         <file>completion/xspace.cwl</file>
         <file>completion/xtab.cwl</file>
         <file>completion/yfonts.cwl</file>
-	<file>completion/cwlAliases.dat</file>
+        <file>completion/cwlAliases.dat</file>
         <file>tags/asymptote_tags.xml</file>
         <file>tags/brackets_tags.xml</file>
         <file>tags/metapost_tags.xml</file>
@@ -1448,5 +1448,7 @@
         <file>images/remRow.png</file>
         <file>images/cutCol.png</file>
         <file>images/pasteCol.png</file>
+        <file>completion/pifont.cwl</file>
+        <file>completion/theorem.cwl</file>
     </qresource>
 </RCC>
