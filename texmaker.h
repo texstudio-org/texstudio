@@ -54,7 +54,7 @@ enum SVNSTATUS {
 enum RunCommandFlag{
 	RCF_SHOW_STDOUT = 1,//low priority, overriden by configmanager always, both overriden by /dev/null redirection
 	RCF_WAIT_FOR_FINISHED = 2,
-	RCF_VIEW_LOG = 4, //previously called "running latex"
+	RCF_VIEW_LOG = 4, //show the log (only use if the command changes the log i.e. is latex)
 	RCF_SINGLE_INSTANCE = 8, //single viewer only
 	RCF_CHECK_PDF_LOCK = 16
 };

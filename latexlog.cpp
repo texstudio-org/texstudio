@@ -123,3 +123,16 @@ int LatexLogModel::logLineNumberToLogEntryNumber(int logLine){
 				res=i;
 	return res;
 }
+
+bool LatexLogModel::existsReRunWarning(){
+	if (!found(LT_WARNING)) return false;
+	static QRegExp rReRun ("(No file.*\\.(aux|toc))|"
+				  "( Rerun )");
+	foreach (const LatexLogEntry& l, log) {
+		if (l.type != LT_WARNING || l.oldline != 0) continue;
+		if (l.message.contains(rReRun)) return true;
+	}
+	return false;
+}
+
+

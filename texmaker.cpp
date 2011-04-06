@@ -2978,7 +2978,7 @@ void Texmaker::runCommand(BuildManager::LatexCommand cmd, RunCommandFlags flags)
 		flags |= RCF_SINGLE_INSTANCE;
 	runCommand(buildManager.getLatexCommand(cmd),flags);
 }
-void Texmaker::runCommand(QString comd, RunCommandFlags flags, QString *buffer) {
+void Texmaker::runCommand(QString comd, RunCommandFlags flags, QString *buffer) {	
 	QString finame=documents.getTemporaryCompileFileName();
 	QString commandline=comd;
 	if (finame=="") {
@@ -3027,6 +3027,9 @@ void Texmaker::runCommand(QString comd, RunCommandFlags flags, QString *buffer) 
 		}
 	}
 
+int reRunCount = configManager.rerunLatex;
+rerun:
+
 	ProcessX* procX = buildManager.newProcess(comd,finame,getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1,flags & RCF_SINGLE_INSTANCE);
 
 	if (!procX) return; //a singleInstance that is already running
@@ -3072,6 +3075,13 @@ void Texmaker::runCommand(QString comd, RunCommandFlags flags, QString *buffer) 
 		}
 		PROCESSRUNNING=false;
 		QApplication::restoreOverrideCursor();
+
+		if ((flags & RCF_VIEW_LOG) && reRunCount > 0 && outputView->getLogModel()->existsReRunWarning()) {
+			//rerun latex
+			reRunCount--;
+			goto rerun;
+		}
+
 	}
 }
 
