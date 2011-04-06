@@ -53,8 +53,7 @@ LatexParser::LatexParser(){
     environmentAliases.insert("tabularx","tabular");
     environmentAliases.insert("tabular*","tabular");
     environmentAliases.insert("supertabular","tabular");
-    environmentAliases.insert("cases","array");
-    environmentAliases.insert("matrix","array");
+    environmentAliases.insert("cases","array");    environmentAliases.insert("matrix","array");
     environmentAliases.insert("bmatrix","array");
     environmentAliases.insert("pmatrix","array");
     environmentAliases.insert("vmatrix","array");
@@ -1133,6 +1132,7 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexComp
 		if (tagsfile.open(QFile::ReadOnly)) {
 			QString line;
 			QRegExp rxCom("^(\\\\\\w+)(\\[.+\\])*\\{(.+)\\}");
+			QRegExp rxCom2("^(\\\\\\w+)\\[(.+)\\]");
 			rxCom.setMinimal(true);
 			QStringList keywords;
 			keywords << "text" << "title";
@@ -1161,6 +1161,10 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexComp
 					int res=rxCom.indexIn(line);
 					if(keywords.contains(rxCom.cap(3))){
 						cmds->optionCommands << rxCom.cap(1);
+					}
+					rxCom2.indexIn(line); // for commands which don't have a braces part e.g. \item[text]
+					if(keywords.contains(rxCom2.cap(2))){
+						cmds->optionCommands << rxCom2.cap(1);
 					}
 					// normal commands for syntax checking
 					// will be extended to distinguish between normal and math commands

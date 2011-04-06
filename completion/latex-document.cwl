@@ -206,7 +206,7 @@
 \inputlineno#*
 \it
 \item
-\item[label]
+\item[text]
 \iterate#*
 \itshape#*
 \kill#T

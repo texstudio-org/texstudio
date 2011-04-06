@@ -656,7 +656,7 @@ LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0),forcedRef(f
 	widget=new QWidget(qobject_cast<QWidget*>(parent()));
 	//widget->setAutoFillBackground(true);
 	int ptSize=QApplication::font().pointSize();
-	QString stSht=QString("QTabBar::tab { font: %1pt; margin: 2pt; }").arg(ptSize*3/4);
+	QString stSht=QString("QTabBar::tab { font-size: %1px; margin: 2pt;}").arg(ptSize*3/4);
 	QVBoxLayout *layout = new QVBoxLayout;
 	layout->setSpacing(0);
 	tbAbove=new QTabBar();
