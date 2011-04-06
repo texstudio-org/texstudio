@@ -1767,7 +1767,7 @@ void PDFDocument::reloadWhenIdle()
 }
 
 void PDFDocument::runExternalViewer(){
-	emit runCommand(externalViewerCmdLine, false);
+	emit runCommand(externalViewerCmdLine);
 }
 
 void PDFDocument::setGrid(){

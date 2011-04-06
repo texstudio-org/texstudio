@@ -1391,7 +1391,7 @@ void Texmaker::fileSaveAs(const QString& fileName) {
 				QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
 				cmd+=" propset svn:keywords \"Date Author HeadURL Revision\" \""+currentEditor()->fileName()+"\"";
 				stat2->setText(QString(" svn propset svn:keywords "));
-				runCommand(cmd, false);
+				runCommand(cmd, 0);
 			}
 		}
 
@@ -2962,22 +2962,23 @@ void Texmaker::SpellingLanguageChanged() {
 }
 
 ///////////////TOOLS////////////////////
-void Texmaker::runCommand(BuildManager::LatexCommand cmd,bool waitendprocess){
-        int compileLatex=0;
-        switch (cmd){
-            case BuildManager::CMD_LATEX: compileLatex=1;
-            break;
-            case BuildManager::CMD_PDFLATEX: compileLatex=2;
-            break;
-        default:
-            break;
-        }
-	if(compileLatex) ClearMarkers();
+void Texmaker::runCommand(BuildManager::LatexCommand cmd, RunCommandFlags flags){
+	switch (cmd){
+	case BuildManager::CMD_LATEX:
+		flags = flags | RCF_VIEW_LOG;
+		break;
+	case BuildManager::CMD_PDFLATEX:
+		flags = flags | RCF_VIEW_LOG | RCF_CHECK_PDF_LOCK;
+		break;
+	default:
+		break;
+	}
 	bool startViewer = cmd==BuildManager::CMD_VIEWDVI || cmd==BuildManager::CMD_VIEWPS || cmd==BuildManager::CMD_VIEWPDF;
-	runCommand(buildManager.getLatexCommand(cmd),waitendprocess,compileLatex,0,0,startViewer && configManager.singleViewerInstance);
+	if (startViewer && configManager.singleViewerInstance)
+		flags |= RCF_SINGLE_INSTANCE;
+	runCommand(buildManager.getLatexCommand(cmd),flags);
 }
-void Texmaker::runCommand(QString comd,bool waitendprocess,int compileLatex, RunCommandFlags flags, QString *buffer, bool singleInstance) {
-        // compileLatex 0, no, 1 latex, 2 pdflatex
+void Texmaker::runCommand(QString comd, RunCommandFlags flags, QString *buffer) {
 	QString finame=documents.getTemporaryCompileFileName();
 	QString commandline=comd;
 	if (finame=="") {
@@ -3014,21 +3015,19 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,int compileLatex, Run
 		return;
 	}
 
-        // check for locking of pdf
-        if(compileLatex==2){
-            QFileInfo fi(finame);
-            QString basename=fi.baseName();
-            QString path=fi.path();
-            fi.setFile(path+"/"+basename+".pdf");
-            if(fi.exists() && !fi.isWritable()){
-                //pdf not writeable, needs locking ?
-                if(configManager.autoCheckinAfterSave){
-                    svnLock(fi.filePath());
-                }
-            }
-        }
+	// check for locking of pdf
+	if((flags & RCF_CHECK_PDF_LOCK) && configManager.autoCheckinAfterSave){
+		QFileInfo fi(finame);
+		QString basename=fi.baseName();
+		QString path=fi.path();
+		fi.setFile(path+"/"+basename+".pdf");
+		if(fi.exists() && !fi.isWritable()){
+			//pdf not writeable, needs locking ?
+			svnLock(fi.filePath());
+		}
+	}
 
-	ProcessX* procX = buildManager.newProcess(comd,finame,getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1,singleInstance);
+	ProcessX* procX = buildManager.newProcess(comd,finame,getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1,flags & RCF_SINGLE_INSTANCE);
 
 	if (!procX) return; //a singleInstance that is already running
 
@@ -3041,6 +3040,7 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,int compileLatex, Run
 		 connect(procX, SIGNAL(readyReadStandardOutput()),this, SLOT(readFromStdoutput()));
 	connect(procX, SIGNAL(finished(int)),this, SLOT(SlotEndProcess(int)));
 
+	if (flags & RCF_VIEW_LOG) ClearMarkers();
 	outputView->resetMessages();
 
 	//OutputTextEdit->insertLine(commandline+"\n");
@@ -3051,10 +3051,10 @@ void Texmaker::runCommand(QString comd,bool waitendprocess,int compileLatex, Run
 		return;
 	}
 
-	if (compileLatex && configManager.showLogAfterCompiling)
+	if ((flags & RCF_VIEW_LOG) && configManager.showLogAfterCompiling)
 		connect(procX,SIGNAL(finished(int)),this,SLOT(ViewAndHighlightError()));
 
-	if (waitendprocess) {
+	if (flags & RCF_WAIT_FOR_FINISHED) {
 		QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 		QTime time;
 		time.start();
@@ -3079,12 +3079,12 @@ void Texmaker::RunPreCompileCommand() {
 	outputView->resetMessagesAndLog();//log to old (whenever latex is called)
 	if (!buildManager.getLatexCommand(BuildManager::CMD_USER_PRECOMPILE).isEmpty()) {
 		stat2->setText(QString(" %1 ").arg(tr("Pre-LaTeX")));
-		runCommand(BuildManager::CMD_USER_PRECOMPILE,true);
+		runCommand(BuildManager::CMD_USER_PRECOMPILE, RCF_WAIT_FOR_FINISHED);
 	}
 	if (documents.bibTeXFilesModified && configManager.runLaTeXBibTeXLaTeX) {
 		ERRPROCESS=false;
 		stat2->setText(QString(" %1 ").arg(tr("LaTeX","Status")));
-		runCommand(BuildManager::CMD_LATEX,true);
+		runCommand(BuildManager::CMD_LATEX, RCF_WAIT_FOR_FINISHED);
 		if (ERRPROCESS && !LogExists()) {
 			QMessageBox::warning(this,tr("Error"),tr("Could not start LaTeX."));
 			return;
@@ -3092,10 +3092,10 @@ void Texmaker::RunPreCompileCommand() {
 		if (NoLatexErrors()) {
 			ERRPROCESS=false;
 			stat2->setText(QString(" %1 ").arg(tr("BibTeX")));
-			runCommand(BuildManager::CMD_BIBTEX,true);
+			runCommand(BuildManager::CMD_BIBTEX,RCF_WAIT_FOR_FINISHED);
 			if (!ERRPROCESS) {
 				stat2->setText(QString(" %1 ").arg(tr("LaTeX","Status")));
-				runCommand(BuildManager::CMD_LATEX,true);
+				runCommand(BuildManager::CMD_LATEX,RCF_WAIT_FOR_FINISHED);
 			}
 		}
 		documents.bibTeXFilesModified = false;
@@ -3155,133 +3155,57 @@ void Texmaker::QuickBuild() {
 	RunPreCompileCommand();
 	stat2->setText(QString(" %1 ").arg(tr("Quick Build")));
 	ERRPROCESS=false;
+
+	QList<BuildManager::LatexCommand> cmddList;
 	switch (buildManager.quickmode) {
-	case 1: {
-		stat2->setText(QString(" %1 ").arg("Latex"));
-		runCommand(BuildManager::CMD_LATEX,true);
-		if (ERRPROCESS && !LogExists()) {
-			QMessageBox::warning(this,tr("Error"),tr("Could not start LaTeX."));
-			return;
-		}
-		if (NoLatexErrors()) {
-			stat2->setText(QString(" %1 ").arg("Dvips"));
-			if (!ERRPROCESS) runCommand(BuildManager::CMD_DVIPS,true);
-			else return;
-			if (!ERRPROCESS) runCommand(BuildManager::CMD_VIEWPS, false);
-			else return;
-		}
+	case 1: cmddList << BuildManager::CMD_LATEX << BuildManager::CMD_DVIPS << BuildManager::CMD_VIEWPS; break;
+	case 2: cmddList << BuildManager::CMD_LATEX << BuildManager::CMD_VIEWDVI; break;
+	case 3: cmddList << BuildManager::CMD_PDFLATEX << BuildManager::CMD_VIEWPDF; break;
+	case 4: cmddList << BuildManager::CMD_LATEX << BuildManager::CMD_DVIPDF << BuildManager::CMD_VIEWPDF; break;
+	case 5: cmddList << BuildManager::CMD_LATEX << BuildManager::CMD_DVIPS << BuildManager::CMD_PS2PDF << BuildManager::CMD_VIEWPDF; break;
+	case 6: cmddList << BuildManager::CMD_LATEX << BuildManager::CMD_ASY << BuildManager::CMD_LATEX << BuildManager::CMD_VIEWDVI; break;
+	case 7: cmddList << BuildManager::CMD_PDFLATEX << BuildManager::CMD_ASY << BuildManager::CMD_PDFLATEX << BuildManager::CMD_VIEWPDF; break;
+		//case 8/user: below
 	}
-	break;
-	case 2: {
-		stat2->setText(QString(" %1 ").arg("Latex"));
-		runCommand(BuildManager::CMD_LATEX,true);
-		if (ERRPROCESS && !LogExists()) {
-			QMessageBox::warning(this,tr("Error"),tr("Could not start LaTeX."));
-			return;
+
+	if (!cmddList.isEmpty()) {
+		for (int i=0; i < cmddList.size() - 1; i++) { //skip last command
+			BuildManager::LatexCommand cmd = cmddList[i];
+			stat2->setText(QString(" %1 ").arg(BuildManager::commandDisplayName(cmd)));
+			runCommand(cmd, RCF_WAIT_FOR_FINISHED);
+			if (cmd == BuildManager::CMD_LATEX || cmd == BuildManager::CMD_PDFLATEX) {
+				if (ERRPROCESS && !LogExists()) {
+					QMessageBox::warning(this,tr("Error"),tr("Could not start %1.").arg(BuildManager::commandDisplayName(cmd)));
+					return;
+				}
+				if (!NoLatexErrors()) return;
+			}
+			if (ERRPROCESS) return;
 		}
-		if (NoLatexErrors()) {
-			if (!ERRPROCESS) runCommand(BuildManager::CMD_VIEWDVI, false);
-			else return;
-		}
+		runCommand(cmddList.last(), 0);
+		return;
 	}
-	break;
-	case 3: {
-		stat2->setText(QString(" %1 ").arg("Pdf Latex"));
-		runCommand(BuildManager::CMD_PDFLATEX,true);
-		if (ERRPROCESS && !LogExists()) {
-			QMessageBox::warning(this,tr("Error"),tr("Could not start PdfLaTeX."));
-			return;
-		}
-		if (NoLatexErrors()) {
-			if (!ERRPROCESS) runCommand(BuildManager::CMD_VIEWPDF, false);
-			else return;
-		}
+
+	REQUIRE(buildManager.quickmode == 8); //user quick mode
+
+	runCommandList(buildManager.getLatexCommand(BuildManager::CMD_USER_QUICK).split("|"),0);
+	ViewAndHighlightError();
+}
+
+void Texmaker::runCommandList(const QStringList& commandList, const RunCommandFlags& additionalFlags){
+	ERRPROCESS = false;
+	for (int i = 0; i < commandList.size(); ++i) {
+		if (commandList.at(i).trimmed().isEmpty()) continue;
+
+		bool isLatex = commandList.at(i).contains("latex") || commandList.at(i)==buildManager.getLatexCommand(BuildManager::CMD_LATEX) || commandList.at(i)==buildManager.getLatexCommand(BuildManager::CMD_PDFLATEX);
+		bool isPdfLatex = commandList.at(i).contains("pdflatex") || commandList.at(i)==buildManager.getLatexCommand(BuildManager::CMD_PDFLATEX);
+		RunCommandFlags flags = additionalFlags;
+		if (isLatex) flags |= RCF_VIEW_LOG;
+		if (isPdfLatex) flags |= RCF_CHECK_PDF_LOCK;
+		if (isLatex || i != commandList.size()-1) flags |= RCF_WAIT_FOR_FINISHED;
+		if (!ERRPROCESS) runCommand(commandList.at(i),flags);
+		else break;
 	}
-	break;
-	case 4: {
-		stat2->setText(QString(" %1 ").arg("Latex"));
-		runCommand(BuildManager::CMD_LATEX,true);
-		if (ERRPROCESS && !LogExists()) {
-			QMessageBox::warning(this,tr("Error"),tr("Could not start LaTeX."));
-			return;
-		}
-		if (NoLatexErrors()) {
-			stat2->setText(QString(" %1 ").arg("Dvi to Pdf"));
-			if (!ERRPROCESS) runCommand(BuildManager::CMD_DVIPDF,true);
-			else return;
-			if (!ERRPROCESS) runCommand(BuildManager::CMD_VIEWPDF, false);
-			else return;
-		}
-	}
-	break;
-	case 5: {
-		stat2->setText(QString(" %1 ").arg("Latex"));
-		runCommand(BuildManager::CMD_LATEX,true);
-		if (ERRPROCESS && !LogExists()) {
-			QMessageBox::warning(this,tr("Error"),tr("Could not start LaTeX."));
-			return;
-		}
-		if (NoLatexErrors()) {
-			stat2->setText(QString(" %1 ").arg("Dvips"));
-			if (!ERRPROCESS) runCommand(BuildManager::CMD_DVIPS,true);
-			else return;
-			stat2->setText(QString(" %1 ").arg("Ps to Pdf"));
-			if (!ERRPROCESS) runCommand(BuildManager::CMD_PS2PDF,true);
-			else return;
-			if (!ERRPROCESS) runCommand(BuildManager::CMD_VIEWPDF, false);
-		}
-	}
-	break;
-	case 6: {
-		stat2->setText(QString(" %1 ").arg("Latex"));
-		runCommand(BuildManager::CMD_LATEX,true);
-		if (ERRPROCESS && !LogExists()) {
-			QMessageBox::warning(this,tr("Error"),tr("Could not start LaTeX."));
-			return;
-		}
-		if (NoLatexErrors()) {
-			stat2->setText(QString(" %1 ").arg("Asymptote"));
-			if (!ERRPROCESS) runCommand(BuildManager::CMD_ASY,true);
-			else return;
-			stat2->setText(QString(" %1 ").arg("LaTeX","Status"));
-			if (!ERRPROCESS) runCommand(BuildManager::CMD_LATEX,true);
-			else return;
-			if (!ERRPROCESS) runCommand(BuildManager::CMD_VIEWDVI, false);
-		}
-	}
-	break;
-	case 7: {
-		stat2->setText(QString(" %1 ").arg("Pdf Latex"));
-		runCommand(BuildManager::CMD_PDFLATEX,true);
-		if (ERRPROCESS && !LogExists()) {
-			QMessageBox::warning(this,tr("Error"),tr("Could not start LaTeX."));
-			return;
-		}
-		if (NoLatexErrors()) {
-			stat2->setText(QString(" %1 ").arg("Asymptote"));
-			if (!ERRPROCESS) runCommand(BuildManager::CMD_ASY,true);
-			else return;
-			stat2->setText(QString(" %1 ").arg("Pdf Latex"));
-			if (!ERRPROCESS) runCommand(BuildManager::CMD_PDFLATEX,true);
-			else return;
-			if (!ERRPROCESS) runCommand(BuildManager::CMD_VIEWPDF, false);
-		}
-	}
-	break;
-	case 8: {
-		QStringList commandList=buildManager.getLatexCommand(BuildManager::CMD_USER_QUICK).split("|");
-		for (int i = 0; i < commandList.size(); ++i) {
-			bool isLatex = commandList.at(i).contains("latex") || commandList.at(i)==buildManager.getLatexCommand(BuildManager::CMD_LATEX) || commandList.at(i)==buildManager.getLatexCommand(BuildManager::CMD_PDFLATEX);
-			if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) runCommand(commandList.at(i),isLatex || i != commandList.size()-1,isLatex);
-			else break;
-		}
-		ViewAndHighlightError();
-	}
-	break;
-	}
-//	if (NoLatexErrors()) ViewLog();
-//ViewLog();
-//DisplayLatexError();
 }
 
 void Texmaker::commandFromAction(){
@@ -3305,7 +3229,7 @@ void Texmaker::commandFromAction(){
 	QString status=act->text();
 	status.remove(QChar('&'));
 	stat2->setText(QString(" %1 ").arg(status));
-	runCommand(cmd, false);
+	runCommand(cmd, 0);
 }
 
 void Texmaker::CleanAll() {
@@ -3360,13 +3284,9 @@ void Texmaker::UserTool() {
 		}
 	}
 
-	QStringList commandList=cmd.split("|");
-	ERRPROCESS=false;
 	RunCommandFlags flags;
 	if (configManager.showStdoutOption >= 1) flags |= RCF_SHOW_STDOUT;
-	for (int i = 0; i < commandList.size(); ++i)
-		if ((!ERRPROCESS)&&(!commandList.at(i).isEmpty())) runCommand(commandList.at(i),(i<(commandList.size()-1)),true, flags);
-		else return;
+	runCommandList(cmd.split("|"), flags);
 }
 
 
@@ -4014,7 +3934,7 @@ void Texmaker::newPdfPreviewer(){
 	connect(pdfviewerWindow, SIGNAL(triggeredConfigure()), SLOT(GeneralOptions()));
 	connect(pdfviewerWindow, SIGNAL(triggeredQuickBuild()), SLOT(QuickBuild()));
 	connect(pdfviewerWindow, SIGNAL(syncSource(const QString&, int, bool)), SLOT(syncFromViewer(const QString &, int, bool)));
-	connect(pdfviewerWindow, SIGNAL(runCommand(const QString&, bool)), SLOT(runCommand(const QString&, bool)));
+	connect(pdfviewerWindow, SIGNAL(runCommand(const QString&)), SLOT(runCommand(const QString&)));
 	connect(pdfviewerWindow, SIGNAL(triggeredClone()), SLOT(newPdfPreviewer()));
 
 	PDFDocument* from = qobject_cast<PDFDocument*>(sender());
@@ -4738,7 +4658,7 @@ void Texmaker::fileUpdate(QString filename){
 	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
 	cmd+=" up  \""+fn+"\"";
 	stat2->setText(QString(" svn update "));
-	runCommand(cmd, true);
+	runCommand(cmd, RCF_WAIT_FOR_FINISHED);
 }
 
 void Texmaker::fileUpdateCWD(QString filename){
@@ -4749,14 +4669,14 @@ void Texmaker::fileUpdateCWD(QString filename){
 	fn=QFileInfo(fn).path();
 	cmd+=" up  \""+fn+"\"";
 	stat2->setText(QString(" svn update "));
-	runCommand(cmd, true);
+	runCommand(cmd, RCF_WAIT_FOR_FINISHED);
 }
 
 void Texmaker::checkin(QString fn, QString text, bool blocking){
 	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
 	cmd+=" ci -m \""+text+"\" \""+fn+("\"");
 	stat2->setText(QString(" svn check in "));
-	runCommand(cmd, blocking);
+	runCommand(cmd, (blocking?RCF_WAIT_FOR_FINISHED:RunCommandFlags()));
 	LatexEditorView *edView=getEditorViewFromFileName(fn);
 	if(edView)
 		edView->editor->setProperty("undoRevision",0);
@@ -4782,15 +4702,15 @@ bool Texmaker::svnadd(QString fn,int stage){
 	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
 	cmd+=" add \""+fn+("\"");
 	stat2->setText(QString(" svn add "));
-	runCommand(cmd, false);
+	runCommand(cmd, 0);
 	return true;
 }
 
 void Texmaker::svnLock(QString fn){
-        QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
-        cmd+=" lock \""+fn+("\"");
-        stat2->setText(QString(" svn lock "));
-	 runCommand(cmd, false);
+	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+	cmd+=" lock \""+fn+("\"");
+	stat2->setText(QString(" svn lock "));
+	runCommand(cmd, 0);
 }
 
 
@@ -4800,16 +4720,16 @@ void Texmaker::svncreateRep(QString fn){
 	QString path=QFileInfo(fn).absolutePath();
 	admin+=" create "+path+"/repo";
 	stat2->setText(QString(" svn create repo "));
-	runCommand(admin, true);
+	runCommand(admin, RCF_WAIT_FOR_FINISHED);
 	QString scmd=cmd+" mkdir file:///"+path+"/repo/trunk -m\"tmx auto generate\"";
-	runCommand(scmd, true);
+	runCommand(scmd, RCF_WAIT_FOR_FINISHED);
 	scmd=cmd+" mkdir file:///"+path+"/repo/branches -m\"tmx auto generate\"";
-	runCommand(scmd, true);
+	runCommand(scmd, RCF_WAIT_FOR_FINISHED);
 	scmd=cmd+" mkdir file:///"+path+"/repo/tags -m\"tmx auto generate\"";
-	runCommand(scmd, true);
+	runCommand(scmd, RCF_WAIT_FOR_FINISHED);
 	stat2->setText(QString(" svn checkout repo"));
 	cmd+=" co file:///"+path+"/repo/trunk "+path;
-	runCommand(cmd, true);
+	runCommand(cmd, RCF_WAIT_FOR_FINISHED);
 }
 
 void Texmaker::svnUndo(bool redo){
@@ -4818,7 +4738,7 @@ void Texmaker::svnUndo(bool redo){
 	// get revisions of current file
 	QString cmd=cmd_svn+" log "+fn;
 	QString buffer;
-	runCommand(cmd,true,false,0,&buffer);
+	runCommand(cmd,RCF_WAIT_FOR_FINISHED,&buffer);
 	QStringList revisions=buffer.split("\n",QString::SkipEmptyParts);
 	buffer.clear();
 	QMutableStringListIterator i(revisions);
@@ -4938,17 +4858,17 @@ void Texmaker::svnDialogClosed(){
 }
 
 SVNSTATUS Texmaker::svnStatus(QString filename){
-        QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
-        cmd+=" st \""+filename+("\"");
-        stat2->setText(QString(" svn status "));
-        QString buffer;
-	 runCommand(cmd, true, false,0,&buffer);
-        if(buffer.isEmpty()) return CheckedIn;
-        if(buffer.startsWith("?")) return Unmanaged;
-        if(buffer.startsWith("M")) return Modified;
-        if(buffer.startsWith("C")) return InConflict;
-        if(buffer.startsWith("L")) return Locked;
-        return Unknown;
+	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+	cmd+=" st \""+filename+("\"");
+	stat2->setText(QString(" svn status "));
+	QString buffer;
+	runCommand(cmd, RCF_WAIT_FOR_FINISHED,&buffer);
+	if(buffer.isEmpty()) return CheckedIn;
+	if(buffer.startsWith("?")) return Unmanaged;
+	if(buffer.startsWith("M")) return Modified;
+	if(buffer.startsWith("C")) return InConflict;
+	if(buffer.startsWith("L")) return Locked;
+	return Unknown;
 }
 
 void Texmaker::changeToRevision(QString rev,QString old_rev){
@@ -4974,7 +4894,7 @@ void Texmaker::changeToRevision(QString rev,QString old_rev){
 	} else return;
 	QString cmd=cmd_svn+" diff -r "+old_revision+":"+new_revision+" "+fn;
 	QString buffer;
-	runCommand(cmd,true,false,0,&buffer);
+	runCommand(cmd,RCF_WAIT_FOR_FINISHED,&buffer);
 	// patch
 	svnPatch(currentEditor(),buffer);
 	currentEditor()->setProperty("Revision",rev);
@@ -4986,7 +4906,7 @@ QStringList Texmaker::svnLog(){
 	// get revisions of current file
 	QString cmd=cmd_svn+" log "+fn;
 	QString buffer;
-	runCommand(cmd,true,false,0,&buffer);
+	runCommand(cmd,RCF_WAIT_FOR_FINISHED,&buffer);
 	QStringList revisions=buffer.split("\n",QString::SkipEmptyParts);
 	buffer.clear();
 	QMutableStringListIterator i(revisions);
@@ -5122,11 +5042,11 @@ void Texmaker::openExternalFile(const QString name,const QString defaultExt,Late
     bool loaded;
     for(int i=0;i<curPaths.count();i++){
 	QString curPath=curPaths.value(i);
-	if (loaded=load(getAbsoluteFilePath(curPath+name,defaultExt)))
+	if ((loaded=load(getAbsoluteFilePath(curPath+name,defaultExt))))
 	    break;
-	if (loaded=load(getAbsoluteFilePath(curPath+name,"")))
+	if ((loaded=load(getAbsoluteFilePath(curPath+name,""))))
 	    break;
-	if (loaded=load(getAbsoluteFilePath(name,defaultExt)))
+	if ((loaded=load(getAbsoluteFilePath(name,defaultExt))))
 	    break;
     }
 
