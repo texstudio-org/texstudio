@@ -64,6 +64,7 @@ public:
 	bool showLogAfterCompiling;
 	bool runLaTeXBibTeXLaTeX;
 	int showStdoutOption; //never = 0, user commands, always
+	int rerunLatex; //0: never, > 0 count of reruns
 
 
 	bool autoCheckinAfterSave;
