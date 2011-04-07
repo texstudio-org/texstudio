@@ -53,7 +53,8 @@ LatexParser::LatexParser(){
     environmentAliases.insert("tabularx","tabular");
     environmentAliases.insert("tabular*","tabular");
     environmentAliases.insert("supertabular","tabular");
-    environmentAliases.insert("cases","array");    environmentAliases.insert("matrix","array");
+    environmentAliases.insert("cases","array");
+    environmentAliases.insert("matrix","array");
     environmentAliases.insert("bmatrix","array");
     environmentAliases.insert("pmatrix","array");
     environmentAliases.insert("vmatrix","array");

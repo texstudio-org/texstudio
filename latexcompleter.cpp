@@ -531,7 +531,7 @@ void CompletionListModel::filterList(const QString &word,int mostUsed) {
 		if (baselist[i].word.isEmpty()) continue;
 		if (baselist[i].word.startsWith(word,cs) &&
 		    (!checkFirstChar || baselist[i].word[1] == word[1]) ){
-			if(mostUsed==2 || baselist[i].usageCount>=mostUsed)
+			if(mostUsed==2 || baselist[i].usageCount>=mostUsed || baselist[i].usageCount==-2)
 			    words.append(baselist[i]);
 		    }
 	}
