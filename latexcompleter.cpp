@@ -44,6 +44,12 @@ public:
 			QString wrd=getCurWord();
 			completer->filterList(wrd,showMostUsed);
 			completer->widget->show();
+			if(showMostUsed==1 && completer->countWords()==0){ // if prefered list is empty, take next more extensive one
+			    completer->setTab(0);
+			}
+			if(showMostUsed==0 && completer->countWords()==0){
+			    completer->setTab(2);
+			}
 			completer->adjustWidget();
 		}
 	}
@@ -144,7 +150,7 @@ public:
 			removeRightWordPart();
 			editor->insertText(myResult.right(myResult.length()-my_start));
 			maxWritten+=myResult.length()-my_start;
-			completer->filterList(getCurWord());
+			completer->filterList(getCurWord(),getMostUsed());
 			if (!completer->list->currentIndex().isValid())
 				select(completer->list->model()->index(0,0,QModelIndex()));
 			return true;
@@ -718,22 +724,6 @@ void LatexCompleter::setAdditionalWords(const QStringList &newwords, bool normal
 	}
 	listModel->setBaseWords(concated,normalTextList);
 	widget->resize(200,200);
-	/*if (maxWordLen==0 && !normalTextList) {
-		int newWordMax=0;
-		QFont f=QApplication::font();
-		f.setItalic(true);
-		QFontMetrics fm(f);
-		const QList<CompletionWord> & words=listModel->getWords();
-		for (int i=0; i<words.size(); i++) {
-			if (words[i].lines.empty() || words[i].placeHolders.empty()) continue;
-			int temp=fm.width(words[i].lines[0])+words[i].placeHolders[0].size()+10;
-			if (temp>newWordMax) newWordMax=temp;
-		}
-		maxWordLen=newWordMax;
-		int wd=200>maxWordLen?200:maxWordLen;
-		wd+=10;
-
-	}*/
 }
 
 void LatexCompleter::adjustWidget(){
@@ -855,6 +845,15 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 		adjustWidget();
 	} else completerInputBinding->bindTo(editor,this,false,c.columnNumber()-1);
 
+	if(completerInputBinding->getMostUsed()==1 && countWords()==0){ // if prefered list is empty, take next more extensive one
+	    setTab(0);
+	    adjustWidget();
+	}
+	if(completerInputBinding->getMostUsed() && countWords()==0){
+	    setTab(2);
+	    adjustWidget();
+	}
+
 	//line.document()->cursor(0,0).insertText(QString::number(offset.x())+":"+QString::number(offset.y()));
 	connect(editor,SIGNAL(cursorPositionChanged()),this,SLOT(cursorPositionChanged()));
 	
@@ -901,6 +900,18 @@ void LatexCompleter::setConfig(LatexCompleterConfig* config){
 }
 LatexCompleterConfig* LatexCompleter::getConfig() const{
 	return config;
+}
+
+int LatexCompleter::countWords() {
+    return listModel->getWords().count();
+}
+
+void LatexCompleter::setTab(int index){
+    Q_ASSERT(index>=0 && index<3);
+    if(tbBelow->isVisible())
+	tbBelow->setCurrentIndex(index);
+    if(tbAbove->isVisible())
+	tbAbove->setCurrentIndex(index);
 }
 
 void LatexCompleter::filterList(QString word,int showMostUsed) {
