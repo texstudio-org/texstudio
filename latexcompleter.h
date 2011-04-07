@@ -54,6 +54,9 @@ public:
 	    return list->isVisible();
 	}
 
+	int countWords();
+	void setTab(int index);
+
 	void insertText(QString txt);
 private:
 	friend class CompleterInputBinding;
