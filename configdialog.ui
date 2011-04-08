@@ -137,7 +137,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>10</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -151,8 +151,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>793</width>
-            <height>577</height>
+            <width>797</width>
+            <height>597</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -286,6 +286,9 @@
                 <property name="text">
                  <string>Tabbed Structure/Symbol View</string>
                 </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
               <item row="7" column="1">
@@ -298,6 +301,9 @@
                 </property>
                 <property name="text">
                  <string>Tabbed Log Viewer</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -312,6 +318,9 @@
                <widget class="QCheckBox" name="checkBoxUseSystemTheme">
                 <property name="text">
                  <string>Use system theme icons</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -1921,6 +1930,9 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             <property name="text">
              <string>Auto preview delay:</string>
             </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
            </widget>
           </item>
           <item row="3" column="1">
@@ -1930,6 +1942,9 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
             <property name="maximum">
              <number>3000</number>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -2075,6 +2090,9 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             <property name="text">
              <string>Synchronized files types:</string>
             </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
            </widget>
           </item>
           <item row="6" column="1">
@@ -2084,6 +2102,9 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
