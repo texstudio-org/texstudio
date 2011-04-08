@@ -90,6 +90,7 @@ private slots:
 	void browsePrecompiling();
 	void quickBuildWizard();
 	void advancedOptionsToggled(bool on);
+	void advancedOptionsClicked(bool on);
 	void toolbarChanged(int toolbar);
 	void actionsChanged(int actionClass);
 	void toToolbarClicked();
@@ -102,6 +103,8 @@ private slots:
 	void custEnvRemoveLine();
 	void custSyntaxAddLine();
 	void custSyntaxRemoveLine();
+private:
+	bool askRiddle();
 };
 
 Q_DECLARE_METATYPE(QAction*);

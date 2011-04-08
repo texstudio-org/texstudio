@@ -49,7 +49,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</source>
+        <source>&lt;b&gt;TexMakerX 2.1 (SVN %1)&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -568,7 +568,7 @@
     </message>
     <message>
         <source>Word Wrap</source>
-        <translation>A capo automatico</translation>
+        <translation type="obsolete">A capo automatico</translation>
     </message>
     <message>
         <source>Folding</source>
@@ -891,28 +891,20 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished">mostra opzioni avanzate</translation>
     </message>
     <message>
-        <source>Special Key Replacement</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>New column meaning:</source>
-        <translation>Sgnificato nuova colonna:</translation>
+        <translation type="obsolete">Sgnificato nuova colonna:</translation>
     </message>
     <message>
         <source>Key to replace</source>
-        <translation>Carattere da sostituire</translation>
+        <translation type="obsolete">Carattere da sostituire</translation>
     </message>
     <message>
         <source>Text to insert before word</source>
-        <translation>Testo da inserire prima della parola</translation>
+        <translation type="obsolete">Testo da inserire prima della parola</translation>
     </message>
     <message>
         <source>Text to insert after word</source>
-        <translation>Testo da interire dopo la parola</translation>
-    </message>
-    <message>
-        <source>Hard Line Wrap</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Testo da interire dopo la parola</translation>
     </message>
     <message>
         <source>Basic Key Mapping</source>
@@ -1144,6 +1136,80 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     </message>
     <message>
         <source>Always (if not redirected &gt; /dev/null)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Times to rerun latex if requested:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>no line wrap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>soft line wrap at window edge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>soft line wrap after max. characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>hard line wrap after max. characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Additional Commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefer &quot;Typical&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefer &quot;Most Used&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefer &quot;All&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Riddle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Once you went to a magic island where you met three strange and wise friends. 
+One of them was always telling the truth, another one was always lying, and the third was deaf, so he answered randomly and couldn&apos;t lie. 
+You asked the first: &quot;Are you lying?&quot;, and he answered: &quot;No&quot;.
+You asked the second: &quot;Was the first one lying?&quot;, and he answered: &quot;No&quot;.
+You asked the last: &quot;Was the second one lying?&quot;, and he answered: &quot;No&quot;.
+
+Which one of the three wise will always tell the truth?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>first</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>second</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>three</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>last</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please answer 1, 2 or 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only one answer allowed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1601,6 +1667,10 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <source>&amp;* Open all files</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Key replacement: %1 %2</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -1888,6 +1958,10 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>press shift+space to change view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>typical</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4912,10 +4986,6 @@ You have to save a document before you can compile it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Could not start PdfLaTeX.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Close document</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5433,6 +5503,26 @@ Are you sure you want to continue?</source>
         <source>Select (inverting)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>S&amp;ave Profile...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not start %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show all open documents in this tree</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show only current document in this tree</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -5697,7 +5787,7 @@ If not, end characters are ignored.</source>
     </message>
     <message>
         <source>Menu Item</source>
-        <translation>Voce Menu</translation>
+        <translation type="obsolete">Voce Menu</translation>
     </message>
     <message>
         <source>LaTeX Content</source>
@@ -5724,16 +5814,44 @@ If not, end characters are ignored.</source>
         <translation type="unfinished">Tipo</translation>
     </message>
     <message>
-        <source>Menu %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>+</source>
         <translation type="unfinished">+</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Trigger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If this trigger string is written in any tex document, 
+it is replaced by the current tag.
+
+If the trigger starts with (?&lt;=something), this only happens 
+if something is written before the remaining part of the trigger.
+
+Since this trigger is not a plain string, but a regular expression, 
+(?&lt;=\S) can be used to mark replacements which should only occur after a word, 
+and (?&lt;=\s|^) to mark replacements which should only occur before a word.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>?</source>
+        <translation type="unfinished">?</translation>
+    </message>
+    <message>
+        <source>Abbrev</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tag</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

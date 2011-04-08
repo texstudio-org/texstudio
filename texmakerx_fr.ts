@@ -61,7 +61,11 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</source>
-        <translation>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</translation>
+        <translation type="obsolete">&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;TexMakerX 2.1 (SVN %1)&lt;/b&gt;</source>
+        <translation type="unfinished">&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt; {2.1 ?} {1)?}</translation>
     </message>
 </context>
 <context>
@@ -575,7 +579,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Word Wrap</source>
-        <translation>Retour à la ligne automatique</translation>
+        <translation type="obsolete">Retour à la ligne automatique</translation>
     </message>
     <message>
         <source>Show preview as tool tip if panel is hidden</source>
@@ -907,27 +911,27 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Special Key Replacement</source>
-        <translation>Remplacement de touche spéciale</translation>
+        <translation type="obsolete">Remplacement de touche spéciale</translation>
     </message>
     <message>
         <source>New column meaning:</source>
-        <translation>Signification de la nouvelle colonne :</translation>
+        <translation type="obsolete">Signification de la nouvelle colonne :</translation>
     </message>
     <message>
         <source>Key to replace</source>
-        <translation>Touche à remplacer</translation>
+        <translation type="obsolete">Touche à remplacer</translation>
     </message>
     <message>
         <source>Text to insert before word</source>
-        <translation>Texte à insérer devant le mot</translation>
+        <translation type="obsolete">Texte à insérer devant le mot</translation>
     </message>
     <message>
         <source>Text to insert after word</source>
-        <translation>Texte à insérer après le mot</translation>
+        <translation type="obsolete">Texte à insérer après le mot</translation>
     </message>
     <message>
         <source>Hard Line Wrap</source>
-        <translation>Coupure de ligne</translation>
+        <translation type="obsolete">Coupure de ligne</translation>
     </message>
     <message>
         <source>Basic Key Mapping</source>
@@ -1162,6 +1166,80 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     <message>
         <source>Always (if not redirected &gt; /dev/null)</source>
         <translation>Toujours (si non redirigé vers &gt; /dev/null)</translation>
+    </message>
+    <message>
+        <source>Times to rerun latex if requested:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>no line wrap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>soft line wrap at window edge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>soft line wrap after max. characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>hard line wrap after max. characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Additional Commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefer &quot;Typical&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefer &quot;Most Used&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefer &quot;All&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Riddle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Once you went to a magic island where you met three strange and wise friends. 
+One of them was always telling the truth, another one was always lying, and the third was deaf, so he answered randomly and couldn&apos;t lie. 
+You asked the first: &quot;Are you lying?&quot;, and he answered: &quot;No&quot;.
+You asked the second: &quot;Was the first one lying?&quot;, and he answered: &quot;No&quot;.
+You asked the last: &quot;Was the second one lying?&quot;, and he answered: &quot;No&quot;.
+
+Which one of the three wise will always tell the truth?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>first</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>second</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>three</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>last</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please answer 1, 2 or 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only one answer allowed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1614,6 +1692,10 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <source>&amp;* Open all files</source>
         <translation>&amp;* Ouvrir tous les fichiers</translation>
     </message>
+    <message>
+        <source>Key replacement: %1 %2</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -1911,6 +1993,10 @@ Continuer tout de même ?</translation>
     <message>
         <source>press shift+space to change view</source>
         <translation>Saisir maj+espace pour changer de vue</translation>
+    </message>
+    <message>
+        <source>typical</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5080,7 +5166,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>Could not start PdfLaTeX.</source>
-        <translation>Impossible de lancer PdfLaTeX.</translation>
+        <translation type="obsolete">Impossible de lancer PdfLaTeX.</translation>
     </message>
     <message>
         <source>Delete the output files generated by LaTeX?</source>
@@ -5396,6 +5482,26 @@ TexMakerX n&apos;accepte pas d&apos;instances multiples d&apos;un même fichier.
         <source>Select (inverting)</source>
         <translation>Sélection (inversée)</translation>
     </message>
+    <message>
+        <source>S&amp;ave Profile...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not start %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show all open documents in this tree</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show only current document in this tree</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -5664,7 +5770,7 @@ Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
         <source>Menu Item</source>
-        <translation>Élément</translation>
+        <translation type="obsolete">Élément</translation>
     </message>
     <message>
         <source>LaTeX Content</source>
@@ -5692,7 +5798,7 @@ Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
         <source>Menu %1</source>
-        <translation>Menu %1</translation>
+        <translation type="obsolete">Menu %1</translation>
     </message>
     <message>
         <source>-</source>
@@ -5701,6 +5807,38 @@ Sinon la ponctuation est ignorée.</translation>
     <message>
         <source>+</source>
         <translation>+</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Nom</translation>
+    </message>
+    <message>
+        <source>Trigger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If this trigger string is written in any tex document, 
+it is replaced by the current tag.
+
+If the trigger starts with (?&lt;=something), this only happens 
+if something is written before the remaining part of the trigger.
+
+Since this trigger is not a plain string, but a regular expression, 
+(?&lt;=\S) can be used to mark replacements which should only occur after a word, 
+and (?&lt;=\s|^) to mark replacements which should only occur before a word.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Abbrev</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tag</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

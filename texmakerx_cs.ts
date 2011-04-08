@@ -53,7 +53,11 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</source>
-        <translation>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</translation>
+        <translation type="obsolete">&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;TexMakerX 2.1 (SVN %1)&lt;/b&gt;</source>
+        <translation type="unfinished">&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt; {2.1 ?} {1)?}</translation>
     </message>
 </context>
 <context>
@@ -717,7 +721,7 @@
     </message>
     <message>
         <source>Word Wrap</source>
-        <translation>Zalamování řádků</translation>
+        <translation type="obsolete">Zalamování řádků</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1044,27 +1048,27 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Special Key Replacement</source>
-        <translation>Nahrazení zvláštních kláves</translation>
+        <translation type="obsolete">Nahrazení zvláštních kláves</translation>
     </message>
     <message>
         <source>New column meaning:</source>
-        <translation>Nový význam sloupce:</translation>
+        <translation type="obsolete">Nový význam sloupce:</translation>
     </message>
     <message>
         <source>Key to replace</source>
-        <translation>Klávesa k nahrazení</translation>
+        <translation type="obsolete">Klávesa k nahrazení</translation>
     </message>
     <message>
         <source>Text to insert before word</source>
-        <translation>Nahrazující text k vložení před slovo</translation>
+        <translation type="obsolete">Nahrazující text k vložení před slovo</translation>
     </message>
     <message>
         <source>Text to insert after word</source>
-        <translation>Nahrazující text k vložení za slovo</translation>
+        <translation type="obsolete">Nahrazující text k vložení za slovo</translation>
     </message>
     <message>
         <source>Hard Line Wrap</source>
-        <translation>Tvrdé zalomení řádků</translation>
+        <translation type="obsolete">Tvrdé zalomení řádků</translation>
     </message>
     <message>
         <source>Basic Key Mapping</source>
@@ -1297,6 +1301,80 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     <message>
         <source>Always (if not redirected &gt; /dev/null)</source>
         <translation>Vždy (pokud není přesměrován &gt; /dev/null)</translation>
+    </message>
+    <message>
+        <source>Times to rerun latex if requested:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>no line wrap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>soft line wrap at window edge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>soft line wrap after max. characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>hard line wrap after max. characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Additional Commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefer &quot;Typical&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefer &quot;Most Used&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefer &quot;All&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Riddle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Once you went to a magic island where you met three strange and wise friends. 
+One of them was always telling the truth, another one was always lying, and the third was deaf, so he answered randomly and couldn&apos;t lie. 
+You asked the first: &quot;Are you lying?&quot;, and he answered: &quot;No&quot;.
+You asked the second: &quot;Was the first one lying?&quot;, and he answered: &quot;No&quot;.
+You asked the last: &quot;Was the second one lying?&quot;, and he answered: &quot;No&quot;.
+
+Which one of the three wise will always tell the truth?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>first</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>second</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>three</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>last</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please answer 1, 2 or 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only one answer allowed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1757,6 +1835,10 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
         <source>&amp;* Open all files</source>
         <translation>&amp;* Otevřít všechny soubory</translation>
     </message>
+    <message>
+        <source>Key replacement: %1 %2</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -2052,6 +2134,10 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <message>
         <source>press shift+space to change view</source>
         <translation>Stisknout  klávesu Shift+mezerník pro změnu pohledu</translation>
+    </message>
+    <message>
+        <source>typical</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4672,7 +4758,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Could not start PdfLaTeX.</source>
-        <translation>Nepodařilo se spustit PdfLaTeX.</translation>
+        <translation type="obsolete">Nepodařilo se spustit PdfLaTeX.</translation>
     </message>
     <message>
         <source>Text Analysis</source>
@@ -5927,6 +6013,26 @@ Jste si jistý, že chcete pokračovat?</translation>
         <source>Select (inverting)</source>
         <translation>Vybrat (převracející)</translation>
     </message>
+    <message>
+        <source>S&amp;ave Profile...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not start %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show all open documents in this tree</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show only current document in this tree</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -6262,7 +6368,7 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
     </message>
     <message>
         <source>Menu Item</source>
-        <translation>Položka v nabídce</translation>
+        <translation type="obsolete">Položka v nabídce</translation>
     </message>
     <message>
         <source>LaTeX Content</source>
@@ -6290,7 +6396,7 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
     </message>
     <message>
         <source>Menu %1</source>
-        <translation>Nabídka %1</translation>
+        <translation type="obsolete">Nabídka %1</translation>
     </message>
     <message>
         <source>-</source>
@@ -6299,6 +6405,38 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
     <message>
         <source>+</source>
         <translation>+</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Název</translation>
+    </message>
+    <message>
+        <source>Trigger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If this trigger string is written in any tex document, 
+it is replaced by the current tag.
+
+If the trigger starts with (?&lt;=something), this only happens 
+if something is written before the remaining part of the trigger.
+
+Since this trigger is not a plain string, but a regular expression, 
+(?&lt;=\S) can be used to mark replacements which should only occur after a word, 
+and (?&lt;=\s|^) to mark replacements which should only occur before a word.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>?</source>
+        <translation type="unfinished">?</translation>
+    </message>
+    <message>
+        <source>Abbrev</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tag</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

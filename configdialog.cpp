@@ -342,6 +342,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	        this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
 	ui.contentsWidget->setCurrentRow(0);
 	connect(ui.checkBoxShowAdvancedOptions, SIGNAL(toggled(bool)), this, SLOT(advancedOptionsToggled(bool)));
+	connect(ui.checkBoxShowAdvancedOptions, SIGNAL(clicked(bool)), this, SLOT(advancedOptionsClicked(bool)));
 
 	// custom toolbars
 	connect(ui.comboBoxToolbars,SIGNAL(currentIndexChanged(int)), SLOT(toolbarChanged(int)));
@@ -510,6 +511,12 @@ void ConfigDialog::advancedOptionsToggled(bool on){
 	for (int i=0;i<ui.contentsWidget->count();i++)
 		if (ui.contentsWidget->item(i)->data(Qt::UserRole).toBool())
 			ui.contentsWidget->item(i)->setHidden(!on);
+}
+
+void ConfigDialog::advancedOptionsClicked(bool on){
+	if (on) {
+		if (!askRiddle()) ui.checkBoxShowAdvancedOptions->setChecked(false);
+	}
 }
 
 void ConfigDialog::toolbarChanged(int toolbar){
@@ -683,4 +690,23 @@ void ConfigDialog::custSyntaxRemoveLine(){
 	ui.twCustomSyntax->setItem(i,0,item);
     }
 }
+
+bool ConfigDialog::askRiddle(){
+	QString solution = QInputDialog::getText(this, tr("Riddle"), tr(
+"You come to a magic island where you meet three strange and wise friends. \n"
+"One of them is always telling the truth, another one is always lying, and the third is deaf, so he answers randomly and cannot lie(!). \n"
+"You ask the first: \"Are you lying?\", and he answers: \"No\".\n"
+"You ask the second: \"Is the first one lying?\", and he answers: \"No\".\n"
+"You ask the last: \"Is the second one lying?\", and he answers: \"No\".\n\n"
+"Which one of the three wise will always tell the truth?"));
+	if (solution.isEmpty()) return false;
+	bool a1 = solution.contains("1") || solution.contains(tr("first"));
+	bool a2 = solution.contains("2") || solution.contains(tr("second"));
+	bool a3 = solution.contains("3") || solution.contains(tr("three")) || solution.contains(tr("last"));
+	if (!a1 && !a2 && !a3) { QMessageBox::warning(this,tr("Riddle"),tr("Please answer 1, 2 or 3")); return false; }
+	if ((a1 && a2) || (a1 && a3) || (a2 && a3)) { QMessageBox::warning(this,tr("Riddle"),tr("Only one answer allowed")); return false; }
+	if (a3) return true;
+	return false;
+}
+
 

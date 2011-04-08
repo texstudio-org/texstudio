@@ -65,7 +65,11 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</source>
-        <translation>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</translation>
+        <translation type="obsolete">&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;TexMakerX 2.1 (SVN %1)&lt;/b&gt;</source>
+        <translation type="unfinished">&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt; {2.1 ?} {1)?}</translation>
     </message>
 </context>
 <context>
@@ -745,7 +749,7 @@
     </message>
     <message>
         <source>Word Wrap</source>
-        <translation>Zeilenumbruch</translation>
+        <translation type="obsolete">Zeilenumbruch</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1072,27 +1076,27 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <source>Special Key Replacement</source>
-        <translation>Tastenersetzungen</translation>
+        <translation type="obsolete">Tastenersetzungen</translation>
     </message>
     <message>
         <source>New column meaning:</source>
-        <translation>Neue Bedeutung der Spalten:</translation>
+        <translation type="obsolete">Neue Bedeutung der Spalten:</translation>
     </message>
     <message>
         <source>Key to replace</source>
-        <translation>Zu ersetzende Taste</translation>
+        <translation type="obsolete">Zu ersetzende Taste</translation>
     </message>
     <message>
         <source>Text to insert before word</source>
-        <translation>Ersetzung, vor einem Wort</translation>
+        <translation type="obsolete">Ersetzung, vor einem Wort</translation>
     </message>
     <message>
         <source>Text to insert after word</source>
-        <translation>Ersetzung, nach einem Wort</translation>
+        <translation type="obsolete">Ersetzung, nach einem Wort</translation>
     </message>
     <message>
         <source>Hard Line Wrap</source>
-        <translation>Limitierte Zeilenlänge</translation>
+        <translation type="obsolete">Limitierte Zeilenlänge</translation>
     </message>
     <message>
         <source>max. Characters:</source>
@@ -1333,6 +1337,80 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     <message>
         <source>Always (if not redirected &gt; /dev/null)</source>
         <translation>Immer (wenn nicht nach &gt; /dev/null geschickt)</translation>
+    </message>
+    <message>
+        <source>Times to rerun latex if requested:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>no line wrap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>soft line wrap at window edge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>soft line wrap after max. characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>hard line wrap after max. characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Additional Commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefer &quot;Typical&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefer &quot;Most Used&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefer &quot;All&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Riddle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Once you went to a magic island where you met three strange and wise friends. 
+One of them was always telling the truth, another one was always lying, and the third was deaf, so he answered randomly and couldn&apos;t lie. 
+You asked the first: &quot;Are you lying?&quot;, and he answered: &quot;No&quot;.
+You asked the second: &quot;Was the first one lying?&quot;, and he answered: &quot;No&quot;.
+You asked the last: &quot;Was the second one lying?&quot;, and he answered: &quot;No&quot;.
+
+Which one of the three wise will always tell the truth?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>first</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>second</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>three</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>last</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please answer 1, 2 or 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only one answer allowed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1797,6 +1875,10 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <source>&amp;* Open all files</source>
         <translation>&amp;* Alle Dateien öffnen</translation>
     </message>
+    <message>
+        <source>Key replacement: %1 %2</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -2089,6 +2171,10 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <message>
         <source>press shift+space to change view</source>
         <translation>Drücke shift+Leerzeichen, um die Ansicht zu wechseln</translation>
+    </message>
+    <message>
+        <source>typical</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4823,7 +4909,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Could not start PdfLaTeX.</source>
-        <translation>Konnte PdfLaTeX nicht starten</translation>
+        <translation type="obsolete">Konnte PdfLaTeX nicht starten</translation>
     </message>
     <message>
         <source>Text Analysis</source>
@@ -6110,6 +6196,26 @@ SInd Sie sicher, dass Sie weitermachen möchten ?</translation>
         <source>Select (inverting)</source>
         <translation>Wähle (invertieren)</translation>
     </message>
+    <message>
+        <source>S&amp;ave Profile...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not start %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show all open documents in this tree</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show only current document in this tree</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -6441,7 +6547,7 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
     </message>
     <message>
         <source>Menu Item</source>
-        <translation>Menüeintrag</translation>
+        <translation type="obsolete">Menüeintrag</translation>
     </message>
     <message>
         <source>LaTeX Content</source>
@@ -6469,7 +6575,7 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
     </message>
     <message>
         <source>Menu %1</source>
-        <translation>Menü %1</translation>
+        <translation type="obsolete">Menü %1</translation>
     </message>
     <message>
         <source>-</source>
@@ -6478,6 +6584,38 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
     <message>
         <source>+</source>
         <translation>+</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Trigger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If this trigger string is written in any tex document, 
+it is replaced by the current tag.
+
+If the trigger starts with (?&lt;=something), this only happens 
+if something is written before the remaining part of the trigger.
+
+Since this trigger is not a plain string, but a regular expression, 
+(?&lt;=\S) can be used to mark replacements which should only occur after a word, 
+and (?&lt;=\s|^) to mark replacements which should only occur before a word.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>?</source>
+        <translation type="unfinished">?</translation>
+    </message>
+    <message>
+        <source>Abbrev</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tag</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
