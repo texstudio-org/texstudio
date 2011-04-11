@@ -27,6 +27,7 @@ QMultiHash<QString,QString> LatexParser::packageAliases;
 QStringList LatexParser::structureCommands = QStringList(); //see texmaker.cpp
 QMultiHash<QString,QString> LatexParser::environmentAliases;
 
+
 LatexParser::LatexParser(){
     possibleCommands.clear();
     possibleCommands["tabular"]=QSet<QString>::fromList(QStringList() << "&" );
@@ -34,42 +35,6 @@ LatexParser::LatexParser(){
     possibleCommands["tabbing"]=QSet<QString>::fromList(QStringList() << "\\<" << "\\>" << "\\=" << "\\+");
     possibleCommands["normal"]=QSet<QString>::fromList(QStringList() << "\\\\" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" <<"\\." <<"\\u" <<"\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\oe" << "\\OE" << "\\ae" << "\\AE" << "\\aa" << "\\AA" << "\\o" << "\\O" << "\\l" << "\\L" << "\\~" << "\\ " << "\\,");
     possibleCommands["math"]=QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;" << "\\:" << "\\\\" << "\\ " << "\\|");
-    // set basic set of environemnt aliases (for math and tab)
-    environmentAliases.insert("equation","math");
-    environmentAliases.insert("displaymath","math");
-    environmentAliases.insert("eqnarray","math");
-    environmentAliases.insert("eqnarray*","math");
-    environmentAliases.insert("align","math");
-    environmentAliases.insert("align*","math");
-    environmentAliases.insert("flalign","math");
-    environmentAliases.insert("flalign*","math");
-    environmentAliases.insert("alignat","math");
-    environmentAliases.insert("alignat*","math");
-    environmentAliases.insert("gather","math");
-    environmentAliases.insert("gather*","math");
-    environmentAliases.insert("multline","math");
-    environmentAliases.insert("multline*","math");
-    environmentAliases.insert("longtable","tabular");
-    environmentAliases.insert("tabularx","tabular");
-    environmentAliases.insert("tabular*","tabular");
-    environmentAliases.insert("supertabular","tabular");
-    environmentAliases.insert("cases","array");
-    environmentAliases.insert("matrix","array");
-    environmentAliases.insert("bmatrix","array");
-    environmentAliases.insert("pmatrix","array");
-    environmentAliases.insert("vmatrix","array");
-    environmentAliases.insert("Bmatrix","array");
-    environmentAliases.insert("Vmatrix","array");
-    environmentAliases.insert("smallmatrix","array");
-    environmentAliases.insert("eqnarray","array");
-    environmentAliases.insert("eqnarray*","array");
-    environmentAliases.insert("align","array");
-    environmentAliases.insert("align*","array");
-    environmentAliases.insert("flalign","array");
-    environmentAliases.insert("flalign*","array");
-    environmentAliases.insert("alignat","array");
-    environmentAliases.insert("alignat*","array");
-    environmentAliases.insert("split","array");
 }
 
 QString getCommonEOW() {
