@@ -63,6 +63,43 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	comboSpellHeight=0;
 
 	ReadSettings();
+	// set basic set of environemnt aliases (for math and tab)
+	LatexParser::environmentAliases.insert("equation","math");
+	LatexParser::environmentAliases.insert("displaymath","math");
+	LatexParser::environmentAliases.insert("eqnarray","math");
+	LatexParser::environmentAliases.insert("eqnarray*","math");
+	LatexParser::environmentAliases.insert("align","math");
+	LatexParser::environmentAliases.insert("align*","math");
+	LatexParser::environmentAliases.insert("flalign","math");
+	LatexParser::environmentAliases.insert("flalign*","math");
+	LatexParser::environmentAliases.insert("alignat","math");
+	LatexParser::environmentAliases.insert("alignat*","math");
+	LatexParser::environmentAliases.insert("gather","math");
+	LatexParser::environmentAliases.insert("gather*","math");
+	LatexParser::environmentAliases.insert("multline","math");
+	LatexParser::environmentAliases.insert("multline*","math");
+	LatexParser::environmentAliases.insert("longtable","tabular");
+	LatexParser::environmentAliases.insert("tabularx","tabular");
+	LatexParser::environmentAliases.insert("tabular*","tabular");
+	LatexParser::environmentAliases.insert("supertabular","tabular");
+	LatexParser::environmentAliases.insert("cases","array");
+	LatexParser::environmentAliases.insert("matrix","array");
+	LatexParser::environmentAliases.insert("bmatrix","array");
+	LatexParser::environmentAliases.insert("pmatrix","array");
+	LatexParser::environmentAliases.insert("vmatrix","array");
+	LatexParser::environmentAliases.insert("Bmatrix","array");
+	LatexParser::environmentAliases.insert("Vmatrix","array");
+	LatexParser::environmentAliases.insert("smallmatrix","array");
+	LatexParser::environmentAliases.insert("eqnarray","array");
+	LatexParser::environmentAliases.insert("eqnarray*","array");
+	LatexParser::environmentAliases.insert("align","array");
+	LatexParser::environmentAliases.insert("align*","array");
+	LatexParser::environmentAliases.insert("flalign","array");
+	LatexParser::environmentAliases.insert("flalign*","array");
+	LatexParser::environmentAliases.insert("alignat","array");
+	LatexParser::environmentAliases.insert("alignat*","array");
+	LatexParser::environmentAliases.insert("split","array");
+
 	setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
 	setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
 	setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
