@@ -34,6 +34,8 @@ public:
 
 	void setFiles(const QStringList & newFiles);
 	const QStringList& getLoadedFiles();
+
+	QString importedCwlBaseDir;
 private:
 	QStringList files;
 };

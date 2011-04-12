@@ -41,12 +41,13 @@ QString getCommonEOW() {
 	return CommonEOW;
 }
 
-QStringList findResourceFiles(const QString& dirName, const QString& filter) {
+QStringList findResourceFiles(const QString& dirName, const QString& filter, QStringList additionalPreferredPaths) {
 	QStringList searchFiles;
 	QString dn = dirName;
 	if (dn.endsWith('/')||dn.endsWith(QDir::separator())) dn=dn.left(dn.length()-1); //remove / at the end
 	if (!dn.startsWith('/')&&!dn.startsWith(QDir::separator())) dn="/"+dn; //add / at beginning
 	searchFiles<<":"+dn; //resource fall back
+	searchFiles.append(additionalPreferredPaths);
 	searchFiles<<QCoreApplication::applicationDirPath() + dn; //windows new
 	// searchFiles<<QCoreApplication::applicationDirPath() + "/data/"+fileName; //windows new
 #if defined( Q_WS_X11 )
@@ -113,6 +114,14 @@ QString findResourceFile(const QString& fileName, bool allowOverride, QStringLis
 		QFileInfo fic(fn + fileName);
 		if (fic.exists() && fic.isReadable())
 			return fn + fileName;
+	}
+	QString newFileName=fileName.split("/").last();
+	if(!newFileName.isEmpty()){
+	    foreach(const QString& fn, searchFiles) {
+		QFileInfo fic(fn + newFileName);
+		if (fic.exists() && fic.isReadable())
+		    return fn + newFileName;
+	    }
 	}
 	return "";
 }
@@ -1093,7 +1102,10 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexComp
 	QStringList words;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	foreach(const QString file, newFiles) {
-		QString fn=findResourceFile("completion/"+file);
+		QStringList addPaths;
+		if(config)
+		    addPaths<<config->importedCwlBaseDir;
+		QString fn=findResourceFile("completion/"+file,false,addPaths);
 		QFile tagsfile(fn);
 		if (tagsfile.open(QFile::ReadOnly)) {
 			QString line;

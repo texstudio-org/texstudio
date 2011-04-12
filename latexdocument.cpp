@@ -468,6 +468,28 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				updateSyntaxCheck=true;
 				continue;
 			}
+			// special treatment \def
+			if (cmd=="\\def") {
+				completerNeedsUpdate=true;
+				QRegExp rx("(\\\\\\w+)\\s*(#\\d+)?");
+				int options=0;
+				if(rx.indexIn(remainder)>-1){
+				    QString name=rx.cap(1);
+				    QString optionStr=rx.cap(2);
+				    qDebug()<< name << ":"<< optionStr;
+				    options=optionStr.mid(1).toInt(); //returns 0 if conversion fails
+				    ltxCommands.possibleCommands["user"].insert(name);
+				    addedUserCommands << name;
+				    for (int j=0; j<options; j++) {
+					if (j==0) name.append("{%<arg1%|%>}");
+					else name.append(QString("{%<arg%1%>}").arg(j+1));
+				    }
+				    mUserCommandList.insert(line(i).handle(),name);
+				    // remove obsolete Overlays (maybe this can be refined
+				    updateSyntaxCheck=true;
+				}
+				continue;
+			}
 
 			//// newenvironment ////
 			static const QStringList envTokens = QStringList() << "\\newenvironment" << "\\renewenvironment";
@@ -1796,20 +1818,22 @@ QStringList LatexDocument::includedFiles(){
 void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &removed,bool forceUpdate){
     // remove
     QStringList filtered;
+    LatexEditorView *edView=getEditorView();
+    LatexCompleterConfig *config=edView->getCompleter()->getConfig();
     bool update=forceUpdate;
     foreach(QString elem,removed){
 	if(!mUsepackageList.keys(elem).isEmpty())
 	    continue;
 	elem.append(".cwl");
 	if(!filtered.contains(elem)){
-	    QString fn=findResourceFile("completion/"+elem);
+	    QString fn=findResourceFile("completion/"+elem,false,QStringList(config->importedCwlBaseDir));
 	    if(!fn.isEmpty())
 		filtered << elem;
 	}
     }
     if(!filtered.isEmpty()){
 	LatexParser cmds;
-	QStringList removedWords=loadCwlFiles(filtered,&cmds);
+	QStringList removedWords=loadCwlFiles(filtered,&cmds,config);
 	ltxCommands.substract(cmds);
 	foreach(const QString elem,removedWords){
 	    mCompleterWords.removeAll(elem);
@@ -1822,15 +1846,17 @@ void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &remove
     foreach(QString elem,added){
 	elem.append(".cwl");
 	if(!filtered.contains(elem)){
-	    QString fn=findResourceFile("completion/"+elem);
+	    QString fn=findResourceFile("completion/"+elem,false,QStringList(config->importedCwlBaseDir));
 	    if(!fn.isEmpty())
 		filtered << elem;
+	    else {
+		emit importPackage(elem);
+	    }
 	}
     }
     if(!filtered.isEmpty()){
 	LatexParser cmds;
-	LatexEditorView *edView=getEditorView();
-	LatexCompleterConfig *config=edView->getCompleter()->getConfig();
+
 	QStringList addedWords=loadCwlFiles(filtered,&cmds,config);
 	ltxCommands.append(cmds);
 	mCompleterWords << addedWords;
@@ -1848,5 +1874,7 @@ void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &remove
     }
 }
 
-
+bool LatexDocument::containsPackage(const QString name){
+    return mUsepackageList.keys(name).count()>0;
+}
 

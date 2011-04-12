@@ -194,7 +194,7 @@ signals:
 	void watchedMenuChanged(const QString& menuId);
 public:
 //private:
-	QString configFileName,configFileNameBase,defaultStyleName;
+	QString configFileName,configFileNameBase,defaultStyleName,configBaseDir;
 	QMap<QPushButton*, BuildManager::LatexCommand> buttonsToCommands;
 	QMap<BuildManager::LatexCommand, QLineEdit*> commandsToEdits;
 	void loadTranslations(QString locale);

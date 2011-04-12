@@ -61,6 +61,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	svndlg=0;
 	mCompleterNeedsUpdate=false;
 	comboSpellHeight=0;
+	latexStyleParser=0;
 
 	ReadSettings();
 	// set basic set of environemnt aliases (for math and tab)
@@ -273,6 +274,13 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
         if(configManager.autosaveEveryMinutes>0){
             autosaveTimer.start(configManager.autosaveEveryMinutes*1000*60);
 	 }
+}
+
+Texmaker::~Texmaker(){
+    if(latexStyleParser){
+	latexStyleParser->stop();
+	latexStyleParser->wait();
+    }
 }
 
 QMenu* Texmaker::newManagedMenu(QMenu* menu, const QString &id,const QString &text){
@@ -1005,6 +1013,7 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool reloadFromDo
 	connect(edit->editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),edit->document,SLOT(patchStructureRemoval(QDocumentLineHandle*)));
 	connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(completerNeedsUpdate()));
 	connect(edit->editor,SIGNAL(needUpdatedCompleter()), this, SLOT(needUpdatedCompleter()));
+	connect(edit->document,SIGNAL(importPackage(QString)),this,SLOT(importPackage(QString)));
 
 	EditorView->insertTab(reloadFromDoc ? documents.documents.indexOf(edit->document,0) : -1,edit, "?bug?");
 	updateOpenDocumentMenu(false);
@@ -1198,7 +1207,7 @@ void Texmaker::fileMakeTemplate() {
 		return;
 
 	// select a directory/filepath
-	QString currentDir=configManager.configFileNameBase;
+	QString currentDir=configManager.configBaseDir;
 
 	// get a file name
 	QString fn = QFileDialog::getSaveFileName(this,tr("Save As"),currentDir,tr("TeX files")+" (*.tex)");
@@ -2143,7 +2152,7 @@ void Texmaker::ReadSettings() {
 
 	// read usageCount from file of its own.
 	LatexCompleterConfig *conf=configManager.completerConfig;
-	QFile file(configManager.configFileNameBase+"wordCount.usage");
+	QFile file(configManager.configBaseDir+"wordCount.usage");
 	if(file.open(QIODevice::ReadOnly)){
 	    QDataStream in(&file);
 	    quint32 magicNumer,version;
@@ -2265,7 +2274,7 @@ void Texmaker::SaveSettings(QString configName) {
 
 	// save usageCount in file of its own.
 	if(!asProfile){
-	    QFile file(configManager.configFileNameBase+"wordCount.usage");
+	    QFile file(configManager.configBaseDir+"wordCount.usage");
 	    if(file.open(QIODevice::WriteOnly)){
 		QDataStream out(&file);
 		out << (quint32)0xA0B0C0D0;  //magic number
@@ -5110,7 +5119,7 @@ void Texmaker::cursorHovered(){
 }
 
 void Texmaker::saveProfile(){
-	QString currentDir=configManager.configFileNameBase;
+	QString currentDir=configManager.configBaseDir;
 	QString fname = QFileDialog::getSaveFileName(this,tr("Save Profile"),currentDir,tr("TmX Profile","filter")+"(*.tmxprofile);;"+tr("All files")+" (*)");
 	QFileInfo info(fname);
 	if(info.suffix().isEmpty())
@@ -5119,7 +5128,7 @@ void Texmaker::saveProfile(){
 }
 
 void Texmaker::loadProfile(){
-	QString currentDir=configManager.configFileNameBase;
+	QString currentDir=configManager.configBaseDir;
 	QString fname = QFileDialog::getOpenFileName(this,tr("Load Profile"),currentDir,tr("TmX Profile","filter")+"(*.tmxprofile);;"+tr("All files")+" (*)");
 	if(QFileInfo(fname).isReadable()){
 	    SaveSettings();
@@ -5309,4 +5318,38 @@ void Texmaker::findNextWordRepetion(){
 void Texmaker::latexModelViewMode(){
     bool mode=documents.model->getSingleDocMode();
     documents.model->setSingleDocMode(!mode);
+}
+
+void Texmaker::importPackage(QString name){
+    if(!latexStyleParser){
+	latexStyleParser=new LatexStyleParser(this,configManager.configBaseDir);
+	connect(latexStyleParser,SIGNAL(scanCompleted(QString)),this,SLOT(packageScanCompleted(QString)));
+	latexStyleParser->start();
+    }
+    // execute kpsewhich to find style file
+    QString cmd_latex=buildManager.getLatexCommand(BuildManager::CMD_LATEX);
+    QString baseDir;
+    if(!QFileInfo(cmd_latex).isRelative())
+	    baseDir=QFileInfo(cmd_latex).absolutePath();
+    name.chop(4);
+    name.append(".sty");
+    QString cmd=baseDir+"kpsewhich "+name;
+    QString buffer;
+    runCommand(cmd,RCF_WAIT_FOR_FINISHED,&buffer);
+    QStringList packages=buffer.split("\n",QString::SkipEmptyParts);
+    buffer.clear();
+    // add style file to latexparser
+    foreach(QString elem,packages){
+	latexStyleParser->addFile(elem);
+    }
+}
+
+void Texmaker::packageScanCompleted(QString name){
+    foreach(LatexDocument *doc,documents.documents){
+	if(doc->containsPackage(name)){
+	    QStringList added(name);
+	    QStringList removed;
+	    doc->updateCompletionFiles(added,removed,false);
+	}
+    }
 }
