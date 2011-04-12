@@ -156,6 +156,9 @@ public:
 
 	LatexParser ltxCommands;
 
+	bool containsPackage(const QString name);
+	void updateCompletionFiles(QStringList &added,QStringList &removed,bool forceUpdate);
+
 private:
 	QString fileName; //absolute
 	QString temporaryFileName; //absolute, temporary
@@ -189,8 +192,6 @@ private:
 
 	void removeAndDeleteElement(StructureEntry* se, int row);
 
-	void updateCompletionFiles(QStringList &added,QStringList &removed,bool forceUpdate);
-
 #ifndef QT_NO_DEBUG
 public:
 	QSet<StructureEntry*> StructureContent;
@@ -216,6 +217,7 @@ signals:
 	void updateCompleter();
 	void updateBibTeXFiles();
 	void toBeChanged();
+	void importPackage(QString name);
 };
 
 class LatexDocumentsModel: public QAbstractItemModel{

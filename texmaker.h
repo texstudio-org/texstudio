@@ -39,6 +39,7 @@
 #include "qformatfactory.h"
 #include "qlanguagefactory.h"
 #include "qlinemarksinfocenter.h"
+#include "latexstyleparser.h"
 
 typedef QHash<QString,int> SymbolList;
 
@@ -65,6 +66,7 @@ class Texmaker : public QMainWindow {
 
 public:
 	Texmaker(QWidget *parent = 0, Qt::WFlags flags = 0);
+	~Texmaker();
 
 	QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opene
 	QString getAbsoluteFilePath(const QString & relName, const QString &extension=""); //treats the path relative to the compiled .tex file
@@ -421,6 +423,9 @@ private slots:
 	void remHLineCB();
 
 	void latexModelViewMode();
+
+	void importPackage(QString name);
+	void packageScanCompleted(QString name);
 protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
@@ -451,6 +456,8 @@ protected:
 
 	QString fileFilters;
 	QString selectedFileFilter;
+
+	LatexStyleParser *latexStyleParser;
 };
 
 

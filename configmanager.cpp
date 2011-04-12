@@ -395,6 +395,8 @@ QSettings* ConfigManager::readSettings() {
 	}
 	configFileName=config->fileName();
 	configFileNameBase=configFileName;
+	configBaseDir=QFileInfo(configFileName).absolutePath();
+	completerConfig->importedCwlBaseDir=configBaseDir;// set in LatexCompleterConfig to get access from LatexDocument
 	if (configFileNameBase.endsWith(".ini")) configFileNameBase=configFileNameBase.replace(QString(".ini"),"");
 
 	config->beginGroup("texmaker");
@@ -697,7 +699,7 @@ bool ConfigManager::execConfigDialog() {
 	else if (language=="en") confDlg->ui.comboBoxLanguage->setCurrentIndex(confDlg->ui.comboBoxLanguage->count()-2);
 	else confDlg->ui.comboBoxLanguage->setCurrentIndex(confDlg->ui.comboBoxLanguage->count()-1);
 	
-	QStringList files=findResourceFiles("completion","*.cwl");
+	QStringList files=findResourceFiles("completion","*.cwl",QStringList(configBaseDir));
 	QListWidgetItem *item;
 	const QStringList& loadedFiles = completerConfig->getLoadedFiles();
 	foreach(const QString elem,files) {
