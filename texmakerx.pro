@@ -5,8 +5,7 @@ CONFIG = $$unique(CONFIG)
 CONFIG -= debug \
     debug_and_release \
     release
-CONFIG += qt \
-    debug_and_release
+CONFIG += qt debug_and_release precompile_header
 exists(texmakerx_my.pri):include(texmakerx_my.pri)
 QT += network \
     xml \
