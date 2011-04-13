@@ -1,10 +1,11 @@
 #include "latexstyleparser.h"
 
-LatexStyleParser::LatexStyleParser(QObject *parent,QString baseDirName) :
+LatexStyleParser::LatexStyleParser(QObject *parent,QString baseDirName,QString kpsecmd) :
     QThread(parent)
 {
     baseDir=baseDirName;
     stopped=false;
+    kpseWhichCmd=kpsecmd;
     mFiles.clear();
 }
 
@@ -21,6 +22,14 @@ void LatexStyleParser::run(){
 		mFilesLock.lock();
 		QString fn=mFiles.dequeue();
 		mFilesLock.unlock();
+		if(!kpseWhichCmd.isEmpty()){
+		    QProcess myProc(0);
+		    myProc.start(kpseWhichCmd,QStringList(fn));
+		    myProc.waitForFinished();
+		    if(myProc.exitCode()!=0)
+			continue;
+		    fn=myProc.readAllStandardOutput().trimmed();
+		}
 		QFile data(fn);
 		QStringList results;
 		if(data.open(QFile::ReadOnly)){
