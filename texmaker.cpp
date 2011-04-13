@@ -3027,7 +3027,7 @@ void Texmaker::runCommand(BuildManager::LatexCommand cmd, RunCommandFlags flags)
 void Texmaker::runCommand(QString comd, RunCommandFlags flags, QString *buffer) {	
 	QString finame=documents.getTemporaryCompileFileName();
 	QString commandline=comd;
-	if (finame=="") {
+	if (finame=="" && !(flags&RCF_NO_DOCUMENT)) {
 		QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name"));
 		return;
 	}
@@ -5335,7 +5335,8 @@ void Texmaker::importPackage(QString name){
     name.append(".sty");
     QString cmd=baseDir+"kpsewhich "+name;
     QString buffer;
-    runCommand(cmd,RCF_WAIT_FOR_FINISHED,&buffer);
+    RunCommandFlags flags(RCF_WAIT_FOR_FINISHED|RCF_NO_DOCUMENT);
+    runCommand(cmd,flags,&buffer);
     QStringList packages=buffer.split("\n",QString::SkipEmptyParts);
     buffer.clear();
     // add style file to latexparser

@@ -57,7 +57,8 @@ enum RunCommandFlag{
 	RCF_WAIT_FOR_FINISHED = 2,
 	RCF_VIEW_LOG = 4, //show the log (only use if the command changes the log i.e. is latex)
 	RCF_SINGLE_INSTANCE = 8, //single viewer only
-	RCF_CHECK_PDF_LOCK = 16
+	RCF_CHECK_PDF_LOCK = 16,
+	RCF_NO_DOCUMENT = 32 // don't check if document is saved as it is not used
 };
 Q_DECLARE_FLAGS(RunCommandFlags, RunCommandFlag);
 
