@@ -18,6 +18,9 @@ public:
 protected:
     void run();
 
+    QStringList readPackage(QString fn);
+    QString kpsewhich(QString name);
+
 signals:
     void scanCompleted(QString package);
 
