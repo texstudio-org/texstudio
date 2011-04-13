@@ -66,7 +66,6 @@ void ScriptEngineTest::script_data(){
 void ScriptEngineTest::script(){
 	QFETCH(QString, script);
 	QFETCH(QString, newText);
-	qDebug() << ed->cursor().position();
 	scriptengine eng(this);
 	eng.setEditor(ed);
 	eng.setScript(script);

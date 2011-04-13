@@ -641,7 +641,8 @@ ProcessX* BuildManager::newProcess(const QString &unparsedCommandLine, const QSt
 		connect(proc, SIGNAL(finished(int)), SLOT(singleInstanceCompleted(int))); //will free proc after the process has ended
 		runningCommands.insert(cmd, proc);
 	}
-	proc->setWorkingDirectory(mfi.absolutePath());
+	if(!mainFile.isEmpty())
+	    proc->setWorkingDirectory(mfi.absolutePath());
 
 #ifdef Q_WS_MACX
 #if (QT_VERSION >= 0x040600)
