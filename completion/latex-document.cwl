@@ -133,7 +133,7 @@
 \chaptermark{code}#*
 \chaptername{name}#*
 \cite{keylist}
-\cite[text]{keylist}
+\cite[add. text]{keylist}
 \circle{diameter}#*
 \circle*{diameter}#*
 \cleardoublepage

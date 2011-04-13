@@ -9,6 +9,7 @@
 #include "qdocument.h"
 #include "qeditor.h"
 #include "testutil.h"
+#include "latexdocument.h"
 
 #include <QtTest/QtTest>
 LatexCompleterTest::LatexCompleterTest(LatexEditorView* view): edView(view){
@@ -17,10 +18,13 @@ LatexCompleterTest::LatexCompleterTest(LatexEditorView* view): edView(view){
 	config = const_cast<LatexCompleterConfig*>(edView->getCompleter()->getConfig());
 	Q_ASSERT(config);
 	oldEowCompletes = config->eowCompletes;
+	oldPrefered = config->preferedCompletionTab;
+	config->preferedCompletionTab=LatexCompleterConfig::CPC_ALL;
 }
 LatexCompleterTest::~LatexCompleterTest(){
 	edView->editor->setCursorPosition(0,0);
 	config->eowCompletes = oldEowCompletes;
+	config->preferedCompletionTab=LatexCompleterConfig::PreferedCompletionTab(oldPrefered);
 }
 
 void LatexCompleterTest::simple_data(){
@@ -264,7 +268,7 @@ void LatexCompleterTest::simple(){
 	edView->editor->setFlag(QEditor::AutoCloseChars, autoParenComplete);
 	edView->editor->setText(text);
 	edView->editor->setCursor(edView->editor->document()->cursor(line,offset));
-	edView->getCompleter()->setAdditionalWords(QStringList() << "\\a{" << "\\b" << "\\begin{alignat}{n}\n\\end{alignat}" << "\\only<abc>{def}" << "\\only{abc}<def>"); //extra words needed for test
+	edView->getCompleter()->setAdditionalWords(QStringList() << "\\a{" << "\\b" << "\\begin{align*}\n\n\\end{align*}" << "\\begin{alignat}{n}\n\\end{alignat}" << "\\only<abc>{def}" << "\\only{abc}<def>"); //extra words needed for test
 	if (!preinsert.isEmpty()) {
 		edView->editor->insertText(preinsert);
 		QEQUAL(edView->editor->text(), preres);
@@ -274,7 +278,8 @@ void LatexCompleterTest::simple(){
 		char key = s.at(0).toAscii();
 		QTest::keyClick(edView->editor, key);
 		QString text = s.mid(2);
-		QEQUAL(edView->editor->text(), text);
+		QString ist=edView->editor->text();
+		QEQUAL(ist, text);
 	}
 
 	edView->editor->clearPlaceHolders();

@@ -15,6 +15,7 @@ class LatexCompleterTest: public QObject{
 		LatexEditorView *edView;
 		LatexCompleterConfig *config;
 		bool oldEowCompletes;
+		int oldPrefered;
 	private slots:
 		void simple_data();
 		void simple();
