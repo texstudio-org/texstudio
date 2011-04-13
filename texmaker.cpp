@@ -5324,7 +5324,9 @@ void Texmaker::importPackage(QString name){
     if(!latexStyleParser){
 	latexStyleParser=new LatexStyleParser(this,configManager.configBaseDir);
 	connect(latexStyleParser,SIGNAL(scanCompleted(QString)),this,SLOT(packageScanCompleted(QString)));
+	connect(latexStyleParser,SIGNAL(finished()),this,SLOT(packageParserFinished()));
 	latexStyleParser->start();
+	QTimer::singleShot(30000,this,SLOT(stopPackageParser()));
     }
     // execute kpsewhich to find style file
     QString cmd_latex=buildManager.getLatexCommand(BuildManager::CMD_LATEX);
@@ -5353,4 +5355,14 @@ void Texmaker::packageScanCompleted(QString name){
 	    doc->updateCompletionFiles(added,removed,false);
 	}
     }
+}
+
+void Texmaker::stopPackageParser(){
+    if(latexStyleParser)
+	latexStyleParser->stop();
+}
+
+void Texmaker::packageParserFinished(){
+    delete latexStyleParser;
+    latexStyleParser=0;
 }

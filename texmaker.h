@@ -427,6 +427,8 @@ private slots:
 
 	void importPackage(QString name);
 	void packageScanCompleted(QString name);
+	void stopPackageParser();
+	void packageParserFinished();
 protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);

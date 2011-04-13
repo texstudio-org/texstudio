@@ -17,7 +17,7 @@ void LatexStyleParser::run(){
 	forever {
 		//wait for enqueued lines
 		mFilesAvailable.acquire();
-		if(stopped) break;
+		if(stopped && mFiles.count()==0) break;
 		mFilesLock.lock();
 		QString fn=mFiles.dequeue();
 		mFilesLock.unlock();
