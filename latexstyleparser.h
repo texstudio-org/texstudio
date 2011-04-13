@@ -11,7 +11,7 @@ class LatexStyleParser : public QThread
 {
     Q_OBJECT
 public:
-    explicit LatexStyleParser(QObject *parent = 0,QString baseDirName="");
+    explicit LatexStyleParser(QObject *parent = 0,QString baseDirName="",QString kpsecmd="");
     void stop();
     void addFile(QString filename);
 
@@ -31,6 +31,7 @@ private:
     bool stopped;
 
     QString baseDir;
+    QString kpseWhichCmd;
 
 };
 

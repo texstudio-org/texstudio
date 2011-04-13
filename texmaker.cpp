@@ -5322,29 +5322,19 @@ void Texmaker::latexModelViewMode(){
 
 void Texmaker::importPackage(QString name){
     if(!latexStyleParser){
-	latexStyleParser=new LatexStyleParser(this,configManager.configBaseDir);
+	QString cmd_latex=buildManager.getLatexCommand(BuildManager::CMD_LATEX);
+	QString baseDir;
+	if(!QFileInfo(cmd_latex).isRelative())
+		baseDir=QFileInfo(cmd_latex).absolutePath();
+	latexStyleParser=new LatexStyleParser(this,configManager.configBaseDir,baseDir+"kpsewhich");
 	connect(latexStyleParser,SIGNAL(scanCompleted(QString)),this,SLOT(packageScanCompleted(QString)));
 	connect(latexStyleParser,SIGNAL(finished()),this,SLOT(packageParserFinished()));
 	latexStyleParser->start();
 	QTimer::singleShot(30000,this,SLOT(stopPackageParser()));
     }
-    // execute kpsewhich to find style file
-    QString cmd_latex=buildManager.getLatexCommand(BuildManager::CMD_LATEX);
-    QString baseDir;
-    if(!QFileInfo(cmd_latex).isRelative())
-	    baseDir=QFileInfo(cmd_latex).absolutePath();
     name.chop(4);
     name.append(".sty");
-    QString cmd=baseDir+"kpsewhich "+name;
-    QString buffer;
-    RunCommandFlags flags(RCF_WAIT_FOR_FINISHED|RCF_NO_DOCUMENT);
-    runCommand(cmd,flags,&buffer);
-    QStringList packages=buffer.split("\n",QString::SkipEmptyParts);
-    buffer.clear();
-    // add style file to latexparser
-    foreach(QString elem,packages){
-	latexStyleParser->addFile(elem);
-    }
+    latexStyleParser->addFile(name);
 }
 
 void Texmaker::packageScanCompleted(QString name){
