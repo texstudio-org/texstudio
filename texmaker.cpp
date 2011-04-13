@@ -2737,7 +2737,10 @@ void Texmaker::QuickArray() {
 void Texmaker::QuickGraphics(){
     if (!currentEditorView())	return;
 
+    QFileInfo docInfo=currentEditorView()->document->getFileInfo();
+
     InsertGraphics *graphicsDlg = new InsertGraphics(this,tr("Insert Graphic"));
+    graphicsDlg->setDir(docInfo.absolutePath());
     if (graphicsDlg->exec()) {
 	QString insert;
 	if(graphicsDlg->ui.cbFloat->isChecked()){
@@ -2762,11 +2765,14 @@ void Texmaker::QuickGraphics(){
 	QString fname=graphicsDlg->ui.lineEdit->text();
 	QFileInfo info(fname);
 	if(info.isAbsolute()){
-	    QFileInfo docInfo=currentEditorView()->document->getFileInfo();
+
 	    QString path=docInfo.absolutePath();
 	    QString filepath=info.absolutePath();
 	    if(filepath.startsWith(path)){
-		fname=filepath.mid(path.length()+1)+"/"+info.completeBaseName();
+		filepath=filepath.mid(path.length()+1);
+		if(!filepath.isEmpty())
+		    filepath="./"+filepath+"/";
+		fname=filepath+info.completeBaseName();
 	    }
 	}
 	info.setFile(fname);
