@@ -63,6 +63,7 @@ QStringList LatexStyleParser::readPackage(QString fn){
 	    QRegExp rxCom("\\\\(newcommand|providecommad)\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?");
 	    QRegExp rxInput("^\\\\input\\s*\\{?([\\w._]+)");
 	    QRegExp rxRequire("^\\\\RequirePackage\\s*\\{(\\w+,?)+\\}");
+	    QRegExp rxDecMathSym("\\\\DeclareMathSymbol\\s*\\{\\\\(\\w+)\\}");
 	    while(!stream.atEnd()) {
 		line = stream.readLine();
 		int options=0;
@@ -100,6 +101,15 @@ QStringList LatexStyleParser::readPackage(QString fn){
 		    QString name=rxInput.cap(1);
 		    name=kpsewhich(name);
 		    results << readPackage(name);
+		    continue;
+		}
+		if(rxDecMathSym.indexIn(line)>-1){
+		    QString name="\\"+rxDecMathSym.cap(1);
+		    if(name.contains("@"))
+			continue;
+		    name.append("#*m");
+		    if(!results.contains(name))
+			results << name;
 		    continue;
 		}
 		if(rxRequire.indexIn(line)>-1){
