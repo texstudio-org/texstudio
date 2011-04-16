@@ -137,7 +137,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>10</number>
+      <number>7</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -151,8 +151,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>797</width>
-            <height>597</height>
+            <width>823</width>
+            <height>579</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -1500,6 +1500,20 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
               <string>hard line wrap after max. characters</string>
              </property>
             </item>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QCheckBox" name="checkBoxToolTipHelp2">
+            <property name="text">
+             <string>Show help as tooltip on ext in editor</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QCheckBox" name="checkBoxToolTipPreview">
+            <property name="text">
+             <string>Show preview as tooltip on formulas in editor</string>
+            </property>
            </widget>
           </item>
          </layout>
