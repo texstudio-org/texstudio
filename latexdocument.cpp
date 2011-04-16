@@ -1723,12 +1723,12 @@ bool LatexDocument::fileExits(QString fname){
 QString LatexDocument::findFileName(QString fname){
 	QString curPath=ensureTrailingDirSeparator(getFileInfo().absolutePath());
 	QString result;
-	if(QFile(parent->getAbsoluteFilePath(fname,".tex")).exists())
-	    result=QFileInfo(parent->getAbsoluteFilePath(fname,".tex")).absoluteFilePath();
-	if (result.isEmpty() && QFile(parent->getAbsoluteFilePath(curPath+fname,".tex")).exists())
-	    result=QFileInfo(parent->getAbsoluteFilePath(curPath+fname,".tex")).absoluteFilePath();
-	if (result.isEmpty() && QFile(parent->getAbsoluteFilePath(curPath+fname,"")).exists())
-	    result=QFileInfo(parent->getAbsoluteFilePath(curPath+fname,"")).absoluteFilePath();
+	if(QFile(getAbsoluteFilePath(fname,".tex")).exists())
+	    result=QFileInfo(getAbsoluteFilePath(fname,".tex")).absoluteFilePath();
+	if (result.isEmpty() && QFile(getAbsoluteFilePath(curPath+fname,".tex")).exists())
+	    result=QFileInfo(getAbsoluteFilePath(curPath+fname,".tex")).absoluteFilePath();
+	if (result.isEmpty() && QFile(getAbsoluteFilePath(curPath+fname,"")).exists())
+	    result=QFileInfo(getAbsoluteFilePath(curPath+fname,"")).absoluteFilePath();
 	return result;
 }
 
@@ -1878,3 +1878,27 @@ bool LatexDocument::containsPackage(const QString name){
     return mUsepackageList.keys(name).count()>0;
 }
 
+LatexDocument *LatexDocuments::getMasterDocumentForDoc(LatexDocument *doc){ // doc==0 means current document
+    if(masterDocument)
+	return masterDocument;
+    LatexDocument *current=currentDocument;
+    if(doc)
+	current=doc;
+    if(!current)
+	return current;
+    return doc->getTopMasterDocument();
+}
+
+QString LatexDocument::getAbsoluteFilePath(const QString & relName, const QString &extension){
+	QString s=relName;
+	if (!s.endsWith(extension,Qt::CaseInsensitive)) s+=extension;
+	QFileInfo fi(s);
+	if (!fi.isRelative()) return s;
+	LatexDocument *masterDoc=getTopMasterDocument();
+	QString compileFileName=masterDoc->getFileName();
+	if (compileFileName.isEmpty()) return s; //what else can we do?
+	QString compilePath=QFileInfo(compileFileName).absolutePath();
+	if (!compilePath.endsWith("\\") && !compilePath.endsWith("/"))
+		compilePath+=QDir::separator();
+	return  compilePath+s;
+}
