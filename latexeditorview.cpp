@@ -987,7 +987,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	QVector<QParenthesis> parens;
 	switch(LatexParser::findContext(line, cursor.columnNumber(), command, value)){
 	case LatexParser::Unknown:
-		if(cursor.nextChar()==QChar('$')){
+		if(cursor.nextChar()==QChar('$') && config->toolTipPreview){
 			i=cursor.columnNumber();
 			parens=l.parentheses();
 			first=i;
@@ -1024,34 +1024,38 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			command="\\begin{"+value+"}";
 
 		MathEnvirons << "equation" << "math" << "displaymath" << "eqnarray" << "eqnarray*";
-		if(MathEnvirons.contains(value)){
-			if(command.startsWith("\\begin")){
-				// find closing
-				if(value=="eqnarray"||value=="eqnarray*")
-					command="\\begin{eqnarray*}";
-				else command="\\begin{displaymath}";
+		if(MathEnvirons.contains(value)&&config->toolTipPreview){
+		    if(command.startsWith("\\begin")){
+			// find closing
+			if(value=="eqnarray"||value=="eqnarray*")
+			    command="\\begin{eqnarray*}";
+			else command="\\begin{displaymath}";
 
-				int endingLine=editor->document()->findLineContaining(QString("\\end{%1}").arg(value),cursor.lineNumber(),Qt::CaseSensitive,false);
-				QString text;
-				text=command+"\n";
-				for(int i=cursor.lineNumber()+1;i<endingLine;i++){
-					text=text+editor->document()->line(i).text()+"\n";
-				}
-
-				if(value=="eqnarray"||value=="eqnarray*")
-					text+="\\end{eqnarray*}";
-				else text+="\\end{displaymath}";
-
-				emit showPreview(text);
+			int endingLine=editor->document()->findLineContaining(QString("\\end{%1}").arg(value),cursor.lineNumber(),Qt::CaseSensitive,false);
+			QString text;
+			text=command+"\n";
+			for(int i=cursor.lineNumber()+1;i<endingLine;i++){
+			    text=text+editor->document()->line(i).text()+"\n";
 			}
+
+			if(value=="eqnarray"||value=="eqnarray*")
+			    text+="\\end{eqnarray*}";
+			else text+="\\end{displaymath}";
+
+			emit showPreview(text);
+		    }
 		} else {
+		    if(config->toolTipHelp){
 			topic=completer->lookupWord(command);
 			if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
+		    }
 		}
 		break;
 		case LatexParser::Environment:
-		topic=completer->lookupWord("\\begin{"+value+"}");
-		if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
+		    if(config->toolTipHelp){
+			topic=completer->lookupWord("\\begin{"+value+"}");
+			if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
+		    }
 		break;
 		case LatexParser::Reference:
 		{

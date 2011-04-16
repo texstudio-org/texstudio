@@ -264,6 +264,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Check Syntax", &editorConfig->inlineSyntaxChecking, true, &pseudoDialog->checkBoxInlineSyntaxCheck);
 	registerOption("Editor/Show Whitespace", &editorConfig->showWhitespace, true, &pseudoDialog->checkBoxShowWhitespace);
 	registerOption("Editor/TabStop", &editorConfig->tabStop, 4 , &pseudoDialog->sbTabSpace);
+	registerOption("Editor/ToolTip Help", &editorConfig->toolTipHelp, true , &pseudoDialog->checkBoxToolTipHelp2);
+	registerOption("Editor/ToolTip Preview", &editorConfig->toolTipPreview, true , &pseudoDialog->checkBoxToolTipPreview);
 
 	registerOption("Editor/Display Modifytime", &editorConfig->displayModifyTime, true, &pseudoDialog->checkBoxDisplayModifyTime);
 	registerOption("Editor/Close Search Replace Together", &editorConfig->closeSearchAndReplace, false, &pseudoDialog->checkBoxCloseSearchReplaceTogether);
