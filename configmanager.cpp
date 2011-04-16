@@ -267,6 +267,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/ToolTip Help", &editorConfig->toolTipHelp, true , &pseudoDialog->checkBoxToolTipHelp2);
 	registerOption("Editor/ToolTip Preview", &editorConfig->toolTipPreview, true , &pseudoDialog->checkBoxToolTipPreview);
 
+	registerOption("Editor/Replace Quotes", &replaceQuotes, 0 , &pseudoDialog->comboBoxReplaceQuotes);
+
 	registerOption("Editor/Display Modifytime", &editorConfig->displayModifyTime, true, &pseudoDialog->checkBoxDisplayModifyTime);
 	registerOption("Editor/Close Search Replace Together", &editorConfig->closeSearchAndReplace, false, &pseudoDialog->checkBoxCloseSearchReplaceTogether);
 	registerOption("Editor/Use Line For Search", &editorConfig->useLineForSearch, true, &pseudoDialog->checkBoxUseLineForSearch);	
@@ -460,6 +462,7 @@ QSettings* ConfigManager::readSettings() {
 		int keyReplaceCount = config->value("User/KeyReplaceCount",-1).toInt();
 		if (keyReplaceCount ==-1) {
 			//default
+		    /* new system ...
 			keyReplace.append("\"");
 			QString loc=QString(QLocale::system().name()).left(2);
 			if (loc=="de") {
@@ -469,6 +472,7 @@ QSettings* ConfigManager::readSettings() {
 				keyReplaceAfterWord.append("''");
 				keyReplaceBeforeWord.append("``");
 			}
+		    */
 			keyReplace.append("%");
 			keyReplaceBeforeWord.append("%");
 			keyReplaceAfterWord.append(" %");
@@ -500,6 +504,8 @@ QSettings* ConfigManager::readSettings() {
 
 	for (int i=0;i<userTags.size();i++)
 		completerConfig->userMacro.append(Macro(userNames.value(i,""),userTags[i], userAbbrevs.value(i,""),userTriggers.value(i,"")));
+
+
 
 	//menu shortcuts
 	int size = config->beginReadArray("keysetting");
@@ -612,10 +618,12 @@ QSettings* ConfigManager::saveSettings(QString saveName) {
 	//user macros
 	QStringList userTags, userNames, userAbbrevs, userTriggers;
 	foreach (const Macro&m, completerConfig->userMacro){
-		userNames << m.name;
-		userTags << m.tag;
-		userAbbrevs << m.abbrev;
-		userTriggers << m.trigger;
+	    if(m.name=="TMX:Replace Quote Open" || m.name=="TMX:Replace Quote Close")
+		continue;
+	    userNames << m.name;
+	    userTags << m.tag;
+	    userAbbrevs << m.abbrev;
+	    userTriggers << m.trigger;
 	}
 	config->setValue("User/Tags", userTags);
 	config->setValue("User/TagNames", userNames);
@@ -968,6 +976,8 @@ bool ConfigManager::execConfigDialog() {
                 times << 0 << 5 << 10 << 20 << 60;
                 autosaveEveryMinutes=times.value(confDlg->ui.comboBoxAutoSave->currentIndex(),0);
 
+		// update user tags menu to update quote replacement
+		updateUserMacroMenu();
 
 		//completion
 		completerConfig->enabled=confDlg->ui.checkBoxCompletion->isChecked();
@@ -1207,12 +1217,44 @@ QMenu* ConfigManager::updateListMenu(const QString& menuName, const QStringList&
 
 void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems){
 	QStringList macronames;
-	foreach (const Macro&m , completerConfig->userMacro)
-		macronames<<m.name;
+	// remove quote replacement from list
+	for(int i=0;i<completerConfig->userMacro.count();i++){
+	    Macro m=completerConfig->userMacro.at(i);
+	    if(m.name=="TMX:Replace Quote Open" || m.name=="TMX:Replace Quote Close"){
+		completerConfig->userMacro.removeAt(i);
+		i--;
+	    }
+	}
+
+
+	foreach (const Macro&m , completerConfig->userMacro){
+	    macronames<<m.name;
+	}
+
 	QMenu* recreatedMenu = updateListMenu("main/user/tags", macronames, "tag", true, SLOT(InsertUserTag()), Qt::SHIFT+Qt::Key_F1, alwaysRecreateMenuItems);
 	if (recreatedMenu) {
-		recreatedMenu->addSeparator();
-		newOrLostOldManagedAction(recreatedMenu, "manage",QCoreApplication::translate("Texmaker", "Edit User &Tags"), SLOT(EditUserMenu()));
+	    recreatedMenu->addSeparator();
+	    newOrLostOldManagedAction(recreatedMenu, "manage",QCoreApplication::translate("Texmaker", "Edit User &Tags"), SLOT(EditUserMenu()));
+	}
+	// update quote replacement
+	switch(replaceQuotes){
+	case 0:
+	    break;
+	case 1:
+	    completerConfig->userMacro.append(Macro("TMX:Replace Quote Open","``", "","(?<=\\s|^)\""));
+	    completerConfig->userMacro.append(Macro("TMX:Replace Quote Close","''", "","(?<=\\S)\""));
+	    break;
+	case 2:
+	    completerConfig->userMacro.append(Macro("TMX:Replace Quote Open","\"<", "","(?<=\\s|^)\""));
+	    completerConfig->userMacro.append(Macro("TMX:Replace Quote Close","\">", "","(?<=\\S)\""));
+	    break;
+	case 3:
+	    completerConfig->userMacro.append(Macro("TMX:Replace Quote Open","\"`", "","(?<=\\s|^)\""));
+	    completerConfig->userMacro.append(Macro("TMX:Replace Quote Close","\"'", "","(?<=\\S)\""));
+	    break;
+	default:
+	    break;
+
 	}
 }
 

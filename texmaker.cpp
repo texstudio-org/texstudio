@@ -2941,6 +2941,8 @@ void Texmaker::InsertUserTag() {
 void Texmaker::EditUserMenu() {
 	UserMenuDialog *umDlg = new UserMenuDialog(this,tr("Edit User &Tags"),m_languages);
 	foreach (const Macro& m, configManager.completerConfig->userMacro) {
+		if(m.name=="TMX:Replace Quote Open" || m.name=="TMX:Replace Quote Close")
+		    continue;
 		umDlg->names << m.name;
 		umDlg->tags << m.tag;
 		umDlg->abbrevs << m.abbrev;
