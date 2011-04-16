@@ -1886,7 +1886,7 @@ LatexDocument *LatexDocuments::getMasterDocumentForDoc(LatexDocument *doc){ // d
 	current=doc;
     if(!current)
 	return current;
-    return doc->getTopMasterDocument();
+    return current->getTopMasterDocument();
 }
 
 QString LatexDocument::getAbsoluteFilePath(const QString & relName, const QString &extension){
