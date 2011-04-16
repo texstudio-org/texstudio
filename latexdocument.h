@@ -144,6 +144,7 @@ public:
 
 	void setTemporaryFileName(const QString& fileName);
 	QString getTemporaryFileName();
+	QString getAbsoluteFilePath(const QString & relName, const QString &extension);
 
 	void setMasterDocument(LatexDocument* doc);
 	LatexDocument* getMasterDocument() const{
@@ -274,6 +275,8 @@ public:
 	void addDocument(LatexDocument* document);
 	void deleteDocument(LatexDocument* document);
 	void setMasterDocument(LatexDocument* document);
+
+	LatexDocument *getMasterDocumentForDoc(LatexDocument *doc=0); // no argument means current doc ...
 
 	QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opened
 	QString getCompileFileName(); //returns the absolute file name of the file to be compiled (master or current)
