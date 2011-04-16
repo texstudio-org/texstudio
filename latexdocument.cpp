@@ -1714,9 +1714,9 @@ void LatexDocument::setAppendix(StructureEntry *se,int startLine,int endLine,boo
 
 bool LatexDocument::fileExits(QString fname){
 	QString curPath=ensureTrailingDirSeparator(getFileInfo().absolutePath());
-	bool exist=QFile(parent->getAbsoluteFilePath(fname,".tex")).exists();
-	if (!exist) exist=QFile(parent->getAbsoluteFilePath(curPath+fname,".tex")).exists();
-	if (!exist) exist=QFile(parent->getAbsoluteFilePath(curPath+fname,"")).exists();
+	bool exist=QFile(getAbsoluteFilePath(fname,".tex")).exists();
+	if (!exist) exist=QFile(getAbsoluteFilePath(curPath+fname,".tex")).exists();
+	if (!exist) exist=QFile(getAbsoluteFilePath(curPath+fname,"")).exists();
 	return exist;
 }
 
