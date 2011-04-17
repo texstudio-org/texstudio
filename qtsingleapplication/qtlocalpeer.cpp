@@ -114,9 +114,12 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
     QString lockNameOverride = "LOCK_NAME_OVERRIDE_"+socketName.replace("-", "_");
     if (env.contains(lockNameOverride) && QFileInfo(env.value(lockNameOverride)).exists())
-	 lockName = env.value(lockNameOverride);
-    else
-	 setenv(qPrintable(lockNameOverride), qPrintable(lockName), true);
+        lockName = env.value(lockNameOverride);
+    else { 
+        static QString var = lockNameOverride+"="+lockName;
+        static QByteArray varba = var.toAscii();
+        putenv(varba.data()); //putenv doesn't copy the string
+    }
 #endif
 
     lockFile.setFileName(lockName);
