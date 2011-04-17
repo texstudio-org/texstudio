@@ -63,16 +63,16 @@
   </menu>
 
   <menu id="fontsizes" text="Font Sizes">
-    <insert id="tiny" text="tiny" insert="\begin{tiny}%n%|%n\end{tiny}"/>
-    <insert id="scriptsize" text="scriptsize" insert="\begin{scriptsize}%n%|%n\end{scriptsize}"/>
-    <insert id="footnotesize" text="footnotesize" insert="\begin{footnotesize}%n%|%n\end{footnotesize}"/>
-    <insert id="small" text="small" insert="\begin{small}%n%|%n\end{small}"/>
-    <insert id="normalsize" text="normalsize" insert="\begin{normalsize}%n%|%n\end{normalsize}"/>
-    <insert id="large" text="large" insert="\begin{large}%n%|%n\end{large}"/>
-    <insert id="Large" text="Large" insert="\begin{Large}%n%|%n\end{Large}"/>
-    <insert id="LARGE" text="LARGE" insert="\begin{LARGE}%n%|%n\end{LARGE}"/>
-    <insert id="huge" text="huge" insert="\begin{huge}%n%|%n\end{huge}"/>
-    <insert id="Huge" text="Huge" insert="\begin{Huge}%n%|%n\end{Huge}"/>
+    <insert id="tiny" text="tiny" insert="{\tiny %|}"/>
+    <insert id="scriptsize" text="scriptsize" insert="{\scriptsize %|}"/>
+    <insert id="footnotesize" text="footnotesize" insert="{\footnotesize %|}"/>
+    <insert id="small" text="small" insert="{\small %|}"/>
+    <insert id="normalsize" text="normalsize" insert="{\normalsize %|}"/>
+    <insert id="large" text="large" insert="{\large %|}"/>
+    <insert id="Large" text="Large" insert="{\Large %|}"/>
+    <insert id="LARGE" text="LARGE" insert="{\LARGE %|}"/>
+    <insert id="huge" text="huge" insert="{\huge %|}"/>
+    <insert id="Huge" text="Huge" insert="{\Huge %|}"/>
   </menu>
 
   
