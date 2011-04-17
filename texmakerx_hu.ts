@@ -1066,16 +1066,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Once you went to a magic island where you met three strange and wise friends. 
-One of them was always telling the truth, another one was always lying, and the third was deaf, so he answered randomly and couldn&apos;t lie. 
-You asked the first: &quot;Are you lying?&quot;, and he answered: &quot;No&quot;.
-You asked the second: &quot;Was the first one lying?&quot;, and he answered: &quot;No&quot;.
-You asked the last: &quot;Was the second one lying?&quot;, and he answered: &quot;No&quot;.
-
-Which one of the three wise will always tell the truth?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>first</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1097,6 +1087,44 @@ Which one of the three wise will always tell the truth?</source>
     </message>
     <message>
         <source>Only one answer allowed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace double quotes:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>no replacement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>English quotes:  `` &apos;&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>French quotes:  &quot;&lt; &quot;&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>German quotes:  &quot;` &quot;&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show help as tooltip on ext in editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show preview as tooltip on formulas in editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You come to a magic island where you meet three strange and wise friends. 
+One of them is always telling the truth, another one is always lying, and the third is deaf, so he answers randomly and cannot lie(!). 
+You ask the first: &quot;Are you lying?&quot;, and he answers: &quot;No&quot;.
+You ask the second: &quot;Is the first one lying?&quot;, and he answers: &quot;No&quot;.
+You ask the last: &quot;Is the second one lying?&quot;, and he answers: &quot;No&quot;.
+
+Which one of the three wise will always tell the truth?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -69,7 +69,7 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.1 (SVN %1)&lt;/b&gt;</source>
-        <translation type="unfinished">&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt; {2.1 ?} {1)?}</translation>
+        <translation>&lt;b&gt;TexMakerX 2.1 (SVN %1)&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -1340,76 +1340,104 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <source>Times to rerun latex if requested:</source>
-        <translation type="unfinished"></translation>
+        <translation>Max. Anzahl der Latex-Wiederholungen:</translation>
     </message>
     <message>
         <source>no line wrap</source>
-        <translation type="unfinished"></translation>
+        <translation>kein Zeilenumbruch</translation>
     </message>
     <message>
         <source>soft line wrap at window edge</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeilenumbruch an Fenstergrenze</translation>
     </message>
     <message>
         <source>soft line wrap after max. characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeilenumbruch nach max. Zeichen</translation>
     </message>
     <message>
         <source>hard line wrap after max. characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Harten Zeilenumbruch nach max. Zeichen</translation>
     </message>
     <message>
         <source>Additional Commands</source>
-        <translation type="unfinished"></translation>
+        <translation>Zusätzliche Befehle</translation>
     </message>
     <message>
         <source>Prefer &quot;Typical&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Bevorzuge &quot;Typisch&quot;</translation>
     </message>
     <message>
         <source>Prefer &quot;Most Used&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Bevorzuge &quot;Am häufigsten benutzt&quot;</translation>
     </message>
     <message>
         <source>Prefer &quot;All&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Bevorzuge &quot;Alle&quot;</translation>
     </message>
     <message>
         <source>Riddle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Once you went to a magic island where you met three strange and wise friends. 
-One of them was always telling the truth, another one was always lying, and the third was deaf, so he answered randomly and couldn&apos;t lie. 
-You asked the first: &quot;Are you lying?&quot;, and he answered: &quot;No&quot;.
-You asked the second: &quot;Was the first one lying?&quot;, and he answered: &quot;No&quot;.
-You asked the last: &quot;Was the second one lying?&quot;, and he answered: &quot;No&quot;.
-
-Which one of the three wise will always tell the truth?</source>
-        <translation type="unfinished"></translation>
+        <translation>Rätsel</translation>
     </message>
     <message>
         <source>first</source>
-        <translation type="unfinished"></translation>
+        <translation>erste</translation>
     </message>
     <message>
         <source>second</source>
-        <translation type="unfinished"></translation>
+        <translation>zweite</translation>
     </message>
     <message>
         <source>three</source>
-        <translation type="unfinished"></translation>
+        <translation>dritte</translation>
     </message>
     <message>
         <source>last</source>
-        <translation type="unfinished"></translation>
+        <translation>letzte</translation>
     </message>
     <message>
         <source>Please answer 1, 2 or 3</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte antworte 1, 2 oder 3</translation>
     </message>
     <message>
         <source>Only one answer allowed</source>
+        <translation>Nur eine Antwort erlaubt</translation>
+    </message>
+    <message>
+        <source>Replace double quotes:</source>
+        <translation>Ersezte Anführungszeichen:</translation>
+    </message>
+    <message>
+        <source>no replacement</source>
+        <translation>keine Ersetzung</translation>
+    </message>
+    <message>
+        <source>English quotes:  `` &apos;&apos;</source>
+        <translation>Englische Anführungszeichen:  `` &apos;&apos;</translation>
+    </message>
+    <message>
+        <source>French quotes:  &quot;&lt; &quot;&gt;</source>
+        <translation>Französische Anführungszeichen:  &quot;&lt; &quot;&gt;</translation>
+    </message>
+    <message>
+        <source>German quotes:  &quot;` &quot;&apos;</source>
+        <translation>Deutsche Anführungszeichen:  &quot;` &quot;&apos;</translation>
+    </message>
+    <message>
+        <source>Show help as tooltip on ext in editor</source>
+        <translation>Zeige Hilfe als Tooltip auf Text im Editor</translation>
+    </message>
+    <message>
+        <source>Show preview as tooltip on formulas in editor</source>
+        <translation>Zeige Vorschau als Tooltip auf Text im Editor</translation>
+    </message>
+    <message>
+        <source>You come to a magic island where you meet three strange and wise friends. 
+One of them is always telling the truth, another one is always lying, and the third is deaf, so he answers randomly and cannot lie(!). 
+You ask the first: &quot;Are you lying?&quot;, and he answers: &quot;No&quot;.
+You ask the second: &quot;Is the first one lying?&quot;, and he answers: &quot;No&quot;.
+You ask the last: &quot;Is the second one lying?&quot;, and he answers: &quot;No&quot;.
+
+Which one of the three wise will always tell the truth?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1877,7 +1905,7 @@ Which one of the three wise will always tell the truth?</source>
     </message>
     <message>
         <source>Key replacement: %1 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Tatenersetzung: %1 %2</translation>
     </message>
 </context>
 <context>
@@ -2174,7 +2202,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>typical</source>
-        <translation type="unfinished"></translation>
+        <translation>typisch</translation>
     </message>
 </context>
 <context>
@@ -6198,23 +6226,23 @@ SInd Sie sicher, dass Sie weitermachen möchten ?</translation>
     </message>
     <message>
         <source>S&amp;ave Profile...</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;peichere Profil...</translation>
     </message>
     <message>
         <source>Could not start %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Konnte %1 nicht starten.</translation>
     </message>
     <message>
         <source>Show all open documents in this tree</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige alle offenen Dokumenre in diesem Baum</translation>
     </message>
     <message>
         <source>Show only current document in this tree</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige nur das aktuelle Dokument in diesem Baum</translation>
     </message>
     <message>
         <source>Save Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Speichere Profil</translation>
     </message>
 </context>
 <context>
@@ -6587,11 +6615,11 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <source>Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Trigger</translation>
     </message>
     <message>
         <source>If this trigger string is written in any tex document, 
@@ -6603,19 +6631,23 @@ if something is written before the remaining part of the trigger.
 Since this trigger is not a plain string, but a regular expression, 
 (?&lt;=\S) can be used to mark replacements which should only occur after a word, 
 and (?&lt;=\s|^) to mark replacements which should only occur before a word.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn dieser Triggertext in einem tex-Dokument geschrieben wird, so wird durch das aktuelle Makro ersetzt.
+
+Wenn der Trigger mit (?&lt;=etwas) anfängt, sopassiert dies nur wenn &quot;etwas&quot; vor den restlichen Teil des Triggers geschriben wurde.
+
+Da der Triggertext kein einfacher Suchtext, sondern eine regulärer Suchausdruck ist, kann (?&lt;=\S) verwendet werden, um Ersetzungen nach einem Wort und (?&lt;=\s|^) um Ersetzungen vor einem Wort auszulösen.</translation>
     </message>
     <message>
         <source>?</source>
-        <translation type="unfinished">?</translation>
+        <translation>?</translation>
     </message>
     <message>
         <source>Abbrev</source>
-        <translation type="unfinished"></translation>
+        <translation>Abkürzung</translation>
     </message>
     <message>
         <source>Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Makro</translation>
     </message>
 </context>
 <context>
