@@ -376,6 +376,7 @@ QListWidgetItem * ConfigDialog::createIcon(const QString &caption, const QIcon &
 	QListWidgetItem * button=new QListWidgetItem(ui.contentsWidget);
 	button->setIcon(icon);
 	button->setText(caption);
+	button->setToolTip(caption);
 	button->setTextAlignment(Qt::AlignHCenter);
 	button->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 	if (advancedOption) {
