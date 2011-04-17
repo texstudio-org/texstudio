@@ -181,7 +181,11 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			edView->connect(act,SIGNAL(triggered()),edView,SLOT(openExternalFile()));
 			contextMenu->addAction(act);
 		}
-
+		// add action to thesaurus
+		QAction* act=new QAction(LatexEditorView::tr("Thesaurus..."),contextMenu);
+		act->setData(QPoint(cursor.anchorLineNumber(),cursor.anchorColumnNumber()));
+		edView->connect(act,SIGNAL(triggered()),edView,SLOT(triggeredThesaurus()));
+		contextMenu->addAction(act);
 	}
 	contextMenu->addActions(baseActions);
 	if (event->reason()==QContextMenuEvent::Mouse) contextMenu->exec(event->globalPos());
@@ -1342,7 +1346,11 @@ void LatexEditorView::getEnv(int lineNumber,StackEnvironment &env){
     }
 }
 
-
+void LatexEditorView::triggeredThesaurus(){
+    QAction *act = qobject_cast<QAction*>(sender());
+    QPoint pt=act->data().toPoint();
+    emit thesaurus(pt.x(),pt.y());
+}
 
 QString BracketInvertAffector::affect(const QKeyEvent *, const QString& base, int, int) const{
 	static const QString& brackets = "<>()[]{}";

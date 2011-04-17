@@ -568,9 +568,6 @@ void Texmaker::setupMenus() {
 	latexEditorContextMenu << newManagedAction(menu,"previewLatex",tr("Pre&view Selection/Parantheses"), SLOT(previewLatex()),Qt::ALT+Qt::Key_P);
 	latexEditorContextMenu << newManagedAction(menu,"removePreviewLatex",tr("C&lear Inline Preview"), SLOT(clearPreview()));
 
-	if (LatexEditorView::getBaseActions().empty()) //only called at first menu created
-		LatexEditorView::setBaseActions(latexEditorContextMenu);
-
 	menu->addSeparator();
 	newManagedAction(menu,"comment", tr("&Comment"), SLOT(editComment()), Qt::CTRL+Qt::Key_T);
 	newManagedAction(menu,"uncomment",tr("&Uncomment"), SLOT(editUncomment()), Qt::CTRL+Qt::Key_U);
@@ -640,7 +637,7 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	newManagedAction(menu,"spelling",tr("Check Spelling..."),SLOT(editSpell()),Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
 	newManagedAction(menu,"thesaurus",tr("Thesaurus..."),SLOT(editThesaurus()),Qt::CTRL+Qt::SHIFT+Qt::Key_F8);
-        newManagedAction(menu,"wordrepetions",tr("Find word repetitions..."),SLOT(findWordRepetions()));
+	newManagedAction(menu,"wordrepetions",tr("Find word repetitions..."),SLOT(findWordRepetions()));
 
 //  Latex/Math external
 	configManager.loadManagedMenus(":/uiconfig.xml");
@@ -740,6 +737,9 @@ void Texmaker::setupMenus() {
 
 
 //-----context menus-----
+	if (LatexEditorView::getBaseActions().empty()) //only called at first menu created
+		LatexEditorView::setBaseActions(latexEditorContextMenu);
+
 	structureTreeView->setObjectName("StructureTree");
 	structureTreeView->setContextMenuPolicy(Qt::CustomContextMenu);
 	newManagedAction(structureTreeView,"CopySection",tr("Copy"), SLOT(editSectionCopy()));
@@ -1014,6 +1014,7 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool reloadFromDo
 	connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(completerNeedsUpdate()));
 	connect(edit->editor,SIGNAL(needUpdatedCompleter()), this, SLOT(needUpdatedCompleter()));
 	connect(edit->document,SIGNAL(importPackage(QString)),this,SLOT(importPackage(QString)));
+	connect(edit,SIGNAL(thesaurus(int,int)),this,SLOT(editThesaurus(int,int)));
 
 	EditorView->insertTab(reloadFromDoc ? documents.documents.indexOf(edit->document,0) : -1,edit, "?bug?");
 	updateOpenDocumentMenu(false);
@@ -1856,7 +1857,7 @@ void Texmaker::editSpell() {
 	spellDlg->startSpelling();
 }
 
-void Texmaker::editThesaurus() {
+void Texmaker::editThesaurus(int line,int col) {
 	if (!ThesaurusDialog::retrieveDatabase()) {
 		QMessageBox::warning(this,tr("Error"), tr("Can't load Thesaurus Database"));
 		return;
@@ -1865,18 +1866,20 @@ void Texmaker::editThesaurus() {
 	QString word;
 	if (currentEditorView()) {
 		QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
+		if(line>-1 && col>-1){
+		    m_cursor.moveTo(line,col);
+		}
 		if(m_cursor.hasSelection()) word=m_cursor.selectedText();
 		else {
 			m_cursor.select(QDocumentCursor::WordUnderCursor);
 			word=m_cursor.selectedText();
 		}
 		word=latexToPlainWord(word);
-	}
-	thesaurusDialog->setSearchWord(word);
-	if (thesaurusDialog->exec()){
-		QString replace=thesaurusDialog->getReplaceWord();
-		if (currentEditor())
-			currentEditor()->insertText(replace);
+		thesaurusDialog->setSearchWord(word);
+		if (thesaurusDialog->exec()){
+		    QString replace=thesaurusDialog->getReplaceWord();
+		    m_cursor.insertText(replace);
+		}
 	}
 	delete thesaurusDialog;
 }

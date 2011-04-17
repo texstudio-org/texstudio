@@ -119,6 +119,7 @@ private slots:
 	void lineMarkClicked(int line);
 	void lineMarkToolTip(int line, int mark);
 	void checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int excessCols,int ticket);
+	void triggeredThesaurus();
 public slots:
 	void documentContentChanged(int linenr, int count);
 	void lineDeleted(QDocumentLineHandle* l);
@@ -141,6 +142,7 @@ signals:
 	void showPreview(const QString text);
 	void showPreview(const QDocumentCursor& c);
 	void openFile(const QString name);
+	void thesaurus(int line,int col);
 };
 
 
