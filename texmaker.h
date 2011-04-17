@@ -238,7 +238,7 @@ private slots:
 	void editIndent();
 	void editUnindent();
 	void editSpell();
-	void editThesaurus();
+	void editThesaurus(int line=-1,int col=-1);
 	void editChangeLineEnding();
 	void editSetupEncoding();
 	void editInsertUnicode();
