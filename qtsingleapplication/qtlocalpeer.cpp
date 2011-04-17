@@ -48,6 +48,7 @@
 #include "qtlocalpeer.h"
 #include <QtCore/QCoreApplication>
 #include <QtCore/QTime>
+#include <QtCore/QProcessEnvironment>
 
 #if defined(Q_OS_WIN)
 #include <QtCore/QLibrary>
@@ -107,6 +108,17 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
     QString lockName = QDir(QDir::tempPath()).absolutePath()
                        + QLatin1Char('/') + socketName
                        + QLatin1String("-lockfile");
+
+#if QT_VERSION >= 0x040600
+    //prevent change of temporary directory through called child processes
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+    QString lockNameOverride = "LOCK_NAME_OVERRIDE_"+socketName.replace("-", "_");
+    if (env.contains(lockNameOverride) && QFileInfo(env.value(lockNameOverride)).exists())
+	 lockName = env.value(lockNameOverride);
+    else
+	 setenv(qPrintable(lockNameOverride), qPrintable(lockName), true);
+#endif
+
     lockFile.setFileName(lockName);
     lockFile.open(QIODevice::ReadWrite);
 }
