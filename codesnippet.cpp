@@ -390,8 +390,8 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 	}
 }
 
-void CodeSnippet::setName(const QString& name){
-	sortWord.prepend(name);
+void CodeSnippet::setName(const QString& newName){
+	name=newName;
 }
 QString CodeSnippet::getName(){
 	return name;
