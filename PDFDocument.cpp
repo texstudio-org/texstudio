@@ -1707,14 +1707,7 @@ void PDFDocument::loadFile(const QString &fileName, const QString& externalViewe
 		setFocus();
 		if (scrollArea) scrollArea->setFocus();
 	}
-	// set page viewer only once
-	QFontMetrics fontMetrics(font());
-	QString placeHolder = "#";
-	for (int i=0; i<=log10(document->numPages()); i++) {
-		placeHolder.append("#");
-	}
-	leCurrentPage->setFixedWidth(fontMetrics.width(placeHolder));
-	leCurrentPageValidator->setTop(document->numPages());
+
 }
 
 void PDFDocument::reload()
@@ -1749,6 +1742,15 @@ void PDFDocument::reload()
 			pdfWidget->setDocument(document);
 			pdfWidget->show();
 			pdfWidget->setFocus();
+
+			// set page viewer only once
+			QFontMetrics fontMetrics(font());
+			QString placeHolder = "#";
+			for (int i=0; i<=log10(document->numPages()); i++) {
+				placeHolder.append("#");
+			}
+			leCurrentPage->setFixedWidth(fontMetrics.width(placeHolder));
+			leCurrentPageValidator->setTop(document->numPages());
 
 			loadSyncData();
 			emit reloaded();
