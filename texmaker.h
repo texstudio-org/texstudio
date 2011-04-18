@@ -55,10 +55,11 @@ enum SVNSTATUS {
 enum RunCommandFlag{
 	RCF_SHOW_STDOUT = 1,//low priority, overriden by configmanager always, both overriden by /dev/null redirection
 	RCF_WAIT_FOR_FINISHED = 2,
-	RCF_VIEW_LOG = 4, //show the log (only use if the command changes the log i.e. is latex)
+	RCF_VIEW_LOG = 4, //show the log (only use if the command changes the log i.e. is latex), also enable reruns
 	RCF_SINGLE_INSTANCE = 8, //single viewer only
 	RCF_CHECK_PDF_LOCK = 16,
-	RCF_NO_DOCUMENT = 32 // don't check if document is saved as it is not used
+	RCF_NO_DOCUMENT = 32, // don't check if document is saved as it is not used
+	RCF_IS_RERUN_CALL = 64 // call is an automatically rerun (internal)
 };
 Q_DECLARE_FLAGS(RunCommandFlags, RunCommandFlag);
 
@@ -307,7 +308,7 @@ private slots:
 	void QuickGraphics();
 
 	void runCommand(BuildManager::LatexCommand cmd, RunCommandFlags flags);
-	void runCommand(QString comd, RunCommandFlags flags = 0, QString *buffer = 0); //default flags == 0 is necessary for pdf viewer
+	void runCommand(const QString& commandline, RunCommandFlags flags = 0, QString *buffer = 0); //default flags == 0 is necessary for pdf viewer
 	void RunPreCompileCommand();
 	void readFromStderr();
 	void readFromStdoutput();
@@ -328,7 +329,7 @@ private slots:
 	
 	void RealViewLog(bool noTabChange=false);
 	void ViewLog(bool noTabChange=false);
-	void ViewAndHighlightError();
+	void ViewLogOrReRun();
 	void DisplayLatexError();
 	void NextMark();
 	void PreviousMark();
@@ -461,7 +462,12 @@ protected:
 	QString selectedFileFilter;
 
 	LatexStyleParser *latexStyleParser;
+
+	int remainingReRunCount;
+	QString rerunCommand;
+	RunCommandFlags rerunFlags;
 };
+
 
 
 

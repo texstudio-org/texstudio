@@ -3035,9 +3035,8 @@ void Texmaker::runCommand(BuildManager::LatexCommand cmd, RunCommandFlags flags)
 		flags |= RCF_SINGLE_INSTANCE;
 	runCommand(buildManager.getLatexCommand(cmd),flags);
 }
-void Texmaker::runCommand(QString comd, RunCommandFlags flags, QString *buffer) {	
+void Texmaker::runCommand(const QString& commandline, RunCommandFlags flags, QString *buffer) {
 	QString finame=documents.getTemporaryCompileFileName();
-	QString commandline=comd;
 	if (finame=="" && !(flags&RCF_NO_DOCUMENT)) {
 		QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name"));
 		return;
@@ -3049,45 +3048,56 @@ void Texmaker::runCommand(QString comd, RunCommandFlags flags, QString *buffer) 
 		return;
 	}
 
-	if (commandline.trimmed().startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER)) {
+	if (!(flags & RCF_IS_RERUN_CALL)) {
+		if (commandline.trimmed().startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER)) {
 #ifndef NO_POPPLER_PREVIEW
-		QString pdfFile = BuildManager::parseExtendedCommandLine("?am.pdf", finame);
-		QString externalViewer = buildManager.getLatexCommand(BuildManager::CMD_VIEWPDF);
-		if (externalViewer.startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER)) {
-			externalViewer.remove(0,BuildManager::TMX_INTERNAL_PDF_VIEWER.length());
-			if (externalViewer.startsWith('/')) externalViewer.remove(0,1);
-		}
-		externalViewer = BuildManager::parseExtendedCommandLine(externalViewer, finame, getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1);
-		if (PDFDocument::documentList().isEmpty()) {
-			newPdfPreviewer();
-			Q_ASSERT(!PDFDocument::documentList().isEmpty());
-		}
-		foreach (PDFDocument* viewer, PDFDocument::documentList()) {
-			viewer->loadFile(pdfFile,externalViewer);
-			viewer->syncFromSource(getCurrentFileName(), currentEditorView()->editor->cursor().lineNumber(), true);
-		}
+			QString pdfFile = BuildManager::parseExtendedCommandLine("?am.pdf", finame);
+			QString externalViewer = buildManager.getLatexCommand(BuildManager::CMD_VIEWPDF);
+			if (externalViewer.startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER)) {
+				externalViewer.remove(0,BuildManager::TMX_INTERNAL_PDF_VIEWER.length());
+				if (externalViewer.startsWith('/')) externalViewer.remove(0,1);
+			}
+			externalViewer = BuildManager::parseExtendedCommandLine(externalViewer, finame, getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1);
+			if (PDFDocument::documentList().isEmpty()) {
+				newPdfPreviewer();
+				Q_ASSERT(!PDFDocument::documentList().isEmpty());
+			}
+			foreach (PDFDocument* viewer, PDFDocument::documentList()) {
+				viewer->loadFile(pdfFile,externalViewer);
+				viewer->syncFromSource(getCurrentFileName(), currentEditorView()->editor->cursor().lineNumber(), true);
+			}
 #else
-		QMessageBox::critical(this, "TexMakerX", tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of TexMakerX that was compiled without the internal pdf viewer."), QMessageBox::Ok);
+			QMessageBox::critical(this, "TexMakerX", tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of TexMakerX that was compiled without the internal pdf viewer."), QMessageBox::Ok);
 #endif
-		return;
-	}
+			return;
+		}
 
-	// check for locking of pdf
-	if((flags & RCF_CHECK_PDF_LOCK) && configManager.autoCheckinAfterSave){
-		QFileInfo fi(finame);
-		QString basename=fi.baseName();
-		QString path=fi.path();
-		fi.setFile(path+"/"+basename+".pdf");
-		if(fi.exists() && !fi.isWritable()){
-			//pdf not writeable, needs locking ?
-			svnLock(fi.filePath());
+
+		// check for locking of pdf
+		if((flags & RCF_CHECK_PDF_LOCK) && configManager.autoCheckinAfterSave){
+			QFileInfo fi(finame);
+			QString basename=fi.baseName();
+			QString path=fi.path();
+			fi.setFile(path+"/"+basename+".pdf");
+			if(fi.exists() && !fi.isWritable()){
+				//pdf not writeable, needs locking ?
+				svnLock(fi.filePath());
+			}
 		}
 	}
 
-int reRunCount = configManager.rerunLatex;
-rerun:
+	if (configManager.rerunLatex > 0 && (flags & RCF_VIEW_LOG)) {
+		if (!(flags & RCF_IS_RERUN_CALL)) {
+			remainingReRunCount = configManager.rerunLatex;
+			rerunCommand = commandline;
+			rerunFlags = flags | RCF_IS_RERUN_CALL;
+		} else
+			remainingReRunCount--;
+	} else
+		remainingReRunCount = 0;
 
-	ProcessX* procX = buildManager.newProcess(comd,finame,getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1,flags & RCF_SINGLE_INSTANCE);
+
+	ProcessX* procX = buildManager.newProcess(commandline,finame,getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1,flags & RCF_SINGLE_INSTANCE);
 
 	if (!procX) return; //a singleInstance that is already running
 
@@ -3103,6 +3113,9 @@ rerun:
 	if (flags & RCF_VIEW_LOG) ClearMarkers();
 	outputView->resetMessages();
 
+	if (flags & RCF_VIEW_LOG && configManager.showLogAfterCompiling)
+		connect(procX,SIGNAL(finished(int)),this,SLOT(ViewLogOrReRun()));
+
 	//OutputTextEdit->insertLine(commandline+"\n");
 	FINPROCESS = false;
 	procX->startCommand();
@@ -3110,9 +3123,6 @@ rerun:
 		ERRPROCESS=true;
 		return;
 	}
-
-	if ((flags & RCF_VIEW_LOG) && configManager.showLogAfterCompiling)
-		connect(procX,SIGNAL(finished(int)),this,SLOT(ViewAndHighlightError()));
 
 	if (flags & RCF_WAIT_FOR_FINISHED) {
 		QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
@@ -3132,13 +3142,6 @@ rerun:
 		}
 		PROCESSRUNNING=false;
 		QApplication::restoreOverrideCursor();
-
-		if ((flags & RCF_VIEW_LOG) && reRunCount > 0 && outputView->getLogModel()->existsReRunWarning()) {
-			//rerun latex
-			reRunCount--;
-			goto rerun;
-		}
-
 	}
 }
 
@@ -3256,7 +3259,7 @@ void Texmaker::QuickBuild() {
 	REQUIRE(buildManager.quickmode == 8); //user quick mode
 
 	runCommandList(buildManager.getLatexCommand(BuildManager::CMD_USER_QUICK).split("|"),0);
-	ViewAndHighlightError();
+	ViewLog();
 }
 
 void Texmaker::runCommandList(const QStringList& commandList, const RunCommandFlags& additionalFlags){
@@ -3479,16 +3482,10 @@ void Texmaker::ViewLog(bool noTabChange) {
 	}
 }
 
-//this is show after latex compilation to show the errors (it only opens the log them if there are any)
-void Texmaker::ViewAndHighlightError(){
+void Texmaker::ViewLogOrReRun(){
 	ViewLog();
-	//it seems viewlog does this already, it calls nexterror if there are errors and
-	//nexterror shows the log;
-	//but should nextError really show the log?
-	/*if (!NoLatexErrors()) {
-		//NextError();
-		outputView->showErrorListOrLog();
-	}*/
+	if (NoLatexErrors() && remainingReRunCount > 0 && outputView->getLogModel()->existsReRunWarning())
+		runCommand(rerunCommand, rerunFlags);
 }
 
 ////////////////////////// ERRORS /////////////////////////////
