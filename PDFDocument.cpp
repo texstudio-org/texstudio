@@ -1500,11 +1500,12 @@ PDFDocument::init()
 	leCurrentPageValidator=new QIntValidator(1,99999,leCurrentPage);
 	leCurrentPage->setValidator(leCurrentPageValidator);
 	leCurrentPage->setText("1");
+	leCurrentPage->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
 	connect(leCurrentPage,SIGNAL(returnPressed()),this,SLOT(jumpToPage()));
 	pageCountLabel=new QLabel(toolBar);
 	pageCountLabel->setText(tr("of %1").arg(1));
-	toolBar->addWidget(leCurrentPage);
-	toolBar->addWidget(pageCountLabel);
+	toolBar->insertWidget(actionNext_Page, leCurrentPage);
+	toolBar->insertWidget(actionNext_Page, pageCountLabel);
 
 	scaleLabel = new QLabel();
 	statusBar()->addPermanentWidget(scaleLabel);
@@ -1706,6 +1707,14 @@ void PDFDocument::loadFile(const QString &fileName, const QString& externalViewe
 		setFocus();
 		if (scrollArea) scrollArea->setFocus();
 	}
+	// set page viewer only once
+	QFontMetrics fontMetrics(font());
+	QString placeHolder = "#";
+	for (int i=0; i<=log10(document->numPages()); i++) {
+		placeHolder.append("#");
+	}
+	leCurrentPage->setFixedWidth(fontMetrics.width(placeHolder));
+	leCurrentPageValidator->setTop(document->numPages());
 }
 
 void PDFDocument::reload()
@@ -2064,7 +2073,7 @@ void PDFDocument::showPage(int page)
 	else pageLabel->setText(tr("pages %1 to %2 of %3").arg(page).arg(page+pdfWidget->visiblePages()-1).arg(document->numPages()));
 	pageCountLabel->setText(tr("of %1").arg(document->numPages()));
 	leCurrentPage->setText(QString("%1").arg(page));
-	leCurrentPageValidator->setTop(document->numPages());
+
 }
 
 void PDFDocument::showScale(qreal scale)
