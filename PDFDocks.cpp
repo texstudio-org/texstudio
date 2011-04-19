@@ -744,11 +744,14 @@ PDFOverviewDock::PDFOverviewDock(PDFDocument *doc)
 	list->setSpacing(12);
 	list->setBackgroundRole(QPalette::Mid);
 	setWidget(list);
-
+	renderEngine.start();
+	connect(&renderEngine,SIGNAL(sendImage(QImage,int)),this,SLOT(insertImage(QImage,int)));
 }
 
 PDFOverviewDock::~PDFOverviewDock()
 {
+    renderEngine.stop();
+    renderEngine.wait();
 }
 
 void PDFOverviewDock::changeLanguage()
@@ -763,6 +766,8 @@ void PDFOverviewDock::fillInfo()
     list->clear();
     toGenerate=0;
     if (!document || !document->popplerDoc()) return;
+    Poppler::Document *dc=Poppler::Document::load(document->fileName());
+    renderEngine.setDocument(dc);
     Poppler::Document *doc = document->popplerDoc();
     int sx=128;
     int sy=128;
@@ -788,7 +793,7 @@ void PDFOverviewDock::fillInfo()
     }
 
     list->setCurrentRow(0);
-    QTimer::singleShot(20, this, SLOT(showImage()));
+    showImage();
 }
 
 void PDFOverviewDock::documentClosed()
@@ -811,25 +816,25 @@ void PDFOverviewDock::pageChanged(int page)
     list->setCurrentRow(page);
 }
 
-void PDFOverviewDock::showImage(int num){
-    int i=num;
-    if(i<0){
-        i=toGenerate;
-        toGenerate++;
-    }
+void PDFOverviewDock::showImage(){
     Poppler::Document *doc = document->popplerDoc();
-    if(i<0 || i>=doc->numPages())
-        return;
-    Poppler::Page* page=doc->page(i);
-    QImage image=page->thumbnail();
-    if(image.isNull()){
-        image=page->renderToImage();
+    for(int i=0;i<doc->numPages();i++){
+	Poppler::Page* page=doc->page(i);
+	QImage image=page->thumbnail();
+	if(image.isNull()){
+	    RenderCommand cmd(i);
+	    renderEngine.enqueue(cmd);
+	}else{
+	    insertImage(image,i);
+	}
+	delete page;
     }
-    delete page;
+}
+
+void PDFOverviewDock::insertImage(QImage image,int page){
     QPixmap pxMap=QPixmap::fromImage(image.scaled(128,128,Qt::KeepAspectRatio,Qt::SmoothTransformation));
-    QListWidgetItem *lw = list->item(i);
+    QListWidgetItem *lw = list->item(page);
     lw->setIcon(QIcon(pxMap));
-    QTimer::singleShot(20, this, SLOT(showImage()));
 }
 
 
