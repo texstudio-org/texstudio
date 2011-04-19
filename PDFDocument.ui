@@ -82,6 +82,7 @@
     <addaction name="actionActual_Size"/>
     <addaction name="actionFit_to_Width"/>
     <addaction name="actionFit_to_Window"/>
+    <addaction name="actionContinuous"/>
     <addaction name="menuGrid"/>
     <addaction name="separator"/>
     <addaction name="actionFull_Screen"/>
@@ -744,7 +745,7 @@
     <bool>true</bool>
    </property>
    <property name="checked">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>Single Page Step</string>
@@ -770,6 +771,17 @@
    </property>
    <property name="shortcut">
     <string>F5</string>
+   </property>
+  </action>
+  <action name="actionContinuous">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Continuous</string>
    </property>
   </action>
  </widget>

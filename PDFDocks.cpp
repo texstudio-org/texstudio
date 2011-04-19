@@ -584,20 +584,146 @@ bool PDFSearchDock::hasFlagSync() const {
 //////////////// SCROLL AREA ////////////////
 
 PDFScrollArea::PDFScrollArea(QWidget *parent)
-	: QScrollArea(parent)
+	: QAbstractScrollArea(parent),continuous(true),pdf(0)
 {
+	viewport()->setBackgroundRole(QPalette::NoRole);
+	verticalScrollBar()->setSingleStep(20);
+	horizontalScrollBar()->setSingleStep(20);
+}
+
+void PDFScrollArea::setPDFWidget(PDFWidget* widget){
+	//from qt
+	if (pdf == widget) return;
+	if (pdf) delete pdf;
+	pdf = 0;
+	horizontalScrollBar()->setValue(0);
+	verticalScrollBar()->setValue(0);
+	if (widget->parentWidget() != viewport())
+		widget->setParent(viewport());
+	if (!widget->testAttribute(Qt::WA_Resized))
+	    widget->resize(widget->sizeHint());
+	pdf = widget;
+	pdf->setAutoFillBackground(true);
+	pdf->installEventFilter(this);
+	updateScrollBars();
+	pdf->show();
+
+}
+
+void PDFScrollArea::ensureVisible(int x, int y, int xmargin, int ymargin){
+	int logicalX = QStyle::visualPos(layoutDirection(), viewport()->rect(), QPoint(x, y)).x();
+
+	if (logicalX - xmargin < horizontalScrollBar()->value()) {
+	    horizontalScrollBar()->setValue(qMax(0, logicalX - xmargin));
+	} else if (logicalX > horizontalScrollBar()->value() + viewport()->width() - xmargin) {
+	    horizontalScrollBar()->setValue(qMin(logicalX - viewport()->width() + xmargin, horizontalScrollBar()->maximum()));
+	}
+
+	if (y - ymargin < verticalScrollBar()->value()) {
+	    verticalScrollBar()->setValue(qMax(0, y - ymargin));
+	} else if (y > verticalScrollBar()->value() + viewport()->height() - ymargin) {
+	    verticalScrollBar()->setValue(qMin(y - viewport()->height() + ymargin, verticalScrollBar()->maximum()));
+	}
 }
 
 PDFScrollArea::~PDFScrollArea()
 {
+
+}
+
+void PDFScrollArea::setContinuous(bool cont){
+	Q_ASSERT(pdf);
+	if (cont == continuous) return;
+	continuous = cont;
+	if (!cont) pdf->setGridSize(pdf->gridCols(), 1);
+	else resizeEvent(0);
+}
+
+bool PDFScrollArea::event(QEvent * e){
+	if (e->type() == QEvent::StyleChange || e->type() == QEvent::LayoutRequest) {
+		updateScrollBars();
+	}
+/*   #ifdef QT_KEYPAD_NAVIGATION
+	else if (QApplication::keypadNavigationEnabled()) {
+	    if (e->type() == QEvent::Show)
+		 QApplication::instance()->installEventFilter(this);
+	    else if (e->type() == QEvent::Hide)
+		 QApplication::instance()->removeEventFilter(this);
+	}
+   #endif*/
+	return QAbstractScrollArea::event(e);
+}
+
+bool PDFScrollArea::eventFilter(QObject * o, QEvent * e){
+	if (o == pdf && e->type() == QEvent::Resize) {
+		if (continuous)
+			pdf->setGridSize(pdf->gridCols(), height() / pdf->gridRowHeight() + 2);
+		updateScrollBars();
+	}
+
+	return false;
 }
 
 void
 PDFScrollArea::resizeEvent(QResizeEvent *event)
 {
-	QScrollArea::resizeEvent(event);
+	Q_ASSERT(pdf);
+	if (continuous)
+		pdf->setGridSize(pdf->gridCols(), height() / pdf->gridRowHeight() + 2);
 	emit resized();
+	updateScrollBars();
 }
+
+void PDFScrollArea::scrollContentsBy(int dx, int dy)
+{
+	Q_ASSERT(pdf);
+	updateWidgetPosition();
+}
+
+void PDFScrollArea::updateWidgetPosition(){
+	Q_ASSERT(pdf);
+	Qt::LayoutDirection dir = layoutDirection();
+	QScrollBar* hbar = horizontalScrollBar(), *vbar = verticalScrollBar();
+	if (!continuous) {
+		//from qt
+		QRect scrolled = QStyle::visualRect(dir, viewport()->rect(), QRect(QPoint(-hbar->value(), -vbar->value()), pdf->size()));
+		QRect aligned = QStyle::alignedRect(dir, Qt::AlignCenter, pdf->size(), viewport()->rect());
+		pdf->move(pdf->width() < viewport()->width() ? aligned.x() : scrolled.x(),
+			      pdf->height() < viewport()->height() ? aligned.y() : scrolled.y());
+	} else {
+		int rowHeight = pdf->gridRowHeight();
+		QRect scrolled = QStyle::visualRect(dir, viewport()->rect(), QRect(QPoint(-hbar->value(), -(vbar->value() % rowHeight)), pdf->size()));
+		QRect aligned = QStyle::alignedRect(dir, Qt::AlignCenter, pdf->size(), viewport()->rect());
+		pdf->move(pdf->width() < viewport()->width() ? aligned.x() : scrolled.x(),
+			      pdf->height() < viewport()->height() ? aligned.y() : scrolled.y());
+		pdf->goToPage((vbar->value() / rowHeight)*pdf->gridCols() ,true);
+	}
+}
+
+void PDFScrollArea::updateScrollBars(){
+	Q_ASSERT(pdf);
+	QScrollBar* hbar = horizontalScrollBar(), *vbar = verticalScrollBar();
+
+	QSize p = viewport()->size();
+	QSize m = maximumViewportSize();
+
+	if (m.expandedTo(pdf->size()) == m)
+	    p = m; // no scroll bars needed
+
+	QSize v = pdf->size();
+
+	hbar->setRange(0, v.width() - p.width());
+	hbar->setPageStep(p.width());
+	if (!continuous) {
+		vbar->setRange(0, v.height() - p.height());
+	} else {
+		vbar->setRange(0,((pdf->numPages() + pdf->gridCols() - 1)/ pdf->gridCols() - 1) * pdf->gridRowHeight() );
+	}
+	vbar->setPageStep(p.height());
+	updateWidgetPosition();
+
+}
+
 
 //////////////// Overview ////////////////
 struct renderInfo{

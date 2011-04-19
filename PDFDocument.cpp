@@ -79,6 +79,7 @@ const int kPDFHighlightDuration = 2000;
 
 static PDFDocumentConfig* globalConfig = 0;
 
+static const int GridBorder = 5;
 //====================Zoom utils==========================
 
 void zoomToScreen(QWidget *window)
@@ -602,7 +603,7 @@ void PDFWidget::goToDestination(const Poppler::LinkDestination& dest)
 		if (dest.isChangeZoom()) {
 			// FIXME
 		}
-		QScrollArea*	scrollArea = getScrollArea();
+		QAbstractScrollArea*	scrollArea = getScrollArea();
 		if (scrollArea) {
 			QPoint p = gridMapFromScaledPosition(QPointF( dest.left(), dest.top()));
 			if (dest.isChangeLeft())
@@ -709,7 +710,7 @@ void PDFWidget::mouseMoveEvent(QMouseEvent *event)
 			{
 				QPoint delta = event->globalPos() - scrollClickPos;
 				scrollClickPos = event->globalPos();
-				QScrollArea*	scrollArea = getScrollArea();
+				QAbstractScrollArea*	scrollArea = getScrollArea();
 				if (scrollArea) {
 					int oldX = scrollArea->horizontalScrollBar()->value();
 					scrollArea->horizontalScrollBar()->setValue(oldX - delta.x());
@@ -947,7 +948,7 @@ void PDFWidget::setHighlightPath(const int page, const QPainterPath& path)
 	if (!path.isEmpty()) {
 		if (gridx*gridy >= 1)
 			highlightPath.translate(QPointF(gridPagePosition(page - pageIndex)) / dpi * 72 / scaleFactor);
-		QScrollArea*	scrollArea = getScrollArea();
+		PDFScrollArea*	scrollArea = getScrollArea();
 		if (scrollArea) {
 			QRectF r = highlightPath.boundingRect();
 			scrollArea->ensureVisible((int)((r.left() + r.right()) / 2 * dpi / 72 * scaleFactor),
@@ -1019,10 +1020,23 @@ int PDFWidget::visiblePages() const {
 	return pages.size();
 }
 
+int PDFWidget::numPages() const{
+	if (!document) return 0;
+	return document->numPages();
+}
+
 int PDFWidget::pageStep() const {
 	if (singlePageStep) return 1;
 	return gridx*gridy;
 }
+
+int PDFWidget::gridCols() const{
+	return gridx;
+}
+int PDFWidget::gridRowHeight() const{
+	return gridPageRect(0).height() + GridBorder;
+}
+
 
 void PDFWidget::setSinglePageStep(bool step){
 	if (singlePageStep == step)
@@ -1030,7 +1044,6 @@ void PDFWidget::setSinglePageStep(bool step){
 	singlePageStep = step;
 	goToPage(pageIndex);
 }
-
 
 void PDFWidget::goFirst()
 {
@@ -1193,7 +1206,7 @@ void PDFWidget::fitWidth(bool checked)
 {
 	if (checked) {
 		scaleOption = kFitWidth;
-		QScrollArea*	scrollArea = getScrollArea();
+		QAbstractScrollArea*	scrollArea = getScrollArea();
 		if (scrollArea && !pages.isEmpty()) {
 			qreal portWidth = scrollArea->viewport()->width();
 			QSizeF	pageSize = gridSizeF() * dpi / 72.0;
@@ -1217,7 +1230,7 @@ void PDFWidget::fitWindow(bool checked)
 {
 	if (checked) {
 		scaleOption = kFitWindow;
-		QScrollArea*	scrollArea = getScrollArea();
+		QAbstractScrollArea*	scrollArea = getScrollArea();
 		if (scrollArea && !pages.isEmpty()) {
 			qreal portWidth = scrollArea->viewport()->width();
 			qreal portHeight = scrollArea->viewport()->height();
@@ -1272,7 +1285,7 @@ void PDFWidget::doZoom(const QPoint& clickPos, int dir) // dir = 1 for in, -1 fo
 	QPoint localPos = mapFromGlobal(globalPos);
 	QPoint pageToLocal(int(pagePos.x() * scaleFactor / 72.0 * dpi),
 						int(pagePos.y() * scaleFactor / 72.0 * dpi));
-	QScrollArea*	scrollArea = getScrollArea();
+	QAbstractScrollArea*	scrollArea = getScrollArea();
 	if (scrollArea) {
 		QScrollBar* hs = scrollArea->horizontalScrollBar();
 		if (hs != NULL)
@@ -1302,7 +1315,6 @@ void PDFWidget::zoomOut()
 }
 
 //TODO: optimize?
-static const int GridBorder = 5;
 QRect PDFWidget::gridPageRect(int pageIndex) const{
 	if (gridx*gridy <= 1)
 		return rect();
@@ -1387,11 +1399,11 @@ void PDFWidget::restoreState()
 	emit changedScaleOption(scaleOption);
 }
 
-QScrollArea* PDFWidget::getScrollArea()
+PDFScrollArea* PDFWidget::getScrollArea()
 {
 	QWidget* parent = parentWidget();
 	if (parent != NULL)
-		return qobject_cast<QScrollArea*>(parent->parentWidget());
+		return qobject_cast<PDFScrollArea*>(parent->parentWidget());
 	else
 		return NULL;
 }
@@ -1519,8 +1531,8 @@ PDFDocument::init()
 
 	scrollArea = new PDFScrollArea;
 	scrollArea->setBackgroundRole(QPalette::Dark);
-	scrollArea->setAlignment(Qt::AlignCenter);
-	scrollArea->setWidget(pdfWidget);
+	//scrollArea->setAlignment(Qt::AlignCenter);
+	scrollArea->setPDFWidget(pdfWidget);
 	setCentralWidget(scrollArea);
 	
 	connect(scrollArea, SIGNAL(resized()), pdfWidget, SLOT(windowResized()));
@@ -1556,6 +1568,7 @@ PDFDocument::init()
 	connect(actionCustom, SIGNAL(triggered()), SLOT(setGrid()));
 
 	connect(actionSinglePageStep, SIGNAL(toggled(bool)), pdfWidget, SLOT(setSinglePageStep(bool)));
+	connect(actionContinuous, SIGNAL(toggled(bool)), scrollArea, SLOT(setContinuous(bool)));
 
 	connect(actionZoom_In, SIGNAL(triggered()), pdfWidget, SLOT(zoomIn()));
 	connect(actionZoom_Out, SIGNAL(triggered()), pdfWidget, SLOT(zoomOut()));

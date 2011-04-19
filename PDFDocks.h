@@ -214,20 +214,34 @@ private:
 	QCheckBox *cbSync;
 };
 
-
-class PDFScrollArea : public QScrollArea
+class PDFWidget;
+class PDFScrollArea : public QAbstractScrollArea
 {
 	Q_OBJECT
 
 public:
 	PDFScrollArea(QWidget *parent = NULL);
+	void setPDFWidget(PDFWidget* widget);
+	void ensureVisible(int x, int y, int xmargin=50, int ymargin=50);
 	virtual ~PDFScrollArea();
 
+public slots:
+	void setContinuous(bool cont);
+
 protected:
-	virtual void resizeEvent(QResizeEvent *event);
+	bool event(QEvent *);
+	bool eventFilter(QObject *, QEvent *);
+	void resizeEvent(QResizeEvent *event);
+	void scrollContentsBy(int dx, int dy);
 
 signals:
 	void resized();
+
+private:
+	void updateWidgetPosition();
+	void updateScrollBars();
+	bool continuous;
+	PDFWidget* pdf;
 };
 
 class PDFOverviewDock : public PDFDock

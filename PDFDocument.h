@@ -74,6 +74,7 @@ typedef enum {
 	kFitWindow
 } autoScaleOption;
 
+class PDFScrollArea;
 class PDFWidget : public QLabel
 {
 	Q_OBJECT
@@ -97,7 +98,10 @@ public:
 	void updateStatusBar();
 	void setGridSize(int gx, int gy);
 	int visiblePages() const;
+	int numPages() const;
 	int pageStep() const;
+	int gridCols() const;
+	int gridRowHeight() const;
 
 	QMutex renderMutex;
 
@@ -173,7 +177,7 @@ private:
 	QSizeF maxPageSizeF() const;
 	QSizeF gridSizeF() const;
 
-	QScrollArea* getScrollArea();
+	PDFScrollArea* getScrollArea();
 	
 	Poppler::Document	*document;
 	QList<Poppler::Page*> pages;
@@ -241,6 +245,7 @@ public:
 class PDFDocumentConfig;
 class PDFDock;
 class PDFSearchDock;
+class PDFScrollArea;
 class PDFDocument : public QMainWindow, private Ui::PDFDocument
 {
 	Q_OBJECT
@@ -351,7 +356,7 @@ private:
 	Poppler::Document	*document;
 	
 	PDFWidget	*pdfWidget;
-	QScrollArea	*scrollArea;
+	PDFScrollArea	*scrollArea;
 	QButtonGroup	*toolButtonGroup;
 	QToolButton *comboZoom;
 	QLineEdit *leCurrentPage;
