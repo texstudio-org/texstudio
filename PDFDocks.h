@@ -31,6 +31,7 @@
 #include <QDateTime>
 
 #include "poppler-qt4.h"
+#include "pdfrenderengine.h"
 
 class PDFDocument;
 class QListWidget;
@@ -255,6 +256,7 @@ public:
 public slots:
 	virtual void documentClosed();
 	virtual void pageChanged(int page);
+	void insertImage(QImage image,int page);
 
 protected:
 	virtual void fillInfo();
@@ -265,11 +267,12 @@ protected slots:
 
 private slots:
 	void followTocSelection();
-        void showImage(int i=-1);
+	void showImage();
 
 private:
 	QListWidget *list;
         int toGenerate;
+	PDFRenderEngine renderEngine;
 };
 
 

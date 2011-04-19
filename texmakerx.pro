@@ -101,7 +101,8 @@ HEADERS += texmaker.h \
     synctex_parser_utils.h \
     synctex_parser.h \
     tests/qdocumentline_t.h \
-    latexstyleparser.h
+    latexstyleparser.h \
+    pdfrenderengine.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -174,7 +175,8 @@ SOURCES += main.cpp \
     synctex_parser_utils.c \
     synctex_parser.c \
     tests/qdocumentline_t.cpp \
-    latexstyleparser.cpp
+    latexstyleparser.cpp \
+    pdfrenderengine.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
