@@ -183,7 +183,7 @@ private:
 	QList<Poppler::Page*> pages;
 	Poppler::Link		*clickedLink;
 
-	int pageIndex;
+	int pageIndex, oldPageIndex;
 	qreal	scaleFactor;
 	qreal	dpi;
 	autoScaleOption scaleOption;
