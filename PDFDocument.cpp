@@ -312,7 +312,7 @@ PDFWidget::PDFWidget()
 	: QLabel()
 	, document(NULL)
 	, clickedLink(NULL)
-	, pageIndex(0)
+	, pageIndex(0), oldPageIndex(0)
 	, scaleFactor(1.0)
 	, dpi(72.0)
 	, scaleOption(kFixedMag)
@@ -971,8 +971,7 @@ void PDFWidget::clearHighlight()
 
 void PDFWidget::reloadPage(bool sync)
 {
-	foreach (Poppler::Page* page, pages)
-		delete page;
+	QList<Poppler::Page*> oldpages = pages;
 	pages.clear();
 	if (magnifier != NULL)
 		magnifier->setPage(NULL, 0, QPoint());
@@ -984,10 +983,28 @@ void PDFWidget::reloadPage(bool sync)
 			pageIndex = document->numPages() - 1;
 		if (pageIndex >= 0) {
 			int pageCount = qMin(gridx*gridy, document->numPages() - pageIndex);
-			for (int i=0; i < pageCount; i++)
-				pages.append(document->page(pageIndex + i));
-		}
-	}
+			//use old pages if available ([a<=b], [c<=d] find [x<=y] with a <= x, c <= x, y <= b, y <= d)
+			int firstCommonPage = qMax(pageIndex, oldPageIndex);
+			int lastCommonPage = qMin(pageIndex + pageCount - 1, oldPageIndex + oldpages.size() - 1);
+
+			if (lastCommonPage < firstCommonPage) {
+				qDeleteAll(oldpages);
+				for (int i=0; i < pageCount; i++)
+					pages.append(document->page(pageIndex + i));
+			} else {
+				for (int i=oldPageIndex; i < firstCommonPage; i++) delete oldpages[i - oldPageIndex];
+				for (int i=pageIndex; i < firstCommonPage; i++) pages.append(document->page(i));
+
+				for (int i=firstCommonPage; i <= lastCommonPage; i++) pages.append(oldpages[i-oldPageIndex]);
+
+				for (int i=lastCommonPage + 1; i < oldPageIndex + oldpages.size(); i++) delete oldpages[i-oldPageIndex];
+				for (int i=lastCommonPage + 1; i < pageIndex + pageCount; i++) pages.append(document->page(i));
+
+			}
+			oldPageIndex = pageIndex;
+		} else qDeleteAll(oldpages);
+	} else qDeleteAll(oldpages);
+
 	adjustSize();
 	update();
 	updateStatusBar();
