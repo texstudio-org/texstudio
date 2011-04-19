@@ -232,7 +232,7 @@ PDFMagnifier::PDFMagnifier(QWidget *parent, qreal inDpi)
 {
 }
 
-void PDFMagnifier::setPage(Poppler::Page *p, qreal scale, const QPoint& offset)
+void PDFMagnifier::setPage(Poppler::Page *p, qreal scale, const QRect& visibleRect)
 {
 	page = p;
 	scaleFactor = scale * kMagFactor;
@@ -244,10 +244,16 @@ void PDFMagnifier::setPage(Poppler::Page *p, qreal scale, const QPoint& offset)
 		PDFWidget* parent = qobject_cast<PDFWidget*>(parentWidget());
 		if (parent != NULL) {
 			QWidget* viewport = parent->parentWidget();
-			if (viewport != NULL) {
+			if (viewport != NULL && viewport->parentWidget() != NULL) {
 				qreal dpi = parentDpi * scaleFactor;
 				QPoint tl = parent->mapFromParent(viewport->rect().topLeft());
 				QPoint br = parent->mapFromParent(viewport->rect().bottomRight());
+				tl -= visibleRect.topLeft();
+				br -= visibleRect.topLeft();
+				if (tl.x() < 0) tl.setX(0);
+				if (tl.y() < 0) tl.setY(0);
+				if (br.x() > visibleRect.width()) br.setX(visibleRect.width());
+				if (br.y() > visibleRect.height()) br.setY(visibleRect.height());
 				QSize  size = QSize(br.x() - tl.x(), br.y() - tl.y()) * kMagFactor;
 				QPoint loc = tl * kMagFactor;
 				if (page != imagePage || dpi != imageDpi || loc != imageLoc || size != imageSize){
@@ -257,7 +263,8 @@ void PDFMagnifier::setPage(Poppler::Page *p, qreal scale, const QPoint& offset)
 				}
 				imagePage = page;
 				imageDpi = dpi;
-				imageLoc = loc + offset * kMagFactor;
+				imageLoc = loc;
+				mouseOffset = visibleRect.topLeft();
 				imageSize = size;
 			}
 		}
@@ -270,8 +277,8 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 	QPainter painter(this);
 	drawFrame(&painter);
 	painter.drawImage(event->rect(), image,
-		event->rect().translated((x() * kMagFactor - imageLoc.x()) + width() / 2  ,
-								 (y() * kMagFactor - imageLoc.y()) + height() / 2));
+		event->rect().translated(((x() - mouseOffset.x()) * kMagFactor - imageLoc.x()) + width() / 2  ,
+						((y() - mouseOffset.y()) * kMagFactor - imageLoc.y()) + height() / 2));
 
 	if (globalConfig->magnifierBorder) {
 		painter.setPen(QPalette().mid().color());
@@ -395,6 +402,8 @@ PDFWidget::~PDFWidget()
 
 void PDFWidget::setDocument(Poppler::Document *doc)
 {
+	qDeleteAll(pages);
+	pages.clear();
 	document = doc;
 	reloadPage();
 }
@@ -471,7 +480,7 @@ void PDFWidget::useMagnifier(const QMouseEvent *inEvent)
 	if (!magnifier)
 		magnifier = new PDFMagnifier(this, dpi);
 	magnifier->setFixedSize(globalConfig->magnifierSize * 4 / 3, globalConfig->magnifierSize);
-	magnifier->setPage(pages[pageIndex], scaleFactor, gridPagePosition(pageIndex));
+	magnifier->setPage(pages[pageIndex], scaleFactor, gridPageRect(pageIndex));
 	// this was in the hope that if the mouse is released before the image is ready,
 	// the magnifier wouldn't actually get shown. but it doesn't seem to work that way -
 	// the MouseMove event that we're posting must end up ahead of the mouseUp
@@ -974,7 +983,7 @@ void PDFWidget::reloadPage(bool sync)
 	QList<Poppler::Page*> oldpages = pages;
 	pages.clear();
 	if (magnifier != NULL)
-		magnifier->setPage(NULL, 0, QPoint());
+		magnifier->setPage(NULL, 0, QRect());
 	imagePage = NULL;
 	image = QImage();
 	highlightPath = QPainterPath();
