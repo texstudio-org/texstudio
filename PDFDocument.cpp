@@ -608,12 +608,12 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 void PDFWidget::goToDestination(const Poppler::LinkDestination& dest)
 {
 	if (dest.pageNumber() > 0) {
-		goToPage(dest.pageNumber() - 1);
-		if (dest.isChangeZoom()) {
-			// FIXME
-		}
-		QAbstractScrollArea*	scrollArea = getScrollArea();
+		PDFScrollArea*	scrollArea = getScrollArea();
 		if (scrollArea) {
+			scrollArea->goToPage(dest.pageNumber() - 1);
+			if (dest.isChangeZoom()) {
+				// FIXME
+			}
 			QPoint p = gridMapFromScaledPosition(QPointF( dest.left(), dest.top()));
 			if (dest.isChangeLeft())
 				scrollArea->horizontalScrollBar()->setValue(p.x());
@@ -1036,7 +1036,7 @@ void PDFWidget::setGridSize(int gx, int gy){
 	gridx = gx;
 	gridy = gy;
 	int pi = pageIndex;
-	goToPage(pageIndex);
+	getScrollArea()->goToPage(pageIndex);
 	if (pi == pageIndex)
 		reloadPage();
 	//update();
@@ -1068,28 +1068,28 @@ void PDFWidget::setSinglePageStep(bool step){
 	if (singlePageStep == step)
 		return;
 	singlePageStep = step;
-	goToPage(pageIndex);
+	getScrollArea()->goToPage(pageIndex);
 }
 
 void PDFWidget::goFirst()
 {
-	goToPage(0);
+	getScrollArea()->goToPage(0);
 }
 
 void PDFWidget::goPrev()
 {
-	goToPage(pageIndex - pageStep());
+	getScrollArea()->goToPage(pageIndex - pageStep());
 }
 
 void PDFWidget::goNext()
 {
-	goToPage(pageIndex + pageStep());
+	getScrollArea()->goToPage(pageIndex + pageStep());
 }
 
 void PDFWidget::goLast()
 {
 	if (!document) return;
-	goToPage(document->numPages() - 1);
+	getScrollArea()->goToPage(document->numPages() - 1);
 }
 
 void PDFWidget::upOrPrev()
@@ -1200,10 +1200,10 @@ void PDFWidget::doPageDialog()
 									tr("Page number:"), pageIndex + 1,
 									1, document->numPages(), 1, &ok);
 	if (ok)
-		goToPage(pageNo - 1);
+		getScrollArea()->goToPage(pageNo - 1);
 }
 
-void PDFWidget::goToPage(int p, bool sync)
+void PDFWidget::goToPageDirect(int p, bool sync)
 {
 	p -= p % pageStep();
 	if (p != pageIndex && document != NULL) { //the first condition is important: it prevents a recursive sync crash
@@ -1726,7 +1726,7 @@ void PDFDocument::syncFromView(const QString& pdfFile, const QString& externalVi
 	if (pdfFile != curFile || externalViewerCmdLine != externalViewer)
 		loadFile(pdfFile, externalViewer, false);
 	if (page != widget()->getCurrentPageIndex())
-		widget()->goToPage(page);
+		scrollArea->goToPage(page,false);
 }
 
 void PDFDocument::loadFile(const QString &fileName, const QString& externalViewer, bool alert)
@@ -1838,7 +1838,7 @@ void PDFDocument::setGrid(){
 
 void PDFDocument::jumpToPage(){
     int index=leCurrentPage->text().toInt();
-    pdfWidget->goToPage(index-1);
+    scrollArea->goToPage(index-1);
 }
 
 void PDFDocument::closeSomething(){
@@ -1965,7 +1965,7 @@ void PDFDocument::search(bool backwards, bool incremental){
 					emit syncClick(pageIdx, lastSearchResult.selRect.center(), false);
 
 
-				pdfWidget->goToPage(lastSearchResult.pageIdx);
+				scrollArea->goToPage(lastSearchResult.pageIdx);
 				pdfWidget->setHighlightPath(lastSearchResult.pageIdx, p);
 				pdfWidget->update();
 
@@ -2062,7 +2062,7 @@ void PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool act
 			path.addRect(nodeRect);
 		}
 		if (page > 0) {
-			pdfWidget->goToPage(page - 1, false);
+			scrollArea->goToPage(page - 1, false);
 			path.setFillRule(Qt::WindingFill);
 			pdfWidget->setHighlightPath(page-1, path);
 			pdfWidget->update();
@@ -2280,8 +2280,9 @@ void PDFDocument::goToDestination(const QString& destName)
 
 void PDFDocument::goToPage(const int page)
 {
-	if (pdfWidget)
-		pdfWidget->goToPage(page);
+	if (pdfWidget && scrollArea) {
+		scrollArea->goToPage(page);
+	}
 }
 
 void PDFDocument::dragEnterEvent(QDragEnterEvent *event)

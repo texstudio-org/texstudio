@@ -619,6 +619,8 @@ void PDFScrollArea::ensureVisible(int x, int y, int xmargin, int ymargin){
 	    horizontalScrollBar()->setValue(qMin(logicalX - viewport()->width() + xmargin, horizontalScrollBar()->maximum()));
 	}
 
+	if (continuous) y += pdf->gridRowHeight() * pdf->getCurrentPageIndex();
+
 	if (y - ymargin < verticalScrollBar()->value()) {
 	    verticalScrollBar()->setValue(qMax(0, y - ymargin));
 	} else if (y > verticalScrollBar()->value() + viewport()->height() - ymargin) {
@@ -637,6 +639,14 @@ void PDFScrollArea::setContinuous(bool cont){
 	continuous = cont;
 	if (!cont) pdf->setGridSize(pdf->gridCols(), 1);
 	else resizeEvent(0);
+}
+
+void PDFScrollArea::goToPage(int page,bool sync){
+	if (continuous) {
+		int rowHeight = pdf->gridRowHeight();
+		int curPos = verticalScrollBar()->value();
+		verticalScrollBar()->setValue(curPos %  rowHeight + (page / pdf->gridCols())  * rowHeight);
+	} else pdf->goToPageDirect(page, sync);
 }
 
 bool PDFScrollArea::event(QEvent * e){
@@ -696,7 +706,8 @@ void PDFScrollArea::updateWidgetPosition(){
 		QRect aligned = QStyle::alignedRect(dir, Qt::AlignCenter, pdf->size(), viewport()->rect());
 		pdf->move(pdf->width() < viewport()->width() ? aligned.x() : scrolled.x(),
 			      pdf->height() < viewport()->height() ? aligned.y() : scrolled.y());
-		pdf->goToPage((vbar->value() / rowHeight)*pdf->gridCols() ,true);
+		int pos = vbar->value();
+		pdf->goToPageDirect((pos / rowHeight)*pdf->gridCols() ,true);
 	}
 }
 
