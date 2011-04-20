@@ -89,7 +89,7 @@ public:
 	void restoreState();
 	void setResolution(int res);
 	void resetMagnifier();
-	void goToPage(int pageIndex, bool sync = true);
+	void goToPageDirect(int pageIndex, bool sync);
 	void setHighlightPath(const int pageIndex, const QPainterPath& path);
 	int getHighlightPage() const;
 	void goToDestination(const QString& destName);

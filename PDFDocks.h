@@ -228,6 +228,7 @@ public:
 
 public slots:
 	void setContinuous(bool cont);
+	void goToPage(int page, bool sync=true);
 
 protected:
 	bool event(QEvent *);
