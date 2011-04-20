@@ -2222,6 +2222,10 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 			dwInfo->hide();
 			dwOverview->hide();
 			presentation = true;
+			if (actionContinuous->isChecked()) {
+				actionContinuous->setChecked(false);
+				wasContinuous = true;
+			} else wasContinuous=false;
 		} else
 			actionFull_Screen->setChecked(true);
 
@@ -2246,6 +2250,7 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 			delete exitFullscreen;
 			exitFullscreen = 0;
 		}
+		if (wasContinuous) actionContinuous->setChecked(true);
 	}
 }
 
