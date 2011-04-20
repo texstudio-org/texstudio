@@ -175,7 +175,7 @@ private:
 	void gridMapToScaledPosition(const QPoint& position, Poppler::Page*& page, QPointF& scaledPos) const;
 	QPoint gridMapFromScaledPosition(const QPointF& scaledPos) const;
 	QSizeF maxPageSizeF() const;
-	QSizeF gridSizeF() const;
+	QSizeF gridSizeF(bool ignoreVerticalGrid=false) const;
 
 	PDFScrollArea* getScrollArea();
 	
