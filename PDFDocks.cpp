@@ -638,7 +638,11 @@ void PDFScrollArea::setContinuous(bool cont){
 	if (cont == continuous) return;
 	continuous = cont;
 	if (!cont) pdf->setGridSize(pdf->gridCols(), 1);
-	else resizeEvent(0);
+	else {
+		int page = pdf->getCurrentPageIndex();
+		resizeEvent(0);
+		verticalScrollBar()->setValue(pdf->gridRowHeight()*page);
+	}
 }
 
 void PDFScrollArea::goToPage(int page,bool sync){
