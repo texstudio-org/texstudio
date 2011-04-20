@@ -628,6 +628,11 @@ void PDFScrollArea::ensureVisible(int x, int y, int xmargin, int ymargin){
 	}
 }
 
+void PDFScrollArea::setVerticalScrollBarPolicy(Qt::ScrollBarPolicy policy){
+	if (continuous) QAbstractScrollArea::setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+	else QAbstractScrollArea::setVerticalScrollBarPolicy(policy);
+}
+
 PDFScrollArea::~PDFScrollArea()
 {
 

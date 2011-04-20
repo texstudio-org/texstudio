@@ -1235,7 +1235,7 @@ void PDFWidget::fitWidth(bool checked)
 		QAbstractScrollArea*	scrollArea = getScrollArea();
 		if (scrollArea && !pages.isEmpty()) {
 			qreal portWidth = scrollArea->viewport()->width();
-			QSizeF	pageSize = gridSizeF() * dpi / 72.0;
+			QSizeF	pageSize = gridSizeF(true) * dpi / 72.0;
 			scaleFactor = portWidth / pageSize.width();
 			if (scaleFactor < kMinScaleFactor)
 				scaleFactor = kMinScaleFactor;
@@ -1256,11 +1256,11 @@ void PDFWidget::fitWindow(bool checked)
 {
 	if (checked) {
 		scaleOption = kFitWindow;
-		QAbstractScrollArea*	scrollArea = getScrollArea();
+		PDFScrollArea*	scrollArea = getScrollArea();
 		if (scrollArea && !pages.isEmpty()) {
 			qreal portWidth = scrollArea->viewport()->width();
 			qreal portHeight = scrollArea->viewport()->height();
-			QSizeF	pageSize = gridSizeF() * dpi / 72.0;
+			QSizeF	pageSize = gridSizeF(true) * dpi / 72.0;
 			qreal sfh = portWidth / pageSize.width();
 			qreal sfv = portHeight / pageSize.height();
 			scaleFactor = sfh < sfv ? sfh : sfv;
@@ -1399,10 +1399,11 @@ QSizeF PDFWidget::maxPageSizeF() const{
 	}
 	return maxPageSize;
 }
-QSizeF PDFWidget::gridSizeF() const{
+QSizeF PDFWidget::gridSizeF(bool ignoreVerticalGrid) const{
 	QSizeF maxPageSize = maxPageSizeF();
+	int usedy = ignoreVerticalGrid?1:gridy;
 	return QSizeF(maxPageSize.width()*gridx + GridBorder*(gridx-1),
-			maxPageSize.height()*gridy + GridBorder*(gridy-1));
+			maxPageSize.height()*usedy + GridBorder*(usedy-1));
 }
 
 
@@ -1834,6 +1835,7 @@ void PDFDocument::setGrid(){
 		REQUIRE(gs.size()==2)
 		pdfWidget->setGridSize(gs.at(0).toAscii()-'0', gs.at(1).toAscii()-'0');
 	}
+	pdfWidget->windowResized();
 }
 
 void PDFDocument::jumpToPage(){
