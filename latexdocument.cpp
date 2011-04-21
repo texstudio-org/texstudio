@@ -1836,7 +1836,7 @@ void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &remove
 	QStringList removedWords=loadCwlFiles(filtered,&cmds,config);
 	ltxCommands.substract(cmds);
 	foreach(const QString elem,removedWords){
-	    mCompleterWords.removeAll(elem);
+	    mCompleterWords.remove(elem);
 	}
 	//recheck syntax of ALL documents ...
 	update=true;
@@ -1859,7 +1859,7 @@ void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &remove
 
 	QStringList addedWords=loadCwlFiles(filtered,&cmds,config);
 	ltxCommands.append(cmds);
-	mCompleterWords << addedWords;
+	mCompleterWords.unite(addedWords.toSet());
 	//recheck syntax of ALL documents ...
 	update=true;
     }

@@ -111,10 +111,10 @@ public:
 	    }
 	    return result;
 	}
-	const QStringList userCommandList() const{
-	    return mUserCommandList.values();
+	const QSet<QString> userCommandList() const{
+	    return mUserCommandList.values().toSet();
 	}
-	const QStringList additionalCommandsList() const{
+	const QSet<QString> additionalCommandsList() const{
 	    return mCompleterWords;
 	}
 	void updateRefsLabels(const QString ref);
@@ -180,7 +180,7 @@ private:
 	QMultiHash<QDocumentLineHandle*,QString> mUserCommandList;
 	QMultiHash<QDocumentLineHandle*,QString> mUsepackageList;
 
-	QStringList mCompleterWords; // local list of completer words
+	QSet<QString> mCompleterWords; // local list of completer words
 
 	QDocumentLineHandle *mAppendixLine;
 
