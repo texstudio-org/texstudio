@@ -119,7 +119,7 @@ void ManagedProperty::writeToObject(QObject* w) const{
 		return;
 	}
 	QAction* action = qobject_cast<QAction*>(w);
-	if (checkBox) {
+	if (action) {
 		Q_ASSERT(type == PT_BOOL);
 		action->setChecked(*((bool*)storage));
 		return;
@@ -263,7 +263,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Files/Last Document", &lastDocument);
 	registerOption("Files/Parse BibTeX", &parseBibTeX, true, &pseudoDialog->checkBoxParseBibTeX);
 	registerOption("Files/Parse Master", &parseMaster, true, &pseudoDialog->checkBoxParseMaster);
-        registerOption("Files/Autosave", &autosaveEveryMinutes, 0);
+	registerOption("Files/Autosave", &autosaveEveryMinutes, 0);
 
 	registerOption("Spell/Dic", &spell_dic, "<dic not found>", &pseudoDialog->comboBoxDictionaryFileName); //don't translate it
 	registerOption("Thesaurus/Database", &thesaurus_database, "<dic not found>", &pseudoDialog->comboBoxThesaurusFileName);
@@ -431,6 +431,7 @@ QSettings* ConfigManager::readSettings() {
 		configBaseDir=QFileInfo(configFileName).absolutePath();
 		completerConfig->importedCwlBaseDir=configBaseDir;// set in LatexCompleterConfig to get access from LatexDocument
 		if (configFileNameBase.endsWith(".ini")) configFileNameBase=configFileNameBase.replace(QString(".ini"),"");
+		persistentConfig = config;
 	}
 
 	config->beginGroup("texmaker");
@@ -1713,8 +1714,11 @@ void ConfigManager::registerOption(const QString& name, void* storage, PropertyT
 	temp.widgetOffset = (ptrdiff_t)displayWidgetOffset;
 	managedProperties << temp;
 
-	if (persistentConfig)
+	if (persistentConfig){
+		persistentConfig->beginGroup("texmaker");
 		temp.valueFromQVariant(persistentConfig->value(temp.name, temp.def));
+		persistentConfig->endGroup();
+	}
 }
 
 void ConfigManager::registerOption(const QString& name, bool* storage, QVariant def, void* displayWidgetOffset){
@@ -1792,21 +1796,21 @@ void ConfigManager::linkOptionToDialogWidget(const void* optionStorage, QWidget*
 	widget->setProperty("managedProperty", QVariant::fromValue<void*>(property->storage));
 }
 
-void ConfigManager::linkOptionToObject(const void* optionStorage, QObject* object, bool fullSync){
+void ConfigManager::linkOptionToObject(const void* optionStorage, QObject* object, LinkOptions options){
 	ManagedProperty *property = getManagedProperty(optionStorage);
 	REQUIRE(property);
-	REQUIRE(fullSync || property->type == PT_BOOL);
+	REQUIRE((options & LO_DIRECT_OVERRIDE) || property->type == PT_BOOL);
 	if (managedOptionObjects.contains(property)) {
-		Q_ASSERT(managedOptionObjects[property].first == fullSync);
+		Q_ASSERT(managedOptionObjects[property].first == options);
 		managedOptionObjects[property].second << object;
 	} else {
-		managedOptionObjects.insert(property, QPair<bool, QList<QObject*> >(fullSync, QList<QObject*>() << object));
+		managedOptionObjects.insert(property, QPair<LinkOptions, QList<QObject*> >(options, QList<QObject*>() << object));
 	}
 	property->writeToObject(object);
 	object->setProperty("managedProperty", QVariant::fromValue<ManagedProperty*>(property));
 	connect(object,SIGNAL(destroyed(QObject*)), SLOT(managedOptionObjectDestroyed(QObject*)));
 	if (qobject_cast<QAction*>(object))
-		connect(object, SIGNAL(toggled()), SLOT(managedOptionActionToggled()));
+		connect(object, SIGNAL(toggled(bool)), SLOT(managedOptionActionToggled()));
 }
 
 ManagedProperty* ConfigManager::getManagedProperty(const void* storage){
@@ -1868,7 +1872,7 @@ void ConfigManager::managedOptionActionToggled(){
 	REQUIRE(property);
 	REQUIRE(property->type==PT_BOOL);
 	if (act->isChecked() == *(bool*)(property->storage)) return;
-	if (managedOptionObjects[property].first) {
+	if (managedOptionObjects[property].first & LO_DIRECT_OVERRIDE) {
 		//full sync
 		*(bool*)property->storage = act->isChecked();
 	} else {
@@ -1887,6 +1891,8 @@ void ConfigManager::managedOptionActionToggled(){
 }
 
 void ConfigManager::updateManagedOptionObjects(ManagedProperty* property){
+	if (!(managedOptionObjects[property].first & LO_UPDATE_ALL))
+		return;
 	foreach (QObject* o, managedOptionObjects[property].second)
 		property->writeToObject(o);
 }

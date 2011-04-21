@@ -1479,6 +1479,8 @@ PDFDocument::~PDFDocument()
 void
 PDFDocument::init()
 {
+	ConfigManagerInterface *conf = ConfigManagerInterface::getInstance();
+
 	docList.append(this);
 
 	setupUi(this);
@@ -1597,8 +1599,9 @@ PDFDocument::init()
 
 	connect(actionSinglePageStep, SIGNAL(toggled(bool)), pdfWidget, SLOT(setSinglePageStep(bool)));
 	connect(actionContinuous, SIGNAL(toggled(bool)), scrollArea, SLOT(setContinuous(bool)));
-	//ConfigManagerInterface *conf = ConfigManagerInterface::getInstance();
-	//ConfigManagerInterface::getInstance()->linkOptionToObject(&globalConfig->continuous, actionContinuous, true);
+
+	conf->registerOption("Preview/Continuous", &globalConfig->continuous, true);
+	conf->linkOptionToObject(&globalConfig->continuous, actionContinuous, 0);
 
 	connect(actionZoom_In, SIGNAL(triggered()), pdfWidget, SLOT(zoomIn()));
 	connect(actionZoom_Out, SIGNAL(triggered()), pdfWidget, SLOT(zoomOut()));
