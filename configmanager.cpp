@@ -1807,8 +1807,8 @@ void ConfigManager::linkOptionToObject(const void* optionStorage, QObject* objec
 	property->writeToObject(object);
 	object->setProperty("managedProperty", QVariant::fromValue<ManagedProperty*>(property));
 	connect(object,SIGNAL(destroyed(QObject*)), SLOT(managedOptionObjectDestroyed(QObject*)));
-	if (qobject_cast<QAction*>(object))
-		connect(object, SIGNAL(toggled(bool)), SLOT(managedOptionActionToggled()));
+	if (qobject_cast<QAction*>(object) || qobject_cast<QCheckBox*>(object))
+		connect(object, SIGNAL(toggled(bool)), SLOT(managedOptionBoolToggled()));
 }
 
 ManagedProperty* ConfigManager::getManagedProperty(const void* storage){
@@ -1863,27 +1863,32 @@ void ConfigManager::managedOptionObjectDestroyed(QObject* obj){
 		managedOptionObjects.remove(property);
 }
 
-void ConfigManager::managedOptionActionToggled(){
-	QAction* act = qobject_cast<QAction*>(sender());
-	REQUIRE(act);
-	ManagedProperty* property = act->property("managedProperty").value<ManagedProperty*>();
+int isChecked(const QObject* obj){
+	const QAction* act = qobject_cast<const QAction*>(obj);
+	if (act) return (act->isChecked()?1:-1);
+	const QCheckBox* cb = qobject_cast<const QCheckBox*>(obj);
+	if (cb) return (cb->isChecked()?1:-1);
+	return 0;
+}
+
+void ConfigManager::managedOptionBoolToggled(){
+	int state = isChecked(sender());
+	REQUIRE(state);
+	ManagedProperty* property = sender()->property("managedProperty").value<ManagedProperty*>();
 	REQUIRE(property);
 	REQUIRE(property->type==PT_BOOL);
-	if (act->isChecked() == *(bool*)(property->storage)) return;
+	if ((state > 0) == *(bool*)(property->storage)) return;
 	if (managedOptionObjects[property].first & LO_DIRECT_OVERRIDE) {
 		//full sync
-		*(bool*)property->storage = act->isChecked();
+		*(bool*)property->storage = (state > 0);
 	} else {
 		//voting
-		int yes=0, no=0;
-		foreach (QObject* o, managedOptionObjects[property].second){
-			REQUIRE(qobject_cast<QAction*>(o));
-			if ((qobject_cast<QAction*>(o))->isChecked()) yes++;
-			else no++;
-		}
-		if (yes == no) return;
-		if ((yes > no) == *(bool*)(property->storage)) return;
-		*(bool*)property->storage = (yes>no);
+		int totalState=0;
+		foreach (const QObject* o, managedOptionObjects[property].second)
+			totalState += isChecked(o);
+		if (totalState == 0) return;
+		if ((totalState > 0) == *(bool*)(property->storage)) return;
+		*(bool*)property->storage = (totalState > 0);
 	}
 	updateManagedOptionObjects(property);
 }

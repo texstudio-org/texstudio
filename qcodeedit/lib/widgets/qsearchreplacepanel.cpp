@@ -30,6 +30,7 @@
 #include "qdocumentsearch.h"
 #include "qformatscheme.h"
 
+#include "configmanagerinterface.h"
 
 /*!
 	\ingroup widgets
@@ -49,8 +50,9 @@ QCE_AUTO_REGISTER(QSearchReplacePanel)
 QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
  : QPanel(p),m_search(0),m_lastDirection(false)
 {
-        //setupUi(this);
-        // do it completely programatic
+	ConfigManagerInterface* conf = ConfigManagerInterface::getInstance();
+	//setupUi(this);
+	// do it completely programatic
 	this->resize(801, 71);
 	QGridLayout *gridLayout = new QGridLayout(this);
 	gridLayout->setContentsMargins(-1, 4, -1, 4);
@@ -131,41 +133,44 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	cbCase = new QCheckBox(frame_6);
 	cbCase->setObjectName(("cbCase"));
 	cbCase->setToolTip(tr("Enables case sensitive search."));
-	cbCase->setChecked(true);
+	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, caseConfig, true, "Search/Case Sensitive", cbCase);
 
 	gridLayout1->addWidget(cbCase, 0, 0, 1, 1);
 
 	cbWords = new QCheckBox(frame_6);
 	cbWords->setToolTip(tr("Only searches for whole words."));
 	cbWords->setObjectName(("cbWords"));
+	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, wordConfig, false, "Search/Whole Words", cbWords);
 
 	gridLayout1->addWidget(cbWords, 0, 1, 1, 1);
 
 	cbRegExp = new QCheckBox(frame_6);
 	cbRegExp->setToolTip(tr("This interprets the search text as a regular expression.\nSome common regexps:\n r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,\n () groups expressions together, [xyz] will find x,y, or z, . matches everything, \\. matches .\nYou can use \\1 to \\9 in the replace text to insert a submatch."));
 	cbRegExp->setObjectName(("cbRegExp"));
+	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, regexConfig, false, "Search/Regular Expression", cbRegExp);
 
 	gridLayout1->addWidget(cbRegExp, 0, 2, 1, 1);
 
 	cbHighlight = new QCheckBox(frame_6);
 	cbHighlight->setObjectName(("cbHighlight"));
-	cbHighlight->setChecked(true);
 	cbHighlight->setToolTip(tr("Highlights search matches and replaced text."));
 	sizePolicy3.setHeightForWidth(cbHighlight->sizePolicy().hasHeightForWidth());
 	cbHighlight->setSizePolicy(sizePolicy3);
+	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, highlightConfig, true, "Search/Highlight", cbHighlight);
 
 	gridLayout1->addWidget(cbHighlight, 0, 3, 1, 1);
 
 	cbCursor = new QCheckBox(frame_6);
 	cbCursor->setToolTip(tr("Starts the search from the current cursor position."));
 	cbCursor->setObjectName(("cbCursor"));
-	cbCursor->setChecked(true);
+	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, cursorConfig, true, "Search/Cursor", cbCursor);
 
 	gridLayout1->addWidget(cbCursor, 0, 4, 1, 1);
 
 	cbSelection = new QCheckBox(frame_6);
 	cbSelection->setToolTip(tr("Only searches in the selected text."));
 	cbSelection->setObjectName(("cbSelection"));
+	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, selectionConfig, false, "Search/Selection", cbSelection);
 
 	gridLayout1->addWidget(cbSelection, 0, 5, 1, 1);
 
@@ -189,18 +194,19 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	cbPrompt = new QCheckBox(frame);
 	cbPrompt->setToolTip(tr("Ask before any match is replaced."));
 	cbPrompt->setObjectName(("cbPrompt"));
-	cbPrompt->setChecked(false);
+	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, askConfig, false, "Search/Ask before Replace", cbPrompt);
 
 	hboxLayout1->addWidget(cbPrompt);
 
-	cbReplaceAll = new QCheckBox(frame);
-	cbReplaceAll->setObjectName(("cbReplaceAll"));
+	//cbReplaceAll = new QCheckBox(frame);
+	//cbReplaceAll->setObjectName(("cbReplaceAll"));
 
-	hboxLayout1->addWidget(cbReplaceAll);
+	//hboxLayout1->addWidget(cbReplaceAll);
 
 	cbEscapeSeq = new QCheckBox(frame);
 	cbEscapeSeq->setToolTip(tr("Enables the use of escape characters. These are:\n \\n = new line, \\r = carriage return, \\t = tab, \\\\ = \\, \\0 = ascii 0 "));
 	cbEscapeSeq->setObjectName(("cbEscapeSeq"));
+	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, escapeConfig, false, "Search/Escape Sequence", cbEscapeSeq);
 
 	hboxLayout1->addWidget(cbEscapeSeq);
 
@@ -284,17 +290,15 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	cbPrompt->setText(QApplication::translate("SearchReplace", "Prompt on replace", 0, QApplication::UnicodeUTF8));
 	cbEscapeSeq->setText(QApplication::translate("SearchReplace", "Escape sequences", 0, QApplication::UnicodeUTF8));
 	cbReplace->setText(QApplication::translate("SearchReplace", "Replace :", 0, QApplication::UnicodeUTF8));
-	cbReplaceAll->setText(QApplication::translate("SearchReplace", "Replace all", 0, QApplication::UnicodeUTF8));
+	//cbReplaceAll->setText(QApplication::translate("SearchReplace", "Replace all", 0, QApplication::UnicodeUTF8));
 
 	minimum_width=frame_2->sizeHint().width()+leFind->sizeHint().width()+2*bNext->sizeHint().width()+5*hboxLayout->spacing();
 	//
 
-	cbCase->setChecked(false);
-
 	leFind->installEventFilter(this);
 	leReplace->installEventFilter(this);
 	
-	cbReplaceAll->setVisible(false);
+	//cbReplaceAll->setVisible(false);
 
 }
 
