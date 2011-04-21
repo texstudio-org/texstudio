@@ -219,7 +219,7 @@ public:
 	virtual void registerOption(const QString& name, QByteArray* storage, QVariant def=QVariant());
 	virtual void registerOption(const QString& name, QList<QVariant>* storage, QVariant def=QVariant());
 	virtual void linkOptionToDialogWidget(const void* optionStorage, QWidget* widget);
-	virtual void linkOptionToObject(const void* optionStorage, QObject* widget, bool fullSync);
+	virtual void linkOptionToObject(const void* optionStorage, QObject* widget, LinkOptions options);
 
 	static void getDefaultEncoding(const QByteArray& unused, QTextCodec* &guess, int &sure);
 private:
@@ -236,7 +236,7 @@ private:
 	QMap<QWidget*, QList<QWidget*> > managedOptionDialogs;
 	ManagedProperty* getManagedProperty(const void* storage);
 
-	QMap<ManagedProperty*, QPair<bool, QList<QObject*> > > managedOptionObjects;
+	QMap<ManagedProperty*, QPair<LinkOptions, QList<QObject*> > > managedOptionObjects;
 private slots:
 	void browseCommand();
 	void undoCommand();

@@ -8,6 +8,14 @@ enum PropertyType {PT_VOID = 0, PT_INT, PT_BOOL, PT_STRING, PT_STRINGLIST, PT_DA
 #include <QVariant>
 #include <QWidget>
 #include <QByteArray>
+
+enum LinkOption{
+	LO_NONE = 0,
+	LO_UPDATE_ALL = 1, //if the property is changed (through the config manager), update all displaying objects
+	LO_DIRECT_OVERRIDE = 2 //if one object is changed, update property (if not set, the property is updated if a majority of objects is changed)
+};
+Q_DECLARE_FLAGS(LinkOptions, LinkOption);
+
 class ConfigManagerInterface
 {
 public:
@@ -31,7 +39,7 @@ public:
 	//If the object representation changes => (If fullsync => the option and all linked objects are changed
 	//                                         If !fullsync => the option is changed to the value of the majority of the objects)
 	//Setting a link changes the object value to the current option value
-	virtual void linkOptionToObject(const void* optionStorage, QObject* widget, bool fullSync) = 0;
+	virtual void linkOptionToObject(const void* optionStorage, QObject* widget, LinkOptions options) = 0;
 
 	static ConfigManagerInterface* getInstance();
 };
