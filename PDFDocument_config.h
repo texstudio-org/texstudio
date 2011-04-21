@@ -16,13 +16,13 @@ struct PDFDocumentConfig{
 	bool magnifierBorder;
 
 
-	bool followFromCursor, followFromScroll;
 
 	QString syncFileMask;
 
 
 //live options
-	bool continuous;
+	bool continuous,singlepagestep;
+	bool followFromCursor, followFromScroll, syncViews;
 };
 
 #endif // PDFDOCUMENT_CONFIG_H
