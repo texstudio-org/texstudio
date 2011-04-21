@@ -1886,7 +1886,7 @@ void ConfigManager::managedOptionBoolToggled(){
 		int totalState=0;
 		foreach (const QObject* o, managedOptionObjects[property].second)
 			totalState += isChecked(o);
-		if (totalState == 0) return;
+		if (totalState == 0) totalState = state;
 		if ((totalState > 0) == *(bool*)(property->storage)) return;
 		*(bool*)property->storage = (totalState > 0);
 	}
