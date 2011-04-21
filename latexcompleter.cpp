@@ -714,13 +714,17 @@ void LatexCompleter::insertText(QString txt){
     filterList(cur,completerInputBinding->getMostUsed());
 }
 
-void LatexCompleter::setAdditionalWords(const QStringList &newwords, bool normalTextList) {
+void LatexCompleter::setAdditionalWords(const QStringList &newwords, bool normalTextList,bool checkDoublets) {
 	QStringList concated;
 	if (config && !normalTextList) concated << config->words;
 	//avoid duplicates !!!
-	foreach(const QString elem,newwords){
-	    if(!concated.contains(elem))
-		concated << elem;
+	if(checkDoublets){
+	    foreach(const QString elem,newwords){
+		if(!concated.contains(elem))
+		    concated << elem;
+	    }
+	}else{
+	    concated << newwords;
 	}
 	listModel->setBaseWords(concated,normalTextList);
 	widget->resize(200,200);
