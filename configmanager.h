@@ -245,7 +245,7 @@ private slots:
 
 	void managedOptionDialogAccepted();
 	void managedOptionObjectDestroyed(QObject* obj);
-	void managedOptionActionToggled();
+	void managedOptionBoolToggled();
 private:
 	void updateManagedOptionObjects(ManagedProperty* property);
 };

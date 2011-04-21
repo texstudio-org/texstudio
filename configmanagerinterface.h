@@ -44,4 +44,6 @@ public:
 	static ConfigManagerInterface* getInstance();
 };
 
+#define CONFIG_DECLARE_OPTION_WITH_OBJECT(config, type,name,defaultvalue,configname,object) static type name; config->registerOption(configname, &name, defaultvalue); config->linkOptionToObject(&name, object);
+
 #endif // CONFIGMANAGERINTERFACE_H
