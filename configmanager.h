@@ -32,8 +32,8 @@ struct ManagedProperty{ //TODO: Merge with the universal input dialog
 	ManagedProperty();
 	QVariant valueToQVariant() const;
 	void valueFromQVariant(const QVariant v);
-	void writeToWidget(QWidget* w) const;
-	bool readFromWidget(const QWidget* w);
+	void writeToObject(QObject* w) const;
+	bool readFromObject(const QObject* w);
 };
 
 
@@ -44,7 +44,7 @@ public:
 	~ConfigManager();
 
 	QSettings* readSettings();
-	QSettings* saveSettings(QString saveName="");
+	QSettings* saveSettings(const QString& saveName="");
 
 	bool execConfigDialog();
 
@@ -218,11 +218,14 @@ public:
 	virtual void registerOption(const QString& name, double* storage, QVariant def=QVariant());
 	virtual void registerOption(const QString& name, QByteArray* storage, QVariant def=QVariant());
 	virtual void registerOption(const QString& name, QList<QVariant>* storage, QVariant def=QVariant());
-	virtual void linkOptionToWidget(const void* optionStorage, QWidget* widget);
+	virtual void linkOptionToDialogWidget(const void* optionStorage, QWidget* widget);
+	virtual void linkOptionToObject(const void* optionStorage, QObject* widget, bool fullSync);
 
 	static void getDefaultEncoding(const QByteArray& unused, QTextCodec* &guess, int &sure);
 private:
 	void setInterfaceStyle();
+
+	QSettings* persistentConfig;
 
 	QList<QTreeWidgetItem*> changedItemsList;
 
@@ -232,6 +235,8 @@ private:
 
 	QMap<QWidget*, QList<QWidget*> > managedOptionDialogs;
 	ManagedProperty* getManagedProperty(const void* storage);
+
+	QMap<ManagedProperty*, QPair<bool, QList<QObject*> > > managedOptionObjects;
 private slots:
 	void browseCommand();
 	void undoCommand();
@@ -239,5 +244,9 @@ private slots:
 	void activateInternalViewer(bool activated);
 
 	void managedOptionDialogAccepted();
+	void managedOptionObjectDestroyed(QObject* obj);
+	void managedOptionActionToggled();
+private:
+	void updateManagedOptionObjects(ManagedProperty* property);
 };
 #endif
