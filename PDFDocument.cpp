@@ -54,6 +54,7 @@
 
 #include "smallUsefulFunctions.h"
 #include "PDFDocument_config.h"
+#include "configmanagerinterface.h"
 //#include "GlobalParams.h"
 
 #include "poppler-link.h"
@@ -1596,6 +1597,8 @@ PDFDocument::init()
 
 	connect(actionSinglePageStep, SIGNAL(toggled(bool)), pdfWidget, SLOT(setSinglePageStep(bool)));
 	connect(actionContinuous, SIGNAL(toggled(bool)), scrollArea, SLOT(setContinuous(bool)));
+	//ConfigManagerInterface *conf = ConfigManagerInterface::getInstance();
+	//ConfigManagerInterface::getInstance()->linkOptionToObject(&globalConfig->continuous, actionContinuous, true);
 
 	connect(actionZoom_In, SIGNAL(triggered()), pdfWidget, SLOT(zoomIn()));
 	connect(actionZoom_Out, SIGNAL(triggered()), pdfWidget, SLOT(zoomOut()));

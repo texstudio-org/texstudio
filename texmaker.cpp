@@ -2174,13 +2174,10 @@ void Texmaker::ReadSettings() {
 	    }
 	}
 
-
-	delete config;
-
 	documents.settingsRead();
 }
 
-void Texmaker::SaveSettings(QString configName) {
+void Texmaker::SaveSettings(const QString& configName) {
 	bool asProfile=!configName.isEmpty();
 	configManager.centralVisible=centralToolBar->isVisible();
 	// update completion usage
@@ -2296,7 +2293,8 @@ void Texmaker::SaveSettings(QString configName) {
 	    }
 	}
 
-	delete config;
+	if (asProfile)
+		delete config;
 }
 
 ////////////////// STRUCTURE ///////////////////
@@ -5132,7 +5130,7 @@ void Texmaker::saveProfile(){
 	QString fname = QFileDialog::getSaveFileName(this,tr("Save Profile"),currentDir,tr("TmX Profile","filter")+"(*.tmxprofile);;"+tr("All files")+" (*)");
 	QFileInfo info(fname);
 	if(info.suffix().isEmpty())
-	    fname+=".tmxprofile";
+		fname+=".tmxprofile";
 	SaveSettings(fname);
 }
 
@@ -5140,18 +5138,18 @@ void Texmaker::loadProfile(){
 	QString currentDir=configManager.configBaseDir;
 	QString fname = QFileDialog::getOpenFileName(this,tr("Load Profile"),currentDir,tr("TmX Profile","filter")+"(*.tmxprofile);;"+tr("All files")+" (*)");
 	if(QFileInfo(fname).isReadable()){
-	    SaveSettings();
-	    QSettings *profile=new QSettings(fname,QSettings::IniFormat);
-	    QSettings *config=new QSettings(QSettings::IniFormat,QSettings::UserScope,"benibela","texmakerx");
-	    if(profile && config){
-		QStringList keys = profile->allKeys();
-		foreach(QString key,keys){
-		    config->setValue(key,profile->value(key));
+		SaveSettings();
+		QSettings *profile=new QSettings(fname,QSettings::IniFormat);
+		QSettings *config=new QSettings(QSettings::IniFormat,QSettings::UserScope,"benibela","texmakerx");
+		if(profile && config){
+			QStringList keys = profile->allKeys();
+			foreach(QString key,keys){
+				config->setValue(key,profile->value(key));
+			}
 		}
-	    }
-	    delete profile;
-	    delete config;
-	    ReadSettings();
+		delete profile;
+		delete config;
+		ReadSettings();
 	}
 }
 

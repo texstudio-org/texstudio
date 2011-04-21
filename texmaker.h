@@ -260,7 +260,7 @@ private slots:
 	void symbolRemoveAllFavorites();
 
 	void ReadSettings();
-	void SaveSettings(QString configName="");
+	void SaveSettings(const QString& configName="");
 
 	void showMarkTooltipForLogMessage(int error);
 	void NewDocumentStatus(bool m);

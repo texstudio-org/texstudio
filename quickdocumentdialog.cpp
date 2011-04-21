@@ -234,34 +234,34 @@ void QuickDocumentDialog::Init() {
 	if (!otherOptionsList.isEmpty()) ui.listWidgetOptions->addItems(otherOptionsList);
 
 
-	configManagerInterface->linkOptionToWidget(&document_class, ui.comboBoxClass);
-	configManagerInterface->linkOptionToWidget(&typeface_size, ui.comboBoxSize);
-	configManagerInterface->linkOptionToWidget(&paper_size, ui.comboBoxPaper);
-	configManagerInterface->linkOptionToWidget(&document_encoding, ui.comboBoxEncoding);
-	configManagerInterface->linkOptionToWidget(&ams_packages, ui.checkBoxAMS);
-	configManagerInterface->linkOptionToWidget(&makeidx_package, ui.checkBoxIDX);
-	configManagerInterface->linkOptionToWidget(&author, ui.lineEditAuthor);
+	configManagerInterface->linkOptionToDialogWidget(&document_class, ui.comboBoxClass);
+	configManagerInterface->linkOptionToDialogWidget(&typeface_size, ui.comboBoxSize);
+	configManagerInterface->linkOptionToDialogWidget(&paper_size, ui.comboBoxPaper);
+	configManagerInterface->linkOptionToDialogWidget(&document_encoding, ui.comboBoxEncoding);
+	configManagerInterface->linkOptionToDialogWidget(&ams_packages, ui.checkBoxAMS);
+	configManagerInterface->linkOptionToDialogWidget(&makeidx_package, ui.checkBoxIDX);
+	configManagerInterface->linkOptionToDialogWidget(&author, ui.lineEditAuthor);
 
-	configManagerInterface->linkOptionToWidget(&geometryPageWidth, ui.spinBoxGeometryPageWidth);
-	configManagerInterface->linkOptionToWidget(&geometryPageHeight, ui.spinBoxGeometryPageHeight);
-	configManagerInterface->linkOptionToWidget(&geometryMarginLeft, ui.spinBoxGeometryMarginLeft);
-	configManagerInterface->linkOptionToWidget(&geometryMarginRight, ui.spinBoxGeometryMarginRight);
-	configManagerInterface->linkOptionToWidget(&geometryMarginTop, ui.spinBoxGeometryMarginTop);
-	configManagerInterface->linkOptionToWidget(&geometryMarginBottom, ui.spinBoxGeometryMarginBottom);
+	configManagerInterface->linkOptionToDialogWidget(&geometryPageWidth, ui.spinBoxGeometryPageWidth);
+	configManagerInterface->linkOptionToDialogWidget(&geometryPageHeight, ui.spinBoxGeometryPageHeight);
+	configManagerInterface->linkOptionToDialogWidget(&geometryMarginLeft, ui.spinBoxGeometryMarginLeft);
+	configManagerInterface->linkOptionToDialogWidget(&geometryMarginRight, ui.spinBoxGeometryMarginRight);
+	configManagerInterface->linkOptionToDialogWidget(&geometryMarginTop, ui.spinBoxGeometryMarginTop);
+	configManagerInterface->linkOptionToDialogWidget(&geometryMarginBottom, ui.spinBoxGeometryMarginBottom);
 
-	configManagerInterface->linkOptionToWidget(&geometryPageWidthUnit, ui.spinBoxUnitGeometryPageWidth);
-	configManagerInterface->linkOptionToWidget(&geometryPageHeightUnit, ui.spinBoxUnitGeometryPageHeight);
-	configManagerInterface->linkOptionToWidget(&geometryMarginLeftUnit, ui.spinBoxUnitGeometryMarginLeft);
-	configManagerInterface->linkOptionToWidget(&geometryMarginRightUnit, ui.spinBoxUnitGeometryMarginRight);
-	configManagerInterface->linkOptionToWidget(&geometryMarginTopUnit, ui.spinBoxUnitGeometryMarginTop);
-	configManagerInterface->linkOptionToWidget(&geometryMarginBottomUnit, ui.spinBoxUnitGeometryMarginBottom);
+	configManagerInterface->linkOptionToDialogWidget(&geometryPageWidthUnit, ui.spinBoxUnitGeometryPageWidth);
+	configManagerInterface->linkOptionToDialogWidget(&geometryPageHeightUnit, ui.spinBoxUnitGeometryPageHeight);
+	configManagerInterface->linkOptionToDialogWidget(&geometryMarginLeftUnit, ui.spinBoxUnitGeometryMarginLeft);
+	configManagerInterface->linkOptionToDialogWidget(&geometryMarginRightUnit, ui.spinBoxUnitGeometryMarginRight);
+	configManagerInterface->linkOptionToDialogWidget(&geometryMarginTopUnit, ui.spinBoxUnitGeometryMarginTop);
+	configManagerInterface->linkOptionToDialogWidget(&geometryMarginBottomUnit, ui.spinBoxUnitGeometryMarginBottom);
 
-	configManagerInterface->linkOptionToWidget(&geometryPageWidthEnabled, ui.checkBoxGeometryPageWidth);
-	configManagerInterface->linkOptionToWidget(&geometryPageHeightEnabled, ui.checkBoxGeometryPageHeight);
-	configManagerInterface->linkOptionToWidget(&geometryMarginLeftEnabled, ui.checkBoxGeometryMarginLeft);
-	configManagerInterface->linkOptionToWidget(&geometryMarginRightEnabled, ui.checkBoxGeometryMarginRight);
-	configManagerInterface->linkOptionToWidget(&geometryMarginTopEnabled, ui.checkBoxGeometryMarginTop);
-	configManagerInterface->linkOptionToWidget(&geometryMarginBottomEnabled, ui.checkBoxGeometryMarginBottom);
+	configManagerInterface->linkOptionToDialogWidget(&geometryPageWidthEnabled, ui.checkBoxGeometryPageWidth);
+	configManagerInterface->linkOptionToDialogWidget(&geometryPageHeightEnabled, ui.checkBoxGeometryPageHeight);
+	configManagerInterface->linkOptionToDialogWidget(&geometryMarginLeftEnabled, ui.checkBoxGeometryMarginLeft);
+	configManagerInterface->linkOptionToDialogWidget(&geometryMarginRightEnabled, ui.checkBoxGeometryMarginRight);
+	configManagerInterface->linkOptionToDialogWidget(&geometryMarginTopEnabled, ui.checkBoxGeometryMarginTop);
+	configManagerInterface->linkOptionToDialogWidget(&geometryMarginBottomEnabled, ui.checkBoxGeometryMarginBottom);
 }
 
 void QuickDocumentDialog::accept(){

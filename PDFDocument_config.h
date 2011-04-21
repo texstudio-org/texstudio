@@ -19,6 +19,10 @@ struct PDFDocumentConfig{
 	bool followFromCursor, followFromScroll;
 
 	QString syncFileMask;
+
+
+//live options
+	bool continuous;
 };
 
 #endif // PDFDOCUMENT_CONFIG_H

@@ -15,6 +15,16 @@
 #include "qformatconfig.h"
 
 #include "manhattanstyle.h"
+
+static ConfigManager* globalConfigManager = 0;
+ConfigManagerInterface* ConfigManagerInterface::getInstance(){
+	Q_ASSERT(globalConfigManager);
+	return globalConfigManager;
+}
+
+
+Q_DECLARE_METATYPE(ManagedProperty*);
+
 ManagedToolBar::ManagedToolBar(const QString &newName, const QStringList &defs): name(newName), defaults(defs), toolbar(0){}
 
 ManagedProperty::ManagedProperty():storage(0),type(PT_VOID),widgetOffset(0){
@@ -53,7 +63,7 @@ void ManagedProperty::valueFromQVariant(const QVariant v){
 	}
 }
 
-void ManagedProperty::writeToWidget(QWidget* w) const{
+void ManagedProperty::writeToObject(QObject* w) const{
 	Q_ASSERT(storage && w);
 	if (!storage || !w) return;
 
@@ -108,10 +118,16 @@ void ManagedProperty::writeToWidget(QWidget* w) const{
 		doubleSpinBox->setValue(*((double*)storage));
 		return;
 	}
+	QAction* action = qobject_cast<QAction*>(w);
+	if (checkBox) {
+		Q_ASSERT(type == PT_BOOL);
+		action->setChecked(*((bool*)storage));
+		return;
+	}
 
 	Q_ASSERT(false);
 }
-bool ManagedProperty::readFromWidget(const QWidget* w){
+bool ManagedProperty::readFromObject(const QObject* w){
 	Q_ASSERT(storage);
 	if (!storage) return false;
 
@@ -175,6 +191,14 @@ bool ManagedProperty::readFromWidget(const QWidget* w){
 		*((double*)storage) = doubleSpinBox->value();
 		return oldvalue != *((double*)storage);
 	}
+	const QAction* action = qobject_cast<const QAction*>(w);
+	if (action){
+		Q_ASSERT(type == PT_BOOL);
+		Q_ASSERT(action->isCheckable());
+		bool oldvalue = *((bool*)storage);
+		*((bool*)storage) = action->isChecked();
+		return oldvalue != *((bool*)storage);
+	}
 
 	Q_ASSERT(false);
 	return false;
@@ -189,7 +213,10 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	ltxCommands(0),
 	webPublishDialogConfig (new WebPublishDialogConfig),
 	pdfDocumentConfig(new PDFDocumentConfig),
-	menuParent(0), menuParentsBar(0) {
+	menuParent(0), menuParentsBar(0), persistentConfig(0) {
+
+	Q_ASSERT(!globalConfigManager);
+	globalConfigManager = this;
 
 	managedToolBars.append(ManagedToolBar("Custom", QStringList()));
 	managedToolBars.append(ManagedToolBar("File", QStringList() << "main/file/new" << "main/file/open" << "main/file/save" << "main/file/close"));
@@ -372,36 +399,39 @@ ConfigManager::~ConfigManager(){
 	delete editorConfig;
 	delete completerConfig;
 	delete webPublishDialogConfig;
+	if (persistentConfig) delete persistentConfig;
 }
 
 QSettings* ConfigManager::readSettings() {
 	//load config
+	QSettings *config = persistentConfig;
 	bool importTexmakerSettings = false;
-	bool usbMode = isExistingFileRealWritable(QCoreApplication::applicationDirPath()+"/texmakerx.ini");
-	if (!usbMode)
-		if (isExistingFileRealWritable(QCoreApplication::applicationDirPath()+"/texmaker.ini")) {
-			//import texmaker usb settings
-			usbMode=(QFile(QCoreApplication::applicationDirPath()+"/texmaker.ini")).copy(QCoreApplication::applicationDirPath()+"/texmakerx.ini");
-			importTexmakerSettings = true;
+	if (!config){
+		bool usbMode = isExistingFileRealWritable(QCoreApplication::applicationDirPath()+"/texmakerx.ini");
+		if (!usbMode)
+			if (isExistingFileRealWritable(QCoreApplication::applicationDirPath()+"/texmaker.ini")) {
+				//import texmaker usb settings
+				usbMode=(QFile(QCoreApplication::applicationDirPath()+"/texmaker.ini")).copy(QCoreApplication::applicationDirPath()+"/texmakerx.ini");
+				importTexmakerSettings = true;
+			}
+		if (usbMode) {
+			config=new QSettings(QCoreApplication::applicationDirPath()+"/texmakerx.ini",QSettings::IniFormat);
+		} else {
+			config=new QSettings(QSettings::IniFormat,QSettings::UserScope,"benibela","texmakerx");
+			if (config->childGroups().empty()) {
+				//import texmaker global settings
+				QSettings oldconfig(QSettings::IniFormat,QSettings::UserScope,"xm1","texmaker");
+				QStringList keys=oldconfig.allKeys();
+				foreach(const QString key, keys) config->setValue(key,oldconfig.value(key,""));
+				importTexmakerSettings = true;
+			}
 		}
-	QSettings *config;
-	if (usbMode) {
-		config=new QSettings(QCoreApplication::applicationDirPath()+"/texmakerx.ini",QSettings::IniFormat);
-	} else {
-		config=new QSettings(QSettings::IniFormat,QSettings::UserScope,"benibela","texmakerx");
-		if (config->childGroups().empty()) {
-			//import texmaker global settings
-			QSettings oldconfig(QSettings::IniFormat,QSettings::UserScope,"xm1","texmaker");
-			QStringList keys=oldconfig.allKeys();
-			foreach(const QString key, keys) config->setValue(key,oldconfig.value(key,""));
-			importTexmakerSettings = true;
-		}
+		configFileName=config->fileName();
+		configFileNameBase=configFileName;
+		configBaseDir=QFileInfo(configFileName).absolutePath();
+		completerConfig->importedCwlBaseDir=configBaseDir;// set in LatexCompleterConfig to get access from LatexDocument
+		if (configFileNameBase.endsWith(".ini")) configFileNameBase=configFileNameBase.replace(QString(".ini"),"");
 	}
-	configFileName=config->fileName();
-	configFileNameBase=configFileName;
-	configBaseDir=QFileInfo(configFileName).absolutePath();
-	completerConfig->importedCwlBaseDir=configBaseDir;// set in LatexCompleterConfig to get access from LatexDocument
-	if (configFileNameBase.endsWith(".ini")) configFileNameBase=configFileNameBase.replace(QString(".ini"),"");
 
 	config->beginGroup("texmaker");
 
@@ -590,10 +620,9 @@ QSettings* ConfigManager::readSettings() {
 
 	return config;
 }
-QSettings* ConfigManager::saveSettings(QString saveName) {
-	if(saveName.isEmpty())
-	    saveName=configFileName;
-	QSettings *config=new QSettings(saveName, QSettings::IniFormat);
+QSettings* ConfigManager::saveSettings(const QString& saveName) {
+	Q_ASSERT(persistentConfig);
+	QSettings *config= saveName.isEmpty()?persistentConfig:(new QSettings(saveName, QSettings::IniFormat));
 	config->setValue("IniMode",true);
 
 	config->beginGroup("texmaker");
@@ -655,6 +684,8 @@ QSettings* ConfigManager::saveSettings(QString saveName) {
 
 	config->endGroup();
 
+	config->sync();
+
 	return config;
 }
 
@@ -663,7 +694,7 @@ bool ConfigManager::execConfigDialog() {
 	//----------managed properties--------------------
 	foreach (const ManagedProperty& mp, managedProperties)
 		if (mp.widgetOffset)
-			mp.writeToWidget(*((QWidget**)((char*)&confDlg->ui + mp.widgetOffset))); //convert to char*, because the offset is in bytes
+			mp.writeToObject(*((QWidget**)((char*)&confDlg->ui + mp.widgetOffset))); //convert to char*, because the offset is in bytes
 
 	//files
 	//if (newfile_encoding)
@@ -946,7 +977,7 @@ bool ConfigManager::execConfigDialog() {
 		QList<void*> changedProperties;
 		//----------managed properties--------------------
 		for (int i=0;i<managedProperties.size();i++)
-			if (managedProperties[i].widgetOffset && managedProperties[i].readFromWidget(*((QWidget**)((char*)&confDlg->ui + managedProperties[i].widgetOffset))))
+			if (managedProperties[i].widgetOffset && managedProperties[i].readFromObject(*((QWidget**)((char*)&confDlg->ui + managedProperties[i].widgetOffset))))
 				changedProperties << managedProperties[i].storage;
 
 		//files
@@ -1664,13 +1695,16 @@ void ConfigManager::treeWidgetToManagedLatexMenuTo() {
 
 
 void ConfigManager::registerOption(const QString& name, void* storage, PropertyType type, QVariant def, void* displayWidgetOffset){
-#ifndef QT_NO_DEBUG
+//#ifndef QT_NO_DEBUG
+	//TODO: optimize
 	for (int i=0;i<managedProperties.size();i++)
 		if (managedProperties[i].name == name){
+			if (managedProperties[i].storage == storage)
+				return;
 			qDebug() << "Duplicate option name" << name;
 			Q_ASSERT(false);
 		}
-#endif
+//#endif
 	ManagedProperty temp;
 	temp.name = name;
 	temp.storage = storage;
@@ -1678,6 +1712,9 @@ void ConfigManager::registerOption(const QString& name, void* storage, PropertyT
 	temp.def = def;
 	temp.widgetOffset = (ptrdiff_t)displayWidgetOffset;
 	managedProperties << temp;
+
+	if (persistentConfig)
+		temp.valueFromQVariant(persistentConfig->value(temp.name, temp.def));
 }
 
 void ConfigManager::registerOption(const QString& name, bool* storage, QVariant def, void* displayWidgetOffset){
@@ -1734,7 +1771,7 @@ void ConfigManager::registerOption(const QString& name, QList<QVariant>* storage
 	registerOption(name, storage, def, 0);
 }
 
-void ConfigManager::linkOptionToWidget(const void* optionStorage, QWidget* widget){
+void ConfigManager::linkOptionToDialogWidget(const void* optionStorage, QWidget* widget){
 	ManagedProperty *property = getManagedProperty(optionStorage);
 	REQUIRE(property);
 
@@ -1751,9 +1788,27 @@ void ConfigManager::linkOptionToWidget(const void* optionStorage, QWidget* widge
 		connect(parentDialog, SIGNAL(accepted()), SLOT(managedOptionDialogAccepted()));
 	}
 
-	property->writeToWidget(widget);
+	property->writeToObject(widget);
 	widget->setProperty("managedProperty", QVariant::fromValue<void*>(property->storage));
 }
+
+void ConfigManager::linkOptionToObject(const void* optionStorage, QObject* object, bool fullSync){
+	ManagedProperty *property = getManagedProperty(optionStorage);
+	REQUIRE(property);
+	REQUIRE(fullSync || property->type == PT_BOOL);
+	if (managedOptionObjects.contains(property)) {
+		Q_ASSERT(managedOptionObjects[property].first == fullSync);
+		managedOptionObjects[property].second << object;
+	} else {
+		managedOptionObjects.insert(property, QPair<bool, QList<QObject*> >(fullSync, QList<QObject*>() << object));
+	}
+	property->writeToObject(object);
+	object->setProperty("managedProperty", QVariant::fromValue<ManagedProperty*>(property));
+	connect(object,SIGNAL(destroyed(QObject*)), SLOT(managedOptionObjectDestroyed(QObject*)));
+	if (qobject_cast<QAction*>(object))
+		connect(object, SIGNAL(toggled()), SLOT(managedOptionActionToggled()));
+}
+
 ManagedProperty* ConfigManager::getManagedProperty(const void* storage){
 	for (int i=0;i<managedProperties.size();i++)
 		if (managedProperties[i].storage == storage) return &managedProperties[i];
@@ -1790,7 +1845,60 @@ void ConfigManager::managedOptionDialogAccepted(){
 	foreach (const QWidget* widget, managedOptionDialogs.value(dialog, QList<QWidget*>())) {
 		ManagedProperty* prop = getManagedProperty(widget->property("managedProperty").value<void*>());
 		Q_ASSERT(prop);
-		prop->readFromWidget(widget);
+		prop->readFromObject(widget);
 	}
 	managedOptionDialogs.remove(dialog);
 }
+
+void ConfigManager::managedOptionObjectDestroyed(QObject* obj){
+	REQUIRE(obj);
+	ManagedProperty* property = obj->property("managedProperty").value<ManagedProperty*>();
+	REQUIRE(property);
+	Q_ASSERT(managedOptionObjects.contains(property));
+	Q_ASSERT(managedOptionObjects[property].second.contains(obj));
+	managedOptionObjects[property].second.removeAll(obj);
+	if (managedOptionObjects[property].second.isEmpty())
+		managedOptionObjects.remove(property);
+}
+
+void ConfigManager::managedOptionActionToggled(){
+	QAction* act = qobject_cast<QAction*>(sender());
+	REQUIRE(act);
+	ManagedProperty* property = act->property("managedProperty").value<ManagedProperty*>();
+	REQUIRE(property);
+	REQUIRE(property->type==PT_BOOL);
+	if (act->isChecked() == *(bool*)(property->storage)) return;
+	if (managedOptionObjects[property].first) {
+		//full sync
+		*(bool*)property->storage = act->isChecked();
+	} else {
+		//voting
+		int yes=0, no=0;
+		foreach (QObject* o, managedOptionObjects[property].second){
+			REQUIRE(qobject_cast<QAction*>(o));
+			if ((qobject_cast<QAction*>(o))->isChecked()) yes++;
+			else no++;
+		}
+		if (yes == no) return;
+		if ((yes > no) == *(bool*)(property->storage)) return;
+		*(bool*)property->storage = (yes>no);
+	}
+	updateManagedOptionObjects(property);
+}
+
+void ConfigManager::updateManagedOptionObjects(ManagedProperty* property){
+	foreach (QObject* o, managedOptionObjects[property].second)
+		property->writeToObject(o);
+}
+
+
+
+
+
+
+
+
+
+
+
+
