@@ -2417,8 +2417,7 @@ void Texmaker::NormalCompletion() {
 			word=word.mid(col-i,i);
 			//TODO: Boundary needs to specified more exactly
 			//TODO: type in text needs to be excluded, if not already present
-			QString wrd;
-			QStringList words;
+			QSet<QString> words;
 			while ((i=my_text.indexOf(QRegExp("\\b"+word),end))>0) {
 				end=my_text.indexOf(QRegExp("\\b"),i+1);
 				if (end>i) {
@@ -2484,8 +2483,7 @@ void Texmaker::InsertTextCompletion() {
 		word=word.mid(col-i,i);
 		//TODO: Boundary needs to specified more exactly
 		//TODO: type in text needs to be excluded, if not already present
-		QString wrd;
-		QStringList words;
+		QSet<QString> words;
 		while ((i=my_text.indexOf(QRegExp("\\b"+word),end))>0) {
 			end=my_text.indexOf(QRegExp("\\b"),i+1);
 			if (end>i) {
@@ -4104,7 +4102,7 @@ void Texmaker::SetMostUsedSymbols(QTableWidgetItem* item) {
 }
 
 void Texmaker::updateCompleter() {
-	QStringList words;
+	QSet<QString> words;
 
 	if (configManager.parseBibTeX) documents.updateBibFiles();
 
@@ -4115,12 +4113,12 @@ void Texmaker::updateCompleter() {
 	    QList<LatexDocument*> docs=edView->document->getListOfDocs();
 	    // collect user commands and references
 	    foreach(const LatexDocument* doc,docs){
-		words << doc->userCommandList();
-		words << doc->additionalCommandsList();
+		words.unite(doc->userCommandList());
+		words.unite(doc->additionalCommandsList());
 		foreach(const QString& refCommand, LatexParser::refCommands){
 		    QString temp=refCommand+"{%1}";
 		    for (int i=0; i<doc->labelItem().count(); ++i)
-			words.append(temp.arg(doc->labelItem().at(i)));
+			words.insert(temp.arg(doc->labelItem().at(i)));
 		}
 	    }
 	}
@@ -4128,7 +4126,7 @@ void Texmaker::updateCompleter() {
 	//add cite commands from the cwls to LatexParser::citeCommands
 	LatexCompleterConfig *conf=configManager.completerConfig;
 	QStringList citeCommands=conf->words;
-	citeCommands<<words;
+	citeCommands<<words.toList();
 	citeCommands=citeCommands.filter(QRegExp("^\\\\[Cc]ite.*"));
 	foreach(QString elem,citeCommands)
 		LatexParser::citeCommands.insert(elem.remove("{%<keylist%>}"));
@@ -4145,13 +4143,13 @@ void Texmaker::updateCompleter() {
 			foreach(const QString& citeCommand, LatexParser::citeCommands){
 				QString temp=citeCommand+"{%1}";
 				for (int i=0; i<bibTex.ids.count();i++)
-					words.append(temp.arg(bibTex.ids[i]));
+					words.insert(temp.arg(bibTex.ids[i]));
 			}
 		}
 
 	completionBaseCommandsUpdated=false;
 
-	completer->setAdditionalWords(words,false,false);
+	completer->setAdditionalWords(words,false);
 	if(edView) edView->viewActivated();
 
 	if (!LatexCompleter::hasHelpfile()) {

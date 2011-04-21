@@ -36,7 +36,7 @@ public:
 	virtual ~LatexCompleter();
 
 	void complete(QEditor *newEditor, const CompletionFlags &flags);
-	void setAdditionalWords(const QStringList &newwords, bool normalTextList=false, bool checkDoublets=true);
+	void setAdditionalWords(const QSet<QString> &newwords, bool normalTextList=false);
 	void updateAbbreviations();
 
 	static void parseHelpfile(QString text);

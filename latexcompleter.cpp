@@ -11,6 +11,8 @@
 
 #include "latexdocument.h"
 
+#include <algorithm>
+
 
 //------------------------------Default Input Binding--------------------------------
 class CompleterInputBinding: public QEditorInputBinding {
@@ -485,11 +487,11 @@ int CompletionListModel::rowCount(const QModelIndex &parent) const {
 
 	return words.count();
 }
-QVariant CompletionListModel::data(const QModelIndex &index, int role) const {
+QVariant CompletionListModel::data(const QModelIndex &index, int role)const{
 	if (!index.isValid())
 		return QVariant();
 
-	if (index.row() >= words.size())
+	if (index.row() >= words.count())
 		return QVariant();
 
 	if (role == Qt::DisplayRole) {
@@ -520,12 +522,25 @@ bool CompletionListModel::isNextCharPossible(const QChar &c){
 		if (cw.word.startsWith(extension,cs)) return true;
 	return false;
 }
-void CompletionListModel::filterList(const QString &word,int mostUsed) {
+bool CompletionListModel::canFetchMore(const QModelIndex &) const{
+    return mCanFetchMore;
+}
+void CompletionListModel::fetchMore(const QModelIndex &){
+    beginInsertRows(QModelIndex(),words.count(),qMin(words.count()+100,mWordCount));
+    filterList(mLastWord,mLastMU,true);
+    endInsertRows();
+}
+
+void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetchMore) {
 	if(mostUsed<0)
 	    mostUsed=LatexCompleter::config->preferedCompletionTab;
-	if (word==curWord && mostUsed==mostUsedUpdated) return; //don't return if mostUsed differnt from last call
+	if (word==curWord && mostUsed==mostUsedUpdated && !fetchMore) return; //don't return if mostUsed differnt from last call
+	mLastWord=word;
+	mLastMU=mostUsed;
+	mCanFetchMore=false;
 	mostUsedUpdated=mostUsed;
-	words.clear();
+	if(!fetchMore)
+	    words.clear();
 	Qt::CaseSensitivity cs = Qt::CaseInsensitive;
 	bool checkFirstChar=false;
 	if (LatexCompleter::config){
@@ -533,19 +548,49 @@ void CompletionListModel::filterList(const QString &word,int mostUsed) {
 			cs=Qt::CaseSensitive;
 		checkFirstChar=LatexCompleter::config->caseSensitive==LatexCompleterConfig::CCS_FIRST_CHARACTER_CASE_SENSITIVE && word.length()>1;
 	}
-	for (int i=0; i<baselist.count(); i++) {
-		if (baselist[i].word.isEmpty()) continue;
-		if (baselist[i].word.startsWith(word,cs) &&
-		    (!checkFirstChar || baselist[i].word[1] == word[1]) ){
-			if(mostUsed==2 || baselist[i].usageCount>=mostUsed || baselist[i].usageCount==-2)
-			    words.append(baselist[i]);
+	int cnt=0;
+	if(!fetchMore)
+	    it=qLowerBound(baselist,CompletionWord(word));
+	while(it!=baselist.constEnd()){
+	    if (it->word.startsWith(word,cs) &&
+		(!checkFirstChar || it->word[1] == word[1]) ){
+		    if(mostUsed==2 || it->usageCount>=mostUsed || it->usageCount==-2){
+			words.append(*it);
+			cnt++;
 		    }
+	    }else{
+		if(!it->word.startsWith(word,Qt::CaseInsensitive))
+		    break; // sorted list
+	    }
+	    ++it;
+	    if(cnt>100){
+		mCanFetchMore=true;
+		break;
+	    }
 	}
-	/*if (words.size()>=2) //prefer matching case
-	   if (!words[0].word.startsWith(word,Qt::CaseSensitive) && words[1].word.startsWith(word,Qt::CaseSensitive))
-	   	words.swap(0,1);*/
 	curWord=word;
-	reset();
+	if(!fetchMore){
+	    mWordCount=words.count();
+	    mLastWordInList=words.last();
+	}
+	if(mCanFetchMore && !fetchMore){
+	    // calculate real number of rows
+	    QString wordp=word;
+	    if(wordp.isEmpty()){
+		mWordCount=baselist.count();
+		mLastWordInList=baselist.last();
+	    }else{
+		QChar lst=wordp[wordp.length()-1];
+		ushort nr=lst.unicode();
+		wordp[wordp.length()-1]=QChar(nr+1);
+		QList<CompletionWord>::const_iterator it2=qLowerBound(baselist,CompletionWord(wordp));
+		mWordCount=it2-it;
+		mLastWordInList=*(--it2);
+	    }
+	}
+
+	if(!fetchMore)
+	    reset();
 }
 void CompletionListModel::incUsage(const QModelIndex &index){
     if (!index.isValid())
@@ -582,12 +627,12 @@ void CompletionListModel::incUsage(const QModelIndex &index){
 }
 
 typedef QPair<int,int> PairIntInt;
-void CompletionListModel::setBaseWords(const QStringList &newwords, bool normalTextList) {
+void CompletionListModel::setBaseWords(const QSet<QString> &newwords, bool normalTextList) {
 	QList<CompletionWord> newWordList;
 	acceptedChars.clear();
 	newWordList.clear();
-	for(int i=0;i<newwords.count();i++) {
-		QString str=newwords.at(i);
+	for(QSet<QString>::const_iterator i=newwords.constBegin();i!=newwords.constEnd();i++) {
+		QString str=*i;
 		CompletionWord cw(str);
 		if(!normalTextList){
 		    cw.index=qHash(str);
@@ -714,18 +759,10 @@ void LatexCompleter::insertText(QString txt){
     filterList(cur,completerInputBinding->getMostUsed());
 }
 
-void LatexCompleter::setAdditionalWords(const QStringList &newwords, bool normalTextList,bool checkDoublets) {
-	QStringList concated;
-	if (config && !normalTextList) concated << config->words;
-	//avoid duplicates !!!
-	if(checkDoublets){
-	    foreach(const QString elem,newwords){
-		if(!concated.contains(elem))
-		    concated << elem;
-	    }
-	}else{
-	    concated << newwords;
-	}
+void LatexCompleter::setAdditionalWords(const QSet<QString> &newwords, bool normalTextList) {
+	QSet<QString> concated;
+	if (config && !normalTextList) concated.unite(config->words.toSet());
+	concated.unite(newwords);
 	listModel->setBaseWords(concated,normalTextList);
 	widget->resize(200,200);
 }
@@ -827,8 +864,10 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	//widget->show();
 	if (flags & CF_NORMAL_TEXT) listModel->baselist=listModel->wordsText;
 	else listModel->baselist=listModel->wordsCommands;
-	listModel->baselist+=listModel->wordsAbbrev;
-	qSort(listModel->baselist.begin(),listModel->baselist.end());
+	QList<CompletionWord>::iterator middle=listModel->baselist.end();
+	listModel->baselist << listModel->wordsAbbrev;
+	std::inplace_merge(listModel->baselist.begin(),middle,listModel->baselist.end());
+	//qSort(listModel->baselist.begin(),listModel->baselist.end());
 	if (c.previousChar()!='\\' || (flags & CF_FORCE_VISIBLE_LIST)) {
 		int start=c.columnNumber()-1;
 		if (flags & CF_NORMAL_TEXT) start=0;
