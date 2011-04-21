@@ -4153,7 +4153,7 @@ void Texmaker::updateCompleter() {
 
 	completionBaseCommandsUpdated=false;
 
-	completer->setAdditionalWords(words);
+	completer->setAdditionalWords(words,false,false);
 	if(edView) edView->viewActivated();
 
 	if (!LatexCompleter::hasHelpfile()) {
