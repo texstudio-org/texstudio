@@ -321,8 +321,6 @@ private slots:
 	void stackWindows();
 	void arrangeWindows(bool tile);
 
-	void followingToggled();
-
 	void jumpToPage();
 
 	void search(bool backward, bool incremental);

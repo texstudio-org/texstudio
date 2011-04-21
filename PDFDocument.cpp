@@ -1513,10 +1513,6 @@ PDFDocument::init()
 	actionTypeset->setIcon(QIcon(":/images/quick.png"));
 	actionExternalViewer->setIcon(QIcon(":/images/viewpdf.png"));
 
-	actionScrolling_follows_cursor->setChecked(globalConfig->followFromCursor);
-	actionCursor_follows_scrolling->setChecked(globalConfig->followFromScroll);
-
-
 	setContextMenuPolicy(Qt::NoContextMenu);
 
 	pdfWidget = new PDFWidget;
@@ -1598,8 +1594,9 @@ PDFDocument::init()
 	connect(actionCustom, SIGNAL(triggered()), SLOT(setGrid()));
 
 	connect(actionSinglePageStep, SIGNAL(toggled(bool)), pdfWidget, SLOT(setSinglePageStep(bool)));
+	conf->registerOption("Preview/Single Page Step", &globalConfig->singlepagestep, true);
+	conf->linkOptionToObject(&globalConfig->singlepagestep, actionSinglePageStep, 0);
 	connect(actionContinuous, SIGNAL(toggled(bool)), scrollArea, SLOT(setContinuous(bool)));
-
 	conf->registerOption("Preview/Continuous", &globalConfig->continuous, true);
 	conf->linkOptionToObject(&globalConfig->continuous, actionContinuous, 0);
 
@@ -1625,9 +1622,12 @@ PDFDocument::init()
 	connect(actionGo_to_Source, SIGNAL(triggered()), this, SLOT(goToSource()));
 	connect(actionNew_Window, SIGNAL(triggered()), SIGNAL(triggeredClone()));
 
-	connect(actionScrolling_follows_cursor, SIGNAL(toggled(bool)), SLOT(followingToggled()));
-	connect(actionCursor_follows_scrolling, SIGNAL(toggled(bool)), SLOT(followingToggled()));
-
+	conf->registerOption("Preview/Scrolling Follows Cursor", &globalConfig->followFromCursor, false);
+	conf->linkOptionToObject(&globalConfig->followFromCursor, actionScrolling_follows_cursor);
+	conf->registerOption("Preview/Cursor Follows Scrolling", &globalConfig->followFromScroll, false);
+	conf->linkOptionToObject(&globalConfig->followFromScroll, actionCursor_follows_scrolling);
+	conf->registerOption("Preview/Sync Multiple Views", &globalConfig->syncViews, true);
+	conf->linkOptionToObject(&globalConfig->syncViews, actionSynchronize_multiple_views);
 
 	connect(actionPreferences, SIGNAL(triggered()), SIGNAL(triggeredConfigure()));
 
@@ -1893,11 +1893,6 @@ void PDFDocument::arrangeWindows(bool tile){
 	}
 }
 
-void PDFDocument::followingToggled(){
-	Q_ASSERT(globalConfig);
-	globalConfig->followFromCursor = actionScrolling_follows_cursor->isChecked();
-	globalConfig->followFromScroll = actionCursor_follows_scrolling->isChecked();
-}
 
 void PDFDocument::search(bool backwards, bool incremental){
 	if (!document)
