@@ -128,7 +128,6 @@ public:
 			return false;
 		}*/
 		// get list of most recent choices
-		QStringList my_words;
 		const QList<CompletionWord> &words=completer->listModel->getWords();
 		// filter list for longest common characters
 		if (words.count()>1) {

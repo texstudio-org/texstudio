@@ -21,18 +21,28 @@
 #include <QDebug>
 
 XmlTagsListWidget::XmlTagsListWidget(QWidget *parent, QString file):QListWidget(parent){
-	QFile tagsFile(file);
-	if (tagsFile.open(QFile::ReadOnly)){
-		QDomDocument domDocument;
-		if (domDocument.setContent(&tagsFile)){
-			QDomElement root = domDocument.documentElement();
-			if (root.tagName() == "texmakertags"){
-				xmlSections=getTags(root);
-				for (int i = 0; i < xmlSections.children.size(); ++i)
-				addListWidgetItems(xmlSections.children.at(i));
-			}
-		}
-	}
+	mFile=file;
+	mLoaded=false;
+}
+
+void XmlTagsListWidget::populate(){
+    QFile tagsFile(mFile);
+    if (tagsFile.open(QFile::ReadOnly)){
+	    QDomDocument domDocument;
+	    if (domDocument.setContent(&tagsFile)){
+		    QDomElement root = domDocument.documentElement();
+		    if (root.tagName() == "texmakertags"){
+			    xmlSections=getTags(root);
+			    for (int i = 0; i < xmlSections.children.size(); ++i)
+			    addListWidgetItems(xmlSections.children.at(i));
+		    }
+	    }
+    }
+}
+
+void XmlTagsListWidget::showEvent(QShowEvent *event){
+    if(!mLoaded)
+	populate();
 }
 
 QStringList XmlTagsListWidget::tagsTxtFromCategory(const QString & category){
