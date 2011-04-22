@@ -30,6 +30,7 @@ public:
 	void setConfig(LatexCompleterConfig* newConfig);
 	virtual bool canFetchMore(const QModelIndex &parent) const;
 	void fetchMore(const QModelIndex &parent);
+	CompletionWord getLastWord();
 private:
 	friend class LatexCompleter; //TODO: make this unnecessary
 	QList<CompletionWord> words;
