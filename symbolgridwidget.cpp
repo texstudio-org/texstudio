@@ -21,15 +21,13 @@ SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString SymbolList, QVaria
 	horizontalHeader()->hide();
 	setIconSize(QSize(32,32));
 	setSelectionMode(QAbstractItemView::SingleSelection);
+	mLoadedSymbols=false;
+	mSymbolList=SymbolList;
+	mMap=Map;
+	if(SymbolList.startsWith("!")){
+	    loadSymbols(QStringList(),mMap);
+	}
 
-	QStringList files;
-	if(!SymbolList.isEmpty() && !SymbolList.startsWith("!")) 
-		files=findResourceFiles("symbols/"+SymbolList, "img*.png");
-
-	QStringList fullNames;
-	foreach (const QString& partName, files) fullNames << SymbolList+"/"+partName;
-
-	loadSymbols(fullNames,Map);
 }
 SymbolGridWidget::~SymbolGridWidget(){
 	foreach(QTableWidgetItem* elem,listOfItems)
@@ -41,7 +39,8 @@ QString SymbolGridWidget::getCurrentSymbol(){
 	if (!cur) return QString();
 	return cur->data(Qt::UserRole+2).toString();
 }
-void SymbolGridWidget::loadSymbols(const QStringList& fileNames, QVariantMap *Map){	
+void SymbolGridWidget::loadSymbols(const QStringList& fileNames, QVariantMap *Map){
+	mLoadedSymbols=true;
 	foreach(QTableWidgetItem* elem,listOfItems){
 		takeItem(row(elem),column(elem));
 		delete(elem);
@@ -65,7 +64,7 @@ void SymbolGridWidget::loadSymbols(const QStringList& fileNames, QVariantMap *Ma
 		item->setText(img.text("Command"));
 		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 		if(Map) {
-			item->setData(Qt::UserRole,Map->value(img.text("Command"),0).toInt());
+			item->setData(Qt::UserRole,Map->value(iconName,0).toInt());
 			Map->insert(img.text("Command"),0);
 		} else item->setData(Qt::UserRole,0);
 		item->setData(Qt::UserRole+2,iconName);
@@ -73,8 +72,6 @@ void SymbolGridWidget::loadSymbols(const QStringList& fileNames, QVariantMap *Ma
 		QStringList args,pkgs;
 
 		label = tr("Command: ") + img.text("Command");
-
-
 
 		QRegExp rePkgs("(?:\\[(.*)\\])?\\{(.*)\\}");
 
@@ -113,6 +110,17 @@ void SymbolGridWidget::loadSymbols(const QStringList& fileNames, QVariantMap *Ma
 
 void SymbolGridWidget::resizeEvent ( QResizeEvent * event )
 {
+	if(!mLoadedSymbols){
+	    QStringList files;
+	    if(!mSymbolList.isEmpty() && !mSymbolList.startsWith("!"))
+		files=findResourceFiles("symbols/"+mSymbolList, "img*.png");
+
+	    QStringList fullNames;
+	    foreach (const QString& partName, files)
+		fullNames << mSymbolList+"/"+partName;
+
+	    loadSymbols(fullNames,mMap);
+	}
 	//qDebug("%d",event->size());
 	QTableWidget::resizeEvent(event);
 	// remove remaining old items
@@ -142,20 +150,16 @@ void SymbolGridWidget::resizeEvent ( QResizeEvent * event )
 void SymbolGridWidget::SetUserPage(usercodelist ulist) {
 	foreach(QTableWidgetItem* elem,listOfItems){
 		takeItem(row(elem),column(elem));
-		delete(elem);
 	}
 	listOfItems.clear();
 	int numberOfColumns=columnCount();
 	//setColumnCount(numberOfColumns);
 	setRowCount(12/numberOfColumns);
-	int i=0;
-	foreach(QTableWidgetItem* elem,ulist){
-		QTableWidgetItem* item= elem->clone();
-		item->setData(Qt::UserRole,-1);
-		item->setData(Qt::UserRole+1,QVariant::fromValue(elem));
+
+	for(int i=0;i<qMin(12,ulist.count());i++){
+		QTableWidgetItem* item=ulist.at(i);
 		setItem(i/numberOfColumns,i%numberOfColumns,item);
 		listOfItems << item;
-		i++;
 	}
 	countOfItems=listOfItems.count();
 }

@@ -34,6 +34,10 @@ protected:
 private:
 	QList<QTableWidgetItem*>listOfItems;
 	int countOfItems; //not necessary equal to listOfItems.size() while the symbols are added
+
+	bool mLoadedSymbols;
+	QVariantMap *mMap;
+	QString mSymbolList;
 };
 
 #endif

@@ -35,10 +35,17 @@ public:
 	XmlTagsListWidget(QWidget *parent, QString file);
 	QStringList tagsTxtFromCategory(const QString & category);
 	QString tagsFromTagTxt(const QString& tagTxt);
+
+protected:
+	void showEvent ( QShowEvent * event );
+
 private:
 	xmlTagList getTags(const QDomElement &element);
 	xmlTagList xmlSections;
 	void addListWidgetItems(const xmlTagList &tagList);
+	QString mFile;
+	bool mLoaded;
+	void populate();
 };
 
 #endif

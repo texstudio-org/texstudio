@@ -82,23 +82,44 @@ CodeSnippet::CodeSnippet(const QString &newWord) {
 	placeHolders.append(QList<CodeSnippetPlaceHolder>()); //during the creation this contains a line more than lines
 
 	CodeSnippetPlaceHolder tempPlaceholder;
-	for (int i=0; i<realNewWord.length(); i++)
+	bool firstLine=true;
+	for (int i=0; i<realNewWord.length(); i++){
+		QChar currentChar=realNewWord.at(i);
 		if (!escape) {
-			if (realNewWord.at(i)==QChar('\n')) {
+			if (currentChar==QChar('\n')) {
 				lines.append(curLine);
 				placeHolders.append(QList<CodeSnippetPlaceHolder>());
 				curLine.clear();
-			} else if (realNewWord.at(i)==QChar('%')) escape=true;
+				firstLine=false;
+			} else if (currentChar==QChar('%')) escape=true;
 			else {
-				curLine+=realNewWord.at(i);
-				word.append(realNewWord.at(i));
+				curLine+=currentChar;
+				word.append(currentChar);
+				if(firstLine){
+				    switch (currentChar.toAscii()) {
+				    case '{':
+				    case '}':
+					sortWord.append('!');
+					break;
+				    case '[':
+					sortWord.append('\\');
+					break;
+				    case '*':
+					sortWord.append('#');
+					break;
+				    default:
+					sortWord.append(currentChar);
+				    }
+				}
 			}
 		} else {
 			escape=false;
-			switch (realNewWord.at(i).toAscii()) {
+			switch (currentChar.toAscii()) {
 			case '%':
 				word+='%';
 				curLine+='%';
+				if(firstLine)
+				    sortWord.append(currentChar);
 				break;
 			case '|':
 				cursorLine=lines.count(); //first line is 0
@@ -122,25 +143,20 @@ CodeSnippet::CodeSnippet(const QString &newWord) {
 				break;	
 			default: // escape was not an escape character ...
 				curLine+='%';
-				curLine+=realNewWord.at(i);
+				curLine+=currentChar;
 				word.append('%');
-				word.append(realNewWord.at(i));
+				word.append(currentChar);
+				if(firstLine)
+				    sortWord.append(currentChar);
 			}
 		}
+	}
 	lines.append(curLine);
 	if (cursorLine == -1 && hasPlaceHolder && !hasAutoSelectPlaceHolder) //use first placeholder at new selection if nothing else is set
 		for (int i=0;i<placeHolders.count();i++)
 			if (placeHolders[i].count()>0)
 				placeHolders[i].first().flags |= CodeSnippetPlaceHolder::AutoSelect;
 
-	/*if (cursorLine==-1 && foundDescription)
-		for (int i=0;i<placeHolders.count();i++)
-			if (placeHolders[i].count()>0) {
-				cursorLine=i;
-				anchorOffset =placeHolders[i][0].offset;
-				cursorOffset =placeHolders[i][0].offset+placeHolders[i][0].length;
-				break;
-			}*/
 	if (hasMirrors){
 		for (int l=0;l<placeHolders.count();l++)
 			for (int i=0;i<placeHolders[l].size();i++)
@@ -156,11 +172,13 @@ CodeSnippet::CodeSnippet(const QString &newWord) {
 				}
 	}
 	if (anchorOffset==-1) anchorOffset=cursorOffset;
+	/*
 	sortWord=lines.first().toLower(); //only sort by first line which is visible in completer (otherwise \begin{frame} comes after \begin{frame}[xy])
 	sortWord.replace("{","!");//js: still using dirty hack, however order should be ' '{[* abcde...
 	sortWord.replace("}","!");// needs to be replaced as well for sorting \bgein{abc*} after \bgein{abc}
 	sortWord.replace("[","\"");//(first is a space->) !"# follow directly in the ascii table
 	sortWord.replace("*","#");
+	*/
 }
 
 bool CodeSnippet::operator< (const CodeSnippet &cw) const {

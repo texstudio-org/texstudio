@@ -197,7 +197,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	symbolMostused.clear();
 	setupDockWidgets();
 
-	//SetMostUsedSymbols();
 	setupMenus();
 	configManager.updateRecentFiles(true);
 	setupToolBars();
@@ -221,7 +220,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 	stat1->setText(QString(" %1 ").arg(tr("Normal Mode")));
 	stat2->setText(QString(" %1 ").arg(tr("Ready")));
-//connect(stat3, SIGNAL(itemClicked ( QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
 	// adapt menu output view visible;
 	outputViewAction->setChecked(outputView->isVisible());
 	connect(outputView, SIGNAL(visibilityChanged(bool)), outputViewAction, SLOT(setChecked(bool)));  //synchronize toggle action and menu action (todo: insert toggle action in menu, but not that easy with the managed menus)
@@ -277,6 +275,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 }
 
 Texmaker::~Texmaker(){
+    delete MapForSymbols;
     if(latexStyleParser){
 	latexStyleParser->stop();
 	latexStyleParser->wait();
@@ -381,6 +380,7 @@ void Texmaker::setupDockWidgets(){
 	addSymbolGrid("special", "math-accent.png",tr("Accented letters"));
 
 	MostUsedSymbolWidget=addSymbolGrid("!mostused",":/images/math6.png",tr("Most used symbols"));
+	MostUsedSymbolWidget->loadSymbols(MapForSymbols->keys(),MapForSymbols);
 	FavoriteSymbolWidget=addSymbolGrid("!favorite",":/images/math7.png",tr("Favorites"));
 	FavoriteSymbolWidget->loadSymbols(symbolFavorites);
 
@@ -394,11 +394,6 @@ void Texmaker::setupDockWidgets(){
 
 	// update MostOftenUsed
 	MostUsedSymbolsTriggered(true);
-	// clean not further used map;
-	if (MapForSymbols){
-		delete MapForSymbols;
-		MapForSymbols = 0;
-	}
 // OUTPUT WIDGETS
 	if (!outputView) {
 		outputView = new OutputViewWidget(this);
@@ -2230,21 +2225,16 @@ void Texmaker::SaveSettings(const QString& configName) {
 	for(int i=0;i<struct_level.count();i++)
 	    config->setValue("Structure/Structure Level "+QString::number(i+1),struct_level[i]);
 
-	MapForSymbols= new QVariantMap;
-	for(int i=0;i<leftPanel->widgetCount();i++){
-		if (!leftPanel->widget(i)->property("isSymbolGrid").toBool()) continue;
-		QTableWidget* tw=qobject_cast<QTableWidget*>(leftPanel->widget(i));
-		foreach(QTableWidgetItem* elem,tw->findItems("*",Qt::MatchWildcard)){
-			if(!elem) continue;
-			int cnt=elem->data(Qt::UserRole).toInt();
-			if (cnt<1) continue;
-			QString text=elem->text();
-			if(MapForSymbols->value(text).toInt()>cnt) cnt=MapForSymbols->value(text).toInt();
-			MapForSymbols->insert(text,cnt);
-		}
+	MapForSymbols->clear();
+	foreach(QTableWidgetItem *elem,symbolMostused){
+	    int cnt=elem->data(Qt::UserRole).toInt();
+	    if (cnt<1) continue;
+	    QString text=elem->data(Qt::UserRole+2).toString();
+	    if(MapForSymbols->value(text).toInt()>cnt) cnt=MapForSymbols->value(text).toInt();
+	    MapForSymbols->insert(text,cnt);
 	}
 	config->setValue("Symbols/Quantity",*MapForSymbols);
-	delete MapForSymbols;
+
 	config->setValue("Symbols/Favorite IDs",symbolFavorites);
 
 	config->setValue("Symbols/hiddenlists",leftPanel->hiddenWidgets());
@@ -2536,7 +2526,7 @@ void Texmaker::InsertSymbol(QTableWidgetItem *item) {
 	QString code_symbol;
 	if (item) {
 		int cnt=item->data(Qt::UserRole).toInt();
-		if(cnt<0) {
+		if(item->data(Qt::UserRole+1).isValid()) {
 			item=item->data(Qt::UserRole+1).value<QTableWidgetItem*>();
 			cnt=item->data(Qt::UserRole).toInt();
 		}
@@ -4080,20 +4070,32 @@ void Texmaker::SetMostUsedSymbols(QTableWidgetItem* item) {
 	bool changed=false;
 	int index=symbolMostused.indexOf(item);
 	if(index<0){
-		if(symbolMostused.size()<12){
-			symbolMostused.prepend(item);
-			changed=true;
-		}else {
-			if(item->data(Qt::UserRole).toInt()>symbolMostused[0]->data(Qt::UserRole).toInt()){
-				symbolMostused.removeFirst();
-				symbolMostused.prepend(item);
-				changed=true;
-			}
+		//check whether it was loaded as mosteUsed ...
+		for(int i=0;i<symbolMostused.count();i++){
+		    QTableWidgetItem *elem=symbolMostused.at(i);
+		    if(elem->data(Qt::UserRole+2)==item->data(Qt::UserRole+2)){
+			index=i;
+			item->setData(Qt::UserRole+1,QVariant::fromValue(elem));
+			int cnt=elem->data(Qt::UserRole).toInt();
+			elem->setData(Qt::UserRole,cnt+1);
+			elem->setData(Qt::UserRole+3,QVariant::fromValue(item));//reference to original item for removing later
+			item=elem;
+			break;
+		    }
 		}
-	} else {
+		if(index<0){
+		    QTableWidgetItem *elem=item->clone();
+		    item->setData(Qt::UserRole+1,QVariant::fromValue(elem));
+		    elem->setData(Qt::UserRole+3,QVariant::fromValue(item));//reference to original item for removing later
+		    symbolMostused.append(elem);
+		    if(symbolMostused.size()<=12)
+			changed=true;
+		}
+	}
+	if(index>-1){
 		symbolMostused.removeAt(index);
-		while(index<symbolMostused.size()&&symbolMostused[index]->data(Qt::UserRole).toInt()<item->data(Qt::UserRole).toInt()){
-			index++;
+		while(index>0&&symbolMostused[index-1]->data(Qt::UserRole).toInt()<item->data(Qt::UserRole).toInt()){
+			index--;
 		}
 		symbolMostused.insert(index,item);
 		changed=true;
@@ -4547,42 +4549,36 @@ void Texmaker::MostUsedSymbolsTriggered(bool direct){
 		 action = qobject_cast<QAction *>(sender());
 		 item=MostUsedSymbolWidget->currentItem();
 	 }
-	 if(direct || action->text()==tr("remove")){
+	 if(direct || action->text()==tr("Remove")){
 		 if(!direct){
-			 QTableWidgetItem *elem=item->data(Qt::UserRole+1).value<QTableWidgetItem*>();
-			 elem->setData(Qt::UserRole,0);
-		 }
-		symbolMostused.clear();
-		for(int i=0;i<leftPanel->widgetCount();i++){
-			if (!leftPanel->widget(i)->property("isSymbolGrid").toBool()) continue;
-			QTableWidget* tw=qobject_cast<QTableWidget*>(leftPanel->widget(i));
-			foreach(QTableWidgetItem* elem,tw->findItems("*",Qt::MatchWildcard)){
+			 if(item->data(Qt::UserRole+3).isValid()){
+			    QTableWidgetItem *elem=item->data(Qt::UserRole+3).value<QTableWidgetItem*>();
+			    elem->setData(Qt::UserRole+1,QVariant());
+			 }
+			 symbolMostused.removeAll(item);
+			 delete item;
+		 }else{
+			symbolMostused.clear();
+			foreach(QTableWidgetItem* elem,MostUsedSymbolWidget->findItems("*",Qt::MatchWildcard)){
 				if(!elem) continue;
 				int cnt=elem->data(Qt::UserRole).toInt();
-				if (cnt<1) continue;
 				if(symbolMostused.isEmpty()){
 					symbolMostused.append(elem);
 				}else {
 					int index=0;
-					while(index<symbolMostused.size()&&symbolMostused[index]->data(Qt::UserRole).toInt()<cnt){
+					while(index<symbolMostused.size()&&symbolMostused[index]->data(Qt::UserRole).toInt()>cnt){
 						index++;
-					}
-					if(index==12){
-						symbolMostused.removeFirst();
-						index--;
 					}
 					symbolMostused.insert(index,elem);
 				}
 			}
 		}
 	}else{
-		for(int i=0;i<leftPanel->widgetCount();i++){
-			if (!leftPanel->widget(i)->property("isSymbolGrid").toBool()) continue;
-			QTableWidget* tw=qobject_cast<QTableWidget*>(leftPanel->widget(i));
-			foreach(QTableWidgetItem* elem,tw->findItems("*",Qt::MatchWildcard)){
-				if(!elem) continue;
-				elem->setData(Qt::UserRole,0);
-			}
+		for(int i=0;symbolMostused.count();i++){
+			QTableWidgetItem* item=symbolMostused.at(i);
+			QTableWidgetItem *elem=item->data(Qt::UserRole+3).value<QTableWidgetItem*>();
+			elem->setData(Qt::UserRole+1,QVariant());
+			delete item;
 			symbolMostused.clear();
 		}
 	}
