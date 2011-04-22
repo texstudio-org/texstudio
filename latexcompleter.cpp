@@ -130,23 +130,16 @@ public:
 		// get list of most recent choices
 		QStringList my_words;
 		const QList<CompletionWord> &words=completer->listModel->getWords();
-		for (int i=0; i<words.count(); i++) {
-			if (words[i].word.startsWith(my_curWord,Qt::CaseInsensitive))
-				my_words.append(words[i].word);
-		}
 		// filter list for longest common characters
-		if (my_words.count()>1) {
-			QString myResult=my_words[0];
+		if (words.count()>1) {
+			QString myResult=words.first().word;
 			int my_start=my_curWord.length();
-			for (int i=1; i<my_words.count(); i++) {
-				my_curWord=my_words[i];
+			my_curWord=completer->listModel->getLastWord().word;
 
-				for (int j=my_start; (j<my_curWord.length()&&j<myResult.length()); j++) {
-					if (myResult[j]!=my_curWord[j]) {
-						myResult=myResult.left(j);
-
-					}
-				}
+			for (int j=my_start; (j<my_curWord.length()&&j<myResult.length()); j++) {
+			    if (myResult[j]!=my_curWord[j]) {
+				myResult=myResult.left(j);
+			    }
 			}
 
 			removeRightWordPart();
@@ -529,6 +522,9 @@ void CompletionListModel::fetchMore(const QModelIndex &){
     beginInsertRows(QModelIndex(),words.count(),qMin(words.count()+100,mWordCount));
     filterList(mLastWord,mLastMU,true);
     endInsertRows();
+}
+CompletionWord CompletionListModel::getLastWord(){
+    return mLastWordInList;
 }
 
 void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetchMore) {
