@@ -955,9 +955,14 @@ bool QEditor::saveCopy(const QString& filename){
 
 	QFile f(filename);
 
-	if ( !f.open(QFile::WriteOnly) ) return false;
+	if ( !f.open(QFile::WriteOnly) ) {
+		QMessageBox::warning(this, tr("Saving failed"), tr("I failed to acquire write permissions on the file %1.\n\nPerhaps it is read-only or opened in another program?").arg(filename),QMessageBox::Ok);
+		return false;
+	}
 
-	f.write(data);
+	if (f.write(data) == -1)
+		QMessageBox::critical(this, tr("Saving failed"), tr("Writing the document to file %1 failed after the old content was deleted.\n\nThe file may have been corrupted!").arg(filename),QMessageBox::Ok);
+
 
 	f.close(); //explicite close for watcher
 
