@@ -7,7 +7,7 @@
     </mark>
     <mark>
         <id>error</id>
-        <color>red@E0</color>
+        <color>#FF8080@E0</color>
         <icon>:/images/error.png</icon>
         <user>false</user>
         <focus>true</focus>
