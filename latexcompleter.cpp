@@ -566,7 +566,8 @@ void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetch
 	curWord=word;
 	if(!fetchMore){
 	    mWordCount=words.count();
-	    mLastWordInList=words.last();
+	    if(!words.isEmpty())
+		mLastWordInList=words.last();
 	}
 	if(mCanFetchMore && !fetchMore){
 	    // calculate real number of rows
