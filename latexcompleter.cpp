@@ -860,8 +860,8 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	//widget->show();
 	if (flags & CF_NORMAL_TEXT) listModel->baselist=listModel->wordsText;
 	else listModel->baselist=listModel->wordsCommands;
-	QList<CompletionWord>::iterator middle=listModel->baselist.end();
 	listModel->baselist << listModel->wordsAbbrev;
+	QList<CompletionWord>::iterator middle=listModel->baselist.end()-listModel->wordsAbbrev.length();
 	std::inplace_merge(listModel->baselist.begin(),middle,listModel->baselist.end());
 	//qSort(listModel->baselist.begin(),listModel->baselist.end());
 	if (c.previousChar()!='\\' || (flags & CF_FORCE_VISIBLE_LIST)) {
