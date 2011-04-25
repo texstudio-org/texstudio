@@ -225,25 +225,26 @@ const int kMagFactor = 2;
 
 PDFMagnifier::PDFMagnifier(QWidget *parent, qreal inDpi)
 	: QLabel(parent)
-	, page(NULL)
+	, page(-1)
 	, scaleFactor(kMagFactor)
 	, parentDpi(inDpi)
 	, imageDpi(0)
-	, imagePage(NULL)
+	, imagePage(-1)
 {
 }
 
-void PDFMagnifier::setPage(Poppler::Page *p, qreal scale, const QRect& visibleRect)
+void PDFMagnifier::setPage(int pageNr, qreal scale, const QRect& visibleRect)
 {
-	page = p;
+	page = pageNr;
 	scaleFactor = scale * kMagFactor;
-	if (page == NULL) {
-		imagePage = NULL;
+	if (page <0) {
+		imagePage=-1;
 		image = QImage();
 	}
 	else {
 		PDFWidget* parent = qobject_cast<PDFWidget*>(parentWidget());
 		if (parent != NULL) {
+			PDFDocument *doc=parent->getPDFDocument();
 			QWidget* viewport = parent->parentWidget();
 			if (viewport != NULL && viewport->parentWidget() != NULL) {
 				qreal dpi = parentDpi * scaleFactor;
@@ -258,9 +259,8 @@ void PDFMagnifier::setPage(Poppler::Page *p, qreal scale, const QRect& visibleRe
 				QSize  size = QSize(br.x() - tl.x(), br.y() - tl.y()) * kMagFactor;
 				QPoint loc = tl * kMagFactor;
 				if (page != imagePage || dpi != imageDpi || loc != imageLoc || size != imageSize){
-					parent->renderMutex.lock();
-					image = page->renderToImage(dpi, dpi, loc.x(), loc.y(), size.width(), size.height());
-					parent->renderMutex.unlock();
+					//image = page->renderToImage(dpi, dpi, loc.x(), loc.y(), size.width(), size.height());
+					image = doc->renderManager.renderToImage(pageNr,this,"setImage",dpi, dpi, loc.x(), loc.y(), size.width(), size.height());
 				}
 				imagePage = page;
 				imageDpi = dpi;
@@ -271,6 +271,11 @@ void PDFMagnifier::setPage(Poppler::Page *p, qreal scale, const QRect& visibleRe
 		}
 	}
 	update();
+}
+void PDFMagnifier::setImage(QImage img,int pageNr){
+    if(pageNr==page)
+	image=img;
+    update();
 }
 
 void PDFMagnifier::paintEvent(QPaintEvent *event)
@@ -433,10 +438,8 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	QRect newRect = rect();
 	if (pages.size() > 0 && (pages.first() != imagePage || newDpi != imageDpi || newRect != imageRect)) {
 		if (gridx<=1 && gridy<=1) {
-			renderMutex.lock();
 			image = pages.first()->renderToImage(dpi * scaleFactor, dpi * scaleFactor,
 							rect().x(), rect().y(), rect().width(), rect().height());
-			renderMutex.unlock();
 		} else {
 			image = QImage(newRect.width(), newRect.height(), image.isNull()?QImage::Format_RGB32:image.format());
 			image.fill(QApplication::palette().color(QPalette::Dark).rgb());
@@ -444,12 +447,10 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 			p.begin(&image);
 			for (int i=0;i<pages.size();i++){
 				QRect drawTo = gridPageRect(i);
-				renderMutex.lock();
 				QImage temp = pages[i]->renderToImage(
 							  dpi * scaleFactor,
 							  dpi * scaleFactor,
 							  0,0,drawTo.width(), drawTo.height());
-				renderMutex.unlock();
 				p.drawImage(drawTo.left(), drawTo.top(), temp);
 			}
 			p.end();
@@ -475,13 +476,14 @@ void PDFWidget::useMagnifier(const QMouseEvent *inEvent)
 {
 	Q_ASSERT(globalConfig);
 	if (!globalConfig) return;
-	int pageIndex = gridPageIndex(inEvent->pos());
-	if (pageIndex < 0)
+	int localPageIndex = gridPageIndex(inEvent->pos());
+	if (localPageIndex < 0)
 		return;
 	if (!magnifier)
 		magnifier = new PDFMagnifier(this, dpi);
 	magnifier->setFixedSize(globalConfig->magnifierSize * 4 / 3, globalConfig->magnifierSize);
-	magnifier->setPage(pages[pageIndex], scaleFactor, gridPageRect(pageIndex));
+	//magnifier->setPage(pages[pageIndex], scaleFactor, gridPageRect(pageIndex));
+	magnifier->setPage(this->pageIndex, scaleFactor, gridPageRect(localPageIndex));
 	// this was in the hope that if the mouse is released before the image is ready,
 	// the magnifier wouldn't actually get shown. but it doesn't seem to work that way -
 	// the MouseMove event that we're posting must end up ahead of the mouseUp
@@ -1030,6 +1032,11 @@ void PDFWidget::updateStatusBar()
 		doc->showScale(scaleFactor);
 	}
 }
+PDFDocument * PDFWidget::getPDFDocument(){
+    QWidget *widget = window();
+    PDFDocument *doc = qobject_cast<PDFDocument*>(widget);
+    return doc;
+}
 
 void PDFWidget::setGridSize(int gx, int gy){
 	if (gridx == gx && gridy == gy)
@@ -1442,7 +1449,7 @@ PDFScrollArea* PDFWidget::getScrollArea()
 QList<PDFDocument*> PDFDocument::docList;
 
 PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig)
-	: exitFullscreen(0), watcher(NULL), reloadTimer(NULL), scanner(NULL), syncFromSourceBlock(false)
+    : exitFullscreen(0), watcher(NULL), reloadTimer(NULL), scanner(NULL), syncFromSourceBlock(false),renderManager(this)
 {
 	Q_ASSERT(pdfConfig);
 	Q_ASSERT(!globalConfig || (globalConfig == pdfConfig));
@@ -1780,6 +1787,9 @@ void PDFDocument::reload()
 			pdfWidget->hide();
 		}
 		else {
+			//reinitialize rendermanager
+			renderManager.setDocument(curFile);
+
 			document->setRenderBackend(Poppler::Document::SplashBackend);
 			document->setRenderHint(Poppler::Document::Antialiasing);
 			document->setRenderHint(Poppler::Document::TextAntialiasing);

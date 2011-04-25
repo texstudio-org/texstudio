@@ -20,6 +20,7 @@ public:
     int y;
     int w;
     int h;
+    int ticket;
 };
 
 class PDFRenderEngine : public QThread
@@ -36,7 +37,7 @@ public:
     }
 
 signals:
-    void sendImage(QImage image,int page);
+    void sendImage(QImage image,int page,int ticket);
 
 public slots:
 

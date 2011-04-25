@@ -14,7 +14,7 @@
 #include "pdfrenderengine.h"
 
 RenderCommand::RenderCommand(int p,double xr,double yr,int x,int y,int w, int h) :
-    pageNr(p),xres(xr),yres(yr),x(x),y(y),w(w),h(h)
+    pageNr(p),xres(xr),yres(yr),x(x),y(y),w(w),h(h),ticket(-1)
 {
 }
 
@@ -27,7 +27,6 @@ PDFRenderEngine::PDFRenderEngine(QObject *parent) :
 }
 
 PDFRenderEngine::~PDFRenderEngine(){
-    delete document;
 }
 
 void PDFRenderEngine::stop(){
@@ -57,7 +56,7 @@ void PDFRenderEngine::run(){
 	    QImage	image=page->renderToImage(command.xres, command.yres,
 					  command.x, command.y, command.w, command.h);
 	    delete page;
-	    emit sendImage(image,command.pageNr);
+	    emit sendImage(image,command.pageNr,command.ticket);
 	}
     }
 }
