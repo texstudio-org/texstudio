@@ -764,14 +764,10 @@ PDFOverviewDock::PDFOverviewDock(PDFDocument *doc)
 	list->setSpacing(12);
 	list->setBackgroundRole(QPalette::Mid);
 	setWidget(list);
-	renderEngine.start();
-	connect(&renderEngine,SIGNAL(sendImage(QImage,int)),this,SLOT(insertImage(QImage,int)));
 }
 
 PDFOverviewDock::~PDFOverviewDock()
 {
-    renderEngine.stop();
-    renderEngine.wait();
 }
 
 void PDFOverviewDock::changeLanguage()
@@ -786,8 +782,6 @@ void PDFOverviewDock::fillInfo()
     list->clear();
     toGenerate=0;
     if (!document || !document->popplerDoc()) return;
-    Poppler::Document *dc=Poppler::Document::load(document->fileName());
-    renderEngine.setDocument(dc);
     Poppler::Document *doc = document->popplerDoc();
     int sx=128;
     int sy=128;
@@ -837,17 +831,9 @@ void PDFOverviewDock::pageChanged(int page)
 }
 
 void PDFOverviewDock::showImage(){
-    Poppler::Document *doc = document->popplerDoc();
-    for(int i=0;i<doc->numPages();i++){
-	Poppler::Page* page=doc->page(i);
-	QImage image=page->thumbnail();
-	if(image.isNull()){
-	    RenderCommand cmd(i);
-	    renderEngine.enqueue(cmd);
-	}else{
-	    insertImage(image,i);
-	}
-	delete page;
+    for(int i=0;i<document->popplerDoc()->numPages();i++){
+	QImage image=document->renderManager.renderToImage(i,this,"insertImage");
+	insertImage(image,i);
     }
 }
 

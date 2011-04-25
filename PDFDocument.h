@@ -32,7 +32,8 @@
 #include "synctex_parser.h"
 
 #include "ui_PDFDocument.h"
-#include <QMutex>
+#include "pdfrendermanager.h"
+
 
 const int kPDFWindowStateVersion = 1;
 
@@ -43,6 +44,7 @@ class QScrollArea;
 class QShortcut;
 class QFileSystemWatcher;
 class ConfigManagerInterface;
+class PDFDocument;
 
 class PDFMagnifier : public QLabel
 {
@@ -50,14 +52,17 @@ class PDFMagnifier : public QLabel
 
 public:
 	PDFMagnifier(QWidget *parent, qreal inDpi);
-	void setPage(Poppler::Page *p, qreal scale, const QRect& visibleRect);
+	void setPage(int p, qreal scale, const QRect& visibleRect);
+
+public slots:
+	void setImage(QImage img,int pageNr);
 
 protected:
 	virtual void paintEvent(QPaintEvent *event);
 	virtual void resizeEvent(QResizeEvent *event);
 
 private:
-	Poppler::Page	*page;
+	int page;
 	qreal	scaleFactor;
 	qreal	parentDpi;
 	QImage	image;
@@ -65,7 +70,7 @@ private:
 	QPoint	imageLoc, mouseOffset;
 	QSize	imageSize;
 	qreal	imageDpi;
-	Poppler::Page	*imagePage;
+	int imagePage;
 };
 
 typedef enum {
@@ -102,8 +107,7 @@ public:
 	int pageStep() const;
 	int gridCols() const;
 	int gridRowHeight() const;
-
-	QMutex renderMutex;
+	PDFDocument * getPDFDocument();
 
 private slots:
 	void goFirst();
@@ -225,10 +229,10 @@ private:
 	static QCursor	*magnifierCursor;
 	static QCursor	*zoomInCursor;
 	static QCursor	*zoomOutCursor;
+
+
 };
 
-
-class PDFDocument;
 class PDFSearchResult {
 public:
 	PDFSearchResult(const PDFDocument* pdfdoc = NULL, int page = -1, QRectF rect = QRectF())
@@ -287,6 +291,7 @@ public:
 		}
 
 	bool followCursor() const;
+	PDFRenderManager renderManager;
 
 protected:
 	virtual void changeEvent(QEvent *event);

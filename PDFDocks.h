@@ -31,7 +31,7 @@
 #include <QDateTime>
 
 #include "poppler-qt4.h"
-#include "pdfrenderengine.h"
+#include "pdfrendermanager.h"
 
 class PDFDocument;
 class QListWidget;
