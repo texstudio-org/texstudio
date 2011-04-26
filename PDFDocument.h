@@ -139,6 +139,7 @@ public slots:
 	void syncWindowClick(int x, int y, bool activate, int page = -1);
 	void syncCurrentPage(bool activate);
 	void fixedScale(qreal scale = 1.0);
+	void setImage(QImage img,int pageNr);
 
 signals:
 	void changedPage(int, bool);
@@ -175,8 +176,8 @@ private:
 	QPoint gridPagePosition(int pageIndex) const;
 	QRect gridPageRect(int pageIndex) const;
 	int gridPageIndex(const QPoint& position) const;
-	Poppler::Page* gridPage(const QPoint& position) const;
-	void gridMapToScaledPosition(const QPoint& position, Poppler::Page*& page, QPointF& scaledPos) const;
+	int gridPage(const QPoint& position) const;
+	void gridMapToScaledPosition(const QPoint& position, int & page, QPointF& scaledPos) const;
 	QPoint gridMapFromScaledPosition(const QPointF& scaledPos) const;
 	QSizeF maxPageSizeF() const;
 	QSizeF gridSizeF(bool ignoreVerticalGrid=false) const;
@@ -184,7 +185,7 @@ private:
 	PDFScrollArea* getScrollArea();
 	
 	Poppler::Document	*document;
-	QList<Poppler::Page*> pages;
+	QList<int> pages;
 	Poppler::Link		*clickedLink;
 
 	int pageIndex, oldPageIndex;
@@ -213,7 +214,7 @@ private:
 	QImage	image;
 	QRect	imageRect;
 	qreal	imageDpi;
-	Poppler::Page	*imagePage;
+	int	imagePage;
 
 	PDFMagnifier	*magnifier;
 	int		currentTool;	// the current tool selected in the toolbar
@@ -221,6 +222,8 @@ private:
 	bool		singlePageStep;
 
 	int gridx, gridy;
+
+	bool forceUpdate;
 
 	QPainterPath	highlightPath;
 	int highlightPage;
