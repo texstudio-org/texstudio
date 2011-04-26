@@ -641,7 +641,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 				if(mAppendixLine &&indexOf(mAppendixLine)<i) newSection->appendix=true;
 				else newSection->appendix=false;
-				newSection->title=name;
+				newSection->title=parseTexOrPDFString(name);
 				newSection->level=header;
 				newSection->lineNumber=i;
 				newSection->lineHandle=line(i).handle();
@@ -1057,6 +1057,7 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 	if (!index.isValid()) return QVariant();
 	StructureEntry* entry = (StructureEntry*) index.internalPointer();
 	if (!entry) return QVariant();
+	QString result;
 	switch (role) {
 	case Qt::DisplayRole:
 	    if (entry->type==StructureEntry::SE_DOCUMENT_ROOT){ //show only base file name
@@ -1064,13 +1065,19 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 		if(title.isEmpty()) title=tr("untitled");
 		return QVariant(title);
 	    }
-	    //fall through to show full title in other cases
+	    //show full title in other cases
+	    if(documents.showLineNumbersInStructure && entry->lineNumber>-1){
+		result=entry->title+QString(tr(" (Line %1)").arg(entry->getRealLineNumber()+1));
+	    }else{
+		result=entry->title;
+	    }
+	    return QVariant(result);
 	case Qt::ToolTipRole:
 	    //qDebug("data %x",entry);
 	    if (entry->lineNumber>-1)
 		return QVariant(entry->title+QString(tr(" (Line %1)").arg(entry->getRealLineNumber()+1)));
 	    else
-		return QVariant(entry->title);
+		return QVariant();
 	case Qt::DecorationRole:
 	    switch (entry->type){
 	    case StructureEntry::SE_BIBTEX: return iconBibTeX;
@@ -1304,6 +1311,8 @@ bool LatexDocumentsModel::getSingleDocMode(){
 }
 
 LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)), masterDocument(0), currentDocument(0), bibTeXFilesModified(false){
+    showLineNumbersInStructure=false;
+    indentationInStructure=-1;
 }
 
 LatexDocuments::~LatexDocuments(){

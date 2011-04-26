@@ -82,6 +82,8 @@ public:
 	bool newLeftPanelLayout;
 	bool configShowAdvancedOptions;
 	bool centralVisible;
+	bool showLineNumbersInStructure;
+	int indentationInStructure;
 	
 	//language
 	QString language, lastLanguage;

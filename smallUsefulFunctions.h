@@ -85,6 +85,8 @@ QString extractSectionName(const QString& word,bool precut=false);
 int findClosingBracket(const QString& word,int &start);
 //replaces character with corresponding LaTeX commands
 QString textToLatex(const QString& text);
+// replaces \texorpdfstring{tex}{pdfString} with pdfString
+QString& parseTexOrPDFString(QString& s);
 
 //compares two strings local aware
 bool localAwareLessThan(const QString &s1, const QString &s2);
