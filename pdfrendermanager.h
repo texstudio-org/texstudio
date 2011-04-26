@@ -9,10 +9,11 @@
 
 class RecInfo{
 public:
-    explicit RecInfo(): obj(0),slot(""),x(-1),y(-1),w(-1),h(-1),cache(true){}
     QObject *obj;
     const char *slot;
     int x,y,w,h;
+    int pageNr;
+    qreal xres;
     bool cache;
 };
 
@@ -29,13 +30,14 @@ public slots:
     void addToCache(QImage img,int pageNr,int ticket);
 
 private:
-
+    bool checkDuplicate(int &ticket,RecInfo &info);
+    void fillCache();
 
     Poppler::Document *document;
 
     PDFRenderEngine *renderQueue;
     QCache<int,QImage> renderedPages;
-    QMap<int,RecInfo> lstOfReceivers;
+    QMultiMap<int,RecInfo> lstOfReceivers;
     int currentTicket;
 };
 
