@@ -235,6 +235,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 					       "main/math/mathmode" << "main/math/subscript" << "main/math/superscript" << "main/math/frac" << "main/math/dfrac" << "main/math/sqrt"));
 
 	registerOption("ToolBar/CentralVisible", &centralVisible, true);
+	registerOption("StructureView/ShowLinenumbers", &showLineNumbersInStructure, false);
+	registerOption("StructureView/Indentation", &indentationInStructure, -1);
 
 	enviromentModes << "verbatim" << "numbers";
 

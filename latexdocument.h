@@ -304,6 +304,8 @@ public:
 	void updateMasterSlaveRelations(LatexDocument *doc);
 
 	LatexParser ltxCommands;
+	bool showLineNumbersInStructure;
+	int indentationInStructure;
 signals:
 	void masterDocumentChanged(LatexDocument *masterDocument);
 private slots:

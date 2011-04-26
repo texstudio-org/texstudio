@@ -330,6 +330,24 @@ QString textToLatex(const QString& text) {
 	return result;
 }
 
+QString& parseTexOrPDFString(QString& s) {
+	int start, stop;
+	start = s.indexOf("\\texorpdfstring");
+	while (start >= 0) {
+		stop = start+15;
+		stop = findClosingBracket(s, stop);
+		if (stop < 0) return s;
+		s.remove(start, stop-start+1);
+		if (s[start] == '{') {
+			s.remove(start, 1); // 2nd opening bracket
+			stop = findClosingBracket(s, start);
+			s.remove(stop, 1);  // 2nd closing bracket
+		}
+		start = s.indexOf("\\texorpdfstring");
+	}
+	return s;
+}
+
 bool localAwareLessThan(const QString &s1, const QString &s2) {
 	return QString::localeAwareCompare(s1,s2)<0;
 }

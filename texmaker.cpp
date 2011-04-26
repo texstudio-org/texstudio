@@ -159,6 +159,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 			marks[i].color = m_formats->format("line:"+marks[i].id).background;
 
 // TAB WIDGET EDITEUR
+	documents.indentationInStructure=configManager.indentationInStructure;
+	documents.showLineNumbersInStructure=configManager.showLineNumbersInStructure;
 	connect(&documents,SIGNAL(masterDocumentChanged(LatexDocument *)), SLOT(masterDocumentChanged(LatexDocument *)));
 
 	QFrame *centralFrame=new QFrame(this);
@@ -358,6 +360,8 @@ void Texmaker::setupDockWidgets(){
 	if (!structureTreeView) {
 		structureTreeView=new QTreeView(this);
 		structureTreeView->header()->hide();
+		if(configManager.indentationInStructure>0)
+		    structureTreeView->setIndentation(configManager.indentationInStructure);
 		structureTreeView->setModel(documents.model);
 		//disabled because it also reacts to expand, connect(structureTreeView, SIGNAL(activated(const QModelIndex &)), SLOT(clickedOnStructureEntry(const QModelIndex &))); //enter or double click (+single click on some platforms)
 		connect(structureTreeView, SIGNAL(pressed(const QModelIndex &)), SLOT(clickedOnStructureEntry(const QModelIndex &))); //single click
