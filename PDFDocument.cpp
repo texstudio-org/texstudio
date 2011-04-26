@@ -333,6 +333,7 @@ PDFWidget::PDFWidget()
 	, usingTool(kNone)
 	, singlePageStep(true)
 	, gridx(1), gridy(1)
+	, forceUpdate(false)
 {
 	Q_ASSERT(globalConfig);
 	if (!globalConfig) return;
@@ -402,13 +403,10 @@ PDFWidget::PDFWidget()
 
 PDFWidget::~PDFWidget()
 {
-	foreach (Poppler::Page* page, pages)
-		delete page;
 }
 
 void PDFWidget::setDocument(Poppler::Document *doc)
 {
-	qDeleteAll(pages);
 	pages.clear();
 	document = doc;
 	reloadPage();
@@ -436,9 +434,11 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 
 	qreal newDpi = dpi * scaleFactor;
 	QRect newRect = rect();
-	if (pages.size() > 0 && (pages.first() != imagePage || newDpi != imageDpi || newRect != imageRect)) {
+	PDFDocument *doc=getPDFDocument();
+	if (pages.size() > 0 && (pages.first() != imagePage || newDpi != imageDpi || newRect != imageRect)||forceUpdate) {
 		if (gridx<=1 && gridy<=1) {
-			image = pages.first()->renderToImage(dpi * scaleFactor, dpi * scaleFactor,
+			int pageNr=pages.first();
+			image = doc->renderManager.renderToImage(pageNr,this,"setImage",dpi * scaleFactor, dpi * scaleFactor,
 							rect().x(), rect().y(), rect().width(), rect().height());
 		} else {
 			image = QImage(newRect.width(), newRect.height(), image.isNull()?QImage::Format_RGB32:image.format());
@@ -447,7 +447,9 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 			p.begin(&image);
 			for (int i=0;i<pages.size();i++){
 				QRect drawTo = gridPageRect(i);
-				QImage temp = pages[i]->renderToImage(
+				int pageNr=pages[i];
+				QImage temp = doc->renderManager.renderToImage(
+							  pageNr,this,"setImage",
 							  dpi * scaleFactor,
 							  dpi * scaleFactor,
 							  0,0,drawTo.width(), drawTo.height());
@@ -457,7 +459,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 		}
 	}
 
-	imagePage = pages.isEmpty()?0:pages.first();
+	imagePage = pages.isEmpty()?-1:pages.first();
 	imageDpi = newDpi;
 	imageRect = newRect;
 
@@ -472,6 +474,11 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	}
 }
 
+void PDFWidget::setImage(QImage,int){
+    forceUpdate=true;
+    update();
+}
+
 void PDFWidget::useMagnifier(const QMouseEvent *inEvent)
 {
 	Q_ASSERT(globalConfig);
@@ -483,7 +490,7 @@ void PDFWidget::useMagnifier(const QMouseEvent *inEvent)
 		magnifier = new PDFMagnifier(this, dpi);
 	magnifier->setFixedSize(globalConfig->magnifierSize * 4 / 3, globalConfig->magnifierSize);
 	//magnifier->setPage(pages[pageIndex], scaleFactor, gridPageRect(pageIndex));
-	magnifier->setPage(this->pageIndex, scaleFactor, gridPageRect(localPageIndex));
+	magnifier->setPage(pages[localPageIndex], scaleFactor, gridPageRect(localPageIndex));
 	// this was in the hope that if the mouse is released before the image is ready,
 	// the magnifier wouldn't actually get shown. but it doesn't seem to work that way -
 	// the MouseMove event that we're posting must end up ahead of the mouseUp
@@ -531,8 +538,10 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 	else if (currentTool != kPresentation){
 		Poppler::Page *page;
 		QPointF scaledPos;
-		gridMapToScaledPosition(event->pos(), page, scaledPos);
-		if (page) {
+		int pageNr;
+		gridMapToScaledPosition(event->pos(), pageNr, scaledPos);
+		if (pageNr>=0) {
+			page=document->page(pageNr);
 			// check for click in link
 			foreach (Poppler::Link* link, page->links()) {
 				if (link->linkArea().contains(scaledPos)) {
@@ -556,6 +565,7 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 						break;
 				}
 			}
+			delete page;
 		}
 	}
 	event->accept();
@@ -564,10 +574,10 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 {
 	if (clickedLink != NULL) {
-		Poppler::Page *page;
+		int page;
 		QPointF scaledPos;
 		gridMapToScaledPosition(event->pos(), page, scaledPos);
-		if (page && clickedLink->linkArea().contains(scaledPos)) {
+		if (page>-1 && clickedLink->linkArea().contains(scaledPos)) {
 			doLink(clickedLink);
 		}
 	} else if (currentTool == kPresentation) {
@@ -904,9 +914,11 @@ void PDFWidget::updateCursor(const QPoint& pos)
 {
 	Poppler::Page* page;
 	QPointF scaledPos;
-	gridMapToScaledPosition(pos, page, scaledPos);
-	if (!page) return;
+	int pageNr;
+	gridMapToScaledPosition(pos, pageNr, scaledPos);
+	if (pageNr<0) return;
 	// check for link
+	page=document->page(pageNr);
 	foreach (Poppler::Link* link, page->links()) {
 		// poppler's linkArea is relative to the page rect
 		if (link->linkArea().contains(scaledPos)) {
@@ -924,9 +936,11 @@ void PDFWidget::updateCursor(const QPoint& pos)
 				rr.setTopLeft(mapToGlobal(rr.topLeft()));
 				QToolTip::showText(globalPos, browse->url(), this, rr);
 			}
+			delete page;
 			return;
 		}
 	}
+	delete page;
 	updateCursor();
 }
 
@@ -983,7 +997,7 @@ void PDFWidget::clearHighlight()
 
 void PDFWidget::reloadPage(bool sync)
 {
-	QList<Poppler::Page*> oldpages = pages;
+	QList<int> oldpages = pages;
 	pages.clear();
 	if (magnifier != NULL)
 		magnifier->setPage(NULL, 0, QRect());
@@ -1000,22 +1014,16 @@ void PDFWidget::reloadPage(bool sync)
 			int lastCommonPage = qMin(pageIndex + pageCount - 1, oldPageIndex + oldpages.size() - 1);
 
 			if (lastCommonPage < firstCommonPage) {
-				qDeleteAll(oldpages);
 				for (int i=0; i < pageCount; i++)
-					pages.append(document->page(pageIndex + i));
+					pages.append(pageIndex + i);
 			} else {
-				for (int i=oldPageIndex; i < firstCommonPage; i++) delete oldpages[i - oldPageIndex];
-				for (int i=pageIndex; i < firstCommonPage; i++) pages.append(document->page(i));
-
+				for (int i=pageIndex; i < firstCommonPage; i++) pages.append(i);
 				for (int i=firstCommonPage; i <= lastCommonPage; i++) pages.append(oldpages[i-oldPageIndex]);
-
-				for (int i=lastCommonPage + 1; i < oldPageIndex + oldpages.size(); i++) delete oldpages[i-oldPageIndex];
-				for (int i=lastCommonPage + 1; i < pageIndex + pageCount; i++) pages.append(document->page(i));
-
+				for (int i=lastCommonPage + 1; i < pageIndex + pageCount; i++) pages.append(i);
 			}
 			oldPageIndex = pageIndex;
-		} else qDeleteAll(oldpages);
-	} else qDeleteAll(oldpages);
+		}
+	}
 
 	adjustSize();
 	update();
@@ -1374,36 +1382,45 @@ int PDFWidget::gridPageIndex(const QPoint& position) const{
 	return -1;
 }
 
-Poppler::Page* PDFWidget::gridPage(const QPoint& position) const{
+int PDFWidget::gridPage(const QPoint& position) const{
 	int index = gridPageIndex(position);
 	if (index<0) return 0;
 	return pages[index];
 }
 
-void PDFWidget::gridMapToScaledPosition(const QPoint& position, Poppler::Page*& page, QPointF& scaledPos) const{
+void PDFWidget::gridMapToScaledPosition(const QPoint& position, int & page, QPointF& scaledPos) const{
 	int pageIndex = gridPageIndex(position);
-	page = 0;
+	page = -1;
 	if (pageIndex<0) return;
 	page = pages[pageIndex];
 	QPoint rp = position - gridPagePosition(pageIndex);
 	// poppler's pos is relative to the page rect
-	scaledPos = QPointF(rp.x() / scaleFactor / dpi * 72.0 / page->pageSizeF().width(),
-			      rp.y() / scaleFactor / dpi * 72.0 / page->pageSizeF().height());
+	Poppler::Page *popplerPage=document->page(page);
+	scaledPos = QPointF(rp.x() / scaleFactor / dpi * 72.0 / popplerPage->pageSizeF().width(),
+			      rp.y() / scaleFactor / dpi * 72.0 / popplerPage->pageSizeF().height());
+	delete popplerPage;
 
 }
 
 QPoint PDFWidget::gridMapFromScaledPosition(const QPointF& scaledPos) const {
 	if (pages.size() == 0) return QPoint();
 	QRect r = gridPageRect(0);
-	return (QPointF(scaledPos.x() * pages.first()->pageSizeF().width(), scaledPos.y() * pages.first()->pageSizeF().height())   * scaleFactor * dpi / 72.0 ).toPoint();
+	int i=pages.first();
+	Poppler::Page *popplerPage=document->page(i);
+	int w=popplerPage->pageSizeF().width();
+	int h=popplerPage->pageSizeF().height();
+	delete popplerPage;
+	return (QPointF(scaledPos.x() * w, scaledPos.y() * h)   * scaleFactor * dpi / 72.0 ).toPoint();
 
 }
 
 QSizeF PDFWidget::maxPageSizeF() const{
 	QSizeF maxPageSize;
-	foreach (Poppler::Page* page, pages) {
-		if (page->pageSizeF().width() > maxPageSize.width()) maxPageSize.setWidth(page->pageSizeF().width());
-		if (page->pageSizeF().height() > maxPageSize.height()) maxPageSize.setHeight(page->pageSizeF().height());
+	foreach (int page, pages) {
+		Poppler::Page *popplerPage=document->page(page);
+		if (popplerPage->pageSizeF().width() > maxPageSize.width()) maxPageSize.setWidth(popplerPage->pageSizeF().width());
+		if (popplerPage->pageSizeF().height() > maxPageSize.height()) maxPageSize.setHeight(popplerPage->pageSizeF().height());
+		delete popplerPage;
 	}
 	return maxPageSize;
 }
