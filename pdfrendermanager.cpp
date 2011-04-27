@@ -27,6 +27,11 @@ PDFRenderManager::~PDFRenderManager(){
     document=0;
 }
 
+void PDFRenderManager::stopRendering(){
+    renderQueue->stop();
+    renderQueue->wait();
+}
+
 void PDFRenderManager::setDocument(QString fileName){
     renderedPages.clear();
     document=Poppler::Document::load(fileName);

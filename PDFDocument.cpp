@@ -1492,6 +1492,7 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig)
 
 PDFDocument::~PDFDocument()
 {
+	renderManager.stopRendering();
 	emit documentClosed();
 	if (scanner != NULL)
 		synctex_scanner_free(scanner);
