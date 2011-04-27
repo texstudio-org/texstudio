@@ -105,6 +105,7 @@ QImage PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,d
 void PDFRenderManager::addToCache(QImage img,int pageNr,int ticket){
     if(lstOfReceivers.contains(ticket)){
 	QList<RecInfo> infos=lstOfReceivers.values(ticket);
+	lstOfReceivers.remove(ticket);
 	foreach(RecInfo info,infos){
 	    if(info.cache){
 		QImage *image=new QImage(img);
