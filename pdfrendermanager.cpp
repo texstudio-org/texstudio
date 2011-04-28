@@ -11,11 +11,12 @@
 
 #include "pdfrendermanager.h"
 
-const int num_renderQueues=2;
-
 PDFRenderManager::PDFRenderManager(QObject *parent) :
     QObject(parent)
 {
+    num_renderQueues=2;
+    if(QThread::idealThreadCount()>2)
+	num_renderQueues=QThread::idealThreadCount();
     for(int i=0;i<num_renderQueues;i++){
 	PDFRenderEngine *renderQueue=new PDFRenderEngine(this);
 	connect(renderQueue,SIGNAL(sendImage(QImage,int,int)),this,SLOT(addToCache(QImage,int,int)));

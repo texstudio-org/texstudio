@@ -47,6 +47,8 @@ private:
     QSemaphore mCommandsAvailable;
     QMutex mQueueLock;
     bool stopped;
+
+    int num_renderQueues;
 };
 
 #endif // PDFRENDERMANAGER_H
