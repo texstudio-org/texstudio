@@ -260,7 +260,7 @@ void PDFMagnifier::setPage(int pageNr, qreal scale, const QRect& visibleRect)
 				QPoint loc = tl * kMagFactor;
 				if (page != imagePage || dpi != imageDpi || loc != imageLoc || size != imageSize){
 					//don't cache in rendermanager in order to reduce memory consumption
-					image = doc->renderManager.renderToImage(pageNr,this,"setImage",dpi, dpi, loc.x(), loc.y(), size.width(), size.height(),false);
+					image = doc->renderManager.renderToImage(pageNr,this,"setImage",dpi, dpi, loc.x(), loc.y(), size.width(), size.height(),false,true);
 				}
 				imagePage = page;
 				imageDpi = dpi;
