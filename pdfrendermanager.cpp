@@ -29,7 +29,6 @@ PDFRenderManager::PDFRenderManager(QObject *parent) :
 
 PDFRenderManager::~PDFRenderManager(){
     stopRendering();
-    document=0;
 }
 
 void PDFRenderManager::stopRendering(){
@@ -83,7 +82,7 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 	scale=sz.width()*xres/(72.0*img.width());
 	int sx=qRound(img.width()*scale);
 	int sy=qRound(img.height()*scale);
-	if(scale>1.01 || scale<0.99)
+	if(scale>1.001 || scale<0.999)
 	    img=img.scaled(QSize(sx,sy),Qt::KeepAspectRatio,Qt::FastTransformation);
 	if(x>-1 && y>-1 && w>-1 && h>-1){
 	    img=img.copy(x,y,w,h);
@@ -101,7 +100,7 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 	// paint something (rendering ... or similar)
     }
     if(enqueueCmd){
-	if(scale>1.1){ // don't render again if it is smaller or about right
+	if(scale>1.001 || scale<0.999){ // always rerender, only not if it is already equivalent
 	    RenderCommand cmd(pageNr,xres,yres);
 	    cmd.ticket=currentTicket;
 	    enqueue(cmd,priority);
