@@ -439,7 +439,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 		if (gridx<=1 && gridy<=1) {
 			int pageNr=pages.first();
 			image = doc->renderManager.renderToImage(pageNr,this,"setImage",dpi * scaleFactor, dpi * scaleFactor,
-							rect().x(), rect().y(), rect().width(), rect().height());
+							rect().x(), rect().y(), rect().width(), rect().height(),true,true);
 		} else {
 			image = QPixmap(newRect.width(), newRect.height());
 			image.fill(QApplication::palette().color(QPalette::Dark).rgb());
@@ -452,7 +452,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 							  pageNr,this,"setImage",
 							  dpi * scaleFactor,
 							  dpi * scaleFactor,
-							  0,0,drawTo.width(), drawTo.height());
+							  0,0,drawTo.width(), drawTo.height(),true,true);
 				p.drawPixmap(drawTo.left(), drawTo.top(), temp);
 			}
 			p.end();
