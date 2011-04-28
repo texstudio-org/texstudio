@@ -55,7 +55,7 @@ public:
 	void setPage(int p, qreal scale, const QRect& visibleRect);
 
 public slots:
-	void setImage(QImage img,int pageNr);
+	void setImage(QPixmap img,int pageNr);
 
 protected:
 	virtual void paintEvent(QPaintEvent *event);
@@ -65,7 +65,7 @@ private:
 	int page;
 	qreal	scaleFactor;
 	qreal	parentDpi;
-	QImage	image;
+	QPixmap	image;
 	
 	QPoint	imageLoc, mouseOffset;
 	QSize	imageSize;
@@ -139,7 +139,7 @@ public slots:
 	void syncWindowClick(int x, int y, bool activate, int page = -1);
 	void syncCurrentPage(bool activate);
 	void fixedScale(qreal scale = 1.0);
-	void setImage(QImage img,int pageNr);
+	void setImage(QPixmap img,int pageNr);
 
 signals:
 	void changedPage(int, bool);
@@ -211,7 +211,7 @@ private:
 	QShortcut *shortcutPageDown3;
 	QShortcut *shortcutPageDown4;
 
-	QImage	image;
+	QPixmap image;
 	QRect	imageRect;
 	qreal	imageDpi;
 	int	imagePage;

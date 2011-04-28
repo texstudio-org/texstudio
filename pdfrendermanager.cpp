@@ -44,7 +44,7 @@ void PDFRenderManager::setDocument(QString fileName){
     fillCache();
 }
 
-QImage PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,double xres, double yres, int x, int y, int w, int h,bool cache){
+QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,double xres, double yres, int x, int y, int w, int h,bool cache){
     RecInfo info;
     info.obj=obj;
     info.slot=rec;
@@ -60,20 +60,20 @@ QImage PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,d
     lstOfReceivers.insert(currentTicket,info);
     // return best guess/cached at once, refine later
     Poppler::Page *page=document->page(pageNr);
-    QImage img;
+    QPixmap img;
     qreal scale=10;
     if(renderedPages.contains(pageNr)){ // try cache first
 	img=*renderedPages[pageNr];
     }
     if(img.isNull()) // not cached, thumbnail present ?
-	img=page->thumbnail();
+	img=QPixmap::fromImage(page->thumbnail());
     if(!img.isNull()){ // if a image was found, scale it apropriately
 	QSize sz=page->pageSize();
 	scale=sz.width()*xres/(72.0*img.width());
 	int sx=qRound(img.width()*scale);
 	int sy=qRound(img.height()*scale);
 	if(scale>1.01 || scale<0.99)
-	    img=img.scaled(QSize(sx,sy),Qt::KeepAspectRatio,Qt::SmoothTransformation);
+	    img=img.scaled(QSize(sx,sy),Qt::KeepAspectRatio,Qt::FastTransformation);
 	if(x>-1 && y>-1 && w>-1 && h>-1){
 	    img=img.copy(x,y,w,h);
 	}
@@ -85,7 +85,7 @@ QImage PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,d
 	    w=sz.width();
 	    h=sz.height();
 	}
-	img=QImage(w,h,QImage::Format_RGB32);
+	img=QPixmap(w,h);
 	img.fill(QApplication::palette().color(QPalette::Light).rgb());
 	// paint something (rendering ... or similar)
     }
@@ -108,13 +108,13 @@ void PDFRenderManager::addToCache(QImage img,int pageNr,int ticket){
 	lstOfReceivers.remove(ticket);
 	foreach(RecInfo info,infos){
 	    if(info.cache){
-		QImage *image=new QImage(img);
+		QPixmap *image=new QPixmap(QPixmap::fromImage(img));
 		renderedPages.insert(pageNr,image);
 	    }
 	    if(info.obj){
 		if(info.x>-1 && info.y>-1 && info.w>-1 && info.h>-1)
 		    img=img.copy(info.x,info.y,info.w,info.h);
-		QMetaObject::invokeMethod(info.obj,info.slot,Q_ARG(QImage,img),Q_ARG(int,pageNr));
+		QMetaObject::invokeMethod(info.obj,info.slot,Q_ARG(QPixmap,QPixmap::fromImage(img)),Q_ARG(int,pageNr));
 	    }
 	}
     }

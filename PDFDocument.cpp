@@ -239,7 +239,7 @@ void PDFMagnifier::setPage(int pageNr, qreal scale, const QRect& visibleRect)
 	scaleFactor = scale * kMagFactor;
 	if (page <0) {
 		imagePage=-1;
-		image = QImage();
+		image = QPixmap();
 	}
 	else {
 		PDFWidget* parent = qobject_cast<PDFWidget*>(parentWidget());
@@ -272,7 +272,7 @@ void PDFMagnifier::setPage(int pageNr, qreal scale, const QRect& visibleRect)
 	}
 	update();
 }
-void PDFMagnifier::setImage(QImage img,int pageNr){
+void PDFMagnifier::setImage(QPixmap img,int pageNr){
     if(pageNr==page)
 	image=img;
     update();
@@ -282,7 +282,7 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 {
 	QPainter painter(this);
 	drawFrame(&painter);
-	painter.drawImage(event->rect(), image,
+	painter.drawPixmap(event->rect(), image,
 		event->rect().translated(((x() - mouseOffset.x()) * kMagFactor - imageLoc.x()) + width() / 2  ,
 						((y() - mouseOffset.y()) * kMagFactor - imageLoc.y()) + height() / 2));
 
@@ -441,19 +441,19 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 			image = doc->renderManager.renderToImage(pageNr,this,"setImage",dpi * scaleFactor, dpi * scaleFactor,
 							rect().x(), rect().y(), rect().width(), rect().height());
 		} else {
-			image = QImage(newRect.width(), newRect.height(), image.isNull()?QImage::Format_RGB32:image.format());
+			image = QPixmap(newRect.width(), newRect.height());
 			image.fill(QApplication::palette().color(QPalette::Dark).rgb());
 			QPainter p;
 			p.begin(&image);
 			for (int i=0;i<pages.size();i++){
 				QRect drawTo = gridPageRect(i);
 				int pageNr=pages[i];
-				QImage temp = doc->renderManager.renderToImage(
+				QPixmap temp = doc->renderManager.renderToImage(
 							  pageNr,this,"setImage",
 							  dpi * scaleFactor,
 							  dpi * scaleFactor,
 							  0,0,drawTo.width(), drawTo.height());
-				p.drawImage(drawTo.left(), drawTo.top(), temp);
+				p.drawPixmap(drawTo.left(), drawTo.top(), temp);
 			}
 			p.end();
 		}
@@ -463,7 +463,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	imageDpi = newDpi;
 	imageRect = newRect;
 
-	painter.drawImage(event->rect(), image, event->rect());
+	painter.drawPixmap(event->rect(), image, event->rect());
 
 	if (!highlightPath.isEmpty()) {
 		painter.setRenderHint(QPainter::Antialiasing);
@@ -474,7 +474,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	}
 }
 
-void PDFWidget::setImage(QImage,int){
+void PDFWidget::setImage(QPixmap,int){
     forceUpdate=true;
     update();
 }
@@ -1002,7 +1002,7 @@ void PDFWidget::reloadPage(bool sync)
 	if (magnifier != NULL)
 		magnifier->setPage(NULL, 0, QRect());
 	imagePage = NULL;
-	image = QImage();
+	image = QPixmap();
 	highlightPath = QPainterPath();
 	if (document != NULL) {
 		if (pageIndex >= document->numPages())
