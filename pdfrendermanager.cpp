@@ -54,7 +54,7 @@ void PDFRenderManager::setDocument(QString fileName){
     fillCache();
 }
 
-QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,double xres, double yres, int x, int y, int w, int h,bool cache){
+QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,double xres, double yres, int x, int y, int w, int h,bool cache,bool priority){
     RecInfo info;
     info.obj=obj;
     info.slot=rec;
@@ -103,7 +103,7 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 	if(scale>1.1){ // don't render again if it is smaller or about right
 	    RenderCommand cmd(pageNr,xres,yres);
 	    cmd.ticket=currentTicket;
-	    enqueue(cmd);
+	    enqueue(cmd,priority);
 	}else{
 	    lstOfReceivers.remove(currentTicket);
 	}
@@ -153,9 +153,13 @@ bool PDFRenderManager::checkDuplicate(int &ticket,RecInfo &info){
     return false;
 }
 
-void PDFRenderManager::enqueue(RenderCommand cmd){
+void PDFRenderManager::enqueue(RenderCommand cmd,bool priority){
     mQueueLock.lock();
-    mCommands.enqueue(cmd);
+    if(priority){
+	mCommands.prepend(cmd);
+    }else{
+	mCommands.enqueue(cmd);
+    }
     mQueueLock.unlock();
     mCommandsAvailable.release();
 }
