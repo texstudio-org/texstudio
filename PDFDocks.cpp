@@ -832,13 +832,13 @@ void PDFOverviewDock::pageChanged(int page)
 
 void PDFOverviewDock::showImage(){
     for(int i=0;i<document->popplerDoc()->numPages();i++){
-	QImage image=document->renderManager.renderToImage(i,this,"insertImage");
+	QPixmap image=document->renderManager.renderToImage(i,this,"insertImage");
 	insertImage(image,i);
     }
 }
 
-void PDFOverviewDock::insertImage(QImage image,int page){
-    QPixmap pxMap=QPixmap::fromImage(image.scaled(128,128,Qt::KeepAspectRatio,Qt::SmoothTransformation));
+void PDFOverviewDock::insertImage(QPixmap image,int page){
+    QPixmap pxMap=image.scaled(128,128,Qt::KeepAspectRatio,Qt::SmoothTransformation);
     QListWidgetItem *lw = list->item(page);
     lw->setIcon(QIcon(pxMap));
 }

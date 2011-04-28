@@ -23,7 +23,7 @@ class PDFRenderManager : public QObject
 public:
     explicit PDFRenderManager(QObject *parent);
     ~PDFRenderManager();
-    QImage renderToImage(int pageNr,QObject *obj,const char *rec,double xres=72.0, double yres=72.0, int x=-1, int y=-1, int w=-1, int h=-1,bool cache=true);
+    QPixmap renderToImage(int pageNr,QObject *obj,const char *rec,double xres=72.0, double yres=72.0, int x=-1, int y=-1, int w=-1, int h=-1,bool cache=true);
     void setDocument(QString fileName);
     void stopRendering();
 
@@ -37,7 +37,7 @@ private:
     Poppler::Document *document;
 
     PDFRenderEngine *renderQueue;
-    QCache<int,QImage> renderedPages;
+    QCache<int,QPixmap> renderedPages;
     QMultiMap<int,RecInfo> lstOfReceivers;
     int currentTicket;
 };

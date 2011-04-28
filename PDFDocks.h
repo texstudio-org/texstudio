@@ -258,7 +258,7 @@ public:
 public slots:
 	virtual void documentClosed();
 	virtual void pageChanged(int page);
-	void insertImage(QImage image,int page);
+	void insertImage(QPixmap image,int page);
 
 protected:
 	virtual void fillInfo();
