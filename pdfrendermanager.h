@@ -31,15 +31,22 @@ public slots:
     void addToCache(QImage img,int pageNr,int ticket);
 
 private:
+    friend class PDFRenderEngine;
     bool checkDuplicate(int &ticket,RecInfo &info);
     void fillCache();
+    void enqueue(RenderCommand cmd);
 
     Poppler::Document *document;
 
-    PDFRenderEngine *renderQueue;
+    QList<PDFRenderEngine *>renderQueues;
     QCache<int,QPixmap> renderedPages;
     QMultiMap<int,RecInfo> lstOfReceivers;
     int currentTicket;
+
+    QQueue<RenderCommand> mCommands;
+    QSemaphore mCommandsAvailable;
+    QMutex mQueueLock;
+    bool stopped;
 };
 
 #endif // PDFRENDERMANAGER_H

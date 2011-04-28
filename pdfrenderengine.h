@@ -9,6 +9,7 @@
 #include <QSemaphore>
 #include <QMutex>
 #include <QQueue>
+class PDFRenderManager;
 
 class RenderCommand {
 public:
@@ -27,11 +28,9 @@ class PDFRenderEngine : public QThread
 {
     Q_OBJECT
 public:
-    explicit PDFRenderEngine(QObject *parent = 0);
+    explicit PDFRenderEngine(QObject *parent);
     ~PDFRenderEngine();
 
-    void enqueue(RenderCommand cmd);
-    void stop();
     void setDocument(Poppler::Document *doc){
 	document=doc;
     }
@@ -46,10 +45,7 @@ protected:
 
 private:
     Poppler::Document	*document;
-    QQueue<RenderCommand> mCommands;
-    QSemaphore mCommandsAvailable;
-    QMutex mQueueLock;
-    bool stopped;
+    PDFRenderManager *manager;
 
 };
 
