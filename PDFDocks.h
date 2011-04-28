@@ -274,7 +274,6 @@ private slots:
 private:
 	QListWidget *list;
         int toGenerate;
-	PDFRenderEngine renderEngine;
 };
 
 

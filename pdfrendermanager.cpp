@@ -11,36 +11,46 @@
 
 #include "pdfrendermanager.h"
 
+const int num_renderQueues=2;
+
 PDFRenderManager::PDFRenderManager(QObject *parent) :
     QObject(parent)
 {
-    renderQueue=new PDFRenderEngine(this);
-    connect(renderQueue,SIGNAL(sendImage(QImage,int,int)),this,SLOT(addToCache(QImage,int,int)));
+    for(int i=0;i<num_renderQueues;i++){
+	PDFRenderEngine *renderQueue=new PDFRenderEngine(this);
+	connect(renderQueue,SIGNAL(sendImage(QImage,int,int)),this,SLOT(addToCache(QImage,int,int)));
+	renderQueues.append(renderQueue);
+    }
     document=0;
     currentTicket=0;
+    stopped=false;
 }
 
 PDFRenderManager::~PDFRenderManager(){
-    delete document;
-    renderQueue->stop();
-    renderQueue->wait();
+    stopRendering();
     document=0;
 }
 
 void PDFRenderManager::stopRendering(){
-    renderQueue->stop();
-    renderQueue->wait();
+    stopped=true;
+    mCommandsAvailable.release(num_renderQueues);
+    for(int i=0;i<num_renderQueues;i++){
+	renderQueues[i]->wait();
+    }
+    document=0;
 }
 
 void PDFRenderManager::setDocument(QString fileName){
     renderedPages.clear();
-    document=Poppler::Document::load(fileName);
-    document->setRenderBackend(Poppler::Document::SplashBackend);
-    document->setRenderHint(Poppler::Document::Antialiasing);
-    document->setRenderHint(Poppler::Document::TextAntialiasing);
-    renderQueue->setDocument(document);
-    if(!renderQueue->isRunning())
-	renderQueue->start();
+    for(int i=0;i<num_renderQueues;i++){
+	document=Poppler::Document::load(fileName);
+	document->setRenderBackend(Poppler::Document::SplashBackend);
+	document->setRenderHint(Poppler::Document::Antialiasing);
+	document->setRenderHint(Poppler::Document::TextAntialiasing);
+	renderQueues[i]->setDocument(document);
+	if(!renderQueues[i]->isRunning())
+	    renderQueues[i]->start();
+    }
     fillCache();
 }
 
@@ -56,7 +66,7 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
     info.cache=cache;
     info.xres=xres;
     currentTicket++;
-    bool enqueue=!checkDuplicate(currentTicket,info);
+    bool enqueueCmd=!checkDuplicate(currentTicket,info);
     lstOfReceivers.insert(currentTicket,info);
     // return best guess/cached at once, refine later
     Poppler::Page *page=document->page(pageNr);
@@ -89,11 +99,11 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 	img.fill(QApplication::palette().color(QPalette::Light).rgb());
 	// paint something (rendering ... or similar)
     }
-    if(enqueue){
+    if(enqueueCmd){
 	if(scale>1.1){ // don't render again if it is smaller or about right
 	    RenderCommand cmd(pageNr,xres,yres);
 	    cmd.ticket=currentTicket;
-	    renderQueue->enqueue(cmd);
+	    enqueue(cmd);
 	}else{
 	    lstOfReceivers.remove(currentTicket);
 	}
@@ -141,4 +151,11 @@ bool PDFRenderManager::checkDuplicate(int &ticket,RecInfo &info){
 	}
     }
     return false;
+}
+
+void PDFRenderManager::enqueue(RenderCommand cmd){
+    mQueueLock.lock();
+    mCommands.enqueue(cmd);
+    mQueueLock.unlock();
+    mCommandsAvailable.release();
 }

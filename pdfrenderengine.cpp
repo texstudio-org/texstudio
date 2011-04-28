@@ -12,6 +12,7 @@
 #ifndef NO_POPPLER_PREVIEW
 
 #include "pdfrenderengine.h"
+#include "pdfrendermanager.h"
 
 RenderCommand::RenderCommand(int p,double xr,double yr,int x,int y,int w, int h) :
     pageNr(p),xres(xr),yres(yr),x(x),y(y),w(w),h(h),ticket(-1)
@@ -22,34 +23,22 @@ PDFRenderEngine::PDFRenderEngine(QObject *parent) :
     QThread(parent)
 {
     document=0;
-    mCommands.clear();
-    stopped=false;
+    manager=qobject_cast<PDFRenderManager*>(parent);
 }
 
 PDFRenderEngine::~PDFRenderEngine(){
-}
-
-void PDFRenderEngine::stop(){
-	stopped=true;
-	mCommandsAvailable.release();
-}
-
-void PDFRenderEngine::enqueue(RenderCommand cmd){
-    mQueueLock.lock();
-    mCommands.enqueue(cmd);
-    mQueueLock.unlock();
-    mCommandsAvailable.release();
+    delete document;
 }
 
 void PDFRenderEngine::run(){
     forever {
 	//wait for enqueued lines
-	mCommandsAvailable.acquire();
-	if(stopped) break;
+	manager->mCommandsAvailable.acquire();
+	if(manager->stopped) break;
 	// get Linedata
-	mQueueLock.lock();
-	RenderCommand command=mCommands.dequeue();
-	mQueueLock.unlock();
+	manager->mQueueLock.lock();
+	RenderCommand command=manager->mCommands.dequeue();
+	manager->mQueueLock.unlock();
 	// render Image
 	if(document){
 	    Poppler::Page *page=document->page(command.pageNr);
