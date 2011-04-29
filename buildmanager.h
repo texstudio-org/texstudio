@@ -63,7 +63,7 @@ public:
 	
 	static QString createTemporaryFileName(); //don't forget to remove the file!
 					
-	void preview(const QString &preamble, const QString &text, int line, QTextCodec *outputCodec=0);
+	void preview(const QString &preamble, const QString &text, int line, const QString& masterFile, QTextCodec *outputCodec=0);
 	void clearPreviewPreambleCache();
 
 	QString editCommandList(const QString& list);
