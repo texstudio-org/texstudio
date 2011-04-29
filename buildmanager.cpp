@@ -673,12 +673,35 @@ QString BuildManager::createTemporaryFileName(){
 	return temp->fileName();
 }
 
+void addLaTeXInputPath(ProcessX* p, const QString& path){
+	if (path.isEmpty()) return;
+#ifdef Q_WS_WIN
+	static const QString SEP = ";";
+#else
+	static const QString SEP = ":";
+#endif
+	static const QStringList envNames = QStringList() << "TEXINPUTS" << "BIBINPUTS" << "BSTINPUTS" << "MFINPUTS" << "MPINPUTS" << "TFMFONTS";
+	QStringList env = p->environment();
+	foreach (const QString& envname, envNames) {
+		bool found = false;
+		for (int i=0;i<env.size();i++)
+			if (env[i].startsWith(envname+"=")) {
+				found = true;
+				env[i] = SEP + path+SEP+"."+SEP;
+				break;
+			}
+		if (!found)
+			env.append(envname + "="+path+SEP+"."+SEP);
+	}
+	p->setEnvironment(env);
+}
+
 //there are 3 ways to generate a preview png:
 //1. latex is called => dvipng is called after latex finished and converts the dvi
 //2. latex is called and dvipng --follow is called at the same time, and will manage the wait time on its own
 //3. latex is called => dvips converts .dvi to .ps => ghostscript is called and created final png
 //Then ghostscript to convert it to
-void BuildManager::preview(const QString &preamble, const QString &text, int line, QTextCodec *outputCodec){
+void BuildManager::preview(const QString &preamble, const QString &text, int line, const QString& masterFile, QTextCodec *outputCodec){
 	QString tempPath = QDir::tempPath()+QDir::separator()+"."+QDir::separator();
 
 	//process preamble
@@ -690,7 +713,9 @@ void BuildManager::preview(const QString &preamble, const QString &text, int lin
 		preamble_mod.remove(beamerClass);
 		preamble_mod.insert(0,"\\documentclass{article}\n\\usepackage{beamerarticle}");
 	}
-	preamble_mod.remove(QRegExp("\\\\input\\{[^/][^\\]?[^}]*\\}")); //remove all input commands that doesn't use an absolute path from the preamble
+	//preamble_mod.remove(QRegExp("\\\\input\\{[^/][^\\]?[^}]*\\}")); //remove all input commands that doesn't use an absolute path from the preamble
+
+	QString masterDir = QFileInfo(masterFile).dir().absolutePath();
 
 	QString preambleFormatFile;
 	if (previewPrecompilePreamble) {
@@ -715,6 +740,7 @@ void BuildManager::preview(const QString &preamble, const QString &text, int lin
 				preambleFormatFile = fi.completeBaseName();
 				previewFileNames.append(fi.absoluteFilePath());
 				ProcessX *p = newProcess(QString("%1 -interaction=nonstopmode -ini \"&latex %3 \\dump\"").arg(getLatexCommandExecutable(CMD_LATEX)).arg(preambleFormatFile), tf->fileName()); //no delete! goes automatically
+				addLaTeXInputPath(p, masterDir);
 				p->setProperty("preamble", preamble_mod);
 				p->setProperty("preambleFile", preambleFormatFile);
 				connect(p,SIGNAL(finished(int)),this,SLOT(preamblePrecompileCompleted(int)));
@@ -761,6 +787,7 @@ void BuildManager::preview(const QString &preamble, const QString &text, int lin
 	// start conversion
 	// tex -> dvi
 	ProcessX *p1 = newProcess(CMD_LATEX,ffn); //no delete! goes automatically
+	addLaTeXInputPath(p1, masterDir);
 	connect(p1,SIGNAL(finished(int)),this,SLOT(latexPreviewCompleted(int)));
 	p1->startCommand();
 

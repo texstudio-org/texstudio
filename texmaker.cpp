@@ -4429,7 +4429,7 @@ void Texmaker::showPreview(const QString& text){
 		header << edView->editor->document()->line(l).text();
 	header << "\\pagestyle{empty}";// << "\\begin{document}";
 	previewEquation=true;
-	buildManager.preview(header.join("\n"), text, -1, edView->editor->document()->codec());
+	buildManager.preview(header.join("\n"), text, -1, documents.getCompileFileName(), edView->editor->document()->codec());
 }
 
 void Texmaker::showPreview(const QDocumentCursor& previewc){
@@ -4457,7 +4457,7 @@ void Texmaker::showPreview(const QDocumentCursor& previewc, bool addToList){
 	for (int l=0; l<m_endingLine; l++)
 		header << edView->editor->document()->line(l).text();
 	header << "\\pagestyle{empty}";// << "\\begin{document}";
-	buildManager.preview(header.join("\n"), originalText, previewc.selectionEnd().lineNumber(), edView->editor->document()->codec());
+	buildManager.preview(header.join("\n"), originalText, previewc.selectionEnd().lineNumber(),  documents.getCompileFileName(), edView->editor->document()->codec());
 
 	if (!addToList || previewc.lineNumber() != previewc.anchorLineNumber())
 		return;
