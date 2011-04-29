@@ -682,12 +682,13 @@ void addLaTeXInputPath(ProcessX* p, const QString& path){
 #endif
 	static const QStringList envNames = QStringList() << "TEXINPUTS" << "BIBINPUTS" << "BSTINPUTS" << "MFINPUTS" << "MPINPUTS" << "TFMFONTS";
 	QStringList env = p->environment();
+	env << QProcess::systemEnvironment();
 	foreach (const QString& envname, envNames) {
 		bool found = false;
 		for (int i=0;i<env.size();i++)
 			if (env[i].startsWith(envname+"=")) {
 				found = true;
-				env[i] = SEP + path+SEP+"."+SEP;
+				env[i] = env[i] + SEP + path+SEP+"."+SEP;
 				break;
 			}
 		if (!found)
