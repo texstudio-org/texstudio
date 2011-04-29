@@ -435,7 +435,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	qreal newDpi = dpi * scaleFactor;
 	QRect newRect = rect();
 	PDFDocument *doc=getPDFDocument();
-	if (pages.size() > 0 && (pages.first() != imagePage || newDpi != imageDpi || newRect != imageRect)||forceUpdate) {
+	if (pages.size() > 0 && (pages.first() != imagePage || newDpi != imageDpi || newRect != imageRect || forceUpdate)) {
 		if (gridx<=1 && gridy<=1) {
 			int pageNr=pages.first();
 			image = doc->renderManager.renderToImage(pageNr,this,"setImage",dpi * scaleFactor, dpi * scaleFactor,
@@ -1466,7 +1466,7 @@ PDFScrollArea* PDFWidget::getScrollArea()
 QList<PDFDocument*> PDFDocument::docList;
 
 PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig)
-    : exitFullscreen(0), watcher(NULL), reloadTimer(NULL), scanner(NULL), syncFromSourceBlock(false),renderManager(this)
+    : renderManager(this),exitFullscreen(0), watcher(NULL), reloadTimer(NULL),scanner(NULL),syncFromSourceBlock(false)
 {
 	Q_ASSERT(pdfConfig);
 	Q_ASSERT(!globalConfig || (globalConfig == pdfConfig));
