@@ -619,7 +619,7 @@ void PDFScrollArea::ensureVisible(int x, int y, int xmargin, int ymargin){
 	    horizontalScrollBar()->setValue(qMin(logicalX - viewport()->width() + xmargin, horizontalScrollBar()->maximum()));
 	}
 
-	if (continuous) y += pdf->gridRowHeight() * pdf->getCurrentPageIndex();
+	if (continuous) y += pdf->gridRowHeight() * (pdf->getCurrentPageIndex() / pdf->gridCols());
 
 	if (y - ymargin < verticalScrollBar()->value()) {
 	    verticalScrollBar()->setValue(qMax(0, y - ymargin));
