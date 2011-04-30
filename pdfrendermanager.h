@@ -26,6 +26,7 @@ public:
     QPixmap renderToImage(int pageNr,QObject *obj,const char *rec,double xres=72.0, double yres=72.0, int x=-1, int y=-1, int w=-1, int h=-1,bool cache=true,bool priority=false);
     void setDocument(QString fileName);
     void stopRendering();
+    void fillCache();
 
 public slots:
     void addToCache(QImage img,int pageNr,int ticket);
@@ -33,7 +34,6 @@ public slots:
 private:
     friend class PDFRenderEngine;
     bool checkDuplicate(int &ticket,RecInfo &info);
-    void fillCache();
     void enqueue(RenderCommand cmd,bool priority);
 
     Poppler::Document *document;

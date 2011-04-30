@@ -3595,7 +3595,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				// focus on getting that code to work...
 
 				// gotta center things
-				// const int ycenter = ypos + QDocumentPrivate::m_lineSpacing - 3;
+				const int ycenter = ypos + QDocumentPrivate::m_lineSpacing - 3;
 									/*
 									qMin(
 										ypos + (QDocumentPrivate::m_ascent + QDocumentPrivate::m_lineSpacing) / 2,
@@ -5480,6 +5480,7 @@ QDocumentCursor QDocumentCursorHandle::intersect(const QDocumentCursor& c) const
 		if ( lbeg != -1 )
 		{
 			QDocumentCursor c(m_doc, lbeg, cbeg);
+
 
 			if ( lend != -1 && (lbeg != lend || cbeg != cend) )
 			{
