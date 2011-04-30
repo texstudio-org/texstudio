@@ -6049,6 +6049,9 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			if (!currentLine) {
 				pr->translate(-cxt.xoffset,0);
 				pr->fillRect(0, 0, m_leftMargin, ht, bg);
+			} else if (fullSel){
+				pr->fillRect(0, 0, m_leftMargin, ht, bg);
+				pr->fillRect(m_leftMargin, 0, lineCacheWidth, ht, fullSel ? selbg : bg);
 			} else
 				pr->fillRect(0, 0, lineCacheWidth, ht, bg);
 			h->draw(pr, cxt.xoffset, lineCacheWidth, m_selectionBoundaries, cxt.palette, fullSel,0,ht);
