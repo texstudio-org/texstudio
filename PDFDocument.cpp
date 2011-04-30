@@ -1071,9 +1071,17 @@ int PDFWidget::numPages() const{
 	return document->numPages();
 }
 
-int PDFWidget::pageStep() const {
-	if (singlePageStep) return 1;
-	return gridx*gridy;
+int PDFWidget::pageStep() {
+	bool cont=getScrollArea()->getContinuous();
+	int result=1;
+	if (singlePageStep && !cont) return 1;
+	if(cont){
+	    result=gridx;
+	}else {
+	    if(!singlePageStep)
+		result=gridx*gridy;
+	}
+	return result;
 }
 
 int PDFWidget::gridCols() const{
