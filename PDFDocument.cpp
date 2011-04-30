@@ -631,8 +631,12 @@ void PDFWidget::goToDestination(const Poppler::LinkDestination& dest)
 			if (dest.isChangeLeft())
 				scrollArea->horizontalScrollBar()->setValue(p.x());
 
-			if (dest.isChangeTop())
-				scrollArea->verticalScrollBar()->setValue(p.y());
+			if (dest.isChangeTop()){
+				int val=0;
+				if(scrollArea->getContinuous())
+				    val=scrollArea->verticalScrollBar()->value();
+				scrollArea->verticalScrollBar()->setValue(p.y()+val);
+			}
 		}
 	}
 }
