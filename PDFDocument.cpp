@@ -398,6 +398,7 @@ PDFWidget::PDFWidget()
 	//shortcutPageDown4 = new QShortcut(QKeySequence(Qt::Key_Return), this, SLOT(pageDownOrNext()));
 
 	highlightRemover.setSingleShot(true);
+	highlightPage=-1;
 	connect(&highlightRemover, SIGNAL(timeout()), this, SLOT(clearHighlight()));
 }
 
@@ -454,6 +455,19 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 							  dpi * scaleFactor,
 							  0,0,drawTo.width(), drawTo.height(),true,true);
 				p.drawPixmap(drawTo.left(), drawTo.top(), temp);
+				if(pageNr==highlightPage){
+				    if (!highlightPath.isEmpty()) {
+					    p.save();
+					    p.setRenderHint(QPainter::Antialiasing);
+					    p.scale(dpi / 72.0 * scaleFactor, dpi / 72.0 * scaleFactor);
+					    p.setPen(QColor(0, 0, 0, 0));
+					    p.setBrush(QColor(255, 255, 0, 63));
+					    QPainterPath path=highlightPath;
+					    path.translate(drawTo.left()*72.0/dpi/scaleFactor, drawTo.top()*72.0/dpi/scaleFactor);
+					    p.drawPath(path);
+					    p.restore();
+				    }
+				}
 			}
 			p.end();
 		}
@@ -465,7 +479,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 
 	painter.drawPixmap(event->rect(), image, event->rect());
 
-	if (!highlightPath.isEmpty()) {
+	if (!highlightPath.isEmpty()&& gridx<=1 && gridy<=1) {
 		painter.setRenderHint(QPainter::Antialiasing);
 		painter.scale(dpi / 72.0 * scaleFactor, dpi / 72.0 * scaleFactor);
 		painter.setPen(QColor(0, 0, 0, 0));
@@ -952,8 +966,19 @@ void PDFWidget::adjustSize()
 {
 	if (pages.empty()) return;
 	QSize pageSize = (gridSizeF() * scaleFactor * dpi / 72.0).toSize();
-	if (pageSize != size())
+	if (pageSize != size()){
+		PDFScrollArea *scrollArea=getScrollArea();
+		qreal jumpTo=-1;
+		if(scrollArea && scrollArea->getContinuous()){
+		    if(scrollArea->verticalScrollBar()->maximum()>0){
+			jumpTo=1.0*scrollArea->verticalScrollBar()->value()/scrollArea->verticalScrollBar()->maximum();
+		    }
+		}
 		resize(pageSize);
+		if(jumpTo>=0){
+		    scrollArea->verticalScrollBar()->setValue(qRound(jumpTo*scrollArea->verticalScrollBar()->maximum())); // correct position after resize
+		}
+	}
 }
 
 void PDFWidget::resetMagnifier()
@@ -975,9 +1000,10 @@ void PDFWidget::setHighlightPath(const int page, const QPainterPath& path)
 {
 	highlightRemover.stop();
 	highlightPath = path;
+	highlightPage=page;
 	if (!path.isEmpty()) {
-		if (gridx*gridy >= 1)
-			highlightPath.translate(QPointF(gridPagePosition(page - pageIndex)) / dpi * 72 / scaleFactor);
+		//if (gridx*gridy >= 1)
+		//	highlightPath.translate(QPointF(gridPagePosition(page - pageIndex)) / dpi * 72 / scaleFactor);
 		PDFScrollArea*	scrollArea = getScrollArea();
 		if (scrollArea) {
 			QRectF r = highlightPath.boundingRect();
@@ -996,6 +1022,7 @@ int PDFWidget::getHighlightPage() const{
 void PDFWidget::clearHighlight()
 {
 	highlightPath = QPainterPath();
+	highlightPage=-1;
 	update();
 }
 
@@ -1007,7 +1034,7 @@ void PDFWidget::reloadPage(bool sync)
 		magnifier->setPage(NULL, 0, QRect());
 	imagePage = NULL;
 	image = QPixmap();
-	highlightPath = QPainterPath();
+	//highlightPath = QPainterPath();
 	if (document != NULL) {
 		if (pageIndex >= document->numPages())
 			pageIndex = document->numPages() - 1;
