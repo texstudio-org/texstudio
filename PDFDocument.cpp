@@ -1827,6 +1827,7 @@ void PDFDocument::reload()
 			leCurrentPageValidator->setTop(document->numPages());
 
 			loadSyncData();
+			renderManager.fillCache();
 			emit reloaded();
 		}
 	}

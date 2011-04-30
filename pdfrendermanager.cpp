@@ -34,9 +34,6 @@ PDFRenderManager::~PDFRenderManager(){
 void PDFRenderManager::stopRendering(){
     stopped=true;
     mCommandsAvailable.release(num_renderQueues);
-    for(int i=0;i<num_renderQueues;i++){
-	renderQueues[i]->wait();
-    }
     document=0;
 }
 
@@ -51,7 +48,6 @@ void PDFRenderManager::setDocument(QString fileName){
 	if(!renderQueues[i]->isRunning())
 	    renderQueues[i]->start();
     }
-    fillCache();
 }
 
 QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,double xres, double yres, int x, int y, int w, int h,bool cache,bool priority){
