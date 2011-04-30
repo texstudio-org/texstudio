@@ -293,6 +293,16 @@ QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id,const QStri
 QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile) {
 	return configManager.newManagedAction(menu,id,text,slotName,shortCuts, iconFile);
 }
+QAction* Texmaker::newManagedEditorAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QKeySequence &shortCut, const QString & iconFile) {
+	QAction* tmp = configManager.newManagedAction(menu,id,text,0,QList<QKeySequence>() << shortCut, iconFile);
+	linkToEditorSlot(tmp, slotName);
+	return tmp;
+}
+QAction* Texmaker::newManagedEditorAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile) {
+	QAction* tmp = configManager.newManagedAction(menu,id,text,0,shortCuts, iconFile);
+	linkToEditorSlot(tmp, slotName);
+	return tmp;
+}
 QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id, QAction* act){
 	return configManager.newManagedAction(menu,id,act);
 }
@@ -486,7 +496,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"closeall",tr("Clos&e All"), SLOT(fileCloseAll()));
 
 	menu->addSeparator();
-	newManagedAction(menu, "print",tr("Print..."), SLOT(filePrint()), Qt::CTRL+Qt::Key_P);
+	newManagedEditorAction(menu, "print",tr("Print..."), "print", Qt::CTRL+Qt::Key_P);
 
 	menu->addSeparator();
 	newManagedAction(menu,"exit",tr("Exit"), SLOT(fileExit()), Qt::CTRL+Qt::Key_Q);
@@ -500,24 +510,24 @@ void Texmaker::setupMenus() {
 
 	menu->addSeparator();
 	newManagedAction(menu,"copy",tr("&Copy"), SLOT(editCopy()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_C)<<Qt::CTRL+Qt::Key_Insert, "editcopy");
-	newManagedAction(menu,"cut",tr("C&ut"), SLOT(editCut()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_X)<<Qt::SHIFT+Qt::Key_Delete, "editcut");
-	newManagedAction(menu,"paste",tr("&Paste"), SLOT(editPaste()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, "editpaste");
-	newManagedAction(menu,"selectall",tr("Select &All"), SLOT(editSelectAll()), Qt::CTRL+Qt::Key_A);
+	newManagedEditorAction(menu,"cut",tr("C&ut"), "cut", (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_X)<<Qt::SHIFT+Qt::Key_Delete, "editcut");
+	newManagedEditorAction(menu,"paste",tr("&Paste"), "paste", (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, "editpaste");
+	newManagedEditorAction(menu,"selectall",tr("Select &All"), "selectAll", Qt::CTRL+Qt::Key_A);
 	newManagedAction(menu,"eraseLine",tr("Erase &Line"), SLOT(editEraseLine()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_K));
 
 	latexEditorContextMenu = menu->actions();
 
 	menu->addSeparator();
-	newManagedAction(menu,"find", tr("&Find"), SLOT(editFind()), Qt::CTRL+Qt::Key_F);
-	newManagedAction(menu,"findnext",tr("Find &Next"), SLOT(editFindNext()), Qt::CTRL+Qt::Key_M);
+	newManagedEditorAction(menu,"find", tr("&Find"), "find", Qt::CTRL+Qt::Key_F);
+	newManagedEditorAction(menu,"findnext",tr("Find &Next"), "findNext", Qt::CTRL+Qt::Key_M);
 	newManagedAction(menu,"findglobal",tr("Find D&ialog..."), SLOT(editFindGlobal()));
-	newManagedAction(menu,"replace",tr("&Replace"), SLOT(editReplace()), Qt::CTRL+Qt::Key_R);
+	newManagedEditorAction(menu,"replace",tr("&Replace"), "replace", Qt::CTRL+Qt::Key_R);
 
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "goto",tr("Go to"));
-	newManagedAction(submenu,"line", tr("Line"), SLOT(editGotoLine()), Qt::CTRL+Qt::Key_G, ":/images/goto.png");
-	newManagedAction(submenu,"lastchange",tr("last change"), SLOT(editJumpToLastChange()), Qt::CTRL+Qt::Key_H);
-	newManagedAction(submenu,"nextchange",tr("\"next\" change"), SLOT(editJumpToLastChangeForward()), Qt::CTRL+Qt::SHIFT+Qt::Key_H);
+	newManagedEditorAction(submenu,"line", tr("Line"), "gotoLine", Qt::CTRL+Qt::Key_G, ":/images/goto.png");
+	newManagedEditorAction(submenu,"lastchange",tr("last change"), "jumpChangePositionBackward", Qt::CTRL+Qt::Key_H);
+	newManagedEditorAction(submenu,"nextchange",tr("\"next\" change"), "jumpChangePositionForward", Qt::CTRL+Qt::SHIFT+Qt::Key_H);
 	submenu->addSeparator();
 	newManagedAction(submenu,"markprev",tr("Previous mark"),SLOT(PreviousMark()),Qt::CTRL+Qt::Key_Up);//, ":/images/errorprev.png");
 	newManagedAction(submenu,"marknext",tr("Next mark"),SLOT(NextMark()),Qt::CTRL+Qt::Key_Down);//, ":/images/errornext.png");
@@ -568,10 +578,10 @@ void Texmaker::setupMenus() {
 	latexEditorContextMenu << newManagedAction(menu,"removePreviewLatex",tr("C&lear Inline Preview"), SLOT(clearPreview()));
 
 	menu->addSeparator();
-	newManagedAction(menu,"comment", tr("&Comment"), SLOT(editComment()), Qt::CTRL+Qt::Key_T);
-	newManagedAction(menu,"uncomment",tr("&Uncomment"), SLOT(editUncomment()), Qt::CTRL+Qt::Key_U);
-	newManagedAction(menu,"indent",tr("&Indent"), SLOT(editIndent()));
-	newManagedAction(menu,"unindent",tr("Unin&dent"), SLOT(editUnindent()));
+	newManagedEditorAction(menu,"comment", tr("&Comment"), "commentSelection", Qt::CTRL+Qt::Key_T);
+	newManagedEditorAction(menu,"uncomment",tr("&Uncomment"), "uncommentSelection", Qt::CTRL+Qt::Key_U);
+	newManagedEditorAction(menu,"indent",tr("&Indent"), "indentSelection");
+	newManagedEditorAction(menu,"unindent",tr("Unin&dent"), "unindentSelection");
 	newManagedAction(menu,"hardbreak",tr("Hard Line &Break..."), SLOT(editHardLineBreak()));
 	newManagedAction(menu,"hardbreakrepeat",tr("R&epeat Hard Line Break"), SLOT(editHardLineBreakRepeat()));
 
@@ -670,7 +680,7 @@ void Texmaker::setupMenus() {
 	foreach (const BibTeXType& bt, BibTeXDialog::getPossibleBibTeXTypes())
 		newManagedAction(menu,bt.name.mid(1), bt.description, SLOT(InsertBibEntryFromAction()))->setData(bt.name);
 	menu->addSeparator();
-	newManagedAction(menu, "clean", tr("&Clean"), SLOT(CleanBib()));
+	newManagedEditorAction(menu, "clean", tr("&Clean"), "cleanBib");
 	menu->addSeparator();
 	newManagedAction(menu, "dialog", tr("BibTeX &insert dialog..."), SLOT(InsertBibEntry()));
 
@@ -1162,6 +1172,34 @@ void Texmaker::needUpdatedCompleter(){
 	if (mCompleterNeedsUpdate)
 		updateCompleter();
 }
+#include "QMetaMethod"
+void Texmaker::linkToEditorSlot(QAction* act, const char* methodName){
+	REQUIRE(act);
+	connect(act, SIGNAL(triggered()), SLOT(relayToEditorSlot()));
+	QByteArray signature = methodName;
+	signature.append("()");
+	for (int i=0;i<LatexEditorView::staticMetaObject.methodCount();i++)
+		if (signature == LatexEditorView::staticMetaObject.method(i).signature()) {
+			act->setProperty("editorViewSlot", methodName);
+			return;
+		}
+	for (int i=0;i<QEditor::staticMetaObject.methodCount();i++)
+		if (signature == QEditor::staticMetaObject.method(i).signature()) {
+			act->setProperty("editorSlot", methodName);
+			return;
+		}
+
+	qDebug()<<methodName;
+	Q_ASSERT(false);
+}
+
+void Texmaker::relayToEditorSlot(){
+	if (!currentEditorView()) return;
+	QAction* act = qobject_cast<QAction*>(sender());
+	REQUIRE(act);
+	if (act->property("editorViewSlot").isValid()) QMetaObject::invokeMethod(currentEditorView(), qPrintable(act->property("editorViewSlot").toString()));
+	else if (act->property("editorSlot").isValid()) QMetaObject::invokeMethod(currentEditor(), qPrintable(act->property("editorSlot").toString()));
+}
 
 void Texmaker::fileNew(QString fileName) {
 	LatexDocument *doc=new LatexDocument();
@@ -1592,11 +1630,6 @@ void Texmaker::MarkCurrentFileAsRecent(){
 	configManager.addRecentFile(getCurrentFileName(),documents.masterDocument == currentEditorView()->document);
 }
 
-void Texmaker::filePrint() {
-	if (!currentEditorView()) return;
-	currentEditorView()->editor->print();
-
-}
 //////////////////////////// EDIT ///////////////////////
 void Texmaker::editUndo() {
 	if (!currentEditorView()) return;
@@ -1633,11 +1666,6 @@ void Texmaker::editRedo() {
 	}
 }
 
-void Texmaker::editCut() {
-	if (!currentEditorView()) return;
-	currentEditorView()->editor->cut();
-}
-
 void Texmaker::editCopy() {
 	if ((!currentEditor() || !currentEditor()->hasFocus()) &&
 	    outputView->childHasFocus() ) {
@@ -1645,11 +1673,6 @@ void Texmaker::editCopy() {
 	}
 	if (!currentEditorView()) return;
 	currentEditorView()->editor->copy();
-}
-
-void Texmaker::editPaste() {
-	if (!currentEditorView()) return;
-	currentEditorView()->paste();
 }
 
 void Texmaker::editPasteLatex() {
@@ -1673,11 +1696,6 @@ void Texmaker::convertToLatex() {
 	QString newText=textToLatex(originalText);
 // insert
 	currentEditor()->insertText(newText);
-}
-
-void Texmaker::editSelectAll() {
-	if (!currentEditorView()) return;
-	currentEditorView()->editor->selectAll();
 }
 
 void Texmaker::editEraseLine() {
@@ -1769,36 +1787,6 @@ void Texmaker::editEraseWordCmdEnv(){
 	currentEditorView()->editor->setCursor(cursor);
 }
 
-void Texmaker::editFind() {
-	if (!currentEditorView())	return;
-	currentEditorView()->editor->find();
-}
-
-void Texmaker::editFindNext() {
-	if (!currentEditorView())	return;
-	currentEditorView()->editor->findNext();
-}
-
-
-void Texmaker::editReplace() {
-	if (!currentEditorView())	return;
-	currentEditorView()->editor->replace();
-}
-
-void Texmaker::editGotoLine() {
-	if (!currentEditorView())	return;
-	currentEditorView()->editor->gotoLine();
-}
-
-void Texmaker::editJumpToLastChange() {
-	if (!currentEditorView())	return;
-	currentEditorView()->jumpChangePositionBackward();
-}
-void Texmaker::editJumpToLastChangeForward() {
-	if (!currentEditorView())	return;
-	currentEditorView()->jumpChangePositionForward();
-}
-
 void Texmaker::editGotoDefinition(){
 	if (!currentEditorView())	return;
 	QDocumentCursor c=currentEditor()->cursor();
@@ -1809,26 +1797,6 @@ void Texmaker::editGotoDefinition(){
 			break;
 		default:; //TODO: Jump to command definition and in bib files
 	}
-}
-
-void Texmaker::editComment() {
-	if (!currentEditorView())	return;
-	currentEditorView()->editor->commentSelection();
-}
-
-void Texmaker::editUncomment() {
-	if (!currentEditorView())	return;
-	currentEditorView()->editor->uncommentSelection();
-}
-
-void Texmaker::editIndent() {
-	if (!currentEditorView())	return;
-	currentEditorView()->editor->indentSelection();
-}
-
-void Texmaker::editUnindent() {
-	if (!currentEditorView())	return;
-	currentEditorView()->editor->unindentSelection();
 }
 
 void Texmaker::editHardLineBreak(){
@@ -2042,6 +2010,7 @@ void Texmaker::editSectionPasteAfter() {
 }
 
 void Texmaker::editSectionPasteAfter(int line) {
+	REQUIRE(currentEditorView());
 	if (line>=currentEditorView()->editor->document()->lines()) {
 		currentEditorView()->editor->setCursorPosition(line-1,0);
 		QDocumentCursor c=currentEditorView()->editor->cursor();
@@ -2053,16 +2022,15 @@ void Texmaker::editSectionPasteAfter(int line) {
 		currentEditor()->insertText("\n");
 		currentEditor()->setCursorPosition(line,0);
 	}
-	editPaste();
-	//UpdateStructure();
+	currentEditorView()->paste();
 }
 
 void Texmaker::editSectionPasteBefore(int line) {
+	REQUIRE(currentEditor());
 	currentEditor()->setCursorPosition(line,0);
 	currentEditor()->insertText("\n");
 	currentEditor()->setCursorPosition(line,0);
-	editPaste();
-	//UpdateStructure();
+	currentEditorView()->paste();
 }
 
 
@@ -2882,10 +2850,6 @@ void Texmaker::InsertBibEntryFromAction(){
 		CodeSnippet(insertText).insert(currentEditor());
 }
 
-void Texmaker::CleanBib() {
-	if (!currentEditorView()) return;
-	currentEditorView()->cleanBib();
-}
 
 void Texmaker::InsertBibEntry(){
 	InsertBibEntry("");

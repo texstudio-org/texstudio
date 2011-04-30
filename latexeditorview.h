@@ -45,8 +45,6 @@ public:
 	//Functions affecting the editor
 
 	void complete(int flags);
-	void jumpChangePositionBackward();
-	void jumpChangePositionForward();
 	void jumpToBookmark(int bookmarkNumber);
 	void toggleBookmark(int bookmarkNumber);
 	bool gotoToLabel(const QString& label);
@@ -54,8 +52,6 @@ public:
 	void foldEverything(bool unFold);
 	void foldLevel(bool unFold, int level);
 	void foldBlockAt(bool unFold, int line);
-
-	void cleanBib();
 	
 	static QList<QAction *> getBaseActions();
 	static void setBaseActions(QList<QAction *> baseActions);
@@ -121,6 +117,10 @@ private slots:
 	void checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int excessCols,int ticket);
 	void triggeredThesaurus();
 public slots:
+	void cleanBib();
+	void jumpChangePositionBackward();
+	void jumpChangePositionForward();
+
 	void documentContentChanged(int linenr, int count);
 	void lineDeleted(QDocumentLineHandle* l);
 	void spellCheckingReplace();

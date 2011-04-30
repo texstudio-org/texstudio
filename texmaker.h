@@ -86,6 +86,8 @@ private:
 	inline QMenu* newManagedMenu(QMenu* menu, const QString &id,const QString &text);
 	inline QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="");
 	inline QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile="");
+	inline QAction* newManagedEditorAction(QWidget* menu, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="");
+	inline QAction* newManagedEditorAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile="");
 	inline QAction* newManagedAction(QWidget* menu, const QString &id, QAction* act);
 	inline QAction* getManagedAction(QString id);
 	QAction* insertManagedAction(QAction* before, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="");
@@ -167,7 +169,10 @@ private:
 	LatexEditorView* getEditorViewFromFileName(const QString &fileName, bool checkTemporaryNames = false);
 	
 	QAction* outputViewAction, *fullscreenModeAction;
+
+	void linkToEditorSlot(QAction* act, const char* slot);
 private slots:
+	void relayToEditorSlot();
 
 	void fileNew(QString fileName="");
 	void fileNewFromTemplate();
@@ -185,7 +190,6 @@ private slots:
 	void fileOpenAllRecent();
 	void fileOpenRecentProject();
 	void MarkCurrentFileAsRecent();
-	void filePrint();
 	void fileCheckin(QString filename="");
         void fileLockPdf(QString filename="");
         void fileCheckinPdf(QString filename="");
@@ -206,9 +210,7 @@ private slots:
 
 	void editUndo();
 	void editRedo();
-	void editCut();
 	void editCopy();
-	void editPaste();
 	void editSectionCopy();
 	void editSectionCopy(int startingLine, int endLine);
 	void editSectionCut();
@@ -224,20 +226,9 @@ private slots:
 	void editUnIndentSection();
 	void editHardLineBreak();
 	void editHardLineBreakRepeat();
-	void editSelectAll();
 	void editEraseLine();
 	void editEraseWordCmdEnv();
-	void editFind();
-	void editFindNext();
-	void editReplace();
-	void editGotoLine();
-	void editJumpToLastChange();
-	void editJumpToLastChangeForward();
 	void editGotoDefinition();
-	void editComment();
-	void editUncomment();
-	void editIndent();
-	void editUnindent();
 	void editSpell();
 	void editThesaurus(int line=-1,int col=-1);
 	void editChangeLineEnding();
@@ -288,7 +279,6 @@ private slots:
 	void InsertStruct();
 
 	void InsertBibEntryFromAction();
-	void CleanBib();
 	void InsertBibEntry();
 	void InsertBibEntry(const QString& id);
 	
