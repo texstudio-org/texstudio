@@ -79,7 +79,7 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 	scale=sz.width()*xres/(72.0*img.width());
 	int sx=qRound(img.width()*scale);
 	int sy=qRound(img.height()*scale);
-	if(scale>1.001 || scale<0.999)
+	if(scale>1.01 || scale<0.99)
 	    img=img.scaled(QSize(sx,sy),Qt::KeepAspectRatio,Qt::FastTransformation);
 	if(x>-1 && y>-1 && w>-1 && h>-1){
 	    img=img.copy(x,y,w,h);
@@ -97,7 +97,7 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 	// paint something (rendering ... or similar)
     }
     if(enqueueCmd){
-	if(scale>1.001 || scale<0.999){ // always rerender, only not if it is already equivalent
+	if(scale>1.01 || scale<0.99){ // always rerender, only not if it is already equivalent
 	    RenderCommand cmd(pageNr,xres,yres);
 	    cmd.ticket=mCurrentTicket;
 	    enqueue(cmd,priority);
