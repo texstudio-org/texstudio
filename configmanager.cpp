@@ -830,14 +830,12 @@ bool ConfigManager::execConfigDialog() {
 	}
 	//quickbuild/more page	
 	confDlg->buildManager = buildManager;
-	if (buildManager->quickmode==1) confDlg->ui.radioButton1->setChecked(true);
-	else if (buildManager->quickmode==2) confDlg->ui.radioButton2->setChecked(true);
-	else if (buildManager->quickmode==3) confDlg->ui.radioButton3->setChecked(true);
-	else if (buildManager->quickmode==4) confDlg->ui.radioButton4->setChecked(true);
-	else if (buildManager->quickmode==5) confDlg->ui.radioButton5->setChecked(true);
-	else if (buildManager->quickmode==6) confDlg->ui.radioButton6_2->setChecked(true);
-	else if (buildManager->quickmode==7) confDlg->ui.radioButton7->setChecked(true);
-	else if (buildManager->quickmode==8) confDlg->ui.radioButton6->setChecked(true);
+	for (int i=1;i<=BuildManager::getQuickBuildCommandCount()+1;i++){
+		QRadioButton* rb = new QRadioButton(BuildManager::getQuickBuildCommandText(i),confDlg);
+		if (i == buildManager->quickmode) rb->setChecked(true);
+		rb->setProperty("quickBuildMode", i);
+		confDlg->ui.quickbuildLayout->addWidget(rb);
+	}
 	confDlg->ui.lineEditExecuteBeforeCompiling->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_PRECOMPILE));
 	confDlg->ui.lineEditUserquick->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_QUICK));
 	
@@ -1061,15 +1059,13 @@ bool ConfigManager::execConfigDialog() {
 		buildManager->setLatexCommand(BuildManager::CMD_USER_PRECOMPILE,confDlg->ui.lineEditExecuteBeforeCompiling->text());
 		buildManager->setLatexCommand(BuildManager::CMD_USER_QUICK,confDlg->ui.lineEditUserquick->text());
 
-		if (confDlg->ui.radioButton1->isChecked()) buildManager->quickmode=1;
-		if (confDlg->ui.radioButton2->isChecked()) buildManager->quickmode=2;
-		if (confDlg->ui.radioButton3->isChecked()) buildManager->quickmode=3;
-		if (confDlg->ui.radioButton4->isChecked()) buildManager->quickmode=4;
-		if (confDlg->ui.radioButton5->isChecked()) buildManager->quickmode=5;
-		if (confDlg->ui.radioButton6_2->isChecked()) buildManager->quickmode=6;
-		if (confDlg->ui.radioButton7->isChecked()) buildManager->quickmode=7;
-		if (confDlg->ui.radioButton6->isChecked()) buildManager->quickmode=8;
-
+		for (int i=0;i < confDlg->ui.quickbuildLayout->count(); i++) {
+			QRadioButton *rb = qobject_cast<QRadioButton*>(confDlg->ui.quickbuildLayout->itemAt(i)->widget());
+			if (rb && rb->isChecked()){
+				buildManager->quickmode=rb->property("quickBuildMode").toInt();
+				break;
+			}
+		}
 		buildManager->previewRemoveBeamer = confDlg->ui.checkBoxReplaceBeamer->isChecked();
 		buildManager->previewPrecompilePreamble = confDlg->ui.checkBoxPrecompilePreamble->isChecked();
 

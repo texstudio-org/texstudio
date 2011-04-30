@@ -825,6 +825,33 @@ QString BuildManager::editCommandList(const QString& list){
 	else return list;
 }
 
+QList<BuildManager::LatexCommand> BuildManager::getQuickBuildCommands(int mode){
+	switch (mode) {
+	case 1: return QList<LatexCommand>() << BuildManager::CMD_LATEX << BuildManager::CMD_DVIPS << BuildManager::CMD_VIEWPS;
+	case 2: return QList<LatexCommand>() << BuildManager::CMD_LATEX << BuildManager::CMD_VIEWDVI;
+	case 3: return QList<LatexCommand>() << BuildManager::CMD_PDFLATEX << BuildManager::CMD_VIEWPDF;
+	case 4: return QList<LatexCommand>() << BuildManager::CMD_LATEX << BuildManager::CMD_DVIPDF << BuildManager::CMD_VIEWPDF;
+	case 5: return QList<LatexCommand>() << BuildManager::CMD_LATEX << BuildManager::CMD_DVIPS << BuildManager::CMD_PS2PDF << BuildManager::CMD_VIEWPDF;
+	case 6: return QList<LatexCommand>() << BuildManager::CMD_LATEX << BuildManager::CMD_ASY << BuildManager::CMD_LATEX << BuildManager::CMD_VIEWDVI;
+	case 7: return QList<LatexCommand>() << BuildManager::CMD_PDFLATEX << BuildManager::CMD_ASY << BuildManager::CMD_PDFLATEX << BuildManager::CMD_VIEWPDF;
+		//case 8/user: below
+	}
+	Q_ASSERT(false);
+	return QList<LatexCommand>();
+}
+
+int BuildManager::getQuickBuildCommandCount(){
+	return 7;
+}
+
+QString BuildManager::getQuickBuildCommandText(int mode){
+	if (mode == 8) return tr("User : (% : filename without extension)");
+	QList<LatexCommand> commands = getQuickBuildCommands(mode);
+	QString result;
+	foreach (const LatexCommand cmd, commands) result += (result.isEmpty()?"":" + ") + commandDisplayName(cmd);
+	return result;
+}
+
 void BuildManager::singleInstanceCompleted(int status){
 	Q_UNUSED(status);
 	ProcessX* procX = qobject_cast<ProcessX*>(sender());
