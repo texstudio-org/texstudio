@@ -646,15 +646,14 @@ void PDFScrollArea::setContinuous(bool cont){
 	else {
 		int page = pdf->getCurrentPageIndex();
 		resizeEvent(0);
-		verticalScrollBar()->setValue(pdf->gridRowHeight()*page);
+		goToPage(page,false);
 	}
 }
 
 void PDFScrollArea::goToPage(int page,bool sync){
 	if (continuous) {
 		int rowHeight = pdf->gridRowHeight();
-		int curPos = verticalScrollBar()->value();
-		verticalScrollBar()->setValue(curPos %  rowHeight + (page / pdf->gridCols())  * rowHeight);
+		verticalScrollBar()->setValue((page / pdf->gridCols())  * rowHeight);
 	} else pdf->goToPageDirect(page, sync);
 }
 
@@ -737,7 +736,7 @@ void PDFScrollArea::updateScrollBars(){
 	if (!continuous) {
 		vbar->setRange(0, v.height() - p.height());
 	} else {
-		vbar->setRange(0,((pdf->numPages() + pdf->gridCols() - 1)/ pdf->gridCols() - 1) * pdf->gridRowHeight() );
+		vbar->setRange(0,((pdf->numPages() + pdf->gridCols() - 1)/ pdf->gridCols()) * pdf->gridRowHeight() - p.height());
 	}
 	vbar->setPageStep(p.height());
 	updateWidgetPosition();
@@ -764,6 +763,7 @@ PDFOverviewDock::PDFOverviewDock(PDFDocument *doc)
 	list->setSpacing(12);
 	list->setBackgroundRole(QPalette::Mid);
 	setWidget(list);
+	dontFollow=false;
 }
 
 PDFOverviewDock::~PDFOverviewDock()
@@ -806,7 +806,7 @@ void PDFOverviewDock::fillInfo()
 	    connect(list, SIGNAL(itemSelectionChanged()), this, SLOT(followTocSelection()));
     }
 
-    list->setCurrentRow(0);
+    //list->setCurrentRow(0);
     showImage();
 }
 
@@ -818,16 +818,20 @@ void PDFOverviewDock::documentClosed()
 
 void PDFOverviewDock::followTocSelection()
 {
-    QList<QListWidgetItem* >lst=list->selectedItems();
-    if(lst.isEmpty())
-	return;
-    int page=lst.first()->text().toInt();
-    document->goToPage(page-1);
+    if(!dontFollow){
+	QList<QListWidgetItem* >lst=list->selectedItems();
+	if(lst.isEmpty())
+	    return;
+	int page=lst.first()->text().toInt();
+	document->goToPage(page-1);
+    }
 }
 
 void PDFOverviewDock::pageChanged(int page)
 {
+    dontFollow=true;
     list->setCurrentRow(page);
+    dontFollow=false;
 }
 
 void PDFOverviewDock::showImage(){

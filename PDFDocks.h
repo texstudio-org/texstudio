@@ -225,6 +225,10 @@ public:
 	void setPDFWidget(PDFWidget* widget);
 	void ensureVisible(int x, int y, int xmargin=50, int ymargin=50);
 	void setVerticalScrollBarPolicy(Qt::ScrollBarPolicy policy);
+	bool getContinuous(){
+	    return continuous;
+	}
+
 	virtual ~PDFScrollArea();
 
 public slots:
@@ -274,6 +278,7 @@ private slots:
 private:
 	QListWidget *list;
         int toGenerate;
+	bool dontFollow;
 };
 
 
