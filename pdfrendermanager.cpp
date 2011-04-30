@@ -128,8 +128,17 @@ void PDFRenderManager::addToCache(QImage img,int pageNr,int ticket){
 }
 
 void PDFRenderManager::fillCache(){
+    QSet<int> renderedPage;
+    foreach(RecInfo elem,lstOfReceivers){
+        if(elem.cache)
+            renderedPage.insert(elem.pageNr);
+    }
+    foreach(int elem,renderedPages.keys()){
+        renderedPage.insert(elem);
+    }
     for(int i=0;i<document->numPages();i++){
-	renderToImage(i,0,"");
+        if(!renderedPage.contains(i)) // don't rerender page
+            renderToImage(i,0,"");
     }
 }
 
