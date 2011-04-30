@@ -84,10 +84,10 @@ private:
 	//these are just wrappers around configManager so we don't have to type so much (todo??? move them to configmanager.h and use a singleton design???)
 	inline QMenu* newManagedMenu(const QString &id,const QString &text);
 	inline QMenu* newManagedMenu(QMenu* menu, const QString &id,const QString &text);
-	inline QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="");
-	inline QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile="");
-	inline QAction* newManagedEditorAction(QWidget* menu, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="");
-	inline QAction* newManagedEditorAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile="");
+	inline QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="", const QList<QVariant>& args = QList<QVariant>());
+	inline QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile="", const QList<QVariant>& args = QList<QVariant>());
+	inline QAction* newManagedEditorAction(QWidget* menu, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="", const QList<QVariant>& args = QList<QVariant>());
+	inline QAction* newManagedEditorAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile="", const QList<QVariant>& args = QList<QVariant>());
 	inline QAction* newManagedAction(QWidget* menu, const QString &id, QAction* act);
 	inline QAction* getManagedAction(QString id);
 	QAction* insertManagedAction(QAction* before, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="");
@@ -170,9 +170,10 @@ private:
 	
 	QAction* outputViewAction, *fullscreenModeAction;
 
-	void linkToEditorSlot(QAction* act, const char* slot);
+	void linkToEditorSlot(QAction* act, const char* slot, const QList<QVariant>& args);
 private slots:
 	void relayToEditorSlot();
+	void relayToOwnSlot();
 
 	void fileNew(QString fileName="");
 	void fileNewFromTemplate();
@@ -323,13 +324,7 @@ private slots:
 	void DisplayLatexError();
 	void NextMark();
 	void PreviousMark();
-	bool gotoNearLogEntry(LogType lt, bool backward, QString notFoundMessage);
-	bool NextError();
-	bool PreviousError();
-	void NextWarning();
-	void PreviousWarning();
-	void NextBadBox();
-	void PreviousBadBox();
+	bool gotoNearLogEntry(int lt, bool backward, QString notFoundMessage);
 	bool NoLatexErrors();
 	bool LogExists();
 	void ClearMarkers();
@@ -350,19 +345,12 @@ private slots:
 	void viewCloseSomething();
 	void setFullScreenMode();
 	
-	void viewCollapseEverything();
-	void viewCollapseLevel();
 	void viewCollapseBlock();
-	void viewExpandEverything();
-	void viewExpandLevel();
 	void viewExpandBlock();
 
 	void newPdfPreviewer();
 
 	void masterDocumentChanged(LatexDocument * doc);
-
-	void gotoBookmark();
-	void toggleBookmark();
 
 	void SetMostUsedSymbols(QTableWidgetItem* item);
 
@@ -457,8 +445,5 @@ protected:
 	QString rerunCommand;
 	RunCommandFlags rerunFlags;
 };
-
-
-
 
 #endif

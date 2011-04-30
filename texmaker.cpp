@@ -287,20 +287,34 @@ Texmaker::~Texmaker(){
 QMenu* Texmaker::newManagedMenu(QMenu* menu, const QString &id,const QString &text){
 	return configManager.newManagedMenu(menu,id,text);
 }
-QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QKeySequence &shortCut, const QString & iconFile) {
-	return configManager.newManagedAction(menu,id,text,slotName,QList<QKeySequence>() << shortCut, iconFile);
-}
-QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile) {
-	return configManager.newManagedAction(menu,id,text,slotName,shortCuts, iconFile);
-}
-QAction* Texmaker::newManagedEditorAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QKeySequence &shortCut, const QString & iconFile) {
-	QAction* tmp = configManager.newManagedAction(menu,id,text,0,QList<QKeySequence>() << shortCut, iconFile);
-	linkToEditorSlot(tmp, slotName);
+QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QKeySequence &shortCut, const QString & iconFile, const QList<QVariant>& args) {
+	QAction* tmp = configManager.newManagedAction(menu,id,text,args.isEmpty()?slotName:SLOT(relayToOwnSlot()),QList<QKeySequence>() << shortCut, iconFile);
+	if (!args.isEmpty()) {
+		QString slot = QString(slotName).left(QString(slotName).indexOf("("));
+		Q_ASSERT(staticMetaObject.indexOfSlot(createMethodSignature(qPrintable(slot), args)) != -1);
+		tmp->setProperty("slot", qPrintable(slot));
+		tmp->setProperty("args", QVariant::fromValue<QList<QVariant> >(args));
+	}
 	return tmp;
 }
-QAction* Texmaker::newManagedEditorAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile) {
+QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile, const QList<QVariant>& args) {
+	QAction* tmp = configManager.newManagedAction(menu,id,text, args.isEmpty()?slotName:SLOT(relayToOwnSlot()),shortCuts, iconFile);
+	if (!args.isEmpty()) {
+		QString slot = QString(slotName).left(QString(slotName).indexOf("("));
+		Q_ASSERT(staticMetaObject.indexOfSlot(createMethodSignature(qPrintable(slot), args)) != -1);
+		tmp->setProperty("slot", qPrintable(slot));
+		tmp->setProperty("args", QVariant::fromValue<QList<QVariant> >(args));
+	}
+	return tmp;
+}
+QAction* Texmaker::newManagedEditorAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QKeySequence &shortCut, const QString & iconFile, const QList<QVariant>& args) {
+	QAction* tmp = configManager.newManagedAction(menu,id,text,0,QList<QKeySequence>() << shortCut, iconFile);
+	linkToEditorSlot(tmp, slotName, args);
+	return tmp;
+}
+QAction* Texmaker::newManagedEditorAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile, const QList<QVariant>& args) {
 	QAction* tmp = configManager.newManagedAction(menu,id,text,0,shortCuts, iconFile);
-	linkToEditorSlot(tmp, slotName);
+	linkToEditorSlot(tmp, slotName, args);
 	return tmp;
 }
 QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id, QAction* act){
@@ -534,15 +548,12 @@ void Texmaker::setupMenus() {
 
 	submenu=newManagedMenu(menu, "gotoBookmark",tr("Goto Bookmark"));
 	for (int i=0; i<=9; i++)
-		newManagedAction(submenu,QString("bookmark%1").arg(i),tr("Bookmark %1").arg(i),SLOT(gotoBookmark()),Qt::CTRL+Qt::Key_0+i)
-		->setData(i);
+		newManagedEditorAction(submenu,QString("bookmark%1").arg(i),tr("Bookmark %1").arg(i),"jumpToBookmark",Qt::CTRL+Qt::Key_0+i,"",QList<QVariant>() << i);
 
 	submenu=newManagedMenu(menu, "toggleBookmark",tr("Toggle Bookmark"));
-	newManagedAction(submenu,QString("bookmark"),tr("unnamed bookmark"),SLOT(toggleBookmark()),Qt::CTRL+Qt::SHIFT+Qt::Key_B)
-	->setData(-1);
+	newManagedEditorAction(submenu,QString("bookmark"),tr("unnamed bookmark"),"toggleBookmark",Qt::CTRL+Qt::SHIFT+Qt::Key_B, "", QList<QVariant>() << -1);
 	for (int i=0; i<=9; i++)
-		newManagedAction(submenu,QString("bookmark%1").arg(i),tr("Bookmark %1").arg(i),SLOT(toggleBookmark()),Qt::CTRL+Qt::SHIFT+Qt::Key_0+i)
-		->setData(i);
+		newManagedEditorAction(submenu,QString("bookmark%1").arg(i),tr("Bookmark %1").arg(i),"toggleBookmark",Qt::CTRL+Qt::SHIFT+Qt::Key_0+i,"",QList<QVariant>() << i);
 
 
 	menu->addSeparator();
@@ -587,12 +598,13 @@ void Texmaker::setupMenus() {
 
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "goto",tr("Go to"));
-	newManagedAction(submenu,"errorprev",tr("Previous error"),SLOT(PreviousError()),Qt::CTRL+Qt::SHIFT+Qt::Key_Up, ":/images/errorprev.png");
-	newManagedAction(submenu,"errornext",tr("Next error"),SLOT(NextError()),Qt::CTRL+Qt::SHIFT+Qt::Key_Down, ":/images/errornext.png");
-	newManagedAction(submenu,"warningprev",tr("Previous warning"),SLOT(PreviousWarning()),Qt::CTRL+Qt::ALT+Qt::Key_Up);//, ":/images/errorprev.png");
-	newManagedAction(submenu,"warningnext",tr("Next warning"),SLOT(NextWarning()),Qt::CTRL+Qt::ALT+Qt::Key_Down);//, ":/images/errornext.png");
-	newManagedAction(submenu,"badboxprev",tr("Previous bad box"),SLOT(PreviousBadBox()),Qt::SHIFT+Qt::ALT+Qt::Key_Up);//, ":/images/errorprev.png");
-	newManagedAction(submenu,"badboxnext",tr("Next bad box"),SLOT(NextBadBox()),Qt::SHIFT+Qt::ALT+Qt::Key_Down);//, ":/images/errornext.png");
+
+	newManagedAction(submenu,"errorprev",tr("Previous error"),"gotoNearLogEntry",Qt::CTRL+Qt::SHIFT+Qt::Key_Up, ":/images/errorprev.png", QList<QVariant>() << LT_ERROR << true << tr("No LaTeX errors detected !"));
+	newManagedAction(submenu,"errornext",tr("Next error"),"gotoNearLogEntry",Qt::CTRL+Qt::SHIFT+Qt::Key_Down, ":/images/errornext.png", QList<QVariant>() << LT_ERROR << false << tr("No LaTeX errors detected !"));
+	newManagedAction(submenu,"warningprev",tr("Previous warning"),"gotoNearLogEntry",Qt::CTRL+Qt::ALT+Qt::Key_Up,"", QList<QVariant>() << LT_WARNING << true << tr("No LaTeX warnings detected !"));//, ":/images/errorprev.png");
+	newManagedAction(submenu,"warningnext",tr("Next warning"),"gotoNearLogEntry",Qt::CTRL+Qt::ALT+Qt::Key_Down, "", QList<QVariant>() << LT_WARNING << false << tr("No LaTeX warnings detected !"));//, ":/images/errornext.png");
+	newManagedAction(submenu,"badboxprev",tr("Previous bad box"),"gotoNearLogEntry",Qt::SHIFT+Qt::ALT+Qt::Key_Up, "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !"));//, ":/images/errorprev.png");
+	newManagedAction(submenu,"badboxnext",tr("Next bad box"),"gotoNearLogEntry",Qt::SHIFT+Qt::ALT+Qt::Key_Down, "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !"));//, ":/images/errornext.png");
 	submenu->addSeparator();
 	newManagedAction(submenu,"definition",tr("Definition"),SLOT(editGotoDefinition()),Qt::CTRL+Qt::ALT+Qt::Key_F);
 
@@ -707,15 +719,15 @@ void Texmaker::setupMenus() {
 
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "collapse", tr("Collapse"));
-	newManagedAction(submenu, "all", tr("Everything"), SLOT(viewCollapseEverything()));
+	newManagedEditorAction(submenu, "all", tr("Everything"), "foldEverything", 0, "", QList<QVariant>() << false);
 	newManagedAction(submenu, "block", tr("Nearest block"), SLOT(viewCollapseBlock()));
 	for (int i=1; i<=4; i++)
-		newManagedAction(submenu, QString::number(i), tr("Level %1").arg(i), SLOT(viewCollapseLevel()))->setData(i);
+		newManagedEditorAction(submenu, QString::number(i), tr("Level %1").arg(i), "foldLevel", 0, "", QList<QVariant>() << false << i);
 	submenu=newManagedMenu(menu, "expand", tr("Expand"));
-	newManagedAction(submenu, "all", tr("Everything"), SLOT(viewExpandEverything()));
+	newManagedEditorAction(submenu, "all", tr("Everything"), "foldEverything", 0, "", QList<QVariant>() << true);
 	newManagedAction(submenu, "block", tr("Nearest block"), SLOT(viewExpandBlock()));
 	for (int i=1; i<=4; i++)
-		newManagedAction(submenu, QString::number(i), tr("Level %1").arg(i), SLOT(viewExpandLevel()))->setData(i);
+		newManagedEditorAction(submenu, QString::number(i), tr("Level %1").arg(i), "foldLevel", 0, "", QList<QVariant>() << true << i);
 
 	menu->addSeparator();
 	fullscreenModeAction=newManagedAction(menu, "fullscreenmode",tr("Fullscreen Mode"), SLOT(setFullScreenMode()));
@@ -1173,23 +1185,24 @@ void Texmaker::needUpdatedCompleter(){
 		updateCompleter();
 }
 #include "QMetaMethod"
-void Texmaker::linkToEditorSlot(QAction* act, const char* methodName){
+void Texmaker::linkToEditorSlot(QAction* act, const char* methodName, const QList<QVariant>& args){
 	REQUIRE(act);
 	connect(act, SIGNAL(triggered()), SLOT(relayToEditorSlot()));
-	QByteArray signature = methodName;
-	signature.append("()");
+	QByteArray signature = createMethodSignature(methodName, args);
+	if (!args.isEmpty())
+		act->setProperty("args", QVariant::fromValue<QList<QVariant> >(args));
 	for (int i=0;i<LatexEditorView::staticMetaObject.methodCount();i++)
 		if (signature == LatexEditorView::staticMetaObject.method(i).signature()) {
 			act->setProperty("editorViewSlot", methodName);
 			return;
-		}
+		} //else qDebug() << LatexEditorView::staticMetaObject.method(i).signature();
 	for (int i=0;i<QEditor::staticMetaObject.methodCount();i++)
 		if (signature == QEditor::staticMetaObject.method(i).signature()) {
 			act->setProperty("editorSlot", methodName);
 			return;
 		}
 
-	qDebug()<<methodName;
+	qDebug() << methodName << signature;
 	Q_ASSERT(false);
 }
 
@@ -1197,8 +1210,13 @@ void Texmaker::relayToEditorSlot(){
 	if (!currentEditorView()) return;
 	QAction* act = qobject_cast<QAction*>(sender());
 	REQUIRE(act);
-	if (act->property("editorViewSlot").isValid()) QMetaObject::invokeMethod(currentEditorView(), qPrintable(act->property("editorViewSlot").toString()));
-	else if (act->property("editorSlot").isValid()) QMetaObject::invokeMethod(currentEditor(), qPrintable(act->property("editorSlot").toString()));
+	if (act->property("editorViewSlot").isValid()) QMetaObjectInvokeMethod(currentEditorView(), qPrintable(act->property("editorViewSlot").toString()), act->property("args").value<QList<QVariant> >());
+	else if (act->property("editorSlot").isValid()) QMetaObjectInvokeMethod(currentEditor(), qPrintable(act->property("editorSlot").toString()), act->property("args").value<QList<QVariant> >());
+}
+void Texmaker::relayToOwnSlot(){
+	QAction* act = qobject_cast<QAction*>(sender());
+	REQUIRE(act && act->property("slot").isValid());
+	QMetaObjectInvokeMethod(this, qPrintable(act->property("slot").toString()), act->property("args").value<QList<QVariant> >());
 }
 
 void Texmaker::fileNew(QString fileName) {
@@ -3427,9 +3445,8 @@ void Texmaker::ViewLog(bool noTabChange) {
 		//display errors in editor
 		DisplayLatexError();
 		if (outputView->getLogModel()->found(LT_ERROR))
-			if (!NextError()) //jump to an error
-				PreviousError();
-
+			if (!gotoNearLogEntry(LT_ERROR,false,tr("No LaTeX errors detected !"))) //jump to next error
+				gotoNearLogEntry(LT_ERROR,true,tr("No LaTeX errors detected !")); //prev error
 
 	} else {
 		QMessageBox::warning(this,tr("Error"),tr("Log File not found !"));
@@ -3494,41 +3511,20 @@ void Texmaker::PreviousMark() {
 }
 
 
-bool Texmaker::gotoNearLogEntry(LogType lt, bool backward, QString notFoundMessage) {
+bool Texmaker::gotoNearLogEntry(int lt, bool backward, QString notFoundMessage) {
 	if (!outputView->logPresent()) {
 		ViewLog();
 	}
 	if (outputView->logPresent()) {
-		if (outputView->getLogModel()->found(lt)){
+		if (outputView->getLogModel()->found((LogType) lt)){
 			outputView->showErrorListOrLog(); //always show log if a mark of this type exists (even if is in another file)
-			return gotoMark(backward, outputView->getLogModel()->markID(lt));
+			return gotoMark(backward, outputView->getLogModel()->markID((LogType) lt));
 		} else {
 			QMessageBox::information(this,"TexMakerX",notFoundMessage);
 			//OutputTextEdit->setCursorPosition(0 , 0);
 		}
 	}
 	return false;
-}
-bool Texmaker::NextError() {
-	return gotoNearLogEntry(LT_ERROR,false,tr("No LaTeX errors detected !"));
-}
-
-bool Texmaker::PreviousError() {
-	return gotoNearLogEntry(LT_ERROR,true,tr("No LaTeX errors detected !"));
-}
-
-void Texmaker::NextWarning() {
-	gotoNearLogEntry(LT_WARNING,false,tr("No LaTeX warnings detected !"));
-}
-void Texmaker::PreviousWarning() {
-	gotoNearLogEntry(LT_WARNING,true,tr("No LaTeX warnings detected !"));
-}
-
-void Texmaker::NextBadBox() {
-	gotoNearLogEntry(LT_BADBOX,false,tr("No bad boxes detected !"));
-}
-void Texmaker::PreviousBadBox() {
-	gotoNearLogEntry(LT_BADBOX,true,tr("No bad boxes detected !"));
 }
 
 void Texmaker::ClearMarkers(){
@@ -3915,29 +3911,9 @@ void Texmaker::setFullScreenMode() {
     }
 }
 
-void Texmaker::viewCollapseEverything() {
-	if (!currentEditorView()) return;
-	currentEditorView()->foldEverything(false);
-}
-void Texmaker::viewCollapseLevel() {
-	if (!currentEditorView()) return;
-	QAction *action = qobject_cast<QAction *>(sender());
-	if (!action) return;
-	currentEditorView()->foldLevel(false,action->data().toInt());
-}
 void Texmaker::viewCollapseBlock() {
 	if (!currentEditorView()) return;
 	currentEditorView()->foldBlockAt(false,currentEditorView()->editor->cursor().lineNumber());
-}
-void Texmaker::viewExpandEverything() {
-	if (!currentEditorView()) return;
-	currentEditorView()->foldEverything(true);
-}
-void Texmaker::viewExpandLevel() {
-	if (!currentEditorView()) return;
-	QAction *action = qobject_cast<QAction *>(sender());
-	if (!action) return;
-	currentEditorView()->foldLevel(true,action->data().toInt());
 }
 void Texmaker::viewExpandBlock() {
 	if (!currentEditorView()) return;
@@ -3984,20 +3960,6 @@ void Texmaker::masterDocumentChanged(LatexDocument * doc){
                 int pos=EditorView->currentIndex();
                 EditorView->moveTab(pos,0);
 	}
-}
-
-
-void Texmaker::gotoBookmark() {
-	if (!currentEditorView()) return;
-	QAction *action = qobject_cast<QAction *>(sender());
-	if (!action) return;
-	currentEditorView()->jumpToBookmark(action->data().toInt());
-}
-void Texmaker::toggleBookmark() {
-	if (!currentEditorView()) return;
-	QAction *action = qobject_cast<QAction*>(sender());
-	if (!action) return;
-	currentEditorView()->toggleBookmark(action->data().toInt()); //-1 is unnamed bookmark
 }
 
 //*********************************
