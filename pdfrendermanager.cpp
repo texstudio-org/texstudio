@@ -62,8 +62,9 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
     info.cache=cache;
     info.xres=xres;
     currentTicket++;
-    bool enqueueCmd=!checkDuplicate(currentTicket,info);
-    lstOfReceivers.insert(currentTicket,info);
+    int mCurrentTicket=currentTicket;
+    bool enqueueCmd=!checkDuplicate(mCurrentTicket,info);
+    lstOfReceivers.insert(mCurrentTicket,info);
     // return best guess/cached at once, refine later
     Poppler::Page *page=document->page(pageNr);
     QPixmap img;
@@ -98,10 +99,10 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
     if(enqueueCmd){
 	if(scale>1.001 || scale<0.999){ // always rerender, only not if it is already equivalent
 	    RenderCommand cmd(pageNr,xres,yres);
-	    cmd.ticket=currentTicket;
+	    cmd.ticket=mCurrentTicket;
 	    enqueue(cmd,priority);
 	}else{
-	    lstOfReceivers.remove(currentTicket);
+	    lstOfReceivers.remove(mCurrentTicket);
 	}
     }
     delete page;
