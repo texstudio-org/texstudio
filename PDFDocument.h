@@ -104,7 +104,7 @@ public:
 	void setGridSize(int gx, int gy);
 	int visiblePages() const;
 	int numPages() const;
-	int pageStep() const;
+	int pageStep();
 	int gridCols() const;
 	int gridRowHeight() const;
 	PDFDocument * getPDFDocument();
