@@ -543,8 +543,8 @@ void Texmaker::setupMenus() {
 	newManagedEditorAction(submenu,"lastchange",tr("last change"), "jumpChangePositionBackward", Qt::CTRL+Qt::Key_H);
 	newManagedEditorAction(submenu,"nextchange",tr("\"next\" change"), "jumpChangePositionForward", Qt::CTRL+Qt::SHIFT+Qt::Key_H);
 	submenu->addSeparator();
-	newManagedAction(submenu,"markprev",tr("Previous mark"),SLOT(PreviousMark()),Qt::CTRL+Qt::Key_Up);//, ":/images/errorprev.png");
-	newManagedAction(submenu,"marknext",tr("Next mark"),SLOT(NextMark()),Qt::CTRL+Qt::Key_Down);//, ":/images/errornext.png");
+	newManagedAction(submenu,"markprev",tr("Previous mark"),"gotoMark",Qt::CTRL+Qt::Key_Up,"",QList<QVariant>() << true << -1);//, ":/images/errorprev.png");
+	newManagedAction(submenu,"marknext",tr("Next mark"),"gotoMark",Qt::CTRL+Qt::Key_Down,"",QList<QVariant>() << false << -1);//, ":/images/errornext.png");
 
 	submenu=newManagedMenu(menu, "gotoBookmark",tr("Goto Bookmark"));
 	for (int i=0; i<=9; i++)
@@ -2868,11 +2868,6 @@ void Texmaker::InsertBibEntryFromAction(){
 		CodeSnippet(insertText).insert(currentEditor());
 }
 
-
-void Texmaker::InsertBibEntry(){
-	InsertBibEntry("");
-}
-
 void Texmaker::InsertBibEntry(const QString& id){
 	QStringList possibleBibFiles;
 	int usedFile=0;
@@ -3500,16 +3495,6 @@ void Texmaker::DisplayLatexError() {
 bool Texmaker::NoLatexErrors() {
 	return !outputView->getLogModel()->found(LT_ERROR);
 }
-
-void Texmaker::NextMark() {
-	if (!currentEditorView()) return;
-	gotoMark(false,-1);
-}
-void Texmaker::PreviousMark() {
-	if (!currentEditorView()) return;
-	gotoMark(true,-1);
-}
-
 
 bool Texmaker::gotoNearLogEntry(int lt, bool backward, QString notFoundMessage) {
 	if (!outputView->logPresent()) {
@@ -4157,6 +4142,7 @@ bool Texmaker::gotoLogEntryAt(int newLineNumber) {
 }
 
 bool Texmaker::gotoMark(bool backward, int id) {
+	if (!currentEditorView()) return false;
 	if (backward)
 		return gotoLogEntryAt(currentEditorView()->editor->document()->findPreviousMark(id,qMax(0,currentEditorView()->editor->cursor().lineNumber()-1),0));
 	else

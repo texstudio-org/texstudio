@@ -280,8 +280,7 @@ private slots:
 	void InsertStruct();
 
 	void InsertBibEntryFromAction();
-	void InsertBibEntry();
-	void InsertBibEntry(const QString& id);
+	void InsertBibEntry(const QString& id="");
 	
 	void InsertUserTag();
 	void EditUserMenu();
@@ -322,8 +321,6 @@ private slots:
 	void ViewLog(bool noTabChange=false);
 	void ViewLogOrReRun();
 	void DisplayLatexError();
-	void NextMark();
-	void PreviousMark();
 	bool gotoNearLogEntry(int lt, bool backward, QString notFoundMessage);
 	bool NoLatexErrors();
 	bool LogExists();
@@ -364,7 +361,7 @@ private slots:
 	void gotoLocation(int line, const QString &fileName);  //0 based, absolute file name
 	void gotoLogEntryEditorOnly(int logEntryNumber);
 	bool gotoLogEntryAt(int newLineNumber);
-	bool gotoMark(bool backward, int id);
+	bool gotoMark(bool backward, int id=-1);
 	void syncFromViewer(const QString &fileName, int line, bool activate);  //0 based, absolute file name, raise window
 	
 	void previewLatex();
