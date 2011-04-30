@@ -152,6 +152,7 @@ bool PDFRenderManager::checkDuplicate(int &ticket,RecInfo &info){
 	    && info.x<0 && info.y<0 && info.w<0 && info.h<0){
 	    if(i.value().xres*1.01>=info.xres){
 		ticket=i.key();
+		qDebug()<<"duplicate";
 		return true;
 	    }
 	}

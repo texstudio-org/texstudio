@@ -403,11 +403,11 @@ bool LatexEditorView::gotoToLabel(const QString& label){
 void LatexEditorView::foldEverything(bool unFold) {
 	QDocument* doc = editor->document();
 	QLanguageDefinition* ld = doc->languageDefinition();
-	if (unFold) {
-		for (int i=0; i<doc->lines(); i++) ld->expand(doc,i);
-	} else {
-		for (int i=0; i<doc->lines(); i++) ld->collapse(doc,i);
-	}
+	QFoldedLineIterator fli = ld->foldedLineIterator(doc, 0);
+	for (int i=0; i < doc->lines(); i++, ++fli)
+		if (fli.open)
+			if (unFold) ld->expand(doc, i);
+			else ld->collapse(doc, i);
 }
 //collapse/expand lines at the top level
 void LatexEditorView::foldLevel(bool unFold, int level) {	
