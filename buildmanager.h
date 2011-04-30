@@ -68,6 +68,10 @@ public:
 
 	QString editCommandList(const QString& list);
 
+	static QList<LatexCommand> getQuickBuildCommands(int mode);
+	static QString getQuickBuildCommandText(int mode);
+	static int getQuickBuildCommandCount();
+
 	int quickmode;
 	enum Dvi2PngMode { DPM_DVIPNG, DPM_DVIPNG_FOLLOW, DPM_DVIPS_GHOSTSCRIPT};
 	Dvi2PngMode dvi2pngMode;

@@ -137,7 +137,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -151,8 +151,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>823</width>
-            <height>579</height>
+            <width>800</width>
+            <height>595</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -678,66 +678,10 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           </property>
           <item row="0" column="0">
            <layout class="QGridLayout" name="gridLayout_2">
-            <property name="margin">
+            <property name="verticalSpacing">
              <number>0</number>
             </property>
-            <item row="0" column="0" colspan="2">
-             <widget class="QRadioButton" name="radioButton1">
-              <property name="text">
-               <string>LaTeX + dvips + View PS</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0" colspan="2">
-             <widget class="QRadioButton" name="radioButton2">
-              <property name="text">
-               <string>LaTeX + View DVI</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0" colspan="2">
-             <widget class="QRadioButton" name="radioButton3">
-              <property name="text">
-               <string>PdfLaTeX + View PDF</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0" colspan="2">
-             <widget class="QRadioButton" name="radioButton4">
-              <property name="text">
-               <string>LaTeX + dvipdfm + View PDF</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0" colspan="2">
-             <widget class="QRadioButton" name="radioButton5">
-              <property name="text">
-               <string>LaTeX + dvips + ps2pdf + View PDF</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0" colspan="2">
-             <widget class="QRadioButton" name="radioButton6_2">
-              <property name="text">
-               <string>LaTeX + Asymptote + LaTeX + View DVI</string>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="0" colspan="2">
-             <widget class="QRadioButton" name="radioButton7">
-              <property name="text">
-               <string>PdfLaTeX + Asymptote + PdfLaTeX + View PDF</string>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="0" colspan="2">
-             <widget class="QRadioButton" name="radioButton6">
-              <property name="text">
-               <string>User : (% : filename without extension)</string>
-              </property>
-             </widget>
-            </item>
-            <item row="8" column="0">
+            <item row="1" column="0">
              <widget class="QLineEdit" name="lineEditUserquick">
               <property name="font">
                <font>
@@ -747,14 +691,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
               </property>
              </widget>
             </item>
-            <item row="10" column="0" colspan="2">
-             <widget class="QLabel" name="label">
-              <property name="text">
-               <string>(The commands must be separated by '|')</string>
-              </property>
-             </widget>
-            </item>
-            <item row="8" column="1">
+            <item row="1" column="1">
              <widget class="QPushButton" name="pushButtonQuickBuildWizard">
               <property name="enabled">
                <bool>false</bool>
@@ -763,6 +700,16 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
                <string>Wizard</string>
               </property>
              </widget>
+            </item>
+            <item row="2" column="0" colspan="2">
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>(The commands must be separated by '|')</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0" colspan="2">
+             <layout class="QVBoxLayout" name="quickbuildLayout"/>
             </item>
            </layout>
           </item>
@@ -2246,13 +2193,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
  </widget>
  <tabstops>
   <tabstop>contentsWidget</tabstop>
-  <tabstop>radioButton1</tabstop>
-  <tabstop>radioButton2</tabstop>
-  <tabstop>radioButton3</tabstop>
-  <tabstop>radioButton4</tabstop>
-  <tabstop>radioButton5</tabstop>
-  <tabstop>radioButton6</tabstop>
-  <tabstop>lineEditUserquick</tabstop>
   <tabstop>comboBoxFont</tabstop>
   <tabstop>spinBoxSize</tabstop>
   <tabstop>comboBoxEncoding</tabstop>
@@ -2382,38 +2322,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     <hint type="destinationlabel">
      <x>753</x>
      <y>569</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>radioButton6</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>pushButtonQuickBuildWizard</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>514</x>
-     <y>261</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>991</x>
-     <y>294</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>radioButton6</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>lineEditUserquick</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>514</x>
-     <y>261</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>514</x>
-     <y>293</y>
     </hint>
    </hints>
   </connection>

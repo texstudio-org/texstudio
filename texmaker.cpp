@@ -3194,16 +3194,8 @@ void Texmaker::QuickBuild() {
 	ERRPROCESS=false;
 
 	QList<BuildManager::LatexCommand> cmddList;
-	switch (buildManager.quickmode) {
-	case 1: cmddList << BuildManager::CMD_LATEX << BuildManager::CMD_DVIPS << BuildManager::CMD_VIEWPS; break;
-	case 2: cmddList << BuildManager::CMD_LATEX << BuildManager::CMD_VIEWDVI; break;
-	case 3: cmddList << BuildManager::CMD_PDFLATEX << BuildManager::CMD_VIEWPDF; break;
-	case 4: cmddList << BuildManager::CMD_LATEX << BuildManager::CMD_DVIPDF << BuildManager::CMD_VIEWPDF; break;
-	case 5: cmddList << BuildManager::CMD_LATEX << BuildManager::CMD_DVIPS << BuildManager::CMD_PS2PDF << BuildManager::CMD_VIEWPDF; break;
-	case 6: cmddList << BuildManager::CMD_LATEX << BuildManager::CMD_ASY << BuildManager::CMD_LATEX << BuildManager::CMD_VIEWDVI; break;
-	case 7: cmddList << BuildManager::CMD_PDFLATEX << BuildManager::CMD_ASY << BuildManager::CMD_PDFLATEX << BuildManager::CMD_VIEWPDF; break;
-		//case 8/user: below
-	}
+	if (buildManager.quickmode >= 1 && buildManager.quickmode <= BuildManager::getQuickBuildCommandCount())
+		cmddList = BuildManager::getQuickBuildCommands(buildManager.quickmode);
 
 	if (!cmddList.isEmpty()) {
 		for (int i=0; i < cmddList.size() - 1; i++) { //skip last command
