@@ -98,6 +98,18 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
     }
     if(enqueueCmd){
 	if(scale>1.01 || scale<0.99){ // always rerender, only not if it is already equivalent
+	    QMutableMapIterator<int,RecInfo> i(lstOfReceivers);
+	    while (i.hasNext()){
+		i.next();
+		if(mCurrentTicket!=i.key()){
+		    RecInfo elem=i.value();
+		    if(elem.pageNr==info.pageNr
+			    && elem.obj==info.obj
+			    && elem.slot==info.slot){
+			i.remove();
+		    }
+		}
+	    }
 	    RenderCommand cmd(pageNr,xres,yres);
 	    cmd.ticket=mCurrentTicket;
 	    enqueue(cmd,priority);
