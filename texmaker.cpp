@@ -532,10 +532,18 @@ void Texmaker::setupMenus() {
 	latexEditorContextMenu = menu->actions();
 
 	menu->addSeparator();
-	newManagedEditorAction(menu,"find", tr("&Find"), "find", Qt::CTRL+Qt::Key_F);
-	newManagedEditorAction(menu,"findnext",tr("Find &Next"), "findNext", Qt::CTRL+Qt::Key_M);
-	newManagedAction(menu,"findglobal",tr("Find D&ialog..."), SLOT(editFindGlobal()));
-	newManagedEditorAction(menu,"replace",tr("&Replace"), "replace", Qt::CTRL+Qt::Key_R);
+	submenu = newManagedMenu(menu, "searching", tr("&Searching"));
+	newManagedEditorAction(submenu,"find", tr("&Find"), "find", Qt::CTRL+Qt::Key_F);
+	newManagedEditorAction(submenu,"findinsamedir",tr("Continue F&ind"), "findInSameDir", Qt::CTRL+Qt::Key_M);
+	newManagedEditorAction(submenu,"findnext",tr("Find &Next"), "findNext");
+	newManagedEditorAction(submenu,"findprev",tr("Find &Prev"), "findPrev");
+	newManagedEditorAction(submenu,"findcount",tr("&Count"), "findCount");
+	newManagedAction(submenu,"findglobal",tr("Find &Dialog..."), SLOT(editFindGlobal()));
+	submenu->addSeparator();
+	newManagedEditorAction(submenu,"replace",tr("&Replace"), "replace", Qt::CTRL+Qt::Key_R);
+	newManagedEditorAction(submenu,"replacenext",tr("Replace Next"), "replaceNext");
+	newManagedEditorAction(submenu,"replaceprev",tr("Replace Prev"), "replacePrev");
+	newManagedEditorAction(submenu,"replaceall",tr("Replace &All"), "replaceAll");
 
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "goto",tr("Go to"));
@@ -597,7 +605,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"hardbreakrepeat",tr("R&epeat Hard Line Break"), SLOT(editHardLineBreakRepeat()));
 
 	menu->addSeparator();
-	submenu=newManagedMenu(menu, "goto",tr("Go to"));
+	submenu=newManagedMenu(menu, "goto",tr("&Go to"));
 
 	newManagedAction(submenu,"errorprev",tr("Previous error"),"gotoNearLogEntry",Qt::CTRL+Qt::SHIFT+Qt::Key_Up, ":/images/errorprev.png", QList<QVariant>() << LT_ERROR << true << tr("No LaTeX errors detected !"));
 	newManagedAction(submenu,"errornext",tr("Next error"),"gotoNearLogEntry",Qt::CTRL+Qt::SHIFT+Qt::Key_Down, ":/images/errornext.png", QList<QVariant>() << LT_ERROR << false << tr("No LaTeX errors detected !"));

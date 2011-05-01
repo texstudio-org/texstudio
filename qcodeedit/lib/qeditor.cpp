@@ -1171,123 +1171,68 @@ void QEditor::print()
 	}
 }
 
+void QEditor::relayPanelCommand(const QString& panel, const QString& command, const QList<QVariant>& args){
+	QCodeEdit *m = QCodeEdit::manager(this);
+	if (!m) {
+		qDebug("Unmanaged QEditor");
+		return;
+	}
+	if (panel == "Search") m->sendPanelCommand("Goto", "hide");
+	m->sendPanelCommand(panel, qPrintable(command), args);
+}
+
+
 /*!
 	\brief Show the search/replace panel, if any
 */
 void QEditor::find()
 {
-	QCodeEdit *m = QCodeEdit::manager(this);
-
-	if ( m )
-	{
-		// makes sense hiding this one if present...
-		m->sendPanelCommand("Goto", "hide");
-		
-		m->sendPanelCommand("Search",
-							"display",
-							Q_COMMAND
-								<< Q_ARG(int, 1)
-								<< Q_ARG(bool, false)
-							);
-
-	} else {
-		qDebug("Unmanaged QEditor");
-	}
-}
-
-/*!
-	\brief Ask the search/replace panel, if any, to move to next match
-*/
-void QEditor::findNext()
-{
-	QCodeEdit *m = QCodeEdit::manager(this);
-
-	if ( m )
-	{
-		// makes sense hiding this one if present...
-		m->sendPanelCommand("Goto", "hide");
-		
-		m->sendPanelCommand("Search",
-							"findNext",
-							Q_COMMAND
-							);
-
-	} else {
-		qDebug("Unmanaged QEditor");
-	}
+	relayPanelCommand("Search", "display", QList<QVariant>() << 1 << false);
 }
 
 void QEditor::find(QString text, bool highlight, bool regex, bool word, bool caseSensitive){
-	QCodeEdit *m = QCodeEdit::manager(this);
-
-	if ( m )
-	{
-		// makes sense hiding this one if present...
-		m->sendPanelCommand("Goto", "hide");
-
-		m->sendPanelCommand("Search",
-							"find",
-							Q_COMMAND
-								<< Q_ARG(QString, text)
-								<< Q_ARG(bool, false)
-								<< Q_ARG(bool, highlight)
-								<< Q_ARG(bool, regex)
-								<< Q_ARG(bool, word)
-								<< Q_ARG(bool, caseSensitive)
-							);
-
-	} else {
-		qDebug("Unmanaged QEditor");
-	}
+	relayPanelCommand("Search", "find", QList<QVariant>() << text << false << highlight << regex << word << caseSensitive);
 }
 
 void QEditor::find(QString text, bool highlight, bool regex, bool word, bool caseSensitive, bool fromCursor, bool selection){
-        QCodeEdit *m = QCodeEdit::manager(this);
-
-        if ( m )
-        {
-                // makes sense hiding this one if present...
-                m->sendPanelCommand("Goto", "hide");
-
-                m->sendPanelCommand("Search",
-                                                        "find",
-                                                        Q_COMMAND
-                                                                << Q_ARG(QString, text)
-                                                                << Q_ARG(bool, false)
-                                                                << Q_ARG(bool, highlight)
-                                                                << Q_ARG(bool, regex)
-                                                                << Q_ARG(bool, word)
-                                                                << Q_ARG(bool, caseSensitive)
-                                                                << Q_ARG(bool, fromCursor)
-                                                                << Q_ARG(bool, selection)
-                                                        );
-
-        } else {
-                qDebug("Unmanaged QEditor");
-        }
+	relayPanelCommand("Search", "find", QList<QVariant>() << text << false << highlight << regex << word << caseSensitive << fromCursor << selection);
 }
+
+void QEditor::findInSameDir()
+{
+	relayPanelCommand("Search", "findNext");
+}
+void QEditor::findNext()
+{
+	relayPanelCommand("Search", "findReplace", QList<QVariant>() << false);
+}
+void QEditor::findPrev()
+{
+	relayPanelCommand("Search", "findReplace", QList<QVariant>() << true);
+}
+void QEditor::findCount()
+{
+	relayPanelCommand("Search", "findReplace", QList<QVariant>() << false << false << false << true);
+}
+
 /*!
 	\brief Show the search/replace panel, if any
 */
 void QEditor::replace()
 {
-	QCodeEdit *m = QCodeEdit::manager(this);
-
-	if ( m )
-	{
-		// makes sense hiding this one if present...
-		m->sendPanelCommand("Goto", "hide");
-		
-		m->sendPanelCommand("Search",
-							"display",
-							Q_COMMAND
-								<< Q_ARG(int, 1)
-								<< Q_ARG(bool, true)
-							);
-
-	} else {
-		qDebug("Unmanaged QEditor");
-	}
+	relayPanelCommand("Search", "display", QList<QVariant>() << 1 << true);
+}
+void QEditor::replaceNext()
+{
+	relayPanelCommand("Search", "findReplace", QList<QVariant>() << false << true);
+}
+void QEditor::replacePrev()
+{
+	relayPanelCommand("Search", "findReplace", QList<QVariant>() << true << true);
+}
+void QEditor::replaceAll()
+{
+	relayPanelCommand("Search", "findReplace", QList<QVariant>() << false << true << true);
 }
 
 /*!

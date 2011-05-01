@@ -405,9 +405,10 @@ void LatexEditorView::foldEverything(bool unFold) {
 	QLanguageDefinition* ld = doc->languageDefinition();
 	QFoldedLineIterator fli = ld->foldedLineIterator(doc, 0);
 	for (int i=0; i < doc->lines(); i++, ++fli)
-		if (fli.open)
+		if (fli.open){
 			if (unFold) ld->expand(doc, i);
 			else ld->collapse(doc, i);
+		}
 }
 //collapse/expand lines at the top level
 void LatexEditorView::foldLevel(bool unFold, int level) {	

@@ -70,7 +70,10 @@ class QCE_EXPORT QCodeEdit
 		void sendPanelCommand(	const QString& type,
 								const char *signature,
 								const QList<QGenericArgument>& args = Q_COMMAND);
-		
+		void sendPanelCommand(	const QString& type,
+								const char *signature,
+								const QList<QVariant>& args);
+
 		static QCodeEdit* manager(QEditor *e);
 		static QEditor* managed(const QString& f);
 		
