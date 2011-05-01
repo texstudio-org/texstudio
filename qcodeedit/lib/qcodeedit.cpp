@@ -364,6 +364,22 @@ void QCodeEdit::sendPanelCommand(	const QString& type,
 	}
 }
 
+void QCodeEdit::sendPanelCommand(	const QString& type,
+						const char *signature,
+						const QList<QVariant>& args){
+
+	QList<QPanel*> lp = panels();
+
+	//qDebug("looking for panel of type %s", qPrintable(type));
+
+	foreach ( QPanel *p, lp )
+	{
+		if ( p && (p->type() == type) )
+			QMetaObjectInvokeMethod(p, signature, args);
+	}
+}
+
+
 /*!
 	\return The QCodeEdit object managing a given editor or a null point if the given editor is unmanaged
 */

@@ -314,12 +314,20 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void selectAll();
 		void selectNothing();
 		
+		void relayPanelCommand(const QString& panel, const QString& command, const QList<QVariant>& args = QList<QVariant>());
+
 		void find();
 		void find(QString text, bool highlight, bool regex, bool word=false, bool caseSensitive=false);
-                void find(QString text, bool highlight, bool regex, bool word, bool caseSensitive, bool fromCursor, bool selection);
+		void find(QString text, bool highlight, bool regex, bool word, bool caseSensitive, bool fromCursor, bool selection);
+		void findInSameDir();
 		void findNext();
+		void findPrev();
+		void findCount();
 		void replace();
-		
+		void replaceNext();
+		void replacePrev();
+		void replaceAll();
+
 		void gotoLine();
 		
 		void indentSelection();
