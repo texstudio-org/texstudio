@@ -3342,7 +3342,8 @@ void QDocumentLineHandle::draw(	QPainter *p,
 			// TODO : clip more accurately (i.e inside ranges)
 			if ( xpos > maxWidth ){
 				if( d->hardLineWrap()||d->lineWidthConstraint() ) continue;
-				else break;
+				else if (m_frontiers.isEmpty()) break;				
+				//else break;
 			}
 
 			fmt = r.format;
