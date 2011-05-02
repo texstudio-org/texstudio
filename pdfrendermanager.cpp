@@ -34,6 +34,9 @@ PDFRenderManager::~PDFRenderManager(){
 void PDFRenderManager::stopRendering(){
     stopped=true;
     mCommandsAvailable.release(num_renderQueues);
+    for(int i=0;i<num_renderQueues;i++){
+	renderQueues[i]->wait();
+    }
     document=0;
 }
 
@@ -64,7 +67,6 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
     currentTicket++;
     int mCurrentTicket=currentTicket;
     bool enqueueCmd=!checkDuplicate(mCurrentTicket,info);
-    lstOfReceivers.insert(mCurrentTicket,info);
     // return best guess/cached at once, refine later
     Poppler::Page *page=document->page(pageNr);
     QPixmap img;
@@ -106,16 +108,25 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 		    if(elem.pageNr==info.pageNr
 			    && elem.obj==info.obj
 			    && elem.slot==info.slot){
-			i.remove();
+			qreal rel=elem.xres/info.xres;
+			if(rel>1.01 || rel<0.99){
+			    i.remove();
+			}else{
+			    info.pageNr=-1;
+			    break;
+			}
 		    }
 		}
 	    }
-	    RenderCommand cmd(pageNr,xres,yres);
-	    cmd.ticket=mCurrentTicket;
-	    enqueue(cmd,priority);
-	}else{
-	    lstOfReceivers.remove(mCurrentTicket);
+	    if(info.pageNr>=0){
+		RenderCommand cmd(pageNr,xres,yres);
+		cmd.ticket=mCurrentTicket;
+		lstOfReceivers.insert(mCurrentTicket,info);
+		enqueue(cmd,priority);
+	    }
 	}
+    }else{
+	lstOfReceivers.insert(mCurrentTicket,info);
     }
     delete page;
     return img;
