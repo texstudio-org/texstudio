@@ -1195,7 +1195,7 @@ void Texmaker::needUpdatedCompleter(){
 #include "QMetaMethod"
 void Texmaker::linkToEditorSlot(QAction* act, const char* methodName, const QList<QVariant>& args){
 	REQUIRE(act);
-	connect(act, SIGNAL(triggered()), SLOT(relayToEditorSlot()));
+	connect(act, SIGNAL(triggered()), SLOT(relayToEditorSlot()),Qt::UniqueConnection);
 	QByteArray signature = createMethodSignature(methodName, args);
 	if (!args.isEmpty())
 		act->setProperty("args", QVariant::fromValue<QList<QVariant> >(args));
