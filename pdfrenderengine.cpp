@@ -44,7 +44,7 @@ void PDFRenderEngine::run(){
 	    Poppler::Page *page=document->page(command.pageNr);
 	    QImage	image=page->renderToImage(command.xres, command.yres,
 					  command.x, command.y, command.w, command.h);
-	    qDebug() << this << " Render page " << command.pageNr << " at " << command.ticket << " res "<<command.xres << ", " << command.yres;
+	    qDebug() << this << " Render page " << command.pageNr << " at " << command.ticket << "x/y" << command.x << command.y << " res "<<command.xres << ", " << command.w << command.h;
 	    delete page;
 	    emit sendImage(image,command.pageNr,command.ticket);
 	}

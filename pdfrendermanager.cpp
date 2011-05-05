@@ -11,6 +11,24 @@
 
 #include "pdfrendermanager.h"
 
+const int kMaxPageZoom=1000000;
+const qreal kMaxDpiForFullPage=200.0;
+
+CachePixmap::CachePixmap(const QPixmap &pixmap) :
+    QPixmap(pixmap)
+{
+}
+CachePixmap::CachePixmap() :
+    QPixmap()
+{
+}
+
+void CachePixmap::setRes(qreal res, int x, int y){
+    this->x=x;
+    this->y=y;
+    this->resolution=res;
+}
+
 PDFRenderManager::PDFRenderManager(QObject *parent) :
     QObject(parent)
 {
@@ -69,9 +87,14 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
     bool enqueueCmd=!checkDuplicate(mCurrentTicket,info);
     // return best guess/cached at once, refine later
     Poppler::Page *page=document->page(pageNr);
-    QPixmap img;
+    CachePixmap img;
     qreal scale=10;
-    if(renderedPages.contains(pageNr)){ // try cache first
+    if(renderedPages.contains(pageNr+kMaxPageZoom) && xres>kMaxDpiForFullPage){ // try cache first
+	CachePixmap *cachedPix=renderedPages[pageNr+kMaxPageZoom];
+	if(cachedPix->getCoord()==QPoint(x,y) && cachedPix->getRes()<1.01*xres && cachedPix->getRes()>0.99*xres)
+	    img=*cachedPix;
+    }
+    if(img.isNull() && renderedPages.contains(pageNr)){ // try cache first
 	img=*renderedPages[pageNr];
     }
     if(img.isNull()) // not cached, thumbnail present ?
@@ -120,6 +143,12 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 	    }
 	    if(info.pageNr>=0){
 		RenderCommand cmd(pageNr,xres,yres);
+		if(xres>kMaxDpiForFullPage){
+		    cmd.x=x;
+		    cmd.y=y;
+		    cmd.w=w;
+		    cmd.h=h;
+		}
 		cmd.ticket=mCurrentTicket;
 		lstOfReceivers.insert(mCurrentTicket,info);
 		enqueue(cmd,priority);
@@ -138,11 +167,14 @@ void PDFRenderManager::addToCache(QImage img,int pageNr,int ticket){
 	lstOfReceivers.remove(ticket);
 	foreach(RecInfo info,infos){
 	    if(info.cache){
-		QPixmap *image=new QPixmap(QPixmap::fromImage(img));
+		if(info.xres>kMaxDpiForFullPage)
+		    pageNr=pageNr+kMaxPageZoom;
+		CachePixmap *image=new CachePixmap(QPixmap::fromImage(img));
+		image->setRes(info.xres,info.x,info.y);
 		renderedPages.insert(pageNr,image);
 	    }
 	    if(info.obj){
-		if(info.x>-1 && info.y>-1 && info.w>-1 && info.h>-1)
+		if(info.x>-1 && info.y>-1 && info.w>-1 && info.h>-1 && !(info.xres>kMaxDpiForFullPage))
 		    img=img.copy(info.x,info.y,info.w,info.h);
 		QMetaObject::invokeMethod(info.obj,info.slot,Q_ARG(QPixmap,QPixmap::fromImage(img)),Q_ARG(int,pageNr));
 	    }
