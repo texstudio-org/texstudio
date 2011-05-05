@@ -66,6 +66,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	ReadSettings();
 	// set basic set of environemnt aliases (for math and tab)
 	LatexParser::environmentAliases.insert("equation","math");
+	LatexParser::environmentAliases.insert("equation*","math");
 	LatexParser::environmentAliases.insert("displaymath","math");
 	LatexParser::environmentAliases.insert("eqnarray","math");
 	LatexParser::environmentAliases.insert("eqnarray*","math");
