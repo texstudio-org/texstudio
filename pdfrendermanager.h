@@ -17,6 +17,24 @@ public:
     bool cache;
 };
 
+class CachePixmap: public QPixmap
+{
+public:
+    CachePixmap(const QPixmap &pixmap);
+    CachePixmap();
+    void setRes(qreal res,int x,int y);
+    qreal getRes(){
+	return resolution;
+    }
+    QPoint getCoord(){
+	return QPoint(x,y);
+    }
+
+private:
+    qreal resolution;
+    int x,y;
+};
+
 class PDFRenderManager : public QObject
 {
     Q_OBJECT
@@ -39,7 +57,7 @@ private:
     Poppler::Document *document;
 
     QList<PDFRenderEngine *>renderQueues;
-    QCache<int,QPixmap> renderedPages;
+    QCache<int,CachePixmap> renderedPages;
     QMultiMap<int,RecInfo> lstOfReceivers;
     int currentTicket;
 

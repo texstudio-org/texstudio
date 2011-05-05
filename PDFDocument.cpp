@@ -64,7 +64,7 @@
 
 #define ROUND(x) floor((x)+0.5)
 
-const qreal kMaxScaleFactor = 8.0;
+const qreal kMaxScaleFactor = 4.0;
 const qreal kMinScaleFactor = 0.125;
 
 // tool codes
