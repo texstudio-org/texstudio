@@ -23,6 +23,7 @@ struct PDFDocumentConfig{
 //live options
 	bool continuous,singlepagestep;
 	bool followFromCursor, followFromScroll, syncViews;
+	int gridx,gridy;
 };
 
 #endif // PDFDOCUMENT_CONFIG_H

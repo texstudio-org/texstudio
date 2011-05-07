@@ -101,7 +101,7 @@ public:
 	int getCurrentPageIndex() { return pageIndex; }
 	void reloadPage(bool sync = true);
 	void updateStatusBar();
-	void setGridSize(int gx, int gy);
+	void setGridSize(int gx, int gy, bool setAsDefault=false);
 	int visiblePages() const;
 	int numPages() const;
 	int pageStep();
