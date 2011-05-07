@@ -90,17 +90,21 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
     Poppler::Page *page=document->page(pageNr);
     CachePixmap img;
     qreal scale=10;
+    bool partialImage=false;
     if(renderedPages.contains(pageNr+kMaxPageZoom) && xres>kMaxDpiForFullPage){ // try cache first
 	CachePixmap *cachedPix=renderedPages[pageNr+kMaxPageZoom];
-	if(cachedPix->getCoord()==QPoint(x,y) && cachedPix->getRes()<1.01*xres && cachedPix->getRes()>0.99*xres)
+	if(cachedPix->getCoord()==QPoint(x,y) && cachedPix->getRes()<1.01*xres && cachedPix->getRes()>0.99*xres && cachedPix->width()==w && cachedPix->height()==h){
 	    img=*cachedPix;
+	    partialImage=true;
+	    enqueueCmd=false;
+	}
     }
     if(img.isNull() && renderedPages.contains(pageNr)){ // try cache first
 	img=*renderedPages[pageNr];
     }
     if(img.isNull()) // not cached, thumbnail present ?
 	img=QPixmap::fromImage(page->thumbnail());
-    if(!img.isNull()){ // if a image was found, scale it apropriately
+    if(!img.isNull() && !partialImage){ // if a image was found, scale it apropriately
 	QSize sz=page->pageSize();
 	scale=sz.width()*xres/(72.0*img.width());
 	int sx=qRound(img.width()*scale);
@@ -131,9 +135,10 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 		    RecInfo elem=i.value();
 		    if(elem.pageNr==info.pageNr
 			    && elem.obj==info.obj
-			    && elem.slot==info.slot){
+			    && elem.slot==info.slot
+			){
 			qreal rel=elem.xres/info.xres;
-			if(rel>1.01 || rel<0.99){
+			if(rel>1.01 || rel<0.99 || elem.x!=info.x || elem.y!=info.y || elem.w!=info.w || elem.h!=info.h){
 			    i.remove();
 			}else{
 			    info.pageNr=-1;
@@ -187,6 +192,10 @@ void PDFRenderManager::addToCache(QImage img,int pageNr,int ticket){
     }
 }
 
+qreal PDFRenderManager::getResLimit(){
+    return kMaxDpiForFullPage;
+}
+
 void PDFRenderManager::fillCache(){
     QSet<int> renderedPage;
     foreach(RecInfo elem,lstOfReceivers){
@@ -212,7 +221,7 @@ bool PDFRenderManager::checkDuplicate(int &ticket,RecInfo &info){
 	    && info.x<0 && info.y<0 && info.w<0 && info.h<0){
 	    if(i.value().xres*1.01>=info.xres){
 		ticket=i.key();
-		qDebug()<<"duplicate";
+		//qDebug()<<"duplicate";
 		return true;
 	    }
 	}
