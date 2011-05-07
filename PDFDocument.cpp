@@ -441,13 +441,21 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 			int pageNr=pages.first();
 			image = doc->renderManager.renderToImage(pageNr,this,"setImage",dpi * scaleFactor, dpi * scaleFactor,
 							newRect.x(), newRect.y(), newRect.width(), newRect.height(),true,true);
+			painter.drawPixmap(event->rect(), image, event->rect());
+			if (!highlightPath.isEmpty()) {
+				painter.setRenderHint(QPainter::Antialiasing);
+				painter.scale(dpi / 72.0 * scaleFactor, dpi / 72.0 * scaleFactor);
+				painter.setPen(QColor(0, 0, 0, 0));
+				painter.setBrush(QColor(255, 255, 0, 63));
+				painter.drawPath(highlightPath);
+			}
 		} else {
 			QRect visRect=visibleRegion().boundingRect();
-			image = QPixmap(newRect.width(), newRect.height());
+			//image = QPixmap(newRect.width(), newRect.height());
 			//image.fill(QApplication::palette().color(QPalette::Dark).rgb());
 
-			QPainter p;
-			p.begin(&image);
+			//QPainter p;
+			//p.begin(&image);
 			// paint border betweend pages
 			int totalBorderX = (gridx-1)*GridBorder;
 			int totalBorderY = (gridy-1)*GridBorder;
@@ -455,17 +463,18 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 			int realPageSizeY = (rect().height()-totalBorderY) / gridy;
 
 			QBrush mBrush(QApplication::palette().color(QPalette::Dark));
-			p.setBrush(mBrush);
-			p.setPen(QApplication::palette().color(QPalette::Dark));
+			painter.save();
+			painter.setBrush(mBrush);
+			painter.setPen(QApplication::palette().color(QPalette::Dark));
 			for(int i=1;i<gridx;i++){
 			    QRect rec((realPageSizeX+GridBorder)*i,0,-GridBorder,newRect.height());
 			    if(rec.intersects(visRect))
-				p.drawRect(rec);
+				painter.drawRect(rec);
 			}
 			for(int i=1;i<gridy;i++){
 			    QRect rec(0,(realPageSizeY+GridBorder)*i,newRect.width(),-GridBorder);
 			    if(rec.intersects(visRect))
-				p.drawRect(rec);
+				painter.drawRect(rec);
 			}
 			for (int i=0;i<pages.size();i++){
 				QRect drawTo = gridPageRect(i);
@@ -477,22 +486,23 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 							  dpi * scaleFactor,
 							  dpi * scaleFactor,
 							  0,0,drawTo.width(), drawTo.height(),true,true);
-				p.drawPixmap(drawTo.left(), drawTo.top(), temp);
+				painter.drawPixmap(drawTo.left(), drawTo.top(), temp);
 				if(pageNr==highlightPage){
 				    if (!highlightPath.isEmpty()) {
-					    p.save();
-					    p.setRenderHint(QPainter::Antialiasing);
-					    p.scale(dpi / 72.0 * scaleFactor, dpi / 72.0 * scaleFactor);
-					    p.setPen(QColor(0, 0, 0, 0));
-					    p.setBrush(QColor(255, 255, 0, 63));
+					    painter.save();
+					    painter.setRenderHint(QPainter::Antialiasing);
+					    painter.scale(dpi / 72.0 * scaleFactor, dpi / 72.0 * scaleFactor);
+					    painter.setPen(QColor(0, 0, 0, 0));
+					    painter.setBrush(QColor(255, 255, 0, 63));
 					    QPainterPath path=highlightPath;
 					    path.translate(drawTo.left()*72.0/dpi/scaleFactor, drawTo.top()*72.0/dpi/scaleFactor);
-					    p.drawPath(path);
-					    p.restore();
+					    painter.drawPath(path);
+					    painter.restore();
 				    }
 				}
 			}
-			p.end();
+			//p.end();
+			painter.restore();
 		}
 	}
 
@@ -500,15 +510,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	imageDpi = newDpi;
 	imageRect = newRect;
 
-	painter.drawPixmap(event->rect(), image, event->rect());
 
-	if (!highlightPath.isEmpty()&& gridx<=1 && gridy<=1) {
-		painter.setRenderHint(QPainter::Antialiasing);
-		painter.scale(dpi / 72.0 * scaleFactor, dpi / 72.0 * scaleFactor);
-		painter.setPen(QColor(0, 0, 0, 0));
-		painter.setBrush(QColor(255, 255, 0, 63));
-		painter.drawPath(highlightPath);
-	}
 }
 
 void PDFWidget::setImage(QPixmap,int){
