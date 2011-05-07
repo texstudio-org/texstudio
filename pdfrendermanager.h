@@ -66,6 +66,8 @@ private:
     QMutex mQueueLock;
     bool stopped;
 
+    bool firstThreadRunning;
+
     int num_renderQueues;
 };
 
