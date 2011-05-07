@@ -45,6 +45,7 @@ public:
     void setDocument(QString fileName);
     void stopRendering();
     void fillCache();
+    qreal getResLimit();
 
 public slots:
     void addToCache(QImage img,int pageNr,int ticket);

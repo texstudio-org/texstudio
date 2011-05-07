@@ -440,14 +440,17 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 		if (gridx<=1 && gridy<=1) {
 			int pageNr=pages.first();
 			image = doc->renderManager.renderToImage(pageNr,this,"setImage",dpi * scaleFactor, dpi * scaleFactor,
-							rect().x(), rect().y(), rect().width(), rect().height(),true,true);
+							newRect.x(), newRect.y(), newRect.width(), newRect.height(),true,true);
 		} else {
+			QRect visRect=visibleRegion().boundingRect();
 			image = QPixmap(newRect.width(), newRect.height());
 			image.fill(QApplication::palette().color(QPalette::Dark).rgb());
 			QPainter p;
 			p.begin(&image);
 			for (int i=0;i<pages.size();i++){
 				QRect drawTo = gridPageRect(i);
+				if(!drawTo.intersects(visRect)) // don't draw invisible pages
+				    continue;
 				int pageNr=pages[i];
 				QPixmap temp = doc->renderManager.renderToImage(
 							  pageNr,this,"setImage",
