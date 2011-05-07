@@ -444,9 +444,29 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 		} else {
 			QRect visRect=visibleRegion().boundingRect();
 			image = QPixmap(newRect.width(), newRect.height());
-			image.fill(QApplication::palette().color(QPalette::Dark).rgb());
+			//image.fill(QApplication::palette().color(QPalette::Dark).rgb());
+
 			QPainter p;
 			p.begin(&image);
+			// paint border betweend pages
+			int totalBorderX = (gridx-1)*GridBorder;
+			int totalBorderY = (gridy-1)*GridBorder;
+			int realPageSizeX = (rect().width()-totalBorderX) / gridx;
+			int realPageSizeY = (rect().height()-totalBorderY) / gridy;
+
+			QBrush mBrush(QApplication::palette().color(QPalette::Dark));
+			p.setBrush(mBrush);
+			p.setPen(QApplication::palette().color(QPalette::Dark));
+			for(int i=1;i<gridx;i++){
+			    QRect rec((realPageSizeX+GridBorder)*i,0,-GridBorder,newRect.height());
+			    if(rec.intersects(visRect))
+				p.drawRect(rec);
+			}
+			for(int i=1;i<gridy;i++){
+			    QRect rec(0,(realPageSizeY+GridBorder)*i,newRect.width(),-GridBorder);
+			    if(rec.intersects(visRect))
+				p.drawRect(rec);
+			}
 			for (int i=0;i<pages.size();i++){
 				QRect drawTo = gridPageRect(i);
 				if(!drawTo.intersects(visRect)) // don't draw invisible pages
