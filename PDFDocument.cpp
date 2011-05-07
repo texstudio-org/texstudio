@@ -509,8 +509,6 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	imagePage = pages.isEmpty()?-1:pages.first();
 	imageDpi = newDpi;
 	imageRect = newRect;
-
-
 }
 
 void PDFWidget::setImage(QPixmap,int){
