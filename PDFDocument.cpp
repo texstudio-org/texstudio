@@ -1077,11 +1077,13 @@ PDFDocument * PDFWidget::getPDFDocument(){
     return doc;
 }
 
-void PDFWidget::setGridSize(int gx, int gy){
+void PDFWidget::setGridSize(int gx, int gy, bool setAsDefault){
 	if (gridx == gx && gridy == gy)
 		return;
 	gridx = gx;
 	gridy = gy;
+	if(setAsDefault)
+	    return;
 	int pi = pageIndex;
 	getScrollArea()->goToPage(pageIndex);
 	if (pi == pageIndex)
@@ -1657,6 +1659,10 @@ PDFDocument::init()
 	connect(actionGrid33, SIGNAL(triggered()), SLOT(setGrid()));
 	connect(actionCustom, SIGNAL(triggered()), SLOT(setGrid()));
 
+	conf->registerOption("Preview/GridX",&globalConfig->gridx,1);
+	conf->registerOption("Preview/GridY",&globalConfig->gridy,1);
+	pdfWidget->setGridSize(globalConfig->gridx,globalConfig->gridy,true);
+
 	connect(actionSinglePageStep, SIGNAL(toggled(bool)), pdfWidget, SLOT(setSinglePageStep(bool)));
 	conf->registerOption("Preview/Single Page Step", &globalConfig->singlepagestep, true);
 	conf->linkOptionToObject(&globalConfig->singlepagestep, actionSinglePageStep, 0);
@@ -1903,11 +1909,16 @@ void PDFDocument::setGrid(){
 		int x=1,y=1;
 		d.addVariable(&x ,"X-Grid:");
 		d.addVariable(&y ,"Y-Grid:");
-		if (d.exec())
+		if (d.exec()){
 			pdfWidget->setGridSize(x,y);
+			globalConfig->gridx=x;
+			globalConfig->gridy=y;
+		}
 	} else {
 		REQUIRE(gs.size()==2)
 		pdfWidget->setGridSize(gs.at(0).toAscii()-'0', gs.at(1).toAscii()-'0');
+		globalConfig->gridx=gs.at(0).toAscii()-'0';
+		globalConfig->gridy=gs.at(1).toAscii()-'0';
 	}
 	pdfWidget->windowResized();
 }
