@@ -103,7 +103,8 @@ HEADERS += texmaker.h \
     tests/qdocumentline_t.h \
     latexstyleparser.h \
     pdfrenderengine.h \
-    pdfrendermanager.h
+    pdfrendermanager.h \
+    PDFDocument_config.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -178,7 +179,8 @@ SOURCES += main.cpp \
     tests/qdocumentline_t.cpp \
     latexstyleparser.cpp \
     pdfrenderengine.cpp \
-    pdfrendermanager.cpp
+    pdfrendermanager.cpp \
+    qcodeedit/lib/qformat.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \

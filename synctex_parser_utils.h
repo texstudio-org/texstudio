@@ -1,3 +1,4 @@
+
 /* 
 Copyright (c) 2008, 2009 jerome DOT laurens AT u-bourgogne DOT fr
 
@@ -41,6 +42,8 @@ authorization from the copyright holder.
  *  All the operating system special stuff goes here.
  *  The problem mainly comes from file name management: path separator, encoding...
  */
+
+#ifndef NO_POPPLER_PREVIEW
 
 #	define synctex_bool_t int
 #	define synctex_YES -1
@@ -118,6 +121,8 @@ int _synctex_get_name(const char * output, const char * build_directory, char **
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif
 
 #endif

@@ -51,6 +51,8 @@ Thu Jun 19 09:39:21 UTC 2008
 
 */
 
+#ifndef NO_POPPLER_PREVIEW
+
 #ifndef __SYNCTEX_PARSER__
 #   define __SYNCTEX_PARSER__
 
@@ -343,6 +345,8 @@ void synctex_updater_free(synctex_updater_t updater);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif
 
 #endif
