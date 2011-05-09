@@ -54,7 +54,9 @@ void PDFRenderManager::stopRendering(){
     stopped=true;
     mCommandsAvailable.release(num_renderQueues);
     for(int i=0;i<num_renderQueues;i++){
-	renderQueues[i]->wait();
+	while(renderQueues[i]->isRunning()){
+	    QCoreApplication::processEvents();
+	}
     }
     document=0;
 }
