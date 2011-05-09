@@ -9,6 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#ifndef NO_POPPLER_PREVIEW
+
 #include "pdfrendermanager.h"
 
 const int kMaxPageZoom=1000000;
@@ -241,3 +243,5 @@ void PDFRenderManager::enqueue(RenderCommand cmd,bool priority){
     mQueueLock.unlock();
     mCommandsAvailable.release();
 }
+
+#endif

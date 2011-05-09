@@ -3907,6 +3907,7 @@ void Texmaker::viewExpandBlock() {
 }
 
 void Texmaker::newPdfPreviewer(){
+#ifndef NO_POPPLER_PREVIEW
 	PDFDocument* pdfviewerWindow=new PDFDocument(configManager.pdfDocumentConfig);
 	connect(pdfviewerWindow, SIGNAL(triggeredAbout()), SLOT(HelpAbout()));
 	connect(pdfviewerWindow, SIGNAL(triggeredManual()), SLOT(UserManualHelp()));
@@ -3928,7 +3929,7 @@ void Texmaker::newPdfPreviewer(){
 		connect(doc, SIGNAL(syncView(QString,QString,int)), pdfviewerWindow, SLOT(syncFromView(QString,QString,int)));
 		connect(pdfviewerWindow, SIGNAL(syncView(QString,QString,int)), doc, SLOT(syncFromView(QString,QString,int)));
 	}
-
+#endif
 }
 
 void Texmaker::masterDocumentChanged(LatexDocument * doc){

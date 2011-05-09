@@ -58,6 +58,10 @@ Thu Jun 19 09:39:21 UTC 2008
  *  In particular, the HAVE_LOCALE_H and HAVE_SETLOCALE macros should be properly defined.
  *  With this design, you should not need to edit this file. */
 
+
+#ifndef NO_POPPLER_PREVIEW
+
+
 #   if defined(SYNCTEX_USE_LOCAL_HEADER)
 #       include "synctex_parser_local.h"
 #   else
@@ -4173,3 +4177,5 @@ void synctex_updater_free(synctex_updater_t updater){
 	printf("... done.\n");
 	return;
 }
+
+#endif

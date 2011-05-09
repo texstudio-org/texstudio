@@ -3,6 +3,8 @@
 
 #include "mostQtHeaders.h"
 
+#ifndef NO_POPPLER_PREVIEW
+
  #include <QCache>
 
 #include "pdfrenderengine.h"
@@ -73,3 +75,5 @@ private:
 };
 
 #endif // PDFRENDERMANAGER_H
+
+#endif
