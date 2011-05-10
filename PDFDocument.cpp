@@ -1833,7 +1833,7 @@ void PDFDocument::loadFile(const QString &fileName, const QString& externalViewe
 {
 	externalViewerCmdLine = externalViewer;
 	setCurrentFile(fileName);
-	reload();
+	reload(false);
 	if (watcher) {
 		const QStringList files = watcher->files();
 		if (!files.isEmpty())
@@ -1849,7 +1849,11 @@ void PDFDocument::loadFile(const QString &fileName, const QString& externalViewe
 
 }
 
-void PDFDocument::reload()
+void PDFDocument::fillRenderCache(int pg){
+    renderManager.fillCache(pg);
+ }
+
+void PDFDocument::reload(bool fillCache)
 {
 	QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -1895,7 +1899,9 @@ void PDFDocument::reload()
 			leCurrentPageValidator->setTop(document->numPages());
 
 			loadSyncData();
-			renderManager.fillCache();
+			if(fillCache){
+			    renderManager.fillCache();
+			}
 			emit reloaded();
 		}
 	}
@@ -2127,10 +2133,10 @@ void PDFDocument::syncClick(int pageIndex, const QPointF& pos, bool activate)
 	}
 }
 
-void PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool activatePreview)
+int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool activatePreview)
 {
 	if (scanner == NULL || syncFromSourceBlock)
-		return;
+		return -1;
 
 	lineNo++; //input 0 based, synctex 1 based
 
@@ -2150,7 +2156,7 @@ void PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool act
 		node = synctex_node_sibling(node);
 	}
 	if (!found)
-		return;
+		return -1;
 
 	if (synctex_display_query(scanner, name.toUtf8().data(), lineNo, 0) > 0) {
 		int page = -1;
@@ -2177,8 +2183,10 @@ void PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool act
 				activateWindow();
 				if (isMinimized()) showNormal();
 			}
+			return page-1;
 		}
 	}
+	return -1;
 }
 
 void PDFDocument::setCurrentFile(const QString &fileName)

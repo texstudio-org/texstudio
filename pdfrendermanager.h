@@ -46,7 +46,7 @@ public:
     QPixmap renderToImage(int pageNr,QObject *obj,const char *rec,double xres=72.0, double yres=72.0, int x=-1, int y=-1, int w=-1, int h=-1,bool cache=true,bool priority=false);
     void setDocument(QString fileName);
     void stopRendering();
-    void fillCache();
+    void fillCache(int pg=-1);
     qreal getResLimit();
 
 public slots:
@@ -72,6 +72,8 @@ private:
     bool firstThreadRunning;
 
     int num_renderQueues;
+
+    QMap<int,RecInfo> lstForThumbs;
 };
 
 #endif // PDFRENDERMANAGER_H
