@@ -112,6 +112,8 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
     if(!img.isNull() && !partialImage){ // if a image was found, scale it apropriately
 	QSize sz=page->pageSize();
 	scale=sz.width()*xres/(72.0*img.width());
+	if(scale<0)
+	    scale=1.0;
 	int sx=qRound(img.width()*scale);
 	int sy=qRound(img.height()*scale);
 	if(scale>1.01 || scale<0.99)
@@ -119,6 +121,11 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 	if(x>-1 && y>-1 && w>-1 && h>-1){
 	    img=img.copy(x,y,w,h);
 	}
+    }
+    if(xres<0){
+	scale=1.0; //don't render thumbnails
+	if(img.isNull())
+	    lstForThumbs.insert(pageNr,info);
     }
     if(img.isNull()){
 	// generate deafult empty, to be rendered image
@@ -194,6 +201,10 @@ void PDFRenderManager::addToCache(QImage img,int pageNr,int ticket){
 		QMetaObject::invokeMethod(info.obj,info.slot,Q_ARG(QPixmap,QPixmap::fromImage(img)),Q_ARG(int,pageNr));
 	    }
 	}
+	if(lstForThumbs.contains(pageNr)){
+	    RecInfo info=lstForThumbs.take(pageNr);
+	    QMetaObject::invokeMethod(info.obj,info.slot,Q_ARG(QPixmap,QPixmap::fromImage(img)),Q_ARG(int,pageNr));
+	}
     }
 }
 
@@ -201,7 +212,7 @@ qreal PDFRenderManager::getResLimit(){
     return kMaxDpiForFullPage;
 }
 
-void PDFRenderManager::fillCache(){
+void PDFRenderManager::fillCache(int pg){
     QSet<int> renderedPage;
     foreach(RecInfo elem,lstOfReceivers){
         if(elem.cache)
@@ -210,9 +221,18 @@ void PDFRenderManager::fillCache(){
     foreach(int elem,renderedPages.keys()){
         renderedPage.insert(elem);
     }
-    for(int i=0;i<document->numPages();i++){
-        if(!renderedPage.contains(i)) // don't rerender page
+    int i=pg;
+    int j=pg;
+    if(j<0)
+	j=0;
+    int max=document->numPages();
+    while(i>=0 || j<max){
+	j++;
+	if(i>0 &&!renderedPage.contains(i)) // don't rerender page
             renderToImage(i,0,"");
+	if(j>0 && j<max &&!renderedPage.contains(j)) // don't rerender page
+	    renderToImage(j,0,"");
+	i--;
     }
 }
 

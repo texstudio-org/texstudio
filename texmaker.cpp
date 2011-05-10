@@ -3040,7 +3040,8 @@ void Texmaker::runCommand(const QString& commandline, RunCommandFlags flags, QSt
 			}
 			foreach (PDFDocument* viewer, PDFDocument::documentList()) {
 				viewer->loadFile(pdfFile,externalViewer);
-				viewer->syncFromSource(getCurrentFileName(), currentEditorView()->editor->cursor().lineNumber(), true);
+				int pg=viewer->syncFromSource(getCurrentFileName(), currentEditorView()->editor->cursor().lineNumber(), true);
+				viewer->fillRenderCache(pg);
 			}
 #else
 			QMessageBox::critical(this, "TexMakerX", tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of TexMakerX that was compiled without the internal pdf viewer."), QMessageBox::Ok);

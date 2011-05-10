@@ -303,13 +303,14 @@ protected:
 	virtual void dropEvent(QDropEvent *event);
 
 public slots:
-	void reload();
+	void reload(bool fillCache=true);
+	void fillRenderCache(int pg=-1);
 	void sideBySide();
 	void doFindDialog();
 	void doFindAgain();
 	void goToSource();
 	void toggleFullScreen(const bool fullscreen);
-	void syncFromSource(const QString& sourceFile, int lineNo, bool activatePreview); //lineNo 0 based
+	int syncFromSource(const QString& sourceFile, int lineNo, bool activatePreview); //lineNo 0 based
 	void syncFromView(const QString& pdfFile, const QString& externalViewer, int page);
 	void loadFile(const QString &fileName, const QString& externalViewer, bool alert = true);
 

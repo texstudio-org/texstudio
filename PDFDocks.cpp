@@ -836,7 +836,7 @@ void PDFOverviewDock::pageChanged(int page)
 
 void PDFOverviewDock::showImage(){
     for(int i=0;i<document->popplerDoc()->numPages();i++){
-	QPixmap image=document->renderManager.renderToImage(i,this,"insertImage",72.0,72.0,-1,-1,-1,-1,false);
+	QPixmap image=document->renderManager.renderToImage(i,this,"insertImage",-1,-1,-1,-1,-1,-1,false);
 	insertImage(image,i);
     }
 }
