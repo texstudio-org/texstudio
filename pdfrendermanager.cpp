@@ -53,6 +53,7 @@ PDFRenderManager::~PDFRenderManager(){
 }
 
 void PDFRenderManager::stopRendering(){
+    lstOfReceivers.clear();
     stopped=true;
     mCommandsAvailable.release(num_renderQueues);
     for(int i=0;i<num_renderQueues;i++){
@@ -218,7 +219,7 @@ void PDFRenderManager::fillCache(){
 bool PDFRenderManager::checkDuplicate(int &ticket,RecInfo &info){
     //check if a similar picture is not already in the renderqueue
     QMultiMap<int,RecInfo>::const_iterator i=lstOfReceivers.constBegin();
-    for(i;i!=lstOfReceivers.constEnd();i++){
+    for(;i!=lstOfReceivers.constEnd();i++){
 	if(i.value().pageNr!=info.pageNr)
 	    continue;
 	if(i.value().x<0 && i.value().y<0 && i.value().w<0 && i.value().h<0

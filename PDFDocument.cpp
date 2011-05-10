@@ -1556,11 +1556,11 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig)
 
 PDFDocument::~PDFDocument()
 {
+	docList.removeAll(this);
 	renderManager.stopRendering();
 	emit documentClosed();
 	if (scanner != NULL)
 		synctex_scanner_free(scanner);
-	docList.removeAll(this);
 	if (document)
 		delete document;
 }
