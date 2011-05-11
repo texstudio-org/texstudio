@@ -29,24 +29,24 @@ ShortcutComboBox::ShortcutComboBox(QWidget *parent):QComboBox(parent){
 	for (int c=0; c<=1; c++)
 		for (int s=0; s<=1; s++)
 			for (int a=0; a<=1; a++) {
-				if (!c && !s && !a) continue;
-				for (int k=Qt::Key_F1; k<=Qt::Key_F12; k++)
-					addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
-				for (int k=Qt::Key_0; k<=Qt::Key_9; k++)
-					addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
-				for (int k=Qt::Key_A; k<=Qt::Key_Z; k++)
-					addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
-				if (a || (c&&s)){
-					for (int k=Qt::Key_PageUp; k<=Qt::Key_PageDown; k++)
-						addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
-				}
-			}
+		if (!c && !s && !a) continue;
+		for (int k=Qt::Key_F1; k<=Qt::Key_F12; k++)
+			addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
+		for (int k=Qt::Key_0; k<=Qt::Key_9; k++)
+			addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
+		for (int k=Qt::Key_A; k<=Qt::Key_Z; k++)
+			addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
+		if (a || (c&&s)){
+			for (int k=Qt::Key_PageUp; k<=Qt::Key_PageDown; k++)
+				addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
+		}
+	}
 	setEditable(true);
 }
 
 void ShortcutComboBox::keyPressEvent(QKeyEvent *e){
 	if ( (e->modifiers()!=0 && e->key() != Qt::Key_Alt && e->key() != Qt::Key_Shift && e->key() != Qt::Key_Control && e->key() != Qt::Key_AltGr && e->key() != Qt::Key_Meta && e->key() != 0 && e->key() != Qt::Key_Super_L && e->key() != Qt::Key_Super_R)
-	    || (e->key() >= Qt::Key_F1 &&  e->key() <= Qt::Key_F35)) {
+		|| (e->key() >= Qt::Key_F1 &&  e->key() <= Qt::Key_F35)) {
 		QString newShortCut = QKeySequence(e->modifiers() | e->key()).toString(QKeySequence::NativeText);
 		int index = findText(newShortCut);
 		if (index != -1) setCurrentIndex(index);
@@ -179,12 +179,12 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 				switch (QMessageBox::warning(editor, ConfigDialog::tr("TexMakerX"),
 				                             ConfigDialog::tr("The shortcut you entered is the same as the one of this command:") +"\n"+duplicate+"\n"+ConfigDialog::tr("Should I delete this other shortcut?"),
 				                             QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes)) {
-				case QMessageBox::Yes:
+								 case QMessageBox::Yes:
 					//model->setData(mil[0],"",Qt::DisplayRole);
 					if (li[0]->text(2) == value)  li[0]->setText(2,"");
 					else if (li[0]->text(3) == value)  li[0]->setText(3,"");
 					break;
-				default:
+								 default:
 					;
 				}
 			}
@@ -193,7 +193,7 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 	model->setData(index, value, Qt::EditRole);
 }
 void ShortcutDelegate ::updateEditorGeometry(QWidget *editor,
-        const QStyleOptionViewItem &option, const QModelIndex &/* index */) const {
+						   const QStyleOptionViewItem &option, const QModelIndex &/* index */) const {
 	editor->setGeometry(option.rect);
 }
 
@@ -235,12 +235,12 @@ void ShortcutDelegate::treeWidgetItemClicked(QTreeWidgetItem * item, int column)
 		switch (QMessageBox::question(item->treeWidget(), ConfigDialog::tr("TexMakerX"),
 		                              ConfigDialog::tr("Do you really want to delete this row?"),
 		                              QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes)) {
-		case QMessageBox::Yes:
+						  case QMessageBox::Yes:
 			Q_ASSERT(item->parent());
 			if (!item->parent()) return;
 			item->parent()->removeChild(item);
 			break;
-		default:
+						  default:
 			;
 		}
 	} else if (item->text(0)==addRowButton) {
@@ -256,9 +256,9 @@ void ShortcutDelegate::treeWidgetItemClicked(QTreeWidgetItem * item, int column)
 
 bool ShortcutDelegate::isBasicEditorKey(const QModelIndex& index) const{
 	return index.parent().isValid() && index.parent().parent().isValid() &&
-	      !index.parent().parent().parent().isValid() &&
-	       index.parent().row() == 0 && 
-	       index.parent().parent().row() == 1;
+			!index.parent().parent().parent().isValid() &&
+			index.parent().row() == 0 &&
+			index.parent().parent().row() == 1;
 }
 
 
@@ -270,7 +270,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	ui.contentsWidget->setViewMode(QListView::IconMode);
 	ui.contentsWidget->setMovement(QListView::Static);
 
-//pageditor
+	//pageditor
 	QFontDatabase fdb;
 	ui.comboBoxFont->addItems(fdb.families());
 
@@ -295,13 +295,13 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 
 	ui.labelGetDic->setText(tr("Get dictionaries at: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>"));
 	ui.labelGetDic->setOpenExternalLinks(true);
-//page custom environment
+	//page custom environment
 	connect(ui.pbAddLine, SIGNAL(clicked()), this, SLOT(custEnvAddLine()));
 	connect(ui.pbRemoveLine, SIGNAL(clicked()), this, SLOT(custEnvRemoveLine()));
 	connect(ui.pbAddSyntaxLine, SIGNAL(clicked()), this, SLOT(custSyntaxAddLine()));
 	connect(ui.pbRemoveSyntaxLine, SIGNAL(clicked()), this, SLOT(custSyntaxRemoveLine()));
 	environModes=0;
-//pagequick
+	//pagequick
 	connect(ui.pushButtonQuickBuildWizard, SIGNAL(clicked()), SLOT(quickBuildWizard()));
 
 	connect(ui.pushButtonExecuteBeforeCompiling, SIGNAL(clicked()), this, SLOT(browsePrecompiling()));
@@ -315,8 +315,8 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 
 	connect(ui.spinBoxSize, SIGNAL(valueChanged(int)), fmConfig, SLOT(setBasePointSize(int)));
 	
-//fmConfig->setMaximumSize(490,300);
-//fmConfig->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Ignored);
+	//fmConfig->setMaximumSize(490,300);
+	//fmConfig->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Ignored);
 	(new QBoxLayout(QBoxLayout::TopToBottom, ui.formatConfigBox))->insertWidget(0,fmConfig);
 
 
@@ -358,15 +358,15 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	connect(ui.comboBoxActions,SIGNAL(currentIndexChanged(int)), SLOT(actionsChanged(int)));
 	connect(ui.treePossibleToolbarActions,SIGNAL(doubleClicked(QModelIndex)), SLOT(toToolbarClicked()));
 
-	#if QT_VERSION >= 0x040400
+#if QT_VERSION >= 0x040400
 	ui.treePossibleToolbarActions->setHeaderHidden(true);
-	#endif
-//	ui.listCustomToolBar->setSelectionMode(QAbstractItemView::ExtendedSelection);
-//	ui.treePossibleToolbarActions->setSelectionMode(QAbstractItemView::ExtendedSelection);
+#endif
+	//	ui.listCustomToolBar->setSelectionMode(QAbstractItemView::ExtendedSelection);
+	//	ui.treePossibleToolbarActions->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
-	#if (QT_VERSION < 0x040600) || (!defined(Q_WS_X11))
+#if (QT_VERSION < 0x040600) || (!defined(Q_WS_X11))
 	ui.checkBoxUseSystemTheme->setVisible(false);
-	#endif
+#endif
 }
 
 ConfigDialog::~ConfigDialog() {
@@ -401,7 +401,7 @@ void ConfigDialog::browseAspell() {
 	QString location=QFileDialog::getOpenFileName(this,tr("Browse dictionary"),path,"Dictionary (*.dic)",0,QFileDialog::DontResolveSymlinks);
 	if (!location.isEmpty()) {
 		location.replace(QString("\\"),QString("/"));
-//	location="\""+location+"\"";
+		//	location="\""+location+"\"";
 		ui.comboBoxDictionaryFileName->setEditText(location);
 	}
 }
@@ -435,10 +435,10 @@ void ConfigDialog::comboBoxWithPathEdited(const QString& newText){
 	if (path==oldPath) return;
 	//prevent endless recursion + dir caching
 	box->setProperty("dir",path);
-        int curPos=box->lineEdit()->cursorPosition();
-        box->clear();
-        box->addItem(newText); //adding a new item in the empty list will set the edit text to it
-        box->lineEdit()->setCursorPosition(curPos); // set Cursor to position before clearing
+	int curPos=box->lineEdit()->cursorPosition();
+	box->clear();
+	box->addItem(newText); //adding a new item in the empty list will set the edit text to it
+	box->lineEdit()->setCursorPosition(curPos); // set Cursor to position before clearing
 
 	QDir dir(path);
 	QString absPath=dir.absolutePath();
@@ -472,7 +472,7 @@ void ConfigDialog::browseThesaurus() {
 	QString location=QFileDialog::getOpenFileName(this,tr("Browse thesaurus database"),path,"Database (*.dat)",0,QFileDialog::DontResolveSymlinks);
 	if (!location.isEmpty()) {
 		location.replace(QString("\\"),QString("/"));
-//	location="\""+location+"\"";
+		//	location="\""+location+"\"";
 		ui.comboBoxThesaurusFileName->setEditText(location);
 	}
 }
@@ -570,7 +570,7 @@ void ConfigDialog::toToolbarClicked(){
 void ConfigDialog::fromToolbarClicked(){
 	if(!ui.listCustomToolBar->currentItem()) return;
 	if (ui.comboBoxToolbars->currentIndex() < 0 || ui.comboBoxToolbars->currentIndex() >= customizableToolbars.size()) return;
-    /*QListWidgetItem *item=ui.listCustomToolBar->currentItem();
+	/*QListWidgetItem *item=ui.listCustomToolBar->currentItem();
     QList<QListWidgetItem *>result=ui.listCustomIcons->findItems(item->text(),Qt::MatchExactly);
     foreach(QListWidgetItem *elem,result){
         elem->setHidden(false);
@@ -592,11 +592,11 @@ void ConfigDialog::loadOtherIcon(){
 		item->setIcon(QIcon(fn));
 		replacedIconsOnMenus->insert(item->data(Qt::UserRole).toString(),fn);
 		ui.listCustomToolBar->reset();
-	// set the same icon on other list
-	//TODO QList<QListWidgetItem *>result=ui.listCustomIcons->findItems(item->text(),Qt::MatchExactly);
-	//foreach(QListWidgetItem *elem,result){
-	  //  elem->setIcon(QIcon(fn));
-	//}
+		// set the same icon on other list
+		//TODO QList<QListWidgetItem *>result=ui.listCustomIcons->findItems(item->text(),Qt::MatchExactly);
+		//foreach(QListWidgetItem *elem,result){
+		//  elem->setIcon(QIcon(fn));
+		//}
 	}
 }
 
@@ -612,94 +612,94 @@ void ConfigDialog::populatePossibleActions(QTreeWidgetItem* parent, const QMenu*
 	}
 	for (int i=0; i<acts.size(); i++)
 		if (acts[i]->menu()) populatePossibleActions(parent, acts[i]->menu(),keepHierarchy);
-		else {
-			//if(acts[i]->data().isValid()){
-			QTreeWidgetItem* twi = new QTreeWidgetItem(parent,QStringList() << acts[i]->text().replace("&",""));
-			if (!acts[i]->isSeparator()){
-				if(!acts[i]->icon().isNull()) twi->setIcon(0,acts[i]->icon());
-				else twi->setIcon(0,QIcon(":/images/appicon.png"));
-			}
-			twi->setToolTip(0,acts[i]->text());
-			if (acts[i]->isSeparator()) twi->setData(0,Qt::UserRole,"separator");
-			else twi->setData(0,Qt::UserRole,acts[i]->objectName());
-			if (parent) parent->addChild(twi);
-			else ui.treePossibleToolbarActions->addTopLevelItem(twi);
+	else {
+		//if(acts[i]->data().isValid()){
+		QTreeWidgetItem* twi = new QTreeWidgetItem(parent,QStringList() << acts[i]->text().replace("&",""));
+		if (!acts[i]->isSeparator()){
+			if(!acts[i]->icon().isNull()) twi->setIcon(0,acts[i]->icon());
+			else twi->setIcon(0,QIcon(":/images/appicon.png"));
 		}
+		twi->setToolTip(0,acts[i]->text());
+		if (acts[i]->isSeparator()) twi->setData(0,Qt::UserRole,"separator");
+		else twi->setData(0,Qt::UserRole,acts[i]->objectName());
+		if (parent) parent->addChild(twi);
+		else ui.treePossibleToolbarActions->addTopLevelItem(twi);
+	}
 }
 
 void ConfigDialog::custEnvAddLine(){
-    int i=ui.twHighlighEnvirons->rowCount();
-    ui.twHighlighEnvirons->setRowCount(i+1);
-
-    QStringList lst;
-    if(environModes)
-	lst=*environModes;
-    else
-	lst << "verbatim" << "math";
-
-    QTableWidgetItem *item=new QTableWidgetItem("");
-    ui.twHighlighEnvirons->setItem(i,0,item);
-    QComboBox *cb=new QComboBox(0);
-    cb->insertItems(0,lst);
-    ui.twHighlighEnvirons->setCellWidget(i,1,cb);
-}
-
-void ConfigDialog::custEnvRemoveLine(){
-    int i=ui.twHighlighEnvirons->currentRow();
-    if(i<0)
-	i=ui.twHighlighEnvirons->rowCount()-1;
-
-    ui.twHighlighEnvirons->removeRow(i);
-
-    i=ui.twHighlighEnvirons->rowCount();
-    if(i==0){
+	int i=ui.twHighlighEnvirons->rowCount();
 	ui.twHighlighEnvirons->setRowCount(i+1);
 
 	QStringList lst;
 	if(environModes)
-	    lst=*environModes;
+		lst=*environModes;
 	else
-	    lst << "verbatim" << "math";
+		lst << "verbatim" << "math";
 
 	QTableWidgetItem *item=new QTableWidgetItem("");
 	ui.twHighlighEnvirons->setItem(i,0,item);
 	QComboBox *cb=new QComboBox(0);
 	cb->insertItems(0,lst);
 	ui.twHighlighEnvirons->setCellWidget(i,1,cb);
-    }
+}
+
+void ConfigDialog::custEnvRemoveLine(){
+	int i=ui.twHighlighEnvirons->currentRow();
+	if(i<0)
+		i=ui.twHighlighEnvirons->rowCount()-1;
+
+	ui.twHighlighEnvirons->removeRow(i);
+
+	i=ui.twHighlighEnvirons->rowCount();
+	if(i==0){
+		ui.twHighlighEnvirons->setRowCount(i+1);
+
+		QStringList lst;
+		if(environModes)
+			lst=*environModes;
+		else
+			lst << "verbatim" << "math";
+
+		QTableWidgetItem *item=new QTableWidgetItem("");
+		ui.twHighlighEnvirons->setItem(i,0,item);
+		QComboBox *cb=new QComboBox(0);
+		cb->insertItems(0,lst);
+		ui.twHighlighEnvirons->setCellWidget(i,1,cb);
+	}
 }
 
 void ConfigDialog::custSyntaxAddLine(){
-    int i=ui.twCustomSyntax->rowCount();
-    ui.twCustomSyntax->setRowCount(i+1);
-
-    QTableWidgetItem *item=new QTableWidgetItem("");
-    ui.twCustomSyntax->setItem(i,0,item);
-}
-
-void ConfigDialog::custSyntaxRemoveLine(){
-    int i=ui.twCustomSyntax->currentRow();
-    if(i<0)
-	i=ui.twCustomSyntax->rowCount()-1;
-    ui.twCustomSyntax->removeRow(i);
-
-    i=ui.twCustomSyntax->rowCount();
-    if(i==0){
+	int i=ui.twCustomSyntax->rowCount();
 	ui.twCustomSyntax->setRowCount(i+1);
 
 	QTableWidgetItem *item=new QTableWidgetItem("");
 	ui.twCustomSyntax->setItem(i,0,item);
-    }
+}
+
+void ConfigDialog::custSyntaxRemoveLine(){
+	int i=ui.twCustomSyntax->currentRow();
+	if(i<0)
+		i=ui.twCustomSyntax->rowCount()-1;
+	ui.twCustomSyntax->removeRow(i);
+
+	i=ui.twCustomSyntax->rowCount();
+	if(i==0){
+		ui.twCustomSyntax->setRowCount(i+1);
+
+		QTableWidgetItem *item=new QTableWidgetItem("");
+		ui.twCustomSyntax->setItem(i,0,item);
+	}
 }
 
 bool ConfigDialog::askRiddle(){
 	QString solution = QInputDialog::getText(this, tr("Riddle"), tr(
-"You come to a magic island where you meet three strange and wise friends. \n"
-"One of them is always telling the truth, another one is always lying, and the third is deaf, so he answers randomly and cannot lie(!). \n"
-"You ask the first: \"Are you lying?\", and he answers: \"No\".\n"
-"You ask the second: \"Is the first one lying?\", and he answers: \"No\".\n"
-"You ask the last: \"Is the second one lying?\", and he answers: \"No\".\n\n"
-"Which one of the three wise will always tell the truth?"));
+			"You come to a magic island where you meet three strange and wise friends. \n"
+			"One of them is always telling the truth, another one is always lying, and the third is deaf, so he answers randomly and cannot lie(!). \n"
+			"You ask the first: \"Are you lying?\", and he answers: \"No\".\n"
+			"You ask the second: \"Is the first one lying?\", and he answers: \"No\".\n"
+			"You ask the last: \"Is the second one lying?\", and he answers: \"No\".\n\n"
+			"Which one of the three wise will always tell the truth?"));
 	if (solution.isEmpty()) return false;
 	bool a1 = solution.contains("1") || solution.contains(tr("first"));
 	bool a2 = solution.contains("2") || solution.contains(tr("second"));

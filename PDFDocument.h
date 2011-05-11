@@ -240,7 +240,7 @@ class PDFSearchResult {
 public:
 	PDFSearchResult(const PDFDocument* pdfdoc = NULL, int page = -1, QRectF rect = QRectF())
 		: doc(pdfdoc), pageIdx(page), selRect(rect)
-		{ }
+	{ }
 
 	const PDFDocument* doc;
 	int pageIdx;
@@ -256,17 +256,17 @@ class PDFScrollArea;
 class PDFDocument : public QMainWindow, private Ui::PDFDocument
 {
 	Q_OBJECT
-    Q_PROPERTY(QString fileName READ fileName)
+	Q_PROPERTY(QString fileName READ fileName)
 
 public:
-	PDFDocument(PDFDocumentConfig* const pdfConfig );
+			PDFDocument(PDFDocumentConfig* const pdfConfig );
 	virtual ~PDFDocument();
 
 	static PDFDocument *findDocument(const QString &fileName);
 	static QList<PDFDocument*> documentList()
-		{
-			return docList;
-		}
+	{
+		return docList;
+	}
 
 	QString fileName() const { return curFile; }
 	QString externalViewer() const { return externalViewerCmdLine; }
@@ -279,19 +279,19 @@ public:
 	void goToDestination(const QString& destName);
 	void goToPage(const int page);
 	bool hasSyncData()
-		{
-			return scanner != NULL;
-		}
+	{
+		return scanner != NULL;
+	}
 
 	Poppler::Document *popplerDoc()
-		{
-			return document;
-		}
+	{
+		return document;
+	}
 	
 	PDFWidget *widget()
-		{
-			return pdfWidget;
-		}
+	{
+		return pdfWidget;
+	}
 
 	bool followCursor() const;
 	PDFRenderManager renderManager;
