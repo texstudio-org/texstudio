@@ -1317,9 +1317,6 @@ void Texmaker::templateEdit(){
 }
 
 void Texmaker::fileNewFromTemplate() {
-	char* crash = 0;
-	memcpy(crash, "hallo",10);
-
 	// select Template
 	QString f_real;
 	if(!templateSelectorDialog) {
