@@ -21,6 +21,7 @@ body { background: #ffffff; color: black; }
 	<li><a href="#SECTIONNEW199a">0.3 Version 1.9.9 -> Version 1.9.9a</a></li>
 	<li><a href="#SECTIONNEW20">0.4 Version 1.9.9a -> Version 2.0</a></li>
 	<li><a href="#SECTIONNEW201">0.5 Version 2.0 -> Version 2.1</a></li>
+	<li><a href="#SECTIONNEW22">0.6 Version 2.1 -> Version 2.2</a></li>
 	</ul>
 <li><a href="#SECTION0">1. Configuring TexMakerX</a></li>
 	<ul>
@@ -81,6 +82,7 @@ body { background: #ffffff; color: black; }
 	<li><a href="#SECTION37">4.9 "Forward/Inverse search" with TexMakerX</a></li>
 	<li><a href="#SECTION38">4.10 Synopsis of the TexMakerX command</a></li>
 	<li><a href="#SECTION39">4.11 Keyboard shortcuts</a></li>
+	<li><a href="#CWLDESCRIPTION">4.12 Description of the cwl format</a></li>
 	</ul>
 </ul>
 <hr>
@@ -196,6 +198,18 @@ changed functionality:</P>
 	<li>easy parenthesis selection</li>
 	<li><p>as always, bug fixes and small improvements</p>
 </ul>
+<h2><a name="SECTIONNEW22">0.6 Version 2.1 -> Version 2.2</a></h2>
+<ul>
+	<li><p>saving/loading profiles working
+	<li><p>improved preview:
+	    <ul><li><p>Pdf viewer can show multiple pages in continous fashion</li>
+	        <li><p>Pdf viewer works non-blocking (multi-threaded)</li>
+	    </ul></p>
+	</li>
+	<li><p>double quote replacement can easily be selected from predfined list</p>
+	<li><p>completer distinguishes between usual,most often used and all possible commands</p>
+	<li><p>as always, bug fixes and small improvements</p>
+</ul>
 <h1><a name="SECTION0">1. Configuring TexMakerX</a></h1>
 Before using TexMakerX, you should configure the editor and latex related commands via the "Configure TexMakerX" command in the "Options" menu ("Preferences" under macosx).
 <h2><a name="SECTION01">1.1 Configuring the editor</a></h2>
@@ -263,7 +277,9 @@ Following options are available:
 <li>Enable ToolTip-Help: show tool tips on selected latex commands in the completion list.
 <li>Use Placeholders: if the completed commands have options which need to be filled out, "place holder" are put at this positions and they can be jumped to by using Ctrl+Right/Ctrl+Left.
 </ul>
+If your favorite package is not yet present for completion (and then as well not for syntax check), you can provide a list of your own by placing a file "packagename.cwl" in the config directory. This directory is placed in ~/.config/benibela under linux and usually "c:\Documents and Settings/User/AppData/Roaming/benibela" under windows. Basically the file contains a list of valid commands. A Description of the exact format and an example are given in the <a href="#CWLDESCRIPTION">appendix</a>.
 </p>
+
 <p><IMG src="configure_completion.png" border="1"></p>
 <h2><a name="SECTION05">1.5 Configuring shortcuts</a></h2>
 <p>
@@ -1026,5 +1042,30 @@ Defaults keyboard shortcuts <!--(*:can be modified - "Configure TexMakerX" -> "E
 	</ul>
 </li>
 </ul>
+</p>
+<h2><a name="CWLDESCRIPTION">4.12 Description of the cwl format</a></h2>
+<p>
+Basically a cwl file is a list of valid commands which contains one command per line.
+If no further information is given, the command is considered valid at any position in a latex document.
+The following characters have special meanings:
+<ul>
+  <li># (at start of line):comment</li>
+  <li># (later):separator for command classifications</li>
+</ul>
+Follwing classifications are known to tmx:
+<ul>
+  <li>*: unusual command which is used for completion only in with the "all" tab</li>
+  <li>m:valid only in math environment</li>
+  <li>t:valid only in tabular environment (or similar)</li>
+  <li>T:valid only in tabbing environment</li>
+  <li>n:valid only in text environment (i.e. not math env)</li>
+  <li>/env1,env2,...:valid only in environment env1 or env2 etc.</li>
+</ul>
+
+Simple example:
+# test   <- comment
+\typein{msg}#* <- unusual command which is only shown in completion "all"
+\sqrt{arg}#m   <- only in math mode valid
+\vector(xslope,yslope){length}#*/picture  <- unusual command which is only in the picture environment valid
 </p>
 </body></html>
