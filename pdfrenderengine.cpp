@@ -38,6 +38,8 @@ void PDFRenderEngine::run(){
 		    forever{
 			bool leave=false;
 			{ QMutexLocker(&manager->mQueueLock);
+			    if(manager->stopped)
+				break;
 			    if(!manager->mCommands.isEmpty()){
 				command=manager->mCommands.head();
 				if(command.priority){
@@ -62,6 +64,8 @@ void PDFRenderEngine::run(){
 		    command=manager->mCommands.dequeue();
 		    manager->mQueueLock.unlock();
 		}
+		if(manager->stopped)
+		    break;
 
 		// render Image
 		if(document){
