@@ -271,6 +271,10 @@
         <source>&lt;unknown&gt;</source>
         <translation>&lt;невідомий&gt;</translation>
     </message>
+    <message>
+        <source>User : (% : filename without extension)</source>
+        <translation type="unfinished">Команда користувача: (%: ім&apos;я файла без розширення)</translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippet</name>
@@ -461,27 +465,27 @@
     </message>
     <message>
         <source>LaTeX + dvips + View PS</source>
-        <translation>LaTeX + dvips + перегляд PS</translation>
+        <translation type="obsolete">LaTeX + dvips + перегляд PS</translation>
     </message>
     <message>
         <source>LaTeX + View DVI</source>
-        <translation>LaTeX + перегляд DVI</translation>
+        <translation type="obsolete">LaTeX + перегляд DVI</translation>
     </message>
     <message>
         <source>PdfLaTeX + View PDF</source>
-        <translation>PdfLaTeX + перегляд PDF</translation>
+        <translation type="obsolete">PdfLaTeX + перегляд PDF</translation>
     </message>
     <message>
         <source>LaTeX + dvipdfm + View PDF</source>
-        <translation>LaTeX + dvipdfm + перегляд PDF</translation>
+        <translation type="obsolete">LaTeX + dvipdfm + перегляд PDF</translation>
     </message>
     <message>
         <source>LaTeX + dvips + ps2pdf + View PDF</source>
-        <translation>LaTeX + dvips + ps2pdf + перегляд PDF</translation>
+        <translation type="obsolete">LaTeX + dvips + ps2pdf + перегляд PDF</translation>
     </message>
     <message>
         <source>User : (% : filename without extension)</source>
-        <translation>Команда користувача: (%: ім&apos;я файла без розширення)</translation>
+        <translation type="obsolete">Команда користувача: (%: ім&apos;я файла без розширення)</translation>
     </message>
     <message>
         <source>(the commands must be separated by &apos;|&apos;)</source>
@@ -988,14 +992,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     </message>
     <message>
         <source>Inline reference checking</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>LaTeX + Asymptote + LaTeX + View DVI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PdfLaTeX + Asymptote + PdfLaTeX + View PDF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2246,6 +2242,10 @@ Are you sure you want to undo all changes?</source>
         <source>Open %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Thesaurus...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LatexLogModel</name>
@@ -2873,6 +2873,10 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <source>F5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Continuous</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3517,6 +3521,22 @@ Do you wish to keep up to date by reloading the file?</source>
     </message>
     <message>
         <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saving failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I failed to acquire write permissions on the file %1.
+
+Perhaps it is read-only or opened in another program?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Writing the document to file %1 failed after the old content was deleted.
+
+The file may have been corrupted!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5554,7 +5574,7 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <source>remove</source>
-        <translation>видалити</translation>
+        <translation type="obsolete">видалити</translation>
     </message>
     <message>
         <source>remove all</source>
@@ -5650,10 +5670,6 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <source>Find &amp;Next</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Find D&amp;ialog...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6105,6 +6121,42 @@ Are you sure you want to continue?</source>
     </message>
     <message>
         <source>Save Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Searching</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue F&amp;ind</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find &amp;Prev</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find &amp;Dialog...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace Prev</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace &amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Go to</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

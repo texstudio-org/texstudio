@@ -268,6 +268,10 @@
         <source>&lt;unknown&gt;</source>
         <translation>&lt;introuvable&gt;</translation>
     </message>
+    <message>
+        <source>User : (% : filename without extension)</source>
+        <translation type="unfinished">Utilisateur : (% nom de fichier sans extension)</translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippet</name>
@@ -431,35 +435,35 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>LaTeX + dvips + View PS</source>
-        <translation>LaTeX + dvips + Afficheur PS</translation>
+        <translation type="obsolete">LaTeX + dvips + Afficheur PS</translation>
     </message>
     <message>
         <source>LaTeX + View DVI</source>
-        <translation>LaTeX + Afficheur DVI</translation>
+        <translation type="obsolete">LaTeX + Afficheur DVI</translation>
     </message>
     <message>
         <source>PdfLaTeX + View PDF</source>
-        <translation>PdfLaTeX + Afficheur PDF</translation>
+        <translation type="obsolete">PdfLaTeX + Afficheur PDF</translation>
     </message>
     <message>
         <source>LaTeX + dvipdfm + View PDF</source>
-        <translation>LaTeX + dvipdfm + Afficheur PDF</translation>
+        <translation type="obsolete">LaTeX + dvipdfm + Afficheur PDF</translation>
     </message>
     <message>
         <source>LaTeX + dvips + ps2pdf + View PDF</source>
-        <translation>LaTeX + dvips + ps2pdf + Afficheur PDF</translation>
+        <translation type="obsolete">LaTeX + dvips + ps2pdf + Afficheur PDF</translation>
     </message>
     <message>
         <source>LaTeX + Asymptote + LaTeX + View DVI</source>
-        <translation>LaTeX + Asymptote + LaTeX + Afficheur DVI</translation>
+        <translation type="obsolete">LaTeX + Asymptote + LaTeX + Afficheur DVI</translation>
     </message>
     <message>
         <source>PdfLaTeX + Asymptote + PdfLaTeX + View PDF</source>
-        <translation>PdfLaTeX + Asymptote + PdfLaTeX + Afficheur PDF</translation>
+        <translation type="obsolete">PdfLaTeX + Asymptote + PdfLaTeX + Afficheur PDF</translation>
     </message>
     <message>
         <source>User : (% : filename without extension)</source>
-        <translation>Utilisateur : (% nom de fichier sans extension)</translation>
+        <translation type="obsolete">Utilisateur : (% nom de fichier sans extension)</translation>
     </message>
     <message>
         <source>(the commands must be separated by &apos;|&apos;)</source>
@@ -2111,6 +2115,10 @@ Continuer tout de même ?</translation>
         <source>Open %1</source>
         <translation>Ouvrir %1</translation>
     </message>
+    <message>
+        <source>Thesaurus...</source>
+        <translation type="unfinished">Thésaurus...</translation>
+    </message>
 </context>
 <context>
     <name>LatexLogModel</name>
@@ -2716,6 +2724,10 @@ Continuer tout de même ?</translation>
     <message>
         <source>F5</source>
         <translation>F5</translation>
+    </message>
+    <message>
+        <source>&amp;Continuous</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3359,6 +3371,22 @@ Rafraîchir en rouvrant le fichier ?</translation>
     <message>
         <source>Unknown</source>
         <translation>Inconnu</translation>
+    </message>
+    <message>
+        <source>Saving failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I failed to acquire write permissions on the file %1.
+
+Perhaps it is read-only or opened in another program?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Writing the document to file %1 failed after the old content was deleted.
+
+The file may have been corrupted!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4839,7 +4867,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Find D&amp;ialog...</source>
-        <translation>Chercher (boîte de d&amp;ialogue)...</translation>
+        <translation type="obsolete">Chercher (boîte de d&amp;ialogue)...</translation>
     </message>
     <message>
         <source>&amp;Replace</source>
@@ -5286,7 +5314,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>remove</source>
-        <translation>Supprimer</translation>
+        <translation type="obsolete">Supprimer</translation>
     </message>
     <message>
         <source>commit comment:</source>
@@ -5528,6 +5556,42 @@ TexMakerX n&apos;accepte pas d&apos;instances multiples d&apos;un même fichier.
     </message>
     <message>
         <source>Save Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Searching</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue F&amp;ind</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find &amp;Prev</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find &amp;Dialog...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace Prev</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace &amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Go to</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

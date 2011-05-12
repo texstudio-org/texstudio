@@ -291,6 +291,10 @@
         <source>&lt;unknown&gt;</source>
         <translation>&lt;unbekannt&gt;</translation>
     </message>
+    <message>
+        <source>User : (% : filename without extension)</source>
+        <translation>Benutzer: (%: Dateiname ohne Endung)</translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippet</name>
@@ -489,35 +493,35 @@
     </message>
     <message>
         <source>LaTeX + dvips + View PS</source>
-        <translation>LaTeX + dvips + View PS</translation>
+        <translation type="obsolete">LaTeX + dvips + View PS</translation>
     </message>
     <message>
         <source>LaTeX + View DVI</source>
-        <translation>LaTeX + View DVI</translation>
+        <translation type="obsolete">LaTeX + View DVI</translation>
     </message>
     <message>
         <source>PdfLaTeX + View PDF</source>
-        <translation>PdfLaTeX + View PDF</translation>
+        <translation type="obsolete">PdfLaTeX + View PDF</translation>
     </message>
     <message>
         <source>LaTeX + dvipdfm + View PDF</source>
-        <translation>LaTeX + dvipdfm + View PDF</translation>
+        <translation type="obsolete">LaTeX + dvipdfm + View PDF</translation>
     </message>
     <message>
         <source>LaTeX + dvips + ps2pdf + View PDF</source>
-        <translation>LaTeX + dvips + ps2pdf + View PDF</translation>
+        <translation type="obsolete">LaTeX + dvips + ps2pdf + View PDF</translation>
     </message>
     <message>
         <source>LaTeX + Asymptote + LaTeX + View DVI</source>
-        <translation>LaTeX + Asymptote + LaTeX + View DVI</translation>
+        <translation type="obsolete">LaTeX + Asymptote + LaTeX + View DVI</translation>
     </message>
     <message>
         <source>PdfLaTeX + Asymptote + PdfLaTeX + View PDF</source>
-        <translation>PdfLaTeX + Asymptote + PdfLaTeX + View PDF</translation>
+        <translation type="obsolete">PdfLaTeX + Asymptote + PdfLaTeX + View PDF</translation>
     </message>
     <message>
         <source>User : (% : filename without extension)</source>
-        <translation>Benutzer: (%: Dateiname ohne Endung)</translation>
+        <translation type="obsolete">Benutzer: (%: Dateiname ohne Endung)</translation>
     </message>
     <message>
         <source>(the commands must be separated by &apos;|&apos;)</source>
@@ -2285,6 +2289,10 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
         <source>Open %1</source>
         <translation>Öffne %1</translation>
     </message>
+    <message>
+        <source>Thesaurus...</source>
+        <translation>Thesaurus...</translation>
+    </message>
 </context>
 <context>
     <name>LatexLogModel</name>
@@ -3010,6 +3018,10 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
         <source>F5</source>
         <translation>F5</translation>
     </message>
+    <message>
+        <source>&amp;Continuous</source>
+        <translation>&amp;Fortlaufend</translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
@@ -3693,6 +3705,26 @@ Soll die Datei neugeladen werden?
     <message>
         <source>Unknown</source>
         <translation>Unbekannt</translation>
+    </message>
+    <message>
+        <source>Saving failed</source>
+        <translation>Speichern fehlgeschlagen</translation>
+    </message>
+    <message>
+        <source>I failed to acquire write permissions on the file %1.
+
+Perhaps it is read-only or opened in another program?</source>
+        <translation>Keine Schreibrechte ür Datei %1.
+
+Vielleicht ist es nur lesbar oder von einem anderen Programm gesperrt ?</translation>
+    </message>
+    <message>
+        <source>Writing the document to file %1 failed after the old content was deleted.
+
+The file may have been corrupted!</source>
+        <translation>Speichern des Dokuments in datei %1 fehlgeschalgen, nachdem der alte Inhalt gelöscht wurde.
+
+Die Datei könnte zerstört sein!</translation>
     </message>
 </context>
 <context>
@@ -5390,7 +5422,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Find D&amp;ialog...</source>
-        <translation>Suchd&amp;ialog...</translation>
+        <translation type="obsolete">Suchd&amp;ialog...</translation>
     </message>
     <message>
         <source>&amp;Replace</source>
@@ -5969,7 +6001,7 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
     </message>
     <message>
         <source>remove</source>
-        <translation>entferne</translation>
+        <translation type="obsolete">entferne</translation>
     </message>
     <message>
         <source>remove all</source>
@@ -6243,6 +6275,42 @@ SInd Sie sicher, dass Sie weitermachen möchten ?</translation>
     <message>
         <source>Save Profile</source>
         <translation>Speichere Profil</translation>
+    </message>
+    <message>
+        <source>&amp;Searching</source>
+        <translation>&amp;Suchen</translation>
+    </message>
+    <message>
+        <source>Continue F&amp;ind</source>
+        <translation>&amp;Weitersuchen</translation>
+    </message>
+    <message>
+        <source>Find &amp;Prev</source>
+        <translation>F&amp;inde vorherige</translation>
+    </message>
+    <message>
+        <source>&amp;Count</source>
+        <translation>&amp;Zähle</translation>
+    </message>
+    <message>
+        <source>Find &amp;Dialog...</source>
+        <translation>Such&amp;dialog...</translation>
+    </message>
+    <message>
+        <source>Replace Next</source>
+        <translation>Ersetze nächste</translation>
+    </message>
+    <message>
+        <source>Replace Prev</source>
+        <translation>Ersetze vorherige</translation>
+    </message>
+    <message>
+        <source>Replace &amp;All</source>
+        <translation>&amp;Alles ersetzen</translation>
+    </message>
+    <message>
+        <source>&amp;Go to</source>
+        <translation>&amp;Gehe zu</translation>
     </message>
 </context>
 <context>
