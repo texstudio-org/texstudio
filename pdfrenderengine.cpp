@@ -15,7 +15,7 @@
 #include "pdfrendermanager.h"
 
 RenderCommand::RenderCommand(int p,double xr,double yr,int x,int y,int w, int h) :
-		pageNr(p),xres(xr),yres(yr),x(x),y(y),w(w),h(h),ticket(-1)
+    pageNr(p),xres(xr),yres(yr),x(x),y(y),w(w),h(h),ticket(-1),priority(false)
 {
 }
 
@@ -32,13 +32,37 @@ PDFRenderEngine::~PDFRenderEngine(){
 
 void PDFRenderEngine::run(){
 	forever {
-		//wait for enqueued lines
-		manager->mCommandsAvailable.acquire();
-		if(manager->stopped) break;
-		// get Linedata
-		manager->mQueueLock.lock();
-		RenderCommand command=manager->mCommands.dequeue();
-		manager->mQueueLock.unlock();
+		bool priorityThread=manager->mPriorityLock.tryLock();
+		RenderCommand command(-1);
+		if(priorityThread){
+		    forever{
+			bool leave=false;
+			{ QMutexLocker(&manager->mQueueLock);
+			    if(!manager->mCommands.isEmpty()){
+				command=manager->mCommands.head();
+				if(command.priority){
+				    leave=manager->mCommandsAvailable.tryAcquire();
+				    if(leave)
+					manager->mCommands.dequeue();
+				}
+				if(leave){
+				    manager->mPriorityLock.unlock();
+				    break;
+				}
+			    }
+			}
+			sleep(1);
+		    }
+		}else{
+		    //wait for enqueued lines
+		    manager->mCommandsAvailable.acquire();
+		    if(manager->stopped) break;
+		    // get Linedata
+		    manager->mQueueLock.lock();
+		    command=manager->mCommands.dequeue();
+		    manager->mQueueLock.unlock();
+		}
+
 		// render Image
 		if(document){
 			Poppler::Page *page=document->page(command.pageNr);

@@ -45,7 +45,6 @@ PDFRenderManager::PDFRenderManager(QObject *parent) :
 	document=0;
 	currentTicket=0;
 	stopped=false;
-	firstThreadRunning=false;
 }
 
 PDFRenderManager::~PDFRenderManager(){
@@ -72,7 +71,7 @@ void PDFRenderManager::setDocument(QString fileName){
 		document->setRenderHint(Poppler::Document::Antialiasing);
 		document->setRenderHint(Poppler::Document::TextAntialiasing);
 		renderQueues[i]->setDocument(document);
-		if(i>0 && !renderQueues[i]->isRunning())
+		if(!renderQueues[i]->isRunning())
 			renderQueues[i]->start();
 	}
 }
@@ -168,12 +167,9 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 					cmd.h=h;
 				}
 				cmd.ticket=mCurrentTicket;
+				cmd.priority=priority;
 				lstOfReceivers.insert(mCurrentTicket,info);
 				enqueue(cmd,priority);
-				if(priority && !firstThreadRunning){
-					renderQueues.first()->start(); // delay start of dirst thread to have an empty thread for rendering the first displayed page
-					firstThreadRunning=true;
-				}
 			}
 		}
 	}else{

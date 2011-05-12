@@ -22,6 +22,7 @@ public:
 	int w;
 	int h;
 	int ticket;
+	bool priority;
 };
 
 class PDFRenderEngine : public QThread
