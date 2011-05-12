@@ -260,6 +260,10 @@
         <source>&lt;unknown&gt;</source>
         <translation>sconosciuto</translation>
     </message>
+    <message>
+        <source>User : (% : filename without extension)</source>
+        <translation type="unfinished">Utente : (nome file senza estensione)</translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippet</name>
@@ -468,27 +472,27 @@
     </message>
     <message>
         <source>LaTeX + dvips + View PS</source>
-        <translation>LaTeX + dvips + Visualizza PS</translation>
+        <translation type="obsolete">LaTeX + dvips + Visualizza PS</translation>
     </message>
     <message>
         <source>LaTeX + View DVI</source>
-        <translation>LaTeX + Visualizza DVI</translation>
+        <translation type="obsolete">LaTeX + Visualizza DVI</translation>
     </message>
     <message>
         <source>PdfLaTeX + View PDF</source>
-        <translation>PdfLaTeX + Visualizza PDF</translation>
+        <translation type="obsolete">PdfLaTeX + Visualizza PDF</translation>
     </message>
     <message>
         <source>LaTeX + dvipdfm + View PDF</source>
-        <translation>LaTeX + dvipdfm + Visualizza PDF</translation>
+        <translation type="obsolete">LaTeX + dvipdfm + Visualizza PDF</translation>
     </message>
     <message>
         <source>LaTeX + dvips + ps2pdf + View PDF</source>
-        <translation>LaTeX + dvips + ps2pdf + Visualizza PDF</translation>
+        <translation type="obsolete">LaTeX + dvips + ps2pdf + Visualizza PDF</translation>
     </message>
     <message>
         <source>User : (% : filename without extension)</source>
-        <translation>Utente : (nome file senza estensione)</translation>
+        <translation type="obsolete">Utente : (nome file senza estensione)</translation>
     </message>
     <message>
         <source>(the commands must be separated by &apos;|&apos;)</source>
@@ -732,14 +736,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     </message>
     <message>
         <source>Tab space:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>LaTeX + Asymptote + LaTeX + View DVI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PdfLaTeX + Asymptote + PdfLaTeX + View PDF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2075,6 +2071,10 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
         <source>Open %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Thesaurus...</source>
+        <translation type="unfinished">Dizionario Sinonimi...</translation>
+    </message>
 </context>
 <context>
     <name>LatexLogModel</name>
@@ -2702,6 +2702,10 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>F5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Continuous</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3344,6 +3348,22 @@ Vioi aggiornare ricaricando il file?</translation>
     </message>
     <message>
         <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saving failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I failed to acquire write permissions on the file %1.
+
+Perhaps it is read-only or opened in another program?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Writing the document to file %1 failed after the old content was deleted.
+
+The file may have been corrupted!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4596,10 +4616,6 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Find D&amp;ialog...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Replace</source>
         <translation>&amp;Sostituisci</translation>
     </message>
@@ -5043,7 +5059,7 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <source>remove</source>
-        <translation>rimuovi</translation>
+        <translation type="obsolete">rimuovi</translation>
     </message>
     <message>
         <source>commit comment:</source>
@@ -5549,6 +5565,42 @@ Are you sure you want to continue?</source>
     </message>
     <message>
         <source>Save Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Searching</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue F&amp;ind</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find &amp;Prev</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find &amp;Dialog...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace Prev</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace &amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Go to</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -200,6 +200,10 @@
         <source>&lt;unknown&gt;</source>
         <translation>&lt;ismeretlen&gt;</translation>
     </message>
+    <message>
+        <source>User : (% : filename without extension)</source>
+        <translation type="unfinished">Felhasználói: (%: fájlnév kiterjesztés nélkül)</translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippet</name>
@@ -363,35 +367,35 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>LaTeX + dvips + View PS</source>
-        <translation>LaTeX + dvips + PS megjelenítése</translation>
+        <translation type="obsolete">LaTeX + dvips + PS megjelenítése</translation>
     </message>
     <message>
         <source>LaTeX + View DVI</source>
-        <translation>LaTeX + DVI megjelenítése</translation>
+        <translation type="obsolete">LaTeX + DVI megjelenítése</translation>
     </message>
     <message>
         <source>PdfLaTeX + View PDF</source>
-        <translation>PdfLaTeX + PDF megjelenítése</translation>
+        <translation type="obsolete">PdfLaTeX + PDF megjelenítése</translation>
     </message>
     <message>
         <source>LaTeX + dvipdfm + View PDF</source>
-        <translation>LaTeX + dvipdfm + PDF megjelenítése</translation>
+        <translation type="obsolete">LaTeX + dvipdfm + PDF megjelenítése</translation>
     </message>
     <message>
         <source>LaTeX + dvips + ps2pdf + View PDF</source>
-        <translation>LaTeX + dvips + ps2pdf + PDF megjelenítése</translation>
+        <translation type="obsolete">LaTeX + dvips + ps2pdf + PDF megjelenítése</translation>
     </message>
     <message>
         <source>LaTeX + Asymptote + LaTeX + View DVI</source>
-        <translation>LaTeX + Asymptote + LaTeX + DVI megjelenítése</translation>
+        <translation type="obsolete">LaTeX + Asymptote + LaTeX + DVI megjelenítése</translation>
     </message>
     <message>
         <source>PdfLaTeX + Asymptote + PdfLaTeX + View PDF</source>
-        <translation>PdfLaTeX + Asymptote + PdfLaTeX + PDF megjelenítése</translation>
+        <translation type="obsolete">PdfLaTeX + Asymptote + PdfLaTeX + PDF megjelenítése</translation>
     </message>
     <message>
         <source>User : (% : filename without extension)</source>
-        <translation>Felhasználói: (%: fájlnév kiterjesztés nélkül)</translation>
+        <translation type="obsolete">Felhasználói: (%: fájlnév kiterjesztés nélkül)</translation>
     </message>
     <message>
         <source>More</source>
@@ -1941,6 +1945,10 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <source>Open %1</source>
         <translation>%1 megnyitása</translation>
     </message>
+    <message>
+        <source>Thesaurus...</source>
+        <translation type="unfinished">Teza&amp;urusz...</translation>
+    </message>
 </context>
 <context>
     <name>LatexLogModel</name>
@@ -2538,6 +2546,10 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>F5</source>
         <translation>F5</translation>
+    </message>
+    <message>
+        <source>&amp;Continuous</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3159,6 +3171,22 @@ Naprakészen kívánja tartani a fájlt egy újratöltéssel?</translation>
     <message>
         <source>Unknown</source>
         <translation>Ismeretlen</translation>
+    </message>
+    <message>
+        <source>Saving failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I failed to acquire write permissions on the file %1.
+
+Perhaps it is read-only or opened in another program?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Writing the document to file %1 failed after the old content was deleted.
+
+The file may have been corrupted!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4455,7 +4483,7 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
     <message>
         <source>Find D&amp;ialog...</source>
-        <translation>Keresési párbes&amp;zédablak...</translation>
+        <translation type="obsolete">Keresési párbes&amp;zédablak...</translation>
     </message>
     <message>
         <source>&amp;Replace</source>
@@ -4966,7 +4994,7 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
     </message>
     <message>
         <source>remove</source>
-        <translation>eltávolítás</translation>
+        <translation type="obsolete">eltávolítás</translation>
     </message>
     <message>
         <source>commit comment:</source>
@@ -5141,6 +5169,42 @@ Biztos, hogy folytatni akarja?</translation>
     </message>
     <message>
         <source>Save Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Searching</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue F&amp;ind</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find &amp;Prev</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find &amp;Dialog...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace Prev</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace &amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Go to</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

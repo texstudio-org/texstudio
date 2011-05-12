@@ -279,6 +279,10 @@
         <source>&lt;unknown&gt;</source>
         <translation>&lt;neznámý&gt;</translation>
     </message>
+    <message>
+        <source>User : (% : filename without extension)</source>
+        <translation type="unfinished">Uživatel: (%: název souboru bez přípony)</translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippet</name>
@@ -469,35 +473,35 @@
     </message>
     <message>
         <source>LaTeX + dvips + View PS</source>
-        <translation>LaTeX + dvips + Zobrazit PS</translation>
+        <translation type="obsolete">LaTeX + dvips + Zobrazit PS</translation>
     </message>
     <message>
         <source>LaTeX + View DVI</source>
-        <translation>LaTeX + Zobrazit DVI</translation>
+        <translation type="obsolete">LaTeX + Zobrazit DVI</translation>
     </message>
     <message>
         <source>PdfLaTeX + View PDF</source>
-        <translation>PdfLaTeX + Zobrazit PDF</translation>
+        <translation type="obsolete">PdfLaTeX + Zobrazit PDF</translation>
     </message>
     <message>
         <source>LaTeX + dvipdfm + View PDF</source>
-        <translation>LaTeX + dvipdfm + Zobrazit PDF</translation>
+        <translation type="obsolete">LaTeX + dvipdfm + Zobrazit PDF</translation>
     </message>
     <message>
         <source>LaTeX + dvips + ps2pdf + View PDF</source>
-        <translation>LaTeX + dvips + ps2pdf + Zobrazit PDF</translation>
+        <translation type="obsolete">LaTeX + dvips + ps2pdf + Zobrazit PDF</translation>
     </message>
     <message>
         <source>LaTeX + Asymptote + LaTeX + View DVI</source>
-        <translation>LaTeX + Asymptote + LaTeX + Zobrazit DVI</translation>
+        <translation type="obsolete">LaTeX + Asymptote + LaTeX + Zobrazit DVI</translation>
     </message>
     <message>
         <source>PdfLaTeX + Asymptote + PdfLaTeX + View PDF</source>
-        <translation>PdfLaTeX + Asymptote + PdfLaTeX + Zobrazit PDF</translation>
+        <translation type="obsolete">PdfLaTeX + Asymptote + PdfLaTeX + Zobrazit PDF</translation>
     </message>
     <message>
         <source>User : (% : filename without extension)</source>
-        <translation>Uživatel: (%: název souboru bez přípony)</translation>
+        <translation type="obsolete">Uživatel: (%: název souboru bez přípony)</translation>
     </message>
     <message>
         <source>(the commands must be separated by &apos;|&apos;)</source>
@@ -2262,6 +2266,10 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
         <source>Open %1</source>
         <translation>Otevřít %1</translation>
     </message>
+    <message>
+        <source>Thesaurus...</source>
+        <translation type="unfinished">Slovník...</translation>
+    </message>
 </context>
 <context>
     <name>LatexLogModel</name>
@@ -2902,6 +2910,10 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <message>
         <source>F5</source>
         <translation>F5</translation>
+    </message>
+    <message>
+        <source>&amp;Continuous</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3547,6 +3559,22 @@ Má se soubor nahrát znovu?</translation>
     <message>
         <source>Unknown</source>
         <translation>Neznámý</translation>
+    </message>
+    <message>
+        <source>Saving failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I failed to acquire write permissions on the file %1.
+
+Perhaps it is read-only or opened in another program?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Writing the document to file %1 failed after the old content was deleted.
+
+The file may have been corrupted!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5243,7 +5271,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Find D&amp;ialog...</source>
-        <translation>Dialog hledání...</translation>
+        <translation type="obsolete">Dialog hledání...</translation>
     </message>
     <message>
         <source>&amp;Replace</source>
@@ -5822,7 +5850,7 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     </message>
     <message>
         <source>remove</source>
-        <translation>Odstranit</translation>
+        <translation type="obsolete">Odstranit</translation>
     </message>
     <message>
         <source>remove all</source>
@@ -6059,6 +6087,42 @@ Jste si jistý, že chcete pokračovat?</translation>
     </message>
     <message>
         <source>Save Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Searching</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue F&amp;ind</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find &amp;Prev</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find &amp;Dialog...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace Prev</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace &amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Go to</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
