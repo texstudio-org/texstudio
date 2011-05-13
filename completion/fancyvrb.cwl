@@ -10,5 +10,8 @@
 \end{Verbatim}
 \begin{Verbatim*}
 \end{Verbatim*}
+\begin{BVerbatim}
+\end{BVerbatim}
 \begin{BVerbatim*}
 \end{BVerbatim*}
+	

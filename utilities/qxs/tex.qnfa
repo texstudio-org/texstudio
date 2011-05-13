@@ -32,6 +32,41 @@ environments in smallUsefulFunctions.cpp)
 		<sequence parenthesis="curly:open">\{</sequence>
  		<sequence parenthesis="curly:close">\}</sequence>
 	</context>
+	<context id="verbatimListing" format="verbatim" transparency="true">
+		<start parenthesis="verbatimListing:open@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{lstlisting}</start>
+		<stop parenthesis="verbatimListing:close@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{lstlisting}</stop>
+
+		<sequence parenthesis="curly:open">\{</sequence>
+ 		<sequence parenthesis="curly:close">\}</sequence>
+	</context>
+	<context id="verbatimFancy" format="verbatim" transparency="true">
+		<start parenthesis="verbatimFancy:open@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{Verbatim}</start>
+		<stop parenthesis="verbatimFancy:close@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{Verbatim}</stop>
+
+		<sequence parenthesis="curly:open">\{</sequence>
+ 		<sequence parenthesis="curly:close">\}</sequence>
+	</context>
+	<context id="verbatimFancyB" format="verbatim" transparency="true">
+		<start parenthesis="verbatimFancyB:open@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{BVerbatim}</start>
+		<stop parenthesis="verbatimFancyB:close@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{BVerbatim}</stop>
+
+		<sequence parenthesis="curly:open">\{</sequence>
+ 		<sequence parenthesis="curly:close">\}</sequence>
+	</context>
+	<context id="verbatimFancyS" format="verbatim" transparency="true">
+		<start parenthesis="verbatimFancyS:open@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{Verbatim[*]}</start>
+		<stop parenthesis="verbatimFancyS:close@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{Verbatim[*]}</stop>
+
+		<sequence parenthesis="curly:open">\{</sequence>
+ 		<sequence parenthesis="curly:close">\}</sequence>
+	</context>
+	<context id="verbatimFancyBS" format="verbatim" transparency="true">
+		<start parenthesis="verbatimFancyBS:open@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{BVerbatim[*]}</start>
+		<stop parenthesis="verbatimFancyBS:close@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{BVerbatim[*]}</stop>
+
+		<sequence parenthesis="curly:open">\{</sequence>
+ 		<sequence parenthesis="curly:close">\}</sequence>
+	</context>
 
 	<word id="keywords/single" ambiguous="true" format="keyword">\\[\\%\$]</word>
 	<sequence parenthesis="curly:open" parenthesisWeight="10" indent="1" fold="1">\{</sequence>
