@@ -491,12 +491,13 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 					if (!highlightPath.isEmpty()) {
 						painter.save();
 						painter.setRenderHint(QPainter::Antialiasing);
+						painter.translate(drawTo.left(), drawTo.top());
 						painter.scale(dpi / 72.0 * scaleFactor, dpi / 72.0 * scaleFactor);
 						painter.setPen(QColor(0, 0, 0, 0));
 						painter.setBrush(QColor(255, 255, 0, 63));
-						QPainterPath path=highlightPath;
-						path.translate(drawTo.left()*72.0/dpi/scaleFactor, drawTo.top()*72.0/dpi/scaleFactor);
-						painter.drawPath(path);
+						//QPainterPath path=highlightPath;
+						//path.translate(drawTo.left()*72.0/dpi/scaleFactor, drawTo.top()*72.0/dpi/scaleFactor);
+						painter.drawPath(highlightPath);
 						painter.restore();
 					}
 				}
