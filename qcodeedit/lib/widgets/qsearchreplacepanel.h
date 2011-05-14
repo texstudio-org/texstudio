@@ -56,6 +56,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		void findReplace(bool backward, bool replace=false, bool replaceAll=false, bool countOnly = false);
 		void find(QString text, bool backward, bool highlight, bool regex, bool word, bool caseSensitive);
 		void find(QString text, bool backward, bool highlight, bool regex, bool word, bool caseSensitive, bool fromCursor, bool selection);
+		void selectAllMatches();
 		void setOptions(int searchOptions, bool cursor, bool selection);
 		
 	signals:
@@ -99,6 +100,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 
 	private:
 		void init();
+		void updateSearchOptions(bool replace, bool replaceAll);
 		void on_leFind_returnPressed(bool backward);
 		void on_leReplace_returnPressed(bool backward);
 		QDocumentSearch *m_search;
