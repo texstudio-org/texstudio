@@ -6312,6 +6312,10 @@ SInd Sie sicher, dass Sie weitermachen möchten ?</translation>
         <source>&amp;Go to</source>
         <translation>&amp;Gehe zu</translation>
     </message>
+    <message>
+        <source>&amp;Select all matches...</source>
+        <translation>Alle &amp;Funde auswählen...</translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
