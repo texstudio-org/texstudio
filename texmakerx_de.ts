@@ -1400,7 +1400,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <source>Please answer 1, 2 or 3</source>
-        <translation>Bitte antworte 1, 2 oder 3</translation>
+        <translation>Bitte antworte mit 1, 2 oder 3</translation>
     </message>
     <message>
         <source>Only one answer allowed</source>
@@ -1442,7 +1442,13 @@ You ask the second: &quot;Is the first one lying?&quot;, and he answers: &quot;N
 You ask the last: &quot;Is the second one lying?&quot;, and he answers: &quot;No&quot;.
 
 Which one of the three wise will always tell the truth?</source>
-        <translation type="unfinished"></translation>
+        <translation>Du entdeckst eine magische Insel, auf der drei seltsame und weise Freunde leben.
+Einer spricht immer die Wahrheit, der Nächste lügt immer, und der Letzte ist taub, so dass er zufällig antwortet und nicht lügen kann(!).
+Du fragst den Ersten: &quot;Lügst du?&quot;, und er antwortet: &quot;Nein&quot;.
+Du fragst den Zweiten: &quot;Lügt der erste von euch?&quot;, und er antwortet: &quot;Nein&quot;.
+Du fragst den Dritten: &quot;Lügt der zweite von euch?&quot;, und er antwortet: &quot;Nein&quot;.
+
+Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     </message>
 </context>
 <context>
@@ -5418,7 +5424,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Find &amp;Next</source>
-        <translation>Weitersuche&amp;n</translation>
+        <translation>Finde &amp;nächsten Treffer</translation>
     </message>
     <message>
         <source>Find D&amp;ialog...</source>
@@ -6286,7 +6292,7 @@ SInd Sie sicher, dass Sie weitermachen möchten ?</translation>
     </message>
     <message>
         <source>Find &amp;Prev</source>
-        <translation>F&amp;inde vorherige</translation>
+        <translation>Finde &amp;vorherigen Treffer</translation>
     </message>
     <message>
         <source>&amp;Count</source>
@@ -6314,7 +6320,7 @@ SInd Sie sicher, dass Sie weitermachen möchten ?</translation>
     </message>
     <message>
         <source>&amp;Select all matches...</source>
-        <translation>Alle &amp;Funde auswählen...</translation>
+        <translation>Alle Treffer &amp;markieren</translation>
     </message>
 </context>
 <context>
