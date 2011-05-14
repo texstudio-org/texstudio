@@ -26,6 +26,7 @@
 #include "qdocument_p.h"
 #include "qdocumentline.h"
 #include "qdocumentcursor.h"
+#include "qformatscheme.h"
 
 #include "qlanguagedefinition.h"
 #include "qcodecompletionengine.h"
@@ -1213,6 +1214,9 @@ void QEditor::findPrev()
 void QEditor::findCount()
 {
 	relayPanelCommand("Search", "findReplace", QList<QVariant>() << false << false << false << true);
+}
+void QEditor::selectAllMatches(){
+	relayPanelCommand("Search", "selectAllMatches");
 }
 
 /*!

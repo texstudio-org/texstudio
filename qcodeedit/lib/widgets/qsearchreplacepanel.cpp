@@ -415,26 +415,9 @@ void QSearchReplacePanel::findNext(){
 	findReplace(m_lastDirection);
 }
 
-/*!
 
-*/
-void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceAll, bool countOnly)
-{
-	Q_ASSERT(!(replace && countOnly));
-	Q_ASSERT(!(replaceAll && !replace));
-
-	if ( !m_search )
-	{
-		if ( !isVisible() )
-		{
-			display(1, false);
-			return;
-		} else {
-			init();
-		}
-	}
-	m_lastDirection=backward;
-
+void QSearchReplacePanel::updateSearchOptions(bool replace, bool replaceAll){
+	if ( !m_search ) init();
 	if ( cbCursor->isChecked() && !m_search->cursor().isValid() )
 		m_search->setCursor(editor()->cursor());  //start from current cursor if no known cursor
 	if ( !cbCursor->isChecked() && replaceAll )
@@ -444,6 +427,21 @@ void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceA
 	if ( replace && m_search->replaceText()!=leReplace->text() )
 		m_search->setReplaceText(leReplace->text());
 	m_search->setOption(QDocumentSearch::Replace,replace);
+}
+
+void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceAll, bool countOnly)
+{
+	Q_ASSERT(!(replace && countOnly));
+	Q_ASSERT(!(replaceAll && !replace));
+
+	if ( !m_search  && !isVisible() ) {
+		display(1, false);
+		return;
+	}
+
+	updateSearchOptions(replace,replaceAll);;
+	m_lastDirection=backward;
+
 	if (!countOnly)  m_search->next(backward, replaceAll, !cbPrompt->isChecked(), true);
 	else {
 		m_search->setOption(QDocumentSearch::Silent, true);
@@ -473,6 +471,22 @@ void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool
     cbSelection->setChecked(selection);
     cbCursor->setChecked(fromCursor);
     find(text, backward, highlight, regex, word, caseSensitive);
+}
+
+void QSearchReplacePanel::selectAllMatches(){
+	if (!editor()) return;
+	updateSearchOptions(false,false);
+	m_search->setOption(QDocumentSearch::Silent, true); //don't forget
+	QDocumentCursor startCur = m_search->cursor();
+	m_search->setCursor(QDocumentCursor());
+
+	editor()->setCursor(QDocumentCursor());
+	while (m_search->next(false, false, false, false)) {
+		editor()->addCursorMirror(m_search->cursor());
+	}
+
+	m_search->setCursor(startCur);
+	m_search->setOption(QDocumentSearch::Silent, false);
 }
 
 void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool regex, bool word, bool caseSensitive){
