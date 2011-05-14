@@ -5594,6 +5594,10 @@ TexMakerX n&apos;accepte pas d&apos;instances multiples d&apos;un même fichier.
         <source>&amp;Go to</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Select all matches...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>

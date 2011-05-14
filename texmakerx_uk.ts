@@ -6159,6 +6159,10 @@ Are you sure you want to continue?</source>
         <source>&amp;Go to</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Select all matches...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
