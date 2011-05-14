@@ -17,6 +17,7 @@ public:
 	int pageNr;
 	qreal xres;
 	bool cache;
+	bool priority;
 };
 
 class CachePixmap: public QPixmap

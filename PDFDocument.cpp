@@ -2184,6 +2184,7 @@ int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool acti
 				activateWindow();
 				if (isMinimized()) showNormal();
 			}
+			//pdfWidget->repaint();
 			return page-1;
 		}
 	}
