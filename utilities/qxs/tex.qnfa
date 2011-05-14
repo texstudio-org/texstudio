@@ -18,6 +18,23 @@ environments in smallUsefulFunctions.cpp)
 	<sequence parenthesis="square:open" parenthesisWeight="00">\[</sequence>
 	<sequence parenthesis="square:close" parenthesisWeight="00">\]</sequence>
 	
+	<!-- ========================= SWEAVE ====================== -->
+
+	<context id="sweavein" format="sweave" transparency="true">	
+		<start parenthesis="sweavein:open@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\begin{Sinput}</start>
+		<stop parenthesis="sweavein:close@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\end{Sinput}</stop>
+	</context>
+	<context id="sweaveout" format="sweave" transparency="true">	
+		<start parenthesis="sweaveout:open@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\begin{Soutput}</start>
+		<stop parenthesis="sweaveout:close@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\end{Soutput}</stop>
+	</context>
+	<context id="sweave" format="sweave" transparency="true">	
+		<start parenthesis="sweave:open@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">&lt;&lt;[^>]*>>=</start>
+		<stop parenthesis="sweave:close@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">@</stop>
+	</context>
+
+	<!-- ========================= VERBATIM ====================== -->
+	
 	<foreach loopVar="$v">
 		<e>verbatim</e> <e>verbatim\*</e> <e>lstlisting</e> <e>Verbatim</e> <e>BVerbatim</e> <e>Verbatim\*</e> <e>BVerbatim\*</e>
 		<body>
@@ -30,6 +47,9 @@ environments in smallUsefulFunctions.cpp)
 			</context>
 		</body>
 	</foreach>
+
+
+	<!--                           (keywords)                      -->
 
 	<word id="keywords/single" ambiguous="true" format="keyword">\\[\\%\$]</word>
 	<sequence parenthesis="curly:open" parenthesisWeight="10" indent="1" fold="1">\{</sequence>
@@ -45,6 +65,8 @@ environments in smallUsefulFunctions.cpp)
 		</body>
 	</foreach>
 
+	<!-- ========================= COMMAND ====================== -->
+
 	<context id="comment/single" format="commentTodo" stayOnLine="true" >
 		<start>%TODO</start>
 		<start>%todo</start>
@@ -57,8 +79,7 @@ environments in smallUsefulFunctions.cpp)
 	</context>
 	
 	
-	
-
+	<!-- ========================= MATH MODE ====================== -->
 	
 	<context id="mathmode$" format="numbers" transparency="true">
 		<start parenthesis="math:open" parenthesisWeight="40" fold="1" >\$</start>
@@ -118,6 +139,19 @@ environments in smallUsefulFunctions.cpp)
 
 		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
         </context>
+        
+	<!-- ========================= PICTURES ====================== -->
+	<foreach loopVar="$env">
+		<e>tikzpicture</e> <e>pspicture</e> <e>pspicture\*</e> <e>picture</e> <e>picture\*</e> <e>asy</e>
+		<body>
+		<context id="$env" format="picture" transparency="true">	
+			<start parenthesis="$env:open@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\begin{$env}</start>
+			<stop parenthesis="$env:close@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\end{$env}</stop>
+		</context>        
+		</body>
+	</foreach>
+        
+	<!-- ========================= GENERAL BLOCKS ====================== -->
 
 	<word parenthesis="block:open@nocomplete" parenthesisWeight="30" fold="1" indent="1" ambiguous="true" format="extra-keyword">\\begin{[^}]*}</word>
 	<word parenthesis="block:close@nocomplete" parenthesisWeight="30" fold="1" indent="1" format="extra-keyword" >\\end{[^}]*}</word>
@@ -130,6 +164,9 @@ environments in smallUsefulFunctions.cpp)
                 <sequence parenthesis="curly:close" parenthesisWeight="10">\}</sequence>
         </context>
 -->
+
+	<!-- ========================= SECTIONS ====================== -->
+
 	<list id="keywords/block" format="extra-keyword">
 		<word parenthesis="part:boundary@nomatch" parenthesisWeight="8" fold="true">\\part</word>
 		<word parenthesis="chapter:boundary@nomatch" parenthesisWeight="7" fold="true">\\chapter</word>
@@ -140,8 +177,11 @@ environments in smallUsefulFunctions.cpp)
 		<word parenthesis="subparagraph:boundary@nomatch" parenthesisWeight="2" fold="true" >\\subparagraph</word>
 	</list>
 	
+	<!-- ========================= GENERAL COMMANDS ====================== -->
+
 	<!--sequence instead of word so things like \abc434 are correctly highlighted -->
 	<sequence id="keywords/single" ambiguous="true" format="keyword">\\[a-zA-Z]+</sequence>
+	
 </QNFA>
 
 
