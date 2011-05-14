@@ -87,9 +87,12 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 	info.pageNr=pageNr;
 	info.cache=cache;
 	info.xres=xres;
+	info.priority=priority;
 	currentTicket++;
 	int mCurrentTicket=currentTicket;
 	bool enqueueCmd=!checkDuplicate(mCurrentTicket,info);
+	if(!enqueueCmd || (!priority && renderedPages.contains(pageNr))) // already queued fillcache
+	    return QPixmap();
 	// return best guess/cached at once, refine later
 	Poppler::Page *page=document->page(pageNr);
 	CachePixmap img;
@@ -123,6 +126,7 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 	}
 	if(xres<0){
 		scale=1.0; //don't render thumbnails
+		enqueueCmd=false;
 		if(img.isNull())
 			lstForThumbs.insert(pageNr,info);
 	}
@@ -172,9 +176,9 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 				enqueue(cmd,priority);
 			}
 		}
-	}else{
-		lstOfReceivers.insert(mCurrentTicket,info);
-	}
+	}//else{
+	//	lstOfReceivers.insert(mCurrentTicket,info);
+	//}
 	delete page;
 	return img;
 }
@@ -217,7 +221,7 @@ void PDFRenderManager::fillCache(int pg){
 	foreach(int elem,renderedPages.keys()){
 		renderedPage.insert(elem);
 	}
-	int i=pg;
+	int i=pg-1;
 	int j=pg;
 	if(j<0)
 		j=0;
@@ -240,8 +244,7 @@ bool PDFRenderManager::checkDuplicate(int &ticket,RecInfo &info){
 			continue;
 		if(i.value().x<0 && i.value().y<0 && i.value().w<0 && i.value().h<0
 		   && info.x<0 && info.y<0 && info.w<0 && info.h<0){
-			if(i.value().xres*1.01>=info.xres){
-				ticket=i.key();
+			if(info.priority){
 				//qDebug()<<"duplicate";
 				return true;
 			}
