@@ -615,7 +615,7 @@ bool QDocumentSearch::end(bool backward,QDocumentLine l) const
 int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAround)
 {
 	if ( m_string.isEmpty() )
-		return true;
+		return 0;
 	
 	if ( m_cursor.isNull() )
 	{

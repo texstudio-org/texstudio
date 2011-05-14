@@ -481,12 +481,21 @@ void QSearchReplacePanel::selectAllMatches(){
 	m_search->setCursor(QDocumentCursor());
 
 	editor()->setCursor(QDocumentCursor());
-	while (m_search->next(false, false, false, false)) {
-		editor()->addCursorMirror(m_search->cursor());
+	QDocumentCursor last = QDocumentCursor();
+	int count = 0;
+	while (m_search->next(false, false, false, false) && m_search->cursor().isValid()) {
+		if (!count) editor()->setCursor(m_search->cursor());
+		else if (last < m_search->cursor()) editor()->addCursorMirror(m_search->cursor());
+		else break;
+		last = m_search->cursor();
+		count++;
 	}
 
 	m_search->setCursor(startCur);
 	m_search->setOption(QDocumentSearch::Silent, false);
+
+	if (count) editor()->setFocus();
+	else if (!isVisible()) display(1,false);
 }
 
 void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool regex, bool word, bool caseSensitive){
