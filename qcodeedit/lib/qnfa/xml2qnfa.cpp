@@ -237,6 +237,20 @@ void embed(QNFA *src, QNFA *dest, int idx = 0)
 }
 
 
+void replaceAll(QDomNode e, const QString& what, const QString& through) {
+	QDomNodeList children = e.childNodes();
+	for (int i=0;i<children.count();i++)
+		replaceAll(children.at(i),what,through);
+	if (e.nodeValue() != "")
+		e.setNodeValue(e.nodeValue().replace(what,through));
+	if (e.nodeType() == QDomNode::ElementNode){
+		QDomNamedNodeMap atts = e.toElement().attributes();
+		for (int i=0;i<atts.length();i++)
+			replaceAll(atts.item(i), what, through);
+	}
+}
+
+
 void QXml2NFAParser::addToContext(	QNFA *cxt, QDomElement c, int fid,
 					const QStringList& pref,
 					const QStringList& suff,
@@ -488,6 +502,26 @@ void QXml2NFAParser::addToContext(	QNFA *cxt, QDomElement c, int fid,
 		}
 		
 		//fillContext(subcxt, c, f, pids);
+	} else if (tag == "foreach") {
+		QString var = c.attribute("loopVar");
+		Q_ASSERT(!var.isEmpty());
+		QStringList values;
+		QDomNodeList children = c.childNodes();
+		QDomElement body;
+		for (int i=0;i<children.count();i++)
+			if (children.at(i).toElement().tagName() == "e")
+				values << children.at(i).toElement().firstChild().toText().data();
+			else if (children.at(i).toElement().tagName() == "body")
+				body = children.at(i).toElement();
+			else Q_ASSERT(false);
+		foreach (const QString& v, values) {
+			QDomElement cur = body.cloneNode().toElement();
+			replaceAll(cur, var, v);
+			children = cur.childNodes();
+			for (int i=0;i<children.count();i++)
+				addToContext(cxt,children.at(i).toElement(),fid,pref,suff,cs);
+		}
+
 	} else {
 		//qDebug("unhandled tag : %s", qPrintable(tag));
 	}
