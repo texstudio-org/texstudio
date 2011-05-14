@@ -18,113 +18,33 @@ environments in smallUsefulFunctions.cpp)
 	<sequence parenthesis="square:open" parenthesisWeight="00">\[</sequence>
 	<sequence parenthesis="square:close" parenthesisWeight="00">\]</sequence>
 	
-	<context id="verbatim" format="verbatim" transparency="true">
-		<start parenthesis="verbatim:open@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{verbatim}</start>
-		<stop parenthesis="verbatim:close@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{verbatim}</stop>
+	<foreach loopVar="$v">
+		<e>verbatim</e> <e>verbatim\*</e> <e>lstlisting</e> <e>Verbatim</e> <e>BVerbatim</e> <e>Verbatim\*</e> <e>BVerbatim\*</e>
+		<body>
+			<context id="$v" format="verbatim" transparency="true">
+				<start parenthesis="$v:open@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{$v}</start>
+				<stop parenthesis="$v:close@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{$v}</stop>
 
-		<sequence parenthesis="curly:open" parenthesisWeight="10">\{</sequence>
- 		<sequence parenthesis="curly:close" parenthesisWeight="10">\}</sequence>
-	</context>
-	<context id="verbatimS" format="verbatim" transparency="true">
-		<start parenthesis="verbatimS:open@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{verbatim\*}</start>
-		<stop parenthesis="verbatimS:close@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{verbatim\*}</stop>
-
-		<sequence parenthesis="curly:open">\{</sequence>
- 		<sequence parenthesis="curly:close">\}</sequence>
-	</context>
-	<context id="verbatimListing" format="verbatim" transparency="true">
-		<start parenthesis="verbatimListing:open@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{lstlisting}</start>
-		<stop parenthesis="verbatimListing:close@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{lstlisting}</stop>
-
-		<sequence parenthesis="curly:open">\{</sequence>
- 		<sequence parenthesis="curly:close">\}</sequence>
-	</context>
-	<context id="verbatimFancy" format="verbatim" transparency="true">
-		<start parenthesis="verbatimFancy:open@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{Verbatim}</start>
-		<stop parenthesis="verbatimFancy:close@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{Verbatim}</stop>
-
-		<sequence parenthesis="curly:open">\{</sequence>
- 		<sequence parenthesis="curly:close">\}</sequence>
-	</context>
-	<context id="verbatimFancyB" format="verbatim" transparency="true">
-		<start parenthesis="verbatimFancyB:open@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{BVerbatim}</start>
-		<stop parenthesis="verbatimFancyB:close@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{BVerbatim}</stop>
-
-		<sequence parenthesis="curly:open">\{</sequence>
- 		<sequence parenthesis="curly:close">\}</sequence>
-	</context>
-	<context id="verbatimFancyS" format="verbatim" transparency="true">
-		<start parenthesis="verbatimFancyS:open@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{Verbatim[*]}</start>
-		<stop parenthesis="verbatimFancyS:close@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{Verbatim[*]}</stop>
-
-		<sequence parenthesis="curly:open">\{</sequence>
- 		<sequence parenthesis="curly:close">\}</sequence>
-	</context>
-	<context id="verbatimFancyBS" format="verbatim" transparency="true">
-		<start parenthesis="verbatimFancyBS:open@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{BVerbatim[*]}</start>
-		<stop parenthesis="verbatimFancyBS:close@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{BVerbatim[*]}</stop>
-
-		<sequence parenthesis="curly:open">\{</sequence>
- 		<sequence parenthesis="curly:close">\}</sequence>
-	</context>
+				<sequence parenthesis="curly:open" parenthesisWeight="10">\{</sequence>
+		 		<sequence parenthesis="curly:close" parenthesisWeight="10">\}</sequence>
+			</context>
+		</body>
+	</foreach>
 
 	<word id="keywords/single" ambiguous="true" format="keyword">\\[\\%\$]</word>
 	<sequence parenthesis="curly:open" parenthesisWeight="10" indent="1" fold="1">\{</sequence>
 	<sequence parenthesis="curly:close" parenthesisWeight="10" indent="1" fold="1">\}</sequence>
 
-	<context id="verb$" format="verbatim">
-		<start parenthesis="verb$:open" parenthesisWeight="20" format="keyword">\\verb$</start>
-		<stop parenthesis="verb$:close" parenthesisWeight="20" format="keyword">\$</stop>
-	</context>
-	<context id="verb+" format="verbatim">
-		<start parenthesis="verb+:open" parenthesisWeight="20" format="keyword">\\verb\+</start>
-		<stop parenthesis="verb+:close" parenthesisWeight="20" format="keyword">\+</stop>
-	</context>
-	<context id="verb-" format="verbatim">
-		<start parenthesis="verb-:open" parenthesisWeight="20" format="keyword">\\verb\-</start>
-		<stop parenthesis="verb-:close" parenthesisWeight="20" format="keyword">\-</stop>
-	</context>
-	<context id="verb1" format="verbatim">
-		<start parenthesis="verb1:open" parenthesisWeight="20" format="keyword">\\verb1</start>
-		<stop parenthesis="verb1:close" parenthesisWeight="20" format="keyword">1</stop>
-	</context>
-	<context id="verb!" format="verbatim">
-		<start parenthesis="verb!:open" parenthesisWeight="20" format="keyword">\\verb!</start>
-		<stop parenthesis="verb!:close" parenthesisWeight="20" format="keyword">!</stop>
-	</context>
-	<context id="verb." format="verbatim">
-		<start parenthesis="verb.:open" parenthesisWeight="20" format="keyword">\\verb\.</start>
-		<stop parenthesis="verb.:close" parenthesisWeight="20" format="keyword">\.</stop>
-	</context>
-	<context id="verb@" format="verbatim">
-		<start parenthesis="verb@:open" parenthesisWeight="20" format="keyword">\\verb@</start>
-		<stop parenthesis="verb@:close" parenthesisWeight="20" format="keyword">@</stop>
-	</context>
-	<context id="verb#" format="verbatim">
-		<start parenthesis="verb#:open" parenthesisWeight="20" format="keyword">\\verb#</start>
-		<stop parenthesis="verb#:close" parenthesisWeight="20" format="keyword">#</stop>
-	</context>
-	<context id="verb|" format="verbatim">
-		<start parenthesis="verb|:open" parenthesisWeight="20" format="keyword">\\verb\|</start>
-		<stop parenthesis="verb|:close" parenthesisWeight="20" format="keyword">\|</stop>
-	</context>
-	<context id="verb/" format="verbatim">
-		<start parenthesis="verb/:open" parenthesisWeight="20" format="keyword">\\verb/</start>
-		<stop parenthesis="verb/:close" parenthesisWeight="20" format="keyword">/</stop>
-	</context>
-	<context id="verb\" format="verbatim">
-		<start parenthesis="verb\:open" parenthesisWeight="20" format="keyword">\\verb\\</start>
-		<stop parenthesis="verb\:close" parenthesisWeight="20" format="keyword">\\</stop>
-	</context>
-	<context id="verb_" format="verbatim">
-		<start parenthesis="verb_:open" parenthesisWeight="20" format="keyword">\\verb_</start>
-		<stop parenthesis="verb_:close" parenthesisWeight="20" format="keyword">_</stop>
-	</context>
-	<context id="verb=" format="verbatim">
-		<start parenthesis="verb=:open" parenthesisWeight="20" format="keyword">\\verb=</start>
-		<stop parenthesis="verb=:close" parenthesisWeight="20" format="keyword">=</stop>
-	</context>
-  
+	<foreach loopVar="$i">
+		<e>$</e> <e>+</e> <e>-</e> <e>1</e> <e>!</e> <e>.</e> <e>@</e> <e>#</e> <e>|</e> <e>/</e> <e>\</e> <e>_</e> <e>=</e> <e>*</e> <e>x</e>
+		<body>
+	  	<context id="verb$i" format="verbatim">
+			<start parenthesis="verb$i:open" parenthesisWeight="20" format="keyword">\\verb\$i</start>
+			<stop parenthesis="verb$i:close" parenthesisWeight="20" format="keyword">\$i</stop>
+		</context>
+		</body>
+	</foreach>
+
 	<context id="comment/single" format="commentTodo" stayOnLine="true" >
 		<start>%TODO</start>
 		<start>%todo</start>
