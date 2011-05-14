@@ -64,15 +64,12 @@
     <format id="verbatim" >
         <foreground>#008080</foreground>
     </format>
-<!--    <format id="match" >
-        <bold>true</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <foreground>#ff0000</foreground>
-    </format>-->
+    <format id="sweave" >
+        <foreground>#800000</foreground>
+    </format>
+    <format id="picture" >
+        <foreground>#804000</foreground>
+    </format>
     <format id="braceMatch" >
         <bold>true</bold>
         <italic>false</italic>
