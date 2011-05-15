@@ -257,8 +257,8 @@
 <context>
     <name>CodeSnippet</name>
     <message>
+        <location filename="smallUsefulFunctions.cpp" line="1232"/>
         <location filename="smallUsefulFunctions.cpp" line="1233"/>
-        <location filename="smallUsefulFunctions.cpp" line="1234"/>
         <source>something</source>
         <translation>algo</translation>
     </message>
@@ -639,7 +639,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="1103"/>
         <location filename="configdialog.cpp" line="333"/>
-        <location filename="configmanager.cpp" line="859"/>
+        <location filename="configmanager.cpp" line="862"/>
         <source>Editor</source>
         <translation>Editor</translation>
     </message>
@@ -843,8 +843,9 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     </message>
     <message>
         <location filename="configdialog.ui" line="1486"/>
-        <source>Show help as tooltip on ext in editor</source>
-        <translation>Mostrar ajuda como dica no editor</translation>
+        <source>Show help as tooltip on text in editor</source>
+        <oldsource>Show help as tooltip on ext in editor</oldsource>
+        <translation type="unfinished">Mostrar ajuda como dica no editor</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1493"/>
@@ -1393,7 +1394,7 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
         <translation>Somente uma resposta permitida</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="860"/>
+        <location filename="configmanager.cpp" line="863"/>
         <source>Basic Key Mapping</source>
         <translation>Mapa Básico do Teclado</translation>
     </message>
@@ -1893,97 +1894,97 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
         <translation>qquad</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="525"/>
-        <location filename="configmanager.cpp" line="530"/>
+        <location filename="configmanager.cpp" line="528"/>
+        <location filename="configmanager.cpp" line="533"/>
         <source>Key replacement: %1 %2</source>
         <translation>Substituição de caracter: %1 %2</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="737"/>
-        <location filename="configmanager.cpp" line="738"/>
-        <location filename="configmanager.cpp" line="924"/>
-        <location filename="configmanager.cpp" line="926"/>
-        <location filename="configmanager.cpp" line="1099"/>
-        <location filename="configmanager.cpp" line="1111"/>
+        <location filename="configmanager.cpp" line="740"/>
+        <location filename="configmanager.cpp" line="741"/>
+        <location filename="configmanager.cpp" line="927"/>
+        <location filename="configmanager.cpp" line="929"/>
+        <location filename="configmanager.cpp" line="1102"/>
+        <location filename="configmanager.cpp" line="1114"/>
         <source>default</source>
         <translation>padrão</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="788"/>
+        <location filename="configmanager.cpp" line="791"/>
         <source>Internal viewer</source>
         <translation>Visualizador interno</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="853"/>
+        <location filename="configmanager.cpp" line="856"/>
         <source>Menus</source>
         <translation>Menus</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="879"/>
-        <location filename="configmanager.cpp" line="1505"/>
-        <location filename="configmanager.cpp" line="1512"/>
+        <location filename="configmanager.cpp" line="882"/>
+        <location filename="configmanager.cpp" line="1508"/>
+        <location filename="configmanager.cpp" line="1515"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;nenhum&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="918"/>
+        <location filename="configmanager.cpp" line="921"/>
         <source>Latex/Math menus</source>
         <translation>Latex/Mat menus</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="919"/>
+        <location filename="configmanager.cpp" line="922"/>
         <source>All menus</source>
         <translation>Todos os menus</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="920"/>
+        <location filename="configmanager.cpp" line="923"/>
         <source>Special Tags</source>
         <translation>Etiquetas Especiais</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1165"/>
+        <location filename="configmanager.cpp" line="1168"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TexMakerX do it now?</source>
         <translation>Para utilização de forma completa do visualizador interno de pdf deve-se ativar o synctex. Fazer isto agora?</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1183"/>
+        <location filename="configmanager.cpp" line="1186"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>&apos;Documento Mestre&apos; Recente %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1186"/>
+        <location filename="configmanager.cpp" line="1189"/>
         <source>Recent File %1</source>
         <translation>Arquivo Recente %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1187"/>
+        <location filename="configmanager.cpp" line="1190"/>
         <source>&amp;* Open all files</source>
         <oldsource>Open all files</oldsource>
         <translation>&amp;* Abrir todos os arquivos</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1195"/>
+        <location filename="configmanager.cpp" line="1198"/>
         <source>Master Document: </source>
         <translation>Documento Mestre: </translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1506"/>
-        <location filename="configmanager.cpp" line="1513"/>
+        <location filename="configmanager.cpp" line="1509"/>
+        <location filename="configmanager.cpp" line="1516"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;padrão&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1628"/>
+        <location filename="configmanager.cpp" line="1631"/>
         <source>Browse program</source>
         <translation>Selecionar Programa</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1648"/>
+        <location filename="configmanager.cpp" line="1651"/>
         <source>Latex</source>
         <translation>Latex</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1648"/>
+        <location filename="configmanager.cpp" line="1651"/>
         <source>Math</source>
         <translation>Mat</translation>
     </message>
@@ -2377,13 +2378,13 @@ Você deseja desfazer as alterações?</translation>
 <context>
     <name>LatexDocumentsModel</name>
     <message>
-        <location filename="latexdocument.cpp" line="1065"/>
+        <location filename="latexdocument.cpp" line="1060"/>
         <source>untitled</source>
         <translation>sem título</translation>
     </message>
     <message>
-        <location filename="latexdocument.cpp" line="1070"/>
-        <location filename="latexdocument.cpp" line="1078"/>
+        <location filename="latexdocument.cpp" line="1065"/>
+        <location filename="latexdocument.cpp" line="1073"/>
         <source> (Line %1)</source>
         <translation> (Linha %1)</translation>
     </message>
@@ -2456,47 +2457,47 @@ Você deseja desfazer as alterações?</translation>
 <context>
     <name>LatexLogModel</name>
     <message>
-        <location filename="latexlog.cpp" line="19"/>
+        <location filename="latexlog.cpp" line="21"/>
         <source>Click to jump to the line</source>
         <translation>Clique para saltar para a linha</translation>
     </message>
     <message>
-        <location filename="latexlog.cpp" line="28"/>
+        <location filename="latexlog.cpp" line="30"/>
         <source>error</source>
         <translation>erro</translation>
     </message>
     <message>
-        <location filename="latexlog.cpp" line="30"/>
+        <location filename="latexlog.cpp" line="32"/>
         <source>warning</source>
         <translation>alerta</translation>
     </message>
     <message>
-        <location filename="latexlog.cpp" line="32"/>
+        <location filename="latexlog.cpp" line="34"/>
         <source>bad box</source>
         <translation>bad box</translation>
     </message>
     <message>
-        <location filename="latexlog.cpp" line="37"/>
+        <location filename="latexlog.cpp" line="39"/>
         <source>line</source>
         <translation>linha</translation>
     </message>
     <message>
-        <location filename="latexlog.cpp" line="49"/>
+        <location filename="latexlog.cpp" line="51"/>
         <source>File</source>
         <translation>Arquivo</translation>
     </message>
     <message>
-        <location filename="latexlog.cpp" line="51"/>
+        <location filename="latexlog.cpp" line="53"/>
         <source>Type</source>
         <translation>Tipo</translation>
     </message>
     <message>
-        <location filename="latexlog.cpp" line="53"/>
+        <location filename="latexlog.cpp" line="55"/>
         <source>Line</source>
         <translation>Linha</translation>
     </message>
     <message>
-        <location filename="latexlog.cpp" line="55"/>
+        <location filename="latexlog.cpp" line="57"/>
         <source>Message</source>
         <translation>Mensagem</translation>
     </message>
@@ -2583,17 +2584,17 @@ Você deseja desfazer as alterações?</translation>
 <context>
     <name>PDFClockDock</name>
     <message>
-        <location filename="PDFDocks.cpp" line="862"/>
+        <location filename="PDFDocks.cpp" line="861"/>
         <source>Set interval</source>
         <translation>Definir Intervalo</translation>
     </message>
     <message>
-        <location filename="PDFDocks.cpp" line="865"/>
+        <location filename="PDFDocks.cpp" line="864"/>
         <source>Restart</source>
         <translation>Reiniciar</translation>
     </message>
     <message>
-        <location filename="PDFDocks.cpp" line="917"/>
+        <location filename="PDFDocks.cpp" line="916"/>
         <source>%1min</source>
         <translation>%1min</translation>
     </message>
@@ -3248,7 +3249,7 @@ Você deseja desfazer as alterações?</translation>
 <context>
     <name>PDFSearchDock</name>
     <message>
-        <location filename="PDFDocks.cpp" line="571"/>
+        <location filename="PDFDocks.cpp" line="570"/>
         <source>Sync</source>
         <translation>Sync</translation>
     </message>
@@ -4622,10 +4623,10 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
         <translation>Início Rápido</translation>
     </message>
     <message>
-        <location filename="quickdocumentdialog.cpp" line="396"/>
-        <location filename="quickdocumentdialog.cpp" line="406"/>
-        <location filename="quickdocumentdialog.cpp" line="416"/>
-        <location filename="quickdocumentdialog.cpp" line="426"/>
+        <location filename="quickdocumentdialog.cpp" line="384"/>
+        <location filename="quickdocumentdialog.cpp" line="394"/>
+        <location filename="quickdocumentdialog.cpp" line="404"/>
+        <location filename="quickdocumentdialog.cpp" line="414"/>
         <source>New:</source>
         <translation>Novo:</translation>
     </message>
@@ -5203,13 +5204,13 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <translation>Central</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1265"/>
+        <location filename="configmanager.cpp" line="1268"/>
         <location filename="texmaker.cpp" line="2922"/>
         <source>Edit User &amp;Tags</source>
         <translation>E&amp;ditar Etiquetas do Usuário</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1293"/>
+        <location filename="configmanager.cpp" line="1296"/>
         <location filename="texmaker.cpp" line="3334"/>
         <source>Edit User &amp;Commands</source>
         <translation>E&amp;ditar Comandos do Usuário</translation>
@@ -7382,67 +7383,67 @@ The html files are located in the %1 directory.</source>
         <translation>um processo falhou</translation>
     </message>
     <message>
-        <location filename="webpublishdialog.cpp" line="468"/>
-        <location filename="webpublishdialog.cpp" line="526"/>
-        <location filename="webpublishdialog.cpp" line="657"/>
-        <location filename="webpublishdialog.cpp" line="722"/>
+        <location filename="webpublishdialog.cpp" line="466"/>
+        <location filename="webpublishdialog.cpp" line="524"/>
+        <location filename="webpublishdialog.cpp" line="655"/>
+        <location filename="webpublishdialog.cpp" line="720"/>
         <source>Can&apos;t open</source>
         <translation>Não é possível abrir</translation>
     </message>
     <message>
-        <location filename="webpublishdialog.cpp" line="475"/>
-        <location filename="webpublishdialog.cpp" line="505"/>
-        <location filename="webpublishdialog.cpp" line="533"/>
-        <location filename="webpublishdialog.cpp" line="559"/>
-        <location filename="webpublishdialog.cpp" line="610"/>
-        <location filename="webpublishdialog.cpp" line="669"/>
-        <location filename="webpublishdialog.cpp" line="740"/>
-        <location filename="webpublishdialog.cpp" line="806"/>
+        <location filename="webpublishdialog.cpp" line="473"/>
+        <location filename="webpublishdialog.cpp" line="503"/>
+        <location filename="webpublishdialog.cpp" line="531"/>
+        <location filename="webpublishdialog.cpp" line="557"/>
+        <location filename="webpublishdialog.cpp" line="608"/>
+        <location filename="webpublishdialog.cpp" line="667"/>
+        <location filename="webpublishdialog.cpp" line="738"/>
+        <location filename="webpublishdialog.cpp" line="804"/>
         <source>not found</source>
         <translation>não encontrado</translation>
     </message>
     <message>
-        <location filename="webpublishdialog.cpp" line="492"/>
+        <location filename="webpublishdialog.cpp" line="490"/>
         <source>Compiling input file. Please wait...</source>
         <translation>Compilando o arquivo de entrda.  Por favor aguarde...</translation>
     </message>
     <message>
-        <location filename="webpublishdialog.cpp" line="602"/>
+        <location filename="webpublishdialog.cpp" line="600"/>
         <source>Scanning files. Please wait...</source>
         <translation>Examinando arquivos. Por favor aguarde...</translation>
     </message>
     <message>
-        <location filename="webpublishdialog.cpp" line="646"/>
+        <location filename="webpublishdialog.cpp" line="644"/>
         <source>Writing page</source>
         <translation>Escrevendo página</translation>
     </message>
     <message>
-        <location filename="webpublishdialog.cpp" line="646"/>
+        <location filename="webpublishdialog.cpp" line="644"/>
         <source>of</source>
         <translation>de</translation>
     </message>
     <message>
-        <location filename="webpublishdialog.cpp" line="719"/>
+        <location filename="webpublishdialog.cpp" line="717"/>
         <source>Writing index page</source>
         <translation>Escrevendo página de índice</translation>
     </message>
     <message>
-        <location filename="webpublishdialog.cpp" line="786"/>
+        <location filename="webpublishdialog.cpp" line="784"/>
         <source>Fatal error : </source>
         <translation>Erro fatal:</translation>
     </message>
     <message>
-        <location filename="webpublishdialog.cpp" line="816"/>
+        <location filename="webpublishdialog.cpp" line="814"/>
         <source>LaTeX errors detected.</source>
         <translation>Erros LaTeX detectados.</translation>
     </message>
     <message>
-        <location filename="webpublishdialog.cpp" line="829"/>
+        <location filename="webpublishdialog.cpp" line="827"/>
         <source>Open File</source>
         <translation>Abrir Arquivo</translation>
     </message>
     <message>
-        <location filename="webpublishdialog.cpp" line="829"/>
+        <location filename="webpublishdialog.cpp" line="827"/>
         <source>TeX files (*.tex);;All files (*.*)</source>
         <translation>Arquivos TeX (*.tex);;todos arquivos (*.*)</translation>
     </message>

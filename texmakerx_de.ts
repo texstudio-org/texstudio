@@ -1428,7 +1428,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <source>Show help as tooltip on ext in editor</source>
-        <translation>Zeige Hilfe als Tooltip auf Text im Editor</translation>
+        <translation type="obsolete">Zeige Hilfe als Tooltip auf Text im Editor</translation>
     </message>
     <message>
         <source>Show preview as tooltip on formulas in editor</source>
@@ -1449,6 +1449,10 @@ Du fragst den Zweiten: &quot;Lügt der erste von euch?&quot;, und er antwortet: 
 Du fragst den Dritten: &quot;Lügt der zweite von euch?&quot;, und er antwortet: &quot;Nein&quot;.
 
 Welcher der drei Weisen spricht immer die Wahrheit?</translation>
+    </message>
+    <message>
+        <source>Show help as tooltip on text in editor</source>
+        <translation>Zeige Hilfe als Tooltip auf Text im Editor</translation>
     </message>
 </context>
 <context>

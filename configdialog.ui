@@ -137,7 +137,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>7</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -151,8 +151,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>800</width>
-            <height>595</height>
+            <width>823</width>
+            <height>577</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -1483,7 +1483,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="3" column="1">
            <widget class="QCheckBox" name="checkBoxToolTipHelp2">
             <property name="text">
-             <string>Show help as tooltip on ext in editor</string>
+             <string>Show help as tooltip on text in editor</string>
             </property>
            </widget>
           </item>
