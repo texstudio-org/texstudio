@@ -635,7 +635,7 @@ void CompletionListModel::setBaseWords(const QSet<QString> &newwords, bool norma
 			cw.snippetLength=str.length();
 			cw.usageCount=0;
 			QList<QPair<int,int> >res=config->usage.values(cw.index);
-			foreach(const PairIntInt elem,res){
+			foreach(const PairIntInt& elem,res){
 				if(elem.first==cw.snippetLength){
 					cw.usageCount=elem.second;
 					break;

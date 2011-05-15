@@ -414,6 +414,21 @@ int QDocumentCursor::anchorColumnNumber() const
 	return m_handle ? m_handle->anchorColumnNumber() : -1;
 }
 
+int QDocumentCursor::startLineNumber() const{
+	return m_handle ? m_handle->startLineNumber() : -1;
+}
+int QDocumentCursor::startColumnNumber() const{
+	return m_handle ? m_handle->startColumnNumber() : -1;
+}
+
+int QDocumentCursor::endLineNumber() const{
+	return m_handle ? m_handle->endLineNumber() : -1;
+}
+int QDocumentCursor::endColumnNumber() const{
+	return m_handle ? m_handle->endColumnNumber() : -1;
+}
+
+
 /*!
 	\return the "visual" text column of the cursor
 	

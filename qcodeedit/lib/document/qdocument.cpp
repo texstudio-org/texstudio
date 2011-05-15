@@ -518,7 +518,7 @@ QTextCodec* guessEncoding(const QByteArray& data){
 	const char* str = data.data();
 	int size = data.size();
 	QTextCodec* guess = 0;
-	int sure = 0;
+	int sure = 1;
 	if (size>0) {
 		char prev=str[0];
 		int good=0;int bad=0;
@@ -538,7 +538,6 @@ QTextCodec* guessEncoding(const QByteArray& data){
 			}
 			prev=cur;
 		}
-		sure = 1;
 		// less than 0.1% of the characters can be wrong for utf-16 if at least 1% are valid (for English text)
 		if (utf16le > utf16be) {
 			if (utf16be <= size / 1000 && utf16le >= size / 100 && utf16le >= 2) guess = QTextCodec::codecForName("UTF-16LE");
@@ -3934,6 +3933,40 @@ int QDocumentCursorHandle::anchorColumnNumber() const
 
 	return m_doc->line(m_endLine).isValid() ? m_endOffset : m_begOffset;
 }
+
+
+int QDocumentCursorHandle::startLineNumber() const{
+	if (m_endLine == -1)
+		return m_begLine;
+	return qMin(m_begLine, m_endLine);
+}
+int QDocumentCursorHandle::startColumnNumber() const{
+	if (m_endLine == -1)
+		return m_begOffset;
+	if (m_begLine == m_endLine)
+		return qMin(m_begOffset, m_endOffset);
+	else if (m_begLine < m_endLine)
+		return m_begOffset;
+	else
+		return m_endOffset;
+}
+
+int QDocumentCursorHandle::endLineNumber() const{
+	if (m_endLine == -1)
+		return m_begLine;
+	return qMax(m_begLine, m_endLine);
+}
+int QDocumentCursorHandle::endColumnNumber() const{
+	if (m_endLine == -1)
+		return m_begOffset;
+	if (m_begLine == m_endLine)
+		return qMax(m_begOffset, m_endOffset);
+	else if (m_begLine > m_endLine)
+		return m_begOffset;
+	else
+		return m_endOffset;
+}
+
 
 int QDocumentCursorHandle::visualColumnNumber() const
 {

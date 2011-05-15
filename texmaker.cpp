@@ -5205,34 +5205,32 @@ void Texmaker::findNextWordRepetion(){
 	QPushButton *mButton = qobject_cast<QPushButton *>(sender());
 	bool backward=mButton->objectName()=="prev";
 	if (!currentEditorView()) return;
-	QDocumentCursor cur=currentEditor()->cursor();
-	bool breaking=false;
-	for(QDocumentLine line=cur.line();line.isValid();){
-		if(line.hasOverlay(QDocument::formatFactory()->id("styleHint"))){
-			QList<QFormatRange> ranges=line.getOverlays(QDocument::formatFactory()->id("styleHint"));
-			for(int i=0;i<ranges.size();i++){
-				if(!backward&&(line.lineNumber()>cur.lineNumber()||(ranges[i].offset+ranges[i].length>cur.columnNumber()&&ranges[i].offset+ranges[i].length>cur.anchorColumnNumber()))){
-					cur.moveTo(line,ranges[i].offset);
-					cur.movePosition(ranges[i].length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
-					breaking=true;
-					break;
-				}
-				if(backward&&(line.lineNumber()<cur.lineNumber()||(ranges[i].offset<cur.columnNumber()&&ranges[i].offset<cur.anchorColumnNumber()))){
-					cur.moveTo(line,ranges[i].offset);
-					cur.movePosition(ranges[i].length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
-					breaking=true;
-					break;
-				}
+	typedef QFormatRange (QDocumentLine::*OverlaySearch) (int, int, int);
+	OverlaySearch overlaySearch = backward?&QDocumentLine::getLastOverlayBetween:&QDocumentLine::getFirstOverlayBetween;
+	int overlayType = QDocument::formatFactory()->id("styleHint");
+	QDocumentCursor cur = currentEditor()->cursor();
+	if (cur.hasSelection()){
+		if (backward) cur = cur.selectionStart();
+		else cur = cur.selectionEnd();
+	}
+	int lineNr = cur.lineNumber();
+	QDocumentLine line = cur.line();
+	int fx = backward?0:(cur.endColumnNumber()+1), tx = backward?cur.startColumnNumber()-1:line.length();
+	while (line.isValid()){
+		if (line.hasOverlay(overlayType)){
+			QFormatRange range = (line.*overlaySearch)(fx, tx, overlayType);
+			if (range.length > 0){
+				currentEditor()->setCursor(currentEditor()->document()->cursor(lineNr,range.offset,lineNr,range.offset+range.length));
+				return;
 			}
-			if(breaking) break;
 		}
 		if(backward)
-			line--; //TODO: optimize
+			lineNr--;
 		else
-			line++;
-	}
-	if(breaking){
-		currentEditor()->setCursor(cur);
+			lineNr++;
+		line = currentEditor()->document()->line(lineNr);
+		fx = 0;
+		tx = line.length();
 	}
 }
 

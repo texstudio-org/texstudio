@@ -94,19 +94,12 @@ QString QuickDocumentDialog::getNewDocumentText(){
 	tag+=QString("\n");
 	if (ui.comboBoxEncoding->currentText()!="NONE") tag+=QString("\\usepackage[")+ui.comboBoxEncoding->currentText()+QString("]{inputenc}");
 	tag+=QString("\n");
-	int li=3;
-	if (ui.comboBoxEncoding->currentText().startsWith("utf8x")) {
+	if (ui.comboBoxEncoding->currentText().startsWith("utf8x"))
 		tag+=QString("\\usepackage{ucs}\n");
-		li=li+1;
-	}
-	if (ui.checkBoxAMS->isChecked()) {
+	if (ui.checkBoxAMS->isChecked())
 		tag+=QString("\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}\n");
-		li=li+3;
-	}
-	if (ui.checkBoxIDX->isChecked()) {
+	if (ui.checkBoxIDX->isChecked())
 		tag+=QString("\\usepackage{makeidx}\n");
-		li=li+1;
-	}
 
 	if (ui.checkBoxGeometryPageWidth->isChecked() ||
 	    ui.checkBoxGeometryPageHeight->isChecked() ||
@@ -125,14 +118,10 @@ QString QuickDocumentDialog::getNewDocumentText(){
 		tag+="\\usepackage["+geometryOptions+"]{geometry}\n";
 	}
 
-	if (ui.lineEditAuthor->text()!="") {
+	if (ui.lineEditAuthor->text()!="")
 		tag+="\\author{"+ui.lineEditAuthor->text()+"}\n";
-		li=li+1;
-	}
-	if (ui.lineEditTitle->text()!="") {
+	if (ui.lineEditTitle->text()!="")
 		tag+="\\title{"+ui.lineEditTitle->text()+"}\n";
-		li=li+1;
-	}
 
 	tag+=QString("\\begin{document}\n\n\\end{document}");
 	return tag;

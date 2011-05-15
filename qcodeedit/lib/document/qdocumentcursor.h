@@ -149,7 +149,13 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		
 		Q_INVOKABLE int anchorLineNumber() const;
 		Q_INVOKABLE int anchorColumnNumber() const;
-		
+
+		Q_INVOKABLE int startLineNumber() const;
+		Q_INVOKABLE int startColumnNumber() const;
+
+		Q_INVOKABLE int endLineNumber() const;
+		Q_INVOKABLE int endColumnNumber() const;
+
 		int visualColumnNumber() const;
 		
 		Q_INVOKABLE void setLineNumber(int c, MoveMode m = MoveAnchor);

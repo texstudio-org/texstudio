@@ -440,7 +440,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		if(curLine.startsWith("%\\include")||curLine.startsWith("%\\input")){
 			curLine.replace(0,1,' ');
 		}
-		int totalLength=curLine.length();
+		//int totalLength=curLine.length();
 		while(findCommandWithArg(curLine,cmd,name,arg,remainder,optionStart)){
 			//update offset
 			//TODO: int offset=totalLength-curLine.length();
@@ -515,7 +515,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				completerNeedsUpdate=true;
 				QStringList lst;
 				lst << "\\begin{"+name+"}" << "\\end{"+name+"}";
-				foreach(const QString elem,lst){
+				foreach(const QString& elem,lst){
 					mUserCommandList.insert(line(i).handle(),elem);
 					ltxCommands.possibleCommands["user"].insert(elem);
 					if(!removedUserCommands.removeAll(elem)){

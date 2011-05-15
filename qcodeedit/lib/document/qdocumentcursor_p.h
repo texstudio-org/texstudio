@@ -92,6 +92,12 @@ class QCE_EXPORT QDocumentCursorHandle
 		int anchorLineNumber() const;
 		int anchorColumnNumber() const;
 		
+		int startLineNumber() const;
+		int startColumnNumber() const;
+
+		int endLineNumber() const;
+		int endColumnNumber() const;
+
 		int visualColumnNumber() const;
 		
 		void setLineNumber(int l, int m = QDocumentCursor::MoveAnchor);
