@@ -12,7 +12,7 @@
 #include "spellerutility.h"
 #include "smallUsefulFunctions.h"
 
-SpellerUtility::SpellerUtility(): currentDic(""), pChecker(0) {
+SpellerUtility::SpellerUtility(): spellcheckErrorFormat(-1), currentDic(""), pChecker(0), spellCodec(0) {
 	checkCache.reserve(1020);
 }
 bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
@@ -30,6 +30,7 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
 	if (!pChecker) {
 		currentDic="";
 		ignoreListFileName="";
+		REQUIRE_RET(false,false);
 	}
 	spell_encoding=QString(pChecker->get_dic_encoding());
 	spellCodec = QTextCodec::codecForName(spell_encoding.toLatin1());

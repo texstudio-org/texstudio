@@ -201,7 +201,7 @@ class QCE_EXPORT QDocumentPrivate
 		QUndoStack m_commands;
 		QDocumentCursor *m_editCursor;
 		
-		bool m_suspend, m_deleting;
+		bool m_deleting;
 		QStack<QDocumentCommandBlock*> m_macros;
 		
 		QMap<int, int> m_hidden;
@@ -268,8 +268,7 @@ class QCE_EXPORT QDocumentPrivate
 		QTextCodec *m_codec;
 
 		QDateTime m_lastModified;
-		
-		QDocumentBuffer *m_buffer;
+
 		QVector<QDocumentLineHandle*> m_lines;
 
 		QCache<QDocumentLineHandle*,QPixmap> m_LineCache;

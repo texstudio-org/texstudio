@@ -81,7 +81,7 @@ public:
 	QStringList labelItem()const {
 	    QList<ReferencePair> lst=mLabelItem.values();
 	    QStringList result;
-	    foreach(const ReferencePair elem,lst){
+	    foreach(const ReferencePair& elem,lst){
 		result << elem.name;
 	    }
 
@@ -90,7 +90,7 @@ public:
 	QStringList labelItemAt(QDocumentLineHandle *dlh){
 	    QList<ReferencePair> lst=mLabelItem.values(dlh);
 	    QStringList result;
-	    foreach(const ReferencePair elem,lst){
+	    foreach(const ReferencePair& elem,lst){
 		result << elem.name;
 	    }
 	    return result;
@@ -98,7 +98,7 @@ public:
 	QStringList refItem() const{
 	    QList<ReferencePair> lst=mRefItem.values();
 	    QStringList result;
-	    foreach(const ReferencePair elem,lst){
+	    foreach(const ReferencePair& elem,lst){
 		result << elem.name;
 	    }
 	    return result;
@@ -106,7 +106,7 @@ public:
 	QStringList refItemAt(QDocumentLineHandle *dlh){
 	    QList<ReferencePair> lst=mRefItem.values(dlh);
 	    QStringList result;
-	    foreach(const ReferencePair elem,lst){
+	    foreach(const ReferencePair& elem,lst){
 		result << elem.name;
 	    }
 	    return result;
@@ -117,10 +117,10 @@ public:
 	const QSet<QString> additionalCommandsList() const{
 	    return mCompleterWords;
 	}
-	void updateRefsLabels(const QString ref);
+	void updateRefsLabels(const QString& ref);
 	void recheckRefsLabels();
-	int countLabels(QString name);
-	int countRefs(QString name);
+	int countLabels(const QString& name);
+	int countRefs(const QString& name);
 	QMultiHash<QDocumentLineHandle*,int> getLabels(QString name);
 	QMultiHash<QDocumentLineHandle*,int> getRefs(QString name);
 
@@ -157,7 +157,7 @@ public:
 
 	LatexParser ltxCommands;
 
-	bool containsPackage(const QString name);
+	bool containsPackage(const QString& name);
 	void updateCompletionFiles(QStringList &added,QStringList &removed,bool forceUpdate);
 
 private:

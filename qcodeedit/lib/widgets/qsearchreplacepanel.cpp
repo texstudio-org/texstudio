@@ -577,10 +577,10 @@ void QSearchReplacePanel::resizeEvent(QResizeEvent *e){
 
 bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
 {
-	int kc;
 
 	if ( o == leFind || o == leReplace )
 	{
+		int kc;
 		switch ( e->type() )
 		{
 			/*

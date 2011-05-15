@@ -45,7 +45,7 @@ scriptengine::~scriptengine(){
 	delete engine;
 }
 
-void scriptengine::setScript(const QString script){
+void scriptengine::setScript(const QString& script){
 	m_script=script;
 }
 void scriptengine::setEditor(QEditor *editor){

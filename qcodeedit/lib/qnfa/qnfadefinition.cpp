@@ -246,7 +246,8 @@ void QNFADefinition::load(const QDomDocument& doc, QLanguageFactory::LangData *d
 QNFADefinition::QNFADefinition()
  : m_indentFold(false), m_root(0)
 {
-
+	for (unsigned int i=0;i < sizeof(m_openingParenthesisEnd)/sizeof(m_openingParenthesisEnd[0]); i++)
+		m_openingParenthesisEnd[i] = false;
 }
 
 QNFADefinition::~QNFADefinition()

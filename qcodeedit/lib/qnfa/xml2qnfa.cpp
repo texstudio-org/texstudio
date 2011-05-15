@@ -245,7 +245,7 @@ void replaceAll(QDomNode e, const QString& what, const QString& through) {
 		e.setNodeValue(e.nodeValue().replace(what,through));
 	if (e.nodeType() == QDomNode::ElementNode){
 		QDomNamedNodeMap atts = e.toElement().attributes();
-		for (int i=0;i<atts.length();i++)
+		for (uint i=0;i<atts.length();i++)
 			replaceAll(atts.item(i), what, through);
 	}
 }

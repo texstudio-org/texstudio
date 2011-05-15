@@ -802,7 +802,7 @@ void Texmaker::setupToolBars() {
 		QObject *obj=configManager.menuParent->findChild<QObject*>(id);
 		QAction *act=qobject_cast<QAction*>(obj);
 		if (act && zw.canConvert<QString>()) act->setIcon(QIcon(zw.toString()));
-		i++;
+		++i;
 	}
 	//setup customizable toolbars
 	for (int i=0;i<configManager.managedToolBars.size();i++){
@@ -1935,7 +1935,7 @@ void Texmaker::editIndentSection() {
 		m_cursor=currentEditorView()->editor->cursor();
 		m_line=currentEditorView()->editor->cursor().line().text();
 		QString m_old="";
-		foreach(const QString elem,m_replace) {
+		foreach(const QString& elem,m_replace) {
 			if (m_old!="") m_line.replace(elem,m_old);
 			m_old=elem;
 		}
@@ -1965,7 +1965,7 @@ void Texmaker::editUnIndentSection() {
 		m_cursor=currentEditorView()->editor->cursor();
 		m_line=currentEditorView()->editor->cursor().line().text();
 		QString m_old="";
-		foreach(const QString elem,m_replace) {
+		foreach(const QString& elem,m_replace) {
 			if (m_old!="") m_line.replace(elem,m_old);
 			m_old=elem;
 		}
@@ -3296,11 +3296,11 @@ void Texmaker::CleanAll() {
 	if (query==0) {
 		//fileSave();
 		stat2->setText(QString(" %1 ").arg(tr("Clean")));
-		foreach(const QString finame,finames){
+		foreach(const QString& finame,finames){
 			QFileInfo fi(finame);
 			QString basename=fi.absolutePath()+"/"+fi.completeBaseName();
 			QStringList extension=extensionStr.split(",");
-			foreach(const QString ext, extension)
+			foreach(const QString& ext, extension)
 				QFile::remove(basename+ext);
 		}
 		stat2->setText(QString(" %1 ").arg(tr("Ready")));
@@ -3590,7 +3590,7 @@ void Texmaker::GeneralOptions() {
 		updateHighlighting|=(realtimeChecking!=configManager.editorConfig->realtimeChecking);
 		// check for change in load completion files
 		QStringList newLoadedFiles=configManager.completerConfig->getLoadedFiles();
-		foreach(const QString elem,newLoadedFiles){
+		foreach(const QString& elem,newLoadedFiles){
 			if(loadFiles.removeAll(elem)==0)
 				updateHighlighting=true;
 			if(updateHighlighting)
@@ -3700,7 +3700,7 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	}
 
 	// execute command line
-	foreach(const QString fileToLoad,filesToLoad){
+	foreach(const QString& fileToLoad,filesToLoad){
 		QFileInfo ftl(fileToLoad);
 		if (fileToLoad != "") {
 			if (ftl.exists())
@@ -4758,7 +4758,7 @@ void Texmaker::svnPatch(QEditor *ed,QString diff){
 	int cur_line;
 	bool atDocEnd=false;
 	QDocumentCursor c=ed->cursor();
-	foreach(const QString elem,lines){
+	foreach(const QString& elem,lines){
 		QChar ch=elem.at(0);
 		if(ch=='@'){
 			if(rx.indexIn(elem)>-1){
@@ -5006,7 +5006,7 @@ void Texmaker::selectBracket(){
 	currentEditor()->setCursor(currentEditor()->document()->cursor(orig.lineNumber(), orig.columnNumber(), to.lineNumber(), to.columnNumber()));
 }
 
-void Texmaker::openExternalFile(const QString name,const QString defaultExt,LatexDocument *doc){
+void Texmaker::openExternalFile(const QString& name,const QString& defaultExt,LatexDocument *doc){
 	if(!doc)
 		doc=dynamic_cast<LatexDocument*>(currentEditor()->document());
 	if(!doc) return;
@@ -5227,7 +5227,7 @@ void Texmaker::findNextWordRepetion(){
 			if(breaking) break;
 		}
 		if(backward)
-			line--;
+			line--; //TODO: optimize
 		else
 			line++;
 	}

@@ -329,7 +329,6 @@ QString WebPublishDialog::content_navigation(int page,int numpages,QString up_pa
 int WebPublishDialog:: nbpagesps(QString psfile) {
 	QString line;
 	QString captured="0";
-	int result;
 	bool ok;
 	QFile f(psfile);
 	QRegExp rx("^\%\%Pages:\\s+(-?\\d+)");
@@ -346,7 +345,7 @@ int WebPublishDialog:: nbpagesps(QString psfile) {
 			}
 		}
 		f.close();
-		result=captured.toInt(&ok);
+		int result=captured.toInt(&ok);
 		if (ok  && (result>0)) {
 			return result;
 		} else {
@@ -358,7 +357,6 @@ int WebPublishDialog:: nbpagesps(QString psfile) {
 void WebPublishDialog::extractpage(QString psfile,int page) {
 	QString line;
 	bool go=true;
-	int numpage;
 	QFile f(workdir+"/"+psfile);
 	QRegExp rxpage("^\%\%Page:\\s+(-?\\d+)");
 	QRegExp rxtrailer("^\%\%Trailer");
@@ -377,7 +375,7 @@ void WebPublishDialog::extractpage(QString psfile,int page) {
 			while (!psts.atEnd()) {
 				line=psts.readLine();
 				if (rxpage.indexIn(line)>-1) {
-					numpage=rxpage.cap(1).toInt();
+					int numpage=rxpage.cap(1).toInt();
 					if (numpage==page) {
 						line="\%\%Page: 1 1";
 						go=true;

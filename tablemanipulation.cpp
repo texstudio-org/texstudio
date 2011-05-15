@@ -268,7 +268,7 @@ void LatexTables::removeColumn(QDocument *doc,const int lineNumber,const int col
                         //commands
                         if(zw.at(i)=='\\') {
                             QRegExp rx("\\w+");
-                            int out=rx.indexIn(zw,i+1);
+				rx.indexIn(zw,i+1);
                             QString cmd="\\"+rx.cap();
                             if(elementsToKeep.contains(cmd)){
                                 keep += " " + cmd;
@@ -318,9 +318,9 @@ int LatexTables::findNextToken(QDocumentCursor &cur,QStringList tokens,bool keep
 	if(backwards){
 	    offset=offset-line.length();
 	    QString help;
-	    foreach(const QChar elem,line){
+	    foreach(const QChar& elem,line)
 		help.prepend(elem);
-	    }
+
 	    line=help;
 	}
 

@@ -11,7 +11,7 @@ public:
 	ThesaurusDialog(QWidget *parent = 0);
 	~ThesaurusDialog(){}
 	QString getReplaceWord();
-	void setSearchWord(const QString word);
+	void setSearchWord(const QString& word);
 /*	void readDatabase(const QString filename);
 	static ThesaurusDatabaseType loadDatabase(const QString& fileName);
 	void setDatabase(ThesaurusDatabaseType database);*/

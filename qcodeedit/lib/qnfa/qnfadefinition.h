@@ -142,6 +142,8 @@ class QCE_EXPORT QNFADefinition : public QLanguageDefinition
 				
 				length[0] = 0;
 				length[1] = 0;
+
+				weight[0] = weight[1] = 0;
 			}
 			
 			enum Type

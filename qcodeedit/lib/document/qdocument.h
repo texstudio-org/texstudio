@@ -85,11 +85,7 @@ struct PlaceHolder
 	};
 
 	PlaceHolder() : length(0), autoRemove(true), autoOverride(false), affector(0) {}
-	PlaceHolder(const PlaceHolder& ph) : length(ph.length), autoRemove(ph.autoRemove), autoOverride(ph.autoOverride), affector(ph.affector)
-	{
-		cursor = ph.cursor;
-		mirrors  << ph.mirrors;
-	}
+	PlaceHolder(const PlaceHolder& ph) : length(ph.length), autoRemove(ph.autoRemove), autoOverride(ph.autoOverride), affector(ph.affector), cursor(ph.cursor), mirrors(ph.mirrors){}
 	PlaceHolder(int len, const QDocumentCursor &cur): length(len), autoRemove(true), autoOverride(false), affector(0), cursor(cur) {}
 
 	int length;

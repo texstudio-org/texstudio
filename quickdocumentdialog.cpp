@@ -82,8 +82,6 @@ QuickDocumentDialog::~QuickDocumentDialog() {
 
 QString QuickDocumentDialog::getNewDocumentText(){
 	QString opt="";
-	int li=3;
-
 	QString tag=QString("\\documentclass[");
 	tag+=ui.comboBoxSize->currentText()+QString(",");
 	tag+=ui.comboBoxPaper->currentText();
@@ -96,6 +94,7 @@ QString QuickDocumentDialog::getNewDocumentText(){
 	tag+=QString("\n");
 	if (ui.comboBoxEncoding->currentText()!="NONE") tag+=QString("\\usepackage[")+ui.comboBoxEncoding->currentText()+QString("]{inputenc}");
 	tag+=QString("\n");
+	int li=3;
 	if (ui.comboBoxEncoding->currentText().startsWith("utf8x")) {
 		tag+=QString("\\usepackage{ucs}\n");
 		li=li+1;

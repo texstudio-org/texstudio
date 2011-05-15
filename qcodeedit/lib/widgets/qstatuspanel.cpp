@@ -45,7 +45,7 @@ QCE_AUTO_REGISTER(QStatusPanel)
 	\brief Constructor
 */
 QStatusPanel::QStatusPanel(QWidget *p)
- : QPanel(p)
+ : QPanel(p), m_conflictSpot(0)
 {
 	setFixedHeight(fontMetrics().lineSpacing() + 4);
 	timer=0;

@@ -422,7 +422,7 @@ QSettings* ConfigManager::readSettings() {
 				//import texmaker global settings
 				QSettings oldconfig(QSettings::IniFormat,QSettings::UserScope,"xm1","texmaker");
 				QStringList keys=oldconfig.allKeys();
-				foreach(const QString key, keys) config->setValue(key,oldconfig.value(key,""));
+				foreach(const QString& key, keys) config->setValue(key,oldconfig.value(key,""));
 				importTexmakerSettings = true;
 			}
 		}
@@ -483,7 +483,10 @@ QSettings* ConfigManager::readSettings() {
 	webPublishDialogConfig->readSettings(*config);
 
 	//build commands
-	if (!buildManager) QMessageBox::critical(0,"TexMakerX","No build Manager created! => crash",QMessageBox::Ok);
+	if (!buildManager) {
+		QMessageBox::critical(0,"TexMakerX","No build Manager created! => crash",QMessageBox::Ok);
+		return 0;
+	}
 	buildManager->readSettings(*config);
 	runLaTeXBibTeXLaTeX=config->value("Tools/After BibTeX Change", "tmx://latex && tmx://bibtex && tmx://latex").toString()!="";
 	
@@ -744,7 +747,7 @@ bool ConfigManager::execConfigDialog() {
 	QStringList files=findResourceFiles("completion","*.cwl",QStringList(configBaseDir));
 	QListWidgetItem *item;
 	const QStringList& loadedFiles = completerConfig->getLoadedFiles();
-	foreach(const QString elem,files) {
+	foreach(const QString& elem,files) {
 		item=new QListWidgetItem(elem,confDlg->ui.completeListWidget);
 		item->setFlags(Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
 		if (loadedFiles.contains(elem)) item->setCheckState(Qt::Checked);
@@ -1217,8 +1220,8 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 
 QMenu* ConfigManager::updateListMenu(const QString& menuName, const QStringList& items, const QString& namePrefix, bool prefixNumber, const char* slotName, const int baseShortCut, bool alwaysRecreateMenuItems, int additionalEntries){
 	QMenu* menu = getManagedMenu(menuName);
-	Q_ASSERT(menu->objectName() == menuName);
 	REQUIRE_RET(menu, 0);
+	Q_ASSERT(menu->objectName() == menuName);
 	QList<QAction*> actions = menu->actions();
 	if (!alwaysRecreateMenuItems &&
 	    actions.count() == items.size() + additionalEntries) {

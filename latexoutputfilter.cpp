@@ -58,7 +58,7 @@ void LatexLogEntry::clear(){
 
 //===========================OutputFilter===============================
 OutputFilter::OutputFilter() : QObject(),
-	m_log(QString())
+	m_nOutputLines(0), m_log(QString())
 {
 }
 
@@ -124,7 +124,8 @@ int OutputFilter::GetCurrentOutputLine() const
 LatexOutputFilter::LatexOutputFilter() : OutputFilter(),
 	m_nErrors(0),
 	m_nWarnings(0),
-	m_nBadBoxes(0)
+	m_nBadBoxes(0),
+	m_nParens(0)
 {
 }
 
