@@ -212,7 +212,7 @@ void UserMenuDialog::change(const QModelIndex& modelIndex,const QModelIndex&) {
 
 }
 
-void UserMenuDialog::modelDataChanged(const QModelIndex& from ,const QModelIndex& to){
+void UserMenuDialog::modelDataChanged(const QModelIndex& from ,const QModelIndex&){
 	change(from, QModelIndex());
 	//better to set only changed column?
 }
