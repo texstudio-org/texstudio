@@ -1114,10 +1114,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Show help as tooltip on ext in editor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1129,6 +1125,10 @@ You ask the second: &quot;Is the first one lying?&quot;, and he answers: &quot;N
 You ask the last: &quot;Is the second one lying?&quot;, and he answers: &quot;No&quot;.
 
 Which one of the three wise will always tell the truth?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show help as tooltip on text in editor</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
