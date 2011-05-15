@@ -93,8 +93,10 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 	currentTicket++;
 	int mCurrentTicket=currentTicket;
 	bool enqueueCmd=!checkDuplicate(mCurrentTicket,info);
-	if(!enqueueCmd || (!priority && renderedPages.contains(pageNr))) // already queued fillcache
+	if(!enqueueCmd) // already queued fillcache
 	    return QPixmap();
+	if(!priority && renderedPages.contains(pageNr))
+	    enqueueCmd=false;
 	// return best guess/cached at once, refine later
 	Poppler::Page *page=document->page(pageNr);
 	CachePixmap img;
