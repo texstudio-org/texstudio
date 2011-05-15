@@ -149,7 +149,7 @@ QString BuildManager::findFileInPath(QString fileName) {
 	#else
 	QStringList paths=path.split(":"); //linux
 	#endif
-	foreach(const QString p, paths)
+	foreach(const QString& p, paths)
 		if (p.endsWith("/") && QFileInfo(p+fileName).exists()) return (p+fileName);
 		else if (p.endsWith("\\") && QFileInfo(p+fileName).exists()) return (p+fileName);
 		else if (QFileInfo(p+"/"+fileName).exists()) return (p+"\\"+fileName);
