@@ -207,7 +207,7 @@ private slots:
 	QStringList svnLog();
 	void changeToRevision(QString rev,QString old_rev="");
 	void svnDialogClosed();
-	void openExternalFile(const QString name,const QString defaultExt="tex",LatexDocument *doc=0); // signaled by latexViewer to open specific file
+	void openExternalFile(const QString& name,const QString& defaultExt="tex",LatexDocument *doc=0); // signaled by latexViewer to open specific file
 
 	void editUndo();
 	void editRedo();

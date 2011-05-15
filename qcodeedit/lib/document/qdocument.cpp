@@ -1949,6 +1949,7 @@ QDocumentLineHandle::QDocumentLineHandle(QDocument *d)
  , m_state(QDocumentLine::LayoutDirty)
  , m_layout(0)
  , lineHasSelection(QDocumentLineHandle::noSel)
+ , mTicket(0)
 {
 	#if QT_VERSION < 0x040400
 	m_ref.init(1);
@@ -1968,6 +1969,7 @@ QDocumentLineHandle::QDocumentLineHandle(const QString& s, QDocument *d)
  , m_state(QDocumentLine::LayoutDirty)
  , m_layout(0)
  , lineHasSelection(QDocumentLineHandle::noSel)
+ , mTicket(0)
 {
 	#if QT_VERSION < 0x040400
 	m_ref.init(1);
@@ -2614,8 +2616,6 @@ void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
 		idx = m_frontiers.at(wrap - 1).first;
 	}
 
-	int column = 0;
-
 	if ( m_layout )
 	{
 		x += int(m_layout->lineAt(wrap).cursorToX(cpos));
@@ -2628,6 +2628,7 @@ void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
 
 		QDocumentPrivate *d = m_doc->impl();
 
+		int column;
 		foreach (const RenderRange& r, ranges) {
 			int tempFmts[FORMAT_MAX_COUNT]; QFormat tempFormats[FORMAT_MAX_COUNT]; int newFont;
 			d->m_formatScheme->extractFormats(r.format, tempFmts, tempFormats, newFont);
@@ -3282,7 +3283,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 		int dir = 0; // 0 = down; 1 = up
 #endif
 		int wrap = 0, xpos = QDocumentPrivate::m_leftMargin, ypos = 0;
-		bool leading = ranges.first().format & FORMAT_SPACE, pastLead = false;
+		bool leading = ranges.first().format & FORMAT_SPACE;
 
 		foreach ( const RenderRange& r, ranges )
 		{
@@ -3303,13 +3304,6 @@ void QDocumentLineHandle::draw(	QPainter *p,
 								);
 
 				}
-
-				/*
-				if ( pastLead && (r.format & FORMAT_SPACE) )
-				{
-					indent = QDocumentPrivate::m_leftMargin;
-				}
-				*/
 
 				++wrap;
 				column = 0;
@@ -3336,7 +3330,6 @@ void QDocumentLineHandle::draw(	QPainter *p,
 			{
 				//indent = xpos;
 				leading = false;
-				pastLead = true;
 			}
 
 			// TODO : clip more accurately (i.e inside ranges)
@@ -3519,7 +3512,6 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				{
 					//indent = xpos;
 					leading = false;
-					pastLead = true;
 				}
 				*/
 
@@ -5626,6 +5618,7 @@ QDocument::LineEnding QDocumentPrivate::m_defaultLineEnding = QDocument::Conserv
 QDocumentPrivate::QDocumentPrivate(QDocument *d)
  : 	m_doc(d),
 	m_editCursor(0),
+	m_deleting(false),
 	m_lastGroupId(-1),
 	m_constrained(false),
 	m_hardLineWrap(false),
@@ -5811,7 +5804,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	//t.start();
 	QDocumentLineHandle *h;
 	bool inSel = false, fullSel;
-	int i, realln, pos = 0, xOffset,
+	int i, realln, pos = 0,
 		firstLine = qMax(0, cxt.yoffset / m_lineSpacing),
 		lastLine = qMax(0, firstLine + (cxt.height / m_lineSpacing));
 
@@ -5940,9 +5933,6 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
 
 		bg = base;
-
-		// idx = column = 0;
-		xOffset = m_leftMargin; // margin
 
 		// cursor(s) stuff
 		bool cursorOnLine = false;
@@ -6568,13 +6558,13 @@ int QDocumentPrivate::getRenderRangeWidth(int &columnDelta, int curColumn, const
 
 void QDocumentPrivate::updateFormatCache()
 {
+	if ( !m_font )
+		return;
+
 	m_fixedPitch = !hasWorkAround(QDocument::DisableFixedPitchMode) && QFontInfo(*m_font).fixedPitch();
 
 	m_fonts.clear();
 	m_fontMetrics.clear();
-
-	if ( !m_font )
-		return;
 
 	if ( !m_formatScheme )
 	{
@@ -6685,7 +6675,7 @@ void QDocumentPrivate::removeLines(int after, int n)
 	if ( (after >= 0) && (after < m_lines.count()) )
 		m_lines.at(after)->setFlag(QDocumentLine::CollapsedBlockStart, false);
 
-	QMap<int, int>::iterator it = m_hidden.begin();
+	//QMap<int, int>::iterator it = m_hidden.begin();
 
 	//qDebug("translating %i", visualLine);
 /*	//remove/resize the m_hidden cache if the removed lines are within a hidden block
@@ -6744,7 +6734,7 @@ void QDocumentPrivate::removeLines(int after, int n)
 		}
 	}
 */
-	it = m_wrapped.begin();
+	QMap<int, int>::iterator it = m_wrapped.begin();
 
 	while ( it != m_wrapped.end() )
 	{

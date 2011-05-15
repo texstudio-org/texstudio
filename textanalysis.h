@@ -15,7 +15,7 @@ class ClsWord {
 public:
 	QString word;
 	int count;
-	ClsWord() {}
+	ClsWord(): count(0) {}
 	ClsWord(QString nw, int nc);
 	bool operator<(const ClsWord &cmpTo) const;
 };

@@ -17,10 +17,10 @@ public:
     QString name;
     int id;
 
-    bool operator ==(const Environment env){
+    bool operator ==(const Environment& env){
 	return (name==env.name)&&(id==env.id);
     }
-    bool operator !=(const Environment env){
+    bool operator !=(const Environment& env){
 	return (name!=env.name)||(id!=env.id);
     }
 
@@ -74,7 +74,7 @@ public:
     int verbatimFormat;
     void setLtxCommands(LatexParser cmds);
     void waitForQueueProcess();
-    static int containsEnv(const QString name,const StackEnvironment envs,const int id=-1);
+    static int containsEnv(const QString& name,const StackEnvironment& envs,const int id=-1);
     bool checkCommand(const QString &cmd,const StackEnvironment &envs);
     static bool equalEnvStack(StackEnvironment env1,StackEnvironment env2);
     bool queuedLines();

@@ -17,7 +17,7 @@
 //------------------------------Default Input Binding--------------------------------
 class CompleterInputBinding: public QEditorInputBinding {
 public:
-	CompleterInputBinding():active(0),showMostUsed(0) {}
+	CompleterInputBinding():active(0),showAlways(false),showMostUsed(0),completer(0),editor(0),oldBinding(0),curStart(0),maxWritten(0) {}
 	virtual QString id() const {
 		return "TexMakerX::CompleteInputBinding";
 	}
@@ -627,7 +627,7 @@ void CompletionListModel::setBaseWords(const QSet<QString> &newwords, bool norma
 	QList<CompletionWord> newWordList;
 	acceptedChars.clear();
 	newWordList.clear();
-	for(QSet<QString>::const_iterator i=newwords.constBegin();i!=newwords.constEnd();i++) {
+	for(QSet<QString>::const_iterator i=newwords.constBegin();i!=newwords.constEnd();++i) {
 		QString str=*i;
 		CompletionWord cw(str);
 		if(!normalTextList){
@@ -647,7 +647,7 @@ void CompletionListModel::setBaseWords(const QSet<QString> &newwords, bool norma
 		    cw.snippetLength=0;
 		}
 		newWordList.append(cw);
-		foreach(const QChar c, str) acceptedChars.insert(c);
+		foreach(const QChar& c, str) acceptedChars.insert(c);
 	}
 	qSort(newWordList.begin(), newWordList.end());
 
@@ -660,9 +660,9 @@ void CompletionListModel::setBaseWords(const QList<CompletionWord> &newwords, bo
 	QList<CompletionWord> newWordList;
 	acceptedChars.clear();
 	newWordList.clear();
-	foreach(const CompletionWord cw, newwords) {
+	foreach(const CompletionWord& cw, newwords) {
 		newWordList.append(cw);
-		foreach(const QChar c, cw.word) acceptedChars.insert(c);
+		foreach(const QChar& c, cw.word) acceptedChars.insert(c);
 	}
 	qSort(newWordList.begin(), newWordList.end());
 

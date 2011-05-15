@@ -17,11 +17,11 @@ const int kMaxPageZoom=1000000;
 const qreal kMaxDpiForFullPage=200.0;
 
 CachePixmap::CachePixmap(const QPixmap &pixmap) :
-		QPixmap(pixmap)
+		QPixmap(pixmap), resolution(0), x(0), y(0)
 {
 }
 CachePixmap::CachePixmap() :
-		QPixmap()
+		QPixmap(), resolution(0), x(0), y(0)
 {
 }
 
@@ -236,10 +236,10 @@ void PDFRenderManager::fillCache(int pg){
 	}
 }
 
-bool PDFRenderManager::checkDuplicate(int &ticket,RecInfo &info){
+bool PDFRenderManager::checkDuplicate(int &,RecInfo &info){
 	//check if a similar picture is not already in the renderqueue
 	QMultiMap<int,RecInfo>::const_iterator i=lstOfReceivers.constBegin();
-	for(;i!=lstOfReceivers.constEnd();i++){
+	for(;i!=lstOfReceivers.constEnd();++i){
 		if(i.value().pageNr!=info.pageNr)
 			continue;
 		if(i.value().x<0 && i.value().y<0 && i.value().w<0 && i.value().h<0

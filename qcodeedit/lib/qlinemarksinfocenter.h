@@ -37,7 +37,7 @@ class QDocumentLineHandle;
 
 struct QLineMark
 {
-	inline QLineMark() : line(-1) {}
+	inline QLineMark() : mark(-1), line(-1) {}
 	
 	inline QLineMark(const QString& f, int l, int m)
 	 : mark(m), line(l), file(f)
@@ -62,7 +62,7 @@ Q_DECLARE_TYPEINFO(QLineMark, Q_MOVABLE_TYPE);
 
 struct QLineMarkHandle
 {
-	inline QLineMarkHandle() : line(0) {}
+	inline QLineMarkHandle() : mark(-1), line(0) {}
 	
 	inline QLineMarkHandle(const QString& f, QDocumentLineHandle *l, int m)
 	 : mark(m), line(l), file(f)

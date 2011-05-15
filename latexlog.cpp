@@ -2,9 +2,11 @@
 #include "qlinemarksinfocenter.h"
 
 LatexLogModel::LatexLogModel(QObject * parent): QAbstractTableModel(parent) {
+	markIDs[LT_NONE] = -1;
 	markIDs[LT_ERROR]=QLineMarksInfoCenter::instance()->markTypeId("error");
 	markIDs[LT_WARNING]=QLineMarksInfoCenter::instance()->markTypeId("warning");
 	markIDs[LT_BADBOX]=QLineMarksInfoCenter::instance()->markTypeId("badbox");
+	foundType[LT_NONE] = foundType[LT_ERROR] = foundType[LT_WARNING] = foundType[LT_BADBOX] = false;
 }
 
 int LatexLogModel::columnCount(const QModelIndex & parent) const {

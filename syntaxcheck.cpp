@@ -3,7 +3,7 @@
 #include "tablemanipulation.h"
 
 SyntaxCheck::SyntaxCheck(QObject *parent) :
-		QThread(parent)
+		QThread(parent), syntaxErrorFormat(-1)
 {
 	mLinesLock.lock();
 	stopped=false;
@@ -71,9 +71,9 @@ void SyntaxCheck::run(){
 		//if(newRanges.isEmpty()) continue;
 		newLine.dlh->lockForWrite();
 		if(newLine.ticket==newLine.dlh->getCurrentTicket()){ // discard results if text has been changed meanwhile
-			foreach(const Error elem,newRanges){
+			foreach(const Error& elem,newRanges)
 				newLine.dlh->addOverlayNoLock(QFormatRange(elem.range.first,elem.range.second,syntaxErrorFormat));
-			}
+
 			int oldCookie=newLine.dlh->getCookie(0).toInt();
 			bool cookieChanged=(oldCookie!=excessCols);
 			// active envs
@@ -334,7 +334,7 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh,int pos,StackEnvironmen
 	checkLine(line,newRanges,activeEnv,excessCols);
 	// find Error at Position
 	ErrorType result=ERR_none;
-	foreach(const Error elem,newRanges){
+	foreach(const Error& elem,newRanges){
 		if(elem.range.second+elem.range.first<pos) continue;
 		if(elem.range.first>pos) break;
 		result=elem.type;
@@ -361,7 +361,7 @@ bool SyntaxCheck::queuedLines(){
     return mLinesAvailable.available()>0;
 }
 
-int SyntaxCheck::containsEnv(const QString name,const StackEnvironment envs,const int id){
+int SyntaxCheck::containsEnv(const QString& name,const StackEnvironment& envs,const int id){
     for (int i = envs.size()-1; i >-1; --i) {
 	Environment env=envs.at(i);
 	if(env.name==name){

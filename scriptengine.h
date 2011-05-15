@@ -14,7 +14,7 @@ public:
 	scriptengine(QObject *parent=0);
 	~scriptengine();
 	void run();
-	void setScript(const QString script);
+	void setScript(const QString& script);
 	void setEditor(QEditor *editor);
 
 protected:

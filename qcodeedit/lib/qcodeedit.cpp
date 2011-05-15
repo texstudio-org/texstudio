@@ -82,7 +82,7 @@ QString QCE::fetchDataFile(const QString& file)
 	if ( QFileInfo(file).isAbsolute() )
 		return file;
 	
-	foreach ( const QString dp, __qce_data_path )
+	foreach ( const QString& dp, __qce_data_path )
 	{
 		QDir d(dp);
 		

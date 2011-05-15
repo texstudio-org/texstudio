@@ -526,10 +526,9 @@ void PDFBaseSearchDock::resizeEvent(QResizeEvent *e){
 
 bool PDFBaseSearchDock::eventFilter(QObject *o, QEvent *e)
 {
-	int kc;
-
 	if ( o == leFind)
 	{
+		int kc;
 		switch ( e->type() )
 		{
 			case QEvent::KeyPress :
@@ -692,7 +691,7 @@ PDFScrollArea::resizeEvent(QResizeEvent *event)
 	updateScrollBars();
 }
 
-void PDFScrollArea::scrollContentsBy(int dx, int dy)
+void PDFScrollArea::scrollContentsBy(int, int)
 {
 	Q_ASSERT(pdf);
 	updateWidgetPosition();
@@ -752,7 +751,7 @@ struct renderInfo{
 
 
 PDFOverviewDock::PDFOverviewDock(PDFDocument *doc)
-	: PDFDock(doc)
+	: PDFDock(doc), toGenerate(0)
 {
 	setObjectName("outline");
 	setWindowTitle(getTitle());

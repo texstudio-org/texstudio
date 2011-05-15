@@ -90,7 +90,7 @@ void StringListTableModel::swapRows(int a, int b){
 	}
 }
 
-bool StringListTableModel::setData(const QModelIndex &index, const QVariant &value, int role){
+bool StringListTableModel::setData(const QModelIndex &index, const QVariant &value, int ){
 	if (!index.isValid()) return false;
 	if (lists[index.column()].second->at(index.row()) == value.toString()) return true;
 	lists[index.column()].second->replace(index.row(), value.toString());

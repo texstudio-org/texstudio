@@ -13,7 +13,7 @@ class CompletionListModel : public QAbstractListModel {
 	Q_OBJECT
 
 public:
-    CompletionListModel(QObject *parent = 0): QAbstractListModel(parent),mostUsedUpdated(false),mCanFetchMore(false),mWordCount(0) {}
+	CompletionListModel(QObject *parent = 0): QAbstractListModel(parent),mostUsedUpdated(false),mCanFetchMore(false),mLastMU(0), mWordCount(0) {}
 
 	int rowCount(const QModelIndex &parent = QModelIndex()) const;
 	QVariant data(const QModelIndex &index, int role)const;

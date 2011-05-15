@@ -142,9 +142,9 @@ signals:
 	void lineHandleDeleted(QDocumentLineHandle* l);
 	void showMarkTooltipForLogMessage(int logMessage);
 	void needCitation(const QString& id);//request a new citation 
-	void showPreview(const QString text);
+	void showPreview(const QString& text);
 	void showPreview(const QDocumentCursor& c);
-	void openFile(const QString name);
+	void openFile(const QString& name);
 	void thesaurus(int line,int col);
 };
 

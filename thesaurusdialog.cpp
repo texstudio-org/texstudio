@@ -123,7 +123,7 @@ void ThesaurusDialog::prepareDatabase(const QString& filename){
 #endif
 }
 
-void ThesaurusDialog::setSearchWord(const QString word)
+void ThesaurusDialog::setSearchWord(const QString& word)
 {
 	if (!thesaurus) return;
 	searchWrdLe->setText(word);

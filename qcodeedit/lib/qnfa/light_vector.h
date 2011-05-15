@@ -87,7 +87,7 @@ class light_vector
 			m_data[size - 1] = v;
 		}
 		
-		inline const T& at(quint16 i)
+		inline const T& at(quint16 i) const
 		{
 			return *(m_data + i);
 		}

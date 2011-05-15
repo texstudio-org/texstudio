@@ -735,7 +735,7 @@ QRegExp generateRegExp(const QString &text,const bool isCase,const bool isWord, 
     return m_regexp;
 }
 
-void addEnvironmentToDom(QDomDocument& doc,const QString EnvironName,const QString EnvironMode){
+void addEnvironmentToDom(QDomDocument& doc,const QString& EnvironName,const QString& EnvironMode){
 	QDomElement root= doc.documentElement();
 	QDomElement tag = doc.createElement("context");
 	tag.setAttribute("id",EnvironMode=="numbers"?"mathMyEnv":"myVerb");
@@ -841,8 +841,7 @@ int LatexParser::findContext(QString &line,int col){
 	if((start_command>start_ref)&&(start_command>start_close)&&(start_command>bow)){
 		helper=line.mid(start_command);
 		stop=helper.indexOf("{");
-		if(stop>-1) stop=stop;
-		else {
+		if(stop<0) {
 			stop=helper.indexOf("[");
 			int stop2=helper.indexOf(" ");
 			if(stop==-1) stop=stop2;
@@ -1238,9 +1237,8 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexComp
 								}
 							}
 						}
-						int i;
 						if (line.startsWith("\\begin")||line.startsWith("\\end")) {
-							i=line.indexOf("%<",0);
+							int i=line.indexOf("%<",0);
 							line.replace(i,2,"");
 							i=line.indexOf("%>",0);
 							line.replace(i,2,"");
@@ -1282,7 +1280,7 @@ void LatexParser::append(LatexParser elem){
 	QString key=i.key();
 	QSet<QString> set=i.value();
 	possibleCommands[key].unite(set);
-	i++;
+	++i;
     }
 }
 
@@ -1296,7 +1294,7 @@ void LatexParser::substract(LatexParser elem){
 	QString key=i.key();
 	QSet<QString> set=i.value();
 	possibleCommands[key].subtract(set);
-	i++;
+	++i;
     }
 }
 
