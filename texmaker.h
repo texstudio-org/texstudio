@@ -44,12 +44,12 @@
 typedef QHash<QString,int> SymbolList;
 
 enum SVNSTATUS {
-        Unknown=0,
-        Unmanaged,
-        Modified,
-        Locked,
-        CheckedIn,
-        InConflict
+	Unknown=0,
+	Unmanaged,
+	Modified,
+	Locked,
+	CheckedIn,
+	InConflict
 };
 
 enum RunCommandFlag{
@@ -60,7 +60,7 @@ enum RunCommandFlag{
 	RCF_CHECK_PDF_LOCK = 16,
 	RCF_NO_DOCUMENT = 32, // don't check if document is saved as it is not used
 	RCF_IS_RERUN_CALL = 64 // call is an automatically rerun (internal)
-};
+		      };
 Q_DECLARE_FLAGS(RunCommandFlags, RunCommandFlag);
 
 class Texmaker : public QMainWindow {
@@ -115,7 +115,7 @@ private:
 
 	QPointer<UnicodeInsertion> unicodeInsertionDialog;
 
-//gui
+	//gui
 	TmxTabWidget *EditorView;
 	QToolBar* centralToolBar;
 	CustomWidgetList *leftPanel;
@@ -127,17 +127,17 @@ private:
 
 	OutputViewWidget *outputView; //contains output widgets (over OutputLayout)
 
-//toolbars
-//
+	//toolbars
+	//
 	QToolBar *spellToolBar;
 	QAction *ToggleAct, *ToggleRememberAct;
 
 	QLabel *stat1, *stat2, *stat3;
 	
 	QToolButton *combo1,*combo2,*combo3,*comboSpell;
-        int comboSpellHeight; // necessaryfor mac
+	int comboSpellHeight; // necessaryfor mac
 
-//settings
+	//settings
 	ConfigManager configManager;
 	BuildManager buildManager;
 	int split1_right, split1_left, split2_top, split2_bottom;
@@ -150,12 +150,12 @@ private:
 	int spellcheckErrorFormat;
 	SpellerUtility *mainSpeller;
 
-//dialogs
+	//dialogs
 	TextAnalysisDialog *textAnalysisDlg;
 	SpellerDialog *spellDlg;
 	templateselector *templateSelectorDialog;
 
-//tools
+	//tools
 	bool FINPROCESS, ERRPROCESS, KILLPROCESS, PROCESSRUNNING;
 
 	SymbolList symbolScore;
@@ -192,8 +192,8 @@ private slots:
 	void fileOpenRecentProject();
 	void MarkCurrentFileAsRecent();
 	void fileCheckin(QString filename="");
-        void fileLockPdf(QString filename="");
-        void fileCheckinPdf(QString filename="");
+	void fileLockPdf(QString filename="");
+	void fileCheckinPdf(QString filename="");
 	void fileUpdate(QString filename="");
 	void fileUpdateCWD(QString filename="");
 	void checkin(QString fn,QString text="tmx auto checkin",bool blocking=false);
@@ -201,8 +201,8 @@ private slots:
 	void svncreateRep(QString fn);
 	void svnUndo(bool redo=false);
 	void svnPatch(QEditor *ed,QString diff);
-        void svnLock(QString fn);
-        SVNSTATUS svnStatus(QString filename);
+	void svnLock(QString fn);
+	SVNSTATUS svnStatus(QString filename);
 	void showOldRevisions();
 	QStringList svnLog();
 	void changeToRevision(QString rev,QString old_rev="");
@@ -239,8 +239,8 @@ private slots:
 	void editInsertRefToPrevLabel();
 	void editFindGlobal();
 
-        void findWordRepetions();
-        void findNextWordRepetion();
+	void findWordRepetions();
+	void findNextWordRepetion();
 
 	void StructureContextMenu(const QPoint& point);
 	void structureContextMenuCloseDocument();
@@ -325,7 +325,7 @@ private slots:
 	bool NoLatexErrors();
 	bool LogExists();
 	void ClearMarkers();
-/////
+	/////
 	void LatexHelp();
 	void UserManualHelp();
 	void HelpAbout();
@@ -381,7 +381,7 @@ private slots:
 	void jumpToSearch(QString filename,int lineNumber);
 
 	void cursorPositionChanged();
-//	void treeWidgetChanged();
+	//	void treeWidgetChanged();
 
 	bool generateMirror(bool setCur=false);
 	void generateBracketInverterMirror();
