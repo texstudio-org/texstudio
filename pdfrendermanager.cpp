@@ -67,16 +67,18 @@ void PDFRenderManager::setDocument(QString fileName){
 	renderedPages.clear();
 	for(int i=0;i<num_renderQueues;i++){
 		document=Poppler::Document::load(fileName);
+		renderQueues[i]->setDocument(document);
+		if (!document) return;
 		document->setRenderBackend(Poppler::Document::SplashBackend);
 		document->setRenderHint(Poppler::Document::Antialiasing);
 		document->setRenderHint(Poppler::Document::TextAntialiasing);
-		renderQueues[i]->setDocument(document);
 		if(!renderQueues[i]->isRunning())
 			renderQueues[i]->start();
 	}
 }
 
 QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,double xres, double yres, int x, int y, int w, int h,bool cache,bool priority){
+	if (!document) return QPixmap();
 	RecInfo info;
 	info.obj=obj;
 	info.slot=rec;
@@ -213,6 +215,7 @@ qreal PDFRenderManager::getResLimit(){
 }
 
 void PDFRenderManager::fillCache(int pg){
+	if (!document) return;
 	QSet<int> renderedPage;
 	foreach(RecInfo elem,lstOfReceivers){
 		if(elem.cache)
