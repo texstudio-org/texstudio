@@ -81,8 +81,8 @@ void SpellerUtility::unload() {
 			QTextCodec* utf8=QTextCodec::codecForName("UTF-8");
 			f.write(utf8->fromUnicode("%Ignored-Words;encoding:utf-8;version:TexMakerX:1.8\n"));
 			foreach(const QString str, ignoredWordList)
-			if (!str.startsWith("%"))
-				f.write(utf8->fromUnicode(str+"\n"));
+				if (!str.startsWith("%"))
+					f.write(utf8->fromUnicode(str+"\n"));
 		}
 	}
 	currentDic="";

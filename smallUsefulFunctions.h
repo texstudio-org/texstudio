@@ -38,7 +38,7 @@ bool isFileRealWritable(const QString& filename);
 bool isExistingFileRealWritable(const QString& filename);
 //adds QDir::separator() if the path end not with it
 QString ensureTrailingDirSeparator(const QString& dirPath);
-		
+
 
 //returns kde version 0,3,4
 int x11desktop_env();
@@ -61,7 +61,7 @@ enum NextWordFlag {
 	NW_REFERENCE=5,
 	NW_LABEL=6,
 	NW_CITATION=7
-};
+	     };
 //Returns the next word (giving meaning to the nextToken tokens)
 //line: line to be examined
 //index: start index as input and returns the first character after the found word
@@ -125,13 +125,13 @@ enum {
 	MIB_UTF16BE = 1013,
 	MIB_UTF16LE = 1014
 
-};
+		};
 
 class LatexParser{
 public:
 	LatexParser();
 
-        enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Option};
+	enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Option};
 	// realizes whether col is in a \command or in a parameter {}
 	static int findContext(QString &line, int column);
 	
@@ -151,9 +151,9 @@ public:
 	static QSet<QString> definitionCommands;
 	static QSet<QString> optionCommands;
 	static QSet<QString> mathStartCommands;
-        static QSet<QString> mathStopCommands;
-        static QSet<QString> tabularEnvirons;
-        static QSet<QString> fileCommands;
+	static QSet<QString> mathStopCommands;
+	static QSet<QString> tabularEnvirons;
+	static QSet<QString> fileCommands;
 	static QSet<QString> includeCommands;
 	static QSet<QString> usepackageCommands;
 	static QSet<QString> customCommands;

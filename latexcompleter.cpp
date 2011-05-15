@@ -47,10 +47,10 @@ public:
 			completer->filterList(wrd,showMostUsed);
 			completer->widget->show();
 			if(showMostUsed==1 && completer->countWords()==0){ // if prefered list is empty, take next more extensive one
-			    completer->setTab(0);
+				completer->setTab(0);
 			}
 			if(showMostUsed==0 && completer->countWords()==0){
-			    completer->setTab(2);
+				completer->setTab(2);
 			}
 			completer->adjustWidget();
 		}
@@ -67,10 +67,10 @@ public:
 			//int alreadyWrittenLen=editor->cursor().columnNumber()-curStart;
 			//remove current text for correct case
 			if(completer->forcedRef){
-			    while(!cursor.atLineEnd() && cursor.nextChar()!='}')
-				cursor.deleteChar();
-			    if(cursor.nextChar()=='}')
-				cursor.deleteChar();
+				while(!cursor.atLineEnd() && cursor.nextChar()!='}')
+					cursor.deleteChar();
+				if(cursor.nextChar()=='}')
+					cursor.deleteChar();
 			}
 			for (int i=maxWritten-cursor.columnNumber(); i>0; i--) cursor.deleteChar();
 			for (int i=cursor.columnNumber()-curStart; i>0; i--) cursor.deletePreviousChar();
@@ -136,9 +136,9 @@ public:
 			my_curWord=completer->listModel->getLastWord().word;
 
 			for (int j=my_start; (j<my_curWord.length()&&j<myResult.length()); j++) {
-			    if (myResult[j]!=my_curWord[j]) {
-				myResult=myResult.left(j);
-			    }
+				if (myResult[j]!=my_curWord[j]) {
+					myResult=myResult.left(j);
+				}
 			}
 
 			removeRightWordPart();
@@ -196,8 +196,8 @@ public:
 		} else if (event->key()==Qt::Key_Delete) {
 			if (editor->cursor().columnNumber()<maxWritten) maxWritten--;
 			if(completer->forcedRef){
-			    if(editor->cursor().nextChar()=='}')
-				completer->forcedRef=false;
+				if(editor->cursor().nextChar()=='}')
+					completer->forcedRef=false;
 			}
 			editor->cursor().deleteChar();
 			handled=true;
@@ -244,7 +244,7 @@ public:
 			//handled=true;
 			showMostUsed++;
 			if(showMostUsed>2)
-			    showMostUsed=0;
+				showMostUsed=0;
 			completer->tbAbove->setCurrentIndex(showMostUsed);
 			completer->tbBelow->setCurrentIndex(showMostUsed);
 			return true;
@@ -271,7 +271,7 @@ public:
 					maxWritten=curStart+1;
 				} else {
 					if (LatexCompleter::config && LatexCompleter::config->eowCompletes) {
-					    insertCompletedWord();
+						insertCompletedWord();
 					}
 					QDocumentCursor edc=editor->cursor();
 					if (edc.hasSelection()) {
@@ -348,16 +348,16 @@ public:
 	}
 
 	void setMostUsed(int mu,bool quiet=false){
-	    showMostUsed=mu;
-	    if(quiet)
-		return;
-	    completer->filterList(getCurWord(),showMostUsed);
-	    if (!completer->list->currentIndex().isValid())
-		    select(completer->list->model()->index(0,0,QModelIndex()));
+		showMostUsed=mu;
+		if(quiet)
+			return;
+		completer->filterList(getCurWord(),showMostUsed);
+		if (!completer->list->currentIndex().isValid())
+			select(completer->list->model()->index(0,0,QModelIndex()));
 	}
 
 	bool getMostUsed(){
-	    return showMostUsed;
+		return showMostUsed;
 	}
 
 	void resetBinding() {
@@ -515,27 +515,27 @@ bool CompletionListModel::isNextCharPossible(const QChar &c){
 	return false;
 }
 bool CompletionListModel::canFetchMore(const QModelIndex &) const{
-    return mCanFetchMore;
+	return mCanFetchMore;
 }
 void CompletionListModel::fetchMore(const QModelIndex &){
-    beginInsertRows(QModelIndex(),words.count(),qMin(words.count()+100,mWordCount));
-    filterList(mLastWord,mLastMU,true);
-    endInsertRows();
+	beginInsertRows(QModelIndex(),words.count(),qMin(words.count()+100,mWordCount));
+	filterList(mLastWord,mLastMU,true);
+	endInsertRows();
 }
 CompletionWord CompletionListModel::getLastWord(){
-    return mLastWordInList;
+	return mLastWordInList;
 }
 
 void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetchMore) {
 	if(mostUsed<0)
-	    mostUsed=LatexCompleter::config->preferedCompletionTab;
+		mostUsed=LatexCompleter::config->preferedCompletionTab;
 	if (word==curWord && mostUsed==mostUsedUpdated && !fetchMore) return; //don't return if mostUsed differnt from last call
 	mLastWord=word;
 	mLastMU=mostUsed;
 	mCanFetchMore=false;
 	mostUsedUpdated=mostUsed;
 	if(!fetchMore)
-	    words.clear();
+		words.clear();
 	Qt::CaseSensitivity cs = Qt::CaseInsensitive;
 	bool checkFirstChar=false;
 	if (LatexCompleter::config){
@@ -545,81 +545,81 @@ void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetch
 	}
 	int cnt=0;
 	if(!fetchMore)
-	    it=qLowerBound(baselist,CompletionWord(word));
+		it=qLowerBound(baselist,CompletionWord(word));
 	while(it!=baselist.constEnd()){
-	    if (it->word.startsWith(word,cs) &&
-		(!checkFirstChar || it->word[1] == word[1]) ){
-		    if(mostUsed==2 || it->usageCount>=mostUsed || it->usageCount==-2){
-			words.append(*it);
-			cnt++;
-		    }
-	    }else{
-		if(!it->word.startsWith(word,Qt::CaseInsensitive))
-		    break; // sorted list
-	    }
-	    ++it;
-	    if(cnt>100){
-		mCanFetchMore=true;
-		break;
-	    }
+		if (it->word.startsWith(word,cs) &&
+		    (!checkFirstChar || it->word[1] == word[1]) ){
+			if(mostUsed==2 || it->usageCount>=mostUsed || it->usageCount==-2){
+				words.append(*it);
+				cnt++;
+			}
+		}else{
+			if(!it->word.startsWith(word,Qt::CaseInsensitive))
+				break; // sorted list
+		}
+		++it;
+		if(cnt>100){
+			mCanFetchMore=true;
+			break;
+		}
 	}
 	curWord=word;
 	if(!fetchMore){
-	    mWordCount=words.count();
-	    if(!words.isEmpty())
-		mLastWordInList=words.last();
+		mWordCount=words.count();
+		if(!words.isEmpty())
+			mLastWordInList=words.last();
 	}
 	if(mCanFetchMore && !fetchMore){
-	    // calculate real number of rows
-	    QString wordp=word;
-	    if(wordp.isEmpty()){
-		mWordCount=baselist.count();
-		mLastWordInList=baselist.last();
-	    }else{
-		QChar lst=wordp[wordp.length()-1];
-		ushort nr=lst.unicode();
-		wordp[wordp.length()-1]=QChar(nr+1);
-		QList<CompletionWord>::const_iterator it2=qLowerBound(baselist,CompletionWord(wordp));
-		mWordCount=it2-it;
-		mLastWordInList=*(--it2);
-	    }
+		// calculate real number of rows
+		QString wordp=word;
+		if(wordp.isEmpty()){
+			mWordCount=baselist.count();
+			mLastWordInList=baselist.last();
+		}else{
+			QChar lst=wordp[wordp.length()-1];
+			ushort nr=lst.unicode();
+			wordp[wordp.length()-1]=QChar(nr+1);
+			QList<CompletionWord>::const_iterator it2=qLowerBound(baselist,CompletionWord(wordp));
+			mWordCount=it2-it;
+			mLastWordInList=*(--it2);
+		}
 	}
 
 	if(!fetchMore)
-	    reset();
+		reset();
 }
 void CompletionListModel::incUsage(const QModelIndex &index){
-    if (!index.isValid())
-	    return ;
+	if (!index.isValid())
+		return ;
 
-    if (index.row() >= words.size())
-	    return ;
+	if (index.row() >= words.size())
+		return ;
 
-    int j=index.row();
-    CompletionWord curWord=words.at(j);
-    if(curWord.usageCount<-1)
-	return; // don't count text words
+	int j=index.row();
+	CompletionWord curWord=words.at(j);
+	if(curWord.usageCount<-1)
+		return; // don't count text words
 
-    for (int i=0; i<wordsCommands.count(); i++) {
-	if(wordsCommands[i].word==curWord.word){
-	    wordsCommands[i].usageCount++;
-	    if(curWord.snippetLength<=0)
-		break; // no ref commands etc. are stored permanently
-	    bool replaced=false;
-	    QList<QPair<int,int> >res=config->usage.values(curWord.index);
-	    for (int j = 0; j < res.size(); ++j) {
-		if (res.at(j).first == curWord.snippetLength){
-		    config->usage.remove(curWord.index,res.at(j));
-		    config->usage.insert(curWord.index,qMakePair(curWord.snippetLength,wordsCommands[i].usageCount));
-		    replaced=true;
-		    break;
+	for (int i=0; i<wordsCommands.count(); i++) {
+		if(wordsCommands[i].word==curWord.word){
+			wordsCommands[i].usageCount++;
+			if(curWord.snippetLength<=0)
+				break; // no ref commands etc. are stored permanently
+			bool replaced=false;
+			QList<QPair<int,int> >res=config->usage.values(curWord.index);
+			for (int j = 0; j < res.size(); ++j) {
+				if (res.at(j).first == curWord.snippetLength){
+					config->usage.remove(curWord.index,res.at(j));
+					config->usage.insert(curWord.index,qMakePair(curWord.snippetLength,wordsCommands[i].usageCount));
+					replaced=true;
+					break;
+				}
+			}
+			if(!replaced)
+				config->usage.insert(curWord.index,qMakePair(curWord.snippetLength,wordsCommands[i].usageCount)); // new word
+			break;
 		}
-	    }
-	    if(!replaced)
-		config->usage.insert(curWord.index,qMakePair(curWord.snippetLength,wordsCommands[i].usageCount)); // new word
-	    break;
 	}
-    }
 }
 
 typedef QPair<int,int> PairIntInt;
@@ -631,20 +631,20 @@ void CompletionListModel::setBaseWords(const QSet<QString> &newwords, bool norma
 		QString str=*i;
 		CompletionWord cw(str);
 		if(!normalTextList){
-		    cw.index=qHash(str);
-		    cw.snippetLength=str.length();
-		    cw.usageCount=0;
-		    QList<QPair<int,int> >res=config->usage.values(cw.index);
-		    foreach(const PairIntInt elem,res){
-			if(elem.first==cw.snippetLength){
-			    cw.usageCount=elem.second;
-			    break;
+			cw.index=qHash(str);
+			cw.snippetLength=str.length();
+			cw.usageCount=0;
+			QList<QPair<int,int> >res=config->usage.values(cw.index);
+			foreach(const PairIntInt elem,res){
+				if(elem.first==cw.snippetLength){
+					cw.usageCount=elem.second;
+					break;
+				}
 			}
-		    }
 		}else{
-		    cw.index=0;
-		    cw.usageCount=-2;
-		    cw.snippetLength=0;
+			cw.index=0;
+			cw.usageCount=-2;
+			cw.snippetLength=0;
 		}
 		newWordList.append(cw);
 		foreach(const QChar& c, str) acceptedChars.insert(c);
@@ -740,19 +740,19 @@ void LatexCompleter::changeView(int pos){
 }
 
 void LatexCompleter::listClicked(QModelIndex index){
-    Q_UNUSED(index);
-    if (!completerInputBinding->insertCompletedWord()) {
-	editor->insertText("\n");
-    }
-    completerInputBinding->resetBinding();
+	Q_UNUSED(index);
+	if (!completerInputBinding->insertCompletedWord()) {
+		editor->insertText("\n");
+	}
+	completerInputBinding->resetBinding();
 }
 
 void LatexCompleter::insertText(QString txt){
-    if(!isVisible())
-	return;
-    completerInputBinding->insertText(txt);
-    QString cur=completerInputBinding->getCurWord();
-    filterList(cur,completerInputBinding->getMostUsed());
+	if(!isVisible())
+		return;
+	completerInputBinding->insertText(txt);
+	QString cur=completerInputBinding->getCurWord();
+	filterList(cur,completerInputBinding->getMostUsed());
 }
 
 void LatexCompleter::setAdditionalWords(const QSet<QString> &newwords, bool normalTextList) {
@@ -764,23 +764,23 @@ void LatexCompleter::setAdditionalWords(const QSet<QString> &newwords, bool norm
 }
 
 void LatexCompleter::adjustWidget(){
-    int newWordMax=0;
-    QFont f=QApplication::font();
-    f.setItalic(true);
-    QFontMetrics fm(f);
-    const QList<CompletionWord> & words=listModel->getWords();
-    for (int i=0; i<words.size(); i++) {
-	    if (words[i].lines.empty() || words[i].placeHolders.empty()) continue;
-	    int temp=fm.width(words[i].lines[0])+words[i].placeHolders[0].size()+10;
-	    if (temp>newWordMax) newWordMax=temp;
-    }
-    maxWordLen=newWordMax;
-    int wd=200>maxWordLen?200:maxWordLen;
-    QScrollBar *bar=list->verticalScrollBar();
-    if(bar && bar->isVisible()){
-	wd+=bar->width()*2;
-    }
-    widget->resize(wd,200);
+	int newWordMax=0;
+	QFont f=QApplication::font();
+	f.setItalic(true);
+	QFontMetrics fm(f);
+	const QList<CompletionWord> & words=listModel->getWords();
+	for (int i=0; i<words.size(); i++) {
+		if (words[i].lines.empty() || words[i].placeHolders.empty()) continue;
+		int temp=fm.width(words[i].lines[0])+words[i].placeHolders[0].size()+10;
+		if (temp>newWordMax) newWordMax=temp;
+	}
+	maxWordLen=newWordMax;
+	int wd=200>maxWordLen?200:maxWordLen;
+	QScrollBar *bar=list->verticalScrollBar();
+	if(bar && bar->isVisible()){
+		wd+=bar->width()*2;
+	}
+	widget->resize(wd,200);
 }
 
 void LatexCompleter::updateAbbreviations(){
@@ -823,10 +823,10 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	if (!c.isValid()) return;
 	int phId=editor->currentPlaceHolder();
 	if(phId>-1){
-	    PlaceHolder ph=editor->getPlaceHolder(phId);
-	    if(ph.cursor.isWithinSelection(c) && !ph.mirrors.isEmpty()){
-		editor->removePlaceHolder(phId);
-	    }
+		PlaceHolder ph=editor->getPlaceHolder(phId);
+		if(ph.cursor.isWithinSelection(c) && !ph.mirrors.isEmpty()){
+			editor->removePlaceHolder(phId);
+		}
 	}
 	if (c.hasSelection()) {
 		c.setColumnNumber(qMax(c.columnNumber(),c.anchorColumnNumber()));
@@ -845,15 +845,15 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	disconnect(tbBelow,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
 	disconnect(tbAbove,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
 	if(above){
-	    tbAbove->show();
-	    tbBelow->hide();
-	    tbAbove->setCurrentIndex(config->preferedCompletionTab);
-	    connect(tbAbove,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
+		tbAbove->show();
+		tbBelow->hide();
+		tbAbove->setCurrentIndex(config->preferedCompletionTab);
+		connect(tbAbove,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
 	}else{
-	    tbAbove->hide();
-	    tbBelow->show();
-	    tbBelow->setCurrentIndex(config->preferedCompletionTab);
-	    connect(tbBelow,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
+		tbAbove->hide();
+		tbBelow->show();
+		tbBelow->setCurrentIndex(config->preferedCompletionTab);
+		connect(tbBelow,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
 	}
 	completerInputBinding->setMostUsed(config->preferedCompletionTab,true);
 	widget->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
@@ -885,12 +885,12 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	} else completerInputBinding->bindTo(editor,this,false,c.columnNumber()-1);
 
 	if(completerInputBinding->getMostUsed()==1 && countWords()==0){ // if prefered list is empty, take next more extensive one
-	    setTab(0);
-	    adjustWidget();
+		setTab(0);
+		adjustWidget();
 	}
 	if(completerInputBinding->getMostUsed() && countWords()==0){
-	    setTab(2);
-	    adjustWidget();
+		setTab(2);
+		adjustWidget();
 	}
 
 	//line.document()->cursor(0,0).insertText(QString::number(offset.x())+":"+QString::number(offset.y()));
@@ -942,15 +942,15 @@ LatexCompleterConfig* LatexCompleter::getConfig() const{
 }
 
 int LatexCompleter::countWords() {
-    return listModel->getWords().count();
+	return listModel->getWords().count();
 }
 
 void LatexCompleter::setTab(int index){
-    Q_ASSERT(index>=0 && index<3);
-    if(tbBelow->isVisible())
-	tbBelow->setCurrentIndex(index);
-    if(tbAbove->isVisible())
-	tbAbove->setCurrentIndex(index);
+	Q_ASSERT(index>=0 && index<3);
+	if(tbBelow->isVisible())
+		tbBelow->setCurrentIndex(index);
+	if(tbAbove->isVisible())
+		tbAbove->setCurrentIndex(index);
 }
 
 void LatexCompleter::filterList(QString word,int showMostUsed) {
@@ -1006,24 +1006,24 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 		int cnt=document->countLabels(value);
 		topic="";
 		if(cnt==0){
-		    topic=tr("label missing!");
+			topic=tr("label missing!");
 		} else if(cnt>1) {
-		    topic=tr("label multiple times defined!");
+			topic=tr("label multiple times defined!");
 		} else {
-		    QMultiHash<QDocumentLineHandle*,int> result=document->getLabels(value);
-		    QDocumentLineHandle *mLine=result.keys().first();
-		    int l=mLine->line();
-		    if(mLine->document()!=editor->document()){
-			//LatexDocument *doc=document->parent->findDocument(mLine->document());
-			LatexDocument *doc=qobject_cast<LatexDocument *>(mLine->document());
-			Q_ASSERT_X(doc,"missing latexdoc","qdoc is not latex document !");
-			if(doc) topic=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
-		    }
-		    for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
-			topic+=mLine->document()->line(i).text().left(80);
-			if(mLine->document()->line(i).text().length()>80) topic+="...";
-			if(i<l+2) topic+="\n";
-		    }
+			QMultiHash<QDocumentLineHandle*,int> result=document->getLabels(value);
+			QDocumentLineHandle *mLine=result.keys().first();
+			int l=mLine->line();
+			if(mLine->document()!=editor->document()){
+				//LatexDocument *doc=document->parent->findDocument(mLine->document());
+				LatexDocument *doc=qobject_cast<LatexDocument *>(mLine->document());
+				Q_ASSERT_X(doc,"missing latexdoc","qdoc is not latex document !");
+				if(doc) topic=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
+			}
+			for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
+				topic+=mLine->document()->line(i).text().left(80);
+				if(mLine->document()->line(i).text().length()>80) topic+="...";
+				if(i<l+2) topic+="\n";
+			}
 		}
 	}else{
 		QString aim="<a name=\""+id;
