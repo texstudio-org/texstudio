@@ -329,6 +329,8 @@ PDFWidget::PDFWidget()
 	, scaleFactor(1.0)
 	, dpi(72.0)
 	, scaleOption(kFixedMag)
+	, imageDpi(0)
+	, imagePage(-1)
 	, magnifier(NULL)
 	, usingTool(kNone)
 	, singlePageStep(true)
@@ -1056,7 +1058,7 @@ void PDFWidget::reloadPage(bool sync)
 	pages.clear();
 	if (magnifier != NULL)
 		magnifier->setPage(-1, 0, QRect());
-	imagePage = NULL;
+	imagePage = 0;
 	image = QPixmap();
 	//highlightPath = QPainterPath();
 	if (document != NULL) {
