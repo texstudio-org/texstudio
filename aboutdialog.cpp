@@ -17,7 +17,7 @@ AboutDialog::AboutDialog(QWidget *parent)
 		:QDialog(parent) {
 	ui.setupUi(this);
 	ui.textBrowser->setOpenExternalLinks(true);
-	ui.textBrowser->setHtml(tr("<b>TexMakerX 2.1 (SVN %1)</b>").arg(TEXMAKERX_SVN_VERSION?TEXMAKERX_SVN_VERSION:"??") + "<br>" +
+	ui.textBrowser->setHtml(tr("<b>TexMakerX 2.2 (SVN %1)</b>").arg(TEXMAKERX_SVN_VERSION?TEXMAKERX_SVN_VERSION:"??") + "<br>" +
 				tr("Using Qt Version %1, compiled with Qt %2").arg(qVersion()).arg(QT_VERSION_STR) + "<br>" +
 				tr("Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet<br>")+
 				tr("TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun<br>QCodeEdit: Luc Bruant <br>html conversion: ")+QString::fromUtf8("Joël Amblard.</i><br>")+

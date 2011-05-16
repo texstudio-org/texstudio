@@ -57,7 +57,11 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.1 (SVN %1)&lt;/b&gt;</source>
-        <translation type="unfinished">&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt; {2.1 ?} {1)?}</translation>
+        <translation type="obsolete">&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt; {2.1 ?} {1)?}</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</source>
+        <translation type="unfinished">&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt; {2.1 ?} {1)?} {2.2 ?} {1)?}</translation>
     </message>
 </context>
 <context>
@@ -1406,6 +1410,10 @@ Which one of the three wise will always tell the truth?</source>
     </message>
     <message>
         <source>Show help as tooltip on text in editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>French quotes (babel): \og \fg{}</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
