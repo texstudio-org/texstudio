@@ -44,10 +44,6 @@
         <translation>A TexMakerX felhasznál az alábbi programok kódjaiból: Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL).és SyncTeX (szerző: Jerome Laurens)&lt;br&gt;A TexMakerX a TeXworks PDF-megjelenítőt használja.&lt;br&gt; A TexMakerX a DSingleApplication (szerző: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL) osztályt használja.&lt;br&gt;</translation>
     </message>
     <message>
-        <source>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</source>
-        <translation type="obsolete">&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</translation>
-    </message>
-    <message>
         <source>&lt;b&gt;TexMakerX 2.1 (SVN %1)&lt;/b&gt;</source>
         <translation>&lt;b&gt;TexMakerX 2.1 (SVN %1)&lt;/b&gt;</translation>
     </message>
@@ -366,38 +362,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Gyors fordítás parancsa</translation>
     </message>
     <message>
-        <source>LaTeX + dvips + View PS</source>
-        <translation type="obsolete">LaTeX + dvips + PS megjelenítése</translation>
-    </message>
-    <message>
-        <source>LaTeX + View DVI</source>
-        <translation type="obsolete">LaTeX + DVI megjelenítése</translation>
-    </message>
-    <message>
-        <source>PdfLaTeX + View PDF</source>
-        <translation type="obsolete">PdfLaTeX + PDF megjelenítése</translation>
-    </message>
-    <message>
-        <source>LaTeX + dvipdfm + View PDF</source>
-        <translation type="obsolete">LaTeX + dvipdfm + PDF megjelenítése</translation>
-    </message>
-    <message>
-        <source>LaTeX + dvips + ps2pdf + View PDF</source>
-        <translation type="obsolete">LaTeX + dvips + ps2pdf + PDF megjelenítése</translation>
-    </message>
-    <message>
-        <source>LaTeX + Asymptote + LaTeX + View DVI</source>
-        <translation type="obsolete">LaTeX + Asymptote + LaTeX + DVI megjelenítése</translation>
-    </message>
-    <message>
-        <source>PdfLaTeX + Asymptote + PdfLaTeX + View PDF</source>
-        <translation type="obsolete">PdfLaTeX + Asymptote + PdfLaTeX + PDF megjelenítése</translation>
-    </message>
-    <message>
-        <source>User : (% : filename without extension)</source>
-        <translation type="obsolete">Felhasználói: (%: fájlnév kiterjesztés nélkül)</translation>
-    </message>
-    <message>
         <source>More</source>
         <translation>Tovább</translation>
     </message>
@@ -468,10 +432,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <source>Editor Font Family</source>
         <translation>Szerkesztő betűcsalád</translation>
-    </message>
-    <message>
-        <source>Word Wrap</source>
-        <translation type="obsolete">Elválasztás</translation>
     </message>
     <message>
         <source>Editor Font Size</source>
@@ -616,10 +576,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <source>Auto Replace Latex-Commands</source>
         <translation>Latex parancsok automatikus cseréje</translation>
-    </message>
-    <message>
-        <source>Hard Line Wrap</source>
-        <translation type="obsolete">Sortörés</translation>
     </message>
     <message>
         <source>Custom Environment</source>
@@ -808,26 +764,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <source>Basic Key Mapping</source>
         <translation>Alapvető billenyűparancsok</translation>
-    </message>
-    <message>
-        <source>Special Key Replacement</source>
-        <translation type="obsolete">Különleges kulcs csere</translation>
-    </message>
-    <message>
-        <source>New column meaning:</source>
-        <translation type="obsolete">Új oszlop jelentése:</translation>
-    </message>
-    <message>
-        <source>Key to replace</source>
-        <translation type="obsolete">Cserélendő kulcs</translation>
-    </message>
-    <message>
-        <source>Text to insert before word</source>
-        <translation type="obsolete">Szöveg beillesztése a szó elé</translation>
-    </message>
-    <message>
-        <source>Text to insert after word</source>
-        <translation type="obsolete">Szöveg beillesztése a szó után</translation>
     </message>
     <message>
         <source>Auto save all files </source>
@@ -2485,57 +2421,28 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <translation>1x1</translation>
     </message>
     <message>
-        <source>11</source>
-        <translatorcomment>11</translatorcomment>
-        <translation type="obsolete">11</translation>
-    </message>
-    <message>
         <source>2x1</source>
         <translation>2x1</translation>
-    </message>
-    <message>
-        <source>21</source>
-        <translation type="obsolete">21</translation>
     </message>
     <message>
         <source>1x2</source>
         <translation>1x2</translation>
     </message>
     <message>
-        <source>12</source>
-        <translation type="obsolete">12</translation>
-    </message>
-    <message>
         <source>2x2</source>
         <translation>2x2</translation>
-    </message>
-    <message>
-        <source>22</source>
-        <translation type="obsolete">22</translation>
     </message>
     <message>
         <source>2x3</source>
         <translation>2x3</translation>
     </message>
     <message>
-        <source>23</source>
-        <translation type="obsolete">23</translation>
-    </message>
-    <message>
         <source>3x3</source>
         <translation>3x3</translation>
     </message>
     <message>
-        <source>33</source>
-        <translation type="obsolete">33</translation>
-    </message>
-    <message>
         <source>Custom...</source>
         <translation>Custom...</translation>
-    </message>
-    <message>
-        <source>xx</source>
-        <translation type="obsolete">xx</translation>
     </message>
     <message>
         <source>Single Page Step</source>
@@ -2735,11 +2642,6 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>Select a File</source>
         <translation>Fájl kiválasztása</translation>
-    </message>
-    <message>
-        <source>something</source>
-        <comment>CodeSnippet</comment>
-        <translation type="obsolete">valami</translation>
     </message>
 </context>
 <context>
@@ -4496,10 +4398,6 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
         <translation>Köve&amp;tkező</translation>
     </message>
     <message>
-        <source>Find D&amp;ialog...</source>
-        <translation type="obsolete">Keresési párbes&amp;zédablak...</translation>
-    </message>
-    <message>
         <source>&amp;Replace</source>
         <translation>&amp;Csere</translation>
     </message>
@@ -4919,10 +4817,6 @@ You have to save a document before you can compile it.</source>
 El kell mentenie a dokumentumot fordítás előtt.</translation>
     </message>
     <message>
-        <source>Could not start PdfLaTeX.</source>
-        <translation type="obsolete">A PdfLaTeX nem indítható.</translation>
-    </message>
-    <message>
         <source>Delete the output files generated by LaTeX?</source>
         <translation>Törli a LaTeX által előállított kimeneti fájlokat?</translation>
     </message>
@@ -5005,10 +4899,6 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
     <message>
         <source>Remove all favorites</source>
         <translation>Az összes kedvenc eltávolítása</translation>
-    </message>
-    <message>
-        <source>remove</source>
-        <translation type="obsolete">eltávolítás</translation>
     </message>
     <message>
         <source>commit comment:</source>
@@ -5473,10 +5363,6 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
         <translation>Mégsem</translation>
     </message>
     <message>
-        <source>Menu Item</source>
-        <translation type="obsolete">Menüelem</translation>
-    </message>
-    <message>
         <source>LaTeX Content</source>
         <translation>LaTeX tartalom</translation>
     </message>
@@ -5499,10 +5385,6 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
     <message>
         <source>Type</source>
         <translation>Típus</translation>
-    </message>
-    <message>
-        <source>Menu %1</source>
-        <translation type="obsolete">%1. menü</translation>
     </message>
     <message>
         <source>-</source>
