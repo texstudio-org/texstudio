@@ -69,7 +69,11 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.1 (SVN %1)&lt;/b&gt;</source>
-        <translation>&lt;b&gt;TexMakerX 2.1 (SVN %1)&lt;/b&gt;</translation>
+        <translation type="obsolete">&lt;b&gt;TexMakerX 2.1 (SVN %1)&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</source>
+        <translation>&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -1453,6 +1457,10 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     <message>
         <source>Show help as tooltip on text in editor</source>
         <translation>Zeige Hilfe als Tooltip auf Text im Editor</translation>
+    </message>
+    <message>
+        <source>French quotes (babel): \og \fg{}</source>
+        <translation>Französische Anführungszeichen (babel):  \og \fg{}</translation>
     </message>
 </context>
 <context>
