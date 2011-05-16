@@ -202,7 +202,7 @@
     </message>
     <message>
         <source>User : (% : filename without extension)</source>
-        <translation type="unfinished">Felhasználói: (%: fájlnév kiterjesztés nélkül)</translation>
+        <translation>Felhasználó: (%: fájlnév kiterjesztés nélkül)</translation>
     </message>
 </context>
 <context>
@@ -1035,87 +1035,87 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>Times to rerun latex if requested:</source>
-        <translation type="unfinished"></translation>
+        <translation>A LaTeX újrafuttatásához szükséges idő:</translation>
     </message>
     <message>
         <source>no line wrap</source>
-        <translation type="unfinished"></translation>
+        <translation>nincs sortörés</translation>
     </message>
     <message>
         <source>soft line wrap at window edge</source>
-        <translation type="unfinished"></translation>
+        <translation>puha sortörés ablak szélén</translation>
     </message>
     <message>
         <source>soft line wrap after max. characters</source>
-        <translation type="unfinished"></translation>
+        <translation>puha sortörés a max. karakterszám után</translation>
     </message>
     <message>
         <source>hard line wrap after max. characters</source>
-        <translation type="unfinished"></translation>
+        <translation>kemény sortörés a max. karakterszám után</translation>
     </message>
     <message>
         <source>Prefer &quot;Typical&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;Tipikus&quot; beállítása</translation>
     </message>
     <message>
         <source>Prefer &quot;Most Used&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;Leggyakrabban használt&quot; beállítása</translation>
     </message>
     <message>
         <source>Prefer &quot;All&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;Minden&quot; beállítása</translation>
     </message>
     <message>
         <source>Riddle</source>
-        <translation type="unfinished"></translation>
+        <translation>Rejtvény</translation>
     </message>
     <message>
         <source>first</source>
-        <translation type="unfinished"></translation>
+        <translation>első</translation>
     </message>
     <message>
         <source>second</source>
-        <translation type="unfinished"></translation>
+        <translation>második</translation>
     </message>
     <message>
         <source>three</source>
-        <translation type="unfinished"></translation>
+        <translation>harmadik</translation>
     </message>
     <message>
         <source>last</source>
-        <translation type="unfinished"></translation>
+        <translation>utolsó</translation>
     </message>
     <message>
         <source>Please answer 1, 2 or 3</source>
-        <translation type="unfinished"></translation>
+        <translation>Kérlek válassz: 1,2 vagy 3.</translation>
     </message>
     <message>
         <source>Only one answer allowed</source>
-        <translation type="unfinished"></translation>
+        <translation>Csak egy válasz megengedett</translation>
     </message>
     <message>
         <source>Replace double quotes:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kettős idézőjelek helyettesítése:</translation>
     </message>
     <message>
         <source>no replacement</source>
-        <translation type="unfinished"></translation>
+        <translation>Nincs helyettesítés</translation>
     </message>
     <message>
         <source>English quotes:  `` &apos;&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Angol idézőjelek:  `` &apos;&apos;</translation>
     </message>
     <message>
         <source>French quotes:  &quot;&lt; &quot;&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Francia idézőjelek:  &quot;&lt; &quot;&gt;</translation>
     </message>
     <message>
         <source>German quotes:  &quot;` &quot;&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Német idézőjelek:  &quot;` &quot;&apos;</translation>
     </message>
     <message>
         <source>Show preview as tooltip on formulas in editor</source>
-        <translation type="unfinished"></translation>
+        <translation>A képletekről előnézetet mutat &quot;felugró-súgó&quot;-ként</translation>
     </message>
     <message>
         <source>You come to a magic island where you meet three strange and wise friends. 
@@ -1125,11 +1125,21 @@ You ask the second: &quot;Is the first one lying?&quot;, and he answers: &quot;N
 You ask the last: &quot;Is the second one lying?&quot;, and he answers: &quot;No&quot;.
 
 Which one of the three wise will always tell the truth?</source>
-        <translation type="unfinished"></translation>
+        <translation>Egy bűvös szigetre érkezel, ahol három különös és bölcs baráttal találkozol.
+Az egyikük mindig igazat mond, a másikuk mindig hazudik, a harmadik süket, így ő véletlenszerűen válaszol.
+Megkérdezed az elsőt: &quot;Hazug vagy?&quot; Ö azt válaszolja: &quot;Nem&quot;.
+Megkérdezed a másodikat: &quot;Az első hazudik?&quot; Ö azt válaszolja: &quot;Nem&quot;.
+Megkérdezed az utolsót: &quot;A második hazudik?&quot; Ö azt válaszolja: &quot;Nem&quot;.
+
+A három bölcs közül melyik az igazmondó? (első/második/harmadik)</translation>
     </message>
     <message>
         <source>Show help as tooltip on text in editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Előnézetet mutasson tippként, ha a panel rejtve van</translation>
+    </message>
+    <message>
+        <source>French quotes (babel): \og \fg{}</source>
+        <translation>Francia idézőjelek (babel): \og \fg{}</translation>
     </message>
 </context>
 <context>
@@ -1866,7 +1876,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>typical</source>
-        <translation type="unfinished"></translation>
+        <translation>tipikus</translation>
     </message>
 </context>
 <context>
@@ -1947,7 +1957,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>Thesaurus...</source>
-        <translation type="unfinished">Teza&amp;urusz...</translation>
+        <translation>Teza&amp;urusz...</translation>
     </message>
 </context>
 <context>
@@ -2549,7 +2559,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>&amp;Continuous</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Folytonos</translation>
     </message>
 </context>
 <context>
@@ -3174,19 +3184,23 @@ Naprakészen kívánja tartani a fájlt egy újratöltéssel?</translation>
     </message>
     <message>
         <source>Saving failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Mentés meghiúsult</translation>
     </message>
     <message>
         <source>I failed to acquire write permissions on the file %1.
 
 Perhaps it is read-only or opened in another program?</source>
-        <translation type="unfinished"></translation>
+        <translation>Meghiúsult a(z) %1 fájl írása.
+
+Talán írásvédett vagy egy másik program használja?</translation>
     </message>
     <message>
         <source>Writing the document to file %1 failed after the old content was deleted.
 
 The file may have been corrupted!</source>
-        <translation type="unfinished"></translation>
+        <translation>A(z) %1 fájl írása meghiúsult korábi tartalom törlése után.
+
+Lehet, hogy a fájl sérült.</translation>
     </message>
 </context>
 <context>
@@ -5129,7 +5143,7 @@ Biztos, hogy folytatni akarja?</translation>
     </message>
     <message>
         <source>Open &amp;Recent</source>
-        <translation>&amp;Jelenlegi dokumentum megnyitása</translation>
+        <translation>&amp;Korábban szerkesztett dokumentum megnyitása</translation>
     </message>
     <message>
         <source>C&amp;lear Inline Preview</source>
@@ -5153,63 +5167,63 @@ Biztos, hogy folytatni akarja?</translation>
     </message>
     <message>
         <source>S&amp;ave Profile...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Profil mentése...</translation>
     </message>
     <message>
         <source>Could not start %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 nem tudott elindulni.</translation>
     </message>
     <message>
         <source>Show all open documents in this tree</source>
-        <translation type="unfinished"></translation>
+        <translation>Megmutat minden megnyitott dokumentumot ebből a fából</translation>
     </message>
     <message>
         <source>Show only current document in this tree</source>
-        <translation type="unfinished"></translation>
+        <translation>Csak az aktuális dokumentumot mutatja ebből a fából</translation>
     </message>
     <message>
         <source>Save Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil mentése</translation>
     </message>
     <message>
         <source>&amp;Searching</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Keresés</translation>
     </message>
     <message>
         <source>Continue F&amp;ind</source>
-        <translation type="unfinished"></translation>
+        <translation>K&amp;eresés folytatása</translation>
     </message>
     <message>
         <source>Find &amp;Prev</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Előző keresése</translation>
     </message>
     <message>
         <source>&amp;Count</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Számlálás</translation>
     </message>
     <message>
         <source>Find &amp;Dialog...</source>
-        <translation type="unfinished"></translation>
+        <translation>Keresési párbes&amp;zédablak...</translation>
     </message>
     <message>
         <source>Replace Next</source>
-        <translation type="unfinished"></translation>
+        <translation>Következő cseréje</translation>
     </message>
     <message>
         <source>Replace Prev</source>
-        <translation type="unfinished"></translation>
+        <translation>Előző cseréje</translation>
     </message>
     <message>
         <source>Replace &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>Mindent &amp;cserél</translation>
     </message>
     <message>
         <source>&amp;Go to</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Menj</translation>
     </message>
     <message>
         <source>&amp;Select all matches...</source>
-        <translation type="unfinished"></translation>
+        <translation>M&amp;inden találat kiválasztása...</translation>
     </message>
 </context>
 <context>
@@ -5504,7 +5518,7 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
     </message>
     <message>
         <source>Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Trigger</translation>
     </message>
     <message>
         <source>If this trigger string is written in any tex document, 
@@ -5516,7 +5530,14 @@ if something is written before the remaining part of the trigger.
 Since this trigger is not a plain string, but a regular expression, 
 (?&lt;=\S) can be used to mark replacements which should only occur after a word, 
 and (?&lt;=\s|^) to mark replacements which should only occur before a word.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ha a dokumentumban trigger található, az kicserélhető egy felhasználói elemmel.
+
+Egy trigger csak akkor kezdődhet a (?&lt;=valami) módon, ha a &quot;valami&quot;-t
+a trigger további része elé írták.
+
+Mivel a trigger nem egy egyszerű szöveg, hanem reguláris kifejezés,
+a (?&lt;=\S) helyettesítő jeleket csak szavak után,
+míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
     </message>
     <message>
         <source>?</source>
