@@ -1058,7 +1058,7 @@ void PDFWidget::reloadPage(bool sync)
 	pages.clear();
 	if (magnifier != NULL)
 		magnifier->setPage(-1, 0, QRect());
-	imagePage = 0;
+	imagePage = -1;
 	image = QPixmap();
 	//highlightPath = QPainterPath();
 	if (document != NULL) {
