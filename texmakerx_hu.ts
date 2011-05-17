@@ -49,7 +49,7 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</source>
-        <translation type="unfinished">&lt;b&gt;TexMakerX 2.1 (SVN %1)&lt;/b&gt; {2.2 ?} {1)?}</translation>
+        <translation>&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
